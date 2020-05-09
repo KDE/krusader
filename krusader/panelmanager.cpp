@@ -28,6 +28,7 @@
 #include "krmainwindow.h"
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
+#include "Panel/PanelView/krview.h"
 #include "Panel/PanelView/krviewfactory.h"
 
 #include <assert.h>
@@ -348,6 +349,7 @@ void PanelManager::slotRecreatePanels()
         KConfigGroup cfg(krConfig, grpName);
 
         ListPanel *oldPanel = _tabbar->getPanel(i);
+        oldPanel->view->setFileIconSize(oldPanel->view->defaultFileIconSize());
         oldPanel->saveSettings(cfg, true);
         disconnect(oldPanel);
 

@@ -34,6 +34,7 @@ public:
     explicit KgPanel(bool first, QWidget* parent = nullptr);
 
     int activeSubPage() override;
+    bool apply() override;
 
 protected:
     KonfiguratorCheckBoxGroup *panelToolbarButtonsCheckboxes;

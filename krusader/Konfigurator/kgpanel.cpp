@@ -20,6 +20,7 @@
 
 #include "kgpanel.h"
 #include "../defaults.h"
+#include "../krglobal.h"
 #include "../Dialogs/krdialogs.h"
 
 // QtGui
@@ -31,6 +32,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
+#include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 #include <QtWidgets/QInputDialog>
@@ -801,4 +803,20 @@ void KgPanel::slotMouseCheckBoxChanged()
 int KgPanel::activeSubPage()
 {
     return tabWidget->currentIndex();
+}
+
+bool KgPanel::apply()
+{
+    // We read the IconSize config file before and after
+    // applying the change, to see if it really changed
+    KConfigGroup briefView(krConfig, "KrInterBriefView");
+    KConfigGroup detailedView(krConfig, "KrInterDetailedView");
+
+    int oldiconBriefSize = briefView.readEntry("IconSize", _FilelistIconSize).toInt();
+    int oldiconDetailSize = detailedView.readEntry("IconSize", _FilelistIconSize).toInt();
+    KonfiguratorPage::apply();
+    int iconBriefSize = briefView.readEntry("IconSize", _FilelistIconSize).toInt();
+    int iconDetailSize = detailedView.readEntry("IconSize", _FilelistIconSize).toInt();
+
+    return oldiconBriefSize != iconBriefSize || oldiconDetailSize != iconDetailSize;
 }
