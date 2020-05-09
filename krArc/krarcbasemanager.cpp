@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (C) 2003 Rafi Yanai <krusader@users.sf.net>                     *
  * Copyright (C) 2003 Shie Erlich <krusader@users.sf.net>                    *
- * Copyright (C) 2004-2019 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2004-2020 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *

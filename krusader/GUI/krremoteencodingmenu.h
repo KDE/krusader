@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (C) 2005 Csaba Karai <cskarai@freemail.hu>                      *
- * Copyright (C) 2005-2019 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2005-2020 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * Based on KRemoteEncodingPlugin from Dawit Alemayehu <adawit@kde.org>      *
  *                                                                           *

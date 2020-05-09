@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (C) 2018 Nikita Melnichenko <nikita+kde@melnichenko.name>       *
- * Copyright (C) 2018-2019 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2018-2020 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *

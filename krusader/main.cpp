@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (C) 2000 Shie Erlich <krusader@users.sourceforge.net>           *
  * Copyright (C) 2000 Rafi Yanai <krusader@users.sourceforge.net>            *
- * Copyright (C) 2004-2019 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2004-2020 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
     KAboutData aboutData(QStringLiteral("krusader"),
         (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")), versionName,
         i18n(description), KAboutLicense::GPL_V2,
-        i18n("© 2000-2003 Shie Erlich, Rafi Yanai\n© 2004-2019 Krusader Krew"),
+        i18n("© 2000-2003 Shie Erlich, Rafi Yanai\n© 2004-2020 Krusader Krew"),
         i18n("Feedback:\nhttps://forum.kde.org/viewforum.php?f=225\n\nIRC\nserver: "
              "irc.freenode.net, channel: #krusader"),
         QStringLiteral("https://krusader.org"));

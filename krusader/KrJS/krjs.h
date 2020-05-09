@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (C) 2005 Jonas Bähr <jonas.baehr@web.de>                        *
- * Copyright (C) 2005-2019 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2005-2020 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *

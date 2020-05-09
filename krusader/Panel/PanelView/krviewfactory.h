@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (C) 2000-2008 Csaba Karai <krusader@users.sourceforge.net>      *
- * Copyright (C) 2004-2019 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2004-2020 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *

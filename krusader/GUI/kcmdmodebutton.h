@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (C) 2006 Václav Juza <vaclavjuza@gmail.com>                     *
- * Copyright (C) 2006-2019 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2006-2020 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *

@@ -2,7 +2,7 @@
  * Copyright (C) 2000 Shie Erlich <erlich@users.sourceforge.net>             *
  * Copyright (C) 2000 Rafi Yanai <yanai@users.sourceforge.net>               *
  * Copyright (C) 2011 Jan Lepper <jan_lepper@gmx.de>                         *
- * Copyright (C) 2004-2019 Krusader Krew [https://krusader.org]              *
+ * Copyright (C) 2004-2020 Krusader Krew [https://krusader.org]              *
  *                                                                           *
  * This file is part of Krusader [https://krusader.org].                     *
  *                                                                           *
