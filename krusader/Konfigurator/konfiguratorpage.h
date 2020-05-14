@@ -162,6 +162,7 @@ public:
       * @param  configGroup     The class name used in KConfig (ex. "Archives")
       * @param  name            The itemname used in KConfig (ex. "Do Tar")
       * @param  defaultValue    The default value of the editbox
+      * @param  label           The label that is associated to the editbox
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
       * @param  toolTip         Tooltip used for this editbox
@@ -170,7 +171,7 @@ public:
       * @return             reference to the newly created editbox
       */
     KonfiguratorEditBox *createEditBox(QString configGroup, QString name, QString defaultValue,
-                                       QWidget *parent = nullptr, bool restart = false,
+                                       QLabel *label, QWidget *parent = nullptr, bool restart = false,
                                        const QString &toolTip = QString(), int page = FIRST_PAGE);
 
     /**

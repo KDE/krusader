@@ -52,9 +52,10 @@ KgAdvanced::KgAdvanced(bool first, QWidget* parent) :
 
     generalGrid->addWidget(generals, 1, 0);
 
-    addLabel(generalGrid, 2, 0, i18n("MountMan will not (un)mount the following mount-points:"),
+    QLabel *labelNonMount = addLabel(generalGrid, 2, 0, i18n("MountMan will not (un)mount the following mount-points:"),
              generalGrp);
-    KonfiguratorEditBox *nonMountPoints = createEditBox("Advanced", "Nonmount Points", _NonMountPoints, generalGrp, false);
+    KonfiguratorEditBox *nonMountPoints = createEditBox("Advanced", "Nonmount Points", _NonMountPoints,
+                                                        labelNonMount, generalGrp, false);
     generalGrid->addWidget(nonMountPoints, 2, 1);
 
 
@@ -103,9 +104,10 @@ KgAdvanced::KgAdvanced(bool first, QWidget* parent) :
     spinBox->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     fineTuneGrid->addWidget(spinBox, 0, 1);
 
-    addLabel(fineTuneGrid, 1, 0, i18n("Arguments of updatedb:"),
+    QLabel *labelArgUpdate = addLabel(fineTuneGrid, 1, 0, i18n("Arguments of updatedb:"),
              fineTuneGrp);
-    KonfiguratorEditBox *updatedbArgs = createEditBox("Locate", "UpdateDB Arguments", "", fineTuneGrp, false);
+    KonfiguratorEditBox *updatedbArgs = createEditBox("Locate", "UpdateDB Arguments", "",
+                                                      labelArgUpdate, fineTuneGrp, false);
     fineTuneGrid->addWidget(updatedbArgs, 1, 1);
 
     kgAdvancedLayout->addWidget(fineTuneGrp, 2 , 0);

@@ -76,13 +76,13 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
 
     auto *iconThemeLayout = new QHBoxLayout();
     QLabel *iconThemeLabel = new QLabel(i18n("Fallback Icon Theme:"));
-    iconThemeLabel->setWhatsThis(i18n("Whenever icon is not found in system icon theme, "
-                                      "this theme will be used as a fallback. "
-                                      "If fallback theme doesn't contain the icon, "
-                                      "Breeze or Oxygen will be used if any of these are present."));
+    QString toolTip = i18n("Whenever icon is not found in system icon theme, "
+                           "this theme will be used as a fallback. "
+                           "If fallback theme doesn't contain the icon, "
+                           "Breeze or Oxygen will be used if any of these are present.");
     iconThemeLayout->addWidget(iconThemeLabel);
     KonfiguratorEditBox *iconThemeEditBox = createEditBox("Startup", "Fallback Icon Theme", "",
-                                                          panelsGrp, true);
+                                                          iconThemeLabel, panelsGrp, true, toolTip);
     iconThemeLayout->addWidget(iconThemeEditBox);
     iconThemeLayout->addStretch(1);
     panelsGrid->addLayout(iconThemeLayout, 3, 0, 1, 2);

@@ -106,11 +106,14 @@ KonfiguratorSpinBox* KonfiguratorPage::createSpinBox(QString configGroup, QStrin
 }
 
 KonfiguratorEditBox* KonfiguratorPage::createEditBox(QString configGroup, QString name,
-        QString defaultValue, QWidget *parent, bool restart, const QString &toolTip, int page)
+        QString defaultValue, QLabel *label, QWidget *parent, bool restart,
+        const QString &toolTip, int page)
 {
     KonfiguratorEditBox *editBox = new KonfiguratorEditBox(std::move(configGroup), std::move(name), std::move(defaultValue), parent,
             restart, page);
     if (!toolTip.isEmpty()) {
+        label->setWhatsThis(toolTip);
+        label->setToolTip(toolTip);
         editBox->setWhatsThis(toolTip);
         editBox->setToolTip(toolTip);
     }
