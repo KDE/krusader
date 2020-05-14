@@ -119,10 +119,10 @@ protected:
     const Segment *segmentAt(QPoint&) const;   //FIXME const reference for a library others can use
     const Segment *rootSegment() const {
         return m_rootSegment;
-    } ///never == 0
+    } /// never == 0
     const Segment *focusSegment() const {
         return m_focus;
-    } ///0 == nothing in focus
+    } /// 0 == nothing in focus
 
 private:
     void paintExplodedLabels(QPainter&) const;

@@ -214,7 +214,7 @@ class Directory;
 class File
 {
 protected:
-    Directory        *m_parent;   //0 if this is treeRoot
+    Directory        *m_parent;   // 0 if this is treeRoot
     QString           m_name;     //< file name
     QString           m_directory;//< the directory of the file
     FileSize          m_size;     //< size with subdirectories

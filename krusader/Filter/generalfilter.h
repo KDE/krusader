@@ -85,12 +85,12 @@ public:
     KURLListRequester *dontSearchIn;
     QLayout *middleLayout;
 
-    KrHistoryComboBox* searchFor;
+    KrHistoryComboBox *searchFor;
     KrHistoryComboBox *containsText;
     KrHistoryComboBox *excludeFolderNames;
-    QToolButton*      containsRegExp;
+    QToolButton       *containsRegExp;
 
-    KComboBox* ofType;
+    KComboBox *ofType;
 
     QLabel *encLabel;
     QLabel *containsLabel;

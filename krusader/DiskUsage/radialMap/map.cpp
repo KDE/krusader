@@ -176,7 +176,7 @@ RadialMap::Map::colorise()
     QColor kdeColour[2] = { KColorScheme(QPalette::Inactive, KColorScheme::Window).background().color(),
                             KColorScheme(QPalette::Active, KColorScheme::Window).background(KColorScheme::ActiveBackground).color() };
 
-    double deltaRed   = (double)(kdeColour[0].red()   - kdeColour[1].red())   / 2880; //2880 for semicircle
+    double deltaRed   = (double)(kdeColour[0].red()   - kdeColour[1].red())   / 2880; // 2880 for semicircle
     double deltaGreen = (double)(kdeColour[0].green() - kdeColour[1].green()) / 2880;
     double deltaBlue  = (double)(kdeColour[0].blue()  - kdeColour[1].blue())  / 2880;
 

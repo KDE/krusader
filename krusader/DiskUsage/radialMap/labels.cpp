@@ -104,7 +104,7 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
     unsigned int startLevel = 0;
 
 
-    //1. Create list of labels  sorted in the order they will be rendered
+    // 1. Create list of labels  sorted in the order they will be rendered
 
     if (m_focus != nullptr && m_focus->file() != m_tree) { //separate behavior for selected vs unselected segments
         //don't bother with files
@@ -154,7 +154,7 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
     }
 
-    //2. Check to see if any adjacent labels are too close together
+    // 2. Check to see if any adjacent labels are too close together
     //   if so, remove the least significant labels
 
     int itn = 0;
@@ -188,7 +188,7 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
     auto  *sizes = new int [ m_map.m_visibleDepth + 1 ]; //**** make sizes an array of floats I think instead (or doubles)
 
     do {
-        //3. Calculate font sizes
+        // 3. Calculate font sizes
 
         {
             //determine current range of levels to draw for
@@ -223,7 +223,7 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
             }
         }
 
-        //4. determine label co-ordinates
+        // 4. determine label co-ordinates
 
         int x1, y1, x2, y2, x3, tx, ty; //coords
         double sinra, cosra, ra;  //angles
@@ -344,7 +344,7 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
     } while (it != list.end());
 
 
-    //5. Render labels
+    // 5. Render labels
 
     paint.setPen(QPen(Qt::black, 1));
 

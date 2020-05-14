@@ -771,6 +771,7 @@ void KrQuery::setDontSearchInDirs(const QList<QUrl> &urls)
         whereNotToSearch.append(completed);
     }
 }
+
 void KrQuery::setExcludeFolderNames(const QStringList &paths)
 {
     excludedFolderNames.clear();

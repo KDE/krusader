@@ -108,7 +108,7 @@ RadialMap::Widget::segmentAt(QPoint &e) const
                 //ai = x, bi=1, aj=y, bj=0
                 //cos angle = x / (length)
 
-                auto a  = (uint)(acos((double)e.x() / length) * 916.736);    //916.7324722 = #radians in circle * 16
+                auto a  = (uint)(acos((double)e.x() / length) * 916.736);    // 916.7324722 = #radians in circle * 16
 
                 //acos only understands 0-180 degrees
                 if (e.y() < 0) a = 5760 - a;
