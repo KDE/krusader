@@ -262,12 +262,14 @@ KonfiguratorFontChooser *KonfiguratorPage::createFontChooser(QString configGroup
 }
 
 KonfiguratorComboBox *KonfiguratorPage::createComboBox(QString configGroup, QString name, QString defaultValue,
-        KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QWidget *parent, bool restart, bool editable,
-        const QString &toolTip, int page)
+        KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QLabel *label, QWidget *parent,
+        bool restart, bool editable, const QString &toolTip, int page)
 {
     KonfiguratorComboBox *comboBox = new KonfiguratorComboBox(std::move(configGroup), std::move(name), std::move(defaultValue), params,
             paramNum, parent, restart, editable, page);
     if (!toolTip.isEmpty()) {
+        label->setWhatsThis(toolTip);
+        label->setToolTip(toolTip);
         comboBox->setWhatsThis(toolTip);
         comboBox->setToolTip(toolTip);
     }

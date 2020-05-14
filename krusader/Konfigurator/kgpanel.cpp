@@ -136,7 +136,8 @@ void KgPanel::setupGeneralTab()
 // -----------------  Tab Bar position ----------------------------------
     auto *hbox = new QHBoxLayout();
 
-    hbox->addWidget(new QLabel(i18n("Tab Bar position:"), groupBox));
+    QLabel *labelTabBar = new QLabel(i18n("Tab Bar position:"), groupBox);
+    hbox->addWidget(labelTabBar);
 
     KONFIGURATOR_NAME_VALUE_PAIR positions[] = {
         { i18n("Top"),      "top" },
@@ -144,7 +145,7 @@ void KgPanel::setupGeneralTab()
     };
 
     KonfiguratorComboBox *cmb = createComboBox("Look&Feel", "Tab Bar Position",
-                                "bottom", positions, 2, groupBox, true, false,
+                                "bottom", positions, 2, labelTabBar, groupBox, true, false,
                                 QString(), PAGE_GENERAL);
 
     hbox->addWidget(cmb);
@@ -177,9 +178,10 @@ void KgPanel::setupGeneralTab()
     // -------------- Search bar position -----------------------
 
     hbox = new QHBoxLayout();
-    hbox->addWidget(new QLabel(i18n("Position:"), groupBox));
+    QLabel *labelPosit = new QLabel(i18n("Position:"), groupBox);
+    hbox->addWidget(labelPosit);
     cmb = createComboBox("Look&Feel", "Quicksearch Position",
-                         "bottom", positions, 2, groupBox, true, false,
+                         "bottom", positions, 2, labelPosit, groupBox, true, false,
                          QString(), PAGE_GENERAL);
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(groupBox));
@@ -188,15 +190,16 @@ void KgPanel::setupGeneralTab()
     // -------------- Default search mode -----------------------
 
     hbox = new QHBoxLayout();
-    hbox->addWidget(new QLabel(i18n("Default mode:"), groupBox));
+    QLabel *labelMode = new QLabel(i18n("Default mode:"), groupBox);
+    hbox->addWidget(labelMode);
     KONFIGURATOR_NAME_VALUE_PAIR modes[] = {
         {i18n("Search"), QString::number(KrSearchBar::MODE_SEARCH)},
         {i18n("Select"), QString::number(KrSearchBar::MODE_SELECT)},
         {i18n("Filter"), QString::number(KrSearchBar::MODE_FILTER)}};
     cmb = createComboBox("Look&Feel", "Default Search Mode",
-                         QString::number(KrSearchBar::MODE_SEARCH), modes, 3, groupBox, true, false,
-                         QString(), PAGE_GENERAL);
-    cmb->setToolTip(i18n("Set the default mode on first usage"));
+                         QString::number(KrSearchBar::MODE_SEARCH), modes, 3,
+                         labelMode, groupBox, true, false,
+                         i18n("Set the default mode on first usage"), PAGE_GENERAL);
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(groupBox));
     gridLayout->addLayout(hbox, 1, 1);
@@ -265,7 +268,7 @@ void KgPanel::setupLayoutTab()
         layouts[ i ].value = layoutNames[i];
     }
     KonfiguratorComboBox *cmb = createComboBox("PanelLayout", "Layout", "default",
-                         layouts, numLayouts, tab, true, false,
+                         layouts, numLayouts, l, tab, true, false,
                          QString(), PAGE_LAYOUT);
     grid->addWidget(cmb, 0, 1);
     delete [] layouts;
@@ -279,7 +282,7 @@ void KgPanel::setupLayoutTab()
         { i18nc("Frame color", "Statusbar"), "Statusbar" }
     };
     cmb = createComboBox("PanelLayout", "FrameColor",
-                         "default", frameColor, 3, tab, true, false,
+                         "default", frameColor, 3, l, tab, true, false,
                          QString(), PAGE_LAYOUT);
     grid->addWidget(cmb, 1, 1);
 
@@ -294,7 +297,7 @@ void KgPanel::setupLayoutTab()
         { i18nc("Frame shape", "Panel"), "Panel" },
     };
     cmb = createComboBox("PanelLayout", "FrameShape",
-                         "default", frameShape, 4, tab, true, false,
+                         "default", frameShape, 4, l, tab, true, false,
                          QString(), PAGE_LAYOUT);
     grid->addWidget(cmb, 2, 1);
 
@@ -309,7 +312,7 @@ void KgPanel::setupLayoutTab()
         { i18nc("Frame shadow", "Sunken"), "Sunken" },
     };
     cmb = createComboBox("PanelLayout", "FrameShadow",
-                         "default", frameShadow, 4, tab, true, false,
+                         "default", frameShadow, 4, l, tab, true, false,
                          QString(), PAGE_LAYOUT);
     grid->addWidget(cmb, 3, 1);
 }
@@ -321,14 +324,15 @@ void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
 // -------------------- Filelist icon size ----------------------------------
     auto *hbox = new QHBoxLayout();
 
-    hbox->addWidget(new QLabel(i18n("Default icon size:"), parent));
+    QLabel *labelIconSize = new QLabel(i18n("Default icon size:"), parent);
+    hbox->addWidget(labelIconSize);
 
     auto *iconSizes = new KONFIGURATOR_NAME_VALUE_PAIR[KrView::iconSizes.count()];
     for(int i = 0; i < KrView::iconSizes.count(); i++)
         iconSizes[i].text =  iconSizes[i].value = QString::number(KrView::iconSizes[i]);
     KonfiguratorComboBox *cmb = createComboBox(instance->name(), "IconSize", _FilelistIconSize,
-                                               iconSizes, KrView::iconSizes.count(), parent, true, true,
-                                               QString(), PAGE_VIEW);
+                                               iconSizes, KrView::iconSizes.count(), labelIconSize,
+                                               parent, true, true, QString(), PAGE_VIEW);
     delete [] iconSizes;
     cmb->lineEdit()->setValidator(new QRegExpValidator(QRegExp("[1-9]\\d{0,1}"), cmb));
     hbox->addWidget(cmb);
@@ -423,7 +427,8 @@ void KgPanel::setupPanelTab()
 
     hbox = new QHBoxLayout();
 
-    hbox->addWidget(new QLabel(i18n("Sort method:"), panelGrp));
+    QLabel *labelSort = new QLabel(i18n("Sort method:"), panelGrp);
+    hbox->addWidget(labelSort);
 
     KONFIGURATOR_NAME_VALUE_PAIR sortMethods[] = {{ i18n("Alphabetical"),                QString::number(KrViewProperties::Alphabetical) },
         { i18n("Alphabetical and numbers"),    QString::number(KrViewProperties::AlphabeticalNumbers) },
@@ -432,7 +437,7 @@ void KgPanel::setupPanelTab()
         { i18nc("Krusader sort", "Krusader"),  QString::number(KrViewProperties::Krusader) }
     };
     KonfiguratorComboBox *cmb = createComboBox("Look&Feel", "Sort method", QString::number(_DefaultSortMethod),
-                                               sortMethods, 5, panelGrp, true, false,
+                                               sortMethods, 5, labelSort, panelGrp, true, false,
                                                QString(), PAGE_VIEW);
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(panelGrp));
@@ -470,7 +475,8 @@ void KgPanel::setupPanelTab()
     // -------------------- Default Panel Type ----------------------------------
     hbox = new QHBoxLayout();
 
-    hbox->addWidget(new QLabel(i18n("Default view mode:"), panelGrp));
+    QLabel *labelViewMode = new QLabel(i18n("Default view mode:"), panelGrp);
+    hbox->addWidget(labelViewMode);
 
     QList<KrViewInstance *> views = KrViewFactory::registeredViews();
     const int viewsSize = views.size();
@@ -488,8 +494,8 @@ void KgPanel::setupPanelTab()
     }
 
     cmb = createComboBox("Look&Feel", "Default Panel Type", defType,
-                         panelTypes, viewsSize, panelGrp, false, false,
-                         QString(), PAGE_VIEW);
+                         panelTypes, viewsSize, labelViewMode, panelGrp,
+                         false, false, QString(), PAGE_VIEW);
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(panelGrp));
 
@@ -704,7 +710,8 @@ void KgPanel::setupMediaMenuTab()
     tabLayout->addWidget(mediaMenuCheckBoxes, 0, nullptr);
 
     auto *showSizeHBox = new QHBoxLayout();
-    showSizeHBox->addWidget(new QLabel(i18n("Show Size:"), tab));
+    QLabel *labelShowSize = new QLabel(i18n("Show Size:"), tab);
+    showSizeHBox->addWidget(labelShowSize);
     KONFIGURATOR_NAME_VALUE_PAIR showSizeValues[] = {
         { i18nc("setting 'show size'", "Always"), "Always" },
         { i18nc("setting 'show size'", "When Device has no Label"), "WhenNoLabel" },
@@ -714,7 +721,7 @@ void KgPanel::setupMediaMenuTab()
         createComboBox("MediaMenu", "ShowSize",
                        "Always", showSizeValues,
                        sizeof(showSizeValues) / sizeof(*showSizeValues),
-                       tab, false, false,
+                       labelShowSize, tab, false, false,
                        QString(), PAGE_MEDIA_MENU);
     showSizeHBox->addWidget(showSizeCmb);
     createIgnoredMountpointsList(tab, tabLayout);

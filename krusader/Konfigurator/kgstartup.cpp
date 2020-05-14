@@ -45,7 +45,6 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
 
     QString s = "<p><img src='toolbar|user-identity'></p>" + i18n("Defines the panel profile used at startup. A panel profile contains:<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is saved automatically when Krusader is closed.");
     QLabel *label = addLabel(panelsGrid, 0, 0, i18n("Startup profile:"), panelsGrp);
-    label->setWhatsThis(s);
     panelsGrp->setWhatsThis(s);
 
     QStringList profileList = ProfileManager::availableProfiles("Panel");
@@ -57,7 +56,8 @@ KgStartup::KgStartup(bool first, QWidget* parent) :
         comboItems[ i ].text = comboItems[ i ].value = profileList [ i ];
     comboItems[ 0 ].value = "";
 
-    profileCombo = createComboBox("Startup", "Starter Profile Name", comboItems[ 0 ].value, comboItems, profileListSize, panelsGrp, false, false);
+    profileCombo = createComboBox("Startup", "Starter Profile Name", comboItems[ 0 ].value,
+                                  comboItems, profileListSize, label, panelsGrp, false, false);
     profileCombo->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     panelsGrid->addWidget(profileCombo, 0, 1);
 

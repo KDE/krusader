@@ -259,6 +259,7 @@ public:
       * @param  defaultValue    The default value of the combobox
       * @param  params          Pointer to the name-value pair array (combo elements)
       * @param  paramNum        Number of the combobox elements
+      * @param  label           The label that is associated to the combobox
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
       * @param  editable        Flag indicates that the combo can be edited
@@ -269,7 +270,7 @@ public:
       */
     KonfiguratorComboBox *createComboBox(QString configGroup, QString name, QString defaultValue,
                                          KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum,
-                                         QWidget *parent = nullptr, bool restart = false,
+                                         QLabel *label, QWidget *parent = nullptr, bool restart = false,
                                          bool editable = false, const QString &toolTip = QString(),
                                          int page = FIRST_PAGE);
 
