@@ -97,12 +97,9 @@ KgAdvanced::KgAdvanced(bool first, QWidget* parent) :
 
     const QString cacheTip = i18n("The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory.");
     QLabel *label = new QLabel(i18n("Icon cache size (KB):"), fineTuneGrp);
-    label->setWhatsThis(cacheTip);
     fineTuneGrid->addWidget(label, 0, 0);
     KonfiguratorSpinBox *spinBox = createSpinBox("Advanced", "Icon Cache Size", _IconCacheSize,
-                                   1, 8192, fineTuneGrp, false);
-    spinBox->setWhatsThis(cacheTip);
-    spinBox->setToolTip(cacheTip);
+                                   1, 8192, label, fineTuneGrp, false, cacheTip);
     spinBox->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     fineTuneGrid->addWidget(spinBox, 0, 1);
 

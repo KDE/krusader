@@ -90,11 +90,13 @@ KonfiguratorCheckBox* KonfiguratorPage::createCheckBox(QString configGroup, QStr
 }
 
 KonfiguratorSpinBox* KonfiguratorPage::createSpinBox(QString configGroup, QString configName,
-        int defaultValue, int min, int max, QWidget *parent, bool restart, const QString &toolTip, int page)
+        int defaultValue, int min, int max, QLabel *label, QWidget *parent, bool restart, const QString &toolTip, int page)
 {
     KonfiguratorSpinBox *spinBox = new KonfiguratorSpinBox(std::move(configGroup), std::move(configName), defaultValue,
                                                            min, max, parent, restart, page);
     if (!toolTip.isEmpty()) {
+        label->setWhatsThis(toolTip);
+        label->setToolTip(toolTip);
         spinBox->setWhatsThis(toolTip);
         spinBox->setToolTip(toolTip);
     }

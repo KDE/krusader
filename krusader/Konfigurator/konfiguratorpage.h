@@ -139,6 +139,7 @@ public:
       * @param  defaultValue    The default value of the spinbox
       * @param  min             The minimum value of the spinbox
       * @param  max             The maximum value of the spinbox
+      * @param  label           The label that is associated to the spinbox
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
       * @param  toolTip         Tooltip used for this spinbox
@@ -147,7 +148,7 @@ public:
       * @return             reference to the newly created spinbox
       */
     KonfiguratorSpinBox *createSpinBox(QString configGroup, QString configName, int defaultValue,
-                                       int min, int max, QWidget *parent = nullptr, bool restart = false,
+                                       int min, int max, QLabel *label, QWidget *parent = nullptr, bool restart = false,
                                        const QString &toolTip = QString(), int page = FIRST_PAGE);
 
     /**

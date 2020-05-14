@@ -120,10 +120,9 @@ void KgGeneral::createViewerTab()
 
     const QString listerLimitTip = i18n("If a text file is bigger than this size then lister will be used.");
     QLabel *label5 = new QLabel(i18n("Use lister if the text file is bigger than:"), hboxWidget4);
-    label5->setWhatsThis(listerLimitTip);
     hbox4->addWidget(label5);
     KonfiguratorSpinBox *spinBox = createSpinBox("General", "Lister Limit", _ListerLimit,
-                                   0, 0x7FFFFFFF, hboxWidget4, false, listerLimitTip, PAGE_VIEWER);
+                                   0, 0x7FFFFFFF, label5, hboxWidget4, false, listerLimitTip, PAGE_VIEWER);
     hbox4->addWidget(spinBox);
     QLabel *label6 = new QLabel(i18n("MB"), hboxWidget4);
     hbox4->addWidget(label6);

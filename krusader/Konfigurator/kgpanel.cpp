@@ -389,10 +389,10 @@ void KgPanel::setupPanelTab()
     const QString delayTip = i18n("The duration after a tooltip is shown for a file item, in "
                                       "milliseconds. Set a negative value to disable tooltips.");
     QLabel *tooltipLabel = new QLabel(i18n("Tooltip delay (msec):"));
-    tooltipLabel->setWhatsThis(delayTip);
     tooltipLayout->addWidget(tooltipLabel);
     KonfiguratorSpinBox *tooltipSpinBox = createSpinBox("Look&Feel", "Panel Tooltip Delay", 1000,
-                                                        -100, 5000, panelGrp, false, delayTip, PAGE_VIEW);
+                                                        -100, 5000, tooltipLabel, panelGrp, false,
+                                                        delayTip, PAGE_VIEW);
     tooltipSpinBox->setSingleStep(100);
     tooltipLayout->addWidget(tooltipSpinBox);
     tooltipLayout->addStretch(1);
