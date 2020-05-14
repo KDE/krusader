@@ -79,7 +79,8 @@ KgUserActions::KgUserActions(bool first, QWidget* parent) :
     QLabel *lbel = new QLabel(i18n("Normal font:"), hboxWidget);
     hbox->addWidget(lbel);
 
-    KonfiguratorFontChooser *chser = createFontChooser("UserActions", "Normal Font", _UserActions_NormalFont, hboxWidget);
+    KonfiguratorFontChooser *chser = createFontChooser("UserActions", "Normal Font",
+                                                       _UserActions_NormalFont, lbel, hboxWidget);
     hbox->addWidget(chser);
 
     QWidget *spcer = createSpacer(hboxWidget);
@@ -92,7 +93,8 @@ KgUserActions::KgUserActions(bool first, QWidget* parent) :
     lbel = new QLabel(i18n("Font with fixed width:"), hboxWidget);
     hbox->addWidget(lbel);
 
-    chser = createFontChooser("UserActions", "Fixed Font", _UserActions_FixedFont, hboxWidget);
+    chser = createFontChooser("UserActions", "Fixed Font",
+                              _UserActions_FixedFont, lbel, hboxWidget);
     hbox->addWidget(chser);
 
     spcer = createSpacer(hboxWidget);

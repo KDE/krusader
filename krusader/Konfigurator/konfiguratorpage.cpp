@@ -255,10 +255,17 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup(QString confi
 }
 
 KonfiguratorFontChooser *KonfiguratorPage::createFontChooser(QString configGroup, QString name,
-        const QFont& defaultValue, QWidget *parent, bool restart, int page)
+        const QFont &defaultValue, QLabel *label, QWidget *parent, bool restart,
+        const QString &toolTip, int page)
 {
     KonfiguratorFontChooser *fontChooser = new KonfiguratorFontChooser(std::move(configGroup), std::move(name), defaultValue, parent,
             restart, page);
+    if (!toolTip.isEmpty()) {
+        label->setWhatsThis(toolTip);
+        label->setToolTip(toolTip);
+        fontChooser->setWhatsThis(toolTip);
+        fontChooser->setToolTip(toolTip);
+    }
 
     registerObject(fontChooser->extension());
     return fontChooser;

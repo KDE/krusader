@@ -233,6 +233,7 @@ public:
       * @param  configGroup     The class name used in KConfig (ex. "Archives")
       * @param  name            The item name used in KConfig (ex. "Do Tar")
       * @param  defaultValue    The default value of the font chooser
+      * @param  label           The label that is associated to the font chooser
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
       * @param  page            The subpage of a Konfigurator page (because of setDefaults)
@@ -240,8 +241,10 @@ public:
       * @return             reference to the newly created font chooser
       */
     KonfiguratorFontChooser *createFontChooser(QString configGroup, QString name,
-                                               const QFont& defaultValue, QWidget *parent = nullptr,
-                                               bool restart = false, int page = FIRST_PAGE);
+                                               const QFont &defaultValue, QLabel *label,
+                                               QWidget *parent = nullptr, bool restart = false,
+                                               const QString &toolTip = QString(),
+                                               int page = FIRST_PAGE);
 
     /**
       * Adds a new combobox item to the page.

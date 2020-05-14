@@ -381,9 +381,11 @@ void KgPanel::setupPanelTab()
     auto *hbox = new QHBoxLayout();
 
     auto *fontLayout = new QHBoxLayout();
-    fontLayout->addWidget(new QLabel(i18n("View font:"), panelGrp));
+    QLabel *labelFontLay = new QLabel(i18n("View font:"), panelGrp);
+    fontLayout->addWidget(labelFontLay);
     KonfiguratorFontChooser *chsr =
-        createFontChooser("Look&Feel", "Filelist Font", _FilelistFont, panelGrp, true, PAGE_VIEW);
+        createFontChooser("Look&Feel", "Filelist Font", _FilelistFont,
+                          labelFontLay, panelGrp, true, QString(), PAGE_VIEW);
     fontLayout->addWidget(chsr);
     fontLayout->addStretch(1);
     hbox->addLayout(fontLayout, 1);
