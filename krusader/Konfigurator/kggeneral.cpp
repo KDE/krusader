@@ -118,10 +118,12 @@ void KgGeneral::createViewerTab()
     QWidget * hboxWidget4 = new QWidget(vboxWidget);
     auto * hbox4 = new QHBoxLayout(hboxWidget4);
 
+    const QString listerLimitTip = i18n("If a text file is bigger than this size then lister will be used.");
     QLabel *label5 = new QLabel(i18n("Use lister if the text file is bigger than:"), hboxWidget4);
+    label5->setWhatsThis(listerLimitTip);
     hbox4->addWidget(label5);
     KonfiguratorSpinBox *spinBox = createSpinBox("General", "Lister Limit", _ListerLimit,
-                                   0, 0x7FFFFFFF, hboxWidget4, false, PAGE_VIEWER);
+                                   0, 0x7FFFFFFF, hboxWidget4, false, listerLimitTip, PAGE_VIEWER);
     hbox4->addWidget(spinBox);
     QLabel *label6 = new QLabel(i18n("MB"), hboxWidget4);
     hbox4->addWidget(label6);
@@ -142,7 +144,7 @@ void KgGeneral::createViewerTab()
     QLabel *label1 = new QLabel(i18n("Editor:"), editorGrp);
     editorGrid->addWidget(label1, 0, 0);
     KonfiguratorURLRequester *urlReq = createURLRequester("General", "Editor", "internal editor",
-                                       editorGrp, false, PAGE_VIEWER, false);
+                                       editorGrp, false, QString(), PAGE_VIEWER, false);
     editorGrid->addWidget(urlReq, 0, 1);
 
     QLabel *label2 = new QLabel(i18n("Hint: use 'internal editor' if you want to use Krusader's fast built-in editor"), editorGrp);
@@ -197,7 +199,8 @@ void KgGeneral::createExtensionsTab()
     defaultAtomicExtensions += ".moc.cpp";
 
     listBox = createListBox("Look&Feel", "Atomic Extensions",
-                            defaultAtomicExtensions, vboxWidget2, true, PAGE_EXTENSIONS);
+                            defaultAtomicExtensions, vboxWidget2, true,
+                            QString(), PAGE_EXTENSIONS);
     vbox2->addWidget(listBox);
 }
 

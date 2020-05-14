@@ -76,7 +76,7 @@ bool KonfiguratorPage::isChanged()
 }
 
 KonfiguratorCheckBox* KonfiguratorPage::createCheckBox(QString configGroup, QString name,
-        bool defaultValue, QString text, QWidget *parent, bool restart, const QString& toolTip, int page)
+        bool defaultValue, QString text, QWidget *parent, bool restart, const QString &toolTip, int page)
 {
     KonfiguratorCheckBox *checkBox = new KonfiguratorCheckBox(std::move(configGroup), std::move(name), defaultValue, std::move(text),
             parent, restart, page);
@@ -90,40 +90,56 @@ KonfiguratorCheckBox* KonfiguratorPage::createCheckBox(QString configGroup, QStr
 }
 
 KonfiguratorSpinBox* KonfiguratorPage::createSpinBox(QString configGroup, QString configName,
-        int defaultValue, int min, int max, QWidget *parent, bool restart, int page)
+        int defaultValue, int min, int max, QWidget *parent, bool restart, const QString &toolTip, int page)
 {
     KonfiguratorSpinBox *spinBox = new KonfiguratorSpinBox(std::move(configGroup), std::move(configName), defaultValue,
                                                            min, max, parent, restart, page);
+    if (!toolTip.isEmpty()) {
+        spinBox->setWhatsThis(toolTip);
+        spinBox->setToolTip(toolTip);
+    }
 
     registerObject(spinBox->extension());
     return spinBox;
 }
 
 KonfiguratorEditBox* KonfiguratorPage::createEditBox(QString configGroup, QString name,
-        QString defaultValue, QWidget *parent, bool restart, int page)
+        QString defaultValue, QWidget *parent, bool restart, const QString &toolTip, int page)
 {
     KonfiguratorEditBox *editBox = new KonfiguratorEditBox(std::move(configGroup), std::move(name), std::move(defaultValue), parent,
             restart, page);
+    if (!toolTip.isEmpty()) {
+        editBox->setWhatsThis(toolTip);
+        editBox->setToolTip(toolTip);
+    }
 
     registerObject(editBox->extension());
     return editBox;
 }
 
 KonfiguratorListBox* KonfiguratorPage::createListBox(QString configGroup, QString name,
-        QStringList defaultValue, QWidget *parent, bool restart, int page)
+        QStringList defaultValue, QWidget *parent, bool restart, const QString &toolTip, int page)
 {
     KonfiguratorListBox *listBox = new KonfiguratorListBox(std::move(configGroup), std::move(name), std::move(defaultValue), parent,
             restart, page);
+    if (!toolTip.isEmpty()) {
+        listBox->setWhatsThis(toolTip);
+        listBox->setToolTip(toolTip);
+    }
 
     registerObject(listBox->extension());
     return listBox;
 }
 
 KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(QString configGroup, QString name,
-        QString defaultValue, QWidget *parent, bool restart, int page, bool expansion)
+        QString defaultValue, QWidget *parent, bool restart, const QString &toolTip, int page, bool expansion)
 {
     KonfiguratorURLRequester *urlRequester = new KonfiguratorURLRequester(std::move(configGroup), std::move(name), std::move(defaultValue),
             parent, restart, page, expansion);
+    if (!toolTip.isEmpty()) {
+        urlRequester->setWhatsThis(toolTip);
+        urlRequester->setToolTip(toolTip);
+    }
 
     registerObject(urlRequester->extension());
     return urlRequester;
@@ -244,10 +260,15 @@ KonfiguratorFontChooser *KonfiguratorPage::createFontChooser(QString configGroup
 }
 
 KonfiguratorComboBox *KonfiguratorPage::createComboBox(QString configGroup, QString name, QString defaultValue,
-        KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QWidget *parent, bool restart, bool editable, int page)
+        KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QWidget *parent, bool restart, bool editable,
+        const QString &toolTip, int page)
 {
     KonfiguratorComboBox *comboBox = new KonfiguratorComboBox(std::move(configGroup), std::move(name), std::move(defaultValue), params,
             paramNum, parent, restart, editable, page);
+    if (!toolTip.isEmpty()) {
+        comboBox->setWhatsThis(toolTip);
+        comboBox->setToolTip(toolTip);
+    }
 
     registerObject(comboBox->extension());
     return comboBox;

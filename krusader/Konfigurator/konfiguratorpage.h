@@ -124,7 +124,7 @@ public:
       */
     KonfiguratorCheckBox *createCheckBox(QString configGroup, QString name, bool defaultValue,
                                          QString text, QWidget *parent = nullptr, bool restart = false,
-                                         const QString& toolTip = QString(), int page = FIRST_PAGE);
+                                         const QString &toolTip = QString(), int page = FIRST_PAGE);
 
     /**
       * Adds a new spinbox item to the page.
@@ -141,13 +141,14 @@ public:
       * @param  max             The maximum value of the spinbox
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
+      * @param  toolTip         Tooltip used for this spinbox
       * @param  page            The subpage of a Konfigurator page (because of setDefaults)
       *
       * @return             reference to the newly created spinbox
       */
     KonfiguratorSpinBox *createSpinBox(QString configGroup, QString configName, int defaultValue,
                                        int min, int max, QWidget *parent = nullptr, bool restart = false,
-                                       int page = FIRST_PAGE);
+                                       const QString &toolTip = QString(), int page = FIRST_PAGE);
 
     /**
       * Adds a new editbox item to the page.
@@ -162,13 +163,14 @@ public:
       * @param  defaultValue    The default value of the editbox
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
+      * @param  toolTip         Tooltip used for this editbox
       * @param  page            The subpage of a Konfigurator page (because of setDefaults)
       *
       * @return             reference to the newly created editbox
       */
     KonfiguratorEditBox *createEditBox(QString configGroup, QString name, QString defaultValue,
                                        QWidget *parent = nullptr, bool restart = false,
-                                       int page = FIRST_PAGE);
+                                       const QString &toolTip = QString(), int page = FIRST_PAGE);
 
     /**
       * Adds a new listbox item to the page.
@@ -185,13 +187,14 @@ public:
       * @param  defaultValue    The default value of the listbox
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
+      * @param  toolTip         Tooltip used for this listbox
       * @param  page            The subpage of a Konfigurator page (because of setDefaults)
       *
       * @return             reference to the newly created editbox
       */
     KonfiguratorListBox *createListBox(QString configGroup, QString name, QStringList defaultValue,
                                        QWidget *parent = nullptr, bool restart = false,
-                                       int page = FIRST_PAGE);
+                                       const QString &toolTip = QString(), int page = FIRST_PAGE);
 
     /**
       * Adds a new URL requester item to the page.
@@ -206,6 +209,7 @@ public:
       * @param  defaultValue    The default value of the URL requester
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
+      * @param  toolTip         Tooltip used for this URL requester
       * @param  page            The subpage of a Konfigurator page (because of setDefaults)
       * @param  expansion       Whether to perform url expansion
       *
@@ -213,8 +217,8 @@ public:
       */
     KonfiguratorURLRequester *createURLRequester(QString configGroup, QString name,
                                                  QString defaultValue, QWidget *parent,
-                                                 bool restart, int page = FIRST_PAGE,
-                                                 bool expansion = true);
+                                                 bool restart, const QString &toolTip = QString(),
+                                                 int page = FIRST_PAGE, bool expansion = true);
 
     /**
       * Adds a new font chooser item to the page.
@@ -257,6 +261,7 @@ public:
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
       * @param  editable        Flag indicates that the combo can be edited
+      * @param  toolTip         Tooltip used for this combobox
       * @param  page            The subpage of a Konfigurator page (because of setDefaults)
       *
       * @return             reference to the newly created combobox
@@ -264,7 +269,8 @@ public:
     KonfiguratorComboBox *createComboBox(QString configGroup, QString name, QString defaultValue,
                                          KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum,
                                          QWidget *parent = nullptr, bool restart = false,
-                                         bool editable = false, int page = FIRST_PAGE);
+                                         bool editable = false, const QString &toolTip = QString(),
+                                         int page = FIRST_PAGE);
 
     /**
       * Creates a frame on the page.

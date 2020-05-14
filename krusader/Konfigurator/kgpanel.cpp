@@ -144,7 +144,8 @@ void KgPanel::setupGeneralTab()
     };
 
     KonfiguratorComboBox *cmb = createComboBox("Look&Feel", "Tab Bar Position",
-                                "bottom", positions, 2, groupBox, true, false, PAGE_GENERAL);
+                                "bottom", positions, 2, groupBox, true, false,
+                                QString(), PAGE_GENERAL);
 
     hbox->addWidget(cmb);
     gridLayout->addLayout(hbox, 1, 0, Qt::AlignLeft);
@@ -178,7 +179,8 @@ void KgPanel::setupGeneralTab()
     hbox = new QHBoxLayout();
     hbox->addWidget(new QLabel(i18n("Position:"), groupBox));
     cmb = createComboBox("Look&Feel", "Quicksearch Position",
-                            "bottom", positions, 2, groupBox, true, false, PAGE_GENERAL);
+                         "bottom", positions, 2, groupBox, true, false,
+                         QString(), PAGE_GENERAL);
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(groupBox));
     gridLayout->addLayout(hbox, 1, 0);
@@ -193,7 +195,7 @@ void KgPanel::setupGeneralTab()
         {i18n("Filter"), QString::number(KrSearchBar::MODE_FILTER)}};
     cmb = createComboBox("Look&Feel", "Default Search Mode",
                          QString::number(KrSearchBar::MODE_SEARCH), modes, 3, groupBox, true, false,
-                         PAGE_GENERAL);
+                         QString(), PAGE_GENERAL);
     cmb->setToolTip(i18n("Set the default mode on first usage"));
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(groupBox));
@@ -263,7 +265,8 @@ void KgPanel::setupLayoutTab()
         layouts[ i ].value = layoutNames[i];
     }
     KonfiguratorComboBox *cmb = createComboBox("PanelLayout", "Layout", "default",
-                         layouts, numLayouts, tab, true, false, PAGE_LAYOUT);
+                         layouts, numLayouts, tab, true, false,
+                         QString(), PAGE_LAYOUT);
     grid->addWidget(cmb, 0, 1);
     delete [] layouts;
 
@@ -276,7 +279,8 @@ void KgPanel::setupLayoutTab()
         { i18nc("Frame color", "Statusbar"), "Statusbar" }
     };
     cmb = createComboBox("PanelLayout", "FrameColor",
-                            "default", frameColor, 3, tab, true, false, PAGE_LAYOUT);
+                         "default", frameColor, 3, tab, true, false,
+                         QString(), PAGE_LAYOUT);
     grid->addWidget(cmb, 1, 1);
 
 
@@ -290,7 +294,8 @@ void KgPanel::setupLayoutTab()
         { i18nc("Frame shape", "Panel"), "Panel" },
     };
     cmb = createComboBox("PanelLayout", "FrameShape",
-                            "default", frameShape, 4, tab, true, false, PAGE_LAYOUT);
+                         "default", frameShape, 4, tab, true, false,
+                         QString(), PAGE_LAYOUT);
     grid->addWidget(cmb, 2, 1);
 
 
@@ -304,7 +309,8 @@ void KgPanel::setupLayoutTab()
         { i18nc("Frame shadow", "Sunken"), "Sunken" },
     };
     cmb = createComboBox("PanelLayout", "FrameShadow",
-                            "default", frameShadow, 4, tab, true, false, PAGE_LAYOUT);
+                         "default", frameShadow, 4, tab, true, false,
+                         QString(), PAGE_LAYOUT);
     grid->addWidget(cmb, 3, 1);
 }
 
@@ -320,7 +326,9 @@ void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
     auto *iconSizes = new KONFIGURATOR_NAME_VALUE_PAIR[KrView::iconSizes.count()];
     for(int i = 0; i < KrView::iconSizes.count(); i++)
         iconSizes[i].text =  iconSizes[i].value = QString::number(KrView::iconSizes[i]);
-    KonfiguratorComboBox *cmb = createComboBox(instance->name(), "IconSize", _FilelistIconSize, iconSizes, KrView::iconSizes.count(), parent, true, true, PAGE_VIEW);
+    KonfiguratorComboBox *cmb = createComboBox(instance->name(), "IconSize", _FilelistIconSize,
+                                               iconSizes, KrView::iconSizes.count(), parent, true, true,
+                                               QString(), PAGE_VIEW);
     delete [] iconSizes;
     cmb->lineEdit()->setValidator(new QRegExpValidator(QRegExp("[1-9]\\d{0,1}"), cmb));
     hbox->addWidget(cmb);
@@ -378,12 +386,13 @@ void KgPanel::setupPanelTab()
 
     // -------------------- Panel Tooltip ----------------------------------
     auto *tooltipLayout = new QHBoxLayout();
+    const QString delayTip = i18n("The duration after a tooltip is shown for a file item, in "
+                                      "milliseconds. Set a negative value to disable tooltips.");
     QLabel *tooltipLabel = new QLabel(i18n("Tooltip delay (msec):"));
-    tooltipLabel->setWhatsThis(i18n("The duration after a tooltip is shown for a file item, in "
-                                    "milliseconds. Set a negative value to disable tooltips."));
+    tooltipLabel->setWhatsThis(delayTip);
     tooltipLayout->addWidget(tooltipLabel);
     KonfiguratorSpinBox *tooltipSpinBox = createSpinBox("Look&Feel", "Panel Tooltip Delay", 1000,
-                                                        -100, 5000, panelGrp, false, PAGE_VIEW);
+                                                        -100, 5000, panelGrp, false, delayTip, PAGE_VIEW);
     tooltipSpinBox->setSingleStep(100);
     tooltipLayout->addWidget(tooltipSpinBox);
     tooltipLayout->addStretch(1);
@@ -423,7 +432,8 @@ void KgPanel::setupPanelTab()
         { i18nc("Krusader sort", "Krusader"),  QString::number(KrViewProperties::Krusader) }
     };
     KonfiguratorComboBox *cmb = createComboBox("Look&Feel", "Sort method", QString::number(_DefaultSortMethod),
-                            sortMethods, 5, panelGrp, true, false, PAGE_VIEW);
+                                               sortMethods, 5, panelGrp, true, false,
+                                               QString(), PAGE_VIEW);
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(panelGrp));
 
@@ -477,7 +487,9 @@ void KgPanel::setupPanelTab()
             defType = QString("%1").arg(inst->id());
     }
 
-    cmb = createComboBox("Look&Feel", "Default Panel Type", defType, panelTypes, viewsSize, panelGrp, false, false, PAGE_VIEW);
+    cmb = createComboBox("Look&Feel", "Default Panel Type", defType,
+                         panelTypes, viewsSize, panelGrp, false, false,
+                         QString(), PAGE_VIEW);
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(panelGrp));
 
@@ -702,7 +714,8 @@ void KgPanel::setupMediaMenuTab()
         createComboBox("MediaMenu", "ShowSize",
                        "Always", showSizeValues,
                        sizeof(showSizeValues) / sizeof(*showSizeValues),
-                       tab, false, false, PAGE_MEDIA_MENU);
+                       tab, false, false,
+                       QString(), PAGE_MEDIA_MENU);
     showSizeHBox->addWidget(showSizeCmb);
     createIgnoredMountpointsList(tab, tabLayout);
     showSizeHBox->addStretch();
@@ -744,7 +757,8 @@ void KgPanel::createIgnoredMountpointsList(QWidget *tab, QBoxLayout *tabLayout) 
 
     QStringList defaultHiddenMountpoints; // Empty list
     listBox = createListBox("MediaMenu", "Hidden Mountpoints",
-                            defaultHiddenMountpoints, vboxWidget2, true, PAGE_MEDIA_MENU);
+                            defaultHiddenMountpoints, vboxWidget2, true,
+                            QString(), PAGE_MEDIA_MENU);
     vbox2->addWidget(listBox);
 }
 
