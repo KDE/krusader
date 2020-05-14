@@ -135,10 +135,11 @@ void KgDependencies::addApplication(const QString& name, QGridLayout *grid, int 
             }
     }
 
-    addLabel(grid, row, 0, name, parent);
+    QLabel *labelPath = addLabel(grid, row, 0, name, parent);
 
     KonfiguratorURLRequester *fullPath =
-        createURLRequester("Dependencies", name, defaultValue, parent, false, QString(), page);
+        createURLRequester("Dependencies", name, defaultValue, labelPath,
+                           parent, false, QString(), page);
     connect(fullPath->extension(), &KonfiguratorExtension::applyManually, this, &KgDependencies::slotApply);
     grid->addWidget(fullPath, row, 1);
 }

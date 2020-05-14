@@ -143,7 +143,7 @@ void KgGeneral::createViewerTab()
     QLabel *label1 = new QLabel(i18n("Editor:"), editorGrp);
     editorGrid->addWidget(label1, 0, 0);
     KonfiguratorURLRequester *urlReq = createURLRequester("General", "Editor", "internal editor",
-                                       editorGrp, false, QString(), PAGE_VIEWER, false);
+                                       label1, editorGrp, false, QString(), PAGE_VIEWER, false);
     editorGrid->addWidget(urlReq, 0, 1);
 
     QLabel *label2 = new QLabel(i18n("Hint: use 'internal editor' if you want to use Krusader's fast built-in editor"), editorGrp);
@@ -230,9 +230,10 @@ void KgGeneral::createGeneralTab()
 
     auto *hbox = new QHBoxLayout();
 
-    hbox->addWidget(new QLabel(i18n("Temp Folder:"), generalGrp));
+    QLabel *labelGrp = new QLabel(i18n("Temp Folder:"), generalGrp);
+    hbox->addWidget(labelGrp);
     KonfiguratorURLRequester *urlReq3 = createURLRequester("General", "Temp Directory", _TempDirectory,
-                                        generalGrp, false, PAGE_GENERAL);
+                                        labelGrp, generalGrp, false, PAGE_GENERAL);
     urlReq3->setMode(KFile::Directory);
     connect(urlReq3->extension(), &KonfiguratorExtension::applyManually, this, &KgGeneral::applyTempDir);
     hbox->addWidget(urlReq3);
@@ -271,7 +272,7 @@ void KgGeneral::createGeneralTab()
     QLabel *label3 = new QLabel(i18n("External Terminal:"), generalGrp);
     terminalGrid->addWidget(label3, 0, 0);
     KonfiguratorURLRequester *urlReq2 = createURLRequester("General", "Terminal", _Terminal,
-                                        generalGrp, false, PAGE_GENERAL, false);
+                                        label3, generalGrp, false, PAGE_GENERAL, false);
     terminalGrid->addWidget(urlReq2, 0, 1);
     QLabel *terminalLabel = new QLabel(i18n("%d will be replaced by the workdir."),
                                        terminalGrp);

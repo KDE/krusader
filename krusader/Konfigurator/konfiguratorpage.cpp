@@ -137,11 +137,14 @@ KonfiguratorListBox* KonfiguratorPage::createListBox(QString configGroup, QStrin
 }
 
 KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(QString configGroup, QString name,
-        QString defaultValue, QWidget *parent, bool restart, const QString &toolTip, int page, bool expansion)
+        QString defaultValue, QLabel *label, QWidget *parent, bool restart,
+        const QString &toolTip, int page, bool expansion)
 {
     KonfiguratorURLRequester *urlRequester = new KonfiguratorURLRequester(std::move(configGroup), std::move(name), std::move(defaultValue),
             parent, restart, page, expansion);
     if (!toolTip.isEmpty()) {
+        label->setWhatsThis(toolTip);
+        label->setToolTip(toolTip);
         urlRequester->setWhatsThis(toolTip);
         urlRequester->setToolTip(toolTip);
     }

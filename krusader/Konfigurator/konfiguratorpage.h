@@ -209,6 +209,7 @@ public:
       * @param  configGroup     The class name used in KConfig (ex. "Archives")
       * @param  name            The itemname used in KConfig (ex. "Do Tar")
       * @param  defaultValue    The default value of the URL requester
+      * @param  label           The label that is associated to the URL requester
       * @param  parent          Reference to the parent widget
       * @param  restart         The change of this parameter requires Krusader restart
       * @param  toolTip         Tooltip used for this URL requester
@@ -218,8 +219,9 @@ public:
       * @return             reference to the newly created URL requester
       */
     KonfiguratorURLRequester *createURLRequester(QString configGroup, QString name,
-                                                 QString defaultValue, QWidget *parent,
-                                                 bool restart, const QString &toolTip = QString(),
+                                                 QString defaultValue, QLabel *label,
+                                                 QWidget *parent, bool restart,
+                                                 const QString &toolTip = QString(),
                                                  int page = FIRST_PAGE, bool expansion = true);
 
     /**
