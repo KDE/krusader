@@ -265,14 +265,6 @@ void PanelViewer::openFile(KFileItem fi)
         args.setReload(true);
         cpart->setArguments(args);
 
-        // Note: About checking the return value of the next sentence, Elvis Angelaccio wrote
-        // in <https://bugs.kde.org/show_bug.cgi?id=409722> that "the Ark Part returns false in
-        // the openUrl() method even if it is actually opening the archive as requested. While
-        // this may be considered a partial abuse of the KParts api, it is done for a
-        // reason (that is, ark loads the archives asynchronously). [...] Krusader [could] use
-        // the part's completed() and canceled() signals instead."
-        cpart->openUrl(curl);
-
         connect(cpart.data(), &KParts::ReadOnlyPart::canceled, this, [=]() {
             qDebug() << "openFile canceled: '" << curl << "'";
         });
@@ -284,6 +276,9 @@ void PanelViewer::openFile(KFileItem fi)
         };
         connect(cpart.data(), QOverload<>::of(&KParts::ReadOnlyPart::completed), this, cPartCompleted);
         connect(cpart.data(), QOverload<bool>::of(&KParts::ReadOnlyPart::completed), this, cPartCompleted);
+
+        // Note: Don't rely on return value of openUrl as the call is async in general
+        cpart->openUrl(curl);
 
         return;
     }
