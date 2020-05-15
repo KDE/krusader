@@ -95,6 +95,8 @@
 
 #define ACTIVE_VIEW _mainWindow->activeView()
 
+static const QStringList kKioSupportCompareApps = {"kdiff3", "kompare"};
+
 
 KrSlots::KrSlots(QObject *parent) : QObject(parent), _mainWindow(krApp)
 {
@@ -212,9 +214,7 @@ void KrSlots::compareContent(const QUrl& url1, const QUrl& url2)
 
     QString tmp1;
     QString tmp2;
-
-    // kdiff3 sucks with spaces
-    if (QUrl::fromLocalFile(diffProg).fileName() == "kdiff3" && !url1.toDisplayString().contains(" ") && !url2.toDisplayString().contains(" ")) {
+    if (kKioSupportCompareApps.contains(QUrl::fromLocalFile(diffProg).fileName())) {
         tmp1 = url1.toDisplayString();
         tmp2 = url2.toDisplayString();
     } else {
