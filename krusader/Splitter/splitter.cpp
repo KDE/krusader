@@ -31,6 +31,7 @@
 #include <KIOCore/KFileItem>
 #include <KIO/JobUiDelegate>
 #include <KWidgetsAddons/KMessageBox>
+#include <kio_version.h>
 #include <utility>
 
 Splitter::Splitter(QWidget* parent,  QUrl fileNameIn, QUrl destinationDirIn, bool overWriteIn) :
@@ -167,7 +168,11 @@ void Splitter::nextOutputFile()
     if (overwrite)
         openOutputFile();
     else {
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 69, 0)
+        statJob = KIO::statDetails(writeURL, KIO::StatJob::DestinationSide, KIO::StatNoDetails, KIO::HideProgressInfo);
+#else
         statJob = KIO::stat(writeURL, KIO::StatJob::DestinationSide, 0, KIO::HideProgressInfo);
+#endif
         connect(statJob, &KIO::Job::result, this, &Splitter::statOutputFileResult);
     }
 }

@@ -29,6 +29,7 @@
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
 #include <KWidgetsAddons/KMessageBox>
+#include <kio_version.h>
 #include <utility>
 
 //TODO: delete destination file on error
@@ -162,7 +163,11 @@ void Combiner::statDest()
             writeURL.setPath(writeURL.path() + baseURL.fileName());
     }
 
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 69, 0)
+    statJob = KIO::statDetails(writeURL, KIO::StatJob::DestinationSide, KIO::StatNoDetails, KIO::HideProgressInfo);
+#else
     statJob = KIO::stat(writeURL, KIO::StatJob::DestinationSide, 0, KIO::HideProgressInfo);
+#endif
     connect(statJob, &KIO::StatJob::result, this, &Combiner::statDestResult);
 }
 
