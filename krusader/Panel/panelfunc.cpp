@@ -45,6 +45,7 @@
 #include <KIO/DesktopExecParser>
 #include <KIO/JobUiDelegate>
 #include <KIOCore/KProtocolInfo>
+#include <KIOWidgets/KDesktopFileActions>
 #include <KIOWidgets/KOpenWithDialog>
 #include <KIOWidgets/KPropertiesDialog>
 #include <KIOWidgets/KRun>
@@ -148,6 +149,10 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
     }
 
     if (externallyExecutable) {
+        if (mime == QLatin1String("application/x-desktop")) {
+            KDesktopFileActions::runWithStartup(url, url.isLocalFile(), QByteArray());
+            return;
+        }
         if (KRun::isExecutableFile(url, mime)) {
             runCommand(KShell::quoteArg(url.path()));
             return;
