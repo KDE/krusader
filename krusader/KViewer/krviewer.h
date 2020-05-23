@@ -40,6 +40,7 @@
 #include <KParts/BrowserExtension>
 
 #include "../krglobal.h"
+#include "viewertabbar.h"
 
 class PanelViewerBase;
 
@@ -113,7 +114,8 @@ private:
 
     KParts::PartManager manager;
     QMenu* viewerMenu;
-    QTabWidget tabBar;
+    ViewerTabWidget tabWidget;
+    ViewerTabBar *tabBar;
     QPointer<QWidget> returnFocusTo;
 
     QAction *detachAction;

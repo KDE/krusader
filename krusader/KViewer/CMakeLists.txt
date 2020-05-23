@@ -2,7 +2,8 @@ set(KViewer_SRCS
     krviewer.cpp
     panelviewer.cpp
     diskusageviewer.cpp
-    lister.cpp)
+    lister.cpp
+    viewertabbar.cpp)
 
 add_library(KViewer STATIC ${KViewer_SRCS})
 
