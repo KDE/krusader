@@ -28,6 +28,11 @@ ViewerTabWidget::ViewerTabWidget(QWidget *parent) : QTabWidget(parent)
     setTabBar(new ViewerTabBar(this));
 }
 
+ViewerTabBar *ViewerTabWidget::tabBar() const
+{
+    return dynamic_cast<ViewerTabBar *>(QTabWidget::tabBar());
+}
+
 void ViewerTabBar::mousePressEvent(QMouseEvent *e)
 {
     int clickedTab = tabAt(e->pos());

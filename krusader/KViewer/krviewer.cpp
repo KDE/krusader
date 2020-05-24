@@ -78,8 +78,8 @@ KrViewer::KrViewer(QWidget *parent)
 
     tabWidget.setDocumentMode(true);
     tabWidget.setMovable(true);
-    ViewerTabBar *tabBar = qobject_cast<ViewerTabBar *>(tabWidget.tabBar());
-    connect(tabBar, &ViewerTabBar::closeTabSignal, this, [=](int index) { tabCloseRequest(index, false); });
+    if (ViewerTabBar *tabBar = tabWidget.tabBar())
+        connect(tabBar, &ViewerTabBar::closeTabSignal, this, [=](int index) { tabCloseRequest(index, false); });
     setCentralWidget(&tabWidget);
 
     printAction = KStandardAction::print(this, SLOT(print()), nullptr);

@@ -25,6 +25,8 @@
 #include <QTabBar>
 #include <QTabWidget>
 
+class ViewerTabBar;
+
 /**
  * This class extends QTabWidget such that we can use a custom QTabBar on it
  */
@@ -33,6 +35,7 @@ class ViewerTabWidget : public QTabWidget
     Q_OBJECT
 public:
     explicit ViewerTabWidget(QWidget *parent);
+    ViewerTabBar *tabBar() const;
 };
 
 /**
