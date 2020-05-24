@@ -25,6 +25,7 @@
 #include <QDateTime>
 #include <QStringList>
 #include <QUrl>
+#include <QElapsedTimer>
 
 #include <KConfigCore/KConfigGroup>
 #include <KIO/Job>
@@ -216,7 +217,7 @@ private:
     mutable KIO::filesize_t receivedBytes;
     mutable KIO::filesize_t totalBytes;
     mutable int processEventsConnected;
-    mutable QTime timer;
+    mutable QElapsedTimer timer;
 
     QTextCodec *codec;
 
