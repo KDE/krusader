@@ -54,7 +54,6 @@ signals:
      * emitted when the user mid-clicks on the tab
      */
     void closeTabSignal(int index);
-
 };
 
 #endif
