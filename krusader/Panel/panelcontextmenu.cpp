@@ -176,7 +176,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     QSet<QString> uniqueMimeTypes;
     for (FileItem *file : files)
         uniqueMimeTypes.insert(file->getMime());
-    const QStringList mimeTypes = uniqueMimeTypes.toList();
+    const QStringList mimeTypes = uniqueMimeTypes.values();
 
     offers = mimeTypes.count() == 1 ?
                  KMimeTypeTrader::self()->query(mimeTypes.first()) :
