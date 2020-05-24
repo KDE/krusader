@@ -28,7 +28,7 @@ ViewerTabWidget::ViewerTabWidget(QWidget *parent) : QTabWidget(parent)
     setTabBar(new ViewerTabBar(this));
 }
 
-void ViewerTabBar::mousePressEvent(QMouseEvent* e)
+void ViewerTabBar::mousePressEvent(QMouseEvent *e)
 {
     int clickedTab = tabAt(e->pos());
 
