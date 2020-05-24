@@ -33,7 +33,6 @@ class ViewerTabWidget : public QTabWidget
     Q_OBJECT
 public:
     explicit ViewerTabWidget(QWidget *parent);
-
 };
 
 /**
