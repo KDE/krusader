@@ -39,11 +39,7 @@ void ViewerTabBar::mousePressEvent(QMouseEvent *e)
 
     setCurrentIndex(clickedTab);
 
-    if (e->button() == Qt::RightButton) {
-        // show the popup menu
-        // TODO
-        //_panelActionMenu->menu()->popup(e->globalPos());
-    } else if (e->button() == Qt::MidButton) {
+    if (e->button() == Qt::MidButton) {
         // close the current tab
         emit closeTabSignal(clickedTab);
     }
