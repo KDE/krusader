@@ -34,6 +34,7 @@ class FilterSettings
 
 public:
     FilterSettings();
+    FilterSettings(const FilterSettings& other);
     FilterSettings& operator=(const FilterSettings& other);
 
     bool isValid() const {
@@ -56,6 +57,7 @@ private:
     {
     public:
         FileSize() : amount(0), unit(Byte) {}
+        FileSize(const FileSize &other);
         FileSize& operator=(const FileSize &other);
 
         KIO::filesize_t size() const;
@@ -68,6 +70,7 @@ private:
     {
     public:
         TimeSpan() : amount(0), unit(Day) {}
+        TimeSpan(const TimeSpan &other);
         TimeSpan& operator=(const TimeSpan &other);
 
         int days() const;

@@ -29,6 +29,10 @@
 
 #include <KCodecs/KCharsets>
 
+
+FilterSettings::FileSize::FileSize(const FileSize& other)
+= default;
+
 FilterSettings::FileSize& FilterSettings::FileSize::operator=(const FileSize &other)
 = default;
 
@@ -49,6 +53,9 @@ KIO::filesize_t FilterSettings::FileSize::size() const
     }
 }
 
+
+FilterSettings::TimeSpan::TimeSpan(const TimeSpan& other)
+= default;
 
 FilterSettings::TimeSpan& FilterSettings::TimeSpan::operator=(const TimeSpan &other)
 = default;
@@ -92,45 +99,11 @@ FilterSettings::FilterSettings() :
 {
 }
 
+FilterSettings::FilterSettings(const FilterSettings& other)
+= default;
+
 FilterSettings& FilterSettings::operator=(const FilterSettings& other)
-{
-#define COPY(var) { var = other.var; }
-    COPY(valid);
-    COPY(searchFor);
-    COPY(searchForCase);
-    COPY(mimeType);
-    COPY(searchInArchives);
-    COPY(recursive);
-    COPY(followLinks);
-    COPY(searchIn);
-    COPY(dontSearchIn);
-    COPY(excludeFolderNames);
-    COPY(contentEncoding);
-    COPY(containsText);
-    COPY(containsTextCase);
-    COPY(containsWholeWord);
-    COPY(containsRegExp);
-    COPY(minSizeEnabled);
-    COPY(minSize);
-    COPY(maxSizeEnabled);
-    COPY(maxSize);
-    COPY(modifiedBetweenEnabled);
-    COPY(modifiedBetween1);
-    COPY(modifiedBetween2);
-    COPY(notModifiedAfterEnabled);
-    COPY(notModifiedAfter);
-    COPY(modifiedInTheLastEnabled);
-    COPY(modifiedInTheLast);
-    COPY(notModifiedInTheLast);
-    COPY(ownerEnabled);
-    COPY(owner);
-    COPY(groupEnabled);
-    COPY(group);
-    COPY(permissionsEnabled);
-    COPY(permissions);
-#undef COPY
-    return *this;
-}
+= default;
 
 void FilterSettings::load(const KConfigGroup& cfg) {
     *this = FilterSettings();
