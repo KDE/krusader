@@ -23,6 +23,7 @@
 // QtCore
 #include <QTimer>
 #include <QFile>
+#include <QElapsedTimer>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
@@ -178,7 +179,7 @@ void CompareContentTask::localFileCompareCycle()
     char leftBuffer[ 1440 ];
     char rightBuffer[ 1440 ];
 
-    QTime timer;
+    QElapsedTimer timer;
     timer.start();
 
     int cnt = 0;

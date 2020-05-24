@@ -1395,7 +1395,7 @@ void Synchronizer::synchronizeWithKGet()
 
             progDlg->progressBar()->setValue(++processedCount);
 
-            QTime t;
+            QElapsedTimer t;
             t.start();
             bool canExit = false;
 
