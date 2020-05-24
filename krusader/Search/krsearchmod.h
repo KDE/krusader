@@ -28,6 +28,7 @@
 #include <QStack>
 #include <QStringList>
 #include <QUrl>
+#include <QElapsedTimer>
 
 #include <KIO/Global>
 
@@ -76,7 +77,7 @@ private:
 
     QStack<QUrl> m_scannedUrls;
     QStack<QUrl> m_unScannedUrls;
-    QTime m_timer;
+    QElapsedTimer m_timer;
 };
 
 #endif
