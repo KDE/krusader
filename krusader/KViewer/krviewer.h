@@ -115,7 +115,6 @@ private:
     KParts::PartManager manager;
     QMenu* viewerMenu;
     ViewerTabWidget tabWidget;
-    ViewerTabBar *tabBar;
     QPointer<QWidget> returnFocusTo;
 
     QAction *detachAction;
