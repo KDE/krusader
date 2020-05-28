@@ -870,8 +870,10 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
 
     QList<QUrl> toDelete;
     if (emptyDirVerify) {
-        QSet<QUrl> confirmedFiles = urls.toSet();
+        QSet<QUrl> confirmedFiles;
         for (const QUrl& fileUrl : urls) {
+            confirmedFiles.insert(fileUrl);
+
             if (!fileUrl.isLocalFile()) {
                 continue; // TODO only local fs supported
             }
@@ -903,7 +905,7 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
                 }
             }
         }
-        toDelete = confirmedFiles.toList();
+        toDelete = confirmedFiles.values();
     } else {
         toDelete = urls;
     }

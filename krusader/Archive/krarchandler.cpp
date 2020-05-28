@@ -124,7 +124,9 @@ KrArcHandler::KrArcHandler(QObject *parent) : QObject(parent)
                               QStringLiteral("application/vnd.rar") };
 
     #ifdef KRARC_QUERY_ENABLED
-    krarcArchiveMimetypes += QSet<QString>::fromList(KProtocolInfo::archiveMimetypes("krarc"));
+    auto mimetypes = KProtocolInfo::archiveMimetypes("krarc");
+    for (const auto &mimetype : mimetypes)
+        krarcArchiveMimetypes.insert(mimetype);
     #endif
 }
 

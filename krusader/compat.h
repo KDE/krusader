@@ -42,4 +42,10 @@
     #define QFONTMETRICS_WIDTH(A) width(A)
 #endif
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+    #define SET_TAB_STOP_DISTANCE(X) setTabStopDistance(X)
+#else
+    #define SET_TAB_STOP_DISTANCE(X) setTabStopWidth(X)
+#endif
+
 #endif
