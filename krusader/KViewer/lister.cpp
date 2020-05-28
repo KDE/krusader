@@ -135,7 +135,7 @@ void ListerTextArea::calculateText(const bool forcedUpdate)
 
     const int textViewportWidth = std::max(contentRect.width() - (int) fontWidth, 0);
 
-    setTabStopDistance(fontWidth * _tabWidth);
+    SET_TAB_STOP_DISTANCE(fontWidth * _tabWidth);
 
     const int sizeX = textViewportWidth / fontWidth;
 
