@@ -351,9 +351,9 @@ void KrViewer::addTab(PanelViewerBase *pvb)
     updateActions();
 
     // now we can offer the option to detach tabs (we have more than one)
-    if (tabWidget.count() > 1) {
+    if (tabWidget.count() > 1)
         detachAction->setEnabled(true);
-    }
+    tabWidget.adjustViewerTabBarVisibility();
 
     tabWidget.show();
 
@@ -440,6 +440,7 @@ void KrViewer::tabCloseRequest(int index, bool force)
     } else if (tabWidget.count() == 1) {
         // no point in detaching only one tab..
         detachAction->setEnabled(false);
+        tabWidget.adjustViewerTabBarVisibility();
     }
 }
 
@@ -556,6 +557,7 @@ void KrViewer::detachTab()
     if (tabWidget.count() == 1) {
         //no point in detaching only one tab..
         detachAction->setEnabled(false);
+        tabWidget.adjustViewerTabBarVisibility();
     }
 
     pvb->setParent(&viewer->tabWidget);

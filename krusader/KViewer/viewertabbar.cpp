@@ -19,14 +19,32 @@
 
 #include "viewertabbar.h"
 
-#include <QDebug>
 // QtGui
 #include <QMouseEvent>
+
+#include <KConfigCore/KSharedConfig>
+
+#include "../defaults.h"
+#include "../krglobal.h"
 
 ViewerTabWidget::ViewerTabWidget(QWidget *parent) : QTabWidget(parent)
 {
     setTabBar(new ViewerTabBar(this));
 }
+
+void ViewerTabWidget::adjustViewerTabBarVisibility()
+{
+    if (count() > 1) {
+        tabBar()->show();
+    } else if (count() == 1) {
+        KConfigGroup group(krConfig, "General");
+        bool hideSingleTab = group.readEntry("Viewer Hide Single Tab", _ViewerHideSingleTab);
+        if (hideSingleTab)
+            tabBar()->hide();
+    }
+    return;
+}
+
 
 ViewerTabBar *ViewerTabWidget::tabBar() const
 {

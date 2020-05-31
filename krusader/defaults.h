@@ -142,6 +142,8 @@
 #define _NavigationWithRightArrowQuicksearch true
 // View In Separate Window
 #define _ViewInSeparateWindow  false
+// Hide Single Tab in Viewer
+#define _ViewerHideSingleTab  false
 
 /////////////////////// [Advanced]
 // Permission Check ///

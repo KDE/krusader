@@ -83,10 +83,14 @@ void KgGeneral::createViewerTab()
                                    i18n("Internal editor and viewer opens each file in a separate window"), tab, false,
                                    i18n("If checked, each file will open in a separate window, otherwise, the viewer will work in a single, tabbed mode"), PAGE_VIEWER));
 
+    tabLayout->addWidget(createCheckBox("General", "Viewer Hide Single Tab", _ViewerHideSingleTab,
+                                   i18n("Hide the tab bar when only one tab is opened"), tab, false,
+                                   i18n("If checked, the Viewer tab bar will hide if only one tab is open"), PAGE_VIEWER));
+
     // ------------------------- viewer ----------------------------------
 
     QGroupBox *viewerGrp = createFrame(i18n("Viewer"), tab);
-    tabLayout->addWidget(viewerGrp, 1, 0);
+    tabLayout->addWidget(viewerGrp, 2, 0);
 
     QGridLayout *viewerGrid = createGridLayout(viewerGrp);
 
@@ -137,7 +141,7 @@ void KgGeneral::createViewerTab()
     // ------------------------- editor ----------------------------------
 
     QGroupBox *editorGrp = createFrame(i18n("Editor"), tab);
-    tabLayout->addWidget(editorGrp, 2, 0);
+    tabLayout->addWidget(editorGrp, 3, 0);
     QGridLayout *editorGrid = createGridLayout(editorGrp);
 
     QLabel *label1 = new QLabel(i18n("Editor:"), editorGrp);
