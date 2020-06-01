@@ -149,6 +149,7 @@ public slots:
     void rightclickMenu();
     void toggleSyncBrowse();
     void editLocation();
+    void navigateLocation();
     void showSearchBar();
     void showSearchBarSelection();
     void showSearchBarFilter();

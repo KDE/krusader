@@ -1209,6 +1209,12 @@ void ListPanel::editLocation()
     urlNavigator->editor()->lineEdit()->selectAll();
 }
 
+void ListPanel::navigateLocation()
+{
+    if (urlNavigator->editor()->isVisible())
+        urlNavigator->setUrlEditable(false);
+}
+
 void ListPanel::showSearchBar()
 {
     searchBar->showBar(KrSearchBar::MODE_SEARCH);
@@ -1317,8 +1323,7 @@ void ListPanel::otherPanelChanged()
 
 void ListPanel::getFocusCandidates(QVector<QWidget *> &widgets)
 {
-    if (urlNavigator->editor()->isVisible())
-        widgets << urlNavigator->editor();
+    widgets << urlNavigator->editor();
     if (view->widget()->isVisible())
         widgets << view->widget();
     if (sidebar && sidebar->isVisible())

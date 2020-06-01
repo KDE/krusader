@@ -238,32 +238,44 @@ int KrusaderView::getFocusCandidates(QVector<QWidget *> &widgets)
 
 void KrusaderView::focusUp()
 {
-    qDebug() << "focus UP";
     QVector<QWidget *> widgets;
     int currentFocus = getFocusCandidates(widgets);
+    qDebug() << "Focus UP - current: " << focusWidget() << " - widgets are: " << widgets.toList();
 
     if (currentFocus < 0)
         return;
     currentFocus--;
 
-    if (currentFocus >= 0 && currentFocus < widgets.count())
+    if (currentFocus >= 0 && currentFocus < widgets.count()) {
         widgets[currentFocus]->setFocus();
+
+        if (currentFocus == 0)
+            activePanel()->gui->editLocation();
+
+        qDebug() << "Focus moved to : " << focusWidget();
+    }
 }
 
 void KrusaderView::focusDown()
 {
-    qDebug() << "focus DOWN";
     QVector<QWidget *> widgets;
     int currentFocus = getFocusCandidates(widgets);
+    qDebug() << "Focus DOWN - current: " << focusWidget() << " - widgets are: " << widgets.toList();
 
     if (currentFocus < 0)
         return;
     currentFocus++;
 
-    if (currentFocus < widgets.count())
+    if (currentFocus < widgets.count()) {
         widgets[currentFocus]->setFocus();
-}
 
+        // set the urlnavigator before to prevent focus stealing
+        if (currentFocus == 1)
+            activePanel()->gui->navigateLocation();
+
+        qDebug() << "Focus moved to : " << focusWidget();
+    }
+}
 void KrusaderView::cmdLineFocus() // command line receives keyboard focus
 {
     _cmdLine->setFocus();
