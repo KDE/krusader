@@ -118,6 +118,8 @@ KgColors::KgColors(bool first, QWidget* parent) :
     ADDITIONAL_COLOR sameAsMarkedForegnd = { i18n("Same as selected foreground"), getColorSelector("Marked Foreground")->getColor(), "Marked Foreground" };
     addColorSelector("Marked Current Foreground",         i18n("Selected current foreground:"),          Qt::white,                                    i18n("Not used"), &sameAsMarkedForegnd, 1);
     addColorSelector("Current Background",         i18n("Current background:"),          Qt::white, i18n("Not used"), &sameAsBckgnd, 1);
+    addColorSelector("Rename Foreground",         i18n("Rename foreground:"),          getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
+    addColorSelector("Rename Background",         i18n("Rename background:"),          getColorSelector("Background")->getColor(), i18n("Same as background"));
 
     colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
 

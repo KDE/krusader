@@ -23,6 +23,7 @@
 #include "krviewproperties.h"
 #include "../krglobal.h"
 #include "../listpanel.h"
+#include "../krcolorcache.h"
 
 // QtGui
 #include <QKeyEvent>
@@ -71,6 +72,20 @@ void KrViewItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index
             QString nameWithoutExt = index.data(Qt::UserRole).toString();
             lineEdit->deselect();
             lineEdit->setSelection(0, nameWithoutExt.length());
+        }
+
+        KrColorSettings colorSettings;
+
+        if (!colorSettings.getBoolValue("KDE Default")) {
+            QPalette renamePalette = lineEdit->palette();
+
+            if (!colorSettings.getColorTextValue("Rename Foreground").isEmpty())
+                renamePalette.setColor(QPalette::Text, colorSettings.getColorValue("Rename Foreground"));
+
+            if (!colorSettings.getColorTextValue("Rename Background").isEmpty())
+                renamePalette.setColor(QPalette::Base, colorSettings.getColorValue("Rename Background"));
+
+            lineEdit->setPalette(renamePalette);
         }
     }
 }

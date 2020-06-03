@@ -64,6 +64,7 @@ void KrColorSettingNames::initialize()
         return;
     s_colorNames["Foreground"] = true;
     s_colorNames["Inactive Foreground"] = true;
+    s_colorNames["Rename Foreground"] = true;
     s_colorNames["Directory Foreground"] = true;
     s_colorNames["Inactive Directory Foreground"] = true;
     s_colorNames["Executable Foreground"] = true;
@@ -86,6 +87,7 @@ void KrColorSettingNames::initialize()
     s_colorNames["Inactive Alternate Background"] = true;
     s_colorNames["Background"] = true;
     s_colorNames["Inactive Background"] = true;
+    s_colorNames["Rename Background"] = true;
     s_colorNames["Alternate Marked Background"] = true;
     s_colorNames["Inactive Alternate Marked Background"] = true;
     s_colorNames["Dim Target Color"] = true;
