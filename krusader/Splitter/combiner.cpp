@@ -36,7 +36,7 @@
 //TODO: cache more than one byte array of data
 
 Combiner::Combiner(QWidget* parent,  QUrl baseURLIn, QUrl destinationURLIn, bool unixNamingIn) :
-        QProgressDialog(parent, nullptr), baseURL(std::move(baseURLIn)), destinationURL(std::move(destinationURLIn)),
+        QProgressDialog(parent, Qt::WindowFlags()), baseURL(std::move(baseURLIn)), destinationURL(std::move(destinationURLIn)),
         hasValidSplitFile(false), fileCounter(0), permissions(-1), receivedSize(0),
         statJob(nullptr), combineReadJob(nullptr), combineWriteJob(nullptr), unixNaming(unixNamingIn)
 {

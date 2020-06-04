@@ -545,7 +545,7 @@ void KgPanel::setupButtonsTab()
     };
     buttonsCheckboxes = createCheckBoxGroup(1, 0, buttonsParams, 7/*count*/, tab, PAGE_PANELTOOLBAR);
     connect(buttonsCheckboxes->find("Panel Toolbar visible"), &KonfiguratorCheckBox::stateChanged, this, &KgPanel::slotEnablePanelToolbar);
-    tabLayout->addWidget(buttonsCheckboxes, 0, nullptr);
+    tabLayout->addWidget(buttonsCheckboxes, 0, Qt::Alignment());
 
     QGroupBox * panelToolbarGrp = createFrame(i18n("Visible Panel Toolbar buttons"), tab);
     QGridLayout * panelToolbarGrid = createGridLayout(panelToolbarGrp);
@@ -561,7 +561,7 @@ void KgPanel::setupButtonsTab()
                                  sizeof(panelToolbarButtonsParams) / sizeof(*panelToolbarButtonsParams),
                                  panelToolbarGrp, PAGE_PANELTOOLBAR);
     panelToolbarGrid->addWidget(panelToolbarButtonsCheckboxes, 0, 0);
-    tabLayout->addWidget(panelToolbarGrp, 1, nullptr);
+    tabLayout->addWidget(panelToolbarGrp, 1, Qt::Alignment());
 
     // Enable panel toolbar checkboxes
     slotEnablePanelToolbar();
@@ -709,7 +709,7 @@ void KgPanel::setupMediaMenuTab()
         createCheckBoxGroup(1, 0, mediaMenuParams,
                             sizeof(mediaMenuParams) / sizeof(*mediaMenuParams),
                             tab, PAGE_MEDIA_MENU);
-    tabLayout->addWidget(mediaMenuCheckBoxes, 0, nullptr);
+    tabLayout->addWidget(mediaMenuCheckBoxes, 0, Qt::Alignment());
 
     auto *showSizeHBox = new QHBoxLayout();
     QLabel *labelShowSize = new QLabel(i18n("Show Size:"), tab);

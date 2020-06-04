@@ -35,7 +35,7 @@
 #include <utility>
 
 Splitter::Splitter(QWidget* parent,  QUrl fileNameIn, QUrl destinationDirIn, bool overWriteIn) :
-        QProgressDialog(parent, nullptr),
+        QProgressDialog(parent, Qt::WindowFlags()),
         fileName(std::move(fileNameIn)),
         destinationDir(std::move(destinationDirIn)),
         splitSize(0),

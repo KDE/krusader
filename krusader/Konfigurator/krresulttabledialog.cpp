@@ -33,11 +33,12 @@
 
 #include "../krglobal.h"
 #include "../icon.h"
+#include "../compat.h"
 
 KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
         const QString& caption, const QString& heading, const QString& headerIcon,
         const QString& hint)
-        : QDialog(parent, nullptr)
+        : QDialog(parent, Qt::WindowFlags())
 
 {
     setWindowTitle(caption);

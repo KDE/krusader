@@ -65,7 +65,7 @@ NOTE: Currently the code expects PanelViewer::openUrl() to be called only once
 QList<KrViewer *> KrViewer::viewers;
 
 KrViewer::KrViewer(QWidget *parent)
-    : KParts::MainWindow(parent, (Qt::WindowFlags)KDE_DEFAULT_WINDOWFLAGS), manager(this, this),
+    : KParts::MainWindow(parent, Qt::WindowFlags()), manager(this, this),
       tabWidget(this), sizeX(-1), sizeY(-1)
 {
     //setWFlags(Qt::WType_TopLevel | WDestructiveClose);
