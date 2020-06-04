@@ -36,6 +36,7 @@
 #include <KI18n/KLocalizedString>
 
 #include "../GUI/krlistwidget.h"
+#include "../compat.h"
 
 /**
  * Constructs a KrMaskChoice which is a child of 'parent', with the
@@ -110,7 +111,7 @@ KrMaskChoice::KrMaskChoice(QWidget* parent)
     connect(PushButton7, &QPushButton::clicked, this, &KrMaskChoice::addSelection);
     connect(PushButton7_2, &QPushButton::clicked, this, &KrMaskChoice::deleteSelection);
     connect(PushButton7_3, &QPushButton::clicked, this, &KrMaskChoice::clearSelections);
-    connect(selection, QOverload<const QString &>::of(&KComboBox::activated), selection, &KComboBox::setEditText);
+    connect(selection, QOverload<const QString &>::of(&KComboBox::QCOMBOBOX_ACTIVATED), selection, &KComboBox::setEditText);
     connect(selection->lineEdit(), &QLineEdit::returnPressed, this, &KrMaskChoice::accept);
     connect(preSelections, &KrListWidget::currentItemChanged, this, &KrMaskChoice::currentItemChanged);
     connect(preSelections, &KrListWidget::itemActivated, this, &KrMaskChoice::acceptFromList);

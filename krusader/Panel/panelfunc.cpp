@@ -82,7 +82,7 @@
 #include "../Dialogs/checksumdlg.h"
 #include "../KViewer/krviewer.h"
 #include "../MountMan/kmountman.h"
-
+#include "../compat.h"
 
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
@@ -714,7 +714,7 @@ void ListPanelFunc::mkdir()
     connect(&buttonBox, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
     connect(&buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
 
-    connect(&comboBox, QOverload<const QString &>::of(&KrHistoryComboBox::activated),
+    connect(&comboBox, QOverload<const QString &>::of(&KrHistoryComboBox::QCOMBOBOX_ACTIVATED),
             &comboBox, &KrHistoryComboBox::addToHistory);
 
     // ------------------------------------------------------------------------

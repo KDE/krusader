@@ -29,6 +29,20 @@
 #endif
 
 /**
+ * QComboBox::activated(const QString &text) was made obsoleted in QT 5.15 in
+ * favor of QComboBox::textActivated(const QString &text)
+ *
+ * https://doc.qt.io/qt-5.15/qcombobox-obsolete.html#activated-1
+ *
+ * This can be removed when the qt minimum version required will be >= 5.14
+ */
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    #define QCOMBOBOX_ACTIVATED textActivated
+#else
+    #define QCOMBOBOX_ACTIVATED activated
+#endif
+
+/**
  * QFontMetrics::width(const QString&, int) was made obsoleted in QT 5.11 in
  * favor of QFontMetrics::horizontalAdvance(const QString &, int)
  *

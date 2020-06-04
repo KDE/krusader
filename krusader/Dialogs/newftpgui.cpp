@@ -41,6 +41,7 @@
 
 #include "../krglobal.h"
 #include "../icon.h"
+#include "../compat.h"
 
 #define SIZE_MINIMUM QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed)
 
@@ -152,8 +153,8 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     connect(buttonBox, &QDialogButtonBox::accepted, this, &newFTPGUI::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &newFTPGUI::reject);
 
-    connect(prefix, QOverload<const QString &>::of(&KComboBox::activated), this, &newFTPGUI::slotTextChanged);
-    connect(url, QOverload<const QString &>::of(&KrHistoryComboBox::activated), url, &KrHistoryComboBox::addToHistory);
+    connect(prefix, QOverload<const QString &>::of(&KComboBox::QCOMBOBOX_ACTIVATED), this, &newFTPGUI::slotTextChanged);
+    connect(url, QOverload<const QString &>::of(&KrHistoryComboBox::QCOMBOBOX_ACTIVATED), url, &KrHistoryComboBox::addToHistory);
 
     if(!lastUsedProtocol.isEmpty()) {
         // update the port field

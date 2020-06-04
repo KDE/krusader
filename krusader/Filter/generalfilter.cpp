@@ -25,6 +25,7 @@
 #include "../krglobal.h"
 #include "../krservices.h"
 #include "../FileSystem/filesystem.h"
+#include "../compat.h"
 
 // QtWidgets
 #include <QPushButton>
@@ -390,8 +391,8 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         connect(profileManager, &ProfileManager::saveToProfile, fltTabs, &FilterTabs::saveToProfile);
     }
 
-    connect(searchFor, QOverload<const QString &>::of(&KrHistoryComboBox::activated), searchFor, &KrHistoryComboBox::addToHistory);
-    connect(containsText, QOverload<const QString &>::of(&KrHistoryComboBox::activated), containsText, &KrHistoryComboBox::addToHistory);
+    connect(searchFor, QOverload<const QString &>::of(&KrHistoryComboBox::QCOMBOBOX_ACTIVATED), searchFor, &KrHistoryComboBox::addToHistory);
+    connect(containsText, QOverload<const QString &>::of(&KrHistoryComboBox::QCOMBOBOX_ACTIVATED), containsText, &KrHistoryComboBox::addToHistory);
 
     // load the completion and history lists
     // ==> search for
