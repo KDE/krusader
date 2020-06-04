@@ -89,7 +89,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     typeData = new QComboBox(this);
     typeData->setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
     connect(typeData, QOverload<const QString &>::of(&QComboBox::QCOMBOBOX_ACTIVATED), this,  &PackGUIBase::checkConsistency);
-    connect(typeData, QOverload<const QString &>::of(&QComboBox::highlighted), this,  &PackGUIBase::checkConsistency);
+    connect(typeData, QOverload<const QString &>::of(&QComboBox::QCOMBOBOX_HIGHLIGHTED), this,  &PackGUIBase::checkConsistency);
     hbox->addWidget(typeData);
 
     grid->addLayout(hbox, 1, 0);
