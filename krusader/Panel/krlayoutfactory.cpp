@@ -23,6 +23,7 @@
 #include "listpanelframe.h"
 #include "listpanel.h"
 #include "../krglobal.h"
+#include "../compat.h"
 
 // QtCore
 #include <QDebug>
@@ -104,7 +105,7 @@ bool KrLayoutFactory::parseResource(const QString& path, QDomDocument &doc)
     QResource res(path);
     if (res.isValid()) {
         QByteArray data;
-        if (res.isCompressed())
+        if (QRESOURCE_ISCOMPRESSED(res))
             data = qUncompress(res.data(), res.size());
         else
             data = QByteArray(reinterpret_cast<const char*>(res.data()), res.size());
