@@ -301,7 +301,7 @@ bool KrMouseHandler::wheelEvent(QWheelEvent *e)
         _view->op()->emitNeedFocus();
 
     if (e->modifiers() == Qt::ControlModifier) {
-        if (e->delta() > 0) {
+        if (e->angleDelta().y() > 0) {
             _view->zoomIn();
         } else {
             _view->zoomOut();

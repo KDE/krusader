@@ -748,7 +748,7 @@ void ListerTextArea::mouseMoveEvent(QMouseEvent * e)
 
 void ListerTextArea::wheelEvent(QWheelEvent * e)
 {
-    int delta = e->delta();
+    int delta = e->angleDelta().y();
     if (delta) {
 
         // zooming
