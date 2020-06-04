@@ -36,6 +36,7 @@
 #include <KIOCore/KProtocolManager>
 
 #include "../krglobal.h"
+#include "../compat.h"
 #include "../icon.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
@@ -182,7 +183,7 @@ void KrRemoteEncodingMenu::chooseDefault()
     // settings here since it affects what will be matched.
     KConfig config(("kio_" + currentURL.scheme() + "rc").toLatin1());
 
-    QStringList partList = currentURL.host().split('.', QString::SkipEmptyParts);
+    QStringList partList = currentURL.host().split('.', SKIP_EMPTY_PARTS);
     if (!partList.isEmpty()) {
         partList.erase(partList.begin());
 

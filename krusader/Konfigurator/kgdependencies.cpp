@@ -21,6 +21,7 @@
 #include "kgdependencies.h"
 #include "../krservices.h"
 #include "../krglobal.h"
+#include "../compat.h"
 
 // QtCore
 #include <QUrl>
@@ -127,7 +128,7 @@ void KgDependencies::addApplication(const QString& name, QGridLayout *grid, int 
     QString defaultValue = KrServices::fullPathName(name);
 
     if (defaultValue.isEmpty()) {
-        QStringList list = additionalList.split(',', QString::SkipEmptyParts);
+        QStringList list = additionalList.split(',', SKIP_EMPTY_PARTS);
         for (int i = 0; i != list.count(); i++)
             if (!KrServices::fullPathName(list[ i ]).isEmpty()) {
                 defaultValue = KrServices::fullPathName(list[ i ]);

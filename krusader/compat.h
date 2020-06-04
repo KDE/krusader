@@ -29,6 +29,20 @@
 #endif
 
 /**
+ * QString::split(QChar sep, QString::SplitBehavior behavior, Qt::CaseSensitivity cs = Qt::CaseSensitive)
+ * was made obsoleted in QT 5.15 in favor of the namespaced Qt::endl
+ *
+ * https://doc.qt.io/qt-5.15/qstring-obsolete.html#split-2
+ *
+ * This can be removed when the qt minimum version required will be >= 5.15
+ */
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    #define SKIP_EMPTY_PARTS Qt::SkipEmptyParts
+#else
+    #define SKIP_EMPTY_PARTS QString::SkipEmptyParts
+#endif
+
+/**
  * QTextSteam::endl() was made obsoleted in QT 5.15 in
  * favor of the namespaced Qt::endl
  *
