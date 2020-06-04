@@ -29,6 +29,7 @@
 #include <QTextStream>
 
 #include <unistd.h>
+#include "compat.h"
 
 //! A class to manage some aspects of the writing of messages into the Krusader debug log file
 class KrDebugLogger
@@ -58,7 +59,7 @@ public:
         QTextStream stream;     \
         KrDebugLogger::prepareWriting(file, stream);       \
         stream << __FUNCTION__ << "(" <<__LINE__<< "): "; \
-        stream << X << endl;      \
+        stream << X << QT_ENDL;      \
     } while(0);
 #else
 #define KRFUNC

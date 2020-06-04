@@ -122,7 +122,7 @@ extern "C"
 
     int Q_DECL_EXPORT kdemain(int argc, char **argv) {
         if (argc != 4) {
-            qWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << endl;
+            qWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << QT_ENDL;
             exit(-1);
         }
 

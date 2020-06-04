@@ -20,6 +20,7 @@
  *****************************************************************************/
 
 #include "krdebuglogger.h"
+#include "compat.h"
 
 int KrDebugLogger::indentation = 1;
 const int KrDebugLogger::indentationIncrease = 3;
@@ -31,7 +32,7 @@ KrDebugLogger::KrDebugLogger(const QString &argFunction, int line) : function(ar
     QTextStream stream;
     prepareWriting(file, stream);
     stream << QString("┏"); // Indicates that a function has been started
-    stream << function << "(" << line << ")" << endl;
+    stream << function << "(" << line << ")" << QT_ENDL;
     indentation += indentationIncrease;
 }
 
@@ -42,7 +43,7 @@ KrDebugLogger::~KrDebugLogger()
     QTextStream stream;
     prepareWriting(file, stream);
     stream << QString("┗"); // Indicates that a function is going to finish
-    stream << function << endl;
+    stream << function << QT_ENDL;
 }
 
 //! Prepares some elements before a writing into the krarc debug log file

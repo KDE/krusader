@@ -29,6 +29,20 @@
 #endif
 
 /**
+ * QTextSteam::endl() was made obsoleted in QT 5.15 in
+ * favor of the namespaced Qt::endl
+ *
+ * https://doc.qt.io/qt-5.15/qtextstream-obsolete.html#endl
+ *
+ * This can be removed when the qt minimum version required will be >= 5.15
+ */
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    #define QT_ENDL Qt::endl
+#else
+    #define QT_ENDL endl
+#endif
+
+/**
  * QComboBox::activated(const QString &text) was made obsoleted in QT 5.15 in
  * favor of QComboBox::textActivated(const QString &text)
  *
