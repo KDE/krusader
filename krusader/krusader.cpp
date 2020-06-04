@@ -36,7 +36,6 @@
 // QtDBus
 #include <QDBusInterface>
 
-#include <KCoreAddons/KRandom>
 #include <KConfigCore/KSharedConfig>
 #include <KConfigGui/KWindowConfig>
 #include <KI18n/KLocalizedString>
