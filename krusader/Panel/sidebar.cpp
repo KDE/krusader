@@ -27,6 +27,7 @@
 #include "viewactions.h"
 #include "../defaults.h"
 #include "../icon.h"
+#include "../compat.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 #include "../FileSystem/fileitem.h"
 #include "../FileSystem/filesystem.h"
@@ -62,7 +63,7 @@ Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(nullptr), imageFilePr
 
     btns = new QButtonGroup(this);
     btns->setExclusive(true);
-    connect(btns, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &Sidebar::tabSelected);
+    connect(btns, QOverload<int>::of(&QButtonGroup::QBUTTONGROUP_BUTTONCLICKED), this, &Sidebar::tabSelected);
 
     treeBtn = new QToolButton(this);
     treeBtn->setToolTip(i18n("Tree Panel: a tree view of the local file system"));

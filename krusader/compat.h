@@ -29,6 +29,20 @@
 #endif
 
 /**
+ * QButtonGroup::buttonClicked(int id) was made obsoleted in QT 5.15 in
+ * favor of QButtonGroup::idClicked(int id)
+ *
+ * https://doc.qt.io/qt-5.15/qbuttongroup-obsolete.html#buttonClicked-1
+ *
+ * This can be removed when the qt minimum version required will be >= 5.15
+ */
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    #define QBUTTONGROUP_BUTTONCLICKED idClicked
+#else
+    #define QBUTTONGROUP_BUTTONCLICKED buttonClicked
+#endif
+
+/**
  * QResource::isCompressed() was made obsoleted in QT 5.15 in
  * favor of QResource::Compression QResource::compressionAlgorithm()
  *
