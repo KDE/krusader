@@ -51,7 +51,7 @@
  * This can be removed when the qt minimum version required will be >= 5.13
  */
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    #define QRESOURCE_ISCOMPRESSED(A) (A).compressionAlgorithm() != QResource::NoCompression
+    #define QRESOURCE_ISCOMPRESSED(A) ((A).compressionAlgorithm() != QResource::NoCompression)
 #else
     #define QRESOURCE_ISCOMPRESSED(A) (A).isCompressed()
 #endif
