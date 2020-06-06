@@ -1,49 +1,31 @@
-A twin panel file manager. Written in C++11 with Qt5 and KF5.
+# Krusader Development Documentation
 
-= Useful links =
+This reference will help you to get started with Krusader development.
 
-== General ==
+## Krusader resources for users
 
-* [[http://krusader.org/ | Project homepage]]
+* [Project homepage](https://krusader.org/)
+* [Release downloads](https://download.kde.org/stable/krusader/)
+* [User mailing-list](https://groups.google.com/group/krusader-users) — for user questions, tracked by maintainers, answered by users and maintainers
+* [System & Utilities forum on kde.org](https://forum.kde.org/viewforum.php?f=225) — user questions rarely appear here, answered by forum community
+* [Bugzilla](https://bugs.kde.org/buglist.cgi?product=krusader) — all bugs and wishes are tracked here
+* [Krusader extensions](https://store.kde.org/browse/cat/370/ord/top/) — user-contributed styles and user actions
+* [Krusader app page on kde.org](https://kde.org/applications/en/utilities/org.kde.krusader)
 
-* [[http://download.kde.org/stable/krusader/ | Release downloads]]
+## Krusader resources for developers
 
-* [[http://groups.google.com/group/krusader-users | User mailing-list]] (mainly for user questions)
+* [Developer mailing-list](https://groups.google.com/group/krusader-users) — for development discussion and questions
+* [Repository](https://invent.kde.org/utilities/krusader)
+* [Repository mirror on GitHub](https://github.com/KDE/krusader) — pull requests are ignored here
+* [Automatic builds](https://build.kde.org/job/Extragear/job/krusader/job/stable-kf5-qt5%20SUSEQt5.14/)
+* [Krazy: static code analysis](http://ebn.kde.org/krazy/reports/extragear/utils/krusader/index.html)
+* [Krusader coding style](https://techbase.kde.org/Policies/Frameworks_Coding_Style) — same style as for Frameworks
+* [Release Howto](release-howto.md) — step-by-step release guide
+* [krusader.org website repository](https://invent.kde.org/websites/krusader-org) — the website is deployed via CI from this repo
 
-* [[https://forum.kde.org/viewforum.php?f=225 | Forum]] (same purpose as user mailing list)
-
-* [[https://bugs.kde.org/component-report.cgi?product=krusader | Bugzilla]] (for bug reports or wishes)
-
-* [[https://www.kde.org/applications/utilities/krusader/ | Krusader introduction on kde.org]]
-
-* [[https://store.kde.org/browse/cat/370/ord/top/ | Extensions]]
-
-== Development ==
-
-=== Krusader ===
-
-* [[http://groups.google.com/group/krusader-devel | Developer mailing-list]] (for discussions, questions, etc.)
-
-* Repositories
- * Source code
-  * Read-only:  `git://anongit.kde.org/krusader`
-  * Developer access: `git@git.kde.org:krusader.git`
-  * [[https://cgit.kde.org/krusader.git | Web-based browser]]
-  * [[https://github.com/KDE/krusader | GitHub mirror]] (read-only, no pull requests accepted)
- * Website
-  * Read-only: `git://anongit.kde.org/websites/krusader-org.git`
-  * Developer access: `git@git.kde.org:websites/krusader-org`
-  * [[https://cgit.kde.org/websites/krusader-org.git | Web-based browser]]
-
-* [[https://phabricator.kde.org/project/view/79/ | Phabricator project]] (reviews, outstanding tasks and more)
-
-* [[https://build.kde.org/job/Extragear%20krusader%20kf5-qt5%20SUSEQt5.9/ | Jenkins]] (automatic build server, supports an RSS feed for the build status of `origin/master`)
-
-* [[http://ebn.kde.org/krazy/reports/extragear/utils/krusader/index.html | Krazy]] (static code analysis service)
-
-* [[https://techbase.kde.org/Policies/Frameworks_Coding_Style | Coding Style]] (KDE Frameworks coding style is preferred for Krusader project)
-
-* [[ ./release-howto | Release Howto ]]
+```
+===== End of updated part of the page =====
+```
 
 === KDE ===
 
