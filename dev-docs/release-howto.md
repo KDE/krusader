@@ -1,4 +1,15 @@
-NOTE: Don't follow this blindly. Think, test and improve if required!
+# Krusader Release Howto
+
+This is a step-by-step release guide intended to streamline release process.
+Don't follow this blindly though. Think, test and improve the guide as the process changes!
+
+Many of the steps refer to the previous development system — the Phabricator.
+Please update the guide as you follow the steps for releasing the next version.
+
+```
+===== End of updated part of the page =====
+```
+
 
 == Overall release process ==
 
