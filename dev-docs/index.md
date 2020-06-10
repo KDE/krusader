@@ -2,6 +2,7 @@
 
 This reference will help you to get started with Krusader development.
 
+
 ## Krusader resources for users
 
 * [Project homepage](https://krusader.org/)
@@ -12,9 +13,10 @@ This reference will help you to get started with Krusader development.
 * [Krusader extensions](https://store.kde.org/browse/cat/370/ord/top/) — user-contributed styles and user actions
 * [Krusader app page on kde.org](https://kde.org/applications/en/utilities/org.kde.krusader)
 
+
 ## Krusader resources for developers
 
-* [Developer mailing-list](https://groups.google.com/group/krusader-users) — for development discussion and questions
+* [Developer mailing-list](https://groups.google.com/group/krusader-devel) — for development discussion and questions
 * [Repository](https://invent.kde.org/utilities/krusader)
 * [Repository mirror on GitHub](https://github.com/KDE/krusader) — pull requests are ignored here
 * [Automatic builds](https://build.kde.org/job/Extragear/job/krusader/job/stable-kf5-qt5%20SUSEQt5.14/)
@@ -23,38 +25,37 @@ This reference will help you to get started with Krusader development.
 * [Release Howto](release-howto.md) — step-by-step release guide
 * [krusader.org website repository](https://invent.kde.org/websites/krusader-org) — the website is deployed via CI from this repo
 
+### General KDE development resources
+
+* [KDE developer mailing-list](https://mail.kde.org/mailman/listinfo/kde-devel)
+* [KDE general announcements mailing-list](https://mail.kde.org/mailman/listinfo/kde-announce)
+* [KDE applications release announcements mailing-list](https://mail.kde.org/mailman/listinfo/kde-announce-apps) — [we announce](release-howto.md#send-a-letter-to-mailing-lists) Krusader releases here
+* IRC-channel: chat.freenode.net/kde-devel — for quick questions regarding anything related to KDE development
+* [Git hooks for KDE Bugzilla](https://community.kde.org/Infrastructure/Git/Hooks#Keywords) — use these keywords in your commits
+
+### Krusader dependencies
+
+* [KIO API](https://api.kde.org/frameworks/kio/html/index.html) — KIO is heavily used for file related operations (local and remote).
+* [KIO repository](https://invent.kde.org/frameworks/kio)
+* [KBookmarks repository](https://invent.kde.org/frameworks/kbookmarks) — used for editing Krusader bookmarks
+
+### Recommended IDE and developer tools
+
+* [KDevelop IDE](http://kdevelop.org)
+* [Qt Creator IDE](https://www.qt.io/ide/)
+* [Cuttlefish](https://community.kde.org/Plasma/DeveloperGuide#Icon_Viewer:_Cuttlefish) — a useful icon browser for KDE
+
+### Recommended reading
+
+* [Qt Howto pages](https://wiki.qt.io/Category:HowTo)
+* [Qt New Signal Slot Syntax](https://wiki.qt.io/New_Signal_Slot_Syntax)
+* [Freedesktop icon names](https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html) — official cross-DE icon names, please try to use these first and fallback to the icon names included in Breeze to be more independent from specific icon themes
+
+
 ```
 ===== End of updated part of the page =====
 ```
 
-=== KDE ===
-
-* KDE developer mailing-list: https://mail.kde.org/mailman/listinfo/kde-devel
-
-* KDE system release list: https://mail.kde.org/mailman/listinfo/kde-announce
-
-* KDE applications release list: https://mail.kde.org/mailman/listinfo/kde-announce-apps
-
-* IRC-channel: chat.freenode.net/kde-devel (good place for quick questions regarding everything KDE related)
-
-* Phabricator user guide, including how to submit patches: https://community.kde.org/Infrastructure/Phabricator
-* Git hooks for Bugzilla: https://community.kde.org/Infrastructure/Git/Hooks#Keywords
-
-* KIO API: https://api.kde.org/frameworks/kio/html/index.html . KIO is KDE's library for all file related operations (local and remote). Krusader does heavily depend on it.
-
-* Porting notes, from KDE4 to KF5 (hopefully not important anymore): https://community.kde.org/Frameworks/Porting_Notes
-
-==== Misc ====
-
-* Recommended IDEs
-** KDevelop: http://kdevelop.org
-** Qt Creator: https://www.qt.io/ide/
-
-* [Freedesktop icon names](https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html) (official standard icon names, try to use these instead of names only included in Breeze to be more independent from the icon theme used)
-
-* [Cuttlefish](https://community.kde.org/Plasma/DeveloperGuide#Icon_Viewer:_Cuttlefish) (a useful icon browser for KDE)
-
-* Qt's new signal/slot syntax: https://wiki.qt.io/New_Signal_Slot_Syntax
 
 = FAQs =
 
