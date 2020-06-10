@@ -13,17 +13,17 @@ Please update the guide as you follow the steps for releasing the next version.
 
 == Overall release process ==
 
-* Write a letter to krusader-devel group to claim yourself as a release manager, ask if there are any outstanding issues, code reviews, unpublished work that devs want to include into the release. Wait for a week to gather replies. Examples: [[ https://groups.google.com/d/msg/krusader-devel/TMIUqY1gyRg/_Vl7J64aBAAJ | v2.7.0 ]], [[ https://groups.google.com/d/msg/krusader-devel/a3OdfBDv4K0/b_S_uap-BgAJ | v2.7.1 ]].
-* Discuss the proposed changes, set a feature freeze for the release (no new features should be included to the release later except the agreed on at this stage or bug fixes). Agree on the approximate release date. Examples: [[ https://groups.google.com/d/msg/krusader-devel/TMIUqY1gyRg/HVwioll8AAAJ | v2.7.0 ]], [[ https://groups.google.com/d/msg/krusader-devel/a3OdfBDv4K0/G2YXjGtmBwAJ | v2.7.1 ]].
+* Write a letter to krusader-devel group to claim yourself as a release manager, ask if there are any outstanding issues, code reviews, unpublished work that devs want to include into the release. Wait for a week to gather replies. Examples: [v2.7.0](https://groups.google.com/d/msg/krusader-devel/TMIUqY1gyRg/_Vl7J64aBAAJ), [v2.7.1](https://groups.google.com/d/msg/krusader-devel/a3OdfBDv4K0/b_S_uap-BgAJ).
+* Discuss the proposed changes, set a feature freeze for the release (no new features should be included to the release later except the agreed on at this stage or bug fixes). Agree on the approximate release date. Examples: [v2.7.0](https://groups.google.com/d/msg/krusader-devel/TMIUqY1gyRg/HVwioll8AAAJ), [v2.7.1](https://groups.google.com/d/msg/krusader-devel/a3OdfBDv4K0/G2YXjGtmBwAJ).
 * Wait for changes to be reviewed and pushed.
 * Discuss and pick a release name in case of major or minor release. Bug fix releases carry the release name over.
 * Create a release branch if needed (see the corresponding section below).
-* Update or ask to update the documentation. Check if changes made from the previous release have been documented. Update features for major or minor release (example: [[ https://phabricator.kde.org/D12531?vs=on&id=33125 | v2.7.0 ]]).
-* Propose the release date (for example, 3 weeks from now), update the docs and AppStream files. Examples: [[ https://phabricator.kde.org/D22982 | v2.7.2 ]].
-* Declare the string freeze and doc freeze stage for 2 weeks and notify translators. Examples: [[https://groups.google.com/forum/#!topic/krusader-devel/Fe5bOeTbCCo | v2.7.1 ]].
-* Update change logs and news in the meantime. Examples: [[ https://phabricator.kde.org/D12818?id=33973 | v2.7.0 ]], [[ https://phabricator.kde.org/D14619?id=39104 | v2.7.1 ]].
-* Prepare review: version update. Examples: [[ https://phabricator.kde.org/D14621 | v2.7.1 ]].
-* Prepare review: website update. Examples: [[ https://phabricator.kde.org/D14622 | v2.7.1 ]].
+* Update or ask to update the documentation. Check if changes made from the previous release have been documented. Update features for major or minor release (example: [v2.7.0](https://phabricator.kde.org/D12531?vs=on&id=33125)).
+* Propose the release date (for example, 3 weeks from now), update the docs and AppStream files. Examples: [v2.7.2](https://phabricator.kde.org/D22982).
+* Declare the string freeze and doc freeze stage for 2 weeks and notify translators. Examples: [v2.7.1](https://groups.google.com/forum/#!topic/krusader-devel/Fe5bOeTbCCo).
+* Update change logs and news in the meantime. Examples: [v2.7.0](https://phabricator.kde.org/D12818?id=33973), [v2.7.1](https://phabricator.kde.org/D14619?id=39104).
+* Prepare review: version update. Examples: [v2.7.1](https://phabricator.kde.org/D14621).
+* Prepare review: website update. Examples: [v2.7.1](https://phabricator.kde.org/D14622).
 * On the release date: prepare and release the package (see the corresponding section below).
 * Wrap up: cleanup and check a few things (see the corresponding section below).
 
@@ -178,7 +178,7 @@ Create a new Sysadmin Request asking to publish the package.
 sha256sum krusader-${VERSION}.tar.xz
 ```
 
-Example task: [[ https://phabricator.kde.org/T9350 | Krusader v2.7.1 release ]]
+Example task: [Krusader v2.7.1 release](https://phabricator.kde.org/T9350)
 
 Task template:
 ```
@@ -204,7 +204,7 @@ We ask them to add versions on Bugzilla since the //editcomponents// permission 
 
 Earlier, when you create the CR for the website change, you didn't know the hash of the package since you haven't created a package yet. Now you know it, and it's a good time to update it while you wait for response from admins.
 
-Example: [[ https://phabricator.kde.org/D14622?vs=39108&id=39491 | v2.7.1 checksum update ]]
+Example: [v2.7.1 checksum update](https://phabricator.kde.org/D14622?vs=39108&id=39491)
 
 === Wait for the package to propagate on KDE servers ===
 
@@ -231,14 +231,14 @@ Please get the permission to post ahead of time.
 
 The changes you made in `kde-dev-scripts` needs to be pushed to the master branch.
 
-Example commit for [[ https://cgit.kde.org/kde-dev-scripts.git/commit/?id=61fced5cc064d22a0706173f85cfccf4d44a9a67 | v2.7.1 ]].
+Example commit for [v2.7.1](https://cgit.kde.org/kde-dev-scripts.git/commit/?id=61fced5cc064d22a0706173f85cfccf4d44a9a67).
 
 === Check if bugzilla is updated accordingly ===
 
-[[https://bugs.kde.org/enter_bug.cgi?product=krusader | Click here]] and check if new version is present in the list.
+[Click here](https://bugs.kde.org/enter_bug.cgi?product=krusader) and check if new version is present in the list.
 
 === Merge your new version tag to master ===
 
 Since `stable` contains changes not present in `master` (ChangeLog and documentation changes at least), you need to deliver them to the `master` branch. Merge your vX.Y.Z tag into the branch and resolve conflicts in places where version specified. Keep master version during the conflict resolution.
 
-Example merge for [[https://cgit.kde.org/krusader.git/commit/?id=8d5946a150c7ef3e7c9607419dd45d7945d6463f | v2.7.1]].
+Example merge for [v2.7.1](https://cgit.kde.org/krusader.git/commit/?id=8d5946a150c7ef3e7c9607419dd45d7945d6463f).

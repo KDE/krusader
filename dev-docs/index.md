@@ -50,9 +50,9 @@ This reference will help you to get started with Krusader development.
 ** KDevelop: http://kdevelop.org
 ** Qt Creator: https://www.qt.io/ide/
 
-* [[https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html | Freedesktop icon names]] (official standard icon names, try to use these instead of names only included in Breeze to be more independent from the icon theme used)
+* [Freedesktop icon names](https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html) (official standard icon names, try to use these instead of names only included in Breeze to be more independent from the icon theme used)
 
-* [[https://community.kde.org/Plasma/DeveloperGuide#Icon_Viewer:_Cuttlefish | Cuttlefish]] (a useful icon browser for KDE)
+* [Cuttlefish](https://community.kde.org/Plasma/DeveloperGuide#Icon_Viewer:_Cuttlefish) (a useful icon browser for KDE)
 
 * Qt's new signal/slot syntax: https://wiki.qt.io/New_Signal_Slot_Syntax
 
@@ -61,7 +61,7 @@ This reference will help you to get started with Krusader development.
 ==== I want to contribute. How to submit my first patch? ====
 
 Great!
-# Get a [[https://community.kde.org/Infrastructure#Identity_Accounts | KDE identity account]]
+# Get a [KDE identity account](https://community.kde.org/Infrastructure#Identity_Accounts)
 # Create a new Diff:
  * https://phabricator.kde.org/differential/diff/create/ , with `krusader` as repository
  * or: (**preferred**) use `arc` (see https://community.kde.org/Infrastructure/Phabricator#Using_Arcanist)
@@ -69,7 +69,7 @@ Great!
 
 ==== My patch has been accepted, what now? ====
 
-See [[https://community.kde.org/Infrastructure/Phabricator#Workflow | workflow documentation]], for your first patches you will usually have to ask your reviewers to land them.
+See [workflow documentation](https://community.kde.org/Infrastructure/Phabricator#Workflow), for your first patches you will usually have to ask your reviewers to land them.
 
 ==== I want to fix a bug but there is no bug report for it yet. Do I need to file one? ====
 
@@ -77,7 +77,7 @@ No, not if you are certain that it really is a bug. Feel free to just submit a r
 
 ==== I am unsure about the right approach to solve an issue, what is the best place to discuss? ====
 
-Ask us on the [[ http://groups.google.com/group/krusader-devel | developer mailing list ]].
+Ask us on the [developer mailing list](http://groups.google.com/group/krusader-devel).
 
 ==== I want to know when a Krusader bug report is created (or changed) ====
 
