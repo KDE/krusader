@@ -25,6 +25,8 @@
 #include "../listpanel.h"
 #include "../krcolorcache.h"
 
+// QtCore
+#include <QDebug>
 // QtGui
 #include <QKeyEvent>
 #include <QPainter>
@@ -36,7 +38,7 @@
 #include <KConfigCore/KSharedConfig>
 
 KrViewItemDelegate::KrViewItemDelegate(QObject *parent) :
-        QItemDelegate(parent), _currentlyEdited(-1), _dontDraw(false) {}
+    QItemDelegate(parent), _currentlyEdited(-1), _dontDraw(false), _editor(nullptr) {}
 
 void KrViewItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
@@ -55,7 +57,8 @@ void KrViewItemDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewI
 QWidget * KrViewItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &sovi, const QModelIndex &index) const
 {
     _currentlyEdited = index.row();
-    return QItemDelegate::createEditor(parent, sovi, index);
+    _editor = QItemDelegate::createEditor(parent, sovi, index);
+    return _editor;
 }
 
 void KrViewItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
@@ -109,7 +112,7 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
         switch (dynamic_cast<QKeyEvent *>(event)->key()) {
         case Qt::Key_Tab:
         case Qt::Key_Backtab:
-            _currentlyEdited = -1;
+            onEditorClose();
             emit closeEditor(editor, QAbstractItemDelegate::RevertModelCache);
             return true;
         case Qt::Key_Enter:
@@ -120,14 +123,14 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
                 event->accept();
                 emit commitData(editor);
                 emit closeEditor(editor, QAbstractItemDelegate::SubmitModelCache);
-                _currentlyEdited = -1;
+                onEditorClose();
                 return true;
             }
             return false;
         case Qt::Key_Escape:
             event->accept();
             // don't commit data
-            _currentlyEdited = -1;
+            onEditorClose();
             emit closeEditor(editor, QAbstractItemDelegate::RevertModelCache);
             break;
         default:
@@ -151,7 +154,7 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
                     && !QApplication::activeModalWidget()->isAncestorOf(editor)
                     && qobject_cast<QDialog*>(QApplication::activeModalWidget()))
                 return false;
-            _currentlyEdited = -1;
+            onEditorClose();
             // manually set focus back to panel after rename canceled by focusing another window
             ACTIVE_PANEL->gui->slotFocusOnMe();
             emit closeEditor(editor, RevertModelCache);
@@ -165,4 +168,94 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
         }
     }
     return false;
+}
+
+//! Helper class to represent an editor selection
+class EditorSelection : public QPair<int, int>
+{
+public:
+    EditorSelection(int start, int length) : QPair<int, int>(start, length) {}
+
+    int start() const { return first; }
+    int length() const { return second; }
+};
+
+//! Generate helpful file name selections: full name (always present), name candidates, extension candidates
+static QList<EditorSelection> generateFileNameSelections(const QString &text)
+{
+    auto selections = QList<EditorSelection>();
+    auto length = text.length();
+    auto parts = text.split('.');
+
+    // append full selection
+    selections.append(EditorSelection(0, length));
+
+    // append forward selections
+    int selectionLength = 0;
+    bool isFirstPart = true;
+    for (auto part : parts) {
+        // if the part is not the first one, we need to add one character to account for the dot
+        selectionLength += part.length() + !isFirstPart;
+        isFirstPart = false;
+        // if we reached the full length, don't add the selection, since it's a full selection
+        if (selectionLength == length)
+            break;
+
+        // don't add empty selections (could happen if the full name starts with a dot)
+        if (selectionLength > 0)
+            selections.append(EditorSelection(0, selectionLength));
+    }
+
+    // append backward selections
+    std::reverse(parts.begin(), parts.end());
+    selectionLength = 0;
+    isFirstPart = true;
+    for (auto part : parts) {
+        // if the part is not the first one, we need to add one character to account for the dot
+        selectionLength += part.length() + !isFirstPart;
+        isFirstPart = false;
+        // if we reached the full length, don't add the selection, since it's a full selection
+        if (selectionLength == length)
+            break;
+
+        // don't add empty selections (could happen if the full name ends with a dot)
+        if (selectionLength > 0)
+            selections.append(EditorSelection(length - selectionLength, selectionLength));
+    }
+
+    return selections;
+}
+
+void KrViewItemDelegate::cycleEditorSelection()
+{
+    auto editor = qobject_cast<QLineEdit *>(_editor);
+    if (!editor) {
+        qWarning() << "Unable to cycle through editor selections due to a missing or unsupported type of item editor" << _editor;
+        return;
+    }
+
+    EditorSelection currentSelection(editor->selectionStart(), editor->selectionLength());
+    auto text = editor->text();
+    auto selections = generateFileNameSelections(text);
+
+    // try to find current selection in the list
+    int currentIndex = 0;
+    for (auto selection : selections) {
+        if (selection == currentSelection)
+            break;
+        currentIndex++;
+    }
+
+    // if we found current selection, pick the next in the cycle
+    auto selectionCount = selections.length();
+    if (currentIndex < selections.length())
+        currentIndex = (currentIndex + 1) % selectionCount;
+    // otherwise pick the first one - the full selection
+    else
+        currentIndex = 0;
+
+    // set the selection
+    auto selection = selections[currentIndex];
+    qDebug() << "setting selection" << selection << "index" << currentIndex;
+    editor->setSelection(selection.start(), selection.length());
 }

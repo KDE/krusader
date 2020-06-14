@@ -40,9 +40,20 @@ public:
                    const QModelIndex &index) const override;
     bool eventFilter(QObject *object, QEvent *event) override;
 
+    /// Set the next file name selection in the editor.
+    void cycleEditorSelection();
+
 private:
     mutable int _currentlyEdited;
     mutable bool _dontDraw;
+    mutable QWidget *_editor;
+
+    /// Init editor-related members when editor is closed.
+    void onEditorClose()
+    {
+        _currentlyEdited = -1;
+        _editor = nullptr;
+    }
 };
 
 #endif

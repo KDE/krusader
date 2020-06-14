@@ -21,6 +21,7 @@
 #include "krinterbriefview.h"
 
 // QtCore
+#include <QDebug>
 #include <QDir>
 #include <QHashIterator>
 #include <QItemSelection>
@@ -621,8 +622,21 @@ void KrInterBriefView::currentChanged(const QModelIndex & current, const QModelI
 
 void KrInterBriefView::renameCurrentItem()
 {
-    QModelIndex cIndex = currentIndex();
-    QModelIndex nameIndex = _model->index(cIndex.row(), KrViewProperties::Name);
+    QModelIndex nameIndex = _model->index(currentIndex().row(), KrViewProperties::Name);
+
+    // cycle through various text selections if we are in the editing mode already
+    if (state() == QAbstractItemView::EditingState) {
+        auto delegate = dynamic_cast<KrViewItemDelegate *>(itemDelegate(nameIndex));
+        if (!delegate) {
+            qWarning() << "KrInterView item delegate is not KrViewItemDelegate, selection is not updated";
+            return;
+        }
+
+        delegate->cycleEditorSelection();
+        return;
+    }
+
+    // create and show file name editor
     edit(nameIndex);
     updateEditorData();
     update(nameIndex);
