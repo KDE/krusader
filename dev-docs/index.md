@@ -52,105 +52,75 @@ This reference will help you to get started with Krusader development.
 * [Freedesktop icon names](https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html) — official cross-DE icon names, please try to use these first and fallback to the icon names included in Breeze to be more independent from specific icon themes
 
 
-```
-===== End of updated part of the page =====
-```
+## Contributing
 
+### Quick guide
 
-= FAQs =
+1. Get a [KDE identity account](https://community.kde.org/Infrastructure#Identity_Accounts).
+2. Fork the [Krusader repository](https://invent.kde.org/utilities/krusader).
+3. Clone your fork to your dev box.
+4. Make changes in your local repository in a branch.
+5. Push your branch to the fork.
+6. Create a merge request (aka pull request) to the main repo, mark it with "Needs Review" label.
+7. Wait for devs to review and resolve all comments.
+8. Once the label is changed to "Approved" and all threads are resolved, devs will merge your change to the main repo.
 
-==== I want to contribute. How to submit my first patch? ====
+Find more details in [Forking workflow](https://invent.kde.org/help/user/project/repository/forking_workflow.md).
 
-Great!
-# Get a [KDE identity account](https://community.kde.org/Infrastructure#Identity_Accounts)
-# Create a new Diff:
- * https://phabricator.kde.org/differential/diff/create/ , with `krusader` as repository
- * or: (**preferred**) use `arc` (see https://community.kde.org/Infrastructure/Phabricator#Using_Arcanist)
-# Wait for somebody to review and accept your diff.
-
-==== My patch has been accepted, what now? ====
-
-See [workflow documentation](https://community.kde.org/Infrastructure/Phabricator#Workflow), for your first patches you will usually have to ask your reviewers to land them.
-
-==== I want to fix a bug but there is no bug report for it yet. Do I need to file one? ====
-
-No, not if you are certain that it really is a bug. Feel free to just submit a review.
-
-==== I am unsure about the right approach to solve an issue, what is the best place to discuss? ====
-
-Ask us on the [developer mailing list](http://groups.google.com/group/krusader-devel).
-
-==== I want to know when a Krusader bug report is created (or changed) ====
-
-To know when a Krusader bug report is created (or when an existing bug report is changed):
-* You must have an account in bugs.kde.org, then you can go to «//https://bugs.kde.org > Preferences > Email preferences//» and on the "User Watching" section you can add: krusader-bugs-null@kde.org
-
-= Commit/Patch guidelines =
+### Commit guidelines
 
 Familiarize yourself with commit message style by reading several commit messages in the repository. Notice that for simple changes we use single commits and for multiple related changes we use branches and merge them into master with a descriptive merge commit message.
 
-If your commit/patch fixes a bug reported on bugs.kde.org, use both the `FIXED:` keyword with the bug number in square brackets and bug title, and 'BUG:' keyword that triggers the Git hook to close the bug. Refer to an example below.
+If your change fixes a bug reported on bugs.kde.org, use both the `FIXED:` keyword with the bug number in square brackets and bug title, and `BUG:` keyword that triggers the Git hook to close the bug. Refer to an example below.
 
-Your change must be reviewed and approved before you can push it to master branch. We currently use Phabricator platform for code reviews.
+Your change must be reviewed and approved before you can push it to master branch.
+You must adhere to [Krusader coding style](https://techbase.kde.org/Policies/Frameworks_Coding_Style) and use the best coding practices.
 
 Your commit (or branch merge if your change is a series of commits) must contain the code review link. It's recommended to place it on the last line and separate it from summary with an empty line. For example:
 
-> One-line commit title
->
-> Description of the change. The change description
-> continues.
->
-> FIXED: [ 123456 ] Bug title in case you fixed a bug
-> BUG: 123456
->
-> Differential Revision: https://phabricator.kde.org/D12345
+```
+One-line commit title
 
-Once you push the commit to the repository, it will be automatically discovered by the Phabricator and it will close your code review (aka Differential) and put references to your commits.
+Description of the change. The change description
+continues.
 
-If your changes are important enough to be included in the ChangeLog, please add a line to the commit message (summary text for the Differential on Phabricator for patches) beginning with one of these keywords {`FIXED:`, `ADDED:`, `CHANGED:`, `REMOVED:`} and a description. For example:
-> CHANGED: When the big red button is pressed, foo is activated and not bar anymore
-This line should not be the title of the commit message/differential. Check git history and ChangeLog for more examples of using the keywords.
+FIXED: [ 123456 ] Bug title in case you fixed a bug
+BUG: 123456
 
-= Best practice "Git vs. Phabricator" workflow =
+Discussion: https://invent.kde.org/utilities/krusader/-/merge_requests/7
+```
 
-NOTE: this is only a guideline. You can use your own workflow but be sure it is "good". If you are new to Phabricator (or Git), better do as it is described here. If you are new to Krusader development and have suggestions on how to modify it, please contact krusader-devel group.
+Gitlab understands the discussion link and nicely [integrates it](https://invent.kde.org/help/user/markdown#special-gitlab-references) into the UI like this: utilities/krusader!7 ([see example commit](9198345c62ff6c2337fb37c9913bff933f57414b)).
 
-Phabricator has a major design flaw: it alters Git commits. When a differential diff is created with `arc diff`, the last commit message is modified with potentially a huge unformatted summary text and information specific to Phabricator. These are definitely NOT good commit messages. Second, when landing the diff, all commits are squashed into one. This is against the "split changes into logical chunks"-rule for version control systems. This is default and can be changed (with the `--merge` flag). It is still annoying.
+Once you push the commit to the repository, it will be automatically discovered by the Gitlab and it will close the merge request.
 
-Here is are workflow for circumventing unwanted modifications:
-* Create a new feature branch:
-`git checkout -b feature/new-foobar-widget`
-* Make your changes/commits normally you would in Git
-* When done, you can upload your changes to Phabricator for review but **before** copy your feature branch for arc:
-`git checkout -b feature/new-foobar-widget-arc`
-* Now upload with nice information:
-`arc diff --reviewers "#krusader"`
+If your changes are important enough to be included in the ChangeLog, please add a line to the commit message beginning with one of these keywords {`FIXED:`, `ADDED:`, `CHANGED:`, `REMOVED:`} and a description. For example:
+```
+CHANGED: When the big red button is pressed, foo is activated and not bar anymore
+```
+This line should not be the title of the commit message.
+If your change spreads across multiple commits, use the keywords and discussion link in the merge commit message.
+Keep in mind that the link and the keywords should go to either your single commit or branch merge commit, i.e. only appear once in history.
+Check git history and ChangeLog for more examples of using the keywords.
 
-> Added new foobar widget
->
-> Summary:
-> Bla, Bla, Bla Mr. Freeman.
-> ...
+If your change contains multiple commits, which you'd like to keep, and you are still on top of master, please use `--no-ff` to keep it as a branch merge:
+```
+git checkout master && git merge --no-ff feature/new-foobar-widget
+```
+and then amend the commit message accordingly. Substitute `master` with your base branch if needed.
 
-NOTE: If your base branch is not `master`, specify the base branch as well. For example,
-`arc diff --reviewers "#krusader" stable`.
+### FAQ
 
-* In case you need to make updates based on reviewer comment or further testing, commit changes to the arc branch and run `arc diff <base-branch>`. Revision will be updated with your changes. Cherry-pick your commits to non-arc branch.
+> I want to fix a bug but there is no bug report for it yet. Do I need to file one?
 
-* Wait until your changes are accepted. Merge the non-arc branch with master (or simply cherry-pick and amend your commit in case of a single commit).
-`git checkout master && git merge feature/new-foobar-widget`
-Make sure you add code review link and keywords according to commit guidelines. The link and the keywords should go to either your single commit or branch merge commit, i.e. only appear once in history.
+No, not if you are certain that it really is a bug. Feel free to just submit a review.
 
-If your change contains multiple commits and you are still on top of master, please use `--no-ff` to keep it as a branch merge:
-`git checkout master && git merge --no-ff feature/new-foobar-widget`
+> I am unsure about the right approach to solve an issue, what is the best place to discuss?
 
-NOTE: Substitute `master` with your base branch if needed.
+Ask us on the [developer mailing list](http://groups.google.com/group/krusader-devel).
 
-Example of branch merge commit:
-> Added new foobar widget
->
-> Merge branch 'feature/new-foobar-widget'
->
-> Differential Revision: https://phabricator.kde.org/D1234
+> How do I start tracking Krusader bug reports?
 
-Done with `git pull`! The Differential diff should be automatically be closed (because of the reference).
+1. Sign-in to [Bugzilla](https://bugs.kde.org/).
+2. Go to Preferences → Email Preferences tab.
+3. On the "User Watching" section add `krusader-bugs-null@kde.org` to your watch list.
