@@ -865,29 +865,33 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
         }
     }
 
-    // we want to warn the user about non empty dir
+    // we want to warn the user about non-empty dir
     const bool emptyDirVerify = advancedGroup.readEntry("Confirm Unempty Dir", _ConfirmUnemptyDir);
 
-    QList<QUrl> toDelete;
+    QList<QUrl> urlsMarkedForDeletion;
     if (emptyDirVerify) {
-        QSet<QUrl> confirmedFiles;
-        for (const QUrl& fileUrl : urls) {
-            confirmedFiles.insert(fileUrl);
-
-            if (!fileUrl.isLocalFile()) {
-                continue; // TODO only local fs supported
+        bool deleteAllIsChosen = false;
+        for (const QUrl &url : urls) {
+            // NOTE: we only support verifying local files for this safeguard option
+            if (!url.isLocalFile() || deleteAllIsChosen) {
+                urlsMarkedForDeletion.append(url);
+                continue;
             }
 
-            const QString filePath = fileUrl.toLocalFile();
+            bool markForDeletion = true;
+            const QString filePath = url.toLocalFile();
             QFileInfo fileInfo(filePath);
             if (fileInfo.isDir() && !fileInfo.isSymLink()) {
-                // read local dir...
+                // read local dir
                 const QDir dir(filePath);
                 if (!dir.entryList(QDir::AllEntries | QDir::System | QDir::Hidden |
                                    QDir::NoDotAndDotDot).isEmpty()) {
 
-                    // ...is not empty, ask user
-                    const QString fileString = showPath ? filePath : fileUrl.fileName();
+                    // if the dir is not empty, show a confirmation dialog with buttons:
+                    // * Skip (-> KMessageBox::Yes)
+                    // * Delete All (-> KMessageBox::No)
+                    // * Cancel (-> KMessageBox::Cancel)
+                    const QString fileString = showPath ? filePath : url.fileName();
                     const KMessageBox::ButtonCode result = KMessageBox::warningYesNoCancel(
                         krMainWindow,
                         i18n("<qt><p>Folder <b>%1</b> is not empty.</p>", fileString) +
@@ -895,22 +899,29 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
                                            i18n("<p>Skip this one or delete all?</p></qt>")),
                         QString(), KGuiItem(i18n("&Skip")),
                         KGuiItem(moveToTrash ? i18n("&Trash All") : i18n("&Delete All")));
+
+                    // process user response
                     if (result == KMessageBox::Yes) {
-                        confirmedFiles.remove(fileUrl); // skip this dir
+                        // skip this dir
+                        markForDeletion = false;
                     } else if (result == KMessageBox::No) {
-                        break; // accept all remaining
+                        // delete all
+                        deleteAllIsChosen = true;
                     } else {
-                        return QList<QUrl>(); // cancel
+                        // cancel
+                        return QList<QUrl>();
                     }
                 }
             }
+
+            if (markForDeletion)
+                urlsMarkedForDeletion.append(url);
         }
-        toDelete = confirmedFiles.values();
     } else {
-        toDelete = urls;
+        urlsMarkedForDeletion = urls;
     }
 
-    return toDelete;
+    return urlsMarkedForDeletion;
 }
 
 void ListPanelFunc::removeVirtualFiles()
