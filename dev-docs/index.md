@@ -19,7 +19,7 @@ This reference will help you to get started with Krusader development.
 * [Developer mailing-list](https://groups.google.com/group/krusader-devel) — for development discussion and questions
 * [Repository](https://invent.kde.org/utilities/krusader)
 * [Repository mirror on GitHub](https://github.com/KDE/krusader) — pull requests are ignored here
-* [Automatic builds](https://build.kde.org/job/Extragear/job/krusader/job/stable-kf5-qt5%20SUSEQt5.14/)
+* [Automatic builds](https://build.kde.org/job/Extragear/job/krusader/)
 * [Krazy: static code analysis](http://ebn.kde.org/krazy/reports/extragear/utils/krusader/index.html)
 * [Krusader coding style](https://techbase.kde.org/Policies/Frameworks_Coding_Style) — same style as for Frameworks
 * [Release Howto](release-howto.md) — step-by-step release guide
