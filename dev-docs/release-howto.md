@@ -238,7 +238,7 @@ Please get the permission to post ahead of time.
 
 The changes you made in `kde-dev-scripts` needs to be pushed to the master branch.
 
-Example commit for [v2.7.1](https://cgit.kde.org/kde-dev-scripts.git/commit/?id=61fced5cc064d22a0706173f85cfccf4d44a9a67).
+Example commit for [v2.7.1](sdk/kde-dev-scripts@61fced5c).
 
 ### Check if bugzilla is updated accordingly
 
@@ -248,4 +248,4 @@ Example commit for [v2.7.1](https://cgit.kde.org/kde-dev-scripts.git/commit/?id=
 
 Since `stable` contains changes not present in `master` (ChangeLog and documentation changes at least), you need to deliver them to the `master` branch. Merge your vX.Y.Z tag into the branch and resolve conflicts in places where version specified. Keep Krusader version that is in `master` during the conflict resolution.
 
-Example merge for [v2.7.1](https://cgit.kde.org/krusader.git/commit/?id=8d5946a150c7ef3e7c9607419dd45d7945d6463f).
+Example merge for [v2.7.1](8d5946a1).
