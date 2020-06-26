@@ -401,6 +401,10 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
     gid.setNum(buf.st_gid);
     access = buf.st_mode & ~S_IFMT;
 
+    root = new KIsoDirectory(this, QStringLiteral("/"), 0777 | S_IFDIR,
+                             buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString());
+    setRootDir(root);
+
     //qDebug() << "KIso::openArchive number of tracks: " << trackno << endl;
 
     if (trackno == 0) trackno = 1;
