@@ -199,7 +199,7 @@ void ActionProperty::updateGUI(KrAction *action)
     chkConfirmExecution->setChecked(_action->confirmExecution());
 
     if (! _action->icon().isNull())
-        ButtonIcon->setIcon(_action->icon());
+        ButtonIcon->setIcon(_action->iconName());
     else
         ButtonIcon->resetIcon();
 
