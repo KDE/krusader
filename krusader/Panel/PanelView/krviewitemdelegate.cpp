@@ -24,6 +24,7 @@
 #include "../krglobal.h"
 #include "../listpanel.h"
 #include "../krcolorcache.h"
+#include "../../compat.h"
 
 // QtCore
 #include <QDebug>
@@ -234,7 +235,7 @@ void KrViewItemDelegate::cycleEditorSelection()
         return;
     }
 
-    EditorSelection currentSelection(editor->selectionStart(), editor->selectionLength());
+    EditorSelection currentSelection(editor->selectionStart(), editor->QLINEEDIT_SELECTIONLENGTH);
     auto text = editor->text();
     auto selections = generateFileNameSelections(text);
 

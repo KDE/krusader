@@ -29,6 +29,17 @@
 #endif
 
 /**
+ * QLineEdit::selectionLength() is not present in QT < 5.10
+ * 
+ * This can be removed when the qt minimum version required will be >= 5.10
+ */
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+    #define QLINEEDIT_SELECTIONLENGTH selectionLength()
+#else
+    #define QLINEEDIT_SELECTIONLENGTH selectedText().length()
+#endif
+
+/**
  * QButtonGroup::buttonClicked(int id) was made obsoleted in QT 5.15 in
  * favor of QButtonGroup::idClicked(int id)
  *
