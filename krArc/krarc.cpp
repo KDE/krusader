@@ -791,7 +791,7 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
     if (!dest.isLocalFile())
         KRDEBUG("ERROR: " << url.path() << " is not a local file.");
 
-    // CMD_COPY is no more in KF5 - replaced with 74 value (as stated in kio/src/core/commands_p.h, which could be found in cgit.kde.org/kio.git/tree)
+    // CMD_COPY is no more in KF5 - replaced with 74 value (as stated in https://invent.kde.org/frameworks/kio/-/blob/master/src/core/commands_p.h)
     error(ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString(mProtocol, 74));
 }
 

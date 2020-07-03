@@ -123,7 +123,7 @@ you need to compile KF5 software:
 
 Krusader is developed in KDE Extragear. If someone wants to download and use
 the latest available Krusader sourcecode with git:
-$ git clone https://anongit.kde.org/krusader
+$ git clone https://invent.kde.org/utilities/krusader.git
 
 Otherwise, if someone wants to use the .tar.xz package:
 $ tar xvf krusader-xx.xx.tar.xz
@@ -164,7 +164,7 @@ $ mkdir krusader-build
 $ cd krusader-build
 $ cmake ../krusader -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
 
-Note: An example of an output of cmake can be seen in https://phabricator.kde.org/w/krusader/cmake-output/
+Note: An example of an output of cmake can be seen in https://invent.kde.org/utilities/krusader/snippets/1024
 
 Note: If Krusader is going to be built under the 16.04 LTS version of Ubuntu (or Kubuntu, etc.) then
 installing Qt 5.9 (or newer) is needed (it could be downloaded from https://www.qt.io/offline-installers) and
@@ -184,7 +184,7 @@ $ make
 # At the beginning of the following command: `sudo` must be added if Kubuntu, Ubuntu, Debian, or similar is being used
 $ su -c "make install"
 
-Note: An example of an output of make can be seen in https://phabricator.kde.org/w/krusader/make-output/
+Note: An example of an output of make can be seen in https://invent.kde.org/utilities/krusader/snippets/1025
 
 
 --- To achieve that Krusader uses another language
