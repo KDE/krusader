@@ -263,6 +263,10 @@ QString KrArcBaseManager::getShortTypeFromMime(const QString &mime)
     if (mime == "application/x-rar-compressed" || mime == "application/vnd.rar")
         return "rar";
 
+    // If it's a cbr file but its mimetype isn't "application/x-cbr"
+    if (mime == "application/vnd.comicbook-rar")
+        return "cbr";
+
     // The short type that will be returned
     QString sType = mime;
 
