@@ -411,6 +411,16 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
             menu->addSeparator();
             continue;
         }
+
+        QUrl urlToSet = bm->url();
+        if (!urlToSet.isEmpty() && urlToSet.isRelative()) {
+            // Make it possible that the url can be used later by Krusader.
+            // This avoids users seeing the effects described in the "Editing a local path in Bookmark
+            // Manager breaks a bookmark" bug report (https://bugs.kde.org/show_bug.cgi?id=393320),
+            // though it would be better to solve that upstream frameworks-kbookmarks bug
+            bm->setURL(QUrl::fromUserInput(urlToSet.toString(), QString(), QUrl::AssumeLocalFile));
+        }
+
         menu->addAction(bm);
         CONNECT_BM(bm);
     }
