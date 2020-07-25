@@ -223,11 +223,12 @@ long KrArcHandler::arcFileCount(const QString& archive, const QString& type, con
     else if (type == "rar") lister << KrServices::fullPathName(KrServices::cmdExist("rar") ? "rar" : "unrar") << "l" << "-v";
     else if (type == "ace") lister << KrServices::fullPathName("unace") << "l";
     else if (type == "arj") {
-        if (KrServices::cmdExist("arj"))
-            lister << KrServices::fullPathName("arj") << "v" << "-y" << "-v",
+        if (KrServices::cmdExist("arj")) {
+            lister << KrServices::fullPathName("arj") << "v" << "-y" << "-v";
             divideWith = 4;
-        else
+        } else {
             lister << KrServices::fullPathName("unarj") << "l";
+        }
     } else if (type == "rpm") lister << KrServices::fullPathName("rpm") << "--dump" << "-lpq";
     else if (type == "deb") lister << KrServices::fullPathName("dpkg") << "-c";
     else if (type == "7z")  lister << find7zExecutable() << "-y" << "l";
