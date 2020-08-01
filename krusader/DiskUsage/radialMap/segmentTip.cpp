@@ -115,7 +115,7 @@ SegmentTip::updateTip(const File* const file, const Directory* const root)
     QString s2        = file->humanReadableSize();
     QLocale loc;
     const uint MARGIN = 3;
-    const uint pc     = 100 * file->size() / root->size();
+    const FileSize pc = 100 * file->size() / root->size();
     uint maxw         = 0;
     uint h            = fontMetrics().height() * 2 + 2 * MARGIN;
 

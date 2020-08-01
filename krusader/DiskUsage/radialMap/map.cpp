@@ -65,7 +65,7 @@ RadialMap::Map::invalidate(const bool desaturateTheImage)
     if (desaturateTheImage) {
         QImage img = this->toImage();
 
-        KIconEffect::deSaturate(img, 0.7);
+        KIconEffect::deSaturate(img, 0.7f);
         KIconEffect::toGray(img, true);
 
         this->QPixmap::operator=(fromImage(img, Qt::AutoColor));

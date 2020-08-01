@@ -136,7 +136,7 @@ void KrFSDisplay::paintEvent(QPaintEvent *)
             // top of the pie
             paint.drawPie(margins.left() + LEFT, margins.top() + BOTTOM - Z_HEIGHT, WIDTH, HEIGHT, STARTANGLE, DEG(360));
             // the "used space" slice
-            float i = ((float)(totalSpace - freeSpace) / (totalSpace)) * 360.0;
+            long double i = (static_cast<long double>(totalSpace - freeSpace) / totalSpace) * 360.0;
             paint.setBrush(Qt::gray);
             paint.drawPie(margins.left() + LEFT, margins.top() + BOTTOM - Z_HEIGHT, WIDTH, HEIGHT, STARTANGLE, (int) DEG(i));
             // if we need to draw a 3d stripe ...
@@ -166,12 +166,12 @@ void KrPie::paintEvent(QPaintEvent *)
 {
     QPainter paint(this);
     // now create the slices
-    float sAngle = STARTANGLE;
+    long double sAngle = STARTANGLE;
     for (int ndx = 0; ndx != slices.count(); ndx++) {
         paint.setBrush(slices[ndx].getColor());
         paint.setPen(slices[ndx].getColor());
         // angles are negative to create a clock-wise drawing of slices
-        float angle = -(slices[ndx].getPerct() / 100 * 360) * 16;
+        long double angle = -(slices[ndx].getPerct() / 100 * 360) * 16;
         for (int i = 1; i < Z_HEIGHT; ++i)
             paint.drawPie(LEFT, BOTTOM + i, WIDTH, HEIGHT, (int) sAngle, (int) angle);
         sAngle += angle;
@@ -185,7 +185,7 @@ void KrPie::paintEvent(QPaintEvent *)
         paint.setBrush(slices[ndx].getColor());
         paint.setPen(slices[ndx].getColor());
         // angles are negative to create a clock-wise drawing of slices
-        float angle = -(slices[ndx].getPerct() / 100 * 360) * 16;
+        long double angle = -(slices[ndx].getPerct() / 100 * 360) * 16;
         paint.drawPie(LEFT, BOTTOM, WIDTH, HEIGHT, (int) sAngle, (int) angle);
         sAngle += angle;
     }

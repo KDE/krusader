@@ -34,7 +34,7 @@
 RadialMap::Builder::Builder(RadialMap::Map *m, const Directory* const d, bool fast)
         : m_map(m)
         , m_root(d)
-        , m_minSize(static_cast<FileSize>((d->size() * 3) / (PI * m->height() - m->MAP_2MARGIN)))
+        , m_minSize(static_cast<FileSize>(static_cast<long double>(d->size() * 3) / (PI * m->height() - m->MAP_2MARGIN)))
         , m_depth(&m->m_visibleDepth)
 {
     m_signature = new Chain<Segment> [*m_depth + 1];
@@ -84,13 +84,13 @@ RadialMap::Builder::findVisibleDepth(const Directory* const dir, const unsigned 
 void
 RadialMap::Builder::setLimits(const uint &b)   //b = breadth?
 {
-    double size3 = m_root->size() * 3;
-    double pi2B   = PI * 2 * b;
+    long double size3 = m_root->size() * 3;
+    long double pi2B = PI * 2 * b;
 
     m_limits = new FileSize [*m_depth + 1]; //FIXME delete!
 
     for (unsigned int d = 0; d <= *m_depth; ++d)
-        m_limits[d] = (FileSize)(size3 / (double)(pi2B * (d + 1))); //min is angle that gives 3px outer diameter for that depth
+        m_limits[d] = static_cast<FileSize>(size3 / (pi2B * (d + 1))); //min is angle that gives 3px outer diameter for that depth
 }
 
 

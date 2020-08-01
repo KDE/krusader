@@ -100,12 +100,12 @@ private:
 class KrPieSlice
 {
 public:
-    KrPieSlice(float _perct, QColor _color, QString _label) :
+    KrPieSlice(long double _perct, QColor _color, QString _label) :
             perct(_perct), color(std::move(_color)), label(std::move(_label)) {}
     inline QColor getColor() {
         return color;
     }
-    inline float getPerct() {
+    inline long double getPerct() {
         return perct;
     }
     inline QString getLabel() {
@@ -119,7 +119,7 @@ public:
     }
 
 private:
-    float perct;
+    long double perct;
     QColor color;
     QString label;
 };
