@@ -315,6 +315,8 @@
 #define _InsertMovesDown true
 // Immediate Context Menu
 #define _ImmediateContextMenu true
+// Reset selection items
+#define _ResetSelectionItems false
 
 // Root directory
 #ifdef Q_OS_WIN

@@ -195,6 +195,23 @@ bool KrMouseHandler::mouseReleaseEvent(QMouseEvent *e)
             item->setSelected(true);
         }
     }
+    if (KrSelectionMode::getSelectionHandler()->resetSelectionItems())
+    {
+        // For LMB clicking
+        if ((e->button() == Qt::LeftButton) && (e->modifiers() == Qt::NoModifier) &&
+                !KrSelectionMode::getSelectionHandler()->leftButtonSelects() &&
+                KrSelectionMode::getSelectionHandler()->shiftCtrlLeftButtonSelects()) {
+            // clear the current selection
+            _view->changeSelection(KrQuery("*"), false, true);
+        }
+        // For RMB clicking
+        else if ((e->button() == Qt::RightButton) && (e->modifiers() == Qt::NoModifier) &&
+                    !KrSelectionMode::getSelectionHandler()->rightButtonSelects() &&
+                    KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects()) {
+            // clear the current selection
+            _view->changeSelection(KrQuery("*"), false, true);
+        }
+    }
 
     if (e->button() == Qt::RightButton) {
         _rightClickedItem = nullptr;

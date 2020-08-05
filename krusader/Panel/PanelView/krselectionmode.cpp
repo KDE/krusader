@@ -97,5 +97,6 @@ void UserSelectionMode::init()
     _spaceCalculatesDiskSpace = group.readEntry("Space Calc Space", _SpaceCalcSpace);
     _insertMovesDown = group.readEntry("Insert Moves Down", _InsertMovesDown);
     _showContextMenu = (group.readEntry("Immediate Context Menu", _ImmediateContextMenu) ? -1 : 500);
+    _resetSelectionItems = group.readEntry("Reset Selection Items", _ResetSelectionItems);
 }
 

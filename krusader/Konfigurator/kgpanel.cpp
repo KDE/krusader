@@ -657,10 +657,12 @@ void KgPanel::setupMouseModeTab()
         {"Custom Selection Mode",  "Immediate Context Menu",  _ImmediateContextMenu,
          i18n("Right clicking pops context menu immediately"), true,
          i18n("If checked, right clicking will result in an immediate showing of the context menu.\nOtherwise, user needs to click and hold the right mouse button for 500ms.") },
+        {"Custom Selection Mode",  "Reset Selection Items",  _ResetSelectionItems,
+         i18n("Reset selection items when click to any place"), true,
+         i18n("Reset selection of items when click to any place when option \"Shift/Ctrl-Left mouse button selects\" or \"Shift/Ctrl-Right mouse button selects\" is checked") },
     };
 
-
-    mouseCheckboxes = createCheckBoxGroup(1, 0, mouseCheckboxesParam, 11 /*count*/, mouseDetailGroup, PAGE_MOUSE);
+    mouseCheckboxes = createCheckBoxGroup(1, 0, mouseCheckboxesParam, 12 /*count*/, mouseDetailGroup, PAGE_MOUSE);
     mouseDetailGrid->addWidget(mouseCheckboxes, 1, 0);
 
     for (int i = 0; i < mouseCheckboxes->count(); i++)
@@ -816,6 +818,7 @@ void KgPanel::slotSelectionModeChanged()
     mouseCheckboxes->find("Space Calc Space")->setChecked(selectionMode->spaceCalculatesDiskSpace());
     mouseCheckboxes->find("Insert Moves Down")->setChecked(selectionMode->insertMovesDown());
     mouseCheckboxes->find("Immediate Context Menu")->setChecked(selectionMode->showContextMenu() == -1);
+    mouseCheckboxes->find("Reset Selection Items")->setChecked(selectionMode->resetSelectionItems());
 }
 
 void KgPanel::slotMouseCheckBoxChanged()
