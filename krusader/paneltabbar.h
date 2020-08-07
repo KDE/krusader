@@ -90,6 +90,7 @@ signals:
 protected:
     void mouseMoveEvent(QMouseEvent*e) override;
     void mousePressEvent(QMouseEvent*) override;
+    void mouseDoubleClickEvent(QMouseEvent*) override;
     void mouseReleaseEvent(QMouseEvent*) override;
     void insertAction(QAction*);
     QString squeeze(const QUrl &url, int tabIndex = -1);

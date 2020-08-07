@@ -283,6 +283,25 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
     QTabBar::mousePressEvent(e);
 }
 
+void PanelTabBar::mouseDoubleClickEvent(QMouseEvent* e)
+{
+    int clickedTab = tabAt(e->pos());
+
+    if (-1 == clickedTab) { // clicked on nothing ...
+        QTabBar::mouseDoubleClickEvent(e);
+        return;
+    }
+
+    _tabClicked = true;
+
+    setCurrentIndex(clickedTab);
+
+    if (e->button() == Qt::LeftButton) // close the current tab
+        emit closeCurrentTab();
+
+    QTabBar::mouseDoubleClickEvent(e);
+}
+
 void PanelTabBar::mouseReleaseEvent(QMouseEvent* e)
 {
     QTabBar::mouseReleaseEvent(e);
