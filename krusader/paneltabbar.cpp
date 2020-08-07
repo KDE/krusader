@@ -54,6 +54,9 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
     _panelActionMenu = new KActionMenu(i18n("Panel"), this);
 
     setAcceptDrops(true);
+    setExpanding(false);
+    setTabsClosable(false);
+    setStyleSheet("QTabBar::tab { min-width: 120px; }");
 
     insertAction(actions->actNewTab);
     insertAction(actions->actLockTab);

@@ -104,7 +104,7 @@ void PanelManager::tabsCountChanged()
     _newTab->setVisible(showButtons);
 
     // disable close button if only 1 tab is left
-    _tabbar->setTabsClosable(showButtons && _tabbar->count() > 1);
+    //_tabbar->setTabsClosable(showButtons && _tabbar->count() > 1);
 
     _actions->refreshActions();
 }
