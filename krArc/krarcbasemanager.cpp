@@ -213,7 +213,7 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, const QString& fileName
                 checksum -= ((unsigned char *)buffer)[ i ];
             sprintf(chksum, "0%o", checksum);
             if (!memcmp(buffer + 148, chksum, strlen(chksum))) {
-                int k = strlen(chksum);
+                auto k = strlen(chksum);
                 for (; k < 8; k++)
                     if (buffer[148+k] != 0 && buffer[148+k] != 32)
                         break;

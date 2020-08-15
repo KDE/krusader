@@ -577,7 +577,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
 
         char buffer[ MAX_IPC_SIZE ];
         while (1) {
-            int n = ::read(fd, buffer, MAX_IPC_SIZE);
+            int n = int(::read(fd, buffer, MAX_IPC_SIZE));
             if (n == -1) {
                 if (errno == EINTR)
                     continue;
@@ -1327,7 +1327,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         // next field is md5sum, ignore it
         nextWord(line);
         // permissions
-        mode = nextWord(line).toULong(nullptr, 8);
+        mode = nextWord(line).toUInt(nullptr, 8);
         // Owner & Group
         owner = nextWord(line);
         group = nextWord(line);
@@ -1863,7 +1863,7 @@ QString kio_krarcProtocol::localeEncodedString(QString str)
 
     const char *data = array.data();
     for (int i = 0; i != size; i++) {
-        unsigned short ch = (((int)data[ i ]) & 0xFF) + 0xE000;   // user defined character
+        unsigned int ch = (((int)data[ i ]) & 0xFF) + 0xE000;   // user defined character
         result.append(QChar(ch));
     }
     return result;

@@ -42,7 +42,7 @@ public:
     ~KrArcObserver() override = default;
 
     virtual void processEvents() = 0;
-    virtual void subJobStarted(const QString & jobTitle, int count) = 0;
+    virtual void subJobStarted(const QString & jobTitle, long count) = 0;
     virtual void subJobStopped() = 0;
     virtual bool wasCancelled() = 0;
     virtual void error(const QString & error) = 0;
