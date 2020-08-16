@@ -126,11 +126,16 @@ void KgPanel::setupGeneralTab()
     groupBox = createFrame(i18n("Tabs"), tab);
     gridLayout = createGridLayout(groupBox);
 
-    KONFIGURATOR_CHECKBOX_PARAM tabbar_settings[] = { //   cfg_class  cfg_name                default             text                              restart tooltip
-        {"Look&Feel", "Fullpath Tab Names",   _FullPathTabNames,  i18n("Use full path tab names"), true ,  i18n("Display the full path in the folder tabs. By default only the last part of the path is displayed.") },
-        {"Look&Feel", "Show Tab Buttons",   true,  i18n("Show new/close tab buttons"), true ,  i18n("Show the new/close tab buttons.") },
+    KONFIGURATOR_CHECKBOX_PARAM tabbar_settings[] = {
+    //   cfg_class    cfg_name                      default             text                                restart tooltip
+        {"Look&Feel", "Fullpath Tab Names",         _FullPathTabNames,  i18n("Use full path tab names"),    true,   i18n("Display the full path in the folder tabs. By default only the last part of the path is displayed.") },
+        {"Look&Feel", "Show Close Tab Buttons",     true,               i18n("Show close tab buttons"),     true,   i18n("Show close tab buttons.") },
+        {"Look&Feel", "Expanding Tabs",             true,               i18n("Expanding tabs"),             true,   i18n("Expanding tabs.") },
+        {"Look&Feel", "Show New Tab Button",        true,               i18n("Show new tab button"),        true,   i18n("Show new tab button.") },
+        {"Look&Feel", "Close Tab By Double Click",  false,              i18n("Close tab by double click"),  true,   i18n("Close tab by double click.") },
+        {"Look&Feel", "Show Tab Bar On Single Tab", true,               i18n("Show Tab Bar on single tab"), true,   i18n("Show the tab bar with only one tab.") }
     };
-    cbs = createCheckBoxGroup(2, 0, tabbar_settings, 2 /*count*/, groupBox, PAGE_GENERAL);
+    cbs = createCheckBoxGroup(2, 0, tabbar_settings, 6 /*count*/, groupBox, PAGE_GENERAL);
     gridLayout->addWidget(cbs, 0, 0, 1, 2);
 
 // -----------------  Tab Bar position ----------------------------------
@@ -150,12 +155,6 @@ void KgPanel::setupGeneralTab()
 
     hbox->addWidget(cmb);
     gridLayout->addLayout(hbox, 1, 0, Qt::AlignLeft);
-
-// -----------------  Show Tab bar ----------------------------------
-    KonfiguratorCheckBox *checkBox = createCheckBox("Look&Feel", "Show Tab Bar On Single Tab", true,
-                                                    i18n("Show Tab Bar on single tab"), groupBox,
-                                                    true, i18n("Show the tab bar with only one tab."));
-    gridLayout->addWidget(checkBox, 1, 1, Qt::AlignLeft);
 
     layout->addWidget(groupBox);
 

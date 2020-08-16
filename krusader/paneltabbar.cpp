@@ -51,12 +51,16 @@ static const int sDragEnterDelay = 500; // msec
 PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
     _maxTabLength(0), _tabClicked(false), _draggingTab(false), _dragTabIndex(-1)
 {
+    const KConfigGroup cfg(krConfig, "Look&Feel");
+    const bool expandingTabs = cfg.readEntry("Expanding Tabs", true);
+    const bool showCloseButtons = cfg.readEntry("Show Close Tab Buttons", true);
+    _doubleClickClose  = cfg.readEntry("Close Tab By Double Click", false);
+
     _panelActionMenu = new KActionMenu(i18n("Panel"), this);
 
     setAcceptDrops(true);
-    setExpanding(false);
-    setTabsClosable(false);
-    setStyleSheet("QTabBar::tab { min-width: 120px; }");
+    setExpanding(expandingTabs);
+    setTabsClosable(showCloseButtons);
 
     insertAction(actions->actNewTab);
     insertAction(actions->actLockTab);
@@ -288,6 +292,12 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
 
 void PanelTabBar::mouseDoubleClickEvent(QMouseEvent* e)
 {
+    if (!_doubleClickClose)
+    {
+        QTabBar::mouseDoubleClickEvent(e);
+        return;
+    }
+
     int clickedTab = tabAt(e->pos());
 
     if (-1 == clickedTab) { // clicked on nothing ...

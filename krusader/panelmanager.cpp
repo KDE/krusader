@@ -98,13 +98,14 @@ void PanelManager::tabsCountChanged()
 {
     const KConfigGroup cfg(krConfig, "Look&Feel");
     const bool showTabbar = _tabbar->count() > 1 || cfg.readEntry("Show Tab Bar On Single Tab", true);
-    const bool showButtons = showTabbar && cfg.readEntry("Show Tab Buttons", true);
+    const bool showNewButton = showTabbar && cfg.readEntry("Show New Tab Button", true);
+    const bool showCloseButtons = showTabbar && cfg.readEntry("Show Close Tab Buttons", true);
 
     _tabbar->setVisible(showTabbar);
-    _newTab->setVisible(showButtons);
+    _newTab->setVisible(showNewButton);
 
     // disable close button if only 1 tab is left
-    //_tabbar->setTabsClosable(showButtons && _tabbar->count() > 1);
+    _tabbar->setTabsClosable(showCloseButtons && _tabbar->count() > 1);
 
     _actions->refreshActions();
 }
