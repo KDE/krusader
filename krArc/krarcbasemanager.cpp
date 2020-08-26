@@ -101,7 +101,7 @@ bool KrArcBaseManager::checkStatus(const QString &arcType, int exitCode)
         return exitCode == 0;
 }
 
-QString KrArcBaseManager::detectArchive(bool &encrypted, const QString& fileName, bool checkEncrypted, bool fast)
+QString KrArcBaseManager::detectArchive(bool &encrypted, const QString& fileName, bool check7zEncrypted, bool fast)
 {
     encrypted = false;
 
@@ -196,7 +196,7 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, const QString& fileName
                     }
                 } else if (type == "7z") {
                     // encryption check is expensive, check only if it's necessary
-                    if (checkEncrypted)
+                    if (check7zEncrypted)
                         checkIf7zIsEncrypted(encrypted, fileName);
                 }
                 return type;

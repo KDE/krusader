@@ -73,7 +73,7 @@ public:
     // returns `true` if the url is an archive (ie: tar:/home/test/file.tar.bz2)
     static bool isArchive(const QUrl &url);
     // used to determine the type of the archive
-    QString getType(bool &encrypted, QString fileName, const QString& mime, bool checkEncrypted = true, bool fast = false);
+    QString getType(bool &encrypted, QString fileName, const QString& mime, bool check7zEncrypted = true, bool fast = false);
     // queries the password from the user
     static QString getPassword(const QString& path);
     // detects the archive type

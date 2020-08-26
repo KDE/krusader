@@ -686,9 +686,9 @@ bool KrArcHandler::isArchive(const QUrl &url)
     else return false;
 }
 
-QString KrArcHandler::getType(bool &encrypted, QString fileName, const QString& mime, bool checkEncrypted, bool fast)
+QString KrArcHandler::getType(bool &encrypted, QString fileName, const QString& mime, bool check7zEncrypted, bool fast)
 {
-    QString result = detectArchive(encrypted, std::move(fileName), checkEncrypted, fast);
+    QString result = detectArchive(encrypted, std::move(fileName), check7zEncrypted, fast);
     if (result.isNull()) {
         // Then the type is based on the mime type
         return getShortTypeFromMime(mime);
