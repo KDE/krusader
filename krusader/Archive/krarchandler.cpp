@@ -708,8 +708,9 @@ void KrArcHandler::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
 
     Kr7zEncryptionChecker proc;
     // TODO incorporate all this in Kr7zEncryptionChecker
-    proc << find7zExecutable() << "-y" << "t";
-    proc << fileName;
+    // Note: That command uses information given in a comment from
+    // https://stackoverflow.com/questions/5248572/how-do-i-know-if-7zip-used-aes256
+    proc << find7zExecutable() << "l" << "-slt" << fileName;
     proc.start();
     proc.waitForFinished();
     encrypted = proc.isEncrypted();

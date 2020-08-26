@@ -47,15 +47,17 @@ void Kr7zEncryptionChecker::receivedOutput()
     lastData = lines[ lines.count() - 1 ];
     for (int i = 0; i != lines.count(); i++) {
         QString line = lines[ i ].trimmed().toLower();
-        int ndx = line.indexOf("testing");
+        int ndx = line.indexOf("listing"); // Reminder: Lower-case letters are used
         if (ndx >= 0)
             line.truncate(ndx);
         if (line.isEmpty())
             continue;
 
-        if (line.contains("password") && line.contains("enter")) {
+        if ((line.contains("password") && line.contains("enter")) ||
+             line == QStringLiteral("encrypted = +")) {
             encrypted = true;
             ::kill(- pid(), SIGKILL); // kill the whole process group by giving the negative PID
+            break;
         }
     }
 }

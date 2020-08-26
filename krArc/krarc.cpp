@@ -1738,7 +1738,9 @@ void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
         lastData = encryptedArchPath = "";
 
         KrLinecountingProcess proc;
-        proc << a7zExecutable << "-y" << "t" << fileName;
+        // Note: That command uses information given in a comment from
+        // https://stackoverflow.com/questions/5248572/how-do-i-know-if-7zip-used-aes256
+        proc << a7zExecutable << "l" << "-slt" << fileName;
         connect(&proc, &KrLinecountingProcess::newOutputData, this, &kio_krarcProtocol::check7zOutputForPassword);
         proc.start();
         proc.waitForFinished();
@@ -1763,13 +1765,14 @@ void kio_krarcProtocol::check7zOutputForPassword(KProcess * proc, QByteArray & b
     lastData = lines[ lines.count() - 1 ];
     for (int i = 0; i != lines.count(); i++) {
         QString line = lines[ i ].trimmed().toLower();
-        int ndx = line.indexOf("testing");
+        int ndx = line.indexOf("listing"); // Reminder: Lower-case letters are used
         if (ndx >= 0)
             line.truncate(ndx);
         if (line.isEmpty())
             continue;
 
-        if (line.contains("password") && line.contains("enter")) {
+        if ((line.contains("password") && line.contains("enter"))  ||
+             line == QStringLiteral("encrypted = +")) {
             KRDEBUG("Encrypted 7z archive found!");
             encrypted = true;
             proc->kill();
