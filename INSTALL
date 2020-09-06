@@ -35,7 +35,7 @@ backed up (just in case):
 
 The next packages are needed when running the Krusader binary.
 
-This is a list of the package names that Kubuntu/Ubuntu 18.04 (LTS) use, other
+This is a list of the package names that Kubuntu/Ubuntu 20.04 (LTS) use, other
 Linux distros will probably use similar names:
 
 - plasma-framework      Plasma Runtime components
@@ -54,24 +54,28 @@ Linux distros will probably use similar names:
 
 The next packages are optional but they will make Krusader much more powerful and useful.
 
-This is a list of the package names that Debian and Ubuntu/Kubuntu 18.04 (LTS) use, other Linux
+This is a list of the package names that Debian and Ubuntu/Kubuntu 20.04 (LTS) use, other Linux
 distros will probably use similar names:
 
 - ark                   archive utility by KDE
+
+- breeze-icon-theme     Breeze icons
+
 - bzip2                 high-quality block-sorting file compressor - utilities
 - cpio                  GNU cpio -- a program to manage archives of files
 
 - kate                  Powerful Text Editor
+or ktexteditor-katepart Provides text editing services
 
 - kde-cli-tools         tools required to edit file types from Properties dialog
                         or run Krusader in root mode
 
 - keditbookmarks        Bookmark manager used for editing bookmarks
 
+- khelpcenter           KDE help viewer
+
 - kio-extras            Enables transparent handling of various archive types
                         such as .tar and network protocols like SFTP
-
-- kmail                 KDE Email client
 
 - kdiff3                compares and merges 2 or 3 files or directories
 or kompare              file difference viewer
@@ -102,16 +106,13 @@ run the Krusader binary you don't need to install these packages.
 - build-essential        a group of packages needed to compile source code
 - cmake                  a cross-platform, open-source make system
 - extra-cmake-modules    extra cmake modules for compiling KDE Frameworks
-- qt5-default            development files for the Qt5 libraries
+- git                    a revision control system 
 - gettext                GNU Internationalization utilities
-- plasma-framework-dev   development files for plasma-framework [in newer
-                         versions the name is "libkf5plasma-dev"]
 - zlib1g-dev             in order to make building easier (https://stackoverflow.com/a/49072832)
 
 The following packages should install (through dependencies) all the packages
 you need to compile KF5 software:
-- kio-dev                resource and network access abstraction [in newer
-                         versions the name is "libkf5kio-dev"]
+- libkf5kio-dev          resource and network access abstraction
 - libkf5archive-dev      development files for karchive
 - libkf5parts-dev        development files for kparts
 - libkf5wallet-dev       development files for kwallet-framework
@@ -123,7 +124,7 @@ you need to compile KF5 software:
 
 Krusader is developed in KDE Extragear. If someone wants to download and use
 the latest available Krusader sourcecode with git:
-$ git clone https://invent.kde.org/utilities/krusader.git
+$ git clone https://invent.kde.org/utilities/krusader
 
 Otherwise, if someone wants to use the .tar.xz package:
 $ tar xvf krusader-xx.xx.tar.xz
