@@ -544,7 +544,7 @@ void KrView::deleteItem(const QString &name, bool onUpdate)
     if (!viewItem)
         return;
 
-    if (_previews && !onUpdate)
+    if (_previews)
         _previews->deletePreview(viewItem);
 
     preDeleteItem(viewItem);
