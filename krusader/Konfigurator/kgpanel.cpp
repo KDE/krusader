@@ -657,9 +657,9 @@ void KgPanel::setupMouseModeTab()
         {"Custom Selection Mode",  "Immediate Context Menu",  _ImmediateContextMenu,
          i18n("Right clicking pops context menu immediately"), true,
          i18n("If checked, right clicking will result in an immediate showing of the context menu.\nOtherwise, user needs to click and hold the right mouse button for 500ms.") },
-        {"Custom Selection Mode",  "Reset Selection Items",  _ResetSelectionItems,
-         i18n("Reset selection items when click to any place"), true,
-         i18n("Reset selection of items when click to any place when option \"Shift/Ctrl-Left mouse button selects\" or \"Shift/Ctrl-Right mouse button selects\" is checked") },
+        {"Custom Selection Mode",  "Reset Selection Items", _ResetSelectionItems,
+         i18n("A plain mouse button resets selection"), true,
+         i18n("Reset selection on a mouse click without modifiers (i.e. Shift or Ctrl).\nSelection with Shift/Ctrl for the mouse button have to be enabled for this setting to work.") },
     };
 
     mouseCheckboxes = createCheckBoxGroup(1, 0, mouseCheckboxesParam, 12 /*count*/, mouseDetailGroup, PAGE_MOUSE);
