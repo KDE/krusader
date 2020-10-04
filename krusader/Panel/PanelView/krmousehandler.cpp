@@ -66,7 +66,7 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
                             _clickedItem = item;
                         else {
                             // clear the current selection
-                            _view->changeSelection(KrQuery("*"), false, true);
+                            _view->unselectAll();
                             item->setSelected(true);
                         }
                     }
@@ -78,7 +78,7 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
                     && !KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection()) {
 
                     // clear the current selection
-                    _view->changeSelection(KrQuery("*"), false, true);
+                    _view->unselectAll();
                 }
             }
             e->accept();
@@ -134,7 +134,7 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
                             _clickedItem = item;
                         } else {
                             // clear the current selection
-                            _view->changeSelection(KrQuery("*"), false, true);
+                            _view->unselectAll();
                             item->setSelected(true);
                         }
                     }
@@ -181,35 +181,33 @@ bool KrMouseHandler::mouseReleaseEvent(QMouseEvent *e)
 {
     if (e->button() == Qt::LeftButton)
         _dragStartPos = QPoint(-1, -1);
+
     KrViewItem * item = _view->getKrViewItemAt(e->pos());
+    auto mode = KrSelectionMode::getSelectionHandler();
 
     if (item && item == _clickedItem) {
         if (((e->button() == Qt::LeftButton) && (e->modifiers() == Qt::NoModifier) &&
-                (KrSelectionMode::getSelectionHandler()->leftButtonSelects()) &&
-                !(KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection())) ||
+                (mode->leftButtonSelects()) &&
+                !(mode->leftButtonPreservesSelection())) ||
                 ((e->button() == Qt::RightButton) && (e->modifiers() == Qt::NoModifier) &&
-                 (KrSelectionMode::getSelectionHandler()->rightButtonSelects()) &&
-                 !(KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection()))) {
+                 (mode->rightButtonSelects()) &&
+                 !(mode->rightButtonPreservesSelection()))) {
             // clear the current selection
-            _view->changeSelection(KrQuery("*"), false, true);
+            _view->unselectAll();
             item->setSelected(true);
         }
     }
-    if (KrSelectionMode::getSelectionHandler()->resetSelectionItems())
-    {
-        // For LMB clicking
-        if ((e->button() == Qt::LeftButton) && (e->modifiers() == Qt::NoModifier) &&
-                !KrSelectionMode::getSelectionHandler()->leftButtonSelects() &&
-                KrSelectionMode::getSelectionHandler()->shiftCtrlLeftButtonSelects()) {
+
+    if (mode->resetSelectionItems()) {
+        bool leftButtonClicked = (e->button() == Qt::LeftButton) && (e->modifiers() == Qt::NoModifier);
+        bool rightButtonClicked = (e->button() == Qt::RightButton) && (e->modifiers() == Qt::NoModifier);
+
+        bool leftTriggerCondition = !mode->leftButtonSelects() && mode->shiftCtrlLeftButtonSelects();
+        bool rightTriggerCondition = !mode->rightButtonSelects() && mode->shiftCtrlRightButtonSelects();
+
+        if (leftButtonClicked && leftTriggerCondition || rightButtonClicked && rightTriggerCondition) {
             // clear the current selection
-            _view->changeSelection(KrQuery("*"), false, true);
-        }
-        // For RMB clicking
-        else if ((e->button() == Qt::RightButton) && (e->modifiers() == Qt::NoModifier) &&
-                    !KrSelectionMode::getSelectionHandler()->rightButtonSelects() &&
-                    KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects()) {
-            // clear the current selection
-            _view->changeSelection(KrQuery("*"), false, true);
+            _view->unselectAll();
         }
     }
 
