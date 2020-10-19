@@ -268,7 +268,7 @@ QString FileSystem::readLinkSafely(const char *path)
 
         // read success
         if (nBytesRead < bufferSize || nBytesRead == maxBufferSize) {
-            return QString::fromLocal8Bit(buffer.get(), nBytesRead);
+            return QString::fromLocal8Bit(buffer.get(), static_cast<int>(nBytesRead));
         }
 
         // increase the buffer and retry again
