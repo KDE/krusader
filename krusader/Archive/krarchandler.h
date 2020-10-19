@@ -42,7 +42,7 @@ public:
     ~KrArcObserver() override = default;
 
     virtual void processEvents() = 0;
-    virtual void subJobStarted(const QString & jobTitle, long count) = 0;
+    virtual void subJobStarted(const QString & jobTitle, qulonglong count) = 0;
     virtual void subJobStopped() = 0;
     virtual bool wasCancelled() = 0;
     virtual void error(const QString & error) = 0;
@@ -59,13 +59,13 @@ public:
     explicit KrArcHandler(QObject *parent = nullptr);
 
     // return the number of files in the archive
-    long arcFileCount(const QString& archive, const QString& type, const QString& password, KrArcObserver *observer);
+    qulonglong arcFileCount(const QString& archive, const QString& type, const QString& password, KrArcObserver *observer);
     // unpack an archive to destination directory
     bool unpack(QString archive, const QString& type, const QString& password, const QString& dest, KrArcObserver *observer );
     // pack an archive to destination directory
-    bool pack(QStringList fileNames, QString type, const QString& dest, long count, QMap<QString, QString> extraProps, KrArcObserver *observer );
+    bool pack(QStringList fileNames, QString type, const QString& dest, qulonglong count, QMap<QString, QString> extraProps, KrArcObserver *observer);
     // test an archive
-    bool test(const QString& archive, const QString& type, const QString& password, KrArcObserver *observer, long count = 0L );
+    bool test(const QString& archive, const QString& type, const QString& password, KrArcObserver *observer, qulonglong count = 0L);
     // returns `true` if the right unpacker exist in the system
     static bool arcSupported(QString type);
     // return the list of supported packers

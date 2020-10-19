@@ -261,7 +261,7 @@ public:
         qApp->processEvents();
     }
 
-    void subJobStarted(const QString & jobTitle, long count) override {
+    void subJobStarted(const QString & jobTitle, qulonglong count) override {
         _jobThread->sendReset(jobTitle);
         _jobThread->sendMaxProgressValue(count);
     }

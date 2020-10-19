@@ -57,7 +57,7 @@ public:
         qApp->processEvents();
     }
 
-    virtual void subJobStarted(const QString & jobTitle, int count) override {
+    virtual void subJobStarted(const QString & jobTitle, qulonglong count) override {
         krApp->startWaiting(jobTitle, count, true);
     }
 
@@ -197,7 +197,7 @@ bool KrArcHandler::arcSupported(QString type)
            || (type == "7z" && lst.contains("7z"));
 }
 
-long KrArcHandler::arcFileCount(const QString& archive, const QString& type, const QString& password, KrArcObserver *observer)
+qulonglong KrArcHandler::arcFileCount(const QString& archive, const QString& type, const QString& password, KrArcObserver *observer)
 {
     int divideWith = 1;
 
@@ -245,7 +245,7 @@ long KrArcHandler::arcFileCount(const QString& archive, const QString& type, con
     observer->subJobStarted(i18n("Counting files in archive"), 0);
 
     // count the number of files in the archive
-    long count = 1;
+    qulonglong count = 1;
     KProcess list;
     list << lister << archive;
     if (type == "ace" && QFile("/dev/ptmx").exists())     // Don't remove, unace crashes if missing!!!
@@ -289,7 +289,7 @@ bool KrArcHandler::unpack(QString archive, const QString& type, const QString& p
     }
 
     // count the files in the archive
-    long count = arcFileCount(archive, type, password, observer);
+    qulonglong count = arcFileCount(archive, type, password, observer);
     if (count == 0)
         return false;   // not supported
     if (count == 1)
@@ -407,7 +407,7 @@ bool KrArcHandler::unpack(QString archive, const QString& type, const QString& p
     return true; // SUCCESS
 }
 
-bool KrArcHandler::test(const QString& archive, const QString& type, const QString& password, KrArcObserver *observer, long count)
+bool KrArcHandler::test(const QString& archive, const QString& type, const QString& password, KrArcObserver *observer, qulonglong count)
 {
     // choose the right packer for the job
     QStringList packer;
@@ -473,7 +473,7 @@ bool KrArcHandler::test(const QString& archive, const QString& type, const QStri
     return true; // SUCCESS
 }
 
-bool KrArcHandler::pack(QStringList fileNames, QString type, const QString& dest, long count, QMap<QString, QString> extraProps, KrArcObserver *observer)
+bool KrArcHandler::pack(QStringList fileNames, QString type, const QString& dest, qulonglong count, QMap<QString, QString> extraProps, KrArcObserver *observer)
 {
     // set the right packer to do the job
     QStringList packer;
