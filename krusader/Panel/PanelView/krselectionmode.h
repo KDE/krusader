@@ -76,6 +76,9 @@ public:
     inline int showContextMenu() {
         return _showContextMenu;
     } // 0: no, -1: yes, n>0: after n milliseconds
+    inline int resetSelectionItems() {
+        return _resetSelectionItems;
+    }
 
     virtual ~KrSelectionMode() {}
 
@@ -84,6 +87,7 @@ protected:
     bool _rightButtonSelects, _leftButtonSelects, _rightButtonPreservesSelection;
     bool _leftButtonPreservesSelection, _shiftCtrlRightButtonSelects, _shiftCtrlLeftButtonSelects;
     int _showContextMenu;
+    int _resetSelectionItems;
 };
 
 class KonqSelectionMode : public KrSelectionMode
@@ -101,6 +105,7 @@ public:
         _shiftCtrlRightButtonSelects = false;
         _shiftCtrlLeftButtonSelects = false;
         _showContextMenu = -1;
+        _resetSelectionItems = false;
     }
 };
 
@@ -119,6 +124,7 @@ public:
         _shiftCtrlRightButtonSelects = false;
         _shiftCtrlLeftButtonSelects = false;
         _showContextMenu = -1;
+        _resetSelectionItems = false;
     }
 };
 
@@ -137,6 +143,7 @@ public:
         _shiftCtrlRightButtonSelects = false;
         _shiftCtrlLeftButtonSelects = true;
         _showContextMenu = 500;
+        _resetSelectionItems = false;
     }
 };
 
@@ -155,6 +162,7 @@ public:
         _shiftCtrlRightButtonSelects = false;
         _shiftCtrlLeftButtonSelects = true;
         _showContextMenu = -1;
+        _resetSelectionItems = false;
     }
 };
 
