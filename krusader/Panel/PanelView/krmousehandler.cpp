@@ -205,7 +205,7 @@ bool KrMouseHandler::mouseReleaseEvent(QMouseEvent *e)
         bool leftTriggerCondition = !mode->leftButtonSelects() && mode->shiftCtrlLeftButtonSelects();
         bool rightTriggerCondition = !mode->rightButtonSelects() && mode->shiftCtrlRightButtonSelects();
 
-        if (leftButtonClicked && leftTriggerCondition || rightButtonClicked && rightTriggerCondition) {
+        if ((leftButtonClicked && leftTriggerCondition) || (rightButtonClicked && rightTriggerCondition)) {
             // clear the current selection
             _view->unselectAll();
         }
