@@ -286,7 +286,7 @@ FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QU
 {
     const KFileItem kfi(entry, directory, true, true);
 
-    const QString name = kfi.text();
+    const QString name = kfi.name();
     // ignore un-needed entries
     if (name.isEmpty() || name == "." || name == "..") {
         return nullptr;
