@@ -92,6 +92,10 @@ int main(int argc, char *argv[])
     // set global log message format
     qSetMessagePattern(KrServices::GLOBAL_MESSAGE_PATTERN);
 
+    // enable high dpi support
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+
     // prevent qt5-webengine crashing
     QApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
