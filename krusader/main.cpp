@@ -107,9 +107,9 @@ int main(int argc, char *argv[])
 
     // ABOUT data information
 #ifdef RELEASE_NAME
-    QString versionName = QString("%1 \"%2\"").arg(VERSION).arg(RELEASE_NAME);
+    const QString versionName = QStringLiteral("%1 \"%2\"").arg(VERSION, RELEASE_NAME);
 #else
-    QString versionName = VERSION;
+    const QString versionName = VERSION;
 #endif
 
     KAboutData aboutData(QStringLiteral("krusader"),
