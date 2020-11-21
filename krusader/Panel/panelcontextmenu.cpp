@@ -28,7 +28,12 @@
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KRun>
 #include <KWidgetsAddons/KMessageBox>
+#include <kservice_version.h>
+#if KSERVICE_VERSION < QT_VERSION_CHECK(5, 68, 0)
 #include <KService/KMimeTypeTrader>
+#else
+#include <KService/KApplicationTrader>
+#endif
 #include <KService/KToolInvocation>
 #include <KXmlGui/KActionCollection>
 #include <KIOCore/KFileItem>
@@ -178,9 +183,15 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         uniqueMimeTypes.insert(file->getMime());
     const QStringList mimeTypes = uniqueMimeTypes.values();
 
+#if KSERVICE_VERSION < QT_VERSION_CHECK(5, 68, 0)
     offers = mimeTypes.count() == 1 ?
                  KMimeTypeTrader::self()->query(mimeTypes.first()) :
                  KFileItemActions::associatedApplications(mimeTypes, QString());
+#else
+    offers = mimeTypes.count() == 1 ?
+                 KApplicationTrader::queryByMimeType(mimeTypes.first()) :
+                 KFileItemActions::associatedApplications(mimeTypes, QString());
+#endif
 
     if (!offers.isEmpty()) {
         auto *openWithMenu = new QMenu(this);

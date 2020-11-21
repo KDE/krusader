@@ -49,7 +49,12 @@
 #include <KIOWidgets/KOpenWithDialog>
 #include <KIOWidgets/KPropertiesDialog>
 #include <KIOWidgets/KRun>
+#include <kservice_version.h>
+#if KSERVICE_VERSION < QT_VERSION_CHECK(5, 68, 0)
 #include <KService/KMimeTypeTrader>
+#else
+#include <KService/KApplicationTrader>
+#endif
 #include <KWidgetsAddons/KCursor>
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KToggleAction>
@@ -158,7 +163,11 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
             return;
         }
 
+#if KSERVICE_VERSION < QT_VERSION_CHECK(5, 68, 0)
         KService::Ptr service = KMimeTypeTrader::self()->preferredService(mime);
+#else
+        KService::Ptr service = KApplicationTrader::preferredService(mime);
+#endif
         if(service) {
             runService(*service, QList<QUrl>() << url);
             return;
