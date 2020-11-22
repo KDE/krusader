@@ -122,7 +122,7 @@ static inline IconSearchResult searchIcon(const QString& iconName, QStringList t
         return IconSearchResult(QIcon::fromTheme(iconName), QString());
     } else if (KIconLoader::global()->hasIcon(iconName)) {
         // KF icon loader does a wider search and helps with mime icons
-        return IconSearchResult(KDE::icon(iconName), QString());
+        return IconSearchResult(QIcon::fromTheme(iconName), QString());
     } else {
         // search the icon in fallback themes
         auto currentTheme = QIcon::themeName();
