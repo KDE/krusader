@@ -517,7 +517,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
             return;
         }
     } else {
-        if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()) || !QFileInfo(arcTempDir + file).exists()) {
+        if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()) || !QFileInfo::exists(arcTempDir + file)) {
             if (decompressToFile)
                 QFile(arcTempDir + file).remove();
             if (encrypted && tries) {
@@ -688,7 +688,7 @@ void kio_krarcProtocol::stat(const QUrl &url)
         path = getPath(newUrl);
     }
     // we might be stating a real file
-    if (QFileInfo(path).exists()) {
+    if (QFileInfo::exists(path)) {
         QT_STATBUF buff;
         QT_STAT(path.toLocal8Bit(), &buff);
         QString mime;
@@ -775,7 +775,7 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
                 error(KIO::ERR_CANNOT_WRITE, getPath(dest, QUrl::StripTrailingSlash) + "\n\n" + proc.getErrorMsg());
                 return;
             }
-            if (!QFileInfo(getPath(dest, QUrl::StripTrailingSlash)).exists()) {
+            if (!QFileInfo::exists(getPath(dest, QUrl::StripTrailingSlash))) {
                 error(KIO::ERR_CANNOT_WRITE, getPath(dest, QUrl::StripTrailingSlash));
                 return;
             }
@@ -845,7 +845,7 @@ void kio_krarcProtocol::listDir(const QUrl &url)
     if (path.right(1) != DIR_SEPARATOR) path = path + DIR_SEPARATOR;
 
     // it might be a real dir !
-    if (QFileInfo(path).exists()) {
+    if (QFileInfo::exists(path)) {
         if (QFileInfo(path).isDir()) {
             QUrl redir;
             redir.setPath(getPath(url));

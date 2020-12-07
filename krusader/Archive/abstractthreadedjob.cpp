@@ -507,7 +507,7 @@ void AbstractJobThread::countLocalFiles(const QUrl &baseUrl, const QStringList &
             return;
 
         const QString path = calcSpaceFileSystem->getUrl(name).toLocalFile();
-        if (!QFileInfo(path).exists())
+        if (!QFileInfo::exists(path))
             return;
 
         countFiles(path, totalFiles, _exited);
