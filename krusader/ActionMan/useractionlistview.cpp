@@ -170,7 +170,7 @@ void UserActionListView::slotCurrentItemChanged(QTreeWidgetItem* item)
 
 QDomDocument UserActionListView::dumpSelectedActions(QDomDocument* mergeDoc) const
 {
-    QList<QTreeWidgetItem*> list = selectedItems();
+    const QList<QTreeWidgetItem*> list = selectedItems();
     QDomDocument doc;
     if (mergeDoc)
         doc = *mergeDoc;
@@ -188,7 +188,7 @@ QDomDocument UserActionListView::dumpSelectedActions(QDomDocument* mergeDoc) con
 
 void UserActionListView::removeSelectedActions()
 {
-    QList<QTreeWidgetItem*> list = selectedItems();
+    const QList<QTreeWidgetItem*> list = selectedItems();
 
     for (auto item : list) {
         if (auto* actionItem = dynamic_cast<UserActionListViewItem*>(item)) {
