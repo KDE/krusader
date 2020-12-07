@@ -485,7 +485,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
         QMimeDatabase db;
         QMimeType mt = db.mimeTypeForFile(arcTempDir + file);
         if (mt.isValid())
-            emit mimeType(mt.name());
+            mimeType(mt.name());
 
         QString escapedFilename = file;
         if(arcType == "zip") // left bracket needs to be escaped
@@ -557,7 +557,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
         QMimeDatabase db;
         QMimeType mt = db.mimeTypeForFile(arcTempDir + file);
         if (mt.isValid())
-            emit mimeType(mt.name());
+            mimeType(mt.name());
 
         KIO::filesize_t processed_size = 0;
 
