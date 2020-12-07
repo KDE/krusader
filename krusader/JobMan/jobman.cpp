@@ -451,9 +451,5 @@ void JobMan::updateUI()
 
 bool JobMan::jobsAreRunning()
 {
-    for (KrJob *job: m_jobs)
-        if (job->isRunning())
-            return true;
-
-    return false;
+    return std::any_of(m_jobs.cbegin(), m_jobs.cend(), [](KrJob *job) {return job->isRunning();});
 }
