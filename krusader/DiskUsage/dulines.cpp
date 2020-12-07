@@ -125,18 +125,17 @@ public:
 class DULinesItem : public QTreeWidgetItem
 {
 public:
-    DULinesItem(DiskUsage *diskUsageIn, File *fileItem, QTreeWidget * parent, const QString& label1,
+    DULinesItem(File *fileItem, QTreeWidget * parent, const QString& label1,
                 const QString& label2, const QString& label3) : QTreeWidgetItem(parent),
-            diskUsage(diskUsageIn), file(fileItem) {
+            file(fileItem) {
         setText(0, label1);
         setText(1, label2);
         setText(2, label3);
 
         setTextAlignment(1, Qt::AlignRight);
     }
-    DULinesItem(DiskUsage *diskUsageIn, File *fileItem, QTreeWidget * parent, QTreeWidgetItem * after,
-                const QString& label1, const QString& label2, const QString& label3) : QTreeWidgetItem(parent, after),
-            diskUsage(diskUsageIn), file(fileItem) {
+    DULinesItem(File *fileItem, QTreeWidget * parent, QTreeWidgetItem * after,
+                const QString& label1, const QString& label2, const QString& label3) : QTreeWidgetItem(parent, after), file(fileItem) {
         setText(0, label1);
         setText(1, label2);
         setText(2, label3);
@@ -168,7 +167,6 @@ public:
     }
 
 private:
-    DiskUsage *diskUsage;
     File *file;
 };
 
@@ -284,9 +282,9 @@ void DULines::slotDirChanged(Directory *dirEntry)
         QString fileName = item->name();
 
         if (lastItem == nullptr)
-            lastItem = new DULinesItem(diskUsage, item, this, "", item->percent() + "  ", fileName);
+            lastItem = new DULinesItem(item, this, "", item->percent() + "  ", fileName);
         else
-            lastItem = new DULinesItem(diskUsage, item, this, lastItem, "", item->percent() + "  ", fileName);
+            lastItem = new DULinesItem(item, this, lastItem, "", item->percent() + "  ", fileName);
 
         if (item->isExcluded())
             lastItem->setHidden(true);
