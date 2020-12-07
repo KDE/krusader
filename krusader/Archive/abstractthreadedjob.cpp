@@ -487,12 +487,9 @@ void countFiles(const QString &path, unsigned long &totalFiles, bool &stop)
         return;
     }
 
-    for (const QString& name : dir.entryList()) {
+    for (const QString& name : dir.entryList(QDir::NoDotAndDotDot)) {
         if (stop)
             return;
-
-        if (name == QStringLiteral(".") || name == QStringLiteral(".."))
-            continue;
 
         countFiles(dir.absoluteFilePath(name), totalFiles, stop);
     }
