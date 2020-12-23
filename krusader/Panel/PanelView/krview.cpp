@@ -952,8 +952,6 @@ void KrView::sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool desce
         options &= ~KrViewProperties::Descending;
     _properties->sortColumn = sortColumn;
     _properties->sortOptions = static_cast<KrViewProperties::SortOptions>(options);
-
-    //     op()->settingsChanged(KrViewProperties::PropSortMode);
 }
 
 bool KrView::drawCurrent() const

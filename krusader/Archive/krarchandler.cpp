@@ -28,7 +28,6 @@
 // QtWidgets
 #include <QApplication>
 
-#include <KArchive/KTar>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIO/Global>
@@ -44,44 +43,6 @@
 #include "../krservices.h"
 #include "../Dialogs/krpleasewait.h"
 #include "../../krArc/krlinecountingprocess.h"
-
-#if 0
-class DefaultKrArcObserver : public KrArcObserver
-{
-public:
-    DefaultKrArcObserver() {}
-    virtual ~DefaultKrArcObserver() {}
-
-    virtual void processEvents() override {
-        usleep(1000);
-        qApp->processEvents();
-    }
-
-    virtual void subJobStarted(const QString & jobTitle, qulonglong count) override {
-        krApp->startWaiting(jobTitle, count, true);
-    }
-
-    virtual void subJobStopped() override {
-        krApp->stopWait();
-    }
-
-    virtual bool wasCancelled() override {
-        return krApp->wasWaitingCancelled();
-    }
-
-    virtual void error(const QString & error) override {
-        KMessageBox::error(krApp, error, i18n("Error"));
-    }
-
-    virtual void detailedError(const QString & error, const QString & details) override {
-        KMessageBox::detailedError(krApp, error, details, i18n("Error"));
-    }
-
-    virtual void incrementProgress(int c) override {
-        krApp->plzWait->incProgress(c);
-    }
-};
-#endif
 
 static QStringList arcProtocols = QString("tar;bzip;bzip2;lzma;xz;gzip;krarc;zip").split(';');
 

@@ -207,8 +207,6 @@ DULines::DULines(DiskUsage *usage)
     header()->setSortIndicatorShown(true);
     sortItems(1, Qt::AscendingOrder);
 
-//  toolTip = new DULinesToolTip( diskUsage, viewport(), this );
-
     connect(diskUsage, &DiskUsage::enteringDirectory, this, &DULines::slotDirChanged);
     connect(diskUsage, &DiskUsage::clearing, this, &DULines::clear);
 

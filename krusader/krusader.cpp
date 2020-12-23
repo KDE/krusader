@@ -97,8 +97,6 @@
 // define the static members
 Krusader *Krusader::App = nullptr;
 QString   Krusader::AppName;
-// KrBookmarkHandler *Krusader::bookman = 0;
-//QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
 
 #ifdef __KJSEMBED__
 KrJS *Krusader::js = 0;

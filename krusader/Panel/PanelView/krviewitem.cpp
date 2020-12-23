@@ -107,16 +107,6 @@ QString KrViewItem::description() const
 
 QPixmap KrViewItem::icon()
 {
-#if 0
-    QPixmap *p;
-
-    // This is bad - very bad. the function must return a valid reference,
-    // This is an interface flow - shie please fix it with a function that return QPixmap*
-    // this way we can return 0 - and do our error checking...
-
-    // shie answers: why? what's the difference? if we return an empty pixmap, others can use it as it
-    // is, without worrying or needing to do error checking. empty pixmap displays nothing
-#endif
     if (dummyFileItem || !_viewProperties->displayIcons)
         return QPixmap();
     else return KrView::getIcon(_fileitem, true);

@@ -32,8 +32,6 @@
 // QtWidgets
 #include <QApplication>                           //sendEvent
 
-#include <KWidgetsAddons/KCursor>        //ctor
-
 #include "fileTree.h"
 #include "Config.h"
 #include "radialMap.h" //constants

@@ -28,20 +28,16 @@
 // QtCore
 #include <QTimer>                                    //::resizeEvent()
 // QtGui
-#include <QMouseEvent>
 #include <QPainter>
 #include <QPaintEvent>
-#include <QResizeEvent>
 // QtWidgets
 #include <QApplication>          //QApplication::setOverrideCursor()
 #include <QMenu>
 
 #include <KI18n/KLocalizedString>
-#include <KIconThemes/KIconEffect>
 #include <KIO/DeleteJob>
 #include <KIO/JobUiDelegate>
 #include <KIOWidgets/KRun>
-#include <KWidgetsAddons/KCursor>
 #include <KWidgetsAddons/KMessageBox>
 #include <KToolInvocation>
 
@@ -226,14 +222,8 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
             m_tip.hide(); //user expects this
 
             if (!isDir || e->button() == Qt::MidButton) {
-#if 0 // TODO: PORTME
-                KIconEffect::visualActivate(this, rect);
-#endif
                 new KRun(url, this, true);   //FIXME see above
             } else if (m_focus->file() != m_tree) { //is left mouse button
-#if 0 // TODO: PORTME
-                KIconEffect::visualActivate(this, rect);
-#endif
                 emit activated(url);   //activate first, this will cause UI to prepare itself
                 if (m_focus)
                     createFromCache(dynamic_cast<const Directory*>(m_focus->file()));

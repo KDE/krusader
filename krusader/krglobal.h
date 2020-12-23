@@ -52,14 +52,10 @@ public:
     static QWidget *mainWindow;
     static UserAction *userAction;
     static JobMan *jobMan;
-//     static ListPanel  *activePanel;
     static KrPanel *activePanel();
 
     //HACK - used by [ListerTextArea|KrSearchDialog|LocateDlg]:keyPressEvent()
     static QKeySequence copyShortcut;
-
-//     static void enableAction(const char *name, bool enable);
-//     static QAction *getAction(const char *name);
 
     /** Version of saved configuration. Use this to detect configuration updates. */
     static const int sConfigVersion = 1;

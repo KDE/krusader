@@ -24,9 +24,6 @@
 #include "krusader.h"
 #include "krusaderview.h"
 
-// QtCore
-#include <QtGlobal>
-
 #include <KXmlGui/KActionCollection>
 
 KConfig *KrGlobal::config = nullptr;
@@ -48,16 +45,3 @@ KrPanel *KrGlobal::activePanel()
 {
     return mainView->activePanel();
 }
-
-// void KrGlobal::enableAction(const char *name, bool enable)
-// {
-//     getAction(name)->setEnabled(enable);
-// }
-// 
-// QAction* KrGlobal::getAction(const char *name)
-// {
-//     QAction *act = krApp->actionCollection()->action(name);
-//     if(!act)
-//         qFatal("no such action: %s", name);
-//     return act;
-// }
