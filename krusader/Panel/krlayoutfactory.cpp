@@ -206,9 +206,9 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
     }
 
     if(layout) {
-        foreach(const QString &name, widgets.keys()) {
-            qWarning() << "widget" << name << "was not added to the layout";
-            widgets[name]->hide();
+        for (auto it = widgets.constBegin(), end = widgets.constEnd(); it != end; ++it) {
+            qWarning() << "widget" << it.key() << "was not added to the layout";
+            it.value()->hide();
         }
     } else
          qWarning() << "couldn't load layout" << layoutName;
