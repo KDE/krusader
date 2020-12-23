@@ -43,6 +43,7 @@
 #include <KIOWidgets/KRun>
 #include <KWidgetsAddons/KCursor>
 #include <KWidgetsAddons/KMessageBox>
+#include <KToolInvocation>
 
 
 void
@@ -195,7 +196,7 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
                 //KRun::runCommand will show an error message if there was trouble
                 KRun::runCommand(QString("kfmclient openURL '%1'").arg(url.url()), this);
             else if (result == actKonsole)
-                KRun::runCommand(QString("konsole --workdir '%1'").arg(url.url()), this);
+                KToolInvocation::invokeTerminal(QString(), url.url());
             else if (result == actViewMag || result == actFileOpen)
                 goto sectionTwo;
             else if (result == actEditDel) {
