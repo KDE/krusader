@@ -96,10 +96,7 @@
   <command>%aPanelSize("80")%</command> will set the width of the
   active panel to 80% of the &krusader; mainwindow.
   Since the parameter of placeholders can contain other
-  placeholders, few scripts are possible. 
-  <!--However, scripting can be
-  done with the <link linkend="javascript_console">JavaScript console</link>.
-    disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
+  placeholders, few scripts are possible.
   </para>
   <para>
     <emphasis role="bold">Managing UserActions</emphasis>
@@ -539,41 +536,6 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
         </listitem>
       </orderedlist>
     </listitem>
-<!--    <listitem>
-      <para>
-      <userinput>Script</userinput> - executes an external 
-      <link linkend="javascript_console">
-      Javascript</link> file.</para>
-      <para>NOTE: This is still experimental and the interface may
-      change, feedback is always welcome.</para>
-      <orderedlist>
-        <listitem>
-          <para>Parameter: path to the
-          external foo.js file, absolute path or relative to 
-          <filename>
-          &lt;kde-app-data&gt;/krusader/js/</filename>.
-          &lt;kde-app-data&gt; is 
-          <filename>$(kde-config
-          - -localprefix)/share/apps/</filename> or 
-          <filename>$(kde-config - -prefix)/share/apps/</filename>,
-          for those who do not know where to copy the
-          scripts/extensions. If all the needed files (normally 
-          <filename>.js</filename> and maybe 
-          <filename>.ui</filename>) are in one of these dirs it is
-          sufficient to give the file name only as &lt;first parameter&gt;.
-          </para>
-        </listitem>
-        <listitem>
-          <para>Parameter (optional): a list
-          of variables which should be set, like <quote>return=cmd;
-          a=lalala; b='%_Ask(..)'</quote> so that the placeholder is
-          replaced be the content of the variable cmd and the other
-          two have already these values when the script
-          starts.</para>
-        </listitem>
-      </orderedlist>
-    </listitem>
-    disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
     <listitem>
       <para>
       <userinput>ListFile</userinput> - is replaced by path/file name

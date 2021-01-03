@@ -77,11 +77,6 @@ public:
     static QAction *actJobMode;
     static QAction *actJobUndo;
 
-
-#ifdef __KJSEMBED__
-    static QAction *actShowJSConsole;
-#endif
-
     static void setupActions(Krusader *krusader);
 };
 
@@ -102,9 +97,5 @@ public:
 #define krCombine         KrActions::actCombine
 #define krUserMenu        KrActions::actUserMenu
 #define krPopularUrls     KrActions::actPopularUrls
-
-#ifdef __KJSEMBED__
-#define krJSConsole  KrActions::actShowJSConsole
-#endif
 
 #endif

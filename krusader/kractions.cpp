@@ -107,11 +107,6 @@ QAction *KrActions::actJobControl = nullptr;
 QAction *KrActions::actJobMode = nullptr;
 QAction *KrActions::actJobUndo = nullptr;
 
-#ifdef __KJSEMBED__
-    static QAction *actShowJSConsole;
-#endif
-
-
 QAction *createAction(const QString& text, const QString& iconName, const QKeySequence& shortcut,
                       QObject *recv, const char *slot, const QString& name, Krusader *krusaderApp)
 {
@@ -317,9 +312,4 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     // setup all UserActions
     krUserAction = new UserAction();
-
-#ifdef __KJSEMBED__
-    actShowJSConsole = new QAction(i18n("JavaScript Console..."), Qt::ALT + Qt::CTRL + Qt::Key_J, SLOTS, SLOT(jsConsole()), krusaderApp->actionCollection(), "JS_Console");
-#endif
-
 }

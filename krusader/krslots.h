@@ -106,7 +106,6 @@ public slots:
 #endif
     void slotDiskUsage();
     void applicationStateChanged();
-    void jsConsole();
 
 protected slots:
     void configChanged(bool isGUIRestartNeeded);

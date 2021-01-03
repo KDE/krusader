@@ -41,11 +41,6 @@
 #include <KWidgetsAddons/KMessageBox>
 #include <utility>
 
-#ifdef __KJSEMBED__
-#include <kjsembed/jsconsolewidget.h>
-#include "KrJS/krjs.h"
-#endif
-
 #include "defaults.h"
 #include "icon.h"
 #include "kractions.h"
@@ -726,16 +721,6 @@ void KrSlots::trashPopupMenu()
     } else if (result == EMPTY_TRASH_ID) {
         KrTrashHandler::emptyTrash();
     }
-}
-
-//shows the JavaScript-Console
-void KrSlots::jsConsole()
-{
-#ifdef __KJSEMBED__
-    if (! krJS)
-        krJS = new KrJS();
-    krJS->view()->show();
-#endif
 }
 
 void KrSlots::addBookmark()

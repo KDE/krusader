@@ -37,10 +37,6 @@
 #include "../Synchronizer/synchronizergui.h"
 #endif
 
-#ifdef __KJSEMBED__
-#include "../KrJS/krjs.h"
-#endif
-
 // QtCore
 #include <QDebug>
 #include <QStringList>
@@ -228,14 +224,6 @@ SIMPLE_PLACEHOLDER_CLASS(exp_ColSort);
   * This sets relation between the left and right panel
   */
 SIMPLE_PLACEHOLDER_CLASS(exp_PanelSize);
-
-#ifdef __KJSEMBED__
-/**
-  * This sets relation between the left and right panel
-  */
-SIMPLE_PLACEHOLDER_CLASS(exp_Script);
-
-#endif
 
 /**
   * This loads a file in the internal viewer
@@ -883,59 +871,6 @@ TagString exp_PanelSize::expFunc(const KrPanel* panel, const QStringList& parame
     return QString();  // this doesn't return everything, that's normal!
 }
 
-#ifdef __KJSEMBED__
-exp_Script::exp_Script()
-{
-    _expression = "Script";
-    _description = i18n("Execute a JavaScript Extension...");
-    _needPanel = false;
-
-    addParameter(exp_parameter(i18n("Location of the script"), "", true));
-    addParameter(exp_parameter(i18n("Set some variables for the execution (optional).\ni.e. \"return=return_var;foo=bar\", consult the handbook for more information"), "", false));
-}
-TagString exp_Script::expFunc(const KrPanel*, const QStringList& parameter, const bool&, Expander& exp) const
-{
-    if (parameter.count() == 0 || parameter[0].isEmpty()) {
-        setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: no script specified for %_Script(script)%")));
-        return QString();
-    }
-
-    QString filename = parameter[0];
-    if (filename.find('/') && QUrl::isRelativeUrl(filename)) {
-        // this return the local version of the file if this exists. else the global one is returnd
-        filename = locate("data", "krusader/js/" + filename);
-    }
-
-    if (! krJS)
-        krJS = new KrJS();
-
-    KJS::ExecState *exec = krJS->globalExec();
-
-    QString jsReturn;
-    if (parameter[1].toLower() == "yes")   // to stay compatible with the old-style parameter
-        jsReturn = "cmd";
-    else {
-        QStringList jsVariables = parameter[1].split(';');
-        QString jsVariable, jsValue;
-        for (QStringList::Iterator it = jsVariables.begin(); it != jsVariables.end(); ++it) {
-            jsVariable = (*it).section('=', 0, 0).trimmed();
-            jsValue = (*it).section('=', 1);
-            if (jsVariable == "return")
-                jsReturn = jsValue.trimmed();
-            else
-                krJS->putValue(jsVariable, KJSEmbed::convertToValue(exec, jsValue));
-        }
-    }
-
-    krJS->runFile(filename);
-
-    if (! jsReturn.isEmpty())
-        return krJS->getValue(jsReturn).toString(krJS->globalExec()).qstring();
-    else
-        return QString();
-}
-#endif
-
 exp_View::exp_View()
 {
     _expression = "View";
@@ -1214,9 +1149,6 @@ QList<const exp_placeholder*>& Expander::_placeholder()
         ret << new exp_Filter;
         ret << new exp_Count;
         ret << new exp_Path;
-#ifdef __KJSEMBED__
-        ret << new exp_Script;
-#endif
     }
     return ret;
 }

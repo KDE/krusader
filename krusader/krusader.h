@@ -48,10 +48,6 @@
 #include <KNotifications/KStatusNotifierItem>
 #include <KParts/MainWindow>
 
-#ifdef __KJSEMBED__
-class KrJS;
-#endif
-
 class KStartupInfoData;
 class KStartupInfoId;
 
@@ -152,10 +148,6 @@ public:
     void stopWait();
     bool wasWaitingCancelled() const;
 
-#ifdef __KJSEMBED__
-    static KrJS *js;
-#endif
-
 signals:
     void changeMessage(QString);
     // emitted when we are about to quit
@@ -179,9 +171,5 @@ private:
 
 // main modules
 #define krApp        Krusader::App
-
-#ifdef __KJSEMBED__
-#define krJS   Krusader::App->js
-#endif
 
 #endif

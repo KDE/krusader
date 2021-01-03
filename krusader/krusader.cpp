@@ -89,21 +89,11 @@
 #include "UserAction/kraction.h"
 #include "UserAction/useraction.h"
 
-#ifdef __KJSEMBED__
-#include "KrJS/krjs.h"
-#endif
-
-
 // define the static members
 Krusader *Krusader::App = nullptr;
 QString   Krusader::AppName;
 // KrBookmarkHandler *Krusader::bookman = 0;
 //QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
-
-#ifdef __KJSEMBED__
-KrJS *Krusader::js = 0;
-QAction *Krusader::actShowJSConsole = 0;
-#endif
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullptr,
