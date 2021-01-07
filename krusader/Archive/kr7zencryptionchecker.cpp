@@ -56,7 +56,7 @@ void Kr7zEncryptionChecker::receivedOutput()
         if ((line.contains("password") && line.contains("enter")) ||
              line == QStringLiteral("encrypted = +")) {
             encrypted = true;
-            ::kill(- pid(), SIGKILL); // kill the whole process group by giving the negative PID
+            ::kill(- processId(), SIGKILL); // kill the whole process group by giving the negative PID
             break;
         }
     }

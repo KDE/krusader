@@ -92,12 +92,7 @@ void ViewActions::allFilter()
 {
     view()->setFilter(KrViewProperties::All);
 }
-#if 0
-void ViewActions::execFilter()
-{
-    view()->setFilter(KrViewProperties::All);
-}
-#endif
+
 void ViewActions::customFilter()
 {
     view()->setFilter(KrViewProperties::Custom);

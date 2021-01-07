@@ -237,7 +237,7 @@ void KrViewItemDelegate::cycleEditorSelection()
 
     EditorSelection currentSelection(editor->selectionStart(), editor->QLINEEDIT_SELECTIONLENGTH);
     auto text = editor->text();
-    auto selections = generateFileNameSelections(text);
+    const auto selections = generateFileNameSelections(text);
 
     // try to find current selection in the list
     int currentIndex = 0;

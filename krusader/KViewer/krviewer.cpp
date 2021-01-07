@@ -227,7 +227,6 @@ void KrViewer::createGUI(KParts::Part* part)
     }
 
     // and "fix" the menubar
-    QList<QAction *> actList = menuBar()->actions();
     viewerMenu->setTitle(i18n("&KrViewer"));
     QAction * act = menuBar() ->addMenu(viewerMenu);
     act->setData(QVariant(70));

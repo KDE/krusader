@@ -124,7 +124,7 @@ void KURLListRequester::keyPressEvent(QKeyEvent *e)
 
 void KURLListRequester::deleteSelectedItems()
 {
-    QList<QListWidgetItem *> selectedItems = urlListBox->selectedItems();
+    const QList<QListWidgetItem *> selectedItems = urlListBox->selectedItems();
     for (QListWidgetItem *item : selectedItems)
         delete item;
     emit changed();

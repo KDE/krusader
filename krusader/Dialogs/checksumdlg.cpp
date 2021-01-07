@@ -568,7 +568,7 @@ void VerifyWizard::onResultPage()
 bool VerifyWizard::isSupported(const QString &path)
 {
     const QFileInfo fileInfo(path);
-    return fileInfo.isFile() && m_checksumTools.keys().contains(fileInfo.suffix());
+    return fileInfo.isFile() && m_checksumTools.contains(fileInfo.suffix());
 }
 
 } // NAMESPACE CHECKSUM_

@@ -51,7 +51,6 @@ private:
     char m_algo[2], m_parms[2];
     long long m_realsize;
     int m_adate, m_cdate;
-    long long m_curpos;
 };
 
 #endif

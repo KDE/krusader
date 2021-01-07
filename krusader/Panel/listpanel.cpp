@@ -175,7 +175,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     // bookmarks button
     bookmarksButton = new KrBookmarkButton(this);
     connect(bookmarksButton, &KrBookmarkButton::aboutToShow, this, [=]() { slotFocusOnMe(); });
-    connect(bookmarksButton, &KrBookmarkButton::openUrl, [=](const QUrl & _t1) { func->openUrl(_t1); });
+    connect(bookmarksButton, &KrBookmarkButton::openUrl, this, [this](const QUrl & _t1) { func->openUrl(_t1); });
     bookmarksButton->setWhatsThis(i18n("Open menu with bookmarks. You can also add "
                                        "current location to the list, edit bookmarks "
                                        "or add subfolder to the list."));
@@ -260,7 +260,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     sidebarPositionButton->setAutoRaise(true);
     sidebarPositionButton->setIcon(Icon("exchange-positions"));
     sidebarPositionButton->setToolTip(i18n("Move Sidebar clockwise"));
-    connect(sidebarPositionButton, &QToolButton::clicked, [this]() {
+    connect(sidebarPositionButton, &QToolButton::clicked, this, [this]() {
         // moving position clockwise
         setSidebarPosition((sidebarPosition() + 1) % 4); });
     ADD_WIDGET(sidebarPositionButton);
@@ -298,7 +298,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
                                         "active and inactive panel - if possible.");
     syncBrowseButton->setText(syncBrowseText);
     syncBrowseButton->setToolTip(syncBrowseText);
-    connect(syncBrowseButton, &QToolButton::toggled, [=](bool checked) {
+    connect(syncBrowseButton, &QToolButton::toggled, syncBrowseButton, [this](bool checked) {
         syncBrowseButton->setIcon(
             Icon(checked ? "kr_syncbrowse_on" : "kr_syncbrowse_off"));
     });

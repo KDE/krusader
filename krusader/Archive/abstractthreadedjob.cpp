@@ -487,12 +487,9 @@ void countFiles(const QString &path, unsigned long &totalFiles, bool &stop)
         return;
     }
 
-    for (const QString& name : dir.entryList()) {
+    for (const QString& name : dir.entryList(QDir::NoDotAndDotDot)) {
         if (stop)
             return;
-
-        if (name == QStringLiteral(".") || name == QStringLiteral(".."))
-            continue;
 
         countFiles(dir.absoluteFilePath(name), totalFiles, stop);
     }
@@ -510,7 +507,7 @@ void AbstractJobThread::countLocalFiles(const QUrl &baseUrl, const QStringList &
             return;
 
         const QString path = calcSpaceFileSystem->getUrl(name).toLocalFile();
-        if (!QFileInfo(path).exists())
+        if (!QFileInfo::exists(path))
             return;
 
         countFiles(path, totalFiles, _exited);

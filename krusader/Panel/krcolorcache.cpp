@@ -750,7 +750,7 @@ void KrColorCache::refreshColors()
     m_impl->m_cachedColors.clear();
     m_impl->m_colorSettings = KrColorSettings();
     QPixmapCache::clear(); // dimmed icons are cached
-    colorsRefreshed();
+    emit colorsRefreshed();
 }
 
 void KrColorCache::setColors(const KrColorSettings & colorSettings)
@@ -758,6 +758,6 @@ void KrColorCache::setColors(const KrColorSettings & colorSettings)
     m_impl->m_cachedColors.clear();
     m_impl->m_colorSettings = colorSettings;
     QPixmapCache::clear(); // dimmed icons are cached
-    colorsRefreshed();
+    emit colorsRefreshed();
 }
 

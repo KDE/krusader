@@ -92,8 +92,6 @@
 // define the static members
 Krusader *Krusader::App = nullptr;
 QString   Krusader::AppName;
-// KrBookmarkHandler *Krusader::bookman = 0;
-//QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullptr,

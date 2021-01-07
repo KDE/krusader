@@ -155,7 +155,7 @@ ListPanel* PanelManager::createPanel(const KConfigGroup& cfg)
 void PanelManager::connectPanel(ListPanel *p)
 {
     connect(p, &ListPanel::activate, this, &PanelManager::activate);
-    connect(p, &ListPanel::pathChanged, this, [=]() { pathChanged(p); });
+    connect(p, &ListPanel::pathChanged, this, [=]() { emit pathChanged(p); });
     connect(p, &ListPanel::pathChanged, this, [=]() { _tabbar->updateTab(p); });
 }
 

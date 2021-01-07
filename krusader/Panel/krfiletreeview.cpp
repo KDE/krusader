@@ -54,7 +54,7 @@
 class KrDirModel : public KDirModel
 {
 public:
-    KrDirModel(QWidget *parent, KrFileTreeView *ftv) : KDirModel(parent), fileTreeView(ftv) {}
+    KrDirModel(QWidget *parent) : KDirModel(parent) {}
 
 protected:
     Qt::ItemFlags flags(const QModelIndex &index) const override
@@ -64,9 +64,6 @@ protected:
             itflags &= ~Qt::ItemIsDropEnabled;
         return itflags;
     }
-
-private:
-    KrFileTreeView *fileTreeView;
 };
 
 class TreeStyle : public QProxyStyle
@@ -88,7 +85,7 @@ public:
 KrFileTreeView::KrFileTreeView(QWidget *parent)
     : QTreeView(parent), mStartTreeFromCurrent(false), mStartTreeFromPlace(true)
 {
-    mSourceModel = new KrDirModel(this, this);
+    mSourceModel = new KrDirModel(this);
     mSourceModel->dirLister()->setDirOnlyMode(true);
 
     mProxyModel = new KDirSortFilterProxyModel(this);

@@ -103,7 +103,8 @@ void SizeCalculator::nextUrl()
             nextUrl();
             return;
         }
-        for (FileItem *file : fs->fileItems())
+        const QList<FileItem *> fileItems = fs->fileItems();
+        for (FileItem *file : fileItems)
             m_nextSubUrls << file->getUrl();
         delete fs;
     } else {

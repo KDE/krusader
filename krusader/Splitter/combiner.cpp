@@ -77,7 +77,7 @@ void Combiner::combine()
                                              splURL.toDisplayString(QUrl::PreferLocalFile)));
 
         if (ret == KMessageBox::No) {
-            emit reject();
+            reject();
             return;
         }
 
@@ -143,7 +143,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
         int ret = KMessageBox::questionYesNo(nullptr,
                                              error + i18n("\nValidity checking is impossible without a good CRC file. Continue combining?"));
         if (ret == KMessageBox::No) {
-            emit reject();
+            reject();
             return;
         }
     }
@@ -180,7 +180,7 @@ void Combiner::statDestResult(KJob* job)
             openNextFile();
         } else {
             dynamic_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
-            emit reject();
+            reject();
         }
     } else { // destination already exists
         KIO::RenameDialog_Options mode = dynamic_cast<KIO::StatJob*>(job)->statResult().isDir() ?
@@ -196,7 +196,7 @@ void Combiner::statDestResult(KJob* job)
             break;
         }
         default:
-            emit reject();
+            reject();
         }
     }
 }
@@ -276,7 +276,7 @@ void Combiner::combineReceiveFinished(KJob *job)
                 combineAbortJobs();
                 KMessageBox::error(nullptr, i18n("Cannot open the first split file of %1.",
                                            baseURL.toDisplayString(QUrl::PreferLocalFile)));
-                emit reject();
+                reject();
             } else { // we've received the last file
                 // write out the remaining part of the file
                 combineWriteJob->resume();
@@ -294,7 +294,7 @@ void Combiner::combineReceiveFinished(KJob *job)
         } else {
             combineAbortJobs();
             dynamic_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
-            emit reject();
+            reject();
         }
     } else
         openNextFile();
@@ -319,13 +319,13 @@ void Combiner::combineSendFinished(KJob *job)
     if (job->error()) {   /* any error occurred? */
         combineAbortJobs();
         dynamic_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
-        emit reject();
+        reject();
     } else if (!error.isEmpty()) {  /* was any error message at reading ? */
         combineAbortJobs();             /* we cannot write out it in combineReceiveFinished */
         KMessageBox::error(nullptr, error);   /* because emit accept closes it in this function */
-        emit reject();
+        reject();
     } else
-        emit accept();
+        accept();
 }
 
 void Combiner::combineAbortJobs()

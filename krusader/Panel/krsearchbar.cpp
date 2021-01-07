@@ -102,7 +102,7 @@ void KrSearchBar::setView(KrView *view)
 
     _view = view;
 
-    connect(_openSelectDialogBtn, &QToolButton::clicked, [this](){ _view->customSelection(true); });
+    connect(_openSelectDialogBtn, &QToolButton::clicked, this, [this](){ _view->customSelection(true); });
     _view->widget()->installEventFilter(this);
 }
 

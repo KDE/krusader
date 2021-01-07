@@ -599,7 +599,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
     // such as Ctrl+W and accelerator keys
     if (eventType == QEvent::KeyPress && menu) {
         auto *kev = dynamic_cast<QKeyEvent *>(ev);
-        QList<QAction *> acts = menu->actions();
+        const QList<QAction *> acts = menu->actions();
         bool quickSearchStarted = false;
         bool searchInSpecialItems = KConfigGroup(krConfig, "Look&Feel").readEntry("Search in special items", false);
 

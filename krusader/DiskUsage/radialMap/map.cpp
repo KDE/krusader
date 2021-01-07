@@ -34,7 +34,7 @@
 #include "builder.h"
 #include "Config.h"
 #include "fileTree.h"
-#include "sincos.h"
+#include <cmath>
 #include "widget.h"
 
 #define COLOR_GREY QColor::fromHsv( 0, 0, 140 )
@@ -320,9 +320,6 @@ RadialMap::Map::paint(unsigned int scaleFactor)
 
                     if (i == 2)
                         radius += 5 * scaleFactor;
-#if 0
-                    sincos(ra, &sinra, &cosra);
-#endif
                     sinra = sin(ra); cosra = cos(ra);
                     pos.rx() = cpos.x() + static_cast<int>(cosra * radius);
                     pos.ry() = cpos.y() - static_cast<int>(sinra * radius);
@@ -393,15 +390,3 @@ RadialMap::Map::paint(unsigned int scaleFactor)
 
     paint.end();
 }
-#if 0
-#if __GLIBC__ < 2 ||  __GLIBC__ == 2 && __GLIBC_MINOR__ < 1
-
-void
-sincos(double angleRadians, double *Sin, double *Cos)
-{
-    *Sin = sin(angleRadians);
-    *Cos = cos(angleRadians);
-}
-
-#endif
-#endif

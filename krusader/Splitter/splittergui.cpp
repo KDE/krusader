@@ -249,7 +249,7 @@ void SplitterGUI::splitPressed()
         return;
     }
     if(getSplitSize() > 0)
-        emit accept();
+        accept();
 }
 
 void SplitterGUI::keyPressEvent(QKeyEvent *e)
@@ -257,7 +257,7 @@ void SplitterGUI::keyPressEvent(QKeyEvent *e)
     switch (e->key()) {
     case Qt::Key_Enter :
     case Qt::Key_Return :
-        emit splitPressed();
+        splitPressed();
         return;
     default:
         QDialog::keyPressEvent(e);

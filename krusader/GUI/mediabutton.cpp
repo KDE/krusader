@@ -144,7 +144,6 @@ void MediaButton::createMediaList()
 
     for (auto & it : possibleMountList) {
         if (krMtMan.networkFilesystem(it->mountType())) {
-            QString path = it->mountPoint();
             bool mounted = false;
 
             for (auto & it2 : currentMountList) {
@@ -175,7 +174,6 @@ bool MediaButton::getNameAndIcon(Solid::Device & device, QString &name, QIcon &i
     if (access == nullptr)
         return false;
 
-    QString udi     = device.udi();
     QString label   = i18nc("Unknown label", "Unknown");
     bool    mounted = access->isAccessible();
     QString path    = access->filePath();

@@ -132,7 +132,7 @@ void Splitter::splitReceiveFinished(KJob *job)
         splitAbortJobs();
         KMessageBox::error(nullptr, i18n("Error reading file %1: %2", fileName.toDisplayString(QUrl::PreferLocalFile),
                                    job->errorString()));
-        emit reject();
+        reject();
         return;
     }
 
@@ -186,7 +186,7 @@ void Splitter::statOutputFileResult(KJob* job)
             openOutputFile();
         else {
             dynamic_cast<KIO::Job*>(job)->uiDelegate()->showErrorMessage();
-            emit reject();
+            reject();
         }
     } else { // destination already exists
         KIO::RenameDialog dlg(this, i18n("File Already Exists"), QUrl(), writeURL,
@@ -200,7 +200,7 @@ void Splitter::statOutputFileResult(KJob* job)
             openOutputFile();
             break;
         default:
-            emit reject();
+            reject();
         }
     }
 }
@@ -247,7 +247,7 @@ void Splitter::splitSendFinished(KJob *job)
         splitAbortJobs();
         KMessageBox::error(nullptr, i18n("Error writing file %1: %2", writeURL.toDisplayString(QUrl::PreferLocalFile),
                                    job->errorString()));
-        emit reject();
+        reject();
         return;
     }
 
@@ -292,10 +292,10 @@ void Splitter::splitFileFinished(KJob *job)
     if (job->error()) {   /* any error occurred? */
         KMessageBox::error(nullptr, i18n("Error writing file %1: %2", writeURL.toDisplayString(QUrl::PreferLocalFile),
                                    job->errorString()));
-        emit reject();
+        reject();
         return;
     }
 
-    emit accept();
+    accept();
 }
 

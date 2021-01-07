@@ -397,37 +397,7 @@ bool KrInterBriefView::isIndexHidden(const QModelIndex&ndx) const
 {
     return ndx.column() != 0;
 }
-#if 0
-QRegion KrInterBriefView::visualRegionForSelection(const QItemSelection &selection) const
-{
-    if (selection.isEmpty())
-        return QRegion();
 
-    QRegion selectionRegion;
-    for (int i = 0; i < selection.count(); ++i) {
-        QItemSelectionRange range = selection.at(i);
-        if (!range.isValid())
-            continue;
-        QModelIndex leftIndex = range.topLeft();
-        if (!leftIndex.isValid())
-            continue;
-        const QRect leftRect = visualRect(leftIndex);
-        int top = leftRect.top();
-        QModelIndex rightIndex = range.bottomRight();
-        if (!rightIndex.isValid())
-            continue;
-        const QRect rightRect = visualRect(rightIndex);
-        int bottom = rightRect.bottom();
-        if (top > bottom)
-            qSwap<int>(top, bottom);
-        int height = bottom - top + 1;
-        QRect combined = leftRect | rightRect;
-        combined.setX(range.left());
-        selectionRegion += combined;
-    }
-    return selectionRegion;
-}
-#endif
 void KrInterBriefView::paintEvent(QPaintEvent *e)
 {
     QStyleOptionViewItem option = viewOptions();
