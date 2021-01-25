@@ -375,7 +375,7 @@ KrAction::~KrAction()
 {
     foreach(QWidget *w, associatedWidgets())
     w->removeAction(this);
-    krUserAction->removeKrAction(this);   // Importent! Else Krusader will crash when writing the actions to file
+    krUserAction->removeKrAction(this);   // Important! Else Krusader will crash when writing the actions to file
 }
 
 bool KrAction::isAvailable(const QUrl &currentURL)

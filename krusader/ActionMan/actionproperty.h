@@ -46,7 +46,7 @@ public:
      * This inits the widget with the actions properties.
      * If no action is provided, the last used will be taken!
      * It also resets the changed() state.
-     * @param action the action which should be displayd
+     * @param action the action which should be displayed
      */
     void updateGUI(KrAction *action = nullptr);
 
@@ -138,7 +138,7 @@ protected slots:
      */
     void editFile();
     /**
-     * (availability) removes a file-filter from the lsit
+     * (availability) removes a file-filter from the list
      */
     void removeFile();
 

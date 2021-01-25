@@ -146,7 +146,7 @@ private slots:
 };
 
 /**
- *  A Checkbox, default: checked; retuns "No" if unchecked
+ *  A Checkbox, default: checked; returns "No" if unchecked
  *  used with default = "__yes"
  */
 class ParameterYes : public ParameterBase
@@ -162,7 +162,7 @@ private:
 };
 
 /**
- *  A Checkbox, default: unchecked; retuns "Yes" if checked
+ *  A Checkbox, default: unchecked; returns "Yes" if checked
  *  used with default = "__no"
  */
 class ParameterNo : public ParameterBase
