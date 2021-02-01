@@ -90,6 +90,7 @@ signals:
 protected:
     void mouseMoveEvent(QMouseEvent*e) override;
     void mousePressEvent(QMouseEvent*) override;
+    void mouseDoubleClickEvent(QMouseEvent*) override;
     void mouseReleaseEvent(QMouseEvent*) override;
     void insertAction(QAction*);
     QString squeeze(const QUrl &url, int tabIndex = -1);
@@ -108,7 +109,7 @@ private:
     KActionMenu *_panelActionMenu;
     bool _left;
     int _maxTabLength;
-    bool _tabClicked, _draggingTab;
+    bool _tabClicked, _draggingTab, _doubleClickClose;
 
     QTimer *_dragTimer;
     int _dragTabIndex;
