@@ -51,15 +51,17 @@ KrMouseHandler::KrMouseHandler(KrView *view, int contextMenuShift)
 bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
 {
     _rightClickedItem = _clickedItem = nullptr;
-    KrViewItem * item = _view->getKrViewItemAt(e->pos());
+    KrViewItem *item = _view->getKrViewItemAt(e->pos());
+    KrSelectionMode *mode = KrSelectionMode::getSelectionHandler();
+
     if (!_view->isFocused())
         _view->op()->emitNeedFocus();
     if (e->button() == Qt::LeftButton) {
         _dragStartPos = e->pos();
         if (e->modifiers() == Qt::NoModifier) {
             if (item) {
-                if (KrSelectionMode::getSelectionHandler()->leftButtonSelects()) {
-                    if (KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection())
+                if (mode->leftButtonSelects()) {
+                    if (mode->leftButtonPreservesSelection())
                         item->setSelected(!item->isSelected());
                     else {
                         if (item->isSelected())
@@ -74,8 +76,8 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
                 _view->setCurrentKrViewItem(item);
             } else {
                 // empty space under items clicked
-                if (KrSelectionMode::getSelectionHandler()->leftButtonSelects()
-                    && !KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection()) {
+                if (mode->leftButtonSelects()
+                    && !mode->leftButtonPreservesSelection()) {
 
                     // clear the current selection
                     _view->unselectAll();
@@ -85,8 +87,8 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
             return true;
         } else if (e->modifiers() == Qt::ControlModifier) {
 
-            if (item && (KrSelectionMode::getSelectionHandler()->shiftCtrlLeftButtonSelects() ||
-                         KrSelectionMode::getSelectionHandler()->leftButtonSelects())) {
+            if (item && (mode->shiftCtrlLeftButtonSelects() ||
+                         mode->leftButtonSelects())) {
 
                 // get current selected item names
                 _selectedItemNames.clear();
@@ -106,8 +108,8 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
             e->accept();
             return true;
         } else if (e->modifiers() == Qt::ShiftModifier) {
-            if (item && (KrSelectionMode::getSelectionHandler()->shiftCtrlLeftButtonSelects() ||
-                         KrSelectionMode::getSelectionHandler()->leftButtonSelects())) {
+            if (item && (mode->shiftCtrlLeftButtonSelects() ||
+                         mode->leftButtonSelects())) {
                 KrViewItem * current = _view->getCurrentKrViewItem();
                 if (current != nullptr)
                     _view->selectRegion(item, current, true);
@@ -122,9 +124,9 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
         //dragStartPos = e->pos();
         if (e->modifiers() == Qt::NoModifier) {
             if (item) {
-                if (KrSelectionMode::getSelectionHandler()->rightButtonSelects()) {
-                    if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection()) {
-                        if (KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0) {
+                if (mode->rightButtonSelects()) {
+                    if (mode->rightButtonPreservesSelection()) {
+                        if (mode->showContextMenu() >= 0) {
                             _rightClickSelects = !item->isSelected();
                             _rightClickedItem = item;
                         }
@@ -145,8 +147,8 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
             e->accept();
             return true;
         } else if (e->modifiers() == Qt::ControlModifier) {
-            if (item && (KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects() ||
-                         KrSelectionMode::getSelectionHandler()->rightButtonSelects())) {
+            if (item && (mode->shiftCtrlRightButtonSelects() ||
+                         mode->rightButtonSelects())) {
                 item->setSelected(!item->isSelected());
             }
             if (item)
@@ -154,8 +156,8 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
             e->accept();
             return true;
         } else if (e->modifiers() == Qt::ShiftModifier) {
-            if (item && (KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects() ||
-                         KrSelectionMode::getSelectionHandler()->rightButtonSelects())) {
+            if (item && (mode->shiftCtrlRightButtonSelects() ||
+                         mode->rightButtonSelects())) {
                 KrViewItem * current = _view->getCurrentKrViewItem();
                 if (current != nullptr)
                     _view->selectRegion(item, current, true);
@@ -182,8 +184,8 @@ bool KrMouseHandler::mouseReleaseEvent(QMouseEvent *e)
     if (e->button() == Qt::LeftButton)
         _dragStartPos = QPoint(-1, -1);
 
-    KrViewItem * item = _view->getKrViewItemAt(e->pos());
-    auto mode = KrSelectionMode::getSelectionHandler();
+    KrViewItem *item = _view->getKrViewItemAt(e->pos());
+    KrSelectionMode *mode = KrSelectionMode::getSelectionHandler();
 
     if (item && item == _clickedItem) {
         if (((e->button() == Qt::LeftButton) && (e->modifiers() == Qt::NoModifier) &&
@@ -279,7 +281,9 @@ bool KrMouseHandler::mouseDoubleClickEvent(QMouseEvent *e)
 
 bool KrMouseHandler::mouseMoveEvent(QMouseEvent *e)
 {
-    KrViewItem * item =  _view->getKrViewItemAt(e->pos());
+    KrViewItem *item =  _view->getKrViewItemAt(e->pos());
+    KrSelectionMode *mode = KrSelectionMode::getSelectionHandler();
+
     if ((_singleClicked || _renameTimer.isActive()) && item != _singleClickedItem)
         CANCEL_TWO_CLICK_RENAME;
 
@@ -295,9 +299,9 @@ bool KrMouseHandler::mouseMoveEvent(QMouseEvent *e)
         return true;
     }
 
-    if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection()
-            && KrSelectionMode::getSelectionHandler()->rightButtonSelects()
-            && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0 && e->buttons() == Qt::RightButton) {
+    if (mode->rightButtonPreservesSelection()
+            && mode->rightButtonSelects()
+            && mode->showContextMenu() >= 0 && e->buttons() == Qt::RightButton) {
         e->accept();
         if (item != _rightClickedItem && item && _rightClickedItem) {
             _view->selectRegion(item, _rightClickedItem, _rightClickSelects);
