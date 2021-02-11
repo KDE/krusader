@@ -67,6 +67,10 @@ signals:
      */
     void closeCurrentTab();
     /**
+     * emitted when the user press Ctrl+LMB
+     */
+    void duplicateCurrentTab();
+    /**
      * emitted when the user right-clicks and selects an action that creates a new tab
      */
     void newTab(const QUrl &path);

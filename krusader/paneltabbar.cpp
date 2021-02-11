@@ -268,8 +268,20 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
     if (e->button() == Qt::RightButton) {
         // show the popup menu
         _panelActionMenu->menu()->popup(e->globalPos());
+    } else if (e->button() == Qt::LeftButton) {
+        if (e->modifiers() == Qt::ControlModifier) {
+            KConfigGroup group(krConfig, "Look&Feel");
+            if (group.readEntry("Duplicate Tab Click", "disabled") == "ctrl_click") {
+               emit duplicateCurrentTab();
+            }
+        } else if (e->modifiers() == Qt::AltModifier) {
+            KConfigGroup group(krConfig, "Look&Feel");
+            if (group.readEntry("Duplicate Tab Click", "disabled") == "alt_click") {
+               emit duplicateCurrentTab();
+            }
+        }
     } else {
-        if (e->button() == Qt::MidButton)// close the current tab
+        if (e->button() == Qt::MidButton) // close the current tab
             emit closeCurrentTab();
     }
 

@@ -126,8 +126,29 @@ void KgPanel::setupGeneralTab()
     cbs = createCheckBoxGroup(2, 0, tabbar_settings, 7 /*count*/, groupBox, PAGE_GENERAL);
     gridLayout->addWidget(cbs, 0, 0, 1, 2);
 
-// -----------------  Tab Bar position ----------------------------------
-    auto *hbox = new QHBoxLayout();
+    // -------------- Duplicate tab by click --------------------
+    QHBoxLayout *hbox = new QHBoxLayout();
+
+    QLabel *labelDupTabs = new QLabel(i18n("Duplicate tab by click:"), groupBox);
+    hbox->addWidget(labelDupTabs);
+
+    KONFIGURATOR_NAME_VALUE_PAIR duptabs[] = {
+        { i18n("Disabled"),   "disabled" },
+        { i18n("Alt+Click"),  "alt_click" },
+        { i18n("Ctrl+Click"), "ctrl_click" }
+    };
+
+    KonfiguratorComboBox *cmb = createComboBox(
+        "Look&Feel", "Duplicate Tab Click",
+        "disabled", duptabs, 3, labelDupTabs, groupBox, true, false,
+        i18n("Duplicate tab by clicking Ctrl/Alt+LMB"), PAGE_GENERAL);
+
+    hbox->addWidget(cmb);
+    hbox->addWidget(createSpacer(groupBox));
+    gridLayout->addLayout(hbox, 1, 0);
+
+    // -------------- Tab Bar position --------------------------
+    hbox = new QHBoxLayout();
 
     QLabel *labelTabBar = new QLabel(i18n("Tab Bar position:"), groupBox);
     hbox->addWidget(labelTabBar);
@@ -137,12 +158,12 @@ void KgPanel::setupGeneralTab()
         { i18n("Bottom"),   "bottom" }
     };
 
-    KonfiguratorComboBox *cmb = createComboBox("Look&Feel", "Tab Bar Position",
-                                "bottom", positions, 2, labelTabBar, groupBox, true, false,
-                                QString(), PAGE_GENERAL);
+    cmb = createComboBox("Look&Feel", "Tab Bar Position",
+                         "bottom", positions, 2, labelTabBar, groupBox, true, false,
+                         QString(), PAGE_GENERAL);
 
     hbox->addWidget(cmb);
-    gridLayout->addLayout(hbox, 1, 0, Qt::AlignLeft);
+    gridLayout->addLayout(hbox, 2, 0, Qt::AlignLeft);
 
     layout->addWidget(groupBox);
 
