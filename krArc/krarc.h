@@ -62,11 +62,12 @@ protected:
     virtual bool   initDirDict(const QUrl &url, bool forced = false);
     virtual bool   initArcParameters();
     void checkIf7zIsEncrypted(bool &, QString) override;
-    virtual void parseLine(int lineNo, QString line);
     virtual bool setArcFile(const QUrl &url);
     virtual QString getPassword();
     virtual void invalidatePassword();
     QString getPath(const QUrl &url, QUrl::FormattingOptions options = nullptr);
+    /** parses a text line from the listing of an archive. */
+    virtual void parseLine(int lineNo, QString line);
 
     QString localeEncodedString(QString str);
     QByteArray encodeString(const QString&);

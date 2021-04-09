@@ -1269,10 +1269,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         nextWord(line); nextWord(line);
         // date & time
         QString d = nextWord(line);
-        int year = 1900 + d.mid(6, 2).toInt();
-        if (year < 1930)
-            year += 100;
-        QDate qdate(year, d.mid(3, 2).toInt(), d.mid(0, 2).toInt());
+        QDate qdate(d.left(4).toInt(), d.mid(5, 2).toInt(), d.mid(8, 2).toInt());
         QString t = nextWord(line);
         QTime qtime(t.mid(0, 2).toInt(), t.mid(3, 2).toInt(), 0);
         time = QDateTime(qdate, qtime).toTime_t();
