@@ -504,7 +504,12 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
     proc.start();
     RESET_KRCODEC
 
-    proc.waitForFinished();
+    // Wait until the external unpacker has finished
+    if (!proc.waitForFinished(-1)) {
+        error(KIO::ERR_SLAVE_DEFINED, i18n("An error has happened, related to the external program '%1'. "
+                                           "The error message is: '%2'.", cmd, proc.errorString()));
+        return;
+    }
 
     if (!extArcReady && !decompressToFile) {
         if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()) || (arcType != "bzip2" && arcType != "lzma" && arcType != "xz" && expectedSize != decompressedLen)) {
