@@ -380,6 +380,8 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
 
 ListPanel::~ListPanel()
 {
+    view->widget()->removeEventFilter(this);
+    urlNavigator->editor()->removeEventFilter(this);
     cancelProgress();
     delete view;
     view = nullptr;
@@ -527,7 +529,7 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
         }
     }
     // handle URL navigator key events
-    else if(watched == urlNavigator->editor()) {
+    else if(urlNavigator && watched == urlNavigator->editor()) {
         // override default shortcut for panel focus
         if(e->type() == QEvent::ShortcutOverride) {
             auto *ke = dynamic_cast<QKeyEvent *>(e);
