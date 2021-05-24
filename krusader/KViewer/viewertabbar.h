@@ -1,8 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2020 Krusader Krew [https://krusader.org]
 
-    This file is part of Krusader [https://krusader.org].
-
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 

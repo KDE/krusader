@@ -4,8 +4,6 @@
 
     Based on KRemoteEncodingPlugin from Dawit Alemayehu <adawit@kde.org>
 
-    This file is part of Krusader [https://krusader.org].
-
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
