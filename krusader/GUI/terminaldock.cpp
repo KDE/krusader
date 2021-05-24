@@ -1,6 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2008 Václav Juza <vaclavjuza@gmail.com>
     SPDX-FileCopyrightText: 2008-2020 Krusader Krew [https://krusader.org]
+    SPDX-FileCopyrightText: 2007-2010 Peter Penz <peter.penz19@gmail.com>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -121,7 +122,7 @@ void TerminalDock::sendInput(const QString& input, bool clearCommand)
     if (clearCommand) {
         // send SIGINT before input command to avoid unwanted behaviour when current line is not empty
         // and command is appended to current input (e.g. "rm -rf x " concatenated with 'cd /usr');
-        // code "borrowed" from Dolphin, SPDX-FileCopyrightText: 2007-2010 Peter Penz <peter.penz19@gmail.com>
+        // code "borrowed" from Dolphin
         const int processId = t->terminalProcessId();
         // workaround (firstInput): kill is sent to terminal if shell is not initialized yet
         if (processId > 0 && !firstInput) {
