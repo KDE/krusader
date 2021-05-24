@@ -1,25 +1,14 @@
-/*****************************************************************************
- * Copyright (C) 2002 Shie Erlich <erlich@users.sourceforge.net>             *
- * Copyright (C) 2002 Rafi Yanai <yanai@users.sourceforge.net>               *
- * Copyright (C) 2004-2020 Krusader Krew [https://krusader.org]              *
- *                                                                           *
- * From the mplayer project (www.mplayerhq.hu)                               *
- *                                                                           *
- * This file is part of Krusader [https://krusader.org].                     *
- *                                                                           *
- * Krusader is free software: you can redistribute it and/or modify          *
- * it under the terms of the GNU General Public License as published by      *
- * the Free Software Foundation, either version 2 of the License, or         *
- * (at your option) any later version.                                       *
- *                                                                           *
- * Krusader is distributed in the hope that it will be useful,               *
- * but WITHOUT ANY WARRANTY; without even the implied warranty of            *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
- * GNU General Public License for more details.                              *
- *                                                                           *
- * You should have received a copy of the GNU General Public License         *
- * along with Krusader.  If not, see [http://www.gnu.org/licenses/].         *
- *****************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2002 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2002 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2020 Krusader Krew [https://krusader.org]
+
+    From the mplayer project (www.mplayerhq.hu)
+
+    This file is part of Krusader [https://krusader.org].
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef BSWAP_H
 #define BSWAP_H
@@ -77,7 +66,7 @@ asm("xchgl %0,%1":
 #define bswap_16(x) (((x) & 0x00ff) << 8 | ((x) & 0xff00) >> 8)
 
 
-/* code from bits/byteswap.h (C) 1997, 1998 Free Software Foundation, Inc. */
+/* code from bits/byteswap.h SPDX-FileCopyrightText: 1997, 1998 Free Software Foundation Inc. */
 #define bswap_32(x) \
     ((((x) & 0xff000000) >> 24) | (((x) & 0x00ff0000) >>  8) | \
      (((x) & 0x0000ff00) <<  8) | (((x) & 0x000000ff) << 24))

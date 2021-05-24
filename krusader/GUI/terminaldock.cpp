@@ -1,22 +1,11 @@
-/*****************************************************************************
- * Copyright (C) 2008 Václav Juza <vaclavjuza@gmail.com>                     *
- * Copyright (C) 2008-2020 Krusader Krew [https://krusader.org]              *
- *                                                                           *
- * This file is part of Krusader [https://krusader.org].                     *
- *                                                                           *
- * Krusader is free software: you can redistribute it and/or modify          *
- * it under the terms of the GNU General Public License as published by      *
- * the Free Software Foundation, either version 2 of the License, or         *
- * (at your option) any later version.                                       *
- *                                                                           *
- * Krusader is distributed in the hope that it will be useful,               *
- * but WITHOUT ANY WARRANTY; without even the implied warranty of            *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
- * GNU General Public License for more details.                              *
- *                                                                           *
- * You should have received a copy of the GNU General Public License         *
- * along with Krusader.  If not, see [http://www.gnu.org/licenses/].         *
- *****************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2008 Václav Juza <vaclavjuza@gmail.com>
+    SPDX-FileCopyrightText: 2008-2020 Krusader Krew [https://krusader.org]
+
+    This file is part of Krusader [https://krusader.org].
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "terminaldock.h"
 
@@ -134,7 +123,7 @@ void TerminalDock::sendInput(const QString& input, bool clearCommand)
     if (clearCommand) {
         // send SIGINT before input command to avoid unwanted behaviour when current line is not empty
         // and command is appended to current input (e.g. "rm -rf x " concatenated with 'cd /usr');
-        // code "borrowed" from Dolphin, Copyright (C) 2007-2010 by Peter Penz <peter.penz19@gmail.com>
+        // code "borrowed" from Dolphin, SPDX-FileCopyrightText: 2007-2010 Peter Penz <peter.penz19@gmail.com>
         const int processId = t->terminalProcessId();
         // workaround (firstInput): kill is sent to terminal if shell is not initialized yet
         if (processId > 0 && !firstInput) {

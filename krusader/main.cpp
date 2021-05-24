@@ -1,23 +1,12 @@
-/*****************************************************************************
- * Copyright (C) 2000 Shie Erlich <krusader@users.sourceforge.net>           *
- * Copyright (C) 2000 Rafi Yanai <krusader@users.sourceforge.net>            *
- * Copyright (C) 2004-2020 Krusader Krew [https://krusader.org]              *
- *                                                                           *
- * This file is part of Krusader [https://krusader.org].                     *
- *                                                                           *
- * Krusader is free software: you can redistribute it and/or modify          *
- * it under the terms of the GNU General Public License as published by      *
- * the Free Software Foundation, either version 2 of the License, or         *
- * (at your option) any later version.                                       *
- *                                                                           *
- * Krusader is distributed in the hope that it will be useful,               *
- * but WITHOUT ANY WARRANTY; without even the implied warranty of            *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
- * GNU General Public License for more details.                              *
- *                                                                           *
- * You should have received a copy of the GNU General Public License         *
- * along with Krusader.  If not, see [http://www.gnu.org/licenses/].         *
- *****************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2000 Shie Erlich <krusader@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000 Rafi Yanai <krusader@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2020 Krusader Krew [https://krusader.org]
+
+    This file is part of Krusader [https://krusader.org].
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include <csignal>
 #include <unistd.h>
@@ -119,7 +108,7 @@ int main(int argc, char *argv[])
     KAboutData aboutData(QStringLiteral("krusader"),
         (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")), versionName,
         i18n(description), KAboutLicense::GPL_V2,
-        i18n("© 2000-2003 Shie Erlich, Rafi Yanai\n© 2004-2020 Krusader Krew"),
+        i18n("© 2000-2003 Shie Erlich, Rafi Yanai\nSPDX-FileCopyrightText: 2004-2020 Krusader Krew "),
         i18n("Feedback:\nhttps://forum.kde.org/viewforum.php?f=225\n\nIRC\nserver: "
              "irc.freenode.net, channel: #krusader"),
         QStringLiteral("https://krusader.org"));
