@@ -2,7 +2,7 @@
     SPDX-FileCopyrightText: 2002 Shie Erlich <erlich@users.sourceforge.net>
     SPDX-FileCopyrightText: 2002 Rafi Yanai <yanai@users.sourceforge.net>
     SPDX-FileCopyrightText: 2010 Jan Lepper <dehtris@yahoo.de>
-    SPDX-FileCopyrightText: 2004-2020 Krusader Krew [https://krusader.org]
+    SPDX-FileCopyrightText: 2004-2020 Krusader Krew <https://krusader.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */

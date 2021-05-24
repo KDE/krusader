@@ -1,6 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2004 Jonas Bähr <krusader@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2020 Krusader Krew [https://krusader.org]
+    SPDX-FileCopyrightText: 2004-2020 Krusader Krew <https://krusader.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
