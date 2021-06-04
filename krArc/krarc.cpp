@@ -37,6 +37,13 @@
 #define MAX_IPC_SIZE           (1024*32)
 #define TRIES_WITH_PASSWORDS   3
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.krarc" FILE "krarc.json")
+};
+
 using namespace KIO;
 extern "C"
 {
@@ -1898,3 +1905,5 @@ QString kio_krarcProtocol::getPath(const QUrl &url, QUrl::FormattingOptions opti
 }
 
 #endif // KRARC_ENABLED
+
+#include "krarc.moc"

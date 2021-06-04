@@ -5,7 +5,7 @@ set(kio_krarc_PART_SRCS
     ../krusader/krdebuglogger.cpp
 )
 
-add_library(kio_krarc MODULE ${kio_krarc_PART_SRCS})
+kcoreaddons_add_plugin(kio_krarc SOURCES ${kio_krarc_PART_SRCS} INSTALL_NAMESPACE "kf5/kio")
 
 #this is a library so it needs to enforce it's translation domain, not use the application's domain.
 add_definitions(-DTRANSLATION_DOMAIN="krusader")
@@ -19,5 +19,3 @@ target_link_libraries(kio_krarc
     KF5::I18n
     KF5::KIOCore
 )
-
-install(TARGETS kio_krarc DESTINATION ${PLUGIN_INSTALL_DIR})
