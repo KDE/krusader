@@ -1,0 +1,31 @@
+{
+    "KDE-KIO-Protocols": {
+        "iso": {
+            "Class": ":local",
+            "Icon": "media-optical",
+            "archiveMimetype": [
+                "application/x-iso",
+                "application/x-cd-image",
+                "application/x-dvd-image"
+            ],
+            "exec": "kio_iso",
+            "input": "filesystem",
+            "listing": [
+                "Name",
+                "Type",
+                "Size",
+                "Date",
+                "AccessDate",
+                "CreationDate",
+                "Access",
+                "Owner",
+                "Group",
+                "Link"
+            ],
+            "output": "filesystem",
+            "protocol": "iso",
+            "reading": true,
+            "source": true
+        }
+    }
+}
