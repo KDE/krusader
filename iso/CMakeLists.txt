@@ -24,5 +24,4 @@ target_link_libraries(kio_iso
 )
 
 install(TARGETS kio_iso DESTINATION ${PLUGIN_INSTALL_DIR})
-install(FILES iso.protocol DESTINATION ${SERVICES_INSTALL_DIR})
 install(FILES kio_isorc DESTINATION ${CONFIG_INSTALL_DIR})

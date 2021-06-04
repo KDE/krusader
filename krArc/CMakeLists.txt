@@ -21,4 +21,3 @@ target_link_libraries(kio_krarc
 )
 
 install(TARGETS kio_krarc DESTINATION ${PLUGIN_INSTALL_DIR})
-install(FILES krarc.protocol DESTINATION  ${SERVICES_INSTALL_DIR})
