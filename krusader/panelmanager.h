@@ -68,8 +68,11 @@ public:
     bool isLeft() const override { return _left; }
     AbstractPanelManager *otherManager() const override { return _otherManager; }
     KrPanel *currentPanel() const override;
-    void newTab(const QUrl &url, KrPanel *nextTo) override {
-        slotNewTab(url, true, nextTo);
+    void newTab(const QUrl &url, int insertIndex) override {
+        slotNewTab(url, true, insertIndex);
+    }
+    void duplicateTab(const QUrl &url, KrPanel *nextTo) override {
+        slotDuplicateTab(url, nextTo);
     }
     /**
      * Undo the closing of a tab. The `action` argument is utilized to
@@ -94,8 +97,9 @@ public slots:
     }
     Q_SCRIPTABLE void newTabs(const QStringList& urls);
 
-    void slotNewTab(const QUrl &url, bool setCurrent = true, KrPanel *nextTo = nullptr);
+    void slotNewTab(const QUrl &url, bool setCurrent = true, int insertIndex = -1);
     void slotNewTab();
+    void slotDuplicateTab(const QUrl &url, KrPanel *nextTo);
     void slotLockTab();
     void slotPinTab();
     void slotNextTab();
@@ -121,7 +125,8 @@ private:
     void deletePanel(ListPanel *p);
     void updateTabbarPos();
     void tabsCountChanged();
-    ListPanel* addPanel(bool setCurrent = true, const KConfigGroup& cfg = KConfigGroup(), KrPanel *nextTo = nullptr);
+    ListPanel *addPanel(bool setCurrent = true, const KConfigGroup &cfg = KConfigGroup(), int insertIndex = -1);
+    ListPanel *duplicatePanel(const KConfigGroup &cfg, KrPanel *nextTo);
     ListPanel* createPanel(const KConfigGroup& cfg);
     void connectPanel(ListPanel *p);
     void disconnectPanel(ListPanel *p);

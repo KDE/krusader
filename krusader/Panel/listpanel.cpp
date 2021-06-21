@@ -130,7 +130,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     mediaButton = new MediaButton(this);
     connect(mediaButton, &MediaButton::aboutToShow, this, [=]() { slotFocusOnMe(); });
     connect(mediaButton, &MediaButton::openUrl, [=](const QUrl & _t1) { func->openUrl(_t1); });
-    connect(mediaButton, &MediaButton::newTab, this, [=](const QUrl &url) { newTab(url); });
+    connect(mediaButton, &MediaButton::newTab, this, [=](const QUrl &url) { duplicateTab(url); });
     ADD_WIDGET(mediaButton);
 
     // status bar
@@ -180,7 +180,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     connect(urlNavigator, &KUrlNavigator::returnPressed, this, [=]() { slotFocusOnMe(); });
     connect(urlNavigator, &KUrlNavigator::urlChanged, this, &ListPanel::slotNavigatorUrlChanged);
     connect(urlNavigator->editor()->lineEdit(), &QLineEdit::editingFinished, this, &ListPanel::resetNavigatorMode);
-    connect(urlNavigator, &KUrlNavigator::tabRequested, this, [=](const QUrl &url) { ListPanel::newTab(url); });
+    connect(urlNavigator, &KUrlNavigator::tabRequested, this, [=](const QUrl &url) { ListPanel::duplicateTab(url); });
     connect(urlNavigator, &KUrlNavigator::urlsDropped, this, QOverload<const QUrl &, QDropEvent *>::of(&ListPanel::handleDrop));
     ADD_WIDGET(urlNavigator);
 
@@ -426,7 +426,7 @@ void ListPanel::createView()
     connect(view->op(), &KrViewOperator::goHome, func, &ListPanelFunc::home);
     connect(view->op(), &KrViewOperator::dirUp, func, &ListPanelFunc::dirUp);
     connect(view->op(), &KrViewOperator::defaultDeleteFiles, func, &ListPanelFunc::defaultDeleteFiles);
-    connect(view->op(), &KrViewOperator::middleButtonClicked, this,  QOverload<KrViewItem *>::of(&ListPanel::newTab));
+    connect(view->op(), &KrViewOperator::middleButtonClicked, this,  QOverload<KrViewItem *>::of(&ListPanel::duplicateTab));
     connect(view->op(), &KrViewOperator::currentChanged, this, &ListPanel::slotCurrentChanged);
     connect(view->op(), &KrViewOperator::renameItem, func, QOverload<const QString &, const QString &>::of(&ListPanelFunc::rename));
     connect(view->op(), &KrViewOperator::executed, func, &ListPanelFunc::execute);
@@ -897,7 +897,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                 FileItem *fileitem =
                     func->files()->getFileItem(view->getCurrentKrViewItem()->name());
                 if (fileitem && fileitem->isDir())
-                    newTab(fileitem->getUrl(), true);
+                    duplicateTab(fileitem->getUrl(), true);
             } else {
                 SLOTS->insertFileName((e->modifiers()&Qt::ShiftModifier)!=0);
             }
@@ -1291,23 +1291,23 @@ void ListPanel::updateButtons()
     cdHomeButton->setEnabled(!func->atHome());
 }
 
-void ListPanel::newTab(KrViewItem *it)
+void ListPanel::duplicateTab(KrViewItem *it)
 {
     if (!it)
         return;
     else if (it->name() == "..") {
-        newTab(KIO::upUrl(virtualPath()), true);
+        duplicateTab(KIO::upUrl(virtualPath()), true);
     } else if (func->getFileItem(it)->isDir()) {
         QUrl url = virtualPath();
         url = url.adjusted(QUrl::StripTrailingSlash);
         url.setPath(url.path() + '/' + (it->name()));
-        newTab(url, true);
+        duplicateTab(url, true);
     }
 }
 
-void ListPanel::newTab(const QUrl &url, bool nextToThis)
+void ListPanel::duplicateTab(const QUrl &url, bool nextToThis)
 {
-    _manager->newTab(url, nextToThis ? this : nullptr);
+    _manager->duplicateTab(url, nextToThis ? this : nullptr);
 }
 
 void ListPanel::slotNavigatorUrlChanged(const QUrl &url)

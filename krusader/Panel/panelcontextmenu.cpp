@@ -337,7 +337,7 @@ void PanelContextMenu::performAction(int id)
         return;
     case OPEN_TAB_ID :
         for (const KFileItem &fileItem : _items) {
-            panel->manager()->newTab(fileItem.url(), panel);
+            panel->manager()->duplicateTab(fileItem.url(), panel);
         }
         break;
     case OPEN_ID :

@@ -178,8 +178,8 @@ protected slots:
     void inlineRefreshListResult(KJob* job);
     void inlineRefreshPercent(KJob*, unsigned long);
     void slotFilesystemError(const QString& msg);
-    void newTab(KrViewItem *item);
-    void newTab(const QUrl &url, bool nextToThis = false);
+    void duplicateTab(KrViewItem *item);
+    void duplicateTab(const QUrl &url, bool nextToThis = false);
     void slotNavigatorUrlChanged(const QUrl &url);
     void resetNavigatorMode(); // set navigator mode after focus was lost
     // update filesystem meta info, disk-free and mount status

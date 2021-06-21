@@ -155,20 +155,35 @@ void PanelManager::disconnectPanel(ListPanel *p)
     disconnect(p, &ListPanel::pathChanged, this, nullptr);
 }
 
-ListPanel* PanelManager::addPanel(bool setCurrent, const KConfigGroup& cfg, KrPanel *nextTo)
+ListPanel *PanelManager::addPanel(bool setCurrent, const KConfigGroup &cfg, int insertIndex)
 {
     // create the panel and add it into the widgetstack
     ListPanel * p = createPanel(cfg);
     _stack->addWidget(p);
 
     // now, create the corresponding tab
-    int index = _tabbar->addPanel(p, setCurrent, nextTo);
+    int index = _tabbar->addPanel(p, setCurrent, insertIndex);
     tabsCountChanged();
 
     if (setCurrent)
         slotCurrentTabChanged(index);
 
     return p;
+}
+
+ListPanel *PanelManager::duplicatePanel(const KConfigGroup &cfg, KrPanel *nextTo)
+{
+    // Search for the position where the passed panel is
+    int insertIndex = -1;
+    int quantOfPanels = _tabbar->count();
+    for (int i = 0; i < quantOfPanels; i++) {
+        if (_tabbar->getPanel(i) == nextTo) {
+            insertIndex = i + 1;
+            break;
+        }
+    }
+
+    return addPanel(true, cfg, insertIndex);
 }
 
 void PanelManager::saveSettings(KConfigGroup config, bool saveHistory)
@@ -262,9 +277,21 @@ void PanelManager::moveTabToRight()
     _tabbar->moveTab(_tabbar->currentIndex(), _tabbar->currentIndex() + 1);
 }
 
-void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, KrPanel *nextTo)
+void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, int insertIndex)
 {
-    ListPanel *p = addPanel(setCurrent, KConfigGroup(), nextTo);
+    ListPanel *p = addPanel(setCurrent, KConfigGroup(), insertIndex);
+    p->start(url);
+}
+
+void PanelManager::slotNewTab()
+{
+    slotNewTab(QUrl::fromLocalFile(QDir::home().absolutePath()));
+    _currentPanel->slotFocusOnMe();
+}
+
+void PanelManager::slotDuplicateTab(const QUrl &url, KrPanel *nextTo)
+{
+    ListPanel *p = duplicatePanel(KConfigGroup(), nextTo);
     if(nextTo && nextTo->gui) {
         // We duplicate tab settings by writing original settings to a temporary
         // group and making the new tab read settings from it. Duplicating
@@ -280,12 +307,6 @@ void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, KrPanel *nextTo)
         krConfig->deleteGroup(grpName);
     }
     p->start(url);
-}
-
-void PanelManager::slotNewTab()
-{
-    slotNewTab(QUrl::fromLocalFile(QDir::home().absolutePath()));
-    _currentPanel->slotFocusOnMe();
 }
 
 void PanelManager::slotCloseTab()

@@ -69,7 +69,7 @@ void TabActions::newTab()
 void TabActions::duplicateTab()
 {
     KrPanel *activePanel = static_cast<KrMainWindow*>(_mainWindow)->activePanel();
-    activeManager()->newTab(activePanel->virtualPath(), activePanel);
+    activeManager()->duplicateTab(activePanel->virtualPath(), activePanel);
 }
 
 void TabActions::moveTabToOtherSide()

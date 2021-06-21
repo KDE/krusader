@@ -80,19 +80,8 @@ void PanelTabBar::insertAction(QAction* action)
     _panelActionMenu->addAction(action);
 }
 
-int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent, KrPanel *nextTo)
+int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent, int insertIndex)
 {
-    int insertIndex = -1;
-
-    if (nextTo) {
-        for (int i = 0; i < count(); i++) {
-            if (getPanel(i) == nextTo) {
-                insertIndex = i + 1;
-                break;
-            }
-        }
-    }
-
     QUrl virtualPath = panel->virtualPath();
     panel->setPinnedUrl(virtualPath);
     const QString text = squeeze(virtualPath);

@@ -42,7 +42,7 @@ public slots:
     /**
      * called by PanelManager with an already created panel, and creates the corresponding tab
      */
-    int addPanel(ListPanel *panel, bool setCurrent = true, KrPanel *nextTo = nullptr);
+    int addPanel(ListPanel *panel, bool setCurrent = true, int insertIndex = -1);
 
     ListPanel* getPanel(int tabIdx);
     void changePanel(int tabIdx, ListPanel *panel);
