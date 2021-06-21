@@ -319,12 +319,34 @@ void PanelManager::slotCloseTab(int index)
     if (_tabbar->count() <= 1)    /* if this is the last tab don't close it */
         return;
 
-    ListPanel *oldp;
+    // Back up some data that will be useful if the user wants to
+    // undo the closing of the tab
+    QByteArray backupData;
+    QDataStream tabStream(&backupData, QIODevice::WriteOnly); // In order to serialize data
+    tabStream << _left;
+    tabStream << index;
+    ListPanel *panel = static_cast<ListPanel *>(currentPanel());
+    const QUrl urlTab = panel->virtualPath();
+    tabStream << urlTab;
+    tabStream << panel->getProperties();
+    tabStream << panel->pinnedUrl();
+    tabStream << panel->view->selectedUrls();
 
-    _tabbar->removePanel(index, oldp); //this automatically changes the current panel
+    QAction *actReopenTab = KrActions::actClosedTabsMenu->updateAfterClosingATab(urlTab, backupData, _actions);
 
-    _stack->removeWidget(oldp);
-    deletePanel(oldp);
+    // Save settings of the tab. Note: The code is
+    // based on the one of slotDuplicateTab()
+    QString grpName = QString("closedTab_%1").arg(reinterpret_cast<qulonglong>(actReopenTab));
+    krConfig->deleteGroup(grpName); // make sure the group is empty
+    KConfigGroup cfg(krConfig, grpName);
+    panel->gui->saveSettings(cfg, true);
+    // reset undesired duplicated settings
+    cfg.writeEntry("Properties", 0);
+
+    _tabbar->removePanel(index, panel); // this automatically changes the current panel
+
+    _stack->removeWidget(panel);
+    deletePanel(panel);
     tabsCountChanged();
 }
 
@@ -337,6 +359,43 @@ void PanelManager::slotUndoCloseTab()
 
 void PanelManager::undoCloseTab(const QAction *action)
 {
+    QDataStream tabStream(action->data().toByteArray());
+    // Deserialize data
+    bool closedInTheLeftPan;
+    tabStream >> closedInTheLeftPan;
+    int insertIndex;
+    tabStream >> insertIndex;
+    QUrl urlClosedTab;
+    tabStream >> urlClosedTab;
+    int tabProperties;
+    tabStream >> tabProperties;
+    QUrl pinnedUrl;
+    tabStream >> pinnedUrl;
+    QList<QUrl> selectedUrls;
+    tabStream >> selectedUrls;
+
+    // This variable points to the PanelManager where the closed tab is going to be restored
+    PanelManager *whereToUndo = closedInTheLeftPan? LEFT_MNG : RIGHT_MNG;
+
+    MAIN_VIEW->slotSetActiveManager(whereToUndo);
+    // Open a new tab where to apply the planned changes
+    whereToUndo->slotNewTab(urlClosedTab, true, insertIndex);
+
+    // Restore settings of the tab. Note: The code is
+    // based on the one of slotDuplicateTab()
+    QString grpName = QString("closedTab_%1").arg(reinterpret_cast<qulonglong>(action));
+    KConfigGroup cfg(krConfig, grpName);
+    ListPanel *panel = static_cast<ListPanel *>(whereToUndo->currentPanel());
+    panel->restoreSettings(cfg);
+    krConfig->deleteGroup(grpName);
+    panel->setProperties(tabProperties);
+    panel->setPinnedUrl(pinnedUrl);
+    // Note: In `void PanelManager::layoutTabs()` there was a similar `QTimer::singleShot(`
+    // and a comment about it: "delayed url refreshes may be pending - delay the layout too
+    // so it happens after them"
+    QTimer::singleShot(1, this, [=] {
+        panel->view->setSelectionUrls(selectedUrls);
+    });
 }
 
 void PanelManager::updateTabbarPos()
