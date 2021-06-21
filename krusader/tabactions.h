@@ -18,6 +18,7 @@ class PanelManager;
 class TabActions : public ActionsBase
 {
     friend class PanelTabBar;
+    friend class RecentlyClosedTabsMenu;
 
     Q_OBJECT
 
@@ -33,6 +34,7 @@ protected slots:
     void lockTab();
     void pinTab();
     void closeTab();
+    void undoCloseTab();
     void nextTab();
     void previousTab();
     void closeInactiveTabs();
@@ -44,7 +46,8 @@ protected slots:
 protected:
     inline PanelManager *activeManager();
 
-    QAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actMoveTabToOtherSide;
+    QAction *actNewTab, *actDupTab, *actCloseTab, *actUndoCloseTab;
+    QAction *actPreviousTab, *actNextTab, *actMoveTabToOtherSide;
     QAction *actCloseInactiveTabs, *actCloseDuplicatedTabs, *actLockTab, *actPinTab;
     QAction *actMoveTabToLeft, *actMoveTabToRight;
 };

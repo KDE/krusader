@@ -11,6 +11,7 @@ set(GUI_SRCS
     krlistwidget.cpp
     mediabutton.cpp
     kcmdmodebutton.cpp
+    recentlyclosedtabsmenu.cpp
     terminaldock.cpp)
 
 add_library(GUI STATIC ${GUI_SRCS})

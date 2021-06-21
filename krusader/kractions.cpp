@@ -36,6 +36,7 @@ QAction *KrActions::actCompare = nullptr;
 QAction *KrActions::actDiskUsage = nullptr;
 QAction *KrActions::actHomeTerminal = nullptr;
 QAction *KrActions::actRemoteEncoding = nullptr;
+RecentlyClosedTabsMenu *KrActions::actClosedTabsMenu = nullptr;
 QAction *KrActions::actProfiles = nullptr;
 QAction *KrActions::actMultiRename = nullptr;
 QAction *KrActions::actMountMan = nullptr;
@@ -270,6 +271,9 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     actRemoteEncoding = new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "character-set", krusaderApp->actionCollection());
 
+    actClosedTabsMenu = new RecentlyClosedTabsMenu(i18n("Recently Closed Tabs"), "edit-undo", krusaderApp->actionCollection());
+    actClosedTabsMenu->setEnabled(false);
+
     NEW_KACTION(actF10Quit, i18n("Quit"), nullptr, Qt::Key_F10, krusaderApp, SLOT(quit()) , "F10_Quit");
     actF10Quit->setToolTip(i18n("Quit Krusader."));
 
@@ -280,6 +284,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     NEW_KACTION(tmp, i18n("Move Focus Up"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_Up, MAIN_VIEW, SLOT(focusUp()), "move_focus_up");
     NEW_KACTION(tmp, i18n("Move Focus Down"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_Down, MAIN_VIEW, SLOT(focusDown()), "move_focus_down");
+
 
     // job manager actions
     actJobControl = krJobMan->controlAction();

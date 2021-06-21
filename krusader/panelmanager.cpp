@@ -11,6 +11,7 @@
 #include "defaults.h"
 #include "icon.h"
 #include "tabactions.h"
+#include "kractions.h"
 #include "krusaderview.h"
 #include "krmainwindow.h"
 #include "Panel/listpanel.h"
@@ -23,6 +24,7 @@
 // QtGui
 #include <QImage>
 // QtWidgets
+#include <QMenu>
 #include <QStackedWidget>
 #include <QToolButton>
 #include <QGridLayout>
@@ -303,6 +305,17 @@ void PanelManager::slotCloseTab(int index)
     _stack->removeWidget(oldp);
     deletePanel(oldp);
     tabsCountChanged();
+}
+
+void PanelManager::slotUndoCloseTab()
+{
+    Q_ASSERT(KrActions::actClosedTabsMenu->menu()->actions().size() > 2);
+    // Performs the same action as when clicking on that menu item
+    KrActions::actClosedTabsMenu->slotTriggered(KrActions::actClosedTabsMenu->menu()->actions().at(2));
+}
+
+void PanelManager::undoCloseTab(const QAction *action)
+{
 }
 
 void PanelManager::updateTabbarPos()

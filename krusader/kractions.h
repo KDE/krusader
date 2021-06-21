@@ -9,6 +9,8 @@
 #ifndef KRACTIONS_H
 #define KRACTIONS_H
 
+#include "GUI/recentlyclosedtabsmenu.h"
+
 // QtCore
 #include <QObject>
 // QtWidgets
@@ -32,6 +34,7 @@ public:
     static QAction *actMountMan, *actNewTool, *actSwapPanels, *actSwapSides;
     static QAction *actKonfigurator, *actToolsSetup, *actFind;
     static QAction *actRemoteEncoding;
+    static RecentlyClosedTabsMenu *actClosedTabsMenu;
     static QAction *actSelectColorMask, *actMultiRename, *actOpenLeftBm, *actOpenRightBm, *actAddBookmark;
     static QAction *actSplit;
     static QAction *actCombine;

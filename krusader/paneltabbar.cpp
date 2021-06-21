@@ -57,6 +57,7 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
     insertAction(actions->actMoveTabToLeft);
     insertAction(actions->actMoveTabToRight);
     insertAction(actions->actCloseTab);
+    insertAction(actions->actUndoCloseTab);
     insertAction(actions->actCloseInactiveTabs);
     insertAction(actions->actCloseDuplicatedTabs);
 

@@ -71,6 +71,11 @@ public:
     void newTab(const QUrl &url, KrPanel *nextTo) override {
         slotNewTab(url, true, nextTo);
     }
+    /**
+     * Undo the closing of a tab. The `action` argument is utilized to
+     * retrieve information about the previously closed tab.
+     */
+    void undoCloseTab(const QAction *action);
 
 signals:
     void draggingTab(PanelManager *from, QMouseEvent*);
@@ -94,10 +99,10 @@ public slots:
     void slotLockTab();
     void slotPinTab();
     void slotNextTab();
-
     void slotPreviousTab();
     void slotCloseTab();
     void slotCloseTab(int index);
+    void slotUndoCloseTab(); //! Undo the last tab closing
     void slotRecreatePanels();
     void slotCloseInactiveTabs();
     void slotCloseDuplicatedTabs();

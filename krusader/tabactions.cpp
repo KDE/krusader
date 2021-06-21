@@ -26,6 +26,8 @@ TabActions::TabActions(QObject *parent, KrMainWindow *mainWindow) : ActionsBase(
     actMoveTabToLeft = action(i18n("Move Current Tab to the Left"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_PageUp, SLOT(moveTabToLeft()), "move_tab_to_left");
     actMoveTabToRight = action(i18n("Move Current Tab to the Right"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_PageDown, SLOT(moveTabToRight()), "move_tab_to_right");
     actCloseTab = action(i18n("Close Current Tab"), "tab-close", KStandardShortcut::close(), this, SLOT(closeTab()), "close tab");
+    actUndoCloseTab = action(i18n("Undo Close Tab"), "edit-undo", Qt::CTRL + Qt::SHIFT + Qt::Key_T, this, SLOT(undoCloseTab()), "undo_close_tab");
+    actUndoCloseTab->setEnabled(false);
     actNextTab = action(i18n("Next Tab"), QString(), KStandardShortcut::tabNext(), this, SLOT(nextTab()), "next tab");
     actPreviousTab = action(i18n("Previous Tab"), QString(), KStandardShortcut::tabPrev(), this, SLOT(previousTab()), "previous tab");
     actCloseInactiveTabs = action(i18n("Close Inactive Tabs"), nullptr, 0, SLOT(closeInactiveTabs()), "close inactive tabs");
@@ -98,6 +100,11 @@ void TabActions::previousTab()
 void TabActions::closeTab()
 {
     activeManager()->slotCloseTab();
+}
+
+void TabActions::undoCloseTab()
+{
+    activeManager()->slotUndoCloseTab();
 }
 
 void TabActions::closeInactiveTabs()
