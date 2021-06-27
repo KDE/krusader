@@ -107,8 +107,7 @@ int main(int argc, char *argv[])
         (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")), versionName,
         i18n(description), KAboutLicense::GPL_V2,
         i18n("© 2000-2003 Shie Erlich, Rafi Yanai\n© 2004-2020 Krusader Krew"),
-        i18n("Feedback:\nhttps://forum.kde.org/viewforum.php?f=225\n\nIRC\nserver: "
-             "irc.freenode.net, channel: #krusader"),
+        i18n("Feedback:\nhttps://forum.kde.org/viewforum.php?f=225"),
         QStringLiteral("https://krusader.org"));
 
     aboutData.setOrganizationDomain(QByteArray("kde.org"));

@@ -30,7 +30,7 @@ This reference will help you to get started with Krusader development.
 * [KDE developer mailing-list](https://mail.kde.org/mailman/listinfo/kde-devel)
 * [KDE general announcements mailing-list](https://mail.kde.org/mailman/listinfo/kde-announce)
 * [KDE applications release announcements mailing-list](https://mail.kde.org/mailman/listinfo/kde-announce-apps) — [we announce](release-howto.md#send-a-letter-to-mailing-lists) Krusader releases here
-* IRC-channel: chat.freenode.net/kde-devel — for quick questions regarding anything related to KDE development
+* [IRC channel #kde-devel on Libera Chat](irc://irc.libera.chat/kde-devel) — for quick questions regarding anything related to KDE development
 * [Git hooks for KDE Bugzilla](https://community.kde.org/Infrastructure/Git/Hooks#Keywords) — use these keywords in your commits
 * [Closing issues through commit messages](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues) — add "Resolved #xxx" in a commit message to close a GitLab issue automatically
 
