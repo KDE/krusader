@@ -120,9 +120,10 @@ void KgPanel::setupGeneralTab()
         {"Look&Feel", "Expanding Tabs",             true,               i18n("Expanding tabs"),             true,   i18n("Expanding tabs.") },
         {"Look&Feel", "Show New Tab Button",        true,               i18n("Show new tab button"),        true,   i18n("Show new tab button.") },
         {"Look&Feel", "Close Tab By Double Click",  false,              i18n("Close tab by double click"),  true,   i18n("Close tab by double click.") },
-        {"Look&Feel", "Show Tab Bar On Single Tab", true,               i18n("Show Tab Bar on single tab"), true,   i18n("Show the tab bar with only one tab.") }
+        {"Look&Feel", "Show Tab Bar On Single Tab", true,               i18n("Show Tab Bar on single tab"), true,   i18n("Show the tab bar with only one tab.") },
+        {"Look&Feel", "Insert Tabs After Current",  false,              i18n("Insert tabs after current"),  false,  i18n("Insert new tabs to the right of the current one.") }
     };
-    cbs = createCheckBoxGroup(2, 0, tabbar_settings, 6 /*count*/, groupBox, PAGE_GENERAL);
+    cbs = createCheckBoxGroup(2, 0, tabbar_settings, 7 /*count*/, groupBox, PAGE_GENERAL);
     gridLayout->addWidget(cbs, 0, 0, 1, 2);
 
 // -----------------  Tab Bar position ----------------------------------

@@ -32,7 +32,6 @@
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KActionMenu>
 
-
 static const int sDragEnterDelay = 500; // msec
 
 PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
@@ -49,7 +48,7 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
     setExpanding(expandingTabs);
     setTabsClosable(showCloseButtons);
 
-    insertAction(actions->actNewTab);
+    insertAction(actions->actNewTabFromUI);
     insertAction(actions->actLockTab);
     insertAction(actions->actPinTab);
     insertAction(actions->actDupTab);
@@ -82,22 +81,32 @@ void PanelTabBar::insertAction(QAction* action)
 
 int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent, int insertIndex)
 {
+    // If the position where to place the new tab is not specified,
+    // take the settings into account
+    if (insertIndex == -1) {
+        insertIndex = KConfigGroup(krConfig, "Look&Feel").readEntry("Insert Tabs After Current", false) ?
+                    currentIndex() + 1 : count();
+    }
+
     QUrl virtualPath = panel->virtualPath();
     panel->setPinnedUrl(virtualPath);
     const QString text = squeeze(virtualPath);
-    const int index = insertIndex != -1 ? insertTab(insertIndex, text) : addTab(text);
+    // In the help about `insertTab()` it's written that it inserts a new tab at
+    // position `index`. If `index` is out of range, the new tab is appened. Returns
+    // the new tab's index
+    insertIndex = insertTab(insertIndex, text);
 
-    setTabData(index, QVariant((long long) panel));
+    setTabData(insertIndex, QVariant(reinterpret_cast<long long>(panel)));
 
-    setIcon(index, panel);
+    setIcon(insertIndex, panel);
 
     // make sure all tabs lengths are correct
     layoutTabs();
 
     if (setCurrent)
-        setCurrentIndex(index);
+        setCurrentIndex(insertIndex);
 
-    return index;
+    return insertIndex;
 }
 
 ListPanel* PanelTabBar::getPanel(int tabIdx)

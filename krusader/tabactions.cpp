@@ -20,7 +20,7 @@
 
 TabActions::TabActions(QObject *parent, KrMainWindow *mainWindow) : ActionsBase(parent, mainWindow)
 {
-    actNewTab = action(i18n("New Tab"), "tab-new", QKeySequence::keyBindings(QKeySequence::AddTab), this, SLOT(newTab()), "new tab");
+    actNewTabFromUI = action(i18n("New Tab"), "tab-new", QKeySequence::keyBindings(QKeySequence::AddTab), this, SLOT(newTabFromUI()), "new_tab_from_UI");
     actDupTab = action(i18n("Duplicate Current Tab"), "tab-duplicate", Qt::ALT + Qt::CTRL + Qt::SHIFT + Qt::Key_N, SLOT(duplicateTab()), "duplicate tab");
     actMoveTabToOtherSide = action(i18n("Move Current Tab to Other Side"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_O, SLOT(moveTabToOtherSide()), "move_tab_to_other_side");
     actMoveTabToLeft = action(i18n("Move Current Tab to the Left"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_PageUp, SLOT(moveTabToLeft()), "move_tab_to_left");
@@ -64,6 +64,11 @@ void TabActions::refreshActions()
 void TabActions::newTab()
 {
     activeManager()->slotNewTab();
+}
+
+void TabActions::newTabFromUI()
+{
+    activeManager()->slotNewTabFromUI();
 }
 
 void TabActions::duplicateTab()

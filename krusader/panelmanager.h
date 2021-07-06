@@ -98,8 +98,9 @@ public slots:
     Q_SCRIPTABLE void newTabs(const QStringList& urls);
 
     void slotNewTab(const QUrl &url, bool setCurrent = true, int insertIndex = -1);
+    void slotNewTabFromUI();
     void slotNewTab();
-    void slotDuplicateTab(const QUrl &url, KrPanel *nextTo);
+    void slotDuplicateTab(const QUrl &url, KrPanel *nextTo, int insertIndex = -1);
     void slotLockTab();
     void slotPinTab();
     void slotNextTab();
@@ -126,7 +127,7 @@ private:
     void updateTabbarPos();
     void tabsCountChanged();
     ListPanel *addPanel(bool setCurrent = true, const KConfigGroup &cfg = KConfigGroup(), int insertIndex = -1);
-    ListPanel *duplicatePanel(const KConfigGroup &cfg, KrPanel *nextTo);
+    ListPanel *duplicatePanel(const KConfigGroup &cfg, KrPanel *nextTo, int insertIndex = -1);
     ListPanel* createPanel(const KConfigGroup& cfg);
     void connectPanel(ListPanel *p);
     void disconnectPanel(ListPanel *p);

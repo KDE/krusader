@@ -49,11 +49,11 @@ PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left)
     // new tab button
     _newTab = new QToolButton(this);
     _newTab->setAutoRaise(true);
-    _newTab->setText(i18n("Open a new tab in home"));
-    _newTab->setToolTip(i18n("Open a new tab in home"));
+    _newTab->setText(i18n("Open a new tab"));
+    _newTab->setToolTip(i18n("Open a new tab"));
     _newTab->setIcon(Icon("tab-new"));
     _newTab->adjustSize();
-    connect(_newTab, &QToolButton::clicked, this, QOverload<>::of(&PanelManager::slotNewTab));
+    connect(_newTab, &QToolButton::clicked, this, &PanelManager::slotNewTabFromUI);
 
     // tab-bar
     _tabbar = new PanelTabBar(this, _actions);
@@ -171,15 +171,16 @@ ListPanel *PanelManager::addPanel(bool setCurrent, const KConfigGroup &cfg, int 
     return p;
 }
 
-ListPanel *PanelManager::duplicatePanel(const KConfigGroup &cfg, KrPanel *nextTo)
+ListPanel *PanelManager::duplicatePanel(const KConfigGroup &cfg, KrPanel *nextTo, int insertIndex)
 {
     // Search for the position where the passed panel is
-    int insertIndex = -1;
-    int quantOfPanels = _tabbar->count();
-    for (int i = 0; i < quantOfPanels; i++) {
-        if (_tabbar->getPanel(i) == nextTo) {
-            insertIndex = i + 1;
-            break;
+    if (insertIndex == -1) {
+        int quantOfPanels = _tabbar->count();
+        for (int i = 0; i < quantOfPanels; i++) {
+            if (_tabbar->getPanel(i) == nextTo) {
+                insertIndex = i + 1;
+                break;
+            }
         }
     }
 
@@ -213,7 +214,7 @@ void PanelManager::loadSettings(KConfigGroup config)
         if (grpTab.keyList().isEmpty())
             continue;
 
-        ListPanel *panel = i < numTabsOld ? _tabbar->getPanel(i) : addPanel(false, grpTab);
+        ListPanel *panel = i < numTabsOld ? _tabbar->getPanel(i) : addPanel(false, grpTab, i);
         panel->restoreSettings(grpTab);
         _tabbar->updateTab(panel);
     }
@@ -283,15 +284,21 @@ void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, int insertIndex)
     p->start(url);
 }
 
+void PanelManager::slotNewTabFromUI()
+{
+    int insertIndex = KConfigGroup(krConfig, "Look&Feel").readEntry("Insert Tabs After Current", false) ? _tabbar->currentIndex() + 1 : _tabbar->count();
+    slotDuplicateTab(currentPanel()->virtualPath(), currentPanel(), insertIndex);
+}
+
 void PanelManager::slotNewTab()
 {
     slotNewTab(QUrl::fromLocalFile(QDir::home().absolutePath()));
     _currentPanel->slotFocusOnMe();
 }
 
-void PanelManager::slotDuplicateTab(const QUrl &url, KrPanel *nextTo)
+void PanelManager::slotDuplicateTab(const QUrl &url, KrPanel *nextTo, int insertIndex)
 {
-    ListPanel *p = duplicatePanel(KConfigGroup(), nextTo);
+    ListPanel *p = duplicatePanel(KConfigGroup(), nextTo, insertIndex);
     if(nextTo && nextTo->gui) {
         // We duplicate tab settings by writing original settings to a temporary
         // group and making the new tab read settings from it. Duplicating
