@@ -26,7 +26,7 @@
 
 using namespace std;
 
-#define PS(x) _supported.contains(x)>0
+#define PS(x) (_supported.contains(x))
 
 KrResultTable::KrResultTable(QWidget* parent)
         : QWidget(parent),

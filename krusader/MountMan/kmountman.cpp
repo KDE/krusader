@@ -84,18 +84,18 @@ KMountMan::~KMountMan() = default;
 
 bool KMountMan::invalidFilesystem(const QString& type)
 {
-    return (invalid_fs.contains(type) > 0);
+    return (invalid_fs.contains(type));
 }
 
 // this is an ugly hack, but type can actually be a mountpoint. oh well...
 bool KMountMan::nonmountFilesystem(const QString& type, const QString& mntPoint)
 {
-    return((nonmount_fs.contains(type) > 0) || (nonmount_fs_mntpoint.contains(mntPoint) > 0));
+    return (nonmount_fs.contains(type) || nonmount_fs_mntpoint.contains(mntPoint));
 }
 
 bool KMountMan::networkFilesystem(const QString& type)
 {
-    return (network_fs.contains(type) > 0);
+    return (network_fs.contains(type));
 }
 
 void KMountMan::mainWindow()

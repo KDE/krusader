@@ -25,7 +25,7 @@
 
 #include "../GUI/krhistorycombobox.h"
 
-#define PS(x) lst.contains(x)>0
+#define PS(x) (lst.contains(x))
 
 // clear the statics first
 QString PackGUI::filename = nullptr;
