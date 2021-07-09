@@ -24,6 +24,8 @@
 #include "../GUI/krtreewidget.h"
 #include "kmountman.h"
 
+#include <math.h>
+
 #define  WATCHER_DELAY    500
 
 class QCheckBox;
@@ -105,10 +107,10 @@ public:
     inline QString mntPoint() {
         return MntPoint;
     }
-    inline long totalBlks() {
+    inline unsigned long totalBlks() {
         return TotalBlks;
     }
-    inline long freeBlks() {
+    inline unsigned long freeBlks() {
         return FreeBlks;
     }
     inline KIO::filesize_t totalBytes() {
@@ -117,15 +119,11 @@ public:
     inline KIO::filesize_t freeBytes() {
         return FreeBlks * 1024;
     }
-    //////////////////// insert a good round function here /////////////////
     int usedPerct() {
         if (TotalBlks == 0)
             return 0;
-        float res = ((float)(TotalBlks - FreeBlks)) / ((float) TotalBlks) * 100;
-        if ((res - (int) res) > 0.5)
-            return (int) res + 1;
-        else
-            return (int) res;
+
+        return static_cast<int>(roundl((static_cast<long double>(TotalBlks - FreeBlks) * 100) / TotalBlks));
     }
     inline bool mounted() {
         return Mounted;
@@ -141,10 +139,10 @@ public:
     inline void setMntPoint(QString m_) {
         MntPoint = std::move(m_);
     }
-    inline void setTotalBlks(long t_) {
+    inline void setTotalBlks(unsigned long t_) {
         TotalBlks = t_;
     }
-    inline void setFreeBlks(long f_) {
+    inline void setFreeBlks(unsigned long f_) {
         FreeBlks = f_;
     }
     inline void setMounted(bool m_) {
@@ -155,8 +153,8 @@ private:
     QString Name;       // i.e: /dev/cdrom
     QString Type;       // i.e: iso9600
     QString MntPoint;   // i.e: /mnt/cdrom
-    long TotalBlks;  // measured in 1024bytes per block
-    long FreeBlks;
+    unsigned long TotalBlks;  // measured in 1024 bytes per block
+    unsigned long FreeBlks;
     bool Mounted;    // true if filesystem is mounted
 
     // additional attributes of a filesystem, parsed from fstab
