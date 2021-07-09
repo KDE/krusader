@@ -93,9 +93,9 @@ bool KrLayoutFactory::parseResource(const QString& path, QDomDocument &doc)
     if (res.isValid()) {
         QByteArray data;
         if (QRESOURCE_ISCOMPRESSED(res))
-            data = qUncompress(res.data(), res.size());
+            data = qUncompress(res.data(), static_cast<int>(res.size()));
         else
-            data = QByteArray(reinterpret_cast<const char*>(res.data()), res.size());
+            data = QByteArray(reinterpret_cast<const char *>(res.data()), static_cast<int>(res.size()));
         return parseContent(data, path, doc);
     } else {
         qWarning() << "resource does not exist:" << path;

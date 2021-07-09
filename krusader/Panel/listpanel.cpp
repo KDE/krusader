@@ -1010,7 +1010,7 @@ void ListPanel::slotPreviewJobStarted(KJob *job)
 
 void ListPanel::slotPreviewJobPercent(KJob* /*job*/, unsigned long percent)
 {
-    previewProgress->setValue(percent);
+    previewProgress->setValue(static_cast<int>(percent));
 }
 
 void ListPanel::slotPreviewJobResult(KJob* /*job*/)
