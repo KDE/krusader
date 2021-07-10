@@ -48,7 +48,7 @@ public:
     /** Return true if job was started and then paused by user. */
     bool isPaused() const { return m_job && m_job->isSuspended(); }
     /** Return percent progress of job. */
-    int percent() const { return m_job ? m_job->percent() : 0; }
+    int percent() const { return m_job ? static_cast<int>(m_job->percent()) : 0; }
 
     /** Return (initial) job description.
      * The KIO::Job emits a more detailed description after start.

@@ -86,7 +86,7 @@ protected slots:
         }
     }
 
-    void slotPercent(KJob *, unsigned long percent) { m_progressBar->setValue(percent); }
+    void slotPercent(KJob *, unsigned long percent) { m_progressBar->setValue(static_cast<int>(percent)); }
 
     void updatePauseResumeButton()
     {
