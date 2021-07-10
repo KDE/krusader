@@ -152,7 +152,7 @@ void KrColorSettingsImpl::loadFromConfig()
     names = KrColorSettingNames::getNumNames();
     for (auto & name : names) {
         if (!group.readEntry(name, QString()).isEmpty()) {
-            m_numValues[name] = group.readEntry(name, (long long)0);
+            m_numValues[name] = group.readEntry(name, 0);
         }
     }
     names = KrColorSettingNames::getBoolNames();
