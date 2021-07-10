@@ -550,11 +550,11 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
 void AdvancedFilter::applySettings(const FilterSettings &s)
 {
     minSizeEnabled->setChecked(s.minSizeEnabled);
-    minSizeAmount->setValue(s.minSize.amount);
+    minSizeAmount->setValue(static_cast<int>(s.minSize.amount));
     minSizeType->setCurrentIndex(s.minSize.unit);
 
     maxSizeEnabled->setChecked(s.maxSizeEnabled);
-    maxSizeAmount->setValue(s.maxSize.amount);
+    maxSizeAmount->setValue(static_cast<int>(s.maxSize.amount));
     maxSizeType->setCurrentIndex(s.maxSize.unit);
 
     if (s.modifiedBetweenEnabled)
