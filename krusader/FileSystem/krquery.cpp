@@ -131,10 +131,10 @@ void KrQuery::load(const KConfigGroup& cfg)
     LOAD("MinSize", minSize);
     LOAD("MaxSize", maxSize);
     newerThen = QDateTime::fromString(
-                    cfg.readEntry("NewerThan", QDateTime::fromTime_t(newerThen).toString()))
+                    cfg.readEntry("NewerThan", QDateTime::fromTime_t(static_cast<uint>(newerThen)).toString()))
                     .toTime_t();
     olderThen = QDateTime::fromString(
-                    cfg.readEntry("OlderThan", QDateTime::fromTime_t(olderThen).toString()))
+                    cfg.readEntry("OlderThan", QDateTime::fromTime_t(static_cast<uint>(olderThen)).toString()))
                     .toTime_t();
     LOAD("Owner", owner);
     LOAD("Group", group);
@@ -179,8 +179,8 @@ void KrQuery::save(KConfigGroup cfg)
     cfg.writeEntry("ContainRegExp", containRegExp);
     cfg.writeEntry("MinSize", minSize);
     cfg.writeEntry("MaxSize", maxSize);
-    cfg.writeEntry("NewerThan", QDateTime::fromTime_t(newerThen).toString());
-    cfg.writeEntry("OlderThan", QDateTime::fromTime_t(olderThen).toString());
+    cfg.writeEntry("NewerThan", QDateTime::fromTime_t(static_cast<uint>(newerThen)).toString());
+    cfg.writeEntry("OlderThan", QDateTime::fromTime_t(static_cast<uint>(olderThen)).toString());
     cfg.writeEntry("Owner", owner);
     cfg.writeEntry("Group", group);
     cfg.writeEntry("Perm", perm);
@@ -476,7 +476,10 @@ bool KrQuery::containsContent(const QString& file) const
     char buffer[1440]; // 2k buffer
 
     while (!qf.atEnd()) {
-        int bytes = qf.read(buffer, sizeof(buffer));
+        // Note: As it's stated in the documentation, "`qint64 QIODevice::read(char *data,
+        // qint64 maxSize)` Reads at most `maxSize` bytes"
+        int bytes = static_cast<int>(qf.read(buffer, sizeof(buffer)));
+
         if (bytes <= 0)
             break;
 
