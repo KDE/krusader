@@ -186,7 +186,7 @@ public:
     inline qint64   fileSize() {
         return _fileSize;
     }
-    QByteArray      cacheChunk(const qint64 filePos, const int maxSize);
+    QByteArray      cacheChunk(const qint64 filePos, const qint64 maxSize);
 
     bool            isSearchEnabled();
     void            enableSearch(const bool);
