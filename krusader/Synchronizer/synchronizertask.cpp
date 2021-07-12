@@ -172,8 +172,8 @@ void CompareContentTask::localFileCompareCycle()
     int cnt = 0;
 
     while (!leftFile->atEnd() && !rightFile->atEnd()) {
-        int leftBytes = leftFile->read(leftBuffer, sizeof(leftBuffer));
-        int rightBytes = rightFile->read(rightBuffer, sizeof(rightBuffer));
+        int leftBytes = static_cast<int>(leftFile->read(leftBuffer, sizeof(leftBuffer)));
+        int rightBytes = static_cast<int>(rightFile->read(rightBuffer, sizeof(rightBuffer)));
 
         if (leftBytes != rightBytes) {
             different = true;

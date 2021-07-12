@@ -447,7 +447,7 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem(SynchronizerFileItem *pare
 {
     TaskType        task;
 
-    int checkedRightDate = rightDate - timeOffset;
+    time_t checkedRightDate = rightDate - timeOffset;
     int uncertain = 0;
 
     do {
@@ -1111,16 +1111,16 @@ void Synchronizer::slotTaskFinished(KJob *job)
                                           KIO::RenameDialog_Overwrite | KIO::RenameDialog_Skip |
                                               KIO::RenameDialog_MultipleItems,
                                           newDest, item->rightSize(), item->leftSize(), QDateTime(),
-                                          QDateTime(), QDateTime::fromTime_t(item->rightDate()),
-                                          QDateTime::fromTime_t(item->leftDate()));
+                                          QDateTime(), QDateTime::fromTime_t(static_cast<uint>(item->rightDate())),
+                                          QDateTime::fromTime_t(static_cast<uint>(item->leftDate())));
                 } else {
                     result =
                         ui->askFileRename(job, i18n("File Already Exists"), leftURL, rightURL,
                                           KIO::RenameDialog_Overwrite | KIO::RenameDialog_Skip |
                                               KIO::RenameDialog_MultipleItems,
                                           newDest, item->leftSize(), item->rightSize(), QDateTime(),
-                                          QDateTime(), QDateTime::fromTime_t(item->leftDate()),
-                                          QDateTime::fromTime_t(item->rightDate()));
+                                          QDateTime(), QDateTime::fromTime_t(static_cast<uint>(item->leftDate())),
+                                          QDateTime::fromTime_t(static_cast<uint>(item->rightDate())));
                 }
 
                 switch (result) {
