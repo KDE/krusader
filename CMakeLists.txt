@@ -119,7 +119,7 @@ if (ACL_HEADERS_FOUND AND ACL_LIBS AND ATTR_LIBS)
 endif(ACL_HEADERS_FOUND AND ACL_LIBS AND ATTR_LIBS)
 
 if (CMAKE_COMPILER_IS_GNUCXX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsuggest-override" CACHE STRING "" FORCE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wconversion -Wsuggest-override" CACHE STRING "" FORCE)
 endif()
 
 #include(ConfigureChecks.cmake)
