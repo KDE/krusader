@@ -16,21 +16,21 @@
 class KIsoDirectory : public KArchiveDirectory
 {
 public:
-    KIsoDirectory(KArchive* archive, const QString& name, int access, int date,
-                  int adate, int cdate, const QString& user, const QString& group,
+    KIsoDirectory(KArchive* archive, const QString& name, int access, time_t date,
+                  time_t adate, time_t cdate, const QString& user, const QString& group,
                   const QString& symlink);
     ~KIsoDirectory();
-    int date() const {
+    time_t date() const {
         return m_date;
     }
-    int adate() const {
+    time_t adate() const {
         return m_adate;
     }
-    int cdate() const {
+    time_t cdate() const {
         return m_cdate;
     }
 private:
-    int m_date, m_adate, m_cdate;
+    time_t m_date, m_adate, m_cdate;
 };
 
 #endif

@@ -133,7 +133,7 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
             if (S_ISLNK(statbuf.st_mode)) {
                 char symDest[256];
                 memset(symDest, 0, 256);
-                int endOfName = readlink(QFile::encodeName(tryPath), symDest, 256);
+                ssize_t endOfName = readlink(QFile::encodeName(tryPath), symDest, 256);
                 if (endOfName != -1) {
                     if (QDir(QString::fromLocal8Bit(symDest)).exists())
                         isFile = false;
@@ -374,9 +374,9 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
             ptrblock_bytes = (nblocks + 1) * 4;
             pointer_block = isoFileEntry->dataAt(hdr->header_size << 2, ptrblock_bytes);
             if ((unsigned long)pointer_block.size() == ptrblock_bytes) {
-                inbuf.resize(block_size2);
+                inbuf.resize(static_cast<int>(block_size2));
                 if (inbuf.size()) {
-                    outbuf.resize(block_size);
+                    outbuf.resize(static_cast<int>(block_size));
 
                     if (outbuf.size())
                         pptr = pointer_block.data();
@@ -433,7 +433,7 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
             if (bytes > fullsize)
                 bytes = fullsize;
             fileData = outbuf;
-            fileData.resize(bytes);
+            fileData.resize(static_cast<int>(bytes));
             fullsize -= bytes;
         } else {
             fileData = isoFileEntry->dataAt(pos, 65536);

@@ -66,7 +66,7 @@ static int getTracks(const char *fname, int *tracks)
             for (i = tochead.cdth_trk0;i <= tochead.cdth_trk1;++i) {
                 if (ret > 99) break;
                 memset(&tocentry, 0, sizeof(struct cdrom_tocentry));
-                tocentry.cdte_track = i;
+                tocentry.cdte_track = static_cast<__u8>(i);
                 tocentry.cdte_format = CDROM_LBA;
                 if (ioctl(fd, CDROMREADTOCENTRY, &tocentry) < 0) break;
 //                qDebug() << "getTracks got track " << i << " starting at: " <<
@@ -220,7 +220,7 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
     QString path, user, group, symlink;
     int i;
     int access;
-    int time, cdate, adate;
+    time_t time, cdate, adate;
     rr_entry rr;
     bool special = false;
     KArchiveEntry *entry = nullptr, *oldentry = nullptr;

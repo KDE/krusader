@@ -16,28 +16,28 @@
 class KIsoFile : public KArchiveFile
 {
 public:
-    KIsoFile(KArchive* archive, const QString& name, int access, int date,
-             int adate, int cdate, const QString& user, const QString& group,
+    KIsoFile(KArchive* archive, const QString& name, int access, time_t date,
+             time_t adate, time_t cdate, const QString& user, const QString& group,
              const QString& symlink, long long pos, long long size);
     ~KIsoFile();
     void setZF(char algo[2], char parms[2], long long realsize);
-    int adate() const {
+    time_t adate() const {
         return m_adate;
     }
-    int cdate() const {
+    time_t cdate() const {
         return m_cdate;
     }
     long long realsize() const {
         return m_realsize;
     }
 
-    virtual QByteArray dataAt(long long pos, int count) const;
+    virtual QByteArray dataAt(long long pos, long long count) const;
 private:
     /* hide this member function, it's broken by design, because the full
     data often requires too much memory */
     char m_algo[2], m_parms[2];
     long long m_realsize;
-    int m_adate, m_cdate;
+    time_t m_adate, m_cdate;
 };
 
 #endif

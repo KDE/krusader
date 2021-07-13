@@ -61,7 +61,7 @@ asm("xchgl %0,%1":
 
 #else
 
-#define bswap_16(x) (((x) & 0x00ff) << 8 | ((x) & 0xff00) >> 8)
+#define bswap_16(x) ((unsigned short)(((x) & 0x00ff) << 8 | ((x) & 0xff00) >> 8))
 
 
 /* code from bits/byteswap.h SPDX-FileCopyrightText: 1997, 1998 Free Software Foundation Inc. */

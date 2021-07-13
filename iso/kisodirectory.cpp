@@ -8,9 +8,9 @@
 #include "kisodirectory.h"
 
 KIsoDirectory::KIsoDirectory(KArchive* archive, const QString& name, int access,
-			     int date, int adate, int cdate, const QString& user, const QString& group,
+                 time_t date, time_t adate, time_t cdate, const QString& user, const QString& group,
 			     const QString& symlink) :
-	KArchiveDirectory(archive, name, access, QDateTime::fromTime_t(date), user, group, symlink)
+       KArchiveDirectory(archive, name, access, QDateTime::fromTime_t(static_cast<uint>(date)), user, group, symlink)
 {
 
 
