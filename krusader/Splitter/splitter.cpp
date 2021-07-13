@@ -59,7 +59,8 @@ void Splitter::split(KIO::filesize_t splitSizeIn)
     Q_ASSERT(!outputFileRemaining);
 
     splitReadJob = splitWriteJob = nullptr;
-    fileNumber = receivedSize = outputFileRemaining = 0;
+    fileNumber = 0;
+    receivedSize = outputFileRemaining = 0;
 
     splitSize = splitSizeIn;
 
@@ -133,7 +134,7 @@ void Splitter::splitReceiveFinished(KJob *job)
 
 void Splitter::splitReceivePercent(KJob *, unsigned long percent)
 {
-    setValue(percent);
+    setValue(static_cast<int>(percent));
 }
 
 void Splitter::nextOutputFile()
@@ -208,9 +209,9 @@ void Splitter::splitDataSend(KIO::Job *, QByteArray &byteArray)
     if (!outputFileRemaining) { // current output file needs to be closed ?
         byteArray = QByteArray();  // giving empty buffer which indicates closing
     } else if (bufferLen > outputFileRemaining) { // maximum length reached ?
-        byteArray = QByteArray(transferArray.data(), outputFileRemaining);
+        byteArray = QByteArray(transferArray.data(), static_cast<int>(outputFileRemaining));
         transferArray = QByteArray(transferArray.data() + outputFileRemaining,
-                                   bufferLen - outputFileRemaining);
+                                   static_cast<int>(bufferLen - outputFileRemaining));
         outputFileRemaining = 0;
     } else {
         outputFileRemaining -= bufferLen;  // write the whole buffer to the output file

@@ -156,7 +156,7 @@ KIO::filesize_t SplitterGUI::getSplitSize()
     if(deviceCombo->currentIndex() < predefinedDevices().count()) // predefined size selected
         return predefinedDevices()[deviceCombo->currentIndex()].capacity;
     // user defined size selected
-    return spinBox->value() * division;
+    return static_cast<KIO::filesize_t>(spinBox->value()) * division;
 }
 
 bool SplitterGUI::overWriteFiles()
@@ -181,15 +181,15 @@ void SplitterGUI::sizeComboActivated(int item)
         division = 0x40000000;   /* Gbyte */
         break;
     }
-    double value;
+    long double value;
     if(deviceCombo->currentIndex() < predefinedDevices().count()) // predefined size selected
-        value = (double)predefinedDevices()[deviceCombo->currentIndex()].capacity / division;
+        value = static_cast<long double>(predefinedDevices()[deviceCombo->currentIndex()].capacity) / division;
     else { // use defined size selected
-        value = (double)(spinBox->value() * prevDivision) / division;
+        value = (static_cast<long double>(spinBox->value()) * prevDivision) / division;
         if(value < 1)
             value = 1;
     }
-    spinBox->setValue(value);
+    spinBox->setValue(static_cast<double>(value));
 }
 
 void SplitterGUI::predefinedComboActivated(int item)
@@ -200,7 +200,7 @@ void SplitterGUI::predefinedComboActivated(int item)
     KIO::filesize_t capacity = userDefinedSize;
 
     if (lastSelectedDevice == predefinedDevices().count()) // user defined was selected previously
-        userDefinedSize = spinBox->value() * division; // remember user defined size
+        userDefinedSize = static_cast<KIO::filesize_t>(spinBox->value()) * division; // remember user defined size
 
     if(item < predefinedDevices().count()) { // predefined size selected
         capacity = predefinedDevices()[item].capacity;
@@ -224,7 +224,7 @@ void SplitterGUI::predefinedComboActivated(int item)
         division = 1;
     }
 
-    spinBox->setValue((double)capacity / division);
+    spinBox->setValue(static_cast<double>(capacity) / static_cast<double>(division));
 
     lastSelectedDevice = item;
 }

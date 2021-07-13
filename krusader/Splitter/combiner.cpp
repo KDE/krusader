@@ -329,7 +329,7 @@ void Combiner::combineAbortJobs()
 
 void Combiner::combineWritePercent(KJob *, unsigned long)
 {
-    auto percent = (int)((((double)receivedSize / expectedSize) * 100.) + 0.5);
+    auto percent = static_cast<int>(((static_cast<long double>(receivedSize) / expectedSize) * 100.) + 0.5);
     setValue(percent);
 }
 
