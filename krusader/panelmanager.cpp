@@ -286,7 +286,10 @@ void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, int insertIndex)
 
 void PanelManager::slotNewTabFromUI()
 {
-    int insertIndex = KConfigGroup(krConfig, "Look&Feel").readEntry("Insert Tabs After Current", false) ? _tabbar->currentIndex() + 1 : _tabbar->count();
+    KConfigGroup group(krConfig, "Look&Feel");
+    int insertIndex = group.readEntry("Insert Tabs After Current", false)
+                      ? _tabbar->currentIndex() + 1
+                      : _tabbar->count();
     slotDuplicateTab(currentPanel()->virtualPath(), currentPanel(), insertIndex);
     _currentPanel->slotFocusOnMe();
 }
@@ -300,7 +303,7 @@ void PanelManager::slotNewTab()
 void PanelManager::slotDuplicateTab(const QUrl &url, KrPanel *nextTo, int insertIndex)
 {
     ListPanel *p = duplicatePanel(KConfigGroup(), nextTo, insertIndex);
-    if(nextTo && nextTo->gui) {
+    if (nextTo && nextTo->gui) {
         // We duplicate tab settings by writing original settings to a temporary
         // group and making the new tab read settings from it. Duplicating
         // settings directly would add too much complexity.
