@@ -114,16 +114,17 @@ void KgPanel::setupGeneralTab()
     gridLayout = createGridLayout(groupBox);
 
     KONFIGURATOR_CHECKBOX_PARAM tabbar_settings[] = {
-    //   cfg_class    cfg_name                      default             text                                restart tooltip
-        {"Look&Feel", "Fullpath Tab Names",         _FullPathTabNames,  i18n("Use full path tab names"),    true,   i18n("Display the full path in the folder tabs. By default only the last part of the path is displayed.") },
-        {"Look&Feel", "Show Close Tab Buttons",     true,               i18n("Show close tab buttons"),     true,   i18n("Show close tab buttons.") },
-        {"Look&Feel", "Expanding Tabs",             true,               i18n("Expanding tabs"),             true,   i18n("Expanding tabs.") },
-        {"Look&Feel", "Show New Tab Button",        true,               i18n("Show new tab button"),        true,   i18n("Show new tab button.") },
-        {"Look&Feel", "Close Tab By Double Click",  false,              i18n("Close tab by double click"),  true,   i18n("Close tab by double click.") },
-        {"Look&Feel", "Show Tab Bar On Single Tab", true,               i18n("Show Tab Bar on single tab"), true,   i18n("Show the tab bar with only one tab.") },
-        {"Look&Feel", "Insert Tabs After Current",  false,              i18n("Insert tabs after current"),  false,  i18n("Insert new tabs to the right of the current one.") }
+    //   cfg_class    cfg_name                      default             text                                     restart tooltip
+        {"Look&Feel", "Fullpath Tab Names",         _FullPathTabNames,  i18n("Use full path tab names"),         true,   i18n("Display the full path in the folder tabs. By default only the last part of the path is displayed.") },
+        {"Look&Feel", "Show Close Tab Buttons",     true,               i18n("Show close tab buttons"),          true,   i18n("Show close tab buttons.") },
+        {"Look&Feel", "Expanding Tabs",             true,               i18n("Expanding tabs"),                  true,   i18n("Expanding tabs.") },
+        {"Look&Feel", "Show New Tab Button",        true,               i18n("Show new tab button"),             true,   i18n("Show new tab button.") },
+        {"Look&Feel", "Insert Tabs After Current",  false,              i18n("Insert tabs after current"),       false,  i18n("Insert new tabs to the right of the current one.") },
+        {"Look&Feel", "Show Tab Bar On Single Tab", true,               i18n("Show Tab Bar on single tab"),      true,   i18n("Show the tab bar with only one tab.") },
+        {"Look&Feel", "Close Tab By Double Click",  false,              i18n("Close tab by double click"),       false,  i18n("Close tab by double click.") },
+        {"Look&Feel", "New Tab Button Duplicates",  false,              i18n("New tab button duplicates a tab"), false,  i18n("If checked, new tab button duplicates a tab, otherwise it opens a tab in home directory.") }
     };
-    cbs = createCheckBoxGroup(2, 0, tabbar_settings, 7 /*count*/, groupBox, PAGE_GENERAL);
+    cbs = createCheckBoxGroup(2, 0, tabbar_settings, 8 /*count*/, groupBox, PAGE_GENERAL);
     gridLayout->addWidget(cbs, 0, 0, 1, 2);
 
     // -------------- Duplicate tab by click --------------------

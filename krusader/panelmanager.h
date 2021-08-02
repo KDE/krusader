@@ -107,7 +107,7 @@ public slots:
 
     void slotNewTab(const QUrl &url, bool setCurrent = true, int insertIndex = -1);
     void slotNewTabFromUI();
-    void slotNewTab();
+    void slotNewTab(int insertIndex = -1);
     void slotDuplicateTab(const QUrl &url, KrPanel *nextTo, int insertIndex = -1);
     void slotDuplicateTabLMB();
     void slotLockTab();

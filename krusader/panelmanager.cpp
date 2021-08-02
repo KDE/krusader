@@ -291,13 +291,18 @@ void PanelManager::slotNewTabFromUI()
     int insertIndex = group.readEntry("Insert Tabs After Current", false)
                       ? _tabbar->currentIndex() + 1
                       : _tabbar->count();
-    slotDuplicateTab(currentPanel()->virtualPath(), currentPanel(), insertIndex);
-    _currentPanel->slotFocusOnMe();
+
+    if (group.readEntry("New Tab Button Duplicates", false)) {
+        slotDuplicateTab(currentPanel()->virtualPath(), currentPanel(), insertIndex);
+        _currentPanel->slotFocusOnMe();
+    } else {
+        slotNewTab(insertIndex);
+    }
 }
 
-void PanelManager::slotNewTab()
+void PanelManager::slotNewTab(int insertIndex)
 {
-    slotNewTab(QUrl::fromLocalFile(QDir::home().absolutePath()));
+    slotNewTab(QUrl::fromLocalFile(QDir::home().absolutePath()), true, insertIndex);
     _currentPanel->slotFocusOnMe();
 }
 
