@@ -397,7 +397,7 @@ FileItem *ListModel::fileItemAt(const QModelIndex &index)
 
 const QModelIndex & ListModel::fileItemIndex(const FileItem *fileitem)
 {
-    return _fileItemNdx[ (FileItem *) fileitem ];
+    return _fileItemNdx[ const_cast<FileItem *>(fileitem) ];
 }
 
 const QModelIndex & ListModel::nameIndex(const QString & st)

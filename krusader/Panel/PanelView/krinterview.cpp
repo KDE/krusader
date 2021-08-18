@@ -49,9 +49,9 @@ KrInterView::~KrInterView()
 
 void KrInterView::selectRegion(KrViewItem *i1, KrViewItem *i2, bool select)
 {
-    auto* file1 = (FileItem *)i1->getFileItem();
+    auto *file1 = const_cast<FileItem *>(i1->getFileItem());
     QModelIndex mi1 = _model->fileItemIndex(file1);
-    auto* file2 = (FileItem *)i2->getFileItem();
+    auto *file2 = const_cast<FileItem *>(i2->getFileItem());
     QModelIndex mi2 = _model->fileItemIndex(file2);
 
     if (mi1.isValid() && mi2.isValid()) {
@@ -148,7 +148,7 @@ KrViewItem* KrInterView::getLast()
 
 KrViewItem* KrInterView::getNext(KrViewItem *current)
 {
-    auto* fileItem = (FileItem *)current->getFileItem();
+    auto *fileItem = const_cast<FileItem *>(current->getFileItem());
     QModelIndex ndx = _model->fileItemIndex(fileItem);
     if (ndx.row() >= _model->rowCount() - 1)
         return nullptr;
@@ -157,7 +157,7 @@ KrViewItem* KrInterView::getNext(KrViewItem *current)
 
 KrViewItem* KrInterView::getPrev(KrViewItem *current)
 {
-    auto* fileItem = (FileItem *)current->getFileItem();
+    auto *fileItem = const_cast<FileItem *>(current->getFileItem());
     QModelIndex ndx = _model->fileItemIndex(fileItem);
     if (ndx.row() <= 0)
         return nullptr;
@@ -204,7 +204,7 @@ void KrInterView::makeItemVisible(const KrViewItem *item)
     if (item == nullptr)
         return;
 
-    auto* fileitem = (FileItem *)item->getFileItem();
+    auto *fileitem = const_cast<FileItem *>(item->getFileItem());
     const QModelIndex index = _model->fileItemIndex(fileitem);
     qDebug() << "scroll to item; name=" << fileitem->getName() << " index=" << index;
     if (index.isValid())
@@ -243,7 +243,7 @@ void KrInterView::setCurrentKrViewItem(KrViewItem *item, bool scrollToCurrent)
         return;
     }
 
-    auto* fileitem = (FileItem *)item->getFileItem();
+    auto *fileitem = const_cast<FileItem *>(item->getFileItem());
     const QModelIndex index = _model->fileItemIndex(fileitem);
     if (index.isValid() && index.row() != _itemView->currentIndex().row()) {
         setCurrent(index, scrollToCurrent);
@@ -301,7 +301,7 @@ void KrInterView::preDeleteItem(KrViewItem *item)
     setSelected(item->getFileItem(), false);
 
     // close editor if it's opened for the item
-    auto file_item = (FileItem *)item->getFileItem();
+    auto file_item = const_cast<FileItem *>(item->getFileItem());
     _itemView->closePersistentEditor(_model->fileItemIndex(file_item));
 
     // remove the item from the structures
