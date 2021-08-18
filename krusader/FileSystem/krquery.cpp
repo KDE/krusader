@@ -490,7 +490,7 @@ bool KrQuery::containsContent(const QString& file) const
 
         if (checkTimer()) {
             bool stopped = false;
-            emit((KrQuery *)this)->processEvents(stopped);
+            emit (const_cast<KrQuery *>(this))->processEvents(stopped);
             if (stopped)
                 return false;
         }
@@ -514,7 +514,7 @@ bool KrQuery::containsContent(const QUrl& url) const
 
     while (busy && !stopped) {
         checkTimer();
-        emit((KrQuery *)this)->processEvents(stopped);
+        emit (const_cast<KrQuery *>(this))->processEvents(stopped);
     }
 
     if (busy) {
@@ -546,7 +546,7 @@ bool KrQuery::checkTimer() const
         QString message =
             i18nc("%1=filename, %2=percentage", "Searching content of '%1' (%2%)", fileName, pcnt);
         timer.start();
-        emit((KrQuery *)this)->status(message);
+        emit (const_cast<KrQuery *>(this))->status(message);
         return true;
     }
     return false;
