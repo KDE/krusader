@@ -135,87 +135,87 @@ SIMPLE_PLACEHOLDER_CLASS(exp_Filter)
 /**
   * expands %_Current% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the current item ( != the selected ones)
   */
-SIMPLE_PLACEHOLDER_CLASS(exp_Current);
+SIMPLE_PLACEHOLDER_CLASS(exp_Current)
 
 /**
   * expands %_List% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with a list of items, which type is specified by the first Parameter
   */
-SIMPLE_PLACEHOLDER_CLASS(exp_List);
+SIMPLE_PLACEHOLDER_CLASS(exp_List)
 
 /**
  * expands %_ListFile% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate
  * the active, other, right or left panel) with the name of a temporary file,
  * containing a list of items, which type is specified by the first Parameter
  */
-SIMPLE_PLACEHOLDER_CLASS(exp_ListFile);
+SIMPLE_PLACEHOLDER_CLASS(exp_ListFile)
 
 /**
  * expands %_Ask% ('_' is necessary because there is no panel needed)
  * with the return of an input-dialog
  */
-SIMPLE_PLACEHOLDER_CLASS(exp_Ask);
+SIMPLE_PLACEHOLDER_CLASS(exp_Ask)
 
 /**
  * This copies it's first Parameter to the clipboard
  */
-PLACEHOLDER_CLASS(exp_Clipboard);
+PLACEHOLDER_CLASS(exp_Clipboard)
 
 /**
   * This selects all items by the mask given with the first Parameter
   */
-SIMPLE_PLACEHOLDER_CLASS(exp_Select);
+SIMPLE_PLACEHOLDER_CLASS(exp_Select)
 
 /**
   * This changes the panel'spath to the value given with the first Parameter.
   */
-SIMPLE_PLACEHOLDER_CLASS(exp_Goto);
+SIMPLE_PLACEHOLDER_CLASS(exp_Goto)
 
 /**
   * This is equal to 'cp <first Parameter> <second Parameter>'.
   */
-PLACEHOLDER_CLASS(exp_Copy);
+PLACEHOLDER_CLASS(exp_Copy)
 
 /**
   * This is equal to 'mv <first Parameter> <second Parameter>'.
   */
-PLACEHOLDER_CLASS(exp_Move);
+PLACEHOLDER_CLASS(exp_Move)
 
 #ifdef SYNCHRONIZER_ENABLED
 /**
   * This opens the synchronizer with a given profile
   */
-SIMPLE_PLACEHOLDER_CLASS(exp_Sync);
+SIMPLE_PLACEHOLDER_CLASS(exp_Sync)
 #endif
 
 /**
   * This opens the searchmodule with a given profile
   */
-SIMPLE_PLACEHOLDER_CLASS(exp_NewSearch);
+SIMPLE_PLACEHOLDER_CLASS(exp_NewSearch)
 
 /**
   * This loads the panel-profile with a given name
   */
-SIMPLE_PLACEHOLDER_CLASS(exp_Profile);
+SIMPLE_PLACEHOLDER_CLASS(exp_Profile)
 
 /**
   * This is setting marks in the string where he is later split up for each {all, selected, files, dirs}
   */
-SIMPLE_PLACEHOLDER_CLASS(exp_Each);
+SIMPLE_PLACEHOLDER_CLASS(exp_Each)
 
 /**
   * This sets the sorting on a specific column
   */
-SIMPLE_PLACEHOLDER_CLASS(exp_ColSort);
+SIMPLE_PLACEHOLDER_CLASS(exp_ColSort)
 
 /**
   * This sets relation between the left and right panel
   */
-SIMPLE_PLACEHOLDER_CLASS(exp_PanelSize);
+SIMPLE_PLACEHOLDER_CLASS(exp_PanelSize)
 
 /**
   * This loads a file in the internal viewer
   */
-SIMPLE_PLACEHOLDER_CLASS(exp_View);
+SIMPLE_PLACEHOLDER_CLASS(exp_View)
 
 ////////////////////////////////////////////////////////////
 //////////////////////// utils ////////////////////////

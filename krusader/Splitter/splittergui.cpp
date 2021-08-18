@@ -59,7 +59,7 @@ const QList<SplitterGUI::PredefinedDevice> &SplitterGUI::predefinedDevices()
         list << PredefinedDevice(i18n("700 MB (CD-R)"), 700*0x100000);
     }
     return list;
-};
+}
 
 SplitterGUI::SplitterGUI(QWidget* parent,  const QUrl& fileURL, const QUrl& defaultDir) :
         QDialog(parent),
