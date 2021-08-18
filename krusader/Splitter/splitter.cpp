@@ -94,7 +94,7 @@ void Splitter::splitDataReceived(KIO::Job *, const QByteArray &byteArray)
     if (byteArray.size() == 0)
         return;
 
-    crcContext->update((unsigned char *)byteArray.data(), byteArray.size());
+    crcContext->update(reinterpret_cast<unsigned char *>(const_cast<char *>(byteArray.data())), byteArray.size());
     receivedSize += byteArray.size();
 
     if (!splitWriteJob)
