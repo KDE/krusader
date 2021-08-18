@@ -60,7 +60,7 @@ File * DUFilelight::getCurrentFile()
     if (!focus || focus->isFake() || focus->file() == currentDir)
         return nullptr;
 
-    return (File *)focus->file();
+    return const_cast<File *>(focus->file());
 }
 
 void DUFilelight::mousePressEvent(QMouseEvent *event)
@@ -71,7 +71,7 @@ void DUFilelight::mousePressEvent(QMouseEvent *event)
         const RadialMap::Segment * focus = focusSegment();
 
         if (focus && !focus->isFake() && focus->file() != currentDir)
-            file = (File *)focus->file();
+            file = const_cast<File *>(focus->file());
 
         QMenu filelightPopup;
         filelightPopup.addAction(i18n("Zoom In"),  this, SLOT(zoomIn()), Qt::Key_Plus);
@@ -112,7 +112,7 @@ void DUFilelight::mousePressEvent(QMouseEvent *event)
             return;
         } else if (focus && !focus->isFake() && focus->file()->isDir()) {
             // NOTE: unsafe removable of constness here when casting
-            diskUsage->changeDirectory((Directory *)focus->file());
+            diskUsage->changeDirectory(static_cast<Directory *>(const_cast<File *>(focus->file())));
             return;
         }
     }

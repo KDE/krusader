@@ -375,7 +375,7 @@ void DiskUsage::dirUp()
 {
     if (currentDirectory != nullptr) {
         if (currentDirectory->parent() != nullptr)
-            changeDirectory((Directory *)(currentDirectory->parent()));
+            changeDirectory(const_cast<Directory *>(currentDirectory->parent()));
         else {
             QUrl up = KIO::upUrl(baseURL);
 
@@ -624,7 +624,7 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
     releaseKeyboard();
     deleting = false;
 
-    ((Directory *)(file->parent()))->remove(file);
+    const_cast<Directory *>(file->parent())->remove(file);
     delete file;
 
     if (depth == 0)

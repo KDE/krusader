@@ -199,7 +199,7 @@ bool DUListView::doubleClicked(QTreeWidgetItem * item)
                 diskUsage->changeDirectory(dynamic_cast<Directory *>(fileItem));
             return true;
         } else {
-            auto *upDir = (Directory *)diskUsage->getCurrentDir()->parent();
+            auto *upDir = const_cast<Directory *>(diskUsage->getCurrentDir()->parent());
 
             if (upDir)
                 diskUsage->changeDirectory(upDir);

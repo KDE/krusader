@@ -100,9 +100,9 @@ public:
                 truncd = true;
 
             if (truncd)
-                ((QAbstractItemModel *)index.model())->setData(index, QVariant(display + "  " + text), Qt::ToolTipRole);
+                const_cast<QAbstractItemModel *>(index.model())->setData(index, QVariant(display + "  " + text), Qt::ToolTipRole);
             else
-                ((QAbstractItemModel *)index.model())->setData(index, QVariant(), Qt::ToolTipRole);
+                const_cast<QAbstractItemModel *>(index.model())->setData(index, QVariant(), Qt::ToolTipRole);
 
             painter->restore();
         }
@@ -389,7 +389,7 @@ bool DULines::doubleClicked(QTreeWidgetItem * item)
                 diskUsage->changeDirectory(dynamic_cast<Directory *>(fileItem));
             return true;
         } else {
-            auto *upDir = (Directory *)diskUsage->getCurrentDir()->parent();
+            auto *upDir = const_cast<Directory *>(diskUsage->getCurrentDir()->parent());
 
             if (upDir)
                 diskUsage->changeDirectory(upDir);
