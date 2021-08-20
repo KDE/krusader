@@ -41,7 +41,7 @@
 
 // ------------------------ for internal use
 #define BOOKMARKS_FILE "krusader/krbookmarks.xml"
-#define CONNECT_BM(X) { disconnect(X, SIGNAL(activated(QUrl)), 0, 0); connect(X, SIGNAL(activated(QUrl)), this, SLOT(slotActivated(QUrl))); }
+#define CONNECT_BM(X) { disconnect(X, SIGNAL(activated(QUrl)), nullptr, nullptr); connect(X, SIGNAL(activated(QUrl)), this, SLOT(slotActivated(QUrl))); }
 
 KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) :
     QObject(mainWindow->widget()),

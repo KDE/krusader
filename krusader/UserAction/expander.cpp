@@ -43,7 +43,7 @@
 #include <algorithm>
 using namespace std;
 
-#define NEED_PANEL if (panel==0) { panelMissingError(_expression,exp); return QString(); }
+#define NEED_PANEL if (panel == nullptr) { panelMissingError(_expression,exp); return QString(); }
 
 
 inline void exp_placeholder::setError(Expander& exp, const Error& e)

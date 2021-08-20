@@ -15,7 +15,7 @@ class QUrl;
 class UserActionPopupMenu : public KActionMenu
 {
 public:
-    explicit UserActionPopupMenu(const QUrl &currentURL, QWidget *parent = 0);
+    explicit UserActionPopupMenu(const QUrl &currentURL, QWidget *parent = nullptr);
 };
 
 #endif // USERACTIONPOPUPMENU_H

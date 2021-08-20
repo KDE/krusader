@@ -21,7 +21,7 @@ public:
     virtual AbstractPanelManager *otherManager() const = 0;
     virtual KrPanel *currentPanel() const = 0;
     virtual void newTab(const QUrl &, int insertIndex = -1) = 0;
-    virtual void duplicateTab(const QUrl &, KrPanel *nextTo = 0) = 0;
+    virtual void duplicateTab(const QUrl &, KrPanel *nextTo = nullptr) = 0;
 };
 
 

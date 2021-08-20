@@ -224,7 +224,7 @@ void KgGeneral::createGeneralTab()
     QLabel *labelGrp = new QLabel(i18n("Temp Folder:"), generalGrp);
     hbox->addWidget(labelGrp);
     KonfiguratorURLRequester *urlReq3 = createURLRequester("General", "Temp Directory", _TempDirectory,
-                                        labelGrp, generalGrp, false, PAGE_GENERAL);
+                                        labelGrp, generalGrp, false, QString(), PAGE_GENERAL);
     urlReq3->setMode(KFile::Directory);
     connect(urlReq3->extension(), &KonfiguratorExtension::applyManually, this, &KgGeneral::applyTempDir);
     hbox->addWidget(urlReq3);
@@ -263,7 +263,7 @@ void KgGeneral::createGeneralTab()
     QLabel *label3 = new QLabel(i18n("External Terminal:"), generalGrp);
     terminalGrid->addWidget(label3, 0, 0);
     KonfiguratorURLRequester *urlReq2 = createURLRequester("General", "Terminal", _Terminal,
-                                        label3, generalGrp, false, PAGE_GENERAL, false);
+                                        label3, generalGrp, false, QString(), PAGE_GENERAL, false);
     terminalGrid->addWidget(urlReq2, 0, 1);
     QLabel *terminalLabel = new QLabel(i18n("%d will be replaced by the workdir."),
                                        terminalGrp);

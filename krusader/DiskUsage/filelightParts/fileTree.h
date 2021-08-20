@@ -29,7 +29,7 @@ class Link
 {
 public:
     explicit Link(T* const t) : prev(this), next(this), data(t) {}
-    Link() : prev(this), next(this), data(0) {}
+    Link() : prev(this), next(this), data(nullptr) {}
 
     //TODO unlinking is slow and you don't use it very much in this context.
     //  ** Perhaps you can make a faster deletion system that doesn't bother tidying up first
@@ -58,7 +58,7 @@ template <class T>
 class Iterator
 {
 public:
-    Iterator() : link(0) { }   //**** remove this, remove this REMOVE THIS!!! dangerous as your implementation doesn't test for null links, always assumes they can be dereferenced
+    Iterator() : link(nullptr) { }   //**** remove this, remove this REMOVE THIS!!! dangerous as your implementation doesn't test for null links, always assumes they can be dereferenced
     explicit Iterator(Link<T> *p) : link(p) { }
 
     bool operator==(const Iterator<T>& it) const {
@@ -95,7 +95,7 @@ public:
         T* const d = link->data;
         Link<T>* const p = link->prev;
 
-        link->data = 0;
+        link->data = nullptr;
         delete link;
         link = p; //make iterator point to previous element, YOU must check this points to an element
 
@@ -225,7 +225,7 @@ public:
             m_mimeType(mimeTypeIn), m_excluded(false), m_percent(-1) {}
 
     File(const QString &nameIn, FileSize sizeIn)
-            : m_parent(0), m_name(nameIn), m_directory(QString()), m_size(sizeIn), m_ownSize(sizeIn), m_mode(0),
+            : m_parent(nullptr), m_name(nameIn), m_directory(QString()), m_size(sizeIn), m_ownSize(sizeIn), m_mode(0),
             m_owner(QString()), m_group(QString()), m_perm(QString()), m_time(-1),
             m_symLink(false), m_mimeType(QString()), m_excluded(false), m_percent(-1) {
     }
@@ -301,7 +301,7 @@ public:
     static const FileSize DENOMINATOR[4];
     static const char PREFIX[5][2];
 
-    QString fullPath(const Directory* = 0) const;
+    QString fullPath(const Directory* = nullptr) const;
     QString humanReadableSize(UnitPrefix key = mega) const;
 
     static QString humanReadableSize(FileSize size, UnitPrefix Key = mega);

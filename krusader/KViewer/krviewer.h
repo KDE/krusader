@@ -84,7 +84,7 @@ private slots:
     void openUrlFinished(PanelViewerBase *pvb, bool success);
 
 private:
-    explicit KrViewer(QWidget *parent = 0);
+    explicit KrViewer(QWidget *parent = nullptr);
     void addTab(PanelViewerBase* pvb);
     void updateActions();
     void refreshTab(PanelViewerBase* pvb);

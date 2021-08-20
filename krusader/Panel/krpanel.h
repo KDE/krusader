@@ -21,7 +21,7 @@ class KrPanel
 {
 public:
     KrPanel(AbstractPanelManager *manager, ListPanel *panel, ListPanelFunc *func) :
-        gui(panel), func(func), view(0), _manager(manager) {}
+        gui(panel), func(func), view(nullptr), _manager(manager) {}
     virtual ~KrPanel() {}
     QUrl virtualPath() const; // the current directory path of this panel
     AbstractPanelManager *manager() const {

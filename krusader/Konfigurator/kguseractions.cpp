@@ -49,7 +49,7 @@ KgUserActions::KgUserActions(bool first, QWidget* parent) :
                                        terminalGroup);
     terminalGrid->addWidget(labelTerminal, 0, 0);
     KonfiguratorURLRequester *urlReqUserActions = createURLRequester("UserActions",
-            "Terminal", _UserActions_Terminal, labelTerminal, terminalGroup, false, FIRST_PAGE, false);
+            "Terminal", _UserActions_Terminal, labelTerminal, terminalGroup, false, QString(), FIRST_PAGE, false);
     terminalGrid->addWidget(urlReqUserActions, 0, 1);
     labelTerminal = new QLabel(i18n("%t will be replaced by the title of the action,\n%d with the workdir."),
                                        terminalGroup);

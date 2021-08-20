@@ -48,7 +48,7 @@ QList<QUrl> FileSystem::getUrls(const QStringList &names) const
 
 FileItem *FileSystem::getFileItem(const QString &name) const
 {
-    return _fileItems.contains(name) ? _fileItems.value(name) : 0;
+    return _fileItems.contains(name) ? _fileItems.value(name) : nullptr;
 }
 
 KIO::filesize_t FileSystem::totalSize() const

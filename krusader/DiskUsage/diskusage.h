@@ -48,7 +48,7 @@ class DiskUsage : public QStackedWidget
     Q_OBJECT
 
 public:
-    explicit DiskUsage(QString confGroup, QWidget *parent = 0);
+    explicit DiskUsage(QString confGroup, QWidget *parent = nullptr);
     ~DiskUsage();
 
     void       load(const QUrl &dirName);
@@ -81,7 +81,7 @@ public:
 
     QString    getToolTip(File *);
 
-    void       rightClickMenu(const QPoint &, File *, QMenu * = 0, const QString& = QString());
+    void       rightClickMenu(const QPoint &, File *, QMenu * = nullptr, const QString& = QString());
 
     void       changeDirectory(Directory *dir);
 
@@ -123,11 +123,11 @@ protected:
     virtual void keyPressEvent(QKeyEvent *) override;
     virtual bool event(QEvent *) override;
 
-    int        calculateSizes(Directory *dir = 0, bool emitSig = false, int depth = 0);
-    int        calculatePercents(bool emitSig = false, Directory *dir = 0 , int depth = 0);
+    int        calculateSizes(Directory *dir = nullptr, bool emitSig = false, int depth = 0);
+    int        calculatePercents(bool emitSig = false, Directory *dir = nullptr, int depth = 0);
     int        include(Directory *dir, int depth = 0);
     void       createStatus();
-    void       executeAction(int, File * = 0);
+    void       executeAction(int, File * = nullptr);
 
     QUrl       baseURL;             //< the base URL of loading
 
@@ -170,7 +170,7 @@ class LoaderWidget : public QScrollArea
     Q_OBJECT
 
 public:
-    explicit LoaderWidget(QWidget *parent = 0);
+    explicit LoaderWidget(QWidget *parent = nullptr);
 
     void init();
     void setCurrentURL(const QUrl &url);

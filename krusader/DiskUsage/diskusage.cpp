@@ -325,7 +325,7 @@ void DiskUsage::slotLoadDirectory()
 
                 dirNum++;
 
-                currentFileItem = fileItems.isEmpty() ? 0 : fileItems.takeFirst();
+                currentFileItem = fileItems.isEmpty() ? nullptr : fileItems.takeFirst();
             } else {
                 fileNum++;
                 File *newItem = nullptr;
@@ -348,7 +348,7 @@ void DiskUsage::slotLoadDirectory()
                 }
                 currentParent->append(newItem);
 
-                currentFileItem = fileItems.isEmpty() ? 0 : fileItems.takeFirst();
+                currentFileItem = fileItems.isEmpty() ? nullptr : fileItems.takeFirst();
             }
         }
 

@@ -118,14 +118,14 @@ public:
      * @param mode the read mode
      * @param list If provided, all new actions will also be added to this list
      */
-    void readFromFile(const QString& filename, ReadMode mode = renameDoublicated, KrActionList* list = 0);
+    void readFromFile(const QString& filename, ReadMode mode = renameDoublicated, KrActionList* list = nullptr);
     /**
      * Reads UserActions from a XML-Element.
      * @param element a container with action-elements
      * @param mode the read mode
      * @param list If provided, all new actions will also be added to this list
      */
-    void readFromElement(const QDomElement& element, ReadMode mode = renameDoublicated, KrActionList* list = 0);
+    void readFromElement(const QDomElement& element, ReadMode mode = renameDoublicated, KrActionList* list = nullptr);
 
     /**
      * creates an empty QDomDocument for the UserActions

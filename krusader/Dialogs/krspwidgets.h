@@ -28,7 +28,7 @@ class KrSpWidgets
 public:
     KrSpWidgets();
 
-    static KrQuery getMask(const QString& caption, bool nameOnly = false, QWidget * parent = 0); // get file-mask for (un)selecting files
+    static KrQuery getMask(const QString& caption, bool nameOnly = false, QWidget * parent = nullptr); // get file-mask for (un)selecting files
     static QUrl newFTP();
 
 private:
@@ -53,7 +53,7 @@ protected:
 class KrMaskChoiceSub : public KrMaskChoice
 {
 public:
-    explicit KrMaskChoiceSub(QWidget * parent = 0);
+    explicit KrMaskChoiceSub(QWidget * parent = nullptr);
 
 public slots:
     void addSelection() override;

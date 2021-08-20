@@ -15,7 +15,7 @@ class KrStyleProxy: public QProxyStyle
 {
 public:
   void drawPrimitive(PrimitiveElement element, const QStyleOption *option, QPainter *painter,
-                     const QWidget *widget = 0) const override;
+                     const QWidget *widget = nullptr) const override;
 
   int styleHint(StyleHint hint,
                     const QStyleOption *option,
