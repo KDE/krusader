@@ -219,7 +219,7 @@ private:
     uint _hash;
 };
 
-uint qHash(const IconCacheKey &key)
+uint qHash(const IconCacheKey &key) noexcept
 {
     return key.hash();
 }
