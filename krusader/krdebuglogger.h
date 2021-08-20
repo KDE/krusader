@@ -41,16 +41,16 @@ public:
 #define KRFUNC \
         KrDebugLogger functionLogger(__FUNCTION__, __LINE__);
 
-#define KRDEBUG(X...) do{   \
+#define KRDEBUG(...) do{   \
         QFile file;     \
         QTextStream stream;     \
         KrDebugLogger::prepareWriting(file, stream);       \
         stream << __FUNCTION__ << "(" <<__LINE__<< "): "; \
-        stream << X << QT_ENDL;      \
+        stream << __VA_ARGS__ << QT_ENDL; /* Like on https://gcc.gnu.org/onlinedocs/cpp/Variadic-Macros.html */ \
     } while(0);
 #else
 #define KRFUNC
-#define KRDEBUG(X...) qDebug() << X
+#define KRDEBUG(...) qDebug() << __VA_ARGS__;
 #endif
 
 #endif // KRDEBUGLOGGER_H
