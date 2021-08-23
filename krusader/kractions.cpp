@@ -258,7 +258,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actSyncDirs, i18n("Synchronize Fol&ders..."), "folder-sync", Qt::CTRL + Qt::Key_Y, SLOTS, SLOT(slotSynchronizeDirs()), "sync dirs");
 #endif
     NEW_KACTION(actDiskUsage, i18n("D&isk Usage..."), "kr_diskusage", Qt::ALT + Qt::SHIFT + Qt::Key_S, SLOTS, SLOT(slotDiskUsage()), "disk usage");
-    NEW_KACTION(actKonfigurator, i18n("Configure &Krusader..."), "configure", 0, SLOTS, SLOT(startKonfigurator()), "konfigurator");
+    NEW_KACTION(actKonfigurator, i18n("Configure &Krusader..."), "configure", KStandardShortcut::preferences(), SLOTS, SLOT(startKonfigurator()), "konfigurator");
     NEW_KACTION(actSavePosition, i18n("Save &Position"), nullptr, 0, krusaderApp, SLOT(savePosition()), "save position");
     NEW_KACTION(actCompare, i18n("Compare b&y Content..."), "kr_comparedirs", 0, SLOTS, SLOT(compareContent()), "compare");
     NEW_KACTION(actMultiRename, i18n("Multi &Rename..."), "edit-rename", Qt::SHIFT + Qt::Key_F2, SLOTS, SLOT(multiRename()), "multirename");
