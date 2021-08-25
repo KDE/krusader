@@ -277,51 +277,6 @@
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
-      <!-- Thanks to Karai Csaba -->
-      <qandaentry>
-        <question id="faqu_krarc_protocol">
-          <para>&krusader; reports <quote>krarc:... protocol
-          not supported</quote> error at opening an archive file, what to
-          do?</para>
-        </question>
-        <answer>
-          <para>Install the krarc slave properly:</para>
-          <para>Copy the 
-          <filename>kio_krarc.so</filename>, 
-          <filename>kio_krarc.la</filename> files into 
-          <filename class="directory">
-          /usr/{lib or lib64}/qt5/plugins</filename></para>
-          <para>Copy the 
-          <filename>krarc.protocol</filename> file into 
-          <filename class="directory">
-          /usr/share/services</filename></para>
-          <para>or the directory where the KIO slaves are placed in
-          your &Linux; distribution.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question id="faqu_krarc_support">
-          <para>I get the error message <quote>Protocol not supported by
-          Krusader: "krarc:/path/to/foo-archive"</quote>, when I try to
-          open foo-Archive, what to do?</para>
-        </question>
-        <answer>
-          <para>The icons, kio_slaves and documentation must be
-          installed in the correct places in the &kf5;
-          directory tree. The 
-          <filename>kio_krarc.*</filename> files must be in the same
-          directory with the other KIO slaves. Try this: locate 
-          <filename>kio_tar.*</filename> and copy/link the 
-          <filename>kio_krarc.*</filename> files to the same
-          location. Do not forget to run 
-          <command># ldconfig</command> on this directory when
-          you are done.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
       
 <qandaentry>
   <question id="faqu_external_tool">
