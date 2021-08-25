@@ -9,6 +9,12 @@
 
 #include <kio_version.h>
 
+/**
+ * UDSEntry::insert(uint, const QString &) was made deprecated since 5.48 in
+ * favor of UDSEntry::fastInsert(uint, const QString &)
+ *
+ * This can be removed when the frameworks minimum version required will be >= 5.48
+ */
 #if KIO_VERSION >= QT_VERSION_CHECK(5, 48, 0)
     #define UDS_ENTRY_INSERT(A, B) UDSEntry::fastInsert((A), (B));
 #else
@@ -16,14 +22,54 @@
 #endif
 
 /**
+ * KactionMenu::setDelayed(bool) was made deprecated since 5.77 in
+ * favor of KactionMenu::setPopupMode(QToolButton::ToolButtonPopupMode)
+ *
+ * This can be removed when the frameworks minimum version required will be >= 5.77
+ */
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 77, 0)
+    #define KACTIONMENU_SETDELAYED setPopupMode(QToolButton::InstantPopup)
+#else
+    #define KACTIONMENU_SETDELAYED setDelayed(false)
+#endif
+
+/**
  * QLineEdit::selectionLength() is not present in QT < 5.10
- * 
+ *
  * This can be removed when the qt minimum version required will be >= 5.10
  */
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     #define QLINEEDIT_SELECTIONLENGTH selectionLength()
 #else
     #define QLINEEDIT_SELECTIONLENGTH selectedText().length()
+#endif
+
+/**
+ * QTextEdit::setTabStopWidth(int) was made obsoleted in QT 5.10 in
+ * favor of QTextEdit::setTabStopDistance(int)
+ *
+ * https://doc.qt.io/archives/qt-5.10/qtextedit-obsolete.html#tabStopWidth-prop
+ *
+ * This can be removed when the qt minimum version required will be >= 5.10
+ */
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+    #define SET_TAB_STOP_DISTANCE(X) setTabStopDistance(X)
+#else
+    #define SET_TAB_STOP_DISTANCE(X) setTabStopWidth(X)
+#endif
+
+/**
+ * QFontMetrics::width(const QString&, int) was made obsoleted in QT 5.11 in
+ * favor of QFontMetrics::horizontalAdvance(const QString &, int)
+ *
+ * https://doc.qt.io/archives/qt-5.11/qfontmetrics-obsolete.html#width
+ *
+ * This can be removed when the qt minimum version required will be >= 5.11
+ */
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+    #define QFONTMETRICS_WIDTH(A) horizontalAdvance(A)
+#else
+    #define QFONTMETRICS_WIDTH(A) width(A)
 #endif
 
 /**
@@ -46,7 +92,7 @@
  *
  * https://doc.qt.io/qt-5.15/qresource-obsolete.html#isCompressed
  *
- * This can be removed when the qt minimum version required will be >= 5.13
+ * This can be removed when the qt minimum version required will be >= 5.15
  */
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     #define QRESOURCE_ISCOMPRESSED(A) ((A).compressionAlgorithm() != QResource::NoCompression)
@@ -88,7 +134,7 @@
  *
  * https://doc.qt.io/qt-5.15/qcombobox-obsolete.html#activated-1
  *
- * This can be removed when the qt minimum version required will be >= 5.14
+ * This can be removed when the qt minimum version required will be >= 5.15
  */
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     #define QCOMBOBOX_ACTIVATED textActivated
@@ -102,32 +148,12 @@
  *
  * https://doc.qt.io/qt-5.15/qcombobox-obsolete.html#highlighted-1
  *
- * This can be removed when the qt minimum version required will be >= 5.14
+ * This can be removed when the qt minimum version required will be >= 5.15
  */
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     #define QCOMBOBOX_HIGHLIGHTED textHighlighted
 #else
     #define QCOMBOBOX_HIGHLIGHTED highlighted
-#endif
-
-/**
- * QFontMetrics::width(const QString&, int) was made obsoleted in QT 5.11 in
- * favor of QFontMetrics::horizontalAdvance(const QString &, int)
- *
- * https://doc.qt.io/archives/qt-5.11/qfontmetrics-obsolete.html#width
- *
- * This can be removed when the qt minimum version required will be >= 5.11
- */
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-    #define QFONTMETRICS_WIDTH(A) horizontalAdvance(A)
-#else
-    #define QFONTMETRICS_WIDTH(A) width(A)
-#endif
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-    #define SET_TAB_STOP_DISTANCE(X) setTabStopDistance(X)
-#else
-    #define SET_TAB_STOP_DISTANCE(X) setTabStopWidth(X)
 #endif
 
 #endif

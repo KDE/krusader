@@ -10,6 +10,7 @@
 #include "krbookmarkhandler.h"
 #include "../krglobal.h"
 #include "../icon.h"
+#include "../compat.h"
 
 // QtGui
 #include <QPixmap>
@@ -30,7 +31,7 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
     setAcceptDrops(false);
 
     acmBookmarks = new KActionMenu(Icon("bookmarks"), i18n("Bookmarks"), this);
-    acmBookmarks->setDelayed(false);
+    acmBookmarks->KACTIONMENU_SETDELAYED;
 
     setMenu(acmBookmarks->menu());
     connect(acmBookmarks->menu(), &QMenu::aboutToShow, this, &KrBookmarkButton::populate);
