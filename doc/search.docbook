@@ -48,7 +48,7 @@
       <literal role="extension">'*.cpp *.h |
       *.moc.cpp'</literal>). You can use quotation marks for names
             that contain spaces. Filter <quote>Program Files</quote> searches
-            out those files/directories the name of which is <filename>Program
+            out those files/folders the name of which is <filename>Program
             Files</filename>. A drop-down list that is shown after clicking down arrow on the right allows you to pick some of your previously entered criteria.</para>
       <note>
           <para>
@@ -70,7 +70,7 @@
       file not only by its name, but also by its &MIME; type. For
       example, you can search for all the audio files whose name
       begins with B. Usually this option defaults to 'all files',
-      but you can choose to search for archives, directories,
+      but you can choose to search for archives, folders,
       images, text files, videos and audio files.</para>
     </listitem>
   </itemizedlist>
@@ -89,19 +89,19 @@
       <guilabel>Search in</guilabel> box, and write 
       <filename>/mnt</filename> in the 
       <guilabel>Do not search in</guilabel> box. If you want to enter
-      more than one directory in one of the list boxes, just type the
-      first name and press &Enter;. The directory name
+      more than one folder in one of the list boxes, just type the
+      first name and press &Enter;. The folder name
       will be copied to the bigger list box and you will be able to enter
       another name. 
       <note>
         <para>The input line has an auto-completion feature,
         corresponding to &plasma; global settings. If you
         wish, you can click on the 
-        <guiicon>folder icon</guiicon>, and browse to the directory
+        <guiicon>folder icon</guiicon>, and browse to the folder
         you wish to add.</para>
       </note>
       <note>
-          <para>It is possible to define files and directories which will be filtered out from the search results using the <guilabel>Exclude Folder Names</guilabel> input field at the bottom of the <guilabel>Do not search in</guilabel> box.</para>
+          <para>It is possible to define files and folders which will be filtered out from the search results using the <guilabel>Exclude Folder Names</guilabel> input field at the bottom of the <guilabel>Do not search in</guilabel> box.</para>
           <para>Items in the filtering list should be space-separated.</para>
           <para>Spaces in the filtering list items can be escaped or quoted. Example: <userinput>.git "target build" build\ krusader</userinput></para>
       </note></para>
@@ -143,7 +143,7 @@
     <listitem>
       <para>
       <guilabel>Search in sub folders</guilabel>: perform a
-      recursive search and dive into every directory on the
+      recursive search and dive into every folder on the
       way.</para>
     </listitem>
     <listitem>
@@ -311,9 +311,9 @@
   file and use 
   <keycap>F3</keycap>/
   <keycap>F4</keycap> to view/edit or use the right-click menu. When
-  you click on a found item, the directory of the active panel will
+  you click on a found item, the folder of the active panel will
   change if the selected item is not in the current panel
-  directory. The results window supports dragging items to other windows 
+  folder. The results window supports dragging items to other windows 
   and copy to clipboard (<keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>).
   When you close the KruSearcher window, the selected
   item is selected in the active panel.</para>

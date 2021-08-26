@@ -50,8 +50,8 @@
     <title>Procedure:</title>
     <listitem>
       <para>Set the 
-      <guilabel>Left directory</guilabel> and the 
-      <guilabel>Right directory</guilabel> that you want to compare.</para>
+      <guilabel>Left folder</guilabel> and the 
+      <guilabel>Right folder</guilabel> that you want to compare.</para>
     </listitem>
     <listitem>
       <para>Configure the optional 
@@ -124,12 +124,12 @@
           <listitem>
             <para>
             <guilabel>Left Directory</guilabel>: The left side base
-            directory.</para>
+            folder.</para>
           </listitem>
           <listitem>
             <para>
             <guilabel>Right Directory</guilabel>: The right side
-            base directory.</para>
+            base folder.</para>
           </listitem>
           <listitem>
             <para>
@@ -138,9 +138,9 @@
             <literal role="extension">*.png</literal> selects only
             files the names of which end with 
             <literal role="extension">.png</literal>. Folders are
-            listed if the directory name ends with 
+            listed if the folder name ends with 
             <literal role="extension">.png</literal> or if the
-            directory contains files which end with 
+            folder contains files which end with 
             <literal role="extension">.png</literal>. Multiple
             include/exclude example: 
             <literal role="extension">'*.cpp *.h |
@@ -257,10 +257,10 @@
             <para>
             <guilabel>Asymmetric</guilabel>: The 
             <guilabel>Left Directory</guilabel> is the target
-            directory, the 
+            folder, the 
             <guilabel>Right Directory</guilabel> is the source
-            directory. This function synchronizes the content of
-            the left directory to the right directory. 
+            folder. This function synchronizes the content of
+            the left folder to the right folder. 
             <itemizedlist>
               <listitem>
                 <para>The files that exist only on the left side
@@ -281,9 +281,9 @@
               </listitem>
             </itemizedlist>This function is useful if the date
             information is unusable, or to synchronize the left
-            directory to the content of a file server (like a
+            folder to the content of a file server (like a
             download). Alternatively, it is useful to make a backup
-            from the right directory to the left directory. NOTE:
+            from the right folder to the left folder. NOTE:
             Do NOT use this option to synchronize a desktop and a
             notebook (&eg; files that exist only on the
             left side will be deleted!).</para>
@@ -297,7 +297,7 @@
             window, if necessary. It is important, if you want to
             know what the Synchronizer is doing. If the
             &FTP; server is slow, the comparison of a
-            directory may take a lot of time. By turning this
+            folder may take a lot of time. By turning this
             option on, you can see that the comparator is <quote>alive</quote>,
             but slow. For fast file systems, it can reduce the
             speed of comparing slightly.</para>
@@ -486,7 +486,7 @@
         <guilabel>Task</guilabel> operations determined by the
         Comparator. Select one or multiple files. The change will
         be applied on the selection and not only on the right
-        clicked item. If the selected item is a directory, the
+        clicked item. If the selected item is a folder, the
         change will be applied on its files/subfolders as
         well.</para>
         <itemizedlist>
@@ -596,7 +596,7 @@
     <varlistentry>
       <term>Synchronize with <application>kget</application></term>
       <listitem>
-        <para>If you want to synchronize a local directory with an
+        <para>If you want to synchronize a local folder with an
         unstable &FTP; server, <application>kget</application> is a much better
         solution than simple file copying. After comparing you may
         right click on the result list and select 
@@ -710,7 +710,7 @@
             synchronization.</para>
           </listitem>
           <listitem>
-            <para>Remote <quote>compare by content</quote> and <quote>directory
+            <para>Remote <quote>compare by content</quote> and <quote>folder
             compare</quote> is done in parallel.</para>
           </listitem>
           <listitem>

@@ -22,7 +22,7 @@
     <listitem>
       <para>
         <userinput>
-          <command>ftp://</command><replaceable>public.ftpserver.org/directory/</replaceable>
+          <command>ftp://</command><replaceable>public.ftpserver.org/folder/</replaceable>
         </userinput>
       </para>
     </listitem>
@@ -43,7 +43,7 @@
     <listitem>
       <para>
         <userinput>
-          <command>ftp://</command><replaceable>username@my.server.org:21/directory/</replaceable>
+          <command>ftp://</command><replaceable>username@my.server.org:21/folder/</replaceable>
         </userinput>
       </para>
     </listitem>
@@ -57,7 +57,7 @@
     <listitem>
       <para>
         <userinput>
-          <command>ftp://</command><replaceable>username@proxyusername:password@proxipassword@hostname/directory</replaceable>
+          <command>ftp://</command><replaceable>username@proxyusername:password@proxipassword@hostname/folder</replaceable>
         </userinput>
       </para>
     </listitem>
@@ -105,8 +105,8 @@
       window.</para>
     </listitem>
     <listitem>
-      <para>You can bookmark a directory on a remote host and
-      return to this directory from the bookmark button on the top
+      <para>You can bookmark a folder on a remote host and
+      return to this folder from the bookmark button on the top
       corner of your panel just like in a web browser.</para>
     </listitem>
   </itemizedlist>
@@ -191,7 +191,7 @@ Everything is installed, now let's do some configuration. First, we need our ser
 That is why we installed avahi-daemon: it represents your machine on local network and allows other applications 
 to publish services they provide. Avahi-daemon comes with example <filename>ssh.service</filename> configuration 
 file found in <filename class="directory">/usr/share/doc/avahi-daemon/examples</filename>. In order to get the service to be 
-announced on LAN we need to copy this file to <filename class="directory">/etc/avahi/services</filename> directory: 
+announced on LAN we need to copy this file to <filename class="directory">/etc/avahi/services</filename> folder: 
 <screen>
 <prompt>#</prompt> <userinput><command>cp</command> <option>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option></userinput>
 </screen>
@@ -255,7 +255,7 @@ Do the same on each machine on your LAN, then restart avahi-daemon:
 
 Then open &krusader; and type in location-toolbar-lnk: <filename>zeroconf:/</filename> to open the  
 <link linkend="gloss-zeroconf">zeroconf</link> connection.
-Enter the <guilabel>Fish Protocol</guilabel> directory. Inside you will find the links to each machine that 
+Enter the <guilabel>Fish Protocol</guilabel> folder. Inside you will find the links to each machine that 
 announced <filename>fish:/</filename> on your LAN, the location-toolbar-lnk: will point to 
 <filename>zeroconf:/_fish._tcp</filename> Double clicking on any of these machines,
 them will bring up the password prompt, asking you for your ssh key passphrase (if password was set). 

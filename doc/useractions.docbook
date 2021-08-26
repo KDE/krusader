@@ -20,7 +20,7 @@
   standard Edit Toolbar and Edit Shortcut dialogs will show
   UserActions, too. The UserActions are stored in 
   <filename>
-  ~/.local/share/krusader/useractions.xml</filename> or <filename>krusader/useraction.xml</filename> in the directory which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command.
+  ~/.local/share/krusader/useractions.xml</filename> or <filename>krusader/useraction.xml</filename> in the folder which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command.
   Several 
   <link linkend="useraction-xml">examples</link> are included in the
   documentation. UserActions can be edited / added / imported /
@@ -192,7 +192,7 @@ format="PNG"/> </imageobject> </inlinemediaobject>button.</para>
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>Workdir</guimenuitem>: The working directory
+      <guimenuitem>Workdir</guimenuitem>: The working folder
       for the command which will be executed.</para>
     </listitem>
     <listitem>

@@ -12,7 +12,7 @@
   <sect2 id="browsing-archives">
     <title>Browsing Archives</title>
     <para>The <link linkend="vfs">Virtual file systems (VFS)</link> allows you to browse archives as
-    if it was a directory. Currently &krusader; supports
+    if it was a folder. Currently &krusader; supports
     the following archives types: ace, arj, bzip2, deb, gzip, iso,
     lha, rar, rpm, tar, xz, zip, and 7-zip and supports the following
     passworded archives: arj, ace, rar and zip. Passwords can be
@@ -48,10 +48,10 @@
       <listitem>
         <para>The command line (if visible) will not follow you
         inside the archive but will point to the archive
-        directory.</para>
+        folder.</para>
       </listitem>
       <listitem>
-        <para>Before any action is performed on files/directories
+        <para>Before any action is performed on files/folders
         inside the archive, they must be extracted. The archive
         will be repacked when you leave it or when
         &krusader; detects that extracted files have
@@ -78,7 +78,7 @@
     <keycombo action="simul">&Alt;&Shift;
     <keycap>U</keycap></keycombo>. &krusader; will ask
     you where to put the extracted files. The default location is
-    the inactive panel directory. If you do not cancel the
+    the inactive panel folder. If you do not cancel the
     operation, &krusader; will try to unpack all the
     selected files in the inactive panel.</para>
     <para>If you only want to extract a part of the archive, then 
@@ -107,7 +107,7 @@
     <para>To add files to an existing archive(s), open the archive
     in one panel and the files to be copied in the other panel,
     then simply copy the files into the archive in exactly the same
-    way you copy files into a <quote>normal</quote> directory.
+    way you copy files into a <quote>normal</quote> folder.
     The pack operation can be put in a <link linkend="queue">queue</link>.</para>
   </sect2>
   <sect2 id="test-archive">

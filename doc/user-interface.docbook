@@ -151,7 +151,7 @@
       shows the path the panel is currently pointing to.
       When entering archives the path will be displayed
       in the following format: <quote>archive
-      type:/directory/archive_filename/the directory inside the
+      type:/folder/archive_filename/the folder inside the
       archive</quote>. This format makes the paths uniform and easy to
       read. The
       <guibutton>Location Toolbar</guibutton> supports also
@@ -204,7 +204,7 @@
       <guibutton>Location Toolbar</guibutton>. A pop-up window shows
       the next &URL; location. Pressing &Ctrl; + &LMB; shows
       the location where the mouse was pointing to. This feature
-      allows faster navigation in a big directory tree.</para>
+      allows faster navigation in a big folder tree.</para>
     </sect2>
     <sect2 id="panel_toolbar">
       <title>Panel Toolbar</title>
@@ -220,32 +220,32 @@
         <listitem>
           <para>
           <guibutton>OpenDir Button</guibutton>: opens the
-          directory browser.</para>
+          folder browser.</para>
         </listitem>
         <listitem>
           <para>
           <guibutton>Equals Button (=)</guibutton>: changes the
-          panel directory to the other panel directory.</para>
+          panel folder to the other panel folder.</para>
         </listitem>
         <listitem>
           <para>
           <guibutton>Up Button (..)</guibutton>: changes the panel
-          directory to the parent directory.</para>
+          folder to the parent folder.</para>
         </listitem>
         <listitem>
           <para>
           <guibutton>Home Button (~)</guibutton>: changes the panel
-          directory to the home directory.</para>
+          folder to the home folder.</para>
         </listitem>
         <listitem>
           <para>
           <guibutton>Root Button (/)</guibutton>: changes the panel
-          directory to the root directory.</para>
+          folder to the root folder.</para>
         </listitem>
         <listitem>
           <para>
           <guibutton>Sync-browsing Button</guibutton>: when active,
-          each directory change in the specific panel is performed
+          each folder change in the specific panel is performed
           in the other panel as well.</para>
         </listitem>
       </itemizedlist>
@@ -258,12 +258,12 @@
     <itemizedlist>
       <listitem>
         <para><link linkend="list_panel">List Panel</link>: shows the files and
-        directories.</para>
+        folders.</para>
       </listitem>
       <listitem>
         <para><link linkend="sidebar">Sidebar</link>: has several display
         modes: Preview, Tree, Quickselect, View and Disk Usage for
-        the file or directory that has the focus. The Sidebar
+        the file or folder that has the focus. The Sidebar
         may be left open or closed, as desired.</para>
       </listitem>
     </itemizedlist>
@@ -275,7 +275,7 @@
     choose a command from the
     <guilabel>Menu-Bar</guilabel> or
     <guilabel>Toolbar</guilabel> the command will act upon the
-    selected files/directories in the active panel. You can switch
+    selected files/folders in the active panel. You can switch
     between panels using the &Tab; key or by clicking on
     the
     <guilabel>Information or Totals labels</guilabel>, or by
@@ -302,7 +302,7 @@
       </indexterm>
       <para>This is the default panel and the one you will probably
       use most of the time. This panel shows the contents of one
-      directory which can be local (part of your mounted file
+      folder which can be local (part of your mounted file
       systems, either a native file or the files inside an archive)
       or remote files (accessed via &FTP;, &NFS; or Samba).
       There are two modes: <link linkend="view-menu">Detailed View</link> that shows the file names,
@@ -353,7 +353,7 @@
           <emphasis>
             <guilabel>Column Headers</guilabel>
           </emphasis>: here you can change the sort order of the
-          files and directories as desired. The default sort order
+          files and folders as desired. The default sort order
           is by
           <guilabel>Name</guilabel>. The sort order can be
           instantly changed by clicking on one of the
@@ -385,8 +385,8 @@
           <para>
           <emphasis>
             <guilabel>File List</guilabel>
-          </emphasis>: displays the files and directories in the
-          browsed directory. The <link linkend="quicksearch">search bar</link>
+          </emphasis>: displays the files and folders in the
+          browsed folder. The <link linkend="quicksearch">search bar</link>
           allows you to search for files by typing their names, or
           the first few characters of a file name. Pressing
           &Enter; or double clicking on a file will
@@ -406,10 +406,10 @@
           deselecting files will change the <emphasis> <guilabel>Totals Label</guilabel>
           </emphasis>at the bottom of the panel, which displays how many files you have
           selected (and how much total disk space they use) as well as the total file and
-          disk usage of the current directory (as opposed to the information label that
-          displays information for the whole file system). If a directory contains a lot
-          of subdirectories, it may not be possible to drop the &URL; onto the panel (on
-          which only directories are visible), but the &URL; can be dropped onto the
+          disk usage of the current folder (as opposed to the information label that
+          displays information for the whole file system). If a folder contains a lot
+          of subfolders, it may not be possible to drop the &URL; onto the panel (on
+          which only folders are visible), but the &URL; can be dropped onto the
           <quote>Information Label</quote> or <quote>Totals Label</quote> instead. When a <link
           linkend="view-menu">custom filter</link> is set, it will show the setting,
           example: [*.cpp].</para>
@@ -432,7 +432,7 @@
           panel.</para>
         </listitem>
         <listitem>
-          <para>Focus a file or directory on the left panel, press
+          <para>Focus a file or folder on the left panel, press
           <keycombo action="simul">&Ctrl;
           &Right;</keycombo> and the right panel
           changes:
@@ -442,7 +442,7 @@
               as the left panel.</para>
             </listitem>
             <listitem>
-              <para>On a directory: right panel opens the directory focused on the left panel.</para>
+              <para>On a folder: right panel opens the folder focused on the left panel.</para>
             </listitem>
           </itemizedlist></para>
         </listitem>
@@ -481,10 +481,10 @@
           <emphasis>
             <guilabel>Tree Panel</guilabel>
           </emphasis>: is used to quickly browse the local
-          directory tree. This panel behaves like the list panel
-          but only one directory may be selected at a time and
+          folder tree. This panel behaves like the list panel
+          but only one folder may be selected at a time and
           double clicking or pressing &Enter; on a
-          directory will open that directory in the active panel.
+          folder will open that folder in the active panel.
           The panels fully support drag and drop (copy, move, link)
           mouse actions.</para>
         </listitem>
@@ -513,7 +513,7 @@
           <emphasis>
             <guilabel>Disk Usage Panel</guilabel>
           </emphasis>: views the <link linkend="diskusage">Disk Usage</link> of a
-          directory.</para>
+          folder.</para>
         </listitem>
       </itemizedlist>
       <para>
@@ -611,9 +611,9 @@
     <userinput>
       <command>cd</command>
       <replaceable>
-      &lt;directory&gt;</replaceable>
+      &lt;folder&gt;</replaceable>
     </userinput> in the command line will also cause the active
-    panel to point to this directory.
+    panel to point to this folder.
 
     Click
     <link linkend="cmdline_keybindings">here</link> to view the
@@ -635,12 +635,12 @@
       </mediaobject>
     </figure>
     <para>The terminal emulator mode is in fact a small console and
-    acts like one. You can change the active directory in the
+    acts like one. You can change the active folder in the
     terminal by using the
     <userinput>
       <command>cd</command>
     </userinput> command. The terminal emulator will follow the
-    active panel directory. You can drag a file from the
+    active panel folder. You can drag a file from the
     <interface>List Panel</interface> and name of file will pasted
     into Terminal Emulator. If you drag multiple files, the names will
     pasted into Terminal Emulator. A full-screen terminal emulator can
@@ -686,7 +686,7 @@
     <keycap>F9</keycap> key will open a terminal at the last local
     path that the active panel pointed to.
     <guilabel>Mkdir</guilabel> <keycap>F7</keycap> (translated name of
-    <command>mkdir</command> command) can create whole directory trees
+    <command>mkdir</command> command) can create whole folder trees
     on the fly &eg; <literal>foo/bar/test</literal>. You can choose to display
     <link linkend="faqu_resize">or not</link> the
     <guilabel>FN keys bar</guilabel> when starting up
@@ -723,7 +723,7 @@
       <listitem>
         <para>To
         <action>open a new tab</action> and keep the current
-        tab opened: <keycap>Right-click</keycap> on a directory and
+        tab opened: <keycap>Right-click</keycap> on a folder and
         select
         <guimenuitem>Open in New Tab</guimenuitem>, or click on 
         the rightmost button on the Tab bar.</para>

@@ -23,16 +23,16 @@
     <para>After starting &krusader;, the keyboard action can
     begin. Use <keycombo action="simul">&Ctrl;<keycap>L</keycap></keycombo> to jump to the
     <link linkend="list_panel">Location Toolbar</link> where you can type the
-    desired directory. After <keycombo action="simul">&Ctrl;&Down;</keycombo>
+    desired folder. After <keycombo action="simul">&Ctrl;&Down;</keycombo>
     you are in the
     <link linkend="termemu">Terminal emulator</link> and you can type any command you
     desire, provided that the <link linkend="konfig-startup">terminal is shown</link>.
     Use <keycombo action="simul">&Ctrl;&Up;</keycombo>
     to jump back to the active panel. If
-    you want to jump to a file or directory that starts with <literal>f</literal>,
+    you want to jump to a file or folder that starts with <literal>f</literal>,
     then simply press <keycap>f</keycap> on the keyboard to use the
     <link linkend="quicksearch">search bar</link>. Use the &Enter; key to execute
-    the file or to open a directory that has the focus. Be sure to
+    the file or to open a folder that has the focus. Be sure to
     remember the Function Keys - <keycap>F3</keycap> to View, <keycap>F4</keycap> to Edit, 
     <keycap>F5</keycap> to Copy, <keycombo action="simul">&Alt;&Shift;<keycap>U</keycap></keycombo> to Unpack, &etc;</para>
     <para>You can also perform several operations with the
@@ -530,7 +530,7 @@
               </para>
             </entry>
             <entry>
-              <para><link linkend="compare-dir">Compare Directories</link></para>
+              <para><link linkend="compare-dir">Compare Folders</link></para>
             </entry>
           </row>		  
            <row>
@@ -786,7 +786,7 @@
               </para>
             </entry>
             <entry>
-              <para>Select directory dialog to open this directory
+              <para>Select folder dialog to open this folder
               in the panel.</para>
             </entry>
           </row>
@@ -981,7 +981,7 @@
               </para>
             </entry>
             <entry>
-              <para>Jump to the Home directory.</para>
+              <para>Jump to the Home folder.</para>
             </entry>
           </row>
           <row>
@@ -994,7 +994,7 @@
               </keycombo></para>
             </entry>
             <entry>
-              <para>Focus a file or directory on the left panel,
+              <para>Focus a file or folder on the left panel,
               press 
               <keycombo action="simul">&Ctrl;
               &Left;</keycombo> and the right
@@ -1006,8 +1006,8 @@
                   <link linkend="panels">panel</link>.</para>
                 </listitem>
                 <listitem>
-                  <para>on a directory: refreshes the right panel
-                  with the contents of the directory.</para>
+                  <para>on a folder: refreshes the right panel
+                  with the contents of the folder.</para>
                 </listitem>
               </itemizedlist>For the right panel: press 
               <keycombo action="simul">&Ctrl;
@@ -1023,7 +1023,7 @@
               </para>
             </entry>
             <entry>
-              <para>Jump to the Root directory.</para>
+              <para>Jump to the Root folder.</para>
             </entry>
           </row>
           <row>
@@ -1034,7 +1034,7 @@
               </para>
             </entry>
             <entry>
-              <para>Up one directory.</para>
+              <para>Up one folder.</para>
             </entry>
           </row>
 	  <row>
@@ -1045,7 +1045,7 @@
               </para>
             </entry>
             <entry>
-              <para>Go to the directory from other panel.</para>
+              <para>Go to the folder from other panel.</para>
             </entry>
           </row>
 	  <row>
@@ -1403,7 +1403,7 @@
             </entry>
             <entry>
               <para>Move to the lower part in the current
-              directory.</para>
+              folder.</para>
             </entry>
           </row>
           <row>
@@ -1473,7 +1473,7 @@
               <para>
               <link linkend="browsing-archives">On an archive
               file:</link> browse the archive as if it was a
-              directory.</para>
+              folder.</para>
             </entry>
           </row>
           <row>
@@ -1524,7 +1524,7 @@
               <link linkend="selecting-files">On a
               file:</link> toggle the selection of the file down one
               position without affecting the selection of other
-              files/directories.</para>
+              files/folders.</para>
             </entry>
           </row>
           <row>
@@ -1532,7 +1532,7 @@
               <para>&Backspace;</para>
             </entry>
             <entry>
-              <para>One directory up.</para>
+              <para>One folder up.</para>
             </entry>
           </row>
           <row>
@@ -1644,7 +1644,7 @@
               </para>
             </entry>
             <entry>
-              <para>Insert current file / directory name without
+              <para>Insert current file / folder name without
               path to current command line position.</para>
             </entry>
           </row>
@@ -1656,7 +1656,7 @@
               </para>
             </entry>
             <entry>
-              <para>Insert current file / directory with full path
+              <para>Insert current file / folder with full path
               name to current command line position.</para>
             </entry>
           </row>

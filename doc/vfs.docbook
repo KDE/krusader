@@ -16,7 +16,7 @@
   ISO &CD;/&DVD; images, RPM catalogs, &etc;), which allows the user to
   access all the information in these divergent types of
   filesystems transparently - just like entering an ordinary
-  sub-directory. &krusader; supports several virtual
+  sub-folder. &krusader; supports several virtual
   file systems:</para>
   <itemizedlist>
     <listitem>
@@ -31,7 +31,7 @@
     <listitem>
       <para>
       <link linkend="archives">Archive VFS</link>: allows to browse
-      archives in VFS as it was a directory (ace, arj, bzip2, deb,
+      archives in VFS as it was a folder (ace, arj, bzip2, deb,
       gzip, iso, lha, rar, rpm, tar, zip and 7-zip).</para>
     </listitem>
     <listitem>
@@ -49,10 +49,10 @@
   <para>Actions you perform on the files in VFS are
   performed on the 'real' files. You do not just delete files from
   the VFS - you delete them from your hard drive. Limitations: you
-  cannot create directories inside a VFS.</para>
-  <para>It is possible to keep the directory structure when doing a
+  cannot create folders inside a VFS.</para>
+  <para>It is possible to keep the folder structure when doing a
   copy from a virtual folder to a non virtual folder, by
-  selecting the <quote>Keep virtual directory structure</quote> check box of the
+  selecting the <quote>Keep virtual folder structure</quote> check box of the
   copy dialog. Imagine the following virtual folder: 
   <screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir1/myfile1</userinput></screen>
   <screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir1/myfile2</userinput></screen>
@@ -72,7 +72,7 @@
     </listitem>
     <listitem>
       <para>Check 
-      <guilabel>Keep virtual directory structure</guilabel></para>
+      <guilabel>Keep virtual folder structure</guilabel></para>
     </listitem>
     <listitem>
       <para>Select 

@@ -112,13 +112,13 @@
 &lt;/KrusaderUserActions></programlisting>
       </para></listitem>
 
-      <listitem><para>Make a backup of the current file/folder to <filename>foo.bak</filename> into the current directory:
+      <listitem><para>Make a backup of the current file/folder to <filename>foo.bak</filename> into the current folder:
       <programlisting>
 &lt;!DOCTYPE KrusaderUserActions>
 &lt;KrusaderUserActions>
  &lt;action name="backup current" >
   &lt;title>Backup in Current Directory&lt;/title>
-  &lt;tooltip>Backup in current directory&lt;/tooltip>
+  &lt;tooltip>Backup in current folder&lt;/tooltip>
   &lt;icon>document-save-as&lt;/icon>
   &lt;category>System&lt;/category>
   &lt;description same_as="tooltip" />

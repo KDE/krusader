@@ -257,7 +257,7 @@
           <para>
           &Samba; ISO 8859-x codepage /
           What to do if &krusader; does not read shared
-          directories containing special international
+          folders containing special international
           characters?</para>
         </question>
         <answer>
@@ -372,7 +372,7 @@
           <para>I get 
           <errorcode>&FTP; protocol not supported by
           &krusader;</errorcode> error when trying to
-          open a remote &FTP; directory, what to
+          open a remote &FTP; folder, what to
           do?</para>
         </question>
         <answer>
@@ -757,7 +757,7 @@
        Run Krusader, with disabled crashhandler.
        <screen><prompt>$</prompt> <userinput><command>krusader</command> <option>--nocrashhandler</option></userinput></screen>
 
-       On a crash you will get a <filename>.core</filename> file, usually in your home directory.
+       On a crash you will get a <filename>.core</filename> file, usually in your home folder.
 
        Run <ulink url="https://sourceware.org/gdb/">gdb</ulink>, the GNU Project Debugger
        

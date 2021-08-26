@@ -25,8 +25,8 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Creates a new text file in the current directory,
-          unless another directory is specified. The new file is
+          <para>Creates a new text file in the current folder,
+          unless another folder is specified. The new file is
           opened for editing after it is created.</para>
         </listitem>
       </varlistentry>
@@ -104,7 +104,7 @@
         </term>
         <listitem>
           <para>Copy the currently selected
-          files or directories to the other panel.</para>
+          files or folders to the other panel.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -120,7 +120,7 @@
         <listitem>
           <para>Opens a dialog to 
           <link linkend="copying">move</link> the currently selected
-          files or directories to a specified location.</para>
+          files or folders to a specified location.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -137,7 +137,7 @@
         <listitem>
           <para>Creates a 
           <link linkend="pack-archive">new archive</link> of all the
-          selected files and directories in the active
+          selected files and folders in the active
           panel.</para>
         </listitem>
       </varlistentry>
@@ -213,7 +213,7 @@
             </listitem>
             <listitem>
               <para>Copying/moving a list of files to another
-              directory</para>
+              folder</para>
             </listitem>
             <listitem>
               <para>Convert filenames to upper/lower case</para>
@@ -240,7 +240,7 @@
               KRename's features</para>
             </listitem>
             <listitem>
-              <para>Renaming directories recursively</para>
+              <para>Renaming folders recursively</para>
             </listitem>
             <listitem>
               <para>Support for KFilePlugins</para>
@@ -331,7 +331,7 @@
         </term>
         <listitem>
           <para>Closes &krusader; and cleans up the
-          temporary directory, the same as pressing 
+          temporary folder, the same as pressing 
           <keycap>F10</keycap> key.</para>
         </listitem>
       </varlistentry>
@@ -389,7 +389,7 @@
           <para>
           <link linkend="copying">Pastes</link> previously cut or
           copied items from the clipboard to the current
-          directory.</para>
+          folder.</para>
         </listitem>
       </varlistentry>
 <!--
@@ -491,8 +491,8 @@
         </term>
         <listitem>
           <para>Selects all files in the active panel. You can also
-          select all directories by activating the 
-          <guilabel>Autoselect directories</guilabel> option in the
+          select all folders by activating the 
+          <guilabel>Autoselect folders</guilabel> option in the
           <link linkend="konfig-panel">Konfigurator Panel page</link>.</para>
         </listitem>
       </varlistentry>
@@ -564,12 +564,12 @@
               <keycap>C</keycap></keycombo>
             </shortcut>
             <guimenu>Edit</guimenu>
-            <guimenuitem>Compare Directories</guimenuitem>
+            <guimenuitem>Compare Folders</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
           <para>Toggles &krusader;
-          <link linkend="compare-dir">Compare Directories</link> function.</para>
+          <link linkend="compare-dir">Compare Folders</link> function.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -581,7 +581,7 @@
         </term>
         <listitem>
           <para>Configures the 
-          <guimenuitem>Compare Directories</guimenuitem> function.</para>
+          <guimenuitem>Compare Folders</guimenuitem> function.</para>
           <itemizedlist>
             <listitem>
               <para>
@@ -657,7 +657,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Navigates to the parent directory of the active
+          <para>Navigates to the parent folder of the active
           panel.</para>
         </listitem>
       </varlistentry>
@@ -673,7 +673,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Navigates to the previously viewed directory in the
+          <para>Navigates to the previously viewed folder in the
           active panel.</para>
         </listitem>
       </varlistentry>
@@ -689,7 +689,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Navigates to the next viewed directory in the
+          <para>Navigates to the next viewed folder in the
 	    active panel. Becomes available only if <menuchoice><guimenu>Go</guimenu>
 	    <guimenuitem>Back</guimenuitem></menuchoice> was used beforehand.</para>
         </listitem>
@@ -706,7 +706,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Navigates to the home directory of the current
+          <para>Navigates to the home folder of the current
           user.</para>
         </listitem>
       </varlistentry>
@@ -722,7 +722,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Navigates to the root directory of the
+          <para>Navigates to the root folder of the
           system.</para>
         </listitem>
       </varlistentry>
@@ -738,7 +738,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Displays a listing of frequently viewed directories
+          <para>Displays a listing of frequently viewed folders
           from which you may navigate to one by double-clicking on
           it.</para>
         </listitem>
@@ -756,8 +756,8 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Sets the current directory as a <quote>jump back</quote> point.
-          To navigate to this directory quickly, select the <guimenuitem>Jump
+          <para>Sets the current folder as a <quote>jump back</quote> point.
+          To navigate to this folder quickly, select the <guimenuitem>Jump
           Back</guimenuitem> command from the <guimenu>Go</guimenu> menu.</para>
         </listitem>
       </varlistentry>
@@ -894,7 +894,7 @@
         <listitem>
           <para>Allows you to install a custom filter on the
           &krusader; panel. Only files that match the
-          filter pattern(s) and directories will be displayed. Do
+          filter pattern(s) and folders will be displayed. Do
           not forget to deactivate the custom filter after use, or
           some files may not be visible.</para>
         </listitem>
@@ -1075,7 +1075,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Backups current file in current directory and asks the user for a new filename. 
+          <para>Backups current file in current folder and asks the user for a new filename. 
                 By default <literal role="extension">.old</literal> is appended to the original filename.</para>
         </listitem>
       </varlistentry>
@@ -1136,7 +1136,7 @@
           <para>When this action is turned on, the main sorting key
           in the &krusader; panel becomes the file size.
           This is useful for determining the largest files in a
-          particular directory.</para>
+          particular folder.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1213,7 +1213,7 @@
           <para>The <link linkend="synchronizer">Synchronize Folders</link> function compares the
           left and right panels and shows the differences between
           them. After the compare function, you can move
-          files/directories so that they can be
+          files/folders so that they can be
           synchronized.</para>
         </listitem>
       </varlistentry>
@@ -1299,8 +1299,8 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Opens a terminal window in the default directory
-          (usually your home directory). You can choose your
+          <para>Opens a terminal window in the default folder
+          (usually your home folder). You can choose your
           favorite terminal application in the
           <link linkend="konfig-general">Konfigurator General page</link>.</para>
         </listitem>

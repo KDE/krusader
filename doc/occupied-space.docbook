@@ -11,27 +11,27 @@
   </indexterm>
   <!-- Thanks to Heiner Eichmann -->
   <para>There are two ways to calculate the occupied space of
-  files/directories.</para>
+  files/folders.</para>
   <itemizedlist>
     <listitem>
       <para>Pressing the 
-      configurable shortcut for the <guilabel>Calculate occupied space</guilabel> on a directory under the cursor
+      configurable shortcut for the <guilabel>Calculate occupied space</guilabel> on a folder under the cursor
       instantly calculates the occupied size.</para>
     </listitem>
     <listitem>
       <para>To calculate how much disk space is occupied by the
-      selected files and directories in the active panel select 
+      selected files and folders in the active panel select 
         <menuchoice>
           <guimenu>Edit</guimenu>
           <guimenuitem>Calculate Occupied Space</guimenuitem>
         </menuchoice>.
       After a small delay, a dialog box will be
       displayed with total occupied space and the number of files
-      and directories you selected. The space occupied by every
-      selected directory will be shown as if the user just pressed 
-      configurable shortcut on those directories. If the active
+      and folders you selected. The space occupied by every
+      selected folder will be shown as if the user just pressed 
+      configurable shortcut on those folders. If the active
       panel is browsing an archive, the numbers will apply to the
-      unpacked size of the selected files and directories, not
+      unpacked size of the selected files and folders, not
       their compressed size. After the calculation the selection
       state will be toggled and the cursor will move one step
       downwards.</para>

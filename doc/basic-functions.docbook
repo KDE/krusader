@@ -121,11 +121,11 @@
       </note>
       <para>Selecting is a skill you need to master in order to get
       the most out of &krusader;. Since the Tree Panel allows select 
-      only one directory at a time, this paragraph mainly explains how
+      only one folder at a time, this paragraph mainly explains how
       to select files in the List Panel.</para>
       <para>Moving the cursor is easy. Left-clicking on a file or
-      directory (referred to herein as <quote>elements</quote> meaning files and
-      directories) will select it. Here are some useful pointers
+      folder (referred to herein as <quote>elements</quote> meaning files and
+      folders) will select it. Here are some useful pointers
       that will make &krusader; even easier to use (assuming you are
       using &krusader;'s Mouse Selection Mode): 
       <itemizedlist>
@@ -133,7 +133,7 @@
           <para>The 
           &Space; and &Ins; keys will toggle the selection of
           the file under the cursor without affecting the selection
-          of other files/directories, the cursor will go one
+          of other files/folders, the cursor will go one
           position down.</para>
         </listitem>
         <listitem>
@@ -146,7 +146,7 @@
           <keycombo action="simul">&Ctrl;
           <keycap>Left Clicking</keycap></keycombo> will toggle the
           selection of the file under the cursor without affecting
-          the selection of other files/directories.</para>
+          the selection of other files/folders.</para>
         </listitem>
         <listitem>
           <para>
@@ -180,7 +180,7 @@
       <title>Executing Commands</title>
       <para>There is not a lot to say here, all you need to do is
       select some files (if you do not, &krusader; will
-      operate on the file(s) or directory(s) that have the focus),
+      operate on the file(s) or folder(s) that have the focus),
       choose a 
       <link linkend="menu-commands">Command</link> from the Menu Bar
       or use a Keyboard Shortcut (or the Right Click Menu) and the
@@ -260,7 +260,7 @@
         </listitem>
         <listitem>
           <para><link linkend="list_panel">List Panel</link> on a file or
-          directory</para>
+          folder</para>
         </listitem>
         <listitem>
           <para><link linkend="cmdline">Command Line</link> (undo, paste, text
@@ -341,22 +341,22 @@
           </textobject>
         </mediaobject>
       </figure>
-      <para>To copy or move files/directories just select them and
+      <para>To copy or move files/folders just select them and
       press 
       <keycap>F5</keycap> to 
       copy or
       <keycap>F6</keycap> to 
       move them. &krusader; tries to preserve the time of
-      modification. When copying a directory owner is changed to the user which
-      copies the directory, group is changed to the default group of the user.
+      modification. When copying a folder owner is changed to the user which
+      copies the folder, group is changed to the default group of the user.
       When copying a file owner is changed to the user which copies the file,
       group is changed to default group of the user, and permissions are
       preserved. The owner, the group and the permissions are preserved when
-      moving file or directory. When copying or moving files/directories a dialog
+      moving file or folder. When copying or moving files/folders a dialog
       appears and allows you to choose the operation destination.
-      The default destination is the other-panel browsed directory. If you enter
+      The default destination is the other-panel browsed folder. If you enter
       a partial &URL;, &krusader; will use the current
-      panel directory as the &URL; base.</para>
+      panel folder as the &URL; base.</para>
     </sect2>
     <sect2 id="queue">
       <title>Queue manager</title> 
@@ -378,15 +378,15 @@
     </sect2>
     <sect2 id="deleting">
       <title>Deleting - move to &plasma; Trash</title>
-      <para>Deleting files/directories is done by selecting them and pressing <keycap>F8</keycap> or <keycap>Delete</keycap>.
+      <para>Deleting files/folders is done by selecting them and pressing <keycap>F8</keycap> or <keycap>Delete</keycap>.
       By <link linkend="konfig-general">default</link> it will be moved to &plasma; Trash.
       You can open the &plasma; Trash with the Trash icon in the <link linkend="main_toolbar">Main Toolbar</link> or with 
       the <filename>trash:/</filename> KIO slave.
-      Physically &plasma; Trash is located in <filename>~/.local/share/Trash/</filename> or <filename>Trash</filename> in the subdirectory in user home directory which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command.
+      Physically &plasma; Trash is located in <filename>~/.local/share/Trash/</filename> or <filename>Trash</filename> in the subfolder in user home folder which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command.
       <keycombo action="simul">&Ctrl;
       <keycap>Delete</keycap></keycombo> will delete the file
       permanently. A dialog will ask for your confirmation and will
-      warn you when deleting non-empty directories. Of course only
+      warn you when deleting non-empty folders. Of course only
       operations that are permitted to do by the Operating
       System will be performed - you will be notified otherwise. If
       you do not wish to see the confirmation dialogs, you can
@@ -419,7 +419,7 @@
       Right-clicking on a regular file will give
 	you the option <menuchoice><guisubmenu>Link Handling</guisubmenu> <guimenuitem>New Symlink...</guimenuitem></menuchoice>. A dialog will prompt
       you to enter a symlink name. That symlink will point to the
-      file/directory you right-clicked on. If the file you
+      file/folder you right-clicked on. If the file you
       right-clicked on is a symlink, you will also be presented
       with the <menuchoice><guisubmenu>Link Handling</guisubmenu> <guimenuitem>Redirect Link</guimenuitem></menuchoice> option that will allow you to change
       the link target.</para>
