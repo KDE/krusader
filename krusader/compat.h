@@ -22,8 +22,8 @@
 #endif
 
 /**
- * KactionMenu::setDelayed(bool) was made deprecated since 5.77 in
- * favor of KactionMenu::setPopupMode(QToolButton::ToolButtonPopupMode)
+ * KActionMenu::setDelayed(bool) was made deprecated since 5.77 in
+ * favor of KActionMenu::setPopupMode(QToolButton::ToolButtonPopupMode)
  *
  * This can be removed when the frameworks minimum version required will be >= 5.77
  */
