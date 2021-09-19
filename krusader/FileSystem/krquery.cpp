@@ -311,8 +311,7 @@ bool KrQuery::match(FileItem *item) const
         return false;
 
     if (!contain.isEmpty()) {
-        if ((totalBytes = item->getSize()) == 0)
-            totalBytes++; // sanity
+        totalBytes = item->getSize();
         receivedBytes = 0;
         if (receivedBuffer)
             delete receivedBuffer;
@@ -542,9 +541,18 @@ void KrQuery::containsContentFinished(KJob *) { busy = false; }
 bool KrQuery::checkTimer() const
 {
     if (timer.elapsed() >= STATUS_SEND_DELAY) {
-        auto pcnt = (int)(100. * (double)receivedBytes / (double)totalBytes + .5);
         QString message =
-            i18nc("%1=filename, %2=percentage", "Searching content of '%1' (%2%)", fileName, pcnt);
+            i18nc("%1=filename, %2=percentage", "Searching content of '%1' (%2)", fileName,
+                      (totalBytes > 0 && totalBytes >= receivedBytes) ?
+                        // The normal case: A percentage is shown.
+                        // Note: Instead of rounding, a truncation is performed because each percentage is seen
+                        // only briefly —therefore, here speed is more important than precision
+                        QString("%1%").arg((receivedBytes*100)/totalBytes) :
+                        // An unusual case: There are problems when calculating that percentage. Sometimes it's
+                        // because the contents of a big symlinked file are read, then the variable `totalBytes`
+                        // is very small (it's the size of a symlink) but much more bytes are read
+                        QString("%1 MiB").arg(receivedBytes/1048576)
+                 );
         timer.start();
         emit (const_cast<KrQuery *>(this))->status(message);
         return true;
