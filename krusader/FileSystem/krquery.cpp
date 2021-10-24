@@ -14,6 +14,7 @@
 #include <QRegExp>
 #include <QTextCodec>
 
+#include <KCoreAddons/KFormat>
 #include <KI18n/KLocalizedString>
 #include <KIO/Job>
 #include <KIOCore/KFileItem>
@@ -541,17 +542,18 @@ void KrQuery::containsContentFinished(KJob *) { busy = false; }
 bool KrQuery::checkTimer() const
 {
     if (timer.elapsed() >= STATUS_SEND_DELAY) {
+        static KFormat format;
         QString message =
             i18nc("%1=filename, %2=percentage", "Searching content of '%1' (%2)", fileName,
                       (totalBytes > 0 && totalBytes >= receivedBytes) ?
                         // The normal case: A percentage is shown.
                         // Note: Instead of rounding, a truncation is performed because each percentage is seen
                         // only briefly —therefore, here speed is more important than precision
-                        QString("%1%").arg((receivedBytes*100)/totalBytes) :
+                        i18nc("%1=percentage", "%1%", (receivedBytes*100)/totalBytes) :
                         // An unusual case: There are problems when calculating that percentage. Sometimes it's
                         // because the contents of a big symlinked file are read, then the variable `totalBytes`
                         // is very small (it's the size of a symlink) but much more bytes are read
-                        QString("%1 MiB").arg(receivedBytes/1048576)
+                        format.formatByteSize(static_cast<double>(receivedBytes), 0, KFormat::IECBinaryDialect, KFormat::UnitMegaByte)
                  );
         timer.start();
         emit (const_cast<KrQuery *>(this))->status(message);
