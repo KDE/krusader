@@ -27,10 +27,11 @@ class PanelContextMenu : public QMenu
 {
     Q_OBJECT
 public:
-    static void run(const QPoint &pos, KrPanel *panel);
+    static PanelContextMenu* run(const QPoint &pos, KrPanel *panel);
 
 private:
     explicit PanelContextMenu(KrPanel *thePanel, QWidget *parent = nullptr);
+
     void performAction(int id);
     void addEmptyMenuEntries(); // adds the choices for a menu without selected items
     void addCreateNewMenu(); // adds a "create new" submenu

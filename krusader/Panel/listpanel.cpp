@@ -48,7 +48,6 @@
 #include "krpreviewpopup.h"
 #include "krsearchbar.h"
 #include "listpanelactions.h"
-#include "panelcontextmenu.h"
 #include "panelfunc.h"
 #include "sidebar.h"
 #include "viewactions.h"
@@ -860,12 +859,14 @@ void ListPanel::popRightClickMenu(const QPoint &loc)
 {
     // run it, on the mouse location
     int j = QFontMetrics(font()).height() * 2;
-    PanelContextMenu::run(QPoint(loc.x() + 5, loc.y() + j), this);
+    auto menu = PanelContextMenu::run(QPoint(loc.x() + 5, loc.y() + j), this);
+    _contextMenu.reset(menu);
 }
 
 void ListPanel::popEmptyRightClickMenu(const QPoint &loc)
 {
-    PanelContextMenu::run(loc, this);
+    auto menu = PanelContextMenu::run(loc, this);
+    _contextMenu.reset(menu);
 }
 
 QString ListPanel::getCurrentName() const

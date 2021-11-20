@@ -41,6 +41,7 @@
 #include <KIOFileWidgets/KUrlNavigator>
 
 #include "krpanel.h"
+#include "panelcontextmenu.h"
 
 #define PROP_SYNC_BUTTON_ON               1
 #define PROP_LOCKED                       2
@@ -240,6 +241,7 @@ private:
     QUrl _pinnedUrl; // only for TabState::PINNED
     TabState _tabState;
     QList<int> sidebarSplitterSizes;
+    QScopedPointer<PanelContextMenu> _contextMenu;
 };
 
 #endif

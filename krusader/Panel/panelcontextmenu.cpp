@@ -48,14 +48,15 @@
 #include "../MountMan/kmountman.h"
 #include "../UserAction/useractionpopupmenu.h"
 
-void PanelContextMenu::run(const QPoint &pos, KrPanel *panel)
+PanelContextMenu* PanelContextMenu::run(const QPoint &pos, KrPanel *panel)
 {
-    PanelContextMenu menu(panel);
-    QAction * res = menu.exec(pos);
+    auto menu = new PanelContextMenu(panel);
+    QAction * res = menu->exec(pos);
     int result = res && res->data().canConvert<int>() ?
                      res->data().toInt() :
                      -1;
-    menu.performAction(result);
+    menu->performAction(result);
+    return menu;
 }
 
 /**
