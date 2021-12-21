@@ -165,7 +165,7 @@ void KIso::prepareDevice(const QString & filename,
         if(mimetype.isEmpty()) {
             device = new KFilterDev(filename);
         } else {
-            device = new KCompressionDevice(filename, KFilterDev::compressionTypeForMimeType(mimetype));
+            device = new KCompressionDevice(filename, COMPRESSIONTYPEFORMIMETYPE(mimetype));
         }
         if (device->compressionType() == KCompressionDevice::None && forced) {
             delete device;

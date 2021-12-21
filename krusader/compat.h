@@ -9,6 +9,7 @@
 
 #include <kio_version.h>
 #include <kcompletion_version.h>
+#include <karchive_version.h>
 
 /**
  * UDSEntry::insert(uint, const QString &) was made deprecated since 5.48 in
@@ -44,6 +45,18 @@
     #define KLINEEDIT_RETURNKEYPRESSED returnKeyPressed
 #else
     #define KLINEEDIT_RETURNKEYPRESSED returnPressed
+#endif
+
+/**
+ * KFilterDev::compressionTypeForMimeType has been deprecated since 5.85
+ * in favor of KLineEdit::returnKeyPressed.
+ *
+ * This can be removed when the frameworks minimum version required will be >= 5.85
+ */
+#if KARCHIVE_VERSION >= QT_VERSION_CHECK(5, 85, 0)
+    #define COMPRESSIONTYPEFORMIMETYPE KCompressionDevice::compressionTypeForMimeType
+#else
+    #define COMPRESSIONTYPEFORMIMETYPE KFilterDev::compressionTypeForMimeType
 #endif
 
 /**
