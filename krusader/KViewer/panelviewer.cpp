@@ -275,7 +275,11 @@ void PanelViewer::openFile(KFileItem fi)
             qDebug() << "openFile completed: '" << curl << "'";
         };
         connect(cpart.data(), QOverload<>::of(&KParts::ReadOnlyPart::completed), this, cPartCompleted);
+#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 81, 0)
+        connect(cpart.data(), &KParts::ReadOnlyPart::completedWithPendingAction, this, cPartCompleted);
+#else
         connect(cpart.data(), QOverload<bool>::of(&KParts::ReadOnlyPart::completed), this, cPartCompleted);
+#endif
 
         // Note: Don't rely on return value of openUrl as the call is async in general
         cpart->openUrl(curl);
