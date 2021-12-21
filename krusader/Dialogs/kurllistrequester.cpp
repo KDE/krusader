@@ -8,6 +8,7 @@
 #include "kurllistrequester.h"
 #include "../FileSystem/filesystem.h"
 #include "../icon.h"
+#include "../compat.h"
 
 // QtGui
 #include <QPixmap>
@@ -59,7 +60,7 @@ KURLListRequester::KURLListRequester(Mode requestMode, QWidget *parent)
 
     connect(urlAddBtn, &QToolButton::clicked, this, &KURLListRequester::slotAdd);
     connect(urlBrowseBtn, &QToolButton::clicked, this, &KURLListRequester::slotBrowse);
-    connect(urlLineEdit, &KLineEdit::returnPressed, this, &KURLListRequester::slotAdd);
+    connect(urlLineEdit, &KLineEdit::KLINEEDIT_RETURNKEYPRESSED, this, &KURLListRequester::slotAdd);
     connect(urlListBox, &KrListWidget::itemRightClicked, this, &KURLListRequester::slotRightClicked);
     connect(urlLineEdit, &KLineEdit::textChanged, this, &KURLListRequester::changed);
 }
