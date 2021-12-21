@@ -32,6 +32,7 @@
 #include <KXmlGui/KShortcutsDialog>
 #include <KXmlGui/KToolBar>
 #include <utility>
+#include <kxmlgui_version.h>
 
 #include "../defaults.h"
 #include "../icon.h"
@@ -222,7 +223,11 @@ void KrViewer::createGUI(KParts::Part* part)
 
 void KrViewer::configureShortcuts()
 {
+#if KXMLGUI_VERSION >= QT_VERSION_CHECK(5, 84, 0)
+    KShortcutsDialog::showDialog(actionCollection(), KShortcutsEditor::LetterShortcutsAllowed, this);
+#else
     KShortcutsDialog::configure(actionCollection(), KShortcutsEditor::LetterShortcutsAllowed, this);
+#endif
 }
 
 bool KrViewer::eventFilter(QObject * /* watched */, QEvent * e)
