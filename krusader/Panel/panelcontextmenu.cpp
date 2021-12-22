@@ -352,12 +352,6 @@ void PanelContextMenu::performAction(int id)
     case BROWSE_ID :
         panel->func->goInside(singleURL.fileName());
         break;
-    case COPY_ID :
-        panel->func->copyFiles();
-        break;
-    case MOVE_ID :
-        panel->func->moveFiles();
-        break;
     case TRASH_ID :
         panel->func->deleteFiles(true);
         break;
@@ -366,15 +360,6 @@ void PanelContextMenu::performAction(int id)
         break;
     case EJECT_ID :
         krMtMan.eject(singleURL.adjusted(QUrl::StripTrailingSlash).path());
-        break;
-//     case SHRED_ID :
-//        if ( KMessageBox::warningContinueCancel( krApp,
-//             i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever.</qt>", item->name()),
-//             QString(), KStandardGuiItem::cont(), KStandardGuiItem::cancel(), "Shred" ) == KMessageBox::Continue )
-//           KShred::shred( panel->func->files() ->getFile( item->name() ).adjusted(QUrl::RemoveTrailingSlash).path() );
-//      break;
-    case OPEN_KONQ_ID :
-        KToolInvocation::startServiceByDesktopName("konqueror", singleURL.toDisplayString(QUrl::PreferLocalFile));
         break;
     case CHOOSE_ID : // open-with dialog
         panel->func->displayOpenWithDialog(_items.urlList());
