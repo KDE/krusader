@@ -27,9 +27,12 @@
 #include <KIOWidgets/KRun>
 #include <KWidgetsAddons/KMessageBox>
 #include <KToolInvocation>
-#include <KIO/OpenUrlJob>
 #include <kio_version.h>
+#include <kservice_version.h>
 
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
+#include <KIO/OpenUrlJob>
+#endif
 
 void
 RadialMap::Widget::resizeEvent(QResizeEvent*)
@@ -186,11 +189,15 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
                 //KRun::runCommand will show an error message if there was trouble
                 KRun::runCommand(QString("kfmclient openURL '%1'").arg(url.url()), this);
 #endif
-            } else if (result == actKonsole)
+            } else if (result == actKonsole) {
+#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 79, 0)
+                KToolInvocation::invokeTerminal(QString(), QStringList(), url.url());
+#else
                 KToolInvocation::invokeTerminal(QString(), url.url());
-            else if (result == actViewMag || result == actFileOpen)
+#endif
+            } else if (result == actViewMag || result == actFileOpen) {
                 goto sectionTwo;
-            else if (result == actEditDel) {
+            } else if (result == actEditDel) {
                 const QUrl url = Widget::url(m_focus->file());
                 const QString message = (m_focus->file()->isDir()
                                          ? i18n("<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</b> deleted.</qt>", url.toDisplayString())
@@ -204,9 +211,10 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
                     connect(job, &KIO::Job::result, this, &Widget::deleteJobFinished);
                     QApplication::setOverrideCursor(Qt::BusyCursor);
                 }
-            } else
+            } else {
                 //ensure m_focus is set for new mouse position
                 sendFakeMouseEvent();
+            }
 
         } else {
 
