@@ -27,6 +27,7 @@
 #include <KIOCore/KFileItemListProperties>
 #include <KIOWidgets/KAbstractFileItemActionPlugin>
 #include <KCoreAddons/KPluginMetaData>
+#include <kio_version.h>
 
 #include "krpreviewpopup.h"
 #include "listpanel.h"
@@ -225,7 +226,11 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     auto *fileItemActions = new KFileItemActions(this);
     fileItemActions->setItemListProperties(KFileItemListProperties(_items));
     fileItemActions->setParentWidget(MAIN_VIEW);
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 79, 0)
+    fileItemActions->addActionsTo(this);
+#else
     fileItemActions->addServiceActionsTo(this);
+#endif
 
     addSeparator();
 
