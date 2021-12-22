@@ -115,8 +115,6 @@ int main(int argc, char *argv[])
 
     aboutData.addAuthor(i18n("Davide Gianforte"), i18n("Developer"), QStringLiteral("davide@gengisdave.org"), nullptr);
     aboutData.addAuthor(i18n("Toni Asensi Esteve"), i18n("Developer"), QStringLiteral("toni.asensi@kdemail.net"), nullptr);
-    aboutData.addAuthor(i18n("Alexander Bikadorov"), i18n("Developer"), QStringLiteral("alex.bikadorov@kdemail.net"), nullptr);
-    aboutData.addAuthor(i18n("Martin Kostolný"), i18n("Developer"), QStringLiteral("clearmartin@gmail.com"), nullptr);
     aboutData.addAuthor(i18n("Nikita Melnichenko"), i18n("Developer"), QStringLiteral("nikita+kde@melnichenko.name"), nullptr);
     aboutData.addAuthor(i18n("Yuri Chornoivan"), i18n("Documentation"), QStringLiteral("yurchor@ukr.net"), nullptr);
     aboutData.addAuthor(i18n("Rafi Yanai"), i18n("Author (retired)"), QStringLiteral("yanai@users.sourceforge.net"));
@@ -128,6 +126,8 @@ int main(int argc, char *argv[])
     aboutData.addAuthor(i18n("Jan Lepper"), i18n("Developer (retired)"), QStringLiteral("jan_lepper@gmx.de"), nullptr);
     aboutData.addAuthor(i18n("Andrey Matveyakin"), i18n("Developer (retired)"), QStringLiteral("a.matveyakin@gmail.com"), nullptr);
     aboutData.addAuthor(i18n("Simon Persson"), i18n("Developer (retired)"), QStringLiteral("simon.persson@mykolab.com"), nullptr);
+    aboutData.addAuthor(i18n("Alexander Bikadorov"), i18n("Developer (retired)"), QStringLiteral("alex.bikadorov@kdemail.net"), nullptr);
+    aboutData.addAuthor(i18n("Martin Kostolný"), i18n("Developer (retired)"), QStringLiteral("clearmartin@gmail.com"), nullptr);
     aboutData.addAuthor(i18n("Dirk Eschler"), i18n("Webmaster (retired)"), QStringLiteral("deschler@users.sourceforge.net"), nullptr);
     aboutData.addAuthor(i18n("Frank Schoolmeesters"), i18n("Documentation and marketing coordinator (retired)"), QStringLiteral("frank_schoolmeesters@yahoo.com"), nullptr);
     aboutData.addAuthor(i18n("Richard Holt"), i18n("Documentation & Proofing (retired)"), QStringLiteral("richard.holt@gmail.com"), nullptr);
