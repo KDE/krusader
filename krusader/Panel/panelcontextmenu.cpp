@@ -171,13 +171,17 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         uniqueMimeTypes.insert(file->getMime());
     const QStringList mimeTypes = uniqueMimeTypes.values();
 
-#if KSERVICE_VERSION < QT_VERSION_CHECK(5, 68, 0)
+#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 83, 0)
     offers = mimeTypes.count() == 1 ?
-                 KMimeTypeTrader::self()->query(mimeTypes.first()) :
+                 KApplicationTrader::queryByMimeType(mimeTypes.first()) :
+                 KFileItemActions::associatedApplications(mimeTypes);
+#elif KSERVICE_VERSION >= QT_VERSION_CHECK(5, 68, 0)
+    offers = mimeTypes.count() == 1 ?
+                 KApplicationTrader::queryByMimeType(mimeTypes.first()) :
                  KFileItemActions::associatedApplications(mimeTypes, QString());
 #else
     offers = mimeTypes.count() == 1 ?
-                 KApplicationTrader::queryByMimeType(mimeTypes.first()) :
+                 KMimeTypeTrader::self()->query(mimeTypes.first()) :
                  KFileItemActions::associatedApplications(mimeTypes, QString());
 #endif
 
