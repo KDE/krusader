@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2018-2020 Shie Erlich <krusader@users.sourceforge.net>
     SPDX-FileCopyrightText: 2018-2020 Rafi Yanai <krusader@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2018-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2018-2021 Krusader Krew <https://krusader.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
