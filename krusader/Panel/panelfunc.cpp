@@ -31,17 +31,26 @@
 #include <KI18n/KLocalizedString>
 #include <KIO/DesktopExecParser>
 #include <KIO/JobUiDelegate>
+
+#include <kio_version.h>
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
+#include <KIO/CommandLauncherJob>
+#include <KIO/OpenUrlJob>
+#endif
+
 #include <KIOCore/KProtocolInfo>
 #include <KIOWidgets/KDesktopFileActions>
 #include <KIOWidgets/KOpenWithDialog>
 #include <KIOWidgets/KPropertiesDialog>
 #include <KIOWidgets/KRun>
+
 #include <kservice_version.h>
 #if KSERVICE_VERSION < QT_VERSION_CHECK(5, 68, 0)
 #include <KService/KMimeTypeTrader>
 #else
 #include <KService/KApplicationTrader>
 #endif
+
 #include <KWidgetsAddons/KCursor>
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KToggleAction>
@@ -142,7 +151,13 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
 
     if (externallyExecutable) {
         if (mime == QLatin1String("application/x-desktop")) {
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
+            // KJob jobs will delete themselves when they finish (see kjob.h for more info)
+            auto *job = new KIO::OpenUrlJob(url, this);
+            job->start();
+#else
             KDesktopFileActions::runWithStartup(url, url.isLocalFile(), QByteArray());
+#endif
             return;
         }
         if (KRun::isExecutableFile(url, mime)) {
@@ -954,8 +969,24 @@ void ListPanelFunc::runCommand(const QString& cmd)
     qDebug() << "command=" << cmd;
     const QString workdir = panel->virtualPath().isLocalFile() ?
             panel->virtualPath().path() : QDir::homePath();
+
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
+    /* A note from kjob.h (KIO::CommandLauncherJob is a KJob):
+     *
+     * KJob and its subclasses are meant to be used
+     * in a fire-and-forget way. Jobs will delete themselves
+     * when they finish using deleteLater() (although this
+     * behaviour can be changed), so a job instance will
+     * disappear after the next event loop run.
+     */
+    auto *job = new KIO::CommandLauncherJob(cmd, this);
+    job->setUiDelegate(new KDialogJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, krMainWindow));
+    job->setWorkingDirectory(workdir);
+    job->start();
+#else
     if(!KRun::runCommand(cmd, krMainWindow, workdir))
         KMessageBox::error(nullptr, i18n("Could not start %1", cmd));
+#endif
 }
 
 void ListPanelFunc::runService(const KService &service, const QList<QUrl>& urls)

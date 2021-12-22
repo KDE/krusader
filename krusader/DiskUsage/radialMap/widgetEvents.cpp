@@ -27,6 +27,8 @@
 #include <KIOWidgets/KRun>
 #include <KWidgetsAddons/KMessageBox>
 #include <KToolInvocation>
+#include <KIO/OpenUrlJob>
+#include <kio_version.h>
 
 
 void
@@ -175,10 +177,16 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
             if (result == nullptr)
                 result = (QAction *) - 1;  // sanity
 
-            if (result == actKonq)
+            if (result == actKonq) {
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
+                // KJob jobs will delete themselves when they finish (see kjob.h for more info)
+                auto *job = new KIO::OpenUrlJob(url, this);
+                job->start();
+#else
                 //KRun::runCommand will show an error message if there was trouble
                 KRun::runCommand(QString("kfmclient openURL '%1'").arg(url.url()), this);
-            else if (result == actKonsole)
+#endif
+            } else if (result == actKonsole)
                 KToolInvocation::invokeTerminal(QString(), url.url());
             else if (result == actViewMag || result == actFileOpen)
                 goto sectionTwo;
