@@ -1,5 +1,8 @@
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui version="27" name="krusader" >
+<!-- NOTE: Always update the version in the gui tag below if you make changes to the menu bar and its actions!
+           This will trigger an update of the ~/.local/share/kxmlgui5/krusader/krusaderui.rc file next time
+           user opens the application: the menu bar will be replaced with the new version, toolbars updated.  -->
+<gui version="28" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -26,10 +29,6 @@
    <Action name="split" />
    <Action name="combine" />
    <Separator/>
-   <!--
-   <Action name="std_print" />
-   <Separator/>
-   -->
    <Action name="std_quit" />
   </Menu>
   <Menu name="edit">
@@ -94,11 +93,6 @@
    <Action name="jump_back" />
   </Menu>
   <Action name="useractionmenu">
-   <!--
-   <text>User&amp;actions</text>
-   <Action name="manage useractions" />
-   <Separator/>
-   -->
   </Action>
   <Menu name="_tools" ><!-- FIXME tools menu won't show up before the options menu, but does when the name attribute is renamed?! -->
    <text>&amp;Tools</text>
@@ -119,16 +113,9 @@
    <Action name="emptytrash" />
    <Separator/>
    <Action name="JS_Console" />
-   <!-- <Action name="user menu" /> -->
-   <!--
-   <Separator/>
-   <Action name="add tool" />
-   <Separator/>
-   -->
   </Menu>
   <Menu name="settings" noMerge="1">
    <text>&amp;Settings</text>
-   <!-- Show Menubar -->
    <Action name="options_show_menubar" />
    <Menu name="show_toolbars" >
      <text>&amp;Toolbars</text>
@@ -152,7 +139,6 @@
    <Separator/>
    <Action name="options_configure_keybinding" />
    <Action name="options_configure_toolbars" />
-   <!-- <Action name="tools setup" /> -->
    <Action name="konfigurator" />
   </Menu>
   <Menu name="window" >
@@ -220,9 +206,3 @@
   <Action accel="" name="sysinfo" />
  </ActionProperties>
 </gui>
-
-<!--
-   <Action name="full panel" />
-   <Action name="tree panel" />
-   <Action name="quickview panel" />
--->
