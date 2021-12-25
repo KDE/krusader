@@ -359,9 +359,11 @@ void PanelManager::slotCloseTab(int index)
 
 void PanelManager::slotUndoCloseTab()
 {
-    Q_ASSERT(KrActions::actClosedTabsMenu->menu()->actions().size() > 2);
+    const int fixedMenuEntries = KrActions::actClosedTabsMenu->quantFixedMenuEntries;
+    Q_ASSERT(KrActions::actClosedTabsMenu->menu()->actions().size() > fixedMenuEntries);
     // Performs the same action as when clicking on that menu item
-    KrActions::actClosedTabsMenu->slotTriggered(KrActions::actClosedTabsMenu->menu()->actions().at(2));
+    KrActions::actClosedTabsMenu->slotTriggered(
+               KrActions::actClosedTabsMenu->menu()->actions().at(fixedMenuEntries));
 }
 
 void PanelManager::undoCloseTab(const QAction *action)
@@ -407,12 +409,13 @@ void PanelManager::undoCloseTab(const QAction *action)
 
 void PanelManager::delAllClosedTabs()
 {
+    const int quantFixedMenuEntries = KrActions::actClosedTabsMenu->quantFixedMenuEntries;
     RecentlyClosedTabsMenu *closedTabsMenu = KrActions::actClosedTabsMenu;
     if (closedTabsMenu) {
         const int quantActions = closedTabsMenu->menu()->actions().size();
-        // Remove the actions (and related information) that follow those
-        // two items: the "Empty Recently Closed Tabs" one and a separator
-        for (int x = quantActions - 1; x >= 2; x--) {
+        // Remove the actions (and related information) that follow the
+        // fixed menu entries
+        for (int x = quantActions - 1; x >= quantFixedMenuEntries; x--) {
             QAction *action = closedTabsMenu->menu()->actions().at(x);
             delClosedTab(action);
         }

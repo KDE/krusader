@@ -37,6 +37,12 @@ private:
                                     TabActions *argTabActions);
     QAction *actClearTheList;
     TabActions *tabActions = nullptr;
+
+    //! Krusader saves information about closed tabs until its quantity reaches that limit
+    const int maxClosedTabs = 6;
+
+    //! The quantity of fixed menu entries (the "Empty Recently Closed Tabs" one and a separator)
+    const int quantFixedMenuEntries = 2;
 };
 
 #endif // RECENTLYCLOSEDTABSMENU_H

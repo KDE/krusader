@@ -55,16 +55,15 @@ QAction *RecentlyClosedTabsMenu::updateAfterClosingATab(const QUrl &urlClosedTab
     actReopenTab->setIcon(QIcon::fromTheme(iconName));
 
     // Add a menu entry (related to the closed tab) after the
-    // separator and the "Empty Recently Closed Tabs" entry
-    if (menu()->actions().size() == 2) {
+    // fixed menu entries
+    if (menu()->actions().size() == quantFixedMenuEntries) {
         addAction(actReopenTab);
     } else {
-        insertAction(menu()->actions().at(2), actReopenTab);
+        insertAction(menu()->actions().at(quantFixedMenuEntries), actReopenTab);
     }
 
-    // Remove the last entry of the menu if there are more than
-    // six (8 - 2) closed tabs there
-    if (menu()->actions().size() > 8) {
+    // Remove the last entry of the menu if the limit is exceeded
+    if (menu()->actions().size() > quantFixedMenuEntries + maxClosedTabs) {
         ACTIVE_MNG->delClosedTab(menu()->actions().last());
     }
 
@@ -91,7 +90,7 @@ void RecentlyClosedTabsMenu::slotTriggered(QAction *action)
         action = nullptr;
     }
 
-    if (menu()->actions().size() <= 2) {
+    if (menu()->actions().size() <= quantFixedMenuEntries) {
         // Disable objects
         tabActions->actUndoCloseTab->setEnabled(false);
         setEnabled(false);
