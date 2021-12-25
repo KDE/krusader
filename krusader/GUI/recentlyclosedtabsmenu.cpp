@@ -65,7 +65,7 @@ QAction *RecentlyClosedTabsMenu::updateAfterClosingATab(const QUrl &urlClosedTab
     // Remove the last entry of the menu if there are more than
     // six (8 - 2) closed tabs there
     if (menu()->actions().size() > 8) {
-        removeAction(menu()->actions().last());
+        ACTIVE_MNG->delClosedTab(menu()->actions().last());
     }
 
     // Enable objects
@@ -82,12 +82,7 @@ void RecentlyClosedTabsMenu::slotTriggered(QAction *action)
         return;
 
     if (action == actClearTheList) {
-        // Remove the actions that follow those two items:
-        // the "Empty Recently Closed Tabs" one and a separator
-        const int quantActions = menu()->actions().size();
-        for (int x = quantActions - 1; x >= 2; x--) {
-            removeAction(menu()->actions().at(x));
-        }
+        ACTIVE_MNG->delAllClosedTabs();
     } else {
         ACTIVE_MNG->undoCloseTab(action);
 

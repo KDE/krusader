@@ -368,6 +368,9 @@ void Krusader::savePosition() {
 }
 
 void Krusader::saveSettings() {
+    // avoid that information about closed tabs gets saved
+    ACTIVE_MNG->delAllClosedTabs();
+
     // workaround: revert terminal fullscreen mode before saving widget and toolbar visibility
     if (MAIN_VIEW->isTerminalEmulatorFullscreen()) {
         MAIN_VIEW->setTerminalEmulator(false, true);

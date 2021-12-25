@@ -79,6 +79,14 @@ public:
      * retrieve information about the previously closed tab.
      */
     void undoCloseTab(const QAction *action);
+    /**
+     * Delete what is stored about all the closed tabs.
+     */
+    void delAllClosedTabs();
+    /**
+     * Delete what is stored about a closed tab.
+     */
+    void delClosedTab(QAction *action);
 
 signals:
     void draggingTab(PanelManager *from, QMouseEvent*);
