@@ -1,6 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2005 Csaba Karai <cskarai@freemail.hu>
-    SPDX-FileCopyrightText: 2005-2021 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2005-2022 Krusader Krew <https://krusader.org>
 
     Based on KrRemoteEncodingMenu (© Csaba Karai and Krusader Krew)
     from Krusader, DolphinRecentTabsMenu (© Emmanuel Pescosta)
