@@ -87,7 +87,7 @@ KMountMan::KMountMan(QWidget *parent) : _operational(false), waiting(false), mou
             QPointer<Solid::StorageAccess> access = device.as<Solid::StorageAccess>();
             if (access) {
                 connect(access, &Solid::StorageAccess::teardownRequested,
-                         this, &KMountMan::slotTeardownRequested, Qt::UniqueConnection);
+                        this, &KMountMan::slotTeardownRequested, Qt::UniqueConnection);
             }
         }
     }
@@ -195,10 +195,10 @@ void KMountMan::mount(const QString& mntPoint, bool blocking)
 void KMountMan::unmount(const QString& mntPoint, bool blocking)
 {
     //if working dir is below mountpoint cd to ~ first
-    if(QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
+    if (QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
         QDir::setCurrent(QDir::homePath());
 
-    if(QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()) == QUrl::fromLocalFile(QDir::current().canonicalPath()))
+    if (QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()) == QUrl::fromLocalFile(QDir::current().canonicalPath()))
         QDir::setCurrent(QDir::homePath());
 
     QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::StorageAccess);
@@ -480,7 +480,7 @@ void KMountMan::deviceAdded (const QString & udi)
         QPointer<Solid::StorageAccess> access = device.as<Solid::StorageAccess>();
         if (access) {
             connect(access, &Solid::StorageAccess::teardownRequested,
-                     this, &KMountMan::slotTeardownRequested, Qt::UniqueConnection);
+                    this, &KMountMan::slotTeardownRequested, Qt::UniqueConnection);
         }
     }
 }
