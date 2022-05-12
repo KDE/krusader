@@ -30,8 +30,11 @@
 #include <KService/KService>
 #include <KWidgetsAddons/KToggleAction>
 #include <KWidgetsAddons/KMessageBox>
+#include <KConfigCore/KConfig>
+#include <KConfigCore/KConfigGroup>
 
 #include "kcmdline.h"
+#include "../defaults.h"
 #include "../kractions.h"
 #include "../krmainwindow.h"
 #include "../krservices.h"
@@ -237,6 +240,11 @@ bool TerminalDock::eventFilter(QObject * watched, QEvent * e)
         }
         break;
     }
+    case QEvent::FocusIn:
+    case QEvent::FocusOut: {
+        onTerminalFocusChanged(e->type() == QEvent::FocusIn);
+        break;
+    }
     default:
         return false;
     }
@@ -274,3 +282,34 @@ void TerminalDock::showEvent(QShowEvent * /*e*/)
     }
 }
 
+void TerminalDock::onTerminalFocusChanged(bool focused)
+{
+    if (konsole_part == nullptr) {
+        return;
+    }
+
+    if (!focused) {
+        disconnect(konsole_part, SIGNAL(currentDirectoryChanged(QString)), nullptr, nullptr);
+        return;
+    }
+
+    const KConfigGroup cfg = krConfig->group("General");
+    if (!cfg.readEntry("Follow Terminal CD", _FollowTerminalCD)) {
+        return;
+    }
+
+    connect(konsole_part, SIGNAL(currentDirectoryChanged(QString)),
+            this, SLOT(currentDirChanged(QString)));
+}
+
+void TerminalDock::currentDirChanged(const QString &terminalPath)
+{
+    const QString panelPath = ACTIVE_PANEL->virtualPath().toLocalFile();
+    if (panelPath == terminalPath) {
+        return;
+    }
+
+    qDebug() << "terminal cwd changed=" << terminalPath << "panelPath=" << panelPath;
+    lastPath = terminalPath;
+    _mainWindow->activePanel()->func->openUrl(QUrl::fromLocalFile(terminalPath));
+}

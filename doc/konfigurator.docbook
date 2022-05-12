@@ -1084,6 +1084,10 @@
         <command>cd</command> command sent to the Terminal Emulator
         if the panel folder changes.</para>
       <para>
+        <guilabel>Active panel follows Embedded Terminal working directory</guilabel>: if unchecked, active panel
+        stays unchanged while the user navigates in the embedded terminal (using cd, popd, etc).
+      </para>
+      <para>
 	<guilabel>Toggle Fullscreen Embedded Terminal</guilabel>: if checked,
 	  &krusader; shows fullscreen terminal in
 	  <application>Midnight Commander</application> style (Terminal is shown

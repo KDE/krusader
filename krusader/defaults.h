@@ -115,6 +115,8 @@
 #define _Terminal      "konsole --separate"
 // Send CDs ///////////
 #define _SendCDs  true
+// Follow Terminal CD ///////////
+#define _FollowTerminalCD  true
 // Editor /////////////
 #define _Editor        "internal editor"
 // Use Okteta as Hex viewer ///////

@@ -42,11 +42,15 @@ public:
     bool initialise();
     void hideEvent(QHideEvent * e) override;
     void showEvent(QShowEvent * e) override;
+    void onTerminalFocusChanged(bool focused);
     inline KParts::Part* part() {
         return konsole_part;
     }
+
 private slots:
     void killTerminalEmulator();
+    void currentDirChanged(const QString& terminalPath);
+
 private:
     KrMainWindow *_mainWindow;
     QString lastPath;                       // path of the last sendCd

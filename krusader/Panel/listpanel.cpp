@@ -77,6 +77,7 @@
 #include "../GUI/dirhistorybutton.h"
 #include "../GUI/kcmdline.h"
 #include "../GUI/mediabutton.h"
+#include "../GUI/terminaldock.h"
 #include "../MountMan/kmountman.h"
 #include "../UserAction/useractionpopupmenu.h"
 
@@ -744,7 +745,7 @@ void ListPanel::slotStartUpdate(bool directoryChange)
     const QUrl currentUrl = virtualPath();
     if (directoryChange) {
 
-        if (this == ACTIVE_PANEL) {
+        if (this == ACTIVE_PANEL && !MAIN_VIEW->terminalDock()->hasFocus()) {
             slotFocusOnMe();
         }
 
