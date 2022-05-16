@@ -66,11 +66,13 @@ public slots:
     void autoMount(const QString& path);             // just call it before refreshing into a dir
     void delayedPerformAction(const QAction *action);
     void quickList();
+    void slotTeardownRequested(const QString& udi);
 
 protected slots:
     void jobResult(KJob *job);
     void slotTeardownDone(Solid::ErrorType error, const QVariant& errorData, const QString &udi);
     void slotSetupDone(Solid::ErrorType error, const QVariant& errorData, const QString &udi);
+    void deviceAdded(const QString &udi);
 
 protected:
     // used internally
