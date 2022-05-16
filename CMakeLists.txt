@@ -2,14 +2,16 @@ cmake_minimum_required(VERSION 3.0)
 
 project(krusader)
 
-set(VERSION "2.8.0-dev" )
+set(VERSION "2.8.0-dev")
 set(RELEASE_NAME "Bleeding Edge")
 
-if (NOT CMAKE_INSTALL_PREFIX MATCHES "^/usr(/local)?/?$" AND NOT DEFINED KDE_INSTALL_QTPLUGINDIR AND NOT DEFINED KDE_INSTALL_USE_QT_SYS_PATHS)
-    message(WARNING "CMAKE_INSTALL_PREFIX is not set to a standard location (/usr or /usr/local), krarc:/ protocol may not work. To force installing plugins into standard location use -DKDE_INSTALL_USE_QT_SYS_PATHS=true")
-endif()
+set(MIN_QT_VERSION 5.12)
+set(MIN_KF_VERSION 5.68)
 
-find_package(ECM 1.7.0 REQUIRED NO_MODULE)
+
+# ===== Packages =====
+
+find_package(ECM ${MIN_KF_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
@@ -22,8 +24,7 @@ include(ECMAddAppIcon)
 include(FeatureSummary)
 include(CheckIncludeFiles)
 
-
-find_package(Qt5 5.9 CONFIG REQUIRED
+find_package(Qt5 ${MIN_QT_VERSION} CONFIG REQUIRED
   Concurrent
   Core
   Gui
@@ -33,20 +34,7 @@ find_package(Qt5 5.9 CONFIG REQUIRED
   Xml
 )
 
-# determine kf5 version is at least 5.23
-message(STATUS "Searching for KF5KIO version 5.23 or newer...")
-find_package(KF5 5.23 QUIET COMPONENTS
-  KIO
-)
-if(KF5_FOUND)
-  set(KRARC_QUERY_ENABLED TRUE)
-  add_definitions( "-DKRARC_QUERY_ENABLED" )
-else(KF5_FOUND)
-  message(STATUS "KF5KIO version 5.23 or newer not found, some krarc:/ functionality will be disabled.")
-  set(KRARC_QUERY_ENABLED FALSE)
-endif(KF5_FOUND)
-
-find_package(KF5 REQUIRED COMPONENTS
+find_package(KF5 ${MIN_KF_VERSION} REQUIRED COMPONENTS
   Archive
   Bookmarks
   Codecs
@@ -69,19 +57,21 @@ find_package(KF5 REQUIRED COMPONENTS
   GuiAddons
 )
 
+
+# ===== Definitions =====
+
 # Synchronizer is enabled by default, unless disabled from the command line (-DENABLE_SYNCHRONIZER=OFF)
 option(ENABLE_SYNCHRONIZER "Enable Synchronizer" ON)
 
-# if an old setting is being used, use the setting that complies with the structure of other Krusader settings
+# If an old setting is being used, use the setting that complies with the structure of other Krusader settings.
 if(ENABLE_SYNCHRONIZER)
     set(SYNCHRONIZER_ENABLED TRUE)
-    add_definitions( "-DSYNCHRONIZER_ENABLED" )
+    add_definitions(-DSYNCHRONIZER_ENABLED)
 else()
     set(SYNCHRONIZER_ENABLED FALSE)
 endif()
 
-# For security reasons, absolute kdesu path is set at build time and is not
-# configurable.
+# For security reasons, absolute kdesu path is set at build time and is not configurable.
 if(NOT KDESU_PATH)
     if(EXISTS "${KDE_INSTALL_FULL_LIBDIR}/kf5/kdesu")
       # Used by Arch distribution
@@ -90,12 +80,29 @@ if(NOT KDESU_PATH)
       set(KDESU_PATH "${KDE_INSTALL_FULL_LIBEXECDIR_KF5}/kdesu")
     endif()
 endif()
-message("kdesu path set: ${KDESU_PATH}")
-add_definitions( -DKDESU_PATH="${KDESU_PATH}" )
+add_definitions(-DKDESU_PATH="${KDESU_PATH}")
+message(STATUS "kdesu path has been hard-coded: ${KDESU_PATH}")
 
 add_definitions(${QT_DEFINITIONS} ${KF5_DEFINITIONS})
-add_definitions( "-DKRARC_ENABLED" )
-add_definitions( "-DQT_NO_URL_CAST_FROM_STRING" )
+
+add_definitions(-DKRARC_ENABLED)
+add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
+
+# Enable Krarc query, since MIN_KF_VERSION >= 5.23
+add_definitions(-DKRARC_QUERY_ENABLED)
+
+
+# ===== Additional checks =====
+
+if (NOT CMAKE_INSTALL_PREFIX MATCHES "^/usr(/local)?/?$" AND NOT DEFINED KDE_INSTALL_QTPLUGINDIR
+        AND NOT DEFINED KDE_INSTALL_USE_QT_SYS_PATHS)
+    message(WARNING "CMAKE_INSTALL_PREFIX is not set to a standard location (/usr or /usr/local), \
+                     krarc:/ protocol may not work. To force installing plugins into standard location \
+                     use -DKDE_INSTALL_USE_QT_SYS_PATHS=true")
+endif()
+
+
+# ===== ACL support =====
 
 check_include_files(attr/libattr.h HAVE_ATTR_LIBATTR_H)
 check_include_files(sys/xattr.h HAVE_SYS_XATTR_H)
@@ -107,8 +114,8 @@ if (HAVE_ATTR_LIBATTR_H AND HAVE_SYS_XATTR_H AND HAVE_SYS_ACL_H AND HAVE_ACL_LIB
 endif(HAVE_ATTR_LIBATTR_H AND HAVE_SYS_XATTR_H AND HAVE_SYS_ACL_H AND HAVE_ACL_LIBACL_H)
 
 if (ACL_HEADERS_FOUND)
-    find_library(ACL_LIBS NAMES acl )
-    find_library(ATTR_LIBS NAMES attr )
+    find_library(ACL_LIBS NAMES acl)
+    find_library(ATTR_LIBS NAMES attr)
 endif(ACL_HEADERS_FOUND)
 
 if (ACL_HEADERS_FOUND AND ACL_LIBS AND ATTR_LIBS)
@@ -118,11 +125,18 @@ if (ACL_HEADERS_FOUND AND ACL_LIBS AND ATTR_LIBS)
     add_definitions(-DHAVE_POSIX_ACL)
 endif(ACL_HEADERS_FOUND AND ACL_LIBS AND ATTR_LIBS)
 
+
+# ===== Compile options =====
+
 if (CMAKE_COMPILER_IS_GNUCXX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fno-common -ansi -Wpedantic -Wconversion -Wpointer-arith -Wcast-qual -Wcast-align -Wwrite-strings -Wsuggest-override -Wfloat-equal -Woverloaded-virtual -Wundef -Wlogical-op -Wuninitialized -Wredundant-decls -Wnoexcept -Wnon-virtual-dtor -Wctor-dtor-privacy -Wzero-as-null-pointer-constant" CACHE STRING "" FORCE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fno-common -ansi -Wpedantic -Wconversion -Wpointer-arith \
+                         -Wcast-qual -Wcast-align -Wwrite-strings -Wsuggest-override -Wfloat-equal \
+                         -Woverloaded-virtual -Wundef -Wlogical-op -Wuninitialized -Wredundant-decls -Wnoexcept \
+                         -Wnon-virtual-dtor -Wctor-dtor-privacy -Wzero-as-null-pointer-constant" CACHE STRING "" FORCE)
 endif()
 
-#include(ConfigureChecks.cmake)
+
+# ===== Subdirectories =====
 
 add_subdirectory(krusader)
 add_subdirectory(pics)
@@ -130,6 +144,8 @@ add_subdirectory(doc-extras)
 add_subdirectory(krArc)
 add_subdirectory(iso)
 add_subdirectory(doc)
-#add_subdirectory(virt) - not used
+
+
+# ===== Output configuration =====
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

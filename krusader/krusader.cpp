@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2000 Shie Erlich <krusader@users.sourceforge.net>
     SPDX-FileCopyrightText: 2000 Rafi Yanai <krusader@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2004-2021 Krusader Krew <https://krusader.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -368,6 +368,9 @@ void Krusader::savePosition() {
 }
 
 void Krusader::saveSettings() {
+    // avoid that information about closed tabs gets saved
+    ACTIVE_MNG->delAllClosedTabs();
+
     // workaround: revert terminal fullscreen mode before saving widget and toolbar visibility
     if (MAIN_VIEW->isTerminalEmulatorFullscreen()) {
         MAIN_VIEW->setTerminalEmulator(false, true);

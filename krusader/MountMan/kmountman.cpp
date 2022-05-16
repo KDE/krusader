@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2000 Shie Erlich <krusader@users.sourceforge.net>
     SPDX-FileCopyrightText: 2000 Rafi Yanai <krusader@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2004-2021 Krusader Krew <https://krusader.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -23,6 +23,8 @@
 #include <KWidgetsAddons/KToolBarPopupAction>
 
 #include <Solid/Block>
+#include <Solid/Device>
+#include <Solid/DeviceNotifier>
 #include <Solid/OpticalDisc>
 #include <Solid/OpticalDrive>
 #include <Solid/StorageAccess>
@@ -78,6 +80,17 @@ KMountMan::KMountMan(QWidget *parent) : _operational(false), waiting(false), mou
         }
     }
 
+    connect(Solid::DeviceNotifier::instance(), &Solid::DeviceNotifier::deviceAdded, this, &KMountMan::deviceAdded);
+
+    for (Solid::Device &device : Solid::Device::allDevices()) {
+        if (device.isValid()) {
+            QPointer<Solid::StorageAccess> access = device.as<Solid::StorageAccess>();
+            if (access) {
+                connect(access, &Solid::StorageAccess::teardownRequested,
+                        this, &KMountMan::slotTeardownRequested, Qt::UniqueConnection);
+            }
+        }
+    }
 }
 
 KMountMan::~KMountMan() = default;
@@ -182,7 +195,10 @@ void KMountMan::mount(const QString& mntPoint, bool blocking)
 void KMountMan::unmount(const QString& mntPoint, bool blocking)
 {
     //if working dir is below mountpoint cd to ~ first
-    if(QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
+    if (QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
+        QDir::setCurrent(QDir::homePath());
+
+    if (QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()) == QUrl::fromLocalFile(QDir::current().canonicalPath()))
         QDir::setCurrent(QDir::homePath());
 
     QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::StorageAccess);
@@ -450,3 +466,21 @@ void KMountMan::slotSetupDone(Solid::ErrorType error, const QVariant& errorData,
     }
 }
 
+void KMountMan::slotTeardownRequested(const QString& udi)
+{
+    const QString mntPoint = KMountMan::pathForUdi(udi);
+    KMountMan::unmount(mntPoint, false);
+}
+
+void KMountMan::deviceAdded (const QString & udi)
+{
+    Solid::Device device(udi);
+
+    if (device.isValid()) {
+        QPointer<Solid::StorageAccess> access = device.as<Solid::StorageAccess>();
+        if (access) {
+            connect(access, &Solid::StorageAccess::teardownRequested,
+                    this, &KMountMan::slotTeardownRequested, Qt::UniqueConnection);
+        }
+    }
+}

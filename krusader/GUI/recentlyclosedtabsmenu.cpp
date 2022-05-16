@@ -1,6 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2005 Csaba Karai <cskarai@freemail.hu>
-    SPDX-FileCopyrightText: 2005-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2005-2021 Krusader Krew <https://krusader.org>
 
     Based on KrRemoteEncodingMenu (© Csaba Karai and Krusader Krew)
     from Krusader, DolphinRecentTabsMenu (© Emmanuel Pescosta)
@@ -55,17 +55,16 @@ QAction *RecentlyClosedTabsMenu::updateAfterClosingATab(const QUrl &urlClosedTab
     actReopenTab->setIcon(QIcon::fromTheme(iconName));
 
     // Add a menu entry (related to the closed tab) after the
-    // separator and the "Empty Recently Closed Tabs" entry
-    if (menu()->actions().size() == 2) {
+    // fixed menu entries
+    if (menu()->actions().size() == quantFixedMenuEntries) {
         addAction(actReopenTab);
     } else {
-        insertAction(menu()->actions().at(2), actReopenTab);
+        insertAction(menu()->actions().at(quantFixedMenuEntries), actReopenTab);
     }
 
-    // Remove the last entry of the menu if there are more than
-    // six (8 - 2) closed tabs there
-    if (menu()->actions().size() > 8) {
-        removeAction(menu()->actions().last());
+    // Remove the last entry of the menu if the limit is exceeded
+    if (menu()->actions().size() > quantFixedMenuEntries + maxClosedTabs) {
+        ACTIVE_MNG->delClosedTab(menu()->actions().last());
     }
 
     // Enable objects
@@ -82,12 +81,7 @@ void RecentlyClosedTabsMenu::slotTriggered(QAction *action)
         return;
 
     if (action == actClearTheList) {
-        // Remove the actions that follow those two items:
-        // the "Empty Recently Closed Tabs" one and a separator
-        const int quantActions = menu()->actions().size();
-        for (int x = quantActions - 1; x >= 2; x--) {
-            removeAction(menu()->actions().at(x));
-        }
+        ACTIVE_MNG->delAllClosedTabs();
     } else {
         ACTIVE_MNG->undoCloseTab(action);
 
@@ -96,7 +90,7 @@ void RecentlyClosedTabsMenu::slotTriggered(QAction *action)
         action = nullptr;
     }
 
-    if (menu()->actions().size() <= 2) {
+    if (menu()->actions().size() <= quantFixedMenuEntries) {
         // Disable objects
         tabActions->actUndoCloseTab->setEnabled(false);
         setEnabled(false);

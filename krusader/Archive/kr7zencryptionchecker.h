@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2001 Shie Erlich <krusader@users.sourceforge.net>
     SPDX-FileCopyrightText: 2001 Rafi Yanai <krusader@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2004-2021 Krusader Krew <https://krusader.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */

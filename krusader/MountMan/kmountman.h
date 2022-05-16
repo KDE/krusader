@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2000 Shie Erlich <krusader@users.sourceforge.net>
     SPDX-FileCopyrightText: 2000 Rafi Yanai <krusader@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2004-2021 Krusader Krew <https://krusader.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -66,11 +66,13 @@ public slots:
     void autoMount(const QString& path);             // just call it before refreshing into a dir
     void delayedPerformAction(const QAction *action);
     void quickList();
+    void slotTeardownRequested(const QString& udi);
 
 protected slots:
     void jobResult(KJob *job);
     void slotTeardownDone(Solid::ErrorType error, const QVariant& errorData, const QString &udi);
     void slotSetupDone(Solid::ErrorType error, const QVariant& errorData, const QString &udi);
+    void deviceAdded(const QString &udi);
 
 protected:
     // used internally

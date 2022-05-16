@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2002 Shie Erlich <erlich@users.sourceforge.net>
     SPDX-FileCopyrightText: 2002 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2004-2021 Krusader Krew <https://krusader.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -359,9 +359,11 @@ void PanelManager::slotCloseTab(int index)
 
 void PanelManager::slotUndoCloseTab()
 {
-    Q_ASSERT(KrActions::actClosedTabsMenu->menu()->actions().size() > 2);
+    const int fixedMenuEntries = KrActions::actClosedTabsMenu->quantFixedMenuEntries;
+    Q_ASSERT(KrActions::actClosedTabsMenu->menu()->actions().size() > fixedMenuEntries);
     // Performs the same action as when clicking on that menu item
-    KrActions::actClosedTabsMenu->slotTriggered(KrActions::actClosedTabsMenu->menu()->actions().at(2));
+    KrActions::actClosedTabsMenu->slotTriggered(
+               KrActions::actClosedTabsMenu->menu()->actions().at(fixedMenuEntries));
 }
 
 void PanelManager::undoCloseTab(const QAction *action)
@@ -403,6 +405,32 @@ void PanelManager::undoCloseTab(const QAction *action)
     QTimer::singleShot(1, this, [=] {
         panel->view->setSelectionUrls(selectedUrls);
     });
+}
+
+void PanelManager::delAllClosedTabs()
+{
+    const int quantFixedMenuEntries = KrActions::actClosedTabsMenu->quantFixedMenuEntries;
+    RecentlyClosedTabsMenu *closedTabsMenu = KrActions::actClosedTabsMenu;
+    if (closedTabsMenu) {
+        const int quantActions = closedTabsMenu->menu()->actions().size();
+        // Remove the actions (and related information) that follow the
+        // fixed menu entries
+        for (int x = quantActions - 1; x >= quantFixedMenuEntries; x--) {
+            QAction *action = closedTabsMenu->menu()->actions().at(x);
+            delClosedTab(action);
+        }
+    }
+}
+
+void PanelManager::delClosedTab(QAction *action)
+{
+    // Delete the settings of the closed tab.
+    // Note: The code is based on the one of slotCloseTab()
+    QString grpName = QString("closedTab_%1").arg(reinterpret_cast<qulonglong>(action));
+    krConfig->deleteGroup(grpName);
+
+    // Remove the menu entry and the rest of its information
+    KrActions::actClosedTabsMenu->removeAction(action);
 }
 
 void PanelManager::updateTabbarPos()
@@ -470,7 +498,6 @@ void PanelManager::slotNextTab()
     int nextInd = (currTab == _tabbar->count() - 1 ? 0 : currTab + 1);
     _tabbar->setCurrentIndex(nextInd);
 }
-
 
 void PanelManager::slotPreviousTab()
 {

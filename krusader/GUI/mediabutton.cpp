@@ -1,6 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2006 Csaba Karai <cskarai@freemail.hu>
-    SPDX-FileCopyrightText: 2006-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2006-2021 Krusader Krew <https://krusader.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -446,6 +446,7 @@ void MediaButton::mount(const QString& udi, bool open, bool newtab)
         if (open)
             udiToOpen = device.udi(), openInNewTab = newtab;
         connect(access, &Solid::StorageAccess::setupDone, this, &MediaButton::slotSetupDone);
+        connect(access, &Solid::StorageAccess::teardownRequested, &krMtMan, &KMountMan::slotTeardownRequested, Qt::UniqueConnection);
         access->setup();
     }
 }
