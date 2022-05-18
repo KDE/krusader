@@ -365,11 +365,7 @@ void PanelEditor::configureDeps()
     bool foundPlugin = false;
 
 #if CREATE_KPART_5_82
-    KParts::ReadWritePart *part = createKPartForMimeType<KParts::ReadWritePart>("text/plain", nullptr);
-    if (part) {
-        delete part;
-        foundPlugin = true;
-    }
+    foundPlugin = !KParts::PartLoader::partsForMimeType("text/plain").isEmpty();
 #else
     KService::Ptr ptr = KMimeTypeTrader::self()->preferredService("text/plain", "KParts/ReadWritePart");
     if (!ptr)
