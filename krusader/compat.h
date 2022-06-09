@@ -9,6 +9,18 @@
 
 #include <kio_version.h>
 
+#if __has_include(<KCompletion/kcompletion_version.h>)
+#  include <KCompletion/kcompletion_version.h>
+#else // Pre KF-5.91 header layout
+#  include <kcompletion_version.h>
+#endif
+
+#if __has_include(<KArchive/karchive_version.h>)
+#  include <KArchive/karchive_version.h>
+#else // Pre KF-5.91 header layout
+#  include <karchive_version.h>
+#endif
+
 /**
  * UDSEntry::insert(uint, const QString &) was made deprecated since 5.48 in
  * favor of UDSEntry::fastInsert(uint, const QString &)
@@ -31,6 +43,30 @@
     #define KACTIONMENU_SETDELAYED setPopupMode(QToolButton::InstantPopup)
 #else
     #define KACTIONMENU_SETDELAYED setDelayed(false)
+#endif
+
+/**
+ * KLineEdit::returnPressed has been deprecated since 5.81
+ * in favor of KLineEdit::returnKeyPressed.
+ *
+ * This can be removed when the frameworks minimum version required will be >= 5.81
+ */
+#if KCOMPLETION_VERSION >= QT_VERSION_CHECK(5, 81, 0)
+    #define KLINEEDIT_RETURNKEYPRESSED returnKeyPressed
+#else
+    #define KLINEEDIT_RETURNKEYPRESSED returnPressed
+#endif
+
+/**
+ * KFilterDev::compressionTypeForMimeType has been deprecated since 5.85
+ * in favor of KLineEdit::returnKeyPressed.
+ *
+ * This can be removed when the frameworks minimum version required will be >= 5.85
+ */
+#if KARCHIVE_VERSION >= QT_VERSION_CHECK(5, 85, 0)
+    #define COMPRESSIONTYPEFORMIMETYPE KCompressionDevice::compressionTypeForMimeType
+#else
+    #define COMPRESSIONTYPEFORMIMETYPE KFilterDev::compressionTypeForMimeType
 #endif
 
 /**

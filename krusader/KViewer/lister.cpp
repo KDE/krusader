@@ -1270,7 +1270,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent)
     _originalBackground = _searchLineEdit->palette().color(QPalette::Base);
     _originalForeground = _searchLineEdit->palette().color(QPalette::Text);
 
-    connect(_searchLineEdit, &KLineEdit::returnPressed, this, &Lister::searchNext);
+    connect(_searchLineEdit, &KLineEdit::KLINEEDIT_RETURNKEYPRESSED, this, &Lister::searchNext);
     connect(_searchLineEdit, &KLineEdit::textChanged, this, &Lister::searchTextChanged);
 
     hbox->addWidget(_searchLineEdit);
@@ -1994,7 +1994,11 @@ void Lister::print()
 
     const QString dateString = QDate::currentDate().toString(Qt::SystemLocaleShortDate);
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    const QRect pageRect = printer.pageLayout().paintRectPixels(printer.resolution());
+#else
     const QRect pageRect = printer.pageRect();
+#endif
     const QRect drawingRect(0, 0, pageRect.width(), pageRect.height());
 
     const QFont normalFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);

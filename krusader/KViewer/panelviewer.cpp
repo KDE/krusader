@@ -14,10 +14,23 @@
 // QtWidgets
 #include <QApplication>
 
+#include <kservice_version.h>
+
+#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 82, 0)
+    #define CREATE_KPART_5_82 1
+#else
+    #define CREATE_KPART_5_82 0
+#endif
+
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KParts/BrowserExtension>
 #include <KParts/ReadWritePart>
+
+#if CREATE_KPART_5_82
+#include <KParts/PartLoader>
+#endif
+
 #include <KWidgetsAddons/KMessageBox>
 #include <KService/KServiceTypeProfile>
 #include <KService/KMimeTypeTrader>
@@ -262,7 +275,11 @@ void PanelViewer::openFile(KFileItem fi)
             qDebug() << "openFile completed: '" << curl << "'";
         };
         connect(cpart.data(), QOverload<>::of(&KParts::ReadOnlyPart::completed), this, cPartCompleted);
+#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 81, 0)
+        connect(cpart.data(), &KParts::ReadOnlyPart::completedWithPendingAction, this, cPartCompleted);
+#else
         connect(cpart.data(), QOverload<bool>::of(&KParts::ReadOnlyPart::completed), this, cPartCompleted);
+#endif
 
         // Note: Don't rely on return value of openUrl as the call is async in general
         cpart->openUrl(curl);
@@ -284,9 +301,32 @@ bool PanelViewer::closeUrl()
     return false;
 }
 
+#if CREATE_KPART_5_82
+
+template<typename T>
+static T *createKPartForMimeType(QString mimetype, QWidget *parentWidget)
+{
+    auto metaDataList = KParts::PartLoader::partsForMimeType(mimetype);
+    if (metaDataList.isEmpty())
+        return nullptr;
+
+    KPluginLoader pluginLoader(metaDataList.first().fileName());
+    KPluginFactory *pluginFactory = pluginLoader.factory();
+    if (!pluginFactory)
+        return nullptr;
+
+    return pluginFactory->create<T>(parentWidget, parentWidget);
+}
+
+#endif  // CREATE_KPART_5_82
+
 KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
 {
     KParts::ReadOnlyPart * part = nullptr;
+
+#if CREATE_KPART_5_82
+    part = createKPartForMimeType<KParts::ReadOnlyPart>(mimetype, this);
+#else
     KService::Ptr ptr = KMimeTypeTrader::self()->preferredService(mimetype, "KParts/ReadOnlyPart");
     if (ptr) {
         QVariantList args;
@@ -297,6 +337,8 @@ KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
         if (!prop.isValid() || prop.toBool()) // defaults to true
             part = ptr->createInstance<KParts::ReadOnlyPart>(this, this, args);
     }
+#endif
+
     if (part) {
         KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
         if (ext) {
@@ -320,10 +362,18 @@ PanelEditor::~PanelEditor()
 
 void PanelEditor::configureDeps()
 {
+    bool foundPlugin = false;
+
+#if CREATE_KPART_5_82
+    foundPlugin = !KParts::PartLoader::partsForMimeType("text/plain").isEmpty();
+#else
     KService::Ptr ptr = KMimeTypeTrader::self()->preferredService("text/plain", "KParts/ReadWritePart");
     if (!ptr)
         ptr = KMimeTypeTrader::self()->preferredService("all/allfiles", "KParts/ReadWritePart");
-    if (!ptr)
+    foundPlugin = (ptr != nullptr);
+#endif
+
+    if (!foundPlugin)
         KMessageBox::sorry(nullptr, missingKPartMsg(), i18n("Missing Plugin"), KMessageBox::AllowLink);
 
 }
@@ -405,6 +455,10 @@ bool PanelEditor::closeUrl()
 KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
 {
     KParts::ReadWritePart * part = nullptr;
+
+#if CREATE_KPART_5_82
+    part = createKPartForMimeType<KParts::ReadWritePart>(mimetype, this);
+#else
     KService::Ptr ptr = KMimeTypeTrader::self()->preferredService(mimetype, "KParts/ReadWritePart");
     if (ptr) {
         QVariantList args;
@@ -415,6 +469,8 @@ KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
         if (!prop.isValid() || prop.toBool()) // defaults to true
             part = ptr->createInstance<KParts::ReadWritePart>(this, this, args);
     }
+#endif
+
     if (part) {
         KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
         if (ext) {

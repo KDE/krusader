@@ -27,6 +27,7 @@
 #include <KIOCore/KFileItemListProperties>
 #include <KIOWidgets/KAbstractFileItemActionPlugin>
 #include <KCoreAddons/KPluginMetaData>
+#include <kio_version.h>
 
 #include "krpreviewpopup.h"
 #include "listpanel.h"
@@ -171,13 +172,17 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         uniqueMimeTypes.insert(file->getMime());
     const QStringList mimeTypes = uniqueMimeTypes.values();
 
-#if KSERVICE_VERSION < QT_VERSION_CHECK(5, 68, 0)
+#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 83, 0)
     offers = mimeTypes.count() == 1 ?
-                 KMimeTypeTrader::self()->query(mimeTypes.first()) :
+                 KApplicationTrader::queryByMimeType(mimeTypes.first()) :
+                 KFileItemActions::associatedApplications(mimeTypes);
+#elif KSERVICE_VERSION >= QT_VERSION_CHECK(5, 68, 0)
+    offers = mimeTypes.count() == 1 ?
+                 KApplicationTrader::queryByMimeType(mimeTypes.first()) :
                  KFileItemActions::associatedApplications(mimeTypes, QString());
 #else
     offers = mimeTypes.count() == 1 ?
-                 KApplicationTrader::queryByMimeType(mimeTypes.first()) :
+                 KMimeTypeTrader::self()->query(mimeTypes.first()) :
                  KFileItemActions::associatedApplications(mimeTypes, QString());
 #endif
 
@@ -221,7 +226,11 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     auto *fileItemActions = new KFileItemActions(this);
     fileItemActions->setItemListProperties(KFileItemListProperties(_items));
     fileItemActions->setParentWidget(MAIN_VIEW);
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 79, 0)
+    fileItemActions->addActionsTo(this);
+#else
     fileItemActions->addServiceActionsTo(this);
+#endif
 
     addSeparator();
 
@@ -352,12 +361,6 @@ void PanelContextMenu::performAction(int id)
     case BROWSE_ID :
         panel->func->goInside(singleURL.fileName());
         break;
-    case COPY_ID :
-        panel->func->copyFiles();
-        break;
-    case MOVE_ID :
-        panel->func->moveFiles();
-        break;
     case TRASH_ID :
         panel->func->deleteFiles(true);
         break;
@@ -366,15 +369,6 @@ void PanelContextMenu::performAction(int id)
         break;
     case EJECT_ID :
         krMtMan.eject(singleURL.adjusted(QUrl::StripTrailingSlash).path());
-        break;
-//     case SHRED_ID :
-//        if ( KMessageBox::warningContinueCancel( krApp,
-//             i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever.</qt>", item->name()),
-//             QString(), KStandardGuiItem::cont(), KStandardGuiItem::cancel(), "Shred" ) == KMessageBox::Continue )
-//           KShred::shred( panel->func->files() ->getFile( item->name() ).adjusted(QUrl::RemoveTrailingSlash).path() );
-//      break;
-    case OPEN_KONQ_ID :
-        KToolInvocation::startServiceByDesktopName("konqueror", singleURL.toDisplayString(QUrl::PreferLocalFile));
         break;
     case CHOOSE_ID : // open-with dialog
         panel->func->displayOpenWithDialog(_items.urlList());
