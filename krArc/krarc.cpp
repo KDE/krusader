@@ -41,7 +41,7 @@
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.krarc" FILE "krarc.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.krarc" FILE "krarc.json")
 };
 
 using namespace KIO;
@@ -105,12 +105,11 @@ extern "C"
 
 #endif // KRARC_ENABLED
 
-    class DummySlave : public KIO::SlaveBase
+    class DummyWorker : public KIO::WorkerBase
     {
     public:
-        DummySlave(const QByteArray &pool_socket, const QByteArray &app_socket) :
-                SlaveBase("kio_krarc", pool_socket, app_socket) {
-            error((int)ERR_SLAVE_DEFINED, QString("krarc is disabled."));
+        DummyWorker(const QByteArray &pool_socket, const QByteArray &app_socket) :
+                WorkerBase("kio_krarc", pool_socket, app_socket) {
         }
     };
 
@@ -126,12 +125,12 @@ extern "C"
         app.setApplicationName(QStringLiteral("kio_krarc"));
 
 #ifdef KRARC_ENABLED
-        kio_krarcProtocol slave(argv[2], argv[3]);
+        kio_krarcProtocol worker(argv[2], argv[3]);
 #else
-        DummySlave slave(argv[2], argv[3]);
+        DummyWorker worker(argv[2], argv[3]);
 #endif
 
-        slave.dispatchLoop();
+        worker.dispatchLoop();
 
         return 0;
     }
@@ -140,7 +139,7 @@ extern "C"
 
 #ifdef KRARC_ENABLED
 kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
-        : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(nullptr), extArcReady(false),
+        : WorkerBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(nullptr), extArcReady(false),
         password(QString()), codec(nullptr)
 {
     KRFUNC;
@@ -175,18 +174,16 @@ kio_krarcProtocol::~kio_krarcProtocol()
 
 /* ---------------------------------------------------------------------------------- */
 
-bool kio_krarcProtocol::checkWriteSupport()
+KIO::WorkerResult kio_krarcProtocol::checkWriteSupport()
 {
     KRFUNC;
     krConf.reparseConfiguration();
     if (KConfigGroup(&krConf, "kio_krarc").readEntry("EnableWrite", false))
-        return true;
-    else {
-        error(ERR_UNSUPPORTED_ACTION,
-              i18n("krarc: write support is disabled.\n"
-                   "You can enable it on the 'Archives' page in Konfigurator."));
-        return false;
-    }
+        return WorkerResult::pass();
+
+    return WorkerResult::fail(ERR_UNSUPPORTED_ACTION,
+                              i18n("krarc: write support is disabled.\n"
+                                   "You can enable it on the 'Archives' page in Konfigurator."));
 }
 
 void kio_krarcProtocol::receivedData(KProcess *, QByteArray &d)
@@ -198,37 +195,35 @@ void kio_krarcProtocol::receivedData(KProcess *, QByteArray &d)
     decompressedLen += d.length();
 }
 
-void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
+KIO::WorkerResult kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 {
     KRFUNC;
     const QString path = getPath(url);
     KRDEBUG(path);
 
-    if (!checkWriteSupport())
-        return;
+    const auto writeSupportResult = checkWriteSupport();
+    if (!writeSupportResult.success())
+        return writeSupportResult;
 
     // In case of KIO::mkpath call there is a mkdir call for every path element.
     // Therefore the path all the way up to our archive needs to be checked for existence
     // and reported as success.
     if (QDir().exists(path)) {
-        finished();
-        return;
+        return WorkerResult::pass();
     }
 
-    if (!setArcFile(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, path);
-        return;
+    const auto setArcFileResult = setArcFile(url);
+    if (!setArcFileResult.success()) {
+        return setArcFileResult;
     }
 
     if (newArchiveURL && !initDirDict(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, path);
-        return;
+        return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, path);
     }
 
     if (putCmd.isEmpty()) {
-        error(ERR_UNSUPPORTED_ACTION,
-              i18n("Creating folders is not supported with %1 archives", arcType));
-        return;
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION,
+                                  i18n("Creating folders is not supported with %1 archives", arcType));
     }
 
     const QString arcFilePath = getPath(arcFile->url());
@@ -239,8 +234,7 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 
         if (dirDict.find(arcDir) == dirDict.end())
             addNewDir(arcDir);
-        finished();
-        return;
+        return WorkerResult::pass();
     }
 
     QString arcDir  = findArcDirectory(url);
@@ -275,43 +269,39 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
     QDir().rmdir(arcTempDir);
 
     if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
-        error(ERR_CANNOT_WRITE, path + "\n\n" + proc.getErrorMsg());
-        return;
+        return WorkerResult::fail(ERR_CANNOT_WRITE, path + "\n\n" + proc.getErrorMsg());
     }
 
     //  force a refresh of archive information
     initDirDict(url, true);
-    finished();
+    return WorkerResult::pass();
 }
 
-void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flags)
+KIO::WorkerResult kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flags)
 {
     KRFUNC;
     KRDEBUG(getPath(url));
 
-    if (!checkWriteSupport())
-        return;
+    const auto writeSupportResult = checkWriteSupport();
+    if (!writeSupportResult.success())
+        return writeSupportResult;
 
     bool overwrite = !!(flags & KIO::Overwrite);
     bool resume = !!(flags & KIO::Resume);
 
-    if (!setArcFile(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-        return;
+    const auto setArcFileResult = setArcFile(url);
+    if (!setArcFileResult.success()) {
+        return setArcFileResult;
     }
     if (newArchiveURL && !initDirDict(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-        return;
+        return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
     }
 
     if (putCmd.isEmpty()) {
-        error(ERR_UNSUPPORTED_ACTION,
-              i18n("Writing to %1 archives is not supported", arcType));
-        return;
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Writing to %1 archives is not supported", arcType));
     }
     if (!overwrite && findFileEntry(url)) {
-        error(ERR_FILE_ALREADY_EXIST, getPath(url));
-        return;
+        return WorkerResult::fail(ERR_FILE_ALREADY_EXIST, getPath(url));
     }
 
     QString arcDir  = findArcDirectory(url);
@@ -366,8 +356,7 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
     ::close(fd);
 
     if (isIncomplete) {
-        error(ERR_CANNOT_WRITE, getPath(url));
-        return;
+        return WorkerResult::fail(ERR_CANNOT_WRITE, getPath(url));
     }
 
     // pack the file
@@ -386,48 +375,43 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
     QDir().rmdir(arcTempDir);
 
     if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
-        error(ERR_CANNOT_WRITE, getPath(url) + "\n\n" + proc.getErrorMsg());
-        return;
+        return WorkerResult::fail(ERR_CANNOT_WRITE, getPath(url) + "\n\n" + proc.getErrorMsg());
     }
     //  force a refresh of archive information
     initDirDict(url, true);
-    finished();
+    return WorkerResult::pass();
 }
 
-void kio_krarcProtocol::get(const QUrl &url)
+KIO::WorkerResult kio_krarcProtocol::get(const QUrl &url)
 {
     KRFUNC;
-    get(url, TRIES_WITH_PASSWORDS);
+    return get(url, TRIES_WITH_PASSWORDS);
 }
 
-void kio_krarcProtocol::get(const QUrl &url, int tries)
+KIO::WorkerResult kio_krarcProtocol::get(const QUrl &url, int tries)
 {
     KRFUNC;
     KRDEBUG(getPath(url));
     bool decompressToFile = false;
 
-    if (!setArcFile(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-        return;
+    const auto setArcFileResult = setArcFile(url);
+    if (!setArcFileResult.success()) {
+        return setArcFileResult;
     }
     if (newArchiveURL && !initDirDict(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-        return;
+        return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
     }
 
     if (getCmd.isEmpty()) {
-        error(ERR_UNSUPPORTED_ACTION,
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION,
               i18n("Retrieving data from %1 archives is not supported", arcType));
-        return;
     }
     UDSEntry* entry = findFileEntry(url);
     if (!entry) {
-        error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
-        return;
+        return WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, getPath(url));
     }
     if (KFileItem(*entry, url).isDir()) {
-        error(KIO::ERR_IS_DIRECTORY, getPath(url));
-        return;
+        return WorkerResult::fail(KIO::ERR_IS_DIRECTORY, getPath(url));
     }
     KIO::filesize_t expectedSize = KFileItem(*entry, url).size();
     // for RPM files extract the cpio file first
@@ -440,8 +424,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
         cpio.waitForFinished();
 
         if (cpio.exitStatus() != QProcess::NormalExit || !checkStatus(cpio.exitCode())) {
-            error(ERR_CANNOT_READ, getPath(url) + "\n\n" + cpio.getErrorMsg());
-            return;
+            return WorkerResult::fail(ERR_CANNOT_READ, getPath(url) + "\n\n" + cpio.getErrorMsg());
         }
         extArcReady = true;
     }
@@ -455,8 +438,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
         dpkg.waitForFinished();
 
         if (dpkg.exitStatus() != QProcess::NormalExit || !checkStatus(dpkg.exitCode())) {
-            error(ERR_CANNOT_READ, getPath(url) + "\n\n" + dpkg.getErrorMsg());
-            return;
+            return WorkerResult::fail(ERR_CANNOT_READ, getPath(url) + "\n\n" + dpkg.getErrorMsg());
         }
         extArcReady = true;
     }
@@ -500,20 +482,20 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
 
     // Wait until the external unpacker has finished
     if (!proc.waitForFinished(-1)) {
-        error(KIO::ERR_SLAVE_DEFINED, i18n("An error has happened, related to the external program '%1'. "
-                                           "The error message is: '%2'.", cmd, proc.errorString()));
-        return;
+        return WorkerResult::fail(KIO::ERR_SLAVE_DEFINED,
+                                  i18n("An error has happened, related to the external program '%1'. "
+                                       "The error message is: '%2'.",
+                                       cmd,
+                                       proc.errorString()));
     }
 
     if (!extArcReady && !decompressToFile) {
         if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()) || (arcType != "bzip2" && arcType != "lzma" && arcType != "xz" && expectedSize != decompressedLen)) {
             if (encrypted && tries) {
                 invalidatePassword();
-                get(url, tries - 1);
-                return;
+                return get(url, tries - 1);
             }
-            error(KIO::ERR_ACCESS_DENIED, getPath(url) + "\n\n" + proc.getErrorMsg());
-            return;
+            return WorkerResult::fail(KIO::ERR_ACCESS_DENIED, getPath(url) + "\n\n" + proc.getErrorMsg());
         }
     } else {
         if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()) || !QFileInfo::exists(arcTempDir + file)) {
@@ -521,11 +503,9 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
                 QFile(arcTempDir + file).remove();
             if (encrypted && tries) {
                 invalidatePassword();
-                get(url, tries - 1);
-                return;
+                return get(url, tries - 1);
             }
-            error(KIO::ERR_ACCESS_DENIED, getPath(url));
-            return;
+            return WorkerResult::fail(KIO::ERR_ACCESS_DENIED, getPath(url));
         }
         // the following block is ripped from KDE file KIO::Slave
         // $Id: krarc.cpp,v 1.43 2007/01/13 13:39:51 ckarai Exp $
@@ -533,23 +513,18 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
         QT_STATBUF buff;
         if (QT_LSTAT(_path.data(), &buff) == -1) {
             if (errno == EACCES)
-                error(KIO::ERR_ACCESS_DENIED, getPath(url));
-            else
-                error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
-            return;
+                return WorkerResult::fail(KIO::ERR_ACCESS_DENIED, getPath(url));
+            return WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, getPath(url));
         }
         if (S_ISDIR(buff.st_mode)) {
-            error(KIO::ERR_IS_DIRECTORY, getPath(url));
-            return;
+            return WorkerResult::fail(KIO::ERR_IS_DIRECTORY, getPath(url));
         }
         if (!S_ISREG(buff.st_mode)) {
-            error(KIO::ERR_CANNOT_OPEN_FOR_READING, getPath(url));
-            return;
+            return WorkerResult::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, getPath(url));
         }
         int fd = QT_OPEN(_path.data(), O_RDONLY);
         if (fd < 0) {
-            error(KIO::ERR_CANNOT_OPEN_FOR_READING, getPath(url));
-            return;
+            return WorkerResult::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, getPath(url));
         }
         // Determine the mimetype of the file to be retrieved, and emit it.
         // This is mandatory in all slaves (for KRun/BrowserRun to work).
@@ -580,9 +555,8 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
             if (n == -1) {
                 if (errno == EINTR)
                     continue;
-                error(KIO::ERR_CANNOT_READ, getPath(url));
                 ::close(fd);
-                return;
+                return WorkerResult::fail(KIO::ERR_CANNOT_READ, getPath(url));
             }
             if (n == 0)
                 break; // Finished
@@ -598,43 +572,40 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
         data(QByteArray());
         ::close(fd);
         processedSize(buff.st_size);
-        finished();
 
         if (decompressToFile)
             QFile(arcTempDir + file).remove();
-        return;
+        return WorkerResult::pass();
     }
     // send empty buffer to mark EOF
     data(QByteArray());
-    finished();
+    return WorkerResult::pass();
 }
 
-void kio_krarcProtocol::del(QUrl const & url, bool isFile)
+KIO::WorkerResult kio_krarcProtocol::del(QUrl const & url, bool isFile)
 {
     KRFUNC;
     KRDEBUG(getPath(url));
 
-    if (!checkWriteSupport())
-        return;
+    const auto writeSupportResult = checkWriteSupport();
+    if (!writeSupportResult.success())
+        return writeSupportResult;
 
-    if (!setArcFile(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-        return;
+    const auto setArcFileResult = setArcFile(url);
+    if (!setArcFileResult.success()) {
+        return setArcFileResult;
     }
     if (newArchiveURL && !initDirDict(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-        return;
+        return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
     }
 
     if (delCmd.isEmpty()) {
-        error(ERR_UNSUPPORTED_ACTION,
-              i18n("Deleting files from %1 archives is not supported", arcType));
-        return;
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION,
+                                  i18n("Deleting files from %1 archives is not supported", arcType));
     }
     if (!findFileEntry(url)) {
         if ((arcType != "arj" && arcType != "lha") || isFile) {
-            error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
-            return;
+            return WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, getPath(url));
         }
     }
 
@@ -652,31 +623,28 @@ void kio_krarcProtocol::del(QUrl const & url, bool isFile)
 
     proc.waitForFinished();
     if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
-        error(ERR_CANNOT_WRITE, getPath(url) + "\n\n" + proc.getErrorMsg());
-        return;
+        return WorkerResult::fail(ERR_CANNOT_WRITE, getPath(url) + "\n\n" + proc.getErrorMsg());
     }
     //  force a refresh of archive information
     initDirDict(url, true);
-    finished();
+    return WorkerResult::pass();
 }
 
-void kio_krarcProtocol::stat(const QUrl &url)
+KIO::WorkerResult kio_krarcProtocol::stat(const QUrl &url)
 {
     KRFUNC;
     KRDEBUG(getPath(url));
-    if (!setArcFile(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-        return;
+    const auto setArcFileResult = setArcFile(url);
+    if (!setArcFileResult.success()) {
+        return setArcFileResult;
     }
     if (newArchiveURL && !initDirDict(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-        return;
+        return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
     }
 
     if (listCmd.isEmpty()) {
-        error(ERR_UNSUPPORTED_ACTION,
-              i18n("Accessing files is not supported with %1 archives", arcType));
-        return;
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION,
+                                  i18n("Accessing files is not supported with %1 archives", arcType));
     }
     QString path = getPath(url, QUrl::StripTrailingSlash);
     QUrl newUrl = url;
@@ -696,22 +664,23 @@ void kio_krarcProtocol::stat(const QUrl &url)
         if (result.isValid())
             mime = result.name();
         statEntry(KFileItem(QUrl::fromLocalFile(path), mime, buff.st_mode).entry());
-        finished();
-        return;
+        return WorkerResult::pass();
     }
     UDSEntry* entry = findFileEntry(newUrl);
     if (entry) {
         statEntry(*entry);
-        finished();
-    } else error(KIO::ERR_DOES_NOT_EXIST, path);
+        return WorkerResult::pass();
+    }
+    return WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, path);
 }
 
-void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFlags flags)
+KIO::WorkerResult kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFlags flags)
 {
     KRDEBUG("source: " << url.path() << " dest: " << dest.path());
 
-    if (!checkWriteSupport())
-        return;
+    const auto writeSupportResult = checkWriteSupport();
+    if (!writeSupportResult.success())
+        return writeSupportResult;
 
     bool overwrite = !!(flags & KIO::Overwrite);
 
@@ -727,17 +696,15 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
 
             //the file exists and we don't want to overwrite
             if ((!overwrite) && (QFile(getPath(dest)).exists())) {
-                error((int)ERR_FILE_ALREADY_EXIST, QString(QFile::encodeName(getPath(dest))));
-                return;
+                return WorkerResult::fail((int)ERR_FILE_ALREADY_EXIST, QString(QFile::encodeName(getPath(dest))));
             };
 
-            if (!setArcFile(url)) {
-                error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-                return;
+            const auto setArcFileResult = setArcFile(url);
+            if (!setArcFileResult.success()) {
+                return setArcFileResult;
             }
             if (newArchiveURL && !initDirDict(url)) {
-                error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-                return;
+                return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
             }
 
             UDSEntry* entry = findFileEntry(url);
@@ -771,18 +738,15 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
             proc.start();
             proc.waitForFinished();
             if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
-                error(KIO::ERR_CANNOT_WRITE, getPath(dest, QUrl::StripTrailingSlash) + "\n\n" + proc.getErrorMsg());
-                return;
+                return WorkerResult::fail(KIO::ERR_CANNOT_WRITE, getPath(dest, QUrl::StripTrailingSlash) + "\n\n" + proc.getErrorMsg());
             }
             if (!QFileInfo::exists(getPath(dest, QUrl::StripTrailingSlash))) {
-                error(KIO::ERR_CANNOT_WRITE, getPath(dest, QUrl::StripTrailingSlash));
-                return;
+                return WorkerResult::fail(KIO::ERR_CANNOT_WRITE, getPath(dest, QUrl::StripTrailingSlash));
             }
 
             processedSize(KFileItem(*entry, url).size());
-            finished();
             QDir::setCurrent(QDir::rootPath());   /* for being able to umount devices after copying*/
-            return;
+            return WorkerResult::pass();
         } while (0);
 
     if (encrypted)
@@ -791,27 +755,26 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
         KRDEBUG("ERROR: " << url.path() << " is not a local file.");
 
     // CMD_COPY is no more in KF5 - replaced with 74 value (as stated in https://invent.kde.org/frameworks/kio/-/blob/master/src/core/commands_p.h)
-    error(ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString(mProtocol, 74));
+    return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString("kio_krarc", 74));
 }
 
-void kio_krarcProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags)
+KIO::WorkerResult kio_krarcProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags)
 {
     Q_UNUSED(flags);
 
     KRDEBUG("renaming from: " << src.path() << " to: " << dest.path());
     KRDEBUG("command: " << arcPath);
 
-    if (!checkWriteSupport()) {
-        return;
-    }
+    const auto writeSupportResult = checkWriteSupport();
+    if (!writeSupportResult.success())
+        return writeSupportResult;
 
     if (renCmd.isEmpty()) {
-        error(KIO::ERR_CANNOT_RENAME, src.fileName());
-        return;
+        return WorkerResult::fail(KIO::ERR_CANNOT_RENAME, src.fileName());
     }
 
     if (src.fileName() == dest.fileName()) {
-        return;
+        return WorkerResult::pass();
     }
 
     KrLinecountingProcess proc;
@@ -820,25 +783,23 @@ void kio_krarcProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags 
     proc.waitForFinished();
 
     if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
-        error(KIO::ERR_CANNOT_RENAME, src.fileName());
-        return;
+        return WorkerResult::fail(KIO::ERR_CANNOT_RENAME, src.fileName());
     }
 
-    finished();
+    return WorkerResult::pass();
 }
 
-void kio_krarcProtocol::listDir(const QUrl &url)
+KIO::WorkerResult kio_krarcProtocol::listDir(const QUrl &url)
 {
     KRFUNC;
     KRDEBUG(getPath(url));
-    if (!setArcFile(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-        return;
+    const auto setArcFileResult = setArcFile(url);
+    if (!setArcFileResult.success()) {
+        return setArcFileResult;
     }
     if (listCmd.isEmpty()) {
-        error(ERR_UNSUPPORTED_ACTION,
-              i18n("Listing folders is not supported for %1 archives", arcType));
-        return;
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION,
+                                  i18n("Listing folders is not supported for %1 archives", arcType));
     }
     QString path = getPath(url);
     if (path.right(1) != DIR_SEPARATOR) path = path + DIR_SEPARATOR;
@@ -849,31 +810,28 @@ void kio_krarcProtocol::listDir(const QUrl &url)
             QUrl redir;
             redir.setPath(getPath(url));
             redirection(redir);
-            finished();
-        } else { // maybe it's an archive !
-            error(ERR_IS_FILE, path);
+            return WorkerResult::pass();
         }
-        return;
+        // maybe it's an archive !
+        return WorkerResult::fail(ERR_IS_FILE, path);
     }
     if (!initDirDict(url)) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-        return;
+        return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
     }
     QString arcDir = path.mid(getPath(arcFile->url()).length());
     arcDir.truncate(arcDir.lastIndexOf(DIR_SEPARATOR));
     if (arcDir.right(1) != DIR_SEPARATOR) arcDir = arcDir + DIR_SEPARATOR;
 
     if (dirDict.find(arcDir) == dirDict.end()) {
-        error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
-        return;
+        return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
     }
     UDSEntryList* dirList = dirDict[ arcDir ];
     totalSize(dirList->size());
     listEntries(*dirList);
-    finished();
+    return WorkerResult::pass();
 }
 
-bool kio_krarcProtocol::setArcFile(const QUrl &url)
+KIO::WorkerResult kio_krarcProtocol::setArcFile(const QUrl &url)
 {
     KRFUNC;
     KRDEBUG(url.fileName());
@@ -901,7 +859,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
             delete newArcFile;
             archiveChanged = false;
             if (encrypted && password.isNull())
-                initArcParameters();
+                (void)initArcParameters();
         }
     } else { // it's a new file...
         extArcReady = false;
@@ -927,8 +885,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
         }
         if (!arcFile) {
             // KRDEBUG("ERROR: " << path << " does not exist.");
-            error(ERR_DOES_NOT_EXIST, path);
-            return false; // file not found
+            return WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toString());
         }
         currentCharset = metaData("Charset");
 
@@ -985,8 +942,10 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
 
     extArcReady = false;
 
-    if (!setArcFile(url))
-        return false;   /* if the archive was changed refresh the file information */
+    const auto setArcFileResult = setArcFile(url);
+    if (!setArcFileResult.success()) { /* if the archive was changed refresh the file information */
+        return false;
+    }
 
     // write the temp file
     KrLinecountingProcess proc;
@@ -994,7 +953,6 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
 
     // parse the temp file
     if (!temp.open()) {
-        error(ERR_CANNOT_READ, temp.fileName());
         return false;
     }
 
@@ -1201,8 +1159,7 @@ UDSEntryList* kio_krarcProtocol::addNewDir(const QString& path)
     if (name == "." || name == "..") { // entries with these names wouldn't be displayed
         // don't translate since this is an internal error
         QString err = QString("Cannot handle path: ") + path;
-        // KRDEBUG("ERROR: " << err);
-        error(KIO::ERR_INTERNAL, err);
+        KRDEBUG("ERROR: " << err);
         exit();
     }
 
@@ -1530,7 +1487,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
     dir->append(entry);
 }
 
-bool kio_krarcProtocol::initArcParameters()
+KIO::WorkerResult kio_krarcProtocol::initArcParameters()
 {
     KRFUNC;
     KRDEBUG("arcType: " << arcType);
@@ -1672,7 +1629,7 @@ bool kio_krarcProtocol::initArcParameters()
         noencoding = true;
         cmd = find7zExecutable();
         if (cmd.isEmpty()) {
-            return false;
+            return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, {});
         }
 
         listCmd << cmd << "l" << "-y";
@@ -1694,19 +1651,18 @@ bool kio_krarcProtocol::initArcParameters()
     // checking if it's an absolute path
 #ifdef Q_OS_WIN
     if (cmd.length() > 2 && cmd[ 0 ].isLetter() && cmd[ 1 ] == ':')
-        return true;
+        return WorkerResult::pass();
 #else
     if (cmd.startsWith(DIR_SEPARATOR))
-        return true;
+        return WorkerResult::pass();
 #endif
     if (QStandardPaths::findExecutable(cmd).isEmpty()) {
-        error(KIO::ERR_CANNOT_LAUNCH_PROCESS,
-              cmd +
-              i18n("\nMake sure that the %1 binary is installed properly on your system.", cmd));
         KRDEBUG("Failed to find cmd: " << cmd);
-        return false;
+        return WorkerResult::fail(
+            KIO::ERR_CANNOT_LAUNCH_PROCESS,
+            cmd + i18n("\nMake sure that the %1 binary is installed properly on your system.", cmd));
     }
-    return true;
+    return WorkerResult::pass();
 }
 
 bool kio_krarcProtocol::checkStatus(int exitCode)
@@ -1829,18 +1785,12 @@ QString kio_krarcProtocol::getPassword()
 
     authInfo.password.clear();
 
-#if KIO_VERSION_MINOR >= 24
-    int errCode = openPasswordDialogV2(authInfo, i18n("Accessing the file requires a password."));
+    int errCode = openPasswordDialog(authInfo, i18n("Accessing the file requires a password."));
     if (!errCode && !authInfo.password.isNull()) {
-#else
-    if (openPasswordDialog(authInfo, i18n("Accessing the file requires a password.")) && !authInfo.password.isNull()) {
-#endif
         KRDEBUG(authInfo.password);
         return (password = authInfo.password);
-#if KIO_VERSION_MINOR >= 24
     } else {
-        error(errCode, QString());
-#endif
+        password.clear();
     }
 
     KRDEBUG(password);

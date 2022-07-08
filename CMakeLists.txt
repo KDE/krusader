@@ -6,13 +6,14 @@ set(VERSION "2.8.0-dev")
 set(RELEASE_NAME "Bleeding Edge")
 
 set(MIN_QT_VERSION 5.12)
-set(MIN_KF_VERSION 5.68)
+set(MIN_KF_VERSION 5.96)
 
 
 # ===== Packages =====
 
 find_package(ECM ${MIN_KF_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+set(KDE_COMPILERSETTINGS_LEVEL "5.68")
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)

@@ -2,6 +2,7 @@
     SPDX-FileCopyrightText: 2003 Rafi Yanai <yanai@users.sf.net>
     SPDX-FileCopyrightText: 2003 Shie Erlich <yanai@users.sf.net>
     SPDX-FileCopyrightText: 2004-2022 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2022 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -15,7 +16,7 @@
 #include <QUrl>
 
 #include <KIO/Global>
-#include <KIO/SlaveBase>
+#include <KIO/WorkerBase>
 #include <KCoreAddons/KProcess>
 
 #include "krarcbasemanager.h"
@@ -26,31 +27,31 @@ class KFileItem;
 class QByteArray;
 class QTextCodec;
 
-class kio_krarcProtocol : public QObject, public KIO::SlaveBase, public KrArcBaseManager
+class kio_krarcProtocol : public QObject, public KIO::WorkerBase, public KrArcBaseManager
 {
     Q_OBJECT
 public:
     kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
     ~kio_krarcProtocol() override;
-    void stat(const QUrl &url) override;
-    void get(const QUrl &url) override;
-    void put(const QUrl &url, int permissions, KIO::JobFlags flags) override;
-    void mkdir(const QUrl &url, int permissions) override;
-    void listDir(const QUrl &url) override;
-    void del(QUrl const & url, bool isFile) override;
-    void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
-    void rename(const QUrl &src, const QUrl & dest, KIO::JobFlags flags) override;
+    KIO::WorkerResult stat(const QUrl &url) override;
+    KIO::WorkerResult get(const QUrl &url) override;
+    KIO::WorkerResult put(const QUrl &url, int permissions, KIO::JobFlags flags) override;
+    KIO::WorkerResult mkdir(const QUrl &url, int permissions) override;
+    KIO::WorkerResult listDir(const QUrl &url) override;
+    KIO::WorkerResult del(QUrl const & url, bool isFile) override;
+    KIO::WorkerResult copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
+    KIO::WorkerResult rename(const QUrl &src, const QUrl & dest, KIO::JobFlags flags) override;
 
 public slots:
     void receivedData(KProcess *, QByteArray &);
     void check7zOutputForPassword(KProcess *, QByteArray &);
 
 protected:
-    virtual bool   initDirDict(const QUrl &url, bool forced = false);
-    virtual bool   initArcParameters();
+    Q_REQUIRED_RESULT virtual bool   initDirDict(const QUrl &url, bool forced = false);
+    Q_REQUIRED_RESULT virtual KIO::WorkerResult   initArcParameters();
     void checkIf7zIsEncrypted(bool &, QString) override;
-    virtual bool setArcFile(const QUrl &url);
-    virtual QString getPassword();
+    Q_REQUIRED_RESULT virtual KIO::WorkerResult setArcFile(const QUrl &url);
+    Q_REQUIRED_RESULT virtual QString getPassword();
     virtual void invalidatePassword();
     QString getPath(const QUrl &url, QUrl::FormattingOptions options = nullptr);
     /** parses a text line from the listing of an archive. */
@@ -70,7 +71,7 @@ protected:
     QStringList renCmd;  ///< rename file command.
 
 private:
-    void get(const QUrl &url, int tries);
+    KIO::WorkerResult get(const QUrl &url, int tries);
     /** checks if a returned status ("exit code") of an archiving-related process is OK. */
     bool checkStatus(int exitCode);
     /** service function for parseLine. */
@@ -83,7 +84,7 @@ private:
     KIO::UDSEntry* findFileEntry(const QUrl &url);
     /** add a new directory (file list container). */
     KIO::UDSEntryList* addNewDir(const QString& path);
-    bool checkWriteSupport();
+    Q_REQUIRED_RESULT KIO::WorkerResult checkWriteSupport();
 
     QHash<QString, KIO::UDSEntryList *> dirDict; //< the directories data structure.
     bool encrypted;                   //< tells whether the archive is encrypted
