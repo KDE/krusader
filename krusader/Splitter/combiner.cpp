@@ -61,7 +61,8 @@ void Combiner::combine()
     if (!file.isReadable()) {
         int ret = KMessageBox::questionYesNo(nullptr, i18n("The CRC information file (%1) is missing.\n"
                                              "Validity checking is impossible without it. Continue combining?",
-                                             splURL.toDisplayString(QUrl::PreferLocalFile)));
+                                             splURL.toDisplayString(QUrl::PreferLocalFile)), {},
+                                             KStandardGuiItem::cont(), KStandardGuiItem::cancel());
 
         if (ret == KMessageBox::No) {
             reject();
@@ -128,7 +129,8 @@ void Combiner::combineSplitFileFinished(KJob *job)
 
     if (!error.isEmpty()) {
         int ret = KMessageBox::questionYesNo(nullptr,
-                                             error + i18n("\nValidity checking is impossible without a good CRC file. Continue combining?"));
+                                             error + i18n("\nValidity checking is impossible without a good CRC file. Continue combining?"), {},
+                                             KStandardGuiItem::cont(), KStandardGuiItem::cancel());
         if (ret == KMessageBox::No) {
             reject();
             return;

@@ -168,7 +168,7 @@ bool Konfigurator::slotPageSwitch(KPageWidgetItem *current, KPageWidgetItem *bef
     }
 
     if (currentPg->isChanged()) {
-        int result = KMessageBox::questionYesNoCancel(nullptr, i18n("The current page has been changed. Do you want to apply changes?"));
+        int result = KMessageBox::questionYesNoCancel(nullptr, i18n("The current page has been changed. Do you want to apply changes?"), {}, KStandardGuiItem::apply(), KStandardGuiItem::discard());
 
         switch (result) {
         case KMessageBox::No:

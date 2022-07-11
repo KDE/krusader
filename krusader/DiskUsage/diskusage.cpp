@@ -382,8 +382,10 @@ void DiskUsage::dirUp()
             if (KMessageBox::questionYesNo(this, i18n("Stepping into the parent folder requires "
                                            "loading the content of the \"%1\" URL. Do you wish "
                                            "to continue?", up.toDisplayString(QUrl::PreferLocalFile)),
-                                           i18n("Krusader::DiskUsage"), KStandardGuiItem::yes(),
-                                           KStandardGuiItem::no(), "DiskUsageLoadParentDir"
+                                           i18n("Krusader::DiskUsage"),
+                                           KStandardGuiItem::cont(),
+                                           KStandardGuiItem::cancel(),
+                                           "DiskUsageLoadParentDir"
                                           ) == KMessageBox::Yes)
                 load(up);
         }
