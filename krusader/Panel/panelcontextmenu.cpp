@@ -21,7 +21,6 @@
 #else
 #include <KService/KApplicationTrader>
 #endif
-#include <KService/KToolInvocation>
 #include <KXmlGui/KActionCollection>
 #include <KIOCore/KFileItem>
 #include <KIOCore/KFileItemListProperties>

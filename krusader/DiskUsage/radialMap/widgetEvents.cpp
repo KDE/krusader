@@ -26,12 +26,17 @@
 #include <KIO/JobUiDelegate>
 #include <KIOWidgets/KRun>
 #include <KWidgetsAddons/KMessageBox>
-#include <KToolInvocation>
 #include <kio_version.h>
 #include <kservice_version.h>
 
 #if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
 #include <KIO/OpenUrlJob>
+#endif
+
+#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 83, 0)
+#include <KTerminalLauncherJob>
+#else
+#include <KToolInvocation>
 #endif
 
 void
@@ -190,7 +195,11 @@ RadialMap::Widget::mousePressEvent(QMouseEvent *e)
                 KRun::runCommand(QString("kfmclient openURL '%1'").arg(url.url()), this);
 #endif
             } else if (result == actKonsole) {
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 79, 0)
+#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 83, 0)
+                auto *job = new KTerminalLauncherJob(QString());
+                job->setWorkingDirectory(url.url());
+                job->start();
+#elif KSERVICE_VERSION >= QT_VERSION_CHECK(5, 79, 0)
                 KToolInvocation::invokeTerminal(QString(), QStringList(), url.url());
 #else
                 KToolInvocation::invokeTerminal(QString(), url.url());
