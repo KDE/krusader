@@ -6,7 +6,7 @@ set(VERSION "2.8.0-dev")
 set(RELEASE_NAME "Bleeding Edge")
 
 set(MIN_QT_VERSION 5.12)
-set(MIN_KF_VERSION 5.96)
+set(MIN_KF_VERSION 5.68)
 
 
 # ===== Packages =====
