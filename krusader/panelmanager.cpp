@@ -288,6 +288,7 @@ void PanelManager::slotNewTabFromUI()
 {
     int insertIndex = KConfigGroup(krConfig, "Look&Feel").readEntry("Insert Tabs After Current", false) ? _tabbar->currentIndex() + 1 : _tabbar->count();
     slotDuplicateTab(currentPanel()->virtualPath(), currentPanel(), insertIndex);
+    _currentPanel->slotFocusOnMe();
 }
 
 void PanelManager::slotNewTab()
