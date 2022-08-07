@@ -233,7 +233,7 @@ void KrActionProc::start(QStringList cmdLineList)
 
     if (!_action->user().isEmpty()) {
         if (!KrServices::isExecutable(KDESU_PATH)) {
-            KMessageBox::sorry(nullptr,
+            KMessageBox::error(nullptr,
                 i18n("Cannot run user action, %1 not found or not executable. "
                      "Please verify that kde-cli-tools are installed.", QString(KDESU_PATH)));
             return;
@@ -242,7 +242,7 @@ void KrActionProc::start(QStringList cmdLineList)
 
     if (_action->execType() == KrAction::RunInTE
             && (! MAIN_VIEW->terminalDock()->initialise())) {
-        KMessageBox::sorry(nullptr, i18n("Embedded terminal emulator does not work, using output collection instead."));
+        KMessageBox::error(nullptr, i18n("Embedded terminal emulator does not work, using output collection instead."));
     }
 
     for (QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {

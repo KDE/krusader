@@ -1201,7 +1201,7 @@ void SynchronizerGUI::synchronize()
 
     if (!synchronizer.totalSizes(&copyToLeftNr, &copyToLeftSize, &copyToRightNr, &copyToRightSize,
                                  &deleteNr, &deleteSize)) {
-        KMessageBox::sorry(parentWidget(), i18n("Synchronizer has nothing to do."));
+        KMessageBox::information(parentWidget(), i18n("Synchronizer has nothing to do."));
         return;
     }
 

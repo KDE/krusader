@@ -472,10 +472,10 @@ void MediaButton::slotSetupDone(Solid::ErrorType error, const QVariant& errorDat
             name = udiNameMap[ udi ];
 
         if (errorData.isValid()) {
-            KMessageBox::sorry(this, i18n("An error occurred while accessing '%1', the system responded: %2",
+            KMessageBox::error(this, i18n("An error occurred while accessing '%1', the system responded: %2",
                                           name, errorData.toString()));
         } else {
-            KMessageBox::sorry(this, i18n("An error occurred while accessing '%1'", name));
+            KMessageBox::error(this, i18n("An error occurred while accessing '%1'", name));
         }
     }
 }

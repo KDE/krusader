@@ -376,7 +376,7 @@ void ListPanelFunc::setPaused(bool paused) {
 void ListPanelFunc::redirectLink()
 {
     if (!files()->isLocal()) {
-        KMessageBox::sorry(krMainWindow, i18n("You can edit links only on local file systems"));
+        KMessageBox::error(krMainWindow, i18n("You can edit links only on local file systems"));
         return;
     }
 
@@ -387,7 +387,7 @@ void ListPanelFunc::redirectLink()
     QString file = fileitem->getUrl().path();
     QString currentLink = fileitem->getSymDest();
     if (currentLink.isEmpty()) {
-        KMessageBox::sorry(krMainWindow, i18n("The current file is not a link, so it cannot be redirected."));
+        KMessageBox::error(krMainWindow, i18n("The current file is not a link, so it cannot be redirected."));
         return;
     }
 
@@ -401,12 +401,12 @@ void ListPanelFunc::redirectLink()
         return;
     // delete the current link
     if (unlink(file.toLocal8Bit()) == -1) {
-        KMessageBox::sorry(krMainWindow, i18n("Cannot remove old link: %1", file));
+        KMessageBox::error(krMainWindow, i18n("Cannot remove old link: %1", file));
         return;
     }
     // try to create a new symlink
     if (symlink(newLink.toLocal8Bit(), file.toLocal8Bit()) == -1) {
-        KMessageBox:: /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */sorry(krMainWindow, i18n("Failed to create a new link: %1", file));
+        KMessageBox:: /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */error(krMainWindow, i18n("Failed to create a new link: %1", file));
         return;
     }
 }
@@ -414,7 +414,7 @@ void ListPanelFunc::redirectLink()
 void ListPanelFunc::krlink(bool sym)
 {
     if (!files()->isLocal()) {
-        KMessageBox::sorry(krMainWindow, i18n("You can create links only on local file systems"));
+        KMessageBox::error(krMainWindow, i18n("You can create links only on local file systems"));
         return;
     }
 
@@ -432,7 +432,7 @@ void ListPanelFunc::krlink(bool sym)
 
     // if the name is already taken - quit
     if (files()->getFileItem(linkName) != nullptr) {
-        KMessageBox::sorry(krMainWindow, i18n("A folder or a file with this name already exists."));
+        KMessageBox::error(krMainWindow, i18n("A folder or a file with this name already exists."));
         return;
     }
 
@@ -443,11 +443,11 @@ void ListPanelFunc::krlink(bool sym)
 
     if (sym) {
         if (symlink(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
-            KMessageBox::sorry(krMainWindow,
+            KMessageBox::error(krMainWindow,
                                i18n("Failed to create a new symlink '%1' to: '%2'", linkName, name));
     } else {
         if (link(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
-            KMessageBox::sorry(krMainWindow,
+            KMessageBox::error(krMainWindow,
                                i18n("Failed to create a new link '%1' to '%2'", linkName, name));
     }
 }
@@ -465,7 +465,7 @@ void ListPanelFunc::view()
     if (!fileitem || fileitem->isDir())
         return;
     if (!fileitem->isReadable()) {
-        KMessageBox::sorry(nullptr, i18n("No permissions to view this file."));
+        KMessageBox::error(nullptr, i18n("No permissions to view this file."));
         return;
     }
     // call KViewer.
@@ -506,12 +506,12 @@ void ListPanelFunc::editFile(const QUrl &filePath)
         const KFileItem fileToEdit = KFileItem(editPath);
 
         if (fileToEdit.isDir()) {
-            KMessageBox::sorry(krMainWindow, i18n("You cannot edit a folder"));
+            KMessageBox::error(krMainWindow, i18n("You cannot edit a folder"));
             return;
         }
 
         if (!fileToEdit.isReadable()) {
-            KMessageBox::sorry(nullptr, i18n("No permissions to edit this file."));
+            KMessageBox::error(nullptr, i18n("No permissions to edit this file."));
             return;
         }
 
@@ -583,7 +583,7 @@ void ListPanelFunc::slotStatEdit(KJob* job)
     }
 
     if (statJob->statResult().isDir()) {
-        KMessageBox::sorry(nullptr, i18n("You cannot edit a folder"));
+        KMessageBox::error(nullptr, i18n("You cannot edit a folder"));
         return;
     }
 
@@ -602,7 +602,7 @@ void ListPanelFunc::slotFileCreated(KJob *job, const QUrl filePath)
             otherFunc()->refresh();
         }
     } else {
-        KMessageBox::sorry(krMainWindow, job->errorString());
+        KMessageBox::error(krMainWindow, job->errorString());
     }
 }
 
@@ -786,7 +786,7 @@ void ListPanelFunc::mkdir()
         // focus the existing directory
         panel->view->setCurrentItem(firstName);
         // show an error message
-        KMessageBox::sorry(krMainWindow, i18n("A folder or a file with this name already exists."));
+        KMessageBox::error(krMainWindow, i18n("A folder or a file with this name already exists."));
         return;
     }
 

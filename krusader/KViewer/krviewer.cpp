@@ -324,7 +324,7 @@ void KrViewer::edit(const QUrl& url, Mode mode, int new_window, QWidget * parent
         // the problem for editors that aren't url-aware
         proc << cmdArgs << url.toDisplayString(QUrl::PreferLocalFile);
         if (!proc.startDetached())
-            KMessageBox::sorry(krMainWindow, i18n("Can not open \"%1\"", editor));
+            KMessageBox::error(krMainWindow, i18n("Can not open \"%1\"", editor));
         return;
     }
 

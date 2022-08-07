@@ -338,5 +338,5 @@ void VirtualFileSystem::slotStatResult(KJob *job)
 void VirtualFileSystem::showError(const QString &error)
 {
     QWidget *window = QApplication::activeWindow();
-    KMessageBox::sorry(window, error); // window can be null, is allowed
+    KMessageBox::error(window, error); // window can be null, is allowed
 }

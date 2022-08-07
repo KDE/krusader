@@ -158,7 +158,7 @@ void KrSlots::compareContent()
         name2 = ACTIVE_PANEL->otherPanel()->func->files()->getUrl(ACTIVE_VIEW->getCurrentItem());
     } else  {
         // if we got here, then we can't be sure what file to diff
-        KMessageBox::sorry(nullptr, "<qt>" + i18n("Do not know which files to compare.") + "<br/><br/>" + i18n("To compare two files by content, you can either:<ul><li>Select one file in the left panel, and one in the right panel.</li><li>Select exactly two files in the active panel.</li><li>Make sure there is a file in the other panel, with the same name as the current file in the active panel.</li></ul>") + "</qt>");
+        KMessageBox::error(nullptr, "<qt>" + i18n("Do not know which files to compare.") + "<br/><br/>" + i18n("To compare two files by content, you can either:<ul><li>Select one file in the left panel, and one in the right panel.</li><li>Select exactly two files in the active panel.</li><li>Make sure there is a file in the other panel, with the same name as the current file in the active panel.</li></ul>") + "</qt>");
 
         return;
     }
@@ -404,7 +404,7 @@ void KrSlots::runTerminal(const QString & dir)
     }
     proc << sepdArgs;
     if (!proc.startDetached())
-        KMessageBox::sorry(krApp, i18n("Error executing %1.", term));
+        KMessageBox::error(krApp, i18n("Error executing %1.", term));
 }
 
 void KrSlots::homeTerminal()
@@ -417,7 +417,7 @@ void KrSlots::multiRename()
     QStringList lst = KrServices::supportedTools();
     int i = lst.indexOf("RENAME");
     if (i == -1) {
-        KMessageBox::sorry(krApp, i18n("Cannot find a batch rename tool.\nYou can get KRename at %1", QLatin1String("https://www.kde.org/applications/utilities/krename/")));
+        KMessageBox::error(krApp, i18n("Cannot find a batch rename tool.\nYou can get KRename at %1", QLatin1String("https://www.kde.org/applications/utilities/krename/")));
         return;
     }
     QString pathToRename = lst[i+1];
@@ -458,7 +458,7 @@ void KrSlots::rootKrusader()
         return;
 
     if (!KrServices::isExecutable(KDESU_PATH)) {
-        KMessageBox::sorry(krApp,
+        KMessageBox::error(krApp,
             i18n("Cannot start root mode Krusader, %1 not found or not executable. "
                  "Please verify that kde-cli-tools are installed.", QString(KDESU_PATH)));
         return;
@@ -492,7 +492,7 @@ void KrSlots::slotSplit()
         return;
 
     if (ACTIVE_FUNC->files()->getFileItem(name)->isDir()) {
-        KMessageBox::sorry(krApp, i18n("You cannot split a folder."));
+        KMessageBox::error(krApp, i18n("You cannot split a folder."));
         return;
     }
 
@@ -533,7 +533,7 @@ void KrSlots::slotCombine()
             return;
 
         if (ACTIVE_FUNC->files()->getFileItem(it)->isDir()) {
-            KMessageBox::sorry(krApp, i18n("You cannot combine a folder."));
+            KMessageBox::error(krApp, i18n("You cannot combine a folder."));
             return;
         }
 

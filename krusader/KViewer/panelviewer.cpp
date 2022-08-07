@@ -374,7 +374,7 @@ void PanelEditor::configureDeps()
 #endif
 
     if (!foundPlugin)
-        KMessageBox::sorry(nullptr, missingKPartMsg(), i18n("Missing Plugin"), KMessageBox::AllowLink);
+        KMessageBox::error(nullptr, missingKPartMsg(), i18n("Missing Plugin"), KMessageBox::AllowLink);
 
 }
 
@@ -428,7 +428,7 @@ void PanelEditor::openFile(KFileItem fi)
             return;
         } // else: don't show error message - assume this has been done by the editor part
     } else
-        KMessageBox::sorry(this, missingKPartMsg(), i18n("Cannot edit %1", curl.toDisplayString(QUrl::PreferLocalFile)),
+        KMessageBox::error(this, missingKPartMsg(), i18n("Cannot edit %1", curl.toDisplayString(QUrl::PreferLocalFile)),
                            KMessageBox::AllowLink);
 
     setCurrentWidget(fallback);

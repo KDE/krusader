@@ -110,7 +110,7 @@ QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
         Expander expander;
         const exp_placeholder* currentPlaceholder = expander.placeholder(res->data().toInt() & ~(ACTIVE_MASK | OTHER_MASK | LEFT_MASK | RIGHT_MASK | INDEPENDENT_MASK));
 //       if ( &currentPlaceholder->expFunc == 0 ) {
-//          KMessageBox::sorry( this, "BOFH Excuse #93:\nFeature not yet implemented" );
+//          KMessageBox::error( this, "BOFH Excuse #93:\nFeature not yet implemented" );
 //          return QString();
 //       }
         auto* parameterDialog = new ParameterDialog(currentPlaceholder, this);

@@ -96,7 +96,7 @@ bool TerminalDock::initialise()
                 ACTIVE_PANEL->gui->slotFocusOnMe();
             }
         } else
-            KMessageBox::sorry(nullptr, i18nc("missing program - arg1 is a URL",
+            KMessageBox::error(nullptr, i18nc("missing program - arg1 is a URL",
                                         "<b>Cannot create embedded terminal.</b><br>"
                                         "You can fix this by installing Konsole:<br/>%1",
                                         QString("<a href='%1'>%1</a>").arg(

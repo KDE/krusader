@@ -454,7 +454,7 @@ void KMountMan::slotTeardownDone(Solid::ErrorType error, const QVariant& errorDa
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::sorry(parentWindow, errorData.toString());
+        KMessageBox::error(parentWindow, errorData.toString());
     }
 }
 
@@ -462,7 +462,7 @@ void KMountMan::slotSetupDone(Solid::ErrorType error, const QVariant& errorData,
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::sorry(parentWindow, errorData.toString());
+        KMessageBox::error(parentWindow, errorData.toString());
     }
 }
 
