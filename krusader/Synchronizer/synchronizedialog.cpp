@@ -98,6 +98,7 @@ SynchronizeDialog::SynchronizeDialog(QWidget* parent,
     btnStart = new QPushButton(hboxWidget);
     btnStart->setText(i18n("&Start"));
     btnStart->setIcon(Icon("media-playback-start"));
+    btnStart->setDefault(true);
     hbox->addWidget(btnStart);
 
     btnPause = new QPushButton(hboxWidget);
