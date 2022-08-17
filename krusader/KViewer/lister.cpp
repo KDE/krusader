@@ -115,14 +115,14 @@ void ListerTextArea::calculateText(const bool forcedUpdate)
 
     // This is quite accurate (although not perfect) way of getting
     // a single character width along with its surrounding space.
-    const double fontWidth = (fm.QFONTMETRICS_WIDTH("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW") - fm.QFONTMETRICS_WIDTH("W")) / 99.0;
+    const double fontWidth = (fm.horizontalAdvance("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW") - fm.horizontalAdvance("W")) / 99.0;
 
     const int sizeY = contentRect.height() / fontHeight;
     _pageSize = sizeY;
 
     const int textViewportWidth = std::max(contentRect.width() - (int) fontWidth, 0);
 
-    SET_TAB_STOP_DISTANCE(fontWidth * _tabWidth);
+    setTabStopDistance(fontWidth * _tabWidth);
 
     const int sizeX = static_cast<int>(textViewportWidth / fontWidth);
 
@@ -2009,7 +2009,7 @@ void Lister::print()
 
     const QFontMetrics fmFixed(fixedFont);
     const int fixedFontHeight = std::max(fmFixed.height(), 1);
-    const int fixedFontWidth = std::max(fmFixed.QFONTMETRICS_WIDTH("W"), 1);
+    const int fixedFontWidth = std::max(fmFixed.horizontalAdvance("W"), 1);
 
     const int effPageSize = drawingRect.height() - normalFontHeight - 1;
     const int rowsPerPage = std::max(effPageSize / fixedFontHeight, 1);

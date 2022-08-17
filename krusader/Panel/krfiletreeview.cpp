@@ -96,7 +96,7 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
     connect(mSourceModel, &KDirModel::expand, this, &KrFileTreeView::slotExpanded);
 
     QFontMetrics fontMetrics(viewport()->font());
-    header()->resizeSection(KDirModel::Name, fontMetrics.QFONTMETRICS_WIDTH("WWWWWWWWWWWWWWW"));
+    header()->resizeSection(KDirModel::Name, fontMetrics.horizontalAdvance("WWWWWWWWWWWWWWW"));
 
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(), &QHeaderView::customContextMenuRequested, this,

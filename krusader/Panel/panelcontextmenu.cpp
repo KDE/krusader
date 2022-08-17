@@ -16,11 +16,7 @@
 #include <KIOWidgets/KRun>
 #include <KWidgetsAddons/KMessageBox>
 #include <kservice_version.h>
-#if KSERVICE_VERSION < QT_VERSION_CHECK(5, 68, 0)
-#include <KService/KMimeTypeTrader>
-#else
 #include <KService/KApplicationTrader>
-#endif
 #include <KXmlGui/KActionCollection>
 #include <KIOCore/KFileItem>
 #include <KIOCore/KFileItemListProperties>

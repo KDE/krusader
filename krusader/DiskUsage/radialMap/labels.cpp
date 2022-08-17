@@ -277,7 +277,7 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
                 qs = fm.elidedText((*it)->segment->file()->name(), Qt::ElideMiddle, width() - x2);
 
-                x3 = width() - fm.QFONTMETRICS_WIDTH(qs)
+                x3 = width() - fm.horizontalAdvance(qs)
                      - LABEL_HMARGIN //outer margin
                      - LABEL_TEXT_HMARGIN //margin between strut and text
                      //- ((*it)->lvl - startLevel) * LABEL_HMARGIN //indentation
@@ -300,7 +300,7 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
                 //**** needs a little tweaking:
 
-                tx = fm.QFONTMETRICS_WIDTH(qs) + LABEL_HMARGIN/* + ((*it)->lvl - startLevel) * LABEL_HMARGIN*/;
+                tx = fm.horizontalAdvance(qs) + LABEL_HMARGIN/* + ((*it)->lvl - startLevel) * LABEL_HMARGIN*/;
                 if (tx > x2) {  //text is too long
                     tx = LABEL_HMARGIN + x2 - tx; //some text will be lost from sight
                     x3 = x2; //no text margin (right side of text here)

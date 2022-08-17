@@ -189,32 +189,32 @@ const KIO::UDSEntry FileItem::getEntry()
 {
     KIO::UDSEntry entry;
 
-    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_NAME, getName());
-    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_SIZE, getSize());
-    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_MODIFICATION_TIME, getModificationTime());
+    entry.fastInsert(KIO::UDSEntry::UDS_NAME, getName());
+    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, getSize());
+    entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, getModificationTime());
     if (m_btime != -1) {
-        entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_CREATION_TIME, getCreationTime());
+        entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, getCreationTime());
     }
-    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_ACCESS_TIME, getAccessTime());
-    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_USER, getOwner());
-    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_GROUP, getGroup());
-    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_MIME_TYPE, getMime());
-    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_FILE_TYPE, getMode() & S_IFMT);
-    entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_ACCESS, getMode() & 07777);
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, getAccessTime());
+    entry.fastInsert(KIO::UDSEntry::UDS_USER, getOwner());
+    entry.fastInsert(KIO::UDSEntry::UDS_GROUP, getGroup());
+    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, getMime());
+    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, getMode() & S_IFMT);
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, getMode() & 07777);
 
     if (isSymLink())
-        entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_LINK_DEST, getSymDest());
+        entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, getSymDest());
 
     if (!m_AclLoaded)
         loadACL();
     if (!m_acl.isNull() || !m_defaulfAcl.isNull()) {
-        entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_EXTENDED_ACL, 1);
+        entry.fastInsert(KIO::UDSEntry::UDS_EXTENDED_ACL, 1);
 
         if (!m_acl.isNull())
-            entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_ACL_STRING, m_acl);
+            entry.fastInsert(KIO::UDSEntry::UDS_ACL_STRING, m_acl);
 
         if (!m_defaulfAcl.isNull())
-            entry.UDS_ENTRY_INSERT(KIO::UDSEntry::UDS_DEFAULT_ACL_STRING, m_defaulfAcl);
+            entry.fastInsert(KIO::UDSEntry::UDS_DEFAULT_ACL_STRING, m_defaulfAcl);
     }
 
     return entry;

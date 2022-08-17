@@ -192,23 +192,23 @@ QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
 
     // set the real max length
     QFontMetrics fm(fontMetrics());
-    _maxTabLength = (dynamic_cast<QWidget*>(parent())->width() - (6 * fm.QFONTMETRICS_WIDTH("W"))) / fm.QFONTMETRICS_WIDTH("W");
+    _maxTabLength = (dynamic_cast<QWidget*>(parent())->width() - (6 * fm.horizontalAdvance("W"))) / fm.horizontalAdvance("W");
     // each tab gets a fair share of the max tab length
     const int effectiveTabLength = _maxTabLength / (count() == 0 ? 1 : count());
-    const int labelWidth = fm.QFONTMETRICS_WIDTH("W") * effectiveTabLength;
-    const int textWidth = fm.QFONTMETRICS_WIDTH(text);
+    const int labelWidth = fm.horizontalAdvance("W") * effectiveTabLength;
+    const int textWidth = fm.horizontalAdvance(text);
     if (textWidth <= labelWidth)
         return text;
 
     // squeeze text - start with the dots only
     QString squeezedText = "...";
-    int squeezedWidth = fm.QFONTMETRICS_WIDTH(squeezedText);
+    int squeezedWidth = fm.horizontalAdvance(squeezedText);
 
     int letters = text.length() * (labelWidth - squeezedWidth) / textWidth / 2;
     if (labelWidth < squeezedWidth)
         letters = 1;
     squeezedText = text.left(letters) + "..." + text.right(letters);
-    squeezedWidth = fm.QFONTMETRICS_WIDTH(squeezedText);
+    squeezedWidth = fm.horizontalAdvance(squeezedText);
 
     if (squeezedWidth < labelWidth) {
         // we estimated too short
@@ -216,7 +216,7 @@ QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
         do {
             letters++;
             squeezedText = text.left(letters) + "..." + text.right(letters);
-            squeezedWidth = fm.QFONTMETRICS_WIDTH(squeezedText);
+            squeezedWidth = fm.horizontalAdvance(squeezedText);
         } while (squeezedWidth < labelWidth);
         letters--;
         squeezedText = text.left(letters) + "..." + text.right(letters);
@@ -226,7 +226,7 @@ QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
         do {
             letters--;
             squeezedText = text.left(letters) + "..." + text.right(letters);
-            squeezedWidth = fm.QFONTMETRICS_WIDTH(squeezedText);
+            squeezedWidth = fm.horizontalAdvance(squeezedText);
         } while (letters && squeezedWidth > labelWidth);
     }
 

@@ -222,7 +222,7 @@ void KrViewItemDelegate::cycleEditorSelection()
         return;
     }
 
-    EditorSelection currentSelection(editor->selectionStart(), editor->QLINEEDIT_SELECTIONLENGTH);
+    EditorSelection currentSelection(editor->selectionStart(), editor->selectionLength());
     auto text = editor->text();
     const auto selections = generateFileNameSelections(text);
 

@@ -54,7 +54,7 @@ DUListView::DUListView(DiskUsage *usage)
     if (group.hasKey("D State"))
         header()->restoreState(group.readEntry("D State", QByteArray()));
     else {
-        int defaultSize = QFontMetrics(font()).QFONTMETRICS_WIDTH("W");
+        int defaultSize = QFontMetrics(font()).horizontalAdvance("W");
 
         setColumnWidth(0, defaultSize * 20);
         setColumnWidth(1, defaultSize * 5);

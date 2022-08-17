@@ -76,7 +76,7 @@ public:
             QString renderedText = text;
 
             int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin);
-            int pos = 3 * textMargin + option.fontMetrics.QFONTMETRICS_WIDTH(display) + iconSize.width();
+            int pos = 3 * textMargin + option.fontMetrics.horizontalAdvance(display) + iconSize.width();
 
             bool truncd = false;
 
@@ -84,12 +84,12 @@ public:
             if (rct.width() > pos) {
                 rct.setX(rct.x() + pos);
 
-                if (fm.QFONTMETRICS_WIDTH(renderedText) > rct.width()) {
+                if (fm.horizontalAdvance(renderedText) > rct.width()) {
                     truncd = true;
 
-                    int points = fm.QFONTMETRICS_WIDTH("...");
+                    int points = fm.horizontalAdvance("...");
 
-                    while (!renderedText.isEmpty() && (fm.QFONTMETRICS_WIDTH(renderedText) + points > rct.width()))
+                    while (!renderedText.isEmpty() && (fm.horizontalAdvance(renderedText) + points > rct.width()))
                         renderedText.truncate(renderedText.length() - 1);
 
                     renderedText += "...";
@@ -167,7 +167,7 @@ DULines::DULines(DiskUsage *usage)
     setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     setIndentation(10);
 
-    int defaultSize = QFontMetrics(font()).QFONTMETRICS_WIDTH("W");
+    int defaultSize = QFontMetrics(font()).horizontalAdvance("W");
 
     QStringList labels;
     labels << i18n("Line View");

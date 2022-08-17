@@ -75,14 +75,14 @@ void CmdLineCombo::doLayout()
 {
     QString pathNameLabel = _path;
     QFontMetrics fm(_pathLabel->fontMetrics());
-    int textWidth = fm.QFONTMETRICS_WIDTH(_path);
+    int textWidth = fm.horizontalAdvance(_path);
     int maxWidth = (width() + _pathLabel->width()) * 2 / 5;
     int letters = _path.length() / 2;
 
     while (letters && textWidth > maxWidth) {
         pathNameLabel = _path.left(letters) + "..." + _path.right(letters);
         letters--;
-        textWidth = fm.QFONTMETRICS_WIDTH(pathNameLabel);
+        textWidth = fm.horizontalAdvance(pathNameLabel);
     }
 
     _pathLabel->setText(pathNameLabel + "> ");

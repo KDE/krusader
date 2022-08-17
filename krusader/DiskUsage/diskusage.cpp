@@ -134,7 +134,7 @@ LoaderWidget::LoaderWidget(QWidget *parent) : QScrollArea(parent), cancelled(fal
     searchedDirectory = new KSqueezedTextLabel(loaderBox);
     searchedDirectory->setFrameShape(QLabel::StyledPanel);
     searchedDirectory->setFrameShadow(QLabel::Sunken);
-    searchedDirectory->setMinimumWidth(width = QFontMetrics(searchedDirectory->font()).QFONTMETRICS_WIDTH("W") * 30);
+    searchedDirectory->setMinimumWidth(width = QFontMetrics(searchedDirectory->font()).horizontalAdvance("W") * 30);
     searchedDirectory->setMaximumWidth(width);
     synchGrid->addWidget(searchedDirectory, 4, 0, 1, 2);
 

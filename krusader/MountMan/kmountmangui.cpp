@@ -157,8 +157,8 @@ QLayout *KMountManGUI::createMainPage()
     if (grp.hasKey("Last State"))
         mountList->header()->restoreState(grp.readEntry("Last State", QByteArray()));
     else {
-        int i = QFontMetrics(mountList->font()).QFONTMETRICS_WIDTH("W");
-        int j = QFontMetrics(mountList->font()).QFONTMETRICS_WIDTH("0");
+        int i = QFontMetrics(mountList->font()).horizontalAdvance("W");
+        int j = QFontMetrics(mountList->font()).horizontalAdvance("0");
         j = (i > j ? i : j);
 
         mountList->setColumnWidth(0, j*8);

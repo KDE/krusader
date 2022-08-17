@@ -44,7 +44,7 @@ void KrSqueezedTextLabel::squeezeTextToLabel(int index, int length)
         QString sqtext = fullText;
         QFontMetrics fm(fontMetrics());
         int labelWidth = size().width();
-        int textWidth = fm.QFONTMETRICS_WIDTH(sqtext);
+        int textWidth = fm.horizontalAdvance(sqtext);
         if (textWidth > labelWidth) {
             int avgCharSize = textWidth / sqtext.length();
             int numOfExtraChars = (textWidth - labelWidth) / avgCharSize;

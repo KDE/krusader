@@ -122,7 +122,7 @@ DiskUsageGUI::DiskUsageGUI(const QUrl &openDir)
 
     diskUsage->setView(view);
 
-    sizeX = group.readEntry("Window Width",  QFontMetrics(font()).QFONTMETRICS_WIDTH("W") * 70);
+    sizeX = group.readEntry("Window Width",  QFontMetrics(font()).horizontalAdvance("W") * 70);
     sizeY = group.readEntry("Window Height", QFontMetrics(font()).height() * 25);
     resize(sizeX, sizeY);
 

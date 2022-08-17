@@ -495,7 +495,7 @@ int KrInterBriefView::elementWidth(const QModelIndex & index)
 {
     QString text = index.data(Qt::DisplayRole).toString();
 
-    int textWidth = QFontMetrics(_viewFont).QFONTMETRICS_WIDTH(text);
+    int textWidth = QFontMetrics(_viewFont).horizontalAdvance(text);
 
     const int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
     textWidth += 2 * textMargin;

@@ -150,7 +150,7 @@ bool KrTreeWidget::event(QEvent * event)
                 QString tip = item->text(column);
 
                 int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
-                int requiredWidth = QFontMetrics(font()).QFONTMETRICS_WIDTH(tip) + 2 * textMargin;
+                int requiredWidth = QFontMetrics(font()).horizontalAdvance(tip) + 2 * textMargin;
 
                 if (column == 0 && indentation()) {
                     int level = 0;

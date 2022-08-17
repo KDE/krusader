@@ -166,7 +166,7 @@ LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
     resultList->setColumnCount(1);
     resultList->setHeaderLabel(i18n("Results"));
 
-    resultList->setColumnWidth(0, QFontMetrics(resultList->font()).QFONTMETRICS_WIDTH("W") * 60);
+    resultList->setColumnWidth(0, QFontMetrics(resultList->font()).horizontalAdvance("W") * 60);
 
     KConfigGroup gl(krConfig, "Look&Feel");
     resultList->setFont(gl.readEntry("Filelist Font", _FilelistFont));

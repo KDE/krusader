@@ -22,18 +22,6 @@
 #endif
 
 /**
- * UDSEntry::insert(uint, const QString &) was made deprecated since 5.48 in
- * favor of UDSEntry::fastInsert(uint, const QString &)
- *
- * This can be removed when the frameworks minimum version required will be >= 5.48
- */
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 48, 0)
-    #define UDS_ENTRY_INSERT(A, B) UDSEntry::fastInsert((A), (B));
-#else
-    #define UDS_ENTRY_INSERT(A, B) UDSEntry::insert((A), (B));
-#endif
-
-/**
  * KActionMenu::setDelayed(bool) was made deprecated since 5.77 in
  * favor of KActionMenu::setPopupMode(QToolButton::ToolButtonPopupMode)
  *
@@ -67,45 +55,6 @@
     #define COMPRESSIONTYPEFORMIMETYPE KCompressionDevice::compressionTypeForMimeType
 #else
     #define COMPRESSIONTYPEFORMIMETYPE KFilterDev::compressionTypeForMimeType
-#endif
-
-/**
- * QLineEdit::selectionLength() is not present in QT < 5.10
- *
- * This can be removed when the qt minimum version required will be >= 5.10
- */
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-    #define QLINEEDIT_SELECTIONLENGTH selectionLength()
-#else
-    #define QLINEEDIT_SELECTIONLENGTH selectedText().length()
-#endif
-
-/**
- * QTextEdit::setTabStopWidth(int) was made obsoleted in QT 5.10 in
- * favor of QTextEdit::setTabStopDistance(int)
- *
- * https://doc.qt.io/archives/qt-5.10/qtextedit-obsolete.html#tabStopWidth-prop
- *
- * This can be removed when the qt minimum version required will be >= 5.10
- */
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-    #define SET_TAB_STOP_DISTANCE(X) setTabStopDistance(X)
-#else
-    #define SET_TAB_STOP_DISTANCE(X) setTabStopWidth(X)
-#endif
-
-/**
- * QFontMetrics::width(const QString&, int) was made obsoleted in QT 5.11 in
- * favor of QFontMetrics::horizontalAdvance(const QString &, int)
- *
- * https://doc.qt.io/archives/qt-5.11/qfontmetrics-obsolete.html#width
- *
- * This can be removed when the qt minimum version required will be >= 5.11
- */
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-    #define QFONTMETRICS_WIDTH(A) horizontalAdvance(A)
-#else
-    #define QFONTMETRICS_WIDTH(A) width(A)
 #endif
 
 /**
