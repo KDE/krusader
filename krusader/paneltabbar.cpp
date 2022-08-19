@@ -35,12 +35,13 @@
 static const int sDragEnterDelay = 500; // msec
 
 PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
-    _maxTabLength(0), _tabClicked(false), _draggingTab(false), _dragTabIndex(-1)
+    _maxTabLength(0), _tabClicked(false), _tabDoubleClicked(false),
+    _draggingTab(false), _dragTabIndex(-1)
 {
     const KConfigGroup cfg(krConfig, "Look&Feel");
     const bool expandingTabs = cfg.readEntry("Expanding Tabs", true);
     const bool showCloseButtons = cfg.readEntry("Show Close Tab Buttons", true);
-    _doubleClickClose  = cfg.readEntry("Close Tab By Double Click", false);
+    _doubleClickClose = cfg.readEntry("Close Tab By Double Click", false);
 
     _panelActionMenu = new KActionMenu(i18n("Panel"), this);
 
@@ -268,7 +269,7 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
 
         // show the popup menu
         _panelActionMenu->menu()->popup(e->globalPos());
-    } else if (e->button() == Qt::LeftButton) {
+    } else if (e->button() == Qt::LeftButton && !_tabDoubleClicked) {
         bool isDuplicationEvent = false;
 
         if (e->modifiers() == Qt::ControlModifier) {
@@ -305,6 +306,8 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
 
 void PanelTabBar::mouseDoubleClickEvent(QMouseEvent* e)
 {
+    _tabDoubleClicked = true;
+
     if (!_doubleClickClose)
     {
         QTabBar::mouseDoubleClickEvent(e);
@@ -335,6 +338,7 @@ void PanelTabBar::mouseReleaseEvent(QMouseEvent* e)
         emit draggingTabFinished(e);
     _draggingTab = false;
     _tabClicked = false;
+    _tabDoubleClicked = false;
 }
 
 void PanelTabBar::dragEnterEvent(QDragEnterEvent *e)

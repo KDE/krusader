@@ -101,7 +101,7 @@ private:
     KActionMenu *_panelActionMenu;
     bool _left;
     int _maxTabLength;
-    bool _tabClicked, _draggingTab, _doubleClickClose;
+    bool _tabClicked, _tabDoubleClicked, _draggingTab, _doubleClickClose;
 
     QTimer *_dragTimer;
     int _dragTabIndex;
