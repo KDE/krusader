@@ -129,7 +129,7 @@ void KgPanel::setupGeneralTab()
     // -------------- Duplicate tab by click --------------------
     QHBoxLayout *hbox = new QHBoxLayout();
 
-    QLabel *labelDupTabs = new QLabel(i18n("Duplicate tab by click:"), groupBox);
+    QLabel *labelDupTabs = new QLabel(i18n("Duplicate active tab by click:"), groupBox);
     hbox->addWidget(labelDupTabs);
 
     KONFIGURATOR_NAME_VALUE_PAIR duptabs[] = {
@@ -141,7 +141,7 @@ void KgPanel::setupGeneralTab()
     KonfiguratorComboBox *cmb = createComboBox(
         "Look&Feel", "Duplicate Tab Click",
         "disabled", duptabs, 3, labelDupTabs, groupBox, true, false,
-        i18n("Duplicate tab by clicking Ctrl/Alt+LMB"), PAGE_GENERAL);
+        i18n("Duplicate active tab by clicking Ctrl/Alt+LMB"), PAGE_GENERAL);
 
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(groupBox));
