@@ -287,7 +287,7 @@ void FreeRR(rr_entry *rrentry)
     }
     if (rrentry->sl) {
         free(rrentry->sl);
-        rrentry->name = NULL;
+        rrentry->sl = NULL;
     }
 }
 
