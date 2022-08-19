@@ -36,11 +36,16 @@
   <defaultshortcut>Meta+A</defaultshortcut>
  </action>
  <action name="filename_to_clipboard" >
-  <title>Copy current item to clipboard</title>
+  <title>Copy file path of current item</title>
   <icon>edit-paste</icon>
   <category>Samples</category>
   <command>%_Clipboard(&quot;%aCurrent%&quot;)%</command>
   <defaultshortcut>Alt+Ctrl+C</defaultshortcut>
+ </action>
+ <action name="filepaths_to_clipboard">
+  <title>Copy file path(s) of selected item(s)</title>
+  <category>Samples</category>
+  <command>%_Clipboard(&quot;%aList(&quot;Selected&quot;, &quot;\n&quot;, , , &quot;No&quot;)%&quot;)%</command>
  </action>
  <action name="sort_by_name" >
   <title>Sort by Name</title>
