@@ -311,20 +311,20 @@ void PanelTabBar::mouseDoubleClickEvent(QMouseEvent* e)
         return;
     }
 
-    int clickedTab = tabAt(e->pos());
+    int clickedTabIndex = tabAt(e->pos());
 
-    if (-1 == clickedTab) { // clicked on nothing ...
+    if (-1 == clickedTabIndex) { // clicked on nothing ...
         QTabBar::mouseDoubleClickEvent(e);
         return;
     }
 
     _tabClicked = true;
 
-    setCurrentIndex(clickedTab);
-
-    if (e->button() == Qt::LeftButton) // close the current tab
+    // close the current tab
+    if (e->button() == Qt::LeftButton
+        && e->modifiers() == Qt::NoModifier) {
         emit closeCurrentTab();
-
+    }
     QTabBar::mouseDoubleClickEvent(e);
 }
 
