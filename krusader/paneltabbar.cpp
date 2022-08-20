@@ -35,12 +35,13 @@
 static const int sDragEnterDelay = 500; // msec
 
 PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
-    _maxTabLength(0), _tabClicked(false), _draggingTab(false), _dragTabIndex(-1)
+    _maxTabLength(0), _tabClicked(false), _tabDoubleClicked(false),
+    _draggingTab(false), _dragTabIndex(-1)
 {
     const KConfigGroup cfg(krConfig, "Look&Feel");
     const bool expandingTabs = cfg.readEntry("Expanding Tabs", true);
     const bool showCloseButtons = cfg.readEntry("Show Close Tab Buttons", true);
-    _doubleClickClose  = cfg.readEntry("Close Tab By Double Click", false);
+    _doubleClickClose = cfg.readEntry("Close Tab By Double Click", false);
 
     _panelActionMenu = new KActionMenu(i18n("Panel"), this);
 
@@ -250,27 +251,54 @@ void PanelTabBar::mouseMoveEvent(QMouseEvent* e)
 
 void PanelTabBar::mousePressEvent(QMouseEvent* e)
 {
-    int clickedTab = tabAt(e->pos());
+    int clickedTabIndex = tabAt(e->pos());
 
-    if (-1 == clickedTab) { // clicked on nothing ...
+    // don't handle clicks outside of tabs
+    if (clickedTabIndex < 0) {
         QTabBar::mousePressEvent(e);
         return;
     }
 
+    bool isActiveTab = currentIndex() == clickedTabIndex;
+
     _tabClicked = true;
 
-    setCurrentIndex(clickedTab);
-
-    ListPanel *p = getPanel(clickedTab);
-    if (p)
-        p->slotFocusOnMe();
-
     if (e->button() == Qt::RightButton) {
+        if (!isActiveTab)
+            setCurrentIndex(clickedTabIndex);
+
         // show the popup menu
         _panelActionMenu->menu()->popup(e->globalPos());
-    } else {
-        if (e->button() == Qt::MidButton)// close the current tab
-            emit closeCurrentTab();
+    } else if (e->button() == Qt::LeftButton && !_tabDoubleClicked) {
+        bool isDuplicationEvent = false;
+
+        if (e->modifiers() == Qt::ControlModifier) {
+            KConfigGroup group(krConfig, "Look&Feel");
+            if (group.readEntry("Duplicate Tab Click", "disabled") == "ctrl_click") {
+                isDuplicationEvent = true;
+            }
+        } else if (e->modifiers() == Qt::AltModifier) {
+            KConfigGroup group(krConfig, "Look&Feel");
+            if (group.readEntry("Duplicate Tab Click", "disabled") == "alt_click") {
+                isDuplicationEvent = true;
+            }
+        }
+
+        if (isDuplicationEvent) {
+            // Duplicate only the active tab, otherwise dismiss the click,
+            // because an inactive tab may not be properly initialized
+            // and duplication will be incomplete in this case.
+            if (isActiveTab)
+                emit duplicateCurrentTab();
+            else
+                return;
+        }
+    } else if (e->button() == Qt::MidButton) {
+        if (!isActiveTab)
+            setCurrentIndex(clickedTabIndex);
+
+        // close the current tab
+        emit closeCurrentTab();
     }
 
     QTabBar::mousePressEvent(e);
@@ -278,26 +306,28 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
 
 void PanelTabBar::mouseDoubleClickEvent(QMouseEvent* e)
 {
+    _tabDoubleClicked = true;
+
     if (!_doubleClickClose)
     {
         QTabBar::mouseDoubleClickEvent(e);
         return;
     }
 
-    int clickedTab = tabAt(e->pos());
+    int clickedTabIndex = tabAt(e->pos());
 
-    if (-1 == clickedTab) { // clicked on nothing ...
+    if (-1 == clickedTabIndex) { // clicked on nothing ...
         QTabBar::mouseDoubleClickEvent(e);
         return;
     }
 
     _tabClicked = true;
 
-    setCurrentIndex(clickedTab);
-
-    if (e->button() == Qt::LeftButton) // close the current tab
+    // close the current tab
+    if (e->button() == Qt::LeftButton
+        && e->modifiers() == Qt::NoModifier) {
         emit closeCurrentTab();
-
+    }
     QTabBar::mouseDoubleClickEvent(e);
 }
 
@@ -308,6 +338,7 @@ void PanelTabBar::mouseReleaseEvent(QMouseEvent* e)
         emit draggingTabFinished(e);
     _draggingTab = false;
     _tabClicked = false;
+    _tabDoubleClicked = false;
 }
 
 void PanelTabBar::dragEnterEvent(QDragEnterEvent *e)

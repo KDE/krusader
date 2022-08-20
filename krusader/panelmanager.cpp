@@ -60,6 +60,7 @@ PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left)
     connect(_tabbar, &PanelTabBar::currentChanged, this, &PanelManager::slotCurrentTabChanged);
     connect(_tabbar, &PanelTabBar::tabCloseRequested, this, QOverload<int>::of(&PanelManager::slotCloseTab));
     connect(_tabbar, &PanelTabBar::closeCurrentTab, this, QOverload<>::of(&PanelManager::slotCloseTab));
+    connect(_tabbar, &PanelTabBar::duplicateCurrentTab, this, &PanelManager::slotDuplicateTabLMB, Qt::QueuedConnection);
     connect(_tabbar, &PanelTabBar::newTab, this, [=] (const QUrl &url) { slotNewTab(url); });
     connect(_tabbar, &PanelTabBar::draggingTab, this, &PanelManager::slotDraggingTab);
     connect(_tabbar, &PanelTabBar::draggingTabFinished, this, &PanelManager::slotDraggingTabFinished);
@@ -286,7 +287,10 @@ void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, int insertIndex)
 
 void PanelManager::slotNewTabFromUI()
 {
-    int insertIndex = KConfigGroup(krConfig, "Look&Feel").readEntry("Insert Tabs After Current", false) ? _tabbar->currentIndex() + 1 : _tabbar->count();
+    KConfigGroup group(krConfig, "Look&Feel");
+    int insertIndex = group.readEntry("Insert Tabs After Current", false)
+                      ? _tabbar->currentIndex() + 1
+                      : _tabbar->count();
     slotDuplicateTab(currentPanel()->virtualPath(), currentPanel(), insertIndex);
     _currentPanel->slotFocusOnMe();
 }
@@ -300,7 +304,7 @@ void PanelManager::slotNewTab()
 void PanelManager::slotDuplicateTab(const QUrl &url, KrPanel *nextTo, int insertIndex)
 {
     ListPanel *p = duplicatePanel(KConfigGroup(), nextTo, insertIndex);
-    if(nextTo && nextTo->gui) {
+    if (nextTo && nextTo->gui) {
         // We duplicate tab settings by writing original settings to a temporary
         // group and making the new tab read settings from it. Duplicating
         // settings directly would add too much complexity.
@@ -315,6 +319,11 @@ void PanelManager::slotDuplicateTab(const QUrl &url, KrPanel *nextTo, int insert
         krConfig->deleteGroup(grpName);
     }
     p->start(url);
+}
+
+void PanelManager::slotDuplicateTabLMB()
+{
+    slotDuplicateTab(currentPanel()->virtualPath(), currentPanel());
 }
 
 void PanelManager::slotCloseTab()
