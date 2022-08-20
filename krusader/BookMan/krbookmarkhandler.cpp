@@ -447,7 +447,9 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
             }
 
             newMenu->addSeparator();
-            newMenu->addAction(krPopularUrls);
+            if (krPopularUrls != nullptr) {
+                newMenu->addAction(krPopularUrls);
+            }
             newMenu->installEventFilter(this);
         }
 
