@@ -511,8 +511,10 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
         }
 
         menu->addSeparator();
-        menu->addAction(KrActions::actAddBookmark);
-        _specialBookmarks.append(KrActions::actAddBookmark);
+        if (KrActions::actAddBookmark != nullptr) {
+            menu->addAction(KrActions::actAddBookmark);
+           _specialBookmarks.append(KrActions::actAddBookmark);
+        }
         QAction *bmAct = menu->addAction(Icon("bookmarks"),
                                          i18n("Manage Bookmarks"), manager, SLOT(slotEditBookmarks()));
         _specialBookmarks.append(bmAct);
