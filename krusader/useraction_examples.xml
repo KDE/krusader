@@ -36,7 +36,7 @@
   <defaultshortcut>Meta+A</defaultshortcut>
  </action>
  <action name="filename_to_clipboard" >
-  <title>Copy file path of current item</title>
+  <title>Copy file path of current item (escaping spaces)</title>
   <icon>edit-paste</icon>
   <category>Samples</category>
   <command>%_Clipboard(&quot;%aCurrent%&quot;)%</command>
