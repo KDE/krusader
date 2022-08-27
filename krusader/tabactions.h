@@ -30,7 +30,6 @@ public slots:
 
 protected slots:
     void newTab();
-    void newTabFromUI();
     void duplicateTab();
     void lockTab();
     void pinTab();
@@ -47,7 +46,7 @@ protected slots:
 protected:
     inline PanelManager *activeManager();
 
-    QAction *actNewTabFromUI; //! When using the User Interface to open a new tab (with its peculiarities)
+    QAction *actNewTab;
     QAction *actDupTab, *actCloseTab, *actUndoCloseTab;
     QAction *actPreviousTab, *actNextTab, *actMoveTabToOtherSide;
     QAction *actCloseInactiveTabs, *actCloseDuplicatedTabs, *actLockTab, *actPinTab;

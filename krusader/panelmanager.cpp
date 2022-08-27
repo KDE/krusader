@@ -53,7 +53,7 @@ PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left)
     _newTab->setToolTip(i18n("Open a new tab"));
     _newTab->setIcon(Icon("tab-new"));
     _newTab->adjustSize();
-    connect(_newTab, &QToolButton::clicked, this, &PanelManager::slotNewTabFromUI);
+    connect(_newTab, &QToolButton::clicked, this, &PanelManager::slotNewTabButton);
 
     // tab-bar
     _tabbar = new PanelTabBar(this, _actions);
@@ -285,7 +285,7 @@ void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, int insertIndex)
     p->start(url);
 }
 
-void PanelManager::slotNewTabFromUI()
+void PanelManager::slotNewTabButton()
 {
     KConfigGroup group(krConfig, "Look&Feel");
     int insertIndex = group.readEntry("Insert Tabs After Current", false)

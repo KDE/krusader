@@ -49,7 +49,7 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
     setExpanding(expandingTabs);
     setTabsClosable(showCloseButtons);
 
-    insertAction(actions->actNewTabFromUI);
+    insertAction(actions->actNewTab);
     insertAction(actions->actLockTab);
     insertAction(actions->actPinTab);
     insertAction(actions->actDupTab);
