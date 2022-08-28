@@ -121,14 +121,23 @@ you need to compile KF5 software:
 - libkf5xmlgui-dev       user configurable main windows
 
 
---- Krusader development download
+--- Krusader source code download
 
-Krusader is developed in KDE Extragear. If someone wants to download and use
-the latest available Krusader sourcecode with git:
+Krusader is developed on Invent KDE hub at https://invent.kde.org/utilities/krusader.
+
+To download the latest source code, clone the repository with git:
 $ git clone https://invent.kde.org/utilities/krusader
+$ cd krusader
 
-Otherwise, if someone wants to use the .tar.xz package:
-$ tar xvf krusader-xx.xx.tar.xz
+You'll land on the 'master' branch that has the latest development updates and features but potentially could have regressions.
+If you'd like switch to the 'stable' branch, which contains backported bug fixes on top of the latest release, run
+$ git checkout -b stable origin/stable
+
+You can also use one of the released snapshots available at https://download.kde.org/stable/krusader/.
+Besides the source code, the snapshots contain translations.
+Unpack the archive with:
+$ tar -xvf krusader-x.y.z.tar.xz
+$ cd krusader-x.y.z
 
 
 --- Some CMake options. CMake execution
