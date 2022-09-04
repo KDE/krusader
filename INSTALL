@@ -137,10 +137,11 @@ You can also use one of the released snapshots available at https://download.kde
 Besides the source code, the snapshots contain translations.
 Unpack the archive with:
 $ tar -xvf krusader-x.y.z.tar.xz
-$ cd krusader-x.y.z
+$ mv krusader-x.y.z krusader
+$ cd krusader
 
 
---- Some CMake options. CMake execution
+--- Build configuration
 
 These are some CMake options that can be used, it's not necessary to use
 them all (later there's an example):
@@ -165,12 +166,9 @@ them all (later there's an example):
   disables building the Synchronizer module. This module caused data loss, now
   it is fixed, but we treat it as the thin ice.
 
-In order to make sure that the present folder is the parent directory of the "krusader" source code folder, this command can be executed:
-    ls krusader/krusader
-and it should answer something like:
-    abstractpanelmanager.h  Dialogs     kicons.h           KrJS            krusaderlisterui.rc
-    [...]
-then CMake can be executed this way:
+Example steps to configure the build:
+$ cd ..
+$ ls krusader/app/main.cpp || echo "Incorrect starting dir"
 $ mkdir krusader-build
 $ cd krusader-build
 $ cmake ../krusader -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
@@ -185,8 +183,6 @@ if e.g. Qt 5.9 was installed inside /opt
 
 
 --- Compilation and installation
-
-Compilation will take about 5 to 10 minutes depending on your CPU speed.
 
 Execute:
 # Note: On a multi cpu/core system you might want to speed up the compile process by increasing the number of jobs (e.g. `make -j4`)
