@@ -7,7 +7,7 @@
 */
 
 #include "krarc.h"
-#include "../krusader/defaults.h"
+#include "../app/defaults.h"
 
 // QtCore
 #include <QByteArray>
@@ -32,7 +32,7 @@
 #include <kio_version.h>
 
 #include <errno.h>
-#include "../krusader/compat.h"
+#include "../app/compat.h"
 
 #define MAX_IPC_SIZE           (1024*32)
 #define TRIES_WITH_PASSWORDS   3

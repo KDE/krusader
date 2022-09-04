@@ -146,7 +146,7 @@ endif()
 
 # ===== Subdirectories =====
 
-add_subdirectory(krusader)
+add_subdirectory(app)
 add_subdirectory(pics)
 add_subdirectory(doc-extras)
 add_subdirectory(krArc)

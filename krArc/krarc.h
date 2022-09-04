@@ -27,7 +27,7 @@
 
 #include "krarcbasemanager.h"
 #include "krlinecountingprocess.h"
-#include "../krusader/krdebuglogger.h"
+#include "../app/krdebuglogger.h"
 
 class KFileItem;
 class QByteArray;

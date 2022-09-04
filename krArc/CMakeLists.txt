@@ -2,7 +2,7 @@ set(kio_krarc_PART_SRCS
     krarc.cpp
     krarcbasemanager.cpp
     krlinecountingprocess.cpp
-    ../krusader/krdebuglogger.cpp
+    ../app/krdebuglogger.cpp
 )
 
 kcoreaddons_add_plugin(kio_krarc SOURCES ${kio_krarc_PART_SRCS} INSTALL_NAMESPACE "kf5/kio")
