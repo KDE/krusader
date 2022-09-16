@@ -23,4 +23,4 @@ target_link_libraries(kio_iso
     ${ZLIB_LIBRARY}
 )
 
-install(FILES kio_isorc DESTINATION ${CONFIG_INSTALL_DIR})
+install(FILES kio_isorc DESTINATION ${KDE_INSTALL_CONFDIR})

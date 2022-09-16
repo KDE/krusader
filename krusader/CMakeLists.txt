@@ -79,13 +79,13 @@ if(SYNCHRONIZER_ENABLED)
     target_link_libraries( krusader Synchronizer )
 endif(SYNCHRONIZER_ENABLED)
 
-install(TARGETS krusader ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS krusader ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS org.kde.krusader.desktop
-        DESTINATION ${XDG_APPS_INSTALL_DIR} )
+        DESTINATION ${KDE_INSTALL_APPDIR} )
 install(FILES krusaderui.rc
               krusaderlisterui.rc
               krviewer.rc
-        DESTINATION ${KXMLGUI_INSTALL_DIR}/krusader)
+        DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/krusader)
 install(FILES midnight_commander.color
               total_commander.color
               total_commander.keymap
@@ -93,7 +93,7 @@ install(FILES midnight_commander.color
               useraction_examples.xml
               layout.xml
               splash.png
-        DESTINATION ${DATA_INSTALL_DIR}/krusader)
+        DESTINATION ${KDE_INSTALL_DATADIR}/krusader)
 install(FILES org.kde.krusader.appdata.xml
         DESTINATION ${KDE_INSTALL_METAINFODIR})
 
@@ -124,5 +124,5 @@ ecm_install_icons(ICONS
     icons/64-apps-krusader_user.png
     icons/128-apps-krusader_root.png
     icons/128-apps-krusader_user.png
-    DESTINATION ${ICON_INSTALL_DIR}
+    DESTINATION ${KDE_INSTALL_ICONDIR}
 )
