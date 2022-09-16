@@ -59,6 +59,13 @@ find_package(KF5 ${MIN_KF_VERSION} REQUIRED COMPONENTS
 )
 
 
+# ===== Get GIT revision =====
+
+execute_process(COMMAND git log --pretty=format:%h -n 1
+                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+                OUTPUT_VARIABLE GIT_REVISION
+                ERROR_QUIET)
+
 # ===== Definitions =====
 
 # Synchronizer is enabled by default, unless disabled from the command line (-DENABLE_SYNCHRONIZER=OFF)

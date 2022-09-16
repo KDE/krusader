@@ -98,9 +98,13 @@ int main(int argc, char *argv[])
 
     // ABOUT data information
 #ifdef RELEASE_NAME
-    const QString versionName = QStringLiteral("%1 \"%2\"").arg(VERSION, RELEASE_NAME);
+    QString versionName = QStringLiteral("%1 \"%2\"").arg(VERSION, RELEASE_NAME);
 #else
-    const QString versionName = VERSION;
+    QString versionName = VERSION;
+#endif
+
+#ifdef GIT_REVISION
+    versionName += QString(" (gitrev: %1)").arg(GIT_REVISION);
 #endif
 
     KAboutData aboutData(QStringLiteral("krusader"),

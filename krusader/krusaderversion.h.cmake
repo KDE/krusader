@@ -9,5 +9,7 @@
 
 #cmakedefine RELEASE_NAME "@RELEASE_NAME@"
 
+#cmakedefine GIT_REVISION "@GIT_REVISION@"
+
 #endif // KRUSADERVERSION_H
 
