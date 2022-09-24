@@ -20,6 +20,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/types.h>
 
 #define NO_PERM      0
 #define UNKNOWN_PERM 1

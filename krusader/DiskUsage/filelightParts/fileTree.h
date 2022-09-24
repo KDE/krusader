@@ -15,6 +15,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/types.h>
 
 // TODO these are pointlessly general purpose now, make them incredibly specific
 
