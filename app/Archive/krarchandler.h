@@ -16,7 +16,7 @@
 
 #include <KCoreAddons/KProcess>
 
-#include "../../krArc/krarcbasemanager.h"
+#include "../../plugins/krarc/krarcbasemanager.h"
 
 namespace KWallet {
 class Wallet;

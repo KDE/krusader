@@ -148,8 +148,8 @@ endif()
 
 add_subdirectory(app)
 add_subdirectory(doc-extras)
-add_subdirectory(krArc)
 add_subdirectory(plugins/iso)
+add_subdirectory(plugins/krarc)
 add_subdirectory(doc)
 
 

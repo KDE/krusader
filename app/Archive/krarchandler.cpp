@@ -29,7 +29,7 @@
 #include "../defaults.h"
 #include "../krservices.h"
 #include "../Dialogs/krpleasewait.h"
-#include "../../krArc/krlinecountingprocess.h"
+#include "../../plugins/krarc/krlinecountingprocess.h"
 
 static QStringList arcProtocols = QString("tar;bzip;bzip2;lzma;xz;gzip;krarc;zip").split(';');
 
