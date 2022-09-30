@@ -147,7 +147,6 @@ endif()
 # ===== Subdirectories =====
 
 add_subdirectory(app)
-add_subdirectory(pics)
 add_subdirectory(doc-extras)
 add_subdirectory(krArc)
 add_subdirectory(iso)

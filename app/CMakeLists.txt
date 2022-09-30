@@ -17,6 +17,7 @@ add_subdirectory(Panel)
 add_subdirectory(Search)
 add_subdirectory(Splitter)
 add_subdirectory(UserAction)
+add_subdirectory(resources)
 
 if(SYNCHRONIZER_ENABLED)
     add_subdirectory(Synchronizer)
