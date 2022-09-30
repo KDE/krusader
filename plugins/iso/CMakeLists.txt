@@ -8,7 +8,7 @@ set(kio_iso_PART_SRCS
     qfilehack.cpp
     kiso.cpp
     iso.cpp
-    ../app/krdebuglogger.cpp
+    ../../app/krdebuglogger.cpp
 )
 
 kcoreaddons_add_plugin(kio_iso SOURCES ${kio_iso_PART_SRCS} ${libisofs_SRCS} INSTALL_NAMESPACE "kf5/kio")

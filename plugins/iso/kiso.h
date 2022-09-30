@@ -17,7 +17,7 @@
 #include <QString>
 #include <QStringList>
 
-#include "../app/krdebuglogger.h"
+#include "../../app/krdebuglogger.h"
 #include "kisofile.h"
 #include "kisodirectory.h"
 
