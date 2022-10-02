@@ -154,6 +154,11 @@ add_subdirectory(iso)
 add_subdirectory(doc)
 
 
+# ===== Translations =====
+
+ki18n_install(po)
+
+
 # ===== Output configuration =====
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
