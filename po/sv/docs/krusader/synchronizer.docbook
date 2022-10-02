@@ -1,0 +1,828 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="synchronizer">
+  <title
+>Synkroniseraren</title>
+  <indexterm>
+    <primary
+>Synkroniseraren</primary>
+  </indexterm>
+  
+<sect2 id="synchronizer_introduction">
+  <title
+>Inledning</title>
+  <para
+>Funktionen jämför två kataloger med alla underkataloger, och visar skillnaderna mellan dem. Efter att ha valt några alternativ och <guilabel
+>jämförelsefunktion</guilabel
+>, kan du synkronisera filerna och katalogerna. En panel kan vara en &FTP;-server. Glöm inte alternativet <guilabel
+>Jämför innehåll</guilabel
+> om filstorleken förblir likadan. Välj <menuchoice
+> <guimenu
+>Kommando</guimenu
+> <guimenuitem
+>Synkronisera kataloger</guimenuitem
+> </menuchoice
+> eller <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> för att starta funktionen. <link linkend="konfig-color"
+>Färgerna</link
+> går att anpassa. Synkroniseraren har sina egna <link linkend="synchronizer_keybindings"
+>snabbtangenter</link
+>. </para>
+  <note>
+    <para
+>För lokala filer: Synkroniseraren ändrar datuminformationen till originaldatum.</para>
+  </note>
+  <figure id="screenshot-syncdir" float="1">
+    <title
+>Synkroniseraren</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="syncdir.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Synkroniseraren</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para>
+  <orderedlist>
+    <title
+>Procedur:</title>
+    <listitem>
+      <para
+>Ställ in <guilabel
+>Vänster katalog</guilabel
+> och <guilabel
+>Höger katalog</guilabel
+> som du vill jämföra.</para>
+    </listitem>
+    <listitem>
+      <para
+>Anpassa det valfria <guilabel
+>filfiltret</guilabel
+>, <guilabel
+>allmänna filter</guilabel
+> och <guilabel
+>avancerade filter</guilabel
+>. De <guilabel
+>allmänna filtren</guilabel
+> omfattar alternativet <guilabel
+>Sök inte i</guilabel
+> vilket låter dig undanta kataloger från jämförelse.</para>
+    </listitem>
+    <listitem>
+      <para
+>Ställ in <link linkend="synccomp_checkb_options"
+>alternativen i kryssrutor</link
+>: <guilabel
+>Upprepa i underkataloger</guilabel
+>, <guilabel
+>Följ symboliska länkar</guilabel
+>, <guilabel
+>Jämför innehåll</guilabel
+>, <guilabel
+>Ignorera datum</guilabel
+>, <guilabel
+>Asymmetrisk</guilabel
+>, <guilabel
+>Ignorera skiftläge</guilabel
+> och <guilabel
+>Ignorera dolda filer</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Klicka på knappen <guibutton
+>Jämför</guibutton
+> för att jämföra katalogerna.</para>
+    </listitem>
+    <listitem>
+      <para
+>Genom att använda <link linkend="synccomp_show_options"
+>Visa alternativ</link
+> kan du inkludera eller undanta vissa filtyper. Filerna som inte är i listan förblir orörda av synkroniseringen.</para>
+    </listitem>
+    <listitem>
+      <para
+>Om det behövs kan du ändra <guilabel
+>uppgift</guilabel
+> bestämd av jämförelsen med <link linkend="synccomp_right-click"
+>högerklickmenyn</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>När du tycker att <guibutton
+>jämförelseresultaten</guibutton
+> stämmer, klicka på knappen <guibutton
+>Synkronisera</guibutton
+> för att visa synkroniseringsdialogrutan.</para>
+    </listitem>
+    <listitem>
+      <para
+>Efter att ha valt alternativen för <link linkend="synchronizer"
+>synkroniseraren</link
+>, klicka på knappen <guibutton
+>Starta</guibutton
+> för att starta synkroniseringsprocessen.</para>
+    </listitem>
+  </orderedlist
+>En detaljerad förklaring av alla funktioner och knappar ges i följande text.</para>
+
+</sect2>
+
+<sect2 id="synchronizer_comparator">
+  <title
+>Jämförelse</title
+>  
+
+  <variablelist>
+    <varlistentry>
+      <term
+>Panelelement</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Vänster katalog</guilabel
+>: Baskatalogen på vänster sida.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Höger katalog</guilabel
+>: Baskatalogen på höger sida.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Filfilter</guilabel
+>: Filtrerar filnamn vid synkronisering. t.ex. <literal role="extension"
+>*.png</literal
+> väljer bara filer vars namn slutar med <literal role="extension"
+>.png</literal
+>. Kataloger listas om katalognamnet slutar med <literal role="extension"
+>.png</literal
+> eller om katalogen innehåller filer som slutar med <literal role="extension"
+>.png</literal
+> Exempel på att inkludera eller undanta flera filer: <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+> inkluderar <literal role="extension"
+>*.cpp *.h</literal
+> och undantar <literal role="extension"
+>*.moc.cpp</literal
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Allmänna filter</guilabel
+>: Sök efter, innehållande text</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Avancerade filter</guilabel
+>: Storlek, datum, ägare</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <variablelist>
+    <varlistentry>
+      <term
+>Kriterier för filnamnsfiltrering</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Du kan använda jokertecken. Flera mönster skiljs åt av mellanslag (vilket betyder logiskt ELLER) och mönster som undantas från sökningen använder symbolen lodrätt streck. Om mönstret avslutas med ett snedstreck (*mönster*/), betyder det att mönstret hör ihop med rekursiv sökning i kataloger.</para>
+          </listitem>
+          <listitem>
+            <para
+>mönster - betyder att söka efter de filer eller kataloger vars namn motsvarar mönstret, rekursiv sökning går igenom alla underkataloger oberoende av mönstrets värde.</para>
+          </listitem>
+          <listitem>
+            <para
+>mönster/ - betyder att söka efter alla filer eller kataloger, men rekursiv sökning går igenom eller undantar katalogerna vars namn motsvarar mönstret.</para>
+          </listitem>
+          <listitem>
+            <para
+>Du kan använda citationstecken för namn som innehåller mellanslag. Filtret "Program och filer" söker efter de filer eller kataloger vars namn är <filename
+>Program och filer</filename
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>Exempel:</para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.o</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.h *.c??</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>* | CVS/ .svn/</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Observera: sökbegreppet 'text' är ekvivalent med '*text*'.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_checkb_options">
+      <term
+>Alternativ med kryssrutor</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Upprepa i underkataloger</guilabel
+>: Synkroniseraren går igenom underkataloger vid jämförelse.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Följ symboliska länkar</guilabel
+>: Synkroniseraren följer symboliska länkar till kataloger (inte filerna).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Jämför innehåll</guilabel
+>: Filer vars storlek är lika jämförs också enligt innehåll.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ignorera datum</guilabel
+>: Ignorerar datuminformation (användbart för &FTP;, smb, arkiv, ... ), datuminformationen är <emphasis
+>bara</emphasis
+> relevant i det lokala filsystemet.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Asymmetrisk</guilabel
+>: <guilabel
+>Vänster katalog</guilabel
+> är målkatalog, och <guilabel
+>höger katalog</guilabel
+> är källkatalog. Funktionen synkroniserar innehållet i den vänstra katalogen med den högra katalogen. <itemizedlist
+> <listitem
+> <para
+>Filer som bara finns på vänster sida kommer att tas bort.</para
+> </listitem
+> <listitem
+> <para
+>Filer som bara finns på höger sida kommer att kopieras till vänster.</para
+> </listitem
+> <listitem
+> <para
+>Filer som anses vara lika förblir orörda.</para
+> </listitem
+> <listitem
+> <para
+>De filer som anses vara olika kommer att kopieras till vänster. Använd funktionen med försiktighet!</para
+> </listitem
+> </itemizedlist
+>Funktionen är användbar om datuminformationen inte är pålitlig, eller för att synkronisera den vänstra katalogen med innehållet i en filserver (som en nerladdning).Alternativt, är den användbar för att göra en säkerhetskopia från den högra katalogen till den vänstra. Observera: Använd <emphasis
+>inte</emphasis
+> alternativet för att synkronisera en skrivbordsdator med en bärbar dator (t.ex. kommer filer som bara finns på vänster sida att tas bort).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Rulla resultat</guilabel
+>: Det här är för långsamma &FTP;-servrar, ... När synkroniseringen är klar med jämförelse av en fil, lägger den till filen i slutet på listan och rullar fönstret, om det behövs. Det är viktigt om du vill veta vad synkroniseringen gör. Om &FTP;-servern är långsam kan jämförelsen av en katalog ta mycket lång tid. Genom att aktivera alternativet, kan du se att jämförelsen "lever", men är långsam. För snabba filsystem kan den minska jämförelsehastigheten något.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ignorera skiftläge</guilabel
+>: Skiflägesokänslig jämförelse av filnamn, som är användbart vid synkronisering av filsystem på &Windows;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ignorera dolda filer</guilabel
+>: Ignorerar filer som börjar med en punkt.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <para
+>När allting som nämns ovan är klart, klicka på knappen <guibutton
+>Jämför</guibutton
+> för att jämföra katalogerna. Resultaten visas i <guilabel
+>fillistan</guilabel
+>.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Fillista</term>
+      <listitem>
+        <para
+><guilabel
+>Fillistan</guilabel
+> har följande kolumner: "Vänster namn, vänster storlek, vänster tid, uppgift, höger tid, höger storlek, höger namn". Här kan du kontrollera jämförelseresultatet och ändra synkroniseringsåtgärder om du önskar. Textfärgen definierar förvald kopieringsriktning, bestämd av jämförelsen. <itemizedlist
+> <listitem
+> <para
+>Grön: Kopiera från vänster till höger.</para
+> </listitem
+> <listitem
+> <para
+>Blå: Kopiera från höger till vänster eller ta bort från höger sida i asymmetriskt läge.</para
+> </listitem
+> <listitem
+> <para
+>Röd: Filer som är olika enligt angivna kriterier (ingen kopieringsriktning).</para
+> </listitem
+> <listitem
+> <para
+>Svart: Filer som är identiska (ingen kopieringsriktning).</para
+> </listitem
+> </itemizedlist
+> Ett dubbelklick på en fil anropar funktionen <guilabel
+>Jämför innehåll</guilabel
+> i &krusader;. Uppgiftskolumnen (&lt;=&gt;) definierar förvald kopieringsriktning, som kan ändras av användaren om det behövs. Resultatfönstret stöder att dra objekt till andra fönster (dra [vänster], skift+dra [höger]) och kopiera markerade objekt till vänster eller höger till klippbordet (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). </para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><guilabel
+>Fillista</guilabel
+>: Kolumnen Uppgifter (&lt;=&gt;)</term>
+      <listitem>
+        <para
+>Kolumnen visar uppgiften som planeras för synkroniseraren. Uppgiften kan ändras med <link linkend="synccomp_right-click"
+>högerklickmenyn</link
+>.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Kopiera från den vänstra till den högra sidan. För kataloger: Skapa katalog med <command
+>mkdir</command
+> på högra sidan.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: Filerna är likadana, gör ingenting.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: Filen är undantagen, eller så vet inte synkroniseraren vad som ska göras.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: Kopiera från den högra till den vänstra sidan. För kataloger: Skapa katalog med <command
+>mkdir</command
+> på vänstra sidan.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>DEL</guibutton
+>: Ta bort filer från den högra sidan.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_show_options">
+      <term
+>Visa alternativ</term>
+      <listitem>
+        <para
+>Här kan du inkludera eller undanta vissa filtyper. De filer som inte är i listan förblir orörda vid synkronisering.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Aktivera eller inaktivera kopieringsuppgiften från vänster till höger.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: Aktivera eller inaktivera listning av likadana filer.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: Aktivera eller inaktivera listning av undantagna eller <quote
+>vet inte vad som ska göras</quote
+> filer.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: Aktivera eller inaktivera kopieringsuppgiften från höger till vänster.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Papperskorg</guibutton
+>: Aktivera eller inaktivera uppgiften att ta bort filer från vänster sida.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Dubbletter</guibutton
+>: Aktivera eller inaktivera de filer som finns på båda sidorna.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Enstaka</guibutton
+>: Aktivera eller inaktivera de filer som bara finns på en sida.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Åtgärdsknappar</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Jämför</guibutton
+>: Jämför katalogerna. Resultaten visas i <guilabel
+>fillistan</guilabel
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Stoppa</guibutton
+>: Stoppar jämförelsen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Synkronisera</guibutton
+>: Visar synkroniseringsdialogrutan.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Stäng</guibutton
+>: Stänger synkroniseringsfönstret.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Statusraden kan innehålla</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Antal genomsökta kataloger vid jämförelse.</para>
+          </listitem>
+          <listitem>
+            <para
+>Filnamnet vid jämförelse enligt innehåll (för stora filer).</para>
+          </listitem>
+          <listitem>
+            <para
+>Antal filer i listan.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_right-click">
+      <term
+>Högerklickmeny på <guilabel
+>fillistan</guilabel
+></term>
+      <listitem>
+        <para
+>Högerklickmenyn är uppdelad i tre delar:</para>
+        <para
+>1. Ändra <guilabel
+>uppgift</guilabel
+> bestämd av jämförelsen. Markera en eller flera filer. Ändringen gäller markeringen, och inte bara objektet som klickas på med höger musknapp. Om det markerade objektet är en katalog gäller ändringen också alla dess filer och underkataloger.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Synkronisera kataloger...</guibutton
+>: Startar synkronisering.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Uteslut</guibutton
+>: Uteslut en fil eller katalog från synkronisering (uppgiften ändras till != ).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Återställ ursprunglig åtgärd</guibutton
+>: Uppgiften ändras till det ursprungliga resultatet efter jämförelsen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Vänd riktning</guibutton
+>: Uppgiften ändras (-&gt; till &lt;-, och &lt;- till -&gt;).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Kopiera från höger till vänster</guibutton
+>: Uppgiften ändras till &lt;-.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Kopiera från vänster till höger</guibutton
+>: Uppgiften ändras till -&gt;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Ta bort (vänster enstaka)</guibutton
+>: Uppgiften ändras till DEL.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>2. Ändra markeringar</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Markera objekt</guibutton
+>: Öppnar en dialogruta som låter dig markera objekt. Det är dialogrutan <guimenuitem
+>Markera grupp</guimenuitem
+> från menyn <link linkend="edit-menu"
+>Redigera</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Avmarkera objekt</guibutton
+>: Öppnar en dialogruta som låter dig avmarkera objekt. Det är dialogrutan <guimenuitem
+>Avmarkera grupp</guimenuitem
+> från menyn <link linkend="edit-menu"
+>Redigera</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Invertera markering</guibutton
+>: Invertera markeringsstatus för alla objekt.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>3. Övriga (observera att följande alternativ gäller filen som klickas med höger musknapp, och inte markeringen).</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Granska vänster fil</guibutton
+>: Startar granskning av den vänstra filen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Granska höger fil</guibutton
+>: Startar granskning av den högra filen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Jämför filer</guibutton
+>: Startar jämförelseverktyget (t.ex. &kompare;) med filerna.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Övriga knappar</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Profiler</guibutton
+>: Om du behöver synkronisera samma kataloger ofta, kan du spara inställningarna, t.ex. inkluderade filer, undantagna filer, ... Klicka på knappen <guibutton
+>Profil</guibutton
+>, så kommer du att kunna lägga till, ladda, spara eller ta bort synkroniseringsprofiler.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Byt sidor</guibutton
+>: Byter sidor i <guilabel
+>fillistan</guilabel
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Synkronisera med <application
+>Kget</application
+></term>
+      <listitem>
+        <para
+>Om du vill synkronisera en lokal katalog med en instabil &FTP;-server är <application
+>kget</application
+> en mycket bättre lösning än enkel filkopiering. Efter jämförelse kan du högerklicka på resultatlistan och välja <guimenuitem
+>Synkronisera med KGet</guimenuitem
+> för att utföra synkroniseringen. Därefter laddas de listade filerna ner med <application
+>kget</application
+> istället för &krusader;. Naturligtvis måste <application
+>kget</application
+> vara installerat på datorn, annars är det inte tillgängligt.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+ 
+</sect2
+>  
+<sect2 id="synchronizer_synchronization">
+  <title
+>Synkronisering</title
+>  
+
+  <para
+>Efter att ha klickat på knappen <guibutton
+>Synkronisera</guibutton
+>, visas synkroniseringsdialogrutan.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Kryssrutor</term>
+      <listitem>
+        <para
+>Här bekräftar du synkroniserarens kopierings- och borttagningsåtgärder</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Höger till vänster</guilabel
+>: Kopiera X1 filer (Y1 byte). Aktivera eller inaktivera kopiering från höger till vänster.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Vänster till höger</guilabel
+>: Kopiera X2 filer (Y2 byte). Aktivera eller inaktivera kopiering från vänster till höger.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Vänster</guilabel
+>: Ta bort X3 filer (Y3 byte). Aktivera eller inaktivera borttagning på vänster sida.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Bekräfta överskrivningar</guilabel
+>: Genom att aktivera alternativet, visar Krusader dialogrutan <guibutton
+>Byt namn, Hoppa över, Skriv över, Hoppa över alla, Skriv över alla</guibutton
+>, innan en fil skrivs över.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Statusbeteckningar</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Klar</guilabel
+>: A1/A2 filer, B1/B2. Raden ändras vid synkronisering, och visar att synkroniseringen avslutades med A1 filer av A2 (B1 byte av B2).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Förloppsrad</guilabel
+>: Visar synkroniseringens förlopp (baserat på storlek).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Åtgärdsknappar</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Starta</guibutton
+>: Startar synkroniseringen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Paus/Återuppta</guibutton
+>: Gör paus i eller återupptar synkroniseringsprocessen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Stäng</guibutton
+>: Stänger synkroniseringsdialogrutan (och stoppar synkronisering).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Parallell synkronisering</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Man kan ange antalet 'kvasitrådar'.</para>
+          </listitem>
+          <listitem>
+            <para
+>Kan drastiskt öka hastigheten vid synkronisering med långsamma &FTP;-servrar.</para>
+          </listitem>
+          <listitem>
+            <para
+>Påverkar inte hastigheten vid lokala synkroniseringar.</para>
+          </listitem>
+          <listitem>
+            <para
+>Fjärrjämförelse <quote
+>enligt innehåll</quote
+> och <quote
+>katalogjämförelse</quote
+> görs i parallell.</para>
+          </listitem>
+          <listitem>
+            <para
+>Fjärrsynkronisering utförs också i parallell, utom uppgiften att skapa kataloger med <command
+>mkdir</command
+> (<command
+>mkdir</command
+> måste göras innan kopiering).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+</sect2>
+</sect1>

@@ -1,0 +1,118 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="compare">
+  <title
+>Comparar</title>
+  <para
+>El &krusader; disposa de diverses funcions per a comparar: <guimenuitem
+>Compara per contingut</guimenuitem
+>, <guimenuitem
+>Compara les carpetes</guimenuitem
+> i la funció compara del <link linkend="synchronizer"
+>Sincronitzador</link
+>.</para>
+  <sect2 id="compare-content">
+    <title
+>Comparar per contingut</title>
+    <indexterm>
+      <primary
+>Compara</primary>
+      <secondary
+>Contingut</secondary>
+    </indexterm>
+    <para
+>Seleccioneu un fitxer a cada plafó i utilitzeu <menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Compara per contingut...</guimenuitem
+></menuchoice
+>. El &krusader; obrirà una eina gràfica externa de diferència que està <link linkend="konfig-dependencies"
+>configurada</link
+>. Estan admeses el &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+>&kdiff3;</ulink
+> i <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+  </sect2>
+  <sect2 id="compare-dir">
+    <title
+>Comparar carpetes</title>
+    <indexterm>
+      <primary
+>Compara</primary>
+      <secondary
+>Carpetes</secondary>
+    </indexterm>
+    <para
+>Compara els fitxers de cada plafó utilitzant <menuchoice
+><guimenu
+>Edita</guimenu
+> <guimenuitem
+>Compara les carpetes</guimenuitem
+></menuchoice
+>. De manera predeterminada, se seleccionaran els fitxers nous i els sols en cada plafó, aquest comportament es pot canviar al menú <guimenuitem
+>Configuració de la comparació</guimenuitem
+>. <note
+> <para
+>Els fitxers no són comparats per contingut, sinó només pels seus noms i dates.</para>
+    </note
+></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Edita</guimenu
+> <guimenuitem
+>Configuració de la comparació</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Configura la funció <guimenuitem
+>Compara les carpetes</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Selecciona els més nous i els desaparellats</guimenuitem
+> (omissió)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Selecciona els desaparellats</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Selecciona els més nous</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Selecciona els diferents i els desaparellats</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Selecciona els diferents</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>

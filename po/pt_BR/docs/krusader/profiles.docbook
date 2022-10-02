@@ -1,0 +1,62 @@
+<sect1 id="profiles">
+  <title
+>Perfis</title>
+  <indexterm>
+    <primary
+>Perfis</primary>
+  </indexterm>
+  <para
+>Com os perfis, você poderá salvar e restaurar a sua configuração favorita. Diversas funcionalidades suportam os perfis; você poderá ter &eg; diferentes perfis do painel (casa, trabalho, conexões remotas, &etc;), perfis de pesquisa, perfis de sincronização, &etc;</para>
+  <sect2 id="panel_profiles">
+    <title
+>Perfis do Painel</title>
+    <para
+>Um perfil do painel contém o seguinte: todos os locais das páginas (esquerda ou direita), a página atual (esquerda ou direita) e o painel ativo (esquerdo ou direito). Toda esta informação é salva no arquivo <link linkend="config_files"
+>krusaderrc</link
+>. Você poderá ter vários perfis do painel, &eg; gerenciamento de arquivos, gerenciamento do &FTP;, casa, trabalho, &etc; O perfil do painel poderá ser <link linkend="c_panel_profiles"
+>salvo e restaurado</link
+> no menu <guimenu
+>Janela</guimenu
+>. O <link linkend="konfig-startup"
+>perfil de inicialização padrão</link
+> será usado ao iniciar o &krusader;, mas você poderá substituí-lo com uma <link linkend="starting-krusader"
+>opção da linha de comando</link
+>.</para>
+  </sect2>
+  <sect2 id="color_profiles">
+    <title
+>Perfis de Cores</title>
+    <para
+>Os mapas de cores poderão ser salvos e restaurados com os <link linkend="konfig-color"
+>Perfis de Cores</link
+>. Os mapas de cores do &krusader; estão disponíveis no <ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663"
+>kde-files.org</ulink
+>.</para>
+  </sect2>
+  <sect2 id="key_profiles">
+    <title
+>Perfis de Combinações de Teclas</title>
+    <para
+>Você poderá salvar e restaurar os mapas de combinações de teclas com os <link linkend="configure-shortcuts"
+>Perfis de Combinações de Teclas</link
+>. Os mapas de teclado do &krusader; estão disponíveis no <ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663"
+>kde-files.org</ulink
+>.</para>
+  </sect2>
+  <sect2 id="search_profiles">
+    <title
+>Perfis de Pesquisa</title>
+    <para
+>Se efetuar a mesma operação de pesquisa com regularidade, você poderá salvar a configuração da procura (&eg; inclusão e exclusão de arquivos, &etc;) num <link linkend="krusearcher"
+>Perfil de Pesquisa</link
+>.</para>
+  </sect2>
+  <sect2 id="synchronizer_profiles">
+    <title
+>Perfis de Sincronização</title>
+    <para
+>Se você efetua regularmente a mesma operação de sincronização, poderá salvá-la num <link linkend="synchronizer"
+>Perfil de Sincronização</link
+>. Por padrão, a Sincronização é desativada em tempo de compilação.</para>
+  </sect2>
+</sect1>

@@ -1,0 +1,616 @@
+<chapter id="features">
+<title
+>Vlastnosti</title>
+<indexterm>
+  <primary
+>Vlastnosti</primary>
+</indexterm>
+<note>
+  <para
+>Zde jsou zvýrazněny nejdůležitější vlastnosti a vylepšení. Tento seznam by byl příliš dlouhý, kdyby jsme sem vložili <emphasis
+>všechny</emphasis
+> vlastnosti a vylepšení. V této dokumentaci a v souboru <ulink url="https://projects.kde.org/projects/extragear/utils/krusader/repository/revisions/master/entry/ChangeLog"
+><filename
+>ChangeLog</filename
+></ulink
+> objevíte ještě více vlastností.</para>
+</note>
+<para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Vlastnosti <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Ortodoxního správce souborů (OFM)</ulink
+></title>
+          <listitem>
+            <para
+>Dva efektní a snadno použitelné <link linkend="panels"
+>Panely OFM</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>Níže <link linkend="cmdline"
+>Příkazová řádka</link
+> a doplňkový <link linkend="termemu"
+>Emulátor Terminálu</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>Silná orientace na <link linkend="keyboard-commands"
+>klávesnici</link
+> a schopnost provádět všechny funkce bez myši.</para>
+          </listitem>
+          <listitem>
+            <para
+>Context-dependent invocation of scripts and programs &eg; mouseclick/&Enter; (execute or open with the associated application), F3 (view) and F4 (edit).</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="useractions"
+>Uživatelská nabídka</link
+>, vytvořte si svoji vlastní přizpůsobitelnou nabídku.</para>
+          </listitem>
+          <listitem>
+            <para
+>History &eg; <link linkend="folderhistory"
+>Folder History</link
+>, <link linkend="popular-urls"
+>Popular &URL;s</link
+>, ...</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="vfs"
+>Virtuální systém souborů (VFS)</link
+> např. pro <link linkend="remote-connections"
+>vzdálené připojení</link
+>, <link linkend="archives"
+>archivy</link
+>, vyhledávání výsledků, synchronizátor.</para>
+          </listitem>
+          <listitem>
+            <para
+>Efektní interní <link linkend="krviewer"
+>prohlížeč a editor</link
+> podporující téměř každý formát souboru pomocí knihoven kparts.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Advanced Search module</link
+> : searching in archives and search content on remote file systems.</para>
+          </listitem>
+          <listitem>
+            <para
+>Více režimů zobrazení panelu pomocí <link linkend="popup_panel"
+>Vyskakovacího panelu</link
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Nástroje aplikace &krusader;</title>
+          <listitem>
+            <para
+><link linkend="remote-connections"
+>Remote Connections</link
+> : &FTP;/SAMBA with SFTP/SCP support via KIO Slaves</para>
+          </listitem>
+          <listitem>
+            <para
+>&GUI; nástavba pro aplikaci <link linkend="locate"
+>Locate</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="synchronizer"
+>Synchronizace adresářů</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="mount-man"
+>Správce připojení</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="diskusage"
+>Zaplnění Disku</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="root-mode"
+>Režim s právy roota</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Vlastnosti aplikace &krusader;</title>
+          <listitem>
+            <para
+>Archive Handling: browsing, unpack, pack, testing. Supported <link linkend="archives"
+>archives</link
+> : ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="checksum"
+>Checksum creation-verification</link
+> mechanism that supports md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv and crc.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="calculate"
+>Vypočítání obsazeného místa</link
+> soubory a složkami, v archivech a vzdálených systémech souborů.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-dir"
+>Porovnání adresářů</link
+> a <link linkend="view-menu"
+>filtrování</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-content"
+>Compare files by content</link
+> via external diff programs like &kompare;, <ulink url="http://kdiff3.sourceforge.net"
+><application
+>Kdiff3</application
+></ulink
+> or <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="multi_rename"
+>Rename</link
+> files and folders via <ulink url="http://www.krename.net"
+><application
+>Krename</application
+></ulink
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Completely supports drag'n'drop: drag from &konqueror; straight into a .tar.gz file, from &krusader;'s panel into the trash-bin, the desktop or into &konqueror;</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-advanced"
+>Zachování data</link
+> pro místní cíle při kopírování/přesouvání.</para>
+          </listitem>
+          <listitem>
+            <para
+>F2 opens a <link linkend="tools-menu"
+>Terminal Window</link
+> in the current directory.</para>
+          </listitem>
+          <listitem>
+            <para
+>Jednoduchá úprava <link linkend="file-menu"
+>oprávnění k souboru</link
+>, vlastnictví a <link linkend="konfig-panel-view"
+>číselného oprávnění</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Výběrové filtry</link
+> používané např. Synchronizátorem a Vyhledávačem Krusadera.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="jump_back"
+>Skok zpět</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-general"
+> mimetype-aware</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="folder-tabs"
+>Panely s kartami</link
+> a <link linkend="krviewer"
+>Editor/Prohlížeč s kartami</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="quicksearch"
+>Rychlé hledání</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="splitter"
+>Rozdělovač souborů</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="mouse_gestures"
+>Gesta myši</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="list_panel"
+>Rychlá navigace</link
+> v Nástrojové liště umístění.</para>
+          </listitem>
+          <listitem>
+            <para
+>Funkce nápovědy Co je to je dostupná v oblíbených nástrojových tipech.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_toolbar"
+>Synchronizované prohlížení</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>&krusader; přizpůsobitelný Vašim vlastním potřebám</title>
+          <listitem>
+            <para
+>Centrum nastavení <link linkend="konfig-startup"
+>Konfigurátor</link
+> aplikace &krusader;</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="mainwindow"
+>Hlavní nástrojová lišta</link
+>, <link linkend="actions_toolbar"
+>Nástrojová lišta činností</link
+> pro uživatelské činnosti a záložky.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="key_bindings"
+>Klávesové zkratky</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="konfig-color"
+>Barvy</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_profiles"
+>Profily panelů</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="bookman"
+>Správce záložek</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="selection_modes"
+>Režimy označování</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Mnoho dalších vlastností mohou být <link linkend="konfig-startup"
+>nastaveny</link
+> způsobem, který Vám vyhovuje.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      <itemizedlist>
+        <title
+>Rozšíření aplikace &krusader;</title>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Uživatelské činnosti</link
+></para>
+        </listitem>
+<!--        <listitem>
+          <para
+><link linkend="javascript_console"
+>JavaScript console</link
+></para>
+	</listitem
+> disabled due to KrJS does not compile (cannot find kjsembed from kdelibs-->
+        <listitem>
+          <para
+><link linkend="konfig-color"
+>Profily barev</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="configure-shortcuts"
+>Profily klávesových zkratek</link
+></para>
+        </listitem>
+      </itemizedlist>
+Stahujte a nahrávejte Vaše oblíbené rozšíření aplikace &krusader; na <ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663"
+>kde-files.org</ulink
+>.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+<para>
+  <itemizedlist>
+    <title
+>Nové vlastnosti aplikace &krusader; ve vydání 1.80.0 "Final 3rd Stone"</title>
+    <listitem>
+      <para
+>Vylepšení archivů <itemizedlist>
+        <listitem>
+          <para
+><link linkend="archives"
+>Podpora hesel</link
+> pro: arj, ace, rar a zip. Hesla mohou být uložena v aplikace <application
+>Kwallet</application
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>7-zip support</link
+>, by external applications 7z and 7za.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>Podpora auto-detekce</link
+> umožňující otevřít "utajené archivy" (např. dokumenty <trademark class="registered"
+>OpenOffice</trademark
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+>Sbalení/rozbalení je nyní na pozadí.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="list_panel"
+>Stručný pohled</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Mnoho vylepšení systému <link linkend="useractions"
+>Uživatelských činností</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Bezpočet vylepšení, zvláště v Konfigurátoru a zcela přepracovaná hlavní nabídka.</para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="konfig-advanced"
+>Tlačítko Média</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Kopírování/Přesouvání: <link linkend="copying"
+>zachování všech atributů</link
+> (času, vlastníka, skupiny).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-color"
+>Zakalení barev neaktivního panelu</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Přejmenování souboru bez přípony, režim jedné instance, spuštění v systémové části panelu, podívejte se na to v <link linkend="konfigurator"
+>Konfigurátoru</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Configurable <link linkend="list_panel"
+>Atomic extensions</link
+>, so that extensions like <filename
+>tar.gz</filename
+> are shown as one part in the <guilabel
+>Ext Column</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Kontextová nabídka záložek a povolení/zakázání speciálních záložek.</para>
+    </listitem>
+    <listitem>
+      <para
+>Přeformulování <link linkend="menu-commands"
+>Hlavní nabídky</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Vylepšení <link linkend="termemu"
+>Emulátoru terminálu</link
+> přináší nové funkce, nové použití a nový vzhled.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>Synchronizer</link
+> enhancements and parallel threads for slow FTP servers.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-startup"
+>Režim jediné instance</link
+>, <link linkend="konfig-startup"
+>Spouštění do systémové části panelu</link
+></para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="context-menu"
+>Kontextová nabídka stálých záložek.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Plná podpora pro <link linkend="acl"
+>Oprávnění ACL</link
+> jako jsou vlastnosti, zachování atributů, synchronizátor a další.</para>
+    </listitem>
+    <listitem>
+      <para
+>Searcher-results, Locate-results, Synchronizer-results: support for dragging items and copy to clipboard (&Ctrl;+C).</para>
+    </listitem>
+    <listitem>
+      <para
+>Mnoho opravených chyb.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nové vlastnosti aplikace &krusader; ve vydání 1.90.0 "Power Stone"</title>
+    <listitem>
+      <para
+>Last release for KDE3.x with a <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=2061"
+> big collection of Useractions</ulink
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+
+<para>
+  <itemizedlist>
+    <title
+>Nové vlastnosti aplikace &krusader; ve vydání 2.0.0 "Mars Pathfinder"</title>
+    <listitem>
+      <para
+>The first release for the KDE4.x series </para>
+    </listitem>
+    <listitem>
+      <para
+>Krusader works on &Windows;! (But not so useful and powerful yet as under &Linux;) </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="queue"
+>Správce fronty!</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-panel"
+>Pět metod v panelu!</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nové vlastnosti aplikace &krusader; ve vydání 2.1.0-beta1 "Rusty Clutch"</title>
+    <listitem>
+      <para
+>Rychlý textový/hexadecimální prohlížeč pro soubory s obrovskou velikostí. </para>
+    </listitem>
+    <listitem>
+      <para
+>Uzamčené karty. </para>
+    </listitem>
+    <listitem>
+      <para
+>Sbalení / rozbalení zařazené do fronty. </para>
+    </listitem>
+    <listitem>
+      <para
+>Lepší integraci koše. </para>
+    </listitem>
+    <listitem>
+      <para
+>Rychlé vyhledávání podporuje regulární výrazy pro vyhledávání souborů. </para>
+    </listitem>
+    <listitem>
+      <para
+>Více vlastností se dočtete v souborech <ulink url="https://projects.kde.org/projects/extragear/utils/krusader/repository/revisions/master/entry/ChangeLog"
+><filename
+>ChangeLog</filename
+></ulink
+> a <ulink url="https://projects.kde.org/projects/extragear/utils/krusader/repository/revisions/master/entry/SVNNEWS"
+><filename
+>SVNNEWS</filename
+></ulink
+>.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+
+
+<para
+><note
+><para
+>If you are using a <link linkend="krusader_devel"
+>development</link
+> or <link linkend="krusader_git"
+>Git</link
+> version, it is possible that the latest new features are not yet in the "The Krusader Handbook". Please read the <ulink url="https://projects.kde.org/projects/extragear/utils/krusader/repository/revisions/master/entry/ChangeLog"
+>Changelog</ulink
+> file online or in the &krusader; sources to find out more about the new features. For a brief description, please read the <ulink url="https://projects.kde.org/projects/extragear/utils/krusader/repository/revisions/master/entry/SVNNEWS"
+>SVNNEWS</ulink
+> file online or in the &krusader; sources. <link linkend="faqg_wish"
+>User feedback</link
+> and <link linkend="faqg_bug_report"
+>Bug reports</link
+> are always welcome! </para
+></note
+></para
+></chapter>

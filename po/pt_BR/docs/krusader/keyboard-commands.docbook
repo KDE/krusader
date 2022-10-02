@@ -1,0 +1,2467 @@
+<chapter id="keyboard-commands">
+  <!-- **********************************************************************
+                            keyboard.docbook
+                          +++++++++++++++++++++
+  copyright            : (C) 2000 - 2010
+                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                          & the Krusader Krew
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://www.krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+  <title
+>Comandos do teclado</title>
+  <indexterm>
+    <primary
+>Comandos</primary>
+    <secondary
+>Teclado</secondary>
+  </indexterm>
+  <sect1 id="keyboard-usage">
+    <title
+>Utilização do Teclado</title>
+    <para
+>Neste capítulo, você irá aprender como usar o teclado de forma eficiente, uma vez que a maioria das operações poderão ser feitas mais rapidamente com o teclado do que com o mouse. Irá levar algum tempo a aprender as <link linkend="key_bindings"
+>Combinações de Teclas</link
+>, mas dominá-las poderá lhe poupar bastante tempo. Lembre-se que o &krusader; poderá usar os <link linkend="configure-shortcuts"
+>Perfis de Combinações de Teclas</link
+> para mudar facilmente para outras configurações de teclado, &eg;, de outros utilitários do gênero, ou ainda poderá criar as suas próprias combinações de teclas.</para>
+    <para
+>Depois de <link linkend="starting-krusader"
+>iniciar</link
+> o &krusader;, a ação do teclado poderá começar. Use o <keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+> para saltar para a <link linkend="list_panel"
+>Barra de Localização</link
+>, na qual poderá digitar a pasta desejada. Depois do <keycombo action="simul"
+>&Ctrl;<keycap
+>Baixo</keycap
+></keycombo
+>, irá estar no <link linkend="termemu"
+>Emulador de Terminal</link
+>, onde poderá digitar qualquer comando que desejar. Use o <keycombo action="simul"
+>&Ctrl;<keycap
+>Cima</keycap
+></keycombo
+> para voltar de novo ao painel ativo. Se quiser saltar para um arquivo ou pasta que comece por <literal
+>f</literal
+>, então digite simplesmente <literal
+>f</literal
+> no teclado para usar a <link linkend="quicksearch"
+>Pesquisa rápida</link
+>. Use a tecla &Enter; para executar o arquivo ou abrir uma pasta que esteja em primeiro plano. Certifique-se de aprender as Teclas de Funções - <keycap
+>F3</keycap
+> para Exibir, <keycap
+>F4</keycap
+> para Editar, <keycap
+>F5</keycap
+> para Copiar, <keycombo action="simul"
+>&Alt;&Shift;<keycap
+>U</keycap
+></keycombo
+> para Descomprimir, &etc;</para>
+    <para
+>Você também poderá efetuar diversas operações com as <link linkend="folder-tabs"
+>páginas de pastas</link
+>, incluindo as diversas operações de <link linkend="edit-menu"
+>seleção</link
+>. No fim, você poderá fechar o &krusader; com o <keycap
+>F10</keycap
+>.</para>
+  </sect1>
+  <sect1 id="key_bindings">
+    <title
+>Combinações de Teclas</title>
+    <indexterm>
+      <primary
+>Combinações de Teclas</primary>
+    </indexterm>
+    <indexterm>
+      <primary
+>Comandos</primary>
+      <secondary
+>Teclado</secondary>
+    </indexterm>
+    <para
+>A maioria das combinações de teclas (atalhos) são configuráveis na opção do menu <menuchoice
+> <guimenu
+>Configurações</guimenu
+> <guimenuitem
+>Configurar os Atalhos</guimenuitem
+> </menuchoice
+>, caso queira usar outras combinações que não as predefinidas. Você até poderá associar mais ações a combinações de teclas (para o caso das ações que não tenham combinações de teclas definidas por padrão). Lembre-se que algumas dessas combinações não são específicas do &krusader; (&eg;, os atalhos globais do &kde;). As combinações de teclas que o &krusader; usa por padrão são apresentadas abaixo.</para>
+
+    <!-- FN keys -->
+    <para>
+      <emphasis role="bold"
+>Teclas de Funções (FN)</emphasis>
+    </para>
+    <para
+>Estas são as combinações de teclas da <link linkend="fnkeys"
+>Barra de Teclas FN</link
+>. Estas combinações de teclas são configuráveis desde a versão 1.51.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F1</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ajuda</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F2</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="tools-menu"
+>Terminal.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F3</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>Ver os arquivos.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F4</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>Editar os arquivos.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F5</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Copiar os arquivos.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F6</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Mover os arquivos.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F7</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Criar uma pasta nova.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F8</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Excluir os arquivos (ou enviá-los para o Lixeira).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F9</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Renomear os arquivos.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F10</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Sai do &krusader;</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- SHIFT keys -->
+    <para>
+      <emphasis role="bold"
+>Teclas &Shift;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="help-menu"
+>O que é isto?</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F3</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>Inserir um &URL; para visualizar.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F4</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="file-menu"
+>Editar um arquivo novo.</link>
+              </para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F5</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="queue"
+>Copiar através da fila de espera.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F6</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="queue"
+>Mover através da fila de espera.</link>
+              </para>
+            </entry>
+          </row>
+           <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F9</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="multi_rename"
+>Mudança múltipla de nomes dos arquivos (<application
+>Krename</application
+>).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F10</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>Ver todos os arquivos.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>Visualização personalizada dos arquivos.</link>
+              </para>
+            </entry>
+          </row>
+          <!-- This keybinding is disabled in the "krusader.cpp" source file
+<row>
+<entry
+><para
+><keycombo action="simul"
+>&Shift;<keycap
+>F11</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="view-menu"
+>Executables</link
+></para
+></entry
+></row>
+-->
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>Esquerda</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Mudar para a página da pasta à esquerda.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>Direita</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Mudar para a página da pasta à direita.</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- ALT keys -->
+    <para>
+      <emphasis role="bold"
+>Teclas &Alt;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Selecionar Tudo.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Desmarcar tudo.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Inverter a Seleção.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>.</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>Mostrar/Ocultar os arquivos ocultos (com pontos).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="mount-man"
+>MountMan - Gerenciador de Montagens</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>`</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="useractions"
+>Menu do Usuário</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Home</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Home</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Enter;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="file-menu"
+>Propriedades.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Esquerda</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Favoritos da esquerda.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Direita</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Favoritos da direita.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Baixo</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="popup_panel"
+>Painel Instantâneo</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Combinações de teclas padrão (do &kde;).</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- ALT+SHIFT -->
+    <para>
+      <emphasis role="bold"
+>Teclas &Alt;+&Shift;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>B</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Visão resumida</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>C</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="compare-dir"
+>Comparar as Pastas</link
+></para>
+            </entry>
+          </row
+>		  
+           <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Vista Detalhada</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="test-archive"
+>Testar o Pacote.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>K</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Iniciar o &krusader; no <link linkend="root-mode"
+>Modo de 'Root' (Administrador)</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="panel_profiles"
+>Perfis do painel</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+          <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panel_toolbar"
+>Sincronizar os painéis (também conhecido como "Botão de Igualdade (=)").</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="pack-archive"
+>Comprimir os arquivos num pacote.</link>
+              </para>
+            </entry>
+          </row>
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>Q</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Gerenciador de Fila</para>
+            </entry>
+          </row
+>		  
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="diskusage"
+>Utilização do Disco</link
+>.</para>
+            </entry>
+          </row>
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="unpacking-archives"
+>Descomprimir os arquivos.</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+
+    <!-- CTRL -->
+    <para>
+      <emphasis role="bold"
+>Teclas &Ctrl;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Adicionar um favorito para o item atual.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="bookman"
+>Abrir os Favoritos</link
+> no painel ativo.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Editar o arquivo como administrador 'root' (Ação do Usuário Padrão).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Comuta entre um <link linkend="termemu"
+>Emulador de Terminal</link
+> normal e de tela inteira.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>H</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="folderhistory"
+>Abrir a Lista de Histórico</link
+> no painel ativo.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>I</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Abrir a barra de pesquisa rápida.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Um <link linkend="jump_back"
+>Ponto de Regresso</link
+> semelhante ao <trademark class="registered"
+>Safari</trademark
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ir para a <link linkend="list_panel"
+>Barra de Localização</link
+> (origem) como acontece no <trademark class="registered"
+>Firefox</trademark
+> e no &konqueror;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>Abrir a lista de mídias.</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Abrir a janela de <link linkend="tools-menu"
+>Nova Conexão de Rede</link
+>.</para>
+            </entry>
+          </row>
+          <!-- TODO: Is this entry gone ????
+<row>
+<entry
+><para
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>the inactive panel gets the same path as the active panel</para
+></entry
+></row>
+-->
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Janela de seleção de pastas para abrir uma determinada pasta no painel.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="splitter"
+>Dividir o arquivo.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Q</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Sair do &krusader;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panels"
+>Atualizar (recarregar) o painel.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo
+>&Ctrl; <keycap
+>S</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krusearcher"
+>Pesquisar.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Trocar os painéis (não trocar todas as páginas de pastas)</link
+>. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Fechar a página atual.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="synchronizer"
+>Sincronizar diretórios</link
+> (por padrão, esta funcionalidade é desativada em tempo de compilação).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>URLs populares.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>+</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Selecionar o grupo.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>-</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Deselecionar o grupo.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="cmdline"
+>Abrir a lista de histórico da linha de comando.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Baixo</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="cmdline"
+>Ir do painel ativo para a linha de comando/emulador de terminal</link
+>. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Cima</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="cmdline"
+>Ir da linha de comando/emulador de terminal para o painel ativo.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Cima</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ir do painel ativo para a <link linkend="list_panel"
+>Barra de Localização</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Home</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Saltar para a pasta pessoal do usuário.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>Esquerda</keycap
+></keycombo
+> ou <keycombo
+> <keycap
+>Direita</keycap
+> </keycombo
+></para>
+            </entry>
+            <entry>
+              <para
+>Selecione um arquivo ou pasta no painel da esquerda, pressione <keycombo action="simul"
+>&Ctrl; <keycap
+>Esquerda</keycap
+></keycombo
+> para que o <link linkend="panels"
+>painel</link
+> da direita mude: <itemizedlist
+> <listitem
+> <para
+>sobre um arquivo: o painel da direita fica com a mesma localização do <link linkend="panels"
+>painel</link
+> da esquerda.</para
+> </listitem
+> <listitem
+> <para
+>sobre uma pasta: atualiza o painel da direita com o conteúdo da pasta.</para
+> </listitem
+> </itemizedlist
+>Para o painel da direita: pressione <keycombo action="simul"
+>&Ctrl; <keycap
+>Direita</keycap
+></keycombo
+> para que o painel da esquerda mude.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Backspace;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ir para a pasta de raiz.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>PageUp</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Subir uma pasta.</para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Vá para o diretório a partir do outro painel.</para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Enter</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+	      <para
+>Quando o <link linkend="media_button"
+>menu de mídia</link
+> estiver aberto, montar/desmontar o dispositivo realçado.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- CTRL+SHIFT -->
+    <para>
+      <emphasis role="bold"
+>Teclas &Ctrl;+&Shift;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="remote-connections"
+>Desconectar da conexão remota.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="jump_back"
+>Definir um ponto de regresso.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Interface &GUI; para o <link linkend="locate"
+>Locate</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Mover a <link linkend="folder-tabs"
+>aba</link
+> atual para o outro lado da janela.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Trocar os Lados (trocar também todas as páginas de pastas)</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Esquerda</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>Abrir a lista de dispositivos multimídia à esquerda</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Direita</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>Abrir a lista de dispositivos multimídia à direita</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Cima</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Abrir o <link linkend="cmdline"
+>emulador de terminal</link
+>, independentemente, quer a linha de comando esteja visível ou não.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Baixo</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Fecha o <link linkend="cmdline"
+>emulador de terminal</link
+>, independentemente, quer a linha de comando esteja visível ou não.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- CTRL+ALT -->
+    <para>
+      <emphasis role="bold"
+>Teclas &Ctrl;+&Alt;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+<!--          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">
+                &Ctrl;&Alt;
+                <keycap
+>J</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="javascript_console"
+>JavaScript console</link
+></para>
+            </entry>
+	  </row
+> disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Montar (Ação do Usuário Padrão).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Nova página.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>R</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Comuta o <link linkend="list_panel"
+>Painel da Lista</link
+> entre o modo horizontal e o vertical.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Criar uma nova ligação simbólica.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>T</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Mostrar/ocultar o <link linkend="cmdline"
+>emulador de terminal</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>Esquerda</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folderhistory"
+>Lista do histórico à esquerda.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>Direita</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folderhistory"
+>Lista do histórico à direita.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Igualar o Tamanho do Painel (Ação do Usuário Padrão).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Duplicar uma página.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;&Enter;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Abrir a pasta atual numa <link linkend="folder-tabs"
+>nova página.</link
+></para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- GENERAL CTRL -->
+    <para>
+      <emphasis role="bold"
+>Teclas &Ctrl; gerais</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>A</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Selecionar tudo.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>PageDown</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Mover para a parte inferior na pasta atual.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Combinações de teclas padrão (do &kde;).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Combinações de teclas padrão (do &kde;).</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- OTHER KEYS -->
+    <para>
+      <emphasis role="bold"
+>Outras teclas</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>nome</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="quicksearch"
+>Pesquisa rápida</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Tab;</para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panels"
+>Mudar entre painéis</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Enter;</para>
+            </entry>
+            <entry>
+              <para
+><link linkend="executing_files"
+>Sobre um arquivo:</link
+> abrir/executar esse arquivo</para>
+              <para
+><link linkend="browsing-archives"
+>Num arquivo de pacote:</link
+> navegar pelo pacote como se fosse uma pasta.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Esc;</para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="moving-around"
+>Fará com que o menu deixe de estar em primeiro plano, se for esse o caso.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>Excluir</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Excluir (ou enviar para a Lixeira).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>Delete</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Apagar de forma permanente</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>Espaço</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="selecting-files"
+>Sobre um arquivo:</link
+> ativar/desativar a seleção do arquivo abaixo, sem afetar a seleção dos outros arquivos/pastas.</para>
+              <para
+><link linkend="calculate"
+>Sobre uma pasta:</link
+> calcular o tamanho, sem afetar a seleção dos outros arquivos/pastas.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Backspace;</para>
+            </entry>
+            <entry>
+              <para
+>Subir uma pasta.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>Insert</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Faz o mesmo que a tecla de <keycap
+>Space</keycap
+> e <link linkend="selecting-files"
+>desce uma posição para comutar o arquivo seguinte.</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>Menu</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Menu do botão direito do mouse.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>Home</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>O cursor vai para o topo da lista.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>End</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>O cursor vai para o último arquivo na lista.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- COMMANDLINE -->
+    <para id="cmdline_keybindings">
+      <emphasis role="bold"
+>Linha de comando</emphasis>
+    </para>
+    <para
+>Combinações de teclas na <link linkend="cmdline"
+>Linha de Comando</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para
+><keycap
+>Cima</keycap
+> e <keycap
+>Baixo</keycap
+></para>
+            </entry>
+            <entry>
+              <para
+>Percorrer os comandos inseridos anteriormente.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Abrir a lista de histórico da linha de comando.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Cima</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Saltar da linha de comando para o painel ativo.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Baixo</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Saltar do painel ativo para a linha de comando.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Enter;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Inserir o nome do arquivo / pasta atual, sem a localização, na posição atual da linha de comando.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift;&Enter;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Inserir o nome do arquivo / pasta atual, com a localização completa, na posição atual da linha de comando.</para>
+            </entry>
+          </row>
+          <!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- TERMINAL EMULATOR -->
+    <para id="termemu_keybindings">
+      <emphasis role="bold"
+>Emulador de terminal</emphasis>
+    </para>
+    <para
+>Combinações de teclas do <link linkend="termemu"
+>Emulador de terminal</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Comuta entre um <link linkend="termemu"
+>Emulador de Terminal</link
+> normal e de tela inteira.</para>
+            </entry>
+          </row>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Inserir a partir da área de transferência.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Cima</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Saltar do emulador de terminal para o painel ativo, caso a linha de comando esteja oculta.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Baixo</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Saltar do painel ativo para o emulador de terminal, caso a linha de comando esteja oculta.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Cima/Baixo</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Coloca/retira sempre o foco no Emulador de Terminal, independentemente se a linha de comando está visível ou não. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>Insert</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Inserir a partir da área de transferência.</para>
+            </entry>
+          </row>
+
+          <!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- SYNCHRONIZER -->
+    <para id="synchronizer_keybindings">
+      <emphasis role="bold"
+>Sincronizar</emphasis>
+    </para>
+    <note>
+      <para
+>Por padrão, esta funcionalidade é desativada em tempo de compilação. Veja o <link linkend="synchronizer"
+>capítulo correspondente deste manual</link
+> para ver as instruções de ativação. </para>
+    </note>
+    <para
+>Combinações de teclas da <link linkend="synchronizer"
+>Sincronização</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Inverter a direção</para>
+            </entry>
+          </row>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Baixo</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Excluir</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Cima</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Restaurar a tarefa original</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Esquerda</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Copiar para a esquerda</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Direita</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Copiar para a direita</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Delete</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Marcar para exclusão</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- DEFAULT USERACTIONS -->
+    <para>
+      <emphasis role="bold"
+>Ações do Usuário Padrão</emphasis>
+    </para>
+    <para
+>As combinações de teclas padrão para as <link linkend="useractions"
+>Ações do Usuário</link
+> que são fornecidas pelo &krusader;.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Editar um arquivo como administrador ('root').</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>C</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Copiar o item atual para a área de transferência.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Montar um novo sistema de arquivos.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Igualar o tamanho dos painéis.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keycap
+>Meta</keycap
+> <keycap
+>A</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Colocar na fila de espera do &amarok;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keycap
+>Meta</keycap
+> <keycap
+>1</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ordenar pelo nome.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keycap
+>Meta</keycap
+> <keycap
+>2</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ordenar pela extensão.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keycap
+>Meta</keycap
+> <keycap
+>3</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ordenar o painel ativo pelo tamanho.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keycap
+>Meta</keycap
+> <keycap
+>4</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ordenar pela data de modificação.</para>
+            </entry>
+          </row>
+	            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keycap
+>Meta</keycap
+> <keycap
+>F5</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="useractions-menu"
+>Criar uma cópia de segurança do arquivo atual (Ação do Usuário Padrão).</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- OTHER KEYS URLs -->
+    <itemizedlist>
+      <title
+>Outras Combinações de Teclas</title>
+      <listitem>
+        <para>
+          <link linkend="selecting-files"
+>Selecionar os arquivos</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="krviewer"
+>KrViewer</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="diskusage"
+>Uso do Disco</link
+></para>
+      </listitem>
+      <listitem>
+        <para
+>Interface &GUI; para o <link linkend="locate"
+>Locate</link
+></para>
+      </listitem>
+      <listitem>
+        <para
+>&systemsettings; -&gt; <guilabel
+>Aparência e comportamento comuns</guilabel
+> -&gt; <guilabel
+>Atalhos e gestos</guilabel
+></para>
+      </listitem>
+      <listitem>
+        <para
+>Combinações de teclas configuráveis das <link linkend="useractions"
+>Ações do Usuário</link
+></para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+</chapter>

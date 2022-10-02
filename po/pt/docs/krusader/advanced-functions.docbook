@@ -1,0 +1,54 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<chapter id="more-features">
+<title
+>Funções avançadas</title>
+&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>Enviar os Ficheiros por E-mail</title
+> <para
+>Seleccione um ficheiro e use o <menuchoice
+> <guimenu
+>Menu do botão direito</guimenu
+> <guimenuitem
+>Enviar por E-mail</guimenuitem
+> </menuchoice
+>. Se seleccionar esta opção, irá abrir uma nova janela do &kmail; com o ficheiro já em anexo. Basta preencher o assunto e os destinatários para o enviar a seguir. Obviamente, o &kmail; deverá estar devidamente configurado.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>Permissões da ACL</title>
+  <para
+>As <link linkend="gloss-acl"
+>permissões da ACL</link
+> são suportadas por completo, ao usar as propriedades, para preservar os atributos e a sincronização. Para ver/modificar as permissões da ACL, seleccione um ficheiro e use o <link linkend="context-menu"
+>Menu de Contexto</link
+>: <menuchoice
+> <guimenu
+>Propriedades</guimenu
+> <guimenuitem
+>Permissões</guimenuitem
+> <guimenuitem
+>Permissões avançadas</guimenuitem
+> </menuchoice
+>. No Copiar/Mover, se a opção para <guilabel
+>preservar os atributos</guilabel
+> estiver seleccionada, as permissões da ACL serão também copiadas. O módulo de sincronização (desactivado na altura da compilação por omissão) faz também a manutenção das permissões da ACL.</para>
+</sect1
+></chapter>

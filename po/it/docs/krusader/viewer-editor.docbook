@@ -1,0 +1,3512 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="krviewer">
+  <title
+>KrViewer: il visualizzatore-editor interno di &krusader;</title>
+  <indexterm>
+    <primary
+>Visualizzatore</primary>
+    <seealso
+>Editor</seealso>
+  </indexterm>
+  <para
+>Premendo &Enter; dopo aver selezionato un file <emphasis
+>quest'ultimo verrà aperto con l'applicazione associata al relativo suo tipo</emphasis
+>. Il visualizzatore-editor aprirà una scheda per ogni file all'interno della stessa finestra: puoi modificare questo comportamento dalla <link linkend="konfig-general"
+>pagina Generale di Konfigurator</link
+>.</para>
+  <sect2 id="krview">
+    <title
+>Visualizzatore</title>
+    <para
+>Per visualizzare un file il più velocemente possibile in base al suo tipo, è sufficiente selezionarlo  e premere <keycap
+>F3</keycap
+>. Il visualizzatore interno di &krusader;, che in realtà è un componente di &konqueror;, è in grado di visualizzare praticamente ogni tipo di file visibile in &konqueror; (per es. visualizzare immagini, riprodurre file musicali, mostrare il contenuto di un archivio). Si tratta del 'Visualizzatore generico', per il quale potrà essere necessario configurare le associazioni ai tipi &MIME;.</para>
+    <para
+>Il visualizzatore funziona nel seguente modo: <itemizedlist
+> <listitem
+> <para
+> Cerca di aprire il file con il <emphasis
+>'Visualizzatore generico'.</emphasis
+></para
+> </listitem
+> <listitem
+> <para
+>Qualora il tipo di file (tipo &MIME;) non possa essere determinato o il file (ad esempio un file binario) non sia associato ad alcuna azione, il 'Visualizzatore generico' viene disabilitato. Il file viene trattato come un file di testo e aperto, dunque, con il <emphasis
+>'Visualizzatore testo'</emphasis
+>.</para
+> </listitem
+> <listitem
+> <para
+>Nel <link linkend="kredit_krviewer_menu"
+>menu KrViewer</link
+> sono disponibili le seguenti opzioni: 'Visualizzatore generico' (se disponibile), 'Visualizzatore testo' e <emphasis
+>'Visualizzatore esadecimale'</emphasis
+>.</para
+> </listitem
+> </itemizedlist
+>Puoi configurare la modalità di visualizzazione predefinita dalla <link linkend="konfig-general"
+>pagina 'Generale' di Konfigurator</link
+>.</para>
+    <para
+><keycombo action="simul"
+>&Shift; <keycap
+>F3</keycap
+></keycombo
+> visualizza l'&URL; specificato, per es.: <itemizedlist>
+      <listitem>
+        <para
+><userinput
+><command
+>man:/</command
+> </userinput
+>visualizza le pagine man.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+> <replaceable
+>krusader</replaceable
+> </userinput
+>visualizza la pagina man di &krusader;.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>info:/</command
+> </userinput
+>visualizza una pagina info.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>https://</command
+><replaceable
+>krusader.org</replaceable
+> </userinput
+>visualizza una pagina web.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>ftp://</command
+><replaceable
+>ftp.kde.org/pub/kde/</replaceable
+> </userinput
+>visualizza il contenuto di un server &FTP;.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>sftp://</command
+><replaceable
+>sftp.pippo/</replaceable
+> </userinput
+>visualizza il contenuto di un server &FTP; sicuro.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>file:/</command
+><replaceable
+>home/mario</replaceable
+> </userinput
+>visualizza la cartella home dell'utente Mario.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>tar:/</command
+><replaceable
+>home/mario/archivio.tar.gz/</replaceable
+> </userinput
+> apre una finestra di navigazione del contenuto di un archivio <literal role="extension"
+>tar.gz</literal
+>.</para>
+      </listitem>
+    </itemizedlist
+></para>
+    <para
+>KrViewer può presentare, a seconda del tipo di file visualizzato, i seguenti menu: <link linkend="katepart-menu-file"
+>File</link
+>, <link linkend="katepart-menu-edit"
+>Modifica </link
+>, <link linkend="katepart-menu-view"
+>Visualizza</link
+>, <link linkend="katepart-menu-settings"
+>Impostazioni</link
+> e <link linkend="kredit_krviewer_menu"
+>KrViewer</link
+>. Per una spiegazione più dettagliata dei menu, vedi più avanti la sezione relativa all'<link linkend="kredit"
+>Editor</link
+>. Il visualizzatore interno è in grado di seguire i collegamenti sulle pagine &HTML;. Premendo <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>E </keycap
+></keycombo
+> il visualizzatore aprirà l'editor interno di &krusader; (fondamentalmente si tratta della stessa applicazione).</para>
+    <note>
+      <para
+>Questo visualizzatore integrato non è stato sviluppato da noi, viene fornito tramite &kf5; e gli Slave KIO. Non è in nostro potere né nostra intenzione modificarlo, perché appoggiarsi a quelle librerie permette di snellire il codice. Evitiamo così di riscoprire l'acqua calda! ;-)</para>
+    </note>
+  </sect2>
+  <sect2 id="kredit">
+    <title
+>Editor</title>
+    <indexterm>
+      <primary
+>Editor</primary>
+    </indexterm>
+    <para
+>L'editor interno di &krusader; ha tutte le caratteristiche che ci si aspetta da un editor di testo. La procedura per avviarlo è simile a quella per il visualizzatore, ma con il tasto <keycap
+>F4</keycap
+>. L'editor predefinito è l'editor interno di &krusader;, ma puoi modificare questa scelta dalla <link linkend="konfig-general"
+>pagina Generale di Konfigurator</link
+> in modo da usare un editor esterno.</para>
+    <tip>
+      <para
+>Al primo avvio dell'editor interno di &krusader;, si raccomanda di controllare tutte le sezioni del menu <link linkend="katepart-menu-settings"
+> Impostazioni</link
+> in modo da configurarlo secondo le proprie necessità.</para>
+    </tip>
+  </sect2>
+  <sect2 id="kredit_menus">
+    <title
+>Voci dei menu</title>
+
+<!--mostly brought in from kwrite-->
+<para
+>Ci sono menu diversi con voci diverse nella modalità semplice e in quella avanzata. La modalità avanzata si abilita marcando l'opzione <link linkend="katepart-appearance"
+>Abilita modalità per utenti esperti (modalità &kde;  3)</link
+> nella pagina <guilabel
+>Aspetto</guilabel
+> delle impostazioni di &kappname;.</para>
+
+<sect3 id="katepart-menu-file">
+<title
+>Il menu File</title>
+
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-save">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>File</guimenu
+> <guimenuitem
+>Salva</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Salva il documento corrente. Se il documento è già stato precedentemente salvato verrà sovrascritto senza chiedere il consenso dell'utente. Se questa è la prima volta che si salva un nuovo documento sarà richiamata la finestra di dialogo salva come (descritta sotto). </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-save-as">
+<menuchoice
+><guimenu
+>File</guimenu
+> <guimenuitem
+>Salva come...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Permette di salvare un documento con un nuovo nome. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-reload">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F5</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>File</guimenu
+> <guimenuitem
+>Ricarica</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Ricarica il file attivo da disco. Questo comando è utile se un altro programma o processo ha cambiato il file mentre era aperto in &kappname;. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-print">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>File</guimenu
+> <guimenuitem
+>Stampa...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Apre una semplice finestra di dialogo di stampa che permette all'utente di specificare cosa, dove e come stampare. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+> <!-- from plugin Exporter -->
+<term id="katepart-menu-export-as-html">
+<menuchoice
+><guimenu
+>File</guimenu
+> <guimenuitem
+>Esporta come &HTML;</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Esporta il file nel formato &HTML; in modo che possa essere visualizzato come una pagina web. Questa voce è visualizzata solo se è stata caricata l'estensione di <guilabel
+>Esportazione</guilabel
+>. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect3>
+
+<sect3 id="katepart-menu-edit"
+> <!-- This is also valid for kates menu edit-->
+<title
+>Il menu Modifica</title>
+
+<variablelist>
+<varlistentry>
+<term id="katepart-menu-undo"
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Annulla</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Questo si usa per eliminare o annullare l'ultima azione o operazione dell'utente. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-redo"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Rifai</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Questo annullerà la modifica più recente (se c'è) fatta usando Annulla</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-cut"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Taglia</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Questo comando cancella la selezione corrente e la mette negli appunti. Gli appunti sono una funzionalità che, in maniera invisibile, offre un modo per trasferire dati tra le applicazioni.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-copy"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Modifica</guimenu
+><guimenuitem
+>Copia</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Copia la selezione corrente negli appunti così che possa essere incollata da qualche altra parte. Gli appunti sono una funzionalità che, in maniera invisibile, offre un modo per trasferire dati tra le applicazioni.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-paste"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Incolla</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Inserisce il contenuto degli appunti alla posizione del cursore. Gli appunti sono una funzionalità che, in maniera invisibile, offre un modo per trasferire dati tra le applicazioni.</para>
+</listitem>
+</varlistentry>
+<varlistentry
+><!-- from plugin Exporter -->
+<term
+><anchor id="katepart-menu-copy-as-html"/><menuchoice
+><guimenu
+>Modifica</guimenu
+><guimenuitem
+>Copia come &HTML;</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Copia il testo correntemente selezionato negli appunti come &HTML;. Questa voce è visualizzata solo se è stata caricata l'estensione di <guilabel
+>Esportazione</guilabel
+>. </para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-select-all"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+></shortcut
+><guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Seleziona tutto</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Seleziona l'intero documento. Può essere molto utile per copiare l'intero file in un'altra applicazione.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-deselect"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>A</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Deseleziona</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Deseleziona l'eventuale testo selezionato nell'editor.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-block-selection-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Modalità di selezione a blocchi</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Alterna la modalità di selezione. Quando la modalità di selezione è <guilabel
+>BLOCCO</guilabel
+>, si possono fare delle selezioni verticali, ad esempio selezionare le colonne dalla 5 alla 10 nelle righe dalla 9 alla 15. La barra di stato mostra lo stato corrente della modalità di selezione: <guilabel
+>RIGA</guilabel
+> o <guilabel
+>BLOCCO</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-vi-input-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Meta;&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Modifica</guimenu
+><guimenuitem
+>Modalità di inserimento Vi</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Imposta una modalità di editing stile vi, modale. Questa modalità supporta i comandi più usati, gli spostamenti dalla modalità normale alla visuale di vim ed ha una barra di stato opzionale per la modalità vi. Questa barra visualizza i comandi che vengono dati, i loro risultati e la modalità corrente. Il comportamento di questa modalità può essere configurato nella sezione <link linkend="katepart-pref-edit-vi-input-mode"
+>Modalità di inserimento Vi</link
+> della pagina <guilabel
+>Modifica</guilabel
+> nella finestra delle impostazioni di &kappname;.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-overwrite-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ins;</keycombo
+> </shortcut
+> <guimenu
+>Modifica</guimenu
+><guimenuitem
+>Modalità di sovrascrittura</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Alterna la modalità di Inserimento/Sovrascrittura. Quando la modalità è <guilabel
+>INS</guilabel
+>, i caratteri vengono inseriti alla posizione del cursore. Quando la modalità è <guilabel
+>SSC</guilabel
+>, i caratteri digitati sostituiranno quelli correnti se il cursore è posizionato prima di qualche carattere. La barra di stato mostra lo stato corrente della Modalità di sovrascrittura: <guilabel
+>INS</guilabel
+> o <guilabel
+>SSC</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-find"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+></shortcut
+><guimenu
+>Modifica</guimenu
+><guimenuitem
+>Trova...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Apre la barra di ricerca incrementale nella parte bassa della finestra dell'editor. Nella parte sinistra della barra c'è un pulsante con un'icona per chiuderla, seguita da una piccola casella di testo per inserire la chiave di ricerca.</para>
+<para
+>Quando si inizia ad inserire la chiave di ricerca, la ricerca inizia immediatamente. Se c'è una corrispondenza nel testo, questa viene evidenziata e lo sfondo della casella di testo diventa verde chiaro. Se la ricerca non dà risultati, lo sfondo della casella di testo diventa rosso chiaro e nella parte destra della barra viene visualizzato <guilabel
+>Non trovato</guilabel
+>.</para>
+<para
+>Si usano i pulsanti <guilabel
+>Successivo</guilabel
+> o <guilabel
+>Precedente</guilabel
+> per andare alla corrispondenza precedente o successiva nel documento della chiave di ricerca.</para>
+<para
+>Permette di limitare la ricerca alle corrispondenze con le stesse maiuscole nello schema di ricerca. Selezionando <guilabel
+>Distingui le maiuscole</guilabel
+> si limiterà la ricerca ai risultati con le maiuscole e minuscole uguali a quelle specificate nella ricerca. </para>
+<para
+>Fare clic sul pulsante con la freccia verde nella parte destra della barra di ricerca incrementale per usare la barra potenziata di ricerca e sostituzione. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-find-again"/><menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Modifica</guimenu
+><guimenuitem
+>Trova successivo</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Ripete l'ultima eventuale operazione di ricerca senza usare di nuovo la barradi ricerca incrementale. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-previous">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift;<keycap
+>F3</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Trova precedente</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Ripete l'ultima eventuale operazione di ricerca senza richiamare la barra di ricerca incrementale e cercando all'indietro invece che in avanti nel documento. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-replace"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> </shortcut
+><guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Sostituisci...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Questo comando apre la barra avanzata di trova e sostituisci. Nella parte a sinistra in alto della barra c'è un pulsante con un'icona per chiuderla, seguita da una piccola casella di testo per inserire la chiave di ricerca.</para>
+<para
+>Puoi controllare la modalità di ricerca selezionando le opzioni <guilabel
+>Testo semplice</guilabel
+>, <guilabel
+>Parole intere</guilabel
+>, <guilabel
+>Sequenze di escape</guilabel
+> o <guilabel
+>Espressioni regolari</guilabel
+> dal menu a discesa. </para>
+<para
+>Se sono selezionati <guilabel
+>Sequenze di escape</guilabel
+> o <guilabel
+>Espressione regolare</guilabel
+>, l'elemento <guibutton
+>Aggiungi...</guibutton
+> in basso nel menu contestuale delle caselle di testo è abilitato e permette di aggiungere alle chiavi di ricerca sequenze di escape o elementi di espressioni regolari, a partire da liste predefinite.</para>
+<para
+>Si usano i pulsanti <guilabel
+>Successivo</guilabel
+> o <guilabel
+>Precedente</guilabel
+> per andare alla corrispondenza precedente o successiva nel documento della chiave di ricerca.</para>
+<para
+>Inserisci il testo con cui sostituire nella casella di testo <guilabel
+>Sostituisci</guilabel
+> e fai clic sul pulsante <guilabel
+>Sostituisci</guilabel
+> per sostituire solo il testo evidenziato o sul pulsante <guilabel
+>Sostituisci tutti</guilabel
+> per sostituire il testo in tutto il documento. </para>
+<para
+>Puoi modificare il comportamento di ricerca e sostituzione selezionando le varie opzioni in fondo alla barra. Selezionare <guilabel
+>Distingui le maiuscole</guilabel
+> restringerà i risultati a quelli che corrispondono alle maiuscole e minuscole di ogni carattere della chiave di ricerca.  <guilabel
+>Solo la selezione</guilabel
+> effettuerà la ricerca e la sostituzione solo all'interno della selezione attuale. Il pulsante <guilabel
+>Trova tutti</guilabel
+> evidenzia tutte le corrispondenze nel documento e ne mostra il numero in una finestrella a comparsa. </para>
+<para
+>Fai clic sul pulsante con la freccia verde sul lato destro della barra potenziata di ricerca e sostituzione per passare alla barra di ricerca incrementale. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+><guimenu
+>Modifica</guimenu
+><guimenuitem
+>Trova selezionato</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Trova l'occorrenza successiva del testo selezionato.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected-backwards">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Modifica</guimenu
+><guimenuitem
+>Trova selezionato all'indietro</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Trova l'occorrenza precedente del testo selezionato.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-go-to-line">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Vai alla riga...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Apre la barra Vai alla riga nella parte inferiore della finestra, che serve per far saltare il cursore ad una particolare riga del documento (specificandone il numero). Il numero della riga può essere inserito  direttamente nella casella di testo o graficamente, facendo clic sulle frecce direzionali su o giù a lato della casella di testo. La freccia su incrementerà il numero della riga e la freccia giù lo decrementerà. È possibile chiudere la barra facendo clic sulla relativa icona nella parte sinistra. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-view">
+<!-- This is also valid for kates menu view, but kate does not have the New Window item -->
+<title
+>Il menu Visualizza</title>
+
+<para
+>Il menu <guimenu
+>Visualizza</guimenu
+> permette di gestire le impostazioni specifiche per l'editor attuale ed i riquadri.</para>
+
+<variablelist>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-new-window"/>
+<menuchoice
+><guimenu
+>Visualizza</guimenu
+><guimenuitem
+>Nuova finestra</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Crea una nuova finestra contenente il documento corrente. Tutte le modifiche al documento fatte in una finestra saranno applicate anche nell'altra e viceversa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-command-line"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F7</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Passa alla riga di comando</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Visualizza la riga di comando di Katepart alla base della finestra. Nella riga di comando, digita <userinput
+>"help"</userinput
+> per ottenere aiuto e <userinput
+>help list</userinput
+> per ottenere una lista di comandi.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Mostra la console di JavaScript</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Questo apre una vista degli strumenti che permette di eseguire del codice JavaScript interattivamente. Per maggiori informazioni, vedi <ulink url="help:/katepart/advanced-editing-tools-scripting.html"
+>come estendere &kate; con degli script</ulink
+>. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-schema"/>
+<menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guisubmenu
+>Schema</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Seleziona uno schema di caratteri.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F10</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>A capo automatico dinamico</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Le righe di testo andranno a capo sul bordo della vista nello schermo.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap-indicators"/>
+<menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guisubmenu
+>Indicatori di a capo automatico dinamico</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+ <para
+>Scegli quando e come debbano essere visualizzati gli indicatori di andata a capo automatico dinamico. Ciò è disponibile solo se è selezionata l'opzione <guilabel
+>A capo automatico dinamico</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-static-word-wrap"/>
+<menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Mostra indicatore di a capo statico</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Se questa opzione è selezionata, verrà disegnata una barra verticale sulla colonna di andata a capo definita in <menuchoice
+> <guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Configura editor...</guimenuitem
+></menuchoice
+> nella scheda Modifica. Nota che l'indicatore di andata a capo sarà disegnato solo se usi un carattere a spaziatura fissa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-icon-border"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F6</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Mostra bordo delle icone</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Questa è un elemento di commutazione. Attivarlo renderà visibile il bordo delle icone sul lato sinistro dell'editor attivo. Su questo bordo sono indicate le posizioni delle righe contrassegnate da un segnalibro nell'editor.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-line-numbers"/>
+<menuchoice
+><shortcut
+><keycap
+>F11</keycap
+></shortcut
+> <guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Mostra i numeri di riga</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Questo è un elemento di commutazione. Attivarlo farà apparire i numeri di riga a sinistra del documento.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-scrollbar-marks"/>
+<menuchoice
+><guimenu
+>Visualizza</guimenu
+> <guisubmenu
+>Mostra segni nella barra di scorrimento</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Se questa opzione è selezionata, la vista attuale mostrerà i marcatori sulla barra di scorrimento verticale. I segni equivalgono a quelli sul <link linkend="katepart-menu-view-show-icon-border"
+>Bordo delle Icone</link
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-hide-folding-markers"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F9</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Mostra segni di raggruppamento</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Se questa opzione è selezionata, verranno mostrati i segni di raggruppamento del codice.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-code-folding"/>
+<menuchoice
+><guimenu
+>Visualizza</guimenu
+><guisubmenu
+>Raggruppamento del codice</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Queste opzioni appartengono al <ulink url="help:/katepart/advanced-editing-tools-code-folding.html"
+>raggruppamento del codice</ulink
+>:</para>
+<variablelist>
+
+<varlistentry id="view-show-folding-markers">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F9</keycap
+></keycombo
+></shortcut
+> <guimenuitem
+>Mostra segni di raggruppamento</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Attiva o disattiva la visualizzazione del pannello dei segni di raggruppamento nella parte sinistra della vista.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>Raggruppa il nodo attuale</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Contrae la regione che contiene il cursore.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-unfold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>Apre nodo attuale</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Espande la regione che contiene il cursore.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-toplevel-nodes">
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenuitem
+>Raggruppa i nodi di livello superiore</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Contrae tutte le regioni di livello superiore nel documento. Fai clic sul triangolino a destra per espandere tutte le regioni di livello superiore.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenuitem
+>Ingrandisci carattere</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Aumenta la dimensione del carattere.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenuitem
+>Rimpicciolisci carattere</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Diminuisce la dimensione del carattere.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-go"
+><!-- This is also valid for kates menu bookmarks-->
+<title
+>Il menu Segnalibri</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-set-bookmark">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Segnalibri</guimenu
+> <guimenuitem
+>Metti segnalibro</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Imposta o rimuove un segnalibro nella riga attuale del documento attivo (se c'è un segnalibro viene rimosso, altrimenti viene impostato). </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-clear-bookmarks">
+<menuchoice
+><guimenu
+>Segnalibri</guimenu
+><guimenuitem
+>Togli tutti i segnalibri</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Questo comando rimuoverà tutti i segnalibri dal documento così come la lista dei segnalibri che si trova sotto questo elemento del menu. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-previous">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;&PgUp;</keycombo
+></shortcut
+><guimenu
+>Segnalibri</guimenu
+><guimenuitem
+>Precedente</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Questo sposterà il cursore all'inizio della prima riga superiore con un segnalibro. Il testo dell'elemento del menu include il numero di riga e l'inizio del testo della riga. Questo elemento è disponibile solo quando esiste un segnalibro in una riga sopra al cursore.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-next">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>Pag↓</keycap
+></keycombo
+></shortcut
+><guimenu
+>Segnalibri</guimenu
+><guimenuitem
+>Successivo</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Questo sposterà il cursore all'inizio della prima riga inferiore con un segnalibro. Il testo dell'elemento del menu include il numero di riga e l'inizio del testo della riga. Questo elemento è disponibile solo quando esiste un segnalibro in una riga sotto al cursore.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Alla base di questo menu appare un elenco di segnalibri, se ce ne sono in questa finestra. </para>
+
+</sect3>
+
+<!-- This is also valid for kates menu tools, kate has additional items:
+Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at top-->
+<sect3 id="katepart-menu-tools">
+<title
+>Il menu Strumenti</title>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-read-only"/><menuchoice
+><guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Modalità di sola lettura</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Imposta il documento attuale in modalità di sola lettura. Ciò impedisce l'aggiunta di testo e modifiche alla formattazione del documento.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-filetype"/><menuchoice
+><guimenu
+>Strumenti</guimenu
+> <guisubmenu
+>Modalità</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Scegli lo schema di tipo di file che preferisci per il documento attivo. Questo sostituisce lo schema impostato a livello globale in<menuchoice
+><guimenu
+>Impostazioni</guimenu
+><guimenuitem
+>Configura editor...</guimenuitem
+></menuchoice
+> nella scheda <guilabel
+>Modi e tipi di file</guilabel
+> solo per il documento attuale.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-highlighting"/><menuchoice
+><guimenu
+>Strumenti</guimenu
+><guisubmenu
+>Evidenziazione</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Scegli lo schema di evidenziazione che preferisci per il documento attivo. Questo sostituisce la modalità di evidenziazione impostata a livello globale in <menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Configura editor</guimenuitem
+></menuchoice
+> solo per il documento attuale.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-indentation"/><menuchoice
+><guimenu
+>Strumenti</guimenu
+><guisubmenu
+>Rientro</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Scegli lo stile di rientro che preferisci per il documento attivo. Questo sostituisce la modalità di rientro impostata a livello globale in <menuchoice
+><guimenu
+>Impostazioni</guimenu
+><guimenuitem
+>Configura  editor...</guimenuitem
+></menuchoice
+> solo per il documento attuale.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-encoding"/><menuchoice
+><guimenu
+>Strumenti</guimenu
+><guisubmenu
+>Codifica</guisubmenu
+></menuchoice
+></term>
+ <listitem>
+<para
+>Puoi sovrascrivere l'impostazione di codifica predefinita in <menuchoice
+> <guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Configura editor...</guimenuitem
+></menuchoice
+> nella pagina <guilabel
+>Apri e Salva</guilabel
+> per impostare una differente codifica per il documento attuale. La codifica impostata qui sarà valida solo per il documento attuale.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-end-of-line"/><menuchoice
+><guimenu
+>Strumenti</guimenu
+><guisubmenu
+>Fine riga</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Scegli lo stile di fine riga che preferisci per il documento attivo. Questo sostituisce la modalità di fine riga impostata a livello globale in<menuchoice
+><guimenu
+>Impostazioni</guimenu
+><guimenuitem
+>Configura editor...</guimenuitem
+></menuchoice
+> solo per il documento attuale.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-add-byte-mark-order"/><menuchoice
+><guimenu
+>Strumenti</guimenu
+> <guisubmenu
+>Aggiungi indicatore dell'ordine dei byte (BOM)</guisubmenu
+></menuchoice
+></term>
+ <listitem>
+<para
+>Attivando questa azione si può fare aggiungere esplicitamente un indicatore dell'ordine dei byte per i documenti con codifica Unicode. Il BOM (Byte Order Mark) è un carattere Unicode usato per indicare appunto l'ordine dei byte (in gergo inglese, <foreignphrase lang="en"
+>endianness</foreignphrase
+>) di un file o flusso di testo; per maggiori informazioni vedi <ulink url="https://it.wikipedia.org/wiki/Byte_Order_Mark"
+>Byte Order Mark</ulink
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Space;</keycombo
+> </shortcut
+> <guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Invoca completamento del codice</guimenuitem
+> </menuchoice
+> </term>
+<listitem>
+<para
+>Invoca manualmente il completamento del codice, di solito usando una scorciatoia associata a questa azione.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Strumenti</guimenu
+><guimenuitem
+>Completamento delle parole</guimenuitem
+> </menuchoice
+> </term>
+<listitem>
+<para
+><guimenuitem
+>Riusa parola sotto</guimenuitem
+> (<keycombo action="simul"
+>&Ctrl;<keycap
+>9</keycap
+></keycombo
+>)e <guimenuitem
+>Riusa parola sopra</guimenuitem
+> (<keycombo action="simul"
+>&Ctrl;<keycap
+>8</keycap
+></keycombo
+>) completano il testo durante la digitazione cercando parole simili prima o dopo la posizione attuale. <guimenuitem
+>Completamento di shell</guimenuitem
+> fa apparire un riquadro di completamento con le voci corrispondenti.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Controllo ortografico automatico</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Quando <guimenuitem
+>Controllo ortografico automatico</guimenuitem
+> è attivo, gli errori di ortografia rilevati vengono immediatamente sottolineati nel documento.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-Spelling..."/><menuchoice
+><guimenu
+>Strumenti</guimenu
+><guimenuitem
+>Ortografia...</guimenuitem
+></menuchoice>
+</term>
+
+<!--para
+>These options are described in the documentation for the
+<ulink url="help:/sonnet/index.html"
+>Check Spelling Dialog</ulink
+>.</para
+Move / merge the following into kdelibs/doc/sonnet/index.docbook and replace it with the para above
+-->
+
+<listitem
+><para
+><action
+>Questo lancia il programma di controllo ortografico</action
+>, un programma progettato per aiutare l'utente a scovare e correggere gli errori di battitura. Facendo clic su questa voce si avvierà il controllo e si aprirà la finestra del correttore, con la quale l'utente può controllare il processo. Ci sono quattro impostazioni allineate verticalmente al centro della finestra, con alla loro immediata sinistra l'etichetta corrispondente. A partire dall'alto abbiamo:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Parola sconosciuta:</guilabel
+></term>
+<listitem
+><para
+>Qui, il controllo ortografico indica la parola in esame. Questo accade quando si incontra una parola non contenuta nel dizionario, un file contenente un elenco di parole ortograficamente corrette che vengono confrontate con quelle presenti nell'editor.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sostituisci con:</guilabel
+></term>
+<listitem
+><para
+>Se il controllo ha qualche parola simile nel dizionario, la prima viene inclusa qui. L'utente può accettare il suggerimento, scrivere la propria correzione, o scegliere un altro suggerimento dalla prossima casella.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Lingua:</guilabel
+></term>
+<listitem
+><para
+>Se hai installato più di un dizionario, qui puoi scegliere quale dizionario e lingua debbano essere usati.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Sul lato destro della finestra ci sono sei pulsanti che permettono all'utente di controllare il processo di controllo ortografico. Questi sono:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Aggiungi al dizionario</guibutton
+></term>
+<listitem
+><para
+>Premere questo pulsante aggiungerà la <guilabel
+>Parola sconosciuta</guilabel
+> al dizionario del correttore. Ciò significa che in futuro il controllo considererà questa parola ortograficamente corretta.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Suggerisci</guilabel
+></term>
+<listitem
+><para
+>Il controllo può inserire qui una lista di possibili sostituzioni per la parola in considerazione. Facendo clic su uno dei suggerimenti questo comparirà nella casella <guilabel
+>Sostituisci con</guilabel
+>, in alto.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Sostituisci</guibutton
+></term>
+<listitem
+><para
+>Questo pulsante fa sostituire al controllo la parola considerata nel documento con la parola nella casella <guilabel
+>Sostituisci con</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Sostituisci tutto</guibutton
+></term>
+<listitem
+><para
+>Questo pulsante fa sostituire al controllo non solo la <guilabel
+>Parola sconosciuta</guilabel
+> attuale, ma gli fa automaticamente fare la stessa sostituzione per ogni altra occorrenza di questa <guilabel
+>Parola sconosciuta</guilabel
+> nel documento.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Ignora</guibutton
+></term>
+<listitem
+><para
+>Questo pulsante manderà avanti il controllo senza fare cambiamenti.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Ignora sempre</guibutton
+></term>
+<listitem
+><para
+>Questo pulsante dice al controllo di ignorare questa <guilabel
+>Parola sconosciuta</guilabel
+> ed ignorarne altre occorrenze.</para
+> <note
+><para
+>Ciò vale solo per il controllo attuale. Se in seguito il controllo verrà riavviato si fermerà su questa stessa parola.</para
+></note
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Altri tre pulsanti sono posizionati lungo la base della finestra del controllo ortografico. Essi sono:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Aiuto</guibutton
+></term>
+<listitem
+><para
+>Apre la guida di &kde; con la pagina di aiuto per questa finestra.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Finito</guibutton
+></term>
+<listitem
+><para
+>Questo pulsante termina il processo di correzione e torna al documento.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Annulla</guibutton
+></term>
+<listitem
+><para
+>Questo pulsante annulla il processo di correzione, annullando tutte le modifiche e tornando al documento.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-spelling-from-cursor"/><menuchoice
+><guimenu
+>Strumenti</guimenu
+><guimenuitem
+>Ortografia (dal cursore)</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Questo avvia il programma di correzione ortografica iniziando dalla posizione attuale del cursore invece che dall'inizio del documento.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-spellcheck-selection"/><menuchoice
+><guimenu
+>Strumenti</guimenu
+><guimenuitem
+>Ortografia della selezione</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Controlla l'ortografia della selezione attuale.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-change-dictionary"/><menuchoice
+><guimenu
+>Strumenti</guimenu
+><guimenuitem
+>Cambia dizionario</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Visualizza un menu a discesa nella parte bassa della finestra dell'editor, con i dizionari disponibili per la correzione ortografica. Permette di cambiare il dizionario in modo veloce, ad esempio per la correzione ortografica di documenti in più lingue.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-cleanindent"/><menuchoice
+><guimenu
+>Strumenti</guimenu
+><guimenuitem
+>Pulisci rientro</guimenuitem
+></menuchoice
+></term
+>  <listitem>
+<para
+>Pulisce il rientro della selezione attuale o per la riga su cui si trova al momento il cursore. Pulire il rientro garantisce che tutto il testo selezionato segua la modalità di rientro scelta.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-align"/><menuchoice
+><guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Allinea</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Provoca un riallineamento della riga corrente o delle righe selezionate utilizzando la modalità di rientro e le impostazioni di rientro del documento.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Commenta</guimenuitem
+> </menuchoice
+> </term>
+<listitem
+><para
+>A seconda del tipo di file, aggiunge i caratteri necessari per rendere la riga attuale o tutte le righe selezionate un commento.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Decommenta</guimenuitem
+> </menuchoice
+> </term>
+<listitem
+><para
+>Rimuove i caratteri che rendono la riga attuale o le righe selezionate commenti, a seconda del tipo di file.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Maiuscolo</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Mette il testo selezionato o la lettera dopo il cursore in maiuscolo.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Minuscolo</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Mette il testo selezionato o la lettera dopo il cursore in minuscolo.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Iniziali maiuscole</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Trasforma le iniziali in maiuscole nel testo selezionato o nella parola corrente.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Unisci righe</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Unisce le righe selezionate, o la riga attuale e quella successiva, con un carattere di spazio come separatore. Gli spazi bianchi iniziali o finali delle righe unite saranno rimossi dalle estremità coinvolte.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Applica il ritorno a capo automatico</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Applica l'andata a capo statica all'intero documento. Ciò significa che verrà automaticamente iniziata una nuova riga di testo quando la riga attuale supererà la lunghezza specificata dall'opzione <guilabel
+>Colonna a cui andare a capo</guilabel
+> nella scheda <guilabel
+>Modifica</guilabel
+> in <menuchoice
+><guimenu
+>Impostazioni</guimenu
+><guimenuitem
+>Configura editor...</guimenuitem
+></menuchoice
+>.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+<para
+>Se l'<link linkend="katepart-pref-plugins"
+>estensione</link
+> Inserisci file è abilitata, verrà visualizzata una voce di menu aggiuntiva: <guimenuitem
+>Inserisci file...</guimenuitem
+>. </para>
+<!-- Data Tools and Insane HTML (LE) Expansion Ctrl+. when plugins are enabled-->
+</sect3>
+
+<sect3 id="katepart-menu-settings">
+<!-- This is also valid for kates menu settings,
+only the items Show Toolbar and Show Statusbar are swapped and Configure kate is the last item-->
+<title
+>Il menu Impostazioni</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-preferences"/><menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Configura editor...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Questa voce del menu apre una finestra dove è possibile modificare diverse <link linkend="kredit_config"
+>impostazioni</link
+>. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect3>
+
+<!--/end kwrite-->
+
+  <!-- KRVIEWER menu -->
+<sect3 id="kredit_krviewer_menu">
+<title
+>Il menu KrViewer</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Visualizzatore generico </guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Il visualizzatore interno di &krusader;, che in realtà è un componente di &konqueror;, è in grado di visualizzare praticamente ogni tipo di file visibile in &konqueror; (per es. visualizzare immagini, riprodurre file musicali, mostrare il contenuto di un archivio).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Visualizzatore testo </guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visualizza il file in modalità testo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Visualizzatore esadecimale</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visualizza il file in modalità esadecimale.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Lister</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Permette di visualizzare rapidamente file di grandi dimensioni in modalità testo ed esadecimale, attraverso il <link linkend="konfig-general"
+>Lister</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Editor di testo </guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Modifica il file in modalità testo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>D</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Stacca scheda</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stacca la scheda attuale aprendola in una nuova finestra.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl; <keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Esci</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Chiude il visualizzatore-editor interno di &krusader;.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    </sect3>
+  </sect2>
+
+<!--taken from kwrite's configuring-part.docbook-->
+<sect2 id="kredit_config">
+<title
+>Configurazione del componente editor</title>
+<para
+>Questo gruppo contiene tutte le pagine relative al componente editor di &kappname;. La maggior parte delle impostazioni sono quelle predefinite, che possono essere sostituite <link linkend="katepart-pref-open-save-modes-filetypes"
+> definendo un tipo di file</link
+>, con le <ulink url="help:/katepart/config-variables.html"
+>variabili dei documenti</ulink
+> o cambiandole nel documento in una sessione di lavoro.</para>
+<sect3 id="katepart-appearance"
+> <!-- updated to 4.7 + synced with kwrite -->
+<title
+>Aspetto</title>
+
+<sect4 id="katepart-appearance-general">
+<title
+>Generale</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>A capo automatico dinamico</guilabel
+></term>
+<listitem>
+<para
+>Se questa opzione è selezionata, le righe andranno a capo quando raggiungeranno il limite di visualizzazione della finestra.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Indicatori di a capo automatico dinamico (se applicabile)</guilabel
+></term>
+<listitem
+><para
+>Scegli quando devono essere mostrati gli indicatori di a capo automatico dinamico, <guilabel
+>Spenti</guilabel
+>, <guilabel
+>Dopo i numeri di riga</guilabel
+> o <guilabel
+>Sempre attivi</guilabel
+>. </para
+></listitem
+></varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Allinea le righe mandate a capo dinamicamente alla profondità di rientro: </guilabel
+></term>
+<listitem
+><para
+>Allinea verticalmente l'inizio di una riga mandata a capo dinamicamente con il livello di rientro della prima riga. Ciò può aiutare a rendere il codice e la formattazione più leggibile.</para
+><para
+>Permette inoltre di impostare una larghezza massima dello schermo, in percentuale, oltre la quale le righe andate a capo dinamicamente non saranno più allineate verticalmente. Ad esempio, al 50%, le righe il cui livello di rientro è più profondo del 50% della larghezza dello schermo non verranno seguite da righe allineate verticalmente.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Evidenziazione degli spazi</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Evidenzia le tabulazioni</guilabel
+></term>
+<listitem
+><para
+>L'editor mostra un simbolo &raquo; per indicare la presenza di una tabulazione nel testo.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Evidenziazione degli spazi finali</guilabel
+></term>
+<listitem
+><para
+>L'editor mostrerà dei punti per indicare la presenza di spazi finali in fondo alle righe.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Avanzate </guilabel
+></term>
+<listitem
+><para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Mostra righe di rientro </guilabel
+></term>
+<listitem
+><para
+>Se attivata, l'editor mostrerà delle linee verticali aiutare a distinguere le righe rientrate.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Evidenzia intervallo tra parentesi selezionate </guilabel
+></term>
+<listitem
+><para
+>Se abilitato, l'intervallo tra le parentesi corrispondenti selezionate sarà evidenziato.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-appearance-borders">
+<title
+>Bordi</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Bordi</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Mostra gli indicatori di raggruppamento </guilabel
+></term>
+<listitem
+><para
+>Se questa opzione è selezionata, la vista attuale mostrerà gli indicatori per il raggruppamento del codice, se il raggruppamento è disponibile.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostra bordo per le icone. </guilabel
+></term>
+<listitem
+><para
+>Se questa opzione è selezionata, vedrai un bordo per le icone sul lato sinistro. Il bordo per le icone mostra, per esempio, i segnalibri.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostra numeri di riga </guilabel
+></term>
+<listitem
+><para
+>Se questa opzione è selezionata, verranno mostrati i numeri di riga sul lato sinistro.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostra i segni nella barra di scorrimento </guilabel
+></term>
+<listitem
+><para
+>Se questa opzione è selezionata, la vista attuale mostrerà i marcatori sulla barra di scorrimento verticale. Questi segni possono mostrare, ad esempio, i segnalibri.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ordina il menu dei segnalibri </guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Per creazione </guilabel
+></term>
+<listitem
+><para
+>Ogni nuovo segnalibro verrà aggiunto in coda, indipendentemente da dov'è nel documento.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Per posizione </guilabel
+></term>
+<listitem
+><para
+>I segnalibri saranno ordinati a seconda dei loro numeri di riga.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+</sect3>
+
+<sect3 id="katepart-prefcolors"
+><!-- checked for 4.7 + synced with kwrite -->
+<title
+>Caratteri e colori</title>
+
+<para
+>In questa sezione è possibile configurare i caratteri e i colori ditutti gli schemi di colori disponibili, nonché crearne di nuovi o eliminare quelli esistenti. Ogni schema comprende le impostazioni relative ai colori, ai caratteri e agli stili del testo normale ed evidenziato. </para>
+
+<para
+>&kappname; preselezionerà lo schema attualmente attivo; se vuoi lavorare su uno schema diverso, selezionalo dalla casella combinata <guilabel
+>Schema</guilabel
+>. Con i pulsanti <guibutton
+>Nuovo</guibutton
+> ed <guibutton
+>Elimina</guibutton
+> puoi rispettivamente creare un nuovo schema o eliminare quelli presenti.</para>
+<para
+>In fondo alla pagina puoi selezionare lo <guilabel
+>Schema predefinito per &kappname;</guilabel
+>.</para>
+
+<sect4 id="katepart-prefcolors-colors">
+<title
+>Colori</title>
+
+<variablelist>
+<varlistentry id="katepart-variable-prefcolors-colors-text-background">
+<term
+><guilabel
+>Sfondo dell'area di testo</guilabel
+></term>
+<listitem>
+
+<variablelist>
+
+<varlistentry id="katepart-variable-pref-colors-normal-text">
+<term
+><guilabel
+>Testo normale</guilabel
+></term>
+<listitem
+><para
+>Questo è lo sfondo predefinito per l'area dell'editor, e ne sarà il colore dominante.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-selected-text">
+<term
+><guilabel
+>Testo selezionato</guilabel
+></term>
+<listitem
+><para
+>Il colore di sfondo del testo selezionato. Quello predefinito è il colore globale di selezione, come configurato nelle preferenze dei colori di &plasma;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-current-line">
+<term
+><guilabel
+>Riga attuale</guilabel
+></term>
+<listitem
+><para
+>Imposta il colore della riga corrente. Se è un po' diverso da quello del testo normale, aiuta a tenere il segno. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-marks">
+<term
+><guilabel
+>Segnalibro</guilabel
+></term>
+<listitem
+><para
+>Questo menu a discesa permette di selezionare i colori da associare a diversi tipi di indicatori. Questi sono quindi sovrapposti al colore di sfondo della riga che li contiene, in modo che una riga con più indicatori o se riga contenente indicatori è la riga attuale abbia come colore di sfondo la sovrapposizione di diversi colori. I colori degli indicatori sono usati anche se è attiva la visualizzazione dei segni nella barra di scorrimento.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-prefcolors-colors-other-elements">
+<term
+><guilabel
+>Elementi aggiuntivi</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Sfondo del bordo sinistro</guilabel
+></term>
+<listitem
+><para
+>Questo colore è usato per i bordi degli indicatori, dei numeri di riga e degli indicatori di raggruppamento sul lato sinistro della vista dell'editor, quando sono visualizzati. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Numeri di riga</guilabel
+></term>
+<listitem
+><para
+>Questo colore è usato per disegnare i numeri di riga sul lato sinistro della vista, quando visualizzati.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Evidenziazione delle parentesi</guilabel
+></term>
+<listitem
+><para
+>Questo colore è usato per lo sfondo delle parentesi corrispondenti. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Indicatori di a capo</guilabel
+></term>
+<listitem
+><para
+>Questo colore è usato per disegnare un motivo sulla sinistra delle righe mandate a capo automaticamente quando vengono allineate verticalmente, e anche per l'indicatore di a capo statico.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Segni di tabulazione e spazio</guilabel
+></term>
+<listitem
+><para
+>Questo colore è usato per gli indicatori delle spaziature, se abilitati. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Linea degli errori di ortografia</guilabel
+></term>
+<listitem
+><para
+>Imposta il colore della linea usata per indicare gli errori di ortografia. </para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-prefcolors-fonts">
+<title
+>Caratteri</title>
+<para
+>Qui puoi scegliere il carattere dello schema. Puoi scegliere fra tutti i caratteri disponibili sul sistema e impostarne la dimensione predefinita. In basso viene mostrato un testo esemplificativo, per vedere l'effetto delle tue scelte. </para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-normal-text-styles">
+<title
+>Stili testo normale</title>
+<para
+>Gli stili di testo normale sono ereditati dagli stili di evidenziazione del testo, permettendo all'editor di presentare il testo in modo coerente. Per esempio, il testo dei commenti è uguale in quasi tutti i formati di testo che &kappname; può evidenziare.</para>
+<para
+>Il nome nell'elenco di stili usa lo stile configurato per l'elemento, dando un'anteprima immediata alla configurazione dello stile. </para>
+<para
+>Ogni stile permette di selezionare degli attributi comuni oltre ai colori di sfondo e di primo piano. Per rimuovere l'impostazione del colore di sfondo, fai clic con il &RMB; per usare il menu contestuale.</para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-highlighting-text-styles">
+<title
+>Stili di testo evidenziato</title>
+<para
+>Qui puoi modificare gli stili del testo usati per una specifica definizione di evidenziazione. L'editor preseleziona l'evidenziazione usata dal documento attuale. Per lavorare con un'evidenziazione diversa, selezionala dalla casella combinata <guilabel
+>Evidenziazione</guilabel
+> sopra l'elenco di stili. </para>
+<para
+>Il nome nell'elenco di stili usa lo stile configurato per l'elemento, dando un'anteprima immediata alla configurazione dello stile. </para>
+<para
+>Ogni stile permette di selezionare attributi comuni oltre ai colori di sfondo e di primo piano. Per deimpostare un colore di sfondo, fai clic con il &RMB; per usare il menu contestuale. Puoi inoltre vedere se uno stile è uguale a quello predefinito dell'elemento, e renderlo tale se non lo è.</para>
+<para
+>Noterai che molte evidenziazioni contengono altre evidenziazioni rappresentate da gruppi nell'elenco di stili. Per esempio, la maggior parte delle evidenziazioni importano l'evidenziazione Alerts, e molte altre importano l'evidenziazione per Doxygen. La modifica dei colori di questi gruppi ha effetto solo sugli stili quando è usata nel formato di evidenziazione modificato. </para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-edit">
+<title
+>Modifica</title>
+
+<sect4 id="katepart-pref-edit-general">
+<title
+>Generale</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-pref-word-wrap"
+><guilabel
+>A capo automatico statico</guilabel
+></term>
+<listitem
+><para
+>L'a capo automatico è una funzionalità che fa iniziare automaticamente una nuova riga di testo all'editor e ne sposta il cursore al suo inizio. &kappname; inizierà automaticamente una nuova riga di testo al raggiungere della lunghezza specificata dall'opzione <link linkend="katepart-pref-wrap-words-at"
+>Colonna a cui andare a capo</link
+>.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Abilita a capo automatico statico</guilabel
+></term>
+<listitem>
+<para
+>Attiva o disattiva l'a capo automatico statico.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostra indicatori di a capo automatico statico (se applicabili)</guilabel
+></term>
+<listitem>
+<para
+>Se questa opzione è selezionata, verrà disegnata una barra verticale sulla colonna di andata a capo definita in <menuchoice
+> <guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Configura editor...</guimenuitem
+></menuchoice
+> nella scheda Modifica. Nota che l'indicatore di andata a capo sarà disegnato solo se usi un carattere a spaziatura fissa.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term id="katepart-pref-wrap-words-at"
+><guilabel
+>Colonna a cui andare a capo:</guilabel
+></term>
+<listitem>
+<para
+>Se l'opzione <link linkend="katepart-pref-word-wrap"
+>Abilita a capo automatico</link
+> è selezionata, questa voce determina la lunghezza (in caratteri) alla quale l'editor comincerà automaticamente una nuova riga.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Varie</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Rimuovi gli spazi finali durante la scrittura</guilabel
+></term>
+<listitem
+><para
+>&kappname; eliminerà automaticamente gli spazi di troppo in fondo alle righe di testo.</para
+></listitem
+> </varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Parentesi automatiche</guilabel
+></term
+> <listitem
+><para
+>Quando si scrive una parentesi aperta ([, ( o {), &kappname; inserisce automaticamente la corrispondente parentesi chiusa (}, ) o ]) a destra del cursore.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Copia o taglia la riga attuale se non c'è una selezione</guilabel
+></term
+> <listitem>
+<para
+>Se questa opzione è abilitata e la selezione di testo è vuota, le azioni di copiatura o ritaglio vengono fatte per l'intera riga di testo sulla quale si trova il cursore.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Permetti di scorrere oltre la fine del documento</guilabel
+></term
+> <listitem>
+<para
+>Questa opzione permette di scorrere oltre la fine del documento. Questo può servire per centrare verticalmente il fondo del documento, o per metterlo in cima alla vista attuale.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-cursor-selection">
+<title
+>Cursore e selezione</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Movimento del cursore di testo</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Home e Fine intelligenti</guilabel
+></term>
+<listitem>
+<para
+>Se questa casella è selezionata, premere il tasto Home farà saltare al cursore gli spazi e lo manderà all'inizio del testo della riga.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Cursore a capo</guilabel
+></term>
+<listitem>
+<para
+>Quando attivata, spostare il cursore con i tasti &Left; e &Right; quando si è rispettivamente all'inizio o alla fine di una riga lo manderà alla fine della riga precedente o all'inizio della successiva, come nella maggior parte degli editor.</para
+><para
+>Quando disattivata, il cursore di inserimento non può essere spostato a sinistra dell'inizio di una riga, ma può esserlo oltre la fine di una riga, il che può fare comodo ai programmatori. Quando questa opzione viene scelta, spostare il cursore con i tasti freccia oltre la fine di una riga (a destra) lo farà passare all'inizio della successiva. Allo stesso modo quando si sposta il cursore oltre l'inizio di una riga (a sinistra) passerà alla fine della riga precedente. Quando questa opzione non è selezionata, spostare il cursore a destra dopo la fine della riga lo farà soltanto continuare sulla stessa riga, e cercare di spostarlo a sinistra dell'inizio della riga non farà nulla.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Pag↑ e Pag↓ spostano il cursore</guilabel
+></term>
+<listitem>
+<para
+>Questa opzione cambia il comportamento del cursore quando l'utente preme il tasto &PgUp; o &PgDn;. Se non è selezionato, il cursore del testo manterrà la sua posizione relativa nel testo visibile in &kappname; quando del nuovo testo diviene visibile come risultato dell'operazione. Così, se il cursore è al centro del testo visibile quando avviene l'operazione, rimarrà lì (tranne quando si raggiunge l'inizio o la fine). Quando questa opzione è selezionata, la prima pressione di un tasto farà spostare il cursore in cima o in fondo al testo visibile non appena si visualizza una nuova pagina di testo.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Centratura automatica del cursore (righe):</guilabel
+></term>
+<listitem>
+<para
+>Imposta il numero di righe da mantenere visibili sopra e sotto il cursore, quando possibile.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Modalità di selezione del testo</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Normale</guilabel
+></term>
+<listitem>
+<para
+>Le selezioni vengono sovrascritte dal testo digitato e si perdono quando si muove il cursore.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Persistente</guilabel
+></term>
+<listitem>
+<para
+>Le selezioni rimangono anche dopo aver spostato il cursore e aver inserito del testo.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-indent">
+<title
+>Rientro</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Modalità di rientro predefinita:</guilabel
+></term>
+<listitem>
+<para
+>Seleziona la modalità di rientro automatico che vuoi usare come predefinita. Si raccomanda caldamente di impostare <userinput
+>Nessuna</userinput
+> o <userinput
+>Normale</userinput
+>, e di usare le configurazioni per tipo di file per impostare altre modalità di rientro per formati di testo come codice C, C++ o &XML;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Rientra con</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Tabulazioni</guilabel
+></term>
+<listitem>
+<para
+>Se abilitata, l'editor inserirà caratteri di tabulazione quando premi il tasto &Tab; o usi il <ulink url="help:/katepart/kate-part-autoindent.html"
+>rientro automatico</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Spazi</guilabel
+></term>
+<listitem>
+<para
+>Quando questa opzione è abilitata, l'editor inserirà un numero appropriato di spazi a seconda della posizione nel testo e dell'impostazione <guilabel
+>Ampiezza delle tabulazioni</guilabel
+> alla pressione del tasto &Tab; o usi il <ulink url="help:/katepart/kate-part-autoindent.html"
+>rientro automatico</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tabulazioni e spazi</guilabel
+></term>
+<listitem>
+<para
+>Se abilitata, l'editor inserirà spazi come sopra descritto quando rientri o premi il tasto &Tab; all'inizio di una riga, ma inserirà tabulazioni quando il testo &Tab; viene premuto all'interno o alla fine di una riga.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ampiezza delle tabulazioni:</guilabel
+></term>
+<listitem>
+<para
+>Configura il numero di spazi mostrati al posto di un carattere di tabulazione.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Larghezza del rientro:</guilabel
+></term>
+<listitem>
+<para
+>La larghezza del rientro è il numero di spazi usati per fare rientrare una riga. Se configurato per rientrare con le tabulazioni, viene inserito un carattere di tabulazione (se il rientro è divisibile per l'ampiezza delle tabulazioni).</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Regole di rientro</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Mantieni gli spazi aggiuntivi</guilabel
+></term>
+<listitem
+><para
+>Se questa opzione è disabilitata, cambiare il livello di rientro allinea una riga a un multiplo della larghezza specificata nella <guilabel
+>Larghezza del rientro</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Regola il rientro del codice incollato dagli appunti</guilabel
+></term>
+<listitem>
+<para
+>Se questa opzione è selezionata, il codice incollato degli appunti verrà fatto rientrare. L'azione <guimenuitem
+>Annulla</guimenuitem
+> rimuove il rientro.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Azioni di rientro</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Il tasto Backspace nello spazio vuoto iniziale toglie il rientro</guilabel
+></term>
+<listitem>
+<para
+>Se questa opzione è selezionata, il tasto &Backspace; riduce il livello di rientro se il cursore è posizionato nello spazio vuoto iniziale di una riga.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Azione del tasto Tab (senza selezione)</guilabel
+></term>
+<listitem>
+<para
+>Se vuoi che &Tab; allinei la riga attuale al suo blocco di codice come in emacs, rendi &Tab; una scorciatoia per l'azione <guimenuitem
+>Allinea</guimenuitem
+>. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Avanza sempre alla prossima tabulazione</guilabel
+></term>
+<listitem>
+<para
+>Se questa opzione è selezionata, il tasto &Tab; inserisce degli spazi per raggiungere la posizione della prossima tabulazione. Se è selezionata l'opzione <guilabel
+>Inserisci spazi invece di tabulazioni</guilabel
+> nella scheda <guilabel
+>Generale</guilabel
+> della pagina <guilabel
+>Modifica</guilabel
+> sono inseriti spazi, altrimenti una tabulazione.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Aumenta sempre il livello di rientro</guilabel
+></term>
+<listitem>
+<para
+>Se questa opzione è selezionata, il tasto &Tab; fa rientrare sempre la riga attuale del numero di caratteri specificato nella <guilabel
+>Larghezza del rientro</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Aumenta il livello di rientro se in uno spazio vuoto iniziale</guilabel
+></term>
+<listitem>
+<para
+>Se questa opzione è selezionata il tasto &Tab; farà rientrare la riga attuale o avanzerà alla posizione della prossima tabulazione. Se il punto di inserimento è sul primo carattere non di spaziatura della riga o prima di esso, o se c'è una selezione, la riga attuale verrà fatta rientrare del numerodi posizioni specificato in <guilabel
+>Larghezza del rientro</guilabel
+>. Se il punto di inserimento è dopo il primo carattere non di spaziatura della linea e non c'è selezione si inseriscono degli spazi fino a raggiungere la prossima tabulazione: se è selezionata l'opzione <guilabel
+>Inserisci spazi invece di tabulazioni</guilabel
+> nella scheda <guilabel
+>Generale</guilabel
+> della pagina <guilabel
+>Modifica</guilabel
+> sono inseriti spazi, altrimenti una tabulazione.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-autocompletion">
+<title
+>Completamento automatico delle parole</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Generale</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Abilita il completamento delle parole</guilabel
+></term>
+<listitem>
+<para
+>Se abilitata, appare automaticamente un riquadro di completamento delle parole durante la digitazione, presentando un elenco di voci testuali per completare il testo attualmente sotto il cursore.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Lunghezza minima delle parole da completare</guilabel
+></term>
+<listitem
+><para
+>Quando si scrive, il completamento delle parole cerca le parole nello stesso documento che cominciano con il testo già scritto. Questa opzione configura il numero minimo di caratteri per attivare il completamento e far comparire un riquadro di completamento.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-vi-input-mode">
+<title
+>Modalità di inserimento Vi</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Generale</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Usa modalità di inserimento Vi</guilabel
+></term>
+<listitem>
+<para
+>Se selezionata, sarà abilitata la modalità di inserimento Vi all'apertura di una nuova vista. Puoi sempre attivare o disattivare la modalità di inserimento Vi per una particolare vista nel menu <guimenu
+>Modifica</guimenu
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Lascia che i comandi Vi abbiano precedenza su quelli di Kate</guilabel
+></term>
+<listitem>
+<para
+>Se selezionata, i comandi Vi avranno precedenza sui comandi interni di &kappname;. Per esempio, <keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> rifarà le modifiche e sostituirà l'azione standard (mostrare la finestra di ricerca e sostituzione).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Nascondi la barra di stato della modalità Vi</guilabel
+></term>
+<listitem>
+<para
+>Come impostazione predefinita, è usata una barra di stato aggiuntiva quando la modalità di inserimento Vi è attivata. Questa barra di stato mostra i comandi mentre vengono scritti e i messaggi e gli errori prodotti dai comandi di Vi.</para>
+<para
+>Attivare questa opzione nasconderà questa ulteriore barra di stato.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mappatura dei tasti</guilabel
+></term>
+<listitem
+><para
+>La mappatura dei tasti si usa per cambiare il significato dei tasti premuti. Ciò permette di spostare i comandi su altri tasti o di creare sequenze speciali per effettuare una serie di comandi.</para>
+<para
+>Esempio:</para>
+<para
+><keycap
+>F2</keycap
+> -> <keycap
+>I--</keycap
+> &Esc;</para>
+<para
+>Questo metterà un <keycap
+>I--</keycap
+> all'inizio di una riga quando si digita <keycap
+>F2</keycap
+>. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-spellcheck">
+<title
+>Controllo ortografico</title>
+<para
+>Queste opzioni di configurazione sono descritte nella documentazione del modulo delle &systemsettings; del <ulink url="help:/kcontrol/spellchecking"
+>Correttore ortografico</ulink
+>.</para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-open-save">
+<title
+>Apri e salva</title>
+
+<sect4 id="katepart-pref-open-save-general">
+<title
+>Generale</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Formato dei file</guilabel
+></term>
+<listitem>
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Codifica:</guilabel
+></term>
+<listitem>
+<para
+>Questo definisce la codifica standard da usare per aprire e salvare i file, se non viene cambiata nella finestra di apertura e salvataggio o usando un'opzione dalla riga di comando.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Rilevamento della codifica</guilabel
+></term>
+<listitem>
+<para
+>Seleziona un elemento dal menu a discesa per disattivare il rilevamento automatico o usa <guilabel
+>Universale</guilabel
+> per abilitarlo per tutte le codifiche. Questo potrebbe però rilevare solo UTF-8 e UTF-16, e selezionare una regione userà permetterà di ottenere risultati migliori. Se né la codifica scelta come standard sopra, né quella specificata nella finestra di apertura o salvataggio, né quella specificata sulla riga di comando corrispondono al contenuto del file, si eseguirà questo rilevamento.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Codifica di riserva</guilabel
+></term>
+<listitem>
+<para
+>Qui si definisce la codifica di riserva per provare ad aprire file se né la codifica sopra indicata come normale, né quella specificata nella finestra di apertura o salvataggio, né quella specificata sulla riga di comando corrispondono ai contenuti del file. Prima di tutto, si proverà a determinare la codifica da usare cercando un indicatore di ordinamento dei byte all'inizio del file, se ne si trova uno, sarà scelta la codifica Unicode corretta, altrimenti verrà avviato il rilevamento della codifica. Se nessuna delle due soluzioni ha successo, sarà provata la codifica di riserva.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Fine riga:</guilabel
+></term>
+<listitem>
+<para
+>Sceglie la modalità di fine riga preferita per il documento attuale. Sono disponibili le opzioni &UNIX;, DOS/&Windows; o Macintosh.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Rilevamento automatico dei fine riga</guilabel
+></term>
+<listitem>
+<para
+>Seleziona questa opzione per far sì che l'editor rilevi automaticamente il tipo di fine riga. Il primo tipo di fine riga incontrato sarà usato per tutto il file.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Abilita l'indicatore dell'ordine dei byte</guilabel
+></term>
+<listitem>
+<para
+>L'indicatore di ordinamento dei byte (BOM, Byte Order Mark) è una particolare sequenza all'inizio dei documenti codificati con Unicode. Aiuta i programmi ad aprire i documenti di testo con la codifica Unicode giusta. Per maggiori informazioni, vedi <ulink url="hhttps://it.wikipedia.org/wiki/Byte_Order_Mark"
+>Byte Order Mark</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<!--
+Line Length Limit missing
+ -->
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Pulizia automatica quando si salva e carica</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Rimuovi gli spazi finali</guilabel
+></term>
+<listitem>
+<para
+>L'editor eliminerà automaticamente gli spazi di troppo in fondo alle righe di testo durante il caricamento e il salvataggio del file.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-advanced">
+<title
+>Avanzate</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>File di configurazione della cartella</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Profondità di ricerca del file di configurazione:</guilabel
+></term>
+<listitem>
+<para
+>L'editor cercherà il file di configurazione di &kappname; nel numero dato di livelli di cartelle verso l'alto, e da esso caricherà la riga delle impostazioni. Maggiori informazioni su questa cartella nascosta di file di configurazione si possono trovare nella <ulink url="help:/katepart/config-variables.html"
+>sezione sulle variabili dei documenti</ulink
+>. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Copia di sicurezza al salvataggio</guilabel
+></term>
+<listitem
+><para
+>La copia di sicurezza al salvataggio fa sì che &kappname; copi il file su disco in &lt;prefisso&gt;&lt;nomefile&gt;&lt;suffisso&gt; prima di salvare le modifiche. Il suffisso predefinito è <emphasis role="bold"
+>~</emphasis
+>, mentre il prefisso predefinito è vuoto. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>File locali</guilabel
+></term>
+<listitem>
+<para
+>Marca questa casella se vuoi una copia di sicurezza dei file locali al salvataggio.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>File remoti</guilabel
+></term>
+<listitem>
+<para
+>Marca questa casella se vuoi una copia di sicurezza dei file remoti al salvataggio.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Prefisso</guilabel
+></term>
+<listitem>
+<para
+>Inserisci il prefisso da aggiungere ai nomi delle copie di sicurezza.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Suffisso</guilabel
+></term>
+<listitem>
+<para
+>Inserisci il suffisso da aggiungere ai nomi delle copie di sicurezza.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Disabilita la sincronizzazione dei file di swap</guilabel
+></term>
+<listitem>
+<para
+>&kappname; può recuperare (la maggior parte di) ciò che è stato scritto dall'ultimo salvataggio in caso di errore o caduta di corrente. Un file di swap (.swp.&lt;nome_file&gt;) viene creato alla prima azione di modifica di un documento. Se l'utente non salva le modifiche e &kappname; va in crash il file di swap rimane sul disco. All'apertura di un file, &kappname; controlla se esiste un file di swap associato, e in tal caso chiede all'utente se vuole recuperare i dati persi o meno. L'utente ha anche la possibilità di vedere le differenze tra il file originale e quello recuperato. Il file di swap viene eliminato dopo ogni salvataggio e all'uscita normale dal programma.</para>
+<para
+>&kappname; sincronizza i file di swap sul disco ogni 15 secondi, ma solo se sono cambiati dall'ultima sincronizzazione. L'utente può scegliere di disabilitare la sincronizzazione, spuntando la casella <guilabel
+>Disabilita la sincronizzazione dei file di swap</guilabel
+>, ma ciò può portare a una perdita di dati maggiore.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-modes-filetypes">
+<title
+>Modi e tipi di file</title>
+<para
+>Questa pagina permette di modificare la configurazione predefinita per documenti con specifici tipi &MIME;. Quando l'editor carica un documento, prova a vedere se corrisponde a un tipo di file conosciuto, e in tal caso applica le variabili definite. Se si trovano più corrispondenze, si userà quella con la priorità più alta. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Tipo di file:</guilabel
+></term>
+<listitem
+><para
+>Il tipo di file con la priorità più alta è quello mostrato nel primo menu a discesa. Se si trovano più tipi di file verranno mostrati tutti.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Nuovo</guilabel
+></term>
+<listitem
+><para
+>Permette di creare un nuovo tipo di file. Dopo aver fatto clic su questo pulsante, i campi sottostanti si svuotano e puoi inserire le proprietà desiderate per il nuovo tipo di file.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Elimina</guilabel
+></term>
+<listitem
+><para
+>Per eliminare un tipo di file esistente selezionalo dal menu a discesae premi il pulsante <guibutton
+>Elimina</guibutton
+>.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem
+> </varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Proprietà di <replaceable
+>tipo di file attuale</replaceable
+></guilabel
+></term>
+<listitem
+><para
+>Il tipo di file con la priorità più alta è quello mostrato nel primo menu a discesa. Se si trovano più tipi di file verranno mostrati tutti.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Nome:</guilabel
+></term>
+<listitem
+><para
+>Il nome del tipo di file sarà il testo della corrispondente voce del menu. Questo nome è mostrato in <menuchoice
+><guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Modalità</guimenuitem
+></menuchoice
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sezione:</guilabel
+></term>
+<listitem
+><para
+>Il nome della sezione è usato per organizzare i tipi di file nei menu. Viene usato anche nel menu <menuchoice
+><guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Modalità</guimenuitem
+></menuchoice
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Variabili:</guilabel
+></term>
+<listitem
+><para
+>Questa stringa permette di configurare le impostazioni di &kappname; per i file selezionati da questo tipo &MIME; usando le variabili di &kappname;. Può essere configurata praticamente ogni opzione, dall'evidenziazione alla modalità di rientro, eccetera.</para>
+<para
+>Premi <guibutton
+>Modifica</guibutton
+> per vedere un elenco di tutte le variabili possibili e le relative descrizioni. Marca la casella a sinistra per abilitare una variabile in particolare e impostane quindi il valore sulla destra. Alcune variabili forniscono un menu a cascata per selezionarne i valori possibili mentre altre permettono di inserire un valore valido manualmente.</para>
+<para
+>Per tutte le informazioni su queste variabili, vedi <ulink url="help:/katepart/config-variables.html"
+>la configurazione delle variabili dei documenti</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Evidenziazione:</guilabel
+></term>
+<listitem
+><para
+>Se crei un nuovo tipo di file questa casella a cascata permette di selezionare un tipo di l'evidenziazione.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Modalità di rientro:</guilabel
+></term>
+<listitem
+><para
+>Il menu a discesa specifica la modalità di rientro per i nuovi documenti.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Estensioni dei file:</guilabel
+></term>
+<listitem
+><para
+>La maschera con i caratteri jolly permette di selezionare i file secondo il loro nome. Una maschera tipica usa un asterisco e l'estensione del file, ad esempio <filename
+>*.txt; *.text</filename
+>. La stringa è un elenco di maschere separate da punti e virgola.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tipi &MIME;:</guilabel
+></term>
+<listitem
+><para
+>Mostra una procedura guidata che aiuta a scegliere facilmente i tipi &MIME;.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Priorità:</guilabel
+></term>
+<listitem
+><para
+>Imposta la priorità per questo tipo di file. Se più di un tipo di file seleziona lo stesso file, sarà usato quello con maggiore priorità.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem
+> </varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Scarica file di evidenziazione...</guibutton
+></term>
+<listitem>
+<para
+>Fai clic su questo pulsante per scaricare descrizioni delle sintassi nuove o aggiornate dal sito Web di &kappname;. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-plugins">
+<title
+>Estensioni</title
+> <!-- updated to 4.7 + synced with kwrite -->
+<para
+>La scheda <guilabel
+>Estensioni</guilabel
+> elenca tutte le estensioni disponibili, tra cui puoi spuntare tutte quelle che vuoi usare. Fai clic sul pulsante <guibutton
+>Informazioni</guibutton
+> per aprire la finestra <guilabel
+>Informazioni su</guilabel
+> di un'estensione.</para>
+<para
+>Una volta che un'estensione configurabile è spuntata, si attiva il pulsante <guibutton
+>Configura</guibutton
+> per permetterne la configurazione.</para>
+<variablelist>
+<title
+>Estensioni del componente editor</title>
+<!-- not released with 4.7
+<varlistentry>
+<term
+><guilabel
+>Artistic Comment</guilabel
+></term>
+<listitem
+><para
+>Format long source-code comments like license-headers
+or descriptions using different style.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><guilabel
+>Parentesi automatiche</guilabel
+></term>
+<listitem
+><para
+>L'estensione parentesi automatiche sostituisce la funzionalità interna di &kappname; per le <quote
+>parentesi automatiche</quote
+>. Inserisce automaticamente una graffa chiusa, <keycap
+>}</keycap
+> all'inizio della riga successiva dopo che si è conclusa una riga con una graffa aperta<keycap
+>{</keycap
+> e si è premuto il tasto &Enter;.</para
+></listitem>
+</varlistentry>
+<!--http://jakob.petsovits.at/topic/kate-->
+<!--Right, it's the automatic insertion of a closing brace (<quote
+>}</quote
+>) after you ended a line with an opening one (<quote
+>{</quote
+>). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
+You, the developer, are writing a line of code, and want to open a new block delimited by braces. Looks like this:
+If you press Enter and AutoBrace is enabled, it will insert your favorite new brace where it belongs. Looks like this:
+-->
+<varlistentry>
+<term
+><guilabel
+>Strumenti per dati</guilabel
+></term>
+<listitem
+><para
+>Abilita gli strumenti di dati come il dizionario dei sinonimi e il controllo ortografico (se installato). Gli strumenti di dati sono disponibili solo quando c'è del testo selezionato, o quando il &RMB; viene premuto su una parola. Se non sono presenti strumenti di dati, anche quando c'è del testo selezionato, devi installarli. Se questa estensione è abilitata e gli strumenti di dati sono installati, appariranno degli altri elementi in fondo al menu contestuale.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Esportazione</guilabel
+></term>
+<listitem
+><para
+>Questo comando permette di esportare il documento attuale con tutte le informazioni di evidenziazione in un documento &HTML; con <menuchoice
+><guimenu
+>File</guimenu
+><guimenuitem
+>Esporta come &HTML;</guimenuitem
+></menuchoice
+>. Inoltre, puoi usare <menuchoice
+><guimenu
+>Modifica</guimenu
+><guimenuitem
+>Copia come &HTML;</guimenuitem
+></menuchoice
+> per copiare il testo attualmente selezionato come &HTML; negli appunti di sistema.</para
+></listitem>
+</varlistentry>
+<!-- not in 4.7
+<varlistentry>
+<term
+><guilabel
+>Highlight Selection</guilabel
+></term>
+<listitem
+><para
+>Highlights all words that match the currently selected text.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><guilabel
+>Inserimento icona</guilabel
+></term>
+<listitem
+><para
+>L'estensione inserimento icona è utile solo agli sviluppatori di&kde;: aggiunge un elemento <guimenuitem
+>Inserisci codice per KIcon</guimenuitem
+> nel menu contestuale dell'editor. Se attiva, si apre il menu di selezione delle icone di &plasma; (che mostra le icone per le applicazioni, le azioni e così via). Se fai clic su una di esse, il suo nome del file senza estensione verrà inserito come testo. È utile solo per impostare le icone con &kf5; tramite la classe KIcon(). </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Scrittura &HTML; pazza (non ZEN) versione ridotta</guilabel
+></term>
+<listitem
+><para
+>Un'estensione che permette un completamento parole simile a ZEN. Per maggiori informazioni vedi <ulink url="https://en.wikipedia.org/wiki/Emmet_(software)"
+>la pagina di Zen Coding su Wikipedia</ulink
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Inserisci file</guilabel
+></term>
+<listitem
+><para
+>Questa estensione permette di inserire qualsiasi file leggibile alla posizione del cursore. Se abilitata, il menu <guimenu
+>Strumenti</guimenu
+> avrà l'ulteriore elemento <guimenuitem
+>Inserisci file</guimenuitem
+>.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect3>
+</sect2>
+<!--/end kwrite-->
+
+</sect1>

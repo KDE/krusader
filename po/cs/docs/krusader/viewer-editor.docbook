@@ -1,0 +1,1482 @@
+<sect1 id="krviewer">
+  <title
+>KrViewer: Interní prohlížeč a editor aplikace &krusader;</title>
+  <indexterm>
+    <primary
+>Prohlížeč</primary>
+    <seealso
+>Editor</seealso>
+  </indexterm>
+  <para
+>Stisknutí klávesy &Enter; při vybraném souboru <emphasis
+>otevře soubor pomocí přiřazené aplikace</emphasis
+>. Editor-prohlížeč podporuje karty v jednom okně. To můžete nastavit v <link linkend="konfig-general"
+>Konfigurátoru na stránce Obecné</link
+>.</para>
+  <sect2 id="krview">
+    <title
+>Prohlížeč</title>
+    <para
+>Chcete-li prohlédnout soubor tak rychle, jak je to možné, stačí na něj posunout ukazatel a stisknout klávesu <keycap
+>F3</keycap
+>. Interní prohlížeč aplikace &krusader; je nyní součást aplikace &konqueror;, který může prohlížet každý typ souboru, jež lze prohlížet aplikací &konqueror; (např. zobrazit obrázky, přehrát hudbu, ukázat obsah archivu). To je nazýváno jako 'Všeobecné zobrazení', pro který potřebujete nastavit mime typy.</para>
+    <para
+>Prohlížeč pracuje následovně: <itemizedlist
+> <listitem
+> <para
+>Zkusí prohlédnout soubor pomocí <emphasis
+>'Všeobecného zobrazení'.</emphasis
+></para
+> </listitem
+> <listitem
+> <para
+>Když nemůže být určen typ souboru (mime typ), nebo když soubor (např. binární) nemá přiřazenou činnost, 'Všeobecné zobrazení' je vypnuté. Soubor je zobrazen jako textový soubor, který je v <emphasis
+>'Textovém zobrazení'</emphasis
+>.</para
+> </listitem
+> <listitem
+> <para
+>Uživatel si může v <link linkend="kredit_krviewer_menu"
+>nabídce KrViewer</link
+> vybrat mezi: 'Všeobecné zobrazení' (je-li dostupné), 'Textové zobrazení' a <emphasis
+>'Hex (šestnáctkové) zobrazení'</emphasis
+>.</para
+> </listitem
+> </itemizedlist
+>V <link linkend="konfig-general"
+>Konfigurátoru na stránce Obecné</link
+> můžete nastavit výchozí režim zobrazení.</para>
+    <para
+>Klávesová zkratka <keycombo action="simul"
+>&Shift; <keycap
+>F3</keycap
+></keycombo
+> zobrazí na popředí &URL;, např: <itemizedlist>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+> </userinput
+>prohlédne manuálové stránky.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+><replaceable
+>krusader</replaceable
+> </userinput
+>prohlédne manuálové stránky aplikace &krusader;.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>info:/</command
+> </userinput
+> prohlédne informační stránky.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>http://</command
+><replaceable
+>krusader.sourceforce.net/</replaceable
+> </userinput
+>prohlédne webové stránky.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>ftp://</command
+> <replaceable
+>ftp.kde.org/pub/kde/</replaceable
+> </userinput
+>prohlédne ftp server.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>sftp://</command
+> <replaceable
+>sftp.domena/</replaceable
+> </userinput
+>prohlédne zabezpečený ftp server.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>file:/</command
+><replaceable
+>home/frantisek</replaceable
+> </userinput
+>prohlédne domovský adresář Františka.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>tar:/</command
+><replaceable
+>home/frank/archive.tar.gz/</replaceable
+> </userinput
+>otevře archiv <literal role="extension"
+>tar.gz</literal
+> uvnitř prohlížecího okna.</para>
+      </listitem>
+    </itemizedlist
+></para>
+    <para
+>KrViewer může mít následující nabídky: <link linkend="kredit_file_menu"
+>Soubor</link
+>, <link linkend="kredit_edit_menu"
+>Úpravy</link
+>, <link linkend="kredit_view_menu"
+>Pohled</link
+>, <link linkend="kredit_settings_menu"
+>Nastavení</link
+> a <link linkend="kredit_krviewer_menu"
+>Krviewer</link
+>, které závisí na zobrazeném typu souboru. Rozvedeny budou v <link linkend="kredit"
+>části Editor</link
+>. Interní prohlížeč může následovat odkazy na &HTML; stránky. Pomocí <keycombo action="simul"
+>&Ctrl; <keycap
+>E</keycap
+></keycombo
+> může prohlížeč spustit interní editor aplikace &krusader; (který je založen na stejné aplikaci).</para>
+    <note>
+      <para
+>Vestavěný prohlížeč není vytvořen námi. Je dodáván pomocí (knihoven) &kde; a Otroků KIO. Nemůžeme a ani to nechceme změnit. Používáním těchto knihoven se zmenšuje velikost napsaného kódu. Takže k úpravě nemáme potřebné páky ;-)</para>
+    </note>
+  </sect2>
+  <sect2 id="kredit">
+    <title
+>Editor</title>
+    <indexterm>
+      <primary
+>Editor</primary>
+    </indexterm>
+    <para
+>Interní editor aplikace &krusader; má většinu věcí, které můžete od editoru vyžadovat. Úprava je podobná prohlížení, ale spouští se klávesou <keycap
+>F4</keycap
+>. Výchozí editor je interní editor aplikace &krusader;. Požadujete-li externí editor, můžete výchozí editor vyměnit v <link linkend="konfig-general"
+>Konfigurátoru na stránce Obecné</link
+>.</para>
+    <tip>
+      <para
+>Když používáte interní editor aplikace &krusader; poprvé, je doporučeno nahlédnout do sekce nabídky <link linkend="kredit_settings_menu"
+>Nastavení</link
+> a editor nastavit.</para>
+    </tip>
+  </sect2>
+  <sect2 id="kredit_menus">
+    <title
+>Náhled na nabídku</title>
+    <para
+>Většina nabídek je docela intuitivní. ;-)</para>
+    <!-- FILE menu -->
+    <variablelist id="kredit_file_menu">
+      <title
+>Nabídka <guimenu
+>Soubor</guimenu
+></title>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Uložit</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Uloží soubor.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Uložit jako</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Uloží soubor pod jiným názvem.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F5</keycap
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Znovu načíst</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Znovu načte soubor.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Export</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Exportuje soubor do formátu <literal role="extension"
+>&HTML;</literal
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Tisknout...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vytiskne soubor.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <!-- EDIT menu -->
+    <variablelist id="kredit_edit_menu">
+      <title
+>Nabídka <guimenu
+>Úpravy</guimenu
+></title>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Zpět</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vrátí poslední činnost.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Znovu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Znovu provede poslední činnost.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Vyjmout</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vyjme označený text do schránky.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Kopírovat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zkopíruje označený text do schránky.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Vložit</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vloží obsah schránky do dokumentu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>A</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Vybrat vše</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vybere celý dokument.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>A</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Zrušit výběr</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zruší současný výběr.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Režim blokového výběru</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přepne možnost blokového výběru. Tedy zapne/vypne možnost výběru bloku.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>Insert</keycap
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Režim přepisování</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přepne na Režim vkládání/přepisování.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Najít...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Najde text.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>F3</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Najít další</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Najde další text.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F3</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Najít předchozí</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Najde předchozí text.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Nahradit...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Nahradí text.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Přejít na řádku</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přejde na řádku určenou číslem.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <!-- VIEW menu -->
+    <variablelist id="kredit_view_menu">
+      <title
+>Nabídka <guimenu
+>Pohled</guimenu
+></title>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F7</keycap
+> </shortcut
+> <guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Přepnout na příkazovou řádku</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zobrazí příkazovou řádku.</para>
+          <!-- TODO -->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Schéma</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Nastaví Schéma např. &krusader; - Normal, &krusader; - Printing, &kate; - Normal, &kwrite; - Normal.</para>
+          <!-- TODO -->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F10</keycap
+> </shortcut
+> <guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Dynamické lámání slov</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Když maximální počet znaků na jednom řádku přesáhne šířku okna, pak při zobrazování textu pokračuje na dalším řádku, namísto rolování na pravou stranu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Indikátory dynamického lámání slov</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vypnuto, Následovat čísla řádek, Vždy zapnuto.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Zobrazit značky statického lámání slov</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+          <!-- TODO -->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F6</keycap
+> </shortcut
+> <guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Ukázat pruh s ikonami</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zobrazí pruh s ikonami.</para>
+          <!-- TODO -->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F11</keycap
+> </shortcut
+> <guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Zobrazit čísla řádek</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zobrazí čísla řádek.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Zobrazit značky na posuvnících</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Je-li tato volba zaškrtnuta, bude aktuální pohled zobrazovat značky na svislém posuvníku. Tyto značky budou ekvivalentní k zobrazeným záložkám.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F9</keycap
+> </shortcut
+> <guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Zobrazit značky skládání</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+          <!-- TODO -->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Skládání kódu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+          <!-- TODO -->
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <!-- BOOKMARKS menu -->
+    <variablelist id="kredit_bookmarks_menu">
+      <title
+>Nabídka <guimenu
+>Záložky</guimenu
+></title>
+      <varlistentry>
+        <term>
+          <!-- TODO -->
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+>  </shortcut
+><guimenu
+>Záložky</guimenu
+> <guimenuitem
+>Nastavit záložku</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Záložky</guimenu
+> <guimenuitem
+>Vymazat všechny záložky</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <!-- These entries are gone on my system with kde3.3.2
+
+<varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>PageDown</keycap
+></keycombo
+></shortcut>
+   <guimenu
+>Bookmark</guimenu>
+   <guimenuitem
+>Next Bookmark</guimenuitem
+></menuchoice
+></term>
+   <listitem>
+   <para
+>Go to the next Bookmark.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>PageUp</keycap
+></keycombo
+></shortcut>
+   <guimenu
+>Bookmark</guimenu>
+   <guimenuitem
+>Previous Bookmark</guimenuitem
+></menuchoice
+></term>
+   <listitem>
+   <para
+>Go to the previous Bookmark.</para>
+   </listitem>
+  </varlistentry>
+-->
+    </variablelist>
+    <!-- TOOLS menu -->
+    <para id="kredit_tools_menu"
+>Pro úplný popis nabídky <guimenu
+>Nástroje</guimenu
+> odkazujeme na <ulink url="help:/kwrite/tools.html"
+>součást dokumentace textového editoru &kde;</ulink
+>. Chcete-li si přečíst tuto dokumentaci, měli byste si nainstalovat balík &kwrite;.</para>
+    <!-- Oldish TOOLS menu items
+    <variablelist id="kredit_tools_menu">
+      <title>
+      <guimenu
+>Tools</guimenu
+> menu</title>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Read Only Mode</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Filetype Mode</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Highlight mode</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Highlight mode for scripts, programming languages,
+          markup file, &etc;: &eg;
+          <literal role="extension"
+>&HTML;, Bash, C++, XML, Makefile,
+          Diff, ...</literal
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>End of Line</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Change the end of Line termination:
+          &UNIX;, &Windows;/DOS,
+          <trademark class="registered">
+          Macintosh</trademark
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul"
+>&Ctrl;
+              <keycap
+>I</keycap
+></keycombo>
+            </shortcut>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Indent</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">
+              &Ctrl;&Shift;
+              <keycap
+>I</keycap
+></keycombo>
+            </shortcut>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Unindent</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Clean Indentation</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul"
+>&Ctrl;
+              <keycap
+>D</keycap
+></keycombo>
+            </shortcut>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Comment</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Add appropriate comment tags, if available.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">
+              &Ctrl;&Shift;
+              <keycap
+>D</keycap
+></keycombo>
+            </shortcut>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Uncomment</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Removes the comment tags on the left.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul"
+>&Ctrl;
+              <keycap
+>U</keycap
+></keycombo>
+            </shortcut>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Uppercase</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">
+              &Ctrl;&Shift;
+              <keycap
+>U</keycap
+></keycombo>
+            </shortcut>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Lowercase</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">
+              &Alt;&Ctrl;
+              <keycap
+>U</keycap
+></keycombo>
+            </shortcut>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Capitalize</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul"
+>&Ctrl;
+              <keycap
+>J</keycap
+></keycombo>
+            </shortcut>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Join Lines</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Word Wrap Document</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    -->
+
+<!-- SETTINGS -> CONFIGURE EDITOR menu -->
+    <para id="kredit_settings_menu"
+>Pro úplný popis dialogového okna s nastavením (lze vyvolat pomocí položky nabídky <menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Nastavit editor</guimenuitem
+></menuchoice
+>) odkazujeme na <ulink url="help:/kwrite/pref-dialog.html"
+>dokumentaci, která je součástí textového editoru &kde;</ulink
+>. Chcete-li si přečíst tuto dokumentaci, měli byste si nainstalovat balík &kwrite;.</para>
+    <!-- Oldish docs from KTextEditor 3 times
+    <variablelist id="kredit_settings_menu">
+      <title>
+      <guimenu
+>Settings -&gt; Configure
+      Editor</guimenu
+> menu</title>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Settings</guimenu>
+            <guimenuitem
+>Configure Editor</guimenuitem>
+            <guimenuitem
+>Colors</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Color configuration for the: Background, Selected
+          text, Current line and Bracket highlighting.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Settings</guimenu>
+            <guimenuitem
+>Configure Editor</guimenuitem>
+            <guimenuitem
+>Fonts</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Fonts configuration for display and printer: Font,
+          font Style and Size, with a preview window.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Settings</guimenu>
+            <guimenuitem
+>Configure Editor</guimenuitem>
+            <guimenuitem
+>Indentation</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Indentation configuration: Automatically indent,
+          use Spaces to indent, &Tab; Keys indent,
+          &Backspace; key unindents, keep indent
+          profile, keep extra spaces.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Settings</guimenu>
+            <guimenuitem
+>Configure Editor</guimenuitem>
+            <guimenuitem
+>Selection</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Selection configuration: Persistent selections,
+          Overwrite selected text.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Settings</guimenu>
+            <guimenuitem
+>Configure Editor</guimenuitem>
+            <guimenuitem
+>Editing</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Editing configuration: Word Wrap config,
+          Whitespace config, Auto brackets, Smart home, Wrap
+          cursor, Maximum undo steps.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Settings</guimenu>
+            <guimenuitem
+>Configure Editor</guimenuitem>
+            <guimenuitem
+>Shortcuts</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Shortcuts configuration.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Settings</guimenu>
+            <guimenuitem
+>Configure Editor</guimenuitem>
+            <guimenuitem
+>Highlighting</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Highlighting configuration: Default styles and
+          Highlight mode.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Settings</guimenu>
+            <guimenuitem
+>Configure Editor</guimenuitem>
+            <guimenuitem
+>View defaults</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>View defaults: Dynamic word wrap, show line
+          numbers, show icon border, show fold markers if
+          available, sort bookmarks menu method.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu
+>Settings</guimenu>
+            <guimenuitem
+>Configure Editor</guimenuitem>
+            <guimenuitem
+>Plugins</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Plugins configuration: &eg; kTexteditor
+          incremental search plugin, kTexteditor insert file
+          plugin, kTexteditor kdatatoolplugin...</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    -->
+    <!-- KRVIEWER menu -->
+    <variablelist id="kredit_krviewer_menu">
+      <title
+>Nabídka <guimenu
+>KrViewer</guimenu
+></title>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Všeobecné zobrazení</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Interní prohlížeč aplikace &krusader; je nyní součástí aplikace &konqueror; a v základu může prohlížet každý typ souboru, který lze prohlížet aplikací &konqueror; (např. zobrazit obrázky, přehrát hudbu, zobrazit obsah archivu).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Textové zobrazení</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Prohlédne soubor v textovém režimu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Hex (šestnáctkové) zobrazení</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Prohlédne soubor v hexadecimálním (šestnáctkovém) režimu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Lister</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Rychlý textový/hexadecimální prohlížeč pro soubory obrovských velikostí, nazvaný jako <link linkend="konfig-general"
+>Krusader lister</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Textový editor</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Upraví soubor v textovém režimu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>Right</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Další karta</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Další prohlížecí karta.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>Left</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Předchozí karta</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Předchozí prohlížecí karta</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Vytrhnout kartu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Oddělí a otevře prohlížecí kartu v novém okně.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+>&Esc;</shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Zavřít současnou kartu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zavře současnou prohlížecí kartu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl; <keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Ukončit</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ukončí okno prohlížeče/editoru aplikace &krusader;.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>

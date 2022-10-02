@@ -1,0 +1,42 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="checksum">
+  <title
+>Creazione e verifica del codice di controllo</title>
+  <indexterm>
+    <primary
+>Codice di controllo</primary>
+  </indexterm>
+  <para
+><menuchoice
+> <guimenu
+>File</guimenu
+> <guimenuitem
+>Crea codice di controllo...</guimenuitem
+> </menuchoice
+>: &krusader; verifica quali strumenti sono installati e se gli strumenti rilevati consentono operazioni ricorsive (nel caso tu abbia selezionato una delle cartelle); puoi generare un codice di controllo scegliendone il tipo dalla lista (<guilabel
+>md5</guilabel
+>, <guilabel
+>sha</guilabel
+>, &etc;). Puoi quindi salvare il codice di controllo in un file, solitamente chiamato <filename
+>checksum.md5</filename
+> o <filename
+>checksum.sha1</filename
+>.</para>
+  <para
+><menuchoice
+> <guimenu
+>File</guimenu
+> <guimenuitem
+>Verifica codice di controllo...</guimenuitem
+> </menuchoice
+>: &krusader; controlla se è disponibile uno strumento che supporti il tipo di codice di controllo usato (nel file indicato, contenente il codice di controllo) e mostra, se ce ne sono, i file per i quali la verifica non sia riuscita.</para>
+  <para
+>Il sistema prescinde dai meccanismi dei differenti tipi di codice di controllo e dalle utilità che li producono e verificano. Al momento sono supportati i seguenti tipi di codice di controllo: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv e crc. È opportuno verificare le <link linkend="konfig-dependencies"
+>Impostazioni degli strumenti per i codici di controllo</link
+> prima di utilizzare questa funzione.</para>
+</sect1>

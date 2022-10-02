@@ -1,0 +1,199 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="diskusage">
+  <title
+>Utilização do Disco</title>
+  <indexterm>
+    <primary
+>Utilização do Disco</primary>
+  </indexterm>
+  <para
+>A Utilização do Disco baseia-se no código do <application
+>Filelight</application
+>. A Utilização do Disco mostra como é que o seu espaço em disco está a ser usado, com base numa representação gráfica do seu sistema de ficheiros. São possíveis as seguintes apresentações:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Vista em linhas</para>
+    </listitem>
+    <listitem>
+      <para
+>Vista detalhada</para>
+    </listitem>
+    <listitem>
+      <para
+>Vista do <application
+>Filelight</application
+>: como um conjunto de anéis segmentados e concêntricos</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Escolha a opção <menuchoice
+> <guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Utilização do Disco</guimenuitem
+> </menuchoice
+> ou <keycombo action="simul"
+>&Alt;&Shift;<keycap
+>S</keycap
+></keycombo
+> para iniciar esta funcionalidade numa janela separada, ou abra-a dentro da <link linkend="sidebar"
+>Barra Lateral</link
+>.</para>
+  <para
+>Combinações de teclas da Utilização do disco; menu do botão direito.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><keycap
+>Del</keycap
+>: Apagar</para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>E</keycap
+></keycombo
+>: Excluir</para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo action="simul"
+>&Shift; <keycap
+>Cima</keycap
+></keycombo
+>: Subir uma pasta</para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+>: nova pesquisa</para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+>: actualizar</para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>I</keycap
+></keycombo
+>: incluir tudo</para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo action="simul"
+>&Shift; <keycap
+>Baixo</keycap
+></keycombo
+>: entrar</para>
+    </listitem>
+    <listitem>
+      <para
+>Menu Ver: <itemizedlist>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>L</keycap
+></keycombo
+>: Vista em linhas</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>D</keycap
+></keycombo
+>: Vista detalhada</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>: vista do Filelight</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; <keycap
+>Direita</keycap
+></keycombo
+>: Vista seguinte</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; <keycap
+>Esquerda</keycap
+></keycombo
+>: Vista anterior</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+  </itemizedlist>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>Disk Usage</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="diskusage.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="diskusage.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>Konfigurator Look &amp; Feel page</phrase
+></textobject>
+  <caption
+><para
+>Disk Usage</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+  <!--HTML_PARSING
+<figure id="screenshot-diskusage" float="1">
+<title
+>Disk Usage</title>
+<mediaobject>
+<imageobject
+><imagedata fileref="diskusage.png"/></imageobject>
+<textobject
+><phrase
+>Disk Usage</phrase
+></textobject>
+</mediaobject>
+</figure>
+HTML_PARSING-->
+</sect1>

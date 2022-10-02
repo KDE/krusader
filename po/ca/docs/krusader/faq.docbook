@@ -1,0 +1,1098 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="faq">
+  <title
+>Preguntes més freqüents (&PMF;)</title>
+  <indexterm>
+    <primary
+>PMF</primary>
+  </indexterm>
+  <para
+>Si teniu problemes amb el &krusader;, consulteu el <ulink url="https://krusader.org/get-involved/index.html"
+>procediment d'instal·lació</ulink
+>, ja que el vostre problema pot ser causat per una instal·lació incorrecta.</para>
+  <para
+>La &PMF; es divideix en tres seccions: <itemizedlist
+> <listitem
+> <para
+> <link linkend="faq_installation"
+>&PMF; de la instal·lació</link
+> (aquesta pàgina)</para
+> </listitem
+> <listitem
+> <para
+> <link linkend="faq_usage"
+>&PMF; de l'ús</link
+> (problemes amb el funcionament o l'ús del &krusader;)</para
+> </listitem
+> <listitem
+> <para
+> <link linkend="faq_general"
+>&PMF; general</link
+> (informes d'error, fòrum, llista de correu...)</para
+> </listitem
+> </itemizedlist
+>Si creieu que falta quelcom a la &PMF; o si no us és clar, si us plau, <link linkend="editors_note"
+>digueu-nos-ho</link
+>.</para>
+  <sect1 id="faq_installation">
+    <title
+>&PMF; de la instal·lació</title>
+    <qandaset>
+      <qandaentry>
+        <question id="faqi_kdelibs">
+          <para
+>El &krusader; necessita el &plasma; per a executar-se?</para>
+        </question>
+        <answer>
+          <para
+><emphasis
+>No, el &krusader; no necessita el gestor de finestres &plasma;</emphasis
+> per a executar-se a l'ordinador, però l'entorn natural del &krusader; és el &plasma;, perquè es basa en els serveis proporcionats per les biblioteques dels &kf5-full;. Només calen algunes biblioteques compartides, com ara les biblioteques dels &kf5;, les biblioteques de les &Qt;, &etc; Això vol dir que el &krusader; funciona en el <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, <ulink url="http://www.afterstep.org/"
+><application
+>AfterStep</application
+></ulink
+>, <ulink url="https://www.xfce.org/"
+><application
+>XFce</application
+></ulink
+> i altres gestors de finestres, sempre que estiguin instal·lades a l'ordinador les biblioteques adequades. Tot això no és cap problema, ja que el món apt-get pot resoldre aquestes dependències a l'instant.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <para
+>No necessitareu canviar al gestor de finestres &plasma; per a emprar el &krusader;; encara podreu utilitzar el <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, <ulink url="http://www.afterstep.org/"
+><application
+>AfterStep</application
+></ulink
+>, <ulink url="https://www.xfce.org/"
+><application
+>XFce</application
+></ulink
+> o un altre gestor de finestres. No obstant això, la configuració dels tipus de lletra del &krusader; i algun comportament es fa executant <command
+>systemsettings</command
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <para
+>Depèn molt del que vulgueu fer amb el &krusader;. Heu de saber que el &krusader; utilitza els esclaus KIO dels &kf5; per a accedir als sistemes de fitxers remots, i el suport per a només un nombre limitat de tipus de sistema de fitxers va amb les biblioteques dels &kf5;, la majoria dels esclaus KIO estan agrupats amb els &kf5-full; (inclosos el fish, sftp i tar).</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <para
+>Per a resumir, si voleu un &krusader; que funcioni, instal·leu els &kf5-full;. Si voleu un &krusader; funcional, llavors necessitareu els &kf5-full; i alguns paquets addicionals del &plasma;. Per a la màxima funcionalitat, el &krusader; necessita algunes aplicacions &kde; (&ark;, &kdiff3;, <application
+>KRename</application
+>), però el gestor de finestres &plasma; és opcional.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_rpm-notfound">
+          <para
+>No puc trobar un paquet per al &krusader;, què haig de fer?</para>
+        </question>
+        <answer>
+          <para
+>Comproveu si la vostra distribució proporciona el &krusader;, si no és així, poseu-vos en contacte amb el creador de la distribució i sol·liciteu que l'incloguin.</para>
+          <para
+>Heu donat un cop d'ull a la pàgina del <ulink url="https://krusader.org/get-involved/index.html"
+>procediment d'instal·lació</ulink
+>? Si no heu trobat res, sempre podeu compilar-lo des del codi font. Sou lliure de publicar una <link linkend="faqi_help_request"
+>sol·licitud d'ajuda</link
+> si teniu cap problema.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+ 
+      <qandaentry>
+        <question id="faqi_help_request">
+          <para
+>Tinc problemes en compilar i instal·lar el &krusader;, com puc enviar una sol·licitud d'ajuda?</para>
+        </question>
+        <answer>
+          <para
+>Llegiu el nostre detallat <ulink url="https://krusader.org/get-involved/index.html"
+>procediment d'instal·lació</ulink
+> i la <link linkend="faq"
+>PMF</link
+>. Si no trobeu una solució al vostre problema, sou lliure de publicar una <emphasis role="bold"
+>sol·licitud d'ajuda</emphasis
+> al nostre fòrum del &krusader; o utilitzar la llista de correu d'<ulink url="https://groups.google.com/group/krusader-users"
+>usuaris del &krusader;</ulink
+>. Però abans de publicar una sol·licitud d'ajuda, intenteu el següent: <orderedlist>
+            <listitem>
+              <para
+>Empreu la funció de cerca en el <ulink url="https://forum.kde.org/viewforum.php?f=225"
+>fòrum del &kde;</ulink
+>, el vostre problema podria ja estar resolt o debatut.</para>
+            </listitem>
+            <listitem>
+              <para
+>Si no trobeu una solució, preneu nota dels següents problemes:<itemizedlist
+> <listitem
+> <para
+>La versió emprada del &krusader;</para
+> </listitem
+> <listitem
+> <para
+>La distribució emprada de &Linux; + la versió</para
+> </listitem
+> <listitem
+> <para
+>Una bona descripció del problema</para
+> </listitem
+> </itemizedlist
+>Sense aquesta informació, seria molt difícil per a nosaltres ajudar-vos. <note
+> <para
+>Si ens doneu els missatges d'error (&pex;, els missatges d'error de <command
+>make</command
+>), comenceu amb el PRIMER missatge d'error, tots els missatges d'error que segueixen al primer missatge d'error són conseqüència i no la causa del problema.</para>
+              </note
+></para>
+            </listitem>
+            <listitem>
+              <para
+>Envieu la vostra sol·licitud d'ajuda.</para>
+            </listitem>
+          </orderedlist
+></para>
+          <para
+>Gràcies per la vostra cooperació!</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_git_version">
+          <para
+>Per què la línia «&krusader;-git» mostra un número de versió antiga al quadre Quant al?</para>
+        </question>
+        <answer>
+          <para
+>Perquè només canviem el número de la versió just abans de fer un nou llançament. La línia «&krusader;-git» mostrarà un número de llançament antic, de manera que ignoreu el número de la versió i verifiqueu la data de la descàrrega. Simplement no hem decidit quin serà el proper número de la versió.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+ </qandaset>
+  </sect1>
+  <sect1 id="faq_usage">
+    <title
+>&PMF; de l'ús</title>
+    <qandaset>
+      <qandaentry>
+        <question id="faqu_dead_mountpoint">
+          <para
+>Per què es congela o penja el &krusader; sobre un punt de muntatge mort?</para>
+        </question>
+        <answer>
+          <para
+>Quan el &krusader; està, &pex;, explorant una compartició &NFS; i el servidor &NFS; deixa de funcionar, el &krusader; es congelarà. Aquesta congelació del &krusader; (i tots els altres visualitzadors/editors interns oberts) és fatal, i només pot corregir-se amb l'ordre <command
+>kill -9</command
+>. No tenim solució per a això. Aquest és un problema que no es limita als gestors de fitxers, o fins i tot al sistema operatiu &Linux;! El problema és que es <quote
+>penja</quote
+> durant el primer accés a la compartició morta, de manera que no hi ha forma d'evitar-ho, ni cap forma de verificar, fins i tot es congelarà l'ordre <command
+>ls</command
+>. Només en mirar de llegir qualsevulla cosa, serà suficient per a embussar. L'única manera d'evitar aquest problema d'arquitectura és emprant un disseny de múltiples fils. D'aquesta manera, si s'encalla, no es penjarà tot el cicle d'esdeveniments de l'aplicació, però no creiem que sigui el moment adequat per a afegir els fils, no estic segur que *tots* els sistemes &kf5; utilitzin &Qt;-mt (la versió multi fil de les &Qt;), i en qualsevol cas, en Krew del &krusader; podria no ser la persona adequada per a abordar aquest important problema. De manera que actualment això és només un error amb el qual haurem d'aprendre a conviure.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_resize">
+          <para
+>Quan intento canviar la mida del &krusader; per a fer-lo més petit, descobreixo que no puc canviar la mida per sota d'una mida determinada. Per què?</para>
+        </question>
+        <answer>
+          <para
+>Veieu els botons <guibutton
+>F1, F2</guibutton
+>, (&etc;)? No permeten que el &krusader; pugui reduir-la, ja que tenen una mida mínima. Simplement desactiveu-los a <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mostra la barra de tecles de funció</guimenuitem
+></menuchoice
+> i podreu canviar la mida del &krusader; al vostre gust. Des de la versió 1.51 ho hem millorat molt: en reduir la mida dels botons es veurà com «F5 ..py». Quan les cares dels botons són massa petites per a llegir, un consell d'eina us donarà tot el text. L'amplada mínima és de 45 píxels per a cada botó.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_samba_codepage">
+          <para
+>Pàgina de codis ISO 8859-x de &Samba; / Què fer si el &krusader; no llegeix carpetes compartides que contenen caràcters internacionals especials?</para>
+        </question>
+        <answer>
+          <para
+>El &krusader; no utilitza (encara) les pàgines de codis ISO 8859-x de &Samba;, si utilitzeu una pàgina de codis diferent de la 8859-1 haureu de fer una configuració manual. Creeu o modifiqueu el fitxer: <filename
+>~/.smb/smb.conf</filename
+> <programlisting
+>[global] 
+          workgroup = ElMeuGrupDeTreball (ex. GrupDeTreball) 
+          client code page = LaMevaPàginaDeCodis (ex. 852)
+          character set = ElMeuJocDeCaràcters (ex. ISO8859-2)
+          </programlisting
+> Podeu provar de configurar smb.conf amb el mòdul apropiat a l'&systemsettings;.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      
+<qandaentry>
+  <question id="faqu_external_tool">
+  <para
+>Què fer si una eina externa sembla no funcionar?</para>
+  </question>
+  <answer>
+  <para
+>El &krusader; utilitza diversos programes com a <link linkend="konfig-dependencies"
+>eines externes</link
+> i, de vegades sembla que no funcionen. Obriu un terminal i comproveu si l'eina foo està instal·lada. <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>foo</command
+></userinput
+></screen
+> Comproveu si l'eina foo és correcta a la pàgina <link linkend="konfig-dependencies"
+>Dependències del Konfigurador</link
+>. Per a les eines d'arxiu: torneu a detectar automàticament els arxius amb el botó <guibutton
+>Configura automàticament</guibutton
+> a la <link linkend="konfig-archives"
+>pàgina Arxius del Konfigurador</link
+>. Comproveu la <link linkend="konfig-protocols"
+>pàgina Protocols del Konfigurador</link
+>. Si no funciona, feu una còpia de seguretat del <filename
+><envar
+>XDG_CONFIG_HOME</envar
+>/krusaderrc</filename
+> (el predeterminat es troba a <filename
+>$<envar
+>HOME</envar
+>/.config/krusaderc</filename
+>) i elimineu-lo d'aquesta ubicació. Reinicieu el &krusader; i ara s'iniciarà el primer assistent de configuració, seguiu aquestes directrius. </para>
+  <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
+<qandaentry>
+  <question id="faqu_jar">
+  <para
+>Com executar fitxers jar (i no entrar a l'arxiu jar)?</para>
+  </question>
+  <answer>
+  <para
+>Aneu a la <link linkend="konfig-protocols"
+>pàgina Protocols del Konfigurador</link
+> i elimineu <guilabel
+>application/x-jar</guilabel
+> del node «krarc», el &krusader; ja no hauria d'entrar a l'arxiu. Les associacions de fitxer globals són gestionades pel &plasma; i no pel &krusader;. Per a associar l'extensió jar: <itemizedlist>
+            <listitem>
+              <para
+>Obriu l'&systemsettings; del &plasma;: <application
+>systemsettings</application
+> </para>
+            </listitem>
+            <listitem>
+              <para>
+               <menuchoice
+><guimenu
+>Aplicacions</guimenu
+> <guimenuitem
+>Associacions de fitxer</guimenuitem
+> </menuchoice>
+              </para>
+            </listitem>
+            <listitem>
+              <para
+>Introduïu <filename
+>jar</filename
+> com a patró del nom de fitxer </para>
+            </listitem>
+            <listitem>
+              <para
+>Afegiu <filename
+>java</filename
+> com a aplicació </para>
+            </listitem>
+           </itemizedlist>
+   </para>
+  <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
+      <!-- Thanks to Dirk Eschler -->
+      <qandaentry>
+        <question id="faqu_ftp_firewall">
+          <para
+>Per què tinc problemes amb la meva connexió &FTP;?</para>
+        </question>
+        <answer>
+          <para
+>Aquest problema passa sovint quan s'està al darrere d'un tallafoc o un servidor intermediari. Obriu <menuchoice
+><guimenu
+>Arranjament del sistema</guimenu
+> <guimenuitem
+>Xarxa</guimenuitem
+> <guimenuitem
+>Preferències</guimenuitem
+> <guimenuitem
+>Preferències de connexió</guimenuitem
+></menuchoice
+>, <guilabel
+>Activa el mode passiu (PASV)</guilabel
+> s'haurà d'activar o desactivar, depenent de la vostra configuració actual. Ara intenteu la sessió d'&FTP; de nou per a veure si funciona. A més, no es poden tenir obertes altres sessions d'&FTP; (utilitzant navegadors web, &etc;), ja que poden causar complicacions. Trobareu més informació a <ulink url="https://slacksite.com/other/ftp.html"
+>Active &FTP; vs. Passive &FTP;, a Definitive Explanation</ulink
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <!-- Thanks to Karai Csaba -->
+      <qandaentry>
+        <question id="faqu_ftp_http_proxy">
+          <para
+>Obtinc l'error <errorcode
+>El &krusader; no permet el protocol &FTP;</errorcode
+> quan intento obrir una carpeta d'&FTP; remot, què haig de fer?</para>
+        </question>
+        <answer>
+          <para
+>La raó és que el &krusader; encara no admet la característica «&FTP; a través del servidor intermediari de l'&HTTP;». Aquest error es pot deure a una configuració incorrecta en les opcions del servidor d'intermediari a l'&systemsettings;. Modifiqueu aquestes opcions perquè no s'utilitzi el servidor d'intercanvi d'&HTTP; i el &FTP; funcionarà.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_no_part">
+          <para
+>Per què no s'afegeix el sufix <literal role="extension"
+>.part</literal
+> quan es copien fitxers mitjançant &FTP;?</para>
+        </question>
+        <answer>
+          <para
+>En pujar fitxers, s'afegeix un sufix <literal role="extension"
+>.part</literal
+> al nom del fitxer, una vegada es completa la pujada, el nom del fitxer es reanomenarà automàticament per a eliminar aquest sufix. Això funciona molt bé, però de vegades alguns servidors &FTP; no permeten una operació de canvi de nom. Podeu evitar-ho desmarcant la casella de selecció <guilabel
+>Marca els fitxers carregats parcialment</guilabel
+> a l'&systemsettings; del &plasma;. El quadre de selecció es troba a <menuchoice
+><guimenu
+>Xarxa</guimenu
+> <guimenuitem
+>Preferències</guimenuitem
+> <guimenuitem
+>Preferències de connexió</guimenuitem
+></menuchoice
+>.</para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_close_connection">
+          <para
+>Com puc tancar una connexió remota (&pex;, una connexió &FTP;)?</para>
+        </question>
+        <answer>
+          <para
+>S'explica en el <link linkend="remote-connections"
+>capítol de connexions remotes</link
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_media_protocol">
+          <para
+>Estic experimentant problemes amb el protocol media:/, per què?</para>
+        </question>
+        <answer>
+          <para
+>El protocol media:/ es va eliminar des del &kde; 4. En el seu lloc, utilitzeu el protocol mtp:/.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <!-- Thanks to thepieman at the Krusader Forum -->
+      <qandaentry>
+        <question id="faqu_sound">
+          <para
+>Com puc inhabilitar els sons predeterminats, &pex;, quan faig una acció de supressió?</para>
+        </question>
+        <answer>
+          <para
+>Aquests són els sons predeterminats del sistema &plasma;, i no estan relacionats amb el &krusader;. Si voleu inhabilitar-los globalment, obriu l'&systemsettings; del &plasma; (<application
+>systemsettings</application
+>): <menuchoice
+><guimenu
+>Personalització</guimenu
+> <guisubmenu
+>Notificacions</guisubmenu
+> <guimenuitem
+>Gestiona les notificacions</guimenuitem
+></menuchoice
+>, <guilabel
+>Origen de l'esdeveniment: «Espai de treball Plasma»</guilabel
+> i desmarqueu els elements de so que no us agradin.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_remoteMan">
+          <para
+>On està el gestor de la connexió remota?</para>
+        </question>
+        <answer>
+          <para
+>Empreu el nostre Gestor de les adreces d'interès. Utilitzeu un <link linkend="remote-connections"
+>&URL; remot</link
+> i apunteu-lo com a adreça d'interès.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_mimetypemagic_archives">
+          <para
+>Per què la màgia dels tipus &MIME; a vegades no funciona a dins dels arxius?</para>
+        </question>
+        <answer>
+          <para
+>Quan entreu en un arxiu i premeu <keycap
+>F3</keycap
+> per a veure un fitxer que no té una extensió coneguda, &pex;, <filename
+>README, INSTALL</filename
+>, &etc; I si el visualitzador s'obre en el mode hexadecimal en lloc del mode habitual, llavors haureu de configurar: <menuchoice
+><guimenu
+>Arranjament del sistema &kde;</guimenu
+> <guimenuitem
+>Associacions de fitxer</guimenuitem
+> <guimenuitem
+>application</guimenuitem
+> <guimenuitem
+>octet-stream</guimenuitem
+></menuchoice
+>, caldrà eliminar el <guilabel
+>visualitzador binari</guilabel
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_konfigurator">
+          <para
+>On es troba el Konfigurador, he d'instal·lar el &plasma; per a utilitzar-lo?</para>
+        </question>
+        <answer>
+          <para
+>El <link linkend="konfigurator"
+>Konfigurador</link
+> és un mòdul de configuració del &krusader;, si el teniu instal·lat, llavors també tindreu el Konfigurador. Per alguna raó, algunes persones pensen que és una altra aplicació del &plasma;, però no ho és, i per això no és necessari instal·lar tot el &plasma; per a utilitzar el Konfigurador. Quan executeu el &krusader;, utilitzeu <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura el &krusader;...</guimenuitem
+></menuchoice
+>, i s'iniciarà el <link linkend="konfigurator"
+>Konfigurador</link
+>. Llegiu el manual, el &krusader; té moltes opcions de configuració, amb el <link linkend="konfigurator"
+>Konfigurador</link
+> es poden personalitzar un munt de coses segons les vostres necessitats. </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_equal_lookandfeel">
+          <para
+>Com puc configurar l'aspecte i comportament per a 2 usuaris diferents i que sigui el mateix?</para>
+        </question>
+        <answer>
+          <para
+>Suposant que la configuració actual és la configuració bona, podeu copiar-la a l'altre usuari. <screen
+><prompt
+>#</prompt
+> <userinput
+><command
+>cp ~/.config/krusaderrc /home/usuari/.config</command
+></userinput
+></screen
+> I quan l'altre usuari utilitzi administrador: <screen
+><prompt
+>#</prompt
+> <userinput
+><command
+>cp ~/.config/krusaderrc /root/.config</command
+></userinput
+></screen>
+          </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_custom_embed_term">
+          <para
+>Com personalitzar el terminal incrustat del &krusader;?</para>
+        </question>
+        <answer>
+          <para
+>Per a canviar les propietats de l'emulador de terminal incrustat del &krusader;: podeu fer clic dret sobre seu i triar una opció, i si no trobeu el que esteu cercant, podeu utilitzar el menú <guimenu
+>Arranjament</guimenu
+> del &konsole; (perquè el &krusader; utilitza la KPart del &konsole; per al seu terminal incrustat). En aquest menú, es veuen altres elements (com <guimenuitem
+>Gestiona els perfils...</guimenuitem
+>). </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+      </answer>
+      </qandaentry>
+
+    </qandaset>
+  </sect1>
+  <sect1 id="faq_general">
+    <title
+>&PMF; general</title>
+    <qandaset>
+      <qandaentry>
+        <question id="faqg_wish">
+          <para
+>Com puc informar d'un desig, suggeriment o comentari?</para>
+        </question>
+        <answer>
+          <para
+>La fortalesa més gran d'un projecte de codi obert deriva de rebre els comentaris dels usuaris. Per això ens encanta escoltar el que heu de dir. Les vostres <quote
+>queixes</quote
+> són les nostres instruccions. Després d'aproximadament 6 mesos, els programadors ja no poden veure els seus propis errors. És natural. Volem idees, crítiques i comentaris perquè tots volem fer del &krusader; el millor i més útil gestor de fitxers disponible a qualsevol lloc.</para>
+          <para
+>La manera més oportuna de contactar és emprar la <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>llista de correu</ulink
+> d'usuaris del &krusader; (krusader-users). Per a obtenir informació sobre el que queda per fer, consulteu la <ulink url="https://groups.google.com/group/krusader-devel"
+>llista de correu &krusader;-devel</ulink
+>. On revisarem i debatrem cada enviament.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_patch">
+          <para
+>Com puc enviar un pedaç?</para>
+        </question>
+        <answer>
+          <para
+>No és fàcil escriure directrius per als pedaços, però aquí n'hi ha algunes. <orderedlist numeration="arabic">
+            <listitem>
+              <para
+>Els pedaços, el codi nou o les característiques noves sempre són benvingudes!</para>
+            </listitem>
+            <listitem>
+              <para
+>Centreu-vos només en un problema a la vegada, de manera que els desenvolupadors us puguin entendre amb facilitat i cometre el vostre pedaç.</para
+>              
+            </listitem>
+            <listitem>
+              <para
+>Preferiblement, podeu començar un debat amb els desenvolupadors a la <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>llista de correu</ulink
+> krusader-devel o a la <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
+>pàgina GitLab per al &krusader;</ulink
+>. Malauradament, no podrem aplicar un pedaç si aquest entra en conflicte amb el <quote
+>disseny general</quote
+> del codi del &krusader; (llegiu en aquesta &PMF; per a obtenir més instruccions). Envieu només una sol·licitud de canvi per correu, de manera que el debat sigui més fàcil de seguir. Les modificacions s'hauran de pujar al servidor de git pas a pas, verificant cada línia. </para>
+            </listitem>
+            <listitem>
+             <para
+>Envieu els fitxers del pedaç al <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
+>GitLab</ulink
+>, de manera que totes les propostes al pedaç es mantinguin organitzades i no es perdin, els arxius tar.gz o els diff generalment estaran bé. No copieu els canvis en un correu. La majoria dels correus canviaran els espais en blanc, de manera que el diff no s'aplicarà o el codi del retall no diferirà. En el passat, els correus amb pedaços es van perdre o es van desorganitzar en molts correus, així que utilitzeu el <ulink url="https://community.kde.org/Infrastructure/GitLab"
+>GitLab</ulink
+>, gràcies! </para
+> 
+            </listitem>
+            <listitem>
+              <para
+>Utilitzeu solucions portables, el &krusader; hauria d'executar-se sobre: <itemizedlist
+> <listitem
+> <para
+>Tots els POSIX (SO &Linux;/BSD/com &UNIX;), &Solaris;.</para
+> </listitem
+> <listitem
+> <para
+>Totes les plataformes BSD (<trademark class="copyright"
+>FreeBSD</trademark
+>/<trademark class="registered"
+>NetBSD</trademark
+>/<trademark class="registered"
+>OpenBSD</trademark
+>/&MacOS;).</para
+> </listitem
+> <listitem
+> <para
+>El &kde; 3.3, el &kde; 3.5 i fins i tot en el GNOME amb les biblioteques kdelibs (per al &krusader;-2.x).</para
+> </listitem
+> <listitem
+> <para
+>Des del GCC 2.95 fins al GCC 5.4</para
+> </listitem
+> </itemizedlist
+>Els canvis d'arquitectura només són realitzats per l'equip.</para>
+            </listitem>
+            <listitem>
+              <para
+>Una nota final: teniu sempre en compte que un pedaç pot ser rebutjat. O té efectes secundaris, el qual no hem pogut solucionar o contradiu la idea darrere del mòdul a apedaçar. En aquest sentit, un projecte de programari difereix de, diguem un wiki: un projecte de programari ha de tenir algú per a prendre totes les decisions finals. En cas contrari, el programari no funcionarà. A més: cal tenir en compte que l'examen dels pedaços pot prendre temps, ja que tots tenim una vida privada.</para>
+            </listitem>
+          </orderedlist
+></para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_bug_report">
+          <para
+>Com puc informar d'un error?</para>
+        </question>
+        <answer>
+          <para
+>Errors? Bé! Som-hi! Tenim un sistema en línia de seguiment d'errors.</para>
+          <para
+>L'ús del seguidor d'errors en línia ens ajuda a tenir una manera clara i ordenada de saber quants errors hi ha oberts, prioritat dels errors i fer-ne el seguiment. Ens estalvia navegar per tot el fòrum del &krusader;, buscant l'error d'ahir. Si us plau, empreu aquest sistema.</para>
+          <para
+>Abans d'informar d'un error, llegiu el següent: <orderedlist>
+            <listitem>
+              <para
+><emphasis role="bold"
+>Comproveu</emphasis
+> si l'error ja ha estat publicat a la <ulink url="https://bugs.kde.org"
+>llista en línia d'errors</ulink
+> del sistema de seguiment d'errors.</para>
+            </listitem>
+            <listitem>
+              <para
+>Si no trobeu aquest error esmentat, <emphasis role="bold"
+>envieu-lo</emphasis
+> al seguidor d'errors fent clic al botó <guibutton
+>Submit New</guibutton
+> (<guibutton
+>Envia nou</guibutton
+>) a la finestra del seguidor d'errors. Envieu les següents qüestions: la versió emprada del &krusader;, la distribució emprada de la distribució de &Linux; + la versió, el tipus de processador i la millor descripció del problema que pugueu gestionar.</para>
+            </listitem>
+          </orderedlist
+></para>
+          <para
+>Gràcies per la vostra cooperació!</para>
+          <note>
+            <para
+>Si és possible, intenteu fer la mateixa operació amb el &konqueror; o una altra aplicació &kde;. Si trobeu el mateix problema, possiblement serà un error dels esclaus KIO o dels &kf5-full;, i no un error del &krusader;. El &krusader; utilitza les biblioteques &kf5; i l'esclau KIO per a moltes operacions. En alguns casos, trobareu problemes si la vostra distribució està configurada incorrectament, proveu primer el que s'ha explicat anteriorment.</para>
+          </note>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      
+<qandaentry>
+  <question id="faqg_valgrint">
+  <para
+>Com puc enviar bons informes de depuració o d'error?</para>
+  </question>
+  <answer>
+  <para
+>En general, els paquets binaris que utilitza la vostra distribució no contenen la informació de depuració. Com generalment només desenvolupem i corregim el &krusader;-git, compileu-lo en el mode de depuració i instal·leu-lo, després verifiqueu si l'error encara existeix. <screen
+><prompt
+>$</prompt
+><userinput
+><command
+>cmake</command
+> <option
+>-DCMAKE_BUILD_TYPE=debugfull</option
+></userinput
+></screen
+> Instal·leu el <ulink url="https://valgrind.org"
+>valgrind</ulink
+>, un conjunt d'eines per a depurar i perfilar programes &Linux;. Executeu Valgrind/&krusader; <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>valgrind</command
+> <option
+>--tool=memcheck</option
+> <replaceable
+>{camí_foo}/krusader</replaceable
+></userinput
+></screen
+> L'eina valgrind escriurà el que succeeixi a la sortida estàndard. Si podeu enviar aquesta informació abans del bloqueig, és gairebé segur que podrem esmenar-ho o dir-vos què fer. </para>
+  <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
+<qandaentry>
+  <question id="faqg_crashhandler">
+  <para
+>Què fer si el KDEcrashhandler envia informació de traça enrere no útil?</para>
+  </question>
+  <answer>
+  <para
+>En general, els paquets binaris que utilitza la vostra distribució no contenen la informació de depuració. Com generalment només desenvolupem i corregim el &krusader;-git, compileu-lo en el mode de depuració i instal·leu-lo, després verifiqueu si l'error encara existeix. <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>cmake</command
+> <option
+>-DCMAKE_BUILD_TYPE=debugfull</option
+></userinput
+></screen
+> Si el KDEKrashhandler encara no proporciona informació útil sobre la traça enrere, llavors de vegades un bolcat del nucli donarà millor informació. Executeu el &krusader;, amb el gestor de petades inhabilitat. <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>krusader</command
+> <option
+>--nocrashhandler</option
+></userinput
+></screen
+> En cas de petada, obtindreu un fitxer <filename
+>.core</filename
+>, generalment en la carpeta d'inici. Executeu <ulink url="https://sourceware.org/gdb/"
+>gdb</ulink
+>, el depurador de projectes GNU <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>gdb</command
+> <option
+>-c</option
+> <replaceable
+>corefile krusader</replaceable
+></userinput
+></screen
+> Ara escriviu <command
+>bt</command
+> per a obtenir la traça enrere i escriviu <command
+>q</command
+> per a sortir del gdb. Sovint, s'obtenen els millors resultats de depuració en usar l'eina valgrind. </para>
+  <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+      
+<qandaentry>
+        <question id="faqg_mail_list">
+          <para
+>El &krusader; té una llista de correu?</para>
+        </question>
+        <answer>
+          <para
+>Sí, actualment tenim diverses <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>llistes de correu</ulink
+>. Sense correu brossa, sense molèsties, només el &krusader;. Sou lliure de fer la subscripció i donar-vos de baixa.</para>
+          <para
+>Consell: Les nostres llistes de correu es poden navegar en línia o llegir amb un lector de notícies, de manera que ni tan sols necessitareu estar-hi subscrit per a seguir l'acció en les llistes de correu. <itemizedlist>
+            <listitem>
+              <para
+><ulink url="https://groups.google.com/group/krusader-devel"
+>&krusader;-devel</ulink
+> és la llista de correu del desenvolupador (només lectura). Si voleu seguir les darreres innovacions del desenvolupament del &krusader;, aquesta és la llista a seguir.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://groups.google.com/group/krusader-users"
+>&krusader;-users</ulink
+> és la llista de correu dels usuaris del &krusader;. Aquí podreu demanar ajuda i parlar amb els usuaris i desenvolupadors del &krusader;.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="http://groups.google.com/group/krusader-news"
+>&krusader;-news</ulink
+> és una llista de molt baix volum, utilitzada per a anuncis de noves versions o correccions d'errors crítics.</para>
+            </listitem>
+          </itemizedlist
+></para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_newsfeeds">
+          <para
+>El &krusader; proporciona fonts de notícies?</para>
+        </question>
+        <answer>
+          <para
+>Sí. Hi ha disponibles diverses fonts de notícies en diversos formats. <ulink url="https://groups.google.com/group/krusader-devel/feeds"
+>krusader-devel</ulink
+>, <ulink url="https://groups.google.com/group/krusader-users/feeds"
+>krusader-users</ulink
+> i <ulink url="https://groups.google.com/group/krusader-news/feeds"
+>krusader-news</ulink
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_kru-forum">
+          <para
+>Com funciona el fòrum del &krusader;?</para>
+        </question>
+        <answer>
+          <para
+>Seguint l'esperit de la llibertat d'expressió, tot el que estigui relacionat amb el &krusader; es pot debatre al nostre fòrum. No importa si sou acabat/da d'arribar o un usuari avançat, tothom hi serà benvingut. La fortalesa més gran d'un projecte de codi obert deriva de rebre comentaris dels usuaris. Per això ens encanta escoltar el que heu de dir. Amb els vostres comentaris podrem fer que el &krusader; sigui cada vegada millor; en cas contrari, no coneixerem els problemes i idees que pugueu tenir. Però recordeu el següent, d'aquesta manera podrem mantenir un cert ordre entre el caos.</para>
+          <para
+>Si la <link linkend="index"
+>documentació</link
+>, la <link linkend="faq"
+>PMF</link
+> i la <ulink url="https://groups.google.com/group/krusader-devel"
+>&krusader;-devel</ulink
+> (utilitzeu la funció de cerca) no us resulten d'ajuda, no dubteu a publicar al nostre fòrum. El &krusader; Krew o la comunitat del &krusader; sempre estaran disponibles per a ajudar-vos.</para>
+          <para
+>Utilitzeu la funció de cerca del <ulink url="https://forum.kde.org/viewforum.php?f=225"
+>fòrum del &kde;</ulink
+>, el vostre problema es pot haver debatut anteriorment (això ens permet minimitzar les publicacions dobles/triples/...). Si el vostre problema ja s'ha debatut en el passat, hi ha una gran possibilitat que hi hagi una solució immediata al vostre problema. Si el tema s'està debatent, podreu unir-vos al debat. Algunes preguntes es fan una vegada i una altra, és per això que hem creat aquesta <link linkend="faq"
+>PMF</link
+>. Això ens permet passar més temps desenvolupant el &krusader;.</para>
+<!--          <para
+>The <ulink url="https://krusader.org/phpBB/index.php"
+>&krusader; Forum</ulink
+> is split into seven
+          sections: 
+          <itemizedlist>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=7"
+>News and Announcements Forum</ulink
+>: all the latest
+              news.</para>
+            </listitem>
+             <listitem>
+              <para
+><ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=12"
+>NewsLetter Forum</ulink
+>: all newsletters.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=3"
+>Bug Discussion Forum</ulink
+>: discussions about
+              bugs, please DO NOT use the forum for
+              <link linkend="faqg_bug_report"
+>bug reports</link
+> (except if you are
+              unsure if you have found a bug).</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=6"
+>New Features Discussion/Requests Forum</ulink
+>: discussions
+              about new features for future &krusader;
+              versions.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=10"
+>ToDo Forum</ulink
+> here you will find
+              the list of the planned features. Registered users
+              will be able to VOTE and COMMENT on the TODO items.
+              Here you get the chance to push your favourite
+              features (+3) and still prefer certain features over
+              others (+1), if you do not care about a feature just
+              simply do not vote on that feature. Unregistered users
+              may only browse the <ulink url="https://krusader.org/phpBB/viewforum.php?f=10"
+>ToDo Forum</ulink
+>. The
+              <ulink url="https://krusader.org/todo.php"
+>ToDo ranking system</ulink
+> contains the results
+              based on the votes. 
+              <link linkend="faqg_patch"
+>Adding ToDo items</link
+> or
+              removing ToDo items which have been implemented will
+              be done by the &krusader; Krew.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=11"
+>UserActions Forum</ulink
+>: discussions
+              about <link linkend="useractions"
+>UserActions</link
+>. Posting your own
+              User Actions is greatly appreciated. We plan to
+              include the best ones in the next
+              &krusader; releases.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=1"
+>General Discussion Forum</ulink
+>: everything that
+              is &krusader; related and does not belong
+              in the other forums.</para>
+            </listitem>
+              </itemizedlist
+></para
+>-->
+          <para
+>Gràcies per la vostra cooperació!</para>
+          <!--<para
+>We provide a <ulink url="http://krusader.sf.net/phpBB/rss.php"
+>RSS feed</ulink
+> for our forums.
+	  You do not have to check for new posts all the time, instead the news
+          will come to you!</para
+>-->
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_i18n">
+          <para
+>Com puc traduir el &krusader; al meu idioma matern?</para>
+        </question>
+        <answer>
+          <para
+>Si esteu interessat a traduir la &IGU; del &krusader; o la documentació, poseu-vos en contacte amb l'<ulink url="https://l10n.kde.org/teams-list.php"
+>equip de traducció del &kde;</ulink
+> del vostre idioma.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_support">
+          <para
+>Com puc donar suport al &krusader;?</para>
+        </question>
+        <answer>
+          <para
+>Podeu donar <link linkend="help_krusader"
+>suport</link
+> al &krusader; de moltes maneres diferents. Envieu-nos els vostres <link linkend="faqg_wish"
+>comentaris</link
+>, <link linkend="faqg_bug_report"
+>informes d'error</link
+>, pedaços, <link linkend="help_krusader"
+>donacions</link
+>, traduccions...</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_mcstyle">
+          <para
+>Per què el &konqueror; a l'<quote
+>estil del Midnight Commander</quote
+> no és un <link linkend="gloss-ofm"
+>OFM</link
+>?</para>
+        </question>
+        <answer>
+          <para
+>Hi ha disponibles dos plafons i una línia d'ordres, totes les altres coses com les <link linkend="features"
+>característiques OFM</link
+> i la interacció <link linkend="gloss-ofm"
+>OFM</link
+> amb l'usuari manquen en aquest perfil.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_why_ofm">
+          <para
+>Per què he d'utilitzar un <link linkend="gloss-ofm"
+>OFM</link
+>?</para>
+        </question>
+        <answer>
+          <para
+>Un <ulink url="https://www.softpanorama.org/OFM/index.shtml"
+>gestor de fitxers ortodox (OFM -Orthodox File Manager-)</ulink
+> és molt més ràpid que un gestor de fitxers d'una subfinestra i més ràpid que la línia d'ordres. Si voleu conèixer <ulink url="https://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+>com va el &krusader;</ulink
+>, només hi ha una forma de descobrir-ho: instal·leu-lo a l'ordinador i utilitzeu-lo durant un temps. Si preferiu perdre temps i productivitat, continueu emprant els gestors de fitxers d'un plafó que es basen en el &Windows; Explorer. En Matej Urban&ccaron;i&ccaron; ha escrit un <ulink url="https://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html"
+>blog</ulink
+> sobre per què <link linkend="gloss-ofm"
+>OFM</link
+> és millor que un gestor de fitxers d'un plafó.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </sect1>
+  <!--
+  <qandaentry>
+       
+      <answer>
+         
+          // Empty line to make it more readable
+      </answer>
+  </qandaentry>
+-->
+</chapter>

@@ -1,0 +1,828 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="synchronizer">
+  <title
+>Sincronizzazione</title>
+  <indexterm>
+    <primary
+>Sincronizzazione</primary>
+  </indexterm>
+  
+<sect2 id="synchronizer_introduction">
+  <title
+>Introduzione</title>
+  <para
+>Questa funzione confronta due cartelle e tutte le loro sotto-cartelle, e ne evidenzia le differenze. Dopo aver scelto le opzioni e la funzione <guilabel
+>Confronta</guilabel
+>, puoi sincronizzare i file e le cartelle. Un pannello può diventare un server &FTP;. Non dimenticare l'opzione <guilabel
+>Confronta per contenuto</guilabel
+>, se la dimensione del file è uguale. Scegli <menuchoice
+> <guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Sincronizza cartelle</guimenuitem
+> </menuchoice
+> o <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> per avviare questa funzionalità. I <link linkend="konfig-color"
+>colori</link
+> sono configurabili. La sincronizzazione possiede <link linkend="synchronizer_keybindings"
+>associazioni di tasti</link
+> proprie. </para>
+  <note>
+    <para
+>Per i file locali: la sincronizzazione modifica le informazioni della data alle date originali.</para>
+  </note>
+  <figure id="screenshot-syncdir" float="1">
+    <title
+>Sincronizzazione</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="syncdir.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Sincronizzazione</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para>
+  <orderedlist>
+    <title
+>Procedura:</title>
+    <listitem>
+      <para
+>Imposta le cartelle <guilabel
+>sinistra</guilabel
+> e <guilabel
+>destra</guilabel
+> da confrontare.</para>
+    </listitem>
+    <listitem>
+      <para
+>Configura il <guilabel
+>filtro file</guilabel
+>, i <guilabel
+>filtri generali</guilabel
+> e i <guilabel
+>filtri avanzati</guilabel
+> opzionali. I <guilabel
+>filtri generali</guilabel
+> includono l'opzione <guilabel
+>Non cercare in</guilabel
+>, che ti permette di escludere varie cartelle dal confronto.</para>
+    </listitem>
+    <listitem>
+      <para
+>Imposta le <link linkend="synccomp_checkb_options"
+>caselle di scelta</link
+>: <guilabel
+>Scendi nelle sotto-cartelle</guilabel
+>, <guilabel
+>Segui collegamenti</guilabel
+>, <guilabel
+>Confronta per contenuto</guilabel
+>, <guilabel
+>Ignora data</guilabel
+>, <guilabel
+>Asimmetrico</guilabel
+> e <guilabel
+>Ignora maiuscole</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Per confrontare le cartelle, fai clic sul pulsante <guibutton
+>Confronta</guibutton
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Con l'uso dei comandi <link linkend="synccomp_show_options"
+>Mostra opzioni</link
+> puoi includere/escludere tipi specifici di file. I file non presenti nell'elenco non verranno coinvolti nella sincronizzazione.</para>
+    </listitem>
+    <listitem>
+      <para
+>Se necessario, puoi modificare le operazioni delle <guilabel
+>Attività</guilabel
+> determinate dal confronto tramite il <link linkend="synccomp_right-click"
+>menu contestuale</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Se i risultati del <guibutton
+>confronto</guibutton
+> ti soddisfano, premi il pulsante <guibutton
+>Sincronizza</guibutton
+> per far apparire la finestra di sincronizzazione.</para>
+    </listitem>
+    <listitem>
+      <para
+>Dopo aver selezionato le opzioni della <link linkend="synchronizer"
+>Sincronizzazione</link
+>, fai clic sul pulsante <guibutton
+>Avvia</guibutton
+> per avviare il processo.</para>
+    </listitem>
+  </orderedlist
+>Sono riportate di seguito tutte le funzioni descritte e i pulsanti relativi.</para>
+
+</sect2>
+
+<sect2 id="synchronizer_comparator">
+  <title
+>Comparatore</title
+>  
+
+  <variablelist>
+    <varlistentry>
+      <term
+>Elementi del pannello</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Cartella sinistra</guilabel
+>: la cartella di base sinistra.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Cartella destra</guilabel
+>: la cartella di base destra.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Filtro file</guilabel
+>: filtra i nomi dei file per la sincronizzazione. &eg; <literal role="extension"
+>*.png</literal
+> seleziona solo i file il cui nome termina per <literal role="extension"
+>.png</literal
+>. Le cartelle sono elencate se il loro nome termina per <literal role="extension"
+>.png</literal
+> o se la cartella contiene file che terminano per <literal role="extension"
+>.png</literal
+>. Esempio di inclusione/esclusione multipla: <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+> include <literal role="extension"
+>*.cpp *.h</literal
+> ed esclude <literal role="extension"
+>*.moc.cpp</literal
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>Scheda filtri <guilabel
+>Generale</guilabel
+>: esegue la ricerca sul testo</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Filtri avanzati</guilabel
+>: dimensione, data, proprietà</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <variablelist>
+    <varlistentry>
+      <term
+>Criteri dei filtri dei nomi dei file</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Puoi usare caratteri jolly. Più modelli sono separati da spazio (ossia O logico) e i modelli da escludere dalla ricerca con la barra verticale. Se il modello termina con una barra (*modello*/), significa si riferisce a una ricerca ricorsiva delle cartelle.</para>
+          </listitem>
+          <listitem>
+            <para
+>modello - indica la ricerca di quei file/cartelle il cui nome è un modello, la ricerca ricorsiva si estende a tutte le sotto-cartelle, indipendentemente dal valore del modello.</para>
+          </listitem>
+          <listitem>
+            <para
+>modello/ - indica la ricerca di tutti i file/cartelle, ma la ricerca ricorsiva si estende alle/esclude le cartelle il cui nome è un modello.</para>
+          </listitem>
+          <listitem>
+            <para
+>Puoi usare le virgolette doppie per i nomi che contengono spazi. Il filtro <quote
+>File di programma</quote
+> ricerca quei file/cartelle il cui nome è <filename
+>File di programma</filename
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>Esempi:</para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.o</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.h *.c??</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>* | CVS/ .svn/</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Nota: il termine di ricerca «testo» equivale a «*testo*».</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_checkb_options">
+      <term
+>Opzioni delle caselle di scelta</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Scendi nelle sotto-cartelle</guilabel
+>: la sincronizzazione passa attraverso le sotto-cartelle durante il confronto.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Segui collegamenti</guilabel
+>: la sincronizzazione segue i collegamenti simbolici alle cartelle (non ai file!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Confronta per contenuto</guilabel
+>: i file la cui dimensione è uguale saranno confrontati anche in base al loro contenuto.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ignora data</guilabel
+>: ignora le informazioni della data (utile per &FTP;, smb, archivio, ... ); le informazioni della data hanno importanza *solo* nel sistema di file locale.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Asimmetrico</guilabel
+>: la <guilabel
+>cartella sinistra</guilabel
+> è la cartella di destinazione, la <guilabel
+>cartella destra</guilabel
+> è quella di partenza. Questa funzione sincronizza il contenuto della cartella sinistra con quello della cartella destra. <itemizedlist
+> <listitem
+> <para
+>I file presenti solo nella parte sinistra verranno eliminati.</para
+> </listitem
+> <listitem
+> <para
+>I file presenti solo nella parte destra verranno copiati sulla sinistra.</para
+> </listitem
+> <listitem
+> <para
+>I file considerati uguali non verranno toccati.</para
+> </listitem
+> <listitem
+> <para
+>I file considerati diversi saranno copiati sulla sinistra. Usa questa funzione con attenzione!</para
+> </listitem
+> </itemizedlist
+>Essa è utile se le informazioni della data non sono utilizzabili o per sincronizzare la cartella di sinistra al contenuto di un server di file (come uno scaricamento). In alternativa, è bene eseguire una copia di sicurezza dalla cartella destra a quella sinistra. NOTA: NON usare questa opzione per sincronizzare un computer desktop e un notebook (&eg;, i file presenti solo nella parte sinistra saranno eliminati!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Scorri risultati</guilabel
+>: per server &FTP; lenti, ... Quando la sincronizzazione ha terminato di confrontare un file, inserisce il file alla fine dell'elenco e fa scorrere la finestra, se necessario. Ciò è importante, se vuoi sapere cosa sta facendo la sincronizzazione. Se il server &FTP; è lento, il confronto di una cartella può richiedere del tempo. Attivando questa opzione, noterai che il comparatore è <quote
+>attivo</quote
+> ma lento. In file system veloci può ridurre leggermente la velocità del confronto.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ignora maiuscole</guilabel
+>: confronta i nomi di file senza considerare le maiuscole, utile durante la sincronizzazione di file system &Windows;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ignora file nascosti</guilabel
+>: ignora i file che iniziano con un punto.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <para
+>Quando tutto quello indicato precedentemente è stato fatto, fai clic sul pulsante <guibutton
+>Confronta</guibutton
+> per confrontare le cartelle: i risultati verranno visualizzati nell'<guilabel
+>Elenco dei file</guilabel
+>.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Elenco dei file</term>
+      <listitem>
+        <para
+>L'<guilabel
+>Elenco dei file</guilabel
+> contiene le seguenti colonne: <quote
+>Nome (sinistra) | Dimensione (sinistra) | Data (sinistra) | Attività | Data (destra) | Dimensione (destra) | Nome (destra)</quote
+>. Qui puoi controllare i risultati del confronto e modificare le opzioni di sincronizzazione a piacimento. Il colore del testo definisce la direzione predefinita della copia determinata dal comparatore. <itemizedlist
+> <listitem
+> <para
+>Verde: copia da sinistra a destra.</para
+> </listitem
+> <listitem
+> <para
+>Azzurro: copia da destra a sinistra o elimina nel lato destro in modalità asimmetrica.</para
+> </listitem
+> <listitem
+> <para
+>Rosso: file diversi in base ai criteri forniti (nessuna direzione di copia).</para
+> </listitem
+> <listitem
+> <para
+>Nero: i file sono identici (nessuna direzione di copia).</para
+> </listitem
+> </itemizedlist
+> Il doppio clic su un file richiama la funzione <guilabel
+>Confronta per contenuto</guilabel
+> di &krusader;. La colonna delle Attività (&lt;=&gt;) definisce la direzione predefinita della copia, che può essere modificata dall'utente in base alle proprie necessità. La finestra dei risultati supporta il trascinamento nelle altre finestre ( trascina [sinistra], &Shift;+trascina [destra] ) e copia gli elementi selezionati a sinistra/destra negli appunti (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). </para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><guilabel
+>Elenco dei file</guilabel
+>: colonna Attività (&lt;=&gt;)</term>
+      <listitem>
+        <para
+>Questa colonna mostra l'attività programmata per la sincronizzazione; essa può essere modificata tramite il <link linkend="synccomp_right-click"
+>menu contestuale</link
+>.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: copia da sinistra a destra. Per le cartelle: <command
+>mkdir</command
+> nel lato destro.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: i file sono uguali, non viene eseguita alcuna azione.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: il file è escluso o la sincronizzazione non sa cosa fare.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: copia da destra a sinistra. Per le cartelle: <command
+>mkdir</command
+> nel lato destro.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>DEL</guibutton
+>: elimina i file dal lato destro.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_show_options">
+      <term
+>Mostra opzioni</term>
+      <listitem>
+        <para
+>Qui puoi includere/escludere tipi specifici di file. I file non presenti nell'elenco non verranno coinvolti nella sincronizzazione.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: attiva/disattiva l'attività di copia da sinistra a destra.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: attiva/disattiva l'elencazione dei file uguali.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: attiva/disattiva l'elencazione dei file esclusi / <quote
+>non so cosa fare</quote
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: attiva/disattiva l'attività di copia da destra a sinistra.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Cestino</guibutton
+>: attiva/disattiva l'eliminazione dei file dall'attività del lato sinistro.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Duplicati</guibutton
+>: attiva/disattiva quei file presenti su entrambi i lati.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Singoli</guibutton
+>: attiva/disattiva quei file presenti solo su un lato.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Pulsanti delle azioni</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Confronta</guibutton
+>: confronta le cartelle, i risultati vengono visualizzati nell'<guilabel
+>Elenco dei file</guilabel
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Arresta</guibutton
+>: ferma il confronto.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Sincronizza</guibutton
+>: mostra la finestra di sincronizzazione.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Chiudi</guibutton
+>: chiude la finestra di sincronizzazione.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>La riga di stato può contenere</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Il numero delle cartelle analizzate durante il confronto.</para>
+          </listitem>
+          <listitem>
+            <para
+>Il nome file durante il confronto per contenuto (per file di grandi dimensioni).</para>
+          </listitem>
+          <listitem>
+            <para
+>Il numero di file nell'elenco.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_right-click">
+      <term
+>Menu contestuale sull'<guilabel
+>elenco di file</guilabel
+></term>
+      <listitem>
+        <para
+>Il menu contestuale (pulsante destro del mouse) è diviso in tre sezioni:</para>
+        <para
+>1. cambia le operazioni delle <guilabel
+>Attività</guilabel
+> determinate dal Comparatore. Seleziona uno o più file. La modifica sarà applicata sulla selezione e non solo sull'elemento sopra cui fai clic. Se l'elemento selezionato è una cartella, la modifica sarà applicata anche a tutti i file e le sottocartelle.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Sincronizza cartelle...</guibutton
+>: avvia la sincronizzazione.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Escludi</guibutton
+>: esclude un file/cartella dalla sincronizzazione (l'attività cambia in !=).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Ripristina operazione originale</guibutton
+>: cambia l'attività nel risultato originale del confronto.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Direzione inversa</guibutton
+>: modifica l'attività ( -&gt; in &lt;-, e &lt;- in -&gt; ).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Copia da destra a sinistra</guibutton
+>: modifica l'attività in &lt;-.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Copia da sinistra a destra</guibutton
+>: modifica l'attività in -&gt;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Elimina (singolo sinistro)</guibutton
+>: modifica l'attività in DEL.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>2. cambia le selezioni</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Seleziona gli elementi</guibutton
+>: apre una finestra di dialogo che ti permette di selezionare gli elementi. È la finestra di dialogo <guimenuitem
+>Seleziona gruppo</guimenuitem
+> del <link linkend="edit-menu"
+>menu Modifica</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Deseleziona gli elementi</guibutton
+>: apre una finestra di dialogo che ti permette di deselezionare gli elementi. È la finestra di dialogo <guimenuitem
+>Deseleziona gruppo</guimenuitem
+> del <link linkend="edit-menu"
+>menu Modifica</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Inverti la selezione</guibutton
+>: inverte lo stato della selezione di tutti gli elementi.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>3. altro (nota che le seguenti operazioni funzionano sul file su cui si fa clic destro e non sulla selezione).</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Visualizza file sinistro</guibutton
+>: avvia il visualizzatore sul file sinistro.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Visualizza file destro</guibutton
+>: avvia il visualizzatore sul file destro.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Confronta file</guibutton
+>: avvia l'utilità per il confronto delle differenze (&eg;, &kompare;) sui file.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Altri pulsanti</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Profili</guibutton
+>: se devi sincronizzare spesso le stesse cartelle, puoi salvare le impostazioni, per esempio includi i file, escludi i file, e via discorrendo. Premi il pulsante <guibutton
+>Profilo</guibutton
+> per aggiungere, caricare, salvare e rimuovere i profili di sincronizzazione.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Scambia lati</guibutton
+>: scambia l'<guilabel
+>elenco dei file</guilabel
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Sincronizza con <application
+>kget</application
+></term>
+      <listitem>
+        <para
+>Se vuoi sincronizzare una cartella locale con un server &FTP; instabile, <application
+>kget</application
+> è una soluzione molto migliore della semplice copiatura del file. Dopo aver eseguito il confronto, puoi fare clic col destro sull'elenco dei risultati e selezionare il comando <guimenuitem
+>Sincronizza con KGet</guimenuitem
+> per eseguire la sincronizzazione. Questo farà sì che i file elencati verranno scaricati con <application
+>kget</application
+> anziché &krusader;. <application
+>kget</application
+> deve essere, ovviamente, installato nel computer; in caso contrario, non sarà disponibile.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+ 
+</sect2
+>  
+<sect2 id="synchronizer_synchronization">
+  <title
+>Sincronizzazione</title
+>  
+
+  <para
+>Dopo aver premuto il pulsante <guibutton
+>Sincronizza</guibutton
+>, appare la finestra di dialogo della sincronizzazione.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Caselle di controllo</term>
+      <listitem>
+        <para
+>Qui puoi confermare le operazioni di copia ed eliminazione della sincronizzazione</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Da destra a sinistra</guilabel
+>: copia i file X1 ( Y1 byte ) abilita / disabilita la copia da destra a sinistra.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Da sinistra a destra</guilabel
+>: copia i file X2 ( Y2 byte ) abilita / disabilita la copia da sinistra a destra.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Sinistra</guilabel
+>: elimina i file X3 ( Y3 byte ) abilita / disabilita l'eliminazione sul lato sinistro.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Conferma sovrascritture</guilabel
+>: attivando questa opzione, prima di sovrascrivere il file Krusader mostrerà la finestra di dialogo per <guibutton
+>rinominare, saltare, sovrascrivere, saltare tutto e sovrascrivere tutto</guibutton
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Etichette di stato</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Pronto</guilabel
+>: file A1/A2, B1/B2. questa riga viene cambiata nella sincronizzazione, e mostra l'operazione completata con i file A1 da A2 (B1 byte da B2).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Barra di avanzamento</guilabel
+>: mostra l'avanzamento della sincronizzazione (basato sui byte).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Pulsanti delle azioni</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Avvia</guibutton
+>: avvia la sincronizzazione.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Pausa / Riprendi</guibutton
+>: mette in pausa/riprende il processo di sincronizzazione.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Chiudi</guibutton
+>: chiude la finestra di sincronizzazione (e la ferma).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Sincronizzazione parallela</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>È possibile fornire il numero dei «quasi» thread.</para>
+          </listitem>
+          <listitem>
+            <para
+>Può aumentare drasticamente la velocità durante la sincronizzazione con server &FTP; lenti.</para>
+          </listitem>
+          <listitem>
+            <para
+>Non ha effetti sulla velocità della sincronizzazione locale.</para>
+          </listitem>
+          <listitem>
+            <para
+>Le operazioni remote <quote
+>confronta per contenuto</quote
+> e <quote
+>confronta cartelle</quote
+> vengono eseguite in parallelo.</para>
+          </listitem>
+          <listitem>
+            <para
+>Anche la sincronizzazione remota viene eseguita in parallelo, ad eccezione delle attività <command
+>mkdir</command
+> (<command
+>mkdir</command
+> deve essere eseguito prima della copia).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+</sect2>
+</sect1>

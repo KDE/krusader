@@ -1,0 +1,321 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<appendix id="useraction-xml">
+  <title
+>useractions.xml</title>
+  <para
+>Deze appendix geeft verschillende voorbeelden van <filename
+>useractions.xml</filename
+> bestanden. Hiermee kunt u beginnen met het verkennen van de kracht van de <link linkend="useractions"
+>UserActions</link
+> en starten met het leren hoe u ze kunt gebruiken. Als u heeft geleerd hoe u UserActions moet schrijven dan zal u pas begrijpen dat &krusader; een zeer krachtig hulpmiddel is dat u kunt aanpassen.</para>
+  <para
+>Omdat we ze verzamelen, vragen wij u te overwegen om uw UserActions in te sturen naar <ulink url="https://store.kde.org"
+>store.kde.org</ulink
+> omdat we deze verzamelen. Als uw UserAction door ons is geselecteerd zal het geleverd worden met &krusader; bij de volgende uitgave.</para>
+
+<itemizedlist>
+    <listitem
+><para
+>Voert <command
+>uptime</command
+> uit <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="uptime" >
+  &lt;title
+>Up-time&lt;/title>
+  &lt;tooltip
+>vertelt sinds wanneer de computer is opgestart&lt;/tooltip>
+  &lt;icon
+>clock&lt;/icon>
+  &lt;category
+>information&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" 
+>uptime&lt;/command>
+  &lt;defaultshortcut
+>Alt+Ctrl+U&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+    <listitem
+><para
+>Voert <command
+>ls -l</command
+> uit <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="ls -l" >
+  &lt;title
+>ls -l in huidige map&lt;/title>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" 
+>ls -l %aPath% %oPath%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+    <listitem
+><para
+>Echo Placeholder <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="test_placeholder" >
+  &lt;title
+>Echo Placeholder&lt;/title>
+  &lt;tooltip
+>Echo's de placeholder waarde&lt;/tooltip>
+  &lt;category
+>Testing&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" onmultiplefiles="call_each" 
+>echo -e &quot;aPath %aPath()%  \naCurrent: %aCurrent()%&quot;&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+      <listitem
+><para
+>Deze useraction kopieert het huidig pad en bestandsnaam naar het klembord: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="clipboard current" >
+  &lt;title
+>Kopieert naar klembord&lt;/title>
+  &lt;tooltip
+>Kopieert naar klembord&lt;/tooltip>
+  &lt;icon
+>klipper&lt;/icon>
+  &lt;category
+>System&lt;/category>
+  &lt;description
+>Kopieert huidige pad en bestandsnaam naar klembord&lt;/description>
+  &lt;command
+>%_Clipboard(&quot;%aCurrent%&quot;)%&lt;/command>
+  &lt;defaultshortcut
+>Win+C&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Selecteert <literal role="extension"
+>.diff</literal
+> en <literal role="extension"
+>*.h</literal
+> in het actieve paneel: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="test_select" >
+  &lt;title
+>Voegt *.diff en *.h&lt; toe aan selectie/title>
+  &lt;category
+>Selection&lt;/category>
+  &lt;command
+>%aSelect(&quot;*.diff&quot;, &quot;add&quot;)% %aSelect(&quot;*.h&quot;, &quot;add&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Actieve paneel gaat naar <filename
+>mnt/floppy</filename
+> (bladwijzer): <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+&lt;action name="mnt/floppy bookmark" >
+  &lt;title
+>Gaat naar /mnt/floppy&lt;/title>
+  &lt;category
+>Bookmarks&lt;/category>
+  &lt;command
+>%aGoto(&quot;/mnt/floppy&quot;, &quot;yes&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Selecteert in het niet-actieve paneel, alle bestandsnamen die geactiveerd zijn in het actieve paneel: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="asdfasdf" >
+  &lt;title
+>Selecteer in Andere Paneel&lt;/title>
+  &lt;category
+>Selection&lt;/category>
+  &lt;description
+>Selecteer in het actieve paneel alle geselecteerde bestandsnamen ook in het niet actieve paneel&lt;/description>
+  &lt;command
+>%oSelect(&quot;%aList(&quot;selected&quot;, &quot; &quot;, &quot;Yes&quot;)%&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Maak een backup van het/de huidige bestand/map naar <filename
+>foo.bak</filename
+> in de huidige map: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="backup actieve" >
+  &lt;title
+>Maak backup in huidige map&lt;/title>
+  &lt;tooltip
+>Maak backup in huidige map&lt;/tooltip>
+  &lt;icon
+>document-save-as&lt;/icon>
+  &lt;category
+>Systeem&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command
+>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;nieuwe naam&quot;, &quot;%aCurrent%.bak&quot;)%&quot;)%&lt;/command>
+  &lt;defaultshortcut
+>Shift+F5&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Opent <link linkend="krusearcher"
+>KruSearcher</link
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="search" >
+  &lt;title
+>Zoek Test&lt;/title>
+  &lt;command
+>%_NewSearch(&quot;Search 2&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Stelt de geselecteerde afbeelding in als achtergrondafbeelding: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="set wallpaper" >
+  &lt;title
+>Als achtergrond instellen&lt;/title>
+  &lt;tooltip
+>Stelt in als achtergrond&lt;/tooltip>
+  &lt;icon
+>image&lt;/icon>
+  &lt;category
+>Service Menu&lt;/category>
+  &lt;description
+>Als achtergrond instellen (verschaalt)&lt;/description>
+  &lt;command
+>dcop kdesktop KBackgroundIface setWallpaper &quot;%aCurrent%&quot; 6&lt;/command>
+  &lt;defaultshortcut
+>Win+W&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Deze useraction bewerkt een bestand met root permissies met behulp van <command
+>kdesu</command
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="edit as root" >
+  &lt;title
+>Als Root bewerken&lt;/title>
+  &lt;tooltip
+>Als Root bewerken&lt;/tooltip>
+  &lt;icon
+>kwrite&lt;/icon>
+  &lt;category
+>System&lt;/category>
+  &lt;description
+>Bewerkt een bestand met root permissie met behulp van kdesu&lt;/description>
+  &lt;command
+>kdesu kwrite %aCurrent%&lt;/command>
+  &lt;defaultshortcut
+>Win+F4&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Deze useraction voegt item(s) toe aan de afspeellijst van Amarok: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="amarok enqueue" >
+  &lt;title
+>Afspeellijst van Amarok&lt;/title>
+  &lt;tooltip
+>Voegt selecteerde item(s) toe aan de afspeellijst van Amarok&lt;/tooltip>
+  &lt;icon
+>amarok&lt;/icon>
+  &lt;category
+>Multimedia&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command
+>amarok --append %aList(&quot;Selected&quot;)%&lt;/command>
+  &lt;defaultshortcut
+>Win+A&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Opent <link linkend="krusearcher"
+>Synchronisatie</link
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="synchronizer" >
+  &lt;title
+>Synchronisatie&lt;/title>
+  &lt;command
+>%_Sync(&quot;Sync 2&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+</itemizedlist>
+
+</appendix>

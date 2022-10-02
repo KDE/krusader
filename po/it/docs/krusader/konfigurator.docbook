@@ -1,0 +1,2557 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="konfigurator">
+  <title
+>Konfigurator: il centro di configurazione di &krusader;</title>
+  <indexterm>
+    <primary
+>Configura</primary>
+    <secondary
+>Krusader</secondary>
+  </indexterm>
+  <para
+>Konfigurator è il centro di configurazione di &krusader;. Quando avvii &krusader;, usa <menuchoice
+> <guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Configura &krusader;...</guimenuitem
+> </menuchoice
+> per avviare Konfigurator. Qui puoi modificare il modo in cui agisce &krusader; e personalizzarlo in base alle tue esigenze. In qualsiasi momento, col pulsante <guibutton
+>Applica</guibutton
+> applichi le modifiche, con <guibutton
+>Chiudi</guibutton
+> chiudi Konfigurator e con <guibutton
+>Valori predefiniti</guibutton
+> applichi di nuovo le impostazioni di <quote
+>fabbrica</quote
+> di &krusader;. Konfigurator è diviso in pagine, ognuna contenente gli elementi inerenti a quella pagina. Per alcune modifiche all'interfaccia devi chiudere e riavviare il programma.</para>
+
+<note>
+ <para
+>A partire da &krusader; 1.80.0, le <link linkend="key_bindings"
+>associazioni di tasti</link
+> e la <link linkend="mainwindow"
+>barra degli strumenti principale</link
+>-<link linkend="actions_toolbar"
+>barra degli strumenti delle azioni</link
+> possiedono una propria finestra di configurazione, dunque non compaiono più all'interno di Konfigurator ma puoi configurarli tramite il <link linkend="settings-menu"
+>menu <guimenu
+>Impostazioni</guimenu
+></link
+>.</para>
+</note>
+
+  <sect1 id="konfig-startup">
+    <title
+>Avvio</title>
+    <figure id="screenshot-kgstartup" float="1">
+      <title
+>Configurazione di avvio</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="kgstartup.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Configurazione di avvio</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>La pagina di avvio determina il modo in cui &krusader; appare (e lavora) una volta avviato. Si divide in due parti principali:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Generale</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>All'avvio usa il profilo</guilabel
+>: usa il <link linkend="panel_profiles"
+>profilo di pannello</link
+> selezionato all'avvio. <guilabel
+>&lt;Ultima sessione&gt;</guilabel
+> è uno speciale profilo salvato automaticamente alla chiusura di &krusader;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostra schermata</guilabel
+>: mostra una schermata all'avvio di &krusader;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Modo singola istanza</guilabel
+>: consente solo l'avvio di una singola istanza di &krusader;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Tema di ripiego per le icone</guilabel
+>: ti consente di configurare un tema di ripiego per le icone in &krusader;. Nel caso in cui un'icona non venga trovata nel tema delle icone di sistema, questo tema sarà usato come ripiego. Se il tema di ripiego non contiene l'icona, sarà utilizzato Breeze od Oxygen, se presenti.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Interfaccia utente</guilabel>
+        </term>
+        <listitem>
+          <para
+>Determina quali parti dell'interfaccia utente debbano essere visibili dopo l'avvio. <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Salva ultima posizione, dimensione e impostazioni dei pannelli</guilabel
+>: all'avvio, &krusader; si riporta alla dimensione che aveva all'ultima chiusura. &krusader; appare anche nella stessa posizione sullo schermo, con i pannelli ordinati e allineati in precedenza. Se questa opzione non è selezionata, puoi usare il menu <menuchoice
+> <guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Salva posizione</guimenuitem
+> </menuchoice
+> per impostare manualmente la dimensione e la posizione di &krusader; all'avvio.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Aggiorna le impostazioni del pannello predefinito</guilabel
+>: se selezionata, le impostazioni del pannello predefinito vengono aggiornate dopo l'avvio.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Avvia nel vassoio di sistema</guilabel
+>: se selezionata, &krusader; si avvia nel vassoio di sistema (se è impostata l'opzione «Minimizza nel vassoio di sistema»), senza mostrare la finestra principale.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Salva le impostazioni dei componenti all'uscita</guilabel
+>: se selezionata, ripristina i componenti dell'interfaccia utente alla condizione dell'ultima chiusura.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostra i tasti funzione</guilabel
+>: se selezionata, la <link linkend="fnkeys"
+>barra dei tasti funzione</link
+> è visibile dopo l'avvio.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostra la barra di stato</guilabel
+>: se selezionata, la <link linkend="mainwindow"
+>barra di stato</link
+> è visibile dopo l'avvio. Disponibile solo se è disattivato l'elemento <guilabel
+>Salva le impostazioni dei componenti all'uscita</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostra la riga di comando</guilabel
+>: se selezionata, la <link linkend="cmdline"
+>riga di comando</link
+> è visibile dopo l'avvio. Disponibile solo se è disattivato l'elemento <guilabel
+>Salva le impostazioni dei componenti all'uscita</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostra il terminale integrato</guilabel
+>: se selezionata, il <link linkend="termemu"
+>terminale integrato</link
+> è visibile dopo l'avvio. Disponibile solo se è disattivato l'elemento <guilabel
+>Salva le impostazioni dei componenti all'uscita</guilabel
+>.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-panel">
+    <title
+>Pannello</title>
+    <para
+>Qui puoi decidere l'aspetto del pannello, ossia puoi regolare l'applicazione in dettaglio in base alle tue necessità. La pagina si divide in sei schede: <guilabel
+>Generale</guilabel
+>, <guilabel
+>Vista</guilabel
+>, <guilabel
+>Pulsanti</guilabel
+>, <guilabel
+>Modalità di selezione</guilabel
+>, <guilabel
+>Menu Dispositivi</guilabel
+> e <guilabel
+>Aspetto</guilabel
+>:</para>
+
+    <sect2 id="konfig-panel-general">
+      <title
+>Generale</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Barra di navigazione</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Modalità modifica per impostazione predefinita</guilabel
+>: se selezionata, mostra per impostazione predefinita il percorso modificabile nella barra di navigazione.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Mostra percorso completo per impostazione predefinita</guilabel
+>: se selezionata, mostra sempre per impostazione predefinita il percorso completo nella barra di navigazione.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Operazione</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Selezione automatica cartelle</guilabel
+>: quando <link linkend="edit-menu"
+>selezioni un gruppo di file</link
+> (usando il comando <guilabel
+>Seleziona gruppo</guilabel
+> o <guilabel
+>Seleziona tutto</guilabel
+>), &krusader; verifica questa opzione. Se selezionata, vengono selezionate anche le cartelle che corrispondono al criterio di selezione. In caso contrario, vengono selezionati solo i file.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Estensioni selezionate nella rinomina</guilabel
+>: quando <link linkend="renaming"
+>rinomini un file</link
+>, viene selezionato l'intero testo. Se preferisci uno stile tipo <trademark class="copyright"
+>Total Commander</trademark
+> per la rinomina del solo nome, deseleziona questa opzione.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Deseleziona i file prima di copiare/spostare</guilabel
+>: se selezionata, &krusader; rimuove la spunta di selezione dai file o dalle cartelle prima di <link linkend="copying"
+>copiarli o spostarli</link
+> nella nuova posizione.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Memorizzazione delle impostazioni della finestra Filtro</guilabel
+>: se selezionata, la finestra Filtro viene aperta con le ultime impostazioni che sono state applicate al pannello.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Schede</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Usa il percorso completo nei nomi delle schede</guilabel
+>: se selezionata, mostra il percorso completo nelle <link linkend="folder-tabs"
+>schede</link
+>; altrimenti viene mostrata solo l'ultima parte del percorso.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Schede a espansione</guilabel
+>: se selezionata, &krusader; espande le <link linkend="folder-tabs"
+>schede</link
+> per occupare l'intera barra.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Chiudi scheda con doppio clic</guilabel
+>: se selezionata, &krusader; permette di chiudere le <link linkend="folder-tabs"
+>schede</link
+> facendovi sopra doppio clic.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Inserisci le schede dopo quella attuale</guilabel
+>: se selezionata, &krusader; inserisce le nuove schede alla destra di quella attiva anziché posizionarle alla fine della <link linkend="folder-tabs"
+>barra delle schede</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Posizione barra delle schede</guilabel
+>: ti permette di scegliere la posizione della <link linkend="folder-tabs"
+>barra delle schede</link
+> (<guimenuitem
+>sotto</guimenuitem
+> o <guimenuitem
+>sopra</guimenuitem
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra pulsanti chiudi scheda</guilabel
+>: se selezionata, &krusader; mostra i pulsanti «chiudi» sulle <link linkend="folder-tabs"
+>schede</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra pulsanti nuova scheda</guilabel
+>: se selezionata, &krusader; mostra i pulsanti «nuova» sulle <link linkend="folder-tabs"
+>schede</link
+>.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Mostra la barra delle schede in una scheda singola</guilabel
+>: se selezionata, &krusader; mostra la barra delle schede anche se nel pannello è presente solo una <link linkend="folder-tabs"
+>scheda</link
+>.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Barra di ricerca</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Inizia digitando</guilabel
+>: consente di selezionare se deve essere usata la funzionalità di <link linkend="quicksearch"
+>ricerca rapida</link
+>. Se l'opzione è attivata, puoi aprire la barra di ricerca e iniziare a ricercare digitando qualcosa mentre visualizzi il contenuto della cartella nel pannello attivo.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Distingui maiuscole</guilabel
+>: quando usi la funzione di <link linkend="quicksearch"
+>ricerca</link
+> o il <link linkend="quickfilter"
+>filtro</link
+>, se l'opzione è selezionata (stato predefinito in &UNIX;) tutti i file che iniziano per lettera maiuscola appariranno prima dei file che iniziano con lettera minuscola; in caso contrario, tutti i file comincianti con una lettera specifica (maiuscola o no) verranno visualizzati assieme.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Su/giù annulla la ricerca</guilabel
+>: premendo i tasti &Up; o &Down; si annulla la barra della <link linkend="quicksearch"
+>ricerca</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Navigazione cartelle con freccia destra</guilabel
+>: se attivata, premendo il tasto &Right; si entra nella cartella, se non viene rilevata intenzione di modifica del testo di ricerca. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Posizione</guilabel
+>: ti permette di scegliere la posizione della barra della <link linkend="quicksearch"
+>ricerca</link
+> e del <link linkend="quickfilter"
+>filtro</link
+> (<guimenuitem
+>sotto</guimenuitem
+> o <guimenuitem
+>sopra</guimenuitem
+>).</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Modalità predefinita</guilabel
+>: ti permette di scegliere la modalità della barra della ricerca tra <link linkend="quicksearch"
+>Ricerca</link
+>, <guilabel
+>Seleziona</guilabel
+> e <link linkend="quickfilter"
+>Filtro</link
+>. Puoi modificare successivamente la modalità utilizzando la stessa barra di ricerca.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Ricerca segnalibri</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Mostra sempre la barra di ricerca</guilabel
+>: se selezionata, la <link linkend="bookman"
+>barra di ricerca</link
+> è sempre visibile.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ricerca in elementi speciali</guilabel
+>: se selezionata, la <link linkend="bookman"
+>ricerca dei segnalibri</link
+> si applica anche agli elementi speciali nel menu Segnalibri, quali <guimenuitem
+>Cestino</guimenuitem
+>, <guimenuitem
+>&URL; ricorrenti</guimenuitem
+>, <guimenuitem
+>Salta indietro</guimenuitem
+>, &etc;</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Barra di stato/totali</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Mostra anche la dimensione in byte</guilabel
+>: se selezionata, &krusader; mostra la dimensione in byte sulla barra di stato o su quella dei totali.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra informazioni sullo spazio</guilabel
+>: se selezionata, &krusader; mostra lo spazio su disco libero/totale nella barra di stato e dei totali.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-panel-view">
+      <title
+>Vista</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Generale</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Carattere della vista</guilabel
+>: ti permette di cambiare il carattere usato negli elenchi dei file.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ritardo suggerimento (msec)</guilabel
+>: permette di configurare il ritardo in millisecondi tra il momento in cui hai fermato il puntatore del mouse su un elemento in un elenco di file e il momento in cui il suggerimento viene mostrato.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Dimensioni dei file in formato leggibile</guilabel
+>: se selezionata, la dimensione dei file appare in kB, Mb &etc;, e non in byte (predefinito).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Permessi numerici</guilabel
+>: la colonna <guilabel
+>Permessi</guilabel
+> mostra i numeri ottali '<literal
+>0755</literal
+>' anziché '<literal
+>rwxr-xr-x</literal
+>'.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra i file nascosti</guilabel
+>: se selezionata, &krusader; mostra i <quote
+>file che iniziano col punto</quote
+>, che in caso contrario risulterebbero nascosti.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Carica icone definite dall'utente per le cartelle</guilabel
+>: se selezionata, &krusader; carica le icone per le cartelle definite dall'utente.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra sempre l'elemento attivo</guilabel
+>: se selezionata, &krusader; mostra la decorazione del bordo dell'elemento attivo nel panello inattivo.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Metodo di ordinamento</guilabel>
+	    <itemizedlist>
+             <listitem>
+              <para
+><guilabel
+>Krusader (predefinito)</guilabel
+>: il confronto fin qui usato. Utilizza il confronto tramite le regole delle impostazioni locali (anche regole di contesto). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Alfabetico</guilabel
+>: le stringhe sono confrontate carattere per carattere (non viene applicata alcuna regola di contesto dalle impostazioni locali). I caratteri alfabetici vengono confrontati tramite le regole delle impostazioni locali, i caratteri speciali tramite il codice carattere. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Alfabetico e numeri</guilabel
+>: uguale al precedente, ma se i nomi contengono numeri, essi sono confrontati numericamente anziché alfabeticamente. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Codice carattere</guilabel
+>: confronto tramite codice carattere (rapido). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Codice carattere e numeri</guilabel
+>: uguale al precedente, ma con confronto numerico dei numeri. </para>
+             </listitem>
+           </itemizedlist>
+	    </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Nell'ordinamento si distinguono le maiuscole</guilabel
+>: se l'opzione è selezionata (stato predefinito in &UNIX;) tutti i file che iniziano per lettera maiuscola prima dei file che iniziano con lettera minuscola; in caso contrario, tutti i file comincianti con una lettera specifica (maiuscola o no) verranno visualizzati assieme.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ordina sempre le cartelle per nome</guilabel
+>: ordina le cartelle per nome, ignorando la colonna di ordinamento.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra le cartelle all'inizio</guilabel
+>: se selezionata, le cartelle vengono posizionate prima dei file all'interno degli elenchi.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>L'ordinamento rispetta le impostazioni di lingua e paese</guilabel
+>: ordina i file e le cartelle in base alle impostazioni correnti per la lingua e il paese.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Modalità visualizzazione</guilabel>
+        </title>
+       <listitem>
+          <para
+><guilabel
+>Modalità visualizzazione predefinita</guilabel
+>: ti permette di cambiare la modalità di visualizzazione predefinita. Puoi scegliere tra <guimenuitem
+>Vista dettagliata</guimenuitem
+> o <guimenuitem
+>Vista sintetica</guimenuitem
+>. Sulle schede di entrambe le modalità puoi determinare le opzioni seguenti.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Dimensione predefinita delle icone</guilabel
+>: ti permette di cambiare la dimensione delle icone negli elenchi dei file. Sono disponibili le dimensioni 12x12, 16x16, 22x22, 32x32, 48x48, 64x64, 128x128 e 256x256 pixel.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Usa le icone nei nomi file</guilabel
+>: se selezionata, mostra le icone nei nomi file e nelle cartelle.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra anteprime per impostazione predefinita</guilabel
+>: se selezionata, mostra le anteprime del contenuto dei file.</para>
+        </listitem>
+        <listitem>
+          <para
+>Per configurare le colonne usa il menu contestuale nel pannello, mentre visualizzi i file. Il pannello destro e sinistro usano le colonne in modo indipendente. Sono disponibili le seguenti colonne: <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Nome</guilabel
+>: mostra il nome file senza la parte dopo il punto, la quale è visualizzata nella colonna <guilabel
+>Est</guilabel
+>. Se la colonna <guilabel
+>Est</guilabel
+> viene nascosta, nella colonna <guilabel
+>Nome</guilabel
+> viene mostrato il nome file completo, come &eg; in &konqueror;. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Est</guilabel
+>: mostra l'ultima parte del nome file (la parte dopo l'ultimo punto) nella colonna <guilabel
+>Est</guilabel
+>, e non il nome file completo nella colonna <guilabel
+>Nome</guilabel
+>, come &eg; in &konqueror;. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Tipo</guilabel
+>: mostra il campo del tipo &MIME;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Dimensione</guilabel
+>: mostra il campo dimensione.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Modificato</guilabel
+>: mostra il campo della data e ora di modifica.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Perm.</guilabel
+>: mostra tutti i permessi, &eg; '<literal
+>rwxr-xr-x</literal
+>', oppure come numeri ottali '<literal
+>0755</literal
+>' se abiliti/disabiliti i <guilabel
+>Permessi numerici</guilabel
+> nella scheda <guilabel
+>Vista pannello</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>rwx</guilabel
+>: mostra solo i diritti dell'utente attuale, &eg; <quote
+>-rw</quote
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Proprietario</guilabel
+>: mostra il campo del proprietario.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Gruppo</guilabel
+>: mostra il campo del gruppo.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist>
+      <tip>
+        <para
+>Deseleziona le colonne che non usi. Questo consente più spazio a quelle che generalmente usi.</para>
+      </tip>
+    </sect2>
+    <sect2 id="konfig-panel-buttons">
+      <title
+>Pulsanti</title>
+      <para
+><guilabel
+>I pulsanti della barra degli strumenti hanno le icone</guilabel
+>: se selezionata, &krusader; mostra le icone sui pulsanti della barra degli strumenti.</para>
+      <para
+><guilabel
+>Mostra pulsante Dispositivi</guilabel
+>: se selezionata, &krusader; mostra il pulsante dei dispositivi.</para>
+      <para
+><guilabel
+>Mostra pulsante Indietro</guilabel
+>: se selezionata, &krusader; mostra il pulsante per tornare indietro.</para>
+      <para
+><guilabel
+>Mostra pulsante Avanti</guilabel
+>: se selezionata, &krusader; mostra il pulsante per andare avanti.</para>
+      <para
+><guilabel
+>Mostra pulsante Cronologia</guilabel
+>: se selezionata, &krusader; mostra il pulsante della cronologia.</para>
+      <para
+><guilabel
+>Mostra pulsante Segnalibri</guilabel
+>: se selezionata, &krusader; mostra il pulsante dei segnalibri.</para>
+      <para
+><guilabel
+>Mostra la barra degli strumenti del pannello</guilabel
+>: se selezionata, &krusader; mostra la barra degli strumenti del pannello.</para>
+      <para
+>Puoi fare in modo che i pulsanti nella <guilabel
+>barra degli strumenti del pannello</guilabel
+> siano visibili o invisibili: <itemizedlist>
+        <title>
+          <guilabel
+>Pulsanti visibili nella barra degli strumenti del pannello</guilabel>
+        </title>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Clear Location Toolbar</guilabel
+> button: Clears
+          the <link linkend="list_panel"
+>Location Toolbar</link
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para>
+          <guilabel
+>Pulsante Uguale (=)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Pulsante Su (..)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Pulsante Home (~)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Pulsante Radice (/)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Pulsante commutazione sincronizzazione navigazione</guilabel
+>: se selezionata, mostra il pulsante di <link linkend="panel_toolbar"
+>sincronizzazione della navigazione</link
+>.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-selection_modes">
+      <title
+>Modalità di selezione</title>
+      <para
+>Qui puoi configurare i modi di selezione. <itemizedlist id="selection_modes">
+        <title>
+          <guilabel
+>Generale</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Modo &krusader;</guilabel
+>: il modo in cui ha da sempre funzionato &krusader;. Entrambi i tasti del mouse consentono la selezione dei file. Per selezionare più di un file, mantieni premuto il tasto &Ctrl; e fai clic con il &LMB;. Il menu contestuale appare con un breve clic sul &RMB;.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Modo &konqueror;</guilabel
+>: la pressione del &LMB; seleziona i file; puoi fare clic su più file per selezionarli. Il menu contestuale appare con un breve clic del &RMB;.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Modo Total Commander</guilabel
+>: col &RMB; si selezionano più file e il menu contestuale appare <guilabel
+>tenendo premuto</guilabel
+> il &RMB;. Il &LMB; non seleziona ma imposta il file attuale senza influenzare la selezione corrente.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Modo ergonomico</guilabel
+>: il &LMB; non seleziona ma imposta il file attuale senza influenzare la selezione corrente. Il &RMB; richiama il menu contestuale. Puoi selezionare usando il tasto &Ctrl; e il pulsante sinistro del mouse.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Modo selezione personalizzata</guilabel
+>: crea il tuo proprio stile di selezione!</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Dettagli</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Doppio-clic seleziona (classico)</guilabel
+>: un clic su un file lo seleziona e sposta il fuoco, un doppio-clic apre il file o entra nella cartella.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Segui le impostazioni globali</guilabel
+>: la pressione del &LMB; seleziona i file -- Usa le impostazioni globali: modulo <menuchoice
+><guimenu
+>Dispositivi di immissione</guimenu
+> <guimenuitem
+>Mouse </guimenuitem
+></menuchoice
+> in &systemsettings; di &plasma;.</para>
+        </listitem>
+        <listitem>
+          <para
+>Elementi del modo selezione personalizzata: <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Basato sul modo di selezione di &plasma;</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&LMB; seleziona</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Il &LMB; preserva la selezione</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;/&Ctrl; - clic sinistro del mouse seleziona</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&RMB; seleziona</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Il &RMB; preserva la selezione</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;/&Ctrl; - clic destro del mouse seleziona</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>La barra spaziatrice sposta in basso</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Il tasto Ins sposta in basso</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Il clic col pulsante destro fa apparire immediatamente il menu contestuale</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Il semplice clic del pulsante del mouse azzera la selezione</guilabel
+> - azzera la selezione con un clic del mouse senza modificatori (&ie; &Shift; o &Ctrl;). La selezione con &Shift;/&Ctrl; per il pulsante del mouse va abilitata affinché funzioni per questa impostazione. </para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-mediamenu">
+      <title
+>Menu Dispositivi</title>
+      <para
+>Con questa scheda puoi selezionare i contenuti di menu del <link linkend="media_button"
+>pulsante Dispositivi</link
+>: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>Mostra percorso del montaggio</guilabel
+>: se selezionata, mostra il percorso del montaggio della partizione.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra tipo di file system</guilabel
+>: se selezionata, mostra il tipo di file system della partizione.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Nascondi voci SquashFS</guilabel
+>: <ulink url="https://snapcraft.io/"
+>Snap</ulink
+> crea molte partizioni montate con <ulink url="https://en.wikipedia.org/wiki/SquashFS"
+>SquashFS</ulink
+>, praticamente inutili nel <link linkend="list_panel"
+>Menu Dispositivi</link
+>, in quanto è <application
+>snap</application
+> che le gestisce. Attivando questa opzione è possibile nascondere le voci SquashFS.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Nascondi i seguenti punti di montaggio</guilabel
+>: questo elenco permette di escludere gli elementi indesiderati dal <link linkend="list_panel"
+>Media Dispositivi</link
+>. Premi il pulsante <guibutton
+>+</guibutton
+> sopra l'elenco per aggiungere i punti di montaggio da ignorare. Nel caso decidessi di rimuovere dall'elenco il punto di montaggio aggiunto, facci sopra clic e premi il pulsante <guibutton
+>-</guibutton
+>. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra dimensione:</guilabel
+> consente la selezione del tipo di rappresentazione da applicare alla dimensione nel menu dei dispositivi. Può essere <guimenuitem
+>Sempre</guimenuitem
+> (predefinita, mostra sempre la dimensione della partizione), <guimenuitem
+>Quando il dispositivo non ha etichetta</guimenuitem
+> (mostra la dimensione solo per le partizioni senza etichetta) o <guimenuitem
+>Mai</guimenuitem
+> (non mostra mai la dimensione nei menu dei dispositivi).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-layout">
+      <title
+>Disposizione</title>
+      <para
+>Puoi scegliere le impostazioni della disposizione e della cornice: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>Disposizione:</guilabel
+> permette di definire la disposizione. Le opzioni predefinite sono <guimenuitem
+>Predefinita</guimenuitem
+>, <guimenuitem
+>Compatta</guimenuitem
+> e <guimenuitem
+>Classica</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Colore cornice:</guilabel
+> definisce il colore della cornice. Puoi scegliere tra <guimenuitem
+>Definito dalla disposizione</guimenuitem
+>, <guimenuitem
+>Nessuno</guimenuitem
+> o <guimenuitem
+>Barra di stato</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Forma cornice:</guilabel
+> definisce il colore della cornice. Puoi scegliere tra <guimenuitem
+>Definita dalla disposizione</guimenuitem
+>, <guimenuitem
+>Nessuna</guimenuitem
+>, <guimenuitem
+>Riquadro</guimenuitem
+> o <guimenuitem
+>Pannello</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ombra cornice:</guilabel
+> definisce il colore della cornice. Puoi scegliere tra <guimenuitem
+>Definita dalla disposizione</guimenuitem
+>, <guimenuitem
+>Nessuna</guimenuitem
+>, <guimenuitem
+>Rilievo</guimenuitem
+> o <guimenuitem
+>Incassata</guimenuitem
+>.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="konfig-color">
+    <title
+>Colori</title>
+    <para
+>Questa pagina configura i colori del <link linkend="list_panel"
+>pannello lista</link
+> e della <link linkend="synchronizer"
+>sincronizzazione</link
+>. La configurazione di colori predefinita sono i <guilabel
+>colori predefiniti di &kde;</guilabel
+>.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Generale</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Usa i colori predefiniti di &kde;</guilabel
+>: è l'impostazione predefinita, usa i colori di &plasma; definiti nelle &systemsettings;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Usa colore di sfondo alternato</guilabel
+>: se selezionata, il colore di <guilabel
+>sfondo</guilabel
+> e quello di <guilabel
+>sfondo alternato</guilabel
+> si alternano nelle righe. Se non usi i colori predefiniti di &plasma;, puoi configurare i colori alternati nel riquadro <guilabel
+>Colori</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostra l'elemento attuale anche se non ha il fuoco</guilabel
+>: se selezionata, mostra l'ultima posizione del cursore nel pannello non attivo. Questa opzione è disponibile solo quando non usi i colori predefiniti di &plasma;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Sbiadisci i colori del pannello inattivo</guilabel
+>: se selezionata, i colori del pannello inattivo vengono sbiaditi. Queste impostazioni possono essere configurate nella scheda <guilabel
+>Inattivo</guilabel
+> del riquadro <guilabel
+>Colori</guilabel
+>. Questa opzione è disponibile solo se non utilizzi i colori predefiniti di &plasma;.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Colori</guilabel>
+        </term>
+        <listitem>
+          <para
+>Configura i colori come preferisci, puoi osservare i risultati nella sezione <guilabel
+>Anteprima</guilabel
+>. Possono essere configurati i seguenti elementi del pannello attivo e inattivo:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano della cartella</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano eseguibile</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano colleg. simbolico</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano colleg. non valido</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sfondo</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sfondo alternato</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano selezionato</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sfondo selezionato</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sfondo alternato selezionato</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano attuale</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano selezionato attuale</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sfondo attuale</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Rinomina primo piano</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Rinomina sfondo</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+          <para
+>Possono essere configurati i seguenti elementi della <link linkend="synchronizer"
+>Sincronizzazione</link
+>:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano Uguali</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sfondo Uguali</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano Differenti</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sfondo Differenti</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano Copia a sinistra</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sfondo Copia a sinistra</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano Copia a destra</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sfondo Copia a sinistra</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primo piano Da eliminare</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sfondo Da eliminare</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Anteprima</guilabel>
+        </term>
+        <listitem>
+          <para
+>Qui puoi osservare un'anteprima della configurazione dei colori.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Schemi di colori</guilabel>
+        </term>
+        <listitem>
+          <para
+>Con i pulsanti <guibutton
+>Importa uno schema di colori</guibutton
+> ed <guibutton
+>Esporta uno schema di colori</guibutton
+> puoi caricare e salvare uno schema di colore. Questo consente a &krusader; di utilizzare il profilo di <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+>, foo-commander o il tuo schema personalizzato. Gli schemi di colori sono memorizzati in <filename
+>/usr/share/krusader</filename
+>, il <filename
+>foo.color</filename
+> è un file binario che contiene lo schema di colore.</para>
+          <tip>
+            <para
+>Sono forniti gli schemi di colori di <application
+>Midnight Commander</application
+> e <trademark class="copyright"
+>Total Commander</trademark
+>. <link linkend="help_krusader"
+>Carica il tuo schema di colori preferito</link
+> al fine di renderlo disponibile alla comunità di &krusader;. Grazie!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+<sect1 id="konfig-general">
+    <title
+>Generale</title>
+    <para
+>Qui puoi configurare le operazioni di base. La pagina si divide in tre schede: <guilabel
+>Generale</guilabel
+>, <guilabel
+>Visualizzatore/Editor</guilabel
+> ed <guilabel
+>Estensioni atomiche</guilabel
+>.</para>
+    <sect2 id="konfig-general-general">
+      <title
+>Generale</title>
+      <para
+>Le opzioni seguenti determinano gli aspetti fondamentali delle operazioni:</para>
+      <itemizedlist>
+	<listitem>
+	  <para
+><guilabel
+>Notifica all'uscita</guilabel
+>: se selezionata, &krusader; ti avvisa ogni volta che esci dal programma. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>Mostra e chiudi nel vassoio di sistema</guilabel
+>: se selezionata, l'icona di &krusader; apparirà nel vassoio di sistema. Se minimizzi &krusader;, esso non apparirà nella barra delle attività. Inoltre, non uscirai dal programma se chiudi la finestra principale. Potrai uscire da &krusader; selezionando la voce di menu <menuchoice
+><guimenu
+>File</guimenu
+> <guimenuitem
+>Esci</guimenuitem
+></menuchoice
+> o dal menu contestuale dell'icona del vassoio. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>Usa il riconoscimento automatico del tipo &MIME;</guilabel
+>: questo meccanismo permette a &krusader; di ispezionare i file presenti nei pannelli e determinarne il tipo anche se non possiedono un'estensione identificativa. Ad esempio, se rinomini un file immagine <filename
+>immagine1.jpg</filename
+> in <filename
+>immagine1</filename
+>, &krusader; lo riconoscerà ancora come file immagine e agirà di conseguenza. Questa modalità operativa è tuttavia più lenta (durante l'aggiornamento del pannello o il cambio di cartella), perciò prova &krusader; con o senza il riconoscimento automatico del tipo &MIME; e decidi cos'è meglio per te.</para>
+	 </listitem>
+	 <listitem>
+	   <para
+><guilabel
+>Cartella temporanea</guilabel
+>: questa opzione seleziona la cartella di base per i file temporanei di &krusader;. I file reali verranno creati in cartelle separate nella «cartella temporanea» in modo che ogni utente che stia utilizzando &krusader; abbia la propria sotto-cartella temporanea all'interno della cartella scelta. <note
+> <para
+>Devi scegliere una cartella temporanea per la quale tutti gli utenti che eseguono &krusader; abbiano i permessi.</para>
+	     </note>
+	   </para>
+	 </listitem>
+      </itemizedlist>
+      <para
+><guilabel
+>Modalità eliminazione</guilabel
+> (<guilabel
+>Elimina i file/Cestina</guilabel
+>): quando &krusader; elimina i file, essi possono essere <emphasis
+>davvero</emphasis
+> eliminati oppure spostati all'interno del cestino, rendendoli poi disponibili tramite il cestino di &plasma;. </para>
+      <para
+><guilabel
+>Terminale esterno</guilabel
+>: qui puoi scegliere quale emulatore di terminale debba essere usato quando &krusader; apre una finestra di console (tramite <keycap
+>F9</keycap
+> o l'opzione di menu <menuchoice
+><guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Avvia Terminale</guimenuitem
+></menuchoice
+>). </para>
+      <para
+><guilabel
+>Il terminale integrato invia il comando Chdir al cambio di pannello</guilabel
+>: se è deselezionata, non verrà avviato il comando <command
+>cd</command
+> all'emulatore di terminale se la cartella del pannello cambia.</para>
+      <para
+><guilabel
+>Il pannello attivo segue la cartella di lavoro del terminale integrato</guilabel
+>: se disattivata, il pannello attivo non cambia quando l'utente naviga nel terminale integrato (usando cd, popd, ecc). </para>
+      <para
+><guilabel
+>Commuta la visualizzazione a tutto schermo del terminale integrato</guilabel
+>: se selezionata, &krusader; mostra il terminale a schermo intero in stile <application
+>Midnight Commander</application
+> (viene mostrato il terminale anziché la finestra di &krusader;). </para>
+    </sect2>
+    <sect2 id="konfig-general-viewer">
+       <title
+>Visualizzatore/Editor</title>
+      <para
+>Qui puoi cambiare le impostazioni del visualizzatore e dell'editor: </para>
+      <itemizedlist>
+      <listitem>
+	<para
+><guilabel
+>L'editor e il visualizzatore interni aprono ogni file in una finestra separata</guilabel
+>: seleziona questo elemento se vuoi che ciascun file sia aperto in una finestra separata. Se deselezionato, ogni file sarà aperto in una scheda nella stessa finestra del visore / editor. Ciascuna scheda nella finestra può essere chiusa, in aggiunta ai soliti metodi noti, facendo clic sulla scheda col &MMB;. </para>
+      </listitem>
+      <listitem>
+	<para
+><guilabel
+>Nascondi la barra delle schede quando ce n'è solo una aperta</guilabel
+>: seleziona questo elemento se desideri che la barra delle schede del visore/editor venga nascosta quando è aperta solo una scheda. </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Modalità visualizzatore predefinita</guilabel
+>: <itemizedlist>
+        <listitem>
+         <para
+><guilabel
+>Modalità generica</guilabel
+>: usa il visualizzatore predefinito del sistema.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Modalità testo</guilabel
+>: visualizza il file in modalità solo testo.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Modalità esadecimale</guilabel
+>: visualizza il file in modalità solo esadecimale.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Modalità Lister</guilabel
+>: visore di testo/esadecimale veloce, per file di grandi dimensioni. Il lister di &krusader; non carica mai l'intero file in memoria ma solo una piccola parte di esso, e utilizza la cache per una visualizzazione più rapida. I file remoti sono scaricati e durante lo scaricamento è possibile visualizzare la parte scaricata. Se un file cambia in continuazione esso può essere comunque visualizzato e lister lo mostrerà sempre nel suo stato corrente.</para>
+        </listitem>
+	<listitem>
+         <para
+><guilabel
+>Usa Lister se il file di testo è più grande di: 10 MB (valore predefinito) </guilabel
+>: verifica se un file di testo è maggiore di 10 MB (configurabile) e, nel caso lo fosse, viene usato &krusader; Lister al posto del visualizzatore predefinito di &plasma;.</para>
+	</listitem>
+	<listitem>
+         <para
+><guilabel
+>Usa Okteta come visualizzatore esadecimale</guilabel
+>: se selezionata (opzione predefinita), utilizza l'editor esadecimale &plasma; <ulink url="https://docs.kde.org/index.php?application=okteta"
+>Okteta</ulink
+> per visualizzare i dati grezzi. Per utilizzare questa opzione devi prima installare il pacchetto <application
+>Okteta</application
+>.</para>
+	</listitem>
+	</itemizedlist>
+      </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Editor</guilabel
+>: scegli l'editor da usare per la modifica dei file (tramite <keycap
+>F4</keycap
+>). Viene usato il visualizzatore interno predefinito, ossia quello predefinito di &plasma;.</para>
+      </listitem>
+    </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-general-atomic">
+      <title
+>Estensioni atomiche</title>
+        <para
+><guilabel
+>Estensioni atomiche</guilabel
+>: le estensioni atomiche predefinite come <literal role="extension"
+>tar.gz</literal
+> sono mostrate insieme nella colonna <guilabel
+>Est</guilabel
+> del <link linkend="list_panel"
+>pannello</link
+>.</para>
+      </sect2>
+  </sect1>
+  <sect1 id="konfig-advanced">
+    <title
+>Avanzate</title>
+    <para
+>Questa pagina gestisce opzioni più avanzate, che vanno verificate attentamente: modificare qui le impostazioni <remark
+>rende &krusader; uno strumento più potente e pericoloso.</remark
+></para>
+
+    <para
+>La pagina è suddivisa in tre parti:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Generale</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+	    <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Preserve attributes for local copy/move
+              (slower)</guilabel
+>: If checked,
+              &krusader; will try to preserve all
+              attributes (time, owner, group) of the local files
+              according to the source file depending on your
+              <link linkend="copying"
+>permissions</link
+>.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>Montaggio automatico dei file system</guilabel
+>: fa sì che &krusader; tenti di montare un file system prima di accedervi. Per esempio, se fai clic su <filename class="directory"
+>/mnt/cdrom</filename
+> (e <filename class="directory"
+>/mnt/cdrom</filename
+> appare in <filename class="directory"
+>/etc/fstab</filename
+> come punto di montaggio), &krusader; controllerà se è montato. Se non lo fosse, tenterà di montarlo e poi vi accederà, in modo da poter visualizzare i contenuti del &CD-ROM;. Nota però che &krusader; NON smonterà il file system all'uscita da <filename class="directory"
+>/mnt/cdrom</filename
+>.</para>
+            </listitem>
+            <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Do not use KDE media protocol for the
+              Media button (if it is buggy or missing)</guilabel
+>:
+              If checked, &krusader; will not use
+              &kde; media protocol for the
+              <link linkend="list_panel"
+>Media button</link
+>.
+              Choose this when the media protocol is buggy (in some
+              older &kde; versions) or if you have no
+              kdebase package installed on your system.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>MountMan non (s)monterà i seguenti punti di montaggio</guilabel
+>: se possiedi file system che non vuoi siano smontati, o montati, per sbaglio, inserisci qui un elenco di punti di montaggio separati da virgole (&eg; <literal
+>/, /boot, /tmp</literal
+>) e <link linkend="mount-man"
+>MountMan</link
+> non tenterà di (s)montarli.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Conferme</guilabel>
+        </term>
+        <listitem>
+          <para
+>Con l'attivazione delle opzioni di questa sezione, &krusader; chiederà conferma prima di eseguire un'azione specifica; in caso contrario, le azioni qui sotto specificate saranno eseguite senza alcun avviso:</para>
+          <itemizedlist>
+            <listitem>
+              <para
+>Eliminazione di cartelle non vuote</para>
+            </listitem>
+            <listitem>
+              <para
+>Eliminazione di file</para>
+            </listitem>
+            <listitem>
+              <para
+>Copia di file</para>
+            </listitem>
+            <listitem>
+              <para
+>Spostamento di file</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Configurazione avanzata</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Dimensione cache icone (KB)</guilabel
+>: &krusader; utilizza una cache per le icone, in modo da non ricaricare quelle usate in precedenza. Ovviamente, aumentando la cache aumenta la capacità di memorizzare più icone e velocizzare le operazioni, al costo, però, di un maggiore uso di risorse da parte di &krusader;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Argomenti di updatedb</guilabel
+>: imposta argomenti aggiuntivi per <command
+>updatedb</command
+>. Consulta le pagine man per ulteriori informazioni.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-archives">
+    <title
+>Archivi</title>
+    <para
+>Questa pagina configura alcuni aspetti della gestione degli archivi in &krusader;. </para>
+    <variablelist>
+      <varlistentry>
+	<term>
+	  <guilabel
+>ioslave krarc</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>Abilita supporto alla scrittura</guilabel
+>: questa opzione consente di abilitare la scrittura dei file all'interno di un archivio. <warning
+> <para
+>L'aspetto negativo è che se dovesse capitare un'interruzione di corrente durante il processo, i file che erano stati spostati potrebbero essere stati già eliminati, ma non ancora compressi all'interno dell'archivio. Lo spostamento degli archivi all'interno di se stessi li eliminerà. </para>
+	      </warning>
+	    </para>
+	  </listitem>
+	</varlistentry>
+              <varlistentry>
+	<term>
+	  <guilabel
+>Gestione degli archivi</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>Sfoglia gli archivi come cartelle</guilabel
+>: se selezionata, &krusader; gestirà gli archivi in modo trasparente e ti permetterà di aprirli come cartelle; in alternativa, &krusader; tenterà di avviare un'applicazione per aprire quel tipo specifico di archivio. </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>
+	    <guilabel
+>Configurazione avanzata</guilabel>
+	  </term>
+	  <listitem>
+      <itemizedlist>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Allow moving into archives</guilabel
+>: this
+          option allows you to move files into an archive (as
+          opposed to just copying into the archive). The down side
+          is that if a power failure occurs during the process, the
+          files that were moved might already be deleted, but not
+          yet packed into the archive.
+          <note>
+            <para
+>If such a thing happens, the file(s) are NOT
+            LOST. They were actually moved into a subfolder in
+            &krusader;'s
+            <link linkend="konfig-general"
+>temp folder</link
+>.
+            You can search the folder and recover your
+            files.</para>
+          </note
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para
+><guilabel
+>Prova l'archivio dopo la compressione</guilabel
+>: questa opzione esegue automaticamente un test su un archivio appena compresso. Aumenta la sicurezza ma richiede più tempo.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Prova l'archivio prima di decomprimerlo</guilabel
+>: questa opzione esegue automaticamente un test prima della decompressione. Alcuni archivi danneggiati possono causare un blocco, è dunque meglio provare gli archivi prima di decomprimerli.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+  </varlistentry>
+  </variablelist>
+  </sect1>
+  <sect1 id="konfig-dependencies">
+    <title
+>Pagina delle dipendenze</title>
+    <para
+>Questa pagina configura il percorso completo delle applicazioni esterne. È pure possibile configurare l'interno percorso di &krusader;!</para>
+    <para>
+      <emphasis role="bold"
+>Scheda Generale</emphasis>
+    </para>
+    <para
+>Qui puoi configurare il percorso completo delle seguenti applicazioni esterne:</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>applicazione</entry>
+            <entry
+>percorso completo configurabile</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kdesu</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kdesu</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kget</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kget</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mailer</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kmail</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>strumenti diff</para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kompare</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <command
+>krename</command>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krename</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>krusader</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krusader</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>locate</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/locate</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/mount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>umount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/umount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>updatedb</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/updatedb</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <tip>
+      <para
+>Per impostazione predefinita, &kompare; viene usato come programma esterno per il controllo delle differenze, ma puoi usare anche il tuo programma di controllo preferito, &eg; <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> o <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+>, basta semplicemente indicare il percorso completo.</para>
+    </tip>
+    <para>
+      <emphasis role="bold"
+>Scheda Compressori</emphasis>
+    </para>
+    <para
+>Nella scheda <guilabel
+>Compressori</guilabel
+> è presente un elenco dei formati di archivio. Alcuni sono compilati, altri sono vuoti. Quelli disponibili (completati) sono supportati da &krusader;. Per essi, &krusader; gestirà gli archivi in modo trasparente e ti permetterà di aprirli come se fossero cartelle (posto che abbia attivato l'elemento <guilabel
+>Sfoglia gli archivi come cartelle</guilabel
+> nella sezione <link linkend="konfig-archives"
+>Archivi</link
+>); diversamente, &krusader; tenterà di richiamare un'applicazione che apra gli archivi di quel tipo. Se un determinato elemento di archivio viene mostrato vuoto significa che &krusader; non è riuscito a trovare gli eseguibili appropriati nel percorso indicato. Sono supportati i seguenti archivi: ace, arj, bzip2, deb, gzip, iso, lha, lzma, rar, rpm, tar, xz, zip e 7z.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>compressore</entry>
+            <entry
+>percorso completo configurabile</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>7z</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/7z</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>arj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/arj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>bzip2</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/bzip2</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cpio</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/cpio</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>dpkg</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/dpkg</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>gzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/gzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lha</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lha</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lzma</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lzma</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>rar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/rar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/tar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unace</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unace</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unarj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unarj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unrar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unrar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>zip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/zip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>xz</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/xz</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <note>
+      <para
+>&krusader; potrebbe non essere compatibile con ACE, nonostante tutti i nostri sforzi. Unace utilizza un codice sorgente con restrizioni e contiene righe aggiuntive di codice che fanno sì che Unace provochi un loop infinito se lo stdin viene reindirizzato da un'altra parte. Funziona allo stesso modo di «su», in cui non puoi digitare la password solo da stdin. &krusader; &gt;= 1-51 emula l'ambiente a riga di comando per abilitare la co-operazione con Unace, ma abbiamo notato che Unace, da un rilascio a un altro, modifica sempre il suo formato di output, rendendo la co-operazione quasi impossibile.</para>
+    </note>
+    <para>
+      <emphasis role="bold"
+>Scheda Strumenti per i codici di controllo</emphasis>
+    </para>
+    <para
+>Qui puoi configurare il percorso completo degli <link linkend="checksum"
+>strumenti per i codici di controllo</link
+> esterni riportati di seguito: <informaltable
+> <tgroup cols="3"
+> <tbody>
+          <row>
+            <entry
+>Strumenti per i codici di controllo</entry>
+            <entry
+>percorso completo configurabile</entry>
+            <entry
+>codici di controllo supportati</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha224sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha224sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha224</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha384sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha384sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha384</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha512sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha512sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha512</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tigerdeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/tigerdeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>tiger</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>whirlpooldeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/whirlpooldeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>whirlpool</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cfv</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/cfv</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5, sha1, sfv, crc</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable
+></para>
+  </sect1>
+  <sect1 id="konfig-useractions">
+    <title
+>Azioni utente</title>
+    <para
+>Qui puoi configurare il terminale per le azioni e il carattere per la cattura output. Il terminale predefinito è <command
+>konsole --noclose -e</command
+>. Per impostare, configurare e gestire le azioni, usa ActionMan (&URL; per le <link linkend="useractions"
+>azioni</link
+>).</para>
+
+  </sect1>
+  <sect1 id="konfig-protocols">
+    <title
+>Protocolli</title>
+    <para
+>Questa pagina collega i tipi &MIME; ai protocolli. &eg;, il protocollo <quote
+>tar</quote
+> è collegato al tipo &MIME; <quote
+>application/x-tar</quote
+>.</para>
+
+    <para
+>Nei <guilabel
+>Collegamenti</guilabel
+> vedrai &eg; <itemizedlist>
+      <listitem>
+        <para
+>Iso</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-iso</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>krarc</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-ace</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-arj</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-bzip2</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-cpio</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-deb</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-debian-package</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-gzip</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-jar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-lha</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rpm</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-zip</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>tar</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-tar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tarz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tbz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tgz</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect1>
+</chapter>

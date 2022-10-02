@@ -1,0 +1,130 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="archives">
+  <title
+>Treballar amb arxius</title>
+  <indexterm>
+    <primary
+>Arxius</primary>
+  </indexterm>
+  <sect2 id="browsing-archives">
+    <title
+>Explorar els arxius</title>
+    <para
+>Els <link linkend="vfs"
+>sistemes de fitxers virtuals (VFS)</link
+> permeten explorar els arxius com si fossin una carpeta. Actualment, el &krusader; admet els següents tipus d'arxius: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip i 7-zip, i admet els següents arxius amb contrasenya: arj, ace, rar i zip. Les contrasenyes es poden emmagatzemar al <application
+>KWallet</application
+>. Cal tenir en compte que, primer s'ha de <link linkend="konfig-archives"
+>configurar</link
+> correctament aquest suport d'arxius al Konfigurador. Per a obrir l'arxiu, utilitzeu &Intro;, (doble) clic o la &Right;. El &krusader; també admet <emphasis role="bold"
+>arxius ocults</emphasis
+>, aquests són fitxers canviats de nom amb una extensió *incorrecta*, &pex;, l'<trademark class="registered"
+>OpenOffice</trademark
+> utilitza fitxers zip amb les següents extensions: <literal role="extension"
+>.odt</literal
+>, <literal role="extension"
+>.sxw</literal
+> i <literal role="extension"
+>.odw</literal
+>. &Intro; obrirà l'<trademark class="registered"
+>OpenOffice</trademark
+> i la &Right; obrirà l'arxiu. Un altre exemple és J2EE, on l'extensió <literal role="extension"
+>.jar</literal
+> significa un arxiu zip. Des que el &krusader; detecta automàticament els tipus d'arxius admesos, aquests s'obriran amb la &Right; encara que tinguin un altre tipus &MIME;. Cal tenir en compte que l'exploració dels arxius té algunes limitacions: <itemizedlist>
+      <listitem>
+        <para
+>No totes les funcions són compatibles amb tots els tipus d'arxiu. (&ead;: no podeu suprimir fitxers en arxius ace o rar).</para>
+      </listitem>
+      <listitem>
+        <para
+>Els permisos que hi ha a dins de l'arxiu són els mateixos que tindreu per a l'arxiu.</para>
+      </listitem>
+      <listitem>
+        <para
+>La línia d'ordres (si està visible) no us seguirà a l'interior de l'arxiu, sinó que indicarà la carpeta on es troba l'arxiu.</para>
+      </listitem>
+      <listitem>
+        <para
+>Abans de realitzar qualsevol acció sobre fitxers/carpetes dins de l'arxiu, aquests s'hauran d'extreure. L'arxiu serà tornat a empaquetar quan ho deixeu o quan el &krusader; detecti que han canviat els fitxers extrets.</para>
+      </listitem>
+      <listitem>
+        <para
+>L'empaquetatge i desempaquetatge són <quote
+>operacions de bloqueig</quote
+> que mostren un diàleg de progrés. Tanmateix, això pot canviar en el futur, ja que tenim la intenció de crear més operacions en segon pla.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="unpacking-archives">
+    <title
+>Desempaquetar els fitxers</title>
+    <para
+>Hi ha 2 maneres d'extreure fitxers des dels arxius:</para>
+    <para
+>Si voleu desempaquetar tot un arxiu, aneu a la seva ubicació, seleccioneu-lo i seleccioneu <menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Desempaqueta</guimenuitem
+></menuchoice
+> o <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>U</keycap
+></keycombo
+>. El &krusader; preguntarà a on posar els fitxers extrets. La ubicació predeterminada serà la carpeta del plafó inactiu. Si no cancel·leu l'operació, el &krusader; intentarà desempaquetar tots els fitxers seleccionats al plafó inactiu.</para>
+    <para
+>Si només voleu extreure una part de l'arxiu, llavors <link linkend="browsing-archives"
+>exploreu</link
+> l'arxiu i copieu els fitxers que voleu extreure a la nova ubicació tal com copieu els fitxers <quote
+>normals</quote
+>. Cal tenir en compte que desempaquetar des d'un arxiu explorat triga més temps (es desempaqueta fitxer a fitxer) en comparació amb desempaquetar tot un arxiu amb el primer mètode. L'operació de desempaquetat es pot posar en una <link linkend="queue"
+>cua</link
+>.</para>
+  </sect2>
+  <sect2 id="pack-archive">
+    <title
+>Empaquetar els fitxers</title>
+    <para
+>Si voleu crear un arxiu nou, comenceu seleccionant els elements que voleu empaquetar al plafó actiu i seleccioneu <menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Empaqueta...</guimenuitem
+></menuchoice
+> o <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>P</keycap
+></keycombo
+>. Apareixerà un diàleg emergent que us indicarà que seleccioneu el nom i la ubicació de l'arxiu. Seleccioneu l'empaquetador des d'una de les <link linkend="konfig-archives"
+>extensions admeses per al nom de fitxer</link
+>.</para>
+    <para
+>Per a afegir fitxers a un arxiu existent, obriu l'arxiu en un plafó i els fitxers que es copiaran a l'altre plafó, simplement copieu els fitxers a l'arxiu de la mateixa manera que copieu els fitxers en una carpeta <quote
+>normal</quote
+>. L'operació de l'empaquetador es pot col·locar en una <link linkend="queue"
+>cua</link
+>.</para>
+  </sect2>
+  <sect2 id="test-archive">
+    <title
+>Provar els arxius</title>
+    <para
+>El &krusader; no gestionarà arxius malmesos, ja que pot resultar en pèrdua de les dades. Si rebeu un missatge d'error en obrir un arxiu o si sospiteu que hi ha quelcom incorrecte amb l'arxiu, podeu provar-lo abans d'usar-lo. Per a provar un arxiu, exploreu (navegueu) fins a la ubicació de l'arxiu i seleccioneu-lo. Seguidament seleccioneu <menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Prova l'arxiu</guimenuitem
+></menuchoice
+> o <keycombo action="simul"
+>&Alt;<keycap
+>E</keycap
+></keycombo
+>. El &krusader; provarà el fitxer i informarà si l'arxiu ha superat o no la prova d'integritat dels fitxers.</para>
+  </sect2>
+</sect1>

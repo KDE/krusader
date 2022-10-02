@@ -1,0 +1,348 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="remote-connections">
+  <title
+>Connexions remotes</title>
+  <indexterm>
+    <primary
+>Connexions remotes</primary>
+  </indexterm>
+  <para
+>Les connexions remotes es fan fàcilment escrivint l'&URL; a la <link linkend="list_panel"
+>Barra d'eines de localització</link
+> -en realitat aquests són esclaus KIO-. Cal tenir en compte que el plafó del &krusader; no admet tots els esclaus KIO, &pex;, <command
+>http://</command
+> no funcionarà al plafó, però funcionarà al <link linkend="krviewer"
+>visualitzador</link
+>. Alguns exemples:</para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>públic.servidor_ftp.org/carpeta/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>fish://</command
+><replaceable
+>nom_usuari@nom_màquina/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>sftp://</command
+><replaceable
+>nom_usuari:contrasenya@sftp.qualsevol.org/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>nom_usuari@meu.servidor.org:21/carpeta/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>smb://</command
+><replaceable
+>nom_usuari:contrasenya@servidor/share</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>nom_usuari@nom_usuari_proxy:contrasenya@contrasenya_proxi@nom_màquina/carpeta</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>nfs://</command
+><replaceable
+>&lt;màquina&gt;:&lt;port&gt;&lt;camí_URL&gt;</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>webdav://</command
+><replaceable
+>www.servidor.com/camí/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Podeu marcar aquests &URL;, però, llegiu la secció del <link linkend="bookman"
+>Bookman</link
+> per a <emphasis
+>desar les contrasenyes de forma segura</emphasis
+>. Per a connectar-vos amb múltiples ubicacions, marqueu aquests &URL; i obriu-los un per un o obriu-los tots emprant els <link linkend="panel_profiles"
+>perfils del plafó</link
+>. Per a passar d'una ubicació a una altra, simplement obriu una <link linkend="folder-tabs"
+>pestanya de carpeta</link
+> per a cadascun.</para>
+  <para
+>Hi ha tres maneres per a iniciar una connexió remota:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Escriviu l'&URL; a la <link linkend="list_panel"
+>Barra d'eines de localització</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Seleccioneu <menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Connexió de xarxa nova...</guimenuitem
+></menuchoice
+>, el qual mostrarà un diàleg que us demanarà els detalls del lloc remot. Aquest diàleg és pràctic si no s'utilitza per a escriure &URL; remots a la Barra d'eines de localització. Deixeu buit els camps de la contrasenya i el nom d'usuari, se us registrarà com a anònim. Nota: tenim la intenció de reescriure aquesta finestra de diàleg.</para>
+    </listitem>
+    <listitem>
+      <para
+>Podreu marcar una carpeta en una màquina remota i tornar a aquesta carpeta des del botó d'adreces d'interès a la cantonada superior del plafó tal com ho faríeu en un navegador web.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Després d'iniciar la sessió en un servidor remot, podeu explorar-lo com el vostre disc dur local amb les següents excepcions:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>No podreu executar fitxers sobre servidors remots.</para>
+    </listitem>
+    <listitem>
+      <para
+>Els permisos no es podran calcular sempre en els servidors remots (depèn del servidor i del mètode d'accés), de manera que podríeu obtenir un <guilabel
+>?</guilabel
+> a les columnes dels permisos per a alguns fitxers.</para>
+    </listitem>
+    <listitem>
+      <para
+>La informació d'ús del disc no estarà disponible per a la majoria dels sistemes de fitxers remots.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Per a canviar el joc de caràcters de la màquina remota, empreu <menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Selecciona el joc de caràcters remot</guimenuitem
+></menuchoice
+>.</para>
+  <para
+>Podeu tancar la connexió remota activa actual amb dos mètodes diferents:</para
+> 
+  <itemizedlist>
+    <!--
+        <listitem>
+           <para
+>Manually: <emphasis role="bold"
+><menuchoice
+><guimenu
+>Commands</guimenu>
+                 <guimenuitem
+>Disconnect From Net</guimenuitem
+></menuchoice
+></emphasis
+></para>
+        </listitem>
+        -->
+    <listitem>
+      <para
+>Manualment: Afegir el botó desconnecta a la <link linkend="mainwindow"
+>Barra d'eines principal</link
+> i fer-hi clic.</para>
+    </listitem>
+    <listitem>
+      <para
+>Automàticament: Canviar l'&URL; a la <link linkend="list_panel"
+>Barra d'eines de localització</link
+>.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>El &krusader; és un gestor de fitxers que admet connexions remotes a través dels esclaus KIO, però si esteu cercant característiques encara més avançades per a les connexions remotes, &pex;, un client avançat d'&FTP;, us recomanem que utilitzeu &pex;, <ulink url="https://lftp.yar.ru/"
+>LFTP</ulink
+> o <ulink url="https://filezilla-project.org/"
+><application
+>FileZilla</application
+></ulink
+>.</para>
+  </note>
+
+<sect2 id="remote-connections-lan-fish">
+  <title
+>Connexions LAN mitjançant el protocol fish:/ (zeroconf)</title>
+  <indexterm>
+    <primary
+>Connexions LAN remotes (zeroconf)</primary>
+  </indexterm>
+
+<para
+>Aquesta secció és una aportació d'en Andrew Svet (z-vet), els comentaris sobre aquest capítol seran apreciats. Gràcies!</para>
+
+ <note>
+   <para
+>Això funciona en un sistema &Debian;, per la qual cosa funcionarà a la &Debian; i els seus derivats (&kubuntu;, &etc;), encara que també hauria de funcionar en altres Linux. Suposem que teniu <link linkend="gloss-ssh"
+>SSH</link
+> instal·lat, configurat i funcionant a cada màquina de la LAN que voleu connectar. Hi ha un munt de molt bones guies d'aprenentatge sobre <link linkend="gloss-ssh"
+>SSH</link
+> a la xarxa, &pex;, a <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying"
+>linuxhomenetworking.com</ulink
+> o simplement empreu Google per a això. Utilitzem el port <link linkend="gloss-ssh"
+>SSH</link
+> predeterminat (22) per a aquest capítol. Recordeu canviar-lo si utilitzeu un altre. Totes les modificacions, edició, &etc;, s'han de fer com a administrador. </para>
+ </note>
+
+<para
+>Començarem amb la instal·lació de tots els paquets que necessitem: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>apt-get install</command
+> <option
+>avahi-daemon libnss-mdns kdnssd</option
+></userinput>
+</screen
+> Tot està instal·lat, ara anem a fer alguna configuració. En primer lloc, necessitarem que els nostres serveis s'anunciïn a LAN. Per a això instal·larem avahi-daemon: aquest representa la vostra màquina a la xarxa local i permet que altres aplicacions publiquin els serveis que proporcionen. L'avahi-daemon ve amb el fitxer de configuració d'exemple <filename
+>ssh.service</filename
+>, el qual es troba a <filename class="directory"
+>/usr/share/doc/avahi-daemon/examples</filename
+>. Per tal que el servei sigui anunciat a la LAN, haurem de copiar aquest fitxer a la carpeta <filename class="directory"
+>/etc/avahi/services</filename
+>: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option
+></userinput>
+</screen
+> Ara necessitarem que el protocol fish:/ també s'anunciï, de manera que utilitzarem un fitxer ssh.service com a plantilla per al fish.service: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option
+></userinput>
+</screen
+> Aquest fitxer és només una còpia del ssh.service. Editeu el fitxer <filename
+>fish.service</filename
+> i substituïu <quote
+>Remote Terminal on %h</quote
+> amb <quote
+>Fish to %h</quote
+> i <quote
+>_ssh._tcp</quote
+> amb <quote
+>_fish._tcp</quote
+>. Així és com es veurà després d'editar: <programlisting>
+&lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--&gt; 
+&lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
+
+&lt;!-- $Id: remote-connections.docbook,v 1.6 2007/05/02 18:07:28 codeknight Exp $ --&gt; 
+
+&lt;!-- 
+  This file is part of avahi. 
+  
+  avahi is free software; you can redistribute it and/or modify it 
+  under the terms of the GNU Lesser General Public License as 
+  published by the Free Software Foundation; either version 2 of the 
+  License, or (at your option) any later version. 
+
+  avahi is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR 
+
+&lt;!-- See avahi.service(5) for more information about this configuration file --&gt; 
+
+&lt;service-group&gt; 
+
+  &lt;name replace-wildcards="yes"&gt;FISH to %h&lt;/name&gt; 
+
+  &lt;service&gt; 
+    &lt;type&gt;_fish._tcp&lt;/type&gt; 
+    &lt;port&gt;22&lt;/port&gt; 
+  &lt;/service&gt; 
+
+&lt;/service-group&gt;  
+</programlisting
+> Deseu el fitxer modificat. Ara ens caldrà crear un fitxer <filename
+>_fish._tcp</filename
+>, obriu un editor de text i afegiu les següents línies: <programlisting>
+Name=FISH Protocol (ssh) 
+Type=_fish._tcp 
+UserEntry=u 
+PathEntry=path 
+PasswordEntry=p
+</programlisting
+> I deseu el fitxer a <filename
+>/usr/share/apps/zeroconf/_fish._tcp</filename
+>. Feu el mateix en cada màquina de la vostra LAN i, a continuació, reinicieu el programa avahi-daemon:<screen>
+<prompt
+># /etc/init.d/</prompt
+> <userinput
+><command
+>avahi-daemon</command
+> <option
+>restart</option
+></userinput>
+</screen
+> A continuació, obriu el &krusader; i escriviu <filename
+>zeroconf:/</filename
+> a la Barra d'eines de localització per a obrir la connexió amb <link linkend="gloss-zeroconf"
+>zeroconf</link
+>. Introduïu la carpeta <guilabel
+>Protocol Fish</guilabel
+>. A l'interior trobareu els enllaços a cada màquina que anuncia <filename
+>fish:/</filename
+> a la vostra LAN, la Barra d'eines de localització apuntarà a <filename
+>zeroconf:/_ fish._tcp</filename
+>. Si feu doble clic sobre qualsevol d'aquestes màquines, apareixerà l'indicatiu de contrasenya, demanant-vos la frase de pas SSH (si s'ha establert una contrasenya). Introduïu la vostra frase de pas. Enhorabona: heu connectat amb una màquina remota utilitzant el &krusader;! </para
+> 
+
+</sect2>
+
+</sect1>
+
+

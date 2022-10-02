@@ -1,0 +1,350 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="krusearcher">
+  <title
+>KruSearcher: vind wat u zoekt</title>
+  <indexterm>
+    <primary
+>Zoeken</primary>
+  </indexterm>
+  <para
+>Welkom bij de krachtige zoekmodule van &krusader; - bijgenaamd KruSearcher. Het is het meest krachtige hulpmiddel (dat ons bekent is) voor &Linux;, omdat u ermee op zoveel verschillende manieren snel het bestand kan vinden waarnaar u op zoek bent. De zoekfunctie is ook beschikbaar voor bestandssystemen op afstand. Het is verdeelt over twee onderdelen, de algemene en de gevorderde. Laten we de algemene pagina bekijken.</para>
+  <figure id="screenshot-search-general" float="1">
+    <title
+>Algemeen zoeken</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_general.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Algemeen zoeken</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>De pagina is onderverdeeld in vier gedeeltes: bovenste gedeelte (zoeken naar), onderste gedeelte - getiteld <guilabel
+>Bevat tekst</guilabel
+>, linker gedeelte - getiteld <guilabel
+>Zoeken in</guilabel
+> en rechter gedeelte met de naam <guilabel
+>Niet zoeken in</guilabel
+>. Elk gedeelte gaat duidelijk over een ander aspect van het zoeken. Laten we ze beter gaan bekijken.</para>
+  <itemizedlist>
+    <title
+>Bovenste gedeelte:</title>
+    <listitem>
+      <para
+><guilabel
+>Zoeken naar</guilabel
+>: hier geeft u de belangrijkste zoekcriteria op. U kunt een bestandsnaam, een joker (<literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> &etc;) of beide - gescheiden door een spatie opgeven. Als u <literal
+>'text'</literal
+> invoert dan is het resultaat hetzelfde als met <literal
+>'*text*'</literal
+>. U kunt bestanden buiten het zoekresultaat houden met '|' (&eg; <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>) . U kunt bij namen met een spatie aanhalingstekens gebruiken. Filter <quote
+>Program Files</quote
+> zoekt die bestanden/mappen waarvan de naam <filename
+>Program Files</filename
+> is. Een afrollijst die getoond wordt na klikken op pijl omlaag rechts biedt u het kiezen van enige van uw eerder ingevoerde criteria.</para>
+      <note>
+          <para
+>Het is mogelijk de lijst met suggesties te bewerken voor het veld <guilabel
+>Zoeken naar</guilabel
+>. Als u enkele van zijn items niet wilt selecteer deze en druk op <keycombo action="simul"
+>&Shift;<keycap
+>Del</keycap
+></keycombo
+> en die nuttloze suggestie wordt verwijderd. U kunt ook de pijltjestoetsen gebruiken om te de gehele geschiedenis in het veld <guilabel
+>Zoeken naar</guilabel
+> te zien en de items die nutteloos zijn te verwijderen. </para>
+      </note>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Hoofdlettergevoelig</guilabel
+>: indien uitgeschakeld, geeft het resultaat zowel met hoofdletters als met kleine letters (&ie;: <literal role="extension"
+>*.c</literal
+> wordt geïnterpreteerd als <literal role="extension"
+>*.c</literal
+> EN <literal role="extension"
+>*.C</literal
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Van type</guilabel
+>: met dit zoekvak kunt u niet alleen naar een bestand zoeken via zijn naam, maar ook via zijn &MIME;-type. Bijvoorbeeld, u kunt naar alle geluidsbestanden zoeken waarvan de naam met een B begint. Meestal staat dit standaard ingesteld op 'alle bestanden', maar u kunt ook naar archieven, mappen, afbeeldingen, tekstbestanden, video's en geluidsbestanden zoeken.</para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Linker en rechter gedeelte:</title>
+    <listitem>
+      <para
+><guilabel
+>Zoeken in</guilabel
+> en <guilabel
+>Niet zoeken in</guilabel
+>: Met behulp van deze twee onderdelen, kunt u precies opgeven hoe u wilt waar er wordt gezocht. Bijvoorbeeld, u wilt in het hele bestandssysteem naar een bestand zoeken (beginnend met <filename
+>/</filename
+>), maar wilt niet in <filename
+>/mnt</filename
+> zoeken. Alles wat u hoeft te doen is <filename
+>/</filename
+> in het invoerveld <guilabel
+>Zoeken in</guilabel
+> invoeren, en <filename
+>/mnt</filename
+> in het invoerveld <guilabel
+>Niet zoeken in</guilabel
+> invoeren. Als u in een van keuzelijsten meer dan een map wilt invoeren, type dan de eerste naam en druk op &Enter;. De map-naam zal dan naar het grotere keuzelijst worden gekopieerd zodat u de volgende naam kunt invoeren. <note
+> <para
+>Het invoerveld heeft een functie voor automatisch aanvullen, die de algemene instellingen van &plasma; volgt. Indien gewenst, kunt u op de <guiicon
+>mappen pictogram</guiicon
+>, klikken en naar de mappen gaan die u wilt toevoegen.</para>
+      </note>
+      <note>
+          <para
+>Het is mogelijk om bestanden en mappen te definiëren die uitgefilterd zullen worden uit de zoekresultaten met gebruik van het invoerveld <guilabel
+>Mapnamen uitsluiten</guilabel
+> onderaan het vak <guilabel
+>Niet zoeken in</guilabel
+>.</para>
+          <para
+>Items in de filterlijst moeten met spaties gescheiden worden.</para>
+          <para
+>Spaties in de filterlijstitems kunnen escaped worden of met quotes. Voorbeeld: <userinput
+>.git "target build" build\ krusader</userinput
+></para>
+      </note
+></para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Onderste gedeelte:</title>
+    <listitem>
+      <para
+><guilabel
+>Tekst</guilabel
+>: als u hier tekst invoert dan zal &krusader; in de bestanden ernaar gaan zoeken ( <command
+>grep</command
+>). Op deze manier kunt u naar alle header bestanden ( <literal role="extension"
+>*.h</literal
+>) gaan zoeken waarin het woord <literal
+>'testing 123'</literal
+> voorkomt.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>RegExp</guilabel
+> schakelaar: schakel de modus reguliere expressie om. Een afrollijst die getoond wordt na klikken op pijltje naar beneden rechts laat u speciale symbolen van reguliere expressies invoeren. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Codering</guilabel
+>: laat u de tekstcodering kiezen. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Aleen hele woorden overeen laten komen</guilabel
+>: laat u specificeren dat een volledige overeenkomst (letters en lengte) gevonden moet worden. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Hoofdlettergevoelig</guilabel
+>: verwijst naar het feit of naar uw tekst in hoofdletters of kleine letters of exact volgens de door u ingevoerde spelling wordt gezocht.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>In submappen zoeken</guilabel
+>: voert een recursieve zoekopdracht uit en duikt in iedere map die het tegenkomt.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>In archieven zoeken</guilabel
+>: &krusader; zal naar uw bestand in elk ondersteund archief zoeken. Dit kost echter meer tijd. <note
+> <para
+>Als u dit inschakelt, dan zal u merken dat u niet meer <command
+>grep</command
+> in bestanden kunt uitvoeren. Dit is zo gemaakt omdat voor het zoeken in gearchiveerde bestanden, &krusader; deze eerst moet uitpakken, wat zal resulteren in een zeer tijdrovende zoektocht.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Koppelingen volgen</guilabel
+>: indien ingeschakeld, zal &krusader; tijdens de zoekopdracht symbolische koppelingen volgen.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Profielen</guilabel
+>: als u regelmatig dezelfde zoekopdracht moet uitvoeren, dan kunt u de zoek-instellingen &eg; inclusief bepaalde bestanden, exclusief bepaalde bestanden, &etc;..opslaan. Druk op de knop 'profielen', en u kunt zoek-profielen toevoegen/laden/opslaan/verwijderen.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Zoekopdracht naar klembord</guilabel
+>: indien geactiveerd zal &krusader; de zoektekst in het klembord plaatsen wanneer een gevonden bestand is geopend.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Bovenstaande schermafdruk toont een zoekopdracht naar alle bestanden die eindigen op <literal role="extension"
+>c, cpp</literal
+> of <literal role="extension"
+>h</literal
+> en waarin de tekenreeks <literal
+>'testing 123'</literal
+> voorkomt. &krusader; zal zoeken in <filename class="directory"
+>/root, /opt, /bin</filename
+> en <filename class="directory"
+>/usr</filename
+>, en juist niet in <filename class="directory"
+>/usr/lib</filename
+> en <filename class="directory"
+>/usr/share</filename
+>.</para>
+  <para
+>Door te klikken op de knop <guibutton
+>Zoeken</guibutton
+> start u de zoekopdracht en krijgt u het resultaat op de resultatenpagina te zien. Tijdens de zoektocht kunt u op de knop <guibutton
+>Stoppen</guibutton
+> drukken om de zoektocht te stoppen. De knop <guibutton
+>Sluiten</guibutton
+> is tijdens de zoekopdracht buiten werking, daarom moet u eerst de zoekopdracht stoppen om vervolgens het venster te <guibutton
+>Sluiten</guibutton
+>. Als een resultaat is gevonden, dan zal erop dubbelklikken het actieve paneel van &krusader; naar de gevonden bestanden laten wijzen - maar het zoekvenster niet sluiten, zodat u nog in staat bent om op een ander resultaat te klikken.</para>
+  <para
+>Soms wilt u uw zoekopdracht inperken. KruSearcher maakt een nauwkeuriger zoekopdracht mogelijk, en hiervoor gaan we een kijkje nemen op de <guilabel
+>Geavanceerde pagina</guilabel
+>...</para>
+  <figure id="screenshot-search-advanced" float="1">
+    <title
+>Geavanceerd zoeken</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_advanced.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Geavanceerd zoeken</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Dit schermafdruk toont een zoekopdracht naar bestanden waarvan de grootte tussen 10KiB en 150KiB is, en die gewijzigd zijn tussen 10 oktober en 1 november, die een eigenaar hebben uit de groep 'nobody', en die leesbaar en beschikbaar zijn door iedereen uit de groep 'nobody', en alleen leesbaar voor de rest van de wereld.</para>
+  <para
+>De geavanceerde pagina in onderverdeeld in drie gedeeltes: grootte, datum en eigenaarschap.</para>
+  <para>
+    <emphasis role="bold"
+>Grootte</emphasis>
+  </para>
+  <para
+>Hiermee kunt u de grootte van de bestanden mee instellen waarnaar u zoekt. Door deze vakjes aan te vinken, kunt u zoeken naar een bestand die groter is dan XXX bytes (of KB, MB), kleiner dan XXX bytes of, door beide aan te vinken te zoeken naar een bestand die groter is dan XXX en kleiner dan YYY.</para>
+  <para>
+    <emphasis role="bold"
+>Datum</emphasis>
+  </para>
+  <para
+>In dit gedeelte heeft u drie verschillende manieren om datum criteria in te stellen: <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Gewijzigd tussen</guilabel
+>: hier kunt twee datums instellen. &krusader; zal zoeken naar bestanden met een wijzigingsdatum vanaf de eerste datum tot en met de tweede datum. <note
+> <para
+>Als u klikt op de datumknop (naast de invoervelden) dan opent een standaard datumvenster - waarmee u makkelijk door de kalender kan bladeren op zoek naar het gewenste datum. Als u klikt op een datum dan sluit het venster en verschijnt de datum in het invoerveld.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Niet gewijzigd na</guilabel
+>: Als u dit inschakelt dan zal &krusader; zoeken naar bestanden die NIET zijn gewijzigd na een opgegeven datum, wat hetzelfde is als zoeken naar bestanden die ouder dan die datum zijn.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Gewijzigd in de laatste/Niet gewijzigd in de laatste</guilabel
+>: in deze invoervelden geeft u geen datum op maar een getal. Dit getal stelt dagen/weken/maanden voor (zoals ingesteld het keuzevak ernaast). Als u het getal 5 in het bovenste invoerveld invult, dan zal &krusader; zoeken naar bestanden die gewijzigd zijn in de laatste 5 dagen. Als u het getal 2 in het onderste invoerveld invult, dan zal &krusader; zoeken naar bestanden die niet zijn gewijzigd in de laatste 2 dagen. De combinatie van beide zal resulteren in een zoekopdracht voor bestanden die gewijzigd zijn in de laatste 5 dagen en NIET in de laatste 2 dagen.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para>
+    <emphasis role="bold"
+>Eigendom</emphasis>
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Behoort toe aan gebruiker/groep</guilabel
+>: door de betreffende vakjes aan te vinken, kunt u naar bestanden zoeken die aan een bepaalde gebruiker e/of groep toebehoort. De keuzelijst toont alle gebruikersnamen en groepsnamen aanwezig in het systeem, u hoeft alleen maar een te kiezen en verder te gaan.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Toegangsrechten</guilabel
+>: onderverdeeld in eigenaar, groep en iedereen - hiermee kunt u bepaalde toegangsrechten voor het bestand kiezen. U kunt toegangsrechten voor de eigenaar, groep, allen of een combinatie hiervan kiezen. De vraagteken (?) is een joker - wat inhoud dat alle toegangsrechten geldig zijn.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Als uitleg, het schermafdruk hierboven (het gedeelte eigenaarschap) toont een zoekopdracht naar bestanden die elke eigenaar uit de groep 'users' kan hebben, die leesbaar, schrijfbaar maar niet uitvoerbaar zijn voor elke gebruiker uit de groep, die leesbaar maar niet schrijfbaar of uitvoerbaar is voor de rest van de wereld en waarvan de permissies van zijn eigenaar onbekend zijn.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Resultaten</emphasis>
+  </para>
+  <para
+>Als u Klikt op de knop <guibutton
+>Zoeken</guibutton
+> dan start u de zoekopdracht en opent het venster met resultaten. Hier kunt u de voortgang zien en de resultaten van de zoektocht. Als u de huidige zoektocht wilt stoppen dan klikt u op de knop <guibutton
+>Stoppen</guibutton
+>. Selecteer een bestand in de lijst met resultaten en gebruik <keycap
+>F3</keycap
+>/ <keycap
+>F4</keycap
+> of het contextmenu voor het bekijken/bewerken. Als u op een gevonden item klikt, dan zal als het actieve paneel de map van het geselecteerde item nog niet toont hier naar toe gaan. Het resultatenpagina ondersteund het verslepen van items naar andere vensters en het kopiëren naar klembord (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). Na het sluiten van het KruSearcher venster, is het geselecteerde item ook in het actieve paneel geselecteerd.</para>
+  <para>
+    <emphasis role="bold"
+>Uitvoeren naar een bestandslijst</emphasis>
+  </para>
+  <para
+>Als u klikt op de knop <guibutton
+>Uitvoeren naar een bestandslijst</guibutton
+> als de resultaten zichtbaar zijn, dan zal &krusader; vragen voor een Query-naam, in de resultaten-tab van het paneel met de zoekresultaten zal deze naam worden gebruikt. U kunt doen wat u wilt met de bestanden in de nieuwe tab. De locatiebalk toont zoiets als &eg; <filename
+>virt:/Search results 1</filename
+>.</para>
+  <warning>
+    <para
+>De bestanden in het tabblad Resultaten zijn in het echt de originele bestanden. Als u een bestand verwijdert - is het verwijderd!</para>
+  </warning>
+</sect1>

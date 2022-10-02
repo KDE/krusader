@@ -1,0 +1,120 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="compare">
+  <title
+>Vergelijken</title>
+  <para
+>&krusader; heeft verschillende mogelijkheden voor vergelijken: <guimenuitem
+>Inhoud vergelijken</guimenuitem
+>, <guimenuitem
+>Mappen vergelijken</guimenuitem
+> en de mogelijkheid tot <link linkend="synchronizer"
+>Synchronisatie</link
+> vergelijking.</para>
+  <sect2 id="compare-content">
+    <title
+>Inhoud vergelijken</title>
+    <indexterm>
+      <primary
+>Vergelijken</primary>
+      <secondary
+>Inhoud</secondary>
+    </indexterm>
+    <para
+>Selecteer in elk paneel een bestand en gebruik <menuchoice
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Inhoud vergelijken...</guimenuitem
+> </menuchoice
+>. Een in &krusader; <link linkend="konfig-dependencies"
+>ingesteld</link
+> extern grafisch vergelijking programma wordt geopend. &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> en <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> worden ondersteund.</para>
+  </sect2>
+  <sect2 id="compare-dir">
+    <title
+>Mappen vergelijken</title>
+    <indexterm>
+      <primary
+>Vergelijken</primary>
+      <secondary
+>Mappen</secondary>
+    </indexterm>
+    <para
+>Vergelijk de bestanden van elk paneel en gebruik de <menuchoice
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Mappen vergelijken</guimenuitem
+> </menuchoice
+>. Standaard worden de nieuwere en enkele bestanden in elk paneel geselecteerd, dit gedrag kunt u wijzigen in het menu <guimenuitem
+>Vergelijken instellen</guimenuitem
+>. <note
+> <para
+>De bestanden worden niet op inhoud vergeleken maar alleen op hun namen en datums.</para>
+    </note
+></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Setup vergelijken</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>De functie <guimenuitem
+>Mappen vergelijken</guimenuitem
+> instellen.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Nieuwer en enkelvoudig Markeren</guimenuitem
+> (standaard)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Enkelvoudig selecteren </guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Nieuwer selecteren</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Verschillend en enkelvoudig selecteren</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Verschillen selecteren</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>

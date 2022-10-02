@@ -1,0 +1,2297 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="menu-commands">
+  <title
+>Menykommandon</title>
+  <indexterm>
+    <primary
+>Kommandon</primary>
+    <secondary
+>Meny</secondary>
+  </indexterm>
+  <sect1 id="file-menu">
+    <title
+>Menyn Arkiv</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F4</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Ny textfil...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Skapar en ny textfil i aktuell katalog, om inte en annan katalog har angivits. Den nya filen öppnas för redigering efter den har skapats.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F7</keycap
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Ny katalog</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Skapar en ny katalog i den aktuella katalogen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Ny symbolisk länk...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Skapar en symbolisk länk till filen som för närvarande är markerad.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F3</keycap
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Granska fil</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar filen som för närvarande är markerad för <link linkend="kredit"
+>granskning</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F4</keycap
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Redigera fil</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar filen som för närvarande är markerad för <link linkend="kredit"
+>redigering</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F5</keycap
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Kopiera till andra panelen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Kopiera filerna eller katalogerna som för närvarande är markerade till den andra panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F6</keycap
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Flytta</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar en dialogruta för att <link linkend="copying"
+>flytta</link
+> filerna eller katalogerna som för närvarande är markerade till en angiven plats.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Packa...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Skapar en <link linkend="pack-archive"
+>ny arkivfil</link
+> med alla markerade filer och kataloger i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Packa upp...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="unpacking-archives"
+>Packar upp</link
+> alla filer markerade i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Testa arkivfil</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="test-archive"
+>Testar arkivfilen</link
+> för skador.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Jämför innehåll...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Jämför två aktuella filer enligt innehåll, en från varje panel, med ett externt grafiskt jämförelseverktyg. Normalt används &kompare;, men du kan t.ex. också använda <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> eller <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+>, ändra det på sidan <link linkend="konfig-dependencies"
+>Beroenden</link
+> i Konfigurator.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="multi_rename">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F2</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Mängdnamnbyte...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Menyalternativet startar <ulink url="https://www.krename.net"
+><application
+>Krename</application
+></ulink
+>, ett mycket kraftfullt externt verktyg för namnbyte.</para>
+          <itemizedlist>
+            <title
+>Funktioner i Krename</title>
+            <listitem>
+              <para
+>Byt namn på en lista av filer baserat på en uppsättning uttryck</para>
+            </listitem>
+            <listitem>
+              <para
+>Kopiera eller flytta en lista av filer till en annan katalog</para>
+            </listitem>
+            <listitem>
+              <para
+>Konvertera filnamn till stora eller små bokstäver</para>
+            </listitem>
+            <listitem>
+              <para
+>Lägg till nummer i filnamn</para>
+            </listitem>
+            <listitem>
+              <para
+>Hitta och ersätt delar av filnamnet</para>
+            </listitem>
+            <listitem>
+              <para
+>Namnbyte av MP3- och OGG Vorbis-filer baserat på deras ID3-taggar</para>
+            </listitem>
+            <listitem>
+              <para
+>Ändra åtkomst- och ändringsdatum</para>
+            </listitem>
+            <listitem>
+              <para
+>Ändra behörigheter och filens ägare</para>
+            </listitem>
+            <listitem>
+              <para
+>Ett programmeringsgränssnitt för insticksprogram som låter dig utöka KRenames funktioner</para>
+            </listitem>
+            <listitem>
+              <para
+>Byt namn på kataloger rekursivt</para>
+            </listitem>
+            <listitem>
+              <para
+>Stöd för Kfileplugins</para>
+            </listitem>
+            <listitem>
+              <para
+>Ångra namnbyte</para>
+            </listitem>
+            <listitem>
+              <para
+>Och mycket mer ...</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Skapa checksumma...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="checksum"
+>Skapa checksummor</link
+> för filer och/eller kataloger.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Verifiera checksumma...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para>
+            <link linkend="checksum"
+>Verifiera checksumma</link>
+          </para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Dela fil...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Funktionen <link linkend="splitter"
+>Dela fil</link
+> delar upp en fil i många mindre filer så att den kan lagras på flera mindre medier (som <hardware
+>disketter, zip-enheter, ...</hardware
+>) eller skickas med e-post.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Kombinera filer...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Funktionen <link linkend="splitter"
+>Kombinera filer</link
+> kombinerar flera filer till en fil efter att funktionen <link linkend="splitter"
+>Dela fil</link
+> har använts.</para>
+        </listitem>
+      </varlistentry>
+      <!--vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Avsluta</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stänger &krusader; och rensar den tillfälliga katalogen. Samma sak som att trycka på tangenten <keycap
+>F10</keycap
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="edit-menu">
+    <title
+>Menyn Redigera</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Klipp ut</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Klipper ut</link
+> de markerade filerna till klippbordet för att flyttas till en annan plats.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Kopiera</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Kopierar</link
+> markerade filer till klippbordet för att flyttas till en annan plats.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Klistra in</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Klistrar in</link
+> tidigare urklippta eller kopierade objekt från klippbordet till den aktuella katalogen.</para>
+        </listitem>
+      </varlistentry>
+<!--
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycap
+>F2</keycap>
+            </shortcut>
+            <guimenu
+>Edit</guimenu>
+            <guimenuitem
+>Rename</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          <link linkend="renaming"
+>Renames</link
+> the currently
+          selected file.</para>
+        </listitem>
+      </varlistentry
+>-->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F8</keycap
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Ta bort</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="deleting"
+>Tar bort</link
+> filen eller filerna som för närvarande är markerade.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Markera grupp...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar en dialogruta som låter dig markera filer i den aktiva panelen. Lägg till huvudkriterierna för sökningen i dialogrutan <guilabel
+>Sök efter</guilabel
+>. Skriv in ett filnamn, jokertecken (<literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+>, etc.) eller båda, åtskilda av mellanslag. När <literal
+>'text'</literal
+> används, är resultatet samma som <literal
+>'*text*'</literal
+>. Du kan undanta filer från sökningen med '|' (t.ex. <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>). Du kan hantera urval för framtida användning med <link linkend="profiles"
+>profilhanteraren</link
+>. Att dubbelklicka på en profil är samma sak som att skriva in urvalet och klicka på knappen <guibutton
+>Ok</guibutton
+>. Fler alternativ för dialogrutan <guilabel
+>Markera grupp</guilabel
+> förklaras för <link linkend="krusearcher"
+>Sökdialogrutan</link
+>, vilken egentligen är nästan samma dialogruta.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Avmarkera grupp...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Motsatsen till <guimenuitem
+>Markera grupp</guimenuitem
+>. Filerna som motsvarar mönstret i den aktiva panelen kommer att avmarkeras.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Markera allt</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Markerar alla filer i den aktiva panelen. Du kan också markera alla kataloger genom att aktivera alternativet <guilabel
+>Markera kataloger automatiskt</guilabel
+> på panelsidan i <link linkend="konfig-panel"
+>Konfigurator</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Avmarkera allt</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Avmarkerar alla filer i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Invertera markering</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Inverterar markeringsstatus för alla filer i den aktiva panelen (dvs. markerade filer blir avmarkerade, och avmarkerade filer blir markerade).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Återställ markering</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Återställer markeringsstatus för tidigare avmarkerade objekt.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Sök i katalog...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sätter på eller stänger av &krusader;s funktion för <link linkend="quicksearch"
+>snabbsökning</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Jämför kataloger</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sätter på eller stänger av funktionen <link linkend="compare-dir"
+>Jämför kataloger</link
+> i &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Anpassa jämförelse</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Anpassar funktionen <guimenuitem
+>Jämför kataloger</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Markera nyare och enstaka</guimenuitem
+> (standardvärde)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Markera enstaka</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Markera nyare</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Markera olika och enstaka</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Markera olika</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Beräkna använt utrymme</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="calculate"
+>Beräknar använt utrymme</link
+> för filer och kataloger, arkiv och fjärrfilsystem.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Retur</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Egenskaper...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar egenskapsdialogrutan för filen som för närvarande är markerad. (Enter på det numeriska tangentbordet).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="go-menu">
+    <title
+>Menyn Gå</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keysym
+>Uppåtpil</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Upp</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Går till överliggande katalog i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Vänsterpil</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Bakåt</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Går till katalogen som tidigare visades i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keysym
+>Höger</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Framåt</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Går till nästa katalog som visades i den aktiva panelen. Är bara tillgänglig om <menuchoice
+><guimenu
+>Gå</guimenu
+> <guimenuitem
+>Bakåt</guimenuitem
+></menuchoice
+> tidigare har används.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>Home</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Hem</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Går till den nuvarande användarens hemkatalog.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Baksteg</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Rot</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Går till systemets rotkatalog.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Populära webbadresser...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visar en listning med ofta visade kataloger, där du kan gå till en genom att dubbelklicka på den.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Sätt tillbakahoppspunkten här</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ställer in aktuell katalog som en <quote
+>återhoppspunkt</quote
+>. För att snabbt gå till katalogen, välj kommandot <guimenuitem
+>Hoppa tillbaka</guimenuitem
+> i menyn <guimenu
+>Gå</guimenu
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Hoppa tillbaka</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Går tillbaka till en tidigare <quote
+>återhoppspunkt</quote
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="view-menu">
+    <title
+>Menyn Visa</title>
+    <para
+>Åtgärderna i den här undermenyn påverkar oftast hela &krusader;s session. Om du vill göra permanenta ändringar, använd <link linkend="konfigurator"
+>startsidan</link
+> i Konfigurator.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Zooma in</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öka visningsskalan.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Zooma ut</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Minska visningsskalan.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Standardzoom</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Återställ visningsskalan.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Detaljerad vy</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visar filnamn, filstorlek, datum och tid skapad, och attribut.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Kortfattad vy</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visar bara filnamnen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Visa dolda filer</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ändrar alternativet att visa dolda filer i &krusader;s paneler.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F10</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Alla filer</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stänger av alla filter och visar alla filer.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F12</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Anpassad</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Låter dig installera ett eget filter i &krusader;s panel. Bara filer som matchar filtermönstren och kataloger visas. Glöm inte att inaktivera filtret efter det har använts, annars kanske vissa filer inte är synliga.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Visa förhandsgranskningar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Om markerad, visa förhandsgranskningar för alla filer och kataloger i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Välj teckenuppsättning för fjärranslutning</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Väljer teckenuppsättning för <link linkend="remote-connections"
+>fjärranslutningar</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Uppdatera</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Uppdaterar innehållet i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Spara inställningar som förval</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Låter dig spara den aktuella flikens vyinställningar för nya instanser av den här typen av vy.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Verkställ inställningar för andra flikar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Låter dig applicera den aktuella flikens vyinställningar på övriga flikar.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="useractions-menu">
+    <title
+>Menyn Användaråtgärder</title>
+    <para
+>Du kan lägga till egna menyalternativ här genom att definiera dina egna <link linkend="useractions"
+>användaråtgärder</link
+>. </para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Användaråtgärder</guimenu
+> <guimenuitem
+>Hantera användaråtgärder...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar hantering av <link linkend="useractions"
+>användaråtgärder</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>A</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Användaråtgärder</guimenu
+> <guisubmenu
+>Multimedia</guisubmenu
+> <guimenuitem
+>Enqueue in Amarok</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Lägger till markerade objekt sist i &amarok;s spellista.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; </keycombo
+> </shortcut
+> <guimenu
+>Användaråtgärder</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Equal panel-size</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ställer in förhållandet mellan de två panelerna till 50/50.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;<keycap
+>E</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Användaråtgärder</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Edit as root</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Låter dig redigera en fil i <application
+>kwrite</application
+> med behörighet som systemadministratör.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>M</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Användaråtgärder</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Mount</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Monterar ett nytt filsystem.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>C</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Användaråtgärder</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Copy current item to clipboard</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Kopierar aktuellt objektnamn till klippbordet.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>F5</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Användaråtgärder</guimenu
+><guisubmenu
+>System</guisubmenu
+> <guimenuitem
+>Backup current</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Säkerhetskopierar aktuell fil i aktuell katalog och ber användaren om ett nytt filnamn. Normalt läggs <literal role="extension"
+>.old</literal
+> till efter originalfilnamnet.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>1</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Användaråtgärder</guimenu
+><guisubmenu
+>User Interface</guisubmenu
+> <guimenuitem
+>Sort By Name</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>När åtgärden aktiveras, blir huvudsorteringsnyckeln i &krusader;s panel filnamnet.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>2</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Användaråtgärder</guimenu
+><guisubmenu
+>User Interface</guisubmenu
+> <guimenuitem
+>Sort By Extension</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>När åtgärden aktiveras, blir huvudsorteringsnyckeln i &krusader;s panel filändelsen (delen av filnamnet efter den sista punkten). Det är användbart för att gruppera filer av samma typ närmare varandra.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>3</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Användaråtgärder</guimenu
+><guisubmenu
+>User Interface</guisubmenu
+> <guimenuitem
+>Sort By Size</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>När åtgärden aktiveras, blir huvudsorteringsnyckeln i &krusader;s panel filstorleken. Det är användbart för att avgöra vilken fil  som är störst i en viss katalog.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>4</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Användaråtgärder</guimenu
+><guisubmenu
+>User Interface</guisubmenu
+> <guimenuitem
+>Sort By Modified</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>När åtgärden aktiveras, blir huvudsorteringsnyckeln i &krusader;s panel det senaste ändringsdatumet för varje fil. Det är användbart för att hitta filer som du senast arbetade med.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="tools-menu">
+    <title
+>Menyn Verktyg</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Sök...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar <link linkend="krusearcher"
+>Krusearcher</link
+>, &krusader;s sökmodul.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Lokalisera...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar det grafiska användargränssnittet till <link linkend="locate"
+>Locate</link
+> för snabb filsökning.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Synkronisera kataloger</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Funktionen <link linkend="synchronizer"
+>Synkronisera kataloger</link
+> jämför vänster och höger panel, och visar skillnaderna mellan dem. Efter jämförelsen kan du flytta filer eller kataloger så att de kan bli synkroniserade.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Mountman...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar en undermeny med alternativ för att öppna <link linkend="mount-man"
+>Mountman</link
+>: Monteringshanteraren eller montera och avmontera diverse monteringsplatser.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Diskanvändning...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar <link linkend="diskusage"
+>diskanvändning</link
+>.</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Ny nätanslutning</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar dialogrutan <link linkend="remote-connections"
+>Ny nätverksanslutning</link
+> för att starta en &FTP;-, SMB-, FISH- eller SFTP-anslutning till en fjärrdator. Om du lämnar fältet för användarnamn och lösenord tomma, loggas du in anonymt. Du kan lägga till <link linkend="bookman"
+>bokmärken</link
+> för fjärrsessionerna.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Shift;&Ctrl; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Koppla bort från nät</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Avslutar <link linkend="remote-connections"
+>fjärranslutningen</link
+> i den aktiva panelen och återgår till startsökvägen.</para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Starta terminal</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar ett terminalfönster i förvald katalog (oftast hemkatalogen). Du kan välja ditt favoritterminalprogram på sidan <link linkend="konfig-general"
+>Allmänt</link
+> i Konfigurator.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="root-mode">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>K</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Starta Krusader i administratörsläge</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Startar &krusader; i <link linkend="root-mode"
+>administratörsläge</link
+> på samma plats. &krusader; i administratörsläge kräver normalt <command
+>kdesu</command
+>, om <command
+>kdesu</command
+> inte är tillgängligt eller om du t.ex. föredrar <command
+>gksu</command
+> när du använder <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, kan du ändra beteendet på sidan <link linkend="konfig-dependencies"
+>Beroenden</link
+> i Konfigurator.</para>
+          <caution>
+            <para
+>Var försiktig när &krusader; används med behörighet som SYSTEMADMINISTRATÖR.</para>
+          </caution>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Töm papperskorgen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Tömmer <link linkend="deleting"
+>papperskorgen</link
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="window-menu">
+    <title
+>Menyn Fönster</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Ny flik</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar en ny flik i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Lås flik/Lås upp flik</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Låser eller låser upp aktuell flik i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Duplicera aktuell flik</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar en ny flik som är en dubblett av den aktiva fliken i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Flytta aktuell flik till andra sida</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Flyttar aktuell flik till andra sidan av &krusader;s fönster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Stäng aktuell flik</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stänger aktuell flik i den aktiva panelen. Kommandot är bara tillgängligt om det finns mer än en flik i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Stäng inaktiva flikar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stänger alla flikar i den aktiva panelen utom den aktiva.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Stäng duplicerade flikar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stänger de duplicerade flikarna i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl; <keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Nästa flik</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Går till nästa flik i den aktiva panelen. Kommandot är bara tillgängligt om det finns mer än en flik i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Föregående flik</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Går till föregående flik i den aktiva panelen. Kommandot är bara tillgängligt om det finns mer än en flik i den aktiva panelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="c_panel_profiles">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Profiler</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar en meny där <link linkend="panel_profiles"
+>panelprofiler</link
+> kan sparas och återställas.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Byt paneler</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Den vänstra panelen blir den högra och tvärtom, bara den aktuella fliken byts.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Byt sidor</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Hela den vänstra panelen blir den högra och tvärtom, och alla flikar byts.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Ctrl; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Vertikalt läge</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ändrar <link linkend="list_panel"
+>listpanelen</link
+> mellan horisontellt och vertikalt läge.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Växla till terminalemulator i fullskärmsläge</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sätter på eller stänger av fullskärmsläge för terminalemulatorn. Alternativet är bara tillgängligt när <guilabel
+>Visa terminalemulator</guilabel
+> är aktiverat.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Fönster</guimenu
+> <guimenuitem
+>Spara position</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sparar aktuell storlek och position för &krusader;s huvudfönster. Åtgärden kan automatiseras med <guilabel
+>Spara senaste position, storlek och panelinställningar</guilabel
+> på <link linkend="konfigurator"
+>startsidan</link
+> i Konfigurator.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="settings-menu">
+    <title
+>Menyn Inställningar</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guisubmenu
+>Verktygsrader</guisubmenu
+> <guimenuitem
+>Visa huvudverktygsrad</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visar <link linkend="mainwindow"
+>huvudverktygsraden</link
+> om markerad.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guisubmenu
+>Verktygsrader</guisubmenu
+> <guimenuitem
+>Visa jobbverktygsrad</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visar <link linkend="job_toolbar"
+>jobbverktygsraden</link
+> om markerad.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guisubmenu
+>Verktygsrader</guisubmenu
+> <guimenuitem
+>Visa åtgärdsverkygsrad</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visar <link linkend="actions_toolbar"
+>åtgärdsverktygsraden</link
+> om markerad.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Visa statusrad</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visar <link linkend="mainwindow"
+>statusraden</link
+> om markerad.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Visa funktionstangentfält</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visar <link linkend="fnkeys"
+>funktionstangentfältet</link
+> om markerad.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Visa terminalemulator</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visar <link linkend="cmdline"
+>terminalemulatorn</link
+> om markerad.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Visa kommandorad</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visar <link linkend="cmdline"
+>kommandoraden</link
+> om markerad.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Inställning av kommandokörningsläge</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Låter dig välja kommandokörningsläge. Du kan välja något av följande alternativ.</para>
+	  <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Starta och glöm</guimenuitem
+>: Starta körningen och vänta inte på resultaten.</para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Visa åtskild standard- och felutmatning</guimenuitem
+>: Visa standardutmatning (stdout) och standardfelutmatning (stderr) i åtskilda paneler. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Visa blandad standard- och felutmatning</guimenuitem
+>: Visa standardutmatning (stdout) och standardfelutmatning (stderr) i en enda panel (normalvärdet). </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Starta i en ny terminal</guimenuitem
+>: Kör kommandot i ett nytt terminalfönster. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Skicka till inbäddad terminalemulator</guimenuitem
+>: Skicka kommandot till den inbäddade terminalemulatorn. </para>
+            </listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+      <varlistentry id="job-queue-mode">
+        <term>
+          <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Kötyp för jobb</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ändrar typ i <link linkend="queue"
+>köhanteraren</link
+>. Om markerad startas jobbet omedelbart, även om det finns jobb som kör i kön, när <keycap
+>F2</keycap
+> eller motsvarande knapp i dialogrutan kopiera/flytta används. Om avmarkerad läggs jobbet till i kön om den inte är tom, annars startas jobbet omedelbart. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="configure-shortcuts">
+        <term>
+          <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa genvägar...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <indexterm>
+            <primary
+>Anpassa</primary>
+            <secondary
+>Genvägar</secondary>
+          </indexterm>
+          <para
+>Öppnar en dialogruta som låter dig anpassa &krusader;s snabbtangenter.</para>
+          <para
+>Med knapparna <guibutton
+>Importera genvägar</guibutton
+> och <guibutton
+>Exportera genvägar</guibutton
+> kan du ladda och spara en snabbtangentprofil. Det gör det möjligt för &krusader; att ha snabbtangenter för <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+>, eller dina egna. Den enda begränsningen är att globala snabbtangenter i &plasma; och vissa snabbtangenter i &krusader; inte ännu kan ändras, samt vissa funktioner i Commander-programmen som vi antingen inte har eller inte behöver. Snabbtangenterna lagras i <filename
+>/usr/share/krusader</filename
+>, <filename
+>exempel.keymap.info</filename
+> innehåller en beskrivning, <filename
+>exempel.keymap</filename
+> är en initieringsfil som innehåller snabbtangenterna. Innan &krusader; 1.70.1 var det en binärfil. &krusader; är bakåtkompatibel så att detta föråldrade binärfilformat kan importeras. Om textfilen <filename
+>*.keymap.info</filename
+> finns, öppnas den av &krusader;, och visar ytterligare information om snabbtangentfilen som laddats. Här har du möjlighet att avsluta utan att importerar den föreslagna snabbtangentfilen.</para>
+          <tip>
+            <para
+>En fil med <trademark class="copyright"
+>Total Commander</trademark
+>-snabbtangenter tillhandahålls. <link linkend="help_krusader"
+>Ladda gärna upp dina egna favoritsnabbtangentprofiler</link
+> så att de blir tillgängliga för &krusader;s gemenskap. Tack!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa verktygsrader...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar en dialogruta som låter dig ställa in <link linkend="mainwindow"
+>Huvudverktygsraden</link
+> eller <link linkend="actions_toolbar"
+>Åtgärdsverktygsraden</link
+>. Du kan lägga till åtgärdsknappar för dina <link linkend="useractions"
+>favoritanvändaråtgärder</link
+> i önskad verktygsrad.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa &krusader;...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öppnar <link linkend="konfigurator"
+>Konfigurator</link
+>: &krusader;s inställningscentral.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="help-menu">
+    <title
+>Menyn Hjälp</title>
+    <para
+>Dessutom har &krusader; &kde;:s vanliga alternativ i menyn <guimenu
+>Hjälp</guimenu
+>. För mer information läs avsnittet om <ulink url="help:/fundamentals/menus.html#menus-help"
+>hjälpmenyn</ulink
+> i &kde;:s grunder. </para>
+  </sect1>
+</chapter>

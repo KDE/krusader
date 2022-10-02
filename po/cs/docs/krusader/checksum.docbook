@@ -1,0 +1,54 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="checksum">
+  <title
+>Vytvoření a ověření kontrolního součtu</title>
+  <indexterm>
+    <primary
+>Kontrolní součet</primary>
+  </indexterm>
+  <para
+><menuchoice
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Spočítat kontrolní součet</guimenuitem
+> </menuchoice
+>: &krusader; kontroluje, které nástroje jsou k dispozici a jestli umožňují opětovné operace (například ve vybraných složkách). Kontrolní součet můžete vytvořit výběrem typu kontrolního součtu ze seznamu (<guilabel
+>md5</guilabel
+>, <guilabel
+>sha</guilabel
+> atd.). Kontrolní součet pak můžete uložit do souboru obvykle pojmenovaného <filename
+>kontrolní součet.md5</filename
+> or <filename
+>kontrolní součet.sha1</filename
+>.</para>
+  <para
+><menuchoice
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Ověřit kontrolní součet</guimenuitem
+> </menuchoice
+>: &krusader; kontroluje, jestli je dostupný nástroj podporující typ kontrolního součtu, který je potřeba (pro určený soubor kontrolního součtu) a zobrazuje soubory s chybným kontrolním součtem (jsou-li nějaké).</para>
+  <para
+>Systém rozlišuje různé mechanismy kontrolních součtů a nástroje na kontrolní součty. Nyní jsou podporovány následující kontrolní součty: md5, sha1, sha256, sha224, sha384, sha512, tiger, whirlpool, cfv a crc. Před použitím této funkce, zkontrolujte <link linkend="konfig-dependencies"
+>nastavení nástrojů na kontrolní součty</link
+>.</para>
+</sect1>

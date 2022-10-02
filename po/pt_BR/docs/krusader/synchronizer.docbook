@@ -1,0 +1,826 @@
+<sect1 id="synchronizer">
+  <title
+>Sincronização</title>
+  <indexterm>
+    <primary
+>Sincronização</primary>
+  </indexterm>
+  
+<sect2 id="synchronizer_introduction">
+  <title
+>Introdução</title>
+  <para
+>Esta função compara duas pastas, incluindo todas as subpastas, e mostra as diferenças entre elas. Depois de selecionar algumas opções e a função <guilabel
+>Comparar</guilabel
+>, poderá sincronizar os arquivos e pastas. Um painel poderá ser um servidor de &FTP;. Não se esqueça da opção <guilabel
+>Comparar pelo conteúdo</guilabel
+>, caso o tamanho do arquivo seja igual. Escolha a opção <menuchoice
+> <guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Sincronizar as Pastas</guimenuitem
+> </menuchoice
+> ou <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> para iniciar esta funcionalidade. As <link linkend="konfig-color"
+>cores</link
+> são configuráveis. A sincronização tem as suas próprias <link linkend="synchronizer_keybindings"
+>combinações de teclas</link
+>. </para>
+  <note>
+    <para
+>Para os arquivos locais: A sincronização muda a informação das datas para as datas originais.</para>
+  </note>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>Synchronizer</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="syncdir.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="syncdir.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>Synchronizer: Synchronize files and directories.</phrase
+></textobject>
+  <caption
+><para
+>Synchronizer: Synchronize files and directories.</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+  <figure id="screenshot-syncdir" float="1">
+    <title
+>Sincronização</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="syncdir.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Sincronização</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para>
+  <orderedlist>
+    <title
+>Procedimento:</title>
+    <listitem>
+      <para
+>Indique a <guilabel
+>Pasta da esquerda</guilabel
+> e a <guilabel
+>Pasta da direita</guilabel
+> que deseja comparar.</para>
+    </listitem>
+    <listitem>
+      <para
+>Configure o <guilabel
+>Filtro de Arquivos</guilabel
+> opcional, os <guilabel
+>Filtros Gerais</guilabel
+> e os <guilabel
+>Filtros Avançados</guilabel
+>. Os <guilabel
+>Filtros Gerais</guilabel
+> incluem uma opção <guilabel
+>Não pesquisar em</guilabel
+> que lhe permite excluir pastas da comparação.</para>
+    </listitem>
+    <listitem>
+      <para
+>Defina as <link linkend="synccomp_checkb_options"
+>opções de marcação</link
+>: <guilabel
+>Percorrer as subpastas</guilabel
+>, <guilabel
+>Seguir as ligações simbólicas</guilabel
+>, <guilabel
+>Comparar pelo conteúdo</guilabel
+>, <guilabel
+>Ignorar a Data</guilabel
+>, <guilabel
+>Assimétrico</guilabel
+> e <guilabel
+>Ignorar a Capitalização</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Clique no botão <guibutton
+>Comparar</guibutton
+> para fazer a comparação das pastas.</para>
+    </listitem>
+    <listitem>
+      <para
+>Ao usar o <link linkend="synccomp_show_options"
+>Mostrar as opções</link
+>, você poderá incluir/excluir certos tipos de arquivos. Os arquivos que não estiverem na lista não serão tocados pela sincronização.</para>
+    </listitem>
+    <listitem>
+      <para
+>Se necessário, você poderá alterar as operações das <guilabel
+>Tarefas</guilabel
+>, determinadas pelo Comparador, usando o <link linkend="synccomp_right-click"
+>menu do botão direito do mouse</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Quando concordar com os resultados do <guibutton
+>Comparar</guibutton
+>, clique no botão <guibutton
+>Sincronizar</guibutton
+> para mostrar a janela de sincronização.</para>
+    </listitem>
+    <listitem>
+      <para
+>Depois de selecionar as opções da <link linkend="synchronizer"
+>Sincronização</link
+>, clique no botão <guibutton
+>Iniciar</guibutton
+> para começar o processo de sincronização.</para>
+    </listitem>
+  </orderedlist>
+Está descrita uma explicação detalhada de todas as funções e botões no seguinte texto.</para>
+
+</sect2>
+
+<sect2 id="synchronizer_comparator">
+  <title
+>Comparador</title
+>  
+
+  <variablelist>
+    <varlistentry>
+      <term
+>Elementos do painel</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Pasta da Esquerda</guilabel
+>: A pasta de base do lado esquerdo.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Pasta da Direita</guilabel
+>: A pasta de base do lado direito.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Filtro de Arquivos</guilabel
+>: Filtra os nomes dos arquivos na sincronização. &eg;, o <literal role="extension"
+>*.png</literal
+> seleciona apenas os arquivos cujos nomes terminam em <literal role="extension"
+>.png</literal
+>. As pastas aparecem também se o nome da pasta terminar em <literal role="extension"
+>.png</literal
+> ou se a pasta tiver arquivos que terminem em <literal role="extension"
+>.png</literal
+>. Exemplo de inclusões/exclusões múltiplas: o <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+> inclui o <literal role="extension"
+>*.cpp *.h</literal
+> e exclui o <literal role="extension"
+>*.moc.cpp</literal
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Filtros gerais</guilabel
+>: Procurar por, contendo o texto</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Filtros avançados</guilabel
+>: Tamanho, data, dono</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <variablelist>
+    <varlistentry>
+      <term
+>Critérios de filtragem dos nomes de arquivos</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Você poderá tirar partido dos caracteres especiais. Os vários padrões são separados por espaços (que correspondem ao OU lógico) e os padrões são excluídos da pesquisa com o símbolo da barra vertical. Se o padrão terminar com uma barra (*padrão*/), significa que o padrão diz respeito à pesquisa recursiva das pastas.</para>
+          </listitem>
+          <listitem>
+            <para
+>padrão - corresponde à pesquisa dos arquivos/pastas cujo nome é um padrão, sendo que a pesquisa recursiva vai por todas as subpastas, independentemente do valor do padrão.</para>
+          </listitem>
+          <listitem>
+            <para
+>padrão/ - corresponde a procurar todos os arquivos/pastas, mas onde a pesquisa recursiva percorre/exclui as pastas cujo nome seja um dado padrão.</para>
+          </listitem>
+          <listitem>
+            <para
+>Você poderá usar as aspas para os nomes que contenham espaço. O filtro "Meus Documentos" procura pelos arquivos/pastas cujo nome seja <filename
+>Meus Documentos</filename
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>Exemplos:</para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.o</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.h *.c??</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>* | CVS/ .svn/</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Nota: o termo de pesquisa 'texto' é equivalente ao '*texto*'.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_checkb_options">
+      <term
+>Opções de marcação</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Percorrer as subpastas</guilabel
+>: A Sincronização percorre as subpastas, enquanto faz a comparação.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Seguir as ligações simbólicas</guilabel
+>: A Sincronização segue as ligações simbólicas para as pastas (não os arquivos!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Comparar pelo conteúdo</guilabel
+>: Os arquivos cujos tamanhos sejam iguais irão também ser pesquisados pelo conteúdo.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ignorar a Data</guilabel
+>: Ignora a informação da data (útil para o &FTP;, o SMB, pacotes... ); ela *só* é relevante nos sistemas de arquivos locais.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Assimétrico</guilabel
+>: A <guilabel
+>Pasta da Esquerda</guilabel
+> é a pasta de destino, enquanto a <guilabel
+>Pasta da Direita</guilabel
+> é a pasta de origem. Esta função sincroniza o conteúdo da pasta da esquerda com a da direita. <itemizedlist
+> <listitem
+> <para
+>Os arquivos que existam apenas no lado esquerdo serão excluídos.</para
+> </listitem
+> <listitem
+> <para
+>Os arquivos que existam apenas no lado direito serão copiados para o esquerdo.</para
+> </listitem
+> <listitem
+> <para
+>Os arquivos que sejam considerados iguais não serão alterados.</para
+> </listitem
+> <listitem
+> <para
+>Os arquivos que sejam considerados diferentes serão copiados para a esquerda. Use esta funcionalidade com cuidado!</para
+> </listitem
+> </itemizedlist
+>Esta função é útil se a informação da data for inútil, ou para sincronizar a pasta da esquerda com o conteúdo de um servidor de arquivos (como uma transferência). Em alternativa, é útil fazer uma cópia de segurança da pasta da direita para a esquerda. NOTA: NÃO use esta opção para sincronizar um computador e um portátil (&eg;, os arquivos que existirem apenas no lado esquerdo serão excluídos!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Resultados da Rolagem</guilabel
+>: Isto é usado para os servidores de &FTP; lentos, ... Quando a Sincronização tiver acabado de comparar um arquivo, coloca-o no fim da lista de vez e desloca a janela, caso seja necessário. É importante, caso queira saber o que a Sincronização está fazendo. Se o servidor de &FTP; for lento, a comparação de uma pasta poderá levar bastante tempo. Ao ativar esta opção, você poderá ver se a comparação está "viva", mas lenta. Para os sistemas de arquivos locais, poderá reduzir ligeiramente a velocidade da comparação.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ignorar a Capitalização</guilabel
+>: A comparação dos nomes dos arquivos não fará distinção entre maiúsculas e minúsculas, sendo útil para sincronizar os sistemas de arquivos &Windows;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ignorar os arquivos ocultos</guilabel
+>: Ignora os arquivos que comecem por um ponto.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <para
+>Quando tudo o que foi mencionado acima estiver terminado, clique no botão <guibutton
+>Comparar</guibutton
+> para comparar as pastas, sendo os resultados apresentados na <guilabel
+>Lista de Arquivos</guilabel
+>.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Lista de Arquivos</term>
+      <listitem>
+        <para
+>A <guilabel
+>Lista de Arquivos</guilabel
+> terá as seguintes colunas: "Nome da esquerda | Tamanho da esquerda | Hora da esquerda | Tarefa | Hora da direita | Tamanho da direita | Nome da direita". Aqui você poderá verificar os resultados da comparação e modificar as ações de sincronização, caso seja necessário. A cor do texto define a direção padrão da cópia, de acordo com o comparador. <itemizedlist
+> <listitem
+> <para
+>Verde: Copiar da esquerda para a direita.</para
+> </listitem
+> <listitem
+> <para
+>Azul: Copiar da direita para a esquerda ou apagar do lado direito, no caso do modo assimétrico.</para
+> </listitem
+> <listitem
+> <para
+>Vermelho: Arquivos considerados diferentes pelos critérios indicados (sem direção de cópia).</para
+> </listitem
+> <listitem
+> <para
+>Preto: Arquivos considerados idênticos (sem direção de cópia).</para
+> </listitem
+> </itemizedlist
+> Se fizer duplo-clique num arquivo, irá abrir a função do &krusader; para <guilabel
+>Comparar pelo conteúdo</guilabel
+>. A coluna de Tarefas (&lt;=&gt;) define a direção padrão da cópia, a qual poderá ser modificada pelo usuário, caso seja necessário. A janela dos resultados suporta o arrastamento dos itens para outras janelas ( arrastamento [esquerda], &Shift;+arrastamento [direita] ) e copiar os itens selecionados à esquerda/direita para a área de transferência (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). </para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><guilabel
+>Lista de Arquivos</guilabel
+>: coluna de Tarefas (&lt;=&gt;)</term>
+      <listitem>
+        <para
+>Esta coluna mostra a tarefa que está planejada para a Sincronização, podendo esta tarefa ser modificada com o <link linkend="synccomp_right-click"
+>menu do botão direito do mouse</link
+>.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Copiar do lado esquerdo para o direito. Para as pastas: o <command
+>mkdir</command
+> no lado direito.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: Os arquivos são iguais, sendo que nada será feito.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: O arquivo está excluído, ou então a Sincronização não sabe o que fazer.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: copiar do lado direito para o lado esquerdo. Para as pastas: <command
+>mkdir</command
+> no lado esquerdo</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>DEL</guibutton
+>: apagar os arquivos do lado direito.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_show_options">
+      <term
+>Mostrar as opções</term>
+      <listitem>
+        <para
+>Aqui você poderá incluir/excluir determinados tipos de arquivos. Esses arquivos, não estando na lista, não serão tocados pela sincronização.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Ativar/desativar a tarefa de cópia da esquerda para a direita.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: Ativar/desativar a listagem dos arquivos iguais.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: Ativar/desativar a listagem dos arquivos excluídos / "ação indeterminada".</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: Ativar/desativar a tarefa de cópia da direita para a esquerda.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Lixeira</guibutton
+>: Ativar/desativar a remoção dos arquivos da tarefa do lado esquerdo.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Duplicados</guibutton
+>: Ativar/desativar os arquivos que existam em ambos os lados.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Únicos</guibutton
+>: Ativar/desativar os arquivos que existam apenas num lado.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Botões de ação</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Comparar</guibutton
+>: Compara as pastas, sendo os resultados apresentados na <guilabel
+>Lista de Arquivos</guilabel
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Parar</guibutton
+>: Interrompe a comparação.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Sincronizar</guibutton
+>: Mostra a janela de sincronização.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Fechar</guibutton
+>: Encerra a janela de Sincronização.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>A lista de estado poderá conter</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>O número de pastas analisadas durante a comparação.</para>
+          </listitem>
+          <listitem>
+            <para
+>O nome do arquivo ao comparar pelo seu conteúdo (para os arquivos grandes).</para>
+          </listitem>
+          <listitem>
+            <para
+>O número de arquivos na lista.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_right-click">
+      <term
+>Menu do botão direito na <guilabel
+>Lista de Arquivos</guilabel
+></term>
+      <listitem>
+        <para
+>O menu do botão direito está dividido em três seções:</para>
+        <para
+>1. modificar as operações da <guilabel
+>Tarefa</guilabel
+>, determinadas pelo Comparador. Selecione um ou vários arquivos. A alteração será aplicada na seleção e não só no item selecionado com o botão direito. Se o item selecionado for uma pasta, a alteração será aplicada sobre os seus arquivos/subpastas.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Sincronizar as Pastas</guibutton
+>: Inicia o processo de sincronização.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Excluir</guibutton
+>: Exclui um arquivo/pasta da sincronização (a tarefa muda para != ).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Restaurar a operação original</guibutton
+>: A tarefa muda para o resultado original da comparação.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Direção inversa</guibutton
+>: Muda a tarefa ( -&gt; para &lt;-, e &lt;- para -&gt; ).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Copiar da direita para a esquerda</guibutton
+>: A tarefa muda para &lt;-.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Copiar da esquerda para a direita</guibutton
+>: A tarefa muda para -&gt;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Apagar ( passar a único )</guibutton
+>: A tarefa muda para DEL.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>2. modificar as seleções</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Selecionar os itens</guibutton
+>: Abre uma janela que lhe permite selecionar os itens. Esta é a janela <guimenuitem
+>Selecionar o Grupo</guimenuitem
+> do <link linkend="edit-menu"
+>menu Editar</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Desmarcar os itens</guibutton
+>: Abre uma janela que lhe permite desligar os itens. Esta é a janela <guimenuitem
+>Desmarcar o grupo</guimenuitem
+> do <link linkend="edit-menu"
+>menu Editar</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Inverter a seleção</guibutton
+>: Inverte o estado de selecionado/não-selecionado para todos os itens.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>3. outros (lembre-se que as seguintes operações funcionam no arquivo selecionado com o botão direito e não na seleção).</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Ver o arquivo da esquerda</guibutton
+>: Inicia o visualizador no arquivo do lado esquerdo.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Ver o arquivo da direita</guibutton
+>: Inicia o visualizador no arquivo do lado direito.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Comparar os arquivos</guibutton
+>: Inicia o utilitário de análise de diferenças (&eg;, &kompare;) sobre os arquivos.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Outros botões</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Perfis</guibutton
+>: Se você tiver que sincronizar as mesmas pastas frequentemente, poderá guardar a configuração, &eg;, arquivos a incluir, a excluir, ... Clique no botão <guibutton
+>Perfil</guibutton
+>, para que possa adicionar / carregar / salvar / remover perfis de sincronização.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Trocar os lados</guibutton
+>: Inverte a ordem da <guilabel
+>Lista de Arquivos</guilabel
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Sincronizar com o <application
+>kget</application
+></term>
+      <listitem>
+        <para
+>Se você quiser sincronizar uma pasta local com um servidor &FTP; instável, o <application
+>kget</application
+> é uma solução muito melhor que a simples cópia de arquivos. Depois de comparar, você poderá clicar com o botão direito do mouse na lista de resultados e selecionar a opção <guimenuitem
+>Sincronizar com o KGet</guimenuitem
+> para executar a sincronização, assim os arquivos apresentados serão transferidos com o <application
+>kget</application
+> em vez do &krusader;. Obviamente, o <application
+>kget</application
+> terá que estar instalado no seu computador; caso contrário, a opção não estará disponível.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+ 
+</sect2
+>  
+<sect2 id="synchronizer_synchronization">
+  <title
+>Sincronização</title
+>  
+
+  <para
+>Depois de clicar no botão <guibutton
+>Sincronizar</guibutton
+>, a janela de sincronização irá aparecer.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Opções</term>
+      <listitem>
+        <para
+>Aqui você poderá confirmar as operações de cópia e remoção da Sincronização</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Direita para esquerda</guilabel
+>: copiar os arquivos X1 ( Y1 bytes ) ativar / desativar a cópia da direita para a esquerda.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Esquerda para direita</guilabel
+>: copiar os arquivos X2 ( Y2 bytes ) ativar / desativar a cópia da esquerda para a direita.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Esquerda</guilabel
+>: apagar os arquivos X3 ( Y3 bytes ) ativar / desativar a remoção do lado esquerdo.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Confirmar as sobreposições</guilabel
+>: Ao ativar esta opção, o Krusader irá mostrar a janela para <guibutton
+>renomear, ignorar, sobrepor, ignorar tudo, sobrepor tudo</guibutton
+> antes de substituir qualquer arquivo.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Legendas do estado</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Pronto</guilabel
+>: arquivos A1/A2, B1/B2. Esta linha é alterada na sincronização, mostrando que a sincronização terminou com os arquivos A1 de A2 ( B1 bytes de B2 ).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Barra de progresso</guilabel
+>: Mostra a evolução da sincronização (em 'bytes').</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Botões de ação</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Iniciar</guibutton
+>: Começa o processo de sincronização.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Pausa / Continuar</guibutton
+>: Coloca em pausa/prossegue com o processo de sincronização.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Fechar</guibutton
+>: Fecha a janela de sincronização (e termina a mesma).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Sincronização paralela</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Você poderá indicar o número de 'tarefas fictícias'.</para>
+          </listitem>
+          <listitem>
+            <para
+>Isto poderá aumentar consideravelmente a velocidade na sincronização com os servidores &FTP; lentos.</para>
+          </listitem>
+          <listitem>
+            <para
+>Não afeta a velocidade da sincronização local.</para>
+          </listitem>
+          <listitem>
+            <para
+>A "comparação pelo conteúdo" e a "comparação de pastas" remotas são feitas em paralelo.</para>
+          </listitem>
+          <listitem>
+            <para
+>A sincronização remota também é feita em paralelo, excetuando as tarefas 'mkdir' (esta operação deverá ser feita antes da cópia).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+</sect2>
+</sect1>

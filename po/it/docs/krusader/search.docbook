@@ -1,0 +1,350 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="krusearcher">
+  <title
+>KruSearcher: trova quel che stai cercando</title>
+  <indexterm>
+    <primary
+>Ricerca</primary>
+  </indexterm>
+  <para
+>Benvenuti nel potente modulo di ricerca di &krusader; - chiamato KruSearcher. È lo strumento più efficace (di cui abbiamo conoscenza) per &Linux;, dal momento che consente così tanti modi differenti di trovare rapidamente il file che state cercando. La funzione di ricerca è disponibile anche su file system remoti. Essa è suddivisa in due livelli: generale e avanzata. Diamo un'occhiata alla pagina generale.</para>
+  <figure id="screenshot-search-general" float="1">
+    <title
+>Ricerca generale</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_general.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Ricerca generale</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>La pagina è suddivisa in quattro parti: la parte superiore (cerca), la parte inferiore - dal titolo <guilabel
+>Contiene il testo</guilabel
+>, la parte sinistra - dal titolo <guilabel
+>Cerca in</guilabel
+> e la parte destra, chiamata <guilabel
+>Non cercare in</guilabel
+>. Ovviamente, ciascuna parte gestisce un diverso aspetto della ricerca. Vediamoli più da vicino.</para>
+  <itemizedlist>
+    <title
+>Parte superiore:</title>
+    <listitem>
+      <para
+><guilabel
+>Cerca</guilabel
+>: qui va inserito il criterio di ricerca principale. Puoi inserire il nome di un file, un carattere jolly ( <literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+>, &etc;) oppure entrambi, separati da uno spazio. Inserendo <literal
+>«testo»</literal
+> si ottiene lo stesso risultato che inserendo <literal
+>«*testo*»</literal
+>. Si possono escludere dei file dalla ricerca utilizzando '|' (&eg; <literal role="extension"
+>«*.cpp *.h | *.moc.cpp»</literal
+>) . Puoi usare le virgolette per i nomi che contengono spazi. Il filtro <quote
+>File dei programmi</quote
+> ricerca tutti i file e le cartelle il cui nome è <filename
+>File dei programmi</filename
+>. Dopo aver fatto clic sulla freccia a destra è mostrato un elenco a tendina che ti consente di prelevare alcuni criteri che hai precedentemente inserito.</para>
+      <note>
+          <para
+>È possibile modificare l'elenco dei suggerimenti per il campo <guilabel
+>Cerca</guilabel
+>. Se un elemento non ti è gradito, selezionalo e premi <keycombo action="simul"
+>&Shift;<keycap
+>Canc</keycap
+></keycombo
+>: il suggerimento inutile sarà eliminato. Puoi utilizzare anche i tasti freccia per visualizzare tutta la cronologia del campo <guilabel
+>Cerca</guilabel
+> ed eliminare le voci non necessarie. </para>
+      </note>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Distingui maiuscole</guilabel
+>: deselezionarlo consentirà la ricerca di lettere sia maiuscole che minuscole (&ie;: <literal role="extension"
+>*.c</literal
+> viene interpretato come <literal role="extension"
+>*.c</literal
+> E <literal role="extension"
+>*.C</literal
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Tipo</guilabel
+>: questa casella consente di cercare un file non solo in base al suo nome, ma anche al suo tipo &MIME;. Per esempio, puoi cercare tutti i file audio il cui nome inizi con la lettera «B». Per impostazione predefinita questa opzione è impostata su «tutti i file», ma puoi scegliere di cercare archivi, cartelle, immagini, file di testo, video e file audio.</para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Parti sinistra e destra:</title>
+    <listitem>
+      <para
+><guilabel
+>Cerca in</guilabel
+> e <guilabel
+>Non cercare in</guilabel
+>: Utilizzando queste due parti, puoi indirizzare la ricerca esattamente nel modo desiderato. Per esempio, potresti voler cercare un file nell'intero file system (iniziando da <filename
+>/</filename
+>), ad eccezione della cartella <filename
+>/mnt</filename
+>. Tutto quel che devi fare è scrivere <filename
+>/</filename
+> nella casella <guilabel
+>Cerca in</guilabel
+>, e <filename
+>/mnt</filename
+> nella casella <guilabel
+>Non cercare in</guilabel
+>. Se desideri inserire più di una cartella in una di queste due caselle, sarà sufficiente selezionare il primo nome e premere &Enter;. Il nome della cartella sarà copiato nella casella più grande e potrai così inserire un ulteriore nome. <note
+> <para
+>L'inserimento del testo è aiutato da una funzione di completamento automatico, secondo le impostazioni globali di &plasma;. Se lo desideri, puoi fare clic sull'<guiicon
+>icona della cartella</guiicon
+> e sfogliare fino a giungere alla cartella che desideri aggiungere.</para>
+      </note>
+      <note>
+          <para
+>È possibile definire file e cartelle che saranno escluse dai risultati della ricerca utilizzando il campo di digitazione <guilabel
+>Escludi nomi delle cartelle</guilabel
+> che si trova sotto la casella <guilabel
+>Non cercare in</guilabel
+>.</para>
+          <para
+>Gli elementi dell'elenco da filtrare devono essere separati da spazi.</para>
+          <para
+>Gli spazi negli elementi dell'elenco da filtrare possono essere con carattere di escape o tra virgolette. Esempio: <userinput
+>.git "target build" build\ krusader</userinput
+></para>
+      </note
+></para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Parte inferiore:</title>
+    <listitem>
+      <para
+><guilabel
+>Testo</guilabel
+>: il testo inserito qui viene cercato da &krusader; all'interno dei file ( <command
+>grep</command
+>). In questo modo puoi cercare tutti i file header ( <literal role="extension"
+>*.h</literal
+>) che contengono il testo <literal
+>«testing 123»</literal
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Interruttore <guilabel
+>Espressione regolare</guilabel
+>: attiva o disattiva la modalità espressione regolare. Facendo clic sul pulsante freccia in basso viene visualizzato un elenco a discesa che ti consente di inserire i caratteri speciali per le espressioni regolari. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Codifica</guilabel
+>: ti permette di scegliere la codifica del testo. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Solo parole intere</guilabel
+>: ti consente di specificare che deve essere trovata la corrispondenza esatta (lettere e lunghezza). </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Distingui maiuscole</guilabel
+>: si riferisce al fatto che il testo va cercato in maiuscolo e in minuscolo oppure nell'esatto modo in cui è stato digitato.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Cerca nelle sottocartelle</guilabel
+>: esegue una ricerca ricorsiva ed entra in tutte le cartelle che incontra lungo il percorso.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Cerca negli archivi</guilabel
+>: &krusader; cercherà i file all'interno di tutti i formati di archivio supportati. Ciò comporterà un tempo di ricerca maggiore. <note
+> <para
+>Se selezioni questa casella non sarai più in grado di eseguire il comando<command
+>grep</command
+> all'interno dei file. Ciò può essere utile dato che la ricerca all'interno dei file contenuti in archivi richiede che &krusader; ne esegua l'estrazione, operazione che può rendere la ricerca estremamente lenta.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Segui collegamenti</guilabel
+>: se selezionata, &krusader; seguirà i collegamenti simbolici incontrati durante la ricerca.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Profili</guilabel
+>: se hai necessità di eseguire periodicamente la stessa operazione di ricerca, puoi salvare le impostazioni di ricerca: &eg; quali file includere, quali file escludere, &etc;... Fai clic sul pulsante «profilo» per aggiungere, caricare, salvare o rimuovere profili di ricerca.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Ricerca negli appunti</guilabel
+>: se selezionata, &krusader; inserirà il testo della ricerca negli appunti quando un file ricercato e trovato viene aperto.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>La schermata riprodotta qui sotto mostra una ricerca di tutti i file che terminano con <literal role="extension"
+>c, cpp</literal
+> oppure <literal role="extension"
+>h</literal
+> e contengono il testo <literal
+>«testing 123»</literal
+>. &krusader; eseguirà la ricerca in <filename class="directory"
+>/root, /opt, /bin</filename
+> e <filename class="directory"
+>/usr</filename
+>, ma non in <filename class="directory"
+>/usr/lib</filename
+> e <filename class="directory"
+>/usr/share</filename
+>.</para>
+  <para
+>Un clic sul pulsante <guibutton
+>Cerca</guibutton
+> avvia la ricerca e visualizza la pagina dei risultati. Durante la ricerca puoi premere il pulsante <guibutton
+>Interrompi</guibutton
+> per arrestare l'operazione. Il pulsante <guibutton
+>Chiudi</guibutton
+> è disabilitato durante la ricerca, quindi è necessario prima interrompere la ricerca e quindi premere <guibutton
+>Chiudi</guibutton
+> per chiudere la finestra. Quando viene trovato un risultato, un doppio-clic su di esso farà puntare il pannello attivo di &krusader; sui file trovati - senza chiudere la finestra di ricerca, così che potrai fare clic su un altro risultato.</para>
+  <para
+>A volte è necessario restringere la ricerca ancora di più. KruSearcher consente una ricerca molto più precisa: diamo un'occhiata alla <guilabel
+>pagina Avanzate</guilabel
+>...</para>
+  <figure id="screenshot-search-advanced" float="1">
+    <title
+>Ricerca avanzata</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_advanced.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Ricerca avanzata</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Questa schermata mostra una ricerca di file la cui dimensione sia compresa tra 10 KB e 150 KB, che siano stati modificati tra il 10 ottobre e il primo novembre, che appartengano a un utente del gruppo «nobody» e che siano leggibili e scrivibili da qualsiasi utente del gruppo «nobody», ma per il resto del mondo solo leggibili.</para>
+  <para
+>La pagina Avanzate è suddivisa in tre parti: dimensione, data e proprietà.</para>
+  <para>
+    <emphasis role="bold"
+>Dimensione</emphasis>
+  </para>
+  <para
+>Ti consente di scegliere le dimensioni del file che stai cercando. Selezionando le caselle di spunta puoi cercare un file più grande di X byte (o KB, MB) o più piccolo di Y byte oppure, selezionando entrambe le caselle di spunta, un file la cui dimensione sia più grande di X ma minore di Y.</para>
+  <para>
+    <emphasis role="bold"
+>Data</emphasis>
+  </para>
+  <para
+>Questa parte offre tre differenti modi per definire un criterio basato sulla data: <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Modificato tra</guilabel
+>: consente di inserire due date. &krusader; cercherà i file la cui data di modifica sia compresa tra la prima e la seconda data inserite, incluse le date medesime. <note
+> <para
+>Puoi fare clic sull'icona della data (a fianco delle caselle di inserimento) per aprire una finestra di selezione della data che ti consentirà di sfogliare con comodità il calendario per cercare la data desiderata. Facendo clic su una data la finestra verrà chiusa e la data selezionata comparirà nella casella di inserimento.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Non modificato dopo il</guilabel
+>: scegliere questa opzione comporta che &krusader; cerchi i file che NON sono stati modificati dopo una certa data, ottenendo lo stesso risultato di una ricerca dei file più vecchi di quella data.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Modificato negli ultimi/non modificato negli ultimi</guilabel
+>: in queste caselle non va inserita una data, ma un numero. Esso rappresenta i giorni, le settimane, i mesi (secondo la selezione operata nella vicina casella a discesa). Inserire il numero 5 nella casella superiore fa sì che &krusader; cerchi i file modificati negli ultimi 5 giorni. Inserire il numero 2 nella casella inferiore fa sì che &krusader; cerchi i file che NON sono stati modificati negli ultimi 2 giorni. La combinazione di entrambi determina la ricerca di file che sono stati modificati negli ultimi 5 giorni, ma NON negli ultimi 2.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para>
+    <emphasis role="bold"
+>Proprietà</emphasis>
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Appartiene all'utente/gruppo</guilabel
+>: selezionando le caselle corrispondenti, puoi cercare i file che appartengono ad un certo utente e, o in alternativa, gruppo, rispettivamente. La casella a discesa mostra l'elenco di tutti gli utenti e i gruppi esistenti nel sistema: è sufficiente sceglierne uno e proseguire.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Permessi</guilabel
+>: diviso in proprietario, gruppo e tutti, ti consente di indicare i permessi del file. Puoi scegliere di specificare i permessi del proprietario, del gruppo, di tutti, o qualsiasi combinazione. Il punto interrogativo (?) è un carattere jolly, che indica che qualsiasi permesso è valido.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Per spiegare meglio, la schermata qui sopra (parte dei permessi) descrive una ricerca di file che appartengono a qualsiasi utente nel gruppo «users», che siano leggibili, scrivibili ma non eseguibili per qualsiasi utente nel gruppo, che siano leggibili ma non scrivibili né eseguibili per il resto del mondo e che abbiano permessi sconosciuti per il proprietario.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Risultati</emphasis>
+  </para>
+  <para
+>Facendo clic sul pulsante <guibutton
+>Cerca</guibutton
+> si avvia la ricerca e viene visualizzata la finestra Risultati. Qui puoi vedere l'avanzamento e i risultati dell'operazione di ricerca. Puoi interrompere la ricerca in corso quando vuoi, per mezzo del pulsante <guibutton
+>Interrompi</guibutton
+>. Nell'elenco dei risultati seleziona il file e usa <keycap
+>F3</keycap
+>/ <keycap
+>F4</keycap
+> per visualizzarlo/modificarlo oppure usa il menu contestuale. Facendo clic su un elemento trovato, verrà modificata la cartella del pannello attivo se l'elemento selezionato non si trova nella cartella attuale del pannello. La finestra dei risultati supporta il trascinamento degli elementi verso altre finestre e la copia negli appunti (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). Quando chiudi la finestra KruSearcher, l'elemento selezionato viene selezionato nel pannello attivo.</para>
+  <para>
+    <emphasis role="bold"
+>Aggiungi alla lista</emphasis>
+  </para>
+  <para
+>Facendo clic sul pulsante <guibutton
+>Aggiungi alla lista</guibutton
+> una volta che i risultati sono stati visualizzati verrà richiesto un nome per la ricerca, che sarà utilizzato nella scheda Risultati nel pannello Elenco che contiene i risultati della ricerca. Puoi fare ciò che vuoi sui file nella nuova scheda. La barra dell'indirizzo mostrerà qualcosa come: <filename
+>virt:/Risultati della ricerca 1</filename
+>.</para>
+  <warning>
+    <para
+>I file nella scheda Risultati sono realmente i file originali: se elimini un file, esso verrà davvero rimosso!</para>
+  </warning>
+</sect1>

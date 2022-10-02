@@ -1,0 +1,3507 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="krviewer">
+  <title
+>KrViewer: interne weergave-bewerkingsprogramma van &krusader;</title>
+  <indexterm>
+    <primary
+>Weergaveprogramma</primary>
+    <seealso
+>Bewerkingsprogramma</seealso>
+  </indexterm>
+  <para
+>Op &Enter; drukken op een geselecteerd bestand <emphasis
+>opent het bestand met het bijbehorende programma</emphasis
+>. De editor-viewer heeft tabs, deze zijn instelbaar in de <link linkend="konfig-general"
+>Konfigurator algemeen pagina</link
+></para>
+  <sect2 id="krview">
+    <title
+>Weergaveprogramma</title>
+    <para
+>Om een bestand zo snel mogelijk overeenkomstig zijn type te kunnen bekijken, plaats het onder de cursor en drukt op <keycap
+>F3</keycap
+>. &krusader;'s interne viewer is eigenlijk een onderdeel van &konqueror;, en kan eigenlijk de inhoud van elk bestandstype laten zien dat &konqueror; kan tonen (&eg; afbeeldingen tonen, muziek afspelen, de inhoud van een archief laten zien). Dit heet de 'Algemene weergave', waarvoor u de &MIME;-types moet instellen.</para>
+    <para
+>De viewer werkt als volgt: <itemizedlist
+> <listitem
+> <para
+>het probeert het bestand te tonen met de <emphasis
+>'Algemene weergave'.</emphasis
+></para
+> </listitem
+> <listitem
+> <para
+>Als het bestandstype (&MIME;-type) niet kan worden vastgesteld of als een bestand (&eg; een binary) geen bijbehorende actie heeft, dan wordt de 'Algemene weergave' uitgeschakeld. Het bestand wordt dan behandelt als een tekstbestand, wat dan de <emphasis
+>'Tekstweergave'</emphasis
+> is.</para
+> </listitem
+> <listitem
+> <para
+>De gebruiker kan omschakelen in het <link linkend="kredit_krviewer_menu"
+>KrViewer menu</link
+> tussen: 'Algemene weergave' (indien beschikbaar), 'Tekstweergave' en <emphasis
+>'Hex weergave'</emphasis
+>.</para
+> </listitem
+> </itemizedlist
+>U kunt de standaard weergave mode instellen in het <link linkend="konfig-general"
+>Konfigurator algemeen pagina</link
+> .</para>
+    <para
+><keycombo action="simul"
+>&Shift; <keycap
+>F3</keycap
+></keycombo
+> toont op verzoek een &URL;, &eg;: <itemizedlist>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+> </userinput
+>toont de manpages.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+><replaceable
+>krusader</replaceable
+> </userinput
+>toont manpage van &krusader;.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>info:/</command
+> </userinput
+>toont de infopages.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>https://</command
+><replaceable
+>krusader.sourceforce.net/</replaceable
+> </userinput
+>toont een webpagina.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>ftp://</command
+><replaceable
+>ftp.kde.org/pub/kde/</replaceable
+> </userinput
+>toont een &FTP; server.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>sftp://</command
+><replaceable
+>sftp.foo/</replaceable
+> </userinput
+>toont een beveiligde &FTP; server.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>file:/</command
+><replaceable
+>home/frank</replaceable
+> </userinput
+>toont de thuismap van Frank.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>tar:/</command
+><replaceable
+>home/frank/archive.tar.gz/</replaceable
+> </userinput
+>opent een venster met de inhoud van het archief <literal role="extension"
+>tar.gz</literal
+>.</para>
+      </listitem>
+    </itemizedlist
+></para>
+    <para
+>KrViewer kan de volgende menus hebben: <link linkend="katepart-menu-file"
+>Bestand</link
+>, <link linkend="katepart-menu-edit"
+>Bewerken</link
+>, <link linkend="katepart-menu-view"
+>Weergave</link
+>, <link linkend="katepart-menu-settings"
+>Instellingen</link
+> en <link linkend="kredit_krviewer_menu"
+>Krviewer</link
+>, afhankelijk van welk bestandstype wordt getoond. Ze worden beschreven in <link linkend="kredit"
+>sectie bewerkingen</link
+>. De interne viewer kan links in &HTML; pagina´s volgen. Met <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>E</keycap
+></keycombo
+> kan de viewer &krusader;'s interne editor (wat in feite hetzelfde programma is) starten.</para>
+    <note>
+      <para
+>De interne viewer is niet door ons geschreven, maar wordt aangeleverd via &kf5; en KIO Slaves. We kunnen en willen het niet veranderen, het gebruik van deze bibliotheken vermindert de hoeveelheid geschreven code. Daardoor hoeven we niet het wiel opnieuw uit te vinden ;-)</para>
+    </note>
+  </sect2>
+  <sect2 id="kredit">
+    <title
+>Editor</title>
+    <indexterm>
+      <primary
+>Bewerkingsprogramma</primary>
+    </indexterm>
+    <para
+>&krusader;'s interne editor heeft bijna alles wat u van een editor kan verwachten. Bewerken is vergelijkbaar met kijken maar dan met de toets <keycap
+>F4</keycap
+>. De standaard editor is &krusader;'s interne editor. U kunt de standaard editor wijzigen in de <link linkend="konfig-general"
+>Konfigurator algemeen pagina</link
+>, als een externe editor uw voorkeur heeft.</para>
+    <tip>
+      <para
+>Als u de interne editor van &krusader;voor de eerste keer gebruikt, dan is het een aanbeveling om elke sectie van <link linkend="katepart-menu-settings"
+>Instellingen</link
+> menu, te bestuderen en naar wens aan te passen.</para>
+    </tip>
+  </sect2>
+  <sect2 id="kredit_menus">
+    <title
+>Overzicht menu</title>
+
+<!--mostly brought in from kwrite-->
+<para
+>De menu's en menu-items zijn verschillend in de eenvoudige en de geavanceerde modus. U activeert de geavanceerde modus door in de sectie <guilabel
+>Uiterlijk</guilabel
+> van de &kappname;-instellingen een vinkje te plaatsen bij de optie <link linkend="katepart-appearance"
+>Modus voor ervaren gebruikers activeren (&kde; 3 modus)</link
+>.</para>
+
+<sect3 id="katepart-menu-file">
+<title
+>Het menu Bestand</title>
+
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-save">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Opslaan</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Slaat het huidige document op. Indien dit bestand al eerder is opgeslagen met deze naam, dan zal het bestand zonder verdere vragen worden opgeslagen. Indien dit de eerste keer is dat een nieuw document wordt opgeslagen zal het dialoogvenster "opslaan als" worden getoond. Dit venster wordt hieronder verder beschreven. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-save-as">
+<menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Opslaan als...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Hiermee kunt u een document met een nieuwe bestandsnaam opslaan.  </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-reload">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>F5</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Herladen</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Laadt het actieve bestand opnieuw van de schijf. Deze opdracht is nuttig wanneer een ander programma of proces het bestand heeft gewijzigd terwijl u het open hebt staan in &kappname;. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-print">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Afdrukken...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Opent het afdrukvenster waarin u kunt aangeven wat, waar en hoe er afgedrukt moet worden. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+> <!-- from plugin Exporter -->
+<term id="katepart-menu-export-as-html">
+<menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Als &HTML; exporteren</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Exporteer uw bestand in &HTML;-formaat zodat uw document als webpagina kan worden bekeken. Dit item wordt alleen getoond wanneer de plug-in <guilabel
+>Exporter</guilabel
+> is geladen. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect3>
+
+<sect3 id="katepart-menu-edit"
+> <!-- This is also valid for kates menu edit-->
+<title
+>Het menu Bewerken</title>
+
+<variablelist>
+<varlistentry>
+<term id="katepart-menu-undo"
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Ongedaan maken</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Dit wordt gebruikt om de meest recente handeling of bewerking van de gebruiker op te heffen of terug te draaien. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-redo"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Opnieuw</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Dit draait de gevolgen van "Ongedaan maken" weer terug.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-cut"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Knippen</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Deze opdracht verwijdert de huidige selectie nadat de inhoud gekopieerd is naar het klembord. Het klembord is een hulpmiddel dat het mogelijk maakt gegevens te kopiëren tussen toepassingen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-copy"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Kopiëren</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Deze opdracht kopieert de huidige selectie naar het klembord zodat die elders kan worden geplakt. Het klembord is een hulpmiddel dat het mogelijk maakt gegevens te kopiëren tussen toepassingen.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-paste"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Plakken</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Deze opdracht plakt de inhoud van het klembord op de plaats van de cursor. Het klembord is een hulpmiddel dat het mogelijk maakt gegevens te kopiëren tussen toepassingen.</para>
+</listitem>
+</varlistentry>
+<varlistentry
+><!-- from plugin Exporter -->
+<term
+><anchor id="katepart-menu-copy-as-html"/><menuchoice
+><guimenu
+>Bewerken</guimenu
+><guimenuitem
+>Als &HTML; kopiëren</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Kopieert de geselecteerde tekst naar het klembord als &HTML;. Dit item wordt alleen getoond wanneer de plugin <guilabel
+>Exporter</guilabel
+> is geladen. </para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-select-all"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Bewerken</guimenu
+><guimenuitem
+>Alles selecteren</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Dit selecteert het hele document. Op deze manier kunt u op een handige manier alle tekst kopiëren naar een andere toepassing.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-deselect"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Selecteren ongedaan maken</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Als er tekst in de editor geselecteerd is, wordt de selectie opgeheven.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-block-selection-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Modus blokselectie</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Wisselt van selectiemodus. Wanneer de selectiemodus <guilabel
+>BLOK</guilabel
+> is, kunt u verticaal selecteren, &eg; selecteer kolom 5 tot 10 in regel 9 tot 15. De statusbalk toont de huidige staat van de selectiemodus, of <guilabel
+>BLOK</guilabel
+> of <guilabel
+>REGEL</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-vi-input-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Meta;&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+><guimenuitem
+>VI-invoermethode</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Schakel over naar een vi-achtige modale invoermethode. Deze modus ondersteunt de meestgebruikte opdrachten en bewegingen van vims normale en visuele modus en heeft een optionele vi-modus statusbalk. Deze statusbalk toont opdrachten terwijl ze worden ingevoerd, uitvoer van opdrachten en de huidige modus. Het gedrag van deze modus kan aangepast worden op het tabblad <link linkend="katepart-pref-edit-vi-input-mode"
+>Vi-Invoermethode</link
+> in de sectie <guilabel
+>Bewerking</guilabel
+> van het venster &kappname;-instellingen.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-overwrite-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ins;</keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Overschrijfmodus</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Schakelt de overschrijfmodus in of uit. Wanneer de modus <guilabel
+>INS</guilabel
+> is, worden tekens ingevoegd op de plaats van de cursor.  Wanneer de modus <guilabel
+>OVR</guilabel
+> is, zullen de tekens die u typt de huidige tekens rechts van de cursor vervangen. De statusbalk toont de huidige status van de overschrijfmodus, of <guilabel
+>INS</guilabel
+> of <guilabel
+>OVR</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-find"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Zoeken</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Dit opent de zoekbalk onder in het venster van de editor. Links in de balk bevindt zich een knop met een pictogram om de balk te sluiten, gevolgd door een klein invoerveld voor het opgeven van het zoekpatroon.</para>
+<para
+>Het zoeken begint onmiddellijk nadat u de eerste letters van uw zoekpatroon intypt. Als er een overeenkomst is in de tekst, wordt deze gemarkeerd en verandert de achtergrondkleur van de invoer in lichtgroen. Als er geen overeenkomst gevonden wordt in de tekst wordt dit aangegeven door een lichtrode achtergrondkleur van het invoerveld en u ziet <guilabel
+>Niet gevonden</guilabel
+> verschijnen rechts in de balk.</para>
+<para
+>Gebruik de knop <guilabel
+>Volgende</guilabel
+> of <guilabel
+>Vorige</guilabel
+> om naar de volgende of vorige overeenkomst in het document te springen.</para>
+<para
+>U kunt kiezen of bij het zoeken rekening gehouden moet worden met hoofdletters of kleine letters. Kiest u <guilabel
+>Onderscheid hoofd/kleine letters</guilabel
+>, dan krijgt u als resultaat alleen de tekst die precies overeenkomt met het zoekpatroon. </para>
+<para
+>Klik op de knop met de groene pijl rechts van de zoekbalk om over te schakelen naar het venster geavanceerd zoeken en vervangen. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-find-again"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F3</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Volgende zoeken</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Hiermee herhaalt u de laatste zoekhandeling, indien aanwezig, zonder de zoekbalk te activeren. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-previous">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift;<keycap
+>F3</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Vorige zoeken</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Hiermee herhaalt u de laatste zoekhandeling, indien aanwezig, zonder de zoekbalk te activeren, waarbij achterwaarts in plaats van voorwaarts gezocht wordt in het document. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-replace"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Vervangen</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Deze opdracht opent het venster "geavanceerd zoeken en vervangen". Links boven in het venster bevindt zich de knop met een pictogram om het venster te sluiten, gevolgd door een klein tekstinvoerveld om het zoekpatroon in te voeren.</para>
+<para
+>U kunt de zoekmodus aanpassen door uit de lijst te kiezen voor <guilabel
+>Platte tekst</guilabel
+>, <guilabel
+>Hele woorden</guilabel
+>, <guilabel
+>Escape sequences</guilabel
+>  of <guilabel
+>Reguliere expressie</guilabel
+>. </para>
+<para
+>Als <guilabel
+>Escape sequences</guilabel
+> of <guilabel
+>Reguliere expressie</guilabel
+> geselecteerd is,  zal het menu-item<guibutton
+>Toevoegen...</guibutton
+> onderaan het contextmenu van de tekstinvoervelden geactiveerd worden. Hierdoor kunt u escape sequences of reguliere expressie-items toevoegen aan het zoek- of vervangpatroon vanuit voorgedefinieerde lijsten.</para>
+<para
+>Gebruik de knop <guilabel
+>Volgende</guilabel
+> of <guilabel
+>Vorige</guilabel
+> om naar de volgende of vorige overeenkomst in het document te springen.</para>
+<para
+>Typ de vervangende tekst in in het tekstinvoerveld met de naam <guilabel
+>Vervangen</guilabel
+> en klik op de knop <guibutton
+>Vervangen</guibutton
+> om alleen de geaccentueerde tekst te vervangen, of de knop <guibutton
+>Alles vervangen</guibutton
+> om de gezochte tekst in het hele document te vervangen. </para>
+<para
+>U kunt het gedrag van zoeken en vervangen wijzigen door onderin verschillende opties te kiezen. Het kiezen van <guilabel
+>Onderscheid hoofd/kleine letters</guilabel
+> resulteert in alleen die tekenreeksen waarvan elke letter overeenkomt met de hoofdletter of kleine letter zoals opgegeven in de zoekopdracht. <guilabel
+>Alleen selectie</guilabel
+> zal alleen binnen de huidige selectie zoeken en vervangen. De knop <guilabel
+>Alles zoeken</guilabel
+> accentueert alle overeenkomsten in het document en toont het aantal gevonden resultaten in een klein popup-venster. </para>
+<para
+>Klik op de knop met de groene pijl rechts in het venster zoeken en vervangen om over te schakelen naar het venster zoeken. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Selectie zoeken</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Vindt het volgende stuk geselecteerde tekst.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected-backwards">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Selectie achterwaarts zoeken</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Vindt het vorige stuk geselecteerde tekst.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-go-to-line">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Ga naar regel</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Dit opent onderaan het venster de balk Ga naar regel, waarmee u de cursor een sprong kunt laten maken naar een bepaalde regel (door een getal op te geven) in het document. U kunt het regelnummer direct invoeren in het tekstinvoerveld of u kunt klikken op de pijltjes naar boven en beneden naast het tekstinvoerveld. Het pijltje naar boven verhoogt het regelnummer, en het pijltje naar beneden verlaagt het. U sluit de balk door te klikken op de knop met het pictogram links op de balk. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-view">
+<!-- This is also valid for kates menu view, but kate does not have the New Window item -->
+<title
+>Het menu Beeld</title>
+
+<para
+>Met het menu <guimenu
+>Beeld</guimenu
+> kunt u instellingen wijzigen die specifiek voor de actieve editor gelden en u kunt frames manipuleren.</para>
+
+<variablelist>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-new-window"/>
+<menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Nieuw venster</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Maak een nieuw venster aan met het huidige document als inhoud. Alle wijzigingen in het document in het ene venster worden meegenomen in het andere en vice versa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-command-line"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F7</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Omschakelen naar opdrachtregel</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Toont de commandoregel van Katepart onderaan het venster. Typ <userinput
+>help</userinput
+> op de commandoregel om hulp te krijgen en <userinput
+>help list</userinput
+> voor een lijst met commando's.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Het JavaScriptconsole tonen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Dit opent een hulpmiddelweergave die u in staat stelt om Javascript-code interactief uit te voeren. Voor meer informatie, zie <ulink url="help:/katepart/advanced-editing-tools-scripting.html"
+>&kate; met scripts uitbreiden</ulink
+>. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-schema"/>
+<menuchoice
+><guimenu
+>Beeld</guimenu
+> <guisubmenu
+>Schema</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Kies een lettertypeschema.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap"/>
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F10</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Dynamische regelafbreking</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>De regels zullen afgebroken worden bij de rechter vensterrand van de editor.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap-indicators"/>
+<menuchoice
+><guimenu
+>Beeld</guimenu
+> <guisubmenu
+>Dynamische regelafbreking</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+ <para
+>Kies wanneer en hoe de dynamische-regelafbreking-indicators moeten worden getoond. Dit is alleen beschikbaar wanneer de optie <guilabel
+>Dynamische regelafbreking</guilabel
+> is aangevinkt.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-static-word-wrap"/>
+<menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Statische markering regelafbreking tonen</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Wanneer deze optie is aangevinkt, verschijnt er een verticale lijn in de regelafbrekingkolom zoals gedefinieerd op het tabblad Bewerking van de <menuchoice
+> <guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Editor instellen</guimenuitem
+></menuchoice
+>. Merk op dat de regelafbrekingmarkering alleen getoond wordt wanneer u een niet-proportioneel lettertype gebruikt.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-icon-border"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F6</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Pictogramrand tonen</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Dit is een wisselitem. Als het is aangevinkt wordt de pictogramrand zichtbaar links van de actieve editor, en vice versa. De pictogramrand geeft de posities aan van de markeerde regels in de bewerker.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-line-numbers"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F11</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Regelnummering tonen</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Dit is een wisselitem. Als het is aangevinkt verschijnt er aan de linkerkant van de actieve editor een paneel waarin de regelnummers van het document worden getoond, en vice versa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-scrollbar-marks"/>
+<menuchoice
+><guimenu
+>Beeld</guimenu
+> <guisubmenu
+>Schuifbalkmarkeringen tonen</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Wanneer deze optie geactiveerd is, worden in de huidige weergave markeringen getoond op de verticale schuifbalk. Deze markeringen zijn gelijk aan de markeringen op de <link linkend="katepart-menu-view-show-icon-border"
+>Pictogramrand</link
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-hide-folding-markers"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F9</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Invouwmarkeringen tonen</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Wanneer deze optie geactiveerd is, worden de markeringen voor in-/uitvouwen van code getoond.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-code-folding"/>
+<menuchoice
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Code invouwen</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Deze opties behoren bij <ulink url="help:/katepart/advanced-editing-tools-code-folding.html"
+>code invouwen</ulink
+>.</para>
+<variablelist>
+
+<varlistentry id="view-show-folding-markers">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F9</keycap
+> </keycombo
+> </shortcut
+> <guimenuitem
+>Invouwmarkeringen tonen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Schakelt het tonen van het paneel voor invouwen in/uit aan de linkerzijde van de weergave.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>Huidige node invouwen</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Vouw het gebied dat de cursor bevat in.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-unfold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>Huidige node uitvouwen</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Vouw het gebied dat de cursor bevat uit.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-toplevel-nodes">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenuitem
+>Bovenste nodes invouwen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Vouw alle gebieden van het bovenste niveau in het document in. Klik op het naar rechts wijzende driehoekje om alle gebieden op het hoogste niveau uit te vouwen.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenuitem
+>Lettertekens vergroten</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Dit vergroot de lettertekens die getoond worden.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenuitem
+>Lettertekens verkleinen</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Dit verkleint de lettertekens die getoond worden.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-go"
+><!-- This is also valid for kates menu bookmarks-->
+<title
+>Menu Bladwijzers</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-set-bookmark">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bladwijzers</guimenu
+> <guimenuitem
+>Bladwijzer instellen</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Er wordt een bladwijzer ingesteld of verwijderd in de huidige regel van het actieve document. (Als er een bladwijzer aanwezig is, wordt die verwijderd, anders wordt er een ingesteld). </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-clear-bookmarks">
+<menuchoice
+><guimenu
+>Bladwijzers</guimenu
+> <guimenuitem
+>Alle bladwijzers verwijderen</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Deze opdracht verwijdert alle bladwijzers uit het document evenals de lijst met bladwijzers die onderaan dit menu-item hangt. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-previous">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt; &PgUp;</keycombo
+></shortcut
+> <guimenu
+>Bladwijzers</guimenu
+><guimenuitem
+>Vorige</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Hiermee verplaatst u de cursor naar het begin van de regel met de eerste bovenliggende bladwijzer. In de tekst van het menu-item staat het regelnummer en het eerste stuk tekst op die regel. Dit item is alleen beschikbaar wanneer er een bladwijzer in een regel boven de cursor bestaat.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-next">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt; &PgDn;</keycombo
+></shortcut
+> <guimenu
+>Bladwijzers</guimenu
+><guimenuitem
+>Volgende</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Hiermee verplaatst u de cursor naar het begin van de volgende regel met een bladwijzer. In de tekst van het menu-item staat het regelnummer en het eerste stuk tekst op die regel. Dit item is alleen beschikbaar wanneer er een bladwijzer in een regel onder de cursor bestaat.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Als er bladwijzers beschikbaar zijn voor dit venster, verschijnt er onderaan dit menu een lijst met bladwijzers. </para>
+
+</sect3>
+
+<!-- This is also valid for kates menu tools, kate has additional items:
+Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at top-->
+<sect3 id="katepart-menu-tools">
+<title
+>Het menu Hulpmiddelen</title>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-read-only"/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Alleen lezen</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Stel het huidige document in op Alleen lezen. Dit voorkomt dat er tekst wordt toegevoegd of wijzigingen in de opmaak worden aangebracht.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-filetype"/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guisubmenu
+>Modus</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Kies het gewenste bestandstype voor het actieve document. Dit overschrijft alleen voor het huidige document het globale bestandstype ingesteld bij <menuchoice
+> <guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Editor instellen</guimenuitem
+></menuchoice
+> op het tabblad Bestandstypen in de sectie Openen/opslaan.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-highlighting"/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+> <guisubmenu
+>Accentuering</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Kies het gewenste accentueringsschema voor het actieve document. Dit overschrijft alleen voor het huidige document de globale accentueringregels ingesteld bij <menuchoice
+> <guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Editor instellen</guimenuitem
+></menuchoice
+>.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-indentation"/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Inspringen</guimenuitem
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Kies de gewenste manier van inspringen voor het actieve document. Dit overschrijft alleen voor het huidige document de globale inspringmodus ingesteld bij <menuchoice
+> <guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Editor instellen</guimenuitem
+></menuchoice
+>.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-encoding"/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Codering</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>U kunt de standaardcodering, ingesteld bij <menuchoice
+><guimenu
+>Instellingen</guimenu
+><guimenuitem
+>Editor instellen...</guimenuitem
+></menuchoice
+> in de pagina <guilabel
+>Openen/opslaan</guilabel
+> om een andere codering in te stellen voor het huidige document. De codering die u hier instelt zal alleen gelden voor het huidige document.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-end-of-line"/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+> <guisubmenu
+>Regeleinde</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Kies de gewenste regeleindemodus voor het actieve document. Dit overschrijft alleen voor het huidige document de globale einderegelmodus ingesteld bij <menuchoice
+> <guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Editor instellen</guimenuitem
+></menuchoice
+>.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-add-byte-mark-order"/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+> <guisubmenu
+>Bytevolgordemarkering (BOM) toevoegen</guisubmenu
+></menuchoice
+></term>
+ <listitem>
+<para
+>Door deze actie aan te vinken kunt u expliciet een bytevolgordemarkering voor in unicode gecodeerde documenten toevoegen. De bytevolgordemarkering (BOM) is een Unicode-teken dat gebruikt wordt om de "endianness" (byte-volgorde) van een tekstbestand of stream aan te geven. Zie voor meer informatie: <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
+>Byte Order Mark</ulink
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Space;</keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Code aanvullen oproepen</guimenuitem
+> </menuchoice
+> </term>
+<listitem>
+<para
+>Roep handmatig commando-aanvulling aan, meestal door een sneltoets te gebruiken die verbonden is met deze actie.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Woordaanvulling</guimenuitem
+> </menuchoice
+> </term>
+<listitem>
+<para
+><guimenuitem
+>Woord eronder hergebruiken</guimenuitem
+> (<keycombo action="simul"
+>&Ctrl; <keycap
+>9</keycap
+></keycombo
+>) en <guimenuitem
+>Woord erboven hergebruiken</guimenuitem
+> (<keycombo action="simul"
+>&Ctrl; <keycap
+>8</keycap
+></keycombo
+>) vullen de huidige getypte tekst aan door vanaf de huidige cursorpositie vooruit en achteruit te zoeken naar woorden die overeenkomen. <guimenuitem
+>Shell-aanvulling</guimenuitem
+> geeft een lijst met overeenkomsten.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Automatische spellingcontrole</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Wanneer <guimenuitem
+>Automatische spellingcontrole</guimenuitem
+> ingeschakeld is, wordt tijdens het typen foute tekst onderstreept.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-Spelling..."/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Spelling....</guimenuitem
+></menuchoice>
+</term>
+
+<!--para
+>These options are described in the documentation for the
+<ulink url="help:/sonnet/index.html"
+>Check Spelling Dialog</ulink
+>.</para
+Move / merge the following into kdelibs/doc/sonnet/index.docbook and replace it with the para above
+-->
+
+<listitem
+><para
+><action
+>Dit initialiseert het programma Spellingcontrole - een programma gemaakt om de gebruiker te helpen bij het ondervangen en corrigeren van spelfouten.</action
+> Door te klikken op dit item start u de spellingcontrole en opent u het dialoogvenster Spellingcontrole, waarmee u het proces kunt aansturen. Verticaal in het middel van het dialoogvenster treft u onder elkaar drie instellingen met links ervan hun overeenkomstige labels. Beginnend bovenin zijn dat:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Onbekend woord:</guilabel
+></term>
+<listitem
+><para
+>Hier toont de spellingcontrole het huidige woord dat nagekeken wordt. Dit gebeurt wanneer de spellingcontrole een woord tegenkomt dat niet voorkomt in het woordenboek - een bestand bestaande uit een lijst met correct gespelde woorden waarmee elk woord in de editor vergeleken wordt. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Vervangen door:</guilabel
+></term>
+<listitem
+><para
+>Als er in het woordenboek van de spellingcontrole vergelijkbare woorden staan, zal het eerste hier verschijnen. De gebruiker kan de suggestie accepteren, zijn of haar eigen correctie intypen, of een andere suggestie kiezen uit de keuzelijst.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Taal:</guilabel
+></term>
+<listitem
+><para
+>Indien u meerdere woordenboeken geïnstalleerd hebt, kunt u hier kiezen welk woordenboek/taal gebruikt moet worden.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Rechts van het dialoogvenster bevinden zich 6 knoppen waarmee de gebruiker het proces van de spellingcontrole kan aansturen. Deze zijn:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Aan woordenboek toevoegen</guibutton
+></term>
+<listitem
+><para
+>Door op deze knop te klikken wordt <guilabel
+>Onbekend woord </guilabel
+> toegevoegd aan het woordenboek van de spellingcontrole. Dit betekent dat de spellingcontrole dit woord in het vervolg altijd beschouwt als correct gespeld.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Suggestie</guilabel
+></term>
+<listitem
+><para
+>De spellingcontrole kan hier een aantal mogelijke woorden tonen ter vervanging van het woord dat nagekeken wordt.  Door te klikken op één van de suggesties zal dat woord opgenomen worden in het invoerveld <guilabel
+>Vervangen door</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Vervangen</guibutton
+></term>
+<listitem
+><para
+>Met deze knop vervangt de spellingcontrole het woord dat nagekeken wordt in het document door het woord in het invoerveld <guilabel
+>Vervangen door</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Alles vervangen</guibutton
+></term>
+<listitem
+><para
+>Met deze knop vervangt de spellingcontrole niet alleen het huidige <guilabel
+>Onbekend woord:</guilabel
+> maar zorgt er automatisch voor dat ditzelfde woord overal in het document vervangen wordt.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Negeren</guibutton
+></term>
+<listitem
+><para
+>Door deze knop te activeren gaat de spellingcontrole verder zonder een verandering te hebben aangebracht.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Alles negeren</guibutton
+></term>
+<listitem
+><para
+>Deze knop zorgt ervoor dat de spellingcontrole niets doet met het huidige <guilabel
+>Onbekend woord:</guilabel
+>, en dat geldt tevens voor ditzelfde woord elders in het document.</para
+> <note
+><para
+>Dit geldt alleen voor de spellingcontrole die op dat moment loopt.  Wanneer de spellingcontrole later opnieuw gestart wordt, zal die weer bij ditzelfde woord stilstaan.</para
+></note
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Horizontaal onderin het dialoogvenster van de spellingcontrole bevinden zich nog drie knoppen. Deze zijn:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Help</guibutton
+></term>
+<listitem
+><para
+>Dit roept het &kde; helpsysteem op met de hulppagina van deze dialoog.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Beëindigd</guibutton
+></term>
+<listitem
+><para
+>Met deze knop beëindigt u het proces van de spellingcontrole en keert u terug naar het document.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Annuleren</guibutton
+></term>
+<listitem
+><para
+>Met deze knop annuleert u het proces van de spellingcontrole, alle wijzigingen worden teruggedraaid en u keert terug naar het document.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-spelling-from-cursor"/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Spelling (vanaf cursor)....</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Hiermee start u het programma spellingcontrole, maar het begint bij de cursor in plaats van aan het begin van het document.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-spellcheck-selection"/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Selectie op spelling controleren....</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Controleert de spelling van de huidige selectie.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-change-dictionary"/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Woordenboek wijzigen</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Toont onderaan het venster een keuzelijst met alle beschikbare woordenboeken voor de spellingcontrole. Hierdoor kunt u eenvoudig wisselen van spellingcontrole-woordenboek &eg; voor automatische spellingcontrole van tekst in verschillende talen.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-cleanindent"/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Inspringen opschonen</guimenuitem
+></menuchoice
+></term
+>  <listitem>
+<para
+>Dit schoont het inspringen voor de huidige selectie of voor de regel waarin zich de cursor bevindt op. Inspringen opschonen maakt dat alle geselecteerde tekst de inspringmethode van uw keuze krijgt.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-align"/><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Uitlijnen</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>De huidige regel of geselecteerde regels worden opnieuw uitgelijnd, waarbij gebruik gemaakt wordt van de inspringmethode en inspring-instellingen in het document.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Commentaar</guimenuitem
+> </menuchoice
+> </term>
+<listitem
+><para
+>Dit voegt één spatie toe aan het begin van de regel waar de tekstcursor zich bevindt of aan het begin van geselecteerde regels.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Commentaar verwijderen</guimenuitem
+> </menuchoice
+> </term>
+<listitem
+><para
+>Dit verwijdert één spatie (indien aanwezig) aan het begin van de regel waar de tekstcursor zich bevindt of aan het begin van geselecteerde regels.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Omzetten naar hoofdletters</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Zet de geselecteerde tekst of de letter na de cursor om in hoofdletters.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Omzetten naar kleine letters</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Zet de geselecteerde tekst of de letter na de cursor om in kleine letters.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+> Elk woord met hoofdletter laten beginnen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Laat de geselecteerde tekst of het huidige woord met een hoofdletter beginnen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Regels samenvoegen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Voegt de geselecteerde regels samen, of de huidige regel en de regel eronder, met één spatie als scheidingsteken. Overtollige witruimte in de samengevoegde regels wordt verwijderd.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Regelafbreking toepassen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Pas statische regelafbreking toe voor het hele document. Dat betekent dat er automatisch een nieuwe tekstregel gestart wordt wanneer de huidige regel de lengte overschrijdt die opgegeven is bij de optie <guilabel
+>Regels afbreken op:</guilabel
+> op het tabblad Bewerken bij de <menuchoice
+> <guimenu
+>Instellingen</guimenu
+><guimenuitem
+> Editor instellen...</guimenuitem
+></menuchoice
+></para
+></listitem>
+</varlistentry>
+
+</variablelist>
+<para
+>Als de <link linkend="katepart-pref-plugins"
+>plug-in</link
+>Bestand invoegen is ingeschakeld, treft u hier een extra menu-item <guimenuitem
+>Bestand invoegen...</guimenuitem
+>. </para>
+<!-- Data Tools and Insane HTML (LE) Expansion Ctrl+. when plugins are enabled-->
+</sect3>
+
+<sect3 id="katepart-menu-settings">
+<!-- This is also valid for kates menu settings,
+only the items Show Toolbar and Show Statusbar are swapped and Configure kate is the last item-->
+<title
+>Het menu Instellingen</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-preferences"/><menuchoice
+><guimenu
+>Instellingen</guimenu
+><guimenuitem
+>Editor instellen...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Dit menu-item opent een dialoogvenster waarin verschillende <link linkend="kredit_config"
+>instellingen</link
+> kunnen worden aangepast. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect3>
+
+<!--/end kwrite-->
+
+  <!-- KRVIEWER menu -->
+<sect3 id="kredit_krviewer_menu">
+<title
+>Het KrViewer Menu</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Algemene weergave</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>&krusader;'s interne weergave is eigenlijk onderdeel van &konqueror;, en kan eigenlijk de inhoud van elk bestandstype laten zien dat &konqueror; kan tonen (&eg; afbeeldingen tonen, muziek afspelen, de inhoud van een archief laten zien).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Tekstweergave</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Toont het bestand in de tekst mode.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Hex-weergave</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Toont het bestand in de hex mode.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Lijstmaker</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Snelle tekst/hex weergave voor enorme bestandgroottes, via de <link linkend="konfig-general"
+>Krusader lijstmaker</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Tekstbewerker</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Bewerkt het bestand in de tekst mode.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Tabblad losmaken</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Maakt het bekeken tabblad los en opent het in een nieuw venster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl; <keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Afsluiten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sluit het viewer/bewerkings venster van &krusader;.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    </sect3>
+  </sect2>
+
+<!--taken from kwrite's configuring-part.docbook-->
+<sect2 id="kredit_config">
+<title
+>De instellingen voor de tekstbewerkercomponent</title>
+<para
+>Deze groep bevat alle pagina's gerelateerd aan de tekstbewerkercomponent van &kate;. De meeste instellingen hier zijn standaards, zij kunnen overschreven worden door <link linkend="katepart-pref-open-save-modes-filetypes"
+>een bestandstype te definiëren</link
+> door <ulink url="help:/katepart/config-variables.html"
+>Documentvariabelen</ulink
+> of door ze per document te wijzigen in een bewerkingssessie.</para>
+<sect3 id="katepart-appearance"
+> <!-- updated to 4.7 + synced with kwrite -->
+<title
+>Uiterlijk</title>
+
+<sect4 id="katepart-appearance-general">
+<title
+>Algemeen</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Dynamische regelafbreking</guilabel
+></term>
+<listitem>
+<para
+>Wanneer deze optie is geactiveerd, zullen de tekstregels afgebroken worden aan de rechter rand van het editorvenster.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Dynamische regelafbreking-indicators (indien van toepassing)</guilabel
+></term>
+<listitem
+><para
+>Kies wanneer de dynamische regelafbreking-indicators getoond moeten worden, ofwel <guilabel
+>Uit</guilabel
+>, <guilabel
+>Volg regelnummers</guilabel
+> of <guilabel
+>Altijd aan</guilabel
+>. </para
+></listitem
+></varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Dynamisch afgebroken regels uitlijnen op inspringpositie: </guilabel
+></term>
+<listitem
+><para
+>Dynamisch afgebroken regels kunnen verticaal worden uitgelijnd op het inspringniveau van de eerste regel. Dit kan helpen code en markup leesbaarder te maken.</para
+><para
+>Bovendien kunt u hier een maximale breedte van het venster, als percentage, instellen waarna dynamisch afgebroken regels niet langer verticaal worden uitgelijnd. Ingesteld op bijvoorbeeld 50 % zullen regels, waarvan het inspringniveau groter is dan 50 % van de vensterbreedte, na afbreking niet verticaal worden uitgelijnd.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Witruimte accentueren</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Tabulators accentueren</guilabel
+></term>
+<listitem
+><para
+>De editor zal het symbool &raquo; tonen om de aanwezigheid van een tab in de tekst aan te geven.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Spaties aan het einde van de regel accentueren</guilabel
+></term>
+<listitem
+><para
+>De tekstbewerker zal punten tonen om het aanwezig zijn van witruimte aan het eind van regels aan te geven.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Geavanceerd </guilabel
+></term>
+<listitem
+><para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Inspronglijnen tonen </guilabel
+></term>
+<listitem
+><para
+>Wanneer dit aangevinkt is, toont de editor verticale lijnen om ingesprongen regels beter te herkennen.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Bereik tussen geselecteerde haakjes accentueren </guilabel
+></term>
+<listitem
+><para
+>Als dit is ingeschakeld zal het bereik tussen de geselecteerde overeenkomende haakjes worden geaccentueerd.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-appearance-borders">
+<title
+>Randen</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Randen</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Invouwmarkeringen tonen (indien beschikbaar) </guilabel
+></term>
+<listitem
+><para
+>Wanneer deze optie is aangevinkt, zullen in de huidige weergave markeringen voor code-invouwing getoond worden indien code-invouwing beschikbaar is.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Pictogramrand tonen </guilabel
+></term>
+<listitem
+><para
+>Wanneer dit aangevinkt is, ziet u links een pictogramrand. In de pictogramrand ziet u bijvoorbeeld bladwijzerpictogrammen.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Regelnummering tonen </guilabel
+></term>
+<listitem
+><para
+>Wanneer dit aangevinkt is, ziet u links regelnummers.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Schuifbalkmarkeringen tonen </guilabel
+></term>
+<listitem
+><para
+>Wanneer deze optie aangevinkt is, worden in de huidige weergave markeringen getoond op de verticale schuifbalk. Deze markeringen tonen bijvoorbeeld bladwijzers.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Bladwijzermenu sorteren </guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Op aanmaakdatum </guilabel
+></term>
+<listitem
+><para
+>Elke nieuwe bladwijzer zal onderaan worden toegevoegd, onafhankelijk van waar die geplaatst is in het document.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Op positie </guilabel
+></term>
+<listitem
+><para
+>De bladwijzers zullen geordend worden volgens de regelnummers waarin ze staan.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+</sect3>
+
+<sect3 id="katepart-prefcolors"
+><!-- checked for 4.7 + synced with kwrite -->
+<title
+>Lettertypen &amp; kleuren</title>
+
+<para
+>In deze sectie van het dialoogvenster kunt u alle lettertypen en kleuren in elk kleurenschema waarover u beschikt configureren. Tevens kunt u nieuwe schema's creëren of bestaande schema's wissen. Elk schema heeft instellingen voor kleuren, lettertypen en stijlen voor normale en geaccentueerde tekst. </para>
+
+<para
+>&kappname; zal het huidige actieve schema voor u voorselecteren. Als u aan een ander schema wilt werken moet u dat eerst kiezen uit de keuzelijst <guilabel
+>Schema</guilabel
+>. Met de knoppen <guibutton
+>Nieuw...</guibutton
+> en <guibutton
+>Verwijderen</guibutton
+> kunt u een nieuw schema creëren of een bestaand schema verwijderen.</para>
+<para
+>Onderaan de pagina kunt u de <guilabel
+>Standaard stijl voor &kappname;</guilabel
+> kiezen.</para>
+
+<sect4 id="katepart-prefcolors-colors">
+<title
+>Kleuren</title>
+
+<variablelist>
+<varlistentry id="katepart-variable-prefcolors-colors-text-background">
+<term
+><guilabel
+>Achtergrond tekstgebied</guilabel
+></term>
+<listitem>
+
+<variablelist>
+
+<varlistentry id="katepart-variable-pref-colors-normal-text">
+<term
+><guilabel
+>Normale tekst</guilabel
+></term>
+<listitem
+><para
+>Dit is de standaard achtergrond voor het tekstgebied. Het is de dominante kleur in de editor.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-selected-text">
+<term
+><guilabel
+>Geselecteerde tekst</guilabel
+></term>
+<listitem
+><para
+>Dit is de achtergrond voor geselecteerde tekst. Standaard is dit de globale kleur, ingesteld in het venster Kleuren instellen van de systeeminstellingen van &plasma;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-current-line">
+<term
+><guilabel
+>Huidige regel</guilabel
+></term>
+<listitem
+><para
+>Stel de kleur in voor de huidige regel. Door de kleur iets te laten afwijken van de normale tekst wordt de focus op deze regel gericht. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-marks">
+<term
+><guilabel
+>Bladwijzer</guilabel
+></term>
+<listitem
+><para
+>In dit combinatieveld kunt u bedekkingskleuren instellen voor verschillende soorten markering. De kleur wordt vermengd met de achtergrondkleur van een gemarkeerde regel, zodat een regel met meerdere markeringen of de huidige regel die gemarkeerd is, een achtergrond heeft die uit meerdere kleuren bestaat. De markeringskleuren worden ook gebruikt wanneer "Schuifbalkmarkeringen tonen" geactiveerd is.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-prefcolors-colors-other-elements">
+<term
+><guilabel
+>Additionele elementen</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Achtergrond linker rand</guilabel
+></term>
+<listitem
+><para
+>Deze kleur wordt gebruikt voor de randen van markeringen, regelnummers en invouwmarkeringen links van de editorweergave als die getoond worden. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Regelnummers</guilabel
+></term>
+<listitem
+><para
+>Deze kleur wordt gebruikt voor de regelnummers links van de weergave als die getoond worden.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Haakje-accentuering</guilabel
+></term>
+<listitem
+><para
+>Deze kleur wordt gebruikt voor de achtergrond van bij elkaar horende haakjes. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Regelafbrekingmarkeringen</guilabel
+></term>
+<listitem
+><para
+>Deze kleur wordt gebruikt om een patroon te tekenen links van dynamisch afgebroken regels wanneer die verticaal uitgelijnd zijn, evenals voor de statische regelafbrekingmarkering.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Markeringen voor tabs en spaties</guilabel
+></term>
+<listitem
+><para
+>Deze kleur wordt gebruikt om indicators in de witruimte te tekenen als die optie geactiveerd is. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Spelfoutregel</guilabel
+></term>
+<listitem
+><para
+>stelt de kleur in van de regel die gebruikt wordt om spelfouten aan te geven. </para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-prefcolors-fonts">
+<title
+>Lettertypen</title>
+<para
+>Hier kunt u het lettertype kiezen voor het schema. U kunt kiezen uit elk beschikbare lettertype op uw systeem, en een standaardgrootte instellen. Onderaan het dialoogvenster wordt een voorbeeldtekst getoond, zodat u het effect van uw keuze kunt zien. </para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-normal-text-styles">
+<title
+>Stijlen voor normale tekst</title>
+<para
+>De stijlen voor normale tekst zijn dezelfde als de stijlen voor geaccentueerde tekst, waardoor de editor tekst op een hele consistente manier kan presenteren. Zo wordt bijvoorbeeld voor commentaartekst dezelfde stijl gebruikt in bijna alle opmaakprofielen die kunnen worden geaccentueerd in &kappname;.</para>
+<para
+>De naam in de lijst met stijlen gebruikt de stijl die voor dat item is ingesteld, en u krijgt onmiddellijk een voorbeeld te zien wanneer u een stijl aanpast. </para>
+<para
+>Bij elke stijl kunt u algemene kenmerken kiezen en voorgrond- en achtergrondkleuren. Om een achtergrondkleur uit te zetten klikt u met rechts zodat het contextmenu verschijnt.</para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-highlighting-text-styles">
+<title
+>Stijlen voor accentuering van tekst</title>
+<para
+>Hier kunt u de tekststijlen die gebruikt worden bij een specifieke accentueringsdefinitie bewerken. De editor zal de accentuering die gebruikt wordt door uw huidige document voorselecteren. Om aan een andere accentuering te werken kiest u er een in het combinatieveld <guilabel
+>Accentueren</guilabel
+> boven de lijst met stijlen. </para>
+<para
+>De naam in de lijst met stijlen gebruikt de stijl die voor dat item is ingesteld, en u krijgt onmiddellijk een voorbeeld te zien wanneer u een stijl aanpast. </para>
+<para
+>Bij elke stijl kunt u algemene kenmerken kiezen en voorgrond- en achtergrondkleuren. Om een achtergrondkleur uit te zetten klikt u met rechts zodat het contextmenu verschijnt. Bovendien kunt u zien of een stijl gelijk is aan de standaardstijl die voor het item gebruikt wordt en die al dan niet gebruiken.</para>
+<para
+>U ziet dat vele accentueringen andere accentueringen bevatten die als groepen vertegenwoordigd zijn in de lijst met stijlen. Zo importeren bijvoorbeeld de meeste accentueringen de Alert-accentuering, en vele opmaken voor broncode importeren de Doxygen-accentuering. </para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-edit">
+<title
+>Bewerken</title>
+
+<sect4 id="katepart-pref-edit-general">
+<title
+>Algemeen</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-pref-word-wrap"
+><guilabel
+>Statische regelafbreking</guilabel
+></term>
+<listitem
+><para
+>Regelafbreking is een functie die ervoor zorgt dat de editor automatisch een nieuwe tekstregel begint en de cursor naar het begin van die nieuwe regel verplaatst. &kappname; zal automatisch een nieuwe tekstregel beginnen wanneer de huidige regel de positie bereikt opgegeven bij de optie <link linkend="katepart-pref-wrap-words-at"
+>Regels afbreken op:</link
+>.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Statische regelafbreking activeren</guilabel
+></term>
+<listitem>
+<para
+>Schakelt statische regelafbreking in of uit.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Statische-regelafbreking-markeringen tonen (indien van toepassing)</guilabel
+></term>
+<listitem>
+<para
+>Wanneer deze optie is aangevinkt, verschijnt er een verticale lijn in de regelafbrekingkolom zoals gedefinieerd op het tabblad Bewerking van de <menuchoice
+> <guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Editor instellen</guimenuitem
+></menuchoice
+>. Merk op dat de regelafbrekingmarkering alleen getoond wordt wanneer u een niet-proportioneel lettertype gebruikt.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term id="katepart-pref-wrap-words-at"
+><guilabel
+>Regels afbreken op:</guilabel
+></term>
+<listitem>
+<para
+>Wanneer de optie <link linkend="katepart-pref-word-wrap"
+>Statische regelafbreking activeren</link
+> geselecteerd is, bepaalt de invoer hier de positie (in tekens) waarop de editor automatisch naar een nieuwe regel zal gaan.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Diversen</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Spaties aan het einde van de regel tijdens het bewerken verwijderen</guilabel
+></term>
+<listitem
+><para
+>&kappname; zal automatisch overtollige spaties aan het einde van tekstregels verwijderen.</para
+></listitem
+> </varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Automatische blokhaakjes</guilabel
+></term
+> <listitem
+><para
+>Wanneer de gebruiker een linker haakje ([, (, or {) intypt, plaatst &kappname; automatisch het rechter haakje  (}, ), or ]) rechts van de cursor.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Kopieer/knip de huidige regel als er geen selectie is</guilabel
+></term
+> <listitem>
+<para
+>Als deze optie is ingeschakeld, en er geen tekst is geselecteerd, worden kopieer- en knipacties toegepast op de tekstregel waar de cursor zich bevindt.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Sta schuiven toe verder dan het einde van het document</guilabel
+></term
+> <listitem>
+<para
+>Met deze optie kunt u verder dan het einde van het document schuiven. Dit kan gebruikt worden om de onderkant van het document verticaal te centreren of om het bovenaan de huidige weergave te plaatsen.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-cursor-selection">
+<title
+>Cursor &amp; selectie</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Tekstcursorbeweging</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Intelligente begin- en eindpositie</guilabel
+></term>
+<listitem>
+<para
+>Wanneer dit geselecteerd is, zal bij het indrukken van de home-toets de cursor witruimte overslaan en naar het begin van de tekst in een regel gaan.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Cursor volgt regelafbreking</guilabel
+></term>
+<listitem>
+<para
+>Wanneer dit aangevinkt is, zal de tekstcursor bij verplaatsing door middel van de &Left; en &Right;-toetsen naar de vorige/volgende regel aan het begin/einde van de regel gaan, net als bij de meeste tekstverwerkers.</para
+><para
+>Wanneer dit niet aangevinkt is, kan de tekstcursor niet naar links van het begin van de regel verplaatst worden, maar wel naar rechts aan het einde van de tekst in de regel, hetgeen heel handig kan zijn voor programmeurs. Wanneer deze optie gekozen is, zal verplaatsing van de cursor met de pijltjestoetsen aan het einde van een regel (aan de rechter kant) ervoor zorgen dat deze naar beneden naar het begin van de volgende regel springt. Op dezelfde wijze springt de cursor, wanneer deze wordt verplaatst naar links aan het begin van een regel (aan de linker kant) naar boven naar het einde van de vorige regel. Wanneer deze optie niet geselecteerd is, beweegt de cursor, bij verplaatsing naar rechts voorbij het einde van de tekst in die regel, slechts horizontaal op dezelfde regel en als u probeert de cursor naar links te verplaatsen aan het begin van de regel gebeurt er niets.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>PageUp/PageDown beweegt de cursor</guilabel
+></term>
+<listitem>
+<para
+>Deze keuzemogelijkheid wijzigt het gedrag van de cursor als de gebruiker op de knop &PgUp; of &PgDn; indrukt. Als de tekstcursor niet is geselecteerd dan behoud het zijn relatieve positie in het zichtbare tekstveld van &kappname; als nieuwe tekst zichtbaar wordt door de operatie. Als de cursor in het midden van de zichtbare tekst is bij het begin van de operatie dan blijft het daar (behalve als het eind of het begin wordt bereikt.) Als dit is ingeschakeld , dan zal de eerste toetsindruk ervoor zorgen dat de cursor naar de bovenkant of naar de onderkant van het zichtbare tekstgedeelte gaat als een nieuwe tekstpagina wordt getoond.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Cursor automatisch centreren (regels):</guilabel
+></term>
+<listitem>
+<para
+>Stelt het aantal regels in die zichtbaar blijven boven en onder de cursor wanneer mogelijk.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Tekstselectiemodus</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Normaal</guilabel
+></term>
+<listitem>
+<para
+>Selecties worden overschreven door getypte tekst en worden opgeheven bij verplaatsing van de cursor. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Blijvend</guilabel
+></term>
+<listitem>
+<para
+>Selecties blijven bestaan, ook na verplaatsen van de cursor en typen.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-indent">
+<title
+>Inspringmethode</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Standaard inspringmodus</guilabel
+></term>
+<listitem>
+<para
+>Kies de automatische inspringmodus die u als standaard wilt gebruiken. Het is ten sterkste aan te raden hier <userinput
+>Geen</userinput
+> of <userinput
+>Normaal</userinput
+> te gebruiken en bestandstypeconfiguraties te gebruiken om andere inspringmodi in te stellen voor tekstformaten zoals C/C++ code of &XML;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Inspringen gebruikt</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Tabulators</guilabel
+></term>
+<listitem>
+<para
+>Wanneer dit ingeschakeld is, zal de editor tab-tekens invoegen wanneer u de &Tab;-toets indrukt of gebruik<ulink url="help:/katepart/kate-part-autoindent.html"
+>automatisch inspringen</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Spaties</guilabel
+></term>
+<listitem>
+<para
+>Wanneer dit ingeschakeld is, zal de editor een bepaald aantal spaties invoegen, afhankelijk van de positie in de tekst en de instelling <option
+>tabbreedte</option
+>, wanneer u op de &Tab;toets drukt of gebruik <ulink url="help:/katepart/kate-part-autoindent.html"
+>automatisch inspringen</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tabulators en spaties</guilabel
+></term>
+<listitem>
+<para
+>Als dit is ingeschakeld zal de tekstbewerker spaties invoegen zoals hierboven beschreven bij inspringen of &Tab; indrukken aan het begin van een regel, maar voegt tabulators in bij het indrukken van de &Tab;-toets in het midden of einde van een regel.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tabbreedte:</guilabel
+></term>
+<listitem>
+<para
+>Dit stelt het aantal spaties in dat wordt getoond in plaats van een tab-teken.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Inspringbreedte:</guilabel
+></term>
+<listitem>
+<para
+>De inspringbreedte is het aantal spaties dat gebruikt wordt om een regel in te springen. Wanneer is ingesteld dat tab-teken moet worden gebruikt, dan wordt er een tab-teken ingevoegd als de insprong deelbaar is door de tabbreedte.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Inspringeigenschappen</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Extra spaties behouden</guilabel
+></term>
+<listitem
+><para
+>Wanneer deze optie uitgeschakeld is en het inspringniveau gewijzigd wordt, zal de regel uitgelijnd worden op een veelvoud van de breedte opgegeven bij <guilabel
+>Inspringbreedte</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Inspringen aanpassen van code geplakt vanaf het klembord</guilabel
+></term>
+<listitem>
+<para
+>Wanneer deze optie aangevinkt is, springt code die van het klembord geplakt wordt in. Door te kiezen voor <guimenuitem
+>Ongedaan maken</guimenuitem
+> wordt het inspringen verwijderd.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Inspringacties</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Backspace-toets in eerste witruimte maakt inspringen ongedaan</guilabel
+></term>
+<listitem>
+<para
+>Wanneer deze optie aangevinkt is, verlaagt de <keysym
+>Backspace</keysym
+>-toets het inspringniveau als de cursor in de witruimte aan het begin van de regel staat.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tab-toets-actie (als er niets is geselecteerd)</guilabel
+></term>
+<listitem>
+<para
+>Als u wilt dat &Tab; de huidige regel uitlijnt in het huidige codeblok zoals in emacs, maak dan van &Tab; een sneltoets voor de actie <guimenuitem
+>Uitlijnen</guimenuitem
+>. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Altijd naar volgende tab-positie gaan</guilabel
+></term>
+<listitem>
+<para
+>Wanneer deze optie geselecteerd is, voegt de &Tab;-toets altijd witruimte in zodat de volgende tab-positie wordt bereikt. Wanneer de optie <guilabel
+>Spaties in plaats van tabs invoegen</guilabel
+> op het tabblad <guilabel
+>Algemeen</guilabel
+> in de sectie <guilabel
+>Bewerking</guilabel
+> geactiveerd is, worden er spaties ingevoegd; anders wordt een enkele tabsprong ingevoegd.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Altijd inspringniveau vergroten</guilabel
+></term>
+<listitem>
+<para
+>Wanneer deze optie geselecteerd is, wordt met de &Tab;-toets de huidige regel altijd ingesprongen met het aantal tekens opgegeven bij <guilabel
+>Inspringbreedte</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Inspringniveau vergroten wanneer in witruimte vooraan de regel</guilabel
+></term>
+<listitem>
+<para
+>Wanneer deze optie geselecteerd is, zorgt de &Tab;-toets voor het inspringen van de huidige regel of de cursor gaat naar de volgende tab-positie. Als het invoegpunt zich op of voor het eerste niet-witruimteteken in de regel bevindt, of wanneer er een selectie is, wordt de huidige regel ingesprongen met het aantal tekens opgegeven bij <guilabel
+>Inspringbreedte</guilabel
+>. Bevindt het invoegpunt zich achter het eerste niet-witruimteteken in de regel en er is geen selectie, dan wordt er witruimte ingevoegd zodat de volgende tabpositie bereikt wordt: Wanneer de optie <guilabel
+>Spaties in plaats van tabs invoegen</guilabel
+> op het tabblad <guilabel
+>Algemeen</guilabel
+> in de sectie <guilabel
+>Bewerking</guilabel
+> geactiveerd is, worden er spaties ingevoegd; anders wordt een enkele tabsprong ingevoegd.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-autocompletion">
+<title
+>Automatische aanvulling</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Algemeen</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Automatisch aanvullen activeren</guilabel
+></term>
+<listitem>
+<para
+>Indien geactiveerd komt er automatisch een vakje met aanvullingen te voorschijn bij het intypen die een lijst met teksten toont om de huidige tekst onder de cursor aan te vullen.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Minimale woordlengte aan te vullen</guilabel
+></term>
+<listitem
+><para
+>Tijdens het typen van tekst, zoekt woordaanvulling naar woorden in het document waar de al ingetypte tekst in voorkomt. Deze keuzemogelijkheid stelt de minimale hoeveelheid karakters in om woordaanvulling in te schakelen en een aanvul-dialoog te openen.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-vi-input-mode">
+<title
+>Vi-invoermethode</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Algemeen</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>De VI-invoermethode gebruiken</guilabel
+></term>
+<listitem>
+<para
+>Wanneer dit aangevinkt is, zal de VI-invoermethode geactiveerd worden wanneer er een nieuw venster wordt geopend. U kunt nog altijd schakelen tussen de VI-invoermethode aan/uit voor een bepaald venster in het menu <guimenu
+>Bewerken</guimenu
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>VI-commando's in plaats van Kate-sneltoetsen gebruiken</guilabel
+></term>
+<listitem>
+<para
+>Wanneer dit aangevinkt is, zullen VI-commando's de ingebouwde commando's van &kappname; vervangen. Bijvoorbeeld: <keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> voert het commando Opnieuw uit in plaats van de standaard actie (het tonen van het dialoogvenster Zoeken en vervangen).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>VI-statusbalk verbergen</guilabel
+></term>
+<listitem>
+<para
+>Standaard verschijnt er een extra statusbalk wanneer de VI-invoermethode ingeschakeld is. Deze statusbalk toont commando's terwijl die worden ingetypt en meldingen/fouten die voortkomen uit VI-commando's.</para>
+<para
+>Het activeren van deze optie zorgt ervoor dat deze extra statusregel niet getoond wordt.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Toetsmapping</guilabel
+></term>
+<listitem
+><para
+>Sneltoetsen instellen wordt gebruikt om de functie van toetsen te wijzigen. Hierdoor kunt u opdrachten aan andere toetsen toekennen of speciale toetsaanslagen maken voor het uitvoeren van een reeks opdrachten.</para>
+<para
+>Voorbeeld:</para>
+<para
+><keycap
+>F2</keycap
+> -> <keycap
+>I--</keycap
+> &Esc;</para>
+<para
+>Hiermee wordt <keycap
+>I--</keycap
+> voor een regel gezet wanneer <keycap
+>F2</keycap
+> wordt ingedrukt. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-spellcheck">
+<title
+>Spellingcontrole</title>
+<para
+>Deze instelopties worden beschreven in de documentatie voor de &systemsettings;-module <ulink url="help:/kcontrol/spellchecking"
+>Spellingcontrole</ulink
+>.</para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-open-save">
+<title
+>Openen/opslaan</title>
+
+<sect4 id="katepart-pref-open-save-general">
+<title
+>Algemeen</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Bestandsformaat</guilabel
+></term>
+<listitem>
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Codering:</guilabel
+></term>
+<listitem>
+<para
+>Dit definieert de standaard te gebruiken codering om bestanden te openen/op te slaan, indien niet gewijzigd in de dialoog openen/opslaan of door een commandoregel-optie te gebruiken.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Codering detecteren</guilabel
+></term>
+<listitem>
+<para
+>Selecteer een item uit de keuzelijst: u kunt automatisch detecteren uitschakelen of <guilabel
+>Universeel</guilabel
+> gebruiken om het automatisch detecteren in te schakelen voor alle coderingen. Omdat dit mogelijk alleen utf-8/utf-16 detecteert, zal het kiezen van een regio waarbij aangepaste heuristieken worden gebruikt tot betere resultaten leiden. Als noch de hierboven standaard gekozen codering, noch de codering gespecificeerd op de commandoregel overeenkomen met de inhoud van het bestand, dan zal deze detectie worden uitgevoerd.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Terugvalcodering</guilabel
+></term>
+<listitem>
+<para
+>Dit definieert de te proberen terugvalcodering bij het openen van bestanden als noch de boven als standaard gekozen codering, noch de codering gespecificeerd in de dialoog voor openen/opslaan, noch de codering gespecificeerd op de commandoregel overeenkomt met de inhoud van het bestand.  Voordat dit wordt gebruikt, wordt een poging gedaan om te kijken naar een bytevolgordemarkering aan het begin van het bestand voor de te gebruiken codering: als deze is gevonden, wordt de juiste unicode-codering gekozen; anders wordt codering-detectie gebruikt, als beide mislukken wordt terugvalcodering geprobeerd.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>regeleinde:</guilabel
+></term>
+<listitem>
+<para
+>Kies de gewenste regeleindemodus voor het actieve document. U kunt kiezen tussen &UNIX;, DOS/&Windows; of Macintosh.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Regeleinde automatisch detecteren</guilabel
+></term>
+<listitem>
+<para
+>Vink dit aan als u wilt dat de editor automatisch het soort regeleinde detecteert. Het soort regeleinde dat het eerst gevonden wordt zal gebruikt worden voor het hele bestand.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Bytevolgordemarkering inschakelen</guilabel
+></term>
+<listitem>
+<para
+>De bytevolgordemarkering is een speciale reeks aan het begin van in unicode gecodeerde documenten. Het helpt gebruikers tekstdocumenten te openen met de juiste unicode-codering. Zie voor meer informatie: <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
+>Byte Order Mark</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<!--
+Line Length Limit missing
+ -->
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Automatisch schoonmaken bij laden/opslaan</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Spaties aan het einde van de regel tijdens het bewerken verwijderen</guilabel
+></term>
+<listitem>
+<para
+>De editor zal automatisch extra spaties aan het einde van tekstregels verwijderen wanneer het bestand wordt geladen/opgeslagen.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-advanced">
+<title
+>Geavanceerd</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Map configuratiebestand</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Zoekdiepte voor configuratiebestand:</guilabel
+></term>
+<listitem>
+<para
+>De editor zal het opgegeven aantal bovenliggende mapniveaus doorzoeken naar het configuratiebestand van &kappname; en daaruit de regel met instellingen laden. Meer informatie over deze verborgen configuratiebestanden vindt u in de <ulink url="help:/katepart/config-variables.html"
+>sectie documentvariabelen</ulink
+>. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Reservekopie maken bij opslaan</guilabel
+></term>
+<listitem
+><para
+>Het maken van een reservekopie bij opslaan houdt in dat &kappname; het bestand op schijf kopieert naar &lt;voorvoegsel&gt;&lt;bestandsnaam&gt;&lt;achtervoegsel&gt; voordat wijzigingen worden opgeslagen. Het standaard achtervoegsel is <emphasis role="bold"
+>~</emphasis
+> en standaard is het voorvoegsel leeg. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Lokale bestanden</guilabel
+></term>
+<listitem>
+<para
+>Vink dit aan als u reservekopieën wilt hebben van lokale bestanden wanneer die worden opgeslagen.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Externe bestanden</guilabel
+></term>
+<listitem>
+<para
+>Vink dit aan als u reservekopieën wilt hebben van externe bestanden wanneer die worden opgeslagen.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Voorvoegsel</guilabel
+></term>
+<listitem>
+<para
+>Voer het voorvoegsel in dat u wilt gebruiken voor reservekopieën.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Achtervoegsel</guilabel
+></term>
+<listitem>
+<para
+>Voer het achtervoegsel in dat aan de naam van de reservekopie moet worden toegevoegd.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Swap-bestand synchroniseren uitschakelen</guilabel
+></term>
+<listitem>
+<para
+>&kappname; kan (het meeste van) wat is geschreven na een laatste opslag, in geval van een crash of stroomuitval herstellen. Een swapbestand (.swp.&lt;bestandsnaam&gt;) wordt aangemaakt na de eerste bewerkingsactie op een document. Als de gebruiker de wijzigingen niet opslaat en &kappname; crasht, dan blijft het swapbestand op de schijf. Bij het openen van een bestand controleert &kappname; of er een swapbestand voor het document bestaat en als het bestaat, dan vraagt het aan de gebruiker of hij de verloren gegevens wil herstellen of niet. De gebruiker heeft ook de mogelijkheid om de verschillen tussen het originele bestand en het herstelde te bekijken. Het swapbestand wordt verwijderd na elk opslaan en bij normaal beëindigen.</para>
+<para
+>&kappname; synchroniseert de swapbestanden op de schijf elke 15 seconden, maar alleen als ze zijn gewijzigd sinds de laatste synchronisatie. De gebruiker kan het synchroniseren van de swapbestanden uitschakelen, als hij dat wil, door het vakje <guilabel
+>Swap-bestanden synchroniseren uitschakelen</guilabel
+>, maar dat kan tot meer verlies van gegevens leiden.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-modes-filetypes">
+<title
+>Modi &amp; bestandstypen</title>
+<para
+>Op dit tabblad kunt u de standaardconfiguratie voor documenten van specifieke &MIME;-typen vervangen. Wanneer de editor een bestand laadt, wordt gekeken of het overeenkomt met de bestandsmaskers of &MIME;-typen voor één van de gedefinieerde bestandstypen. Indien dat het geval is worden de gedefinieerde variabelen toegepast. Als er meerdere bestandstypen overeenkomen, zal die met de hoogste prioriteit gebruikt worden. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Bestandstype:</guilabel
+></term>
+<listitem
+><para
+>Het bestandstype met de hoogste prioriteit is het type dat in de eerste keuzelijst getoond wordt. Als er meerdere bestandstypen werden gevonden komen die ook in de lijst te staan.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Nieuw</guilabel
+></term>
+<listitem
+><para
+>Dit wordt gebruikt voor het aanmaken van een nieuw bestandstype. Nadat u op deze knop gedrukt hebt, zijn de velden eronder leeg en kunt u de gewenste eigenschappen voor het nieuwe bestandstype invullen.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Verwijderen</guilabel
+></term>
+<listitem
+><para
+>Om een bestaand bestandstype te verwijderen kiest u het uit de keuzelijst en drukt u op de knop Verwijderen.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem
+> </varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Eigenschappen van <replaceable
+>huidige bestandstype</replaceable
+></guilabel
+></term>
+<listitem
+><para
+>Het bestandstype met de hoogste prioriteit is het type dat in de eerste keuzelijst getoond wordt. Als er meerdere bestandstypen werden gevonden komen die ook in de lijst te staan.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Naam:</guilabel
+></term>
+<listitem
+><para
+>De naam van het bestandstype wordt de tekst van het overeenkomstige menu-item. Deze naam wordt getoond in het menu <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Bestandstypen</guimenuitem
+> </menuchoice
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sectie:</guilabel
+></term>
+<listitem
+><para
+>De sectienaam wordt gebruikt om de bestandstypen in menus te organiseren. Deze wordt ook gebruikt in het menu <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Bestandstypen</guimenuitem
+> </menuchoice
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Variabelen:</guilabel
+></term>
+<listitem
+><para
+>Met deze tekenreeks kunt u de &kappname;-instellingen configureren voor de bestanden die door dit &MIME;-type gekozen zijn, gebruik makend van &kappname;-variabelen. U kunt bijna elke configuratie-optie instellen, zoals accentuering, inspringmethode, &etc;</para>
+<para
+>Druk op <guibutton
+>Bewerken</guibutton
+> om een lijst te zien van alle beschikbare variabelen en hun beschrijving. Selecteer het keuzevakje links om een bepaalde variabele in te schakelen en stel dan de waarde van de variabele rechts in. Sommige variabelen bieden een afrolvak om mogelijke waarden te selecteren terwijl anderen vereisen dat u handmatig een waarde invoert.</para>
+<para
+>Voor volledige informatie over deze variabelen, zie <ulink url="help:/katepart/config-variables.html"
+>Configureren met documentvariabelen</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Accentuering:</guilabel
+></term>
+<listitem
+><para
+>Als u een nieuw bestandstype aanmaakt, kunt u in deze keuzelijst een bestandstype selecteren voor de accentuering.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Inspringmodus:</guilabel
+></term>
+<listitem
+><para
+>In de keuzelijst kunt u de inspringmodus voor nieuwe documenten selecteren.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Bestandsextensies:</guilabel
+></term>
+<listitem
+><para
+>Het jokertekensmasker stelt u in staat bestanden op bestandsnaam te kiezen. Een masker bestaat vaak uit een asterisk en de extensie van het bestand, bijvoorbeeld <filename
+>*.txt; *.text</filename
+>. De tekenreeks bestaat uit een lijst van maskers, gescheiden door een puntkomma.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>&MIME;-typen:</guilabel
+></term>
+<listitem
+><para
+>Toont een assistent waarmee u gemakkelijk &MIME;-typen kunt selecteren.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Prioriteit:</guilabel
+></term>
+<listitem
+><para
+>Stelt een prioriteit in voor dit bestandstype. Als hetzelfde bestand door meer dan één bestandstype gekozen wordt, zal het type met de hoogste prioriteit gebruikt worden.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem
+> </varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Accentueerbestanden downloaden...</guibutton
+></term>
+<listitem>
+<para
+>Klik op deze knop om nieuwe of bijgewerkte beschrijvingen voor het accentueren van syntaxis te downloaden van de website van &kappname;. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-plugins">
+<title
+>Extensies</title
+> <!-- updated to 4.7 + synced with kwrite -->
+<para
+>Op het tabblad <guilabel
+>Plugins</guilabel
+> ziet u een lijst met alle beschikbare plugins en u kunt een vinkje plaatsen bij de plugins die u wilt gebruiken. Klik op de knop <guibutton
+>Informatie</guibutton
+> om het dialoogvenster <guilabel
+>Informatie over</guilabel
+> voor deze plugin te openen. Wanneer een plugin aangevinkt is, wordt de knop <guibutton
+>Configureren</guibutton
+> geactiveerd; u kunt erop klikken om de geselecteerde plugin te configureren.</para>
+<para
+>Is een configureerbare plugin aangevinkt, dan wordt de de knop <guibutton
+>Configureren</guibutton
+> ingeschakeld zodat u de geaccentueerde plugin kunt configureren.</para>
+<variablelist>
+<title
+>Editorcomponenten-plugins</title>
+<!-- not released with 4.7
+<varlistentry>
+<term
+><guilabel
+>Artistic Comment</guilabel
+></term>
+<listitem
+><para
+>Format long source-code comments like license-headers
+or descriptions using different style.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><guilabel
+>Automatische haakjes</guilabel
+></term>
+<listitem
+><para
+>De plugin Automatische haakjes vervangt de interne functie <quote
+>Automatische haakjes</quote
+> van &kappname;. Wanneer een regel eindigt met een openingshaakje <keycap
+>{</keycap
+> en er op &Enter; wordt gedrukt, wordt er automatisch een sluithaakje <keycap
+>}</keycap
+> ingevoegd aan het begin van de volgende regel.</para
+></listitem>
+</varlistentry>
+<!--http://jakob.petsovits.at/topic/kate-->
+<!--Right, it's the automatic insertion of a closing brace (<quote
+>}</quote
+>) after you ended a line with an opening one (<quote
+>{</quote
+>). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
+You, the developer, are writing a line of code, and want to open a new block delimited by braces. Looks like this:
+If you press Enter and AutoBrace is enabled, it will insert your favorite new brace where it belongs. Looks like this:
+-->
+<varlistentry>
+<term
+><guilabel
+>Gegevenshulpmiddelen</guilabel
+></term>
+<listitem
+><para
+>Schakelt gegevenshulpmiddelen in zoals thesaurus en spellingcontrole (indien geïnstalleerd). Gegevenshulpmiddelen zijn alleen beschikbaar wanneer er tekst is geselecteerd, of wanneer er met &RMB; op een woord is geklikt. Als er geen gegevenshulpmiddelen worden aangeboden terwijl er wel tekst is geselecteerd dient u deze te installeren. Als deze plugin is ingeschakeld en de gegevenshulpmiddelen zijn geïnstalleerd, worden er items toegevoegd aan het einde van het contextmenu.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Exportprogramma</guilabel
+></term>
+<listitem
+><para
+>Met deze opdracht kunt u het huidige document met alle geaccentueerde informatie exporteren naar een &HTML;-document via <menuchoice
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Als &HTML; exporteren</guimenuitem
+></menuchoice
+>. U kunt ook via <menuchoice
+><guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>als &HTML; kopiëren</guimenuitem
+></menuchoice
+> de huidige geselecteerde tekst als &HTML; kopiëren naar het klembord.</para
+></listitem>
+</varlistentry>
+<!-- not in 4.7
+<varlistentry>
+<term
+><guilabel
+>Highlight Selection</guilabel
+></term>
+<listitem
+><para
+>Highlights all words that match the currently selected text.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><guilabel
+>PictogramInvoegen</guilabel
+></term>
+<listitem
+><para
+>De plugin voor pictograminvoegen is alleen nuttig voor &kde;-ontwikkelaars: Het voegt een item <guimenuitem
+>Insert KIcon-Code</guimenuitem
+> toe in het contextmenu van de editor. Indien geactiveerd, opent de pictogramkiezer van &plasma; (met het tonen van pictogrammen van toepassingen, actiepictogrammen &etc;..). Als u er op klikt, zal de bestandsnaam zonder extensie als tekst worden ingevoerd. Alleen nuttig voor het instellen van pictogrammen via &kf5; door de KIcon()-klasse. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Insane (niet ZEN) &HTML;-codering (lichte editie)</guilabel
+></term>
+<listitem
+><para
+>Een plugin, die zen-codering doet zoals keuze-voltooiing
+>. Voor meer informatie zie <ulink url="https://en.wikipedia.org/wiki/Zen_Coding"
+>Zen-codering</ulink
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Bestand invoegen</guilabel
+></term>
+<listitem
+><para
+>Met deze plugin kunt u elk leesbaar bestand invoegen op de cursorpositie. Indien ingeschakeld, krijgt het menu <guimenu
+>Hulpmiddelen</guimenu
+> een extra item: <guimenuitem
+>Bestand invoegen</guimenuitem
+>.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect3>
+</sect2>
+<!--/end kwrite-->
+
+</sect1>

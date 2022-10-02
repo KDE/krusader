@@ -1,0 +1,2478 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="keyboard-commands">
+  <title
+>Tangentbordskommandon</title>
+  <indexterm>
+    <primary
+>Kommandon</primary>
+    <secondary
+>Tangentbord</secondary>
+  </indexterm>
+  <sect1 id="keyboard-usage">
+    <title
+>Tangentbordsanvändning</title>
+    <para
+>I det här kapitlet får du lära dig hur man använder tangentbordet effektivt, eftersom de flesta åtgärder kan göras snabbare med tangentbordet än med musen. Det tar en viss tid att lära sig <link linkend="key_bindings"
+>snabbtangenterna</link
+>, men att bemästra dem sparar mycket tid. Observera att &krusader; kan använda <link linkend="configure-shortcuts"
+>snabbtangentprofiler</link
+> för att enkelt byta till andra inställningar av snabbtangenter, t.ex. från andra filhanterare, och du kan också skapa dina egna snabbtangenter.</para>
+    <para
+>Efter att ha startat &krusader;, kan användningen av tangentbordet börja. Använd <keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+> för att gå till <link linkend="list_panel"
+>platsraden</link
+> där du kan skriva in önskad katalog. Efter <keycombo action="simul"
+>&Ctrl;<keycap
+>Neråtpil</keycap
+></keycombo
+> är du i <link linkend="termemu"
+>terminalemulatorn</link
+> och du kan skriva vilket kommando du önskar, under förutsättning att <link linkend="konfig-startup"
+>terminalen visas</link
+>. Använd <keycombo action="simul"
+>&Ctrl;<keycap
+>Uppåtpil</keycap
+></keycombo
+> för att gå tillbaka till den aktiva panelen. Om du vill gå till en fil eller katalog som börjar med <literal
+>f</literal
+>, tryck helt enkelt <keycap
+>f</keycap
+> på tangentbordet för att använda <link linkend="quicksearch"
+>sökraden</link
+>. Använd returtangenten för att köra filen eller öppna en katalog som har fokus. Tänk på att komma ihåg funktionstangenterna: <keycap
+>F3</keycap
+> för att granska, <keycap
+>F4</keycap
+> för att redigera, <keycap
+>F5</keycap
+> för att kopiera, <keycombo action="simul"
+>&Alt;&Shift;<keycap
+>U</keycap
+></keycombo
+> för att packa upp, etc.</para>
+    <para
+>Du kan också utföra flera åtgärder med <link linkend="folder-tabs"
+>katalogflikar</link
+>, inklusive ett flertal <link linkend="edit-menu"
+>markeringsåtgärder</link
+>. Och när du är klar kan du stänga &krusader; med <keycap
+>F10</keycap
+>.</para>
+  </sect1>
+  <sect1 id="key_bindings">
+    <title
+>Snabbtangenter</title>
+    <indexterm>
+      <primary
+>Snabbtangenter</primary>
+    </indexterm>
+    <indexterm>
+      <primary
+>Kommandon</primary>
+      <secondary
+>Tangentbord</secondary>
+    </indexterm>
+    <para
+>De flesta snabbtangenterna (genvägarna) går att ställa in med menyn <menuchoice
+> <guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa genvägar...</guimenuitem
+> </menuchoice
+>, om du vill använda andra snabbtangenter än de förinställda. Du kan till och med ställa in flera åtgärder för en snabbtangent (för åtgärder som inte har en förinställd snabbtangent). Observera att vissa snabbtangenter hör inte till &krusader; (t.ex. &plasma;s snabbtangenter). Snabbtangenterna som är förinställda i &krusader; listas nedan.</para>
+
+    <!-- FN keys -->
+    <para>
+      <emphasis role="bold"
+>Funktionstangenter (FN)</emphasis>
+    </para>
+    <para
+>Det här är snabbtangenterna i <link linkend="fnkeys"
+>funktionstangentraden (FN)</link
+>. Snabbtangenterna är anpassningsbara sedan version 1.51.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F1</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Hjälp</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F2</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Byt namn på filer.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F3</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>Granska filer.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F4</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>Redigera filer.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F5</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Kopiera filer.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F6</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Flytta filer.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F7</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Skapa en ny katalog.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F8</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Ta bort filer (eller flytta filer till papperskorgen).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F9</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="tools-menu"
+>Terminal.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F10</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Avsluta &krusader;</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- SHIFT keys -->
+    <para>
+      <emphasis role="bold"
+>&Shift;-tangenter</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="help-menu"
+>Vad är det här?</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F2</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="multi_rename"
+>Namnbyte av flera filer (<application
+>Krename</application
+>).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F3</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>Ange en webbadress att visa.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F4</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="file-menu"
+>Redigera ny fil.</link>
+              </para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F5</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="queue"
+>Kopiera enligt kö.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F6</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="queue"
+>Flytta enligt kö.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F10</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>Granska alla filer.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>Anpassad granskning av filer.</link>
+              </para>
+            </entry>
+          </row>
+          <!-- This keybinding is disabled in the "viewactions.cpp" source file
+<row>
+<entry
+><para
+><keycombo action="simul"
+>&Shift;<keycap
+>F11</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="view-menu"
+>Executables</link
+></para
+></entry
+></row>
+-->
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift;<keycap
+>Vänsterpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Byt till vänster katalogflik.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>Högerpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Byt till höger katalogflik.</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- ALT keys -->
+    <para>
+      <emphasis role="bold"
+>&Alt;-tangenter</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Markera alla.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Avmarkera alla.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Invertera markering.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>.</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>Visa eller dölj dolda (punkt) filer.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="mount-man"
+>Mountman.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>`</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="useractions"
+>Användarmeny</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Home</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Hem.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Retur</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="file-menu"
+>Egenskaper.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Vänsterpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Vänster bokmärken.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Högerpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Höger bokmärken.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Neråtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="sidebar"
+>Sidorad</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Standardsnabbtangenter (&plasma;).</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- ALT+SHIFT -->
+    <para>
+      <emphasis role="bold"
+>&Alt;+&Shift;-tangenter</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>B</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Kortfattad vy</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>C</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="compare-dir"
+>Jämför kataloger</link
+></para>
+            </entry>
+          </row
+>		  
+           <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Detaljerad vy</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="test-archive"
+>Testa arkiv.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>K</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Starta <link linkend="root-mode"
+>administratörsläge</link
+> i &krusader;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="panel_profiles"
+>Panelprofiler</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+          <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panel_toolbar"
+>Synkronisera paneler, alias <quote
+>likhetsteckenknappen (=)</quote
+>.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="pack-archive"
+>Packa filer.</link>
+              </para>
+            </entry>
+          </row>
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>Q</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Köhantering</para>
+            </entry>
+          </row
+>		  
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="diskusage"
+>Diskanvändning</link
+>.</para>
+            </entry>
+          </row>
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="unpacking-archives"
+>Packa upp filer.</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+
+    <!-- CTRL -->
+    <para>
+      <emphasis role="bold"
+>&Ctrl;-tangenter</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Skapa bokmärke för aktuellt objekt.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="bookman"
+>Öppna bokmärken</link
+> i den aktiva panelen.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Redigera filer som systemadministratör (fördefinierad användarådgärd)</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Visa <link linkend="quicksearch"
+>snabbsökningsraden</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>H</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="folderhistory"
+>Öppna historiklistan</link
+> i den aktiva panelen.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>I</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Visa <link linkend="quickfilter"
+>snabbfilterraden</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ett <trademark class="registered"
+>Safari-likande</trademark
+><link linkend="jump_back"
+>tillbakahopp</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Gå till <link linkend="list_panel"
+>platsraden</link
+> (origo) som i <trademark class="registered"
+>Firefox</trademark
+> och &konqueror;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>Öppna medialista</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Dialogrutan <link linkend="tools-menu"
+>Ny nätverksanslutning</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Visa dialogruta för att välja katalog att öppna i panelen.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="splitter"
+>Dela fil.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Q</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Avsluta &krusader;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panels"
+>Uppdatera (ladda om) panelen.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo
+>&Ctrl; <keycap
+>S</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krusearcher"
+>Sök.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Byt paneler (byt inte alla katalogflikar)</link
+>. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Stäng aktuell flik.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="synchronizer"
+>Synkronisera kataloger</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Populära webbadresser.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>+</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Markera grupp.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>-</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Avmarkera grupp.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="cmdline"
+>Öppna kommandoradens historiklista.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Neråtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="cmdline"
+>Gå från den aktiva panelen till kommandoraden eller terminalemulatorn</link
+>. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Uppåtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="cmdline"
+>Gå från kommandoraden eller terminalemulatorn till den aktiva panelen.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Uppåtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Gå från den aktiva panelen till <link linkend="list_panel"
+>platsraden</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Home</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Gå till hemkatalogen.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>Vänsterpil</keycap
+></keycombo
+> eller <keycombo
+><keycap
+>Högerpil</keycap
+> </keycombo
+></para>
+            </entry>
+            <entry>
+              <para
+>Fokusera på en fil eller katalog i vänstra panelen, tryck på <keycombo action="simul"
+>&Ctrl; <keycap
+>Vänsterpil</keycap
+></keycombo
+> så ändras den högra <link linkend="panels"
+>panelen</link
+>: <itemizedlist
+> <listitem
+> <para
+>På en fil: den högra panelen får samma sökväg som den vänstra <link linkend="panels"
+>panelen</link
+>.</para
+> </listitem
+> <listitem
+> <para
+>På en katalog: Uppdaterar den högra panelen med innehållet i katalogen.</para
+> </listitem
+> </itemizedlist
+>För den högra panelen: Tryck på <keycombo action="simul"
+>&Ctrl; <keycap
+>Högerpil</keycap
+></keycombo
+> så ändras den vänstra panelen.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Backsteg</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Gå till rotkatalogen.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Page Up</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Upp en katalog.</para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Gå till katalogen från den andra panelen.</para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Retur </keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+	      <para
+>När <link linkend="media_button"
+>mediamenyn</link
+> visas (av)monterar den markerade enheten.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- CTRL+SHIFT -->
+    <para>
+      <emphasis role="bold"
+>&Ctrl;+&Shift;-tangenter</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="remote-connections"
+>Koppla ner fjärranslutning.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="jump_back"
+>Sätt tillbakahoppspunkten.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Grafiskt användargränssnitt för <link linkend="locate"
+>Locate</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Flytta aktuell <link linkend="folder-tabs"
+>flik</link
+> till fönstrets andra sida.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Visa <link linkend="quickselect"
+>snabbmarkeringsraden</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Byt sidor (byt också alla katalogflikar)</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Vänsterpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>Öppna vänstra medialistan</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Högerpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>Öppna högra medialistan</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Uppåtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Öppna <link linkend="cmdline"
+>terminalemulatorn</link
+>, oberoende av om kommandoraden visas eller inte.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Neråtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Stäng <link linkend="cmdline"
+>terminalemulatorn</link
+>, oberoende av om kommandoraden visas eller inte.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Page Up</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Flytta aktuell flik åt vänster.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Page Down</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Flytta aktuell flik åt höger.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- CTRL+ALT -->
+    <para>
+      <emphasis role="bold"
+>&Ctrl;+&Alt;-tangenter</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Visa eller dölj <link linkend="cmdline"
+>inbäddad terminal</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Montera (fördefinierad användaråtgärd).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Ny flik.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>R</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Växla <link linkend="list_panel"
+>listpanel</link
+> mellan horisontellt och vertikalt läge.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Skapa en ny symbolisk länk.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>Vänsterpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folderhistory"
+>Vänstra historiklistan.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>Högerpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folderhistory"
+>Högra historiklistan.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Lika panelstorlek (fördefinierad användaråtgärd).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Duplicera en flik.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>Retur</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Öppna aktuell katalog i en <link linkend="folder-tabs"
+>ny flik</link
+>.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- GENERAL CTRL -->
+    <para>
+      <emphasis role="bold"
+>Allmänna &Ctrl;-tangenter</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>A</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Markera allt.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Page Down</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Gå till den lägre delen av aktuell katalog.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Standardsnabbtangenter (&plasma;).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Standardsnabbtangenter (&plasma;).</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- OTHER KEYS -->
+    <para>
+      <emphasis role="bold"
+>Andra tangenter</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>exempel</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="quicksearch"
+>Snabbsökning</link
+>, snabbval eller <link linkend="quickfilter"
+>snabbfilter</link
+>. Se <link linkend="konfig-panel-general"
+>den här inställningssidan</link
+> om hur standardläget ställs in.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycap
+>Tabulator</keycap
+></para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panels"
+>Byt mellan paneler</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycap
+>Retur</keycap
+></para>
+            </entry>
+            <entry>
+              <para
+><link linkend="executing_files"
+>På en fil:</link
+> Öppna eller kör filen</para>
+              <para
+><link linkend="browsing-archives"
+>På en arkivfil:</link
+> Bläddra i arkivet som om det var en katalog.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycap
+>Esc</keycap
+></para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="moving-around"
+>Gör att menyraden förlorar fokus om den har det.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>Delete</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Ta bort (eller flytta till papperskorgen).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Delete</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Alternativ borttagning.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycap
+>Mellanslag</keycap
+> </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="calculate"
+>På en fil:</link
+> Ändra markering för filen en position ner, utan att påverka markeringen av andra filer och kataloger.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycap
+>Backsteg</keycap
+></para>
+            </entry>
+            <entry>
+              <para
+>En katalog upp.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycap
+>Insert</keycap
+> </para>
+            </entry>
+            <entry>
+              <para
+>Gör samma sak som <keycap
+>mellanslag</keycap
+> <link linkend="selecting-files"
+>och går ner en position för att växla nästa fil</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>Meny</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Högerklickmeny.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycap
+>Home</keycap
+> </para>
+            </entry>
+            <entry>
+              <para
+>Markören går längst upp i listan.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycap
+>End</keycap
+> </para>
+            </entry>
+            <entry>
+              <para
+>Markören går till den sista filen i listan.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- COMMANDLINE -->
+    <para id="cmdline_keybindings">
+      <emphasis role="bold"
+>Kommandorad</emphasis>
+    </para>
+    <para
+>Snabbtangenter för <link linkend="cmdline"
+>kommandoraden</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para
+><keycap
+>Uppåtpil</keycap
+> och <keycap
+>Neråtpil</keycap
+></para>
+            </entry>
+            <entry>
+              <para
+>Bläddra igenom tidigare inskrivna kommandon.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Öppna kommandoradens historiklista.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Uppåtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Gå från kommandoraden till den aktiva panelen.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Neråtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Gå från den aktiva panelen till kommandoraden.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Retur</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Infoga aktuellt fil- eller katalognamn utan sökväg på nuvarande position i kommandoraden.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Retur</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Infoga aktuellt fil- eller katalognamn med fullständig sökväg på nuvarande position i kommandoraden.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- TERMINAL EMULATOR -->
+    <para id="termemu_keybindings">
+      <emphasis role="bold"
+>Terminalemulator</emphasis>
+    </para>
+    <para
+>Snabbtangenter för <link linkend="termemu"
+>terminalemulatorn</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Växla mellan normal- och fullskärmsläge för <link linkend="termemu"
+>terminalemulatorn</link
+>.</para>
+            </entry>
+          </row>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Infoga från klippbordet.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Uppåtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Gå från terminalemulatorn till den aktiva panelen om kommandoraden är dold.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Neråtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Gå från den aktiva panelen till terminalemulatorn om kommandoraden är dold.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Uppåtpil/Neråtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Fokusera terminalemulatorn eller inte, oberoende av om kommandoraden visas eller inte. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>Insert</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Infoga från klippbordet.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- SYNCHRONIZER -->
+    <para id="synchronizer_keybindings">
+      <emphasis role="bold"
+>Synkroniseraren</emphasis>
+    </para>
+    <para
+>Snabbtangenter för <link linkend="synchronizer"
+>Synkroniseraren</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Vänd riktning</para>
+            </entry>
+          </row>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Neråtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Uteslut</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Uppåtpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Återställ ursprunglig åtgärd</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Vänsterpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Kopiera till vänster</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Högerpil</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Kopiera till höger</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Delete</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Markera för borttagning</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- DEFAULT USERACTIONS -->
+    <para>
+      <emphasis role="bold"
+>Fördefinierade användaråtgärder</emphasis>
+    </para>
+    <para
+>Snabbtangenter för fördefinierade <link linkend="useractions"
+>användaråtgärder</link
+> som tillhandahålls av &krusader;.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Redigera en fil som systemadministratör.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>C</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Kopiera aktuellt objekt till klippbordet.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Montera ett nytt filsystem.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Lika panelstorlek.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keycap
+>Meta</keycap
+> <keycap
+>A</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Köa i &amarok;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keycap
+>Meta</keycap
+> <keycap
+>1</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Sortera enligt namn.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keycap
+>Meta</keycap
+> <keycap
+>2</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Sortera enligt filändelse.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keycap
+>Meta</keycap
+> <keycap
+>3</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Sortera den aktiva panelen enligt storlek.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keycap
+>Meta</keycap
+> <keycap
+>4</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Sortera enligt ändringsdatum.</para>
+            </entry>
+          </row>
+	            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keycap
+>Meta</keycap
+> <keycap
+>F5</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="useractions-menu"
+>Säkerhetskopiera aktuell fil (fördefinierad användaråtgärd).</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- OTHER KEYS URLs -->
+    <itemizedlist>
+      <title
+>Andra snabbtangenter</title>
+      <listitem>
+        <para>
+          <link linkend="selecting-files"
+>Markera filer</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="krviewer"
+>Krviewer</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="diskusage"
+>Diskanvändning</link
+></para>
+      </listitem>
+      <listitem>
+        <para
+>Grafiskt användargränssnitt för <link linkend="locate"
+>Locate</link
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+><menuchoice
+><guimenu
+>Gemensamt utseende och beteende</guimenu
+><guisubmenu
+>Genvägar och gester</guisubmenu
+></menuchoice
+> i &plasma; systeminställningar.</para>
+      </listitem>
+      <listitem>
+        <para
+>Anpassningsbara snabbtangenter för <link linkend="useractions"
+>användaråtgärder</link
+></para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+</chapter>

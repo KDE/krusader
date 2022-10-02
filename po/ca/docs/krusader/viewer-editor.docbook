@@ -1,0 +1,3510 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="krviewer">
+  <title
+>KrViewer: visualitzador/editor intern del &krusader;</title>
+  <indexterm>
+    <primary
+>Visualitzador</primary>
+    <seealso
+>Editor</seealso>
+  </indexterm>
+  <para
+>En prémer &Intro; sobre un fitxer seleccionat, s'obrirà amb l'aplicació associada. L'editor-visualitzador té pestanyes, configureu-lo a la <link linkend="konfig-general"
+>pàgina General del Konfigurador</link
+>.</para>
+  <sect2 id="krview">
+    <title
+>Visualitzador</title>
+    <para
+>Per a visualitzar un fitxer el més ràpid possible segons el seu tipus, simplement poseu-lo sota el cursor i premeu <keycap
+>F3</keycap
+>. El visualitzador intern del &krusader; en realitat forma part del &konqueror;, el qual bàsicament pot visualitzar cada tipus de fitxer visible pel &konqueror; (&pex;, mostrar imatges, reproduir música, mostrar el contingut d'un arxiu). Aquest s'anomena «Visualitzador genèric», per al qual haureu de configurar els tipus &MIME;.</para>
+    <para
+>El visualitzador treballa de la manera següent: <itemizedlist
+> <listitem
+> <para
+>Intenta visualitzar el fitxer amb el «<emphasis
+>Visualitzador genèric</emphasis
+>».</para
+> </listitem
+> <listitem
+> <para
+>Quan no es pot determinar el tipus de fitxer (tipus &MIME;) o quan un fitxer (&pex;, un binari) no té una acció associada, s'inhabilitarà el «visualitzador genèric». El fitxer serà tractat com un fitxer de text, el qual és el «<emphasis
+>Visualitzador de text</emphasis
+>».</para
+> </listitem
+> <listitem
+> <para
+>L'usuari pot canviar en el menú KrViewer entre: «Visualitzador genèric» (si està disponible), «Visualitzador de text» i «<emphasis
+>Visualitzador hexadecimal</emphasis
+>».</para
+> </listitem
+> </itemizedlist
+>Podreu configurar el mode predeterminat del visualitzador a la <link linkend="konfig-general"
+>pàgina General del Konfigurador</link
+>.</para>
+    <para
+><keycombo action="simul"
+>&Maj;<keycap
+>F3</keycap
+></keycombo
+> visualitza un &URL; sota demanda, &pex;: <itemizedlist>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+> </userinput
+>visualitza les pàgines man.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+><replaceable
+>krusader</replaceable
+> </userinput
+>visualitza la pàgina man del &krusader;.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>info:/</command
+> </userinput
+>visualitza les pàgines info.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>https://</command
+><replaceable
+>krusader.org</replaceable
+> </userinput
+>visualitza una pàgina web.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>ftp://</command
+><replaceable
+>ftp.kde.org/pub/kde/</replaceable
+> </userinput
+>visualitza un servidor &FTP;.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>sftp://</command
+><replaceable
+>sftp.foo/</replaceable
+> </userinput
+>visualitza un servidor &FTP; segur.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>file:/</command
+><replaceable
+>home/emelina</replaceable
+> </userinput
+> visualitza la carpeta d'inici de l'Emelina.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>tar:/</command
+><replaceable
+>home/quim/arxiu.tar.gz/</replaceable
+> </userinput
+>obre el contingut de l'arxiu <literal role="extension"
+>tar.gz</literal
+> a la finestra de l'explorador.</para>
+      </listitem>
+    </itemizedlist
+></para>
+    <para
+>El KrViewer pot tenir els següents menús: <link linkend="katepart-menu-file"
+>Fitxer</link
+>, <link linkend="katepart-menu-edit"
+>Edita</link
+>, <link linkend="katepart-menu-view"
+>Visualitza</link
+>, <link linkend="katepart-menu-settings"
+>Arranjament</link
+> i <link linkend="kredit_krviewer_menu"
+>Krviewer</link
+>, depenent del tipus de fitxer que es vegi. Això es debat a la <link linkend="kredit"
+>secció Editor</link
+>. El visualitzador intern pot seguir enllaços a pàgines &HTML;. Amb <keycombo action="simul"
+>&Ctrl;&Maj; <keycap
+>E</keycap
+></keycombo
+>, el visualitzador pot iniciar l'editor intern del &krusader; (el qual és bàsicament la mateixa aplicació).</para>
+    <note>
+      <para
+>El visualitzador incrustat no l'escrivim nosaltres, se subministra a través dels &kf5; i els esclaus KIO. No podem i no volem canviar-lo, l'ús d'aquestes biblioteques redueix la quantitat de codi escrit. D'aquesta manera no hem de reinventar la roda ;-)</para>
+    </note>
+  </sect2>
+  <sect2 id="kredit">
+    <title
+>Editor</title>
+    <indexterm>
+      <primary
+>Editor</primary>
+    </indexterm>
+    <para
+>L'editor intern del &krusader; té gairebé tot el que podeu esperar d'un editor. L'edició és similar a la visualització però amb la tecla <keycap
+>F4</keycap
+>. L'editor predeterminat és l'editor intern del &krusader;. Si preferiu utilitzar un editor extern, Podreu canviar l'editor predeterminat a la <link linkend="konfig-general"
+>pàgina General del Konfigurador</link
+>.</para>
+    <tip>
+      <para
+>Quan utilitzeu l'editor intern del &krusader; per primera vegada, es recomana mirar cada secció en el menú <link linkend="katepart-menu-settings"
+>Arranjament</link
+> i configureu-les de la manera que vulgueu.</para>
+    </tip>
+  </sect2>
+  <sect2 id="kredit_menus">
+    <title
+>Resum del menú</title>
+
+<!--mostly brought in from kwrite-->
+<para
+>Hi ha diferents menús i elements de menú en el mode senzill i avançat. El mode avançat s'habilita marcant l'opció <link linkend="katepart-appearance"
+>Activa el mode d'usuari poderós (mode &kde; 3)</link
+> a la pàgina <guilabel
+>Aparença</guilabel
+> en la configuració del &kappname;.</para>
+
+<sect3 id="katepart-menu-file">
+<title
+>El menú Fitxer</title>
+
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-save">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Desa</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Desa el document actual. Si ja s'havia desat anteriorment aquest document, sobreescriurà l'anterior sense preguntar a l'usuari. Si és la primera vegada que es desa, apareixerà el diàleg (que es descriu tot seguit) desar com. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-save-as">
+<menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Desa com a...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Permet desar un document amb un nom de fitxer nou. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-reload">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F5</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Recarrega</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Torna a carregar el fitxer actiu des del disc. Aquesta ordre és útil si un altre programa o procés ha canviat el fitxer mentre el teníeu obert a la &kappname;. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-print">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Imprimeix...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Obre un simple diàleg d'impressió que permet a l'usuari especificar què, a on i com imprimir. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+> <!-- from plugin Exporter -->
+<term id="katepart-menu-export-as-html">
+<menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Exporta com a &HTML;...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Exporta el vostre fitxer a format &HTML;, de manera que el document es pugui veure com una pàgina web. Aquest element només es mostrarà quan estigui carregat el connector <guilabel
+>Exportador</guilabel
+>. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect3>
+
+<sect3 id="katepart-menu-edit"
+> <!-- This is also valid for kates menu edit-->
+<title
+>El menú Edita</title>
+
+<variablelist>
+<varlistentry>
+<term id="katepart-menu-undo"
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Desfés</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>S'utilitza per a eliminar o revertir l'acció o operació més recent de l'usuari. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-redo"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Refés</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Revertirà els canvis més recents (si n'hi ha) realitzats emprant Desfés.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-cut"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Retalla</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Suprimeix la selecció actual i la col·loca al porta-retalls. El porta-retalls és una característica que funciona de manera transparent i proveeix una manera de transferir les dades entre les aplicacions.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-copy"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Copia</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Copia el text seleccionat al porta-retalls de manera que es pugui enganxar on es vulgui. El porta-retalls és una característica que funciona de manera transparent i proveeix una manera de transferir les dades entre les aplicacions.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-paste"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Enganxa</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Inserirà el primer element del porta-retalls a la posició del cursor. El porta-retalls és una característica que funciona de manera transparent i proveeix una manera de transferir les dades entre les aplicacions.</para>
+</listitem>
+</varlistentry>
+<varlistentry
+><!-- from plugin Exporter -->
+<term
+><anchor id="katepart-menu-copy-as-html"/><menuchoice
+><guimenu
+>Edita</guimenu
+> <guimenuitem
+>Copia com a &HTML;</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Copia el text seleccionat al porta-retalls com a &HTML;. Aquest element només es mostrarà quan estigui carregat el connector <guilabel
+>Exportador</guilabel
+>. </para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-select-all"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Selecciona-ho tot</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Selecciona tot el document. Això pot resultar molt útil per a copiar tot el fitxer a una altra aplicació.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-deselect"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Desselecciona</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Desselecciona el text seleccionat a l'editor (si n'hi ha).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-block-selection-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Mode de selecció per blocs</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Canvia el mode de selecció. Quan el mode de selecció sigui <guilabel
+>BLOC</guilabel
+>, podreu fer seleccions verticals, &pex;, seleccionar des de la columna 5 a la 10 en les línies 9 a la 15. La barra d'estat mostrarà l'estat actual del mode de selecció <guilabel
+>BLOC</guilabel
+> o <guilabel
+>LINÍA</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-vi-input-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Meta;&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+><guimenuitem
+>Mode d'entrada del Vi</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Canvia a un mode d'edició modal, similar al de Vi. Aquest mode admet les ordres i moviments més utilitzats en el mode normal i visual de vim, i té una barra d'estat opcional. Aquesta barra d'estat mostrarà les ordres mentre s'introdueixen, la sortida de les ordres i el mode actual. El comportament d'aquest mode es podrà configurar a la secció <link linkend="katepart-pref-edit-vi-input-mode"
+>Mode d'entrada Vi</link
+> de la pàgina <guilabel
+>Edició</guilabel
+> en el diàleg de configuració del &kappname;.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-overwrite-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ins;</keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Mode sobreescriure</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Canvia entre els modes Insereix/Sobreescriu. Quan el mode és <guilabel
+>INS</guilabel
+>, inseriu els caràcters on està el cursor. Quan el mode és <guilabel
+>SOB</guilabel
+>, els caràcters escrits substituiran als caràcters actuals, si el cursor es col·loca abans de qualsevol caràcter. La barra d'estat mostra l'estat actual del Mode sobreescriure, sigui <guilabel
+>INS</guilabel
+> o <guilabel
+>SOB</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-find"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Cerca...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Obre la barra de cerca incremental a la part inferior de la finestra de l'editor. Al costat esquerre de la barra hi ha un botó amb una icona per a tancar la barra, seguit d'un petit quadre de text per a introduir el patró de cerca.</para>
+<para
+>Quan comenceu a escriure caràcters del patró de cerca, aquesta s'iniciarà immediatament. Si hi ha una coincidència en el text, aquest serà ressaltat i el color de fons del camp d'entrada canviarà a una llum verda. Si el patró de cerca no coincideix amb cap cadena en el text, això s'indicarà amb un color de fons de llum vermella en el camp d'entrada i es mostrarà <guilabel
+>No s'ha trobat</guilabel
+> al costat dret de la barra.</para>
+<para
+>Empreu els botons <guilabel
+>Següent</guilabel
+> o <guilabel
+>Anterior</guilabel
+> per a saltar a la següent o anterior coincidència en el document.</para>
+<para
+>Podeu decidir si la cerca ha de ser amb majúscules i minúscules. Seleccionant <guilabel
+>Distingeix entre majúscules i minúscules</guilabel
+> es limitarà la cerca d'entrades amb el cas (majúscules i minúscules) de cadascun dels caràcters en el patró de cerca. </para>
+<para
+>Feu clic al botó amb la icona d'una fletxa verda a la part dreta de la barra de cerca incremental per a canviar a la poderosa barra de cerca i substitució. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-find-again"/><menuchoice
+><shortcut
+><keycombo
+><keycap
+>F3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Edita</guimenu
+><guimenuitem
+>Cerca la següent</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Repeteix l'última operació de cerca, si n'hi ha cap, sense cridar la barra de cerca incremental. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-previous">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Maj;<keycap
+>F3</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Cerca l'anterior</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Repeteix l'última operació de cerca, si n'hi ha cap, sense cridar la barra de cerca incremental, i cercant cap enrere pel document en comptes de cap endavant. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-replace"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+><guimenuitem
+>Substitueix...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Obre la barra de cerca i substitueix. A la part inferior de la finestra de l'editor, en el costat esquerre de la barra hi ha un botó amb una icona per a tancar la barra, seguit d'un petit quadre de text per a introduir el patró de cerca.</para>
+<para
+>Podeu controlar el mode de cerca seleccionant les opcions <guilabel
+>Text net</guilabel
+>, <guilabel
+>Paraules completes</guilabel
+>, <guilabel
+>Seqüències d'escapada</guilabel
+> o <guilabel
+>Expressió regular</guilabel
+> des de la llista desplegable. </para>
+<para
+>Si s'ha marcat <guilabel
+>Seqüències d'escapada</guilabel
+> o <guilabel
+>Expressions regulars</guilabel
+>, l'element <guibutton
+>Afegeix</guibutton
+> del menú, a baix del menú contextual dels quadres de text i us permetrà afegir elements d'expressió regular al patró de cerca o substitució a partir d'una llista predefinida.</para>
+<para
+>Empreu els botons <guilabel
+>Següent</guilabel
+> o <guilabel
+>Anterior</guilabel
+> per a saltar a la següent o anterior coincidència en el document.</para>
+<para
+>Introduïu el text a substituir en el quadre de text <guilabel
+>Substitueix</guilabel
+> i feu clic al botó <guibutton
+>Substitueix</guibutton
+> per a substituir només el text seleccionat o el botó <guibutton
+>Substitueix-ho tot</guibutton
+> per a substituir el text de cerca en tot el document. </para>
+<para
+>Podeu modificar el comportament de cerca i substitueix seleccionant les diferents opcions a la part inferior de la barra. Seleccionant <guilabel
+>Distingeix entre majúscules i minúscules</guilabel
+> es trobaran les entrades que coincideixin amb (majúscules o minúscules) de cadascun dels caràcters en el patró de cerca. <guilabel
+>Només el seleccionat</guilabel
+>, només cercarà i substituirà dins de la selecció actual. El botó <guilabel
+>Cerca-ho tot</guilabel
+> ressaltarà totes les coincidències en el document i en mostrarà el nombre en una petita finestra emergent. </para>
+<para
+>Feu clic al botó amb una fletxa verda a la part dreta de la barra de cerca i substitueix per a alternar a la barra de cerca incremental. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Edita</guimenu
+><guimenuitem
+>Cerca la selecció</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Cerca la següent ocurrència del text seleccionat.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected-backwards">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+><guimenuitem
+>Cerca la selecció cap enrere</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Cerca l'ocurrència anterior del text seleccionat.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-go-to-line">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Ves a la línia...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Obre la barra de línia «ves a» a la part inferior de la finestra que s'utilitza per a tenir el salt del cursor a una línia en particular (especificada pel número) en el document. El número de la línia es pot introduir directament en el quadre de text o gràficament fent clic sobre les fletxes amunt i avall situades al costat del quadre de text. La fletxa cap amunt incrementarà el número de la línia i la fletxa cap avall la disminuirà. Tanqueu la barra amb un clic al botó amb una icona al costat esquerre de la barra. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-view">
+<!-- This is also valid for kates menu view, but kate does not have the New Window item -->
+<title
+>El menú Visualitza</title>
+
+<para
+>El menú <guimenu
+>Visualitza</guimenu
+> permet gestionar la configuració específica de l'editor actiu i gestionar els marcs.</para>
+
+<variablelist>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-new-window"/>
+<menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Finestra nova</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Crea una altra finestra que conté el document actual. Tots els canvis al document en una finestra es reflecteixen en l'altra finestra i viceversa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-command-line"/>
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F7</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Canvia a la línia d'ordres</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Mostra la línia d'ordres a la &katepart; a la part inferior de la finestra. A la línia d'ordres, escriviu <userinput
+>help</userinput
+> per a obtenir ajuda i <userinput
+>help list</userinput
+> per a obtenir una llista de les ordres.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Mostra la consola de JavaScript</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Obre una vista d'eina que permet executar codi en Javascript de forma interactiva. Per a més informació, vegeu <ulink url="help:/katepart/advanced-editing-tools-scripting.html"
+>Estendre el &kate; amb scripts</ulink
+>. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-schema"/>
+<menuchoice
+><guimenu
+>Visualitza</guimenu
+><guisubmenu
+>Esquema</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Selecciona un esquema del tipus de lletra.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap"/>
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F10</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Ajust dinàmic de paraules</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Les línies de text s'ajustaran a la vora de vista de la pantalla.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap-indicators"/>
+<menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guisubmenu
+>Indicadors d'ajust dinàmic de paraules</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+ <para
+>Escull quan i com es mostraran els indicadors d'ajust dinàmic de paraules. Tan sols estarà disponible si l'opció <guilabel
+>Ajust dinàmic de paraules</guilabel
+> està marcada.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-static-word-wrap"/>
+<menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Mostra els marcadors de l'ajust estàtic de paraules</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Si aquesta opció està marcada, es dibuixarà una línia vertical a l'ajust de línia tal com s'ha definit a <menuchoice
+> <guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura l'editor...</guimenuitem
+></menuchoice
+> en la pestanya Edició. Cal tenir present que la marca d'ajust de línia només es dibuixarà si utilitzeu un tipus de lletra amb mida fixa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-icon-border"/>
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F6</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Mostra la vora de les icones</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Aquest element és un commutador. Si està marcat farà visible una vora d'icona al costat esquerre de l'editor actiu, i viceversa. La vora per a les icones indica les posicions de les línies marcades a l'editor.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-line-numbers"/>
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F11</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Mostra els números de les línies</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Aquest element és un commutador. Si està marcat crearà una subfinestra al costat esquerre de l'editor actiu mostrant els números de línia del document visible, i viceversa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-scrollbar-marks"/>
+<menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guisubmenu
+>Mostra les marques de la barra de desplaçament</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Si aquesta opció està marcada, la vista mostrarà els marcadors a la barra de desplaçament vertical. Les marques són l'equivalent als marcadors a la <link linkend="katepart-menu-view-show-icon-border"
+>Vora de la icona</link
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-hide-folding-markers"/>
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F9</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Mostra els marcadors plegables</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Si està marcada, es mostraran les marques per al plegat de codi.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-code-folding"/>
+<menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Plega el codi</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Aquestes opcions pertanyen a <ulink url="help:/katepart/advanced-editing-tools-code-folding.html"
+>Usar el plegat del codi</ulink
+>:</para>
+<variablelist>
+
+<varlistentry id="view-show-folding-markers">
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F9</keycap
+></keycombo
+> </shortcut
+> <guimenuitem
+>Mostra els marcadors plegables</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Mostra o oculta la subfinestra de marques de plegat a la part esquerra de la vista.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>Contrau el node actual</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Contrau la regió que conté el cursor.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-unfold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>Expandeix el node actual</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Expandeix la regió que conté el cursor.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-toplevel-nodes">
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenuitem
+>Contrau els nodes de nivell superior</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Contrau totes les regions al nivell superior en el document. Feu clic al triangle situat a la dreta per a expandir totes les regions al nivell superior.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenuitem
+>Augmenta el tipus de lletra</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Augmenta la mida del tipus de lletra a visualitzar.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenuitem
+>Minva el tipus de lletra</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Minva la mida del tipus de lletra a visualitzar.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-go"
+><!-- This is also valid for kates menu bookmarks-->
+<title
+>El menú Adreces d'interès</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-set-bookmark">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Punts</guimenu
+> <guimenuitem
+>Defineix un punt</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Defineix o elimina un punt a la línia actual del document actiu (si hi és, s'elimina, altrament el defineix). </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-clear-bookmarks">
+<menuchoice
+><guimenu
+>Punts</guimenu
+> <guimenuitem
+>Neteja tots els punts</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Eliminarà tots els punts del document així com de la llista de punts situada a la part inferior d'aquest element de menú. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-previous">
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&PgUp;</keycombo
+> </shortcut
+> <guimenu
+>Punts</guimenu
+> <guimenuitem
+>Anterior</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Desplaçarà el cursor al començament de la línia anterior amb un punt. El text de l'element del menú inclourà el número de la línia i la primera part del text d'aquesta. Aquest element només estarà disponible quan hi hagi un punt en una línia per sobre del cursor.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-next">
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>Av Pàg</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Punts</guimenu
+> <guimenuitem
+>Següent</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Desplaçarà el cursor al començament de la següent línia amb un punt. El text de l'element del menú inclourà el número de la línia i la primera part del text d'aquesta. Aquest element només estarà disponible quan hi hagi un punt en una línia per sota del cursor.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>A la part inferior d'aquest menú, apareixerà una llista d'adreces d'interès si n'hi ha cap disponible per a aquesta finestra. </para>
+
+</sect3>
+
+<!-- This is also valid for kates menu tools, kate has additional items:
+Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at top-->
+<sect3 id="katepart-menu-tools">
+<title
+>El menú Eines</title>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-read-only"/><menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Mode de només lectura</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Estableix el document actual al mode de només lectura. Això evita que es pugui afegir text o canvis en el format del document.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-filetype"/><menuchoice
+><guimenu
+>Eines</guimenu
+> <guisubmenu
+>Mode</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Escolliu l'esquema de tipus de fitxer que preferiu per al document actiu. Aquest sobreescriurà el mode de tipus de fitxer establert globalment a <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura l'editor</guimenuitem
+></menuchoice
+> a la pestanya Tipus de fitxer només per al document actual.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-highlighting"/><menuchoice
+><guimenu
+>Eines</guimenu
+> <guisubmenu
+>Ressaltat</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Escolliu l'esquema de ressaltat que preferiu per al document actiu. Això sobreescriurà el mode de ressaltat establert globalment a <menuchoice
+><guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Configura l'editor...</guimenuitem
+></menuchoice
+> només per al document actual.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-indentation"/><menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Sagnat</guimenuitem
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Escolliu l'estil de sagnat que voleu per al vostre document actiu. Això sobreescriurà el mode de sagnat establert globalment a <menuchoice
+><guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Configura l'editor...</guimenuitem
+></menuchoice
+> només per al vostre document actual.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-encoding"/><menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Codificació</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Podeu sobreescriure la codificació establerta de manera predeterminada a <menuchoice
+><guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Configura l'editor...</guimenuitem
+></menuchoice
+> a la pàgina <guilabel
+>Obre/Desa</guilabel
+> per a establir una codificació diferent per al vostre document actual. La codificació aquí assignada només serà vàlida per al vostre document actual.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-end-of-line"/><menuchoice
+><guimenu
+>Eines</guimenu
+> <guisubmenu
+>Final de línia</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Escolliu el mode de final de línia preferit per al document actiu. Això sobreescriurà el mode de final de línia configurat globalment a <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura l'editor...</guimenuitem
+></menuchoice
+> només per al vostre document actual.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-add-byte-mark-order"/><menuchoice
+><guimenu
+>Eines</guimenu
+> <guisubmenu
+>Afegeix una marca d'ordre de byte (BOM)</guisubmenu
+></menuchoice
+></term>
+ <listitem>
+<para
+>Seleccionant aquesta acció de forma explícita, podeu afegir una marca d'ordre de byte per als documents codificats amb unicode. La marca d'ordre de byte (BOM) és un caràcter Unicode utilitzat per a indicar l'ordre dels bytes en un fitxer de text o un flux, per a obtenir més informació, vegeu <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
+>La marca d'ordre de byte</ulink
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Space;</keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Invoca la compleció del codi</guimenuitem
+> </menuchoice
+> </term>
+<listitem>
+<para
+>Invoca manualment la compleció d'ordres, utilitzant normalment una drecera limitada a aquesta acció.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Compleció de paraules</guimenuitem
+> </menuchoice
+> </term>
+<listitem>
+<para
+><guimenuitem
+>Reutilitza la paraula de més avall</guimenuitem
+> (<keycombo action="simul"
+>&Ctrl; <keycap
+>9</keycap
+></keycombo
+>) i <guimenuitem
+>Reutilitza la paraula de més amunt</guimenuitem
+> (<keycombo action="simul"
+>&Ctrl; <keycap
+>8</keycap
+></keycombo
+>) completen el text escrit actualment mitjançant la cerca de paraules similars cap enrere o cap endavant des de la posició actual del cursor. <guimenuitem
+>Compleció d'ordres</guimenuitem
+> fa aparèixer un quadre de compleció amb les entrades coincidents.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+><guimenuitem
+>Verificació automàtica de l'ortografia</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Quan està activada, el text mal escrit és subratllat en el document sobre la marxa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-Spelling..."/><menuchoice
+><guimenu
+>Eines</guimenu
+><guimenuitem
+>Ortografia...</guimenuitem
+></menuchoice>
+</term>
+
+<!--para
+>These options are described in the documentation for the
+<ulink url="help:/sonnet/index.html"
+>Check Spelling Dialog</ulink
+>.</para
+Move / merge the following into kdelibs/doc/sonnet/index.docbook and replace it with the para above
+-->
+
+<listitem
+><para
+><action
+>Inicia el programa de correcció ortogràfica -un programa dissenyat per a ajudar a l'usuari a corregir qualsevol error ortogràfic-.</action
+> Fent clic en aquesta entrada s'iniciarà el corrector i apareixerà un diàleg a través del qual podreu controlar el procés. Hi ha quatre opcions de configuració alineades verticalment en el centre del diàleg amb les seves corresponents etiquetes a l'esquerra. Començant per dalt són:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Paraula desconeguda:</guilabel
+></term>
+<listitem
+><para
+>Aquí el corrector ortogràfic indicarà la paraula a considerar. Això succeeix quan el corrector troba una paraula que no troba en el seu diccionari -un fitxer contenint una llista de paraules correctes contra les quals es compara cada paraula en l'editor-.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Substitueix per:</guilabel
+></term>
+<listitem
+><para
+>Si el corrector troba alguna paraula similar en el seu diccionari, aquesta serà la primera a llistar-se. L'usuari pot acceptar el consell, escriure la seva pròpia correcció, o escollir un consell diferent des del quadre de text següent.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Idioma:</guilabel
+></term>
+<listitem
+><para
+>Si heu instal·lat múltiples diccionaris, aquí podreu seleccionar quin diccionari/idioma haurà d'usar-se.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Sobre la part dreta del diàleg es troben sis botons que permeten a l'usuari controlar el procés de correcció ortogràfica. Aquests són:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Afegeix al diccionari</guibutton
+></term>
+<listitem
+><para
+>Prémer aquest botó afegirà la <guilabel
+>Paraula desconeguda:</guilabel
+> al diccionari del corrector. Això voldrà dir que en el futur el corrector considerarà sempre aquesta paraula com a correcta.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Suggereix</guilabel
+></term>
+<listitem
+><para
+>El corrector llistarà aquí una sèrie de possibles substitucions per a la paraula que s'estigui considerant. Fer clic sobre una farà que aquesta paraula s'introdueixi en el quadre <guilabel
+>Substitueix per:</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Substitueix</guibutton
+></term>
+<listitem
+><para
+>Aquest botó substituirà la paraula que s'estigui considerant en el document per la paraula en el quadre <guilabel
+>Substitueix per:</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Substitueix-ho tot</guibutton
+></term>
+<listitem
+><para
+>Aquest botó causarà que el corrector no només substitueixi la <guilabel
+>Paraula desconeguda:</guilabel
+> actual, sinó també que se substitueixi automàticament qualsevol altra aparició de la mateixa en el document.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Ignora</guibutton
+></term>
+<listitem
+><para
+>Activar aquest botó farà que el corrector continuï sense realitzar cap canvi.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Ignora-ho tot</guibutton
+></term>
+<listitem
+><para
+>Aquest botó indica al corrector que no faci res amb la <guilabel
+>Paraula desconeguda:</guilabel
+> actual i que ignori qualsevol altra aparició de la mateixa en la resta del document.</para
+> <note
+><para
+>Tan sols s'aplicarà a la correcció ortogràfica que s'estigui realitzant. Si s'executa altra vegada, el corrector s'aturarà en la mateixa paraula.</para
+></note
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Hi ha tres botons més localitzats horitzontalment al llarg de la part inferior del diàleg de la correcció ortogràfica. Aquests són:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Ajuda</guibutton
+></term>
+<listitem
+><para
+>Invoca al sistema d'ajuda del &kde; iniciant-lo a les pàgines d'ajuda per a aquest diàleg.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Finalitzada</guibutton
+></term>
+<listitem
+><para
+>Aquest botó finalitza el procés de correcció ortogràfica, i torna al document.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Cancel·la</guibutton
+></term>
+<listitem
+><para
+>Aquest botó cancel·la el procés de correcció ortogràfica, anul·lant totes les modificacions, i tornant al vostre document.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-spelling-from-cursor"/><menuchoice
+><guimenu
+>Eines</guimenu
+><guimenuitem
+>Ortografia (des del cursor)...</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Això inicia el programa de correcció ortogràfica però començant en la posició actual del cursor en comptes des de l'inici del document.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-spellcheck-selection"/><menuchoice
+><guimenu
+>Eines</guimenu
+><guimenuitem
+>Corregeix la selecció...</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Realitza la correcció ortogràfica en la selecció actual.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-change-dictionary"/><menuchoice
+><guimenu
+>Eines</guimenu
+><guimenuitem
+>Canvia el diccionari...</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Mostra una llista desplegable amb tots els diccionaris disponibles per a revisar l'ortografia a la part inferior de la finestra de l'editor. Això permet un canvi fàcil del diccionari de correcció ortogràfica, &pex;, per a la correcció ortogràfica automàtica de text en diferents idiomes.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-cleanindent"/><menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Neteja el sagnat</guimenuitem
+></menuchoice
+></term
+>  <listitem>
+<para
+>Neteja el sagnat per a la selecció actual o per a la línia en què es trobi el cursor. Netejar el sagnat assegura que tot el text seleccionat segueixi el mode de sagnat que heu escollit.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-align"/><menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Alinea</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Causa una realineació de la línia actual o de les línies seleccionades utilitzant el mode de sagnat i la configuració del sagnat en el document.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Comenta</guimenuitem
+> </menuchoice
+> </term>
+<listitem
+><para
+>Afegeix un espai al començament de la línia en què estigui el cursor de text o al començament del conjunt de qualsevol línia seleccionada.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Descomenta</guimenuitem
+> </menuchoice
+> </term>
+<listitem
+><para
+>Elimina un espai (si n'hi ha cap) del començament de la línia en què estigui situat el cursor de text o des del començament del conjunt de qualsevol línia seleccionada.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Majúscules</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Canvia a majúscules el text seleccionat o la lletra després del cursor.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Minúscules</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Canvia el text seleccionat o la lletra després del cursor a minúscules.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Posa en majúscula la primera lletra</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Posa en majúscula la primera lletra del text seleccionat o la paraula actual.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Uneix les línies</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Uneix les línies seleccionades, o la línia actual i la línia anterior amb un espai en blanc com a separació. Eliminarà els espais en blanc inicials/finals unint les línies pels extrems afectats.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Aplica l'ajust de paraules</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Aplica l'ajust de línia estàtic en tot el document. Això vol dir que s'iniciarà automàticament una nova línia de text quan la línia excedeixi de la longitud especificada per l'opció <guilabel
+>Ajusta les paraules a:</guilabel
+> a la pestanya Edició a <menuchoice
+> <guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Configura l'editor...</guimenuitem
+></menuchoice
+>.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+<para
+>Si el <link linkend="katepart-pref-plugins"
+>connector</link
+> Insereix un fitxer està habilitat, aquí trobareu un element de menú addicional <guimenuitem
+>Insereix un fitxer...</guimenuitem
+>. </para>
+<!-- Data Tools and Insane HTML (LE) Expansion Ctrl+. when plugins are enabled-->
+</sect3>
+
+<sect3 id="katepart-menu-settings">
+<!-- This is also valid for kates menu settings,
+only the items Show Toolbar and Show Statusbar are swapped and Configure kate is the last item-->
+<title
+>El menú Arranjament</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-preferences"/><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura l'editor...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Aquest element del menú obre un diàleg mitjançant el qual es poden ajustar diverses <link linkend="kredit_config"
+>opcions</link
+> diferents. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect3>
+
+<!--/end kwrite-->
+
+  <!-- KRVIEWER menu -->
+<sect3 id="kredit_krviewer_menu">
+<title
+>El menú KrViewer</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Maj; <keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Visualitzador genèric</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>El visualitzador intern del &krusader; en realitat forma part del &konqueror;, el qual bàsicament pot visualitzar cada tipus de fitxer visible pel &konqueror; (&pex;, mostrar imatges, reproduir música, mostrar el contingut d'un arxiu).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Visualitzador de text</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visualitza el fitxer en el mode text.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Maj; <keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Visualitzador hexadecimal</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visualitza el fitxer en el mode hexadecimal.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Maj; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Visualitzador incremental</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visualitzador ràpid de text/hexadecimal per a mides de fitxer de grans dimensions, fet per al <link linkend="konfig-general"
+>Visualitzador incremental del Krusader</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Maj; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Editor de text</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Edita el fitxer en el mode text.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Maj; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Separa la pestanya</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Separa la pestanya i l'obre en una finestra nova.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl; <keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Surt</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Tanca la finestra del visualitzador/editor del &krusader;.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    </sect3>
+  </sect2>
+
+<!--taken from kwrite's configuring-part.docbook-->
+<sect2 id="kredit_config">
+<title
+>La configuració del component d'edició</title>
+<para
+>Aquest grup conté totes les pàgines relacionades amb el component editor del &kappname;. La majoria de les opcions de configuració que es troben aquí són les predeterminades, i poden ser sobreescrites per <link linkend="katepart-pref-open-save-modes-filetypes"
+>definicions del tipus de fitxer</link
+>, per <ulink url="help:/katepart/config-variables.html"
+>variables de document</ulink
+> o per canvis en el document mateix durant una sessió d'edició.</para>
+<sect3 id="katepart-appearance"
+> <!-- updated to 4.7 + synced with kwrite -->
+<title
+>Aparença</title>
+
+<sect4 id="katepart-appearance-general">
+<title
+>General</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Ajust dinàmic de paraules</guilabel
+></term>
+<listitem>
+<para
+>Si aquesta opció està activada, les línies de text s'ajustaran a la vora de la vista en la pantalla.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Indicadors d'ajust dinàmic de paraules (si és d'aplicació)</guilabel
+></term>
+<listitem
+><para
+>Escull quan i com es mostraran els indicadors d'ajust dinàmic de paraules, ja sigui <guilabel
+>Inactiu</guilabel
+>, <guilabel
+>Segueix els números de línia</guilabel
+> o <guilabel
+>Sempre actiu</guilabel
+>. </para
+></listitem
+></varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Alinea les línies ajustades dinàmicament a l'amplada del sagnat: </guilabel
+></term>
+<listitem
+><para
+>Activa l'inici de l'ajust dinàmic de les línies perquè s'ajustin verticalment al nivell del sagnat de la primera línia. Això pot ajudar a crear codi i marques més llegibles.</para
+><para
+>A més, permet establir l'amplada màxima de la pantalla, com a un percentatge, després del qual les línies ajustades dinàmicament no s'alinearan verticalment. Per exemple, al 50%, les línies amb nivells de sagnat més gran del 50% de l'amplada de la pantalla no se'ls aplicarà l'alineació vertical.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ressaltat dels espais en blanc</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Ressalta els tabuladors</guilabel
+></term>
+<listitem
+><para
+>L'editor mostrarà un símbol &raquo; per a indicar la presència d'un tabulador en el text.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ressalta els espais finals</guilabel
+></term>
+<listitem
+><para
+>L'editor mostrarà punts per a indicar la presència d'espais en blanc extra al final de les línies.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Avançat </guilabel
+></term>
+<listitem
+><para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Mostra les línies de sagnat </guilabel
+></term>
+<listitem
+><para
+>Si està marcada, l'editor mostrarà línies verticals per a ajudar a identificar el sagnat de les línies.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ressalta l'interval entre els parèntesis seleccionats </guilabel
+></term>
+<listitem
+><para
+>Si està activat, es ressaltarà l'interval entre la parella de parèntesis seleccionats.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-appearance-borders">
+<title
+>Vores</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Vores</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Mostra els marcadors plegables (si està disponible) </guilabel
+></term>
+<listitem
+><para
+>Si aquesta opció està marcada, la vista actual mostrarà marques per al plegat del codi, si el plegat del codi està disponible.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostra la vora de les icones </guilabel
+></term>
+<listitem
+><para
+>Si està marcada, veureu una vora per a les icones al costat esquerre. La vora per a les icones mostrarà els signes de punt.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostra els números de les línies </guilabel
+></term>
+<listitem
+><para
+>Si està marcada, veureu els números de les línies al costat esquerre.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostra les marques de la barra de desplaçament </guilabel
+></term>
+<listitem
+><para
+>Si aquesta opció està marcada, la vista actual mostrarà marques a la barra de desplaçament vertical. Aquestes marques per exemple, mostraran els punts.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ordena el menú dels punts </guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Per creació </guilabel
+></term>
+<listitem
+><para
+>Cada punt nou s'afegirà a baix, independentment d'on estigui situat en el document.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Per posició </guilabel
+></term>
+<listitem
+><para
+>Els punts s'ordenaran pel número de línia en la qual estan situats.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+</sect3>
+
+<sect3 id="katepart-prefcolors"
+><!-- checked for 4.7 + synced with kwrite -->
+<title
+>Tipus de lletra i colors</title>
+
+<para
+>Aquesta secció del diàleg permet configurar tots els tipus de lletra i colors de qualsevol esquema de color que teniu, així com crear esquemes nous o suprimir els existents. Cada esquema té opcions per als colors, tipus de lletra i ressaltat dels estils de text. </para>
+
+<para
+>El &kappname; preseleccionarà l'esquema actualment actiu, si voleu treballar sobre un esquema diferent, seleccioneu-lo en el quadre combinat <guilabel
+>Esquema</guilabel
+>. Amb els botons <guibutton
+>Nou</guibutton
+> i <guibutton
+>Suprimeix</guibutton
+> podreu crear un esquema nou o suprimir els existents.</para>
+<para
+>A la part inferior de la pàgina podeu seleccionar l'<guilabel
+>Esquema predeterminat per a la &kappname;</guilabel
+>.</para>
+
+<sect4 id="katepart-prefcolors-colors">
+<title
+>Colors</title>
+
+<variablelist>
+<varlistentry id="katepart-variable-prefcolors-colors-text-background">
+<term
+><guilabel
+>Fons de l'àrea del text</guilabel
+></term>
+<listitem>
+
+<variablelist>
+
+<varlistentry id="katepart-variable-pref-colors-normal-text">
+<term
+><guilabel
+>Text normal</guilabel
+></term>
+<listitem
+><para
+>Aquest és el fons predeterminat per a l'àrea d'edició, serà el color dominant en l'àrea d'edició.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-selected-text">
+<term
+><guilabel
+>Text seleccionat</guilabel
+></term>
+<listitem
+><para
+>Aquest és el fons per al text seleccionat. El valor predeterminat és el color de la selecció global, tal com està establert en les preferències de color del &plasma;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-current-line">
+<term
+><guilabel
+>Línia actual</guilabel
+></term>
+<listitem
+><para
+>Estableix el color per a la línia actual. Estableix aquesta opció una mica diferent del fons del text normal per a ajudar a mantenir el focus en la línia actual. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-marks">
+<term
+><guilabel
+>Punt</guilabel
+></term>
+<listitem
+><para
+>Aquest quadre combinat permet establir els colors de superposició per a diversos tipus de marques. El color es mesclarà amb el color de fons d'una línia marcada, de manera que una línia amb més marques o una línia marcada que actualment té un fons, serà una mescla de més colors. Els colors de les marques també s'utilitzaran si habiliteu mostrar les marques de la barra de desplaçament.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-prefcolors-colors-other-elements">
+<term
+><guilabel
+>Elements addicionals</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Fons de la vora esquerra</guilabel
+></term>
+<listitem
+><para
+>Aquest color s'utilitza per a les marques, números de línia i vores de les marques de plegat del codi situats al costat esquerre de la vista d'edició quan aquests siguin mostrats. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Números de les línies</guilabel
+></term>
+<listitem
+><para
+>Aquest color s'utilitza per a dibuixar els números de línia al costat esquerre quan siguin mostrats.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ressaltat dels parèntesis</guilabel
+></term>
+<listitem
+><para
+>Aquest color s'utilitza per a dibuixar el fons dels parèntesis emparellats. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Marcadors de l'ajust de paraules</guilabel
+></term>
+<listitem
+><para
+>Aquest color s'utilitza per a dibuixar un patró a l'esquerra de les línies ajustades dinàmicament quan siguin alineades verticalment, i també per a les marques d'ajust estàtic de les línies.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Marcadors de tabulació i espai</guilabel
+></term>
+<listitem
+><para
+>Aquest color s'utilitza per a dibuixar els indicadors d'espai en blanc, quan estan activats. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Línia amb error ortogràfic</guilabel
+></term>
+<listitem
+><para
+>Defineix el color per a la línia que s'utilitza per a indicar els errors ortogràfics. </para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-prefcolors-fonts">
+<title
+>Tipus de lletra</title>
+<para
+>Aquí podreu escollir el tipus de lletra per a l'esquema. Podeu escollir qualsevol tipus de lletra disponible en el vostre sistema, i establir la mida predeterminada. Es mostra un text d'exemple a la part inferior del diàleg, de manera que podeu veure l'efecte de la vostra elecció. </para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-normal-text-styles">
+<title
+>Estils del text normal</title>
+<para
+>Els estils del text normal s'hereten dels estils de text ressaltat, i permeten a l'editor presentar text de manera compatible, per exemple, el comentari de text utilitza el mateix estil en la majoria dels formats que el &kappname; pot ressaltar.</para>
+<para
+>El nom en la llista d'estils utilitza l'estil configurat per a l'element, proporcionant-vos una vista prèvia quan un estil està configurat. </para>
+<para
+>Cada estil permet seleccionar atributs comuns com els colors de fons i de primer pla. Per a desseleccionar un color de fons, feu clic dret per a utilitzar el menú contextual.</para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-highlighting-text-styles">
+<title
+>Estils del text ressaltat</title>
+<para
+>Aquí podeu editar els estils de text utilitzats per una definició de ressaltat específica. L'editor preselecciona el ressaltat usat per al vostre document actual. Per a treballar amb un ressaltat diferent, seleccioneu-ne un en el quadre combinat <guilabel
+>Ressaltat</guilabel
+> sobre la llista d'estil. </para>
+<para
+>El nom en la llista d'estils utilitza l'estil configurat per a l'element, proporcionant-vos una vista prèvia quan un estil està configurat. </para>
+<para
+>Cada estil us permet seleccionar atributs comuns com els colors de fons i de primer pla. Per a desseleccionar un color de fons, feu clic dret per a utilitzar el menú contextual. A més podreu veure si un estil és igual que l'estil predeterminat utilitzat per l'element, i assignar-lo si no l'és.</para>
+<para
+>Cal tenir present que molts ressaltats contenen d'altres ressaltats representats per grups en la llista d'estil. Per exemple, la majoria dels ressaltats inclouen el ressaltat Alerta, i molts dels formats de codi font inclouen el ressaltat Doxygen. Editar colors en aquests grups només afectarà els estils quan s'usin en el format de ressaltat editat. </para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-edit">
+<title
+>Edició</title>
+
+<sect4 id="katepart-pref-edit-general">
+<title
+>General</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-pref-word-wrap"
+><guilabel
+>Ajust estàtic de paraules</guilabel
+></term>
+<listitem
+><para
+>L'ajust de línia és una característica que causarà que l'editor iniciï automàticament una nova línia de text i desplaci (ajusti) el cursor al començament de la nova línia. El &kappname; iniciarà automàticament una nova línia de text quan la línia actual abasti la longitud especificada per l'opció <link linkend="katepart-pref-wrap-words-at"
+>Ajusta les paraules a:</link
+>.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Activa l'ajust estàtic de paraules</guilabel
+></term>
+<listitem>
+<para
+>Activa o desactiva l'ajust estàtic de paraules.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostra els marcadors d'ajust estàtic de paraules (si és aplicable)</guilabel
+></term>
+<listitem>
+<para
+>Si aquesta opció està marcada, es dibuixarà una línia vertical a l'ajust de línia tal com s'ha definit a <menuchoice
+> <guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura l'editor...</guimenuitem
+></menuchoice
+> en la pestanya Edició. Cal tenir present que la marca d'ajust de línia només es dibuixarà si utilitzeu un tipus de lletra amb mida fixa.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term id="katepart-pref-wrap-words-at"
+><guilabel
+>Ajusta les paraules a:</guilabel
+></term>
+<listitem>
+<para
+>Si l'opció <link linkend="katepart-pref-word-wrap"
+>Activa l'ajust estàtic de paraules</link
+> està seleccionada, aquesta entrada determina la longitud (en caràcters) després de la qual l'editor iniciarà una nova línia automàticament.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Miscel·lània</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Elimina els espais finals</guilabel
+></term>
+<listitem
+><para
+>El &kappname; eliminarà automàticament els espais finals addicionals de les línies de text.</para
+></listitem
+> </varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Parèntesis automàtics</guilabel
+></term
+> <listitem
+><para
+>Quan l'usuari escrigui un parèntesi esquerre (<keycap
+>[</keycap
+>, <keycap
+>(</keycap
+>, o <keycap
+>{</keycap
+>), la &kappname; introduirà automàticament el parèntesi dret (<keycap
+>}</keycap
+>, <keycap
+>)</keycap
+> o <keycap
+>]</keycap
+>) a la dreta del cursor.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Copia/retalla la línia actual si no hi ha cap selecció</guilabel
+></term
+> <listitem>
+<para
+>Si aquesta opció està activada i la selecció de text està buida, les accions copia i retalla es duran a terme per a la línia de text a la posició real del cursor.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Permet el desplaçament més enllà del final del document</guilabel
+></term
+> <listitem>
+<para
+>Aquesta opció permet desplaçar-vos més enllà del final del document. Es pot utilitzar per al centre vertical a la part inferior del document, o el posa a la part superior de la vista actual.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-cursor-selection">
+<title
+>Cursor i selecció</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Moviment del cursor en el text</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Inici i final intel·ligents</guilabel
+></term>
+<listitem>
+<para
+>Quan estigui seleccionada, prémer la tecla Inici causarà que el cursor salti els espais en blanc i vagi a l'inici del text d'una línia.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ajusta al cursor</guilabel
+></term>
+<listitem>
+<para
+>Quan està activada, moure el cursor d'inserció amb les tecles &Left; i &Right; passarà a la línia anterior/següent al començament/final de la línia, de manera semblant a la majoria dels editors.</para
+><para
+>Quan està desactivada, el cursor d'inserció no es podrà moure a l'esquerra del començament de la línia, però es podrà moure fora del final de la línia, el qual pot ser molt útil per als programadors. Quan es tria aquesta opció, moure el cursor amb les tecles de fletxa al final d'una línia (a la dreta) farà que salti al començament de la línia següent. De la mateixa manera, quan el cursor es mou més enllà del començament d'una línia (a l'esquerra), saltarà al final de la línia anterior. Quan aquesta opció no està seleccionada, moure el cursor cap a la dreta més enllà del final d'una línia simplement farà que continuï horitzontalment en la mateixa línia i intentar moure-la cap a l'esquerra més enllà del començament no farà res.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Av Pàg/Re Pàg mouen el cursor</guilabel
+></term>
+<listitem>
+<para
+>Aquesta opció canvia el comportament del cursor quan l'usuari prem la tecla &PgUp; o &PgDn;. Si no està seleccionada, el cursor mantindrà la seva posició relativa en el text visible a la &kappname; com el text nou es fa visible com a resultat de l'operació. Així, si el cursor està en el centre del text visible quan l'operació ocorre romandrà allí (excepte quan s'arriba al començament o al final). Amb aquesta opció seleccionada, prémer en primer lloc la tecla causarà que el cursor es mogui a la part superior o inferior del text visible mostrant una nova pàgina de text.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Centra automàticament el cursor (línies):</guilabel
+></term>
+<listitem>
+<para
+>Estableix el nombre de línies a mantenir visibles per sobre i per sota del cursor, sempre que sigui possible.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Mode de selecció del text</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Normal</guilabel
+></term>
+<listitem>
+<para
+>Les seleccions seran sobreescrites pel text escrit i perdudes en moure el cursor.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Persistent</guilabel
+></term>
+<listitem>
+<para
+>Les seleccions romandran, fins i tot després del moviment del cursor i el tecleig.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-indent">
+<title
+>Sagnat</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Mode de sagnat predeterminat:</guilabel
+></term>
+<listitem>
+<para
+>Seleccioneu el mode de sagnat automàtic que voleu utilitzar de manera predeterminada. Es recomana utilitzar <userinput
+>Cap</userinput
+> o <userinput
+>Normal</userinput
+>, i utilitzar les configuracions del tipus de fitxer per a assignar altres modes de sagnat per a formats de text com codi en C/C++ o &XML;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Sagna usant</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Tabulacions</guilabel
+></term>
+<listitem>
+<para
+>Quan aquesta opció està activada, l'editor inserirà caràcters de tabulació quan es pressiona la tecla &Tab; o utilitzarà el <ulink url="help:/katepart/kate-part-autoindent.html"
+>sagnat automàtic</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Espais</guilabel
+></term>
+<listitem>
+<para
+>Quan estigui activada, l'editor inserirà un nombre d'espais calculat d'acord amb la posició en el text i l'opció <option
+>tab-width</option
+> (amplada de la tabulació) quan premeu la tecla &Tab; o utilitzeu el <ulink url="help:/katepart/kate-part-autoindent.html"
+>sagnat automàtic</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tabuladors i espais</guilabel
+></term>
+<listitem>
+<para
+>Quan aquesta opció està activada, l'editor inserirà espais com es descriu anteriorment, quan se sagni o premi la tecla &Tab; al començament d'una línia, però inserirà tabulacions quan es premi la tecla &Tab; al mig o al final d'una línia.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Amplada de la tabulació:</guilabel
+></term>
+<listitem>
+<para
+>Això configura el nombre d'espais que es mostren en lloc d'un caràcter de tabulació.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Amplada del sagnat:</guilabel
+></term>
+<listitem>
+<para
+>L'amplada del sagnat és el nombre d'espais que s'utilitzen per a aplicar el sagnat a una línia. Si s'ha configurat el sagnat utilitzant tabulacions, un caràcter de tabulació serà inserit si el sagnat és divisible per l'amplada de la tabulació.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Propietats del sagnat</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Preserva els espais extres</guilabel
+></term>
+<listitem
+><para
+>Si aquesta opció està desactivada, en canviar el nivell de sagnat les línies s'alineen a un múltiple de l'amplada especificada a <guilabel
+>Amplada del sagnat</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ajusta el sagnat del codi enganxat des del porta-retalls</guilabel
+></term>
+<listitem>
+<para
+>Si aquesta opció està seleccionada, se sagnarà el codi enganxat des del porta-retalls. En activar l'acció de <guimenuitem
+>Desfés</guimenuitem
+> s'eliminarà el sagnat.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Accions del sagnat</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>La tecla de retrocés en un espai en blanc inicial desfà el sagnat</guilabel
+></term>
+<listitem>
+<para
+>Si aquesta opció està seleccionada, la tecla de &Retro; disminuirà el nivell de sagnat si el cursor està posicionat a l'espai en blanc inicial d'una línia.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Acció de la tecla de tabulació (si no existeix cap selecció)</guilabel
+></term>
+<listitem>
+<para
+>Si voleu utilitzar &Tab; per a alinear la línia actual en el bloc de codi actual com a emacs, la &Tab; farà una drecera a l'acció <guimenuitem
+>Alinea</guimenuitem
+>. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Avança sempre fins a la posició de la tabulació següent</guilabel
+></term>
+<listitem>
+<para
+>Si seleccioneu aquesta opció, la tecla &Tab; sempre inserirà espais en blanc fins que s'abasti la posició de la següent tabulació. Si l'opció <guilabel
+>Insereix espais en comptes de tabulacions</guilabel
+> a la pestanya <guilabel
+>General</guilabel
+> a la pàgina <guilabel
+>Edició</guilabel
+> està activada, s'inseriran espais, en cas contrari, s'inserirà una sola tabulació.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Augmenta sempre el nivell de sagnat</guilabel
+></term>
+<listitem>
+<para
+>Si aquesta opció està seleccionada, la tecla &Tab; sempre sagna la línia actual amb el nombre de posicions indicades a <guilabel
+>Amplada del sagnat</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Augmenta el nivell de sagnat en un espai en blanc inicial</guilabel
+></term>
+<listitem>
+<para
+>Si aquesta opció està seleccionada, la tecla &Tab; sagnarà la línia actual o avançarà fins a la posició de la tabulació següent. Si el punt d'inserció és al primer caràcter no blanc o abans de la línia, o hi ha una selecció, la línia actual se sagnarà en el nombre de posicions indicades a <guilabel
+>Amplada del sagnat</guilabel
+>. Si el punt d'inserció està després del primer caràcter no blanc de la línia i no hi ha cap selecció, s'inserirà un espai en blanc de manera que s'arribi a la posició de la tabulació següent: si l'opció <guilabel
+>Insereix espais en lloc de tabuladors</guilabel
+> de la secció <guilabel
+>Edició</guilabel
+> està activada, s'inseriran espais; altrament, s'inserirà una única tabulació.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-autocompletion">
+<title
+>Compleció automàtica</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>General</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Activa la compleció automàtica</guilabel
+></term>
+<listitem>
+<para
+>Si està activada, apareixerà un quadre de compleció emergent per a completar paraules automàticament en escriure, mostrant una llista d'entrades de text per a completar el text actual sota el cursor.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Longitud mínima de la paraula a completar</guilabel
+></term>
+<listitem
+><para
+>En escriure text, les cerques de paraules de completat de paraules en el document s'iniciarà en escriure text. Aquesta opció configura la quantitat mínima de caràcters que es necessiten per a fer que la compleció de paraules sigui activada i aparegui un quadre de compleció emergent.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-vi-input-mode">
+<title
+>Mode d'entrada del Vi</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>General</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Usa el mode d'entrada del Vi</guilabel
+></term>
+<listitem>
+<para
+>Quan se selecciona, el mode d'entrada vi seleccionat s'activarà en obrir una vista nova. Encara podreu commutar el mode d'entrada vi actiu/inactiu per a una vista particular en el menú <guimenu
+>Edita</guimenu
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Permet que les ordres del Vi substitueixin les dreceres del Kate</guilabel
+></term>
+<listitem>
+<para
+>Quan està seleccionada, les ordres del vi substitueixen les ordres incloses de la &kappname;. Per exemple: <keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> refarà, i substituirà l'acció estàndard (mostra el diàleg de cerca i substitució).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Oculta la barra d'estat del mode d'entrada del Vi</guilabel
+></term>
+<listitem>
+<para
+>De manera predeterminada, s'utilitzarà una barra d'estat addicional quan el mode d'entrada Vi estigui habilitat. Aquesta barra d'estat mostrarà les ordres mentre s'escriuen i els missatges/errors produïts per les ordres de Vi.</para>
+<para
+>En marcar aquesta opció, s'ocultarà aquesta línia d'estat addicional.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mapatge de tecles</guilabel
+></term>
+<listitem
+><para
+>El mapatge de tecles s'utilitza per a canviar el significat de les tecles en escriure. Això permet moure les ordres a altres tecles o crear tecles especials per a fer una sèrie d'ordres.</para>
+<para
+>Exemple:</para>
+<para
+><keycap
+>F2</keycap
+> -> <userinput
+>I--</userinput
+> &Esc;</para>
+<para
+>Això anteposa <keycap
+>I--</keycap
+> a una línia quan es pressiona <keycap
+>F2</keycap
+>. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-spellcheck">
+<title
+>Verificació ortogràfica</title>
+<para
+>Aquestes opcions de configuració es descriuen a la documentació del mòdul <ulink url="help:/kcontrol/spellchecking"
+>Corrector ortogràfic</ulink
+> a &systemsettings;.</para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-open-save">
+<title
+>Obre/Desa</title>
+
+<sect4 id="katepart-pref-open-save-general">
+<title
+>General</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Format del fitxer</guilabel
+></term>
+<listitem>
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Codificació:</guilabel
+></term>
+<listitem>
+<para
+>Defineix la codificació estàndard a utilitzar per a obrir/desar fitxers, si no s'ha canviat al diàleg obre/desa, o utilitzant una opció de la línia d'ordres.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Detecció de la codificació</guilabel
+></term>
+<listitem>
+<para
+>Seleccioneu un element de la llista desplegable, o bé desactiveu la detecció automàtica o utilitzeu <guilabel
+>Universal</guilabel
+> per a activar la detecció automàtica per a totes les codificacions. Però com això probablement només pot detectar utf-8/utf-16, seleccionant una regió s'utilitzarà l'heurística personalitzada per a obtenir millors resultats. Si no es tria cap codificació com a estàndard, ni s'especifica en el diàleg obre/desa, ni a la línia d'ordres que coincideixi amb el contingut del fitxer, aquesta detecció es durà a terme.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Codificació de reserva</guilabel
+></term>
+<listitem>
+<para
+>Defineix la codificació de reserva per a intentar obrir els fitxers si no es tria cap codificació com a estàndard, ni s'especifica en el diàleg obre/desa, ni a la línia d'ordres que coincideixi amb el contingut del fitxer. Abans d'utilitzar-la, es farà una temptativa per a determinar la codificació a utilitzar cercant una marca d'ordre de bytes a l'inici del fitxer: Si es troba, se seleccionarà la codificació unicode correcta, altrament s'executarà la detecció de la codificació, i si les dues fallen, es triarà la codificació de reserva.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Final de línia:</guilabel
+></term>
+<listitem>
+<para
+>Escolliu el final de línia preferit per al vostre document actiu. Podeu escollir entre &UNIX;, DOS/&Windows; o Macintosh.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Detecció automàtica del final de línia</guilabel
+></term>
+<listitem>
+<para
+>Marqueu-ho si voleu que l'editor detecti automàticament el tipus del final de línia. El primer final de línia trobat s'utilitzarà per a tot el fitxer.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Activa el marcador d'ordre de bytes</guilabel
+></term>
+<listitem>
+<para
+>La marca d'ordre de bytes és una seqüència especial al començament dels documents codificats amb unicode. Ajuda als editors a obrir documents de text amb la codificació unicode correcta. Per a obtenir més informació, vegeu <ulink url="https://en.wikipedia.org/wiki/Byte_order_mark"
+>Marca d'ordre de bytes</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<!--
+Line Length Limit missing
+ -->
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Neteja automàtica en carregar/desar</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Elimina els espais finals</guilabel
+></term>
+<listitem>
+<para
+>L'editor eliminarà automàticament els espais addicionals al final de les línies de text mentre es carrega/desa el fitxer.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-advanced">
+<title
+>Avançat</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Fitxer de configuració de la carpeta</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Profunditat de cerca per al fitxer de configuració:</guilabel
+></term>
+<listitem>
+<para
+>L'editor cercarà el nombre donat de nivells de carpeta cap amunt per al fitxer de configuració del &kappname;, i carregarà la línia de les opcions des d'aquest. Trobareu més informació sobre aquests fitxers de configuració ocults de carpeta a la <ulink url="help:/katepart/config-variables.html"
+>secció de variables del document</ulink
+>. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Còpia de seguretat en desar</guilabel
+></term>
+<listitem
+><para
+>Els fitxers de còpia de seguretat faran que la &kappname; copiï el fitxer a &lt;prefix&gt;&lt;nomfitxer&gt;&lt;sufix&gt; abans de desar els canvis. El sufix predeterminat és <emphasis role="bold"
+>~</emphasis
+> i el prefix restarà buit. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Fitxers locals</guilabel
+></term>
+<listitem>
+<para
+>Marcar si voleu realitzar còpies de seguretat dels fitxers locals en desar.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Fitxers remots</guilabel
+></term>
+<listitem>
+<para
+>Marcar si voleu realitzar còpies de seguretat dels fitxers remots en desar.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Prefix</guilabel
+></term>
+<listitem>
+<para
+>Introduïu el prefix que precedirà al nom dels fitxers de còpia de seguretat.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sufix</guilabel
+></term>
+<listitem>
+<para
+>Introduïu el sufix a afegir al nom dels fitxers de còpia de seguretat.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Desactiva la sincronització del fitxer d'intercanvi</guilabel
+></term>
+<listitem>
+<para
+>El &kappname; és capaç de recuperar (la major part de) el que va escriure després de l'última vegada que va desar en el cas d'una fallada o falta de corrent elèctric. Un fitxer d'intercanvi (.swp.&lt;nomfitxer&gt;) és creat després de la primera acció d'edició en un document. Si l'usuari no desa els canvis i la &kappname; peta, el fitxer d'intercanvi es manté al disc. En obrir un fitxer, la &kappname; comprovarà si hi ha un fitxer d'intercanvi per al document i si el troba, demanarà a l'usuari si vol o no recuperar les dades perdudes. L'usuari també disposa de la possibilitat de veure les diferències entre el fitxer original i el recuperat. El fitxer d'intercanvi serà suprimit després de cada acció de desament i en sortir normalment.</para>
+<para
+>El &kappname; sincronitza els fitxers d'intercanvi en el disc cada 15 segons, però només si han canviat des de l'última sincronització. L'usuari pot desactivar aquesta sincronització, seleccionant la casella de selecció <guilabel
+>Desactiva la sincronització del fitxer d'intercanvi</guilabel
+>, però això pot conduir a una major pèrdua de dades.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-modes-filetypes">
+<title
+>Modes i tipus de fitxer</title>
+<para
+>Aquesta pàgina us permetrà substituir la configuració predeterminada per als documents dels tipus &MIME; especificats. Quan l'editor carrega un document, intenta trobar la màscara o el tipus &MIME; per a un dels tipus de fitxer definits, i de ser així s'apliquen les variables definides. Si coincideixen diversos tipus de fitxer, s'utilitzarà el de major prioritat. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Tipus de fitxer:</guilabel
+></term>
+<listitem
+><para
+>El tipus de fitxer amb la prioritat més alta és el que es mostra a la llista desplegable. Si hi ha més d'un tipus de fitxer, també es llistaran.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Nou</guilabel
+></term>
+<listitem
+><para
+>S'utilitza per a crear un nou tipus de fitxer. Després que feu clic en aquest botó, els camps inferiors es buidaran i podreu omplir les propietats que vulgueu per al nou tipus de fitxer.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Suprimeix</guilabel
+></term>
+<listitem
+><para
+>Per a eliminar un tipus de fitxer existent, seleccioneu-lo des de la llista desplegable i premeu el botó <guibutton
+>Suprimeix</guibutton
+>.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem
+> </varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Propietats del <replaceable
+>tipus de fitxer actual</replaceable
+></guilabel
+></term>
+<listitem
+><para
+>El tipus de fitxer amb la prioritat més alta és el que es mostra a la llista desplegable. Si hi ha més d'un tipus de fitxer, també es llistaran.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Nom:</guilabel
+></term>
+<listitem
+><para
+>El nom del tipus de fitxer que es mostrarà a l'element de menú corresponent. Aquest nom es mostrarà en el menú <menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Tipus de fitxer</guimenuitem
+></menuchoice
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Secció:</guilabel
+></term>
+<listitem
+><para
+>El nom de la secció utilitzada per a organitzar els tipus de fitxer en menús. També és utilitzat en el menú <menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Tipus de fitxer</guimenuitem
+></menuchoice
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Variables:</guilabel
+></term>
+<listitem
+><para
+>Aquesta cadena permet configurar la configuració de la &kappname; per als fitxers seleccionats per a aquest tipus &MIME; utilitzant variables de la &kappname;. Podeu establir gairebé qualsevol opció de configuració, com ara el ressaltat, el mode de sagnat, &etc;</para>
+<para
+>Premeu <guibutton
+>Edita</guibutton
+> per a veure una llista de totes les variables disponibles i les seves descripcions. Seleccioneu la casella de selecció de l'esquerra per a activar una variable en particular i després establiu el valor de la variable a la dreta. Algunes variables proporcionen una llista desplegable per a seleccionar els possibles valors requerits per altres quan introduïu un valor vàlid manualment.</para>
+<para
+>Per a obtenir informació completa sobre aquestes variables, vegeu <ulink url="help:/katepart/config-variables.html"
+>Configuració amb variables de document</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ressaltat:</guilabel
+></term>
+<listitem
+><para
+>Si creeu un nou tipus de fitxer, aquesta llista desplegable permet seleccionar un tipus de fitxer a ressaltar.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Mode de sagnat:</guilabel
+></term>
+<listitem
+><para
+>La llista desplegable especifica el mode de sagnat per als documents nous.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Extensions de fitxer:</guilabel
+></term>
+<listitem
+><para
+>Els comodins permeten seleccionar els fitxers segons el seu nom. Una màscara que se sol emprar és un asterisc i l'extensió del fitxer, per exemple <filename
+>*.txt; *.text</filename
+>. La cadena és una llista de màscares separades per punt i coma.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tipus &MIME;:</guilabel
+></term>
+<listitem
+><para
+>Mostra un auxiliar que us ajuda a seleccionar fàcilment els tipus &MIME;.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Prioritat:</guilabel
+></term>
+<listitem
+><para
+>Estableix una prioritat per a aquest tipus de fitxer. Si un document coincideix amb diversos tipus de fitxer, s'escollirà el que disposi d'una prioritat més alta.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem
+> </varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Baixa els fitxers de ressaltat...</guibutton
+></term>
+<listitem>
+<para
+>Fer clic en aquest botó per a baixar noves descripcions de ressaltat de la sintaxi o per a actualitzar les existents des del lloc web de la &kappname;. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-plugins">
+<title
+>Extensions</title
+> <!-- updated to 4.7 + synced with kwrite -->
+<para
+>La pestanya <guilabel
+>Connectors</guilabel
+> llista tots els connectors disponibles i podreu marcar els que vulgueu utilitzar. Feu clic al botó <guibutton
+>Informació</guibutton
+> per a obrir el diàleg <guilabel
+>Quant al</guilabel
+> d'aquest connector.</para>
+<para
+>Una vegada que es marca un connector configurable, el botó <guibutton
+>Configura</guibutton
+> estarà habilitat i hi podreu fer clic per a configurar el connector ressaltat.</para>
+<variablelist>
+<title
+>Connectors del component d'edició</title>
+<!-- not released with 4.7
+<varlistentry>
+<term
+><guilabel
+>Artistic Comment</guilabel
+></term>
+<listitem
+><para
+>Format long source-code comments like license-headers
+or descriptions using different style.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><guilabel
+>AutoBrace</guilabel
+></term>
+<listitem
+><para
+>El connector «autobrace» substitueix a la característica interna <quote
+>Claus automàtiques</quote
+> del &kappname;. Insereix automàticament una clau de tancament <keycap
+>}</keycap
+> al començament de la següent línia després d'acabar una línia amb una d'obertura <keycap
+>{</keycap
+> i prémer la tecla &Intro;.</para
+></listitem>
+</varlistentry>
+<!--http://jakob.petsovits.at/topic/kate-->
+<!--Right, it's the automatic insertion of a closing brace (<quote
+>}</quote
+>) after you ended a line with an opening one (<quote
+>{</quote
+>). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
+You, the developer, are writing a line of code, and want to open a new block delimited by braces. Looks like this:
+If you press Enter and AutoBrace is enabled, it will insert your favorite new brace where it belongs. Looks like this:
+-->
+<varlistentry>
+<term
+><guilabel
+>Eines de dades</guilabel
+></term>
+<listitem
+><para
+>Habilita les eines de dades com el tesaurus i la correcció ortogràfica (si està instal·lada). Les eines de dades només estaran disponibles quan se selecciona text o quan es fa clic amb el &BDR; sobre una paraula. Si no s'ofereixen eines de dades fins i tot quan se selecciona text, haureu d'instal·lar-les. Si aquest connector està habilitat i les eines de dades estan instal·lades, apareixeran elements addicionals al final del menú contextual.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Exportador</guilabel
+></term>
+<listitem
+><para
+>Aquesta ordre permet exportar el document actual amb tota la informació ressaltada en un document &HTML; usant <menuchoice
+><guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Exporta com a &HTML;...</guimenuitem
+></menuchoice
+>. A més, podeu utilitzar <menuchoice
+><guimenu
+>Edita</guimenu
+> <guimenuitem
+>Copia com a &HTML;</guimenuitem
+></menuchoice
+> per a copiar el text seleccionat com a &HTML; al porta-retalls del sistema.</para
+></listitem>
+</varlistentry>
+<!-- not in 4.7
+<varlistentry>
+<term
+><guilabel
+>Highlight Selection</guilabel
+></term>
+<listitem
+><para
+>Highlights all words that match the currently selected text.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><guilabel
+>IconInserter</guilabel
+></term>
+<listitem
+><para
+>El connector d'inserció d'icones només és útil per als desenvolupadors del &kde;: afegeix un element <guimenuitem
+>Insereix el codi de la KIcon</guimenuitem
+> al menú contextual de l'editor. Si està activada, s'obrirà el selector d'icones del &plasma; (mostrant les icones d'aplicació, d'acció, &etc;). Si feu clic, s'inserirà com a text el nom del fitxer sense extensió de fitxer. D'utilitat només per a configurar les icones a través dels &kf5; mitjançant la classe «KIcon()». </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Codificació &HTML; insana (no ZEN) (edició lleugera)</guilabel
+></term>
+<listitem
+><para
+>Un connector, el qual farà la codificació zen com la compleció del selector. Per a més informació, vegeu <ulink url="https://en.wikipedia.org/wiki/Zen_Coding"
+>Codificació Zen</ulink
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Insereix un fitxer</guilabel
+></term>
+<listitem
+><para
+>Aquest connector permet posar qualsevol fitxer llegible a la posició del cursor. Si està habilitada, el menú <guimenu
+>Eines</guimenu
+> tindrà un element de menú addicional <guimenuitem
+>Insereix un fitxer</guimenuitem
+>.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect3>
+</sect2>
+<!--/end kwrite-->
+
+</sect1>

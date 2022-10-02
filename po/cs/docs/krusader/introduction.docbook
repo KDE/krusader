@@ -1,0 +1,116 @@
+<chapter id="introduction">
+
+<title
+>Úvod</title>
+<indexterm
+><primary
+>Úvod</primary
+></indexterm>
+  <sect1 id="package-description">
+  <title
+>Popis balíku</title>
+    <para
+>&krusader; je jednoduchý, lehký, výkonný správce souborů se zdvojeným panelem pro &kde; a jiné *nixové desktopy. Podobá se aplikacím <application
+>Midnight Commander</application
+> nebo <trademark class="copyright"
+>Total Commander</trademark
+>. Poskytuje všechny správcovské funkce souborů, které byste eventuálně mohli požadovat.</para>
+    <para
+>Krusader také obsahuje rozšíření pracující s archivy, podporu připojování souborových systémů, &FTP;, pokročilý vyhledávací modul, prohlížeč/editor, synchronizaci adresářů, porovnávání obsahu souborů, efektivní dávkové přejmenovávání a mnoho mnoho dalšího. &krusader; podporuje formáty archivů: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip a 7-zip a další Otroky KIO jako smb:// nebo fish://.</para>
+    <para
+>&krusader; je téměř dokonale přizpůsobitelný a tedy i velmi uživatelsky přívětivý.</para>
+    <para
+>Vyzkoušejte &krusader;.</para>
+    <!-- OLD
+<screenshot>
+  <screeninfo
+>&krusader; screenshot</screeninfo>
+  <mediaobject id="krusader_screenshot">
+    <imageobject
+><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
+    <imageobject
+><imagedata fileref="krusader1.png" format="EPS"/></imageobject>
+    <textobject
+><phrase
+>&krusader; screenshot</phrase
+></textobject>
+    <caption
+><para
+>&krusader; screenshot</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-krusader" float="1">
+      <title
+>snímek aplikace &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="krusader1.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>snímek aplikace &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Více <ulink url="http://www.krusader.org/scr.php"
+>snímků aplikace &krusader;</ulink
+> mohou být zhlédnuty na naší webové stránce.</para>
+  </sect1>
+
+  <sect1 id="welcome">
+    <title
+>Vítejte v aplikaci &krusader;!</title>
+    <para
+>Naším cílem je dát Vám jednoduchý a intuitivní nástroj, který jednoduše ovládá většinu důležitých úkolů Vámi vykonávaných na počítači každý den: správa a zpracování souborů způsobem, který požadujete.</para>
+    <para
+>Jste-li na OS &Linux; expert nebo nováček, &krusader; provádí běžné úkoly správy souborů rychle a precizně, umožňuje zaměřit se na velké obrázky bez použití příkazové řádky. To je obzvláště nápomocné, jste-li v xxNIXových systémech nováček. &krusader; používá pěkné &GUI; a podporuje metodu táhni a pusť, stejně dobře jako MIME typy, takže je snadno použitelný.</para>
+    <para
+>&krusader; má mnoho užitečných vlastností. Je rychlý a jednoduše spravuje <link linkend="archives"
+>archivy</link
+>. Kromě toho &krusader; zefektivňuje mnoho složitých úkolů správy souborů, redukuje vyčerpanost, chyby a neshody. V zásadě &krusader; poskytuje všechny užitečné vlastnosti, které se očekávají od jiných kvalitních nástrojů správy souborů jako <application
+>Midnight Commander</application
+> a <trademark class="copyright"
+>Total Commander</trademark
+>. &krusader; je navržen tak, aby tvořil celek s desktopem &kde;. Tento desktop je volba pro mnoho programátorů, síťových inženýrů a dalších uživatelů schopných v OS &Linux;. S aplikací &krusader; dokonce i uživatel nováček může rychle získat zkušenosti, komfort a hlavně cenné vlastnosti desktopu &kde;. &krusader; je projekt s volně přístupným zdrojovým kódem a je vydán pod <link linkend="credits"
+>Všeobecnou veřejnou licencí (GPL) &GNU;</link
+>, přesto si stále vývojáři ponechávají autorská práva pro tento projekt, jeho jméno a spravují pokračování vývoje projektu.</para>
+    <para
+>Posláním projektu &krusader; je vytvořit správce souborů "vše v jednom", který bude provádět běžné věci, které byste očekávali a jiné. Vzhledem k tomu, že princip aplikace &krusader; je založený na <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>ortodoxním správci souborů (OFM)</ulink
+>, dvojitém okně správců souborů (<application
+>Midnight Commander</application
+>, <trademark class="registered"
+>Norton Commander</trademark
+> aj.), je samozřejmostí, že &krusader; umožňuje standardní činnosti se soubory: kopírování, přesouvání, mazání aj.</para>
+    <para
+>Od začátku virtuálních systémů souborů přichází hlavní zaměření. <link linkend="vfs"
+>Virtuální systém souborů (VFS)</link
+> je abstraktní vrstva nad všemi typy archivovaných informací (soubory ZIP, servery &FTP;, archivy TAR, systém souborů NFS, sdílená SAMBA, ISO obrazy CD/DVD, katalogy RPM aj.), které uživateli umožňují přistupovat ke všem informacím v těchto odlišných typech systémů - stejně jako otevírání běžných podadresářů. Soubory mohou být snadno kopírovány nebo přesouvány (s výjimkou ISO, rpm, tar.gz) mezi těmito datovými zdroji / kontejnery. &krusader; nyní podporuje VFS pro všechny oblíbené a některé specializované typy archivů (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip and 7-zip), konfigurační balíky (rpm, deb) a tradiční typy vzdálených systémů souborů (&FTP;, NFS, Samba, FISH, SFTP).</para>
+    <para
+>&krusader; také obsahuje vestavěný <link linkend="mount-man"
+>Správce připojení disků</link
+>, který umožňuje připojit nebo odpojit systém souborů všech typů za pomocí kliknutí myši. Uživatel je schopen jej používat a jednoduše získat další vlastnosti informací v konzistentní a srozumitelné formě během několika sekund. Cílem je usnadnění a soudržnost.</para>
+    <para
+><link linkend="bookman"
+>Správce záložek</link
+> pro místní soubory/vzdálené &URL; a <link linkend="krusearcher"
+>Modul pokročilého vyhledávání</link
+> jsou také zahrnuty pro rychlé nalezení potřebných souborů. &krusader; také uživateli umožňuje nastavit nástrojové lišty s cílem poskytovat širokou škálu doplňkových funkcí jako je porovnání souboru (několik uživatelsky zvolených dostupných metod), přejmenovávání více souborů a standardní okna terminálu.</para>
+    <para
+>Zkušení uživatelé těží ze schopnosti provádět administrativní úlohy bez námahy, aniž by odváděli pozornost od skutečného úkolu. Vhodné klávesové zkratky umožňují uživateli procházet stromy adresářů s lehkostí, vytvořit současně více karet s pohledy na adresáře a přístup k plně funkčním seznamům historie. Díky účinnému programování a nízké režii systému, je aplikace &krusader; možná nejvíce reagující na vše okolo nástrojů pro správu systému používaných pro zpřístupnění plného potenciálu počítače pomocí &kde;, nebo jiného správce oken vyhovujícího &X-Window;. Přestože aplikace &krusader; je speciálně navržená a pevně integrovaná do &kde;, pracuje stejně dobře s GNOME, Enlightenment, &windowmaker;, IceWM, BlackBox, Wiamea, XFCE atd. Jen co jsou nainstalovány knihovny &kde;.</para>
+    <para
+>Nová rozšiřitelnost je poskytována flexibilními <link linkend="useractions"
+>Uživatelskými činnostmi</link
+>. Novinka aplikace &krusader; umožňuje neomezenou dodatečnou uživatelskou funkčnost, která byla přidána, aby vyhovovala specifickým potřebám uživatelů. V blízké budoucnosti plánujeme vyvinout více modulů, čímž se &krusader; zlepšuje. Informace o tom, co je navrženo, schváleno nebo zůstává na dokončení, můžete nalézt na <ulink url="http://www.krusader.org/phpBB/viewforum.php?f=10"
+>ToDo Forum</ulink
+>.</para>
+    <para
+>Žádný jiný nám známý program nenabízí tolik užitečných a snadno přístupných funkcí v tak intuitivní a jednoduché podobě. Nejlepší ze všeho je, že nasloucháme a realizujeme dobré návrhy, které jsou v souladu s cílem projektu &krusader;: utváříme &krusader;, nejlepšího dostupného správce souborů.</para>
+    <para
+>Doufáme, že se Vám bude líbit - nám se líbí!</para>
+ </sect1>
+</chapter>

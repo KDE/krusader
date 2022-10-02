@@ -1,0 +1,507 @@
+<?xml version="1.0" ?>
+<!DOCTYPE refentry PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+
+<!ENTITY % Italian "INCLUDE">
+]>
+
+<refentry lang="&language;">
+<refentryinfo>
+<title
+>Manuale utente di KDE</title>
+<author
+><firstname
+>Krusader</firstname
+><surname
+>Krew</surname
+> <contrib
+>Pagina man di Krusader.</contrib
+> <email
+>krusader-devel@googlegroups.com</email
+></author>
+<date
+>06-05-2017</date>
+<productname
+>Krusader</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle
+><command
+>krusader</command
+></refentrytitle>
+<manvolnum
+>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+<refname
+>krusader</refname>
+<refpurpose
+>gestore di file avanzato a due pannelli e client &FTP; di KDE</refpurpose>
+</refnamediv>
+<!-- body begins here -->
+
+<refsynopsisdiv>
+<cmdsynopsis
+><command
+>krusader</command
+> <arg choice="opt"
+>Opzioni</arg
+> <arg choice="plain"
+>url</arg
+> </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+<title
+>Descrizione</title>
+<para
+>Krusader è un gestore di file a doppio pannello (in stile commander) per Plasma e altri desktop dell'universo *nix, simile a Midnight o Total Commander. Fornisce tutte le funzionalità di gestione dei file di cui puoi aver bisogno. Inoltre: gestione estesa degli archivi, supporto per file system montati, &FTP;, modulo per la ricerca avanzata, visore/editor, sincronizzazione cartelle (disabilitata per impostazione predefinita), confronto tra file, potente strumento di rinomina file e molto, molto altro. Supporta i formati di archivio seguenti: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip, e 7-zip, e può gestire altri slave KIO come smb:// o fish://. È, in pratica, completamente personalizzabile, facile da usare, veloce e si integra benissimo nel tuo desktop! :-) Devi provarlo.</para>
+</refsect1>
+
+<refsect1
+><title
+>Opzioni</title>
+<variablelist>
+  <varlistentry>
+      <term
+><option
+>-h</option
+> <option
+>--help</option
+></term>
+  <listitem>
+<para
+>elenca le opzioni disponibili alla riga di comando</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-v</option
+> <option
+>--version</option
+></term>
+  <listitem>
+<para
+>elenca le informazioni di versione per &krusader;</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--author</option
+></term>
+  <listitem>
+<para
+>mostra gli autori</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--license</option
+></term>
+  <listitem>
+<para
+>mostra la licenza</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--left</option
+> <parameter
+><replaceable
+>&lt;percorso&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>avvia il pannello sinistro al <replaceable
+>&lt;percorso&gt;</replaceable
+></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--right</option
+> <parameter
+><replaceable
+>&lt;percorso&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>avvia il pannello destro al <replaceable
+>&lt;percorso&gt;</replaceable
+></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--profile </option
+><parameter
+><replaceable
+>&lt;profilo-pannello&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>carica il <replaceable
+>&lt;profilo-pannello&gt;</replaceable
+> all'avvio</para
+> 
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-d</option
+> <option
+>--debug</option
+></term>
+  <listitem>
+<para
+>abilita i risultati del debug</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>url</option
+></term>
+  <listitem>
+<para
+>se esiste già una scheda aperta con quell'url, l'url è attivato, in caso contrario viene aperta una nuova scheda nel pannello attivo.</para>
+  </listitem>
+  </varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1
+><title
+>Esempi</title>
+
+<itemizedlist>
+  <listitem
+><para
+>$ krusader --left=/mnt/cdrom --right=ftp://downloads@mioserver.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --left=/home,/usr,smb://workgroup.net --right=fish://mioserver.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --profile=ftp_management</para
+></listitem>
+
+</itemizedlist>
+</refsect1>
+
+<refsect1
+><title
+>File</title>
+<para
+>File di configurazione:</para>
+
+<para
+><filename
+>~/.config/krusaderrc</filename
+></para>
+
+<para
+><filename
+>~/.local/share/krusader/krbookmarks.xml</filename
+> oppure <filename
+>krusader/krbookmarks.xml</filename
+> nella cartella che può essere determinata usando il comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>~/.local/share/krusader/useractions.xml</filename
+> oppure <filename
+>krusader/useractions.xml</filename
+> nella cartella che può essere determinata usando il comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+></para>
+
+<para
+><filename
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> oppure <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> nella cartella che può essere determinata usando il comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+</refsect1>
+
+<refsect1
+><title
+>Piattaforme</title>
+<para
+>Tutte le piattaforme POSIX: Linux, Solaris; tutte le piattaforme BSD: FreeBSD, MacOS-X</para>
+
+<para
+><emphasis
+>KDE 2.x</emphasis
+></para>
+
+<para
+>krusader v1.01 stabile ma senza modifiche programmate.</para>
+
+<para
+><emphasis
+>KDE 3.x</emphasis
+></para>
+
+<para
+>Krusader v1.01 necessita di KDElibs 2</para>
+
+<para
+>Krusader v1.02 - 1.40 necessita di KDElibs 3</para>
+
+<para
+>Krusader 1.40 preferisce &gt;= KDE 3.2</para>
+
+<para
+>Krusader v1.50 - v1.51: KDE 3.2 - KDE 3.3</para>
+
+<para
+>Krusader v1.60.0- v1.70.0: KDE 3.3 - KDE 3.4</para>
+
+<para
+>Krusader 1.70.x-1.80.x: KDE 3.4 - KDE 3.5</para>
+
+<para
+><emphasis
+>KDE 4.x</emphasis
+></para>
+
+<para
+>Krusader 2.0-2.4: KDE 4</para>
+
+<para
+><emphasis
+>KDE Frameworks 5</emphasis
+></para>
+
+<para
+>Krusader 2.5 e successive</para>
+
+<para
+>L'ultima versione di Krusader si trova nel <ulink url="https://krusader.org/"
+>sito web di Krusader</ulink
+>.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Caratteristiche</title>
+<para
+>Caratteristiche del gestore file OFM.</para>
+
+<para
+>Forte tendenza all'uso della tastiera.</para>
+
+<para
+>Potenti visore ed editor interni.</para>
+
+<para
+>Modulo avanzato per la ricerca all'interno di archivi. Supporta: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip, e 7-zip.</para>
+
+<para
+>Confronto delle cartelle e filtraggio.</para>
+
+<para
+>Client &FTP;/Samba con gestione della connessione con supporto SFTP/SCP.</para>
+
+<para
+>Sincronizzazione, azioni personalizzate, console interna.</para>
+
+<para
+>Confronto file per contenuto, modifica facile dei permessi dei file.</para
+> 
+
+<para
+>Uso del disco, calcolo dello spazio occupato. Creazione e verifica dei codici di controllo.</para>
+
+<para
+>Riconoscimento completo dei tipi MIME (in modo automatico o manuale).</para>
+
+<para
+>Gestore per il montaggio, funzione di localizzazione, supporto a Krename.</para>
+
+<para
+>Modalità amministrazione, pannelli a schede, barra laterale. Modalità di selezione del mouse.</para>
+
+<para
+>Profili per: pannelli, associazioni di tasti, colori.</para
+> 
+
+<para
+>Per le altre funzionalità, consulta la <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;path=features.html"
+>pagina delle funzionalità</ulink
+></para>
+
+</refsect1>
+
+<refsect1
+><title
+>Licenza</title>
+<para
+>Krusader è distribuito sotto licenza GNU General Public License.</para>
+
+<para
+>Versione 2 della licenza, come pubblicata dalla Free Software Foundation.</para>
+
+<para
+>Per i dettagli sulla licenza e la mancanza di garanzia, consulta la guida integrata.</para>
+
+<para
+>Il copyright del progetto e il suo nome sono ancora posseduti da Shie Erlich e Rafi Yanai.</para>
+</refsect1>
+
+<refsect1
+><title
+>i18n</title>
+<para
+>Krusader è tradotto in molte lingue.</para>
+
+<para
+><ulink url="https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/"
+>https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/</ulink
+></para>
+
+<para
+>Se vuoi tradurre Krusader nella tua lingua, leggi la <ulink url="https://l10n.kde.org/docs/translation-howto/"
+>guida alla traduzione di KDE</ulink
+>.</para>
+</refsect1>
+
+<refsect1
+><title
+>Domande ricorrenti</title>
+<para
+>Puoi trovare l'ultima versione delle Domande ricorrenti di Krusader nel <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;path=faq.html"
+>sito della documentazione di KDE</ulink
+>.</para>
+</refsect1>
+
+<refsect1
+><title
+>Vedi anche</title>
+<simplelist>
+<member
+>Il Manuale di Krusader, all'interno del menu Aiuto del programma.</member>
+
+<member
+>kf5options(7)</member>
+
+<member
+>qt5options(7)</member>
+</simplelist>
+</refsect1>
+
+<refsect1 id='authors'
+><title
+>Autori</title>
+<para
+>Krusader è sviluppato da un gruppo specifico di persone, noto come Krusader Krew.</para>
+
+<para
+>Shie Erlich, autore [erlich {*} users {.} sourceforge {.} net] (non più attivo)</para>
+
+<para
+>Rafi Yanai, autore [yanai {*} users {.} sourceforge {.} net] (non più attivo)</para>
+
+<para
+>Dirk Eschler, Webmaster [deschler {*} users {.} sourceforge {.} net] (ritirato)</para>
+
+<para
+>Csaba Karai, sviluppatore [ckarai {*} users {.} sourceforge {.} net] (non più attivo)</para>
+
+<para
+>Heiner Eichmann, sviluppatore [h {.} eichmann {*} gmx.de] (non più attivo)</para>
+
+<para
+>Jonas Baehr, sviluppatore [jonas.baehr {*} web.de] (non più attivo)</para>
+
+<para
+>Vaclav Juza, sviluppatore [vaclavjuza {*} seznam {.} cz] (non più attivo)</para>
+
+<para
+>Jan Lepper, sviluppatore [jan_lepper {*} gmx {.} de] (non più attivo)</para>
+
+<para
+>Andrey Matveyakin, sviluppatore [a.matveyakin {*} gmail {.} com] (non più attivo)</para>
+
+<para
+>Davide Gianforte, sviluppatore [davide {*} gengisdave {.} org]</para>
+
+<para
+>Alexander Bikadorov, sviluppatore [alex.bikadorov {*} kdemail {.} net]</para>
+
+<para
+>Martin Kostolny, sviluppatore [clearmartin {*} zoho {.} com]</para>
+
+<para
+>Toni Asensi Esteve, sviluppatore [toni.asensi {*} kdemail {.} net]</para>
+
+<para
+>Nikita Melnichenko, sviluppatore [nikita+kde {*} melnichenko {.} name]</para>
+
+<para
+>Frank Schoolmeesters, documentazione e coordinatore marketing [frank_schoolmeesters {*} yahoo {.} com] (non più attivo)</para>
+
+<para
+>Richard Holt, documentazione e correttore di bozze [richard {.} holt {*} gmail {.} com] (non più attivo)</para>
+
+<para
+>Matej Urbancic, marketing e ricerca prodotto [matej {*} amis {.} net] (non più attivo)</para>
+
+<para
+>Yuri Chornoivan, documentazione <email
+>yurchor@ukr.net</email
+></para>
+
+<para
+>Il progetto è stato scritto utilizzando KDevelop e Qt Designer.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Errori</title>
+<para
+>Per informazioni su quello che resta da fare, consulta il file TODO contenuto all'interno della distribuzione.</para>
+
+ <para
+>Per inviare correzioni errori, patch e commenti, invia un messaggio di posta elettronica a <email
+>krusader-devel@googlegroups.com</email
+>.</para>
+
+<para
+>Krusader Krew</para>
+</refsect1>
+</refentry>
+

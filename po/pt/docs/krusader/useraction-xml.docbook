@@ -1,0 +1,333 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<appendix id="useraction-xml">
+  <title
+>useractions.xml</title>
+  <para
+>Este apêndice dá-lhe diversos exemplos de ficheiros <filename
+>useractions.xml</filename
+>. Com isto, poderá começar a descobrir o poder das <link linkend="useractions"
+>Acções do Utilizador</link
+> e começar a aprender como usá-las. Assim que compreender como pode criar Acções do Utilizador, irá descobrir que o &krusader; é uma ferramenta ainda mais poderosa e configurável.</para>
+  <para
+>Pense por favor em enviar as suas acções do utilizador para o <ulink url="https://store.kde.org"
+>store.kde.org</ulink
+>, já que as estamos a coleccionar. Se a sua acção do utilizador for seleccionada por nós, será incluída na próxima versão do &krusader;.</para>
+
+<itemizedlist>
+    <listitem
+><para
+>Executa o <command
+>uptime</command
+> <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="uptime" >
+  &lt;title
+>Up-time&lt;/title>
+  &lt;tooltip
+>diz há quanto tempo o computador foi iniciado&lt;/tooltip>
+  &lt;icon
+>clock&lt;/icon>
+  &lt;category
+>Informação&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" 
+>uptime&lt;/command>
+  &lt;defaultshortcut
+>Alt+Ctrl+U&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+    <listitem
+><para
+>Executa o <command
+>ls -l</command
+> <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="ls -l" >
+  &lt;title
+>Executar o comando 'ls -l' na pasta actual&lt;/title>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" 
+>ls -l %aPath% %oPath%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+    <listitem
+><para
+>Substituição do 'Echo' <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="test_placeholder" >
+  &lt;title
+>Echo Placeholder&lt;/title>
+  &lt;tooltip
+>'Echo' dos valores de substituição&lt;/tooltip>
+  &lt;category
+>Testes&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" onmultiplefiles="call_each" 
+>echo -e &quot;aPath %aPath()%  \naCurrent: %aCurrent()%&quot;&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+      <listitem
+><para
+>Esta acção do utilizador copia a localização e o nome do ficheiro actual para a área de transferência: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="clipboard current" >
+  &lt;title
+>Copiar para a Área de Transferência&lt;/title>
+  &lt;tooltip
+>Copiar para a área de transferência&lt;/tooltip>
+  &lt;icon
+>klipper&lt;/icon>
+  &lt;category
+>System&lt;/category>
+  &lt;description
+>Copiar a localização e nome do ficheiro actual para a área de transferência&lt;/description>
+  &lt;command
+>%_Clipboard(&quot;%aCurrent%&quot;)%&lt;/command>
+  &lt;defaultshortcut
+>Win+C&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Seleccione os ficheiros <literal role="extension"
+>.diff</literal
+> e <literal role="extension"
+>*.h</literal
+> no painel activo: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="test_select" >
+  &lt;title
+>Adicionar a selecção do '*.diff' e do '*.h'&lt;/title>
+  &lt;category
+>Selecção&lt;/category>
+  &lt;command
+>%aSelect(&quot;*.diff&quot;, &quot;add&quot;)% %aSelect(&quot;*.h&quot;, &quot;add&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>O painel activo muda para o <filename
+>mnt/floppy</filename
+> (favorito): <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+&lt;action name="mnt/floppy bookmark" >
+  &lt;title
+>Ir para o /mnt/floppy&lt;/title>
+  &lt;category
+>Favoritos&lt;/category>
+  &lt;command
+>%aGoto(&quot;/mnt/floppy&quot;, &quot;yes&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Selecciona, no painel não activo, todos os ficheiros que estejam realçados no painel activo: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="asdfasdf" >
+  &lt;title
+>Seleccionar no Outro Painel&lt;/title>
+  &lt;category
+>Selecção&lt;/category>
+  &lt;description
+>Seleccionar todos os nomes de ficheiros que estejam tanto no painel activo como no não-activo&lt;/description>
+  &lt;command
+>%oSelect(&quot;%aList(&quot;selected&quot;, &quot; &quot;, &quot;Yes&quot;)%&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Faz uma cópia de segurança do ficheiro/pasta actual para <filename
+>xpto.bak</filename
+>, na pasta actual: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="backup current" >
+  &lt;title
+>Salvaguardar na Pasta Actual&lt;/title>
+  &lt;tooltip
+>Cria uma cópia de segurança na pasta actual&lt;/tooltip>
+  &lt;icon
+>document-save-as&lt;/icon>
+  &lt;category
+>Sistema&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command
+>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;new name&quot;, &quot;%aCurrent%.bak&quot;)%&quot;)%&lt;/command>
+  &lt;defaultshortcut
+>Shift+F5&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Abre o <link linkend="krusearcher"
+>KruSearcher</link
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="search" >
+  &lt;title
+>Teste de Pesquisa&lt;/title>
+  &lt;command
+>%_NewSearch(&quot;Search 2&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Configura a imagem seleccionada como papel de parede: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="set wallpaper" >
+  &lt;title
+>Colocar como Papel de Parede&lt;/title>
+  &lt;tooltip
+>Colocar como papel de parede&lt;/tooltip>
+  &lt;icon
+>image&lt;/icon>
+  &lt;category
+>Menu de Serviços&lt;/category>
+  &lt;description
+>Colocar como papel de parede (escalado)&lt;/description>
+  &lt;command
+>dcop kdesktop KBackgroundIface setWallpaper &quot;%aCurrent%&quot; 6&lt;/command>
+  &lt;defaultshortcut
+>Win+W&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Esta acção do utilizador edita um ficheiro com permissões de 'root', usando o <command
+>kdesu</command
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="edit as root" >
+  &lt;title
+>Editar como 'Root'&lt;/title>
+  &lt;tooltip
+>Editar como 'root'&lt;/tooltip>
+  &lt;icon
+>kwrite&lt;/icon>
+  &lt;category
+>Sistema&lt;/category>
+  &lt;description
+>Edita um ficheiro com permissões de 'root', usando o 'kdesu'&lt;/description>
+  &lt;command
+>kdesu kedit %aCurrent%&lt;/command>
+  &lt;defaultshortcut
+>Win+F4&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Esta acção do utilizador adiciona itens à lista de reprodução do Amarok: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="amarok enqueue" >
+  &lt;title
+>Colocar na fila do Amarok&lt;/title>
+  &lt;tooltip
+>Adicionar os itens seleccionados à lista de reprodução do Amarok&lt;/tooltip>
+  &lt;icon
+>amarok&lt;/icon>
+  &lt;category
+>Multimédia&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command
+>amarok --append %aList(&quot;Selected&quot;)%&lt;/command>
+  &lt;defaultshortcut
+>Win+A&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Abre a <link linkend="synchronizer"
+>Sincronização (desactivada na altura da compilação por omissão)</link
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="synchronizer" >
+  &lt;title
+>Sincronização&lt;/title>
+  &lt;command
+>%_Sync(&quot;Sync 2&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+</itemizedlist>
+
+</appendix>

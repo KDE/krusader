@@ -1,0 +1,359 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="remote-connections">
+  <title
+>Connessioni remote</title>
+  <indexterm>
+    <primary
+>Connessioni remote</primary>
+  </indexterm>
+  <para
+>Le connessioni remote si possono creare facilmente digitando l'&URL; nella <link linkend="list_panel"
+>barra degli indirizzi</link
+>; questi sono in realtà slave KIO. Tieni conto che il pannello di &krusader; non supporta tutti gli slave KIO, &eg;, <command
+>http://</command
+> non funzionerà nel pannello ma nel <link linkend="krviewer"
+>visualizzatore</link
+> sì. Alcuni esempi:</para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>public.ftpserver.org/cartella/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>fish://</command
+><replaceable
+>nomeutente@nomehost/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>sftp://</command
+><replaceable
+>nomeutente:password@sftp.pippo.org/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>nomeutente@mio.server.org:21/cartella/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>smb://</command
+><replaceable
+>nomeutente:password@server/share</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>nomeutente@nomeutenteproxy:password@proxypassword@nomehost/cartella</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>nfs://</command
+><replaceable
+>&lt;host&gt;:&lt;porta&gt;&lt;url-percorso&gt;</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>webdav://</command
+><replaceable
+>www.server.com/percorso/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Puoi inserire questi &URL; tra i segnalibri, leggi comunque la sezione <link linkend="bookman"
+>Bookman</link
+> concernente il <emphasis
+>salvataggio sicuro delle password</emphasis
+>. Per la connessione a più indirizzi, inserisci questi &URL; tra i segnalibri e aprili uno alla volta, oppure tutti insieme utilizzando i <link linkend="panel_profiles"
+>profili del pannello</link
+>. Per passare da un indirizzo a un altro, ti basta solo aprire le <link linkend="folder-tabs"
+>schede delle cartelle</link
+> per ciascuna di essa.</para>
+  <para
+>Esistono tre modi per avviare una connessione remota:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Digitare l'&URL; nella <link linkend="list_panel"
+>barra degli indirizzi</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Selezionare <menuchoice
+> <guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Nuova connessione di rete</guimenuitem
+> </menuchoice
+>, che aprirà una finestra di dialogo in cui verrà chiesto di digitare i dettagli del sito remoto. Questa finestra è utile se non sei abituato a digitare &URL; remoti nella barra degli indirizzi. Se lasci i campi password e nome utente vuoti, accederai come anonimo. Nota: stiamo progettando di riscrivere questa finestra di dialogo.</para>
+    </listitem>
+    <listitem>
+      <para
+>Puoi inserire nei segnalibri una cartella su un host remoto e ritornarvi tramite il pulsante dei segnalibri, posizionato nell'angolo superiore del tuo pannello, proprio come un browser web.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Dopo aver avuto accesso a un server remoto, puoi sfogliarlo proprio come il tuo disco locale, con le seguenti eccezioni:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Non puoi eseguire file su server remoti.</para>
+    </listitem>
+    <listitem>
+      <para
+>Non sempre i permessi non possono essere calcolati sui server remoti (dipende dal server e dal metodo di accesso), dunque potresti leggere <guilabel
+>?</guilabel
+> nella colonna dei permessi per alcuni file.</para>
+    </listitem>
+    <listitem>
+      <para
+>Le informazioni sull'uso del disco non sono disponibili per la maggior parte dei file system.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Per modificare l'insieme di caratteri dell'host remoto utilizza <menuchoice
+> <guimenu
+>Visualizza</guimenu
+> <guimenuitem
+>Seleziona insieme di caratteri remoto</guimenuitem
+> </menuchoice
+>.</para>
+  <para
+>Puoi chiudere la connessione remota attiva attuale con due metodi diversi:</para
+> 
+  <itemizedlist>
+    <!--
+        <listitem>
+           <para
+>Manually: <emphasis role="bold"
+><menuchoice
+><guimenu
+>Commands</guimenu>
+                 <guimenuitem
+>Disconnect From Net</guimenuitem
+></menuchoice
+></emphasis
+></para>
+        </listitem>
+        -->
+    <listitem>
+      <para
+>Manualmente: aggiungi il pulsante di disconnessione alla <link linkend="mainwindow"
+>barra degli strumenti principale</link
+> e facci sopra clic.</para>
+    </listitem>
+    <listitem>
+      <para
+>Automaticamente: modifica l'&URL; nella <link linkend="list_panel"
+>barra degli indirizzi</link
+>.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>&krusader; è un gestore di file che supporta le connessioni remote tramite slave KIO, ma se stai cercando un prodotto con caratteristiche per la connessione remota ancora più avanzate, &eg; un client &FTP; avanzato, ti raccomandiamo di utilizzare <ulink url="https://lftp.yar.ru/"
+>LFTP</ulink
+> o <ulink url="https://filezilla-project.org/"
+><application
+>FileZilla</application
+></ulink
+>.</para>
+  </note>
+
+<sect2 id="remote-connections-lan-fish">
+  <title
+>Connessioni LAN tramite protocollo fish:/ (zeroconf)</title>
+  <indexterm>
+    <primary
+>Connessioni LAN remote (zeroconf)</primary>
+  </indexterm>
+
+<para
+>Questa sezione è stata preparata da Andrew Svet (z-vet), i commenti sul capitolo sono apprezzati. Grazie!</para>
+
+ <note>
+   <para
+>Funziona su un sistema &Debian;, e funzionerà dunque su &Debian; e derivati (&kubuntu; e via discorrendo), sebbene dovrebbe funzionare anche su altri sistemi Linux. Si presuppone che <link linkend="gloss-ssh"
+>SSH</link
+> sia installato, configurato e funzionante in ciascuna macchina presente nella LAN alla, o dalla, quale vuoi connetterti. In rete esistono tantissime guide su <link linkend="gloss-ssh"
+>SSH</link
+>, per esempio in <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying"
+>linuxhomenetworking.com</ulink
+> (in inglese) oppure cercale su Google. Utilizziamo la porta <link linkend="gloss-ssh"
+>SSH</link
+> predefinita (22) per questo capitolo. Ricordati di cambiarla se ne usi una diversa. Tutte le modifiche devono essere eseguite come amministratore. </para>
+ </note>
+
+<para
+>Iniziamo con l'installazione dei pacchetti necessari: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>apt-get install</command
+> <option
+>avahi-daemon libnss-mdns kdnssd</option
+></userinput>
+</screen
+> È installato tutto, dunque iniziamo a configurare. Per prima cosa, abbiamo bisogno dei servizi per l'annuncio sulla LAN. Ecco perché abbiamo installato avahi-daemon: rappresenta la tua macchina sulla rete locale e permette alle altre applicazioni di pubblicare i servizi che forniscono. Avahi-daemon è fornito con un file di configurazione <filename
+>ssh.service</filename
+> di esempi che si trova in <filename class="directory"
+>/usr/share/doc/avahi-daemon/examples</filename
+>. Per ottenere il servizio da annunciare sulla LAN, dobbiamo copiare questo file nella cartella <filename class="directory"
+>/etc/avahi/services</filename
+>: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option
+></userinput>
+</screen
+> Ora è necessario annunciare anche il protocollo fish:/, usiamo dunque un file ssh.service come modello per fish.service: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option
+></userinput>
+</screen
+> Questo file è solo una copia di ssh.service. Modifichiamo il file <filename
+>fish.service</filename
+> e sostituiamo <quote
+>Terminale remoto su %h</quote
+> con <quote
+>Fish to %h</quote
+> e <quote
+>_ssh._tcp</quote
+> con <quote
+>_fish._tcp</quote
+>. Ecco come appare dopo la modifica: <programlisting
+> 
+&lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--> 
+&lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
+
+&lt;!-- $Id: remote-connections.docbook,v 1.6 2007/05/02 18:07:28 codeknight Exp $ --> 
+
+&lt;!-- 
+  This file is part of avahi. 
+  
+  avahi is free software; you can redistribute it and/or modify it 
+  under the terms of the GNU Lesser General Public License as 
+  published by the Free Software Foundation; either version 2 of the 
+  License, or (at your option) any later version. 
+
+  avahi is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR 
+
+&lt;!-- See avahi.service(5) for more information about this configuration file --> 
+
+&lt;service-group
+> 
+
+  &lt;name replace-wildcards="yes"
+>FISH to %h&lt;/name
+> 
+
+  &lt;service
+> 
+    &lt;type
+>_fish._tcp&lt;/type
+> 
+    &lt;port
+>22&lt;/port
+> 
+  &lt;/service
+> 
+
+&lt;/service-group
+>  
+</programlisting
+> Salviamo il file modificato. Ora dobbiamo creare un nuovo file <filename
+>_fish._tcp</filename
+>, aprirlo in un editor di testo e aggiungere le righe seguenti: <programlisting>
+Name=FISH Protocol (ssh) 
+Type=_fish._tcp 
+UserEntry=u 
+PathEntry=path 
+PasswordEntry=p
+</programlisting
+> Salviamo il file <filename
+>/usr/share/apps/zeroconf/_fish._tcp</filename
+> Eseguiamo la stessa operazione su ciascuna macchina della nostra LAN, poi riavviamo avahi-daemon: <screen>
+<prompt
+># /etc/init.d/</prompt
+> <userinput
+><command
+>avahi-daemon</command
+> <option
+>restart</option
+></userinput>
+</screen
+> Apriamo &krusader; nella barra degli indirizzi: <filename
+>zeroconf:/</filename
+> per aprire la connessione <link linkend="gloss-zeroconf"
+>zeroconf</link
+>. Scriviamo la cartella del <guilabel
+>protocollo Fish</guilabel
+>. All'interno troveremo i collegamenti a ciascuna macchina che ha annunciato <filename
+>fish:/</filename
+> nella LAN, la barra degli indirizzi punterà <filename
+>zeroconf:/_fish._tcp</filename
+> Facciamo doppio clic su tutte le macchine, verrà aperta una finestra per la richiesta della password ssh (se impostata). Digitiamo la password. Congratulazioni! Ci siamo connessi al computer remoto tramite &krusader;! </para
+> 
+
+</sect2>
+
+</sect1>
+
+

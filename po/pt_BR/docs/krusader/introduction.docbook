@@ -1,0 +1,116 @@
+<chapter id="introduction">
+
+<title
+>Introdução</title>
+<indexterm
+><primary
+>Introdução</primary
+></indexterm>
+  <sect1 id="package-description">
+  <title
+>Descrição do pacote</title>
+    <para
+>O &krusader; é um gerenciador de arquivos de painéis duplos simples, fácil e poderoso (tipo 'commander') para o &kde; e outros ambientes *nix, semelhante ao <application
+>Midnight Commander</application
+> ou ao <trademark class="copyright"
+>Total Commander</trademark
+>. Oferece todas as funcionalidades de gerenciamento de arquivos que possa desejar.</para>
+    <para
+>O Krusader também inclui o tratamento de pacotes, o suporte para sistemas de arquivos montados, &FTP;, módulos de pesquisa avançados, um editor/visualizador, sincronização de pastas, comparação do conteúdo de arquivos, mudanças de nomes em lote poderosas e muito, muito mais. O &krusader; suporta os formatos de pacotes: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip e 7-zip, assim como lida com os outros KIO Slaves, como o smb:// ou o fish://.</para>
+    <para
+>O &krusader; é quase todo ele configurável por completo e, deste modo, será muito amigável.</para>
+    <para
+>Experimente o &krusader;.</para>
+    <!-- OLD
+<screenshot>
+  <screeninfo
+>&krusader; screenshot</screeninfo>
+  <mediaobject id="krusader_screenshot">
+    <imageobject
+><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
+    <imageobject
+><imagedata fileref="krusader1.png" format="EPS"/></imageobject>
+    <textobject
+><phrase
+>&krusader; screenshot</phrase
+></textobject>
+    <caption
+><para
+>&krusader; screenshot</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-krusader" float="1">
+      <title
+>Imagem do &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="krusader1.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Imagem do &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Você poderá ver mais <ulink url="http://www.krusader.org/scr.php"
+>Imagens do &krusader;</ulink
+> na nossa página Web.</para>
+  </sect1>
+
+  <sect1 id="welcome">
+    <title
+>Bem-vindo ao &krusader;!</title>
+    <para
+>O nosso objetivo é fornecer uma ferramenta, simples e intuitiva que lide facilmente com as tarefas mais importantes que você executa no seu computador no dia a dia: gerenciar e processar os arquivos da maneira que desejar.</para>
+    <para
+>Se você é experiente ou não no &Linux;, o &krusader; torna as tarefas de gerenciamento de arquivos rotineiras rápidas e precisas, permitindo-lhe focar no mais importante, não na sintaxe da linha de comando. Isto é especialmente útil se for novo nos sistemas operacionais *NIX. Para isso, o &krusader; usa uma &GUI; bonita e suporta o arrastamento de arquivos, assim como a gestão de tipos MIME, tornando-o simples de usar.</para>
+    <para
+>O &krusader; tem muitas funcionalidades úteis. É rápido e lida com os <link linkend="archives"
+>pacotes</link
+> de forma transparente. Além disso, o &krusader; agiliza muitas das tarefas complexas de gerenciamento de arquivos, reduzindo a fatiga, os erros e a distração. Basicamente, o &krusader; oferece todas as funcionalidades úteis que esperaria das outras ferramentas de gerenciamento de arquivos, como o <application
+>Midnight Commander</application
+> e o <trademark class="copyright"
+>Total Commander</trademark
+>. O &krusader; está desenhado para integrar de forma transparente com o ambiente de trabalho &kde;, o ambiente escolhido por muitos programadores, engenheiros de redes e outros usuários importantes do &Linux;. Com o &krusader;, até mesmo os usuários menos experientes poderão acessar rapidamente o poder, conveniência e capacidades de riqueza de funcionalidades do ambiente de trabalho do &kde;. O &krusader; é um projeto 'open-source' livre, estando disponível segundo os termos da <link linkend="credits"
+>Licença Pública Geral da &GNU; (GPL)</link
+>, ainda que os donos detenham os direitos de cópia do projeto e do seu nome, assim como fazem o gerenciamento da evolução contínua do projeto.</para>
+    <para
+>A missão do projeto &krusader; é criar um gerenciador de arquivos "tudo-em-um", que irá fazer todas as coisas normais que esperaria dele, entre outras coisas. Uma vez que o princípio por trás do &krusader; é o <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Gerenciador de Arquivos Ortodoxo (OFM-Orthodox File Manager)</ulink
+>, os gerenciadores de arquivos de painéis duplos (<application
+>Midnight Commander</application
+>, <trademark class="registered"
+>Norton Commander</trademark
+>, &etc;), com certeza o &krusader; será capaz de lidar com todas as operações de Cópia, Movimentação, Remoção, &etc;</para>
+    <para
+>Desde o início, os sistemas de arquivos virtuais tornaram-se o foco principal. Os <link linkend="vfs"
+>sistemas de arquivos virtuais (VFS)</link
+> são uma camada de abstração sobre todos os tipos de informação arquivada (arquivos ZIP), servidores de &FTP;, pacotes TAR, sistemas de arquivos NFS, compartilhamentos de SAMBA, imagens de CD/DVD ISO, catálogos do RPM, &etc;), que permite ao usuário acessar a toda a informação nestes tipos de sistemas de arquivos divergentes de forma transparente - como se entrasse numa pasta normal. Os arquivos poderão então ser copiados ou movidos (exceto os ISO, RPM ou TAR.GZ) entre estas fontes de dados/contentores sem problemas. O &krusader; suporta atualmente VFSs para todos os tipos de pacotes conhecidos e alguns especiais (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip e 7-zip), pacotes de configuração (rpm, deb) e tipos de sistemas de arquivos remotos (&FTP;, NFS, Samba, FISH, SFTP).</para>
+    <para
+>O &krusader; também inclui um Gerenciador de Montagens incorporado (o <link linkend="mount-man"
+>MountMan</link
+>), que lhe permite montar ou desmontar os sistemas de arquivos de todos os tipos, com um clique de um mouse. O usuário será capaz de obter a utilização e outras informações de propriedade facilmente, de forma consistente e compreensível, em segundos. A facilidade e a consistência é o objetivo.</para>
+    <para
+>Um <link linkend="bookman"
+>Gerenciador de Favoritos</link
+> para os &URL;s de arquivos locais/remotos e um <link linkend="krusearcher"
+>módulo de Pesquisa Avançada</link
+> estão também incluídos para acelerar a localização dos arquivos necessários. O &krusader; também permite ao usuário configurar as Barras de Ferramentas, de modo a oferecer uma grande variedade de funcionalidades adicionais, como a Comparação de Arquivos (com diversos métodos disponíveis), a Mudança de Nomes de Arquivos e diversas janelas de terminal.</para>
+    <para
+>Os usuários avançados se beneficiam em grande medida de terem a possibilidade de efetuar as tarefas comuns sem grande esforço e sem se distraírem da tarefa real em mãos. Algumas teclas de atalho permitem ao usuário navegar pelas árvores de pastas com facilidade, criar diversas vistas de pastas simultâneas e acessar a listas históricas completamente funcionais. Devido à programação eficiente e à pequena sobrecarga do sistema, o &krusader; será talvez a ferramenta de gestão do sistema mais eficiente existente, sendo usada para acessar todo o potencial de um computador com o &kde;, ou em qualquer gerenciador de janelas compatível com o &X-Window;. Ainda que esteja desenhado e integrado de forma específica para o &kde;; o &krusader; funciona igualmente bem com o GNOME, Enlightenment, &windowmaker;, IceWM, BlackBox, Wiamea, Xfce, &etc;, desde que as bibliotecas do &kde; estejam instaladas.</para>
+    <para
+>As extensões novas são oferecidas pelas flexíveis <link linkend="useractions"
+>Ações do Usuário</link
+>, uma inovação do &krusader; que permite adicionar uma funcionalidade personalizada e ilimitada de acordo com as necessidades específicas dos usuários. Planejamos desenvolver mais módulos num futuro próximo, melhorando deste modo o &krusader;. Você poderá obter mais informações sobre o que está sendo proposto, aprovado ou necessite estar completo no <ulink url="http://www.krusader.org/phpBB/viewforum.php?f=10"
+>Fórum de Coisas Por-Fazer</ulink
+>.</para>
+    <para
+>Nenhum outro programa conhecido oferece tantas funcionalidades úteis e fáceis de acessar num formato tão intuitivo e simples. Melhor que tudo, nós ouvimos as propostas e implementamos as boas sugestões que estejam em consonância com o objetivo do projeto &krusader;: tornar o &krusader; o melhor Gerenciador de Arquivos disponível.</para>
+    <para
+>Esperamos que goste dele - nós gostamos!</para>
+ </sect1>
+</chapter>

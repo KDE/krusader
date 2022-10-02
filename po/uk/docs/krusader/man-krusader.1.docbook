@@ -1,0 +1,507 @@
+<?xml version="1.0" ?>
+<!DOCTYPE refentry PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+
+<!ENTITY % Ukrainian "INCLUDE">
+]>
+
+<refentry lang="&language;">
+<refentryinfo>
+<title
+>Інструкція користувача KDE</title>
+<author
+><firstname
+>Krusader</firstname
+><surname
+>Krew</surname
+> <contrib
+>Сторінка підручника (man) Krusader.</contrib
+> <email
+>krusader-devel@googlegroups.com</email
+></author>
+<date
+>6 травня 2017 року</date>
+<productname
+>Krusader</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle
+><command
+>krusader</command
+></refentrytitle>
+<manvolnum
+>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+<refname
+>krusader</refname>
+<refpurpose
+>двопанельна програма для керування файлами та клієнтська програма &FTP; від KDE</refpurpose>
+</refnamediv>
+<!-- body begins here -->
+
+<refsynopsisdiv>
+<cmdsynopsis
+><command
+>krusader</command
+> <arg choice="opt"
+>Параметри</arg
+> <arg choice="plain"
+>url</arg
+> </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+<title
+>Опис</title>
+<para
+>Krusader — двопанельна програма для керування файлами для Плазми та інших стільничних середовищ світу *nix, подібна до Midnight або Total Commander. У програмі, ймовірно, передбачено всі можливості з керування файлами, які лише можна вигадати. Крім того, програма може обробляти архіви, монтувати і демонтувати файлові системи, працювати з &FTP;, шукати дані у файлах, переглядати або змінювати вміст файлів, синхронізувати каталоги (типово вимкнено), порівнювати файли за вмістом, пакетно перейменовувати файли тощо. Передбачено підтримку архівів у таких форматах: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip та 7-zip, також програма може працювати з допоміжними модулями KIO, зокрема smb:// та fish:// Майже всі елементи інтерфейсу програми можна налаштовувати, програма дуже дружня до користувачів, швидка. Вона чудово виглядатиме на вашій стільниці. Вам варто спробувати цю програму.</para>
+</refsect1>
+
+<refsect1
+><title
+>Параметри</title>
+<variablelist>
+  <varlistentry>
+      <term
+><option
+>-h</option
+> <option
+>--help</option
+></term>
+  <listitem>
+<para
+>ця команда покаже список параметрів, доступ до яких можна отримати з командного рядка</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-v</option
+> <option
+>--version</option
+></term>
+  <listitem>
+<para
+>показує список відомостей щодо версії &krusader;</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--author</option
+></term>
+  <listitem>
+<para
+>показати список імен авторів програми</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--license</option
+></term>
+  <listitem>
+<para
+>показати дані щодо ліцензії</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--left</option
+> <parameter
+><replaceable
+> &lt;шлях&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>запустити з відкритим у лівій панелі <replaceable
+>&lt;шляхом&gt;</replaceable
+></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--right</option
+> <parameter
+><replaceable
+>&lt;шлях&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>запустити з відкритим у правій панелі <replaceable
+>&lt;шляхом&gt;</replaceable
+></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--profile</option
+> <parameter
+><replaceable
+> &lt;профіль панелей&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>завантажити <replaceable
+>&lt;профіль панелей&gt;</replaceable
+> під час запуску</para
+> 
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-d</option
+> <option
+>--debug</option
+></term>
+  <listitem>
+<para
+>вмикає показ діагностичних повідомлень</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>url</option
+></term>
+  <listitem>
+<para
+>якщо вже відкрито вкладку з вказаною адресою URL, її буде активовано; якщо вкладку ще не відкрито, її буде відкрито на активній панелі.</para>
+  </listitem>
+  </varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1
+><title
+>Приклади</title>
+
+<itemizedlist>
+  <listitem
+><para
+>$ krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --left=/home,/usr,smb://workgroup.net --right=fish://myserver.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --profile=ftp_management</para
+></listitem>
+
+</itemizedlist>
+</refsect1>
+
+<refsect1
+><title
+>Файли</title>
+<para
+>Файли налаштування:</para>
+
+<para
+><filename
+>~/.config/krusaderrc</filename
+></para>
+
+<para
+><filename
+>~/.local/share/krusader/krbookmarks.xml</filename
+> або <filename
+>krusader/krbookmarks.xml</filename
+> у каталозі, адресу якого можна визначити за допомогою команди <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>~/local/share/krusader/useractions.xml</filename
+> або <filename
+>krusader/useractions.xml</filename
+> у каталозі, адресу якого можна визначити за допомогою команди <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+></para>
+
+<para
+><filename
+>~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> або <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> у каталозі, адресу якого можна визначити за допомогою команди <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+</refsect1>
+
+<refsect1
+><title
+>Платформи</title>
+<para
+>Всі системи POSIX: Linux, Solaris, всі платформи BSD: FreeBSD, MacOS-X</para>
+
+<para
+><emphasis
+>KDE 2.x</emphasis
+></para>
+
+<para
+>Версія krusader v1.01 є стабільною, але виправлень до неї не випускається.</para>
+
+<para
+><emphasis
+>KDE 3.x</emphasis
+></para>
+
+<para
+>Для роботи Krusader v1.01 потрібна версія KDElibs 2</para>
+
+<para
+>Для роботи Krusader v1.02—1.40 потрібна версія KDElibs 3</para>
+
+<para
+>Krusader 1.40 краще використовувати у &gt;= KDE 3.2</para>
+
+<para
+>Krusader v1.50—v1.51: KDE 3.2—KDE 3.3</para>
+
+<para
+>Krusader v1.60.0—v1.70.0: KDE 3.3—KDE 3.4</para>
+
+<para
+>Krusader 1.70.x—1.80.x: KDE 3.4 — KDE 3.5</para>
+
+<para
+><emphasis
+>KDE 4.x</emphasis
+></para>
+
+<para
+>Krusader 2.0-2.4: KDE 4</para>
+
+<para
+><emphasis
+>KDE Frameworks 5</emphasis
+></para>
+
+<para
+>Krusader 2.5 і новіші версії</para>
+
+<para
+>Найсвіжішу версію Krusader можна знайти на <ulink url="https://krusader.org/"
+>сайті Krusader</ulink
+>.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Можливості</title>
+<para
+>Можливості традиційної програми для керування файлами.</para>
+
+<para
+>Орієнтація на керування з клавіатури.</para>
+
+<para
+>Потужний вбудований переглядач та редактор.</para>
+
+<para
+>Модуль пошуку у архівах. Підтримуються такі формати архівів: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip та 7-zip.</para>
+
+<para
+>Порівняння і фільтрування каталогів.</para>
+
+<para
+>Клієнтський модуль &FTP;/Samba з керуванням з’єднанням з підтримкою SFTP/SCP.</para>
+
+<para
+>Синхронізація, дії користувача, вбудована консоль.</para>
+
+<para
+>Порівняння файлів за вмістом. Просте редагування прав доступу до файлів.</para
+> 
+
+<para
+>Дані щодо використання диска, обчислення зайнятого місця. Створення і перевірка контрольних сум.</para>
+
+<para
+>Повна підтримка обробки типів MIME (з та без магічних сум!).</para>
+
+<para
+>Підтримка керування монтуванням, locate та Krename.</para>
+
+<para
+>Режим адміністратора, панелі з вкладками, бічна панель. Різні режими позначення за допомогою вказівника миші.</para>
+
+<para
+>Профілі для панелей, клавіатурних скорочень, кольорів.</para
+> 
+
+<para
+>Докладніше про можливості програми можна дізнатися <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;language=uk&amp;path=features.html"
+>тут</ulink
+></para>
+
+</refsect1>
+
+<refsect1
+><title
+>Ліцензія</title>
+<para
+>Krusader поширюється за умов дотримання версії 2 Загальної громадської ліцензії.</para>
+
+<para
+>ліцензії GNU, оприлюдненої Free Software Foundation.</para>
+
+<para
+>Докладніші умови ліцензування та повідомлення про відмову від гарантій можна знайти у довідці до програми.</para>
+
+<para
+>Власниками авторських прав на проєкт і його назву є Shie Erlich та Rafi Yanai.</para>
+</refsect1>
+
+<refsect1
+><title
+>i18n</title>
+<para
+>Krusader перекладається багатьма мовами.</para>
+
+<para
+><ulink url="https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/"
+>https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/</ulink
+></para>
+
+<para
+>Якщо ви маєте намір перекласти Krusader вашою рідною мовою, ознайомтеся з <ulink url="https://l10n.kde.org/docs/translation-howto/"
+>довідником щодо перекладу KDE</ulink
+>.</para>
+</refsect1>
+
+<refsect1
+><title
+>Поширені питання</title>
+<para
+>Найсвіжішу версію поширених питань з KRUSADER та відповідей на них можна знайти на <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;language=uk&amp;path=faq.html"
+>сайті документації KDE</ulink
+>.</para>
+</refsect1>
+
+<refsect1
+><title
+>Прочитайте також</title>
+<simplelist>
+<member
+>Підручник з Krusader у меню «Довідка» krusader.</member>
+
+<member
+>kf5options(7)</member>
+
+<member
+>qt5options(7)</member>
+</simplelist>
+</refsect1>
+
+<refsect1 id='authors'
+><title
+>Автори</title>
+<para
+>Krusader розроблено особливою командою розробників, відомою як Krusader Krew.</para>
+
+<para
+>Shie Erlich, автор [erlich {*} users {.} sourceforge {.} net] (полишив проєкт)</para>
+
+<para
+>Rafi Yanai, автор [yanai {*} users {.} sourceforge {.} net] (полишив проєкт)</para>
+
+<para
+>Dirk Eschler, вебмайстер [deschler {*} users {.} sourceforge {.} net] (полишив проєкт)</para>
+
+<para
+>Csaba Karai, розробник [ckarai {*} users {.} sourceforge {.} net] (полишив проєкт)</para>
+
+<para
+>Heiner Eichmann, розробник [h {.} eichmann {*} gmx.de] (полишив проєкт)</para>
+
+<para
+>Jonas Baehr, розробник [jonas.baehr {*} web.de] (полишив проєкт)</para>
+
+<para
+>Vaclav Juza, розробник [vaclavjuza {*} seznam {.} cz] (полишив проєкт)</para>
+
+<para
+>Jan Lepper, розробник [jan_lepper {*} gmx {.} de] (колишній)</para>
+
+<para
+>Андрій Матвєякін, розробник [a.matveyakin {*} gmail {.} com] (колишній)</para>
+
+<para
+>Давіде Джанфорте, розробник [davide {*} gengisdave {.} org]</para>
+
+<para
+>Олександр Бікадоров, розробник [alex.bikadorov {*} kdemail {.} net]</para>
+
+<para
+>Мартін Костольний, розробник [clearmartin {*} zoho {.} com]</para>
+
+<para
+>Тоні Асенсі Естеве, розробник [toni.asensi {*} kdemail {.} net]</para>
+
+<para
+>Микита Мельниченко, розробник [nikita+kde {*} melnichenko {.} name]</para>
+
+<para
+>Frank Schoolmeesters, документація та координація вивчення ринку [frank_schoolmeesters {*} yahoo {.} com] (полишив проєкт)</para>
+
+<para
+>Richard Holt, документація і коректура [richard {.} holt {*} gmail {.} com] (полишив проєкт)</para>
+
+<para
+>Matej Urbancic, вивчення ринку і дослідження продуктів [matej {*} amis {.} net] (полишив проєкт)</para>
+
+<para
+>Юрій Чорноіван, документація <email
+>yurchor@ukr.net</email
+></para>
+
+<para
+>Проєкт створено за допомогою KDevelop та Qt Designer.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Вади</title>
+<para
+>Список невирішених завдань можна знайти у файлі TODO архіву з кодами програми.</para>
+
+ <para
+>Виправлення, латки та зауваження можна надсилати до списку листування <email
+>krusader-devel@googlegroups.com</email
+>.</para>
+
+<para
+>Krusader Krew</para>
+</refsect1>
+</refentry>
+

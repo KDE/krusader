@@ -1,0 +1,122 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="vfs">
+  <title
+>Virtuele bestandssystemen (VFS)</title>
+  <indexterm>
+    <primary
+>VFS</primary>
+  </indexterm>
+  <para
+>Een basis <link linkend="features"
+>OFM onderdeel</link
+> is VFS, dit is een abstracte laag over allerlei soorten gearchiveerde informatie (ZIP bestanden, &FTP; servers, TAR archieven, &NFS; bestandssystemen, SAMBA shares, ISO &CD;/&DVD; images, RPM catalogussen, &etc;), waardoor de gebruiker transparant toegang heeft tot alle informatie in deze verschillende soorten bestandssystemen - net alsof het een normale submap is! &krusader; ondersteund verschillende soorten Virtuele bestandssystemen:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>Externe verbinding VFS</link
+>: geeft de mogelijkheid om een sessie met een externe verbinding te werken (&FTP;, &NFS;, Samba, FISH, SFTP) net alsof het een lokaal bestandssysteem is. Dit is perfect voor complexe externe operaties en bijna net zo krachtig als de meeste standalone &GUI; remote clients.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Archieven VFS</link
+>: hiermee kunt u door archieven zoeken via VFS alsof het een map is (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip en 7-zip).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Zoek VFS</link
+>: <guibutton
+>Uitvoeren naar een bestandslijst</guibutton
+> plaatst de zoekresultaten in VFS.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>Synchronisatie VFS</link
+>: plaatst de resultaten van de synchronisatie in VFS.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>De acties die u uitvoert op de bestanden in VFS worden uitgevoerd op de 'echte' bestanden. U verwijdert ze niet alleen van de VFS - u verwijdert ze van uw harde schijf. Beperkingen: in een VFS kunt u geen mappen creëren.</para>
+  <para
+>Het is mogelijk om de mappenstructuur te behouden als u vanuit een virtuele map naar een niet virtuele map kopieert, door het keuzevakje <quote
+>Virtuele mapstructuur behouden</quote
+> in het kopieer dialoogvenster aan te vinken. Laten we uit gaan van de volgende virtuele map: <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir1/myfile1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir1/myfile2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir2/myfile3</userinput
+></screen
+> Voer dan de volgende stappen uit:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>ga naar de virtuele map en selecteer de bestanden</para>
+    </listitem>
+    <listitem>
+      <para
+>selecteer een doelmap (niet virtueel!)</para>
+    </listitem>
+    <listitem>
+      <para
+>druk op <keycap
+>F5</keycap
+>-&gt; dialoog voor kopiëren verschijnt</para>
+    </listitem>
+    <listitem>
+      <para
+>Activeer <guilabel
+>Virtuele mapstructuur behouden</guilabel
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Selecteer <filename
+>/home/mijnbasismap/</filename
+> als basis &URL;</para>
+    </listitem>
+    <listitem>
+      <para
+>Kopiëren beginnen door op OK te drukken</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Het resultaat zal zijn: <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir1/myfile1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir1/myfile2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir2/myfile3</userinput
+></screen>
+  </para>
+</sect1>

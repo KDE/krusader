@@ -1,0 +1,136 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="archives">
+  <title
+>Tratamento de Pacotes</title>
+  <indexterm>
+    <primary
+>Pacotes</primary>
+  </indexterm>
+  <sect2 id="browsing-archives">
+    <title
+>Navegar pelos Pacotes</title>
+    <para
+>Os <link linkend="vfs"
+>sistemas de ficheiros virtuais (VFS, como é conhecido na aplicação)</link
+> permitem-lhe navegar pelos pacotes como se fossem pastas. De momento, o &krusader; suporta os seguintes tipos de pacotes: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip e 7-zip, suportando ainda os seguintes pacotes protegidos com senhas: arj, ace, rar e zip. As senhas poderão ser guardadas na <application
+>Kwallet</application
+>. Lembre-se que o o suporte para os pacotes deverá <link linkend="konfig-archives"
+>configurado</link
+> primeiro no Konfigurator. Para abrir o pacote, use o &Enter; e faça um (duplo-)click ou carregue na tecla <keycap
+>Direita</keycap
+>. O &krusader; também suporta os <emphasis role="bold"
+>pacotes escondidos</emphasis
+>, que são pacotes cujo nome tem uma extensão *errada*; p.ex., o <trademark class="registered"
+>OpenOffice</trademark
+> usa pacotes ZIP com as seguintes extensões: odt, sxw e odw. O &Enter; irá abrir o documento do <trademark class="registered"
+>OpenOffice</trademark
+> e a tecla <keycap
+>Direita</keycap
+> irá abrir o pacote. Outro exemplo é o J2EE, onde a extensão <literal role="extension"
+>.jar</literal
+> significa um pacote ZIP. Dado que o &krusader; detecta automaticamente os tipos de pacotes suportados, irá abrir com a tecla <keycap
+>Direita</keycap
+>, mesmo que tenha outro tipo MIME. Não se esqueça que a navegação nos pacotes tem algumas limitações: <itemizedlist>
+      <listitem>
+        <para
+>Nem todas as funções são suportadas por todos os tipos de pacotes. (&ie;: não pode apagar ficheiros nos pacotes RAR ou ACE)</para>
+      </listitem>
+      <listitem>
+        <para
+>As permissões que tem dentro do pacote são as mesmas que tem para o pacote propriamente dito.</para>
+      </listitem>
+      <listitem>
+        <para
+>A linha de comandos (se estiver visível) não o irá seguir dentro do pacote mas sim apontar para a pasta do mesmo.</para>
+      </listitem>
+      <listitem>
+        <para
+>Antes de poder efectuar qualquer acção sobre os ficheiros/pastas dentro do pacote, estes deverão ser extraídos. O pacote voltará a ser gerado quando sair dele ou quando o &krusader; detectar que os ficheiros extraídos foram alterados.</para>
+      </listitem>
+      <listitem>
+        <para
+>A compressão e descompressão são "operações bloqueantes" que mostram uma janela de progresso. Contudo, isto poderá mudar no futuro, dado que está planeada a criação de mais operações em segundo plano.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="unpacking-archives">
+    <title
+>Descomprimir os Ficheiros</title>
+    <para
+>Existem 2 formas de extrair os ficheiros dos pacotes:</para>
+    <para
+>Se tentar descomprimir um pacote inteiro, vá para a localização do mesmo, seleccione-o e escolha a opção <menuchoice
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Descomprimir</guimenuitem
+> </menuchoice
+> ou <keycombo action="simul"
+>&Alt;&Shift;<keycap
+>U</keycap
+></keycombo
+>. O &krusader; irá perguntar onde deseja colocar os ficheiros extraídos, sendo a localização por omissão a pasta do painel inactivo. Se não cancelar a operação, o &krusader; irá tentar descomprimir todos os ficheiros seleccionados no painel inactivo.</para>
+    <para
+>Se só quiser extrair uma parte do pacote, então <link linkend="browsing-archives"
+>navegue</link
+> para o mesmo e copie os ficheiros que deseja extrair para o seu local novo, como faria para os ficheiros "normais". Lembre-se que a descompressão de um pacote navegado leva algum tempo (descompressão ficheiro-a-ficheiro), em comparação com a descompressão de um pacote inteiro com o primeiro método. A opção para descomprimir pode ser colocada numa <link linkend="queue"
+>fila de espera</link
+>.</para>
+  </sect2>
+  <sect2 id="pack-archive">
+    <title
+>Comprimir os Ficheiros</title>
+    <para
+>Se quiser criar um novo pacote, comece por seleccionar os elementos que deseja comprimir no painel activo e seleccione a opção <menuchoice
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Comprimir</guimenuitem
+> </menuchoice
+> ou <keycombo action="simul"
+>&Alt;&Shift;<keycap
+>P</keycap
+></keycombo
+>. Irá aparecer uma janela que lhe pedirá o nome e a localização do pacote. Seleccione a ferramenta de compressão a partir de uma das <link linkend="konfig-archives"
+>extensões de nomes de ficheiros suportadas</link
+>.</para>
+    <para
+>Para adicionar os ficheiros a um pacote existente, abra-o num painel, assim como os ficheiros a copiar para o outro painel; depois, basta copiar os ficheiros para o pacote como faria para copiar os ficheiros para uma pasta "normal". A opção para comprimir pode ser colocada numa <link linkend="queue"
+>fila de espera</link
+>.</para>
+  </sect2>
+  <sect2 id="test-archive">
+    <title
+>Testar os Pacotes</title>
+    <para
+>O &krusader; não irá lidar com os pacotes corrompidos, dado que poderia resultar na perda de dados. Se receber uma mensagem de erro ao copiar um pacote, ou se suspeitar que se passa algo de errado com o mesmo, deverá fazer um teste ao mesmo, antes de o usar. Para testar um pacote, vá para a localização do mesmo e seleccione-o. Depois, seleccione a opção <menuchoice
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Testar o Pacote</guimenuitem
+> </menuchoice
+> ou <keycombo action="simul"
+>&Alt; <keycap
+>E</keycap
+></keycombo
+>. O &krusader; irá testar o ficheiro do pacote e informá-lo-á se o pacote passou ou não no teste de integridade.</para>
+  </sect2>
+</sect1>

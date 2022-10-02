@@ -1,0 +1,78 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="mount-man">
+  <title
+>Gestor del muntatge (MountMan): treballar amb els sistemes de fitxers muntats</title>
+  <indexterm>
+    <primary
+>Munta</primary>
+  </indexterm>
+  <para
+>El Gestor del muntatge és una eina que ajuda a gestionar els sistemes de fitxers muntats. Una vegada s'invoca, mostrarà una llista de tots els sistemes de fitxers muntats. Per a cada sistema de fitxers, el Gestor del muntatge mostrarà el seu nom (el qual serà el nom real del dispositiu -&ead;, <filename class="directory"
+>/dev/sda1</filename
+> per a una primera partició en el primer <hardware
+>HDD</hardware
+>-), el seu tipus (ext4, ext3, ntfs, vfat, ReiserFS...) i el seu punt de muntatge al vostre sistema (la carpeta on està muntat el sistema de fitxers).</para>
+  <para
+>Si voleu filtrar els dispositius no extraïbles de la llista, només haureu de marcar l'element <guilabel
+>Mostra només els dispositius extraïbles</guilabel
+> que hi ha a la part esquerra de la llista de dispositius. </para>
+  <figure id="screenshot-mountman" float="1">
+    <title
+>Gestor del muntatge</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="mountman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Gestor del muntatge</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>El Gestor del muntatge també mostra informació sobre l'ús de la mida total emprada, la mida lliure i el percentatge d'espai lliure disponible. Si aquests nombres indiquen <guilabel
+>N/A</guilabel
+>, això voldrà dir que el sistema de fitxers no està muntat. En fer clic esquerre sobre un sistema de fitxers, es mostrarà un diagrama de sectors a l'esquerra de la finestra, el qual mostrarà gràficament la informació d'ús del sistema de fitxers. Si feu clic sobre un sistema de fitxers no muntat, es mostrarà com a <guilabel
+>no muntat</guilabel
+> en lloc del gràfic.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>En fer <keycap
+>doble clic</keycap
+> sobre un sistema de fitxers, es tancarà el Gestor del muntatge i s'obrirà aquest sistema de fitxers al plafó actiu del &krusader;.</para>
+    </listitem>
+    <listitem>
+      <para
+>El <keycap
+>clic dret</keycap
+> sobre un sistema de fitxers obrirà un petit menú que mostrarà quines accions es poden realitzar sobre aquest sistema de fitxers. De moment, només podreu muntar, desmuntar i expulsar (si feu clic sobre un sistema de fitxers extraïble, &pex;, un &CD-ROM;).</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Tenim la intenció d'expandir el Gestor del muntatge en la propera evolució del &krusader;. Podreu formatar les particions, editar el <filename
+>/etc/fstab</filename
+>, crear nous sistemes de fitxers i més... Per cert, hem començat a treballar-hi, consulteu <quote
+>Mode ràpid per al Gestor del muntatge</quote
+>.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Mode ràpid per al Gestor del muntatge</emphasis>
+  </para>
+  <para
+>Per a activar el mode ràpid per al Gestor del muntatge, feu clic al botó lateral amb la fletxa sobre el botó del Gestor del muntatge que hi ha a la <link linkend="mainwindow"
+>Barra d'eines principal</link
+>.</para>
+  <para
+>Idea general: mostra una llista de tots els punts de muntatge possibles. Cada vegada que es mostra el menú, aquest determina si el muntatge s'ha realitzat o no, i associa l'acció correcta (muntatge o desmuntatge). Això oferirà una interfície ràpida per al Gestor del muntatge. S'hi està treballant, i actualment utilitza «KMountMan::mount» i «unmount». Utilitza els nous serveis del &kf5-full; per a la lectura del fstab i això ens permetrà eliminar un gran nombre del codi <quote
+>antic</quote
+> del Gestor del muntatge.</para>
+</sect1>

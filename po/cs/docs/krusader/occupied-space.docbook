@@ -1,0 +1,41 @@
+<sect1 id="calculate">
+  <title
+>Spočítat obsazené místo</title>
+  <indexterm>
+    <primary
+>Obsazené místo</primary>
+  </indexterm>
+  <!-- Thanks to Heiner Eichmann -->
+  <para
+>Jsou dva způsoby vypočítání obsazeného místa soubory/adresáři.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Stisknutí <keycap
+>Mezerníku</keycap
+> u adresáře s kursorem přímo vypočítá velikost obsazeného místa. Stisknutí <keycap
+>Mezerníku</keycap
+> podruhé zruší výběr adresáře bez zásahu do stavu výběru ostatních souborů/adresářů.</para>
+    </listitem>
+    <listitem>
+      <para
+>Chcete-li vypočítat kolik místa na disku zabírají vybrané soubory a adresáře v aktivním panelu zvolte <menuchoice
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Spočítat obsazené místo</guimenuitem
+> </menuchoice
+>. Po menším zpoždění bude zobrazeno dialogové okno s celkovým obsazeným místem a počtem souborů a adresářů, které jste vybrali. Místo obsazené všemi vybranými adresáři bude zobrazeno, jako kdyby uživatel u těchto adresářů stiskl jen <keycap
+>Mezerník</keycap
+>. Prochází-li aktivní panel archivem, pak se bude počet vztahovat k velikosti rozbalených vybraných souborů, nikoli k jejich komprimované velikosti. Po vypočítání bude stav výběru přepnut a kursor se přesune o jeden krok dolů.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Podporováno je i vypočítání obsazeného místa na vzdáleném systému souborů. <note
+> <para
+>Provedení této operace ve velmi velkém systémů souborů (tisíce souborů) může být časově náročné. Kliknutím na tlačítko <guibutton
+>Zrušit</guibutton
+> kdykoli zrušíte proces výpočtu.</para>
+  </note
+></para>
+</sect1>

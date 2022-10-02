@@ -1,0 +1,40 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<chapter id="more-features">
+<title
+>Fortgeschrittene Funktionen</title
+>&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>Dateien per E-Mail senden</title
+> <para
+>Wählen Sie eine Datei und dann im <menuchoice
+> <guimenu
+>Kontextmenü</guimenu
+><guimenuitem
+>Per E-Mail versenden</guimenuitem
+> </menuchoice
+>. Damit öffnen Sie den Nachrichten-Editor von &kmail;, die ausgewählte Datei ist bereits angehängt. Geben Sie noch Empfänger und Betreff an und versenden dann die Datei. Dazu muss &kmail; natürlich richtig eingerichtet sein.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>ACL-Berechtigungen</title>
+  <para
+><link linkend="gloss-acl"
+>ACL-Berechtigungen</link
+> werden vollständig unterstützt, wenn Eigenschaften oder das Abgleichen verwendet werden. Um ACL-Berechtigungen anzusehen oder zu bearbeiten, wählen Sie eine Datei oder einen Ordner aus und klicken im <link linkend="context-menu"
+>Kontextmenü</link
+> auf <menuchoice
+> <guimenu
+>Eigenschaften</guimenu
+> <guimenuitem
+>Berechtigungen</guimenuitem
+> <guimenuitem
+>Erweiterte Berechtigungen</guimenuitem
+> </menuchoice
+>. Beim Kopieren und Verschieben wie auch beim Abgleichen bleiben die ACL-Berechtigungen erhalten.</para>
+</sect1
+></chapter>

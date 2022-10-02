@@ -1,0 +1,72 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="splitter">
+  <title
+>Divisor del fitxer</title>
+  <indexterm>
+    <primary
+>Divisor del fitxer</primary>
+  </indexterm>
+  <para
+>Aquesta funció divideix un fitxer (gran) en múltiples fitxers més petits, de manera que es puguin ubicar en suports més petits (&pex;, discs ZIP...) o enviar per correu electrònic. Els múltiples fitxers es podran combinar de nou per a recrear el fitxer original. Les funcions de divisió/combinació del &krusader; i del <trademark class="copyright"
+>Total Commander</trademark
+> són compatibles. Per a dividir un fitxer, trieu <menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Divideix</guimenuitem
+></menuchoice
+> o <keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+>: s'obrirà un diàleg <guilabel
+>Divisió</guilabel
+> per a confirmar l'operació.</para>
+  <para
+>Si el nom del fitxer original és <filename
+>foo</filename
+>, llavors el nom dels fitxers més petits serà <filename
+>foo.000, foo.001, foo.002</filename
+>, &etc; No hi ha límit teòric en el nombre de fitxers més petits, però es recomana limitar el nombre a un màxim de 1.023 fitxers. El &krusader; crearà un fitxer <filename
+>foo.crc</filename
+>. Aquest fitxer contindrà el nom, la mida i la suma de verificació crc del fitxer original. És possible combinar el fitxer sense el fitxer <filename
+>foo.crc</filename
+>, però en aquest cas, el &krusader; no podrà comprovar si el fitxer original s'ha recreat correctament.</para>
+  <para
+>Un exemple d'un fitxer <filename
+>foo.crc</filename
+>: <programlisting
+>filename=foo size=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>Per a combinar els múltiples fitxers escollits, seleccioneu un fitxer parcial <filename
+>foo.xxx</filename
+> i escolliu <menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Reajunta els fitxers...</guimenuitem
+></menuchoice
+> o <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+>. La carpeta de destinació serà el plafó inactiu i es pot canviar. Els noms dels fitxers seran numerats en ordre ascendent: <filename
+>foo.001, foo.002, foo.003</filename
+>, &etc; o tindran lletres en ordre ascendent: («<userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+>mètode_de_lletres») <filename
+>fileaa, fileab, fileac</filename
+> &etc; Si el fitxer <filename
+>foo.crc</filename
+> es troba en la mateixa carpeta que els fitxers parcials, el &krusader; utilitzarà aquest fitxer per a comprovar els errors del fitxer combinat.</para>
+</sect1>

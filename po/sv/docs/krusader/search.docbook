@@ -1,0 +1,348 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="krusearcher">
+  <title
+>Krusearcher: Hitta vad du söker efter</title>
+  <indexterm>
+    <primary
+>Sök</primary>
+  </indexterm>
+  <para
+>Välkommen till &krusader;s kraftfulla sökmodul, med smeknamnet Krusearcher. Den är det dugligaste verktyget för &Linux; (som vi känner till), eftersom den tillåter så många olika sätt att snabbt hitta filer du letar efter. Sökfunktionen är också tillgänglig på fjärrfilsystem. Den är uppdelad i två nivåer, den allmänna och den avancerade. Låt oss börja med att ta en titt på den allmänna sidan.</para>
+  <figure id="screenshot-search-general" float="1">
+    <title
+>Allmän sökning</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_general.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Allmän sökning</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Sidan är uppdelad i fyra delar: Övre delen (sök efter), undre delen som har rubriken <guilabel
+>Innehållande text</guilabel
+>, den vänstra delen som har rubriken <guilabel
+>Sök i</guilabel
+> och den högra delen som kallas <guilabel
+>Sök inte i</guilabel
+>. Uppenbarligen hanterar varje del olika aspekter av sökningen. Låt oss ta en närmare titt på dem.</para>
+  <itemizedlist>
+    <title
+>Övre delen:</title>
+    <listitem>
+      <para
+><guilabel
+>Sök efter</guilabel
+>: Här skriver du in det huvudsakliga sökbegreppet. Du kan skriva in ett filnamn, jokertecken ( <literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> etc.) eller båda, åtskilda med ett mellanslag. Om du skriver <literal
+>'text'</literal
+> är resultatet samma som <literal
+>'*text*'</literal
+>. Du kan undanta filer från sökningen med '|' (t.ex. <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>) . Du kan använda citationstecken för namn som innehåller mellanslag. Filtret <quote
+>Program Filer</quote
+> söker efter de filer eller kataloger som har namnet <filename
+>Program Filer</filename
+>. En kombinationslista som visas efter att ha klickat på neråtpilen till höger låter dig välja något av dina tidigare inmatade sökbegrepp.</para>
+      <note>
+          <para
+>Det är möjligt att redigera listan med förslag i fältet <guilabel
+>Sök efter</guilabel
+>. Om du inte gillar några av alternativen, markera dem bara och tryck på <keycombo action="simul"
+>&Shift;<keycap
+>Del</keycap
+></keycombo
+> så tas de oanvändbara förslagen bort. Du kan också använda piltangenterna för att se hela historiken i fältet <guilabel
+>Sök efter</guilabel
+>, och ta bort onödiga poster. </para>
+      </note>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Skiftlägeskänslig</guilabel
+>: Avmarkeras den tillåts sökning med små och stora bokstäver (dvs.: <literal role="extension"
+>*.c</literal
+> tolkas som <literal role="extension"
+>*.c</literal
+> OCH <literal role="extension"
+>*.C</literal
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Av typ</guilabel
+>: Den här rutan låter dig söka efter en fil inte bara enligt namn, utan också enligt &MIME;-typ. Du kan till exempel söka efter alla ljudfiler vars namn börjar med B. Oftast har alternativet standardvärdet 'Alla filer', men du kan välja att söka efter arkiv, kataloger, bilder, textfiler, videor och ljudfiler.</para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Vänstra och högra delarna:</title>
+    <listitem>
+      <para
+><guilabel
+>Sök i</guilabel
+> och <guilabel
+>Sök inte i</guilabel
+>: Genom att använda dessa två delar, kan du ange en sökning exakt som du vill ha den. Du kanske exempelvis vill söka efter en fil i hela filsystemet (som börjar med <filename
+>/</filename
+>), men vill inte söka inne i <filename
+>/mnt</filename
+>. Allt du behöver göra är att skriva <filename
+>/</filename
+> i rutan <guilabel
+>Sök i</guilabel
+>, och skriva <filename
+>/mnt</filename
+> i rutan <guilabel
+>Sök inte i</guilabel
+>. Om du vill skriva in mer än en katalog i någon av rutorna, skriv bara det första namnet och tryck på returtangenten. Katalognamnet kopieras till den större listrutan, och du kommer att kunna skriva in ett nytt namn. <note
+> <para
+>Inmatningsraden har en funktion för automatisk komplettering, som motsvarar &plasma;s allmänna inställningar. Om du vill kan du klicka på <guiicon
+>katalogikonen</guiicon
+>, och bläddra till katalogen du vill lägga till.</para>
+      </note>
+      <note>
+          <para
+>Det är möjligt att definiera filer och kataloger som ska filtreras bort från sökresultaten med inmatningsfältet <guilabel
+>Undanta katalognamn</guilabel
+> längst ner i rutan <guilabel
+>Sök inte i</guilabel
+>.</para>
+          <para
+>Objekt i filterlistan ska åtskiljas med mellanslag.</para>
+          <para
+>Mellanslag i filterlistans objekt kan undantas eller citeras. Exempel: <userinput
+>.git "target build" build\ krusader</userinput
+></para>
+      </note
+></para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Undre delen:</title>
+    <listitem>
+      <para
+><guilabel
+>Text</guilabel
+>: Att skriva in text här gör att &krusader; söker efter den inne i filerna (<command
+>grep</command
+>). På så sätt kan du söka efter alla deklarationsfiler (<literal role="extension"
+>*.h</literal
+>) som innehåller texten <literal
+>'test 1 2 3'</literal
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Reguljärt uttryck</guilabel
+>: Ändra läget för reguljärt uttryck. En kombinationslista visas efter att ha klickar på neråtpilen till höger som låter dig ange specialsymboler för reguljära uttryck. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Kodning</guilabel
+>: Låter dig välja textkodningen. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Matcha endast hela ord</guilabel
+>: Låter dig ange att en fullständig matchning måste hittas (bokstäver och längd). </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Skiftlägeskänslig</guilabel
+>: Hänvisar till om texten söks efter med både små och stora bokstäver, eller den exakta meningen du skrev in.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Sök i underkataloger</guilabel
+>: Utför en rekursiv sökning och gå ner i alla kataloger på vägen.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Sök i arkiv</guilabel
+>: &krusader; kommer att söka efter filerna inne i alla arkiv som stöds. Det tar dock längre att utföra. <note
+> <para
+>Om du markerar kryssrutan, märker du att du inte kan söka efter text med <command
+>grep</command
+> i filer längre. Det beror på att leta inne i arkiverade filer tvingar &krusader; att packa upp dem, vilket orsakar ytterst långsam sökning.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Följ länkar</guilabel
+>: Om markerad, följer &krusader; symboliska länkar under sökningen.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Profiler</guilabel
+>: Om du regelbundet utför samma sökåtgärd, kan du spara sökinställningarna, t.ex. inkluderade filer, exkluderade filer, etc. Genom att klicka på knappen 'Profiler' kan du lägga till, spara och ta bort sökprofiler.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Sökbegrepp till klippbordet</guilabel
+>: Om markerad, placerar &krusader; söktexten på klippbordet när en hittad fil öppnas.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Skärmbilden ovan visar en sökning efter alla filer som slutar med <literal role="extension"
+>c, cpp</literal
+> eller <literal role="extension"
+>h</literal
+> och innehåller strängen <literal
+>'test 1 2 3'</literal
+>. &krusader; söker i <filename class="directory"
+>/root, /opt, /bin</filename
+> och <filename class="directory"
+>/usr</filename
+>, men inte i <filename class="directory"
+>/usr/lib</filename
+> och <filename class="directory"
+>/usr/share</filename
+>.</para>
+  <para
+>Genom att klicka på knappen <guibutton
+>Sök</guibutton
+> startas sökningen och resultatsidan visas. Under sökningen kan du klicka på knappen <guibutton
+>Stoppa</guibutton
+> för att stoppa sökningen. Knappen <guibutton
+>Stäng</guibutton
+> går inte att använda under en sökning, så du måste först stoppa sökningen och därefter stänga fönstret. När ett resultat hittas, gör ett dubbelklick på det att &krusader;s aktiva panel går till filen som hittats, men sökfönstret stängs inte, så att du har möjlighet att klicka på ett annat resultat.</para>
+  <para
+>Ibland behöver du förfina sökningen ännu mer. KruSearcher tillåter en mycket finare sökning, och för den, låt oss ta en titt på sidan <guilabel
+>Avancerat</guilabel
+> ...</para>
+  <figure id="screenshot-search-advanced" float="1">
+    <title
+>Avancerad sökning</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_advanced.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Avancerad sökning</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Den här skärmbilden visar en sökning efter filer vars storlek är mellan 10 KiB och 150 KiB, som ändrades mellan 10:e oktober och 1:a november, som hör till någon användare i gruppen 'nobody', och är läs- och skrivbara av alla i gruppen 'nobody', men bara läsbara för alla andra.</para>
+  <para
+>Den avancerade sidan är uppdelad i tre delar: storlek, datum och ägare.</para>
+  <para>
+    <emphasis role="bold"
+>Storlek</emphasis>
+  </para>
+  <para
+>Låter dig välja storleksintervall för filerna du söker efter. Genom att markera kryssrutorna kan du söka efter enn fil som är större än X byte (eller KiB, MiB), mindre än X byte, eller genom att markera båda söka efter en fil vars storlek är större än X men mindre än Y.</para>
+  <para>
+    <emphasis role="bold"
+>Datum</emphasis>
+  </para>
+  <para
+>Den här delen erbjuder tre olika sätt att definiera datumkriteriet: <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Ändrad mellan</guilabel
+>: Låter dig skriva in två datum. &krusader; söker efter filer med ett ändringsdatum från det första och till och med det andra datumet. <note
+> <para
+>Du kan klicka på datumikonen (nära inmatningsrutorna) för att öppna ett vanligt datumfönster, som enkelt låter dig bläddra igenom kalendern och söka efter det önskade datumet. Genom att klicka på ett datum stängs fönstret, och datumet dyker upp i inmatningsrutan.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Inte ändrad efter</guilabel
+>: Att välja det här alternativet gör att &krusader; söker efter filer som INTE ändrades efter ett givet datum, vilket är samma sak som att söka efter filer som är äldre än det datumet.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Ändrad de senaste/Inte ändrad de senaste</guilabel
+>: I dessa rutor skriver du inte in ett datum, utan ett tal. Talet representerar dagar, veckor, månader (som väljes i kombinationsrutan intill). Att skriva in talet 5 i den övre inmatningsrutan, gör att &krusader; söker efter filer som ändrades de senaste 5 dagarna. Att skriva in talet 2 i den undre inmatningsrutan, gör att &krusader; söker efter filer som INTE ändrades de senaste 2 dagarna. Kombinationen av båda resulterar i en sökning efter filer som ändrades de senaste 5 dagarna, men INTE de senaste 2 dagarna.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para>
+    <emphasis role="bold"
+>Ägare</emphasis>
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Tillhör användare/grupp</guilabel
+>: Genom att markera var och en av de motsvarande kryssrutorna, kan du söka efter filer som hör till en viss användare och/eller grupp. Kombinationsrutan listar alla användarnamn och gruppnamn på systemet. Välj bara ett och fortsätt.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Behörigheter</guilabel
+>: Uppdelat i ägare, grupp och alla. Låter dig välja viss behörighet för filen. Du kan välja att ange behörighet för ägare, grupp, alla eller någon kombination av dem. Frågetecknet (?) är ett jokertecken, vilket betyder att alla sorters behörighet är giltiga.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>För att klargöra det, beskriver skärmbilden ovan (delen med ägare) en sökning efter filer som hör till någon användare i gruppen 'users', är läsbara och skrivbara men inte körbara för alla användare i gruppen, är läsbara men inte skrivara eller körbara för alla andra, och har okänd behörighet för ägaren.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Resultat</emphasis>
+  </para>
+  <para
+>Klicka på knappen <guibutton
+>Sök</guibutton
+> för att starta sökningen och öppna resultatfönstret. Här ser du förloppet och resultatet av sökåtgärden. Om du vill kan du stoppa den pågående sökningen med knappen <guibutton
+>Stoppa</guibutton
+>. Markera filen i resultatlistan och använd <keycap
+>F3</keycap
+> eller <keycap
+>F4</keycap
+> för att granska eller redigera den, eller använd högerklickmenyn. När du klickar på ett objekt som har hittats, ändras katalogen i den aktiva panelen, om det markerade objektet inte är i panelens aktuella katalog. Resultatfönstret stöder att dra objekt till andra fönster, och kopiera till klippbordet (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). När du stänger KruSearchers fönster, blir det markerade objektet markerat i den aktiva panelen.</para>
+  <para>
+    <emphasis role="bold"
+>Skicka till listruta</emphasis>
+  </para>
+  <para
+>När du klickar på knappen <guibutton
+>Skicka till listruta</guibutton
+> efter resultaten har visats, frågar &krusader; efter ett namn på förfrågan, som kommer att användas för resultatfliken i listpanelen som innehåller sökresultaten. Du kan göra vad du vill med filerna under den nya fliken. Platsraden visar t.ex. <filename
+>virt:/Sökresultat 1</filename
+>.</para>
+  <warning>
+    <para
+>Filerna under resultatfliken är verkligen de ursprungliga filerna. Om du tar bort en fil, tas den bort!</para>
+  </warning>
+</sect1>

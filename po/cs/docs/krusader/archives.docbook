@@ -1,0 +1,142 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="archives">
+  <title
+>Práce s archivy</title>
+  <indexterm>
+    <primary
+>Archivy</primary>
+  </indexterm>
+  <sect2 id="browsing-archives">
+    <title
+>Procházení archivů</title>
+    <para
+><link linkend="vfs"
+>Virtuální systém souborů (VFS)</link
+> umožňuje procházet archivy jako by to byly adresáře. Aplikace &krusader; nyní podporuje následující typy archivů: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip a 7-zip a podporuje i následující zaheslované archivy: arj, ace, rar a zip. Hesla mohou být uložena v aplikaci <application
+>Kwallet</application
+>. Povšimněte si, že podpora archivu prvně potřebuje být správně <link linkend="konfig-archives"
+>nastavena</link
+> v Konfigurátoru. Chcete-li otevřít archiv, použijte klávesu &Enter;, (dvojité)kliknutí, nebo klávesu <keycap
+>Vpravo</keycap
+>. &krusader; také podporuje <emphasis role="bold"
+>utajené archivy</emphasis
+>. Tyto archivy jsou pojmenovány s *falešnou* příponou, např. <trademark class="registered"
+>OpenOffice</trademark
+> používá archivy zip s následujícími příponami: <literal role="extension"
+>.odt</literal
+>, <literal role="extension"
+>.sxw</literal
+> and <literal role="extension"
+>.odw</literal
+>. Klávesa &Enter; otevře soubor jako dokument <trademark class="registered"
+>OpenOffice</trademark
+> a klávesa <keycap
+>Vpravo</keycap
+> otevře soubor jako archiv. Další příklad je J2EE, kde přípona <literal role="extension"
+>.jar</literal
+> znamená archiv zip. Po automatické detekci podporovaných typů archivu jej aplikace &krusader; otevře pomocí klávesy <keycap
+>Vpravo</keycap
+>, dokonce i když má jiný MIME typ. Povšimněte si, že procházení archivů má několik málo omezení: <itemizedlist>
+      <listitem>
+        <para
+>Ne všechny funkce jsou podporovány ve všech typech archivů (např.: nelze smazat soubor v archivech ace nebo rar)</para>
+      </listitem>
+      <listitem>
+        <para
+>Oprávnění jsou uvnitř archivu stejná jako oprávnění pro archiv.</para>
+      </listitem>
+      <listitem>
+        <para
+>Příkazová řádka (je-li viditelná) Vás nebude následovat dovnitř archivu, ale bude ukazovat do adresáře s archivem.</para>
+      </listitem>
+      <listitem>
+        <para
+>Před jakoukoli činností prováděnou na souborech/adresářích uvnitř archivu, musí být archiv rozbalen. Archiv bude znovu zabalen, když z něj odejdete, nebo když aplikace &krusader; objeví, že rozbalené soubory byly změněny.</para>
+      </listitem>
+      <listitem>
+        <para
+>Balení a rozbalování jsou "blokující operace", které zobrazují dialogové okno s průběhem. Avšak to se může do budoucna změnit, protože plánujeme vytvořit více operací na pozadí.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="unpacking-archives">
+    <title
+>Rozbalení souborů</title>
+    <para
+>Jsou dva způsoby, jak rozbalit soubory z archivů:</para>
+    <para
+>Chcete-li rozbalit celý archiv (celé archivy), otevřete umístění archivu, vyberte archiv(y) a použijte nabídku <menuchoice
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Rozbalit...</guimenuitem
+> </menuchoice
+> nebo klávesovou zkratku <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+>. &krusader; se zeptá, kam vložit rozbalené soubory. Výchozí umístění je adresář neaktivního panelu. Nezrušíte-li operaci, &krusader; se pokusí rozbalit všechny vybrané soubory do neaktivního panelu.</para>
+    <para
+>Chcete-li rozbalit pouze část archivu, pak <link linkend="browsing-archives"
+>otevřete</link
+> archiv a zkopírujte soubory, které chcete rozbalit do jejich nového umístění, stejně jako kdybyste kopírovali "obyčejné" soubory. Povšimněte si, že rozbalení z otevřeného archivu zabere více času (je rozbalován soubor po souboru) v porovnání s rozbalením celého archivu pomocí první metody. Operace rozbalení může být vložena do <link linkend="queue"
+>fronty</link
+>.</para>
+  </sect2>
+  <sect2 id="pack-archive">
+    <title
+>Balení souborů</title>
+    <para
+>Chcete-li vytvořit nový archiv, začněte v aktivním panelu vybráním prvků, které chcete zabalit, použijte nabídku <menuchoice
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Sbalit...</guimenuitem
+> </menuchoice
+> nebo klávesovou zkratku <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+>. Zobrazené dialogové okno vyzve k zadání názvu a umístění archivu. Archivátor vyberete jednou z <link linkend="konfig-archives"
+>podporovaných přípon názvu souboru</link
+>.</para>
+    <para
+>Chcete-li přidat soubory do existujícího archivu/existujících archivů, otevřete archiv v jednom panelu a kopírované soubory ve druhém panelu. Poté jednoduše soubory zkopírujte do archivu úplně stejným způsobem, jako kopírujete soubory do "obyčejného" adresáře. Operace balení může být vložena do <link linkend="queue"
+>fronty</link
+>.</para>
+  </sect2>
+  <sect2 id="test-archive">
+    <title
+>Testování archivů</title>
+    <para
+>&krusader; nebude zpracovávat poškozené archivy, protože by mohlo dojít ke ztrátě dat. Zobrazí-li se při otevírání archivu chybová zpráva, nebo máte-li podezření, že je archiv poškozen, měli byste jej před použitím otestovat. Chcete-li otestovat archiv, otevřete (přejděte do) umístění archivu a vyberte soubor archivu. Dále použijte nabídku <menuchoice
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Testovat archiv</guimenuitem
+> </menuchoice
+> nebo klávesovou zkratku <keycombo action="simul"
+>&Alt; <keycap
+>E</keycap
+></keycombo
+>. &krusader; otestuje soubor archivu a bude informovat, zda archiv v testu neporušenosti souboru prošel nebo selhal.</para>
+  </sect2>
+</sect1>

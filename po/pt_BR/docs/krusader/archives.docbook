@@ -1,0 +1,124 @@
+<sect1 id="archives">
+  <title
+>Tratamento de Pacotes</title>
+  <indexterm>
+    <primary
+>Arquivos</primary>
+  </indexterm>
+  <sect2 id="browsing-archives">
+    <title
+>Navegar pelos Pacotes</title>
+    <para
+>Os <link linkend="vfs"
+>sistemas de arquivos virtuais (VFS, como é conhecido na aplicação)</link
+> permitem-lhe navegar pelos pacotes como se fossem pastas. Atualmente, o &krusader; suporta os seguintes tipos de pacotes: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip e 7-zip, suportando ainda os seguintes pacotes protegidos com senhas: arj, ace, rar e zip. As senhas poderão ser guardadas no <application
+>Kwallet</application
+>. Lembre-se de que o suporte para os pacotes deverá <link linkend="konfig-archives"
+>configurado</link
+> primeiro no Konfigurator. Para abrir o pacote, use o &Enter; e faça um (duplo-)clique ou pressione a tecla <keycap
+>Direita</keycap
+>. O &krusader; também suporta os <emphasis role="bold"
+>pacotes ocultos</emphasis
+>, que são pacotes cujo nome tem uma extensão *errada*; &eg;, o <trademark class="registered"
+>OpenOffice</trademark
+> usa pacotes ZIP com as seguintes extensões: <literal role="extension"
+>.odt</literal
+>, <literal role="extension"
+>.sxw</literal
+> e <literal role="extension"
+>.odw</literal
+>. O &Enter; irá abrir o documento do <trademark class="registered"
+>OpenOffice</trademark
+> e a tecla <keycap
+>Direita</keycap
+> irá abrir o pacote. Outro exemplo é o J2EE, onde a extensão <literal role="extension"
+>.jar</literal
+> significa um pacote ZIP. Uma vez que o &krusader; detecta automaticamente os tipos de pacotes suportados, ele irá abrir com a tecla <keycap
+>Direita</keycap
+>, mesmo que tenha outro tipo MIME. Não se esqueça que a navegação nos pacotes tem algumas limitações: <itemizedlist>
+      <listitem>
+        <para
+>Nem todas as funções são suportadas por todos os tipos de pacotes. (&ie;: você não pode apagar arquivos nos pacotes RAR ou ACE)</para>
+      </listitem>
+      <listitem>
+        <para
+>As permissões que você tem dentro do pacote são as mesmas que tem para o pacote propriamente dito.</para>
+      </listitem>
+      <listitem>
+        <para
+>A linha de comando (se estiver visível) não irá segui-lo dentro do pacote mas sim apontar para a pasta do mesmo.</para>
+      </listitem>
+      <listitem>
+        <para
+>Antes de poder efetuar qualquer ação sobre os arquivos/pastas dentro do pacote, eles deverão ser extraídos. O pacote voltará a ser gerado quando sair dele ou quando o &krusader; detectar que os arquivos extraídos foram alterados.</para>
+      </listitem>
+      <listitem>
+        <para
+>A compressão e descompressão são "operações bloqueadoras" que mostram uma janela de progresso. Contudo, isto poderá mudar no futuro, uma vez que está planejada a criação de mais operações em segundo plano.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="unpacking-archives">
+    <title
+>Descomprimir os Arquivos</title>
+    <para
+>Existem 2 formas de extrair os arquivos dos pacotes:</para>
+    <para
+>Se você tentar descomprimir um pacote inteiro, vá para a localização do mesmo, selecione-o e escolha a opção <menuchoice
+> <guimenu
+>Arquivo</guimenu
+> <guimenuitem
+>Descomprimir</guimenuitem
+> </menuchoice
+> ou <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+>. O &krusader; irá perguntar onde deseja colocar os arquivos extraídos, sendo a localização padrão a pasta do painel inativo. Se não cancelar a operação, o &krusader; irá tentar descomprimir todos os arquivos selecionados no painel inativo.</para>
+    <para
+>Se você só quiser extrair uma parte do pacote, então <link linkend="browsing-archives"
+>navegue</link
+> para o mesmo e copie os arquivos que deseja extrair para o seu local novo, como faria para os arquivos "normais". Lembre-se que a descompressão de um pacote navegado leva algum tempo (descompressão arquivo-a-arquivo), em comparação com a descompressão de um pacote inteiro com o primeiro método. A opção para descomprimir pode ser colocada numa <link linkend="queue"
+>fila de espera</link
+>.</para>
+  </sect2>
+  <sect2 id="pack-archive">
+    <title
+>Comprimir os Arquivos</title>
+    <para
+>Se você quiser criar um novo pacote, comece selecionando os elementos que deseja comprimir no painel ativo e selecione a opção <menuchoice
+> <guimenu
+>Arquivo</guimenu
+> <guimenuitem
+>Comprimir</guimenuitem
+> </menuchoice
+> ou <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+>. Irá aparecer uma janela que lhe pedirá o nome e a localização do pacote. Selecione a ferramenta de compressão a partir de uma das <link linkend="konfig-archives"
+>extensões de nomes de arquivos suportadas</link
+>.</para>
+    <para
+>Para adicionar os arquivos a um pacote existente, abra-o num painel, assim como os arquivos a copiar em o outro painel; depois, basta copiar os arquivos para o pacote como faria para copiar os arquivos para uma pasta "normal". A opção para comprimir pode ser colocada numa <link linkend="queue"
+>fila de espera</link
+>.</para>
+  </sect2>
+  <sect2 id="test-archive">
+    <title
+>Testar os Pacotes</title>
+    <para
+>O &krusader; não irá lidar com os pacotes corrompidos, uma vez que poderia resultar na perda de dados. Se receber uma mensagem de erro ao copiar um pacote, ou se suspeitar que se passa algo de errado com o mesmo, deverá fazer um teste, antes de usá-lo. Para testar um pacote, vá para a sua localização e selecione-o. Depois, selecione a opção <menuchoice
+> <guimenu
+>Arquivo</guimenu
+> <guimenuitem
+>Testar o pacote</guimenuitem
+> </menuchoice
+> ou <keycombo action="simul"
+>&Alt; <keycap
+>E</keycap
+></keycombo
+>. O &krusader; irá testar o arquivo do pacote e irá informá-lo se o pacote passou ou não no teste de integridade.</para>
+  </sect2>
+</sect1>

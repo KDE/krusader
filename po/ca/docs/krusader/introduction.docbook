@@ -1,0 +1,103 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="introduction">
+  <title
+>Introducció</title>
+  <indexterm
+><primary
+>Introducció</primary
+></indexterm>
+  <sect1 id="package-description">
+  <title
+>Descripció del paquet</title>
+    <para
+>El &krusader; és un gestor de fitxers senzill, fàcil, potent i amb doble plafó (a l'estil del commander) per al &plasma; i altres escriptoris *nix, és similar al <application
+>Midnight Commander</application
+> o al <trademark class="copyright"
+>Total Commander</trademark
+>. Proporciona totes les característiques per a la gestió de fitxers que pugueu desitjar.</para>
+    <para
+>El &krusader; també inclou un ampli maneig dels arxius, admet els sistemes de fitxers muntats, &FTP;, mòdul de cerca avançada, visualitzador/editor, sincronització de carpetes, comparació del contingut dels fitxers, canvi de nom per lots i molt, molt més. El &krusader; admet els formats d'arxiu: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip i 7-zip, i maneja altres esclaus KIO com smb:// o fish://.</para>
+    <para
+>El &krusader; és gairebé totalment personalitzable i, per tant, molt fàcil d'utilitzar.</para>
+    <para
+>Proveu el &krusader;.</para>
+    <figure id="screenshot-krusader" float="1">
+      <title
+>Captura de pantalla del &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="krusader1.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Captura de pantalla del &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Al nostre lloc web veureu més <ulink url="https://krusader.org/"
+>captures de pantalla del &krusader;</ulink
+>.</para>
+  </sect1>
+
+  <sect1 id="welcome">
+    <title
+>Us donem la benvinguda al &krusader;!</title>
+    <para
+>El nostre objectiu és oferir-vos una eina senzilla i intuïtiva que gestioni amb facilitat les tasques més importants que realitzeu amb l'ordinador cada dia: gestionant i processant els vostres fitxers de la manera que vulgueu.</para>
+    <para
+>Tant si sou un expert o un principiant en &Linux;, el &krusader; farà que les tasques rutinàries com la gestió de fitxers siguin ràpides i precises, cosa que us permetrà centrar-vos en el gran objectiu, no en la sintaxi de la línia d'ordres. Això és especialment útil si sou nou en els sistemes operatius xxNIX. Per a fer-ho, el &krusader; utilitza una bona &IGU; i admet arrossegar i deixar anar, així com els tipus &MIME;, fent que sigui fàcil d'emprar.</para>
+    <para
+>El &krusader; té moltes característiques d'utilitat. És ràpid, i gestiona els <link linkend="archives"
+>arxius</link
+> de manera transparent. A més, el &krusader; racionalitza moltes tasques complexes de la gestió de fitxers, reduint la fatiga, els errors i la distracció. Bàsicament, el &krusader; proporciona totes les característiques d'utilitat que heu esperat en altres eines de qualitat per a la gestió de fitxers com el <application
+>Midnight Commander</application
+> i el <trademark class="copyright"
+>Total Commander</trademark
+>. El &krusader; està dissenyat per a integrar-se a la perfecció amb el &plasma;, l'escriptori escollit per molts programadors, enginyers de xarxes i altres usuaris de &Linux;. Amb el &krusader;, fins i tot els usuaris novells poden accedir ràpidament a la potència, comoditat i funcionalitat del &plasma;. El &krusader; és un projecte lliure de codi obert, i es publica sota la <link linkend="credits"
+>Llicència Pública General de &GNU; (GPL)</link
+>, tot i que els desenvolupadors encara conserven els drets d'autor del projecte i el seu nom, i gestionen l'evolució contínua del projecte.</para>
+    <para
+>La missió del projecte &krusader; és la de crear un gestor de fitxers <quote
+>tot en un</quote
+>, el qual farà totes les coses normals que us agradarien i molt més. Des del començament, el &krusader; està basat en el <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>gestor de fitxers ortodox (OFM)</ulink
+>, els gestors de fitxers de doble plafó (<application
+>Midnight Commander</application
+>, <trademark class="registered"
+>Norton Commander</trademark
+>, &etc;), segur que el &krusader; és capaç de manejar tots els estàndards de les operacions amb fitxers per a copiar, moure, suprimir, &etc;</para>
+    <para
+>Des del començament, els sistemes de fitxers virtuals es van convertir en el focus principal. Els <link linkend="vfs"
+>sistemes de fitxers virtuals (VFS)</link
+> són una capa abstracta sobre tota mena d'informació arxivada (fitxers ZIP, servidors &FTP;, arxius TAR, sistemes de fitxers &NFS;, comparticions de SAMBA, imatges ISO de &CD;/&DVD;, catàlegs de RPM, &etc;), els quals permeten a l'usuari accedir de manera transparent a tota la informació en aquests tipus de sistemes de fitxers divergents -com ara entrar en una subcarpeta ordinària-. Els fitxers es poden copiar o moure (excepte ISO, rpm, tar.gz) entre aquestes fonts/contenidors de dades sense esforç. Actualment, el &krusader; és compatible amb VFS per a tots els tipus d'arxius populars coneguts i alguns especialitzats (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip i 7-zip), paquets de configuració (rpm, deb) i els tipus de sistemes de fitxers remots tradicionals (&FTP;, &NFS;, Samba, FISH, SFTP).</para>
+    <para
+>El &krusader; també inclou el <link linkend="mount-man"
+>Gestor del muntatge</link
+> inclòs, el qual permet muntar o desmuntar sistemes de fitxers de tots els tipus amb un clic del ratolí. L'usuari pot obtenir amb facilitat l'ús i la informació des d'altres propietats, en un format coherent i comprensible en qüestió de segons. L'objectiu és la facilitat i la coherència.</para>
+    <para
+>També hi ha un <link linkend="bookman"
+>Gestor de les adreces d'interès</link
+> per als fitxers locals/&URL; remots i un <link linkend="krusearcher"
+>mòdul de Cerca avançada</link
+> per a accelerar la localització dels fitxers necessaris. El &krusader; també permet a l'usuari configurar les barres d'eines per a proporcionar una gran varietat de característiques addicionals, com ara la comparació de fitxers (hi ha disponibles diversos mètodes seleccionables per l'usuari), el reanomenat múltiple de fitxers i finestres estàndards de terminal.</para>
+    <para
+>Els usuaris avançats es beneficiaran enormement de poder dur a terme tasques d'oficina sense esforç, sense distreure's de la tasca real. Tecles de drecera còmodes permeten a l'usuari navegar pels arbres de carpetes amb facilitat, crear simultàniament múltiples vistes de carpeta amb pestanyes i accedir a llistes d'historial completament funcionals. Gràcies a la programació eficient i la baixa sobrecàrrega del sistema, el &krusader; potser és l'eina per a la gestió del sistema més sensible per a accedir al màxim potencial d'un ordinador amb &plasma;, o qualsevol altre estàndard compatible amb un gestor de finestres &X-Window;. Encara que està dissenyat específicament per a, i integrat amb el &plasma;, el &krusader; funciona igual de bé amb el GNOME, MATE, Enlightenment, &windowmaker;, IceWM, XFCE, &etc;, sempre que s'hagin instal·lat les biblioteques dels &kf5;.</para>
+    <para
+>La nova extensibilitat és proporcionada per unes <link linkend="useractions"
+>Accions d'usuari</link
+> flexibles, una innovació del &krusader; que permet afegir característiques personalitzades il·limitades addicionals a les necessitats específiques dels usuaris. Estem planejant desenvolupar més mòduls en un futur pròxim, millorant així el &krusader;. La informació sobre el que es proposa, aprova o es continua completant es pot trobar a la <ulink url="https://invent.kde.org/utilities/krusader"
+>pàgina GitLab del &krusader;</ulink
+>.</para>
+    <para
+>Cap altre programa que coneguem, ofereix tantes característiques útils i de fàcil accés en un format tan intuïtiu i senzill. El millor de tot, escoltem i implementem els bons consells que siguin consonants amb l'objectiu del projecte &krusader;: fer del &krusader; el millor gestor de fitxers disponible.</para>
+    <para
+>Esperem que el gaudiu!</para>
+ </sect1>
+</chapter>

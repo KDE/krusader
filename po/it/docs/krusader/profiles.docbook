@@ -1,0 +1,62 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="profiles">
+  <title
+>Profili</title>
+  <indexterm>
+    <primary
+>Profili</primary>
+  </indexterm>
+  <para
+>Utilizzando i profili puoi salvare e recuperare le tue impostazioni preferite. Diverse funzionalità supportano i profili: puoi, ad esempio, avere differenti profili per il pannello (lavoro, casa, connessioni remote, &etc;), profili per la ricerca, profili per la sincronizzazione, &etc;</para>
+  <sect2 id="panel_profiles">
+    <title
+>Profili del pannello</title>
+    <para
+>Un profilo del pannello contiene le seguenti informazioni: tutti i percorsi delle schede (sinistra o destra), la scheda attuale (sinistra o destra) e il pannello attivo (sinistra o destra). Tutte queste informazioni sono memorizzate nel file <link linkend="config_files"
+>krusaderrc</link
+>. Potete avere diversi profili del pannello: ad esempio, per la gestione dei file, per le sessioni &FTP;, per casa, per il lavoro, &etc;. Il profilo del pannello può essere <link linkend="c_panel_profiles"
+>salvato e recuperato</link
+> per mezzo del menu <guimenu
+>Finestra</guimenu
+>. Il <link linkend="konfig-startup"
+>profilo predefinito di avvio</link
+> sarà usato all'avvio di &krusader;, ma puoi modificare questo comportamento utilizzando un'opzione da riga di comando.</para>
+  </sect2>
+  <sect2 id="color_profiles">
+    <title
+>Profili dei colori</title>
+    <para
+>Le mappe dei colori possono essere salvate e ripristinate con <link linkend="konfig-color"
+>Profili dei colori</link
+>.</para>
+  </sect2>
+  <sect2 id="key_profiles">
+    <title
+>Profili delle combinazioni di tasti</title>
+    <para
+>Le mappe dei tasti possono essere salvate e recuperate per mezzo dei <link linkend="configure-shortcuts"
+>Profili delle combinazioni di tasti</link
+>.</para>
+  </sect2>
+  <sect2 id="search_profiles">
+    <title
+>Profili di ricerca</title>
+    <para
+>Se esegui periodicamente le stesse operazioni, puoi salvare le impostazioni di ricerca (ad esempio: quali file includere, quali escludere, &etc;) in un <link linkend="krusearcher"
+>Profilo di ricerca</link
+>.</para>
+  </sect2>
+  <sect2 id="synchronizer_profiles">
+    <title
+>Profili di sincronizzazione</title>
+    <para
+>Se esegui periodicamente le stesse operazioni di sincronizzazione, puoi salvare le impostazioni di sincronizzazione in un <link linkend="synchronizer"
+>Profilo di sincronizzazione</link
+>.</para>
+  </sect2>
+</sect1>

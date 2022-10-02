@@ -1,0 +1,532 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="basic-functions">
+  <title
+>Funcions bàsiques</title>
+  <sect1 id="controls">
+    <title
+>Controls</title>
+    <sect2 id="control-general">
+      <title
+>General</title>
+      <para
+>Aquesta és una secció molt curta però important que ens introduirà en els detalls de controlar el &krusader;. Aquesta secció no tracta de cobrir totes les combinacions de tecles per dos motius: <orderedlist numeration="arabic"
+> <listitem
+> <para
+>n'hi ha massa</para
+> </listitem
+> <listitem
+> <para
+>la majoria de les accions del &krusader; es poden configurar a la <link linkend="konfig-panel"
+>pàgina Plafó del Konfigurador</link
+></para
+> </listitem
+> </orderedlist
+>Només s'esmentaran les dreceres de teclat més importants amb la configuració predeterminada, però cal tenir en compte que la majoria dels <link linkend="key_bindings"
+>lligams de tecla</link
+> són configurables. Si trobeu que utilitzeu una determinada ordre molt sovint i voleu conèixer la seva drecera o voleu canviar-la, llavors aneu a la finestra <link linkend="key_bindings"
+>Configuració de les dreceres</link
+> (<menuchoice
+><guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Configura les dreceres...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="moving-around">
+      <title
+>Desplaçar-se per</title>
+      <para
+>En desplaçar-nos es transferirà el focus del teclat i del ratolí entre les diferents parts de la <link linkend="mainwindow"
+>finestra principal</link
+> del &krusader;. El focus es pot fer en un dels cinc llocs: el plafó esquerre o dret, la barra de menús, la línia d'ordres o l'emulador de terminal. El plafó que tingui el focus s'anomenarà el plafó actiu. Un plafó actiu es mantindrà actiu fins que l'altre plafó rebi el focus (&ead;, si el plafó esquerre estava actiu i feu clic a la línia d'ordres, llavors el plafó esquerre romandrà com el plafó actiu). Haureu de canviar deliberadament de plafó.</para>
+      <para
+>La forma més habitual de transferir el focus a un plafó específic és utilitzar el ratolí per a fer clic en aquest plafó. Però haureu de tenir en compte el següent: <itemizedlist>
+        <listitem>
+          <para
+>Si feu clic a la barra d'eines, la Barra de tecles de funció o la Barra d'estat <emphasis
+>no</emphasis
+> es canviarà el focus.</para>
+        </listitem>
+        <!--
+   Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
+   <listitem>
+     <para
+>The display part of the Quick View Panel does not accept clicks so you should click on the
+           Location Toolbar of this panel if you want it to have focus.</para>
+   </listitem>
+-->
+        <listitem>
+          <para
+>Si premeu el botó <guibutton
+>Executa en el mode terminal</guibutton
+> a la línia d'ordres, no es transferirà el focus, de manera que haureu de fer clic a la línia d'entrada.</para>
+        </listitem>
+        <listitem>
+          <para
+>Quan trieu un menú, la barra de menús rebrà el focus. El mantindrà fins que trieu una ordre -el focus tornarà al propietari anterior-.</para>
+        </listitem>
+      </itemizedlist
+></para>
+      <para
+>Per descomptat, hi ha maneres d'utilitzar el teclat per a canviar el focus: <itemizedlist>
+        <listitem>
+          <para
+>La tecla &Tab; canviarà entre els plafons, si un dels plafons té el focus o girarà entre totes les ordres d'un menú, si està activa la barra de menús.</para>
+        </listitem>
+        <listitem>
+          <para
+>La <keycombo action="simul"
+>&Ctrl;&Down;</keycombo
+> us portarà des del plafó actiu fins a la línia d'ordres o l'emulador de terminal, i la <keycombo action="simul"
+>&Ctrl;&Up;</keycombo
+> us tornarà des de la línia d'ordres al plafó actiu.</para>
+        </listitem>
+        <listitem>
+          <para
+>La tecla &Esc; farà que el focus retorni a la barra de menús, si el té, al plafó anteriorment actiu.</para>
+        </listitem>
+        <listitem>
+          <para
+>Si estàveu dins de l'emulador de terminal, podreu usar la tecla &Tab; o el ratolí per a navegar cap a un plafó actiu.</para>
+        </listitem>
+        <listitem>
+          <para
+>Prement <keycombo action="simul"
+>&Alt;<keycap
+>guió baix</keycap
+></keycombo
+> des de la barra de menús s'obrirà aquest menú (tret que aquesta combinació de tecles sigui una <quote
+>tecla reservada</quote
+>, utilitzada per a una de les accions del &krusader;).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="selecting-files">
+      <title
+>Seleccionar</title>
+      <note>
+        <para
+>El &krusader; ofereix quatre <link linkend="selection_modes"
+>modes de selecció</link
+>, per a no parlar de la <link linkend="quickselect"
+>barra Selecció ràpida</link
+>, aquí només s'explica el mode de selecció del &krusader;.</para>
+      </note>
+      <para
+>Seleccionar és una habilitat que haureu de dominar per a obtenir el màxim rendiment del &krusader;. Atès que el plafó en arbre només permet seleccionar una carpeta a la vegada, aquest paràgraf explica principalment com seleccionar fitxers al plafó de llista.</para>
+      <para
+>Moure el cursor és fàcil. En fer clic esquerre sobre un fitxer o carpeta (aquí ens hi referim com a <quote
+>elements</quote
+>) el seleccionarà. Aquests són alguns indicadors útils que faran que el &krusader; fins i tot sigui més fàcil d'emprar (suposant que esteu utilitzant el mode de selecció del ratolí del &krusader;): <itemizedlist>
+        <listitem>
+          <para
+>Les tecles &Space; i &Ins; canviaran la selecció del fitxer sota el cursor sense afectar la selecció d'altres fitxers/carpetes, el cursor anirà una posició cap avall.</para>
+        </listitem>
+        <listitem>
+          <para
+>Fer <keycap
+>clic esquerre</keycap
+> sobre un fitxer seleccionarà, o desseleccionarà, tots els fitxers seleccionats prèviament.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl;<keycap
+>clic esquerre</keycap
+></keycombo
+> canviarà la selecció del fitxer sota el cursor sense afectar la selecció d'altres fitxers/carpetes.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Maj;<keycap
+>clic esquerre</keycap
+></keycombo
+> seleccionarà tots els elements entre l'anterior ubicació del cursor i la nova.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Maj;&Home;</keycombo
+> ho seleccionarà tot per sobre del cursor (i ho desseleccionarà tot per sota del cursor, si estava seleccionat).</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Maj;&End;</keycombo
+> ho seleccionarà tot per sota del cursor (i ho desseleccionarà tot per sobre del cursor, si estava seleccionat).</para>
+        </listitem>
+        <listitem>
+          <para
+>L'entrada <quote
+>..</quote
+> no és seleccionable.</para>
+        </listitem>
+        <listitem>
+          <para
+>El <link linkend="edit-menu"
+>menú Edita</link
+> ofereix més maneres per a seleccionar els fitxers.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="executing_commands">
+      <title
+>Executar ordres</title>
+      <para
+>No hi ha molt a dir aquí, tot el que heu de fer és seleccionar alguns fitxers (si no ho feu, el &krusader; operarà sobre el/s fitxer/s o carpeta/es que tinguin el focus), trieu una <link linkend="menu-commands"
+>ordre</link
+> des de la barra de menús o utilitzeu una drecera de teclat (o el menú del clic dret) i s'executarà l'ordre seleccionada. Vegeu també <link linkend="executing_files"
+>executar fitxers</link
+>.</para>
+    </sect2>
+    <sect2 id="quicksearch">
+      <title
+>Cerca ràpida</title>
+      <!-- Thanks to Heiner Eichmann -->
+      <para
+>Aquesta característica farà una cerca ràpida per al nom de fitxer que hi ha al plafó de llista actiu.</para>
+      <para
+>Escriviu <keycap
+>qualsevol</keycap
+> (un caràcter) per a fer una cerca ràpida al plafó de llista actiu per a un fitxer que comenci per <quote
+>qualsevol</quote
+>. S'obrirà un petit diàleg de cerca ràpida sota el plafó de llista actiu. Escriviu els primers caràcters del nom de fitxer desitjat (es permet més d'un caràcter), el cursor saltarà a aquest nom (si existeix), &pex;, escriviu <quote
+>ab</quote
+> per a cercar un fitxer que comenci per <quote
+>ab</quote
+>. Les tecles &Up;/&Down; saltaran a la següent o anterior coincidència. &Esc; tancarà la línia de cerca ràpida. El cursor romandrà en l'últim fitxer trobat. La Cerca ràpida admet <ulink url="https://ca.wikipedia.org/wiki/Expressió_regular"
+>expressions regulars</ulink
+> per a cercar fitxers.</para>
+      <note>
+        <para
+>Si premeu <keycombo action="simul"
+>&Alt;<keycap
+>qualsevol</keycap
+></keycombo
+>, s'executarà la drecera del lligam de tecla. Si no hi ha configurat cap lligam de tecla, la lletra restant <keycap
+>qualsevol</keycap
+> s'utilitzarà per a la cerca ràpida.</para>
+      </note>
+      <para
+>Utilitzeu la finestra <link linkend="key_bindings"
+>Configuració de les dreceres</link
+> (<menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura les dreceres...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickfilter">
+      <title
+>Filtre ràpid</title>
+      <para
+>Aquesta característica farà un filtratge ràpid per a la llista de fitxers que hi ha al plafó actiu.</para>
+      <para
+>Premeu <keycombo
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+> per a obrir la barra del Filtre ràpid. Escriviu <keycap
+>qualsevol</keycap
+> (un caràcter) per a filtrar des del plafó actiu tots els fitxers que no contenen <quote
+>qualsevol</quote
+> en el nom. Podeu utilitzar comodins per al filtratge. &pex;, utilitzeu <quote
+>a*b</quote
+> per a filtrar els fitxers que contenen <quote
+>a</quote
+> i <quote
+>b</quote
+> en els seus noms. El Filtre ràpid seguirà l'<link linkend="konfig-panel-general"
+>opció de configuració de majúscules i minúscules</link
+> de la Cerca ràpida.</para>
+      <para
+>Prement &Intro; en el mode Filtre ràpid s'establirà el focus al plafó, quan tinguin el focus el plafó o el Filtre ràpid, &Esc; tancarà el Filtre ràpid. </para>
+      <para
+>Per a canviar la drecera predeterminada del Filtre ràpid utilitzeu la finestra <link linkend="key_bindings"
+>Configuració de les dreceres</link
+> (<menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura les dreceres...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickselect">
+      <title
+>Selecció ràpida</title>
+      <para
+>Aquesta característica farà una selecció ràpida per a la llista de fitxers que hi ha al plafó actiu.</para>
+      <para
+>Premeu <keycombo
+>&Ctrl;&Maj;<keycap
+>S</keycap
+></keycombo
+> per a obrir la barra de la Selecció ràpida. Escriviu <keycap
+>qualsevol</keycap
+> (un caràcter) per a filtrar des del plafó actiu tots els fitxers que no contenen <quote
+>qualsevol</quote
+> en els noms. Podeu utilitzar comodins per al filtratge. &pex;, utilitzeu <quote
+>a*b</quote
+> per a filtrar els fitxers que contenen <quote
+>a</quote
+> i <quote
+>b</quote
+> en els seus noms. La Selecció ràpida seguirà l'<link linkend="konfig-panel-general"
+>opció de configuració de majúscules i minúscules</link
+> de la Cerca ràpida.</para>
+      <para
+>Prement &Intro; en el mode Selecció ràpida s'establirà el focus al plafó, quan tinguin el focus el plafó o la Selecció ràpida, &Esc; tancarà la Selecció ràpida. </para>
+      <para
+>Per a canviar la drecera predeterminada de la Selecció ràpida utilitzeu la finestra <link linkend="key_bindings"
+>Configuració de les dreceres</link
+> (<menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura les dreceres...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="context-menu">
+      <title
+>Menú contextual</title>
+      <para
+>El &krusader; té molts menús contextuals que permeten fer operacions ràpides amb el ratolí, normalment un clic dret obrirà el menú contextual (depenent de la configuració dels <link linkend="selection_modes"
+>modes de selecció</link
+>). Aquesta llista ofereix un resum dels menús contextuals més importants. Utilitzeu-lo per a descobrir les ordres disponibles. <itemizedlist>
+        <listitem>
+          <para
+><link linkend="mainwindow"
+>Barra d'eines principal</link
+> (orientació, posició del text, mida de la icona)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="list_panel"
+>Plafó de llista</link
+> sobre un fitxer o carpeta</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="cmdline"
+>Línia d'ordres</link
+> (desfés, enganxa, compleció del text...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="termemu"
+>Emulador de terminal</link
+> (envia un senyal, tipus de lletra, historial...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="folder-tabs"
+>Pestanyes de carpeta</link
+> (nova, duplica, tanca)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="krusearcher"
+>KruSearcher</link
+> llista els fitxers com a resultat de la cerca (<keycap
+>F3</keycap
+> Visualitza, <keycap
+>F4</keycap
+> Edita)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="mount-man"
+>Gestor del muntatge</link
+> (desmunta, dona format...)</para>
+        </listitem>
+        <listitem>
+          <para
+>Llista els fitxers en <link linkend="synchronizer"
+>sincronitzar les carpetes</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Accions d'usuari</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Les accions del clic dret del &konqueror; es mostraran al &krusader;</para>
+        </listitem>
+        <listitem>
+          <para
+>Mostra/oculta les <link linkend="list_panel"
+>capçaleres de les columnes</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="bookman"
+>Adreces d'interès</link
+>: habilita/inhabilita les adreces d'interès permanents</para>
+        </listitem>
+        <listitem>
+          <para
+>...</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="basic">
+    <title
+>Gestió de fitxers bàsica</title>
+    <sect2 id="executing_files">
+      <title
+>Executar fitxers</title>
+      <para
+>Només podreu executar fitxers al plafó de llista actiu. Per a executar només un fitxer, feu doble clic sobre seu o premeu &Intro; quan es trobi a sota del cursor. El &krusader; l'obrirà amb l'aplicació predeterminada per a aquest tipus de fitxer (imatge, fitxer de text...) o l'executarà (script, binari...). Si voleu utilitzar una altra aplicació per a obrir el fitxer, feu-hi clic amb el &BDR; sobre el fitxer i aneu al submenú <guisubmenu
+>Obre amb</guisubmenu
+>, el qual oferirà més opcions. El &krusader; és compatible amb el gestor de fitxers predeterminat del &plasma; per a tots els tipus de fitxer, excepte els arxius que s'obren dins del plafó del &krusader; i no en una aplicació externa. Per a obtenir més detalls, vegeu <link linkend="konfig-archives"
+>la pàgina Arxius al Konfigurador</link
+>.</para>
+    </sect2>
+    <sect2 id="copying">
+      <title
+>Copiar i moure</title>
+      <figure id="screenshot-copyjob" float="1">
+        <title
+>El diàleg Copia</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="copyjob.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>El diàleg Copia</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>Per a copiar o moure fitxers/carpetes, simplement seleccioneu-los i premeu <keycap
+>F5</keycap
+> per a copiar o <keycap
+>F6</keycap
+> per a moure'ls. El &krusader; intentarà preservar el temps de modificació. Quan es copia una carpeta, el propietari es canviarà a l'usuari que el copia i el grup es canviarà al grup predeterminat de l'usuari. Quan es copia un fitxer, el propietari es canviarà a l'usuari que el copia i el grup es canviarà al grup predeterminat de l'usuari, preservant els permisos. El propietari, el grup i els permisos es conservaran quan es mogui el fitxer o la carpeta. Quan copieu o moveu fitxers/carpetes, apareixerà un diàleg que permetrà triar la destinació de l'operació. La destinació predeterminada serà la carpeta explorada en l'altre plafó. Si introduïu un &URL; parcial, el &krusader; utilitzarà la carpeta del plafó actual com a &URL; base.</para>
+    </sect2>
+    <sect2 id="queue">
+      <title
+>Gestor de la cua</title
+> 
+      <para
+>Les operacions de copiar, moure, empaquetar i desempaquetar es poden posar a la cua. Després de seleccionar copiar o moure, premeu <keycap
+>F2</keycap
+> per a utilitzar-la. Després de seleccionar empaquetar o desempaquetar, premeu <keycap
+>F2</keycap
+> per a utilitzar-la. O les dreceres directes: copia a la cua <keycombo action="simul"
+>&Maj;<keycap
+>F5</keycap
+></keycombo
+>, mou a la cua <keycombo action="simul"
+>&Maj;<keycap
+>F6</keycap
+></keycombo
+>. El Gestor de la cua realitzarà les accions una a una. Per exemple, si teniu una memòria USB (la qual és lenta) i voleu copiar 40 fitxers, és millor copiar-los un a un en comptes de copiar els 40 fitxers en paral·lel. Per això és important posar-ho a la cua. Si empaqueteu/desempaqueteu 40 fitxers en paral·lel, sobrecarregareu l'ordinador, però afegir-los a una cua serà molt més útil. </para>
+      <para
+>És possible canviar el <link linkend="job-queue-mode"
+>Mode gestor de la cua</link
+> per l'element de menú <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mode de la cua de treballs</guimenuitem
+></menuchoice
+>. </para>
+    </sect2>
+    <sect2 id="deleting">
+      <title
+>Suprimir -moure a la paperera del &plasma;-</title>
+      <para
+>Suprimir fitxers/carpetes es fa seleccionant-los i prement <keycap
+>F8</keycap
+> o &Del;. De manera <link linkend="konfig-general"
+>predeterminada</link
+> es mouran a la paperera del &plasma;. Podeu obrir la paperera del &plasma; amb la icona de paperera que hi ha a la <link linkend="main_toolbar"
+>Barra d'eines principal</link
+> o amb l'esclau KIO <filename
+>trash:/</filename
+>. Físicament, la paperera del &plasma; es troba a <filename
+>~/.local/share/Trash/</filename
+> o <filename
+>Paperera</filename
+> a la subcarpeta de la carpeta d'inici de l'usuari, el qual es pot determinar utilitzant l'ordre <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. <keycombo action="simul"
+>&Ctrl;&Del;</keycombo
+> suprimirà el fitxer permanentment. Un diàleg us demanarà la vostra confirmació i us avisarà quan suprimiu carpetes que no estan buides. Per descomptat, només es realitzaran les operacions que el sistema operatiu permeti fer -d'altra manera se us notificarà-. Si no voleu veure els diàlegs de confirmació, podeu inhabilitar-los a la <link linkend="konfig-advanced"
+>pàgina Avançat del Konfigurador</link
+>. Si ho establiu a suprimir els fitxers de forma permanent a la <link linkend="konfig-general"
+>pàgina General del Konfigurador</link
+>, les tecles <keycap
+>F8</keycap
+> o &Del; suprimiran de forma permanent els fitxers, mentre que la drecera <keycombo action="simul"
+>&Ctrl;&Del;</keycombo
+> els mourà a la Paperera del &plasma;.</para>
+    </sect2>
+    <sect2 id="shred">
+      <title
+>Compartir fitxers</title>
+      <para
+>El Shred ha estat eliminat del &kde; 4 (com a conseqüència, també el &krusader; 2 per al &kde; 4). El motiu principal, probablement és que la trituració depèn del sistema de fitxers i, fins i tot, si se sobreescriu el fitxer 100 vegades, no serà segur, ja que finalment se suprimirà del disc. Citat des de les publicacions del &kgpg;: <quote
+>la característica de triturar ha estat eliminada de la biblioteca del &kde;. El &kgpg; ja no admetrà aquesta característica. Els sistemes de fitxers moderns utilitzen la periodització. Per tant, la funció de trituració ha estat implementada en el sistema de fitxers. No en el &kgpg;.</quote
+> Però podeu utilitzar una <link linkend="useractions"
+>Acció d'usuari</link
+> de triturar adequada per al vostre sistema de fitxers. Però cal tenir en compte que si voleu estar 100% segur que serà impossible que algú pugui llegir un fitxer suprimit, haureu de destruir el maquinari del vostre disc dur... </para>
+    </sect2>
+    <sect2 id="renaming">
+      <title
+>Reanomenar fitxers, crear carpetes i gestionar els enllaços</title>
+      <para
+>Canviar el nom del fitxer sota el cursor amb la tecla <keycap
+>F2</keycap
+> o amb dos clics del ratolí. Si només cal canviar el nom del fitxer i no l'extensió, podeu configurar-ho a la <link linkend="konfig-general-atomic"
+>pàgina General del Konfigurador</link
+>. <guilabel
+>Crea una carpeta nova</guilabel
+> amb la tecla <keycap
+>F7</keycap
+>. Si feu clic dret sobre un fitxer normal, us donarà l'opció <menuchoice
+><guisubmenu
+>Gestió de l'enllaç</guisubmenu
+> <guimenuitem
+>Enllaç simbòlic nou...</guimenuitem
+></menuchoice
+>. Un diàleg us demanarà que introduïu el nom per a l'enllaç simbòlic. Aquest enllaç simbòlic apuntarà al fitxer/carpeta en el qual heu fet clic dret. Si el fitxer en el que heu fet clic dret a sobre és un enllaç simbòlic, també se us mostrarà l'opció <menuchoice
+><guisubmenu
+>Gestió de l'enllaç</guisubmenu
+> <guimenuitem
+>Redirigeix l'enllaç...</guimenuitem
+></menuchoice
+>, la qual us permetrà canviar la destinació de l'enllaç.</para>
+    </sect2>
+    <sect2 id="viewing">
+      <title
+>Visualitzar i editar fitxers</title>
+      <para
+>El <link linkend="krviewer"
+>KrViewer</link
+> té el seu propi capítol.</para>
+    </sect2>
+  </sect1
+>&archives; </chapter>

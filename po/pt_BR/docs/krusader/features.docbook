@@ -1,0 +1,632 @@
+<chapter id="features">
+<title
+>Funcionalidades</title>
+<indexterm>
+  <primary
+>Funcionalidades</primary>
+</indexterm>
+<note>
+  <para
+>As funcionalidades e melhorias mais importantes são aqui destacadas. Esta lista seria muito extensa se fossem incluídas <emphasis
+>todas</emphasis
+> as funcionalidades e melhorias. Você irá descobrir ainda mais funcionalidades nesta documentação e no arquivo <ulink url="https://quickgit.kde.org/?p=krusader.git&amp;a=blob&amp;f=ChangeLog&amp;o=plain"
+><filename
+>ChangeLog</filename
+></ulink
+>.</para>
+</note>
+<para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Funcionalidades de um <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Gerenciador de Arquivos Ortodoxo (OFM)</ulink
+></title>
+          <listitem>
+            <para
+>Dois <link linkend="panels"
+>painéis de OFM</link
+> poderosos e simples de usar.</para>
+          </listitem>
+          <listitem>
+            <para
+>Uma <link linkend="cmdline"
+>Linha de Comando</link
+> e um <link linkend="termemu"
+>Emulador de terminal</link
+> em baixo.</para>
+          </listitem>
+          <listitem>
+            <para
+>Uma forte <link linkend="keyboard-commands"
+>orientação para o teclado</link
+> e a capacidade de efetuar todas as funções sem o mouse.</para>
+          </listitem>
+          <listitem>
+            <para
+>A invocação dependente do contexto de programas, &eg;, botão do mouse/&Enter; (executar ou abrir com o aplicativo associado), <keycap
+>F3</keycap
+> (exibir) e <keycap
+>F4</keycap
+> (editar).</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="useractions"
+>Menu do Usuário</link
+> - crie o seu próprio menu personalizado.</para>
+          </listitem>
+          <listitem>
+            <para
+>Histórico &eg; <link linkend="folderhistory"
+>Histórico de pastas</link
+>, <link linkend="popular-urls"
+>&URL;s populares</link
+>, &etc;</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="vfs"
+>Sistemas de arquivos virtuais (VFS)</link
+> &eg; para <link linkend="remote-connections"
+>Conexões Remotas</link
+>, <link linkend="archives"
+>pacotes</link
+>, resultados de pesquisas, sincronização (por padrão é desativado em tempo de compilação).</para>
+          </listitem>
+          <listitem>
+            <para
+>Um <link linkend="krviewer"
+>visualizador e editor</link
+> poderoso, através do KParts, suportando praticamente todos os formatos de arquivos.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Módulo de Pesquisa Avançada</link
+>: pesquisar em pacotes e procurar no conteúdo de sistemas de arquivos remotos.</para>
+          </listitem>
+          <listitem>
+            <para
+>Diversos modos de visualização do painel, através do <link linkend="popup_panel"
+>Painel Instantâneo</link
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Ferramentas do &krusader;</title>
+          <listitem>
+            <para
+><link linkend="remote-connections"
+>Conexões remotas</link
+>: &FTP;/SAMBA com suporte à SFTP/SCP, através dos 'KIO Slaves'</para>
+          </listitem>
+          <listitem>
+            <para
+>Interface &GUI; para o <link linkend="locate"
+>Locate</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="synchronizer"
+>Sincronizar diretórios</link
+> (por padrão é desativado em tempo de compilação)</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="mount-man"
+>Gerenciador de Montagens</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="diskusage"
+>Uso do Disco</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="root-mode"
+>Modo de 'root' (administração)</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Funcionalidades do &krusader;</title>
+          <listitem>
+            <para
+>Tratamento de pacotes: navegação, compressão, descompressão, testes. <link linkend="archives"
+>Pacotes</link
+> suportados: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip e 7-zip.</para>
+          </listitem>
+          <listitem>
+            <para
+>Mecanismo de <link linkend="checksum"
+>criação e verificação de códigos de validação</link
+> que suporta: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv e crc.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="calculate"
+>Calcular o espaço ocupado</link
+> dos arquivos, pastas, pacotes e sistemas de arquivos remotos.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-dir"
+>Comparação de pastas</link
+> e <link linkend="view-menu"
+>filtragem</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-content"
+>Comparação de arquivos pelo conteúdo</link
+> com programas de diferenças externos, como o &kompare;, o <ulink url="http://kdiff3.sourceforge.net"
+><application
+>KDiff3</application
+></ulink
+> ou o <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="multi_rename"
+>Renomear</link
+> arquivos e pastas através do <ulink url="http://www.krename.net"
+><application
+>KRename</application
+></ulink
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Suporte completo ao 'arrastar e soltar': arrastar a partir do &konqueror; diretamente para um arquivo <literal role="extension"
+>.tar.gz</literal
+>, a partir do painel do &krusader; para a Lixeira, área de trabalho ou para o &konqueror;</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-advanced"
+>Preservar a data</link
+> dos destinos locais, nas operações para copiar/mover.</para>
+          </listitem>
+          <listitem>
+            <para
+>O <keycap
+>F2</keycap
+> abre uma <link linkend="tools-menu"
+>Janela de Terminal</link
+> na pasta atual.</para>
+          </listitem>
+          <listitem>
+            <para
+>A edição simples das <link linkend="file-menu"
+>permissões dos arquivos</link
+> e do dono, assim como as <link linkend="konfig-panel-view"
+>permissões numéricas</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Filtros de seleção</link
+> usados, &eg;, na Sincronização (por padrão é desativado em tempo de compilação) e no KruSearcher.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="jump_back"
+>Pontos de Regresso</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-general"
+> Ciente dos tipos MIME</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="folder-tabs"
+>Painéis por páginas</link
+> e <link linkend="krviewer"
+>Editor/Visualizador</link
+> também por páginas.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="quicksearch"
+>Pesquisa rápida</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="splitter"
+>Divisão de arquivos</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="mouse_gestures"
+>Gestos do Mouse</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="list_panel"
+>Navegação Rápida</link
+> na Barra de Localização.</para>
+          </listitem>
+          <listitem>
+            <para
+>Função de ajuda 'O que é isto?', em vez de dicas, onde for razoável.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_toolbar"
+>Navegação sincronizada</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Personalizar o &krusader; de acordo com as suas necessidades</title>
+          <listitem>
+            <para
+>O centro de configuração do &krusader; <link linkend="konfig-startup"
+> Konfigurador</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="mainwindow"
+>Barra Principal</link
+> e <link linkend="actions_toolbar"
+>Barra de Ações</link
+> para as ações do usuário e favoritos.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="key_bindings"
+>Combinações de teclas</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="konfig-color"
+>Cores</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_profiles"
+>Perfis do painel</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="bookman"
+>Gerenciador de Favoritos</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="selection_modes"
+>Modos de Seleção</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Você poderá <link linkend="konfig-startup"
+>configurar</link
+> muitas mais funcionalidades, da forma que desejar.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      <itemizedlist>
+        <title
+>Extensões do &krusader;</title>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Ações do Usuário</link
+></para>
+        </listitem>
+<!--        <listitem>
+          <para
+><link linkend="javascript_console"
+>JavaScript console</link
+></para>
+	</listitem
+> disabled due to KrJS does not compile (cannot find kjsembed from kdelibs-->
+        <listitem>
+          <para
+><link linkend="konfig-color"
+>Perfis de Cores</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="configure-shortcuts"
+>Perfis de Combinações de Teclas</link
+></para>
+        </listitem>
+      </itemizedlist>
+Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663"
+>kde-files.org</ulink
+>.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+<para>
+  <itemizedlist>
+    <title
+>Novas funcionalidades na versão &krusader;-1.80.0 "3ª Pedra Final"</title>
+    <listitem>
+      <para
+>Melhorias no gerenciamento de pacotes <itemizedlist>
+        <listitem>
+          <para
+><link linkend="archives"
+>Suporte para senhas</link
+> nos pacotes: arj, ace, rar e zip. As senhas poderão ser guardadas na <application
+>Kwallet</application
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>Suporte ao 7-zip</link
+>, usando os aplicativos externos <application
+>7z</application
+> e <application
+>7za</application
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>Suporte para detecção automática</link
+>, permitindo-lhe abrir "pacotes ocultos" (&eg; documentos do <trademark class="registered"
+>OpenOffice</trademark
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+>A compressão/descompressão é feita agora em segundo plano.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="list_panel"
+>Visão resumida</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Muitas melhorias no sistema de <link linkend="useractions"
+>Ações do Usuário</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Diversas melhorias de usabilidade, especialmente no Konfigurador e na barra de menu, altamente reorganizada.</para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="media_button"
+>Botão multimídia</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Copiar/Mover: <link linkend="copying"
+>preservar todos os atributos</link
+> (data, dono, grupo).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-color"
+>Escurecer as cores do painel inativo</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Mudança do nome do arquivo - sem extensão, modo de única instância, inicialização na área de notificação; veja isto no <link linkend="konfigurator"
+>Konfigurador</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="list_panel"
+>Extensões atômicas</link
+> configuráveis, de modo que as extensões como a <literal role="extension"
+>.tar.gz</literal
+> sejam apresentadas como um todo na coluna da <guilabel
+>Extensão</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Menu de contexto para os favoritos e a ativação/desativação dos favoritos especiais.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="menu-commands"
+>Barra de menu</link
+> estilizada</para>
+    </listitem>
+    <listitem>
+      <para
+>Melhorias no <link linkend="termemu"
+>Emulador de Terminal</link
+>, trazendo novas funções, casos de uso e uma nova aparência.</para>
+    </listitem>
+    <listitem>
+      <para
+>Melhorias na <link linkend="synchronizer"
+>Sincronização</link
+> e tarefas paralelas para os servidores &FTP; lentos (por padrão é desativado em tempo de compilação).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-startup"
+>Modo de instância única</link
+>, <link linkend="konfig-startup"
+>iniciar na área de notificação</link
+></para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="context-menu"
+>Menu de contexto para os favoritos permanentes.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Suporte completo para as <link linkend="acl"
+>permissões por ACL</link
+>, como as propriedades, a preservação de atributos, a sincronização, entre outros.</para>
+    </listitem>
+    <listitem>
+      <para
+>Resultados da pesquisa, resultados do Locate, resultados da sincronização: suporte para arrastar os itens e copiá-los para a área de transferência (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+>Muitas correções de erros.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Novas funcionalidades na versão &krusader;-1.90.0 "Pedra Potente"</title>
+    <listitem>
+      <para
+>Última versão para o &kde; 3.x, com uma <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=2061"
+> enorme coleção de Ações do Usuário</ulink
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+
+<para>
+  <itemizedlist>
+    <title
+>Novas funcionalidades na versão &krusader;-2.0.0 "Explorador de Marte"</title>
+    <listitem>
+      <para
+>A primeira versão para a série do &kde; 4.x </para>
+    </listitem>
+    <listitem>
+      <para
+>O &krusader; funciona no &Windows;! (Mas não é tão útil e poderoso como acontece no &Linux;) </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="queue"
+>Gerenciador da fila!</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-panel"
+>Cinco métodos no painel!</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Novas funcionalidades na versão &krusader;-2.1.0-beta1 "Rusty Clutch"</title>
+    <listitem>
+      <para
+>Um visualizador de texto/hexadecimal rápido para tamanhos de arquivo enormes. </para>
+    </listitem>
+    <listitem>
+      <para
+>Páginas bloqueadas. </para>
+    </listitem>
+    <listitem>
+      <para
+>Compressão / descompressão em filas de espera. </para>
+    </listitem>
+    <listitem>
+      <para
+>Melhor integração com a lixeira. </para>
+    </listitem>
+    <listitem>
+      <para
+>A Pesquisa Rápida suporta as expressões regulares para a pesquisa de arquivos. </para>
+    </listitem>
+    <listitem>
+      <para
+>Para mais funcionalidades, leia o <ulink url="https://quickgit.kde.org/?p=krusader.git&amp;a=blob&amp;f=ChangeLog&amp;o=plain"
+><filename
+>ChangeLog</filename
+></ulink
+> e <ulink url="https://quickgit.kde.org/?p=krusader.git&amp;a=blob&amp;f=SVNNEWS&amp;o=plain"
+><filename
+>SVNNEWS</filename
+></ulink
+>.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+
+
+<para
+><note
+><para
+>Se você estiver usando uma versão de <link linkend="krusader_devel"
+>desenvolvimento</link
+> ou do <link linkend="krusader_git"
+>Git</link
+>, é possível que as últimas funcionalidades ainda não estejam no "Manual do &krusader;". Leia online o arquivo <ulink url="https://quickgit.kde.org/?p=krusader.git&amp;a=blob&amp;f=ChangeLog&amp;o=plain"
+>Changelog</ulink
+> ou no código-fonte do &krusader;, de modo a descobrir mais sobre as novas funcionalidades. Para uma breve descrição, leia online o arquivo <ulink url="https://quickgit.kde.org/?p=krusader.git&amp;a=blob&amp;f=SVNNEWS&amp;o=plain"
+>SVNNEWS</ulink
+> ou no código do &krusader;. As <link linkend="faqg_wish"
+>sugestões dos usuários</link
+> e os <link linkend="faqg_bug_report"
+>relatórios de erros</link
+> serão sempre bem-vindos! </para
+></note
+></para
+></chapter>

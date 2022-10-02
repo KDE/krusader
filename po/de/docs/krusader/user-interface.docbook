@@ -1,0 +1,921 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<chapter id="user-interface">
+  <title
+>Die Benutzerschnittstelle</title>
+  <indexterm>
+    <primary
+>Benutzerschnittstelle</primary>
+  </indexterm>
+  <sect1 id="ofm-userinterface">
+    <title
+>Benutzerschnittstelle mit zwei Dateifenstern</title>
+    <para
+>Das Konzept der Dateiverwaltung mit zwei Dateifenstern enthält <link linkend="features"
+>viele Funktionen</link
+>, die sie leistungsfähig genug machen, um zu den besten heutigen Dateiverwaltungen zu gehören. Die Bedienungsoberfläche ist einfach: linkes  und rechtes Dateifenster, darunter eine Befehlszeile. Wegen der Interaktion zwischen diesen Bereichen wird die Dateiverwaltung effizienter.</para>
+    <para
+>Möchten Sie wissen, wie man mit <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+>&krusader; arbeiten</ulink
+> kann, gibt es nur einen Weg, das festzustellen: Installieren Sie &krusader; auf Ihrem Rechner und benutzen Sie das Programm eine Zeit lang. Um den Umgang mit einer <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Dateiverwaltung mit zwei Dateifenstern</ulink
+> wie &krusader; zu lernen, müssen die Benutzer sich an einige <emphasis
+>neue Ideen</emphasis
+> gewöhnen, die tatsächlich bereits 20 Jahre alt sind. Möchten Sie Ihre Zeit verschwenden und weiter unproduktiv arbeiten, verwenden Sie weiterhin eine Dateiverwaltung mit nur einem Dateifenster, die vom &Windows;-Explorer abgeleitet sind.</para>
+  </sect1>
+  <sect1 id="mainwindow">
+    <title
+>Das Hauptfenster von &krusader;</title>
+    <figure id="screenshot-mainwindow" float="1">
+      <title
+>Das Hauptfenster von &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="mainwindow.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Das Hauptfenster von &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Die Basis der Benutzerschnittstelle ist das Paradigma der <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Dateiverwaltung mit zwei Dateifenstern</ulink
+>, einem 20 Jahre alten Prinzip, das sich bewährt hat. Es ist einfach und leistungsfähig. In den folgenden Abschnitten werden die grundlegenden Funktionen jedes Teils erläutert, mit folgender Ausnahme:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>Für die <link linkend="menu-commands"
+>Menüleiste</link
+> gibt es eine eigenes Kapitel.</para>
+      </listitem>
+      <listitem>
+        <para
+>Für <link linkend="bookman"
+>Lesezeichen</link
+> gibt es ebenfalls eine eigenes Kapitel.</para>
+      </listitem>
+      <listitem>
+        <para
+>Die <emphasis role="bold"
+>Statusleiste</emphasis
+> zeigt die Eigenschaften der Datei, die den Fokus hat, an. </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  <sect1 id="toolbars">
+    <title
+>Werkzeugleisten</title>
+    <para
+>&krusader; enthält mehrere Werkzeugleisten.</para>
+    <sect2 id="main_toolbar">
+      <title
+>Haupt-Werkzeugleiste</title>
+      <indexterm>
+        <primary
+>Werkzeugleiste</primary>
+        <secondary
+>Haupt-Werkzeugleiste</secondary>
+      </indexterm>
+      <figure id="screenshot-maintoolbar" float="1">
+        <title
+>Haupt-Werkzeugleiste</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="toolbar.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Haupt-Werkzeugleiste</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>Die Haupt-Werkzeugleiste von &krusader; ist eine normale &kde;-Werkzeugleiste, die im Anwendungsfenster verschoben und mit dem Kontextmenü eingerichtet werden kann. Dazu müssen Sie zuerst die Leiste mit <guimenuitem
+>Werkzeugleisten sperren</guimenuitem
+> im Kontextmenü entsperren.Auf der Seite <link linkend="konfigurator"
+>Start</link
+> im Konfigurator können Sie einstellen, ob die Werkzeugleiste beim Start von &krusader; angezeigt wird. In der laufenden Sitzung schalten Sie die Ansicht im Menü <link linkend="settings-menu"
+>Einstellungen</link
+> an und aus. Der Inhalt der Haupt-Werkzeugleiste kann mit <guimenuitem
+>Werkzeugleisten einrichten</guimenuitem
+> im Menü <link linkend="settings-menu"
+>Einstellungen</link
+> geändert werden. Da viele Befehle und Einstellungen in &krusader; kontextabhängig sind,  werden nicht alle Befehle immer verfügbar sein. Das Symbol für eine nicht aktive Aktion wird grau angezeigt, um diesen Zustand zu kennzeichnen. <link linkend="bookman"
+>Lesezeichen</link
+> können durch Ziehen und Ablegen mit der Maus in die Haupt- und die Aktionen-Werkzeugleiste platziert werden.</para>
+    </sect2>
+    <sect2 id="job_toolbar">
+      <title
+>Aufgaben-Werkzeugleiste</title>
+      <indexterm>
+        <primary
+>Werkzeugleiste</primary>
+        <secondary
+>Aufgaben-Werkzeugleiste</secondary>
+      </indexterm>
+      <para
+>In der Voreinstellung wird die Auftrags-Werkzeugleiste von &krusader; (<link linkend="queue"
+>Warteschlange-Verwaltung</link
+> oder auch JobMan) rechts in der Haupt-Werkzeugleiste angezeigt. In dieser Werkzeugleiste können Sie den Verlauf von Aufträgen ansehen, Aufträge anhalten und wieder starten und den zuletzt ausgeführten Auftrag wieder zurücknehmen.</para>
+    </sect2>
+    <sect2 id="actions_toolbar">
+      <title
+>Aktionen-Werkzeugleiste</title>
+      <indexterm>
+        <primary
+>Werkzeugleiste</primary>
+        <secondary
+>Aktionen-Werkzeugleiste</secondary>
+      </indexterm>
+      <para
+><link linkend="useractions"
+>Benutzeraktionen</link
+> und <link linkend="bookman"
+>Lesezeichen</link
+> können in die <guilabel
+>Aktionen-Werkzeugleiste</guilabel
+> eingefügt werden. Um diese zu anzuzeigen, wählen Sie <menuchoice
+> <guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Aktionen-Werkzeugleiste anzeigen</guimenuitem
+> </menuchoice
+>. Um Benutzeraktionen hinzuzufügen, gehen Sie zu <menuchoice
+> <guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Werkzeugleisten einrichten</guimenuitem
+> </menuchoice
+> und wählen die Aktionen-Werkzeugleiste aus. Diese Werkzeugleiste können Sie wie alle Werkzeugleisten an alle vier Seiten des Hauptfensters mit der Maus ziehen.</para>
+    </sect2>
+    <sect2 id="location_toolbar">
+      <title
+>Adressleiste</title>
+      <indexterm>
+        <primary
+>Werkzeugleiste</primary>
+        <secondary
+>Adressleiste</secondary>
+      </indexterm>
+      <para
+>Unter der <guibutton
+>Werkzeugleiste</guibutton
+> gibt es eine <guibutton
+>Adressleiste</guibutton
+> für jedes Dateifenster. Hier wird der Pfad zum Ordner im aktiven Dateifenster angezeigt. Öffnen Sie ein Archiv, dann wird der Pfad im folgenden Format angezeigt: <quote
+>Archivtyp:/ordner/archiv_dateiname/ordner_im_archiv</quote
+>. Mit diesem Format ist der Pfad eindeutig und leicht zu lesen. Die <guibutton
+>Adressleiste</guibutton
+> unterstützt auch Ein-/Ausgabemodule, aber nicht alle. Einige können nur mit dem <link linkend="krviewer"
+>Betrachter</link
+> verwendet werden und andere gar nicht. Sie können die Adressleiste zur Bearbeitung öffnen, indem Sie darauf klicken.</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <userinput>
+              <replaceable
+>/mnt/cdrom/</replaceable>
+            </userinput>
+          </para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+><command
+>settings:/</command
+></userinput
+> zeigt die Einträge in den &systemsettings; an.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>trash:/</command
+> </userinput
+>öffnet den Papierkorb.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>mtp:/</command
+></userinput
+> verwendet das Ein-/Ausgabemodul „kio_mtp“ zum Zugriff, Hochladen und Organisieren der auf einem <trademark
+>Android</trademark
+>-Gerät gespeicherten Musik.</para>
+        </listitem>
+        <listitem>
+          <para
+>Und dann auch noch <link linkend="remote-connections"
+>Entfernte Verbindungen</link
+>.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Sie können eine &URL; kopieren und in der <guibutton
+>Adressleiste</guibutton
+> einfügen oder die &MMB; benutzen. Mit dem Kontextmenü können Sie die automatische Vervollständigung einstellen. Ein optionaler Knopf <guilabel
+>Text löschen</guilabel
+> ist auch verfügbar.</para>
+      <para
+>Schnellnavigation: Halten Sie den Mauszeiger mit gedrückter &Ctrl;-Taste auf einen Teil der &URL; in der <guilabel
+>Adressleiste</guilabel
+>. Dann wird in einem Aufklappfenster die nächste &URL; angezeigt. Klicken Sie mit der &LMBn; auf eines Teil in der Adresse, um dorthin zu springen. Damit ist einen schnellere Navigation in einem tiefen Ordnerbaum möglich.</para>
+    </sect2>
+    <sect2 id="panel_toolbar">
+      <title
+>Dateifenster-Werkzeugleiste</title>
+      <indexterm>
+        <primary
+>Werkzeugleiste</primary>
+        <secondary
+>Dateifenster-Werkzeugleiste</secondary>
+      </indexterm>
+      <para
+>Jedes Dateifenster hat eine einstellbare <link linkend="konfig-panel-buttons"
+>Dateifenster-Werkzeugleiste</link
+>. Die vollständige Dateifenster-Werkzeugleiste oder bestimmte Knöpfe können angezeigt oder ausgeblendet werden.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>Öffnen</guibutton
+>: Öffnet der Ordner-Browser.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Gleich (=)</guibutton
+>: Ändert den Ordner im Dateifenster zum Ordner des anderen Dateifensters.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Aufwärts (..)</guibutton
+>: Wechselt zum übergeordneten Ordner im Dateifenster.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Persönlicher Ordner (~)</guibutton
+>: Geht zum Persönlichen Ordner im Dateifenster.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Basisordner (/)</guibutton
+>: Geht im Dateifenster zum Basisordner des Dateisystems.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Fensterabgleich</guibutton
+>: Ist dies aktiviert, wird jede Änderung des Ordners im angegebenen Dateifenster auch im anderen Dateifenster ausgeführt.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+  <sect1 id="panels">
+    <title
+>Dateifenster</title>
+    <para
+>In den Dateifenstern von &krusader; finden die meisten Aktionen statt. Zur Zeit gibt es zwei Arten von Dateifenstern:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>Das <link linkend="list_panel"
+>Dateifenster</link
+> zeigt die Dateien und Ordner an.</para>
+      </listitem>
+      <listitem>
+        <para
+>in der <link linkend="sidebar"
+>Seitenleiste</link
+> gibt es mehrere Ansichtsmodi: Vorschau, Baum, Schnellwahl, Ansicht und Festplattenbelegung für die ausgewählte Datei oder den ausgewählten Ordner. Die Seitenleiste kann auch geöffnet bleiben oder geschlossen werden.</para>
+      </listitem>
+    </itemizedlist>
+    <para
+>&krusader; ist ein Dateiverwaltungsprogramm mit zwei Dateifenstern, dem linken und rechten Fenster, oder mit einem noch wichtigeren logischen Unterschied, dem aktiven und nicht aktiven Dateifenster. Das aktive Dateifenster erhält die Eingaben der Maus und der Tastatur. Wenn Sie eine Aktion aus der <guilabel
+>Menüleiste</guilabel
+> oder der <guilabel
+>Werkzeugleiste</guilabel
+> auswählen, wird sie für die ausgewählten Dateien oder Ordner im aktiven Dateifenster ausgeführt. Sie können mit der &Tab;taste oder durch Klicken auf die Informationen- oder Zusammenfassungsleiste oder durch Auswahl auf eines beliebigen Eintrags in einem Dateifenster mit der Maus. Wie auch sonst kann dieses Verhalten auf der Seite <link linkend="konfigurator"
+>Start</link
+> im Konfigurator oder für die aktuelle Sitzung im Menü <guilabel
+>Einstellungen</guilabel
+> eingestellt werden.</para>
+    <figure id="screenshot-listpanel" float="1">
+      <title
+>Dateifenster</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="listpanel.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Dateifenster</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <sect2 id="list_panel">
+      <title
+>Dateifenster</title>
+      <indexterm>
+        <primary
+>Dateifenster</primary>
+        <secondary
+>Dateifenster</secondary>
+      </indexterm>
+      <para
+>Dies ist das Standardfenster, das Sie wahrscheinlich die meiste Zeit benutzen werden. Das Dateifenster zeigt den Inhalt eines Ordners, der aus lokalen Dateien und auch aus Dateien in einem Archiv oder aus entfernten Dateien besteht, auf die über  &FTP;, &NFS; oder &Samba; zugegriffen wird. Es gibt zwei Ansichtsmodi: <link linkend="view-menu"
+>Ausführliche Anzeige</link
+> mit Dateinamen, Dateigröße, Erstellungsdatum und -zeit und Dateiattributen und die <link linkend="view-menu"
+>Kurzübersicht</link
+>, in der nur die Dateinamen angezeigt werden. Die Anzahl der Spalten in der Kurzübersicht kann im Kontextmenü der Titelleiste angepasst werden. Das Kopieren, Einfügen und Ausschneiden von Dateien über die Zwischenablage zwischen &konqueror; und &krusader; ist mit den Kurzbefehlen <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> möglich. <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>R</keycap
+></keycombo
+> schaltet die <guilabel
+>Dateifenster</guilabel
+> zwischen waagerechten und senkrechtem Modus um.</para>
+      <para
+>Die folgenden Einträge sind vorhanden:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+>Informationsleiste</emphasis
+>: Zeigt den freien Platz auf dem Dateisystem, die Kapazität des Dateisystems und den Mount-Punkt sowie den Typ des Dateisystems. Sind diese Informationen nicht verfügbar, wie häufig bei einem entfernten Dateisystem, wird eine Nachricht darüber mit der Ursache anstelle der Information angezeigt.</para>
+          <para id="media_button"
+>Der <guibutton
+>Geräteknopf</guibutton
+> links neben der <emphasis
+>Informationsleiste</emphasis
+> zeigt eine Liste aller verfügbaren Geräte, aus denen Sie eines (HDD-Partition, &DVD;, &DVD;-Stick, &etc;) auswählen können. Drücken Sie <keycombo
+>&Ctrl;<keycap
+>Rücktaste</keycap
+></keycombo
+>, wenn das <guibutton
+>Medienmenü</guibutton
+> geöffnet ist, um das hervorgehobene Gerät einzuhängen oder auszuhängen. Im Kontextmenü eines Geräts finden Sie mehrere Aktionen wie <guilabel
+>Einhängen</guilabel
+>, <guilabel
+>In neuem Unterfenster öffnen</guilabel
+>, &etc; Das  <guibutton
+>Medienmenü</guibutton
+> können Sie im <link linkend="konfig-panel-mediamenu"
+>Konfigurator</link
+> einstellen.</para>
+        </listitem>
+          <listitem>
+          <para
+><emphasis
+>Spaltentitel</emphasis
+>: Hier können Sie die Reihenfolge der Sortierung von Dateien und Ordner ändern. Die Sortierung erfolgt in der Voreinstellung nach <guilabel
+>Name</guilabel
+>. Die Sortierrichtung der Spalten kann sofort direkt durch Klicken auf den <emphasis
+>Spaltentitel</emphasis
+> geändert werden. Um die Richtung umzukehren, klicken Sie noch einmal auf den Spaltentitel. Rechts neben dem Titel zeigt ein Pfeil die Richtung der Sortierung an, Pfeil abwärts = Sortierung von A nach Z, Pfeil aufwärts = Sortierung von Z nach A. In der Standard-<link linkend="useractions"
+>Benutzeraktionen</link
+> gibt es Kurzbefehle für die Auswahl ser Sortierspalten. In der Voreinstellung werden folgende <emphasis
+>Spaltentitel</emphasis
+> angezeigt: <guilabel
+>Name</guilabel
+>, <guilabel
+>Erw</guilabel
+>, <guilabel
+>Größe</guilabel
+>, <guilabel
+>Geändert</guilabel
+>, <guilabel
+>rwx</guilabel
+>. Vordefinierte <link linkend="konfig-general"
+>atomare Erweiterungen</link
+> wie <literal role="extension"
+>.tar.gz</literal
+> werden als ein Teil in der Spalte <guilabel
+>Erw</guilabel
+> angezeigt. Zusätzliche Spalten können Sie aus dem Kontextmenü der Spaltentitel auswählen. Die Breite der Spalten können Sie mit der Maus durch Ziehen des Trennbalkens verändern. Für beide <guilabel
+>Dateifenster</guilabel
+> wird die Sortierrichtung und Spaltenbreite sowie die angezeigten Spalten getrennt gespeichert. </para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+><guilabel
+>Dateiliste</guilabel
+></emphasis
+>: Zeigt die Dateien und Ordner im geöffneten Ordner an. Mit der <link linkend="quicksearch"
+>Suchleiste</link
+> können Sie nach Dateien durch Eingabe des Namens oder nur der ersten Zeichen suchen. Drücken Sie die &Enter;taste oder doppelklicken Sie auf eine Datei, um sie zu öffne oder auszuführen. Sie können Einträge mit der Maus, der Taste &Ins; oder dem Menü <link linkend="edit-menu"
+>Bearbeiten</link
+> auswählen oder aus der Auswahl entfernen</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+><guilabel
+>Übersichtsleiste</guilabel
+> </emphasis
+>: Hier wird unter dem Dateifenster angezeigt, wie viele Dateien Sie ausgewählt haben und wie viel Speicherplatz sie belegen, wie auch die gesamte Anzahl von Dateien und deren Speicherplatzbedarf im aktuellen Ordner. Im Gegensatz dazu zeigt die Informationsleiste diese Informationen für das gesamte Dateisystem. Enthält ein Ordner sehr viele Unterordner, ist es manchmal nicht möglich, eine &URL; im Dateifenster abzulegen, da dort dann nur die Unterordner sichtbar sind. Dann kann die &URL; stattdessen in der Übersichtsleiste oder in der Informationsleiste abgelegt werden. Ist ein <link linkend="view-menu"
+>benutzerdefinierter Filter</link
+> festgelegt, wird diese Einstellung angezeigt. Beispiel: [*.cpp].</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Wenn Sie die &kde;-<link linkend="konfig-color"
+>Standardfarben</link
+> verwenden, werden ausgewählte Dateien blau angezeigt und die aktuelle Datei ist von einem dünnen gestrichelten Rechteck umgeben. Als Voreinstellung wird ein Symbol passen zum Inhalt des Eintrags angezeigt. Verwenden Sie die Seite <link linkend="konfig-panel"
+>Dateifenster</link
+> im Konfigurator, um die Einstellungen an Ihre Wünsche anzupassen.</para>
+      <para
+>Einige nützliche <link linkend="key_bindings"
+>Kurzbefehle</link
+> für die <guilabel
+>Dateifenster</guilabel
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+>Mit dem Kurzbefehl <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> wird ein Dateifenster erneut geladen.</para>
+        </listitem>
+        <listitem>
+          <para
+>Aktivieren sie eine Datei oder einen Ordner im linken Dateifenster, drücken dann <keycombo action="simul"
+>&Ctrl; &Right;</keycombo
+> und im rechten Dateifenster wird dies geändert: <itemizedlist>
+            <listitem>
+              <para
+>Bei einer Datei: Das rechte Dateifenster erhält den gleichen Pfad wie das linke Dateifenster.</para>
+            </listitem>
+            <listitem>
+              <para
+>Bei einem Ordner: Das rechte Dateifenster öffnet den im linken Dateifenster aktivierten Ordner.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Für das rechte Dateifenster: Drücken Sie <keycombo action="simul"
+>&Ctrl; &Left;</keycombo
+> und das linke Dateifenster wird geändert.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="sidebar">
+      <title
+>Seitenleiste</title>
+      <indexterm>
+        <primary
+>Seitenleiste</primary>
+        <secondary
+>Seitenleiste (Dritte Leiste)</secondary>
+      </indexterm>
+      <para
+>Dies ist die <quote
+>dritte Hand</quote
+> von &krusader; oder die dritte Leiste. Klicken Sie auf den Pfeil abwärts rechts neben der Zusammenfassungsleiste oder benutzen Sie den Kurzbefehl <keycombo action="simul"
+>&Alt; &Down;</keycombo
+>, um die <guilabel
+>Seitenleiste</guilabel
+> zu öffnen. In dieser Leiste gibt es mehrere Anzeigemodi, die durch Klicken auf die entsprechenden Knöpfe aktiviert werden können.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Vorschauleiste</guilabel
+> </emphasis
+>: Gibt eine Vorschau der Datei mit dem Fokus, das ist die aktuell ausgewählte Datei.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+><guilabel
+>Baumleiste</guilabel
+></emphasis
+>: Damit können Sie schnell den lokalen Ordnerbaum durchsehen. Diese Leiste verhält sich wie die Dateifenster, aber es kann nur ein Ordner auf einmal ausgewählt werden und doppelklicken oder Drücken der &Enter;taste öffnet den Ordner im aktiven Dateifenster. Die Leisten unterstützen Ziehen und Ablegen mit der Maus (kopieren, verschieben, verknüpfen).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Schnellleiste</guilabel
+> </emphasis
+>: Damit können Sie schnell Dateien auswählen, geben Sie &eg; <literal role="extension"
+>*.png</literal
+> und klicken Sie auf den Knopf <guibutton
+>Auswahl anwenden</guibutton
+>. Durch Klicken auf das Symbol der <quote
+>Floppy</quote
+> speichert die aktuelle Auswahl. Es gibt auch eine Aktion <quote
+>Gruppendialog auswählen</quote
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+><guilabel
+>Ansichtsleiste</guilabel
+></emphasis
+>: Zeigt den Inhalt einer Textdatei oder ein Bild &etc; an. Ein Vorschaubild wird immer generiert wenn Sie die <guilabel
+>Ansichtsleiste</guilabel
+> öffnen.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Festplattenbelegungsleiste</guilabel
+> </emphasis
+>: Zeigt die <link linkend="diskusage"
+>Festplattenbelegung</link
+> eines Ordners.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Sie können die Anordnung der Seitenleiste mit dem Drehknopf ändern, den Sie links vom Knopf „Pfeil runter“ im unteren Bereich der &krusader;-Karteikarte finden. Jeder Klick auf diesen Knopf verschiebt die Position der Seitenleiste zyklisch über unten, links, oben, rechts </para>
+      <para
+>Falls nötig können Sie die Größe des Fensters ändern, um &eg; ein Bild oder einen Dateiinhalt besser zu sehen. Klicken Sie auf den Pfeil nach unten, um die <guilabel
+>Seitenleiste</guilabel
+> zu schließen.</para>
+    </sect2>
+    <sect2 id="folderhistory">
+      <title
+>Ordnerverlauf</title>
+      <para
+>Für beide Dateifenster Gibt es einen Verlauf der zuletzt geöffneten Ordner. Klicken Sie auf den Knopf <guibutton
+>Ordnerverlauf öffnen</guibutton
+>, das Uhrensymbol, um die Liste der zuletzt geöffneten Ordner anzuzeigen und schnell dorthin zu wechseln. Der zurzeit aktuelle Ordner ist angekreuzt. Bei jedem neuen Start von &krusader; wird die wieder mit den gespeicherten Einträgen der letzten Ausführung gefüllt.</para>
+    </sect2>
+  </sect1>
+  <sect1 id="cmdline_termemu">
+    <title
+>Befehlszeile / Terminal-Emulator</title>
+    <para
+>Dieser Teil der <link linkend="gloss-gui"
+>grafischen Benutzeroberfläche</link
+> kann vier Modi haben: Befehlszeile, Terminal-Emulator, beides, oder nichts. Sie können einen Modus für den Start auf der Seite <link linkend="konfigurator"
+>Start</link
+> im Konfigurator oder für die aktuelle Sitzung im Menü <link linkend="settings-menu"
+>Einstellungen</link
+> festlegen. </para>
+
+  <sect2 id="cmdline">
+    <title
+>Befehlszeile</title>
+
+    <figure id="screenshot-commandline" float="1">
+      <title
+>Befehlszeile</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="cmdline.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Befehlszeile</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Im traditionellen Befehlszeilenmodus gibt es eine einzelne Zeile zur Eingabe von Befehlen, aber auch noch drei Knöpfe:</para>
+     <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>Befehlsverlauf</guibutton
+> (Pfeil abwärts) um schnell vorher benutzte Befehle zu öffnen </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>Benutzeraktionen-Erweiterung</guibutton
+> (grünes Plus Symbol) um einfach Platzhalter für <link linkend="useractions"
+>Benutzeraktionen</link
+> einzufügen </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>Ausführung in Terminal-Modus</guibutton
+> (Konsole-Symbol) mit den nächsten Optionen: <itemizedlist>
+          <listitem
+><para
+>Starten und Vergessen</para>
+          </listitem>
+
+          <listitem
+><para
+>Standardausgabe und Standardfehler separat darstellen</para>
+           </listitem>
+
+          <listitem
+><para
+>Standardausgabe und Standardfehler gemeinsam darstellen</para>
+          </listitem>
+
+           <listitem
+><para
+>In neuem Terminal starten</para>
+          </listitem>
+
+           <listitem
+><para
+>An eingebetteten Terminal-Emulator senden</para>
+           </listitem>
+
+         </itemizedlist>
+          </para>
+
+        </listitem>
+
+
+     </itemizedlist>
+    <para
+>Wenn Sie damit beginnen, Ihre Befehle einzugeben, erhalten Sie von der automatischen Vervollständigung Vorschläge. Möchten Sie das Verhalten der Vervollständigung in der aktuellen &krusader;-Sitzung ändern, klicken Sie mit der &RMBn; in die Befehlszeile. Links in der Befehlszeile wird der lokale Pfad des aktiven Dateifensters angezeigt. In diesem Pfad wird Ihr Befehl ausgeführt. Geben Sie <userinput
+> <command
+>cd</command
+> <replaceable
+> &lt;ordner&gt;</replaceable
+> </userinput
+> in der Befehlszeile ein, wird auch der Pfad im aktiven Dateifenster entsprechend geändert. Klicken Sie <link linkend="cmdline_keybindings"
+>hier</link
+>, um die Kurzbefehle der Befehlszeile zu sehen.</para>
+</sect2>
+
+  <sect2 id="termemu">
+    <title
+>Terminal-Emulator</title>
+
+    <figure id="screenshot-terminalemulator" float="1">
+      <title
+>Terminal-Emulator</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="terminalEmu.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Terminal-Emulator</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Der Terminal-Emulator ist tatsächlich eine kleine Konsole und funktioniert auch so. Sie können den aktiven Ordner im Terminal mit dem Befehl <userinput
+> <command
+>cd</command
+> </userinput
+> ändern. Der Terminal-Emulator folgt dem aktiven Dateifenster. Sie können eine oder mehrere Dateien aus der <interface
+>Dateiliste</interface
+> in den Terminal-Emulator ziehen und die Namen werden eingefügt. Den Terminal-Emulator können Sie im Vollbildmodus im &krusader;-Fenster anzeigen, wenn dies <link linkend="konfig-general-general"
+>eingestellt</link
+> ist oder mit <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>F</keycap
+></keycombo
+> zwischen Normal- und Vollbildmodus umschalten. Ist die Befehlszeile ausgeblendet, wechseln Sie mit <keycombo action="simul"
+>&Ctrl; <keycap
+>Pfeil abwärts</keycap
+></keycombo
+> zum Terminal-Emulator und mit <keycombo action="simul"
+>&Ctrl; <keycap
+>Pfeil aufwärts</keycap
+></keycombo
+> zurück zum Dateifenster. <keycombo action="simul"
+>&Ctrl;&Enter;</keycombo
+> und <keycombo action="simul"
+>&Ctrl; &Shift; &Enter;</keycombo
+> fügen den Dateinamen ein. Durch Eingabe von <userinput
+> <command
+>exit</command
+> </userinput
+> können Sie den Emulator schließen.</para>
+    <para
+>In diesem <link linkend="termemu_keybindings"
+>Abschnitt</link
+> finden Sie die Kurzbefehle für den Terminal-Emulator.</para>
+    </sect2>
+
+  </sect1>
+  <sect1 id="fnkeys">
+    <title
+>Funktionstasten (F1-F12)</title>
+    <figure id="screenshot-fnkeys" float="1">
+      <title
+>Funktionstasten (F1-F12)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="fnkeys.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Funktionstasten (F1-F12)</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Diese Leiste hat Ihren Namen von den Funktionstasten, die sie anzeigt. Für jeden Knopf in dieser Leiste gibt es eine zugehörige Funktionstaste, die die gleiche Aktion ausführt. Diese Leiste wurde aus dem Design der ersten Dateiverwaltungen mit zwei Fenstern abgeleitet und die Funktionstasten funktionieren normalerweise auf die gleiche Weise mit zwei Änderungen: Die Taste <keycap
+>F2</keycap
+> wird zum Umbenennen von Dateien benutzt und die Taste <keycap
+>F9</keycap
+> öffnet ein Terminal mit dem letzten lokalen Pfad im aktiven Dateifenster . Mit der Taste <keycap
+>F7</keycap
+> oder Klicken auf <guilabel
+>Mkdir</guilabel
+> (Lokalisierter Name des Befehls <command
+>mkdir</command
+>) können Sie direkt vollständige Ordnerbäume erzeugen, &eg; <literal
+>foo/bar/test</literal
+>. Sie können auf der Seite <link linkend="konfigurator"
+>Start</link
+> im Konfigurator auswählen, ob die Leiste mit den Funktionstasten beim Start von &krusader; angezeigt werden soll. In der aktuellen Sitzung können Sie diese Anzeige im Menü <link linkend="settings-menu"
+>Einstellungen</link
+> ein- oder ausschalten. Die Aktionen und die ausgeführten <link linkend="key_bindings"
+>Kurzbefehle</link
+> können seit der Version 1.51 geändert werden, sie können mit oder ohne angezeigte Funktionstastenleiste ausgeführt werden. </para>
+  </sect1>
+  <sect1 id="folder-tabs">
+    <title
+>Unterfenster für Ordner</title>
+    <figure id="screenshot-tabbedbrowsing" float="1">
+      <title
+>Unterfenster für Ordner</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="tabbed_browsing.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Unterfenster für Ordner</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Mit den Unterfenstern der Ordner können Sie schnell zwischen mehreren Ordnern wechseln. Für jedes Dateifenster gibt es eigene Unterfenster. Die Positionen der Unterfenster werden beim Beenden von &krusader; gespeichert. um zwischen Unterfenstern zu wechseln, klicken Sie mit der Maus auf die Karteireiter. Zusammen gequetschte Karteireiter haben Kurzinfos mit dem vollständigen Pfad. Folgende Operationen für Unterfenster sind verfügbar:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>Um zusätzlich zum aktivem Unterfenster ein <action
+>neues Unterfenster zu öffnen</action
+>, klicken Sie mit der &RMBn; auf einen Ordner und wählen im Kontextmenü den Eintrag <guimenuitem
+>In neuem Unterfenster öffnen</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Um ein <action
+>Unterfenster zu sperren</action
+>, klicken Sie mit der &RMBn; auf einen Karteireiter und wählen im Kontextmenü den Eintrag <guimenuitem
+>Unterfenster sperren</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Um ein <action
+>Unterfenster anzuheften</action
+>. klicken Sie mit der &RMBn; auf den Reiter und wählen Sie im Kontextmenü <guimenuitem
+>Unterfenster sperren</guimenuitem
+>. Das Unterfenster wird gesperrt, aber die Adresse kann temporär geändert werden. Wenn Sie das Unterfenster wieder aktivieren, wird die ursprüngliche Adresse wieder geladen. Um diese Sperre wieder aufzuheben, wählen Sie im Kontextmenü den Eintrag <guimenuitem
+>Unterfenster entsperren</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Um ein <action
+>Unterfenster zu duplizieren</action
+>, klicken Sie mit der &RMBn; auf einen Karteireiter und wählen im Kontextmenü den Eintrag <guimenuitem
+>Aktuelles Unterfenster duplizieren</guimenuitem
+> oder benutzen den Kurzbefehl <keycombo action="simul"
+> &Alt;&Ctrl;&Shift;<keycap
+>N</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Um ein <action
+>Unterfenster außer dem letzten im Dateifenster zu schließen</action
+>, klicken Sie mit der &RMBn; auf einen Karteireiter und wählen im Kontextmenü den Eintrag <guimenuitem
+>Aktuelles Unterfenster schließen</guimenuitem
+>, klicken mit der &MMBn; auf den Karteireiter, klicken auf das rote Kreuz auf dem Karteireiter oder benutzen den Kurzbefehl <keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Um ein <action
+>Unterfenster für den persönlichen Ordner zu öffnen</action
+>, klicken Sie auf den Knopf <guibutton
+>Neues Unterfenster im persönlichen Ordner öffnen</guibutton
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Mit <keycombo action="simul"
+>&Shift; <keycap
+>,</keycap
+></keycombo
+> oder <keycombo action="simul"
+>&Shift; <keycap
+>.</keycap
+></keycombo
+> können Sie zu anderen <action
+>Unterfenstern in einem Dateifenster wechseln</action
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Mit <keycombo action="simul"
+> &Ctrl;&Alt;&Enter;</keycombo
+> wird der <action
+>aktuelle Ordner in einem neuen Unterfenster geöffnet</action
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Um <action
+>alle anderen Unterfenster zu schließen</action
+>, klicken Sie mit der &RMBn; auf den Karteireiter und wählen im Kontextmenü <guimenuitem
+>Inaktive Unterfenster schließen</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Um <action
+>doppelte Unterfenster zu schließen</action
+>, klicken Sie mit der &RMBn; auf den Karteireiter und wählen im Kontextmenü <guimenuitem
+>Doppelte Unterfenster schließen</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Um ein Unterfenster in das andere Dateifenster zu verschieben, ziehen Sie es mit gedrückter &LMB; dorthin und lassen die Maustaste los. Beim Verschieben ändert sich der Mauszeiger in einen Pfeil, der nach links oder rechts zeigt. Sie können außerdem auch <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+> für diese Aktion verwenden.</para>
+      </listitem>
+</itemizedlist>
+  </sect1>
+  <sect1 id="ui_buttons">
+    <title
+>Knöpfe</title>
+    <para
+>Mehrere Knöpfe für schnelle Operationen sind vorhanden:<link linkend="main_toolbar"
+>Haupt-Werkzeugleiste</link
+>, <link linkend="actions_toolbar"
+>Aktionen-Werkzeugleiste</link
+>, <link linkend="panel_toolbar"
+>Dateifenster-Werkzeugleiste</link
+>, <link linkend="location_toolbar"
+>Adressleiste</link
+>, <link linkend="list_panel"
+>Medien</link
+>, <link linkend="folderhistory"
+>Ordnerverlauf</link
+>, <link linkend="bookman"
+>Lesezeichen</link
+>, <link linkend="folder-tabs"
+>Unterfenster</link
+>, <link linkend="cmdline"
+>Befehlszeile</link
+> und die <link linkend="fnkeys"
+>Funktionstasten</link
+>.</para>
+  </sect1>
+</chapter>

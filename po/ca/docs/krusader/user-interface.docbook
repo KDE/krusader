@@ -1,0 +1,985 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="user-interface">
+  <title
+>Interfície d'usuari</title>
+  <indexterm>
+    <primary
+>Interfície d'usuari</primary>
+  </indexterm>
+  <sect1 id="ofm-userinterface">
+    <title
+>Interfície d'usuari OFM</title>
+    <para
+>El concepte del gestor de fitxers OFM conté <link linkend="features"
+>moltes característiques</link
+> que el fan prou potent com per estar entre els millors gestors de fitxers de l'actualitat. La interfície és senzilla: plafó esquerre, plafó dret i una línia d'ordres a sota. A causa de la interacció entre aquests tres elements, la gestió de fitxers serà més eficient.</para>
+    <para
+>Si voleu saber <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+>com funciona el &krusader;</ulink
+>, el podeu provar, simplement instal·leu-lo a l'ordinador. Per a admetre un <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>gestor de fitxers ortodox (OFM)</ulink
+> com el &krusader;, l'usuari s'haurà d'acostumar a <emphasis
+>idees noves</emphasis
+> que ja tenen 20 anys. Si preferiu perdre el temps i perdre molta productivitat, sempre podreu seguir emprant els gestors de fitxers d'un plafó basats en el &Windows; Explorer.</para>
+  </sect1>
+  <sect1 id="mainwindow">
+    <title
+>Finestra principal del &krusader;</title>
+    <figure id="screenshot-mainwindow" float="1">
+      <title
+>Finestra principal del &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="mainwindow.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Finestra principal del &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>La interfície d'usuari està basada en el paradigma del <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>gestor de fitxers ortodox (OFM)</ulink
+>, un principi de fa 20 anys que ha demostrat els seus principis. És conegut com a senzill, fàcil i poderós. En les següents seccions cobrirem les funcions bàsiques de cada part amb l'excepció de:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>La <link linkend="menu-commands"
+>barra de menús</link
+>, la qual té un capítol propi.</para>
+      </listitem>
+      <listitem>
+        <para
+>Les <link linkend="bookman"
+>adreces d'interès</link
+>, les quals tenen un capítol propi.</para>
+      </listitem>
+      <listitem>
+        <para
+>La <emphasis role="bold"
+>barra d'estat</emphasis
+> mostra les propietats del fitxer actual (el qual està) en el focus. </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  <sect1 id="toolbars">
+    <title
+>Barres d'eines</title>
+    <para
+>El &krusader; ve amb diverses barres d'eines.</para>
+    <sect2 id="main_toolbar">
+      <title
+>Barra d'eines principal</title>
+      <indexterm>
+        <primary
+>Barra d'eines</primary>
+        <secondary
+>Barra d'eines principal</secondary>
+      </indexterm>
+      <figure id="screenshot-maintoolbar" float="1">
+        <title
+>Barra d'eines principal</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="toolbar.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Barra d'eines principal</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>La Barra d'eines principal del &krusader; és una barra d'eines estàndard del &kde; que es pot arrossegar al voltant de l'aplicació (desbloquegeu-la primer desmarcant l'element <guimenuitem
+>Bloqueja les posicions de les barres d'eines</guimenuitem
+> amb el menú del <keycap
+>clic dret</keycap
+>) o configurar mitjançant un menú del clic dret. Podreu decidir si voleu mostrar o no la <link linkend="konfigurator"
+>pàgina d'inici del Konfigurador</link
+> cada vegada que inicieu el &krusader;, i podreu alternar el seu ús en la sessió actual al <link linkend="settings-menu"
+>menú Arranjament</link
+>. El contingut de la Barra d'eines principal es pot configurar des de <guimenuitem
+>Configura les barres d'eines...</guimenuitem
+> al <link linkend="settings-menu"
+>menú Arranjament</link
+>. Atès que diverses ordres i opcions en el &krusader; depenen del context, algunes ordres no sempre estaran disponibles. La icona d'una acció inadequada o inactiva es desactivarà (en gris) inhabilitant el seu ús. Les <link linkend="bookman"
+>adreces d'interès</link
+> es poden posar a la Barra d'eines principal i a la Barra d'eines d'accions amb el ratolí mitjançant <quote
+>arrossegar i deixar anar</quote
+>.</para>
+    </sect2>
+    <sect2 id="job_toolbar">
+      <title
+>Barra d'eines de treballs</title>
+      <indexterm>
+        <primary
+>Barra d'eines</primary>
+        <secondary
+>Barra d'eines de treballs</secondary>
+      </indexterm>
+      <para
+>De manera predeterminada, la Barra d'eines de treballs del &krusader; (<link linkend="queue"
+>Gestor de la cua</link
+> o simplement el JobMan) es troba a la part dreta de la Barra d'eines principal. Aquesta barra d'eines permet veure el progrés del treball, fer una pausa i reprendre l'execució de la llista de treballs, així com desfer l'últim treball executat.</para>
+    </sect2>
+    <sect2 id="actions_toolbar">
+      <title
+>Barra d'eines d'accions</title>
+      <indexterm>
+        <primary
+>Barra d'eines</primary>
+        <secondary
+>Barra d'eines d'accions</secondary>
+      </indexterm>
+      <para
+>Les <link linkend="useractions"
+>Accions d'usuari</link
+> i les <link linkend="bookman"
+>Adreces d'interès</link
+> es poden <quote
+>acoblar</quote
+> a la <guilabel
+>Barra d'eines d'accions</guilabel
+>. Per a veure-la, utilitzeu <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mostra la barra d'eines d'accions</guimenuitem
+></menuchoice
+>. Per a afegir-hi les accions d'usuari, utilitzeu <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura les barres d'eines...</guimenuitem
+></menuchoice
+> i seleccioneu la Barra d'eines d'accions. Podreu, per exemple, arrossegar la Barra d'eines d'accions cap al costat dret emprant el ratolí.</para>
+    </sect2>
+    <sect2 id="location_toolbar">
+      <title
+>Barra d'eines de localització</title>
+      <indexterm>
+        <primary
+>Barra d'eines</primary>
+        <secondary
+>Barra d'eines de localització</secondary>
+      </indexterm>
+      <para
+>A sota de la <guibutton
+>Barra d'eines principal</guibutton
+> hi ha una <guibutton
+>Barra d'eines de localització</guibutton
+> per a cada plafó. Mostra el camí cap al qual apunta actualment el plafó. En entrar a arxius, el camí es mostrarà en el següent format: <quote
+>tipus d'arxiu:/carpeta/nom_de_fitxer_arxiu/la carpeta dins de l'arxiu</quote
+>. Aquest format fa que els camins siguin uniformes i fàcils de llegir. La <guibutton
+>Barra d'eines de localització</guibutton
+> també admet els esclaus KIO, però no tots, només es poden emprar alguns amb el <link linkend="krviewer"
+>visualitzador</link
+>. L'usuari pot introduir un camí desitjat fent-hi clic.</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <userinput>
+              <replaceable
+>/mnt/cdrom/</replaceable>
+            </userinput>
+          </para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>settings:/</command
+> </userinput
+>explorarà i obrirà les entrades de l'&systemsettings;.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>trash:/</command
+> </userinput
+>obrirà la carpeta de la paperera.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>mtp:/</command
+> </userinput
+>fa servir el kio_mtp per a accedir, carregar i organitzar el contingut multimèdia emmagatzemat en els dispositius basats en <trademark
+>Android</trademark
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+>I per acabar, però no menys important, les <link linkend="remote-connections"
+>connexions remotes</link
+>.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Podreu copiar i enganxar un &URL; a la <guibutton
+>Barra d'eines de localització</guibutton
+> o utilitzar un clic del mig. Amb el menú del clic dret podreu configurar la funció de la compleció automàtica. També hi ha disponible un botó opcional, <guilabel
+>Neteja la barra d'eines de localització</guilabel
+>.</para>
+      <para
+>Navegació ràpida: premeu la tecla &Ctrl; i apunteu amb el ratolí al centre de l'&URL; de la <guibutton
+>Barra d'eines de localització</guibutton
+>. Una finestra emergent mostrarà la ubicació del següent &URL;. En prémer <keycombo
+>&Ctrl;<keycap
+>clic esquerre</keycap
+></keycombo
+> es mostrarà la ubicació a la qual apuntava el ratolí. Aquesta característica permet una navegació més ràpida en un gran arbre de carpetes.</para>
+    </sect2>
+    <sect2 id="panel_toolbar">
+      <title
+>Barra d'eines del plafó</title>
+      <indexterm>
+        <primary
+>Barra d'eines</primary>
+        <secondary
+>Barra d'eines del plafó</secondary>
+      </indexterm>
+      <para
+>Cada plafó té una <link linkend="konfig-panel-buttons"
+>Barra d'eines del plafó configurable</link
+>. Tota la Barra d'eines del plafó o botons específics es poden fer visibles o ocultar.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+>El botó <guibutton
+>ObreDir</guibutton
+>: obrirà l'explorador de carpetes.</para>
+        </listitem>
+        <listitem>
+          <para
+>El botó <guibutton
+>Igual (=)</guibutton
+>: canviarà la carpeta del plafó a la de l'altre plafó.</para>
+        </listitem>
+        <listitem>
+          <para
+>El botó <guibutton
+>Amunt (..)</guibutton
+>: canviarà la carpeta del plafó a la carpeta pare.</para>
+        </listitem>
+        <listitem>
+          <para
+>El botó <guibutton
+>Inici (~)</guibutton
+>: canviarà la carpeta del plafó a la carpeta d'inici.</para>
+        </listitem>
+        <listitem>
+          <para
+>El botó <guibutton
+>Arrel (/)</guibutton
+>: canviarà la carpeta del plafó a la carpeta arrel.</para>
+        </listitem>
+        <listitem>
+          <para
+>El botó <guibutton
+>Sincronitza la navegació</guibutton
+>: quan està actiu, cada canvi de carpeta en el plafó específic també es realitzarà a l'altra plafó.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+  <sect1 id="panels">
+    <title
+>Plafons</title>
+    <para
+>Els plafons del &krusader; són on té lloc la major part de l'acció. Actualment, hi ha dos tipus de plafons:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="list_panel"
+>Plafó de llista</link
+>: mostra els fitxers i carpetes.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="sidebar"
+>Barra lateral</link
+>: té diversos modes de visualització: Vista prèvia, En arbre, Selecció ràpida, Visualitzar i Ús del disc per al fitxer o carpeta que té el focus. La barra lateral es pot deixar oberta o tancada, segons es desitgi.</para>
+      </listitem>
+    </itemizedlist>
+    <para
+>El &krusader; és un gestor de fitxers de <quote
+>doble plafó</quote
+>, de manera que hi haurà dos plafons: l'<quote
+>Esquerre</quote
+> i el <quote
+>Dret</quote
+>, o una distinció lògica més important, el plafó *Actiu* i el plafó *Inactiu*. El plafó actiu és el que acceptarà l'entrada del ratolí i teclat. Si trieu una ordre de la <guilabel
+>Barra de menús</guilabel
+> o de la <guilabel
+>Barra d'eines</guilabel
+>, aquesta actuarà sobre els fitxers/carpetes seleccionats en el plafó actiu. Podreu canviar entre els plafons utilitzant la tecla &Tab; o fent clic a les <guilabel
+>Etiquetes d'informació o totals</guilabel
+>, o seleccionant amb el ratolí qualsevol fitxer en un plafó. Com sempre, la configuració d'inici predeterminada es pot ajustar emprant la <link linkend="konfigurator"
+>pàgina d'inici del Konfigurador</link
+>, i controlareu la sessió actual amb el <link linkend="settings-menu"
+>menú Arranjament</link
+>.</para>
+    <figure id="screenshot-listpanel" float="1">
+      <title
+>Plafó de llista</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="listpanel.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Plafó de llista</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <sect2 id="list_panel">
+      <title
+>Plafó de llista</title>
+      <indexterm>
+        <primary
+>Plafó</primary>
+        <secondary
+>Plafó de llista</secondary>
+      </indexterm>
+      <para
+>Aquest és el plafó predeterminat i el que probablement utilitzareu la major part del temps. Aquest plafó mostrarà el contingut d'una carpeta, el qual pot ser local (part dels vostres sistemes de fitxers muntats, sigui un fitxer nadiu o els fitxers dins d'un arxiu) o fitxers remots (als quals s'accedeix a través d'&FTP;, &NFS; o Samba). Hi ha dos modes: la <link linkend="view-menu"
+>Vista detallada</link
+> mostra els noms, la mida, la data i hora de creació i els atributs dels fitxers. La <link linkend="view-menu"
+>Vista breu</link
+> només mostra els noms de fitxer, es pot canviar el nombre de columnes breus, fent clic dret sobre la capçalera <guilabel
+>Nom</guilabel
+>. Copiar/enganxar/tallar fitxers mitjançant el porta-retalls entre el &konqueror; i el &krusader;, s'admeten <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+>. <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>R</keycap
+></keycombo
+> alternarà el <guilabel
+>Plafó de llista</guilabel
+> entre els modes horitzontal i vertical.</para>
+      <para
+>Hi ha disponibles els elements següents:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Etiqueta d'informació</guilabel
+> </emphasis
+>: mostra quant espai lliure hi ha físicament disponible, la capacitat i on està muntat el sistema de fitxers. Si la informació no està disponible (amb major freqüència en el cas d'un sistema de fitxers remot), es mostrarà un missatge amb el motiu de la manca de disponibilitat en comptes de la informació.</para>
+          <para id="media_button"
+>El botó <guibutton
+>Suports</guibutton
+> a l'esquerra de l'<guilabel
+>Etiqueta d'informació</guilabel
+> mostra una llista de tots els suports disponibles, des d'on podreu seleccionar els suports desitjats (partició HDD, &DVD;, memòria &USB;, &etc;). En prémer <keycombo
+>&Ctrl;&Intro;</keycombo
+> quan s'obre el menú <guibutton
+>Suports</guibutton
+>, es muntarà el suport ressaltat quan estigui desmuntat, i viceversa. El menú contextual d'un suport ofereix diverses opcions com <guilabel
+>Munta</guilabel
+>, <guilabel
+>Obre en una pestanya nova</guilabel
+>, &etc; El menú <guibutton
+>Suports</guibutton
+> és <link linkend="konfig-panel-mediamenu"
+>configurable</link
+>.</para>
+        </listitem>
+          <listitem>
+          <para
+><emphasis
+> <guilabel
+>Capçaleres de columna</guilabel
+> </emphasis
+>: aquí podreu canviar l'ordre d'ordenació dels fitxers i carpetes segons ho desitgeu. L'ordenació predeterminada és per <guilabel
+>Nom</guilabel
+>. L'ordenació es pot canviar a l'instant fent clic en una de les <guilabel
+>Capçaleres de columna</guilabel
+>. Per a invertir l'ordenació, feu clic per segona vegada a la Capçalera de columna. Apareixerà una fletxa a la dreta del text Capçalera de columna, el qual mostrarà la direcció de l'ordenació (Fletxa amunt = ordenació de l'A a la Z, Fletxa avall = ordenació de la Z a l'A). Les <link linkend="useractions"
+>Accions d'usuari</link
+> predeterminades estableixen un lligam de tecla per a les Capçaleres de columna. Les <guilabel
+>Capçaleres de columna</guilabel
+> predeterminades són: <guilabel
+>Nom</guilabel
+>, <guilabel
+>Extensió</guilabel
+>, <guilabel
+>Mida</guilabel
+>, <guilabel
+>Modificat</guilabel
+>, <guilabel
+>rwx</guilabel
+>. Les <link linkend="konfig-general"
+>extensions atòmiques</link
+> predefinides com <literal role="extension"
+>.tar.gz</literal
+> es mostren com una part a la columna <guilabel
+>Extensió</guilabel
+>. Hi ha més Capçaleres de columna opcionals disponibles amb el &BDR;. L'amplada de les <guilabel
+>Capçaleres de columna</guilabel
+> es pot canviar fent clic amb el ratolí i movent la línia divisòria a l'amplada desitjada (manteniu premut el botó del ratolí). Ambdós <guilabel
+>Plafons de llista</guilabel
+> recordaran l'ordenació i l'amplada de la columna. Les <guilabel
+>Capçaleres de columna</guilabel
+> es poden canviar i desar individualment en cada plafó.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Llista de fitxers</guilabel
+> </emphasis
+>: mostra els fitxers i carpetes en la carpeta explorada. La <link linkend="quicksearch"
+>barra de cerca</link
+> permet cercar fitxers escrivint els seus noms o els primers caràcters d'un nom de fitxer. En prémer &Intro; o fer doble clic sobre un fitxer s'obrirà/executarà aquest. Podeu seleccionar/desseleccionar fitxers amb el ratolí, amb la tecla &Ins; o el menú <link linkend="edit-menu"
+>Edita</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Etiqueta del total</guilabel
+> </emphasis
+>: en seleccionar o desseleccionar els fitxers, es canviarà l'<emphasis
+> <guilabel
+>Etiqueta del total</guilabel
+> </emphasis
+>: en seleccionar o desseleccionar els fitxers, es canviarà l'<emphasis
+> <guilabel
+>Etiqueta del total</guilabel
+> </emphasis
+> a la part inferior del plafó, la qual mostrarà quants fitxers hi ha seleccionats (i quant d'espai total en el disc empren), així com el total de fitxers i ús del disc per a la carpeta actual (a diferència de l'etiqueta d'informació que mostra la informació per a tot el sistema de fitxers). Si una carpeta conté moltes subcarpetes, és possible que no sigui possible col·locar l'&URL; al plafó (on només seran visibles les carpetes), però l'&URL; es pot col·locar a l'<quote
+>Etiqueta d'informació</quote
+> o <quote
+>Etiqueta del total</quote
+>. Quan s'estableix un <link linkend="view-menu"
+>filtre personalitzat</link
+>, es mostrarà l'establert, per exemple: [*.cpp].</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Quan s'utilitzen els <quote
+><link linkend="konfig-color"
+>Colors</link
+> predeterminats del &kde;</quote
+>, els fitxers seleccionats es mostraran en blau i el fitxer actual estarà envoltat per un rectangle amb línies fines. De manera predeterminada, es mostrarà una icona d'acord amb el tipus de fitxer. Utilitzeu la <link linkend="konfig-color"
+> pàgina Plafó del Konfigurador</link
+> per a canviar la configuració predeterminada per a satisfer les vostres necessitats.</para>
+      <para
+>Alguns <link linkend="key_bindings"
+>lligams de tecla</link
+> útils del <guilabel
+>plafó de llista</guilabel
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> actualitzarà el plafó.</para>
+        </listitem>
+        <listitem>
+          <para
+>Enfoca un fitxer o carpeta en el plafó esquerre, premeu <keycombo action="simul"
+>&Ctrl;&Right;</keycombo
+> i es canviarà al plafó dret: <itemizedlist>
+            <listitem>
+              <para
+>Sobre un fitxer: el plafó dret obtindrà el mateix camí que el plafó esquerre.</para>
+            </listitem>
+            <listitem>
+              <para
+>Sobre una carpeta: el plafó dret obrirà la carpeta amb el focus al plafó esquerre.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Per al plafó dret: premeu <keycombo action="simul"
+>&Ctrl;&Left;</keycombo
+> i canviarà el plafó de l'esquerra.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="sidebar">
+      <title
+>Barra lateral</title>
+      <indexterm>
+        <primary
+>Barra lateral</primary>
+        <secondary
+>Barra lateral (tercer plafó)</secondary>
+      </indexterm>
+      <para
+>Aquest és el <quote
+>&krusader; is 3rd Hand</quote
+> o el tercer plafó, feu clic al botó de fletxa cap amunt que hi ha a la dreta de l'<guilabel
+>Etiqueta del total</guilabel
+> o <keycombo action="simul"
+>&Alt;&Down;</keycombo
+> per a obrir la <guilabel
+>Barra lateral</guilabel
+>. Aquest plafó té diversos modes de visualització que es poden activar fent clic al botó corresponent.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Plafó de vista prèvia</guilabel
+> </emphasis
+>: ofereix una vista prèvia del fitxer que té el focus (fitxer actualment seleccionat).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Plafó en arbre</guilabel
+> </emphasis
+>: s'utilitza per a explorar ràpidament l'arbre de carpetes local. Aquest plafó es comporta com el plafó de llista, però només es pot seleccionar una carpeta a la vegada i fer doble clic o prémer &Intro; sobre una carpeta l'obrirà en el plafó actiu. Els plafons són totalment compatibles amb les accions d'arrossegar i deixar anar (copiar, moure, enllaçar) del ratolí.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Plafó ràpid</guilabel
+> </emphasis
+>: s'utilitza per a seleccionar fitxers ràpidament, &pex;, introduïu <literal role="extension"
+>*.png</literal
+> i feu clic al botó <guibutton
+>Ves</guibutton
+>. El botó de <quote
+>disquet</quote
+> emmagatzemarà la selecció actual. També estarà disponible el <quote
+>diàleg Selecciona un grup</quote
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Plafó del visualitzador</guilabel
+> </emphasis
+>: visualitza un fitxer de text, una imatge, &etc; Es generarà una vista en miniatura cada vegada que obriu el <guilabel
+>Plafó del visualitzador</guilabel
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Plafó d'ús del disc</guilabel
+> </emphasis
+>: mostra l'<link linkend="diskusage"
+>Ús del disc</link
+> d'una carpeta.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>És possible canviar la ubicació de la barra lateral utilitzant el botó de gir que es troba a l'esquerra del botó de fletxa cap avall a la part inferior de la pestanya del &krusader;. Cada clic sobre aquest botó mourà la barra lateral en una posició en el bucle <quote
+>sota-esquerra-sobre-dreta</quote
+>. </para>
+      <para
+>Si cal, podreu canviar la mida de la finestra, &pex;, per a mostrar millor una imatge o veure el contingut d'un fitxer. Feu clic al botó de fletxa cap avall per a tancar el <guilabel
+>Tercer plafó</guilabel
+>.</para>
+    </sect2>
+    <sect2 id="folderhistory">
+      <title
+>Historial de carpetes</title>
+      <para
+>Ambdós plafons recorden les carpetes visitades recentment. Feu clic al botó <guibutton
+>Historial de carpetes</guibutton
+> (símbol «mostra») per a obrir la llista de l'historial de carpetes. Aquí podreu canviar ràpidament a les carpetes visitades anteriorment. La carpeta actualment amb el focus estarà marcada. En cada nou inici del &krusader;, la llista de l'historial es completarà amb els elements de l'execució anterior (es desarà l'historial).</para>
+    </sect2>
+  </sect1>
+  <sect1 id="cmdline_termemu">
+    <title
+>Línia d'ordres / emulador de terminal</title>
+    <para
+>Aquesta part de la <link linkend="gloss-gui"
+>&IGU;</link
+> pot tenir quatre modes: línia d'ordres, emulador de terminal, mostrar ambdós i no mostrar-ne cap. Podreu triar el vostre mode d'operació durant l'inici amb la <link linkend="konfigurator"
+>pàgina d'inici del Konfigurador</link
+> o per a la sessió actual amb el <link linkend="settings-menu"
+>menú Arranjament</link
+>. </para>
+
+  <sect2 id="cmdline">
+    <title
+>Línia d'ordres</title>
+
+    <figure id="screenshot-commandline" float="1">
+      <title
+>Línia d'ordres</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="cmdline.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Línia d'ordres</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>El mode línia d'ordres tradicional ofereix una sola línia d'entrada per a introduir les ordres, també compta amb tres botons:</para>
+     <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>Historial d'ordres</guibutton
+> (fletxa cap avall) per a obrir ràpidament les ordres emprades anteriorment </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>Completador de les accions d'usuari</guibutton
+> (botó verd més) per a afegir <link linkend="useractions"
+>marcadors de posició fàcils per a l'Acció d'usuari</link
+> </para>
+        </listitem>
+
+        <listitem>
+          <para
+>El botó <guibutton
+>Executa en el mode terminal</guibutton
+> (icona de consola) amb les següents opcions: <itemizedlist>
+          <listitem
+><para
+>Inicia i oblida</para>
+          </listitem>
+
+          <listitem
+><para
+>Mostra la sortida estàndard i d'error per separat</para>
+           </listitem>
+
+          <listitem
+><para
+>Mostra la sortida estàndard i d'error juntes</para>
+          </listitem>
+
+           <listitem
+><para
+>Inicia en un terminal nou</para>
+          </listitem>
+
+           <listitem
+><para
+>Envia a l'emulador de terminal incrustat</para>
+           </listitem>
+
+         </itemizedlist>
+          </para>
+
+        </listitem>
+
+
+     </itemizedlist>
+    <para
+>Quan comenceu a escriure les vostres ordres, la característica de compleció automàtica de la línia d'ordres farà els seus oferiments d'acord amb el que trieu a l'&systemsettings;. Si voleu canviar la forma en què es comporta la compleció automàtica en la sessió actual del &krusader;, feu <keycap
+>clic dret</keycap
+> sobre la línia d'ordres i canvieu-ho. A l'esquerra de la línia d'entrada trobareu el camí local cap al qual apunta actualment el plafó actiu. Aquest camí és on s'executarà la vostra ordre. Escriure <userinput
+> <command
+>cd</command
+> <replaceable
+> &lt;carpeta&gt;</replaceable
+> </userinput
+> a la línia d'ordres també farà que el plafó actiu apunti cap a aquesta carpeta. Feu clic <link linkend="cmdline_keybindings"
+>aquí</link
+> per a veure els lligams de tecla de la línia d'ordres.</para>
+</sect2>
+
+  <sect2 id="termemu">
+    <title
+>Emulador de terminal</title>
+
+    <figure id="screenshot-terminalemulator" float="1">
+      <title
+>Emulador de terminal</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="terminalEmu.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Emulador de terminal</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>El mode emulador de terminal, de fet és una petita consola i actua com a tal. Podreu canviar la carpeta activa al terminal utilitzant l'ordre <userinput
+> <command
+>cd</command
+> </userinput
+>. L'emulador de terminal seguirà la carpeta en el plafó actiu. Podreu arrossegar un fitxer des del <interface
+>Plafó de llista</interface
+> i el nom del fitxer s'enganxarà a l'emulador de terminal. Si arrossegueu múltiples fitxers, els noms s'enganxaran a l'emulador de terminal. Es pot usar un emulador de terminal a pantalla completa quan es <link linkend="konfig-general-general"
+>configura</link
+> o <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>F</keycap
+></keycombo
+> alternarà entre el mode normal i el de pantalla completa. Si la línia d'ordres està oculta, premeu <keycombo action="simul"
+>&Ctrl;&Down;</keycombo
+> per a donar el focus a l'emulador de terminal. <keycombo action="simul"
+>&Ctrl;&Up;</keycombo
+> us portarà enrere.<keycombo action="simul"
+>&Ctrl;&Intro;</keycombo
+> i <keycombo action="simul"
+>&Ctrl;&Maj;&Intro;</keycombo
+> enganxarà el nom del fitxer. Podreu tancar l'emulador escrivint <userinput
+> <command
+>exit</command
+> </userinput
+>.</para>
+    <para
+>Feu clic <link linkend="termemu_keybindings"
+>aquí</link
+> per a veure els lligams de tecla de l'emulador de terminal.</para>
+    </sect2>
+
+  </sect1>
+  <sect1 id="fnkeys">
+    <title
+>Barra tecles de funció (FN)</title>
+    <figure id="screenshot-fnkeys" float="1">
+      <title
+>Barra tecles de funció (FN)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="fnkeys.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Barra tecles de funció</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Aquesta barra rep el seu nom de les tecles de funció (FN) que representa. Per a cada botó en aquesta barra hi ha una tecla de funció corresponent que realitza la mateixa acció. Aquesta barra esdevé del disseny dels primers gestors de fitxers de doble plafó i les tecles FN generalment actuen de la mateixa manera amb dos canvis: la tecla <keycap
+>F2</keycap
+> s'utilitza per a canviar el nom dels fitxers i la tecla <keycap
+>F9</keycap
+> obre un terminal a l'últim camí local que on ha apuntat el plafó actiu. <guilabel
+>CreaDir</guilabel
+> <keycap
+>F7</keycap
+> (nom traduït de l'ordre <command
+>mkdir</command
+>) crea arbres de carpetes sencers sobre la marxa, &pex;, <literal
+>foo/bar/prova</literal
+>. Podeu escollir mostrar <link linkend="faqu_resize"
+>o no</link
+> aquesta barra en iniciar el &krusader; a través de la <link linkend="konfigurator"
+>pàgina d'inici del Konfigurador</link
+>, i podreu alternar el seu ús en la sessió actual amb el <link linkend="settings-menu"
+>menú Arranjament</link
+>. Les accions i els <link linkend="key_bindings"
+>lligams de tecla</link
+> realitzades per les tecles de funció són configurables des de la versió 1.51, romandran actives tant si es mostra o no la <guilabel
+>Barra de tecles de funció</guilabel
+>.</para>
+  </sect1>
+  <sect1 id="folder-tabs">
+    <title
+>Pestanyes de carpeta</title>
+    <figure id="screenshot-tabbedbrowsing" float="1">
+      <title
+>Pestanyes de carpeta</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="tabbed_browsing.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Pestanyes de carpeta</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Amb les <guibutton
+>Pestanyes de carpeta</guibutton
+> podreu canviar ràpidament a múltiples carpetes -cada plafó té les seves pròpies <guibutton
+>Pestanyes de carpeta</guibutton
+>-. Les posicions de les <guibutton
+>Pestanyes de carpeta</guibutton
+> es desen en tancar el &krusader;. Per a alternar entres les <guibutton
+>Pestanyes de carpeta</guibutton
+>, feu-hi clic amb el ratolí. Les <guibutton
+>Pestanyes de carpeta</guibutton
+> ocultes tenen consells d'eina per a mostrar tot el camí. Hi ha disponibles les següents operacions:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>Per a <action
+>obrir una pestanya nova</action
+> i mantenir oberta la pestanya actual: feu <keycap
+>clic dret</keycap
+> sobre una carpeta i seleccioneu <guimenuitem
+>Obre en una pestanya nova</guimenuitem
+> o feu clic sobre el botó més a la dreta a la barra de pestanyes.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per a <action
+>bloquejar una pestanya</action
+>, feu <keycap
+>clic dret</keycap
+> i seleccioneu <guimenuitem
+>Bloqueja la pestanya</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per a <action
+>ancorar una pestanya</action
+>, feu <keycap
+>clic dret</keycap
+> i seleccioneu <guimenuitem
+>Ancora la pestanya</guimenuitem
+>. La pestanya ancorada és una pestanya bloquejada però amb una adreça que es pot canviar temporalment. Es restablirà a l'adreça ancorada en la reactivació de la pestanya. Per a desancorar la pestanya ancorada, feu clic dret sobre seu i trieu l'element <guimenuitem
+>Desancora la pestanya</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per a <action
+>duplicar una pestanya</action
+>: feu <keycap
+>clic dret</keycap
+> sobre la pestanya de carpeta i seleccioneu <guimenuitem
+>Duplica la pestanya actual</guimenuitem
+>, o utilitzeu <keycombo action="simul"
+>&Ctrl;&Alt;&Maj; <keycap
+>N</keycap
+></keycombo
+>. </para>
+      </listitem>
+      <listitem>
+        <para
+>Per a <action
+>tancar una pestanya</action
+> (amb l'excepció de l'última pestanya): feu <keycap
+>clic dret</keycap
+> sobre la pestanya i seleccioneu <guimenuitem
+>Tanca la pestanya actual</guimenuitem
+>, utilitzeu el &BMR;, utilitzeu el botó de la <guibutton
+>creu vermella</guibutton
+> de la pestanya de carpeta o utilitzeu <keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per a <action
+>canviar les pestanyes</action
+>: <keycombo action="simul"
+>&Ctrl; <keycap
+>,</keycap
+></keycombo
+> o <keycombo action="simul"
+>&Ctrl; <keycap
+>.</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per a <action
+>obrir la carpeta actual en una pestanya nova</action
+>: utilitzeu <keycombo action="simul"
+>&Ctrl;&Alt;&Intro;</keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per a <action
+>tancar totes les altres pestanyes</action
+>, feu <keycap
+>clic dret</keycap
+> i seleccioneu <guimenuitem
+>Tanca les pestanyes inactives</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per a <action
+>tancar les pestanyes duplicades</action
+>, feu <keycap
+>clic dret</keycap
+> i seleccioneu <guimenuitem
+>Tanca les pestanyes duplicades</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per a moure la pestanya a l'altre plafó, arrossegueu-la d'un plafó a l'altre amb el &BER; (el cursor del ratolí es convertirà en una fletxa apuntant cap a l'esquerra o dreta) i deixeu-la anar. També podeu prémer <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>O</keycap
+></keycombo
+>.</para>
+      </listitem>
+</itemizedlist>
+  </sect1>
+  <sect1 id="ui_buttons">
+    <title
+>Botons</title>
+    <para
+>Hi ha disponibles diversos botons per a operacions ràpides: <link linkend="main_toolbar"
+>Barra d'eines principal</link
+>, <link linkend="actions_toolbar"
+>Barra d'eines d'accions</link
+>, <link linkend="panel_toolbar"
+>Barra d'eines del plafó</link
+>, <link linkend="location_toolbar"
+>Barra d'eines de localització</link
+>, <link linkend="list_panel"
+>Suports</link
+>, <link linkend="folderhistory"
+>Historial de carpetes</link
+>, <link linkend="bookman"
+>Adreces d'interès</link
+>, <link linkend="folder-tabs"
+>Pestanyes</link
+>, <link linkend="cmdline"
+>Línia d'ordres</link
+> i <link linkend="fnkeys"
+>Tecles de funció</link
+>.</para>
+  </sect1>
+</chapter>

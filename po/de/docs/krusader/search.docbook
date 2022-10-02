@@ -1,0 +1,366 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="krusearcher">
+  <title
+>KruSearcher: Finden was Sie suchen</title>
+  <indexterm>
+    <primary
+>Suchen</primary>
+  </indexterm>
+  <para
+>Willkommen zu &krusader;s leistungsfähigen Suchmodul mit dem Spitznamen KruSearcher. Es ist das leistungsfähigste uns bekannte Dienstprogramm für &Linux;, da es so viele verschiedene Möglichkeiten bietet, schnell eine gesuchte Datei zu finden. Die Suchfunktion ist auch für entfernte Dateisysteme verfügbar. Es gibt zwei Suchmethoden, allgemein und erweitert. Im folgenden wird zuerst die Karteikarte <guilabel
+>Allgemein</guilabel
+> vorgestellt.</para>
+  <figure id="screenshot-search-general" float="1">
+    <title
+>Allgemeine Suche</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_general.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Allgemeine Suche</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Diese Karteikarte ist in vier Bereiche aufgeteilt: oben der Bereich <guilabel
+>Dateiname</guilabel
+>, unten der Bereich <guilabel
+>Enthaltener Text</guilabel
+>, der linke Bereich <guilabel
+>Suchen in</guilabel
+> und der rechte Bereich <guilabel
+>Nicht suchen in</guilabel
+>. In jeden Bereich wird ein anderer Aspekt der Suche behandelt.</para>
+  <itemizedlist>
+    <title
+>Oberer Bereich:</title>
+    <listitem>
+      <para
+><guilabel
+>Suche nach:</guilabel
+> Hier geben Sie das wichtigste Suchkriterium ein. Sie können einen Dateinamen eingeben oder Platzhalter wie  <literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> &etc; oder beides getrennt durch Leerzeichen benutzen. Mit der Eingabe von <literal
+>'text'</literal
+> erhalten Sie das gleiche Ergebnis wie mit <literal
+>'*text*'</literal
+>. Sie können auch Dateien von der Suche mit '|' wie &eg; <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+> ausschließen. Verwenden Sie Anführungszeichen für Namen mit Leerzeichen darin. Mit <quote
+>Program Files</quote
+> filtern Sie alle Dateien und Ordner, die den Namen <filename
+>Program Files</filename
+> haben. Im Auswahlfeld, das Sie durch Klicken auf den Pfeil abwärts öffnen, können Sie vorher eingegebene Kriterien auswählen.</para>
+      <note>
+          <para
+>Sie können die Liste der Vorschläge für das Feld <guilabel
+>Suche nach</guilabel
+> bearbeiten. Um Einträge zu löschen, wählen Sie sie aus und drücken die Taste <keycombo action="simul"
+>&Shift;<keycap
+>Entf</keycap
+></keycombo
+>. Benutzen Sie die Pfeiltasten, um den Verlauf der Einträge anzuzeigen und Einträge zu löschen, die Sie nicht mehr benötigen. </para>
+      </note>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Groß-/Kleinschreibung beachten</guilabel
+>: Ist dies deaktiviert, wird nach groß und klein geschriebenen Elementen gesucht, &ie;: <literal role="extension"
+>*.c</literal
+> wird als <literal role="extension"
+>*.c</literal
+> und <literal role="extension"
+>*.C</literal
+> interpretiert.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Vom Typ</guilabel
+>: Mit diesem Auswahlfeld können Sie nach einer Datei nicht nur nach dem Namen, sondern auch nach dem &MIME;-Typ suchen. Sie können zum Beispiel nach allen Audio-Dateien suchen, deren Name mit <quote
+>B</quote
+> anfängt. Als Standard ist hier <quote
+>Alle Dateien</quote
+> eingestellt, aber Sie können auch nach Archiven, Ordnern, Bildern, Textdateien, Videos und Audiodateien suchen.</para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Linker und rechter Bereich:</title>
+    <listitem>
+      <para
+><guilabel
+>Suchen in</guilabel
+> und <guilabel
+>Nicht suchen in</guilabel
+>: Mit diesen beiden Bereichen können Sie eine Suche exakt festlegen.Wenn Sie zum Beispiel nach einer Datei im gesamten Dateisystem (ab dem Basisordner <filename
+>/</filename
+>) suchen möchten, aber nicht im Ordner <filename
+>/mnt</filename
+>. Dazu müssen Sie nur <filename
+>/</filename
+> in das Feld <guilabel
+>Suchen in</guilabel
+> und <filename
+>/mnt</filename
+> in das Feld  <guilabel
+>Nicht suchen in</guilabel
+> eingeben. Möchten Sie mehr als einen Ordner in eines der Listenfelder eintragen, geben Sie den ersten Namen ein und drücken Sie &Enter;. Der Ordnername wird dann in das Listenfeld kopiert und Sie können einen weiteren Ordnernamen eingeben. <note
+> <para
+>Die Eingabezeile hat eine automatische Vervollständigung entsprechend den globalen &plasma;-Einstellungen. Sie können aber auch auf das <guiicon
+>Ordner</guiicon
+>-Symbol drücken und einen Ordner im Dateidialog auswählen.</para>
+      </note>
+      <note>
+          <para
+>Sie können Dateien und Ordner angeben, die im Ergebnis der Suche heraus gefiltert werden. Benutzen Sie dazu das Eingabefeld <guilabel
+>Ordnernamen ausschließen</guilabel
+> im Abschnitt <guilabel
+>Nicht suchen in</guilabel
+>.</para>
+          <para
+>Einträge in der Filterliste müssen durch Leerzeichen getrennt werden.</para>
+          <para
+>Leerzeichen in den Einträgen für die Filterliste können maskiert oder in Anführungszeichen geschrieben werden. Beispiel: <userinput
+>.git "target build" build\ krusader</userinput
+></para>
+      </note
+></para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Unterer Bereich:</title>
+    <listitem>
+      <para
+><guilabel
+>Text</guilabel
+>: Geben Sie hier den Text ein, nach dem &krusader; in Dateien mit <command
+>grep</command
+> sucht. Aus diese Weise können Sie nach allen Header-Dateien mit der Erweiterung <literal role="extension"
+>*.h</literal
+> suchen, die das Wort <literal
+>'testing 123'</literal
+> enthalten.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>RegExp</guilabel
+>: Wechselt in den Modus Regulärer Ausdruck. Klicken Sie rechts auf den Pfeil nach unten, um bestimmte Symbole für reguläre Ausdrücke auszuwählen. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Kodierung</guilabel
+>: Auswahl der Textkodierung. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Nur ganze Wörter</guilabel
+>: Nur vollständige Übereinstimmungen an Buchstaben und Länge werden gefunden. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Groß-/Kleinschreibung beachten</guilabel
+>: Kreuzen Sie dies an, wenn nach der genauen Schreibweise gesucht werden soll.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>In Unterordnern suchen</guilabel
+>: Führt eine rekursive Suche durch und geht in jeden Unterordner im Pfad.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>In Archiven suchen</guilabel
+>: &krusader; sucht nach Ihren Dateien innerhalb aller unterstützten Archive. Dies kann jedoch lange dauern. <note
+> <para
+>Kreuzen Sie diese Einstellung an, dann können Sie nicht mehr nach Text mit dem Befehl <command
+>grep</command
+> innerhalb von Dateien suchen. Für die Suche in Dateien in einem archiv muss das Archiv entpackt werden. Das ist extrem zeitaufwändig, daher diese Einschränkung.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Verknüpfungen folgen</guilabel
+>: Ist dies aktiviert, erfolgt die Suche auch in symbolischen Verknüpfungen.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Profile</guilabel
+>: Wenn Sie regelmäßig die gleiche Suche ausführen, können Sie Ihre Sucheinstellungen wie &eg; eingeschlossene und ausgeschlossene Dateien &etc; speichern. Drücken Sie auf den Knopf <guibutton
+>Profil</guibutton
+> und Sie können dann Profile hinzufügen, laden, speichern und entfernen.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>In Zwischenablage einfügen</guilabel
+>: Ist dies aktiviert, wird der Suchtext in die Zwischenablage eingefügt, wenn eine gefundene Datei geöffnet wird.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Das Bildschirmfoto oben zeigt eine Suche nach allen Dateien mit der Erweiterung <literal role="extension"
+>c, cpp</literal
+> oder <literal role="extension"
+>h</literal
+>, die den Text <literal
+>'testing 123'</literal
+> enthalten. &krusader; sucht in den Ordnern <filename class="directory"
+>/root, /opt, /bin</filename
+> und <filename class="directory"
+>/usr</filename
+>, aber nicht in <filename class="directory"
+>/usr/lib</filename
+> und <filename class="directory"
+>/usr/share</filename
+>.</para>
+  <para
+>Wenn Sie auf den Knopf <guibutton
+>Suchen</guibutton
+> klicken, beginnt der Vorgang und die gefundenen Dateien werden auf der Karteikarte <guilabel
+>Ergebnisse</guilabel
+> angezeigt. Während der Suche können Sie den knopf <guibutton
+>Anhalten</guibutton
+> drücken, um den Vorgang zu stoppen. Der Knopf <guibutton
+>Schließen</guibutton
+> ist während der Suche deaktiviert. Daher müssen Sie zuerst die Suche anhalten und können dann den Suchdialog schließen. Wird ein Ergebnis gefunden, können Sie durch doppelklicken den Ordner mit der gefundenen Datei im aktiven Dateifenster anzeigen. Der Suchfenster wird jedoch nicht geschlossen, so dass Sie auf ein anderes Ergebnis klicken können.</para>
+  <para
+>Manchmal möchten Sie die Suche noch mehr eingrenzen. Mit KruSearcher ist das möglich, dazu können Sie die Einstellungen auf der Karteikarte <guilabel
+>Erweitert</guilabel
+> benutzen.</para>
+  <figure id="screenshot-search-advanced" float="1">
+    <title
+>Erweiterte Suche</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_advanced.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Erweiterte Suche</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Diese Bildschirmfoto zeigt eine Suche nach Dateien mit einer Größe zwischen 10 KiB und 150 KiB, die zwischen dem 10. Oktober und dem 1. November geändert wurden, die jedem Benutzer in der Gruppe 'nobody' gehören und die von jedem in der Gruppe 'nobody' gelesen und beschrieben werden können, für alle anderen aber nur lesbar sind.</para>
+  <para
+>Die Karteikarte <guilabel
+>Erweitert</guilabel
+> ist in drei Bereiche aufgeteilt: Größe, Datum und Eigentümer.</para>
+  <para>
+    <emphasis role="bold"
+>Größe</emphasis>
+  </para>
+  <para
+>Hier können Sie den Bereich für die Größe der gesuchten Datei auswählen. Klicken Sie auf die Ankreuzfelder, dann können Sie nach Dateien suchen, deren Größe zwischen den beiden eingegeben Werten in Byte, KiB, MiB oder GiB sind.</para>
+  <para>
+    <emphasis role="bold"
+>Datum</emphasis>
+  </para>
+  <para
+>Hier können Sie auf drei Arten Kriterien für ein Datum oder einen Datumsbereich eingeben: <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Geändert zwischen</guilabel
+>: Hier können Sie zwei Daten eingeben. &krusader; sucht nach Dateien, deren Änderungsdatum zwischen dem ersten und zweiten Datum liegt. Beide Daten werden in die Suche eingeschlossen. <note
+> <para
+>Sie können auf das Datums-Symbol neben dem Eingabefeldern klicken, dann wird der Standarddialog zur Datumsauswahl geöffnet. Dann können Sie den Kalender durchsehen und nach dem gewünschten Datum suchen. Wenn Sie auf ein Datum klicken, wird der Dialog geschlossen und das Datum in das Eingabefeld eingefügt.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Nicht geändert nach</guilabel
+>: Mit dieser Einstellung sucht &krusader; nach Dateien, die nicht nach dem eingegeben Datum geändert werden. Das entspricht der Suche nach Dateien, die älter als das vorgegebene Datum sind.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Geändert in den letzten</guilabel
+> / <guilabel
+>Nicht geändert in den letzten</guilabel
+>: In diesen Eingabefelder tragen Sie kein Datum, sondern eine Zahl ein. Diese Zahl repräsentiert Tage, Wochen, Monate oder Jahre, die im nächsten Feld eingestellt werden. Gebn Sie die Zahl 5 in das obere Eingabefeld ein, dann sucht &krusader; nach Dateien, die in den letzten 5 Tagen geändert wurden. Geben Sie 2 in das untere Eingabefeld ein, dann sucht &krusader; nach Dateien, die in den letzten 5 Tagen nicht geändert wurden. Die Kombination beider Eingaben ergibt eine Suche nach Dateien, die in den letzen 5 Tagen, aber nicht in den letzten 2 Tagen geändert wurden.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para>
+    <emphasis role="bold"
+>Eigentümer</emphasis>
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Gehört Benutzer</guilabel
+> / <guilabel
+>Gehört Gruppe</guilabel
+>: Kreuzen Sie eines der zugehörigen Felder an, dann können Sie nach Dateien suchen, die einer bestimmten Gruppe oder Benutzer gehören. In den Auswahlfeldern werden alle Gruppen und Benutzer des Systems aufgelistet. Treffen Sie eine Wahl und starten Sie die Suche.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Berechtigungen</guilabel
+>: aufgeteilt in Eigentümer, Gruppe und Alle. Damit können Sie bestimmte Berechtigungen für die gesuchten Dateien einstellen. Sie könne Berechtigungen für Eigentümer, Gruppe und Alle oder eine beliebige Kombination einstellen. Das Fragezeichen (?) ist ein Platzhalter, es ist jede Berechtigung erlaubt.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Eine Erläuterung zu den Einstellungen der Eigentümer im letzten Bildschirmfoto: Dies ist eine Suche nach Dateien, die allen Benutzern in der Gruppe 'users', von jedem Benutzer in dieser Gruppe gelesen, geschrieben aber nicht ausgeführt werden können, die für den Rest der Welt nur gelesen, aber nicht geschrieben und ausgeführt werden können und unbekannte Berechtigungen für den Eigentümer der Dateien haben.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Ergebnisse</emphasis>
+  </para>
+  <para
+>Klicken Sie auf den Knopf <guibutton
+>Suchen</guibutton
+>, um die Suche zu starten und öffnen Sie dann die Karteikarte Ergebnisse. Hier können Sie den Fortschritt und das Ergebnis der Suche verfolgen. Falls gewünscht, können Sie die Suche <guibutton
+>Anhalten</guibutton
+>. Auf der Karteikarte Ergebnisse wählen Sie eine Datei aus und benutzen dann <keycap
+>F3</keycap
+> oder <keycap
+>F4</keycap
+>, um die Datei zu betrachten oder zu bearbeiten. Im Kontextmenü finden Sie ebenfalls diese Aktionen. Wenn Sie auf einen gefundenen Eintrag klicken, wird der Ordner des aktiven Dateifensters geändert, wenn die gefundene Datei nicht darin vorhanden ist. Auf der Karteikarte Ergebnisse wird Ziehen und Ablegen in anderen Fenstern und das Kopieren in die Zwischenablage (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>) unterstützt. Wenn Sie das Fenster von KruSearcher schließen, ist der in diesem Dialog ausgewählte Eintrag  auch im aktiven Dateifenster ausgewählt.</para>
+  <para>
+    <emphasis role="bold"
+>In Dateifenster einspeisen</emphasis>
+  </para>
+  <para
+>Wenn Sie auf <guibutton
+>In Dateifenster einspeisen</guibutton
+> nach der Anzeige der Ergebnisse klicken, fragt &krusader; nach einem Namen für die Suche. Dieser Name wird im Unterfenster Ergebnisse im Dateifenster benutzt, in dem die Suchergebnisse angezeigt werden. Sie können beliebige Operationen mit den Dateien in dem neuen Unterfenster durchführen. Im Adressleiste wird für dieses Unterfenster &eg;<filename
+>virt:/Suchergebnisse 1</filename
+> angezeigt.</para>
+  <warning>
+    <para
+>Die Dateien auf der Karteikarte <guilabel
+>Ergebnisse</guilabel
+> sind tatsächlich die originalen Dateien. Löschen Sie hier eine Datei, dann wird sie wirklich aus dem Dateisystem entfernt.</para>
+  </warning>
+</sect1>

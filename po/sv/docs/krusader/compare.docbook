@@ -1,0 +1,120 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="compare">
+  <title
+>Jämföra</title>
+  <para
+>&krusader; innehåller flera jämförelsefunktioner: <guimenuitem
+>Jämför innehåll</guimenuitem
+>, <guimenuitem
+>Jämför kataloger</guimenuitem
+> och jämförelsefunktionen i <link linkend="synchronizer"
+>synkroniseraren</link
+>.</para>
+  <sect2 id="compare-content">
+    <title
+>Jämför innehåll</title>
+    <indexterm>
+      <primary
+>Jämför</primary>
+      <secondary
+>Innehåll</secondary>
+    </indexterm>
+    <para
+>Markera en fil i varje panel och använd <menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Jämför innehåll...</guimenuitem
+> </menuchoice
+>. &krusader; öppnar ett externt grafiskt jämförelseverktyg som är <link linkend="konfig-dependencies"
+>inställt</link
+>. &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> och <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> stöds.</para>
+  </sect2>
+  <sect2 id="compare-dir">
+    <title
+>Jämför kataloger</title>
+    <indexterm>
+      <primary
+>Jämför</primary>
+      <secondary
+>Kataloger</secondary>
+    </indexterm>
+    <para
+>Jämför filerna i varje panel genom att använda <menuchoice
+><guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Jämför kataloger</guimenuitem
+> </menuchoice
+>. Normalt markeras nyare och enstaka filer i varje panel. Beteendet kan ändras i menyn <guimenuitem
+>Anpassa jämförelse</guimenuitem
+>. <note
+> <para
+>Filerna jämförs inte enligt innehåll, utan bara enligt namn och datum.</para>
+    </note
+></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Anpassa jämförelse</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Anpassa funktionen <guimenuitem
+>Jämför kataloger</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Markera nyare och enstaka</guimenuitem
+> (standardvärde)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Markera enstaka</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Markera nyare</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Markera olika och enstaka</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Markera olika</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>

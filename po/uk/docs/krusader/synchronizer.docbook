@@ -1,0 +1,814 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="synchronizer">
+  <title
+>Синхронізатор</title>
+  <indexterm>
+    <primary
+>Синхронізатор</primary>
+  </indexterm>
+  
+<sect2 id="synchronizer_introduction">
+  <title
+>Вступ</title>
+  <para
+>За допомогою цієї функціональної можливості програма здатна порівняти дві теки і всі їхні підтеки і показати відмінності між ними. Після визначення деяких параметрів і натискання кнопки <guilabel
+>Порівняти</guilabel
+> ви зможете синхронізувати файли і каталоги. На одній з панелей може бути вміст теки сервера &FTP;. Не забудьте скористатися пунктом <guilabel
+>Порівняти за вмістом</guilabel
+>, якщо після зміни розмір файла залишився незмінним. Щоб відкрити вікно синхронізації, скористайтеся пунктом меню <menuchoice
+> <guimenu
+>Інструменти</guimenu
+> <guimenuitem
+>Синхронізувати теки</guimenuitem
+> </menuchoice
+> або натисканням комбінації клавіш <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+>. <link linkend="konfig-color"
+>Кольори написів</link
+> можна налаштувати. У інструменту синхронізації є власні <link linkend="synchronizer_keybindings"
+>клавіатурні скорочення</link
+>. </para>
+  <note>
+    <para
+>Для локальних файлів: синхронізатор змінює дані дати на початкові дати.</para>
+  </note>
+  <figure id="screenshot-syncdir" float="1">
+    <title
+>Синхронізатор</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="syncdir.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Синхронізатор</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para>
+  <orderedlist>
+    <title
+>Порядок дій:</title>
+    <listitem>
+      <para
+>Вказати <guilabel
+>ліву теку</guilabel
+> і <guilabel
+>праву теку</guilabel
+>, які ви бажаєте порівняти.</para>
+    </listitem>
+    <listitem>
+      <para
+>Налаштуйте додатковий <guilabel
+>Файловий фільтр</guilabel
+>, <guilabel
+>Загальні фільтри</guilabel
+> і <guilabel
+>Додаткові фільтри</guilabel
+>. Серед списку <guilabel
+>Загальних фільтрів</guilabel
+> міститься варіант <guilabel
+>не шукати у</guilabel
+>, за допомогою якого можна виключити теки з порівняння.</para>
+    </listitem>
+    <listitem>
+      <para
+>Позначте потрібні <link linkend="synccomp_checkb_options"
+>пункти параметрів</link
+>: <guilabel
+>Підтеки рекурсивно</guilabel
+>, <guilabel
+>Йти за символічними посиланнями</guilabel
+>, <guilabel
+>Порівняти за вмістом</guilabel
+>, <guilabel
+>Ігнорувати дату</guilabel
+>, <guilabel
+>Асиметрично</guilabel
+> і <guilabel
+>Без урахування регістру</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Натисніть кнопку <guibutton
+>Порівняти</guibutton
+>, щоб порівняти теки.</para>
+    </listitem>
+    <listitem>
+      <para
+>За допомогою <link linkend="synccomp_show_options"
+>Параметрів показу</link
+> ви можете визначити типи файлів, які буде виключено або задіяно під час виконання дії з синхронізації. Файли, назв яких не буде у списку, не буде задіяно у синхронізації.</para>
+    </listitem>
+    <listitem>
+      <para
+>За потреби, ви можете змінити дії <guilabel
+>Завдання</guilabel
+>, які визначаються інструментом порівняння, за допомогою <link linkend="synccomp_right-click"
+>контекстного меню</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Якщо ви згодні з результатами натискання кнопки <guibutton
+>Порівняти</guibutton
+>, натисніть кнопку <guibutton
+>Синхронізувати</guibutton
+>, щоб відкрити діалогове вікно синхронізації.</para>
+    </listitem>
+    <listitem>
+      <para
+>Після визначення параметрів <link linkend="synchronizer"
+>Синхронізатора</link
+>, натисніть кнопку <guibutton
+>Почати</guibutton
+>, щоб розпочати процедуру синхронізації.</para>
+    </listitem>
+  </orderedlist
+>Докладний опис всіх функцій та призначення всіх кнопок викладено нижче.</para>
+
+</sect2>
+
+<sect2 id="synchronizer_comparator">
+  <title
+>Інструмент порівняння</title
+>  
+
+  <variablelist>
+    <varlistentry>
+      <term
+>Елементи панелі</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Лівий каталог</guilabel
+>: ліва базова тека.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Правий каталог</guilabel
+>: права базова тека.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Файловий фільтр</guilabel
+>: визначає фільтрування назв файлів під час синхронізації. Наприклад, за фільтром <literal role="extension"
+>*.png</literal
+> буде використано лише файли, назви яких завершуються суфіксом <literal role="extension"
+>.png</literal
+>. Теки потраплять до списку, лише якщо їх назви завершуються на <literal role="extension"
+>.png</literal
+> або якщо у каталозі містяться файли, назви яких завершуються на <literal role="extension"
+>.png</literal
+>. Приклад декількох шаблонів з включенням/виключенням: <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>. Буде включено файли <literal role="extension"
+>*.cpp *.h</literal
+> і виключено файли <literal role="extension"
+>*.moc.cpp</literal
+></para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Загальні фільтри</guilabel
+>: для пошуку, містять текст.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Додаткові фільтри</guilabel
+>: розмір, дата, власник.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <variablelist>
+    <varlistentry>
+      <term
+>Критерії фільтрування назв файлів</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Ви можете використовувати шаблони заміни. Елементи списку з декількох шаблонів слід відокремлювати пробілами (пробіли відповідають логічному «АБО»), а шаблони, які слід виключити з пошуку, потрібно записувати після символу вертикальної риски. Якщо запис шаблону завершити навскісною рискою (*шаблон*/), програма вважатиме, що шаблон стосується рекурсивного пошуку у теках.</para>
+          </listitem>
+          <listitem>
+            <para
+>шаблон — означає, що слід шукати файли або теки, назви яких відповідають шаблону. Рекурсивний пошук буде виконано всіма підтеки, незалежно від значення цього шаблону.</para>
+          </listitem>
+          <listitem>
+            <para
+>шаблон/ означає пошук у всіх файлах та підтеках, але рекурсивний пошук буде виконано (або не буде виконано, якщо файли і підтеки було виключено) в каталогах, назва яких відповідає шаблону.</para>
+          </listitem>
+          <listitem>
+            <para
+>Ви можете скористатися лапками для визначення назв, які містять пробіли. За фільтром "Program Files" буде знайдено всі файли або теки, у назві яких містяться слова <filename
+>Program Files</filename
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>Приклади:</para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.o</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.h *.c??</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>* | CVS/ .svn/</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Зауважте: ключ пошуку «text» еквівалентний до ключа «*text*».</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_checkb_options">
+      <term
+>Пункти</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Підтеки рекурсивно</guilabel
+>: якщо позначити, під час порівняння Синхронізатор виконуватиме рекурсивний пошук у підтеках.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Переходити за символічними посиланнями</guilabel
+>: якщо позначити, Синхронізатор переходитиме за символічними посиланням на теки (але не на файли!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Порівняти за вмістом</guilabel
+>: якщо позначено, файли з однаковим розміром у байтах порівнюватимуться ще й за вмістом.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ігнорувати дату</guilabel
+>: якщо позначено, дані щодо дат буде проігноровано (корисно для &FTP;, smb, архівів тощо). Дані щодо дати є доречними лише у локальній файловій системі.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Асиметрично</guilabel
+>: <guilabel
+>Лівий каталог</guilabel
+> буде каталогом призначення, а <guilabel
+>Правий каталог</guilabel
+> — каталогом джерела. За допомогою цієї можливості вміст лівого каталогу буде синхронізовано з вмістом правого. <itemizedlist
+> <listitem
+> <para
+>Файли, які існують лише у лівій частині буде вилучено.</para
+> </listitem
+> <listitem
+> <para
+>Файли, які існують лише у правій частині, буде скопійовано до лівої.</para
+> </listitem
+> <listitem
+> <para
+>Однакові файли буде залишено на місцях.</para
+> </listitem
+> <listitem
+> <para
+>Відмінні файли буде скопійовано ліворуч. Будьте обережні з використанням цієї можливості!</para
+> </listitem
+> </itemizedlist
+>Ця функція буде корисною, якщо даними щодо дати неможливо скористатися або для синхронізації каталогу з вмістом файлового сервера (подібно до отримання). Крім того, цей пункт буде корисним для створення резервних копій правого  каталогу у лівому каталозі. ЗАУВАЖЕННЯ: НЕ користуйтеся цією можливістю для синхронізації стаціонарного комп’ютера з ноутбуком (оскільки файли, які існують лише у лівому каталозі буде вилучено!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Гортати результати</guilabel
+>: цей пункт призначено для повільних серверів &FTP; тощо. Після завершення порівняння файла Синхронізатор пересуватиме файл в кінець списку і гортатиме вміст вікна, за потреби. Цей пункт є важливим для спостереження за діями Синхронізатора. Якщо сервер &FTP; є повільним, порівняння каталогів може тривати досить довго. Якщо ви позначите цей пункт, ви зможете спостерігати за повільними або все ж активними діями інструменту порівняння. Під час роботи з швидкими файловими системами, за допомогою цього пункту можна трохи пришвидшити процес порівняння.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Без урахування регістру</guilabel
+>: якщо позначено, порівняння назв файлів буде виконано без врахування регістру, корисно для синхронізації з файловими системами &Windows;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ігнорувати приховані файли</guilabel
+>: ігнорувати файли, назви яких починаються з крапки.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <para
+>Після виконання всіх вищезгаданих дій натисніть кнопку <guibutton
+>Порівняти</guibutton
+>, щоб наказати програмі розпочати порівняння тек. Результати буде показано у <guilabel
+>списку файлів</guilabel
+>.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Список файлів</term>
+      <listitem>
+        <para
+>У <guilabel
+>Списку файлів</guilabel
+> ви побачити такі стовпчики: «Назва ліворуч | Розмір ліворуч | Дата ліворуч | Завдання | Дата праворуч | Розмір праворуч | Назва праворуч». За допомогою цього списку ви зможете спостерігати за результатами порівняння та змінювати дії з синхронізації, якщо ви цього бажаєте. Колір тексту визначатиме типовий напрямок копіювання, визначений інструментом порівняння. <itemizedlist
+> <listitem
+> <para
+>Зелений: копіювати зліва праворуч.</para
+> </listitem
+> <listitem
+> <para
+>Синій: копіювати справа ліворуч або вилучити файл праворуч у асиметричному режимі.</para
+> </listitem
+> <listitem
+> <para
+>Червоний: файли, які є відмінними за вказаним критерієм (без потреби копіювання).</para
+> </listitem
+> <listitem
+> <para
+>Чорний: тотожні файли (без потреби копіювання).</para
+> </listitem
+> </itemizedlist
+> Наведення вказівника миші на позначку файла з наступним подвійним клацанням викличе інструмент &krusader; <guilabel
+>Порівняти за вмістом</guilabel
+>. Стовпчик завдань (&lt;=&gt;) визначає типовий напрям копіювання, який можна за потреби змінити. Вікно результатів підтримує перетягування елементів до інших вікон (перетягування [ліва кнопка], &Shift;+перетягування [права кнопка] ) і копіювання елементів, позначених ліворуч або праворуч, до буфера обміну даними (комбінація клавіш <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). </para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><guilabel
+>Список файлів</guilabel
+>: стовпчик завдань (&lt;=&gt;)</term>
+      <listitem>
+        <para
+>У цьому стовпчику буде вказано завдання, яке заплановано Синхронізатором, це завдання можна змінити за допомогою <link linkend="synccomp_right-click"
+>контекстного меню</link
+>.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: копіювати файли з лівої панелі на праву. Для тек: <command
+>mkdir</command
+> на правій панелі.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: файли однакові, нічого не робити.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: файли виключено або інструменту синхронізації невідомо, які дії слід виконати.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: копіювати файли з правої панелі на ліву панель. Для тек: <command
+>mkdir</command
+> на лівій панелі.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>DEL</guibutton
+>: вилучити файли з правої панелі.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_show_options">
+      <term
+>Параметри показу</term>
+      <listitem>
+        <para
+>Тут ви можете визначити типи файлів, які буде виключено або задіяно під час виконання дії з синхронізації. Файли, назв яких не буде у списку, не буде задіяно у синхронізації.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: увімкнути або вимкнути завдання з копіювання з лівою панелі на праву.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: увімкнути або вимкнути побудову списку однакових файлів.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: увімкнути/вимкнути показ у списку виключених файлів, для яких програма не може визначити дії.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: увімкнути/вимкнути завдання з копіювання з правої панелі на ліву.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Смітник</guibutton
+>: увімкнути/вимкнути вилучення з завдання лівої панелі.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Дублікати</guibutton
+>: увімкнути/вимкнути показ файлів, які існують на обох панелях.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Одинарні</guibutton
+>: увімкнути/вимкнути показ файлів, які існують лише на одній панелі.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Кнопки дій</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Порівняти</guibutton
+>: наказати програмі виконати порівняння тек, результати буде показано у <guilabel
+>Списку файлів</guilabel
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Зупинити</guibutton
+>: зупиняє порівняння.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Синхронізувати</guibutton
+>: показує діалогове вікно синхронізації.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Закрити</guibutton
+>: закриває діалогове вікно синхронізатора.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>У рядку стану може бути показано:</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Кількість просканованих під час порівняння тек.</para>
+          </listitem>
+          <listitem>
+            <para
+>Назву файла, під час порівняння за вмістом (для великих файлів).</para>
+          </listitem>
+          <listitem>
+            <para
+>Кількість файлів у списку.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_right-click">
+      <term
+>Контекстне меню <guilabel
+>Списку файлів</guilabel
+></term>
+      <listitem>
+        <para
+>Контекстне меню поділено на три розділи:</para>
+        <para
+>1. Зміна <guilabel
+>Завдання</guilabel
+> визначеного інструментом порівняння. Позначте один або декілька файлів. Зміну буде застосовано до всіх позначених файлів, а не лише для того файла, для якого було викликано контекстне меню. Якщо позначений елемент є підкаталогом, зміну буде застосовано до всіх його файлів або підтек.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Синхронізувати теки</guibutton
+>: розпочинає синхронізацію.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Виключити</guibutton
+>: виключити файл або каталог з синхронізації (завдання буде змінено на !=).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Відновити первісну операцію</guibutton
+>: завдання буде змінено на первісне, визначене інструментом порівняння.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Зміна напрямку</guibutton
+>: зміна напрямку завдання (з -&gt; на &lt;- і з &lt;- на -&gt; ).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Копіювати з правого боку на лівий</guibutton
+>: змінити завдання на &lt;-.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Копіювати з правого боку на лівий</guibutton
+>: змінити завдання на -&gt;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Вилучити (залишити одинарним)</guibutton
+>: змінити завдання на DEL.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>2. Зміна позначення</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Вибрати елементи</guibutton
+>: відкриває діалогове вікно, за допомогою якого ви можете позначити елементи. Діалогове вікно є тотожнім до діалогового вікна <guimenuitem
+>Вибрати групу</guimenuitem
+>, яке можна викликати за допомогою <link linkend="edit-menu"
+>меню «Редагування»</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Скасувати вибір елементі</guibutton
+>: відкриває діалогове вікно, за допомогою якого ви можете скасувати позначення елементів. Діалогове вікно є тотожнім до діалогового вікна <guimenuitem
+>Скасувати вибір групи</guimenuitem
+>, яке можна викликати за допомогою <link linkend="edit-menu"
+>меню «Редагування»</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Інвертувати вибір</guibutton
+>: інвертувати стан позначення для всіх пунктів.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>3. Інше (зауважте, що дії з наведеного нижче переліку стосуватимуться лише файла, на позначці якого було здійснено клацання правою кнопкою миші, а не всіх позначених файлів).</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Переглянути лівий файл</guibutton
+>: відкрити вікно перегляду лівого файла.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Переглянути правий файл</guibutton
+>: відкрити вікно перегляду правого файла.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Порівняти файли</guibutton
+>: відкриває вікно інструменту diff (наприклад, &kompare;) для файлів.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Інші кнопки</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Профілі</guibutton
+>: якщо ви часто синхронізуєте ті самі теки, ви можете зберегти параметри, зокрема включені файли, виключені файли тощо. Натисніть кнопку <guibutton
+>Профіль</guibutton
+>, що отримати доступ до інтерфейсу додавання, завантаження, зберігання та вилучення профілів синхронізації.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Поміняти місцями</guibutton
+>: міняє місцями частини <guilabel
+>списку файлів</guilabel
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Синхронізувати за допомогою <application
+>KGet</application
+></term>
+      <listitem>
+        <para
+>Якщо вам потрібно синхронізувати ваш локальний каталог з сервером &FTP;, який працює нестабільно, вам краще скористатися <application
+>KGet</application
+>, а не простим копіюванням файлів. Після порівняння вмісту ви можете навести вказівник миші на позначку у списку результатів, клацнути правою кнопкою миші і вибрати у контекстному меню пункт <guimenuitem
+>Синхронізувати за допомогою KGet</guimenuitem
+>, щоб виконати синхронізацію, в процесі якої файли зі списку буде отримано за допомогою <application
+>KGet</application
+>, а не &krusader;. Звичайно ж, для виконання цих завдань вам слід встановити на вашому комп’ютері <application
+>KGet</application
+>, інакше ви не зможете скористатися цією можливістю.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+ 
+</sect2
+>  
+<sect2 id="synchronizer_synchronization">
+  <title
+>Синхронізація</title
+>  
+
+  <para
+>Після натискання кнопки <guibutton
+>Синхронізувати</guibutton
+> програма відкриє діалогове вікно синхронізації.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Поля для позначок</term>
+      <listitem>
+        <para
+>За допомогою цих полів ви можете підтвердити дії Синхронізатора з копіювання і вилучення</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Копіювати</guilabel
+> X1 файлів ( Y1 байтів ) ліворуч: увімкнути або вимкнути копіювання файлів ліворуч.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Копіювати</guilabel
+> X1 файлів ( Y1 байтів ) праворуч: увімкнути або вимкнути копіювання файлів праворуч.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ліва</guilabel
+>: вилучити X3 файлів ( Y3 байтів ): увімкнути або вимкнути вилучення файлів з лівої панелі.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Підтверджувати перезаписування</guilabel
+>: якщо ви позначите цей пункт, перш ніж перезаписувати файл, Krusader показуватиме діалогове вікно з варіантами дій: <guibutton
+>перейменувати, пропустити, перезаписати, пропустити всі, перезаписати всі</guibutton
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Позначки стану</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Виконано</guilabel
+>: A1/A2 файлів, B1/B2. Цей рядок змінюватиметься протягом синхронізації. Тут буде показано поступ виконання: A1 файлів з A2 (B1 байтів з B2).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Панель поступу</guilabel
+>: демонструє поступ синхронізації (на основі байтів).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Кнопки дій</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Почати</guibutton
+>: розпочати синхронізацію.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Пауза / Продовжити</guibutton
+>: призупиняє або відновлює процедуру синхронізації.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Закрити</guibutton
+>: закриває діалогове вікно синхронізації (і зупиняє синхронізацію).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Паралельна синхронізація</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Ви можете задати кількість квазі-потоків.</para>
+          </listitem>
+          <listitem>
+            <para
+>Може значно пришвидшити виконання дії під час синхронізації з повільними серверами &FTP;.</para>
+          </listitem>
+          <listitem>
+            <para
+>Не змінює швидкості локальної синхронізації.</para>
+          </listitem>
+          <listitem>
+            <para
+>Віддалені дії з порівняння за вмістом і порівняння тек виконуються у паралельному режимі.</para>
+          </listitem>
+          <listitem>
+            <para
+>Віддалена синхронізація також виконується у паралельному режимі, окрім завдань <command
+>mkdir</command
+> (створення каталогів слід виконати до копіювання).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+</sect2>
+</sect1>

@@ -1,0 +1,359 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="remote-connections">
+  <title
+>Externe verbindingen</title>
+  <indexterm>
+    <primary
+>Externe verbindingen</primary>
+  </indexterm>
+  <para
+>Externe verbindingen zijn makkelijk te maken door de &URL; in te voeren in de <link linkend="list_panel"
+>Locatiebalk</link
+>; eigenlijk zijn dit KIO Slaves. Merk op dat het &krusader; paneel  niet alle KIO Slaves kan gebruiken &eg; <command
+>http://</command
+> zal in het paneel niet werken, maar wel in de  <link linkend="krviewer"
+>viewer</link
+>. Enkele voorbeelden:</para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>public.ftpserver.org/map/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>fish://</command
+><replaceable
+>gebruikersnaam@hostnaam/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>sftp://</command
+><replaceable
+>gebruikersnaam:wachtwoord@sftp.foo.org/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>gebruikersnaam@mijn.server.org:21/map/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>smb://</command
+><replaceable
+>gebruikersnaam:wachtwoord@server/share</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>gebruikersnaam@proxygebruikersnaam:wachtwoord@proxiwachtwoord@hostnaam/map</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>nfs://</command
+><replaceable
+>&lt;host&gt;:&lt;port&gt;&lt;url-pad&gt;</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>webdav://</command
+><replaceable
+>www.server.nl/pad/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <para
+>U kunt bladwijzers voor deze &URL;s, aanmaken, maar lees dan wel de sectie over <link linkend="bookman"
+>Bookman</link
+> over <emphasis
+>veilig opslaan van wachtwoorden</emphasis
+>. Voor het verbinden met meerder locaties, kunt u bladwijzers voor deze  &URL;s aanmaken en  ze stuk voor stuk openen, of ze allemaal tegelijk openen door een <link linkend="panel_profiles"
+>Paneelprofiel</link
+> te gebruiken. om te schakelen van een locatie naar een andere locatie, opent u voor elk een <link linkend="folder-tabs"
+>tab met mappen</link
+>.</para>
+  <para
+>Er zijn drie manieren om een externe verbinding te openen:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>De &URL; in de <link linkend="list_panel"
+>Locatiebalk</link
+> typen</para>
+    </listitem>
+    <listitem>
+      <para
+>Selecteer <menuchoice
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Nieuwe Netwerk verbinding</guimenuitem
+> </menuchoice
+> zodat een een dialoogvenster opent met de vraag voor de details van de externe site. Dit dialoogvenster is handig als u niet gewend bent om de &URL;s in de locatiebalk in te voeren. Als u de velden voor gebruiker en wachtwoord leeg laat dan logt u in als anonymous. Opmerking: we hebben plannen om dit dialoogvenster te herschrijven.</para>
+    </listitem>
+    <listitem>
+      <para
+>U kunt voor een map op een externe host een bladwijzer aanmaken zodat u met een druk op de bladwijzerknop in de bovenhoek van uw paneel naar deze map terugkeert net zoals in een web browser.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Nadat u bent ingelogd op een externe server, kunt u  het op dezelfde manier bewerken alsof het uw lokale harde schijf is met de volgende uitzonderingen:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>U kunt op externe servers geen bestanden uitvoeren.</para>
+    </listitem>
+    <listitem>
+      <para
+>Het is niet altijd mogelijk om op externe servers informatie over de bestand-permissies te krijgen (afhankelijk van de server en toegangsmethode) zodat u wellicht voor sommige bestanden een  <guilabel
+>?</guilabel
+> in de kolom voor permissies te zien krijgt.</para>
+    </listitem>
+    <listitem>
+      <para
+>Informatie over schijfgebruik is bij de meeste externe bestandssystemen niet beschikbaar.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Om de karakterset van een externe host te wijzigen gebruikt u <menuchoice
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Remote Taalcodering selecteren</guimenuitem
+> </menuchoice
+> .</para>
+  <para
+>U kunt de huidige Actieve Externe verbinding op twee manieren afsluiten:</para
+> 
+  <itemizedlist>
+    <!--
+        <listitem>
+           <para
+>Manually: <emphasis role="bold"
+><menuchoice
+><guimenu
+>Commands</guimenu>
+                 <guimenuitem
+>Disconnect From Net</guimenuitem
+></menuchoice
+></emphasis
+></para>
+        </listitem>
+        -->
+    <listitem>
+      <para
+>Handmatig: ga naar de knop voor verbinding verbreken op de <link linkend="mainwindow"
+>Hoofdwerkbalk</link
+> en klik erop.</para>
+    </listitem>
+    <listitem>
+      <para
+>Automatisch: wijzig in de  <link linkend="list_panel"
+>Locatiebalk</link
+> de &URL;.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>&krusader; is een bestandsbeheerder die externe verbindingen via KIO Slaves kan opbouwen, maar als u externe verbindingen met uitgebreidere mogelijkheden wilt, &eg; een geavanceerde &FTP; client dan raden we u aan om &eg; <ulink url="https://lftp.yar.ru/"
+>LFTP</ulink
+> of <ulink url="https://filezilla-project.org/"
+><application
+>FileZilla</application
+></ulink
+>. te gebruiken.</para>
+  </note>
+
+<sect2 id="remote-connections-lan-fish">
+  <title
+>LAN verbindingen via fish:/ protocol (zeroconf)</title>
+  <indexterm>
+    <primary
+>Externe LAN verbindingen (zeroconf)</primary>
+  </indexterm>
+
+<para
+>De bijdrage voor dit hoofdstuk is afkomstig van Andrew Svet (z-vet), terugkoppeling over dit hoofdstuk wordt op prijs gesteld. Dank!</para>
+
+ <note>
+   <para
+>Dit werkt op een &Debian; systeem, daarom zal het op &Debian; en het daarvan afgeleide  (&kubuntu; &etc;) werken, maar het zou ook op andere Linuxes moeten werken. We nemen aan dat u  <link linkend="gloss-ssh"
+>SSH</link
+> heeft geïnstalleerd, geconfigureerd en werkend heeft op elke machine van de LAN waar van en waar naar toe mee u wilt verbinden. Er zijn genoeg goede tutorials over <link linkend="gloss-ssh"
+>SSH</link
+> op het net te vinden, &eg; at <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying"
+>linuxhomenetworking.com</ulink
+> en anders googelt u er maar naar. We gebruiken in dit hoofdstuk de standaard<link linkend="gloss-ssh"
+>SSH</link
+> poort (22). Vergeet niet om dit te wijzigen als u een andere gebruikt. Alle wijzigingen, bewerkingen &etc; moet u als root uitvoeren. </para>
+ </note>
+
+<para
+>Laten we beginnen met het installeren van de benodigde pakketten: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>apt-get install</command
+> <option
+>avahi-daemon libnss-mdns kdnssd</option
+></userinput>
+</screen
+> Alles is geïnstalleerd, nu gaan we wat configuratie instellen. Eerst moeten we onze services bekendmaken op het LAN. Daarvoor hebben we avahi-daemon geïnstalleerd: het stelt uw machine voor op het lokale netwerk en hierdoor kunnen andere programma´s de services die ze geven bekendmaken. Avahi-daemon komt met een voorbeeld <filename
+>ssh.service</filename
+> configuratie-bestand die u kunt vinden in <filename class="directory"
+>/usr/share/doc/avahi-daemon/examples</filename
+>. Om te zorgen dat de service op de LAN bekend wordt gemaakt moeten we dit bestand kopiëren naar de map <filename class="directory"
+>/etc/avahi/services</filename
+>: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option
+></userinput>
+</screen
+> Nu moeten het fish:/ protocol ook bekend maken, daarom gebruiken we een ssh.service bestand als voorbeeld voor fish.service: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option
+></userinput>
+</screen
+> Dit bestand is gewoon een kopie van ssh.service. Bewerk het bestand <filename
+>fish.service</filename
+> en vervang <quote
+>Remote Terminal on %h</quote
+> door <quote
+>Fish to %h</quote
+> en <quote
+>_ssh._tcp</quote
+> door <quote
+>_fish._tcp</quote
+>. Hier is te zien hoe het na de bewerking eruit ziet: <programlisting
+> 
+&lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--> 
+&lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
+
+&lt;!-- $Id: remote-connections.docbook,v 1.6 2007/05/02 18:07:28 codeknight Exp $ --> 
+
+&lt;!-- 
+  This file is part of avahi. 
+  
+  avahi is free software; you can redistribute it and/or modify it 
+  under the terms of the GNU Lesser General Public License as 
+  published by the Free Software Foundation; either version 2 of the 
+  License, or (at your option) any later version. 
+
+  avahi is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR 
+
+&lt;!-- See avahi.service(5) for more information about this configuration file --> 
+
+&lt;service-group
+> 
+
+  &lt;name replace-wildcards="yes"
+>FISH to %h&lt;/name
+> 
+
+  &lt;service
+> 
+    &lt;type
+>_fish._tcp&lt;/type
+> 
+    &lt;port
+>22&lt;/port
+> 
+  &lt;/service
+> 
+
+&lt;/service-group
+>  
+</programlisting
+> Sla het bewerkte bestand op. Nu moeten we een nieuw bestand aanmaken <filename
+>_fish._tcp</filename
+>, open een tekstbewerker en voeg de volgende regels toe: <programlisting>
+Name=FISH Protocol (ssh) 
+Type=_fish._tcp 
+UserEntry=u 
+PathEntry=path 
+PasswordEntry=p
+</programlisting
+> en sla het bestand op de volgende locatie <filename
+>/usr/share/apps/zeroconf/_fish._tcp</filename
+>. Doe dit bij elke machine op uw LAN, herstart daarna de avahi-daemon: <screen>
+<prompt
+># /etc/init.d/</prompt
+> <userinput
+><command
+>avahi-daemon</command
+> <option
+>restart</option
+></userinput>
+</screen
+> Open daarna &krusader; en type in de locatiebalk-lnk: <filename
+>zeroconf:/</filename
+> om de <link linkend="gloss-zeroconf"
+>zeroconf</link
+> verbinding te openen. Ga naar de map <guilabel
+>Fish Protocol</guilabel
+>. Hierin vindt u links naar elke machine die <filename
+>fish:/</filename
+> op uw LAN bekend heeft gemaakt, de locatiebalk-lnk: zal naar <filename
+>zeroconf:/_fish._tcp</filename
+>wijzen. Als u op een van deze machines dubbelklikt, dan krijgt u een dialoogvenster met waarin naar uw ssh key (indien een wachtwoord is ingesteld) wordt gevraagd, Voer uw wachtwoord in. Gefeliciteerd: u heeft met behulp van &krusader; een verbinding naar een externe machine opgebouwd! </para
+> 
+
+</sect2>
+
+</sect1>
+
+

@@ -1,0 +1,974 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<appendix id="release_overview">
+  <title
+>Übersicht der Versionen</title>
+  <indexterm>
+    <primary
+>Übersicht der Versionen</primary>
+  </indexterm>
+  <para
+>Dieser Anhang gibt eine Übersicht über die &krusader;-Versionen.</para>
+  <table id="release_overview_table" pgwide="1" frame="all">
+    <title
+>Übersicht der Versionen</title>
+    <tgroup cols="3" colsep="1" rowsep="1">
+      <thead>
+        <row>
+          <entry>
+            <para
+>&krusader;-Version</para>
+          </entry>
+          <entry>
+            <para
+>Freigabedatum</para>
+          </entry>
+          <entry>
+            <para
+>&kde;-Version</para>
+          </entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry>
+            <para
+>2.7.2 <quote
+>Peace of Mind</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>2019-08-25</para>
+          </entry>
+          <entry>
+            <para
+>&kde; Frameworks 5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>2.7.1 <quote
+>Peace of Mind</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>12.08.2018</para>
+          </entry>
+          <entry>
+            <para
+>&kde; Frameworks 5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>2.7.0 <quote
+>Peace of Mind</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>13.05.2018</para>
+          </entry>
+          <entry>
+            <para
+>&kde; Frameworks 5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>2.6.0 <quote
+>Stiff Challenges</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>12.04.2017</para>
+          </entry>
+          <entry>
+            <para
+>&kde; Frameworks 5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>2.5.0 <quote
+>Clear Skies</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>22.10.2016</para>
+          </entry>
+          <entry>
+            <para
+>&kde; Frameworks 5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+	    <para
+>2.4.0-beta1 <quote
+>Migration</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>26.06.2011</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 4.0 - 4.6</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+	    <para
+>2.3.0-beta1 <quote
+>New Horizons</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>25.12.2010</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 4.0 - 4.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+	  <para
+>2.2.0-beta1 <quote
+>DeKade</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>30.04.2010</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 4.0 - 4.4</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+	  <para
+>2.1.0-beta1 <quote
+>Rusty Clutch</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>31.10.2009</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 4.0 - 4.3</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+	  <para
+>2.0.0 <quote
+>Mars Pathfinder</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>11.04.2009</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 4.0 - 4.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>2.0.0-beta2 <quote
+>Space Odyssey</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>27.12.2008</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 4.0 - 4.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>2.0.0-beta1 <quote
+>Phoenix Egg</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>07.06.2008</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 4.0 - 4.1</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.90.0 <quote
+>Power Stone</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>15.03.2008</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.2 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.80.0 <quote
+>Final 3rd Stone</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>21.07.2007</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.4 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.80.0-beta2 <quote
+>Last Unstable Stone</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>31.03.2007</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.4 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.80.0-beta1 <quote
+>The Last Krusade</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>07.01.2007</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.4 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.70.1 <quote
+>Round Robin</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>17.07.2006</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.3 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.70.0 <quote
+>Round Robin</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>12.02.2006</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.3 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.70.0-beta2 <quote
+>Afterburner</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>05.11.2005</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.3 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.70.0-beta1 <quote
+>Hellfire</quote
+></para>
+          </entry>
+          <entry>
+            <para
+>02.10.2005</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.3 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.60.1</para>
+          </entry>
+          <entry>
+            <para
+>30.10.2005</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.3 - 3.4</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.60.0 </para>
+          </entry>
+          <entry>
+            <para
+>10.04.2005</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.3 - 3.4</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.60.0-beta2 </para>
+          </entry>
+          <entry>
+            <para
+>21.03.2005</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.3 - 3.4</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.60.0-beta1 </para>
+          </entry>
+          <entry>
+            <para
+>03.03.2005</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.3 - 3.4</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>1.51 </para>
+          </entry>
+          <entry>
+            <para
+>14.12.2004</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.2 - 3.3</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20050104203627/krusader.sourceforge.net/news.php"
+>1.50</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>31.10.2004</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.2 - 3.3</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20050104203627/krusader.sourceforge.net/news.php"
+>1.50-beta1</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>17.10.2004</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.2 - 3.3</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20050104203627/krusader.sourceforge.net/news.php"
+>1.40</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>20.07.2004</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20050104203627/krusader.sourceforge.net/news.php"
+>1.40-beta2</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>22.06.2004</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20030417031038/krusader.sourceforge.net/index.php?nav=news.php"
+>1.40-beta1</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>11.04.2004</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20030417031038/krusader.sourceforge.net/index.php?nav=news.php"
+>1.30</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>14.11.2003</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20030417031038/krusader.sourceforge.net/index.php?nav=news.php"
+>1.29-beta1</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>02.10.2003</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20030417031038/krusader.sourceforge.net/index.php?nav=news.php"
+>1.25-beta1</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>15.08.2003</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20030417031038/krusader.sourceforge.net/index.php?nav=news.php"
+>1.21-beta1</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>18.07.2003</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20030417031038/krusader.sourceforge.net/index.php?nav=news.php"
+>1.20</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>31.02.2003</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20030417031038/krusader.sourceforge.net/index.php?nav=news.php"
+>1.12-beta2</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>09.05.2003</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry
+><para
+><ulink url="http://web.archive.org/web/20030417031038/krusader.sourceforge.net/index.php?nav=news.php"
+>1.12-beta1</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>23.12.2002</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20030417031038/krusader.sourceforge.net/index.php?nav=news.php"
+>1.11</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>17.10.2002</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>1.10</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>15.08.2002</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>1.02 (Erste KDE3-Version)</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>16.04.1002</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 3</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>1.01</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>01.04.2002</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>1.00</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>01.01.2002</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.99</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>01.12.2001</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.98</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>27.10.2001</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.97</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>08.10.2001</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.95</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>22.07.2001</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.93</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>31.05.2001</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.92</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>17.05.2001</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.91</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>10.05.2001</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.90</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>30.04.2001</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.79</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>25.02.2001</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.75</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>12.02.2000</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.70 (Meilenstein 3)</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para
+>07.11.2000</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.69</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para
+>28.10.2000</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20020126214102/http://krusader.sourceforge.net/"
+>0.65</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para
+>19.08.2000</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20000822030717/krusader.sourceforge.net/news.htm"
+>0.60</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>19.07.2000</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20000822030717/krusader.sourceforge.net/news.htm"
+>M2 (Meilenstein 2)</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para
+>11.07.2000</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+>M1 (Meilenstein 1)</para>
+          </entry>
+          <entry>
+            <para
+>??.05.2000</para>
+          </entry>
+          <entry>
+            <para
+>&kde; 2 (Kleopatra 1.91)</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para
+><ulink url="http://web.archive.org/web/20000822030717/krusader.sourceforge.net/news.htm"
+>Projekt gestartet</ulink
+></para>
+          </entry>
+          <entry>
+            <para
+>30.04.2000</para>
+          </entry>
+          <entry>
+            <para
+>Kleopatra 1.91</para>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <para
+>Hinweis: Ältere 0.x Beta-Versionen sind in dieser Tabelle nicht enthalten.</para>
+</appendix>

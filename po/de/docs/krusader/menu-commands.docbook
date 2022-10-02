@@ -1,0 +1,2287 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<chapter id="menu-commands">
+  <title
+>Menübefehle</title>
+  <indexterm>
+    <primary
+>Befehle</primary>
+    <secondary
+>Menü</secondary>
+  </indexterm>
+  <sect1 id="file-menu">
+    <title
+>Das Menü <guimenu
+>Datei</guimenu
+></title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F4</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Neue Textdatei ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Erstellt eine neue Textdatei im aktuellen Ordner, sofern kein anderer Ordner angegeben wird. Die neue Datei wird nach der Erstellung im Editor geöffnet.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F7</keycap
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Neuer Ordner</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Erstellt einen neuen Ordner im aktuellen Ordner.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Neue Symbolische Verknüpfung ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Erstellt eine symbolische Verknüpfung zur aktuell gewählten Datei.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F3</keycap
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Datei anzeigen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet die gerade ausgewählte Datei zur <link linkend="kredit"
+>Anzeige</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F4</keycap
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Datei editieren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet die gerade ausgewählte Datei zur <link linkend="kredit"
+>Bearbeitung</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F5</keycap
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>In anderes Dateifenster kopieren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Kopiert die gerade ausgewählten Dateien oder Ordner in das andere Dateifenster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F6</keycap
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Verschieben ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet einen Dialog, um die aktuell ausgewählten Dateien oder Ordner an einen bestimmten Ort zu <link linkend="copying"
+>verschieben</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift;&Alt; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Packen ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Erstellt ein <link linkend="pack-archive"
+>neues Archiv</link
+> mit allen im aktiven Dateifenster ausgewählten Dateien und Ordner.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift;&Alt; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Entpacken ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="unpacking-archives"
+>Entpackt</link
+> alle ausgewählten Dateien im aktiven Dateifenster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift;&Alt; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Archiv testen ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="test-archive"
+>Überprüft Archive</link
+> auf Fehler.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Datei</guimenu
+> <guimenuitem
+>Nach Inhalt vergleichen ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vergleicht zwei aktuell ausgewählte Dateien - eine aus jedem Dateifenster - anhand des Inhalts mit externen grafischen Diff-Programmen. Als Voreinstellung wird &kompare; benutzt, es können aber auch andere Programme &eg; <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> oder <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> verwendet werden. Das hier benutzte Programm kann im Einrichtungsdialog aus der Seite <link linkend="konfig-dependencies"
+>Abhängigkeiten</link
+> eingestellt werden.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="multi_rename">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F2</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Mehrfachumbenennung</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Dieser Menüeintrag startet <ulink url="https://www.kde.org/applications/utilities/krename/"
+><application
+>Krename</application
+></ulink
+>, ein sehr leistungsfähiges Programm zum Umbenennen in einer Stapelverarbeitung.</para>
+          <itemizedlist>
+            <title
+>Krename-Funktionen</title>
+            <listitem>
+              <para
+>Umbenennen einer Liste von Dateien auf der Grundlage von regulären Ausdrücken</para>
+            </listitem>
+            <listitem>
+              <para
+>Kopieren/Verschieben einer Liste von Dateien in andere Ordner</para>
+            </listitem>
+            <listitem>
+              <para
+>Umwandlung von Dateinamen in Klein- oder Großschreibung</para>
+            </listitem>
+            <listitem>
+              <para
+>Hinzufügen von Zahlen zu Dateinamen</para>
+            </listitem>
+            <listitem>
+              <para
+>Suchen und Ersetzen von Teilen des Dateinamens</para>
+            </listitem>
+            <listitem>
+              <para
+>Umbenennung von MP3- und OGG-Vorbis-Dateien auf der Grundlage von ID3-Stichwörtern</para>
+            </listitem>
+            <listitem>
+              <para
+>Einstellung von Zugriffs- und Änderungsdaten</para>
+            </listitem>
+            <listitem>
+              <para
+>Änderung von Berechtigungen und Eigentümern von Dateien</para>
+            </listitem>
+            <listitem>
+              <para
+>Eine Programmierschnittstelle für Module, mit der die Fähigkeiten von KRename erweitert werden können.</para>
+            </listitem>
+            <listitem>
+              <para
+>Rekursives Umbenennen von Ordnern</para>
+            </listitem>
+            <listitem>
+              <para
+>Unterstützung für KFile-Module</para>
+            </listitem>
+            <listitem>
+              <para
+>Umbenennen rückgängig machen</para>
+            </listitem>
+            <listitem>
+              <para
+>Und viele weitere Funktionen ...</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Datei</guimenu
+> <guimenuitem
+>Prüfsumme erstellen ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="checksum"
+>Erstellt eine Prüfsumme</link
+> für Dateien und/oder Ordner.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Datei</guimenu
+> <guimenuitem
+>Prüfsumme verifizieren ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para>
+            <link linkend="checksum"
+>Prüfsumme verifizieren</link>
+          </para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Datei splitten ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Diese <link linkend="splitter"
+>Funktion</link
+> teilt eine Datei in mehrere kleinere Dateien auf, damit sie auf mehreren Geräten mit kleinerem Speicherplatz wie <hardware
+>Disketten, Zip-Laufwerken, ...</hardware
+> gespeichert oder einzeln als E-Mails versendet werden können.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Dateien zusammenfügen ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Diese <link linkend="splitter"
+>Funktion</link
+> fügt mehrere Dateien, die vorher mit <link linkend="splitter"
+>Datei splitten</link
+> aufgeteilt wurden, wieder zu einer Datei zusammen.</para>
+        </listitem>
+      </varlistentry>
+      <!--vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Beenden</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Beendet &krusader; und löscht den temporären Ordner. Diese Aktion kann auch mit der Taste <keycap
+>F10</keycap
+> ausgelöst werden.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="edit-menu">
+    <title
+>Menü Bearbeiten</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Ausschneiden</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Schneidet</link
+> eine oder mehrere ausgewählte Dateien aus und verschiebt sie in die Zwischenablage. Von dort können sie dann an einem anderen Speicherort eingefügt werden.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Kopieren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Kopiert</link
+> eine oder mehrere ausgewählte Dateien in die Zwischenablage. Von dort können sie dann an einem anderen Speicherort eingefügt werden.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Einfügen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Fügt</link
+> vorher ausgeschnittene oder kopierte Elemente von der Zwischenablage in den aktuellen Ordner ein.</para>
+        </listitem>
+      </varlistentry>
+<!--
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycap
+>F2</keycap>
+            </shortcut>
+            <guimenu
+>Edit</guimenu>
+            <guimenuitem
+>Rename</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          <link linkend="renaming"
+>Renames</link
+> the currently
+          selected file.</para>
+        </listitem>
+      </varlistentry
+>-->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F8</keycap
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Löschen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="deleting"
+>Löscht</link
+> die zurzeit ausgewählten Dateien.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Gruppe auswählen ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet einen Dialog, in dem Sie Dateien zur Anzeige im aktiven Dateifenster auswählen können. Im Textfeld <guilabel
+>Suche nach</guilabel
+> geben Sie das Hauptkriterium für die Suche ein. Geben Sie einen Dateinamen, einen Platzhalter (<literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> &etc;) oder beides, getrennt durch Leerzeichen. Wenn Sie <literal
+>'text'</literal
+> verwenden, erhalten Sie das gleiche Ergebnis wie mit <literal
+>'*text*'</literal
+>. Mit '|' (&eg; <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>) können Sie Dateien von der Suche ausschließen. Mit <link linkend="profiles"
+>Profilen</link
+> können Sie Ihre Auswahleinstellungen für einen späteren Gebrauch verwalten. Ein Doppelklick auf ein Profil bewirkt das gleiche wie die Eingabe der Auswahl und Drücken des Knopfs <guibutton
+>OK</guibutton
+>. Weitere Einstellungen für den Dialog <guilabel
+>Gruppen auswählen</guilabel
+> werden im Abschnitt <link linkend="krusearcher"
+>Suchdialog</link
+> erklärt, der fast der gleiche Dialog ist.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Gruppenauswahl aufheben ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Das Gegenteil von <guimenuitem
+>Gruppe auswählen</guimenuitem
+>. Die Dateien im aktiven Dateifenster, auf die das Muster passt, werden aus der Auswahl entfernt.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Alles auswählen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Wählt alle Dateien im aktiven Dateifenster aus. Es können auch alle Ordner ausgewählt werden, wenn die Einstellung <guilabel
+>Ordner automatisch auswählen</guilabel
+> im Einrichtungsdialog auf der Seite <guilabel
+>Dateifenster</guilabel
+> markiert ist.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Auswahl aufheben</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Hebt die Auswahl aller Dateien im aktiven Dateifenster auf.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Auswahl umkehren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Kehrt den Auswahlstatus aller Dateien im aktiven Dateifenster um, &ie; alle ausgewählten Dateien werden aus der Auswahl entfernt und alle nicht gewählten Dateien werden in die Auswahl aufgenommen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Auswahl wiederherstellen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stellt den Auswahlstatus von vorher nicht ausgewählten Elementen wieder her.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>In Ordner suchen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schaltet den Moduls der <link linkend="quicksearch"
+>Such</link
+>leiste in &krusader; um.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Ordner vergleichen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schaltet die Funktion <link linkend="compare-dir"
+>Ordner vergleichen</link
+> in &krusader; ein oder aus.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Vergleichen einrichten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Einstellungen für die Funktion <guimenuitem
+>Ordner vergleichen</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Neue und einzelne auswählen</guimenuitem
+> (Standard)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Einzelne auswählen</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Neue auswählen</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Unterschiedliche und einzelne auswählen</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Unterschiedliche auswählen</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Belegten Speicherplatz ermitteln</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="calculate"
+>Ermittelt den belegten Speicherplatz</link
+> von Dateien, Ordnern, Archiven und Dateisystemen auf Fremdrechnern.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keysym
+>Eingabe</keysym
+></keycombo
+></shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Eigenschaften</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet den Eigenschaftendialog der aktuell ausgewählten Datei.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="go-menu">
+    <title
+>Das Menü <guimenu
+>Gehe zu</guimenu
+></title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Up;</keycombo
+> </shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Nach oben</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Wechselt in den übergeordneten Ordner im aktiven Dateifenster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Left;</keycombo
+> </shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Zurück</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geht zurück zum vorher angezeigten Ordner im aktiven Dateifenster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Right;</keycombo
+> </shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Nach vorne</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Navigiert zum nächsten angezeigten Ordner in dem aktiven Dateifenster. Wird verfügbar, nur wenn <menuchoice
+><guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Zurück</guimenuitem
+></menuchoice
+> vorher benutzt wurde.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Home;</keycombo
+> </shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Persönlicher Ordner</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geht zum persönlichen Ordner des aktuellen Benutzers.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; &Backspace;</keycombo
+> </shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Basisordner</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geht zum Basisordner des Systems.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Beliebte Adressen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zeigt eine Liste von häufig geöffneten Ordnern. Doppelklicken Sie auf einen Ordner in der Liste, um dorthin zu gehen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Rücksprungmarke setzen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Setzt das aktuellen Ordner als Rücksprung-Punkt. Um schnell zu diesem Ordner zu navigieren, wählen Sie den Befehl <guimenuitem
+>Zurückspringen</guimenuitem
+> aus dem Menü <guimenu
+>Gehe zu</guimenu
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Zurückspringen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geht zu einer vorherigen Sprungmarke zurück.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="view-menu">
+    <title
+>Das Menü <guimenu
+>Ansicht</guimenu
+></title>
+    <para
+>Die Aktionen in diesem Untermenü betreffen nur die aktuelle &krusader;-Sitzung. Möchten Sie dauerhafte Änderungen vornehmen, verwenden Sie die <link linkend="konfigurator"
+>Startseite des Konfigurator</link
+>.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Vergrößern</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vergrößert die Ansicht.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Verkleinern</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Verkleinert die Ansicht.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Standardvergrößerung</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Setzt die Vergrößerung der Ansicht auf den Standard zurück.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Ausführliche Ansicht</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zeigt Namen, Größe, Erstellungsdatum und -zeit sowie Attribute von Dateien.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Kurzübersicht</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zeigt nur Datei- und Ordnernamen an.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Versteckte Dateien anzeigen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schaltet die Anzeige von versteckten Dateien in &krusader;-Dateifenstern ein oder aus.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F10</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Alle Dateien</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schaltet alle Filter aus und alle Dateien an.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F12</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Benutzerdefiniert</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ermöglicht die Einstellung eines benutzerdefinierten Filters für das &krusader;-Dateifenster. Es werden nur Dateien, deren Namen auf den Filter passen, und Ordner anzeigt. Vergessen Sie nicht, den Filter nach der Benutzung wieder abzuschalten, sonst fehlen einige Dateien in der Ansicht.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Vorschau anzeigen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ist dies markiert, werden Vorschausymbole mit dem Inhalt für alle Dateien und Ordner von dem Namen angezeigt, anderenfalls werden die Symbole des MIME-Typen verwendet.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Entfernte Zeichenkodierung wählen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stellt den Zeichensatz für <link linkend="remote-connections"
+>Entfernte  Verbindungen</link
+> ein.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Erneut laden</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Liest den Inhalt des aktiven Dateifensters neu ein.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Einstellungen als Standard speichern</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Speichert die Ansichtseinstellungen des aktuellen Unterfensters, die später für eine neue Instanz dieser Ansichtsart verwendet werden kann.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Einstellungen auf andere Unterfenster anwenden</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Wendet die Ansichtseinstellungen der aktuellen Karteikarte auf alle anderen Karteikarten an.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="useractions-menu">
+    <title
+>Das Menü <guimenu
+>Benutzeraktionen</guimenu
+></title>
+    <para
+>Hier können Sie eigene Menüeinträge einfügen, indem Sie <link linkend="useractions"
+>Benutzeraktionen</link
+> definieren. </para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Benutzeraktionen</guimenu
+> <guimenuitem
+>Benutzeraktionen verwalten ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet den Dialog <link linkend="useractions"
+>Benutzeraktionen verwalten</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>A</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Benutzeraktionen</guimenu
+><guisubmenu
+>Multimedia</guisubmenu
+> <guimenuitem
+>In Amarok-Wiedergabeliste einreihen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Fügt Einträge zur Wiedergabeliste von &amarok; hinzu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; </keycombo
+> </shortcut
+> <guimenu
+>Benutzeraktionen</guimenu
+><guisubmenu
+>Beispiele</guisubmenu
+> <guimenuitem
+>Gleiche Dateifenstergröße</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stellt beide Dateifenster auf die gleiche Breite ein.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;<keycap
+>E</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Benutzeraktionen</guimenu
+><guisubmenu
+>Beispiele</guisubmenu
+> <guimenuitem
+>Als Systemverwalter bearbeiten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ermöglicht die Bearbeitung einer Datei mit <application
+>kwrite</application
+> mit den Rechten des Systemverwalters.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>M</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Benutzeraktionen</guimenu
+><guisubmenu
+>Beispiele</guisubmenu
+> <guimenuitem
+>Einhängen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Hängt ein neues Dateisystem ein.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>C</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Benutzeraktionen</guimenu
+><guisubmenu
+>Beispiele</guisubmenu
+> <guimenuitem
+>Aktuellen Eintrag in Zwischenablage kopieren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Kopiert den Namen des ausgewählten Eintrags in die Zwischenablage.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta;<keycap
+>F5</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Benutzeraktionen</guimenu
+><guisubmenu
+>System</guisubmenu
+> <guimenuitem
+>Aktuelles sichern</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Erstellt eine Sicherung der ausgewählten Datei im aktuellen Ordner und fragt den Benutzer nach dem neuen Dateinamen. In der Voreinstellung wird <literal role="extension"
+>.old</literal
+> an den ursprünglichen Dateinamen angehängt.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>1</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Benutzeraktionen</guimenu
+><guisubmenu
+>Benutzeroberfläche</guisubmenu
+> <guimenuitem
+>Nach Namen sortieren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ist diese Einstellung aktiv, wird der Dateiname als Hauptsortierschlüssel im &krusader;-Dateifenster verwendet.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>2</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Benutzeraktionen</guimenu
+><guisubmenu
+>Benutzeroberfläche</guisubmenu
+> <guimenuitem
+>Nach Erweiterung sortieren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ist diese Einstellung aktiv, wird die Dateierweiterung als Hauptsortierschlüssel im &krusader;-Dateifenster verwendet. Das ist der Namensteil nach dem letzten Punkt („.“). Dies kann verwendet werden, um Dateien der gleichen Art zusammen zu gruppieren.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>3</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Benutzeraktionen</guimenu
+><guisubmenu
+>Benutzeroberfläche</guisubmenu
+> <guimenuitem
+>Nach Größe sortieren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ist diese Einstellung aktiv, wird die Dateigröße als Hauptsortierschlüssel im &krusader;-Dateifenster verwendet. Damit können die größten Dateien in einem bestimmten Ordner festgestellt werden.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>4</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Benutzeraktionen</guimenu
+><guisubmenu
+>Benutzeroberfläche</guisubmenu
+> <guimenuitem
+>Nach letzter Änderung sortieren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ist diese Einstellung aktiv, wird das letzte Änderungsdatum jeder Datei als Hauptsortierschlüssel im &krusader;-Dateifenster verwendet. Damit können Sie die Dateien finden, die Sie zuletzt bearbeitet haben.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="tools-menu">
+    <title
+>Das Menü <guimenu
+>Extras</guimenu
+></title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Extras</guimenu
+> <guimenuitem
+>Suchen ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet <link linkend="krusearcher"
+>KruSearcher</link
+> - das Suchmodul für &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Extras</guimenu
+> <guimenuitem
+>Lokalisieren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet die &GUI;-Oberfläche für <link linkend="locate"
+>Locate</link
+> zur schnellen Suche nach Dateien.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Extras</guimenu
+> <guimenuitem
+>Ordner abgleichen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Die Funktion <link linkend="synchronizer"
+>Ordner abgleichen</link
+> vergleicht das linke und rechte Dateifenster miteinander un zeigt den Unterschied zwischen ihnen. Nach dem Vergleich können Sie Dateien oder Ordner zum Abgleichen verschieben.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Extras</guimenu
+> <guimenuitem
+>MountMan</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>In diesem Untermenü können Sie <link linkend="mount-man"
+>MountMan</link
+> - die Mount-Verwaltung öffnen oder Geräte an diversen Einhängepunkten einhängen oder aushängen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Extras</guimenu
+> <guimenuitem
+>Speicherplatzbedarf</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet das Fenster <link linkend="diskusage"
+>Festplattenbelegung</link
+>.</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Extras</guimenu
+> <guimenuitem
+>Neue Netzverbindung</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet den Dialog <link linkend="remote-connections"
+>Neue Netzwerkverbindung</link
+>, um eine  &FTP;-, SMB-, FISH- oder SFTP-Verbindung zu einem entfernten Rechner zu starten. Wenn Sie Benutzername und Passwort leer lassen, werden Sie als anonymer Benutzer angemeldet. Sie können für diese Sitzungen <link linkend="bookman"
+>Lesezeichen</link
+> setzen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl; &Shift;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Extras</guimenu
+> <guimenuitem
+>Netzwerkverbindung trennen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Beendet eine <link linkend="remote-connections"
+>entfernte Verbindung</link
+> im aktiven Dateifenster und geht zur Startseite zurück. </para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Extras</guimenu
+> <guimenuitem
+>Terminal starten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet ein Terminal-Fenster im Standardordner, das ist normalerweise Ihr persönlicher Ordner. Das hier verwendete Terminal-Programm können Sie auf der <link linkend="konfig-general"
+>Seite Allgemein im Konfigurator</link
+> einstellen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="root-mode">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>K</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Extras</guimenu
+> <guimenuitem
+>Krusader im Systemverwaltungsmodus starten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Startet &krusader; als <link linkend="root-mode"
+>Systemverwalter</link
+> am gleichen Ort. Dieser Modus erfordert <command
+>kdesu</command
+> als Voreinstellung. Ist <command
+>kdesu</command
+> nicht verfügbar oder möchten Sie &eg; <command
+>gksu</command
+> unter <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+> verwenden, können Sie dieses Verhalten auf der Seite <link linkend="konfig-dependencies"
+>Abhängigkeiten im Konfigurator</link
+> ändern.</para>
+          <caution>
+            <para
+>Vorsicht beim Arbeiten mit &krusader; im Systemverwaltungsmodus.</para>
+          </caution>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Extras</guimenu
+> <guimenuitem
+>Papierkorb leeren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Leert den <link linkend="deleting"
+>Papierkorb</link
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="window-menu">
+    <title
+>Das Menü <guimenu
+>Fenster</guimenu
+></title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Neues Unterfenster</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet ein neues Unterfenster im aktiven Dateifenster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Unterfenster sperren/entsperren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sperrt oder entsperrt das aktuelle Unterfenster im aktiven Dateifenster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Aktuelles Unterfenster duplizieren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet eine Kopie des aktiven Unterfensters als neues Unterfenster im aktiven Dateifenster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Aktuelles Unterfenster in anderes Dateifenster verschieben</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Verschiebt das aktuelle Unterfenster in das andere &krusader;-Dateifenster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Aktuelles Unterfenster schließen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schließt das aktuelle Unterfenster im aktiven Dateifenster. Diese Funktion ist nur dann verfügbar, wenn es mehr als ein Unterfenster im aktiven Dateifenster gibt.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Inaktive Unterfenster schließen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schließt alle Unterfenster im aktiven Dateifenster außer dem gerade geöffneten Unterfenster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Doppelte Unterfenster schließen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schließt doppelte Unterfenster im aktiven Dateifenster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Nächstes Unterfenster</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geht zum nächsten Unterfenster im aktiven Dateifenster. Diese Funktion ist nur dann verfügbar, wenn es mehr als ein Unterfenster im aktiven Dateifenster gibt.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Voriges Unterfenster</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geht zum vorherigen Unterfenster im aktiven Dateifenster. Diese Funktion ist nur dann verfügbar, wenn es mehr als ein Unterfenster im aktiven Dateifenster gibt.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="c_panel_profiles">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Profile</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet einen Dialog, in dem <link linkend="panel_profiles"
+>Profile für Dateifenster</link
+> gespeichert und wieder hergestellt werden können.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Dateifenster vertauschen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Das linke Dateifenster wird zum rechten und umgekehrt, nur die aktuellen Unterfenster werden vertauscht.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Seiten vertauschen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Das gesamte linke Dateifenster wird zum rechten und umgekehrt und alle Unterfenster werden vertauscht.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Vertikaler Modus</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schaltet das <link linkend="list_panel"
+>Dateifenster</link
+> zwischen waagrechter und senkrechter Teilung um.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Vollbildmodus des Terminal-Emulators umschalten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schaltet den Vollbildmodus des Terminal-Emulators ein oder aus. Diese Einstellung ist nur verfügbar, wenn <guilabel
+>Terminal-Emulator anzeigen</guilabel
+> aktiviert ist.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Fenster</guimenu
+> <guimenuitem
+>Position speichern</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Speichert die aktuelle Größe und Position des Hauptfensters von &krusader;. Diese Aktion kann automatisch ausgeführt werden, wenn <guilabel
+>Letzte Position, Größe und Einstellungen speichern</guilabel
+> auf der Seite <link linkend="konfigurator"
+>Start</link
+> im Einrichtungsdialog aktiviert ist.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="settings-menu">
+    <title
+>Das Menü <guimenu
+>Einstellungen</guimenu
+></title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guisubmenu
+>Werkzeugleisten</guisubmenu
+> <guimenuitem
+>Haupt-Werkzeugleiste anzeigen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zeigt die <link linkend="mainwindow"
+>Haupt-Werkzeugleiste</link
+>, wenn diese Einstellung markiert ist.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guisubmenu
+>Werkzeugleisten</guisubmenu
+> <guimenuitem
+>Auftrags-Werkzeugleiste anzeigen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ist diese Einstellung markiert, wird die <link linkend="job_toolbar"
+>Auftrags-Werkzeugleiste</link
+> angezeigt.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guisubmenu
+>Werkzeugleisten</guisubmenu
+> <guimenuitem
+>Aktionen-Werkzeugleiste anzeigen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ist diese Einstellung markiert, wird die <link linkend="actions_toolbar"
+>Aktionen-Werkzeugleiste</link
+> angezeigt.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Statusleiste anzeigen</guimenuitem
+>  </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ist diese Einstellung markiert, wird die <link linkend="mainwindow"
+>Statusleiste</link
+> angezeigt.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Funktionstastenleiste anzeigen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zeigt die <link linkend="fnkeys"
+>Funktionstastenleiste</link
+>, wenn diese Einstellung markiert ist.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Terminal-Emulator anzeigen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zeigt den <link linkend="cmdline"
+>Terminal-Emulator</link
+> an, wenn diese Einstellung markiert ist.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Befehlszeile anzeigen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zeigt die <link linkend="cmdline"
+>Befehlszeile</link
+> an, wenn diese Einstellung markiert ist.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Ausführungsmodus für Befehle einrichten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Hier kann der Ausführungsmodus für Befehle aus folgenden Optionen gewählt werden:</para>
+	  <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Starten und Vergessen</guimenuitem
+>: Startet den Befehl, wartet aber nicht auf die Ergebnisse.</para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Standardausgabe und Standardfehler separat darstellen</guimenuitem
+>: zeigt die Standardausgabe und Standardfehler in getrennten Dateifenstern. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Standardausgabe und Standardfehler gemeinsam darstellen</guimenuitem
+>: zeigt die Standardausgabe und Standardfehler in in einem Dateifenstern, dies ist die Voreinstellung. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>In neuem Terminal starten</guimenuitem
+>: Führt den Befehl in einem neuen Terminal-Fenster aus. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>An eingebetteten Terminal-Emulator senden</guimenuitem
+>: Führt den Befehl im eingebetteten Terminal-Emulator aus. </para>
+            </listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+      <varlistentry id="job-queue-mode">
+        <term>
+          <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Auftrags-Warteschlangenmodus</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schaltet den Modus der <link linkend="queue"
+>Warteschlangen-Verwaltung</link
+> um. Ist diese Einstellung aktiviert, dann wird durch Drücken von <keycap
+>F2</keycap
+> oder des zugehörigen Knopfs im Dialog Kopieren/Verschieben sofort der Auftrag gestartet, auch wenn es noch laufende Aufträge in der Warteschlange gibt. Ist diese Einstellung nicht aktiviert, wird der Auftrag in die Warteschllange eingefügt, wenn die Warteschlange nicht leer ist. Ansonsten wird der Auftrag sofort ausgeführt. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="configure-shortcuts">
+        <term>
+          <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Kurzbefehle festlegen ...</guimenuitem
+>  </menuchoice>
+        </term>
+        <listitem>
+          <indexterm>
+            <primary
+>Einstellungen</primary>
+            <secondary
+>Kurzbefehle</secondary>
+          </indexterm>
+          <para
+>Öffnet einen Dialog zur Einrichtung der Kurzbefehle für &krusader;.</para>
+          <para
+>Mit den Knöpfen <guibutton
+>Kurzbefehle importieren</guibutton
+> und <guibutton
+>Kurzbefehle exportieren</guibutton
+> können Sie Profile laden oder speichern. Damit können Sie in &krusader; Profile von <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+> oder eigenen Kurzbefehle verwenden. Die einzige Einschränkung besteht darin, dass die globalen Kurzbefehle von &plasma; und einige Kurzbefehle in &krusader; noch nicht geändert werden können, ebenso wie einige Kurzbefehle in den Commandern, die entweder nicht in &krusader; vorhanden sind oder nicht benötigt werden. Die Kurzbefehle werden in <filename
+>/usr/share/krusader</filename
+> gespeichert <filename
+>foo.keymap.info</filename
+> enthält eine Beschreibung, <filename
+>foo.keymap</filename
+> ist eine „ini“-Datei mit den Kurzbefehlen. Bis &krusader;-1.70.1 war dies eine binäre Datei, aber &krusader; ist rückwärts kompatibel und kann diese Format importieren. Wenn eine Textdatei <filename
+>*.keymap.info</filename
+>, wird sie durch &krusader; angezeigt und zeigt zusätzliche Informationen über die geladene Kurzbefehldatei. Nun können Sie abbrechen, ohne die vorgeschlagene Datei zu importieren.</para>
+          <tip>
+            <para
+>Eine Datei mit Kurzbefehlen von <trademark class="copyright"
+>Total Commander</trademark
+> ist vorhanden. Bitte <link linkend="help_krusader"
+>laden Sie Ihre bevorzugten Schemata für Tastaturbefehle hoch</link
+>, damit Sie für die &krusader;-Gemeinschaft verfügbar sind. Danke.</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Werkzeugleisten einrichten ...</guimenuitem
+>  </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet einen Dialog, in dem Sie die <link linkend="mainwindow"
+>Haupt-Werkzeugleiste</link
+> oder die <link linkend="actions_toolbar"
+>Aktionen-Werkzeugleiste</link
+> einrichten können. Sie können au Knöpfe für Ihre bevorzugten <link linkend="useractions"
+>Benutzeraktionen</link
+> zur gewünschten Werkzeugleiste hinzufügen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>&krusader; einrichten ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öffnet den <link linkend="konfigurator"
+>Einrichtungsdialog</link
+> für &krusader;.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="help-menu">
+    <title
+>Das Menü <guimenu
+>Hilfe</guimenu
+></title>
+    <para
+>Zusätzlich hat &krusader; die bekannten &kde;-Einträge im Menü <guimenu
+>Hilfe</guimenu
+>, weitere Informationen dazu finden Sie im Abschnitt über das Menü <ulink url="help:/fundamentals/menus.html#menus-help"
+>Hilfe</ulink
+> der &kde;-Grundlagen. </para>
+  </sect1>
+</chapter>

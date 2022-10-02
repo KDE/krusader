@@ -1,0 +1,506 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<chapter id="basic-functions">
+  <title
+>Funções Básicas</title>
+  <sect1 id="controls">
+    <title
+>Controlos</title>
+    <sect2 id="control-general">
+      <title
+>Geral</title>
+      <para
+>Esta é uma secção relativamente curta, mas importante, que irá explicar os detalhes de controlo do &krusader;. Esta secção não tenta cobrir todas as combinações de teclas por duas razões: <orderedlist numeration="arabic"
+> <listitem
+> <para
+>existem demasiadas, de facto</para
+> </listitem
+> <listitem
+> <para
+>a maioria das acções do &krusader; são configuráveis na <link linkend="konfig-panel"
+>página Painel do Konfigurador</link
+></para
+> </listitem
+> </orderedlist
+>Só iremos mencionar os atalhos mais importantes com a configuração predefinida, mas tenha em mente que a maioria das <link linkend="key_bindings"
+>Combinações de Teclas</link
+> são configuráveis. Se descobrir que usa um determinado comando com frequência e deseja saber o atalho para esse comando, ou se o quiser mudar de facto, então veja a página de <link linkend="key_bindings"
+>Combinações de Teclas</link
+> da janela para <link linkend="key_bindings"
+>Configurar os Atalhos</link
+> (<menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Configurar os Atalhos...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="moving-around">
+      <title
+>Movimentar-se</title>
+      <para
+>Entendemos por 'movimentar-se' a transferência do foco do teclado e do rato entre as diferentes partes da <link linkend="mainwindow"
+>janela principal</link
+> do &krusader;. O foco poderá estar num de cinco locais: o Painel Esquerdo ou Direito, a Barra do Menu, a Linha de Comandos ou o Emulador de Terminal. O painel que estiver em primeiro plano é chamado de Painel Activo. Um painel activo irá permanecer assim até que outro painel fique em primeiro plano (&ie;: se o Painel Esquerdo estava activo e se você carregou na Linha de Comandos - então o Painel Esquerdo irá continuar como painel activo). Terá de mudar deliberadamente o painel que está activo.</para>
+      <para
+>A forma mais comum de transferir o foco para um painel específico é usar o rato para carregar nesse painel. Contudo, deverá estar ciente do seguinte: <itemizedlist>
+        <listitem>
+          <para
+>Carregar na barra de ferramentas, na barra de teclas FN ou na barra de estado <emphasis
+>não</emphasis
+> muda o item em primeiro plano.</para>
+        </listitem>
+        <!--
+   Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
+   <listitem>
+     <para
+>The display part of the Quick View Panel does not accept clicks so you should click on the
+           Location Toolbar of this panel if you want it to have focus.</para>
+   </listitem>
+-->
+        <listitem>
+          <para
+>Se carregar nos botões de <guibutton
+>Executar no Modo de Terminal</guibutton
+> da linha de comandos, não irá passar o foco, pelo que terá de carregar no campo de texto.</para>
+        </listitem>
+        <listitem>
+          <para
+>Quando escolher um menu, a barra do menu ficará em primeiro plano. Irá permanecer neste estado até que escolha um comando - o foco irá voltar ao dono anterior.</para>
+        </listitem>
+      </itemizedlist
+></para>
+      <para
+>Existem obviamente outras formas de usar o teclado para mudar o foco: <itemizedlist>
+        <listitem>
+          <para
+>A tecla &Tab; irá mudar de painéis, caso um deles esteja em primeiro plano, ou então rodar todos os comandos de um menu, caso a barra de menu esteja activa.</para>
+        </listitem>
+        <listitem>
+          <para
+>A combinação <keycombo action="simul"
+>&Ctrl; <keycap
+>Baixo</keycap
+></keycombo
+> levá-lo-á do Painel Activo para a Linha de Comandos ou para o Emulador de Terminal, assim como a <keycombo action="simul"
+>&Ctrl; <keycap
+>Cima</keycap
+></keycombo
+> o levará de volta da Linha de Comandos para o Painel Activo.</para>
+        </listitem>
+        <listitem>
+          <para
+>A tecla &Esc; fará com que o menu passe o foco, se o tiver, para o painel activo anterior.</para>
+        </listitem>
+        <listitem>
+          <para
+>Se por acaso estiver dentro do Emulador de Terminal, poderá usar a tecla &Tab;, ou o rato, para navegar para um Painel Activo.</para>
+        </listitem>
+        <listitem>
+          <para
+>Se carregar em <keycombo action="simul"
+>&Alt; <keycap
+>Letra Sublinhada"</keycap
+></keycombo
+> no menu, irá abrir esse menu (a menos que esta combinação seja uma "Tecla Reservada", usada por uma das acções do &krusader;).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="selecting-files">
+      <title
+>Selecção</title>
+      <note>
+        <para
+>O &krusader; oferece 4 <link linkend="selection_modes"
+>Modos de Selecção</link
+>, sendo que apenas o Modo de Selecção do &krusader; será explicado aqui.</para>
+      </note>
+      <para
+>A selecção é uma aptidão que necessita de dominar para tirar o máximo partido do &krusader;. Dado que o Painel em Árvore só lhe permite seleccionar uma pasta de cada vez, este parágrafo explica principalmente como seleccionar os ficheiros na lista do Painel da Lista.</para>
+      <para
+>Mover o cursor é simples. Carregue com o botão esquerdo sobre um ficheiro ou pasta (aqui referido como "elementos", incluindo os ficheiros E pastas) para o seleccionar. Aqui estão algumas referências úteis que tornarão o &krusader; ainda mais simples de usar (assumindo que está a usar o Modo de Selecção com Rato do &krusader;): <itemizedlist>
+        <listitem>
+          <para
+>As teclas <keycap
+>Espaço</keycap
+> e <keycap
+>Insert</keycap
+> irão comutar a selecção do ficheiro sob o cursor, não afectando a selecção dos outros ficheiros/pastas, pelo que o cursor irá descer uma posição.</para>
+        </listitem>
+        <listitem>
+          <para
+>Se carregar com o <keycap
+>botão esquerdo</keycap
+> sobre um ficheiro, irá seleccionar ou deseleccionar todas as fotos seleccionadas anteriormente.</para>
+        </listitem>
+        <listitem>
+          <para
+>Se carregar em <keycombo action="simul"
+>&Ctrl; <keycap
+>Botão Esquerdo</keycap
+></keycombo
+> irá comutar a selecção do ficheiro sob o cursor, sem afectar a selecção dos outros ficheiros/pastas.</para>
+        </listitem>
+        <listitem>
+          <para
+>Se carregar em <keycombo action="simul"
+>&Shift; <keycap
+>Botão Esquerdo</keycap
+></keycombo
+> irá seleccionar todos os elementos entre a posição anterior do cursor e a nova.</para>
+        </listitem>
+        <listitem>
+          <para
+>O <keycombo action="simul"
+>&Shift; <keycap
+>Home</keycap
+></keycombo
+> selecciona tudo acima do cursor (e desliga tudo o que estiver abaixo do mesmo, se seleccionado).</para>
+        </listitem>
+        <listitem>
+          <para
+>O <keycombo action="simul"
+>&Shift; <keycap
+>End</keycap
+></keycombo
+> selecciona tudo abaixo do cursor (e desliga tudo o que estiver acima do mesmo, se seleccionado).</para>
+        </listitem>
+        <listitem>
+          <para
+>Não é possível seleccionar o item "..".</para>
+        </listitem>
+        <listitem>
+          <para
+>O menu <link linkend="edit-menu"
+>Editar</link
+> poderá oferecer mais formas de seleccionar os seus ficheiros.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="executing_commands">
+      <title
+>Executar os Comandos</title>
+      <para
+>Não há muito a dizer aqui; tudo o que tem a fazer é seleccionar alguns ficheiros (se não o fizer, o &krusader; irá funcionar sobre os ficheiros ou pastas que estiverem em primeiro plano), escolher um <link linkend="menu-commands"
+>comando</link
+> do menu ou usar uma combinação de teclas (ou o menu do botão direito), para que o comando seleccionado seja executado. Veja também a secção <link linkend="executing_files"
+>Executar os Ficheiros</link
+>.</para>
+    </sect2>
+    <sect2 id="quicksearch">
+      <title
+>Pesquisa rápida</title>
+      <!-- Thanks to Heiner Eichmann -->
+      <para
+>Esta funcionalidade irá aplicar uma pesquisa rápida pelo nome do ficheiro no painel de lista activo.</para>
+      <para
+>Escreva <keycap
+>x</keycap
+>(uma letra) para fazer uma pesquisa rápida no painel de lista activo, à procura de um ficheiro que comece por "x". Irá aparecer uma janela de pesquisa rápida por baixo do painel de lista activo. Escreva os primeiros caracteres do nome do ficheiro desejado (é permitido mais que um carácter), para que o cursor salte para o nome desse ficheiro (se existir); &eg;, escreva "ab" para procurar por um ficheiro que comece por "ab". Os cursores <keycap
+>Cima/Baixo</keycap
+> irão saltar para a ocorrência anterior ou seguinte. O &Esc; irá fechar a linha de pesquisa rápida. O cursor irá permanecer no último ficheiro encontrado. A Pesquisa Rápida suporta as <ulink url="http://en.wikipedia.org/wiki/Regular_expression"
+>expressões regulares</ulink
+> para procurar pelos ficheiros.</para>
+      <note>
+        <para
+>Se carregar em <keycombo action="simul"
+>&Alt; <keycap
+>xpto</keycap
+></keycombo
+>, a combinação de teclas será executada. Se não existir nenhuma combinação de teclas configurada, a restante letra <keycap
+>xpto</keycap
+> será usada na pesquisa rápida.</para>
+      </note>
+      <para
+>Use a janela para <link linkend="key_bindings"
+>Configurar os Atalhos</link
+> (<menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Configurar os Atalhos...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickfilter">
+      <title
+>Filtragem rápida</title>
+      <para
+>Esta funcionalidade irá aplicar uma filtragem rápida pelo nome do ficheiro no painel de lista activo.</para>
+      <para
+>Carregue em <keycombo
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+> para abrir a barra de Filtragem Rápida. Escreva <keycap
+>xpto</keycap
+> para retirar, do painel activo, todos os ficheiros que não contêm "xpto" nos seus nomes. Poderá usar caracteres especiais para a filtragem. &eg; use "a*b" to para filtrar os ficheiros que contêm "a" e "b" nos seus nomes. A Filtragem Rápida segue a <link linkend="konfig-panel-general"
+>configuração da distinção de maiúsculas</link
+> da Pesquisa Rápida.</para>
+      <para
+>Se carregar em &Enter; no modo de Filtragem Rápida, coloca o painel em primeiro plano; quando estiver o painel ou a Filtragem Rápida em primeiro plano, o &Esc; fecha esta. </para>
+      <para
+>Para mudar os atalhos predefinidos da filtragem rápida, use a janela para <link linkend="key_bindings"
+>Configurar os Atalhos</link
+> (<menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Configurar os Atalhos...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="context-menu">
+      <title
+>Menu de Contexto</title>
+      <para
+>O &krusader; tem muitos menus de contexto que lhe permitem fazer operações rápidas com o rato sendo que, ao carregar com o botão direito do rato, irá abrir o menu de contexto (dependendo da sua configuração dos <link linkend="selection_modes"
+>Modos de Selecção</link
+>). Esta lista dá uma ideia geral sobre os menus de contexto mais importantes. Use-os para descobrir os comandos disponíveis. <itemizedlist>
+        <listitem>
+          <para
+><link linkend="mainwindow"
+>Barra Principal</link
+> (orientação, posição do texto, tamanho dos ícones)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="list_panel"
+>Painel da Lista</link
+> sobre um ficheiro ou pasta</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="cmdline"
+>Linha de Comandos</link
+> (desfazer, colar, completação do texto...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="termemu"
+>Emulador de terminal</link
+> (enviar um sinal, tipo de letra, histórico...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="folder-tabs"
+>Páginas de pastas</link
+> (nova, duplicar, fechar)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="krusearcher"
+>KruSearcher</link
+> Lista de ficheiros dos resultados da pesquisa (<keycap
+>F3</keycap
+> Ver, <keycap
+>F4</keycap
+> Editar)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="mount-man"
+>MountMan</link
+> (desmontar, formatar...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="synchronizer"
+>Sincronizar as Pastas</link
+> Lista de ficheiros (desactivado na altura da compilação por omissão)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Acções do Utilizador</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+>As acções do botão direito do &konqueror; são apresentadas no &krusader;</para>
+        </listitem>
+        <listitem>
+          <para
+>Mostrar/esconder os <link linkend="list_panel"
+>Cabeçalhos de Colunas</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="bookman"
+>Favoritos</link
+> activar/desactivar os favoritos permanentes</para>
+        </listitem>
+        <listitem>
+          <para
+>...</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="basic">
+    <title
+>Gestão Básica de Ficheiros</title>
+    <sect2 id="executing_files">
+      <title
+>Executar os Ficheiros</title>
+      <para
+>Só poderá executar ficheiros no painel de lista activo. Para <keycap
+>executar</keycap
+> um ficheiro, basta fazer <keycap
+>(duplo-)click nele ou carregar em Enter</keycap
+>, quando estiver sob o cursor da lista. O &krusader; abri-lo-á na aplicação predefinida para este tipo de ficheiro (imagem, ficheiro de texto...) ou então o ficheiro será executado (programa, binário...). Se quiser usar outra aplicação para abrir o ficheiro, carregue com o &RMB; sobre esse ficheiro e vá ao submenu <guisubmenu
+>Abrir com</guisubmenu
+>, o qual lhe irá oferecer mais opções. O &krusader; é compatível com o gestor de ficheiros predefinido do &plasma; para todos os tipos de ficheiros, excepto os pacotes, que são abertos dentro do painel do &krusader; e não numa aplicação externa. Veja a <link linkend="konfig-archives"
+>página de Pacotes no Konfigurador</link
+> para mais detalhes.</para>
+    </sect2>
+    <sect2 id="copying">
+      <title
+>Copiar e Mover</title>
+      <para
+>Para copiar ou mover ficheiros/pastas, basta seleccioná-los e carregar em <keycap
+>F5</keycap
+> para copiar ou em <keycap
+>F6</keycap
+> para os mover. O &krusader; tenta preservar a hora da modificação. Ao copiar um ficheiro, o dono é alterado para o utilizador que copia o ficheiro, o grupo muda para o grupo predefinido desse utilizador e as permissões são preservadas. O dono, o grupo e as permissões são preservadas ao mover um ficheiro ou pasta. Ao copiar ou mover os ficheiros/pastas, irá aparecer uma janela que lhe permite escolher o destino da operação. O destino por omissão é a pasta navegada pelo outro painel. Se indicar um &URL; parcial, o &krusader; irá usar a pasta do painel actual como &URL; de base.</para>
+      <figure id="screenshot-copyjob" float="1">
+        <title
+>Janela de cópia</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="copyjob.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Janela de cópia</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+    </sect2>
+    <sect2 id="queue">
+      <title
+>Gestor da fila</title
+> 
+      <para
+>As operações para copiar, mover e descomprimir podem ser colocadas numa fila de espera. Depois de seleccionar a opção para copiar ou mover, carregue em <keycap
+>F2</keycap
+> para a usar. Depois de seleccionar a opção para comprimir, ou descomprimir, também poderá carregar em <keycap
+>F2</keycap
+> para a usar. Poderá também usar as combinações directas: copiar pela fila <keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo
+> , mover pela fila <keycombo action="simul"
+>&Shift;<keycap
+>F6</keycap
+></keycombo
+> . A fila é usada para a cópia um-a-um. Por exemplo, se tiver uma caneta USB (que seja lenta) e quiser copiar 40 ficheiros para ela, é muito melhor copiá-los um-a-um em vez de copiar 40 ficheiros em paralelo. É por isso que a fila é importante. Se comprimir/descomprimir 40 ficheiros em paralelo, irá sobrecarregar o seu computador, mas se os adicionar a uma fila, é muito mais útil. </para>
+      <para
+>É possível mudar o <link linkend="job-queue-mode"
+>modo do Gestor da Fila</link
+> com a opção do menu <menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Modo do Gestor da Fila</guimenuitem
+></menuchoice
+>. </para>
+    </sect2>
+    <sect2 id="deleting">
+      <title
+>Apagar - Enviar para o Caixote do Lixo do &plasma;</title>
+      <para
+>A remoção de ficheiros/pastas é feita com a selecção dos mesmos e carregando em <keycap
+>F8</keycap
+> ou em <keycap
+>Delete</keycap
+>. Por <link linkend="konfig-general"
+>omissão</link
+>, estes serão enviados para o Lixo do &plasma;. Poderá abrir o Lixo do &plasma; com o ícone de Lixo na <link linkend="main_toolbar"
+>Barra Principal</link
+> ou com o endereço <filename
+>trash:/</filename
+>. A nível físico, o Lixo do &plasma; localiza-se em <filename
+>~/.local/share/Trash/</filename
+> ou <filename
+>Trash</filename
+> na sub-pasta da pasta do utilizador, que poderá ser determinada com a execução do comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. A combinação <keycombo action="simul"
+>&Shift; <keycap
+>Delete</keycap
+></keycombo
+> irá apagar o ficheiro de forma permanente. Irá aparecer uma janela a pedir a sua confirmação e a mesma avisá-lo-á quando tentar apagar pastas não vazias. Obviamente, só serão executadas as operações para as quais tiver permissões por parte do Sistema Operativo - será notificado em caso contrário. Se não quiser ver as janelas de confirmação, podê-las-á desactivar na <link linkend="konfig-advanced"
+>página Avançado do Konfigurador</link
+>.</para>
+    </sect2>
+    <sect2 id="shred">
+      <title
+>Destruir os Ficheiros</title>
+      <para
+>A destruição foi removida do &kde; 4 (e, por consequência, do &krusader;-2 para o &kde; 4). A razão principal mais provável é que a destruição é dependente do sistema de ficheiros e, mesmo que sobrescreva o ficheiro 100 vezes, não é garantido que venha a ser apagado de facto do disco. Uma citação do Kgpg refere: <quote
+>A funcionalidade de destruição foi removida da biblioteca do KDE. O Kgpg não irá mais suportar esta funcionalidade. Os sistemas de ficheiros modernos são transaccionais. Como tal, a funcionalidade de destruição deverá ser implementada no sistema de ficheiros, não no Kgpg.</quote
+>. Porém, poderá querer usar uma <link linkend="useractions"
+>acção de utilizador</link
+> de destruição adequada para o seu sistema de ficheiros. Porém, tenha em mente que, se quiser ter 100% de certeza de que é impossível que alguém consiga ler um ficheiro apagado, você terá de destruir o seu 'hardware' de disco rígido ... </para>
+    </sect2>
+    <sect2 id="renaming">
+      <title
+>Mudar o Nome dos Ficheiros, Criar Pastas e Lidar com Ligações Simbólicas</title>
+      <para
+>Mude o nome do ficheiro com a tecla <keycap
+>F2</keycap
+> ou com dois 'clicks' de rato simples. Se só precisar de mudar o nome e não a extensão, poderá configurar essa opção na <link linkend="konfig-general-atomic"
+>página Geral do Konfigurador</link
+>. <keycap
+>Crie uma nova pasta</keycap
+> com a tecla <keycap
+>F7</keycap
+>. Se <keycap
+>carregar com o botão direito num ficheiro normal</keycap
+>, irá ter a opção para criar uma <menuchoice
+><guisubmenu
+>Tratamento de Ligações</guisubmenu
+><guimenuitem
+>Nova Ligação Simbólica</guimenuitem
+></menuchoice
+>. Uma janela pedir-lhe-á para indicar o nome da ligação. Esse nome irá apontar par ao ficheiro/pasta onde carregou com o botão direito. Se o ficheiro onde carregou com o botão direito for também uma ligação simbólica, terá ainda a opção  <menuchoice
+><guisubmenu
+>Tratamento de Ligações</guisubmenu
+><guimenuitem
+>Redireccionar a ligação</guimenuitem
+></menuchoice
+>, a qual lhe permite mudar o destino da ligação.</para>
+    </sect2>
+    <sect2 id="viewing">
+      <title
+>Ver e Editar os Ficheiros</title>
+      <para
+>O <link linkend="krviewer"
+>KrViewer</link
+> tem um capítulo próprio para si.</para>
+    </sect2>
+  </sect1>
+&archives; </chapter>

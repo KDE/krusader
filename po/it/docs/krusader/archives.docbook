@@ -1,0 +1,130 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="archives">
+  <title
+>Gestire gli archivi</title>
+  <indexterm>
+    <primary
+>Archivi</primary>
+  </indexterm>
+  <sect2 id="browsing-archives">
+    <title
+>Navigare all'interno degli archivi</title>
+    <para
+>Grazie ai <link linkend="vfs"
+>File system virtuali (VFS)</link
+> è possibile navigare all'interno di un archivio come se si trattasse di una cartella. Allo stato attuale, &krusader; supporta i seguenti formati di archiviazione: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip e7-zip e i seguenti archivi protetti da password: arj, ace, rar and zip. Le password possono essere salvate in <application
+>KWallet</application
+>. Attenzione! Il supporto alla gestione degli archivi deve essere <link linkend="konfig-archives"
+>configurato</link
+> correttamente in Konfigurator. Puoi aprire un archivio premendo il tasto &Enter;, facendo (doppio) clic su di esso o con il tasto &Right;. &krusader; supporta anche gli <emphasis role="bold"
+>archivi nascosti</emphasis
+>, ossia gli archivi rinominati con un'estensione *fittizia*; <trademark class="registered"
+>OpenOffice</trademark
+>, ad esempio, utilizza archivi zip con le seguenti estensioni: <literal role="extension"
+>.odt</literal
+>, <literal role="extension"
+>.sxw</literal
+> e <literal role="extension"
+>.odw</literal
+>. Premendo &Enter; si aprirà il documento <trademark class="registered"
+>OpenOffice</trademark
+> mentre con il tasto &Right; l'archivio verrà aperto. Un altro esempio si ha nella piattaforma J2EE in cui l'estensione <literal role="extension"
+>.jar</literal
+> indica un archivio zip. Dal momento che &krusader; rileva automaticamente i tipi di archivio supportati, questi ultimi verranno aperto con il tasto &Right; anche se il loro tipo &MIME; è diverso. Vi sono, tuttavia, alcune restrizioni: <itemizedlist>
+      <listitem>
+        <para
+>Non tutte le funzioni sono supportate per tutti i tipi di archivio (non è possibile cancellare i file dagli archivi ace o rar).</para>
+      </listitem>
+      <listitem>
+        <para
+>I permessi all'interno degli archivi sono gli stessi che si hanno per l'intero archivio.</para>
+      </listitem>
+      <listitem>
+        <para
+>La riga di comando (se visualizzata) non seguirà i cambiamenti di percorso all'interno dell'archivio ma rimarrà fissa sul percorso in cui si trova quest'ultimo.</para>
+      </listitem>
+      <listitem>
+        <para
+>Prima che venga eseguita una qualsiasi operazione su file e cartelle contenuti in un archivio, è necessario estrarli. L'archivio sarà poi nuovamente compresso alla chiusura del programma o se &krusader; rileva che i file estratti hanno subito delle modifiche.</para>
+      </listitem>
+      <listitem>
+        <para
+>La compressione e l'estrazione sono implementate come <quote
+>operazioni bloccanti</quote
+> per le quali viene visualizzata una barra di avanzamento. Questo potrebbe non essere più vero in futuro, perché è in programma di aumentare il numero delle operazioni eseguite in background.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="unpacking-archives">
+    <title
+>Estrarre i file</title>
+    <para
+>Ci sono due modi per estrarre i file dagli archivi: </para>
+    <para
+>Per estrarre un archivio completo, spostati nella posizione in cui si trova l'archivio, selezionalo e vai su <menuchoice
+> <guimenu
+> File</guimenu
+> <guimenuitem
+> Estrai...</guimenuitem
+> </menuchoice
+> o premi <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+>. &krusader; ti chiederà dove estrarre i file. Il percorso predefinito è quello del pannello inattivo. Se l'operazione non viene annullata, &krusader; tenterà di estrarre tutti i file selezionati nel percorso del pannello inattivo.</para>
+    <para
+>Per estrarre solo una parte dell'archivio, <link linkend="browsing-archives"
+>naviga</link
+> all'interno di esso e copia gli elementi da estrarre nel nuovo percorso come se fossero dei <quote
+>normali</quote
+> file. Estrarre i singoli file da dentro un archivio (uno ad uno) richiede più del tempo che sarebbe necessario per estrarre l'intero archivio con il primo sistema. L'operazione di estrazione può essere aggiunta alla <link linkend="queue"
+>coda</link
+> di elaborazione.</para>
+  </sect2>
+  <sect2 id="pack-archive">
+    <title
+>Comprimere i file</title>
+    <para
+>Per creare un nuovo archivio, seleziona gli elementi da comprimere nel pannello attivo e vai su <menuchoice
+> <guimenu
+>File</guimenu
+> <guimenuitem
+>Comprimi...</guimenuitem
+> </menuchoice
+> o premi <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+>. Si aprirà una finestra in cui potrai scegliere il nome e il percorso del nuovo archivio. Seleziona lo strumento di compressione da usare fra le possibili <link linkend="konfig-archives"
+>estensioni di file supportate</link
+>.</para>
+    <para
+>Per aggiungere dei file a un archivio esistente, apri l'archivio in un pannello, i file da copiare nell'altro e copia i file all'interno dell'archivio come se fosse una <quote
+>normale</quote
+> cartella. L'operazione di compressione può essere aggiunta alla <link linkend="queue"
+>coda</link
+> di elaborazione.</para>
+  </sect2>
+  <sect2 id="test-archive">
+    <title
+>Effettuare il test degli archivi</title>
+    <para
+>&krusader; si rifiuterà di gestire archivi danneggiati perché questo potrebbe causare la perdita di dati. Se aprendo un archivio viene visualizzato un messaggio di errore o se per qualsiasi motivo pensi che ci possa essere qualche problema, è consigliabile effettuare un test dell'archivio prima di usarlo. Per fare ciò, posizionati nel percorso in cui si trova l'archivio e selezionalo. In seguito vai su <menuchoice
+> <guimenu
+>File</guimenu
+> <guimenuitem
+>Prova archivio</guimenuitem
+> </menuchoice
+> o premi <keycombo action="simul"
+>&Alt; <keycap
+>E</keycap
+></keycombo
+>. &krusader; effettuerà un test e visualizzerà una notifica dell'esito positivo o negativo del test di integrità.</para>
+  </sect2>
+</sect1>

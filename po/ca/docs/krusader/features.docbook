@@ -1,0 +1,678 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="features">
+<title
+>Característiques</title>
+<indexterm>
+  <primary
+>Característiques</primary>
+</indexterm>
+<note>
+  <para
+>Aquí es ressalten les característiques i millores més importants, aquesta llista seria massa llarga si haguéssim d'incloure <emphasis
+>totes</emphasis
+> les característiques i millores. En aquesta documentació encara descobrireu més característiques així com als fitxers <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+><filename
+>Changelog</filename
+></ulink
+> i <ulink url="https://commits.kde.org/krusader?path=NEWS"
+><filename
+>NEWS</filename
+></ulink
+>.</para>
+</note>
+<para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Característiques <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>del gestor de fitxers ortodox (OFM)</ulink
+></title>
+          <listitem>
+            <para
+>Dos <link linkend="panels"
+>plafons OFM</link
+> potents i fàcils d'emprar.</para>
+          </listitem>
+          <listitem>
+            <para
+>A la part inferior hi ha una <link linkend="cmdline"
+>línia d'ordres</link
+> i un <link linkend="termemu"
+>emulador de terminal</link
+> opcional.</para>
+          </listitem>
+          <listitem>
+            <para
+>Una forta orientació al <link linkend="keyboard-commands"
+>teclat</link
+> i la capacitat de realitzar totes les funcions sense el ratolí.</para>
+          </listitem>
+          <listitem>
+            <para
+>La invocació dependrà del context dels scripts i programes, &pex;, fer clic del ratolí/prémer la tecla &Intro; (executa o obre amb l'aplicació associada), <keycap
+>F3</keycap
+> (visualitza) i <keycap
+>F4</keycap
+> (edita).</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="useractions"
+>Menú d'usuari</link
+>, creeu el vostre propi menú personalitzat.</para>
+          </listitem>
+          <listitem>
+            <para
+>Historial, &pex;, <link linkend="folderhistory"
+>Historial de carpetes</link
+>, <link linkend="popular-urls"
+>Els &URL; populars</link
+>, &etc;</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="vfs"
+>Sistemes de fitxers virtuals (VFS)</link
+>, &pex;, per a <link linkend="remote-connections"
+>connexions remotes</link
+>, <link linkend="archives"
+>arxius</link
+>, resultat de la cerca, sincronitzador.</para>
+          </listitem>
+          <listitem>
+            <para
+>Un potent <link linkend="krviewer"
+>visualitzador i editor</link
+> intern mitjançant les KParts que admet gairebé tots els formats de fitxer.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Mòdul de cerca avançada</link
+>: cerca als arxius i cerca per contingut en els sistemes de fitxers remots.</para>
+          </listitem>
+          <listitem>
+            <para
+>Diversos modes de vista del plafó a través de la <link linkend="sidebar"
+>barra lateral</link
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Eines del &krusader;</title>
+          <listitem>
+            <para
+><link linkend="remote-connections"
+>Connexions remotes</link
+>: &FTP;/SAMBA amb suport SFTP/SCP mitjançant els esclaus KIO</para>
+          </listitem>
+          <listitem>
+            <para
+>Frontal de la &IGU; del «<link linkend="locate"
+>locate</link
+>»</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="synchronizer"
+>Sincronitza les carpetes</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="mount-man"
+>Gestor de muntatge</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="diskusage"
+>Ús del disc</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="root-mode"
+>Mode administrador</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Característiques del &krusader;</title>
+          <listitem>
+            <para
+>Maneig dels arxius: navegació, desempaquetat, empaquetat, prova. <link linkend="archives"
+>Arxius</link
+> admesos: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip i 7-zip.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="checksum"
+>Mecanisme de creació i verificació de la suma de verificació</link
+>, el qual admet md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv i crc.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="calculate"
+>Calcula l'espai ocupat</link
+> pels fitxers i carpetes, arxius i sistemes de fitxers remots.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-dir"
+>Comparació</link
+> i <link linkend="view-menu"
+>filtratge</link
+> de la carpeta.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-content"
+>Compara els fitxers per contingut</link
+> mitjançant programes externs de diff com el &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> o <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="multi_rename"
+>Canvia el nom</link
+> dels fitxers i carpetes mitjançant el <ulink url="https://www.kde.org/applications/utilities/krename/"
+><application
+>KRename</application
+></ulink
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Admet totalment arrossegar i deixar anar: s'arrossega directament des del &konqueror; cap a un fitxer <literal role="extension"
+>.tar.gz</literal
+>, des del plafó del &krusader; cap a dins de la paperera, de l'escriptori o cap al &konqueror;</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-advanced"
+>Conserva la data</link
+> per a les destinacions locals en les operacions de copiar/moure.</para>
+          </listitem>
+          <listitem>
+            <para
+><keycap
+>F9</keycap
+> obre una <link linkend="tools-menu"
+>finestra de terminal</link
+> en la carpeta actual.</para>
+          </listitem>
+          <listitem>
+            <para
+>Edita amb facilitat els <link linkend="file-menu"
+>permisos i propietat dels fitxers</link
+>, així com els <link linkend="konfig-panel-view"
+>permisos numèrics</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Selecciona els filtres</link
+> emprats en &pex;, el Sincronitzador i el KruSearcher.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="jump_back"
+>Torna a un punt de retorn</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-general"
+>Reconeixement del tipus &MIME;</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="folder-tabs"
+>Plafons en pestanyes</link
+> i <link linkend="krviewer"
+>Editor/Visualitzador en pestanyes</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="quicksearch"
+>Cerca ràpida, selecciona i filtra</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="splitter"
+>Divisor del fitxer</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Gestos del ratolí </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="list_panel"
+>Navegació ràpida</link
+> a la Barra d'eines de localització.</para>
+          </listitem>
+          <listitem>
+            <para
+>La funció d'ajuda «Què és això?» a favor dels consells d'eina quan aquesta és raonable.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_toolbar"
+>Navegació sincronitzada</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Personalitzeu el &krusader; a les vostres necessitats</title>
+          <listitem>
+            <para
+>El <link linkend="konfig-startup"
+>Konfigurador</link
+> és el centre de configuració del &krusader;.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="mainwindow"
+>Barra d'eines principal</link
+>, <link linkend="actions_toolbar"
+>Barra d'eines d'accions</link
+> per a les accions d'usuari i les adreces d'interès.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="key_bindings"
+>Lligams de tecla</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="konfig-color"
+>Colors</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_profiles"
+>Perfils del plafó</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="bookman"
+>Gestor d'adreces d'interès</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="selection_modes"
+>Modes de selecció</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Es poden <link linkend="konfig-startup"
+>configurar</link
+> moltes més característiques de la manera que més us agradi.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      <itemizedlist>
+        <title
+>Extensions del &krusader;</title>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Accions d'usuari</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="konfig-color"
+>Perfils de color</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="configure-shortcuts"
+>Perfils dels lligams de tecla</link
+></para>
+        </listitem>
+      </itemizedlist
+>Baixeu i pugeu les vostres extensions preferides del &krusader; a la <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+<para>
+  <itemizedlist>
+    <title
+>Noves característiques amb el llançament del &krusader; 1.80.0 <quote
+>Final 3rd Stone</quote
+></title>
+    <listitem>
+      <para
+>Millores amb els arxius <itemizedlist>
+        <listitem>
+          <para
+><link linkend="archives"
+>Admet les contrasenyes</link
+> per a: arj, ace, rar i zip. Les contrasenyes es poden emmagatzemar a la <application
+>Kwallet</application
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>Admet 7-zip</link
+>, per a les aplicacions externes <application
+>7z</application
+> i <application
+>7za</application
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>Admet la detecció automàtica</link
+>, el qual permet obrir els <quote
+>arxius ocults</quote
+> (&pex;, documents de l'<trademark class="registered"
+>OpenOffice</trademark
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+>Ara, el fet d'empaquetar/desempaquetar resta en segon pla.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="list_panel"
+>Vista breu</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Moltes millores en el sistema <link linkend="useractions"
+>Accions d'usuari</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Innumerables millores en la usabilitat, especialment en el Konfigurador i la barra de menús, la qual s'ha tornat a ordenar.</para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="media_button"
+>Botó Suports</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Copiar/Moure: <link linkend="copying"
+>conserva tots els atributs</link
+> (temps, propietari, grup).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-color"
+>Ajusta els colors del plafó inactiu</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Canvia el nom d'un nom de fitxer sense extensió, mode instància única, inicia a la safata del sistema, marqueu-ho al <link linkend="konfigurator"
+>Konfigurador</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="list_panel"
+>Extensions atòmiques</link
+> configurables, de manera que les extensions com <literal role="extension"
+>.tar.gz</literal
+> es mostraran com una part a la columna <guilabel
+>Ext</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Menú contextual per a les adreces d'interès i habilitar/inhabilitar les adreces d'interès especials.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="menu-commands"
+>Barra de menús</link
+> redissenyada</para>
+    </listitem>
+    <listitem>
+      <para
+>Millores a l'<link linkend="termemu"
+>emulador de terminal</link
+> que aporten noves funcions, nous usos i una nova aparença.</para>
+    </listitem>
+    <listitem>
+      <para
+>Millores del <link linkend="synchronizer"
+>sincronitzador</link
+> i els fils en paral·lel per als servidors d'&FTP; lents.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-startup"
+>Mode d'instància única</link
+>, <link linkend="konfig-startup"
+>s'inicia a la safata del sistema</link
+></para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="context-menu"
+>Menú contextual per a les adreces d'interès permanents.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Suport complet per als <link linkend="acl"
+>permisos ACL</link
+>, com les propietats, conserva els atributs, sincronitzador i altres.</para>
+    </listitem>
+    <listitem>
+      <para
+>Resultat del cercador, resultat de la ubicació, resultat del sincronitzador: admet arrossegar elements i copiar al porta-retalls (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+>Moltes esmenes d'errors.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Noves característiques amb el llançament del &krusader; 1.90.0 <quote
+>Power Stone</quote
+></title>
+    <listitem>
+      <para
+>Últim llançament per al &kde; 3.x amb una gran col·lecció d'Accions d'usuari. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Noves característiques amb el llançament del &krusader; 2.0.0 <quote
+>Mars Pathfinder</quote
+></title>
+    <listitem>
+      <para
+>El primer llançament per a la sèrie &kde; 4.x </para>
+    </listitem>
+    <listitem>
+      <para
+>El &krusader; funciona al &Windows;! (Però encara no és tan útil i poderós com sota &Linux;) </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="queue"
+>Gestor de la cua!</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-panel"
+>Cinc mètodes al plafó!</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Noves característiques amb el llançament del &krusader; 2.1.0-beta-1 <quote
+>Rusty Clutch</quote
+></title>
+    <listitem>
+      <para
+>Visualitzador ràpid de text/hexadecimal per a mides de fitxer de grans dimensions. </para>
+    </listitem>
+    <listitem>
+      <para
+>Pestanyes blocades. </para>
+    </listitem>
+    <listitem>
+      <para
+>Empaquetar / desempaquetar des de la cua de treball. </para>
+    </listitem>
+    <listitem>
+      <para
+>Millor integració amb la paperera. </para>
+    </listitem>
+    <listitem>
+      <para
+>Les barres de cerca ràpida, selecció i filtratge permeten expressions regulars per a fitxers coincidents. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Noves característiques amb el llançament del &krusader; 2.5.0 <quote
+>Clear Skies</quote
+></title>
+    <listitem>
+      <para
+>Adaptació als &kf5-full;. </para>
+    </listitem>
+    <listitem>
+        <para
+>La nova barra de <link linkend="quickfilter"
+>Filtre ràpid</link
+> conté tres modes diferents per a operar: selecciona, cerca i filtra. </para>
+    </listitem>
+    <listitem>
+        <para
+>S'ha reelaborat el Gestor de la cua (JobMan) i la nova <link linkend="job_toolbar"
+>Barra d'eines de tasques</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Noves característiques amb el llançament del &krusader; 2.7.0 <quote
+>Peace of Mind</quote
+></title>
+    <listitem>
+      <para
+>Cerca ràpida al menú de les adreces d'interès. </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="folder-tabs"
+>Pestanyes fixades</link
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Consells d'eina amb informació sobre els fitxers quan es col·loca el cursor sobre un nom de fitxer. </para>
+    </listitem>
+    <listitem>
+      <para
+>Opcions esteses per al Plafó en arbre a la <link linkend="sidebar"
+>barra lateral</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para
+><note
+><para
+>Si esteu utilitzant una versió en desenvolupament o el &git;, és possible que les característiques noves encara no estiguin al <quote
+>Manual del &krusader;</quote
+>. Llegiu el fitxer <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+>Changelog</ulink
+> que es troba en línia o al codi font del &krusader; per a obtenir més informació sobre les noves característiques. Per a obtenir una breu descripció, llegiu el fitxer <ulink url="https://commits.kde.org/krusader?path=NEWS"
+>NEWS</ulink
+> que es troba en línia o en el codi font del &krusader;. Els <link linkend="faqg_wish"
+>comentaris dels usuaris</link
+> i els <link linkend="faqg_bug_report"
+>informes d'error</link
+> sempre seran benvinguts! </para
+></note
+></para>
+</chapter>

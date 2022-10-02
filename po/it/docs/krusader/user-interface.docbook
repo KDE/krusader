@@ -1,0 +1,989 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="user-interface">
+  <title
+>Interfaccia utente</title>
+  <indexterm>
+    <primary
+>Interfaccia utente</primary>
+  </indexterm>
+  <sect1 id="ofm-userinterface">
+    <title
+>Interfaccia utente OFM</title>
+    <para
+>Il concetto di gestore file OFM contiene <link linkend="features"
+>tante funzionalità</link
+> che rende questi gestori abbastanza potenti da appartenere al gruppo dei migliori gestori file attualmente sul mercato. L'interfaccia è semplice: pannello sinistro, pannello destro e una riga di comando in basso. Dall'interazione di questi tre elementi, la gestione dei file diventa più efficiente.</para>
+    <para
+>Se desideri sapere <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+>come funziona &krusader;</ulink
+> puoi provarlo in prima persona, basta installarlo nel computer. Per accettare un <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>gestore ortodosso di file (Orthodox File Manager, OFM)</ulink
+> come &krusader;, l'utente deve abituarsi a <emphasis
+>nuove idee</emphasis
+>, in realtà vecchie di vent'anni. Se preferisci sprecare il tuo tempo e perdere produttività, puoi sempre continuare a usare i gestori di file a un pannello basati su &Windows; Explorer.</para>
+  </sect1>
+  <sect1 id="mainwindow">
+    <title
+>Finestra principale di &krusader;</title>
+    <figure id="screenshot-mainwindow" float="1">
+      <title
+>Finestra principale di &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="mainwindow.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Finestra principale di &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>L'interfaccia utente è basata sul paradigma <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Orthodox File Manager (OFM)</ulink
+>, un principio vecchio di vent'anni ben consolidato e riconosciuto come semplice, facile e potente. Le sezioni seguenti tratteranno le funzioni fondamentali di ciascuna parte, ad eccezione de:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>La <link linkend="menu-commands"
+>Barra dei menu</link
+>, che ha un capitolo dedicato.</para>
+      </listitem>
+      <listitem>
+        <para
+>I <link linkend="bookman"
+>Segnalibri</link
+>, che hanno un capitolo dedicato.</para>
+      </listitem>
+      <listitem>
+        <para
+>La <emphasis role="bold"
+>Barra di stato</emphasis
+> mostra le proprietà del file attuale (che è) in evidenza. </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  <sect1 id="toolbars">
+    <title
+>Barre degli strumenti</title>
+    <para
+>&krusader; è distribuito con diverse barre degli strumenti.</para>
+    <sect2 id="main_toolbar">
+      <title
+>Barra degli strumenti principale</title>
+      <indexterm>
+        <primary
+>Barra degli strumenti</primary>
+        <secondary
+>Barra degli strumenti principale</secondary>
+      </indexterm>
+      <figure id="screenshot-maintoolbar" float="1">
+        <title
+>Barra degli strumenti principale</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="toolbar.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Barra degli strumenti principale</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>La barra degli strumenti principale di &krusader; è una barra di &kde; standard che può essere trascinata in vari punti dell'applicazione (sbloccarlo prima deselezionando l'elemento <guimenuitem
+>Blocca posizioni della barra degli strumenti</guimenuitem
+> nel menu accessibile col pulsante destro del mouse) o configurata tramite un menu <keycap
+>contestuale</keycap
+>. Puoi decidere se visualizzarla o no ogni volta che avvii &krusader; nella <link linkend="konfigurator"
+>nella pagina Avvio di Konfigurator</link
+>, e puoi attivarla o disattivarla nella sessione attiva dal <link linkend="settings-menu"
+>menu Impostazioni</link
+>. Il contenuto della barra può essere deciso tramite il comando <guimenuitem
+>Configura le barre degli strumenti...</guimenuitem
+> all'interno del <link linkend="settings-menu"
+>menu Impostazioni</link
+>. Dato che in &krusader; vari comandi e opzioni sono dipendenti dal contesto, certi comandi non sono sempre disponibili. Le icone delle azioni inappropriate o inattive verranno disattivate (mostrate in grigio), rendendone impossibile l'uso. I <link linkend="bookman"
+>segnalibri</link
+> possono essere inseriti nella barra degli strumenti sia principale, sia delle azioni, tramite il trascinamento col mouse (<quote
+>drag and drop</quote
+>).</para>
+    </sect2>
+    <sect2 id="job_toolbar">
+      <title
+>Barra degli strumenti delle operazioni</title>
+      <indexterm>
+        <primary
+>Barra degli strumenti</primary>
+        <secondary
+>Barra degli strumenti delle operazioni</secondary>
+      </indexterm>
+      <para
+>Per impostazione predefinita, la barra degli strumenti Operazioni di &krusader; (il <link linkend="queue"
+>Gestore della coda</link
+> o semplicemente JobMan) si trova nella parte destra della barra degli strumenti principale. Questa barra degli strumenti ti permette di visualizzare l'avanzamento delle operazioni, di mettere in pausa e riprendere l'esecuzione dell'elenco delle operazioni in corso e annullare l'ultima operazione eseguita.</para>
+    </sect2>
+    <sect2 id="actions_toolbar">
+      <title
+>Barra degli strumenti delle azioni</title>
+      <indexterm>
+        <primary
+>Barra degli strumenti</primary>
+        <secondary
+>Barra degli strumenti delle azioni</secondary>
+      </indexterm>
+      <para
+>Le <link linkend="useractions"
+>azioni</link
+> e i <link linkend="bookman"
+>Segnalibri</link
+> si possono <quote
+>inserire</quote
+> all'interno della <guilabel
+>barra degli strumenti delle azioni</guilabel
+>. Per visualizzare la barra, usa <menuchoice
+> <guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Mostra la barra degli strumenti delle azioni</guimenuitem
+> </menuchoice
+>. Per aggiungere delle azioni, usa <menuchoice
+> <guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Configura le barre degli strumenti...</guimenuitem
+> </menuchoice
+> e seleziona la barra degli strumenti delle azioni. Puoi, per esempio, trascinare col mouse la barra delle azioni sul lato destro.</para>
+    </sect2>
+    <sect2 id="location_toolbar">
+      <title
+>Barra degli strumenti della posizione</title>
+      <indexterm>
+        <primary
+>Barra degli strumenti</primary>
+        <secondary
+>Barra degli strumenti della posizione</secondary>
+      </indexterm>
+      <para
+>Sotto la <guibutton
+>barra degli strumenti principale</guibutton
+> si trova la <guibutton
+>barra degli strumenti della posizione</guibutton
+>, per ciascun pannello. Essa mostra il percorso cui punta attualmente il pannello. Se accedi a un archivio, il percorso sarà visualizzato nel seguente formato: <quote
+>tipo archivio:/cartella/nome_archivio/la cartella dentro l'archivio</quote
+>. Questo formato rende il percorso uniforme e facile da leggere. La <guibutton
+>barra degli strumenti della posizione</guibutton
+> supporta anche gli slave KIO, ma non tutti: alcuni possono essere usati solo col <link linkend="krviewer"
+>visore</link
+> e altri non possono essere usati. L'utente può digitare il percorso desiderato facendovi sopra clic.</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <userinput>
+              <replaceable
+>/mnt/cdrom/</replaceable>
+            </userinput>
+          </para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>settings:/</command
+> </userinput
+>naviga e apre le voci delle &systemsettings;.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>trash:/</command
+> </userinput
+>apre la cartella del cestino.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>mtp:/</command
+> </userinput
+>usa kio_mtp per accedere, caricare e organizzare gli elementi multimediale memorizzati nei dispositivi basati su <trademark
+>Android</trademark
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+>Ultime ma non ultime, le <link linkend="remote-connections"
+>connessioni remote</link
+> .</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Puoi copiare o incollare un &URL; nella <guibutton
+>barra della posizione</guibutton
+> o usare il pulsante centrale del mouse. Col menu contestuale puoi configurare la funzione di completamento automatico. È pure disponibile un pulsante opzionale <guilabel
+>Pulisci la barra di posizione</guilabel
+>.</para>
+      <para
+>Navigazione rapida: premi &Ctrl; e punta con il mouse in mezzo all'&URL; presente nella <guibutton
+>barra della posizione</guibutton
+>. Si apre una finestrella che mostra la posizione del prossimo &URL;. Se premi &Ctrl; + &LMB; ti viene mostrata la posizione cui il mouse stava puntando. Questa funzionalità consente una navigazione più rapida nelle strutture ad albero grandi.</para>
+    </sect2>
+    <sect2 id="panel_toolbar">
+      <title
+>Barra degli strumenti del pannello</title>
+      <indexterm>
+        <primary
+>Barra degli strumenti</primary>
+        <secondary
+>Barra degli strumenti del pannello</secondary>
+      </indexterm>
+      <para
+>Ciascun pannello possiede una <link linkend="konfig-panel-buttons"
+>barra degli strumenti del pannello configurabile</link
+>. Puoi rendere visibile o invisibile l'intera barra, oppure solo alcuni pulsanti.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>Pulsante ApriDir</guibutton
+>: apre il navigatore delle cartelle.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Pulsante Uguale (=)</guibutton
+>: cambia la cartella del pannello in quella dell'altro pannello.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Pulsante Su (..)</guibutton
+>: cambia la cartella del pannello in quella superiore.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Pulsante Home (~)</guibutton
+>: cambia la cartella del pannello in quella home.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Pulsante Radice (/)</guibutton
+>: cambia la cartella del pannello in quella radice.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Pulsante sincronizzazione navigazione</guibutton
+>: se attivo, ogni cambio di cartella nel pannello attivo è eseguito anche nell'altro pannello.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+  <sect1 id="panels">
+    <title
+>Pannelli</title>
+    <para
+>I pannelli di &krusader; sono i luoghi in cui viene eseguita la maggior parte delle azioni. Attualmente esistono due tipi di pannello:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="list_panel"
+>Pannello elenco</link
+>: mostra i file e le cartelle.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="sidebar"
+>Barra laterale</link
+>, che contiene diverse modalità di visualizzazione: anteprima, ad albero, selezione veloce, vista e uso del disco per il file o la cartella che sono a fuoco. La barra laterale può essere lasciata aperta o chiusa, a seconda delle preferenze.</para>
+      </listitem>
+    </itemizedlist>
+    <para
+>&krusader; è un gestore di file a <quote
+>doppio pannello</quote
+>, dunque possiede due pannelli: il pannello <quote
+>destro</quote
+> e quello <quote
+>sinistro</quote
+> o, in base a una distinzione logica più importante, il pannello «attivo» e quello «inattivo». Il pannello attivo è quello che accetta le immissioni tramite il mouse e la tastiera. Se scegli un comando dalla <guilabel
+>barra dei menu</guilabel
+> o dalla <guilabel
+>barra degli strumenti</guilabel
+>, esso agirà sui file, o sulle cartelle, selezionati nel pannello attivo. Puoi passare da un pannello all'altro tramite il tasto &Tab;, facendo clic sulle <guilabel
+>etichette Informazioni o Totali</guilabel
+> oppure selezionando con il mouse un file qualsiasi in un pannello. Come sempre, le impostazioni di avvio predefinite si possono modificare nella <link linkend="konfigurator"
+>pagina Avvio di Konfigurator</link
+> ed è possibile controllare la sessione corrente tramite il <link linkend="settings-menu"
+>menu Impostazioni</link
+>.</para>
+    <figure id="screenshot-listpanel" float="1">
+      <title
+>Pannello elenco</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="listpanel.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Pannello elenco</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <sect2 id="list_panel">
+      <title
+>Pannello elenco</title>
+      <indexterm>
+        <primary
+>Pannello</primary>
+        <secondary
+>Pannello elenco</secondary>
+      </indexterm>
+      <para
+>È il pannello predefinito e anche quello che probabilmente userai di più. Mostra i contenuti di una cartella, che può essere locale (parte dei tuoi file system montati, come un file nativo o come file all'interno di un archivio) oppure un file remoto (con accesso tramite &FTP;, &NFS; o Samba). Esistono due modalità: la <link linkend="view-menu"
+>vista dettagliata</link
+>, che mostra i nomi dei file, la dimensione, la data e l'ora di creazione e i loro attributi; la <link linkend="view-menu"
+>vista sintetica</link
+>, che mostra solo i nome dei file, il numero di brevi colonne modificabili facendo clic col pulsante destro sull'intestazione <guilabel
+>Nome</guilabel
+>. Sono supportati i comandi di copia, incolla e taglia tramite gli appunti tra &konqueror; e &krusader; <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+>. <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>R</keycap
+></keycombo
+> alterna il <guilabel
+>pannello elenco</guilabel
+> nelle modalità orizzontale e verticale.</para>
+      <para
+>Sono disponibili i seguenti elementi:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Etichetta Informazioni</guilabel
+> </emphasis
+>: mostra quanto spazio libero disponibile è presente nel file system, la sua capacità e dove esso è montato. Se l'informazione non è disponibile (capita spesso in caso di file system remoti), viene visualizzato un messaggio che spiega le ragioni di questa indisponibilità.</para>
+          <para id="media_button"
+>Il <guibutton
+>pulsante dei dispositivi</guibutton
+> a sinistra della <guilabel
+>Etichetta Informazioni</guilabel
+> mostra un elenco tutti i dispositivi a disposizione, nel quale puoi selezionare il dispositivo desiderato (partizione del disco, &DVD;, penna &USB;, &etc;). Se premi <keycombo
+>&Ctrl;<keycap
+>Invio</keycap
+></keycombo
+> quando il <guibutton
+>menu dispositivi</guibutton
+> è aperto, monti il dispositivo selezionato, se smontato, e lo smonti, se montato. Il menu contestuale di un dispositivo ti offre diverse opzioni come <guilabel
+>Monta</guilabel
+>, <guilabel
+>Apri in nuova scheda</guilabel
+>, &etc;. Il <guibutton
+>menu dei dispositivi</guibutton
+> è <link linkend="konfig-panel-mediamenu"
+> configurabile</link
+>.</para>
+        </listitem>
+          <listitem>
+          <para
+><emphasis
+> <guilabel
+>Intestazioni colonna</guilabel
+> </emphasis
+>: qui puoi cambiare l'ordine dei file e delle cartelle a piacimento. L'ordinamento predefinito è per <guilabel
+>Nome</guilabel
+>. L'ordinamento può essere cambiato immediatamente facendo clic sulla <guilabel
+>intestazione della colonna</guilabel
+>. Per invertire l'ordine, facci clic sopra una seconda volta. Apparirà una freccia a sinistra dell'intestazione, che mostrerà la direzione dell'ordinamento (freccia su = A 
+> Z, freccia giù = Z 
+> A). Le <link linkend="useractions"
+>Azioni utente</link
+> predefinite impostano un'associazione di tasti per le intestazioni di colonna. Le <guilabel
+>intestazioni predefinite</guilabel
+> sono: <guilabel
+>Nome</guilabel
+>, <guilabel
+>Est</guilabel
+>, <guilabel
+>Dimensione</guilabel
+>, <guilabel
+>Modificato</guilabel
+>, <guilabel
+>rwx</guilabel
+>. Le <link linkend="konfig-general"
+>estensioni atomiche</link
+> predefinite come <literal role="extension"
+>tar.gz</literal
+> vengono mostrate come un unico elemento nella colonna <guilabel
+>Est</guilabel
+>. Sono disponibili colonne aggiuntive tramite il &RMB;. La larghezza delle <guilabel
+>colonne</guilabel
+> può essere modificata facendo clic e tenendo premuto il mouse e spostando la linea divisoria alla larghezza desiderata. Entrambi i <guilabel
+>pannelli elenco</guilabel
+> ricordano l'ordinamento e la larghezza delle colonne. Le <guilabel
+>intestazioni delle colonne</guilabel
+> si possono cambiare e salvare separatamente per ciascun pannello.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Elenco dei file</guilabel
+> </emphasis
+>: mostra i file e le cartelle nella cartella in cui ti posizioni. La <link linkend="quicksearch"
+>barra della ricerca</link
+> ti permette di ricercare file digitando il loro nome o suoi i primi caratteri. Se premi &Enter; o fai doppio-clic su un file, lo apri o lo esegui. Puoi selezionare/deselezionare i file con il mouse, con il tasto &Ins; o il <link linkend="edit-menu"
+>menu Modifica</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Etichetta dei totali</guilabel
+> </emphasis
+>: la selezione o la deselezione dei file modifica l'<emphasis
+> <guilabel
+>etichetta dei totali</guilabel
+> </emphasis
+> nella parte inferiore del pannello, che mostra quanti file hai selezionato (e quanto spazio su disco occupano), così come i file complessivi e l'uso del disco dell'attuale cartella (al contrario dell'etichetta che mostra le informazioni sull'intero file system). Se una cartella contiene molte sotto-cartelle, potrebbe non essere possibile trascinare l'&URL; sul pannello (su cui sono visibili sono le cartelle), ma potrebbe essere rilasciato invece sulla <quote
+>etichetta delle informazioni</quote
+> o su quella dei <quote
+>totali</quote
+>. Se imposti un <link linkend="view-menu"
+>filtro personalizzato</link
+>, esso mostrerà l'impostazione, esempio: [*.cpp].</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Quando usi i <quote
+><link linkend="konfig-color"
+>colori</link
+> predefiniti di &kde;</quote
+> i file selezionati sono mostrati in blu e il file corrente è circondato da una cornice rettangolare fine. Per impostazione predefinita, viene mostrata l'icona in base al tipo di file. Usa la <link linkend="konfig-panel"
+>pagina Pannello di Konfigurator</link
+> per modificare la configurazione predefinita adatta alle tue esigenze.</para>
+      <para
+>Alcune <link linkend="key_bindings"
+>associazioni di tasti</link
+> utili del <guilabel
+>pannello elenco</guilabel
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> aggiornerà il pannello.</para>
+        </listitem>
+        <listitem>
+          <para
+>Evidenzia un file o una cartella sul pannello sinistro, se premi <keycombo action="simul"
+>&Ctrl; &Right;</keycombo
+> il pannello destro cambia: <itemizedlist>
+            <listitem>
+              <para
+>Su un file: il pannello destro ottiene lo stesso percorso del pannello sinistro.</para>
+            </listitem>
+            <listitem>
+              <para
+>Su una cartella: il pannello destro apre la cartella evidenziata nel pannello sinistro.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Per il pannello destro: premi <keycombo action="simul"
+>&Ctrl; &Left; </keycombo
+> e il pannello sinistro cambia.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="sidebar">
+      <title
+>Barra laterale</title>
+      <indexterm>
+        <primary
+>Barra laterale</primary>
+        <secondary
+>Barra laterale (terzo pannello)</secondary>
+      </indexterm>
+      <para
+>Questa è la <quote
+>terza mano di &krusader;</quote
+>, detto anche terzo pannello, premi il pulsante a forma di freccia in alto alla destra dell'<guilabel
+>etichetta dei totali</guilabel
+> oppure <keycombo action="simul"
+>&Alt; &Down;</keycombo
+> per aprire la <guilabel
+>barra laterale</guilabel
+>. Questo pannello possiede varie modalità di visualizzazione che possono essere attivate premendo il giusto pulsante.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Pannello anteprima</guilabel
+> </emphasis
+>: fornisce un'anteprima del file che possiede il fuoco (il file attualmente selezionato).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Pannello albero</guilabel
+> </emphasis
+>: è usato per navigare rapidamente l'albero delle cartelle locali. Il pannello si comporta come il pannello elenco ma puoi selezionare una sola cartella alla volta, mentre il doppio-clic o la pressione del tasto &Enter; su una cartella aprirà la cartella nel pannello attivo. I pannelli supportano completamente le azioni di trascinamento del mouse (copia, sposta, collega).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Pannello rapido</guilabel
+> </emphasis
+>: è usato per selezionare rapidamente i file, &eg; scrivi <literal role="extension"
+>*.png</literal
+> e premi il pulsante <guibutton
+>Vai</guibutton
+>. Il pulsante <quote
+>floppy</quote
+> memorizza la selezione corrente. È disponibile pure la <quote
+>finestra per la selezione del gruppo</quote
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Pannello visore</guilabel
+> </emphasis
+>: visualizza un file di testo, un'immagine, &etc; Ogniqualvolta apri il <guilabel
+>pannello visore</guilabel
+>, viene generata una miniatura.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Pannello uso del disco</guilabel
+> </emphasis
+>: visualizza l'<link linkend="diskusage"
+>uso del disco</link
+> di una cartella.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>È possibile cambiare la posizione della barra laterale utilizzando il pulsante di rotazione che si trova alla sinistra del pulsante freccia in basso nella parte inferiore della scheda di &krusader;. Ogni clic sul pulsante sposta la barra laterale di una posizione con sequenza <quote
+>inferiore-sinistra-superiore-destra</quote
+>. </para>
+      <para
+>Se necessario, puoi modificare le dimensioni della finestra, &eg; per meglio visualizzare un'immagine o i contenuti di un file. Per chiudere il <guilabel
+>terzo pannello</guilabel
+> premi il pulsante a forma di freccia rivolta verso il basso.</para>
+    </sect2>
+    <sect2 id="folderhistory">
+      <title
+>Cronologia cartelle</title>
+      <para
+>Entrambi i pannelli ricordano le cartelle visitate di recente. Premi il pulsante della <guibutton
+>cronologia delle cartelle</guibutton
+> («simbolo dell'orologio») per aprire l'elenco della cronologia. Qui puoi navigare rapidamente nelle cartelle visitate in precedenza. La cartella attualmente a fuoco è selezionata. Ad ogni nuovo avvio di &krusader; l'elenco si aggiorna con gli elementi utilizzati nella sessione precedente (la cronologia viene salvata).</para>
+    </sect2>
+  </sect1>
+  <sect1 id="cmdline_termemu">
+    <title
+>Riga di comando / Emulatore di terminale</title>
+    <para
+>Questa parte dell'<link linkend="gloss-gui"
+>interfaccia</link
+> presenta quattro modalità: riga di comando, emulatore di terminale, mostra entrambi e mostra nessuno. Puoi scegliere la modalità operativa all'avvio nella <link linkend="konfigurator"
+>pagina Avvio di Konfigurator</link
+>, oppure per la sessione corrente dal <link linkend="settings-menu"
+>menu Impostazioni</link
+>. </para>
+
+  <sect2 id="cmdline">
+    <title
+>Riga di comando</title>
+
+    <figure id="screenshot-commandline" float="1">
+      <title
+>Riga di comando</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="cmdline.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Riga di comando</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>La modalità a riga di comando tradizionale offre l'inserimento dei comando a riga singola, e presenta inoltre tre pulsanti:</para>
+     <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>cronologia comandi</guibutton
+> (freccia giù) per aprire in modo rapido i comandi precedentemente usati </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>espansore azioni</guibutton
+> (pulsante più verde) per aggiungere in modo facile <link linkend="useractions"
+>segnaposti per le azioni</link
+> </para>
+        </listitem>
+
+        <listitem>
+          <para
+>pulsante <guibutton
+>esegui in modo terminale</guibutton
+> (icona console) con ulteriori opzioni: <itemizedlist>
+          <listitem
+><para
+>Avvia e dimenticatene</para>
+          </listitem>
+
+          <listitem
+><para
+>Visualizzazione separata di standard output ed error output</para>
+           </listitem>
+
+          <listitem
+><para
+>Visualizzazione mista di standard output ed error output</para>
+          </listitem>
+
+           <listitem
+><para
+>Avvia in un nuovo terminale</para>
+          </listitem>
+
+           <listitem
+><para
+>Invia all'emulatore di terminale integrato</para>
+           </listitem>
+
+         </itemizedlist>
+          </para>
+
+        </listitem>
+
+
+     </itemizedlist>
+    <para
+>Quando inizi a digitare, la funzione di completamento automatico della riga di comando ti propone dei suggerimenti in base alle scelte fatte nelle &systemsettings;. Se vuoi modificare il comportamento del completamento automatico nella sessione corrente di &krusader;, <keycap
+>fai clic col pulsante destro del mouse</keycap
+> sulla riga di comando e cambialo. Alla sinistra della riga di comando trovi il percorso locale cui il pannello attivo sta puntando. Questo percorso è dove il comando verrà eseguito. Se, nella riga di comando, digiti <userinput
+> <command
+>cd</command
+> <replaceable
+> &lt;cartella&gt;</replaceable
+> </userinput
+>, punterai a questa cartella anche all'interno del pannello attivo. Premi <link linkend="cmdline_keybindings"
+>qui</link
+> per visualizzare le associazioni di tasti della riga di comando.</para>
+</sect2>
+
+  <sect2 id="termemu">
+    <title
+>Emulatore di terminale</title>
+
+    <figure id="screenshot-terminalemulator" float="1">
+      <title
+>Emulatore di terminale</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="terminalEmu.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Emulatore di terminale</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Il modo emulatore di terminale è in realtà una piccola console e come tale agisce. Puoi cambiare la cartella attiva nel terminale tramite il comando <userinput
+> <command
+>cd</command
+> </userinput
+>. L'emulatore di terminale segue la cartella del pannello attivo. Puoi trascinare un file dal <interface
+>pannello elenco</interface
+> e il suo nome sarà copiato all'interno dell'emulatore. Se trascini più file, i loro nomi vi saranno copiati. Puoi usare un emulatore a schermo intero, se <link linkend="konfig-general-general"
+>configurato</link
+> oppure <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>F</keycap
+></keycombo
+> per alternare la modalità normale con quella a schermo intero. Se la riga di comando è nascosta, premi <keycombo action="simul"
+>&Ctrl; <keycap
+>freccia giù</keycap
+></keycombo
+> per evidenziare l'emulatore. <keycombo action="simul"
+>&Ctrl; <keycap
+>freccia su</keycap
+></keycombo
+> lo riporta giù. <keycombo action="simul"
+>&Ctrl;&Enter;</keycombo
+> e <keycombo action="simul"
+>&Ctrl; &Shift; &Enter;</keycombo
+> copiano il nome file. Puoi chiudere l'emulatore digitando <userinput
+> <command
+>exit</command
+> </userinput
+>.</para>
+    <para
+>Premi <link linkend="termemu_keybindings"
+>qui</link
+> per visualizzare le associazioni di tasti dell'emulatore di terminale.</para>
+    </sect2>
+
+  </sect1>
+  <sect1 id="fnkeys">
+    <title
+>Barra dei tasti funzione</title>
+    <figure id="screenshot-fnkeys" float="1">
+      <title
+>Barra dei tasti funzione</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="fnkeys.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Barra dei tasti funzione</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Questa barra porta il nome dei tasti funzione che rappresenta. Per ciascun pulsante presente nella barra esiste un tasto funzione corrispondente che esegue la stessa azione. Questa barra deriva dal progetto dei primi gestori di file a doppio pannello e i tasti funzione agiscono allo stesso modo, con due varianti: il tasto <keycap
+>F2</keycap
+> è usato per rinominare i file, mentre il tasto <keycap
+>F9</keycap
+> apre un terminale all'ultimo percorso locale cui il pannello attivo ha puntato. <guilabel
+>Mkdir</guilabel
+> <keycap
+>F7</keycap
+> (nome tradotto del comando <command
+>mkdir</command
+>) può creare strutture di cartelle complete al volo, per esempio <literal
+>foo/bar/test</literal
+>. Puoi scegliere di visualizzare <link linkend="faqu_resize"
+>o no</link
+> la <guilabel
+>barra dei tasti funzione</guilabel
+> all'avvio di &krusader; tramite la <link linkend="konfigurator"
+>pagina Avvio di Konfigurator</link
+> e puoi attivare e disattivare il suo uso nella sessione corrente tramite il <link linkend="settings-menu"
+>menu Impostazioni</link
+>. Dalla versione 1.51 le azioni e le <link linkend="key_bindings"
+>associazioni di tasti</link
+> eseguite dai tasti funzione sono configurabili, e resteranno impostati indipendentemente dalla visualizzazione o no della <guilabel
+>barra dei tasti funzione</guilabel
+>.</para>
+  </sect1>
+  <sect1 id="folder-tabs">
+    <title
+>Schede cartella</title>
+    <figure id="screenshot-tabbedbrowsing" float="1">
+      <title
+>Schede cartella</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="tabbed_browsing.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Schede cartella</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Con le <guibutton
+>schede cartella</guibutton
+> puoi passare rapidamente a più cartelle; ciascun pannello ha le proprie <guibutton
+>schede cartella</guibutton
+>. Le posizioni delle <guibutton
+>schede cartella</guibutton
+> sono salvate alla chiusura di &krusader;. Per scorrere tra le <guibutton
+>schede cartella</guibutton
+> facci sopra clic con il mouse. Le <guibutton
+>schede cartella</guibutton
+> ristrette hanno un suggerimento per visualizzare l'interno percorso. Sulle <guibutton
+>schede cartella</guibutton
+> sono disponibili le operazioni seguenti:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>Per <action
+>aprire una nuova scheda</action
+> e mantenere aperta la scheda attiva: <keycap
+>premi il pulsante destro del mouse</keycap
+> sopra una cartella e seleziona <guimenuitem
+>Apri in una nuova scheda</guimenuitem
+> oppure fai clic sul pulsante all'estrema destra della barra delle schede.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per <action
+>bloccare una scheda</action
+>, <keycap
+>premi il pulsante destro del mouse</keycap
+> e seleziona <guimenuitem
+>Blocca scheda</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per <action
+>fissare una scheda</action
+>, <keycap
+>fai clic destro</keycap
+> e seleziona <guimenuitem
+>Fissa scheda</guimenuitem
+>. La scheda fissata è una scheda bloccata ma con indirizzo modificabile temporaneamente. Alla riattivazione della scheda si ripristina all'indirizzo fissato. Per liberare la scheda fissata fai clic destro su di essa e scegli il comando <guimenuitem
+>Libera scheda</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per <action
+>duplicare una scheda</action
+>: <keycap
+>premi il pulsante destro del mouse</keycap
+> sulla scheda della cartella e seleziona <guimenuitem
+>Duplica scheda attiva</guimenuitem
+> o utilizza <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+>. </para>
+      </listitem>
+      <listitem>
+        <para
+>Per <action
+>chiudere una scheda</action
+> (ad eccezione dell'ultima scheda): <keycap
+>premi il pulsante destro del mouse</keycap
+> sulla scheda e seleziona <guimenuitem
+>Chiudi la scheda attiva</guimenuitem
+>, o utilizza il &MMB;, oppure la <guibutton
+>X rossa</guibutton
+> sulla scheda della cartella, o ancora <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per <action
+>cambiare scheda</action
+>: <keycombo action="simul"
+>&Ctrl; <keycap
+>,</keycap
+></keycombo
+> o <keycombo action="simul"
+>&Ctrl; <keycap
+>.</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per <action
+>aprire la cartella attiva in una nuova scheda</action
+>: usa <keycombo action="simul"
+> &Ctrl;&Alt;&Enter;</keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per <action
+>chiudere tutte le altre schede</action
+>, <keycap
+>premi il pulsante destro del mouse</keycap
+> e seleziona <guimenuitem
+>Chiudi schede inattive</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per <action
+>chiudere le schede duplicate</action
+>, <keycap
+>premi il pulsante destro del mouse</keycap
+> e seleziona <guimenuitem
+>Chiudi schede duplicate</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Per spostare una scheda nell'altro pannello, trascinala nell'altro pannello col &LMB; (il cursore diventerà una freccia rivolta a sinistra o a destra) e rilasciala. Puoi anche premere <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+>.</para>
+      </listitem>
+</itemizedlist>
+  </sect1>
+  <sect1 id="ui_buttons">
+    <title
+>Pulsanti</title>
+    <para
+>Sono disponibili vari pulsanti per le operazioni veloci: <link linkend="main_toolbar"
+>barra degli strumenti principale</link
+>, <link linkend="actions_toolbar"
+>barra degli strumenti delle azioni</link
+>, <link linkend="panel_toolbar"
+>barra degli strumenti del pannello</link
+>, <link linkend="location_toolbar"
+>barra della posizione</link
+>, <link linkend="list_panel"
+>dispositivi</link
+>, <link linkend="folderhistory"
+>cronologia cartella</link
+>, <link linkend="bookman"
+>segnalibri</link
+>, <link linkend="folder-tabs"
+>scheda</link
+>, <link linkend="cmdline"
+>riga di comando</link
+>, <link linkend="fnkeys"
+>tasti funzione</link
+>.</para>
+  </sect1>
+</chapter>

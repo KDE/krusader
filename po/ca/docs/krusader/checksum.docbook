@@ -1,0 +1,42 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="checksum">
+  <title
+>Crear i comprovar la suma de verificació</title>
+  <indexterm>
+    <primary
+>Suma de verificació</primary>
+  </indexterm>
+  <para
+><menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Crea una suma de verificació...</guimenuitem
+></menuchoice
+>: el &krusader; comprovarà quines eines teniu i si aquestes permeten una operació recursiva (en cas de seleccionar carpetes), podeu generar una suma de verificació escollint un tipus per a la suma de verificació des de la llista (<guilabel
+>md5</guilabel
+>, <guilabel
+>sha</guilabel
+>, &etc;). A continuació, podreu desar la suma de verificació a un fitxer, generalment anomenat <filename
+>checksum.md5</filename
+> o <filename
+>checksum.sha1</filename
+>.</para>
+  <para
+><menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Comprova la suma de verificació...</guimenuitem
+></menuchoice
+>: el &krusader; comprovarà si teniu una eina que admeti el tipus de la suma de verificació que necessiteu (des del fitxer de suma de verificació especificat) i mostrarà els fitxers que han fallat amb la suma de verificació (si n'hi ha cap).</para>
+  <para
+>El sistema es resumeix a través de diferents mecanismes de suma de verificació i utilitats per a la suma de verificació. Actualment, s'admeten les següents sumes de verificació: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv i crc. Comproveu la <link linkend="konfig-dependencies"
+>configuració de les utilitats per a la suma de verificació</link
+> abans d'utilitzar aquesta funció.</para>
+</sect1>

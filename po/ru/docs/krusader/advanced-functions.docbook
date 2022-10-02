@@ -1,0 +1,60 @@
+<chapter id="more-features">
+<!-- **********************************************************************
+    4                                   more.docbook
+    5                           +++++++++++++++++++++++++++
+    6   copyright            : (C) 2000 - 2010
+    7                           Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+    8                           & the Krusader Krew
+    9   e-mail               : krusader@users.sourceforge.net
+   10   web site             : http://www.krusader.org
+   11   description          : a Krusader Documentation File
+   12 
+   13 ***************************************************************************
+   14 * Permission is granted to copy, distribute and/or modify this            *
+   15 * document under the terms of the GNU Free Documentation License,         *
+   16 * Version 1.1 or any later version published by the Free Software         *
+   17 * Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+   18 * no Back-Cover Texts.  A copy of the license is available on the         *
+   19 * GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+   20 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+   21 * MA 02111-1307, USA.                                                     *
+   22 *********************************************************************** -->
+<title
+>Дополнительные функции</title>
+&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>Отправка файлов по почте</title
+> <para
+>Выберите файл и используйте <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Меню по правому щелчку мыши</guimenu
+> <guimenuitem
+>Отправить по почте</guimenuitem
+> </menuchoice
+> </emphasis
+>. Выбор этого пункта откроет новое окно &kmail;, в котором файл уже прикреплён. Просто заполните тему и получателя(ей) и отправьте. Конечно, &kmail; должен быть правильно настроен.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>Права доступа ACL</title>
+  <para
+><link linkend="gloss-acl"
+>Права доступа ACL</link
+> полностью поддерживаются в свойствах, сохранении атрибутов и синхронизаторе. Для просмотра или изменения прав доступа ACL выберите файл и используйте <link linkend="context-menu"
+>Контекстное меню</link
+>: <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Свойства</guimenu
+> <guimenuitem
+>Права доступа</guimenuitem
+> <guimenuitem
+>Дополнительные права</guimenuitem
+> </menuchoice
+> </emphasis
+>. При копировании или перемещении, если выбрано <guilabel
+>сохранить атрибуты</guilabel
+>, права доступа ACL также копируются. Синхронизатор также сохраняет права доступа ACL.</para>
+</sect1
+></chapter>

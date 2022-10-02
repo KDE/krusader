@@ -1,0 +1,132 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="archives">
+  <title
+>Beheren van archieven</title>
+  <indexterm>
+    <primary
+>Archieven</primary>
+  </indexterm>
+  <sect2 id="browsing-archives">
+    <title
+>Door archieven bladeren</title>
+    <para
+>Met behulp van <link linkend="vfs"
+>Virtuele bestandssystemen (VFS)</link
+> kunt u door archieven bladeren alsof het een mappen zijn. Op dit moment ondersteund &krusader; de volgende archivering-methoden: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip, en 7-zip en ondersteund de volgende met wachtwoord beschermde archieven: arj, ace, rar en zip. U kunt wachtwoorden opslaan in <application
+>KWallet</application
+>. Vergeet niet dat u eerst ondersteuning voor archivering goed moet <link linkend="konfig-archives"
+>instellen</link
+> in de Konfigurator. Voor het openen van een archief, gebruikt u &Enter;, (dubbele-)klik of de toets &Right;. &krusader; ondersteund ook <emphasis role="bold"
+>verborgen archieven</emphasis
+>, deze zijn hernoemde archieven met een *verkeerde* extensie, &eg; <trademark class="registered"
+>OpenOffice</trademark
+> gebruikt zip archieven met de volgende extensies: <literal role="extension"
+>.odt</literal
+>, <literal role="extension"
+>.sxw</literal
+> en <literal role="extension"
+>.odw</literal
+>. &Enter; zal het <trademark class="registered"
+>OpenOffice</trademark
+> document openen en de toets &Right; zal het archief openen. Een ander voorbeeld is J2EE, waar de <literal role="extension"
+>.jar</literal
+>-extensie een zip-archief inhoud. Omdat &krusader; automatisch de ondersteunde archieftypes detecteert, zal het openen na het gebruik van <keycap
+>Pijl rechts</keycap
+> zelfs als het een ander MIME type is. Merk op dat het bladeren door archieven wel een paar beperkingen heeft: <itemizedlist>
+      <listitem>
+        <para
+>Niet alle functies worden door alle typen archieven ondersteund. (&ie;: u kunt geen bestanden verwijderen in ace- of rar-archieven)</para>
+      </listitem>
+      <listitem>
+        <para
+>De rechten die u hebt in het archief zijn hetzelfde als de rechten die u hebt voor het archief.</para>
+      </listitem>
+      <listitem>
+        <para
+>De opdrachtregel (indien zichtbaar) volgt u niet in het archief maar zal naar de archiefmap wijzen.</para>
+      </listitem>
+      <listitem>
+        <para
+>Alvorens er een actie wordt uitgevoerd op bestanden/mappen in het archief, moeten deze zijn uitgepakt. Het archief zal weer ingepakt worden wanneer u het verlaat of wanneer &krusader; ontdekt dat uitgepakte bestanden zijn gewijzigd.</para>
+      </listitem>
+      <listitem>
+        <para
+>In- en uitpakken zijn <quote
+>geblokkeerde bewerkingen</quote
+> die een voortgangsdialoog laten zien. Dit kan echter in de toekomst wijzigen omdat we het plan hebben om meer achtergrond bewerkingen te maken.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="unpacking-archives">
+    <title
+>Bestanden uitpakken</title>
+    <para
+>Er zijn 2 manieren om bestanden uit archieven uit te pakken:</para>
+    <para
+>Als u een heel archief wilt uitpakken, dan gaat un naar de locatie van het archief, markeert het archief en selecteert <menuchoice
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Uitpakken</guimenuitem
+> </menuchoice
+> of <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+>. &krusader; zal vragen waar u wilt dat de bestanden worden uitgepakt. De standaard locatie is de gemarkeerde map in het niet actieve paneel. Als u de operatie niet annuleert, dan zal &krusader; proberen om alle geselecteerde bestanden in het niet actieve paneel uit te pakken.</para>
+    <para
+>Als u alleen maar een gedeelte van het archief wilt uitpakken, <link linkend="browsing-archives"
+>blader</link
+> dan door het archief en kopieer de gewenste bestanden naar hun nieuwe locatie zoals u <quote
+>normale</quote
+> bestanden zou kopiëren. Merk op dat het uitpakken uit een archief waar u doorheen bladert meer tijd in beslag neemt (bestand voor bestand uitpakken) vergeleken met het uitpakken van een heel archief via de eerste methode. De opdracht voor het uitpakken kunt u in een <link linkend="queue"
+>wachtrij</link
+> plaatsen.</para>
+  </sect2>
+  <sect2 id="pack-archive">
+    <title
+>Bestanden inpakken</title>
+    <para
+>Als u een nieuw archief wilt creëren, dan begint u met het selecteren van de elementen in het actieve paneel waarin u die in het archief wilt inpakken om vervolgens <menuchoice
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Inpakken...</guimenuitem
+> </menuchoice
+> of <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+> te selecteren. Er opent een dialoogvenster waarin u de locatie en de naam van het archief kunt opgeven. Kies het type archief uit de lijst met <link linkend="konfig-archives"
+>ondersteunde bestandsnaam-extensies</link
+>.</para>
+    <para
+>Om bestanden aan een bestaand archief toe te voegen, opent u het archief in het ene paneel en selecteert u in het andere paneel de bestanden die u wilt toevoegen, kopieer vervolgens de bestanden op dezelfde manier als u bestanden naar een <quote
+>normale</quote
+> map zou kopiëren. De opdracht voor het inpakken kunt u in een <link linkend="queue"
+>wachtrij</link
+> plaatsen.</para>
+  </sect2>
+  <sect2 id="test-archive">
+    <title
+>Archieven testen</title>
+    <para
+>&krusader; zal geen corrupte archieven bewerken omdat dit kan resulteren in data verlies. Als u een foutmelding krijgt bij het openen van een archief, of als u denkt dat er iets mis is met een archief, dan zou u het voor gebruik moeten testen. Om een archief te testen,gaat (navigeert) u naar de locatie van het archief en selecteert het archief. Vervolgens selecteert u <menuchoice
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Archief testen</guimenuitem
+> </menuchoice
+> of <keycombo action="simul"
+>&Alt; <keycap
+>E</keycap
+></keycombo
+>. &krusader; zal vervolgens het archief-bestand testen en u mededelen of het archief de integriteit-test heeft gepasseerd.</para>
+  </sect2>
+</sect1>

@@ -1,0 +1,351 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="remote-connections">
+  <title
+>Fjärranslutningar</title>
+  <indexterm>
+    <primary
+>Fjärranslutningar</primary>
+  </indexterm>
+  <para
+>Fjärranslutningar görs enkelt genom att skriva in webbadressen i <link linkend="list_panel"
+>platsraden</link
+>. Dessa är i själva verket I/O-slavar. Observera att &krusader;s panel inte stöder alla I/O-slavar, t.ex. fungerar inte <command
+>http://</command
+> i panelen, men det fungerar vid <link linkend="krviewer"
+>granskning</link
+>. Några exempel:</para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>publik.ftpserver.se/katalog/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>fish://</command
+><replaceable
+>användarnamn@värddatornamn/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>sftp://</command
+><replaceable
+>användarnamn:lösenord@sftp.exempel.se/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>användarnamn@min.server.se:21/katalog/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>smb://</command
+><replaceable
+>användarnamn:lösenord@server/utdelad</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>användarnamn@proxyanvändarnamn:lösenord@proxylösenord@värddatornamn/katalog</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>nfs://</command
+><replaceable
+>&lt;värddator&gt;:&lt;port&gt;&lt;webbadress-sökväg&gt;</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>webdav://</command
+><replaceable
+>www.server.se/sökväg/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Du kan lägga till bokmärken för dessa webbadresser, men läs dock avsnittet om <link linkend="bookman"
+>Bookman</link
+> om hur man <emphasis
+>sparar lösenord säkert</emphasis
+>. För att ansluta till flera platser, lägg till bokmärken för dessa webbadresser, och öppna dem en i taget, eller alla tillsammans genom att använda <link linkend="panel_profiles"
+>Panelprofiler</link
+>. För att byta från en plats till en annan, öppna bara en <link linkend="folder-tabs"
+>katalogflik</link
+> för var och en.</para>
+  <para
+>Det finns tre sätt att starta en fjärranslutning:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Skriv in webbadressen i <link linkend="list_panel"
+>platsraden</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Välj <menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Ny nätanslutning</guimenuitem
+> </menuchoice
+>, vilket gör att en dialogruta dyker upp och frågar efter information om fjärranslutningen. Dialogrutan är praktisk om du inte är van vid att skriva in fjärrwebbadresser i platsraden. Lämnas fälten för användarnamn och lösenord tomma, loggas du in anonymt. Observera: Vi planerar att skriva om detta dialogfönster.</para>
+    </listitem>
+    <listitem>
+      <para
+>Du kan lägga till ett bokmärke till en annan dator och återvända till katalogen med bokmärkesknappen i övre hörnet av panelen, precis som i en webbläsare.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Efter att du har loggat in på en fjärrserver kan du bläddra på den precis som på din lokala hårddisk, med följande undantag:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Du kan inte köra filer på fjärrservrar.</para>
+    </listitem>
+    <listitem>
+      <para
+>Behörighet kan inte alltid beräknas på fjärrservrar (beror på servern och åtkomstmetoden), så du kan få ett <guilabel
+>?</guilabel
+> i behörighetskolumnen för vissa filer.</para>
+    </listitem>
+    <listitem>
+      <para
+>Information om diskanvändning är inte tillgänglig för de flesta fjärrfilsystem.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>För att ändra teckenuppsättning på fjärranslutningen, använd <menuchoice
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Välj teckensnitt på fjärranslutning</guimenuitem
+> </menuchoice
+>.</para>
+  <para
+>Du kan stänga den nuvarande aktiva fjärranslutningen med två olika metoder:</para
+> 
+  <itemizedlist>
+    <!--
+        <listitem>
+           <para
+>Manually: <emphasis role="bold"
+><menuchoice
+><guimenu
+>Commands</guimenu>
+                 <guimenuitem
+>Disconnect From Net</guimenuitem
+></menuchoice
+></emphasis
+></para>
+        </listitem>
+        -->
+    <listitem>
+      <para
+>Manuellt: Lägg till nerkopplingsknappen i <link linkend="mainwindow"
+>Huvudverktygsraden</link
+> och klicka på den.</para>
+    </listitem>
+    <listitem>
+      <para
+>Automatiskt: Ändra webbadress i <link linkend="list_panel"
+>platsraden</link
+>.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>&krusader; är en filhanterare som stöder fjärranslutningar via I/O-slavar, men om du letar efter ännu mer avancerade funktioner för fjärranslutning, t.ex. ett avancerat &FTP;-program, rekommenderar vi att du använder t.ex. <ulink url="https://kasablanca.berlios.de/"
+>Kasablanca</ulink
+> eller <ulink url="https://kftpgrabber.sourceforge.net/"
+><application
+>kftpgrabber</application
+></ulink
+>.</para>
+  </note>
+
+<sect2 id="remote-connections-lan-fish">
+  <title
+>Anslutningar till lokalt nätverk via protokollet fish:/ (zeroconf)</title>
+  <indexterm>
+    <primary
+>Fjärranslutningar via lokalt nätverk (Zeroconf)</primary>
+  </indexterm>
+
+<para
+>Det här avsnittet är ett bidrag av Andrew Svet (z-vet). Synpunkter på kapitlet uppskattas. Tack!</para>
+
+ <note>
+   <para
+>Följande fungerar på ett &Debian;-system, så det kommer att fungera på &Debian; och liknande system (&kubuntu;, etc.), även om det också bör fungera på andra varianter av Linux. Vi antar att du har installerat <link linkend="gloss-ssh"
+>SSH</link
+>, och har ställt in det så att det fungerar med alla datorer på det lokala nätverket du vill ansluta till eller från. Det finns många verkligt bra handledningar om <link linkend="gloss-ssh"
+>SSH</link
+> på nätet, t.ex. på <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying"
+>linuxhomenetworking.com</ulink
+>. Annars kan du bara söka efter det med Google. Vi använder standardporten för <link linkend="gloss-ssh"
+>SSH</link
+> (22) i det här kapitlet. Kom ihåg att ändra den om du använder en annan. Alla ändringar, redigeringar, etc., måste göras som systemadministratör. </para>
+ </note>
+
+<para
+>Låt oss börja med att installera alla paket vi behöver: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>apt-get install</command
+> <option
+>avahi-daemon libnss-mdns kdnssd</option
+></userinput>
+</screen
+> Allt är installerat, låt oss nu göra några inställningar. Först av allt kräver vi att våra tjänster annonseras på det lokala nätverket. Det är därför vi installerade avahi-daemon: den representerar din dator på det lokala nätverket, och låter andra program publicera tjänster de tillhandahåller. Avahi-demonen levereras med exempel på inställningsfiler för <filename
+>ssh.service</filename
+> som finns i <filename class="directory"
+>/usr/share/doc/avahi-daemon/examples</filename
+> . För att få tjänsten att annonseras på det lokala nätverket måste vi kopiera filen till <filename class="directory"
+>/etc/avahi/services</filename
+> directory: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option
+></userinput>
+</screen
+> Nu kräver vi att också protokollet fish:/ annonseras, så vi använder filen ssh.service som en mall för fish.service: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option
+></userinput>
+</screen
+> Filen är bara en kopia av ssh.service, Redigera filen <filename
+>fish.service</filename
+> och ersätt <quote
+>Remote Terminal on %h</quote
+> med <quote
+>Fish to %h</quote
+> och <quote
+>_ssh._tcp</quote
+> med <quote
+>_fish._tcp</quote
+>. Så här ser det ut efter redigeringen: <programlisting>
+&lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*-->
+&lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
+
+&lt;!-- $Id: remote-connections.docbook,v 1.6 2007/05/02 18:07:28 codeknight Exp $ -->
+
+&lt;!--
+  This file is part of avahi.
+
+  avahi is free software; you can redistribute it and/or modify it
+  under the terms of the GNU Lesser General Public License as
+  published by the Free Software Foundation; either version 2 of the
+  License, or (at your option) any later version.
+
+  avahi is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR
+
+&lt;!-- See avahi.service(5) for more information about this configuration file -->
+
+&lt;service-group>
+
+  &lt;name replace-wildcards="yes"
+>FISH to %h&lt;/name>
+
+  &lt;service>
+    &lt;type
+>_fish._tcp&lt;/type>
+    &lt;port
+>22&lt;/port>
+  &lt;/service>
+
+&lt;/service-group>
+</programlisting
+> Spara den ändrade filen. Nu måste vi skapa den nya filen <filename
+>_fish._tcp</filename
+>, öppna en texteditor och lägga följande rader: <programlisting>
+Name=FISH Protocol (ssh)
+Type=_fish._tcp
+UserEntry=u
+PathEntry=path
+PasswordEntry=p
+</programlisting
+> Spara filen som <filename
+>/usr/share/apps/zeroconf/_fish._tcp</filename
+> Gör samma sak för alla datorer på det lokala nätverket, och starta därefter om avahi-demonen: <screen>
+<prompt
+># /etc/init.d/</prompt
+> <userinput
+><command
+>avahi-daemon</command
+> <option
+>restart</option
+></userinput>
+</screen
+> Öppna därefter &krusader; och skriv följande platsradens-länk:<filename
+>zeroconf:/</filename
+> för att öppna <link linkend="gloss-zeroconf"
+>zeroconf</link
+>-anslutningen. Gå till katalogen för protokollet <guilabel
+>Fish</guilabel
+>. Där hittar du länkar till alla datorer som annonserar <filename
+>fish:/</filename
+> på det lokala nätverket, platsradens-länk: pekar på <filename
+>zeroconf:/_fish._tcp</filename
+>. Genom att dubbelklicka på någon av datorerna visas lösenordsrutan, som frågar dig efter lösenordsfrasen för ssh-nyckeln (om lösenord är inställt). Ange din lösenordsfras. Gratulerar, du har just anslutit till en annan dator med &krusader;! </para
+> 
+
+</sect2>
+
+</sect1>
+
+

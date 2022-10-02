@@ -1,0 +1,57 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="calculate">
+  <title
+>Calcular o Espaço Ocupado</title>
+  <indexterm>
+    <primary
+>Espaço Ocupado</primary>
+  </indexterm>
+  <!-- Thanks to Heiner Eichmann -->
+  <para
+>Existem duas formas de calcular o espaço ocupado pelos ficheiros/pastas.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Se carregar no atalho configurável para a opção <guilabel
+>Calcular o espaço ocupado</guilabel
+> sobre uma pasta sob o cursor, irá calcular imediatamente o tamanho ocupado.</para>
+    </listitem>
+    <listitem>
+      <para
+>Para calcular a quantidade de espaço em disco ocupado pelos ficheiros e pastas seleccionados no painel activo, seleccione a opção <menuchoice
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Calcular o Espaço Ocupado</guimenuitem
+> </menuchoice
+>. Ao fim de algum tempo, irá aparecer uma janela com o espaço total ocupado e o número de ficheiros e pastas que seleccionou. O espaço ocupado por cada uma das pastas seleccionadas será apresentado, como se o utilizador tivesse acabado de carregar em <keycap
+>Espaço</keycap
+> nessas pastas. Se o painel activo estiver a navegar num pacote, os números aplicar-se-ão ao tamanho não-comprimido dos ficheiros e pastas seleccionados, não ao seu tamanho comprimido. Depois do cálculo, o estado da selecção será comutado e o cursor irá descer um passo.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>É suportado o cálculo do espaço ocupado nos sistemas de ficheiros remotos. <note
+> <para
+>Se efectuar esta operação num sistema de ficheiros muito grande (com milhares de ficheiros), poderá consumir bastante tempo. Poderá cancelar o processo de cálculo em qualquer altura, carregando para tal no botão <guibutton
+>Cancelar</guibutton
+>.</para>
+  </note
+></para>
+</sect1>

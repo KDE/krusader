@@ -1,0 +1,210 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<appendix id="config_files">
+  <title
+>Файли налаштувань</title>
+  <indexterm>
+    <primary
+>Файли налаштувань</primary>
+  </indexterm>
+  <para
+>У цьому додатку наведено огляд файлів налаштувань, які використовуються у &krusader;.</para>
+  <para>
+    <emphasis role="bold"
+>krusaderui.rc</emphasis>
+  </para>
+  <para
+>У цьому файлі зберігається панель інструментів користувача і структура меню.</para>
+  <para
+>Розташування: <filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+>, <filename
+>~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> або <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> у каталозі, адресу якого можна визначити за допомогою команди <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+  <para>
+    <emphasis role="bold"
+>krusaderrc</emphasis>
+  </para>
+  <para
+>У цьому файлі зберігаються налаштування &krusader;.</para>
+  <para
+>Розташування: <filename
+>~/.config/krusaderrc</filename
+></para>
+  <para
+>У ньому, наприклад, зберігаються такі параметри:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Пенал дій</para>
+    </listitem>
+    <listitem>
+      <para
+>Архіви</para>
+    </listitem>
+    <listitem>
+      <para
+>Кольори</para>
+    </listitem>
+    <listitem>
+      <para
+>Залежності</para>
+    </listitem>
+    <listitem>
+      <para
+>DiskUsage</para>
+    </listitem>
+    <listitem>
+      <para
+>DiskUsageViewer</para>
+    </listitem>
+    <listitem>
+      <para
+>Загальне</para>
+    </listitem>
+    <listitem>
+      <para
+>Параметри HTML</para>
+    </listitem>
+    <listitem>
+      <para
+>KFileDialog</para>
+    </listitem>
+    <listitem>
+      <para
+>KFileDialog Speedbar</para>
+    </listitem>
+    <listitem>
+      <para
+>KrDetailedViewLeft</para>
+    </listitem>
+    <listitem>
+      <para
+>KrDetailedViewRight</para>
+    </listitem>
+    <listitem>
+      <para
+>KrViewerWindow</para>
+    </listitem>
+    <listitem>
+      <para
+>KrViewerWindow Toolbar extraToolBar</para>
+    </listitem>
+    <listitem>
+      <para
+>Вигляді і поведінка</para>
+    </listitem>
+    <listitem>
+      <para
+>Повідомлення сповіщень</para>
+    </listitem>
+    <listitem>
+      <para
+>Профілі панелей</para>
+    </listitem>
+    <listitem>
+      <para
+>Особисте</para>
+    </listitem>
+    <listitem>
+      <para
+>Протоколи</para>
+    </listitem>
+    <listitem>
+      <para
+>Пошук</para>
+    </listitem>
+    <listitem>
+      <para
+>Запуск</para>
+    </listitem>
+    <listitem>
+      <para
+>Синхронізація</para>
+    </listitem>
+    <listitem>
+      <para
+>Розташування</para>
+    </listitem>
+    <listitem>
+      <para
+>SynchronizerProfile - 1</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>krbookmarks.xml</emphasis>
+  </para>
+  <para
+>У цьому файлі зберігаються закладки &krusader;, його структура відповідає <ulink url="http://grail.sourceforge.net/info/xbel.html"
+>стандарту XBEL</ulink
+>.</para>
+  <para
+>Розташування: <filename
+>~/.local/share/krusader/krbookmarks.xml</filename
+> або <filename
+>krusader/krbookmarks.xml</filename
+> у каталозі, адресу якого можна визначити за допомогою команди <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+  <para>
+    <emphasis role="bold"
+>useractions.xml</emphasis>
+  </para>
+  <para
+>У цьому файлі зберігаються налаштування <link linkend="useractions"
+>Дій користувача</link
+>.</para>
+  <para
+>Розташування: <filename
+>~/local/share/krusader/useractions.xml</filename
+> або <filename
+>krusader/useractions.xml</filename
+> у каталозі, адресу якого можна визначити за допомогою команди <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+  <para>
+    <emphasis role="bold"
+>useraction-examples.xml</emphasis>
+  </para>
+  <para
+>Тут зберігаються типові дії користувача, що постачаються разом з програмою.</para>
+  <para
+>Розташування: <filename
+> $KDEDIR/share/krusader/useraction-examples.xml</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>foo.keymap</emphasis>
+  </para>
+  <para
+>Є файлом <literal role="extension"
+>ini</literal
+>, у якому зберігається <link linkend="configure-shortcuts"
+>профіль прив’язки клавіш</link
+>. До версії &krusader;-1.70.0 ці дані зберігалися у бінарному файлі. У &krusader; збережено зворотну сумісність, призначену для імпортування даних з цього застарілого бінарного формату.</para>
+  <para
+>Розташування: <filename
+>/usr/share/krusader/foo.keymap</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>foo.color</emphasis>
+  </para>
+  <para
+>Це файл у бінарному форматі, де зберігаються параметри <link linkend="konfig-color"
+>схеми кольорів</link
+>.</para>
+  <para
+>Розташування: <filename
+>/usr/share/krusader/foo.color</filename
+></para>
+</appendix>

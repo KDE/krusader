@@ -1,0 +1,76 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="profiles">
+  <title
+>Perfis</title>
+  <indexterm>
+    <primary
+>Perfis</primary>
+  </indexterm>
+  <para
+>Com os perfis, poderá gravar e repor a sua configuração favorita. Diversas funcionalidades suportam os perfis; poderá ter &eg; diferentes perfis do painel (casa, trabalho, ligações remotas, &etc;), perfis de pesquisa, perfis de sincronização, &etc;</para>
+  <sect2 id="panel_profiles">
+    <title
+>Perfis do Painel</title>
+    <para
+>Um perfil do painel contém o seguinte: todos os locais das páginas (esquerda ou direita), a página actual (esquerda ou direita) e o painel activo (esquerdo ou direito). Toda esta informação é gravada no ficheiro <link linkend="config_files"
+>krusaderrc</link
+>. Poderá ter vários perfis do painel, &eg; gestão de ficheiros, gestão do &FTP;, casa, trabalho, &etc;. O perfil do painel poderá ser <link linkend="c_panel_profiles"
+>gravado e reposto</link
+> no menu <guimenu
+>Janela</guimenu
+>. O <link linkend="konfig-startup"
+>perfil de arranque por omissão</link
+> será usado ao iniciar o &krusader;, mas podê-lo-á substituir com uma <link linkend="starting-krusader"
+>opção da linha de comandos</link
+>.</para>
+  </sect2>
+  <sect2 id="color_profiles">
+    <title
+>Perfis de Cores</title>
+    <para
+>Os mapas de cores podem ser gravados e repostos com os <link linkend="konfig-color"
+>Perfis de Cores</link
+>.</para>
+  </sect2>
+  <sect2 id="key_profiles">
+    <title
+>Perfis de Combinações de Teclas</title>
+    <para
+>Poderá gravar e repor os mapas de combinações de teclas com os <link linkend="configure-shortcuts"
+>Perfis de Combinações de Teclas</link
+>.</para>
+  </sect2>
+  <sect2 id="search_profiles">
+    <title
+>Perfis de Pesquisa</title>
+    <para
+>Se efectuar a mesma operação de pesquisa com regularidade, poderá gravar a configuração da procura (&eg; inclusão e exclusão de ficheiros, &etc;) num <link linkend="krusearcher"
+>Perfil de Pesquisa</link
+>.</para>
+  </sect2>
+  <sect2 id="synchronizer_profiles">
+    <title
+>Perfis de Sincronização</title>
+    <para
+>Se efectua regularmente a mesma operação de sincronização, podê-la-á gravar num <link linkend="synchronizer"
+>Perfil de Sincronização</link
+>. A Sincronização está desactivada na altura da compilação por omissão.</para>
+  </sect2>
+</sect1>

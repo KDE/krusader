@@ -1,0 +1,120 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="compare">
+  <title
+>Vergleichen</title>
+  <para
+>&krusader; bietet mehrere Vergleichs-Funktionen: <guimenuitem
+>Nach Inhalt vergleichen</guimenuitem
+>, <guimenuitem
+>Ordner vergleichen</guimenuitem
+> und die Funktion <link linkend="synchronizer"
+>Abgleichen</link
+>.</para>
+  <sect2 id="compare-content">
+    <title
+>Nach Inhalt vergleichen</title>
+    <indexterm>
+      <primary
+>Vergleichen</primary>
+      <secondary
+>Inhalt</secondary>
+    </indexterm>
+    <para
+>Wählen Sie eine Datei in jedem Dateifenster und dann im Menü <menuchoice
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Nach Inhalt vergleichen</guimenuitem
+> </menuchoice
+>. &krusader; öffnet dann das dafür <link linkend="konfig-dependencies"
+>eingerichtete</link
+> externe grafische Vergleichsprogramm. Die Programme &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> und <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> können für diese Aufgabe benutzt werden.</para>
+  </sect2>
+  <sect2 id="compare-dir">
+    <title
+>Ordner vergleichen</title>
+    <indexterm>
+      <primary
+>Vergleichen</primary>
+      <secondary
+>Ordner</secondary>
+    </indexterm>
+    <para
+>Um die Dateien in den Dateifenstern zu vergleichen, wählen Sie im Menü <menuchoice
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Ordner vergleichen</guimenuitem
+> </menuchoice
+>. Als Voreinstellung werden neue und einzelne Dateien in jedem Dateifenster gewählt, dieses Verhalten kann im Menü <guimenuitem
+>Vergleichen einrichten</guimenuitem
+> geändert werden. <note
+> <para
+>Die Dateien werden nur nach Namen und Datum, aber nicht nach dem Inhalt verglichen.</para>
+    </note
+></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Vergleichen einrichten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Einstellungen für die Funktion <guimenuitem
+>Ordner vergleichen</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Unterschiedliche und einzelne auswählen</guimenuitem
+> (Standard)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Einzelne auswählen</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Neue auswählen</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Unterschiedliche und einzelne auswählen</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Unterschiedliche auswählen</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>

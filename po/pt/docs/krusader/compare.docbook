@@ -1,0 +1,134 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="compare">
+  <title
+>Comparar</title>
+  <para
+>O &krusader; contém diversas funções de comparação: <guimenuitem
+>Comparar pelo Conteúdo</guimenuitem
+>, <guimenuitem
+>Comparar as Pastas</guimenuitem
+> e a função de comparação <link linkend="synchronizer"
+>Sincronização</link
+> (desactivada na altura da compilação por omissão).</para>
+  <sect2 id="compare-content">
+    <title
+>Comparar pelo Conteúdo</title>
+    <indexterm>
+      <primary
+>Comparar</primary>
+      <secondary
+>Conteúdo</secondary>
+    </indexterm>
+    <para
+>Seleccione um ficheiro em cada painel e use a opção <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Comparar pelo conteúdo</guimenuitem
+> </menuchoice
+> </emphasis
+>. O &krusader; irá abrir uma aplicação gráfica de visualização de diferenças <link linkend="konfig-dependencies"
+>configurada</link
+>. São suportados o &kompare;, o <ulink url="http://kdiff3.sourceforge.net"
+><application
+>Kdiff3</application
+></ulink
+> e o <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+  </sect2>
+  <sect2 id="compare-dir">
+    <title
+>Comparar as Pastas</title>
+    <indexterm>
+      <primary
+>Comparar</primary>
+      <secondary
+>Pastas</secondary>
+    </indexterm>
+    <para
+>Compare os ficheiros de cada painel com a opção <menuchoice
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Comparar as Pastas</guimenuitem
+> </menuchoice
+>. Por omissão, os ficheiros mais recentes e únicos ficarão seleccionados em cada painel, sendo que poderá configurar este comportamento no menu de <guimenuitem
+>Configuração da Comparação</guimenuitem
+>. <note
+> <para
+>Os ficheiros não são comparados pelo conteúdo, mas apenas pelos seus nomes e datas.</para>
+    </note
+></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Editar</guimenu
+> <guimenuitem
+>Configuração da Comparação</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Configura a opção para <guimenuitem
+>Comparar as Pastas</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Seleccionar os Novos e Únicos</guimenuitem
+> (por omissão)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Seleccionar os Únicos</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Seleccionar os Novos</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Seleccionar os Diferentes e Únicos</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Seleccionar os Diferentes</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>

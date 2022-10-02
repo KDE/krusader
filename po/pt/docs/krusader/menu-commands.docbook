@@ -1,0 +1,2330 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<chapter id="menu-commands">
+  <title
+>Comandos do Menu</title>
+  <indexterm>
+    <primary
+>Comandos</primary>
+    <secondary
+>Menu</secondary>
+  </indexterm>
+  <sect1 id="file-menu">
+    <title
+>O Menu Ficheiro</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F4</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Novo Ficheiro de Texto</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Cria um novo ficheiro de texto na pasta actual, a menos que tenha indicado outra pasta. O ficheiro novo é aberto para edição, após a sua criação.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F7</keycap
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Nova Pasta</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Cria uma pasta nova na pasta actual.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Nova Ligação Simbólica</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Cria uma ligação simbólica para o ficheiro seleccionado de momento.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F3</keycap
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Ver o Ficheiro</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre o ficheiro seleccionado de momento para a sua <link linkend="kredit"
+>visualização</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F4</keycap
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Editar o Ficheiro</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre o ficheiro seleccionado de momento para a sua <link linkend="kredit"
+>edição</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F5</keycap
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Copiar para o outro painel</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Copia os ficheiros ou pastas seleccionados de momento para o outro painel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F6</keycap
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Mover</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre uma janela para <link linkend="copying"
+>mover</link
+> os ficheiros ou pastas seleccionados de momento para um local indicado.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Comprimir</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Cria um <link linkend="pack-archive"
+>novo pacote</link
+> com todos os ficheiros e pastas seleccionados no painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Descomprimir</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="unpacking-archives"
+>Descomprime</link
+> todos os ficheiros seleccionados para o painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Testar o Pacote</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="test-archive"
+>Testa o pacote</link
+> para ver se não está corrompido.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Comparar pelo Conteúdo</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Compara os dois ficheiros actuais pelo conteúdo - um de cada painel, através de um utilitário externo gráfico de diferenças. Por omissão, é usado o &kompare; , mas também poderá usar &eg; o <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> ou o <ulink url="http://kdiff3.sourceforge.net"
+><application
+>Kdiff3</application
+></ulink
+>, alterando-o na <link linkend="konfig-dependencies"
+>página de Dependências do Konfigurador</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="multi_rename">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F9</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Mudança de Nomes em Lote</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Esta opção do menu inicia o <ulink url="http://www.krename.net"
+><application
+>Krename</application
+></ulink
+>, um utilitário de mudança de nomes de ficheiros em lote.</para>
+          <itemizedlist>
+            <title
+>Funcionalidades do Krename</title>
+            <listitem>
+              <para
+>Mudar o nome de uma lista de ficheiros, com base num conjunto de expressões</para>
+            </listitem>
+            <listitem>
+              <para
+>Copiar/mover uma lista de ficheiros para outra pasta</para>
+            </listitem>
+            <listitem>
+              <para
+>Converter os nomes dos ficheiros para maiúsculas/minúsculas</para>
+            </listitem>
+            <listitem>
+              <para
+>Adicionar números aos nomes dos ficheiros</para>
+            </listitem>
+            <listitem>
+              <para
+>Procurar e substituir partes do nome dos ficheiros</para>
+            </listitem>
+            <listitem>
+              <para
+>Mudar os nomes dos ficheiros MP3/OGG Vorbis, com base nas suas marcas ID3</para>
+            </listitem>
+            <listitem>
+              <para
+>Alterar as datas de acesso e modificação</para>
+            </listitem>
+            <listitem>
+              <para
+>Alterar as permissões e os donos dos ficheiros</para>
+            </listitem>
+            <listitem>
+              <para
+>Uma API de 'plugins' que lhe permite estender as funcionalidades do KRename</para>
+            </listitem>
+            <listitem>
+              <para
+>Mudar recursivamente os nomes das pastas</para>
+            </listitem>
+            <listitem>
+              <para
+>Suporte para os KFilePlugins</para>
+            </listitem>
+            <listitem>
+              <para
+>Desfazer a mudança de nomes</para>
+            </listitem>
+            <listitem>
+              <para
+>E muito mais...</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Criar um Código de Validação</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="checksum"
+>Criação do código de validação</link
+> para ficheiros e/ou pastas.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Verificar o Código de Validação</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para>
+            <link linkend="checksum"
+>Verificar o Código de Validação</link>
+          </para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Dividir o Ficheiro</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>A função para <link linkend="splitter"
+>Dividir o ficheiro</link
+> reparte um ficheiro em vários ficheiros menores, de modo a serem gravados em suportes mais reduzidos (como as <hardware
+>disquetes, discos ZIP, ...</hardware
+>) ou enviados por e-mail.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Combinar os Ficheiros</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>A função para <link linkend="splitter"
+>Combinar os ficheiros</link
+> reúne vários ficheiros num ficheiro único, após ter sido usada a função para <link linkend="splitter"
+>Dividir o ficheiro</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <!--vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Sair</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Fecha o &krusader; e limpa a pasta temporária; é equivalente a usar a tecla <keycap
+>F10</keycap
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="edit-menu">
+    <title
+>O Menu Editar</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Cortar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Corta</link
+> os ficheiros seleccionados para a área de transferência, de modo a serem movidos para outro local.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Copiar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Copia</link
+> os ficheiros seleccionados para a área de transferência, de modo a movê-los para outro local.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Colar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Cola</link
+> os itens previamente cortados ou copiados da área de transferência para a pasta actual.</para>
+        </listitem>
+      </varlistentry>
+<!--
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycap
+>F2</keycap>
+            </shortcut>
+            <guimenu
+>Edit</guimenu>
+            <guimenuitem
+>Rename</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          <link linkend="renaming"
+>Renames</link
+> the currently
+          selected file.</para>
+        </listitem>
+      </varlistentry
+>-->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F8</keycap
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Apagar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="deleting"
+>Remove</link
+> os ficheiros seleccionados de momento.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Seleccionar o Grupo</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre uma janela que lhe permite seleccionar ficheiros no painel activo. Na janela <guilabel
+>Procurar por</guilabel
+>, indique o critério de pesquisa principal. Indique um nome de ficheiros, uma sequência especial ( <literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> &etc;) ou ambos - separados por um espaço. Ao usar o <literal
+>'texto'</literal
+>, os resultados serão iguais a usar o <literal
+>'*texto*'</literal
+>. Poderá excluir os ficheiros da pesquisa com o '|' (&eg; <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>). Com o <link linkend="profiles"
+>gestor de perfis</link
+>, poderá fazer a gestão das suas selecções para uso posterior. Se fizer duplo-click sobre um perfil, será o mesmo que introduzir a selecção e carregar em <guibutton
+>OK</guibutton
+>. Estão explicadas mais opções para o <guilabel
+>Seleccionar o Grupo</guilabel
+> na <link linkend="krusearcher"
+>janela de Pesquisa</link
+>, as quais são praticamente as mesmas janelas.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Deseleccionar o Grupo</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>O oposto de <guimenuitem
+>Seleccionar o Grupo</guimenuitem
+>. Os ficheiros que corresponderem ao padrão no painel activo serão desligados.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Seleccionar Tudo</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Selecciona todos os ficheiros no painel activo. Poderá também seleccionar todas as pastas, activando a opção para <guilabel
+>Auto-seleccionar as pastas</guilabel
+> da <link linkend="konfig-panel"
+>página do Painel do Konfigurador</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Deseleccionar Tudo</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Desmarca todos os ficheiros no painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Inverter a Selecção</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Inverte o estado de selecção para todos os ficheiros no painel activo (&ie;, os ficheiros seleccionados ficarão deseleccionados e vice-versa).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Editar</guimenu
+> <guimenuitem
+>Repor a Selecção</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Repõe o estado de selecção dos itens anteriormente não seleccionados.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Procurar na pasta</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Activa ou desactiva a função do &krusader; para <link linkend="quicksearch"
+>pesquisas rápidas</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Comparar as Pastas</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Activa ou desactiva a função do &krusader; para <link linkend="compare-dir"
+>Comparar as Pastas</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Editar</guimenu
+> <guimenuitem
+>Configuração da Comparação</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Configura a opção para <guimenuitem
+>Comparar as Pastas</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Seleccionar os Novos e Únicos</guimenuitem
+> (por omissão)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Seleccionar os Únicos</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Seleccionar os Novos</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Seleccionar os Diferentes e Únicos</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Seleccionar os Diferentes</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Editar</guimenu
+> <guimenuitem
+>Calcular o Espaço Ocupado</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="calculate"
+>Calcula o espaço ocupado</link
+> dos ficheiros, pastas, pacotes e sistemas de ficheiros remotos.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Return</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Propriedades</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre a janela de propriedades para o ficheiro seleccionado de momento (para a tecla do teclado numérico.)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="go-menu">
+    <title
+>O Menu Ir</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Cima</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Subir</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vai para a pasta-mãe do painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Esquerda</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Recuar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vai para a pasta anteriormente vista no painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Direita</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Avançar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vai para a pasta visualizada seguinte no painel activo. Fica disponível apenas se a opção <menuchoice
+><guimenu
+>Ir</guimenu
+> <guimenuitem
+>Recuar</guimenuitem
+></menuchoice
+> foi usada anteriormente.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Home</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Pasta Pessoal</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vai para a pasta pessoal do utilizador actual.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; &Backspace;</keycombo
+> </shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Raiz</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vai para a pasta de topo ou raiz do sistema.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>URL's Populares</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra uma listagem com as pastas mais vistas, podendo ir para uma delas através de um duplo-click.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Definir o Ponto de Regresso</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Configura a pasta actual como um ponto "de regresso". Para ir rapidamente para esta pasta, escolha o comando <guimenuitem
+>Regressar</guimenuitem
+> do menu <guimenu
+>Ir</guimenu
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Regressar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Volta para um "ponto de regresso" anterior.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="view-menu">
+    <title
+>O Menu Ver</title>
+    <para
+>A acção deste submenu afecta normalmente a sessão actual do &krusader;. Se quiser tornar as alterações permanentes, use a <link linkend="konfigurator"
+>página de Arranque do Konfigurador</link
+>.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ver</guimenu
+> <guimenuitem
+>Ampliar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Aumenta a escala de visualização.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ver</guimenu
+> <guimenuitem
+>Reduzir</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Diminui a escala de visualização.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ver</guimenu
+> <guimenuitem
+>Ampliação Predefinida</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Repõe a escala de visualização.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ver</guimenu
+> <guimenuitem
+>Vista Detalhada</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra os nomes, tamanhos, datas e horas de criação e os atributos dos ficheiros.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ver</guimenu
+> <guimenuitem
+>Vista Breve</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra apenas os nomes dos ficheiros.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ver</guimenu
+> <guimenuitem
+>Mostrar os Ficheiros Escondidos</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Comuta a opção para mostrar os ficheiros escondidos nos painéis do &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F10</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ver</guimenu
+> <guimenuitem
+>Todos os Ficheiros</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Desliga todos os filtros e mostra todos os ficheiros.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F12</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ver</guimenu
+> <guimenuitem
+>Personalizado</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Permite-lhe instalar um filtro personalizado para o painel do &krusader;. Somente os ficheiros e pastas correspondentes  aos padrões do filtro serão apresentados. Não se esqueça de desactivar o filtro personalizado depois de o usar, caso contrário alguns ficheiros poderão não estar visíveis.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ver</guimenu
+> <guimenuitem
+>Mostrar as Antevisões</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Se estiver assinalado, mostra a antevisão de todos os ficheiros e pastas no painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ver</guimenu
+> <guimenuitem
+>Seleccionar a Codificação Remota</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Selecciona a codificação remota para as <link linkend="remote-connections"
+>Ligações Remotas</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ver</guimenu
+> <guimenuitem
+>Actualizar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Actualiza o conteúdo do painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ver</guimenu
+> <guimenuitem
+>Gravar a configuração por omissão</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Permite-lhe gravar a configuração da página actual para novas instâncias deste tipo de visualização.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ver</guimenu
+> <guimenuitem
+>Aplicar a configuração às outras páginas</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Permite-lhe aplicar a configuração de visualização da página actual às outras.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="useractions-menu">
+    <title
+>Menu de Acções do Utilizador</title>
+    <para
+>Poderá adicionar os seus próprios itens de menu se definir as suas <link linkend="useractions"
+>Acções do Utilizador</link
+>. </para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Acções do Utilizador</guimenu
+> <guimenuitem
+>Gerir as Acções do Utilizador...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre o gestor de <link linkend="useractions"
+>Acções do Utilizador</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>A</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acções do Utilizador</guimenu
+><guisubmenu
+>Multimédia</guisubmenu
+> <guimenuitem
+>Adicionar ao Amarok</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Adiciona os itens seleccionados à lista de reprodução do &amarok;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; </keycombo
+> </shortcut
+> <guimenu
+>Acções do Utilizador</guimenu
+><guisubmenu
+>Exemplos</guisubmenu
+> <guimenuitem
+>Tamanhos de painel iguais</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Configura a proporção entre os dois painéis como sendo 50/50.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;<keycap
+>E</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acções do Utilizador</guimenu
+><guisubmenu
+>Exemplos</guisubmenu
+> <guimenuitem
+>Editar como 'root'</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Permite-lhe editar um ficheiro com o <application
+>kwrite</application
+>, usando permissões de 'root'.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>M</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acções do Utilizador</guimenu
+><guisubmenu
+>Exemplos</guisubmenu
+> <guimenuitem
+>Montar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Monta um novo sistema de ficheiros.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>C</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acções do Utilizador</guimenu
+><guisubmenu
+>Exemplos</guisubmenu
+> <guimenuitem
+>Copiar o item actual para a área de transferência</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Copia o nome do item seleccionado para a área de transferência.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+><keycap
+>F5</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acções do Utilizador</guimenu
+><guisubmenu
+>Sistema</guisubmenu
+> <guimenuitem
+>Salvaguardar o actual</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Cria uma cópia de segurança na pasta actual e pede um novo nome ao utilizador. Por omissão, é adicionado um <literal role="extension"
+>.old</literal
+> ao nome do ficheiro original.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>1</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acções do Utilizador</guimenu
+><guisubmenu
+>Interface do Utilizador</guisubmenu
+> <guimenuitem
+>Ordenar pelo Nome</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Quando esta opção estiver activa, a chave de ordenação no painel do &krusader; tornar-se-á o nome do ficheiro.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>2</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acções do Utilizador</guimenu
+><guisubmenu
+>Interface do Utilizador</guisubmenu
+> <guimenuitem
+>Ordenar pela Extensão</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Quando esta opção estiver activa, a chave de ordenação no painel do &krusader; tornar-se-á a extensão do ficheiro (a parte do nome a seguir ao último '.'). Isto é útil para agrupar os ficheiros do mesmo tipo em conjunto.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>3</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acções do Utilizador</guimenu
+><guisubmenu
+>Interface do Utilizador</guisubmenu
+> <guimenuitem
+>Ordenar pelo Tamanho</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Quando esta opção estiver activa, a chave de ordenação no painel do &krusader; tornar-se-á o tamanho do ficheiro. Isto é útil para determinar os ficheiros maiores numa pasta em particular.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>4</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acções do Utilizador</guimenu
+><guisubmenu
+>Interface do Utilizador</guisubmenu
+> <guimenuitem
+>Ordenar pela Data de Modificação</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Quando esta opção estiver activa, a chave de ordenação no painel do &krusader; tornar-se-á a data de modificação do ficheiro. Isto é útil para determinar os ficheiros com que trabalhou recentemente.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="tools-menu">
+    <title
+>O Menu Ferramentas</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Procurar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre o <link linkend="krusearcher"
+>KruSearcher</link
+> - o módulo de pesquisa do &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Locate</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre a interface &GUI; do <link linkend="locate"
+>Locate</link
+> para as pesquisas rápidas nos ficheiros.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Sincronizar as Pastas</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>A função para <link linkend="synchronizer"
+>Sincronizar as Pastas</link
+> compara os painéis esquerdo e direito, mostrando as diferenças entre eles. Depois da função de comparação, poderá mover os ficheiros/pastas para serem sincronizados. Esta funcionalidade está desactivada na altura da compilação por omissão. Veja a ligação acima para obter instruções como activá-la.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>MountMan</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre um submenu com itens para abrir o <link linkend="mount-man"
+>MountMan</link
+> ou montar/desmontar os diversos pontos de montagem.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Utilização do Disco</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre a <link linkend="diskusage"
+>Utilização do Disco</link
+>.</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Nova Ligação à Rede</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre a janela de <link linkend="remote-connections"
+>Nova Ligação de Rede</link
+> para iniciar uma ligação por &FTP;, SMB, FISH ou SFTP a uma máquina remota. Se deixar os campos do utilizador e senha em branco, autenticar-se-á de forma anónima. Poderá marcar essas sessões remotas como <link linkend="bookman"
+>Favoritos</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Desligar da Rede</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Termina a <link linkend="remote-connections"
+>ligação remota</link
+> no painel activo e volta à localização de origem.</para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Iniciar o Terminal</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre uma janela de terminal na pasta por omissão (normalmente a sua pasta pessoal). Poderá escolher a sua aplicação de terminal favorita na <link linkend="konfig-general"
+>página Geral do Konfigurador</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="root-mode">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>K</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Iniciar o Krusader no Modo 'Root'</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Inicia o &krusader;, no <link linkend="root-mode"
+>modo de Root</link
+>, para o mesmo local. O &krusader; no modo de 'root' (administrador) necessita do <command
+>kdesu</command
+> por omissão; se o <command
+>kdesu</command
+> não estiver disponível, ou se preferir &eg; o <command
+>gksu</command
+> ao usar o <ulink url="http://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, poderá alterar este comportamento na <link linkend="konfig-dependencies"
+>página de Dependências do Konfigurador</link
+>.</para>
+          <caution>
+            <para
+>Tenha cuidado a usar o &krusader; com PRIVILÉGIOS DE ROOT.</para>
+          </caution>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <!-- disabled due to KrJS does not compile (cannot find kjsembed from kdelibs
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">
+              &Alt;&Ctrl;
+              <keycap
+>J</keycap
+></keycombo>
+            </shortcut>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Javascript Console</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opens the 
+          <link linkend="javascript_console"
+>Javascript
+          Console</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Esvaziar o Lixo</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Esvazia o <link linkend="deleting"
+>caixote do lixo</link
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="window-menu">
+    <title
+>O Menu Janela</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Janela</guimenu
+> <guimenuitem
+>Nova Página</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre uma página nova no painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Janela</guimenu
+> <guimenuitem
+>Bloquear/Desbloquear a Página</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Bloqueia e depois desbloqueia a página actual no painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Janela</guimenu
+> <guimenuitem
+>Duplicar a Página Actual</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre uma página nova que seja um duplicado da página do painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Janela</guimenu
+> <guimenuitem
+>Mover a Página Actual para o Outro Lado</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Move a página actual para o outro lado da janela do &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Janela</guimenu
+> <guimenuitem
+>Fechar a Página Actual</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Fecha a página actual para o painel activo. Este comando só está disponível se existir mais que uma página no painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Janela</guimenu
+> <guimenuitem
+>Fechar as Páginas Inactivas</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Fecha todas as páginas no painel activo, excepto a que estiver activa de momento.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Janela</guimenu
+> <guimenuitem
+>Fechar as Páginas Duplicadas</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Fecha as páginas duplicadas no painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl; <keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Janela</guimenu
+> <guimenuitem
+>Página Seguinte</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vai para a página seguinte do painel activo. Este comando só estará disponível se existir mais que uma página no painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Janela</guimenu
+> <guimenuitem
+>Página Anterior</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vai para a página anterior do painel activo. Este comando só estará disponível se existir mais que uma página no painel activo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="c_panel_profiles">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Janela</guimenu
+> <guimenuitem
+>Perfis</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre um menu onde os <link linkend="panel_profiles"
+>perfis do painel</link
+> poderão ser gravados e repostos.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Janela</guimenu
+> <guimenuitem
+>Trocar os Painéis</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>O painel esquerdo ficará o direito e vice-versa, sendo trocadas apenas as páginas actuais.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Janela</guimenu
+> <guimenuitem
+>Trocar os Lados</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>O painel esquerdo completo ficará o direito e vice-versa, sendo trocadas todas as páginas.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Janela</guimenu
+> <guimenuitem
+>Modo Vertical</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Comuta o <link linkend="list_panel"
+>Painel da Lista</link
+> entre o modo horizontal e o vertical.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Janela</guimenu
+> <guimenuitem
+>Comutar o Modo de Ecrã Completo do Emulador de Terminal</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Comuta o modo de ecrã completo do emulador de terminal. Esta opção só fica disponível quando a opção <guilabel
+>Mostrar o Emulador de Terminal</guilabel
+> ficar activa.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Janela</guimenu
+> <guimenuitem
+>Gravar a Posição</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Grava a posição e o tamanho actuais da janela principal do &krusader;. Esta acção poderá ser automatizada com o <guilabel
+>Gravar a configuração da última posição, tamanho e painel</guilabel
+> da <link linkend="konfigurator"
+>página de Arranque do Konfigurador</link
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="settings-menu">
+    <title
+>O Menu Configuração</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Configuração</guimenu
+> <guisubmenu
+>Barras de Ferramentas</guisubmenu
+><guimenuitem
+>Mostrar a Barra Principal</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra a <link linkend="mainwindow"
+>Barra Principal</link
+> se estiver assinalada.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Configuração</guimenu
+> <guisubmenu
+>Barras de Ferramentas</guisubmenu
+> <guimenuitem
+>Mostrar a Barra de Tarefas</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra a <link linkend="job_toolbar"
+>Barra de Tarefas</link
+> se estiver assinalada.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Configuração</guimenu
+> <guisubmenu
+>Barras de Ferramentas</guisubmenu
+> <guimenuitem
+>Mostrar a Barra de Acções</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra a <link linkend="actions_toolbar"
+>Barra de Acções</link
+> se estiver assinalada.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Mostrar a Barra de Estado</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra a <link linkend="mainwindow"
+>Barra de Estado</link
+> se estiver seleccionada.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Mostrar a Barra de Teclas FN</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra a <link linkend="fnkeys"
+>Barra de Teclas FN</link
+>, se estiver assinalada.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Mostrar o Emulador de Terminal</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra o <link linkend="cmdline"
+>Emulador de Terminal</link
+>, se estiver assinalado.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Mostrar a Linha de Comandos</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra a <link linkend="cmdline"
+>Linha de Comandos</link
+> se estiver assinalada.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Configurar o Modo de Execução de Comandos</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Permite-lhe escolher o modo de execução de comandos. Poderá escolher uma das seguintes opções.</para>
+	  <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Iniciar e Esquecer</guimenuitem
+>: inicia a execução e não espera pelos resultados.</para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Mostrar o 'Standard Output' e 'Standard Error' Separados</guimenuitem
+>: mostra o resultado do 'stdout' e do 'stderr' em painéis separados. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Mostrar o 'Standard Output' e 'Standard Error' Misturados</guimenuitem
+>: mostra o resultado do 'stdout' e do 'stderr' num único painel (comportamento por omissão). </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Iniciar num Novo Terminal</guimenuitem
+>: executa o comando na nova janela de terminal. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Enviar para o Emulador de Terminal Incorporado</guimenuitem
+>: envia o comando para o terminal incorporado. </para>
+            </listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+      <varlistentry id="job-queue-mode">
+        <term>
+          <menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Modo da Fila de Tarefas</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Activa ou desactiva o modo do <link linkend="queue"
+>Gestor da Fila de Espera</link
+>. Se estiver assinalado, então ao carregar em <keycap
+>F2</keycap
+> ou no botão correspondente na janela para copiar/mover, inicia a tarefa mesmo que existam tarefas em execução na fila de espera. Se não estiver assinalada, então a tarefa será colocada na fila de espera, caso esta não esteja vazia. Caso contrário, a tarefa será iniciada imediatamente. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="configure-shortcuts">
+        <term>
+          <menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Configurar os Atalhos</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <indexterm>
+            <primary
+>Configurar</primary>
+            <secondary
+>Atalhos</secondary>
+          </indexterm>
+          <para
+>Abre uma janela que lhe permite configurar as combinações de teclas do &krusader;.</para>
+          <para
+>Com os botões para <guibutton
+>Importar os atalhos</guibutton
+> e <guibutton
+>Exportar os atalhos</guibutton
+>, poderá carregar e gravar um perfil de combinações de teclas. Isto permite ao &krusader; ter as combinações de teclas do <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+>, xpto-commander, ou quaisquer outras que desejar. A única limitação é que os atalhos globais do &plasma; e alguns específicos do &krusader; não podem ainda ser alterados, assim como algumas funcionalidades dos outros utilitários que possam não ser necessárias ou existentes. As combinações de teclas são guardadas em <filename
+>/usr/share/krusader</filename
+>, onde o <filename
+>xpto.keymap.info</filename
+> contém uma descrição e o <filename
+>xpto.keymap</filename
+> é um ficheiro INI que contém as combinações de teclas. Até ao &krusader;-1.70.1, este era um ficheiro binário, sendo que o &krusader; é retro-compatível para importar este formato binário legado. Se existir um ficheiro de texto <filename
+>*.keymap.info</filename
+>, o &krusader; mostrá-lo-á, apresentando informações adicionais sobre o ficheiro de combinações de teclas carregado. Aqui terá uma hipótese de sair sem importar o ficheiro das combinações de teclas propostas.</para>
+          <tip>
+            <para
+>É fornecido um ficheiro de combinações de teclas compatível com o <trademark class="copyright"
+>Total Commander</trademark
+>. Por favor, <link linkend="help_krusader"
+>envie os seus esquemas de combinações de teclas favoritos</link
+>, de modo que se possam tornar disponíveis para a comunidade do &krusader;. Muito obrigado!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Configurar as Barras de Ferramentas</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre uma janela que lhe permite configurar a <link linkend="mainwindow"
+>Barra Principal</link
+> ou a <link linkend="actions_toolbar"
+>Barra de Acções</link
+>. Poderá adicionar botões das suas <link linkend="useractions"
+>Acções de Utilizador</link
+> favoritas à barra desejada.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Configurar o &krusader;</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Abre o <link linkend="konfigurator"
+>Konfigurador</link
+> - o centro de configuração do &krusader;.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="help-menu">
+    <title
+>O Menu Ajuda</title>
+    <para
+>Para além disso, o &krusader; tem os itens do menu de <guimenu
+>Ajuda</guimenu
+> normais do &kde;; para mais informações, leia as secções sobre o menu de <ulink url="help:/fundamentals/ui.html#menus-help"
+>Ajuda</ulink
+> dos Fundamentos do &kde;. </para>
+  </sect1>
+</chapter>

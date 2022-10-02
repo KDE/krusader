@@ -1,0 +1,114 @@
+<sect1 id="vfs">
+  <title
+>Sistemas de arquivos virtuais (VFS)</title>
+  <indexterm>
+    <primary
+>VFS</primary>
+  </indexterm>
+  <para
+>Uma <link linkend="features"
+>funcionalidade básica de OFM</link
+> é o VFS, que é uma camada abstrata sobre todos os tipos de informação arquivada (arquivos ZIP, servidores &FTP;, pacotes TAR, sistemas de arquivos NFS, compartilhamentos SAMBA, imagens ISO de CD/DVD, catálogos de RPM, &etc;), que permite ao usuário acessar a toda a informação nestes tipos divergentes de sistemas de arquivos, de forma transparente - como se estivesse entrando numa subpasta normal. O &krusader; suporta diversos sistemas de arquivos virtuais:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>VFS de conexões remotas</link
+>: oferece a capacidade de lidar com uma sessão de conexões remotas (&FTP;, NFS, Samba, FISH, SFTP), como acontece nos sistemas de arquivos locais. É perfeito para as operações remotas complexas e é quase tão poderoso quanto os clientes remotos autônomos.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>VFS de Pacotes</link
+>: permite navegar pelos pacotes no VFS como se fossem uma pasta (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip e 7-zip).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>VFS de Pesquisa</link
+>: o <guibutton
+>Alimentar à lista</guibutton
+> coloca os resultados da pesquisa no VFS.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>VFS de Sincronização</link
+>: coloca os resultados da sincronização no VFS (por padrão é desativado em tempo de compilação).</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>As ações que efetuar sobre os arquivos no VFS são aplicadas nos arquivos 'reais'. Você não irá apagar os arquivos no VFS - irá apagá-los também do seu disco rígido. Limitações: você não poderá criar pastas dentro de um VFS.</para>
+  <para
+>É possível manter a estrutura de pastas ao fazer uma cópia de uma pasta virtual para uma pasta não-virtual, selecionando a opção "Manter a estrutura de pastas virtuais" na janela de cópia. Imagine a seguinte pasta virtual: <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/area/pasta1/arquivo1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/area/pasta1/arquivo2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/area/pasta2/arquivo3</userinput
+></screen
+>. Depois, execute os seguintes passos:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>vá à pasta virtual e selecione os arquivos</para>
+    </listitem>
+    <listitem>
+      <para
+>selecione uma pasta de destino (não-virtual!)</para>
+    </listitem>
+    <listitem>
+      <para
+>pressione <keycap
+>F5</keycap
+>-&gt; a janela de cópia irá aparecer</para>
+    </listitem>
+    <listitem>
+      <para
+>Assinale a opção <guilabel
+>Manter a estrutura de pastas virtuais</guilabel
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Selecione <filename
+>/home/area/</filename
+> como &URL; de base</para>
+    </listitem>
+    <listitem>
+      <para
+>Inicie a cópia, pressionando OK</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>O resultado será: <screen
+><prompt
+>$</prompt
+> <userinput
+>pasta-destino/pasta1/arquivo1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>pasta-destino/pasta1/arquivo2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>pasta-destino/pasta2/arquivo3</userinput
+></screen>
+  </para>
+</sect1>

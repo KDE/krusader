@@ -1,0 +1,132 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="archives">
+  <title
+>Archiv-Verwaltung</title>
+  <indexterm>
+    <primary
+>Archive</primary>
+  </indexterm>
+  <sect2 id="browsing-archives">
+    <title
+>Archive durchsuchen</title>
+    <para
+>Mit dem <link linkend="vfs"
+>Virtuellen Dateisystem (VFS)</link
+> können Sie Archive wie einem normalen Ordner durchsuchen. Zurzeit unterstützt &krusader; die folgenden Arten von Archiven: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip, und 7-zip sowie arj, ace, rar und zip für Archive mit Passwortschutz. Passwörter können in <application
+>KWallet</application
+> gespeichert werden. Die Unterstützung für Archive muss zuerst richtig im Konfigurator <link linkend="konfig-archives"
+>eingestellt</link
+> werden. Um ein Archiv zu öffnen, benutzen Sie die Taste &Enter;, Klicken oder Doppelklicken auf einen Eintrag oder die Taste <keycap
+>Pfeilrechts</keycap
+>. &krusader; unterstützt auch <emphasis role="bold"
+>versteckte Archive</emphasis
+>. Dabei handelt es sich um umbenannte Archive mit einer falschen Dateierweiterung. <trademark class="registered"
+>OpenOffice</trademark
+> &eg; benutzt Zip-Archive mit den folgenden Erweiterungen: <literal role="extension"
+>.odt</literal
+>, <literal role="extension"
+>.sxw</literal
+> und <literal role="extension"
+>.odw</literal
+>. Mit der &Enter;taste wird das <trademark class="registered"
+>OpenOffice</trademark
+>-Dokument geöffnet und mit der Taste &Right; das Archiv. Ein anderes Beispiel ist J2EE, dabei ist die Erweiterung <literal role="extension"
+>.jar</literal
+> tatsächlich ein Zip-Archive. Da die unterstützten Archivarten von &krusader; automatisch erkannt werden, können Sie mit der Taste &Right; geöffnet werden, sogar wenn sie einen anderen &MIME;typ haben: Beachten Sie, dass es beim Durchsehen von Archiven einige Einschränkungen gibt: <itemizedlist>
+      <listitem>
+        <para
+>Es können nicht alle Funktionen in allen Archivtypen ausgeführt werden, &ie; Dateien in „ace“- oder „rar“-Archiven lassen sich nicht löschen.</para>
+      </listitem>
+      <listitem>
+        <para
+>Innerhalb des Archivs haben Sie die gleichen Berechtigungen wie für das Archiv selbst.</para>
+      </listitem>
+      <listitem>
+        <para
+>Ist die Befehlszeile aktiviert, wird nur der Ordner mit dem Archiv angezeigt, nicht die Ordner innerhalb des Archivs.</para>
+      </listitem>
+      <listitem>
+        <para
+>Bevor irgendeine Aktion für Dateien oder Ordner in einem Archiv ausgeführt werden kann, muss das Archiv ausgepackt werden. Das Archiv wird wieder neu erstellt, wenn es verlassen wird oder &krusader; erkennt, dass ausgepackte Dateien geändert wurden.</para>
+      </listitem>
+      <listitem>
+        <para
+>Packen und Entpacken sind <quote
+>blockierende</quote
+> Vorgänge, die einen Fortschrittsdialog anzeigen. Das kann sich in Zukunft möglicherweise ändern, da mehr Vorgänge im Hintergrund ausgeführt werden sollen.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="unpacking-archives">
+    <title
+>Dateien entpacken</title>
+    <para
+>Es gibt zwei Möglichkeiten, um Dateien aus Archiven zu entpacken:</para>
+    <para
+>Wenn Sie ein gesamtes Archiv entpacken möchten, gehen Sie zum Speicherort des Archivs, wählen das Archiv und dann <menuchoice
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Entpacken</guimenuitem
+> </menuchoice
+> oder <keycombo action="simul"
+>&Alt;&Shift;<keycap
+>U</keycap
+></keycombo
+>. Dann wird abgefragt, wohin die Dateien entpackt werden sollen. Voreinstellung ist das nicht aktive Dateifenster. Wenn Sie den Vorgang nicht abbrechen, werden dann alle Dateien dorthin entpackt.</para>
+    <para
+>Wenn Sie nur einen Teil eines Archivs entpacken möchten, dann <link linkend="browsing-archives"
+>durchsuchen</link
+> Sie das Archiv und kopieren die Dateien, die Sie entpacken möchten, an den neuen Ort wie bei <quote
+>normalen</quote
+> Dateien. Beachten Sie, dass das entpacken eines durchsuchten Archivs mehr Zeit benötigt (Entpacken jeder einzelnen Datei) als das Entpacken des gesamten Archivs mit der ersten Methode. Das Entpacken kann in eine <link linkend="queue"
+>Warteschlangen</link
+> eingestellt werden.</para>
+  </sect2>
+  <sect2 id="pack-archive">
+    <title
+>Dateien packen</title>
+    <para
+>Wenn Sie ein neues Archiv erstellen möchten, wählen Sie die Elemente für das Archiv im aktiven Dateifenster  dann <menuchoice
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Packen</guimenuitem
+> </menuchoice
+> oder <keycombo action="simul"
+>&Alt;&Shift;<keycap
+>P</keycap
+></keycombo
+>. Dann wird der Name und der Speicherort des Archivs abgefragt. Wählen Sie ein Archivierungsprogramm im Auswahlfeld <link linkend="konfig-archives"
+>mit den unterstützten Dateierweiterungen</link
+>.</para>
+    <para
+>Um Dateien zu einem vorhandenen Archiv hinzuzufügen, öffnen Sie das Archiv in einem und die zu kopierenden Dateien in dem anderen Dateifenster. Kopieren Sie dann die Dateien in das Archiv genauso wie Sie Dateien in einen <quote
+>normalen</quote
+> Ordner kopieren. Das Packen kann in eine <link linkend="queue"
+>Warteschlangen</link
+> eingestellt werden.</para>
+  </sect2>
+  <sect2 id="test-archive">
+    <title
+>Archive überprüfen</title>
+    <para
+>&krusader; verarbeitet keine fehlerhaften Archive, da das zu Datenverlusten führen könnte. Erhalten Sie eine Fehlermeldung beim Öffnen eines Archivs oder vermuten Sie dass das Archiv fehlerhaft ist, sollten Sie es überprüfen, ehe Sie es benutzen. Gehen Sie dazu an den Speicherort des Archivs. Als nächstes wählen Sie <menuchoice
+><guimenu
+>Datei</guimenu
+><guimenuitem
+>Archiv überprüfen</guimenuitem
+></menuchoice
+> oder den Kurzbefehl <keycombo action="simul"
+>&Alt;<keycap
+>E</keycap
+></keycombo
+>. &krusader; überprüft dann die Archivdatei und zeigt eine Nachricht an, ob der Integritätstest der Datei erfolgreich war oder fehlgeschlagen ist.</para>
+  </sect2>
+</sect1>

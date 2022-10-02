@@ -1,0 +1,40 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="more-features">
+<title
+>Funcions avançades</title
+>&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>Enviar fitxers per correu electrònic</title
+> <para
+>Se selecciona un fitxer i utilitzeu el <menuchoice
+><guimenu
+>menú del clic dret</guimenu
+> <guimenuitem
+>Envia per correu electrònic</guimenuitem
+></menuchoice
+>. Seleccionant aquesta opció s'obrirà una finestra nova del &kmail; amb aquest fitxer ja adjuntat. Simplement ompliu l'assumpte i el/s destinatari/s, i envieu-lo. Per descomptat, el &kmail; haurà d'estar adequadament configurat.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>Permisos de l'ACL</title>
+  <para
+>Els <link linkend="gloss-acl"
+>permisos de l'ACL</link
+> estan completament admesos quan s'utilitzen propietats, conservant els atributs i el sincronitzador. Per a visualitzar/modificar els permisos de l'ACL, seleccioneu un fitxer i utilitzeu el <link linkend="context-menu"
+>menú contextual</link
+>: <menuchoice
+><guimenu
+>Propietats...</guimenu
+> <guimenuitem
+>Permisos</guimenuitem
+> <guimenuitem
+>Permisos avançats</guimenuitem
+></menuchoice
+>. A Copia/Mou, també es copiaran els permisos de l'ACL. El sincronitzador també mantindrà els permisos de l'ACL.</para>
+</sect1
+></chapter>

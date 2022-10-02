@@ -1,0 +1,74 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="splitter">
+  <title
+>Інструмент поділу файлів</title>
+  <indexterm>
+    <primary
+>Інструмент поділу файлів</primary>
+  </indexterm>
+  <para
+>За допомогою цієї функціональної можливості можна розділити один (великий) файл на декілька менших файлів, які згодом можна скопіювати на носії малої місткості (наприклад, дискети, ZIP-диски, ...) або надіслати електронною поштою. Файли частин можна згодом знову об’єднати у початковий файл. Інструменти поділу/об’єднання &krusader; і <trademark class="copyright"
+>Total Commander</trademark
+> є сумісними. Щоб поділити файл, скористайтеся пунктом меню <menuchoice
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Розділити файл</guimenuitem
+> </menuchoice
+> або клавіатурним скороченням <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>. У відповідь програма відкриє діалогове вікно <guilabel
+>Поділ</guilabel
+>.</para>
+  <para
+>Якщо початковий файл мав назву <filename
+>foo</filename
+>, менші файли матимуть назви <filename
+>foo.000 foo.001 foo.002</filename
+> тощо. Теоретично, обмежень на кількість менших файлів немає, але ми рекомендуємо вам не перевищувати кількості у 1023 файлів. &krusader; створює також файл <filename
+>foo.crc</filename
+>. У цьому файлі міститиметься назва, розмір і контрольна сума crc початкового файла. Файл можна об’єднати і без файла <filename
+>foo.crc</filename
+>, але за таких умов &krusader; не зможе перевірити, чи правильно відтворено початковий файл.</para>
+  <para
+>Приклад файла <filename
+>foo.crc</filename
+>: <programlisting
+>filename=foo size=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>Щоб об’єднати вибрані вами файли, позначте файл частини <filename
+>foo.xxx</filename
+> і скористайтесь пунктом меню <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Об’єднати файли...</guimenuitem
+> </menuchoice
+> </emphasis
+> або клавіатурним скороченням <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+>. Типово, каталогом призначення буде вибрано каталог неактивної панелі, але ви можете змінити цей каталог. Назви файлів має бути пронумеровано у порядку зростання: <filename
+>foo.001, foo.002, foo.003</filename
+> тощо або позначено літерами абетки за зростанням: («<userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+>letter method») <filename
+>fileaa, fileab, fileac</filename
+> тощо. Якщо у каталозі файлів частин програмою буде виявлено файл <filename
+>foo.crc</filename
+>, &krusader; скористається цим файлом для перевірки наявності ушкоджень даних у об’єднаному файлі.</para>
+</sect1>

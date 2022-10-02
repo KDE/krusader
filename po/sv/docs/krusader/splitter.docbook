@@ -1,0 +1,70 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="splitter">
+  <title
+>Dela upp filer</title>
+  <indexterm>
+    <primary
+>Dela upp filer</primary>
+  </indexterm>
+  <para
+>Funktionen delar en (stor) fil i flera mindre filer så att de kan placeras på mindre media (t.ex. zip-enheter, ...) eller skickas med e-post. De mindre filerna kan kombineras igen för att återskapa den ursprungliga filen. Funktionerna för att dela och kombinera i &krusader; och <trademark class="copyright"
+>Total Commander</trademark
+> är kompatibla. Välj <menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Dela</guimenuitem
+></menuchoice
+> eller <keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> för att dela en fil. En delningsdialogruta visas för att bekräfta åtgärden.</para>
+  <para
+>Om originalfilens namn är <filename
+>exempel</filename
+>, blir namnen på de mindre filerna <filename
+>exempel.000, exempel.001, exempel.002</filename
+>, etc. Det finns ingen teoretisk gräns för antalet mindre filer, men du rekommenderas att begränsa antalet till maximalt 1023 filer. &krusader; skapar filen <filename
+>exempel.crc</filename
+>. Filen innehåller namn, storlek och crc-checksumman för den ursprungliga filen. Det är möjligt att kombinera filen utan <filename
+>exempel.crc</filename
+>, men i så fall kan inte &krusader; kontrollera om den ursprungliga filen återskapades riktigt.</para>
+  <para
+>Ett exempel på en <filename
+>exempel.crc</filename
+> fil: <programlisting
+>filename=exempel size=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>För att kombinera flera filer, markera en partiell fil <filename
+>exempel.xxx</filename
+> och välj <menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Kombinera filer...</guimenuitem
+> </menuchoice
+> eller <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+>. Målkatalogen är den inaktiva panelen, och kan ändras. Filnamnen måste vara i stigande ordning: <filename
+>exempel.001, exempel.002, exempel.003</filename
+> etc., eller ha bokstäver i stigande ordning: (" <userinput
+><command
+>split</command
+> <option
+>-b</option
+> </userinput
+>bokstav metod") <filename
+>filaa, filab, filac</filename
+> etc. Om filen <filename
+>exempel.crc</filename
+> hittas i samma katalog som de partiella filerna, använder &krusader; filen för att kontrollera om den kombinerade filen har några fel.</para>
+</sect1>

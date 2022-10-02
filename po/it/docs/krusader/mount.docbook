@@ -1,0 +1,78 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="mount-man">
+  <title
+>MountMan: lavora con i tuoi file system montati</title>
+  <indexterm>
+    <primary
+>Montare</primary>
+  </indexterm>
+  <para
+>MountMan è uno strumento che ti aiuta a gestire i tuoi file system montati. Una volta avviato, esso visualizza un elenco di tutti i file system montati. Per ciascuno di essi, MountMan mostra il nome (che corrisponde al nome del dispositivo - &ie; <filename class="directory"
+>/dev/sda1</filename
+> per una prima partizione sul primo <hardware
+>HDD</hardware
+>), il tipo (ext4, ext3, ntfs, vfat, ReiserFS ...) e il punto di montaggio nel sistema (cioè la cartella nella quale è montato il file system).</para>
+  <para
+>Se vuoi eliminare dall'elenco i dispositivi non rimovibili, spunta l'elemento <guilabel
+>Mostra solo i dispositivi rimovibili</guilabel
+> che si trova alla sinistra dell'elenco. </para>
+  <figure id="screenshot-mountman" float="1">
+    <title
+>MountMan</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="mountman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>MountMan</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>MountMan visualizza inoltre informazioni sull'utilizzo, mostrando la dimensione complessiva, lo spazio libero e la percentuale di spazio libero disponibile. Se viene riportata l'indicazione <guilabel
+>N/D</guilabel
+>, ciò solitamente indica che quel file system non è montato. Facendo clic con il pulsante sinistro del mouse su un file system si ottiene la visualizzazione di un grafico a torta sulla sinistra della finestra, che mostra graficamente le informazioni sull'utilizzo del file system. Facendo clic su un file system non montato al posto del grafico verrà mostrata la scritta <guilabel
+>non montato</guilabel
+>.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Un <keycap
+>doppio-clic</keycap
+> su un file system chiude MountMan e apre quel file system nel pannello attivo di &krusader;.</para>
+    </listitem>
+    <listitem>
+      <para
+>Un <keycap
+>clic con il tasto destro del mouse</keycap
+> su un file system farà comparire un piccolo menu contenente le azioni che possono essere compiute su di esso. Al momento, puoi solo montare, smontare ed espellere (se hai fatto clic su un file system rimovibile, &eg;, come un &CD-ROM;).</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Abbiamo intenzione di sviluppare ulteriormente MountMan nella prossima versione di &krusader;. Esso sarà in grado di formattare partizioni, modificare <filename
+>/etc/fstab</filename
+>, creare nuovi file system e altro ancora... Abbiamo già iniziato a lavorarci su, dai un'occhiata a <quote
+>Modalità veloce per MountMan</quote
+>.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Modalità veloce per MountMan</emphasis>
+  </para>
+  <para
+>Per attivare la modalità veloce per MountMan, fai clic sulla freccia accanto al pulsante di MountMan sulla <link linkend="mainwindow"
+>Barra degli strumenti principale</link
+>.</para>
+  <para
+>Idea generale: mostrare un elenco di tutti i possibili punti di montaggio. Ogni volta che viene mostrato il menu, esso determina se un punto di montaggio è montato oppure no e associa l'azione corretta (monta o smonta). Ciò fornisce un'interfaccia veloce per MountMan. Funziona, e attualmente usa KMountMan::mount e unmount. Utilizza i nuovi servizi di &kf5-full; per leggere fstab e questo ci permette di rimuovere una grande quantità di codice dal <quote
+>vecchio</quote
+> MountMan.</para>
+</sect1>

@@ -1,0 +1,156 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="locate">
+  <title
+>Interfaccia grafica (&GUI;) per locate</title>
+  <indexterm>
+    <primary
+>Locate</primary>
+  </indexterm>
+  <para
+>&krusader; fornisce un'interfaccia grafica (&GUI;) per il comando <command
+>locate</command
+> (findutils), usato per la ricerca rapida di file basata non su cartella ma su un database. Il pacchetto è costituito, tra gli altri file, da <command
+>locate</command
+> e <command
+>updatedb</command
+>. <command
+>updatedb</command
+> analizza il filesystem locale memorizzando le voci in un database. In genere, il comando <command
+>updatedb</command
+> viene lanciato da <command
+>cron</command
+> ogni notte (è possibile modificare questa impostazione attraverso <application
+>KCron</application
+>). Seleziona <menuchoice
+> <guimenu
+>Strumenti</guimenu
+> <guimenuitem
+>Localizza...</guimenuitem
+> </menuchoice
+> o usa la scorciatoia <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+> </keycombo
+> per avviare questa funzionalità. Attraverso <link linkend="konfig-advanced"
+>Konfigurator</link
+> puoi impostare ulteriori argomenti per il comando <command
+>updatedb</command
+>.</para>
+  <para
+>Opzioni selezionabili <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Mostra solo i file vecchi</guilabel
+>: se il database contiene voci che non esistono più (file eliminati o spostati rispetto all'ultima esecuzione di <command
+>updatedb</command
+>), questi non saranno elencati da <command
+>locate</command
+>, perché verrà verificata l'esistenza di ogni file prima di visualizzare i risultati (la ricerca sarà più lenta).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Distingui maiuscole</guilabel
+>: deselezionarlo consentirà la ricerca di lettere sia maiuscole che minuscole.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Pulsanti disponibili <itemizedlist>
+    <listitem>
+      <para
+><guibutton
+>Localizza</guibutton
+>: esegue <command
+>locate <replaceable
+> pippo pippo</replaceable
+></command
+> visualizzando gli eventuali elementi trovati nella finestra dei risultati.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Ferma</guibutton
+>: ferma il processo di localizzazione.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Aggiorna DB</guibutton
+>: esegue <command
+>updatedb</command
+> permettendo così, dopo aver inserito la password di amministrazione, di aggiornare il database di locate.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Chiudi</guibutton
+>: chiude la finestra di localizzazione.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Finestra dei risultati <itemizedlist>
+    <listitem>
+      <para
+>Facendo doppio clic su una voce, il programma si posizionerà immediatamente sulla cartella interessata, visualizzandola nel pannello e la finestra di localizzazione verrà chiusa.</para>
+    </listitem>
+    <listitem>
+      <para
+>Facendo clic col pulsante destro si aprirà il menu contestuale di modifica/visualizzazione/ricerca. <itemizedlist>
+        <listitem>
+          <para
+><keycap
+>F3</keycap
+>: visualizza l'elemento attuale.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>F4</keycap
+>: modifica l'elemento attuale.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>: cerca i file nella finestra dei risultati.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+>: mostra il risultato della ricerca successivo.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: mostra il risultato della ricerca precedente.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+        <listitem>
+          <para
+>La finestra dei risultati permette anche di trascinare gli elementi su altre finestre o di copiarli negli appunti (<keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+>).</para>
+        </listitem>
+  </itemizedlist
+></para>
+</sect1>

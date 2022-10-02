@@ -1,0 +1,62 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="profiles">
+  <title
+>Profielen</title>
+  <indexterm>
+    <primary
+>Profielen</primary>
+  </indexterm>
+  <para
+>Met profielen kunt u uw favoriete instellingen opslaan en weer laden. Verschillende onderdelen hebben profielen, u kunt &eg; verschillende paneel profielen (werk, thuis, externe verbindingen, &etc;), zoekprofielen, synchronisatie profielen, &etc; hebben.</para>
+  <sect2 id="panel_profiles">
+    <title
+>Paneel met profielen</title>
+    <para
+>In een paneelprofiel is het volgende aanwezig: alle tab-paden (links en rechts), de huidige tab (links of rechts) en het actieve paneel (links of rechts). Al deze informatie is opgeslagen in het <link linkend="config_files"
+>krusaderrc</link
+>-bestand. U kunt meerdere paneelprofielen hebben, &eg; bestandsbeheer, &FTP; -beheer, thuis, werk, &etc; Een paneelprofiel kunt u <link linkend="c_panel_profiles"
+>opslaan en laden</link
+> in het <guimenu
+>Venster</guimenu
+> menu. Bij het starten van &krusader; wordt het <link linkend="konfig-startup"
+>standaard opstart profiel</link
+> gebruikt, maar u kunt het vervangen met een commandoregeloptie.</para>
+  </sect2>
+  <sect2 id="color_profiles">
+    <title
+>Kleurprofielen</title>
+    <para
+>Kleurenmappen kunt u opslaan en weer laden met <link linkend="konfig-color"
+>Kleurprofielen</link
+>.</para>
+  </sect2>
+  <sect2 id="key_profiles">
+    <title
+>Profielen voor toetsenbindingen</title>
+    <para
+>Toetsenbindingen kunnen opgeslagen en hersteld worden met <link linkend="configure-shortcuts"
+>Profielen voor toetsenbindingen</link
+>.</para>
+  </sect2>
+  <sect2 id="search_profiles">
+    <title
+>Zoekprofielen</title>
+    <para
+>Als u regelmatig dezelfde zoekopdracht uitvoert,dan kunt u de zoekinstellingen (&eg; inclusief bepaalde bestanden, exclusief bepaalde bestanden, &etc;) in een <link linkend="krusearcher"
+>Zoekprofiel</link
+> opslaan.</para>
+  </sect2>
+  <sect2 id="synchronizer_profiles">
+    <title
+>Profielen voor synchronisatie</title>
+    <para
+>Als u regelmatig dezelfde synchronisatie uitvoert, dan kunt u de instellingen voor de synchronisatie opslaan in een <link linkend="synchronizer"
+>Synchronisatieprofiel</link
+>.</para>
+  </sect2>
+</sect1>

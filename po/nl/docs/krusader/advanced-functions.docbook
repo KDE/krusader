@@ -1,0 +1,40 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="more-features">
+<title
+>Geavanceerde functies</title
+>&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>Bestanden per e-mail verzenden</title
+> <para
+>Selecteer een bestand en gebruik <menuchoice
+> <guimenu
+>Menu bij rechts klikken</guimenu
+> <guimenuitem
+>Per e-mail verzenden</guimenuitem
+> </menuchoice
+>. Door deze optie te kiezen opent u een nieuw &kmail;-venster met het bestand al bijgevoegd. Vul gewoon het onderwerp en de ontvanger(s) in en verzend het. Natuurlijk moet &kmail; juist zijn geconfigureerd.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>ACL-toegangsrechten</title>
+  <para
+><link linkend="gloss-acl"
+>ACL-toegangsrechten</link
+> worden volledig ondersteund bij gebruik van eigenschappen, attributen bewaren en het synchronisatieprogramma. Om de ACL-toegangsrechten te bekijken of te wijzigen, selecteert u een bestand en gebruikt u het <link linkend="context-menu"
+>Contextmenu</link
+>: <menuchoice
+> <guimenu
+>Eigenschappen...</guimenu
+> <guimenuitem
+>Toegangsrechten</guimenuitem
+> <guimenuitem
+>Geavanceerde toegangsrechten</guimenuitem
+> </menuchoice
+>. Bij Kopiëren/Verplaatsen zullen de ACL-toegangsrechten ook worden gekopieerd. Het programma voor synchronisatie bewaart ook de ACL-toegangsrechten.</para>
+</sect1
+></chapter>

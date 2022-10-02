@@ -1,0 +1,556 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="basic-functions">
+  <title
+>Grundfunktioner</title>
+  <sect1 id="controls">
+    <title
+>Styrning</title>
+    <sect2 id="control-general">
+      <title
+>Allmänt</title>
+      <para
+>Det här är ett ganska kort men viktigt avsnitt, som i detalj beskriver hur &krusader; styrs. Avsnittet försöker inte täcka alla olika tangentkombinationer av två orsaker: <orderedlist numeration="arabic"
+> <listitem
+> <para
+>Det finns helt enkelt alldeles för många</para
+> </listitem
+> <listitem
+><para
+>De flesta åtgärder i &krusader; är anpassningsbara på panelsidan i <link linkend="konfig-panel"
+>Konfigurator</link
+></para
+> </listitem
+> </orderedlist
+>Vi nämner bara de viktigaste snabbtangenterna i standardinställningen, men kom ihåg att de flesta <link linkend="key_bindings"
+>snabbtangenter</link
+> är anpassningsbara. Om du märker att du använder vissa kommandon ofta, och vill veta kommandots snabbtangent, eller du vill ändra kommandots snabbtangent, titta på fönstret <link linkend="key_bindings"
+>Anpassa genvägar</link
+> (<menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa genvägar...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="moving-around">
+      <title
+>Flytta omkring</title>
+      <para
+>Med flytta omkring menar vi byte av tangentbords- och musfokus mellan de olika delarna i &krusader;s <link linkend="mainwindow"
+>huvudfönster</link
+>. Fokus kan vara på ett av fem ställen: Den vänstra eller högra panelen, menyraden, kommandoraden eller terminalemulatorn. Panelen som har fokus kallas den aktiva panelen. En aktiv panel förblir aktiv till den andra panelen får fokus (dvs. om den vänstra panelen var aktiv och du klickade på kommandoraden, så förblir den vänstra panelen aktiv). Du måste avsiktligt ändra vilken panel som är aktiv.</para>
+      <para
+>Det vanligaste sättet att byta fokus till en specifik panel är att använda musen för att klicka på panelen. Men du bör vara medveten om följande: <itemizedlist>
+        <listitem>
+          <para
+>Att klicka på verktygsraden, funktionstangentraden eller statusraden byter <emphasis
+>inte</emphasis
+> fokus.</para>
+        </listitem>
+        <!--
+   Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
+   <listitem>
+     <para
+>The display part of the Quick View Panel does not accept clicks so you should click on the
+           Location Toolbar of this panel if you want it to have focus.</para>
+   </listitem>
+-->
+        <listitem>
+          <para
+>Att klicka på knappen <guibutton
+>Kör i terminal</guibutton
+> på kommandoraden byter inte fokus, så du måste klicka inne i inmatningsraden.</para>
+        </listitem>
+        <listitem>
+          <para
+>När du väljer en meny, får menyraden fokus. Den förblir fokuserad till du väljer ett kommando. Därefter återgår fokus till tidigare ägare.</para>
+        </listitem>
+      </itemizedlist
+></para>
+      <para
+>Det finns förstås sätt att använda tangentbordet för att byta fokus: <itemizedlist>
+        <listitem>
+          <para
+>Tabulatortangenten byter paneler, om en av panelerna har fokus, eller roterar mellan alla kommandon i en meny, om menyraden är aktiv.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>Neråtpil</keycap
+></keycombo
+> tar dig från den aktiva panelen till kommandoraden eller terminalemulatorn, och <keycombo action="simul"
+>&Ctrl; <keycap
+>Uppåtpil</keycap
+></keycombo
+> tar dig tillbaka från kommandoraden till den aktiva panelen.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>Esc</keycap
+>-tangenten gör att menyraden returnerar fokus, om den har det, till den tidigare aktiva panelen.</para>
+        </listitem>
+        <listitem>
+          <para
+>Om du råkar vara inne i terminalemulatorn, kan du använda tabulatortangenten, eller musen, för att gå till en aktiv panel.</para>
+        </listitem>
+        <listitem>
+          <para
+>Att trycka på <keycombo action="simul"
+>&Alt; <keycap
+>Understruken bokstav</keycap
+></keycombo
+> i menyraden öppnar den menyn (om inte tangentkombinationen är en <quote
+>reserverad tangent</quote
+>, använd av en av &krusader;s åtgärder).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="selecting-files">
+      <title
+>Markera</title>
+      <note>
+        <para
+>&krusader; erbjuder fyra <link linkend="selection_modes"
+>markeringslägen</link
+>, utan att nämna <link linkend="quickselect"
+>Snabbmarkeringsraden</link
+>. Bara &krusader;s markeringsläge förklaras här.</para>
+      </note>
+      <para
+>Att markera är en färdighet du måste behärska för att kunna få ut så mycket som möjligt av &krusader;. Eftersom trädpanelen bara låter dig markera en katalog åt gången, förklarar det här stycket i huvudsak hur man markerar filer i listpanelen.</para>
+      <para
+>Att flytta markören är enkelt. Vänsterklick på en fil eller katalog (som här kallas <quote
+>element</quote
+>, vilket betyder filer och kataloger) markerar den. Här är några användbara anvisningar som gör &krusader; ännu lättare att använda (under förutsättning att du använder &krusader;s musmarkeringsläge): <itemizedlist>
+        <listitem>
+          <para
+><keycap
+>Mellanslag</keycap
+>- och <keycap
+>Insert</keycap
+>-tangenterna ändrar markering för filen under markören utan att påverkar markeringen av andra filer eller kataloger, och markören går neråt ett steg.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>Vänsterklick</keycap
+> på en fil markerar, eller avmarkerar, alla tidigare markerade filer.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>Vänsterklick</keycap
+></keycombo
+> ändrar markeringen för filen under markören utan att påverka markeringen av andra filer eller kataloger.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; <keycap
+>Vänsterklick</keycap
+></keycombo
+> markerar alla element mellan markörens föregående plats och den nya.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; <keycap
+>Home</keycap
+></keycombo
+> markerar allting ovanför markören (och avmarkerar allting under markören, om markerat).</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; <keycap
+>End</keycap
+></keycombo
+> markerar allting under markören (och avmarkerar allting ovanför markören, om markerat).</para>
+        </listitem>
+        <listitem>
+          <para
+>Posten <quote
+>..</quote
+> går inte att markera.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="edit-menu"
+>Redigeringsmenyn</link
+> erbjuder fler sätt att markera filer.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="executing_commands">
+      <title
+>Köra kommandon</title>
+      <para
+>Det finns inte så mycket att säga här, allt du behöver göra är att markera några filer (om du inte gör det, utför &krusader; åtgärden för de filer eller kataloger som har fokus), välja ett <link linkend="menu-commands"
+>kommando</link
+> i menyraden eller använda snabbtangenten (eller högerklickmenyn) så utförs det valda kommandot. Se också <link linkend="executing_files"
+>Köra filer</link
+>.</para>
+    </sect2>
+    <sect2 id="quicksearch">
+      <title
+>Snabbsökning</title>
+      <!-- Thanks to Heiner Eichmann -->
+      <para
+>Den här funktionen gör en snabbsökning efter filnamnet i den aktiva listpanelen.</para>
+      <para
+>Skriv <keycap
+>X</keycap
+> (ett tecken) för att göra en snabbsökning i den aktiva listpanelen efter en fil som börjar med <quote
+>X</quote
+>. En liten dialogruta för snabbsökning öppnas under den aktiva listpanelen. Skriv in några av de första tecknen i önskat filnamn, så går markören till det filnamnet (om det finns), skriv t.ex. <quote
+>ab</quote
+> för att söka efter en fil som börjar med <quote
+>ab</quote
+>. <keycap
+>Uppåtpil/Neråtpil</keycap
+> går till nästa eller föregående träff. <keycap
+>Esc</keycap
+> stänger snabbsökraden. Markören förblir på filen som senast hittades. Snabbsökningen stöder <ulink url="https://sv.wikipedia.org/wiki/Reguljära_uttryck"
+>reguljära uttryck</ulink
+> för att söka i filer.</para>
+      <note>
+        <para
+>Om du trycker på <keycombo action="simul"
+>&Alt; <keycap
+>X</keycap
+></keycombo
+>, utförs snabbtangentens genväg. Om det inte finns någon inställd snabbtangent, används återstående bokstav <keycap
+>X</keycap
+> i snabbsökningen.</para>
+      </note>
+      <para
+>Använd fönstret <link linkend="key_bindings"
+>Anpassa genvägar</link
+> (<menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa genvägar...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickfilter">
+      <title
+>Snabbfilter</title>
+      <para
+>Den här funktionen gör en snabb filtrering av fillistan i den aktiva panelen.</para>
+      <para
+>Tryck på <keycombo
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+> för att öppna snabbfilterraden. Skriv <keycap
+>x</keycap
+> (ett tecken) för att filtrera bort alla filer som inte har <quote
+>x</quote
+> i sina namn från den aktiva panelen. Man kan använda jokertecken i filtreringen, använd t.ex. a*b för att filtrera filer som har <quote
+>a</quote
+> följt av <quote
+>b</quote
+> i sina namn. Snabbfiltret följer <link linkend="konfig-panel-general"
+>inställningen av skiftlägeskänslighet</link
+> i snabbsökningen.</para>
+      <para
+>Att klicka på returtangenten i snabbfilterläge ger fokus till panelen, när panelen eller snabbfiltret har fokus. Esc stänger snabbfiltret. </para>
+      <para
+>Använd fönstret <link linkend="key_bindings"
+>Anpassa genvägar</link
+> för att ändra den normala genvägen för snabbfiltret (<menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa genvägar...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickselect">
+      <title
+>Snabbmarkering</title>
+      <para
+>Den här funktionen gör en snabbmarkering av fillistan i den aktiva panelen.</para>
+      <para
+>Tryck på <keycombo
+>&Ctrl;&Shift;<keycap
+>S</keycap
+></keycombo
+> för att öppna snabbmarkeringsraden. Skriv <keycap
+>x</keycap
+> (ett tecken) för att filtrera bort alla filer som inte har <quote
+>x</quote
+> i sina namn från den aktiva panelen. Man kan använda jokertecken i filtreringen, använd t.ex. <quote
+>a*b</quote
+> för att filtrera filer som har <quote
+>a</quote
+> följt av <quote
+>b</quote
+> i sina namn. Snabbmarkering följer <link linkend="konfig-panel-general"
+>inställningen av skiftlägeskänslighet</link
+> i snabbsökningen.</para>
+      <para
+>Att klicka på returtangenten i snabbmarkeringsläge ger fokus till panelen, när panelen eller snabbmarkeringen har fokus. Esc stänger snabbmarkering. </para>
+      <para
+>Använd fönstret <link linkend="key_bindings"
+>Anpassa genvägar</link
+> för att ändra den normala genvägen för snabbmarkering (<menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa genvägar...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="context-menu">
+      <title
+>Sammanhangsberoende menyer</title>
+      <para
+>&krusader; har många sammanhangsberoende menyer som låter dig snabb utföra åtgärder med musen, oftast visas den sammanhangsberoende menyn med ett högerklick (beroende på inställningen av <link linkend="selection_modes"
+>markeringsläge</link
+>). Den här listan ger en översikt av de viktigaste sammanhangsberoende menyerna. Använd dem för att upptäcka tillgängliga kommandon. <itemizedlist>
+        <listitem>
+          <para
+><link linkend="mainwindow"
+>Huvudverktygsrad</link
+> (orientering, textposition, ikonstorlek)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="list_panel"
+>Listpanel</link
+> på en fil eller katalog</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="cmdline"
+>Kommandorad</link
+> (ångra, klistra in, textkomplettering, ...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="termemu"
+>Terminalemulator</link
+> (skicka signal, teckensnitt, historik, ...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="folder-tabs"
+>Katalogflikar</link
+> (ny, duplicera, stäng)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="krusearcher"
+>Krusearcher</link
+> fillista med sökresultat (<keycap
+>F3</keycap
+> granska, <keycap
+>F4</keycap
+> redigera)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="mount-man"
+>Mountman</link
+> (avmontera, formatera, ...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="synchronizer"
+>Synkronisera kataloger</link
+> Fillista</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Användaråtgärder</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+>&konqueror;s högerklickåtgärder visas i &krusader;</para>
+        </listitem>
+        <listitem>
+          <para
+>Visa eller dölj <link linkend="list_panel"
+>kolumnrubriker</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="bookman"
+>Bokmärken</link
+> aktivera eller inaktivera permanenta bokmärken</para>
+        </listitem>
+        <listitem>
+          <para
+>...</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="basic">
+    <title
+>Grundläggande filhantering</title>
+    <sect2 id="executing_files">
+      <title
+>Köra filer</title>
+      <para
+>Du kan bara köra filer i den aktiva listpanelen. För att köra en fil, (dubbel)klicka bara på den eller tryck på returtangenten när den är under listmarkören. &krusader; öppnar den med standardprogrammet för filtypen (bild, textfil, ...) eller kör filen (skript, binärfil, ...). Om du vill använda ett annat program för att öppna filen, högerklicka på filen och gå till undermenyn <guisubmenu
+>Öppna med</guisubmenu
+>, som erbjuder fler alternativ. &krusader; fungerar med &plasma;s förvalda filhanterare för alla filtyper, utom arkiv, som öppnas inne i &krusader;s panel och inte i ett externt program. Se <link linkend="konfig-archives"
+>arkivsidan</link
+> i Konfigurator för detaljinformation.</para>
+    </sect2>
+    <sect2 id="copying">
+      <title
+>Kopiera och flytta</title>
+      <figure id="screenshot-copyjob" float="1">
+        <title
+>Kopieringsdialogruta</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="copyjob.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Kopieringsdialogruta</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>För att kopiera eller flytta filer och kataloger, markera dem bara och tryck på <keycap
+>F5</keycap
+> för att kopiera eller <keycap
+>F6</keycap
+> för att flytta dem. &krusader; försöker bevara ändringstiden. När en katalog kopieras ändras ägare till användaren som kopierar filen, och grupp ändras till användarens standardgrupp. När en fil kopieras ändras ägare till användaren som kopierar filen, grupp ändras till användarens standardgrupp och rättigheter bevaras. Ägare, grupp och rättigheter bevaras när en fil eller katalog flyttas. När filer och kataloger kopieras eller flyttas visas en dialogruta som låter dig välja åtgärdens mål. Standardmålet är katalogen som har bläddrats till i den andra panelen. Om du skriver in en partiell webbadress, använder &krusader; den aktuella panelens katalog som webbadressens bas.</para>
+    </sect2>
+    <sect2 id="queue">
+      <title
+>Köhantering</title
+> 
+      <para
+>Åtgärderna för att kopiera, packa och packa upp kan placeras i kö. Efter att ha valt kopiera eller flytta, tryck på <keycap
+>F2</keycap
+> för att göra det. Eller de direkta snabbtangenterna: Kopiera med hjälp av kö <keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo
+>, flytta med hjälp av kö <keycombo action="simul"
+>&Shift;<keycap
+>F6</keycap
+></keycombo
+>. Köhanteringen utför åtgärderna en i taget. Om du t.ex. har en minnessticka (som är långsam) och du vill kopiera 40 filer till den, är det mycket bättre att kopiera dem en i taget istället för att börja kopiera 40 filer i parallell. Det är därför det är viktigt att lägga till dem i kön. Om du packar eller packar upp 40 filer parallellt överlastar du datorn, medan att lägga till dem i en kö är mycket nyttigare. </para>
+      <para
+>Det är möjligt att byta <link linkend="job-queue-mode"
+>köhanteringstyp</link
+> med menyalternativet <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Kötyp för jobb</guimenuitem
+></menuchoice
+>. </para>
+    </sect2>
+    <sect2 id="deleting">
+      <title
+>Borttagning - flytta till &plasma;s papperskorg</title>
+      <para
+>Att ta bort filer eller kataloger görs genom att markera dem och trycka på <keycap
+>F8</keycap
+> eller <keycap
+>Delete</keycap
+>. <link linkend="konfig-general"
+>Normalt</link
+> flyttas de till &plasma;s papperskorg. Du kan öppna &plasma;s papperskorg med papperskorgsikonen på <link linkend="main_toolbar"
+>huvudverktygsraden</link
+> eller med I/O-slaven <filename
+>trash:/</filename
+>. Fysiskt är &plasma;s papperskorg placerad i <filename
+>~/.local/share/Trash/</filename
+> eller i <filename
+>Trash</filename
+> i underkatalogen i användarens hemkatalog som kan bestämmas genom att använda kommandot <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. <keycombo action="simul"
+>&Ctrl; <keycap
+>Delete</keycap
+></keycombo
+> tar bort filen permanent. En dialogruta ber dig att bekräfta det, och varnar dig om du tar bort kataloger som inte är tomma. Naturligtvis utförs bara åtgärder som du har tillåtelse att göra av operativsystemet, annars blir du underrättad. Om du inte vill se bekräftelsedialogrutorna, kan du inaktivera dem på <link linkend="konfig-advanced"
+>sidan Avancerat  i Konfigurator</link
+>. Om du ställer in att ta bort filer permanent på <link linkend="konfig-general"
+>sidan Allmänt i Konfigurator</link
+>, tar <keycap
+>F8</keycap
+> eller <keycap
+>Delete</keycap
+> permanent bort filer, medan <keycombo action="simul"
+>&Ctrl; <keycap
+>Delete</keycap
+></keycombo
+> flyttar dem till &plasma;s papperskorg.</para>
+    </sect2>
+    <sect2 id="shred">
+      <title
+>Förstöra filer</title>
+      <para
+>Förstör togs bort från &kde; 4 (och följaktligen från &krusader;-2 för &kde; 4). Huvudorsaken är troligen att förstöra beror på filsystemet och även om du skriver över filen 100 gånger, är det inte säkert att den slutligen tas bort från disken. Ett citat från inlägg för <application
+>Kgpg</application
+>: <quote
+>Funktionen förstör har tagits bort från KDE:s bibliotek. Kgpg kommer inte att stödja funktionen längre. Moderna filsystem använder journalhantering. Alltså måste funktionen implementeras i filsystemet, inte i Kgpg.</quote
+> Dock kan du använda en riktig <link linkend="useractions"
+>användaråtgärd</link
+> som förstör med ditt filsystem. Kom dock ihåg att om du vill vara 100 % säker på att det är omöjligt att någon kan läsa en borttagen fil, måste du förstöra hårddiskens hårdvara... </para>
+    </sect2>
+    <sect2 id="renaming">
+      <title
+>Byta namn på filer, skapa kataloger och länkhantering</title>
+      <para
+>Byt namn på filen under markören med tangenten <keycap
+>F2</keycap
+> eller med två enkla musklick. Om bara filnamnet behöver bytas, och inte filändelsen, kan du ställa in det på sidan <link linkend="konfig-general-atomic"
+>Allmänt</link
+> i Konfigurator. <guilabel
+>Skapa en ny katalog</guilabel
+> med tangenten <keycap
+>F7</keycap
+>. Högerklick på en vanlig fil ger dig alternativet <menuchoice
+><guisubmenu
+>Länkhantering</guisubmenu
+> <guimenuitem
+>Ny symbolisk länk...</guimenuitem
+></menuchoice
+>. En dialogruta ber dig skriva in den symboliska länkens namn. Namnet pekar på filen eller katalogen som du högerklickade på. Om filen du högerklickade på är en symbolisk länk, får du också alternativet <menuchoice
+><guisubmenu
+>Länkhantering</guisubmenu
+> <guimenuitem
+>Omdirigera länk</guimenuitem
+></menuchoice
+>, som låter dig ändra länkens mål.</para>
+    </sect2>
+    <sect2 id="viewing">
+      <title
+>Granska och redigera filer</title>
+      <para
+><link linkend="krviewer"
+>Krviewer</link
+> har ett eget kapitel.</para>
+    </sect2>
+  </sect1
+>&archives; </chapter>

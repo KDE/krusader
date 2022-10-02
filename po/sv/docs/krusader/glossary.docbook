@@ -1,0 +1,358 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<glossary id="glossary">
+  <indexterm>
+    <primary
+>Ordlista</primary>
+  </indexterm>
+  <para
+>Det här kapitlet är avsett att förklara de olika termer som har används överallt i &krusader;s dokumentation. Om du anser att några förkortningar eller termer saknas, tveka inte att kontakta &krusader;s dokumentationsgrupp.</para>
+  <para
+>Tack till <ulink url="https://sv.wikipedia.org/"
+>wikipedia.org</ulink
+>, den fria encyklopedin som alla kan redigera.</para>
+  <glossentry id="gloss-acl">
+    <glossterm>
+      <acronym
+>ACL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Access_control_list"
+>Åtkomstkontrollista</ulink
+> (Access Control List): Ett begrepp inom datorsäkerhet som används för att upprätthålla separation av behörighet. Den är ett sätt att bestämma lämplig åtkomstbehörighet för ett givet objekt, beroende på vissa aspekter hos processen som begäran kommer från.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-bsd">
+    <glossterm>
+      <acronym
+>BSD</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/BSD"
+>Berkeley programvarudistribution</ulink
+> (Berkeley Software Distribution): Refererar till någon av flera fria &UNIX;-kompatibla operativsystem, som härstammar från &BSD; &UNIX;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-cvs">
+    <glossterm>
+      <acronym
+>CVS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/Concurrent_versions_system"
+> Concurrent Versions System</ulink
+>: En viktig komponent för versionshantering av källkod. Genom att använda det kan utvecklare hålla reda på historik för källkodsfiler och dokument.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-deb">
+    <glossterm>
+      <acronym
+>DEB</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>Det här är ett binärt filformat som används av <ulink url="https://sv.wikipedia.org/wiki/Debian_GNU/Linux"
+>&Debian;</ulink
+> och distributioner baserade på &Debian;. Det är filändelsen för en installationsfil skapad särskilt för dessa distributioner, t.ex. <filename
+>krusader_1.70.1-1_amd64.deb</filename
+>. Med enkla ord är det ett arkiv som innehåller alla programfiler och deras föreslagna plats i systemet.</para>
+    </glossdef>
+  </glossentry>
+    <glossentry id="glos-dbus">
+    <glossterm
+>&DBus; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://freedesktop.org/wiki/Software/dbus"
+>&DBus;</ulink
+> är ett meddelandesystem mellan tjänster. Det utvecklades av &RedHat;, och influerades starkt av <link linkend="glos-dcop"
+>&DCOP;</link
+> från &kde; 3, som det ersätter. &krusader; kan använda &DBus; för att kommunicera med andra program. Å andra sidan kan du använda &DBus; för att styra &krusader; från andra program. Använd bara <application
+>qdbusviewer</application
+> för att undersöka möjligheterna.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-dcop">
+    <glossterm
+>&DCOP; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Dcop"
+>Protokoll för skrivbordskommunikation</ulink
+> (Desktop Communication Protocol): Ett protokoll för kommunikation mellan processer som används av &kde;3:s skrivbordsmiljö. Det gör det möjligt för diverse &kde;3-program att kommunicera med varandra. Ersatt av <link linkend="glos-dbus"
+>&DBus;</link
+> i &kde; 4.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-faq">
+    <glossterm>
+      <acronym
+>FAQ</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><link linkend="faq"
+>Vanliga frågor</link
+> (Frequently Asked Questions): Ett dokument där frågor som uppstår många gånger besvaras. Om du har en fråga till utvecklarna av &krusader;, bör du alltid ta en titt i <link linkend="faq"
+>Vanliga frågor</link
+> först.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-ftp">
+    <glossterm
+>&FTP;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/File_Transfer_Protocol"
+>Filöverföringsprotokoll</ulink
+> (File Transfer Protocol): Det är ett Internet-protokoll som låter dig hämta filer från så-kallade &FTP;-servrar.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-git">
+    <glossterm
+>Git</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/Git"
+>Git</ulink
+>: Ett distribuerat versionshanteringssystem som ersätter <link linkend="gloss-svn"
+>Subversion</link
+>. Det används av många programvaruprojekt inklusive &kde; och &krusader;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gpl">
+    <glossterm>
+      <acronym
+>GPL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/GNU_General_Public_License"
+>GNU General Public License</ulink
+>; En programvarulicens skapad av <ulink url="https://www.fsf.org/"
+>Free Software Foundation</ulink
+> som definierar villkoren för att publicera fri programvara.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gui">
+    <glossterm
+>&GUI;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/Grafiskt_användargränssnitt"
+> Grafiskt användargränssnitt</ulink
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-iso">
+    <glossterm>
+      <acronym
+>ISO</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>En <ulink url="https://sv.wikipedia.org/wiki/ISO-avbild"
+>ISO-avbild</ulink
+> (<literal role="extension"
+>.iso</literal
+>) är en informell term för en diskavbild av ett ISO 9660-filsystem. I mer fria ordalag, syftar den på vilken optisk diskavbild som helst, till och med en UDF-avbild.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kde">
+    <glossterm
+>&kde;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/KDE"
+>K-skrivbordsmiljön</ulink
+> (K Desktop Enviroment); Ett projekt för att utveckla en fri grafisk skrivbordsmiljö för &UNIX;-kompatibla system.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-keybinding">
+    <glossterm
+>Tangentbindning</glossterm>
+    <glossdef>
+      <para
+>Alla funktioner i &krusader; är tillgängliga via menyraden, men du kan också binda (länka) vissa tangentkombinationer till funktioner. Du kommer dock att märka att det går anmärkningsvärt mycket fortare att använda <link linkend="keyboard-commands"
+>tangentbordet</link
+> istället för menyraden eller <link linkend="gloss-gui"
+>det grafiska användargränssnittet</link
+>. <link linkend="keyboard-commands"
+>Användning av tangentbordet</link
+> är ett viktigt verktyg för <link linkend="gloss-ofm"
+>ortodoxa filhanterare</link
+>. &krusader; levereras med flera fördefinierade <link linkend="key_bindings"
+>tangentbindningar</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kpart">
+    <glossterm
+>KPart</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/KPart"
+> KPart</ulink
+>; KPart är namnet på komponentramverket för &kde;:s skrivbordsmiljö. En KPart motsvarar en Bonobo-komponent i <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, och båda är baserade på samma koncept som &Microsoft;s objektlänkning och inbäddning. om du t.ex. använder &krusader;s granskare för att visa en &PDF;-fil, startas &okular; inne i &krusader;s granskare.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kio">
+    <glossterm
+><acronym
+>KIO</acronym
+> eller I/O-slav</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Kioslave"
+>KDE inmatning och utmatning</ulink
+>: också kallade I/O-slavar, är en del av &kde;:s arkitektur. De ger åtkomst till filer, webbplatser och andra resurser via ett enda konsekvent programmeringsgränssnitt.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-mount">
+    <glossterm
+>montera</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Mount_%28computing%29"
+>Montera</ulink
+>: I datavetenskap är det processen som gör ett filsystem klart att användas av operativsystemet, oftast genom att läsa vissa datastrukturer för indexering från lagringsmediet till minnet i förväg. Begreppet påminner om en period i datorhistorien då en operatör var tvungen att montera ett magnetband eller en hårddisk på en spole innan de kunde användas.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ofm">
+    <glossterm>
+      <acronym
+>OFM</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Ortodox filhanterare</ulink
+>: Också känd som <quote
+>Commander</quote
+>. Medlemmar i den här familjen av filhanterare använder ett enkelt men ändå mycket kraftfullt gränssnitt som direkt kommer från gränssnittet i <ulink url="https://sv.wikipedia.org/wiki/Norton_Commander"
+> Norton Commander</ulink
+> (NC).</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-rpm">
+    <glossterm
+>RPM</glossterm>
+    <glossdef>
+      <para
+>Det här är det binära filformatet för distributioner baserade på <ulink url="http://www.rpm.org/"
+>RPM-pakethanteraren</ulink
+>, ett paketverktyg för operativsystemet &Linux; med bred användning. Om du fortfarande behöver hämta &krusader;, och ditt system stöder RPM-paket, ska du hämta &krusader;s paket som slutar med <literal role="extension"
+>.rpm</literal
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ssh">
+    <glossterm
+><acronym
+>SSH</acronym
+>, Säkert skal</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/SSH"
+>SSH</ulink
+>: Är en uppsättning standarder med tillhörande nätverksprotokoll, som gör det möjligt att upprätta en säker kanal mellan en lokal dator och en fjärrdator.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-svn">
+    <glossterm
+><acronym
+>SVN</acronym
+>, Subversion</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/Subversion_%28versionshanteringssystem%29"
+>Subversion</ulink
+>: Ett versionshanteringssystem som är en övertygande ersättning av <link linkend="gloss-cvs"
+>CVS</link
+>. Det används av många programvaruprojekt inklusive &kde; och &krusader;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-termemu">
+    <glossterm
+>Terminalemulator</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/Terminalemulator"
+>Terminalemulator</ulink
+>: Helt enkelt ett skal med fönster. Det är känt som kommandoradsfönster i vissa miljöer. Om du vill använda ett skal och skriv in kommandona, bör du åtminstone känna till några av systemnivåkommandona i operativsystemet.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-posix">
+    <glossterm>
+      <acronym
+>POSIX</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/POSIX"
+>Portable Operating System Interface for uniX</ulink
+>: Ett gemensamt namn på ett antal sammanhörande standarder specificerade av IEEE för att definiera programmeringsgränssnittet (API:et) för programvara kompatibel med &UNIX;-besläktade operativsystem.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-url">
+    <glossterm
+>&URL; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/Uniform_Resource_Locator"
+>Universal Resource Locator</ulink
+>: Den tekniska beteckningen för vad som vanligtvis kallas en webbadress. Exempel på webbadresser är <ulink url="https://krusader.sourceforge.net"
+> http://krusader.sourceforge.net</ulink
+> och <link linkend="remote-connections"
+>fjärranslutningar</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-vfs">
+    <glossterm>
+      <acronym
+>VFS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><link linkend="vfs"
+>Virtuella filsystem (VFS)</link
+> är en grundläggande funktion hos <link linkend="features"
+>ortodoxa filhanterare</link
+>, ett abstrakt lager över alla sorters arkiverad information (ZIP-filer, &FTP;-servrar, TAR-arkiv, &NFS;-filsystem, SAMBA delade kataloger, ISO &CD;/&DVD;-avbilder, RPM-kataloger, etc.), som gör det möjligt för användaren att transparent komma åt all information i dessa väsensskilda typer av filsystem, precis som att gå ner i en vanlig underkatalog. &krusader; stöder flera olika <link linkend="vfs"
+>virtuella filsystem (VFS)</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-xml">
+    <glossterm
+>&XML;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://sv.wikipedia.org/wiki/XML"
+>Extensible Markup Language</ulink
+>: Ett mycket flexibelt textformat härlett från SGML (ISO 8879). Ursprungligen konstruerat för att hantera utmaningarna i storskalig elektronisk förlagsverksamhet. Nu spelar &XML; också en allt viktigare roll vid utbyte av en stor mängd data på webben och på andra håll.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-zeroconf">
+    <glossterm
+>Zeroconf</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Zeroconf"
+>Zeroconf</ulink
+>: Nätverkshantering utan konfigurering är en uppsättning tekniker som automatiskt skapar ett användbart IP-nätverk utan konfigurering eller särskilda servrar. Det möjliggör hopkoppling av datorer, skrivare med nätverksanslutning, och andra enheter av oerfarna användare, med förväntan om att de automatiskt ska fungera.</para>
+    </glossdef>
+  </glossentry>
+</glossary>

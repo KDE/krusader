@@ -1,0 +1,678 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="features">
+<title
+>Funzionalità</title>
+<indexterm>
+  <primary
+>Funzionalità</primary>
+</indexterm>
+<note>
+  <para
+>Le funzionalità e i miglioramenti più importanti sono rimarcati qui, ma potremmo rendere questo elenco troppo lungo se includessimo <emphasis
+>tutte</emphasis
+> le funzionalità e i miglioramenti. Scoprirai ulteriori funzionalità in questa documentazione e nei file <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+><filename
+>Changelog</filename
+></ulink
+> e <ulink url="https://commits.kde.org/krusader?path=NEWS"
+><filename
+>NEWS</filename
+></ulink
+>.</para>
+</note>
+<para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Funzionalità <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Orthodox File Manager (OFM)</ulink
+></title>
+          <listitem>
+            <para
+>Due <link linkend="panels"
+>pannelli OFM</link
+> di grande capacità e facili da usare.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="cmdline"
+>Riga di comando</link
+> e <link linkend="termemu"
+>Emulatore di terminale</link
+> opzionale in basso.</para>
+          </listitem>
+          <listitem>
+            <para
+>Forte tendenza all'uso della <link linkend="keyboard-commands"
+>tastiera</link
+>, con abilità ad eseguire tutte le funzioni senza il mouse.</para>
+          </listitem>
+          <listitem>
+            <para
+>Invocazione di script e programmi in base al contesto, &eg; clic del mouse/&Enter; (esegui o apri con l'applicazione associata), <keycap
+>F3</keycap
+> (visualizza) e <keycap
+>F4</keycap
+> (modifica).</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="useractions"
+>Menu utente</link
+>, crea il tuo menu personalizzato.</para>
+          </listitem>
+          <listitem>
+            <para
+>Cronologia, &eg; <link linkend="folderhistory"
+>cartella cronologia</link
+>, <link linkend="popular-urls"
+>&URL; preferiti</link
+>, &etc;</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="vfs"
+>Virtual file systems (VFS)</link
+>, &eg; per <link linkend="remote-connections"
+>Connessioni remote</link
+>, <link linkend="archives"
+>archivi</link
+>, risultati di ricerca, sincronizzatore.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krviewer"
+>Visore ed editor</link
+> interni di grandi capacità, tramite kparts, in grado di leggere quasi tutti i formati di file.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Modulo di ricerca avanzato</link
+>: ricerca negli archivi e in file system remoti.</para>
+          </listitem>
+          <listitem>
+            <para
+>Varie modalità di vista del pannello tramite la <link linkend="sidebar"
+>barra laterale</link
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Strumenti di &krusader;</title>
+          <listitem>
+            <para
+><link linkend="remote-connections"
+>Connessioni remote</link
+>: &FTP;/SAMBA con supporto SFTP/SCP tramite slave KIO</para>
+          </listitem>
+          <listitem>
+            <para
+>Interfaccia grafica (&GUI;) per <link linkend="locate"
+>locate</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="synchronizer"
+>Sincronizza cartelle</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="mount-man"
+>Gestore per il montaggio</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="diskusage"
+>Uso del disco</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="root-mode"
+>Modalità amministratore</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Funzionalità di &krusader;</title>
+          <listitem>
+            <para
+>Gestione archivi: navigazione, estrazione, creazione, analisi. <link linkend="archives"
+>Archivi</link
+> supportati: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip e 7-zip.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="checksum"
+>Creazione e verifica del codice di controllo</link
+> meccanismo che è in grado di leggere md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv e crc.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="calculate"
+>Calcola lo spazio occupato</link
+> di file e cartelle, archivi e file system remoti.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-dir"
+>Confronto delle cartelle</link
+> e <link linkend="view-menu"
+>filtraggio</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-content"
+>Confronta i file per contenuto</link
+> tramite programmi diff esterni come &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> o <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="multi_rename"
+>Rinomina</link
+> file e cartelle tramite <ulink url="https://www.kde.org/applications/utilities/krename/"
+><application
+>KRename</application
+></ulink
+></para>
+          </listitem>
+          <listitem>
+            <para
+>È in grado di supportare in modo completo il trascinamento: trascina direttamente da &konqueror; all'interno di un file <literal role="extension"
+>.tar.gz</literal
+>, dal pannello di &krusader; all'interno del cestino, del desktop o in &konqueror;</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-advanced"
+>Conserva la data</link
+> nelle operazioni di copiatura/spostamento dei file locali.</para>
+          </listitem>
+          <listitem>
+            <para
+><keycap
+>F9</keycap
+> apre una <link linkend="tools-menu"
+>finestra di terminale</link
+> nella cartella attiva.</para>
+          </listitem>
+          <listitem>
+            <para
+>Facile modifica dei <link linkend="file-menu"
+>permessi dei file</link
+>, delle loro proprietà e dei <link linkend="konfig-panel-view"
+>permessi numerici</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Filtri di selezione</link
+> utilizzati, per es., nella Sincronizzazione e nella ricerca.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="jump_back"
+>Salta indietro</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-general"
+>in grado di riconoscere automaticamente i tipi &MIME;</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="folder-tabs"
+>Pannelli a schede</link
+> e <link linkend="krviewer"
+>Editor/Visore a schede</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="quicksearch"
+>Ricerca rapida, selezione e filtro</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="splitter"
+>Divisore di file</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Movimenti del mouse </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="list_panel"
+>Navigazione rapida</link
+> sulla barra dell'indirizzo.</para>
+          </listitem>
+          <listitem>
+            <para
+>Funzione di aiuto «Che cos'è», quando possibile, al posto dei suggerimenti.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_toolbar"
+>Sincronizzazione della navigazione</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Personalizza &krusader; in base alle tue esigenze</title>
+          <listitem>
+            <para
+><link linkend="konfig-startup"
+>Konfigurator</link
+>, il centro di configurazione di &krusader;.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="mainwindow"
+>Barra degli strumenti principale</link
+>, <link linkend="actions_toolbar"
+>Barra degli strumenti azioni</link
+> per i menu utente e i segnalibri.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="key_bindings"
+>Associazioni di tasti</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="konfig-color"
+>Colori</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_profiles"
+>Profili del pannello</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="bookman"
+>Gestore dei segnalibri</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="selection_modes"
+>Modalità di selezione</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Possono essere <link linkend="konfig-startup"
+>configurate</link
+> molte altre funzionalità, nella maniera che preferisci.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      <itemizedlist>
+        <title
+>Estensioni di &krusader;</title>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Azioni utente</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="konfig-color"
+>Profili dei colori</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="configure-shortcuts"
+>Profili delle combinazioni di tasti</link
+></para>
+        </listitem>
+      </itemizedlist
+>Scarica e carica in <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+> le estensioni di &krusader; da te preferite. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+<para>
+  <itemizedlist>
+    <title
+>Nuove funzionalità in &krusader;-1.80.0 <quote
+>Final 3rd Stone</quote
+></title>
+    <listitem>
+      <para
+>Miglioramenti agli archivi <itemizedlist>
+        <listitem>
+          <para
+><link linkend="archives"
+>Supporto password</link
+> per: arj, ace, rar e zip. Le password possono essere memorizzate in <application
+>Kwallet</application
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>Supporto 7-zip</link
+>, con applicazioni esterne <application
+>7z</application
+> e <application
+>7za</application
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>Supporto per il rilevamento automatico</link
+>, che permette di aprire gli <quote
+>archivi nascosti</quote
+> (&eg;, i documenti  <trademark class="registered"
+>OpenOffice</trademark
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+>Compressione / decompressione ora eseguita in background.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="list_panel"
+>Vista sintetica</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Molti miglioramenti al sistema delle <link linkend="useractions"
+>Azioni</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Miglioramenti infiniti, soprattutto in Konfigurator e nella barra dei menu, che è stata totalmente riordinata.</para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="media_button"
+>Tasto dispositivi</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Copia/Sposta: <link linkend="copying"
+>conserva tutti gli attributi</link
+> (ora, proprietario, gruppo).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-color"
+>Regola i colori del pannello inattivo</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Rinomina di un nome file senza estensione, modo singola istanza, avvio dal vassoio di sistema, controlla queste opzioni in <link linkend="konfigurator"
+>Konfigurator</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="list_panel"
+>Estensioni atomiche</link
+> configurabili, in modo che le estensioni come <literal role="extension"
+>tar.gz</literal
+> vengano mostrate insieme nella <guilabel
+>colonna Est</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Menu contestuale per segnalibri e attivazione/disattivazione di segnalibri speciali.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="menu-commands"
+>Barra dei menu</link
+> ridisegnata</para>
+    </listitem>
+    <listitem>
+      <para
+>Miglioramenti all'<link linkend="termemu"
+>emulatore di terminale</link
+>, con nuove funzioni, usi e  aspetto.</para>
+    </listitem>
+    <listitem>
+      <para
+>Miglioramenti al <link linkend="synchronizer"
+>sincronizzatore</link
+> e thread paralleli per server &FTP; lenti.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-startup"
+>Modo singola istanza</link
+>, <link linkend="konfig-startup"
+>si avvia dal vassoio di sistema</link
+></para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="context-menu"
+>Menu contestuale per segnalibri permanenti.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Supporto completo per i <link linkend="acl"
+>permessi ACL</link
+>, come le proprietà, la conservazione attributi, la sincronizzazione e altro.</para>
+    </listitem>
+    <listitem>
+      <para
+>Risultati per la ricerca, la posizione e la sincronizzazione: supporto per il trascinamento e la copia degli elementi negli appunti (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+>Molte correzioni di errori.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nuove funzionalità in &krusader;-1.90.0 <quote
+>Power Stone</quote
+></title>
+    <listitem>
+      <para
+>Ultimo rilascio per &kde; 3.x con una vasta collezione di azioni. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nuove funzionalità in &krusader;-2.0.0 <quote
+>Mars Pathfinder</quote
+></title>
+    <listitem>
+      <para
+>Il primo rilascio per la serie di &kde; 4.x </para>
+    </listitem>
+    <listitem>
+      <para
+>&krusader; funziona in &Windows;! (Anche se non è ancora così potente come quando si usa in &Linux;) </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="queue"
+>Gestione delle code!</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-panel"
+>Cinque metodi nel pannello!</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nuove funzionalità in &krusader;-2.1.0-beta1 <quote
+>Rusty Clutch</quote
+></title>
+    <listitem>
+      <para
+>Rapida visualizzazione di file di grandi dimensioni in modalità testo ed esadecimale. </para>
+    </listitem>
+    <listitem>
+      <para
+>Schede bloccate. </para>
+    </listitem>
+    <listitem>
+      <para
+>Accodamento per la compressione / decompressione. </para>
+    </listitem>
+    <listitem>
+      <para
+>Migliore integrazione del cestino. </para>
+    </listitem>
+    <listitem>
+      <para
+>La barra della ricerca rapida, selezione e filtro supporta le espressioni regolari per l'individuazione dei file. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nuove funzionalità in &krusader;-2.5.0 <quote
+>Clear Skies</quote
+></title>
+    <listitem>
+      <para
+>Conversione a &kf5-full;. </para>
+    </listitem>
+    <listitem>
+        <para
+>La nuova barra <link linkend="quickfilter"
+>Filtro rapido</link
+> con tre diverse modalità di operazione: seleziona, ricerca e filtra. </para>
+    </listitem>
+    <listitem>
+        <para
+>Gestione delle code rivisitata (JobMan) e la nuova <link linkend="job_toolbar"
+>Barra degli strumenti operazioni</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nuove funzionalità in &krusader;-2.7.0 <quote
+>Peace of Mind</quote
+></title>
+    <listitem>
+      <para
+>Ricerca rapida nel menu Segnalibri. </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="folder-tabs"
+>Schede fissate</link
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Suggerimento con informazioni sul file quando passi il mouse su un nome file. </para>
+    </listitem>
+    <listitem>
+      <para
+>Opzioni estese per il pannello ad albero nella <link linkend="sidebar"
+>barra laterale</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para
+><note
+><para
+>Usando una versione di sviluppo o da &git; è possibile che le funzionalità più recenti non siano ancora contemplate nel <quote
+>Manuale di &krusader;</quote
+>. Leggi il file di <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+>Changelog</ulink
+> reperibile in rete o nei sorgenti di &krusader; per informazioni sulle ultime funzionalità. Per averne una breve descrizione, puoi consultare il file <ulink url="https://commits.kde.org/krusader?path=NEWS"
+>NEWS</ulink
+> reperibile in rete o nei sorgenti di &krusader;. <link linkend="faqg_wish"
+>Commenti</link
+> e <link linkend="faqg_bug_report"
+>segnalazioni errori</link
+> da parte degli utenti sono sempre ben accetti! </para
+></note
+></para>
+</chapter>

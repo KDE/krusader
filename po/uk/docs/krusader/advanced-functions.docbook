@@ -1,0 +1,40 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="more-features">
+<title
+>Додаткові функції</title
+>&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>Надсилання файлів електронною поштою</title
+> <para
+>Позначте файл і скористайтеся пунктом <menuchoice
+> <guimenu
+>контекстне меню</guimenu
+> <guimenuitem
+>Надіслати ел. поштою</guimenuitem
+> </menuchoice
+>. Після вибору цього пункту програма відкриє нове вікно &kmail; з вказаним файлом, який буде долучено до повідомлення. Вам достатньо буде вказати тему повідомлення і отримувача, а потім надіслати повідомлення. Звичайно ж, &kmail; має бути налаштовано належним чином.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>Дозволи ACL</title>
+  <para
+><link linkend="gloss-acl"
+>Дозволи ACL</link
+> повністю підтримуються інструментами властивостей файлів, збереження атрибутів і синхронізації (типово вимкнено під час збирання програми). Щоб переглянути або змінити дозволи ACL, позначте файл і скористайтеся пунктом <link linkend="context-menu"
+>контекстне меню</link
+>: <menuchoice
+> <guimenu
+>Властивості...</guimenu
+> <guimenuitem
+>Дозволи</guimenuitem
+> <guimenuitem
+>Розширені права доступу</guimenuitem
+> </menuchoice
+>. Під час виконання дій з копіювання/пересування програма скопіює і атрибути ACL. Інструмент синхронізації також зберігає права доступу ACL.</para>
+</sect1
+></chapter>

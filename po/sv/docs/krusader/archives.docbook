@@ -1,0 +1,136 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="archives">
+  <title
+>Arkivhantering</title>
+  <indexterm>
+    <primary
+>Arkiv</primary>
+  </indexterm>
+  <sect2 id="browsing-archives">
+    <title
+>Bläddra i arkiv</title>
+    <para
+>Det <link linkend="vfs"
+>virtuella filsystemet (VFS)</link
+> låter dig bläddra i arkiv som om de vore kataloger. För närvarande stödjer &krusader; följande arkivtyper: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip och 7-zip, samt stödjer följande arkiv med lösenord: arj, ace, rar och zip. Lösenord kan lagras i <application
+>plånboken</application
+>. Observera att arkivstödet först måste <link linkend="konfig-archives"
+>anpassas</link
+> på ett riktigt sätt i Konfigurator. Använd returtangenten, (dubbel)klick eller <keycap
+>högerpil</keycap
+> för att öppna arkivet. &krusader; stödjer också <emphasis role="bold"
+>dolda arkiv</emphasis
+>, som är arkiv med namn ändrade till *fel* filändelse, t.ex. använder <trademark class="registered"
+>OpenOffice</trademark
+> zip-arkiv med följande filändelser: <literal role="extension"
+>.odt</literal
+>, <literal role="extension"
+>.sxw</literal
+> och <literal role="extension"
+>.odw</literal
+>. Returtangenten öppnar dokumentet i <trademark class="registered"
+>OpenOffice</trademark
+> och <keycap
+>högerpil</keycap
+> öppnar arkivet. Ett annat exempel är J2EE, där filändelsen <literal role="extension"
+>.jar</literal
+> betyder ett zip-arkiv. Eftersom &krusader; detekterar arkivtyper som stöds automatiskt, öppnas det med <keycap
+>högerpil</keycap
+> även om det har en annan Mimetyp. Observera att det finns ett antal begränsningar med att bläddra i arkiv: <itemizedlist>
+      <listitem>
+        <para
+>Alla funktioner stöds inte av alla arkivtyper (dvs. du kan inte ta bort filer i ace- eller rar-arkiv).</para>
+      </listitem>
+      <listitem>
+        <para
+>Behörigheten du har inne i arkivet är samma som behörigheten du har för arkivet.</para>
+      </listitem>
+      <listitem>
+        <para
+>Kommandoraden (om den är synlig) följer inte med in i arkivet, utan pekar på arkivets katalog.</para>
+      </listitem>
+      <listitem>
+        <para
+>Innan någon åtgärd utförs med filer eller kataloger inne i arkivet, måste de packas upp. Arkivet packas igen när du lämnar det, eller när &krusader; upptäcker att uppackade filer har ändrats.</para>
+      </listitem>
+      <listitem>
+        <para
+>Att packa och packa upp är <quote
+>blockerade åtgärder</quote
+> som visar en förloppsdialogruta. Det kan dock ändras i framtiden, eftersom vi planerar att skapa fler bakgrundsåtgärder.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="unpacking-archives">
+    <title
+>Packa upp filer</title>
+    <para
+>Det finns två sätt att packa upp filer i arkiv:</para>
+    <para
+>Om du vill packa upp ett helt arkiv, gå till arkivets plats, markera arkivet och välj <menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Packa upp</guimenuitem
+> </menuchoice
+> eller <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+>. &krusader; frågar var de uppackade filerna ska placeras. Standardplatsen är katalogen i den inaktiva panelen. Om du inte avbryter åtgärden, försöker &krusader; packa upp alla markerade filer i den inaktiva panelen.</para>
+    <para
+>Om du bara vill packa upp en del av arkivet, <link linkend="browsing-archives"
+>gå</link
+> till arkivet och kopiera filerna du vill packa upp till deras nya plats, precis som du skulle kopiera <quote
+>normala</quote
+> filer. Observera att uppackning från ett arkiv du har gått till tar längre tid (uppackning av en fil i taget), jämfört med att packa upp ett helt arkiv med den första metoden. Uppackningsåtgärden kan placeras i en <link linkend="queue"
+>kö</link
+>.</para>
+  </sect2>
+  <sect2 id="pack-archive">
+    <title
+>Packa filer</title>
+    <para
+>Om du vill skapa ett nytt arkiv, börja med att markera objekten du vill packa i den aktiva panelen, och välj <menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Packa...</guimenuitem
+></menuchoice
+> eller <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+>. En dialogruta visas som ber dig att välja arkivnamn och plats. Välj paketverktyg från en av <link linkend="konfig-archives"
+>filnamnsändelserna som stöds</link
+>.</para>
+    <para
+>För att lägga till filer i ett befintligt arkiv, öppna arkivet i en panel och filerna som ska kopieras i den andra panelen, och kopiera därefter helt enkelt filerna till arkivet på exakt samma sätt som du kopierar filer till en <quote
+>normal</quote
+> katalog. Packningsåtgärden kan placeras i en <link linkend="queue"
+>kö</link
+>.</para>
+  </sect2>
+  <sect2 id="test-archive">
+    <title
+>Testa arkiv</title>
+    <para
+>&krusader; hanterar inte skadade arkiv, eftersom det kan orsaka dataförlust. Om du får ett felmeddelande när ett arkiv öppnas, eller om du misstänker att det är något fel med arkivet, bör du testa det innan det används. Gå (navigera) till arkivets plats och markera arkivet, för att testa det. Välj därefter <menuchoice
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Testa arkiv</guimenuitem
+> </menuchoice
+> eller <keycombo action="simul"
+>&Alt; <keycap
+>E</keycap
+></keycombo
+>. &krusader; testar arkivet, och informerar dig om testen av arkivets filintegritet lyckades eller misslyckades.</para>
+  </sect2>
+</sect1>

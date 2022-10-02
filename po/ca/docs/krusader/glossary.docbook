@@ -1,0 +1,358 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<glossary id="glossary">
+  <indexterm>
+    <primary
+>Glossari</primary>
+  </indexterm>
+  <para
+>Aquest capítol té la intenció d'explicar les diverses paraules que s'han emprat en tota la documentació del &krusader;. Si creieu que falten alguns acrònims o termes, no dubteu en posar-vos en contacte amb l'equip de documentació del &krusader;.</para>
+  <para
+>Gràcies a la <ulink url="https://en.wikipedia.org/"
+>wikipedia.org</ulink
+>, l'enciclopèdia gratuïta que qualsevol pot editar.</para>
+  <glossentry id="gloss-acl">
+    <glossterm>
+      <acronym
+>ACL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/Llista_de_control_d%27accés"
+>Llista de control d'accés</ulink
+>: un concepte en seguretat informàtica utilitzat per a imposar la separació de privilegis. És un mitjà per a determinar els drets d'accés apropiats a un objecte determinat, depenent de certs aspectes del procés que realitza la sol·licitud.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-bsd">
+    <glossterm>
+      <acronym
+>BSD</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/BSD"
+>Berkeley Software Distribution</ulink
+>: es refereix a qualsevol dels diversos sistemes operatius lliures compatibles amb &UNIX;, derivats de l'&UNIX; de &BSD;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-cvs">
+    <glossterm>
+      <acronym
+>CVS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/CVS"
+>Sistema de versions concurrents</ulink
+>: un component important del Source Configuration Management (SCM). En emprar-lo, els desenvolupadors poden registrar l'historial dels fitxers i documents font.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-deb">
+    <glossterm>
+      <acronym
+>DEB</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>Aquest és un format de fitxer binari que utilitza la distribució <ulink url="https://ca.wikipedia.org/wiki/Debian"
+>&Debian;</ulink
+> i les basades en la &Debian;. És un sufix d'un fitxer d'instal·lació creat específicament per a aquestes distribucions; &pex;, <filename
+>krusader_1.70.1-1_amd64.deb</filename
+>. Simplement descriu que és un arxiu especial que conté tots els fitxers del programa i la seva ubicació proposada en el sistema.</para>
+    </glossdef>
+  </glossentry>
+    <glossentry id="glos-dbus">
+    <glossterm
+>&DBus; </glossterm>
+    <glossdef>
+      <para
+>El <ulink url="https://freedesktop.org/wiki/Software/dbus"
+>&DBus;</ulink
+> és un sistema de missatgeria entre serveis. Desenvolupat per &RedHat;, va estar fortament influenciat pel <link linkend="glos-dcop"
+>&DCOP; del &kde; 3</link
+>, al qual substitueix. El &krusader; pot utilitzar el &DBus; per a comunicar-se amb altres aplicacions. D'altra banda, podeu utilitzar el &DBus; per a controlar el &krusader; des d'altres aplicacions. Simplement empreu l'ordre <application
+>qdbusviewer</application
+> per a examinar les possibilitats.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-dcop">
+    <glossterm
+>&DCOP; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/DCOP"
+>Protocol de comunicació de l'escriptori</ulink
+>: el protocol de comunicació entre processos utilitzat per l'entorn d'escriptori &kde; 3. Permet que diverses aplicacions del &kde; 3 es comuniquin entre si. Va ser substituït amb el <link linkend="glos-dbus"
+>&DBus;</link
+> al &kde; 4.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-faq">
+    <glossterm>
+      <acronym
+>PMF</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><link linkend="faq"
+>Preguntes més freqüents</link
+>: un document on es responen les preguntes que sorgeixen moltes vegades. Si teniu alguna pregunta per als desenvolupadors del &krusader;, sempre haureu de consultar primer la <link linkend="faq"
+>PMF</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-ftp">
+    <glossterm
+>&FTP;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/Protocol_de_transferència_de_fitxers"
+>Protocol de transferència de fitxers</ulink
+>: és un protocol d'Internet que permet recuperar fitxers dels anomenats servidors d'&FTP;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-git">
+    <glossterm
+>Git</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/Git"
+>Git</ulink
+>: un sistema de control de versions distribuït que substitueix al <link linkend="gloss-svn"
+>Subversion</link
+>. És emprat per molts projectes de programari, inclosos el &kde; i el &krusader;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gpl">
+    <glossterm>
+      <acronym
+>GPL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/GNU_General_Public_License"
+>GPL</ulink
+>: una llicència de programari creada per la <ulink url="https://www.fsf.org/"
+>Free Software Foundation</ulink
+>, la qual defineix els termes per al llançament del programari lliure.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gui">
+    <glossterm
+>&IGU;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/Interfície_gràfica_d%27usuari"
+>Interfície gràfica d'usuari</ulink
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-iso">
+    <glossterm>
+      <acronym
+>ISO</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>Una <ulink url="https://ca.wikipedia.org/wiki/Imatge_ISO"
+>imatge ISO</ulink
+> (<literal role="extension"
+>.iso</literal
+>) és un terme informal per a una imatge de disc d'un sistema de fitxers ISO 9660. Més vagament, es refereix a qualsevol imatge de disc òptic, fins i tot una imatge UDF.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kde">
+    <glossterm
+>&kde;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/KDE"
+>Entorn d'escriptori K</ulink
+>: un projecte per a desenvolupar un entorn d'escriptori gràfic lliure per a sistemes compatibles amb &UNIX;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-keybinding">
+    <glossterm
+>Lligams de tecla</glossterm>
+    <glossdef>
+      <para
+>Totes les característiques del &krusader; estan disponibles a través de la barra de menús, però també pot vincular (enllaçar) un determinat lligam de tecla amb aquesta funció. No obstant això, trobareu que emprar el <link linkend="keyboard-commands"
+>teclat</link
+> és notablement més ràpid que emprar la barra de menús o la <link linkend="gloss-gui"
+>&IGU;</link
+>. L'<link linkend="keyboard-commands"
+>ús del teclat</link
+> és una eina important per als <link linkend="gloss-ofm"
+>gestors de fitxers ortodoxos</link
+>. El &krusader; ve amb diversos <link linkend="key_bindings"
+>lligams de tecla</link
+> predefinits.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kpart">
+    <glossterm
+>KPart</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/KPart"
+>KPart</ulink
+>: és el nom del marc de treball dels components per a l'entorn d'escriptori &kde;. Les KPart són anàlogues als components de Bonobo en el <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, els quals es basen en els mateixos conceptes que la vinculació i incrustació d'objectes de &Microsoft;. &pex;, si empreu el visualitzador del &krusader; per a veure un fitxer &PDF;, llavors s'iniciarà l'&okular; dins del visualitzador del &krusader;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kio">
+    <glossterm
+><acronym
+>KIO</acronym
+> o esclau KIO (kioslave)</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/KIO"
+>Entrada/Sortida del &kde;</ulink
+>: també conegut com a esclaus KIO, formen part de l'arquitectura del &kde;. Proporcionen accés als fitxers, llocs web i altres recursos a través d'una única API coherent.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-mount">
+    <glossterm
+>muntar</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Mount_%28computing%29"
+>Muntatge</ulink
+>: en informàtica, és el procés de preparar un sistema de fitxers perquè el faci servir el sistema operatiu, generalment llegint amb anticipació certes estructures de dades d'índex des de l'emmagatzematge dins la capçalera de la memòria amb anticipació. El terme recorda un període en la història de la informàtica quan un operador havia de muntar una cinta magnètica o un disc dur en un fus abans d'emprar-lo.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ofm">
+    <glossterm>
+      <acronym
+>OFM</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Gestor de fitxers ortodox</ulink
+>: també conegut com a <quote
+>Commanders</quote
+>. Els membres d'aquesta família de gestors de fitxers empren una interfície senzilla però molt poderosa, la qual és un derivat directe de la interfície del <ulink url="https://ca.wikipedia.org/wiki/Norton_Commander"
+>Norton Commander</ulink
+> (NC).</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-rpm">
+    <glossterm
+>RPM</glossterm>
+    <glossdef>
+      <para
+>Aquest és el format de fitxer binari per a distribucions basades en el <ulink url="http://www.rpm.org/"
+>gestor de paquets RPM</ulink
+>, una eina d'empaquetament àmpliament utilitzada per al sistema operatiu &Linux;. Si encara heu d'obtenir el &krusader; i el vostre sistema admet paquets RPM, hauríeu d'obtenir els paquets del &krusader; que acabin en <literal role="extension"
+>.rpm</literal
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ssh">
+    <glossterm
+><acronym
+>SSH</acronym
+>, indicatiu d'ordres segur</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/Secure_Shell"
+>SSH</ulink
+>: és un conjunt d'estàndards i un protocol de xarxa associat que permet establir un canal segur entre un ordinador local i un de remot.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-svn">
+    <glossterm
+><acronym
+>SVN</acronym
+>, Subversion</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Subversion"
+>Subversion</ulink
+>: un sistema de control de versions, el qual és una substitució convincent per al <link linkend="gloss-cvs"
+>CVS</link
+>. És emprat per molts projectes de programari, inclòs el &kde;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-termemu">
+    <glossterm
+>Emulador de terminal</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/Emulador_de_terminal"
+>Emulador de terminal</ulink
+>: simplement un intèrpret d'ordres amb finestra -en alguns altres entorns això es coneix com a finestra de línia d'ordres-. Si voleu utilitzar l'intèrpret d'ordres i escriure les ordres, haureu de conèixer almenys algunes de les ordres a nivell de sistema per al vostre sistema operatiu.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-posix">
+    <glossterm>
+      <acronym
+>POSIX</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/POSIX"
+>Interfície del sistema operatiu portàtil per a uniX</ulink
+>: un nom col·lectiu d'una família d'estàndards relacionats especificats per l'IEEE per a definir la interfície de programació d'aplicacions (API) per a programari compatible amb les variants del sistema operatiu &UNIX;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-url">
+    <glossterm
+>&URL; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/Localitzador_uniforme_de_recursos"
+>Localitzador universal de recursos</ulink
+>: un localitzador universal de recursos és el terme tècnic pel que es coneix normalment com a adreça de llocs web. Els exemples d'&URL; inclouen <ulink url="https://krusader.org"
+>https://krusader.org</ulink
+> i les <link linkend="remote-connections"
+>connexions remotes</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-vfs">
+    <glossterm>
+      <acronym
+>VFS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>Els <link linkend="vfs"
+>sistemes de fitxers virtuals (VFS)</link
+> són una <link linkend="features"
+>característica bàsica dels OFM</link
+>, aquesta és una capa abstracta sobre tota mena d'informació arxivada (fitxers ZIP, servidors &FTP;, arxius TAR, sistemes de fitxers &NFS;, comparticions de SAMBA, imatges ISO de &CD;/&DVD;, catàlegs RPM, &etc;), el qual permet a l'usuari accedir de forma transparent a tota la informació en aquests tipus de sistemes de fitxers divergents -igual que en entrar a una subcarpeta ordinària-. El &krusader; admet diversos <link linkend="vfs"
+>sistemes de fitxers virtuals (VFS)</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-xml">
+    <glossterm
+>&XML;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://ca.wikipedia.org/wiki/Extensible_Markup_Language"
+>Llenguatge de marques extensible</ulink
+>: un format de text molt flexible derivat de l'SGML (ISO 8879). Originalment dissenyat per a fer front als canvis en la publicació electrònica a gran escala, l'&XML; també exerceix un paper cada vegada més important en l'intercanvi d'una àmplia varietat de dades a la web i en altres llocs.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-zeroconf">
+    <glossterm
+>Zeroconf</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Zeroconf"
+>Zeroconf</ulink
+>: o Zero Configuration Networking és un conjunt de tècniques que creen automàticament una xarxa IP utilitzable sense configuració o servidors especials. Això permet als usuaris inexperts connectar ordinadors, impressores en xarxa i altres elements junts i esperar que funcionin de manera automàtica.</para>
+    </glossdef>
+  </glossentry>
+</glossary>

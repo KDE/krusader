@@ -1,0 +1,818 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="synchronizer">
+  <title
+>Abgleichen</title>
+  <indexterm>
+    <primary
+>Abgleichen</primary>
+  </indexterm>
+  
+<sect2 id="synchronizer_introduction">
+  <title
+>Einleitung</title>
+  <para
+>Diese Funktion vergleicht zwei Ordner mit allen Unterordnern und zeigt den Unterschied zwischen Ihnen. Nach der Auswahl einiger Optionen drücken Sie auf <guilabel
+>Vergleichen</guilabel
+> und die Dateien und Ordner werden verglichen. In einem Dateifenster kann zum Beispiel ein &FTP;-Server angezeigt werden. Vergessen Sie nicht die Option <guilabel
+>Nach Inhalt vergleichen</guilabel
+>, wenn die Dateigrößen gleich sind. Wählen Sie <menuchoice
+> <guimenu
+>Extras</guimenu
+> <guimenuitem
+>Ordner abgleichen</guimenuitem
+> </menuchoice
+> oder <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+>, um diese Funktion zu starten. Die verwendeten <link linkend="konfig-color"
+>Farben</link
+> können eingestellt werden. Für den Abgleich gibt es eigene <link linkend="synchronizer_keybindings"
+>Kurzbefehle</link
+>. </para>
+  <note>
+    <para
+>Bei lokalen Dateien wird beim Abgleichen die Informationen zum Datum von den ursprünglichen Dateien übernommen.</para>
+  </note>
+  <figure id="screenshot-syncdir" float="1">
+    <title
+>Abgleichen</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="syncdir.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Abgleichen</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para>
+  <orderedlist>
+    <title
+>Arbeitsweise</title>
+    <listitem>
+      <para
+>Wählen Sie in den Eingabefeldern <guilabel
+>Linker Ordner</guilabel
+> und <guilabel
+>Rechter Ordner</guilabel
+> die Ordner für den Abgleich aus.</para>
+    </listitem>
+    <listitem>
+      <para
+>Richten Sie die optionalen <guilabel
+>Dateifilter</guilabel
+>, <guilabel
+>Allgemeiner Filter</guilabel
+> und <guilabel
+>Erweiterter Filter</guilabel
+> ein. Für den <guilabel
+>Allgemeinen Filter</guilabel
+> gibt es noch einen Option <guilabel
+>Nicht suchen in</guilabel
+>, mit der Sie Ordner vom Vergleich ausschließen können.</para>
+    </listitem>
+    <listitem>
+      <para
+>Markieren Sie die <link linkend="synccomp_checkb_options"
+>Ankreuzfelder</link
+>: <guilabel
+>Unterordner einbeziehen</guilabel
+>, <guilabel
+>Symbolischen Verknüpfungen folgen</guilabel
+>, <guilabel
+>Nach Inhalt vergleichen</guilabel
+>, <guilabel
+>Datum ignorieren</guilabel
+>, <guilabel
+>Asymmetrisch</guilabel
+> und <guilabel
+>Groß-/Kleinschreibung ignorieren</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Klicken Sie auf den Kopf <guibutton
+>Vergleichen</guibutton
+>, um die Ordner abzugleichen.</para>
+    </listitem>
+    <listitem>
+      <para
+>Mit <link linkend="synccomp_show_options"
+>Optionen anzeigen</link
+> können bestimmte Dateitypen ein- oder ausgeschlossen werden. Dateien, die nicht in der Liste enthalten sind, bleiben beim Abgleich unverändert.</para>
+    </listitem>
+    <listitem>
+      <para
+>Falls erforderlich, können Sie die <guilabel
+>Aufgabe</guilabel
+>-Operationen, die durch den Vergleich festgelegt wurden, im <link linkend="synccomp_right-click"
+>Kontextmenü</link
+> ändern.</para>
+    </listitem>
+    <listitem>
+      <para
+>Sind Sie mit den Vergleichsergebnissen zufrieden, klicken Sie auf den Knopf <guibutton
+>Abgleichen</guibutton
+>, um den Abgleichdialog anzuzeigen.</para>
+    </listitem>
+    <listitem>
+      <para
+>Nach der Auswahl der Einstellungen für den <link linkend="synchronizer"
+>Abgleich</link
+>, klicken Sie auf den Knopf <guibutton
+>Start</guibutton
+>, um den Abgleichprozess zu beginnen.</para>
+    </listitem>
+  </orderedlist
+>Eine ausführliche Erklärung aller Funktionen und Knöpfe ist im folgenden Abschnitt beschrieben.</para>
+
+</sect2>
+
+<sect2 id="synchronizer_comparator">
+  <title
+>Vergleichsmethode</title
+>  
+
+  <variablelist>
+    <varlistentry>
+      <term
+>Elemente der Dateifenster</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Linker Ordner</guilabel
+>: Der Basisordner im linken Dateifenster.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Rechter Ordner</guilabel
+>: Der Basisordner im rechten Dateifenster.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Dateifilter</guilabel
+>: Filtert nach Dateinamen beim Abgleichen, &eg; <literal role="extension"
+>*.png</literal
+> wählt Nur Dateien mit der Erweiterung <literal role="extension"
+>.png</literal
+>. Ordner werden mit ausgewählt, wenn ihr Name mit <literal role="extension"
+>.png</literal
+> endet oder wenn der Ordner Dateien mit der Erweiterung <literal role="extension"
+>.png</literal
+> enthält. Ein Beispiel für mehrfaches Ein- oder Ausschließen: <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+> schließt Dateien mit der Erweiterung<literal role="extension"
+>*.cpp *.h</literal
+> und <literal role="extension"
+>*.moc.cpp</literal
+> Dateien mit der Erweiterung aus.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Allgemein</guilabel
+>er Filter: Suche nach Text in Dateien</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Erweitert</guilabel
+>e Filter: Größe, Datum, Eigentümer</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <variablelist>
+    <varlistentry>
+      <term
+>Filterkriterien für Dateinamen</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Sie können hier auch Platzhalter einsetzen. Mehrere Muster werden durch Leerzeichen getrennt, das entspricht einem logischen „Oder“. Muster mit vorangestelltem Pipe-Symbol „|“ schließen von der Suche aus. Wenn das Muster mit einem Schrägstrich (*pattern*/) endet, dann wird rekursiv in Ordnern gesucht.</para>
+          </listitem>
+          <listitem>
+            <para
+>„muster“ - sucht diese Dateien und Ordner, auf die das Muster zutrifft, die rekursive Suche wird in allen Unterordnern unabhängig vom Wert des Musters.</para>
+          </listitem>
+          <listitem>
+            <para
+>„muster/“ - sucht diese Dateien und Ordner, auf die das Muster zutrifft, die rekursive Suche wird in Ordnern nur ausgeführt bzw. diese Ordner werden ausgeschlossen, wenn die auf das Muster passen.</para>
+          </listitem>
+          <listitem>
+            <para
+>Verwenden Sie Anführungszeichen für Namen mit Leerzeichen darin. Mit <quote
+>Program Files</quote
+> filtern Sie alle Dateien und Ordner, die den Namen <filename
+>Program Files</filename
+> haben.</para>
+          </listitem>
+          <listitem>
+            <para
+>Beispiele:</para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.o</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.h *.c??</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>* | CVS/ .svn/</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Hinweis: Der Suchausdruck „text“ entspricht dem Ausdruck „*text*“.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_checkb_options">
+      <term
+>Einstellungen der Ankreuzfelder</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Unterordner einbeziehen</guilabel
+>: Beim Abgleich werden alle Unterordner mit einbezogen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Symbolischen Verknüpfungen folgen</guilabel
+>: Beim Abgleichen wird symbolischen Verknüpfungen zu Ordnern, aber nicht Dateien, gefolgt.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Nach Inhalt vergleichen</guilabel
+>: Bei Dateien mit gleicher Größe wird auch der Inhalt der Dateien verglichen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Datum ignorieren</guilabel
+>: Ignoriert die Datumsinformation, nützlich für &FTP;, SMB und Archive. Die Information über das Datum ist nur relevant für das lokale Dateisystem.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Asymmetrisch</guilabel
+>: Die linke Seite ist der Zielordner, die rechte Seite der Quellordner. Der Inhalt des linken Ordners wird zum rechten Ordner abgeglichen. <itemizedlist
+> <listitem
+> <para
+>Dateien, die nur im linken Ordner vorhanden sind, werden gelöscht.</para
+> </listitem
+> <listitem
+> <para
+>Dateien, die nur im rechten Ordner vorhanden sind, werden nach links kopiert.</para
+> </listitem
+> <listitem
+> <para
+>Gleiche Dateien bleiben unberührt.</para
+> </listitem
+> <listitem
+> <para
+>Die sich unterscheidenden Dateien werden von rechts nach links kopiert. Benutzen Sie dies mit Bedacht.</para
+> </listitem
+> </itemizedlist
+>Nützlich wenn die Information über das Datum nicht verwendet werden kann oder um den linken Ordner mit dem Inhalt eines Dateiservers abzugleichen. Alternativ ist dies nützlich bei einer Sicherung vom rechten zum linken Ordner. Achtung: Benutzen Sie diese Funktion nicht für den Abgleich von Arbeitsplatzrechner und Notebook, es werden dann &eg; Dateien, die auf der linken Seite vorhanden sind, gelöscht.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ergebnisse weiterblättern</guilabel
+>: Diese Einstellung ist für langsame &FTP;-Server gedacht. Wenn der Vergleich einer Datei beendet ist, wird die Datei sofort an das Ende der Liste angefügt und weiter geblättert, falls nötig. Dies ist ein wichtiger Hinweis darauf, was beim Abgleich gerade passiert. Bein einem langsamen &FTP;-Server kann der Vergleich eines Ordners sehr lange dauern. Schalten Sie diese Einstellung ein, dass der Vergleich immer noch ausgeführt wird, wenn auch langsam. Bei schnellen Dateisystemen kann dies die Geschwindigkeit beim Vergleichen leicht verringern.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Groß-/Kleinschreibung ignorieren</guilabel
+>: Beim Vergleich der Dateinamen spielt die Groß- oder Kleinschreibung keine Rolle, nützlich beim Abgleichen mit &Windows;-Dateisystemen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Versteckte Dateien ignorieren</guilabel
+>: Ignoriert Dateien, deren Namen mit einem Punkt beginnt.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <para
+>Haben Sie alle gewünschten Einstellungen vorgenommen, klicken Sie auf <guibutton
+>Vergleichen</guibutton
+>, um den Vorgang zu starten. Die Ergebnisse werden in der <guilabel
+>Dateiliste</guilabel
+> angezeigt.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Dateiliste</term>
+      <listitem>
+        <para
+>Die <guilabel
+>Dateiliste</guilabel
+> enthält folgende Spalten: <quote
+>Linker Name | Linke Größe | Linke Zeit | Aufgabe | Rechte Zeit | Rechte Größe | Rechter Name</quote
+>. Hier können Sie die Ergebnisse des Vergleichs überprüfen und die Aktionen für den Abgleich ändern, falls gewünscht. Die Textfarbe zeigt die vorgegebene Kopierrichtung, die beim Vergleichen bestimmt wurde. <itemizedlist
+> <listitem
+> <para
+>Grün: Kopieren von links nach rechts.</para
+> </listitem
+> <listitem
+> <para
+>Blau: Kopieren von rechts nach links oder löschen auf der rechten Seite im asymmetrischen Modus.</para
+> </listitem
+> <listitem
+> <para
+>Rot: Dateien sind nach dem angegebenen Kriterium verschieden, keine Kopierrichtung. </para
+> </listitem
+> <listitem
+> <para
+>Schwarz: Dateien sind identisch, keine Kopierrichtung.</para
+> </listitem
+> </itemizedlist
+> Ein Doppelklick auf eine Datei ruft die &krusader;-Funktion <guilabel
+>Nach Inhalt vergleichen</guilabel
+> auf. Die Spalte Aufgabe (&lt;=&gt;) definiert die vorgegebene Kopierrichtung, die vom Benutzer geändert werden kann. Das Ergebnisfenster unterstützt das Ziehen von Einträgen in andere Fenster ( Ziehen [links], &Shift;+Ziehen [rechts] ) und das Kopieren von links oder rechts gewählten Einträgen in die Zwischenablage (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). </para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><guilabel
+>Dateiliste</guilabel
+>: Spalte mit den Aufgaben (&lt;=&gt;)</term>
+      <listitem>
+        <para
+>Diese Spalte zeigt die geplante Aufgabe für den Abgleich. Die Aufgabe kann mit dem <link linkend="synccomp_right-click"
+>Kontextmenü</link
+> geändert werden.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Kopiert von der linken zur rechten Seite. Bei Ordnern wird der Befehl <command
+>mkdir</command
+> auf der rechten Seite ausgeführt.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: Die Dateien sind identisch, es wird keine Aktion ausgeführt.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: <guibutton
+>!=</guibutton
+>: Die Datei ist ausgeschlossen oder kann nicht beim Abgleich verarbeitet werden.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Kopiert von der rechten zur linken Seite. Bei Ordnern wird der Befehl <command
+>mkdir</command
+> auf der linken Seite ausgeführt</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Entf</guibutton
+>: Löscht Dateien von der rechten Seite.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_show_options">
+      <term
+>Optionen anzeigen</term>
+      <listitem>
+        <para
+>Hier können bestimmte Dateitypen ein- oder ausgeschlossen werden. Dateien, die nicht in der Liste enthalten sind, bleiben beim Abgleich unverändert.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>&gt;-</guibutton
+>: Schaltet das Kopieren von links nach rechts ein und aus.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: Schaltet die Anzeige gleicher Dateien ein und aus.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: Schaltet die Anzeige ausgeschlossener Dateien ein und aus.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: Schaltet das Kopieren von rechts nach links ein und aus.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Papierkorb</guibutton
+>: Schaltet das Löschen von linken Seite der Aufgabenliste ein und aus.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Duplikate</guibutton
+>: Bestimmt, ob in beiden Ordnern vorhandene Dateien einbezogen werden.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Unikate</guibutton
+>: Legt fest, ob Dateien nur in einem Ordner einbezogen werden.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Aktionsknöpfe</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Vergleichen</guibutton
+>: Vergleicht die Ordner und zeigt die Ergebnisse in der <guilabel
+>Dateiliste</guilabel
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Anhalten</guibutton
+>: Stoppt den Abgleich.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Abgleichen</guibutton
+>: Öffnet den Abgleichdialog.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Schließen</guibutton
+>: Schließt das Abgleichfenster.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>In der Statuszeile wird folgendes angezeigt:</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Die Anzahl der durchsuchten Ordner beim Vergleich.</para>
+          </listitem>
+          <listitem>
+            <para
+>Der Name großer Dateien beim Vergleich nach Inhalt.</para>
+          </listitem>
+          <listitem>
+            <para
+>Die Anzahl der Dateien in der Liste.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_right-click">
+      <term
+>Kontextmenü der <guilabel
+>Dateiliste</guilabel
+></term>
+      <listitem>
+        <para
+>Im Kontextmenü gibt es drei Abschnitte:</para>
+        <para
+>1. Änderung der <guilabel
+>Aufgabe</guilabel
+>, die durch den Vergleich festgelegt wurden. Die Änderung wird auf die Auswahl und nicht nur auf den Eintrag, auf den mit der &RMBn; geklickt wurde, angewendet. Ist der ausgewählte Eintrag ein Ordner, werden die Änderungen auch auf die Dateien und Unterordner darin angewendet.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Ordner abgleichen</guibutton
+>: Startet den Abgleich der Ordner.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Ausschließen</guibutton
+>: Schließt eine Datei oder einen Ordner vom Abgleichen aus, die Aufgabe wird zu!= geändert.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Ursprüngliche Aktion wiederherstellen</guibutton
+>: Aufgabe wird zum ursprünglichen Ergebnis des Vergleichs geändert.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Umgekehrte Richtung</guibutton
+>: Aufgabe wird geändert, &gt; zu &lt;-, und &lt;- zu -&gt;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Von rechts nach links kopieren</guibutton
+>: Aufgabe wird zu &lt;- geändert.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Von links nach rechts kopieren</guibutton
+>: Aufgabe wird zu -&gt; geändert.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Löschen (linke Unikate)</guibutton
+>: Aufgabe wird zu Löschen geändert.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>2. Änderung der Auswahl</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Einträge auswählen</guibutton
+>: Öffnet einen Dialog in dem Sie Einträge auswählen können. Dies ist der Dialog <guimenuitem
+>Gruppe auswählen</guimenuitem
+> aus dem Menü <link linkend="edit-menu"
+>Bearbeiten</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Einträge abwählen</guibutton
+>: Öffnet einen Dialog in dem Sie Einträge abwählen können. Dies ist der Dialog <guimenuitem
+>Gruppenauswahl aufheben</guimenuitem
+> aus dem Menü <link linkend="edit-menu"
+>Bearbeiten</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Auswahl umkehren</guibutton
+>: Kehrt den Auswahlstatus aller Einträge um.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>3. Sonstiges. Beachten Sie, dass die folgenden Aktionen für die Datei ausgeführt werden, auf die Sie mit der &RMBn; geklickt haben und nicht für die Auswahl.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Linke Datei anzeigen</guibutton
+>: Startet den Betrachter mit der linken Datei.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Rechte Datei anzeigen</guibutton
+>: Startet den Betrachter mit der rechten Datei.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Dateien vergleichen</guibutton
+>: Startet das Diff-Programm für Dateien, &eg; &kompare;.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Andere Knöpfe</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Profile</guilabel
+>: Wenn Sie häufiger die dieselben Ordner abgleichen, können Sie Ihre Einstellungen wie &eg; eingeschlossene und ausgeschlossene Dateien &etc; speichern. Drücken Sie auf den Knopf <guibutton
+>Profil</guibutton
+> und Sie können dann Profile für den Abgleich hinzufügen, laden, speichern und entfernen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Seiten vertauschen</guibutton
+>: Vertauscht die <guilabel
+>Dateiliste</guilabel
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Mit <application
+>KGet</application
+> abgleichen</term>
+      <listitem>
+        <para
+>Möchten Sie einen lokalen Ordner mit einem &FTP;-Server über eine instabile Leitung abgleichen. dann ist <application
+>KGet</application
+> eine bessere Lösung als ein einfacher Dateivergleich. Nach dem Vergleich können Sie mit der &RMBn; in die Ergebnisliste klicken und dann <guimenuitem
+>Mit KGet abgleichen</guimenuitem
+> für das Ausführen des Abgleichs wählen. Dann wird die ausgewählte Datei mit <application
+>KGet</application
+> statt &krusader; heruntergeladen. Dazu muss natürlich <application
+>KGet</application
+> auf Ihrem Rechner installiert sein, sonst ist diese Funktion nicht verfügbar.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+ 
+</sect2
+>  
+<sect2 id="synchronizer_synchronization">
+  <title
+>Abgleichen</title
+>  
+
+  <para
+>Nach dem Drücken des Knopfs <guibutton
+>Abgleichen</guibutton
+> erscheint der Abgleich-Dialog.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Ankreuzfelder</term>
+      <listitem>
+        <para
+>Hier können Sie das Kopieren und Löschen beim Abgleichen bestätigen.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Rechts nach links</guilabel
+>: Kopiert X1 Dateien (Y1 Byte), aktiviert/deaktiviert das Kopieren von rechts nach links.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Links nach rechts</guilabel
+>: Kopiert X2 Dateien (Y2 Byte), aktiviert/deaktiviert das Kopieren von links nach rechts.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Links</guilabel
+>: Löscht X3 Dateien (Y3 Byte), aktiviert/deaktiviert das Löschen auf der linken Seite.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Überschreiben bestätigen</guilabel
+>: Schalten Sie diese Option ein, wird vor dem Überschreiben von Dateien ein Dialog mit den Optionen Umbenennen, Überspringen, Überschreiben, Alle überspringen und Alle überschreiben angezeigt.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Statusbezeichnungen</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Fertig</guilabel
+>: A1/A2 Dateien, B1/B2. Diese Zeile wird beim Abgleichen geändert und zeigt mit „A1 Dateien von A2 (B1 Byte von B2)“ an, dass der Abgleich beendet ist.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Fortschrittsanzeige</guilabel
+>: Zeigt den Fortschritt beim Abgleichen auf der Grundlage von Bytes.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Aktionsknöpfe</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Start</guibutton
+>: Beginnt das Abgleichen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Anhalten/Fortfahren</guibutton
+>: Hält den Abgleichprozess an oder setzt ihn fort.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Schließen</guibutton
+>: Schließt den Abgleichdialog und bricht den Abgleich ab.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Paralleler Abgleich</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Hier kann die Anzahl der Quasi-Threads eingegeben werden-</para>
+          </listitem>
+          <listitem>
+            <para
+>Dies kann die Geschwindigkeit beim Abgleich mit langsamen &FTP;-Servern drastisch erhöhen.</para>
+          </listitem>
+          <listitem>
+            <para
+>Dies betrifft nicht die Geschwindigkeit beim lokalen Abgleich.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Nach Inhalt vergleichen</guilabel
+> und <guilabel
+>Ordner vergleichen</guilabel
+> wird parallel ausgeführt.</para>
+          </listitem>
+          <listitem>
+            <para
+>Abgleichen entfernter Ordner erfolgt auch parallel, ausgenommen das Erstellen von Ordnern. Es muss <command
+>mkdir</command
+> vor <command
+>copy</command
+> ausgeführt werden.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+</sect2>
+</sect1>

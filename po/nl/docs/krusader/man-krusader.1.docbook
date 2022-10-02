@@ -1,0 +1,505 @@
+<?xml version="1.0" ?>
+<!DOCTYPE refentry PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+
+<!ENTITY % Dutch "INCLUDE">
+]>
+
+<refentry lang="&language;">
+<refentryinfo>
+<title
+>KDE gebruikershandleiding</title>
+<author
+><firstname
+>Krusader</firstname
+><surname
+>Krew</surname
+> <contrib
+>Krusader man page.</contrib
+> <email
+>krusader-devel@googlegroups.com</email
+></author>
+<date
+>2017-05-06</date>
+<productname
+>Krusader</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle
+><command
+>krusader</command
+></refentrytitle>
+<manvolnum
+>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+<refname
+>krusader</refname>
+<refpurpose
+>geavanceerde bestandsbeheerder met twee panelen en &FTP;-client door KDE</refpurpose>
+</refnamediv>
+<!-- body begins here -->
+
+<refsynopsisdiv>
+<cmdsynopsis
+><command
+>krusader</command
+> <arg choice="opt"
+>Options</arg
+> <arg choice="plain"
+>url</arg
+> </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+<title
+>Beschrijving</title>
+<para
+>Krusader is een geavanceerd (commander style) bestandsbeheerder met twee panelen voor Plasma en andere desktops in de *nix wereld, vergelijkbaar met Midnight of Total Commander. Het levert alle hulpmiddelen voor bestandsbeheer die u zich kan wensen. Plus: intensief archief bewerken, ondersteuning van aangekoppelde bestandsystemen, &FTP;, eengeavanceerd zoek-module, viewer/editor, mappen synchronisatie (standaard uitgeschakeld), vergelijking van bestandsinhoud, uitgebreide batch hernoemen en veel veel meer. Het ondersteunt de volgende archief formaten: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip, en 7-zip en het kan andere KIOSlaves gebruiken zoals smb:// of fish:// Het is (bijna) compleet aanpasbaar, zeer gebruiksvriendelijk, snel en ziet er ook nog goed uit op uw desktop! :-) Probeer het eens.</para>
+</refsect1>
+
+<refsect1
+><title
+>Opties</title>
+<variablelist>
+  <varlistentry>
+      <term
+><option
+>-h</option
+> <option
+>--help</option
+></term>
+  <listitem>
+<para
+>dit laat de opties zien die beschikbaar zijn voor de commandoregel</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-v</option
+> <option
+>--version</option
+></term>
+  <listitem>
+<para
+>toont versie-informatie voor &krusader;</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--author</option
+></term>
+  <listitem>
+<para
+>Toont de namen van de auteurs</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--license</option
+></term>
+  <listitem>
+<para
+>Toont licentie-informatie</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--left</option
+> <parameter
+><replaceable
+>&lt;path&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>start het linker paneel met &lt;path&gt; geladen
+></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--right</option
+> <parameter
+><replaceable
+>&lt;path&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>start het rechter paneel met &lt;path&gt; geladen
+></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--profile </option
+><parameter
+><replaceable
+>&lt;panel-profile&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>laad bij het opstarten het <replaceable
+>&lt;paneel-profiel&gt;</replaceable
+></para
+> 
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-d</option
+> <option
+>--debug</option
+></term>
+  <listitem>
+<para
+>debug-uitvoer inschakelen</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>url</option
+></term>
+  <listitem>
+<para
+>als er al een tab met deze URL is geopend, dan wordt deze geactiveerd, anders wordt in het actieve paneel een nieuw tabblad geopend</para>
+  </listitem>
+  </varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1
+><title
+>Voorbeelden</title>
+
+<itemizedlist>
+  <listitem
+><para
+>$ krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --left=/home,/usr,smb://workgroup.net --right=fish://myserver.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --profile=ftp_management</para
+></listitem>
+
+</itemizedlist>
+</refsect1>
+
+<refsect1
+><title
+>Bestanden</title>
+<para
+>Configuratiebestanden:</para>
+
+<para
+><filename
+>~/.config/krusaderrc</filename
+></para>
+
+<para
+><filename
+>~/.local/share/krusader/krbookmarks.xml</filename
+> of <filename
+>krusader/krbookmarks.xml</filename
+> in de map die bepaald kan worden met het commando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>~/.local/share/krusader/useractions.xml</filename
+> of <filename
+>krusader/useractions.xml</filename
+> in de map die bepaald kan worden met het commando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+></para>
+
+<para
+><filename
+>~/local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> of <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> in de map die bepaald kan worden met het commando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+</refsect1>
+
+<refsect1
+><title
+>Platformen</title>
+<para
+>Alle POSIX: Linux, Solaris, Alle BSD Platformen: FreeBSD, MacOS-X</para>
+
+<para
+><emphasis
+>KDE 2.x</emphasis
+></para>
+
+<para
+>krusader v1.01 stabiel maar er zijn geen plannen voor wijzigingen.</para>
+
+<para
+><emphasis
+>KDE 3.x</emphasis
+></para>
+
+<para
+>Krusader v1.01 vereist KDElibs 2</para>
+
+<para
+>Krusader v1.02 - 1.40 vereist KDElibs 3</para>
+
+<para
+>Krusader 1.40 met een voorkeur voor &gt;= KDE 3.2</para>
+
+<para
+>Krusader v1.50 - v1.51: KDE 3.2 - KDE 3.3</para>
+
+<para
+>Krusader v1.60.0- v1.70.0: KDE 3.3 - KDE 3.4</para>
+
+<para
+>Krusader 1.70.x-1.80.x: KDE 3.4 - KDE 3.5</para>
+
+<para
+><emphasis
+>KDE 4.x</emphasis
+></para>
+
+<para
+>Krusader 2.0-2.4: KDE 4</para>
+
+<para
+><emphasis
+>KDE Frameworks 5</emphasis
+></para>
+
+<para
+>Krusader 2.5 en nieuwer</para>
+
+<para
+>U kunt de laatste versie van Krusader op de <ulink url="https://krusader.org/"
+>website van Krusader</ulink
+> vinden.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Mogelijkheden</title>
+<para
+>mogelijkheden van OFM voor bestandsbeheer.</para>
+
+<para
+>Sterke oriëntatie op het toetsenbord.</para>
+
+<para
+>Krachtige interne weergave en bewerkingsmogelijkheden.</para>
+
+<para
+>Geavanceerd zoekmodule dat kan zoeken in archieven. Ondersteunt wordt: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip, en 7-zip.</para>
+
+<para
+>Vergelijken van mappen en filtering.</para>
+
+<para
+>Verbindingen met &FTP;/SAMBA via verbinding-beheermet SFTP/SCP ondersteuning.</para>
+
+<para
+>Synchronisatie, UserActions, ingebouwde console.</para>
+
+<para
+>Bestanden vergelijken op inhoud. Gemakkelijk beheer van toegangsrechten voor bestanden.</para
+> 
+
+<para
+>Schijfgebruik, Benodigde Ruimte Berekenen, Verificatie en aanmaak van controlesommen.</para>
+
+<para
+>Volledig bewust van het MIME-type (met of zonder magic!).</para>
+
+<para
+>Ondersteuning van Mountmanager, Locate, Krename.</para>
+
+<para
+>Root modus, Panelen met tabs, Zijbalk. Diverse manieren van selectie met de muis.</para>
+
+<para
+>Profielen voor: Panelen, sneltoetsen, kleuren.</para
+> 
+
+<para
+>Uitgebreide informatie van overige mogelijkheden vindt u hier: <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;path=features.html"
+>de pagina Mogelijkheden</ulink
+>.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Licentie</title>
+<para
+>Krusader wordt gedistribueerd onder termen van de GNU General Public Licentie.</para>
+
+<para
+>Licentie versie 2 zoals gepubliceerd door de Free Software Foundation.</para>
+
+<para
+>Zie de ingebouwde help voor de details over de licentie en het ontbreken van garantie.</para>
+
+<para
+>Shie Erlich en Rafi Yanai hebben nog steeds het auteursrecht van het project en de naam daarvan.</para>
+</refsect1>
+
+<refsect1
+><title
+>i18n</title>
+<para
+>Krusader is naar vele talen vertaald.</para>
+
+<para
+><ulink url="https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/"
+>https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/</ulink
+></para>
+
+<para
+>Lees <ulink url="https://l10n.kde.org/docs/translation-howto/"
+>KDE translation howto</ulink
+> als u Krusader naar uw eigen taal wilt vertalen.</para>
+</refsect1>
+
+<refsect1
+><title
+>FAQ</title>
+<para
+>U kunt de laatste versie van de KRUSADER FAQ vinden op de <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;path=faq.html"
+>KDE documentatiesite</ulink
+>.</para>
+</refsect1>
+
+<refsect1
+><title
+>Zie ook</title>
+<simplelist>
+<member
+>Het Krusader Handboek, in het krusader help menu.</member>
+
+<member
+>kf5options(7)</member>
+
+<member
+>qt5options(7)</member>
+</simplelist>
+</refsect1>
+
+<refsect1 id='authors'
+><title
+>Auteurs</title>
+<para
+>Krusader is ontwikkeld door een toegewijd team van individuen, bekend als de Krusader Krew.</para>
+
+<para
+>Shie Erlich, auteur [erlich {*} users {.} sourceforge {.} net] (gepensioneerd)</para>
+
+<para
+>Rafi Yanai, auteur [yanai {*} users {.} sourceforge {.} net] (gepensioneerd)</para>
+
+<para
+>Dirk Eschler, Webmaster [deschler {*} users {.} sourceforge {.} net] (gepensioneerd)</para>
+
+<para
+>Csaba Karai, ontwikkelaar [ckarai {*} users {.} sourceforge {.} net] (gepensioneerd)</para>
+
+<para
+>Heiner Eichmann, ontwikkelaar [h {.} eichmann {*} gmx.de] (gepensioneerd)</para>
+
+<para
+>Jonas Baehr, ontwikkelaar [jonas.baehr {*} web.de] (gepensioneerd)</para>
+
+<para
+>Vaclav Juza, ontwikkelaar [vaclavjuza {*} seznam {.} cz] (gepensioneerd)</para>
+
+<para
+>Jan Lepper, ontwikkelaar [jan_lepper {*} gmx {.} de] (gepensioneerd)</para>
+
+<para
+>Andrey Matveyakin, ontwikkelaar [a.matveyakin {*} gmail {.} com] (gepensioneerd)</para>
+
+<para
+>Davide Gianforte, ontwikkelaar [davide {*} gengisdave (.) org]</para>
+
+<para
+>Alexander Bikadorov, Developer [alex.bikadorov {*} kdemail {.} net]</para>
+
+<para
+>Martin Kostolny, ontwikkelaar [clearmartin {*} zoho {.} com]</para>
+
+<para
+>Toni Asensi Esteve, ontwikkelaar [toni.asensi {*} kdemail {.} net]</para>
+
+<para
+>Nikita Melnichenko, ontwikkelaar [nikita+kde {*} melnichenko {.} name]</para>
+
+<para
+>Frank Schoolmeesters, Documentatie &amp; marketing coördinator [frank_schoolmeesters {*} yahoo {.} com] (gepensioneerd)</para>
+
+<para
+>Richard Holt, Documentatie &amp; nalezen [richard {.} holt {*} gmail {.} com] (gepensioneerd)</para>
+
+<para
+>Matej Urbancic, Marketing &amp; Product Research [matej {*} amis {.} net] (gepensioneerd)</para>
+
+<para
+>Yuri Chornoivan, documentatie <email
+>yurchor@ukr.net</email
+></para>
+
+<para
+>Het project is ontwikkelt met behulp van KDevelop en Qt Designer.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Fouten/bugs</title>
+<para
+>Lees het TODO-bestand in de distributie voor informatie over wat nog gedaan moet worden.</para>
+
+ <para
+>U kunt reparaties, patches en opmerkingen versturen naar <email
+>krusader-devel@googlegroups.com</email
+>.</para>
+
+<para
+>Krusader Krew</para>
+</refsect1>
+</refentry>
+

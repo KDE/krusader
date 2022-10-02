@@ -1,0 +1,40 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="more-features">
+<title
+>Funzioni avanzate</title
+>&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>Invia file per posta elettronica</title
+> <para
+>Seleziona un file ed utilizza il <menuchoice
+> <guimenu
+>menu contestuale</guimenu
+> <guimenuitem
+>Invia per posta elettronica</guimenuitem
+> </menuchoice
+>. Verrà aperta una nuova finestra di &kmail; con il file già allegato. Inserisci l'oggetto ed i destinatari ed invia il messaggio. Ovviamente, &kmail; deve essere correttamente configurato.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>Permessi ACL</title>
+  <para
+>I <link linkend="gloss-acl"
+>permessi ACL</link
+> sono pienamente supportati quando si stanno utilizzando le proprietà, mantieni attributi e la sincronizzazione. Per vedere/modificare i permessi ACL, seleziona un file ed usa il <link linkend="context-menu"
+>menu contestuale</link
+>: <menuchoice
+> <guimenu
+>Proprietà...</guimenu
+> <guimenuitem
+>Permessi</guimenuitem
+> <guimenuitem
+>Permessi avanzati</guimenuitem
+> </menuchoice
+>. In Copia/Sposta vengono copiati anche i permessi ACL. Anche la sincronizzazione mantiene i permessi ACL.</para>
+</sect1
+></chapter>

@@ -1,0 +1,1005 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="user-interface">
+  <title
+>Användargränssnitt</title>
+  <indexterm>
+    <primary
+>Användargränssnitt</primary>
+  </indexterm>
+  <sect1 id="ofm-userinterface">
+    <title
+>Användargränssnitt i ortodoxa filhanterare</title>
+    <para
+>Konceptet för ortodoxa filhanterare innehåller <link linkend="features"
+>många funktioner</link
+> som gör dem kraftfulla nog för att höra till de bästa av dagens filhanterare. Gränssnittet är enkelt: vänster panel, höger panel och en kommandorad nedanför. På grund av interaktionen mellan dessa tre objekt, blir filhantering effektivare.</para>
+    <para
+>Om du skulle vilja veta <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+>hur &krusader; fungerar</ulink
+> kan du prova det själv, bara installera det på din dator. För att acceptera en <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>ordodox filhanterare (OFM)</ulink
+> som &krusader;, måste användaren vänja sig vid <emphasis
+>nya idéer</emphasis
+> som egentligen redan är 20 år gamla. Om du föredrar att slösa tid och förlora mycket produktivitet, kan du alltid fortsätta att använda filhanterare med en panel baserade på &Windows; utforskare.</para>
+  </sect1>
+  <sect1 id="mainwindow">
+    <title
+>Huvudfönstret i &krusader;</title>
+    <figure id="screenshot-mainwindow" float="1">
+      <title
+>Huvudfönstret i &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="mainwindow.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Huvudfönstret i &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Användargränssnittet är baserat på paradigmen för <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>ortodoxa filhanterare (OFM)</ulink
+>, en 20 år gammal princip som har bevisat sitt värde. Den är känd för att vara enkel, lättanvänd och kraftfull. I följande avsnitt går vi igenom grundfunktionerna i varje del med undantag av:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="menu-commands"
+>Menyraden</link
+> som har ett eget kapitel.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="bookman"
+>Bokmärken</link
+> som har ett eget kapitel.</para>
+      </listitem>
+      <listitem>
+        <para
+><emphasis role="bold"
+>Statusraden</emphasis
+> visar egenskaperna hos den aktuella filen (som är) i fokus. </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  <sect1 id="toolbars">
+    <title
+>Verktygsrader</title>
+    <para
+>&krusader; levereras med flera verktygsrader.</para>
+    <sect2 id="main_toolbar">
+      <title
+>Huvudverktygsrad</title>
+      <indexterm>
+        <primary
+>Verktygsrad</primary>
+        <secondary
+>Huvudverktygsrad</secondary>
+      </indexterm>
+      <figure id="screenshot-maintoolbar" float="1">
+        <title
+>Huvudverktygsrad</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="toolbar.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Huvudverktygsrad</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>&krusader;s huvudverktygsrad är en vanlig verktygsrad i &kde;, som kan flyttas runt i programmet (lås först upp den genom att avmarkera alternativet <guimenuitem
+>Lås verktygsradernas positioner</guimenuitem
+> i högerklicksmenyn), eller anpassas via en <keycap
+>högerklicksmeny</keycap
+>. Du kan bestämma om du vill visa den varje gång &krusader; startas på <link linkend="konfigurator"
+>startsidan</link
+> i Konfigurator, och du kan växla användning för aktuell session i menyn <link linkend="settings-menu"
+>Inställningar</link
+>. Huvudverktygsradens innehåll kan anpassas med <guimenuitem
+>Anpassa verktygsrader...</guimenuitem
+> i menyn <link linkend="settings-menu"
+>Inställningar</link
+>. Eftersom diverse kommandon och alternativ i &krusader; är sammanhangsberoende, är vissa kommandon inte alltid tillgängliga. Ikonen för en olämplig eller otillgänglig åtgärd är inaktiverad (grå), vilket förhindrar att den används. <link linkend="bookman"
+>Bokmärken</link
+> kan placeras i huvudverktygsraden och åtgärdsverktygsraden med musen genom att använda <quote
+>drag och släpp</quote
+>.</para>
+    </sect2>
+    <sect2 id="job_toolbar">
+      <title
+>Jobbverktygsrad</title>
+      <indexterm>
+        <primary
+>Verktygsrad</primary>
+        <secondary
+>Jobbverktygsrad</secondary>
+      </indexterm>
+      <para
+>Normalt är &krusader;s jobbverktygsrad (<link linkend="queue"
+>köhanterare</link
+> eller helt enkelt JobMan) placerad till höger om huvudverktygsraden. Verktygsraden låter dig visa jobbförlopp, pausa och återuppta körning av jobblistan och ångra det senast körda jobbet.</para>
+    </sect2>
+    <sect2 id="actions_toolbar">
+      <title
+>Åtgärdsverktygsrad</title>
+      <indexterm>
+        <primary
+>Verktygsrad</primary>
+        <secondary
+>Åtgärdsverktygsrad</secondary>
+      </indexterm>
+      <para
+><link linkend="useractions"
+>Användaråtgärder</link
+> och <link linkend="bookman"
+>bokmärken</link
+> kan "stoppas in" i <guilabel
+>åtgärdsverktygsraden</guilabel
+>. Använd <menuchoice
+> <guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Visa åtgärdsverktygsrad</guimenuitem
+> </menuchoice
+> för att visa den. Använd <menuchoice
+> <guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa verktygsrader...</guimenuitem
+> </menuchoice
+> och välj åtgärdsverktygsraden, för att lägga till användaråtgärder. Du kan, till exempel, dra åtgärdsverktygsraden till höger sida genom att använda musen.</para>
+    </sect2>
+    <sect2 id="location_toolbar">
+      <title
+>Platsrad</title>
+      <indexterm>
+        <primary
+>Verktygsrad</primary>
+        <secondary
+>Platsrad</secondary>
+      </indexterm>
+      <para
+>Under <guibutton
+>huvudverktygsraden</guibutton
+> finns en <guibutton
+>platsrad</guibutton
+> för varje panel. Den visar sökvägen som panelen för närvarande pekar på. När man går in i ett arkiv visas sökvägen med följande format: <quote
+>arkivtyp:/katalog/arkivfilnamn/katalogen inne i arkivet</quote
+>. Formatet gör sökvägarna likformiga och enkla att läsa. <guibutton
+>Platsraden</guibutton
+> stöder också I/O-slavar, men inte alla. Vissa kan bara användas vid <link linkend="krviewer"
+>granskning</link
+> och vissa kan inte användas alls. Användaren kan mata in en önskad sökväg genom att klicka på den.</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <userinput>
+              <replaceable
+>/mnt/cdrom/</replaceable>
+            </userinput>
+          </para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>settings:/</command
+> </userinput
+>bläddrar till och öppnar moduler i <application
+>systeminställningarna</application
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>trash:/</command
+> </userinput
+>öppnar papperskorgen.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>mtp:/</command
+> </userinput
+>använder kio_mtp för att komma åt, ladda upp och organisera multimedia lagrad på <trademark
+>Android</trademark
+>-baserade enheter.</para>
+        </listitem>
+        <listitem>
+          <para
+>Och sist men inte minst, <link linkend="remote-connections"
+>fjärranslutningar</link
+>.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Du kan kopiera och klistra in en webbadress i <guibutton
+>platsraden</guibutton
+>, eller använda ett klick med musens mittenknapp. Du kan ställa in funktionen för automatisk komplettering med högerklickmenyn. En valfri knapp för att <guilabel
+>rensa platsraden</guilabel
+> är också tillgänglig.</para>
+      <para
+>Snabbnavigering: Tryck på &Ctrl; och peka med musen mitt i webbadressen på <guibutton
+>platsraden</guibutton
+>. Ett fönster som dyker upp visar platsen för nästa webbadress. Genom att trycka på &Ctrl; och vänster musknapp visas platsen som musen pekade på. Funktionen tillåter snabbare navigering i ett stort katalogträd.</para>
+    </sect2>
+    <sect2 id="panel_toolbar">
+      <title
+>Panelverktygsrad</title>
+      <indexterm>
+        <primary
+>Verktygsrad</primary>
+        <secondary
+>Panelverktygsrad</secondary>
+      </indexterm>
+      <para
+>Varje panel har en <link linkend="konfig-panel-buttons"
+>anpassningsbar panelverktygsrad</link
+>. Den fullständiga panelverktygsraden och specifika knappar kan göras synliga eller döljas.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+>Knappen <guibutton
+>Öppna katalog</guibutton
+>: Öppnar katalogbläddraren.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Likhetsteckenknapp (=)</guibutton
+>: Ändrar panelens katalog till den andra panelens katalog.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Uppknapp (..)</guibutton
+>: Ändrar panelens katalog till överliggande katalog.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Hemknapp (~)</guibutton
+>: Ändrar panelens katalog till hemkatalogen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Rotknapp (/)</guibutton
+>: Ändrar panelens katalog till rotkatalogen.</para>
+        </listitem>
+        <listitem>
+          <para
+>Knappen <guibutton
+>Synkrona katalogändringar</guibutton
+>: Om aktiv, utförs alla katalogbyten i en specifik panel också i den andra panelen.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+  <sect1 id="panels">
+    <title
+>Paneler</title>
+    <para
+>&krusader;s paneler är stället där det mesta händer. För närvarande finns det två sorters paneler:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="list_panel"
+>Listpanel</link
+>: visar filer och kataloger.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="sidebar"
+>Sidorad</link
+>: har flera visningslägen: Förhandsgranskning, träd, snabbval, visning av diskanvändning för filen eller katalogen som har fokus. Sidoraden kan lämnas öppen eller stängd, som önskas.</para>
+      </listitem>
+    </itemizedlist>
+    <para
+>&krusader; är en filhanterare med <quote
+>dubbla paneler</quote
+>, så det finns två paneler: Den <quote
+>vänstra</quote
+> panelen och den <quote
+>högra</quote
+> panelen, eller en viktigare logisk skillnad, den <emphasis
+>aktiva</emphasis
+> panelen och den <emphasis
+>inaktiva</emphasis
+> panelen. Den aktiva panelen är den som accepterar mus- och tangentbordsinmatning. Om du väljer ett kommando i <guilabel
+>menyraden</guilabel
+> eller <guilabel
+>verktygsraden</guilabel
+> gäller kommandot de markerade filerna eller katalogerna i den aktiva panelen. Du kan byta mellan paneler med tabulatortangenten, genom att klicka på fälten <guilabel
+>Information</guilabel
+> eller <guilabel
+>Totalt</guilabel
+>, eller genom att markera vilken fil som helst i en panel med musen. Som alltid, kan förvalda startinställningar ändras på <link linkend="konfigurator"
+>startsidan</link
+> i Konfigurator, och du kan styra den nuvarande sessionen med menyn <link linkend="view-menu"
+>Visa</link
+>.</para>
+    <figure id="screenshot-listpanel" float="1">
+      <title
+>Listpanel</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="listpanel.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Listpanel</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <sect2 id="list_panel">
+      <title
+>Listpanel</title>
+      <indexterm>
+        <primary
+>Panel</primary>
+        <secondary
+>Listpanel</secondary>
+      </indexterm>
+      <para
+>Det här är standardpanelen, och den som du troligen använder större delen av tiden. Panelen visar innehållet i en katalog, som kan vara lokal (en del av det monterade filsystemet, antingen en vanlig fil eller en fil inne i ett arkiv) eller fjärrfiler (med åtkomst via &FTP;, &NFS; eller Samba). Det finns två lägen: <link linkend="view-menu"
+>Detaljerad vy</link
+> som visar filnamn, filstorlek, skapad datum och tid samt deras attribut. Och <link linkend="view-menu"
+>Kortfattad vy</link
+> som bara visar filnamn. Antal kolumner i den kortfattade vyn kan ändras genom att högerklicka på rubriken <guilabel
+>Namn</guilabel
+>. Att kopiera, klistra in och klippa ut filer via klippbordet mellan &konqueror; och &krusader; med <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+> och <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> stöds. <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>R</keycap
+></keycombo
+> ändrar <guilabel
+>listpanelen</guilabel
+> mellan horisontellt och vertikalt läge.</para>
+      <para
+>Följande objekt är tillgängliga:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Informationsfältet</guilabel
+></emphasis
+>: Visar hur mycket ledigt utrymme som är fysiskt tillgängligt på filsystemet, filsystemets kapacitet och var filsystemet är monterad. Om informationen inte är tillgänglig (oftast i fallet med ett fjärrfilsystem) visas ett meddelande med orsaken den inte är tillgänglig istället för informationen.</para>
+          <para id="media_button"
+><guibutton
+>Mediaknappen</guibutton
+> till vänster om <guilabel
+>Information</guilabel
+> visar en lista med tillgängliga media, där du kan välja önskat medium (hårddiskpartition, &DVD;, &USB;-sticka, etc.). Att trycka på <keycombo
+>&Ctrl;<keycap
+>Retur</keycap
+></keycombo
+> när <guibutton
+>Mediamenyn</guibutton
+> visas, monterar markerat medium om det är avmonterat, och avmonterar det när det är monterat. Den sammanhangsberoende menyn ger flera alternativ som <guilabel
+>Montera</guilabel
+>, <guilabel
+>Öppna i en ny flik</guilabel
+>, etc. <guibutton
+>Mediamenyn</guibutton
+> är <link linkend="konfig-advanced"
+>inställningsbar</link
+>.</para>
+        </listitem>
+          <listitem>
+          <para
+><emphasis
+> <guilabel
+>Kolumnrubriker</guilabel
+></emphasis
+>: Här kan du ändra sorteringsordningen av filer och kataloger som du önskar. Den förvalda sorteringsordningen är enligt <guilabel
+>Namn</guilabel
+>. Sorteringsordningen kan ändras omedelbart genom att klicka på en av <guilabel
+>kolumnrubrikerna</guilabel
+>. För att vända på sorteringsorningen, klicka en andra gång på kolumnrubriken. En pil dyker upp till höger om kolumnrubrikens text, som visar sorteringsriktningen (uppåtpil = sortering från A till Z, neråtpil = sortering från Z till A). Förvalda <link linkend="useractions"
+>användaråtgärder</link
+> anger snabbtangenter för kolumnrubrikerna. De förvalda <guilabel
+>kolumnrubrikerna</guilabel
+> är: <guilabel
+>Namn</guilabel
+>, <guilabel
+>Änd</guilabel
+>, <guilabel
+>Storlek</guilabel
+>, <guilabel
+>Ändrad</guilabel
+>, <guilabel
+>rwx</guilabel
+>. Fördefinerade <link linkend="konfig-general"
+>extra filnamnsändelser</link
+> som <literal role="extension"
+>tar.gz</literal
+> visas som en del i kolumnen <guilabel
+>Änd</guilabel
+>. Fler <link linkend="konfig-general"
+>valfria kolumnrubriker</link
+> är tillgängliga via höger musknapp. Bredden på <guilabel
+>kolumnrubrikerna</guilabel
+> kan ändras med musen genom att enkelklicka och flytta skiljelinjen till önskad bredd (håll musknappen nedtryckt). Båda <guilabel
+>listpanelerna</guilabel
+> kommer ihåg sorteringsordningen och kolumnbredden. <guilabel
+>Kolumnrubriker</guilabel
+> kan ändras och sparas individuellt i varje panel.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Fillista</guilabel
+></emphasis
+>: Visar filer och kataloger i katalogen som har bläddrats till. <link linkend="quicksearch"
+>Sökraden</link
+> låter dig söka efter filer genom att skriva deras namn, eller några av de första tecknen i ett filnamn. Att trycka på returtangenten eller dubbelklicka på en fil öppnar eller kör filen. Du kan markera eller avmarkera filer med musen, med tangenten <keycap
+>Insert</keycap
+> eller menyn <link linkend="edit-menu"
+>Redigera</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Totalfältet</guilabel
+></emphasis
+>: Att markera eller avmarkera filer ändrar <emphasis
+> <guilabel
+>Totalfältet</guilabel
+> </emphasis
+> längst ner i panelen, som visar hur många filer du har markerat (och hur stort totalt diskutrymme de använder) samt den totala fil- och diskanvändningen för den aktuella katalogen (i motsats till informationsfältet, som visar information för hela filsystemet). Om en katalog innehåller många underkataloger, kanske det inte är möjligt att släppa webbadressen på panelen (där bara kataloger är synliga), men webbadressen kan släppas på <quote
+>statusraden</quote
+> eller <quote
+>totalfältet</quote
+> istället. När ett <link linkend="view-menu"
+>anpassat filter</link
+> är aktivt, visar det inställningen, till exempel: [*.cpp].</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>När <quote
+>&kde;:s förvalda <link linkend="konfig-color"
+>färger</link
+></quote
+> används visas markerade filer med blått och den aktuella filen är omgiven av en rektangel av smala linjer. Normalt visas en ikon enligt filtyp. Använd sidan <link linkend="konfig-panel"
+>Utseende och känsla</link
+> i Konfigurator för att ändra standardinställningen så den passar dina individuella behov.</para>
+      <para
+>Några användbara <link linkend="key_bindings"
+>snabbtangenter</link
+> i <guilabel
+>listpanelen</guilabel
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> uppdaterar panelen.</para>
+        </listitem>
+        <listitem>
+          <para
+>Fokusera på en fil eller katalog i vänstra panelen, tryck på <keycombo action="simul"
+>&Ctrl; <keycap
+>Högerpil</keycap
+></keycombo
+> så ändras den högra panelen: <itemizedlist>
+            <listitem>
+              <para
+>På en fil: den högra panelen får samma sökväg som den vänstra panelen.</para>
+            </listitem>
+            <listitem>
+              <para
+>På en katalog: den högra panelen öppnar katalogen som har fokus på den vänstra panelen.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+        <listitem>
+          <para
+>För den högra panelen: Tryck på <keycombo action="simul"
+>&Ctrl; <keycap
+> Vänsterpil</keycap
+></keycombo
+> så ändras den vänstra panelen.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="sidebar">
+      <title
+>Sidorad</title>
+      <indexterm>
+        <primary
+>Sidorad</primary>
+        <secondary
+>Sidorad (3:e panelen)</secondary>
+      </indexterm>
+      <para
+>Det här är <quote
+>&krusader;s tredjehandspanel</quote
+> eller den tredje panelen. Klicka på uppåtpilknappen till höger om <guilabel
+>totalfältet</guilabel
+> eller använd <keycombo action="simul"
+>&Alt; <keycap
+>Neråtpil</keycap
+></keycombo
+> för att öppna <guilabel
+>Sidoraden</guilabel
+>. Panelen har flera visningslägen som kan aktiveras genom att klicka på lämplig knapp.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Förhandsgranskningspanel</guilabel
+></emphasis
+>: Ger en förhandsgranskning av filen som har fokus (filen som för närvarande är markerad).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Trädpanel</guilabel
+></emphasis
+>: Används för att snabbt bläddra i det lokala katalogträdet. Panelen beter sig som listpanelen, men bara en katalog kan väljas åt gången och att dubbelklicka eller trycka på returtangenten öppnar katalogen i den aktiva panelen. Panelerna stöder musåtgärder med drag och släpp fullständigt (kopiera, flytta, länka).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Snabbpanel</guilabel
+></emphasis
+>: Används för att snabbt välja filer. Skriv t.ex. <literal role="extension"
+>*.png</literal
+> och klicka på knappen <guibutton
+>Gå</guibutton
+>. <quote
+>Diskettknappen</quote
+> lagrar den nuvarande markeringen. Dialogrutan "Markera grupp" är också tillgänglig.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Granskningspanel</guilabel
+></emphasis
+>: Granskar en textfil, granskar en bild, etc. En miniatyrbild skapas så fort du öppnar <guilabel
+>granskningspanelen</guilabel
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Diskanvändningspanel</guilabel
+> </emphasis
+>: Visar <link linkend="diskusage"
+>diskanvändningen</link
+> för en katalog.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Det är möjligt att ändra sidoradens placering med rotationsknappen som finns till vänster om neråtpilknappen i den nedre delen av &krusader;s flik. Varje klick på knappen flyttar sidoraden en placering i följden <quote
+>nere-vänster-uppe-höger</quote
+>. </para>
+      <para
+>Om det behövs kan du ändra fönstrets storlek, för att t.ex. visa en bild bättre eller granska innehållet i en fil. Klicka på neråtpilknappen för att stänga <guilabel
+>tredjehandspanelen</guilabel
+>.</para>
+    </sect2>
+    <sect2 id="folderhistory">
+      <title
+>Kataloghistorik</title>
+      <para
+>Båda panelerna kommer ihåg kataloger som nyligen besökts. Klicka på knappen <guibutton
+>Kataloghistorik</guibutton
+> ("klocksymbolen") för att öppna historiklistan. Här kan du snabbt byta till tidigare besökta kataloger. Katalogen som för närvarande har fokus är markerad. Varje gång &krusader; startas på nytt fylls historiklistan i från föregående körning (historiken sparas).</para>
+    </sect2>
+  </sect1>
+  <sect1 id="cmdline_termemu">
+    <title
+>Kommandorad och terminalemulator</title>
+    <para
+>Den här delen av det <link linkend="gloss-gui"
+>grafiska användargränssnittet</link
+> kan ha fyra lägen: Kommandorad, terminalemulator, visa båda eller visa ingen. Du kan antingen välja användningsläget vid start på <link linkend="konfigurator"
+>startsidan</link
+> i Konfigurator, eller för aktuell session med menyn <link linkend="settings-menu"
+>Inställningar</link
+>. </para>
+
+  <sect2 id="cmdline">
+    <title
+>Kommandorad</title>
+
+    <figure id="screenshot-commandline" float="1">
+      <title
+>Kommandorad</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="cmdline.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Kommandorad</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Den traditionella kommandoraden erbjuder en enda rad med inmatning för att ange kommandon. Den tillhandahåller också tre knappar:</para>
+     <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>Kommandohistorik</guibutton
+> (nedåtpil) för att snabbt välja tidigare använda kommandon </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>Expandera användaråtgärder</guibutton
+> (grön plusknapp) för att enkelt lägga till <link linkend="useractions"
+>platsmarkörer för användaråtgärder</link
+> </para>
+        </listitem>
+
+        <listitem>
+          <para
+>Knappen <guibutton
+>Kör i terminalläge</guibutton
+> (konsolikon) med följande alternativ: <itemizedlist>
+          <listitem
+><para
+>Starta och glöm</para>
+          </listitem>
+
+          <listitem
+><para
+>Visa åtskild standard- och felutmatning</para>
+           </listitem>
+
+          <listitem
+><para
+>Visa blandad standard- och felutmatning</para>
+          </listitem>
+
+           <listitem
+><para
+>Starta i en ny terminal</para>
+          </listitem>
+
+           <listitem
+><para
+>Skicka till inbäddad terminalemulator</para>
+           </listitem>
+
+         </itemizedlist>
+          </para>
+
+        </listitem>
+
+
+     </itemizedlist>
+    <para
+>När du börjar skriva kommandon, ger funktionen för automatisk komplettering av kommandoraden förslag enligt vad du har valt i systeminställningarna. Om du vill ändra hur automatisk komplettering fungerar i den nuvarande sessionen av &krusader;, <keycap
+>högerklicka</keycap
+> på kommandoraden och ändra det. Till vänster om inmatningsraden ser du den lokala sökvägen som den aktiva panelen för närvarande pekar på. Sökvägen anger var kommandon kommer att köras. Att skriva <userinput
+> <command
+>cd</command
+> <replaceable
+> &lt;katalog&gt;</replaceable
+> </userinput
+> på kommandoraden gör också att den aktiva panelen pekar på samma katalog. Klicka <link linkend="cmdline_keybindings"
+>här</link
+> för att se kommandoradens snabbtangenter.</para>
+</sect2>
+
+  <sect2 id="termemu">
+    <title
+>Terminalemulator</title>
+
+    <figure id="screenshot-terminalemulator" float="1">
+      <title
+>Terminalemulator</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="terminalEmu.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Terminalemulator</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Terminalemulatorn är i själva verket en liten konsol, och fungerar som sådan. Du kan ändra aktiv katalog i terminalen genom att använda kommandot <userinput
+><command
+>cd</command
+></userinput
+>. Terminalemulatorn följer den aktiva panelens katalog. Du kan dra en fil från <interface
+>listpanelen</interface
+> så klistras filens namn i i terminalemulatorn. Om du drar flera filer, kommer namnen att klistras in i terminalemulatorn. En terminalemulator i fullskärmsläge kan användas om det är <link linkend="konfig-panel"
+>inställt</link
+>, och <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> byter mellan normalt och fullskärmsläge. Om kommandoraden är dold, tryck på <keycombo action="simul"
+>&Ctrl; <keycap
+>Nedåtpil</keycap
+></keycombo
+> för att ge terminalemulatorn fokus. <keycombo action="simul"
+>&Ctrl; <keycap
+>Uppåtpil</keycap
+></keycombo
+> tar dig tillbaka ner. <keycombo action="simul"
+>&Ctrl; <keycap
+>Retur</keycap
+></keycombo
+> och <keycombo action="simul"
+>&Ctrl; &Shift; <keycap
+>Retur</keycap
+></keycombo
+> klistrar in filnamnet. Du kan stänga terminalemulatorn genom att skriva <userinput
+><command
+>exit</command
+></userinput
+>.</para>
+    <para
+>Klicka <link linkend="termemu_keybindings"
+>här</link
+> för att se terminalemulatorns snabbtangenter.</para>
+    </sect2>
+
+  </sect1>
+  <sect1 id="fnkeys">
+    <title
+>Funktionstangentraden (FN)</title>
+    <figure id="screenshot-fnkeys" float="1">
+      <title
+>Funktionstangentraden (FN)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="fnkeys.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Funktionstangentraden (FN)</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Raden får sitt namn från funktionstangenterna (FN) den representerar. För varje knapp i raden finns en motsvarande funktionstangent som utför samma åtgärd. Raden kommer från konstruktionen av de första filhanterarna med två paneler, och FN tangenterna fungerar oftast på samma sätt, men med två ändringar: tangenten <keycap
+>F2</keycap
+> används för att byta namn på filer, och tangenten <keycap
+>F9</keycap
+> öppnar en terminal med den senaste lokala sökvägen som den aktiva panelen pekade på. <guilabel
+>Skapa katalog</guilabel
+> <keycap
+>F7</keycap
+> (det översatta namnet av kommandot <command
+>mkdir</command
+>) kan skapa hela katalogträd i farten, t.ex. <literal
+>x/y/z</literal
+>. Du kan välja att visa <guilabel
+>funktionstangentraden</guilabel
+> <link linkend="faqu_resize"
+>eller inte</link
+> när &krusader; startas via <link linkend="konfigurator"
+>startsidan</link
+> i Konfigurator, och du kan ändra dess användning i den nuvarande sessionen med menyn <link linkend="settings-menu"
+>Inställningar</link
+>. Åtgärder och <link linkend="key_bindings"
+>snabbtangenter</link
+> som gäller funktionstangenterna går att anpassa sedan version 1.51, och de förblir aktiva vare sig <guilabel
+>funktionstangentraden</guilabel
+> visas eller inte.</para>
+  </sect1>
+  <sect1 id="folder-tabs">
+    <title
+>Katalogflikar</title>
+    <figure id="screenshot-tabbedbrowsing" float="1">
+      <title
+>Katalogflikar</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="tabbed_browsing.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Katalogflikar</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Du kan snabbt byta mellan flera kataloger med <guibutton
+>katalogflikar</guibutton
+>. Varje panel har sina egna <guibutton
+>katalogflikar</guibutton
+>. Positionerna för <guibutton
+>katalogflikar</guibutton
+> sparas när &krusader; avslutas. För att byta mellan <guibutton
+>katalogflikar</guibutton
+>, klicka på dem med musen. Ihoptryckta <guibutton
+>katalogflikar</guibutton
+> har verktygstips som visar den fullständiga sökvägen. Följande åtgärder är tillgängliga för <guibutton
+>katalogflikar</guibutton
+>:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>För att <action
+>öppna en ny flik</action
+> och behålla den nuvarande fliken öppen: <keycap
+>Högerklicka</keycap
+> på en katalog och välj <guimenuitem
+>Öppna under ny flik</guimenuitem
+>, eller klicka på knappen längst till höger på flikraden.</para>
+      </listitem>
+      <listitem>
+        <para
+>För att <action
+>låsa en flik</action
+>: <keycap
+>Högerklicka</keycap
+> och välj <guimenuitem
+>Lås flik</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Högerklicka och välj <guimenuitem
+>Fäst upp flik</guimenuitem
+> för att <action
+>fästa upp en flik</action
+>. Den uppfästa fliken är en låst flik, men med tillfälligt ändringsbar adress. Den återställs till uppfäst adress när fliken aktiveras igen. Högerklicka på den uppfästa fliken och välj alternativet <guimenuitem
+>Ta ner flik</guimenuitem
+> för att ta ner den.</para>
+      </listitem>
+      <listitem>
+        <para
+>För att <action
+>duplicera en flik</action
+>: <keycap
+>Högerklicka</keycap
+> på katalogfliken och välj <guimenuitem
+>Duplicera flik</guimenuitem
+>, eller använd <keycombo action="simul"
+>&Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+>. </para>
+      </listitem>
+      <listitem>
+        <para
+>För att <action
+>stänga en flik</action
+> (utom den sista fliken): <keycap
+>Högerklicka</keycap
+> på fliken och välj <guimenuitem
+>Stäng flik</guimenuitem
+>, använd musens mittenknapp, använd knappen med <guibutton
+>rött kryss</guibutton
+> på katalogfliken, eller använd <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>För att <action
+>byta flik</action
+>: <keycombo action="simul"
+>&Ctrl; <keycap
+>,</keycap
+></keycombo
+> eller <keycombo action="simul"
+>&Ctrl; <keycap
+>.</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>För att <action
+>öppna aktuell katalog under en ny flik</action
+>: Använd <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>Retur</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>För att <action
+>stänga alla andra flikar</action
+>, <keycap
+>högerklicka</keycap
+> och välj <guimenuitem
+>Stäng inaktiva flikar</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>För att <action
+>stänga duplicerade flikar</action
+>, <keycap
+>högerklicka</keycap
+> och välj <guimenuitem
+>Stäng duplicerade flikar</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>För att flytta fliken till den andra panelen, dra den till området på den andra panelen med vänster musknapp (muspekaren blir en pil som pekar åt vänster eller höger) och släpp den. Det går också att trycka på <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>O</keycap
+></keycombo
+>.</para>
+      </listitem>
+</itemizedlist>
+  </sect1>
+  <sect1 id="ui_buttons">
+    <title
+>Knappar</title>
+    <para
+>Flera knappar för snabba åtgärder är tillgängliga: <link linkend="main_toolbar"
+>Huvudverktygsrad</link
+>, <link linkend="actions_toolbar"
+>Åtgärdsverktygsrad</link
+>, <link linkend="panel_toolbar"
+>Panelverktygsrad</link
+>, <link linkend="location_toolbar"
+>Platsrad</link
+>, <link linkend="list_panel"
+>Media</link
+>, <link linkend="folderhistory"
+>Kataloghistorik</link
+>, <link linkend="bookman"
+>Bokmärken</link
+>, <link linkend="folder-tabs"
+>Flikar</link
+>, <link linkend="cmdline"
+>Kommandorad</link
+>, <link linkend="fnkeys"
+>Funktionstangenter</link
+>.</para>
+  </sect1>
+</chapter>

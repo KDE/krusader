@@ -1,0 +1,156 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="locate">
+  <title
+>Frontal &IGU; del «locate»</title>
+  <indexterm>
+    <primary
+>Ubica</primary>
+  </indexterm>
+  <para
+>El &krusader; té un frontal &IGU; per a l'ordre <command
+>locate</command
+> (findutils). La ubicació s'utilitza per a la cerca ràpida de fitxers, no des d'una carpeta, sinó d'una base de dades. El paquet conté entre altres fitxers, <command
+>locate</command
+> i <command
+>updatedb</command
+>. L'<command
+>updatedb</command
+> passa pel sistema de fitxers local i emmagatzema les entrades dels fitxers a la base de dades. El <command
+>cron</command
+> cridarà cada nit l'<command
+>updatedb</command
+> (establert amb el <application
+>KCron</application
+>). Escolliu <menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Ubica...</guimenuitem
+></menuchoice
+> o <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>L</keycap
+></keycombo
+> per a iniciar aquesta característica. El <link linkend="konfig-advanced"
+>Konfigurador</link
+> pot establir arguments addicionals per a l'<command
+>updatedb</command
+>.</para>
+  <para
+>Opcions de la casella de selecció <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Mostra només els fitxers existents</guilabel
+>: si la base de dades conté entrades que ja no existeixen (suprimides, mogudes des de l'últim <command
+>updatedb</command
+>), el <command
+>locate</command
+> no els llistarà. Aquest comprova l'existència de cada fitxer abans de llistar-lo a la finestra de resultats (lent).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Distingeix entre majúscules i minúscules</guilabel
+>: desmarcant-la es permet cercar entre majúscules i minúscules.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Botons d'acció <itemizedlist>
+    <listitem>
+      <para
+><guibutton
+>Ubica</guibutton
+>: executa <command
+>locate <replaceable
+>qualsevol</replaceable
+></command
+> i ofereix la seva sortida a la finestra de resultats.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Atura</guibutton
+>: atura el procés de localització.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>UpdateDB</guibutton
+>: inicia l'<command
+>updatedb</command
+> per a actualitzar la base de dades de localització després d'introduir la contrasenya de l'administrador.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Tanca</guibutton
+>: tanca la finestra d'ubicació.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Finestra de resultats <itemizedlist>
+    <listitem>
+      <para
+>Fer doble clic sobre un element: els passos a la seva carpeta, fa visible l'element i tanca el diàleg d'ubicació.</para>
+    </listitem>
+    <listitem>
+      <para
+>Clic dret: edita/visualitza/troba el menú. <itemizedlist>
+        <listitem>
+          <para
+><keycap
+>F3</keycap
+>: visualitza l'element actual.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>F4</keycap
+>: edita l'element actual.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+>: mostra els fitxers trobats a la finestra de resultats.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+>: mostra el resultat de la cerca següent.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+>: mostra el resultat de la cerca anterior.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+        <listitem>
+          <para
+>La finestra de resultats admet arrossegar elements a altres finestres i copiar al porta-retalls (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+        </listitem>
+  </itemizedlist
+></para>
+</sect1>

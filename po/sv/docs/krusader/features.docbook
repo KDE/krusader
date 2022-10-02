@@ -1,0 +1,678 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="features">
+<title
+>Funktioner</title>
+<indexterm>
+  <primary
+>Funktioner</primary>
+</indexterm>
+<note>
+  <para
+>De viktigaste funktionerna och förbättringarna illustreras här. Listan skulle bli för lång om vi skulle inkludera <emphasis
+>alla</emphasis
+> funktioner och förbättringar. Du kommer att upptäcka ännu fler funktioner i det här dokumentet, och i filerna <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+><filename
+>Changelog</filename
+></ulink
+> och <ulink url="https://commits.kde.org/krusader?path=NEWS"
+><filename
+>NEWS</filename
+></ulink
+>.</para>
+</note>
+<para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Funktioner som i en <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>ortodox filhanterare (OFM)</ulink
+></title>
+          <listitem>
+            <para
+>Två kraftfulla och lättanvända <link linkend="panels"
+>ortodoxa filhanteringspaneler</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="cmdline"
+>Kommandorad</link
+> och valfri <link linkend="termemu"
+>terminalemulator</link
+> nedanför.</para>
+          </listitem>
+          <listitem>
+            <para
+>Uttalad <link linkend="keyboard-commands"
+>tangentbordsorientering</link
+> med möjlighet att utföra alla funktioner utan musen.</para>
+          </listitem>
+          <listitem>
+            <para
+>Sammanhangsberoende start av skript och program, t.ex. musklick eller returtangent (kör eller öppna med tillhörande program), <keycap
+>F3</keycap
+> (granska) och <keycap
+>F4</keycap
+> (redigera).</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="useractions"
+>Användarmeny</link
+>, skapa din egen anpassade meny.</para>
+          </listitem>
+          <listitem>
+            <para
+>Historik t.ex. <link linkend="folderhistory"
+>Kataloghistorik</link
+>, <link linkend="popular-urls"
+>Populära webbadresser</link
+>, etc.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="vfs"
+>Virtuella filsystem (VFS)</link
+> t.ex. för <link linkend="remote-connections"
+>fjärranslutningar</link
+>, <link linkend="archives"
+>arkiv</link
+>, sökresultat och synkroniseraren.</para>
+          </listitem>
+          <listitem>
+            <para
+>Kraftfull intern <link linkend="krviewer"
+>granskning och redigering</link
+>, via Kparts som stöder nästan alla filformat.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Avancerad sökmodul</link
+>: Sökning i arkiv och sök efter innehåll på fjärrfilsystem.</para>
+          </listitem>
+          <listitem>
+            <para
+>Flera lägen för visning i paneler via <link linkend="sidebar"
+>sidoraden</link
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Verktyg i &krusader;</title>
+          <listitem>
+            <para
+><link linkend="remote-connections"
+>Fjärranslutningar</link
+>: &FTP; eller SAMBA med stöd för SFTP och SCP via I/O-slavar</para>
+          </listitem>
+          <listitem>
+            <para
+>Grafiskt användargränssnitt för <link linkend="locate"
+>Locate</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="synchronizer"
+>Synkronisera kataloger</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="mount-man"
+>Monteringshanterare</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="diskusage"
+>Diskanvändning</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="root-mode"
+>Administratörsläge</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Funktioner i &krusader;</title>
+          <listitem>
+            <para
+>Arkivhantering: Bläddra i, packa upp, packa, testa. <link linkend="archives"
+>Arkiv</link
+> som stöds: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip och 7-zip.</para>
+          </listitem>
+          <listitem>
+            <para
+>Mekanism för att <link linkend="checksum"
+>skapa och verifiera checksummor</link
+> som stöder md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv, och crc.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="calculate"
+>Beräkna använt utrymme</link
+> för filer, kataloger, arkiv och fjärrfilsystem.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-dir"
+>Katalogjämförelse</link
+> och <link linkend="view-menu"
+>filtrering</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-content"
+>Jämför filer enligt innehåll</link
+> via externa jämförelseprogram som &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> eller <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="multi_rename"
+>Byt namn</link
+> på filer och kataloger via <ulink url="https://www.krename.net"
+><application
+>KRename</application
+></ulink
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>Stöder drag och släpp helt och hållet: Från &konqueror; direkt till en <literal role="extension"
+>.tar.gz</literal
+>-fil, från &krusader;s panel till papperskorgen, skrivbordet eller till &konqueror;.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-advanced"
+>Bevara datum</link
+> för lokala mål vid kopierings- och flyttningsåtgärder.</para>
+          </listitem>
+          <listitem>
+            <para
+><keycap
+>F9</keycap
+> öppnar ett <link linkend="tools-menu"
+>terminalfönster</link
+> i arbetskatalogen.</para>
+          </listitem>
+          <listitem>
+            <para
+>Enkel redigering av <link linkend="file-menu"
+>filrättigheter</link
+> och ägare samt <link linkend="konfig-panel-view"
+>numerisk behörighet</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Urvalsfilter</link
+> som används i t.ex. Synkroniseraren och Krusearcher.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="jump_back"
+>Gå tillbaka</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-general"
+>Medveten om &MIME;-typer</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="folder-tabs"
+>Paneler med flikar</link
+> och <link linkend="krviewer"
+>redigering och granskning med flikar</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="quicksearch"
+>Snabbsökning, -markering och -filter</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="splitter"
+>Delning av filer</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Musgester </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="list_panel"
+>Snabbnavigering</link
+> i platsraden.</para>
+          </listitem>
+          <listitem>
+            <para
+>Vad är det här-hjälpfunktion istället för verktygstips där det är rimligt.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_toolbar"
+>Synkronsierad bläddring</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Anpassa &krusader; till dina egna behov</title>
+          <listitem>
+            <para
+><link linkend="konfig-startup"
+> Konfigurator</link
+> &krusader;s inställningscentral.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="mainwindow"
+>Huvudverktygsrad</link
+>, <link linkend="actions_toolbar"
+>Åtgärdsverktygsrad</link
+> för användaråtgärder och bokmärken.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="key_bindings"
+>Snabbtangenter</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="konfig-color"
+>Färger</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_profiles"
+>Panelprofiler</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="bookman"
+>Bokmärkeshanterare</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="selection_modes"
+>Markeringslägen</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Många fler funktioner kan <link linkend="konfig-startup"
+>anpassas</link
+> som du vill ha dem.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      <itemizedlist>
+        <title
+>Utökningar till &krusader;</title>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Användaråtgärder</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="konfig-color"
+>Färgprofiler</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="configure-shortcuts"
+>Snabbtangentprofiler</link
+></para>
+        </listitem>
+      </itemizedlist
+>Ladda ner eller ladda upp dina favoritutökningar av &krusader; på <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+<para>
+  <itemizedlist>
+    <title
+>Nya funktioner i &krusader; utgåva 1.80.0 <quote
+>Slutlig 3:e sten</quote
+></title>
+    <listitem>
+      <para
+>Arkivförbättringar <itemizedlist>
+        <listitem>
+          <para
+><link linkend="archives"
+>Lösenordsstöd</link
+> förr: arj, ace, rar och zip. Lösenord kan lagras i <application
+>plånboken</application
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>Stöd för 7-zip</link
+> med de externa programmen <application
+>7z</application
+> och <application
+>7za</application
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+>Stöd för <link linkend="archives"
+>automatisk detektering</link
+>, vilket låter dig öppna <quote
+>dolda arkiv</quote
+> (t.ex. <trademark class="registered"
+>OpenOffice</trademark
+>-dokument).</para>
+        </listitem>
+        <listitem>
+          <para
+>Packa och packa upp görs nu i bakgrunden.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="list_panel"
+>Kortfattad vy</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Många förbättringar av systemet med <link linkend="useractions"
+>användaråtgärder</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Oräkneliga förbättringar av användbarhet, särskilt i Konfigurator och i menyraden som i stor utsträckning har ordnats om.</para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="media_button"
+>Mediaknapp</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Kopiera och flytta: <link linkend="copying"
+>Bevarar alla egenskaper</link
+> (tid, ägare, grupp).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-color"
+>Gör färgerna diffusa i den inaktiva panelen</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Byte av namn på en fil utan filändelse, enkelinstansläge, start i systembrickan: Ta en titt på det i <link linkend="konfigurator"
+>Konfigurator</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Anpassningsbara <link linkend="list_panel"
+>extra filnamnsändelser</link
+>, så att filändelser som <literal role="extension"
+>tar.gz</literal
+> visas som en enhet i <guilabel
+>filändelsekolumnen</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Sammanhangsberoende meny för bokmärken och aktivera eller inaktivera särskilda bokmärken.</para>
+    </listitem>
+    <listitem>
+      <para
+>Omgjord <link linkend="menu-commands"
+>menyrad</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Förbättringar av <link linkend="termemu"
+>terminalemulatorn</link
+> som ger nya funktioner, nya användningssätt och ett nytt utseende.</para>
+    </listitem>
+    <listitem>
+      <para
+>Förbättringar av <link linkend="synchronizer"
+>synkroniseraren</link
+> och parallella trådar för långsamma &FTP;-servrar.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-startup"
+>Enkelinstansläge</link
+>, <link linkend="konfig-startup"
+>start i systembrickan</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="context-menu"
+>Sammanhangsberoende meny för permanenta bokmärken.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Fullständigt stöd för <link linkend="acl"
+>ACL-behörighet</link
+>, som egenskaper, bevara attribut, synkronisera med mera.</para>
+    </listitem>
+    <listitem>
+      <para
+>Sökresultat, lokaliseringsresultat, synkroniseringsresultat: Stöd för att dra objekt och kopiera till klippbordet (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+>Många felrättningar.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nya funktioner i &krusader; utgåva 1.90.0 <quote
+>Power Stone</quote
+></title>
+    <listitem>
+      <para
+>Senaste utgåva för &kde; 3.x med en stor samling användaråtgärder. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nya funktioner i &krusader; utgåva 2.0.0 <quote
+>Mars Pathfinder</quote
+></title>
+    <listitem>
+      <para
+>Den första utgåvan i &kde; 4.x-serien </para>
+    </listitem>
+    <listitem>
+      <para
+>&krusader; fungerar på &Windows; (men är inte ännu lika användbar och kraftfull som på &Linux;). </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="queue"
+>Köhanterare.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-panel"
+>Fem metoder i panelen.</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nya funktioner i &krusader; utgåva 2.1.0-beta1 <quote
+>Rostig koppling</quote
+></title>
+    <listitem>
+      <para
+>Snabb text- och hexadecimalgranskning av enorma filstorlekar. </para>
+    </listitem>
+    <listitem>
+      <para
+>Låsta flikar. </para>
+    </listitem>
+    <listitem>
+      <para
+>Köad packning och uppackning. </para>
+    </listitem>
+    <listitem>
+      <para
+>Bättre integrering med papperskorgen. </para>
+    </listitem>
+    <listitem>
+      <para
+>Snabbsöknings-, markerings- och filterraden stöder reguljära uttryck för att söka efter filer. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nya funktioner i &krusader; utgåva 2.5.0 <quote
+>Klar himmel</quote
+></title>
+    <listitem>
+      <para
+>Konverterad till &kde; Ramverk 5. </para>
+    </listitem>
+    <listitem>
+        <para
+>Den nya raden <link linkend="quickfilter"
+>Snabbfilter</link
+> med tre olika sätt att fungera: markera, söka och filtrera. </para>
+    </listitem>
+    <listitem>
+        <para
+>Omarbetad köhanterare (jobMan) och den nya <link linkend="job_toolbar"
+>jobbverktygsraden</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nya funktioner i &krusader; utgåva 2.7.0 <quote
+>Sinnesro</quote
+></title>
+    <listitem>
+      <para
+>Snabbsökning i bokmärkesmenyn. </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="folder-tabs"
+>Uppfästa flikar</link
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Verktygstips med filinformation när musen hålls över ett filnamn. </para>
+    </listitem>
+    <listitem>
+      <para
+>Utökade alternativ för trädpanelen i <link linkend="sidebar"
+>sidoraden</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para
+><note
+><para
+>Om du använder en utvecklingsversion eller &git;-version, är det möjligt att de senaste nya funktionerna inte ännu finns i <quote
+>&krusader;s handbok</quote
+>. Läs filen <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+>Changelog</ulink
+> på nätet eller i &krusader;s källkod, för att få reda på mer om de nya funktionerna. För en kortfattad beskrivning, läs gärna filen <ulink url="https://commits.kde.org/krusader?path=NEWS"
+>NEWS</ulink
+> på nätet eller i &krusader;s källkod. <link linkend="faqg_wish"
+>Synpunkter från användare</link
+> och <link linkend="faqg_bug_report"
+>felrapporter</link
+> är alltid välkomna. </para
+></note
+></para>
+</chapter>

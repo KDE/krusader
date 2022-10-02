@@ -1,0 +1,40 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="more-features">
+<title
+>Avancerade funktioner</title
+>&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>Skicka filer med e-post</title
+> <para
+>Markera en fil och använd <menuchoice
+> <guimenu
+>högerklicksmenyn</guimenu
+> <guimenuitem
+>Skicka med e-post</guimenuitem
+> </menuchoice
+>. Att välja alternativet öppnar ett nytt &kmail;-fönster med filen redan bilagd. Fyll bara i rubriken och mottagaren eller mottagarna och skicka det. Naturligtvis måste &kmail; vara riktigt inställt.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>ACL-behörigheter</title>
+  <para
+><link linkend="gloss-acl"
+>ACL-behörigheter</link
+> stöds helt och hållet vid användning av egenskaper, bevara attribut och synkroniseraren. För att visa eller ändra ACL-behörigheter, markera en fil och använd den <link linkend="context-menu"
+>sammanhangsberoende menyn</link
+>: <menuchoice
+> <guimenu
+>Egenskaper...</guimenu
+> <guimenuitem
+>Skydd</guimenuitem
+> <guimenuitem
+>Avancerat åtkomstskydd</guimenuitem
+> </menuchoice
+>. ACL-behörigheter kopieras också vid kopiering eller förflyttning. Synkroniseraren behåller också ACL-behörigheter.</para>
+</sect1
+></chapter>

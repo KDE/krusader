@@ -1,0 +1,3518 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="krviewer">
+  <title
+>Krviewer: &krusader;s interna granskare och editor</title>
+  <indexterm>
+    <primary
+>Granskning</primary>
+    <seealso
+>Editor</seealso>
+  </indexterm>
+  <para
+>Att trycka på returtangenten för en markerad fil <emphasis
+>öppnar filen med tillhörande program</emphasis
+>. Granskning och editor har flikar, och kan ställas in på sidan <link linkend="konfig-general"
+>Allmänt</link
+> i Konfigurator.</para>
+  <sect2 id="krview">
+    <title
+>Granskning</title>
+    <para
+>För att granska en fil så snabbt som möjligt enligt typ, placera bara markören på den och tryck på <keycap
+>F3</keycap
+>. &krusader;s interna granskare är egentligen en del av &konqueror;, som i stort sett kan granska alla filtyper som går att visa i &konqueror; (t.ex. visa bilder, spela musik, visa innehållet i ett arkiv). Det kallas 'generell granskning', vilket kräver att du ställer in &MIME;-typer.</para>
+    <para
+>Granskaren fungerar på följande sätt: <itemizedlist
+> <listitem
+> <para
+>Den försöker granska filen med <emphasis
+>'Generell granskning'</emphasis
+></para
+> </listitem
+> <listitem
+> <para
+>När filtypen (&MIME;-typen) inte kan bestämmas, eller när en fil (t.ex. en binärfil) inte har en tillhörande åtgärd, inaktiveras generell granskning. Filen behandlas som en textfil, vilket är <emphasis
+>'textgranskaren'</emphasis
+>.</para
+> </listitem
+> <listitem
+> <para
+>Användaren kan byta mellan 'Generell granskare' (om tillgänglig), 'textgranskare' och <emphasis
+>'hexgranskare'</emphasis
+> i menyn <link linkend="kredit_krviewer_menu"
+>Krviewer</link
+>.</para
+> </listitem
+> </itemizedlist
+>Du kan ställa in standardgranskningsläget på sidan <link linkend="konfig-general"
+>Allmänt</link
+> i Konfigurator.</para>
+    <para
+><keycombo action="simul"
+>&Shift; <keycap
+>F3</keycap
+></keycombo
+> granskar en webbadress på begäran, t.ex.: <itemizedlist>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+> </userinput
+>granskar manualsidorna.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+><replaceable
+>krusader</replaceable
+> </userinput
+>granskar &krusader;s manualsida.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>info:/</command
+> </userinput
+>granskar info-sidorna.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>https://</command
+><replaceable
+>krusader.sourceforce.net/</replaceable
+> </userinput
+>granskar en webbsida.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>ftp://</command
+><replaceable
+>ftp.kde.org/pub/kde/</replaceable
+> </userinput
+>granskar en &FTP;-server.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>sftp://</command
+><replaceable
+>sftp.exempel/</replaceable
+> </userinput
+>granskar en säker &FTP;-server.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>file:/</command
+><replaceable
+>home/frank</replaceable
+> </userinput
+>granskar Franks hemkatalog.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>tar:/</command
+><replaceable
+>/home/frank/archive.tar.gz/</replaceable
+> </userinput
+>visar bläddringsfönstret för arkivet <literal role="extension"
+>tar.gz</literal
+>.</para>
+      </listitem>
+    </itemizedlist
+></para>
+    <para
+>Krviewer kan ha följande menyer: <link linkend="katepart-menu-file"
+>Arkiv</link
+>, <link linkend="katepart-menu-edit"
+>Redigera</link
+>, <link linkend="katepart-menu-view"
+>Visa</link
+>, <link linkend="katepart-menu-settings"
+>Inställningar</link
+> och <link linkend="kredit_krviewer_menu"
+>Krviewer</link
+>, beroende på vilken filtyp som granskas. De beskrivs i avsnittet <link linkend="kredit"
+>Editor</link
+>. Den interna granskaren kan följa länkar på &HTML;-sidor. Med <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>E</keycap
+></keycombo
+> kan granskaren starta &krusader;s interna editor (vilket egentligen är samma program).</para>
+    <note>
+      <para
+>Den inbäddade granskningen är inte skriven av oss, utan tillhandahålls via KF5 och I/O-slavar. Vi kan inte, och vill inte ändra den. Att använda dessa bibliotek minskar mängden kod att skriva. Vi behöver alltså inte återuppfinna hjulet.</para>
+    </note>
+  </sect2>
+  <sect2 id="kredit">
+    <title
+>Editor</title>
+    <indexterm>
+      <primary
+>Editor</primary>
+    </indexterm>
+    <para
+>&krusader;s interna editor har nästan allt man kan förvänta sig av en editor. Att redigering liknar att granska, men använder tangenten <keycap
+>F4</keycap
+>. Standardeditorn är &krusader;s interna editor. Du kan ändra standardeditor på sidan <link linkend="konfig-general"
+>Allmänt</link
+> i Konfigurator, om du föredrar att använda en extern editor.</para>
+    <tip>
+      <para
+>När du använder &krusader;s interna editor för första gången, rekommenderas du att titta på varje del av menyn <link linkend="katepart-menu-settings"
+>Inställningar</link
+> och ställa in den som du vill ha den.</para>
+    </tip>
+  </sect2>
+  <sect2 id="kredit_menus">
+    <title
+>Menyöversikt</title>
+
+<!--mostly brought in from kwrite-->
+<para
+>Det finns olika menyer och menyalternativ i enkelt och avancerat läge. Det avancerade läget aktiveras genom att markera alternativet <link linkend="katepart-appearance"
+>Aktivera läge för avancerad användning (&kde; 3-läge)</link
+> på sidan <guilabel
+>Utseende</guilabel
+> i &kappname;s inställningar.</para>
+
+<sect3 id="katepart-menu-file">
+<title
+>Menyn Arkiv</title>
+
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-save">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Spara</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Det här sparar det nuvarande dokumentet. Om dokumentet redan har sparats skriver det här över den tidigare sparade filen utan att fråga efter användarens samtycke. Om det här är första gången ett nytt dokument sparas, visas dialogrutan Spara som (beskrivs nedan). </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-save-as">
+<menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Spara som...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Det här gör det möjligt att spara ett dokument med ett nytt filnamn. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-reload">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F5</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Uppdatera</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Laddar den aktiva filen igen. Kommandot är användbart om ett annat program eller en annan process har ändrat filen medan den varit öppen i &kappname;. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-print">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Skriv ut...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Öppnar en enkel utskriftsdialog, som låter användaren ange vad, vart och hur utskrift ska ske. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+> <!-- from plugin Exporter -->
+<term id="katepart-menu-export-as-html">
+<menuchoice
+><guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Exportera som &HTML;</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Exportera filen med &HTML;-format så att dokumentet kan visas som en webbsida. Alternativet visas bara när insticksprogrammet <guilabel
+>Export</guilabel
+> är laddad. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect3>
+
+<sect3 id="katepart-menu-edit"
+> <!-- This is also valid for kates menu edit-->
+<title
+>Menyn Redigera</title>
+
+<variablelist>
+<varlistentry>
+<term id="katepart-menu-undo"
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Ångra</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Det här används för att eliminera eller ångra den senaste användaråtgärden eller operationen. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-redo"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Gör om</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Det här återställer den senaste ändringen (om det finns någon) som gjorts med Ångra.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-cut"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+> </keycombo
+></shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Klipp ut</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Det här kommandot tar bort den nuvarande markerade texten och placerar den på klippbordet. Klippbordet är en funktion som osynligt fungerar för att erbjuda ett sätt att överföra data mellan program.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-copy"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Redigera</guimenu
+><guimenuitem
+>Kopiera</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Det här kopierar den nuvarande markerade texten till klippbordet så att den kan klistras in någon annanstans. Klippbordet är en funktion som osynligt fungerar för att erbjuda ett sätt att överföra data mellan program.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-paste"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Redigera</guimenu
+><guimenuitem
+>Klistra in</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Det här infogar innehållet på klippbordet vid markörens position. Klippbordet är en funktion som osynligt fungerar för att erbjuda ett sätt att överföra data mellan program.</para>
+</listitem>
+</varlistentry>
+<varlistentry
+><!-- from plugin Exporter -->
+<term
+><anchor id="katepart-menu-copy-as-html"/><menuchoice
+><guimenu
+>Redigera</guimenu
+><guimenuitem
+>Kopiera som &HTML;</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Det här kopierar den markerade texten till klippbordet som &HTML;. Alternativet visas bara när insticksprogrammet <guilabel
+>Export</guilabel
+> är laddad. </para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-select-all"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Redigera</guimenu
+><guimenuitem
+>Markera allt</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Det här väljer hela dokumentet. Det här kan vara mycket användbart för att kopiera hela filen till ett annat program.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-deselect"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Avmarkera</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Avmarkerar den markerade texten i editorn, om det finns någon.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-block-selection-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Blockmarkeringsläge</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Växlar markeringsläge. När markeringsläget är <guilabel
+>BLOCK</guilabel
+>, kan du göra vertikala markeringar, t.ex. markera kolumn 5 till 10 på rad 9 till 15. Statusraden visar markeringslägets nuvarande status, antingen <guilabel
+>BLOCK</guilabel
+> eller <guilabel
+>RAD</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-vi-input-mode"/><menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>Meta</keycap
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Redigera</guimenu
+><guimenuitem
+>VI-inmatningsläge</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Byt till ett Vi-liknande redigeringsläge. Läget stöder de oftast använda kommandona och förflyttningarna från vim:s normala och visuella läge, och har en valfri Vi-statusrad. Statusraden visar kommandon medan de matas in, utmatning från kommandon och nuvarande läge. Lägets beteende kan anpassas under <link linkend="katepart-pref-edit-vi-input-mode"
+>Vi-inmatningsläge</link
+> på sidan <guilabel
+>Redigering</guilabel
+> i &kappname;s inställningsdialogruta.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-overwrite-mode"/><menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>Insert</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Överskrivningsläge</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Växlar mellan infoga och ersätt. När värdet är <guilabel
+>INFOGA</guilabel
+>, infogas tecken där markören befinner sig. När värdet är C, ersätts aktuellt tecken om markören är placerad innan ett tecken när tecken skrivs in. Statusraden visar aktuell status för överskrivningsläget, antingen <guilabel
+>INFOGA</guilabel
+> eller <guilabel
+>ERSÄTT</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-find"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Redigera</guimenu
+><guimenuitem
+>Sök...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Det här öppnar den inkrementella sökraden längst ner i editorfönstret. Till vänster på raden finns en knapp med en ikon för att stänga raden, följt av en liten textruta för att skriva in sökbegrepp.</para>
+<para
+>När du börjar skriva in tecknen i ditt sökbegrepp, börjar sökningen omedelbart. Om det finns en träff i texten markeras den och bakgrundsfärgen i inmatningsfältet ändras till ljusgrönt. Om sökbegreppet inte motsvarar någon sträng i texten, indikeras det av en ljusröd bakgrundsfärg i inmatningsfältet och <guilabel
+>Hittades inte</guilabel
+> visas till höger på raden.</para>
+<para
+>Använd knapparna <guilabel
+>Nästa</guilabel
+> eller <guilabel
+>Föregående</guilabel
+> för att gå till nästa eller föregående träff i dokumentet.</para>
+<para
+>Du kan välja om sökningen ska vara skiftlägeskänslig. Genom att välja <guilabel
+>Skiftlägeskänslig</guilabel
+> begränsas träffar till värden som motsvarar skiftläget (stora eller små bokstäver) för varje tecken i sökbegreppet. </para>
+<para
+>Klicka på knappen med den gröna pilikonen till höger på den inkrementella sökraden för att byta till den avancerade sök- och ersättningsraden. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-find-again"/><menuchoice
+><shortcut
+><keycombo
+><keycap
+>F3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Redigera</guimenu
+><guimenuitem
+>Sök igen</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Det här upprepar den senaste sökningen, om det finns någon, utan att anropa den inkrementella sökraden. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-previous">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift;<keycap
+>F3</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Sök föregående</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Det här upprepar den senaste sökningen, om det finns någon, utan att anropa den inkrementella sökraden, och söker bakåt istället för framåt igenom dokumentet. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-replace"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Redigera</guimenu
+><guimenuitem
+>Ersätt...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Det här kommandot öppnar den avancerade sök- och ersättningsraden. Längst upp till vänster på raden finns en knapp med en ikon för att stänga raden, följt av en liten textruta för att skriva in sökbegreppet.</para>
+<para
+>Sökläget kan styras genom att välja <guilabel
+>Enkel text</guilabel
+>, <guilabel
+>Hela ord</guilabel
+>, <guilabel
+>Escape-sekvenser</guilabel
+> eller <guilabel
+>Reguljärt uttryck</guilabel
+> i kombinationsrutan. </para>
+<para
+>Om <guilabel
+>Escape-sekvenser</guilabel
+> eller <guilabel
+>Reguljärt uttryck</guilabel
+> väljes, aktiveras knappen <guilabel
+>Lägg till... </guilabel
+> längst ner i textrutornas sammanhangsberoende meny, som låter dig lägga till escape-sekvenser eller reguljära uttryck i sök- eller ersättningsbegrepp från fördefinierade listor.</para>
+<para
+>Använd knapparna <guilabel
+>Nästa</guilabel
+> eller <guilabel
+>Föregående</guilabel
+> för att gå till nästa eller föregående träff i dokumentet.</para>
+<para
+>Skriv in texten att ersätta med i textrutan med beteckningen <guilabel
+>Ersätt</guilabel
+> och klicka på knappen <guibutton
+>Ersätt</guibutton
+> för att bara ersätta markerad text eller <guibutton
+>Ersätt alla</guibutton
+> för att ersätta söktexten i hela dokumentet. </para>
+<para
+>Du kan ändra sök- och ersättningsbeteendet genom att välja olika alternativ längst ner på raden. Genom att välja <guilabel
+>Matcha skiftläge</guilabel
+> begränsas träffar till poster som matchar skiftläget (stora eller små bokstäver) för varje tecken i sökbegreppet. <guilabel
+>Bara markering</guilabel
+> söker och ersätter bara inom nuvarande markering. Knappen <guilabel
+>Sök alla</guilabel
+> markerar alla träffar i dokumentet och visar antal hittade träffar i ett litet meddelandefönster. </para>
+<para
+>Klicka på knappen med den gröna pilikonen till höger på den avancerade sök- och ersättningsraden för att byta till den inkrementella sökraden. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Sök markering</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Slår upp nästa förekomst av markerad text.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected-backwards">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Sök markering bakåt</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Slår upp föregående förekomst av markerad text.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-go-to-line">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Gå till rad...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Det här öppnar gå till raden längst ner i fönstret, som används för att få markören att gå till en viss rad (som anges med dess nummer) i dokumentet. Radnumret kan skrivas in direkt i textrutan eller anges grafiskt genom att klicka på uppåt- eller nedåtpilarna vid sidan av textrutan. Den lilla uppåtpilen ökar radnumret och nedåtpilen minskar det. Stäng raden med ett klick på knappen med ikonen till vänster på raden. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-view">
+<!-- This is also valid for kates menu view, but kate does not have the New Window item -->
+<title
+>Menyn Visa</title>
+
+<para
+>Menyn <guimenu
+>Visa</guimenu
+> låter dig hantera inställningar som är specifika för den aktiva editorn, och hantera ramar.</para>
+
+<variablelist>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-new-window"/>
+<menuchoice
+><guimenu
+>Visa</guimenu
+><guimenuitem
+>Nytt fönster</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Skapa ett annat fönster som innehåller det aktuella dokumentet. Alla ändringar av dokumentet i ett fönster reflekteras i det andra fönstret och tvärtom.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-command-line"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F7</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Byt till kommandorad</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Visar Kate-delprogrammets kommandorad längst ner i fönstret. Skriv <userinput
+>help</userinput
+> för att få hjälp, och <userinput
+>help list</userinput
+> för att få en lista över kommandon på kommandoraden.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Visa Javascript-konsol</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Det här visar en verktygsvy som låter dig köra Javascript-kod interaktivt. För mer information, se <ulink url="help:/katepart/advanced-editing-tools-scripting.html"
+>Utöka &kate; med skript</ulink
+>. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-schema"/>
+<menuchoice
+><guimenu
+>Visa</guimenu
+> <guisubmenu
+>Schema</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Välj ett teckensnittsschema.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F10</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Dynamisk radbrytning</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Textraderna radbryts vid vyns kant på skärmen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap-indicators"/>
+<menuchoice
+><guimenu
+>Visa</guimenu
+><guimenuitem
+>Dynamiska radbrytningsmarkörer</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+ <para
+>Välj när och hur dynamiska radbrytningsmarkörer ska visas. Det är bara tillgängligt om alternativet <guilabel
+>Dynamisk radbrytning</guilabel
+> är markerat.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-static-word-wrap"/>
+<menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Visa statisk radbrytningsmarkör</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Om det här alternativet är markerat, ritas en vertikal linje i radbrytningskolumnen som definieras i <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa editor...</guimenuitem
+></menuchoice
+> under fliken Redigering. Observera att radbrytningsmarkören bara ritas om du använder ett teckensnitt med fast breddsteg.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-icon-border"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F6</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Visa ikonkant</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Det här är ett alternativ som växlar. Om det aktiveras, visas ikonkanten vid vänsterkanten i den aktiva editorn, och vice versa. Ikonkanten anger position för markerade rader i editorn.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-line-numbers"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F11</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Visa radnummer</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Det här är ett alternativ som växlar. Om det aktiveras, visas en ruta med radnummer längs vänsterkanten på den aktiva editorn, och vice versa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-scrollbar-marks"/>
+<menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guisubmenu
+>Visa rullningslistmarkeringar</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Om alternativet är markerat visar den aktuella vyn markeringar på den vertikala rullningslistan. Markeringarna är ekvivalenta med markeringarna på <link linkend="katepart-menu-view-show-icon-border"
+>ikonkanten</link
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-hide-folding-markers"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F9</keycap
+> </keycombo
+></shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Visa vikmarkörer</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Om det här alternativet är markerat, visas markeringar för kodvikning.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-code-folding"/>
+<menuchoice
+><guimenu
+>Visa</guimenu
+> <guisubmenu
+>Kodvikning</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Dessa alternativ rör <ulink url="help:/katepart/advanced-editing-tools-code-folding.html"
+>kodvikning</ulink
+>:</para>
+<variablelist>
+
+<varlistentry id="view-show-folding-markers">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F9</keycap
+> </keycombo
+></shortcut
+> <guimenu
+>Visa</guimenu
+><guimenuitem
+>Visa vikmarkörer</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Visar eller gömmer den inbyggda terminalemulatorn.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>Fäll ihop aktuell nod</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Fäll ihop området som innehåller markören.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-unfold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>Expandera aktuell nod</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Expandera området som innehåller markören.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-toplevel-nodes">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenuitem
+>Fäll ihop toppnivånoder</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Fäll ihop alla toppnivåområden i dokumentet. Klicka på triangeln som pekar åt höger för att expandera alla toppnivåområden.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenuitem
+>Öka teckensnitt</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Det här ökar teckenstorleken som används vid visning.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenuitem
+>Minska teckensnitt</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Det här minskar teckenstorleken som används vid visning.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-go"
+><!-- This is also valid for kates menu bookmarks-->
+<title
+>Menyn Bokmärken</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-set-bookmark">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bokmärken</guimenu
+> <guimenuitem
+>Nytt bokmärke</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Lägger till eller tar bort ett bokmärke på den nuvarande raden i det aktiva dokumentet (om det redan finns, tas det bort, annars läggs det till). </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-clear-bookmarks">
+<menuchoice
+><guimenu
+>Bokmärken</guimenu
+> <guimenuitem
+>Rensa alla bokmärken</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Det här kommandot tar bort alla bokmärken från dokumentet samt listan på bokmärken som läggs till längst ner i det här menyalternativet. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-previous">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt; <keycap
+>Page Up</keycap
+></keycombo
+></shortcut
+><guimenu
+>Bokmärken</guimenu
+><guimenuitem
+>Föregående</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Det här flyttar markören till början av den första raden ovan med ett bokmärke. Menyalternativets text innehåller radnummer och den inledande texten på raden. Alternativet är bara tillgängligt när det finns ett bokmärke på en rad ovanför markören.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-next">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt; <keycap
+>Page Down</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Bokmärken</guimenu
+><guimenuitem
+>Nästa</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Det här flyttar markören till början av nästa rad med ett bokmärke. Menyalternativets text innehåller radnummer och den inledande texten på raden. Alternativet är bara tillgängligt när det finns ett bokmärke på en rad nedanför markören.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Längst ner i den här menyn visas en lista med bokmärken om det finns några för det här fönstret. </para>
+
+</sect3>
+
+<!-- This is also valid for kates menu tools, kate has additional items:
+Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at top-->
+<sect3 id="katepart-menu-tools">
+<title
+>Menyn Verktyg</title>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-read-only"/><menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Skrivskyddat läge</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Ställer in aktuellt dokument till skrivskyddat läge. Det förhindrar tillägg av all text och alla ändringar av dokumentets formatering.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-filetype"/><menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guisubmenu
+>Läge</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Välj filtypschema som du föredrar för det aktiva dokumentet. Det skriver över det globala filtypsläget som ställts in i <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa editor...</guimenuitem
+></menuchoice
+> under fliken Filtyper, men bara för det aktuella dokumentet.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-highlighting"/><menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guisubmenu
+>Färgläggning</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Välj färgläggningsschema som du föredrar för det aktiva dokumentet. Det skriver över det globala färgläggningsläget som ställts in med <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa editor...</guimenuitem
+></menuchoice
+>, men bara för det aktuella dokumentet.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-indentation"/><menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guisubmenu
+>Indentering</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Välj indenteringsstil som du vill ha för det aktiva dokumentet. Det skriver över det globala indenteringsläget som ställts in i <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa editor...</guimenuitem
+></menuchoice
+>, men bara för det aktuella dokumentet.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-encoding"/><menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guisubmenu
+>Kodning</guisubmenu
+></menuchoice
+></term>
+ <listitem>
+<para
+>Du kan skriva över den förvalda kodningen inställd i <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa editor...</guimenuitem
+></menuchoice
+> på sidan <guilabel
+>Öppna/spara</guilabel
+> för att ange en annan kodning för det aktuella dokumentet. Kodningen du ställer in här är bara giltig för det aktuella dokumentet.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-end-of-line"/><menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guisubmenu
+>Radslut</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Välj radslutsläget som du föredrar för det aktiva dokumentet. Det skriver över det globala radslutsläget som ställts in med <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa editor...</guimenuitem
+></menuchoice
+>, men bara för det aktuella dokumentet.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-add-byte-mark-order"/><menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guisubmenu
+>Lägg till byte-ordningsmarkör (BOM)</guisubmenu
+></menuchoice
+></term>
+ <listitem>
+<para
+>Genom att markera åtgärden kan du explicit lägga till en byte-ordningsmarkör för dokument kodade med Unicode. Byte-ordningsmarkören (BOM) är ett Unicode-tecken som används för att ange byte-ordningen i en textfil eller ström. För mer information se <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
+>Byte Order Mark</ulink
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Mellanslag</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Utför kodkomplettering</guimenuitem
+> </menuchoice
+> </term>
+<listitem>
+<para
+>Aktivera kodkomplettering för hand, oftast genom att använda snabbtangenten som är kopplad till åtgärden.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Verktyg</guimenu
+><guimenuitem
+>Ordkomplettering</guimenuitem
+> </menuchoice
+> </term>
+<listitem>
+<para
+><guimenuitem
+>Återanvänd ord nedanför</guimenuitem
+> (<keycombo action="simul"
+>&Ctrl; <keycap
+>9</keycap
+></keycombo
+>) och <guimenuitem
+>Återanvänd ord ovanför</guimenuitem
+> (<keycombo action="simul"
+>&Ctrl; <keycap
+>8</keycap
+></keycombo
+>) kompletterar texten som för närvarande är inskriven genom att söka bakåt eller framåt efter liknande ord från den nuvarande markörpositionen. <guimenuitem
+>Skalkomplettering</guimenuitem
+> visar en kompletteringsruta med poster som matchar.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Automatisk stavningskontroll</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>När <guimenuitem
+>Automatisk stavningskontroll</guimenuitem
+> är aktiverad, stryks felaktig text under i dokumentet medan du skriver.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-Spelling..."/><menuchoice
+><guimenu
+>Verktyg</guimenu
+><guimenuitem
+>Stavning...</guimenuitem
+></menuchoice>
+</term>
+
+<!--para
+>These options are described in the documentation for the
+<ulink url="help:/sonnet/index.html"
+>Check Spelling Dialog</ulink
+>.</para
+Move / merge the following into kdelibs/doc/sonnet/index.docbook and replace it with the para above
+-->
+
+<listitem
+><para
+><action
+>Det här aktiverar programmet för stavningskontroll: ett program konstruerat för att hjälpa användare hitta och korrigera eventuella stavfel.</action
+> Att klicka på alternativet startar kontrollen och visar stavningskontrolldialogrutan där användaren kan styra processen. Det finns fyra inställningar vertikalt uppradade i dialogrutans mitt med motsvarande beteckningar omedelbart till vänster. Ovanifrån är de:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Okänt ord:</guilabel
+></term>
+<listitem
+><para
+>Här anger stavningskontrollen ordet som för närvarande behandlas. Det sker när kontrollen stöter på ett ord som inte finns i dess ordlista: en fil som innehåller en lista med riktigt stavade ord som den jämför varje ord i editorn med.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ersätt med:</guilabel
+></term>
+<listitem
+><para
+>Om kontrollen har några liknande ord i sin ordbok, kommer det första att visas här. Användaren kan acceptera förslaget, skriva in sin egen rättning, eller välja ett annat förslag från nästa ruta.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Språk:</guilabel
+></term>
+<listitem
+><para
+>Om du har installerat flera ordlistor, kan du välja vilken ordlista/språk som ska användas.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Till höger i dialogrutan finns sex knappar som låter användaren styra stavningskontrollprocessen. De är:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Lägg till i ordlista</guibutton
+></term>
+<listitem
+><para
+>Genom att trycka på den här knappen läggs ordet i rutan <guilabel
+>Okänt ord:</guilabel
+> till i kontrollens ordbok. Det här betyder att i fortsättningen kommer kontrollen alltid att anse att det här ordet är rättstavat.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Föreslå</guilabel
+></term>
+<listitem
+><para
+>Kontrollen kan lista ett antal möjliga ersättningar för ordet som hanteras. Genom att klicka på något av förslagen skrivs ordet in i rutan <guilabel
+>Ersätt med</guilabel
+> ovanför.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Ersätt</guibutton
+></term>
+<listitem
+><para
+>Den här knappen får kontrollen att ersätta ordet som hanteras i dokumentet med ordet i rutan <guilabel
+>Ersätt med</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Ersätt alla</guibutton
+></term>
+<listitem
+><para
+>Den här knappen gör att kontrollen inte bara byter ut det nuvarande <guilabel
+>okända ordet</guilabel
+> utan också automatiskt gör samma utbyte för alla andra förekomster av det här <guilabel
+>okända ordet</guilabel
+> i dokumentet.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Ignorera</guibutton
+></term>
+<listitem
+><para
+>Genom att aktivera den här knappen kommer kontrollen fortsätta utan att göra några ändringar.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Ignorera alla</guibutton
+></term>
+<listitem
+><para
+>Den här knappen talat om för kontrollen att inte göra något med det nuvarande <guilabel
+>okända ordet</guilabel
+> och att hoppa över alla andra förekomster av samma ord.</para
+> <note
+><para
+>Det gäller bara nuvarande körning av stavningskontrollen. Om kontrollen körs igen stannar den på samma ord.</para
+></note
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Ytterligare tre knappar är placerade horisontellt längs stavningskontrolldialogrutans underkant. De är:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Hjälp</guibutton
+></term>
+<listitem
+><para
+>Den här aktiverar &kde;:s hjälpsystem med hjälpsidan för den här dialogrutan.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Klar</guibutton
+></term>
+<listitem
+><para
+>Den här knappen avslutar stavningskontrollprocessen, och återgår till dokumentet.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Avbryt</guibutton
+></term>
+<listitem
+><para
+>Den här knappen avbryter stavningskontrollprocessen, alla ändringar återställs, och du återgår till dokumentet.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-spelling-from-cursor"/><menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Stavning (från markör)...</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Det här aktiverar programmet för stavningskontroll, men det startar där markören finns istället för från början i dokumentet.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-spellcheck-selection"/><menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Stavningskontroll av markering...</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Stavningskontrollerar den aktuella markeringen.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-change-dictionary"/><menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Byt ordlista</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Visar en kombinationsruta med alla tillgängliga ordlistor för stavningskontroll längst ner i editorns fönster. Det gör det möjligt att enkelt byta ordlista för stavningskontroll, t.ex. för automatisk stavningskontroll av text på andra språk.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-cleanindent"/><menuchoice
+><guimenu
+>Verktyg</guimenu
+><guimenuitem
+>Rensa indentering</guimenuitem
+></menuchoice
+></term
+>  <listitem>
+<para
+>Det här rensar indenteringen för nuvarande markering eller för raden där markören för närvarande befinner sig. Att rensa indenteringen försäkrar dig om att den markerade texten följer indenteringsläget du valt.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-align"/><menuchoice
+><guimenu
+>Verktyg</guimenu
+><guimenuitem
+>Justera</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Gör att nuvarande rad eller markerade rader justeras om med indenteringsläget och indenteringsinställningarna i dokumentet.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Kommentera</guimenuitem
+> </menuchoice
+> </term>
+<listitem
+><para
+>Det här lägger till ett blanktecken i början på raden där textmarkören befinner sig eller till början av alla markerade rader.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Avkommentera</guimenuitem
+> </menuchoice
+> </term>
+<listitem
+><para
+>Det här tar bort ett blanktecken (om det finns något) från början på raden där textmarkören befinner sig eller från början av alla markerade rader.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Stora bokstäver</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Ändra den markerade texten eller bokstaven efter markören till stora bokstäver.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Små bokstäver</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Ändra den markerade texten eller bokstaven efter markören till små bokstäver.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Inledande stor bokstav</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Ändra den inledande bokstaven för orden i den markerade texten eller i aktuellt ord till stor bokstav.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Kombinera rader</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Kombinerar markerade rader, eller den nuvarande raden och raden under den med ett blanktecken som avskiljare. Inledande eller efterföljande blanktecken tas bort för kombinerade rader i ändarna som påverkas.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Verktyg</guimenu
+><guimenuitem
+>Bryt rader mellan ord i dokument</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Tillämpa statisk radbrytning i hela dokumentet. Det betyder att en ny textrad automatiskt börjar när den aktuella raden överskrider längden som anges av alternativet <guilabel
+>Bryt rader vid</guilabel
+> under fliken Redigering i <menuchoice
+> <guimenu
+>Inställningar</guimenu
+><guimenuitem
+>Anpassa editor...</guimenuitem
+></menuchoice
+></para
+></listitem>
+</varlistentry>
+
+</variablelist>
+<para
+>Om <link linkend="katepart-pref-plugins"
+>insticksprogrammet</link
+> Infoga fil är aktiverat, hittar du det ytterligare menyalternativet <guimenuitem
+>Infoga fil...</guimenuitem
+> här. </para>
+<!-- Data Tools and Insane HTML (LE) Expansion Ctrl+. when plugins are enabled-->
+</sect3>
+
+<sect3 id="katepart-menu-settings">
+<!-- This is also valid for kates menu settings,
+only the items Show Toolbar and Show Statusbar are swapped and Configure kate is the last item-->
+<title
+>Menyn Inställningar</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-preferences"/><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa editor...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Det här menyalternativet öppnar en dialogruta där flera olika <link linkend="kredit_config"
+>inställningar</link
+> kan justeras. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect3>
+
+<!--/end kwrite-->
+
+  <!-- KRVIEWER menu -->
+<sect3 id="kredit_krviewer_menu">
+<title
+>Menyn Krviewer</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Krviewer</guimenu
+> <guimenuitem
+>Generell granskare</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>&krusader;s interna granskare är egentligen en del av &konqueror;, som kan granska i stort sett alla filtyper som går att visa i &konqueror; (t.ex. visa bilder, spela musik, visa innehållet i ett arkiv).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Krviewer</guimenu
+> <guimenuitem
+> Textgranskare</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visa filen i textläge.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Krviewer</guimenu
+> <guimenuitem
+>Hexgranskare</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Visa filen i hexadecimalt läge.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Krviewer</guimenu
+> <guimenuitem
+>Listning</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Snabb text- och hexadecimalgranskning för enorma filstorlekar, utfört av <link linkend="konfig-general"
+>Krusaders listning</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Krviewer</guimenu
+> <guimenuitem
+>Texteditor</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Redigera filen i textläge.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Krviewer</guimenu
+> <guimenuitem
+>Koppla bort flik</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Koppla bort bläddringsflik och öppna i ett nytt fönster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl; <keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Avsluta</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stänger &krusader;s gransknings- och redigeringsfönster.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    </sect3>
+  </sect2>
+
+<!--taken from kwrite's configuring-part.docbook-->
+<sect2 id="kredit_config">
+<title
+>Inställning av editorkomponenten</title>
+<para
+>Den här gruppen innehåller alla sidor som hör till editorkomponenten i &kappname;. De flesta inställningarna här är förvalda, och kan överskridas genom att <link linkend="katepart-pref-open-save-modes-filetypes"
+>definiera en filtyp</link
+>, genom <ulink url="help:/katepart/config-variables.html"
+>dokumentvariabler</ulink
+> eller genom att ändra dem per dokument under en redigeringssession.</para>
+<sect3 id="katepart-appearance"
+> <!-- updated to 4.7 + synced with kwrite -->
+<title
+>Utseende</title>
+
+<sect4 id="katepart-appearance-general">
+<title
+>Allmänt</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Dynamisk radbrytning</guilabel
+></term>
+<listitem>
+<para
+>Om det här alternativet markeras, bryts textrader vid fönstrets kant på skärmen.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Dynamiska radbrytningsmarkörer (om tillämpliga)</guilabel
+></term>
+<listitem
+><para
+>Välj när dynamiska radbrytningsmarkörer ska visas, antingen <guilabel
+>Av</guilabel
+>, <guilabel
+>Följ radnummer</guilabel
+> eller <guilabel
+>Alltid på </guilabel
+>. </para
+></listitem
+></varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Justera dynamiskt radbrutna rader till indenteringsdjupet: </guilabel
+></term>
+<listitem
+><para
+>Aktiverar att dynamiskt radbrytna rader justeras vertikalt till den första radens indenteringsnivå. Det kan hjälpa till att göra kod och taggar mer läsbara.</para
+><para
+>Dessutom låter det dig att ställa in en maximal bredd av skärmen, som ett procenttal. Därefter justeras inte längre dynamiskt radbrytna rader vertikalt. Vid 50 % får exempelvis inte rader vars indenteringsdjup är mer än 50 % av skärmens bredd någon vertikal justering för efterföljande radbrutna rader.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Färgläggning av blanktecken</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Markera tabulatorer</guilabel
+></term>
+<listitem
+><para
+>Editorn kommer att visa symbolen &raquo; som indikerar närvaron av en tabulator i texten.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Markera avslutande mellanslag</guilabel
+></term>
+<listitem
+><para
+>Editorn kommer att visa punkter som indikerar närvaron av extra blanktecken i slutet av rader.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Avancerat </guilabel
+></term>
+<listitem
+><para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Visa indenteringslinjer </guilabel
+></term>
+<listitem
+><para
+>Om det här är markerat, visar editorn vertikala linjer för att hjälpa till att identifiera indenterade rader.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Markera område mellan samhörande parenteser </guilabel
+></term>
+<listitem
+><para
+>Om det här är aktiverat, markeras hela området mellan de samhörande parenteserna.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-appearance-borders">
+<title
+>Kanter</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Kanter</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Visa vikmarkörer (om tillgängliga) </guilabel
+></term>
+<listitem
+><para
+>Om det här alternativet är markerat, visar den aktuella vyn markeringar för kodvikning, om kodvikning är tillgänglig.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Visa ikonkant </guilabel
+></term>
+<listitem
+><para
+>Om det här är markerat, ser du en ikonkant till vänster. Ikonkanten visar till exempel bokmärkesmarkeringar.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Visa radnummer </guilabel
+></term>
+<listitem
+><para
+>Om det här är markerat, ser du radnummer till vänster.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Visa rullningslistmarkeringar </guilabel
+></term>
+<listitem
+><para
+>Om alternativet är markerat visar den aktuella vyn markeringar på den vertikala rullningslistan. Markeringarna anger till exempel bokmärken.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Sortera menyn bokmärken </guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Enligt tillkomst </guilabel
+></term>
+<listitem
+><para
+>Varje nytt bokmärke läggs till längst ner, oberoende av var det är placerat i dokumentet.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Enligt position </guilabel
+></term>
+<listitem
+><para
+>Bokmärken ordnas enligt radnumret där de är placerade.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+</sect3>
+
+<sect3 id="katepart-prefcolors"
+><!-- checked for 4.7 + synced with kwrite -->
+<title
+>Teckensnitt och färger</title>
+
+<para
+>Den här sidan i dialogrutan låter dig ställa in alla teckensnitt och färger i alla färgscheman du har, samt skapa nya scheman eller ta bort befintliga. Varje schema har en inställning av färger, teckensnitt, normal textstil och markeringstextstil. </para>
+
+<para
+>&kappname; väljer schemat som för närvarande är aktivt i förväg åt dig. Om du vill arbeta med ett annat schema börja med att välja det i kombinationsrutan <guilabel
+>Schema</guilabel
+>. Med knapparna <guibutton
+>Ny</guibutton
+> och <guibutton
+>Ta bort</guibutton
+> kan du skapa ett nytt schema eller ta bort befintliga.</para>
+<para
+>Längst ner på sidan kan du markera <guilabel
+>Standardschema för &kappname;</guilabel
+>.</para>
+
+<sect4 id="katepart-prefcolors-colors">
+<title
+>Färger</title>
+
+<variablelist>
+<varlistentry id="katepart-variable-prefcolors-colors-text-background">
+<term
+><guilabel
+>Textområdets bakgrund</guilabel
+></term>
+<listitem>
+
+<variablelist>
+
+<varlistentry id="katepart-variable-pref-colors-normal-text">
+<term
+><guilabel
+>Normal text</guilabel
+></term>
+<listitem
+><para
+>Det här är förvald bakgrund för redigeringsområdet. Det kommer att vara den dominerande färgen i redigeringsområdet.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-selected-text">
+<term
+><guilabel
+>Markerad text</guilabel
+></term>
+<listitem
+><para
+>Det här är bakgrunden för markerad text. Förvalt värde är den globala markeringsfärgen, som är inställd i färginställningarna i &plasma;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-current-line">
+<term
+><guilabel
+>Aktuell rad</guilabel
+></term>
+<listitem
+><para
+>Ställ in färgen för aktuell rad. Att ställa in den något annorlunda jämfört med den normala textbakgrunden hjälper till att hålla fokus på den aktuella raden. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-marks">
+<term
+><guilabel
+>Bokmärke</guilabel
+></term>
+<listitem
+><para
+>Den här kombinationsrutan låter dig ställa in överlagringsfärger för diverse typer av markeringar. Färgerna blandas in i en markerad rads bakgrundsfärg, så att en rad med flera markeringar eller en aktuell markerad rad har en bakgrund som är en blandning av flera färger. Markeringsfärgerna används också om du aktiverar visning av markeringar på rullningslisten.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-prefcolors-colors-other-elements">
+<term
+><guilabel
+>Ytterligare element</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Bakgrund för vänster kant</guilabel
+></term>
+<listitem
+><para
+>Den här färgen används för markeringar, radnummer och vikmarkörkanter till vänster i redigeringsvyn när de visas. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Radnummer</guilabel
+></term>
+<listitem
+><para
+>Den här färgen används för att visa radnummer till vänster i vyn när de visas.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Färglägg parenteser</guilabel
+></term>
+<listitem
+><para
+>Den här färgen används för att markera bakgrunden för matchande parenteser. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Radbrytningsmarkörer</guilabel
+></term>
+<listitem
+><para
+>Den här färgen används för att rita ett mönster till vänster om rader med dynamisk radbrytning när de är vertikalt justerade, samt för statiska radbrytningsmarkörer.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tabulator- och mellanslagsmarkörer</guilabel
+></term>
+<listitem
+><para
+>Den här färgen används för att visa indikering av blanktecken när det är aktiverat. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Linje för stavfel</guilabel
+></term>
+<listitem
+><para
+>Anger färg på linjen som används för att indikera stavfel. </para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-prefcolors-fonts">
+<title
+>Teckensnitt</title>
+<para
+>Här kan du välja teckensnittet för schemat. Du kan välja bland alla teckensnitt som är tillgängliga på systemet, och ställa in förvald storlek. En exempeltext visas längst ner i dialogrutan, så att du kan se effekten av dina val. </para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-normal-text-styles">
+<title
+>Normala textstilar</title>
+<para
+>De normala textstilarna ärvs av färgläggningstextstilarna, vilket gör det möjligt för editorn att visa text på ett mycket konsekvent sätt, till exempel använder kommentartext samma stil i nästan alla textformat som &kappname; kan färglägga.</para>
+<para
+>Namnet i listan med stilar använder stilen som är inställd för objektet, vilket ger en omedelbar förhandsgranskning när en stil ställs in. </para>
+<para
+>Varje stil låter dig välja gemensamma egenskaper samt förgrunds- och bakgrundsfärger. För att inte använda en bakgrundsfärg, högerklicka och använd den sammanhangsberoende menyn.</para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-highlighting-text-styles">
+<title
+>Färgläggningstextstilar</title>
+<para
+>Här kan du redigera textstilarna som används av en viss färgläggningsdefinition. Editorn väljer färgläggningen som används av aktuellt dokument i förväg. För att arbeta med en annan färgläggning, välja en i kombinationsrutan ovanför listan med stilar. </para>
+<para
+>Namnet i listan med stilar använder stilen som är inställd för objektet, vilket ger en omedelbar förhandsgranskning när en stil ställs in. </para>
+<para
+>Varje stil låter dig välja gemensamma egenskaper samt förgrunds- och bakgrundsfärger. För att inte använda en bakgrundsfärg, högerklicka och använd den sammanhangsberoende menyn. Dessutom kan du se om en stil är samma som den förvalda stilen för objektet, och ställa in den till det om den inte är det.</para>
+<para
+>Du märker att många färgläggningar innehåller andra färgläggningar representerade av grupper i stillistan. De flesta färgläggningar importerar till exempel färgläggningen Alerts, och många källkodsformat importerar färgläggningen Doxygen. Redigering av färger i grupperna påverkar bara stilarna när de används i det redigerade färgläggningsformatet. </para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-edit">
+<title
+>Redigering</title>
+
+<sect4 id="katepart-pref-edit-general">
+<title
+>Allmänt</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-pref-word-wrap"
+><guilabel
+>Statisk radbrytning</guilabel
+></term>
+<listitem
+><para
+>Ordbrytning är en funktion som gör att editorn automatiskt påbörjar en ny textrad och flyttar (radbryter) markören till början av den nya raden. &kappname; påbörjar automatiskt en ny textrad när aktuell rad når längden som anges av alternativet <link linkend="katepart-pref-wrap-words-at"
+>Bryt rader vid:</link
+>.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Aktivera statisk radbrytning</guilabel
+></term>
+<listitem>
+<para
+>Sätter på eller stänger av dynamisk radbrytning.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Visa statisk radbrytningsmarkör (om tillämplig)</guilabel
+></term>
+<listitem>
+<para
+>Om det här alternativet är markerat, ritas en vertikal linje i radbrytningskolumnen som definieras i <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa editor...</guimenuitem
+></menuchoice
+> under fliken Redigering. Observera att radbrytningsmarkören bara ritas om du använder ett teckensnitt med fast breddsteg.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term id="katepart-pref-wrap-words-at"
+><guilabel
+>Bryt rader vid:</guilabel
+></term>
+<listitem>
+<para
+>Om alternativet <link linkend="katepart-pref-word-wrap"
+>Aktivera statisk radbrytning</link
+> är markerat, avgör det här alternativet längden (i tecken) där editorn automatiskt påbörjar en ny rad.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Diverse</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Ta bort avslutande mellanslag vid redigering</guilabel
+></term>
+<listitem
+><para
+>&kappname; eliminerar automatiskt extra mellanslag vid textradernas slut.</para
+></listitem
+> </varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Automatiska hakparenteser</guilabel
+></term
+> <listitem
+><para
+>När användaren skriver in en vänsterparentes ([, ( eller {) skriver &kappname; automatiskt in högerparentesen  (}, ) eller ]) till höger om markören.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Kopiera eller klipp ut nuvarande rad om markering saknas</guilabel
+></term
+> <listitem>
+<para
+>Om alternativet är aktiverat och textmarkeringen är tom, utförs åtgärderna kopiera och klipp ut för textraden på den verkliga markörpositionen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Tillåt att rulla förbi dokumentets slut</guilabel
+></term
+> <listitem>
+<para
+>Det här alternativet låter dig rulla förbi dokumentets slut. Det kan användas för att centrera dokumentets sista del vertikalt, eller placera det ovanpå den nuvarande vyn.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-cursor-selection">
+<title
+>Markör och markering</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Förflyttning av textmarkör</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Smart Home- och End-tangent</guilabel
+></term>
+<listitem>
+<para
+>Om markerad, hoppar markören över blanktecken och går till början av radens text när tangenten Home trycks ner.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Flytta markören till nästa rad efter radslut</guilabel
+></term>
+<listitem>
+<para
+>När aktiv, och infogningsmarkören flyttas med tangenterna <keycap
+>Vänsterpil</keycap
+> och <keycap
+>Högerpil</keycap
+> går den till föregående eller nästa rad och början eller slutet av raden, på samma sätt som de flesta editorer.</para
+><para
+>När inaktiv, kan inte infogningsmarkören flyttas till vänster om radens början, men den kan flyttas förbi radens slut, vilket kan vara mycket praktiskt för programmerare. När alternativet är aktivt, och markören flyttas förbi slutet av en rad (åt höger) med piltangenterna, gör det att den hoppar ner till början av nästa rad. På liknande sätt, om markören flyttas förbi början av en rad (åt vänster) hoppar den upp till slutet av föregående rad. När alternativet är inaktivt, och markören flyttas till höger förbi radens slut gör det bara att den fortsätter horisontellt på samma rad, och ett försök att flytta den åt vänster förbi början av raden gör ingenting.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Page Up och Page Down flyttar markören</guilabel
+></term>
+<listitem>
+<para
+>Det här alternativet ändrar beteendet hos markören om användaren trycker på tangenterna <keycap
+>Page Up</keycap
+> eller <keycap
+>Page Down</keycap
+>. Om det här inte är valt, behåller textmarkören sin relativa position i den synliga texten i &kappname; när ny text blir synlig som ett resultat av åtgärden. Så om markören befinner sig mitt i den synliga texten när åtgärden sker kommer den att förbli där (utom när man kommer till början eller slutet). Om det här alternativet är valt, gör den första tangenttryckningen att markören antingen flyttas längst upp eller längst ner när en ny sida med text visas.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Centrera markör automatiskt (rader):</guilabel
+></term>
+<listitem>
+<para
+>Anger antalet rader som behålls synliga ovanför och under markören om möjligt.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Textmarkeringsläge</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Normal</guilabel
+></term>
+<listitem>
+<para
+>Markeringar skrivs över av inskriven text, och försvinner när markören flyttas.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Långlivat</guilabel
+></term>
+<listitem>
+<para
+>Markeringar blir kvar också efter markören flyttas och text skrivs in.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-indent">
+<title
+>Indentering</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Standardläge för indentering:</guilabel
+></term>
+<listitem>
+<para
+>Välj automatiskt indenteringsläge som du normalt vill använda. Du rekommenderas starkt att använda <userinput
+>Inget</userinput
+> eller <userinput
+>Normal</userinput
+> här, och använda inställning av filtyper för att ställa in andra indenteringslägen för textformat som C/C++ kod eller &XML;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Indentera med</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Tabulatorer</guilabel
+></term>
+<listitem>
+<para
+>När det här är aktiverat, infogar editorn tabulatortecken när du trycker på tabulatortangenten eller använder <ulink url="help:/katepart/kate-part-autoindent.html"
+>automatisk indentering</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mellanslag</guilabel
+></term>
+<listitem>
+<para
+>När det här är aktiverat, infogar editorn ett beräknat antal mellanslag enligt positionen i texten och inställningen <option
+>tab-width</option
+> när du trycker på tabulatortangenten eller använder <ulink url="help:/katepart/kate-part-autoindent.html"
+>automatisk indentering</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tabulatorer och mellanslag</guilabel
+></term>
+<listitem>
+<para
+>När det här är aktiverat, infogar editorn mellanslag som beskrivs ovan vid indentering eller när tabulatortangenten används i början av en rad, men infogar tabulatorer när tabulatortangenten används i mitten eller slutet av en rad.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tabulatorbredd:</guilabel
+></term>
+<listitem>
+<para
+>Detta ställer in antal mellanslag som visas istället för ett tabulatortecken.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Indenteringsbredd:</guilabel
+></term>
+<listitem>
+<para
+>Indenteringsbredden är antalet mellanslag som används för att indentera en rad. Om indentera med tabulator är inställt, infogas ett tabulatortecken om indenteringen är jämnt delbar med tabulatorbredden.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Indenteringsegenskaper</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Behåll extra mellanslag</guilabel
+></term>
+<listitem
+><para
+>Om alternativet är inaktiverat, justeras en rad till en multipel av bredden som anges med <guilabel
+>indenteringsbredd</guilabel
+> när indenteringsnivån ändras.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Justera indentering av kod som klistrats in från klippbordet</guilabel
+></term>
+<listitem>
+<para
+>Om alternativet markeras, indenteras kod som klistras in från klippbordet. Genom att använda alternativet <guimenuitem
+>Ångra</guimenuitem
+> kan indenteringen tas bort.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Indenteringsåtgärder</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Backsteg i inledande blanktecken avindenterar</guilabel
+></term>
+<listitem>
+<para
+>Om alternativet är markerat, minskar tangenten <keysym
+>Backsteg</keysym
+> indenteringsnivån om markören är placerad i de inledande blanktecknen på en rad.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Åtgärd för tabulatortangent (om det inte finns någon markering)</guilabel
+></term>
+<listitem>
+<para
+>Om du vill att Tabulator ska justera nuvarande rad i nuvarande kodblock som i Emacs, gör Tabulator till en genväg till åtgärden <guimenuitem
+>Justera</guimenuitem
+>. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Gå alltid vidare till nästa tabulatorposition</guilabel
+></term>
+<listitem>
+<para
+>Om alternativet är markerat, infogar alltid tabulatortangenten blanktecken så att nästa tabulatorposition nås. Om alternativet <guilabel
+>Infoga mellanslag i stället för tabulatorer</guilabel
+> under fliken <guilabel
+>Allmänt</guilabel
+> på sidan <guilabel
+>Redigering</guilabel
+> är aktiverat, infogas mellanslag. Annars infogas ett enda tabulatortecken.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Öka alltid indenteringsnivån</guilabel
+></term>
+<listitem>
+<para
+>Om alternativet är markerat, indenterar alltid tabulatortangenten raden med det antal teckenpositioner som anges av <guilabel
+>Indenteringsbredd</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Öka indenteringsnivån om i inledande blanktecken</guilabel
+></term>
+<listitem>
+<para
+>Om alternativet är markerat, indenterar antingen tangenten Tabulator nuvarande rad eller går vidare till nästa tabulatorposition. Om markörens position är på eller före det första tecknet som inte är ett blanktecken på raden, eller om det finns en markering, indenteras nuvarande rad med det antal teckenpositioner som anges av <guilabel
+>Indenteringsbredd</guilabel
+>. Om markörens position är efter det första tecknet som inte är ett blanktecken på raden och det inte finns någon markering, infogas blanktecken så att nästa tabulatorposition nås: om alternativet <guilabel
+>Infoga mellanslag i stället för tabulatorer</guilabel
+> under <guilabel
+>Redigering</guilabel
+> är aktiverat, infogas mellanslag. Annars infogas ett enda tabulatortecken.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-autocompletion">
+<title
+>Automatisk komplettering</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Allmänt</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Aktivera automatisk komplettering</guilabel
+></term>
+<listitem>
+<para
+>Om aktiverad, dyker en ordkompletteringsruta automatiskt upp vid inskrivning, som visar en lista med texter som kompletterar texten som för närvarande är under markören.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Minimal ordlängd att komplettera</guilabel
+></term>
+<listitem
+><para
+>Medan du skriver in text, söker ordkomplettering efter ord i dokumentet som börjar med texten som redan skrivits in. Alternativet ställer in det minsta antal tecken som behövs för att aktivera ordkompletteringen och visa en kompletteringsruta.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-vi-input-mode">
+<title
+>VI-inmatningsläge</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Allmänt</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Använd Vi-inmatningsläge</guilabel
+></term>
+<listitem>
+<para
+>Om markerad, aktiveras Vi-inmatningsläge när en ny vy öppnas. Du kan fortfarande sätta på eller stänga av Vi-inmatningsläge för en viss vy från menyn <guimenu
+>Redigera</guimenu
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Låt Vi-kommandon överskrida genvägar i Kate</guilabel
+></term>
+<listitem>
+<para
+>Om markerad, överskrider Vi-kommandon &kappname;s inbyggda kommandon. Exempel: <keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> gör om, och överskrider standardåtgärden (att visa dialogrutan för sökning och ersättning).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Dölj VI-lägets statusrad</guilabel
+></term>
+<listitem>
+<para
+>Normalt används en extra statusrad när Vi-inmatningsläge aktiveras. Denna statusrad visar kommandon medan de skrivs in och fel eller meddelanden skapade av Vi-kommandon.</para>
+<para
+>Markeras alternativet döljs den extra statusraden.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tangentavbildning</guilabel
+></term>
+<listitem
+><para
+>Tangentavbildning används för att ändra betydelsen hos inskrivna tecken. Det låter dig flytta kommandon till andra tangenter, eller trycka på särskilda tangenter för att utföra en serie kommandon.</para>
+<para
+>Exempel:</para>
+<para
+><keycap
+>F2</keycap
+> -> <keycap
+>I--</keycap
+> &Esc;</para>
+<para
+>Det här lägger till <keycap
+>!--</keycap
+> förs på en rad när <keycap
+>F2</keycap
+> trycks ner. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-spellcheck">
+<title
+>Stavningskontroll</title>
+<para
+>De här inställningsalternativen beskrivs i dokumentationen för modulen <ulink url="help:/kcontrol/spellchecking"
+>Stavningskontroll</ulink
+> i systeminställningarna.</para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-open-save">
+<title
+>Öppna/spara</title>
+
+<sect4 id="katepart-pref-open-save-general">
+<title
+>Allmänt</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Filformat</guilabel
+></term>
+<listitem>
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Kodning:</guilabel
+></term>
+<listitem>
+<para
+>Det här definierar standardkodningen som ska användas för att öppna och spara filer, om den inte ändras i dialogrutan för att öppna eller spara, eller genom att använda en kommandoradsväljare.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Detektering av kodning</guilabel
+></term>
+<listitem>
+<para
+>Välj ett värde i kombinationsrutan, för att antingen inaktivera automatisk detektering eller använda <guilabel
+>Allmän</guilabel
+> för att aktivera automatisk detektering av alla kodningar. Men eftersom den troligen bara detekterar UTF-8 eller UTF-16, erhålls bättre resultat genom att välja ett område för att använda anpassade metoder. Om varken kodningen vald som standard ovan, eller kodningen angiven i dialogrutan för att öppna eller spara motsvarar filens innehåll, utförs den här detekteringen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Reservkodning</guilabel
+></term>
+<listitem>
+<para
+>Det här definierar reservkodningen att prova för att öppna filer, om kodningen definierad som standard ovan, eller den som anges via dialogrutan för att öppna eller spara, inte motsvarar filens innehåll. Innan den provas, görs ett försök att bestämma kodningen genom att läsa en möjlig byte-ordningsmarkör i början av filen. Om någon sådan hittas, väljes riktig Unicode-kodning, annars utförs kodningsdetektering. Om båda misslyckas provas reservkodningen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Radslut:</guilabel
+></term>
+<listitem>
+<para
+>Välj radslutsläget du föredrar för det aktiva dokumentet. Du kan välja bland &UNIX;, DOS/&Windows; eller MacIntosh.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Automatisk detektering av radslut</guilabel
+></term>
+<listitem>
+<para
+>Markera det här om du vill att editorn automatiskt ska detektera radslutstyp. Den första radslutstypen som hittas används för hela filen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Aktivera byte-ordningsmarkör</guilabel
+></term>
+<listitem>
+<para
+>Byte-ordningsmarkören är en speciell sekvens i början av dokument kodade med Unicode. Den hjälper editorer att öppna textdokument med riktig Unicode-kodning. För mer information, se <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
+>Byte Order Mark</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<!--
+Line Length Limit missing
+ -->
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Automatisk rensning vid ladda eller spara</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Ta bort mellanslag i slutet av en rad</guilabel
+></term>
+<listitem>
+<para
+>Editorn tar automatiskt bort extra mellanslag i slutet av textrader när filen laddas eller sparas.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-advanced">
+<title
+>Avancerat</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Kataloginställningsfil</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Sökdjup för inställningsfil:</guilabel
+></term>
+<listitem>
+<para
+>Editorn söker det angivna antalet katalognivåer uppåt efter en &kappname; inställningsfil och laddar inställningsraden från den. Ytterligare information om dessa dolda inställningsfiler för kataloger finns i avsnittet om <ulink url="help:/katepart/config-variables.html"
+>dokumentvariabler</ulink
+>. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Spara säkerhetskopia</guilabel
+></term>
+<listitem
+><para
+>Säkerhetskopiering när du sparar gör att &kappname; kopierar filen på disk till &lt;prefix&gt;&lt;filnamn&gt;&lt;suffix&gt; innan ändringarna sparas. Suffixet har normalvärdet <emphasis role="bold"
+>~</emphasis
+> och prefixet är normalt tomt. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Lokala filer</guilabel
+></term>
+<listitem>
+<para
+>Markera det här om du vill ha säkerhetskopior av lokala filer när du sparar.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Fjärrfiler</guilabel
+></term>
+<listitem>
+<para
+>Markera det här om du vill ha säkerhetskopior av fjärrfiler när du sparar.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Prefix</guilabel
+></term>
+<listitem>
+<para
+>Skriv in prefixet som ska läggas till i början av den säkerhetskopierade filens namn.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Suffix</guilabel
+></term>
+<listitem>
+<para
+>Skriv in suffixet som ska läggas till sist i den säkerhetskopierade filens namn.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Inaktivera synkronisering av växlingsfiler</guilabel
+></term>
+<listitem>
+<para
+>&kappname; kan återställa (det mesta) som skrevs efter den senaste gången det sparats i händelse av en krasch eller strömavbrott. En växlingsfil (.swp.&lt;filnamn&gt;) skapas efter den första redigeringsåtgärden i ett dokument. Om användaren inte sparar ändringarna och &kappname; kraschar, förblir växlingsfilen på disk. När en fil öppnas, kontrollerar &kappname; om det finns en växlingsfil för dokumentet, och om det gör det, frågar användaren om förlorad data ska återställas eller inte. Användaren har också möjlighet att granska skillnaderna mellan originalfilen och den återställda filen. Växlingsfilen tas bort varje gång dokumentet sparas, och vid normal avslutning.</para>
+<para
+>&kappname; synkroniserar växlingsfilen på disk var 15:e sekund, men bara om det finns ändringar sedan den senaste synkroniseringen. Användaren kan inaktivera synkroniseringen av växlingsfil om det önskas, genom att markera rutan <guilabel
+>Inaktivera synkronisering av växlingsfiler</guilabel
+>, men det kan leda till förlust av mer data.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-modes-filetypes">
+<title
+>Lägen och filtyper</title>
+<para
+>Den här sidan låter dig överskrida förvalda inställningar för dokument med angivna &MIME;-typer. När editorn laddar ett dokument, kontrollerar den om det matchar filmasken eller &MIME;-typerna för en av de definierade filtyperna, och om det är fallet tillämpas variablerna som är definierade. Om mer än en filtyp matchas, används den med högst prioritet. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Filtyp:</guilabel
+></term>
+<listitem
+><para
+>Filtypen med högst prioritet är den som visas först i kombinationsrutan. Om fler filtyper hittas, anges de också.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Ny</guilabel
+></term>
+<listitem
+><para
+>Det här används för att skapa en ny filtyp. Efter du klickat på knappen, blir fälten nedanför tomma och du kan fylla i de egenskaper du vill ha för den nya filtypen.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ta bort</guilabel
+></term>
+<listitem
+><para
+>För att ta bort en befintlig filtyp, markera den i kombinationsrutan och tryck på knappen Ta bort.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem
+> </varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Egenskaper för <replaceable
+>aktuell filtyp</replaceable
+></guilabel
+></term>
+<listitem
+><para
+>Filtypen med högst prioritet är den som visas först i kombinationsrutan. Om fler filtyper hittas, anges de också.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Namn:</guilabel
+></term>
+<listitem
+><para
+>Filtypens namn är texten i motsvarande menyalternativ. Namnet visas i menyn <menuchoice
+><guisubmenu
+>Verktyg</guisubmenu
+> <guisubmenu
+>Filtyp</guisubmenu
+></menuchoice
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sektion:</guilabel
+></term>
+<listitem
+><para
+>Sektionsnamnet används för att organisera filtyper i menyer. Det används också i menyn <menuchoice
+><guisubmenu
+>Verktyg</guisubmenu
+> <guisubmenu
+>Filtyp</guisubmenu
+></menuchoice
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Variabler:</guilabel
+></term>
+<listitem
+><para
+>Strängen låter dig ställa in &kappname;s inställningar för filer som väljes av den här &MIME;-typen genom att använda variabler i &kappname;. Du kan ställa in nästan alla inställningsalternativ, såsom färgläggning, indenteringsläge, etc.</para>
+<para
+>Klicka på <guibutton
+>Redigera</guibutton
+> för att se en lista med alla tillgängliga variabler och deras beskrivningar. Markera kryssrutan till vänster för att aktivera en viss variabel och ange därefter variabelns värde till höger. Vissa variabler tillhandahåller en kombinationsruta för att välja möjliga värden medan andra kräver att du matar in ett giltigt värde manuellt.</para>
+<para
+>För fullständig information om dessa variabler, se <ulink url="help:/katepart/config-variables.html"
+>Anpassa med dokumentvariabler</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Färgläggning:</guilabel
+></term>
+<listitem
+><para
+>Om du skapar en ny filtyp, låter den här kombinationsrutan dig välja en filtyp för färgläggning.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Indenteringsläge:</guilabel
+></term>
+<listitem
+><para
+>Kombinationsrutan anger indenteringsläget för nya dokument.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Filändelser:</guilabel
+></term>
+<listitem
+><para
+>Jokerteckenmasken låter dig välja filer enligt filnamn. En typisk mask använder en asterisk och filändelsen, till exempel <filename
+>*.txt; *.text</filename
+>. Strängen är en lista med masker åtskilda av semikolon.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>&MIME;-typer:</guilabel
+></term>
+<listitem
+><para
+>Visar en guide som hjälper dig att enkelt välja &MIME;-typer.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Prioritet:</guilabel
+></term>
+<listitem
+><para
+>Anger en prioritet för filtypen. Om fler filtyper väljer samma fil, används den med högst prioritet.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem
+> </varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Ladda ner färgläggningsfiler...</guibutton
+></term>
+<listitem>
+<para
+>Klicka på knappen för att ladda ner nya eller uppdaterade syntaxfärgläggningsbeskrivningar från &kappname;s webbplats. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-plugins">
+<title
+>Utökningar</title
+> <!-- updated to 4.7 + synced with kwrite -->
+<para
+>Fliken <guilabel
+>Insticksprogram</guilabel
+> listar alla tillgängliga insticksprogram, och du kan markera de du vill använda. Klicka på knappen <guibutton
+>Information</guibutton
+> för att öppna insticksprogrammets dialogruta <guilabel
+>Om</guilabel
+>.</para>
+<para
+>När ett anpassningsbart insticksprogram väl är markerat, aktiveras knappen <guibutton
+>Anpassa</guibutton
+>, och du kan klicka på den för att anpassa markerat insticksprogram.</para>
+<variablelist>
+<title
+>Editorkomponentens insticksprogram</title>
+<!-- not released with 4.7
+<varlistentry>
+<term
+><guilabel
+>Artistic Comment</guilabel
+></term>
+<listitem
+><para
+>Format long source-code comments like license-headers
+or descriptions using different style.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><guilabel
+>Automatisk parentes</guilabel
+></term>
+<listitem
+><para
+>Insticksprogrammet för automatiska parenteser ersätter &kappname;s interna funktion för automatiska parenteser. Den infogar automatiskt en avslutande parentes <keycap
+>}</keycap
+> i början av nästa rad efter att ha avslutat en rad med en inledande parentes <keycap
+>{</keycap
+> och tryckt på returtangenten.</para
+></listitem>
+</varlistentry>
+<!--http://jakob.petsovits.at/topic/kate-->
+<!--Right, it's the automatic insertion of a closing brace (<quote
+>}</quote
+>) after you ended a line with an opening one (<quote
+>{</quote
+>). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
+You, the developer, are writing a line of code, and want to open a new block delimited by braces. Looks like this:
+If you press Enter and AutoBrace is enabled, it will insert your favorite new brace where it belongs. Looks like this:
+-->
+<varlistentry>
+<term
+><guilabel
+>Dataverktyg</guilabel
+></term>
+<listitem
+><para
+>Aktiverar dataverktyg som synonymordlista och stavningskontroll (om de är installerade). Dataverktyg är bara tillgängliga när text är markerad, eller när höger musknapp klickas över ett ord. Om inga dataverktyg erbjuds även när text är markerad, måste de installeras. Om insticksprogrammet är aktiverat och dataverktyg är installerade, visas ytterligare alternativ i slutet av den sammanhangsberoende menyn.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Export</guilabel
+></term>
+<listitem
+><para
+>Det här kommandot låter dig exportera det nuvarande dokumentet med all färgläggningsinformation till ett &HTML;-dokument genom att använda <menuchoice
+><guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Exportera som &HTML;</guimenuitem
+></menuchoice
+>. Dessutom kan du använda <menuchoice
+><guimenu
+>Redigera</guimenu
+><guimenuitem
+>Kopiera som &HTML;</guimenuitem
+></menuchoice
+> för att kopiera texten som för närvarande är markerad som &HTML; till systemets klippbord.</para
+></listitem>
+</varlistentry>
+<!-- not in 4.7
+<varlistentry>
+<term
+><guilabel
+>Highlight Selection</guilabel
+></term>
+<listitem
+><para
+>Highlights all words that match the currently selected text.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><guilabel
+>Infoga ikon</guilabel
+></term>
+<listitem
+><para
+>Insticksprogrammet Infoga ikon är bara användbart för utvecklare av &kde;: Det lägger till alternativet <guimenuitem
+>Infoga KIcon-kod</guimenuitem
+> i editorns sammanhangsberoende meny. Om det aktiveras, visas &plasma;s ikonväljare (där programikoner, åtgärdsikoner, etc. visas). Om man klickar på den, infogas filnamnet utan filändelse som text. Bara användbart för att ange ikoner i KF5 via klassen KIcon(). </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Insane (inte ZEN) &HTML;-kodning (enkel version)</guilabel
+></term>
+<listitem
+><para
+>Ett insticksprogram som utför zen-kodning, såsom komplettering av selektorer. För mer information, se <ulink url="https://en.wikipedia.org/wiki/Zen_Coding"
+>Zen Coding</ulink
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Infoga fil</guilabel
+></term>
+<listitem
+><para
+>Det här insticksprogrammet låter dig infoga vilken läsbar fil som helst vid markörens position. Om aktiverat, har menyn <guimenu
+>Verktyg</guimenu
+> det ytterligare menyalternativet <guimenuitem
+>Infoga fil</guimenuitem
+>.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect3>
+</sect2>
+<!--/end kwrite-->
+
+</sect1>

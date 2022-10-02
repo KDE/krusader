@@ -1,0 +1,338 @@
+<sect1 id="krusearcher">
+  <title
+>KruSearcher: Najděte to, co hledáte</title>
+  <indexterm>
+    <primary
+>Hledat</primary>
+  </indexterm>
+  <para
+>Vítejte ve výkonném vyhledávacím modulu aplikace &krusader; - přezdívaném jako KruSearcher. Je to nejschopnější pomůcka (kterou známe) pro &Linux;, protože umožňuje tolik různých způsobů rychle nalézt soubor, který hledáte. Vyhledávací funkce je také dostupná pro vzdálené systémy soubory. Rozlišuje se mezi dvěma úrovněmi: obecná a pokročilá. Podívejme se na kartu Obecné.</para>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>Krusearcher General</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="search_general.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="search_general.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>Krusearcher General</phrase
+></textobject>
+  <caption
+><para
+>Krusearcher General.</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+  <figure id="screenshot-search-general" float="1">
+    <title
+>Obecné hledání</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_general.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Obecné hledání</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Karta je rozdělena do čtyř částí: horní (vyhledávací) část, dolní část - nazvaná <guilabel
+>Obsahuje text</guilabel
+>, levá část - nazvaná <guilabel
+>Hledat v</guilabel
+> a pravá část, která je nazvaná <guilabel
+>Nehledat v</guilabel
+>. Je zřejmé, že každá část se zabývá různými hledisky hledání. Pojďme se na ně podívat zblízka.</para>
+  <itemizedlist>
+    <title
+>Horní část:</title>
+    <listitem>
+      <para
+><guilabel
+>Hledat</guilabel
+>: Zde zadejte hlavní kritérium hledání. Zadat můžete název souboru, masku názvu souboru (<literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> atd.) nebo obojí - odděleno mezerou. Napíšete-li <literal
+>'text'</literal
+>, výsledky budou stejné jako <literal
+>'*text*'</literal
+>. Vyloučit soubory z hledání můžete pomocí znaku '|' (např. <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>) . Pro názvy obsahující mezery, můžete použít uvozovky. Filtr "Program Files" vyhledává tyto názvy souborů/adresářů, které mají název <filename
+>Program Files</filename
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Rozlišovat malá/velká</guilabel
+>: Bez zaškrtnutí umožní při hledání nerozlišovat malá a velká písmena (tj.: <literal role="extension"
+>*.c</literal
+> vyhodnotí jako <literal role="extension"
+>*.c</literal
+> AND <literal role="extension"
+>*.C</literal
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Typ</guilabel
+>: Tento skupinový box umožňuje hledat soubor nejen podle jeho názvu, ale také podle jeho MIME typu. Můžete například hledat všechny zvukové soubory, jejichž názvy začínají písmenem B. Obvykle má tato volba výchozí možnost 'Všechny soubory', ale můžete zvolit hledat archivy, adresáře, obrázky, textové soubory, video soubory a zvukové soubory.</para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Levá a pravá část:</title>
+    <listitem>
+      <para
+><guilabel
+>Hledat v</guilabel
+> a <guilabel
+>Nehledat v</guilabel
+>: Použitím těchto dvou částí můžete určit přesný způsob hledání toho, co potřebujete. Například chcete hledat soubor v celém systému souborů (přístupný jako <filename
+>/</filename
+>), ale nechcete hledat uvnitř <filename
+>/mnt</filename
+>. Vše co musíte udělat, je <filename
+>/</filename
+> přidat do skupinového boxu <guilabel
+>Hledat v</guilabel
+> a <filename
+>/mnt</filename
+> přidat do skupinového boxu <guilabel
+>Nehledat v</guilabel
+>. Chcete-li do jednoho ze seznamů zadat více než jeden adresář, stačí nejprve napsat název a stisknout &Enter;. Název adresáře bude zkopírován do většího seznamu a budete moci zadat další název. <note
+> <para
+>Vstupní řádka má vlastnost automatického dokončování odpovídající globálnímu nastavení &kde;. Přejete-li si, můžete kliknout na <guiicon
+>ikonu složky</guiicon
+> a najít adresář, který si přejete přidat.</para>
+      </note
+></para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Dolní část:</title>
+    <listitem>
+      <para
+><guilabel
+>Text</guilabel
+>: Zadaný text aplikace &krusader; hledá uvnitř souborů (použije se příkaz <command
+>grep</command
+>). Tímto způsobem můžete například hledat všechny hlavičkové soubory (<literal role="extension"
+>*.h</literal
+>), které obsahují text <literal
+>'testing 123'</literal
+>.</para>
+    </listitem>
+    <listitem>
+      <para>
+        <guilabel
+>Pouze celá slova</guilabel>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Rozlišovat malá/velká</guilabel
+>: Vztahuje se k vyhledávanému textu při rozlišování velkých a malých písmen nebo k přesnému výrazu, který jste zadali.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Hledat v podadresářích</guilabel
+>: provede rekurzívní hledání a prohlédne všechny adresáře v zadané cestě.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Hledat v archívech</guilabel
+>: Aplikace &krusader; bude hledat soubory uvnitř každého podporovaného archívu. Avšak v tomto případě berte v úvahu delší provádění. <note
+> <para
+>Chcete-li zaškrtnout tento přepínač, mějte na paměti, že nelze vyhledávat příkazem <command
+>grep</command
+> uvnitř jakéhokoli souboru v archívu. Protože prohledávání probíhá uvnitř archivovaných souborů, které jsou nejprve rozbaleny, je tato akce mimořádně časově náročná.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Následovat odkazy</guilabel
+>: Je-li zaškrtnuto, pak aplikace &krusader; bude během hledání následovat symbolické odkazy.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Profily</guilabel
+>: Musíte-li při hledání stále provádět stejné operace, můžete uložit nastavení hledání např. zahrnuté soubory, vyloučené soubory atd. Stiskněte tlačítko 'Profily' a můžete přidat/načíst/uložit/odstranit profily hledání.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Snímek okna uvedený výše zobrazuje hledání ve všech souborech, které končí na <literal role="extension"
+>c, cpp</literal
+> nebo <literal role="extension"
+>h</literal
+> a obsahují řetězec <literal
+>'testing 123'</literal
+>. Aplikace &krusader; bude prohledávat cesty <filename class="directory"
+>/root, /opt, /bin</filename
+> a <filename class="directory"
+>/usr</filename
+>, ale nebude prohledávat <filename class="directory"
+>/usr/lib</filename
+> a <filename class="directory"
+>/usr/share</filename
+>.</para>
+  <para
+>Kliknutím na tlačítko <guibutton
+>Hledat</guibutton
+> hledání začnete a zároveň se zobrazí karta Výsledky. Během hledání můžete stisknout tlačítko <guibutton
+>Zastavit</guibutton
+>, abyste hledání zastavili. Tlačítko <guibutton
+>Zavřít</guibutton
+> není během hledání povolené, takže hledání musíte nejprve zastavit a poté okno zavřít tlačítkem <guibutton
+>Zavřít</guibutton
+>. Je-li nalezen jakýkoli výsledek, po dvojkliku na něj aplikace &krusader; přejde v aktivním panelu k nalezenému souboru - ale neuzavře vyhledávací okno, takže budete moci kliknout i na jiný výsledek.</para>
+  <para
+>Někdy potřebujete zúžit hledání ještě více. KruSearcher umožňuje mnohem pokročilejší hledání a proto se pojďme podívat na <guilabel
+>kartu Pokročilé</guilabel
+> ...</para>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>Krusearcher Advanced</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="search_advanced.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="search_advanced.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>Krusearcher Advanced</phrase
+></textobject>
+  <caption
+><para
+>Krusearcher Advanced.</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+  <figure id="screenshot-search-advanced" float="1">
+    <title
+>Pokročilé hledání</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_advanced.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Pokročilé hledání</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Tento snímek okna zobrazuje hledání souborů, jejichž velikost je mezi 10KiB a 150KiB, změněny byly mezi 10. říjnem a 1. listopadem, patří kterémukoli uživateli ve skupině 'nobody' a může je číst a zapisovat do nich kdokoli ze skupiny 'nobody', ale zbytek světa je může pouze číst.</para>
+  <para
+>Karta Pokročilé je rozdělena do tří částí: velikost, datum a vlastnictví.</para>
+  <para>
+    <emphasis role="bold"
+>Velikost</emphasis>
+  </para>
+  <para
+>Umožňuje zvolit rozmezí velikosti souboru, který hledáte. Zatrhnutím přepínačů můžete hledat soubor, který je větší než XXX bajtů (nebo KB a nebo MB) nebo menší než XXX bajtů. Zatrhnutím obou přepínačů hledáte soubor, jehož velikost je větší než XXX, ale menší než YYY.</para>
+  <para>
+    <emphasis role="bold"
+>Datum</emphasis>
+  </para>
+  <para
+>Tato část nabízí tři různé způsoby určení kritéria data: <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Změněno mezi</guilabel
+>: Umožňuje zadat dvě data. &krusader; bude hledat soubory s datem změny mezi prvním a druhým datem, včetně. <note
+> <para
+>Můžete kliknout na ikonu s datem (vedle vstupních polí), abyste otevřeli standardní okno s daty - které umožňuje jednoduše procházet kalendářem a vyhledat požadované datum. Kliknutí na datum zavře okno a datum se objeví ve vstupním poli.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Nezměněno po</guilabel
+>: Zvolením této možnosti &krusader; vyhledá soubory, které NEBYLY změněny po zadaném datu, což je stejné jako hledání souborů starších než zadané datum.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Změněno během posledních / Nezměněno během posledních</guilabel
+>: V těchto vstupních polích nezadáváte datum, ale číslo. Toto číslo odpovídá dnům/týdnům/měsícům (podle toho, co zvolíte ve vedlejších rozbalovacích seznamech). Zadáním čísla 5 v horním vstupním poli, bude &krusader; hledat soubory, které byly změněny v posledních 5 dnech. Zadáním čísla 2 do dolního vstupního pole bude &krusader; hledat soubory, které NEBYLY změněny v posledních 2 dnech. Kombinací obou možností budou hledány soubory, které byly změněny v posledních 5 dnech, ale NEBYLY změněny v posledních 2 dnech.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para>
+    <emphasis role="bold"
+>Vlastnictví</emphasis>
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Patří uživateli/skupině</guilabel
+>: Zatrhnutím odpovídajícího přepínače můžete hledat soubory, které patří určitému uživateli a/nebo skupině. Rozbalovací seznamy obsahují všechna jména uživatelů a názvy skupin v systému, stačí jen vybrat jednu položku.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Práva</guilabel
+>: Jsou rozdělena na části vlastník, skupina a vše - to umožňuje zvolit určitá práva pro hledaný soubor. Můžete zvolit určitá práva pro vlastníka, skupinu a pro ostatní nebo jakoukoli kombinaci. Znak otazník (?) je speciální znak - což znamená, že je platné jakékoli oprávnění.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Snímek okna uvedený výše (v části Vlastnictví) popisuje hledání souborů, které patří kterémukoli uživateli ze skupiny 'users', číst a zapisovat do nich, ale ne spouštět, může kterýkoli uživatel ze skupiny, číst, ale ne zapisovat a spouštět, může zbytek světa a má neznámého vlastníka.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Výsledky</emphasis>
+  </para>
+  <para
+>Kliknutím na tlačítko <guibutton
+>Výsledky</guibutton
+> začne hledání a otevře se okno Výsledky. Zde můžete vidět průběh a výsledky činnosti hledání. Chcete-li, můžete činnost hledání zastavit pomocí tlačítka <guibutton
+>Zastavit</guibutton
+>. V seznamu výsledků vyberte soubor a stiskněte klávesu <keycap
+>F3</keycap
+> / <keycap
+>F4</keycap
+>, abyste si soubor prohlédli/upravili, nebo použijte nabídku pravého tlačítka myši. Kliknete-li na nalezenou položku a není-li vybraná položka v adresáři současného panelu, adresář aktivního panelu bude změněn. Okno Výsledky podporuje přetažení položek do jiných oken a kopírování do schránky (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). Když zavřete okno modulu KruSearcher, vybraná položka je označena v aktivním panelu.</para>
+  <para>
+    <emphasis role="bold"
+>Vypsat do panelu</emphasis>
+  </para>
+  <para
+>Kliknete-li na tlačítko <guibutton
+>Vypsat do panelu</guibutton
+>, výsledky jsou poté zobrazeny, &krusader; se pak dotáže na název. Tento název bude použit pro kartu s výsledky v panelu se seznamem, která obsahuje vyhledané výsledky. Se soubory v nové kartě můžete provádět jakoukoli operaci. Nástrojová lišta umístění bude zobrazovat např. <filename
+>virt:/Výsledek hledání 1</filename
+>.</para>
+  <warning>
+    <para
+>Soubory v kartě s výsledky jsou vlastně skutečné soubory. Jestli některý soubor smažete - je smazaný doopravdy!</para>
+  </warning>
+</sect1>

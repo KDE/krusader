@@ -1,0 +1,826 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="synchronizer">
+  <title
+>Synchronisatie</title>
+  <indexterm>
+    <primary
+>Synchronisatie</primary>
+  </indexterm>
+  
+<sect2 id="synchronizer_introduction">
+  <title
+>Inleiding</title>
+  <para
+>Deze functie vergelijkt twee mappen met al hun submappen en toont de verschillen daartussen. Nadat u enkele opties en de functie  <guilabel
+>Vergelijken</guilabel
+> heeft gekozen kunt u de bestanden en mappen synchroniseren. Een paneel kan een &FTP; server zijn. Vergeet niet de optie <guilabel
+>Inhoud vergelijken</guilabel
+> als de bestandsgroottes gelijk zijn. Kies <menuchoice
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Mappen synchroniseren</guimenuitem
+> </menuchoice
+> of <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> voor het starten van dit onderdeel. De <link linkend="konfig-color"
+>kleuren</link
+> zijn instelbaar. De synchronisator heeft zijn eigen <link linkend="synchronizer_keybindings"
+>sneltoetsen</link
+>. </para>
+  <note>
+    <para
+>Voor lokale bestanden: De synchronisator wijzigt de datuminformatie naar de originele gegevens.</para>
+  </note>
+  <figure id="screenshot-syncdir" float="1">
+    <title
+>Synchronisatie</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="syncdir.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Synchronisatie</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para>
+  <orderedlist>
+    <title
+>Procedure:</title>
+    <listitem>
+      <para
+>Stel de <guilabel
+>Linker map</guilabel
+> en de <guilabel
+>Rechter map</guilabel
+> in, die u wilt vergelijken.</para>
+    </listitem>
+    <listitem>
+      <para
+>Stel de optionele <guilabel
+>Bestandsfilter</guilabel
+>, <guilabel
+>Algemene filters</guilabel
+> en <guilabel
+>Geavanceerde filters</guilabel
+> in. De <guilabel
+>Algemene filters</guilabel
+> hebben ook de optie <guilabel
+>Niet zoeken in</guilabel
+> waarmee u mappen uitsluit bij het vergelijken.</para>
+    </listitem>
+    <listitem>
+      <para
+>Stel in de <link linkend="synccomp_checkb_options"
+>Opties voor keuzevakjes</link
+>: <guilabel
+>Recursief in submappen</guilabel
+>, <guilabel
+>Symbolische koppelingen volgen</guilabel
+>, <guilabel
+>Inhoud vergelijken</guilabel
+>, <guilabel
+>Datum negeren</guilabel
+>, <guilabel
+>Asymmetrisch</guilabel
+> en <guilabel
+>Negeer Kapitaal/onderkast</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Klik op de knop <guibutton
+>Vergelijken</guibutton
+> om de mappen te vergelijken.</para>
+    </listitem>
+    <listitem>
+      <para
+>Door gebruik van <link linkend="synccomp_show_options"
+>Opties tonen</link
+>, kunt u bepaalde bestandstypen wel of niet uitsluiten. De bestanden die niet op de lijst voorkomen, worden niet gesynchroniseerd.</para>
+    </listitem>
+    <listitem>
+      <para
+>Indien gewenst, kunt u de door het vergelijkingsprogramma ingestelde <guilabel
+>Taak</guilabel
+> opdrachten met het <link linkend="synccomp_right-click"
+>rechtsklikken menu</link
+> wijzigen.</para>
+    </listitem>
+    <listitem>
+      <para
+>Als u met de <guibutton
+>Vergelijking</guibutton
+>-resultaten eens bent, dan kunt u op de knop  <guibutton
+>Synchroniseren</guibutton
+> klikken om het synchroniseren-dialoogvenster te openen.</para>
+    </listitem>
+    <listitem>
+      <para
+>Nadat u de keuzes voor de <link linkend="synchronizer"
+>Synchronisator</link
+> heeft gemaakt, kunt u op de knop <guibutton
+>Start</guibutton
+> drukken om het synchronisatie-proces te starten.</para>
+    </listitem>
+  </orderedlist
+>Een gedetailleerde uitleg van alle mogelijkheden en knoppen vindt u in de volgende tekst.</para>
+
+</sect2>
+
+<sect2 id="synchronizer_comparator">
+  <title
+>Vergelijkingsprogramma</title
+>  
+
+  <variablelist>
+    <varlistentry>
+      <term
+>Paneelelementen</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Linker map</guilabel
+>: de basis map aan de linker kant.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Rechter map</guilabel
+>: de basis map aan de rechterkant.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Bestandsfilter</guilabel
+>: Filtert de bestandsnaam tijdens het synchroniseren. &eg; <literal role="extension"
+>*.png</literal
+> selecteert alleen bestanden met namen die eindigen op <literal role="extension"
+>.png</literal
+>. Mappen zijn zichtbaar indien de naam eindigt op <literal role="extension"
+>.png</literal
+> of als in de map bestanden aanwezig zijn die eindigen op <literal role="extension"
+>.png</literal
+>. Voorbeeld met meerdere include/exclude: <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+> omvat <literal role="extension"
+>*.cpp *.h</literal
+> en sluit uit <literal role="extension"
+>*.moc.cpp</literal
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Algemene filters</guilabel
+>: Zoeken naar, tekst die bevat</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Geavanceerde filters</guilabel
+>: grootte, datum, eigenaar</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <variablelist>
+    <varlistentry>
+      <term
+>Criteria voor filteren van bestandsnamen</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>U mag  jokertekens gebruiken. Meerdere patronen worden gescheiden door een spatie (met als betekenis logische OF) waarbij patronen worden uitgezonderd van het zoeken door een pipe symbool (|) te gebruiken. Als het patroon eindigt met een slash (*pattern*/), dan betekent dat de submappen en de bestanden daarin ook op dat patroon worden doorzocht.</para>
+          </listitem>
+          <listitem>
+            <para
+>patroon - houdt in dat alle bestanden/mappen worden opgezocht waarvan de naam met het patroon overeenkomt, recursief zoeken gebeurt ook in alle submappen onafhankelijk van waarde in het patroon.</para>
+          </listitem>
+          <listitem>
+            <para
+>patroon/ - houdt in dat alle bestanden/mappen worden opgezocht waarvan de naam met het patroon overeenkomt, recursief zoeken gebeurt ook/sluit uit in alle submappen waarvan waarde met het patroon overeenkomt.</para>
+          </listitem>
+          <listitem>
+            <para
+>U kunt aanhalingstekens gebruiken bij namen met spaties. Filter <quote
+>Program Files</quote
+> zoekt die bestanden/mappen waarvan de naam <filename
+>Program Files</filename
+> is.</para>
+          </listitem>
+          <listitem>
+            <para
+>Voorbeelden:</para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.o</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.h *.c??</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>* | CVS/ .svn/</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Opmerking: de zoekterm 'tekst' is equivalent met '*tekst*'.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_checkb_options">
+      <term
+>Opties voor keuzevakjes</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Recursief in submappen</guilabel
+>: De synchronisator zoekt ook in de submappen bij het vergelijken.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Symbolische koppelingen volgen</guilabel
+>: De synchronisator volgt de symbolische koppelingen naar mappen (niet de bestanden!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Inhoud vergelijken</guilabel
+>: als de bestandsgroottes gelijk zijn, wordt ook de inhoud vergeleken.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Datum negeren</guilabel
+>: Negeert informatie over de datum (handig bij &FTP;, smb, archief, ... ) de informatie over de datum is *alleen* relevant bij het lokale bestandssysteem.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Asymmetrisch</guilabel
+>: De <guilabel
+>Linker map</guilabel
+> is de doelmap, de <guilabel
+>Rechter map</guilabel
+> is de bronmap. Dit onderdeel synchroniseert de inhoud van de linker map met de rechter map. <itemizedlist
+> <listitem
+> <para
+>Een bestand dat alleen aan de linkerzijde bestaat, zal worden verwijdert.</para
+> </listitem
+> <listitem
+> <para
+>Een bestand dat alleen aan de rechterzijde bestaat, zal naar links worden gekopieerd.</para
+> </listitem
+> <listitem
+> <para
+>De bestanden die als gelijk worden beschouwd, worden niet aangeraakt.</para
+> </listitem
+> <listitem
+> <para
+>Die bestanden die als verschillend worden beschouwd, worden naar links gekopieerd. Wees voorzichtig hiermee!</para
+> </listitem
+> </itemizedlist
+>Dit onderdeel is handig als de informatie over de datum onbruikbaar is, of om de linker map te synchroniseren met de inhoud van een bestand server (zoals een download). Dit is als alternatief handig bij het maken van een backup van de rechter map naar de linker map. LET OP: gebruik deze optie NIET om een desktop met een notebook te synchroniseren (&eg; bestanden die alleen aan de linkerzijde bestaan, zullen worden verwijderd!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Resultaten schuiven</guilabel
+>: Dit is voor zeer langzame &FTP; servers, ... Als de synchronisator klaar is met het vergelijken van een bestand, dan voegt het meteen het bestand toe aan het eind van de lijst en verschuift indien nodig het venster. Dit is belangrijk, als u wilt weten wat de synchronisator aan het doen is. Als de &FTP;-server langzaam is, dan kan het vergelijken van een map veel tijd vragen. Door deze optie in te schakelen, kunt u zien dat het vergelijkingsprogramma nog steeds <quote
+>leeft</quote
+>, maar langzaam. Bij snelle systemen, kan het de snelheid van vergelijken een beetje verminderen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Negeer Kapitaal/onderkast</guilabel
+>: Hoofdletterongevoelig bestandsnamen vergelijken, dit is handig bij het synchroniseren met &Windows; bestandssystemen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Verborgen bestanden negeren</guilabel
+>: Negeert bestanden die met een punt beginnen.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <para
+>Als u alles hierboven genoemd heeft uitgevoerd, dan kunt u klikken op de knop <guibutton
+>Vergelijken</guibutton
+> om de mappen te vergelijken, u krijgt de resultaten te zien in de <guilabel
+>Bestandslijst</guilabel
+>.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Bestandenlijst</term>
+      <listitem>
+        <para
+>De <guilabel
+>Bestandenlijst</guilabel
+> heeft de volgende kolommen: <quote
+>Linker naam| Linker grootte | Linker tijd | Taak | Rechter tijd | Rechter grootte | Rechter naam</quote
+>. Hier kunt u de vergelijkingsresultaten controleren en zo nodig de synchronisatie-acties wijzigen. De tekstkleur geeft de door het vergelijkingsprogramma aangegeven standaard kopieer-richting aan. <itemizedlist
+> <listitem
+> <para
+>Groen: kopieert van links naar rechts.</para
+> </listitem
+> <listitem
+> <para
+>Blauw: kopieert van rechts naar links of verwijdert in de asymmetrische modus.</para
+> </listitem
+> <listitem
+> <para
+>Rood: Bestanden die bij de opgegeven criteria verschillend zijn (geen kopieer richting).</para
+> </listitem
+> <listitem
+> <para
+>Zwart: Bestanden die identiek zijn (geen kopieer richting).</para
+> </listitem
+> </itemizedlist
+> Het dubbelklikken op een bestand roept de functie &krusader;s <guilabel
+>Inhoud vergelijken</guilabel
+> aan. De Taken (&lt;=&gt;) kolom definieert de standaard kopieer richting, welke u indien nodig kunt veranderen. Het resultatenvenster ondersteund het verslepen van items naar andere vensters ( versleep [links], &Shift;+versleep [rechts] ) en kopieer links/rechts geselecteerde items naar klembord (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). </para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><guilabel
+>Bestandenlijst</guilabel
+>: Taken (&lt;=&gt;) kolom</term>
+      <listitem>
+        <para
+>Deze kolom toont de geplande taak voor de synchronisator, deze taak kunt u wijzigen via het <link linkend="synccomp_right-click"
+>rechts klikmenu</link
+>.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Kopieert van de linkerzijde naar de rechterzijde. Voor mappen: <command
+>mkdir</command
+> in de rechterzijde.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: De bestanden zijn hetzelfde, doe niets.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: Het bestand is uitgezonderd, of de synchronisator weet niet wat te doen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: Kopieert van de rechterzijde naar de linkerzijde. Voor mappen: <command
+>mkdir</command
+> in de linkerzijde.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>DEL</guibutton
+>: verwijdert bestanden van de rechterzijde.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_show_options">
+      <term
+>Opties tonen</term>
+      <listitem>
+        <para
+>Hier kunt u bepaalde bestandstypen wel of niet uitsluiten. De bestanden die niet op de lijst voorkomen, worden niet gesynchroniseerd.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Het kopiëren van links naar rechts in-/uitschakelen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: het in een lijst tonen van identieke bestanden in-/uitschakelen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: het in een lijst tonen van uitgesloten/ <quote
+>onbekend wat te doen</quote
+> bestanden in-/uitschakelen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: Het kopiëren van rechts naar links in-/uitschakelen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Vernietigen</guibutton
+>: Het verwijderen van bestanden linkerzijde in-/uitschakelen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Dubbele</guibutton
+>: Het toestaan van bestanden aan beide zijdenin-/uitschakelen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Enkelvoudige</guibutton
+>: Het toestaan van bestanden aan een enkele zijdein-/uitschakelen.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Actieknoppen</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Vergelijken</guibutton
+>: Vergelijkt de mappen, u krijgt de resultaten te zien in de <guilabel
+>Bestandslijst</guilabel
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Stoppen</guibutton
+>: Stopt vergelijken.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Synchroniseren</guibutton
+>: Toont een dialoog voor synchroniseren.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Sluiten</guibutton
+>: Sluit het dialoog voor synchroniseren.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>De statusregel kan tonen</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Het aantal gescande mappen tijdens het vergelijken.</para>
+          </listitem>
+          <listitem>
+            <para
+>De bestandsnaam tijdens het vergelijken op inhoud (bij grote bestanden).</para>
+          </listitem>
+          <listitem>
+            <para
+>Het aantal bestanden in de lijst.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_right-click">
+      <term
+>Rechts klik menu in de <guilabel
+>Bestandslijst</guilabel
+></term>
+      <listitem>
+        <para
+>Het rechts klik menu is opgesplitst in drie secties:</para>
+        <para
+>1. wijzig de <guilabel
+>Taak</guilabel
+> opdrachten opgesteld door het vergelijkingsprogramma. Selecteer een of meerdere bestanden. De wijziging is niet alleen op het rechtsgeklikte item van toepassing maar op de hele selectie . Als het geselecteerde item een map is, dan zal de wijziging ook  worden toegepast op al zijn bestanden en submappen.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Mappen Synchroniseren</guibutton
+>: Start synchroniseren.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Uitsluiten</guibutton
+>: Sluit een bestand/map uit van synchroniseren ( taak wijzigt naar != ).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Oorspronkelijke bewerking herstellen</guibutton
+>: Taak wijziging naar het originele resultaat van de vergelijking.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Richting omkeren</guibutton
+>: Taak wijziging ( -&gt; naar &lt;-, en &lt;- naar -&gt; ).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Kopiëren van rechts naar links</guibutton
+>: Taak wijziging naar &lt;-.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Kopiëren van links naar rechts</guibutton
+>: Taak wijziging naar -&gt;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Wissen (links enkelvoudig)</guibutton
+>: Taak wijziging naar DEL.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>2. de selecties wijzigen</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Items selecteren</guibutton
+>: Opent een dialoog waarin u items kunt selecteren. Dit is het dialoog <guimenuitem
+>Groep Selecteren</guimenuitem
+> in het <link linkend="edit-menu"
+>Bewerken menu</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Items deselecteren</guibutton
+>: Opent een dialoog waarin u items kunt deselecteren. Dit is het dialoog <guimenuitem
+>Groep deselecteren</guimenuitem
+>  in het <link linkend="edit-menu"
+>Bewerken menu</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Markering Omkeren</guibutton
+>: Keert de markering van alle items om.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>3. overige (merk op dat u de volgende acties op het rechtsgeklikte bestand en niet op de selectie toepast).</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Links bestand bekijken</guibutton
+>: Start de weergave van het linker bestand.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Rechts bestand bekijken</guibutton
+>: Start de weergave van het rechter bestand.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Bestanden vergelijken</guibutton
+>: Start het diff programma (&eg; &kompare;) voor de bestanden.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Overige knoppen</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Profielen</guibutton
+>: als u dezelfde mappen vaak moet synchroniseren, dan kunt u de instellingen opslaan &eg; include bestanden, exclude bestanden, ... Druk op de knop <guibutton
+>Profielen</guibutton
+>, en u zal synchronisatie-profielen kunnen toevoegen/ laden/ opslaan / verwijderen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Kanten swappen</guibutton
+>: Verwisselt de <guilabel
+>Bestandslijst</guilabel
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Synchroniseren met &kget;</term>
+      <listitem>
+        <para
+>Als u een lokale map wilt synchroniseren met een onstabiele &FTP; server, dan is<application
+>kget</application
+> een veel betere oplossing dan het eenvoudig kopiëren van bestanden. Na het vergelijken kunt u op de lijst met resultaten rechtsklikken en  <guimenuitem
+>Synchroniseren met KGet</guimenuitem
+> selecteren om de synchronisatie te starten, waarna de opgenoemde bestanden  in plaats van &krusader; met   <application
+>kget</application
+> worden gedownload. Natuurlijk moet  <application
+>kget</application
+> wel op uw computer geïnstalleerd zijn om te kunnen gebruiken.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+ 
+</sect2
+>  
+<sect2 id="synchronizer_synchronization">
+  <title
+>Synchronisatie</title
+>  
+
+  <para
+>Na het indrukken van de knop <guibutton
+>Synchroniseren</guibutton
+> opent het dialoogvenster voor synchronisatie.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Keuzevakjes</term>
+      <listitem>
+        <para
+>Hier kunt u de opdrachten voor kopiëren en verwijderen aan de synchronisator bevestigen</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Rechts naar links</guilabel
+>: kopieert X1 bestanden ( Y1 bytes ) in-/uitschakelen van het kopiëren van rechts naar links.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Links naar rechts</guilabel
+>: kopieert X2 bestanden ( Y2 bytes ) in-/uitschakelen van het kopiëren van links naar rechts.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Links</guilabel
+>: verwijdert X3 bestanden ( Y3 bytes ) in-/uitschakelen van het aan de linkerzijde verwijderen.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Overschrijven bevestigen</guilabel
+>: Als u deze optie inschakelt, dan toont Krusader het dialoogvenster <guibutton
+>hernoemen, overslaan, overschrijven, alles overslaan, alles overschrijven</guibutton
+> voordat het bestand wordt overschreven.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Status labels</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Gereed</guilabel
+>: A1/A2 bestanden, B1/B2. Deze regel wijzigt tijdens het synchroniseren en laat zien dat het synchroniseren gereed is met A1 bestanden van A2 ( B1 bytes van B2 ).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Voortgangsbalk</guilabel
+>: Toont de voortgang van de synchronisatie (gebaseerd op bytes).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Actieknoppen</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Start</guibutton
+>: Start de synchronisatie.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Pauzeren/hervatten</guibutton
+>: Pauzeert/hervat de synchronisatie.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Afsluiten</guibutton
+>: Sluit het het synchronisatie-dialoogvenster (en stopt de synchronisatie).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Parallelle synchronisatie</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>U kunt het aantal 'quasi' threads opgeven.</para>
+          </listitem>
+          <listitem>
+            <para
+>Kan de snelheid drastisch verhogen wanneer gesynchroniseerd met langzame &FTP;-servers.</para>
+          </listitem>
+          <listitem>
+            <para
+>Heeft geen invloed op de snelheid van lokale synchronisatie.</para>
+          </listitem>
+          <listitem>
+            <para
+>Tele <quote
+>inhoud vergelijken</quote
+> en <quote
+>mappen vergelijken</quote
+> gebeurt parallel.</para>
+          </listitem>
+          <listitem>
+            <para
+>Tele synchronisatie gebeurt ook parallel, behalve de opdracht <command
+>mkdir</command
+> (<command
+>mkdir</command
+> moet gebeuren voor copy).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+</sect2>
+</sect1>

@@ -1,0 +1,2275 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="menu-commands">
+  <title
+>Menuopdrachten</title>
+  <indexterm>
+    <primary
+>Commando's</primary>
+    <secondary
+>Menu</secondary>
+  </indexterm>
+  <sect1 id="file-menu">
+    <title
+>Menu Bestand</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F4</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Nieuw tekstbestand...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Creëert een nieuw tekstbestand in de geselecteerde map, tenzij u een andere map opgeeft. Het nieuwe bestand is na de aanmaak voor bewerking geopend.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F7</keycap
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Nieuwe map</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Maakt een nieuwe map aan in de huidige map.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Nieuwe symbolische koppeling...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Creëert een symbolische koppeling in de geselecteerde map</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F3</keycap
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Bestand bekijken</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent het geselecteerde bestand voor <link linkend="kredit"
+>weergave</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F4</keycap
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Bestand bewerken</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent het geselecteerde bestand voor <link linkend="kredit"
+>bewerken</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F5</keycap
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Naar ander paneel kopiëren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Kopieert de geselecteerde bestanden of mappen naar het andere paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F6</keycap
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Verplaatsen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent een dialoog voor het <link linkend="copying"
+>verplaatsen</link
+> van de gemarkeerde bestanden of mappen naar een opgegeven locatie.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Inpakken...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Creëert een <link linkend="pack-archive"
+>nieuw archief</link
+> met alle gemarkeerde bestanden en mappen in het actieve paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Uitpakken...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="unpacking-archives"
+>Pakt uit</link
+> alle gemarkeerde bestanden in het actieve paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Archief testen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="test-archive"
+>Tests het archief</link
+> op corruptie.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Op inhoud vergelijken...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vergelijkt twee gemarkeerde bestanden op inhoud - een van elk paneel via een extern grafisch diff programma. Standaard is dit &kompare;, maar u kunt ook  &eg; <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> of <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> gebruiken, u kunt het wijzigen in de <link linkend="konfig-dependencies"
+>Pagina voor afhankelijkheden in Konfigurator</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="multi_rename">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F2</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Meervoudig hernoemen...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Dit keuzemenu start <ulink url="https://www.kde.org/applications/utilities/krename/"
+><application
+>Krename</application
+></ulink
+>, een zeer krachtig extern batch hernoem-programma.</para>
+          <itemizedlist>
+            <title
+>Mogelijkheden van Krename</title>
+            <listitem>
+              <para
+>Een verzameling bestanden hernoemen op basis van een set regels</para>
+            </listitem>
+            <listitem>
+              <para
+>Een verzameling bestanden kopiëren/verplaatsen naar een andere map</para>
+            </listitem>
+            <listitem>
+              <para
+>Bestandsnamen omzetten naar hoofdletters/kleine letters</para>
+            </listitem>
+            <listitem>
+              <para
+>Cijfers aan bestandsnamen toevoegen</para>
+            </listitem>
+            <listitem>
+              <para
+>Gedeeltes van bestandsnaam zoeken en vervangen</para>
+            </listitem>
+            <listitem>
+              <para
+>Hernoemt MP3/OGG Vorbis bestanden gebaseerd op hun ID3 tags</para>
+            </listitem>
+            <listitem>
+              <para
+>Toegangsdatums en wijzigingsdatums instellen</para>
+            </listitem>
+            <listitem>
+              <para
+>Toegangsrechten en bestandseigendom wijzigen</para>
+            </listitem>
+            <listitem>
+              <para
+>Een plugin API waarmee u de mogelijkheden van KRename kan uitbreiden</para>
+            </listitem>
+            <listitem>
+              <para
+>Mappen recursief hernoemen</para>
+            </listitem>
+            <listitem>
+              <para
+>Ondersteuning voor KFilePlugins</para>
+            </listitem>
+            <listitem>
+              <para
+>Hernoemen ongedaan maken</para>
+            </listitem>
+            <listitem>
+              <para
+>En nog veel meer...</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Controlesom aanmaken...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="checksum"
+>Controlesom aanmaken</link
+> voor bestand(en) en/of map(pen).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Controlesom verifiëren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para>
+            <link linkend="checksum"
+>Controlesom nazien</link>
+          </para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Bestand splitsen...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>De functie <link linkend="splitter"
+>Bestand splitsen</link
+> splitst een bestand op in meerdere kleinere bestanden zodat u het op meerdere kleinere media kunt opslaan (zoals <hardware
+>diskettes, zip-drives, ...</hardware
+>) of het per e-mail kunt versturen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Bestanden Combineren...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>De functie <link linkend="splitter"
+>Bestanden Combineren</link
+> combineert meerdere bestanden in een bestand nadat de functie <link linkend="splitter"
+>Bestand splitsen</link
+> is gebruikt.</para>
+        </listitem>
+      </varlistentry>
+      <!--vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Afsluiten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sluit &krusader; af en leegt de tijdelijke map, waarbij hetzelfde gebeurt als wanneer u op de toets <keycap
+>F10</keycap
+> drukt.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="edit-menu">
+    <title
+>Menu Bewerken</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Knippen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Knipt</link
+> het geselecteerde bestand(en) uit en plaatst deze op het klembord zodat u het naar een andere locatie kunt verplaatsen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Afsluiten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Kopieert</link
+> het geselecteerde bestand(en) naar het klembord zodat u het naar een andere locatie kunt verplaatsen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Plakken</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Plakt</link
+> de eerder geknipte of gekopieerde items van het klembord in de geselecteerde map.</para>
+        </listitem>
+      </varlistentry>
+<!--
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycap
+>F2</keycap>
+            </shortcut>
+            <guimenu
+>Edit</guimenu>
+            <guimenuitem
+>Rename</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          <link linkend="renaming"
+>Renames</link
+> the currently
+          selected file.</para>
+        </listitem>
+      </varlistentry
+>-->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F8</keycap
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Verwijderen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="deleting"
+>Verwijdert</link
+> het geselecteerde bestand(en).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Groep Selecteren...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent een dialoog waarin u in het geselecteerde paneel de bestanden kunt selecteren. In het dialoog<guilabel
+>Zoeken naar</guilabel
+> plaatst u de zoekopdracht. U kunt hier een bestandsnaam, een joker ( <literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> &etc;) of beide invoeren - gescheiden door een spatie. Het gebruik van <literal
+>'text'</literal
+> geeft hetzelfde resultaat als met   <literal
+>'*text*'</literal
+>. U kunt bestanden uitsluiten van de zoekopdracht door  '|' (&eg; <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>) te gebruiken.Met behulp van <link linkend="profiles"
+>profielbeheer</link
+> kunt u uw selecties bewaren voor toekomstig gebruik. Dubbelklikken op een profiel is hetzelfde als de selectie weer invoeren en op de knop <guibutton
+>OK</guibutton
+> drukken. Verdere mogelijkheden met het dialoogvenster <guilabel
+>Groep Selecteren</guilabel
+> kunt u vinden in de <link linkend="krusearcher"
+>Zoek dialoog</link
+>, wat in feite bijna hetzelfde dialoog is.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Groep deselecteren...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Het tegenovergestelde van <guimenuitem
+>Groep Selecteren</guimenuitem
+>. De bestanden in het geselecteerde paneel die met het patroon overeenkomen zullen worden gedeselecteerd.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Alles selecteren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Selecteert alle bestanden in het geselecteerde paneel. U kunt ook alle mappen selecteren door de optie <guilabel
+>Mappen automatisch selecteren</guilabel
+> op de <link linkend="konfig-panel"
+>Konfigurator Paneel pagina</link
+> in te schakelen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Alles deselecteren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Deselecteert alle bestanden in het geselecteerde paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Selectie omkeren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Keert de selectie van alle bestanden in het geselecteerde paneel om (&ie; geselecteerde bestanden worden niet geselecteerd en ongeselecteerde bestanden worden juist wel geselecteerd).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Selectie herstellen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Herstelt de selectie van eerder gedeselecteerde items.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Zoeken in map...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schakelt de functie <link linkend="quicksearch"
+>snelzoeken</link
+> van &krusader; om.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Mappen vergelijken</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schakelt de functie <link linkend="compare-dir"
+>Mappen vergelijken</link
+> van &krusader; om.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Setup vergelijken</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stelt de functie <guimenuitem
+>Mappen vergelijken</guimenuitem
+> in.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Nieuwer en enkelvoudig Markeren</guimenuitem
+> (standaard)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Enkelvoudig selecteren </guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Nieuwer selecteren</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Verschillend en enkelvoudig selecteren</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Verschillen selecteren</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Benodigde Ruimte Berekenen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="calculate"
+>Berekent benodigde ruimte</link
+> voor bestanden en mappen, archieven en bestandssystemen op servers.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Return</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Eigenschappen...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent een dialoogvenster met de eigenschappen van het geselecteerde bestand. (KP refereert aan Key Pad.)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="go-menu">
+    <title
+>Het menu Ga naar</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Up;</keycombo
+> </shortcut
+> <guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Omhoog</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Gaat naar het bovenliggende map van de geselecteerde paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Left;</keycombo
+> </shortcut
+> <guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Terug</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Gaat naar de eerder bekeken map in het geselecteerde paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Right;</keycombo
+> </shortcut
+> <guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Vooruit</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Gaat naar het volgende te bekijken map in het geselecteerde paneel. Komt alleen beschikbaar als eerst <menuchoice
+><guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Terug</guimenuitem
+></menuchoice
+> was gebruikt.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Home;</keycombo
+> </shortcut
+> <guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Persoonlijke map</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Gaat naar de Persoonlijke map van de huidige gebruiker.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; &Backspace;</keycombo
+> </shortcut
+> <guimenu
+>Ga</guimenu
+> <guimenuitem
+>Hoofdmap</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Gaat naar de hoofdmap van het systeem.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ga</guimenu
+> <guimenuitem
+>Populaire &URL;'s</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Toont een lijst met vaak bezochte mappen waarmee u er naar toe kunt navigeren door erop te dubbelklikken.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ga</guimenu
+> <guimenuitem
+>Terugspringspunt hier instellen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stelt de geselecteerde map in als <quote
+>terugspring</quote
+>punt. Om makkelijk naar deze map te navigeren, selecteert u het commando <guimenuitem
+>Terug springen</guimenuitem
+> uit het menuitem <guimenu
+>Ga</guimenu
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ga</guimenu
+> <guimenuitem
+>Terugspringen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Gaat terug naar een eerder <quote
+>terugspring</quote
+>punt.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="view-menu">
+    <title
+>Menu Beeld</title>
+    <para
+>De acties in dit submenu hebben meestal effect op het huidige &krusader;-sessie. Als u permanente wijzigingen wilt maken, gebruik dan <link linkend="konfigurator"
+>Opstart pagina in Konfigurator</link
+>.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Inzoomen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vergroot de weergave.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Uitzoomen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Verkleint de weergave.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Standaard zoom</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geeft de standaard weergave.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Detail weergave</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Toont de bestandsnamen, bestandsgroottes, datum en tijdstip van aanmaak en hun attributen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Korte weergave</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Toont alleen de bestandsnamen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Verborgen bestanden tonen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schakelt de optie in voor het tonen van verborgen bestanden in de panelen van &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F10</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Alle Bestanden</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schakelt alle filters uit en toont alle bestanden.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F12</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Aangepast</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Hiermee kunt u een eigen filter in het paneel van &krusader; toepassen. U krijgt alleen bestanden en mappen te zien die overeenkomen met het filter. Vergeet niet om na gebruik het filter weer uit te schakelen, anders kunnen bestanden onzichtbaar blijven.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Voorbeelden tonen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>indien ingeschakeld, krijgt u voorbeelden van de inhoud van de bestanden in het geselecteerde paneel als pictogram te zien.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Remote Taalcodering selecteren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Selecteert een remote taalcodering voor <link linkend="remote-connections"
+>Verbindingen naar servers</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Herladen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ververst de inhoud van het geselecteerde paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Instellingen als standaard opslaan</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Hiermee kunt u de weergave-instellingen van de huidige tab als standaard opslaan voor nieuwe gevallen van deze soort weergave.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Instellingen op andere tabbladen toepassen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Hiermee kunt u de weergave-instellingen van de huidige tab toepassen op de andere tabs.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="useractions-menu">
+    <title
+>Menu Gebruikersacties</title>
+    <para
+>U kunt uw eigen menu-items hier toevoegen door uw eigen <link linkend="useractions"
+>Gebruikersacties</link
+> te definiëren. </para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Gebruikersacties</guimenu
+> <guimenuitem
+>Beheer gebruikersacties...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent de beheerder van <link linkend="useractions"
+>gebruikersacties</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>A</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acties van gebruikers</guimenu
+><guisubmenu
+>Multimedia</guisubmenu
+> <guimenuitem
+>In Amarok in de wachtrij zetten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Voegt geselecteerde item(s) toe aan de afspeellijst van &amarok;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; </keycombo
+> </shortcut
+> <guimenu
+>Acties van gebruikers</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Gelijke paneelgrootte</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Stelt de verhouding tussen de twee panelen in op 50/50.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;<keycap
+>E</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acties van gebruikers</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Als root bewerken</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Hiermee kunt u met <application
+>kwrite</application
+> een bestand bewerken waarbij u root-permissies heeft.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>M</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acties van gebruikers</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Aankoppelen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Koppelt een nieuw bestandssysteem aan.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>C</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acties van gebruikers</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Huidige item naar klembord kopiëren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Kopieert de huidige itemnaam naar het klembord.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta;<keycap
+>F5</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acties van gebruikers</guimenu
+><guisubmenu
+>Systeem</guisubmenu
+> <guimenuitem
+>Reservekopie van huidige maken</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Maakt een backup van het geselecteerde bestand in de huidige map en vraagt daarbij aan de gebruiker voor een nieuwe bestandsnaam. Standaard wordt <literal role="extension"
+>.old</literal
+> aan de originele bestandsnaam toegevoegd.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>1</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acties van gebruikers</guimenu
+><guisubmenu
+>Gebruikersinterface</guisubmenu
+> <guimenuitem
+>Op naam sorteren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Als u dit inschakelt, dan wordt op bestandsnaam gesorteerd in het &krusader;-paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>2</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acties van gebruikers</guimenu
+><guisubmenu
+>Gebruikersinterface</guisubmenu
+> <guimenuitem
+>Op extensie sorteren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Als u dit inschakelt, dan wordt op extensie (het gedeelte van de bestandsnaam na de laatste '.') gesorteerd in het &krusader;-paneel. Dit is handig om hetzelfde type bestanden samen te groeperen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>3</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acties van gebruikers</guimenu
+><guisubmenu
+>Gebruikersinterface</guisubmenu
+> <guimenuitem
+>Op grootte sorteren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Als u dit inschakelt, dan wordt op bestandsgrootte gesorteerd in het &krusader;-paneel. Dit is handig voor het vaststellen wat de grootste bestanden in een bepaalde map zijn.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>4</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Acties van gebruikers</guimenu
+><guisubmenu
+>Gebruikersinterface</guisubmenu
+> <guimenuitem
+>Op wijzigingstijdstip sorteren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Als u dit inschakelt, dan wordt op laatste wijzigingstijdstip gesorteerd in het &krusader;-paneel. Dit is handig voor het vinden van bestanden waaraan u recent heeft gewerkt.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="tools-menu">
+    <title
+>Menu Hulpmiddelen</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Zoeken...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent <link linkend="krusearcher"
+>KruSearcher</link
+> - de zoekmodule van &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Lokaliseren...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent de  &GUI; frontend van <link linkend="locate"
+>Locate</link
+> voor snel bestanden zoeken.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Mappen synchroniseren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>De functie <link linkend="synchronizer"
+>Mappen synchroniseren</link
+> vergelijkt de linker en rechter panelen en toont de verschillen daartussen. Nadat het vergelijken is uitgevoerd, kunt u mappen/bestanden verplaatsen zodat u ze synchroniseert.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>MountMan...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent submenu met te openen items <link linkend="mount-man"
+>MountMan</link
+> of mount/unmount verschillen aankoppelpunten.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Schijfgebruik...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent <link linkend="diskusage"
+>Schijfgebruik</link
+>.</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Nieuwe Net Verbinding</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent het dialoogvenster <link linkend="remote-connections"
+>Nieuwe Net Verbinding</link
+>  zodat u een &FTP;, SMB, FISH of SFTP verbinding met een externe host kunt opbouwen. Als u de gebruikersnaam en wachtwoord leeg laat dan logt u in als  anonymous. U kunt voor deze externe sessies een <link linkend="bookman"
+>Bladwijzer</link
+> aanmaken.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Verbinding verbreken</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Beëindigt de <link linkend="remote-connections"
+>externe verbinding</link
+> in het huidige paneel en gaat terug naar het pad in de beginsituatie.</para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Terminal starten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent in de standaard map (meestal uw persoonlijke map) een terminalvenster . U kunt uw favoriete terminal programma in de <link linkend="konfig-general"
+>Algemene pagina van Konfigurator</link
+> instellen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="root-mode">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>K</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Krusader in root modus starten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Start &krusader; op in de <link linkend="root-mode"
+>Root modus</link
+> op deze locatie. &krusader; in de Root modus vereist standaard  <command
+>kdesu</command
+>, als <command
+>kdesu</command
+> niet beschikbaar is of als u de voorkeur geeft aan &eg; <command
+>gksu</command
+> wanneer u <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+> gebruikt dan kan u dit gedrag instellen in de <link linkend="konfig-dependencies"
+>Pagina voor afhankelijkheden in Konfigurator</link
+>.</para>
+          <caution>
+            <para
+>Wees voorzichtig als u &krusader; met de rechten van ROOT gebruikt.</para>
+          </caution>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Prullenbak legen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Leegt de <link linkend="deleting"
+>prullenbak</link
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="window-menu">
+    <title
+>Venstermenu</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Venster</guimenu
+> <guimenuitem
+>Nieuw tabblad</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent een nieuwe tab in het actieve paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Venster</guimenu
+> <guimenuitem
+>Tabblad ver/ontgrendelen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vergrendelt en ontgrendelt de huidige tab in het actieve paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Venster</guimenu
+> <guimenuitem
+>Huidige tab dupliceren</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent een nieuwe tab dat een kopie is van de actieve tab in het actieve paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Venster</guimenu
+> <guimenuitem
+>Huidig tabblad naar de andere kant verplaatsen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Verplaatst het huidige tab naar de andere zijde van het venster.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Venster</guimenu
+> <guimenuitem
+>Huidig tabblad sluiten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sluit het huidige tab in het actieve paneel. Deze commando is alleen beschikbaar als er meer dan een tab in het actieve paneel aanwezig is.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Venster</guimenu
+> <guimenuitem
+>Inactieve tabbladen sluiten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sluit alle behalve het actieve tab in het actieve paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Venster</guimenu
+> <guimenuitem
+>Gedupliceerde tabbladen sluiten</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sluit de gedupliceerde tabs in het actieve paneel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Venster</guimenu
+> <guimenuitem
+>Volgend tabblad</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Gaat naar de volgende tab in het actieve paneel. Deze commando is alleen beschikbaar als er meer dan een tab in het actieve paneel aanwezig is.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Venster</guimenu
+> <guimenuitem
+>Vorig tabblad</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Gaat naar de vorige tab in het actieve paneel. Deze commando is alleen beschikbaar als er meer dan een tab in het actieve paneel aanwezig is.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="c_panel_profiles">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Venster</guimenu
+> <guimenuitem
+>Profielen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent een menu waar u <link linkend="panel_profiles"
+>Paneel profielen</link
+> kunt opslaan en weer laden.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Venster</guimenu
+> <guimenuitem
+>Panelen Verwisselen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Het linker paneel wordt het rechter paneel en visa versa, Alleen de huidige tabs worden omgewisseld.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Venster</guimenu
+> <guimenuitem
+>Kanten swappen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Het complete linker paneel wordt het rechter paneel en visa versa, waarbij alle tabs worden omgewisseld.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Venster</guimenu
+> <guimenuitem
+>Verticale Modus</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schakel het <link linkend="list_panel"
+>Paneel</link
+> om tussen de horizontale en de verticale modus.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Venster</guimenu
+> <guimenuitem
+>Volledig scherm van terminalemulator omschakelen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schakelt de terminalemulator om naar volledig scherm. Deze keuzemogelijkheid is alleen beschikbaar als <guilabel
+>Terminal Emulator Tonen</guilabel
+> is ingeschakeld.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Venster</guimenu
+> <guimenuitem
+>Positie opslaan</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Slaat het huidige formaat en locatie op van het hoofdvenster van &krusader; . Deze actie kunt u automatiseren door <guilabel
+>Instellingen van laatste positie, grootte en paneel opslaan</guilabel
+> in de <link linkend="konfigurator"
+>Opstart pagina in Konfigurator</link
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="settings-menu">
+    <title
+>Menu Instellingen</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guisubmenu
+>Werkbalken</guisubmenu
+> <guimenuitem
+>Hoofdwerkbalk tonen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Indien ingeschakeld, is de <link linkend="mainwindow"
+>Hoofdwerkbalk</link
+> te zien.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guisubmenu
+>Werkbalken</guisubmenu
+> <guimenuitem
+>Taakwerkbalk tonen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Indien ingeschakeld, is de <link linkend="job_toolbar"
+>Taakwerkbalk</link
+> te zien.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guisubmenu
+>Werkbalken</guisubmenu
+> <guimenuitem
+>Actiewerkbalk tonen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Indien ingeschakeld, is de <link linkend="actions_toolbar"
+>Actiewerkbalk</link
+> te zien.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Statusbalk tonen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Indien ingeschakeld, is de <link linkend="mainwindow"
+>Statusbalk</link
+> te zien.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Balk met FN-toetsen tonen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Indien ingeschakeld, is de <link linkend="fnkeys"
+>Balk met Functietoetsen</link
+> te zien.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Terminalemulator tonen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Indien ingeschakeld, is de <link linkend="cmdline"
+>Terminalemulator</link
+> te zien.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Commandoregel tonen</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Indien ingeschakeld, is de <link linkend="cmdline"
+>Commandoregel</link
+> te zien.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>instellingen</guimenu
+> <guimenuitem
+>Instellingen voor modus uitvoeren van commando's</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Hier kunt u de modus instellen waarmee commando´s worden uitgevoerd. U kunt uit de volgende keuzemogelijkheden kiezen:</para>
+	  <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Starten en vergeten</guimenuitem
+>: start de uitvoering op zonder op het resultaat te wachten.</para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Aparte standaard error (stderr) en standaard uit (stdout) tonen</guimenuitem
+>: toont de uitvoer naar stdout en stderr in aparte panelen. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Gemengde standaard error (stderr) en standaard uit (stdout) tonen</guimenuitem
+>: toont de uitvoer naar stdout en stderr in een enkele paneel (standaard). </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>In nieuwe terminal starten</guimenuitem
+>: voert de opdracht uit in een nieuw terminalvenster. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Naar ingebedde terminalemulator zenden</guimenuitem
+>: stuurt de opdracht naar de ingebedde terminalemulator. </para>
+            </listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+      <varlistentry id="job-queue-mode">
+        <term>
+          <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Takenwachtrijmodus</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Schakelt de modus <link linkend="queue"
+>Wachtrijbeheerder</link
+> om. Indien geactiveerd en dan indrukken van <keycap
+>F2</keycap
+> of de overeenkomstige knop in de dialoog kopiëren/verplaatsen, zal de taak onmiddellijk starten zelfs als er actieve taken in de wachtrij zijn. Indien niet geactiveerd zal de taak in de wachtrij gezet worden als de wachtrij niet leeg is. Anders zal de taak onmiddellijk worden gestart. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="configure-shortcuts">
+        <term>
+          <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Sneltoetsen instellen...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <indexterm>
+            <primary
+>Instellen</primary>
+            <secondary
+>Sneltoetsen</secondary>
+          </indexterm>
+          <para
+>Opent een dialoogvenster waarin u de sneltoetsen van &krusader; kunt instellen.</para>
+          <para
+>Met de knoppen <guibutton
+>Sneltoetsen importeren</guibutton
+> en <guibutton
+>Sneltoetsen exporteren</guibutton
+> kunt u sneltoets profielen laden en opslaan. Hiermee kunt u &krusader; de sneltoetsen van <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+>, foo-commander, of uw eigen sneltoetsen geven. De enige beperking is dat u de algemene &plasma;-sneltoetsen en enkele &krusader;-sneltoetsen niet kan wijzigen, met daarnaast enkele mogelijkheden in foo-commander die we niet hebben of niet nodig vinden. De sneltoetsen worden opgeslagen in <filename
+>/usr/share/krusader</filename
+>, <filename
+>foo.keymap.info</filename
+> heeft de beschrijving, <filename
+>foo.keymap</filename
+> is een ini-bestand waarin de sneltoetsen zijn opgeslagen. Tot &krusader;-1.70.1 was dit een binair bestand, &krusader; is backwards compatibel wat betreft het importeren van dit verouderde binaire formaat. Als een <filename
+>*.keymap.info</filename
+> tekstbestand bestaat, dan zal &krusader; deze tonen, zodat u extra informatie over het geladen bestand met de sneltoetsen te zien krijgt. Hier kunt u nog het importeren van de voorgestelde bestand met sneltoetsen afbreken.</para>
+          <tip>
+            <para
+><trademark class="copyright"
+>Total Commander</trademark
+> sneltoetsen zijn meegeleverd. Stuur <link linkend="help_krusader"
+>uw favoriete sneltoetsen schema´s op</link
+> zodat ze beschikbaar komen voor de &krusader;-gemeenschap. Hartelijk dank!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Werkbalken instellen...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent een dialoogvenster waarin u  de <link linkend="mainwindow"
+>Hoofdwerkbalk</link
+> en de <link linkend="actions_toolbar"
+>Actiebalk</link
+> kunt configureren. U kunt knoppen voor uw favoriete <link linkend="useractions"
+>gebruikers acties</link
+> aan de gewenste Werkbalk toevoegen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>&krusader; configureren...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opent <link linkend="konfigurator"
+>Konfigurator</link
+> - het configuratie center van &krusader;.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="help-menu">
+    <title
+>Menu Help</title>
+    <para
+>Bovendien heeft &krusader; een aantal van de gemeenschappelijk &kde; items in het menu <guimenu
+>Help</guimenu
+>, voor meer informatie lees de secties hierover in het <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menu Help</ulink
+> van de basisinformatie van &kde;. </para>
+  </sect1>
+</chapter>

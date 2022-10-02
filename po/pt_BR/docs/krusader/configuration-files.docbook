@@ -1,0 +1,214 @@
+<appendix id="config_files">
+  <!-- **********************************************************************
+                               configuration-files.docbook
+                            +++++++++++++++++++++++++++++++++
+  copyright            : (C) 2000 - 2010
+                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                          & the Krusader Krew
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://www.krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+  <title
+>Arquivos de configuração</title>
+  <indexterm>
+    <primary
+>Arquivos de configuração</primary>
+  </indexterm>
+  <para
+>Este apêndice dá uma visão geral sobre os arquivos de configuração usados pelo &krusader;.</para>
+  <para>
+    <emphasis role="bold"
+>krusaderui.rc</emphasis>
+  </para>
+  <para
+>Este arquivo guarda a configuração da barra de ferramentas dos usuários e a estrutura do menu. Sugestão: leia também a <link linkend="faqi_missing_menus"
+>&FAQ; do krusaderui.rc</link
+>.</para>
+  <para
+>Localização: <filename
+>$KDEDIR/share/kxmlgui5/krusader/krusaderui.rc</filename
+> ou <filename
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>krusaderrc</emphasis>
+  </para>
+  <para
+>Este arquivo guarda a configuração do &krusader;.</para>
+  <para
+>Localização: <filename
+>~/.config/krusaderrc</filename
+></para>
+  <para
+>A seguinte configuração está, &eg;, armazenada:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Barra de ações</para>
+    </listitem>
+    <listitem>
+      <para
+>Arquivos</para>
+    </listitem>
+    <listitem>
+      <para
+>Cores</para>
+    </listitem>
+    <listitem>
+      <para
+>Dependências</para>
+    </listitem>
+    <listitem>
+      <para
+>Utilização do Disco</para>
+    </listitem>
+    <listitem>
+      <para
+>Visualizador da Utilização do Disco</para>
+    </listitem>
+    <listitem>
+      <para
+>Geral</para>
+    </listitem>
+    <listitem>
+      <para
+>Configuração do HTML</para>
+    </listitem>
+    <listitem>
+      <para
+>KFileDialog</para>
+    </listitem>
+    <listitem>
+      <para
+>Barra rápida do KFileDialog</para>
+    </listitem>
+    <listitem>
+      <para
+>KrDetailedViewLeft</para>
+    </listitem>
+    <listitem>
+      <para
+>KrDetailedViewRight</para>
+    </listitem>
+    <listitem>
+      <para
+>KrViewerWindow</para>
+    </listitem>
+    <listitem>
+      <para
+>Barra extra do KrViewerWindow</para>
+    </listitem>
+    <listitem>
+      <para
+>Aparência &amp; Comportamento</para>
+    </listitem>
+    <listitem>
+      <para
+>Mensagens de Notificação</para>
+    </listitem>
+    <listitem>
+      <para
+>Perfis do Painel</para>
+    </listitem>
+    <listitem>
+      <para
+>Privado</para>
+    </listitem>
+    <listitem>
+      <para
+>Protocolos</para>
+    </listitem>
+    <listitem>
+      <para
+>Procura</para>
+    </listitem>
+    <listitem>
+      <para
+>Inicialização</para>
+    </listitem>
+    <listitem>
+      <para
+>Sincronizar</para>
+    </listitem>
+    <listitem>
+      <para
+>Localizar</para>
+    </listitem>
+    <listitem>
+      <para
+>Perfil Sincronização - 1</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>krbookmarks.xml</emphasis>
+  </para>
+  <para
+>Este arquivo guarda os favoritos do &krusader; e usa a <ulink url="http://grail.sourceforge.net/info/xbel.html"
+>norma XBEL</ulink
+>.</para>
+  <para
+>Localização: <filename
+> ~/.local/share/krusader/krbookmarks.xml</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>useractions.xml</emphasis>
+  </para>
+  <para
+>Este arquivo guarda a configuração das <link linkend="useractions"
+>Ações do Usuário</link
+>. A estrutura do arquivo está documentada nos cabeçalhos de Doxygen do UserActionXML.</para>
+  <para
+>Localização: <filename
+> ~/.local/share/krusader/useractions.xml</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>useraction-examples.xml</emphasis>
+  </para>
+  <para
+>Estas são as Ações do Usuários predefinidas por nós. A estrutura do arquivo está documentada nos cabeçalhos do Doxygen do UserActionXML.</para>
+  <para
+>Localização: <filename
+> $KDEDIR/share/krusader/useraction-examples.xml</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>nome.keymap</emphasis>
+  </para>
+  <para
+>É um arquivo <literal role="extension"
+>.ini</literal
+> que contém um <link linkend="configure-shortcuts"
+>perfil de combinações de teclas</link
+>. Até ao &krusader;-1.70.0, este era um arquivo binário. O &krusader; é compatível de modo a importar este formato binário antigo.</para>
+  <para
+>Localização: <filename
+> $KDEDIR/share/krusader/nome.keymap</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>nome.color</emphasis>
+  </para>
+  <para
+>Este é um arquivo binário que guarda o <link linkend="konfig-color"
+>Esquema de Cores</link
+>.</para>
+  <para
+>Localização: <filename
+>$KDEDIR/share/krusader/nome.color</filename
+></para>
+</appendix>

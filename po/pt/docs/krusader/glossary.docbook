@@ -1,0 +1,372 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<glossary id="glossary">
+  <indexterm>
+    <primary
+>Glossário</primary>
+  </indexterm>
+  <para
+>Este capítulo pretende explicar as diversas palavras que foram usadas ao longo da documentação do &krusader;. Se acredita que faltam alguns acrónimos ou termos, por favor não hesite em contactar a equipa de documentação do &krusader;.</para>
+  <para
+>Muito obrigado à <ulink url="http://en.wikipedia.org/"
+>wikipedia.org</ulink
+>, a enciclopédia livre que qualquer um pode editar.</para>
+  <glossentry id="gloss-acl">
+    <glossterm>
+      <acronym
+>ACL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Access_control_list"
+> Access Control List</ulink
+> (Lista de Controlo de Acessos); um conceito em segurança informática que é usado para aplicar a separação de privilégios. É um meio de determinar as permissões de acesso apropriadas para um dado objecto, dependendo de certos aspectos do processo que está a efectuar o pedido.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-bsd">
+    <glossterm>
+      <acronym
+>BSD</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Bsd"
+>Berkeley Software Distribution</ulink
+>; refere-se a qualquer um dos sistemas operativos livres e compatíveis com o &UNIX;, derivados do &BSD; &UNIX;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-cvs">
+    <glossterm>
+      <acronym
+>CVS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Concurrent_Versions_System"
+> Concurrent Versions System</ulink
+>; uma componente importante da Gestão de Configuração de Código (SCM). Ao usá-la, os programadores conseguem registar o histórico dos ficheiros de código e documentos.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-deb">
+    <glossterm>
+      <acronym
+>DEB</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>Este é um formato de ficheiros binários que é usado pela <ulink url="http://en.wikipedia.org/wiki/Debian"
+> <trademark class="registered"
+>Debian</trademark
+></ulink
+> e pelas distribuições baseadas em <trademark class="registered"
+>Debian</trademark
+>. É um sufixo de um ficheiro de instalação criado especificamente para essas distribuições, &eg; <filename
+>krusader_1.70.1-1_amd64.deb</filename
+>. É descrito como sendo simplesmente um pacote especial que contém todos os ficheiros do programa, bem como a sua localização proposta no sistema.</para>
+    </glossdef>
+  </glossentry>
+    <glossentry id="glos-dbus">
+    <glossterm
+>&DBus; </glossterm>
+    <glossdef>
+      <para
+>O <ulink url="http://freedesktop.org/wiki/Software/dbus"
+>&DBus;</ulink
+> é um sistema de mensagens entre serviços. Desenvolvido pela &RedHat;, foi altamente influenciado pelo <link linkend="glos-dcop"
+>&DCOP;</link
+> do &kde; 3, ao qual se segue. O &krusader; pode usar o &DBus; para comunicar com as outras aplicações. Por outro lado, poderá usar o &DBus; para controlar o &krusader; a partir das outras aplicações. Basta usar o <application
+>qdbusviewer</application
+> para verificar as possibilidades.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-dcop">
+    <glossterm
+>&DCOP; </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Dcop"
+>Desktop Communication Protocol</ulink
+>; o protocolo de comunicação entre processos que era usado pelo ambiente de trabalho &kde; 3. Permite a várias aplicações do &kde; 3 comunicarem entre si. Foi substituído no &kde; 4 pelo <link linkend="glos-dbus"
+>&DBus;</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-faq">
+    <glossterm>
+      <acronym
+>FAQ</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><link linkend="faq"
+>Frequently Asked Questions</link
+> (Perguntas Mais Frequentes); um documento onde as perguntas que surgem com mais frequência são respondidas. Se tiver uma dúvida para os programadores do &krusader;, deverá sempre dar uma vista de olhos à <link linkend="faq"
+>FAQ</link
+> em primeiro lugar.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-ftp">
+    <glossterm
+>&FTP;</glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/File_Transfer_Protocol"
+> File Transfer Protocol</ulink
+> (Protocolo de Transferência de Ficheiros); é um protocolo da Internet que lhe permite obter ficheiros a partir dos ditos servidores de &FTP;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-git">
+    <glossterm
+>Git</glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Git_(software)"
+>Git</ulink
+>; um sistema de controlo de versões que é um distinto substituto para o <link linkend="gloss-svn"
+>Subversion</link
+>. É usado por muito projectos de 'software', incluindo o &kde; e o &krusader;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gpl">
+    <glossterm>
+      <acronym
+>GPL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Gpl"
+>GNU General Public License</ulink
+> (Licença Pública Geral da GNU); uma licença de 'software' que foi criada pela <ulink url="http://www.fsf.org/"
+>Free Software Foundation</ulink
+>, definindo os termos para o lançamento de 'software' livre.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gui">
+    <glossterm
+>&GUI;</glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Graphical_user_interface"
+> Graphical User Interface</ulink
+> (Interface Gráfica do Utilizador).</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-iso">
+    <glossterm>
+      <acronym
+>ISO</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>Uma <ulink url="http://en.wikipedia.org/wiki/ISO_image"
+>imagem ISO</ulink
+> (<literal role="extension"
+>.iso</literal
+>) é um termo informal para uma imagem em disco de um sistema de ficheiros ISO 9660. De forma mais lata, refere-se a qualquer imagem de disco óptico, incluindo uma imagem UDF.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kde">
+    <glossterm
+>&kde;</glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Kde"
+>K Desktop Environment</ulink
+> (Ambiente de Trabalho K); um projecto para desenvolver um ambiente de trabalho gráfico livre para os sistemas compatíveis com o &UNIX;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-keybinding">
+    <glossterm
+>Associação de Tecla</glossterm>
+    <glossdef>
+      <para
+>Todas as funcionalidades do &krusader; estão disponíveis através do menu, mas também poderá associar uma dada combinação de teclas a essa função. Irá descobrir, contudo, que a utilização do <link linkend="keyboard-commands"
+>teclado</link
+> é muito mais rápida que a utilização do menu ou da <link linkend="gloss-gui"
+>GUI</link
+>. A <link linkend="keyboard-commands"
+>utilização do teclado</link
+> é uma ferramenta importante para os <link linkend="gloss-ofm"
+>Gestores de Ficheiros Ortodoxos</link
+>. O &krusader; vem com diversas <link linkend="key_bindings"
+>combinações de teclas</link
+> predefinidas.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kpart">
+    <glossterm
+>KPart</glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/KPart"
+> KPart</ulink
+>; KParts é o nome da plataforma de componentes do ambiente de trabalho &kde;. As KParts são análogas aos componentes do Bonobo no <ulink url="http://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, sendo que ambas se baseiam nos mesmos conceitos que o Object Linking and Embedding da &Microsoft;. &eg; se usar o visualizador do &krusader; para ver um ficheiro PDF, será lançado o &okular; dentro do visualizador do &krusader;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kio">
+    <glossterm
+><acronym
+>KIO</acronym
+> ou 'kioslave'</glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Kioslave"
+>KDE Input/Output</ulink
+> (Entrada/Saída do KDE); também conhecida como KIO Slave, faz parte da arquitectura do &kde;. Fornece o acesso aos ficheiros, páginas Web e outros recursos, usando uma API única e consistente.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-mount">
+    <glossterm
+>montar</glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Mount_%28computing%29"
+>Montar</ulink
+>; na informática, corresponde ao processo de tornar um sistema de ficheiros pronto a usar pelo sistema operativo, normalmente através da leitura antecipada de certas estruturas de dados de indexação do armazenamento para a memória. O termo remonta a um período na história da informática, onde um administrador tinha de montar uma fita magnética ou disco rígido num suporte, antes de o poder usar.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ofm">
+    <glossterm>
+      <acronym
+>OFM</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://www.softpanorama.org/OFM/index.shtml"
+> Orthodox File Manager</ulink
+> (Gestor de Ficheiros Ortodoxo); também conhecidos como "Commanders". Os membros desta família de gestores de ficheiros usam interfaces simples mas poderosas que derivam directamente da interface do <ulink url="http://en.wikipedia.org/wiki/Norton_Commander"
+> Norton Commander</ulink
+> (NC).</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-rpm">
+    <glossterm
+>RPM</glossterm>
+    <glossdef>
+      <para
+>Este é o formato de pacotes binários para as distribuições baseadas no <ulink url="http://www.rpm.org/"
+>RPM Package Manager</ulink
+>, uma ferramenta de gestão de pacotes bastante usada no sistema operativo &Linux;. Se tiver de obter o &krusader; e se o seu sistema suportar os pacotes RPM, deverá obter os pacotes do &krusader; que terminam em <literal role="extension"
+>.rpm</literal
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ssh">
+    <glossterm
+><acronym
+>SSH</acronym
+>, Secure Shell</glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/SSH"
+>SSH</ulink
+>; é um conjunto de normas e um protocolo de rede associado que permite o estabelecimento de um canal seguro entre um computador local e um remoto.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-svn">
+    <glossterm
+><acronym
+>SVN</acronym
+>, Subversion</glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Subversion"
+> Subversion</ulink
+>; um sistema de controlo de versões que é um distinto substituto para o <link linkend="gloss-cvs"
+>CVS</link
+>. É usado por muito projectos de 'software', incluindo o &kde;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-termemu">
+    <glossterm
+>Emulador de terminal</glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Terminal_emulator"
+>Emulador de Terminal</ulink
+>; é simplesmente uma consola numa janela; também é conhecido como uma janela de linha de comandos noutros ambientes. Se quiser usar a consola e escrever os comandos, deverá conhecer pelo menos alguns dos comandos do seu sistema operativo.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-posix">
+    <glossterm>
+      <acronym
+>POSIX</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Posix"
+>"Portable Operating System Interface for uniX"</ulink
+>; um nome colectivo para uma família de normas relacionadas e especificadas pela IEEE, de modo a definir a interface de programação de aplicações (API) do 'software' compatível com as diversas variantes do sistema operativo &UNIX;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-url">
+    <glossterm
+>&URL; </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/URL"
+>Universal Resource Locator</ulink
+> (Localizador de Recursos Universal); é o termo técnico para o que é conhecido normalmente como o endereço de uma página Web. Os exemplos de &URL;'s incluem o <ulink url="http://krusader.sourceforge.net"
+> http://krusader.sourceforge.net</ulink
+> e o <link linkend="remote-connections"
+>Remote Connections</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-vfs">
+    <glossterm>
+      <acronym
+>VFS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>Os <link linkend="vfs"
+>Sistemas de ficheiros virtuais (VFS)</link
+> é uma <link linkend="features"
+>funcionalidade básica dos OFM</link
+>, é uma camada de abstracção sobre todos os tipos de informação arquivada (ficheiros ZIP, servidores de &FTP;, pacotes TAR, sistemas de ficheiros NFS, partilhas de SAMBA, imagens ISO de CD/DVD, catálogos do RPM, &etc;), permitindo ao utilizador aceder a toda a informação nestes tipos divergentes de sistemas de ficheiros de forma transparente - tal como se entrasse numa sub-pasta normal! O &krusader; suporta diversos <link linkend="vfs"
+>sistemas de ficheiros virtuais (VFS)</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-xml">
+    <glossterm
+>&XML;</glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Xml"
+>Extensible Markup Language</ulink
+> (Linguagem de Formatação Extensível); um formato de texto bastante simples que deriva do SGML (ISO 8879). Desenhado originalmente para cumprir os objectivos das publicações electrónicas em grande escala, o &XML; está também a desempenhar um papel cada vez mais importante no intercâmbio de uma grande variedade de dados pela Web e outros meios.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-zeroconf">
+    <glossterm
+>Zeroconf</glossterm>
+    <glossdef>
+      <para
+><ulink url="http://en.wikipedia.org/wiki/Zeroconf"
+>Zeroconf</ulink
+>; ou Zero Configuration Networking é um conjunto de técnicas que criam automaticamente uma rede IP válida sem configuração nem servidores especiais. Isto permite aos utilizadores inexperientes ligarem os computadores, impressoras de rede, etc., todos em conjunto e esperar que funcionem automaticamente.</para>
+    </glossdef>
+  </glossentry>
+</glossary>

@@ -1,0 +1,42 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="checksum">
+  <title
+>Prüfsummen erstellen und verifizieren</title>
+  <indexterm>
+    <primary
+>Prüfsumme</primary>
+  </indexterm>
+  <para
+><menuchoice
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Prüfsumme erstellen</guimenuitem
+> </menuchoice
+>: &krusader; überprüft, welche Programme für Prüfsummen installiert sind und ob sie rekursiv funktionieren, falls Sie einen Ordner gewählt haben. Um die Prüfsumme zu erstellen, wählen Sie einen Methode aus der Liste wie <guilabel
+>md5</guilabel
+>, <guilabel
+>sha</guilabel
+> &etc;. Dann können Sie die Prüfsumme in einer Datei speichern, die normalerweise <filename
+>checksum.md5</filename
+> oder <filename
+>checksum.sha1</filename
+> genannt wird.</para>
+  <para
+><menuchoice
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Prüfsummen verifizieren</guimenuitem
+> </menuchoice
+>: &krusader; überprüft über die ausgewählte Prüfsummendatei, ob Programme für die Art der nötigen Prüfsummen installiert sind und zeigt alle vorhandenen Dateien an, bei der die Prüfsumme abweicht.</para>
+  <para
+>Das System funktioniert mit verschiedenen Prüfsummen-Verfahren und -Programmen. Zurzeit werden folgende Prüfsummen-Verfahren unterstützt: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv und crc. Bitte überprüfen Sie Ihre <link linkend="konfig-dependencies"
+>Einstellungen für Prüfsummenwerkzeuge</link
+>, ehe Sie diese Funktion benutzen.</para>
+</sect1>

@@ -1,0 +1,703 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="useractions">
+  <title
+>Gebruikeracties</title>
+  <indexterm>
+    <primary
+>Gebruikeracties</primary>
+  </indexterm>
+  <!-- Thanks to Jonas Bar -->
+  <para
+>Met Actieman kunt u gebruikeracties instellen, configureren en beheren. Sommige instellingen wijzigt u met de <link linkend="konfig-useractions"
+>Konfigurator</link
+>. Met gebruikeracties kunt u acties op bestanden in het paneel uitvoeren of interne functies van &krusader; met parameters direct gebruiken met behulp van plaatshouders. Deze acties zijn naadloos geïntegreerd met &plasma;'s actiesysteem, wat inhoud dat ook de standaard werkbalk en contextmenu voor bewerken de gebruikeracties tonen. De gebruikeracties worden opgeslagen in <filename
+>~/.local/share/krusader/useractions.xml</filename
+> of <filename
+>krusader/useraction.xml</filename
+> in de map die bepaald kan worden met het commando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. In de documentatie zijn verschillende <link linkend="useraction-xml"
+>voorbeelden</link
+> te vinden. U kunt gebruikeracties bewerken / toevoegen / importeren / exporteren met behulp van ActionMan. U kunt de standaard gebruikeracties vinden in <filename
+>~/.usr/share/krusader/useraction-examples.xml</filename
+>. Gebruikeracties kunnen op bijna alle plaatsen verschijnen waar <quote
+>normale</quote
+> KActions kunnen worden geplaatst. U kunt zelfs acties in de menubalk in de menubalk plaatsen, maar daarvoor moet u wel het bestand <filename
+>krusaderui.rc</filename
+> bewerken. Enkele voorbeelden:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="useractions-menu"
+>Menu Gebruikersacties</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="useractions"
+>Gebruikersmenu</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="actions_toolbar"
+>Actiebalk</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>menu's bij rechts klikken</para>
+    </listitem>
+    <listitem>
+      <para
+>&etc;</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Het hulpmiddel Gebruikeracties van &krusader; is erg krachtig en aan te passen als u bekent bent met het schrijven van Gebruikeracties in het algemeen.</para>
+  <tip>
+    <para
+>Verschillende gebruikeracties worden al standaard meegeleverd. <link linkend="help_krusader"
+>Upload uw favoriete gebruikeracties</link
+> zodat ze beschikbaar komen voor de &krusader;-gemeenschap. Hartelijk dank!</para>
+  </tip>
+  <figure id="screenshot-actionman" float="1">
+    <title
+>Actieman</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="actionman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Actieman</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Eigenlijk zijn gebruikeracties een methode om externe programma´s met diverse parameters aan te roepen. U kunt bijvoorbeeld een gebruikersactie met het commando <command
+>xmms <option
+>--enqueue %aList("Selected")%</option
+></command
+> hebben om alle geselecteerde items in het huidige paneel naar de nu werkende versie van xmms te sturen. Bovendien is er beperkt toegang tot interne functies van &krusader; die parameters nodig hebben. Als voorbeeld, <command
+>%aPanelSize("80")%</command
+> zal de breedte van het geselecteerde paneel instellen op 80% van het hoofdvenster van &krusader;. Omdat de parameter van plaatshouders op zijn beurt weer plaatshouders kan hebben, zijn scripts mogelijk. </para>
+  <para>
+    <emphasis role="bold"
+>Gebruikeracties beheren</emphasis>
+  </para>
+  <para
+>Open Konfigurator en kies <menuchoice
+><guimenu
+>Gebruikeracties</guimenu
+> <guimenuitem
+>Actiebeheer starten</guimenuitem
+></menuchoice
+>, waarin u gebruikeracties kunt toevoegen, bewerken, verwijderen, importeren en exporteren.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Nieuwe actie aanmaken</guimenuitem
+>: Als u een nieuwe actie wilt toevoegen, dan krijgt u een leeg invulmasker waar u alle gewenste eigenschappen kunt invullen. Op het moment dat u op <guimenuitem
+>Toepassen</guimenuitem
+> drukt, voegt u de actie toe. Daarna komt de naam zichtbaar in de lijst links.</para>
+    </listitem>
+    <listitem>
+      <para
+>Een gebruikeractie bewerken: selecteer links de gebruikersactie. Kies vervolgens of u zijn eigenschappen wilt bewerken. De wijzigingen worden alleen toegepast als u op de knop <guimenuitem
+>Toepassen</guimenuitem
+> hebt gedrukt.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Geselecteerde actie verwijderen</guimenuitem
+>: selecteer links de gebruikersactie en klik op de knop <inlinemediaobject
+> <imageobject
+> <imagedata fileref="Icon-edit-delete.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Acties importeren</guimenuitem
+>: als u enkele acties importeert, dan worden ze automatisch aan uw lijst toegevoegd. Als er conflicten zijn tussen namen (de namen moeten uniek zijn omdat dit de ID is voor het actiesysteem van &plasma;), dan krijgt u het verzoek om dit op te lossen. Hiervoor krijgt u in de lijst links alleen de acties te zien waar conflicten zijn. U kunt ze vervolgens nieuwe namen geven of ze verwijderen.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Acties exporteren</guimenuitem
+>: Als u een gebruikersactie exporteert dan moet u een naam voor het bestand opgeven waarin u het opslaat. Als dat niet bestaat, dan wordt het aangemaakt. Als in dat bestand al gebruikeracties aanwezig zijn dan zal de gebruikersactie die u exporteert aan dat bestand worden toegevoegd.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Alle actie die u heeft gedefinieerd zijn nu zichtbaar in het gebruikersmenu en in de &plasma;-dialogen die openen via een sneltoets of beheer-werkbalk. Daarnaast zijn alle voor het geselecteerde item beschikbare actie zichtbaar in het contextmenu.</para>
+  <para>
+    <emphasis role="bold"
+>Algemene instellingen</emphasis>
+  </para>
+  <para
+><guimenuitem
+>Identifier</guimenuitem
+>, <guimenuitem
+>Titel</guimenuitem
+> en <guimenuitem
+>Opdrachtregel</guimenuitem
+> zijn altijd vereist, alle andere eigenschappen zijn optioneel.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Identifier</guimenuitem
+>: een unieke naam van de Gebruikersactie, gebruikt om het voor het actiesysteem van &plasma; te identificeren.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Pictogramknop</guimenuitem
+>: het pictogram voor uw Gebruikersactie.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Categorie</guimenuitem
+>: Categorieën worden gebruikt voor een beter overzicht. Ze verschijnen als submenu in het menu <guimenuitem
+>Gebruikersacties</guimenuitem
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Titel</guimenuitem
+>: de getoonde titel in de menu's of dialogen.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Tekstballon</guimenuitem
+>: een tekstballon voor uw Gebruikersactie, &eg; getoond in de werkbalk wanneer de muis er over gaat.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Beschrijving</guimenuitem
+>: een beschrijving van wat de gebruikersactie doet. Dit krijgt u ook te zien als <guimenuitem
+>Wat is dit</guimenuitem
+> als u <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo
+> indrukt op uw gebruikeractie.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Commando</guimenuitem
+>: het commando dat uitgevoerd zal worden. U kunt een plaatshouder toevoegen met een &GUI; met de knop <guibutton
+>toevoegen</guibutton
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Werkmap</guimenuitem
+>: de werkmap voor het commando dat zal worden uitgevoerd.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Uitvoeringsmodus</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Normaal</guimenuitem
+>: Normale modus van uitvoeren.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>In terminal uitvoeren</guimenuitem
+>: voert het commando uit in de terminal.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>In ingebedde terminal uitvoeren</guimenuitem
+>: voert het commando uit in de ingebedde terminal.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Uitvoer verzamelen</guimenuitem
+>: verzamelt de uitvoer van het uitgevoerde programma in een &GUI;-venster.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Aparte standaard error (stderr)</guimenuitem
+>: Als u <quote
+>Uitvoer verzamelen</quote
+> gebruikt dan worden de stdout en stderr apart verzameld.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Commando accepteert</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Lokale bestanden (geen &URL;'s)</guimenuitem
+>: geeft de plaatshouder opdracht om lokale adressen te geven.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>&URL;'s (op afstand en lokaal)</guimenuitem
+>: geeft de plaatshouder opdracht om &URL;'s te geven.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <!--    Not yet implemented, but will be after 1.50 stable is released
+        <listitem
+><para
+><guimenuitem
+>On multiple selection</guimenuitem
+>:  </para>
+        <itemizedlist>
+   <listitem
+><para
+><guimenuitem
+>Separate call for each file</guimenuitem
+>: executes the command for each selected file.
+             </para
+></listitem>
+         </itemizedlist>
+      </listitem
+> -->
+    <listitem>
+      <para
+><guimenuitem
+>Standaard sneltoets</guimenuitem
+>: Stelt een standaard sneltoets in voor de gebruikersactie.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Ingeschakeld</guimenuitem
+>: indien aangevinkt, dan krijgt u de gebruikersactie in het <link linkend="useractions"
+>Gebruikersmenu</link
+> te zien, in het andere geval blijft de gebruikersactie verborgen.</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>Syntax van de commandoregel </emphasis>
+  </para>
+  <para
+>Eigenlijk zal alles wat u invoert op de commandoregel worden uitgevoerd (als u <quote
+>ls -l</quote
+> typt, dan zal <quote
+>ls -l</quote
+> worden uitgevoerd). U heeft de mogelijkheid om een tekenreeks van &krusader; te krijgen die de huidige staat van het paneel weergeeft. Dit doet u met behulp van plaatshouders. Een plaatshouder begint met een procent-teken ('%') en gevolgd door een paneel-indicator ('a' voor de actieve, 'o' voor de overige, 'l' voor het linker en 'r' voor het rechter paneel. Als de plaatshouder geen paneel nodig heeft om mee te werken, dan kan u dit aangeven met een underscore ('_')). Daarna komt de naam van de plaatshouder (zie de lijst hieronder), waarbij misschien enkele parameters horen in quotes. Tenslotte opnieuw het procent-teken.</para>
+  <para
+>Dit klinkt erg ingewikkeld, laten we daarom een voorbeeld geven: '%aList("Selected")%' is vervangen door een lijst van alle geselecteerde items in het actieve paneel. Zodat een commando zoals 'xmms --enqueue %aList("All", " ", "", "*.mp3")%' het programma xmms zal uitvoeren met een lijst van alle .mp3s in het actieve paneel, gescheiden door een enkele spatie.</para>
+  <para
+>Op dit moment zijn de volgende plaatshouders beschikbaar:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><userinput
+>Path</userinput
+> - gebruikt het pad van het paneel</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (optioneel): Verwijdert automatisch spaties. Standaard: ja</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Count</userinput
+> - vervangen door het aantal van &lt;eerste parameter&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Naar keuze; ofwel <quote
+>All</quote
+>, <quote
+>Selected</quote
+>, <quote
+>Files</quote
+> of <quote
+>Dirs</quote
+>"</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Filter</userinput
+> - vervangen door filter masker van het paneel</para>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Current</userinput
+> - vervangen door het huidige item</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (optioneel): Huidig pad weglaten. Standaard: nee</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optioneel): Verwijdert automatisch spaties. Standaard: ja</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>List</userinput
+> - vervangen door een lijst van alle &lt;eerste parameter&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Naar keuze; ofwel <quote
+>All</quote
+>, <quote
+>Selected</quote
+>, <quote
+>Files</quote
+> of <quote
+>Dirs</quote
+>"</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optioneel): Scheiding tussen de items. Standaard: <quote
+>&nbsp;</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optioneel): Huidig pad weglaten. Standaard: nee</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optioneel): Masker (alles behalve <quote
+>selected</quote
+>). Standaard: *</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optioneel): Verwijdert automatisch spaties. Standaard: ja</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Select</userinput
+> - de selectie in een paneel bewerken</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Filter masker</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optioneel): op welke wijze bewerken; ofwel <quote
+>Set</quote
+>, <quote
+>Add</quote
+> of <quote
+>Remove</quote
+>. Standaard: <quote
+>Set</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Goto</userinput
+> - wijzigt het ingestelde pad van het paneel naar &lt;first parameter&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Een relatieve of absolute pad, of een &URL;</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optioneel): Open de locatie in een nieuwe tab. Standaard: no</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+> - vraagt de gebruiker voor tekst en gebruikt het antwoord</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: De vraag</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optioneel): Een standaard antwoord</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optioneel): Een titel voor het dialoogvenster met de vraag</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Clipboard</userinput
+> - manipuleert het klembord</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: De tekst die naar het klembord zou moeten gaan (u zou hier <quote
+>%aCurrent%</quote
+> kunnen gebruiken)</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optioneel): Hecht de tekst aan de huidige klembordinhoud met dit afscheidingsteken.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Copy</userinput
+> - kopieert een bestand, handig voor snelle lokale backups</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Wat u wilt kopiëren</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Waarnaartoe u het wilt kopiëren</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Sync</userinput
+> - opent de Synchronizer met de opgegeven profiel</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Een profiel voor de Synchronizer</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>NewSearch</userinput
+> - opent het zoek-venster met het opgegeven profiel</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Een profiel voor de zoekmodule</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Profile</userinput
+> - laadt de opgegeven profiel</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Een paneelprofiel</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Each</userinput
+> - split de commandoregel in een lijst. Deze commando´s worden na elkaar uitgevoerd.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Een lijst met items (all, all files, all dirs, all selected).</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Move</userinput
+> - verplaatst van bron naar doel.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: een bron</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Een doel</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>PanelSize</userinput
+> - Wijzigt de verhouding in grootte tussen de twee panelen.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (optioneel): Een integere waarde, &eg;, 80 zorgt dat het active paneel 80% van &krusader;'s breedte (hoogte in verticale mode) gebruikt, de parameter weglaten betekent 50%.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Vraag</userinput
+> - annuleer het uitvoeren.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (optioneel): Een tekenreeks voor het annuleren van de vraag.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ListFile</userinput
+> - gebruikt het pad/bestandsnaam van een tijdelijk bestand met een lijst van items</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: pad/bestandsnaam</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ColSort</userinput
+> - Stelt de sortering in van een kolom in een specifiek paneel.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Kolom: Ofwel <quote
+>Naam</quote
+>, <quote
+>Ext</quote
+>, <quote
+>Type</quote
+>, <quote
+>Grootte</quote
+>, <quote
+>Gewijzigd</quote
+>, <quote
+>Rechten</quote
+>, <quote
+>rwx</quote
+>, <quote
+>Eigenaar</quote
+> en <quote
+>Groep</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Sorteer volgorde: Ofwel <quote
+>Toggle</quote
+>, <quote
+>Asc</quote
+>, <quote
+>Desc</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>View</userinput
+> - Stelt de view mode in.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Viewmodus: ofwel <quote
+>generic</quote
+>, <quote
+>text</quote
+>, <quote
+>hex</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Venstermodus: ofwel <quote
+>tab</quote
+>, <quote
+>window</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+  </itemizedlist>
+  <para
+>Een &GUI;-gebaseerd hulpmiddel voor het plaatsen van plaatshouders is meegeleverd. Spaties in Path, Current en List zijn standaard, automatisch escaped. Er is nog iets belangrijk dat u moet weten: Alle plaatshouders die met &krusader; interne functies werken worden opgeroepen tijdens het expanderen (wat inhoud direct wanneer de plaatshouders worden vervangen). Externe programma´s worden opgeroepen tijdens het uitvoeren (wat inhoud nadat alle plaatshouders zijn vervangen).</para>
+  <para>
+    <emphasis role="bold"
+>Uitgebreide eigenschappen</emphasis>
+  </para>
+  <para
+>Hier kunt u instellen in welke gevallen uw commando zichtbaar is (in het contextmenu). Daarnaast is het mogelijk om apart het uitgevoerde commando bevestiging in te stellen. U kunt instellen dat het commando als door een andere gebruiker wordt uitgevoerd.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>In stellen of de actie van toepassing is voor een protocol, pad, &MIME;-type of bestandsnaam.</para>
+    </listitem>
+    <listitem>
+      <para
+>De commandoregel aanpassen voordat het wordt uitgevoerd.</para>
+    </listitem>
+    <listitem>
+      <para
+>U kunt instellen dat het commando als door een andere gebruiker wordt uitgevoerd (dit heeft geen effect voor de interne functies van &krusader;).</para>
+    </listitem>
+  </itemizedlist>
+</sect1>

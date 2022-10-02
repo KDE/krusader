@@ -1,0 +1,210 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<appendix id="config_files">
+  <title
+>Einrichtungsdateien</title>
+  <indexterm>
+    <primary
+>Einrichtungsdateien</primary>
+  </indexterm>
+  <para
+>Dieser Anhang gibt eine Übersicht über die Einrichtungsdateien, die von &krusader; benutzt werden.</para>
+  <para>
+    <emphasis role="bold"
+>krusaderui.rc</emphasis>
+  </para>
+  <para
+>Diese Datei enthält die Benutzereinstellungen für die Werkzeugleiste und die Menüstruktur.</para>
+  <para
+>Speicherort: <filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+>, oder <filename
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+>, oder <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> im Ordner, der mit dem Befehl <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> ermittelt wird</para>
+  <para>
+    <emphasis role="bold"
+>krusaderrc</emphasis>
+  </para>
+  <para
+>In dieser Datei werden die Einstellungen für &krusader; gespeichert.</para>
+  <para
+>Speicherort: <filename
+>~/.config/krusaderrc</filename
+></para>
+  <para
+>Folgende Einstellungen werden &eg; gespeichert:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Aktionen-Werkzeugleiste</para>
+    </listitem>
+    <listitem>
+      <para
+>Archive</para>
+    </listitem>
+    <listitem>
+      <para
+>Farben</para>
+    </listitem>
+    <listitem>
+      <para
+>Abhängigkeiten</para>
+    </listitem>
+    <listitem>
+      <para
+>Speicherplatzbedarf</para>
+    </listitem>
+    <listitem>
+      <para
+>Anzeigeprogramm für Speicherplatzbedarf</para>
+    </listitem>
+    <listitem>
+      <para
+>Allgemein</para>
+    </listitem>
+    <listitem>
+      <para
+>&HTML;-Einstellungen</para>
+    </listitem>
+    <listitem>
+      <para
+>KFileDialog</para>
+    </listitem>
+    <listitem>
+      <para
+>KFileDialog Speedbar</para>
+    </listitem>
+    <listitem>
+      <para
+>KrDetailedViewLeft</para>
+    </listitem>
+    <listitem>
+      <para
+>KrDetailedViewRight</para>
+    </listitem>
+    <listitem>
+      <para
+>KrViewerWindow</para>
+    </listitem>
+    <listitem>
+      <para
+>KrViewerWindow Toolbar extraToolBar</para>
+    </listitem>
+    <listitem>
+      <para
+>Erscheinungsbild &amp; Verhalten</para>
+    </listitem>
+    <listitem>
+      <para
+>Benachrichtigungstexte</para>
+    </listitem>
+    <listitem>
+      <para
+>Profile für Dateifenster</para>
+    </listitem>
+    <listitem>
+      <para
+>Privat</para>
+    </listitem>
+    <listitem>
+      <para
+>Protokolle</para>
+    </listitem>
+    <listitem>
+      <para
+>Suche</para>
+    </listitem>
+    <listitem>
+      <para
+>Programmstart</para>
+    </listitem>
+    <listitem>
+      <para
+>Abgleichen</para>
+    </listitem>
+    <listitem>
+      <para
+>Dateien lokalisieren</para>
+    </listitem>
+    <listitem>
+      <para
+>SynchronizerProfile - 1</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>krbookmarks.xml</emphasis>
+  </para>
+  <para
+>Diese Datei speichert die Lesezeichen für &krusader; und benutzt den <ulink url="http://grail.sourceforge.net/info/xbel.html"
+>XBEL-Standard</ulink
+>.</para>
+  <para
+>Speicherort: <filename
+>~/local/share/krusader/krbookmarks.xml</filename
+> oder <filename
+>krusader/krbookmarks.xml</filename
+> im Ordner, der mit dem Befehl <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> ermittelt wird</para>
+  <para>
+    <emphasis role="bold"
+>useractions.xml</emphasis>
+  </para>
+  <para
+>In dieser Datei werden die Einstellungen für <link linkend="useractions"
+>Benutzeraktionen</link
+> gespeichert.</para>
+  <para
+>Speicherort: <filename
+>~/local/share/krusader/useractions.xml</filename
+> oder <filename
+>krusader/useractions.xml</filename
+> im Ordner, der mit dem Befehl <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> ermittelt wird</para>
+  <para>
+    <emphasis role="bold"
+>useraction-examples.xml</emphasis>
+  </para>
+  <para
+>Dies ist die mitgelieferte Datei mit den Standard-Benutzeraktionen.</para>
+  <para
+>Speicherort: <filename
+> $KDEDIR/share/krusader/useraction-examples.xml</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>foo.keymap</emphasis>
+  </para>
+  <para
+>Dies ist eine <literal role="extension"
+>ini</literal
+>-Datei mit dem <link linkend="configure-shortcuts"
+>Kurzbefehl-Profil</link
+>. Bis &krusader; Version 1.7.0 wurden diese Daten in einer binären Datei gespeichert. &krusader; ist kompatibel zu alten Versionen und kann dieses veraltete binäre Format importieren.</para>
+  <para
+>Speicherort: <filename
+>/usr/share/krusader/foo.keymap</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>foo.color</emphasis>
+  </para>
+  <para
+>Dies ist eine binäre Datei, die das <link linkend="konfig-color"
+>Farbschema</link
+> enthält.</para>
+  <para
+>Speicherort: <filename
+>/usr/share/krusader/foo.color</filename
+></para>
+</appendix>

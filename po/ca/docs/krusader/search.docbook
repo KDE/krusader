@@ -1,0 +1,344 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="krusearcher">
+  <title
+>KruSearcher: troba el que esteu cercant</title>
+  <indexterm>
+    <primary
+>Cerca</primary>
+  </indexterm>
+  <para
+>Us donem la benvinguda al poderós mòdul de cerca del &krusader;, anomenat KruSearcher. És l'eina més capaç (que coneixem) per a &Linux;, ja que permet moltes formes diferents de trobar ràpidament el fitxer que esteu cercant. La funció de cerca també està disponible sobre els sistemes de fitxers remots. Es divideix en dos nivells, el general i l'avançat. Donem una ullada a la pàgina General.</para>
+  <figure id="screenshot-search-general" float="1">
+    <title
+>Cerca general</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_general.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Cerca general</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>La pàgina es divideix en quatre parts: part superior (cerca), part inferior -anomenada <guilabel
+>Amb el text</guilabel
+>-, part esquerra -anomenada <guilabel
+>Cerca a</guilabel
+>- i la part dreta que s'anomena <guilabel
+>No cerquis a</guilabel
+>. Òbviament, cada part maneja diferents aspectes de la cerca. Mirem-ho de prop.</para>
+  <itemizedlist>
+    <title
+>Part de dalt:</title>
+    <listitem>
+      <para
+><guilabel
+>Amb el text</guilabel
+>: aquí s'introdueixen els principals criteris de la cerca. Podeu introduir un nom de fitxer, un comodí (<literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+>, &etc;) o ambdós, separats per un espai. Si escriviu «<literal
+>text</literal
+>», el resultat serà el mateix que «<literal
+>*text*</literal
+>». Podreu excloure fitxers de la cerca amb «|» (&pex;, «<literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal
+>»). Feu servir cometes per als noms que contenen espais. El filtre <quote
+>Fitxers de programa</quote
+> cercarà aquells fitxers/carpetes on el nom és <filename
+>Fitxers de programa</filename
+>. Després de fer clic es mostrarà una llista desplegable amb la fletxa cap avall a la dreta, la qual us permetrà triar alguns dels vostres criteris introduïts anteriorment.</para>
+      <note>
+          <para
+>És possible editar la llista de suggeriments per al camp <guilabel
+>Cerca per</guilabel
+>. Si no us agraden alguns dels seus elements, simplement seleccioneu-los i premeu <keycombo action="simul"
+>&Maj;&Del;</keycombo
+> i aquest suggeriment inútil s'eliminarà. També podreu utilitzar les tecles de fletxa per a veure tot l'historial al camp <guilabel
+>Cerca per</guilabel
+> i eliminar les entrades innecessàries. </para>
+      </note>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Distingeix entre majúscules i minúscules</guilabel
+>: desmarcant-la es permet cercar entre majúscules i minúscules (&ead;: <literal role="extension"
+>*.c</literal
+> s'interpreta com a <literal role="extension"
+>*.c</literal
+> i <literal role="extension"
+>*.C</literal
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>De tipus</guilabel
+>: aquest quadre permet cercar un fitxer no només pel seu nom, sinó també pel seu tipus &MIME;. Per exemple, podreu cercar tots els fitxers d'àudio on el nom comença amb B. En general, aquesta opció està de manera predeterminada establerta a «Tots els fitxers», però podeu triar cercar arxius, carpetes, imatges, fitxers de text, vídeos i fitxers d'àudio.</para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Part esquerra i dreta:</title>
+    <listitem>
+      <para
+><guilabel
+>Cerca a</guilabel
+> i <guilabel
+>No cerquis a</guilabel
+>: amb aquestes dues parts, podreu especificar una cerca exactament de la manera que vulgueu. Per exemple, és possible que vulgueu cercar un fitxer en tot el sistema de fitxers (començant amb <filename
+>/</filename
+>), però no voleu cercar dins de <filename
+>/mnt</filename
+>. Tot el que heu de fer és escriure <filename
+>/</filename
+> en el quadre <guilabel
+>Cerca a</guilabel
+> i escriure <filename
+>/mnt</filename
+> en el quadre <guilabel
+>No cerquis a</guilabel
+>. Si voleu introduir més d'una carpeta en un dels quadres de llista, simplement escriviu el nom i premeu &Intro;. El nom de la carpeta es copiarà al quadre de llista més gran i podreu introduir un altre nom. <note
+> <para
+>La línia d'entrada té una característica de compleció automàtica, la qual correspon a la configuració global del &plasma;. Si ho voleu, podreu fer clic sobre la <guiicon
+>icona de la carpeta</guiicon
+> i explorar la carpeta que voleu afegir.</para>
+      </note>
+      <note>
+          <para
+>És possible definir els fitxers i carpetes que es filtraran del resultat de la cerca utilitzant el camp d'entrada <guilabel
+>Exclou els noms de les carpetes</guilabel
+> a la part inferior del quadre <guilabel
+>No cerquis a</guilabel
+>.</para>
+          <para
+>Els elements a la llista de filtratge hauran d'estar separats per espais.</para>
+          <para
+>Els espais en els elements de la llista de filtratge es poden escapar o posar entre cometes. Exemple: <userinput
+>.git "target build" build\ krusader</userinput
+></para>
+      </note
+></para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Part de baix:</title>
+    <listitem>
+      <para
+><guilabel
+>Text</guilabel
+>: introduir text aquí farà que el &krusader; el cerqui dins dels fitxers (<command
+>grep</command
+>). D'aquesta manera, podreu cercar a tots els fitxers de capçalera (<literal role="extension"
+>*.h</literal
+>), el qual inclourà la paraula «testing 123».</para>
+    </listitem>
+    <listitem>
+      <para
+>Alterna l'<guilabel
+>Exp.reg.</guilabel
+>: alterna el mode de les expressions regulars. Una llista desplegable que es mostra després de fer clic a la fletxa cap avall de la dreta, permet introduir els símbols especials. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Codificació</guilabel
+>: permet escollir la codificació del text. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Cerca paraules senceres</guilabel
+>: permet especificar que s'haurà de trobar una coincidència completa (lletres i longitud). </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Distingeix entre majúscules/minúscules</guilabel
+>: es refereix al text que se cerca o la frase exacta que heu introduït.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Cerca en les subcarpetes</guilabel
+>: realitzeu una cerca recursiva i submergiu-vos en cada carpeta en el camí.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Cerca dins els arxius</guilabel
+>: El &krusader; cercarà els fitxers dins de cada arxiu admès. De tota manera, això comporta més temps fer-ho. <note
+> <para
+>Marcant aquesta casella de selecció, notareu que ja no podreu fer <command
+>grep</command
+> dins dels fitxers. Això es fa, ja que mirar dins dels fitxers arxivats obliga al &krusader; a extreure'ls, el qual resulta en una cerca extremadament lenta.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Segueix els enllaços</guilabel
+>: si està marcada, el &krusader; seguirà els enllaços suaus durant la cerca.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Perfils</guilabel
+>: si heu de realitzar regularment la mateixa operació de cerca, podeu desar la configuració de la cerca, &pex;, inclou els fitxers, exclou els arxius, &etc; Premeu el botó «perfil» i podreu afegir/carregar/desar/eliminar els perfils de cerca.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Consulta al porta-retalls</guilabel
+>: si està marcada, el &krusader; posarà el text de cerca al porta-retalls quan s'obri un fitxer trobat.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>La captura de pantalla anterior mostra una cerca de tots els fitxers que acaben amb <literal role="extension"
+>c, cpp</literal
+> o <literal role="extension"
+>h</literal
+> i inclou la cadena «<literal
+>testing 123</literal
+>». El &krusader; cercarà a <filename class="directory"
+>/root, /opt, /bin</filename
+> i <filename class="directory"
+>/usr</filename
+>, però no a <filename class="directory"
+>/usr/lib</filename
+> i <filename class="directory"
+>/usr/share</filename
+>.</para>
+  <para
+>En fer clic al botó <guibutton
+>Cerca</guibutton
+> començarà la cerca i es mostrarà la pàgina amb el resultat. Durant la cerca, podreu prémer el botó <guibutton
+>Atura</guibutton
+> per a aturar la cerca. El botó <guibutton
+>Tanca</guibutton
+> no estarà operatiu durant una cerca, de manera que primer haureu d'aturar la cerca i després tancar la finestra. Quan es troba un resultat, fent-hi doble clic portarà el plafó actiu del &krusader; al punt on es troben els fitxers trobats, però no tancarà la finestra de cerca, de manera que podreu fer clic en un resultat diferent.</para>
+  <para
+>De vegades, es necessita limitar la cerca encara més. El KruSearcher permet una cerca molt més fina, i per això, vegem la <guilabel
+>pàgina Avançat</guilabel
+>...</para>
+  <figure id="screenshot-search-advanced" float="1">
+    <title
+>Cerca avançada</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_advanced.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Cerca avançada</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Aquesta captura de pantalla mostra una cerca de fitxers on la mida està entre 10 KiB i 150 KiB, els quals van ser modificats entre el 10 d'octubre i l'1 de novembre, pertanyen a qualsevol usuari del grup «nobody», i els pot llegir i escriure qualsevol persona d'aquest grup, però són de lectura per a tothom.</para>
+  <para
+>La pàgina Avançat es divideix en tres parts: mida, data i propietari.</para>
+  <para>
+    <emphasis role="bold"
+>Mida</emphasis>
+  </para>
+  <para
+>Permet escollir l'interval de la mida del fitxer que esteu cercant. En marcar les caselles de selecció, podreu cercar un fitxer que sigui més gran que XXX bytes (o kB, MB), més petit que XXX bytes o, en marcar ambdues, cercar un fitxer en el qual la mida sigui més gran que XXX però més petit que YYY.</para>
+  <para>
+    <emphasis role="bold"
+>Data</emphasis>
+  </para>
+  <para
+>Aquesta part ofereix tres formes diferents de definir un criteri de la data: <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Modificat entre</guilabel
+>: permet introduir dues dates. El &krusader; cercarà fitxers amb una data de modificació entre la primera i la segona, inclusivament. <note
+> <para
+>Podeu fer clic sobre la icona de data (prop dels quadres d'entrada) per a obrir una finestra de data estàndard -la qual permet navegar amb facilitat pel calendari i cercar la data desitjada-. En fer clic sobre una data, es tancarà la finestra i la data apareixerà en el quadre d'entrada.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>No modificat després de</guilabel
+>: en triar aquesta opció, el &krusader; cercarà fitxers que NO s'han modificat després d'una data determinada, el qual és el mateix que cercar fitxers anteriors a aquesta data.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Modificat en els últims/No modificat en els últims</guilabel
+>: en aquests quadres d'entrada, no s'introdueix una data sinó un número. Aquest representarà els dies/setmanes/mesos (tal com es va triar en l'anterior llista desplegable). En introduir el número 5 en el quadre d'entrada superior, el &krusader; cercarà els fitxers que s'hagin modificat en els últims 5 dies. En introduir el número 2 en el quadre d'entrada inferior, el &krusader; cercarà els fitxers que NO hagin canviat en els últims 2 dies. La combinació de tots dos resultats en una cerca de fitxers que s'han modificat en els últims 5 dies, però NO en els últims 2 dies.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para>
+    <emphasis role="bold"
+>Propietari</emphasis>
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Pertany a l'usuari/grup</guilabel
+>: en marcar cadascuna de les corresponents caselles de selecció, podreu cercar fitxers que pertanyin a un determinat usuari i/o grup. La llista desplegable llistarà tots els noms d'usuari i grups en el sistema, seleccioneu un i continueu.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Permisos</guilabel
+>: estan dividits entre propietari, grup i tot, permet triar certs permisos per al fitxer. Podreu triar especificar permisos per al propietari, el grup, tots o qualsevol combinació. El signe d'interrogació (?) és un comodí -el qual vol dir que és vàlid qualsevol permís-.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Per a aclarir, la captura de pantalla anterior (la part del propietari) descriu una cerca de fitxers que pertanyen a qualsevol usuari del grup «users», són de lectura, escriptura però no executables per a cap usuari del grup, són de lectura però no d'escriptura o executables per a la resta del món i té permisos desconeguts per al seu propietari.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Resultats</emphasis>
+  </para>
+  <para
+>En fer clic al botó <guibutton
+>Cerca</guibutton
+> per a començar la cerca i obrir la finestra Resultats. Aquí veureu el progrés i el resultat de l'acció de cerca. Si ho voleu, podreu aturar l'acció de cerca actual amb el botó <guibutton
+>Atura</guibutton
+>. A la llista de resultats, seleccioneu el fitxer i utilitzeu <keycap
+>F3</keycap
+>/ <keycap
+>F4</keycap
+> per a visualitzar/editar o utilitzeu el menú del clic dret. Quan feu clic sobre un element trobat, la carpeta del plafó actiu canviarà si l'element seleccionat no es troba sota la carpeta a la secció actual. La finestra de resultats admet arrossegar elements a altres finestres i copiar al porta-retalls (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). Quan tanqueu la finestra del KruSearcher, l'element seleccionat se seleccionarà en el plafó actiu.</para>
+  <para>
+    <emphasis role="bold"
+>Transmet al quadre de llista</emphasis>
+  </para>
+  <para
+>Quan feu clic al botó <guibutton
+>Transmet al quadre de llista</guibutton
+> una vegada es mostren els resultats, el &krusader; sol·licitarà un Nom de consulta, aquest nom s'utilitzarà a la pestanya Resultats en el Plafó de llista que conté el resultat de la cerca. Podreu fer el que vulgueu en els fitxers a la pestanya nova. La Barra d'eines de localització mostrarà, &pex;, <filename
+>virt:/Search results 1</filename
+>.</para>
+  <warning>
+    <para
+>Els fitxers en la pestanya Resultats en realitat són els fitxers originals. Si elimineu un fitxer, S'eliminarà de veres!</para>
+  </warning>
+</sect1>

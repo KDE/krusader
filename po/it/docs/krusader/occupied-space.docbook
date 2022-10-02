@@ -1,0 +1,43 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="calculate">
+  <title
+>Calcolare lo spazio occupato</title>
+  <indexterm>
+    <primary
+>Spazio occupato</primary>
+  </indexterm>
+  <!-- Thanks to Heiner Eichmann -->
+  <para
+>Ci sono due modi per calcolare lo spazio occupato da file o cartelle.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>La pressione della scorciatoia configurabile per il comando <guilabel
+>Calcola lo spazio occupato</guilabel
+>, su una cartella che si trova sotto il cursore, calcola istantaneamente lo spazio occupato.</para>
+    </listitem>
+    <listitem>
+      <para
+>Per calcolare quanto spazio sul disco è occupato dai file e dalle cartelle selezionate nel pannello attivo, seleziona <menuchoice
+> <guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Calcola spazio occupato</guimenuitem
+> </menuchoice
+>. Dopo un breve momento, verrà visualizzata una finestra con l'indicazione dello spazio complessivamente occupato e del numero di file e di cartelle selezionate. Lo spazio occupato da ciascuna cartella selezionata verrà mostrato allo stesso modo che se l'utente avesse premuto la scorciatoia configurabile su quelle cartelle. Se il pannello attivo sta sfogliando un archivio, i numeri saranno riferiti allo spazio decompresso dei file e delle cartelle selezionate, non alla loro dimensione compressa. Dopo il calcolo, lo stato di selezione verrà modificato e il cursore si sposterà di una posizione verso il basso.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>È supportato anche il calcolo dello spazio occupato su file system remoti. <note
+> <para
+>L'esecuzione di questa operazione su un file system molto grande (dell'ordine di migliaia di file) potrebbe risultare estremamente lunga. Puoi interrompere il processo di calcolo in qualsiasi momento facendo clic sul pulsante <guibutton
+>Annulla</guibutton
+>.</para>
+  </note
+></para>
+</sect1>

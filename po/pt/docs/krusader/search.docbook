@@ -1,0 +1,388 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="krusearcher">
+  <title
+>KruSearcher: descubra o que procura</title>
+  <indexterm>
+    <primary
+>Procura</primary>
+  </indexterm>
+  <para
+>Bem-vindo ao poderoso módulo de pesquisa do &krusader; - chamado de KruSearcher. É a ferramenta mais apta (que se conhece) para o &Linux;, dado que permite diversas formas diferentes de procurar o ficheiro que deseja. A função de pesquisa também está disponível para os sistemas de ficheiros remotos. Está dividida em dois níveis, o geral e o avançado. Vejamos a página geral.</para>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>Krusearcher General</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="search_general.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="search_general.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>Krusearcher General</phrase
+></textobject>
+  <caption
+><para
+>Krusearcher General.</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+  <figure id="screenshot-search-general" float="1">
+    <title
+>Pesquisa Geral</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_general.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Pesquisa Geral</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>A página está dividida em quatro partes: a de topo (pesquisar por), a inferior - intitulada <guilabel
+>Contém o texto</guilabel
+>, a da esquerda - <guilabel
+>Procurar em</guilabel
+> e a direita, que se chama <guilabel
+>Não procurar em</guilabel
+>. Obviamente, cada parte lida com diferentes aspectos da pesquisa. Iremos olhar para elas com mais atenção.</para>
+  <itemizedlist>
+    <title
+>Parte Superior:</title>
+    <listitem>
+      <para
+><guilabel
+>Procurar por</guilabel
+>: aqui poderá indicar o critério de pesquisa principal. Poderá indicar um nome de ficheiro, um padrão de caracteres especial (<literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> &etc;) ou ambos - separados por um espaço. Se escrever <literal
+>'texto'</literal
+>, o resultado será o mesmo que <literal
+>'*text*'</literal
+>. Poderá excluir ficheiros da pesquisa com o '|' (&eg; <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>). Poderá usar aspas para os nomes que contenham espaços. O filtro "Os Meus Documentos" procura nos ficheiros e pastas cujo nome seja <filename
+>Os Meus Documentos</filename
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Distinguir a capitalização</guilabel
+>: se desligar esta opção irá permitir uma pesquisa com maiúsculas ou minúsculas (&ie;: o <literal role="extension"
+>*.c</literal
+> é interpretado como <literal role="extension"
+>*.c</literal
+> E como <literal role="extension"
+>*.C</literal
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Do tipo</guilabel
+>: esta opção permite-lhe procurar por um ficheiro não só pelo seu nome, mas também pelo seu tipo MIME. Por exemplo, poderá procurar por todos os ficheiros de áudio cujo nome comece por B. Normalmente, esta opção corresponde a 'todos os ficheiros', mas poderá optar por pesquisar em pacotes, pastas, imagens, ficheiros de texto, vídeos e ficheiros de áudio.</para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Parte Esquerda e Direita:</title>
+    <listitem>
+      <para
+><guilabel
+>Procurar em</guilabel
+> e <guilabel
+>Não procurar em</guilabel
+>: Se usar estas duas componentes, poderá indicar uma pesquisa exactamente da forma que pretende. Por exemplo, poderá querer procurar por um ficheiro em todo o sistema de ficheiros (a começar em <filename
+>/</filename
+>), mas não querer procurar dentro de <filename
+>/mnt</filename
+>. Tudo o que necessita é de escrever <filename
+>/</filename
+> no campo <guilabel
+>procurar em</guilabel
+>, e escrever <filename
+>/mnt</filename
+> no campo <guilabel
+>não procurar em</guilabel
+>. Se quiser introduzir mais que uma pasta num dos campos, basta escrever o primeiro nome e carregar em &Enter;. O nome da pasta será copiado para o campo maior, podendo então introduzir outro nome. <note
+> <para
+>O campo de texto tem uma funcionalidades de completação automática, correspondendo à configuração global do &plasma;. Se o desejar, poderá carregar no <guiicon
+>ícone de pastas</guiicon
+> e escolher a pasta que deseja adicionar.</para>
+      </note>
+      <note>
+          <para
+>É possível definir ficheiros e pastas que serão filtrados dos resultados da pesquisa, usando o campo de texto <guilabel
+>Excluir os Nomes das Pastas</guilabel
+> no fundo do área <guilabel
+>Não pesquisar em</guilabel
+>.</para>
+          <para
+>Os itens na lista de filtragem deverão ser separados por espaços.</para>
+          <para
+>Os espaços nos itens da lista de filtros poderão ser escapados ou colocados entre aspas. Exemplo: <userinput
+>.git "target build" build\ krusader</userinput
+></para>
+      </note
+></para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Parte Inferior:</title>
+    <listitem>
+      <para
+><guilabel
+>Texto</guilabel
+>: se introduzir aqui texto, fará com que o &krusader; procure por ele dentro dos ficheiros (<command
+>grep</command
+>). Desta forma, poderá procurar por todos os ficheiros de inclusão (<literal role="extension"
+>*.h</literal
+>) que incluem a palavra <literal
+>'teste 123'</literal
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Opção de <guilabel
+>Exp. Reg</guilabel
+>: activa ou desactiva o modo de expressões regulares. Uma lista que será apresentada depois de carregar na seta à direita permitir-lhe-á indicar símbolos especiais de expressões regulares. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Codificação</guilabel
+>: permite-lhe escolher a codificação do texto. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Corresponder apenas à palavra completa</guilabel
+>: permite-lhe indicar que deverá encontrar uma correspondência completa (letras e tamanho). </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Distinguir a capitalização</guilabel
+>: indica se o texto a pesquisar por si deverá incluir o texto em maiúsculas ou minúsculas ou se deve corresponder à frase exacta que introduziu.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Procurar nas sub-pastas</guilabel
+>: efectua uma pesquisa recursiva e desce por todas as sub-pastas no caminho.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Procurar nos pacotes</guilabel
+>: o &krusader; irá procurar pelos seus ficheiros, dentro de todos os pacotes suportados. Esta acção, todavia, levará mais tempo a executar. <note
+> <para
+>Se assinalar esta opção, irá reparar que não poderá fazer mais um <command
+>grep</command
+> dentro dos ficheiros. Isto é feito, dado que a pesquisa dentro de ficheiros em pacote faz com que o &krusader; os extraia, o que poderá resultar numa pesquisa altamente morosa.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Seguir as ligações</guilabel
+>: se a opção estiver assinalada, o &krusader; irá seguir as ligações simbólicas durante a pesquisa.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Perfis</guilabel
+>: se tiver que efectuar várias vezes a mesma operação de pesquisa, poderá gravar a configuração da mesma, &eg; os ficheiros a incluir ou a excluir, &etc;... Carregue no botão do 'perfil', para que possa adicionar/carregar/gravar/remover os perfis de pesquisa.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Pesquisa para a área de transferência</guilabel
+>: se a opção estiver assinalada, o &krusader; irá colocar o texto da pesquisa na área de transferência quando for aberto um ficheiro encontrado.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>A imagem acima mostra uma pesquisa em todos os ficheiros que acabem em <literal role="extension"
+>c, cpp</literal
+> ou em <literal role="extension"
+>h</literal
+> e que inclua o texto <literal
+>'teste 123'</literal
+>. O &krusader; irá procurar nas pastas <filename class="directory"
+>/root, /opt, /bin</filename
+> e em <filename class="directory"
+>/usr</filename
+>, mas não na <filename class="directory"
+>/usr/lib</filename
+> e na <filename class="directory"
+>/usr/share</filename
+>.</para>
+  <para
+>Se carregar no botão <guibutton
+>Procurar</guibutton
+>, irá iniciar a pesquisa e mostrar a página de resultados. Durante a pesquisa, poderá querer carregar no botão <guibutton
+>Parar</guibutton
+> para interromper a pesquisa. O botão <guibutton
+>Fechar</guibutton
+> não está operacional durante uma pesquisa, pelo que deverá primeiro parar a pesquisa e então <guibutton
+>Fechar</guibutton
+> a janela. Quando for encontrado um resultado, faça duplo-click nele para que o painel activo do &krusader; aponte para os ficheiros encontrados - embora não feche a janela de pesquisa; isto permite-lhe carregar num resultado diferente.</para>
+  <para
+>Algumas vezes, poderá querer estreitar a sua pesquisa ainda mais. O KruSearcher permite uma pesquisa muito mais detalhada e, para tal, existe então a  <guilabel
+>página Avançado</guilabel
+>...</para>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>Krusearcher Advanced</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="search_advanced.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="search_advanced.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>Krusearcher Advanced</phrase
+></textobject>
+  <caption
+><para
+>Krusearcher Advanced.</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+  <figure id="screenshot-search-advanced" float="1">
+    <title
+>Pesquisa Avançada</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_advanced.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Pesquisa Avançada</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Esta imagem mostra uma pesquisa pelos ficheiros cujo tamanho esteja entre 10KiB e 150KiB, que foram modificados entre 10 de Outubro e 1 de Novembro, que pertençam a qualquer utilizador do grupo 'users', que possa ser lido e gravado por qualquer pessoa desse grupo, mas apenas para leitura pelos restantes utilizadores.</para>
+  <para
+>A página avançada está dividida em três partes: tamanho, data e dono.</para>
+  <para>
+    <emphasis role="bold"
+>Tamanho</emphasis>
+  </para>
+  <para
+>Permite-lhe escolher o intervalo de tamanhos do ficheiro que procura. Ao assinalar as opções respectivas, poderá procurar por um ficheiro que seja maior que XXX bytes (ou KB, MB), menores que XXX bytes ou, assinalando ambas as opções, por um ficheiro cujo tamanho esteja entre XXX e YYY.</para>
+  <para>
+    <emphasis role="bold"
+>Data</emphasis>
+  </para>
+  <para
+>Esta parte oferece três formas diferentes de definição de um critério de datas: <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Modificado entre</guilabel
+>: permite-lhe introduzir duas datas. O &krusader; irá procurar pelos ficheiros que tenham uma data de modificação entre a primeira e a segunda, inclusive. <note
+> <para
+>Poderá carregar no ícone de datas (perto dos campos de dados) para abrir uma janela de datas normal - a qual lhe permite percorrer facilmente um calendário e procurar pela data desejada. Se carregar numa data, irá fechar a janela para que a data apareça no campo de dados respectivo.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Não modificado após</guilabel
+>: se escolher esta opção, fará com que o &krusader; procure pelos ficheiros que NÃO foram modificados após uma dada data, o que é o mesmo que procurar pelos ficheiros anteriores a essa data.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Modificado nos últimos / Não modificado nos últimos</guilabel
+>: nestes campos de texto, não irá introduzir uma data mas sim um número. Este número representa a quantidade de dias/semanas/meses (tal como está definido na lista seguinte). Se introduzir o número 5 no campo de texto, fará com que o &krusader; procure pelos ficheiros que foram modificados nos últimos 5 dias. Se introduzir o número 2 no campo interior, faz com que o &krusader; procure pelos ficheiros que NÃO foram alterados nos últimos 2 dias. A combinação de ambos os resultados irá resultar numa pesquisa pelos ficheiros que foram alterados nos últimos 5 dias, mas NÃO nos últimos 2.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para>
+    <emphasis role="bold"
+>Dono</emphasis>
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Pertence ao utilizador/grupo</guilabel
+>: ao assinalar cada uma das opções correspondentes, poderá procurar pelos ficheiros que pertençam a um determinado utilizador e/ou grupo. A lista apresenta todos os nomes de utilizadores e grupos no sistema; por isso, basta escolher um e seguir em frente.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Permissões</guilabel
+>: dividido entre 'dono', 'grupo' e 'todos' - permite-lhe escolher certas permissões para o ficheiro. Poderá optar por indicar as permissões para o dono, para o seu grupo ou para todos, seja qual for a combinação destes. O ponto de interrogação (?) é um código especial - significa que qualquer permissão é válida.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Para clarificar, a imagem acima (na parte de permissões) descreve uma pesquisa pelos ficheiros que pertencem a qualquer utilizador do grupo 'users', que podem ser lidos ou gravados mas não executados por qualquer utilizador do grupo, mas que não podem ser gravados ou executados pelos restantes utilizadores e que, finalmente, têm permissões desconhecidas para o seu dono.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Resultados</emphasis>
+  </para>
+  <para
+>Se carregar no botão <guibutton
+>Procurar</guibutton
+>, irá iniciar a pesquisa e abrir a janela de Resultados. Aqui poderá ver a evolução e os resultados da acção de pesquisa. Se quiser, poderá parar a acção actual de pesquisa com o botão <guibutton
+>Parar</guibutton
+>. Na lista do resultado, seleccione o ficheiro e use as combinações <keycap
+>F3</keycap
+>/ <keycap
+>F4</keycap
+> para ver/editar ou use o menu do botão direito do rato. Quando carregar num item encontrado, a pasta do painel activo irá mudar, caso o item seleccionado não estiver na pasta do painel actual. A janela de resultados suporta o arrastamento de itens para outras janelas e a cópia para a área de transferência (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). Quando fechar a janela do KruSearcher, o item ficará seleccionado no painel activo.</para>
+  <para>
+    <emphasis role="bold"
+>Alimentar a lista</emphasis>
+  </para>
+  <para
+>Quando carregar no botão <guibutton
+>Alimentar a lista</guibutton
+>, depois da apresentação dos resultados, o &krusader; irá pedir o Nome da Consulta; esse nome será usado na página de Resultados da lista que contém os resultados em questão. Poderá fazer o que quiser nos ficheiros da página nova. A barra de localização irá mostrar &eg; <filename
+>virt:/Resultados da pesquisa 1</filename
+>.</para>
+  <warning>
+    <para
+>Os ficheiros na página de Resultados são de facto os ficheiros originais. Se apagar um ficheiro, este será mesmo removido!</para>
+  </warning>
+</sect1>

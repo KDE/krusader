@@ -1,0 +1,150 @@
+<sect1 id="locate">
+  <title
+>Interface &GUI; do Locate</title>
+  <indexterm>
+    <primary
+>Locate</primary>
+  </indexterm>
+  <para
+>O &krusader; possui uma interface &GUI; para o comando <command
+>locate</command
+> (do pacote 'findutils'). O Locate é usado para a pesquisa rápida de arquivos, não usando uma pasta mas sim uma base de dados. O pacote contém entre outros arquivos, o <command
+>locate</command
+> e o <command
+>updatedb</command
+>. O <command
+>updatedb</command
+> percorre o sistema de arquivos local e guarda os itens dos arquivos na base de dados. O <command
+>cron</command
+> invoca frequentemente o <command
+>updatedb</command
+> todas as noites (configure-o com o <application
+>KCron</application
+>). Escolha a opção <menuchoice
+> <guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Locate</guimenuitem
+> </menuchoice
+> ou o <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> para iniciar esta funcionalidade. O <link linkend="konfig-advanced"
+>Konfigurador</link
+> pode definir argumentos adicionais para o <command
+>updatedb</command
+>.</para>
+  <para
+>Opções de Marcação <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Mostrar apenas os arquivos existentes</guilabel
+>: se a base de dados tiver itens que já não existam mais (apagados, movidos desde o último <command
+>updatedb</command
+>), o <command
+>locate</command
+> não os apresenta. Ele irá verificar a existência de cada arquivo antes de listá-lo na janela de resultados (pode ficar lento).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Distinguir a Capitalização</guilabel
+>: se a desligar, poderá fazer pesquisas indiferentes à maiúsculas ou minúsculas.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Botões de ação <itemizedlist>
+    <listitem>
+      <para
+><guibutton
+>Locate</guibutton
+>: executa o <command
+>locate <replaceable
+>nome1 nome2</replaceable
+></command
+> e coloca o seu resultado na janela de resultados.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Parar</guibutton
+>: interrompe o processo de pesquisa.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>UpdateDB</guibutton
+>: inicia o <command
+>updatedb</command
+> para atualizar a base de dados do 'locate', após inserir a senha do 'root'.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Fechar</guibutton
+>: fecha a janela do 'locate'.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Janela de resultados <itemizedlist>
+    <listitem>
+      <para
+>Duplo-clique sobre um item: entra na sua pasta, torna o item visível e fecha a janela do 'locate'.</para>
+    </listitem>
+    <listitem>
+      <para
+>Botão direito: edita/vê/procura o menu. <itemizedlist>
+        <listitem>
+          <para
+><keycap
+>F3</keycap
+>: vê o item atual.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>F4</keycap
+>: edita o item atual.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>: procura os arquivos na janela de resultados.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+>: mostra o resultado da pesquisa seguinte.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: mostra o resultado da pesquisa anterior.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+        <listitem>
+          <para
+>A janela de resultados suporta o arrastamento dos itens para outras janelas e a cópia para a área de transferência (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+        </listitem>
+  </itemizedlist
+></para>
+</sect1>

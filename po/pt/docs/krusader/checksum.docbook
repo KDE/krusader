@@ -1,0 +1,54 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="checksum">
+  <title
+>Criação-verificação de Códigos de Validação ('Checksum')</title>
+  <indexterm>
+    <primary
+>Código</primary>
+  </indexterm>
+  <para
+><menuchoice
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Criar um Código de Validação</guimenuitem
+> </menuchoice
+>: o &krusader; verifica as ferramentas que tem e, se estas ferramentas permitirem um funcionamento recursivo (no caso de ter seleccionado pastas), poderá gerar um código de validação, escolhendo o tipo de código na lista (<guilabel
+>md5</guilabel
+>, <guilabel
+>sha</guilabel
+> &etc;). Poderá então gravar o código de validação num ficheiro, sendo este chamado normalmente de <filename
+>checksum.md5</filename
+> ou <filename
+>checksum.sha1</filename
+>.</para>
+  <para
+><menuchoice
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Verificar o Código de Validação</guimenuitem
+> </menuchoice
+>: o &krusader; verifica se tem alguma ferramenta que suporte o tipo de código de validação que necessita (a partir do ficheiro de códigos indicado por si) e mostra os ficheiros que falharam esses testes de validação (se existirem).</para>
+  <para
+>O sistema encapsula diversos mecanismos de códigos de validação e utilitários de códigos. De momento, são suportados os seguintes códigos de validação: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv e crc. Por favor verifique a sua <link linkend="konfig-dependencies"
+>configuração de Utilitários de Códigos de Validação</link
+> antes de usar esta função.</para>
+</sect1>

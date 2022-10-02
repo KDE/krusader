@@ -1,0 +1,703 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="useractions">
+  <title
+>Accions d'usuari</title>
+  <indexterm>
+    <primary
+>Accions d'usuari</primary>
+  </indexterm>
+  <!-- Thanks to Jonas Bar -->
+  <para
+>Amb el Gestor d'accions podreu establir, configurar i gestionar les Accions d'usuari. Algunes opcions generals es configuren amb el <link linkend="konfig-useractions"
+>Konfigurador</link
+>. Amb les Accions d'usuari podreu realitzar accions sobre fitxers en el plafó o accedir a les funcions internes del &krusader; amb paràmetres directament emprant marcadors de posició. Les accions s'integren perfectament en el sistema d'accions del &plasma;, el qual vol dir que els diàlegs estàndard Barra d'eines d'edició i edita les dreceres també mostraran les Accions d'usuari. Les Accions d'usuari s'emmagatzemen a <filename
+>~/.local/share/krusader/useractions.xml</filename
+> o <filename
+>krusader/useraction.xml</filename
+> a la carpeta que es pot determinar emprant <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. S'inclouen diversos <link linkend="useraction-xml"
+>exemples</link
+> a la documentació. Les Accions d'usuari es poden editar/afegir/importar/exportar utilitzant el Gestor d'accions. Les Accions d'usuari predeterminades s'emmagatzemen a <filename
+>/usr/share/krusader/useraction-examples.xml</filename
+>. Les Accions d'usuari poden aparèixer gairebé a tot arreu on es poden col·locar les KActions <quote
+>normals</quote
+>. Les accions fins i tot es poden posar a la barra de menús, però per a això s'haurà d'editar el fitxer <filename
+>krusaderui.rc</filename
+>. Alguns exemples:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="useractions-menu"
+>El menú Accions d'usuari</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="useractions"
+>Menú d'usuari</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="actions_toolbar"
+>Barra d'eines d'accions</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Els menús del clic dret</para>
+    </listitem>
+    <listitem>
+      <para
+>&etc;</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>L'eina Accions d'usuari del &krusader; és molt potent i personalitzable si esteu familiaritzat amb l'escriptura de les Accions d'usuari en general.</para>
+  <tip>
+    <para
+>Es proporcionen diverses Accions d'usuari predeterminades. <link linkend="help_krusader"
+>Publiqueu les vostres Accions d'usuari preferides</link
+> perquè estiguin disponibles per a la comunitat del &krusader;. Gràcies!</para>
+  </tip>
+  <figure id="screenshot-actionman" float="1">
+    <title
+>Gestor d'accions</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="actionman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Gestor d'accions</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Bàsicament, les Accions d'usuari són un mètode per a cridar a programes externs amb paràmetres variables. Per exemple, podríeu tenir una Acció d'usuari amb el següent <command
+>xmms <option
+>--enqueue %aList("Selected")%</option
+></command
+> per a posar a la cua tots els elements seleccionats del plafó actiu dins de la instància actual del xmms. A més, hi ha un accés limitat a les funcions internes del &krusader; que requereixen paràmetres. Per exemple, <command
+>%aPanelSize("80")%</command
+> establirà l'amplada del plafó actiu al 80% de la finestra principal del &krusader;. Atès que el paràmetre de marcadors de posició pot contenir altres marcadors de posició, fa possibles uns quants scripts. </para>
+  <para>
+    <emphasis role="bold"
+>Gestionar les Accions d'usuari</emphasis>
+  </para>
+  <para
+>Obriu el Konfigurador i trieu <menuchoice
+><guimenu
+>Accions d'usuari</guimenu
+> <guimenuitem
+>Inicia el Gestor d'accions</guimenuitem
+></menuchoice
+>, en el qual podreu afegir, editar, eliminar, importar i exportar les Accions d'usuari.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Afegeix una acció</guimenuitem
+>: si afegiu una acció nova, obtindreu una màscara d'entrada buida on podreu introduir totes les propietats que desitgeu. L'acció s'afegirà tan aviat com premeu <guimenuitem
+>Aplica</guimenuitem
+>. Després, el nom es mostrarà a la llista de l'esquerra.</para>
+    </listitem>
+    <listitem>
+      <para
+>Per a editar una Acció d'usuari: Seleccioneu l'Acció d'usuari a l'esquerra. Després trieu si voleu editar les seves propietats. Els canvis només tindran efecte quan premeu <guimenuitem
+>Aplica</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Per a suprimir una Acció d'usuari</guimenuitem
+>: seleccioneu l'Acció d'usuari a l'esquerra i feu clic al botó <inlinemediaobject
+> <imageobject
+> <imagedata fileref="Icon-edit-delete.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Per a importar una Acció d'usuari</guimenuitem
+>: si importeu algunes accions, s'afegiran automàticament a la vostra llista. Si hi ha conflictes de noms (els noms han de ser únics perquè són l'ID per al sistema d'accions del &plasma;), se us demanarà que els resoleu. Per això, la llista de l'esquerra només mostrarà les accions on hi ha conflictes. Ara podreu donar-li-les noms nous o eliminar-les.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Exporta una acció</guimenuitem
+>: si exporteu una Acció d'usuari, haureu de proporcionar un nom de fitxer en el qual emmagatzemar-la. Si no existeix, es crearà. Si el fitxer ja conté Accions d'usuari, l'acció que esteu exportant s'afegirà a aquest fitxer.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Totes les accions que heu definit ara es mostraran al menú d'usuari i en els diàlegs del &plasma; per a canviar les dreceres i gestionar la barra d'eines. A més, totes les accions disponibles per a l'element actual també es mostraran al menú del clic dret.</para>
+  <para>
+    <emphasis role="bold"
+>Propietats bàsiques</emphasis>
+  </para>
+  <para
+>L'<guimenuitem
+>Identificador</guimenuitem
+>, el <guimenuitem
+>Títol</guimenuitem
+> i la <guimenuitem
+>Línia d'ordres</guimenuitem
+> sempre seran obligatòries, totes les altres propietats són opcionals.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Identificador</guimenuitem
+>: Un nom únic de l'Acció d'usuari, utilitzat per a identificar-la al sistema d'accions del &plasma;.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Botó d'icona</guimenuitem
+>: la icona per a la vostra Acció d'usuari.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Categoria</guimenuitem
+>: les categories s'utilitzen per a una millor visió general. Apareixen com a elements del submenú al menú <guimenuitem
+>Accions d'usuari</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Títol</guimenuitem
+>: el títol que es mostra en els menús o diàlegs.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Consell d'eina</guimenuitem
+>: informació sobre l'eina per a la vostra Acció d'usuari, &pex;, es mostrarà a la barra d'eines en passar el ratolí per sobre.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Descripció</guimenuitem
+>: una descripció de què fa l'Acció d'usuari. També es mostrarà com <guimenuitem
+>Què és això</guimenuitem
+> si premeu la drecera <keycombo action="simul"
+>&Maj;<keycap
+>F1</keycap
+></keycombo
+> i feu clic sobre l'Acció d'usuari.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Ordre</guimenuitem
+>: l'ordre que s'executarà. Podeu afegir un marcador de posició utilitzant una &IGU; amb el botó <guibutton
+>Afegeix</guibutton
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Carpeta de treball</guimenuitem
+>: la carpeta de treball per a l'ordre que s'executarà.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Mode d'execució</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Normal</guimenuitem
+>: mode d'execució normal.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Executa en un terminal</guimenuitem
+>: executa l'ordre en un terminal.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Executa en un emulador de terminal incrustat</guimenuitem
+>: executa l'ordre en el terminal incrustat.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Recupera la sortida</guimenuitem
+>: Recull la sortida del programa executat en una finestra amb &IGU;.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Separa l'error estàndard</guimenuitem
+>: quan s'utilitza <quote
+>Recupera la sortida</quote
+>, les sortides estàndard i d'error es recolliran per separat.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Accepta l'ordre</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>En els fitxers locals (sense &URL;)</guimenuitem
+>: indica al marcador de posició que haurà de retornar adreces locals.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>En els &URL; (remots i locals)</guimenuitem
+>: indica al marcador de posició que haurà de retornar els &URL;.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <!--    Not yet implemented, but will be after 1.50 stable is released
+        <listitem
+><para
+><guimenuitem
+>On multiple selection</guimenuitem
+>:  </para>
+        <itemizedlist>
+   <listitem
+><para
+><guimenuitem
+>Separate call for each file</guimenuitem
+>: executes the command for each selected file.
+             </para
+></listitem>
+         </itemizedlist>
+      </listitem
+> -->
+    <listitem>
+      <para
+><guimenuitem
+>Drecera predeterminada</guimenuitem
+>: configura una drecera predeterminada per a l'Acció d'usuari.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Activat</guimenuitem
+>: si està marcada, l'acció d'usuari es mostrarà al <link linkend="useractions"
+>Menú de l'usuari</link
+> -en cas contrari, aquesta restarà oculta-.</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>Sintaxi de la línia d'ordres</emphasis>
+  </para>
+  <para
+>Bàsicament, s'executarà tot el que escriviu a la línia d'ordres (si escriviu <quote
+>ls -l</quote
+>, s'executarà <quote
+>ls -l</quote
+>). Teniu la possibilitat d'obtenir una cadena de caràcters del &krusader;, la qual representa l'estat actual del plafó. Això es fa utilitzant marcadors de posició. Un marcador de posició comença amb un signe de percentatge («%») i és seguit per un indicador del plafó («a» per a l'actiu, «o» per a l'altre, «l» per al plafó esquerre i «r» per al plafó dret. Si el marcador de posició no necessita un plafó per a operar, haureu d'indicar-ho amb un guió baix («_»)). Després ve el nom del marcador de posició (vegeu la llista a continuació), en el qual podreu incloure alguns paràmetres entre cometes. Finalment, de nou el signe de percentatge.</para>
+  <para
+>Això sona molt complicat, de manera que donarem un exemple: «%aList("Selected")%» se substituirà per una llista de tots els elements seleccionats en el plafó actiu. Llavors, una ordre com «xmms --enqueue %aList("All", " ", "", "*.mp3")%» executarà l'xmms amb una llista de tots els .mp3 que hi hagi en el plafó actual, separats per un sol espai en blanc.</para>
+  <para
+>Actualment, s'implementen aquests marcadors de posició:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><userinput
+>Path</userinput
+>: se substitueix pel camí dels plafons</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre (opcional): espais automàtics d'escapament. Predeterminat: sí</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Count</userinput
+>: se substitueix pel nombre del &lt;primer paràmetre&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: quins elements, ja sigui <quote
+>All</quote
+> (Tots), <quote
+>Selected</quote
+> (Seleccionats), <quote
+>Files</quote
+> (Fitxers) o <quote
+>Dirs</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Filter</userinput
+>: se substitueix per la màscara de filtratge del plafó</para>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Current</userinput
+>: se substitueix per l'element actual</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre (opcional): omet el camí actual. Predeterminat: no</para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre (opcional): espais automàtics d'escapament. Predeterminat: sí</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>List</userinput
+>: se substitueix per una llista de tots els &lt;primer paràmetre&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: quins elements, ja sigui <quote
+>All</quote
+> (Tots), <quote
+>Selected</quote
+> (Seleccionats), <quote
+>Files</quote
+> (Fitxers) o <quote
+>Dirs</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre (opcional): separador entre els elements. Predeterminat: <quote
+>&nbsp;</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre (opcional): omet el camí actual. Predeterminat: no</para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre (opcional): màscara de filtratge (per a tots menys els <quote
+>Seleccionats</quote
+>). Predeterminat: *</para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre (opcional): espais automàtics d'escapament. Predeterminat: sí</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Select</userinput
+>: manipula la selecció en un plafó</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: màscara de filtratge</para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre (opcional): manipula de quina manera, ja sigui <quote
+>Set</quote
+> (Establir), <quote
+>Add</quote
+> (Afegir) o <quote
+>Remove</quote
+> (Eliminar). Predeterminat: <quote
+>Set</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Goto</userinput
+>: canvia el camí dels plafons al &lt;primer paràmetre&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: un camí relatiu o absolut, o un &URL;</para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre (opcional): obre la ubicació en una pestanya nova. Predeterminat: no</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+>: demana a l'usuari algun text i se substitueix per la resposta</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: la pregunta</para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre (opcional): una resposta predeterminada</para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre (opcional): una llegenda per al quadre de la pregunta</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Clipboard</userinput
+>: manipula el porta-retalls</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: el text que haurà d'anar al porta-retalls (aquí podeu emprar <quote
+>%aCurrent%</quote
+>)</para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre (opcional): afegeix el text al contingut actual del porta-retalls amb aquest separador</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Copy</userinput
+>: copia un fitxer, útil per a anar de pressa, fer còpies de seguretat locals</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: el que s'haurà de copiar</para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre: on s'haurà de copiar</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Sync</userinput
+>: obre el Sincronitzador amb un perfil determinat</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: un perfil per al Sincronitzador</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>NewSearch</userinput
+>: obre les finestres de cerca amb un perfil determinat</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: un perfil per al mòdul de cerca</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Profile</userinput
+>: carrega un perfil de plafó determinat</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: un perfil de plafó</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Each</userinput
+>: divideix la línia d'ordres en una llista. Aquestes ordres s'executaran una rere l'altra.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: un element de la llista (tots, tots els fitxers, totes les carpetes, tot el seleccionat).</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Move</userinput
+>: mou l'origen cap a la destinació.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: un origen</para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre: una destinació</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>PanelSize</userinput
+>: canvia la relació de mida entre els dos plafons.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre (opcional): un valor enter, &pex;, 80 fa que el plafó actiu empri el 80% de l'amplada del &krusader; (l'alçada en el mode vertical), ometent el paràmetre voldrà dir el 50%.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+>: cancel·la l'execució.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre (opcional): una cadena per a la pregunta de la cancel·lació.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ListFile</userinput
+>: se substitueix pel camí/nom de fitxer d'un fitxer temporal que conté una llista d'elements</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: camí/nom de fitxer</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ColSort</userinput
+>: estableix l'ordenació en una columna d'un plafó específic.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: Columna: <quote
+>Nom</quote
+>, <quote
+>Ext</quote
+>, <quote
+>Tipus</quote
+>, <quote
+>Mida</quote
+>, <quote
+>Modificat</quote
+>, <quote
+>Permisos</quote
+>, <quote
+>rwx</quote
+>, <quote
+>Propietari</quote
+> i <quote
+>Grup</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre: seqüència de l'ordenació: <quote
+>Toggle</quote
+>, <quote
+>Asc</quote
+>, <quote
+>Desc</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>View</userinput
+>: estableix el mode de la vista.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Paràmetre: mode de la vista: <quote
+>generic</quote
+>, <quote
+>text</quote
+>, <quote
+>hex</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Paràmetre: mode de la finestra: <quote
+>tab</quote
+> (amb pestanyes), <quote
+>window</quote
+> (finestra)</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+  </itemizedlist>
+  <para
+>Es proporciona un ajudant basat en una &IGU; per a afegir els marcadors de posició. Els espais a «Path», «Current» i «List» hi estaran de manera predeterminada. Hi ha una cosa més important que heu de saber: tots els marcadors de posició que interactuen amb les funcions internes del &krusader; es criden en temps d'expansió (el qual vol dir directament quan se substitueixen els marcadors de posició). Els programes externs es criden en temps d'execució (el qual vol dir després que se substitueixin tots els marcadors de posició).</para>
+  <para>
+    <emphasis role="bold"
+>Propietats avançades</emphasis>
+  </para>
+  <para
+>Aquí podreu configurar on haurà d'estar visible la vostra ordre (per al menú del clic dret). A més, és possible canviar l'ordre executada i confirmar-la per separat. També podreu establir un usuari sota el qual s'haurà d'executar l'ordre.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Configureu si l'acció és vàlida per a un protocol, camí, tipus &MIME; o nom de fitxer.</para>
+    </listitem>
+    <listitem>
+      <para
+>Ajusteu la línia d'ordres abans d'executar.</para>
+    </listitem>
+    <listitem>
+      <para
+>Estableix un usuari diferent per a l'execució (això no tindrà efecte en les funcions internes del &krusader;)</para>
+    </listitem>
+  </itemizedlist>
+</sect1>

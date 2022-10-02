@@ -1,0 +1,713 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="useractions">
+  <title
+>Benutzeraktionen</title>
+  <indexterm>
+    <primary
+>Benutzeraktionen</primary>
+  </indexterm>
+  <!-- Thanks to Jonas Bar -->
+  <para
+>Mit ActionMan können Sie Benutzeraktionen erstellen, einrichten und verwalten. Einige allgemeine Einstellungen werden mit <link linkend="konfig-useractions"
+>Konfigurator</link
+> eingestellt. Mit Benutzeraktionen können Sie Aktionen für Dateien im Dateifenster ausführen und haben Zugriff auf die internen Funktionen von &krusader; mit Parametern die direkt Platzhalter verwenden. Die Aktionen integrieren sich nahtlos in das Aktionensystem von &plasma;, daher sind Benutzeraktionen auch in den normalen Bearbeitungsdialogen für Kurzbefehle und Werkzeugleisten vorhanden. Die Benutzeraktionen werden in <filename
+> ~/.local/share/krusader/useraction.xml</filename
+> gespeichert. Mehrere <link linkend="useraction-xml"
+>Beispiele</link
+> werden mit der Dokumentation ausgeliefert. Benutzeraktionen können durch ActionMan bearbeitet, hinzugefügt, importiert und exportiert werden. Die Standard-Benutzeraktionen werden in <filename
+> ~/.local/share/krusader/useractions.xml</filename
+> oder <filename
+>krusader/useraction.xml</filename
+> im Ordner gespeichert, der mit dem Befehl <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> ermittelt wird. Benutzeraktionen können überall da benutzt werden, wo auch normale <quote
+>KActions</quote
+> eingesetzt werden können. Die Aktionen können sogar in das Menü aufgenommen werden, aber dafür muss die Datei <filename
+>krusaderui.rc</filename
+> bearbeitet werden.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="useractions-menu"
+>Das Menü Benutzeraktionen</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="useractions"
+>Aktionsmenü</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="actions_toolbar"
+>Aktionen-Werkzeugleiste</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Kontextmenüs mit der &RMBn;</para>
+    </listitem>
+    <listitem>
+      <para
+>&etc;</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>&krusader;s Benutzeraktionen sind sehr leistungsfähig und lassen sich gut anpassen, wenn Sie sich allgemein mit dem Schreiben von Benutzeraktionen auskennen.</para>
+  <tip>
+    <para
+>Mehrere Benutzeraktionen werden standardmäßig installiert. Bitte laden Sie ihre beliebtesten <link linkend="help_krusader"
+>Benutzeraktionen</link
+> hoch, so dass sie auch von anderen &krusader;-Benutzern verwendet werden können. Danke.</para>
+  </tip>
+  <figure id="screenshot-actionman" float="1">
+    <title
+>ActionMan</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="actionman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>ActionMan</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Im wesentlichen sind Benutzeraktionen Methoden um externe Programme mit variablen Parametern aufzurufen. Sie können zum Beispiel eine Benutzeraktion wie <command
+>xmms <option
+>--enqueue %aList("Selected")%</option
+></command
+> benutzen, um alle gewählten Einträge im aktiven Dateifenster zur aktuellen Instanz von xmms mit der Option enqueue zu übergeben. Zusätzlich gibt es einen begrenzten Zugriff auf die internen Funktionen von &krusader; mit Parametern. Zum Beispiel wird der Befehl <command
+>%aPanelSize("80")%</command
+> die Breite des aktiven Dateifensters auf 80 % der Breite des Hauptfensters von &krusader; setzen. Da Parameter für Platzhalter auch andere Platzhalter enthalten können, sind sogar einige Skripte möglich. </para>
+  <para>
+    <emphasis role="bold"
+>Benutzerdefinierte Aktionen verwalten</emphasis>
+  </para>
+  <para
+>Öffnen Sie den Einrichtungsdialog und klicken auf der Seite <guilabel
+>Benutzeraktionen</guilabel
+> auf <guibutton
+>ActionMan starten</guibutton
+> oder wählen Sie im Menü <menuchoice
+><guimenu
+>Benutzeraktionen</guimenu
+><guimenuitem
+>Benutzeraktionen verwalten</guimenuitem
+></menuchoice
+>. Damit wird ein Dialog geöffnet, in dem Sie Benutzeraktionen hinzufügen, bearbeiten, löschen, importieren und exportieren können.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Aktion hinzufügen</guimenuitem
+>: Wenn Sie eine Aktion hinzufügen, wird eine leere Eingabemaske angezeigt, in die Sie alle gewünschten Eigenschaften eintragen können. Die Aktion wird hinzugefügt, wenn Sie den Knopf <guibutton
+>Anwenden</guibutton
+> drücken. Der Name der Aktion wird dann links in der Liste angezeigt.</para>
+    </listitem>
+    <listitem>
+      <para
+>Bearbeiten einer Aktion: Wählen Sie eine Aktion links aus und bearbeiten Sie die Eigenschaften, Die Änderungen werden nur übernommen, wenn Sie den Knopf <guibutton
+>Anwenden</guibutton
+> drücken.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Ausgewählte Benutzeraktion löschen</guimenuitem
+>: Wählen Sie links eine Aktion aus und klicken Sie auf den Knopf <inlinemediaobject
+> <imageobject
+> <imagedata fileref="Icon-edit-delete.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Benutzeraktionen importieren</guimenuitem
+>: Importieren Sie einige Aktionen, werden Sie automatisch zu Ihrer Liste hinzugefügt. Namen müssen eindeutig sein, da sie als Kennung für &plasma;s-Aktionssystem gebraucht werden. Gibt es einen Namenskonflikt, müssen Sie ihn auflösen. Dazu wird in der Liste links die Aktionen angezeigt, für die es Konflikte gibt. Sie können jetzt neue Namen vergeben oder eins der Duplikate löschen.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Benutzeraktionen exportieren</guimenuitem
+>: Wenn Sie eine Benutzeraktion exportieren, müssen Sie einen Dateinamen zum Speichern angeben. Existiert die Datei noch nicht wird sie erstellt. Enthält die Datei bereits Benutzeraktionen, werden die exportierten Aktionen zur Datei hinzugefügt.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Alle definierten Aktionen werden im Menü Benutzeraktion und in den &plasma;Dialogen zur Einrichtung der Kurzbefehle und der Werkzeugleisten. Zusätzlich werden alle Aktionen für den aktuellen Eintrag auch im Kontextmenü angezeigt.</para>
+  <para>
+    <emphasis role="bold"
+>Allgemeine Eigenschaften</emphasis>
+  </para>
+  <para
+><guimenuitem
+>Bezeichner</guimenuitem
+>, <guimenuitem
+>Titel</guimenuitem
+> und <guimenuitem
+>Befehl</guimenuitem
+> sind immer erforderlich, alle anderen Eigenschaften sind optional.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Bezeichner</guimenuitem
+>: Ein eindeutiger Name der Benutzeraktion, wird zur Identifizierung  im &plasma;-Aktionssystem benutzt.</para>
+    </listitem>
+    <listitem>
+      <para
+>Knopf <guibutton
+>Symbol</guibutton
+>: Das Symbol für Ihre Benutzeraktion.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Kategorie</guimenuitem
+>: Benutzeraktionen können zur besseren Übersicht in Kategorien eingeteilt werden. Diese Kategorien erscheinen als Untermenüeinträge im Menü <guimenu
+>Benutzeraktionen</guimenu
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Titel</guimenuitem
+>: Der Text in diesem Eingabefeld wird in Menüs oder Dialogen angezeigt.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Kurzinfo</guimenuitem
+>: Eine Kurzinfo für Ihre Benutzeraktion, die &eg; in der Werkzeugleiste beim Überfahren mit dem Mauszeiger angezeigt wird.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Beschreibung</guimenuitem
+>: Eine Beschreibung der Funktion der Benutzeraktion. Diese Beschreibung wird ebenfalls als <guimenuitem
+>Was ist das?</guimenuitem
+>-Hilfe angezeigt, wenn Sie die Tastenkombination <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo
+> für eine aktive Benutzeraktion drücken.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Befehl</guimenuitem
+>: Der auszuführende Befehl. Hier können auch Platzhalter mit einer grafischen Benutzerschnittstelle eingefügt werden, drücken Sie dazu <guibutton
+>Hinzufügen</guibutton
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Arbeitsordner</guimenuitem
+>. Der Arbeitsordner für den ausgeführten Befehl.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Ausführungsmodus</guimenuitem
+></para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Normal</guimenuitem
+>: Der normale Ausführungsmodus.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Im Terminal ausführen</guimenuitem
+>: Führt den Befehl im Terminal aus.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Im eingebetteten Terminal-Emulator ausführen</guimenuitem
+>: Führt den Befehl im eingebetteten Terminal-Emulator aus.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Ausgabe einfangen</guimenuitem
+>: Sammelt die Ausgabe des ausgeführten Programms und zeigt sie in einem Fenster an.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Standardfehler separat</guimenuitem
+>: Wenn <guimenuitem
+>Ausgabe einfangen</guimenuitem
+> verwendet wird, werden die Standardausgabe (stdout) und Standardfehler (stdout) getrennt gesammelt.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Befehl akzeptiert</guimenuitem
+></para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Lokale Dateien (keine Adressen)</guimenuitem
+>: Stellt ein, dass der Platzhalter nur lokale Adressen zurückgeben soll.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Adressen (entfernte und lokale)</guimenuitem
+>: Legt fest, dass der Platzhalter Adressen zurückgeben soll.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <!--    Not yet implemented, but will be after 1.50 stable is released
+        <listitem
+><para
+><guimenuitem
+>On multiple selection</guimenuitem
+>:  </para>
+        <itemizedlist>
+   <listitem
+><para
+><guimenuitem
+>Separate call for each file</guimenuitem
+>: executes the command for each selected file.
+             </para
+></listitem>
+         </itemizedlist>
+      </listitem
+> -->
+    <listitem>
+      <para
+><guimenuitem
+>Standard-Kurzbefehl</guimenuitem
+>: Zur Einstellung des Kurzbefehls für die Benutzeraktion.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Aktiviert</guimenuitem
+>: Ist die aktiv, wird die Benutzeraktion im Menu <link linkend="useractions"
+>Benutzeraktionen</link
+> angezeigt, sonst ist diese Aktion ausgeblendet.</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>Syntax der Befehlszeile</emphasis>
+  </para>
+  <para
+>Im wesentlichen wird alles, was Sie in der Befehlszeile eingeben, ausgeführt. Geben Sie zum Beispiel <quote
+>ls -l</quote
+> ein, wird <quote
+>ls -l</quote
+> wie in einer Konsole ausgeführt. Sie können eine Zeichenfolge von &krusader; erhalten, der den aktuellen Status des Dateifensters repräsentiert. Die geschieht mit Platzhaltern. Ein Platzhalter beginnt mit einen Prozentzeichen ('%'), gefolgt von einem Indikator für das Dateifenster, 'a' für das aktive, 'o' für das andere, 'l' für das linke und 'r' für das rechte Dateifenster. Benötigt ein Platzhalter kein Dateifenster zur Ausführung, müssen Sie dies durch einen Unterstrich ('_') anzeigen. Dann kommt der Name des Platzhalters wie in der folgenden Liste, an den auch Parameter in Anführungszeichen angehängt werden können. Schließlich kommt zu Abschluß wieder ein Prozentzeichen.</para>
+  <para
+>Dies kling sehr kompliziert, daher ein Beispiel:  '%aList("Selected")%' wird durch eine Liste aller ausgewählten Einträge im aktiven Dateifenster ersetzt. Ein Befehl wie 'xmms --enqueue %aList("All", " ", "", "*.mp3")%' führt xmms mit einer Liste aller .mp3-Dateien im aktuellen Dateifenster aus, getrennt durch ein einzelnes Leerzeichen.</para>
+  <para
+>Zurzeit können diese Platzhalter verwendet werden:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><userinput
+>Pfad</userinput
+> - wird durch den Pfad des Dateifensters ersetzt</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (optional): Automatisch Leerzeichen maskieren. Standard: ja</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Anzahl</userinput
+> - wird durch die Zahl des &lt;ersten Parameters&gt; ersetzt</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Welche Einträge, entweder <quote
+>All</quote
+>, <quote
+>Selected</quote
+>, <quote
+>Files</quote
+> oder <quote
+>Dirs</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Filter</userinput
+> - wird durch die Filtermaske des Dateifensters ersetzt</para>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Aktuell</userinput
+> - wird durch den aktuellen Eintrag ersetzt</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (optional): Aktuellen Pfad weglassen. Standard: nein</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optional): Automatisch Leerzeichen maskieren. Standard: ja</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>List</userinput
+> - wird durch eine Liste aller &lt;ersten Parameter&gt; ersetzt</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Welche Einträge, entweder <quote
+>All</quote
+>, <quote
+>Selected</quote
+>, <quote
+>Files</quote
+> oder <quote
+>Dirs</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optional): Trennzeichen zwischen Einträgen. Standard: <quote
+>&nbsp;</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optional): Aktuellen Pfad weglassen. Standard: nein</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optional): Filtermaske (für alle bis auf <quote
+>Selected</quote
+>). Standard: *</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optional): Automatisch Leerzeichen maskieren. Standard: ja</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Select</userinput
+> - verändert die Auswahl in einem Dateifenster</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Filtermaske</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optional): auf welche Art verändern, entweder <quote
+>Set</quote
+>, <quote
+>Add</quote
+> oder <quote
+>Remove</quote
+>. Standard: <quote
+>Set</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Goto</userinput
+> - Ändert den Pfad des Dateifensters auf &lt;ersten Parameter&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Ein relativer oder absoluter Pfad oder eine &URL;</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optional): Öffnet den Ort in einem neuen Unterfenster. Standard: nein</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+> - Fragt den Benutzer nach Text und wird durch dessen Antwort ersetzt</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Die Frage</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optional): Eine Standardantwort</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optional): Eine Überschrift für das Fragenfenster</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Zwischenablage</userinput
+> - bearbeitet die Zwischenablage</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Der Text, der in die Zwischenablage eingefügt werden soll. Sie können hier <quote
+>%aCurrent%</quote
+> verwenden</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optional): Hängt den aktuellen Inhalt der Zwischenablage mit diesen Trennzeichen an</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Kopieren</userinput
+> - kopiert eine Datei, nützlich für schnelle lokale Sicherungen</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Das zu kopierende Element</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Das Ziel des Kopierens</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Sync</userinput
+> - Öffnet den Abgleich mit einem angegebenen Profil</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: ein Profil für das Abgleichen</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>NewSearch</userinput
+> - Profil das Suchfenster mit einem angegebenen Profil</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Ein Profil für das Suchmodul</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Profil</userinput
+> - lädt ein angegebenes Dateifenster-Profil</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Ein Dateifenster-Profil</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Each</userinput
+> - Teilt die Befehlszeile in eine Liste. Die Befehle in der Liste werden dann nacheinander ausgeführt.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Ein Listeneintrag (all, all files, all dirs, all selected).</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Verschieben</userinput
+> - verschiebt von Quelle zu Ziel.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Eine Quelle</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Ein Ziel</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>PanelSize</userinput
+> - Ändert das Verhältnis zwischen den beiden Dateifenstern.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (optional): Ein ganzzahliger Wert &eg; mit 80 benutzt das aktive Dateifenster 80 % der Breite des &krusader;'-Fensters, bzw der Höhe im senkrechten Modus. Kein Parameter bedeutet 50 %.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+> - Abbruch der Ausführung.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (optional): Ein Text für die Abbrechen-Frage.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ListFile</userinput
+> - wird durch den Pfad bzw. den Dateinamen einer temporären Datei ersetzt, die eine Liste mit Elementen enthält</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Pfad/Dateiname</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ColSort</userinput
+> - legt die Sortierung einer Spalte in einem angegebenen Dateifenster fest.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter Spalte: entweder <quote
+>Name</quote
+>, <quote
+>Erw</quote
+>, <quote
+>Dateityp</quote
+>, <quote
+>Größe</quote
+>, <quote
+>Geändert</quote
+>, <quote
+>Berechtigungen</quote
+>, <quote
+>rwx</quote
+>, <quote
+>Eigentümer</quote
+> oder <quote
+>Gruppe</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Sortiersequenz: Entweder <quote
+>Toggle</quote
+>, <quote
+>Asc</quote
+>, <quote
+>Desc</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ansicht</userinput
+> - stellt den Ansichtsmodus ein.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Ansichtsmodus: Entweder <quote
+>generic</quote
+>, <quote
+>text</quote
+>, <quote
+>hex</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Fenstermodus: Entweder <quote
+>tab</quote
+>, <quote
+>window</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+  </itemizedlist>
+  <para
+>Es gibt eine grafische Hilfe, um Platzhalter einzufügen. Leerzeichen in <quote
+>Path</quote
+>, <quote
+>Current</quote
+> und <quote
+>List</quote
+> werden als Standard automatisch maskiert. Etwas wichtiges ist noch zu beachten: Alle Platzhalter für &krusader;s interne Funktionen werden beim Expandieren aufgerufen, d. h. direkt die Platzhalter ersetzt werden. Externe Programme werden zur Ausführungszeit aufgerufen, d. h. nachdem alle Platzhalter ersetzt wurden.</para>
+  <para>
+    <emphasis role="bold"
+>Erweiterte Eigenschaften</emphasis>
+  </para>
+  <para
+>Hier können Sie einstellen, wann Ihre Aktionen im Kontextmenü angezeigt werden und dafür Protokoll, MIME-Typ, Pfad und Dateiname festlegen. Sie können sich außerdem einen Befehl vor der Ausführung nochmal anzeigen lassen, um ihn eventuell anzupassen. Falls die Aktion als anderer Benutzer ausgeführt werden soll, können Sie ihn hier eingeben.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Legt fest, ob die Aktion für ein Protokoll, Pfad, &MIME;-Typ oder einen Dateinamen gültig ist.</para>
+    </listitem>
+    <listitem>
+      <para
+>Bearbeitung der Befehlszeile ehe sie ausgeführt wird.</para>
+    </listitem>
+    <listitem>
+      <para
+>Legt einen anderen Benutzer für die Ausführung  fest, das hat keine Auswirkung auf die internen Funktionen von &krusader;</para>
+    </listitem>
+  </itemizedlist>
+</sect1>

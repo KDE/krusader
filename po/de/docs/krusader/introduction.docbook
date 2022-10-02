@@ -1,0 +1,101 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<chapter id="introduction">
+  <title
+>Einführung</title>
+  <indexterm
+><primary
+>Einführung</primary
+></indexterm>
+  <sect1 id="package-description">
+  <title
+>Paketbeschreibung</title>
+    <para
+>&krusader; ist ein einfach zu bedienendes Dateiverwaltungsprogramm mit zwei Dateifenstern im Commander-Stil für &plasma; und ander Unix-Systeme, ähnlich wie <application
+>Midnight Commander</application
+> oder <trademark class="copyright"
+>Total Commander</trademark
+>. Das Programm bietet alle Funktionen einer Dateiverwaltung, die Sie möglicherweise benötigen.</para>
+    <para
+>&krusader; enthält auch extensive Verarbeitung von Archiven, Unterstützung von eingehängten Dateisystemen, &FTP;, erweiterte Suchmodule, Betrachter/Editor, Abgleich von Ordnern, Vergleich von Dateiinhalten. leistungsfähige Stapelverarbeitung und vieles mehr. &krusader; unterstützt folgende Archivformate. ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip und verarbeitet auch KIO-Ein-/Ausgabemodule wie  smb:// or fish://.</para>
+    <para
+>&krusader; kann in großem Umfang angepasst werden und ist daher sehr benutzerfreundlich.</para>
+    <para
+>&krusader; ausprobieren</para>
+    <figure id="screenshot-krusader" float="1">
+      <title
+>Bildschirmfoto von &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="krusader1.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Bildschirmfoto von &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Weitere <ulink url="https://krusader.org/"
+>&krusader;-Bildschirmfotos</ulink
+> finden Sie auf unserer Webseite.</para>
+  </sect1>
+
+  <sect1 id="welcome">
+    <title
+>Willkommen zu &krusader;!</title>
+    <para
+>Das Ziel ist es, Ihnen ein einfaches intuitives Werkzeug zur Verfügung zu stellen, das die meisten Aufgaben für Ihren Rechner einfach und jederzeit ausführt: Verwaltung und Bearbeitung Ihrer Dateien, wie Sie es brauchen.</para>
+    <para
+>Ob Sie ein &Linux;-Experte oder ein Anfänger sind, &krusader; erleichtert die Verwaltung von Dateien ohne die Syntax der Befehlszeile lernen zu müssen. Dies ist besonders hilfreich für Anfänger mit xxNIx-Systemen. Dazu hat &krusader; eine gut aussehende &GUI; und unterstützt Ziehen und Ablegen wie auch &MIME;-Typen.</para>
+    <para
+>&krusader; hat viele nützliche Funktionen. Es ist schnell und verarbeitet problemlos <link linkend="archives"
+>Archive</link
+> Zusätzlich rationalisiert &krusader; viele komplexe Aufgaben für die Dateiverwaltung, die Arbeit weniger ermüdend und hat weniger Fehler und Ablenkung. Im wesentlichen bietet &krusader; alle hilfreichen Funktionen, die Sie von anderen guten Dateiverwaltungen wie <application
+>Midnight Commander</application
+> and <trademark class="copyright"
+>Total Commander</trademark
+> können. &krusader; wurde für eine nahtlose Integration in &plasma;, die bevorzugte Arbeitsumgebung für viele Programmierer, Netzwerkingenieure und andere erfahrene Benutzer von &Linux;. Mit &krusader; erreichen sogar Anfänger schnell die Leistungsfähigkeit, Bequemlichkeit und Funktionsvielhalt der &plasma;-Arbeitsumgebung. &krusader; ist ein freies „Open Source“-Projekt, das unter der <link linkend="credits"
+>&GNU; General Public License (GPL)</link
+> verbreitet wird. Trotzdem behalten die Entwickler das Copyright für das Projekt und den Namen und managen die kontinuierliche Evolution des Projekts.</para>
+    <para
+>Das Ziel des &krusader;-Projekts ist die Erstellung einer Dateiverwaltung für alle Aufgaben, mit dem man auch die normalen Aufgaben wie erwartet ausführen kann. Da &krusader; auf dem Prinzip des <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Orthodox File Manager (OFM)</ulink
+>, der Dateiverwaltung mit zwei Ansichtsfenstern wie <application
+>Midnight Commander</application
+>, <trademark class="registered"
+>Norton Commander</trademark
+>, &etc; beruht, kann &krusader; alle Standardaufgaben für Dateien wie Kopieren, Verschieben, Löschen &etc; bearbeiten.</para>
+    <para
+>Von Anfang an stand das virtuelle Dateisystem im Schwerpunkt der Entwicklung. <link linkend="vfs"
+>Virtuelle Dateisysteme (VFS)</link
+> sind eine abstrakte Ebene über alle Arten von Informationen von Archiven wie ZIP-Dateien, &FTP;-Servern, TAR-Archiven, &NFS;-Dateisystemen, &Samba;-Freigaben, ISO-&CD;/&DVD;-Abbildern, RPM-Katalogen, &etc; Dies gibt Ihnen direkten Zugriff auf alle verschiedenen Arten von Informationen wie in jedem normalen Unterordner. Dateien können beliebig hin und her kopiert und verschoben werden, ausgenommen ISO, rpm, tar.gz. &krusader; unterstützt zurzeit virtuelle Dateisysteme für alle häufig benutzten und einige besondere Arten von Archiven, wie ace, arj, bzip2, gzip, iso, lha, rar, tar, zip und 7-zip, Software-Pakete wie rpm, deb und traditionelle entfernte Dateisysteme wie &FTP;, &NFS;, &Samba;, FISH, SFTP.</para>
+    <para
+>&krusader; enthält auch einen eingebaute Mount-Verwaltung <link linkend="mount-man"
+>MountMan</link
+>, mit der Sie alle möglichen Dateisysteme mit einem Mausklick einhängen oder aushängen können. Sie erhalten einfach Informationen über die Belegung und andere Eigenschaften, in einem konsistenten und verständlichen Format.</para>
+    <para
+>Eine <link linkend="bookman"
+>Verwaltung von Lesezeichen</link
+> für lokale und entfernte &URL;s und ein <link linkend="krusearcher"
+>fortgeschrittenes Suchmodul</link
+> sind ebenfalls enthalten, um das Auffinden benötigter Dateien zu erleichtern. In &krusader; können Sie Werkzeugleisten einrichten und damit eine große Vielzahl von zusätzlichen Funktionen bereitstellen, wie zum Beispiel Dateivergleiche mit mehreren benutzerdefinierten Methoden, Umbenennung mehrerer Dateien und ein Standard-Terminalfenster.</para>
+    <para
+>Fortgeschrittene Benutzer profitieren von den Möglichkeiten, Büroarbeiten effektiv ohne Unterbrechung zu erledigen. Praktische Kurzbefehle erlauben die einfache Navigation in Ordnersystemen, die gleichzeitige Erstellung von vielen Ordneransichten in Unterfenstern und voller Zugriff auf den Verlauf. Wegen der effektiven Programmierung und der geringen Systembelastung ist &krusader; möglicherweise das effektivste Systemverwaltungs-Werkzeug zum Zugriff auf das volle Potential eine Rechners unter &plasma; oder anderen standardkonformen &X-Window;-Fensterverwaltungen. Obwohl speziell für &plasma; entwickelt und gut integriert, funktioniert &krusader; genauso gut mit GNOME, Enlightenment, &windowmaker;, IceWM, BlackBox, Wiamea, XFCE, &etc;, es müssen nur die &kf5;-Bibliotheken installiert sein.</para>
+    <para
+>Neue Erweiterungen bietet das flexible System der <link linkend="useractions"
+>Benutzeraktionen</link
+>, eine &krusader;-Innovation, mit der unbegrenzte benutzerdefinierte Funktionen hinzugefügt werden können, um die speziellen Anforderungen der Benutzer zu erfüllen. Es sollen in naher Zukunft weitere Module entwickelt und damit &krusader; verbessert werden. Informationen über Benutzeraktionen, die vorgeschlagen, angenommen oder noch nicht vollständig sind, finden Sie auf der <ulink url="https://invent.kde.org/utilities/krusader"
+>&krusader;-GitLab-Seite</ulink
+>.</para>
+    <para
+>Uns ist kein anderes Programm bekannt, das so viele nützliche und leicht zugängliche Funktionen in so einem intuitiven und einfachen Format bietet. Außerdem hören wir auf die Wünsche unserer Benutzer und implementieren gute Vorschläge, die zu den Projektzielen von &krusader; passt, dem besten verfügbaren Dateiverwaltungsprogramm.</para>
+    <para
+>Wir hoffen, das Programm gefällt Ihnen.</para>
+ </sect1>
+</chapter>

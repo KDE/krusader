@@ -1,0 +1,132 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="vfs">
+  <title
+>Sistemas de ficheiros virtuais (VFS)</title>
+  <indexterm>
+    <primary
+>VFS</primary>
+  </indexterm>
+  <para
+>Uma <link linkend="features"
+>funcionalidade básica de OFM</link
+> é o VFS, que é uma camada abstracta sobre todos os tipos de informação arquivada (ficheiros ZIP, servidores de &FTP;, pacotes TAR, sistemas de ficheiros NFS, partilhas de SAMBA, imagens ISO de CD/DVD, catálogos de RPM, &etc;), que permite ao utilizador aceder a toda a informação nestes tipos divergentes de sistemas de ficheiros, de forma transparente - como se estivesse a entrar numa sub-pasta normal. O &krusader; suporta diversos sistemas de ficheiros virtuais:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>VFS de ligações remotas</link
+>: oferece a capacidade de lidar com uma sessão de ligações remotas (&FTP;, NFS, Samba, FISH, SFTP), como acontece nos sistemas de ficheiros locais. É perfeito para as operações remotas complexas e é quase tão poderoso quanto os clientes remotos autónomos.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>VFS de Pacotes</link
+>: permite navegar pelos pacotes no VFS como se fossem uma pasta (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip e 7-zip).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>VFS de Pesquisa</link
+>: o <guibutton
+>Alimentar à lista</guibutton
+> coloca os resultados da pesquisa no VFS.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>VFS de Sincronização</link
+>: coloca os resultados da sincronização no VFS (está desactivada na compilação por omissão).</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>As acções que efectuar sobre os ficheiros no VFS são aplicadas nos ficheiros 'reais'. Você não irá apagar os ficheiros no VFS - apagá-los-á também do seu disco rígido. Limitações: não poderá criar pastas dentro de um VFS.</para>
+  <para
+>É possível manter a estrutura de pastas ao fazer uma cópia de uma pasta virtual para uma pasta não-virtual, seleccionando a opção "Manter a estrutura de pastas virtuais" na janela de cópia. Imagine a seguinte pasta virtual: <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/area/pasta1/ficheiro1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/area/pasta1/ficheiro2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/area/pasta2/ficheiro3</userinput
+></screen
+>. Depois, execute os seguintes passos:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>vá à pasta virtual e seleccione os ficheiros</para>
+    </listitem>
+    <listitem>
+      <para
+>seleccione uma pasta de destino (não-virtual!)</para>
+    </listitem>
+    <listitem>
+      <para
+>carregue em <keycap
+>F5</keycap
+>-&gt; a janela de cópia irá aparecer</para>
+    </listitem>
+    <listitem>
+      <para
+>Assinale a opção <guilabel
+>Manter a estrutura de pastas virtuais</guilabel
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Seleccione <filename
+>/home/area/</filename
+> como &URL; de base</para>
+    </listitem>
+    <listitem>
+      <para
+>Inicie a cópia, carregando em OK</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>O resultado será: <screen
+><prompt
+>$</prompt
+> <userinput
+>pasta-destino/pasta1/ficheiro1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>pasta-destino/pasta1/ficheiro2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>pasta-destino/pasta2/ficheiro3</userinput
+></screen>
+  </para>
+</sect1>

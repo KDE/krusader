@@ -1,0 +1,321 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<appendix id="useraction-xml">
+  <title
+>useractions.xml</title>
+  <para
+>Detta appendix ger flera exempel på <filename
+>useractions.xml</filename
+>-filer. Med detta kan du börja upptäcka hur kraftfulla <link linkend="useractions"
+>användaråtgärder</link
+> är, och börja lära dig hur man använder dem. När du väl förstår hur man skriver användaråtgärder, kommer du att märka att &krusader; är ett ännu kraftfullare, anpassningsbart verktyg.</para>
+  <para
+>Överväg att ladda upp dina användaråtgärder till <ulink url="https://store.kde.org"
+>store.kde.org</ulink
+>, eftersom vi samlar in dem. Om din användaråtgärd väljs av oss kommer den att levereras med &krusader; i nästa utgåva.</para>
+
+<itemizedlist>
+    <listitem
+><para
+>Kör <command
+>uptime</command
+> <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="uptime" >
+  &lt;title
+>Up-time&lt;/title>
+  &lt;tooltip
+>tells how long since the computer has been booted&lt;/tooltip>
+  &lt;icon
+>clock&lt;/icon>
+  &lt;category
+>information&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" 
+>uptime&lt;/command>
+  &lt;defaultshortcut
+>Alt+Ctrl+U&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+    <listitem
+><para
+>Kör <command
+>ls -l</command
+> <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="ls -l" >
+  &lt;title
+>ls -l in current dir&lt;/title>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" 
+>ls -l %aPath% %oPath%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+    <listitem
+><para
+>Eka platsmarkör <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="test_placeholder" >
+  &lt;title
+>Echo Placeholder&lt;/title>
+  &lt;tooltip
+>Echo's the placeholder values&lt;/tooltip>
+  &lt;category
+>Testing&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" onmultiplefiles="call_each" 
+>echo -e &quot;aPath %aPath()%  \naCurrent: %aCurrent()%&quot;&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+      <listitem
+><para
+>Den här användaråtgärden kopierar aktuell sökväg och filnamn till klippbordet: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="clipboard current" >
+  &lt;title
+>Copy to Clipboard&lt;/title>
+  &lt;tooltip
+>Copy to clipboard&lt;/tooltip>
+  &lt;icon
+>klipper&lt;/icon>
+  &lt;category
+>System&lt;/category>
+  &lt;description
+>Copy current path and filename to clipboard&lt;/description>
+  &lt;command
+>%_Clipboard(&quot;%aCurrent%&quot;)%&lt;/command>
+  &lt;defaultshortcut
+>Win+C&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Markerar <literal role="extension"
+>.diff</literal
+> och <literal role="extension"
+>.h</literal
+> i den aktiva panelen: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="test_select" >
+  &lt;title
+>Add selection *.diff and *.h&lt;/title>
+  &lt;category
+>Selection&lt;/category>
+  &lt;command
+>%aSelect(&quot;*.diff&quot;, &quot;add&quot;)% %aSelect(&quot;*.h&quot;, &quot;add&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Den aktiva panelen ändras till <filename
+>mnt/floppy</filename
+> (bokmärke): <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+&lt;action name="mnt/floppy bookmark" >
+  &lt;title
+>Jump to /mnt/floppy&lt;/title>
+  &lt;category
+>Bookmarks&lt;/category>
+  &lt;command
+>%aGoto(&quot;/mnt/floppy&quot;, &quot;yes&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Markera också alla filnamn som är markerade i den aktiva panelen i den icke-aktiva panelen: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="asdfasdf" >
+  &lt;title
+>Select in Other Panel&lt;/title>
+  &lt;category
+>Selection&lt;/category>
+  &lt;description
+>Select all filenames that are selected in the active panel, also in the non-active panel&lt;/description>
+  &lt;command
+>%oSelect(&quot;%aList(&quot;selected&quot;, &quot; &quot;, &quot;Yes&quot;)%&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Gör en säkerhetskopia av den aktuella filen eller katalogen till <filename
+>objekt.bak</filename
+> i den aktuella katalogen: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="backup current" >
+  &lt;title
+>Backup in Current Directory&lt;/title>
+  &lt;tooltip
+>Backup in current directory&lt;/tooltip>
+  &lt;icon
+>document-save-as&lt;/icon>
+  &lt;category
+>System&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command
+>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;new name&quot;, &quot;%aCurrent%.bak&quot;)%&quot;)%&lt;/command>
+  &lt;defaultshortcut
+>Shift+F5&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Öppnar <link linkend="krusearcher"
+>Krusearcher</link
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="search" >
+  &lt;title
+>Search Test&lt;/title>
+  &lt;command
+>%_NewSearch(&quot;Search 2&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Ställer in markerad bild som skrivbordsunderlägg: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="set wallpaper" >
+  &lt;title
+>Set as Wallpaper&lt;/title>
+  &lt;tooltip
+>Set as wallpaper&lt;/tooltip>
+  &lt;icon
+>image&lt;/icon>
+  &lt;category
+>Service Menu&lt;/category>
+  &lt;description
+>Set as wallpaper (scaled)&lt;/description>
+  &lt;command
+>dcop kdesktop KBackgroundIface setWallpaper &quot;%aCurrent%&quot; 6&lt;/command>
+  &lt;defaultshortcut
+>Win+W&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Den här användaråtgärden redigerar en fil med administratörsbehörighet med användning av <command
+>kdesu</command
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="edit as root" >
+  &lt;title
+>Edit as Root&lt;/title>
+  &lt;tooltip
+>Edit as root&lt;/tooltip>
+  &lt;icon
+>kwrite&lt;/icon>
+  &lt;category
+>System&lt;/category>
+  &lt;description
+>Edit a file with root permissions using kdesu&lt;/description>
+  &lt;command
+>kdesu kwrite %aCurrent%&lt;/command>
+  &lt;defaultshortcut
+>Win+F4&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Den här användaråtgärden lägger till objekt i Amaroks spellista: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="amarok enqueue" >
+  &lt;title
+>Enqueue in Amarok&lt;/title>
+  &lt;tooltip
+>Append selected item(s) to Amarok playlist&lt;/tooltip>
+  &lt;icon
+>amarok&lt;/icon>
+  &lt;category
+>Multimedia&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command
+>amarok --append %aList(&quot;Selected&quot;)%&lt;/command>
+  &lt;defaultshortcut
+>Win+A&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Öppnar <link linkend="synchronizer"
+>Synchroniseraren</link
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="synchronizer" >
+  &lt;title
+>Synchronizer&lt;/title>
+  &lt;command
+>%_Sync(&quot;Sync 2&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+</itemizedlist>
+
+</appendix>

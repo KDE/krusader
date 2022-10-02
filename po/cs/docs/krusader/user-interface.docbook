@@ -1,0 +1,1064 @@
+<chapter id="user-interface">
+  <title
+>Uživatelské rozhraní</title>
+  <indexterm>
+    <primary
+>Uživatelské rozhraní</primary>
+  </indexterm>
+  <sect1 id="ofm-userinterface">
+    <title
+>Uživatelské rozhraní OFM</title>
+    <para
+>Koncept správce souborů OFM obsahuje <link linkend="features"
+>mnoho vlastností</link
+>, které jej činí dosti výkonným. Díky tomu dnes patří mezi nejlepší správce souborů. Rozhraní je jednoduché: levý panel, pravý panel a níže příkazová řádka. To proto, že součinnost mezi třemi částmi spravování souboru přináší více efektivity.</para>
+    <para
+>Jestli byste chtěli vědět, <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+>jak aplikace &krusader; funguje</ulink
+>, můžete ji vyzkoušet na Vašem počítači. Pro přijmutí <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>ortodoxního správce souborů (OFM)</ulink
+>, jako je &krusader;, si uživatel potřebuje zvyknout na <emphasis
+>nové představy</emphasis
+>, které jsou zavedené již 20 let. Dáváte-li přednost marnit čas a ztrácet výkonnost, můžete nadále pokračovat používat správce souborů s jedním panelem založené na Průzkumníku OS &Windows;.</para>
+  </sect1>
+  <sect1 id="mainwindow">
+    <title
+>Hlavní okno aplikace &krusader;</title>
+    <!-- OLD
+<screenshot>
+   <screeninfo
+>&krusader; Main Window</screeninfo>
+    <mediaobject>
+     <imageobject
+><imagedata fileref="mainwindow.png" format="PNG"/></imageobject>
+     <imageobject
+><imagedata fileref="mainwindow.png" format="EPS"/></imageobject>
+     <textobject
+><phrase
+>&krusader; Main Window</phrase
+></textobject>
+     <caption
+><para
+>&krusader; is main window with all the different parts named on the screen.</para
+></caption>
+    </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-mainwindow" float="1">
+      <title
+>Hlavní okno aplikace &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="mainwindow.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Hlavní okno aplikace &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Uživatelské rozhraní je založeno na vzoru <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Ortodoxního správce souborů (OFM)</ulink
+>, což je velice osvědčený dvacetiletý princip. Je znám jako jednoduchý, přirozený a efektní. V následujících sekcích se budeme zabývat základními funkcemi každé části s výjimkou:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="menu-commands"
+>Hlavní nabídky</link
+>, která má vlastní kapitolu.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="bookman"
+>Záložek</link
+>, které mají vlastní kapitolu.</para>
+      </listitem>
+      <listitem>
+        <para
+><emphasis role="bold"
+>Stavové lišty</emphasis
+> zobrazující vlastnosti aktuálně vybraného souboru. </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  <sect1 id="toolbars">
+    <title
+>Nástrojové lišty</title>
+    <para
+>&krusader; přichází s více nástrojovými lištami.</para>
+    <sect2 id="main_toolbar">
+      <title
+>Hlavní nástrojová lišta</title>
+      <indexterm>
+        <primary
+>Nástrojová lišta</primary>
+        <secondary
+>Hlavní nástrojová lišta</secondary>
+      </indexterm>
+<!-- OLD
+<screenshot>
+    <screeninfo
+>Main Toolbar</screeninfo>
+    <mediaobject>
+     <imageobject
+><imagedata fileref="toolbar.png" format="PNG"/></imageobject>
+     <imageobject
+><imagedata fileref="toolbar.png" format="EPS"/></imageobject>
+     <textobject
+><phrase
+>Main Toolbar</phrase
+></textobject>
+    </mediaobject>
+</screenshot>
+-->
+      <figure id="screenshot-maintoolbar" float="1">
+        <title
+>Hlavní nástrojová lišta</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="toolbar.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Hlavní nástrojová lišta</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>Hlavní nástrojová lišta aplikace &krusader; je standardní nástrojová lišta &kde;, která může být přetažena poblíž aplikace nebo nastavena nabídkou <keycap
+>pravého tlačítka myši</keycap
+>. V <link linkend="konfigurator"
+>Konfigurátoru na stránce Spouštění</link
+> se můžete rozhodnout, zda ji chcete zobrazit při každém spuštění aplikace &krusader; a její zobrazení použité v aktuálním sezení můžete přepínat v <link linkend="settings-menu"
+>nabídce Nastavení</link
+>. Obsah hlavní nástrojové lišty může být nastaven pomocí položky <guimenuitem
+>Nastavit nástrojové lišty</guimenuitem
+> v <link linkend="settings-menu"
+>nabídce Nastavení</link
+>. Protože různé příkazy a volby aplikace &krusader; jsou závislé na okolnostech, nejsou vždy některé příkazy dostupné. Ikona nevhodné nebo neaktivní činnosti bude zakázána (zešedne). <link linkend="bookman"
+>Záložky</link
+> mohou být umístěny do hlavní nástrojové lišty a do nástrojové lišty činností pomocí myši použitím metody "táhni a pusť".</para>
+    </sect2>
+    <sect2 id="actions_toolbar">
+      <title
+>Nástrojová lišta činností</title>
+      <indexterm>
+        <primary
+>Nástrojová lišta</primary>
+        <secondary
+>Nástrojová lišta činností</secondary>
+      </indexterm>
+      <para
+><link linkend="useractions"
+>UserActions</link
+> and <link linkend="bookman"
+>Bookmarks</link
+> can be "plugged" into the <guilabel
+>Actions Toolbar</guilabel
+>. To show it, use <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Settings</guimenu
+> <guimenuitem
+>Show Actions Toolbar</guimenuitem
+> </menuchoice
+> </emphasis
+>. To add user actions, use <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Settings</guimenu
+> <guimenuitem
+>Configure Toolbars</guimenuitem
+> </menuchoice
+> </emphasis
+> and select Actions Toolbar. You can, for example, drag the Actions Toolbar to the right side using the mouse.</para>
+    </sect2>
+    <sect2 id="location_toolbar">
+      <title
+>Nástrojová lišta umístění</title>
+      <indexterm>
+        <primary
+>Nástrojová lišta</primary>
+        <secondary
+>Nástrojová lišta umístění</secondary>
+      </indexterm>
+      <para
+>Pod <guibutton
+>Hlavní nástrojovou lištu</guibutton
+> je zde pro každý panel <guibutton
+>Nástrojová lišta umístění</guibutton
+>. Ta zobrazuje aktuální cestu panelu. Při vstupu do archivu bude cesta zobrazena v následujícím formátu: "typ archivu:/adresář/soubor_archivu/adresář uvnitř archivu". Tento formát umožní jednotné a snadné čtení cesty. <guibutton
+>Nástrojová lišta umístění</guibutton
+> také podporuje Otroky KIO, ale ne všechny. Některé mohou být použity pouze pomocí <link linkend="krviewer"
+>prohlížeče</link
+> a jiné nemohou být použity. Pomocí kliknutí může uživatel cestu zadávat.</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <userinput>
+              <replaceable
+>/mnt/cdrom/</replaceable>
+            </userinput>
+          </para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>settings:/</command
+> </userinput
+>prochází a otevírá položky aplikace <application
+>Nastavení systému</application
+> pro grafické prostředí KDE.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>trash:/</command
+> </userinput
+> otevírá koš grafického prostředí &kde;.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>ipod:/</command
+> </userinput
+>používá <ulink url="http://sourceforge.net/projects/kpod"
+>Otroka KIO pro ipod</ulink
+> k přístupu, nahrávání a úpravě hudby uložené na <trademark
+>ipodu od Applu</trademark
+>.</para>
+	  <!--FIXME last release is from 2007-12-11 so the kio ipodslave will not be usable in kde4-->
+        </listitem>
+        <listitem>
+          <para
+>A v neposlední řadě <link linkend="remote-connections"
+>Vzdálené připojení</link
+>.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Můžete zkopírovat a vložit &URL; do <guibutton
+>Nástrojové lišty umístění</guibutton
+> nebo použít kliknutí prostředním tlačítkem myši. Pomocí nabídky pravého tlačítka myši můžete nastavit funkci automatické doplňování textu. Dostupné je i doplňkové tlačítko <guilabel
+>Vyčistit nástrojovou lištu umístění</guilabel
+>.</para>
+      <para
+>Rychlá navigace: Se stisknutým &Ctrl; ukažte myší doprostřed &URL; <guibutton
+>Nástrojové lišty umístění</guibutton
+>. Vyskakovací okno zobrazí další &URL; umístění. Stiskem &Ctrl; + Levé tlačítko myši zobrazuje umístění, na které myš ukazovala. Tato vlastnost umožňuje rychlou navigaci ve velkém stromu adresářů.</para>
+    </sect2>
+    <sect2 id="panel_toolbar">
+      <title
+>Nástrojová lišta panelu</title>
+      <indexterm>
+        <primary
+>Nástrojová lišta</primary>
+        <secondary
+>Nástrojová lišta panelu</secondary>
+      </indexterm>
+      <para
+>Každý panel má <link linkend="konfig-panel-buttons"
+>nastavitelnou Nástrojovou lištu panelu</link
+>. Celá Nástrojová lišta panelu nebo určitá tlačítka mohou být zviditelněna nebo skryta.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>Tlačítko Otevřít souborový dialog</guibutton
+>: otevírá adresářový prohlížeč.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Tlačítko Rovno (=)</guibutton
+>: mění adresář panelu podle adresáře druhého panelu.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Tlačítko Nahoru (..)</guibutton
+>: mění adresář panelu na nadřazený adresář.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Tlačítko Domovský adresář (~)</guibutton
+>: mění adresář panelu na domovský adresář.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Tlačítko Kořenový adresář (/)</guibutton
+>: mění adresář panelu na kořenový adresář.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Tlačítko Synchronizovaného prohlížení</guibutton
+>: je-li zapnuté, každý krok v určeném panelu je, pokud možno, proveden i ve druhém panelu.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+  <sect1 id="panels">
+    <title
+>Panely</title>
+    <para
+>Panely aplikace &krusader; jsou na takovém místě, kde je nejvíce činnosti. Momentálně zde jsou dva typy panelů:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="list_panel"
+>Panel se seznamem</link
+>: zobrazuje soubory a složky.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="popup_panel"
+>Vyskakovací panel</link
+>: má více režimů zobrazení: Náhled, strom, rychlý výběr, pohled a využití disku u vybraných souborů a adresářů. Vyskakovací panel může zůstat otevřený nebo zavřený. Jak je potřeba.</para>
+      </listitem>
+    </itemizedlist>
+    <para
+>&krusader; je správce souborů s "zdvojeným panelem", takže jsou zde dva panely: "levý" panel a "pravý" panel nebo více důležitý logický rozdíl *aktivní* panel a *neaktivní* panel. Aktivní panel je ten, který přijímá vstup od myši nebo klávesnice. Zvolíte-li příkaz z <guilabel
+>hlavní nabídky</guilabel
+> nebo <guilabel
+>nástrojové lišty</guilabel
+>, bude příkaz pracovat s vybraným souborem/adresářem v aktivním panelu. Mezi panely můžete přepínat použitím klávesy &Tab; nebo kliknutím na <guilabel
+>Informační nebo Souhrnný popisek</guilabel
+> anebo výběrem kteréhokoli souboru v panelu pomocí myši. Jako vždy, výchozí nastavení po spuštění může být změněno pomocí <link linkend="konfigurator"
+>Konfigurátoru na stránce Spuštění</link
+> a aktuální sezení upraveno pomocí <link linkend="settings-menu"
+>nabídky Nastavení</link
+>.</para>
+    <!-- OLD
+<screenshot>
+    <screeninfo
+>List Panel</screeninfo>
+    <mediaobject>
+     <imageobject
+><imagedata fileref="listpanel.png" format="PNG"/></imageobject>
+     <imageobject
+><imagedata fileref="listpanel.png" format="EPS"/></imageobject>
+     <textobject
+><phrase
+>List Panel</phrase
+></textobject>
+     <caption
+><para
+>The List Panel with all the different parts indicated.</para
+></caption>
+    </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-listpanel" float="1">
+      <title
+>Panel se seznamem</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="listpanel.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Panel se seznamem</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <sect2 id="list_panel">
+      <title
+>Panel se seznamem</title>
+      <indexterm>
+        <primary
+>Panel</primary>
+        <secondary
+>Panel se seznamem</secondary>
+      </indexterm>
+      <para
+>Toto je výchozí panel a ten pravděpodobně budete používat nejčastěji. Tento panel zobrazuje obsah jednoho adresáře, který může být místní (část Vašich připojených systémů souborů - buď nativní soubory nebo soubory uvnitř archivu) nebo vzdálený (zpřístupněno pomocí &FTP;, NFS nebo Sambou). Zde jsou dva režimy: <link linkend="view-menu"
+>Podrobný pohled</link
+>, který zobrazuje název souboru, velikost souboru, datum a čas vytvoření a jejich příznaky. A <link linkend="view-menu"
+>Stručný pohled</link
+>, který zobrazuje pouze název souboru. Číslo stručného sloupce může být změněno pomocí kliknutí pravého tlačítka myši na <guilabel
+>Název</guilabel
+> v záhlaví. Je podporováno kopírování/vkládání/vyjmutí souboru schránkou mezi aplikacemi &konqueror; a &krusader; pomocí <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+>. Klávesová zkratka <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>R</keycap
+></keycombo
+> přepíná mezi vodorovným a svislým režimem <guilabel
+>panelu se seznamem</guilabel
+>.</para>
+      <para
+>Dostupné jsou následující položky:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Informační popisek</guilabel
+> </emphasis
+>: zobrazuje kolik je fyzicky volného místa dostupného v systému souborů, kapacitu systému souborů a cestu, kde je souborový systém připojen. Není-li informace dostupná (nejčastěji v případě vzdáleného systému souborů), namísto informací bude zobrazeno hlášení s důvodem pro nedostupnost.</para>
+          <para
+>The <guibutton
+>Media button</guibutton
+> on the left of the <guilabel
+>Information Label</guilabel
+> displays a list of all available media, where you can select the desired media (hdd partition, dvd, usb-stick, &etc;). The context menu gives several options like <guilabel
+>Mount</guilabel
+>, <guilabel
+>Open in a new tab</guilabel
+>, &etc; The <guibutton
+>Media button</guibutton
+> is <link linkend="konfig-advanced"
+> configurable</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Column Headers</guilabel
+> </emphasis
+>: here you can change the sort order of the files and directories as desired. The default sort order is by <guilabel
+>Name</guilabel
+>. The sort order can be instantly changed by clicking on one of the <guilabel
+>Column Headers</guilabel
+>. To reverse the sort order, click a second time on the Column Header. An arrow will appear on the right of the Column Header text, showing the sort direction (Up arrow = A to Z sorting, Down arrow = Z to A sorting). Default <link linkend="useractions"
+>UserActions</link
+> set a keybinding for the Column Headers. The default <guilabel
+>Column Headers</guilabel
+> are: <guilabel
+>Name, Ext, Size, Modified, rwx</guilabel
+>. Predefined <link linkend="konfig-general"
+>Atomic extensions</link
+> like <filename
+>tar.gz</filename
+> are shown as one part in the <guilabel
+>Ext</guilabel
+> Column. More optional Column Headers are available with the Right Mouse Button. The width <guilabel
+>Column Headers</guilabel
+> can be changed with the mouse by single clicking and moving the divider line to the desired width (keep the mouse button pressed). Both <guilabel
+>List Panels</guilabel
+> remember the sort order and column width. The <guilabel
+>Column Headers</guilabel
+> can be changed and saved individually to each panel.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Seznam souborů</guilabel
+> </emphasis
+>: v prohlíženém adresáři zobrazuje soubory a adresáře. <link linkend="quicksearch"
+>Rychlé vyhledávání</link
+> umožňuje vyhledávat soubory psaním jejich názvů nebo několika prvních znaků názvu souboru. Stisknutím klávesy &Enter; nebo dvojitým kliknutím na soubor jej otevřete/spustíte. Soubory můžete do výběru přidávat/odebírat použitím myši, klávesy <keycap
+>Insert</keycap
+> nebo pomocí <link linkend="edit-menu"
+>nabídky Upravit</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Souhrnný popisek</guilabel
+> </emphasis
+>: označováním nebo odznačováním souborů se ve spodní části panelu změní <emphasis
+> <guilabel
+>Souhrnný popisek</guilabel
+> </emphasis
+>, který zobrazuje, kolik souborů je označeno (a kolik celkem používají diskový prostor). Stejně tak i celkový počet souborů a využití disku současným adresářem (na rozdíl od Informačního popisku, který zobrazuje informace o celém systému souborů). Obsahuje-li adresář mnoho podadresářů, není možné upustit &URL; do panelu (ve kterém jsou viditelné pouze adresáře), ale namísto toho může být &URL; upuštěno do "Informačního popisku" nebo "Souhrnného popisku". Je-li nastaven <link linkend="view-menu"
+>vlastní výběr</link
+>, budou soubory zobrazovány podle zadání. Například: [*.cpp].</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Při používání "výchozích <link linkend="konfig-color"
+>barev</link
+> &kde;" jsou vybrané soubory zobrazeny modře a aktuální soubor je obklopen tenkou čarou ve tvaru obdélníku. Výchozí ikona je zobrazena podle daného typu souboru. Aby nastavení vyhovovalo Vašim potřebám, použijte ke změně výchozího nastavení <link linkend="konfig-panel"
+>Konfigurátor na stránce Panel</link
+>.</para>
+      <para
+>Některé užitečné <link linkend="key_bindings"
+>klávesové zkratky</link
+> <guilabel
+>panelu se seznamem</guilabel
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> obnoví panel.</para>
+        </listitem>
+        <listitem>
+          <para
+>V levém panelu vyberte soubor nebo adresář, stiskněte <keycombo action="simul"
+>&Ctrl; <keycap
+>Šipka vpravo</keycap
+></keycombo
+> a změní se pravý panel: <itemizedlist>
+            <listitem>
+              <para
+>U souboru: pravý panel přejde na stejnou cestu jako je cesta v levém panelu.</para>
+            </listitem>
+            <listitem>
+              <para
+>U adresáře: pravý panel otevře adresář vybraný v levém panelu.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Pro pravý panel: stiskněte <keycombo action="simul"
+>&Ctrl; <keycap
+>Šipka vlevo</keycap
+></keycombo
+> a změní se levý panel.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="popup_panel">
+      <title
+>Vyskakovací panel</title>
+      <indexterm>
+        <primary
+>Panel</primary>
+        <secondary
+>Vyskakovací panel (Třetí panel)</secondary>
+      </indexterm>
+      <para
+>Toto je "&krusader; se třemi částmi" nebo třetím panelem. Chcete-li otevřít <guilabel
+>vyskakovací panel</guilabel
+>, klikněte na tlačítko s šipkou nahoru vpravo od <guilabel
+>Souhrnného popisku</guilabel
+> nebo stiskněte klávesovou zkratku <keycombo action="simul"
+>&Alt; <keycap
+>Šipka dolů</keycap
+></keycombo
+>. Tento panel má různé režimy zobrazení, které mohou být spuštěny kliknutím na vhodné tlačítko.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Panel Náhledu</guilabel
+> </emphasis
+>: umožňuje náhled souboru, který je ve výběru (aktuálně vybraný soubor).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Panel stromu</guilabel
+> </emphasis
+>: je používaný k rychlému procházení místního adresářového stromu. Tento panel se chová jako panel se seznamem, ale vybraný adresář může být zároveň jen jeden. Stisknutím klávesy &Enter; nebo dvojklikem na adresář bude adresář otevřen v aktivním panelu. Tento panel plně podporuje činnost myši táhni a pusť (kopie, přesuny, odkazy).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Quick Panel</guilabel
+> </emphasis
+>: is used to quickly select files, &eg; enter <literal role="extension"
+>*.png</literal
+> and click on the <guibutton
+>"Go"</guibutton
+> button. The "floppy" button stores the current selection. The "select group dialog" is also available.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Panel náhledu</guilabel
+> </emphasis
+>: prohlíží textový soubor, obrázek atd. Náhled je generován vždy, když otevřete <guilabel
+>Panel náhledu</guilabel
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Panel zaplnění disku</guilabel
+> </emphasis
+>: zobrazuje <link linkend="diskusage"
+>zaplnění disku</link
+> adresářem.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>V případě potřeby můžete změnit velikost okna např. pro lepší zobrazení obrázku nebo náhledu na obsah souboru. Chcete-li <guilabel
+>Třetí panel</guilabel
+> zavřít, klikněte na šipku dolů.</para>
+    </sect2>
+    <sect2 id="folderhistory">
+      <title
+>Adresářová historie</title>
+      <para
+>Oba panely si pamatují nedávno navštívené složky. Abyste otevřeli seznam adresářové historie, klikněte na tlačítko <guibutton
+>Otevřít seznam s historií adresářů</guibutton
+> (symbol "hodinek"). Současná složka je zaškrtnuta. Při každém novém spuštění aplikace &krusader; je seznam historie doplněn položkami z předchozího běhu (historie je uložena).</para>
+    </sect2>
+  </sect1>
+  <sect1 id="cmdline_termemu">
+    <title
+>Příkazová řádka / Emulátor terminálu</title>
+    <para
+>Tato část <link linkend="gloss-gui"
+>GUI</link
+> může mít čtyři režimy: Příkazová řádka, Emulátor terminálu, zobrazení obou a zobrazení žádného. Provozní režim můžete zvolit buď výchozí pomocí <link linkend="konfigurator"
+>Konfigurátoru na stránce Spuštění</link
+> nebo pro aktuální sezení pomocí <link linkend="settings-menu"
+>nabídky Nastavení</link
+>. </para>
+
+  <sect2 id="cmdline">
+    <title
+>Příkazová řádka</title>
+
+    <!-- OLD
+<screenshot>
+  <screeninfo
+>Command line</screeninfo>
+  <mediaobject>
+   <imageobject
+><imagedata fileref="cmdline.png" format="PNG"/></imageobject>
+   <imageobject
+><imagedata fileref="cmdline.png" format="EPS"/></imageobject>
+   <textobject
+><phrase
+>Command Line</phrase
+></textobject>
+   <caption
+><para
+>Command Line</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-commandline" float="1">
+      <title
+>Příkazová řádka</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="cmdline.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Příkazová řádka</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Tradiční režim příkazové řádky nenabízí jen jeden vstupní řádek pro zadávání příkazů, ale také tři tlačítka:</para>
+     <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>"command history"</guibutton
+> (down arrow) to quick open previous used commands </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>"Useraction expander"</guibutton
+> (green plus button) to add easy <link linkend="useractions"
+>Useraction placeholders</link
+> </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>"run in terminal mode"</guibutton
+> (console icon) button with the next options: <itemizedlist>
+          <listitem
+><para
+>Spusť a zapomeň</para>
+          </listitem>
+
+          <listitem
+><para
+>Zobrazit oddělený standardní a chybový výstup</para>
+           </listitem>
+
+          <listitem
+><para
+>Zobrazit smíchaný standardní a chybový výstup</para>
+          </listitem>
+
+           <listitem
+><para
+>Spustit v novém Terminálu</para>
+          </listitem>
+
+           <listitem
+><para
+>Poslat do zabudovaného emulátoru terminálu</para>
+           </listitem>
+
+         </itemizedlist>
+          </para>
+
+        </listitem>
+
+
+     </itemizedlist>
+    <para
+>Když spouštíte psaný příkaz, vlastnost příkazové řádky doplňování textu bude nabízet možnosti podle toho, co zvolíte v aplikaci &systemsettings;. Chcete-li v aktuálním sezení aplikace &krusader; změnit způsob fungování doplňování textu, klikněte <keycap
+>pravým tlačítkem myši</keycap
+> na příkazovou řádku a způsob změňte. Vlevo od vstupního řádku můžete zjistit místní cestu aktivního panelu. Tato cesta je ta, kde bude příkaz spuštěn. Napsání <userinput
+> <command
+>cd</command
+> <replaceable
+> &lt;adresář&gt;</replaceable
+> </userinput
+> v příkazové řádce způsobí, že aktivní panel přejde do tohoto adresáře. Pro zobrazení klávesových zkratek příkazové řádky klikněte <link linkend="cmdline_keybindings"
+>zde</link
+>.</para>
+</sect2>
+
+  <sect2 id="termemu">
+    <title
+>Emulátor terminálu</title>
+
+    <!--
+<screenshot>
+  <screeninfo
+>Terminal emulator</screeninfo>
+  <mediaobject>
+   <imageobject
+><imagedata fileref="terminalEmu.png" format="PNG"/></imageobject>
+   <imageobject
+><imagedata fileref="terminalEmu.png" format="EPS"/></imageobject>
+   <textobject
+><phrase
+>Terminal emulator</phrase
+></textobject>
+   <caption
+><para
+>Terminal emulator</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-terminalemulator" float="1">
+      <title
+>Emulátor terminálu</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="terminalEmu.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Emulátor terminálu</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>The terminal emulator mode is in fact a small console and acts like one. You can change the active directory in the terminal by using the <userinput
+> <command
+>cd</command
+> </userinput
+> command. The terminal emulator will follow the active panel directory. You can drag a file from the <interface
+>"List Panel"</interface
+> and name of file will pasted into Terminal Emulator. If you drag multiple files, the names will pasted into Terminal Emulator. A full-screen terminal emulator can be used when <link linkend="konfig-panel"
+>configured</link
+> or <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> toggles between normal and full screen mode. If the command line is hidden, press <keycombo action="simul"
+>&Ctrl; <keycap
+>Arrow down</keycap
+></keycombo
+> to focus the terminal emulator. <keycombo action="simul"
+>&Ctrl; <keycap
+>Arrow up</keycap
+></keycombo
+> brings you back down. <keycombo action="simul"
+>&Ctrl;&Enter;</keycombo
+> and <keycombo action="simul"
+>&Ctrl; &Shift; &Enter;</keycombo
+> paste the filename. You can close the emulator by typing <userinput
+> <command
+>exit</command
+> </userinput
+>.</para>
+    <para
+>Pro zobrazení klávesových zkratek Emulátoru terminálu klikněte <link linkend="termemu_keybindings"
+>zde</link
+>.</para>
+    </sect2>
+
+  </sect1>
+  <sect1 id="fnkeys">
+    <title
+>Lišta funkčních kláves (FN)</title>
+    <!-- OLD
+<screenshot>
+  <screeninfo
+>Function (FN) Keys Bar</screeninfo>
+  <mediaobject>
+   <imageobject
+><imagedata fileref="fnkeys.png" format="PNG"/></imageobject>
+   <imageobject
+><imagedata fileref="fnkeys.png" format="EPS"/></imageobject>
+   <textobject
+><phrase
+>Function (FN) Keys Bar</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-fnkeys" float="1">
+      <title
+>Lišta funkčních kláves (FN)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="fnkeys.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Lišta funkčních kláves (FN)</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Tato lišta získala název od funkčních kláves (FN), které představuje. Pro každé tlačítko na této liště je zde odpovídající funkční klávesa, která vykonává stejnou činnost. Tato lišta je odvozena od vzoru prvních dvou-panelových správců souborů. Klávesy FN fungují stejným způsobem až na dvě změny: klávesa <keycap
+>F2</keycap
+> otevírá terminál na poslední místní cestě aktivního panelu, klávesa <keycap
+>F9</keycap
+> je používaná k přejmenování souborů. <guilabel
+>VytvAdr</guilabel
+> <keycap
+>F7</keycap
+> může najednou vytvořit celý adresářový strom. Např. <literal
+>foo/bar/test</literal
+>. Pomocí <link linkend="konfigurator"
+>Konfigurátoru na stránce Spuštění</link
+> můžete zvolit zobrazovat <guilabel
+>lištu FN kláves</guilabel
+> při spuštění aplikace &krusader; <link linkend="faqu_resize"
+>nebo ji skrýt</link
+>. V aktuálním sezení její zobrazení můžete přepínat pomocí <link linkend="settings-menu"
+>nabídky Nastavení</link
+>. Činnosti a <link linkend="key_bindings"
+>klávesové zkratky</link
+> prováděné funkčními klávesami jsou nastavitelné od verze 1.51 a budou zůstávat aktivní s nebo bez zobrazené <guilabel
+>lišty FN kláves</guilabel
+>.</para>
+  </sect1>
+  <sect1 id="folder-tabs">
+    <title
+>Karty složek</title>
+    <!-- OLD
+<screenshot>
+  <screeninfo
+>Tabbed browsing</screeninfo>
+  <mediaobject>
+   <imageobject
+><imagedata fileref="tabbed_browsing.png" format="PNG"/></imageobject>
+   <imageobject
+><imagedata fileref="tabbed_browsing.png" format="EPS"/></imageobject>
+   <textobject
+><phrase
+>Tabbed browsing</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-tabbedbrowsing" float="1">
+      <title
+>Karty složek</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="tabbed_browsing.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Karty složek</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Pomocí <guibutton
+>Karet složek</guibutton
+> můžete rychle střídat více složek. Každý panel má svoji vlastní <guibutton
+>Kartu složek</guibutton
+>. Umístění <guibutton
+>Karet adresářů</guibutton
+> je uloženo při zavírání aplikace &krusader;. Chcete-li přepnout mezi <guibutton
+>Kartami adresářů</guibutton
+>, klikněte na ně myší. Zhuštěné <guibutton
+>Karty adresářů</guibutton
+> mají nástrojové tipy zobrazující celou cestu. Dostupné jsou následující operace s <guibutton
+>Kartami adresářů</guibutton
+>:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>Chcete-li <action
+>otevřít novou kartu</action
+> a zároveň udržet současnou kartu otevřenou: Klikněte <keycap
+>pravým tlačítkem myši</keycap
+> na adresář a vyberte <guimenuitem
+>Otevřít v nové kartě</guimenuitem
+>, nebo použijte použijte klávesovou zkratku <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>N</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Chcete-li <action
+>zamknout kartu</action
+>, klikněte <keycap
+>pravým tlačítkem myši</keycap
+> a vyberte <guimenuitem
+>zamknout kartu</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Chcete-li <action
+>duplikovat kartu</action
+>: Klikněte <keycap
+>pravým tlačítkem myši</keycap
+> na kartu složky a vyberte <guimenuitem
+>Duplikovat současnou kartu</guimenuitem
+>, nebo použijte klávesovou zkratku <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>To <action
+>close a tab</action
+> (except for the last tab): <keycap
+>Right-click</keycap
+> on the tab and select <guimenuitem
+>Close Current Tab</guimenuitem
+>, or use the &MMB;, or use the Folder tab <guibutton
+>"red cross"</guibutton
+> button, or use <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Chcete-li vytvořit <action
+>kartu s domovským adresářem</action
+>: Klikněte na tlačítko <guibutton
+>Otevřít kartu na domovské URL</guibutton
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Chcete-li <action
+>změnit kartu</action
+>: Stiskněte klávesovou zkratku <keycombo action="simul"
+>&Shift; <keycap
+>Vlevo</keycap
+></keycombo
+> nebo <keycombo action="simul"
+>&Shift; <keycap
+>Vpravo</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Chcete-li <action
+>otevřít současnou složku v nové kartě</action
+>: Použijte klávesovou zkratku <keycombo action="simul"
+> &Ctrl;&Alt;&Enter;</keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Chcete-li <action
+>zavřít všechny ostatní karty</action
+>, klikněte <keycap
+>pravým tlačítkem myši</keycap
+> a vyberte <guimenuitem
+>Zavřít neaktivní karty</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Chcete-li <action
+>zavřít duplikované karty</action
+>, klikněte <keycap
+>pravým tlačítkem myši</keycap
+> a vyberte <guimenuitem
+>Zavřít duplikované karty</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Chcete-li přesunout kartu na druhý panel, přetáhněte ji do prostoru druhého panelu pomocí <mousebutton
+>levého tlačítka myši</mousebutton
+> (kurzor myši bude šipka ukazující vlevo nebo vpravo) a upusťte ji.</para>
+      </listitem>
+</itemizedlist>
+  </sect1>
+  <sect1 id="ui_buttons">
+    <title
+>Tlačítka</title>
+    <para
+>Dostupné jsou různá tlačítka pro rychlé operace: <link linkend="main_toolbar"
+>Hlavní nástrojová lišta</link
+>, <link linkend="actions_toolbar"
+>Nástrojová lišta činností</link
+>, <link linkend="panel_toolbar"
+>Nástrojová lišta panelu</link
+>, <link linkend="location_toolbar"
+>Nástrojová lišta umístění</link
+>, <link linkend="list_panel"
+>Media</link
+>, <link linkend="folderhistory"
+>Adresářová historie</link
+>, <link linkend="bookman"
+>Záložky</link
+>, <link linkend="folder-tabs"
+>Karty</link
+>, <link linkend="cmdline"
+>Příkazová řádka</link
+>, <link linkend="fnkeys"
+>Funkční klávesy</link
+>.</para>
+  </sect1>
+</chapter>

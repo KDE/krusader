@@ -1,0 +1,2358 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="keyboard-commands">
+  <title
+>Ordres del teclat</title>
+  <indexterm>
+    <primary
+>Ordres</primary>
+    <secondary
+>Teclat</secondary>
+  </indexterm>
+  <sect1 id="keyboard-usage">
+    <title
+>Usar el teclat</title>
+    <para
+>En aquest capítol aprendreu a fer servir el teclat de manera efectiva, ja que la majoria de les operacions es poden realitzar més ràpidament amb el teclat que amb el ratolí. Prendrà algun temps aprendre els <link linkend="key_bindings"
+>lligams de tecla</link
+>, però dominar-los estalviarà molt de temps. Recordeu que el &krusader; pot emprar <link linkend="configure-shortcuts"
+>perfils amb lligams de tecla</link
+> per a canviar amb facilitat a altres configuracions, &pex;, d'altres comandants, o podreu crear els vostres propis lligams de tecla.</para>
+    <para
+>Després d'iniciar el &krusader;, començarà l'acció del teclat. Utilitzeu <keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+> per a anar a la <link linkend="list_panel"
+>Barra d'eines de localització</link
+>, des d'on podreu escriure la carpeta desitjada. Després amb <keycombo action="simul"
+>&Ctrl;&Down;</keycombo
+>, on us trobareu en l'<link linkend="termemu"
+>emulador de terminal</link
+> i podreu escriure qualsevol ordre que vulgueu, sempre que <link linkend="konfig-startup"
+>es mostri el terminal</link
+>. Utilitzeu <keycombo action="simul"
+>&Ctrl;&Up;</keycombo
+> per a tornar al plafó actiu. Si voleu saltar a un fitxer o carpeta que comença amb <literal
+>f</literal
+>, simplement premeu <keycap
+>f</keycap
+> en el teclat per a utilitzar la <link linkend="quicksearch"
+>barra de cerca</link
+>. Utilitzeu la tecla &Intro; per a executar el fitxer o per a obrir una carpeta que tingui el focus. Assegureu-vos de recordar les tecles de funció: <keycap
+>F3</keycap
+> per a visualitzar, <keycap
+>F4</keycap
+> per a editar, <keycap
+>F5</keycap
+> per a copiar, <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>U</keycap
+></keycombo
+> per a desempaquetar, &etc;</para>
+    <para
+>També podreu realitzar diverses operacions amb les <link linkend="folder-tabs"
+>pestanyes de carpeta</link
+>, incloses diverses operacions de <link linkend="edit-menu"
+>selecció</link
+>. I al final podreu tancar el &krusader; amb <keycap
+>F10</keycap
+>.</para>
+  </sect1>
+  <sect1 id="key_bindings">
+    <title
+>Lligams de tecla</title>
+    <indexterm>
+      <primary
+>Lligams de tecla</primary>
+    </indexterm>
+    <indexterm>
+      <primary
+>Ordres</primary>
+      <secondary
+>Teclat</secondary>
+    </indexterm>
+    <para
+>La majoria dels lligams de tecla (dreceres) es poden configurar al menú <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura les dreceres...</guimenuitem
+></menuchoice
+>, si voleu utilitzar altres lligams de tecla en comptes dels predeterminats. Fins i tot podreu configurar més accions per a un lligam de tecla (per a les accions que de manera predeterminada no tinguin un lligam de tecla establert). Recordeu que alguns lligams de tecla no són lligams de tecla del &krusader; (&pex;, els lligams de tecla del &plasma;). Els lligams de tecla que empra de manera predeterminada el &krusader; estan llistats a sota.</para>
+
+    <!-- FN keys -->
+    <para>
+      <emphasis role="bold"
+>Tecles de funció (FN)</emphasis>
+    </para>
+    <para
+>Aquests són els lligams de tecla de la <link linkend="fnkeys"
+>Barra de tecles de funció</link
+>. Aquests lligams de tecla són configurables des de la versió 1.51.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F1</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ajuda</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F2</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Reanomena els fitxers.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F3</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>Visualitza els fitxers.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F4</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>Edita els fitxers.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F5</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Copia els fitxers.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F6</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Mou els fitxers</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F7</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Crea una carpeta nova.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F8</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Suprimeix els fitxers o els mou a la paperera.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F9</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="tools-menu"
+>Terminal.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F10</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Surt del &krusader;.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- SHIFT keys -->
+    <para>
+      <emphasis role="bold"
+>Tecles &Maj;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Maj;<keycap
+>F1</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="help-menu"
+>Què és això?</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Maj;<keycap
+>F2</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="multi_rename"
+>Reanomena múltiple (<application
+>Krename</application
+>).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Maj;<keycap
+>F3</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>Escriviu un &URL; que voleu veure.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Maj;<keycap
+>F4</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="file-menu"
+>Edita un fitxer nou.</link>
+              </para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Maj;<keycap
+>F5</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="queue"
+>Copia a la cua.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Maj;<keycap
+>F6</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="queue"
+>Mou a la cua.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Maj;<keycap
+>F10</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>Visualitza tots els fitxers.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Maj;<keycap
+>F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>Visualitza els fitxers personalitzats.</link>
+              </para>
+            </entry>
+          </row>
+          <!-- This keybinding is disabled in the "viewactions.cpp" source file
+<row>
+<entry
+><para
+><keycombo action="simul"
+>&Shift;<keycap
+>F11</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="view-menu"
+>Executables</link
+></para
+></entry
+></row>
+-->
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Maj; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Canvia a la pestanya de carpeta esquerra.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Maj; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Canvia a la pestanya de carpeta dreta.</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- ALT keys -->
+    <para>
+      <emphasis role="bold"
+>Tecles &Alt;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Ho selecciona tot.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Ho desselecciona tot.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Inverteix la selecció.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>.</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>Mostra/Oculta els fitxers ocults (amb un punt al començament del nom).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="mount-man"
+>Gestor del muntatge.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>`</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="useractions"
+>Menú d'usuari</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Home;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Inici.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Intro;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="file-menu"
+>Propietats.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Adreces d'interès de l'esquerra.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Adreces d'interès de la dreta.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="sidebar"
+>Barra lateral</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Lligams de tecla estàndard (&plasma;).</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- ALT+SHIFT -->
+    <para>
+      <emphasis role="bold"
+>Tecles &Alt;+&Maj;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>B</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Vista breu</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>C</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="compare-dir"
+>Compara les carpetes</link
+></para>
+            </entry>
+          </row
+>		  
+           <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Vista detallada</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="test-archive"
+>Comprova l'arxiu.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>K</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Inicia el &krusader; en el <link linkend="root-mode"
+>mode administrador</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="panel_profiles"
+>Perfils del plafó</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+          <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panel_toolbar"
+>Sincronitza els plafons, també conegut com a <quote
+>Botó igual (=)</quote
+>.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>P</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="pack-archive"
+>Empaqueta els fitxers.</link>
+              </para>
+            </entry>
+          </row>
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>Q</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Gestor de la cua</para>
+            </entry>
+          </row
+>		  
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="diskusage"
+>Ús del disc</link
+>.</para>
+            </entry>
+          </row>
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="unpacking-archives"
+>Desempaqueta els fitxers.</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+
+    <!-- CTRL -->
+    <para>
+      <emphasis role="bold"
+>Tecles &Ctrl;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Afegeix una adreça d'interès per a l'element actual.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="bookman"
+>Obre les adreces d'interès</link
+> en el plafó actiu.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Edita un fitxer com a administrador (acció d'usuari predeterminada).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Obre la <link linkend="quicksearch"
+>barra de Cerca ràpida</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="folderhistory"
+>Obre la llista de l'historial</link
+> en el plafó actiu.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Obre la <link linkend="quickfilter"
+>barra de Filtre ràpid</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>J</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Un <link linkend="jump_back"
+>punt de retorn</link
+> similar al del <trademark class="registered"
+>Safari</trademark
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Va a la <link linkend="list_panel"
+>Barra d'eines de localització</link
+> (origen) com en el <trademark class="registered"
+>Firefox</trademark
+> i el &konqueror;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>Obre la llista de suports</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Diàleg de <link linkend="tools-menu"
+>Connexió de xarxa nova</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Selecciona el diàleg de carpetes per a obrir aquesta carpeta en el plafó.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="splitter"
+>Divideix el fitxer.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Surt del &krusader;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panels"
+>Torna a carregar (actualitza) el plafó.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo
+>&Ctrl;<keycap
+>S</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krusearcher"
+>Cerca.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Intercanvia els plafons (no intercanvia totes les pestanyes de carpeta)</link
+>. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Tanca la pestanya actual.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Y</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="synchronizer"
+>Sincronitza les carpetes</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>&URL; populars.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Selecciona un grup.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Desselecciona el grup.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="cmdline"
+>Obre la llista de l'historial de la línia d'ordres.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="cmdline"
+>Va des del plafó actiu a l'emulador de terminal/línia d'ordres</link
+>. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="cmdline"
+>Va des de l'emulador de terminal/línia d'ordres al plafó actiu.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Va des del plafó actiu a la <link linkend="list_panel"
+>Barra d'eines de localització</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Home;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Salta a la carpeta d'inici.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycombo action="simul"
+>&Ctrl; &Left;</keycombo
+> o <keycombo
+> &Right; </keycombo
+></para>
+            </entry>
+            <entry>
+              <para
+>Enfoca un fitxer o carpeta en el plafó esquerre, premeu <keycombo action="simul"
+>&Ctrl;&Left;</keycombo
+> i canviarà el <link linkend="panels"
+>plafó</link
+> dret: <itemizedlist
+> <listitem
+> <para
+>sobre un fitxer: el plafó dret obtindrà el mateix camí que el <link linkend="panels"
+>plafó</link
+> esquerre.</para
+> </listitem
+> <listitem
+> <para
+>sobre una carpeta: actualitzarà el plafó dret amb el contingut de la carpeta.</para
+> </listitem
+> </itemizedlist
+>Per al plafó dret: premeu <keycombo action="simul"
+>&Ctrl;&Right;</keycombo
+> i canviarà el plafó esquerre.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Retro;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Salta a la carpeta arrel.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &PgUp;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Puja una carpeta.</para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Va a la carpeta de l'altre plafó.</para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Intro;</keycombo>
+              </para>
+            </entry>
+            <entry>
+	      <para
+>Quan està obert el <link linkend="media_button"
+>menú Suports</link
+> es des/muntarà el dispositiu ressaltat.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- CTRL+SHIFT -->
+    <para>
+      <emphasis role="bold"
+>Tecles &Ctrl;+&Maj;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="remote-connections"
+>Desconnecta la connexió remota.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>J</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="jump_back"
+>Estableix un punt de retorn.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Frontal de la &IGU; del «<link linkend="locate"
+>locate</link
+>».</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Mou la <link linkend="folder-tabs"
+>pestanya</link
+> actual a l'altre costat de la finestra.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Obre la <link linkend="quickselect"
+>barra de Selecció ràpida</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Intercanvia els costats (no intercanvia totes les pestanyes de carpeta)</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>Obre la llista de suports esquerra</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>Obre la llista de suports dreta</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Obre l'<link linkend="cmdline"
+>emulador de terminal</link
+>, independentment, tant si es mostra o no la línia d'ordres.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Tanca l'<link linkend="cmdline"
+>emulador de terminal</link
+>, independentment, tant si es mostra o no la línia d'ordres.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj; &PgUp;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Mou a l'esquerra la pestanya actual.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj; &PgDn;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Mou la pestanya actual a la dreta.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- CTRL+ALT -->
+    <para>
+      <emphasis role="bold"
+>Tecles &Ctrl;+&Alt;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Mostra/oculta el <link linkend="cmdline"
+>terminal incrustat</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Munta (acció d'usuari predeterminada).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Pestanya nova.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>R</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Alterna el <link linkend="list_panel"
+>plafó de llista</link
+> entre els modes horitzontal i vertical.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Crea un enllaç simbòlic nou.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folderhistory"
+>Llista de l'historial de l'esquerra.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folderhistory"
+>Llista de l'historial de la dreta.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Mida del plafó igual (acció d'usuari predeterminada).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;&Maj;<keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Duplica una pestanya.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;&Intro;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Obre la carpeta actual en una <link linkend="folder-tabs"
+>pestanya nova</link
+>.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- GENERAL CTRL -->
+    <para>
+      <emphasis role="bold"
+>Tecles &Ctrl; generals</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ho selecciona tot.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &PgDn;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Mou a la part inferior en la carpeta actual.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Lligams de tecla estàndard (&plasma;).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Lligams de tecla estàndard (&plasma;).</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- OTHER KEYS -->
+    <para>
+      <emphasis role="bold"
+>Altres tecles</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>foo</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="quicksearch"
+>Cerca ràpida</link
+>, selecció ràpida o <link linkend="quickfilter"
+>filtratge ràpid</link
+>. Vegeu <link linkend="konfig-panel-general"
+>aquesta pàgina de configuració</link
+> sobre com configurar el mode predeterminat.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Tab;</para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panels"
+>Alterna entre els dos plafons</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Intro;</para>
+            </entry>
+            <entry>
+              <para
+><link linkend="executing_files"
+>Sobre un fitxer:</link
+> obre/executa aquest fitxer</para>
+              <para
+><link linkend="browsing-archives"
+>Sobre un fitxer d'arxiu:</link
+> explora l'arxiu com si fos una carpeta.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Esc;</para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="moving-around"
+>Farà que la barra de menús perdi el focus, si el té.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>Suprimeix</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Suprimeix (o mou a la paperera).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Del;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Alterna la supressió.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Space; </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="executing_files"
+>Sobre un fitxer:</link
+> alterna la selecció del fitxer a una posició cap avall sense afectar la selecció dels altres fitxers/carpetes.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Retro;</para>
+            </entry>
+            <entry>
+              <para
+>Puja una carpeta.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Ins; </para>
+            </entry>
+            <entry>
+              <para
+>Fa el mateix que la tecla &Space; <link linkend="selecting-files"
+>i baixa una posició per a alternar al següent fitxer</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>Menú</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Menú del clic dret.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Home; </para>
+            </entry>
+            <entry>
+              <para
+>El cursor salta a la part superior de la llista.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&End; </para>
+            </entry>
+            <entry>
+              <para
+>El cursor salta a l'últim fitxer en la llista.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- COMMANDLINE -->
+    <para id="cmdline_keybindings">
+      <emphasis role="bold"
+>Línia d'ordres</emphasis>
+    </para>
+    <para
+>Lligams de tecla de la <link linkend="cmdline"
+>línia d'ordres</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para
+>&Up; i &Down;</para>
+            </entry>
+            <entry>
+              <para
+>Desplaça per les ordres anteriorment escrites.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Obre la llista de l'historial de la línia d'ordres.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Salta des de la línia d'ordres al plafó actiu.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Salta des del plafó actiu a la línia d'ordres.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Intro;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Insereix el nom del fitxer/carpeta actual sense el camí a la posició actual de la línia d'ordres.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj;&Intro;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Insereix el nom del fitxer/carpeta actual amb tot el camí a la posició actual de la línia d'ordres.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- TERMINAL EMULATOR -->
+    <para id="termemu_keybindings">
+      <emphasis role="bold"
+>Emulador de terminal</emphasis>
+    </para>
+    <para
+>Lligams de tecla de l'<link linkend="termemu"
+>emulador de terminal</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Alterna entre l'<link linkend="termemu"
+>emulador de terminal</link
+> normal i a pantalla completa.</para>
+            </entry>
+          </row>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Insereix des del porta-retalls.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Salta des de l'emulador de terminal en el plafó actiu si la línia d'ordres està oculta.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Salta des del plafó actiu a l'emulador de terminal si la línia d'ordres està oculta.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>Fletxa amunt/avall</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Sempre enfoca/desenfoca l'emulador de terminal independentment de si es mostra o no la línia d'ordres. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Maj; &Ins;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Insereix des del porta-retalls.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- SYNCHRONIZER -->
+    <para id="synchronizer_keybindings">
+      <emphasis role="bold"
+>Sincronitzador</emphasis>
+    </para>
+    <para
+>Lligams de tecla del <link linkend="synchronizer"
+>Sincronitzador</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Direcció inversa.</para>
+            </entry>
+          </row>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Exclou</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Restaura la tasca original.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Copia a l'esquerra</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Copia a la dreta</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Del;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Marca per a suprimir</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- DEFAULT USERACTIONS -->
+    <para>
+      <emphasis role="bold"
+>Accions d'usuari predeterminades</emphasis>
+    </para>
+    <para
+>Lligams de tecla predeterminats per a les <link linkend="useractions"
+>Accions d'usuari</link
+> proporcionades pel &krusader;.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Edita un fitxer com a administrador.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>C</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Copia l'element actual al porta-retalls.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Munta un sistema de fitxers nou.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Plafons de la mateixa mida.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>A</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Posa a la cua de l'&amarok;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>1</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ordena per nom.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>2</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ordena per extensió.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>3</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ordena el plafó actiu per mida.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>4</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Ordena per modificació.</para>
+            </entry>
+          </row>
+	            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>F5</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="useractions-menu"
+>Fa una còpia de seguretat del fitxer actual (acció d'usuari predeterminada).</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- OTHER KEYS URLs -->
+    <itemizedlist>
+      <title
+>Altres lligams de tecla</title>
+      <listitem>
+        <para>
+          <link linkend="selecting-files"
+>Seleccionar els fitxers</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="krviewer"
+>KrViewer</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="diskusage"
+>Ús del disc</link
+></para>
+      </listitem>
+      <listitem>
+        <para
+>Frontal de la &IGU; del «<link linkend="locate"
+>locate</link
+>»</para>
+      </listitem>
+      <listitem>
+        <para
+>El mòdul <menuchoice
+><guimenu
+>Aparença i comportament habituals</guimenu
+><guisubmenu
+>Dreceres i gestos</guisubmenu
+></menuchoice
+> a l'&systemsettings; del &plasma;.</para>
+      </listitem>
+      <listitem>
+        <para
+>Lligams de tecla configurables de les <link linkend="useractions"
+>Accions d'usuari</link
+>.</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+</chapter>

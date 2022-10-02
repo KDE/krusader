@@ -1,0 +1,703 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="useractions">
+  <title
+>Azioni</title>
+  <indexterm>
+    <primary
+>Azioni</primary>
+  </indexterm>
+  <!-- Thanks to Jonas Bar -->
+  <para
+>ActionMan ti permette di impostare, configurare e gestire le azioni configurabili dall'utente. Alcune impostazioni generali sono configurate con <link linkend="konfig-useractions"
+>Konfigurator</link
+>. Con le azioni puoi eseguire azioni sui file nel pannello o per accedere a funzioni interne di &krusader; con parametri, utilizzando in modo diretto dei segnaposto. Le azioni si integrano perfettamente all'interno del sistema di azioni di &plasma;, e ciò significa che le finestre standard Modifica barra degli strumenti e Modifica scorciatoie mostreranno anche le azioni personalizzate. Queste ultime sono memorizzate in <filename
+> ~/.local/share/krusader/useractions.xml</filename
+> oppure <filename
+>krusader/useraction.xml</filename
+> nella cartella che può essere determinata usando il comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. Nella documentazione sono inclusi vari <link linkend="useraction-xml"
+>esempi</link
+>. Le azioni possono essere modificate / aggiunte / importate / esportate tramite ActionMan. Le azioni predefinite sono memorizzate in <filename
+> /usr/share/krusader/useraction-examples.xml</filename
+>. Esse possono apparire praticamente ovunque può essere inserita una KAction <quote
+>normale</quote
+>. Possono essere pure inserite nella barra dei menu, ma in questo caso deve essere modificato il file <filename
+>krusaderui.rc</filename
+>. Alcuni esempi:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="useractions-menu"
+>Menu azioni</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="useractions"
+>Menu utente</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="actions_toolbar"
+>Barra degli strumenti delle azioni</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>menu contestuali (pulsante destro del mouse)</para>
+    </listitem>
+    <listitem>
+      <para
+>&etc;</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Lo strumento azioni di &krusader; è molto potente e personalizzabile, se sai come scrivere azioni generiche.</para>
+  <tip>
+    <para
+>Il programma è distribuito con varie azioni predefinite. <link linkend="help_krusader"
+>Carica le tue azioni preferite</link
+> affinché siano disponibili alla comunità di &krusader;. Grazie!</para>
+  </tip>
+  <figure id="screenshot-actionman" float="1">
+    <title
+>ActionMan</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="actionman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>ActionMan</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Le azioni sono, fondamentalmente, un metodo per richiamare programmi esterni con parametri variabili. Potresti avere, per esempio, un'azione con <command
+>xmms <option
+>--enqueue %aList("Selected")%</option
+></command
+> per accodare tutti gli elementi selezionati del pannello attivo all'attuale istanza di xmms. In aggiunta, è possibile anche un accesso limitato alle funzioni interne di &krusader; che richiedono parametri. Per esempio, <command
+>%aPanelSize("80")%</command
+> imposterà la larghezza del pannello attivo all'ottanta per cento della finestra principale di &krusader;. Dato che il parametro dei segnaposto può contenere altri segnaposto, sono possibili pochi script. </para>
+  <para>
+    <emphasis role="bold"
+>Gestire le azioni</emphasis>
+  </para>
+  <para
+>Apri Konfigurator e scegli  <menuchoice
+><guimenu
+>Azioni utente</guimenu
+> <guimenuitem
+>Gestisci azioni</guimenuitem
+></menuchoice
+>, in cui puoi aggiungere, modificare, rimuovere, importare ed esportare le azioni.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Aggiungi azione</guimenuitem
+>: se vuoi aggiungere una nuova azione, ti verrà proposta una maschera di immissione in cui inserire tutte le proprietà prescelte. L'azione sarà aggiunta dopo aver premuto il pulsante <guimenuitem
+>Applica</guimenuitem
+>, e il nome mostrato nell'elenco a sinistra.</para>
+    </listitem>
+    <listitem>
+      <para
+>Per modificare un'azione: seleziona l'azione sulla sinistra, poi scegli quali proprietà modificare. Le modifiche avranno effetto solo dopo aver premuto il pulsante <guimenuitem
+>Applica</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Per rimuovere un'azione</guimenuitem
+>: seleziona l'azione sulla sinistra poi premi il pulsante <inlinemediaobject
+> <imageobject
+> <imagedata fileref="Icon-edit-delete.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Per importare un'azione</guimenuitem
+>: se importi delle azioni, esse saranno aggiunte automaticamente al tuo elenco. Se ci sono conflitti di nome (i nomi devono essere univoci perché sono gli identificatori per il sistema delle azioni di &plasma;), essi devono essere risolti. Per questo motivo l'elenco di sinistra mostrerà solo le azioni per cui esiste un conflitto. Puoi attribuire loro nuovi nomi o rimuoverle.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Esporta azione</guimenuitem
+>: se esporti un'azione devi attribuire un nome al file in cui la memorizzi. Se non esiste, sarà creato. Se il file contiene già azioni, l'azione esportata verrà aggiunta a quel file.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Tutte le azioni definite vengono ora mostrate nel menu utente e nelle finestre di &plasma; che cambiano le scorciatoie e gestiscono la barra degli strumenti. In aggiunta, tutte le azioni disponibili per l'elemento corrente verranno anche mostrate nel menu contestuale.</para>
+  <para>
+    <emphasis role="bold"
+>Proprietà di base</emphasis>
+  </para>
+  <para
+><guimenuitem
+>Identificatore</guimenuitem
+>, <guimenuitem
+>Titolo</guimenuitem
+> e <guimenuitem
+>Comando</guimenuitem
+> sono sempre richiesti, tutte le altre proprietà sono facoltative.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Identificatore</guimenuitem
+>: nome univoco per l'azione, utilizzato per identificarla dal sistema delle azioni di &plasma;.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Pulsante dell'icona</guimenuitem
+>: l'icona per l'azione.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Categoria</guimenuitem
+>: le categorie sono usate per una migliore catalogazione. Esse appaiono come elementi di sotto-menu nel menu <guimenuitem
+>Azioni utente</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Titolo</guimenuitem
+>: il titolo visualizzato nei menu o nelle finestre di dialogo.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Suggerimento</guimenuitem
+>: suggerimento per l'azione che appare, &eg;, nella barra degli strumenti o al passaggio del mouse.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Descrizione</guimenuitem
+>: descrizione di ciò che esegue l'azione. Essa viene visualizzata anche come elemento <guimenuitem
+>Che cos'è</guimenuitem
+> se premi <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo
+> sull'azione.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Comando</guimenuitem
+>: il comando da eseguire. Puoi inserire un segnaposto utilizzando un'interfaccia tramite il pulsante <guibutton
+>aggiungi</guibutton
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Cartella di lavoro</guimenuitem
+>: la cartella di lavoro del comando da eseguire.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Modo di esecuzione</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Normale</guimenuitem
+>: modo di esecuzione normale.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Esegui in un terminale</guimenuitem
+>: avvia il comando nel terminale.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Esegui nell'emulatore di terminale integrato</guimenuitem
+>: avvia il comando nel terminale integrato.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Cattura output</guimenuitem
+>: cattura l'output del programma eseguito in una finestra a interfaccia grafica.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Standard error separato</guimenuitem
+>: quando viene usato <quote
+>Cattura output</quote
+>, stdout e stderr vengono catturati separatamente.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Il comando accetta</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Solo file locali (non &URL;)</guimenuitem
+>: indica al segnaposto che deve restituire indirizzi locali.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>&URL; (remoti e locali)</guimenuitem
+>: indica al segnaposto che deve restituire &URL;.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <!--    Not yet implemented, but will be after 1.50 stable is released
+        <listitem
+><para
+><guimenuitem
+>On multiple selection</guimenuitem
+>:  </para>
+        <itemizedlist>
+   <listitem
+><para
+><guimenuitem
+>Separate call for each file</guimenuitem
+>: executes the command for each selected file.
+             </para
+></listitem>
+         </itemizedlist>
+      </listitem
+> -->
+    <listitem>
+      <para
+><guimenuitem
+>Scorciatoia predefinita</guimenuitem
+>: configura la scorciatoia predefinita per l'azione.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Abilitata</guimenuitem
+>: se selezionata, l'azione viene mostrata nel <link linkend="useractions"
+>menu utente</link
+>, in caso contrario verrà nascosta.</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>Sintassi della riga di comando</emphasis>
+  </para>
+  <para
+>Fondamentalmente, tutto ciò che digiti nella riga di comando viene eseguito (se digiti <quote
+>ls -l</quote
+>, <quote
+>ls -l</quote
+> viene eseguito). Hai la possibilità di ottenere una stringa di caratteri da &krusader; che rappresenta lo stato corrente del pannello. Questo viene fatto utilizzando i segnaposti. Un segnaposto inizia con un segno percentuale ('%') seguito da un indicatore di pannello ('a' per il pannello attivo, 'o' per l'altro, 'l' per il sinistro e 'r' per il destro (le iniziali sono quelle delle parole inglesi, N.d.T.). Se il segnaposto non necessita di un pannello per operare, devi indicarlo con un trattino basso ('_')). Poi segue il nome del segnaposto (consulta l'elenco sottostante), che può contenere qualche parametro racchiuso tra virgolette. Segue di nuovo, per finire, il segno percentuale.</para>
+  <para
+>Tutto questo sembra molto complicato, facciamo dunque un esempio: '%aList("Selected")%' viene sostituito da un elenco di tutti gli elementi selezionati nel pannello attivo. Perciò, un comando come «xmms --enqueue %aList("All", " ", "", "*.mp3")%» eseguirà xmms con un elenco di tutti i file .mp3 presenti nel pannello attivo, separati da uno spazio vuoto.</para>
+  <para
+>Attualmente, sono implementati questi segnaposti:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><userinput
+>Percorso</userinput
+> - sostituito dal percorso dei pannelli</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro (facoltativo): escape automatico degli spazi. Predefinito: sì</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Numero di</userinput
+> - sostituito dal numero del &lt;primo parametro&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: quali elementi; <quote
+>Tutto</quote
+>, <quote
+>Selezionato</quote
+>, <quote
+>File</quote
+> o <quote
+>Cartelle</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Maschera filtro</userinput
+> - sostituito dalla maschera filtro del pannello</para>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Attuale</userinput
+> - sostituito dall'elemento attuale</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro (facoltativo): ometti il percorso attuale. Predefinito: no</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro (facoltativo): escape automatico degli spazi. Predefinito: sì</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Elenco</userinput
+> - sostituito da un elenco di tutto il &lt;primo parametro&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: quali elementi; <quote
+>Tutto</quote
+>, <quote
+>Selezionato</quote
+>, <quote
+>File</quote
+> o <quote
+>Cartelle</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro (facoltativo): separatore tra gli elementi. Predefinito: <quote
+>&nbsp;</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro (facoltativo): ometti il percorso attuale. Predefinito: no</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro (facoltativo): maschera filtro (per tutti eccetto che per <quote
+>Selezionato</quote
+>). Predefinito: *</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro (facoltativo): escape automatico degli spazi. Predefinito: sì</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Modifica la selezione</userinput
+> - manipola la selezione in un pannello</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: maschera filtro</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro (facoltativo): manipola in che modo; <quote
+>Imposta</quote
+>, <quote
+>Aggiungi</quote
+> o <quote
+>Rimuovi</quote
+>. Predefinito: <quote
+>Imposta</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Vai a</userinput
+> - cambia il percorso del pannello al &lt;primo parametro&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: percorso relativo o assoluto, oppure un &URL;</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro (facoltativo): apre la posizione in una nuova scheda. Predefinito: no</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Chiedi</userinput
+> - chiede all'utente del testo ed è sostituito dalla risposta</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: la domanda</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro (facoltativo): una risposta predefinita</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro (facoltativo): un titolo per il riquadro della domanda</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Appunti</userinput
+> - manipola gli appunti</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: il testo che deve essere copiato negli appunti (qui potresti usare, se vuoi, <quote
+>%aCurrent%</quote
+>)</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro (facoltativo): aggiungi il testo al contenuto corrente degli appunti con questo separatore</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Copia</userinput
+> - copia un file, utile per copie di sicurezza rapide e locali</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: cosa deve essere copiato</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro: dove deve essere copiato</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Sincronizzazione</userinput
+> - apre la sincronizzazione col profilo indicato</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: un profilo per la sincronizzazione</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Nuova ricerca</userinput
+> - apre la finestra della ricerca col profilo indicato</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: un profilo per il modulo di ricerca</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Profilo</userinput
+> - carica il profilo di pannello indicato</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: un profilo di pannello</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Esecuzione separata dei programmi ogni...</userinput
+> - divide la riga di comando in un elenco. Questi comandi vengono eseguiti uno dopo l'altro.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: un elenco (tutto, tutti i file, tutte le cartelle, tutti i selezionati).</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Sposta</userinput
+> - sposta da un punto di origine a uno di destinazione.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: un punto di origine</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro: un punto di destinazione</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Imposta una relazione tra i due pannelli</userinput
+> - modifica le proporzioni tra i due pannelli.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro (facoltativo): un valore intero, &eg;, 80 fa usare al pannello attivo l'ottanta per cento della larghezza di &krusader; (l'altezza, nel modo verticale); l'omissione del parametro indica il cinquanta per cento.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Chiedi</userinput
+> - annulla l'esecuzione.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro (facoltativo): una stringa per la domanda di annullamento.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ElencoFile</userinput
+> - è sostituito dal nome del percorso/file di un file temporaneo contenente un elenco di elementi</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: percorso/nome file</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Imposta ordinamento</userinput
+> - imposta l'ordinamento di una colonna di uno specifico pannello.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: colonna <quote
+>Name</quote
+>, <quote
+>Ext</quote
+>, <quote
+>Type</quote
+>, <quote
+>Size</quote
+>, <quote
+>Modified</quote
+>, <quote
+>Perms</quote
+>, <quote
+>rwx</quote
+>, <quote
+>Owner</quote
+> and <quote
+>Group</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro: sequenza di ordinamento; <quote
+>Toggle</quote
+>, <quote
+>Asc</quote
+> o <quote
+>Desc</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Visualizza un file</userinput
+> - imposta la modalità di visualizzazione.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametro: modo visualizzazione; <quote
+>generic</quote
+>, <quote
+>text</quote
+> o <quote
+>hex</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parametro: modalità della finestra; <quote
+>tab</quote
+> o <quote
+>window</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+  </itemizedlist>
+  <para
+>È fornito un aiuto a interfaccia grafica per l'aggiunta dei segnaposti. Gli spazi sono inseriti automaticamente in modo predefinito nel percorso, nel file attuale e nell'elenco. È necessario sapere anche un'altra cosa molto importante: tutti i segnaposti che interagiscono con le funzioni interne di &krusader; vengono richiamati al momento dell'espansione (ossia direttamente quando i segnaposti vengono sostituiti). I programmi esterni vengono richiamati al tempo di esecuzione (ossia dopo che tutti i segnaposti sono stati sostituiti).</para>
+  <para>
+    <emphasis role="bold"
+>Proprietà avanzate</emphasis>
+  </para>
+  <para
+>Qui puoi configurare dove deve essere visibile il comando (riferito al menu contestuale). In aggiunta, è possibile cambiare il comando eseguito e confermarlo separatamente. Puoi impostare anche un utente per il quale il comando deve essere eseguito.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Configura se l'azione è valida per un protocollo, un percorso, un tipo &MIME; o un nome di file.</para>
+    </listitem>
+    <listitem>
+      <para
+>Regolare la riga di comando prima dell'esecuzione.</para>
+    </listitem>
+    <listitem>
+      <para
+>Imposta un utente diverso per l'esecuzione (non ha effetto sulle funzioni interne di &krusader;)</para>
+    </listitem>
+  </itemizedlist>
+</sect1>

@@ -1,0 +1,62 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="profiles">
+  <title
+>Perfils</title>
+  <indexterm>
+    <primary
+>Perfils</primary>
+  </indexterm>
+  <para
+>Amb els perfils, podeu desar i restaurar les opcions de configuració preferides. Diverses característiques per a admetre perfils, podeu tenir, &pex;, diferents perfils de plafó (treball, casa, connexions remotes, &etc;), perfils de cerca, perfils del sincronitzador, &etc;</para>
+  <sect2 id="panel_profiles">
+    <title
+>Perfils del plafó</title>
+    <para
+>Un perfil de plafó conté el següent: tots els camins de pestanya (esquerra o dreta), la pestanya actual (esquerra o dreta) i el plafó actiu (esquerra o dret). Tota aquesta informació s'emmagatzema al fitxer <link linkend="config_files"
+>krusaderrc</link
+>. Podeu tenir diversos perfils de plafó, &pex; gestió de fitxers, gestió de l'&FTP;, casa, treball, &etc; El perfil del plafó es pot <link linkend="c_panel_profiles"
+>desar i restaurar</link
+> al menú <guimenu
+>Finestra</guimenu
+>. El <link linkend="konfig-startup"
+>perfil d'inici predeterminat</link
+> s'utilitzarà en iniciar el &krusader;, però podeu substituir-lo amb una opció de la línia d'ordres.</para>
+  </sect2>
+  <sect2 id="color_profiles">
+    <title
+>Perfils de color</title>
+    <para
+>Els mapes de color es poden desar i restaurar amb els <link linkend="konfig-color"
+>perfils de colors</link
+>.</para>
+  </sect2>
+  <sect2 id="key_profiles">
+    <title
+>Perfils dels lligams de tecla</title>
+    <para
+>Els mapes de teclat es poden desar i restaurar amb els <link linkend="configure-shortcuts"
+>perfils per als lligams de tecla</link
+>.</para>
+  </sect2>
+  <sect2 id="search_profiles">
+    <title
+>Perfils de cerca</title>
+    <para
+>Si realitzeu regularment la mateixa operació de cerca, podeu desar la configuració de la cerca (&pex;, fitxers inclosos, fitxers exclosos, &etc;) en un <link linkend="krusearcher"
+>perfil de cerca</link
+>.</para>
+  </sect2>
+  <sect2 id="synchronizer_profiles">
+    <title
+>Perfils del sincronitzador</title>
+    <para
+>Si realitzeu regularment la mateixa operació de sincronització, podeu desar la configuració de la sincronització en un <link linkend="synchronizer"
+>perfil del sincronitzador</link
+>.</para>
+  </sect2>
+</sect1>

@@ -1,0 +1,41 @@
+<sect1 id="calculate">
+  <title
+>Calcular espaço ocupado</title>
+  <indexterm>
+    <primary
+>Espaço ocupado</primary>
+  </indexterm>
+  <!-- Thanks to Heiner Eichmann -->
+  <para
+>Existem duas formas de calcular o espaço ocupado pelos arquivos/pastas.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Ao pressionar a tecla <keycap
+>Espaço</keycap
+> numa pasta sob o cursor, será calculado instantaneamente o espaço ocupado. Ao pressionar <keycap
+>Espaço</keycap
+> de novo, irá comutar a seleção da pasta, sem afetar o estado de seleção dos outros arquivos/pastas.</para>
+    </listitem>
+    <listitem>
+      <para
+>Para calcular a quantidade de espaço em disco ocupado pelos arquivos e pastas selecionados no painel ativo, selecione a opção <menuchoice
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Calcular o Espaço Ocupado</guimenuitem
+> </menuchoice
+>. Ao fim de algum tempo, irá aparecer uma janela com o espaço total ocupado e o número de arquivos e pastas que você selecionou. O espaço ocupado por cada uma das pastas selecionadas será apresentado, como se o usuário tivesse acabado de pressionar <keycap
+>Espaço</keycap
+> nessas pastas. Se o painel ativo estiver navegando num pacote, os números serão aplicados ao tamanho não comprimido dos arquivos e pastas selecionados, não ao seu tamanho comprimido. Depois do cálculo, o estado da seleção será comutado e o cursor irá descer um passo.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>É suportado o cálculo do espaço ocupado nos sistemas de arquivos remotos. <note
+> <para
+>Efetuar esta operação num sistema de arquivos muito grande (com milhares de arquivos), poderá consumir bastante tempo. Você poderá cancelar o processo de cálculo a qualquer momento, clicando no botão <guibutton
+>Cancelar</guibutton
+>.</para>
+  </note
+></para>
+</sect1>

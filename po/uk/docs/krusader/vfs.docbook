@@ -1,0 +1,120 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="vfs">
+  <title
+>Віртуальні файлові системи (VFS)</title>
+  <indexterm>
+    <primary
+>VFS</primary>
+  </indexterm>
+  <para
+>Основною <link linkend="features"
+>можливістю OFM</link
+> є VFS, шар абстрагування над всіма видами архівованих даних (ZIP-файлів, &FTP;-серверів, TAR-архівів, файлових систем NFS, спільні ресурси SAMBA, образи ISO компакт-дисків і DVD, каталоги RPM тощо), за допомогою якого користувач може отримувати доступ до всіх даних, що зберігаються у цих різних файлових системах у прозорому режимі — подібно до входу до звичайних підкаталогів! &krusader; підтримує декілька віртуальних файлових систем (VFS).</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>Віддалені з’єднання VFS</link
+>: надають змогу працювати з сеансом віддаленого з’єднання (&FTP;, NFS, Samba, FISH, SFTP) у спосіб, подібний до локальних файлових систем. Ці з’єднання добре зарекомендували себе під час складних віддалених операцій, вони майже такі самі потужні, як і окремі віддалені клієнти з графічним інтерфейсом.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Архівна VFS</link
+>: надає змогу переглядати архіви у VFS подібно до каталогів (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip і 7-zip).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Пошукова VFS</link
+>: <guibutton
+>Подача у список</guibutton
+> розташовує результати пошуку у VFS.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>VFS Синхронізатора</link
+>: розташовує результати синхронізації у VFS.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Дії, які ви виконуватимете над файлами у VFS, буде виконано над справжніми файлами. Ви не просто вилучаєте файли з VFS — ви вилучаєте їх з вашого жорсткого диска. Обмеження: ви не можете створювати каталоги у VFS.</para>
+  <para
+>Під час копіювання з віртуальної теки у невіртуальну теку ви можете зберігати структуру каталогів: достатньо позначити пункт «Зберігати структуру віртуального каталогу» у діалоговому вікні копіювання. Уявіть собі таку віртуальну теку: <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/мій_каталог1/мій_файл1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/мій_каталог1/мій_файл2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/мій_каталог2/мій_файл3</userinput
+></screen
+> Тепер виконайте такі дії:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>увійдіть до віртуальної теки і позначте файли</para>
+    </listitem>
+    <listitem>
+      <para
+>оберіть теку призначення (не віртуальну!)</para>
+    </listitem>
+    <listitem>
+      <para
+>натисніть клавішу <keycap
+>F5</keycap
+> — програма покаже діалогове вікно копіювання</para>
+    </listitem>
+    <listitem>
+      <para
+>позначте пункт <guilabel
+>Зберігати структуру віртуальної теки</guilabel
+></para>
+    </listitem>
+    <listitem>
+      <para
+>вкажіть <filename
+>/home/myhome/</filename
+> як основну адресу &URL;</para>
+    </listitem>
+    <listitem>
+      <para
+>розпочніть копіювання натисканням кнопки «Гаразд»</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Результатом буде: <screen
+><prompt
+>$</prompt
+> <userinput
+>каталог_призначення/мій_каталог1/мій_файл1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>каталог_призначення/мій_каталог1/мій_файл2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>каталог_призначення/мій_каталог2/мій_файл3</userinput
+></screen>
+  </para>
+</sect1>

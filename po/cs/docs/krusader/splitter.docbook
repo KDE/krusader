@@ -1,0 +1,84 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="splitter">
+  <title
+>Rozdělovač souborů</title>
+  <indexterm>
+    <primary
+>Rozdělovač souborů</primary>
+  </indexterm>
+  <para
+>Tato funkce rozděluje jeden (velký) soubor na více menších souborů, takže mohou být přesunuty na menší média (např. mechaniky ZIP ...) nebo odeslány emailem. Těchto několik souborů může být znovu sloučeno, aby opět vytvořili originální soubor. Aplikace &krusader; a <trademark class="copyright"
+>Total Commander</trademark
+> rozdělují/slučují kompatibilní funkcí. Chcete-li soubor rozdělit, zvolte <menuchoice
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Rozdělit soubor...</guimenuitem
+> </menuchoice
+> nebo použijte klávesovou zkratku <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: Pro potvrzení operace se otevře dialogové okno <guilabel
+>Rozdělit</guilabel
+>.</para>
+  <para
+>Mějme původní soubor s názvem <filename
+>foo</filename
+>. Potom menší soubory budou <filename
+>foo.000 foo.001 foo.002</filename
+> atd. Není zde teoretické omezení v počtu menších souborů, ale je doporučeno omezit počet souborů na maximálně 1023. &krusader; vytváří soubor <filename
+>foo.crc</filename
+>. Tento soubor obsahuje název, velikost a kontrolní součet crc původního souboru. Je možné sloučit soubor bez souboru <filename
+>foo.crc</filename
+>, ale v tom případě aplikace &krusader; nemůže zkontrolovat, jestli byl původní soubor sloučen správně.</para>
+  <para
+>Příklad souboru <filename
+>foo.crc</filename
+>: <programlisting
+>filename=foo size=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>Chcete-li sloučit více dílčích souborů, označte dílčí soubor <filename
+>foo.xxx</filename
+> a v hlavní nabídce vyberte <menuchoice
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Sloučit soubory</guimenuitem
+> </menuchoice
+> nebo použijte klávesovou zkratku <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+>. Cílový adresář je v neaktivním panelu a může být změněn. Názvy souborů musí být očíslovány ve vzestupném pořadí: <filename
+>foo.001, foo.002, foo.003</filename
+> atd. nebo musí být označeny pomocí písmen ve vzestupném pořadí ("metodu s písmeny při rozdělování souboru použijete příkazem <userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+>"): <filename
+>fileaa, fileab, fileac</filename
+> atd. Je-li ve stejném adresáři jako dílčí soubory nalezen soubor <filename
+>fileaa.crc</filename
+>, pak aplikace &krusader; použije tento soubor, aby zkontrolovala sloučený soubor na chyby.</para>
+</sect1>

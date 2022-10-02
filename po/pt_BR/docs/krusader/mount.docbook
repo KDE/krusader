@@ -1,0 +1,88 @@
+<sect1 id="mount-man">
+  <title
+>MountMan: trabalhar com os seus sistemas de arquivos montados</title>
+  <indexterm>
+    <primary
+>Montar</primary>
+  </indexterm>
+  <para
+>O MountMan é uma ferramenta que o ajuda a gerenciar os seus sistemas de arquivos montados. Assim que for invocado, ele mostra uma lista com todos os sistemas de arquivos montados. Para cada sistema de arquivos, o MountMan mostra o seu nome (que é o nome real do dispositivo - &ie; <filename class="directory"
+>/dev/sda1</filename
+> para a primeira partição do primeiro <hardware
+>HD</hardware
+>), o seu tipo (ext4, ext3, ntfs, vfat, ReiserFS ...) e o seu ponto de montagem no seu sistema (a pasta em que o sistema de arquivos é montado).</para>
+  <para
+>Se você quiser filtrar os dispositivos não-removíveis da lista, basta ativar o item <guilabel
+>Mostrar somente dispositivos removíveis</guilabel
+> à esquerda da lista de dispositivos. </para>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>MountMan</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="mountman.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="mountman.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>MountMan</phrase
+></textobject>
+  <caption
+><para
+>MountMan</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+  <figure id="screenshot-mountman" float="1">
+    <title
+>MountMan</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="mountman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>MountMan</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>O MountMan também mostra informações de utilização, como o tamanho atual, o tamanho livre e a percentagem de espaço livre. Se estes valores indicarem <guilabel
+>N/D</guilabel
+>, é porque o sistema de arquivos não está montado. Clicar com o botão esquerdo num sistema de arquivos, irá apresentar um gráfico circular à esquerda da janela, mostrando de forma gráfica a informação da utilização do sistema de arquivos. Clicar num sistema de arquivos não-montado, irá aparecer <guilabel
+>não montado</guilabel
+> em vez do gráfico.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Se você fizer <keycap
+>duplo-clique</keycap
+> sobre um sistema de arquivos, irá fechar o MountMan e abrir esse sistema de arquivos no painel ativo do &krusader;.</para>
+    </listitem>
+    <listitem>
+      <para
+>Clicar com o <keycap
+>botão direito</keycap
+> num sistema de arquivos, irá abrir um pequeno menu que mostra as ações possíveis sobre esse sistema de arquivos. Atualmente, você só pode montar, desmontar e ejetar (se clicar num sistema de arquivos removível, &eg;, um &CD-ROM;).</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Planeja-se a expansão do MountMan na próxima evolução do &krusader;. Ele será capaz de formatar partições, editar o <filename
+>/etc/fstab</filename
+>, criar sistemas de arquivos novos, etc... Neste momento, já há algum trabalho em curso; veja o "Modo Rápido do MountMan".</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Modo Rápido do MountMan</emphasis>
+  </para>
+  <para
+>Para ativar o Modo Rápido do MountMan, clique o botão lateral com a seta no botão do MountMan na <link linkend="mainwindow"
+>Barra de ferramentas principal</link
+>.</para>
+  <para
+>Ideia geral: mostrar uma lista com todos os pontos de montagem possíveis. Cada vez que o menu aparece, mostra se um ponto de montagem está montado ou não e associa a ação correta (montar ou desmontar). Isto oferece uma interface rápida para o MountMan. Está funcionando e usa atualmente o KMountMan::mount e unmount. Usa os novos serviços do &kde; para ler o 'fstab', permitindo remover muito código do MountMan "antigo".</para>
+</sect1>

@@ -1,0 +1,2273 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="menu-commands">
+  <title
+>Ordres del menú</title>
+  <indexterm>
+    <primary
+>Ordres</primary>
+    <secondary
+>Menú</secondary>
+  </indexterm>
+  <sect1 id="file-menu">
+    <title
+>El menú Fitxer</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Maj;<keycap
+>F4</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Fitxer de text nou...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Crea un fitxer de text nou a la carpeta actual, llevat que s'especifiqui una altra carpeta. Un cop creat el fitxer nou s'obrirà per a editar-lo.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F7</keycap
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Carpeta nova</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Crea una carpeta nova a la carpeta actual.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Ctrl;<keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Enllaç simbòlic nou...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Crea un enllaç simbòlic cap al fitxer seleccionat.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F3</keycap
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Visualitza el fitxer</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre el fitxer seleccionat per a la seva <link linkend="kredit"
+>visualització</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F4</keycap
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Edita el fitxer</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre el fitxer seleccionat per a <link linkend="kredit"
+>editar-lo</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F5</keycap
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Copia a l'altre plafó</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Copia els fitxers o carpetes seleccionades a l'altre plafó.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F6</keycap
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Mou</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre un diàleg per a <link linkend="copying"
+>moure</link
+> els fitxers o carpetes seleccionades a una ubicació específica.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Empaqueta...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Crea un <link linkend="pack-archive"
+>arxiu nou</link
+> de tots els fitxers i carpetes seleccionades en el plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Desempaqueta...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="unpacking-archives"
+>Desempaqueta</link
+> tots els fitxers seleccionats en el plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Comprova l'arxiu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="test-archive"
+>Prova l'arxiu</link
+> per a la corrupció.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Compara per contingut...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Compara els dos fitxers actuals per contingut -un de cada plafó mitjançant una utilitat gràfica de diff externa-. De manera predeterminada, s'utilitza el &kompare;, però també podreu emprar, &pex;, <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> o <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+>, canvieu-lo a la <link linkend="konfig-dependencies"
+>pàgina Dependències del Konfigurador</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="multi_rename">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Maj;<keycap
+>F2</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Reanomena de forma massiva...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Aquesta opció de menú inicia el <ulink url="https://www.kde.org/applications/utilities/krename/"
+><application
+>Krename</application
+></ulink
+>, un reanomenador per lots extern molt potent.</para>
+          <itemizedlist>
+            <title
+>Característiques del Krename</title>
+            <listitem>
+              <para
+>Reanomena una llista de fitxers basant-se en un conjunt d'expressions</para>
+            </listitem>
+            <listitem>
+              <para
+>Copia/mou una llista de fitxers a una altra carpeta</para>
+            </listitem>
+            <listitem>
+              <para
+>Converteix els noms de fitxer a majúscules/minúscules</para>
+            </listitem>
+            <listitem>
+              <para
+>Afegeix números als noms de fitxer</para>
+            </listitem>
+            <listitem>
+              <para
+>Cerca i substitueix parts del nom de fitxer</para>
+            </listitem>
+            <listitem>
+              <para
+>Reanomena els fitxers MP3/OGG Vorbis basant-se en les seves etiquetes ID3</para>
+            </listitem>
+            <listitem>
+              <para
+>Estableix les dates d'accés i de modificació</para>
+            </listitem>
+            <listitem>
+              <para
+>Canvia els permisos i el propietari del fitxer</para>
+            </listitem>
+            <listitem>
+              <para
+>Una API de connector que permet estendre amb les característiques del KRename</para>
+            </listitem>
+            <listitem>
+              <para
+>Reanomena les carpetes de manera recursiva</para>
+            </listitem>
+            <listitem>
+              <para
+>Funcionament dels KFilePlugins</para>
+            </listitem>
+            <listitem>
+              <para
+>Desfà el reanomenament</para>
+            </listitem>
+            <listitem>
+              <para
+>I molt més...</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Crea una suma de verificació...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="checksum"
+>Crea una suma de verificació</link
+> del/s fitxer/s i/o carpeta/es.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Comprova la suma de verificació...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para>
+            <link linkend="checksum"
+>Comprova la suma de verificació</link>
+          </para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Divideix el fitxer...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>La funció <link linkend="splitter"
+>divideix el fitxer</link
+> permet dividir un fitxer en múltiples fitxers més petits, de manera que pugueu emmagatzemar-lo en diversos suports més petits (com <hardware
+>disquets, unitats zip...</hardware
+>) o enviar-los per correu electrònic.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Reajunta els fitxers...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>La funció <link linkend="splitter"
+>reajunta els fitxers</link
+> permet combinar múltiples fitxers en un sol fitxer després d'amprar la funció <link linkend="splitter"
+>divideix el fitxer</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <!--vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Surt</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Tanca el &krusader; i neteja la carpeta temporal, el mateix que prémer la tecla <keycap
+>F10</keycap
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="edit-menu">
+    <title
+>El menú Edita</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Retalla</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Retalla</link
+> els fitxers seleccionats al porta-retalls per a moure'ls a una altra ubicació.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Copia</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Copia</link
+> els fitxers seleccionats al porta-retalls per a moure'ls a una altra ubicació.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Enganxa</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Enganxa</link
+> els elements retallats o copiats anteriorment des del porta-retalls a la carpeta actual.</para>
+        </listitem>
+      </varlistentry>
+<!--
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycap
+>F2</keycap>
+            </shortcut>
+            <guimenu
+>Edit</guimenu>
+            <guimenuitem
+>Rename</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          <link linkend="renaming"
+>Renames</link
+> the currently
+          selected file.</para>
+        </listitem>
+      </varlistentry
+>-->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F8</keycap
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Suprimeix</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="deleting"
+>Suprimeix</link
+> els fitxers seleccionats.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Selecciona un grup...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre un diàleg que permetrà seleccionar fitxers en el plafó actiu. En el diàleg <guilabel
+>Cerca per</guilabel
+>, poseu els principals criteris de cerca. Introduïu un nom de fitxer, un comodí (<literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> &etc;) o ambdós -separats per un espai-. Quan s'empra <literal
+>'text'</literal
+>, el resultat serà el mateix que <literal
+>'*text*'</literal
+>. Podreu excloure fitxers de la cerca amb «'|'» (&pex;, <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>). Amb el <link linkend="profiles"
+>gestor de perfils</link
+> podreu gestionar les vostres seleccions per a un ús futur. Fer doble clic sobre un perfil és el mateix que introduir la selecció i prémer el botó <guibutton
+>D'acord</guibutton
+>. Més opcions per al diàleg <guilabel
+>Selecciona un grup</guilabel
+> s'expliquen en el <link linkend="krusearcher"
+>diàleg de Cerca</link
+>, les quals són bàsicament els mateixos diàlegs.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Desselecciona el grup...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>El contrari de <guimenuitem
+>Selecciona un grup</guimenuitem
+>. Els fitxers que coincideixin amb el patró del plafó actiu seran desseleccionats.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Selecciona-ho tot</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Selecciona tots els fitxers en el plafó actiu. També podreu seleccionar totes les carpetes activant l'opció <guilabel
+>Selecciona automàticament les carpetes</guilabel
+> a la <link linkend="konfig-panel"
+>pàgina Plafó del Konfigurador</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Desselecciona-ho tot</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Anul·la la selecció de tots els fitxers en el plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>*</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Inverteix la selecció</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Inverteix l'estat de selecció de tots els fitxers en el plafó actiu (&ead;, els fitxers seleccionats no seran seleccionats i els fitxers sense seleccionar seran seleccionats).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Edita</guimenu
+> <guimenuitem
+>Restaura la selecció</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Restaura l'estat de selecció previ dels elements sense seleccionar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Cerca a la carpeta...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Alterna la funció de <link linkend="quicksearch"
+>cerca ràpida</link
+> del &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Compara les carpetes</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Alterna la funció <link linkend="compare-dir"
+>compara les carpetes</link
+> del &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Edita</guimenu
+> <guimenuitem
+>Configuració de la comparació</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Configura la funció <guimenuitem
+>Compara les carpetes</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Selecciona els més nous i els desaparellats</guimenuitem
+> (omissió)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Selecciona els desaparellats</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Selecciona els més nous</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Selecciona els diferents i els desaparellats</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Selecciona els diferents</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Edita</guimenu
+> <guimenuitem
+>Calcula l'espai ocupat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="calculate"
+>Calcula l'espai ocupat</link
+> dels fitxers i carpetes, arxius i sistemes de fitxers remots.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;&Intro;</keycombo
+></shortcut
+><guimenu
+>Edita</guimenu
+> <guimenuitem
+>Propietats...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre el diàleg de propietats per al fitxer seleccionat. (KP es refereix al teclat numèric).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="go-menu">
+    <title
+>El menú Ves</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Up;</keycombo
+> </shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Amunt</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Navega cap a la carpeta superior del plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Left;</keycombo
+></shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Enrere</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Navega cap a la carpeta anterior en el plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Right;</keycombo
+> </shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Endavant</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Navega cap a la següent carpeta visualitzada en el plafó actiu. Només esdevindrà disponible quan s'empri <menuchoice
+><guimenu
+>Ves</guimenu
+> <guimenuitem
+>Enrere</guimenuitem
+></menuchoice
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Home;</keycombo
+> </shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Inici</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Navega cap a la carpeta d'inici de l'usuari actual.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Retro;</keycombo
+> </shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Arrel</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Navega cap a la carpeta arrel del sistema.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>&URL; populars...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra una llista de les carpetes vistes amb freqüència des de la qual podreu navegar fent doble clic.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Estableix un punt de retorn</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Estableix la carpeta actual com un punt de <quote
+>salt cap enrere</quote
+>. Per a navegar cap aquesta carpeta amb rapidesa, seleccioneu l'element de menú <menuchoice
+><guimenu
+>Ves</guimenu
+><guimenuitem
+>Punt de retorn</guimenuitem
+></menuchoice
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Torna a un punt de retorn</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Retorna al <quote
+>punt de retorn</quote
+> anterior.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="view-menu">
+    <title
+>El menú Visualitza</title>
+    <para
+>L'acció en aquest submenú generalment afecta la sessió actual del &krusader;. Si voleu fer canvis permanents, empreu la <link linkend="konfigurator"
+>pàgina d'inici del Konfigurador</link
+>.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Apropa</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Fa créixer l'escala de la vista.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Allunya</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Fa disminuir l'escala de la vista.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Zoom predeterminat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Reinicia l'escala de la vista.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Vista detallada</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra els noms de fitxer, la mida del fitxer, la data i hora de creació i els seus atributs.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Vista breu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra només els noms dels fitxers.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Mostra els fitxers ocults</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Alterna l'opció per a mostrar els fitxers ocults en els plafons del &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Maj;<keycap
+>F10</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Tots els fitxers</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Desactiva tots els filtres i mostra tots els fitxers.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Maj;<keycap
+>F12</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>A mida</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Permet posar un filtre a mida en el plafó del &krusader;. Només es mostraran els fitxers que coincideixin amb els patrons i carpetes del filtratge. No oblideu desactivar el filtre a mida després del seu ús, o alguns fitxers podrien no ser visibles.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Mostra les vistes prèvies</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Si està marcada, mostrarà les vistes prèvies de tots els fitxers i carpetes en el plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Selecciona el joc de caràcters remot</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Selecciona el joc de caràcters remot per a les <link linkend="remote-connections"
+>connexions remotes</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Torna a carregar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Actualitza el contingut del plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Desa la configuració com a predeterminada</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Permet desar la configuració de vista de la pestanya actual per a les noves instàncies d'aquest tipus de vista.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Aplica la configuració a la resta de pestanyes</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Permet aplicar la configuració de vista de la pestanya actual a les altres pestanyes.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="useractions-menu">
+    <title
+>El menú Accions d'usuari</title>
+    <para
+>Aquí podreu afegir les vostres pròpies entrades de menú definint les vostres pròpies <link linkend="useractions"
+>Accions d'usuari</link
+>. </para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Accions d'usuari</guimenu
+> <guimenuitem
+>Gestiona les accions d'usuari...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre el gestor d'<link linkend="useractions"
+>Accions d'usuari</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Meta;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Accions d'usuari</guimenu
+><guisubmenu
+>Multimèdia</guisubmenu
+> <guimenuitem
+>Posa a la cua de l'Amarok</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Afegeix els elements seleccionats a la llista de reproducció de l'&amarok;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;</keycombo
+> </shortcut
+> <guimenu
+>Accions d'usuari</guimenu
+><guisubmenu
+>Mostres</guisubmenu
+> <guimenuitem
+>Plafons de mida igual</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Estableix la relació entre els dos plafons al 50/50.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Accions d'usuari</guimenu
+><guisubmenu
+>Mostres</guisubmenu
+> <guimenuitem
+>Edita com a administrador</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Permet editar un fitxer amb el <application
+>kwrite</application
+> utilitzant els permisos d'administrador.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>M</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Accions d'usuari</guimenu
+><guisubmenu
+>Mostres</guisubmenu
+> <guimenuitem
+>Munta</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Munta un sistema de fitxers nou.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Accions d'usuari</guimenu
+><guisubmenu
+>Mostres</guisubmenu
+> <guimenuitem
+>Copia l'element actual al porta-retalls</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Copia el nom de l'element actual al porta-retalls.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Meta;<keycap
+>F5</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Accions d'usuari</guimenu
+><guisubmenu
+>Sistema</guisubmenu
+> <guimenuitem
+>Còpia de seguretat de l'actual</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Fa una còpia de seguretat del fitxer actual a la carpeta actual i pregunta a l'usuari pel nom nou del fitxer. De manera predeterminada, s'afegeix <literal role="extension"
+>.old</literal
+> al nom del fitxer original.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Meta;<keycap
+>1</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Accions d'usuari</guimenu
+><guisubmenu
+>Interfície d'usuari</guisubmenu
+> <guimenuitem
+>Ordena per nom</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Quan aquesta acció està activada, la clau d'ordenació principal en el plafó del &krusader; esdevindrà per nom de fitxer.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Meta;<keycap
+>2</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Accions d'usuari</guimenu
+><guisubmenu
+>Interfície d'usuari</guisubmenu
+> <guimenuitem
+>Ordena per extensió</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Quan aquesta acció està activada, la clau d'ordenació principal en el plafó del &krusader; esdevindrà per extensió de fitxer (la part del nom de fitxer després de l'últim «.»). Això és útil per a agrupar els fitxers del mateix tipus.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Meta;<keycap
+>3</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Accions d'usuari</guimenu
+><guisubmenu
+>Interfície d'usuari</guisubmenu
+> <guimenuitem
+>Ordena per mida</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Quan aquesta acció està activada, la clau d'ordenació principal en el plafó del &krusader; esdevindrà per la mida del fitxer. Això és útil per a determinar els fitxers més grans en una certa carpeta.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Meta;<keycap
+>4</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Accions d'usuari</guimenu
+><guisubmenu
+>Interfície d'usuari</guisubmenu
+> <guimenuitem
+>Ordena per modificat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Quan aquesta acció està activada, la clau d'ordenació principal en el plafó del &krusader; esdevindrà per la data de modificació. Això és útil per a trobar els fitxers en els quals hem treballat recentment.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="tools-menu">
+    <title
+>El menú Eines</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Cerca...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre el <link linkend="krusearcher"
+>KruSearcher</link
+> -el mòdul de cerca del &krusader;-.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Ubica...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre el frontal &IGU; per al «<link linkend="locate"
+>locate</link
+>», per a cercar fitxers amb rapidesa.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Y</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Sincronitza les carpetes</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>La funció <link linkend="synchronizer"
+>sincronitzar les carpetes</link
+> compara els plafons esquerre i dret i mostra les diferències entre ells. Després de la funció de comparació, podreu moure els fitxers/carpetes perquè puguin sincronitzar-se.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Gestor del muntatge...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre un submenú amb elements per a obrir el <link linkend="mount-man"
+>Gestor del muntatge</link
+> o muntar/desmuntar diversos punts de muntatge.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Ús del disc...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre l'<link linkend="diskusage"
+>Ús del disc</link
+>.</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Connexió de xarxa nova</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre el diàleg <link linkend="remote-connections"
+>Connexió de xarxa nova</link
+> per a iniciar una connexió &FTP;, SMB, FISH o SFTP amb un amfitrió remot. Si deixeu buits els camps nom d'usuari i contrasenya, s'iniciarà una sessió com a anònim. Podreu <link linkend="bookman"
+>apuntar</link
+> aquestes sessions remotes.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Desconnecta de la xarxa</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Finalitza la <link linkend="remote-connections"
+>connexió remota</link
+> al plafó actiu i torna al camí del començament.</para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Inicia el terminal</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre una finestra de terminal a la carpeta predeterminada (generalment la vostra carpeta d'inici). Podreu triar la vostra aplicació de terminal preferida a la <link linkend="konfig-general"
+>pàgina General del Konfigurador</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="root-mode">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Maj;<keycap
+>K</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Eines</guimenu
+> <guimenuitem
+>Inicia el Krusader en mode administrador</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Inicia el &krusader; en <link linkend="root-mode"
+>mode administrador</link
+> a la mateixa ubicació. Aquest mode requereix el <command
+>kdesu</command
+>, si no està disponible o si preferiu, &pex;, el <command
+>gksu</command
+> quan empreu el <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, podreu canviar aquest comportament a la <link linkend="konfig-dependencies"
+>pàgina Dependències del Konfigurador</link
+>.</para>
+          <caution>
+            <para
+>Aneu amb compte quan empreu el &krusader; amb PRIVILEGIS d'ADMINISTRADOR (ROOT).</para>
+          </caution>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Buida la paperera</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Buida la <link linkend="deleting"
+>paperera</link
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="window-menu">
+    <title
+>El menú Finestra</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Pestanya nova</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre una pestanya nova en el plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Des/bloqueja els estris</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Bloqueja i després desbloqueja la pestanya actual en el plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;&Maj;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Duplica la pestanya actual</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre una pestanya nova, la qual serà un duplicat de la pestanya activa en el plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Mou la pestanya actual a l'altre costat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mou la pestanya actual a l'altre costat de la finestra del &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Tanca la pestanya actual</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Tanca la pestanya actual en el plafó actiu. Aquesta ordre només estarà disponible si hi ha més d'una pestanya en el plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Tanca les pestanyes inactives</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Tanca totes les pestanyes en el plafó actiu excepte l'activa.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Tanca les pestanyes duplicades</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Tanca totes les pestanyes duplicades en el plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Pestanya següent</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Tanca la pestanya següent en el plafó actiu. Aquesta ordre només estarà disponible si hi ha més d'una pestanya en el plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Pestanya anterior</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Tanca la pestanya anterior en el plafó actiu. Aquesta ordre només estarà disponible si hi ha més d'una pestanya en el plafó actiu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="c_panel_profiles">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Maj; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Perfils</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre un menú on es podran desar i restaurar els <link linkend="panel_profiles"
+>perfils del plafó</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Intercanvia els plafons</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>El plafó esquerre es convertirà en el plafó dret i viceversa, només s'intercanviaran les pestanyes actuals.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Intercanvia els costats</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Tot el plafó esquerre es convertirà en el plafó dret i viceversa, només s'intercanviaran totes les pestanyes.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Mode vertical</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Alterna el <link linkend="list_panel"
+>plafó de llista</link
+> entre els modes horitzontal i vertical.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Alterna l'emulador de terminal a pantalla completa</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Alterna el mode de pantalla completa de l'emulador de terminal. Aquesta opció només estarà disponible quan estigui activat <guilabel
+>Mostra l'emulador de terminal</guilabel
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Desa la posició</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Desa la mida i la posició actuals de la finestra principal del &krusader;. Aquesta acció es pot automatitzar amb <guilabel
+>Desa l'última ubicació, mida i configuració dels plafons</guilabel
+> a la <link linkend="konfigurator"
+>pàgina d'inici del Konfigurador</link
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="settings-menu">
+    <title
+>El menú Arranjament</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guisubmenu
+>Barres d'eines</guisubmenu
+> <guimenuitem
+>Mostra la barra d'eines principal</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Si està marcada mostrarà la <link linkend="mainwindow"
+>Barra d'eines principal</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guisubmenu
+>Barres d'eines</guisubmenu
+> <guimenuitem
+>Mostra la barra d'eines de treballs</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Si està marcada mostrarà la <link linkend="job_toolbar"
+>Barra d'eines de treballs</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guisubmenu
+>Barres d'eines</guisubmenu
+> <guimenuitem
+>Mostra la barra d'eines d'accions</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Si està marcada mostrarà la <link linkend="actions_toolbar"
+>Barra d'eines d'accions</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mostra la barra d'estat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Si està marcada mostrarà la <link linkend="mainwindow"
+>barra d'estat</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mostra la barra tecles de funció</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Si està marcada mostrarà la <link linkend="fnkeys"
+>barra tecles de funció</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mostra Emulador de terminal</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Si està marcada mostrarà l'<link linkend="cmdline"
+>emulador de terminal</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mostra la línia d'ordres</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Si està marcada mostrarà la <link linkend="cmdline"
+>línia d'ordres</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configuració del mode d'execució d'ordres</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Permet escollir el mode d'execució de l'ordre. Podreu triar entre una de les següents opcions.</para>
+	  <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Inicia i oblida</guimenuitem
+>: inicia l'execució i no espera el resultat.</para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Mostra la sortida estàndard i d'error per separat</guimenuitem
+>: mostra la sortida a la sortida estàndard i d'error estàndard en els plafons separats. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Mostra la sortida estàndard i d'error juntes</guimenuitem
+>: mostra la sortida a la sortida estàndard i d'error estàndard en un únic plafó (mode predeterminat). </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Inicia en un terminal nou</guimenuitem
+>: executa l'ordre en una finestra de terminal nova. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Executa l'ordre en l'emulador de terminal incrustat</guimenuitem
+>: envia l'ordre a l'emulador de terminal incrustat. </para>
+            </listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+      <varlistentry id="job-queue-mode">
+        <term>
+          <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mode de la cua de treballs</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Alterna el mode <link linkend="queue"
+>Gestor de la cua</link
+>. Si està marcada, en prémer <keycap
+>F2</keycap
+> o el botó corresponent en el diàleg copia/mou, es començarà immediatament la feina, fins i tot si hi ha treballs en execució a la cua. Si no està marcada, el treball es col·locarà a la cua si la cua no es troba buida. Altrament, el treball s'iniciarà immediatament. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="configure-shortcuts">
+        <term>
+          <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura les dreceres...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <indexterm>
+            <primary
+>Configura</primary>
+            <secondary
+>Dreceres</secondary>
+          </indexterm>
+          <para
+>Obre un diàleg que permetrà configurar els lligams de tecla del &krusader;.</para>
+          <para
+>Amb els botons <guibutton
+>Importa les dreceres</guibutton
+> i <guibutton
+>Exporta les dreceres</guibutton
+> podreu carregar i desar un perfil amb els lligams de tecla. Això permetrà al &krusader; tenir el <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+>, foo_commander o els vostres lligams de tecla personalitzats. L'única limitació serà que els lligams de tecla globals del &plasma; i alguns lligams de tecla del &krusader; encara no es poden canviar, així com algunes característiques de foo-commander que no tenim o no necessitem. Els lligams de tecla s'emmagatzemen a <filename
+>/usr/share/krusader</filename
+>, el <filename
+>foo.keymap.info</filename
+> conté una descripció, <filename
+>foo.keymap</filename
+> és un fitxer «ini» que conté els lligams de tecla. Fins al &krusader;-1.70.1 aquest era un fitxer binari, el &krusader; és compatible amb les versions anteriors per tal d'importar aquest format binari heretat. Si hi ha un fitxer de text <filename
+>*.keymap.info</filename
+>, el &krusader; el mostrarà, mostrant informació addicional sobre el fitxer amb lligams de tecla que s'ha carregat. Aquí tindreu l'oportunitat de sortir sense importar el fitxer amb lligams de tecla proposat.</para>
+          <tip>
+            <para
+>Es proporciona un fitxer amb els lligams de tecla del <trademark class="copyright"
+>Total Commander</trademark
+>, pugeu <link linkend="help_krusader"
+>les vostres</link
+> perquè estiguin disponibles per a la comunitat del &krusader;. Gràcies!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura les barres d'eines...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre un diàleg que permet configurar la <link linkend="mainwindow"
+>Barra d'eines principal</link
+> o la <link linkend="actions_toolbar"
+>Barra d'eines d'accions</link
+>. Podreu afegir botons d'acció a les vostres <link linkend="useractions"
+>Accions d'usuari</link
+> preferides a la barra d'eines desitjada.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura el &krusader;...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obre el <link linkend="konfigurator"
+>Konfigurador</link
+> -el centre de configuració del &krusader;-.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="help-menu">
+    <title
+>El menú Ajuda</title>
+    <para
+>De manera addicional, el &krusader; té la configuració comuna al &kde; i els elements del menú <guimenu
+>Ajuda</guimenu
+>. Per a obtenir més informació, llegiu la secció sobre <ulink url="help:/fundamentals/menus.html#menus-help"
+>El menú Ajuda</ulink
+> en els Fonaments del &kde;. </para>
+  </sect1>
+</chapter>

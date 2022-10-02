@@ -1,0 +1,693 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="useractions">
+  <title
+>Acções do Utilizador</title>
+  <indexterm>
+    <primary
+>Acções do Utilizador</primary>
+  </indexterm>
+  <!-- Thanks to Jonas Bar -->
+  <para
+>Com o ActionMan, poderá configurar e gerir as Acções do Utilizador. Algumas das opções gerais são definidas no <link linkend="konfig-useractions"
+>Konfigurador</link
+>. Com as Acções do Utilizador, poderá efectuar algumas acções sobre os ficheiros do painel ou aceder às funções internas do &krusader; com os parâmetros a usar directamente itens de substituição. As acções integram-se de forma transparente com o sistema de acções do &kde;, o que significa que as janelas normais para Editar as Barras de Ferramentas e Editar os Atalhos irão também mostrar as Acções do Utilizador. Estas são guardadas em <filename
+> ~/.local/share/apps/krusader/useractions.xml</filename
+> ou em <filename
+>krusader/useraction.xml</filename
+> na pasta que poderá ser consultada com o comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. Estão incluídos diversos <link linkend="useraction-xml"
+>exemplos</link
+> na documentação. Poderá editar / adicionar / importar / exportar as acções do utilizador graças ao ActionMan. As Acções do Utilizador por omissão são guardadas em <filename
+>/usr/share/krusader/useraction-examples.xml</filename
+>. As mesmas poderão aparecer em praticamente todo o lado onde iriam aparecer KAction's normais. As acções até poderão ser colocadas na barra do menu, mas para isso o ficheiro <filename
+>krusaderui.rc</filename
+> deverá poder ser editado. Alguns exemplos:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="useractions-menu"
+>Menu de Acções do Utilizador</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="useractions"
+>Menu do Utilizador</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="actions_toolbar"
+>Barra de Acções</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>menus do botão direito do rato</para>
+    </listitem>
+    <listitem>
+      <para
+>&etc;</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>A ferramenta de Acções do Utilizador do &krusader; é bastante poderosa e personalizada, caso esteja familiarizado com a escrita de Acções de Utilizador de um modo geral.</para>
+  <tip>
+    <para
+>São fornecidas diversas Acções do Utilizador por omissão. Por favor, <link linkend="help_krusader"
+>envie as suas Acções de Utilizador favoritas</link
+> para que se tornem disponíveis para a comunidade do &krusader;. Obrigado!</para>
+  </tip>
+  <figure id="screenshot-actionman" float="1">
+    <title
+>ActionMan</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="actionman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>ActionMan</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Basicamente, as Acções do Utilizador são um método para invocar programas externos com parâmetros variáveis. Por exemplo, poderia ter uma acção de utilizador com o seguinte <command
+>xmms <option
+>--enqueue %aList("Selected")%</option
+></command
+> para colocar todos os itens seleccionados no painel activo para a instância actual do 'xmms'. Para além disso, existe um acesso limitado às funções interna do &krusader;, as quais necessitam de parâmetros. Por exemplo, o <command
+>%aPanelSize("80")%</command
+> irá definir a largura do painel activo como sendo 80% of da janela principal do  &krusader;. Dado que o parâmetro das substituições poderá conter outras substituições, são possíveis apenas alguns programas. </para>
+  <para>
+    <emphasis role="bold"
+>Gerir as Acções do Utilizador</emphasis>
+  </para>
+  <para
+>Abra o Konfigurador e escolha a opção <menuchoice
+><guimenu
+>Acções do Utilizador</guimenu
+><guimenuitem
+>Iniciar o ActionMan</guimenuitem
+></menuchoice
+>, onde poderá adicionar, editar, remover, importar e exportar acções do utilizador.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Adicionar uma Acção</guimenuitem
+>: Se adicionar uma nova acção, irá obter uma máscara de entrada vazia, onde poderá introduzir todas as propriedades que desejar. A acção será adicionada, assim que você carregar em <guimenuitem
+>Aplicar</guimenuitem
+>. Depois disso, o nome irá aparecer na lista à esquerda.</para>
+    </listitem>
+    <listitem>
+      <para
+>Para editar uma acção do utilizador: Seleccione a acção à esquerda. Depois, escolha-a, se quiser editar as suas propriedades. As alterações só irão fazer efeito quando carregar em <guimenuitem
+>Aplicar</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Remover uma acção do utilizador</guimenuitem
+>: Seleccione a acção à esquerda e carregue no botão para remover <inlinemediaobject
+> <imageobject
+> <imagedata fileref="Icon-edit-delete.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Para importar uma Acção do Utilizador</guimenuitem
+>: Se importar algumas acções, estas serão adicionadas automaticamente à sua lista. Se existirem conflitos de nomes (os nomes terão de ser únicos, porque são os ID's do sistema de acções do &plasma;), ser-lhe-á pedido para os resolver. Para tal, a lista à esquerda só irá mostrar as acções onde existem conflitos. Poderá agora atribuir a eles nomes novos ou removê-los.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Acção de Exportação</guimenuitem
+>: Se exportar uma acção do utilizador, terá de indicar um nome para o ficheiro onde a guardar. Se não existir, será criada. Se o ficheiro já tiver acções do utilizador, a acção que está a exportar será adicionada a esse ficheiro.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Todas as acções que definiu serão então apresentadas no menu do utilizador e nas janelas do &plasma; para a modificação dos atalhos e da barra de ferramentas. Para além disso, todas as acções disponíveis para o item actual irão também aparecer no menu do botão direito do rato.</para>
+  <para>
+    <emphasis role="bold"
+>Propriedades Básicas</emphasis>
+  </para>
+  <para
+><guimenuitem
+>Identificador</guimenuitem
+>, <guimenuitem
+>Título</guimenuitem
+> e <guimenuitem
+>Linha de Comandos</guimenuitem
+> são sempre obrigatórios, enquanto as outras propriedades são opcionais.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Identificador</guimenuitem
+>: Um nome único para a acção do utilizador, usado para identificá-la no sistema de acções do &plasma;.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Botão de ícones</guimenuitem
+>: O ícone da sua acção do utilizador.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Categoria</guimenuitem
+>: As categorias são usadas para uma melhor visão geral. Elas aparecem como itens do sub-menu <guimenuitem
+>Acções do Utilizador</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Título</guimenuitem
+>: O título apresentado nos menus ou janelas.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Dica</guimenuitem
+>: Uma dica para a sua acção do utilizador, &eg; apresentada na dica que aparece à passagem do rato.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Descrição</guimenuitem
+>: Uma descrição sobre o que a acção do utilizador faz. Também é apresentada como ajuda <guimenuitem
+>O Que é Isto</guimenuitem
+> , caso faça <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo
+> e carregue na sua acção do utilizador.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Comando</guimenuitem
+>:  O comando que será executado. Poderá adicionar itens de substituição, usando uma interface gráfica, com o botão para <guibutton
+>Adicionar</guibutton
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Local Inicial</guimenuitem
+>: A pasta de trabalho do comando que será executado.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Modo de execução</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Normal</guimenuitem
+>: O modo de execução comum.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Correr num terminal</guimenuitem
+>: Executa o comando num ambiente de terminal.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Correr no emulador de terminal incorporado</guimenuitem
+>: Executa o comando no emulador de terminal incorporado.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Recolher a saída</guimenuitem
+>: Recolhe o resultado da execução do programa numa janela da &GUI;.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Saída de erros separada</guimenuitem
+>: Quando é usada a opção "Recolher a saída", o 'stdout' e o 'stderr' são recolhidos em separado.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>O comando aceita</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Ficheiros locais (sem URLs)</guimenuitem
+>: Indica ao item de substituição que deverá devolver endereços locais.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>URL's (locais e remotos)</guimenuitem
+>: Diz ao item de substituição que deverá devolver &URL;'s.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <!--    Not yet implemented, but will be after 1.50 stable is released
+        <listitem
+><para
+><guimenuitem
+>On multiple selection</guimenuitem
+>:  </para>
+        <itemizedlist>
+   <listitem
+><para
+><guimenuitem
+>Separate call for each file</guimenuitem
+>: executes the command for each selected file.
+             </para
+></listitem>
+         </itemizedlist>
+      </listitem
+> -->
+    <listitem>
+      <para
+><guimenuitem
+>Atalho por omissão</guimenuitem
+>: Configura um atalho por omissão para a acção do utilizador.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Activo</guimenuitem
+>: se estiver assinalada, a acção do utilizador é apresentada no <link linkend="useractions"
+>Menu do Utilizador</link
+>; caso contrário, a acção do utilizador ficará escondida.</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>Sintaxe da linha de comandos</emphasis>
+  </para>
+  <para
+>Basicamente, tudo o que escrever na linha de comandos será executado (se escrever "ls -l", "ls -l" será então executado). Tem a possibilidade de obter uma sequência de caracteres do &krusader; que represente o estado actual do painel. Isto é feito através dos itens de substituição. Um item de substituição começa com uma percentagem ('%') e é seguido de um indicador de painel ('a' para o activo, 'o' para o outro, 'l' (left) para o da esquerda e 'r' (right) para o da direita. Se o item de substituição não necessitar de nenhum painel para funcionar, terá de indicar isso com um sublinhado ('_')). De seguida, vem o nome do item de substituição (veja a lista abaixo), a qual poderá obter alguns parâmetros delimitados por aspas. Finalmente, vem mais uma vez o símbolo de percentagem.</para>
+  <para
+>Isto parece muito complicado, pelo que será melhor dar um exemplo: o '%aList("Selected")%' é substituído por uma lista com todos os itens seleccionados no painel activo. Como tal, um comando do tipo 'xmms --enqueue %aList("All", " ", "", "*.mp3")%' irá executar o 'xmms' com uma lista de todos os '.mp3's do painel activo, separados por um único espaço em branco.</para>
+  <para
+>De momento, estão implementados os seguintes itens de substituição:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><userinput
+>Path</userinput
+> - substituído pela localização do painel</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro (opcional): Espaços de escape automáticos. Por omissão: sim</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Count</userinput
+> - substituído pelo número do &lt;primeiro parâmetro&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: Quais os itens: "All" (todos), "Selected" (seleccionados), "Files" (ficheiros) ou "Dirs" (pastas)</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Filter</userinput
+> - substituído pela máscara do filtro do painel</para>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Current</userinput
+> - substituído pelo item actual</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro (opcional): Omitir a localização actual. Por omissão: não</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro (opcional): Espaços de escape automáticos. Por omissão: sim</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>List</userinput
+> - substituído por uma lista com todo o &lt;primeiro parâmetro&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: Quais os itens: "All" (todos), "Selected" (seleccionados), "Files" (ficheiros) ou "Dirs" (pastas)</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro (opcional): Separador entre os itens. Por omissão: "&nbsp;"</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro (opcional): Omitir a localização actual. Por omissão: não</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro (opcional): Máscara do filtro (para todos excepto o "Selected"). Por omissão: *</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro (opcional): Espaços de escape automáticos. Por omissão: sim</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Select</userinput
+> - manipula a selecção num painel</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: Máscara do filtro</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro (opcional): manipula de diferentes formas: "Set" (configurar), "Add" (adicionar) ou "Remove" (remover). Por omissão: "Set"</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Goto</userinput
+> - muda a localização do painel para o &lt;primeiro parâmetro&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: Uma localização relativa, absoluta ou um URL</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro (opcional): Abre a localização numa nova página. Por omissão: não</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+> - pede algum texto ao utilizador e é substituído pela resposta</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: A pergunta</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro (opcional): Uma resposta por omissão</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro (opcional): Um título para a janela da pergunta</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Clipboard</userinput
+> - manipula a área de transferência</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: O texto que deverá ir para a área de transferência (poderá querer usar o "%aCurrent%" aqui)</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro (opcional): Adiciona o texto ao conteúdo actual da área de transferência com este separador</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Copy</userinput
+> - copia um ficheiro; é útil para cópias de segurança rápidas e locais</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: O que deveria ser copiado</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro: Para onde deverá ser copiado</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Sync</userinput
+> - abre a área de Sincronização com um dado perfil</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: Um perfil para a Sincronização</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>NewSearch</userinput
+> - abre as janelas de pesquisa com um dado perfil</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: Um perfil para o módulo de pesquisa</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Profile</userinput
+> - carrega um dado perfil do painel</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: Um perfil do painel</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Each</userinput
+> - divide a linha de comandos numa lista. Estes comando são executados um a seguir ao outro.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: Um item da lista (todos, todos os ficheiros, todas as pastas, todos os seleccionados).</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Move</userinput
+> - mover da origem para o destino.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: Uma origem</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro: Um destino</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>PanelSize</userinput
+> - muda a relação entre os dois painéis.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro (opcional): Um valor inteiro, &eg; 80 faz com que o painel activo use 80% da largura do &krusader; (ou altura, no modo vertical). A omissão do parâmetro corresponde a 50%.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+> - cancela a execução.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro (opcional): Um tex para a pergunta de cancelamento.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+<!--    <listitem>
+      <para>
+      <userinput
+>Script</userinput
+> - executes an external 
+      <link linkend="javascript_console">
+      Javascript</link
+> file.</para>
+      <para
+>NOTE: This is still experimental and the interface may
+      change, feedback is always welcome.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: path to the
+          external foo.js file, absolute path or relative to 
+          <filename>
+          &lt;kde-app-data&gt;/krusader/js/</filename
+>.
+          &lt;kde-app-data&gt; is 
+          <filename
+>$(kde-config
+          - -localprefix)/share/apps/</filename
+> or 
+          <filename
+>$(kde-config - -prefix)/share/apps/</filename
+>,
+          for those who do not know where to copy the
+          scripts/extensions. If all the needed files (normally 
+          <filename
+>.js</filename
+> and maybe 
+          <filename
+>.ui</filename
+>) are in one of these dirs it is
+          sufficient to give the file name only as &lt;first parameter&gt;.
+          </para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optional): a list
+          of variables which should be set, like "return=cmd;
+          a=lalala; b='%_Ask(..)'" so that the placeholder is
+          replaced be the content of the variable cmd and the other
+          two have already these values when the script
+          starts.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
+    <listitem>
+      <para
+><userinput
+>ListFile</userinput
+> - é substituído pelo nome/localização de um ficheiro temporário, contendo este uma lista de itens</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: localização/nome do ficheiro</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ColSort</userinput
+> - altera a ordenação para uma determinada coluna de um painel específico.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: Coluna: Tanto poderá ser "Name", "Ext", "Type", "Size", "Modified", "Perms", "rwx", "Owner" ou "Group"</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro: Sequência de ordenação: Tanto poderá ser "Toggle" (comutar), "Asc" (ascendente), "Desc" (descendente)</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>View</userinput
+> - altera o modo de visualização.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parâmetro: Modo de visualização: Tanto poderá ser "generic" (genérico), "text" (texto), "hex" (hexadecimal)</para>
+        </listitem>
+        <listitem>
+          <para
+>Parâmetro: Modo da janela: Tanto poderá ser "tab" (página), "window" (janela)</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+  </itemizedlist>
+  <para
+>É fornecido um auxiliar gráfico para os itens de substituição. Os espaços são escapados por omissão no 'Path', 'Current' e 'List'. Existe ainda mais uma coisa importante a saber: Todos os itens de substituição que interagem com as funções internas do &krusader; são chamados na altura da expansão (o que significa directamente quando são avaliados os itens de substituição). Os programas externos são chamados na altura da execução (o que significa após a avaliação de todos os itens de substituição).</para>
+  <para>
+    <emphasis role="bold"
+>Propriedades Avançadas</emphasis>
+  </para>
+  <para
+>Aqui poderá configurar onde é que o seu comando deverá estar visível (para o menu do botão direito do rato). Para além disso, é possível alterar o comando executado e confirmá-lo em separado. Poderá também definir um utilizador com o qual deverá ser executado o comando.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Configura se a acção é válida para um Protocolo, Localização, Tipo MIME ou Nome de Ficheiro.</para>
+    </listitem>
+    <listitem>
+      <para
+>Afine a linha de comandos antes de a executar.</para>
+    </listitem>
+    <listitem>
+      <para
+>Defina um utilizador diferente para a execução (isto não fará qualquer efeito nas funções internas do &krusader;)</para>
+    </listitem>
+  </itemizedlist>
+</sect1>

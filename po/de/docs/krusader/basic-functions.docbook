@@ -1,0 +1,518 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<chapter id="basic-functions">
+  <title
+>Grundlegende Funktionen</title>
+  <sect1 id="controls">
+    <title
+>Bedienelemente</title>
+    <sect2 id="control-general">
+      <title
+>Allgemein</title>
+      <para
+>Die in ein kurzer aber wichtiger Abschnitt, der sich mit der Kontrolle von &krusader; beschäftigt. In diesem Abschnitt werden aus zwei Gründen nicht alle verschiedenen Kurzbefehle behandelt: <orderedlist numeration="arabic"
+> <listitem
+> <para
+>Es gibt zu viele Kurzbefehle</para
+> </listitem
+> <listitem
+> <para
+>Die meisten Aktionen in &krusader; können auf der Seite <link linkend="konfig-panel"
+>Dateifenster</link
+> im Konfigurator geändert werden</para
+> </listitem
+> </orderedlist
+> Es werden hier nur die wichtigsten Kurzbefehle aus der Standardeinstellung genannt, denken sich jedoch daran, dass die meisten <link linkend="key_bindings"
+>Kurzbefehle</link
+> eingerichtet werden können. Stellen Sie fest, dass Sie einen bestimmten Befehl oft benutzen, und möchten Sie den Kurzbefehl dafür ändern, dann öffnen Sie den Dialog <link linkend="key_bindings"
+>Kurzbefehl festlegen</link
+> mit <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Kurzbefehle festlegen ...</guimenuitem
+></menuchoice
+></para>
+    </sect2>
+    <sect2 id="moving-around">
+      <title
+>Navigation</title>
+      <para
+>Mit Navigation ist das Übertragen des Fokus von Tastatur und Maus zwischen den verschiedenen Teile von &krusader;s <link linkend="mainwindow"
+>Hauptfenster</link
+>. Fünf verschiedene Bereiche können den Fokus haben: das linke oder rechte Dateifenster, die Menüleiste, die Befehlszeile oder der Terminal-Emulator. Das Dateifenster mit dem Fokus wird das aktive Dateifenster genannt. Ein aktives Dateifenster bleibt aktiv, bis das andere Dateifenster den Fokus erhält, &ie; wenn das linke Dateifenster aktiv ist und Sie in die Befehlszeile klicken, dann behält das linke Dateifenster den Fokus. Sie müssen das aktive Dateifenster mit Absicht ändern.</para>
+      <para
+>Die häufigste Methode zum Wechseln des Fokus zu einem bestimmten Dateifenster ist das Klicken mit der Maus auf diese Dateifenster. Dabei sollten Sie aber folgendes bedenken: <itemizedlist>
+        <listitem>
+          <para
+>Klicken auf die Werkzeugleiste, die Funktionstastenleiste oder die Statusleiste ändert <emphasis
+>nicht</emphasis
+> den Fokus.</para>
+        </listitem>
+        <!--
+   Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
+   <listitem>
+     <para
+>The display part of the Quick View Panel does not accept clicks so you should click on the
+           Location Toolbar of this panel if you want it to have focus.</para>
+   </listitem>
+-->
+        <listitem>
+          <para
+>Drücken Sie auf den Knopf <guibutton
+>Im Terminal-Modus</guibutton
+> in der Befehlszeile überträgt nicht den Fokus, Sie müssen in die Eingabezeile klicken.</para>
+        </listitem>
+        <listitem>
+          <para
+>Wenn Sie ein Menü öffnen, erhält die Menüleiste den Fokus, der erst nach der Auswahl einer Menüaktion zurück zum vorher aktivierten Element geht.</para>
+        </listitem>
+      </itemizedlist
+></para>
+      <para
+>Es gibt natürlich Möglichkeiten, den Fokus mit der Tastatur zu ändern: <itemizedlist>
+        <listitem>
+          <para
+>Mit der &Tab;taste wechseln Sie zwischen den Dateifenstern, wenn eines der Dateifenster den Fokus hat oder Sie wechseln zwischen allen Befehlen in einem Menü, wenn die Menüleiste aktiviert ist.</para>
+        </listitem>
+        <listitem>
+          <para
+>Mit <keycombo action="simul"
+>&Ctrl;&Down;</keycombo
+> wechseln Sie vom aktiven Dateifenster zur Befehlszeile oder zum Terminal-Emulator und mit <keycombo action="simul"
+>&Ctrl; &Up;</keycombo
+> wechseln Sie wieder zurück.</para>
+        </listitem>
+        <listitem>
+          <para
+>Mit der Taste &Esc; wird der Fokus von der Menüleiste wieder zum vorher aktiven Dateifenster zurückgegeben.</para>
+        </listitem>
+        <listitem>
+          <para
+>Im Terminal-Emulator können Sie die &Tab;taste oder die Maus benutzen, um zu einem aktiven Dateifenster zu gehen.</para>
+        </listitem>
+        <listitem>
+          <para
+>Drücken Sie <keycombo action="simul"
+>&Alt;<keycap
+>Unterstrichener Buchstabe</keycap
+></keycombo
+>, um das Menü zu öffnen und eine Aktion aufzurufen, wenn diese Tastenkombination nicht <quote
+>reserviert</quote
+> ist und von einer &krusader;-Aktion verwendet wird.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="selecting-files">
+      <title
+>Auswahl</title>
+      <note>
+        <para
+>&krusader; bietet vier <link linkend="selection_modes"
+>Auswahlmodi</link
+>. Hier wird nur der Auswahlmodus von &krusader; beschrieben, nicht die <link linkend="quickselect"
+>Schnellauswahl</link
+>.</para>
+      </note>
+      <para
+>Auswählen ist eine Fähigkeit, die Sie erlernen sollten, um &krusader; effektiv zu benutzen. Da Sie im Dateifenster nur einen Ordner gleichzeitig auswählen können, wird in diesem Absatz hauptsächlich erklärt, wie Dateien im Dateifenster ausgewählt werden können.</para>
+      <para
+>Das Verschieben des Cursors ist einfach. Klicken Sie mit der &LMBn; auf eine Datei oder einen Ordner, wird er ausgewählt. Jetzt erhalten Sie einige nützliche Hinweise, um &krusader; einfacher benutzen zu können. Dabei wird angenommen, dass Sie dem Mausauswahl-Modus in &krusader; verwenden. <itemizedlist>
+        <listitem>
+          <para
+>Die &Space; und die Taste &Ins; schalten die Auswahl der aktiven Eintrags um, ohne die Auswahl der anderen Einträge zu verändern und geht dann um einen Eintrag nach unten.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>Klick mit linker Maustaste</keycap
+> auf eine Datei wählt sie aus und hebt dies Auswahl aller vorherigen Dateien oder Ordner auf.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Klick mit linker Maustaste</keycap
+></keycombo
+> schaltet die Auswahl der Datei um, auf die Sie geklickt haben, ohne die Auswahl anderer Dateien oder Ordner zu verändern.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift;<keycap
+>Klick mit linker Maustaste</keycap
+></keycombo
+> wählt alle Einträge zwischen der vorherigen Cursor-Position und der neuen Position.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; &Home;</keycombo
+> wählt alles über dem Cursor aus und entfernt alle Einträge unter dem Cursor aus der Auswahl.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; &End;</keycombo
+> wählt alles unter dem Cursor aus und entfernt alle Einträge über dem Cursor aus der Auswahl.</para>
+        </listitem>
+        <listitem>
+          <para
+>Der Eintrag <quote
+>..</quote
+> kann nicht ausgewählt werden.</para>
+        </listitem>
+        <listitem>
+          <para
+>Im Menü <link linkend="edit-menu"
+>Bearbeiten</link
+> finden Sie weitere Möglichkeiten, um Dateien auszuwählen.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="executing_commands">
+      <title
+>Befehle ausführen</title>
+      <para
+>Darüber ist nicht viel zu sagen, Sie müssen nur einige Dateien auswählen, wenn nicht, führt &krusader; Operationen für die Dateien und Ordner aus, die den Fokus haben. Wählen Sie eine <link linkend="menu-commands"
+>Aktion</link
+> aus der Menüleiste, benutzen Sie einen Kurzbefehl oder das Kontextmenü und die ausgewählte Aktion wird ausgeführt. Siehe auch <link linkend="executing_files"
+>Ausführen von Dateien</link
+>.</para>
+    </sect2>
+    <sect2 id="quicksearch">
+      <title
+>Schnellsuche</title>
+      <!-- Thanks to Heiner Eichmann -->
+      <para
+>Diese Funktion führt eine schnelle Suche nach dem Dateinamen im aktiven Dateifenster durch.</para>
+      <para
+>Geben Sie <keycap
+>f</keycap
+> für eine Schnellsuche im aktiven Dateifenster für die Suche nach Dateien ein, deren Namen mit diesem Buchstaben beginnt. Ein kleiner Suchdialog wird unter dem aktiven Dateifenster geöffnet. Geben Sie die ersten Buchstaben des gesuchten Namens ein und der Cursor springt zum ersten passenden Dateinamen, wenn es ihn gibt. Mit den Tasten &Down;/&Down; springen Sie zur nächsten oder vorherigen Übereinstimmung. Mit &Esc; schließen Sie die Suchleiste. Die Schnellsuche unterstützt <ulink url="https://de.wikipedia.org/wiki/Reguläre_Ausdrücke"
+>reguläre Ausdrücke</ulink
+> für die Suche nach Dateien.</para>
+      <note>
+        <para
+>Drücken Sie <keycombo action="simul"
+>&Alt;<keycap
+>foo</keycap
+></keycombo
+>, dann wird der zugehörige Kurzbefehl ausgeführt. Ist für diese Tastenkombination kein Kurzbefehl definiert, werden die restlichen Buchstaben <keycap
+>foo</keycap
+> für die Schnellsuche verwendet.</para>
+      </note>
+      <para
+>Benutzen Sie den Dialog <link linkend="key_bindings"
+>Kurzbefehle festlegen</link
+> (<guimenu
+>Einstellungen</guimenu
+>-><guimenuitem
+>Kurzbefehle festlegen</guimenuitem
+>)</para>
+    </sect2>
+    <sect2 id="quickfilter">
+      <title
+>Schnellfilter</title>
+      <para
+>Diese Funktion führt eine schnelle Filterung in der Dateiliste im aktiven Dateifenster durch.</para>
+      <para
+>Drücken Sie <keycombo
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+>, um die Schnellfilterleiste zu öffnen. Geben Sie <keycap
+>foo</keycap
+> ein, um im aktiven Dateifenster alle Dateien auszufiltern, die nicht <quote
+>foo</quote
+> im Namen haben. Sie können Platzhalter zum Filtern benutzen, &eg; <quote
+>a*b</quote
+>, um alle Dateien zu filtern, die <quote
+>a</quote
+> und <quote
+>b</quote
+> im Namen haben. Der Schnellfilter berücksichtigt die Einstellungen zur <link linkend="konfig-panel-general"
+>Groß- und Kleinschreibung</link
+> der Schnellsuche.</para>
+      <para
+>Beim Drücken der &Enter;taste im Schnellfiltermodus wird das Dateifenster aktiviert, ist der Schnellfilter oder das Dateifenster aktiviert, schließt die &Esc;-Taste den Schnellfilter. </para>
+      <para
+>Um den Standardkurzbefehl für den Schnellfilter zu ändern, öffnen Sie mit <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Kurzbefehle  festlegen ...</guimenuitem
+></menuchoice
+> den Einrichtungsdialog für Kurzbefehle.</para>
+    </sect2>
+    <sect2 id="quickselect">
+      <title
+>Schnellauswahl</title>
+      <para
+>Diese Funktion führt eine schnelle Auswahl in der Dateiliste im aktiven Dateifenster durch.</para>
+      <para
+>Drücken Sie <keycombo
+>&Ctrl;&Shift;<keycap
+>S</keycap
+></keycombo
+>, um die Schnellauswahlleiste zu öffnen. Geben Sie <keycap
+>foo</keycap
+> ein, um im aktiven Dateifenster alle Dateien auszufiltern, die nicht <quote
+>foo</quote
+> im Namen haben. Sie können Platzhalter zum Filtern benutzen, &eg; <quote
+>a*b</quote
+>, um alle Dateien zu filtern, die <quote
+>a</quote
+> und <quote
+>b</quote
+> im Namen haben. Die Schnellauswahl berücksichtigt die Einstellungen zur <link linkend="konfig-panel-general"
+>Groß- und Kleinschreibung</link
+> der Schnellsuche.</para>
+      <para
+>Beim Drücken der &Enter;taste im Schnellauswahlmodus wird das Dateifenster aktiviert, ist die Schnellauswahl oder das Dateifenster aktiviert, schließt die &Esc;-Taste die Schnellauswahl. </para>
+      <para
+>Um den Standardkurzbefehl für den Schnellauswahl zu ändern, öffnen Sie mit <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Kurzbefehle  festlegen ...</guimenuitem
+></menuchoice
+> den Einrichtungsdialog für Kurzbefehle.</para>
+    </sect2>
+    <sect2 id="context-menu">
+      <title
+>Kontextmenü</title>
+      <para
+>&krusader; hat viele Kontextmenüs, mit denen Sie schnelle Aktionen mit der Maus ausführen können. Normalerweise öffnet ein Klicken mit der &RMBn; das Kontextmenü, abhängig von Ihren Einstellungen zum <link linkend="selection_modes"
+>Auswahlmodus</link
+>. Im folgenden erhalten Sie eine Übersicht der wichtigsten Kontextmenüs. Benutzen Sie die Kontextmenüs, um verfügbare Aktionen zu entdecken. <itemizedlist>
+        <listitem>
+          <para
+><link linkend="mainwindow"
+>Haupt-Werkzeugleiste</link
+> (Ausrichtung, Textposition, Symbolgröße)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="list_panel"
+>Dateifenster</link
+> auf einer Datei oder einem Ordner</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="cmdline"
+>Befehlszeile</link
+> (Rückgängig, Einfügen, Textvervollständigung ...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="termemu"
+>Terminal-Emulator</link
+> (Signale senden, Schrift, Verlauf ...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="folder-tabs"
+>Unterfenster für Ordner</link
+> (Neu, Duplizieren, Schließen)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="krusearcher"
+>KruSearcher</link
+> Dateiliste der Suchergebnisse (<keycap
+>F3</keycap
+> Ansicht, <keycap
+>F4</keycap
+> Bearbeiten)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="mount-man"
+>MountMan</link
+> (Aushängen, Formatieren ...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="synchronizer"
+>Ordner abgleichen</link
+> Dateiliste.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Benutzeraktionen</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Kontextmenüs von &konqueror; werden auch in &krusader; angezeigt</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="list_panel"
+>Spalten</link
+> anzeigen oder ausblenden</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="bookman"
+>Lesezeichen</link
+> Dauerhafte Lesezeichen ein-/ausschalten</para>
+        </listitem>
+        <listitem>
+          <para
+>...</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="basic">
+    <title
+>Grundlegende Dateiverwaltung</title>
+    <sect2 id="executing_files">
+      <title
+>Dateien ausführen</title>
+      <para
+>Sie können nur die Dateien im aktiven Dateifenster ausführen. Um eine Datei auszuführen, doppelklicken Sie darauf oder drücken Sie die &Enter;taste, wenn die Datei den Fokus hat. &krusader; öffnet die Standardanwendung für diesen Dateityp, Bild, Textdatei usw., oder die Datei wird ausgeführt, ein Skript oder ein Programm usw. Möchten Sie die Datei mit einer anderen Anwendung öffnen, klicken Sie mit der &RMBn; auf die Datei und wählen Sie im Kontextmenü den Untermenüeintrag <guisubmenu
+>Öffne mit</guisubmenu
+>, der Ihnen weitere Optionen anbietet. &krusader; ist kompatibel mit der &plasma;-Standard-Dateiverwaltung für alle Dateiarten, ausgenommen Archive, die im internen &krusader;-Dateifenster geöffnet und nicht in einer externen Anwendung. Weitere Informationen finden Sie auf der Seite <link linkend="konfig-archives"
+>Archive</link
+> im Konfigurator.</para>
+    </sect2>
+    <sect2 id="copying">
+      <title
+>Kopieren und Verschieben</title>
+      <figure id="screenshot-copyjob" float="1">
+        <title
+>Kopieren-Dialog</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="copyjob.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Kopieren-Dialog</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>Um Dateien und Ordner zu kopieren oder zu verschieben, wählen Sie sie aus und drücken <keycap
+>F5</keycap
+> um sie zu kopieren <keycap
+>F6</keycap
+> zu verschieben. &krusader; versucht die Änderungszeiten zu erhalten. Beim Kopieren eines Ordners wird der Eigentümer zum Benutzer geändert, der kopiert, und die Gruppe wird zur primären Gruppe des Benutzers geändert. Beim Kopieren einer Datei wird der Eigentümer zum Benutzer geändert, der kopiert, die Gruppe wird zur primären Gruppe des Benutzers geändert und die Berechtigungen bleiben erhalten. Eigentümer, Gruppe und Berechtigungen bleiben beim Verschieben von Dateien und Ordnern erhalten. Beim Kopieren und Verschieben wird ein Dialog geöffnet, in dem Sie das Ziel der Operation auswählen können. Als Vorgabe ist der Ordner des anderen Dateifensters als Ziel eingestellt. Geben Sie eine teilweise &URL; ein, wird der aktuelle Ordner des Dateifensters als Basis der &krusader; benutzt.</para>
+    </sect2>
+    <sect2 id="queue">
+      <title
+>Warteschlangenverwaltung</title
+> 
+      <para
+>Kopieren, Verschieben, Packen und Entpacken kann in Warteschlangen durchgeführt werden. Nach der Auswahl der Aktionen Kopieren oder Verschieben drücken Sie die Funktionstaste <keycap
+>F2</keycap
+>, um die Warteschlange zu verwenden. Das gleiche führen Sie für die Aktionen Packen und Entpacken durch. Sie können auch die direkten Kurzbefehle <keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo
+> zum Kopieren oder <keycombo action="simul"
+>&Shift;<keycap
+>F6</keycap
+></keycombo
+> zum Verschieben mit der Warteschlange benutzen. Die Warteschlangenverwaltung führt alle Aktionen nacheinander durch. Wenn Sie zum Beispiel 40 Dateien auf ein langsames Pen-Gerät kopieren möchten, ist es viel besser, dies nacheinander anstatt parallel durchzuführen. Darum ist eine Warteschlange nützlich. Wenn Sie 40 Dateien parallel packen oder entpacken, überlasten Sie den Rechner, in einer Warteschlange nacheinander ist das kein Problem. </para>
+      <para
+>Sie können den Modus der <link linkend="job-queue-mode"
+>Warteschlange</link
+> im Menüeintrag <menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>Auftrags-Warteschlangenmodus</guimenuitem
+></menuchoice
+> umschalten. </para>
+    </sect2>
+    <sect2 id="deleting">
+      <title
+>Löschen - in den &plasma;-Papierkorb verschieben</title>
+      <para
+>Zum Löschen von Dateien oder Ordnern werden sie ausgewählt, dann drücken Sie die Funktionstaste <keycap
+>F8</keycap
+> oder die Taste <keycap
+>Entf</keycap
+>. In der <link linkend="konfig-general"
+>Voreinstellung</link
+> werden sie in den &kde;-Papierkorb verschoben. Sie können den &plasma;-Papierkorb mit dem Symbol in der <link linkend="main_toolbar"
+>Haupt-Werkzeugleiste</link
+> oder mit dem Ein-Ausgabemodul <filename
+>trash:/</filename
+>. Der &plasma;-Papierkorb befindet sich tatsächlich im Ordner <filename
+>~/.local/share/Trash/</filename
+>oder <filename
+>Trash</filename
+> im Unterordner im Persönlichen Ordner, der mit dem Befehl <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> ermittelt werden kann. <keycombo action="simul"
+>&Ctrl; <keycap
+>Entf</keycap
+></keycombo
+> löscht eine Datei tatsächlich, ohne sie vorher in den Papierkorb zu verschieben. In einem Dialog werden Sie um Bestätigung dieser Aktion gebeten und warnt Sie beim Löschen von Ordnern, die nicht leer sind. Es können natürlich nur vom Betriebssystem zugelassene Operationen ausgeführt werden, ansonsten erhalten Sie eine Benachrichtigung. Möchten Sie diese Bestätigungs-Dialoge überspringen, schalten Sie sie auf der Seite <link linkend="konfig-advanced"
+>Erweitert</link
+> im Konfigurator ab. Wenn Sie auf der Seite <link linkend="konfig-general"
+>Allgemein</link
+> im Konfigurator das dauerhafte Löschen von Dateien einstellen, werden Dateien mit <keycap
+>F8</keycap
+> or &Del; tatsächlich gelöscht und mit <keycombo action="simul"
+>&Ctrl; &Del;</keycombo
+> in den &plasma;-Papierkorb verschoben.</para>
+    </sect2>
+    <sect2 id="shred">
+      <title
+>Dateien in den Reißwolf werfen</title>
+      <para
+>Diese Funktion wurde aus &kde; 4 und damit auch aus &krusader;-2 für &kde; 4 entfernt. Der wichtigste Grund liegt darin, das diese Funktion vom Dateisystem abhängt. Sogar wenn Sie eine Datei 100 mal überschreiben, ist nicht sicher, dass sie nicht tatsächlich noch lesbar ist. Aktuelle moderne Dateisysteme verwenden <quote
+>Journale</quote
+>, daher muss diese Funktion im Dateisystem selbst implementiert werden. Sie können aber eine <link linkend="useractions"
+>Benutzeraktion</link
+> für ihr Dateisystem benutzen. Bedenken Sie jedoch, dass sie die Hardware der Festplatte zerstören müssen, um 100-prozentig sicher zu sein, dass niemand die Daten lesen lesen kann. </para>
+    </sect2>
+    <sect2 id="renaming">
+      <title
+>Dateien umbenennen, Ordner erstellen und Verknüpfungen verwalten</title>
+      <para
+>Die aktive Datei oder den aktiven Ordner mit der gestrichelten Umrandung können Sie mit <keycap
+>F2</keycap
+> zwei einzelnen Mausklicks umbenennen. Soll bei einer Datei nur der Name und nicht zusätzlich auch die Erweiterung umbenannt werden, können Sie dies auf der Seite <link linkend="konfig-general-atomic"
+>Allgemein</link
+> im Konfigurator einstellen. Mit der Taste <keycap
+>F7</keycap
+> erstellen Sie einen neuen Ordner. Im Kontextmenü einer regulären Datei oder Ordner können Sie <menuchoice
+><guisubmenu
+>Verknüpfungsbehandlung</guisubmenu
+> <guimenuitem
+>Neue symbolische Verknüpfung / Neue harte Verknüpfung</guimenuitem
+></menuchoice
+> wählen. Dann wird ein Dialog geöffnet, in dem Sie einen Namen eingeben. Diese Verknüpfung zeigt auf den Eintrag, dessen Kontextmenü Sie geöffnet haben. Haben Sie das Kontextmenü einer Verknüpfung geöffnet, gibt es die Aktion <menuchoice
+><guisubmenu
+>Verknüpfungsbehandlung</guisubmenu
+> <guimenuitem
+>Verknüpfungsziel ändern</guimenuitem
+></menuchoice
+>.</para>
+    </sect2>
+    <sect2 id="viewing">
+      <title
+>Dateien anzeigen und bearbeiten</title>
+      <para
+>Für <link linkend="krviewer"
+>KrViewer</link
+> gibt es ein eigenes Kapitel.</para>
+    </sect2>
+  </sect1
+>&archives; </chapter>

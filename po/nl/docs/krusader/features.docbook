@@ -1,0 +1,678 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="features">
+<title
+>Functies</title>
+<indexterm>
+  <primary
+>Functies</primary>
+</indexterm>
+<note>
+  <para
+>Hier vindt u de belangrijkste functies en verbeteringen, de lijst wordt te lang als we <emphasis
+>alle</emphasis
+> functies en verbeteringen moeten opnoemen. U zal zelf nog meer functies in deze documentatie en in deze bestanden <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+><filename
+>ChangeLog</filename
+></ulink
+> en <ulink url="https://commits.kde.org/krusader?path=NEWS"
+><filename
+>NEWS</filename
+></ulink
+> kunnen vinden.</para>
+</note>
+<para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+><ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Orthodox bestandsbeheerder (OFM)</ulink
+> functies</title>
+          <listitem>
+            <para
+>Twee krachtige en makkelijk te gebruiken <link linkend="panels"
+>OFM panelen</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="cmdline"
+>Commandoregel</link
+> en optioneel <link linkend="termemu"
+>Terminal emulator</link
+> eronder.</para>
+          </listitem>
+          <listitem>
+            <para
+>Sterke oriëntatie op het <link linkend="keyboard-commands"
+>toetsenbord</link
+> met de mogelijkheid om zonder de muis all functies uit te voeren.</para>
+          </listitem>
+          <listitem>
+            <para
+>Contextafhankelijke aanroeping van scripts en programma´s &eg; muisklik/&Enter; (uitvoeren of openen met gekoppelde programma), <keycap
+>F3</keycap
+> (weergave) en <keycap
+>F4</keycap
+> (bewerken).</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="useractions"
+>Gebruikersmenu</link
+>, creëer uw eigen aangepaste menu.</para>
+          </listitem>
+          <listitem>
+            <para
+>Geschiedenis &eg; <link linkend="folderhistory"
+>Map geschiedenis</link
+>, <link linkend="popular-urls"
+>Populaire &URL;s</link
+>, &etc;</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="vfs"
+>Virtuele bestandssystemen (VFS)</link
+> &eg; voor <link linkend="remote-connections"
+>Externe verbindingen</link
+>, <link linkend="archives"
+>archieven</link
+>, zoekresultaten, synchronisatie.</para>
+          </listitem>
+          <listitem>
+            <para
+>Krachtige interne <link linkend="krviewer"
+>weergave-bewerkingsprogramma</link
+> via kparts dat bijna elk bestandsformaat ondersteunt.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Geavanceerde zoek module</link
+>: zoeken in archieven en zoekresultaten in bestandssystemen ver weg.</para>
+          </listitem>
+          <listitem>
+            <para
+>Meerdere paneel weergave modes via de <link linkend="sidebar"
+>Zijbalk</link
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>&krusader;-hulpmiddelen</title>
+          <listitem>
+            <para
+><link linkend="remote-connections"
+>Externe verbindingen</link
+>: &FTP;/SAMBA met SFTP/SCP ondersteuning via KIO Slaves</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="locate"
+>Lokaliseren</link
+> &GUI;-frontend</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="synchronizer"
+>Mappen synchroniseren</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="mount-man"
+>Mount Manager</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="diskusage"
+>Schijfgebruik</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="root-mode"
+>Root modus</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Mogelijkheden in &krusader;</title>
+          <listitem>
+            <para
+>Hanteren van archieven: bladeren, uitpakken, inpakken, testen. Ondersteunde <link linkend="archives"
+>archieven</link
+> zijn: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip en 7-zip.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="checksum"
+>Aanmaak en controle van checksum</link
+> mechanismes die md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv, en crc ondersteunen.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="calculate"
+>Berekent benodigde ruimte</link
+> voor bestanden en mappen, archieven en bestandssystemen op afstand.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-dir"
+>Vergelijken van mappen</link
+> en <link linkend="view-menu"
+>filtering</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-content"
+>Vergelijk bestanden op inhoud</link
+> met de externe diff programma's zoals &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> of <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="multi_rename"
+>Hernoemen</link
+> van bestanden en mappen via <ulink url="https://www.kde.org/applications/utilities/krename/"
+><application
+>KRename</application
+></ulink
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Ondersteunt volledig slepen-en-loslaten: slepen van &konqueror; direct in een <literal role="extension"
+>.tar.gz</literal
+>-bestand, uit een paneel van &krusader; naar de prullenbak, het bureaublad of in &konqueror;</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-advanced"
+>Datum behouden</link
+> voor lokale doelen bij kopiëren/verplaatsen.</para>
+          </listitem>
+          <listitem>
+            <para
+><keycap
+>F9</keycap
+> opent een <link linkend="tools-menu"
+>Terminalvenster</link
+> in de huidige map.</para>
+          </listitem>
+          <listitem>
+            <para
+>Makkelijk bewerken van <link linkend="file-menu"
+>bestand toegangsrechten</link
+> en eigenaarschap en <link linkend="konfig-panel-view"
+>Numerieke toegangsrechten</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Selectiefilters</link
+> gebruikt in &eg; Synchronizer en KruSearcher.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="jump_back"
+>Terugspringen</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-general"
+> is zich bewust van het &MIME;-type</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="folder-tabs"
+>Panelen met tabbladen</link
+> en <link linkend="krviewer"
+>Bewerker/Viewer met tabbladen</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="quicksearch"
+>Snelle zoekactie, selecteren en filteren</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="splitter"
+>Bestand splitser</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Muisgebaren </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="list_panel"
+>Snelle navigatie</link
+> in de Locatie werkbalk.</para>
+          </listitem>
+          <listitem>
+            <para
+>Waar mogelijk heeft de WhatsThis Help functie de voorkeur ten opzichte van tooltips.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_toolbar"
+>Synchroon-bladeren</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>&krusader; naar wens aanpassen</title>
+          <listitem>
+            <para
+><link linkend="konfig-startup"
+> Konfigurator</link
+> &krusader;'s configuratie center.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="mainwindow"
+>Hoofdwerkbalk</link
+>, <link linkend="actions_toolbar"
+>Actiebalk</link
+> voor de acties en bladwijzers van de gebruiker.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="key_bindings"
+>Toetsenbindingen</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="konfig-color"
+>Kleuren</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_profiles"
+>Paneel-profielen</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="bookman"
+>Bladwijzerbeheerder</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="selection_modes"
+>Selectie modussen</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Veel andere onderdelen zijn <link linkend="konfig-startup"
+>instelbaar</link
+> op de manier die u wilt.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      <itemizedlist>
+        <title
+>Extensies van &krusader;</title>
+        <listitem>
+          <para
+><link linkend="useractions"
+>GebruikerActies</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="konfig-color"
+>Kleurprofielen</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="configure-shortcuts"
+>Sneltoetsprofielen</link
+></para>
+        </listitem>
+      </itemizedlist
+>Download en upload uw favoriete &krusader;-uitbreidingen op <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+<para>
+  <itemizedlist>
+    <title
+>Nieuwe mogelijkheden in de &krusader;-1.80.0 <quote
+>Final 3rd Stone</quote
+> release</title>
+    <listitem>
+      <para
+>Archief-verbeteringen <itemizedlist>
+        <listitem>
+          <para
+><link linkend="archives"
+>Wachtwoord ondersteuning</link
+> voor: arj, ace, rar en zip. Wachtwoorden kunt u opslaan in <application
+>Kwallet</application
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>7-zip ondersteuning</link
+>, door de externe programma´s <application
+>7z</application
+> en <application
+>7za</application
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>Ondersteuning voor automatische detectie</link
+>, hiermee kunt <quote
+>verborgen archieven</quote
+> openen (&eg; <trademark class="registered"
+>OpenOffice</trademark
+> documenten).</para>
+        </listitem>
+        <listitem>
+          <para
+>Inpakken/uitpakken gebeurt nu op de achtergrond.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="list_panel"
+>Korte weergave</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Vele verbeteringen in het <link linkend="useractions"
+>GebruikerActies</link
+>systeem.</para>
+    </listitem>
+    <listitem>
+      <para
+>Talloze verbeteringen in de bruikbaarheid, met name in Konfigurator en de opnieuw ingedeelde menubalk.</para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="media_button"
+>Media knop</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Kopiëren/Verplaatsen: <link linkend="copying"
+>behoudt alle attributen</link
+> (tijd, eigenaar, groep).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-color"
+>De kleuren van het inactieve venster dimmen</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Een bestandsnaam zonder extensie hernoemen, enkele instance modus, in systeemvak starten, u kunt dit instellen in de <link linkend="konfigurator"
+>Konfigurator</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Instelbare <link linkend="list_panel"
+>Atomisme extensies</link
+>, zodat extensies zoals <literal role="extension"
+>.tar.gz</literal
+> als een geheel in de <guilabel
+>Ext kolom</guilabel
+> worden getoond. </para>
+    </listitem>
+    <listitem>
+      <para
+>Contextmenu voor bladwijzers en inschakelen/uitschakelen speciale bladwijzers.</para>
+    </listitem>
+    <listitem>
+      <para
+>gerestylede <link linkend="menu-commands"
+>Menubalk</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="termemu"
+>Terminal emulator</link
+> verbeteringen brengen nieuwe functies, nieuwe gebruiksmogelijkheden en een nieuw uiterlijk.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>Synchronisatie</link
+> verbeteringen en parallelle threads voor langzame &FTP; servers.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-startup"
+>Eén programma modus</link
+>, <link linkend="konfig-startup"
+>In systeemvak starten</link
+></para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="context-menu"
+>Contextmenu voor permanente bladwijzers.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Volledige ondersteuning voor <link linkend="acl"
+>ACL permissies</link
+>, zoals eigenschappen, behoud van attributen, synchronisatie en anderen.</para>
+    </listitem>
+    <listitem>
+      <para
+>Zoekresultaten, Locatieresultaten, Synchronisatie-resultaten: ondersteuning voor het verslepen van items en kopiëren naar klembord (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+>Vele fouten gerepareerd.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nieuwe mogelijkheden in de &krusader;-1.90.0 <quote
+>Power Stone</quote
+> release</title>
+    <listitem>
+      <para
+>Laatste release voor &kde; 3.x met een grote verzameling van gebruikeracties. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nieuwe mogelijkheden in de &krusader;-2.0.0 <quote
+>Mars Pathfinder</quote
+> release</title>
+    <listitem>
+      <para
+>De eerste release voor de &kde; 4.x series </para>
+    </listitem>
+    <listitem>
+      <para
+>&krusader; werkt onder &Windows;! (Maar nog niet zo gebruikersvriendelijk en krachtig als onder &Linux;) </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="queue"
+>Wachtrijbeheerder!</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-panel"
+>Vijf methodes in het paneel!</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nieuwe mogelijkheden in de &krusader;-2.1.0-beta1 <quote
+>Rusty Clutch</quote
+> release</title>
+    <listitem>
+      <para
+>Snelle text/hex weergave voor enorme bestandgroottes. </para>
+    </listitem>
+    <listitem>
+      <para
+>Vergrendelde tabs. </para>
+    </listitem>
+    <listitem>
+      <para
+>Wachtrij voor inpakken/uitpakken. </para>
+    </listitem>
+    <listitem>
+      <para
+>Betere integratie van prullenbak. </para>
+    </listitem>
+    <listitem>
+      <para
+>De balk voor snelle zoekactie, selecteren en filteren ondersteunt reguliere expressies bij het zoeken van bestanden. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nieuwe mogelijkheden in de &krusader;-2.5.0 <quote
+>Clear Skies</quote
+> uitgave</title>
+    <listitem>
+      <para
+>Overgezet naar &kf5-full;. </para>
+    </listitem>
+    <listitem>
+        <para
+>De nieuwe balk <link linkend="quickfilter"
+>Snelfilter</link
+> met drie verschillende modi van werken: selecteren, zoeken en filteren. </para>
+    </listitem>
+    <listitem>
+        <para
+>Bijgewerkte wachtrijbeheerder (JobMan) en de nieuwe <link linkend="job_toolbar"
+>Werkbalk Taken</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Nieuwe mogelijkheden in de &krusader;-2.7.0 <quote
+>Peace of Mind</quote
+> uitgave</title>
+    <listitem>
+      <para
+>Snel zoeken in menu Bladwijzer. </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="folder-tabs"
+>Vastgezette tabbladen</link
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Tekstballon met bestandsinformatie wanneer u boven een bestandsnaam zweeft. </para>
+    </listitem>
+    <listitem>
+      <para
+>Uitgebreide opties voor Boomstructuurpaneel in de <link linkend="sidebar"
+>Zijbalk</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para
+><note
+><para
+>Als u een ontwikkeling- of &git;-versie gebruikt, dan is het mogelijk dat de laatste mogelijkheden nog niet in het <quote
+>The &krusader; Handboek</quote
+> staan. Lees in dat geval het <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+>Changelog</ulink
+> bestand online of de &krusader; bronbestanden om meer te weten te komen over de nieuwe mogelijkheden. Een korte omschrijving kunt u lezen in het <ulink url="https://commits.kde.org/krusader?path=NEWS"
+>NEWS</ulink
+> bestand online of in de &krusader; bronbestanden. <link linkend="faqg_wish"
+>User feedback</link
+> en <link linkend="faqg_bug_report"
+>Bug reports</link
+> zijn altijd welkom! </para
+></note
+></para>
+</chapter>

@@ -1,0 +1,156 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="locate">
+  <title
+>&GUI;-Oberfläche für Locate</title>
+  <indexterm>
+    <primary
+>Locate</primary>
+  </indexterm>
+  <para
+>&krusader; hat eine &GUI;-Bedienungsoberfläche für den Befehl <command
+>locate</command
+> aus gem &GNU;-Paket „findutils“. Locate wird zur schnellen Dateisuche in einer Datenbank und nicht von einem Ordner aus verwendet. Das Paket „findutils“ enthält neben weiteren Dateien die Programme <command
+>locate</command
+> und <command
+>updatedb</command
+>. Updatedb durchsucht das lokale Dateisystem und speichert die gefundenen Dateinamen in einer Datenbank. Das Programm <command
+>updatedb</command
+> wird normalerweise einmal am Tag vom Systemprogramm <command
+>cron</command
+> aufgerufen. Dies kann in den &systemsettings; im Aufgabenplaner eingestellt werden. Wählen Sie <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Extras</guimenu
+> <guimenuitem
+>Dateien lokalisieren</guimenuitem
+> </menuchoice
+> </emphasis
+>oder <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> um diese Funktion zu starten. Im <link linkend="konfig-advanced"
+>Konfigurator</link
+> können auf der Seite <guilabel
+>Erweitert</guilabel
+> zusätzliche Argumente für <command
+>updatedb</command
+> eingegeben werden.</para>
+  <para
+>Einstellungen der Ankreuzfelder <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Nur existierende Dateien anzeigen</guilabel
+>: Enthält die Datenbank Einträge, die nicht mehr aktuell sind, weil sie seit der letzten Aktualisierung mit  <command
+>updatedb</command
+> gelöscht oder verschoben wurden, zeigt <command
+>locate</command
+> sie hier nicht mehr an. Vor der Anzeige im Ergebnisfenster wird überprüft, ab der Eintrag noch existiert. Diese Funktion ist wegen der nötigen Lesezugriffe langsam.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Groß-/Kleinschreibung beachten</guilabel
+>: Ist die Einstellung deaktiviert, wird die Suche ohne Beachtung von Groß- oder Kleinschreibung durchgeführt.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Aktionsknöpfe <itemizedlist>
+    <listitem>
+      <para
+><guibutton
+>Dateien lokalisieren</guibutton
+>: Führt das Programm <command
+>locate <replaceable
+>foo foo</replaceable
+></command
+> aus und zeigt dessen Ausgabe im Ergebnisfenster.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Anhalten</guibutton
+>: Stoppt den Suchprozess.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Suchindex aktualisieren</guibutton
+>: Startet das Programm <command
+>updatedb</command
+>, um die lokale Datenbank nach der Eingabe des Passworts des Systemverwalters zu aktualisieren.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Schließen</guibutton
+>: Schließt das Suchfenster.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Ergebnisfenster <itemizedlist>
+    <listitem>
+      <para
+>Klick mit der &LMBn; auf einen Eintrag: Geht zum Ordner mit diesem Eintrag, hebt ihn hervor und schließt den Dialog.</para>
+    </listitem>
+    <listitem>
+      <para
+>Klicken mit der &RMBn; auf einen Eintrag: Öffnet ein Kontextmenü mit Aktionen wie Bearbeiten, Editieren, Suchen &etc; <itemizedlist>
+        <listitem>
+          <para
+><keycap
+>F3</keycap
+>: Zeigt den aktuellen Eintrag an.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>F4</keycap
+>: Bearbeitet den aktuellen Eintrag.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>: Sucht Dateien im Ergebnisfenster.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+>: Zeigt das nächste Suchergebnis.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: Zeigt das vorherige Suchergebnis.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+        <listitem>
+          <para
+>Im Ergebnisfenster können Sie Einträge in andere Fenster ziehen und mit <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> in die Zwischenablage kopieren.</para>
+        </listitem>
+  </itemizedlist
+></para>
+</sect1>

@@ -1,0 +1,62 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="profiles">
+  <title
+>Профілі</title>
+  <indexterm>
+    <primary
+>Профілі</primary>
+  </indexterm>
+  <para
+>За допомогою профілів ви можете зберігати і відновлювати потрібні вам параметри. Профілі підтримуються декількома функціональними можливостями. Ви, наприклад, можете створити декілька профілів панелей (робота, домівка, віддалені з’єднання тощо), профілів пошуку, профілів синхронізації тощо.</para>
+  <sect2 id="panel_profiles">
+    <title
+>Профілі панелей</title>
+    <para
+>У профілі панелей зберігаються такі дані: всі шляхи вкладок (лівих і правих), поточна вкладка (ліва і права) і активну панель (ліву або праву). Всі ці дані зберігаються у файлі <link linkend="config_files"
+>krusaderrc</link
+>. Ви можете створити декілька профілів панелей, наприклад керування файлами, керування &FTP;, домівка, робота тощо. Профіль панелей можна <link linkend="c_panel_profiles"
+>зберігати і відновлювати</link
+> за допомогою меню <guimenu
+>Вікно</guimenu
+>. Після запуску &krusader; буде використано <link linkend="konfig-startup"
+>типовий профіль запуску</link
+>, але ви можете змінити профіль за допомогою параметра командного рядка.</para>
+  </sect2>
+  <sect2 id="color_profiles">
+    <title
+>Профілі кольорів</title>
+    <para
+>Схеми кольорів можна зберігати і відновлювати за допомогою <link linkend="konfig-color"
+>профілів кольорів</link
+>.</para>
+  </sect2>
+  <sect2 id="key_profiles">
+    <title
+>Профілі клавіатурних скорочень</title>
+    <para
+>Схеми клавіатурних скорочень можна зберігати і відновлювати за допомогою <link linkend="configure-shortcuts"
+>профілів клавіатурних скорочень</link
+>.</para>
+  </sect2>
+  <sect2 id="search_profiles">
+    <title
+>Профілі пошуку</title>
+    <para
+>Якщо ви виконуєте операції з пошуку регулярно, ви можете зберегти параметри пошуку (наприклад файли, які слід шукати, і файли, які слід виключити з пошуку) за допомогою <link linkend="krusearcher"
+>профілю пошуку</link
+>.</para>
+  </sect2>
+  <sect2 id="synchronizer_profiles">
+    <title
+>Профілі синхронізації</title>
+    <para
+>Якщо ви виконуєте дію з синхронізації регулярно, ви можете зберегти параметри синхронізації у <link linkend="synchronizer"
+>профілі Синхронізатора</link
+>.</para>
+  </sect2>
+</sect1>

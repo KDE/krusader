@@ -1,0 +1,356 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="bookman">
+  <title
+>BookMan: Organize os seus Favoritos</title>
+  <indexterm>
+    <primary
+>Favoritos</primary>
+  </indexterm>
+  <para
+>O BookMan é a ferramenta de Favoritos do &krusader; para marcar as pastas, <link linkend="remote-connections"
+>URL's remotos</link
+> e locais, bem como para voltar a eles com uma simples selecção de um botão. O menu do BookMan está dividido em quatro secções: <itemizedlist>
+    <listitem>
+      <para
+>Os seus favoritos pessoais</para>
+    </listitem>
+    <listitem>
+      <para
+>&URL;'s Populares</para>
+    </listitem>
+    <listitem>
+      <para
+>Favoritos permanentes</para>
+    </listitem>
+    <listitem>
+      <para
+>Gerir os favoritos</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <note>
+    <para
+>Poderá marcar favoritos dentro de um sistema de ficheiros remoto (&FTP; ou SAMBA) e usar o favorito mais tarde, de modo a ligar-se rapidamente à máquina remota; contudo, não poderá marcar um favorito dentro de um pacote.</para>
+  </note>
+  <figure id="screenshot-bookmanadd" float="1">
+    <title
+>Menu de Favoritos</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="bookmanadd.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Menu de Favoritos</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <sect2 id="using_bookmarks">
+    <title
+>Usar os Favoritos</title>
+    <para
+>Normalmente, irá carregar no botão <guibutton
+>BookMan II</guibutton
+> quando estiver na pasta de destino. Por exemplo, para marcar o favorito <filename class="directory"
+>/usr/tmp</filename
+>, vá com o &krusader; até lá e carregue no botão <guibutton
+>BookMan II</guibutton
+> e seleccione <guimenuitem
+>Marcar o Actual como Favorito</guimenuitem
+>. Quando a janela respectiva aparecer, a linha do &URL; irá indicar <filename class="directory"
+>/usr/tmp</filename
+>. O <guilabel
+>Nome</guilabel
+> é o nome que gostaria de atribuir ao favorito (&eg;: pasta temporária). Poderá adicionar teclas de acesso com o carácter <literal
+>&amp;</literal
+> no nome do favorito, &eg; <literal
+>&amp;sourceforge, &amp;pasta pessoal, &amp;transferências</literal
+> &etc;, para que possa invocar rapidamente o nome do favorito com <keycombo action="simul"
+>&Alt; <keycap
+>xpto</keycap
+></keycombo
+>. Se adicionar o favorito sem introduzir um nome, este será igual ao seu destino. O <guilabel
+>URL</guilabel
+> é para onde aponta o favorito. A opção <guilabel
+>Criar em</guilabel
+> cria pastas para organizar os seus favoritos.</para>
+    <para
+>Para usar os seus favoritos, carregue no botão <guibutton
+>BookMan II</guibutton
+> e escolha um favorito. Poderá também usar as <link linkend="key_bindings"
+>Combinações de Teclas</link
+>: <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+> para marcar o item actual, o <keycombo action="simul"
+>&Alt; <keycap
+>esquerda/direita</keycap
+></keycombo
+> para <keycap
+>abrir a lista de favoritos no painel esquerdo/direito</keycap
+> e <keycombo action="simul"
+>&Ctrl; <keycap
+>D</keycap
+></keycombo
+> para abrir os favoritos do painel activo. No menu de contexto dos favoritos (ao carregar com o &RMB;), abri-los-á numa nova <link linkend="folder-tabs"
+>página de Pasta</link
+>.</para>
+    <para
+>Navegação nos favoritos: <orderedlist>
+      <listitem>
+        <para
+>Comece a escrever letras</para>
+      </listitem>
+      <listitem>
+        <para
+>&eg;, quando escrever <literal
+>'h'</literal
+> e só existir um favorito que começa por <literal
+>'h'</literal
+>, este é executado imediatamente - sem qualquer introdução de dados</para>
+      </listitem>
+      <listitem>
+        <para
+>Se mais que um favorito começar com <literal
+>'h'</literal
+>, terá de continuar a adicionar letras, até que tenha indicado as suficientes, de modo que o favorito possa então ser executado.</para>
+      </listitem>
+    </orderedlist
+></para>
+    <note>
+      <para
+>A barra de pesquisa será sempre visível no menu de favoritos, caso assinale o item correspondente na <link linkend="konfig-panel-general"
+>página do Configurador do Painel</link
+>. </para>
+    </note>
+  </sect2>
+  <sect2 id="password_handling">
+    <title
+>Tratamento de senhas</title>
+    <para
+>Uma das vantagens do <link linkend="bookman"
+>gestor de favoritos</link
+> é que as senhas são guardadas com os serviços do &kde; - onde &eg; as suas senhas do &konqueror;/&kmail; são gravadas. Se tiver uma carteira, o &kde; irá gravar as senhas aí. Ao carregar nos favoritos, irá abrir uma janela a pedir-lhe o seu utilizador e senha. Indique-os e carregue em 'gravar a senha'. As senhas e os utilizadores serão gravados em segurança pela carteira do &plasma; (certifique-se que está activa pela sua distribuição). A desvantagem é que, se reinstalar o sistema e não salvaguardar as suas senhas da carteira, assim como o ficheiro de favoritos do &krusader;, algo perder-se-á.</para>
+  </sect2>
+  <sect2 id="popular-urls">
+    <title
+>URL's Populares</title>
+    <indexterm>
+      <primary
+>URL's Populares</primary>
+    </indexterm>
+    <para
+>O submenu <guilabel
+>URL's Populares</guilabel
+> mantém persistentes os &URL;'s mais visitados (locais ou remotos). Este submenu mostra os 15 URL's mais populares, ordenados pela sua classificação, de modo que o &URL; de topo será o mais conhecido. Isto é simples quando necessitar de visitar os &URL;'s com frequência, mas quando não quer criar <link linkend="bookman"
+>Favoritos</link
+>; serve como uma lista de favoritos temporários para as ligações mais visitadas. Os <guilabel
+>URL's Populares</guilabel
+> são uma forma rápida de navegar/seleccionar os &URL;'s conhecidos: <itemizedlist>
+      <listitem>
+        <para
+>Abra os <guilabel
+>URL's Populares</guilabel
+> ou use a combinação de teclas <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+></para>
+      </listitem>
+      <listitem>
+        <para
+>Escreva algumas letras para reduzir a pesquisa</para>
+      </listitem>
+      <listitem>
+        <para
+>Carregue em &Enter; (irá então para a lista de &URL;'s)</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="permanent_bookmarks">
+    <title
+>Favoritos permanentes</title>
+    <para
+>Estes são favoritos predefinidos para o menu de topo dos favoritos; não é necessário gravá-los no ficheiro. Com o <link linkend="context-menu"
+>Menu de Contexto</link
+>, poderá activar/desactivar estes favoritos permanentes. Estão disponíveis os seguintes favoritos permanentes: <itemizedlist>
+      <listitem>
+        <para
+>O <guilabel
+>Lixo</guilabel
+> usa o protocolo <filename
+>trash:/</filename
+> do &plasma;.</para>
+      </listitem>
+      <listitem>
+        <para
+>A <guilabel
+>Rede Local</guilabel
+> usa o protocolo <filename
+>remote:/</filename
+> do &plasma;.</para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Sistema de Ficheiros Virtual</guilabel
+> O <link linkend="vfs"
+>sistema de ficheiros virtual (VFS)</link
+> <filename
+>virt:/</filename
+> não é uma pasta virtual, mas sim um contentor para os &URL;'s dos diferentes sistemas de ficheiros. É usado &eg; para a funcionalidade <guilabel
+>Alimentar à Lista</guilabel
+> do módulo de pesquisa e de sincronização (desactivada por omissão na altura da compilação). A barra de localização irá mostrar p.ex., o <filename
+>virt:/Resultados da pesquisa 1</filename
+> ou o <filename
+>virt:/Resultados da sincronização 1</filename
+>.</para>
+      </listitem>
+      <listitem id="jump_back">
+        <para
+>O <guilabel
+>Voltar atrás</guilabel
+>, ou <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo
+>, trá-lo-á ao seu ponto de partida, quando criou uma página nova na janela do painel. Esta funcionalidade é muito útil quando descer por uma dada árvore de pastas, onde poderá então voltar atrás, com uma única acção, ao ponto de partida. Com a opção  <guilabel
+>Colocar o ponto para voltar atrás aqui</guilabel
+>, ou <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo
+>, irá colocar a pasta actual como um ponto de regresso.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="manage_bookmarks">
+    <title
+>Gerir os favoritos</title>
+    <para
+>Para editar e organizar os seus favoritos, carregando para tal no botão de <guibutton
+>BookMan II</guibutton
+> e seleccionando a opção <guimenuitem
+>Gerir os Favoritos</guimenuitem
+>, o <application
+>KeditBookmarks</application
+> irá aparecer. Aqui é onde poderá editar/remover e reorganizar os favoritos. O <application
+>KeditBookmarks</application
+> (parte do pacote 'kdebase') é um editor de favoritos para o &konqueror;, o &krusader; e outras aplicações, usando a <ulink url="http://grail.sourceforge.net/info/xbel.html"
+>norma XBEL</ulink
+> para o formato dos favoritos. Estes são gravados no <filename
+> ~/.local/share/krusader/krbookmarks.xml</filename
+>.</para>
+    <note>
+        <para
+>A pasta predefinida para o ficheiro de favoritos <filename
+>krusader/krbookmarks.xml</filename
+> é a <filename class="directory"
+>~/.local/share</filename
+>. Poderá determinar a pasta necessária no seu sistema com a execução do comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> no terminal. </para>
+        <para
+>Este ficheiro local só existe se tiver editado os favoritos do &krusader;. Será criado após a primeira execução do <application
+>KeditBookmarks</application
+> a partir do &krusader;. </para>
+        <para
+>Os favoritos predefinidos do sistema são guardados no ficheiro <filename
+>kfileplaces/bookmarks.xml</filename
+> na pasta que poderá ser consultada com o comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. </para>
+    </note>
+    <para
+>O <application
+>KeditBookmarks</application
+> é simples de usar; contudo, se precisar de mais informações, leia por favor o <ulink url="help:/keditbookmarks/index.html"
+>manual do KeditBookmarks</ulink
+>.</para>
+    <figure id="screenshot-bookmanedit" float="1">
+      <title
+>Gestor de Favoritos <application
+>KeditBookmarks</application
+></title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="bookmanedit.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Gestor de Favoritos <application
+>KeditBookmarks</application
+></phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+  </sect2>
+  <sect2 id="bookmark_buttons">
+    <title
+>Favoritos como botões de acção na barra de ferramentas</title>
+    <para
+>Os favoritos poderão ser colocados como botões na <link linkend="mainwindow"
+>Barra Principal</link
+> ou na <link linkend="actions_toolbar"
+>Barra de Acções</link
+>. Até poderá criar uma combinação de teclas para eles: <itemizedlist>
+      <listitem>
+        <para
+>Crie os seus <link linkend="bookman"
+>Favoritos</link
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Se quiser, pode criar atalhos de teclado para os favoritos na janela <link linkend="key_bindings"
+>Configurar os Atalhos</link
+> (<menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Configurar os Atalhos...</guimenuitem
+></menuchoice
+>).</para>
+      </listitem>
+      <listitem>
+        <para
+>Adicione os seus favoritos como botões de acção na <link linkend="mainwindow"
+>Barra Principal</link
+> ou na <link linkend="actions_toolbar"
+>Barra de Acções</link
+> com a janela para <guilabel
+>Configurar as Barras de Ferramentas</guilabel
+> (<menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Configurar as Barras de Ferramentas...</guimenuitem
+></menuchoice
+>).</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+</sect1>

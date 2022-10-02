@@ -1,0 +1,2584 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="konfigurator">
+  <title
+>Konfigurator: &krusader;s inställningscentral</title>
+  <indexterm>
+    <primary
+>Anpassa</primary>
+    <secondary
+>Krusader</secondary>
+  </indexterm>
+  <para
+>Konfigurator är &krusader;s inställningscentral. När &krusader; kör, använd <menuchoice
+> <guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa &krusader;...</guimenuitem
+> </menuchoice
+>, så startas Konfigurator. Där kan du ändra sättet som &krusader; fungerar och anpassa det efter dina egna behov. När som helst kan ändringarna verkställas genom att klicka på knappen <guibutton
+>Verkställ</guibutton
+>. Att klicka på <guibutton
+>Stäng</guibutton
+> stänger Konfigurator, och att klicka på <guibutton
+>Förval</guibutton
+> återställer &krusader;s "fabriksinställning". Konfigurator är uppdelad i sidor, som var och en innehåller objekt relaterade till sidan. För vissa ändringar av det grafiska gränssnittet, måste du stänga och starta om &krusader;.</para>
+
+<note>
+ <para
+>Sedan &krusader; 1.80.0 har <link linkend="key_bindings"
+>Snabbtangenter</link
+>, <link linkend="mainwindow"
+>Huvudverktygsrad</link
+> och <link linkend="actions_toolbar"
+>Åtgärdsverktygsrad</link
+> fått sina egna inställningsfönster, så de är inte längre en del av Konfigurator. Numera kan du ställa in dem via menyn <link linkend="settings-menu"
+><guimenu
+>Inställningar</guimenu
+></link
+>.</para>
+</note>
+
+  <sect1 id="konfig-startup">
+    <title
+>Start</title>
+    <figure id="screenshot-kgstartup" float="1">
+      <title
+>Startinställning</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="kgstartup.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Startinställning</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Startsidan bestämmer hur &krusader; ser ut (och fungerar) när programmet 
+startas. Den är uppdelad i två huvuddelar.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Allmänt</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Startprofil</guilabel
+>: Använder den valda <link linkend="panel_profiles"
+>panelprofilen</link
+> vid start. <guilabel
+>&lt;Senaste session&gt;</guilabel
+> är en speciell panelprofil, som automatiskt sparas när &krusader; stängs.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Visa startruta</guilabel
+>: Visar en startruta när &krusader; startas.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Enkelinstansläge</guilabel
+>: Tillåter bara att en instans av &krusader; kör.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Reservikontema</guilabel
+>: Gör det möjligt att definiera ett reservikontema för &krusader;. Så snart en ikon inte hittas i systemets ikontema, används det här temat som reserv. Om reservtemat inte innehåller ikonen, kommer Breeze eller Oxygen att användas om något av dem är tillgängligt.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Användargränssnitt</guilabel>
+        </term>
+        <listitem>
+          <para
+>Bestämmer vilka delar av användargränssnittet som är synliga efter start. <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Spara senaste position, storlek och panelinställningar</guilabel
+>: Efter start ändrar &krusader; storlek till den storlek det hade senaste gången det avslutades. &krusader; visas också på samma plats på skärmen, och har panelerna sorterade och justerade som de var. Om alternativet inte är markerat, kan du använda menyalternativet <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Spara postion</guimenuitem
+></menuchoice
+> för att manuellt ställa in &krusader;s storlek och position vid start.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Uppdatera panelens standardinställningar</guilabel
+>: Om markerat kommer panelens standardinställningar uppdateras efter start.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Starta i systembricka</guilabel
+>: Om markerat startar &krusader; i systembrickan (om minimera till systembrickan är aktiverat), utan att visa huvudfönstret.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Spara komponentinställningar vid avslutning</guilabel
+>: Om markerat återställs användargränssnittets komponenter till sina tillstånd vid senaste avslutning.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Visa funktionstangenter</guilabel
+>: Om markerat är <link linkend="fnkeys"
+>funktionstangentfältet</link
+> synligt efter start.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Visa statusrad</guilabel
+>: Om markerat är <link linkend="mainwindow"
+>statusraden</link
+> synlig efter start. Bara tillgänglig om alternativet <guilabel
+>Spara komponentinställningar vid avslutning</guilabel
+> inte är markerat.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Visa kommandorad</guilabel
+>: Om markerat är <link linkend="cmdline"
+>kommandoraden</link
+> synlig efter start. Bara tillgänglig om alternativet <guilabel
+>Spara komponentinställningar vid avslutning</guilabel
+> inte är markerat.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Visa inbäddad terminal</guilabel
+>: Om markerat är <link linkend="termemu"
+>terminalemulatorn</link
+> synlig efter start. Bara tillgänglig om alternativet <guilabel
+>Spara komponentinställningar vid avslutning</guilabel
+> inte är markerat.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-panel">
+    <title
+>Panel</title>
+    <para
+>Här kan du bestämma panelens utseende och känsla - vilket innebär att finjustera programmet efter dina behov. Sidan är uppdelad i sex flikar: <guilabel
+>Allmänt</guilabel
+>, <guilabel
+>Visa</guilabel
+>, <guilabel
+>Knappar</guilabel
+>, <guilabel
+>Markeringsläge</guilabel
+>, <guilabel
+>Mediameny</guilabel
+> och <guilabel
+>Layout</guilabel
+>:</para>
+
+    <sect2 id="konfig-panel-general">
+      <title
+>Allmänt</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Navigeringsrad</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Redigeringsläge normalt</guilabel
+>: Om markerad visas normalt en redigerbar sökväg i navigeringsraden.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Visa normalt fullständig sökväg</guilabel
+>: Om markerad visas normalt alltid fullständig sökväg i navigeringsraden.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Användning</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Markera kataloger automatiskt</guilabel
+>: När du <link linkend="edit-menu"
+>markerar en grupp av filer</link
+> (antingen genom att använda <guilabel
+>Markera grupp</guilabel
+> eller <guilabel
+>Markera allt</guilabel
+>), kontrollerar &krusader; det här alternativet. Om aktiverat, markeras också katalogerna som matchar markeringskriterierna. Annars markeras bara filer.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Namnbyte väljer filnamnsändelser</guilabel
+>: När du <link linkend="renaming"
+>byter namn på en fil</link
+>, markeras hela texten. Om du bara vill byta namnet, utan filändelsen, på liknande sätt som i <trademark class="copyright"
+>Total Commander</trademark
+>, avmarkera alternativet.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Avmarkera filer innan kopiering eller flyttning</guilabel
+>: Om markerat, tar &krusader; bort markeringar från filer eller kataloger innan de <link linkend="copying"
+>kopieras eller flyttas</link
+> till den nya platsen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Filterdialogrutan kommer ihåg inställningarna</guilabel
+>: Om markerat kommer filterdialogrutan öppnas med de senaste filterinställningarna som användes i panelen.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Flikar</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Använd fullständiga sökvägar i fliknamn</guilabel
+>: Om markerat visas fullständig sökväg i <link linkend="folder-tabs"
+>katalogflikar</link
+>, annars visas bara den sista delen av sökvägen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Expanderande flikar</guilabel
+>: Om markerat expanderar &krusader; <link linkend="folder-tabs"
+>katalogflikar</link
+> för att fylla ut hela raden.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Stäng flik med dubbelklick</guilabel
+>: Om markerat tillåter &krusader; att <link linkend="folder-tabs"
+>katalogflikar</link
+> stängs genom att dubbelklicka på dem.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Infoga flikar efter nuvarande</guilabel
+>: Om markerat infogar &krusader; nya flikar till höger om den nuvarande istället för att placera dem sist på <link linkend="folder-tabs"
+>flikraden</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Duplicera aktiv flik med klick</guilabel
+>: Låter dig välja den aktiva flikens dupliceringsmetod (<guimenuitem
+>Inaktiverad</guimenuitem
+> (inget tillhörande klick), <guimenuitem
+>Alt+klick</guimenuitem
+> eller <guimenuitem
+>Ctrl+klick</guimenuitem
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Flikradsposition</guilabel
+>: Låter dig välja var <link linkend= "folder-tabs"
+>Flikraden</link
+> ska vara (<guimenuitem
+>Längst upp</guimenuitem
+> eller <guimenuitem
+>Längst ner</guimenuitem
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Visa knappar för att stänga flikar</guilabel
+>: Om markerat visar &krusader; knappar för att stänga flikar på <link linkend="folder-tabs"
+>flikraden</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Visa knappen 'Ny flik'</guilabel
+>: Om markerat visar &krusader; knappen Ny flik på <link linkend="folder-tabs"
+>flikraden</link
+>.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Visa flikrad för ensam flik</guilabel
+>: Om markerat visar &krusader; flikraden även om det bara finns en <link linkend="folder-tabs"
+>flik</link
+> i panelen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Knappen Ny flik duplicerar en flik</guilabel
+>: Om markerat, duplicerar knappen Ny flik en <link linkend="folder-tabs"
+>flik</link
+>, annars öppnar den en flik i hemkatalogen.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Sökrad</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Börja genom att skriva</guilabel
+>: Gör det möjligt att välja om funktionen för <link linkend="quicksearch"
+>snabbsökning</link
+> används. När det är markerat kan sökraden öppnas och en sökning påbörjas genom att skriva någonting när en katalogs innehåll visas i den aktiva panelen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Skiftlägeskänslig</guilabel
+>: När du använder funktionerna för <link linkend="quicksearch"
+>sökning</link
+> eller <link linkend="quickfilter"
+>filtrering</link
+>: Om markerat (standardvärde på &UNIX;), visas alla filer som börjar med stora bokstäver före filer som börjar med små bokstäver. Annars visas filer som börjar med en viss bokstav (stor eller liten) tillsammans.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Uppåt- eller neråtpil avbryter sökning</guilabel
+>: Att trycka på <keycap
+>Uppåtpil</keycap
+> eller <keycap
+>Neråtpil</keycap
+> avbryter <link linkend="quicksearch"
+>sökning</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Katalognavigering med högerpil</guilabel
+>: Om markerad, går man in i katalogen genom att trycka på <keycap
+>högerpil</keycap
+>  om ingen avsikt att redigera söktext detekteras. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Position</guilabel
+>: Låter dig välja position för <link linkend="quicksearch"
+>sökraden</link
+> och <link linkend="quickfilter"
+>filterraden</link
+> (<guimenuitem
+>Längst ner</guimenuitem
+> eller <guimenuitem
+>Längst upp</guimenuitem
+>).</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Standardläge</guilabel
+>: Låter dig välja sökradens standardläge mellan <link linkend="quicksearch"
+>sökning</link
+>, <guilabel
+>markering</guilabel
+> och <link linkend="quickfilter"
+>filtrering</link
+>. Du kan ändra läget senare genom att använda sökraden själv.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Bokmärkessökning</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Visa alltid sökrad</guilabel
+>: Om markerat är <link linkend="bookman"
+>bokmärkessökraden</link
+> alltid synlig.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Sök i specialobjekt</guilabel
+>: Om markerad, gäller också <link linkend="bookman"
+>bokmärkessökning</link
+> specialobjekt i bokmärkesmenyn som <guimenuitem
+>Papperskorg</guimenuitem
+>, <guimenuitem
+>Populära webbadresser</guimenuitem
+>, <guimenuitem
+>Gå tillbaka</guimenuitem
+>, etc.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Status och totalrad</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Visa också storlek i byte</guilabel
+>: Om markerat visar &krusader; filstorleken i byte på status- eller totalraden.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Visa utrymmesinformation</guilabel
+>: Om markerat visar &krusader; ledigt och totalt diskutrymme på status- och totalraden.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-panel-view">
+      <title
+>Visa</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Allmänt</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Granskningsteckensnitt</guilabel
+>: Låter dig ändra teckensnitt som används inne i fillistorna.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Verktygstipsfördröjning (ms)</guilabel
+>: Gör det möjligt att ställa in fördröjningen i millisekunder från ögonblicket då muspekaren stannar över ett objekt i fillistan och ögonblicket då verktygstipset visas.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Använd läsbar filstorlek</guilabel
+>: Om markerat visas filstorleken i KiB, MiB, etc., och inte i byte (standardvärdet).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Numeriska behörigheter</guilabel
+>: Behörighetskolumnen (fliken <guilabel
+>Panel</guilabel
+> <guilabel
+>Visa</guilabel
+>) visar oktala tal '<literal
+>0755</literal
+>' istället för '<literal
+>rwxr-xr-x</literal
+>'.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Visa dolda filer</guilabel
+>: Om markerat visar &krusader; <quote
+>punktfilerna</quote
+>, som annars är dolda.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ladda de användardefinierade katalogikonerna</guilabel
+>: Om markerat visar &krusader; de användardefinierade katalogikonerna.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Visa alltid aktuellt objekt</guilabel
+>: Om markerat visar &krusader; det aktuella objektets kantdekoration i den inaktiva panelen.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Sorteringsmetod</guilabel>
+	    <itemizedlist>
+             <listitem>
+              <para
+><guilabel
+>Krusader (förval)</guilabel
+>: Jämförelsen använd hittills. Använder jämförelse med regler från landsinställningar (till och med sammanhangsregler). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Alfabetisk</guilabel
+>: Strängar jämförs tecken för tecken (inga sammanhangsregler från landsinställningarna används). Alfabetiska tecken jämförs enligt landsinställningarnas regler, och specialtecken jämförs enligt teckenkod. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Alfabetisk och numerisk</guilabel
+>: Samma som ovan, men om namnen innehåller siffror, jämförs siffrorna numeriskt istället för alfabetiskt. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Teckenkod</guilabel
+>: jämförelse enligt teckenkod (snabb). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Teckenkod och numerisk</guilabel
+>: samma som ovan, men med numerisk jämförelse för nummer. </para>
+             </listitem>
+           </itemizedlist>
+	    </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Skiftlägeskänslig sortering</guilabel
+>: Om markerat (standardvärde på &UNIX;), visas alla filer som börjar med stora bokstäver innan filer som börjar med små bokstäver. Annars visas filer som börjar med en viss bokstav (stor eller liten) tillsammans.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Sortera alltid kataloger enligt namn</guilabel
+>: Sorterar kataloger enligt namn, oberoende av sorteringskolumn.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Visa kataloger först</guilabel
+>: Om markerat visas kataloger först i fillistor.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Sortering enligt landsinställningar</guilabel
+>: Sorterar filer och kataloger enligt nuvarande landsinställningar.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Granskningslägen</guilabel>
+        </title>
+       <listitem>
+          <para
+><guilabel
+>Standardgranskningsläge</guilabel
+>: Låter dig ändra standardgranskningsläget. Du kan välja <guimenuitem
+>Detaljerad vy</guimenuitem
+> eller <guimenuitem
+>Kortfattad vy</guimenuitem
+>. Under flikar i båda granskningslägena kan du ändra följande inställningar.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Standardikonstorlek</guilabel
+>: Låter dig ändra storleken på ikoner i fillistan. De tillgängliga storlekarna är 16x16, 22x22, 32x32 och 48x48 bildpunkter.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Använd ikoner i filnamn</guilabel
+>: Om markerat visas ikoner i filnamn och kataloger.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Visa normalt förhandsgranskningar</guilabel
+>: Om markerat visas förhandsgranskningar av filers innehåll.</para>
+        </listitem>
+        <listitem>
+          <para
+>Använd högerklickmenyn i panelen när filer visas för att ställa in kolumnerna. Den vänstra och högra panelen använder sina egna oberoende kolumner. Följande kolumner är tillgängliga: <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Namn</guilabel
+>: Visar filnamnet utan delen efter den sista punkten. Den senare delen visas i kolumnen <guilabel
+>Änd</guilabel
+>. När kolumnen <guilabel
+>Änd</guilabel
+> döljs, visas det fullständiga filnamnet i kolumnen <guilabel
+>Namn</guilabel
+>, som t.ex. &konqueror; gör. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Änd</guilabel
+>: Visar den sista delen av filnamnet (delen efter den sista punkten) i kolumnen <guilabel
+>Änd</guilabel
+>, och inte som ett fullständigt filnamn i kolumnen <guilabel
+>Namn</guilabel
+>, som t.ex. &konqueror; gör. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Typ</guilabel
+>: Visar fältet &MIME;-typ.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Storlek</guilabel
+>: Visar storleksfältet.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Ändrad</guilabel
+>: Visar fältet med ändringsdatum och tid.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Behörighet</guilabel
+>: Visar fullständig behörighet, t.ex. '<literal
+>rwxr-xr-x</literal
+>', eller som oktala tal '<literal
+>0755</literal
+>' istället när <guilabel
+>Numeriska behörigheter</guilabel
+> aktiveras under fliken <guilabel
+>Panel</guilabel
+> <guilabel
+>Granska</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>rwx</guilabel
+>: Visar bara behörigheten för aktuell användare, t.ex. <quote
+>-rw</quote
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Ägare</guilabel
+>: Visar ägarfältet.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Grupp</guilabel
+>: Visar gruppfältet.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist>
+      <tip>
+        <para
+>Avmarkera kolumner som inte används. Det tillåter mer utrymme för kolumner som används.</para>
+      </tip>
+    </sect2>
+    <sect2 id="konfig-panel-buttons">
+      <title
+>Knappar</title>
+      <para
+><guilabel
+>Verktygsradens knappar har ikoner</guilabel
+>: Om markerat visar &krusader; ikoner på verktygsradens knappar.</para>
+      <para
+><guilabel
+>Visa mediaknapp</guilabel
+>: Om markerat visar &krusader; mediaknappen.</para>
+      <para
+><guilabel
+>Visa bakåtknapp</guilabel
+>: Om markerat visar &krusader; bakåtknappen.</para>
+      <para
+><guilabel
+>Visa framåtknapp</guilabel
+>: Om markerat visar &krusader; framåtknappen.</para>
+      <para
+><guilabel
+>Visa historikknapp</guilabel
+>: Om markerat visar &krusader; historikknappen.</para>
+      <para
+><guilabel
+>Visa bokmärkesknapp</guilabel
+>: Om markerat visar &krusader; bokmärkesknappen.</para>
+      <para
+><guilabel
+>Visa panelverktygsrad</guilabel
+>: Om markerat visar &krusader; panelverktygsraden.</para>
+      <para
+>Du kan visa eller dölja knapparna i <guilabel
+>panelverktygsraden</guilabel
+>: <itemizedlist>
+        <title>
+          <guilabel
+>Synliga knappar i panelverktygsrad</guilabel>
+        </title>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Clear Location Toolbar</guilabel
+> button: Clears
+          the <link linkend="list_panel"
+>Location Toolbar</link
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para>
+          <guilabel
+>Likhetsteckenknapp (=)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Uppknapp (..)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Hemknapp (~)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Rotknapp (/)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Växlarknapp för synkroniseringsläsning</guilabel
+>: Om markerat visas knappen <link linkend="panel_toolbar"
+>synkroniseringsläsning</link
+>.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-selection_modes">
+      <title
+>Markeringsläge</title>
+      <para
+>Här kan du ställa in markeringslägen. <itemizedlist id="selection_modes">
+        <title>
+          <guilabel
+>Allmänt</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>&krusader;läge</guilabel
+>: Sättet som &krusader; har fungerat från första början. Båda musknapparna tillåter att filer markeras. För att markera mer än en fil, håll nere &Ctrl;-tangenten och klicka med vänster musknapp. Högerklickmenyn visas med ett kort klick av höger musknapp.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>&konqueror;läge</guilabel
+>: Att klicka med vänster musknapp markerar filer. Du kan klicka och markera flera filer. Högerklicksmenyn visas med ett kort klick av höger musknapp.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Total Commander-läge</guilabel
+>: Att klicka med höger musknapp markerar flera filer och högerklicksmenyn visas genom att <guilabel
+>trycka på och hålla nere</guilabel
+> höger musknapp. Vänster musknapp markerar inte, men väljer aktuell fil utan att påverka aktuell markering.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Ergonomiskt läge</guilabel
+>: Vänster musknapp markerar inte, men väljer aktuell fil utan att påverka aktuell markering. Höger musknapp visar den sammanhangsberoende menyn. Du kan markera med &Ctrl;-tangenten och vänster musknapp.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Eget markeringsläge</guilabel
+>: Skapa din egen markeringsstil.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Detaljer</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Dubbelklick väljer (klassiskt)</guilabel
+>: Ett enkelklick på en fil markerar och ger fokus, ett dubbelklick öppnar filen eller går in i katalogen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Följ global markeringsprincip</guilabel
+>: Att klicka med vänster musknapp markerar filer. Använd global inställning:  <menuchoice
+><guimenu
+>Inmatningsenheter</guimenu
+> <guimenuitem
+>Mus</guimenuitem
+></menuchoice
+> i &plasma;s systeminställningar.</para>
+        </listitem>
+        <listitem>
+          <para
+>Objekt för eget markeringsläge: <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Baserat på &plasma;s markeringsprincip</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Vänster musknapp markerar</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Vänster musknapp bevarar markeringen</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;- eller &Ctrl;-vänster musknapp väljer</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Höger musknapp markerar</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Höger musknapp bevarar markeringen</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;- eller &Ctrl;-höger musknapp väljer</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Mellanslag går neråt</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Insert går neråt</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Högerklick visar den sammanhangsberoende menyn direkt</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>En enkel musknapp nollställer markeringen</guilabel
+>: Nollställ markering vid ett musklick utan väljartangenter (dvs &Shift; eller &Ctrl;). Markering med &Shift;/&Ctrl; måste vara aktiverat för musknappen för att inställningen ska fungera. </para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-mediamenu">
+      <title
+>Mediameny</title>
+      <para
+>Genom att använda den här fliken kan du använda menyinnehållet från <link linkend="media_button"
+>Mediaknappen</link
+>: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>Visa monteringssökväg</guilabel
+>: Visar partitionens monteringssökväg om markerat.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Visa filsystemtyp</guilabel
+>: Visar partitionens filsystemtyp om markerat.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Dölj SquashFS-poster</guilabel
+>: <ulink url="https://snapcraft.io/"
+>Snap</ulink
+> skapar många partitioner monterade med <ulink url="https://en.wikipedia.org/wiki/SquashFS"
+>SquashFS</ulink
+>, vilka är nästan oanvändbara i <link linkend="list_panel"
+>mediamenyn</link
+>, eftersom <application
+>snap</application
+> hanterar dem. Det är möjligt att dölja SquashFS-monteringar genom att markera alternativet.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Dölj följande monteringsplatser</guilabel
+>: Listan gör det möjligt att undanta oönskade alternativ från <link linkend="list_panel"
+>mediamenyn</link
+>. Klicka på knappen <guibutton
+>+</guibutton
+> ovanför listan för att lägga till en monteringsplats som ska ignoreras. Om du bestämmer dig för att ta bort den tillagda monteringsplatsen från listan, klicka bara på den och klicka sedan på knappen <guibutton
+>-</guibutton
+>. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Visa storlek:</guilabel
+> tillåter val av storleksrepresentation i mediamenyn. Kan vara <guimenuitem
+>Alltid</guimenuitem
+> (normalvärde, visa alltid partitionens storlek), <guimenuitem
+>När enheten saknar etikett</guimenuitem
+> (visa bara storlek för partitioner utan etikett) eller <guimenuitem
+>Aldrig</guimenuitem
+> (visa aldrig storleken i mediamenyn).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-layout">
+      <title
+>Layout</title>
+      <para
+>Du kan välja layout och raminställaningar: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>Layout:</guilabel
+> låter dig definiera layout. Standardalternativen är <guimenuitem
+>Standard</guimenuitem
+>, <guimenuitem
+>Kompakt</guimenuitem
+> och <guimenuitem
+>Klassisk</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ramfärg:</guilabel
+> Definierar ramens färg. Kan vara <guimenuitem
+>Definierad av layout</guimenuitem
+>, <guimenuitem
+>Ingen</guimenuitem
+>, eller <guimenuitem
+>Statusrad</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ramform:</guilabel
+> Definierar ramens form. Kan vara <guimenuitem
+>Definierad av Layout</guimenuitem
+>, <guimenuitem
+>Ingen</guimenuitem
+>, <guimenuitem
+>Ruta</guimenuitem
+> eller <guimenuitem
+>Panel</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ramskugga:</guilabel
+> Definierar ramens form. Kan vara <guimenuitem
+>Definierad av Layout</guimenuitem
+>, <guimenuitem
+>Ingen</guimenuitem
+>, <guimenuitem
+>Höjd</guimenuitem
+> eller <guimenuitem
+>Sänkt</guimenuitem
+>.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="konfig-color">
+    <title
+>Färger</title>
+    <para
+>Den här sidan anpassar färgerna i <link linkend="list_panel"
+>listpanelen</link
+> och <link linkend="synchronizer"
+>synkroniseraren</link
+>. <guilabel
+>&kde;:s standardfärger</guilabel
+> är den normala färginställningen.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Allmänt</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Används &kde;:s standardfärger</guilabel
+>: Det är normalvärdet, som använder &plasma;s färger definierade i systeminställningarna.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Använd växlande bakgrundsfärg</guilabel
+>: Om markerat, växlar <guilabel
+>bakgrundsfärgen</guilabel
+> och den <guilabel
+>alternativa bakgrundsfärgen</guilabel
+> rad för rad. När du inte använder &plasma;s standardfärger, kan du ställa in den alternativa färgen i rutan <guilabel
+>Färger</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Visa aktuellt objekt även om inte fokuserat</guilabel
+>: Om markerat visas den senaste markörpositionen i den inaktiva panelen. Alternativet är bara tillgängligt när du inte använder &plasma;s standardfärger.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Gör färgerna diffusa i den inaktiva panelen</guilabel
+>: Om markerat görs färgerna i den inaktiva panelen diffusa. Inställningarna kan anpassas under fliken <guilabel
+>Inaktiv</guilabel
+> i <guilabel
+>färgrutan</guilabel
+>. Alternativet är bara tillgängligt när du inte använder &plasma;s standardfärger.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Färger</guilabel>
+        </term>
+        <listitem>
+          <para
+>Anpassa färgerna som du vill. Du kan se resultatet i <guilabel
+>förhandsgranskningen</guilabel
+>. Följande objekt i den aktiva och inaktiva panelen kan ställas in:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Förgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Förgrund för borttagning</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Förgrund för körbart program</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Förgrund för symbolisk länk</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Förgrund för ogiltig symbolisk länk</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Bakgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Alternativ bakgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Markerad förgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Markerad bakgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Alternativ markerad bakgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Aktuell förgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Markerad aktuell förgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Aktuell bakgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Byt namn på förgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Byt namn på bakgrund</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+          <para
+>Följande objekt i <link linkend="synchronizer"
+>synkroniseraren</link
+> kan anpassas:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Lika med förgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Lika med bakgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Avvikande förgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Avvikande bakgrund</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Förgrund för kopiera till vänster</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Bakgrund för kopiera till vänster</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Förgrund för kopiera till höger</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Bakgrund för kopiera till vänster</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Förgrund för borttagning</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Bakgrund för borttagning</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Förhandsgranskning</guilabel>
+        </term>
+        <listitem>
+          <para
+>Här ser du en förhandsgranskning av de inställda färgerna.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Färgscheman</guilabel>
+        </term>
+        <listitem>
+          <para
+>Med knapparna <guibutton
+>Importera färgschema</guibutton
+> och <guibutton
+>Exportera färgschema</guibutton
+> kan du ladda och spara en färgschemaprofil. Det gör det möjligt för &krusader; att använda <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+>, något annat Commander-program eller din egen anpassade färgprofil. Färgscheman lagras i <filename
+>/usr/share/krusader</filename
+>. Filen <filename
+>exempel.color</filename
+> är en binärfil som innehåller färgschemat.</para>
+          <tip>
+            <para
+>Färgschemafiler för <application
+>Midnight Commander</application
+> och <trademark class="copyright"
+>Total Commander</trademark
+> tillhandahålls. <link linkend="help_krusader"
+>Ladda gärna upp dina favoritfärgscheman</link
+> så att de blir tillgängliga för &krusader;s gemenskap. Tack!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+<sect1 id="konfig-general">
+    <title
+>Allmänt</title>
+    <para
+>Här kan du ställa in grundåtgärderna. Sidan är uppdelad i tre flikar: <guilabel
+>Allmänt</guilabel
+>, <guilabel
+>Granskare och editor</guilabel
+> samt <guilabel
+>Extra filnamnsändelser</guilabel
+>.</para>
+    <sect2 id="konfig-general-general">
+      <title
+>Allmänt</title>
+      <para
+>Följande alternativ bestämmer grundaspekter vid användning:</para>
+      <itemizedlist>
+	<listitem>
+	  <para
+><guilabel
+>Varna vid avslutning</guilabel
+>: Om markerat varnar &krusader; dig varje gång du försöker avsluta. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>Minimera i systembrickan</guilabel
+>: Om markerad, dyker &krusader;s ikon upp i systembrickan. När &krusader; minimeras, visas det inte på aktivitetsraden. Det avslutas inte heller om huvudfönstret stängs. Istället kan man avsluta &krusader; genom att välja <guimenuitem
+>Avsluta</guimenuitem
+> i menyn <guimenu
+>Arkiv</guimenu
+> eller den sammanhangsberoende menyn för ikonen i brickan. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>Använd &MIME;typsmagi</guilabel
+>: &MIME;typsmagi är en mekanism som låter &krusader; inspektera filerna i panelerna och bestämma deras typ även om filen inte har någon identifierande filändelse. Om du till exempel tar en bildfil, <filename
+>bild1.jpg</filename
+>, och byter namn på den till <filename
+>bild1</filename
+>, kan &krusader; ändå veta att det är en bildfil och arbeta med den enligt det. Dock är detta arbetssättet långsammare (när panelen uppdateras, eller vid byte av kataloger), så prova &krusader; med och utan &MIME;typsmagi och bestäm vad som är bäst för dig.</para>
+	 </listitem>
+	 <listitem>
+	   <para
+><guilabel
+>Tillfällig katalog</guilabel
+>: Alternativet väljer baskatalogen för &krusader;s tillfälliga filer. De verkliga filerna kommer att skapas i separata kataloger under den tillfälliga katalogen, så att varje användare som kör &krusader; har sina egna tillfälliga underkataloger i den valda katalogen. <note
+> <para
+>Du måste välja en tillfällig katalog som alla använder av &krusader; har fullständig behörighet i.</para>
+	     </note>
+	   </para>
+	 </listitem>
+      </itemizedlist>
+      <para
+><guilabel
+>Borttagningsläge</guilabel
+> (<guilabel
+>Ta bort filer/Flytta till papperskorgen</guilabel
+>): När &krusader; tar bort filer kan de antingen <emphasis
+>verkligen</emphasis
+> tas bort, eller flyttas till papperskorgens katalog, och på så sätt göra dem tillgängliga med &plasma;s papperskorg. </para>
+      <para
+><guilabel
+>Extern terminal</guilabel
+>: Välj vilken terminalemulator som ska användas när &krusader; öppnar ett konsolfönster (via <keycap
+>F9</keycap
+>, eller menyalternativet <menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Starta terminal</guimenuitem
+></menuchoice
+>). </para>
+      <para
+><guilabel
+>Inbäddad terminal utför byte av arbetskatalog vid paneländring</guilabel
+>: Om avmarkerat skickas inget <command
+>cd</command
+>-kommando till terminalemulatorn om panelens katalog ändras.</para>
+      <para
+><guilabel
+>Aktiv panel följer den inbäddade terminalens arbetskatalog</guilabel
+>: Om avmarkerad förblir den aktiva panelen oförändrad när användaren navigerar i den inbäddade terminalen (med användning av cd, popd, etc.). </para>
+      <para
+><guilabel
+>Växla till inbäddad terminal i fullskärmsläge</guilabel
+>: Om markerad visar &krusader; fullskärmsterminalen med samma stil som <application
+>Midnight Commander</application
+> (terminalen visas istället för &krusader;s fönster). </para>
+    </sect2>
+    <sect2 id="konfig-general-viewer">
+       <title
+>Granskare och editor</title>
+      <para
+>Du kan ändra inställningarna för granskare och editor: </para>
+      <itemizedlist>
+      <listitem>
+	<para
+><guilabel
+>Inbyggd editor och granskare öppnar varje fil i ett separat fönster</guilabel
+>: Markera alternativet om du vill att alla filer ska öppnas i separata fönster. Om det är omarkerat, öppnas varje fil under en flik i samma gransknings- eller redigeringsfönster. Varje flik i ett sådant fönster kan stängas genom att klicka på fliken med musens mittenknapp, förutom andra vanliga sätt. </para>
+      </listitem>
+      <listitem>
+	<para
+><guilabel
+>Dölj flikraden när bara en flik visas</guilabel
+>: Markera alternativet om du vill att gransknings- eller redigeringsfliken ska döljas om bara en flik visas. </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Standardgranskningsläge</guilabel
+>: <itemizedlist>
+        <listitem>
+         <para
+><guilabel
+>Generellt läge</guilabel
+>: använd systemets standardgranskare.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Textläge</guilabel
+>: Granska filen endast i textläge.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Hexadecimalt läge</guilabel
+>: Granska filen endast i hexadecimalt läge.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Listningsläge</guilabel
+>: Snabb text- och hexadecimalgranskning för enorma filstorlekar. &krusader;s listning läser aldrig in hela filen i minnet, utan bara en liten del av den, och använder en cache för snabbare panorering. Fjärrfiler laddas ner, men under nerladdningen är det möjligt att granska den nerladdade delen. Om en fil ändras hela tiden, kan den också granskas. Listningen ser alltid dess aktuella tillstånd.</para>
+        </listitem>
+	<listitem>
+         <para
+><guilabel
+>Använd listning om textfilen är större än: 10 Mibyte (standardvärde) </guilabel
+>: Kontrollerar om en textfil är större än 10 Mibyte (inställningsbart), och om den är det används &krusader;s listning istället för &plasma;s standardgranskning.</para>
+	</listitem>
+	<listitem>
+         <para
+><guilabel
+>Använd Okteta för hexadecimal granskning</guilabel
+>: Om markerad (normalfallet), använd &plasma;s hexeditor <ulink url="https://docs.kde.org/stable/sv/kdesdk/okteta/index.html"
+>Okteta</ulink
+> för att visa rådata. För att använda alternativet måste du installera paketet <application
+>Okteta</application
+> först.</para>
+	</listitem>
+	</itemizedlist>
+      </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Editor</guilabel
+>: Välj vilken editor som kommer att användas när en fil redigeras (via <keycap
+>F4</keycap
+>). Normalt används den interna granskaren, det är &plasma;s standardgranskare.</para>
+      </listitem>
+    </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-general-atomic">
+      <title
+>Extra filnamnsändelser</title>
+        <para
+><guilabel
+>Extra filnamnsändelser</guilabel
+>: Fördefinierade extra filnamnsändelser som <literal role="extension"
+>tar.gz</literal
+> visas bara som en del i kolumnen <guilabel
+>Änd</guilabel
+> i <link linkend="list_panel"
+>listpanelen</link
+>.</para>
+      </sect2>
+  </sect1>
+  <sect1 id="konfig-advanced">
+    <title
+>Avancerat</title>
+    <para
+>Den här sidan hanterar mer avancerade saker, så du bör dubbelkolla alla åtgärder här. Att ändra inställningar här <remark
+>gör &krusader; till ett kraftfullare och farligare verktyg.</remark
+></para>
+
+    <para
+>Sidan är uppdelad i tre delar:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Allmänt</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+	    <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Preserve attributes for local copy/move
+              (slower)</guilabel
+>: If checked,
+              &krusader; will try to preserve all
+              attributes (time, owner, group) of the local files
+              according to the source file depending on your
+              <link linkend="copying"
+>permissions</link
+>.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>Montera filsystem automatiskt</guilabel
+>: Detta gör att &krusader; försöker montera ett filsystem innan det används. Om du till exempel klickar på <filename class="directory"
+>/mnt/cdrom</filename
+> (och <filename class="directory"
+>/mnt/cdrom</filename
+> finns i <filename class="directory"
+>/etc/fstab</filename
+> som en monteringsplats), kontrollerar &krusader; om det är monterat. Om inte, görs ett försök att montera det åt dig och därefter gå in i det, så att du kan se innehållet på cd:n. Observera dock att &krusader; INTE avmonterar det när du går ur <filename class="directory"
+>/mnt/cdrom</filename
+>.</para>
+            </listitem>
+            <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Do not use KDE media protocol for the
+              Media button (if it is buggy or missing)</guilabel
+>:
+              If checked, &krusader; will not use
+              &kde; media protocol for the
+              <link linkend="list_panel"
+>Media button</link
+>.
+              Choose this when the media protocol is buggy (in some
+              older &kde; versions) or if you have no
+              kdebase package installed on your system.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>Mountman kommer inte (av)montera följande monteringsplatser</guilabel
+>: Om du har filsystem som du inte vill avmontera (eller montera) av misstag, skriv då in en lista med monteringsplatser åtskilda av kommatecken (t.ex. <literal
+>/, /boot, /tmp</literal
+>) så försöker inte <link linkend="mount-man"
+>Mountman</link
+> (av)montera dem.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Bekräftelser</guilabel>
+        </term>
+        <listitem>
+          <para
+>Genom att markera alternativ i den här delen frågar &krusader; efter bekräftelse innan en viss åtgärd utförs. Annars utförs följande åtgärder utan varning:</para>
+          <itemizedlist>
+            <listitem>
+              <para
+>Borttagning av kataloger som inte är tomma</para>
+            </listitem>
+            <listitem>
+              <para
+>Borttagning av filer</para>
+            </listitem>
+            <listitem>
+              <para
+>Kopiering av filer</para>
+            </listitem>
+            <listitem>
+              <para
+>Förflyttning av filer</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Finjustering</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Ikoncachens storlek (KiB)</guilabel
+>: &krusader; använder en ikoncache, så att ikoner som tidigare har används inte behöver laddas om. Naturligtvis kan cachen lagra fler ikoner ju större den är och snabba upp användningen ytterligare, men &krusader;s minnesanvändning blir större.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Väljare till updatedb</guilabel
+>: Ställer in ytterligare väljare för <command
+>updatedb</command
+>. Läs gärna manualsidorna för mer information.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-archives">
+    <title
+>Arkiv</title>
+    <para
+>Den här sidan ställer in vissa aspekter av arkivhantering i &krusader;. </para>
+    <variablelist>
+      <varlistentry>
+	<term>
+	  <guilabel
+>krarc I/O-slav</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>Aktivera skrivstöd</guilabel
+>: Alternativet tillåter dig att aktivera möjlighet att skriva filer i ett arkiv. <warning
+> <para
+>Nackdelen är att om ett strömavbrott sker under förflyttningen, kanske filerna som flyttas redan har tagits bort, men inte ännu packats i arkivet. Att flytta arkiv in i dem själva kommer leda till att de raderas. </para>
+	      </warning>
+	    </para>
+	  </listitem>
+	</varlistentry>
+              <varlistentry>
+	<term>
+	  <guilabel
+>Arkivhantering</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>Läs arkiv som kataloger</guilabel
+>: Om markerad hanterar &krusader; arkiv transparent, och låter dig öppna dem som kataloger. Annars försöker &krusader; starta ett program som öppnar arkiv av den typen. </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>
+	    <guilabel
+>Finjustering</guilabel>
+	  </term>
+	  <listitem>
+      <itemizedlist>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Allow moving into archives</guilabel
+>: this
+          option allows you to move files into an archive (as
+          opposed to just copying into the archive). The down side
+          is that if a power failure occurs during the process, the
+          files that were moved might already be deleted, but not
+          yet packed into the archive.
+          <note>
+            <para
+>If such a thing happens, the file(s) are NOT
+            LOST. They were actually moved into a subfolder in
+            &krusader;'s
+            <link linkend="konfig-general"
+>temp folder</link
+>.
+            You can search the folder and recover your
+            files.</para>
+          </note
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para
+><guilabel
+>Testa arkivfil efter packning</guilabel
+>: Alternativet gör att en test automatiskt körs på ett nypackat arkiv. Det är säkrare, men tar längre tid.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Testa arkivfil innan uppackning</guilabel
+>: Alternativet gör att en test automatiskt körs innan uppackning av en arkivfil. Vissa korrupta arkivfiler kan orsaka en krasch; därför är det bättre att testa arkivfiler innan de packas upp.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+  </varlistentry>
+  </variablelist>
+  </sect1>
+  <sect1 id="konfig-dependencies">
+    <title
+>Sidan Beroenden</title>
+    <para
+>Den här sidan ställer in fullständig sökväg för de externa programmen. Det är till och med möjligt att ställa in fullständig sökväg för &krusader;.</para>
+    <para>
+      <emphasis role="bold"
+>Fliken Allmänt</emphasis>
+    </para>
+    <para
+>Här kan du ställa in fullständig sökväg till följande externa program:</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>Program</entry>
+            <entry
+>Inställningsbar fullständig sökväg</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kdesu</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kdesu</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kget</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kget</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mailer</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kmail</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>Jämförelseverktyg</para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kompare</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <command
+>krename</command>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krename</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>krusader</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krusader</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>locate</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/locate</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/mount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>umount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/umount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>updatedb</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/updatedb</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <tip>
+      <para
+>Normalt används &kompare; (som ingår i paketet kdesdk) som externt jämförelseverktyg, men du kan också använda ditt favoritjämförelseverktyg, t.ex. <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> eller <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+>, fyll bara i den fullständiga sökvägen och njut.</para>
+    </tip>
+    <para>
+      <emphasis role="bold"
+>Fliken för packverktyg</emphasis>
+    </para>
+    <para
+>Under fliken <guilabel
+>Packverktyg</guilabel
+> hittar du en lista med arkivformat. Vissa är ifyllda och andra är tomma. De som är tillgängliga (ifyllda) stöds av &krusader;. Om du markerar dem kommer &krusader; att hantera arkiven transparent och låta dig öppna dem som kataloger (under förutsättning att du har markerat alternativet <guilabel
+>Läs arkiv som kataloger</guilabel
+> på sidan <link linkend="konfig-archives"
+>Arkiv</link
+>. Annars försöker &krusader; starta ett program som öppnar arkiv av den typen. Om ett visst arkivformat är tomt betyder det att &krusader; inte kunde hitta lämpligt körbart program i den inställda sökvägen. Följande arkiv stöds: ace, arj, bzip2, deb, gzip, iso, lha, lzma, rar, rpm, tar, xz, zip och 7z.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>Packverktyg</entry>
+            <entry
+>Inställningsbar fullständig sökväg</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>7z</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/7z</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>arj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/arj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>bzip2</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/bzip2</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cpio</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/cpio</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>dpkg</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/dpkg</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>gzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/gzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lha</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lha</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lzma</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lzma</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>rar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/rar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/tar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unace</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unace</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unarj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unarj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unrar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unrar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>zip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/zip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>xz</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/xz</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <note>
+      <para
+>&krusader; kanske inte är kompatibel med ACE, trots våra ansträngningar. Unace använder sluten källkod, och innehåller ytterligare rader som gör att Unace hamnar i en oändlig snurra om standardinmatningen dirigeras om någon annanstans. Det fungerar på samma sätt som 'su', där man inte bara kan mata in lösenordet från standardinmatningen. &krusader; ≥ 1-51 emulerar kommandoradsomgivningen för att möjliggöra samarbete med Unace, men vi har märkt att Unace alltid ändrar utmatningsformat från utgåva till utgåva, vilket gör det nästan omöjligt att samarbeta med det.</para>
+    </note>
+    <para>
+      <emphasis role="bold"
+>Fliken checksummeringshjälpmedel</emphasis>
+    </para>
+    <para
+>Här kan du ställa in fullständig sökväg till följande externa <link linkend="checksum"
+>checksummeringsverktyg</link
+>: <informaltable
+> <tgroup cols="3"
+> <tbody>
+          <row>
+            <entry
+>Checksummeringsverktyg</entry>
+            <entry
+>Inställningsbar fullständig sökväg</entry>
+            <entry
+>Checksummor som stöds</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha224sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha224sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha224</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha384sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha384sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha384</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha512sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha512sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha512</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tigerdeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/tigerdeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>tiger</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>whirlpooldeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/whirlpooldeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>whirlpool</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cfv</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/cfv</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5, sha1, sfv, crc</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable
+></para>
+  </sect1>
+  <sect1 id="konfig-useractions">
+    <title
+>Användaråtgärder</title>
+    <para
+>Här kan du ställa in terminalen för användaråtgärder och teckensnittet för utdatainsamlingen. Standardterminal är <command
+>konsole --noclose -e</command
+>. Använd Actionman för att skapa, ställa in och hantera användaråtgärder (<link linkend="useractions"
+>Användaråtgärder</link
+>).</para>
+
+  </sect1>
+  <sect1 id="konfig-protocols">
+    <title
+>Protokoll</title>
+    <para
+>Den här sidan kopplar ihop &MIME;-typ med protokoll, t.ex. kopplas protokollet <quote
+>tar</quote
+> till &MIME;-typen <quote
+>application/x-tar</quote
+>.</para>
+
+    <para
+>Under <guilabel
+>Länkar</guilabel
+> ser du t.ex. <itemizedlist>
+      <listitem>
+        <para
+>ISO</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-iso</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>krarc</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-ace</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-arj</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-bzip2</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-cpio</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-deb</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-debian-package</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-gzip</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-jar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-lha</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rpm</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-zip</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>tar</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-tar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tarz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tbz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tgz</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect1>
+</chapter>

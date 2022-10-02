@@ -1,0 +1,372 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="bookman">
+  <title
+>Менеджер закладок: Впорядкування ваших закладок</title>
+  <indexterm>
+    <primary
+>Закладки</primary>
+  </indexterm>
+  <para
+>Менеджер закладок — це інструмент роботи з закладками &krusader;, призначений для створення закладок для тек, локальних і <link linkend="remote-connections"
+>віддалених адрес</link
+> і наступного повернення до них натисканням кнопки. Меню менеджера закладок поділено на чотири розділи: <itemizedlist>
+    <listitem>
+      <para
+>Ваші особисті закладки</para>
+    </listitem>
+    <listitem>
+      <para
+>Популярні адреси URL</para>
+    </listitem>
+    <listitem>
+      <para
+>Постійні закладки</para>
+    </listitem>
+    <listitem>
+      <para
+>Керування закладками</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <note>
+    <para
+>Ви можете створити закладку у віддаленій файловій системі (&FTP; або SAMBA) і пізніше скористатися закладкою для пришвидшення встановлення з’єднання з віддаленим комп’ютером, але встановлювати закладки всередині архіву не можна.</para>
+  </note>
+  <figure id="screenshot-bookmanadd" float="1">
+    <title
+>Меню «Закладки»</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="bookmanadd.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Меню «Закладки»</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <sect2 id="using_bookmarks">
+    <title
+>Користування закладками</title>
+    <para
+>Зазвичай, вам достатньо натиснути кнопку <guibutton
+>Керування закладками ІІ</guibutton
+> (найправішу кнопку праворуч від смужки адреси, над активною панеллю), коли буде відкрито відповідну теку. Наприклад, щоб створити закладку на <filename class="directory"
+>/usr/tmp</filename
+>, відкрийте цю теку у &krusader; і натисніть кнопку <guibutton
+>Керування закладками ІІ</guibutton
+>, а потім оберіть пункт <guimenuitem
+>Створити закладку на поточному</guimenuitem
+>. Після відкриття діалогового вікна <guilabel
+>Додати закладку</guilabel
+> у полі адреси &URL; ви побачите <filename class="directory"
+>/usr/tmp</filename
+>. Поле <guilabel
+>Назва</guilabel
+> призначено для встановлення бажаної назви закладки (наприклад «тимчасова тека»). Ви можете визначити клавіатурне скорочення, якщо вставите символ <literal
+>&amp;</literal
+> у назву закладки, наприклад <literal
+>&amp;sourceforge, &amp;домівка, зва&amp;нтаження</literal
+> тощо. Такі закладки можна швидко відкрито за допомогою натискання комбінації клавіш <keycombo action="simul"
+>&Alt; <keycap
+>клавіша</keycap
+></keycombo
+>. Якщо ви додасте закладку без введення назви, програма створити закладку з назвою теки, на яку буде створено закладку. У полі <guilabel
+>URL</guilabel
+> буде вказано назву теки, на яку буде створено закладку. За допомогою пункту <guilabel
+>Створити у</guilabel
+> можна створити закладку у певній теці закладок.</para>
+    <para
+>Щоб скористатися однією з закладок, натисніть кнопку <guibutton
+>Керування закладками ІІ</guibutton
+> і оберіть закладку. Крім того, ви можете скористатися <link linkend="key_bindings"
+>Клавіатурними скороченнями</link
+>: <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+> для створення закладки на поточному елементі, <keycombo action="simul"
+>&Alt; <keycap
+>→ або ←</keycap
+></keycombo
+> для to відкриття списків закладок правої або лівої панелі і <keycombo action="simul"
+>&Ctrl; <keycap
+>D</keycap
+></keycombo
+> для відкриття списку закладок активної панелі. Наведення вказівника на пункт закладок з наступним клацанням правою кнопкою миші відкриє контекстне меню, за допомогою якого ви зможете відкрити закладку у <link linkend="folder-tabs"
+>новій вкладці</link
+>.</para>
+    <para
+>У верхній частині меню <guibutton
+>Керування закладками II</guibutton
+> буде розташовано поле для пришвидшеного пошуку.</para>
+    <note>
+      <para
+>Смужка пошуку буде завжди видимою у меню закладок, якщо ви позначити відповідний пункт на <link linkend="konfig-panel-general"
+>сторінці налаштовування панелі Конфігуратора</link
+>. </para>
+    </note>
+    <para
+>Нижче наведено правила поводження із закладками:</para>
+    <itemizedlist>
+        <listitem>
+            <para
+>Просто введіть початкові літери назви закладки з клавіатури — відповідність закладок встановлюється за префіксом.</para>
+        </listitem>
+        <listitem>
+            <para
+>Якщо введеному критерію пошуку відповідатиме декілька закладок, усі ці закладки буде підсвічено у списку. Першу з підсвічених закладок буде позначено — натисніть &Enter;, щоб задіяти цю закладку.</para>
+        </listitem>
+        <listitem>
+            <para
+>Якщо буде встановлено відповідність одній закладці, програма негайно перейде за відповідною закладкою. Наприклад, ви можете ввести <literal
+>'h'</literal
+> і, якщо існує лише одна закладка, назва якої починається з <literal
+>'h'</literal
+>, програма негайно перейде за нею, — натискати &Enter; не потрібно.</para>
+        </listitem>
+        <listitem>
+            <para
+>Клавіатурні комбінації працюватимуть, лише якщо у них функціональна клавіша є першою.</para>
+        </listitem>
+        <listitem>
+            <para
+>Передбачено підтримку &Backspace;.</para>
+        </listitem>
+        <listitem>
+            <para
+>Пошук відбуватиметься без врахування регістру символів, якщо ви не вводитимете великих літер. Тобто, якщо буде введено <literal
+>HamBurglar</literal
+>, відповідність встановлюватиметься лише для запису <literal
+>HamBurglar</literal
+>, але не <literal
+>hamburglar</literal
+> чи <literal
+>Hamburglar</literal
+>.</para>
+        </listitem>
+        <listitem>
+            <para
+>Поле пошуку спеціально зроблено придатним лише для читання.</para>
+        </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2 id="password_handling">
+    <title
+>Робота з паролями</title>
+    <para
+>Однією з переваг використання <link linkend="bookman"
+>керування закладками</link
+> є те, що паролі зберігаються за допомогою служб Плазми, у тому місці де зберігаються, наприклад, ваші паролі &konqueror;/&kmail;. Якщо ви використовуєте торбинку паролів (сховище), Плазма збереже ваші паролі у сховищі паролів. Натискання пункту закладки відкриє діалогове вікно з запитом на ім’я користувача і пароля. Вкажіть їх і натисніть кнопку <guibutton
+>Зберегти пароль</guibutton
+>. Паролі і імена користувачів буде безпечно збережено у сховищі паролів Плазми (не забудьте перевірити, що її увімкнено у вашому дистрибутиві). Негативною стороною подібного збереження є те, що у разі повторного встановлення, якщо ви не створили резервної копії ваших паролів з торбинки і файла закладок &krusader;, дані з них буде втрачено.</para>
+  </sect2>
+  <sect2 id="popular-urls">
+    <title
+>Популярні адреси URL</title>
+    <indexterm>
+      <primary
+>Популярні адреси URL</primary>
+    </indexterm>
+    <para
+>У підменю <guilabel
+>Популярні URL</guilabel
+> міститься змінний список найпопулярніших відвіданих адрес &URL; (локальних та віддалених). У цьому підменю буде 15 пунктів популярних URL, впорядкованих за популярністю, адреси &URL; з верхньої частини списку є найпопулярнішими. Подібний список буде корисним для тих адрес &URL;, які ви часто відвідуєте, але для яких ви на бажаєте створювати <link linkend="bookman"
+>Закладки</link
+>, цей список може слугувати тимчасовим списком закладок для найпопулярніших посилань. Швидкий пошук у <guilabel
+>Популярних URL</guilabel
+> є одним зі способів пришвидшити перегляд/вибір популярних &URL;: <itemizedlist>
+      <listitem>
+        <para
+>Відкрийте <guilabel
+>Популярні URL</guilabel
+> або натисніть комбінацію клавіш <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+></para>
+      </listitem>
+      <listitem>
+        <para
+>Введіть декілька літер, щоб звузити список знайденого</para>
+      </listitem>
+      <listitem>
+        <para
+>Натисніть &Enter; (ви перейдете до списку адрес)</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="permanent_bookmarks">
+    <title
+>Постійні закладки</title>
+    <para
+>Це постійні закладки з вершини меню закладок; їх не потрібно зберігати до файла. За допомогою <link linkend="context-menu"
+>контекстного меню</link
+> ви можете вмикати або вимикати ці постійні закладки. Передбачено такі постійні закладки: <itemizedlist>
+      <listitem>
+        <para
+><guilabel
+>Смітник</guilabel
+> використовує протокол <filename
+>trash:/</filename
+> Плазми.</para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Локальна мережа</guilabel
+> використовує протокол <filename
+>remote:/</filename
+> Плазми.</para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Віртуальна файлова система</guilabel
+> <link linkend="vfs"
+>Віртуальні файлові системи (VFS)</link
+> <filename
+>virt:/</filename
+> не є віртуальною текою, але контейнером адрес &URL; з різних файлових систем. Вона використовується, наприклад для реалізації можливостей <guilabel
+>Подача у список</guilabel
+> модуля пошуку і інструменту синхронізації. Буде показано панель адрес, наприклад <filename
+>virt:/Результати пошуку 1</filename
+> або <filename
+>virt:/Результати синхронізації 1</filename
+>.</para>
+      </listitem>
+      <listitem id="jump_back">
+        <para
+><guilabel
+>Перескочити назад</guilabel
+> або <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo
+> повертає перегляд до початкової позиції на час створення нової вкладки на панелі. Ця можливість буде дуже корисною, якщо ви досить далеко відійшли ієрархією каталогів, а потім вирішили повернутися до початкової точки. За допомогою пункту <guilabel
+>Встановити точку повернення назад</guilabel
+> або натискання комбінації клавіш <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo
+> ви можете встановити точку повернення у поточному каталозі.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="manage_bookmarks">
+    <title
+>Керування закладками</title>
+    <para
+>Щоб відкрити вікно редагування і впорядкування ваших закладок, натисніть кнопку <guibutton
+>Керування закладками ІІ</guibutton
+> і оберіть пункт <guimenuitem
+>Керування закладками</guimenuitem
+>, — програма відкриє вікно <application
+>KeditBookmarks</application
+>. За допомогою цього вікна ви зможете змінити/вилучити і перевпорядкувати закладки. Програма <application
+>KeditBookmarks</application
+> є редактором закладок &konqueror;, &krusader; та інших програм, які використовують <ulink url="http://grail.sourceforge.net/info/xbel.html"
+>стандарт XBEL</ulink
+> зберігання закладок. Закладки зберігаються у файлі <filename
+> ~/.local/share/krusader/krbookmarks.xml</filename
+>.</para>
+    <note>
+        <para
+>Типовою текою для файла закладок <filename
+>krusader/krbookmarks.xml</filename
+> є <filename class="directory"
+>~/.local/share</filename
+>. Визначити відповідну теку у вашій системі можна за допомогою команди <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>, відданої у вікні термінала. </para>
+        <para
+>Локальний файл закладок існуватиме, лише якщо ви вже редагували закладки &krusader;. Цей файл буде створено під час першого ж запуску <application
+>KeditBookmarks</application
+> з вікна &krusader;. </para>
+        <para
+>Типові закладки системи зберігаються у файлі <filename
+>kfileplaces/bookmarks.xml</filename
+> у каталозі, який можна визначити за допомогою команди <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. </para>
+    </note>
+    <para
+><application
+>KeditBookmarks</application
+> користуватися просто. Втім, якщо вам потрібна додаткова інформація, будь ласка, зверніться до <ulink url="help:/keditbookmarks/index.html"
+>підручника KeditBookmarks</ulink
+>.</para>
+    <figure id="screenshot-bookmanedit" float="1">
+      <title
+>Інструмент керування закладками <application
+>KeditBookmarks</application
+></title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="bookmanedit.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Інструмент керування закладками <application
+>KeditBookmarks</application
+></phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+  </sect2>
+  <sect2 id="bookmark_buttons">
+    <title
+>Закладки як кнопки дій на панелі інструментів</title>
+    <para
+>Ви можете створити кнопки для закладок на <link linkend="mainwindow"
+>головній панелі</link
+> або на <link linkend="actions_toolbar"
+>панелі дій</link
+>. Ви навіть можете створити клавіатурні скорочення для цих закладок: <itemizedlist>
+      <listitem>
+        <para
+>Створення ваших <link linkend="bookman"
+>Закладок</link
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Якщо бажаєте, створіть записи клавіатурних скорочень для закладок за допомогою вікна <link linkend="key_bindings"
+>Налаштувати скорочення</link
+> (<menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Налаштувати скорочення...</guimenuitem
+></menuchoice
+>).</para>
+      </listitem>
+      <listitem>
+        <para
+>Додати ваші закладки як кнопки дій на <link linkend="mainwindow"
+>головну панель</link
+> або на <link linkend="actions_toolbar"
+>панель дій</link
+> можна за допомогою вікна <guilabel
+>Налаштувати пенали...</guilabel
+> (<menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Налаштувати пенали...</guimenuitem
+></menuchoice
+>).</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+</sect1>

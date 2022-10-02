@@ -1,0 +1,43 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="calculate">
+  <title
+>Calcular l'espai ocupat</title>
+  <indexterm>
+    <primary
+>Espai ocupat</primary>
+  </indexterm>
+  <!-- Thanks to Heiner Eichmann -->
+  <para
+>Hi ha dues maneres de calcular l'espai ocupat de fitxers/carpetes.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>En prémer la drecera configurable per a <guilabel
+>Calcula l'espai ocupat</guilabel
+> sobre una carpeta sota el cursor, es calcularà a l'instant la mida ocupada.</para>
+    </listitem>
+    <listitem>
+      <para
+>Per a calcular la quantitat d'espai al disc que ocupen els fitxers i carpetes seleccionats a la selecció del plafó actiu amb <menuchoice
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Calcula l'espai ocupat</guimenuitem
+></menuchoice
+>. Després d'un petit retard, es mostrarà un diàleg amb l'espai ocupat total i el nombre de fitxers i carpetes que heu seleccionat. L'espai ocupat per a cada carpeta seleccionada es mostrarà com si l'usuari acabés de prémer la drecera configurable sobre aquestes carpetes. Si el plafó actiu navega per un arxiu, els números s'aplicaran a la mida desempaquetada dels fitxers i carpetes seleccionats, i no a la mida comprimida. Després del càlcul, l'estat de la selecció canviarà i el cursor es mourà un pas cap avall.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>S'admet el càlcul de l'espai ocupat sobre sistemes de fitxers remots. <note
+> <para
+>Portar a terme aquesta operació sobre un sistema de fitxers molt gran (milers de fitxers) pot trigar molt. Podeu cancel·lar el procés de càlcul en qualsevol moment si feu clic al botó <guibutton
+>Cancel·la</guibutton
+>.</para>
+  </note
+></para>
+</sect1>

@@ -1,0 +1,78 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="mount-man">
+  <title
+>Mountman: Arbeta med de monterade filsystemen</title>
+  <indexterm>
+    <primary
+>Montera</primary>
+  </indexterm>
+  <para
+>Mountman är ett verktyg som hjälper till att hantera monterade filsystem. När det väl har startats, visar det en lista med alla monterade filsystem. För varje filsystem visar Mountman dess namn (vilket är det verkliga enhetsnamnet, dvs. <filename class="directory"
+>/dev/sda1</filename
+> för en <hardware
+>hårddisk</hardware
+>), dess typ (ext4, ext3, ntfs, vfat, ReiserFS, ...) och dess monteringsplats i systemet (katalogen där filsystemet är monterat).</para>
+  <para
+>Om du vill filtrera bort enheter som inte är flyttbara från listan, markera bara <guilabel
+>Visa bara flyttbara enheter</guilabel
+> till vänster om enhetslistan. </para>
+  <figure id="screenshot-mountman" float="1">
+    <title
+>Mountman</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="mountman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Mountman</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Mountman visar också användningsinformation med total storlek, ledigt utrymme och procent av tillgängligt utrymme som är ledigt. Om värdena är markerade med <guilabel
+>N/A</guilabel
+> betyder det oftast att filsystemet inte är monterat. Att vänsterklicka på ett filsystem visar ett cirkeldiagram till vänster om fönstret, som grafiskt visar användningsinformationen för filsystemet. Att klicka på ett filsystem som inte är monterat, visar <guilabel
+>Inte monterat</guilabel
+> istället för diagrammet.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><keycap
+>Dubbelklick</keycap
+> på ett filsystem stänger Mountman och öppnar filsystemet inne i &krusader;s aktiva panel.</para>
+    </listitem>
+    <listitem>
+      <para
+><keycap
+>Högerklick</keycap
+> på ett filsystem visar en liten meny, som anger vilka åtgärder som kan utföras med filsystemet. För närvarande kan man bara montera, avmontera och mata ut (vid klick på ett flyttbart filsystem, t.ex. en &CD-ROM;).</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Vi planerar att expandera Mountman i &krusader;s nästa utvecklingssteg. Den kommer att kunna formatera partitioner, redigera <filename
+>/etc/fstab</filename
+>, skapa nya filsystem, med mera... Vi har förresten redan börjat arbeta på det; se <quote
+>Snabbläge för Mountman</quote
+>.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Snabbläge för Mountman</emphasis>
+  </para>
+  <para
+>För att aktivera snabbläge för Mountman, klicka på sidopilen på Mountman-knappen i <link linkend="mainwindow"
+>huvudverktygsraden</link
+>.</para>
+  <para
+>Allmän idé: Visa en lista med alla möjliga monteringsplatser. Varje gång menyn visas, bestämmer den om en monteringspunkt är monterad eller inte, och kopplar ihop den med rätt åtgärd (montera eller avmontera). Det ger ett snabbt gränssnitt för Mountman. Det fungerar, och använder för närvarande Kmountman::mount och unmount. Det använder de nya tjänsterna i &kde; Ramverk 5 för läsning av fstab, och det gör det möjligt för oss att ta bort en mängd kod från den <quote
+>gamla</quote
+> Mountman.</para>
+</sect1>

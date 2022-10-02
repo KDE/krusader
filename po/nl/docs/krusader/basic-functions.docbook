@@ -1,0 +1,540 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="basic-functions">
+  <title
+>Basis functies</title>
+  <sect1 id="controls">
+    <title
+>Besturing</title>
+    <sect2 id="control-general">
+      <title
+>Algemeen</title>
+      <para
+>Dit is een nogal korte maar belangrijke sectie dat in detail de besturing van &krusader; beschrijft. Deze sectie beschrijft niet alle verschillende toets-combinaties vanwege twee redenen: <orderedlist numeration="arabic"
+> <listitem
+> <para
+>het zijn er teveel</para
+> </listitem
+> <listitem
+> <para
+>de meeste &krusader; acties zijn instelbaar in het <link linkend="konfig-panel"
+>Konfigurator Paneel pagina</link
+></para
+> </listitem
+> </orderedlist
+>We zullen alleen de belangrijkste sneltoetsen vermelden met hun standaard instellingen, maar houd in gedachten dat de meeste <link linkend="key_bindings"
+>Sneltoetsen</link
+> instelbaar zijn. Als u denkt dat u een bepaalde commando veel gebruikt en de sneltoets hiervan wilt weten, of u wilt de sneltoets van dit commando wijzigen, ga dan naar het venster <link linkend="key_bindings"
+>Sneltoetsen instellen</link
+> (<menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Sneltoetsen instellen...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="moving-around">
+      <title
+>Bewegen</title>
+      <para
+>Met verplaatsen bedoelen we de transfer van toetsenbord en muis focustussen de verschillende onderdelen van het &krusader; <link linkend="mainwindow"
+>hoofdvenster</link
+>. De focus kan op een van de volgende vijf plaatsen zijn: de linker of rechterpaneel, de Menubalk, de Commandoregel of de Terminal Emulator. Het Actieve Paneel is het paneel dat de focus heeft. Een Actief Paneel blijft actief totdat een ander paneel de focus krijgt (&ie;: als het linker Paneel actief was en u klikt op de commandoregel - dan blijft het linker paneel de actieve paneel). U moet opzettelijk wijzigen welk paneel actief is.</para>
+      <para
+>De meest gebruikelijke manier om de focus te verplaatsen naar een bepaald paneel is de muis gebruiken om op dat paneel te klikken. Maar u moet op het volgende letten: <itemizedlist>
+        <listitem>
+          <para
+>Op de Werkbalk, de FN toetsen balk of de Statusbalk klikken wijzigt <emphasis
+>niet</emphasis
+> de focus.</para>
+        </listitem>
+        <!--
+   Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
+   <listitem>
+     <para
+>The display part of the Quick View Panel does not accept clicks so you should click on the
+           Location Toolbar of this panel if you want it to have focus.</para>
+   </listitem>
+-->
+        <listitem>
+          <para
+>De knop <guibutton
+>In een terminalvenster uitvoeren</guibutton
+> op de commandoregel indrukken zal niet de focus verplaatsen, daarvoor moet u in de invoer regel klikken.</para>
+        </listitem>
+        <listitem>
+          <para
+>Als u een menu kiest, dan krijgt de Menu Balk de focus. Het houdt de focus totdat u een commando kiest - daarna gaat de focus terug naar de vorige eigenaar.</para>
+        </listitem>
+      </itemizedlist
+></para>
+      <para
+>Er zijn natuurlijk mogelijkheden om het toetsenbord te gebruiken om de focus te wijzigen: <itemizedlist>
+        <listitem>
+          <para
+>Met de &Tab;-toets wisselt u van paneel, als een van de panelen focus heeft of roteert u tussen alle commando's in een menu, als de Menubalk actief is.</para>
+        </listitem>
+        <listitem>
+          <para
+>De toets <keycombo action="simul"
+>&Ctrl; &Down;</keycombo
+> neemt u van het actieve Paneel naar de Commandoregel of Terminal Emulator, en de toets <keycombo action="simul"
+>&Ctrl; &Up;</keycombo
+> neem u terug van de Commandoregel naar het Actieve Paneel.</para>
+        </listitem>
+        <listitem>
+          <para
+>De &Esc;-toets maakt dat de Menubalk de focus teruggeeft, als het dat heeft, naar het vorige Actieve Paneel.</para>
+        </listitem>
+        <listitem>
+          <para
+>Als u zich toevallig in de Terminal-emulator bevindt, dan kunt u de &Tab;-toets gebruiken, of de muis, om naar een actief paneel te gaan.</para>
+        </listitem>
+        <listitem>
+          <para
+>Het indrukken van de <keycombo action="simul"
+>&Alt; <keycap
+>Onderstreepte Letter</keycap
+></keycombo
+> in de Menubalk zal dat menu openen (tenzij deze toets-combinatie een <quote
+>Gereserveerde Toets</quote
+> is, in gebruik bij een van de acties van &krusader;).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="selecting-files">
+      <title
+>Selecteren</title>
+      <note>
+        <para
+>&krusader; biedt 4 <link linkend="selection_modes"
+>Selectiemodussen</link
+>, om niets te zeggen over de <link linkend="quickselect"
+>Quickselectbalk</link
+>, alleen de selectiemodus van &krusader; wordt hier uitgelegd.</para>
+      </note>
+      <para
+>Selecteren is een vaardigheid die u moet beheersen om het meeste uit &krusader; te halen. Omdat u in het venster met de boomstruktuur maar een map tegelijk kan selecteren, wordt in deze paragraaf voornamelijk uitgelegd hoe u in de paneel met lijsten bestanden kunt selecteren.</para>
+      <para
+>De cursor verplaatsen is gemakkelijk. Door te klikken met de &LMB; op een bestand of map (wat verder als <quote
+>elementen</quote
+> genoemd wat bestanden en mappen betekent) selecteert u het. Hier zijn enkele aanwijzingen die het gebruik van &krusader; nog makkelijker maken (aangenomen dat u &krusader;'s Muis selectie modus gebruikt): <itemizedlist>
+        <listitem>
+          <para
+>De toetsen &Space; en &Ins; het bestand onder de cursor selecteren zonder de selectie van andere bestanden/mappen te wijzigen, de cursor zal een positie omlaag gaan.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>Links klikken</keycap
+> op een bestand zal het selecteren, of alle eerder geselecteerde bestanden deselecteren.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>Links Klikken</keycap
+></keycombo
+> zal het bestand onder de cursor selecteren zonder de selectie van de andere bestanden/mappen te wijzigen.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; <keycap
+>Links Klikken</keycap
+></keycombo
+> zal alle elementen tussen de vorige cursor locatie en de nieuwe locatie selecteren.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; &Home;</keycombo
+> selecteert alles boven de cursor (en maakt de selectie ongedaan van alles onder de cursor, als daar iets is geselecteerd).</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; &End;</keycombo
+> selecteert alles onder de cursor (en maakt de selectie ongedaan van alles boven de cursor, als daar iets is geselecteerd).</para>
+        </listitem>
+        <listitem>
+          <para
+>Het item <quote
+>..</quote
+> kan niet geselecteerd worden.</para>
+        </listitem>
+        <listitem>
+          <para
+>Het <link linkend="edit-menu"
+> Menu Bewerken</link
+> geeft meer manieren voor het selecteren van uw bestanden.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="executing_commands">
+      <title
+>Commando's uitvoeren</title>
+      <para
+>Daar valt niet veel over te schrijven, alles wat u moet doen is het selecteren van enkele bestanden (als u dat niet doet, dan zal &krusader; op de bestand(en) of map(pen) die de focus hebben werken), Een <link linkend="menu-commands"
+>Commando</link
+> uit de Menubalk selecteren of een toetsenbord Sneltoets gebruiken (of het Contextmenu) en de geselecteerde Commando wordt uitgevoerd. Zie ook <link linkend="executing_files"
+>Bestanden uitvoeren</link
+>.</para>
+    </sect2>
+    <sect2 id="quicksearch">
+      <title
+>Snelle zoekactie</title>
+      <!-- Thanks to Heiner Eichmann -->
+      <para
+>Dit onderdeel zal een snelle zoektocht naar de bestandsnaam in de actieve paneel uitvoeren.</para>
+      <para
+>Type <keycap
+>foo</keycap
+>(een karakter) om een snelle zoektocht in het actieve paneel uit te voeren naar een bestand waarvan de naam begint met <quote
+>foo</quote
+>. Een kleine snelzoekdialoog opent onder het actieve paneel. Type de eerste paar karakters van de gewenste bestandsnaam (meer dan een karakter is toegestaan), de cursor zal naar dat bestandsnaam (als het bestaat) springen, &eg; typ <quote
+>ab</quote
+> om te zoeken naar een bestand dat begint met <quote
+>ab</quote
+>. Met &Up;/&Down; kunt u naar de volgende of vorige match springen. &Esc; sluit het vak voor snelzoeken. De cursor zal op het laatst gevonden bestand blijven staan. Het snelzoeken ondersteund <ulink url="https://en.wikipedia.org/wiki/Regular_expression"
+>reguliere expressies</ulink
+> bij het zoeken van bestanden.</para>
+      <note>
+        <para
+>Als u <keycombo action="simul"
+>&Alt; <keycap
+>foo</keycap
+></keycombo
+> intoetst, dan wordt de sneltoets uitgevoerd. Als deze toetscombinatie niet als sneltoets is ingesteld, dan zal de betreffende letter <keycap
+>foo</keycap
+> worden gebruikt voor het snelzoeken.</para>
+      </note>
+      <para
+>Gebruik het venster <link linkend="key_bindings"
+>Sneltoetsen instellen</link
+> (<menuchoice
+><guimenu
+>Instellen</guimenu
+> <guimenuitem
+>Sneltoetsen instellen...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickfilter">
+      <title
+>Snelfilter</title>
+      <para
+>Dit onderdeel zal een snelfilter voor de lijst met bestandsnamen in het actieve paneel instellen.</para>
+      <para
+>Toets <keycombo
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+> om de snelfilter balk te openen. Toets <keycap
+>foo</keycap
+> (een karakter) om alle bestanden in het actieve paneel eruit te filteren die <quote
+>foo</quote
+> niet in hun naam hebben. U mag wildcards gebruiken bij het filteren. &eg; gebruik <quote
+>a*b</quote
+> om bestanden te filteren die <quote
+>a</quote
+> en <quote
+>b</quote
+> in hun naam hebben. Het snelfilter volgt de <link linkend="konfig-panel-general"
+>instelling voor hoofdlettergevoeligheid </link
+> van Snelzoeken.</para>
+      <para
+>Door in de snelfilter mode &Enter; in te drukken gaat de focus naar het paneel, als het paneel of het snelfilter de focus heeft dan sluit u met &Esc; het snelfilter. </para>
+      <para
+>Om de standaard sneltoets van Snelfilter te wijzigen gebruikt u het venster <link linkend="key_bindings"
+>Sneltoetsen instellen</link
+> (<menuchoice
+><guimenu
+>Instellen</guimenu
+> <guimenuitem
+>Sneltoetsen instellen...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickselect">
+      <title
+>Snel selecteren</title>
+      <para
+>Dit onderdeel zal een snelle selectie doen voor de lijst met bestandsnamen in het actieve paneel.</para>
+      <para
+>Toets <keycombo
+>&Ctrl;&Shift;<keycap
+>S</keycap
+></keycombo
+> om de snelle selectiebalk te openen. Toets <keycap
+>foo</keycap
+> (een karakter) om alle bestanden in het actieve paneel eruit te filteren die <quote
+>foo</quote
+> niet in hun naam hebben. U mag wildcards gebruiken bij het filteren. &eg; gebruik <quote
+>a*b</quote
+> om bestanden te filteren die <quote
+>a</quote
+> en <quote
+>b</quote
+> in hun naam hebben. Het snel selecteren volgt de <link linkend="konfig-panel-general"
+>instelling voor hoofdlettergevoeligheid</link
+> van Snelzoeken.</para>
+      <para
+>Door in de snelle selectiemodus &Enter; in te drukken gaat de focus naar het paneel, als het paneel of het snel selecteren de focus heeft dan sluit u met &Esc; het snel selecteren. </para>
+      <para
+>Om de standaard sneltoets van Snel selecteren te wijzigen gebruikt u het venster <link linkend="key_bindings"
+>Sneltoetsen instellen</link
+> (<menuchoice
+><guimenu
+>Instellen</guimenu
+> <guimenuitem
+>Sneltoetsen instellen...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="context-menu">
+      <title
+>Contextmenu</title>
+      <para
+>&krusader; heeft vele Contextmenu´s waarmee u makkelijker via de muis bewerkingen kunt uitvoeren, meestal opent u met een rechtsklik de Contextmenu (afhankelijk van uw instellingen voor de <link linkend="selection_modes"
+>Selectie Modus</link
+>). Deze lijst geeft u een overzicht van de meest belangrijke contextmenu´s. Probeer ze eens uit om de beschikbare commando´s te ontdekken. <itemizedlist>
+        <listitem>
+          <para
+><link linkend="mainwindow"
+>Hoofdwerkbalk</link
+> (oriëntatie, tekst positie, pictogramgrootte)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="list_panel"
+>Paneel met lijst</link
+> van een bestand of map</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="cmdline"
+>Opdrachtregel</link
+> (ongedaan maken, plakken, tekst aanvullen...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="termemu"
+>Terminalemulator</link
+> (signaal verzenden, lettertype, geschiedenis...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="folder-tabs"
+>Tabbladen van folders</link
+> (nieuw, dupliceren, sluiten)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="krusearcher"
+>KruSearcher</link
+> Zoek lijst met resultaatbestanden (<keycap
+>F3</keycap
+> Beeld, <keycap
+>F4</keycap
+> Bewerken)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="mount-man"
+>MountMan</link
+> (afkoppelen, formatteren...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="synchronizer"
+>Mappen synchroniseren</link
+> Bestandenlijst.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="useractions"
+>GebruikerActies</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Acties bij recht klikken in &konqueror; worden getoond in &krusader;</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="list_panel"
+>Kolomkoppen</link
+> tonen/verbergen</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="bookman"
+>Bookmarks</link
+> permanente bladwijzers in-/uitschakelen</para>
+        </listitem>
+        <listitem>
+          <para
+>...</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="basic">
+    <title
+>Basis bestandsbeheer</title>
+    <sect2 id="executing_files">
+      <title
+>Bestanden uitvoeren</title>
+      <para
+>U kunt alleen in het actieve paneel bestanden uitvoeren. U hoeft alleen maar op een bestand te (dubbel-)klikken of op &Enter; te drukken als het onder de cursor is om het uit te voeren. &krusader; zal het in het voor dit bestandstype (foto, tekstbestand...) standaard programma openen of het bestand wordt uitgevoerd (script, binary...). Als u wilt dat een ander programma het bestand opent, klik dan dan met de &RMB; op het bestand en ga naar het submenu <guisubmenu
+>Openen met</guisubmenu
+> waarin u meer keuzes vindt. &krusader; is compatibel met de standaard bestandsbeheerder van &plasma; voor alle bestandstypes behalve archieven omdat die in een paneel van worden geopend en niet in een extern programma. Zie <link linkend="konfig-archives"
+>the archives page in Konfigurator</link
+> voor details.</para>
+    </sect2>
+    <sect2 id="copying">
+      <title
+>Kopiëren en verplaatsen</title>
+      <figure id="screenshot-copyjob" float="1">
+        <title
+>Dialoog Kopiëren</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="copyjob.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Dialoog Kopiëren</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>Om bestanden/mappen te kopiëren of te verplaatsen, hoeft u ze alleen maar te selecteren en op <keycap
+>F5</keycap
+> te drukken om ze te kopiëren of op <keycap
+>F6</keycap
+> te drukken om ze te verplaatsen. &krusader; zal proberen om de tijd van modificatie te bewaren . Bij het kopiëren van map verandert het eigendom naar de gebruiker die de map kopieert, de groep verandert naar de standaard groep van de gebruiker. Bij het kopiëren van een bestand verandert het eigendom naar de gebruiker die het bestand kopieert, de groep verandert naar de standaard groep van de gebruiker, en de permissies blijven behouden. Bij het verplaatsen van een bestand of map blijven de eigenaar, de groep en de permissies behouden. Bij het kopiëren of verplaatsen van bestanden/mappen opent een dialoog waarin u de doelbestemmig kunt kiezen. De standaard doelbestemming is de geselecteerde map in het andere paneel. Als u een gedeeltelijke &URL; invoert, dan zal &krusader; de huidige map in het huidige paneel als &URL; basis gebruiken.</para>
+    </sect2>
+    <sect2 id="queue">
+      <title
+>Wachtrijbeheerder</title
+> 
+      <para
+>De bewerkingen van kopiëren, verplaatsen, inpakken en uitpakken kunt u in een wachtrij plaatsen. Na het selecteren van kopiëren of verplaatsen, drukt u op <keycap
+>F2</keycap
+> om het te gebruiken. Na het selecteren van inpakken of uitpakken drukt u op <keycap
+>F2</keycap
+> om het te gebruiken. Of de sneltoetsen: kopiëren met wachtrij  <keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo
+> , verplaatsen met wachtrij <keycombo action="simul"
+>&Shift;<keycap
+>F6</keycap
+></keycombo
+> . De wachtrijbeheerder voert de acties na elkaar uit. Bijvoorbeeld, als u een USB-stick (die langzaam is) heeft, en u wilt 40 bestanden ernaar kopiëren, dan is het veel beter om ze stuk achter elkaar te kopiëren dan om 40 bestanden parallel te kopiëren. Hiervoor is wachtrijbeheer belangrijk. Als u 40 bestanden parallel inpakt/uitpakt, dan overbelast u uw computer, ze aan een wachtrij toevoegen is dan veel handiger. </para>
+      <para
+>Het is mogelijk om de <link linkend="job-queue-mode"
+>Wachtrijbeheerdermodus</link
+> om te schakelen met het menu-item <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Takenwachtrijmodus</guimenuitem
+></menuchoice
+>. </para>
+    </sect2>
+    <sect2 id="deleting">
+      <title
+>Verwijderen - verplaatsen naar de prullenbak van &plasma;</title>
+      <para
+>U verwijdert bestanden/mappen door ze te selecteren en op <keycap
+>F8</keycap
+> of <keycap
+>Delete</keycap
+> te drukken. Ze worden <link linkend="konfig-general"
+>standaard</link
+> verplaatst naar Prullenbak van &plasma;. U kunt de prullenbak van &plasma; openen via het prullenbak pictogram in de <link linkend="main_toolbar"
+>Hoofdbalk</link
+> of via de <filename
+>trash:/</filename
+> KIO slave. Fysiek is de prullenbak van &plasma; te vinden in <filename
+>~/.local/share/Trash/</filename
+> of <filename
+>Trash</filename
+> in de submap in de hoofdmap van de gebruiker die bepaald kan worden met het commando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. <keycombo action="simul"
+>&Ctrl; <keycap
+>Del</keycap
+></keycombo
+> verwijdert het bestand permanent. Een dialoog vraagt om uw bevestiging en geeft een waarschuwing bij het verwijderen van niet lege mappen. Natuurlijk worden alleen bewerkingen uitgevoerd die die door het besturingssysteem zijn toegestaan - in het andere geval krijgt u een melding. Als u geen bevestiging-dialogen wilt zien dan kunt u ze uitschakelen in de <link linkend="konfig-advanced"
+>Pagina Konfigurator geavanceerd</link
+>. Als u in de <link linkend="konfig-general"
+>Pagina Konfigurator algemeen</link
+> instelt om bestanden permanent te verwijderen, zal <keycap
+>F8</keycap
+> of <keycap
+>Delete</keycap
+> permanent bestanden verwijderen, terwijl <keycombo action="simul"
+>&Ctrl; <keycap
+>Delete</keycap
+></keycombo
+> ze naar &plasma; Prullenbak zal verplaatsen.</para>
+    </sect2>
+    <sect2 id="shred">
+      <title
+>Vernietig bestanden</title>
+      <para
+>Vernietigen is uit &kde; 4 verwijderd (en als consequentie ook uit &krusader;-2 voor &kde; 4). De belangrijkste reden is waarschijnlijk dat het vernietigen bestandssysteem afhankelijk is en dat zelfs als u het bestand 100 keer overschrijft, dan is nog niet zeker dat het van de schijf daadwerkelijk is verwijderd. Quote van de &kgpg; posts: <quote
+>The shred feature has been removed from the &kde; library. &kgpg; will not support this feature anymore. Moderns file systems use journalisation. So the shred feature should be implemented in the file system. Not in &kgpg;.</quote
+> Maar u zou een goede vernietiging <link linkend="useractions"
+>GebruikerActie</link
+> voor uw bestandssysteem kunnen gebruiken. Maar houd in gedachten dat als u 100% zeker wilt zijn dat het onmogelijk is dat iemand een verwijderd bestand kan lezen, dat u dan uw harde schijf moet vernietigen... </para>
+    </sect2>
+    <sect2 id="renaming">
+      <title
+>Bestanden hernomen, mappen aanmaken en behandeling van koppelingen</title>
+      <para
+>Hernoem het bestand onder de cursor met de toets <keycap
+>F2</keycap
+> of met twee enkele muisklikken. Als enkel de bestandsnaam hernoemt moet worden en niet de extensie, dan kunt u dit instellen in de <link linkend="konfig-general-atomic"
+>Konfigurator algemeen pagina</link
+>. <guilabel
+>Een nieuwe map aanmaken</guilabel
+> met de toets <keycap
+>F7</keycap
+>. Rechtsklikken op een normaal bestand geeft u de keuze <menuchoice
+><guisubmenu
+>Koppeling beheer</guisubmenu
+> <guimenuitem
+>Nieuwe symbolische koppeling</guimenuitem
+></menuchoice
+>. In een dialoog kunt de naam voor de symbolische koppeling opgeven. Deze symbolische koppeling zal naar het bestand/map wijzen waarop u met de &RMB; heeft geklikt. Als het bestand waarop u met de &RMB; heeft geklikt een symbolische koppeling is, dan krijgt u de keuze <menuchoice
+><guisubmenu
+>Koppeling beheer</guisubmenu
+> <guimenuitem
+>Koppeling omleiden</guimenuitem
+></menuchoice
+> waarmee u het doel van de koppeling kunt wijzigen.</para>
+    </sect2>
+    <sect2 id="viewing">
+      <title
+>Bestanden bekijken en bewerken</title>
+      <para
+><link linkend="krviewer"
+>KrViewer</link
+> heeft een hoofdstuk voor zichzelf.</para>
+    </sect2>
+  </sect1
+>&archives; </chapter>

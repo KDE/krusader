@@ -1,0 +1,360 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<glossary id="glossary">
+  <indexterm>
+    <primary
+>Woordenlijst</primary>
+  </indexterm>
+  <para
+>Dit hoofdstuk is bedoelt voor een uitleg van de verschillende woorden die door de hele documentatie van &krusader; worden gebruikt. Als u denkt dat er nog afkortingen of termen ontbreken, aarzel dan niet om contact op te nemen met het documentatie-team van &krusader;</para>
+  <para
+>Met dank aan <ulink url="https://en.wikipedia.org/"
+>wikipedia.org</ulink
+> de vrije encyclopedie die iedereen kan bewerken.</para>
+  <glossentry id="gloss-acl">
+    <glossterm>
+      <acronym
+>ACL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Access_control_list"
+> Access Control List</ulink
+>; een concept in computer veiligheid voor gebruik van gescheiden toegangsrechten. Het houd in dat het toekennen van toegangsrechten afhangt van bepaalde aspecten van het proces die het verzoek doet.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-bsd">
+    <glossterm>
+      <acronym
+>BSD</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Bsd"
+>Berkeley Software Distribution</ulink
+>; refereert naar elke van de verschillende vrije &UNIX;-compatibel besturingssystemen, afgeleid van &BSD; &UNIX;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-cvs">
+    <glossterm>
+      <acronym
+>CVS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Concurrent_Versions_System"
+> Concurrent Versions System</ulink
+>; een belangrijk onderdeel van Source Configuration Management (SCM). Door gebruik hiervan, kunnen programmeurs de geschiedenis van broncode en documenten bijhouden.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-deb">
+    <glossterm>
+      <acronym
+>DEB</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>Dit is een binair bestandsformaat in gebruik bij <ulink url="https://en.wikipedia.org/wiki/Debian"
+> <trademark class="registered"
+>Debian</trademark
+></ulink
+> en op &Debian; gebaseerde distributies. Het is een extensie van een installatie-bestand dat speciaal voor deze distributies zijn gemaakt; &eg; <filename
+>krusader_1.70.1-1_amd64.deb</filename
+>. Eenvoudig omschreven is het een speciaal archief met daarin alle programma-bestanden en hun gewenste toekomstige locatie in het systeem.</para>
+    </glossdef>
+  </glossentry>
+    <glossentry id="glos-dbus">
+    <glossterm
+>&DBus; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://freedesktop.org/wiki/Software/dbus"
+>&DBus;</ulink
+> is een inter-service berichten systeem. Ontwikkelt door &RedHat;, het is sterk beïnvloedt door &kde; 3 <link linkend="glos-dcop"
+>&DCOP;</link
+>, dat het uiteindelijk opvolgde. &krusader; kan &DBus; gebruiken voor communicatie met andere programma's. Andersom kunt u ook &DBus; gebruiken om andere programma´s controle te laten uitoefenen op &krusader;. Gebruik <application
+>qdbusviewer</application
+> voor het bestuderen van de mogelijkheden.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-dcop">
+    <glossterm
+>&DCOP; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Dcop"
+>Desktop Communication Protocol</ulink
+>; het interproces communicatie protocol gebruikt door &kde; 3 desktop environment. Hierdoor is het mogelijk dat verschillende &kde; 3 programma´s met elkaar kunnen communiceren. Vervangen door <link linkend="glos-dbus"
+>&DBus;</link
+> in &kde; 4.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-faq">
+    <glossterm>
+      <acronym
+>FAQ</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><link linkend="faq"
+>Frequently Asked Questions</link
+>; een document waar vaker gestelde vragen worden beantwoord. Als u een vraag heeft aan de programmeurs van &krusader;, dan zou u altijd eerst in de <link linkend="faq"
+>FAQ</link
+> moeten kijken.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-ftp">
+    <glossterm
+>&FTP;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/File_Transfer_Protocol"
+> File Transfer Protocol</ulink
+>; dit is een Internet protocol waarmee u bestanden van zogeheten &FTP; servers kunt krijgen.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-git">
+    <glossterm
+>Git</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Git_(software)"
+> Git</ulink
+>; een gedistribueerd version-control-system die <link linkend="gloss-svn"
+>Subversion</link
+> vervangt. Het wordt door veel softwareprojecten inclusief &kde; en &krusader; gebruikt.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gpl">
+    <glossterm>
+      <acronym
+>GPL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Gpl"
+>GNU General Public License</ulink
+>; een softwarelicentie gecreëerd door de <ulink url="https://www.fsf.org/"
+>Free Software Foundation</ulink
+> die de bepalingen definieert voor het vrijgeven van vrije software.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gui">
+    <glossterm
+>&GUI;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Graphical_user_interface"
+> Grafische gebruikersinterface (Graphical User Interface)</ulink
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-iso">
+    <glossterm>
+      <acronym
+>ISO</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>Een <ulink url="https://en.wikipedia.org/wiki/ISO_image"
+>ISO image</ulink
+> (<literal role="extension"
+>.iso</literal
+>) is een informele term voor een schijf-image met een ISO 9660 bestandssysteem. Meer losjes, refereert het aan een image op een optische schijf, zelfs een UDF-image.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kde">
+    <glossterm
+>&kde;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Kde"
+>K Desktop Environment</ulink
+>; een project waarin men een vrije grafische desktop omgeving voor &UNIX; compatibele systemen ontwikkelt.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-keybinding">
+    <glossterm
+>Toetsbinding</glossterm>
+    <glossdef>
+      <para
+>Alle onderdelen van &krusader; zijn bereikbaar via de menubalk, maar u kunt ook een sneltoets aan die functie verbinden. U zal echter ook merken dat ,  het gebruik van het <link linkend="keyboard-commands"
+>toetsenbord</link
+> opmerkelijk veel sneller is dan het gebruik van de menubalk of <link linkend="gloss-gui"
+>&GUI;</link
+>. <link linkend="keyboard-commands"
+>Gebruik van toetsenbord</link
+> is een belangrijk onderdeel van <link linkend="gloss-ofm"
+>Orthodox File Managers</link
+>. &krusader; komt met verschillende voorgedefinieerde <link linkend="key_bindings"
+>sneltoets instellingen</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kpart">
+    <glossterm
+>KPart</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/KPart"
+>KPart</ulink
+>; KParts is de naam van het component framework voor de &kde; desktop environment. KParts komt overeen met Bonobo componenten in <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, beide zijn gebaseerd op dezelfde concepten als &Microsoft;'s Object Linking en Embedding. &eg; als u &krusader;'s viewer gebruikt voor het bekijken van een &PDF;-bestand, dan zal &okular; in &krusader;'s viewer worden opgestart.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kio">
+    <glossterm
+><acronym
+>KIO</acronym
+> of kioslave</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Kioslave"
+>KDE Input/Output</ulink
+>; ook bekend als KIO Slaves is onderdeel van de &kde; architectuur. Het geeft toegang tot bestanden, web sites en andere bronnen via een enkele consistente API.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-mount">
+    <glossterm
+>aankoppelen</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Mount_%28computing%29"
+> Mounting</ulink
+>; in de computerkunde wordt het proces van het klaarmaken van een bestandssysteem voor gebruik door een besturingssysteem aankoppelen of mounting genoemd, meestal door het vooraf inlezen van bepaalde index data structuren van opslag naar geheugen. De term verwijst naar de periode in de computer-geschiedenis toen een computeroperator voor gebruik een magnetische tape of harde schijf op een spindel moest monteren.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ofm">
+    <glossterm>
+      <acronym
+>OFM</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://www.softpanorama.org/OFM/index.shtml"
+> Orthodox File Manager</ulink
+>; ook bekent als <quote
+>Commanders</quote
+>. Leden van deze familie van bestandsbeheerders gebruiken een eenvoudig maar krachtig interface dat afgeleid is van de <ulink url="https://en.wikipedia.org/wiki/Norton_Commander"
+> Norton Commander</ulink
+> (NC) interface.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-rpm">
+    <glossterm
+>RPM</glossterm>
+    <glossdef>
+      <para
+>Dit is een binair bestandsformaat in gebruik bij op de <ulink url="http://www.rpm.org/"
+>RPM Pakket Manager</ulink
+>gebaseerde distributies, een veel gebruikt pakket-systeem voor het &Linux; besturingssysteem. Als u nog &krusader; moet verkrijgen en uw systeem ondersteund RPM pakketten,dan zou u &krusader; pakketten eindigend op <literal role="extension"
+>.rpm</literal
+> moeten nemen.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ssh">
+    <glossterm
+><acronym
+>SSH</acronym
+>, Secure Shell</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/SSH"
+>SSH</ulink
+>; is een verzameling van standaarden met een bijbehorend netwerk protocol waarmee u een veilige verbinding tussen een lokale en een externe computer kunt maken.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-svn">
+    <glossterm
+><acronym
+>SVN</acronym
+>, Subversion</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Subversion"
+> Subversion</ulink
+>; een versie controle systeem dat een overtuigende vervanging is voor <link linkend="gloss-cvs"
+>CVS</link
+>. Het wordt door veel software projecten zoals &kde; gebruikt.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-termemu">
+    <glossterm
+>Terminalemulator</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Terminal_emulator"
+> Terminal emulator</ulink
+>; een eenvoudige shell in een venster; dit staat in andere omgevingen bekend als commandoregelvenster. Als u de shell wilt gebruiken en de commando´s wilt typen, dan zou u tenminste een paar eenvoudige commando´s voor uw besturingssysteem moeten kennen.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-posix">
+    <glossterm>
+      <acronym
+>POSIX</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Posix"
+>Portable Operating System Interface for uniX</ulink
+>; een verzamelnaam voor een familie van bij elkaar horende standaarden opgesteld door de IEEE die de application programming interface (API) voor software compatibel met varianten van het &UNIX; besturingssysteem definiëren.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-url">
+    <glossterm
+>&URL; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/URL"
+>Universal Resource Locator</ulink
+>; een universal resource locator is de technische term voor wat gewoonlijk als een website adres wordt aangeduid. Voorbeelden van &URL;s zijn <ulink url="https://krusader.org"
+> https://krusader.org</ulink
+> en <link linkend="remote-connections"
+>Externe verbindingen</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-vfs">
+    <glossterm>
+      <acronym
+>VFS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><link linkend="vfs"
+>Virtual file systems (VFS)</link
+> is een basis <link linkend="features"
+>OFM onderdeel</link
+>, dit is een abstracte laag over allerlei soorten gearchiveerde informatie (ZIP bestanden, &FTP; servers, TAR archieven, &NFS;-bestandssystemen, SAMBA shares, ISO &CD;/&DVD;-images, RPM catalogussen, &etc;), waardoor de gebruiker transparant toegang heeft tot alle informatie in deze verschillende soorten bestandssystemen - net alsof het een normale submap is! &krusader; ondersteund verschillende <link linkend="vfs"
+>Virtual file systems (VFS)</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-xml">
+    <glossterm
+>&XML;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Xml"
+>Extensible Markup Language</ulink
+>; een flexible tekst opmaak afgeleid van SGML (ISO 8879). Oorspronkelijk ontworpen om de problemen van large-scale electronic publishing op te lossen, &XML; speelt een steeds grotere rol in de uitwisseling van veel soorten data op het Web en andere plekken.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-zeroconf">
+    <glossterm
+>Zeroconf</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Zeroconf"
+>Zeroconf</ulink
+>; of Zero Configuration Networking is een verzameling technieken die automatisch een bruikbaar IP netwerk creëren zonder configuratie of speciale servers. Hierdoor kunnen gebruikers zonder kennis computers, netwerk-printers, en andere items aan elkaar verbinden waarbij ze kunnen verwachten dat ze automatisch beginnen te werken.</para>
+    </glossdef>
+  </glossentry>
+</glossary>

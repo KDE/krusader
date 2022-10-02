@@ -1,0 +1,114 @@
+<sect1 id="vfs">
+  <title
+>Виртуальная файловая система (ВФС)</title>
+  <indexterm>
+    <primary
+>ВФС</primary>
+  </indexterm>
+  <para
+>Основная <link linkend="features"
+>особенность OFM</link
+> — ВФС, это абстрактный уровень над всеми видами архивной информации (файлы ZIP, серверы FTP, архивы TAR, файловые системы NFS, серверы совместного доступа SAMBA, образы CD/DVD ISO, каталоги RPM и другими), который позволяет пользователю ясно и просто получать доступ ко всей информации во всех этих различных типах файловых систем — так же, как и к информации в обычных папках. В &krusader; поддерживается несколько виртуальных файловых систем:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>ВФС удалённого соединения</link
+>: предоставляет возможность работы с сеансами удалённого соединения (FTP, NFS, Samba, FISH, SFTP) как с локальными файловыми системами. Она идеально подходит для сложных удалённых операций и сравнима с отдельными графическими программами для удалённой работы.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Архивная ВФС</link
+>: позволяет просматривать архивы в ВФС как если бы они были папками (ACE, ARJ, bzip2, deb, gzip, iso, lha, RAR, rpm, tar, ZIP и 7-zip).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>ВФС поиска</link
+>: <guibutton
+>Поместить на панель</guibutton
+> размещает результаты поиска в ВФС.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>ВФС синхронизатора</link
+>: размещает результаты синхронизатора в ВФС.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Действия, которые выполняются над файлами в ВФС, выполняются над «реальными» файлами. Вы не просто удаляете файлы из ВФС — вы удаляете их с вашего диска. Ограничения: вы не можете создавать каталоги внутри ВФС.</para>
+  <para
+>Имеется возможность сохранить структуру папок при копировании из виртуального каталога в невиртуальный, для этого отметьте «Сохранить структуру виртуального каталога» в окне копирования. Представьте себе такой виртуальный каталог:<screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir1/myfile1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir1/myfile2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir2/myfile3</userinput
+></screen
+> Тогда выполните следующие шаги:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>перейдите в виртуальный каталог и выделите файлы</para>
+    </listitem>
+    <listitem>
+      <para
+>выберите целевой каталог (не виртуальный!)</para>
+    </listitem>
+    <listitem>
+      <para
+>нажмите <keycap
+>F5</keycap
+>, появится окно копирования</para>
+    </listitem>
+    <listitem>
+      <para
+>Отметьте <guilabel
+>Сохранить структуру виртуального каталога</guilabel
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Выберите <filename
+>/home/myhome/</filename
+> в качестве базового адреса</para>
+    </listitem>
+    <listitem>
+      <para
+>Начните копирование, нажав ОК</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Результат будет: <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir1/myfile1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir1/myfile2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir2/myfile3</userinput
+></screen>
+  </para>
+</sect1>

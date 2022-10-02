@@ -1,0 +1,78 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="mount-man">
+  <title
+>MountMan: werken met uw aangekoppelde bestandssystemen</title>
+  <indexterm>
+    <primary
+>Aankoppelen</primary>
+  </indexterm>
+  <para
+>MountMan is een hulpmiddel dat u helpt bij het hanteren van uw aangekoppelde bestandsystemen. Nadat het is opgeroepen, toont het een lijst met alle aangekoppelde bestandsystemen. Bij elk bestandssysteem, toont MountMan de naam (wat zijn eigenlijke device name is - &ie; <filename class="directory"
+>/dev/sda1</filename
+> voor de eerste partitie op de eerste <hardware
+>HDD</hardware
+>), het type (ext4, ext3, ntfs, vfat, ReiserFS...) en zijn aankoppelpunt op uw systeem (de map waarop het bestandssysteem is aangekoppeld).</para>
+  <para
+>Als u niet-verwijderbare apparaten uit de lijst wilt filteren, activeer dan het item <guilabel
+>Alleen verwijderbare apparaten tonen</guilabel
+> links van de lijst met apparaten. </para>
+  <figure id="screenshot-mountman" float="1">
+    <title
+>MountMan</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="mountman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>MountMan</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>MountMan toont ook informatie over het totale grootte, ongebruikte ruimte, en percentage vrije beschikbare ruimte. Als die getallen zeggen <guilabel
+>N/A</guilabel
+>, dan houd dat meestal in dat het bestandssysteem niet is aangekoppeld. Linksklikken  op een bestandssysteem laat aan de linkerkant van het venster een taart-diagram zien dat grafisch het gebruik van het bestandssysteem aangeeft. Als u klikt op een niet aangekoppeld bestandssysteem dan krijgt u een <guilabel
+>Niet gemount.</guilabel
+> te zien.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><keycap
+>Dubbelklikken</keycap
+> op een bestandssysteem zal MountMan sluiten en dat bestandssysteem in het actieve paneel van &krusader;.</para>
+    </listitem>
+    <listitem>
+      <para
+>Als u <keycap
+>Rechtsklikt</keycap
+> op een bestandssysteem dan opent een klein menuutje met de acties die u kunt uitvoeren op dat bestandssysteem. Op dit moment kunt u alleen aankoppelen (mounten), afkoppelen (unmounten) en uitwerpen (eject) (bij het klikken op een verwijderbaar bestandssysteem, &eg;, een &CD-ROM;).</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>We hebben plannen om MountMan in de volgende evolutie van &krusader; uit te breiden. Het zal partities kunnen formatteren, <filename
+>/etc/fstab</filename
+> kunnen bewerken, nieuwe bestandssystemen creëren en nog veel meer.... By the way, we zijn al begonnen eraan te werken, lees daarvoor de <quote
+>Snelle modus voor MountMan</quote
+>.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Snelle modus voor MountMan</emphasis>
+  </para>
+  <para
+>Om Snelle modus voor MountMan te activeren, klik de laterale knop met pijl op de knop MountMan op de <link linkend="mainwindow"
+>Hoofdwerkbalk</link
+>.</para>
+  <para
+>Als algemeen idee: toont een lijst met alle mogelijke aankoppelpunten. Elke keer dat het menu zichtbaar is, stelt het vast of een aankoppelpunt in gebruik is en neemt de juiste actie (aankoppelen of afkoppelen). Dit geeft een snelle interface naar MountMan. Dit werkt, en gebruikt momenteel KMountMan::mount en unmount. Het gebruikt de nieuwe &kf5-full; services voor het lezen van fstab zodat we veel code van de <quote
+>oude</quote
+> MountMan kunnen verwijderen.</para>
+</sect1>

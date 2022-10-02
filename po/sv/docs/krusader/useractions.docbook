@@ -1,0 +1,703 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="useractions">
+  <title
+>Användaråtgärder</title>
+  <indexterm>
+    <primary
+>Användaråtgärder</primary>
+  </indexterm>
+  <!-- Thanks to Jonas Bar -->
+  <para
+>Med Actionman kan du skapa, anpassa och hantera användaråtgärder. Vissa allmänna inställningar anpassas med <link linkend="konfig-useractions"
+>Konfigurator</link
+>. Med användaråtgärder kan du utföra åtgärder med filer i panelen eller direkt komma åt &krusader;s interna funktioner med parametrar genom att använda platsmarkörer. Åtgärderna integreras sömlöst med &plasma;s åtgärdssystem, vilket betyder att de vanliga dialogrutorna för att redigera verktygsrader och genvägar också kommer att visa användaråtgärder. Användaråtgärderna lagras i <filename
+>~/.local/share/krusader/useractions.xml</filename
+> eller <filename
+>krusader/useraction.xml</filename
+> i katalogen som kan bestämmas genom att använda kommandot <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. Flera <link linkend="useraction-xml"
+>exempel</link
+> ingår i dokumentationen. Användaråtgärder kan redigeras, läggas till, importeras och exporteras genom att använda Actionman. De fördefinierade användaråtgärderna är lagrade i <filename
+> /usr/share/krusader/useraction-examples.xml</filename
+>. Användaråtgärder kan visas på nästa alla ställen där <quote
+>normala</quote
+> åtgärder kan placeras. De kan till och med placeras i menyraden, men för att göra det måste filen <filename
+>krusaderui.rc</filename
+> redigeras. Några exempel:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="useractions-menu"
+>Användaråtgärdsmenyn</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="useractions"
+>Användarmenyn</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="actions_toolbar"
+>Åtgärdsverktygsraden</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Högerklickmenyer</para>
+    </listitem>
+    <listitem>
+      <para
+>etc.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>&krusader;s verktyg för användaråtgärder är mycket kraftfullt och anpassningsbart om du är bekant med att skriva användaråtgärder i allmänhet.</para>
+  <tip>
+    <para
+>Flera användaråtgärder tillhandahålls som standard. <link linkend="help_krusader"
+>Ladda gärna upp dina egna favoritåtgärder</link
+> så att de blir tillgängliga för &krusader;s gemenskapen. Tack!</para>
+  </tip>
+  <figure id="screenshot-actionman" float="1">
+    <title
+>Actionman</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="actionman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Actionman</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>I grunden är användaråtgärder ett sätt att anropa externa program med variabla parametrar. Du kan till exempel ha en användaråtgärd med <command
+>xmms <option
+>--enqueue %aList("Selected")%</option
+></command
+> för att köa alla markerade objekt i den aktiva panelen i den aktuella instansen av xmms. Dessutom finns begränsad åtkomst av &krusader;s interna funktioner som kräver parametrar. Exempelvis kan <command
+>%aPanelSize("80")%</command
+> ställa in den aktiva panelens bredd till 80 % av &krusader;s huvudfönster. Eftersom parametrar i platsmarkörer kan innehålla andra platsmarkörer, är få skript möjliga. </para>
+  <para>
+    <emphasis role="bold"
+>Hantera användaråtgärder</emphasis>
+  </para>
+  <para
+>Öppna Konfigurator och välj <menuchoice
+><guimenu
+>Användaråtgärder</guimenu
+> <guimenuitem
+>Starta Actionman</guimenuitem
+></menuchoice
+>, där du kan lägga till, redigera, ta bort, importera och exportera användaråtgärder.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Lägga till åtgärd</guimenuitem
+>: Om du lägger till en ny åtgärd, får du tomma inmatningsfält där du kan skriva in alla egenskaper du önskar. Åtgärden läggs till så fort du klickar på <guimenuitem
+>Verkställ</guimenuitem
+>. Därefter visas namnet i listan till vänster.</para>
+    </listitem>
+    <listitem>
+      <para
+>För att redigera en användaråtgärd: Markera användaråtgärden till vänster. Välj den därefter om du vill redigera dess egenskaper. Ändringarna får bara effekt när du klickar på <guimenuitem
+>Verkställ</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>För att ta bort en användaråtgärd</guimenuitem
+>: Markera användaråtgärden till vänster och klicka på borttagningsknappen <inlinemediaobject
+> <imageobject
+> <imagedata fileref="Icon-edit-delete.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>För att importera en användaråtgärd</guimenuitem
+>: Om du importerar några åtgärder, läggs de automatiskt till i listan. Om det finns namnkonflikter (namnen måste vara unika, eftersom de är identifierarna i &plasma;s åtgärdssystem), blir du tillfrågad om att lösa upp dem. För detta visar listan till vänster bara de åtgärder där det finns konflikter. Du kan nu ge dem nya namn eller ta bort dem.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Exportera åtgärder</guimenuitem
+>: Om du exporterar en användaråtgärd, måste du ange ett filnamn att lagra den i. Om filen inte finns, kommer den att skapas. Om filen redan innehåller användaråtgärder, kommer åtgärden du exporterar att läggas till i filen.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Alla åtgärder du har definierad visas nu i användarmenyn och i &plasma;s dialogrutor för att ändra genvägar och hantera verktygsrader. Dessutom visas alla åtgärder tillgängliga för det aktuella objektet i högerklicksmenyn.</para>
+  <para>
+    <emphasis role="bold"
+>Grundegenskaper</emphasis>
+  </para>
+  <para
+><guimenuitem
+>Identifierare</guimenuitem
+>, <guimenuitem
+>Titel</guimenuitem
+> och <guimenuitem
+>Kommandorad</guimenuitem
+> krävs alltid, alla övriga egenskaper är valfria.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Identifierare</guimenuitem
+>: Ett unikt namn på användaråtgärden som används för att identifiera den i &plasma;s åtgärdssystem.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Ikonknapp</guimenuitem
+>: Användaråtgärdens ikon.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Kategori</guimenuitem
+>: Kategorier används för en bättre översikt. De visas som undermenyalternativ i menyn <guimenuitem
+>Användaråtgärder</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Titel</guimenuitem
+>: Titel som visas i menyer eller dialogrutor.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Verktygstips</guimenuitem
+>: Ett verktygstips för användaråtgärden, som t.ex. visas i verktygsraden när musen hålls över den.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Beskrivning</guimenuitem
+>: En beskrivning av vad användaråtgärden gör. Den visas också som <guimenuitem
+>Vad är det här</guimenuitem
+> om du klickar med <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo
+> på användaråtgärden.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Kommando</guimenuitem
+>: Kommandot som kommer att köras. Du kan lägga till en platsmarkör med användning av ett grafisk gränssnitt med knappen <guibutton
+>Lägg till</guibutton
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Arbetskatalog</guimenuitem
+>: Arbetskatalogen för kommandot som kommer att köras.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Körningsläge</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Normal</guimenuitem
+>: Normalt körningsläge.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Kör i terminal</guimenuitem
+>: Kör kommandot i terminalen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Kör i inbäddad terminalemulator</guimenuitem
+>: Kör kommandot i den inbäddade terminalen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Samla utdata</guimenuitem
+>: Samlar utmatningen från programmet som körs i ett fönster i det grafiska användargränssnittet.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Skild standardfelutmatning</guimenuitem
+>: När <quote
+>Samla utdata</quote
+> används samlas standardutmatning och standardfelutmatning in separat.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Kommandot accepterar</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Bara lokala filer (inga webbadresser)</guimenuitem
+>: Talar om att platsmarkören bara ska returnera lokala adresser.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Webbadresser (fjärradresser och lokala adresser)</guimenuitem
+>: Talar om att platsmarkören ska returnera webbadresser.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <!--    Not yet implemented, but will be after 1.50 stable is released
+        <listitem
+><para
+><guimenuitem
+>On multiple selection</guimenuitem
+>:  </para>
+        <itemizedlist>
+   <listitem
+><para
+><guimenuitem
+>Separate call for each file</guimenuitem
+>: executes the command for each selected file.
+             </para
+></listitem>
+         </itemizedlist>
+      </listitem
+> -->
+    <listitem>
+      <para
+><guimenuitem
+>Standardgenväg</guimenuitem
+>: Ställer in en standardgenväg för användaråtgärden.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Aktiverad</guimenuitem
+>: Om markerad visas användaråtgärden i <link linkend="useractions"
+>Användarmenyn</link
+>, annars kommer användaråtgärden att vara dold.</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>Kommandoradsyntax</emphasis>
+  </para>
+  <para
+>I grunden kommer allt du skriver på kommandoraden att köras (om du skriver <quote
+>ls -l</quote
+>, körs <quote
+>ls -l</quote
+>). Du har möjlighet att få en teckensträng från &krusader; som representerar panelens aktuella tillstånd. Det görs med platsmarkörer. En platsmarkör börjar med ett procenttecken ('%') och följs av en panelindikering ('a' för aktiva, 'o' för den andra, 'l' för den vänstra och 'r' för den högra panelen. Om platsmarkören inte behöver en panel för åtgärden, måste du ange det med ett understreck '_'). Därefter kommer platsmarkörens namn (se listan nedan), som kan ha några parametrar omslutna med citationstecken. Till sist, åter ett procenttecken.</para>
+  <para
+>Det låter mycket komplicerat, så låt oss ta ett exempel: '%aList("Selected")%' ersätts av en lista med alla markerade objekt i den aktiva panelen. Så ett kommando som 'xmms --enqueue %aList("All", " ", "", "*.mp3")%' kör xmms med en lista av alla .mp3-filer i den aktuella panelen, åtskilda med ett enda blanktecken.</para>
+  <para
+>För närvarande är följande platsmarkörer implementerade:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><userinput
+>Path</userinput
+>: Ersätts av panelernas sökväg</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (valfri): Hantera mellanslag automatiskt. Förval: ja</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Count</userinput
+>: Ersätts med antalet i &lt;första parameter&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Vilka objekt; antingen <quote
+>All</quote
+> (alla), <quote
+>Selected</quote
+> (markerade), <quote
+>Files</quote
+> (filer) eller <quote
+>Dirs</quote
+> (kataloger)</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Filter</userinput
+>: Ersätts av panelens filtermask</para>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Current</userinput
+>: Ersätts av det aktuella objektet</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (valfri): Utelämna aktuell sökväg. Förval: nej</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (valfri): Hantera mellanslag automatiskt. Förval: ja</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>List</userinput
+>: Ersätts av en lista med hela &lt;första parameter&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Vilka objekt; antingen <quote
+>All</quote
+> (alla), <quote
+>Selected</quote
+> (markerade), <quote
+>Files</quote
+> (filer) eller <quote
+>Dirs</quote
+> (kataloger)</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (valfri): Skiljetecken mellan objekten. Förval: <quote
+>&nbsp;</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (valfri): Utelämna aktuell sökväg. Förval: nej</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (valfri): Filtermask (för alla utom <quote
+>Selected</quote
+>). Förval: *</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (valfri): Hantera mellanslag automatiskt. Förval: ja</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Select</userinput
+>: Hanterar markeringen i en panel</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Filtermask</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (valfri): hantera på vilket sätt; antingen <quote
+>Set</quote
+> (Sätt), <quote
+>Add</quote
+> (Lägg till) eller <quote
+>Remove</quote
+> (Ta bort). Förval: <quote
+>Set</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Goto</userinput
+>: Ändrar panelens sökväg till &lt;första parameter&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: En relativ eller absolut sökväg, eller en webbadress</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (valfri): Öppna platsen i en ny flik. Förval: nej</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+>: Frågar användaren efter någon text, och ersätts av svaret</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Frågan</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (valfri): Ett förvalt svar</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (valfri): En rubrik för frågerutan</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Clipboard</userinput
+>: Hanterar klippbordet</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Texten som ska läggas på klippbordet (du kanske vill använda <quote
+>%aCurrent%</quote
+> här)</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (valfri): Lägg till texten sist i klippbordets aktuella innehåll med detta skiljetecken</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Copy</userinput
+>: Kopierar en fil, användbart för snabba, lokala säkerhetskopior</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Vad ska kopieras</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Vart det ska kopieras</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Sync</userinput
+>: Öppnar synkroniseraren med en given profil</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: En profil för synkroniseraren</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>NewSearch</userinput
+>: Öppnar sökfönstren med en given profil</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: En profil för sökmodulen</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Profile</userinput
+>: Laddar en given panelprofil</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: En panelprofil</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Each</userinput
+>: Delar kommandoraden i en lista. Dessa kommandon körs ett i taget.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Ett listobjekt (alla, alla filer, alla kataloger, alla markerade).</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Move</userinput
+>: Flytta från källa till mål.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: En källa</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Ett mål</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>PanelSize</userinput
+>: Ändra förhållandet mellan de två panelerna.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (valfri): Ett heltalsvärde, t.ex. 80 gör att den aktiva panelen använder 80 % av &krusader;s bredd (eller höjd, i vertikalt läge), att utelämna parametern betyder 50 %.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+>: Avbryt körning.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (valfri): En sträng för frågan om att avbryta.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ListFile</userinput
+>: Ersätts med sökvägen eller filnamnet på en tillfällig fil som innehåller en lista med objekt</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: sökväg eller filnamn</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ColSort</userinput
+>: Ställer in sortering av en kolumn i en specifik panel.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Kolumn: Antingen <quote
+>Name</quote
+>, <quote
+>Ext</quote
+>, <quote
+>Type</quote
+>, <quote
+>Size</quote
+>, <quote
+>Modified</quote
+>, <quote
+>Perms</quote
+>, <quote
+>rwx</quote
+>, <quote
+>Owner</quote
+> eller <quote
+>Group</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Sorteringssekvens: Antingen <quote
+>Toggle</quote
+> (växla), <quote
+>Asc</quote
+> (Stigande), <quote
+>Desc</quote
+> (Fallande)</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>View</userinput
+>: Ställ in granskningsläge.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Granskningsläge: Antingen <quote
+>generic</quote
+> (generellt), <quote
+>text</quote
+> (text), <quote
+>hex</quote
+> (hexadecimalt)</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Fönsterläge: Antingen <quote
+>tab</quote
+> (flik) eller <quote
+>window</quote
+> (fönster)</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+  </itemizedlist>
+  <para
+>Ett hjälpverktyg för att lägga till platsmarkörer baserat på ett grafiskt användargränssnitt tillhandahålls. Mellanslag i Path, Current och List hanteras normalt automatiskt. Det finns ytterligare en viktig sak att känna till: Alla platsmarkörer som fungerar ihop med &krusader;s interna funktioner anropas när de expanderas (vilket betyder direkt när platsmarkörerna ersätts). Externa program anropas vid körning (vilket betyder efter att alla platsmarkörer har ersatts).</para>
+  <para>
+    <emphasis role="bold"
+>Avancerade egenskaper</emphasis>
+  </para>
+  <para
+>Här kan du ställa in var kommandot ska vara synligt (i högerklickmenyn). Dessutom är det möjligt att ändra kommandot som körs och bekräfta det separat. Du kan också ställa in en användare som kommandot ska köras för.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Ställer in om åtgärden är giltig för ett protokoll, sökväg, &MIME;-typ eller filnamn.</para>
+    </listitem>
+    <listitem>
+      <para
+>Justera kommandoraden innan den körs.</para>
+    </listitem>
+    <listitem>
+      <para
+>Ställ in en annan användare vid körning (det har ingen effekt för interna funktioner i &krusader;)</para>
+    </listitem>
+  </itemizedlist>
+</sect1>

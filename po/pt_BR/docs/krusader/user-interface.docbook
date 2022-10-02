@@ -1,0 +1,1072 @@
+<chapter id="user-interface">
+  <title
+>Interface do usuário</title>
+  <indexterm>
+    <primary
+>Interface do Usuário</primary>
+  </indexterm>
+  <sect1 id="ofm-userinterface">
+    <title
+>Interface de Usuário OFM</title>
+    <para
+>O conceito dos gerenciadores de arquivos OFM contém <link linkend="features"
+>diversas funcionalidades</link
+> que os tornam poderosos o suficiente para pertencerem aos melhores gerenciadores de arquivos dos dias de hoje. A interface é simples: painel esquerdo, painel direito e uma linha de comando abaixo. Devido à interação entre estes três itens, o gerenciamento de arquivos tornar-se mais eficiente.</para>
+    <para
+>Se você quiser saber <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+>como funciona o &krusader;</ulink
+> poderá experimentá-lo você mesmo, bastando instalá-lo no seu computador. Para aceitar um <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Gerenciador de Arquivos Ortodoxo (OFM)</ulink
+> como o &krusader;, o usuário terá que se habituar a <emphasis
+>ideias novas</emphasis
+> que já têm 20 anos, de fato. Se você preferir perder tempo e produtividade, pode continuar ainda usando os gerenciadores de arquivos com painéis únicos, baseados no &Windows; Explorer.</para>
+  </sect1>
+  <sect1 id="mainwindow">
+    <title
+>Janela Principal do &krusader;</title>
+    <!-- OLD
+<screenshot>
+   <screeninfo
+>&krusader; Main Window</screeninfo>
+    <mediaobject>
+     <imageobject
+><imagedata fileref="mainwindow.png" format="PNG"/></imageobject>
+     <imageobject
+><imagedata fileref="mainwindow.png" format="EPS"/></imageobject>
+     <textobject
+><phrase
+>&krusader; Main Window</phrase
+></textobject>
+     <caption
+><para
+>&krusader; is main window with all the different parts named on the screen.</para
+></caption>
+    </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-mainwindow" float="1">
+      <title
+>Janela Principal do &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="mainwindow.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Janela Principal do &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>A Interface do Usuário baseia-se no paradigma <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>OFM (Orthodox File Manager - Gerenciador de Arquivos Ortodoxo)</ulink
+>, um princípio com 20 anos que tem provado as suas bases. É reconhecidamente simples e poderoso. Nas seções a seguir, serão cobertas as funções básicas de cada parte, com a exceção de:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>A <link linkend="menu-commands"
+>Barra do Menu</link
+>, que tem um capítulo próprio.</para>
+      </listitem>
+      <listitem>
+        <para
+>Os <link linkend="bookman"
+>Favoritos</link
+>, por terem um capítulo próprio.</para>
+      </listitem>
+      <listitem>
+        <para
+>A <emphasis role="bold"
+>Barra de Estado</emphasis
+> mostra as propriedades do arquivo atual (que está em primeiro plano). </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  <sect1 id="toolbars">
+    <title
+>Barras de Ferramentas</title>
+    <para
+>O &krusader; vem com diversas barras de ferramentas.</para>
+    <sect2 id="main_toolbar">
+      <title
+>Barra Principal</title>
+      <indexterm>
+        <primary
+>Barra de Ferramentas</primary>
+        <secondary
+>Barra Principal</secondary>
+      </indexterm>
+<!-- OLD
+<screenshot>
+    <screeninfo
+>Main Toolbar</screeninfo>
+    <mediaobject>
+     <imageobject
+><imagedata fileref="toolbar.png" format="PNG"/></imageobject>
+     <imageobject
+><imagedata fileref="toolbar.png" format="EPS"/></imageobject>
+     <textobject
+><phrase
+>Main Toolbar</phrase
+></textobject>
+    </mediaobject>
+</screenshot>
+-->
+      <figure id="screenshot-maintoolbar" float="1">
+        <title
+>Barra Principal</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="toolbar.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Barra Principal</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>A Barra Principal do &krusader; é uma barra de ferramentas normal do &kde; que poderá ser arrastada pela aplicação ou configurada com o menu do <keycap
+>botão direito do mouse</keycap
+>. Você poderá decidir se quer mostrá-la ou não cada vez que inicia o &krusader; na <link linkend="konfigurator"
+>página de Inicialização do Konfigurador</link
+>, assim como poderá ativar ou não o seu uso na sessão atual, graças ao menu <link linkend="settings-menu"
+>Configurações</link
+>. O conteúdo da Barra Principal poderá ser configurado a partir da opção <guimenuitem
+>Configurar as Barras de Ferramentas</guimenuitem
+> do menu <link linkend="settings-menu"
+>Configurações</link
+>. Uma vez que diversos comandos e opções do &krusader; são dependentes do contexto, alguns comandos não estão sempre disponíveis. O ícone de uma ação inapropriada ou inativa aparecerá em cinza (desativado), proibindo o seu uso. Os <link linkend="bookman"
+>Favoritos</link
+> poderão ser colocados na Barra Principal e na Barra de Ações com o mouse, através de arrastamento.</para>
+    </sect2>
+    <sect2 id="actions_toolbar">
+      <title
+>Barra de Ações</title>
+      <indexterm>
+        <primary
+>Barra de Ferramentas</primary>
+        <secondary
+>Barra de Ações</secondary>
+      </indexterm>
+      <para
+>As <link linkend="useractions"
+>Ações do Usuário</link
+> e os <link linkend="bookman"
+>Favoritos</link
+> poderão ser "acoplados" na <guilabel
+>Barra de Ações</guilabel
+>. Para mostrá-los, use a opção <menuchoice
+> <guimenu
+>Configurações</guimenu
+> <guimenuitem
+>Mostrar a Barra de Ações</guimenuitem
+> </menuchoice
+>. Para adicionar ações do usuário, use a opção <menuchoice
+> <guimenu
+>Configurações</guimenu
+> <guimenuitem
+>Configurar as Barras de Ferramentas</guimenuitem
+> </menuchoice
+> e selecione a Barra de Ações. Você poderá, por exemplo, arrastar a Barra de Ações para o lado direito com o mouse.</para>
+    </sect2>
+    <sect2 id="location_toolbar">
+      <title
+>Barra da Localização</title>
+      <indexterm>
+        <primary
+>Barra de Ferramentas</primary>
+        <secondary
+>Barra da Localização</secondary>
+      </indexterm>
+      <para
+>Abaixo da <guibutton
+>Barra Principal</guibutton
+>, existe uma <guibutton
+>Barra de Localização</guibutton
+> para cada painel. Ela mostra a localização para onde aponta o painel no momento. Ao entrar nos pacotes, a localização será apresentada no seguinte formato: "tipo do pacote:/pasta/nome-pacote/pasta dentro do pacote". Este formato torna os locais uniformes e simples de ler. A <guibutton
+>Barra de Localização</guibutton
+> também suporta os KIO Slaves mas não todos, sendo que alguns só poderão ser usados com o <link linkend="krviewer"
+>visualizador</link
+>, enquanto outros não. O usuário poderá indicar uma localização desejada clicando nela.</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <userinput>
+              <replaceable
+>/mnt/cdrom/</replaceable>
+            </userinput>
+          </para>
+        </listitem>
+        <listitem>
+          <para
+>O <userinput
+> <command
+>settings:/</command
+> </userinput
+>irá navegar e abrir os itens das <application
+>Configurações do Sistema</application
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+>O <userinput
+> <command
+>trash:/</command
+> </userinput
+>abre a lixeira do &kde;.</para>
+        </listitem>
+        <listitem>
+          <para
+>O <userinput
+> <command
+>ipod:/</command
+> </userinput
+>usa o <ulink url="http://sourceforge.net/projects/kpod"
+>KIOipod-slave</ulink
+> para acessar, enviar e organizar as músicas guardadas no <trademark
+>Apple iPod</trademark
+>.</para>
+	  <!--FIXME last release is from 2007-12-11 so the kio ipodslave will not be usable in kde4-->
+        </listitem>
+        <listitem>
+          <para
+>E por último, as <link linkend="remote-connections"
+>Conexões Remotas</link
+> .</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Você pode copiar e colar um &URL; na <guibutton
+>Barra de Localização</guibutton
+> ou usar o botão do meio do mouse. Com o menu do botão direito, poderá configurar a função de completamento automático; está disponível também um botão para <guilabel
+>Limpar a Barra de Localização</guilabel
+>.</para>
+      <para
+>Navegação Rápida: Pressione &Ctrl; e com o mouse, no meio do &URL;, na <guibutton
+>Barra de Localização</guibutton
+>. Irá aparecer uma janela que lhe apresenta a próxima localização do &URL;. Pressionar o &Ctrl; + Botão Esquerdo do Mouse mostra a localização para onde estava apontando o mouse. Esta funcionalidade permite uma navegação mais rápida numa árvore de pastas grande.</para>
+    </sect2>
+    <sect2 id="panel_toolbar">
+      <title
+>Barra do Painel</title>
+      <indexterm>
+        <primary
+>Barra de Ferramentas</primary>
+        <secondary
+>Barra do Painel</secondary>
+      </indexterm>
+      <para
+>Cada painel tem uma <link linkend="konfig-panel-buttons"
+>barra configurável do mesmo</link
+>. A barra do painel completa, ou alguns botões específicos, poderão ser tornados visíveis ou invisíveis.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>Botão de Abertura da Pasta</guibutton
+>: abre o seletor de pastas.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Botão de Igualdade (=)</guibutton
+>: muda a pasta do painel para a mesma pasta do outro painel.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Botão para Subir (..)</guibutton
+>: muda a pasta do painel para a pasta-mãe.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Botão da Pasta Pessoal (~)</guibutton
+>: muda a pasta do painel para sua pasta pessoal.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Botão da Raiz (/)</guibutton
+>: muda a pasta do painel para a pasta de raiz ou de topo.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Botão de navegação sincronizada</guibutton
+>: quando estiver ativa, cada mudança da pasta no painel específico é efetuada também pelo outro painel.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+  <sect1 id="panels">
+    <title
+>Painéis</title>
+    <para
+>Os painéis do &krusader; são onde a maior parte das ações acontece. Atualmente, existem dois tipos de painéis:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="list_panel"
+>Painel de Lista</link
+>: mostra os arquivos e as pastas.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="popup_panel"
+>Painel Instantâneo</link
+>: tem diversos modos de visualização: Antevisão, Árvore, Seleção Rápida, Vista e Utilização do Disco, no caso do arquivo ou pasta que estiver em primeiro plano. O Painel Instantâneo poderá ser deixado aberto ou fechado, como for preferível.</para>
+      </listitem>
+    </itemizedlist>
+    <para
+>O &krusader; é um gerenciador de arquivos de "painéis-duplos", assim existem dois painéis: o painel "Esquerdo" e o "Direito" ou, segundo uma distinção lógica mais importante, o painel *Ativo* e o painel *Inativo*. O painel ativo é o que irá aceitar os dados inseridos pelo seu teclado ou mouse. Se escolher um comando no <guilabel
+>Menu</guilabel
+> ou na <guilabel
+>Barra de Ferramentas</guilabel
+>, esse comando irá atuar sobre os arquivos/pastas selecionados no painel ativo. Você poderá mudar de painéis com a tecla &Tab; ou clicando nas <guilabel
+>legendas de Informação ou de Totais</guilabel
+>, ou ainda selecionando qualquer arquivo num painel com o mouse. Como sempre as opções de inicialização padrão poderão ser modificadas com a <link linkend="konfigurator"
+>página de Inicialização do Konfigurador</link
+>, podendo controlar a sessão atual com o <link linkend="settings-menu"
+>menu de Configuração</link
+>.</para>
+    <!-- OLD
+<screenshot>
+    <screeninfo
+>List Panel</screeninfo>
+    <mediaobject>
+     <imageobject
+><imagedata fileref="listpanel.png" format="PNG"/></imageobject>
+     <imageobject
+><imagedata fileref="listpanel.png" format="EPS"/></imageobject>
+     <textobject
+><phrase
+>List Panel</phrase
+></textobject>
+     <caption
+><para
+>The List Panel with all the different parts indicated.</para
+></caption>
+    </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-listpanel" float="1">
+      <title
+>Painel da Lista</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="listpanel.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Painel da Lista</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <sect2 id="list_panel">
+      <title
+>Painel da Lista</title>
+      <indexterm>
+        <primary
+>Painel</primary>
+        <secondary
+>Painel da Lista</secondary>
+      </indexterm>
+      <para
+>Este é o painel padrão e onde irá passar a maior parte do tempo. Este painel mostra o conteúdo de uma pasta, a qual poderá ser local (parte dos seus sistemas de arquivos montados, um arquivo nativo ou arquivos dentro de um pacote) ou remoto (acessível por &FTP;, NFS ou Samba). Existem dois modos: <link linkend="view-menu"
+>Vista Detalhada</link
+> que mostra os nomes, tamanho, data e hora de criação e alguns atributos do arquivo. Além disso, existe também a <link linkend="view-menu"
+>Vista Breve</link
+>, que mostra apenas os nomes dos arquivos; o número de colunas breves poderá ser alterado clicando com o botão direito do mouse no cabeçalho <guilabel
+>Nome</guilabel
+>. A cópia/corte/colagem dos arquivos, através da área de transferência, também é suportada entre o &konqueror; e o &krusader; com o <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+>. O <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>R</keycap
+></keycombo
+> comuta o modo do <guilabel
+>Painel de Lista</guilabel
+> entre o horizontal e o vertical.</para>
+      <para
+>Estão disponíveis os seguintes itens:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Legenda da Informação</guilabel
+> </emphasis
+>: mostra quanto espaço livre está disponível fisicamente no sistema de arquivos, a capacidade deste sistema de arquivos e onde ele está montado. Se a informação não estiver disponível (como acontece nos sistemas de arquivos remotos), será apresentada uma mensagem com a razão da indisponibilidade, em vez da informação.</para>
+          <para id="media_button"
+>O <guibutton
+>botão Multimídia</guibutton
+>, do lado esquerdo da <guilabel
+>Legenda de Informação</guilabel
+>, mostra uma lista com todos os dispositivos multimídia, onde você poderá selecionar o dispositivo desejado (partição de disco rígido, DVD, dispositivo USB, &etc;). Pressionar <keycombo
+>&Ctrl;<keycap
+>Enter</keycap
+></keycombo
+> quando o <guibutton
+>menu Multimédia</guibutton
+> estiver aberto, irá montar o dispositivo selecionado, caso esteja desmontado, e desmontar se estiver montado. O menu de contexto fornece diversas opções, como <guilabel
+>Montar</guilabel
+>, <guilabel
+>Abrir em nova aba</guilabel
+>, &etc;. O <guibutton
+>menu Multimídia</guibutton
+> é <link linkend="konfig-panel-mediamenu"
+>configurável</link
+>.</para>
+        </listitem>
+          <listitem>
+          <para
+><emphasis
+> <guilabel
+>Cabeçalhos das Colunas</guilabel
+> </emphasis
+>: aqui você poderá alterar o critério de ordenação dos arquivos e pastas, como for da sua vontade. O critério padrão é por <guilabel
+>Nome</guilabel
+>. O critério de ordenação poderá ser imediatamente alterado, clicando para isso num dos <guilabel
+>Cabeçalhos de Colunas</guilabel
+>. Para inverter o critério de ordenação, clique uma segunda vez no Cabeçalho. Irá aparecer uma seta à direita do texto do cabeçalho, mostrando a direção da ordenação (Seta para cima = ordenação de A a Z, seta para baixo = ordenação de Z a A). As <link linkend="useractions"
+>Ações do Usuário</link
+> predefinidas associam uma combinação de teclas aos Cabeçalhos da Colunas. Os <guilabel
+>Cabeçalhos das Colunas</guilabel
+> por padrão são: <guilabel
+>Nome</guilabel
+>, <guilabel
+>Extensão</guilabel
+>, <guilabel
+>Tamanho</guilabel
+>, <guilabel
+>Modificado</guilabel
+>, <guilabel
+>rwx</guilabel
+>. As <link linkend="konfig-general"
+>Extensões atômicas</link
+> predefinidas, como o <literal role="extension"
+>.tar.gz</literal
+>, são apresentadas como uma única parte na coluna de <guilabel
+>Extensão</guilabel
+>. Estão disponíveis mais cabeçalhos de colunas opcionais com o menu do &RMB;. A largura dos <guilabel
+>Cabeçalhos das Colunas</guilabel
+> poderá ser alterada com o mouse, bastando clicar e arrastar a linha divisória entre elas para a largura desejada (mantendo o botão do mouse pressionado). Ambos os <guilabel
+>Painéis de Listas</guilabel
+> recordam os critérios de ordenação e a largura das colunas. Os <guilabel
+>Cabeçalhos das Colunas</guilabel
+> poderão ser alterados e gravados individualmente para cada painel.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Lista de Arquivos</guilabel
+> </emphasis
+>: mostra os arquivos e pastas na pasta escolhida. A <link linkend="quicksearch"
+>Pesquisa Rápida</link
+> permite-lhe procurar pelos arquivos, escrevendo o seu nome ou os primeiros caracteres do mesmo. Pressionar &Enter; ou realizar duplo-clique sobre um arquivo, irá abrir/executar esse arquivo. Você poderá selecionar ou desligar os arquivos com o mouse, com a tecla <keycap
+>Insert</keycap
+> ou com o <link linkend="edit-menu"
+>menu Editar</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Legenda de Totais</guilabel
+> </emphasis
+>: a seleção ou não dos arquivos irá mudar a <emphasis
+> <guilabel
+>Legenda de Totais</guilabel
+> </emphasis
+> no fundo do painel, mostrando quantos arquivos você selecionou (e quanto espaço em disco usam no total), assim como a utilização total dos arquivos e do disco da pasta atual (em oposição à legenda de informação que apresenta informações para o sistema de arquivos inteiro). Se uma pasta tiver um conjunto de subpastas poderá não ser possível soltar o &URL; sobre o painel (sobre o qual só estão visíveis as pastas), mas você poderá soltar a &URL; sobre a "Legenda de Informações" ou sobre a "Legenda de Totais" em alternativa. Quando estiver definido um <link linkend="view-menu"
+>filtro personalizado</link
+>, este irá mostrar a opção, como por exemplo: [*.cpp].</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Ao usar as "<link linkend="konfig-color"
+>cores</link
+> predefinidas do &kde;", então os arquivos selecionados são apresentados em azul e o arquivo atual com um retângulo fino. Por padrão, é apresentado um ícone de acordo com o tipo de arquivo. Use a <link linkend="konfig-panel"
+>página de Aparência &amp; Comportamento do Konfigurador</link
+> para alterar a configuração padrão, de acordo com as suas necessidades individuais.</para>
+      <para
+>Algumas <link linkend="key_bindings"
+>Combinações de Teclas</link
+> do <guilabel
+>painel de lista</guilabel
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+>O <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> irá atualizar o painel.</para>
+        </listitem>
+        <listitem>
+          <para
+>Coloque um arquivo ou pasta do painel esquerdo em primeiro plano, pressione <keycombo action="simul"
+>&Ctrl; <keycap
+>Direita</keycap
+></keycombo
+> para que o painel direito mude: <itemizedlist>
+            <listitem>
+              <para
+>Num arquivo: o painel direito fica na mesma localização que o painel esquerdo.</para>
+            </listitem>
+            <listitem>
+              <para
+>Numa pasta: o painel direito abre a pasta selecionada no painel esquerdo.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Para o painel direito: pressione <keycombo action="simul"
+>&Ctrl; <keycap
+>Esquerda</keycap
+></keycombo
+> para mudar o painel esquerdo.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="popup_panel">
+      <title
+>Painel Instantâneo</title>
+      <indexterm>
+        <primary
+>Painel</primary>
+        <secondary
+>Painel Instantâneo (Terceiro Painel)</secondary>
+      </indexterm>
+      <para
+>Esta é a "Terceira Mão do &krusader;"; clique no botão com a seta para cima, à direita da <guilabel
+>Legenda de Totais</guilabel
+> ou em <keycombo action="simul"
+>&Alt; <keycap
+>Baixo</keycap
+></keycombo
+> para abrir o <guilabel
+>Painel Instantâneo</guilabel
+>. Este painel tem diversos modos de visualização que poderão ser ativados se clicar no botão apropriado.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Painel de Antevisão</guilabel
+> </emphasis
+>: faz uma previsão do arquivo que está em primeiro plano (o arquivo selecionado no momento).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Painel em Árvore</guilabel
+> </emphasis
+>: é usado para navegar rapidamente pela árvore de pastas locais. Este painel comporta-se como a lista, mas só poderá selecionar uma pasta de cada vez e, se fizer duplo-clique ou pressionar &Enter; sobre uma pasta, irá abrir essa pasta no painel ativo. Os painéis suportam por completo as ações de mouse por arrastamento (cópia, movimento, criação de ligações).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Painel de Seleção Rápida</guilabel
+> </emphasis
+>: é usado para selecionar rapidamente os arquivos, &eg;, insira <literal role="extension"
+>*.png</literal
+> e clique no botão <guibutton
+>Ir</guibutton
+>. O botão do "disquete" irá guardar a seleção atual. A janela de "seleção do grupo" também está disponível.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Painel de Visualização</guilabel
+> </emphasis
+>: faz a visualização de um arquivo de texto, uma imagem, &etc; É gerada uma área de miniaturas sempre que abrir o <guilabel
+>Painel de Visualização</guilabel
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Painel de Utilização do Disco</guilabel
+> </emphasis
+>: vê a <link linkend="diskusage"
+>Utilização do Disco</link
+> de uma pasta.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Se for necessário, você poderá redimensionar a janela &eg; para mostrar melhor uma imagem ou ver o conteúdo de um arquivo. Clique na tecla de cursor para baixo para fechar o <guilabel
+>Painel Instantâneo</guilabel
+>.</para>
+    </sect2>
+    <sect2 id="folderhistory">
+      <title
+>Histórico de Pastas</title>
+      <para
+>Ambos os painéis recordam as pastas visitadas recentemente. Clique no botão de <guibutton
+>Histórico de Pastas</guibutton
+> (o símbolo do "relógio") para abrir a lista do histórico de pastas. Aqui você poderá mudar rapidamente para as pastas visitadas recentemente. A pasta recente em primeiro plano está assinalada. Em cada novo início do &krusader;, a lista de histórico é preenchida com os itens da execução anterior (o histórico é salvo).</para>
+    </sect2>
+  </sect1>
+  <sect1 id="cmdline_termemu">
+    <title
+>Linha de Comando / Emulador de Terminal</title>
+    <para
+>Esta parte da <link linkend="gloss-gui"
+>GUI</link
+> poderá ter quatro modos: Linha de Comando, Emulador de Terminal, ambos ou nenhum. Você poderá escolher o seu modo de operação na inicialização, com a <link linkend="konfigurator"
+>página de Inicialização do Konfigurador</link
+> ou para a sessão atual, com o <link linkend="settings-menu"
+>menu de Configuração</link
+> . </para>
+
+  <sect2 id="cmdline">
+    <title
+>Linha de comando</title>
+
+    <!-- OLD
+<screenshot>
+  <screeninfo
+>Command line</screeninfo>
+  <mediaobject>
+   <imageobject
+><imagedata fileref="cmdline.png" format="PNG"/></imageobject>
+   <imageobject
+><imagedata fileref="cmdline.png" format="EPS"/></imageobject>
+   <textobject
+><phrase
+>Command Line</phrase
+></textobject>
+   <caption
+><para
+>Command Line</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-commandline" float="1">
+      <title
+>Linha de comando</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="cmdline.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Linha de comando</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>O modo tradicional da linha de comando oferece uma linha de texto única para inserir comandos, contendo também três botões:</para>
+     <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>histórico de comandos</guibutton
+> (seta para baixo), de modo a abrir rapidamente os comandos anteriores </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>Expansão da ação do usuário</guibutton
+> (botão de soma em verde), de modo a adicionar <link linkend="useractions"
+>itens de substituição das ações do usuário</link
+> facilmente </para>
+        </listitem>
+
+        <listitem>
+          <para
+>o botão <guibutton
+>executar no modo de terminal</guibutton
+> (ícone do console), com as seguintes opções: <itemizedlist>
+          <listitem
+><para
+>Iniciar e Esquecer</para>
+          </listitem>
+
+          <listitem
+><para
+>Mostrar a Saída-Padrão e de Erros em Separado</para>
+           </listitem>
+
+          <listitem
+><para
+>Mostrar a Saída-Padrão e de Erros Misturada</para>
+          </listitem>
+
+           <listitem
+><para
+>Iniciar num Novo Terminal</para>
+          </listitem>
+
+           <listitem
+><para
+>Enviar para o Emulador de Terminal Incorporado</para>
+           </listitem>
+
+         </itemizedlist>
+          </para>
+
+        </listitem>
+
+
+     </itemizedlist>
+    <para
+>Quando você começar a digitar os seus comandos, a funcionalidade de completamento automático da linha de comando irá fazer as suas sugestões, de acordo com o que tiver definido no &systemsettings;. Se quiser alterar a forma como se comporta o completamento automático na sessão atual do &krusader;, clique com o <keycap
+>botão direito do mouse</keycap
+> na linha de comando e altere esse modo. À esquerda do campo de texto, irá encontrar a localização para onde aponta o painel ativo, a nível local. Esta localização é onde será executado o seu comando. Se escrever <userinput
+> <command
+>cd</command
+> <replaceable
+> &lt;pasta&gt;</replaceable
+> </userinput
+> na linha de comando, irá fazer também com que o painel ativo aponte para essa pasta. Clique <link linkend="cmdline_keybindings"
+>aqui</link
+> para ver as combinações de teclas da linha de comando.</para>
+</sect2>
+
+  <sect2 id="termemu">
+    <title
+>Emulador do Terminal</title>
+
+    <!--
+<screenshot>
+  <screeninfo
+>Terminal emulator</screeninfo>
+  <mediaobject>
+   <imageobject
+><imagedata fileref="terminalEmu.png" format="PNG"/></imageobject>
+   <imageobject
+><imagedata fileref="terminalEmu.png" format="EPS"/></imageobject>
+   <textobject
+><phrase
+>Terminal emulator</phrase
+></textobject>
+   <caption
+><para
+>Terminal emulator</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-terminalemulator" float="1">
+      <title
+>Emulador do Terminal</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="terminalEmu.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Emulador de terminal</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>O modo do emulador de terminal é um pequeno console, atuando de fato como um. Você poderá mudar a pasta ativa no terminal com o comando <userinput
+> <command
+>cd</command
+> </userinput
+>. O emulador de terminal irá seguir a pasta ativa no painel. Você pode arrastar um arquivo do <interface
+>Painel da Lista</interface
+> e o nome do arquivo será colado no Emulador de Terminal. Se arrastar vários arquivos, os nomes serão colados no Emulador de Terminal. Você poderá usar um emulador de terminal completo quando estiver <link linkend="konfig-general-general"
+>configurado</link
+> ou com a tecla <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>, que muda entre o modo normal e o de tela inteira. Se a linha de comando estiver oculta, pressione <keycombo action="simul"
+>&Ctrl; <keycap
+>Baixo</keycap
+></keycombo
+> para colocar o terminal em primeiro plano. Se invocar o <keycombo action="simul"
+>&Ctrl; <keycap
+>Cima</keycap
+></keycombo
+> irá voltar para baixo. O <keycombo action="simul"
+>&Ctrl; &Enter;</keycombo
+> e o <keycombo action="simul"
+>&Ctrl; &Shift; &Enter;</keycombo
+> colam o nome do arquivo. Você poderá fechar o emulador digitando <userinput
+> <command
+>exit</command
+> </userinput
+>.</para>
+    <para
+>Clique <link linkend="termemu_keybindings"
+>aqui</link
+> para ver as combinações de teclas do emulador de terminal.</para>
+    </sect2>
+
+  </sect1>
+  <sect1 id="fnkeys">
+    <title
+>Barra de Teclas de Função (FN)</title>
+    <!-- OLD
+<screenshot>
+  <screeninfo
+>Function (FN) Keys Bar</screeninfo>
+  <mediaobject>
+   <imageobject
+><imagedata fileref="fnkeys.png" format="PNG"/></imageobject>
+   <imageobject
+><imagedata fileref="fnkeys.png" format="EPS"/></imageobject>
+   <textobject
+><phrase
+>Function (FN) Keys Bar</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-fnkeys" float="1">
+      <title
+>Barra de Teclas de Função (FN)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="fnkeys.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Barra de Teclas de Função (FN)</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Esta barra obtém o seu nome a partir das teclas de funções (FN) que representa. Para cada botão desta barra, existe uma tecla de função correspondente que efetua a mesma ação. Esta barra é derivada do desenho dos primeiros gerenciadores de arquivos de painéis duplos, atuando as teclas FN da mesma forma com duas alterações: a tecla <keycap
+>F2</keycap
+> irá abrir um terminal no último ponto local para onde apontava o painel ativo, enquanto a <keycap
+>F9</keycap
+> é usada para mudar os nomes dos arquivos. O <guilabel
+>Mkdir</guilabel
+> (<keycap
+>F7</keycap
+>) pode criar árvores de pastas completas na hora &eg; <literal
+>nome/nome-2/teste</literal
+>. Você poderá optar por mostrar <link linkend="faqu_resize"
+>ou não</link
+> a <guilabel
+>barra de teclas FN</guilabel
+>, ao iniciar o &krusader;, através da <link linkend="konfigurator"
+>página de Inicialização do Konfigurador</link
+>, podendo também comutar a sua utilização na sessão atual com o <link linkend="settings-menu"
+>menu de Configuração</link
+>. As ações e <link linkend="key_bindings"
+>combinações de teclas</link
+> efetuadas pelas teclas de funções são configuráveis desde a versão 1.51, permanecendo ativas com ou sem a <guilabel
+>barra de teclas FN</guilabel
+> visível.</para>
+  </sect1>
+  <sect1 id="folder-tabs">
+    <title
+>Páginas de Pastas</title>
+    <!-- OLD
+<screenshot>
+  <screeninfo
+>Tabbed browsing</screeninfo>
+  <mediaobject>
+   <imageobject
+><imagedata fileref="tabbed_browsing.png" format="PNG"/></imageobject>
+   <imageobject
+><imagedata fileref="tabbed_browsing.png" format="EPS"/></imageobject>
+   <textobject
+><phrase
+>Tabbed browsing</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-tabbedbrowsing" float="1">
+      <title
+>Páginas de Pastas</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="tabbed_browsing.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Páginas de Pastas</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Com as <guibutton
+>Páginas de Pastas</guibutton
+>, você poderá mudar rapidamente entre várias pastas; cada painel tem as suas próprias <guibutton
+>Páginas de Pastas</guibutton
+>. As posições das <guibutton
+>Páginas de Pastas</guibutton
+> são guardadas ao fechar o &krusader;. Para mudar entre as <guibutton
+>Páginas de Pastas</guibutton
+>, clique nelas com o mouse. As <guibutton
+>Páginas de Pastas</guibutton
+> reduzidas possuem dicas que mostram a localização completa. Estão disponíveis as seguintes operações das <guibutton
+>Páginas de Pastas</guibutton
+>:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>Para <action
+>abrir uma nova página</action
+> e manter a página atual aberta: <keycap
+>Clique com o botão direito</keycap
+> na pasta e selecione a opção <guimenuitem
+>Abrir em uma nova página</guimenuitem
+> ou use a combinação <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>N</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Para <action
+>bloquear uma página</action
+>: clique com o <keycap
+>botão direito</keycap
+> e selecione a opção <guimenuitem
+>Bloquear a página</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Para <action
+>duplicar uma página</action
+>: <keycap
+>Clique com o botão direito</keycap
+> na página de Pastas e selecione a opção <guimenuitem
+>Duplicar a página atual</guimenuitem
+> ou use a combinação <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Para <action
+>fechar uma página</action
+> (exceto a da esquerda): <keycap
+>Clique com o botão direito</keycap
+> na página e selecione a opção <guimenuitem
+>Fechar a página atual</guimenuitem
+>, use o &MMB;, use o botão da <guibutton
+>cruz vermelha</guibutton
+> da página de Pastas ou ainda o <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Para criar uma <action
+>página de "pasta pessoal"</action
+>: clique no botão de <guibutton
+>Pasta pessoal</guibutton
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Para <action
+>mudar de páginas</action
+>: <keycombo action="simul"
+>&Shift; <keycap
+>Esquerda</keycap
+></keycombo
+> ou <keycombo action="simul"
+>&Shift; <keycap
+>Direita</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Para <action
+>abrir a pasta atual numa página nova</action
+>: use o <keycombo action="simul"
+> &Ctrl;&Alt;&Enter;</keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Para <action
+>fechar todas as outras páginas</action
+>, clique com o <keycap
+>botão direito</keycap
+> e selecione <guimenuitem
+>Fechar as páginas inativas</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Para <action
+>fechar as páginas duplicadas</action
+>, clique com o <keycap
+>botão direito</keycap
+> e selecione <guimenuitem
+>Fechar as páginas duplicadas</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Para mover a aba para outro painel, arraste-a para a área de outro painel com o &LMB; (o cursor do mouse se tornará uma seta apontado para a esquerda ou direita) e solte-a.</para>
+      </listitem>
+</itemizedlist>
+  </sect1>
+  <sect1 id="ui_buttons">
+    <title
+>Botões</title>
+    <para
+>Estão disponíveis diversos botões para as operações rápidas: <link linkend="main_toolbar"
+>Barra Principal</link
+>, <link linkend="actions_toolbar"
+>Barra de Ações</link
+>, <link linkend="panel_toolbar"
+>Barra do Painel</link
+>, <link linkend="location_toolbar"
+>Barra de Localização</link
+>, <link linkend="list_panel"
+>Multimídia</link
+>, <link linkend="folderhistory"
+>Histórico de Pastas</link
+>, <link linkend="bookman"
+>Favoritos</link
+>, <link linkend="folder-tabs"
+>Páginas</link
+>, <link linkend="cmdline"
+>Linha de comando</link
+>, <link linkend="fnkeys"
+>Teclas de Função</link
+>.</para>
+  </sect1>
+</chapter>

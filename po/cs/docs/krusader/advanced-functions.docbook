@@ -1,0 +1,52 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<chapter id="more-features">
+<title
+>Pokročilé funkce</title>
+&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>Odeslat soubor e-mailem</title
+> <para
+>Vyberte soubor a použijte <menuchoice
+> <guimenu
+>nabídku pravého tlačítka myši</guimenu
+> <guimenuitem
+>Poslat emailem</guimenuitem
+> </menuchoice
+>. Zvolení této volby otevře nové okno aplikace &kmail; se souborem, jež byl vybrán. Stačí vyplnit předmět, příjemce a odeslat jej. Aplikace &kmail; samozřejmě musí být správně nastavena.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>Oprávnění ACL</title>
+  <para
+><link linkend="gloss-acl"
+>Oprávnění ACL</link
+> jsou plně podporována při používání vlastností, zachování atributů a synchronizátoru (ve výchozím nastavení kompilace je synchronizátor zakázán). Chcete-li prohlížet/měnit oprávnění ACL, vyberte soubor a použijte <link linkend="context-menu"
+>místní nabídku</link
+>: <menuchoice
+> <guimenu
+>Vlastnosti</guimenu
+> <guimenuitem
+>Oprávnění</guimenuitem
+> <guimenuitem
+>Pokročilá oprávnění</guimenuitem
+> </menuchoice
+>. Při kopírování/přesouvání jsou kopírovány také oprávnění ACL. Stejně tak dobře je oprávnění ACL udržováno i synchronizátorem.</para>
+</sect1
+></chapter>

@@ -1,0 +1,62 @@
+<sect1 id="profiles">
+  <title
+>Profily</title>
+  <indexterm>
+    <primary
+>Profily</primary>
+  </indexterm>
+  <para
+>Pomocí profilů můžete ukládat a obnovovat Vaše oblíbené nastavení. Profily jsou podporovány různými funkcemi. Můžete mít např. rozdílné profily panelu (pracovní, na doma, pro vzdálená připojení atd.), profily hledávání, profily synchronizátoru atd.</para>
+  <sect2 id="panel_profiles">
+    <title
+>Profily panelů</title>
+    <para
+>Profil panelů obsahuje následující: všechny cesty karet (levých i pravých), současnou kartu (levou nebo pravou) a aktivní panel (levý nebo pravý). Celá tato informace je uložena v souboru <link linkend="config_files"
+>krusaderrc</link
+>. Můžete mít různé profily panelů, např. správa souborů, správa &FTP;, domovský adresář, pracovní adresář atd. Profil panelů může být <link linkend="c_panel_profiles"
+>uložen nebo obnoven</link
+> v nabídce <guimenu
+>Okno</guimenu
+>. <link linkend="konfig-startup"
+>Výchozí profil při spuštění</link
+> bude použit při spouštění aplikace &krusader;, ale můžete jej potlačit pomocí <link linkend="starting-krusader"
+>parametru v příkazu příkazového řádku</link
+>.</para>
+  </sect2>
+  <sect2 id="color_profiles">
+    <title
+>Profily barev</title>
+    <para
+>Mapy barev mohou být uloženy a obnoveny pomocí <link linkend="konfig-color"
+>Profilů barev</link
+>. Mapy barev aplikace &krusader; jsou dostupné na <ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663"
+>kde-files.org</ulink
+>.</para>
+  </sect2>
+  <sect2 id="key_profiles">
+    <title
+>Profily klávesových zkratek</title>
+    <para
+>Klávesové mapy mohou být uloženy a obnoveny pomocí <link linkend="configure-shortcuts"
+>Profilů klávesových zkratek</link
+>. Klávesové mapy aplikace &krusader; jsou dostupné na <ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663"
+>kde-files.org</ulink
+>.</para>
+  </sect2>
+  <sect2 id="search_profiles">
+    <title
+>Profily vyhledávání</title>
+    <para
+>Provádíte-li stále stejné vyhledávací operace, můžete nastavení vyhledávání uložit (např. zahrnutí souborů, vyloučení souborů atd.) do <link linkend="krusearcher"
+>Profilu vyhledávání</link
+>.</para>
+  </sect2>
+  <sect2 id="synchronizer_profiles">
+    <title
+>Profily synchronizátoru</title>
+    <para
+>Provádíte-li stále stejné synchronizační operace, můžete nastavení synchronizátoru uložit do <link linkend="synchronizer"
+>Profilu synchronizátoru</link
+>.  Synchronizátor je ve výchozím nastavení kompilace zakázán.</para>
+  </sect2>
+</sect1>

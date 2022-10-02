@@ -1,0 +1,662 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="features">
+<title
+>Можливості</title>
+<indexterm>
+  <primary
+>Можливості</primary>
+</indexterm>
+<note>
+  <para
+>У цьому розділі висвітлено найважливіші можливості і покращення. Розміри списку були б величезними, якби ми навели у ньому <emphasis
+>всі</emphasis
+> можливості та покращення. Додаткові відомості щодо можливостей можна знайти у цьому підручнику і у вмісті файлів <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+><filename
+>ChangeLog</filename
+></ulink
+> та <ulink url="https://commits.kde.org/krusader?path=NEWS"
+><filename
+>NEWS</filename
+></ulink
+>.</para>
+</note>
+<para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Можливості <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Традиційного інструменту керування файлами (Orthodox File Manager або OFM)</ulink
+></title>
+          <listitem>
+            <para
+>Дві потужні і прості у користуванні <link linkend="panels"
+>панелі OFM</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="cmdline"
+>Командний рядок</link
+> і додатковий <link linkend="termemu"
+>Емулятор термінала</link
+>, розташований нижче.</para>
+          </listitem>
+          <listitem>
+            <para
+>Сильна орієнтація на використання <link linkend="keyboard-commands"
+>клавіатури</link
+> і можливість виконувати всі дії без допомоги миші.</para>
+          </listitem>
+          <listitem>
+            <para
+>Залежний від контексту виклик скриптів або програм, наприклад, клацанням кнопки миші або натисканням клавіш &Enter; (виконання або відкриття файла у відповідній програмі), <keycap
+>F3</keycap
+> (перегляд) і <keycap
+>F4</keycap
+> (редагування).</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="useractions"
+>Меню користувача</link
+>, ви можете створити власне, налаштоване відповідно до ваших потреб меню.</para>
+          </listitem>
+          <listitem>
+            <para
+>Журнал, наприклад <link linkend="folderhistory"
+>журнал тек</link
+>, <link linkend="popular-urls"
+>популярні &URL;</link
+>...</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="vfs"
+>Віртуальні файлові системи (VFS)</link
+>, наприклад для <link linkend="remote-connections"
+>Віддалених з’єднань</link
+>, <link linkend="archives"
+>архівів</link
+>, результатів пошуку, синхронізації.</para>
+          </listitem>
+          <listitem>
+            <para
+>Потужний вбудований <link linkend="krviewer"
+>переглядач і редактор</link
+>, який за допомогою kpart підтримує файли у майже будь-якому форматі.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Модуль пошуку з додатковими можливостями</link
+>: можливість пошуку у архівах і пошуку вмісту на віддалених файлових системах.</para>
+          </listitem>
+          <listitem>
+            <para
+>Декілька режимів перегляду на панелях з перемиканням за допомогою <link linkend="sidebar"
+>бічної панелі</link
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Інструменти &krusader;</title>
+          <listitem>
+            <para
+><link linkend="remote-connections"
+>Віддалені з’єднання</link
+>: &FTP;/SAMBA з підтримкою SFTP/SCP за допомогою підлеглих засобів KIO</para>
+          </listitem>
+          <listitem>
+            <para
+>Графічна оболонка до програми <link linkend="locate"
+>locate</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="synchronizer"
+>Синхронізувати теки</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="mount-man"
+>Керування монтуванням</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="diskusage"
+>Використання диска</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="root-mode"
+>Режим адміністратора</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Можливості &krusader;</title>
+          <listitem>
+            <para
+>Робота з архівами: перегляд, видобування, пакування і перевірка. Серед підтримуваних <link linkend="archives"
+>архівів</link
+> : ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip і 7-zip.</para>
+          </listitem>
+          <listitem>
+            <para
+>Механізм <link linkend="checksum"
+>створення і перевірки контрольних сум</link
+> з підтримкою md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv і crc.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="calculate"
+>Обчислення місця</link
+>, зайнятого файлами, теками, архівами та віддаленими файловими системами.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-dir"
+>Порівняння</link
+> і <link linkend="view-menu"
+>фільтрування каталогів</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-content"
+>Порівняння файлів за змістом</link
+> за допомогою зовнішніх програм порівняння, зокрема &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> або <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="multi_rename"
+>Перейменування</link
+> файлів і тек за допомогою <ulink url="https://www.kde.org/applications/utilities/krename/"
+><application
+>KRename</application
+></ulink
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Повноцінна підтримка перетягування зі скиданням: можна перетягувати позначки з &konqueror; безпосередньо у файл <literal role="extension"
+>.tar.gz</literal
+>, з панелі &krusader; до смітника, на стільницю або у вікно &konqueror;</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-advanced"
+>Збереження дати</link
+> створення і зміни локальних файлів під час дій з копіювання/пересування.</para>
+          </listitem>
+          <listitem>
+            <para
+>Натискання клавіші <keycap
+>F9</keycap
+> відкриває <link linkend="tools-menu"
+>вікно термінала</link
+> у поточному каталозі.</para>
+          </listitem>
+          <listitem>
+            <para
+>Просте редагування <link linkend="file-menu"
+>прав доступу до файлів</link
+> і їх належності з підтримкою <link linkend="konfig-panel-view"
+>цифрових прав доступу</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Фільтри вибору</link
+>, які використовуються, наприклад, у Синхронізаторі і KruSearcher.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="jump_back"
+>Перескочити назад</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-general"
+>Врахування типів MIME</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="folder-tabs"
+>Панелі з вкладками</link
+> та <link linkend="krviewer"
+>Редактор/Переглядач з вкладками</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="quicksearch"
+>Швидкий пошук, позначення і фільтрування</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="splitter"
+>Інструмент поділу файлів</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Керування мишею </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="list_panel"
+>Швидка навігація</link
+> за допомогою панелі адреси.</para>
+          </listitem>
+          <listitem>
+            <para
+>Функція підказки «Що це?», окрім підказок, всюди, де це можливо.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_toolbar"
+>Синхронізований перегляд</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>Налаштування &krusader; відповідно до ваших потреб</title>
+          <listitem>
+            <para
+><link linkend="konfig-startup"
+>Конфігуратор</link
+> — Центр керування &krusader;.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="mainwindow"
+>Головна панель</link
+>, <link linkend="actions_toolbar"
+>Панель дій</link
+> для дій користувача і закладок.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="key_bindings"
+>Прив’язка клавіш</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="konfig-color"
+>Кольори</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_profiles"
+>Профілі панелей</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="bookman"
+>Інструмент керування закладками</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="selection_modes"
+>Режими вибору</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Багато інших можливостей, які ви можете <link linkend="konfig-startup"
+>налаштувати</link
+> бажаним чином.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      <itemizedlist>
+        <title
+>Додатки &krusader;</title>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Дії користувача</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="konfig-color"
+>Профілі кольорів</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="configure-shortcuts"
+>Профілі клавіатурних скорочень</link
+></para>
+        </listitem>
+      </itemizedlist
+>Отримайте і вивантажте власні додатки до &krusader; за адресою <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+<para>
+  <itemizedlist>
+    <title
+>Нові можливості у випуску &krusader;-1.80.0 «Final 3rd Stone»</title>
+    <listitem>
+      <para
+>Покращення у роботі з архівами <itemizedlist>
+        <listitem>
+          <para
+><link linkend="archives"
+>Підтримка паролів</link
+> для: arj, ace, rar and zip. З цієї версії паролі можна зберігати у <application
+>Kwallet</application
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>Підтримка 7-zip</link
+> за допомогою зовнішніх програм, <application
+>7z</application
+> і <application
+>7za</application
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>Підтримка автоматичного визначення</link
+>, за допомогою якої ви можете відкривати «приховані архіви» (наприклад документи <trademark class="registered"
+>OpenOffice</trademark
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+>Пакування і розпакування з цієї версії може працювати у фоновому режимі.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="list_panel"
+>Скорочений вигляд</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Багато покращень у системі <link linkend="useractions"
+>Дій користувача</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Незчисленні покращення зручності у користуванні, особливо у Конфігураторі, та значно перероблена панель меню.</para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="media_button"
+>Кнопка «Носії»</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Копіювання/Пересування: <link linkend="copying"
+>збереження всіх атрибутів</link
+> (часових міток, власника, групи).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-color"
+>Притлумлювати кольори неактивної панелі</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Зміна назви файла без суфікса, режим одного екземпляра, запуск до системного лотка. Все це можна увімкнути за допомогою <link linkend="konfigurator"
+>Конфігуратора</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Придатні до налаштування <link linkend="list_panel"
+>елементарні суфікси</link
+>, тепер можна зробити так, щоб суфікси на зразок <literal role="extension"
+>tar.gz</literal
+> було показано як єдину частину у <guilabel
+>стовпчику суфіксів</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Контекстне меню для закладок та можливість увімкнути або вимкнути особливі закладки.</para>
+    </listitem>
+    <listitem>
+      <para
+>Зміна вигляду <link linkend="menu-commands"
+>смужки меню</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Покращення <link linkend="termemu"
+>Емулятор термінала</link
+> з додаванням нових функцій, нових можливостей використання та нового вигляду.</para>
+    </listitem>
+    <listitem>
+      <para
+>Покращення <link linkend="synchronizer"
+>Синхронізатора</link
+> та можливість використання паралельної обробки на повільних серверах &FTP;.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-startup"
+>Режим запуску однієї копії</link
+>, <link linkend="konfig-startup"
+>запуску у системному лотку</link
+></para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="context-menu"
+>Контекстне меню для постійних закладок.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Повноцінна підтримка <link linkend="acl"
+>прав доступу ACL</link
+>, зокрема властивостей, збереження атрибутів синхронізації та іншого.</para>
+    </listitem>
+    <listitem>
+      <para
+>Результати пошуку, результати пошуку розташування, результати синхронізації: підтримка перетягування елементів і копіювання до буфера (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+>Багато виправлень вад.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Нові можливості у випуску &krusader;-1.90.0 «Power Stone»</title>
+    <listitem>
+      <para
+>Останній випуск для &kde; 3.x з великою збіркою дій користувача. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Нові можливості у випуску &krusader;-2.0.0 «Mars Pathfinder»</title>
+    <listitem>
+      <para
+>Перший випуск для середовищ серії &kde; 4.x </para>
+    </listitem>
+    <listitem>
+      <para
+>&krusader; працює у &Windows;! (Але програма ще не є такою корисною і потужною, якою вона є у середовищі &Linux;) </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="queue"
+>Керування чергою</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-panel"
+>П’ять методів на панелі!</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Нові можливості у випуску &krusader;-2.1.0-beta1 «Rusty Clutch»</title>
+    <listitem>
+      <para
+>Швидкий інструмент перегляду текстових або шістнадцяткових даних, що зберігаються у великих файлах. </para>
+    </listitem>
+    <listitem>
+      <para
+>Заблоковані вкладки. </para>
+    </listitem>
+    <listitem>
+      <para
+>Черга пакування/розпакування. </para>
+    </listitem>
+    <listitem>
+      <para
+>Краща взаємодія зі смітником. </para>
+    </listitem>
+    <listitem>
+      <para
+>Підтримка формальних виразів у інструменті швидкого пошуку, позначення і фільтрування файлів. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Нові можливості у випуску &krusader;-2.5.0 «Clear Skies»</title>
+    <listitem>
+      <para
+>Портовано на &kf5-full;. </para>
+    </listitem>
+    <listitem>
+        <para
+>Нова <link linkend="quickfilter"
+>панель швидкого фільтрування</link
+> із трьома різними режимами роботи: позначення, пошук і фільтрування. </para>
+    </listitem>
+    <listitem>
+        <para
+>Перероблений засіб керування чергою (JobMan) і нова <link linkend="job_toolbar"
+>панель завдань</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Нові можливості у випуску &krusader;-2.7.0 «Peace of Mind»</title>
+    <listitem>
+      <para
+>Швидкий пошук у меню «Закладки». </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="folder-tabs"
+>Пришпилені вкладки</link
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Панель підказки з даними щодо файла, коли ви наводите вказівник на пункт із назвою файла. </para>
+    </listitem>
+    <listitem>
+      <para
+>Розширені можливості для панелі ієрархії файлової системи на <link linkend="sidebar"
+>бічній панелі</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para
+><note
+><para
+>Якщо ви користуєтеся експериментальною версією або версією з git, ймовірно, що найсвіжіші нові можливості програми ще не описано у «Підручнику з &krusader;». Будь ласка, ознайомтеся з вмістом файла <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+>Changelog</ulink
+> у мережі або у кодах &krusader;, щоб дізнатися більше про нові можливості. Короткий опис можна знайти у файлі <ulink url="https://commits.kde.org/krusader?path=NEWS"
+>NEWS</ulink
+> у мережі або архіві з кодами &krusader;. Ми завжди будемо раді <link linkend="faqg_wish"
+>відгукам користувачів</link
+> і <link linkend="faqg_bug_report"
+>звітам про помилки</link
+>! </para
+></note
+></para>
+</chapter>

@@ -1,0 +1,62 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="profiles">
+  <title
+>Profiler</title>
+  <indexterm>
+    <primary
+>Profiler</primary>
+  </indexterm>
+  <para
+>Du kan spara och återställa dina favoritinställningar med profiler. Flera funktioner stöder profiler. Du kan t.ex. ha olika panelprofiler (arbete, hemma, fjärranslutningar, etc.), sökprofiler, synkroniseringsprofiler, etc.</para>
+  <sect2 id="panel_profiles">
+    <title
+>Panelprofiler</title>
+    <para
+>En panelprofil innehåller följande: Alla flikarnas sökvägar (vänster eller höger), den aktuella panelen (vänster eller höger) och den aktiva panelen (vänster eller höger). All denna information lagras i filen <link linkend="config_files"
+>krusaderrc</link
+>. Du kan ha flera panelprofiler, t.ex. filhantering, &FTP;-hantering, hem, arbete, etc. Panelprofilen kan <link linkend="c_panel_profiles"
+>sparas och återställas</link
+> med menyn <guimenu
+>Fönster</guimenu
+>. <link linkend="konfig-startup"
+>Standardprofilen vid start</link
+> kommer att användas när &krusader; startas, men du kan överskrida den med en kommandoradsväljare.</para>
+  </sect2>
+  <sect2 id="color_profiles">
+    <title
+>Färgprofiler</title>
+    <para
+>Färgscheman kan sparas och återställas med <link linkend="konfig-color"
+>färgprofiler</link
+>.</para>
+  </sect2>
+  <sect2 id="key_profiles">
+    <title
+>Snabbtangentprofiler</title>
+    <para
+>Tangentkataloger kan sparas och återställas med <link linkend="configure-shortcuts"
+>snabbtangentprofiler</link
+>.</para>
+  </sect2>
+  <sect2 id="search_profiles">
+    <title
+>Sökprofiler</title>
+    <para
+>Om du regelbundet utför samma sökåtgärd, kan du spara sökinställningarna (t.ex. inkludera filer, uteslutna filer, etc.) i en <link linkend="krusearcher"
+>sökprofil</link
+>.</para>
+  </sect2>
+  <sect2 id="synchronizer_profiles">
+    <title
+>Synkroniseringsprofiler</title>
+    <para
+>Om du regelbundet utför samma synkroniseringsåtgärd, kan du spara synkroniserarens inställningar i en <link linkend="synchronizer"
+>synkroniseringsprofil</link
+>.</para>
+  </sect2>
+</sect1>

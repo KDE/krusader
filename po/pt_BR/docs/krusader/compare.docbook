@@ -1,0 +1,114 @@
+<sect1 id="compare">
+  <title
+>Comparar</title>
+  <para
+>O &krusader; contém diversas funções de comparação: <guimenuitem
+>Comparar pelo conteúdo</guimenuitem
+>, <guimenuitem
+>Comparar as Pastas</guimenuitem
+> e a função de comparação <link linkend="synchronizer"
+>Sincronização</link
+> (por padrão é desativado em tempo de compilação).</para>
+  <sect2 id="compare-content">
+    <title
+>Comparar por conteúdo</title>
+    <indexterm>
+      <primary
+>Comparar</primary>
+      <secondary
+>Conteúdo</secondary>
+    </indexterm>
+    <para
+>Selecione um arquivo em cada painel e use a opção <menuchoice
+> <guimenu
+>Arquivo</guimenu
+> <guimenuitem
+>Comparar pelo conteúdo</guimenuitem
+> </menuchoice
+>. O &krusader; irá abrir uma aplicação gráfica de visualização de diferenças <link linkend="konfig-dependencies"
+>configurada</link
+>. São suportados o &kompare;, o <ulink url="http://kdiff3.sourceforge.net"
+><application
+>KDiff3</application
+></ulink
+> e o <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+  </sect2>
+  <sect2 id="compare-dir">
+    <title
+>Comparar as Pastas</title>
+    <indexterm>
+      <primary
+>Comparar</primary>
+      <secondary
+>Diretórios</secondary>
+    </indexterm>
+    <para
+>Compare os arquivos de cada painel com a opção <menuchoice
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Comparar as Pastas</guimenuitem
+> </menuchoice
+>. Por padrão, os arquivos mais recentes e únicos ficarão selecionados em cada painel, sendo que você poderá configurar este comportamento no menu de <guimenuitem
+>Configuração da Comparação</guimenuitem
+>. <note
+> <para
+>Os arquivos não são comparados pelo conteúdo, mas apenas pelos seus nomes e datas.</para>
+    </note
+></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Editar</guimenu
+> <guimenuitem
+>Configuração da Comparação</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Configura a opção para <guimenuitem
+>Comparar as Pastas</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Selecionar os Novos e Únicos</guimenuitem
+> (padrão)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Selecionar os Únicos</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Selecionar os Novos</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Selecionar os Diferentes e Únicos</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Selecionar os Diferentes</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>

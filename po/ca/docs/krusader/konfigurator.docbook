@@ -1,0 +1,2573 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="konfigurator">
+  <title
+>Konfigurador: centre de configuració del &krusader;</title>
+  <indexterm>
+    <primary
+>Configura</primary>
+    <secondary
+>Krusader</secondary>
+  </indexterm>
+  <para
+>El Konfigurador és el centre de configuració del &krusader;. Quan executeu el &krusader;, utilitzeu <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura el &krusader;...</guimenuitem
+></menuchoice
+>, i s'iniciarà el Konfigurador. Allà podreu modificar la forma en què treballa el &krusader; i personalitzar-lo segons les vostres pròpies necessitats. En qualsevol moment, en prémer el botó <guibutton
+>Aplica</guibutton
+> s'aplicaran els canvis, en prémer <guibutton
+>Tanca</guibutton
+> es tancarà el Konfigurador, i en prémer <guibutton
+>Valors</guibutton
+> es tornarà a aplicar la configuració de <quote
+>fàbrica</quote
+> del &krusader;. El Konfigurador es divideix en pàgines, cadascuna de les quals conté els elements relacionats amb aquesta pàgina. Per a alguns canvis a la &IGU;, haureu de tancar i tornar a iniciar el &krusader;.</para>
+
+<note>
+ <para
+>Des del &krusader;-1.80.0, els <link linkend="key_bindings"
+>lligams de tecla</link
+> i la <link linkend="mainwindow"
+>Barra d'eines principal</link
+>-<link linkend="actions_toolbar"
+>Barra d'eines d'accions</link
+> han rebut les seves pròpies finestres de configuració i, per tant, ja no formen part del Konfigurador, podreu configurar-les mitjançant el <link linkend="settings-menu"
+>menú <guimenu
+>Arranjament</guimenu
+></link
+>.</para>
+</note>
+
+  <sect1 id="konfig-startup">
+    <title
+>Inicial</title>
+    <figure id="screenshot-kgstartup" float="1">
+      <title
+>Configuració d'inici</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="kgstartup.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Configuració d'inici</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>La pàgina Inicial determina la forma en què es veurà (i funcionarà) el &krusader; quan es llança. Es divideix en dues parts principals:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>General</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Perfil en iniciar</guilabel
+>: inicia el <link linkend="panel_profiles"
+>Perfil del plafó</link
+> seleccionat durant l'inici. <guilabel
+>&lt;Última sessió&gt;</guilabel
+> és un perfil de plafó especial, es desa automàticament en tancar el &krusader;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostra la finestra de presentació</guilabel
+>: mostra una finestra de presentació en iniciar el &krusader;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mode una única instància</guilabel
+>: només permet que s'executi una instància del &krusader;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Tema d'icones alternatiu</guilabel
+>: permet configurar un tema d'icona alternatiu per al &krusader;. Sempre que no es trobi una icona en el tema d'icones del sistema, s'emprarà aquest tema com a alternativa. Si el tema alternatiu no conté la icona, s'usarà Brisa o Oxygen si algun d'aquests està present.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Interfície d'usuari</guilabel>
+        </term>
+        <listitem>
+          <para
+>Determina quines parts de la interfície d'usuari seran visibles després de l'inici. <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Desa l'última ubicació, la mida i la configuració dels plafons</guilabel
+>: quan es llança, el &krusader; canviarà la mida a la mida que tenia l'última vegada quan es va tancar. El &krusader; també apareixerà en la mateixa ubicació a la pantalla, amb els plafons ordenats i alineats com estaven. Si aquesta opció no està marcada, podreu utilitzar l'opció del menú <menuchoice
+><guimenu
+>Finestra</guimenu
+> <guimenuitem
+>Desa la posició</guimenuitem
+></menuchoice
+> per a establir manualment la mida i la posició del &krusader; a l'inici.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Actualitza la configuració predeterminada del plafó</guilabel
+>: si està marcada, la configuració predeterminada del plafó s'actualitzarà després de l'inici.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Inicia a la safata del sistema</guilabel
+>: si està marcada, el &krusader; s'iniciarà a la safata (si s'estableix minimitzar a la safata), sense mostrar la finestra principal.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Desa la configuració dels components en sortir</guilabel
+>: si està marcada, restaurarà els components de la interfície d'usuari al seu estat l'última vegada que es va aturar.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostra les tecles de funció</guilabel
+>: si està marcada, la <link linkend="fnkeys"
+>Barra de tecles de funció</link
+> serà visible després de l'inici.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostra la barra d'estat</guilabel
+>: si està marcada, la <link linkend="mainwindow"
+>Barra d'estat</link
+> serà visible després de l'inici. Només disponible si està desmarcat l'element <guilabel
+>Desa la configuració dels components en sortir</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostra la línia d'ordres</guilabel
+>: si està marcada, la <link linkend="cmdline"
+>línia d'ordres</link
+> serà visible després de l'inici. Només disponible si està desmarcat l'element <guilabel
+>Desa la configuració dels components en sortir</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostra el terminal incrustat</guilabel
+>: si està marcada, l'<link linkend="termemu"
+>emulador de terminal</link
+> serà visible després de l'inici. Només disponible si està desmarcat l'element <guilabel
+>Desa la configuració dels components en sortir</guilabel
+>.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-panel">
+    <title
+>Plafó</title>
+    <para
+>Aquí podreu determinar l'aspecte i comportament del plafó -el qual vol dir ajustar l'aplicació a les vostres necessitats-. La pàgina es divideix en sis pestanyes: <guilabel
+>General</guilabel
+>, <guilabel
+>Visualitza</guilabel
+>, <guilabel
+>Botons</guilabel
+>, <guilabel
+>Mode de selecció</guilabel
+>, <guilabel
+>Menú de suports</guilabel
+> i <guilabel
+>Disposició</guilabel
+>:</para>
+
+    <sect2 id="konfig-panel-general">
+      <title
+>General</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Barra del navegador</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Mode edició com a predeterminat</guilabel
+>: si està marcada, de manera predeterminada es mostrarà un camí editable a la barra del navegador.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Mostra el camí sencer de manera predeterminada</guilabel
+>: si està marcada, de manera predeterminada sempre es mostrarà tot el camí a la barra del navegador.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Operació</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Selecciona automàticament les carpetes</guilabel
+>: quan <link linkend="edit-menu"
+>seleccioneu un grup de fitxers</link
+> (sigui utilitzant <guilabel
+>Selecciona un grup</guilabel
+> o utilitzant <guilabel
+>Selecciona-ho tot</guilabel
+>), el &krusader; marcarà aquesta opció. Si està marcada, també se seleccionaran les carpetes que coincideixin amb els criteris de la selecció. En cas contrari, només se seleccionaran els fitxers.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Els canvis de nom afecten l'extensió</guilabel
+>: quan <link linkend="renaming"
+>canvieu el nom d'un fitxer</link
+>, se seleccionarà tot el text. Si voleu canviar el nom com ho fa el <trademark class="copyright"
+>Total Commander</trademark
+> només pel nom, sense l'extensió, desseleccioneu aquest element.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Desselecciona els fitxers abans de copiar/moure</guilabel
+>: si està marcada, el &krusader; eliminarà les marques de selecció dels fitxers o carpetes abans de <link linkend="copying"
+>copiar-les o moure-les</link
+> a la nova ubicació.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>El diàleg de filtratge recorda la configuració</guilabel
+>: si està marcada, el diàleg de filtratge s'obrirà amb l'última configuració de filtratge que s'han aplicat al plafó.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Pestanyes</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Usa noms de pestanya amb tot el camí</guilabel
+>: si està marcada, es mostrarà tot el camí a les <link linkend="folder-tabs"
+>pestanyes de carpeta</link
+>. En cas contrari, només es mostrarà l'última part del camí.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Pestanyes en expansió</guilabel
+>: si està marcada, el &krusader; expandirà les <link linkend="folder-tabs"
+>pestanyes de carpeta</link
+> fins a emplenar tota la barra.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Tanca la pestanya amb un doble clic</guilabel
+>: si està marcada, el &krusader; permetrà tancar les <link linkend="folder-tabs"
+>pestanyes de carpeta</link
+> fent doble clic a sobre seu.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Insereix les pestanyes després de l'actual</guilabel
+>: si està marcada, el &krusader; inserirà les pestanyes noves a la dreta de l'actual en lloc de col·locar-les al final de la <link linkend="folder-tabs"
+>barra de pestanyes</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Duplica la pestanya activa fent clic a</guilabel
+>: permet seleccionar el mode de duplicació de la pestanya activa (<guimenuitem
+>Desactivat</guimenuitem
+> (sense associació en fer clic), <guimenuitem
+>Alt+Clic</guimenuitem
+> o <guimenuitem
+>Ctrl+Clic</guimenuitem
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Posició de la barra de pestanyes</guilabel
+>: permet triar la posició de la <link linkend="folder-tabs"
+>barra de pestanyes</link
+> (<guimenuitem
+>Baix</guimenuitem
+> o <guimenuitem
+>Dalt</guimenuitem
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra els botons de tancar la pestanya</guilabel
+>: si està marcada, el &krusader; mostrarà els botons de tancar a les <link linkend="folder-tabs"
+>pestanyes</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra el botó de pestanya nova</guilabel
+>: si està marcada, el &krusader; mostrarà el botó de pestanya nova a la <link linkend="folder-tabs"
+>barra de pestanyes</link
+>.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Mostra la barra de pestanyes en una sola pestanya</guilabel
+>: si està marcada, el &krusader; mostrarà la barra de pestanyes fins i tot si només hi ha una <link linkend="folder-tabs"
+>pestanya</link
+> al plafó.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>El botó de pestanya nova duplicarà una pestanya</guilabel
+>: si està marcada, el botó de pestanya nova duplica una <link linkend="folder-tabs"
+>pestanya</link
+>, altrament, obre una pestanya en el directori d'inici.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Barra de cerca</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Comença en escriure</guilabel
+>: permet seleccionar si s'utilitza la característica de <link linkend="quicksearch"
+>cerca ràpida</link
+>. Quan està marcada, podreu obrir la barra de cerca i començar a cercar escrivint alguna cosa mentre visualitzeu el contingut de la carpeta en el plafó actiu.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Distingeix entre majúscules/minúscules</guilabel
+>: quan utilitzeu les característiques de <link linkend="quicksearch"
+>cerca</link
+> o <link linkend="quickfilter"
+>filtratge</link
+>: si està marcada (predeterminat a &UNIX;), tots els fitxers que comencin amb majúscules apareixeran abans que els fitxers que comencin amb minúscules. En cas contrari, tots els fitxers que comencin amb una lletra específica (majúscula o no) es mostraran junts.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Amunt/Avall cancel·la la cerca</guilabel
+>: prement la tecla &Up; o &Down; es cancel·larà la barra de <link linkend="quicksearch"
+>cerca</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Navegació per la carpeta amb la fletxa dreta</guilabel
+>: si està marcada, en prémer la tecla de &Right; s'entrarà a la carpeta, d'altra manera es capturarà la intenció d'editar el text de la cerca. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Posició</guilabel
+>: permet triar la posició de les barres de <link linkend="quicksearch"
+>cerca</link
+> i <link linkend="quickfilter"
+>filtratge</link
+> (<guimenuitem
+>Baix</guimenuitem
+> o <guimenuitem
+>Dalt</guimenuitem
+>).</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Mode predeterminat</guilabel
+>: permet triar el mode predeterminat de la barra de cerca entre <link linkend="quicksearch"
+>Cerca</link
+>, <guilabel
+>Selecciona</guilabel
+> i <link linkend="quickfilter"
+>Filtre</link
+>. Podreu canviar el mode més tard utilitzant la barra de cerca mateixa.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Cerca d'adreces d'interès</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Mostra sempre la barra de cerca</guilabel
+>: si està marcada, farà que la <link linkend="bookman"
+>barra de cerca d'adreces d'interès</link
+> estigui sempre visible.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Cerca en els elements especials</guilabel
+>: si està marcada, la <link linkend="bookman"
+>cerca d'adreces d'interès</link
+> també s'aplicarà als elements especials al menú d'adreces d'interès com <guimenuitem
+>Paperera</guimenuitem
+>, <guimenuitem
+>&URL; populars</guimenuitem
+>, <guimenuitem
+>Torna a un punt de retorn</guimenuitem
+>, &etc;</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Barra d'estat/evolució</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Mostra també la mida en bytes</guilabel
+>: si està marcada, el &krusader; mostrarà la mida en bytes a la barra d'estat o a la barra de totals.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra la informació sobre l'espai</guilabel
+>: si està marcada, el &krusader; mostrarà l'espai lliure/total en el disc a la barra d'estat/totals.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-panel-view">
+      <title
+>Visualitza</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>General</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Tipus de lletra de la vista</guilabel
+>: permet canviar el tipus de lletra emprat dins de les llistes de fitxers.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Retard del consell d'eina (ms)</guilabel
+>: permet configurar el retard en mil·lisegons entre el moment en què s'atura el punter del ratolí sobre un element en una llista de fitxers i el moment en què es mostrarà el consell d'eina.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra la mida dels fitxers de forma intel·ligent</guilabel
+>: si està marcada, la mida del fitxer apareixerà en kB, MB, &etc;, i no en bytes (predeterminat).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Permisos en format numèric</guilabel
+>: la columna <guilabel
+>Permisos</guilabel
+> mostrarà els números octals «<literal
+>0755</literal
+>» en lloc de «<literal
+>rwxr-xr-x</literal
+>».</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra els fitxers ocults</guilabel
+>: si està marcada, el &krusader; mostrarà els <quote
+>fitxers amb punt inicial</quote
+> que d'altra manera restarien ocults.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Carrega les icones de carpeta definides per l'usuari</guilabel
+>: si està marcada, el &krusader; carregarà les icones de carpeta definides per l'usuari.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra sempre l'element actual</guilabel
+>: si està marcada, el &krusader; mostrarà la decoració de la vora de l'element actual en el plafó inactiu.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Mètode d'ordenació</guilabel>
+	    <itemizedlist>
+             <listitem>
+              <para
+><guilabel
+>Krusader (predeterminat)</guilabel
+>: la comparació emprada fins ara. S'utilitzarà la comparació emprant les regles de la configuració regional (fins i tot les regles de context). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Alfabètic</guilabel
+>: les cadenes es compararan caràcter per caràcter (no s'aplicaran les regles de context de la configuració regional). Els caràcters alfabètics es compararan emprant les regles locals, els caràcters especials es compararan amb el codi de caràcters. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Alfanumèric</guilabel
+>: igual que l'anterior, però si els noms contenen números, els números es compararan numèricament en lloc d'alfabèticament. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Codi del caràcter</guilabel
+>: comparació pel codi del caràcter (ràpid). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Codi i números del caràcter</guilabel
+>: igual que l'anterior, però amb comparació numèrica dels números. </para>
+             </listitem>
+           </itemizedlist>
+	    </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ordena distingint entre majúscules/minúscules</guilabel
+>: si està marcada (predeterminat a &UNIX;), tots els fitxers que comencin amb lletres majúscules apareixeran abans que els fitxers que comencin amb lletres minúscules. En cas contrari, tots els fitxers que comencin amb una lletra específica (majúscula o no) apareixeran junts.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ordena sempre les carpetes per nom</guilabel
+>: ordena les carpetes per nom, no importarà el criteri d'ordenació.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra primer les carpetes</guilabel
+>: si està marcada, les carpetes tindran prioritat en les llistes de carpetes.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ordena segons la configuració regional</guilabel
+>: ordena els fitxers i carpetes d'acord amb la configuració regional actual.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Modes de vista</guilabel>
+        </title>
+       <listitem>
+          <para
+><guilabel
+>Mode de visualitzador predeterminat</guilabel
+>: permet canviar el mode de vista predeterminat. Podeu escollir <guimenuitem
+>Vista en detall</guimenuitem
+> o <guimenuitem
+>Vista breu</guimenuitem
+>. A les pestanyes de tots dos modes de vista podreu definir les següents opcions.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mida predeterminada de les icones</guilabel
+>: permet canviar la mida de les icones a les llistes de fitxers. Les mides disponibles són 12x12, 16x16, 22x22, 32x32, 48x48, 64x64, 128x128 i 256x256 píxels.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Usa les icones als noms de fitxer</guilabel
+>: si està marcada, es mostraran les icones en els noms de fitxers i carpetes.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>De manera predeterminada, mostra les vistes prèvies</guilabel
+>: si està marcada, es mostraran les vistes prèvies del contingut del fitxer.</para>
+        </listitem>
+        <listitem>
+          <para
+>Per a configurar les columnes, utilitzeu el menú del clic dret en el plafó quan vegeu fitxers. Els plafons esquerre i dret empren les seves pròpies columnes de forma independent. Hi ha disponibles les següents columnes: <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Nom</guilabel
+>: mostra el nom de fitxer sense la part després de l'últim punt, aquesta última part es mostra a la columna <guilabel
+>Ext</guilabel
+>. Quan la columna <guilabel
+>Ext</guilabel
+> està oculta, es mostrarà tot el nom de fitxer a la columna <guilabel
+>Nom</guilabel
+> com, &pex;, ho fa el &konqueror;. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Ext</guilabel
+>: mostra l'última part del nom de fitxer (la part després de l'últim punt) a la columna <guilabel
+>Ext</guilabel
+>, i no com un nom de fitxer complet a la columna <guilabel
+>Nom</guilabel
+> com, &pex;, ho fa el &konqueror;. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Tipus</guilabel
+>: mostra el camp del tipus &MIME;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mida</guilabel
+>: mostra el camp de la mida.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Modificat</guilabel
+>: mostra el camp de la data i hora de modificació.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Permisos</guilabel
+>: mostra tots els permisos, &pex;, «<literal
+>rwxr-xr-x</literal
+>» o com a números octals «<literal
+>0755</literal
+>» habilitant/inhabilitant els <guilabel
+>Permisos numèrics</guilabel
+> a la pestanya <guilabel
+>Vista del plafó</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>rwx</guilabel
+>: només mostra els drets de l'usuari actual, &pex;, <quote
+>-rw</quote
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Propietari</guilabel
+>: mostra el camp del propietari.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Grup</guilabel
+>: mostra el camp del grup.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist>
+      <tip>
+        <para
+>Desmarqueu les columnes que no estan en ús. Això permetrà més espai per a les columnes que empreu.</para>
+      </tip>
+    </sect2>
+    <sect2 id="konfig-panel-buttons">
+      <title
+>Botons</title>
+      <para
+><guilabel
+>Els botons de la barra d'eines tenen icones</guilabel
+>: si està marcada, el &krusader; mostrarà icones en els botons de la barra d'eines.</para>
+      <para
+><guilabel
+>Mostra el botó Suports</guilabel
+>: si està marcada, el &krusader; mostrarà el botó per als suports.</para>
+      <para
+><guilabel
+>Mostra el botó enrere</guilabel
+>: si està marcada, el &krusader; mostrarà el botó enrere.</para>
+      <para
+><guilabel
+>Mostra el botó endavant</guilabel
+>: si està marcada, el &krusader; mostrarà el botó endavant.</para>
+      <para
+><guilabel
+>Mostra el botó de l'historial</guilabel
+>: si està marcada, el &krusader; mostrarà el botó per a l'historial.</para>
+      <para
+><guilabel
+>Mostra el botó de les adreces d'interès</guilabel
+>: si està marcada, el &krusader; mostrarà el botó per a les adreces d'interès.</para>
+      <para
+><guilabel
+>Mostra la barra d'eines del plafó</guilabel
+>: si està marcada, el &krusader; mostrarà la Barra d'eines del plafó.</para>
+      <para
+>Podreu fer que els botons de la <guilabel
+>Barra d'eines del plafó</guilabel
+> estiguin visibles o ocults: <itemizedlist>
+        <title>
+          <guilabel
+>Botons de la barra d'eines del plafó visible</guilabel>
+        </title>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Clear Location Toolbar</guilabel
+> button: Clears
+          the <link linkend="list_panel"
+>Location Toolbar</link
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para>
+          <guilabel
+>Botó igual (=)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Botó «Puja» (..)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Botó «Inici» (~)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Botó «Arrel» (/)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Botó de commutació per a la navegació sincronitzada</guilabel
+>: si està marcada, es mostrarà el botó per a la <link linkend="panel_toolbar"
+>navegació sincronitzada</link
+>.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-selection_modes">
+      <title
+>Mode de selecció</title>
+      <para
+>Aquí podreu configurar els modes de selecció. <itemizedlist id="selection_modes">
+        <title>
+          <guilabel
+>General</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Estil &krusader;</guilabel
+>: la forma en què el &krusader; ha funcionat des del primer dia. Ambdós botons del ratolí permeten seleccionar els fitxers. Per a seleccionar més d'un fitxer, manteniu premuda la tecla &Ctrl; i feu clic amb el &BER;. El menú del clic dret apareixerà amb un breu clic al &BDR;.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Estil &konqueror;</guilabel
+>: en prémer el &BER; se seleccionaran els fitxers -podreu fer clic i seleccionar múltiples fitxers-. El menú del clic dret apareixerà amb un breu clic al &BDR;.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Estil Total Commander</guilabel
+>: en prémer el &BDR; se seleccionaran múltiples fitxers i en <guilabel
+>prémer i mantenir premut</guilabel
+> el &BDR; apareixerà el menú del clic dret. El &BER; no seleccionarà, però establirà el fitxer actual sense afectar a la selecció actual.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Mode ergonòmic</guilabel
+>: el &BER; no selecciona, però estableix el fitxer actual sense afectar a la selecció actual. El &BDR; invoca el menú contextual. Podreu seleccionar amb la tecla &Ctrl; i fer clic esquerre.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mode de selecció personalitzada</guilabel
+>: creeu el vostre propi estil de selecció!</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Detalls</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Selecciona amb doble clic (clàssic)</guilabel
+>: amb un sol clic se seleccionarà un fitxer, amb un doble clic s'obrirà el fitxer o entrareu dins de la carpeta.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Segueix la política de selecció global</guilabel
+>: en prémer el &BER; se seleccionaran els fitxers. Utilitzeu la configuració global: el mòdul <menuchoice
+><guimenu
+>Dispositius d'entrada</guimenu
+> <guimenuitem
+>Ratolí</guimenuitem
+></menuchoice
+> a l'&systemsettings; del &plasma;.</para>
+        </listitem>
+        <listitem>
+          <para
+>Elements personalitzats del mode de selecció: <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Basat en el mode de selecció del &plasma;</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Se selecciona amb el &BER;</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Es manté la selecció amb el &BER;</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>Se selecciona amb &Maj;/&Ctrl; + clic esquerre</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Se selecciona amb el &BDR;</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Es manté la selecció amb el &BDR;</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>Se selecciona amb &Maj;/&Ctrl; + clic dret</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>La barra d'espai mou cap avall</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>La tecla Inserció mou cap avall</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>El clic dret mostra immediatament el menú contextual</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Es reinicia la selecció amb el botó normal del ratolí</guilabel
+>: restableix la selecció amb un clic del ratolí sense modificadors (&ead;, &Maj; o &Ctrl;). Haurà d'estar habilitada la selecció amb &Maj;/&Ctrl; per al botó del ratolí perquè aquesta opció funcioni. </para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-mediamenu">
+      <title
+>Menú de suports</title>
+      <para
+>Amb aquesta pestanya podreu seleccionar el contingut del menú al <link linkend="media_button"
+>botó de suports</link
+>: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>Mostra el camí de muntatge</guilabel
+>: si està marcada, es mostrarà el camí de muntatge de la partició.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra el tipus del sistema de fitxers</guilabel
+>: si està marcada, es mostrarà el tipus de partició del sistema de fitxers.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Oculta les entrades SquashFS</guilabel
+>: <ulink url="https://snapcraft.io/"
+>Snap</ulink
+> crea moltes particions muntades en <ulink url="https://en.wikipedia.org/wiki/SquashFS"
+>SquashFS</ulink
+>, les quals són gairebé inútils al <link linkend="list_panel"
+>menú Suports</link
+>, perquè <application
+>snap</application
+> les gestiona. És possible ocultar els muntatges SquashFS marcant aquest element.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Oculta els punts de muntatge següents</guilabel
+>: Aquesta llista permet excloure elements no desitjats del <link linkend="list_panel"
+>menú Suports</link
+>. Premeu el botó <guibutton
+>+</guibutton
+> sobre la llista per a afegir algun punt de muntatge que voleu ignorar. Si decidiu eliminar el punt de muntatge afegit des de la llista, simplement feu-hi clic i premeu el botó <guibutton
+>-</guibutton
+>. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra la mida</guilabel
+>: permet seleccionar la representació de la mida en el menú de suports. Pot ser <guimenuitem
+>Sempre</guimenuitem
+> (predeterminat, sempre es mostrarà la mida de la partició), <guimenuitem
+>Quan el dispositiu no tingui etiqueta</guimenuitem
+> (només es mostrarà la mida per a les particions sense etiqueta) o <guimenuitem
+>Mai</guimenuitem
+> (no es mostrarà mai la mida al menú de suports).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-layout">
+      <title
+>Disposició</title>
+      <para
+>Podreu triar la configuració de la disposició i el marc: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>Disposició</guilabel
+>: permet definir la disposició. Les opcions predeterminades són <guimenuitem
+>Predeterminada</guimenuitem
+>, <guimenuitem
+>Compacta</guimenuitem
+> i <guimenuitem
+>Clàssica</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Color del marc</guilabel
+>: defineix el color del marc. Es pot definir per <guimenuitem
+>Definit per la disposició</guimenuitem
+>, <guimenuitem
+>Cap</guimenuitem
+> o <guimenuitem
+>Barra d'estat</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Forma del marc</guilabel
+>: defineix la forma del marc. Es pot definir per <guimenuitem
+>Definida per la disposició</guimenuitem
+>, <guimenuitem
+>Cap</guimenuitem
+> <guimenuitem
+>Quadre</guimenuitem
+> o <guimenuitem
+>Plafó</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ombra del marc</guilabel
+>: defineix l'ombra del marc. Es pot definir per <guimenuitem
+>Definida per la disposició</guimenuitem
+>, <guimenuitem
+>Cap</guimenuitem
+>, <guimenuitem
+>Aixecada</guimenuitem
+> o <guimenuitem
+>Enfonsada</guimenuitem
+>.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="konfig-color">
+    <title
+>Colors</title>
+    <para
+>Aquesta pàgina configura els colors del <link linkend="list_panel"
+>Plafó de llista</link
+> i del <link linkend="synchronizer"
+>Sincronitzador</link
+>. Els <guilabel
+>Colors predeterminats del &kde;</guilabel
+> són la configuració de color predeterminada.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>General</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Usa els colors predeterminats del &kde;</guilabel
+>: aquesta és la predeterminada, utilitza el color del &plasma; definit a l'&systemsettings;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Usa els colors de fons alternatius</guilabel
+>: si està marcada, els colors de <guilabel
+>Fons</guilabel
+> i de <guilabel
+>Fons alternatiu</guilabel
+> s'alternaran línia per línia. Quan no utilitzeu els colors predeterminats del &plasma;, podreu configurar els colors alternatius al quadre <guilabel
+>Colors</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostra l'element actual encara que no tingui el focus</guilabel
+>: si està marcada, es mostrarà l'última posició del cursor al plafó de llista inactiu. Aquesta opció només estarà disponible quan no utilitzeu els colors predeterminats del &plasma;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Atenua els colors del plafó inactiu</guilabel
+>: si està marcada, els colors del plafó inactiu s'atenuaran. Aquestes opcions es poden configurar a la pestanya <guilabel
+>Inactiu</guilabel
+> del quadre <guilabel
+>Colors</guilabel
+>. Aquesta opció només estarà disponible quan no utilitzeu els colors predeterminats del &plasma;.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Colors</guilabel>
+        </term>
+        <listitem>
+          <para
+>Configura els colors de la manera que voleu, veureu el resultat a la secció <guilabel
+>Vista prèvia</guilabel
+>. Es poden configurar els següents elements del plafó actiu i inactiu:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Primer pla</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primer pla de la carpeta</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primer pla dels executables</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primer pla de l'enllaç simbòlic</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Primer pla de l'enllaç simbòlic no vàlid</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Color de fons</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Color de fons alternatiu</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Color de la lletra de la selecció</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Fons seleccionat</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Fons alternatiu de la selecció:</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Lletra actual</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Lletra de la selecció actual</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Color de fons actual</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Reanomena el primer pla</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Reanomena el fons</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+          <para
+>Es poden configurar els següents elements del <link linkend="synchronizer"
+>Sincronitzador</link
+>:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Colors de lletra iguals</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Color de fons iguals</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Colors de lletra diferents</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Colors de fons diferents</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Color de la lletra quan es copia a l'esquerra</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Color del fons quan es copia a l'esquerra</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Color de la lletra quan es copia a la dreta</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Color del fons quan es copia a l'esquerra</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Suprimeix el primer pla</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Suprimeix el fons</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Vista prèvia</guilabel>
+        </term>
+        <listitem>
+          <para
+>Aquí veureu una vista prèvia dels colors configurats.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Esquemes de color</guilabel>
+        </term>
+        <listitem>
+          <para
+>Amb els botons <guibutton
+>Importa un esquema de color</guibutton
+> i <guibutton
+>Exporta l'esquema de color</guibutton
+> podreu carregar i desar un perfil d'esquema de color. Això permet al &krusader; emprar el <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+>, foo-commander o el vostre propi perfil de color personalitzat. Els esquemes de color s'emmagatzemen a <filename
+>/usr/share/krusader</filename
+>, el <filename
+>foo.color</filename
+> és un fitxer binari que conté l'esquema de color.</para>
+          <tip>
+            <para
+>Es proporcionen fitxers amb l'esquema de color del <application
+>Midnight Commander</application
+> i del <trademark class="copyright"
+>Total Commander</trademark
+>, pugeu <link linkend="help_krusader"
+>els vostres</link
+> perquè estiguin disponibles per a la comunitat del &krusader;. Gràcies!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+<sect1 id="konfig-general">
+    <title
+>General</title>
+    <para
+>Aquí configurareu les operacions bàsiques. La pàgina es divideix en tres pestanyes: <guilabel
+>General</guilabel
+>, <guilabel
+>Visualitzador/Editor</guilabel
+> i <guilabel
+>Extensions atòmiques</guilabel
+>.</para>
+    <sect2 id="konfig-general-general">
+      <title
+>General</title>
+      <para
+>Les següents opcions determinaran els aspectes bàsics de l'operació:</para>
+      <itemizedlist>
+	<listitem>
+	  <para
+><guilabel
+>Avisa'm en sortir</guilabel
+>: si està marcada, el &krusader; us avisarà cada vegada que s'activi l'acció de sortida. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>Mostra i tanca a la safata</guilabel
+>: si està marcada, la icona del &krusader; apareixerà a la safata del sistema. Quan minimitzeu el &krusader;, no apareixerà a la barra de tasques. Tampoc sortirà si tanqueu la finestra principal. En el seu lloc, podreu sortir del &krusader; seleccionant l'element de menú <menuchoice
+><guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Surt</guimenuitem
+></menuchoice
+> o al menú contextual de la icona de la safata. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>Usa la màgia dels tipus &MIME;</guilabel
+>: és un mecanisme que permet al &krusader; inspeccionar els fitxers en els plafons i determinar el seu tipus fins i tot si el fitxer no té una extensió d'identificació. Per exemple, si preneu un fitxer d'imatge -<filename
+>imatge_1.jpg</filename
+>- i li canvieu el nom a <filename
+>imatge_1</filename
+>, el &krusader; seguirà sabent que és un fitxer d'imatge i treballarà amb ell en conseqüència. No obstant això, aquest mode d'operació és més lent (mentre s'actualitza el plafó o es canvien les carpetes), així que proveu el &krusader; amb la màgia dels tipus &MIME; i sense, i decidiu què és el millor.</para>
+	 </listitem>
+	 <listitem>
+	   <para
+><guilabel
+>Carpeta temp</guilabel
+>: aquesta opció selecciona la carpeta base per als fitxers temporals del &krusader;. Els fitxers reals es crearan en carpetes separades sota la «Carpeta temporal», de manera que cada usuari que executi el &krusader; tindrà les seves pròpies subcarpetes temporals sota la carpeta escollida. <note
+> <para
+>Haureu d'escollir una carpeta temporal per a la qual tots els usuaris que executin el &krusader; tinguin tots els permisos!</para>
+	     </note>
+	   </para>
+	 </listitem>
+      </itemizedlist>
+      <para
+><guilabel
+>Mode per a suprimir</guilabel
+> (<guilabel
+>Suprimeix els fitxers/Mou a la paperera</guilabel
+>): quan el &krusader; suprimeix els fitxers, en realitat els pot estar movent a la carpeta de la paperera, de manera que estiguin disponibles a través de la paperera del &plasma;. </para>
+      <para
+><guilabel
+>Terminal extern</guilabel
+>: trieu quin emulador de terminal s'emprarà quan el &krusader; obri una finestra de consola (a través de <keycap
+>F9</keycap
+>, o l'opció de menú <menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Inicia el terminal</guimenuitem
+></menuchoice
+>). </para>
+      <para
+><guilabel
+>El terminal incrustat envia «chdir» a cada canvi de plafó</guilabel
+>: si no està marcada, no s'enviarà cap ordre de <command
+>cd</command
+> a l'emulador de terminal si canvieu de carpeta al plafó.</para>
+      <para
+><guilabel
+>El plafó actiu segueix el directori de treball del terminal incrustat</guilabel
+>: si no està marcada, el plafó actiu romandrà sense canvis mentre l'usuari navega pel terminal incrustat (usant «cd», «popd», etc.). </para>
+      <para
+><guilabel
+>Alterna el terminal incrustat a pantalla completa</guilabel
+>: si està marcada, el &krusader; mostrarà el terminal a pantalla completa a l'estil del <application
+>Midnight Commander</application
+> (es mostrarà el terminal en lloc de la finestra del &krusader;). </para>
+    </sect2>
+    <sect2 id="konfig-general-viewer">
+       <title
+>Visualitzador/Editor</title>
+      <para
+>Aquí podreu canviar la configuració del visualitzador i de l'editor: </para>
+      <itemizedlist>
+      <listitem>
+	<para
+><guilabel
+>L'editor i el visualitzador interns mostren cada fitxer en una finestra diferent</guilabel
+>: marqueu aquest element si voleu que cada fitxer s'obri en una finestra a part. Si no està marcada, cada fitxer s'obrirà en una pestanya a la mateixa finestra del Visualitzador/Editor. Cada pestanya en aquesta finestra es pot tancar, entre altres mètodes habituals, fent clic sobre la pestanya amb el &BMR;. </para>
+      </listitem>
+      <listitem>
+	<para
+><guilabel
+>Oculta la barra de pestanyes quan només n'hi ha una oberta</guilabel
+>: marqueu aquest element si voleu que la barra de pestanyes Visualitzador/Editor estigui oculta si només hi ha una pestanya oberta. </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Mode del visualitzador predeterminat</guilabel
+>: <itemizedlist>
+        <listitem>
+         <para
+><guilabel
+>Mode genèric</guilabel
+>: utilitza el visualitzador predeterminat del sistema.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Mode de text</guilabel
+>: visualitza el fitxer en el mode només text.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Mode hexadecimal</guilabel
+>: visualitza el fitxer en el mode només hexadecimal.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Mode visualitzador incremental</guilabel
+>: un visualitzador de text/hexadecimal, ràpid per a fitxers de grans dimensions. El visualitzador incremental del &krusader; mai carregarà tot el fitxer a la memòria, només una petita part, i utilitza l'emmagatzematge en la memòria cau per a un desplaçament més ràpid. Els fitxers remots es descarreguen, però durant la baixada, és possible veure la part baixada. Si un fitxer canvia constantment, llavors també es podrà veure, el visualitzador incremental sempre veurà el seu estat actual.</para>
+        </listitem>
+	<listitem>
+         <para
+><guilabel
+>Usa el visualitzador incremental quan el fitxer ocupi més de</guilabel
+>: 10 MB (predeterminat): comprova si un fitxer de text és més gran que 10 MB (configurable) i, en cas afirmatiu, s'utilitza el visualitzador incremental del &krusader; en lloc del visualitzador predeterminat del &plasma;.</para>
+	</listitem>
+	<listitem>
+         <para
+><guilabel
+>Usa Okteta com el visualitzador hexadecimal</guilabel
+>: si està marcada (opció predeterminada), s'utilitzarà l'editor hexadecimal <ulink url="https://docs.kde.org/index.php?application=okteta"
+>Okteta</ulink
+> del &plasma; per a veure les dades sense processar. Per a utilitzar aquesta opció, primer cal instal·lar el paquet <application
+>Okteta</application
+>.</para>
+	</listitem>
+	</itemizedlist>
+      </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Editor</guilabel
+>: trieu quin editor s'emprarà en editar un fitxer (mitjançant <keycap
+>F4</keycap
+>). De manera predeterminada s'emprarà el visualitzador intern, aquest és el visualitzador predeterminat del &plasma;.</para>
+      </listitem>
+    </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-general-atomic">
+      <title
+>Extensions atòmiques</title>
+        <para
+><guilabel
+>Extensions atòmiques</guilabel
+>: les extensions atòmiques predefinides com <literal role="extension"
+>.tar.gz</literal
+> es mostren com una part a la columna <guilabel
+>Ext</guilabel
+> del <link linkend="list_panel"
+>Plafó de llista</link
+>.</para>
+      </sect2>
+  </sect1>
+  <sect1 id="konfig-advanced">
+    <title
+>Avançat</title>
+    <para
+>Aquesta pàgina gestiona problemes més avançats, de manera que aquí haureu de comprovar dues vegades les vostres accions: aquí es modifica la configuració <remark
+>i fa que el &krusader; sigui una eina més poderosa i perillosa.</remark
+></para>
+
+    <para
+>La pàgina es divideix en tres parts:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>General</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+	    <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Preserve attributes for local copy/move
+              (slower)</guilabel
+>: If checked,
+              &krusader; will try to preserve all
+              attributes (time, owner, group) of the local files
+              according to the source file depending on your
+              <link linkend="copying"
+>permissions</link
+>.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>Munta els dispositius automàticament</guilabel
+>: fa que el &krusader; intenti muntar un sistema de fitxers abans d'entrar-hi. Per exemple, si feu clic a <filename class="directory"
+>/mnt/cdrom</filename
+> (i <filename class="directory"
+>/mnt/cdrom</filename
+> apareix al fitxer <filename class="directory"
+>/etc/fstab</filename
+> com a un punt de muntatge), el &krusader; comprovarà si està muntat. En cas contrari, intentarà muntar-lo i després hi entrarà, de manera que pugueu veure el contingut del vostre &cdrom;. No obstant això, cal tenir en compte que el &krusader; NO el desmuntarà en sortir de <filename class="directory"
+>/mnt/cdrom</filename
+>.</para>
+            </listitem>
+            <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Do not use KDE media protocol for the
+              Media button (if it is buggy or missing)</guilabel
+>:
+              If checked, &krusader; will not use
+              &kde; media protocol for the
+              <link linkend="list_panel"
+>Media button</link
+>.
+              Choose this when the media protocol is buggy (in some
+              older &kde; versions) or if you have no
+              kdebase package installed on your system.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>El «Gestor del muntatge» no des/muntarà els següents punts de muntatge</guilabel
+>: si teniu sistemes de fitxers que no voleu desmuntar (o muntar) accidentalment, introduïu una llista de punts de muntatge separats per comes (&pex; <literal
+>/,/boot,/tmp</literal
+>) i el <link linkend="mount-man"
+>Gestor del muntatge</link
+> no intentarà des/muntar-los.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Confirmacions</guilabel>
+        </term>
+        <listitem>
+          <para
+>En marcar les opcions en aquesta secció, el &krusader; sol·licitarà confirmació abans de realitzar una acció específica. En cas contrari, les següents accions es realitzaran sense avís previ:</para>
+          <itemizedlist>
+            <listitem>
+              <para
+>Quan se suprimeixin carpetes que no estan buides</para>
+            </listitem>
+            <listitem>
+              <para
+>Quan se suprimeixin fitxers</para>
+            </listitem>
+            <listitem>
+              <para
+>Quan es copiïn fitxers</para>
+            </listitem>
+            <listitem>
+              <para
+>Quan es moguin fitxers</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Ajusta amb més detall</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Memòria cau per a les icones (kB)</guilabel
+>: el &krusader; empra una memòria cau per a les icones, de manera que no haureu de tornar a carregar les icones que s'han utilitzat abans. Per descomptat, a mesura que la memòria cau creix -emmagatzemant més icones i realitzant les operacions amb més velocitat-, l'empremta en la memòria del &krusader; es farà més gran.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Paràmetres de l'«updatedb»</guilabel
+>: estableix els arguments addicionals per a «<command
+>updatedb</command
+>», per a més informació llegiu les pàgines man.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-archives">
+    <title
+>Arxius</title>
+    <para
+>Aquesta pàgina configura alguns aspectes en el maneig dels arxius en el &krusader;. </para>
+    <variablelist>
+      <varlistentry>
+	<term>
+	  <guilabel
+>Esclau E/S de «krarc»</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>Activa el suport d'escriptura</guilabel
+>: aquesta opció permet habilitar l'escriptura dels fitxers dins d'un arxiu. <warning
+> <para
+>L'inconvenient és que si es produeix un tall d'energia durant el procés, els fitxers que s'han mogut podrien estar ja suprimits, però encara no empaquetats a dins de l'arxiu. Moure arxius dins de si mateixos els suprimirà. </para>
+	      </warning>
+	    </para>
+	  </listitem>
+	</varlistentry>
+              <varlistentry>
+	<term>
+	  <guilabel
+>Treballant amb arxius</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>Navega pels arxius com a carpetes</guilabel
+>: si està marcada, el &krusader; manejarà els arxius de forma transparent i permetrà obrir-los com a carpetes. En cas contrari, el &krusader; intentarà invocar una aplicació que obri els arxius d'aquest tipus. </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>
+	    <guilabel
+>Ajusta amb més detall</guilabel>
+	  </term>
+	  <listitem>
+      <itemizedlist>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Allow moving into archives</guilabel
+>: this
+          option allows you to move files into an archive (as
+          opposed to just copying into the archive). The down side
+          is that if a power failure occurs during the process, the
+          files that were moved might already be deleted, but not
+          yet packed into the archive.
+          <note>
+            <para
+>If such a thing happens, the file(s) are NOT
+            LOST. They were actually moved into a subfolder in
+            &krusader;'s
+            <link linkend="konfig-general"
+>temp folder</link
+>.
+            You can search the folder and recover your
+            files.</para>
+          </note
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para
+><guilabel
+>Comprova l'arxiu després d'empaquetar-lo</guilabel
+>: aquesta opció executarà automàticament una prova sobre un arxiu acabat d'empaquetar. És més segur, però porta més temps.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Comprova l'arxiu abans de desempaquetar-lo</guilabel
+>: aquesta opció executarà automàticament una prova abans de desempaquetar. Alguns arxius corruptes poden causar un bloqueig, per tant, és millor provar els arxius abans de desempaquetar-los.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+  </varlistentry>
+  </variablelist>
+  </sect1>
+  <sect1 id="konfig-dependencies">
+    <title
+>La pàgina Dependències</title>
+    <para
+>Aquesta pàgina configura el camí complet de les aplicacions externes. Fins i tot és possible configurar el camí complet del &krusader;!</para>
+    <para>
+      <emphasis role="bold"
+>La pestanya General</emphasis>
+    </para>
+    <para
+>Aquí podreu configurar el camí complet de les següents aplicacions externes:</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>Aplicació</entry>
+            <entry
+>Camí complet configurable</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kdesu</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kdesu</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kget</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kget</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mailer</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kmail</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>Utilitat de «diff»</para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kompare</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <command
+>krename</command>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krename</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>krusader</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krusader</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>locate</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/locate</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/mount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>umount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/umount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>updatedb</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/updatedb</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <tip>
+      <para
+>De manera predeterminada, s'empra el &kompare; com una utilitat externa per a fer «diff», però també podeu utilitzar la vostra utilitat preferida, &pex;, <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> o el <ulink url="https://www.kde.org/applications/development/kdiff3/"
+>&kdiff3;</ulink
+>, simplement empleneu el camí complet i gaudi.</para>
+    </tip>
+    <para>
+      <emphasis role="bold"
+>La pestanya Empaquetadors</emphasis>
+    </para>
+    <para
+>A la pestanya <guilabel
+>Empaquetadors</guilabel
+>, veureu una llista de formats d'arxiu. Alguns estan plens i altres estan buits. el &krusader; admetrà els que estiguin disponibles (plens). Per a ells, el &krusader; manejarà els arxius de forma transparent i permetrà obrir-los com a carpetes (sempre que hi hàgiu marcat l'element <guilabel
+>Navega pels arxius com a carpetes</guilabel
+> a la secció <link linkend="konfig-archives"
+>Arxius</link
+>). En cas contrari, el &krusader; intentarà invocar una aplicació que obri els arxius d'aquest tipus. Si algun element d'arxiu està buit, voldrà dir que el &krusader; no ha pogut trobar els executables apropiats en el camí configurat. S'admeten els següents arxius: ace, arj, bzip2, deb, gzip, iso, lha, lzma, rar, rpm, tar, xz, zip i 7z.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>Empaquetador</entry>
+            <entry
+>Camí complet configurable</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>7z</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/7z</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>arj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/arj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>bzip2</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/bzip2</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cpio</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/cpio</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>dpkg</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/dpkg</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>gzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/gzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lha</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lha</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lzma</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lzma</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>rar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/rar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/tar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unace</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unace</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unarj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unarj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unrar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unrar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>zip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/zip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>xz</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/xz</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <note>
+      <para
+>El &krusader; no pot admetre ACE malgrat els nostres millors esforços. UNACE empra codi tancat i conté línies addicionals que fan que entri en un bucle infinit si l'entrada estàndard es redirigeix a un altre lloc. Funciona de la mateixa manera que el «su», on no es pot introduir la contrasenya només des de l'entrada estàndard. El &krusader; &gt;= 1-51 emula l'entorn de línia d'ordres per a permetre la cooperació amb UNACE, però hem notat que UNACE canvia sempre el seu format de la sortida d'una versió a una altra, el qual fa que la cooperació sigui gairebé impossible.</para>
+    </note>
+    <para>
+      <emphasis role="bold"
+>La pestanya Utilitats de suma de verificació</emphasis>
+    </para>
+    <para
+>Aquí podreu configurar el camí complet de les següents <link linkend="checksum"
+>utilitats externes de suma de verificació</link
+>: <informaltable
+> <tgroup cols="3"
+> <tbody>
+          <row>
+            <entry
+>Utilitats de suma de verificació</entry>
+            <entry
+>Camí complet configurable</entry>
+            <entry
+>Sumes de verificació admeses</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha224sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha224sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha224</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha384sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha384sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha384</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha512sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha512sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha512</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tigerdeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/tigerdeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>tiger</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>whirlpooldeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/whirlpooldeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>whirlpool</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cfv</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/cfv</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5, sha1, sfv, crc</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable
+></para>
+  </sect1>
+  <sect1 id="konfig-useractions">
+    <title
+>Accions d'usuari</title>
+    <para
+>Aquí podreu configurar el terminal per a les Accions d'usuari i el tipus de lletra per a la col·lecció de sortida. El terminal predeterminat és <command
+>konsole --noclose -e</command
+>. Per a establir, configurar i gestionar les vostres Accions d'usuari empreu el Gestor d'accions (&URL; de les <link linkend="useractions"
+>Accions d'usuari</link
+>).</para>
+
+  </sect1>
+  <sect1 id="konfig-protocols">
+    <title
+>Protocols</title>
+    <para
+>Aquesta pàgina vincula els &MIME; amb els protocols. Per exemple, el protocol <quote
+>tar</quote
+> està vinculat amb el &MIME; <quote
+>application/x-tar</quote
+>.</para>
+
+    <para
+>En els <guilabel
+>Enllaços</guilabel
+> veureu, &pex;: <itemizedlist>
+      <listitem>
+        <para
+>ISO</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-iso</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>krarc</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-ace</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-arj</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-bzip2</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-cpio</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-deb</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-debian-package</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-gzip</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-jar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-lha</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rpm</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-zip</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>tar</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-tar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tarz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tbz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tgz</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect1>
+</chapter>

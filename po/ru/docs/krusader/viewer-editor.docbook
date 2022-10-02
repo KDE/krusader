@@ -1,0 +1,1449 @@
+<sect1 id="krviewer">
+  <title
+>KrViewer: собственный редактор &krusader;</title>
+  <indexterm>
+    <primary
+>Программа просмотра</primary>
+    <seealso
+>Редактор</seealso>
+  </indexterm>
+  <para
+>Нажатие &Enter; на выбранном файле <emphasis
+>открывает этот файл в связанном с ним приложении</emphasis
+>. Редактор поддерживает вкладки, его можно настроить на странице <link linkend="konfig-general"
+>Основные</link
+> в диалоговом окне настройки Krusader.</para>
+  <sect2 id="krview">
+    <title
+>Программа просмотра</title>
+    <para
+>Чтобы просмотреть файл как можно быстрее в соответствии с его типом, просто поместите его под курсором и нажмите <keycap
+>F3</keycap
+>. Собственная программа просмотра &krusader; является частью &konqueror;, который может в принципе просматривать любой тип файла, доступный &konqueror; (например, показывать рисунки, проигрывать музыку, просматривать содержимое архива). Это называется «Основной просмотрщик», для которого необходимо настроить типы MIME.</para>
+    <para
+>Программа просмотра работает следующим образом: <itemizedlist
+><listitem
+> <para
+>она пробует просмотреть файл в «<emphasis
+>Основном режиме</emphasis
+>».</para
+></listitem
+> <listitem
+><para
+>Если тип файла (тип MIME) невозможно определить или когда файл (например, бинарный) не имеет связанного с ним действия, тогда «Основной режим» не используется. Данный файл рассматривается как текстовый, для которого используется «<emphasis
+>Текстовый режим</emphasis
+>».</para
+></listitem
+> <listitem
+><para
+>Пользователь может переключаться между «Основной режим» (если есть), «Текстовый режим» и «Шестнадцатеричный режим» в <link linkend="kredit_krviewer_menu"
+>меню программы просмотра</link
+>.</para
+></listitem
+> </itemizedlist
+> Вы можете настроить режим просмотра по умолчанию на странице <link linkend="konfig-general"
+>Основные</link
+> в диалоговом окне настройки Krusader.</para>
+    <para
+><keycombo action="simul"
+>&Shift; <keycap
+>F3</keycap
+></keycombo
+> просмотреть адрес &URL; по запросу, например: <itemizedlist>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+> </userinput
+>просмотр страниц руководств UNIX.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+> <replaceable
+>krusader</replaceable
+> </userinput
+>просмотреть страницу руководства UNIX.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>info:/</command
+> </userinput
+>просмотр страниц руководств Info.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>http://</command
+> <replaceable
+>krusader.sourceforce.net/</replaceable
+> </userinput
+>просмотреть страницу по адресу в Интернете.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>ftp://</command
+> <replaceable
+>ftp.kde.org/pub/kde/</replaceable
+> </userinput
+>просмотреть содержимое каталога на сервере FTP.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>sftp://</command
+> <replaceable
+>sftp.foo/</replaceable
+> </userinput
+>просмотреть содержимое каталога на сервере FTP с защищённым соединением.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>file:/</command
+> <replaceable
+>home/frank</replaceable
+> </userinput
+>просмотреть домашний каталог пользователя frank.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <replaceable
+>/home/frank/archive.tar.gz</replaceable
+> </userinput
+>просмотреть содержимое архива <literal role="extension"
+>tar.gz</literal
+>.</para>
+      </listitem>
+    </itemizedlist
+></para>
+    <para
+>Компонент KrViewer имеет следующие меню: <link linkend="kredit_file_menu"
+>Файл</link
+>, <link linkend="kredit_edit_menu"
+>Правка</link
+>, <link linkend="kredit_view_menu"
+>Вид</link
+>, <link linkend="kredit_settings_menu"
+>Настройка</link
+> и <link linkend="kredit_krviewer_menu"
+>Krviewer</link
+>, в зависимости от типа просматриваемого файла. Они будут рассмотрены в <link linkend="kredit"
+>разделе Редактор</link
+>. Встроенная программа просмотра может следовать по ссылкам на страницах HTML. При нажатии <keycombo action="simul"
+>&Ctrl; <keycap
+>E</keycap
+></keycombo
+> программа просмотра может запустить встроенный редактор &krusader; (которая, в общем-то, одна и та же программа).</para>
+    <note>
+      <para
+>Встроенная программа просмотра не написана нами, она использует &kde; (библиотеки) и технологию KIO Slaves. Мы не можем и не хотим изменять её, использование этих библиотек уменьшает объём написанного кода. Так что нам не приходится изобретать велосипед ;-).</para>
+    </note>
+  </sect2>
+  <sect2 id="kredit">
+    <title
+>Редактор</title>
+    <indexterm>
+      <primary
+>Редактор</primary>
+    </indexterm>
+    <para
+>Встроенный редактор &krusader; содержит практически всё, что вы ожидаете от редактора. Редактирование похоже на просмотр, но запускается с помощью клавиши <keycap
+>F4</keycap
+>. По умолчанию используется встроенный редактор &krusader;. Если вы предпочитаете использовать внешний редактор, вы можете изменить редактор по умолчанию на странице <link linkend="konfig-general"
+>Основные</link
+> в диалоговом окне настройки Krusader.</para>
+    <tip>
+      <para
+>При первом использовании встроенного редактора &krusader; рекомендуется просмотреть все разделы меню <link linkend="kredit_settings_menu"
+>Настройка</link
+> и настроить его так, как вам нужно.</para>
+    </tip>
+  </sect2>
+  <sect2 id="kredit_menus">
+    <title
+>Обзор меню</title>
+    <para
+>Большая часть меню понятна без объяснений. ;-)</para>
+    <!-- FILE menu -->
+    <variablelist id="kredit_file_menu">
+      <title
+>Меню <guimenu
+>Файл</guimenu
+></title>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Сохранить</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Сохранить файл.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Сохранить как</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Сохранить файл под другим именем.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F5</keycap
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Обновить</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Обновить файл.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Экспорт в HTML...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Экспортировать файл в формат <literal role="extension"
+>&HTML;</literal
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Печать...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Распечатать файл.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <!-- EDIT menu -->
+    <variablelist id="kredit_edit_menu">
+      <title
+>Меню <guimenu
+>Правка</guimenu
+></title>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Отменить действие</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Отменить последнее действие.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Повторить отменённое действие</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Повторить последнее действие.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Вырезать</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Вырезать выделенный текст в буфер обмена.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Копировать</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Копировать выделенный текст в буфер обмена.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Вставить</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Вставить из буфера обмена.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Выделить всё</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Выделить весь документ.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>A</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Снять выделение</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Снять текущее выделение.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Блочное выделение</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переключение режима блочного выделения, включает/выключает возможность блочного выделения.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>Insert</keycap
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Режим замены</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переключение между режимами вставки и замены.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Найти</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Найти текст.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F3</keycap
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Продолжить поиск</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Поиск следующего вхождения.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>F3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Правка</guimenu
+><guimenuitem
+>Найти предыдущее</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Поиск предыдущего вхождения.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Заменить</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Замена текста.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Перейти к строке</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Перейти к строке с заданным номером.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <!-- VIEW menu -->
+    <variablelist id="kredit_view_menu">
+      <title
+>Меню <guimenu
+>Вид</guimenu
+></title>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycap
+>F7</keycap
+></shortcut
+> <guimenu
+>Вид</guimenu
+><guimenuitem
+>Переключиться в командную строку</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Командная строка.</para>
+          <!-- TODO -->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Схема</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Установить схему, &eg; &krusader; Normal, &krusader; Printing, &kate; Normal, &kwrite; Normal.</para>
+          <!-- TODO -->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F10</keycap
+> </keycombo
+></shortcut
+> <guimenu
+>Вид</guimenu
+><guimenuitem
+>Динамический перенос строк</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Если количество символов в строке превышает ширину окна, продолжать текст на следующей строке, без прокрутки вправо.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Маркеры динамического переноса строк</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Выключено, За номерам строк, Всегда включено.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Показывать маркеры статического переноса строк</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+          <!-- TODO -->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F6</keycap
+> </shortcut
+> <guimenu
+>Вид</guimenu
+> <guimenuitem
+>Показывать полосу закладок</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Показывать полосу закладок.</para>
+          <!-- TODO -->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F11</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Вид</guimenu
+><guimenuitem
+>Показать номера строк</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Показывать номера строк.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Показывать отметки на полосе прокрутки</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Если параметр включён, то на вертикальной полосе прокрутки текущего окна будут видны маркеры. Эти маркеры показывают положение закладок в тексте.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F9</keycap
+> </shortcut
+> <guimenu
+>Вид</guimenu
+> <guimenuitem
+>Показывать полосу сворачивания блоков</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+          <!-- TODO -->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Сворачивание блоков кода</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+          <!-- TODO -->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Кодировка</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Например, ISO8859-1, utf8, utf16, tscii, ...</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <!-- BOOKMARKS menu -->
+    <variablelist id="kredit_bookmarks_menu">
+      <title
+>Меню <guimenu
+>Закладки</guimenu
+></title>
+      <varlistentry>
+        <term>
+          <!-- TODO -->
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Закладки</guimenu
+> <guimenuitem
+>Поставить закладку</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Закладки</guimenu
+> <guimenuitem
+>Убрать все закладки</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <!-- These entries are gone on my system with kde3.3.2
+  
+<varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>PageDown</keycap
+></keycombo
+></shortcut>
+   <guimenu
+>Bookmark</guimenu>
+   <guimenuitem
+>Next Bookmark</guimenuitem
+></menuchoice
+></term>
+   <listitem>
+   <para
+>Go to the next Bookmark.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>PageUp</keycap
+></keycombo
+></shortcut>
+   <guimenu
+>Bookmark</guimenu>
+   <guimenuitem
+>Previous Bookmark</guimenuitem
+></menuchoice
+></term>
+   <listitem>
+   <para
+>Go to the previous Bookmark.</para>
+   </listitem>
+  </varlistentry>
+-->
+    </variablelist>
+    <!-- TOOLS menu -->
+    <variablelist id="kredit_tools_menu">
+      <title
+>Меню <guimenu
+>Сервис</guimenu
+></title>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Режим «Только для чтения»</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Режим «Тип файла»</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Режим подсветки</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Режим подсветки для сценариев, языков программирования, файлов разметки и так далее: например, <literal role="extension"
+>HTML, Bash, C++, XML, Makefile, Diff, ...</literal
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Конец строки</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Изменить тип окончания строк: &UNIX;, &Windows;/DOS, <trademark class="registered"
+> Macintosh</trademark
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+><guimenuitem
+>Вставить отступ</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+          <!-- TODO-->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Снять отступ</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+          <!-- TODO-->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Сервис</guimenu
+><guimenuitem
+>Привести отступы в порядок</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+          <!-- TODO-->
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>D</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Закомментировать</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Добавить соответствующие символы комментирования, если доступны.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Раскомментировать</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Убрать символы комментирования слева.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>ВЕРХНИЙ РЕГИСТР</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>нижний регистр</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Ctrl;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Как в предложениях</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Объединить строки</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Перенос слов</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+></para>
+          <!-- TODO-->
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <!-- SETTINGS -> CONFIGURE EDITOR menu -->
+    <variablelist id="kredit_settings_menu">
+      <title
+>Меню <guimenu
+>Настройка -&gt; Настроить редактор</guimenu
+></title>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить редактор</guimenuitem
+> <guimenuitem
+>Цвета</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Настройка цвета для: фона, выделенного теста, текущей строки и подсветки скобок.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить редактор</guimenuitem
+> <guimenuitem
+>Шрифты</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Настройка шрифтов для показа на экране и печати: шрифт, стиль и размер шрифта, с окном предварительного просмотра.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить редактор</guimenuitem
+> <guimenuitem
+>Отступы</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Настройка отступов: автоматический отступ, использование пробелов для отступов, клавиша &Tab; вставляет отступ, клавиша &Backspace; убирает отступ, сохранение профиля отступов, сохранение лишних пробелов.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить редактор</guimenuitem
+> <guimenuitem
+>Выделение</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Настройка выделения: постоянное выделение, замена выделенного текста.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настройка редактора</guimenuitem
+> <guimenuitem
+>Редактирование</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Настройка редактирования: настройка переноса слов, настройка пробелов, автоматическая вставка скобок, умная реакция на Home, перенос курсора, максимальное число запоминаемых команд для отмены действий.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить редактор</guimenuitem
+> <guimenuitem
+>Комбинации клавиш</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Настройка комбинаций клавиш.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить редактор</guimenuitem
+> <guimenuitem
+>Подсветка</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Настройка подсветки: стили по умолчанию и режим подсветки.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить редактор</guimenuitem
+> <guimenuitem
+>Вид</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Вид: динамический перенос строк, показ номеров строк, показ полосы закладок, показ полосы сворачивания блоков (если доступно), меню сортировки закладок.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить редактор</guimenuitem
+> <guimenuitem
+>Модули</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Настройка модулей: например, модуль kTexteditor поиска по мере набора, модуль kTexteditor вставки файла, модуль kTexteditor по обработке данных...</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <!-- KRVIEWER menu -->
+    <variablelist id="kredit_krviewer_menu">
+      <title
+>Меню <guimenu
+>KrViewer</guimenu
+></title>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Основной просмотрщик</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Встроенная программа просмотра &krusader; — в действительности, часть программы &konqueror;, которая может в основном просматривать любой тип файла, доступный &konqueror; (например, просматривать изображения, проигрывать музыку, показывать содержимое архива).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Просмотрщик текста</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Просмотр файла в текстовом режиме.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Шестнадцатеричный просмотрщик</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Просмотр файла в шестнадцатеричном режиме.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Lister-просмотрщик</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Быстрый текстовый/шестнадцатеричный просмотрщик для файлов больших размеров, см. <link linkend="konfig-general"
+>Krusader lister</link
+>.</para>
+        </listitem>
+      </varlistentry
+>      
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Текстовый редактор</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Редактировать файл в текстовом режиме.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>Right</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Следующая вкладка</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Следующая вкладка просмотра.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>Left</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Предыдущая вкладка</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Предыдущая вкладка просмотра.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Отделить вкладку</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Отделить вкладку просмотра и открыть в новом окне.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+>&Esc;</shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Закрыть текущую вкладку.</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Закрыть текущую вкладку просмотра.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+>&Ctrl; <keycap
+>Q</keycap
+></shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>Закрыть</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Закрывает окно просмотра/редактирования &krusader;.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>

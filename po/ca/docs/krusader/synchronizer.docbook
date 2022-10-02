@@ -1,0 +1,820 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="synchronizer">
+  <title
+>Sincronitzador</title>
+  <indexterm>
+    <primary
+>Sincronitzador</primary>
+  </indexterm>
+  
+<sect2 id="synchronizer_introduction">
+  <title
+>Introducció</title>
+  <para
+>Aquesta funció compara dues carpetes amb totes les subcarpetes i mostra les diferències entre ells. Després de seleccionar algunes opcions i la funció <guilabel
+>Compara</guilabel
+>, podreu sincronitzar els fitxers i carpetes. Un plafó podria ser un servidor d'&FTP;. No oblideu l'opció <guilabel
+>Compara per contingut</guilabel
+> si la mida del fitxer es manté igual. Trieu <menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Sincronitza les carpetes</guimenuitem
+></menuchoice
+> o <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> per a iniciar aquesta característica. Els <link linkend="konfig-color"
+>colors</link
+> són configurables. El sincronitzador té els seus propis <link linkend="synchronizer_keybindings"
+>lligams de tecla</link
+>. </para>
+  <note>
+    <para
+>Per a fitxers locals: el sincronitzador canviarà la informació de la data a les dates originals.</para>
+  </note>
+  <figure id="screenshot-syncdir" float="1">
+    <title
+>Sincronitzador</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="syncdir.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Sincronitzador</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para>
+  <orderedlist>
+    <title
+>Procediment:</title>
+    <listitem>
+      <para
+>Establiu la <guilabel
+>Carpeta de l'esquerra</guilabel
+> i la <guilabel
+>Carpeta de la dreta</guilabel
+> que voleu comparar.</para>
+    </listitem>
+    <listitem>
+      <para
+>Configureu el <guilabel
+>Filtre de fitxer</guilabel
+> opcional, els <guilabel
+>filtres General</guilabel
+> i els <guilabel
+>filtres Avançat</guilabel
+>. Els <guilabel
+>filtres General</guilabel
+> inclouen una opció <guilabel
+>No cerquis a</guilabel
+> que permetrà excloure carpetes de la comparació.</para>
+    </listitem>
+    <listitem>
+      <para
+>Establiu les opcions de <link linkend="synccomp_checkb_options"
+>casella de selecció</link
+>: <guilabel
+>Fes-ho també en les subcarpetes</guilabel
+>, <guilabel
+>Segueix els enllaços simbòlics</guilabel
+>, <guilabel
+>Compara per contingut</guilabel
+>, <guilabel
+>Ignora les dates</guilabel
+>, <guilabel
+>Asimètric</guilabel
+> i <guilabel
+>Ignora les majúscules/minúscules</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Feu clic sobre el botó <guibutton
+>Compara</guibutton
+> per a comparar les carpetes.</para>
+    </listitem>
+    <listitem>
+      <para
+>En utilitzar <link linkend="synccomp_show_options"
+>Mostra les opcions</link
+>, podreu incloure/excloure diferents tipus de fitxer en particular. La sincronització no modificarà els fitxers que no es trobin a la llista.</para>
+    </listitem>
+    <listitem>
+      <para
+>Si cal, podreu canviar les operacions de <guilabel
+>Treball</guilabel
+> determinades pel Comparador amb el <link linkend="synccomp_right-click"
+>menú del clic dret</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Quan esteu d'acord amb els resultats de <guibutton
+>Compara</guibutton
+>, feu clic al botó <guibutton
+>Sincronitza</guibutton
+> per a mostrar el diàleg de la sincronització.</para>
+    </listitem>
+    <listitem>
+      <para
+>Després de seleccionar les opcions del <link linkend="synchronizer"
+>Sincronitzador</link
+>, feu clic al botó <guibutton
+>Comença</guibutton
+> per a iniciar el procés de la sincronització.</para>
+    </listitem>
+  </orderedlist
+>En el següent text es descriu una explicació detallada de totes les funcions i botons.</para>
+
+</sect2>
+
+<sect2 id="synchronizer_comparator">
+  <title
+>Comparador</title
+>  
+
+  <variablelist>
+    <varlistentry>
+      <term
+>Elements en el plafó</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Carpeta de l'esquerra</guilabel
+>: la carpeta base del costat esquerre.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Carpeta de la dreta</guilabel
+>: la carpeta base del costat dret.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Filtre de fitxers</guilabel
+>: filtra els noms de fitxer en la sincronització. &pex;, <literal role="extension"
+>*.png</literal
+> només seleccionarà els fitxers on el nom finalitzi <literal role="extension"
+>.png</literal
+>. Les carpetes es llistaran si el nom de la carpeta finalitza amb <literal role="extension"
+>.png</literal
+> o si la carpeta conté fitxers que finalitzen amb <literal role="extension"
+>.png</literal
+>. Exemple d'inclusió/exclusió múltiple: <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+> inclou <literal role="extension"
+>*.cpp *.h</literal
+> i exclou <literal role="extension"
+>*.moc.cpp</literal
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>Filtres <guilabel
+>General</guilabel
+>: cerca pel text que conté</para>
+          </listitem>
+          <listitem>
+            <para
+>Filtres <guilabel
+>Avançat</guilabel
+>: mida, data, propietari</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <variablelist>
+    <varlistentry>
+      <term
+>Criteris del filtratge de nom de fitxer</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Podeu emprar comodins. Els múltiples patrons estaran separats per un espai (vol dir OR lògic) i els patrons s'exclouran de la cerca utilitzant el símbol de canonada. Si el patró acaba amb una barra inclinada (*patró*/), això voldrà dir que el patró es relaciona amb la cerca recursiva en les carpetes.</para>
+          </listitem>
+          <listitem>
+            <para
+>patró: vol dir cercar aquells fitxers/carpetes on el nom és un patró, la cerca recursiva recorre totes les subcarpetes independentment del valor en el patró.</para>
+          </listitem>
+          <listitem>
+            <para
+>patró/: vol dir cercar tots els fitxers/carpetes, però la cerca recursiva passarà/exclourà les carpetes on el nom és un patró.</para>
+          </listitem>
+          <listitem>
+            <para
+>Empreu les cometes per als noms que contenen espais. El filtre <quote
+>Fitxers de programa</quote
+> cerca aquells fitxers/carpetes on el nom és <filename
+>Fitxers de programa</filename
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>Exemples:</para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.o</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.h *.c??</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>* | CVS/ .svn/</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Nota: el terme de cerca «text» és equivalent a «*text*».</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_checkb_options">
+      <term
+>Opcions de casella de selecció</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Fes-ho també en les subcarpetes</guilabel
+>: el Sincronitzador recorrerà les subcarpetes en comparar.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Segueix els enllaços simbòlics</guilabel
+>: el Sincronitzador seguirà els enllaços simbòlics a les carpetes (no als fiters!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Compara per contingut</guilabel
+>: els fitxers on les mides siguin iguals també es compararan per contingut.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ignora les dates</guilabel
+>: ignora la informació de la data (útil per a &FTP;, smb, arxiu...) la informació de la data *només* és rellevant en el sistema de fitxers local.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Asimètric</guilabel
+>: la <guilabel
+>Carpeta de l'esquerra</guilabel
+> és la carpeta de destinació, la <guilabel
+>Carpeta de la dreta</guilabel
+> és la carpeta d'origen. Aquesta funció sincronitza el contingut de la carpeta esquerra amb el de la carpeta de la dreta.<itemizedlist
+> <listitem
+> <para
+>Els fitxers que només existeixen en el costat esquerre seran eliminats.</para
+> </listitem
+> <listitem
+> <para
+>Els fitxers que només existeixen en el costat dret es copiaran a l'esquerra.</para
+> </listitem
+> <listitem
+> <para
+>Els fitxers considerats iguals quedaran intactes.</para
+> </listitem
+> <listitem
+> <para
+>Els fitxers que es considerin diferents es copiaran a l'esquerra. Empreu aquesta característica amb compte!</para
+> </listitem
+> </itemizedlist
+>Aquesta característica és útil si la informació de la data no es pot emprar o per a sincronitzar la carpeta de l'esquerra amb el contingut d'un servidor de fitxers (com una descàrrega). De manera alternativa, és útil crear una còpia de seguretat de la carpeta de la dreta a la carpeta de l'esquerra. NOTA: NO empreu aquesta opció per a sincronitzar un escriptori i un ordinador portàtil (&pex;, els fitxers que només existeixen al costat esquerre s'eliminaran!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Desplaçar el resultat</guilabel
+>: Això és per a servidors d'&FTP; lents... Quan el Sincronitzador ha finalitzat de comparar un fitxer, el col·loca al final de la llista, i a la vegada si cal, desplaça la finestra. Això és important, si voleu saber què està fent el Sincronitzador. Si el servidor d'&FTP; és lent, la comparació d'una carpeta pot trigar molta estona. En activar aquesta opció, veureu que el comparador està <quote
+>viu</quote
+>, però lent. Per a sistemes de fitxers ràpids, podreu reduir lleugerament la velocitat de la comparació.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ignora les majúscules/minúscules</guilabel
+>: compara el nom de fitxer sense fer distinció entre majúscules i minúscules, això és útil en sincronitzar sistemes de fitxers de &Windows;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Ignora els fitxers ocults</guilabel
+>: ignora els fitxers que comencen amb un punt.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <para
+>En acabar tot l'esmentat anteriorment, feu clic al botó <guibutton
+>Compara</guibutton
+> per a comparar les carpetes, el resultat es mostrarà a la <guilabel
+>Llista de fitxers</guilabel
+>.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Llista de fitxers</term>
+      <listitem>
+        <para
+>La <guilabel
+>Llista de fitxers</guilabel
+> té les següents columnes: <quote
+>Nom esquerre | Mida esquerre | Temps esquerre | Treball | Temps correcte | Mida correcte | Nom correcte</quote
+>. Aquí podreu verificar el resultat de la comparació i modificar les accions de la sincronització. El color del text defineix la direcció de còpia predeterminada que determina el comparador.<itemizedlist
+> <listitem
+> <para
+>Verd: es copia d'esquerra a dreta.</para
+> </listitem
+> <listitem
+> <para
+>Blau: es copia de dreta a esquerra o elimina del costat dret en el mode asimètric.</para
+> </listitem
+> <listitem
+> <para
+>Vermell: els fitxers que siguin diferents segons els criteris donats (sense direcció per a copiar).</para
+> </listitem
+> <listitem
+> <para
+>Negre: els fitxers que siguin idèntics (sense direcció per a copiar).</para
+> </listitem
+> </itemizedlist
+>Un doble clic sobre un fitxer cridarà a la funció <guilabel
+> Compara per contingut</guilabel
+> del &krusader;. La columna Treballs (&lt;=&gt;) defineix la direcció predeterminada per a copiar, el qual podrà modificar l'usuari. La finestra de resultats admet arrossegar elements a altres finestres (arrossegar [esquerra], &Maj;+arrossegar [dreta]) i copiar els elements seleccionats a esquerra/dreta al porta-retalls (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). </para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><guilabel
+>Llista de fitxers</guilabel
+>: columna Treballs (&lt;=&gt;)</term>
+      <listitem>
+        <para
+>Aquesta columna mostra el treball planificat pel Sincronitzador, aquest treball es pot modificar amb el <link linkend="synccomp_right-click"
+>menú del clic dret</link
+>.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: es copia del costat esquerre al costat dret. Per a les carpetes: fa <command
+>mkdir</command
+> al costat dret.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: si els fitxers són els mateixos, no fa res.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: el fitxer està exclòs o el Sincronitzador no sap què fer.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: es copia del costat dret al costat esquerre. Per a les carpetes: fa <command
+>mkdir</command
+> al costat esquerre</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Supr</guibutton
+>: suprimeix els fitxers del costat dret.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_show_options">
+      <term
+>Mostra les opcions</term>
+      <listitem>
+        <para
+>Aquí podreu incloure/excloure els tipus de fitxer en particular. Aquests fitxers, que no són a la llista, no es tocaran durant la sincronització.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: habilita/inhabilita el treball de còpia de l'esquerra a la dreta.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: habilita/inhabilita la llista dels fitxers iguals.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: habilita/inhabilita la llista dels fitxers exclosos / <quote
+>no sé què fer</quote
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: habilita/inhabilita el treball de còpia de dreta a esquerra.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Paperera</guibutton
+>: habilita/inhabilita la supressió de fitxers del treball al costat esquerre.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Duplicats</guibutton
+>: habilita/inhabilita els fitxers que hi ha ambdós costats.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Desaparellats</guibutton
+>: habilita/inhabilita els fitxers que només hi ha en un costat.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Botons d'acció</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Compara</guibutton
+>: compara les carpetes, el resultat es mostra a la <guilabel
+>Llista de fitxers</guilabel
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Atura</guibutton
+>: deixa de comparar.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Sincronitza</guibutton
+>: mostra el diàleg de sincronització.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Tanca</guibutton
+>: tanca la finestra del Sincronitzador.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>La línia d'estat pot contenir</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>El nombre de carpetes escanejades durant la comparació.</para>
+          </listitem>
+          <listitem>
+            <para
+>El nom de fitxer quan es compara per contingut (per a fitxers grans).</para>
+          </listitem>
+          <listitem>
+            <para
+>El nombre de fitxers a la llista.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_right-click">
+      <term
+>El menú del clic dret sobre la <guilabel
+>Llista de fitxers</guilabel
+></term>
+      <listitem>
+        <para
+>El menú del clic dret es divideix en tres seccions:</para>
+        <para
+>1.- Canvia les operacions de <guilabel
+>Treball</guilabel
+> determinades pel Comparador. Seleccioneu un o més fitxers. El canvi s'aplicarà a la selecció i no només sobre l'element on s'ha fet clic dret. Si l'element seleccionat és una carpeta, el canvi també s'aplicaran als seus fitxers/subcarpetes.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Sincronitza les carpetes...</guibutton
+>: inicia la sincronització.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Exclou</guibutton
+>: exclou un fitxer/carpeta de la sincronització (canvia el treball a !=).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Recupera l'operació original</guibutton
+>: canvia el treball al resultat original de la comparació.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Inverteix la direcció</guibutton
+>: canvi el treball (-&gt; a &lt;- i &lt;- a -&gt;).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Copia des de la dreta a l'esquerra</guibutton
+>: canvia el treball a &lt;-.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Copia des de l'esquerra a la dreta</guibutton
+>: canvia el treball a -&gt;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Suprimeix (només a l'esquerra)</guibutton
+>: canvia el treball a SUP.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>2.- Canvia les seleccions</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Selecciona els elements</guibutton
+>: obre un diàleg que permet seleccionar elements. Aquest és el diàleg <guimenuitem
+>Selecciona un grup</guimenuitem
+> del <link linkend="edit-menu"
+>menú Edita</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Desselecciona els elements</guibutton
+>: obre un diàleg que permet desseleccionar elements. Aquest és el diàleg <guimenuitem
+>Desselecciona un grup</guimenuitem
+> del <link linkend="edit-menu"
+>menú Edita</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Inverteix la selecció</guibutton
+>: inverteix l'estat de selecció de tots els elements.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>3.- altres (cal tenir en compte que les següents operacions funcionen sobre el fitxer amb el clic dret i no sobre la selecció).</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Visualitza el fitxer de l'esquerra</guibutton
+>: inicia el visualitzador sobre el fitxer de l'esquerra.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Visualitza el fitxer de la dreta</guibutton
+>: inicia el visualitzador sobre el fitxer de la dreta.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Compara fitxers</guibutton
+>: inicia la utilitat diff (&pex;, el &kompare;) sobre els fitxers.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Altres botons</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Perfils</guibutton
+>: si heu de sincronitzar sovint les mateixes carpetes, podreu desar la configuració, &pex;, incloure els fitxers, excloure els fitxers... Premeu el botó <guibutton
+>Perfil</guibutton
+> i podreu afegir / carregar / desar / eliminar perfils del sincronitzador.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Intercanvia els costats</guibutton
+>: intercanvia la <guilabel
+>Llista de fitxers</guilabel
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Sincronitza amb el &kget;</term>
+      <listitem>
+        <para
+>Si voleu sincronitzar una carpeta local amb un servidor d'&FTP; inestable, el &kget; és una solució molt millor que la simple còpia de fitxers. Després de comparar, podreu fer clic dret a la llista de resultats i seleccionar <guimenuitem
+>Sincronitza amb el &kget;</guimenuitem
+> per a executar la sincronització, després els fitxers llistats es descarregaran amb el &kget; en comptes del &krusader;. Per descomptat, cal que el &kget; estigui instal·lat a l'ordinador -en cas contrari, no estarà disponible-.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+ 
+</sect2
+>  
+<sect2 id="synchronizer_synchronization">
+  <title
+>Sincronització</title
+>  
+
+  <para
+>Després de prémer el botó <guibutton
+>Sincronitza</guibutton
+>, apareixerà el diàleg de sincronització.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Caselles de selecció</term>
+      <listitem>
+        <para
+>Aquí confirmareu les operacions de còpia i supressió del Sincronitzador</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>De dreta a esquerra</guilabel
+>: copia X1 fitxers (Y1 bytes) habilita/inhabilita la còpia de dreta a esquerra.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>D'esquerra a dreta</guilabel
+>: copia X2 fitxers (Y2 bytes) habilita/inhabilita la còpia d'esquerra a dreta.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Esquerra</guilabel
+>: suprimeix X3 fitxers (Y3 bytes) habilita/inhabilita la supressió al costat esquerre.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Confirma la sobreescriptura</guilabel
+>: en activar aquesta opció, el &krusader; mostrarà el diàleg per a <guibutton
+>canviar el nom, ometre, sobreescriure, ometre-ho tot, sobreescriure-ho tot</guibutton
+> abans de sobreescriure el fitxer.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Etiquetes d'estat</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Preparat</guilabel
+>: A1/A2 fitxers, B1/B2. Aquesta línia es canviarà durant la sincronització, mostrant que el sincronitzador ha finalitzat amb els fitxers A1 des d'A2 (B1 bytes de B2).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Barra de progrés</guilabel
+>: mostra el progrés de la sincronització (en funció dels bytes).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Botons d'acció</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Inici</guibutton
+>: comença la sincronització.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Pausa/Continua</guibutton
+>: fa una pausa/reprèn el procés de sincronització.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Tanca</guibutton
+>: tanca el diàleg de sincronització (i l'atura).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Sincronització en paral·lel</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Es pot donar el nombre de fils «quasi».</para>
+          </listitem>
+          <listitem>
+            <para
+>Pot augmentar dràsticament la velocitat quan se sincronitza amb servidors d'&FTP; lents.</para>
+          </listitem>
+          <listitem>
+            <para
+>No afecta la velocitat de la sincronització local.</para>
+          </listitem>
+          <listitem>
+            <para
+>La comparació remota <quote
+>per contingut</quote
+> i <quote
+>de carpeta</quote
+> es realitza en paral·lel.</para>
+          </listitem>
+          <listitem>
+            <para
+>La sincronització remota també es realitza en paral·lel, excepte els treballs de <command
+>mkdir</command
+> (el <command
+>mkdir</command
+> abans haurà de copiar).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+</sect2>
+</sect1>

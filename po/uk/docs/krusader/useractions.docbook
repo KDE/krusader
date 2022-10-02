@@ -1,0 +1,631 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="useractions">
+  <title
+>Дії користувача</title>
+  <indexterm>
+    <primary
+>Дії користувача</primary>
+  </indexterm>
+  <!-- Thanks to Jonas Bar -->
+  <para
+>За допомогою Керівника ви зможете встановити, налаштувати і здійснити керування діями користувача. Деякі з загальних параметрів можна налаштувати за допомогою <link linkend="konfig-useractions"
+>Конфігуратора</link
+>. За допомогою дій користувача ви зможете виконувати дії з файлами або отримувати доступ до внутрішніх функцій &krusader; з використанням заповнювачів. Ці дії тісно інтегруються з системою дій Плазми. Це означає, що за допомогою дій користувача можна відкривати стандартні діалогові вікна, зокрема «Редагування панелі інструментів» та «Редагування клавіатурних скорочень». Параметри дій користувача зберігаються у файлі <filename
+> ~/.local/share/krusader/useractions.xml</filename
+> або <filename
+>krusader/useractions.xml</filename
+> у каталозі, адресу якого можна визначити за допомогою команди <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. Декілька <link linkend="useraction-xml"
+>прикладів</link
+> наведено у документації. За допомогою Керівника ви можете змінювати, додавати, імпортувати та експортувати дії користувача. Параметри типових дій користувача зберігаються у файлі <filename
+>/usr/share/krusader/useraction-examples.xml</filename
+>. Діями користувача можна скористатися майже всюди, де можна скористатися «звичайними» KAction. Дії користувача можна навіть вбудувати до смужки меню, але для цього доведеться змінити файл <filename
+>krusaderui.rc</filename
+>. Декілька прикладів:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="useractions-menu"
+>Меню «Дії користувача»</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="useractions"
+>Меню користувача</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="actions_toolbar"
+>Панель дій</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>контекстні меню</para>
+    </listitem>
+    <listitem>
+      <para
+>тощо</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Інструмент дій користувача &krusader; є дуже потужним і гнучким, якщо ви звичні з загальними принципами створення дій користувача.</para>
+  <tip>
+    <para
+>Типово, разом з програмою постачається декілька дій користувача. Будь ласка, <link linkend="help_krusader"
+>оприлюдніть ваші улюблені дії користувача</link
+> так, щоб доступ до них могли отримати учасники спільноти &krusader;. Дякуємо!</para>
+  </tip>
+  <figure id="screenshot-actionman" float="1">
+    <title
+>Керування діями</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="actionman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Керівник</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Загалом кажучи, дії користувача є способом виклику зовнішніх програм з різноманітними параметрами. Наприклад, ви можете створити дію користувача з командою <command
+>xmms <option
+>--enqueue %aList("Selected")%</option
+></command
+> для додавання всіх позначених елементів активної панелі до списку відтворення запущеної програми xmms. Крім того, передбачено обмежений доступ до внутрішніх функцій &krusader; з параметрами. Наприклад, команда <command
+>%aPanelSize("80")%</command
+> встановить ширину активної панелі у значення 80% ширини головного вікна &krusader;. Оскільки параметр заповнювача може містити інші заповнювачі, можливе написання скриптів. </para>
+  <para>
+    <emphasis role="bold"
+>Керування діями користувача</emphasis>
+  </para>
+  <para
+>Відкрийте вікно Конфігуратора і виберіть пункт <menuchoice
+><guimenu
+>Дії користувача</guimenu
+> <guimenuitem
+>Запуск Керівника</guimenuitem
+></menuchoice
+>. За Керівника ви зможете додати, змінити, вилучити, імпортувати і експортувати дії користувача.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Додати дію</guimenuitem
+>: якщо ви спробуєте додати нову дію, програма створить порожню форму введення, у яку ви зможете ввести всі бажані властивості. Дію буде додано одразу після натискання кнопки <guimenuitem
+>Застосувати</guimenuitem
+>. Назву дії буде показано у списку, розташованому ліворуч.</para>
+    </listitem>
+    <listitem>
+      <para
+>Щоб змінити параметри дії користувача, позначте її пункт у списку, розташованому ліворуч. Зміни буде застосовано після натискання кнопки <guimenuitem
+>Застосувати</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Щоб вилучити дію користувача</guimenuitem
+>: позначте пункт дії користувача ліворуч і натисніть кнопку <inlinemediaobject
+> <imageobject
+> <imagedata fileref="Icon-edit-delete.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Після <guimenuitem
+>Імпортування дій користувача</guimenuitem
+> їх буде автоматично додано до вашого списку. Якщо виникне конфлікт назв (назви мають бути унікальними, оскільки їм відповідають ідентифікатори дій Плазми), програма попросить вас їх розв’язати. Для цього у списку, розташованому ліворуч, буде показано лише дії з конфліктами. Ви зможете надати їм нові назви або вилучити їх.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Експортувати дію</guimenuitem
+>: якщо ви експортуєте дію користувача, вам слід надати файлу назву, під якою його слід зберегти. Якщо такого файла не існує, його буде створено. Якщо у файлі вже містяться дії користувача, дію, яку ви експортуєте, буде додано до цього файла.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Після цього всі визначені вами дії буде показано у меню користувача і діалогових вікнах Плазми, призначених для зміни клавіатурних скорочено та керування панеллю інструментів. Крім того, доступ до всіх дій, які можна виконувати для поточного елемента, можна буде отримати за допомогою контекстного меню.</para>
+  <para>
+    <emphasis role="bold"
+>Основні властивості</emphasis>
+  </para>
+  <para
+><guimenuitem
+>Ідентифікатор</guimenuitem
+>, <guimenuitem
+>Заголовок</guimenuitem
+> і <guimenuitem
+>Команда»</guimenuitem
+> завжди слід вказувати, всі інші властивості є необов’язковими.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Ідентифікатор</guimenuitem
+>: унікальна назва дії користувача, яка використовується для ідентифікації дії у системі дій Плазми.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Кнопка піктограми</guimenuitem
+>: піктограма для вашої дії користувача.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Категорія</guimenuitem
+>: додає дію до категорії для кращого впорядкування. Категорії визначають пункти підменю у меню <guimenuitem
+>Дії користувача</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Заголовок</guimenuitem
+>: назва, яку буде показано у меню та діалогових вікнах.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Підказка</guimenuitem
+>: підказка для вашої дії користувача, яку, наприклад, буде показано на панелі інструментів після наведення вказівника миші.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Опис</guimenuitem
+>: опис призначення дії користувача. Цей опис буде показано у підказці <guimenuitem
+>Що це?</guimenuitem
+>, доступ до якої можна отримати натисканням комбінації клавіш <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo
+> з наступним наведенням вказівника миші на кнопку вашої дії користувача і клацанням лівою кнопкою миші.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Команда</guimenuitem
+>: команда, яку буде виконано. Ви можете додати заповнювач натисканням кнопки <guibutton
+>Додати</guibutton
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Робоча тека</guimenuitem
+>: робочий каталог для команди, яку буде виконано.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Режим виконання</guimenuitem
+></para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Звичайний</guimenuitem
+>: звичайний режим виконання.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Виконувати в терміналі</guimenuitem
+>: виконати команду у терміналі.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Виконати команду у вбудованому емуляторі термінала</guimenuitem
+>: виконувати команду у вбудованому емуляторі термінала.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Збирати виведення</guimenuitem
+>: збирати дані, виведені виконаною програмою у вікні графічного інтерфейсу.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Виділяти стандартні помилки</guimenuitem
+>: якщо буде позначено пункт «Збирати виведення», дані, виведені у stdout і stderr, збиратимуться окремо.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Команда приймає</guimenuitem
+></para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Локальні файли (не URL)</guimenuitem
+>: вказати заповнювачу, що слід повертати лише локальні адреси.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Адреси URL (віддалені і локальні)</guimenuitem
+>: вказати заповнювачу, що слід повертати адреси &URL;.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <!--    Not yet implemented, but will be after 1.50 stable is released
+        <listitem
+><para
+><guimenuitem
+>On multiple selection</guimenuitem
+>:  </para>
+        <itemizedlist>
+   <listitem
+><para
+><guimenuitem
+>Separate call for each file</guimenuitem
+>: executes the command for each selected file.
+             </para
+></listitem>
+         </itemizedlist>
+      </listitem
+> -->
+    <listitem>
+      <para
+><guimenuitem
+>Типове скорочення</guimenuitem
+>: надає змогу налаштувати типове клавіатурне скорочення для дії користувача.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Увімкнено</guimenuitem
+>: якщо буде позначено цей пункт, дію користувача буде показано у меню <link linkend="useractions"
+>Дії користувача</link
+>. Якщо пункт не буде позначено, дію буде приховано.</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>Синтаксис командного рядка</emphasis>
+  </para>
+  <para
+>Загалом кажучи, все, що ви введете до командного рядка, буде виконано (якщо ви введете "ls -l", буде виконано "ls -l"). У вас є можливість отримати рядок символів від &krusader;, який відповідатиме поточному стану панелі. Виконати це завдання можна за допомогою заповнювачів. Запис заповнювача починається з символу відсотків («%»), за яким слід вказати ідентифікатор панелі («a» — активна, «o» — інша, «l» — ліва, «r» — права. Якщо для роботи заповнювача не потрібна панель, ви можете вказати це за допомогою символу підкреслення («_»)). Далі слід вказати назву заповнювача (див. наведений нижче список), якій, можливо, слід передати певні параметри, взяті у лапки. Завершувати запис заповнювача має також символ відсотків.</para>
+  <para
+>Зрозуміти це зі слів важко, отже, давайте розглянемо приклад: «%aList("Selected")%» буде замінено на список всіх позначених елементів на активній панелі. Отже, команда на зразок «xmms --enqueue %aList("All", " ", "", "*.mp3")%» виконає xmms зі списком всіх файлів .mp3 на поточній панелі, окремі записи у списку буде розділено пробілом.</para>
+  <para
+>У поточній версії програми реалізовано такі заповнювачі:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><userinput
+>Path</userinput
+> — буде замінено шляхом до каталогу панелі</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр (необов’язковий): автоматично екранувати пробіли. Типово увімкнено.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Count</userinput
+> — буде замінено на число з &lt;першого параметра&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: елементи; варіанти: "All", "Selected", "Files" або "Dirs"</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Filter</userinput
+> — буде замінено маскою фільтрування панелі</para>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Current</userinput
+> — буде замінено назвою поточного елемента</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр (необов’язковий): пропустити поточний шлях. Типово вимкнено.</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необов’язковий): автоматично екранувати пробіли. Типово увімкнено.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>List</userinput
+> — буде замінено на список &lt;першого параметра&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: елементи; варіанти: "All", "Selected", "Files" або "Dirs"</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необов’язковий): розділювач між елементами. Типово "&nbsp;"</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необов’язковий): пропустити поточний шлях. Типово вимкнено.</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необов’язковий): маска фільтрування (для всіх окрім "Selected") Типове значення: *</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необов’язковий): автоматично екранувати пробіли. Типово увімкнено.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Select</userinput
+> — керує вибором на панелі</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: маска фільтрування</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необов’язковий): керує способом виконання; варіанти: "Set", "Add" або "Remove". Типове значення: "Set"</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Goto</userinput
+> — змінює шлях панелі на &lt;перший параметр&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: відносний або абсолютний шлях або адреса URL</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необов’язковий): відкрити адресу у новій вкладці. Типово вимкнено.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+> — надсилає користувачеві запит щодо введення тексту, буде замінено відповіддю користувача.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: питання</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необов’язковий): типова відповідь</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необов’язковий): підпис панелі запитання</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Clipboard</userinput
+> — керує буфером обміну даними</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: текст, який слід надіслати до буфера (тут можна скористатися «%aCurrent%»)</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необов’язковий): додати текст до поточного вмісту буфера обміну даними з вказаним роздільником</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Copy</userinput
+> — копіює файл, корисний для швидких створень локальних резервних копій</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: текст для копіювання</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр: місце, куди слід скопіювати</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Sync</userinput
+> — відкриває Синхронізатор з вказаним профілем</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: профіль Синхронізатора</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>NewSearch</userinput
+> — відкриває вікна пошуку з вказаним профілем</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: профіль модуля пошуку</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Profile</userinput
+> — завантажує вказаний профіль панелей</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: профіль панелей</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Each</userinput
+> — поділяє командний рядок на список. Команди списку виконуються одна за одною.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: елемент списку (all, all files, all dirs, all selected).</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Move</userinput
+> — пересуває джерело у призначення.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: джерело</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр: призначення</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>PanelSize</userinput
+> — змінює співвідношення розмірів панелей.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр (необов’язковий): використання цілого значення, наприклад 80, призведе до того, що активна панель використовуватиме 80% ширини вікна &krusader; (висоти у вертикальному режимі), якщо параметр не буде вказано, програма використовуватиме значення 50%.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+> — скасовує виконання.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр (необов’язковий): рядок з питанням щодо скасування.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ListFile</userinput
+> — буде замінено назвою файла або шляхом до тимчасового файла, де міститиметься список елементів.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: шлях/назва файла</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ColSort</userinput
+> — визначає впорядкування у стовпчику окремої панелі.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: стовпчик. Варіанти: «Name», «Ext», «Type», «Size», «Modified», «Perms», «rwx», «Owner» і «Group»</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр: послідовність впорядкування. Варіанти: «Toggle», «Asc», «Desc»</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>View</userinput
+> — визначає режим перегляду.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: режим перегляду. Варіанти: «generic», «text», «hex»</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр: режим вікна. Варіанти: "tab", "window"</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+  </itemizedlist>
+  <para
+>Передбачено заснований на графічному інтерфейсі допоміжний інструмент додавання заповнювачів. Пробіли у Path, Current і List, типово, екрануються. Існує ще одна важлива річ, яку вам слід знати: всі заповнювачі, які взаємодіють з внутрішніми функціями &krusader;, викликаються під час розгортання (тобто безпосередньо під час заміни заповнювачів). Зовнішні програми викликаються під час виконання (тобто після заміни заповнювачів).</para>
+  <para>
+    <emphasis role="bold"
+>Додаткові властивості</emphasis>
+  </para>
+  <para
+>Тут ви можете налаштувати місце, де буде показано вашу команду (для контекстного меню). Крім того, ви можете змінити команду, яку буде виконано, і підтвердити її окремо. Крім того, ви можете вказати користувача, від імені якого буде виконано команду.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Надає змогу налаштувати чинність дії для протоколу, шляху, типу MIME і назви файла.</para>
+    </listitem>
+    <listitem>
+      <para
+>Налаштування командного рядка перед виконанням.</para>
+    </listitem>
+    <listitem>
+      <para
+>Вказати іншого користувача для виконання дії (не впливає на внутрішні функції &krusader;)</para>
+    </listitem>
+  </itemizedlist>
+</sect1>

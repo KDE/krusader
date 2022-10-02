@@ -1,0 +1,84 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="mount-man">
+  <title
+>MountMan: lidar com os seus sistemas de ficheiros montados</title>
+  <indexterm>
+    <primary
+>Montar</primary>
+  </indexterm>
+  <para
+>O MountMan é uma ferramenta que o ajuda a gerir os seus sistemas de ficheiros montados. Assim que for invocado, mostra uma lista com todos os sistemas de ficheiros montados. Para cada sistema de ficheiros, o MountMan mostra o seu nome (que é o nome real do dispositivo - &ie; <filename class="directory"
+>/dev/sda1</filename
+> para a primeira partição do primeiro disco rígido), o seu tipo (vfat, ext3, ext4, ReiserFS ...) e o seu ponto de montagem no seu sistema (a pasta em que o sistema de ficheiros é montado).</para>
+  <para
+>Se quiser ignorar os dispositivos não-removíveis da lista, basta assinalar o item <guilabel
+>Mostrar apenas os dispositivos removíveis</guilabel
+> à esquerda da lista de dispositivos. </para>
+  <figure id="screenshot-mountman" float="1">
+    <title
+>MountMan</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="mountman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>MountMan</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>O MountMan também mostra informações de utilização, como o tamanho actual, o tamanho livre e a percentagem de espaço livre. Se estes valores indicarem <guilabel
+>N/D</guilabel
+>, é porque o sistema de ficheiros não está montado. Se carregar com o botão esquerdo num sistema de ficheiros, irá apresentar um gráfico circular à esquerda da janela, mostrando de forma gráfica a informação da utilização do sistema de ficheiros. Se carregar num sistema de ficheiros não-montado, irá aparecer <guilabel
+>não montado</guilabel
+> em vez do gráfico.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Se fizer <keycap
+>duplo-click</keycap
+> sobre um sistema de ficheiros, irá fechar o MountMan e abrir esse sistema de ficheiros no painel activo do &krusader;.</para>
+    </listitem>
+    <listitem>
+      <para
+>Se carregar com o <keycap
+>botão direito</keycap
+> num sistema de ficheiros, irá abrir um pequeno menu que mostra as acções possíveis sobre esse sistema de ficheiros. De momento, só pode montar, desmontar e ejectar (se carregar num sistema de ficheiros removível, &eg;, um &CD-ROM;).</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Planeia-se a expansão do MountMan na próxima evolução do &krusader;. Será capaz de formatar partições, editar o <filename
+>/etc/fstab</filename
+>, criar sistemas de ficheiros novos, etc... Já agora, já há algum trabalho em curso; veja o "Modo Rápido do MountMan".</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Modo Rápido do MountMan</emphasis>
+  </para>
+  <para
+>Para activar o Modo Rápido do MountMan, carregue no botão lateral com a seta no botão do MountMan na <link linkend="mainwindow"
+>Barra Principal</link
+>.</para>
+  <para
+>Ideia geral: mostrar uma lista com todos os pontos de montagem possíveis. Cada vez que o menu aparece, mostra se um ponto de montagem está montado ou não e associa a acção correcta (montar ou desmontar). Isto oferece uma interface rápida para o MountMan. Está a funcionar e usa de momento o KMountMan::mount e unmount. Usa os novos serviços do &kf5-full; para ler o 'fstab', permitindo remover bastante código do MountMan "antigo".</para>
+</sect1>

@@ -1,0 +1,103 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="introduction">
+  <title
+>Inledning</title>
+  <indexterm
+><primary
+>Inledning</primary
+></indexterm>
+  <sect1 id="package-description">
+  <title
+>Paketbeskrivning</title>
+    <para
+>&krusader; är en enkel, lättanvänd, kraftfull filhanterare med två paneler (i stil med commander) för &plasma; och andra *nix-skrivbord, som påminner om <application
+>Midnight Commander</application
+> eller <trademark class="copyright"
+>Total Commander</trademark
+>. Den tillhandahåller alla funktioner för filhantering som du någonsin kan vilja ha.</para>
+    <para
+>&krusader; innehåller också omfattande arkivhantering, stöd för monterade filsystem, &FTP;, en avancerad sökmodul, granskning och editor, katalogsynkronisering, jämförelse av filinnehåll, kraftfull namnändring i bakgrunden, och mycket, mycket mer. &krusader; stöder arkivformaten ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip och 7-zip, samt hanterar andra I/O-slavar som smb:// eller fish://.</para>
+    <para
+>&krusader; är nästan fullständigt anpassningsbar, och därför mycket användarvänlig.</para>
+    <para
+>Prova &krusader;.</para>
+    <figure id="screenshot-krusader" float="1">
+      <title
+>Skärmbild av &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="krusader1.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Skärmbild av &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Fler <ulink url="https://www.krusader.org/"
+>skärmbilder av &krusader;</ulink
+> kan ses på vår hemsida.</para>
+  </sect1>
+
+  <sect1 id="welcome">
+    <title
+>Välkommen till &krusader;!</title>
+    <para
+>Vårt mål är att ge dig ett enkelt, intuitivt verktyg som lätt sköter de viktigaste uppgifterna du utför på datorn varje dag: hantera och behandla filer på det sätt du själv vill.</para>
+    <para
+>Vare sig du är en &Linux;-expert eller nybörjare, gör &krusader; rutinmässiga filhanteringsuppgifter snabba och noggranna, vilket låter dig fokusera på helheten, inte kommandoradens syntax. Det är till särskilt stor hjälp om du är ovan vid Unix-liknande operativsystem. För att åstadkomma just detta, använder &krusader; sig av ett snyggt grafiskt gränssnitt och stödjer drag och släpp samt &MIME;-typer, vilket gör det lättanvänt.</para>
+    <para
+>&krusader; har många användbara funktioner. Det är snabbt, och hanterar <link linkend="archives"
+>arkiv</link
+> transparent. Dessutom strömlinjeformar &krusader; många komplexa filhanteringsuppgifter, vilket reducerar trötthet, felbenägenhet och distraktioner. &krusader; tillhandahåller i grund och botten alla de användbara funktioner som man har kommit att förvänta sig av andra högkvalitativa filhanteringsverktyg som <application
+>Midnight Commander</application
+> och <trademark class="copyright"
+>Total Commander</trademark
+>. &krusader; är konstruerat för att integreras sömlöst med &plasma;, som är det skrivbord många programmerare, nätverksingenjörer, och andra kunniga användare av &Linux; väljer i första hand. Med &krusader; kan också nytillkomna användare snabbt komma åt de kraftfulla, bekväma och funktionsrika möjligheterna &plasma; erbjuder. &krusader; är ett fritt projekt med öppen källkod, och ges ut med licensen <link linkend="credits"
+>&GNU; General Public License (GPL)</link
+>, även om utvecklarna ändå behåller upphovsrätten för projektet och dess namn, samt hanterar projektets fortsatta utveckling.</para>
+    <para
+>&krusader;-projektets uppgift är att skapa en <quote
+>allt-i-allo</quote
+> filhanterare, som gör alla vanliga saker du kan förvänta dig, och ännu lite till. Eftersom principen bakom &krusader; är baserad på <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>ortodoxa filhanterare (OFM)</ulink
+>, filhanterare med två paneler (<application
+>Midnight Commander</application
+>, <trademark class="registered"
+>Norton Commander</trademark
+>, etc.), är det givet att &krusader; klarar av alla standardmässiga filåtgärder, som kopiera, flytta, ta bort, etc.</para>
+    <para
+>Redan från början hamnade huvudfokus på virtuella filsystem. Ett <link linkend="vfs"
+>virtuellt filsystem (VFS)</link
+> är ett abstrakt lager över alla sorters arkiverad information (ZIP-filer, &FTP;-servrar, TAR-arkiv, &NFS;-filsystem, SAMBA delade kataloger, ISO CD/DVD-avbilder, RPM-kataloger, etc.), som gör det möjligt för användaren att transparent komma åt all information i dessa väsenskilda typer av filsystem, precis som att gå ner i en vanlig underkatalog. Filer kan därefter kopieras eller flyttas omkring (utom för ISO, rpm och tar.gz) utan ansträngning, mellan datakällorna och behållarna. &krusader; stöder för närvarande VFS för alla populära och vissa specialiserade arkivtyper (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip och 7-zip), distributionspaket (rpm, deb) och traditionella typer av fjärrfilsystem (&FTP;, &NFS;, Samba, FISH, SFTP).</para>
+    <para
+>&krusader; innehåller också en inbyggd monteringshanterare <link linkend="mount-man"
+>Mountman</link
+>, som gör det möjligt att montera och avmontera filsystem av alla typer med ett musklick. Användaren kan enkelt få information om användning och andra egenskaper, med ett konsekvent och förståeligt format, på bara några sekunder. Enkelhet och konsekvens är målet.</para>
+    <para
+>En <link linkend="bookman"
+>bokmärkeshanterare</link
+> för lokala och fjärrwebbadresser och en <link linkend="krusearcher"
+>avancerad sökmodul</link
+> ingår också, för att snabba upp lokalisering av önskade filer. &krusader; låter också användaren ställa in verktygsrader för att tillhandahålla en mängd ytterligare funktioner, som filjämförelse (flera användarstyrda metoder är tillgängliga), namnbyte av flera filer och vanliga terminalfönster.</para>
+    <para
+>Avancerade användare har stor nytta av att kunna utföra elementära uppgifter utan ansträngning, och utan att bli distraherade från den verkliga uppgiften som pågår. Bekväma snabbtangenter gör det möjligt för användaren att navigera i katalogträd med enkelhet, skapa flera samtidiga katalogvyer med flikar, och komma åt historiklistor med fullständig funktion. På grund av effektiv programmering och låg systempåverkan, är &krusader; kanske det över huvud taget mest lätthanterliga systemhanteringsverktyget, använt för att komma åt hela potentialen i en dator med &plasma;, eller någon annan &X-Window; fönsterhanterare som följer standarden. Även om den är specifikt konstruerad för - och tätt integrerad med - &plasma;, fungerar &krusader; lika bra med GNOME, MATE, Enlightenment, &windowmaker;, IceWM, XFCE, etc., om bara KF5-biblioteken är installerade.</para>
+    <para
+>Nya utökningar tillhandahålls av de flexibla <link linkend="useractions"
+>användaråtgärderna</link
+>, en innovation i &krusader; som tillåter att en obegränsad mängd ytterligare egna funktioner läggs till, för att passa användarnas specifika behov. Vi planerar att utveckla flera moduler i en nära framtid, och därigenom förbättra &krusader;. Information om vad som föreslås, är godkänt eller återstår att färdigställa, finns på <ulink url="https://invent.kde.org/utilities/krusader"
+>&krusader;s GitLab-sida</ulink
+>.</para>
+    <para
+>Inget annat program vi känner till erbjuder så många användbara, lättåtkomliga funktioner på ett så intuitivt och enkelt format. Bäst av allt, vi lyssnar på och implementerar bra förslag som passar ihop med &krusader;-projektets mål: att göra &krusader; till den allra bästa filhanteraren som är tillgänglig.</para>
+    <para
+>Vi hoppas att du kommer att tycka om den - det gör vi!</para>
+ </sect1>
+</chapter>

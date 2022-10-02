@@ -1,0 +1,156 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="locate">
+  <title
+>Графічний інтерфейс програми locate</title>
+  <indexterm>
+    <primary
+>Locate</primary>
+  </indexterm>
+  <para
+>У &krusader; передбачено графічний інтерфейс до команди <command
+>locate</command
+> (пакунок findutils). Ця команда використовується для пришвидшення пошуку файлів: пошук виконується не за каталогами, а на основі бази даних. Відповідний пакунок містить серед інших файлів дві програми: <command
+>locate</command
+> і <command
+>updatedb</command
+>. <command
+>updatedb</command
+> виконує індексацію локальної файлової системи і зберігає записи до бази даних. <command
+>cron</command
+> часто виконує запуск <command
+>updatedb</command
+> кожної ночі (можна налаштувати за допомогою <application
+>KCron</application
+>). Щоб задіяти цю можливість, скористайтеся пунктом <menuchoice
+> <guimenu
+>Інструменти</guimenu
+> <guimenuitem
+>Розташування...</guimenuitem
+> </menuchoice
+> або натисніть комбінацію клавіш <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+>. За допомогою <link linkend="konfig-advanced"
+>Конфігуратора</link
+> можна вказати додаткові параметри для команди <command
+>updatedb</command
+>.</para>
+  <para
+>Пункти <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Показувати тільки існуючі файли</guilabel
+>: якщо у базі даних містяться записи, яких вже немає на носії даних (їх було вилучено або пересунуто з часу попереднього запуску <command
+>updatedb</command
+>), <command
+>locate</command
+> не показуватиме їх у списку. Отже, перед додаванням пункту до списку буде виконано перевірку його існування (це сповільнить виконання завдання).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>З урахуванням регістру</guilabel
+>: якщо зняти позначку з цього пункту, пошук буде виконано без врахування регістру символів назви файлів.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Кнопки дій <itemizedlist>
+    <listitem>
+      <para
+><guibutton
+>Розташування</guibutton
+>: виконує команду <command
+>locate <replaceable
+>foo foo</replaceable
+></command
+> і виводить отримані дані до вікна результатів.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Зупинити</guibutton
+>: зупиняє процес пошуку адреси.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>UpdateDB</guibutton
+>: виконує команду <command
+>updatedb</command
+>, призначену для оновлення бази даних програми locate, після введення пароля адміністратора.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Закрити</guibutton
+>: закриває вікно пошуку адреси.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Вікно результатів <itemizedlist>
+    <listitem>
+      <para
+>Подвійне клацання на позначці об’єкта: перехід до каталогу об’єкта, робить об’єкт видимим і закриває діалогове вікно пошуку адреси.</para>
+    </listitem>
+    <listitem>
+      <para
+>Клацання правою: відкриває меню редагування/перегляду/пошуку. <itemizedlist>
+        <listitem>
+          <para
+><keycap
+>F3</keycap
+>: перегляд поточного об’єкта.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>F4</keycap
+>: редагування поточного об’єкта.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>: пошук файлів у вікні результатів.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+>: перехід до наступного результату пошуку.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: перехід до попереднього результату пошуку.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+        <listitem>
+          <para
+>У вікні результатів підтримується перетягування позначок об’єктів до інших вікон і копіювання їх до буфера обміну даними (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+        </listitem>
+  </itemizedlist
+></para>
+</sect1>

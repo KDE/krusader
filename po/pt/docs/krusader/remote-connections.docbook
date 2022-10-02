@@ -1,0 +1,369 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="remote-connections">
+  <title
+>Ligações Remotas</title>
+  <indexterm>
+    <primary
+>Ligações Remotas</primary>
+  </indexterm>
+  <para
+>Poderá criar facilmente ligações remotas, escrevendo para tal o &URL; na <link linkend="list_panel"
+>Barra de Localização</link
+>; estes são, de facto, os KIO Slaves. Repare por favor que o painel do &krusader; não suporta todos os KIO Slave; &eg; o <command
+>http://</command
+> não irá funcionar no painel, mas irá funcionar no <link linkend="krviewer"
+>visualizador</link
+>. Alguns exemplos:</para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>publico.servidor.org/pasta/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>fish://</command
+><replaceable
+>utilizador@máquina/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>sftp://</command
+><replaceable
+>utilizador:senha@sftp.xpto.org/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>utilizador@meu.servidor.org:21/pasta/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>smb://</command
+><replaceable
+>username:password@server/share</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>utilizador@utilizador-proxy:senha@senha-proxy@máquina/pasta</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>nfs://</command
+><replaceable
+>&lt;máquina&gt;:&lt;porto&gt;&lt;url-local&gt;</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>webdav://</command
+><replaceable
+>www.servidor.com/local/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Poderá marcar estes &URL;'s como favoritos; contudo, leia por favor a secção do <link linkend="bookman"
+>Bookman</link
+>, no que respeita a <emphasis
+>gravar senhas de forma segura</emphasis
+>. Para se ligar a vários pontos, marque estes &URL;'s como favoritos e abra-os em conjunto com os <link linkend="panel_profiles"
+>perfis do Painel</link
+>. Para mudar de uma localização para outra, basta abrir uma <link linkend="folder-tabs"
+>página de pastas</link
+> para cada uma.</para>
+  <para
+>Existem três formas de iniciar uma ligação remota:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Escrevendo o &URL; na <link linkend="list_panel"
+>Barra de Localização</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Seleccione a opção <menuchoice
+> <guimenu
+>Ferramentas</guimenu
+> <guimenuitem
+>Nova Ligação à Rede</guimenuitem
+> </menuchoice
+>, que irá mostrar uma janela a pedir os detalhes do servidor remoto. Esta janela é útil se não estiver habituado a escrever &URL;'s remotos na Barra de Localização. Se deixar os campos de senha e utilizador em branco, será autenticado como anónimo. Nota: esta janela está planeada para ser modificada no futuro.</para>
+    </listitem>
+    <listitem>
+      <para
+>Poderá marcar uma pasta de uma máquina remota como favorito e voltar a esta pasta com o botão de favoritos, no canto superior do seu painel, como se fosse num navegador Web.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Depois de se autenticar num servidor remoto, poderá navegar por ele, como se estivesse no seu disco rígido local, com as seguintes excepções:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Não poderá executar ficheiros nos servidores remotos.</para>
+    </listitem>
+    <listitem>
+      <para
+>As permissões nem sempre podem ser calculadas nos servidores remotos (depende do servidor e do método de acesso), pelo que poderá ter um <guilabel
+>?</guilabel
+> na coluna de permissões para alguns ficheiros.</para>
+    </listitem>
+    <listitem>
+      <para
+>A informação da utilização do disco não está disponível para a maioria dos sistemas de ficheiros remotos.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Para mudar a codificação de caracteres da máquina remota, use a opção <menuchoice
+> <guimenu
+>Ver</guimenu
+> <guimenuitem
+>Seleccionar a Codificação Remota</guimenuitem
+> </menuchoice
+>.</para>
+  <para
+>Poderá fechar a Ligação Remota Activa actual, usando para tal dois métodos separados:</para
+> 
+  <itemizedlist>
+    <!--
+        <listitem>
+           <para
+>Manually: <emphasis role="bold"
+><menuchoice
+><guimenu
+>Commands</guimenu>
+                 <guimenuitem
+>Disconnect From Net</guimenuitem
+></menuchoice
+></emphasis
+></para>
+        </listitem>
+        -->
+    <listitem>
+      <para
+>Manualmente: Adicione o botão para desligar à <link linkend="mainwindow"
+>Barra Principal</link
+> e carregue nele.</para>
+    </listitem>
+    <listitem>
+      <para
+>Automaticamente: Modifique o &URL; na <link linkend="list_panel"
+>Barra de Localização</link
+> .</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>O &krusader; é um gestor de ficheiros que suporta ligações remotas através dos KIO Slaves, mas se estiver à procura de ligações remotas ainda mais avançadas, como &eg; um cliente de &FTP; avançado, recomenda-se que use &eg; o <ulink url="http://kasablanca.berlios.de/"
+>Kasablanca</ulink
+> ou o <ulink url="http://kftpgrabber.sourceforge.net/"
+><application
+>Kftpgrabber</application
+></ulink
+>.</para>
+  </note>
+
+<sect2 id="remote-connections-lan-fish">
+  <title
+>Ligações na LAN através do protocolo 'fish:/' (zeroconf)</title>
+  <indexterm>
+    <primary
+>Ligações Remotas na LAN (zeroconf)</primary>
+  </indexterm>
+
+<para
+>Esta secção tem a contribuição de Andrew Svet (z-vet); agradecem-se reacções acerca deste capítulo. Muito obrigado!</para>
+
+ <note>
+   <para
+>Isto funciona num sistema <trademark class="registered"
+>Debian</trademark
+>, por isso irá funcionar no <trademark class="registered"
+>Debian</trademark
+> e derivados (<trademark class="registered"
+>Kubuntu</trademark
+> &etc;), ainda que deva também funcionar nos outros sistemas Linux. Assume-se para já que tem o <link linkend="gloss-ssh"
+>SSH</link
+> instalado, configurado e a funcionar em todas as máquinas da LAN onde se desejar ligar. Existem bastantes tutoriais bons acerca do <link linkend="gloss-ssh"
+>SSH</link
+> na Net, &eg; em <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying"
+>linuxhomenetworking.com</ulink
+> ou procurando no Google por ele. Usa-se aqui o porto por omissão do <link linkend="gloss-ssh"
+>SSH</link
+> (22) para este capítulo. Lembre-se de o alterar, caso use um diferente. Todas as modificações, edições, &etc; deverão ser feitas como 'root'. </para>
+ </note>
+
+<para
+>Comecemos por instalar todos os pacotes necessários: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>apt-get install</command
+> <option
+>avahi-daemon libnss-mdns kdnssd</option
+></userinput>
+</screen
+> Está tudo instalado; agora é uma questão de alguma configuração. Primeiro, é necessário anunciar os nossos serviços na LAN. É por isso que se instalou o 'avahi-daemon': ele representa a sua máquina na rede local e permite às outras aplicações publicarem os serviços que oferecem. O 'avahi-daemon' vem com um ficheiro de configuração de exemplo <filename
+>ssh.service</filename
+>, existente na pasta <filename
+>/usr/share/doc/avahi-daemon/examples</filename
+> . Para que este serviço seja anunciado na LAN, é necessário copiar este ficheiro para a pasta <filename
+>/etc/avahi/services</filename
+>: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option
+></userinput>
+</screen
+> Agora também é necessário anunciar o protocolo 'fish:/', pelo que se irá usar o ficheiro 'ssh.service' como modelo para o 'fish.service': <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option
+></userinput>
+</screen
+> Este ficheiro é apenas uma cópia do 'ssh.service'. Edite o ficheiro <filename
+>fish.service</filename
+> e substitua o "Terminal Remoto em %h" por "Fish em %h" e o "_ssh._tcp" por "_fish._tcp". Assim é como irá ficar depois da edição: <programlisting
+> 
+&lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--> 
+&lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
+
+&lt;!-- $Id: remote-connections.docbook,v 1.6 2007/05/02 18:07:28 codeknight Exp $ --> 
+
+&lt;!-- 
+  This file is part of avahi. 
+  
+  avahi is free software; you can redistribute it and/or modify it 
+  under the terms of the GNU Lesser General Public License as 
+  published by the Free Software Foundation; either version 2 of the 
+  License, or (at your option) any later version. 
+
+  avahi is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR 
+
+&lt;!-- See avahi.service(5) for more information about this configuration file --> 
+
+&lt;service-group
+> 
+
+  &lt;name replace-wildcards="yes"
+>FISH em %h&lt;/name
+> 
+
+  &lt;service
+> 
+    &lt;type
+>_fish._tcp&lt;/type
+> 
+    &lt;port
+>22&lt;/port
+> 
+  &lt;/service
+> 
+
+&lt;/service-group
+>  
+</programlisting
+> Grave o ficheiro modificado. Agora é necessário criar um novo ficheiro <filename
+>_fish._tcp</filename
+>; abra um editor de texto e adicione as seguintes linhas: <programlisting>
+Name=Protocolo FISH (ssh) 
+Type=_fish._tcp 
+UserEntry=u 
+PathEntry=path 
+PasswordEntry=p
+</programlisting
+> E grave o ficheiro <filename
+>/usr/share/apps/zeroconf/_fish._tcp</filename
+> Faça o mesmo para cada máquina na sua LAN, reiniciando depois o 'avahi-daemon': <screen>
+<prompt
+># /etc/init.d/</prompt
+> <userinput
+><command
+>avahi-daemon</command
+> <option
+>restart</option
+></userinput>
+</screen
+> Depois abra o  &krusader; e escreva na barra de localização: <filename
+>zeroconf:/</filename
+> para abrir a ligação ao <link linkend="gloss-zeroconf"
+>zeroconf</link
+>. Entre na pasta <guilabel
+>Protocolo FISH</guilabel
+>. Dentro dela, irá encontrar as referências a cada máquina que anunciou o <filename
+>fish:/</filename
+> na sua LAN; a barra de localização irá apontar para <filename
+>zeroconf:/_fish._tcp</filename
+>. Faça duplo-click em cada uma destas máquinas, para que apareça a janela de pedido de senha, onde poderá introduzir a sua frase-senha de SSH (se estiver definida). Introduza a dita senha. Parabéns: ligou-se à máquina remota através do &krusader;! </para
+> 
+
+</sect2>
+
+</sect1>
+
+

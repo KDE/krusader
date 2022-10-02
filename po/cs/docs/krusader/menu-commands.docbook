@@ -1,0 +1,2308 @@
+<chapter id="menu-commands">
+  <!-- **********************************************************************
+                            commands.docbook
+                          ++++++++++++++++++++
+  copyright            : (C) 2000 - 2010
+                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                          & the Krusader Krew
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://www.krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+  <title
+>Příkazy nabídky</title>
+  <indexterm>
+    <primary
+>Příkazy</primary>
+    <secondary
+>Nabídka</secondary>
+  </indexterm>
+  <sect1 id="file-menu">
+    <title
+>Nabídka Soubor</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F4</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Nový textový soubor</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vytvoří nový textový soubor v současném adresáři, není-li určen jiný adresář. Nový soubor je po svém vytvoření otevřen pro úpravu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F7</keycap
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Nový adresář</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vytvoří nový adresář v současném adresáři.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Nový symbolický odkaz</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vytvoří symbolický odkaz na aktuálně označený soubor.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F3</keycap
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Zobrazit soubor</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře aktuálně označený soubor pro <link linkend="kredit"
+>prohlížení</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F4</keycap
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Upravit soubor</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře aktuálně označený soubor pro <link linkend="kredit"
+>úpravu</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F5</keycap
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Kopírovat do druhého panelu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zkopíruje aktuálně vybrané soubory nebo adresáře do druhého panelu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F6</keycap
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Přesunout...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře dialogové okno pro <link linkend="copying"
+>přesunutí</link
+> aktuálně označených souborů nebo adresářů do určeného umístění.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Sbalit...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vytvoří <link linkend="pack-archive"
+>nový archiv</link
+> ze všech označených souborů a adresářů v aktivním panelu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Rozbalit...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="unpacking-archives"
+>Rozbalí</link
+> všechny označené soubory v aktivním panelu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Testovat archiv</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="test-archive"
+>Otestuje archiv</link
+> na jeho neporušenost.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Porovnat dle obsahu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Compares two current files by content - one from each panel via an external graphical diff utility. By default &kompare; is used, but you can also use &eg; <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> or <ulink url="http://kdiff3.sourceforge.net"
+><application
+>Kdiff3</application
+></ulink
+> , change it in the <link linkend="konfig-dependencies"
+>Konfigurator Dependencies page</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="multi_rename">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F9</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Přejmenovat více položek...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Tato volba nabídky spustí aplikaci <ulink url="http://www.krename.net"
+><application
+>Krename</application
+></ulink
+>, velice efektní externí dávkovací aplikaci na přejmenovávání souborů pro &kde; 3.x nebo novější.</para>
+          <itemizedlist>
+            <title
+>Vlastnosti Krename</title>
+            <listitem>
+              <para
+>Přejmenování souborů ze seznamu na základě sestavených výrazů</para>
+            </listitem>
+            <listitem>
+              <para
+>Kopírování/přesouvání souborů ze seznamu do jiného adresáře</para>
+            </listitem>
+            <listitem>
+              <para
+>Převádění názvů souborů na velká/malá písmena</para>
+            </listitem>
+            <listitem>
+              <para
+>Přidání čísel do názvů souborů</para>
+            </listitem>
+            <listitem>
+              <para
+>Nalezení a přepsání částí názvu souboru</para>
+            </listitem>
+            <listitem>
+              <para
+>Přejmenování souborů MP3/OGG Vorbis na základě jejich ID3 tagů</para>
+            </listitem>
+            <listitem>
+              <para
+>Nastavení data a času přístupu a změny</para>
+            </listitem>
+            <listitem>
+              <para
+>Změna oprávnění a vlastníka souboru</para>
+            </listitem>
+            <listitem>
+              <para
+>A plug-in API which allows you to extend Krename's features</para>
+            </listitem>
+            <listitem>
+              <para
+>Rekurzivní přejmenování adresářů</para>
+            </listitem>
+            <listitem>
+              <para
+>Podpora pro KFilePluginy</para>
+            </listitem>
+            <listitem>
+              <para
+>Vrátit přejmenování</para>
+            </listitem>
+            <listitem>
+              <para
+>A mnoho dalšího</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Spočítat kontrolní součet</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="checksum"
+>Spočítání kontrolního součtu</link
+> jednoho nebo více souborů a/nebo složky či složek.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Ověřit kontrolní součet</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para>
+            <link linkend="checksum"
+>Ověřit kontrolní součet</link>
+          </para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Rozdělit soubor...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Funkce <link linkend="splitter"
+>Rozdělit soubor</link
+> rozdělí soubory na více menších dílčích souborů, takže mohou být uloženy na různá menší média (jako <hardware
+>diskety, diskety ZIP ...</hardware
+>) nebo odeslány e-mailem.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Sloučit soubory...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Funkce <link linkend="splitter"
+>Sloučit soubory</link
+> sloučí více dílčích souborů, na které byla použita funkce <link linkend="splitter"
+>Rozdělit soubor</link
+>, do jednoho souboru.</para>
+        </listitem>
+      </varlistentry>
+      <!--vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Ukončit</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zavře aplikaci &krusader; a vyčistí dočasný adresář, stejně jako stisknutí klávesy <keycap
+>F10</keycap
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="edit-menu">
+    <title
+>Nabídka Úpravy</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Vyjmout</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Vyjme</link
+> jeden nebo více označených souborů do schránky, aby mohly být přesunuty do jiného umístění.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Kopírovat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Zkopíruje</link
+> jeden nebo více označených souborů do schránky, aby mohly být vloženy do jiného umístění.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Vložit</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Vloží</link
+> předešle vyjmuté nebo zkopírované položky ze schránky do současného adresáře.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F9</keycap
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Přejmenovat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="renaming"
+>Přejmenuje</link
+> aktuálně označený soubor.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F8</keycap
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Smazat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="deleting"
+>Smaže</link
+> jeden nebo více aktuálně označených souborů.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Označit skupinu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře dialogové okno umožňující označit soubory v aktivním panelu. V textovém poli <guilabel
+>Hledat</guilabel
+> dialogového okna zadejte hlavní vyhledávací kritéria. Zadejte název souboru, masku (<literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> atd.) nebo obojí - odděleno mezerou. Při použití <literal
+>'text'</literal
+> bude výsledek stejný jako při použití <literal
+>'*text*'</literal
+>. Pomocí '|' můžete vyloučit soubory z vyhledávání (např. <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>). Pomocí <link linkend="profiles"
+>Správce profilů</link
+> můžete spravovat výběry pro budoucí použití. Dvojité kliknutí do profilu je stejné jako zadání označení a stisknutí tlačítka <guibutton
+>OK</guibutton
+>. Více možností pro dialogové okno <guilabel
+>Označit skupinu</guilabel
+> jsou vysvětleny v kapitole o <link linkend="krusearcher"
+>dialogovém okně vyhledávání</link
+>, což jsou v podstatě stejná dialogová okna.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Odznačit skupinu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opak položky <guimenuitem
+>Označit skupinu</guimenuitem
+>. Soubory, které v aktivním panelu odpovídají vzoru, budou odznačeny.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Vybrat vše</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Označí všechny soubory v aktivním panelu. Označit můžete také i všechny adresáře povolením volby <guilabel
+>Automaticky označit adresáře</guilabel
+> v <link linkend="konfig-panel"
+>Konfigurátoru na stránce Panel</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Odznačit vše</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Odznačí všechny soubory v aktivním panelu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Obrátit výběr</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Inverts the selection status of all the files in the active panel (i.e. selected files will become unselected and deselected files will become selected).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Obnovit výběr</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obnoví stav výběru předešle odznačených položek.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Porovnat adresáře</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Použije funkci aplikace &krusader; <link linkend="compare-dir"
+>Porovnat adresáře</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Nastavení porovnávání</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Nastavení funkce <guimenuitem
+>Porovnat adresáře</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Označit novější a samotné</guimenuitem
+> (výchozí)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Označit samotné</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Označit novější</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Označit rozdílné a samotné</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Označit rozdílné</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Spočítat obsazené místo</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="calculate"
+>Spočítá obsazené místo</link
+> soubory a adresáři i v archivech a na vzdálených systémech souborů.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Return</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Vlastnosti...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře dialogové okno vlastnosti pro aktuálně označený soubor.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="go-menu">
+    <title
+>Nabídka Přejít</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Nahoru</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Přejít</guimenu
+> <guimenuitem
+>Nahoru</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přejde do rodičovského adresáře aktivního panelu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Vlevo</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Přejít</guimenu
+> <guimenuitem
+>Zpět</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přejde do předešle prohlíženého adresáře v aktivním panelu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Vpravo</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Přejít</guimenu
+> <guimenuitem
+>Vpřed</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přejde do dalšího již prohlíženého adresáře v aktivním panelu. Položka se stane dostupnou, pouze byla-li již použita položka nabídky <menuchoice
+><guimenu
+>Přejít</guimenu
+> <guimenuitem
+>Zpět</guimenuitem
+></menuchoice
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Home</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Přejít</guimenu
+> <guimenuitem
+>Domů</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přejde do domovského adresáře současného uživatele.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; &Backspace;</keycombo
+> </shortcut
+> <guimenu
+>Přejít</guimenu
+> <guimenuitem
+>Kořenový adresář</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přejde do kořenového adresáře systému.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Přejít</guimenu
+> <guimenuitem
+>Oblíbená URL ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zobrazí seznam často zobrazovaných adresářů, do kterých můžete přecházet jedním dvojklikem.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Přejít</guimenu
+> <guimenuitem
+>Nastavit zde bod pro přechod zpět</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sets the current directory as a "jump back" point. To navigate to this directory quickly, select the "Jump Back" command from the Go Menu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Přejít</guimenu
+> <guimenuitem
+>Přejít zpět</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vrátí do posledního bodu pro "přechod zpět".</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="view-menu">
+    <title
+>Nabídka Pohled</title>
+    <para
+>Činnost této podnabídky obvykle ovlivňuje současnou relaci aplikace &krusader;. Chcete-li provést změny, použijte <link linkend="konfigurator"
+>Konfigurátor na stránce Spuštění</link
+>.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Zvětšit</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zvětší měřítko pohledu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Zmenšit</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zmenší měřítko pohledu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Výchozí přiblížení</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vrátí měřítko pohledu na výchozí nastavení.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Podrobný pohled</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zobrazí názvy souborů, velikosti souborů, datum a čas vytvoření a jejich vlastnosti.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Stručný pohled</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zobrazí pouze názvy souborů.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Zobrazovat skryté soubory</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přepne volbu pro zobrazení skrytých souborů v panelech aplikace &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F10</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Všechny soubory</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vypne všechny filtry a zobrazí všechny soubory.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F12</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Vlastní výběr</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Umožní zavést vlastní filtr pro panel aplikace &krusader;. Zobrazeny budou pouze soubory, které odpovídají jednomu nebo více vzorům. Adresáře budou zobrazeny všechny. Vlastní filtr nezapomeňte po použití zrušit, jinak některé soubory nemusí být zobrazeny.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Náhled</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Pokud zaškrtnuto, zobrazí náhledy všech souborů a složek na aktivním panelu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Nastavit vzdálenou znakovou sadu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Vybere vzdálenou znakovou sadu pro <link linkend="remote-connections"
+>Vzdálené připojení</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Obnovit</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Obnoví obsah aktivního panelu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Uložit nastavení jako výchozí</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Umožní uložit nastavení pohledu současné karty pro nové instance tohoto typu pohledu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pohled</guimenu
+> <guimenuitem
+>Provést nastavení na ostatní karty</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Umožní změnit nastavení pohledu současné karty na ostatních kartách.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="useractions-menu">
+    <title
+>Nabídka Uživatelské činnosti</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Useractions</guimenu
+> <guimenuitem
+>Manage User Actions ...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře správce <link linkend="useractions"
+>Uživatelských činností</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>A</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Uživatelské činnosti</guimenu
+><guisubmenu
+>Multimedia</guisubmenu
+> <guimenuitem
+>Enqueue in Amarok</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Appends selected item(s) to Amarok playlist.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; </keycombo
+> </shortcut
+> <guimenu
+>Uživatelské činnosti</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Equal panel-size</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Nastaví poměr mezi oběma panely 50:50.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;<keycap
+>E</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Uživatelské činnosti</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Edit as root</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Allows you to edit a file with kwrite using root permissions.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>M</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Uživatelské činnosti</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Mount</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Připojí nový systém souborů.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>C</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Uživatelské činnosti</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Copy current item to clipboard</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zkopíruje jednu nebo více označených položek do schránky.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+><keycap
+>F5</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Uživatelské činnosti</guimenu
+><guisubmenu
+>System</guisubmenu
+> <guimenuitem
+>Backup current</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Backups current file in current directory and asks the user for a new filename. By default <filename
+>.old</filename
+> is appended to the original filename.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>1</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Uživatelské činnosti</guimenu
+><guisubmenu
+>User Interface</guisubmenu
+> <guimenuitem
+>Sort By Name</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Je-li tato činnost spuštěna, název souboru se v panelu aplikace &krusader; stane hlavním klíčem řazení.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>2</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Uživatelské činnosti</guimenu
+><guisubmenu
+>User Interface</guisubmenu
+> <guimenuitem
+>Sort By Extension</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Je-li tato činnost spuštěna, přípona souboru se v panelu aplikace &krusader; stane hlavním klíčem řazení (příponou je myšlena část názvu souboru následovaná po znaku '.'). To je užitečné pro seskupení souborů stejného typu blíže k sobě.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>3</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Uživatelské činnosti</guimenu
+><guisubmenu
+>User Interface</guisubmenu
+> <guimenuitem
+>Sort By Size</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Je-li tato činnost spuštěna, velikost souboru se v panelu aplikace &krusader; stane hlavním klíčem řazení. To je užitečné pro stanovení největších souborů v samotném adresáři.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>Meta</keycap
+> <keycap
+>4</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Uživatelské činnosti</guimenu
+><guisubmenu
+>User Interface</guisubmenu
+> <guimenuitem
+>Sort By Modified</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Je-li tato činnost spuštěna, datum a čas změny každého souboru se v panelu aplikace &krusader; stanou hlavním klíčem řazení. To je užitečné při hledání souborů, které jste nedávno upravovali.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Uživatelské činnosti</guimenu
+> <guimenuitem
+>Vaše vlastní uživatelské činnosti</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře uživatelské činnosti vytvořené uživatelem.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="tools-menu">
+    <title
+>Nabídka Nástroje</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Hledat...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opens <link linkend="krusearcher"
+>KruSearcher</link
+> - the Krusader search module.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Locate (rychlé hledání)...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře grafickou nadstavbu aplikace <link linkend="locate"
+>Locate</link
+> pro rychlé vyhledání souboru.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Synchronizovat adresáře...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Funkce <link linkend="synchronizer"
+>Synchronizovat adresáře</link
+> porovnává levý a pravý panel a zobrazuje mezi nimi rozdíly. Po funkci porovnat, můžete soubory/adresáře přesunout, takže mohou být synchronizovány.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Správce připojení disků...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Spustí <link linkend="mount-man"
+>MountMan</link
+> - správce připojení disků.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Obsazenost disku...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře nástroj <link linkend="diskusage"
+>Zaplnění disku</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Správce front...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře <link linkend="queue"
+>Správce front</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Nové síťové spojení...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře dialogové okno <link linkend="remote-connections"
+>Nové síťové spojení</link
+>, pro spuštění připojení ke vzdálenému hostiteli pomocí &FTP;, SMB, FISH nebo SFTP. Ponecháte-li uživatelské jméno a heslo prázdné, přihlášení bude anonymní. Tyto vzdálené relace lze přidat do <link linkend="bookman"
+>Záložek</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Shift;&Ctrl; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Odpojit ze Sítě</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ukončí <link linkend="remote-connections"
+>vzdálené spojení</link
+> v aktivním panelu a přejde zpět do původní cesty.</para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Spustit Terminál</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře okno terminálu ve výchozím adresáři (obvykle domovský adresář). Vaši oblíbenou terminálovou aplikaci můžete zvolit v <link linkend="konfig-general"
+>Konfigurátoru na stránce Obecné</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> <keycap
+>F2</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Spustit zde Terminál</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře okno terminálu v aktuálně prohlíženém adresáři aktivního panelu. Vaši oblíbenou terminálovou aplikaci můžete zvolit v <link linkend="konfig-general"
+>Konfigurátoru na stránce Obecné</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry id="root-mode">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>K</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Spustit Krusader v Superuživatelském režimu...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Spustí aplikaci &krusader; v <link linkend="root-mode"
+>Superuživatelském režimu</link
+> ve stejném umístění. &krusader; v Superuživatelském režimu ve výchozím nastavení požaduje aplikaci <command
+>kdesu</command
+>. Není-li aplikace <command
+>kdesu</command
+> dostupná, nebo dáváte-li při používání prostředí <ulink url="http://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+> přednost např. aplikaci <command
+>gksu</command
+>, můžete toto chování změnit v <link linkend="konfig-dependencies"
+>Konfigurátoru na stránce Závislosti</link
+>.</para>
+          <caution>
+            <para
+>Buďte opatrní při používání aplikace &krusader; s OPRÁVNĚNÍMI UŽIVATELE ROOT.</para>
+          </caution>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <!-- disabled due to KrJS does not compile (cannot find kjsembed from kdelibs
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">
+              &Alt;&Ctrl;
+              <keycap
+>J</keycap
+></keycombo>
+            </shortcut>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Javascript Console</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opens the 
+          <link linkend="javascript_console"
+>Javascript
+          Console</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Vyprázdnit koš</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Empty the <link linkend="deleting"
+>trash bin</link
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="window-menu">
+    <title
+>Nabídka Okno</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Okno</guimenu
+> <guimenuitem
+>Nová karta</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevírá novou kartu v aktivním panelu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Okno</guimenu
+> <guimenuitem
+>Uzamknout kartu/Odemknout kartu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zamkne nebo odemkne současnou kartu v aktivním panelu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Okno</guimenu
+> <guimenuitem
+>Duplikovat současnou kartu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře novou kartu, která je kopií aktivní karty aktivního panelu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Okno</guimenu
+> <guimenuitem
+>Přesunout aktuální kartu na druhou stranu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přesune současnou kartu na druhou stranu okna aplikace &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Okno</guimenu
+> <guimenuitem
+>Zavřít současnou kartu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zavře současnou kartu aktivního panelu. Tento příkaz je dostupný, pouze má-li aktivní panel více než jednu kartu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Okno</guimenu
+> <guimenuitem
+>Zavřít neaktivní karty</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zavře všechny karty v aktivním panelu s výjimkou aktivní karty.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Okno</guimenu
+> <guimenuitem
+>Zavřít duplikované karty</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Zavře duplikované karty v aktivním panelu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>Right</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Okno</guimenu
+> <guimenuitem
+>Další karta</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přejde na další kartu aktivního panelu. Tento příkaz je dostupný, pouze má-li aktivní panel více než jednu kartu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>Left</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Okno</guimenu
+> <guimenuitem
+>Předchozí karta</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přejde na předchozí kartu aktivního panelu. Tento příkaz je dostupný, pouze má-li aktivní panel více než jednu kartu.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="c_panel_profiles">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Okno</guimenu
+> <guimenuitem
+>Profily</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře nabídku, která umožňuje ukládat nebo obnovovat <link linkend="panel_profiles"
+>Profily panelů</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Okno</guimenu
+> <guimenuitem
+>Prohodit panely</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Levý panel se stane pravým panelem a naopak. Prohozeny budou pouze současné karty.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Okno</guimenu
+> <guimenuitem
+>Prohodit strany</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Celý levý panel se stane pravým panelem a naopak. Prohozeny budou všechny karty.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Okno</guimenu
+> <guimenuitem
+>Svislé uspořádání</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Přepíná mezi vodorovným a svislým režimem <link linkend="list_panel"
+>Panelu se seznamem</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Window</guimenu
+> <guimenuitem
+>Toggle Fullwidget Terminal Emulator</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Toggles full screen mode of the terminal emulator. This option is only available when "Show Terminal Emulator" is activated.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Okno</guimenu
+> <guimenuitem
+>Uložit Pozici</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Saves the current size and position of the &krusader; main window. This action can be automated with <guilabel
+>"Save settings on exit"</guilabel
+> in <link linkend="konfigurator"
+>Konfigurator Startup page</link
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="settings-menu">
+    <title
+>Nabídka Nastavení</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Zobrazit hlavní nástrojovou lištu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Je-li zaškrtnuto, zobrazí <link linkend="mainwindow"
+>hlavní nástrojovou lištu</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Zobrazovat lištu činností</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Je-li zaškrtnuto, zobrazí <link linkend="actions_toolbar"
+>nástrojovou lištu činností</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Zobrazovat stavovou lištu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Je-li zaškrtnuto, zobrazí <link linkend="mainwindow"
+>stavovou lištu</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Zobrazovat lištu FN kláves</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Je-li zaškrtnuto, zobrazí <link linkend="fnkeys"
+>lištu FN kláves</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Zobrazit emulátor terminálu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Je-li zaškrtnuto, zobrazí <link linkend="cmdline"
+>emulátor terminálu</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Zobrazovat příkazovou řádku</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Je-li zaškrtnuto, zobrazí <link linkend="cmdline"
+>příkazovou řádku</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Režim spouštění příkazů</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Umožní vybrat režim spouštění příkazů. Vybrat můžete jednu z následujících možností.</para>
+	  <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Spusť a zapomeň</guimenuitem
+>: Spustí provedení příkazu a nebude čekat na výsledky.</para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Zobrazit oddělený standardní a chybový výstup</guimenuitem
+>: Standardní výstup stdout a chybový výstup stderr zobrazí v oddělených panelech. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Zobrazit smíchaný standardní a chybový výstup</guimenuitem
+>: Standardní výstup stdout a chybový výstup stderr zobrazí do jediného společného panelu (výchozí). </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Spustit v novém Terminálu</guimenuitem
+>: Příkazu spustí v novém okně terminálu. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Poslat do zabudovaného emulátoru terminálu</guimenuitem
+>: Příkaz odešle do zabudovaného emulátoru terminálu. </para>
+            </listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+      <varlistentry id="configure-shortcuts">
+        <term>
+          <menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Nastavit klávesové zkratky</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <indexterm>
+            <primary
+>Nastavit</primary>
+            <secondary
+>Klávesové zkratky</secondary>
+          </indexterm>
+          <para
+>Otevře dialogové okno, které umožní nastavit klávesové zkratky aplikace &krusader;.</para>
+          <para
+>Pomocí tlačítek <guibutton
+>Importovat klávesové zkratky</guibutton
+> a <guibutton
+>Exportovat klávesové zkratky</guibutton
+> můžete načíst nebo uložit profil klávesových zkratek. To umožňuje aplikaci &krusader; mít klávesové zkratky aplikací <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+> nebo mnoha jiných správců souborů anebo mít vaše vlastní klávesové zkratky. Je zde pouze omezení ohledně globálních klávesových zkratek &kde; a některých klávesových zkratek aplikace &krusader;, které zatím nemohou být změněny, stejně jako některé vlastnosti jiných správců souborů, které buď nejsou k dispozici, nebo nejsou potřeba. Klávesové zkratky jsou uloženy ve složce <filename
+>$KDEDIR/share/apps/krusader</filename
+>. Soubor <filename
+>název.keymap.info</filename
+>, je soubor INI a obsahuje popis souboru <filename
+>název.keymap</filename
+>, který udržuje klávesové zkratky. Do verze aplikace &krusader; 1.70.1 byl tento soubor binární. &krusader; je zpětně kompatibilní s tímto binárním formátem. Existuje-li textový soubor <filename
+>*.keymap.info</filename
+>, &krusader; zobrazí dodatečné informace ohledně nahraného souboru klávesových zkratek. Zde máte možnost ukončit importování navrhovaného souboru klávesových zkratek.</para>
+          <tip>
+            <para
+>Je poskytován soubor klávesových zkratek aplikace <trademark class="copyright"
+>Total Commander</trademark
+>. <link linkend="help_krusader"
+>Nahrajte prosím svá oblíbená schémata klávesových zkratek</link
+>, budou dostupné komunitě aplikace &krusader;. Děkujeme!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Nastavit nástrojové lišty</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevře dialogové okno, které umožňuje nastavit <link linkend="mainwindow"
+>Hlavní nástrojovou lištu</link
+> nebo <link linkend="actions_toolbar"
+>Nástrojovou lištu činností</link
+>. Do požadované nástrojové lišty můžete přidat i tlačítka činností Vašich oblíbených <link linkend="useractions"
+>Uživatelských činností</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Nastavit &krusader;</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Otevírá <link linkend="konfigurator"
+>Konfigurátor</link
+> - konfigurační centrum aplikace &krusader;.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="help-menu">
+    <title
+>Nabídka Nápověda</title>
+&help.menu.documentation; </sect1>
+</chapter>

@@ -1,0 +1,70 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="splitter">
+  <title
+>Dateien aufteilen</title>
+  <indexterm>
+    <primary
+>Dateien aufteilen</primary>
+  </indexterm>
+  <para
+>Diese Funktion teilt eine Datei in mehrere kleine Dateien auf, so dass sie auf Geräten mit begrenztem Speicher wie &eg; ZIP-Laufwerken gespeichert oder einzeln als E-Mail versendet werden können. Diese aufgeteilten Dateien können wieder zu einer einzelnen Datei zusammengefügt werden. Diese Funktion ist bei &krusader; und dem <trademark class="copyright"
+>Total Commander</trademark
+> kompatibel. Um eine Datei zu teilen, wählen Sie <menuchoice
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Datei splitten</guimenuitem
+> </menuchoice
+> oder benutzen den Kurzbefehl <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>. Dann wird ein Dialog geöffnet, um die Parameter für die Teilung einzustellen und den Vorgang zu bestätigen.</para>
+  <para
+>Hat die ursprüngliche Datei den Namen <filename
+>foo</filename
+>, dann werden die aufgeteilten Dateien nach dem Schema <filename
+>foo.000 foo.001 foo.002</filename
+> &etc; benannt. Theoretisch ist die maximale Anzahl aufgeteilter Dateien unbegrenzt, es wird aber empfohlen, sie auf 1023 Dateien zu beschränken. &krusader; erzeugt eine Datei <filename
+>foo.crc</filename
+>, die den Namen, die Größe und die CRC-Prüfsummen der ursprüngliche Datei enthält. Auch ohne die Datei <filename
+>foo.crc</filename
+> kann die ursprüngliche Datei wieder zusammengefügt werden. Dann kann aber nicht überprüft werden, ob die Datei wieder richtig erstellt wurde.</para>
+  <para
+>Ein Beispiel einer Datei <filename
+>foo.crc</filename
+>: <programlisting
+>filename=foo size=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>Um mehrere aufgeteilte Dateien zusammenzufügen, wählen Sie eine Teildatei <filename
+>foo.xxx</filename
+> und dann <menuchoice
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Dateien zusammenfügen</guimenuitem
+> </menuchoice
+> oder benutzen den Kurzbefehl <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+>. Der Zielordner ist das inaktive Dateifenster, das kann aber auch geändert werden. Die Dateinamen müssen in aufsteigender Reihenfolge wie <filename
+>foo.001, foo.002, foo.003</filename
+> durchnummeriert sein. Alternativ können auch Buchstaben in aufsteigender Reihenfolge wie <filename
+>fileaa, fileab, fileac</filename
+> &etc; benutzt werden, wenn zum Teilen die Option für Buchstaben <userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+> angegeben wurde. Gibt es im Ordner mit den Teildateien eine Datei <filename
+>foo.crc</filename
+>, wird diese zur Überprüfung des zusammengefügten Datei auf Fehler verwendet.</para>
+</sect1>

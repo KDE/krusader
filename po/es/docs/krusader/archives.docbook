@@ -1,0 +1,124 @@
+<sect1 id="archives">
+  <title
+>Gestión de archivos comprimidos</title>
+  <indexterm>
+    <primary
+>Archivos comprimidos</primary>
+  </indexterm>
+  <sect2 id="browsing-archives">
+    <title
+>Navegación por los archivos comprimidos</title>
+    <para
+>Los <link linkend="vfs"
+>sistemas de archivos virtuales (VFS)</link
+> permiten navegar por los archivos comprimidos como si fueran un directorio. Actualmente &krusader; soporta los siguientes tipos de archivos comprimidos: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip y 7-zip y soporta los siguientes archivos comprimidos protegidos con contraseña: arj, ace, rar y zip. Las contraseñas se pueden almacenar en <application
+>Kwallet</application
+>. Por favor, tenga en cuenta que el soporte para los archivos comprimidos primeramente requiere ser correctamente <link linkend="konfig-archives"
+>configurado</link
+> en Konfigurator. Para abrir el archivo, utilice &Enter;, un clic doble o la <keycap
+>tecla de dirección derecha</keycap
+>. &krusader; también soporta <emphasis role="bold"
+>archivos comprimidos ocultos</emphasis
+>, estos son archivos comprimidos con nombre cambiado a una extensión *errónea*, &eg; <trademark class="registered"
+>OpenOffice</trademark
+> utiliza archivos zip con las siguientes extensiones: <literal role="extension"
+>.odt</literal
+>, <literal role="extension"
+>.sxw</literal
+> y <literal role="extension"
+>.odw</literal
+>. &Enter; abrirá el documento <trademark class="registered"
+>OpenOffice</trademark
+> y la <keycap
+>tecla de dirección derecha</keycap
+> abrirá el archivo comprimido. Otro ejemplo es el J2EE, donde la extensión <literal role="extension"
+>.jar</literal
+> hace referencia a un archivo zip. Puesto que &krusader; detecta automáticamente los tipos de archivo comprimidos soportados, los abrirá con la <keycap
+>tecla de dirección derecha</keycap
+> incluso si tienen otro tipo MIME. Por favor tenga en cuenta que navegar por los archivos comprimidos tiene algunas limitaciones: <itemizedlist>
+      <listitem>
+        <para
+>No todas las funciones están soportadas por todos los tipos de archivo comprimidos. (&ie; no es posible borrar archivos contenidos en archivos comprimidos de tipo ace o rar)</para>
+      </listitem>
+      <listitem>
+        <para
+>Los permisos que se tienen dentro del archivo comprimido son los mismos permisos que tiene el archivo comprimido.</para>
+      </listitem>
+      <listitem>
+        <para
+>La línea de ordenes (si está visible) no nos acompañará hasta el interior del archivo comprimido sino que que apuntará al directorio del archivo comprimido.</para>
+      </listitem>
+      <listitem>
+        <para
+>Antes de que cualquier acción sea realizada sobre los archivos/directorios contenidos en el archivo comprimido, es necesario extraerlos. El archivo comprimido se volverá a empaquetar cuando lo abandone o cuando &krusader; detecte que los archivos extraídos han cambiado.</para>
+      </listitem>
+      <listitem>
+        <para
+>El empaquetado y desempaquetado son «operaciones bloqueadoras» que muestran un diálogo de progreso. No obstante, esto puede cambiar en el futuro puesto que estamos planeando crear más operaciones de segundo plano.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="unpacking-archives">
+    <title
+>Descomprimir archivos</title>
+    <para
+>Hay dos formas de extraer el contenido de los archivos comprimidos:</para>
+    <para
+>Si se desea descomprimir un(os) archivo(s) comprimido(s) completo(s), navegue hasta la ubicación del archivo comprimido, seleccione el(los) archivo(s) y escoja <menuchoice
+> <guimenu
+>Archivo</guimenu
+> <guimenuitem
+>Descomprimir</guimenuitem
+> </menuchoice
+> o <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+>. &krusader; preguntará donde debe colocar los archivos extraídos. La ubicación predeterminada es el directorio del panel inactivo. Si no cancela la operación, &krusader; intentará descomprimir todos los archivos seleccionados en el panel inactivo.</para>
+    <para
+>Si solo desea extraer una parte del archivo comprimido, entonces <link linkend="browsing-archives"
+>navegue</link
+> por el archivo comprimido y copie los archivos que desea extraer a su nueva ubicación de la misma forma que copiaría archivos «normales». Tenga en cuenta que descomprimir desde un archivo comprimido por el que está navegando demora más tiempo (descomprime archivo por archivo) en comparación con la descompresión de un archivo completo utilizando el primer método. La operación de descompresión puede ponerse en una <link linkend="queue"
+>cola</link
+>.</para>
+  </sect2>
+  <sect2 id="pack-archive">
+    <title
+>Comprimir archivos</title>
+    <para
+>Si desea crear un nuevo archivo comprimido, comience seleccionando en el panel activo los elementos que desea comprimir y seleccione <menuchoice
+> <guimenu
+>Archivo</guimenu
+> <guimenuitem
+>Comprimir</guimenuitem
+> </menuchoice
+> o <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+>. Aparecerá un diálogo que le pedirá que seleccione el nombre del archivo comprimido y su ubicación. Seleccione una herramienta de compresión a partir de una de las <link linkend="konfig-archives"
+>extensiones de nombres de archivo soportadas</link
+>.</para>
+    <para
+>Para añadir archivos a un(os) archivo(s) comprimido(s) existente(s), abra el archivo comprimido en un panel y los archivos que va a copiar en el otro panel, luego simplemente copie los archivos dentro del archivo comprimido exactamente de la misma forma que copia archivos en un directorio «normal». La operación de compresión puede ponerse en una <link linkend="queue"
+>cola</link
+>.</para>
+  </sect2>
+  <sect2 id="test-archive">
+    <title
+>Comprobar archivos comprimidos</title>
+    <para
+>&krusader; no manipulará archivos comprimidos corruptos puesto que ello podría resultar en pérdida de datos. Si recibe un mensaje de error al abrir un archivo, o si sospecha que ocurre algo malo con el archivo comprimido, debe examinarlo antes de utilizarlo. Para examinar un archivo comprimido, navegue (diríjase) hasta la ubicación del archivo comprimido y seleccione el archivo comprimido. A continuación seleccione <menuchoice
+> <guimenu
+>Archivo</guimenu
+> <guimenuitem
+>Comprobar archivo comprimido</guimenuitem
+> </menuchoice
+> o <keycombo action="simul"
+>&Alt; <keycap
+>E</keycap
+></keycombo
+>. &krusader; examinará el archivo comprimido e informará si el archivo comprimido pasó o falló la prueba de integridad de archivos.</para>
+  </sect2>
+</sect1>

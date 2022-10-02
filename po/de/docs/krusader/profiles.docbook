@@ -1,0 +1,62 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="profiles">
+  <title
+>Profile</title>
+  <indexterm>
+    <primary
+>Profile</primary>
+  </indexterm>
+  <para
+>Mit Profilen können Sie Ihre bevorzugten Einstellungen speichern und wieder laden. Mehrere Funktionen unterstützen Profile. Sie können &eg; verschiedene Profile für Dateifenster (bei der Arbeit, zu Hause, für entfernte Verbindung &etc;), Suchprofile und Abgleichprofile &etc; verwenden.</para>
+  <sect2 id="panel_profiles">
+    <title
+>Profile für Dateifenster</title>
+    <para
+>Ein Profil für Dateifenster enthält folgende Einträge: Pfade für alle Unterfenster (links oder rechts), das aktuelle Unterfenster (links oder rechts) und das aktive Dateifenster (links oder rechts). Diese Informationen werden in der Datei <link linkend="config_files"
+>krusaderrc</link
+> gespeichert. Sie können mehrere Profile für Dateifenster benutzen, &eg; für Dateiverwaltung, &FTP;-Verwaltung, zu Hause, bei der Arbeit &etc; Die Profile für Dateifenster können mit dem Menü <guimenu
+>Fenster</guimenu
+> <link linkend="c_panel_profiles"
+>gespeichert und wieder geladen</link
+> werden. Das <link linkend="konfig-startup"
+>Startprofil</link
+> wird benutzt, wenn Sie &krusader; aufrufen. Diese Einstellung können Sie jedoch mit einer Befehlszeilenoption überschreiben.</para>
+  </sect2>
+  <sect2 id="color_profiles">
+    <title
+>Farbprofile</title>
+    <para
+>Farbprofile können können wie im Abschnitt <link linkend="konfig-color"
+>Farbprofile</link
+> beschrieben gespeichert und wieder hergestellt werden.</para>
+  </sect2>
+  <sect2 id="key_profiles">
+    <title
+>Kurzbefehl-Profile</title>
+    <para
+>Kurzbefehl-Schemata können mit <link linkend="konfig-color"
+>Kurzbefehl-Profilen</link
+> gespeichert und wieder geladen werden.</para>
+  </sect2>
+  <sect2 id="search_profiles">
+    <title
+>Suchprofile</title>
+    <para
+>Wenn Sie regelmäßig die gleiche Suche ausführen, können Sie die Einstellungen zur Suche (&eg; einzuschließende und auszuschließende Dateien &etc;) in einem <link linkend="krusearcher"
+>Suchprofil</link
+> speichern.</para>
+  </sect2>
+  <sect2 id="synchronizer_profiles">
+    <title
+>Abgleichprofile</title>
+    <para
+>Wenn Sie regelmäßig den gleichen Abgleich ausführen, können Sie die Einstellungen zum Abgleich in einem <link linkend="synchronizer"
+>Abgleich-Profil</link
+> speichern.</para>
+  </sect2>
+</sect1>

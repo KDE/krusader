@@ -1,0 +1,70 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="splitter">
+  <title
+>Divisore di file</title>
+  <indexterm>
+    <primary
+>Divisore di file</primary>
+  </indexterm>
+  <para
+>Questa funzione divide un file (grande) in una serie di file più piccoli, così che essi possano essere memorizzati su supporti poco capienti (&eg; drive Zip, ...) oppure inviati per posta elettronica. I file derivati dalla divisione possono nuovamente essere uniti a riformare il file originale. Le funzioni di divisione/ricombinazione di &krusader; e di <trademark class="copyright"
+>Total Commander</trademark
+> sono compatibili. Per dividere un file seleziona il menu <menuchoice
+> <guimenu
+>File</guimenu
+> <guimenuitem
+>Dividi file</guimenuitem
+> </menuchoice
+> oppure <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: verrà aperta una finestra per la conferma dell'operazione.</para>
+  <para
+>Se il nome del file originale è <filename
+>foo</filename
+>, il nome dei file più piccoli sarà <filename
+>foo.000 foo.001 foo.002</filename
+> &etc; In teoria non c'è limite al numero dei file più piccoli, ma si raccomanda di limitarne il numero a un massimo di 1023 file. Inoltre &krusader; crea un file <filename
+>foo.crc</filename
+>, che contiene il nome, le dimensioni e il codice di controllo del file originale. È possibile ricreare il file originale senza usare <filename
+>foo.crc</filename
+>, ma in questo caso &krusader; non sarà in grado di verificare se il file originale è stato ricreato correttamente.</para>
+  <para
+>Un esempio di file <filename
+>foo.crc</filename
+>: <programlisting
+>filename=foo size=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>Per unire i file prodotti dalla divisione, seleziona un file parziale <filename
+>foo.xxx</filename
+>, quindi il menu <menuchoice
+> <guimenu
+>File</guimenu
+> <guimenuitem
+>Unisci file...</guimenuitem
+> </menuchoice
+> oppure <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+>. La cartella di destinazione è il pannello inattivo e può essere modificata. I nomi dei file devono essere numerati in ordine crescente: <filename
+>foo.001, foo.002, foo.003</filename
+> &etc; oppure essere ordinati con lettere in ordine crescente: (" <userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+>metodo alfabetico") <filename
+>fileaa, fileab, fileac</filename
+> &etc; Se il file <filename
+>foo.crc</filename
+> si trova nella stessa cartella dei file parziali, &krusader; lo utilizzerà per verificare che il file originale sia stato ricreato senza errori.</para>
+</sect1>

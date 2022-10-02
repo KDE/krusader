@@ -1,0 +1,43 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="calculate">
+  <title
+>Benodigde ruimte berekenen</title>
+  <indexterm>
+    <primary
+>Bezette ruimte</primary>
+  </indexterm>
+  <!-- Thanks to Heiner Eichmann -->
+  <para
+>Er zijn twee manieren om de voor bestanden/mappen de gebruikte ruimte te berekenen.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Indrukken van de configureerbare sneltoets voor de <guilabel
+>Bezette ruimte berekenen</guilabel
+> op een map onder de cursor berekent direct de bezetteruimte.</para>
+    </listitem>
+    <listitem>
+      <para
+>Voor het berekenen voor hoeveel ruimte is bezet door de geselecteerde bestanden en mappen in het actieve paneel, selecteert u <menuchoice
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Benodigde Ruimte Berekenen</guimenuitem
+> </menuchoice
+>. Na een korte vertraging krijgt u een dialoogvenster met de gebruikte schijfgebruik en het aantal door u geselecteerde bestanden en mappen. U krijgt bij mappen de bezette ruimte op dezelfde manier te zien alsof u op de configureerbare sneltoets hebt gedrukt. Als u in het actieve paneel door een archief bladert, dan zijn de getallen van toepassing op de afmetingen van de uitgepakte bestanden en mappen, en niet hun gecomprimeerde afmetingen. Na de berekening zal de selectie wijzigen en de cursor een positie verder gaan.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Het berekenen van bezette ruimte op externe bestandsystemen is mogelijk. <note
+> <para
+>Het uitvoeren van deze berekening kan bij een zeer grote bestandsystemeen (duizenden bestanden) veel tijd kosten. U kunt de berekening op ieder moment afbreken door op de <guibutton
+>Afbreken</guibutton
+> te klikken.</para>
+  </note
+></para>
+</sect1>

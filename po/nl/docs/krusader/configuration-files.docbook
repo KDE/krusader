@@ -1,0 +1,210 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<appendix id="config_files">
+  <title
+>Configuratiebestanden</title>
+  <indexterm>
+    <primary
+>Configuratiebestanden</primary>
+  </indexterm>
+  <para
+>Deze appendix geeft een overzicht van de configuratie-bestanden in gebruik bij &krusader;.</para>
+  <para>
+    <emphasis role="bold"
+>krusaderui.rc</emphasis>
+  </para>
+  <para
+>In dit bestand is de configuratie van de werkbalk instellingen van de gebruiker en de menu structuur opgeslagen.</para>
+  <para
+>Location: <filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+> of <filename
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> of <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> in de map die bepaald kan worden met het commando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+  <para>
+    <emphasis role="bold"
+>krusaderrc</emphasis>
+  </para>
+  <para
+>In dit bestand is de configuratie van &krusader; opgeslagen.</para>
+  <para
+>Locatie: <filename
+>~/.config/krusaderrc</filename
+></para>
+  <para
+>U kunt hier de volgende instellingen &eg; vinden:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Actiebalk</para>
+    </listitem>
+    <listitem>
+      <para
+>Archieven</para>
+    </listitem>
+    <listitem>
+      <para
+>Kleuren</para>
+    </listitem>
+    <listitem>
+      <para
+>Afhankelijkheden</para>
+    </listitem>
+    <listitem>
+      <para
+>Schijfgebruik</para>
+    </listitem>
+    <listitem>
+      <para
+>Schijfgebruikviewer</para>
+    </listitem>
+    <listitem>
+      <para
+>Algemeen</para>
+    </listitem>
+    <listitem>
+      <para
+>&HTML;-instellingen</para>
+    </listitem>
+    <listitem>
+      <para
+>KFileDialog</para>
+    </listitem>
+    <listitem>
+      <para
+>KFileDialog snelheidsbalk</para>
+    </listitem>
+    <listitem>
+      <para
+>KrGedetaileerdeWeergaveLinks</para>
+    </listitem>
+    <listitem>
+      <para
+>KrGedetaileerdeWeergaveRechts</para>
+    </listitem>
+    <listitem>
+      <para
+>KrWeeragveVenster</para>
+    </listitem>
+    <listitem>
+      <para
+>KrViewerWindow-werkbalk extraToolBar</para>
+    </listitem>
+    <listitem>
+      <para
+>Uiterlijk en gedrag</para>
+    </listitem>
+    <listitem>
+      <para
+>Notificatieberichten</para>
+    </listitem>
+    <listitem>
+      <para
+>Paneel met profielen</para>
+    </listitem>
+    <listitem>
+      <para
+>Privé</para>
+    </listitem>
+    <listitem>
+      <para
+>Protocollen</para>
+    </listitem>
+    <listitem>
+      <para
+>Zoeken</para>
+    </listitem>
+    <listitem>
+      <para
+>Opstarten</para>
+    </listitem>
+    <listitem>
+      <para
+>Synchroniseren</para>
+    </listitem>
+    <listitem>
+      <para
+>Locate</para>
+    </listitem>
+    <listitem>
+      <para
+>SynchronizerProfile - 1</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>krbookmarks.xml</emphasis>
+  </para>
+  <para
+>In dit bestand zijn de bladwijzers van &krusader; opgeslagen en gebruikt daar de <ulink url="http://grail.sourceforge.net/info/xbel.html"
+>XBEL standaard</ulink
+> voor.</para>
+  <para
+>Locatie: <filename
+> ~/.local/share/krusader/krbookmarks.xml</filename
+> of <filename
+>krusader/krbookmarks.xml</filename
+> in de map die bepaald kan worden met het commando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+  <para>
+    <emphasis role="bold"
+>useractions.xml</emphasis>
+  </para>
+  <para
+>In dit bestand is de configuratie van <link linkend="useractions"
+>UserActions</link
+> opgeslagen.</para>
+  <para
+>Locatie: <filename
+> ~/.local/share/krusader/useractions.xml</filename
+> of <filename
+>krusader/useractions.xml</filename
+> in de map die bepaald kan worden met het commando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+  <para>
+    <emphasis role="bold"
+>useraction-examples.xml</emphasis>
+  </para>
+  <para
+>Dit zijn de standaard UserActions geleverd door ontwikkelaars.</para>
+  <para
+>Locatie: <filename
+> $KDEDIR/share/krusader/useraction-examples.xml</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>foo.keymap</emphasis>
+  </para>
+  <para
+>Dit is een <literal role="extension"
+>.ini</literal
+>-bestand  waarin een <link linkend="configure-shortcuts"
+>Sneltoets profiel</link
+> is opgeslagen. Tot &krusader;-1.70.1 was dit een binair bestand, &krusader; is backwards compatibel wat betreft het importeren van dit verouderde binaire formaat.</para>
+  <para
+>Locatie: <filename
+> /usr/share/krusader/foo.keymap</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>foo.color</emphasis>
+  </para>
+  <para
+>Dit is een binair bestand die het <link linkend="konfig-color"
+>Kleurenschema</link
+> bevat.</para>
+  <para
+>Locatie: <filename
+>/usr/share/krusader/foo.color</filename
+></para>
+</appendix>

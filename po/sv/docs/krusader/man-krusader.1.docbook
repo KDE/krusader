@@ -1,0 +1,507 @@
+<?xml version="1.0" ?>
+<!DOCTYPE refentry PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+
+<!ENTITY % Swedish "INCLUDE">
+]>
+
+<refentry lang="&language;">
+<refentryinfo>
+<title
+>&kde; användarhandbok</title>
+<author
+><firstname
+>Krusader</firstname
+><surname
+>Krew</surname
+> <contrib
+>Krusader manualsida.</contrib
+> <email
+>krusader-devel@googlegroups.com</email
+></author>
+<date
+>2017-05-06</date>
+<productname
+>Krusader</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle
+><command
+>krusader</command
+></refentrytitle>
+<manvolnum
+>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+<refname
+>krusader</refname>
+<refpurpose
+>avancerad filhanterare och &FTP;-klient av KDE</refpurpose>
+</refnamediv>
+<!-- body begins here -->
+
+<refsynopsisdiv>
+<cmdsynopsis
+><command
+>krusader</command
+> <arg choice="opt"
+>väljare</arg
+> <arg choice="plain"
+>webbadress</arg
+> </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+<title
+>Beskrivning</title>
+<para
+>Krusader är en avancerad filhanterare med två paneler (i stil med commander) för Plasma och andra skrivbord i *nix-världen, som påminner om Midnight Commander eller Total Commander. Den tillhandahåller alla funktioner för filhantering som du någonsin kan vilja ha. Samt: omfattande arkivhantering, stöd för monterade filsystem, &FTP;, en avancerad sökmodul, granskning och editor, katalogsynkronisering (normalt inaktiverad), jämförelse av filinnehåll, kraftfull namnändring i bakgrunden, och mycket, mycket mer. Den stöder arkivformaten ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip och 7-zip, samt hanterar andra I/O-slavar som smb:// eller fish://. Den är nästan fullständigt anpassningsbar, mycket användarvänlig, snabb och ser mycket bra ut på skrivbordet. Prova den gärna!</para>
+</refsect1>
+
+<refsect1
+><title
+>Väljare</title>
+<variablelist>
+  <varlistentry>
+      <term
+><option
+>-h</option
+> <option
+>--help</option
+></term>
+  <listitem>
+<para
+>listar tillgängliga väljare på kommandoraden</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-v</option
+> <option
+>--version</option
+></term>
+  <listitem>
+<para
+>listar versionsinformation för &krusader;</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--author</option
+></term>
+  <listitem>
+<para
+>visa upphovsmännen</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--license</option
+></term>
+  <listitem>
+<para
+>visa licensen</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--left</option
+> <parameter
+><replaceable
+>&lt;sökväg&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>starta vänster panel med <replaceable
+>&lt;sökväg&gt;</replaceable
+></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--right</option
+> <parameter
+><replaceable
+>&lt;sökväg&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>starta höger panel med <replaceable
+>&lt;sökväg&gt;</replaceable
+></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--profile </option
+><parameter
+><replaceable
+>&lt;panelprofil&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>ladda en <replaceable
+>&lt;panelprofil&gt;</replaceable
+> vid start</para
+> 
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-d</option
+> <option
+>--debug</option
+></term>
+  <listitem>
+<para
+>aktiverar felsökningsutmatning</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>webbadress</option
+></term>
+  <listitem>
+<para
+>om en flik redan är öppen med webbadressen aktiveras den, annars öppnas en ny flik i den aktiva panelen</para>
+  </listitem>
+  </varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1
+><title
+>Exempel</title>
+
+<itemizedlist>
+  <listitem
+><para
+>$ krusader --left=/mnt/cdrom --right=ftp://nerladdningar@min_server.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --left=/home,/usr,smb://workgroup.net --right=fish://min_server.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --profile=ftp_management</para
+></listitem>
+
+</itemizedlist>
+</refsect1>
+
+<refsect1
+><title
+>Filer</title>
+<para
+>Inställningsfiler:</para>
+
+<para
+><filename
+>~/.config/krusaderrc</filename
+></para>
+
+<para
+><filename
+>~/.local/share/krusader/krbookmarks.xml</filename
+> eller  <filename
+>krusader/krbookmarks.xml</filename
+> i katalogen som kan bestämmas genom att använda kommandot <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>~/.local/share/krusader/useractions.xml</filename
+> eller  <filename
+>krusader/useractions.xml</filename
+> i katalogen som kan bestämmas genom att använda kommandot <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+></para>
+
+<para
+><filename
+>~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> eller <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> i katalogen som kan bestämmas genom att använda kommandot <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+</refsect1>
+
+<refsect1
+><title
+>Plattformar</title>
+<para
+>Alla POSIX: Linux, Solaris, Alla BSD Platforms: FreeBSD, MacOS-X</para>
+
+<para
+><emphasis
+>KDE 2.x</emphasis
+></para>
+
+<para
+>krusader v1.01 är stabil, men inga ändringar är planerade.</para>
+
+<para
+><emphasis
+>KDE 3.x</emphasis
+></para>
+
+<para
+>Krusader v1.01 behöver KDElibs 2</para>
+
+<para
+>Krusader v1.02 - 1.40 behöver KDElibs 3</para>
+
+<para
+>Krusader 1.40 föredrar &gt;= KDE 3.2</para>
+
+<para
+>Krusader v1.50 - v1.51: KDE 3.2 - KDE 3.3</para>
+
+<para
+>Krusader v1.60.0- v1.70.0: KDE 3.3 - KDE 3.4</para>
+
+<para
+>Krusader 1.70.x-1.80.x: KDE 3.4 - KDE 3.5</para>
+
+<para
+><emphasis
+>KDE 4.x</emphasis
+></para>
+
+<para
+>Krusader 2.0-2.4: KDE 4</para>
+
+<para
+><emphasis
+>KDE Ramverk 5</emphasis
+></para>
+
+<para
+>Krusader 2.5 och senare</para>
+
+<para
+>Den senaste versionen av Krusader finns på <ulink url="https://krusader.org/"
+>Krusaders webbplats</ulink
+>.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Funktioner</title>
+<para
+>Funktioner från ortodoxa filhanterare.</para>
+
+<para
+>Uttalad tangentbordsorientering.</para>
+
+<para
+>Kraftfull intern granskning och redigering.</para>
+
+<para
+>Avancerad sökmodul som kan söka i arkiv. Stöder ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip och 7-zip.</para>
+
+<para
+>Katalogjämförelse och filtrering.</para>
+
+<para
+>&FTP;- och Samba-klient med anslutningshanterare som ger stöd för SFTP och SCP.</para>
+
+<para
+>Synkroniserare, användaråtgärder, inbyggd konsol.</para>
+
+<para
+>Jämför filer enligt innehåll. Enkel redigering av filrättigheter.</para
+> 
+
+<para
+>Diskanvändning. Beräkna använt utrymme. Skapa och verifiera checksummor.</para>
+
+<para
+>Fullständig hantering av Mime-typer (med eller utan magi).</para>
+
+<para
+>Monteringshanterare, lokalisera, stöd för Krename.</para>
+
+<para
+>Administratörsläge, paneler med flikar, sidorad, musmarkeringslägen.</para>
+
+<para
+>Profiler för: paneler, tangentbindningar, färger.</para
+> 
+
+<para
+>För ytterligare funktioner, läs <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;path=features.html"
+>funktionssidan</ulink
+>.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Licens</title>
+<para
+>Krusader distribueras enligt villkoren i GNU General Public License.</para>
+
+<para
+>License version 2 publicerad av Free Software Foundation.</para>
+
+<para
+>Se den inbyggda hjälpfunktionen för detaljinformation om licensen och avsaknaden av garanti.</para>
+
+<para
+>Upphovsrätten för programmet och dess namn innehas fortfarande av Shie Erlich och Rafi Yanai.</para>
+</refsect1>
+
+<refsect1
+><title
+>i18n</title>
+<para
+>Krusader är översatt till många språk.</para>
+
+<para
+><ulink url="https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/"
+>https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/</ulink
+></para>
+
+<para
+>Läs <ulink url="https://l10n.kde.org/docs/translation-howto/"
+>KDE translation howto</ulink
+> om du vill hjälpa till att översätta Krusader till ditt modersmål.</para>
+</refsect1>
+
+<refsect1
+><title
+>Vanliga frågor</title>
+<para
+>Den senaste versionen av Krusaders Vanliga frågor (FAQ) finns på <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;path=faq.html"
+>KDE:s dokumentationsplats</ulink
+>.</para>
+</refsect1>
+
+<refsect1
+><title
+>Se också</title>
+<simplelist>
+<member
+>Handbok Krusader, i Krusaders hjälpmeny.</member>
+
+<member
+>kf5options(7)</member>
+
+<member
+>qt5options(7)</member>
+</simplelist>
+</refsect1>
+
+<refsect1 id='authors'
+><title
+>Upphovsmän</title>
+<para
+>Krusader utvecklas av en hängiven grupp av individer, kända som Krusader Krew.</para>
+
+<para
+>Shie Erlich, upphovsman [erlich {*} users {.} sourceforge {.} net] (avgången)</para>
+
+<para
+>Rafi Yanai, upphovsman [yanai {*} users {.} sourceforge {.} net] (avgången)</para>
+
+<para
+>Dirk Eschler, webbansvarig [deschler {*} users {.} sourceforge {.} net] (avgången)</para>
+
+<para
+>Csaba Karai, utvecklare [ckarai {*} users {.} sourceforge {.} net] (avgången)</para>
+
+<para
+>Heiner Eichmann, utvecklare [h {.} eichmann {*} gmx.de] (avgången)</para>
+
+<para
+>Jonas Baehr, utvecklare [jonas.baehr {*} web.de] (avgången)</para>
+
+<para
+>Vaclav Juza, utvecklare [vaclavjuza {*} seznam {.} cz] (avgången)</para>
+
+<para
+>Jan Lepper, utvecklare [jan_lepper {*} gmx {.} de] (avgången)</para>
+
+<para
+>Andrey Matveyakin, utvecklare [a.matveyakin {*} gmail {.} com] (avgången)</para>
+
+<para
+>Davide Gianforte, utvecklare [davide {*} gengisdave {.} org]</para>
+
+<para
+>Alexander Bikadorov, utvecklare [alex.bikadorov {*} kdemail {.} net]</para>
+
+<para
+>Martin Kostolny, utvecklare [clearmartin {*} zoho {.} com]</para>
+
+<para
+>Toni Asensi Esteve, utvecklare [toni.asensi {*} kdemail {.} net]</para>
+
+<para
+>Nikita Melnichenko, utvecklare [nikita+kde {*} melnichenko {.} name]</para>
+
+<para
+>Frank Schoolmeesters, dokumentation och marknadsföringssamordnare [frank_schoolmeesters {*} yahoo {.} com] (avgången)</para>
+
+<para
+>Richard Holt, dokumentation och korrekturläsning [richard {.} holt {*} gmail {.} com]  (avgången)</para>
+
+<para
+>Matej Urbancic, marknadsföring och produktundersökning [matej {*} amis {.} net] (avgången)</para>
+
+<para
+>Yuri Chornoivan, dokumentation <email
+>yurchor@ukr.net</email
+></para>
+
+<para
+>Projektet är skrivet med användning av KDevelop och Qt Designer.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Fel</title>
+<para
+>Se filen TODO i distributionen för information om vad som återstår att göra.</para>
+
+ <para
+>Skicka e-post till <email
+>krusader-devel@googlegroups.com</email
+> för rättningar, programfixar och kommentarer.</para>
+
+<para
+>Krusader Krew</para>
+</refsect1>
+</refentry>
+

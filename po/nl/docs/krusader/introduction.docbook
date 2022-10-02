@@ -1,0 +1,103 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="introduction">
+  <title
+>Inleiding</title>
+  <indexterm
+><primary
+>Inleiding</primary
+></indexterm>
+  <sect1 id="package-description">
+  <title
+>Pakketbeschrijving</title>
+    <para
+>&krusader; is een eenvoudig, makkelijk, maar krachtig, "dubbel paneel" bestandsbeheerder (commander-stijl) voor &plasma; en andere *nix desktops, vergelijkbaar met <application
+>Midnight Commander</application
+> of <trademark class="copyright"
+>Total Commander</trademark
+>. Het heeft alle mogelijkheden voor bestandsbeheer die u zich maar kan wensen.</para>
+    <para
+>Krusader heeft ook uitgebreide mogelijkheden voor het hanteren van archieven, aangekoppelde bestandsystemen, &FTP;, een geavanceerde zoekmodule, viewer/editor, mappen synchronisatie, vergelijken op bestandsinhoud, uitgebreide batch hernoemen en nog veel meer. &krusader; heeft ondersteuning van archief-formaten: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip en 7-zip en werkt samen met andere KIO Slaves zoals smb:// or fish://.</para>
+    <para
+>&krusader; is bijna geheel aan te passen en is daarom zeer gebruikersvriendelijk.</para>
+    <para
+>&krusader; proberen.</para>
+    <figure id="screenshot-krusader" float="1">
+      <title
+>Schermafdruk van &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="krusader1.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Schermafdruk van &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>U kunt nog meer <ulink url="https://krusader.org/"
+>Schermafdrukken van &krusader;</ulink
+> op onze website bekijken.</para>
+  </sect1>
+
+  <sect1 id="welcome">
+    <title
+>Welkom bij &krusader;!</title>
+    <para
+>Ons doel is om u een eenvoudig, intuïtief hulpmiddel te geven dat makkelijk de meest belangrijke taken aankan die u elke dag uitvoert: het beheren en bewerken van uw bestanden op de manier zoals u dat wilt.</para>
+    <para
+>Of u een &Linux; expert bent of een beginneling bent, &krusader; maakt routinematige bestandsbeheer taken makkelijk en nauwkeurig, zodat u zich kunt focussen op het grote plaatje, en niet op de command line syntax. Dit is met name handig als u nieuw bent in de wereld van de xNIX besturingssystemen. Om dit te kunnen doen, heeft &krusader; een &GUI; die er goed uitziet, ondersteunt &krusader; het verslepen en loslaten en ondersteund het &MIME;-types, zodat het makkelijk in het gebruik is.</para>
+    <para
+>&krusader; heeft veel handige mogelijkheden. Het is snel, en behandelt <link linkend="archives"
+>archieven</link
+> transparent. Daarnaast stroomlijnt &krusader; vele complexe bestandsmanagement taken,vermindert vermoeidheid, fouten en afleiding. Eigenlijk heeft &krusader; alle handige mogelijkheden die u ook verwacht bij andere goede bestandsbeheerders zoals <application
+>Midnight Commander</application
+> en <trademark class="copyright"
+>Total Commander</trademark
+>. &krusader; is ontworpen om naadloos samen te werken met de &plasma;, de voorkeur desktop van veel programmeurs, netwerk engineers en andere power users van &Linux;. Met &krusader; krijgen zelfs nieuwe gebruikers de beschikking over de kracht, handigheid, en uitgebreide mogelijkheden van de &plasma;. &krusader; is een vrije open-source project, en het is vrijgegeven onder <link linkend="credits"
+>&GNU; General Public License (GPL)</link
+>, alhoewel de ontwikkelaars nog steeds het auteursrecht van het project en de naam daarvan hebben, en zij de voortgaande evolutie van het project beheren.</para>
+    <para
+>De missie van het &krusader;-project is het creëren van een <quote
+>all-in-one</quote
+> bestandsbeheerder, die alle gewone dingen kan doen die u ervan verwacht, en meer. Omdat het principe achter &krusader; is gebaseerd op de <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Orthodox File Manager (OFM)</ulink
+>, "dubbel paneel" bestandsbeheerders (<application
+>Midnight Commander</application
+>, <trademark class="registered"
+>Norton Commander</trademark
+>, &etc;), is het zeker dat &krusader; in staat is om alle standaard bewerkingen zoals kopiëren, verplaatsen, verwijderen, &etc; uit te voeren.</para>
+    <para
+>Vanaf het begin zijn virtual file systemen de belangrijkste focus geweest. <link linkend="vfs"
+>Virtual file systems (VFS)</link
+> zijn een abstracte layer over alle soorten gearchiveerde informatie (ZIP bestanden, &FTP; servers, TAR archieven, &NFS;-bestandsystemen, SAMBA shares, ISO &CD;/&DVD; images, RPM catalogussen, &etc;), zodat de gebruiker transparant toegang heeft tot alle informatie over deze verschillende bestandsystemen - net zoals bij een gewone submap. U kunt dan zonder moeite tussen deze databronnen/containers bestanden kopiëren of verplaatsen (uitgezonderd ISO, rpm, tar.gz). &krusader; ondersteund op dit moment VFS´s voor alle populaire en sommige gespecialiseerde archieftypes (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip en 7-zip), configuratie pakketten (rpm, deb), en traditionele externe bestandsysteem-types (&FTP;, &NFS;, Samba, FISH, SFTP).</para>
+    <para
+>&krusader; heeft ook een ingebouwde Mount-Manager <link linkend="mount-man"
+>MountMan</link
+>, waarmee u met een muisklik allerlei soorten bestandsystemen kunt aankoppelen of afkoppelen. In enkele seconden kan de gebruiker makkelijk informatie over het gebruik en andere eigenschappen krijgen, in een consistente en begrijpbare formaat. Eenvoud en consistentie is het doel.</para>
+    <para
+>Er is ook een <link linkend="bookman"
+>Bookmark-Manager</link
+> voor lokale bestanden/externe &URL;s en een <link linkend="krusearcher"
+>Geavanceerde zoekmodule</link
+> aanwezig voor het het snel zoeken naar de gewenste bestanden. De gebruiker kan in &krusader; ook de werkbalken zodanig instellen dat het een grote variëteit aan extra functionaliteit kan krijgen, zoals vergelijken van bestanden (meerdere selectiemethodes zijn beschikbaar), Hernoemen van meerdere bestanden, en standaard terminalvensters.</para>
+    <para
+>Gevorderde gebruikers hebben groot voordeel van het feit dat de repeterende administratieve taken moeiteloos kunnen uitvoeren, zonder afleiding van de hoofdtaken. Door handige sneltoetsen kan de gebruiker makkelijk door mapstructuren bladeren, gelijktijdig meerdere mappen views aanmaken, en toegang hebben tot complete geschiedenissen. Door efficient programmeren en lage systeemeisen, is&krusader; van de algemeen aanwezige beheersprogramma´s wellicht het meest responsieve dat in gebruik is om het potentieel van een computer met &plasma;, of enig ander window manager die &X-Window;-compliant is. Alhoewel het specifiek is ontworpen voor - en geïntegreerd met - &plasma;, werkt &krusader; net zo goed samen met GNOME, MATE Enlightenment, &windowmaker;, IceWM, XFCE, &etc;, zolang de &kf5; bibliotheken maar zijn geïnstalleerd.</para>
+    <para
+>Nieuwe uitbreidingen zijn mogelijk door de flexibele <link linkend="useractions"
+>UserActions</link
+>, een innovatie van &krusader; waarmee onbeperkt nieuwe functionaliteit kan worden toegevoegd overeenkomstig de wensen van gebruikers. We hebben het plan om in de nabij toekomst nog meer modules te ontwikkelen, waarmee we &krusader; willen verbeteren. Informatie vinden over wat is voorgesteld, goedgekeurd, of nog niet compleet is, kunt u vinden in het <ulink url="https://invent.kde.org/tag/utilities/krusader/"
+>&krusader; GitLab pagina</ulink
+>.</para>
+    <para
+>We kennen geen ander programma, dat zoveel handige, makkelijk bruikbare toepassingen heeft in een zo intuïtief en eenvoudig opmaak. Het beste is dat we naar u luisteren, en dat we goede suggesties toepassen die in overeenstemming zijn met het doel van het &krusader;-project: het van &krusader; de best beschikbare bestandsbeheerder maken.</para>
+    <para
+>We hopen dat u er plezier aan heeft - wij in ieder geval wel!</para>
+ </sect1>
+</chapter>

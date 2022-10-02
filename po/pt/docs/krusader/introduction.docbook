@@ -1,0 +1,133 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<chapter id="introduction">
+  <title
+>Introdução</title>
+  <indexterm
+><primary
+>Introdução</primary
+></indexterm>
+  <sect1 id="package-description">
+  <title
+>Descrição do pacote</title>
+    <para
+>O &krusader; é um gestor de ficheiros de painéis duplos simples, fácil e poderoso (tipo 'commander') para o &plasma; e outros ambientes *nix, semelhante ao <application
+>Midnight Commander</application
+> ou ao <trademark class="copyright"
+>Total Commander</trademark
+>. Oferece todas as funcionalidades de gestão de ficheiros que possa alguma vez querer.</para>
+    <para
+>O Krusader também inclui o tratamento de pacotes, o suporte para sistemas de ficheiros montados, &FTP;, módulos de pesquisa avançados, um editor/visualizador, sincronização de pastas, comparação do conteúdo de ficheiros, mudanças de nomes em lote poderosas e muito, mas muito mais. O &krusader; suporta os formatos de pacotes: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip e 7-zip, assim como lida com os outros KIO Slaves, como o smb:// ou o fish://.</para>
+    <para
+>O &krusader; é quase todo ele configurável por completo e, deste modo, será muito amigável.</para>
+    <para
+>Experimente o &krusader;.</para>
+    <!-- OLD
+<screenshot>
+  <screeninfo
+>&krusader; screenshot</screeninfo>
+  <mediaobject id="krusader_screenshot">
+    <imageobject
+><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
+    <imageobject
+><imagedata fileref="krusader1.png" format="EPS"/></imageobject>
+    <textobject
+><phrase
+>&krusader; screenshot</phrase
+></textobject>
+    <caption
+><para
+>&krusader; screenshot</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+    <figure id="screenshot-krusader" float="1">
+      <title
+>Imagem do &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="krusader1.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Imagem do &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Poderá ver mais <ulink url="http://www.krusader.org/scr.php"
+>Imagens do &krusader;</ulink
+> na nossa página Web.</para>
+  </sect1>
+
+  <sect1 id="welcome">
+    <title
+>Bem-vindo ao &krusader;!</title>
+    <para
+>O nosso objectivo é dar-lhe uma ferramenta, simples e intuitiva que lide facilmente com as tarefas mais importantes que efectua no seu computador no dia-a-dia: gerir e processar os ficheiros da maneira que desejar.</para>
+    <para
+>Se você é experiente ou não no &Linux;, o &krusader; torna as tarefas de gestão de ficheiros rotineiras rápidas e precisas, permitindo-lhe focar no mais importante, não na sintaxe da linha de comandos. Isto é especialmente útil se for novo nos sistemas operativos *NIX. Para o fazer, o &krusader; usa uma &GUI; bonita e suporta o arrastamento de ficheiros, assim como a gestão de tipos MIME, tornando-o simples de usar.</para>
+    <para
+>O &krusader; tem muitas funcionalidades úteis. É rápido e lida com os <link linkend="archives"
+>pacotes</link
+> de forma transparente. Para além disso, o &krusader; agiliza muitas das tarefas complexas de gestão de ficheiros, reduzindo a fatiga, os erros e a distracção. Basicamente, o &krusader; oferece todas as funcionalidades úteis que esperaria das outras ferramentas de gestão de ficheiros, como o <application
+>Midnight Commander</application
+> e o <trademark class="copyright"
+>Total Commander</trademark
+>. O &krusader; está desenhado para integrar de forma transparente com o ambiente de trabalho &plasma;, o ambiente de escolha para muitos programadores, engenheiros de redes e outros utilizadores importantes do &Linux;. Com o &krusader;, até mesmo os utilizadores menos experientes poderão aceder rapidamente ao poder, conveniência e capacidades de riqueza de funcionalidades do ambiente de trabalho do &plasma;. O &krusader; é um projecto 'open-source' livre, estando disponível segundo os termos da <link linkend="credits"
+>Licença Pública Geral da &GNU; (GPL)</link
+>, ainda que os donos detenham ainda os direitos de cópia do projecto e do seu nome, assim como fazem a gestão da evolução contínua do projecto.</para>
+    <para
+>A missão do projecto &krusader; é criar um gestor de ficheiros "tudo-em-um", que irá fazer todas as coisas normais que esperaria dele, entre outras coisas. Dado que o princípio por trás do &krusader; é o <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Gestor de Ficheiros Ortodoxo (OFM-Orthodox File Manager)</ulink
+>, os gestores de ficheiros de painéis duplos (<application
+>Midnight Commander</application
+>, <trademark class="registered"
+>Norton Commander</trademark
+>, &etc;), de certeza que o &krusader; será capaz de lidar com todas as operações de Cópia, Movimentação, Remoção, &etc;.</para>
+    <para
+>Desde o início, os sistemas de ficheiros virtuais tornaram-se o foco principal. Os <link linkend="vfs"
+>sistemas de ficheiros virtuais (VFS)</link
+> são uma camada de abstracção sobre todos os tipos de informação arquivada (ficheiros ZIP), servidores de &FTP;, pacotes TAR, sistemas de ficheiros NFS, partilhas de SAMBA, imagens de CD/DVD ISO, catálogos do RPM, &etc;), que permite ao utilizador aceder a toda a informação nestes tipos de sistemas de ficheiros divergentes de forma transparente - como se entrasse numa pasta normal. Os ficheiros poderão então ser copiados ou movidos (excepto os ISO, RPM ou TAR.GZ) entre estas fontes de dados/contentores sem problemas. O &krusader; suporta de momento VFSs para todos os tipos de pacotes conhecidos e alguns especiais (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip e 7-zip), pacotes de configuração(rpm, deb) e tipos de sistemas de ficheiros remotos (&FTP;, NFS, Samba, FISH, SFTP).</para>
+    <para
+>O &krusader; também inclui um Gestor de Montagens incorporado (o <link linkend="mount-man"
+>MountMan</link
+>), que lhe permite montar ou desmontar os sistemas de ficheiros de todos os tipos, com um 'click' de um rato. O utilizador será capaz de obter a utilização e outras informações de propriedade facilmente, de forma consistente e compreensível, em segundos. A facilidade e a consistência é o objectivo.</para>
+    <para
+>Um <link linkend="bookman"
+>Gestor de Favoritos</link
+> para os &URL;s de ficheiros locais/remotos e um <link linkend="krusearcher"
+>módulo de Pesquisa Avançada</link
+> estão também incluídos para acelerar a localização dos ficheiros necessários. O &krusader; também permite ao utilizador configurar as Barras de Ferramentas, de modo a oferece uma grande variedade de funcionalidades adicionais, como a Comparação de Ficheiros (com diversos métodos disponíveis), a Mudança de Nomes de Ficheiros e diversas janelas de terminal.</para>
+    <para
+>Os utilizadores avançados beneficiam em grande medida de terem a possibilidade de efectuar as tarefas comuns sem grande esforço e sem se distraírem da tarefa real em mãos. Algumas teclas de atalho permitem ao utilizador navegar pelas árvores de pastas com facilidade, criar diversas vistas de pastas em simultâneo e aceder a listas históricas completamente funcionais. Devido à programação eficiente e à pequena sobrecarga do sistema, o &krusader; será talvez a ferramenta de gestão do sistema mais eficiente existente, sendo usada para aceder ao potencial completo de um computador com o &plasma;, ou em qualquer gestor de janelas compatível com o X Windows. Ainda que esteja desenhado e integrado de forma específica para o &plasma;; o &krusader; funciona igualmente bem com o Gnome, Enlightenment, &windowmaker;, IceWM, BlackBox, Wiamea, XFCE, &etc;, desde que as bibliotecas do &plasma; estejam instaladas.</para>
+    <para
+>As extensões novas são oferecidas pelas flexíveis <link linkend="useractions"
+>Acções do Utilizador</link
+>, uma inovação do &krusader; que permite adicionar uma funcionalidade personalizada e ilimitada de acordo com as necessidades específicas dos utilizadores. Planeamos desenvolver mais módulos num futuro próximo, melhorando deste modo o &krusader;. Poderá obter mais informações sobre o que está proposto, aprovado ou necessite estar completo no <ulink url="https://phabricator.kde.org/tag/krusader/"
+>Fórum de Coisas A-Fazer</ulink
+>.</para>
+    <para
+>Nenhum outro programa conhecido oferece tantas funcionalidades úteis e fáceis de aceder num formato tão intuitivo e simples. Melhor que tudo, nós ouvimos as propostas e implementamos as boas sugestões que estejam em consonância com o objectivo do projecto &krusader;: tornar o &krusader; o melhor Gestor de Ficheiros disponível.</para>
+    <para
+>Esperemos que goste dele - nós gostamos!</para>
+ </sect1>
+</chapter>

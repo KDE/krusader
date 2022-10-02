@@ -1,0 +1,987 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="user-interface">
+  <title
+>Gebruikersinterface</title>
+  <indexterm>
+    <primary
+>Gebruikersinterface</primary>
+  </indexterm>
+  <sect1 id="ofm-userinterface">
+    <title
+>OFM-gebruikersinterface</title>
+    <para
+>Het concept van de OFM bestandsbeheerder biedt <link linkend="features"
+>veel mogelijkheden</link
+> dat het krachtig genoeg maakt om tot de beste bestandsbeheerders vandaag de dag te maken. Het interface is eenvoudig: linker paneel, rechter paneel en een commandoregel onderaan. Door de interactie tussen deze drie items is bestandsbeheer efficiënter.</para>
+    <para
+>Als u wilt weten <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+> hoe &krusader; werkt</ulink
+> dan kunt u het zelf uitproberen, installeer het gewoon op uw computer. Om een <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Orthodox File Manager (OFM)</ulink
+> zoals &krusader; te accepteren, hoeft de gebruiker alleen maar bekent te raken met <emphasis
+>nieuwe ideeën</emphasis
+> die eigenlijk al 20 jaar oud zijn. Als u de voorkeur geeft aan tijdverspilling en verminderde productiviteit, dan kunt u verder gaan met paneel bestandsberheerders te gebruiken die op &Windows; Explorer zijn gebaseerd.</para>
+  </sect1>
+  <sect1 id="mainwindow">
+    <title
+>Hoofdvenster van &krusader;</title>
+    <figure id="screenshot-mainwindow" float="1">
+      <title
+>Hoofdvenster van &krusader;</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="mainwindow.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Hoofdvenster van &krusader;</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>De gebruikersinterface is gebaseerd op de paradigma van de <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Orthodox File Manager (OFM)</ulink
+>, een 20- jaar oud principe dat zijn bestaansrecht heeft bewezen. Het staat bekend als simpel, makkelijk en krachtig. In de volgende secties behandelen we de basis functies van elk onderdeel met uitzondering van:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>De <link linkend="menu-commands"
+>Menubalk</link
+> heeft een eigen hoofdstuk.</para>
+      </listitem>
+      <listitem>
+        <para
+>De <link linkend="menu-commands"
+>Bladwijzers</link
+> heeft een eigen hoofdstuk.</para>
+      </listitem>
+      <listitem>
+        <para
+>De <emphasis role="bold"
+>Statusbalk</emphasis
+> toont de eigenschappen van het huidige bestand, dat in focus is. </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  <sect1 id="toolbars">
+    <title
+>Werkbalken</title>
+    <para
+>&krusader; komt met verschillende Werkbalken.</para>
+    <sect2 id="main_toolbar">
+      <title
+>Hoofdwerkbalk</title>
+      <indexterm>
+        <primary
+>Werkbalk</primary>
+        <secondary
+>Hoofdwerkbalk</secondary>
+      </indexterm>
+      <figure id="screenshot-maintoolbar" float="1">
+        <title
+>Hoofdwerkbalk</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="toolbar.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Hoofdwerkbalk</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>De hoofdwerkbalk van &krusader; is een standaard &kde; werkbalk die u in het programma kan verplaatsen (ontgrendel het eerst door deactiveren van het item <guimenuitem
+>Werkbalkposities vergrendelen</guimenuitem
+> in het menu na rechts klikken) of via een <keycap
+>Rechts klik</keycap
+> menu kunt configureren. U kunt beslissen of u iedere keer dat &krusader; opstart, de <link linkend="konfigurator"
+>opstart pagina van Konfigurator</link
+> te zien krijgt, en u kunt in het <link linkend="settings-menu"
+>Instellingen menu</link
+> het gebruik ervan in de huidige sessie omschakelen. De inhoud van de Hoofdwerkbalk kunt u instellen in <guimenuitem
+>Werkbalken configureren...</guimenuitem
+> in het <link linkend="settings-menu"
+>Instellingen menu</link
+>. Omdat verschillende commando´ s en keuzemogelijkheden in &krusader; context-afhankelijk zijn, zijn sommige commando´s niet altijd beschikbaar. Het pictogram van een niet toepasselijk of niet actieve actie zal gedeactiveerd zijn (grijs) zodat u het niet kan gebruiken. U kunt <link linkend="bookman"
+>Bladwijzers</link
+> in de Hoofdwerkbalk en de Actiewerkbalk plaatsen door het <quote
+>verslepen en loslaten</quote
+> met de muis.</para>
+    </sect2>
+    <sect2 id="job_toolbar">
+      <title
+>Takenwerkbalk</title>
+      <indexterm>
+        <primary
+>Werkbalk</primary>
+        <secondary
+>Takenwerkbalk</secondary>
+      </indexterm>
+      <para
+>Standaard is de Takenwerkbalk van &krusader; (<link linkend="queue"
+>Wachtrijbeheerder</link
+> of eenvoudig de JobMan) gelokaliseerd in het rechter deel van de Hoofdwerkbalk. Deze werkbalk stelt u in staat om de voortgang van de taak te bekijken, te pauzeren en het uitvoeren van lijst met taken te hervatten en de laatst uitgevoerde taak ongedaan te maken.</para>
+    </sect2>
+    <sect2 id="actions_toolbar">
+      <title
+>Actiebalk</title>
+      <indexterm>
+        <primary
+>Werkbalk</primary>
+        <secondary
+>Actiebalk</secondary>
+      </indexterm>
+      <para
+>U kunt <link linkend="useractions"
+>UserActions</link
+> en <link linkend="bookman"
+>Bladwijzers</link
+> in de <guilabel
+>Actiebalk</guilabel
+> <quote
+>pluggen</quote
+>. Om ze zichtbaar te maken, schakelt u <menuchoice
+> <guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Actiewerkbalk tonen</guimenuitem
+> </menuchoice
+> in. Voor het toevoegen van gebruikersacties, gaat u naar <menuchoice
+> <guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Werkbalken configureren...</guimenuitem
+> </menuchoice
+> en selecteert Actiebalk. U kunt bijvoorbeeld, met behulp van de muis de Actiebalk naar rechts verslepen.</para>
+    </sect2>
+    <sect2 id="location_toolbar">
+      <title
+>Locatiebalk</title>
+      <indexterm>
+        <primary
+>Werkbalk</primary>
+        <secondary
+>Locatiebalk</secondary>
+      </indexterm>
+      <para
+>Onder de <guibutton
+>Hoofdwerkbalk</guibutton
+> is er voor elk paneel een <guibutton
+>locatiebalk</guibutton
+>. Het toont het pad dat op dit moment in het paneel te zien is. Als een archief wordt geopend dan wordt het pad in het volgende formaat getoond: <quote
+>archief type:/map/archief_bestandsnaam/de map in het archief</quote
+>. Dit formaat maakt het pad uniform en makkelijk om te lezen. De <guibutton
+>locatiebalk</guibutton
+> ondersteund ook KIO Slaves maar helaas niet allemaal, sommige zijn alleen bruikbaar in combinatie met de <link linkend="krviewer"
+>viewer</link
+> en sommige kunnen helemaal niet worden gebruikt. De gebruiker kan een gewenst pad invoeren door erop te klikken.</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <userinput>
+              <replaceable
+>/mnt/cdrom/</replaceable>
+            </userinput>
+          </para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>settings:/</command
+> </userinput
+>zal de items van de &systemsettings; openen zodat u er doorheen kan bladeren.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>trash:/</command
+> </userinput
+>opent de prullenbakmap.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>mtp:/</command
+> </userinput
+>gebruikt de kio_mtp voor toegang tot, het uploaden en organiseren van de multimedia op op <trademark
+>Android</trademark
+> gebaseerde apparaten.</para>
+        </listitem>
+        <listitem>
+          <para
+>En tenslotte <link linkend="remote-connections"
+>Externe verbindingen</link
+> .</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>U kunt een &URL; in de <guibutton
+>Locatiebalk</guibutton
+> kopiëren of door middel van een klik met de &MMB;. Met het contextmenu kunt u de functie instellen voor tekst aanvullen. Er is ook een extra knop <guilabel
+>Locatiebalk wissen</guilabel
+> beschikbaar.</para>
+      <para
+>Snelle Navigatie: &Ctrl; wijs met de muis naar het midden van de &URL; op de <guibutton
+>Locatiebalk</guibutton
+>. Een pop-up venster laat de volgende &URL; locatie zien. Door nogmaals te drukken op &Ctrl; + &LMB; gaat u de locatie waar de muis naar wees. Hiermee kunt u makkelijker in een uitgebreide mappenstructuur navigeren.</para>
+    </sect2>
+    <sect2 id="panel_toolbar">
+      <title
+>Paneel Werkbalk</title>
+      <indexterm>
+        <primary
+>Werkbalk</primary>
+        <secondary
+>Paneel Werkbalk</secondary>
+      </indexterm>
+      <para
+>Elk paneel heeft een <link linkend="konfig-panel-buttons"
+>Instelbaar Paneel Werkbalk</link
+>. De zichtbaarheid van de complete Paneel Werkbalk maar ook van bepaalde knoppen zijn instelbaar.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>Map browser</guibutton
+>: opent de map browser.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Gelijk (=)</guibutton
+>: Gaat naar de Map van het andere paneel.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Omhoog (..)</guibutton
+>: wijzigt de getoonde map naar de bovenliggende map.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Thuis (~)</guibutton
+>: Gaat naar de persoonlijke map.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Hoofdmap (/)</guibutton
+>: gaat naar de hoofdmap.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>synchroon-bladeren</guibutton
+>: indien ingeschakeld, zal elke map-wijziging in de opgegeven paneel ook in het andere paneel worden uitgevoerd.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+  <sect1 id="panels">
+    <title
+>Panelen</title>
+    <para
+>De panelen van &krusader; zijn de plekken waar de meeste acties plaats vinden. Momenteel zijn er twee soorten panelen:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="list_panel"
+>Panelen met lijsten</link
+>: deze toont de bestanden en mappen.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="sidebar"
+>Zijbalk</link
+>: heeft meerdere weergave modus: Voorbeeld, boomstruktuurweergave, Snelzoeken, weergave en schijfgebruik voor het bestand of map dat geselecteerd is. De zijbalk kunt u naar wens na gebruik open laten of weer sluiten.</para>
+      </listitem>
+    </itemizedlist>
+    <para
+>&krusader; is een <quote
+>dubbel paneel</quote
+> bestandsbeheerder en heeft daarom twee panelen: het <quote
+>Linker</quote
+> paneel en het <quote
+>Rechter</quote
+> paneel of een belangrijker logisch onderscheid, het *Actieve* paneel en het *Inactieve* paneel. Het actieve paneel is diegene die de invoer met muis en toetsenbord accepteert. Als u een commando uit de <guilabel
+>menubalk</guilabel
+> of <guilabel
+>Werkbalk</guilabel
+>  kiest dan zal het commando worden toegepast op de geselecteerde bestanden/mappen in het actieve paneel. U kunt tussen de panelen heen en weer schakelen met behulp van de &Tab;-toets of door te klikken op <guilabel
+>Totaalbalk</guilabel
+>, of door met de muis een bestand in een paneel te selecteren. U kunt altijd de standaard opstart-instellingen wijzigen via het <link linkend="konfigurator"
+>Opstart pagina in Konfigurator</link
+>, en u kunt de huidige sessie beïnvloeden via het <link linkend="settings-menu"
+>Instellingen-menu</link
+>.</para>
+    <figure id="screenshot-listpanel" float="1">
+      <title
+>Paneel met lijst</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="listpanel.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Paneel met lijst</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <sect2 id="list_panel">
+      <title
+>Paneel met lijst</title>
+      <indexterm>
+        <primary
+>Paneel</primary>
+        <secondary
+>Paneel met lijst</secondary>
+      </indexterm>
+      <para
+>Dit is het standaard paneel die u waarschijnlijk het meeste zal gebruiken. Dit paneel toont de inhoud van een map die lokaal kan zijn (onderdeel van uw gekoppelde bestandssystemen, naar keuze een echt bestand of bestanden in een archief) of externe bestanden op een server (toegankelijk via &FTP;, &NFS; of Samba). Er zijn twee modus: <link linkend="view-menu"
+>Detail weergave</link
+> deze toont de bestandsnaam, bestandsgrootte, datum en tijdstip van aanmaak en hun attributen. En <link linkend="view-menu"
+>Korte weergave</link
+> dat alleen de bestandsnaam toont, het aantal korte kolommen is instelbaar, door op de label <guilabel
+>Naam</guilabel
+> te klikken met de &RMB;. U kunt tussen &konqueror; en &krusader; via het klembord bestanden kopiëren <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> wordt ondersteund. <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>R</keycap
+></keycombo
+> schakelt het <guilabel
+>Paneel</guilabel
+> om tussen de horizontale en verticale mode.</para>
+      <para
+>De volgende items zijn beschikbaar:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Information Label</guilabel
+> </emphasis
+>: laat zien hoeveel vrije ruimte nog fysiek aanwezig is op het bestandssysteem, de capaciteit van het bestandssysteem en waar het bestandssysteem is aangekoppeld. Als de informatie niet beschikbaar is (meestal in het geval van bestanden die op een server staan) dan krijgt u in plaats van deze informatie een melding met de reden waarom het niet beschikbaar is.</para>
+          <para id="media_button"
+>De <guibutton
+>Media button</guibutton
+> links van de  <guilabel
+>Information Label</guilabel
+> geeft een lijst met alle beschikbare media, zodat u de gewenste media (HDD-partitie, &DVD;, &USB;-stick, &etc;) kunt selecteren. Als u op <keycombo
+>&Ctrl;<keycap
+>Return</keycap
+></keycombo
+>  drukt wanneer het <guibutton
+>Media menu</guibutton
+> is geopend dan wordt de gemarkeerde media aangekoppeld als deze nog niet is aangekoppeld, en afgekoppeld als aangekoppeld. Het contextmenu van een medium geeft meerdere keuzemogelijkheden zoals <guilabel
+>Aankoppelen</guilabel
+>, <guilabel
+>In een nieuwe tab openen</guilabel
+>, &etc; Het <guibutton
+>Media menu</guibutton
+> is <link linkend="konfig-panel-mediamenu"
+> instelbaar</link
+>.</para>
+        </listitem>
+          <listitem>
+          <para
+><emphasis
+> <guilabel
+>Kolomkoppen</guilabel
+> </emphasis
+>: hier kunt u de sorteervolgorde van de bestanden en mappen naar wens instellen. De standaard sorteervolgorde is op <guilabel
+>Naam</guilabel
+>. U kunt de sorteervolgorde met onmiddellijke ingang wijzigen door op een van de <guilabel
+>Kolomkoppen</guilabel
+> te klikken. Om de sorteervolgorde om te keren, klikt u een tweede keer op de kolomkop. Er verschijnt een pijl rechts de tekst in de kolomkop, die de sorteervolgorde aangeeft (Pijl omhoog = A naar Z sorteren, Pijl omlaag = Z naar A sorteren). De standaard <link linkend="useractions"
+>UserActions</link
+> stelt sneltoetsen in voor de kolomkoppen. De standaard <guilabel
+>Kolomkoppen</guilabel
+> zijn: <guilabel
+>Naam</guilabel
+>, <guilabel
+>Ext</guilabel
+>, <guilabel
+>Grootte</guilabel
+>, <guilabel
+>Gewijzigd</guilabel
+>, <guilabel
+>rwx</guilabel
+>. Voorgedefinieerde <link linkend="konfig-general"
+>Atomic extensions</link
+> zoals <literal role="extension"
+>.tar.gz</literal
+> worden als een geheel in de kolom <guilabel
+>Ext</guilabel
+> getoond. Er zijn extra kolomkoppen beschikbaar via de &RMB;. U kunt de breedte van de <guilabel
+>Kolomkoppen</guilabel
+> wijzigen door een keer met de muis te klikken waarna u de verdeellijn kunt verplaatsen om de gewenste breedte te krijgen (houd de muisknop ingedrukt). Beide <guilabel
+>Panelen</guilabel
+> onthouden de sorteervolgorde en de kolombreedte. De <guilabel
+>kolomkoppen</guilabel
+> kunt u voor elk paneel individueel instellen en opslaan.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>File List</guilabel
+> </emphasis
+>: toont de bestanden en mappen in de getoonde map. Met <link linkend="quicksearch"
+>zoekbalk</link
+> kunt u naar bestanden zoeken door hun namen in te voeren, of de eerste paar karakters van een bestandsnaam. Door te drukken op &Enter; of door te dubbelklikken op een bestand, opent u dat bestand of voert u het uit. U kunt bestanden met de muis, met de toets &Ins; of het <link linkend="edit-menu"
+>Bewerken-menu</link
+> selecteren/deselecteren.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Totals Label</guilabel
+> </emphasis
+>: het selecteren of deselecteren van bestanden zal de <emphasis
+> <guilabel
+>Totaalbalk</guilabel
+> </emphasis
+> onderaan het paneel wijzigen, het toont hoeveel bestanden u heeft geselecteerd (en hoeveel ruimte ze op de harde schijf gebruiken) en hoeveel de huidige map aan bestanden heeft en op de harde schijf in beslag neemt ( tegenover de information label die informatie over het hele systeem geeft). Als een map veel submappen heeft, dan kan het zijn dat het niet mogelijk is om de &URL; aan het paneel toe te voegen (omdat er alleen maar mappen zichtbaar zijn), maar in plaats daarvan kunt u de &URL; wel op de <quote
+>Information Label</quote
+> of <quote
+>Totaalbalk</quote
+> laten vallen. Als u een <link linkend="view-menu"
+>eigen filter</link
+> heeft ingesteld, dan toont het de instelling, bijvoorbeeld: [*.cpp].</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Als u de standaard <quote
+>&kde; <link linkend="konfig-color"
+>kleuren</link
+></quote
+> gebruikt, dan zijn de geselecteerde bestanden blauw gekleurd en is het huidige bestand gemarkeerd door een dunne rechthoek. Standaard krijgt u een pictogram overeenkomstig het bestandstype te zien. Gebruik de <link linkend="konfig-panel"
+>Konfigurator Paneel pagina</link
+> om de standaard instellingen naar uw wensen aan te passen.</para>
+      <para
+>Enkele handige  <link linkend="key_bindings"
+>Sneltoetsen</link
+> voor het <guilabel
+>paneel</guilabel
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> zal het paneel herladen.</para>
+        </listitem>
+        <listitem>
+          <para
+>Markeer in het linker paneel een bestand of een map, druk op <keycombo action="simul"
+>&Ctrl; &Right;</keycombo
+> en het rechter paneel wijzigt: <itemizedlist>
+            <listitem>
+              <para
+>Bij een bestand: het rechter paneel krijgt hetzelfde pad als het linker paneel.</para>
+            </listitem>
+            <listitem>
+              <para
+>Bij een map: opent het rechter paneel met de in het linker paneel gemarkeerde map.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Bij het rechter paneel: als u op <keycombo action="simul"
+>&Ctrl; &Left;</keycombo
+> drukt dan zal het linker paneel wijzigen.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="sidebar">
+      <title
+>Zijbalk</title>
+      <indexterm>
+        <primary
+>Zijbalk</primary>
+        <secondary
+>Zijbalk (3de paneel)</secondary>
+      </indexterm>
+      <para
+>Dit is <quote
+>de derde hand van &krusader;</quote
+> of het derde paneel, klik op de knop met een pijl omhoog rechts van de <guilabel
+>Totaalbalk</guilabel
+> of op <keycombo action="simul"
+>&Alt; &Down;</keycombo
+> om de <guilabel
+>Zijbalk</guilabel
+> te openen. Dit paneel heeft meerdere weergave-modi die u kunt activeren door op de toepasselijke knop te klikken.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Voorbeeld venster</guilabel
+> </emphasis
+>: geeft een voorbeeld van het gemarkeerde bestand (huidig geselecteerd bestand).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Boomstruktuur venster</guilabel
+> </emphasis
+>: gebruikt u om snel door een lokale boomstruktuur te bladeren. Dit paneel gedraagt zich zoals een paneel met bestanden, alleen kunt u maar een map tegelijk selecteren en als u op een map dubbelklikt of op &Enter; drukt dan opent die map in het actieve paneel. Het paneel ondersteund verslepen en plakken (kopiëren, verplaatsen, linken) met de muis.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Snel venster</guilabel
+> </emphasis
+>: gebruikt u om snel bestanden te selecteren, &eg; voer in <literal role="extension"
+>*.png</literal
+> en klik op de knop <guibutton
+>Toepassen</guibutton
+>. De <quote
+>floppy</quote
+>-knop slaat de huidige selectie op. Er is ook een <quote
+> groepsdialoog selecteren</quote
+> beschikbaar.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Voorbeeld venster</guilabel
+> </emphasis
+>: toont een tekstbestand, toont een afbeelding, &etc; Bij het openen van het <guilabel
+>Voorbeeld venster</guilabel
+> wordt een miniatuur weergave aangemaakt.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Disk Gebruik venster</guilabel
+> </emphasis
+>: geeft van een map het<link linkend="diskusage"
+>Schijfgebruik</link
+> aan.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Het is mogelijk om de plaatsing van de zijbalk te wijzigen met de rotatieknop die zich bevindt linkst van de knop pijl-omlaag in het onderste gedeelte van het &krusader; tabblad. Elke klik op deze knop verplaatst de zijbalk één positie in de kring <quote
+>onderaan-links-bovenaan-rechts</quote
+>. </para>
+      <para
+>Als u de grootte van een venster moet veranderen &eg; om een afbeelding beter te kunnen bekijken of om de inhoud van een bestand te kunnen bekijken. Klik dan op de knop pijl omlaag om het <guilabel
+>3de Hand venster</guilabel
+> te sluiten.</para>
+    </sect2>
+    <sect2 id="folderhistory">
+      <title
+>Map geschiedenis</title>
+      <para
+>Beide panelen onthouden recent bezochte mappen. Klik op de knop <guibutton
+>Mapgeschiedenis</guibutton
+> ("stopwatch" symbool) om de lijst met de mapgeschiedenis te openen. Hiermee kunt u makkelijk naar eerder bezochte mappen gaan. De map die op dit moment de focus heeft wordt gecontroleerd. Bij iedere nieuwe start van &krusader;, wordt de geschiedenislijst gevuld met items uit eerdere runs (de geschiedenis wordt opgeslagen).</para>
+    </sect2>
+  </sect1>
+  <sect1 id="cmdline_termemu">
+    <title
+>Commandoregel / Terminalemulator</title>
+    <para
+>Dit gedeelte van de <link linkend="gloss-gui"
+>&GUI;</link
+> heeft vier modi: Commandoregel, Terminalemulator, beide tonen en geen van beide tonen. U kunt uw werkwijze naar keuze bij het opstarten in <link linkend="konfigurator"
+>Opstart pagina in Konfigurator</link
+>, of voor de huidige sessie in het <link linkend="settings-menu"
+>Instellingen-menu</link
+> instellen. </para>
+
+  <sect2 id="cmdline">
+    <title
+>Opdrachtregel</title>
+
+    <figure id="screenshot-commandline" float="1">
+      <title
+>Opdrachtregel</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="cmdline.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Opdrachtregel</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>De traditionele commandoregel mode heeft een enkele regel voor invoer van commando´s,  met drie knoppen:</para>
+     <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>commandoregel geschiedenis</guibutton
+> (pijl omlaag) om makkelijk eerder gebruikte commando´s te gebruiken </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>Useraction uitbreiden</guibutton
+> (groene plus knop) om makkelijk  <link linkend="useractions"
+>Useraction plaatshouders</link
+> toe te voegen </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>start in terminal mode</guibutton
+> (console pictogram) knop met de volgende opties: <itemizedlist>
+          <listitem
+><para
+>Starten en vergeten</para>
+          </listitem>
+
+          <listitem
+><para
+>Aparte standaard error (stderr) en standaard uit (stdout) tonen</para>
+           </listitem>
+
+          <listitem
+><para
+>Gemengde standaard error (stderr) en standaard uit (stdout) tonen</para>
+          </listitem>
+
+           <listitem
+><para
+>In nieuwe terminal starten</para>
+          </listitem>
+
+           <listitem
+><para
+>Naar ingebedde terminalemulator zenden</para>
+           </listitem>
+
+         </itemizedlist>
+          </para>
+
+        </listitem>
+
+
+     </itemizedlist>
+    <para
+>Als u begint met het typen van uw commando´s, dan zal automatisch aanvullen voorstellen geven overeenkomstig met de instellingen die u heeft gemaakt in &systemsettings;. Als u wijzigingen wilt aanbrengen in hoe automatisch aanvullen zich gedraagt in de huidige sessie van &krusader;, <keycap
+>rechts-klik</keycap
+> dan op de commandoregel en wijzig het. Links van de commandoregel kunt u het lokale pad zien waarnaar het actieve paneel op dit moment wijst . Op dit pad zal uw commando´s worden uitgevoerd. Het invoeren van <userinput
+> <command
+>cd</command
+> <replaceable
+> &lt;map&gt;</replaceable
+> </userinput
+> op de commandoregel zal ook het actieve paneel naar deze map laten wijzen. Klik <link linkend="cmdline_keybindings"
+>hier</link
+> om de sneltoetsen voor de commandoregel te zien.</para>
+</sect2>
+
+  <sect2 id="termemu">
+    <title
+>Terminalemulator</title>
+
+    <figure id="screenshot-terminalemulator" float="1">
+      <title
+>Terminalemulator</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="terminalEmu.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Terminalemulator</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>De terminal emulator mode is eigenlijk een kleine console en zal ook net zo reageren. U kunt in de terminal de actieve map wijzigen door het commando <userinput
+> <command
+>cd</command
+> </userinput
+> te gebruiken. De terminal emulator zal het actieve paneel-map volgen. U kunt een bestand uit het <interface
+>Paneel</interface
+> slepen zodat zijn bestandsnaam in de Terminal Emulator zal worden geplakt. Als u meerdere bestanden versleept, dan zullen de namen in de terminalemulator worden geplakt. U kunt het volledig scherm voor de terminal emulator gebruiken door deze te <link linkend="konfig-general-general"
+>configureren</link
+> of door met <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>F</keycap
+></keycombo
+> om te schakelen tussen normale en schermvullende mode. Als de commandoregel verborgen is, dan kunt u op <keycombo action="simul"
+>&Ctrl; <keycap
+>Pijl omlaag</keycap
+></keycombo
+> om de focus op de terminal emulator te zetten. <keycombo action="simul"
+>&Ctrl; <keycap
+>Pijl omhoog</keycap
+></keycombo
+> brengt u weer terug. <keycombo action="simul"
+>&Ctrl;&Enter;</keycombo
+> en met <keycombo action="simul"
+>&Ctrl; &Shift; &Enter;</keycombo
+> kunt u de bestandsnaam plakken. U kunt de emulator sluiten door <userinput
+> <command
+>exit</command
+> </userinput
+> te typen.</para>
+    <para
+>Klik <link linkend="termemu_keybindings"
+>hier</link
+> om de sneltoetsen voor de emulator te zien.</para>
+    </sect2>
+
+  </sect1>
+  <sect1 id="fnkeys">
+    <title
+>Functietoetsen (FN) balk</title>
+    <figure id="screenshot-fnkeys" float="1">
+      <title
+>Functietoetsen (FN) balk</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="fnkeys.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Functietoetsen (FN) balk</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Deze balk krijgt zijn naam van de functietoetsen (FN) die erop voorkomen. Voor elke knop die op deze balk voorkomt is er een bijbehorende functietoets die dezelfde actie kan uitvoeren. Deze balk is afgeleid van het ontwerp voor de eerste "dubbel paneel" bestandsbeheerders en de FN-toetsen reageren op dezelfde manier met twee uitzonderingen: de <keycap
+>F2</keycap
+>-toets wordt gebruikt om bestanden te hernoemen en de <keycap
+>F9</keycap
+>-toets opent een terminal met het laatste lokale pad waar het actieve paneel naar toe wees. <guilabel
+>Mkdir</guilabel
+> <keycap
+>F7</keycap
+> (vertaalde naam van de opdracht <command
+>mkdir</command
+>) kan complete mappenstructuren aanmaken &eg; <literal
+>foo/bar/test</literal
+>. U kunt via <link linkend="konfigurator"
+>Opstart pagina in Konfigurator</link
+> instellen om bij het starten van &krusader; wel <link linkend="faqu_resize"
+>of niet</link
+> de <guilabel
+>Functietoetsen-balk</guilabel
+> te tonen, en voor de huidige sessie kunt u dit instellen in <link linkend="settings-menu"
+>Instellingen-menu</link
+>. De acties en <link linkend="key_bindings"
+>sneltoetsen</link
+> die bij de functietoetsen horen zijn instelbaar vanaf  versie 1.51, u kunt ze gebruiken onafhankelijk van het feit dat de <guilabel
+>Functietoetsen-balk</guilabel
+> zichtbaar is.</para>
+  </sect1>
+  <sect1 id="folder-tabs">
+    <title
+>Tabs met Mappen</title>
+    <figure id="screenshot-tabbedbrowsing" float="1">
+      <title
+>Tabs met Mappen</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="tabbed_browsing.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Tabs met Mappen</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Met behulp van <guibutton
+>Tabs met mappen</guibutton
+> kunt u makkelijk van map naar map springen; elk paneel heeft zijn eigen <guibutton
+>Tabs met mappen</guibutton
+>. De posities die <guibutton
+>Tabs met mappen</guibutton
+> aanwijzen, worden opgeslagen bij het sluiten van &krusader;. Om te schakelen tussen <guibutton
+>Tabs met mappen</guibutton
+>, klikt u erop met de muis. opgevouwen <guibutton
+>Tabs met mappen</guibutton
+> hebben hulp ballonnen met het volledige pad. De volgende bewerkingen zijn voor de <guibutton
+>Tabs met mappen</guibutton
+> beschikbaar:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>Voor het <action
+>In een nieuwe tab openen</action
+> en de huidige tab geopend houden: <keycap
+>Rechtsklikt</keycap
+> u op een map en selecteert u daarna <guimenuitem
+>In een nieuw tabblad openen</guimenuitem
+> of klik op de meest rechtse knop op de tabbladbalk.</para>
+      </listitem>
+      <listitem>
+        <para
+>Voor het <action
+>vergrendelen van een tab</action
+>, <keycap
+>Rechtsklikt</keycap
+> u op een tab en selecteert u daarna<guimenuitem
+>Tab vergrendelen</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Om <action
+>een tabblad vastzetten</action
+>, <keycap
+>Klik rechts</keycap
+> en selecteer <guimenuitem
+>Tabblad vastzetten</guimenuitem
+>. Het vastgezette tabblad is een vergrendeld tabblad maar met tijdelijk te wijzigen adres. Het resets naar vastgezet adres op opnieuw activeren van het tabblad. Om het vastzetten ongedaan te maken klik er rechts op en kies het item <guimenuitem
+>Tabblad vastzetten ongedaan maken</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Voor het <action
+>dupliceren van de huidige tab</action
+>: <keycap
+>Rechtsklikt</keycap
+> u op de tab met mappen en selecteert <guimenuitem
+>Huidige tab dupliceren</guimenuitem
+>, of gebruikt u <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+>. </para>
+      </listitem>
+      <listitem>
+        <para
+>Voor het <action
+>sluiten van een tab</action
+> (behalve de laatste overgebleven tab): <keycap
+>Rechtsklikt</keycap
+> u op de tab en selecteert <guimenuitem
+>Huidige tab sluiten</guimenuitem
+>, of u gebruikt de &MMB;, of u gebruikt de knop met het <guibutton
+>rode kruis</guibutton
+> van de tab, of u gebruikt <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Om te <action
+>gaan naar andere tabs</action
+>: <keycombo action="simul"
+>&Ctrl; <keycap
+>,</keycap
+></keycombo
+> of <keycombo action="simul"
+>&Ctrl; <keycap
+>.</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Voor het <action
+>openen van de huidige map in een nieuwe tab</action
+>: gebruikt u <keycombo action="simul"
+> &Ctrl;&Alt;&Enter;</keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Voor het <action
+>sluiten van alle andere tabs</action
+>, <keycap
+>Rechtsklikt</keycap
+> u en selecteer daarna <guimenuitem
+>Inactieve tabs sluiten</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Voor het <action
+>sluiten van dubbele tabs</action
+>, <keycap
+>Rechtsklik</keycap
+> en selecteer daarna <guimenuitem
+>Dubbele tabs sluiten</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Voor het verplaatsen van een tab naar het andere paneel, versleept u het met de &LMB; naar het andere paneel (de muis-cursor wordt een pijl die naar links of rechts wijst) en laat het daar los. U kunt ook op <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+> drukken.</para>
+      </listitem>
+</itemizedlist>
+  </sect1>
+  <sect1 id="ui_buttons">
+    <title
+>Knoppen</title>
+    <para
+>Er zijn meerdere knoppen beschikbaar om makkelijker te kunnen werken: <link linkend="main_toolbar"
+>Hoofdwerkbalk</link
+>, <link linkend="actions_toolbar"
+>Actiewerkbalk</link
+>, <link linkend="panel_toolbar"
+>Paneelwerkbalk</link
+>, <link linkend="location_toolbar"
+>locatiebalk</link
+>, <link linkend="list_panel"
+>Media</link
+>, <link linkend="folderhistory"
+>Mapgeschiedenis</link
+>, <link linkend="bookman"
+>Bladwijzers</link
+>, <link linkend="folder-tabs"
+>Tab</link
+>, <link linkend="cmdline"
+>Commandoregel</link
+>, <link linkend="fnkeys"
+>Functietoetsen</link
+>.</para>
+  </sect1>
+</chapter>

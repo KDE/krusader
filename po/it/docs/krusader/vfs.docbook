@@ -1,0 +1,122 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="vfs">
+  <title
+>File system virtuali (VFS)</title>
+  <indexterm>
+    <primary
+>VFS</primary>
+  </indexterm>
+  <para
+>Una <link linkend="features"
+>funzionalità OFM</link
+> di base è VFS, uno strato di astrazione su tutti i tipi di informazioni archiviate (file ZIP, server &FTP;, archivi TAR, filesystem &NFS;, condivisioni SAMBA, immagini ISO &CD;/&DVD;, cataloghi RPM, &etc;) che consente all'utente di accedere a tutte le informazioni contenute in questi differenti filesystem in modo trasparente - proprio come se entrasse in una normale sotto-cartella. &krusader; supporta vari filesystem virtuali:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>VFS per le connessioni remote</link
+>: fornisce la capacità di lavorare con una sessione di connessione remota (&FTP;, &NFS;, Samba, FISH, SFTP) come con i file system locali. È ideale per complesse operazioni remote e quasi altrettanto potente quanto la maggior parte dei client remoti a interfaccia grafica.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>VFS per gli archivi</link
+>: consente di sfogliare gli archivi nel VFS come se fossero cartelle (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip e 7-zip).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>VFS per le ricerche</link
+>: <guibutton
+>Aggiungi alla lista</guibutton
+> inserisce i risultati della ricerca in un VFS.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>VFS per la sincronizzazione</link
+>: inserisce i risultati della sincronizzazione in un VFS.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Le azioni che esegui sui file nel VFS sono eseguite sui file 'reali'. Non elimini i file semplicemente dal VFS: li cancelli dal tuo disco fisso. Limitazioni: non puoi creare cartelle all'interno di un VFS.</para>
+  <para
+>Quando si esegue una copia da una cartella virtuale a una cartella non virtuale, è possibile conservare la struttura della cartella selezionando la casella di spunta <quote
+>Mantieni la struttura della cartella virtuale</quote
+> nella finestra di copia. Immagina la seguente cartella virtuale: <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/miahome/miacartella1/miofile1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/miahome/miacartella1/miofile2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/miahome/miacartella2/miofile3</userinput
+></screen
+> Quindi esegui i seguenti passaggi:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>entra nella cartella virtuale e seleziona i file</para>
+    </listitem>
+    <listitem>
+      <para
+>seleziona una cartella (non virtuale!) di destinazione</para>
+    </listitem>
+    <listitem>
+      <para
+>premi <keycap
+>F5</keycap
+>-&gt; appare la finestra di copia</para>
+    </listitem>
+    <listitem>
+      <para
+>Spunta <guilabel
+>Mantieni la struttura della cartella virtuale</guilabel
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Seleziona <filename
+>/home/miahome/</filename
+> come &URL; di base</para>
+    </listitem>
+    <listitem>
+      <para
+>Avvia la copia premendo OK</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Il risultato sarà: <screen
+><prompt
+>$</prompt
+> <userinput
+>cartelladidestinazione/miacartella1/miofile1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>cartelladidestinazione/miacartella1/miofile2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>cartelladidestinazione/miacartella2/miofile3</userinput
+></screen>
+  </para>
+</sect1>

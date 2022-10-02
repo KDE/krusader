@@ -1,0 +1,43 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="calculate">
+  <title
+>Beräkna använt utrymme</title>
+  <indexterm>
+    <primary
+>Använt utrymme</primary>
+  </indexterm>
+  <!-- Thanks to Heiner Eichmann -->
+  <para
+>Det finns två sätt att beräkna utrymme använt av filer och kataloger.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Att trycka på den inställda genvägen för att <guilabel
+>Beräkna använt utrymme</guilabel
+> för en katalog under pekaren beräknar omedelbart det använda utrymmet.</para>
+    </listitem>
+    <listitem>
+      <para
+>För att beräkna hur mycket diskutrymme som används av markerade filer och kataloger i den aktiva panelen, välj <menuchoice
+><guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Beräkna använt utrymme</guimenuitem
+></menuchoice
+>. Efter en kort fördröjning visas en dialogruta med totalt använt utrymme och antal filer och kataloger du markerade. Utrymmet använt av varje markerad katalog visas som om användaren just tryckt på den inställda genvägen för katalogerna. Om den aktiva panelen bläddrar i ett arkiv, gäller värdena den uppackade storleken av de markerade filerna och katalogerna, inte deras komprimerade storlek. Efter beräkningen ändras markeringens tillstånd, och markören flyttas ett steg neråt.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Att beräkna använt utrymme för fjärrfilsystem stöds. <note
+> <para
+>Att utföra åtgärden på ett mycket stort filsystem (tusentals filer) kan ta lång tid. Du kan avbryta beräkningsprocessen när som helst genom att klicka på knappen <guibutton
+>Avbryt</guibutton
+>.</para>
+  </note
+></para>
+</sect1>

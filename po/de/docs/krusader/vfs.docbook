@@ -1,0 +1,124 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="vfs">
+  <title
+>Das virtuelle Dateisystem (VFS)</title>
+  <indexterm>
+    <primary
+>VFS</primary>
+  </indexterm>
+  <para
+>Eine wichtige Funktion von <link linkend="features"
+>Dateiverwaltungsprogrammen mit zweispaltiger Ansicht</link
+> ist VFS, eine abstrakte Ebene über allen Arten von archivierten Informationen wie ZIP-Dateien, &FTP;-Servern, TAR-Archiven, &NFS;-Dateisystemen, &Samba;-Freigaben, ISO &CD;/&DVD;-Abbilder, RPM-Pakete, &etc; Benutzer können mit VFS auf alle Informationen in diesen vielen unterschiedlichen Arten von Dateisystemen zugreifen, genauso wie auf normale Unterordner. &krusader; unterstützt mehrere virtuelle Dateisysteme:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>VFS für entfernte Verbindungen</link
+>: Ermöglicht das Arbeiten mit einer entfernen Verbindungssitzung wie &FTP;, &NFS;, &Samba;, FISH, SFTP wie mit dem lokalen Dateisystem. Das ist besonders für entfernte Operationen geeignet und fast so leistungsfähig wie die meisten einzelnen Clients mit grafischen Benutzeroberflächen für entfernte Verbindungen.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Archiv-VFS</link
+>: Ermöglicht das Durchsuchen von Archiven in VFS wie in einem Ordner (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Suche in VFS</link
+>: <guibutton
+>In Dateifenster einspeisen</guibutton
+> fügt die Ergebnisse der Suche ins VFS ein.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>VFS abgleichen</link
+>: Fügt die Ergebnisse des Abgleichs ins VFS ein.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Aktionen, die Sie mit den Dateien im VFS durchführen, werden mit den tatsächlichen Dateien ausgeführt. Sie löschen zum Beispiel Dateien nicht nur aus dem VFS, sie werden tatsächlich von der Festplatte gelöscht. Es gibt eine Einschränkung: Das Erstellen von Ordner in einem VFS ist nicht möglich.</para>
+  <para
+>Sie können die Ordnerstruktur beim Kopieren von einem virtuellen in einen nicht virtuellen Ordner beibehalten, wenn Sie die Einstellung <guilabel
+>Virtuelle Ordnerstruktur beibehalten</guilabel
+> im Kopierdialog aktivieren. Angenommen Sie haben folgenden virtuellen Ordner: <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir1/myfile1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir1/myfile2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir2/myfile3</userinput
+></screen
+> Führen Sie dann folgende Schritte aus:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Gehen Sie in der virtuellen Ordner und wählen Sie die Dateien aus</para>
+    </listitem>
+    <listitem>
+      <para
+>Wählen Sie einen nicht-virtuellen Zielordner</para>
+    </listitem>
+    <listitem>
+      <para
+>Drücken Sie die Taste <keycap
+>F5</keycap
+>-&gt;, der Dialog Kopieren wird geöffnet.</para>
+    </listitem>
+    <listitem>
+      <para
+>Markieren Sie <guilabel
+>Virtuelle Ordnerstruktur beibehalten</guilabel
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Wählen Sie <filename
+>/home/myhome/</filename
+> als Basis-&URL;</para>
+    </listitem>
+    <listitem>
+      <para
+>Starten Sie das Kopieren durch Drücken auf den Knopf <guibutton
+>OK</guibutton
+></para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Als Ergebnis erhalten Sie: <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir1/myfile1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir1/myfile2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir2/myfile3</userinput
+></screen>
+  </para>
+</sect1>

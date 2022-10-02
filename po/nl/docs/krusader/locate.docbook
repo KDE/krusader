@@ -1,0 +1,156 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="locate">
+  <title
+>&GUI;-frontend lokaliseren</title>
+  <indexterm>
+    <primary
+>Lokaliseren</primary>
+  </indexterm>
+  <para
+>&krusader; heeft een &GUI; front end voor het commando <command
+>locate</command
+> (findutils). Locate is in gebruik voor snel zoeken naar bestanden, niet in een map maar via een database. Het pakket heeft naast bestanden, <command
+>locate</command
+> en <command
+>updatedb</command
+>. <command
+>updatedb</command
+> gaat door het lokale bestandssysteem en slaat de bestandsnamen op in de database. <command
+>cron</command
+> start vaak <command
+>updatedb</command
+> elke nacht op (instelbaar met <application
+>KCron</application
+>). Kies <menuchoice
+> <guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Locate...</guimenuitem
+> </menuchoice
+> of <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> om deze mogelijkheid te starten. In <link linkend="konfig-advanced"
+>Konfigurator</link
+> kunt u extra argumenten <command
+>updatedb</command
+> opgeven.</para>
+  <para
+>Opties voor keuzevakjes <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Enkel bestaande bestanden tonen</guilabel
+>: als in de database items aanwezig zijn die niet langer bestaand (verwijdert, verplaatst na de laatste <command
+>updatedb</command
+>), dan toont <command
+>locate</command
+> ze niet meer. Het controleert het bestaan van elk bestand voordat het wordt getoond in het venster met resultaten (langzaam).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Hoofdlettergevoelig</guilabel
+>: als dit is uitgeschakeld dan kunnen zowel kleine- en hoofdletters worden doorzocht.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Actieknoppen <itemizedlist>
+    <listitem>
+      <para
+><guibutton
+>Locate</guibutton
+>: voert <command
+>locate <replaceable
+>foo foo</replaceable
+></command
+> uit en toont de uitvoer daarvan in het venster met resultaten.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Stop</guibutton
+>: stopt het lokaliseringsproces.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>UpdateDB</guibutton
+>: start <command
+>updatedb</command
+> voor het bijwerken van de lokale database nadat u het wachtwoord voor root heeft opgegeven.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Sluiten</guibutton
+>: sluit het locate venster.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Resultaten venster <itemizedlist>
+    <listitem>
+      <para
+>Dubbelklikken op een item: gaat daar zijn map, maakt het item zichtbaar en sluit het locate dialoog.</para>
+    </listitem>
+    <listitem>
+      <para
+>Rechtsklik: bewerkt/toont/vind het menu. <itemizedlist>
+        <listitem>
+          <para
+><keycap
+>F3</keycap
+>: toont het geselecteerde item.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>F4</keycap
+>: bewerkt het geselecteerde item.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>: zoekt bestanden in het resultaten venster.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+>: toont het volgende gevonden resultaat.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: toont het vorige gevonden resultaat.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+        <listitem>
+          <para
+>Het resultaten venster ondersteunt het verslepen van items naar andere venster en het kopiëren naar het klembord (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+        </listitem>
+  </itemizedlist
+></para>
+</sect1>

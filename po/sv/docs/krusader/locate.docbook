@@ -1,0 +1,156 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="locate">
+  <title
+>Grafiskt gränssnitt för locate</title>
+  <indexterm>
+    <primary
+>Locate</primary>
+  </indexterm>
+  <para
+>&krusader; har ett grafiskt gränssnitt för kommandot <command
+>locate</command
+> (i findutils). Locate används för snabb filsökning från en databas istället för från en katalog. Paketet innehåller förutom andra filer, <command
+>locate</command
+> och <command
+>updatedb</command
+>. <command
+>updatedb</command
+> går igenom det lokala filsystemet och lagrar filposterna i databasen. <command
+>cron</command
+> anropar ofta <command
+>updatedb</command
+> varje natt (inställt med <application
+>Kcron</application
+>). Välj <menuchoice
+><guimenu
+>Verktyg</guimenu
+>  <guimenuitem
+>Lokalisera</guimenuitem
+></menuchoice
+> eller <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> för att starta funktionen. <link linkend="konfig-advanced"
+>Konfigurator</link
+> kan ställa in ytterligare argument för kommandot <command
+>updatedb</command
+>.</para>
+  <para
+>Alternativ i kryssrutor <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Visa bara befintliga filer</guilabel
+>: Om databasen innehåller poster som inte längre finns (borttagna, flyttade sedan den senaste <command
+>updatedb</command
+>), listar inte <command
+>locate</command
+> dem. Den kontrollerar om varje fil finns innan den listas i resultatfönstert (långsamt).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Skiftlägeskänslig</guilabel
+>: Att avmarkera alternativet tillåter sökning med små och stora bokstäver.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Åtgärdsknappar <itemizedlist>
+    <listitem>
+      <para
+><guibutton
+>Lokalisera</guibutton
+>: kör <command
+>locate <replaceable
+>fil fil</replaceable
+></command
+> och placerar utdata i resultatfönstret.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Stoppa</guibutton
+>: Stoppar lokaliseringsprocessen.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Uppdatera DB</guibutton
+>: startar <command
+>updatedb</command
+> för att uppdatera den lokaliseringsdatabasen efter att systemadministratörens lösenord har matats in.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Stäng</guibutton
+>: Stänger lokaliseringsfönstret.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Resultatfönster <itemizedlist>
+    <listitem>
+      <para
+>Dubbelklick på ett objekt: Går till dess katalog, gör objektet synligt och stänger lokaliseringsdialogrutan.</para>
+    </listitem>
+    <listitem>
+      <para
+>Högerklick: Redigerar, granskar, visar menyn. <itemizedlist>
+        <listitem>
+          <para
+><keycap
+>F3</keycap
+>: Granskar aktuellt objekt.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>F4</keycap
+>: Redigerar aktuellt objekt.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>: Hittar filer i resultatfönstret.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+>: Visar nästa sökresultat.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: Visar föregående sökresultat.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+        <listitem>
+          <para
+>Resultatfönstret stöder att objekt dras till andra fönster och kopieras till klippbordet (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+        </listitem>
+  </itemizedlist
+></para>
+</sect1>

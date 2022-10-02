@@ -1,0 +1,507 @@
+<?xml version="1.0" ?>
+<!DOCTYPE refentry PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+
+<!ENTITY % Catalan  "INCLUDE">
+]>
+
+<refentry lang="&language;">
+<refentryinfo>
+<title
+>Manual d'usuari del KDE</title>
+<author
+><firstname
+>Krusader</firstname
+><surname
+>Krew</surname
+> <contrib
+>Pàgina man del Krusader.</contrib
+> <email
+>krusader-devel@googlegroups.com</email
+></author>
+<date
+>6 de maig de 2017</date>
+<productname
+>Krusader</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle
+><command
+>krusader</command
+></refentrytitle>
+<manvolnum
+>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+<refname
+>krusader</refname>
+<refpurpose
+>un gestor de fitxers de doble plafó i client d'&FTP; creat per la comunitat KDE</refpurpose>
+</refnamediv>
+<!-- body begins here -->
+
+<refsynopsisdiv>
+<cmdsynopsis
+><command
+>krusader</command
+> <arg choice="opt"
+>Opcions</arg
+> <arg choice="plain"
+>URL</arg
+> </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+<title
+>Descripció</title>
+<para
+>El Krusader és un gestor de fitxers de doble plafó (estil «commander») per al Plasma i altres escriptoris en el món *nix, similar al Midnight o Total Commander. Ofereix totes les característiques per a la gestió de fitxers que pugueu desitjar. A més: ampli maneig dels arxius, implementació per a sistemes de fitxers muntats, &FTP;, mòdul de cerca avançada, visualitzador/editor, sincronització de carpetes (desactivada de manera predeterminada), compara el contingut dels fitxers, un canvi de nom per lots potent i molt més. És compatible amb els següents formats d'arxiu: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip i 7-zip. Pot manejar altres KIOSlaves com smb:// o fish:// És gairebé totalment personalitzable, molt fàcil d'usar, ràpid i es veu molt bé al vostre escriptori! :-) Haureu de donar-li una oportunitat.</para>
+</refsect1>
+
+<refsect1
+><title
+>Opcions</title>
+<variablelist>
+  <varlistentry>
+      <term
+><option
+>-h</option
+> <option
+>--help</option
+></term>
+  <listitem>
+<para
+>Llista les opcions disponibles a la línia d'ordres.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-v</option
+> <option
+>--version</option
+></term>
+  <listitem>
+<para
+>Llista la informació de la versió del &krusader;.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--author</option
+></term>
+  <listitem>
+<para
+>Mostra els noms dels autors.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--license</option
+></term>
+  <listitem>
+<para
+>Mostra informació sobre la llicència.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--left</option
+> <parameter
+><replaceable
+>&lt;camí&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>Inicia el plafó esquerre al <replaceable
+>&lt;camí&gt;</replaceable
+>.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--right</option
+> <parameter
+><replaceable
+>&lt;camí&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>Inicia el plafó dret al <replaceable
+>&lt;camí&gt;</replaceable
+>.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--profile </option
+><parameter
+><replaceable
+>&lt;perfil_plafó&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>Carrega aquest <replaceable
+>&lt;perfil_plafó&gt;</replaceable
+> en iniciar.</para
+> 
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-d</option
+> <option
+>--debug</option
+></term>
+  <listitem>
+<para
+>Habilita la sortida de depuració.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>URL</option
+></term>
+  <listitem>
+<para
+>Si ja hi ha una pestanya oberta amb aquest URL, serà activada, en cas contrari s'obrirà una nova pestanya al plafó actiu.</para>
+  </listitem>
+  </varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1
+><title
+>Exemples</title>
+
+<itemizedlist>
+  <listitem
+><para
+>$ krusader --left=/mnt/cdrom --right=ftp://baixades@servidormeu.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --left=/home,/usr,smb://gruptreball.net --right=fish://servidormeu.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --profile=gestio_ftp</para
+></listitem>
+
+</itemizedlist>
+</refsect1>
+
+<refsect1
+><title
+>Fitxers</title>
+<para
+>Fitxers de configuració:</para>
+
+<para
+><filename
+>~/.config/krusaderrc</filename
+></para>
+
+<para
+><filename
+>~/.local/share/krusader/krbookmarks.xml</filename
+> o <filename
+>krusader/krbookmarks.xml</filename
+> en la carpeta que es pot determinar mitjançant l'ordre <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>~/.local/share/krusader/useractions.xml</filename
+> o <filename
+>krusader/useractions.xml</filename
+> en la carpeta que es pot determinar mitjançant l'ordre <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+></para>
+
+<para
+><filename
+>~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> o <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> en la carpeta que es pot determinar mitjançant l'ordre <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+</refsect1>
+
+<refsect1
+><title
+>Plataformes</title>
+<para
+>Totes les POSIX: Linux, Solaris, Totes les plataformes BSD: FreeBSD, MacOS-X</para>
+
+<para
+><emphasis
+>KDE 2.x</emphasis
+></para>
+
+<para
+>El Krusader v1.01 és estable, però no s'ha planejat cap canvi.</para>
+
+<para
+><emphasis
+>KDE 3.x</emphasis
+></para>
+
+<para
+>El Krusader v1.01 necessita les KDElibs 2</para>
+
+<para
+>El Krusader v1.02 - 1.40 necessita les KDElibs 3.</para>
+
+<para
+>El Krusader 1.40 prefereix &gt;= KDE 3.2</para>
+
+<para
+>El Krusader v1.50 - v1.51: KDE 3.2 - KDE 3.3</para>
+
+<para
+>El Krusader v1.60.0- v1.70.0: KDE 3.3 - KDE 3.4</para>
+
+<para
+>El Krusader 1.70.x-1.80.x: KDE 3.4 - KDE 3.5</para>
+
+<para
+><emphasis
+>KDE 4.x</emphasis
+></para>
+
+<para
+>Krusader 2.0-2.4: KDE 4</para>
+
+<para
+><emphasis
+>Frameworks 5 del KDE</emphasis
+></para>
+
+<para
+>Krusader 2.5 i següents</para>
+
+<para
+>L'última versió del Krusader es pot trobar al <ulink url="https://krusader.org/"
+>lloc web del Krusader</ulink
+>.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Característiques</title>
+<para
+>Característiques del gestor de fitxers OFM.</para>
+
+<para
+>Orientació sòlida amb el teclat.</para>
+
+<para
+>Visualitzador i editor interns de gran abast.</para>
+
+<para
+>Mòdul de cerca avançada que pot cercar als arxius. Suporta: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip i 7-zip.</para>
+
+<para
+>Comparació i filtratge de carpetes.</para>
+
+<para
+>Client d'&FTP;/Samba amb un gestor de la connexió amb implementació d'SFTP/SCP.</para>
+
+<para
+>Sincronitzador, Accions d'usuari, Consola incrustada.</para>
+
+<para
+>Compara el contingut dels fitxers. Fàcil edició dels permisos de fitxer.</para
+> 
+
+<para
+>Ús del disc, calcula l'espai ocupat. Creació/verifica una suma de verificació.</para>
+
+<para
+>Reconeixement complet dels MIME (amb màgia o sense!)</para>
+
+<para
+>Gestor dels muntatges, localització, admet el Krename.</para>
+
+<para
+>Mode administrador (root), plafons en pestanyes, barra lateral. Modes de selecció del ratolí.</para>
+
+<para
+>Perfils per a: plafons, lligams de tecla, colors.</para
+> 
+
+<para
+>Per a més característiques llegiu <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;path=features.html"
+>la pàgina Característiques</ulink
+>.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Llicència</title>
+<para
+>El Krusader es distribueix sota els termes de la Llicència Pública General de GNU.</para>
+
+<para
+>Llicència versió 2, publicada per la Free Software Foundation.</para>
+
+<para
+>Vegeu l'ajuda inclosa per a obtenir més detalls sobre la llicència i la manca de garantia.</para>
+
+<para
+>El copyright per al projecte i el seu nom encara estan en mans d'en Shie Erlich i Rafi Yanai.</para>
+</refsect1>
+
+<refsect1
+><title
+>i18n</title>
+<para
+>El Krusader està traduït a molts idiomes.</para>
+
+<para
+><ulink url="https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/"
+>https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/</ulink
+></para>
+
+<para
+>Llegiu el <ulink url="https://l10n.kde.org/docs/translation-howto/"
+>KDE translation howto</ulink
+> si voleu traduir el Krusader al vostre idioma.</para>
+</refsect1>
+
+<refsect1
+><title
+>PMF</title>
+<para
+>L'última versió de la PMF del Krusader es troba al <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;path=faq.html"
+>lloc de la documentació del KDE</ulink
+>.</para>
+</refsect1>
+
+<refsect1
+><title
+>Vegeu també</title>
+<simplelist>
+<member
+>El manual del Krusader, al menú d'ajuda.</member>
+
+<member
+>kf5options(7)</member>
+
+<member
+>qt5options(7)</member>
+</simplelist>
+</refsect1>
+
+<refsect1 id='authors'
+><title
+>Autors</title>
+<para
+>El Krusader és desenvolupat per un equip de persones, conegut com el «Krusader Krew».</para>
+
+<para
+>Shie Erlich, author [erlich {*} users {.} sourceforge {.} net] (retirat)</para>
+
+<para
+>Rafi Yanai, author [yanai {*} users {.} sourceforge {.} net] (retirat)</para>
+
+<para
+>Dirk Eschler, Webmaster [deschler {*} users {.} sourceforge {.} net] (retirat)</para>
+
+<para
+>Csaba Karai, Desenvolupador [ckarai {*} users {.} sourceforge {.} net] (retirat)</para>
+
+<para
+>Heiner Eichmann, Desenvolupador [h {.} eichmann {*} gmx.de] (retirat)</para>
+
+<para
+>Jonas Baehr, Desenvolupador [jonas.baehr {*} web.de] (retirat)</para>
+
+<para
+>Vaclav Juza, Desenvolupador [vaclavjuza {*} seznam {.} cz] (retirat)</para>
+
+<para
+>Jan Lepper, Desenvolupador [jan_lepper {*} gmx {.} de] (s'ha retirat)</para>
+
+<para
+>Andrey Matveyakin, Desenvolupador [a.matveyakin {*} gmail {.} com] (s'ha retirat)</para>
+
+<para
+>Davide Gianforte, Desenvolupador [davide {*} gengisdave {.} org]</para>
+
+<para
+>Alexander Bikadorov, Desenvolupador [alex.bikadorov {*} kdemail {.} net]</para>
+
+<para
+>Martin Kostolny, Desenvolupador [clearmartin {*} zoho {.} com]</para>
+
+<para
+>Toni Asensi Esteve, Desenvolupador [toni.asensi {*} kdemail {.} net]</para>
+
+<para
+>Nikita Melnichenko, Desenvolupador [nikita+kde {*} melnichenko {.} name]</para>
+
+<para
+>Frank Schoolmeesters, Documentació i coordinador del màrqueting [frank_schoolmeesters {*} yahoo {.} com] (retirat)</para>
+
+<para
+>Richard Holt, Documentació i proves [richard {.} holt {*} gmail {.} com] (retirat)</para>
+
+<para
+>Matej Urbancic, Màrqueting i investigació [matej {*} amis {.} net] (retirat)</para>
+
+<para
+>Yuri Chornoivan, Documentació <email
+>yurchor@ukr.net</email
+></para>
+
+<para
+>El projecte està escrit emprant el KDevelop i Qt Designer.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Errors</title>
+<para
+>Vegeu el fitxer TODO en la distribució per a informació sobre el que queda per fer.</para>
+
+ <para
+>Per a esmenes, pedaços i comentaris, envieu un correu electrònic a <email
+>krusader-devel@googlegroups.com</email
+>.</para>
+
+<para
+>Krusader Krew</para>
+</refsect1>
+</refentry>
+

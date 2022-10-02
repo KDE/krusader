@@ -1,0 +1,120 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="compare">
+  <title
+>Порівняння</title>
+  <para
+>У &krusader; передбачено декілька можливостей порівняння: <guimenuitem
+>Порівняти за вмістом</guimenuitem
+>, <guimenuitem
+>Порівняти теки</guimenuitem
+> та функцію порівняння <link linkend="synchronizer"
+>Синхронізатора</link
+>.</para>
+  <sect2 id="compare-content">
+    <title
+>Порівняння за вмістом</title>
+    <indexterm>
+      <primary
+>Порівняння</primary>
+      <secondary
+>Вміст</secondary>
+    </indexterm>
+    <para
+>Позначте по одному файлу на кожній з панелей і скористайтеся пунктом меню <menuchoice
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Порівняти за вмістом...</guimenuitem
+> </menuchoice
+>. &krusader; відкриє зовнішній інструмент для роботи з відмінностями, який було <link linkend="konfig-dependencies"
+>налаштовано</link
+>. У програмі передбачено можливість користування &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> і <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+  </sect2>
+  <sect2 id="compare-dir">
+    <title
+>Порівняння тек</title>
+    <indexterm>
+      <primary
+>Порівняння</primary>
+      <secondary
+>Теки</secondary>
+    </indexterm>
+    <para
+>Порівняти файли зі списків на кожній з панелей можна за допомогою пункту <menuchoice
+> <guimenu
+>Редагування</guimenu
+> <guimenuitem
+>Порівняти теки</guimenuitem
+> </menuchoice
+>. Типово, буде позначено новіші і унікальні файли на кожній з панелей, змінити таку поведінку програми можна за допомогою пункту меню <guimenuitem
+>Налаштування порівняння</guimenuitem
+>. <note
+> <para
+>Файли порівнюватимуться не за вмістом, а лише за назвами і датами.</para>
+    </note
+></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Зміни</guimenu
+> <guimenuitem
+>Налаштування порівняння</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Відкриває налаштування функціональної можливості <guimenuitem
+>Порівняти теки</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Позначити новіші і одинарні</guimenuitem
+> (типовий)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Вибрати одинарний</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Вибрати новіші</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Позначити відмінні й одинарні</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Позначити відмінні</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>

@@ -1,0 +1,372 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="bookman">
+  <title
+>Bookman: Organisera bokmärken</title>
+  <indexterm>
+    <primary
+>Bokmärken</primary>
+  </indexterm>
+  <para
+>Bookman är &krusader;s bokmärkesverktyg för att lägga till bokmärken för kataloger, lokala och <link linkend="remote-connections"
+>fjärrwebbadresser</link
+>, och senare komma tillbaka till dem med ett klick på en knapp. Bokmärkesmenyn är uppdelad i fyra delar: <itemizedlist>
+    <listitem>
+      <para
+>Dina egna bokmärken</para>
+    </listitem>
+    <listitem>
+      <para
+>Populära webbadresser</para>
+    </listitem>
+    <listitem>
+      <para
+>Permanenta bokmärken</para>
+    </listitem>
+    <listitem>
+      <para
+>Hantera bokmärken</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <note>
+    <para
+>Du kan lägga till bokmärken i ett fjärrfilsystem (&FTP; eller SAMBA) och senare använda bokmärket för att snabbt ansluta till den andra datorn, men du kan inte lägga till bokmärken inne i ett arkiv.</para>
+  </note>
+  <figure id="screenshot-bookmanadd" float="1">
+    <title
+>Bokmärkesmeny</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="bookmanadd.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Bokmärkesmeny</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <sect2 id="using_bookmarks">
+    <title
+>Att använda bokmärken</title>
+    <para
+>Oftast klickar du på knappen <guibutton
+>Bookman II</guibutton
+> (knappen längst till höger, till höger om adressraden längst upp i den aktiva panelen) när du är i målkatalogen. För att till exempel lägga till ett bokmärke för <filename class="directory"
+>/usr/tmp</filename
+>, gå dit i &krusader; och klicka på knappen <guibutton
+>Bookman II</guibutton
+> och välj <guimenuitem
+>Lägg till bokmärke för aktuell plats</guimenuitem
+>. När dialogrutan <guilabel
+>Lägg till bokmärke för aktuell plats</guilabel
+> visas, lyder webbadressraden <filename class="directory"
+>/usr/tmp</filename
+>. <guilabel
+>Namn</guilabel
+> är till för namnet som du skulle vilja ge till bokmärket (t.ex. tillfällig katalog). Snabbtangenter stöds genom att lägga till <literal
+>&amp;</literal
+> i bokmärkesnamnet, t.ex. <literal
+>&amp;sourceforge, &amp;home, down&amp;loads</literal
+>, etc., så att du snabbt kan aktivera bokmärkesnamnet med <keycombo action="simul"
+>&Alt; <keycap
+>tangent</keycap
+></keycombo
+>. Om du lägger till bokmärket utan att skriva in ett namn, blir bokmärkets namn samma som adressen. <guilabel
+>Webbadress</guilabel
+> är platsen bokmärket pekar på. <guilabel
+>Skapa i</guilabel
+> skapar bokmärkeskataloger för att organisera bokmärkena.</para>
+    <para
+>För att använda bokmärken, klicka på knappen <guibutton
+>Bookman II</guibutton
+> och välj ett bokmärke. Du kan också använda <link linkend="key_bindings"
+>snabbtangenter</link
+>: <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+> för att lägga till ett bokmärke för aktuellt objekt, <keycombo action="simul"
+>&Alt; <keycap
+>höger- eller vänsterpil</keycap
+></keycombo
+> för att öppna höger eller vänster lista med panelbokmärken och <keycombo action="simul"
+>&Ctrl; <keycap
+>D</keycap
+></keycombo
+> för att öppna den aktiva panelens bokmärken. Från den sammanhangsberoende menyn med bokmärken (högerklick) kan du öppna det under en ny <link linkend="folder-tabs"
+>katalogflik</link
+>.</para>
+    <para
+>Det finns en snabbsökrad längst upp i menyn <guibutton
+>Bookman II</guibutton
+>.</para>
+    <note>
+      <para
+>Sökraden är alltid synlig i bokmärkesmenyn om motsvarande alternativ markeras på <link linkend="konfig-panel-general"
+>sidan Panel i Konfigurator</link
+>. </para>
+    </note>
+    <para
+>Nedan anges reglerna för att hantera bokmärken:</para>
+    <itemizedlist>
+        <listitem>
+            <para
+>Skriv bara in bokstäver för att söka: bokmärken matchas enligt namnprefix</para>
+        </listitem>
+        <listitem>
+            <para
+>Om flera bokmärken matchas av prefixet, markeras de och det första väljes: tryck på returtangenten för att aktivera bokmärket.</para>
+        </listitem>
+        <listitem>
+            <para
+>När ett enstaka bokmärke matchas, utlöses det omedelbart. Om du till exempel skriver <literal
+>'h'</literal
+> och bara ett bokmärke börjar på <literal
+>'h'</literal
+>, utförs det omedelbart: ingen returtangent behövs</para>
+        </listitem>
+        <listitem>
+            <para
+>Snabbtangenter fungerar bara om tangentnedtryckning är den första</para>
+        </listitem>
+        <listitem>
+            <para
+>Baksteg stöds</para>
+        </listitem>
+        <listitem>
+            <para
+>Sökningen är inte skiftlägeskänslig om du inte skriver en stor bokstav. Det vill säga att skriva <literal
+>SkinkTjuv</literal
+> matchar bara <literal
+>SkinkTjuv</literal
+>, men inte <literal
+>skinktjuv</literal
+> eller <literal
+>Skinktjuv</literal
+>.</para>
+        </listitem>
+        <listitem>
+            <para
+>Sökraden är avsiktligt ett skrivskyddat fält</para>
+        </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2 id="password_handling">
+    <title
+>Hantering av lösenord</title>
+    <para
+>En av fördelarna med <link linkend="bookman"
+>bokmärkeshanteraren</link
+> är att lösenorden sparas med &plasma;s tjänst, där t.ex. &konqueror;s och &kmail;s lösenord sparas. Om du har en plånbok, sparar &plasma; lösenorden där. Genom att klicka på bokmärken, visas en dialogruta och frågar efter ditt användarnamn och lösenord. Mata in dem och klicka på <guibutton
+>Spara lösenord</guibutton
+>. Lösenorden och användarnamnen sparas säkert i &plasma;s plånbok (försäkra dig om att den är aktiverad av din distribution). Nackdelen med detta är att om du installerar om och inte säkerhetskopierar lösenorden från plånboken samt &krusader;s bokmärkesfil, går någonting förlorat.</para>
+  </sect2>
+  <sect2 id="popular-urls">
+    <title
+>Populära webbadresser</title>
+    <indexterm>
+      <primary
+>Populära webbadresser</primary>
+    </indexterm>
+    <para
+>Undermenyn <guilabel
+>Populära webbadresser</guilabel
+> innehåller permanent de mest populära webbadresserna som har besökts (lokala eller inte). Undermenyn visar de 15 mest populära webbadresserna, sorterade enligt frekvens, så att den översta webbadressen är den populäraste. Det gör det enkelt när du ofta behöver besöka webbadresser, men inte vill skapa <link linkend="bookman"
+>bokmärken</link
+>. Den fungerar som en lista med tillfälliga bokmärken för de oftast besökta länkarna. Snabbsökning av <guilabel
+>Populära webbadresser</guilabel
+> är ett snabbt sätt att bläddra bland eller välja de populära webbadresserna: <itemizedlist>
+      <listitem>
+        <para
+>Öppna <guilabel
+>Populära webbadresser</guilabel
+> eller använd <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+></para>
+      </listitem>
+      <listitem>
+        <para
+>Skriv några få bokstäver för att begränsa sökningen</para>
+      </listitem>
+      <listitem>
+        <para
+>Tryck på returtangenten (du går då till webbadressen i listan)</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="permanent_bookmarks">
+    <title
+>Permanenta bokmärken</title>
+    <para
+>Detta är hårdkodade bokmärken i den översta bokmärkesmenyn: det finns ingen anledning att spara dem i filen. Du kan aktivera eller inaktivera de permanenta bokmärkena med den <link linkend="context-menu"
+>sammanhangsberoende menyn</link
+>. Följande permanenta bokmärken är tillgängliga: <itemizedlist>
+      <listitem>
+        <para
+><guilabel
+>Papperskorgen</guilabel
+> använder &plasma;s protokoll <filename
+>trash:/</filename
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Lokalt nätverk</guilabel
+> använder &plasma;s protokoll <filename
+>remote:/</filename
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Virtuella filsystem</guilabel
+> <link linkend="vfs"
+>Virtuella filsystem (VFS)</link
+> <filename
+>virt:/</filename
+> är inte en virtuell katalog, utan en lagringsplats för webbadresser från olika filsystem. Den används t.ex. för funktionen <guilabel
+>Skicka till listruta</guilabel
+> i sökmodulen och synkroniseraren. Platsraden visar t.ex. <filename
+>virt:/Sökresultat 1</filename
+> eller <filename
+>virt:/Synkroniseringsresultat 1</filename
+>.</para>
+      </listitem>
+      <listitem id="jump_back">
+        <para
+><guilabel
+>Hoppa tillbaka</guilabel
+> eller <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo
+> tar dig till startpositionen när du skapade en ny flik i panelfönstret. Funktionen är mycket praktisk om du går djupt ner i ett katalogträd, då kan du återgå till startpunkten med en åtgärd. Med <guilabel
+>Sätt tillbakahoppspunkten här</guilabel
+> eller <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo
+> kan du ange den aktuella katalogen som en tillbakahoppspunkt.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="manage_bookmarks">
+    <title
+>Hantera bokmärken</title>
+    <para
+>För att redigera och organisera bokmärken, visas <application
+>Keditbookmarks</application
+> genom att klicka på knappen <guibutton
+>Bookman II</guibutton
+> och välja <guimenuitem
+>Hantera bokmärken</guimenuitem
+>. Där kan du redigera, ta bort eller arrangera om bokmärken. <application
+>Keditbookmarks</application
+> är en bokmärkeseditor för &konqueror;, &krusader; och andra program, som använder <ulink url="http://grail.sourceforge.net/info/xbel.html"
+>standarden XBEL</ulink
+> som bokmärkesformat. Bokmärken lagras i <filename
+> ~/.local/share/krusader/krbookmarks.xml</filename
+>.</para>
+    <note>
+        <para
+>Standardkatalogen för bokmärkesfilen <filename
+>krusader/krbookmarks.xml</filename
+> är <filename class="directory"
+>~/.local/share</filename
+>. Du kan bestämma katalogen som används på systemet genom att använda kommandot <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> i en terminal. </para>
+        <para
+>Den lokala filen finns bara om bokmärken har redigerats i &krusader;. Den skapas efter första gången som <application
+>KeditBookmarks</application
+> har körts i &krusader;. </para>
+        <para
+>Förinställda systembokmärken lagras i filen <filename
+>kfileplaces/bookmarks.xml</filename
+> i katalogen som kan bestämmas genom att använda kommandot <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. </para>
+    </note>
+    <para
+><application
+>Keditbookmarks</application
+> är lätt att använda, men om du behöver mer information, läs gärna <ulink url="help:/keditbookmarks/index.html"
+>Keditbookmarks handbok</ulink
+>.</para>
+    <figure id="screenshot-bookmanedit" float="1">
+      <title
+><application
+>Keditbookmarks</application
+> bokmärkeshanterare</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="bookmanedit.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+><application
+>Keditbookmarks</application
+> bokmärkeshanterare</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+  </sect2>
+  <sect2 id="bookmark_buttons">
+    <title
+>Bokmärken som åtgärdsknappar i verktygsraden</title>
+    <para
+>Bokmärken kan placeras som knappar i <link linkend="mainwindow"
+>Huvudverktygsraden</link
+> eller <link linkend="actions_toolbar"
+>Åtgärdsverktygsraden</link
+>. Du kan till och med skapa snabbtangenter för dem: <itemizedlist>
+      <listitem>
+        <para
+>Skapa dina <link linkend="bookman"
+>bokmärken</link
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Om du vill, skapa snabbtangenter för bokmärken i fönstret <link linkend="key_bindings"
+>Anpassa genvägar</link
+> (<menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa genvägar...</guimenuitem
+></menuchoice
+>).</para>
+      </listitem>
+      <listitem>
+        <para
+>Lägg till bokmärken som åtgärdsknappar i <link linkend="mainwindow"
+>Huvudverktygsraden</link
+> eller <link linkend="actions_toolbar"
+>Åtgärdsverktygsraden</link
+> i fönstret <guilabel
+>Anpassa verktygsrader...</guilabel
+> (<menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa verktygsrader...</guimenuitem
+></menuchoice
+>).</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+</sect1>

@@ -1,0 +1,132 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="compare">
+  <title
+>Porovnat</title>
+  <para
+>Aplikace &krusader; obsahuje různé porovnávací funkce: <guimenuitem
+>Porovnat obsahy</guimenuitem
+>, <guimenuitem
+>Porovnat adresáře</guimenuitem
+> a porovnávací funkci <link linkend="synchronizer"
+>Synchronizátoru</link
+> (ve výchozím nastavení kompilace je synchronizátor zakázán).</para>
+  <sect2 id="compare-content">
+    <title
+>Porovnat obsahy</title>
+    <indexterm>
+      <primary
+>Porovnat</primary>
+      <secondary
+>Obsah</secondary>
+    </indexterm>
+    <para
+>V každém panelu vyberte jeden soubor a použijte nabídku <menuchoice
+> <guimenu
+>Soubor</guimenu
+> <guimenuitem
+>Porovnat obsahy...</guimenuitem
+> </menuchoice
+>. Aplikace &krusader; otevře externí porovnávací nástroj s grafickým rozhraním, který lze <link linkend="konfig-dependencies"
+>nastavit</link
+>. Podporovány jsou aplikace &kompare;, <ulink url="http://kdiff3.sourceforge.net"
+><application
+>KDiff3</application
+></ulink
+> a <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+  </sect2>
+  <sect2 id="compare-dir">
+    <title
+>Porovnat adresáře</title>
+    <indexterm>
+      <primary
+>Porovnat</primary>
+      <secondary
+>Adresáře</secondary>
+    </indexterm>
+    <para
+>Soubory každého panelu porovnejte použitím nabídky <menuchoice
+> <guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Porovnat adresáře</guimenuitem
+> </menuchoice
+>. Ve výchozím nastavení budou v každém panelu označeny novější a samotné soubory. Toto chování lze změnit v nabídce <guimenuitem
+>Nastavení porovnávání</guimenuitem
+>. <note
+> <para
+>Soubory nejsou porovnány podle obsahu, ale pouze podle názvů a dat času.</para>
+    </note
+></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Úpravy</guimenu
+> <guimenuitem
+>Nastavení porovnávání</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Nastavení funkce <guimenuitem
+>Porovnat adresáře</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Označit novější a samotné</guimenuitem
+> (výchozí)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Označit samotné</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Označit novější</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Označit rozdílné a samotné</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Označit rozdílné</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>

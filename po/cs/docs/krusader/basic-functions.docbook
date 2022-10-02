@@ -1,0 +1,486 @@
+<chapter id="basic-functions">
+  <!-- **********************************************************************
+                            using-krusader.docbook
+                          +++++++++++++++++++++++++++
+  copyright            : (C) 2000 - 2010
+                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                          & the Krusader Krew
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://www.krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+  <title
+>Základní funkce</title>
+  <sect1 id="controls">
+    <title
+>Ovládání</title>
+    <sect2 id="control-general">
+      <title
+>Obecné</title>
+      <para
+>Toto je poměrně krátká, ale důležitá část, která půjde do podrobností ovládání aplikace &krusader;. Tato část se nesnaží pokrýt všechny různé klávesové kombinace ze dvou důvodů: <orderedlist numeration="arabic"
+> <listitem
+> <para
+>je jich zde příliš mnoho</para
+>  </listitem
+>  <listitem
+> <para
+>nejčastější činnosti aplikace &krusader;  jsou nastavitelné v <link linkend="konfig-panel"
+>Konfigurátoru na stránce Panel</link
+></para
+> </listitem
+> </orderedlist
+>Zmíníme jen nejdůležitější klávesové zkratky ve výchozím nastavení, ale mějte na paměti, že většina <link linkend="key_bindings"
+>klávesových zkratek</link
+> je nastavitelných. Pokud zjistíte, že můžete použít určitý příkaz a chcete vědět klávesovou zkratku pro tento příkaz, nebo chcete změnit klávesovou zkratku tohoto příkazu, pak se podívejte do okna <link linkend="key_bindings"
+>Nastavit zkratky</link
+> (<menuchoice
+><guimenu
+>Nastavení</guimenu
+><guimenuitem
+>Nastavit klávesové zkratky ...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="moving-around">
+      <title
+>Přecházením sem a tam</title>
+      <para
+>Přecházením sem a tam, máme na mysli přenesení zaměření pomocí klávesnice a myši mezi jednotlivými částmi <link linkend="mainwindow"
+>hlavního okna</link
+> aplikace &krusader;. Zaměření může být v jednom z pěti míst: levý nebo pravý panel, lišta nabídky, příkazová řádka nebo emulátor terminálu. Panelu, který má zaměření se říká aktivní panel. Aktivní panel zůstane aktivní, dokud zaměření nezíská jiný panel (tj.: jestli byl aktivní levý panel a klikli jste na příkazovou řádku - pak levý panel zůstává aktivním panelem). Uvědomte si, který panel je aktivní.</para>
+      <para
+>Nejběžnější způsob změny zaměření konkrétního panelu je kliknout pomocí myši na panel. Ale měli byste vědět následující: <itemizedlist>
+        <listitem>
+          <para
+>Kliknutí na nástrojovou lištu, lištu FN kláves nebo stavovou lištu <emphasis
+>nezmění</emphasis
+> zaměření.</para>
+        </listitem>
+        <!--
+   Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
+   <listitem>
+     <para
+>The display part of the Quick View Panel does not accept clicks so you should click on the
+           Location Toolbar of this panel if you want it to have focus.</para>
+   </listitem>
+-->
+        <listitem>
+          <para
+>Stisknutí tlačítka <guibutton
+>Spustit v režimu terminálu</guibutton
+> v příkazové řádce nepřesune zaměření, takže musíte kliknout dovnitř vstupního řádku.</para>
+        </listitem>
+        <listitem>
+          <para
+>Když vybíráte nabídku, lišta nabídky má zaměření. Zaměření zůstává, dokud nevyberete příkaz - zaměření se vrací do předchozího vlastníka.</para>
+        </listitem>
+      </itemizedlist
+></para>
+      <para
+>Samozřejmě zde jsou způsoby, jak použít klávesnici ke změně zaměření: <itemizedlist>
+        <listitem>
+          <para
+>Klávesa &Tab; přepne panely, má-li jeden z panelů zaměření, je-li aktivní lišta nabídky, vystřídá všechny příkazy v nabídce.</para>
+        </listitem>
+        <listitem>
+          <para
+>Klávesová zkratka <keycombo action="simul"
+>&Ctrl; <keycap
+>Dolů</keycap
+></keycombo
+> přejde z aktivního panelu do příkazové řádky nebo emulátoru terminálu a klávesová zkratka <keycombo action="simul"
+>&Ctrl; <keycap
+>Nahoru</keycap
+></keycombo
+> přejde zpět příkazové řádky do aktivního panelu.</para>
+        </listitem>
+        <listitem>
+          <para
+>Má-li lišta nabídky zaměření, klávesa &Esc; jej navrátí předešle aktivnímu panelu.</para>
+        </listitem>
+        <listitem>
+          <para
+>Budete-li třeba uvnitř emulátoru terminálu, můžete použít klávesu &Tab;, nebo použijte myš, abyste přešli do aktivního panelu.</para>
+        </listitem>
+        <listitem>
+          <para
+>Stisknutí klávesové zkratky <keycombo action="simul"
+>&Alt; <keycap
+>podtržené písmeno</keycap
+></keycombo
+> otevře nabídku z lišty nabídky (není-li kombinace kláves "rezervovaná klávesová zkratka" používaná některou z činností aplikace &krusader;).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="selecting-files">
+      <title
+>Označování</title>
+      <note>
+        <para
+>&krusader; nabízí čtyři <link linkend="mouse_selection_modes"
+>Režimy označování</link
+>, vysvětlen je zde pouze Režim označování aplikace &krusader;.</para>
+      </note>
+      <para
+>Označování je dovednost, kterou potřebujete ovládnout, s cílem dostat z aplikace &krusader; co nejvíce. Protože Panel stromu umožňuje označit zároveň pouze jeden adresář, vysvětluje tento odstavec, hlavně jak vybírat soubory v panelu se seznamem.</para>
+      <para
+>Přesun kurzoru je jednoduchý. Kliknutím levého tlačítka myši na soubor nebo adresář (dále jen jako "prvky", tedy soubory a zároveň adresáře) jej vyberete. Zde je několik použitelných rad, které udělají použití aplikace &krusader; ještě snadnější (předpokládejme, že jako Režim označování používáte Režim &krusader;u): <itemizedlist>
+        <listitem>
+          <para
+>Klávesy <keycap
+>Mezerník</keycap
+> a <keycap
+>Insert</keycap
+> přepínají označení souboru, na kterém je kurzor, bez ovlivnění označení ostatních souborů/adresářů. Kurzor přejde o jednu pozici dolů.</para>
+        </listitem>
+        <listitem>
+          <para
+>Stisknutí <keycap
+>Mezerníku</keycap
+> u adresáře s kursorem <link linkend="calculate"
+>vypočítá velikost obsazeného místa</link
+> bez ovlivnění označení ostatních souborů/adresářů.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>Kliknutí levého tlačítka myši</keycap
+> na soubor jej označí a zruší označení všech předešle označených souborů.</para>
+        </listitem>
+        <listitem>
+          <para
+>Klávesová zkratka <keycombo action="simul"
+>&Ctrl; <keycap
+>levé tlačítko myši</keycap
+></keycombo
+> přepne označení souboru, na kterém je kurzor, bez  ovlivnění označení ostatních souborů/adresářů.</para>
+        </listitem>
+        <listitem>
+          <para
+>Klávesová zkratka <keycombo action="simul"
+>&Shift; <keycap
+>levé tlačítko myši</keycap
+></keycombo
+> označí všechny prvky od předchozího umístění kurzoru po nové umístění kurzoru.</para>
+        </listitem>
+        <listitem>
+          <para
+>Klávesová zkratka <keycombo action="simul"
+>&Shift; <keycap
+>Home</keycap
+></keycombo
+> označí vše nad kurzorem (jsou-li prvky označeny pod kurzorem, odznačí je).</para>
+        </listitem>
+        <listitem>
+          <para
+>Klávesová zkratka <keycombo action="simul"
+>&Shift; <keycap
+>End</keycap
+></keycombo
+> označí vše pod kurzorem (jsou-li prvky označeny nad kurzorem, odznačí je).</para>
+        </listitem>
+        <listitem>
+          <para
+>Položka ".." není označitelná.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="edit-menu"
+>Nabídka Upravit</link
+> může nabídnout více způsobů, jak označit soubory.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="executing_commands">
+      <title
+>Spouštění příkazů</title>
+      <para
+>Zde není mnoho, co říci. Vše, co potřebujete, je označit soubor (neoznačíte-li žádný, &krusader; bude pracovat se souborem nebo adresářem, který má zaměření), zvolte si <link linkend="menu-commands"
+>příkaz</link
+> z lišty nabídky nebo použijte klávesovou zkratku (nebo nabídku pravého tlačítka myši) a vybraný příkaz se spustí. Viz také <link linkend="executing_files"
+>Spouštění příkazů</link
+>.</para>
+    </sect2>
+    <sect2 id="quicksearch">
+      <title
+>Rychlé hledání</title>
+      <!-- Thanks to Heiner Eichmann -->
+      <para
+>Tato vlastnost rychle vyhledá název souboru v aktivním panelu se seznamem.</para>
+      <para
+>Napište <keycap
+>část názvu</keycap
+>, abyste rychle vyhledali soubor v aktivním panelu se seznamem začínající na vámi napsanou část názvu. Pod aktivním panelem se seznamem se otevře malé rychlé vyhledávací dialogové pole. Napište prvních několik znaků požadovaného názvu souboru (je umožněno psát více než jeden znak) a kurzor skočí na název souboru (existuje-li). Např. "ab" vyhledá soubor, který začíná na "ab". Klávesou <keycap
+>Nahoru/Dolů</keycap
+> kurzor přeskočí na předchozí nebo další odpovídající položku. Klávesou &Esc; se rychlá vyhledávací řádka uzavře. Kurzor zůstane na posledním vyhledaném souboru. Rychlé hledání pro hledání souborů podporuje <ulink url="http://en.wikipedia.org/wiki/Regular_expression"
+>regulární výrazy</ulink
+>.</para>
+      <note>
+        <para
+>Stisknete-li klávesovou zkratku <keycombo action="simul"
+>&Alt; <keycap
+>klávesa</keycap
+></keycombo
+>, bude tato klávesová zkratka spuštěna. Není-li však nastavena, bude znak <keycap
+>klávesy</keycap
+> použit pro rychlé hledání.</para>
+      </note>
+      <para
+>Použijte okno <link linkend="key_bindings"
+>Nastavit zkratky</link
+> (<menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Nastavit klávesové zkratky...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickfilter">
+      <title
+>Rychlé filtrování</title>
+      <para
+>Tato vlastnost rychle filtruje seznam souborů v aktivním panelu.</para>
+      <para
+>Stiskněte <keycombo
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+>, abyste otevřeli lištu rychlého filtrování. Napište <keycap
+>jakékoli znaky</keycap
+>, abyste odfiltrovali všechny soubory v aktivním panelu, jejichž názvy nezačínají na vámi napsané znaky. Pro filtrování můžete použít zástupné znaky. Použijte např. "a*b", abyste do filtrovaných souborů zahrnuli ty, které ve svém názvu mají znaky "a" a "b". Chování rychlého filtrování odpovídá <link linkend="konfig-panel-general"
+>nastavení rozlišování malých/velkých písmen</link
+> rychlého hledání.</para>
+      <para
+>Má-li zaměření panel nebo rychlé filtrování, pak stisknutí klávesy &Enter; v režimu rychlého filtrování předá zaměření do panelu. Klávesa &Esc; zavře rychlé filtrování. </para>
+      <para
+>Chcete-li změnit výchozí klávesovou zkratku rychlého filtrování použijte okno <link linkend="key_bindings"
+>Nastavit zkratky</link
+> (<menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Nastavit klávesové zkratky...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="context-menu">
+      <title
+>Místní nabídka</title>
+      <para
+>&krusader; má mnoho místních nabídek, které umožňují dělat rychlé činnosti pomocí myši. Obvykle se kliknutím pravého tlačítka myši otevře místní nabídka (závisející na vašem nastavení <link linkend="mouse_selection_modes"
+>Režimu označování</link
+>). Tento seznam nabízí přehled nejdůležitějších místních nabídek. Použijte je ke zjištění dostupných příkazů. <itemizedlist>
+        <listitem>
+          <para
+><link linkend="mainwindow"
+>Hlavní nástrojová lišta</link
+> (orientace, pozice textu, velikost ikon)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="list_panel"
+>Panel se seznamem</link
+> na soubory a adresáře</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="cmdline"
+>Příkazová řádka</link
+> (zpět, vložit,  doplňování textu...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="termemu"
+>Emulátor terminálu</link
+> (odesílání signálu, písmo, historie...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="folder-tabs"
+>Karty složek</link
+> (vytvoření nových, duplikování, zavírání)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="krusearcher"
+>KruSearcher</link
+>: Vyhledané výsledky se seznamem souborů (Zobrazit (<keycap
+>F3</keycap
+>), Upravit (<keycap
+>F4</keycap
+>)).</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="mount-man"
+>Správce připojení disků</link
+> (odpojení, formátování...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="synchronizer"
+>Synchronizovat adresáře</link
+> či soubory z konkrétního výběru (ve výchozím nastavení kompilace je synchronizátor zakázán)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Uživatelské činnosti</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Činnosti pravého tlačítka myši z aplikace &konqueror; jsou zobrazeny v aplikaci &krusader;</para>
+        </listitem>
+        <listitem>
+          <para
+>Zobrazit/Skrýt <link linkend="list_panel"
+>Záhlaví sloupců</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="bookman"
+>Záložky</link
+>: povolit/zakázat stálé záložky</para>
+        </listitem>
+        <listitem>
+          <para
+>...</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="basic">
+    <title
+>Základní správa souborů</title>
+    <sect2 id="executing_files">
+      <title
+>Spouštění souborů</title>
+      <para
+>Soubory můžete spustit pouze v aktivním panelu se seznamem. Chcete-li spustit soubor, stačí (dvakrát) kliknout na soubor nebo stisknout &Enter;, je-li na souboru kurzor seznamu. &krusader; jej otevře ve výchozí aplikaci pro tento typ souboru (obrázek, textový soubor ...) nebo bude soubor spuštěn (skript, binární soubor ...). Chcete-li použít jinou aplikaci, abyste soubor otevřeli, klikněte <mousebutton
+>pravým tlačítkem myši</mousebutton
+> na soubor a přejděte do podnabídky <guisubmenu
+>Otevřít s</guisubmenu
+>, která nabízí více voleb. &krusader; je kompatibilní s výchozím správcem souborů &kde; u všech typů souborů vyjma archivů, které jsou otevřeny uvnitř panelu aplikace &krusader;, nikoli v externí aplikaci. Pro více podrobností viz <link linkend="konfig-archives"
+>strana Archivy v Konfigurátoru</link
+>.</para>
+    </sect2>
+    <sect2 id="copying">
+      <title
+>Kopírování a přesouvání</title>
+      <para
+>Chcete-li zkopírovat nebo přesunout soubory/adresáře, stačí je vybrat a stisknout klávesu <keycap
+>F5</keycap
+> pro kopírování nebo <keycap
+>F6</keycap
+> pro přesun. Aplikace &krusader; se snaží zachovat čas změny. Při kopírování adresáře je vlastník změněn na uživatele, který adresář kopíruje, skupina je změněna na výchozí skupinu uživatele. Při kopírování souboru je vlastník změněn na jméno uživatele, který soubor kopíruje, skupina je změněna na výchozí skupinu uživatele a oprávnění jsou zachována. Při přesouvání souboru nebo adresáře jsou vlastník, skupina a oprávnění zachovány. Při kopírování nebo přesouvání souborů/adresářů se objeví dialogové okno a umožní zvolit cíl operace. Výchozí cíl je adresář procházený druhým panelem. Zadáte-li část &URL;, aplikace &krusader; použije aktuální adresář panelu jako základ &URL;.</para>
+    </sect2>
+    <sect2 id="queue">
+      <title
+>Správce fronty</title
+> 
+      <para
+>Činnosti kopírování, přesouvání, balení, rozbalování mohou být zařazeny do fronty. Po zvolení Kopírování nebo Přesun stiskněte <keycap
+>F2</keycap
+>. Po zvolení Sbalit nebo Rozbalit stiskněte opět <keycap
+>F2</keycap
+>. Nebo použijte přímo klávesové zkratky: kopírovat pomocí fronty klávesovou zkratkou <keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo
+>, přesunout pomocí fronty klávesovou zkratkou <keycombo action="simul"
+>&Shift;<keycap
+>F6</keycap
+></keycombo
+>. Správce front provádí činnosti jednu po druhé. Např. máte-li USB klíčenku (která je pomalá) a chcete na ni zkopírovat 40 souborů, je o hodně lepší kopírovat soubory jeden po druhém, namísto spuštění kopírování 40 souborů souběžně. To je důvod, proč je zařazení do fronty důležité. Jestli balíte/rozbalujte souběžně 40 souborů, přetěžujete váš počítač, zato přidání činností do fronty je o hodně výhodnější. </para>
+    </sect2>
+    <sect2 id="deleting">
+      <title
+>Smazání - přesun do koše &kde;</title>
+      <para
+>Smazání souborů/adresářů je prováděno jejich označením a stiskem klávesy <keycap
+>F8</keycap
+> nebo <keycap
+>Delete</keycap
+>. Použitím <link linkend="konfig-general"
+>výchozího nastavení</link
+> soubor přesunete do Koše &kde;. Koš &kde; můžete otevřít pomocí ikony koše na <link linkend="main_toolbar"
+>hlavní nástrojové liště</link
+> nebo pomocí Otroku KIO <filename
+>trash:/</filename
+>. Fyzicky je Koš &kde; umístěn v <filename
+>~/.local/share/Trash/</filename
+>. Klávesovou zkratkou <keycombo action="simul"
+>&Shift; <keycap
+>Delete</keycap
+></keycombo
+> smažete soubor natrvalo. Dialogové okno se vás dotáže na potvrzení a upozorní vás, když mažete adresář, který není prázdný. Operačním systémem budou samozřejmě provedeny pouze činnosti, které jsou povoleny - v opačném případě budete informováni. Nepřejete-li si vidět potvrzovací dialogová okna, můžete je zakázat  v <link linkend="konfig-advanced"
+>Konfigurátoru na stránce Pokročilé</link
+>.</para>
+    </sect2>
+    <sect2 id="shred">
+      <title
+>Sdílené soubory</title>
+      <para
+>Aplikace Shred byla odstraněna z &kde; 4 (a v důsledku toho i z aplikace &krusader;-2 pro &kde; 4). Hlavním důvodem je pravděpodobně to, že bezpečné smazání souboru je závislé na systému souborů. Dokonce i v případě, že soubor přepíšete 100 krát, není jisté, že bude z disku nakonec odstraněn úplně. Citace z <application
+>kgpg</application
+> příspěvků: <quote
+>The shred feature has been removed from the KDE library. Kgpg will not support this feature anymore. Moderns file systems use journalisation. So the shred feature should be implemented in the file system. Not in kgpg.</quote
+> Ale můžete použít vyhovující přepisující <link linkend="useractions"
+>Uživatelskou činnost</link
+> pro váš systém souborů. Ovšem kdybyste chtěli mít 100% jistotu, aby nebylo možné přečíst smazaný soubor, pak mějte na paměti, že byste museli zničit váš pevný disk. </para>
+    </sect2>
+    <sect2 id="renaming">
+      <title
+>Přejmenování souborů, vytváření adresářů a správa odkazů</title>
+      <para
+>Přejmenovat soubor pod kurzorem lze pomocí klávesy <keycap
+>F9</keycap
+> nebo pomocí dvou jednotlivých kliknutí myši. Potřebujete-li pouze přejmenovat název souboru a nikoli příponu, můžete to nastavit v <link linkend="konfig-general-atomic"
+>Konfigurátoru na stránce Obecné</link
+>. <guilabel
+>Vytvořit nový adresář</guilabel
+> lze pomocí klávesy <keycap
+>F7</keycap
+>. <keycap
+>Kliknutí pravého tlačítka myši na běžný soubor</keycap
+> nabídne volbu <menuchoice
+><guisubmenu
+>Správa Odkazu</guisubmenu
+> <guimenuitem
+>Nový symbolický odkaz...</guimenuitem
+></menuchoice
+>. Dialogové okno vás vyzve, abyste zadali název symbolického odkazu. Tento odkaz bude odkazovat na soubor/adresář, na který jste klikli pravým tlačítkem. Jestli soubor, na který jste klikli pravým tlačítkem, je symbolický odkaz, bude navíc uvedena volba <menuchoice
+><guisubmenu
+>Správa Odkazu</guisubmenu
+> <guimenuitem
+>Přesměrovat odkaz</guimenuitem
+></menuchoice
+>, která umožňuje změnit cíl odkazu.</para>
+    </sect2>
+    <sect2 id="viewing">
+      <title
+>Prohlížení a úprava souborů</title>
+      <para
+><link linkend="krviewer"
+>KrViewer</link
+> má svoji vlastní kapitolu.</para>
+    </sect2>
+  </sect1>
+&archives; </chapter>

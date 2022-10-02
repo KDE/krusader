@@ -1,0 +1,2571 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="konfigurator">
+  <title
+>Konfigurator: het configuratiecentrum van &krusader;</title>
+  <indexterm>
+    <primary
+>Instellen</primary>
+    <secondary
+>Krusader</secondary>
+  </indexterm>
+  <para
+>Konfigurator is het configuratiecentrum van &krusader;. Als &krusader; is gestart, gebruik dan <menuchoice
+> <guimenu
+>Instellingen</guimenu
+> <guimenuitem
+> &krusader; configureren...</guimenuitem
+> </menuchoice
+>, en u start Konfigurator. Hier kunt de manier waarop &krusader; werkt wijzigen en het naar uw eigen behoefte aanpassen. Op elk moment dat u op de knop <guibutton
+>Toepassen</guibutton
+> drukt legt u de wijzigingen vast, op de knop <guibutton
+>Afsluiten</guibutton
+> drukt, sluit u Konfigurator, en drukken op de knop <guibutton
+>Standaard</guibutton
+> past u de <quote
+>fabrieksinstellingen</quote
+> van &krusader; weer toe. Konfigurator is onderverdeeld in pagina´s, met elk items die van toepassing zijn op die pagina. Voor sommige wijzigingen wat betreft de &GUI;, moet u &krusader; afsluiten en weer herstarten.</para>
+
+<note>
+ <para
+>Vanaf &krusader;-1.80.0 hebben <link linkend="key_bindings"
+>Sneltoetsen</link
+> en <link linkend="mainwindow"
+>Hoofdwerkbalk</link
+>-<link linkend="actions_toolbar"
+>Actiewerkbalk</link
+> hun eigen configuratie-venster gekregen zodat ze geen deel meer uitmaken van Konfigurator, U kunt ze nu configureren via het <link linkend="settings-menu"
+><guimenu
+>Instellingen</guimenu
+> menu</link
+>.</para>
+</note>
+
+  <sect1 id="konfig-startup">
+    <title
+>Opstarten</title>
+    <figure id="screenshot-kgstartup" float="1">
+      <title
+>Configuratie voor opstarten</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="kgstartup.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Configuratie voor opstarten</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>De opstart-pagina bepaalt hoe dat &krusader; eruitziet (en werkt) tijdens het opstarten. het is onderverdeeld in twee hoofdonderdelen:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Algemeen</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Startop Profiel</guilabel
+>: Start het geselecteerde <link linkend="panel_profiles"
+>Paneel profiel</link
+> tijdens het opstarten. <guilabel
+>&lt;Laatste sessie&gt;</guilabel
+> is een speciaal Paneel Profiel, het wordt automatisch opgeslagen tijdens het afsluiten van &krusader;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Opstartscherm tonen</guilabel
+>: Toont een opstartscherm bij het opstarten van &krusader;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Eén programma modus</guilabel
+>: Staat slechts één programma (proces) van &krusader; toe.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Terugvalpictogramthema</guilabel
+>: Stelt u in staat om een terugvalpictogramthema voor &krusader; te definiëren. Wanneer het pictogram niet is gevonden in het pictogramthema van het systeem, zal dit thema gebruikt worden als terugval. Als het terugvalthema het pictogram niet bevat zal Breeze of Oxygen worden gebruikt als een van deze aanwezig is.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Gebruikersinterface</guilabel>
+        </term>
+        <listitem>
+          <para
+>Bepaalt welke gedeelten van de gebruikersinterface zichtbaar komen na het opstarten. <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Herstel de laatste positie, grootte en venster instellingen</guilabel
+>: Tijdens het starten, zal &krusader; dezelfde grootte als bij de laatste afsluiten aannemen. &krusader; gaat ook op het scherm naar dezelfde locatie, en stelt de panelen net zo in. Als deze keuzemogelijkheid is uitgeschakeld, dan kunt u het menu <menuchoice
+> <guimenu
+>Venster</guimenu
+> <guimenuitem
+>Positie opslaan</guimenuitem
+> </menuchoice
+> gebruiken om handmatig de grootte en locatie van &krusader; bij het opstarten in te stellen.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Standaard paneelinstellingen bijwerken</guilabel
+>: indien ingeschakeld, zullen de standaard paneelinstellingen na het opstarten worden bijgewerkt.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>In de systeembalk starten</guilabel
+>: indien ingeschakeld, zal &krusader; in de systeembalk starten (als 'in de systeembalk starten' actief is), zonder het hoofdscherm te tonen.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Componentinstellingen opslaan bij afsluiten</guilabel
+>: indien ingeschakeld, zal het gebruikersinterface in zijn oorspronkelijke toestand herstellen zoals bij de laatste afsluiting.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Functie toetsen tonen</guilabel
+>: indien ingeschakeld, zal de <link linkend="fnkeys"
+>FN Toetsen Balk</link
+> na het opstarten zichtbaar zijn.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Toon statusbalk</guilabel
+>: indien ingeschakeld, zal de <link linkend="mainwindow"
+>Statusbalk</link
+> na het opstarten zichtbaar zijn. Beschikbaar alleen als het item <guilabel
+>Componentinstellingen bij afsluiten opslaan</guilabel
+> niet is geactiveerd.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Commandoregel Tonen</guilabel
+>: indien ingeschakeld, zal de <link linkend="cmdline"
+>Commandoregel</link
+> na het opstarten zichtbaar zijn. Beschikbaar alleen als het item <guilabel
+>Componentinstellingen bij afsluiten opslaan</guilabel
+> niet is geactiveerd.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Ingebedde terminal tonen</guilabel
+>: indien ingeschakeld, zal de <link linkend="termemu"
+>Terminalemulator</link
+> na het opstarten zichtbaar zijn. Beschikbaar alleen als het item <guilabel
+>Componentinstellingen bij afsluiten opslaan</guilabel
+> niet is geactiveerd.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-panel">
+    <title
+>Paneel</title>
+    <para
+>Hier kunt u het uiterlijk van panelen bepalen - wat inhoud het programma in detail afstellen op uw wensen. De pagina is onderverdeeld in zes tabs: <guilabel
+>Algemeen</guilabel
+>, <guilabel
+>Tonen</guilabel
+>, <guilabel
+>Knoppen</guilabel
+>, <guilabel
+>Selectiemodus</guilabel
+>, <guilabel
+>Menu Media</guilabel
+>, en <guilabel
+>Indeling</guilabel
+>:</para>
+
+    <sect2 id="konfig-panel-general">
+      <title
+>Algemeen</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Navigatiebalk</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Standaard is bewerkingsmodus</guilabel
+>: indien ingeschakeld, toon standaard de bewerkbare paden in de Navigatiebalk.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Standaard het volledige pad tonen</guilabel
+>: indien ingeschakeld, altijd het volledige pad in de Navigatiebalk tonen.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Werking</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Mappen automatisch selecteren</guilabel
+>: Als <link linkend="edit-menu"
+>u een aantal bestanden selecteert</link
+> (door het gebruik van <guilabel
+>Groep selecteren</guilabel
+> of door <guilabel
+>Alles selecteren</guilabel
+>), dan zal&krusader; deze keuze controleren. Indien ingeschakeld, dan zullen de mappen die met de selectiecriteria overeenkomen ook worden geselecteerd. Anders worden alleen bestanden geselecteerd.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Hernoemen zal de extensie selecteren</guilabel
+>: Wanneer <link linkend="renaming"
+>u een bestand hernoemd</link
+>, dan is de hele tekst geselecteerd. Indien u de <trademark class="copyright"
+>Total Commander</trademark
+> selectiemanier wilt gebruiken (zonder de extensie te selecteren), vink dan dit item niet aan.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Selectie van bestanden opheffen vóór kopiëren/verplaatsen</guilabel
+>: indien ingeschakeld, zal de &krusader; de selectie van bestanden opheffen vóór <link linkend="copying"
+>kopiëren/verplaatsen</link
+> naar een nieuwe locatie begint.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Filterinstelling herinnert instellingen</guilabel
+>: Indien ingeschakeld, zal het filterdialoog openen met de laatste filterinstellingen die in het paneel zijn toegepast.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Tabbladen</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Volledige pad tabnamen gebruiken</guilabel
+>: indien ingeschakeld, is het volledige pad in de <link linkend="folder-tabs"
+>mappen tabs</link
+>; zichtbaar, in het andere geval is alleen het laatste gedeelte van het pad zichtbaar.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Tabbladen uitbreiden</guilabel
+>: indien geactiveerd zal &krusader; de <link linkend="folder-tabs"
+>tabbladen voor mappen</link
+> de gehele balk laten vullen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Tabblad sluiten door dubbelklikken</guilabel
+>: indien geactiveerd, zal &krusader; de <link linkend="folder-tabs"
+>tabbladen voor mappen</link
+> sluiten door dubbel te klikken.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Tabbladen invoegen na huidige</guilabel
+>: Indien geactiveerd, zal &krusader; nieuwe tabbladen invoegen rechts van de huidige in plaats van ze aan het eind te plaatsen van de <link linkend="folder-tabs"
+>Tabbladbalk</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Actief tabblad dupliceren door klik</guilabel
+>: Laat u de modus actief tabblad dupliceren selecteren (<guimenuitem
+>Uitgeschakeld</guimenuitem
+> (geen klik associatie), <guimenuitem
+>Alt+klik</guimenuitem
+> of <guimenuitem
+>Ctrl+klik</guimenuitem
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Tabbalkpositie</guilabel
+>: Hiermee kunt u de <link linkend="folder-tabs"
+>Tabbalk</link
+> de positie (<guimenuitem
+>Onder</guimenuitem
+> of <guimenuitem
+>Boven</guimenuitem
+>) geven.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Sluitknoppen op tabblad tonen</guilabel
+>: indien geactiveerd, zal &krusader; sluitknoppen tonen op de <link linkend="folder-tabs"
+>tabbladen voor mappen</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Knop voor nieuw tabblad tonen</guilabel
+>: indien geactiveerd, zal &krusader; een knop voor een nieuw tabblad tonen op de <link linkend="folder-tabs"
+>Tabbladbalk</link
+>.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Tabbladbalk bij een enkel tabblad tonen</guilabel
+>: indien ingeschakeld, zal &krusader; de tabbladbalk tonen zelfs als er slechts één <link linkend="folder-tabs"
+>tabblad</link
+> op het paneel is.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Knop voor nieuw tabblad dupliceert een tabblad</guilabel
+>: indien geactiveerd, zal knop voor een nieuw tabblad een <link linkend="folder-tabs"
+>Tabblad</link
+> dupliceren, anders opent het een tabblad in de thuismap.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Zoekbalk</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Begin met typen</guilabel
+>: staat toe te selecteren als de <link linkend="quicksearch"
+>snelzoek</link
+> functie wordt gebruikt. Indien geactiveerd, kunt u de zoekbalk openen en het zoeken starten door iets in te typen bij het bekijken van de inhoud van de map in het actieve paneel.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Hoofdlettergevoelig</guilabel
+>: Als u de <link linkend="quicksearch"
+>zoeken</link
+> of <link linkend="quickfilter"
+>filter</link
+> functie gebruikt: Indien ingeschakeld (de &UNIX; standaard), zullen alle bestanden die met een hoofdletter beginnen voor de bestanden die beginnen met een kleine letter verschijnen; in het andere geval zullen alle bestanden die een opgegeven letter (hoofdletter en kleine letter) bij elkaar staan.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Up/Down annuleert zoeken</guilabel
+>: Het indrukken van &Up; of &Down; annuleert het <link linkend="quicksearch"
+>zoeken</link
+> dialoogvenster.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mappennavigatie met rechter pijl</guilabel
+>: Indien geactiveerd, zal drukken op de toets &Right; de map ingaan als er geen zoektekst bewerkingsintentie is gevangen. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Positie</guilabel
+>: Hiermee kunt u de <link linkend="quicksearch"
+>zoek-</link
+> en de <link linkend="quickfilter"
+>filter-</link
+>balkpositie (<guimenuitem
+>Onder</guimenuitem
+> of <guimenuitem
+>Boven</guimenuitem
+>) kiezen.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Standaard modus</guilabel
+>: Laat u de standaard modus van de zoekbalk kiezen tussen <link linkend="quicksearch"
+>Zoeken</link
+>, <guilabel
+>Selecteren</guilabel
+> en <link linkend="quickfilter"
+>Filteren</link
+>. U kunt later de modus wijzigen met de zoekbalk zelf.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Bladwijzers zoeken</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Altijd zoekbalk tonen</guilabel
+>: indien ingeschakeld, zal de <link linkend="bookman"
+>bladwijzerzoekbalk</link
+> altijd zichtbaar zijn.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>In speciale items zoeken</guilabel
+>: indien geactiveerd, <link linkend="bookman"
+>bladwijzer zoeken</link
+> wordt ook toegepast op speciale items in het bladwijzermenu zoals <guimenuitem
+>Prullenbak</guimenuitem
+>, <guimenuitem
+>Populaire &URL;'s</guimenuitem
+>, <guimenuitem
+>Terugspringen</guimenuitem
+>, &etc;</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Status/totaalbalk</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Toon grootte ook in bytes</guilabel
+>: indien ingeschakeld, zal &krusader; de grootte in bytes op statusbar of totaalbalk tonen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ruimte-informatie tonen</guilabel
+>: indien ingeschakeld, zal &krusader; de vrije/totale schijfruimte in de status/totaalbalk tonen.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-panel-view">
+      <title
+>Beeld</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Algemeen</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Lettertype tonen</guilabel
+>: Maakt het u mogelijk het in de bestandslijsten gebruikte lettertype te wijzigen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Vertraging van tekstballon (msec)</guilabel
+>: Stelt u in staat om de vertraging te configureren in milliseconden tussen het moment dat u de muisaanwijzer boven een item in een lijst met bestanden stil laat staan en het moment wanneer de tekstballon getoond moet worden.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Menselijk leesbare bestandsgrootte gebruiken</guilabel
+>: Indien ingeschakeld, verschijnt de bestandsgrootte in kB, Mb &etc;, en niet in bytes (standaard).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Numerieke toegangsrechten</guilabel
+>: kolom <guilabel
+>Permissie</guilabel
+> toont octale getallen '<literal
+>0755</literal
+>' in plaats van '<literal
+>rwxr-xr-x</literal
+>'.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Verborgen bestanden tonen</guilabel
+>: Indien ingeschakeld, zal &krusader; de <quote
+>dot-bestanden</quote
+> laten zien die anders verborgen zijn.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>De gebruikersgedefinieerde map iconen laden</guilabel
+>: Indien ingeschakeld, zal &krusader; de door de gebruiker opgegeven map-pictogrammen gebruiken.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Altijd het huidige item tonen</guilabel
+>: Indien geactiveerd, zal &krusader; de randdecoratie van het huidige item in het inactieve paneel tonen.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Sorteer methode</guilabel>
+	    <itemizedlist>
+             <listitem>
+              <para
+><guilabel
+>Krusader (default)</guilabel
+>: De tot nu toe gebruikte vergelijking. Gebruikt vergelijken met behulp van lokale regels (zelfs context regels). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Alfabetisch</guilabel
+>: tekenreeksen worden karakter voor karakter vergeleken (geen toegepaste context regels vanuit de lokale). Alfabetische karakters worden met behulp van lokale regels vergeleken, speciale karakters worden via de karakterset met elkaar vergeleken. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Alfabetisch met nummers</guilabel
+>: hetzelfde als hierboven, maar als in de namen cijfers aanwezig zijn, dan worden de cijfers numeriek en niet alfabetisch vergeleken. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Karakter code</guilabel
+>: vergelijking met karakter code (snel). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Karakter code en nummers</guilabel
+>: Karakter code en nummers, maar met numerieke vergelijking van cijfers. </para>
+             </listitem>
+           </itemizedlist>
+	    </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Hoofdlettergevoelig sorteren</guilabel
+>: Indien ingeschakeld (de &UNIX; standaard), zullen alle bestanden die met een hoofdletter beginnen voor de bestanden die beginnen met een kleine letter verschijnen; in het andere geval zullen alle bestanden met de opgegeven letter (hoofdletter en kleine letter) beginnen bij elkaar staan.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Altijd mappen op naam sorteren</guilabel
+>:Mappen op naam sorteren, ongeacht de sorteerkolom.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mappen als eerste tonen</guilabel
+>: Indien ingeschakeld hebben mappen voorrang in mappenlijsten.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Sorteren volgens de taalregio</guilabel
+>: Sorteert bestanden en mappen volgens de huidige lokale instellingen.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>View modes</guilabel>
+        </title>
+       <listitem>
+          <para
+><guilabel
+>Standaard viewer modus</guilabel
+>: Maakt het u mogelijk om de standaard view mode te wijzigen. U kunt <guimenuitem
+>Detail weergave</guimenuitem
+> of <guimenuitem
+>Korte weergave</guimenuitem
+> kiezen. In de tabs van beide view modes kunt u de volgende keuzes instellen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Standaard pictogramgrootte</guilabel
+>: Maakt het u mogelijk om de pictogramgrootte in de bestandslijsten te wijzigen. De beschikbare groottes zijn 12x12, 16x16, 22x22, 32x32, 48x48, 64x64, 128x128 en 256x256 pixels.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Iconen gebruiken in bestandsnamen</guilabel
+>: Indien ingeschakeld, krijgt u pictogrammen bij bestandsnamen en mappen te zien.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Standaard voorbeelden tonen</guilabel
+>: indien ingeschakeld, krijgt u voorbeelden van de inhoud van de bestanden als pictogram te zien.</para>
+        </listitem>
+        <listitem>
+          <para
+>Voor het instellen van de kolommen gebruikt u in het paneel het contextmenu bij het bekijken van bestanden. De linker en rechter paneel hebben onafhankelijke kolom-instellingen. De volgende kolommen zijn beschikbaar: <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Naam</guilabel
+>: Toont de bestandsnaam zonder het gedeelte na de laatste punt, dit laatste gedeelte is te zien in de <guilabel
+>Ext</guilabel
+> kolom. Als de <guilabel
+>Ext</guilabel
+>-kolom verborgen is, dan is de complete bestandsnaam te zien in de <guilabel
+>Naam</guilabel
+>-kolom zoals dat &eg; &konqueror; doet. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Ext</guilabel
+>: Toont het laatste gedeelte van de bestandsnaam (het gedeelte na de laatste punt) in de <guilabel
+>Ext</guilabel
+>-kolom, en niet als een complete bestandsnaam in de <guilabel
+>Naam</guilabel
+>-kolom zoals dat &eg; &konqueror; doet. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Type</guilabel
+>: Het &MIME;-typeveld tonen.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Grootte</guilabel
+>: Toont de bestandsgrootte.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Gewijzigd</guilabel
+>: Toont de datum en tijdstip van laatste wijziging.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Permis</guilabel
+>: Toont de complete permissies &eg; <literal
+>rwxr-xr-x</literal
+> of als octale nummers '<literal
+>0755</literal
+>' in plaats daarvan kunt u dat in/uitschakelen in <guilabel
+>Numerieke toegangsrechten</guilabel
+> in tabblad <guilabel
+>Paneelweergave</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>rwx</guilabel
+>: Toont alleen de rechten van de huidige gebruiker &eg; <quote
+>-rw</quote
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Eigenaar</guilabel
+>: Toont de eigenaar.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Groep</guilabel
+>: Toont de groep.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist>
+      <tip>
+        <para
+>Verberg de niet gebruikte kolommen. Hierdoor krijgen de wel gebruikte kolommen meer ruimte.</para>
+      </tip>
+    </sect2>
+    <sect2 id="konfig-panel-buttons">
+      <title
+>Knoppen</title>
+      <para
+><guilabel
+>Werkbalkknoppen hebben pictogrammen</guilabel
+>: Indien ingeschakeld, zal &krusader; pictogrammen op de werkbalkknoppen tonen.</para>
+      <para
+><guilabel
+>Media knop tonen</guilabel
+>: Indien ingeschakeld, zal &krusader; de media knop tonen.</para>
+      <para
+><guilabel
+>Terugknop tonen</guilabel
+>: Indien ingeschakeld, zal &krusader; de terugknop tonen.</para>
+      <para
+><guilabel
+>Voorwaartsknop tonen</guilabel
+>: Indien ingeschakeld, &krusader; de voorwaartsknop tonen.</para>
+      <para
+><guilabel
+>Historiek knop tonen</guilabel
+>: Indien ingeschakeld, zal &krusader; de historiek knop tonen.</para>
+      <para
+><guilabel
+>Bladwijzer knop tonen</guilabel
+>: Indien ingeschakeld, zal &krusader; de bladwijzer knop tonen.</para>
+      <para
+><guilabel
+>Venster werkbalk tonen</guilabel
+>: Indien ingeschakeld, zal &krusader; het venster werkbalk tonen.</para>
+      <para
+>U kunt de knoppen op de <guilabel
+>Paneelwerkbalk</guilabel
+> wel of niet zichtbaar maken: <itemizedlist>
+        <title>
+          <guilabel
+>Zichtbare paneelwerkbalkknoppen</guilabel>
+        </title>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Clear Location Toolbar</guilabel
+> button: Clears
+          the <link linkend="list_panel"
+>Location Toolbar</link
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para>
+          <guilabel
+>Gelijk knop (=)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Omhoog knop (..)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Home knop (~)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Hoofdmap knop (/)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Knop voor synchroon bladeren omschakelen</guilabel
+>: Indien ingeschakeld, zal de knop <link linkend="panel_toolbar"
+>Synchroon-bladeren</link
+> te zien zijn.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-selection_modes">
+      <title
+>Selectiemodus</title>
+      <para
+>Hier kunt u de selectiemodus instellen. <itemizedlist id="selection_modes">
+        <title>
+          <guilabel
+>Algemeen</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>&krusader; Modus</guilabel
+>: De manier waarop &krusader; vanaf dag een heeft gewerkt. Met beide muisknoppen kunt u bestanden selecteren. Voor het selecteren van meerdere bestanden, houdt u de &Ctrl;-toets ingedrukt en klikt met de &LMB;. Een contextmenu verschijnt als u met &RMB; klikt.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>&konqueror;-modus</guilabel
+>: &LMB; selecteert bestanden. U kan meerdere bestanden selecteren door de klikken. Het rechts-klikmenu opent met een korte klik op de &RMB;.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Total commander Modus</guilabel
+>: Door het indrukken van de &RMB; selecteert u meerdere bestanden en het contextmenu verschijnt door <guilabel
+>indrukken en houden </guilabel
+> van de &RMB;. De &LMB; selecteert niet, maar geeft het huidige bestand de focus zonder de huidige selectie te veranderen.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Ergonomische modus</guilabel
+>: De &LMB; selecteert niet, maar geeft het huidige bestand de focus zonder de huidige selectie te veranderen. De rechter muisknop opent het context-menu. U kunt selecteren met de &Ctrl; en &LMB;.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Gebruikersgedefinieerde selectie modus</guilabel
+>: Ontwerp uw eigen selectie modus!</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Details</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Dubbelklikken selecteert (klassiek)</guilabel
+>: Een enkele klik op een bestand zal selecteren en focussen, een dubbelklik zal het bestand openen of in de map instappen.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Algemeen selectiebeleid toepassen</guilabel
+>: Door het indrukken van de &LMB; selecteert u bestanden -- De globale instellingen gebruiken: <menuchoice
+><guimenu
+>Invoerapparaten</guimenu
+> <guimenuitem
+>Muis </guimenuitem
+></menuchoice
+> module in &systemsettings; van &plasma;.</para>
+        </listitem>
+        <listitem>
+          <para
+>Gebruikersgedefinieerde selectie modus: <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Gebaseerd op de selectie modus van &plasma;</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&LMB; selecteert</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&LMB; behoudt de selectie</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;/&Ctrl; + links klikken selecteert</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&RMB; selecteert</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&RMB; behoudt de selectie</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;/&Ctrl; + rechts klikken selecteert</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Spatiebalk verplaatst naar beneden.</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Invoegen (Insert) verplaatst naar beneden</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Rechter muisknop laat het context menu onmiddellijk verschijnen.</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Een gewone muisknop reset de selectie</guilabel
+> - reset de selectie bij een muisklik zonder modifiers (&ie; &Shift; of &Ctrl;). Selectie met &Shift;/&Ctrl; voor de muisknop moet ingeschakeld worden om dit instellen te laten werken. </para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-mediamenu">
+      <title
+>Menu Media</title>
+      <para
+>Gebruik deze tab om de menu-inhoud van de <link linkend="media_button"
+>Media knop</link
+> te selecteren: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>Aankoppelpad tonen</guilabel
+>: Toont het aankoppelpunt van de partitie indien geactiveerd.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Type bestandssysteem tonen</guilabel
+>: toont het type bestandssysteem indien geactiveerd.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>SquashFS-items verbergen</guilabel
+>: <ulink url="https://snapcraft.io/"
+>Snap</ulink
+> maakt veel <ulink url="https://en.wikipedia.org/wiki/SquashFS"
+>SquashFS</ulink
+>-aangekoppelde partities aan, die bijna allemaal nutteloos zijn in het <link linkend="list_panel"
+>Mediamenu</link
+>, omdat <application
+>snap</application
+> ze beheert. Het is mogelijk aankoppelingen van SquashFS- te verbergen door ze aan te vinken.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Volgende aankoppelpunten verbergen</guilabel
+>: deze lijst biedt het uitsluiten van ongewenste items uit het <link linkend="list_panel"
+>Mediamenu</link
+>. Druk op de knop <guibutton
+>+</guibutton
+> boven de lijst om enige aankoppelpunten toe te voegen die u wilt negeren. Als u beslist het toegevoegde koppelpunt uit de lijst te verwijderen klik er gewoon op an druk op de knop <guibutton
+>-</guibutton
+>. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Grootte tonen:</guilabel
+> :hier kunt u instellen hoe de grootte in het media menu wordt getoond. Dit kan zijn <guimenuitem
+>Altijd</guimenuitem
+> (standaard, toont altijd de grootte van de partitie), <guimenuitem
+>Als het apparaat geen label heeft</guimenuitem
+> (toont alleen de grootte voor partities zonder label) of <guimenuitem
+>Nooit</guimenuitem
+> (toont nooit de grootte in het media menu).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-layout">
+      <title
+>Indeling</title>
+      <para
+>U kunt hier de indeling en andere instellingen van frames wijzigen: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>Indeling:</guilabel
+> definieert de indeling. De standaard keuzemogelijkheden zijn <guimenuitem
+>Standaard</guimenuitem
+>, <guimenuitem
+>Compact</guimenuitem
+>, en <guimenuitem
+>Klassiek</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Framekleur:</guilabel
+> definieert de framekleur. Dit kan zijn <guimenuitem
+>Gedefinieerd door indeling</guimenuitem
+>, <guimenuitem
+>Geen</guimenuitem
+>, of <guimenuitem
+>Statusbalk</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Framevorm::</guilabel
+> definieert de framekleur. Dit kan zijn <guimenuitem
+>Gedefinieerd door indeling</guimenuitem
+>, <guimenuitem
+>Geen</guimenuitem
+>, <guimenuitem
+>Vak</guimenuitem
+> of <guimenuitem
+>Paneel</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Frameschaduw:</guilabel
+> definieert de framekleur. Dit kan zijn <guimenuitem
+>Gedefinieerd door indeling</guimenuitem
+>, <guimenuitem
+>Geen</guimenuitem
+>, <guimenuitem
+>Omhoog gebracht</guimenuitem
+> of <guimenuitem
+>Verzonken</guimenuitem
+>.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="konfig-color">
+    <title
+>Kleuren</title>
+    <para
+>In deze pagina kunt u de kleuren van het <link linkend="list_panel"
+> Paneel</link
+> en de <link linkend="synchronizer"
+>Synchronisatie</link
+> instellen. Standaard zijn de ingestelde kleuren de <guilabel
+>standaard &kde; kleuren</guilabel
+>.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Algemeen</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>&kde; standaard kleuren gebruiken</guilabel
+>: dit is de standaard, het gebruikt de &plasma;-kleuren zoals die ingesteld zijn in de &systemsettings;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Beurtelings afwisselende achtergrondkleur gebruiken</guilabel
+>: Indien ingeschakeld, zal de <guilabel
+>Achtergrondkleur</guilabel
+> en de <guilabel
+>Beurtelings afwisselende achtergrondkleur</guilabel
+> afwisselen regel na regel. Wanneer u niet de &plasma; standaard kleuren kiest, kunt u de alternatieve achtergrondkleuren configureren in het vak <guilabel
+>Kleuren</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Toon huidig item, zelfs wanneer dit geen focus heeft</guilabel
+>: Indien ingeschakeld, zal het de laatste cursor positie in het niet active paneel tonen. Deze optie is enkel beschikbaar wanneer u niet kiest voor de standaard &plasma; kleuren.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>De kleuren van het inactieve venster dimmen</guilabel
+>: Indien ingeschakeld, zullen de kleuren van het inactief paneel worden gedimd. Deze instelling kunt u wijzigen in de tab <guilabel
+>Inactief</guilabel
+> in het vak <guilabel
+>Kleuren</guilabel
+> box. Deze optie is enkel beschikbaar wanneer u niet kiest voor de standaard &plasma; kleuren.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Kleuren</guilabel>
+        </term>
+        <listitem>
+          <para
+>De kleuren zijn naar wens instelbaar, U kunt het resultaat in de sectie <guilabel
+>Voorbeeld</guilabel
+> zien. De volgende items van active en inactieve panelen zijn instelbaar:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Voorgrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Voorgrond van map</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Voorgrond van uitvoerbaar bestand</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Voorgrond van symbolische koppeling</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Voorgrond van ongeldige symlink</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Achtergrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Afwisselende achtergrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Geselecteerde voorgrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Geselecteerde achtergrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Geselecteerde achtergrond afwisselen</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Huidige voorgrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Geselecteerde huidige voorgrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Huidige achtergrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Voorgrond hernoemen</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Achtergrond hernoemen</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+          <para
+>De volgende items van <link linkend="synchronizer"
+>Synchronisatie</link
+> zijn instelbaar:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Gelijk aan voorgrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Gelijk aan achtergrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Verschilt van voorgrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Verschilt van achtergrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Voorgrond van kopiëren naar links</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Achtergrond van kopiëren naar links</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Voorgrond van kopiëren naar rechts</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Achtergrond van kopiëren naar links</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Wissen voorgrond</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Wissen achtergrond</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Voorbeeld</guilabel>
+        </term>
+        <listitem>
+          <para
+>Hier kunt u een voorbeeld van de ingestelde kleuren zien.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Kleurenschema's</guilabel>
+        </term>
+        <listitem>
+          <para
+>Met de knoppen <guibutton
+>Kleurenschema importeren</guibutton
+> en <guibutton
+>Kleurenschema exporteren</guibutton
+> kunt u een kleurschema-profiel laden en opslaan. Hiermee kan &krusader; kleurschema´s van <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+>, foo-commander of uw eigen kleurschema-profiel gebruiken. De kleurschema´s worden opgeslagen in <filename
+>/usr/share/krusader</filename
+>, het bestand <filename
+>foo.color</filename
+> is een binair bestand met daarin het kleurenschema.</para>
+          <tip>
+            <para
+><application
+>Midnight Commander</application
+> en <trademark class="copyright"
+>Total Commander</trademark
+> kleurenschema´ s zijn meegeleverd. Stuur <link linkend="help_krusader"
+>uw favoriete kleurenschema´s op</link
+> zodat ze beschikbaar komen voor de &krusader;-gemeenschap. Hartelijk dank!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+<sect1 id="konfig-general">
+    <title
+>Algemeen</title>
+    <para
+>Hier kunt u de standaard bewerkingen instellen. De pagina is verdeelt in drie tabs: <guilabel
+>Algemeen</guilabel
+>, <guilabel
+>Viewer/Editor</guilabel
+>, en <guilabel
+>Atomic extensions</guilabel
+>.</para>
+    <sect2 id="konfig-general-general">
+      <title
+>Algemeen</title>
+      <para
+>De volgende hebben invloed op basis aspecten van bewerkingen:</para>
+      <itemizedlist>
+	<listitem>
+	  <para
+><guilabel
+>Waarschuwing bij verlaten</guilabel
+>: indien ingeschakeld, zal &krusader; een waarschuwing geven wanneer u tracht het hoofdvenster te sluiten. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>Tonen en sluiten naar systeemvak</guilabel
+>: Indien ingeschakeld, zal het pictogram van &krusader; in het systeemvak verschijnen. Als u &krusader; minimaliseert, dan zal het niet in de taakbalk verschijnen. Het zal ook niet afsluiten als u het hoofdvenster sluit. In plaats daarvan kan u &krusader; afsluiten door het selecteren van menu-item <menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Afsluiten</guimenuitem
+></menuchoice
+> of het contextmenu van het pictogram in het systeemvak. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>&MIME;-type-magic gebruiken</guilabel
+>: &MIME;-type magic is een mechanisme waarmee &krusader; de bestanden in het paneel kan inspecteren zodat het de type kan bepalen zelfs als het bestand geen extensie heeft. Bijvoorbeeld, als u een afbeelding-bestand - <filename
+>image1.jpg</filename
+> - neemt en het hernoemt naar <filename
+>image1</filename
+>, dan zal &krusader; nog steeds weten dat het een afbeelding-bestand is en overeenkomstig behandelen. Maar dit maakt het wel langzamer (bij het verversen van het paneel, of wijzigen van mappen), probeer daarom &krusader; uit met en zonder &MIME;-type magic en beslis daarna wat het beste voor u werkt.</para>
+	 </listitem>
+	 <listitem>
+	   <para
+><guilabel
+>Tijdelijke map</guilabel
+>: met deze keuzemogelijkheid stelt u de map in waarin &krusader; zijn tijdelijke bestanden plaatst. De eigenlijke bestanden zullen in aparte mappen in de 'Tijdelijke map' worden aangemaakt, zodat elke gebruiker die &krusader; gebruikt, zijn eigen tijdelijke submappen in de gekozen map zal hebben. <note
+> <para
+>U moet een tijdelijke map kiezen waartoe alle gebruikers die &krusader; gebruiken volledige toegangsrechten hebben!</para>
+	     </note>
+	   </para>
+	 </listitem>
+      </itemizedlist>
+      <para
+><guilabel
+>Verwijderen modus</guilabel
+> (<guilabel
+>Mappen wissen/Naar prullenbak verplaatsen</guilabel
+>): als &krusader; bestanden verwijdert dan kan het naar keuze <emphasis
+>echt</emphasis
+> verwijderen of ze naar Prullenbak verplaatsen, zodat beschikbaar komen via de prullenbak van &plasma;. </para>
+      <para
+><guilabel
+>Externe terminal</guilabel
+>: kies welke terminalemulator wordt gebruikt als &krusader; een console venster opent (via <keycap
+>F9</keycap
+>, of de menu keuze<menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Terminal starten</guimenuitem
+></menuchoice
+>). </para>
+      <para
+><guilabel
+>Ingebedde terminal  zal 'Chdir' gebruiken bij wijziging van paneel</guilabel
+>: indien uitgeschakeld, zal er geen <command
+>cd</command
+> commando naar de Terminalemulator worden gestuurd als de map in het paneel wijzigt.</para>
+      <para
+><guilabel
+>Actief paneel volgt de werkmap van ingebedde terminal</guilabel
+>: indien niet geactiveerd, blijft actief paneel ongewijzigd staan terwijl de gebruiker navigeert in de ingebedde terminal (met gebruik van cd, popd, etc.). </para>
+      <para
+><guilabel
+>Schermvullende ingebedde terminal omschakelen</guilabel
+>: indien ingeschakeld, zal &krusader; een schermvullende terminal in <application
+>Midnight Commander</application
+> stijl (in plaats van het &krusader; venster is een terminal te zien) tonen. </para>
+    </sect2>
+    <sect2 id="konfig-general-viewer">
+       <title
+>Viewer/Editor</title>
+      <para
+>Hier kunt u de instellingen van de viewer en de editor wijzigen: </para>
+      <itemizedlist>
+      <listitem>
+	<para
+><guilabel
+>De interne viewer en editor zullen elk bestand in een apart venster openen</guilabel
+>: activeer dit item in als u wilt dat elk bestand in een apart venster wordt geopend. Indien niet geactiveerd zal elk bestand geopend worden in een tabblad in hetzelfde venster Beeld/Bewerken. Elk tabblad in zo'n venster kan gesloten worden, naast andere algemene methoden, door te klikken op het tabblad met de &MMB;. </para>
+      </listitem>
+      <listitem>
+	<para
+><guilabel
+>De tabbladbalk verbergen wanneer maar één tabblad is geopend</guilabel
+>: activeer dit item als u de Viewer/Bewerker tabbladbalk verbergen wilt als slechts één tabblad is geopend. </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Standaard viewermodus</guilabel
+>: <itemizedlist>
+        <listitem>
+         <para
+><guilabel
+>Algemene modus</guilabel
+>: Gebruik de standaard viewer van het systeem.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Tekst modus</guilabel
+>: Toont het bestand in alleen-tekst modus.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Hex modus</guilabel
+>: Toont het bestand in de hex mode.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Lijstmaker modus</guilabel
+>: Snelle tekst/hexadecimale weergave voor grote bestandsformaten. &krusader; lijstmaker laad nooit het hele bestand in het geheugen, alleen maar een gedeelte ervan, en gebruikt caching voor sneller scrollen. Bestanden die op een server staan worden gedownload, maar tijdens het downloaden is het al mogelijk om het gedownloade gedeelte te bekijken. Ook als een bestand constant wijzigt,kunt u het bekijken, lijstmaker laat het altijd in de huidige staat zien.</para>
+        </listitem>
+	<listitem>
+         <para
+><guilabel
+>Gebruik lijstmaker als het tekstbestand groter is dan: 10 MB (standaardinstelling)</guilabel
+>: controleert of een tekstbestand groter is dan 10 MB (instelbaar), en indien dat het geval is, zal de Lijstmaker van &krusader; worden gebruikt in plaats van de standaard viewer van &plasma;.</para>
+	</listitem>
+	<listitem>
+         <para
+><guilabel
+>Okteta als hex-viewer gebruiken</guilabel
+>: indien ingeschakeld (standaard keuze), zal &plasma; de hex editor <ulink url="https://docs.kde.org/index.php?application=okteta"
+>Okteta</ulink
+> gebruiken voor het tonen van raw data. Om deze keuze te kunnen gebruiken moet u eerst <application
+>Okteta</application
+> hebben geïnstalleerd.</para>
+	</listitem>
+	</itemizedlist>
+      </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Editor</guilabel
+>: hier kunt u een keuze maken welke editor u gebruikt voor het bewerken van een bestand (via <keycap
+>F4</keycap
+>). Standaard is dat de interne viewer, dit is de standaard viewer van &plasma;.</para>
+      </listitem>
+    </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-general-atomic">
+      <title
+>Atomisme extensies</title>
+        <para
+>Instelbare <guilabel
+>Atomisme extensies</guilabel
+>, zodat extensies zoals <literal role="extension"
+>tar.gz</literal
+> als een geheel in de <guilabel
+>Ext kolom</guilabel
+> van het <link linkend="list_panel"
+>Paneel</link
+> worden getoond.</para>
+      </sect2>
+  </sect1>
+  <sect1 id="konfig-advanced">
+    <title
+>Geavanceerd</title>
+    <para
+>Deze pagina is voor de meer geavanceerde issues, daarom moet u uiterst voorzichtig zijn bij wat u hier doet: met het wijzigen van instellingen hier <remark
+>kunt u van &krusader; een krachtiger en maar ook gevaarlijker gereedschap maken.</remark
+></para>
+
+    <para
+>De pagina in onderverdeeld in drie gedeeltes:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Algemeen</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+	    <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Preserve attributes for local copy/move
+              (slower)</guilabel
+>: If checked,
+              &krusader; will try to preserve all
+              attributes (time, owner, group) of the local files
+              according to the source file depending on your
+              <link linkend="copying"
+>permissions</link
+>.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>Automount bestandsystemen</guilabel
+>: hierdoor zal &krusader; proberen om een bestandssysteem aan te koppelen voordat het dit systeem binnen gaat. Bijvoorbeeld, als u klikt op <filename class="directory"
+>/mnt/cdrom</filename
+> (en <filename class="directory"
+> /mnt/cdrom</filename
+> is in <filename class="directory"
+>/etc/fstab</filename
+> opgenomen als aankoppelpunt), dan zal &krusader; controleren of het is aangekoppeld. als dat niet het geval is, dan zal het eerst proberen om het voor u aan te koppelen en daarna binnen te gaan, zodat u de inhoud van uw &CD-ROM; kan bekijken. Merk op dat &krusader; de aankoppeling NIET zal verbreken bij het verlaten van <filename class="directory"
+> /mnt/cdrom</filename
+>.</para>
+            </listitem>
+            <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Do not use KDE media protocol for the
+              Media button (if it is buggy or missing)</guilabel
+>:
+              If checked, &krusader; will not use
+              &kde; media protocol for the
+              <link linkend="list_panel"
+>Media button</link
+>.
+              Choose this when the media protocol is buggy (in some
+              older &kde; versions) or if you have no
+              kdebase package installed on your system.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>MountMan zal de volgende aankoppelpunten niet (aan/af)koppelen</guilabel
+>: Als u bestandssystemen heeft die u niet per ongeluk wilt afkoppelen (of aankoppelen) dan kunt u ze hier invoeren als een lijst van koppelpunten gescheiden door komma´s (&eg; <literal
+>/, /boot, /tmp</literal
+>) zodat <link linkend="mount-man"
+>MountMan</link
+> niet zal proberen ze aan of af te koppelen.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Bevestigingen</guilabel>
+        </term>
+        <listitem>
+          <para
+>Na het inschakelen van de keuzes in deze sectie, zal &krusader; om bevestiging vragen voordat het bepaalde acties uitvoert; anders zal het de volgende acties zonder waarschuwing uitvoeren:</para>
+          <itemizedlist>
+            <listitem>
+              <para
+>Niet lege mappen wissen</para>
+            </listitem>
+            <listitem>
+              <para
+>Bestanden verwijderen</para>
+            </listitem>
+            <listitem>
+              <para
+>Bestanden kopiëren</para>
+            </listitem>
+            <listitem>
+              <para
+>Bestanden verplaatsen</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Fijn instellingen</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Pictogram cachegrootte (KB)</guilabel
+>: &krusader; gebruikt een pictogramcache, zodat het al eerder gebruikte pictogrammen niet meer hoeft te herladen. Natuurlijk, als u de cache groter maakt, kan het meer pictogrammen bewaren en bewerkingen versnellen, maar het geheugengebruik van &krusader; zal dan ook groter zijn.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Argumenten van updatedb</guilabel
+>: hier kunt u extra argumenten voor <command
+>updatedb</command
+> opgeven, lees eerst de manpages voor meer informatie.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-archives">
+    <title
+>Archieven</title>
+    <para
+>Deze pagina stelt enige aspecten in van behandeling van archieven in &krusader;. </para>
+    <variablelist>
+      <varlistentry>
+	<term>
+	  <guilabel
+>krarc ioslave</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>Ondersteuning voor schrijven inschakelen</guilabel
+>: Activeer deze optie om bestanden naar een archief te kunnen schrijven. <warning
+> <para
+>Het nadeel is dat als een elektriciteitsstoring optreed tijdens het proces, de bestanden die werden verplaatst al verwijderd kunnen zijn en nog niet in het archief ingepakt. Het verplaatsen van archieven in zichzelf zal ze verwijderen. </para>
+	      </warning>
+	    </para>
+	  </listitem>
+	</varlistentry>
+              <varlistentry>
+	<term>
+	  <guilabel
+>Behandeling van archieven</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>Door archieven bladeren als door mappen</guilabel
+>: indien geactiveerd zal &krusader; de archieven transparent behandelen en laat u deze openen als mappen; anders zal &krusader; een poging doen om een toepassing te starten die archieven van dat type opent. </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>
+	    <guilabel
+>Fijn instellingen</guilabel>
+	  </term>
+	  <listitem>
+      <itemizedlist>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Allow moving into archives</guilabel
+>: this
+          option allows you to move files into an archive (as
+          opposed to just copying into the archive). The down side
+          is that if a power failure occurs during the process, the
+          files that were moved might already be deleted, but not
+          yet packed into the archive.
+          <note>
+            <para
+>If such a thing happens, the file(s) are NOT
+            LOST. They were actually moved into a subfolder in
+            &krusader;'s
+            <link linkend="konfig-general"
+>temp folder</link
+>.
+            You can search the folder and recover your
+            files.</para>
+          </note
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para
+><guilabel
+>Archief testen na het inpakken</guilabel
+>: deze keuze zal automatisch een test uitvoeren op nieuw ingepakte archieven. Dit is veiliger, maar duurt wel langer.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Archief eerst testen voor het uitpakken</guilabel
+>: deze keuze zal automatisch een test uitvoeren voor het uitpakken. Sommige corrupte archieven zouden een crash kunnen veroorzaken; het is daarom beter om archieven voor het uitpakken eerst te testen.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+  </varlistentry>
+  </variablelist>
+  </sect1>
+  <sect1 id="konfig-dependencies">
+    <title
+>Pagina met afhankelijkheden</title>
+    <para
+>Deze pagina geeft de volledige pad van externe toepassingen. Het is zelfs mogelijk om het volledige pad van &krusader; in te stellen!</para>
+    <para>
+      <emphasis role="bold"
+>Algemeen tabblad</emphasis>
+    </para>
+    <para
+>Hier kunt u het volledige pad van de volgende externe programma´s instellen:</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>toepassing</entry>
+            <entry
+>Instelbaar volledig pad</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kdesu</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kdesu</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kget</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kget</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mailer</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kmail</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>diff gereedschap</para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kompare</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <command
+>krename</command>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krename</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>krusader</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krusader</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>locate</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/locate</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/mount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>umount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/umount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>updatedb</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/updatedb</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <tip>
+      <para
+>Standaard wordt &kompare; (onderdeel van het kdesdk pakket) gebruikt als externe diff programma maar u kunt ook uw favoriete diff programma &eg; <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> of <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> gebruiken, u hoeft alleen maar het volledige pad op te geven.</para>
+    </tip>
+    <para>
+      <emphasis role="bold"
+>Tabblad met inpakkers</emphasis>
+    </para>
+    <para
+>In het tabblad <guilabel
+>Pakkers</guilabel
+> ziet u een lijst met archieftypes. Sommige zijn gevuld en sommige zijn leeg. Diegene die beschikbaar zijn (gevuld) worden ondersteunt door &krusader;. &krusader; zal deze archieven transparant behandelen en laat u ze als mappen openen (er vanuit gaand dat u het item <link linkend="konfig-archives"
+>Archieven</link
+> hebt gearchiveerd); in het andere geval zal &krusader; proberen een toepassing te starten die dit soort archieven kan openen. Als een bepaald type archief leeg is, dan betekent dit dat &krusader; geen toepasselijke programma´s in het ingestelde pad kon vinden. De volgende archieftypes worden ondersteund: ace, arj, bzip2, deb, gzip, iso, lha, lzma, rar, rpm, tar, xz, zip en 7z.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>packer</entry>
+            <entry
+>Instelbaar volledig pad</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>7z</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/7z</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>arj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/arj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>bzip2</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/bzip2</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cpio</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/cpio</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>dpkg</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/dpkg</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>gzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/gzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lha</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lha</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lzma</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lzma</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>rar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/rar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/tar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unace</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unace</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unarj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unarj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unrar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unrar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>zip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/zip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>xz</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/xz</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <note>
+      <para
+>Het kan zijn dat ondanks onze inspanningen &krusader; niet compatibel met ACE is. Unace gebruikt closed source en heeft extra programmaregels zodat Unace in een oneindige loop komt als stdin ergens anders naar toe wordt omgeleid. Het werkt op dezelfde manier als 'su', waar u op geen enkele andere manier dan op stdin het wachtwoord kan invoeren. &krusader; &gt;= 1-51 emuleert de commandoregel om te kunnen samenwerken met Unace, maar we hebben opgemerkt dat Unace bij elke release zijn output anders indeelt, wat samenwerken bijna onmogelijk maakt.</para>
+    </note>
+    <para>
+      <emphasis role="bold"
+>Tabblad Controlesom-hulpmiddelen</emphasis>
+    </para>
+    <para
+>Hier kunt u het volledige pad van de volgende externe <link linkend="checksum"
+>Controlesom-hulpmiddelen</link
+> instellen: <informaltable
+> <tgroup cols="3"
+> <tbody>
+          <row>
+            <entry
+>Controlesom-hulpmiddelen</entry>
+            <entry
+>Instelbaar volledig pad</entry>
+            <entry
+>Ondersteunde controlesommen</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha224sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha224sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha224</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha384sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha384sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha384</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha512sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha512sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha512</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tigerdeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/tigerdeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>tiger</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>whirlpooldeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/whirlpooldeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>whirlpool</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cfv</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/cfv</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5, sha1, sfv, crc</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable
+></para>
+  </sect1>
+  <sect1 id="konfig-useractions">
+    <title
+>GebruikerActies</title>
+    <para
+>Hier kunt u de terminal voor UserActions instellen en het lettertype voor de uitvoer. De standaard terminal is <command
+>konsole --noclose -e</command
+>. Voor het instellen, wijzigen en beheren van uw UserActions gebruikt u ActionMan (<link linkend="useractions"
+>UserActions</link
+> &URL;).</para>
+
+  </sect1>
+  <sect1 id="konfig-protocols">
+    <title
+>Protocollen</title>
+    <para
+>Deze pagina koppelt de &MIME;'s aan protocollen &eg; protocol "tar" is gekoppeld aan &MIME; "application/x-tar".</para>
+
+    <para
+>In de <guilabel
+>Verwijzingen</guilabel
+> zult u &eg; zien <itemizedlist>
+      <listitem>
+        <para
+>Iso</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-iso</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>krarc</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-ace</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-arj</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-bzip2</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-cpio</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-deb</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-debian-package</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-gzip</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-jar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-lha</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rpm</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-zip</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>tar</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-tar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tarz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tbz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tgz</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect1>
+</chapter>

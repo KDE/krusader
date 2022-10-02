@@ -1,0 +1,42 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="checksum">
+  <title
+>Controlesom aanmaken en controleren</title>
+  <indexterm>
+    <primary
+>Controlesom</primary>
+  </indexterm>
+  <para
+><menuchoice
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Controlesom aanmaken...</guimenuitem
+> </menuchoice
+>: &krusader; controleert welke hulpmiddelen u hebt en of deze hulpmiddelen recursieve bewerking toestaan (in het geval u mappen hebt geselecteerd), u kunt een controlesom genereren door een type controlesom te kiezen uit de lijst (<guilabel
+>md5</guilabel
+>, <guilabel
+>sha</guilabel
+> &etc;). U kunt daarna de ccontrolesom opslaan in een bestand, gewoonlijk <filename
+>checksum.md5</filename
+> of <filename
+>checksum.sha1</filename
+> genoemd.</para>
+  <para
+><menuchoice
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Controlesom verifiëren...</guimenuitem
+> </menuchoice
+>: &krusader; controleert of u een hulpmiddel hebt dat het type ccontrolesom dat u nodig hebt ondersteunt (uit uw gespecificeerde controlesombestand) en toont de bestanden die fout uit de controlesom kwamen (indien zulke).</para>
+  <para
+>De systeem samenvattingen over verschillende controlesom-mechanismen en controlesom toepassingen. Op dit moment zijn de volgende controlesommen ondersteund: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv en crc. Graag uw <link linkend="konfig-dependencies"
+>Instellingen voor controlesom toepassingen</link
+> vóór het gebruik van deze functie.</para>
+</sect1>

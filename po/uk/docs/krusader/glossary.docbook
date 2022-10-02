@@ -1,0 +1,360 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<glossary id="glossary">
+  <indexterm>
+    <primary
+>Глосарій</primary>
+  </indexterm>
+  <para
+>Цю главу присвячено поясненню значення різноманітних термінів, які використовуються у документації &krusader;. Якщо ви вважаєте, що у ній немає пояснення деяких незрозумілих скорочень чи термінів, будь ласка, не вагайтеся і зв’яжіться з командою з документування &krusader;.</para>
+  <para
+>Дякуємо <ulink url="https://en.wikipedia.org/"
+>wikipedia.org</ulink
+> вільній енциклопедії, внесок до якої може зробити кожен.</para>
+  <glossentry id="gloss-acl">
+    <glossterm>
+      <acronym
+>ACL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Access_control_list"
+>Списки керування доступом (Access Control List)</ulink
+> — інструмент у галузі комп’ютерної безпеки, який використовується для примусового розмежування прав доступу. На його основі визначаються відповідні права доступу до певного об’єкта на основі характеристик процесу, від якого надійшов запит на доступ.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-bsd">
+    <glossterm>
+      <acronym
+>BSD</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Bsd"
+>Berkeley Software Distribution</ulink
+> — термін, яким позначають деякі з вільних сумісних з &UNIX; операційних систем, які є спадкоємцями &BSD; &UNIX;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-cvs">
+    <glossterm>
+      <acronym
+>CVS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Concurrent_Versions_System"
+> Concurrent Versions System (Паралельна система версій)</ulink
+> — важливий компонент керування налаштуваннями кодів (Source Configuration Management або SCM). За її допомогою розробники можуть здійснювати запис журналу змін у файлах кодів і документах.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-deb">
+    <glossterm>
+      <acronym
+>DEB</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>Бінарний формат файлів, який використовується у <ulink url="http://en.wikipedia.org/wiki/Debian"
+> <trademark class="registered"
+>Debian</trademark
+></ulink
+> та заснованих на <trademark class="registered"
+>Debian</trademark
+> дистрибутивах. Це суфікс назви файлів пакунків для встановлення програмного забезпечення, спеціально зібраних для таких дистрибутивів; наприклад <filename
+>krusader_1.70.1-1_amd64.deb</filename
+>. Якщо коротко, це особливий архів, у якому містяться всі файли програми та дані про їх розташування у системі.</para>
+    </glossdef>
+  </glossentry>
+    <glossentry id="glos-dbus">
+    <glossterm
+>&DBus; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://freedesktop.org/wiki/Software/dbus"
+>&DBus;</ulink
+> — система обміну повідомленнями між службами. Цю систему розроблено &RedHat;, значний вплив на розробку мала система &kde; 3 <link linkend="glos-dcop"
+>&DCOP;</link
+>, наступником якої стала &DBus;. &krusader; може використовувати &DBus; для обміну даними з іншими програмами. З іншого боку, ви можете скористатися &DBus; для керування &krusader; з інших програм. Для ознайомлення з можливостями інтерфейсу скористайтеся програмою <application
+>qdbusviewer</application
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-dcop">
+    <glossterm
+>&DCOP; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Dcop"
+>Desktop Communication Protocol (протокол обміну даними у стільниці)</ulink
+> — протокол обміну даними між процесами, який використовується у стільничному середовищі &kde;. За його допомогою різноманітні програми &kde; можуть обмінюватися даними одна з одною. У &kde; 4 замінено на <link linkend="glos-dbus"
+>&DBus;</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-faq">
+    <glossterm>
+      <acronym
+>ЧаП</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><link linkend="faq"
+>Часті питання (Frequently Asked Questions або FAQ)</link
+> — документ, у якому дано відповіді на питання, які виникають найчастіше. Якщо у вас є питання до розробників &krusader;, завжди спочатку зазирніть до <link linkend="faq"
+>ЧаП</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-ftp">
+    <glossterm
+>&FTP;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/File_Transfer_Protocol"
+>File Transfer Protocol (протокол передавання файлів)</ulink
+> — протокол інтернету, за допомогою якого ви можете отримувати файли з так званих серверів &FTP;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-git">
+    <glossterm
+>Git</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Git_(software)"
+>Git</ulink
+> — розподілена система керування версіями, яка є замінює собою <link linkend="gloss-svn"
+>Subversion</link
+>. Ця система використовується у багатьох проєктах з розробки програмного забезпечення, зокрема &kde; і &krusader;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gpl">
+    <glossterm>
+      <acronym
+>GPL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Gpl"
+>GNU General Public License (загальна публічна ліцензія GNU)</ulink
+> — ліцензія на програмне забезпечення, створена <ulink url="https://www.fsf.org/"
+>Фондом вільного програмного забезпечення</ulink
+>, у якій визначаються умови користування вільним програмним забезпеченням.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gui">
+    <glossterm
+>Графічний інтерфейс (&GUI;)</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Graphical_user_interface"
+> Графічний інтерфейс користувача</ulink
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-iso">
+    <glossterm>
+      <acronym
+>ISO</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/ISO_image"
+>Образ ISO</ulink
+> (<literal role="extension"
+>.iso</literal
+>) — це неформальний термін для позначення образу диска з файловою системою ISO 9660. У ширшому значенні, позначає будь-який образ оптичного диска, навіть образ UDF.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kde">
+    <glossterm
+>&kde;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Kde"
+>Стільничне середовище (K Desktop Environment)</ulink
+> — проєкт з розробки вільного графічного стільничного середовища для сумісних з &UNIX; систем.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-keybinding">
+    <glossterm
+>Прив’язка клавіш</glossterm>
+    <glossdef>
+      <para
+>Доступ до всіх можливостей &krusader; можна отримати за допомогою панелі меню, крім того, ви можете пов’язати натискання певних комбінацій клавіш з цими функціональними можливостями. Якщо ви почнете користуватися <link linkend="keyboard-commands"
+>клавіатурними скороченнями</link
+>, ви зрозумієте, що можна виконання завдань за допомогою клавіатури значно швидше за використання смужки меню та <link linkend="gloss-gui"
+>графічного інтерфейсу</link
+>. <link linkend="keyboard-commands"
+>Використання клавіатури</link
+> є важливим елементом <link linkend="gloss-ofm"
+>класичних інструментів керування файлами</link
+>. &krusader; постачається з декількома попередньо визначеними наборами <link linkend="key_bindings"
+>клавіатурних скорочень</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kpart">
+    <glossterm
+>KPart</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/KPart"
+>Kpart</ulink
+> — назва компонента оболонки стільничного середовища &kde;. KPart — це аналог компонент Bonobo у <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, обидва різновиди компонент споріднено з  &Microsoft; OLE. Наприклад, ви можете скористатися переглядачем &krusader; для перегляду файла &PDF;, — у переглядачі &krusader; буде запущено &okular;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kio">
+    <glossterm
+><acronym
+>KIO</acronym
+> або kioslave</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Kioslave"
+>KDE Input/Output (ввід/вивід KDE)</ulink
+> —також відомий як підлеглі засоби KIO, частина архітектури &kde;. Надає доступ до файлів, вебсайтів та інших ресурсів за допомогою єдиного однорідного API.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-mount">
+    <glossterm
+>mount</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Mount_%28computing%29"
+>Монтування</ulink
+> у комп’ютерних науках є процесом, за допомогою якого файлова система стає доступною до використання операційною системою, типово, шляхом випереджувального читання певних структур даних покажчика з носія зберігання до пам’яті. Цей термін залишився у спадок від тих часів, коли оператор мав встановити (змонтувати) магнітну стрічку або жорсткий диск на шпіндель перед використанням носія даних.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ofm">
+    <glossterm>
+      <acronym
+>OFM</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Orthodox File Manager (класичний інструмент роботи з файлами)</ulink
+> — іноді ще називають «Commander» (командер). Програми з цього сімейства використовують простий, але дуже потужний інтерфейс, який є прямим спадкоємцем інтерфейсу <ulink url="https://en.wikipedia.org/wiki/Norton_Commander"
+> Norton Commander</ulink
+> (NC).</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-rpm">
+    <glossterm
+>RPM</glossterm>
+    <glossdef>
+      <para
+>Це бінарний формат файлів для дистрибутивів, що використовують <ulink url="http://www.rpm.org/"
+>керування пакунками RPM</ulink
+>, поширений інструмент роботи з пакунками у операційних системах &Linux;. Якщо вам потрібен пакунок з &krusader;, а ваша система використовує пакунки RPM, вам слід отримати файл пакунка &krusader;, назва якого завершується на <literal role="extension"
+>.rpm</literal
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ssh">
+    <glossterm
+><acronym
+>SSH</acronym
+>, безпечна оболонка</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/SSH"
+>SSH</ulink
+> — набір стандартів і відповідний мережевий протокол, за допомогою якого можна встановлювати безпечні канали між локальним та віддаленим комп’ютерами.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-svn">
+    <glossterm
+><acronym
+>SVN</acronym
+>, Subversion</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Subversion"
+>Subversion</ulink
+> — система керування версіями, яка є спадкоємицею і замінником <link linkend="gloss-cvs"
+>CVS</link
+>. Ця система використовується у багатьох проєктах з розробки програмного забезпечення, зокрема &kde;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-termemu">
+    <glossterm
+>Емулятор термінала</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Terminal_emulator"
+>Емулятор термінала</ulink
+> — це проста оболонка у вікні; таке вікно відоме як вікно командного рядка у деяких інших середовищах. Якщо ви бажаєте використовувати цю оболонку і вводити до неї команди, вам слід знати принаймні декілька команд системного рівня у вашій операційній системі.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-posix">
+    <glossterm>
+      <acronym
+>POSIX</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Posix"
+>Portable Operating System Interface for uniX</ulink
+> — спільна назва сімейства пов’язаних між собою стандартів, створених IEEE для визначення програмного інтерфейсу (API) для програмного забезпечення, сумісного з варіантами операційної системи &UNIX;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-url">
+    <glossterm
+>&URL; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/URL"
+>Universal Resource Locater (єдиний вказівник ресурсів)</ulink
+> — технічний термін, що відповідає тому, що ми зазвичай називаємо адресою вебсайта. Серед прикладів URL <ulink url="https://krusader.org"
+> https://krusader.org</ulink
+> і <link linkend="remote-connections"
+>віддалені з’єднання</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-vfs">
+    <glossterm>
+      <acronym
+>VFS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><link linkend="vfs"
+>Virtual file systems (віртуальні файлові системи)</link
+> є основною <link linkend="features"
+>можливістю OFM</link
+>. VFS є шаром абстрагування над всіма видами архівованих даних (ZIP-файлів, &FTP;-серверів, TAR-архівів, файлових систем &NFS;, спільні ресурси SAMBA, образи ISO компакт-дисків і DVD, каталоги RPM тощо), за допомогою якого користувач може отримувати доступ до всіх даних, що зберігаються у цих різних файлових системах у прозорому режимі — подібно до входу до звичайних підкаталогів! &krusader; підтримує декілька <link linkend="vfs"
+>віртуальних файлових систем (VFS)</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-xml">
+    <glossterm
+>&XML;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Xml"
+>Extensible Markup Language (придатна до розширення мова розмітки)</ulink
+> — дуже гнучкий текстовий формат, що походить від SGML (ISO 8879). Розроблена для задоволення вимог великоформатної електронної поліграфії. Крім того, &XML; відіграє все важливішу роль у обміні широким спектром даних у мережі та інших системах.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-zeroconf">
+    <glossterm
+>Zeroconf</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Zeroconf"
+>Zeroconf</ulink
+> або Zero Configuration Networking є набором методик, за допомогою яких можливе автоматичне створення придатного до використання мережі IP без налаштування або спеціальних серверів. За його допомогою недосвідчені користувачі можуть з’єднувати комп’ютери, мережеві принтери та інші пристрої так, щоб вони могли працювати у автоматичному режимі.</para>
+    </glossdef>
+  </glossentry>
+</glossary>

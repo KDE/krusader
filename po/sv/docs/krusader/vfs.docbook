@@ -1,0 +1,120 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="vfs">
+  <title
+>Virtuella filsystem (VFS)</title>
+  <indexterm>
+    <primary
+>VFS</primary>
+  </indexterm>
+  <para
+>En grundläggande <link linkend="features"
+>funktion i ortodoxa filhanterare</link
+> är VFS, ett abstrakt lager över alla sorters arkiverad information (ZIP-filer, &FTP;-servrar, TAR-arkiv, &NFS;-filsystem, SAMBA delade kataloger, ISO cd/dvd-avbilder, RPM-kataloger, etc.), som gör det möjligt för användaren att transparent komma åt all information i dessa väsenskilda typer av filsystem, precis som att gå ner i en vanlig underkatalog. &krusader; stöder flera olika virtuella filsystem:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>VFS för fjärranslutning</link
+>: Tillhandahåller möjlighet att arbeta med en fjärransluten session (&FTP;, &NFS;, Samba, FISH, SFTP) precis som med lokala filsystem. Det är perfekt för komplexa fjärroperationer, och nästan lika kraftfullt som de flesta fristående grafiska fjärranslutningsprogram.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>VFS för arkiv</link
+>: Gör det möjligt att bläddra i arkiv med VFS som om de var kataloger (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip och 7-zip).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>VFS för sökning</link
+>: <guibutton
+>Skicka till listruta</guibutton
+> placerar sökresultat i VFS.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>VFS för synkroniseraren</link
+>: Placerar synkroniserarens resultat i VFS.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Åtgärder du utför med filer i VFS utförs med de 'riktiga' filerna. Du tar inte bara bort filer från VFS, du tar bort dem från hårddisken. Begränsningar: Du kan inte skapa kataloger inne i ett VFS.</para>
+  <para
+>Det är möjligt att behålla katalogstrukturen när en kopia från en virtuell katalog till en icke-virtuell katalog görs, genom att markera kryssrutan "Behåll virtuell katalogstruktur" i kopieringsdialogrutan. Föreställ dig följande virtuella katalog: <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/min_hemkatalog/min_kat1/min_fil1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/min_hemkatalog/min_kat1/min_fil2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/min_hemkatalog/min_kat2/min_fil3</userinput
+></screen
+> Utför därefter följande steg:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Gå till den virtuella katalogen och markera filerna</para>
+    </listitem>
+    <listitem>
+      <para
+>Välj en målkatalog (inte virtuell)</para>
+    </listitem>
+    <listitem>
+      <para
+>Tryck på <keycap
+>F5</keycap
+> så visas kopieringsdialogrutan</para>
+    </listitem>
+    <listitem>
+      <para
+>Markera <guilabel
+>Behåll virtuell katalogstruktur</guilabel
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Välj <filename
+>/home/min_hemkatalog/</filename
+> som baswebbadress</para>
+    </listitem>
+    <listitem>
+      <para
+>Starta kopieringen genom att klicka på Ok</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Resultatet blir: <screen
+><prompt
+>$</prompt
+> <userinput
+>målkatalog/min_kat1/min_fil1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>målkatalog/min_kat1/min_fil2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>målkatalog/min_kat1/min_fil3</userinput
+></screen>
+  </para>
+</sect1>

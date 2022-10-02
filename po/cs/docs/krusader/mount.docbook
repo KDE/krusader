@@ -1,0 +1,88 @@
+<sect1 id="mount-man">
+  <title
+>Správce připojení disků: pracuje s vašimi připojenými systémy souborů</title>
+  <indexterm>
+    <primary
+>Připojit</primary>
+  </indexterm>
+  <para
+>Správce připojení disků je nástroj, který pomáhá spravovat připojené systémy souborů. Jakmile je zjištěno, je zobrazen seznam všech připojených systémů souborů. Správce připojení disků pro každý systém souborů zobrazí jeho název (což je aktuální název zařízení - např. <filename class="directory"
+>/dev/sda1</filename
+> pro první diskový oddíl na prvním <hardware
+>HDD</hardware
+>), jeho typ (ext4, ext3, ntfs, vfat, ReiserFS ...) a jeho přípojný bod v systému (adresář, do kterého je systém souborů připojený).</para>
+  <para
+>Pokud chcete filtrovat nevyměnitelné zařízení ze seznamu, stačí zaškrtnout položku <guilabel
+>Zobrazit pouze vyměnitelná zařízení</guilabel
+> na levé straně seznamu zařízení. </para>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>MountMan</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="mountman.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="mountman.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>MountMan</phrase
+></textobject>
+  <caption
+><para
+>MountMan</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+  <figure id="screenshot-mountman" float="1">
+    <title
+>Správce připojení disků</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="mountman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Správce připojení disků</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>MountMan také zobrazuje informace o využití pomocí celkové velikosti, volného místa a volného místa v procentech. Jestli tato čísla říkají <guilabel
+>N/A</guilabel
+>, pak to obvykle znamená, že souborový systém není připojen. Kliknutím levým tlačítkem myši na systém souborů se zobrazí koláčový graf v levé části okna, grafické zobrazení informací o využití systému souborů. Kliknutím na nepřipojené systémy souborů se místo grafu zobrazí <guilabel
+>Nepřipojeno</guilabel
+>.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><keycap
+>Dvojité kliknutí</keycap
+> na systém souborů zavře MountMan a tento systém souborů otevře uvnitř aktivního panelu aplikace &krusader;.</para>
+    </listitem>
+    <listitem>
+      <para
+><keycap
+>Kliknutí pravým tlačítkem myši</keycap
+> na systém souborů otevře malou nabídku, která zobrazí, jaké činnosti můžete se systémem souborů provádět. Nyní můžete pouze připojit, odpojit a vysunout (kliknete-li na zařízení s odstranitelným systémem souborů, např. &CD-ROM;).</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>V dalším vývoji aplikace &krusader; plánujeme Správce připojení disků vylepšit. Bude schopen formátovat diskové oddíly, upravovat soubor <filename
+>/etc/fstab</filename
+>, vytvářet nové systémy souborů a mnoho dalšího.... Mimochodem již jsme na tom začali pracovat, viz "Rychlý režim pro Správce připojení disků".</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Rychlý režim pro Správce připojení disků</emphasis>
+  </para>
+  <para
+>Chcete-li vyvolat Rychlý režim pro Správce připojení disků, klikněte na postranní tlačítko s šipkou na tlačítku Správce připojení disků na <link linkend="mainwindow"
+>Hlavní nástrojové liště</link
+>.</para>
+  <para
+>Obecná myšlenka: Zobrazit seznam všech možných připojitelných bodů. Pokaždé je zobrazena nabídka, která určuje, je-li připojitelný bod připojený nebo ne a přiřadí mu správnou činnost (připojit nebo odpojit). To nabízí rychlé rozhraní Správci připojení disků. Nyní pracuje a používá KMountMan k připojování a odpojování. Používá nová zařízení &kde; pro čtení souboru fstab a to nám dovoluje odstranit mnoho kódu ze "starého" Správce připojení disků.</para>
+</sect1>

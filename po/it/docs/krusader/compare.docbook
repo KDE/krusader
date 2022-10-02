@@ -1,0 +1,120 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="compare">
+  <title
+>Confronta</title>
+  <para
+>&krusader; integra al suo interno diverse funzioni di confronto: <guimenuitem
+>Confronta per contenuto</guimenuitem
+>, <guimenuitem
+>Confronta cartelle</guimenuitem
+> e la funzione di <link linkend="synchronizer"
+>Sincronizzazione</link
+>.</para>
+  <sect2 id="compare-content">
+    <title
+>Confronta per contenuto</title>
+    <indexterm>
+      <primary
+>Confronta</primary>
+      <secondary
+>Contenuto</secondary>
+    </indexterm>
+    <para
+>Seleziona un file in ciascun pannello e vai su <menuchoice
+> <guimenu
+>File</guimenu
+> <guimenuitem
+>Confronta per contenuto...</guimenuitem
+> </menuchoice
+>. &krusader; farà aprire lo strumento di confronto esterno impostato in sede di <link linkend="konfig-dependencies"
+>configurazione</link
+>. Sono supportati &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> e <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+  </sect2>
+  <sect2 id="compare-dir">
+    <title
+>Confronta cartelle</title>
+    <indexterm>
+      <primary
+>Confronta</primary>
+      <secondary
+>Cartelle</secondary>
+    </indexterm>
+    <para
+>Puoi confrontare i file contenuti nei due pannelli andando su <menuchoice
+> <guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Confronta cartelle</guimenuitem
+> </menuchoice
+>. Come impostazione predefinita, verranno selezionati i file più recenti e quelli singoli. È possibile modificare questo comportamento attraverso il menu <guimenuitem
+>Impostazioni confronto file</guimenuitem
+>. <note
+> <para
+>Il confronto dei file non terrà conto del loro contenuto ma soltanto del nome e della data.</para>
+    </note
+></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Modifica</guimenu
+> <guimenuitem
+>Impostazioni confronto file</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Permette di configurare la funzione <guimenuitem
+>Confronta cartelle</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Seleziona più recenti e singoli</guimenuitem
+> (opzione predefinita)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Seleziona singoli</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Seleziona più recenti</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Seleziona diversi e singoli</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Seleziona diversi</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>

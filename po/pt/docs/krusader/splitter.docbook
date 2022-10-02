@@ -1,0 +1,82 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="splitter">
+  <title
+>Divisor de Ficheiros</title>
+  <indexterm>
+    <primary
+>Divisor de Ficheiros</primary>
+  </indexterm>
+  <para
+>Esta função divide um ficheiro (enorme) num conjunto de ficheiros mais pequenos, de modo que possam ser colocados em discos mais pequenos (&eg;, unidades ZIP, ...) ou enviados por e-mail. Os vários ficheiros poderão ser reunidos de novo para criar de novo o ficheiro original. As funções de divisão/reunião do &krusader; e do <trademark class="copyright"
+>Total Commander</trademark
+> são compatíveis. Para dividir um ficheiro, escolha a opção <menuchoice
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Dividir</guimenuitem
+> </menuchoice
+> ou em <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>. Será então aberta uma janela de divisão para confirmar a operação.</para>
+  <para
+>Se o nome do ficheiro original for <filename
+>xpto</filename
+>, então o nome dos ficheiros menores será <filename
+>xpto.000 xpto.001 xpto.002</filename
+> &etc; Não existe nenhum limite teórico para a quantidade de ficheiros menores, mas recomenda-se que limite o número a um máximo de 1023 ficheiros. O &krusader; cria um ficheiro <filename
+>xpto.crc</filename
+>. Este ficheiro contém o nome, o tamanho e o código CRC do ficheiro original. É possível combinar o ficheiro sem o <filename
+>xpto.crc</filename
+>; nesse caso, contudo, o &krusader; não consegue verificar se o ficheiro original foi criado de novo correctamente.</para>
+  <para
+>Um exemplo de um ficheiro <filename
+>xpto.crc</filename
+>: <programlisting
+>filename=xpto size=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>Para reunir os vários ficheiros, seleccione um ficheiro parcial <filename
+>xpto.xxx</filename
+> e escolha a opção  <menuchoice
+> <guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Combinar os ficheiros</guimenuitem
+> </menuchoice
+> ou em <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+>. A pasta de destino é o painel inactivo, podendo ser alterado. Os nomes dos ficheiros deverão estar numerados por ordem ascendente: <filename
+>xpto.001, xpto.002, xpto.003</filename
+> &etc; ou terem letras por ordem ascendente: (" <userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+>método de letras") <filename
+>ficheiro-aa, ficheiro-ab, ficheiro-ac</filename
+> &etc; Se o ficheiro <filename
+>xpto.crc</filename
+> for encontrado na mesma pasta que os ficheiros parciais, o &krusader; irá usar este ficheiro para verificar erros no ficheiro combinado.</para>
+</sect1>

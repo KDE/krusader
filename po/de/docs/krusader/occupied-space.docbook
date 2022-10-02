@@ -1,0 +1,43 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="calculate">
+  <title
+>Belegten Speicherplatz berechnen</title>
+  <indexterm>
+    <primary
+>Belegter Speicherplatz</primary>
+  </indexterm>
+  <!-- Thanks to Heiner Eichmann -->
+  <para
+>Es gibt zwei Möglichkeiten, den belegten Speicherplatz von Ordner oder Dateien zu berechnen.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Drücken Sie den einstellbaren Kurzbefehl für die Aktion <guilabel
+>Belegten Speicherplatz ermitteln</guilabel
+> in einem Ordner unter dem Cursor, dann wird sofort der belegte Speicherplatz berechnet.</para>
+    </listitem>
+    <listitem>
+      <para
+>Um den belegten Speicherplatz von ausgewählten Dateien und Ordnern im aktiven Dateifenster zu ermitteln, wählen Sie <menuchoice
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Belegten Speicherplatz ermitteln</guimenuitem
+> </menuchoice
+>. Nach kurzer Zeit wird ein Dialog mit der Größe des belegten Speicherplatzes und der Anzahl der ausgewählten Dateien und Ordner angezeigt. Der belegte Speicher jedes Ordners wird wie beim Drücken des einstellbaren Kurzbefehls für diese Ordner gezeigt. Zeigt das aktive Dateifenster den Inhalt eines Archivs an, wird die Größe der entpackten ausgewählten Dateien und Ordner, nicht die komprimierte Größe angegeben. Nach der Berechnung wird der Auswahlstatus umgeschaltet und der Fokus geht abwärts zum nächsten Eintrag.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Auch auf entfernten Dateisystemen kann der belegte Speicherplatz berechnet werden. <note
+> <para
+>Es kann lange dauern, wenn Sie dieser Berechnung auf sehr großen Dateisystemen mit tausenden von Dateien ausführen. Sie können daher die Berechnung jederzeit anhalten, indem Sie auf den Knopf <guibutton
+>Abbrechen</guibutton
+> drücken.</para>
+  </note
+></para>
+</sect1>

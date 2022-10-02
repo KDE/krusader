@@ -1,0 +1,122 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="vfs">
+  <title
+>Sistemes de fitxers virtuals (VFS)</title>
+  <indexterm>
+    <primary
+>VFS</primary>
+  </indexterm>
+  <para
+>Una <link linkend="features"
+>característica OFM</link
+> bàsica és VFS, una capa abstracta sobre tota mena d'informació arxivada (fitxers ZIP, servidors &FTP;, arxius TAR, sistemes de fitxers &NFS;, comparticions SAMBA, imatges ISO de &CD;/&DVD;, catàlegs RPM, &etc;), la qual permet l'usuari accedeix a tota la informació en aquests tipus de sistemes de fitxers de forma transparent -igual que introduir una subcarpeta ordinària-. El &krusader; admet diversos sistemes de fitxers virtuals:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>Connexions remotes VFS</link
+>: proporciona la capacitat de treballar amb una sessió de connexió remota (&FTP;, &NFS;, Samba, FISH, SFTP) igual que amb els sistemes de fitxers locals. És perfecte per a operacions remotes complexes i gairebé tan potents com els clients remots &IGU; més independents.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Arxiu VFS</link
+>: permet explorar arxius en VFS ja com si es tractés d'una carpeta (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip i 7-zip).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Cerca VFS</link
+>: <guibutton
+>Transmet al quadre de llista</guibutton
+> col·loca el resultat de la cerca al VFS.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>Sincronitzador VFS</link
+>: col·loca els resultats del sincronitzador al VFS.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Les accions que realitzeu sobre els fitxers al VFS es realitzaran als fitxers «reals». No només suprimireu els fitxers del VFS -els suprimireu del disc dur-. Limitacions: no podreu crear carpetes dins d'un VFS.</para>
+  <para
+>És possible mantenir l'estructura de la carpeta quan feu una còpia des d'una carpeta virtual a una carpeta no virtual, seleccionant la casella de selecció <quote
+>Mantén l'estructura de la carpeta virtual</quote
+> del diàleg de còpia. Imagineu-vos la següent carpeta virtual: <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/meu_inici/meu_dir1/meu_fitxer1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/meu_inici/meu_dir1/meu_fitxer2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/meu_inici/meu_dir2/meu_fitxer3</userinput
+></screen
+> Seguiu aquests passos:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>aneu a la carpeta virtual i seleccioneu els fitxers</para>
+    </listitem>
+    <listitem>
+      <para
+>seleccioneu una carpeta de destinació (no virtual!)</para>
+    </listitem>
+    <listitem>
+      <para
+>premeu <keycap
+>F5</keycap
+>-&gt; apareixerà el diàleg de còpia</para>
+    </listitem>
+    <listitem>
+      <para
+>Marqueu <guilabel
+>Mantén l'estructura de la carpeta virtual</guilabel
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Seleccioneu <filename
+>/home/meu_inici/</filename
+> per a l'&URL; base</para>
+    </listitem>
+    <listitem>
+      <para
+>Es començarà la còpia prement D'acord</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>El resultat serà: <screen
+><prompt
+>$</prompt
+> <userinput
+>dir_destinació/dir_meu1/fitxer_meu1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>dir_destinació/dir_meu1/fitxer_meu2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>dir_destinació/dir_meu2/fitxer_meu3</userinput
+></screen>
+  </para>
+</sect1>

@@ -1,0 +1,168 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="locate">
+  <title
+>&GUI; frontend pro Locate</title>
+  <indexterm>
+    <primary
+>Locate (rychle najít)</primary>
+  </indexterm>
+  <para
+>&krusader; má &GUI; front end pro pro příkaz <command
+>locate</command
+> (balík aplikací findutils). Příkaz locate je používaný pro rychlé hledání souboru nikoli z adresáře, ale z databáze. Balík mimo jiné obsahuje soubory: <command
+>locate</command
+> a <command
+>updatedb</command
+>. Příkaz <command
+>updatedb</command
+> prochází místní systém souborů a ukládá seznamy souborů do databáze. Příkaz <command
+>cron</command
+> často spouští <command
+>updatedb</command
+> každou noc (nastavte pomocí <application
+>Kcron</application
+>). Chcete-li spustit tuto vlastnost, vyberte <menuchoice
+> <guimenu
+>Nástroje</guimenu
+> <guimenuitem
+>Locate (rychlé hledání)...</guimenuitem
+> </menuchoice
+> nebo stiskněte klávesovou zkratku <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+>. <link linkend="konfig-advanced"
+>Konfigurátor</link
+> může nastavit dodatečné parametry pro příkaz <command
+>updatedb</command
+>.</para>
+  <para
+>Volby přepínačů <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Zobrazit pouze existující soubory</guilabel
+>: Obsahuje-li databáze názvy souborů, které dále neexistují (po smazání, přesunutí stačí provést příkaz <command
+>updatedb</command
+>), <command
+>locate</command
+> je nezařadí do seznamu. Před zařazením do seznamu v okně výsledků, kontroluje existenci každého souboru (pomalé).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Rozlišovat malá/velká</guilabel
+>: Zrušení zaškrtnutí umožní hledat malými a velkými písmeny.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Tlačítka činností <itemizedlist>
+    <listitem>
+      <para
+><guibutton
+>Locate</guibutton
+>: Spustí příkaz <command
+>locate <replaceable
+>řetezec1 řetězec2</replaceable
+></command
+> a umístí jeho výstup do okna s výsledky.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Zastavit</guibutton
+>: Zastaví průběh lokalizování.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>UpdateDB</guibutton
+>: Po zadání hesla uživatele root, spustí příkaz <command
+>updatedb</command
+> pro aktualizaci databáze aplikace locate.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Zavřít</guibutton
+>: Zavře okno Locate.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Okno s výsledky <itemizedlist>
+    <listitem>
+      <para
+>Dvojité kliknutí na položku: přejde do adresáře položky, přesune kurzor k položce a zavře dialogové okno.</para>
+    </listitem>
+    <listitem>
+      <para
+>Kliknutí pravého tlačítka myši: nabídka Upravit/Zobrazit/Najít. <itemizedlist>
+        <listitem>
+          <para
+><keycap
+>F3</keycap
+>: Zobrazí současnou položku.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>F4</keycap
+>: Upraví současnou položku.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>: Najde soubory v okně s výsledky.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+>: ukáže další vyhledaný výsledek.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: ukáže předchozí vyhledaný výsledek.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+        <listitem>
+          <para
+>Okno s výsledky podporuje přetažení položky do jiného okna a zkopírování do schránky (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+        </listitem>
+  </itemizedlist
+></para>
+</sect1>

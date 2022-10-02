@@ -1,0 +1,66 @@
+<sect1 id="splitter">
+  <title
+>Divisor de Arquivos</title>
+  <indexterm>
+    <primary
+>Divisor de Arquivos</primary>
+  </indexterm>
+  <para
+>Esta função divide um arquivo (enorme) num conjunto de arquivos menores, de modo que possam ser colocados em discos menores (&eg;, unidades ZIP, ...) ou enviados por e-mail. Os vários arquivos poderão ser reunidos de novo para recriar o arquivo original. As funções de divisão/reunião do &krusader; e do <trademark class="copyright"
+>Total Commander</trademark
+> são compatíveis. Para dividir um arquivo, escolha a opção <menuchoice
+> <guimenu
+>Arquivo</guimenu
+> <guimenuitem
+>Dividir</guimenuitem
+> </menuchoice
+> ou em <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>. A janela <guilabel
+>Dividir</guilabel
+> será então aberta para confirmar a operação.</para>
+  <para
+>Se o nome do arquivo original for <filename
+>nome</filename
+>, então o nome dos arquivos menores será <filename
+>nome.000 nome.001 nome.002</filename
+> &etc; Não existe nenhum limite teórico para a quantidade de arquivos menores, mas recomenda-se que seja no máximo 1023 arquivos. O &krusader; cria um arquivo <filename
+>nome.crc</filename
+>, que contém o nome, o tamanho e o código CRC do arquivo original. É possível combinar o arquivo sem o <filename
+>nome.crc</filename
+>, mas neste caso, o &krusader; não consegue verificar se o arquivo original foi recriado corretamente.</para>
+  <para
+>Exemplo de um arquivo <filename
+>nome.crc</filename
+>: <programlisting
+>nome_do_arquivo=nome tamanho=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>Para reunir os vários arquivos, selecione um arquivo parcial <filename
+>nome.xxx</filename
+> e escolha a opção <menuchoice
+> <guimenu
+>Arquivo</guimenu
+> <guimenuitem
+>Combinar os arquivos</guimenuitem
+> </menuchoice
+> ou em <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+>. A pasta de destino é o painel inativo e pode ser alterado. Os nomes dos arquivos devem estar numerados por ordem crescente: <filename
+>nome.001, nome.002, nome.003</filename
+> &etc; ou terem letras por ordem crescente: (" <userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+>método de letras") <filename
+>arquivo-aa, arquivo-ab, arquivo-ac</filename
+> &etc; Se o arquivo <filename
+>nome.crc</filename
+> for encontrado na mesma pasta que os arquivos parciais, o &krusader; usará este arquivo para verificar erros no arquivo combinado.</para>
+</sect1>

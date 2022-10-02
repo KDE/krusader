@@ -1,0 +1,132 @@
+<!-- **********************************************************************
+  copyright            : (C) 2000-2018
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+<sect1 id="vfs">
+  <title
+>Virtuální systém souborů (VFS)</title>
+  <indexterm>
+    <primary
+>VFS</primary>
+  </indexterm>
+  <para
+>Základní <link linkend="features"
+>vlastností OFM</link
+> je VFS. Je to abstraktní vrstva nad všemi typy archivovaných informací (soubory ZIP, servery &FTP;, archivy TAR, systémy souborů NFS, sdílená SAMBA, ISO obrazy CD/DVD, balíky RPM atd.), která uživateli umožňuje přistoupit ke všem informací v těchto odlišných typech systémů souborů - jako když otevírá obyčejný podadresář. &krusader; podporuje více virtuálních systémů souborů:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>Vzdálená připojení VFS</link
+>: poskytuje schopnost práce pomocí vzdáleného připojení relace (&FTP;, NFS, Samba, FISH, SFTP) jako pomocí systému souborů. To je ideální pro složité vzdálené připojení a téměř stejně výkonné jako většina samostatných klientů s GUI pro vzdálené připojení.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Archivy VFS</link
+>: umožňuje archivy procházet ve VFS jako by byly adresáře (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip a 7-zip).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Vyhledávací VFS</link
+>: <guibutton
+>Zásobník pro seznam</guibutton
+> umístění vyhledaných výsledků ve VFS.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>VFS synchronizátoru</link
+>: umístění výsledků synchronizátoru ve VFS (ve výchozím nastavení kompilace je synchronizátor zakázán).</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Činnosti, které provádíte na souborech v VFS, jsou provedeny na 'skutečných' souborech. Nemažte soubory z VFS - smažete je z Vašeho pevného disku. Omezení: uvnitř VFS nelze vytvářet adresáře.</para>
+  <para
+>Při kopírování virtuální složky do nevirtuální složky je možné zachovat adresářovou strukturu zatrhnutím přepínače "Ponechat virtuální adresářovou strukturu" v dialogovém okně kopírování. Obraz následující virtuální složky: <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir1/myfile1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir1/myfile2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir2/myfile3</userinput
+></screen
+> Pak proveďte následující kroky:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Přejděte do virtuální složky a vyberte soubory</para>
+    </listitem>
+    <listitem>
+      <para
+>Vyberte zdrojovou složku (nevirtuální)</para>
+    </listitem>
+    <listitem>
+      <para
+>Stiskněte <keycap
+>F5</keycap
+>-&gt; objeví se dialogové okno kopírování</para>
+    </listitem>
+    <listitem>
+      <para
+>Zatrhněte <guilabel
+>Ponechat virtuální adresářovou strukturu</guilabel
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Jako základní &URL; vyberte <filename
+>/home/myhome/</filename
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Stisknutím OK začnete kopírovat</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Výsledek bude: <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir1/myfile1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir1/myfile2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir2/myfile3</userinput
+></screen>
+  </para>
+</sect1>

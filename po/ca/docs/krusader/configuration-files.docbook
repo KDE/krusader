@@ -1,0 +1,210 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<appendix id="config_files">
+  <title
+>Fitxers de configuració</title>
+  <indexterm>
+    <primary
+>Fitxers de configuració</primary>
+  </indexterm>
+  <para
+>Aquest apèndix ofereix una visió general dels fitxers de configuració utilitzats pel &krusader;.</para>
+  <para>
+    <emphasis role="bold"
+>krusaderui.rc</emphasis>
+  </para>
+  <para
+>Aquest fitxer emmagatzema la configuració de la barra d'eines de l'usuari i l'estructura del menú.</para>
+  <para
+>Ubicació: <filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+>, o <filename
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+>, o <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> en la carpeta que es pot determinar mitjançant l'ordre <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+  <para>
+    <emphasis role="bold"
+>krusaderrc</emphasis>
+  </para>
+  <para
+>Aquest fitxer emmagatzema la configuració del &krusader;.</para>
+  <para
+>Ubicació: <filename
+>~/.config/krusaderrc</filename
+></para>
+  <para
+>&pex;, s'hi emmagatzemen les opcions de configuració següents:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Actions Toolbar (Barra d'eines d'accions)</para>
+    </listitem>
+    <listitem>
+      <para
+>Archives (arxius)</para>
+    </listitem>
+    <listitem>
+      <para
+>Colors</para>
+    </listitem>
+    <listitem>
+      <para
+>Dependències</para>
+    </listitem>
+    <listitem>
+      <para
+>DiskUsage (Ús del disc)</para>
+    </listitem>
+    <listitem>
+      <para
+>DiskUsageViewer</para>
+    </listitem>
+    <listitem>
+      <para
+>General</para>
+    </listitem>
+    <listitem>
+      <para
+>Configuració &HTML;</para>
+    </listitem>
+    <listitem>
+      <para
+>KFileDialog</para>
+    </listitem>
+    <listitem>
+      <para
+>KFileDialog Speedbar (barra de velocitat del KFileDialog)</para>
+    </listitem>
+    <listitem>
+      <para
+>KrDetailedViewLeft</para>
+    </listitem>
+    <listitem>
+      <para
+>KrDetailedViewRight</para>
+    </listitem>
+    <listitem>
+      <para
+>KrViewerWindow</para>
+    </listitem>
+    <listitem>
+      <para
+>KrViewerWindow Toolbar extraToolBar</para>
+    </listitem>
+    <listitem>
+      <para
+>Look &amp; Feel (aspecte i comportament)</para>
+    </listitem>
+    <listitem>
+      <para
+>Notification Messages (missatges de notificació)</para>
+    </listitem>
+    <listitem>
+      <para
+>Panel Profiles (perfils del plafó)</para>
+    </listitem>
+    <listitem>
+      <para
+>Private (privat)</para>
+    </listitem>
+    <listitem>
+      <para
+>Protocols</para>
+    </listitem>
+    <listitem>
+      <para
+>Search (cerca)</para>
+    </listitem>
+    <listitem>
+      <para
+>Startup (inici)</para>
+    </listitem>
+    <listitem>
+      <para
+>Synchronize (sincronitza)</para>
+    </listitem>
+    <listitem>
+      <para
+>Locate (ubica)</para>
+    </listitem>
+    <listitem>
+      <para
+>SynchronizerProfile - 1</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>krbookmarks.xml</emphasis>
+  </para>
+  <para
+>Aquest fitxer emmagatzema les adreces d'interès del &krusader; i empra l'<ulink url="http://grail.sourceforge.net/info/xbel.html"
+>estàndard XBEL</ulink
+>.</para>
+  <para
+>Ubicació: <filename
+>~/.local/share/krusader/krbookmarks.xml</filename
+> o <filename
+>krusader/krbookmarks.xml</filename
+> en la carpeta que es pot determinar mitjançant l'ordre <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+  <para>
+    <emphasis role="bold"
+>useractions.xml</emphasis>
+  </para>
+  <para
+>Aquest fitxer emmagatzema la configuració de les <link linkend="useractions"
+>Accions d'usuari</link
+>.</para>
+  <para
+>Ubicació: <filename
+>~/.local/share/krusader/useractions.xml</filename
+> o <filename
+>krusader/useractions.xml</filename
+> en la carpeta que es pot determinar mitjançant l'ordre <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+  <para>
+    <emphasis role="bold"
+>useraction-examples.xml</emphasis>
+  </para>
+  <para
+>Aquestes són les Accions d'usuari proporcionades pels desenvolupadors.</para>
+  <para
+>Ubicació: <filename
+> $KDEDIR/share/krusader/useraction-examples.xml</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>foo.keymap</emphasis>
+  </para>
+  <para
+>Aquest és un fitxer <literal role="extension"
+>.ini</literal
+> que manté un <link linkend="configure-shortcuts"
+>perfil per als lligams de tecla</link
+>. Fins al &krusader;-1.70.0 era un fitxer binari. El &krusader; és compatible cap enrere per a importar aquest format binari heretat.</para>
+  <para
+>Ubicació: <filename
+> /usr/share/krusader/foo.keymap</filename
+></para>
+  <para>
+    <emphasis role="bold"
+>foo.color</emphasis>
+  </para>
+  <para
+>Aquest és un fitxer binari que manté l'<link linkend="konfig-color"
+>esquema de color</link
+>.</para>
+  <para
+>Ubicació: <filename
+>/usr/share/krusader/foo.color</filename
+></para>
+</appendix>

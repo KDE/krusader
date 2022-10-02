@@ -1,0 +1,74 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="mount-man">
+  <title
+>MountMan: Verwaltung eingehängter Dateisysteme</title>
+  <indexterm>
+    <primary
+>Eingehängt</primary>
+  </indexterm>
+  <para
+>MountMan ist ein Dienstprogramm, das Ihnen bei der Verwaltung von eingehängten Dateisystemen hilft. Nach dem Start zeigt es eine Liste mit allen eingehängten Dateisystemen. Für jedes Dateisystem wird der Name des Geräts wie &ie; <filename class="directory"
+>/dev/sda1</filename
+> für die erste Partition auf der ersten <hardware
+>HDD</hardware
+>), den Typ (ext4, ext3, ntfs, vfat, ReiserFS ...) und den Einhängepunkt auf Ihren System, d. h. den Ordner, auf dem das Dateisystem eingehängt ist.</para>
+  <para
+>Wenn Sie fest eingebundenen Medien aus der Liste ausfiltern möchten, markieren Sie den Eintrag <guilabel
+>Nur Wechselmedien anzeigen</guilabel
+> links in der Geräteliste. </para>
+  <figure id="screenshot-mountman" float="1">
+    <title
+>MountMan</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="mountman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>MountMan</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>MountMan zeigt auch Informationen über die Belegung wie Gesamtgröße, Freier Speicherplatz und Prozentsatz des verfügbaren Platzes. Wird für diese Zahlen <guilabel
+>N/A</guilabel
+> angezeigt, ist das Dateisystem nicht eingehängt. Klicken Sie mit der &LMB; auf ein Dateisystem, wird links ein Tortendiagramm mit der grafischen Anzeige der Belegung des Dateisystems angezeigt. Klicken Sie auf ein nicht eingehängtes Dateisystem, wird anstatt des Diagramms <guilabel
+>Nicht eingehängt</guilabel
+> angezeigt.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Doppelklicken auf ein Dateisystem schließt MountMan und das Dateisystem wird im aktiven Dateifenster von &krusader; geöffnet.</para>
+    </listitem>
+    <listitem>
+      <para
+>Klicken Sie mit der &RMBn; auf ein Dateisystem, um ein Kontextmenü mit Aktionen für diese System anzuzeigen. Zurzeit können Sie das System nur einhängen, aushängen und bei einem Wechselmedium wie &eg; einer &CD-ROM; auswerfen.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Es ist geplant, MountMan bei der Weiterentwickelung von &krusader; zu erweitern. Es sollen möglich sein, Partitionen zu formatieren, die Datei <filename
+>/etc/fstab</filename
+> zu bearbeiten, neue Dateisysteme zu erstellen und mehr. Die Arbeit daran wurde bereits begonnen, siehe <quote
+>Schnellmodus für MountMan</quote
+>.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Schnellmodus für MountMan</emphasis>
+  </para>
+  <para
+>Um den Schnellmodus für MountMan zu aktivieren, klicken Sie auf den Pfeil neben dem Symbol von MountMan in der <link linkend="mainwindow"
+>Haupt-Werkzeugleiste</link
+>.</para>
+  <para
+>Dann wird eine Liste aller möglichen Einhängepunkte angezeigt. Bei jeder Anzeige wird ermittelt, ob auf dem Einhängepunkt ein Dateisystem eingehängt ist oder nicht und daraus die richtige Aktion Einhängen oder Aushängen vorgeschlagen. Dies erlaubt einen schnellen Zugriff auf MountMan. Dies verwendet zurzeit KMountMan::mount und unmount. Mit den neuen &kf5-full;-Diensten zum Lesen der Dateisystem-Tabelle fstab kann viel <quote
+>alter</quote
+> Quelltext aus MountMan entfernt werden.</para>
+</sect1>

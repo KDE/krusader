@@ -1,0 +1,42 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="checksum">
+  <title
+>Skapa och verifiera checksummor</title>
+  <indexterm>
+    <primary
+>Checksumma</primary>
+  </indexterm>
+  <para
+><menuchoice
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Skapa checksumma...</guimenuitem
+> </menuchoice
+> : &krusader; kontrollerar vilka verktyg du har, och om verktygen tillåter rekursiv användning (i det fall då du valt kataloger). Du kan skapa en checksumma genom att välja typ av checksumma i listan (<guilabel
+>md5</guilabel
+>, <guilabel
+>sha</guilabel
+>, etc.). Därefter kan du spara checksumman i en fil, som oftast kallas <filename
+>checksumma.md5</filename
+> eller <filename
+>checksumma.sha1</filename
+>.</para>
+  <para
+><menuchoice
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Verifiera checksumma...</guimenuitem
+> </menuchoice
+> : &krusader; kontrollerar om du har ett verktyg som stöder den typ av checksumma du behöver (från den angivna checksummefilen) och visar filerna där checksummeringen misslyckades (om det finns några).</para>
+  <para
+>Systemet generaliserar olika mekanismer och verktyg för checksummering. För närvarande stöds följande checksummor: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv och crc. Kontrollera inställningen av <link linkend="konfig-dependencies"
+>checksummeringshjälpmedel</link
+> innan funktionen används.</para>
+</sect1>

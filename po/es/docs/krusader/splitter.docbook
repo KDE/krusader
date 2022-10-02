@@ -1,0 +1,66 @@
+<sect1 id="splitter">
+  <title
+>Divisor de archivos</title>
+  <indexterm>
+    <primary
+>Divisor de archivos</primary>
+  </indexterm>
+  <para
+>Esta función divide un (gran) archivo en varios archivos menores para que pueda guardarlos en medios de poca capacidad (&eg;, unidades ZIP, etc.) o enviarlos por correo electrónico. Los archivos obtenidos se pueden volver a combinar para obtener el archivo original. Las funciones de división y fusión de &krusader; y <trademark class="copyright"
+>Total Commander</trademark
+> son compatibles. Para dividir un archivo, use <menuchoice
+> <guimenu
+>Archivo</guimenu
+> <guimenuitem
+>Dividir</guimenuitem
+> </menuchoice
+> o <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: se mostrará un diálogo <guilabel
+>Dividir</guilabel
+> para confirmar la operación.</para>
+  <para
+>Si el nombre del archivo original es <filename
+>foo</filename
+>, los nombres de los archivos resultantes serán <filename
+>foo.000, foo.001, foo.002</filename
+>, &etc; No existe un límite teórico para el número de archivos obtenidos, aunque se recomienda limitarlo a un máximo de 1023 archivos. &krusader; también crea un archivo <filename
+>foo.crc</filename
+> que contiene el nombre, el tamaño y la suma de comprobación CRC del archivo original. Es posible combinar los archivos resultantes sin el archivo <filename
+>foo.crc</filename
+>, pero en tal caso &krusader; no podrá verificar si se ha generado correctamente el archivo original.</para>
+  <para
+>Ejemplo de un archivo <filename
+>foo.crc</filename
+>: <programlisting
+>archivo=foo tamaño=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>Para combinar los archivos obtenidos, seleccione un archivo parcial <filename
+>foo.xxx</filename
+> y use la opción <menuchoice
+> <guimenu
+>Archivo</guimenu
+> <guimenuitem
+>Combinar archivos</guimenuitem
+> </menuchoice
+> o <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+>. El directorio de destino es el panel inactivo y se puede cambiar. Los nombres de los archivos deben estar numerados en orden ascendente: <filename
+>foo.001, foo.002, foo.003</filename
+> &etc; o tener letras en orden ascendente: (« <userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+> método de letras») <filename
+>fileaa, fileab, fileac</filename
+> &etc; Si el archivo <filename
+>foo.crc</filename
+> se encuentra en el mismo directorio que los archivos parciales, &krusader; lo usará para comprobar si se han producido errores al combinar los archivos.</para>
+</sect1>

@@ -1,0 +1,72 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="splitter">
+  <title
+>Bestand splitsen</title>
+  <indexterm>
+    <primary
+>Bestand splitsen</primary>
+  </indexterm>
+  <para
+>Dit onderdeel splitst een (groot) bestand op in meerdere kleinere bestanden zodat u ze op een kleinere media kant plaatsen (&eg; ZIP drives, ...) of kunt versturen met email. Deze meerdere bestanden kunt u daarna weer combineren om het originele bestand weer te creëren. De functies voor het splitsen/combineren van &krusader; en <trademark class="copyright"
+>Total Commander</trademark
+>  zijn compatibel. Voor het splitsen van een bestand kiest u <menuchoice
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Bestand splitsen</guimenuitem
+> </menuchoice
+> of <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: waarna het dialoogvenster <guilabel
+>Splitsen</guilabel
+> zal openen voor een bevestiging van de bewerking.</para>
+  <para
+>Als de naam van het originele bestand <filename
+>foo</filename
+> is, dan zullen de namen van de kleinere bestanden <filename
+>foo.000 foo.001 foo.002</filename
+> &etc; zijn. Er is geen theoretische limiet voor het aantal kleinere bestanden, maar het wordt aanbevolen om het aantal te beperken tot een maximum van 1023 bestanden. &krusader; maakt een bestand <filename
+>foo.crc</filename
+> aan. In dit bestand is de naam, de grootte en de crc checksum van het originele bestand aanwezig. Het is mogelijk om het bestand weer te combineren zonder het bestand <filename
+>foo.crc</filename
+> maar &krusader; kan in dat geval niet controleren of het originele bestand correct is gerecreëert.</para>
+  <para
+>Een voorbeeld voor een bestand <filename
+>foo.crc</filename
+>: <programlisting
+>filename=foo size=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>Om meerdere bestanden te combineren, selecteert u een gedeeltelijk bestand <filename
+>foo.xxx</filename
+> en kiest <menuchoice
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Bestanden combineren...</guimenuitem
+> </menuchoice
+> of <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+>. De doelmap is standaard de inactieve paneel en is wijzigbaar. De bestandsnamen moeten in oplopende volgorde genummerd zijn: <filename
+>foo.001, foo.002, foo.003</filename
+> &etc; of letters in oplopende volgorde hebben: (" <userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+>letter method") <filename
+>fileaa, fileab, fileac</filename
+> &etc; Als het bestand <filename
+>foo.crc</filename
+> in dezelfde map als de gedeeltelijke bestanden aanwezig is, dan zal &krusader; dit bestand gebruiken voor controle van het gecombineerde bestand op fouten.</para>
+</sect1>
