@@ -212,7 +212,7 @@
 >penja</quote
 > durant el primer accés a la compartició morta, de manera que no hi ha forma d'evitar-ho, ni cap forma de verificar, fins i tot es congelarà l'ordre <command
 >ls</command
->. Només en mirar de llegir qualsevulla cosa, serà suficient per a embussar. L'única manera d'evitar aquest problema d'arquitectura és emprant un disseny de múltiples fils. D'aquesta manera, si s'encalla, no es penjarà tot el cicle d'esdeveniments de l'aplicació, però no creiem que sigui el moment adequat per a afegir els fils, no estic segur que *tots* els sistemes &kf5; utilitzin &Qt;-mt (la versió multi fil de les &Qt;), i en qualsevol cas, en Krew del &krusader; podria no ser la persona adequada per a abordar aquest important problema. De manera que actualment això és només un error amb el qual haurem d'aprendre a conviure.</para>
+>. Només en mirar de llegir qualsevulla cosa, serà suficient per a embussar. L'única manera d'evitar aquest problema d'arquitectura és emprant un disseny de múltiples fils. D'aquesta manera, si s'encalla, no es penjarà tot el cicle d'esdeveniments de l'aplicació, però no creiem que sigui el moment adequat per a afegir els fils, no estic segur que *tots* els sistemes &kf5; utilitzin &Qt;-mt (la versió multi fil de les biblioteques &Qt;), i en qualsevol cas, en Krew del &krusader; podria no ser la persona adequada per a abordar aquest important problema. De manera que actualment això és només un error amb el qual haurem d'aprendre a conviure.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
