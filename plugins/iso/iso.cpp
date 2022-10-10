@@ -26,7 +26,7 @@
 #include "kiso.h"
 #include "kisofile.h"
 #include "kisodirectory.h"
-#include "../krusader/compat.h"
+#include "../../app/compat.h"
 
 // Pseudo plugin class to embed meta data
 class KIOPluginForMetaData : public QObject

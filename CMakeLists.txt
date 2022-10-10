@@ -146,12 +146,10 @@ endif()
 
 # ===== Subdirectories =====
 
-add_subdirectory(krusader)
-add_subdirectory(pics)
-add_subdirectory(doc-extras)
-add_subdirectory(krArc)
-add_subdirectory(iso)
-add_subdirectory(doc)
+add_subdirectory(app)
+add_subdirectory(doc/handbook)
+add_subdirectory(plugins/iso)
+add_subdirectory(plugins/krarc)
 
 
 # ===== Translations =====

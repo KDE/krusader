@@ -7,7 +7,7 @@
 */
 
 #include "krarcbasemanager.h"
-#include "../krusader/krdebuglogger.h"
+#include "../../app/krdebuglogger.h"
 
 #include <KArchive/KTar>
 
