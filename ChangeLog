@@ -1,3 +1,83 @@
+2.8.0 "A New Day"
+=====================
+
+    ADDED: "Expanding tabs" and "Close tab by double click" options
+    ADDED: Active panel follows Embedded Terminal working directory
+    ADDED: Closing a tab can be quickly undone with a hotkey or a menu entry. A menu can reopen recently closed tabs.
+    ADDED: Cycling through file name part selections when renaming files
+    ADDED: In Konfigurator, two options are added to set foreground and background colors to the rename field
+    ADDED: New tabs can be inserted next to the current tab or at the end of the tab list
+    ADDED: Option to reset file selection on a mouse click without modifiers
+    ADDED: Options for hiding some useless entries from Media Menu.
+    ADDED: Shift+Del removes undesired entries from the history in various dialogs
+    ADDED: The "New Folder..." dialog keeps a manageable folder history and suggests folder names
+    ADDED: Option to duplicate an active tab by clicking Ctrl+LMB or Alt+LMB
+    ADDED: Option to select New Tab Button behavior (perform New Tab or Duplicate Current Tab action)
+    CHANGED: Default shortcuts for New Tab and Duplicate Current Tab actions
+    CHANGED: Shortcut for the embedded terminal emulator
+    CHANGED: Split "Show new/close tab buttons" into two options
+    FIXED: Calls to methods deprecated in modern Qt and KDE Frameworks libs
+    FIXED: Krusader doesn't delete all selected folders if some of them aren't empty
+    FIXED: Memory leak in the Locate dialog
+    FIXED: Terminal alternate Paste shortcut does not work
+    FIXED: UDSEntry::insert deprecation warnings
+    FIXED: [ 150247 ] When calculating occupied space of "..", krusader selects all directories
+    FIXED: [ 167410 ] synchronize directory window: column widths are incorrect
+    FIXED: [ 228461 ] KrViewer - Middle mouse button to close tabs in default settings
+    FIXED: [ 280020 ] No info about alternate deletion shortcut
+    FIXED: [ 282069 ] Bad default in the New Text File dialog
+    FIXED: [ 301034 ] Rename input field doesn't respect text[NORMAL] when GTK theme is used
+    FIXED: [ 326651 ] Hide tab bar in internal editor/viewer, when shown only one tab
+    FIXED: [ 328918 ] Context menu item "copy selected to clipboard" copies all result items
+    FIXED: [ 328919 ] Keyboard key "Menu" does not work in the list of search results
+    FIXED: [ 328936 ] "User action manager"; lost icon
+    FIXED: [ 328937 ] Shortcuts for move tab
+    FIXED: [ 330788 ] "Information - Krusader" dialog does not fit to screen width; text non-copyable
+    FIXED: [ 364838 ] Folders are ignored in the exclude list of Synchronizer
+    FIXED: [ 372023 ] ISO files listing/extracting broken
+    FIXED: [ 383567 ] Details section is empty in 'Do not know which files to compare.' window
+    FIXED: [ 383668 ] Krusader blocks ejecting of removable drive by self 'krusader' process if drive is opened in its tab
+    FIXED: [ 388678 ] Newly added or changed actions are missing in menu
+    FIXED: [ 391946 ] Default mode in 'Find in folder' is not preserved
+    FIXED: [ 391996 ] krusader config, after setted filelist icon size, user must switch viewmode (Brief/Detail) then krusader does.
+    FIXED: [ 392750 ] After trying to rename the file that's being updated, rename function stops working on any file on this tab
+    FIXED: [ 394896 ] Files fed to listbox (and all other files in virt://) cannot be deleted
+    FIXED: [ 394938 ] Can't run .desktop files
+    FIXED: [ 394939 ] Enter key is not working when the cursor is in search bar
+    FIXED: [ 395285 ] The quicksearch bar is still opened after deleting a file
+    FIXED: [ 395737 ] If the user presses Shift+F3 and writes the name of an inexistent file: Krusader opens a viewer window
+    FIXED: [ 396652 ] In the Manage User Actions dialog: the tab order is not the expected one
+    FIXED: [ 396659 ] Respect .hidden files
+    FIXED: [ 397041 ] Shortcut to Re-open recently closed tab
+    FIXED: [ 397398 ] Misleading ‘Created’ date in file properties
+    FIXED: [ 401433 ] Highlight/autoselect file issue from "Results" tab in search window
+    FIXED: [ 405212 ] Compilation error because of QOverload usage
+    FIXED: [ 409473 ] Computer shutdown gets cancelled
+    FIXED: [ 409722 ] Krusader crash when trying to view any archive using the ark part
+    FIXED: [ 410118 ] The list of search results doesn't get the focus
+    FIXED: [ 410120 ] Krusader does not search correctly if the "Follow links" checkbox is disabled
+    FIXED: [ 410717 ] Unpacking archives from a remote location (FTP, SMB, ...) ends up with 'Malformed URL /tmp/krusader-xxxx' message
+    FIXED: [ 411330 ] Users are not able to browse rar files using Return (although it works for 7z, zip files, etc.)
+    FIXED: [ 411384 ] CTRL+RIGHT / CTRL+LEFT
+    FIXED: [ 411446 ] Provide keyboard shortcut for "apply selection to folders" in (de-)selection dialog
+    FIXED: [ 412371 ] Error while creating archives from remote folders
+    FIXED: [ 414968 ] Using provided custom colour package Midnight Commander, renaming files is difficult, as line colours are very pale.
+    FIXED: [ 417107 ] QCoreApplication::applicationDirPath: Please instantiate the QApplication object first
+    FIXED: [ 417319 ] Problems when using Shift+F4 to open a local file that exists, or a remote folder or remote file that exists
+    FIXED: [ 417349 ] Krusader installation (make) fails when trying to build krarc
+    FIXED: [ 417703 ] Cannot unmount an external device when it's opened by Krusader
+    FIXED: [ 418077 ] Kio_iso crash
+    FIXED: [ 418572 ] Errors when pressing F4 on a remote folder
+    FIXED: [ 419396 ] When trying to open a 7z encrypted archive, Krusader does not ask for a password
+    FIXED: [ 419547 ] Krusader shows negative percent values while searching the text with the excepted folder
+    FIXED: [ 423434 ] UserAction icon is lost
+    FIXED: [ 423877 ] cbr files are not opened with a cbr reader (Okular, for example)
+    FIXED: [ 425528 ] Crash when synching folders
+    FIXED: [ 425846 ] Too long delays are noticed when entering big 7z files
+    FIXED: [ 433294 ] Gibberish error when extracting large file from zip archive
+    FIXED: [ 435557 ] Wrong dates (2106-02-07) and times after entering rar archives
+
+
 2.7.2 "Peace of Mind"
 =====================
 

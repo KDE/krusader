@@ -7,6 +7,39 @@
 
 
 
+-------------------------------- 2.8.0 A New Day -----------------------
+
+New features: Tab convenience.
+    - Duplicating with double click
+    - Closing tabs with Ctrl+LMB or Alt+LMB (configurable)
+    - Undoing the closed tabs while the app is running
+    - Dynamically sized tabs
+    - New tab position is configurable
+    - New Tab Button behavior is configurable
+    - Tab button visibility options fine-tuned
+
+New feature: History and suggestions in New Folder dialog.
+
+New feature: Hit Rename shortcut (F2) multiple times to cycle through
+    full name, file name and extension selections.
+
+New feature: Shift+Del removes undesired entries from the history in various dialogs.
+
+Improved sync between the panel and embedded terminal.
+
+Improved color configuration.
+
+Change: Default shortcuts for New Tab and Duplicate Current Tab are swapped
+    to align with other KDE software.
+
+Change: Default shortcut for embedded terminal (Ctrl+Alt+T to Ctrl+Alt+E)
+    to avoid a conflict with default global shortcut for the terminal.
+
+Fixed 60+ issues including some crashes, important problems with viewing archives
+  and iso files, file selection and directory deletion. See ChangeLog.
+
+
+
 -------------------------------- 2.7.2 Peace of Mind -------------------
 
 Bug fix release. See ChangeLog.
