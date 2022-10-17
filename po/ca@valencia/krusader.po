@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-11 00:51+0000\n"
+"POT-Creation-Date: 2022-10-17 00:50+0000\n"
 "PO-Revision-Date: 2022-10-01 12:43+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -3724,7 +3724,8 @@ msgstr "Desselecciona els fitxers abans de copiar/moure"
 msgid ""
 "Unselect files, which are to be copied/moved, before the operation starts."
 msgstr ""
-"Abans de l'inici de l'operació, desseleccioneu els fitxers a copiar/moure."
+"Abans de l'inici de l'operació, desseleccioneu els fitxers que es copiaran/"
+"mouran."
 
 #: app/Konfigurator/kgpanel.cpp:103
 #, kde-format
@@ -6185,10 +6186,13 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader: AMB PRIVILEGIS D'ADMINISTRADOR"
 
 #: app/main.cpp:113
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
+#| "© 2004-2020 Krusader Krew"
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2020 Krusader Krew"
+"© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2020 Krusader Krew"
@@ -6877,7 +6881,7 @@ msgstr "Activa l'eixida de depuració"
 #: app/main.cpp:207
 #, kde-format
 msgid "URL to open"
-msgstr "URL que s'obrirà"
+msgstr "URL que s'ha d'obrir"
 
 #: app/MountMan/kmountman.cpp:51
 #, kde-format
@@ -7117,7 +7121,7 @@ msgstr "Canvia el mode de busca"
 #: app/Panel/krsearchbar.cpp:50
 #, kde-format
 msgid "Enter or select search string"
-msgstr "Introduïu o seleccioneu la cadena a buscar"
+msgstr "Introduïu o seleccioneu la cadena que s'ha de buscar"
 
 #: app/Panel/krsearchbar.cpp:62
 #, kde-format
@@ -7160,8 +7164,8 @@ msgid ""
 "move there. Use of Net protocols like ftp or fish is possible."
 msgstr ""
 "Nom de la carpeta on vos trobeu. Podeu introduir el nom de la ubicació "
-"desitjada a moure-la ací. Utilitzeu els protocols de xarxa com ftp o fish, "
-"si és possible."
+"desitjada per a moure-la allí. Utilitzeu els protocols de xarxa com ftp o "
+"fish, si és possible."
 
 #: app/Panel/listpanel.cpp:210
 #, kde-format
@@ -9893,11 +9897,3 @@ msgstr "Diàleg de contrasenyes del Krarc"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "L'accés al fitxer requerix una contrasenya."
-
-#~ msgctxt "NAME OF TRANSLATORS"
-#~ msgid "Your names"
-#~ msgstr "Joaquim Perez Noguer"
-
-#~ msgctxt "EMAIL OF TRANSLATORS"
-#~ msgid "Your emails"
-#~ msgstr "linux@softcatala.org"
