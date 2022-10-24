@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2022-03-11 20:47+0100\n"
-"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2021-04-14 06:16+0200\n"
+"Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
 "Language-Team: German <kde-i18n-doc@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1003,7 +1003,8 @@ msgid "Create Checksums"
 msgstr "Prüfsummen erstellen"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "About to calculate checksum for the following files or directories:"
 msgid "About to calculate checksum for the following files or folders:"
 msgstr "Prüfsumme der folgenden Dateien und Ordner wird berechnet:"
 
@@ -1429,9 +1430,10 @@ msgid "Files:"
 msgstr "Dateien:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
-msgstr "Ordner:"
+msgstr "Ordner"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1871,10 +1873,12 @@ msgid "Custom"
 msgstr "Benutzerdefiniert"
 
 #: app/FileSystem/krquery.cpp:547
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "%1=filename, %2=percentage"
+#| msgid "Searching content of '%1' (%2%)"
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr "Suche Inhalt von „%1“ (%2)"
+msgstr "Suche Inhalt von „%1“ (%2 %)"
 
 #: app/FileSystem/krquery.cpp:552
 #, fuzzy, kde-format
@@ -2346,7 +2350,8 @@ msgid "Exclude Folder Names"
 msgstr "Ordnernamen ausschließen"
 
 #: app/Filter/generalfilter.cpp:468
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Filters out specified directory names from the results."
 msgid "Filters out specified folder names from the results."
 msgstr "Filtert die angegebenen Ordnernamen aus dem Ergebnis."
 
@@ -2583,7 +2588,7 @@ msgstr "Profilnamen eingeben:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr "Liste kürzlich geschlossener Unterfenster leeren"
+msgstr ""
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -3096,14 +3101,16 @@ msgid "Current background:"
 msgstr "Hintergrund für aktuelle Elemente:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete foreground:"
 msgid "Rename foreground:"
-msgstr "Vordergrund für Umbenennen:"
+msgstr "Vordergrund für Löschen:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
-msgstr "Hintergrund für Umbenennen:"
+msgstr "Alternativer Hintergrund:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3399,16 +3406,16 @@ msgstr ""
 "Betrachter in einem Modus mit einem Fenster und Unterfenstern."
 
 #: app/Konfigurator/kggeneral.cpp:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "Unterfensterleiste mit nur einem Unterfenster ausblenden"
+msgstr "Die Unterfensterleiste mit nur einem Unterfenster anzeigen."
 
 #: app/Konfigurator/kggeneral.cpp:75
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr ""
-"Ist dies aktiviert, wird die Unterfensterleiste ausgeblendet, wenn nur ein "
-"Unterfenster geöffnet ist"
+msgstr "Die Unterfensterleiste mit nur einem Unterfenster anzeigen."
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3477,8 +3484,6 @@ msgstr ""
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
 msgstr ""
-"Ist eine Textdatei größer als der angegebene Wert, dann wird Lister zur "
-"Anzeige benutzt."
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3764,44 +3769,49 @@ msgstr ""
 "der letzte Teil des Pfades angezeigt."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons"
-msgstr "Knopf zum Schließen von Unterfenstern anzeigen"
+msgstr "Knöpfe „Neues Unterfenster“ und „Unterfenster schließen“ anzeigen"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons."
-msgstr "Knopf zum Schließen von Unterfenstern anzeigen."
+msgstr "Knöpfe „Neues Unterfenster“ und „Unterfenster schließen“ anzeigen"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr "Karteireiter ausdehnen"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr "Karteireiter ausdehnen."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button"
-msgstr "Knopf für neues Unterfenster anzeigen"
+msgstr "Knöpfe „Neues Unterfenster“ und „Unterfenster schließen“ anzeigen"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button."
-msgstr "Knopf für neues Unterfenster anzeigen."
+msgstr "Knöpfe „Neues Unterfenster“ und „Unterfenster schließen“ anzeigen"
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr "Unterfenster nach aktuellem einfügen"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set root of the tree to the current folder"
 msgid "Insert new tabs to the right of the current one."
-msgstr "Fügt neue Unterfenster rechts neben dem aktuellen Unterfenster ein."
+msgstr "Setzt die Basis des Dateibaums auf den aktuellen Ordner"
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
@@ -3816,12 +3826,12 @@ msgstr "Die Unterfensterleiste mit nur einem Unterfenster anzeigen."
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr "Unterfenster durch Doppelklick schließen"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr "Unterfenster durch Doppelklick schließen."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3916,18 +3926,22 @@ msgstr ""
 "nur im Suchmodus."
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Directory navigation with Right Arrow"
 msgid "Folder navigation with Right Arrow"
 msgstr "Ordnernavigation mit Pfeil rechts"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Pressing the Right button enters directory if no search text editing "
+#| "intention is captured."
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
 msgstr ""
-"Durch Drücken der Taste Pfeil rechts wird der Ordner geöffnet, wenn keine "
-"Bearbeitung des Suchtextes stattfindet."
+"Durch Drücken der Taste Pfeil rechts wird der Ordner geöffnet, wenn "
+"keineBearbeitung des Suchtextes stattfindet."
 
 #: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
@@ -4672,9 +4686,10 @@ msgstr ""
 "gehalten werden."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Right mouse button preserves selection"
 msgid "A plain mouse button resets selection"
-msgstr "Ein einfacher Mausklick setzt die Auswahl zurück"
+msgstr "Rechter Mausklick verändert Auswahl nicht"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4683,9 +4698,6 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
-"Hebt die Auswahl bei einem Mausklick ohne Verwendung der Sondertasten wie "
-"die Umschalttaste oder Strg auf. Die Auswahl durch Maustasten mit "
-"Umschalttaste/Strg muss aktiviert sein, damit diese Einstellung funktioniert."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4705,7 +4717,7 @@ msgstr "Dateisystemtyp anzeigen"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr "SquashFS-Einträge ausblenden"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4731,19 +4743,21 @@ msgid "Never"
 msgstr "Niemals"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "MountMan will not (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
-msgstr "Folgende Einhängepunkte ausblenden:"
+msgstr "Folgende Einhängepunkte nicht mit MountMan ein-/aushängen:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr "Neuen ausgeblendeten Einhängepunkt hinzufügen"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mnt.Point"
 msgid "Mount point:"
-msgstr "Einhängepunkt:"
+msgstr "Einhängepunkt"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5450,7 +5464,7 @@ msgstr "Entfernte Zeichenkodierung wählen"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr "Kürzlich geschlossene Unterfenster"
+msgstr ""
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5570,13 +5584,16 @@ msgstr ""
 "%1"
 
 #: app/krslots.cpp:420
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Cannot find a batch rename tool.\n"
+#| "You can get KRename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 "Es ist kein Mehrfachumbenennungswerkzeug gefunden worden.\n"
-"KRename kann von %1 heruntergeladen werden."
+"KRename kann von http://krename.net/ heruntergeladen werden."
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -6191,22 +6208,31 @@ msgstr "Krusader – Systemverwaltungsmodus (root)"
 #, fuzzy, kde-format
 #| msgid ""
 #| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2020 Krusader Krew"
+#| "© 2004-2019 Krusader Krew"
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2020 Krusader Krew"
+"© 2004-2019 Krusader Krew"
 
 #: app/main.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Feedback:\n"
+#| "https://forum.kde.org/viewforum.php?f=225\n"
+#| "\n"
+#| "IRC\n"
+#| "server: irc.freenode.net, channel: #krusader"
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
 "Feedback:\n"
-"https://forum.kde.org/viewforum.php?f=225"
+"https://forum.kde.org/viewforum.php?f=225\n"
+"\n"
+"IRC\n"
+"server: irc.freenode.net, channel: #krusader"
 
 #: app/main.cpp:120
 #, kde-format
@@ -7178,7 +7204,8 @@ msgstr ""
 "ausgewählt wurden und wie viele Bytes insgesamt ausgewählt sind."
 
 #: app/Panel/listpanel.cpp:229
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Cancel directory space calculation"
 msgid "Cancel folder space calculation"
 msgstr "Berechnung der Ordnergröße abbrechen"
 
@@ -7540,9 +7567,10 @@ msgstr ""
 "ein Terminal festgelegt werden (Standard: <b>konsole</b>).</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open/Run"
 msgid "Open/Run Files"
-msgstr "Dateien öffnen/ausführen"
+msgstr "Öffnen/Ausführen"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7550,9 +7578,10 @@ msgid "Run"
 msgstr "Ausführen"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
-msgstr "In neuen Unterfenstern öffnen"
+msgstr "In neuem Unterfenster öffnen"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7885,9 +7914,10 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 von %2, %3 von %4"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
-msgstr "Filter auf &Ordner anwenden"
+msgstr "Filter auf Ordner anwenden"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
@@ -7895,9 +7925,10 @@ msgid "Filter Files"
 msgstr "Dateien filtern"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
-msgstr "Au&swahl auf Ordner anwenden"
+msgstr "Auswahl auf Ordner anwenden"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, kde-format
@@ -8228,9 +8259,10 @@ msgstr ""
 "Einstellungen als Standard für neue Instanzen dieses Ansichtstyps speichern"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in a new tab"
 msgid "Open a new tab"
-msgstr "Ein neues Unterfenster öffnen"
+msgstr "In neuem Unterfenster öffnen"
 
 #: app/paneltabbar.cpp:172
 #, kde-format
@@ -8278,7 +8310,7 @@ msgstr "Text gefunden:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "Inaktiv"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -9135,14 +9167,16 @@ msgid "Move Current Tab to Other Side"
 msgstr "Aktuelles Unterfenster in anderes Dateifenster verschieben"
 
 #: app/tabactions.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Left"
-msgstr "Aktuelles Unterfenster nach links verschieben"
+msgstr "Aktuelles Unterfenster in anderes Dateifenster verschieben"
 
 #: app/tabactions.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Right"
-msgstr "Aktuelles Unterfenster nach rechts verschieben"
+msgstr "Aktuelles Unterfenster in anderes Dateifenster verschieben"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9150,9 +9184,10 @@ msgid "Close Current Tab"
 msgstr "Aktuelles Unterfenster schließen"
 
 #: app/tabactions.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Undo Close Tab"
-msgstr "Unterfenster wieder herstellen"
+msgstr "Unterfenster entsperren"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9755,10 +9790,9 @@ msgid "Multimedia"
 msgstr "Multimedia"
 
 #: app/useraction_examples.xml:39
-#, fuzzy, kde-format
-#| msgid "Always show current item"
+#, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Immer aktuellen Eintrag anzeigen"
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, kde-format
@@ -9840,7 +9874,8 @@ msgstr ""
 "Sie können dies auf der Seite „Archive“ im Konfigurator einschalten."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Creating directories is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives"
 msgstr "Das Anlegen von Ordnern wird für Archive des Typs %1 nicht unterstützt"
 
@@ -9875,8 +9910,6 @@ msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
-"Es ist ein Fehler mit dem externen Programm „%1“ aufgetreten. Die "
-"Fehlermeldung lautet: „%2“"
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
@@ -9889,7 +9922,8 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "Zugriff auf Dateien in einem Archiv vom Typ %1 wird nicht unterstützt"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives"
 msgstr ""
 "Das Anzeigen von Ordnern wird für Archive des Typs %1 nicht unterstützt"
@@ -9922,11 +9956,8 @@ msgstr "Zugriff auf die Datei erfordert ein Passwort."
 #~ msgid "Your emails"
 #~ msgstr "pano_90@gmx.net,crissi99@gmx.de,eschler@gmail.com"
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Aktuellen Eintrag in Zwischenablage kopieren"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Neues Unterfenster im persönlichen Ordner öffnen"
+#~ msgid "Directories:"
+#~ msgstr "Ordner:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr ""
@@ -9956,6 +9987,30 @@ msgstr "Zugriff auf die Datei erfordert ein Passwort."
 #~ msgid "JavaScript Error"
 #~ msgstr "JavaScript-Fehler"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr " %1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Durchsuchen"
+
+#~ msgid "New folder"
+#~ msgstr "Neuer Ordner"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Neues Unterfenster im persönlichen Ordner öffnen"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Eine JavaScript-Erweiterung ausführen ..."
 
@@ -9973,14 +10028,8 @@ msgstr "Zugriff auf die Datei erfordert ein Passwort."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Expander: Kein Skript spezifiziert für %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Neuer Ordner"
-
-#~ msgid "Directories:"
-#~ msgstr "Ordner:"
-
-#~ msgid "Browse"
-#~ msgstr "Durchsuchen"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Aktuellen Eintrag in Zwischenablage kopieren"
 
 #~ msgid "Folder..."
 #~ msgstr "Ordner ..."
@@ -9993,21 +10042,6 @@ msgstr "Zugriff auf die Datei erfordert ein Passwort."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Datei editieren (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr " %1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
 
 #~ msgid "Open search filter"
 #~ msgstr "Suchfilter öffnen"

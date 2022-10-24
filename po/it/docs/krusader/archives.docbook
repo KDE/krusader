@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="archives">
   <title
 >Gestire gli archivi</title>
@@ -18,12 +30,14 @@
 >Grazie ai <link linkend="vfs"
 >File system virtuali (VFS)</link
 > è possibile navigare all'interno di un archivio come se si trattasse di una cartella. Allo stato attuale, &krusader; supporta i seguenti formati di archiviazione: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip e7-zip e i seguenti archivi protetti da password: arj, ace, rar and zip. Le password possono essere salvate in <application
->KWallet</application
+>Kwallet</application
 >. Attenzione! Il supporto alla gestione degli archivi deve essere <link linkend="konfig-archives"
 >configurato</link
-> correttamente in Konfigurator. Puoi aprire un archivio premendo il tasto &Enter;, facendo (doppio) clic su di esso o con il tasto &Right;. &krusader; supporta anche gli <emphasis role="bold"
+> correttamente in Konfigurator. Puoi aprire un archivio premendo &Enter;, facendo (doppio) clic su di esso o con il tasto <keycap
+>Freccia a destra</keycap
+>. &krusader; supporta anche gli <emphasis role="bold"
 >archivi nascosti</emphasis
->, ossia gli archivi rinominati con un'estensione *fittizia*; <trademark class="registered"
+>, ossia gli archivi rinominati con un'estensione *fittizia*, <trademark class="registered"
 >OpenOffice</trademark
 >, ad esempio, utilizza archivi zip con le seguenti estensioni: <literal role="extension"
 >.odt</literal
@@ -33,9 +47,13 @@
 >.odw</literal
 >. Premendo &Enter; si aprirà il documento <trademark class="registered"
 >OpenOffice</trademark
-> mentre con il tasto &Right; l'archivio verrà aperto. Un altro esempio si ha nella piattaforma J2EE in cui l'estensione <literal role="extension"
+> mentre con il tasto <keycap
+>Freccia a destra</keycap
+> l'archivio verrà aperto. Un altro esempio si ha nella piattaforma J2EE in cui l'estensione <literal role="extension"
 >.jar</literal
-> indica un archivio zip. Dal momento che &krusader; rileva automaticamente i tipi di archivio supportati, questi ultimi verranno aperto con il tasto &Right; anche se il loro tipo &MIME; è diverso. Vi sono, tuttavia, alcune restrizioni: <itemizedlist>
+> sta per un archivio zip. Dal momento che &krusader; rileva automaticamente i tipi di archivio supportati, questi ultimi verranno aperto con il tasto <keycap
+>Freccia a destra</keycap
+> anche se il loro tipo MIME è diverso. Vi sono, tuttavia, alcune restrizioni: <itemizedlist>
       <listitem>
         <para
 >Non tutte le funzioni sono supportate per tutti i tipi di archivio (non è possibile cancellare i file dagli archivi ace o rar).</para>
@@ -54,9 +72,7 @@
       </listitem>
       <listitem>
         <para
->La compressione e l'estrazione sono implementate come <quote
->operazioni bloccanti</quote
-> per le quali viene visualizzata una barra di avanzamento. Questo potrebbe non essere più vero in futuro, perché è in programma di aumentare il numero delle operazioni eseguite in background.</para>
+>La compressione e l'estrazione sono implementate come "operazioni bloccanti" per le quali viene visualizzata una barra di avanzamento. Questo potrebbe non essere più vero in futuro, perché è in programma di aumentare il numero delle operazioni eseguite in background.</para>
       </listitem>
     </itemizedlist
 ></para>
@@ -81,9 +97,7 @@
     <para
 >Per estrarre solo una parte dell'archivio, <link linkend="browsing-archives"
 >naviga</link
-> all'interno di esso e copia gli elementi da estrarre nel nuovo percorso come se fossero dei <quote
->normali</quote
-> file. Estrarre i singoli file da dentro un archivio (uno ad uno) richiede più del tempo che sarebbe necessario per estrarre l'intero archivio con il primo sistema. L'operazione di estrazione può essere aggiunta alla <link linkend="queue"
+> all'interno di esso e copia gli elementi da estrarre nel nuovo percorso come se fossero dei"normali" file. Estrarre i singoli file da dentro un archivio (uno ad uno) richiede più del tempo che sarebbe necessario per estrarre l'intero archivio con il primo sistema. L'operazione di estrazione può essere aggiunta alla <link linkend="queue"
 >coda</link
 > di elaborazione.</para>
   </sect2>
@@ -105,9 +119,7 @@
 >estensioni di file supportate</link
 >.</para>
     <para
->Per aggiungere dei file a un archivio esistente, apri l'archivio in un pannello, i file da copiare nell'altro e copia i file all'interno dell'archivio come se fosse una <quote
->normale</quote
-> cartella. L'operazione di compressione può essere aggiunta alla <link linkend="queue"
+>Per aggiungere dei file a un archivio esistente, apri l'archivio in un pannello, i file da copiare nell'altro e copia i file all'interno dell'archivio come se fosse una "normale" cartella. L'operazione di compressione può essere aggiunta alla <link linkend="queue"
 >coda</link
 > di elaborazione.</para>
   </sect2>

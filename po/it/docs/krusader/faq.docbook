@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <chapter id="faq">
   <title
 >Domande ricorrenti (&FAQ;)</title>
@@ -12,8 +24,8 @@
 >FAQ</primary>
   </indexterm>
   <para
->Sei hai problemi con &krusader; verifica la <ulink url="https://krusader.org/get-involved/index.html"
->procedura di installazione</ulink
+>Sei hai problemi con &krusader; verifica la <link linkend="installation"
+>procedura di installazione</link
 >, al fine di capire se l'installazione è stata eseguita correttamente o no.</para>
   <para
 >Le &FAQ; si dividono in tre sezioni: <itemizedlist
@@ -102,19 +114,288 @@
         </answer>
       </qandaentry>
       <qandaentry>
+        <question id="faqi_libs">
+          <para
+>Di quali librerie ha bisogno &krusader; per essere avviato?</para>
+        </question>
+        <answer>
+          <para
+>Per essere avviato &krusader; (&eg;, se hai installato &krusader; con un pacchetto RPM binario) necessita di meno librerie di quando lo compili da sorgente. &eg;, hai bisogno solo del compilatore C &gcc; se compili &krusader; da sorgente (vedi la prossima domanda).</para>
+          <para
+>Consulta il paragrafo <link linkend="compilation"
+>Dipendenze di &krusader;</link
+> del capitolo relativo all'installazione.</para>
+          <para
+>Se hai bisogno di maggiori informazioni, consulta <ulink url="https://packages.ubuntu.com/cosmic/krusader"
+>requisiti di &krusader;</ulink
+> in Ubuntu. I pacchetti «depends» sono obbligatori, quelli «suggests» rendono &krusader; più completo.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_missing_libs">
+          <para
+>Ho seguito tutti i passaggi ma il comando <command
+>make</command
+> mi informa che vi sono librerie o header mancanti. Cosa devo fare?</para>
+        </question>
+        <answer>
+          <para
+>Installa i pacchetti mancanti.</para>
+          <para
+>Consulta il paragrafo <link linkend="compilation"
+>Requisiti per la compilazione</link
+> del capitolo relativo all'installazione.</para>
+          <para
+>La maggior parte delle distribuzioni basate su RPM separa le intestazioni (headers) dalle librerie (libs). Le intestazioni servono per compilare &krusader;. Cerca i pacchetti nella forma nome-devel-*.rpm (&eg;, <filename
+>kdelibs-devel-foo.i586.rpm</filename
+>) o nome-dev-*.deb per le distribuzioni basate su <trademark class="registered"
+>Debian</trademark
+>. Esse sono, di solito, incluse nella tua distribuzione. <tip
+> <para
+>Se non riesci a trovare il pacchetto richiesto, usa il comando <ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=krusader&amp;submit=Search+..."
+>rpmfind</ulink
+> e fai clic su «missing lib or header» nella riga di ricerca. Oppure usa il comando <command
+>apt-cache search <replaceable
+>nome</replaceable
+></command
+> per cercare il pacchetto corrispondente nelle distribuzioni basate su <trademark class="registered"
+>Debian</trademark
+>.</para>
+          </tip
+></para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_64bit">
+          <para
+>Se sto usando un processore a 64 bit, come compilo &krusader;?</para>
+        </question>
+        <answer>
+          <para
+>Per quel che ne sappiamo, non esistono problemi. &krusader; è disponibile per <ulink url="https://packages.debian.org/unstable/utils/krusader"
+>molte altre architetture</ulink
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_rpm-source">
+          <para
+>Ho scaricato il sorgente RPM <filename
+>krusader-x.xx.dist.src.rpm</filename
+>, cosa devo fare ora?</para>
+        </question>
+        <answer>
+          <para>
+            <orderedlist>
+              <listitem>
+                <para
+>Controlla la proprietà e i permessi nella cartella <filename class="directory"
+> /usr/src/RPM/</filename
+> e tutte le cartelle ricorsive ad essa associate in cui il normale utente ha facoltà di leggere, scrivere ed eseguire.</para>
+              </listitem>
+              <listitem>
+                <para
+>Per creare il binario RPM per il tuo computer, esegui: <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>rpm</command
+> <option
+>--rebuild</option
+> <replaceable
+>&lt;/percorso/al/filerpm/&gt; krusader-x.xx.dist.src.rpm</replaceable
+></userinput
+></screen>
+                </para>
+              </listitem>
+              <listitem>
+                <para
+>Se tutte le <link linkend="faqi_missing_libs"
+> dipendenze</link
+> sono a posto, verrà creato un binario RPM <filename
+>krusader-x.xx.dist.rpm</filename
+> in <filename class="directory"
+>/usr/src/RPM/RPMS/i586</filename
+> (sostituisci i586 con la tua architettura).</para>
+              </listitem>
+              <listitem>
+                <para
+>Prima dell'installazione, verifica se il binario RPM contiene errori: <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>rpm</command
+> <option
+>-i --test</option
+> <replaceable
+>&lt;/percorso/al/filerpm&gt; krusader-x.xx.dist.rpm</replaceable
+></userinput
+></screen
+> Se il prompt dei comandi non restituisce messaggi, è tutto in ordine.</para>
+              </listitem>
+              <listitem>
+                <para
+>Installa il binario RPM nel solito modo, per esempio: <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>su -c 'rpm</command
+> <option
+>-Uvh</option
+> <replaceable
+>&lt;/percorso/al/filerpm&gt; krusader-x.xx.dist.rpm</replaceable
+>'</userinput
+></screen
+> Ti verrà richiesto di inserire la password di amministrazione.</para>
+              </listitem>
+              <listitem>
+                <para
+>Ora puoi <link linkend="starting-krusader"
+>avviare</link
+> &krusader;.</para>
+              </listitem>
+            </orderedlist>
+          </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <tip>
+            <para
+>Per maggiori informazioni sui file RPM, visita il sito <ulink url="http://www.rpm.org/"
+>rpm.org</ulink
+> e leggi la <ulink url="https://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/index.html"
+>Guida RPM</ulink
+> di Eric Foster-Johnson (in inglese).</para>
+          </tip>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_rpm-fails">
+          <para
+>Sto tentando di installare il binario pippo (pacchetto RPM o DEB) ma non ci riesco. Dov'è l'errore?</para>
+        </question>
+        <answer>
+          <para
+>Poiché noi prepariamo (e usiamo) il file sorgente, non sappiamo nulla al riguardo. Hai verificato il binario RPM prima di installarlo? <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>rpm</command
+> <option
+>-i --test</option
+> <replaceable
+>&lt;/percorso/al/filerpm&gt; krusader-x.xx.dist.rpm</replaceable
+></userinput
+></screen
+> Se il prompt dei comandi non restituisce messaggi, allora è tutto in ordine. Gli RPM scaricati dal nostro sito web sono in genere forniti dagli utenti di &krusader;. Visita il sito della tua distribuzione e cerca un RPM aggiornato.</para>
+          <para
+>Se l'RPM presenta errori, cerca un altro pacchetto negli archivi software di &Linux;, come <ulink url="http://freshmeat.net/projects/krusader/"
+>freshmeat.net</ulink
+> o <ulink url="https://www.linux-apps.com/content/show.php?content=10214"
+>linux-apps.com</ulink
+>. Se non riesci a trovare il pacchetto giusto per la tua distribuzione &Linux;, ti consigliamo di cercarlo con <ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=krusader&amp;submit=Search+..."
+>rpmfind</ulink
+> o <ulink url="http://rpm.pbone.net/index.php3/stat/3/search/krusader"
+>rpmpbone</ulink
+>.</para>
+          <para
+>In generale, un pacchetto per una versione più vecchia della tua distribuzione, o anche per un'altra distribuzione, può funzionare nel tuo computer (&eg;, i file RPM di FC spesso funzionano su Mdk e RH, e viceversa), ma è sempre meglio installare solo RPM che corrispondono alla tua versione, di architettura o distribuzione, poi utilizzare un sorgente RPM. Quando utilizzi un file sorgente RPM, verranno compilati i sorgenti di Krusader all'interno del tuo computer, garantendo così un file binario RPM adatto alla tua distribuzione e architettura specifiche. Questo metodo, per di più, consente al tuo computer di funzionare con le massime prestazioni, dato che il binario ottenuto è personalizzato proprio per il tuo computer. Leggi la domanda precedente, che spiega come installare un file sorgente RPM. La soluzione migliore è spiegata invece nella domanda successiva.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
         <question id="faqi_rpm-notfound">
           <para
->Non riesco a trovare un pacchetto per &krusader;: cosa faccio?</para>
+>Non riesco a trovare un pacchetto RPM o DEB per &krusader;, cosa faccio?</para>
         </question>
         <answer>
           <para
 >Controlla se la tua distribuzione contiene &krusader;. Se non lo contiene, contatta i preparatori della distribuzione e chiedi loro di includerlo!</para>
           <para
->Hai dato un'occhiata alla pagina relativa alla <ulink url="https://krusader.org/get-involved/index.html"
->procedura d'installazione</ulink
->? Se l'hai fatto e non hai trovato nulla, puoi sempre compilare &krusader; dal sorgente. Se hai problemi, non esitare a inviarci una <link linkend="faqi_help_request"
->richiesta di aiuto</link
+>Hai controllato l'&URL; nella pagina della <link linkend="installation"
+>procedura di installazione</link
+>? Se l'hai fatto e non hai trovato nulla, puoi sempre compilare &krusader; da sorgente. Anche se pensi di non avere le competenze necessarie, probabilmente riuscirai a compilarlo, poiché la procedura che forniamo è molto dettagliata. Questo HowTo permette la compilazione di &krusader; da sorgente anche ai meno esperti, anche se non ne avessero mai eseguito una prima: basta seguire attentamente le istruzioni. Se dovessi avere problemi, invia pure una <link linkend="faqi_help_request"
+>richiesta di assistenza</link
 >.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_missing_menus">
+          <para
+>Alcuni nuovi elementi di menu sono scomparsi dopo aver aggiornato &krusader;, qual è il problema?</para>
+        </question>
+        <answer>
+          <para
+>Il file <filename
+>krusaderui.rc</filename
+> è memorizzato in <filename
+> /usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+>. Quando modifichi la <guilabel
+>Barra degli strumenti</guilabel
+>, &plasma; crea una copia di quel file nella cartella home in <filename
+> ~/.kde/share/kxmlgui5/krusader/krusaderui.rc</filename
+>. Se &krusader; è stato precedentemente installato nel tuo computer e tu hai installato una sua versione più recente, il file <filename
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> deve essere sostituito con la nuova versione. Nota che quest'operazione cancellerà tutte le modifiche che hai eseguito alle barre degli strumenti e le scorciatoie!</para>
+          <para
+>La prima riga del file <filename
+>krusaderui.rc</filename
+> contiene il numero di versione. Dopo aver installato una nuova versione di &krusader;, &plasma; sostituirà automaticamente il vecchio <filename
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> con la nuova versione, al primo avvio di &krusader; aggiornato (&plasma; rileverà il nuovo numero di versione dalla prima riga).</para>
+          <para
+>Se installi una versione di sviluppo o una beta, e &krusader; è già installato nel computer, devi invece eliminare il file <filename
+>krusaderui.rc</filename
+> dalla tua cartella home, al fine di attivare le nuove voci di menu <prompt
+>$</prompt
+> <userinput
+> <command
+>rm</command
+> <option
+>~/.local/share/kxmlgui5/krusader/krusaderui.rc</option
+> </userinput
+></para>
+          <para
+>Se il file <filename
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> è più vecchio, allora gli elementi del nuovo menu non verranno visualizzati. Leggi la domanda precedente, al fine di ottenere informazioni su come aggiornare il file <filename
+>krusaderui.rc</filename
+>. Se <filename
+>krusaderui.rc</filename
+> non è presente o si trova nella cartella sbagliata, apparirà solo il menu <guimenu
+>Aiuto</guimenu
+>, dunque leggi la domanda precedente.</para>
+      <note>
+          <para
+>La cartella predefinita per il file di configurazione locale <filename
+>kxmlgui5/krusaderui.rc</filename
+> è <filename class="directory"
+>~/.local/share</filename
+>. Puoi determinare la cartella richiesta nel tuo sistema usando il comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> nel terminale. </para>
+      </note>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -128,8 +409,8 @@
         </question>
         <answer>
           <para
->Leggi la <ulink url="https://krusader.org/get-involved/index.html"
->procedura di installazione</ulink
+>Leggi la <link linkend="compilation"
+>procedura di installazione</link
 > dettagliata e le <link linkend="faq"
 >Domande ricorrenti</link
 >. Se non riesci a trovare una soluzione per il tuo problema, allora invia pure una <emphasis role="bold"
@@ -181,6 +462,103 @@
         </answer>
       </qandaentry>
       <qandaentry>
+        <question id="faqi_rpm-build">
+          <para
+>Come posso costruire un pacchetto RPM per &krusader;?</para>
+        </question>
+        <answer>
+          <para
+>Se hai già avuto esperienza nella compilazione da sorgente, sei probabilmente in grado di costruire un RPM per &krusader;. Puoi trovare informazioni sugli RPM nel sito <ulink url="http://www.rpm.org/"
+>rpm.org</ulink
+> e nella <ulink url="https://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/index.html"
+>Guida RPM</ulink
+> di Eric Foster-Johnson (in inglese). Di seguito viene illustrata la procedura breve per la loro costruzione.</para>
+          <warning>
+            <para
+>Non costruire MAI RPM se sei collegato al sistema come amministratore. Gli errori durante la costruzione dei pacchetti (&eg;, un file <filename
+>krusader.spec</filename
+> danneggiato), in un caso del genere, possono danneggiare seriamente il tuo sistema.</para>
+          </warning>
+          <para>
+            <orderedlist>
+              <listitem>
+                <para
+>Compila &krusader; da sorgente per verificare che la compilazione funzioni bene.</para>
+              </listitem>
+              <listitem>
+                <para
+>Controlla la proprietà e i permessi nella cartella <filename class="directory"
+> /usr/src/RPM/</filename
+> e tutte le cartelle ricorsive ad essa associate in cui il normale utente ha facoltà di leggere, scrivere ed eseguire.</para>
+              </listitem>
+              <listitem>
+                <para
+>Copia <filename
+>krusader-1.xx.tar.gz</filename
+> in <filename class="directory"
+> /usr/scr/RPM/SOURCE</filename
+></para>
+              </listitem>
+              <listitem>
+                <para
+>Copia <filename
+>krusader-1.xx.tar.gz</filename
+> in <filename class="directory"
+> /usr/scr/RPM/SPECS</filename
+></para>
+              </listitem>
+              <listitem>
+                <para
+>Modifica <filename
+>krusader.spec</filename
+> e aggiungi il tuo nome, il tuo indirizzo di posta elettronica, il nome del rpm, ... Potrebbero essere necessarie altre modifiche se il comando <command
+>rpmbuild</command
+> non funziona.</para>
+              </listitem>
+              <listitem>
+                <para
+>Costruisci il binario e il sorgente RPM con: <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>rpmbuild</command
+> <option
+>-ba</option
+> <replaceable
+>/usr/scr/RPM/SPECS/krusader.spec</replaceable
+></userinput
+></screen
+> Se l'operazione avviene correttamente, otterrai un binario RPM in <filename class="directory"
+> /usr/src/RPM/RPMS/i586</filename
+> (a seconda della tua architettura) e un sorgente RPM in <filename class="directory"
+> /usr/src/RPM/SRPMS/</filename
+> &eg;, <filename
+> krusader-1.70-beta1.suse10.i586.rpm</filename
+> e <filename
+> krusader-1.70-beta1.suse10.src.rpm</filename
+></para>
+              </listitem>
+              <listitem>
+                <para
+>Se la costruzione non avviene correttamente, riceverai un messaggio di errore durante il processo rpmbuild: prova a correggerlo ed esegui di nuovo <command
+>rpmbuild</command
+>.</para>
+              </listitem>
+              <listitem>
+                <para
+>Infine, <link linkend="faqi_rpm-source"
+>prova</link
+> il file RPM prima di inviarlo.</para>
+              </listitem>
+            </orderedlist>
+          </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
         <question id="faqi_git_version">
           <para
 >Perché &krusader;-git mostra un numero di versione vecchio nella finestra delle informazioni?</para>
@@ -188,6 +566,37 @@
         <answer>
           <para
 >Perché modifichiamo il numero di versione solo poco prima di un nuovo rilascio. &krusader;-git mostrerà un numero più vecchio di versione, dunque ignora il numero e controlla la data di scaricamento. Semplicemente non abbiamo ancora deciso quale sarà il prossimo numero di versione.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_mac_dbus">
+          <para
+>Perché &krusader; non si avvia su &MacOS;?</para>
+        </question>
+        <answer>
+          <para
+>Leggi attentamente le istruzioni d'installazione in <ulink url="https://www.macports.org/"
+>macports.org</ulink
+>. Non dimenticare di avviare <application
+>dbus</application
+>. <screen
+>##########################################################
+# Non dimenticare che dbus deve essere avviato come utente
+# normale (non con sudo) prima venga avviato qualsiasi programma KDE
+# Per avviarlo, esegui il seguente comando:                 
+# launchctl load /Library/LaunchAgents/org.freedesktop.dbus-session.plist
+##########################################################
+
+######################################################
+#  I programmi non si avvieranno fino a quando non eseguirai il comando
+#  'sudo chown -R $USER ~/Library/Preferences/KDE' 
+#  $USER deve essere sostituito col tuo nome utente.             
+###################################################### 
+          </screen
+></para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -206,13 +615,11 @@
         </question>
         <answer>
           <para
->Quando &krusader; sta, per esempio, navigando in una condivisione &NFS; e il server &NFS; si arresta, &krusader; si blocca. Questo suo blocco (e anche quello di tutti gli editor e visualizzatori interni aperti) è irreversibile e può essere corretto solo col comando <command
+>Quando &krusader; sta, per esempio, navigando in una condivisione NFS e il server NFS si arresta, &krusader; si blocca. Questo suo blocco (e anche quello di tutti gli editor e visualizzatori interni aperti) è irreversibile e può essere corretto solo col comando <command
 >kill -9</command
->. Non esiste soluzione per questo. Questo problema non riguarda solo i gestori di file o i sistemi operativi &Linux;! Il problema è che ci si <quote
->blocca</quote
-> al primo accesso alla condivisione inattiva: non c'è dunque modo di aggirarlo, nessun previo controllo per evitarlo, anche il comando <command
+>. Non esiste soluzione per questo. Questo problema non riguarda solo i gestori di file o i sistemi operativi &Linux;! Il problema è che ci si «blocca» al primo accesso alla condivisione inattiva: non c'è dunque modo di aggirarlo, nessun previo controllo per evitarlo, anche il comando <command
 >ls</command
-> si bloccherà. Basta provare a leggere qualcosa, qualsiasi cosa, per restare impantanati. Il solo e unico modo di aggirare questo problema di architettura è utilizzare una struttura multi-thread: in questo modo, se si rimane bloccati, non si blocca la gestione degli eventi per l'intera applicazione; non si pensi però che sia il momento opportuno per aggiungere thread, non siamo sicuri che *tutti* i sistemi basati su ;&kf5; utilizzino &Qt;-mt (la versione multi-thread della libreria &Qt;), e la &krusader; Krew potrebbe non essere, in ogni caso, il gruppo giusto per risolvere questo importante problema; quindi, al momento, questo è solo un errore con cui bisogna convivere.</para>
+> si bloccherà. Basta provare a leggere qualcosa, qualsiasi cosa, per restare impantanati. Il solo e unico modo di aggirare questo problema di architettura è utilizzare una struttura multi-thread: in questo modo, se si rimane bloccati, non blocchiamo la ripetizione dell'evento per l'intera applicazione; non si pensi però che è il momento giusto per aggiungere thread, non siamo sicuri che *tutti* i sistemi dell'universo &kf5; stiano utilizzando &Qt;-mt (la versione multi-thread della libreria &Qt;), e la &krusader; Krew potrebbe non essere, in ogni caso, il gruppo giusto cui indirizzare questo importante problema; quindi, al momento, questo è solo un errore con cui bisogna convivere.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -243,11 +650,15 @@
       <qandaentry>
         <question id="faqu_samba_codepage">
           <para
->Codifica ISO 8859-x di &Samba; / Cosa fare se &krusader; non legge le cartelle condivise che contengono caratteri internazionali speciali?</para>
+>Codifica ISO 8859-x di <application
+>Samba</application
+> / Cosa fare se &krusader; non legge le cartelle condivise che contengono caratteri internazionali speciali?</para>
         </question>
         <answer>
           <para
->&krusader; non gestisce (ancora) le codifiche ISO 8859-x di &Samba;; se utilizzi una codifica diversa da 8859-1 dovrai eseguire una configurazione manuale. Crea o modifica il file: <filename
+>&krusader; non gestisce (ancora) le codifiche ISO 8859-x di <application
+>Samba</application
+>; se utilizzi una codifica diversa da 8859-1 dovrai eseguire una configurazione manuale. Crea o modifica il file: <filename
 >~/.smb/smb.conf</filename
 > <programlisting
 >[global] 
@@ -256,6 +667,57 @@
           character set = Mio_Insieme_di_caratteri (es. ISO8859-2)
           </programlisting
 > Puoi provare a configurare smb.conf con il modulo appropriato di &systemsettings;.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <!-- Thanks to Karai Csaba -->
+      <qandaentry>
+        <question id="faqu_krarc_protocol">
+          <para
+>&krusader; riferisce l'errore «krarc:... protocollo non supportato» all'apertura di un file archivio, cosa fare?</para>
+        </question>
+        <answer>
+          <para
+>Installa correttamente lo slave krarc:</para>
+          <para
+>Copia i file <filename
+>kio_krarc.so</filename
+>, <filename
+>kio_krarc.la</filename
+> in <filename class="directory"
+> /usr/{lib or lib64}/qt5/plugins</filename
+></para>
+          <para
+>Copia il file <filename
+>krarc.protocol</filename
+> in <filename class="directory"
+> /usr/share/services</filename
+></para>
+          <para
+>o la cartella dove sono memorizzati gli slave KIO, nella tua distribuzione &Linux;.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_krarc_support">
+          <para
+>Quando tento di aprire l'archivio «pippo» mi viene restituito il messaggio di errore «Il protocollo non è supportato da Krusader: "krarc:/path/to/archivio_pippo». Cosa devo fare?</para>
+        </question>
+        <answer>
+          <para
+>Le icone, gli slave kio e la documentazione devono essere installate nelle posizioni corrette all'interno della struttura delle cartelle di &kf5;. I file <filename
+>kio_krarc.*</filename
+> devono risiedere nella stessa cartella degli altri slave KIO. Prova questo metodo: individua <filename
+>kio_tar.*</filename
+> e copia/collega i file <filename
+>kio_krarc.*</filename
+> nella stessa posizione. Non dimenticare di avviare <command
+># ldconfig</command
+> su questa cartella, dopo aver finito.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -366,7 +828,7 @@
 > </menuchoice
 >. L'opzione <guilabel
 >«Abilita modalità passiva (PASV)»</guilabel
-> va attivata o disattivata, a seconda delle attuali impostazioni. Riprova ora ad eseguire una sessione &FTP;, per controllare se funziona. Controlla anche di non avere altre sessioni &FTP; aperte (tramite browser web, &etc;), essere possono creare complicazioni. Puoi trovare ulteriori informazioni in <ulink url="https://slacksite.com/other/ftp.html"
+> va attivata o disattivata, a seconda delle attuali impostazioni. Riprova ora ad eseguire una sessione &FTP;, per controllare se funziona. Controlla anche di non avere altre sessioni &FTP; aperte (tramite browser web, &etc;), essere possono creare complicazioni. Puoi trovare ulteriori informazioni in <ulink url="http://slacksite.com/other/ftp.html"
 >Active &FTP; vs. Passive &FTP;, a Definitive Explanation</ulink
 > (in lingua inglese).</para>
           <para
@@ -379,7 +841,7 @@
         <question id="faqu_ftp_http_proxy">
           <para
 >Ricevo l'errore <errorcode
->Protocollo &FTP; non supportato da &krusader;</errorcode
+>Protocollo FTP non supportato da &krusader;</errorcode
 > quando tento di aprire una cartella &FTP; remota. Cosa devo fare?</para>
         </question>
         <answer>
@@ -491,7 +953,7 @@
       <qandaentry>
         <question id="faqu_mimetypemagic_archives">
           <para
->Perché il sistema di riconoscimento dei tipi &MIME; a volte non funziona all'interno degli archivi?</para>
+>Perché il sistema di riconoscimento dei tipi MIME a volte non funziona all'interno degli archivi?</para>
         </question>
         <answer>
           <para
@@ -501,7 +963,7 @@
 >README, INSTALL</filename
 > &etc; Se il visualizzatore apre in modalità hex anziché in quella normale, devi eseguire la configurazione: <menuchoice
 > <guimenu
->Impostazioni di sistema di &kde;</guimenu
+>Impostazioni di sistema di KDE</guimenu
 > <guimenuitem
 >Aspetto e comportamento comune</guimenuitem
 > <guimenuitem
@@ -533,7 +995,7 @@
 > <guimenu
 >Impostazioni</guimenu
 > <guimenuitem
->Configura &krusader;...</guimenuitem
+>Configura &krusader;</guimenuitem
 > </menuchoice
 >: verrà avviato <link linkend="konfigurator"
 >Konfigurator</link
@@ -574,28 +1036,6 @@
         </answer>
       </qandaentry>
 
-      <qandaentry>
-        <question id="faqu_custom_embed_term">
-          <para
->Come personalizzo il terminale incorporato di &krusader;?</para>
-        </question>
-        <answer>
-          <para
->Per cambiare le proprietà dell'emulatore di terminale incorporato di &krusader;: puoi farci sopra clic col destro e scegliere un'opzione; se non trovi quello che stai cercare, puoi utilizzare il menu <menuchoice
-> <guimenu
->Impostazioni</guimenu
-> </menuchoice
-> di &konsole; (in quanto &krusader; utilizza una KPart di &konsole; per il suo terminale incorporato). In quel menu sono presenti altri elementi (tipo <menuchoice
-> <guimenuitem
->«Gestisci profili...»</guimenuitem
-> </menuchoice
->). </para>
-          <para
-></para>
-          <!-- Empty line to make it more readable -->
-      </answer>
-      </qandaentry>
-
     </qandaset>
   </sect1>
   <sect1 id="faq_general">
@@ -609,9 +1049,7 @@
         </question>
         <answer>
           <para
->La forza più grande di un progetto open source deriva dalle opinioni degli utenti. Ecco perché ci piace ascoltare quello che hai da dire. Le vostre <quote
->lamentele</quote
-> sono le nostre istruzioni. Dopo circa sei mesi, i programmatori possono non vedere più i propri errori. È naturale. Vogliamo le idee, le critiche e le opinioni tutto ciò che vogliamo è rendere &krusader; il migliore e più utile gestore di file che si possa ottenere, ovunque voi siate.</para>
+>La forza più grande di un progetto open source deriva dalle opinioni degli utenti. Ecco perché ci piace ascoltare quello che hai da dire. Le vostre «lamentele» sono le nostre istruzioni. Dopo circa sei mesi, i programmatori possono non vedere più i propri errori. È naturale. Vogliamo le idee, le critiche e le opinioni tutto ciò che vogliamo è rendere &krusader; il migliore e più utile gestore di file che si possa ottenere, ovunque voi siate.</para>
           <para
 >Il modo migliore per contattarci è usare la <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
 >mailing list</ulink
@@ -644,18 +1082,16 @@
               <para
 >È preferibile avviare una discussione con gli sviluppatori nelle <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
 >mailing list</ulink
-> degli sviluppatori di krusader o sulla <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
->pagina GitLab di &krusader;</ulink
->. Purtroppo, non possiamo applicare una patch se essa è in conflitto con la <quote
->struttura generale</quote
-> del codice di &krusader; (altre istruzioni sono presenti in questa FAQ). Invia solo una richiesta di modifica alla volta, in modo che la discussione sia più semplice da seguire. Le modifiche devono essere inviate passo passo, verificando ciascuna riga. </para>
+> degli sviluppatori di krusader o sulla <ulink url="https://phabricator.kde.org/tag/krusader/"
+>pagina Phabricator di &krusader;</ulink
+>. Purtroppo, non possiamo applicare una patch se essa è in conflitto con la «struttura generale» del codice di &krusader; (altre istruzioni sono presenti in questa FAQ). Invia solo una richiesta di modifica alla volta, in modo che la discussione sia più semplice da seguire. Le modifiche devono essere inviate passo passo, verificando ciascuna riga. </para>
             </listitem>
             <listitem>
              <para
->Invia i tuoi file di patch al <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
->GitLab</ulink
->, in modo che tutte le proposte di patch risultino organizzate e non vengano perse, gli archivi tar.gz o diff vanno in genere bene. Non copiare le modifiche in un messaggio: la maggior parte dei programmi di posta modifica gli spazi bianchi e il comando diff non viene applicato o sul codice ritagliato esso non può essere eseguito. In passato i messaggi di patch andavano perduti o risultavano disorganizzati in tantissimi messaggi, ti preghiamo di usare, dunque, <ulink url="https://community.kde.org/Infrastructure/GitLab"
->GitLab</ulink
+>Invia i tuoi file di patch al gruppo &krusader; di <ulink url="https://phabricator.kde.org/"
+>Phabricator</ulink
+>, in modo che tutte le proposte di patch risultino organizzate e non vengano perse, gli archivi tar.gz o diff vanno in genere bene. Non copiare le modifiche in un messaggio: la maggior parte dei programmi di posta modifica gli spazi bianchi e il comando diff non viene applicato o sul codice ritagliato esso non può essere eseguito. In passato i messaggi di patch andavano perduti o risultavano disorganizzati in tantissimi messaggi, ti preghiamo di usare, dunque, <ulink url="https://community.kde.org/Infrastructure/Phabricator"
+>Phabricator</ulink
 >, grazie! </para
 > 
             </listitem>
@@ -678,7 +1114,7 @@
 > </listitem
 > <listitem
 > <para
->&kde; 3.3- &kde; 3.5 e anche su GNOME con kdelibs (per &krusader;-2.x) .</para
+>&kde; 3.3- &kde; 3.5 e anche su GNOME con &kde;libs (per &krusader;-2.x) .</para
 > </listitem
 > <listitem
 > <para
@@ -760,7 +1196,7 @@
 >-DCMAKE_BUILD_TYPE=debugfull</option
 ></userinput
 ></screen
-> Installa <ulink url="https://valgrind.org"
+> Installa <ulink url="http://valgrind.org"
 >valgrind</ulink
 >, una suite di strumenti per il debugging e il profiling dei programmi &Linux;. Avvia Valgrind/&krusader; <screen
 ><prompt
@@ -838,7 +1274,7 @@
         </question>
         <answer>
           <para
->Sì, al momento abbiamo diverse cinque <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>Sì, al momento abbiamo cinque <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
 >mailing list</ulink
 >. Niente spam o noie, solo &krusader;. Puoi iscriverti o cancellarti senza problemi.</para>
           <para
@@ -854,12 +1290,6 @@
 ><ulink url="https://groups.google.com/group/krusader-users"
 >&krusader;-users</ulink
 > è la mailing list degli utenti di &krusader;. Qui puoi chiedere assistenza e parlare con gli utenti e gli sviluppatori di &krusader;.</para>
-            </listitem>
-            <listitem>
-              <para
-><ulink url="http://groups.google.com/group/krusader-news"
->&krusader;-news</ulink
-> è una lista a bassissimo traffico, utilizzata per gli annunci di nuove versioni o di correzioni di errori critici.</para>
             </listitem>
           </itemizedlist
 ></para>
@@ -879,9 +1309,26 @@
 >krusader-devel feed</ulink
 >, <ulink url="https://groups.google.com/group/krusader-users/feeds"
 >krusader-users feed</ulink
-> e <ulink url="https://groups.google.com/group/krusader-news/feeds"
->krusader-news feed</ulink
 >.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_irc">
+          <para
+>&krusader; possiede un canale IRC?</para>
+        </question>
+        <answer>
+          <para
+>Sì. Conversa pure con la Krew di &krusader; e gli utenti tramite i server <ulink url="http://freenode.net"
+>freenode.org</ulink
+>. Il server è <emphasis
+>irc.freenode.org</emphasis
+>, il canale è <emphasis
+>#krusader</emphasis
+>. Sei il benvenuto.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -1045,11 +1492,63 @@
         </answer>
       </qandaentry>
       <qandaentry>
+        <question id="faqg_mac">
+          <para
+>Esiste una conversione per &MacOS; X?</para>
+        </question>
+        <answer>
+         <para
+>Sì, esiste una <link linkend="kde4_mac_install"
+>conversione per &MacOS;-X</link
+> grazie all'aiuto di <ulink url="https://www.macports.org/"
+>macports.org</ulink
+>, e la conversione è gestita da <ulink url="https://krusader.org/developers.php"
+>Jonas B&auml;hr</ulink
+>. Qualsiasi segnalazione è bene accetta. Un gestore di file nativo suggerito per &MacOS; è <ulink url="http://www.likemac.ru/english/"
+><trademark class="copyright"
+>Disk Order</trademark
+></ulink
+> (shareware).</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_win">
+          <para
+>Esiste la conversione per &Windows;?</para>
+        </question>
+	<answer>
+	  <!-- the port is unavailable now
+           <para
+>Yes, there is a <link linkend="kde4_win_install"
+>&Windows; port</link
+> since 18 June 2008.
+	    Before &krusader; can be used several &Qt;4-libraries and &kde;4-libraries need to be installed.-->
+	  <para
+>No, esisteva una conversione, ora non più mantenuta e disponibile. Un gestore di file nativo suggerito per &Windows; è <ulink url="https://www.ghisler.com/"
+><trademark class="copyright"
+>Total Commander</trademark
+></ulink
+> (shareware).</para>
+	  <para
+>Se vuoi collaborare alla conversione, unisciti a <ulink url="http://windows.kde.org/"
+>The KDE on Windows Initiative</ulink
+>. Alcuni consigli utili sulla conversione si trovano nel file <ulink url="https://commits.kde.org/krusader?path=INSTALL"
+><filename
+>INSTALL</filename
+></ulink
+> dei sorgenti di &krusader;, che contiene tutte le istruzioni di compilazione più aggiornate.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
         <question id="faqg_mcstyle">
           <para
->Perché &konqueror; in <quote
->stile midnight commander</quote
-> non è un <link linkend="gloss-ofm"
+>Perché &konqueror; in «stile midnight commander» non è un <link linkend="gloss-ofm"
 >OFM</link
 >?</para>
         </question>
@@ -1074,11 +1573,11 @@
         </question>
         <answer>
           <para
->Un <ulink url="https://www.softpanorama.org/OFM/index.shtml"
+>Un <ulink url="http://www.softpanorama.org/OFM/index.shtml"
 >Orthodox File Manager (OFM)</ulink
-> è molto più veloce di uno a un solo pannello e più veloce della riga di comando. Se desideri conoscere <ulink url="https://www.softpedia.com/reviews/linux/Krusader-18193.shtml"
+> è molto più veloce di uno a un solo pannello e più veloce della riga di comando. Se desideri conoscere <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
 > come funziona &krusader;</ulink
->, c'è solo un modo di scoprirlo: installalo sul tuo computer e usalo per un po'. Se preferisci sprecare il tuo tempo e perdere in produttività, continua a utilizzare gestori di file a un pannello, basati su &Windows; Explorer. Matej Urban&ccaron;i&ccaron; ha scritto un <ulink url="https://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html"
+>, c'è solo un modo di scoprirlo: installalo sul tuo computer e usalo per un po'. Se preferisci sprecare il tuo tempo e perdere in produttività, continua a utilizzare gestori di file a un pannello, basati su &Windows; Explorer. Matej Urban&ccaron;i&ccaron; ha scritto un <ulink url="http://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html"
 > blog</ulink
 > spiegando perché un <link linkend="gloss-ofm"
 >OFM</link

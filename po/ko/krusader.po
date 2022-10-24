@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2022-10-03 15:58+0200\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2022-04-16 23:04+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-i18n-doc@kde.org>\n"
 "Language: ko\n"
@@ -995,9 +995,10 @@ msgid "Create Checksums"
 msgstr "체크섬 생성"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "About to calculate checksum for the following files or directories:"
 msgid "About to calculate checksum for the following files or folders:"
-msgstr "다음 파일이나 폴더의 체크섬을 계산합니다:"
+msgstr "다음 파일이나 디렉터리의 체크섬을 계산합니다:"
 
 #: app/Dialogs/checksumdlg.cpp:269
 #, kde-format
@@ -1414,9 +1415,10 @@ msgid "Files:"
 msgstr "파일:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
-msgstr "폴더:"
+msgstr "폴더"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1854,16 +1856,18 @@ msgid "Custom"
 msgstr "사용자 정의"
 
 #: app/FileSystem/krquery.cpp:547
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "%1=filename, %2=percentage"
+#| msgid "Searching content of '%1' (%2%)"
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr "'%1'의 내용 찾는 중(%2)"
+msgstr "'%1'의 내용 찾는 중(%2%)"
 
 #: app/FileSystem/krquery.cpp:552
 #, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr "%1%"
+msgstr ""
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, kde-format
@@ -2320,7 +2324,8 @@ msgid "Exclude Folder Names"
 msgstr "제외할 폴더 이름"
 
 #: app/Filter/generalfilter.cpp:468
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Filters out specified directory names from the results."
 msgid "Filters out specified folder names from the results."
 msgstr "지정한 폴더 이름을 검색 결과에서 제외합니다."
 
@@ -2554,7 +2559,7 @@ msgstr "프로필 이름 입력:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr "최근에 닫은 탭 비우기"
+msgstr ""
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -3054,14 +3059,16 @@ msgid "Current background:"
 msgstr "현재 배경색:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete foreground:"
 msgid "Rename foreground:"
-msgstr "이름 바꾸기 전경색:"
+msgstr "삭제할 항목 전경색:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
-msgstr "이름 바꾸기 배경색:"
+msgstr "대체 배경색:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3356,14 +3363,16 @@ msgstr ""
 "다른 탭으로 엽니다"
 
 #: app/Konfigurator/kggeneral.cpp:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "탭을 하나만 열었을 때 탭 표시줄 숨기기"
+msgstr "탭을 하나만 열었을 때에도 탭 표시줄을 표시합니다."
 
 #: app/Konfigurator/kggeneral.cpp:75
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr "이 옵션을 선택하면 탭을 하나만 열었을 때에도 탭 표시줄을 표시합니다."
+msgstr "탭을 하나만 열었을 때에도 탭 표시줄을 표시합니다."
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3429,7 +3438,7 @@ msgstr "사용 가능한 경우 16진수 뷰어로 내장 뷰어 대신 Okteta�
 #: app/Konfigurator/kggeneral.cpp:112
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
-msgstr "다음 크기보다 큰 텍스트 파일을 목록 표시 모드로 봅니다."
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3559,17 +3568,20 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:274
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
-msgstr "활성 패널에서 임베드된 터미널의 작업 디렉터리 따라가기"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "When checked, whenever the panel is changed (for example, by pressing "
+#| "Tab), Krusader changes the current folder in the embedded terminal."
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"이 옵션을 사용하면 터미널의 작업 디렉터리를 변경할 때마다(예: 'cd'나 'popd' "
-"명령 실행) Krusader의 활성 패널의 현재 폴더를 변경합니다."
+"이 옵션을 사용하면 패널을 변경할 때마다(예: Tab 키 누르기) Krusader의 임베드"
+"된 터미널의 현재 폴더를 변경합니다."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
@@ -3704,44 +3716,49 @@ msgstr ""
 "다."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons"
-msgstr "탭 닫기 단추 표시"
+msgstr "새 탭/탭 닫기 단추 표시"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons."
-msgstr "탭 닫기 단추를 표시합니다."
+msgstr "새 탭/탭 닫기 단추 표시"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr "탭 확장"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr "탭을 확장합니다."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button"
-msgstr "새 탭 단추 표시"
+msgstr "새 탭/탭 닫기 단추 표시"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button."
-msgstr "새 탭 단추를 표시합니다."
+msgstr "새 탭/탭 닫기 단추 표시"
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr "현재 탭 다음에 탭 삽입"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set root of the tree to the current folder"
 msgid "Insert new tabs to the right of the current one."
-msgstr "현재 탭 오른쪽에 새 탭을 삽입합니다."
+msgstr "트리 루트를 현재 폴더로 설정"
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
@@ -3756,17 +3773,17 @@ msgstr "탭을 하나만 열었을 때에도 탭 표시줄을 표시합니다."
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr "두 번 클릭해서 탭 닫기"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr "두 번 클릭해서 탭을 닫습니다."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr "새 탭 단추로 탭 복제"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3774,33 +3791,32 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
-"이 옵션을 사용하면 새 탭 단추를 클릭했을 때 탭을 복제하며, 그렇지 않으면 홈 "
-"디렉터리를 새 탭으로 엽니다."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr "클릭으로 활성 탭 복제:"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "disabled"
 msgid "Disabled"
-msgstr "사용 안 함"
+msgstr "사용 안함"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr "Alt+클릭"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr "Ctrl+클릭"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr "Ctrl/Alt+왼쪽 마우스 단추로 활성 탭 복제"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -3854,17 +3870,21 @@ msgid ""
 msgstr "위/아래 단추를 눌렀을 때 검색 표시줄을 닫습니다(검색 모드에서만)."
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Directory navigation with Right Arrow"
 msgid "Folder navigation with Right Arrow"
-msgstr "오른쪽 화살표로 폴더 탐색"
+msgstr "오른쪽 화살표로 디렉터리 탐색"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Pressing the Right button enters directory if no search text editing "
+#| "intention is captured."
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
 msgstr ""
-"오른쪽 화살표 키를 눌렀을 때 텍스트 편집 중이 아니라면 폴더로 들어갑니다."
+"오른쪽 화살표 키를 눌렀을 때 텍스트 편집 중이 아니라면 디렉터리로 들어갑니다."
 
 #: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
@@ -4598,9 +4618,10 @@ msgstr ""
 "다."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Right mouse button preserves selection"
 msgid "A plain mouse button resets selection"
-msgstr "마우스 단추만 클릭했을 때 선택 초기화"
+msgstr "마우스 오른쪽 단추는 선택 유지"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4609,10 +4630,6 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
-"수정자 키(Shift, Ctrl 등)를 누르지 않고 마우스 단추를 클릭했을 때 선택을 초기"
-"화합니다.\n"
-"이 설정을 사용하려면 Shift/Ctrl 키를 누르고 마우스 단추를 클릭했을 때 선택이 "
-"활성화되어 있어야 합니다."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4632,7 +4649,7 @@ msgstr "파일 시스템 종류 표시"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr "SquashFS 항목 숨기기"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4658,19 +4675,21 @@ msgid "Never"
 msgstr "하지 않음"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "MountMan will not (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
-msgstr "다음 마운트 지점 숨기기:"
+msgstr "MountMan은 다음 마운트 지점을 마운트하거나 마운트 해제하지 않습니다:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr "새 숨김 마운트 지점 추가"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mnt.Point"
 msgid "Mount point:"
-msgstr "마운트 지점:"
+msgstr "마운트 지점"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5365,7 +5384,7 @@ msgstr "원격 문자 인코딩 선택"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr "최근에 닫은 탭"
+msgstr ""
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5480,13 +5499,16 @@ msgstr ""
 "%1"
 
 #: app/krslots.cpp:420
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Cannot find a batch rename tool.\n"
+#| "You can get KRename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 "일괄 이름 바꾸기 도구를 찾을 수 없습니다.\n"
-"%1에서 KRename을 사용할 수 있습니다"
+"http://www.krename.net 사이트에서 KRename을 사용할 수 있습니다"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -6091,22 +6113,31 @@ msgstr "Krusader - 관리자 권한"
 #, fuzzy, kde-format
 #| msgid ""
 #| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2020 Krusader Krew"
+#| "© 2004-2019 Krusader Krew"
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2020 Krusader Krew"
+"© 2004-2019 Krusader Krew"
 
 #: app/main.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Feedback:\n"
+#| "https://forum.kde.org/viewforum.php?f=225\n"
+#| "\n"
+#| "IRC\n"
+#| "server: irc.freenode.net, channel: #krusader"
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
 "피드백:\n"
-"https://forum.kde.org/viewforum.php?f=225"
+"https://forum.kde.org/viewforum.php?f=225\n"
+"\n"
+"IRC\n"
+"서버: irc.freenode.net, 채널: #krusader"
 
 #: app/main.cpp:120
 #, kde-format
@@ -7072,9 +7103,10 @@ msgstr ""
 "크기를 바이트 단위로 표시합니다"
 
 #: app/Panel/listpanel.cpp:229
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Cancel directory space calculation"
 msgid "Cancel folder space calculation"
-msgstr "폴더 공간 계산 취소"
+msgstr "디렉터리 공간 계산 취소"
 
 #: app/Panel/listpanel.cpp:249
 #, kde-format
@@ -7434,9 +7466,10 @@ msgstr ""
 "수 있으며, 기본값은 <b>Konsole</b>입니다.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open/Run"
 msgid "Open/Run Files"
-msgstr "파일 열기/실행"
+msgstr "열기/실행"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7444,7 +7477,8 @@ msgid "Run"
 msgstr "실행"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
 msgstr "새 탭으로 열기"
 
@@ -7759,9 +7793,10 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%2개 중 %1개, %4 중 %3"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
-msgstr "폴더에 필터 적용(&S)"
+msgstr "폴더에 필터 적용"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
@@ -7769,9 +7804,10 @@ msgid "Filter Files"
 msgstr "파일 필터"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
-msgstr "폴더에 선택 적용(&S)"
+msgstr "폴더에 선택 적용"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, kde-format
@@ -8099,9 +8135,10 @@ msgid "Save settings as default for new instances of this view type"
 msgstr "이 보기 형식의 새로운 인스턴스에 사용할 기본값으로 설정 저장"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in a new tab"
 msgid "Open a new tab"
-msgstr "새 탭 열기"
+msgstr "새 탭으로 열기"
 
 #: app/paneltabbar.cpp:172
 #, kde-format
@@ -8147,7 +8184,7 @@ msgstr "텍스트 찾음:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "대기"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -8980,14 +9017,16 @@ msgid "Move Current Tab to Other Side"
 msgstr "현재 탭을 다른 쪽으로 이동"
 
 #: app/tabactions.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Left"
-msgstr "현재 탭을 왼쪽으로 이동"
+msgstr "현재 탭을 다른 쪽으로 이동"
 
 #: app/tabactions.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Right"
-msgstr "현재 탭을 오른쪽으로 이동"
+msgstr "현재 탭을 다른 쪽으로 이동"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -8995,9 +9034,10 @@ msgid "Close Current Tab"
 msgstr "현재 탭 닫기"
 
 #: app/tabactions.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Undo Close Tab"
-msgstr "탭 닫기 실행 취소"
+msgstr "탭 잠금 해제"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9590,12 +9630,12 @@ msgstr "멀티미디어"
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "현재 항목의 파일 경로 복사"
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
-msgstr "선택한 항목의 파일 경로 복사"
+msgstr ""
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
@@ -9671,9 +9711,10 @@ msgstr ""
 "Konfigurator의 '압축 파일' 페이지에서 활성화할 수 있습니다."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Creating directories is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives"
-msgstr "%1 형식 압축 파일에서 폴더를 만들 수 없음"
+msgstr "%1 형식 압축 파일에서 디렉터리를 만들 수 없음"
 
 #: plugins/krarc/krarc.cpp:345
 #, kde-format
@@ -9706,7 +9747,6 @@ msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
-"외부  프로그램 '%1'와(과) 연관된 오류가 발생했습니다. 오류 메시지: '%2'."
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
@@ -9719,9 +9759,10 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "%1 형식 압축 파일에 있는 파일에 접근하는 것은 지원하지 않음"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives"
-msgstr "%1 형식 압축 파일에서 폴더 목록을 보는 것은 지원하지 않음"
+msgstr "%1 형식 압축 파일에서 디렉터리 목록을 보는 것은 지원하지 않음"
 
 #: plugins/krarc/krarc.cpp:2144 plugins/krarc/krarc.cpp:2150
 #, kde-format
@@ -9751,11 +9792,8 @@ msgstr "파일에 접근하려면 암호가 필요합니다."
 #~ msgid "Your emails"
 #~ msgstr "kde@peremen.name"
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "현재 항목을 클립보드에 복사"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "홈에서 새 탭 열기"
+#~ msgid "Directories:"
+#~ msgstr "디렉터리:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "새 탭/탭 닫기 단추를 표시합니다."
@@ -9784,6 +9822,30 @@ msgstr "파일에 접근하려면 암호가 필요합니다."
 #~ msgid "JavaScript Error"
 #~ msgstr "자바스크립트 오류"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "탐색"
+
+#~ msgid "New folder"
+#~ msgstr "새 폴더"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "홈에서 새 탭 열기"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "자바스크립트 확장 기능 실행..."
 
@@ -9801,14 +9863,8 @@ msgstr "파일에 접근하려면 암호가 필요합니다."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "확장기: %_Script(script)%에 스크립트를 지정하지 않음"
 
-#~ msgid "New folder"
-#~ msgstr "새 폴더"
-
-#~ msgid "Directories:"
-#~ msgstr "디렉터리:"
-
-#~ msgid "Browse"
-#~ msgstr "탐색"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "현재 항목을 클립보드에 복사"
 
 #~ msgid "Folder..."
 #~ msgstr "폴더..."

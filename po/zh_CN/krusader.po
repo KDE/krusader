@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2022-10-02 15:49\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2022-10-22 05:31\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-trunk/messages/krusader/krusader.pot\n"
-"X-Crowdin-File-ID: 5890\n"
+"X-Crowdin-File: /kf5-stable/messages/krusader/krusader.pot\n"
+"X-Crowdin-File-ID: 7467\n"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -957,7 +957,8 @@ msgid "Create Checksums"
 msgstr "创建校验和"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "About to calculate checksum for the following files or directories:"
 msgid "About to calculate checksum for the following files or folders:"
 msgstr "即将计算以下文件或目录的校验和："
 
@@ -1362,9 +1363,10 @@ msgid "Files:"
 msgstr "文件："
 
 #: app/DiskUsage/diskusage.cpp:105
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
-msgstr ""
+msgstr "文件夹"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1799,10 +1801,12 @@ msgid "Custom"
 msgstr "自定义"
 
 #: app/FileSystem/krquery.cpp:547
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "%1=filename, %2=percentage"
+#| msgid "Searching content of '%1' (%2%)"
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr ""
+msgstr "正在搜索“%1”的内容(%2%)"
 
 #: app/FileSystem/krquery.cpp:552
 #, kde-format
@@ -2245,9 +2249,10 @@ msgid "Exclude Folder Names"
 msgstr ""
 
 #: app/Filter/generalfilter.cpp:468
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Filters out specified directory names from the results."
 msgid "Filters out specified folder names from the results."
-msgstr ""
+msgstr "过滤结果中指定的目录名。"
 
 #: app/Filter/generalfilter.cpp:483
 #, kde-format
@@ -2954,14 +2959,16 @@ msgid "Current background:"
 msgstr "当前的背景色："
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete foreground:"
 msgid "Rename foreground:"
-msgstr ""
+msgstr "删除前景色："
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
-msgstr ""
+msgstr "自定义的背景色："
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3589,14 +3596,16 @@ msgid ""
 msgstr "在标签中显示完整的路径名， 否则，只是路径的最后一部分被显示。"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons"
-msgstr ""
+msgstr "显示新建/关闭标签按钮。"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons."
-msgstr ""
+msgstr "显示新建/关闭标签按钮。"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
@@ -3609,14 +3618,16 @@ msgid "Expanding tabs."
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button"
-msgstr ""
+msgstr "显示新建/关闭标签按钮。"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button."
-msgstr ""
+msgstr "显示新建/关闭标签按钮。"
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
@@ -3666,9 +3677,10 @@ msgid "Duplicate active tab by click:"
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "disabled"
 msgid "Disabled"
-msgstr ""
+msgstr "已禁用"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
@@ -3737,16 +3749,20 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Directory navigation with Right Arrow"
 msgid "Folder navigation with Right Arrow"
-msgstr ""
+msgstr "右箭头目录导航"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Pressing the Right button enters directory if no search text editing "
+#| "intention is captured."
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
-msgstr ""
+msgstr "如果没有抓取搜索文本编辑意图，按右键进入目录。"
 
 #: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
@@ -4444,9 +4460,10 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Right mouse button preserves selection"
 msgid "A plain mouse button resets selection"
-msgstr ""
+msgstr "右键取消选择"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4510,9 +4527,10 @@ msgid "Add new hidden mount point"
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mnt.Point"
 msgid "Mount point:"
-msgstr ""
+msgstr "Mnt.Point"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5307,13 +5325,16 @@ msgid ""
 msgstr ""
 
 #: app/krslots.cpp:420
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Cannot find a batch rename tool.\n"
+#| "You can get KRename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 "没有找到批量重命名工具。\n"
-"您可以在 %1 下载到 KRename。"
+"您可以在 http：//www.krename.net 下载到 Krename。"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -5904,20 +5925,31 @@ msgstr "Krusader - 超级用户权限"
 #, fuzzy, kde-format
 #| msgid ""
 #| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2020 Krusader Krew"
+#| "© 2004-2019 Krusader Krew"
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2020 Krusader Krew"
+"© 2004-2019 Krusader Krew"
 
 #: app/main.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Feedback:\n"
+#| "https://forum.kde.org/viewforum.php?f=225\n"
+#| "\n"
+#| "IRC\n"
+#| "server: irc.freenode.net, channel: #krusader"
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
+"反馈：\n"
+"http://www.krusader.org/phpBB/\n"
+"\n"
+"IRC\n"
+"服务器：irc.freenode.net，频道：#krusader"
 
 #: app/main.cpp:120
 #, kde-format
@@ -6879,9 +6911,10 @@ msgid ""
 msgstr ""
 
 #: app/Panel/listpanel.cpp:229
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Cancel directory space calculation"
 msgid "Cancel folder space calculation"
-msgstr ""
+msgstr "取消目录空间计算"
 
 #: app/Panel/listpanel.cpp:249
 #, kde-format
@@ -7237,9 +7270,10 @@ msgid ""
 msgstr ""
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open/Run"
 msgid "Open/Run Files"
-msgstr ""
+msgstr "打开/运行"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7247,9 +7281,10 @@ msgid "Run"
 msgstr "运行"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
-msgstr ""
+msgstr "在新标签页中打开"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7555,9 +7590,10 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr ""
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
-msgstr ""
+msgstr "应用过滤到文件夹"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
@@ -7565,9 +7601,10 @@ msgid "Filter Files"
 msgstr ""
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
-msgstr ""
+msgstr "应用选择到文件夹"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, kde-format
@@ -7895,9 +7932,10 @@ msgid "Save settings as default for new instances of this view type"
 msgstr ""
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in a new tab"
 msgid "Open a new tab"
-msgstr ""
+msgstr "在新标签打开"
 
 #: app/paneltabbar.cpp:172
 #, kde-format
@@ -7943,7 +7981,7 @@ msgstr "找到的文本："
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "空闲"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -8768,14 +8806,16 @@ msgid "Move Current Tab to Other Side"
 msgstr ""
 
 #: app/tabactions.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Close Current Tab"
 msgid "Move Current Tab to the Left"
-msgstr ""
+msgstr "关闭当前标签"
 
 #: app/tabactions.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Close Current Tab"
 msgid "Move Current Tab to the Right"
-msgstr ""
+msgstr "关闭当前标签"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -8783,9 +8823,10 @@ msgid "Close Current Tab"
 msgstr "关闭当前标签"
 
 #: app/tabactions.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Undo Close Tab"
-msgstr ""
+msgstr "解锁标签"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9448,7 +9489,8 @@ msgid ""
 msgstr ""
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Creating directories is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives"
 msgstr "%1 档案不支持创建目录"
 
@@ -9482,7 +9524,7 @@ msgstr "正在解包 %1..."
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
-msgstr "发生了一个错误，与外部程序%1相关。错误信息为：%2。"
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
@@ -9495,9 +9537,10 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "%1 档案不支持访问文件"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives"
-msgstr "%1 档案不支持列出目录"
+msgstr "%1 归档不支持列出目录"
 
 #: plugins/krarc/krarc.cpp:2144 plugins/krarc/krarc.cpp:2150
 #, kde-format
@@ -9526,3 +9569,74 @@ msgstr "访问该文件需要密码。"
 #~ msgctxt "EMAIL OF TRANSLATORS"
 #~ msgid "Your emails"
 #~ msgstr "sunmoon1997@gmail.com,shuizhuyuanluo@126.com"
+
+#~ msgid "Directories:"
+#~ msgstr "目录："
+
+#~ msgid "Show the new/close tab buttons."
+#~ msgstr "显示新建/关闭标签按钮。"
+
+#~ msgid "JavaScript Console..."
+#~ msgstr "JavaScript 控制台..."
+
+#~ msgid ""
+#~ "In %1:\n"
+#~ "Uncaught JavaScript exception '%2'\n"
+#~ "%3"
+#~ msgstr ""
+#~ "在 %1:\n"
+#~ "未捕获的 JavaScript 异常 '%2'\n"
+#~ "%3"
+
+#~ msgid ""
+#~ "In %1:\n"
+#~ "Uncaught JavaScript exception '%2' at line %3\n"
+#~ "%4"
+#~ msgstr ""
+#~ "在 %1:\n"
+#~ "未捕获的 JavaScript 异常 '%2' 在行 %3\n"
+#~ "%4"
+
+#~ msgid "JavaScript Error"
+#~ msgstr "JavaScript 错误"
+
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "浏览"
+
+#~ msgid "New folder"
+#~ msgstr "新建文件夹"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "打开主目录的标签"
+
+#~ msgid "Execute a JavaScript Extension..."
+#~ msgstr "执行 JavaScript 扩展..."
+
+#~ msgid "Location of the script"
+#~ msgstr "脚本位置"
+
+#~ msgid ""
+#~ "Set some variables for the execution (optional).\n"
+#~ "i.e. \"return=return_var;foo=bar\", consult the handbook for more "
+#~ "information"
+#~ msgstr ""
+#~ "为执行设置一些变量(可选)。\n"
+#~ "例如：\"return=return_var;foo=bar\", 请参阅手册以获取更多信息"
+
+#~ msgid "Expander: no script specified for %_Script(script)%"
+#~ msgstr "Expander：没有为 %_Script(script)% 指定脚本"

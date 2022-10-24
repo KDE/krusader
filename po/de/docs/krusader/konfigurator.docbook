@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <chapter id="konfigurator">
   <title
 >Konfigurator: &krusader;s Einrichtungszentrum</title>
@@ -131,9 +143,7 @@
               <para
 ><guilabel
 >Im Systemabschnitt der Kontrollleiste starten</guilabel
->: Ist dies aktiviert, startet &krusader; im Systemabschnitt der Kontrollleiste (sofern <quote
->In Systemabschnitt der Kontrollleiste minimieren</quote
-> aktiviert ist), ohne das Hauptfenster anzuzeigen.</para>
+>: Ist dies aktiviert, startet &krusader; im Systemabschnitt der Kontrollleiste (sofern „In Systemabschnitt der Kontrollleiste minimieren“ aktiviert ist), ohne das Hauptfenster anzuzeigen.</para>
             </listitem>
             <listitem>
               <para
@@ -280,26 +290,8 @@
         <listitem>
           <para
 ><guilabel
->Karteireiter ausdehnen</guilabel
->: Ist dies aktiviert, benutzt &krusader; die gesamte Breite der Unterfensterleiste für die Anzeige der <link linkend="folder-tabs"
->Karteireiter</link
->.</para>
-        </listitem>
-        <listitem>
-          <para
-><guilabel
->Unterfenster durch Doppelklick schließen</guilabel
->: Ist dies aktiviert, können Sie durch Doppelklick auf einen <link linkend="folder-tabs"
->Karteireiter</link
-> das Unterfenster schließen</para>
-        </listitem>
-        <listitem>
-          <para
-><guilabel
->Unterfenster nach aktuellem einfügen</guilabel
->: Ist dies aktiviert, werden neue Unterfenster rechts neben dem aktuellen Unterfenster anstatt am Ende der <link linkend="folder-tabs"
->Karteireiter</link
-> eingefügt.</para>
+>Knöpfe „Neues Unterfenster“ und „Unterfenster schließen“ anzeigen</guilabel
+>: Ist dies aktiviert, zeigt &krusader; diese Knöpfe auf den Karteireitern an.</para>
         </listitem>
         <listitem>
           <para
@@ -310,22 +302,6 @@
 > und <guimenuitem
 >Oben</guimenuitem
 > auswählen.</para>
-        </listitem>
-        <listitem>
-          <para
-><guilabel
->Knopf zum Schließen von Unterfenstern anzeigen</guilabel
->: Ist dies aktiviert, zeigt &krusader; diesen Knopf auf den <link linkend="folder-tabs"
->Karteireitern</link
-> an.</para>
-        </listitem>
-        <listitem>
-          <para
-><guilabel
->Knopf für neues Unterfenster anzeigen</guilabel
->: Ist dies aktiviert, zeigt &krusader; diesen Knopf auf den <link linkend="folder-tabs"
->Karteireitern</link
-> an.</para>
         </listitem>
 	<listitem>
           <para
@@ -363,7 +339,11 @@
           <para
 ><guilabel
 >Hoch/Runter beendet Schnellsuche</guilabel
->: Durch Drücken der Tasten &Up; oder &Down; wird der Dialog <link linkend="quicksearch"
+>: Durch Drücken der Tasten <keycap
+>Pfeil aufwärts</keycap
+> oder <keycap
+>Pfeil abwärts</keycap
+> wird der Dialog <link linkend="quicksearch"
 >Schnellsuche</link
 > abgebrochen.</para>
         </listitem>
@@ -371,7 +351,9 @@
           <para
 ><guilabel
 >Ordnernavigation mit Pfeil rechts</guilabel
->: Durch Drücken der Taste &Right; wird der Ordner geöffnet, wenn keine Bearbeitung des Suchtextes stattfindet. </para>
+>: Durch Drücken der Taste <keycap
+>Pfeil rechts</keycap
+> wird der Ordner geöffnet, wenn keineBearbeitung des Suchtextes stattfindet. </para>
         </listitem>
         <listitem>
           <para
@@ -477,21 +459,13 @@
           <para
 ><guilabel
 >Numerische Berechtigungen</guilabel
->: In der Spalte <guilabel
->Berechtigungen</guilabel
-> werden Oktalwerte <quote
->0755</quote
-> anstelle der Zeichen <quote
->rwxr-xr-x</quote
-> angezeigt.</para>
+>: In der Spalte Berechtigungen werden Oktalwerte (0755) anstelle von Zeichen (rwxr-xr-x) angezeigt.</para>
         </listitem>
         <listitem>
           <para
 ><guilabel
 >Versteckte Dateien anzeigen</guilabel
->: Ist dies markiert, zeigt &krusader; auch die Dateien mit einem vorangestellten <quote
->.</quote
-> an, die sonst ausgeblendet werden.</para>
+>: Ist dies markiert, zeigt &krusader; auch die Dateien mit einem vorangestellten „.“ an, die sonst ausgeblendet werden.</para>
         </listitem>
         <listitem>
           <para
@@ -587,7 +561,7 @@
           <para
 ><guilabel
 >Standard-Symbolgröße</guilabel
->: Erlaubt die Änderung der Größe für die Symbole in der Dateiliste. Verfügbar sind Größen von 12x12, 16x16, 22x22, 32x32, 48x48, 64x64, 128x128 und 256x256 Pixeln.</para>
+>: Erlaubt die Änderung der Größe für die Symbole in der Dateiliste. Verfügbar sind Größen von 16x16, 22x22, 32x32, 48x48 Pixeln und mehr.</para>
         </listitem>
         <listitem>
           <para
@@ -630,7 +604,7 @@
               <para
 ><guilabel
 >Dateityp</guilabel
->: Zeigt das Feld &MIME;-Typ an.</para>
+>: Zeigt das Feld MIME-Typ an.</para>
             </listitem>
             <listitem>
               <para
@@ -648,11 +622,7 @@
               <para
 ><guilabel
 >Berechtigungen</guilabel
->: Zeigt die vollständigen Berechtigungen &eg; <quote
->rwxr-xr-x</quote
-> oder als Oktalzahlen wie <quote
->0755</quote
->, wenn <guilabel
+>: Zeigt die vollständigen Berechtigungen &eg; "rwxr-xr-x" oder als Oktalzahlen wie "0755", wenn <guilabel
 >Numerische Berechtigungen</guilabel
 > auf der Karteikarte <guilabel
 >Ansicht</guilabel
@@ -664,9 +634,7 @@
               <para
 ><guilabel
 >rwx</guilabel
->: Zeigt die Berechtigung des aktuellen Benutzers &eg; <quote
->-rw</quote
->.</para>
+>: Zeigt die Berechtigung des aktuellen Benutzers &eg; "-rw".</para>
             </listitem>
             <listitem>
               <para
@@ -791,7 +759,7 @@
         <listitem>
           <para
 ><guilabel
->&konqueror;-Modus</guilabel
+>Konqueror-Modus</guilabel
 >: Mit der &LMBn; werden Dateien ausgewählt. Es können mehrere Dateien angeklickt und ausgewählt werden. Das Kontextmenü erhält man durch einen kurzen Klick mit der &RMBn;.</para>
         </listitem>
         <listitem>
@@ -828,13 +796,7 @@
           <para
 ><guilabel
 >Globale Einstellung zur Auswahl befolgen</guilabel
->: Drücken der &LMBn; wählt Dateien -- Verwendet die globale Einstellung der &plasma; &systemsettings; <menuchoice
-><guimenu
->Eingabegeräte</guimenu
-> <guimenuitem
->Maus</guimenuitem
-></menuchoice
->.</para>
+>: Drücken der &LMBn; wählt Dateien -- Verwendet die globale Einstellung der &plasma;: Systemeinstellungen -&gt; Eingabegeräte -&gt; Maus.</para>
         </listitem>
         <listitem>
           <para
@@ -848,37 +810,37 @@
             <listitem>
               <para>
                 <guilabel
->&LMB; wählt aus</guilabel>
+>Linke Maustaste wählt aus</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
                 <guilabel
->&LMBr; verändert Auswahl nicht</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                  <guilabel
->&Shift;/&Ctrl;+ Links klicken wählt aus</guilabel>
+>Linker Mausklick verändert Auswahl nicht</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
                 <guilabel
->&RMB; wählt aus</guilabel>
+>&Shift;/&Ctrl;+Linke Maustaste wählt aus</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
                 <guilabel
->&RMBr; verändert Auswahl nicht</guilabel>
+>Rechte Maustaste wählt aus</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
-                  <guilabel
->&Shift;/&Ctrl; + Rechts klicken wählt aus</guilabel>
+                <guilabel
+>Rechter Mausklick verändert Auswahl nicht</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&Shift;/&Ctrl;+Rechte Maustaste wählt aus</guilabel>
               </para>
             </listitem>
             <listitem>
@@ -898,12 +860,6 @@
                 <guilabel
 >Rechter Mausklick öffnet das Kontextmenü direkt</guilabel>
               </para>
-            </listitem>
-            <listitem>
-              <para
-><guilabel
->Ein einfacher Mausklick setzt die Auswahl zurück</guilabel
-> - hebt die Auswahl bei einem Mausklick ohne Verwendung der Sondertasten wie &ie; &Shift; oder &Ctrl; auf. Die Auswahl durch Maustasten mit &Shift;/&Ctrl; muss aktiviert sein, damit diese Einstellung funktioniert. </para>
             </listitem>
           </itemizedlist
 ></para>
@@ -929,32 +885,6 @@
 ><guilabel
 >Dateisystemtyp anzeigen</guilabel
 >: Zeigt den Typ des Dateisystems an.</para>
-        </listitem>
-        <listitem>
-          <para
-><guilabel
->SquashFS-Einträge ausblenden</guilabel
->: <ulink url="https://snapcraft.io/"
->Snap</ulink
-> erstellt viele als <ulink url="https://en.wikipedia.org/wiki/SquashFS"
->SquashFS</ulink
-> eingehängte Partitionen, die aber im <link linkend="list_panel"
->Medienmenü</link
-> nutzlos sind, weil sie durch <application
->snap</application
-> verwaltet werden. Aktivieren Sie diese Einstellung, um diese Partitionen auszublenden,</para>
-        </listitem>
-        <listitem>
-          <para
-><guilabel
->Folgende Einhängepunkte ausblenden</guilabel
->: Mit dieser Liste können Sie nicht erwünschte Einträge im <link linkend="list_panel"
->Medienmenü</link
-> ausblenden. Drücken Sie auf <guibutton
->+</guibutton
-> über der Liste, um Einhängepunkte zu ignorieren. Möchten Sie Einhängepunkte in dieser Liste wieder einblenden, klicken Sie darauf und wählen <guibutton
->-</guibutton
->. </para>
         </listitem>
         <listitem>
           <para
@@ -1008,10 +938,8 @@
 >Vom  Layout definiert</guimenuitem
 >, <guimenuitem
 >Keine</guimenuitem
->, <guimenuitem
->Rechteck</guimenuitem
 > oder <guimenuitem
->Dateifenster</guimenuitem
+>Statusleiste</guimenuitem
 >.</para>
         </listitem>
         <listitem>
@@ -1021,11 +949,9 @@
 >: Definiert den Schatten des Rahmens, entweder <guimenuitem
 >Vom  Layout definiert</guimenuitem
 >, <guimenuitem
->Kein</guimenuitem
->, <guimenuitem
->Erhöht</guimenuitem
->, oder <guimenuitem
->Abgesenkt</guimenuitem
+>Keine</guimenuitem
+> oder <guimenuitem
+>Statusleiste</guimenuitem
 >.</para>
         </listitem>
       </itemizedlist
@@ -1040,9 +966,7 @@
 >Dateifenster</link
 > und für das <link linkend="synchronizer"
 >Abgleichen</link
->. <guilabel
->&kde;-Standardfarben</guilabel
-> ist die Voreinstellung für die Farben.</para>
+>. Die KDE-Standardfarben ist die Voreinstellung für die Farben.</para>
 
     <variablelist>
       <varlistentry>
@@ -1055,7 +979,7 @@
             <listitem>
               <para
 ><guilabel
->&kde;-Standardfarben benutzen</guilabel
+>KDE-Standardfarben benutzen</guilabel
 >: Dies ist die Voreinstellung, es verwendet die in den &systemsettings; definierten &plasma;-Farben.</para>
             </listitem>
             <listitem>
@@ -1176,18 +1100,6 @@
               <para>
                 <guilabel
 >Hintergrund für aktuelle Elemente</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel
->Vordergrund für Umbenennen</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel
->Hintergrund für Umbenennen</guilabel>
               </para>
             </listitem>
           </itemizedlist>
@@ -1329,24 +1241,22 @@
 	<listitem>
 	  <para
 ><guilabel
->Schließen und Symbol in der Kontrollleiste anzeigen</guilabel
->: Ist dies aktiviert, erscheint das Symbol für &krusader; im Systemabschnitt der Kontrollleiste angezeigt. Wenn Sie das &krusader;-Fenster minimieren, erscheint es nicht in der Fensterleiste. &krusader; wird aber auch nicht beendet, wenn Sie das Hauptfenster schließen. Sie können &krusader; wirklich beenden, wenn Sie aus dem Menü <menuchoice
-><guimenu
->Datei</guimenu
-><guimenuitem
+>Im Systemabschnitt der Kontrollleiste minimieren</guilabel
+>: Ist dies aktiviert, erscheint das Symbol für &krusader; im Systemabschnitt der Kontrollleiste angezeigt. Wenn Sie das &krusader;-Fenster minimieren, erscheint es nicht in der Fensterleiste. Es wird aber auch nicht beendet, wenn Sie das Hauptfenster schließen. Sie können &krusader; wirklich beenden, wenn Sie <guimenuitem
 >Beenden</guimenuitem
-></menuchoice
+> aus dem Menü <guimenu
+>Datei</guimenu
 > oder aus dem Kontextmenü des Symbols im Systemabschnitt der Kontrollleiste auswählen. </para>
 	</listitem>
 	<listitem>
 	  <para
 ><guilabel
->&MIME;-Typ-Magic benutzen</guilabel
->: &MIME;-Typ-Magic ist ein Mechanismus, mit dem &krusader; Dateien in den Dateifenstern untersuchen und deren Typ bestimmen kann, sogar wenn die Datei keine Erweiterung zur Identifizierung hat. Nehmen Sie zum Beispiel eine Bilddatei wie <filename
+>MIME-Typ-Magic benutzen</guilabel
+>: MIME-Typ-Magic ist ein Mechanismus, mit dem &krusader; Dateien in den Dateifenstern untersuchen und deren Typ bestimmen kann, sogar wenn die Datei keine Erweiterung zur Identifizierung hat. Nehmen Sie zum Beispiel eine Bilddatei wie <filename
 >image1.jpg</filename
 > und benennen Sie sie in <filename
 >image1</filename
-> um, dann  kann &krusader; immer noch erkennen, dass es sich immer noch um eine Bilddatei handelt und sie dann verarbeiten. Dieser Modus ist jedoch langsamer beim neuen Laden des Dateifensters oder Ändern der Ordner, daher versucht &krusader; es mit und ohne &MIME;-Typ-Magic und wählt die beste Methode für Sie.</para>
+> um, dann  kann &krusader; immer noch erkennen, dass es sich immer noch um eine Bilddatei handelt und sie dann verarbeiten. Dieser Modus ist jedoch langsamer beim neuen Laden des Dateifensters oder Ändern der Ordner, daher versucht &krusader; es mit und ohne MIME-Typ-Magic und wählt die beste Methode für Sie.</para>
 	 </listitem>
 	 <listitem>
 	   <para
@@ -1354,7 +1264,7 @@
 >Temporärer Ordner</guilabel
 >: Mit dieser Einstellung wird der Basisordner für die temporären Dateien von &krusader; festgelegt. Die tatsächlichen Dateien werden in getrennten Ordnern in dem temporären Ordner angelegt, so dass jeder Benutzer, der &krusader; benutzt, seine eigenen temporären Unterordner im ausgewählten Ordner verwendet. <note
 > <para
->Sie müssen einen temporären Ordner wählen, für den alle Benutzer, die &krusader; ausführen, die alle Berechtigungen  haben.</para>
+>Sie müssen einen temporären Ordner wählen, für den all Benutzer, die &krusader; ausführen, die alle Berechtigungen  haben.</para>
 	     </note>
 	   </para>
 	 </listitem>
@@ -1402,13 +1312,7 @@
 	<para
 ><guilabel
 >Interner Editor und Betrachter öffnen jede Datei in einem separaten Fenster</guilabel
->: Aktivieren Sie diese Einstellung, wenn Sie jede Datei in einem eigenen Fenster öffnen möchten. Ansonsten wird jede Datei in einem Unterfenster im selben Editorfenster geöffnet. Jedes Unterfenster in solch einem Fenster können Sie durch Klicken mit der &MMBn; auf den Karteireiter schließen. </para>
-      </listitem>
-      <listitem>
-	<para
-><guilabel
->Unterfensterleiste mit nur einem Unterfenster ausblenden</guilabel
->: Mit dieser Einstellung wird die Unterfensterleiste ausgeblendet, wenn es nur ein Unterfenster gibt. </para>
+>: Aktivieren Sie diese Einstellung, wenn Sie jede Datei in einem eigenen Fenster öffnen möchten. </para>
       </listitem>
       <listitem>
         <para
@@ -1525,9 +1429,9 @@
 > /mnt/cdrom</filename
 > in der Datei <filename class="directory"
 >/etc/fstab</filename
-> als Einhängepunkt eingetragen ist, wird durch &krusader; überprüft, ob dies bereits eingehängt ist. Falls nicht, wird es eingehängt und dann darauf zugegriffen, so dass der Inhalt der &CD-ROM; angezeigt wird. Beachten Sie, dass &krusader; beim Verlassen von <filename class="directory"
+> als Einhängepunkt eingetragen ist, wird durch &krusader; überprüft, ob dies bereits eingehängt ist. Falls nicht, wird es eingehängt und dann darauf zugegriffen, so dass der Inhalt der CD-ROM angezeigt wird. Beachten Sie, dass &krusader; beim Verlassen von <filename class="directory"
 > /mnt/cdrom</filename
-> diese &CD-ROM; nicht ausgehängt wird.</para>
+> diese CD-ROM nicht ausgehängt wird.</para>
             </listitem>
             <!-- not in master <listitem>
               <para>
@@ -1596,7 +1500,7 @@
             <listitem>
               <para
 ><guilabel
->Größe des Symbol-Zwischenspeichers (KB)</guilabel
+>Größe des Symbol-Zwischenspeichers</guilabel
 >: &krusader; verwendet einen Symbol-Zwischenspeicher, damit Symbole nicht erneut wieder geladen werden müssen, wenn sie bereits vorher verwendet wurden. Je größer diese Zwischenspeicher ist, desto mehr Symbole können gespeichert und weitere Operationen beschleunigt werden, aber der Speicherbedarf von &krusader; wird größer.</para>
             </listitem>
             <listitem>
@@ -1669,9 +1573,9 @@
             LOST. They were actually moved into a subfolder in
             &krusader;'s
             <link linkend="konfig-general"
->temp folder</link
+>temp directory</link
 >.
-            You can search the folder and recover your
+            You can search the directory and recover your
             files.</para>
           </note
 ></para>
@@ -2449,11 +2353,7 @@
     <title
 >Protokolle</title>
     <para
->Auf dieser Seite können die Verknüpfungen von Dateitypen mit Protokollen eingestellt werden, &eg; ist das Protokoll <quote
->tar</quote
-> mit dem Datei- oder &MIME;-Typ <quote
->application/x-tar</quote
-> verknüpft.</para>
+>Auf dieser Seite können die Verknüpfungen von Dateitypen mit Protokollen eingestellt werden, &eg; ist das Protokoll „tar“ mit dem Datei- oder MIME-Typ „application/x-tar“ verknüpft.</para>
 
     <para
 >Im Bereich <guilabel

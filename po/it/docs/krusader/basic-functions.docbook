@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <chapter id="basic-functions">
   <title
 >Funzioni fondamentali</title>
@@ -82,9 +94,13 @@
         <listitem>
           <para
 >La combinazione di tasti <keycombo action="simul"
->&Ctrl; &Down;</keycombo
+>&Ctrl; <keycap
+>freccia giù</keycap
+></keycombo
 > ti sposterà dal pannello attivo alla riga di comando oppure all'emulatore di terminale, e la combinazione <keycombo action="simul"
->&Ctrl; &Up;</keycombo
+>&Ctrl; <keycap
+>freccia su</keycap
+></keycombo
 > ti riporterà dalla riga di comando al pannello attivo.</para>
         </listitem>
         <listitem>
@@ -101,9 +117,7 @@
 >&Alt; <keycap
 >Lettera sottolineata</keycap
 ></keycombo
-> nella barra dei menu aprirà il menu relativo (a meno che la combinazione di tasti non sia un <quote
->tasto riservato</quote
->, utilizzato da una delle azioni di &krusader;).</para>
+> nella barra dei menu aprirà il menu relativo (a meno che la combinazione di tasti non sia un «tasto riservato», utilizzato da una delle azioni di &krusader;).</para>
         </listitem>
       </itemizedlist
 ></para>
@@ -122,12 +136,14 @@
       <para
 >La selezione è un'operazione che devi padroneggiare bene per ottenere il massimo da &krusader;. Dato che il pannello Albero ti consente di selezionare solo una cartella alla volta, questo paragrafo spiega principalmente come selezionare file all'interno del pannello Lista.</para>
       <para
->Muovere il cursore è facile. Un clic col pulsante sinistro del mouse su un file o una cartella (più avanti ci si riferirà ad essi come <quote
->elementi</quote
->, intendendo con questo termine sia i file, sia le cartelle), li selezionerà. Di seguito alcune indicazioni utili che renderanno &krusader; ancora più facile da usare (supponendo che tu stia utilizzando la modalità di selezione tramite mouse di &krusader;): <itemizedlist>
+>Muovere il cursore è facile. Un clic col pulsante sinistro del mouse su un file o una cartella (più avanti ci si riferirà ad essi come «elementi», intendendo con questo termine sia i file, sia le cartelle), li selezionerà. Di seguito alcune indicazioni utili che renderanno &krusader; ancora più facile da usare (supponendo che tu stia utilizzando la modalità di selezione tramite mouse di &krusader;): <itemizedlist>
         <listitem>
           <para
->I tasti &Space; e &Ins; alterneranno lo stato di selezione o deselezione del file che si trova sotto il cursore, senza modificare la selezione di altri file o cartelle; il cursore si sposterà di una posizione verso il basso.</para>
+>I tasti <keycap
+>barra spaziatrice</keycap
+> e <keycap
+>Ins</keycap
+> alterneranno lo stato di selezione o deselezione del file che si trova sotto il cursore, senza modificare la selezione di altri file o cartelle; il cursore si sposterà di una posizione verso il basso.</para>
         </listitem>
         <listitem>
           <para
@@ -154,20 +170,22 @@
         <listitem>
           <para
 >La combinazione <keycombo action="simul"
->&Shift; &Home;</keycombo
+>&Shift; <keycap
+>Inizio</keycap
+></keycombo
 > seleziona tutto ciò che si trova prima del cursore (e deseleziona, se selezionato, tutto ciò che si trova oltre).</para>
         </listitem>
         <listitem>
           <para
 >La combinazione <keycombo action="simul"
->&Shift; &End;</keycombo
+>&Shift; <keycap
+>Fine</keycap
+></keycombo
 > seleziona tutto ciò che si trova oltre il cursore (e deseleziona, se selezionato, tutto ciò che si trova prima).</para>
         </listitem>
         <listitem>
           <para
->L'elemento <quote
->..</quote
-> non può essere selezionato.</para>
+>L'elemento « .. » non può essere selezionato.</para>
         </listitem>
         <listitem>
           <para
@@ -197,13 +215,9 @@
       <para
 >Digita <keycap
 >x</keycap
-> (un solo carattere) per eseguire una ricerca rapida nel pannello attivo di file il cui nome inizi per <quote
->x</quote
->. Sotto il pannello attivo verrà visualizzato un piccolo riquadro per la ricerca rapida. Digitando i primi caratteri del nome del file che stai cercando (è consentito l'inserimento di più di un carattere), il cursore si sposterà sul file il cui nome inizi con i caratteri inseriti (se un file del genere esiste): &eg;, digita <quote
->ab</quote
-> per cercare un file il cui nome inizi con <quote
->ab</quote
->. I tasti &Up; e &Down; sposteranno il cursore sul file successivo o precedente il cui nome inizi con i caratteri inseriti. Il tasto &Esc; chiuderà il riquadro di ricerca rapida, lasciando il cursore sull'ultimo file trovato. La funzione di ricerca rapida supporta le <ulink url="https://it.wikipedia.org/wiki/Espressione_regolare"
+> (un solo carattere) per eseguire una ricerca rapida nel pannello attivo di file il cui nome inizi per «x». Sotto il pannello attivo verrà visualizzato un piccolo riquadro per la ricerca rapida. Digitando i primi caratteri del nome del file che stai cercando (è consentito l'inserimento di più di un carattere), il cursore si sposterà sul file il cui nome inizi con i caratteri inseriti (se un file del genere esiste): &eg;, digita «ab» per cercare un file il cui nome inizi con «ab». I tasti <keycap
+>freccia su/giù</keycap
+> sposteranno il cursore sul file successivo o precedente il cui nome inizi con i caratteri inseriti. Il tasto &Esc; chiuderà il riquadro di ricerca rapida, lasciando il cursore sull'ultimo file trovato. La funzione di ricerca rapida supporta le <ulink url="https://it.wikipedia.org/wiki/Espressione_regolare"
 >espressioni regolari</ulink
 >.</para>
       <note>
@@ -239,15 +253,7 @@
 ></keycombo
 > per aprire la barra del filtro rapido. Digita <keycap
 >x</keycap
-> (un carattere) per eliminare dalla vista del pannello attivo tutti i file che non contengono <quote
->x</quote
-> nel loro nome. Puoi usare caratteri jolly. Per esempio, usa <quote
->a*b</quote
-> per filtrare tutti i file che contengono <quote
->a</quote
-> e <quote
->b</quote
-> nei loro nomi. Il filtro rapido segue le <link linkend="konfig-panel-general"
+> (un carattere) per eliminare dalla vista del pannello attivo tutti i file che non contengono «x» nel loro nome. Puoi usare caratteri jolly. Per esempio, usa «a*b» per filtrare tutti i file che contengono «a» e «b» nei loro nomi. Il filtro rapido segue le <link linkend="konfig-panel-general"
 >impostazioni per le maiuscole</link
 > della ricerca rapida.</para>
       <para
@@ -275,15 +281,7 @@
 ></keycombo
 > per aprire la barra della selezione veloce. Digita <keycap
 >x</keycap
-> (un carattere) per eliminare dalla vista del pannello attivo tutti i file che non contengono <quote
->x</quote
-> nel loro nome. Puoi usare caratteri jolly. Per esempio, usa <quote
->a*b</quote
-> per filtrare tutti i file che contengono <quote
->a</quote
-> e <quote
->b</quote
-> nei loro nomi. La selezione veloce segue le <link linkend="konfig-panel-general"
+> (un carattere) per eliminare dalla vista del pannello attivo tutti i file che non contengono «x» nel loro nome. Puoi usare caratteri jolly. Per esempio, usa «a*b» per filtrare tutti i file che contengono «a» e «b» nei loro nomi. La selezione veloce segue le <link linkend="konfig-panel-general"
 >impostazioni per le maiuscole</link
 > della ricerca rapida.</para>
       <para
@@ -404,6 +402,12 @@
     <sect2 id="copying">
       <title
 >Copiare e spostare</title>
+      <para
+>Per copiare o spostare file o cartelle devi selezionare gli elementi desiderati e premere <keycap
+>F5</keycap
+> per copiarli oppure <keycap
+>F6</keycap
+> per spostarli. &krusader; cerca di conservare la data di modifica. Durante la copia di una cartella, il proprietario viene cambiato nell'utente che copia, il gruppo viene cambiato nel gruppo predefinito dell'utente. Durante la copia di un file, il proprietario viene cambiato nell'utente che copia, il gruppo viene cambiato nel gruppo predefinito dell'utente e i permessi vengono conservati. Il proprietario, il gruppo e i permessi vengono conservati durante lo spostamento di file o cartelle. Durante la copia o lo spostamento di file/cartelle, compare una finestra che ti permette di scegliere la destinazione dell'operazione. La destinazione predefinita è la cartella presente nell'altro pannello. Se digiti un &URL; parziale, &krusader; userà la cartella del pannello attivo come base per l'&URL;.</para>
       <figure id="screenshot-copyjob" float="1">
         <title
 >Finestra di dialogo Copia</title>
@@ -418,12 +422,6 @@
           </textobject>
         </mediaobject>
       </figure>
-      <para
->Per copiare o spostare file o cartelle devi selezionare gli elementi desiderati e premere <keycap
->F5</keycap
-> per copiarli oppure <keycap
->F6</keycap
-> per spostarli. &krusader; cerca di conservare la data di modifica. Durante la copia di una cartella, il proprietario viene cambiato nell'utente che copia, il gruppo viene cambiato nel gruppo predefinito dell'utente. Durante la copia di un file, il proprietario viene cambiato nell'utente che copia, il gruppo viene cambiato nel gruppo predefinito dell'utente e i permessi vengono conservati. Il proprietario, il gruppo e i permessi vengono conservati durante lo spostamento di file o cartelle. Durante la copia o lo spostamento di file/cartelle, compare una finestra che ti permette di scegliere la destinazione dell'operazione. La destinazione predefinita è la cartella presente nell'altro pannello. Se digiti un &URL; parziale, &krusader; userà la cartella del pannello attivo come base per l'&URL;.</para>
     </sect2>
     <sect2 id="queue">
       <title
@@ -473,29 +471,21 @@
 > nella sottocartella della cartella Home dell'utente, che può essere determinata usando il comando <userinput
 >qtpaths --paths GenericDataLocation</userinput
 >. <keycombo action="simul"
->&Ctrl; <keycap
+>&Shift; <keycap
 >Canc</keycap
 ></keycombo
 > eliminerà definitivamente l'elemento. Una finestra ti chiederà di confermare e ti avviserà nel caso tu stia eliminando cartelle non vuote. Ovviamente saranno eseguite solo operazioni consentite dal sistema operativo, altrimenti sarai avvisato. Se non desideri visualizzare le finestre di conferma, puoi disabilitarle nella <link linkend="konfig-advanced"
 >scheda «Avanzate» di Konfigurator</link
->. Se nella <link linkend="konfig-general"
->scheda «Generale» di Konfigurator</link
-> imposti di eliminare in modo permanente i file, il tasto <keycap
->F8</keycap
-> o <keycap
->Canc</keycap
-> li eliminerà senza possibilità di recupero, mentre <keycombo action="simul"
->&Ctrl; <keycap
->Canc</keycap
-></keycombo
-> li sposterà nel cestino di &plasma;.</para>
+>.</para>
     </sect2>
     <sect2 id="shred">
       <title
 >Distruggi file</title>
       <para
->La distruzione di file e cartelle è stata rimossa da &kde; 4 (e conseguentemente, da &krusader; 2 per &kde; 4). La ragione principale è probabilmente che la distruzione dipende dal file system e, anche se sovrascrivi il file 100 volte, non è certa l'eliminazione definitiva del file dal disco. Citando dai post di &kgpg;: <quote
->La funzione di distruzione è stata rimossa dalle librerie di &kde;, quindi &kgpg; non la supporterà più. I moderni file system usano il journaling. Quindi la funzione di distruzione dovrebbe essere implementata nel file system, non in &kgpg;</quote
+>La distruzione di file e cartelle è stata rimossa da &kde; 4 (e conseguentemente, da &krusader; 2 per &kde; 4). La ragione principale è probabilmente che la distruzione dipende dal file system e, anche se sovrascrivi il file 100 volte, non è certa l'eliminazione definitiva del file dal disco. Citando dai post di <application
+>kgpg</application
+>: <quote
+>La funzione di distruzione è stata rimossa dalle librerie di KDE, quindi Kgpg non la supporterà più. I moderni file system usano il journaling. Quindi la funzione di distruzione dovrebbe essere implementata nel file system, non in kgpg</quote
 >. Potresti comunque usare una <link linkend="useractions"
 >azione</link
 > di distruzione appropriata per il tuo file system. Tieni presente, però, che il solo modo per essere certo al 100% che nessuno possa recuperare i file eliminati è distruggere fisicamente il disco fisso... </para>
@@ -516,7 +506,7 @@
 ><guisubmenu
 >Gestione collegamento</guisubmenu
 > <guimenuitem
->Nuovo collegamento simbolico...</guimenuitem
+>Nuovo collegamento simbolico</guimenuitem
 ></menuchoice
 >. Una finestra ti chiederà di inserire un nome per il collegamento. Quel collegamento punterà al file o alla cartella su cui hai fatto clic con il pulsante destro del mouse. Se fai clic col pulsante destro del mouse su un collegamento simbolico, ti verrà mostrata anche l'opzione <menuchoice
 ><guisubmenu

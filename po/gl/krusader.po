@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
 "PO-Revision-Date: 2020-01-12 11:08+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -5570,13 +5570,16 @@ msgstr ""
 "%1"
 
 #: app/krslots.cpp:420
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Cannot find a batch rename tool.\n"
+#| "You can get KRename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 "Non se pode atopar unha ferramenta para renomear por lotes.\n"
-"Pódese obter KRename de %1"
+"Pódese obter KRename de http://www.krename.net"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -7547,9 +7550,10 @@ msgstr ""
 "en Konfigurator; o predeterminado é <b>konsole</b>.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open/Run"
 msgid "Open/Run Files"
-msgstr "Abrir ou executar ficheiros"
+msgstr "Abrir/Executar"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7557,9 +7561,10 @@ msgid "Run"
 msgstr "Executar"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
-msgstr "Abrir en novos separadores"
+msgstr "Abrir nun novo separador"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7885,9 +7890,10 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 de %2, %3 de %4"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
-msgstr "Aplicar o filtro aos cartafole&s"
+msgstr "Aplicar o filtro aos cartafoles"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
@@ -7895,9 +7901,10 @@ msgid "Filter Files"
 msgstr "Filtrar ficheiros"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
-msgstr "Aplicar a &selección aos cartafoles"
+msgstr "Aplicar a selección aos cartafoles"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, kde-format
@@ -8277,7 +8284,7 @@ msgstr "Texto atopado:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "Inactivo"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -9131,14 +9138,16 @@ msgid "Move Current Tab to Other Side"
 msgstr "Mover o separador actual ao outro lado"
 
 #: app/tabactions.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Left"
-msgstr "Mover o separador actual á esquerda"
+msgstr "Mover o separador actual ao outro lado"
 
 #: app/tabactions.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Right"
-msgstr "Mover o separador actual á dereita"
+msgstr "Mover o separador actual ao outro lado"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9748,10 +9757,9 @@ msgid "Multimedia"
 msgstr "Multimedia"
 
 #: app/useraction_examples.xml:39
-#, fuzzy, kde-format
-#| msgid "Always show current item"
+#, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Mostrar sempre o elemento actual."
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, kde-format
@@ -9914,11 +9922,8 @@ msgstr "O acceso ao ficheiro require un contrasinal."
 #~ msgid "Your emails"
 #~ msgstr "xabier.villar@gmail.com"
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Copiar o elemento actual ao portapapeis"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Abrir un novo separador no cartafol persoal"
+#~ msgid "Directories:"
+#~ msgstr "Directorios:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Mostrar os botóns de crear ou pechar separadores."
@@ -9947,6 +9952,30 @@ msgstr "O acceso ao ficheiro require un contrasinal."
 #~ msgid "JavaScript Error"
 #~ msgstr "Erro de JavaScript"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Navegar"
+
+#~ msgid "New folder"
+#~ msgstr "Novo cartafol"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Abrir un novo separador no cartafol persoal"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Executar unha extensión en JavaScript…"
 
@@ -9965,14 +9994,8 @@ msgstr "O acceso ao ficheiro require un contrasinal."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Expansor: non se especificou ningún script para %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Novo cartafol"
-
-#~ msgid "Directories:"
-#~ msgstr "Directorios:"
-
-#~ msgid "Browse"
-#~ msgstr "Navegar"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Copiar o elemento actual ao portapapeis"
 
 #~ msgid "Folder..."
 #~ msgstr "Cartafol…"
@@ -9985,21 +10008,6 @@ msgstr "O acceso ao ficheiro require un contrasinal."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Editar o ficheiro (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
 
 #~ msgid "Open search filter"
 #~ msgstr "Abrir un filtro de busca"

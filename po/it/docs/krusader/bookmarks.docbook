@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="bookman">
   <title
 >Gestore segnalibri: organizzare i segnalibri</title>
@@ -12,7 +24,7 @@
 >Segnalibri</primary>
   </indexterm>
   <para
->Gestore segnalibri è lo strumento di &krusader; che permette di creare segnalibri per memorizzare la posizione di cartelle o &URL; sia locali, sia <link linkend="remote-connections"
+>Gestore segnalibri è lo strumento di &krusader; che permette di creare segnalibri per memorizzare la posizione di cartelle o URL sia locali, sia <link linkend="remote-connections"
 >remoti</link
 > e di ritornarci con un solo clic. Il menu del Gestore segnalibri è diviso in quattro sezioni: <itemizedlist>
     <listitem>
@@ -78,7 +90,7 @@
 >x</keycap
 ></keycombo
 >. Se aggiungi un segnalibro senza specificare alcun nome, quest'ultimo sarà uguale alla destinazione del segnalibro. Il campo <guilabel
->&URL;</guilabel
+>URL</guilabel
 >, invece, va usato per la posizione cui punta il segnalibro. Il campo <guilabel
 >Crea in</guilabel
 > consente di creare una cartella per organizzare i segnalibri.</para>
@@ -169,23 +181,23 @@
   </sect2>
   <sect2 id="popular-urls">
     <title
->&URL; ricorrenti</title>
+>URL ricorrenti</title>
     <indexterm>
       <primary
->&URL; ricorrenti</primary>
+>URL ricorrenti</primary>
     </indexterm>
     <para
 >Il menu secondario <guilabel
->&URL; ricorrenti</guilabel
+>URL ricorrenti</guilabel
 > mantiene in memoria gli &URL; più visitati (sia locali che remoti). Il menu secondario mostra i quindici &URL; più ricorrenti, disposti in ordine di frequenza, in modo che il primo corrisponda al più visitato. Questa funzionalità torna particolarmente utile quando visiti con frequenza determinati &URL; ma non desideri creare un <link linkend="bookman"
 >segnalibro</link
-> specifico, dato che si crea una sorta di elenco temporaneo di segnalibri per i collegamenti più visitati. La ricerca rapida negli <guilabel
->&URL; ricorrenti</guilabel
+> specifico, dato che si crea una sorta di elenco temporaneo di segnalibri per gli URL più visitati. La ricerca rapida negli <guilabel
+>URL ricorrenti</guilabel
 > è una funzione che permette di selezionare e sfogliare rapidamente tali &URL;. <itemizedlist>
       <listitem>
         <para
 >Fai clic su <guilabel
->&URL; ricorrenti</guilabel
+>URL ricorrenti</guilabel
 > oppure premi <keycombo action="simul"
 >&Ctrl; <keycap
 >Z</keycap
@@ -357,7 +369,7 @@
 > o in <link linkend="actions_toolbar"
 >quella delle azioni</link
 > tramite la finestra <guilabel
->Configura le barre degli strumenti...</guilabel
+>Configura le barre degli strumenti</guilabel
 > (<menuchoice
 ><guimenu
 >Impostazioni</guimenu

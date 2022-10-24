@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <chapter id="user-interface">
   <title
 >Die Benutzerschnittstelle</title>
@@ -170,9 +182,7 @@
 >Werkzeugleiste</guibutton
 > gibt es eine <guibutton
 >Adressleiste</guibutton
-> für jedes Dateifenster. Hier wird der Pfad zum Ordner im aktiven Dateifenster angezeigt. Öffnen Sie ein Archiv, dann wird der Pfad im folgenden Format angezeigt: <quote
->Archivtyp:/ordner/archiv_dateiname/ordner_im_archiv</quote
->. Mit diesem Format ist der Pfad eindeutig und leicht zu lesen. Die <guibutton
+> für jedes Dateifenster. Hier wird der Pfad zum Ordner im aktiven Dateifenster angezeigt. Öffnen Sie ein Archiv, dann wird der Pfad im folgenden Format angezeigt: "Archivtyp:/ordner/archiv_dateiname/ordner_im_archiv". Mit diesem Format ist der Pfad eindeutig und leicht zu lesen. Die <guibutton
 >Adressleiste</guibutton
 > unterstützt auch Ein-/Ausgabemodule, aber nicht alle. Einige können nur mit dem <link linkend="krviewer"
 >Betrachter</link
@@ -336,7 +346,7 @@
 >Dateifenster</secondary>
       </indexterm>
       <para
->Dies ist das Standardfenster, das Sie wahrscheinlich die meiste Zeit benutzen werden. Das Dateifenster zeigt den Inhalt eines Ordners, der aus lokalen Dateien und auch aus Dateien in einem Archiv oder aus entfernten Dateien besteht, auf die über  &FTP;, &NFS; oder &Samba; zugegriffen wird. Es gibt zwei Ansichtsmodi: <link linkend="view-menu"
+>Dies ist das Standardfenster, das Sie wahrscheinlich die meiste Zeit benutzen werden. Das Dateifenster zeigt den Inhalt eines Ordners, der aus lokalen Dateien und auch aus Dateien in einem Archiv oder aus entfernten Dateien besteht, auf die über  &FTP;, NFS oder Samba zugegriffen wird. Es gibt zwei Ansichtsmodi: <link linkend="view-menu"
 >Ausführliche Anzeige</link
 > mit Dateinamen, Dateigröße, Erstellungsdatum und -zeit und Dateiattributen und die <link linkend="view-menu"
 >Kurzübersicht</link
@@ -372,7 +382,7 @@
 >Geräteknopf</guibutton
 > links neben der <emphasis
 >Informationsleiste</emphasis
-> zeigt eine Liste aller verfügbaren Geräte, aus denen Sie eines (HDD-Partition, &DVD;, &DVD;-Stick, &etc;) auswählen können. Drücken Sie <keycombo
+> zeigt eine Liste aller verfügbaren Geräte, aus denen Sie eines (HDD-Partition, DVD, USB-Stick, &etc;) auswählen können. Drücken Sie <keycombo
 >&Ctrl;<keycap
 >Rücktaste</keycap
 ></keycombo
@@ -423,19 +433,19 @@
         <listitem>
           <para
 ><emphasis
-><guilabel
->Dateiliste</guilabel
-></emphasis
+>Dateiliste</emphasis
 >: Zeigt die Dateien und Ordner im geöffneten Ordner an. Mit der <link linkend="quicksearch"
 >Suchleiste</link
-> können Sie nach Dateien durch Eingabe des Namens oder nur der ersten Zeichen suchen. Drücken Sie die &Enter;taste oder doppelklicken Sie auf eine Datei, um sie zu öffne oder auszuführen. Sie können Einträge mit der Maus, der Taste &Ins; oder dem Menü <link linkend="edit-menu"
+> können Sie nach Dateien durch Eingabe des Namens oder nur der ersten Zeichen suchen. Drücken Sie die &Enter;taste oder doppelklicken Sie auf eine Datei, um sie zu öffne oder auszuführen. Sie können Einträge mit der Maus, der Taste <keycap
+>Einfg</keycap
+> oder dem Menü <link linkend="edit-menu"
 >Bearbeiten</link
 > auswählen oder aus der Auswahl entfernen</para>
         </listitem>
         <listitem>
           <para
 ><emphasis
-><guilabel
+> <guilabel
 >Übersichtsleiste</guilabel
 > </emphasis
 >: Hier wird unter dem Dateifenster angezeigt, wie viele Dateien Sie ausgewählt haben und wie viel Speicherplatz sie belegen, wie auch die gesamte Anzahl von Dateien und deren Speicherplatzbedarf im aktuellen Ordner. Im Gegensatz dazu zeigt die Informationsleiste diese Informationen für das gesamte Dateisystem. Enthält ein Ordner sehr viele Unterordner, ist es manchmal nicht möglich, eine &URL; im Dateifenster abzulegen, da dort dann nur die Unterordner sichtbar sind. Dann kann die &URL; stattdessen in der Übersichtsleiste oder in der Informationsleiste abgelegt werden. Ist ein <link linkend="view-menu"
@@ -467,7 +477,9 @@
         <listitem>
           <para
 >Aktivieren sie eine Datei oder einen Ordner im linken Dateifenster, drücken dann <keycombo action="simul"
->&Ctrl; &Right;</keycombo
+>&Ctrl; <keycap
+>Pfeil rechts</keycap
+></keycombo
 > und im rechten Dateifenster wird dies geändert: <itemizedlist>
             <listitem>
               <para
@@ -483,7 +495,9 @@
         <listitem>
           <para
 >Für das rechte Dateifenster: Drücken Sie <keycombo action="simul"
->&Ctrl; &Left;</keycombo
+>&Ctrl; <keycap
+>Pfeil links</keycap
+></keycombo
 > und das linke Dateifenster wird geändert.</para>
         </listitem>
       </itemizedlist>
@@ -498,10 +512,10 @@
 >Seitenleiste (Dritte Leiste)</secondary>
       </indexterm>
       <para
->Dies ist die <quote
->dritte Hand</quote
-> von &krusader; oder die dritte Leiste. Klicken Sie auf den Pfeil abwärts rechts neben der Zusammenfassungsleiste oder benutzen Sie den Kurzbefehl <keycombo action="simul"
->&Alt; &Down;</keycombo
+>Dies ist die „dritte Hand“ von &krusader; oder die dritte Leiste. Klicken Sie auf den Pfeil abwärts rechts neben der Zusammenfassungsleiste oder benutzen Sie den Kurzbefehl <keycombo action="simul"
+>&Alt; <keycap
+>Pfeil abwärts</keycap
+></keycombo
 >, um die <guilabel
 >Seitenleiste</guilabel
 > zu öffnen. In dieser Leiste gibt es mehrere Anzeigemodi, die durch Klicken auf die entsprechenden Knöpfe aktiviert werden können.</para>
@@ -532,11 +546,7 @@
 >*.png</literal
 > und klicken Sie auf den Knopf <guibutton
 >Auswahl anwenden</guibutton
->. Durch Klicken auf das Symbol der <quote
->Floppy</quote
-> speichert die aktuelle Auswahl. Es gibt auch eine Aktion <quote
->Gruppendialog auswählen</quote
->.</para>
+>. Durch Klicken auf das Symbol der „Floppy“ speichert die aktuelle Auswahl. Es gibt auch eine Aktion „Gruppendialog auswählen“.</para>
         </listitem>
         <listitem>
           <para
@@ -752,10 +762,8 @@
 >F9</keycap
 > öffnet ein Terminal mit dem letzten lokalen Pfad im aktiven Dateifenster . Mit der Taste <keycap
 >F7</keycap
-> oder Klicken auf <guilabel
+> (<guilabel
 >Mkdir</guilabel
-> (Lokalisierter Name des Befehls <command
->mkdir</command
 >) können Sie direkt vollständige Ordnerbäume erzeugen, &eg; <literal
 >foo/bar/test</literal
 >. Sie können auf der Seite <link linkend="konfigurator"

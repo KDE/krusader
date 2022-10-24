@@ -12,33 +12,33 @@
 >Locate</primary>
   </indexterm>
   <para
->&krusader; har ett grafiskt gränssnitt för kommandot <command
+>&krusader; has a &GUI; front end for the <command
 >locate</command
-> (i findutils). Locate används för snabb filsökning från en databas istället för från en katalog. Paketet innehåller förutom andra filer, <command
+> command (findutils). Locate is used for fast file searching not from a folder but a database. The package contains among other files, <command
 >locate</command
-> och <command
+> and <command
 >updatedb</command
 >. <command
 >updatedb</command
-> går igenom det lokala filsystemet och lagrar filposterna i databasen. <command
+> goes through the local file system and stores the file entries in the database. <command
 >cron</command
-> anropar ofta <command
+> often calls <command
 >updatedb</command
-> varje natt (inställt med <application
->Kcron</application
->). Välj <menuchoice
-><guimenu
->Verktyg</guimenu
->  <guimenuitem
->Lokalisera</guimenuitem
-></menuchoice
-> eller <keycombo action="simul"
+> every night (set with <application
+>KCron</application
+>). Choose <menuchoice
+> <guimenu
+>Tools</guimenu
+> <guimenuitem
+>Locate...</guimenuitem
+> </menuchoice
+> or <keycombo action="simul"
 >&Ctrl;&Shift; <keycap
 >L</keycap
 ></keycombo
-> för att starta funktionen. <link linkend="konfig-advanced"
+> to start this feature. <link linkend="konfig-advanced"
 >Konfigurator</link
-> kan ställa in ytterligare argument för kommandot <command
+> can set additional arguments for <command
 >updatedb</command
 >.</para>
   <para
@@ -99,7 +99,7 @@
 >Resultatfönster <itemizedlist>
     <listitem>
       <para
->Dubbelklick på ett objekt: Går till dess katalog, gör objektet synligt och stänger lokaliseringsdialogrutan.</para>
+>Double-click on an item: steps to its folder, makes the item visible and closes the locate dialog.</para>
     </listitem>
     <listitem>
       <para

@@ -90,7 +90,7 @@
 > <command
 >https://</command
 ><replaceable
->krusader.sourceforce.net/</replaceable
+>krusader.org/</replaceable
 > </userinput
 >toont een webpagina.</para>
       </listitem>
@@ -1162,7 +1162,9 @@
 ><menuchoice
 ><shortcut
 ><keycombo action="simul"
->&Alt; &PgDn;</keycombo
+>&Alt; <keycap
+>PgDown</keycap
+></keycombo
 ></shortcut
 > <guimenu
 >Bladwijzers</guimenu
@@ -1327,7 +1329,7 @@ Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at
 ></term>
  <listitem>
 <para
->Door deze actie aan te vinken kunt u expliciet een bytevolgordemarkering voor in unicode gecodeerde documenten toevoegen. De bytevolgordemarkering (BOM) is een Unicode-teken dat gebruikt wordt om de "endianness" (byte-volgorde) van een tekstbestand of stream aan te geven. Zie voor meer informatie: <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
+>Door deze actie aan te vinken kunt u expliciet een bytevolgordemarkering voor documenten gecodeerd in unicode toevoegen. De bytevolgordemarkering (BOM) is een Unicode-teken dat gebruikt wordt om de "endianness" (byte-volgorde) van een tekstbestand of stream aan te geven. Zie voor meer informatie: <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
 >Byte Order Mark</ulink
 >.</para>
 </listitem>
@@ -2569,7 +2571,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 <varlistentry>
 <term
 ><guilabel
->PageUp/PageDown beweegt de cursor</guilabel
+>Page Up/Page Down beweegt de cursor</guilabel
 ></term>
 <listitem>
 <para
@@ -3016,7 +3018,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->Dit definieert de te proberen terugvalcodering bij het openen van bestanden als noch de boven als standaard gekozen codering, noch de codering gespecificeerd in de dialoog voor openen/opslaan, noch de codering gespecificeerd op de commandoregel overeenkomt met de inhoud van het bestand.  Voordat dit wordt gebruikt, wordt een poging gedaan om te kijken naar een bytevolgordemarkering aan het begin van het bestand voor de te gebruiken codering: als deze is gevonden, wordt de juiste unicode-codering gekozen; anders wordt codering-detectie gebruikt, als beide mislukken wordt terugvalcodering geprobeerd.</para>
+>Dit definieert de te proberen terugvalcodering bij het openen van bestanden als noch de boven als standaard gekozen codering, noch de codering gespecificeerd in de dialoog voor openen/opslaan, noch de codering gespecificeerd op de commandoregel overeenkomt met de inhoud van het bestand.  Voordat dit wordt gebruikt, wordt een poging gedaan om te kijken naar een bytevolgordemarkering aan het begin van het bestand voor de te gebruiken codering: als deze is gevonden, wordt de juiste unicode-codering gekozen; anders wordt detectie van codering gedaan, als beide mislukken wordt terugvalcodering geprobeerd.</para>
 </listitem>
 </varlistentry>
 
@@ -3048,7 +3050,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->De bytevolgordemarkering is een speciale reeks aan het begin van in unicode gecodeerde documenten. Het helpt gebruikers tekstdocumenten te openen met de juiste unicode-codering. Zie voor meer informatie: <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
+>De bytevolgordemarkering is een speciale reeks aan het begin van documenten gecodeerd in unicode. Het helpt gebruikers tekstdocumenten te openen met de juiste unicode-codering. Zie voor meer informatie: <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
 >Byte Order Mark</ulink
 >.</para>
 </listitem>

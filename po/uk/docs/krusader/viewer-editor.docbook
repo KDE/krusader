@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="krviewer">
   <title
 >KrViewer: вбудований переглядач &krusader;</title>
@@ -25,7 +37,7 @@
     <para
 >Щоб переглянути файл якомога швидше відповідно до цього типу, просто позначте його і натисніть клавішу <keycap
 >F3</keycap
->. Внутрішній переглядач &krusader; насправді є частиною &konqueror;, за допомогою цього переглядача ви можете переглянути файл будь-якого типу, який можна переглянути у &konqueror; (наприклад переглянути зображення, прослухати музику, переглянути вміст архіву). Цей переглядач є «Загальним переглядачем», для якого вам слід налаштувати типи &MIME;.</para>
+>. Внутрішній переглядач &krusader; насправді є частиною &konqueror;, за допомогою цього переглядача ви можете переглянути файл будь-якого типу, який можна переглянути у &konqueror; (наприклад переглянути зображення, прослухати музику, переглянути вміст архіву). Цей переглядач є «Загальним переглядачем», для якого вам слід налаштувати типи MIME.</para>
     <para
 >Інструмент перегляду працює так: <itemizedlist
 > <listitem
@@ -36,7 +48,7 @@
 > </listitem
 > <listitem
 > <para
->Якщо тип файла (тип &MIME;) не вдасться визначити або якщо з файлом (наприклад бінарним файлом) не пов’язано жодних дій, «Загальний переглядач» буде вимкнено. Файл вважатиметься текстовим, для якого буде використано <emphasis
+>Якщо тип файла (тип MIME) не вдасться визначити або якщо з файлом (наприклад бінарним файлом) не пов’язано жодних дій, «Загальний переглядач» буде вимкнено. Файл вважатиметься текстовим, для якого буде використано <emphasis
 >«Текстовий переглядач»</emphasis
 >.</para
 > </listitem
@@ -122,7 +134,7 @@
 ><replaceable
 >home/frank</replaceable
 > </userinput
-> перегляд домашньої теки користувача frank.</para>
+> перегляд домашнього каталогу користувача frank.</para>
       </listitem>
       <listitem>
         <para
@@ -3206,7 +3218,7 @@ Line Length Limit missing
 <title
 >Режими і типи файлів</title>
 <para
->За допомогою цієї сторінки ви можете змінити типове налаштування для документів вказаного типу &MIME;. Після завантаження документа у редактор програма намагатиметься встановити відповідність між даним файлом і визначеним шаблоном файлів або типом &MIME; зі списку, і якщо відповідність буде знайдено, застосує визначені змінні. Якщо буде знайдено декілька відповідностей з типами файлів, використовуватиметься тип файлів з найвищим пріоритетом. </para>
+>За допомогою цієї сторінки ви можете змінити типове налаштування для документів вказаного типу MIME. Після завантаження документа у редактор програма намагатиметься встановити відповідність між даним файлом і визначеним шаблоном файлів або типом MIME зі списку, і якщо відповідність буде знайдено, застосує визначені змінні. Якщо буде знайдено декілька відповідностей з типами файлів, використовуватиметься тип файлів з найвищим пріоритетом. </para>
 <variablelist>
 <varlistentry>
 <term
@@ -3291,7 +3303,7 @@ Line Length Limit missing
 ></term>
 <listitem
 ><para
->За допомогою цього рядка ви можете налаштувати параметри &kappname; для файлів, які належать до цього типу &MIME; за допомогою змінних &kappname;. Ви можете встановити майже будь-який параметр налаштування, зокрема підсвічування, режим відступів тощо.</para>
+>За допомогою цього рядка ви можете налаштувати параметри &kappname; для файлів, які належать до цього типу MIME за допомогою змінних &kappname;. Ви можете встановити майже будь-який параметр налаштування, зокрема підсвічування, режим відступів тощо.</para>
 <para
 >Натисніть кнопку <guibutton
 >Змінити</guibutton
@@ -3343,7 +3355,7 @@ Line Length Limit missing
 ></term>
 <listitem
 ><para
->Показує майстер, за допомогою якого можна дуже просто вибирати типи &MIME;.</para
+>Показує майстер, за допомогою якого можна дуже просто вибирати типи MIME.</para
 ></listitem>
 </varlistentry>
 <varlistentry>
@@ -3422,11 +3434,7 @@ or descriptions using different style.</para
 ></listitem>
 </varlistentry>
 <!--http://jakob.petsovits.at/topic/kate-->
-<!--Right, it's the automatic insertion of a closing brace (<quote
->}</quote
->) after you ended a line with an opening one (<quote
->{</quote
->). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
+<!--Right, it's the automatic insertion of a closing brace ("}") after you ended a line with an opening one ("{"). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
 You, the developer, are writing a line of code, and want to open a new block delimited by braces. Looks like this:
 If you press Enter and AutoBrace is enabled, it will insert your favorite new brace where it belongs. Looks like this:
 -->
@@ -3489,7 +3497,7 @@ If you press Enter and AutoBrace is enabled, it will insert your favorite new br
 <varlistentry>
 <term
 ><guilabel
->Божевільне (не дзен) &HTML;-програмування (спрощена версія)</guilabel
+>Божевільне (не дзен) HTML-програмування (спрощена версія)</guilabel
 ></term>
 <listitem
 ><para

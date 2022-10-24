@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="krusearcher">
   <title
 >KruSearcher: trova quel che stai cercando</title>
@@ -13,6 +25,26 @@
   </indexterm>
   <para
 >Benvenuti nel potente modulo di ricerca di &krusader; - chiamato KruSearcher. È lo strumento più efficace (di cui abbiamo conoscenza) per &Linux;, dal momento che consente così tanti modi differenti di trovare rapidamente il file che state cercando. La funzione di ricerca è disponibile anche su file system remoti. Essa è suddivisa in due livelli: generale e avanzata. Diamo un'occhiata alla pagina generale.</para>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>Krusearcher General</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="search_general.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="search_general.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>Krusearcher General</phrase
+></textobject>
+  <caption
+><para
+>Krusearcher General.</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
   <figure id="screenshot-search-general" float="1">
     <title
 >Ricerca generale</title>
@@ -52,23 +84,9 @@
 >«*testo*»</literal
 >. Si possono escludere dei file dalla ricerca utilizzando '|' (&eg; <literal role="extension"
 >«*.cpp *.h | *.moc.cpp»</literal
->) . Puoi usare le virgolette per i nomi che contengono spazi. Il filtro <quote
->File dei programmi</quote
-> ricerca tutti i file e le cartelle il cui nome è <filename
+>) . Puoi usare le virgolette per i nomi che contengono spazi. Il filtro «File dei programmi» ricerca tutti i file e le cartelle il cui nome è <filename
 >File dei programmi</filename
->. Dopo aver fatto clic sulla freccia a destra è mostrato un elenco a tendina che ti consente di prelevare alcuni criteri che hai precedentemente inserito.</para>
-      <note>
-          <para
->È possibile modificare l'elenco dei suggerimenti per il campo <guilabel
->Cerca</guilabel
->. Se un elemento non ti è gradito, selezionalo e premi <keycombo action="simul"
->&Shift;<keycap
->Canc</keycap
-></keycombo
->: il suggerimento inutile sarà eliminato. Puoi utilizzare anche i tasti freccia per visualizzare tutta la cronologia del campo <guilabel
->Cerca</guilabel
-> ed eliminare le voci non necessarie. </para>
-      </note>
+>.</para>
     </listitem>
     <listitem>
       <para
@@ -86,7 +104,7 @@
       <para
 ><guilabel
 >Tipo</guilabel
->: questa casella consente di cercare un file non solo in base al suo nome, ma anche al suo tipo &MIME;. Per esempio, puoi cercare tutti i file audio il cui nome inizi con la lettera «B». Per impostazione predefinita questa opzione è impostata su «tutti i file», ma puoi scegliere di cercare archivi, cartelle, immagini, file di testo, video e file audio.</para>
+>: questa casella consente di cercare un file non solo in base al suo nome, ma anche al suo tipo MIME. Per esempio, puoi cercare tutti i file audio il cui nome inizi con la lettera «B». Per impostazione predefinita questa opzione è impostata su «tutti i file», ma puoi scegliere di cercare archivi, cartelle, immagini, file di testo, video e file audio.</para>
     </listitem>
   </itemizedlist>
   <itemizedlist>
@@ -175,7 +193,7 @@
     <listitem>
       <para
 ><guilabel
->Cerca nelle sottocartelle</guilabel
+>Cerca nelle sotto cartelle</guilabel
 >: esegue una ricerca ricorsiva ed entra in tutte le cartelle che incontra lungo il percorso.</para>
     </listitem>
     <listitem>
@@ -236,9 +254,29 @@
 >Chiudi</guibutton
 > per chiudere la finestra. Quando viene trovato un risultato, un doppio-clic su di esso farà puntare il pannello attivo di &krusader; sui file trovati - senza chiudere la finestra di ricerca, così che potrai fare clic su un altro risultato.</para>
   <para
->A volte è necessario restringere la ricerca ancora di più. KruSearcher consente una ricerca molto più precisa: diamo un'occhiata alla <guilabel
+>A volte è necessario restringere la ricerca ancora di più. Krusearcher consente una ricerca molto più precisa: diamo un'occhiata alla <guilabel
 >pagina Avanzate</guilabel
 >...</para>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>Krusearcher Advanced</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="search_advanced.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="search_advanced.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>Krusearcher Advanced</phrase
+></textobject>
+  <caption
+><para
+>Krusearcher Advanced.</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
   <figure id="screenshot-search-advanced" float="1">
     <title
 >Ricerca avanzata</title>
@@ -332,7 +370,7 @@
 >&Ctrl;<keycap
 >C</keycap
 ></keycombo
->). Quando chiudi la finestra KruSearcher, l'elemento selezionato viene selezionato nel pannello attivo.</para>
+>). Quando chiudi la finestra Krusearcher, l'elemento selezionato viene selezionato nel pannello attivo.</para>
   <para>
     <emphasis role="bold"
 >Aggiungi alla lista</emphasis>

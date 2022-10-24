@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <chapter id="menu-commands">
   <title
 >Команди меню</title>
@@ -29,7 +41,7 @@
 > <guimenu
 >Файл</guimenu
 > <guimenuitem
->Новий текстовий файл...</guimenuitem
+>Новий текстовий файл</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -47,12 +59,12 @@
 > <guimenu
 >Файл</guimenu
 > <guimenuitem
->Створити теку</guimenuitem
+>Новий каталог</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Створює теку у поточній теці.</para>
+>Створює каталог у поточному каталозі.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -67,7 +79,7 @@
 > <guimenu
 >Файл</guimenu
 > <guimenuitem
->Нове символічне посилання...</guimenuitem
+>Нове символічне посилання</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -165,7 +177,7 @@
 > <guimenu
 >Файл</guimenu
 > <guimenuitem
->Запакувати...</guimenuitem
+>Запакувати</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -187,7 +199,7 @@
 > <guimenu
 >Файл</guimenu
 > <guimenuitem
->Розпакувати...</guimenuitem
+>Розпакувати</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -225,7 +237,7 @@
 ><guimenu
 >Файл</guimenu
 > <guimenuitem
->Порівняти за вмістом...</guimenuitem
+>Порівняти за вмістом</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -255,7 +267,7 @@
 > <guimenu
 >Файл</guimenu
 > <guimenuitem
->Групове перейменування...</guimenuitem
+>Групове перейменування</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -329,7 +341,7 @@
 ><guimenu
 >Файл</guimenu
 > <guimenuitem
->Створити контрольну суму...</guimenuitem
+>Створити контрольну суму</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -345,7 +357,7 @@
 ><guimenu
 >Файл</guimenu
 > <guimenuitem
->Перевірити контрольну суму...</guimenuitem
+>Перевірити контрольну суму</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -368,7 +380,7 @@
 > <guimenu
 >Файл</guimenu
 > <guimenuitem
->Розділити файл...</guimenuitem
+>Розділити файл</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -392,7 +404,7 @@
 > <guimenu
 >Файл</guimenu
 > <guimenuitem
->Об’єднати файли...</guimenuitem
+>Об’єднати файли</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -554,7 +566,7 @@
 > <guimenu
 >Зміни</guimenu
 > <guimenuitem
->Вибрати групу...</guimenuitem
+>Вибрати групу</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -594,7 +606,7 @@
 > <guimenu
 >Зміни</guimenu
 > <guimenuitem
->Скасувати вибір групи...</guimenuitem
+>Скасувати вибір групи</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -694,7 +706,7 @@
 > <guimenu
 >Зміни</guimenu
 > <guimenuitem
->Знайти у теці...</guimenuitem
+>Знайти у теці</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -716,13 +728,13 @@
 > <guimenu
 >Зміни</guimenu
 > <guimenuitem
->Порівняти теки</guimenuitem
+>Порівняти каталоги</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
 >Змінює режим роботи функціональної можливості &krusader; <link linkend="compare-dir"
->Порівняти теки</link
+>Порівняти каталоги</link
 >.</para>
         </listitem>
       </varlistentry>
@@ -738,7 +750,7 @@
         <listitem>
           <para
 >Відкриває налаштування <guimenuitem
->Порівняння тек</guimenuitem
+>Порівняння каталогів</guimenuitem
 >.</para>
           <itemizedlist>
             <listitem>
@@ -800,7 +812,7 @@
 > <guimenu
 >Зміни</guimenu
 > <guimenuitem
->Властивості...</guimenuitem
+>Властивості</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -819,7 +831,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt; <keycap
+>&Ctrl; <keycap
 >↑</keycap
 ></keycombo
 > </shortcut
@@ -860,7 +872,7 @@
 ><shortcut
 > <keycombo action="simul"
 >&Alt;<keysym
->→</keysym
+>Стрілка праворуч</keysym
 ></keycombo
 > </shortcut
 > <guimenu
@@ -930,7 +942,7 @@
 > <guimenu
 >Перехід</guimenu
 > <guimenuitem
->Популярні URL...</guimenuitem
+>Популярні URL</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1490,7 +1502,7 @@
 > <guimenu
 >Інструменти</guimenu
 > <guimenuitem
->Пошук...</guimenuitem
+>Пошук</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1512,7 +1524,7 @@
 > <guimenu
 >Інструменти</guimenu
 > <guimenuitem
->Розташування...</guimenuitem
+>Розташування</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1534,13 +1546,13 @@
 > <guimenu
 >Інструменти</guimenu
 > <guimenuitem
->Синхронізувати теки</guimenuitem
+>Синхронізувати каталоги</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
 >За допомогою функціональної можливості <link linkend="synchronizer"
->Синхронізувати теки</link
+>Синхронізувати каталоги</link
 > ви можете порівняти вміст лівої і правої панелей і переглянути відмінності між ними. Після порівняння ви можете пересунути файли і каталоги таким чином, щоб вміст панелей було синхронізовано.</para>
         </listitem>
       </varlistentry>
@@ -1556,7 +1568,7 @@
 > <guimenu
 >Інструменти</guimenu
 > <guimenuitem
->Монтування пристроїв...</guimenuitem
+>Монтування пристроїв</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1578,7 +1590,7 @@
 > <guimenu
 >Інструменти</guimenu
 > <guimenuitem
->Використання диска...</guimenuitem
+>Використання диска</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1690,6 +1702,33 @@
         </listitem>
       </varlistentry>
       <!-- vertical bar -->
+      <!-- disabled due to KrJS does not compile (cannot find kjsembed from kdelibs
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">
+              &Alt;&Ctrl;
+              <keycap
+>J</keycap
+></keycombo>
+            </shortcut>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Javascript Console</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opens the 
+          <link linkend="javascript_console"
+>Javascript
+          Console</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      -->
       <varlistentry>
         <term>
           <menuchoice
@@ -2198,7 +2237,7 @@
 ><guimenu
 >Параметри</guimenu
 > <guimenuitem
->Налаштування скорочень...</guimenuitem
+>Налаштування скорочень</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2244,7 +2283,7 @@
 ><guimenu
 >Параметри</guimenu
 > <guimenuitem
->Налаштувати пенали...</guimenuitem
+>Налаштувати пенали</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2264,7 +2303,7 @@
 ><guimenu
 >Параметри</guimenu
 > <guimenuitem
->Налаштувати &krusader;...</guimenuitem
+>Налаштувати &krusader;</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2282,7 +2321,7 @@
     <para
 >Крім того, у &krusader; передбачено типові для &kde; пункти меню <guimenu
 >Довідка</guimenu
->. Докладніший опис цих пунктів можна знайти у <ulink url="help:/fundamentals/menus.html#menus-help"
+>. Докладніший опис цих пунктів можна знайти у <ulink url="help:/fundamentals/ui.html#menus-help"
 >розділі щодо меню «Довідка»</ulink
 > підручника з основ роботи у &kde;. </para>
   </sect1>

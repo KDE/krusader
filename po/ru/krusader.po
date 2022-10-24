@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
 "PO-Revision-Date: 2022-01-26 16:35+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
@@ -1017,6 +1017,7 @@ msgstr "Создать контрольные суммы"
 
 #: app/Dialogs/checksumdlg.cpp:256
 #, fuzzy, kde-format
+#| msgid "About to calculate checksum for the following files or directories:"
 msgid "About to calculate checksum for the following files or folders:"
 msgstr "Вычисление контрольной суммы для следующих файлов и папок:"
 
@@ -1442,6 +1443,7 @@ msgstr "Файлы:"
 
 #: app/DiskUsage/diskusage.cpp:105
 #, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
 msgstr "Папки"
 
@@ -1886,12 +1888,16 @@ msgstr "Настраиваемый"
 
 #: app/FileSystem/krquery.cpp:547
 #, fuzzy, kde-format
+#| msgctxt "%1=filename, %2=percentage"
+#| msgid "Searching content of '%1' (%2%)"
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
 msgstr "Поиск содержимого «%1» (%2%)"
 
 #: app/FileSystem/krquery.cpp:552
 #, fuzzy, kde-format
+#| msgctxt "filestate: filename"
+#| msgid "%1: %2"
 msgctxt "%1=percentage"
 msgid "%1%"
 msgstr "%1: %2"
@@ -2353,6 +2359,7 @@ msgstr "Исключить имена папок"
 
 #: app/Filter/generalfilter.cpp:468
 #, fuzzy, kde-format
+#| msgid "Filters out specified directory names from the results."
 msgid "Filters out specified folder names from the results."
 msgstr "Исключает указанные имена папок из результатов."
 
@@ -3106,11 +3113,13 @@ msgstr "Текущий фон:"
 
 #: app/Konfigurator/kgcolors.cpp:108
 #, fuzzy, kde-format
+#| msgid "Delete foreground:"
 msgid "Rename foreground:"
 msgstr "Удаляемый текст:"
 
 #: app/Konfigurator/kgcolors.cpp:109
 #, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
 msgstr "Альтернативный цвет фона:"
 
@@ -3410,11 +3419,13 @@ msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:74
 #, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "Hide the tab bar when only one tab is opened"
 msgstr "Показывать панель вкладок на одной вкладке."
 
 #: app/Konfigurator/kggeneral.cpp:75
 #, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
 msgstr "Показывать панель вкладок на одной вкладке."
 
@@ -3620,6 +3631,9 @@ msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:274
 #, fuzzy, kde-format
+#| msgid ""
+#| "When checked, whenever the panel is changed (for example, by pressing "
+#| "Tab), Krusader changes the current folder in the embedded terminal."
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
@@ -3764,11 +3778,13 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:119
 #, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons"
 msgstr "Показывать кнопки «Новая вкладка» и «Закрыть вкладку»"
 
 #: app/Konfigurator/kgpanel.cpp:119
 #, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons."
 msgstr "Показывать кнопки «Новая вкладка» и «Закрыть вкладку»"
 
@@ -3784,11 +3800,13 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:121
 #, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button"
 msgstr "Показывать кнопки «Новая вкладка» и «Закрыть вкладку»"
 
 #: app/Konfigurator/kgpanel.cpp:121
 #, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button."
 msgstr "Показывать кнопки «Новая вкладка» и «Закрыть вкладку»"
 
@@ -3799,6 +3817,7 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, fuzzy, kde-format
+#| msgid "Set root of the tree to the current folder"
 msgid "Insert new tabs to the right of the current one."
 msgstr "Установить текущий каталог в вершине дерева"
 
@@ -3841,6 +3860,7 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:137
 #, fuzzy, kde-format
+#| msgid "disabled"
 msgid "Disabled"
 msgstr "выключено"
 
@@ -3914,11 +3934,15 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:181
 #, fuzzy, kde-format
+#| msgid "Directory navigation with Right Arrow"
 msgid "Folder navigation with Right Arrow"
 msgstr "Навигация по каталогу с помощью стрелки вправо"
 
 #: app/Konfigurator/kgpanel.cpp:181
 #, fuzzy, kde-format
+#| msgid ""
+#| "Pressing the Right button enters directory if no search text editing "
+#| "intention is captured."
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
@@ -4669,6 +4693,7 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:670
 #, fuzzy, kde-format
+#| msgid "Right mouse button preserves selection"
 msgid "A plain mouse button resets selection"
 msgstr "Выбор правой кнопкой мыши оставляет выделение"
 
@@ -4725,6 +4750,7 @@ msgstr "Никогда"
 
 #: app/Konfigurator/kgpanel.cpp:757
 #, fuzzy, kde-format
+#| msgid "MountMan will not (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
 msgstr ""
 "Автоматическое (раз)монтирование не будет выполняться для следующих точек:"
@@ -4736,6 +4762,7 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, fuzzy, kde-format
+#| msgid "Mnt.Point"
 msgid "Mount point:"
 msgstr "Точка монтирования"
 
@@ -5560,6 +5587,9 @@ msgstr ""
 
 #: app/krslots.cpp:420
 #, fuzzy, kde-format
+#| msgid ""
+#| "Cannot find a batch rename tool.\n"
+#| "You can get KRename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
@@ -6177,6 +6207,9 @@ msgstr "Krusader — ПРИВИЛЕГИИ ROOT"
 
 #: app/main.cpp:113
 #, fuzzy, kde-format
+#| msgid ""
+#| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
+#| "© 2004-2019 Krusader Krew"
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
@@ -6186,6 +6219,12 @@ msgstr ""
 
 #: app/main.cpp:114
 #, fuzzy, kde-format
+#| msgid ""
+#| "Feedback:\n"
+#| "https://forum.kde.org/viewforum.php?f=225\n"
+#| "\n"
+#| "IRC\n"
+#| "server: irc.freenode.net, channel: #krusader"
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
@@ -7176,6 +7215,7 @@ msgstr ""
 
 #: app/Panel/listpanel.cpp:229
 #, fuzzy, kde-format
+#| msgid "Cancel directory space calculation"
 msgid "Cancel folder space calculation"
 msgstr "Отменить подсчёт занимаемого места"
 
@@ -7539,6 +7579,7 @@ msgstr ""
 
 #: app/Panel/panelcontextmenu.cpp:124
 #, fuzzy, kde-format
+#| msgid "Open/Run"
 msgid "Open/Run Files"
 msgstr "Открыть/запустить"
 
@@ -7549,6 +7590,7 @@ msgstr "Запустить"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
 msgstr "Открыть в новой вкладке"
 
@@ -7895,6 +7937,7 @@ msgstr "%1 из %2, %3 из %4"
 
 #: app/Panel/PanelView/krview.cpp:1073
 #, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
 msgstr "Применить фильтр к папкам"
 
@@ -7905,6 +7948,7 @@ msgstr "Фильтр файлов"
 
 #: app/Panel/PanelView/krview.cpp:1104
 #, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
 msgstr "Применить выбор к папкам"
 
@@ -8236,6 +8280,7 @@ msgstr "Сохранить параметры как шаблон для нов�
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
 #, fuzzy, kde-format
+#| msgid "Open in a new tab"
 msgid "Open a new tab"
 msgstr "Открыть в новой вкладке"
 
@@ -9139,11 +9184,13 @@ msgstr "Переместить текущую вкладку на другую �
 
 #: app/tabactions.cpp:26
 #, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Left"
 msgstr "Переместить текущую вкладку на другую сторону"
 
 #: app/tabactions.cpp:27
 #, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Right"
 msgstr "Переместить текущую вкладку на другую сторону"
 
@@ -9154,6 +9201,7 @@ msgstr "Закрыть текущую вкладку"
 
 #: app/tabactions.cpp:29
 #, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Undo Close Tab"
 msgstr "Разблокировать вкладку"
 
@@ -9754,10 +9802,9 @@ msgid "Multimedia"
 msgstr "Мультимедиа"
 
 #: app/useraction_examples.xml:39
-#, fuzzy, kde-format
-#| msgid "Always show current item"
+#, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Всегда показывать текущий элемент"
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, kde-format
@@ -9840,6 +9887,7 @@ msgstr ""
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
 #, fuzzy, kde-format
+#| msgid "Creating directories is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives"
 msgstr "Создание папок для архивов %1 не поддерживается"
 
@@ -9887,6 +9935,7 @@ msgstr "Доступ к файлам для архивов %1 не поддер�
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
 #, fuzzy, kde-format
+#| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives"
 msgstr "Вывод списка папок для архивов %1 не поддерживается"
 
@@ -9922,11 +9971,8 @@ msgstr "Для доступа к файлу необходим пароль."
 #~ "dvc@mail.ru,dkoryavov@yandex.ru,sam@vhnet.ru,overmind88@gmail.com,irk."
 #~ "translator@gmail.com,mornie@basealt.ru"
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Копировать текущий элемент в буфер обмена"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Открыть новую вкладку в домашней папке"
+#~ msgid "Directories:"
+#~ msgstr "Папки:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Показывать кнопки «Новая вкладка» и «Закрыть вкладку»."
@@ -9955,6 +10001,30 @@ msgstr "Для доступа к файлу необходим пароль."
 #~ msgid "JavaScript Error"
 #~ msgstr "Ошибка JavaScript"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ЗБ"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 ТБ"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 ГБ"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 МБ"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KБ"
+
+#~ msgid "Browse"
+#~ msgstr "Обзор"
+
+#~ msgid "New folder"
+#~ msgstr "Создать папку"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Открыть новую вкладку в домашней папке"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Выполнить расширение JavaScript..."
 
@@ -9973,11 +10043,8 @@ msgstr "Для доступа к файлу необходим пароль."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Экспандер: не указан сценарий для %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Создать папку"
-
-#~ msgid "Directories:"
-#~ msgstr "Папки:"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Копировать текущий элемент в буфер обмена"
 
 #~ msgid "Folder..."
 #~ msgstr "Папку..."
@@ -9990,21 +10057,6 @@ msgstr "Для доступа к файлу необходим пароль."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Изменить файл (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ЗБ"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 ТБ"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 ГБ"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 МБ"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KБ"
 
 #, fuzzy
 #~ msgid "Open search filter"
@@ -11194,6 +11246,3 @@ msgstr "Для доступа к файлу необходим пароль."
 #~ "Попробуйте новый менеджер закладок: откройте новое сетевое соединение, "
 #~ "когда сделаете, откройте менеджер закладок и выберите пункт 'Добавить "
 #~ "закладку', все!"
-
-#~ msgid "Browse"
-#~ msgstr "Обзор"

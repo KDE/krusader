@@ -1,18 +1,18 @@
 # Translation of krusader.po to Brazilian Portuguese
-# Copyright (C) 2005-2020 This file is copyright:
-# This file is distributed under the same license as the krusader package
+# Copyright (C) 2005-2018 This_file_is_part_of_KDE
+# This file is distributed under the same license as the Krusader package
 #
 # Doutor Zero <doutor.zero@gmail.com>, 2005, 2006, 2007, 2009.
 # Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2009, 2010, 2016, 2017, 2019, 2020, 2021, 2022.
-# André Marcelo Alvarenga <alvarenga@kde.org>, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2018, 2020.
+# André Marcelo Alvarenga <alvarenga@kde.org>, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2018.
 # Marcus Vinícius de Andrade Gama <marcus.gama@gmail.com>, 2010.
 # Marcus Gama <marcus.gama@gmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2022-08-19 14:57-0300\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2022-07-12 16:16-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -1001,7 +1001,8 @@ msgid "Create Checksums"
 msgstr "Criar somas de verificação"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "About to calculate checksum for the following files or directories:"
 msgid "About to calculate checksum for the following files or folders:"
 msgstr ""
 "Pronto para calcular a soma de verificação para os seguintes arquivos e "
@@ -1425,9 +1426,10 @@ msgid "Files:"
 msgstr "Arquivos:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
-msgstr "Pastas:"
+msgstr "Pastas"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1867,16 +1869,18 @@ msgid "Custom"
 msgstr "Personalizado"
 
 #: app/FileSystem/krquery.cpp:547
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "%1=filename, %2=percentage"
+#| msgid "Searching content of '%1' (%2%)"
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr "Pesquisando o conteúdo de '%1' (%2)"
+msgstr "Pesquisando o conteúdo de '%1' (%2%)"
 
 #: app/FileSystem/krquery.cpp:552
 #, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr "%1%"
+msgstr ""
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, kde-format
@@ -2335,7 +2339,8 @@ msgid "Exclude Folder Names"
 msgstr "Excluir os nomes das pastas"
 
 #: app/Filter/generalfilter.cpp:468
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Filters out specified directory names from the results."
 msgid "Filters out specified folder names from the results."
 msgstr "Exclui na filtragem os nomes das pastas indicadas do resultado."
 
@@ -2569,7 +2574,7 @@ msgstr "Digite o nome do perfil:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr "Esvaziar as abas fechadas recentemente"
+msgstr ""
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -3081,14 +3086,16 @@ msgid "Current background:"
 msgstr "Plano de fundo atual:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete foreground:"
 msgid "Rename foreground:"
-msgstr "Renomear primeiro plano:"
+msgstr "Apagar primeiro plano:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
-msgstr "Renomear plano de fundo:"
+msgstr "Plano de fundo alternado:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3384,16 +3391,16 @@ msgstr ""
 "contrário o visualizador irá funcionar no modo de janela única com abas"
 
 #: app/Konfigurator/kggeneral.cpp:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "Ocultar a barra de abas quando apenas uma aba estiver aberta"
+msgstr "Mostra a barra de abas com apenas uma aba."
 
 #: app/Konfigurator/kggeneral.cpp:75
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr ""
-"Se selecionada, a aba do Visualizador ocultará se apenas uma aba estiver "
-"aberta"
+msgstr "Mostra a barra de abas com apenas uma aba."
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3464,8 +3471,6 @@ msgstr ""
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
 msgstr ""
-"Se um arquivo de texto é maior que este tamanho então o modo de lista será "
-"usado."
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3597,18 +3602,20 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:274
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
-msgstr "Os painéis ativos seguem a pasta de trabalho do terminal embutido"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "When checked, whenever the panel is changed (for example, by pressing "
+#| "Tab), Krusader changes the current folder in the embedded terminal."
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"Se selecionada, sempre que uma pasta de trabalho do terminal for alterada "
-"(por exemplo, ao pressionar o comando 'cd' ou 'popd'), o Krusader mudará a "
-"pasta atual no painel ativo."
+"Se selecionada, sempre que um painel for selecionado (por exemplo, ao "
+"pressionar Tab), o Krusader mudará a pasta atual no terminal embutido."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
@@ -3747,44 +3754,49 @@ msgstr ""
 "do caminho é exibida."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons"
-msgstr "Exibir botão de fechar aba"
+msgstr "Exibir botão de nova/fechar aba"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons."
-msgstr "Exibir botão de fechar aba."
+msgstr "Exibir botão de nova/fechar aba"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr "Expandindo abas"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr "Expandindo abas."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button"
-msgstr "Exibir botão de nova aba"
+msgstr "Exibir botão de nova/fechar aba"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button."
-msgstr "Exibir botão de nova aba."
+msgstr "Exibir botão de nova/fechar aba"
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr "Inserir abas após a atual"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set root of the tree to the current folder"
 msgid "Insert new tabs to the right of the current one."
-msgstr "Inserir novas abas à direta da atual."
+msgstr "Definir o topo da árvore com a pasta atual"
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
@@ -3799,12 +3811,12 @@ msgstr "Mostra a barra de abas com apenas uma aba."
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr "Fechar aba com clique duplo"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr "Fechar aba com clique duplo."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3899,12 +3911,16 @@ msgstr ""
 "de pesquisa)."
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Directory navigation with Right Arrow"
 msgid "Folder navigation with Right Arrow"
 msgstr "Navegação de pastas com a seta à direita"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Pressing the Right button enters directory if no search text editing "
+#| "intention is captured."
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
@@ -4656,9 +4672,10 @@ msgstr ""
 "o botão direito do mouse por 500ms."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Right mouse button preserves selection"
 msgid "A plain mouse button resets selection"
-msgstr "Um botão simples do mouse redefine a seleção"
+msgstr "O botão direito do mouse preserva a seleção"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4667,10 +4684,6 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
-"Redefinir a seleção em um clique do mouse sem modificadores (ex.: Shift ou "
-"Ctrl).\n"
-"A seleção com Shift/Ctrl para o botão do mouse deve ser habilitada para esta "
-"configuração funcionar."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4690,7 +4703,7 @@ msgstr "Mostrar o tipo de sistema de arquivos"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr "Ocultar entradas SquashFS"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4716,19 +4729,21 @@ msgid "Never"
 msgstr "Nunca"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "MountMan will not (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
-msgstr "Ocultar os seguintes pontos de montagem:"
+msgstr "MountMan não irá (des)montar os seguintes pontos de montagem:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr "Adicionar novo ponto de montagem oculto"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mnt.Point"
 msgid "Mount point:"
-msgstr "Ponto de montagem:"
+msgstr "Ponto de Montagem"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5431,7 +5446,7 @@ msgstr "Selecionar codificação de caracteres remota"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr "Abas fechadas recentemente"
+msgstr ""
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5549,13 +5564,16 @@ msgstr ""
 "%1"
 
 #: app/krslots.cpp:420
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Cannot find a batch rename tool.\n"
+#| "You can get KRename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 "Não foi possível localizar uma ferramenta de renomeação em lote.\n"
-"Você pode encontrar o KRename em %1"
+"Você pode encontrar o KRename em http://www.krename.net"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -6166,22 +6184,31 @@ msgstr "Krusader - PRIVILÉGIOS DE SUPERUSUÁRIO"
 #, fuzzy, kde-format
 #| msgid ""
 #| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2020 Krusader Krew"
+#| "© 2004-2019 Krusader Krew"
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2020, A equipe do Krusader"
+"© 2004-2019, Equipe do Krusader"
 
 #: app/main.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Feedback:\n"
+#| "https://forum.kde.org/viewforum.php?f=225\n"
+#| "\n"
+#| "IRC\n"
+#| "server: irc.freenode.net, channel: #krusader"
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
-"Comentários:\n"
-"https://forum.kde.org/viewforum.php?f=225"
+"Sugestões e críticas:\n"
+"https://forum.kde.org/viewforum.php?f=225\n"
+"\n"
+"IRC\n"
+"servidor: irc.freenode.net, canal: #krusader"
 
 #: app/main.cpp:120
 #, kde-format
@@ -7154,7 +7181,8 @@ msgstr ""
 "selecionados e a matemática de bytes"
 
 #: app/Panel/listpanel.cpp:229
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Cancel directory space calculation"
 msgid "Cancel folder space calculation"
 msgstr "Cancelar o cálculo do espaço da pasta"
 
@@ -7516,9 +7544,10 @@ msgstr ""
 "no Konfigurador, o padrão é o <b>konsole</b>.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open/Run"
 msgid "Open/Run Files"
-msgstr "Abrir/executar arquivos"
+msgstr "Abrir/Executar"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7526,9 +7555,10 @@ msgid "Run"
 msgstr "Executar"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
-msgstr "Abrir em novas abas"
+msgstr "Abrir em nova aba"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7855,9 +7885,10 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 de %2, %3 de %4"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
-msgstr "Aplicar o filtro às &pastas"
+msgstr "Aplicar o filtro às pastas"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
@@ -7865,9 +7896,10 @@ msgid "Filter Files"
 msgstr "Filtrar arquivos"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
-msgstr "Aplicar &seleção às pastas"
+msgstr "Aplicar seleção às pastas"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, kde-format
@@ -8196,9 +8228,10 @@ msgstr ""
 "Salvar configurações como padrão para as novas instâncias deste tipo de visão"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in a new tab"
 msgid "Open a new tab"
-msgstr "Abrir uma nova aba"
+msgstr "Abrir em uma nova aba"
 
 #: app/paneltabbar.cpp:172
 #, kde-format
@@ -8246,7 +8279,7 @@ msgstr "Texto encontrado:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "Ocioso"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -9096,14 +9129,16 @@ msgid "Move Current Tab to Other Side"
 msgstr "Mover a aba atual para o outro lado"
 
 #: app/tabactions.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Left"
-msgstr "Mover a aba atual para a esquerda"
+msgstr "Mover a aba atual para o outro lado"
 
 #: app/tabactions.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Right"
-msgstr "Mover a aba atual para a direita"
+msgstr "Mover a aba atual para o outro lado"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9111,9 +9146,10 @@ msgid "Close Current Tab"
 msgstr "Fechar a aba atual"
 
 #: app/tabactions.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Undo Close Tab"
-msgstr "Reabrir a aba"
+msgstr "Desbloquear aba"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9714,10 +9750,9 @@ msgid "Multimedia"
 msgstr "Multimídia"
 
 #: app/useraction_examples.xml:39
-#, fuzzy, kde-format
-#| msgid "Always show current item"
+#, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Sempre mostrar o item atual"
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, kde-format
@@ -9798,9 +9833,10 @@ msgstr ""
 "Você pode ativar na página de 'Pacotes' no Konfigurator."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Creating directories is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives"
-msgstr "Não há suporte para criação de pastas com arquivos %1"
+msgstr "A criação de diretórios não é suportada com %1 arquivos"
 
 #: plugins/krarc/krarc.cpp:345
 #, kde-format
@@ -9833,8 +9869,6 @@ msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
-"Ocorreu um erro relacionado ao programa externo '%1'. A mensagem de erro é: "
-"'%2'."
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
@@ -9847,9 +9881,10 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "Acessar documentos não é suportado com %1 arquivos"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives"
-msgstr "Não há suporte para listagem de pastas em arquivos %1"
+msgstr "Listar diretórios não é suportado por %1 arquivos"
 
 #: plugins/krarc/krarc.cpp:2144 plugins/krarc/krarc.cpp:2150
 #, kde-format
@@ -9880,11 +9915,8 @@ msgstr "O acesso ao arquivo exige uma senha."
 #~ msgid "Your emails"
 #~ msgstr "doutor.zero@gmail.com, alvarenga@kde.org"
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Copiar o item atual para a área de transferência"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Abrir uma nova aba em Home"
+#~ msgid "Directories:"
+#~ msgstr "Diretórios:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Exibe os botões de nova/fechar aba."
@@ -9913,6 +9945,30 @@ msgstr "O acesso ao arquivo exige uma senha."
 #~ msgid "JavaScript Error"
 #~ msgstr "Erro de JavaScript"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Navegar"
+
+#~ msgid "New folder"
+#~ msgstr "Nova pasta"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Abrir uma nova aba em Home"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Executar uma Extensão JavaScript..."
 
@@ -9930,5 +9986,458 @@ msgstr "O acesso ao arquivo exige uma senha."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Expansor: nenhum script especificado para %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Nova pasta"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Copiar o item atual para a área de transferência"
+
+#~ msgid "Folder..."
+#~ msgstr "Pasta..."
+
+#~ msgid "Text File..."
+#~ msgstr "Arquivo de Texto..."
+
+#~ msgid "View File (F3)"
+#~ msgstr "Visualizar Arquivo (F3)"
+
+#~ msgid "Edit File (F4)"
+#~ msgstr "Editar Arquivo (F4)"
+
+#, fuzzy
+#~| msgid "Open Terminal Here"
+#~ msgid "Open search filter"
+#~ msgstr "Abrir o terminal aqui"
+
+#~ msgid "Karai Csaba"
+#~ msgstr "Karai Csaba"
+
+#~ msgid "Open the popup panel"
+#~ msgstr "Abrir o painel popup"
+
+#~ msgid "Close the popup panel"
+#~ msgstr "Fechar o painel popup"
+
+#~ msgid "Toggle Popup Panel"
+#~ msgstr "Mostrar/Esconder Painel Popup"
+
+#~ msgid " Quit"
+#~ msgstr " Sair"
+
+#~ msgid "Copy..."
+#~ msgstr "Copiar..."
+
+#~ msgid "Move..."
+#~ msgstr "Mover..."
+
+#~ msgid ""
+#~ "A configuration of 1.51 or older was detected. Krusader has to reset your "
+#~ "configuration to default values.\n"
+#~ "Note: your bookmarks and keybindings will remain intact.\n"
+#~ "Krusader will now run Konfigurator."
+#~ msgstr ""
+#~ "Uma configuração do 1.51 ou mais antiga foi detectada. O Krusader tem que "
+#~ "redefinir a sua configuração para os valores padrão.\n"
+#~ "Atenção: Seus favoritos e atalhos permanecerão intactos.\n"
+#~ "O Krusader irá agora iniciar o Konfigurador."
+
+#~ msgid "ftp://"
+#~ msgstr "ftp://"
+
+#~ msgid "smb://"
+#~ msgstr "smb://"
+
+#~ msgid "fish://"
+#~ msgstr "fish://"
+
+#~ msgid "sftp://"
+#~ msgstr "sftp://"
+
+#~ msgid "Keep virtual folder structure"
+#~ msgstr "Manter estrutura da pasta virtual"
+
+#~ msgid "Base URL:"
+#~ msgstr "URL Base:"
+
+#, fuzzy
+#~| msgid "Move to trash"
+#~ msgid "Minimize to tray"
+#~ msgstr "Mover para a Lixeira"
+
+#~ msgid ""
+#~ "<qt>Cannot calculate checksum since no supported tool was found. Please "
+#~ "check the <b>Dependencies</b> page in Krusader's settings.</qt>"
+#~ msgstr ""
+#~ "<qt>Não foi possível calcular a soma de verificação porque nenhuma "
+#~ "ferramenta suportada foi encontrada. Verifique a página de "
+#~ "<b>Dependências</b> nas configurações do Krusader.</qt>"
+
+#~ msgid ""
+#~ "<qt><b>Note</b>: you have selected folders, and probably have no "
+#~ "recursive checksum tool installed. Krusader currently supports "
+#~ "<i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>"
+#~ msgstr ""
+#~ "<qt><b>Atenção</b>: você selecionou pastas, mas provavelmente não tem "
+#~ "nenhuma ferramenta para gerenciar as somas de verificação recursivamente. "
+#~ "O Krusader atualmente suporta <i>md5deep, sha1deep, sha256deep, tigerdeep "
+#~ "e cfv</i></qt>"
+
+#~ msgid "About to calculate checksum for the following files:"
+#~ msgstr ""
+#~ "Pronto para calcular a soma de verificação para os seguintes arquivos:"
+
+#~ msgid "Calculating checksums..."
+#~ msgstr "Calculando somas..."
+
+#~ msgid ""
+#~ "<qt>Cannot verify checksum since no supported tool was found. Please "
+#~ "check the <b>Dependencies</b> page in Krusader's settings.</qt>"
+#~ msgstr ""
+#~ "<qt>Não foi possível verificar a soma porque nenhuma ferramenta suportada "
+#~ "foi encontrada. Verifique a página de <b>Dependências</b> nas "
+#~ "configurações do Krusader.</qt>"
+
+#~ msgid "About to verify checksum for the following files and folders:"
+#~ msgstr "Pronto para verificar a soma para os seguintes arquivos e pastas:"
+
+#~ msgid ""
+#~ "<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid "
+#~ "checksum file.</qt>"
+#~ msgstr ""
+#~ "<qt>Erro ao ler o arquivo de soma <i>%1</i>.<br />Por favor especifique "
+#~ "um arquivo de soma válido.</qt>"
+
+#~ msgid "Verifying checksums..."
+#~ msgstr "Verificando somas..."
+
+#~ msgid "The following files have failed:"
+#~ msgstr "Os seguintes arquivos falharam:"
+
+#~ msgid "Here are the calculated checksums:"
+#~ msgstr "Aqui estão as somas calculadas:"
+
+#~ msgid "File and hash"
+#~ msgstr "Arquivo e hash"
+
+#~ msgid "Save checksum to file:"
+#~ msgstr "Salvar soma para o arquivo:"
+
+#~ msgid ""
+#~ "File %1 already exists.\n"
+#~ "Are you sure you want to overwrite it?"
+#~ msgstr ""
+#~ "Já existe um arquivo chamado %1.\n"
+#~ "Deseja sobrescrevê-lo?"
+
+#~ msgid "Select a file to save to"
+#~ msgstr "Selecione um arquivo para salvar"
+
+#~ msgid ""
+#~ "Cannot start root mode Krusader, because Krusader or kdesu is missing "
+#~ "from the path. Please configure the dependencies in Konfigurator."
+#~ msgstr ""
+#~ "Não foi possível inicializar o Krusader no modo superusuário, porque o "
+#~ "Krusader ou o kdesu não estão presentes no caminho. Por favor, configure "
+#~ "as dependências no Konfigurador."
+
+#~ msgid "Calculating space"
+#~ msgstr "Calculando espaço"
+
+#, fuzzy
+#~| msgid "&Pause"
+#~ msgid "Start &Paused"
+#~ msgstr "&Pausar"
+
+#~ msgid "User Menu"
+#~ msgstr "Menu do Usuário"
+
+#~ msgid "Cannot find \"KsysCtrl\". Please install KDE admin package"
+#~ msgstr ""
+#~ "Não foi possível localizar o \"KsysCtrl\". Instale o pacote de "
+#~ "administração KDE"
+
+#~ msgid ""
+#~ "Could not create a temporary folder. Handling of Archives will not be "
+#~ "possible until this is fixed."
+#~ msgstr ""
+#~ "Não foi possível criar uma pasta temporária. O tratamento de arquivos não "
+#~ "será possível até isto ser corrigido."
+
+#~ msgid "Manage user actions"
+#~ msgstr "Gerenciar ações do usuário"
+
+#~ msgid "Rename %1 to:"
+#~ msgstr "Renomear %1 para:"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+
+#~ msgid "Quick Navigation"
+#~ msgstr "Navegação Rápida"
+
+#~ msgid "Already at <i>%1</i>"
+#~ msgstr "Já está em <i>%1</i>"
+
+#~ msgid "Click to go to <i>%1</i>"
+#~ msgstr "Clique para ir em <i>%1</i>"
+
+#, fuzzy
+#~| msgid "Fullscreen terminal (mc-style)"
+#~ msgid "Fullscreen embedded terminal (mc-style)"
+#~ msgstr "Terminal em tela inteira (no estilo mc)"
+
+#~ msgid "Terminal is shown instead of the Krusader window (full screen)."
+#~ msgstr ""
+#~ "O terminal é mostrado, ao invés da janela do Krusader (tela inteira)."
+
+#~ msgid "Show terminal emulator"
+#~ msgstr "Mostrar emulador de terminal"
+
+#~ msgid "Show Terminal &Emulator"
+#~ msgstr "Mostrar &emulador de terminal"
+
+#~ msgctxt "Unknown file system type"
+#~ msgid "unknown"
+#~ msgstr "desconhecido"
+
+#~ msgid "No space information on [dev]"
+#~ msgstr "Nenhuma informação de espaço em [dev]"
+
+#~ msgid "No space information on [procfs]"
+#~ msgstr "Nenhuma informação de espaço em [procfs]"
+
+#~ msgid "No space information on [proc]"
+#~ msgstr "Nenhuma informação de espaço em [proc]"
+
+#~ msgid "Overwrite"
+#~ msgstr "Sobrescrever"
+
+#~ msgid "&Overwrite"
+#~ msgstr "S&obrescrever"
+
+#~ msgid "&Remove"
+#~ msgstr "&Remover"
+
+#~ msgid "Use MIME type magic"
+#~ msgstr "Usar tipo MIME mágico"
+
+#~ msgid ""
+#~ "MIME type magic allows better distinction of file types, but is slower."
+#~ msgstr ""
+#~ "O tipo MIME mágico permite uma melhor distinção entre tipos de arquivos, "
+#~ "mas é mais lento."
+
+#~ msgid "&Queue Manager..."
+#~ msgstr "Gerenciador de &Fila..."
+
+#~ msgid "You cannot move files to this file system"
+#~ msgstr "Você não pode mover arquivos para este sistema de arquivos"
+
+#~ msgid "You cannot copy files to this file system"
+#~ msgstr "Você não pode copiar arquivos para este sistema de arquivos"
+
+#~ msgid "You do not have write permission to this folder"
+#~ msgstr "Você não tem permissões para gravar nesta pasta"
+
+#~ msgid "An error occurred during processing the queue.\n"
+#~ msgstr "Um erro ocorreu durante o processamento da fila.\n"
+
+#~ msgid "The last processed element in the queue was aborted.\n"
+#~ msgstr "O último elemento processado na fila foi abortado.\n"
+
+#~ msgid ""
+#~ "Do you wish to continue with the next element, delete the queue or "
+#~ "suspend the queue?"
+#~ msgstr ""
+#~ "Deseja continuar com o próximo elemento, apagar a fila ou suspendê-la?"
+
+#~ msgid "Krusader::Queue"
+#~ msgstr "Krusader::Fila"
+
+#~ msgid "Suspend"
+#~ msgstr "Suspender"
+
+#~ msgid "default"
+#~ msgstr "padrão"
+
+#~ msgid "Krusader::Queue Manager"
+#~ msgstr "Krusader::Gerenciador de Fila"
+
+#~ msgid "Please enter the time to start processing the queue:"
+#~ msgstr "Por favor, digite a hora para iniciar o processamento da fila:"
+
+#~ msgid "Create a new queue"
+#~ msgstr "Criar uma nova fila"
+
+#~ msgid "Remove the current queue"
+#~ msgstr "Remover a fila atual"
+
+#~ msgid "unused"
+#~ msgstr "não usado"
+
+#~ msgid "Schedule queue starting (Ctrl+S)"
+#~ msgstr "Início do agendamento da fila (Ctrl+S)"
+
+#~ msgid "Start processing the queue (Ctrl+P)"
+#~ msgstr "Início do processamento da fila (Ctrl+P)"
+
+#~ msgid "The queue is paused."
+#~ msgstr "A fila está pausada."
+
+#~ msgid "Scheduled to start at %1."
+#~ msgstr "Agendamento para iniciar às %1."
+
+#~ msgid "The queue is running."
+#~ msgstr "A fila está em execução."
+
+#~ msgid "Pause processing the queue (Ctrl+P)"
+#~ msgstr "Pausar o processamento da fila (Ctrl+P)"
+
+#~ msgid "Please enter the name of the new queue"
+#~ msgstr "Por favor, digite o nome da nova fila."
+
+#~ msgid "A queue already exists with this name."
+#~ msgstr "Já existe uma fila com este nome."
+
+#~ msgid ""
+#~ "Deleting the queue requires aborting all pending jobs. Do you wish to "
+#~ "continue?"
+#~ msgstr ""
+#~ "Apagar a fila, requer abortar todos os trabalhos pendentes. Deseja "
+#~ "continuar?"
+
+#~ msgid "Queue Manager"
+#~ msgstr "Gerenciador de Fila"
+
+#~ msgid ""
+#~ "Deleting this job will abort the pending job. Do you wish to continue?"
+#~ msgstr ""
+#~ "Apagar este trabalho irá abortar o trabalho pendente. Deseja continuar?"
+
+#~ msgid ""
+#~ "Krusader does not support FTP access via HTTP.\n"
+#~ "If it is not the case, please check and change the proxy settings in the "
+#~ "System Settings."
+#~ msgstr ""
+#~ "O Krusader não suporta o acesso a FTP através de HTTP.\n"
+#~ "Se este não é o caso, verifique e altere as configurações do proxy nas "
+#~ "Configurações do Sistema."
+
+#~ msgctxt "Job type"
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgctxt "Job type"
+#~ msgid "Folder Size"
+#~ msgstr "Tamanho da pasta"
+
+#~ msgctxt "Job type"
+#~ msgid "Copy"
+#~ msgstr "Copiar"
+
+#~ msgctxt "Job type"
+#~ msgid "Move"
+#~ msgstr "Mover"
+
+#~ msgctxt "Job type"
+#~ msgid "Pack"
+#~ msgstr "Compactar"
+
+#~ msgctxt "Job type"
+#~ msgid "Unpack"
+#~ msgstr "Descompactar"
+
+#~ msgctxt "Job type"
+#~ msgid "Unknown"
+#~ msgstr "Desconhecido"
+
+#~ msgid "Target"
+#~ msgstr "Alvo"
+
+#~ msgid "Source"
+#~ msgstr "Origem"
+
+#~ msgid "Cannot create a folder. Check your permissions."
+#~ msgstr "Não foi possível criar uma pasta. Verifique suas permissões."
+
+#~ msgctxt "@title job"
+#~ msgid "Copying"
+#~ msgstr "Copiando"
+
+#~ msgctxt "@title job"
+#~ msgid "Moving"
+#~ msgstr "Movendo"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "Show statusbar"
+#~ msgstr "Mostrar barra de status"
+
+#~ msgid "Statusbar will be visible after startup."
+#~ msgstr "A barra de status estará visível após a inicialização."
+
+#~ msgid "Show toolbar"
+#~ msgstr "Mostrar barra de ferramentas"
+
+#~ msgid "Toolbar will be visible after startup."
+#~ msgstr "A barra de ferramentas estará visível após a inicialização."
+
+#~ msgid "Show actions toolbar"
+#~ msgstr "Mostrar barra de ações"
+
+#~ msgid "Actions toolbar will be visible after startup."
+#~ msgstr "A barra de ações estará visível após a inicialização."
+
+#~ msgid "Webmaster"
+#~ msgstr "Administrador Web"
+
+#~ msgid "Remote co&ntent search"
+#~ msgstr "Buscar co&nteúdo remoto"
+
+#~ msgid "Cannot drop here, no write permissions."
+#~ msgstr "Não é possível colocar aqui, sem permissões de gravação."
+
+#~ msgid "Copy Here"
+#~ msgstr "Copiar Aqui"
+
+#~ msgid "Move Here"
+#~ msgstr "Mover aqui"
+
+#~ msgid "Link Here"
+#~ msgstr "Link Aqui"
+
+#~ msgid "Quicksearch/Quickfilter"
+#~ msgstr "Pesquisa Rápida/Filtro Rápido"
+
+#~ msgid "New style Quicksearch"
+#~ msgstr "Novo estilo de pesquisa rápida"
+
+#~ msgid "Opens a quick search dialog box."
+#~ msgstr "Abrir uma caixa de diálogo de pesquisa rápida."
+
+#~ msgid "Case sensitive Quicksearch/QuickFilter"
+#~ msgstr ""
+#~ "Pesquisa Rápida/Filtro Rápido diferenciando maiúsculas de minúsculas"
+
+#~ msgid "Quick Panel: quick way to perform actions"
+#~ msgstr "Painel Rápido: uma maneira rápida de executar ações"
+
+#~ msgid "Quick Select"
+#~ msgstr "Seleção Rápida"
+
+#~ msgid "Apply the selection"
+#~ msgstr "Aplicar a seleção"
+
+#~ msgid "Quick Select:"
+#~ msgstr "Seleção Rápida:"
+
+#~ msgid "QuickFilter"
+#~ msgstr "Filtro rápido"
+
+#~ msgid "Flat Origin Bar"
+#~ msgstr "Barra de origem plana"
+
+#~ msgid "Open button"
+#~ msgstr "Botão abrir"
+
+#~ msgid "Use superb KDE file dialog to choose location."
+#~ msgstr ""
+#~ "Usar o fantástico diálogo de arquivos do KDE para escolher a localização."

@@ -12,9 +12,9 @@
 >FAQ</primary>
   </indexterm>
   <para
->Om du har problem med &krusader;, kontrollera <ulink url="https://krusader.org/get-involved/index.html"
->installationsproceduren</ulink
->, eftersom dina problem kan vara orsakade av en dålig installation.</para>
+>If you have problems with &krusader; please check the <ulink url="https://krusader.org/get-involved/index.html"
+>installation procedure</ulink
+>, as your problem may be caused by a bad installation.</para>
   <para
 >Vanliga frågor är uppdelad i tre avsnitt: <itemizedlist
 > <listitem
@@ -104,17 +104,17 @@
       <qandaentry>
         <question id="faqi_rpm-notfound">
           <para
->Jag kan inte hitta ett paket med &krusader;. Vad ska jag göra?</para>
+>I cannot find a package for &krusader;, what to do?</para>
         </question>
         <answer>
           <para
 >Kontrollera om din distribution tillhandahåller &krusader;. Om den inte gör det, kontakta de som har skapat distributionen och be dem inkludera &krusader;.</para>
           <para
->Har du tittat på sidan <ulink url="https://krusader.org/get-involved/index.html"
->Installationsprocedur</ulink
->? Om du har gjort det och inte hittat någonting, kan du alltid kompilera &krusader; från källkod. Skicka gärna in en <link linkend="faqi_help_request"
->begäran om hjälp</link
-> om du stöter på problem.</para>
+>Did you take a look at the <ulink url="https://krusader.org/get-involved/index.html"
+>installation procedure</ulink
+> page? If you have and found nothing, you can always compile &krusader; from source. Feel free to post a <link linkend="faqi_help_request"
+>help request</link
+> if you encounter problems.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -128,15 +128,15 @@
         </question>
         <answer>
           <para
->Läs vår detaljerade <ulink url="https://krusader.org/get-involved/index.html"
->installationsprocedur</ulink
-> och <link linkend="faq"
->Vanliga frågor</link
->. Om du inte hittar en lösning på problemet, skicka gärna in en <emphasis role="bold"
->begäran om hjälp</emphasis
-> på vårt &krusader;-forum, eller använd e-postlistan <ulink url="https://groups.google.com/group/krusader-users"
+>Please read our detailed <ulink url="https://krusader.org/get-involved/index.html"
+>installation procedure</ulink
+> and the <link linkend="faq"
+>FAQ</link
+>. If you cannot find a solution to your problem then feel free to post a <emphasis role="bold"
+>help request</emphasis
+> at our &krusader; forum or use the <ulink url="https://groups.google.com/group/krusader-users"
 >&krusader;-users</ulink
->. Men innan du skickar in en begäran om hjälp, prova gärna följande: <orderedlist>
+> mailing list. But before posting a help request, please try the following: <orderedlist>
             <listitem>
               <para
 >Använd sökfunktionen på <ulink url="https://forum.kde.org/viewforum.php?f=225"
@@ -210,13 +210,7 @@
         </question>
         <answer>
           <para
->När &krusader; t.ex. bläddrar i en delad &NFS;-katalog och &NFS;-servern stängs av, fryses &krusader;. Att &krusader; (och alla andra öppna interna granskningsprogram eller editorer) fryses på detta sätt är allvarligt, och kan bara korrigeras med <command
->kill -9</command
->. Det är ett problem som inte är begränsat till filhanterare, eller ens till operativsystemet &Linux;. Problemet är att man <quote
->hänger</quote
-> på den första åtkomsten till den otillgängliga delade katalogen, så det finns inget sätt att komma förbi det, ingen kontroll för att undvika det, till och med <command
->ls</command
-> fryses. Bara att försöka läsa någonting, vad som helst, är tillräckligt för att fastna. Det enda sättet att komma förbi detta arkitekturproblem är att använda en konstruktion med flera trådar. På så sätt, om man fastnar, fryses inte hela programmets händelsesnurra. Men vi tror inte att tiden är mogen för att lägga till trådar. Vi är inte säkra på att alla KF5-system i världen använder &Qt;-mt (versionen av &Qt;-biblioteket med flera trådar), och &krusader; Krew är hur som helst kanske inte rätt personer att ta hand om detta större problem, så för närvarande är det bara ett fel som vi måste lära oss att leva med.</para>
+>När &krusader; t.ex. bläddrar i en delad NFS-katalog och NFS-servern stängs av, fryses &krusader;. Att &krusader; (och alla andra öppna interna granskningsprogram eller editorer) fryses på detta sätt är allvarligt, och kan bara korrigeras med <command>kill -9</command>. Det är ett problem som inte är begränsat till filhanterare, eller ens till operativsystemet &Linux;. Problemet är att man "hänger" på den första åtkomsten till den otillgängliga delade katalogen, så det finns inget sätt att komma förbi det, ingen kontroll för att undvika det, till och med <command>ls</command> fryses. Bara att försöka läsa någonting, vad som helst, är tillräckligt för att fastna. Det enda sättet att komma förbi detta arkitekturproblem är att använda en konstruktion med flera trådar. På så sätt, om man fastnar, fryses inte hela programmets händelsesnurra. Men vi tror inte att tiden är mogen för att lägga till trådar. Vi är inte säkra på att alla KF5-system i världen använder &Qt;-mt (versionen av &Qt;-biblioteket med flera trådar), och &krusader; Krew är hur som helst kanske inte rätt personer att ta hand om detta större problem, så för närvarande är det bara ett fel som vi måste lära oss att leva med.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -247,19 +241,11 @@
       <qandaentry>
         <question id="faqu_samba_codepage">
           <para
->&Samba; ISO 8859-x kodsida. Vad ska man göra om &krusader; inte läser delade kataloger som innehåller speciella internationella tecken?</para>
+>&Samba; ISO 8859-x codepage / What to do if &krusader; does not read shared folders containing special international characters?</para>
         </question>
         <answer>
           <para
->&krusader; hanterar inte (ännu) &Samba; ISO 8859-x kodsidor. Om du använder en kodsida som skiljer sig från 8859-1 måste du göra en manuell inställning. Skapa eller ändra filen: <filename
->~/.smb/smb.conf</filename
-> <programlisting
->[global] 
-          workgroup = MyWorkGroup (t.ex. WORKGROUP) 
-          client code page = MyCodePage (t.ex. 852)
-          character set = MyCharSet (t.ex. ISO8859-2)
-          </programlisting
-> Du kan försöka ställa in smb.conf med lämplig modul i systeminställningarna.</para>
+>&krusader; hanterar inte (ännu) <application>Samba</application> ISO 8859-x kodsidor. Om du använder en kodsida som skiljer sig från 8859-1 måste du göra en manuell inställning. Skapa eller ändra filen: <filename>~/.smb/smb.conf</filename> <programlisting>[global] \n          workgroup = MyWorkGroup (t.ex. WORKGROUP) \n          client code page = MyCodePage (t.ex. 852)\n          character set = MyCharSet (t.ex. ISO8859-2)\n          </programlisting> Du kan försöka ställa in smb.conf med lämplig modul i systeminställningarna.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -358,21 +344,7 @@
         </question>
         <answer>
           <para
->Problemet uppstår ofta om du är bakom en brandvägg eller proxy. Öppna <menuchoice
-><guimenu
->KDE:s systeminställningar</guimenu
-> <guimenuitem
->Nätverk</guimenuitem
-> <guimenuitem
->Inställningar</guimenuitem
-> <guimenuitem
->Anslutningsinställningar</guimenuitem
-></menuchoice
->, <guilabel
->"Aktivera passivt läge (PASV)"</guilabel
-> måste stängas av eller sättas på, beroende på dess nuvarande inställning. Prova nu med &FTP;-sessionen igen för att se om den fungerar. Försäkra dig också om att du inte har några andra &FTP;-sessioner öppna (med webbläsare, etc.), eftersom de kan orsaka komplikationer. Mer information finns på <ulink url="https://slacksite.com/other/ftp.html"
->Active &FTP; vs. Passive &FTP;, a Definitive Explanation</ulink
->.</para>
+>Problemet uppstår ofta om du är bakom en brandvägg eller proxy. Öppna <menuchoice><guimenu>KDE:s systeminställningar</guimenu> <guimenuitem>Nätverk</guimenuitem> <guimenuitem>Inställningar</guimenuitem> <guimenuitem>Anslutningsinställningar</guimenuitem></menuchoice>, <guilabel>"Aktivera passivt läge (PASV)"</guilabel> måste stängas av eller sättas på, beroende på dess nuvarande inställning. Prova nu med &FTP;-sessionen igen för att se om den fungerar. Försäkra dig också om att du inte har några andra &FTP;-sessioner öppna (med webbläsare, etc.), eftersom de kan orsaka komplikationer. Mer information finns på <ulink url="http://slacksite.com/other/ftp.html">Active &FTP; vs. Passive &FTP;, a Definitive Explanation</ulink>.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -382,9 +354,9 @@
       <qandaentry>
         <question id="faqu_ftp_http_proxy">
           <para
->Jag får felkoden <errorcode
->&FTP;-protokollet stöds inte av &krusader;</errorcode
-> när jag försöker öppna en &FTP;-katalog på en annan dator. Vad kan jag göra åt det?</para>
+>I get <errorcode
+>&FTP; protocol not supported by &krusader;</errorcode
+> error when trying to open a remote &FTP; folder, what to do?</para>
         </question>
         <answer>
           <para
@@ -495,27 +467,11 @@
       <qandaentry>
         <question id="faqu_mimetypemagic_archives">
           <para
->Varför fungerar inte &MIME;-typsmagi ibland inne i arkiv?</para>
+>Why does not &MIME; type magic sometimes work inside archives?</para>
         </question>
         <answer>
           <para
->När du går ner i ett arkiv och trycker på <keycap
->F3</keycap
-> för att visa en fil som inte har någon känd filändelse, t.ex. <filename
->README, INSTALL</filename
-> etc., och om granskaren öppnas i hexläge istället för det vanliga läget, måste du ställa in: <menuchoice
-> <guimenu
->&kde;:s systeminställningar</guimenu
-> <guimenuitem
->Filbindningar</guimenuitem
-> <guimenuitem
->application</guimenuitem
-> <guimenuitem
->octet-stream</guimenuitem
-> </menuchoice
->, <guilabel
->binary viewer</guilabel
-> måste tas bort.</para>
+>När du går ner i ett arkiv och trycker på <keycap>F3</keycap> för att visa en fil som inte har någon känd filändelse, t.ex. <filename>README, INSTALL</filename> etc., och om granskaren öppnas i hexläge istället för det vanliga läget, måste du ställa in: <menuchoice> <guimenu>KDE:s systeminställningar</guimenu> <guimenuitem>Filbindningar</guimenuitem> <guimenuitem>application</guimenuitem> <guimenuitem>octet-stream</guimenuitem> </menuchoice>, <guilabel>binary viewer</guilabel> måste tas bort.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -531,15 +487,15 @@
           <para
 ><link linkend="konfigurator"
 >Konfigurator</link
-> är &krusader;s inställningsmodul, när du har installerat &krusader; har du också Konfigurator. Av någon anledning tror en del att det är ett annat &plasma;-program, men det är inte fallet, så du behöver inte installera hela &plasma; för att använda Konfigurator. När &krusader; kör, använd <menuchoice
+> is &krusader;s configuration module, if you have installed &krusader; then you have also Konfigurator. For some reason some people think it is an other &plasma; application, but it is not, so you do not need to install the full fledged &plasma; to use Konfigurator. When running &krusader;, use <menuchoice
 > <guimenu
->Inställningar</guimenu
+>Settings</guimenu
 > <guimenuitem
->Anpassa &krusader;...</guimenuitem
+>Configure &krusader;...</guimenuitem
 > </menuchoice
->, så startas <link linkend="konfigurator"
+>, and it will start <link linkend="konfigurator"
 >Konfigurator</link
->. Läs handboken, &krusader; har en stor mängd inställningsalternativ, många saker kan anpassas efter dina behov med <link linkend="konfigurator"
+>. Please read the manual, &krusader; has many many configuration options, a lot of things can be customized to your needs with <link linkend="konfigurator"
 >Konfigurator</link
 >. </para>
           <para
@@ -581,17 +537,17 @@
       <qandaentry>
         <question id="faqu_custom_embed_term">
           <para
->Hur anpassar med den inbäddade terminalen i &krusader;?</para>
+>How to customize the embedded terminal of &krusader;?</para>
         </question>
         <answer>
           <para
->För att ändra egenskaper för den inbäddade terminalen i &krusader; kan du högerklicka på den och välja ett alternativ, och om du inte hittar vad du letar efter, kan du använda menyn <menuchoice
-><guimenu
->Inställningar</guimenu
-></menuchoice
-> i Terminal (eftersom &krusader; använder ett &konsole; K-delprogram som sin inbäddade terminal). I den menyn visas andra alternativ (som <menuchoice
+>In order to change properties of the embedded terminal emulator of &krusader;: you can right-click on it and choose an option, and if you don't find there what you are looking for, you can use the <menuchoice
+> <guimenu
+>Settings</guimenu
+> </menuchoice
+> menu of &konsole; (because &krusader; uses a &konsole; KPart for its embedded terminal). In that menu, other items are seen (like <menuchoice
 > <guimenuitem
->"Hantera profiler..."</guimenuitem
+>"Manage Profiles..."</guimenuitem
 > </menuchoice
 >). </para>
           <para
@@ -613,9 +569,9 @@
         </question>
         <answer>
           <para
->Den största styrkan hos ett projekt med öppen källkod härrör från användarnas synpunkter. Det är därför vi ytterst gärna lyssnar på vad du har att säga. Dina <quote
->klagomål</quote
-> är våra instruktioner. Efter omkring sex månader, kan inte programmerare längre se sina egna misstag. Det är naturligt. Vi vill ha idéer, kritik och synpunkter eftersom vi alla vill göra &krusader; till den bästa och mest användbara filhanteraren som är tillgänglig någonstans.</para>
+>An open source project's greatest strength is derived from getting user feedback. That is why we love to hear what you have to say. Your <quote
+>gripes</quote
+> are our instructions. After about 6 months, programmers can no longer see their own mistakes. It is natural. We want the ideas, qritiques, and feedback because we all want to make &krusader; the best and most useful file manager available anywhere.</para>
           <para
 >Det bekvämaste sättet att kontakta oss är att använda e-postlistan <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
 >krusader-users</ulink
@@ -646,33 +602,33 @@
             </listitem>
             <listitem>
               <para
->Det är att föredra om du startar en diskussion med utvecklarna på e-postlistan <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
->krusader-devel</ulink
-> eller på <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
->&krusader;s GitLab-sida</ulink
->. Tyvärr kan vi inte införa en programfix om den står i konflikt med den <quote
->allmänna konstruktionen</quote
-> av &krusader;s källkod (läs de här vanliga frågorna för mer instruktioner). Skicka bara en ändringsbegäran via e-post, så att diskussionen blir enklare att följa. Ändringarna ska införas steg för steg, med kontroller av varje rad. </para>
+>Preferably, you can start a discussion with the developers on the krusader-devel <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>mailing lists</ulink
+> or on the <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
+>&krusader; GitLab page</ulink
+>. Unfortunately, we cannot apply a patch if the patch is in conflict with the <quote
+>general design</quote
+> of the &krusader; code (read for more instructions in this FAQ). Please send only one change request per mail, so that the discussion is easier to follow. The modifications should be committed step by step, checking each line. </para>
             </listitem>
             <listitem>
              <para
->Skicka in dina programfixar på <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
->Gitlab</ulink
->, så att alla förslag med programfixar förblir organiserade och inte går förlorade. Komprimerade tar-arkiv eller diff-filer är oftast ok. Kopiera inte ändringar till e-post. De flesta e-postprogram ändrar blanktecken, så att diff-filen inte går att införa eller kodsnutten inte går att jämföra. Tidigare gick brev med programfixar förlorade, eller förblev oorganiserade i mängder av brev, så var vänlig använd <ulink url="https://community.kde.org/Infrastructure/GitLab"
+>Submit your patch files on the <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
 >GitLab</ulink
->, tack. </para
+>, so that all patch proposals stay organised and do not get lost, tar.gz archives or diffs are usually ok. Do not copy changes into a mail. Most mailers will change the white spaces, so that the diff will not apply or the code snipped does not diff. In the past, patch mails went lost or disorganized in many many mails, so please use the <ulink url="https://community.kde.org/Infrastructure/GitLab"
+>GitLab</ulink
+>, thanks! </para
 > 
             </listitem>
             <listitem>
               <para
->Använd flyttbara lösningar. &krusader; ska kunna köra på: <itemizedlist
+>Use portable solutions, &krusader; should run on: <itemizedlist
 > <listitem
 > <para
->Alla POSIX (&Linux;/BSD/&UNIX;-liknande operativsystem), &Solaris;.</para
+>All POSIX (&Linux;/BSD/&UNIX;-like OSes), &Solaris;.</para
 > </listitem
 > <listitem
 > <para
->Alla BSD-plattformar (<trademark class="copyright"
+>All BSD Platforms (<trademark class="copyright"
 >FreeBSD</trademark
 >/<trademark class="registered"
 >NetBSD</trademark
@@ -682,14 +638,14 @@
 > </listitem
 > <listitem
 > <para
->&kde; 3.3 - &kde; 3.5 och till och med på GNOME med kdelibs (för &krusader;-2.x).</para
+>&kde; 3.3- &kde; 3.5 and even on GNOME with kdelibs (for &krusader;-2.x) .</para
 > </listitem
 > <listitem
 > <para
 >GCC 2.95 - GCC 5.4</para
 > </listitem
 > </itemizedlist
->Arkitekturändringar görs enbart av gruppen.</para>
+>Architecture changes are made by the team only.</para>
             </listitem>
             <listitem>
               <para
@@ -754,7 +710,7 @@
   </question>
   <answer>
   <para
->Oftast innehåller inte binärpaket som används av distributionen felsökningsinformation. Eftersom vi oftast bara utvecklar och rättar &krusader;-git, kompilera &krusader;-git i felsökningsläge och installera det. Kontrollera därefter om felet fortfarande finns. <screen
+>Usually binary packages that are been used by your distribution do not contain debug information. Since we usually only develop and fix &krusader;-git, compile &krusader;-git in debugmode and install it, than check if the bug still exist. <screen
 ><prompt
 >$</prompt
 > <userinput
@@ -764,9 +720,9 @@
 >-DCMAKE_BUILD_TYPE=debugfull</option
 ></userinput
 ></screen
-> Installera <ulink url="https://valgrind.org"
+> Install <ulink url="https://valgrind.org"
 >valgrind</ulink
->, en verktygsuppsättning för felsökning och profilering av &Linux;-program. Kör Valgrind och &krusader; <screen
+>, a suite of tools for debugging and profiling &Linux; programs. Run Valgrind/&krusader; <screen
 ><prompt
 >$</prompt
 > <userinput
@@ -775,10 +731,10 @@
 > <option
 >--tool=memcheck</option
 > <replaceable
->{sökväg}/krusader</replaceable
+>{foo_path}/krusader</replaceable
 ></userinput
 ></screen
-> Verktyget Valgrind skriver vad som verkligen händer på standardutmatningen. Om du kan skicka den informationen innan en krasch, är det nästan säkert att vi kan rätta den, eller tala om för dig vad du ska göra. </para>
+> The valgrind tool will write to stdout, what really happens. If you could send these information before the crash, it is almost sure, that we may fix or tell you what to do. </para>
   <!-- Empty line to make it more readable -->
   </answer>
 </qandaentry>
@@ -790,7 +746,7 @@
   </question>
   <answer>
   <para
->Oftast innehåller inte binärpaket som används av distributionen felsökningsinformation. Eftersom vi oftast bara utvecklar och rättar &krusader;-git, kompilera &krusader;-git i felsökningsläge och installera det. Kontrollera därefter om felet fortfarande finns. <screen
+>Usually binary packages that are been used by your distribution do not contain debug information. Since we usually only develop and fix &krusader;-git, compile &krusader;-git in debugmode and install it, than check if the bug still exist. <screen
 ><prompt
 >$</prompt
 > <userinput
@@ -800,7 +756,7 @@
 >-DCMAKE_BUILD_TYPE=debugfull</option
 ></userinput
 ></screen
-> Om KDE:s kraschhanterare fortfarande inte tillhandahåller användbar bakåtspårningsinformation, kan ibland en minnesdump ge bättre information. Kör Krusader med inaktiverad kraschhanterare. <screen
+> If the KDEKrashhandler still does not provide useful backtrace information, than sometimes a coredump will give better information. Run Krusader, with disabled crashhandler. <screen
 ><prompt
 >$</prompt
 > <userinput
@@ -810,11 +766,11 @@
 >--nocrashhandler</option
 ></userinput
 ></screen
-> Vid en krasch får du filen <filename
+> On a crash you will get a <filename
 >.core</filename
->, oftast i hemkatalogen. Kör <ulink url="https://sourceware.org/gdb/"
+> file, usually in your home folder. Run <ulink url="https://sourceware.org/gdb/"
 >gdb</ulink
->, GNU-projektets avlusare: <screen
+>, the GNU Project Debugger <screen
 ><prompt
 >$</prompt
 > <userinput
@@ -823,14 +779,14 @@
 > <option
 >-c</option
 > <replaceable
->krusaders minnesdump</replaceable
+>corefile krusader</replaceable
 ></userinput
 ></screen
-> Skriv nu <command
+> Now type <command
 >bt</command
-> för att få en bakåtspårning, och skriv <command
+> to get the backtrace and type <command
 >q</command
-> för att avsluta gdb. Oftast erhålls de bästa felsökningsresultaten när verktyget Valgrind används. </para>
+> to quit gdb. Often the best debug results will be given when using the valgrind tool. </para>
   <!-- Empty line to make it more readable -->
   </answer>
 </qandaentry>
@@ -842,9 +798,9 @@
         </question>
         <answer>
           <para
->Ja, för närvarande har vi flera <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
->e-postlistor</ulink
->. Ingen skräppost, inget besvär, bara &krusader;. Prenumerera gärna.</para>
+>Yes, currently we have several <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>mailing lists</ulink
+>. No spam, no bother, just &krusader;. Feel free to subscribe and unsubscribe.</para>
           <para
 >Tips: Våra e-postlistor går att bläddra i på nätet eller läsa med en diskussionsgruppsläsare, så du behöver inte ens prenumerera för att följa vad som händer på e-postlistorna. <itemizedlist>
             <listitem>
@@ -861,9 +817,9 @@
             </listitem>
             <listitem>
               <para
->Listan <ulink url="http://groups.google.com/group/krusader-news"
+><ulink url="http://groups.google.com/group/krusader-news"
 >&krusader;-news</ulink
-> har mycket få brev, och används för nyhetsbrev och tillkännagivanden om nya versioner eller kritiska felrättningar.</para>
+> is a very low volume list, used for announcements of new versions or critical bugfixes.</para>
             </listitem>
           </itemizedlist
 ></para>
@@ -879,11 +835,11 @@
         </question>
         <answer>
           <para
->Ja, det gör vi. Flera nyhetskanaler med diverse format är tillgängliga:  <ulink url="https://groups.google.com/group/krusader-devel/feeds"
+>Yes, we do. Several news feeds in various formats are available. <ulink url="https://groups.google.com/group/krusader-devel/feeds"
 >krusader-devel feed</ulink
 >, <ulink url="https://groups.google.com/group/krusader-users/feeds"
-> krusader-users feed</ulink
-> och <ulink url="https://groups.google.com/group/krusader-news/feeds"
+>krusader-users feed</ulink
+> and <ulink url="https://groups.google.com/group/krusader-news/feeds"
 >krusader-news feed</ulink
 >.</para>
           <para
@@ -1019,9 +975,9 @@
         </question>
         <answer>
           <para
->Om du är intresserad av att översätta &krusader; grafiska gränssnitt eller dokumentation, kontakta gärna <ulink url="https://l10n.kde.org/teams-list.php"
->KDE:s översättningsgrupp</ulink
-> för ditt modersmål.</para>
+>If you are interested in translating the &krusader; &GUI; or documentation, please contact the <ulink url="https://l10n.kde.org/teams-list.php"
+>KDE translation team</ulink
+> of your language.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -1051,10 +1007,10 @@
       <qandaentry>
         <question id="faqg_mcstyle">
           <para
->Varför liknar &konqueror; <quote
->Midnight Commander</quote
->, inte en <link linkend="gloss-ofm"
->ortodox filhanterare</link
+>Why is &konqueror; in <quote
+>Midnight Commander style</quote
+> not an <link linkend="gloss-ofm"
+>OFM</link
 >?</para>
         </question>
         <answer>
@@ -1078,15 +1034,15 @@
         </question>
         <answer>
           <para
->En <ulink url="https://www.softpanorama.org/OFM/index.shtml"
->ortodox filhanterare (OFM)</ulink
-> är mycket snabbare än filhanterare med en panel, och snabbare än kommandoraden. Om du vill veta hur <ulink url="https://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
->&krusader; känns</ulink
->, finns det bara ett sätt att upptäcka det: Installera det på datorn och använd det ett tag. Om du föredrar att slösa tid och förlora produktivitet, kan du alltid fortsätta att använda filhanterare med en panel baserade på &Windows; utforskare. Matej Urban&ccaron;i&ccaron; har skrivit en <ulink url="https://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html"
-> blogg</ulink
-> om varför <link linkend="gloss-ofm"
+>An <ulink url="https://www.softpanorama.org/OFM/index.shtml"
+>Orthodox File Manager (OFM)</ulink
+> is much faster than a one panel filemanager and faster than the command line. If you would like to know <ulink url="https://www.softpedia.com/reviews/linux/Krusader-18193.shtml"
+> how &krusader; feels</ulink
+>, there is only one way to discover: install it on your computer and use it for a while. If you prefer to waste time and lose productivity, continue to use one panel filemanagers which are based on &Windows; Explorer. Matej Urban&ccaron;i&ccaron; has written a <ulink url="https://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html"
+> blog</ulink
+> on why <link linkend="gloss-ofm"
 >OFM</link
-> är bättre än filhanterare med en panel.</para>
+> is better than a one panel filemanager.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->

@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="remote-connections">
   <title
 >Connessioni remote</title>
@@ -26,7 +38,7 @@
 ><command
 >ftp://</command
 ><replaceable
->public.ftpserver.org/cartella/</replaceable
+>public.ftpserver.org/directory/</replaceable
 > </userinput>
       </para>
     </listitem>
@@ -56,7 +68,7 @@
 ><command
 >ftp://</command
 ><replaceable
->nomeutente@mio.server.org:21/cartella/</replaceable
+>nomeutente@mio.server.org:21/directory/</replaceable
 > </userinput>
       </para>
     </listitem>
@@ -76,7 +88,7 @@
 ><command
 >ftp://</command
 ><replaceable
->nomeutente@nomeutenteproxy:password@proxypassword@nomehost/cartella</replaceable
+>nomeutente@nomeutenteproxy:password@proxypassword@nomehost/directory</replaceable
 > </userinput>
       </para>
     </listitem>
@@ -133,7 +145,7 @@
     </listitem>
     <listitem>
       <para
->Puoi inserire nei segnalibri una cartella su un host remoto e ritornarvi tramite il pulsante dei segnalibri, posizionato nell'angolo superiore del tuo pannello, proprio come un browser web.</para>
+>Puoi inserire nei segnalibri una directory su un host remoto e ritornarvi tramite il pulsante dei segnalibri, posizionato nell'angolo superiore del tuo pannello, proprio come un browser web.</para>
     </listitem>
   </itemizedlist>
   <para
@@ -218,11 +230,17 @@
 
  <note>
    <para
->Funziona su un sistema &Debian;, e funzionerà dunque su &Debian; e derivati (&kubuntu; e via discorrendo), sebbene dovrebbe funzionare anche su altri sistemi Linux. Si presuppone che <link linkend="gloss-ssh"
+>Funziona su un sistema <trademark class="registered"
+>Debian</trademark
+>, e funzionerà dunque su <trademark class="registered"
+>Debian</trademark
+> e derivati (<trademark class="registered"
+>Kubuntu</trademark
+>, e via discorrendo), sebbene dovrebbe funzionare anche sugli altri sistemi Linux. Si presuppone che <link linkend="gloss-ssh"
 >SSH</link
 > sia installato, configurato e funzionante in ciascuna macchina presente nella LAN alla, o dalla, quale vuoi connetterti. In rete esistono tantissime guide su <link linkend="gloss-ssh"
 >SSH</link
->, per esempio in <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying"
+>, &eg; in <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying"
 >linuxhomenetworking.com</ulink
 > (in inglese) oppure cercale su Google. Utilizziamo la porta <link linkend="gloss-ssh"
 >SSH</link
@@ -244,7 +262,7 @@
 >ssh.service</filename
 > di esempi che si trova in <filename class="directory"
 >/usr/share/doc/avahi-daemon/examples</filename
->. Per ottenere il servizio da annunciare sulla LAN, dobbiamo copiare questo file nella cartella <filename class="directory"
+>. Per ottenere il servizio da annunciare sulla LAN, abbiamo necessità di copiare questo file nella cartella <filename class="directory"
 >/etc/avahi/services</filename
 >: <screen>
 <prompt
@@ -256,7 +274,7 @@
 >/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option
 ></userinput>
 </screen
-> Ora è necessario annunciare anche il protocollo fish:/, usiamo dunque un file ssh.service come modello per fish.service: <screen>
+> Ora abbiamo necessità anche del protocollo fish:/ da essere annunciato, usiamo dunque un file ssh.service come modello per fish.service: <screen>
 <prompt
 >#</prompt
 > <userinput
@@ -268,15 +286,7 @@
 </screen
 > Questo file è solo una copia di ssh.service. Modifichiamo il file <filename
 >fish.service</filename
-> e sostituiamo <quote
->Terminale remoto su %h</quote
-> con <quote
->Fish to %h</quote
-> e <quote
->_ssh._tcp</quote
-> con <quote
->_fish._tcp</quote
->. Ecco come appare dopo la modifica: <programlisting
+> e sostituiamo «Terminale remoto su %h» con «Fish to %h» e «_ssh._tcp» con «_fish._tcp». Ecco come appare dopo la modifica: <programlisting
 > 
 &lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--> 
 &lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
@@ -318,7 +328,7 @@
 &lt;/service-group
 >  
 </programlisting
-> Salviamo il file modificato. Ora dobbiamo creare un nuovo file <filename
+> Salviamo il file modificato. Ora abbiamo bisogno di creare un nuovo file <filename
 >_fish._tcp</filename
 >, aprirlo in un editor di testo e aggiungere le righe seguenti: <programlisting>
 Name=FISH Protocol (ssh) 
@@ -347,9 +357,9 @@ PasswordEntry=p
 >protocollo Fish</guilabel
 >. All'interno troveremo i collegamenti a ciascuna macchina che ha annunciato <filename
 >fish:/</filename
-> nella LAN, la barra degli indirizzi punterà <filename
+> nella LAN, barra degli indirizzi punterà <filename
 >zeroconf:/_fish._tcp</filename
-> Facciamo doppio clic su tutte le macchine, verrà aperta una finestra per la richiesta della password ssh (se impostata). Digitiamo la password. Congratulazioni! Ci siamo connessi al computer remoto tramite &krusader;! </para
+> Facciamo doppio-clic su tutte le macchine, verrà aperta una finestra per la richiesta della password ssh (se impostata). Digitiamo la password. Congratulazioni! Ci siamo connessi al computer remoto tramite &krusader;! </para
 > 
 
 </sect2>

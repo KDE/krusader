@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <chapter id="introduction">
   <title
 >Einführung</title>
@@ -26,6 +38,26 @@
 >&krusader; kann in großem Umfang angepasst werden und ist daher sehr benutzerfreundlich.</para>
     <para
 >&krusader; ausprobieren</para>
+    <!-- OLD
+<screenshot>
+  <screeninfo
+>&krusader; screenshot</screeninfo>
+  <mediaobject id="krusader_screenshot">
+    <imageobject
+><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
+    <imageobject
+><imagedata fileref="krusader1.png" format="EPS"/></imageobject>
+    <textobject
+><phrase
+>&krusader; screenshot</phrase
+></textobject>
+    <caption
+><para
+>&krusader; screenshot</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
     <figure id="screenshot-krusader" float="1">
       <title
 >Bildschirmfoto von &krusader;</title>
@@ -52,7 +84,7 @@
     <para
 >Das Ziel ist es, Ihnen ein einfaches intuitives Werkzeug zur Verfügung zu stellen, das die meisten Aufgaben für Ihren Rechner einfach und jederzeit ausführt: Verwaltung und Bearbeitung Ihrer Dateien, wie Sie es brauchen.</para>
     <para
->Ob Sie ein &Linux;-Experte oder ein Anfänger sind, &krusader; erleichtert die Verwaltung von Dateien ohne die Syntax der Befehlszeile lernen zu müssen. Dies ist besonders hilfreich für Anfänger mit xxNIx-Systemen. Dazu hat &krusader; eine gut aussehende &GUI; und unterstützt Ziehen und Ablegen wie auch &MIME;-Typen.</para>
+>Ob Sie ein &Linux;-Experte oder ein Anfänger sind, &krusader; erleichtert die Verwaltung von Dateien ohne die Syntax der Befehlszeile lernen zu müssen. Dies ist besonders hilfreich für Anfänger mit xxNIx-Systemen. Dazu hat &krusader; eine gut aussehende &GUI; und unterstützt Ziehen und Ablegen wie auch MIME-Typen.</para>
     <para
 >&krusader; hat viele nützliche Funktionen. Es ist schnell und verarbeitet problemlos <link linkend="archives"
 >Archive</link
@@ -74,7 +106,7 @@
     <para
 >Von Anfang an stand das virtuelle Dateisystem im Schwerpunkt der Entwicklung. <link linkend="vfs"
 >Virtuelle Dateisysteme (VFS)</link
-> sind eine abstrakte Ebene über alle Arten von Informationen von Archiven wie ZIP-Dateien, &FTP;-Servern, TAR-Archiven, &NFS;-Dateisystemen, &Samba;-Freigaben, ISO-&CD;/&DVD;-Abbildern, RPM-Katalogen, &etc; Dies gibt Ihnen direkten Zugriff auf alle verschiedenen Arten von Informationen wie in jedem normalen Unterordner. Dateien können beliebig hin und her kopiert und verschoben werden, ausgenommen ISO, rpm, tar.gz. &krusader; unterstützt zurzeit virtuelle Dateisysteme für alle häufig benutzten und einige besondere Arten von Archiven, wie ace, arj, bzip2, gzip, iso, lha, rar, tar, zip und 7-zip, Software-Pakete wie rpm, deb und traditionelle entfernte Dateisysteme wie &FTP;, &NFS;, &Samba;, FISH, SFTP.</para>
+> sind eine abstrakte Ebene über alle Arten von Informationen von Archiven wie ZIP-Dateien, &FTP;-Servern, TAR-Archiven, NFS-Dateisystemen, SAMBA-Freigaben, ISO-CD/DVD-Abbildern, RPM-Katalogen, &etc; Dies gibt Ihnen direkten Zugriff auf alle verschiedenen Arten von Informationen wie in jedem normalen Unterordner. Dateien können beliebig hin und her kopiert und verschoben werden, ausgenommen ISO, rpm, tar.gz. &krusader; unterstützt zurzeit virtuelle Dateisysteme für alle häufig benutzten und einige besondere Arten von Archiven, wie ace, arj, bzip2, gzip, iso, lha, rar, tar, zip und 7-zip, Software-Pakete wie rpm, deb und traditionelle entfernte Dateisysteme wie &FTP;, NFS, Samba, FISH, SFTP.</para>
     <para
 >&krusader; enthält auch einen eingebaute Mount-Verwaltung <link linkend="mount-man"
 >MountMan</link
@@ -90,8 +122,8 @@
     <para
 >Neue Erweiterungen bietet das flexible System der <link linkend="useractions"
 >Benutzeraktionen</link
->, eine &krusader;-Innovation, mit der unbegrenzte benutzerdefinierte Funktionen hinzugefügt werden können, um die speziellen Anforderungen der Benutzer zu erfüllen. Es sollen in naher Zukunft weitere Module entwickelt und damit &krusader; verbessert werden. Informationen über Benutzeraktionen, die vorgeschlagen, angenommen oder noch nicht vollständig sind, finden Sie auf der <ulink url="https://invent.kde.org/utilities/krusader"
->&krusader;-GitLab-Seite</ulink
+>, eine &krusader;-Innovation, mit der unbegrenzte benutzerdefinierte Funktionen hinzugefügt werden können, um die speziellen Anforderungen der Benutzer zu erfüllen. Es sollen in naher Zukunft weitere Module entwickelt und damit &krusader; verbessert werden. Informationen über Benutzeraktionen, die vorgeschlagen, angenommen oder noch nicht vollständig sind, finden Sie auf der <ulink url="https://phabricator.kde.org/tag/krusader/"
+>&krusader;-Phabricator-Seite</ulink
 >.</para>
     <para
 >Uns ist kein anderes Programm bekannt, das so viele nützliche und leicht zugängliche Funktionen in so einem intuitiven und einfachen Format bietet. Außerdem hören wir auf die Wünsche unserer Benutzer und implementieren gute Vorschläge, die zu den Projektzielen von &krusader; passt, dem besten verfügbaren Dateiverwaltungsprogramm.</para>

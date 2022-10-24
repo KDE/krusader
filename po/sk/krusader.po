@@ -2,21 +2,20 @@
 # Ondrej Pačay (Yogi) <balique@gmail.com>, 2008, 2009.
 # Zdenko Podobný <zdenop@gmail.com>, 2004, 2005, 2006, 2007, 2008, 2009.
 # Roman Paholík <wizzardsk@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
-# Mthw <jari_45@hotmail.com>, 2018, 2019.
-# Matej Mrenica <matejm98mthw@gmail.com>, 2019, 2020.
+# Matej Mrenica <matejm98mthw@gmail.com>, 2018, 2019, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2020-06-04 16:52+0200\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2020-05-02 17:36+0200\n"
 "Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.04.1\n"
+"X-Generator: Lokalize 20.04.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: app/ActionMan/actionman.cpp:26
@@ -207,7 +206,7 @@ msgid ""
 "the <i>Title</i> shown in the <b>Usermenu</b> can be set below."
 msgstr ""
 "Jedinečné meno <b>Používateľskej akcie</b>. Používa sa iba v "
-"<i>Konfigurator</i>e a neobjavuje sa v žiadnej ponuke.<p><b>Poznámka</b>: "
+"<i>Konfigurator</i>e a neobjavuje sa v žiadnom menu.<p><b>Poznámka</b>: "
 "<i>Názov</i> zobrazený v <b>používateľskej ponuke</b> sa dá nastaviť tu."
 
 #. i18n: ectx: property (whatsThis), widget (KComboBox, cbCategory)
@@ -241,9 +240,9 @@ msgid ""
 "b>: The <i>Title</i> shown in the <b>Usermenu</b> can be set below.</p>"
 msgstr ""
 "<p>Jedinečné meno <b>Používateľskej akcie</b>. Používa sa iba v "
-"<i>Konfigurator</i>e a neobjavuje sa v žiadnej inej ponuke.</"
-"p><p><b>Poznámka</b>: <i>Názov</i> zobrazený v <b>používateľskej ponuke</b> "
-"sa dá nastaviť tu.</p>"
+"<i>Konfigurator</i>e a neobjavuje sa v žiadnom inom menu.</p><p><b>Poznámka</"
+"b>: <i>Názov</i> zobrazený v <b>používateľskej ponuke</b> sa dá nastaviť tu."
+"</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelDistinctName)
 #: app/ActionMan/actionproperty.ui:194
@@ -995,7 +994,8 @@ msgid "Create Checksums"
 msgstr "Vytvoriť kontrolný súčet"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "About to calculate checksum for the following files or directories:"
 msgid "About to calculate checksum for the following files or folders:"
 msgstr "Spočítať kontrolný súčet pre nasledujúce súbory a adresáre:"
 
@@ -1415,9 +1415,10 @@ msgid "Files:"
 msgstr "Súbory:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
-msgstr "Priečinky:"
+msgstr "Priečinky"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -2326,9 +2327,10 @@ msgid "Exclude Folder Names"
 msgstr "Vynechať názvy priečinkov"
 
 #: app/Filter/generalfilter.cpp:468
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Filters out specified directory names from the results."
 msgid "Filters out specified folder names from the results."
-msgstr "Vyfiltruje špecifikované priečinky z výsledkov."
+msgstr "Filtruje špecifikované priečinky z výsledkov."
 
 #: app/Filter/generalfilter.cpp:483
 #, kde-format
@@ -2342,7 +2344,7 @@ msgid ""
 "Example: .git \"target build\" build\\ krusader"
 msgstr ""
 "Môžete vložiť názvy s medzerami alebo v úvodzovkách.\n"
-"Napríklad: .git \"target build\" build\\ krusader"
+"Príklad: .git \"target build\" build\\ krusader"
 
 #: app/Filter/generalfilter.cpp:571
 #, kde-format
@@ -3073,14 +3075,16 @@ msgid "Current background:"
 msgstr "Aktuálne pozadie:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete foreground:"
 msgid "Rename foreground:"
-msgstr "Premenovať popredie:"
+msgstr "Zmazať popredie (písmo):"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
-msgstr "Premenovať pozadie:"
+msgstr "Alternatívne pozadie:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3452,7 +3456,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:112
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
-msgstr "Ak je textový súbor väčší ako táto veľkosť, použije sa lister."
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3634,7 +3638,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:80
 #, kde-format
 msgid "Navigator bar"
-msgstr "Navigačný pás"
+msgstr "Navigačný pruh"
 
 #: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
@@ -3644,7 +3648,7 @@ msgstr "Editačný režim predvolene"
 #: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
 msgid "Show editable path in Navigator bar by default"
-msgstr "Predvolene zobraziť editovateľnú cestu v navigačnom páse"
+msgstr "Zobraziť editovateľnú cestu v navigačnom pruhu predvolene"
 
 #: app/Konfigurator/kgpanel.cpp:86
 #, kde-format
@@ -3654,7 +3658,7 @@ msgstr "Štandardne ukázať celú cestu"
 #: app/Konfigurator/kgpanel.cpp:86
 #, kde-format
 msgid "Always show full path in Navigator bar by default."
-msgstr "Predvolene vždy zobraziť plnú cestu v navigačnom páse."
+msgstr "Vždy zobraziť plnú cestu v navigačnom pruhu predvolene."
 
 #: app/Konfigurator/kgpanel.cpp:96
 #, kde-format
@@ -3856,7 +3860,7 @@ msgstr "Spodok"
 #: app/Konfigurator/kgpanel.cpp:174
 #, kde-format
 msgid "Search bar"
-msgstr "Pás hľadania"
+msgstr "Pruh hľadania"
 
 #: app/Konfigurator/kgpanel.cpp:178
 #, kde-format
@@ -3890,12 +3894,16 @@ msgid ""
 msgstr "Stlačením Hore/Dolu zrušíte rýchle hľadanie (iba v režime hľadania)."
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Directory navigation with Right Arrow"
 msgid "Folder navigation with Right Arrow"
 msgstr "Navigovanie priečinkami šípkou doprava"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Pressing the Right button enters directory if no search text editing "
+#| "intention is captured."
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
@@ -4110,8 +4118,8 @@ msgid ""
 "The duration after a tooltip is shown for a file item, in milliseconds. Set "
 "a negative value to disable tooltips."
 msgstr ""
-"Trvanie po tom ako popisok je zobrazený pre položku súboru, v milisekundách. "
-"Nastavte negatívnu hodnotu na zakázanie nástrojových typov."
+"Trvanie po tom ako nástrojový tip je zobrazený pre položku súboru, v "
+"milisekundách. Nastavte negatívnu hodnotu na zakázanie nástrojových typov."
 
 #: app/Konfigurator/kgpanel.cpp:406
 #, kde-format
@@ -4207,7 +4215,7 @@ msgstr "Krusader"
 #: app/Konfigurator/kgpanel.cpp:462
 #, kde-format
 msgid "Case sensitive sorting"
-msgstr "Zoradenie citlivé na veľkosť písmen"
+msgstr "Zoraďovanie citlivé na veľkosť písmen"
 
 #: app/Konfigurator/kgpanel.cpp:463
 #, kde-format
@@ -4665,7 +4673,7 @@ msgstr "Zobraziť typ súborového systému"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr "Skryť položky SquashFS"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4691,19 +4699,21 @@ msgid "Never"
 msgstr "Nikdy"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "MountMan will not (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
-msgstr "Skryť nasledujúce body pripojenia:"
+msgstr "Správca pripojení nesmie pripájať/odpájať tieto prípojné body:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr "Pridať nový skrytý prípojný bod"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mnt.Point"
 msgid "Mount point:"
-msgstr "Pripájací bod:"
+msgstr "Pripájací bod"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5524,13 +5534,16 @@ msgstr ""
 "%1"
 
 #: app/krslots.cpp:420
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Cannot find a batch rename tool.\n"
+#| "You can get KRename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 "Nedá sa nájsť program pre premenovanie viacerých položiek.\n"
-"KRename môžete získať na %1"
+"KRename môžete získať na http://www.krename.net"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -5616,7 +5629,7 @@ msgid ""
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr ""
 "<qt><b>Víta vás Krusader.</b><p>Keďže toto je vaše prvé spustenie, budú "
-"vyhľadané dostupné externé programy na vašom počítači. Potom sa spustí "
+"vyhľadané dostupné externé programy na Vašom počítači. Potom sa spustí "
 "konfigurátor, kde si môžete prispôsobiť Krusader podľa svojich potrieb.</p></"
 "qt>"
 
@@ -6137,13 +6150,13 @@ msgstr "Krusader - privilégiá správcu"
 #, fuzzy, kde-format
 #| msgid ""
 #| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2020 Krusader Krew"
+#| "© 2004-2019 Krusader Krew"
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2020 Krusader Krew"
+"© 2004-2019 Krusader Krew"
 
 #: app/main.cpp:114
 #, fuzzy, kde-format
@@ -7135,7 +7148,8 @@ msgstr ""
 "bytovú matematiku"
 
 #: app/Panel/listpanel.cpp:229
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Cancel directory space calculation"
 msgid "Cancel folder space calculation"
 msgstr "Zrušiť výpočet miesta priečinku"
 
@@ -7497,9 +7511,10 @@ msgstr ""
 "definovať v Konfigurátorovi, štandardne je to <b>konsole</b>.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open/Run"
 msgid "Open/Run Files"
-msgstr "Otvoriť/Spustiť súbory"
+msgstr "Otvoriť/Spustiť"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7507,7 +7522,8 @@ msgid "Run"
 msgstr "Spustiť"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
 msgstr "Otvoriť v novej karte"
 
@@ -7846,7 +7862,8 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 z %2, %3 z %4"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
 msgstr "Použiť filter na priečinky"
 
@@ -7856,7 +7873,8 @@ msgid "Filter Files"
 msgstr "Filter súborov"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
 msgstr "Použiť výber na priečinky"
 
@@ -8236,7 +8254,7 @@ msgstr "Nájdený text:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "Nečinný"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -9088,14 +9106,16 @@ msgid "Move Current Tab to Other Side"
 msgstr "Presunúť aktuálnu kartu na druhú stranu"
 
 #: app/tabactions.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Left"
-msgstr "Presunúť aktuálnu kartu naľavo"
+msgstr "Presunúť aktuálnu kartu na druhú stranu"
 
 #: app/tabactions.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Right"
-msgstr "Presunúť aktuálnu kartu napravo"
+msgstr "Presunúť aktuálnu kartu na druhú stranu"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9429,7 +9449,7 @@ msgstr "Samostatné volanie programu pre každú položku..."
 #: app/UserAction/expander.cpp:767
 #, kde-format
 msgid "Set Sorting for This Panel..."
-msgstr "Nastaviť zoradenie pre tento panel..."
+msgstr "Nastaviť triedenie pre tento panel..."
 
 #: app/UserAction/expander.cpp:770
 #, kde-format
@@ -9439,7 +9459,7 @@ msgstr "Vyberte stĺpec:"
 #: app/UserAction/expander.cpp:771
 #, kde-format
 msgid "Choose a sort sequence:"
-msgstr "Vyberte postupnosť zoraďovania:"
+msgstr "Vyberte postupnosť triedenia:"
 
 #: app/UserAction/expander.cpp:778
 #, kde-format
@@ -9700,10 +9720,9 @@ msgid "Multimedia"
 msgstr "Multimédiá"
 
 #: app/useraction_examples.xml:39
-#, fuzzy, kde-format
-#| msgid "Always show current item"
+#, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Vždy zobrazovať aktuálnu položku"
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, kde-format
@@ -9784,7 +9803,8 @@ msgstr ""
 "Môžete ju povoliť na stránke 'Archívy' v Konfigurátore."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Creating directories is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives"
 msgstr "Vytváranie priečinkov nie je podporované v %1 archívoch"
 
@@ -9831,7 +9851,8 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "Prístup k súborom nie je podporovaný s archívmi %1"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives"
 msgstr "Zobrazenie zoznamu priečinkov nie je podporované pre %1 archívy."
 
@@ -9863,11 +9884,8 @@ msgstr "Prístup k súborom vyžaduje heslo."
 #~ msgid "Your emails"
 #~ msgstr "wizzardsk@gmail.com,balique@gmail.com,zdenop@gmail.com"
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Skopírovať označené do schránky"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Otvoriť novú kartu v domovskom priečinku"
+#~ msgid "Directories:"
+#~ msgstr "Priečinky:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Ukázať tlačidlá karty Nová/Zatvoriť"
@@ -9896,6 +9914,30 @@ msgstr "Prístup k súborom vyžaduje heslo."
 #~ msgid "JavaScript Error"
 #~ msgstr "Chyba JavaScriptu"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Prehliadať"
+
+#~ msgid "New folder"
+#~ msgstr "Nový priečinok"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Otvoriť novú kartu v domovskom priečinku"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Vykonať JavaScript rozšírenie..."
 
@@ -9914,14 +9956,8 @@ msgstr "Prístup k súborom vyžaduje heslo."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Expander: nie je špecifikovaný skript pre  %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Nový priečinok"
-
-#~ msgid "Directories:"
-#~ msgstr "Priečinky:"
-
-#~ msgid "Browse"
-#~ msgstr "Prehliadať"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Skopírovať označené do schránky"
 
 #~ msgid "Folder..."
 #~ msgstr "Priečinok..."
@@ -9934,21 +9970,6 @@ msgstr "Prístup k súborom vyžaduje heslo."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Upraviť súbor (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
 
 #~ msgid "Open search filter"
 #~ msgstr "Otvoriť filter hľadania"

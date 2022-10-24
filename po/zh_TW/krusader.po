@@ -1,23 +1,22 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-#
 # Franklin Weng <franklin@goodhorse.idv.tw>, 2010, 2011.
+#
 # Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2009.
-# pan93412 <pan93412@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2019-05-14 22:35+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
-"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2011-09-19 14:01+0800\n"
+"Last-Translator: Franklin Weng <franklin@goodhorse.idv.tw>\n"
+"Language-Team: Chinese Traditional <zh-l10n@lists.linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 19.04.1\n"
+"X-Generator: Lokalize 1.2\n"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -1799,7 +1798,7 @@ msgstr ""
 #: app/Konfigurator/konfigurator.cpp:124
 #, kde-format
 msgid "Archives"
-msgstr "封存"
+msgstr "歸檔"
 
 #: app/FileSystem/krquery.cpp:232 app/Filter/generalfilter.cpp:155
 #, kde-format
@@ -2771,13 +2770,13 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "Archives"
 msgid "Archives handling"
-msgstr "封存"
+msgstr "歸檔"
 
 #: app/Konfigurator/kgarchives.cpp:65
 #, fuzzy, kde-format
 #| msgid "Archives"
 msgid "Browse Archives As Folders"
-msgstr "封存"
+msgstr "歸檔"
 
 #: app/Konfigurator/kgarchives.cpp:65
 #, kde-format
@@ -7028,9 +7027,9 @@ msgid "&New Text File..."
 msgstr ""
 
 #: app/Panel/listpanelactions.cpp:67
-#, kde-format
+#, fuzzy, kde-format
 msgid "Copy to other panel"
-msgstr ""
+msgstr "移到垃圾桶"
 
 #: app/Panel/listpanelactions.cpp:68
 #, fuzzy, kde-format
@@ -7308,7 +7307,7 @@ msgstr "在新分頁開啟"
 #, fuzzy, kde-format
 #| msgid "Archives"
 msgid "Browse Archive"
-msgstr "封存"
+msgstr "歸檔"
 
 #: app/Panel/panelcontextmenu.cpp:198
 #, kde-format
@@ -9607,19 +9606,34 @@ msgstr ""
 #~ msgid "Your emails"
 #~ msgstr "franklin@goodhorse.idv.tw"
 
-#, fuzzy
-#~| msgid "Copy to Clipboard"
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "複製到剪貼簿"
+#~ msgid "Directories:"
+#~ msgstr "目錄："
 
 #, fuzzy
 #~ msgid "JavaScript Error"
 #~ msgstr "JavaScript 錯誤"
+
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
 
 #, fuzzy
 #~| msgid "New Folder"
 #~ msgid "New folder"
 #~ msgstr "新資料夾"
 
-#~ msgid "Directories:"
-#~ msgstr "目錄："
+#, fuzzy
+#~| msgid "Copy to Clipboard"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "複製到剪貼簿"

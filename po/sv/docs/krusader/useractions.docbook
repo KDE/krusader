@@ -13,23 +13,23 @@
   </indexterm>
   <!-- Thanks to Jonas Bar -->
   <para
->Med Actionman kan du skapa, anpassa och hantera användaråtgärder. Vissa allmänna inställningar anpassas med <link linkend="konfig-useractions"
+>With ActionMan you can set up, configure and manage UserActions. Some general settings are configured with <link linkend="konfig-useractions"
 >Konfigurator</link
->. Med användaråtgärder kan du utföra åtgärder med filer i panelen eller direkt komma åt &krusader;s interna funktioner med parametrar genom att använda platsmarkörer. Åtgärderna integreras sömlöst med &plasma;s åtgärdssystem, vilket betyder att de vanliga dialogrutorna för att redigera verktygsrader och genvägar också kommer att visa användaråtgärder. Användaråtgärderna lagras i <filename
->~/.local/share/krusader/useractions.xml</filename
-> eller <filename
+>. With UserActions you can perform actions on files in the panel or to access &krusader; internal functions with parameters directly using placeholders. The actions integrate seamlessly into &plasma; action system, which means that the standard Edit Toolbar and Edit Shortcut dialogs will show UserActions, too. The UserActions are stored in <filename
+> ~/.local/share/krusader/useractions.xml</filename
+> or <filename
 >krusader/useraction.xml</filename
-> i katalogen som kan bestämmas genom att använda kommandot <userinput
+> in the folder which can be determined using the <userinput
 >qtpaths --paths GenericDataLocation</userinput
->. Flera <link linkend="useraction-xml"
->exempel</link
-> ingår i dokumentationen. Användaråtgärder kan redigeras, läggas till, importeras och exporteras genom att använda Actionman. De fördefinierade användaråtgärderna är lagrade i <filename
+> command. Several <link linkend="useraction-xml"
+>examples</link
+> are included in the documentation. UserActions can be edited / added / imported / exported by using ActionMan. The default UserActions are stored in <filename
 > /usr/share/krusader/useraction-examples.xml</filename
->. Användaråtgärder kan visas på nästa alla ställen där <quote
->normala</quote
-> åtgärder kan placeras. De kan till och med placeras i menyraden, men för att göra det måste filen <filename
+>. UserActions can appear nearly everywhere where <quote
+>normal</quote
+> KActions can be placed. The actions can even be placed in the menu bar, but for that the <filename
 >krusaderui.rc</filename
-> redigeras. Några exempel:</para
+> file must be edited. A few examples:</para
 > 
   <itemizedlist>
     <listitem>
@@ -203,16 +203,16 @@
     <listitem>
       <para
 ><guimenuitem
->Kommando</guimenuitem
->: Kommandot som kommer att köras. Du kan lägga till en platsmarkör med användning av ett grafisk gränssnitt med knappen <guibutton
->Lägg till</guibutton
->.</para>
+>Command</guimenuitem
+>: The command which will be executed. You can add placeholder using a &GUI; with the <guibutton
+>add</guibutton
+> button.</para>
     </listitem>
     <listitem>
       <para
 ><guimenuitem
->Arbetskatalog</guimenuitem
->: Arbetskatalogen för kommandot som kommer att köras.</para>
+>Workdir</guimenuitem
+>: The working folder for the command which will be executed.</para>
     </listitem>
     <listitem>
       <para
@@ -247,10 +247,10 @@
         <listitem>
           <para
 ><guimenuitem
->Skild standardfelutmatning</guimenuitem
->: När <quote
->Samla utdata</quote
-> används samlas standardutmatning och standardfelutmatning in separat.</para>
+>Separate standard error</guimenuitem
+>: When <quote
+>Collect output</quote
+> is used the stdout and stderr are separately collected.</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -263,14 +263,14 @@
         <listitem>
           <para
 ><guimenuitem
->Bara lokala filer (inga webbadresser)</guimenuitem
->: Talar om att platsmarkören bara ska returnera lokala adresser.</para>
+>Local files only (no &URL;s)</guimenuitem
+>: Tells the placeholder it should return local addresses.</para>
         </listitem>
         <listitem>
           <para
 ><guimenuitem
->Webbadresser (fjärradresser och lokala adresser)</guimenuitem
->: Talar om att platsmarkören ska returnera webbadresser.</para>
+>&URL;s (remote and local)</guimenuitem
+>: Tells the placeholder it should return &URL;s.</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -311,11 +311,11 @@
 >Kommandoradsyntax</emphasis>
   </para>
   <para
->I grunden kommer allt du skriver på kommandoraden att köras (om du skriver <quote
+>Basically, everything you type in the command line will get executed (if you type <quote
 >ls -l</quote
->, körs <quote
+>, <quote
 >ls -l</quote
->). Du har möjlighet att få en teckensträng från &krusader; som representerar panelens aktuella tillstånd. Det görs med platsmarkörer. En platsmarkör börjar med ett procenttecken ('%') och följs av en panelindikering ('a' för aktiva, 'o' för den andra, 'l' för den vänstra och 'r' för den högra panelen. Om platsmarkören inte behöver en panel för åtgärden, måste du ange det med ett understreck '_'). Därefter kommer platsmarkörens namn (se listan nedan), som kan ha några parametrar omslutna med citationstecken. Till sist, åter ett procenttecken.</para>
+> gets executed). You have the possibility to get a character string from &krusader; which represents the current state of the panel. This is done using placeholders. A placeholder begins with a percent-sign ('%') and is followed by a panel indicator ('a' for the active, 'o' for the other, 'l' for the left and 'r' for the right panel. If the placeholder does not need a panel to operate on, you have to indicate this by an underscore ('_')). Then comes the name of the placeholder (see the list below), which may get some parameters enclosed in quotes. Finally, again the percent sign.</para>
   <para
 >Det låter mycket komplicerat, så låt oss ta ett exempel: '%aList("Selected")%' ersätts av en lista med alla markerade objekt i den aktiva panelen. Så ett kommando som 'xmms --enqueue %aList("All", " ", "", "*.mp3")%' kör xmms med en lista av alla .mp3-filer i den aktuella panelen, åtskilda med ett enda blanktecken.</para>
   <para
@@ -342,15 +342,15 @@
       <orderedlist>
         <listitem>
           <para
->Parameter: Vilka objekt; antingen <quote
+>Parameter: Which items; either <quote
 >All</quote
-> (alla), <quote
+>, <quote
 >Selected</quote
-> (markerade), <quote
+>, <quote
 >Files</quote
-> (filer) eller <quote
+> or <quote
 >Dirs</quote
-> (kataloger)</para>
+></para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -384,19 +384,19 @@
       <orderedlist>
         <listitem>
           <para
->Parameter: Vilka objekt; antingen <quote
+>Parameter: Which items; either <quote
 >All</quote
-> (alla), <quote
+>, <quote
 >Selected</quote
-> (markerade), <quote
+>, <quote
 >Files</quote
-> (filer) eller <quote
+> or <quote
 >Dirs</quote
-> (kataloger)</para>
+></para>
         </listitem>
         <listitem>
           <para
->Parameter (valfri): Skiljetecken mellan objekten. Förval: <quote
+>Parameter (optional): Separator between the items. Default: <quote
 >&nbsp;</quote
 ></para>
         </listitem>
@@ -406,9 +406,9 @@
         </listitem>
         <listitem>
           <para
->Parameter (valfri): Filtermask (för alla utom <quote
+>Parameter (optional): Filtermask (for all but <quote
 >Selected</quote
->). Förval: *</para>
+>). Default: *</para>
         </listitem>
         <listitem>
           <para
@@ -428,13 +428,13 @@
         </listitem>
         <listitem>
           <para
->Parameter (valfri): hantera på vilket sätt; antingen <quote
+>Parameter (optional): manipulate in which way; either <quote
 >Set</quote
-> (Sätt), <quote
+>, <quote
 >Add</quote
-> (Lägg till) eller <quote
+> or <quote
 >Remove</quote
-> (Ta bort). Förval: <quote
+>. Default: <quote
 >Set</quote
 ></para>
         </listitem>
@@ -448,7 +448,7 @@
       <orderedlist>
         <listitem>
           <para
->Parameter: En relativ eller absolut sökväg, eller en webbadress</para>
+>Parameter: A relative or absolute path, or an &URL;</para>
         </listitem>
         <listitem>
           <para
@@ -484,9 +484,9 @@
       <orderedlist>
         <listitem>
           <para
->Parameter: Texten som ska läggas på klippbordet (du kanske vill använda <quote
+>Parameter: The text that should go to the clipboard (you may want to use <quote
 >%aCurrent%</quote
-> här)</para>
+> here)</para>
         </listitem>
         <listitem>
           <para
@@ -618,7 +618,7 @@
       <orderedlist>
         <listitem>
           <para
->Parameter: Kolumn: Antingen <quote
+>Parameter: Column: Either <quote
 >Name</quote
 >, <quote
 >Ext</quote
@@ -634,19 +634,19 @@
 >rwx</quote
 >, <quote
 >Owner</quote
-> eller <quote
+> and <quote
 >Group</quote
 ></para>
         </listitem>
         <listitem>
           <para
->Parameter: Sorteringssekvens: Antingen <quote
+>Parameter: Sort sequence: Either <quote
 >Toggle</quote
-> (växla), <quote
+>, <quote
 >Asc</quote
-> (Stigande), <quote
+>, <quote
 >Desc</quote
-> (Fallande)</para>
+></para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -658,27 +658,27 @@
       <orderedlist>
         <listitem>
           <para
->Parameter: Granskningsläge: Antingen <quote
+>Parameter: View mode: Either <quote
 >generic</quote
-> (generellt), <quote
+>, <quote
 >text</quote
-> (text), <quote
+>, <quote
 >hex</quote
-> (hexadecimalt)</para>
+></para>
         </listitem>
         <listitem>
           <para
->Parameter: Fönsterläge: Antingen <quote
+>Parameter: Window Mode: Either <quote
 >tab</quote
-> (flik) eller <quote
+>, <quote
 >window</quote
-> (fönster)</para>
+></para>
         </listitem>
       </orderedlist>
     </listitem>
   </itemizedlist>
   <para
->Ett hjälpverktyg för att lägga till platsmarkörer baserat på ett grafiskt användargränssnitt tillhandahålls. Mellanslag i Path, Current och List hanteras normalt automatiskt. Det finns ytterligare en viktig sak att känna till: Alla platsmarkörer som fungerar ihop med &krusader;s interna funktioner anropas när de expanderas (vilket betyder direkt när platsmarkörerna ersätts). Externa program anropas vid körning (vilket betyder efter att alla platsmarkörer har ersatts).</para>
+>A &GUI;-based helper for placeholder adding is provided. Spaces in Path, Current and List are by default, automatically escaped. There is one more important thing to know: All placeholders that interact with &krusader; internal functions are called at expand time (meaning directly when the placeholders are replaced). External programs are called at execution time (meaning after all placeholders are replaced).</para>
   <para>
     <emphasis role="bold"
 >Avancerade egenskaper</emphasis>
@@ -689,7 +689,7 @@
   <itemizedlist>
     <listitem>
       <para
->Ställer in om åtgärden är giltig för ett protokoll, sökväg, &MIME;-typ eller filnamn.</para>
+>Configures if the action is valid for a Protocol, Path, &MIME; type or File name.</para>
     </listitem>
     <listitem>
       <para

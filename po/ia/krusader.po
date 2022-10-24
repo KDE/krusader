@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# giovanni <g.sora@tiscali.it>, 2017, 2019, 2020, 2021.
+# giovanni <g.sora@tiscali.it>, 2017, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2021-10-28 15:24+0200\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2021-11-18 09:48+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -578,6 +578,8 @@ msgid ""
 "*.xml|XML files\n"
 "*|All files"
 msgstr ""
+"*.xml|XML files\n"
+"*|Omne files"
 
 #: app/ActionMan/useractionpage.cpp:56
 #, kde-format
@@ -837,7 +839,7 @@ msgstr ""
 #: app/BookMan/krbookmarkhandler.cpp:74
 #, kde-format
 msgid "Type to search..."
-msgstr "Typa pro cercar..."
+msgstr "Typo de cerca..."
 
 #: app/BookMan/krbookmarkhandler.cpp:216 app/BookMan/krbookmarkhandler.cpp:318
 #: app/Konfigurator/kgcolors.cpp:566 app/Konfigurator/kgcolors.cpp:586
@@ -1357,9 +1359,10 @@ msgid "Files:"
 msgstr "Files:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
-msgstr "Dossieres:"
+msgstr "Dossieres"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1475,7 +1478,7 @@ msgstr "Proxime"
 #: app/DiskUsage/diskusage.cpp:785 app/KViewer/lister.cpp:1281
 #, kde-format
 msgid "Previous"
-msgstr "Previe"
+msgstr "Precedente"
 
 #: app/DiskUsage/diskusage.cpp:790 app/GUI/kfnkeys.cpp:25
 #: app/Konfigurator/kgpanel.cpp:376
@@ -1668,7 +1671,7 @@ msgstr "Gruppo"
 #, kde-format
 msgid "%1 file: ~ %2"
 msgid_plural "%1 files: ~ %2"
-msgstr[0] "%1 File: ~ %2"
+msgstr[0] "%1 file: ~ %2"
 msgstr[1] "%1 files: ~ %2"
 
 #: app/DiskUsage/radialMap/segmentTip.cpp:118
@@ -1826,7 +1829,7 @@ msgstr ""
 #: app/Filter/advancedfilter.cpp:49
 #, kde-format
 msgid "Size"
-msgstr "Grandor"
+msgstr "Dimension"
 
 #: app/Filter/advancedfilter.cpp:56
 #, kde-format
@@ -2293,7 +2296,7 @@ msgstr "Renomina"
 #: app/GUI/kfnkeys.cpp:26
 #, kde-format
 msgid "Edit"
-msgstr "Edita"
+msgstr "Modifica"
 
 #: app/GUI/kfnkeys.cpp:27
 #, kde-format
@@ -2466,7 +2469,7 @@ msgstr ""
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr "Vacua schedas claudite recentemente"
+msgstr ""
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -2591,7 +2594,7 @@ msgstr "Dele %1"
 #, kde-format
 msgid "Delete %1 file"
 msgid_plural "Delete %1 files"
-msgstr[0] "Dele %1 file"
+msgstr[0] "Dele file"
 msgstr[1] "Dele %1 files"
 
 #: app/JobMan/krjob.cpp:49
@@ -2851,7 +2854,7 @@ msgstr "Transparente"
 #: app/Konfigurator/kgcolors.cpp:92 app/Konfigurator/kgcolors.cpp:129
 #, kde-format
 msgid "Foreground:"
-msgstr "Prime Plano"
+msgstr "Prime Plano:"
 
 #: app/Konfigurator/kgcolors.cpp:93 app/Konfigurator/kgcolors.cpp:131
 #, kde-format
@@ -2948,14 +2951,16 @@ msgid "Current background:"
 msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Foreground:"
 msgid "Rename foreground:"
-msgstr "Renomina Prime Plano"
+msgstr "Prime Plano:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
-msgstr "Renomina Fundo:"
+msgstr "Fundo Alternative:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3113,12 +3118,12 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:444
 #, kde-format
 msgid "Selected 2"
-msgstr "Selectionate 2"
+msgstr "Selegite 2"
 
 #: app/Konfigurator/kgcolors.cpp:445
 #, kde-format
 msgid "Selected 1"
-msgstr "Selectionate 1"
+msgstr "Selegite 1"
 
 #: app/Konfigurator/kgcolors.cpp:446
 #, kde-format
@@ -3336,7 +3341,7 @@ msgstr "MB"
 #: app/Konfigurator/kggeneral.cpp:130
 #, kde-format
 msgid "Editor"
-msgstr "Editor"
+msgstr "Redactor (Editor)"
 
 #: app/Konfigurator/kggeneral.cpp:134
 #, kde-format
@@ -3581,14 +3586,15 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show Bookmarks Button"
 msgid "Show close tab buttons"
-msgstr "Monstra buttones de claude scheda"
+msgstr "Monstra button de marcatores de libro"
 
 #: app/Konfigurator/kgpanel.cpp:119
 #, kde-format
 msgid "Show close tab buttons."
-msgstr "Monstra buttones de clauder scheda"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
@@ -3601,14 +3607,15 @@ msgid "Expanding tabs."
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show Bookmarks Button"
 msgid "Show new tab button"
-msgstr "Monstra button de nove scheda"
+msgstr "Monstra button de marcatores de libro"
 
 #: app/Konfigurator/kgpanel.cpp:121
 #, kde-format
 msgid "Show new tab button."
-msgstr "Monstra button de nove scheda."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
@@ -4172,7 +4179,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:565
 #, kde-format
 msgid "Home button (~)"
-msgstr "Button de domo o initio (~)"
+msgstr "Button de Domo o Initio (~)"
 
 #: app/Konfigurator/kgpanel.cpp:565
 #, kde-format
@@ -4495,7 +4502,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Mount point:"
-msgstr "Puncto de montage:"
+msgstr ""
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5174,7 +5181,7 @@ msgstr "Selectiona codification de characteres remote"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr "Schedas claudite recentemente"
+msgstr ""
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5402,7 +5409,7 @@ msgstr "&Vide"
 #: app/krusaderui.rc:87
 #, kde-format
 msgid "&Go"
-msgstr "&Vade"
+msgstr "Va&de"
 
 #. i18n: ectx: Menu (_tools)
 #: app/krusaderui.rc:98
@@ -5432,7 +5439,7 @@ msgstr ""
 #: app/krusaderui.rc:145
 #, kde-format
 msgid "&Window"
-msgstr "Fe&nestra"
+msgstr "&Fenestra"
 
 #. i18n: ectx: Menu (help)
 #: app/krusaderui.rc:166
@@ -5563,7 +5570,7 @@ msgstr ""
 #: app/KViewer/lister.cpp:1198
 #, kde-format
 msgid "Save as..."
-msgstr "Salveguarda como ..."
+msgstr "Salveguarda como..."
 
 #: app/KViewer/lister.cpp:1202
 #, kde-format
@@ -5605,7 +5612,7 @@ msgstr ""
 #: app/KViewer/lister.cpp:1278
 #, kde-format
 msgid "Jump to next match"
-msgstr "Il salta al proxime objecto equal"
+msgstr "Salta al proxime objecto coincidente"
 
 #: app/KViewer/lister.cpp:1282
 #, kde-format
@@ -6243,7 +6250,7 @@ msgstr ""
 #: app/main.cpp:162
 #, kde-format
 msgid "Czech translation"
-msgstr ""
+msgstr "Traduction Czech"
 
 #: app/main.cpp:163
 #, kde-format
@@ -6273,22 +6280,22 @@ msgstr ""
 #: app/main.cpp:166
 #, kde-format
 msgid "Rene-Pierre Lehmann"
-msgstr ""
+msgstr "Rene-Pierre Lehmann"
 
 #: app/main.cpp:166
 #, kde-format
 msgid "Old French translation"
-msgstr ""
+msgstr "Vetere traduction francese"
 
 #: app/main.cpp:167
 #, kde-format
 msgid "David Guillerm"
-msgstr ""
+msgstr "David Guillerm"
 
 #: app/main.cpp:167
 #, kde-format
 msgid "French translation"
-msgstr ""
+msgstr "Traduction francese"
 
 #: app/main.cpp:168
 #, kde-format
@@ -6338,7 +6345,7 @@ msgstr ""
 #: app/main.cpp:173
 #, kde-format
 msgid "Giuseppe Bordoni"
-msgstr ""
+msgstr "Giuseppe Bordoni"
 
 #: app/main.cpp:173
 #, kde-format
@@ -6348,12 +6355,12 @@ msgstr "Traducion italian"
 #: app/main.cpp:174
 #, kde-format
 msgid "Hideki Kimura"
-msgstr ""
+msgstr "Hideki Kimura"
 
 #: app/main.cpp:174
 #, kde-format
 msgid "Japanese translation"
-msgstr ""
+msgstr "Traduction japonese"
 
 #: app/main.cpp:175
 #, kde-format
@@ -6363,12 +6370,12 @@ msgstr "UTUMI Hirosi"
 #: app/main.cpp:175
 #, kde-format
 msgid "Old Japanese translation"
-msgstr ""
+msgstr "Vetere traduction japonese"
 
 #: app/main.cpp:176
 #, kde-format
 msgid "Dovydas Sankauskas"
-msgstr ""
+msgstr "Dovydas Sankauskas"
 
 #: app/main.cpp:176
 #, kde-format
@@ -6393,7 +6400,7 @@ msgstr "Lukasz Janyst"
 #: app/main.cpp:178
 #, kde-format
 msgid "Old Polish translation"
-msgstr ""
+msgstr "Vetere traduction polonese"
 
 #: app/main.cpp:179
 #, kde-format
@@ -6413,17 +6420,17 @@ msgstr "Tomek Grzejszczyk"
 #: app/main.cpp:181
 #, kde-format
 msgid "Dmitry A. Bugay"
-msgstr ""
+msgstr "Dmitry A. Bugay"
 
 #: app/main.cpp:181
 #, kde-format
 msgid "Russian translation"
-msgstr ""
+msgstr "Traduction russe"
 
 #: app/main.cpp:182
 #, kde-format
 msgid "Dmitry Chernyak"
-msgstr ""
+msgstr "Dmitry Chernyak"
 
 #: app/main.cpp:182
 #, kde-format
@@ -6458,12 +6465,12 @@ msgstr ""
 #: app/main.cpp:186
 #, kde-format
 msgid "Rafael Munoz"
-msgstr ""
+msgstr "Rafael Munoz"
 
 #: app/main.cpp:186
 #, kde-format
 msgid "Old Spanish translation"
-msgstr ""
+msgstr "Vetere traduction espaniol"
 
 #: app/main.cpp:187
 #, kde-format
@@ -6473,7 +6480,7 @@ msgstr "Alejandro Araiza Alvarado"
 #: app/main.cpp:187
 #, kde-format
 msgid "Spanish translation"
-msgstr ""
+msgstr "Traduction espaniol"
 
 #: app/main.cpp:188
 #, kde-format
@@ -7201,9 +7208,10 @@ msgid "Run"
 msgstr "Exeque"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
-msgstr "Aperi in nove schedas"
+msgstr "Aperi in nove scheda"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7516,9 +7524,10 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr ""
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
-msgstr "Applica Filtro a dossiere&s"
+msgstr "Applica filtro a dossieres"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
@@ -7526,9 +7535,10 @@ msgid "Filter Files"
 msgstr "Filtra Files..."
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
-msgstr "Applica &selection a dossieres"
+msgstr "Applica selection a dossieres"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, kde-format
@@ -7642,7 +7652,7 @@ msgstr "Gruppo"
 #: app/Panel/PanelView/listmodel.cpp:484
 #, kde-format
 msgid "Size: %1"
-msgstr "Grandor: %1"
+msgstr "Dimension: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:486
 #, kde-format
@@ -7856,9 +7866,10 @@ msgid "Save settings as default for new instances of this view type"
 msgstr ""
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open a new tab"
-msgstr "Aperir un nove scheda"
+msgstr "Aperi in nove scheda"
 
 #: app/paneltabbar.cpp:172
 #, kde-format
@@ -7869,7 +7880,7 @@ msgstr "[invalide]"
 #, kde-format
 msgctxt "invalid URL path"
 msgid "?"
-msgstr "?"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:125
 #, kde-format
@@ -7904,7 +7915,7 @@ msgstr "Texto trovate:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "Inactive"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -7916,7 +7927,7 @@ msgstr "&Resultatos"
 msgid "Found %1 match."
 msgid_plural "Found %1 matches."
 msgstr[0] "Trovava %1 correspondentia."
-msgstr[1] "Trovava %1 correspondentias."
+msgstr[1] "Trovava %1 correspondentias"
 
 #: app/Search/krsearchdialog.cpp:418
 #, kde-format
@@ -8445,7 +8456,7 @@ msgstr "Nomine"
 #, kde-format
 msgctxt "@title:column"
 msgid "Size"
-msgstr "Dimension o Grandor"
+msgstr "Dimension"
 
 #: app/Synchronizer/synchronizergui.cpp:336
 #: app/Synchronizer/synchronizergui.cpp:338
@@ -8457,7 +8468,7 @@ msgstr "Data"
 #: app/Synchronizer/synchronizergui.cpp:337
 #, kde-format
 msgid "<=>"
-msgstr ""
+msgstr "<=>"
 
 #: app/Synchronizer/synchronizergui.cpp:372
 #, kde-format
@@ -8728,14 +8739,16 @@ msgid "Move Current Tab to Other Side"
 msgstr ""
 
 #: app/tabactions.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Close Current Tab"
 msgid "Move Current Tab to the Left"
-msgstr "Move le scheda currente a sinistra"
+msgstr "Claude scheda currente"
 
 #: app/tabactions.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Close Current Tab"
 msgid "Move Current Tab to the Right"
-msgstr "Move le scheda currente a dextera"
+msgstr "Claude scheda currente"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -8743,9 +8756,10 @@ msgid "Close Current Tab"
 msgstr "Claude scheda currente"
 
 #: app/tabactions.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Undo Close Tab"
-msgstr "Annulla operation de clauder scheda"
+msgstr "Disbloca scheda"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9193,6 +9207,8 @@ msgid ""
 "*.txt|Text files\n"
 "*|All files"
 msgstr ""
+"*.txt|Files de Texto\n"
+"*|Omne files"
 
 #: app/UserAction/kraction.cpp:168
 #, kde-format
@@ -9209,7 +9225,7 @@ msgstr ""
 #: app/UserAction/kraction.cpp:171
 #, kde-format
 msgid "Append"
-msgstr "Appende"
+msgstr "Adjunge"
 
 #: app/UserAction/kraction.cpp:184
 #, kde-format
@@ -9483,21 +9499,11 @@ msgstr ""
 #~ msgid "Your emails"
 #~ msgstr "g.sora@tiscali.it"
 
+#~ msgid "Directories:"
+#~ msgstr "Directorios:"
+
 #~ msgid "JavaScript Error"
 #~ msgstr "Error de JavaScript"
-
-#~ msgid "New folder"
-#~ msgstr "Nove dossier"
-
-#~ msgid "Browse"
-#~ msgstr "Naviga "
-
-#, fuzzy
-#~ msgid "Folder..."
-#~ msgstr "Dossier"
-
-#~ msgid "Text File..."
-#~ msgstr "File de texto..."
 
 #~ msgid "%1 ZB"
 #~ msgstr "%1 ZB"
@@ -9508,12 +9514,24 @@ msgstr ""
 #~ msgid "%1 GB"
 #~ msgstr "%1 GB"
 
-#, fuzzy
 #~ msgid "%1 MB"
 #~ msgstr "%1 MB"
 
 #~ msgid "%1 KB"
 #~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Naviga "
+
+#~ msgid "New folder"
+#~ msgstr "Nove dossier"
+
+#, fuzzy
+#~ msgid "Folder..."
+#~ msgstr "Dossier"
+
+#~ msgid "Text File..."
+#~ msgstr "File de texto..."
 
 #, fuzzy
 #~ msgid " Quit"

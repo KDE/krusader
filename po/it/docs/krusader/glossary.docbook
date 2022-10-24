@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <glossary id="glossary">
   <indexterm>
     <primary
@@ -59,8 +71,12 @@
     <glossdef>
       <para
 >È il formato di file binario usato da <ulink url="https://en.wikipedia.org/wiki/Debian"
->&Debian;</ulink
-> e le distribuzioni basate su &Debian;. È un suffisso di un file di installazione specificamente costruito per queste distribuzioni; &eg; <filename
+> <trademark class="registered"
+>Debian</trademark
+></ulink
+> e le distribuzioni basate su <trademark class="registered"
+>Debian</trademark
+>. È un suffisso di un file di installazione specificamente costruito per queste distribuzioni; &eg; <filename
 >krusader_1.70.1-1_amd64.deb</filename
 >. Descritto in maniera semplice, è uno speciale archivio che contiene tutti i file del programma e la loro posizione proposta all'interno del sistema.</para>
     </glossdef>
@@ -204,7 +220,7 @@
 ><application
 >GNOME</application
 ></ulink
->, ed entrambi sono basati sullo stesso concetto del collegamento e incorporamento di oggetti di &Microsoft; (Object Linking and Embedding, OLE). Ad esempio, se usi il visore di &krusader; per visualizzare un file &PDF;, &okular; sarà avviato all'interno del visore di &krusader;.</para>
+>, ed entrambi sono basati sullo stesso concetto del collegamento e incorporamento di oggetti di &Microsoft; (Object Linking and Embedding, OLE). Ad esempio, se usi il visore di &krusader; per visualizzare un file PDF, &okular; sarà avviato all'interno del visore di &krusader;.</para>
     </glossdef>
   </glossentry>
   <glossentry id="gloss-kio">
@@ -238,9 +254,7 @@
       <para
 ><ulink url="http://www.softpanorama.org/OFM/index.shtml"
 >Orthodox File Manager</ulink
-> (gestore di file ortodosso); conosciuto anche come <quote
->Commander</quote
->. Questa famiglia di gestori di file utilizza un'interfaccia semplice ma molto potente che è una discendente diretta dell'interfaccia di <ulink url="https://en.wikipedia.org/wiki/Norton_Commander"
+> (gestore di file ortodosso); conosciuto anche come «Commander». Questa famiglia di gestori di file utilizza un'interfaccia semplice ma molto potente che è una discendente diretta dell'interfaccia di <ulink url="https://en.wikipedia.org/wiki/Norton_Commander"
 >Norton Commander</ulink
 > (NC).</para>
     </glossdef>
@@ -330,7 +344,7 @@
 >Virtual file system (VFS)</link
 > è una <link linkend="features"
 >funzionalità OFM</link
-> di base, un livello astratto su tutti i tipi di informazioni memorizzate (file ZIP, server &FTP;, archivi TAR, file system &NFS;, condivisioni SAMBA, immagini &CD;/&DVD; ISO, cataloghi RPM, &etc;), che consente all'utente di accedere in modo trasparente a tutte le informazioni contenute in questi diversi tipi di sistemi di file: proprio come entrare in una normale sottocartella. &krusader; è in grado di leggere vari <link linkend="vfs"
+> di base, un livello astratto su tutti i tipi di informazioni memorizzate (file ZIP, server &FTP;, archivi TAR, file system NFS, condivisioni SAMBA, immagini CD/DVD ISO, cataloghi RPM, &etc;), che consente all'utente di accedere in modo trasparente a tutte le informazioni contenute in questi diversi tipi di sistemi di file: proprio come entrare in una normale sotto-cartella. &krusader; è in grado di leggere vari <link linkend="vfs"
 >file system virtuali (VFS)</link
 >.</para>
     </glossdef>

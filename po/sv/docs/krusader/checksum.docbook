@@ -12,29 +12,15 @@
 >Checksumma</primary>
   </indexterm>
   <para
-><menuchoice
-> <guimenu
->Arkiv</guimenu
-> <guimenuitem
->Skapa checksumma...</guimenuitem
-> </menuchoice
-> : &krusader; kontrollerar vilka verktyg du har, och om verktygen tillåter rekursiv användning (i det fall då du valt kataloger). Du kan skapa en checksumma genom att välja typ av checksumma i listan (<guilabel
->md5</guilabel
->, <guilabel
->sha</guilabel
->, etc.). Därefter kan du spara checksumman i en fil, som oftast kallas <filename
->checksumma.md5</filename
-> eller <filename
->checksumma.sha1</filename
->.</para>
+><menuchoice> <guimenu>Arkiv</guimenu> <guimenuitem>Skapa checksumma</guimenuitem> </menuchoice> : &krusader; kontrollerar vilka verktyg du har, och om verktygen tillåter rekursiv användning (i det fall då du valt kataloger). Du kan skapa en checksumma genom att välja typ av checksumma i listan (<guilabel>md5</guilabel>, <guilabel>sha</guilabel>, etc.). Därefter kan du spara checksumman i en fil, som oftast kallas <filename>checksumma.md5</filename> eller <filename>checksumma.sha1</filename>.</para>
   <para
 ><menuchoice
 > <guimenu
->Arkiv</guimenu
+>File</guimenu
 > <guimenuitem
->Verifiera checksumma...</guimenuitem
+>Verify Checksum...</guimenuitem
 > </menuchoice
-> : &krusader; kontrollerar om du har ett verktyg som stöder den typ av checksumma du behöver (från den angivna checksummefilen) och visar filerna där checksummeringen misslyckades (om det finns några).</para>
+>: &krusader; checks if you have a tool that supports the type of checksum you need (from your specified checksum file) and displays the files that failed the checksum (if any).</para>
   <para
 >Systemet generaliserar olika mekanismer och verktyg för checksummering. För närvarande stöds följande checksummor: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv och crc. Kontrollera inställningen av <link linkend="konfig-dependencies"
 >checksummeringshjälpmedel</link

@@ -1,21 +1,21 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# A S Alam <aalam@users.sf.net>, 2012, 2013, 2019, 2021.
+# A S Alam <aalam@users.sf.net>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2021-04-25 12:43-0700\n"
-"Last-Translator: A S Alam <aalam@satluj.org>\n"
-"Language-Team: Punjabi <punjabi-users@lists.sf.net>\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2013-06-18 10:18-0500\n"
+"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.08.1\n"
+"X-Generator: Lokalize 1.5\n"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -176,9 +176,10 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioUrl)
 #: app/ActionMan/actionproperty.ui:99
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "URLs (remote and local)"
 msgid "URLs (re&mote and local)"
-msgstr "URL (ਰਿਮੋਟ ਅਤੇ ਲੋਕਲ)(&m)"
+msgstr "URL (ਰਿਮੋਟ ਅਤੇ ਲੋਕਲ)"
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leTitle)
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelTitle)
@@ -375,9 +376,10 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioNormal)
 #: app/ActionMan/actionproperty.ui:443
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Normal"
 msgid "&Normal"
-msgstr "ਸਧਾਰਨ(&N)"
+msgstr "ਸਧਾਰਨ"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioTerminal)
 #: app/ActionMan/actionproperty.ui:453
@@ -681,9 +683,10 @@ msgid "Downloading remote files"
 msgstr "ਰਿਮੋਟ ਫਾਇਲਾਂ ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਜਾ ਰਹੀਆਂ ਹਨ"
 
 #: app/Archive/abstractthreadedjob.cpp:488
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copying files"
 msgid "Counting files"
-msgstr "ਫਾਇਲਾਂ ਗਿਣੀਆਂ ਜਾ ਰਹੀਆਂ ਹਨ"
+msgstr "ਫਾਇਲਾਂ ਕਾਪੀ ਕੀਤੀਆਂ ਜਾ ਰਹੀਆਂ ਹਨ"
 
 #: app/Archive/abstractthreadedjob.cpp:517
 #, kde-format
@@ -952,9 +955,9 @@ msgid "Creating Checksums"
 msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:253
-#, kde-format
+#, fuzzy, kde-format
 msgid "Create Checksums"
-msgstr "ਚੈਕਸਮ ਬਣਾਓ"
+msgstr "ਨਵਾਂ ਬਣਾਓ"
 
 #: app/Dialogs/checksumdlg.cpp:256
 #, kde-format
@@ -967,9 +970,9 @@ msgid "Select the checksum method:"
 msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:288
-#, kde-format
+#, fuzzy, kde-format
 msgid "Checksum Results"
-msgstr "ਚੈਕਸਮ ਨਤੀਜੇ"
+msgstr "ਨਤੀਜੇ"
 
 #: app/Dialogs/checksumdlg.cpp:295 app/Dialogs/checksumdlg.cpp:495
 #: app/Konfigurator/kgcolors.cpp:450
@@ -985,7 +988,7 @@ msgstr "ਹੈਸ਼"
 #: app/Dialogs/checksumdlg.cpp:298
 #, kde-format
 msgid "Errors received:"
-msgstr "ਮਿਲੀਆਂ ਗ਼ਲਤੀਆਂ:"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:304
 #, fuzzy, kde-format
@@ -993,9 +996,9 @@ msgid "Save one checksum file for each source file"
 msgstr "ਕੇਵਲ ਚੁਣੀਆਂ ਫਾਇਲਾਂ ਹੀ(&S)"
 
 #: app/Dialogs/checksumdlg.cpp:331
-#, kde-format
+#, fuzzy, kde-format
 msgid "No files found"
-msgstr "ਕੋਈ ਫਾਇਲ ਨਹੀਂ ਲੱਭੀ"
+msgstr "ਕੇਵਲ ਚੁਣੀਆਂ ਫਾਇਲਾਂ ਹੀ(&S)"
 
 #: app/Dialogs/checksumdlg.cpp:355
 #, kde-format
@@ -1043,9 +1046,9 @@ msgid "Checksum file:"
 msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:505
-#, kde-format
+#, fuzzy, kde-format
 msgid "Verify Result"
-msgstr "ਤਸਦੀਕੀ ਨਤੀਜੇ"
+msgstr "ਨਤੀਜੇ"
 
 #: app/Dialogs/checksumdlg.cpp:510
 #, fuzzy, kde-format
@@ -1223,9 +1226,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: app/Dialogs/packgui.cpp:88
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Please select a directory"
 msgid "Please select a folder"
-msgstr "ਫੋਲਡਰ ਚੁਣੋ"
+msgstr "ਡਾਇਰੈਕਟਰੀ ਚੁਣੋ ਜੀ"
 
 #: app/Dialogs/packguibase.cpp:60 app/Dialogs/packguibase.cpp:114
 #, kde-format
@@ -1238,9 +1242,10 @@ msgid "To archive"
 msgstr ""
 
 #: app/Dialogs/packguibase.cpp:89
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New Folder"
 msgid "In folder"
-msgstr "ਫੋਲਡਰ ਵਿੱਚ"
+msgstr "ਨਵਾਂ ਫੋਲਡਰ"
 
 #: app/Dialogs/packguibase.cpp:139
 #, kde-format
@@ -1364,9 +1369,10 @@ msgid "Files:"
 msgstr "ਫਾਇਲਾਂ:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
-msgstr "ਫੋਲਡਰ:"
+msgstr "ਫੋਲਡਰ"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1435,9 +1441,10 @@ msgid "Exclude"
 msgstr "ਅੱਡ ਰੱਖੋ"
 
 #: app/DiskUsage/diskusage.cpp:737
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New Folder"
 msgid "Up one folder"
-msgstr "ਇੱਕ ਫੋਲਡਰ ਉੱਤੇ"
+msgstr "ਨਵਾਂ ਫੋਲਡਰ"
 
 #: app/DiskUsage/diskusage.cpp:741
 #, kde-format
@@ -1526,9 +1533,10 @@ msgid "Start new disk usage search"
 msgstr ""
 
 #: app/DiskUsage/diskusagegui.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New Folder"
 msgid "Parent folder"
-msgstr "ਮੁੱਢਲਾ ਫੋਲਡਰ"
+msgstr "ਨਵਾਂ ਫੋਲਡਰ"
 
 #: app/DiskUsage/diskusagegui.cpp:72
 #, kde-format
@@ -1689,9 +1697,10 @@ msgid "Open File Manager Here"
 msgstr ""
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:172
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Terminal"
 msgid "Open Terminal Here"
-msgstr "ਟਰਮੀਨਲ ਇੱਥੇ ਖੋਲ੍ਹੋ"
+msgstr "ਟਰਮੀਨਲ"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:176
 #, kde-format
@@ -1731,9 +1740,10 @@ msgid "No space information on non-local filesystems"
 msgstr ""
 
 #: app/FileSystem/defaultfilesystem.cpp:157
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show space information"
 msgid "Space information unavailable"
-msgstr "ਥਾਂ ਜਾਣਕਾਰੀ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ"
+msgstr "ਥਾਂ ਜਾਣਕਾਰੀ ਵੇਖੋ"
 
 #: app/FileSystem/defaultfilesystem.cpp:174
 #, kde-format
@@ -1743,15 +1753,17 @@ msgid ""
 msgstr ""
 
 #: app/FileSystem/defaultfilesystem.cpp:315
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "The directory %1 does not exist."
 msgid "The folder %1 does not exist."
-msgstr "ਫੋਲਡਰ %1 ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"
+msgstr "ਡਾਇਰੈਕਟਰੀ %1 ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"
 
 #: app/FileSystem/defaultfilesystem.cpp:331
 #: app/Synchronizer/synchronizerdirlist.cpp:111
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Can't split a directory!"
 msgid "Cannot open the folder %1."
-msgstr "ਫੋਲਡਰ %1 ਖੋਲ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ।"
+msgstr "ਇੱਕ ਡਾਇਰੈਕਟਰੀ ਵੰਡੀ ਨਹੀਂ ਜਾ ਸਕਦੀ!"
 
 #: app/FileSystem/defaultfilesystem.cpp:338
 #, kde-format
@@ -2129,9 +2141,9 @@ msgid "&Case sensitive"
 msgstr "ਆਕਾਰ ਪ੍ਰਤੀ ਸੰਵੇਦਨਸ਼ੀਲ(&C)"
 
 #: app/Filter/generalfilter.cpp:101
-#, kde-format
+#, fuzzy, kde-format
 msgid "Search &for:"
-msgstr "ਇਸ ਲਈ ਖੋਜ(&f): "
+msgstr "ਖੋਜ: "
 
 #: app/Filter/generalfilter.cpp:116 app/Synchronizer/synchronizergui.cpp:204
 #, kde-format
@@ -2539,9 +2551,9 @@ msgid "Undo Last Job"
 msgstr ""
 
 #: app/JobMan/jobman.cpp:235
-#, kde-format
+#, fuzzy, kde-format
 msgid "Are you sure you want to quit?"
-msgstr "ਕੀ ਤੁਸੀਂ ਬੰਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
+msgstr "<qt>ਕੀ ਤੁਸੀਂ <b>%1</b> ਨੂੰ ਬੰਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</qt>"
 
 #: app/JobMan/jobman.cpp:385
 #, kde-format
@@ -2578,43 +2590,48 @@ msgid "Resume Job List"
 msgstr ""
 
 #: app/JobMan/krjob.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move to trash"
 msgid "Move %1 to trash"
-msgstr "%1 ਨੂੰ ਰੱਦੀ 'ਚ ਭੇਜੋ"
+msgstr "ਰੱਦੀ 'ਚ ਭੇਜੋ"
 
 #: app/JobMan/krjob.cpp:25
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move to trash"
 msgid "Move %1 file to trash"
 msgid_plural "Move %1 files to trash"
-msgstr[0] "% 1ਫਾਇਲ ਰੱਦੀ 'ਚ ਭੇਜੋ"
-msgstr[1] "%1 ਫਾਇਲਾਂ ਨੂੰ ਰੱਦੀ 'ਚ ਭੇਜੋ"
+msgstr[0] "ਰੱਦੀ 'ਚ ਭੇਜੋ"
+msgstr[1] "ਰੱਦੀ 'ਚ ਭੇਜੋ"
 
 #: app/JobMan/krjob.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete"
 msgid "Delete %1"
-msgstr "%1 ਨੂੰ ਹਟਾਓ"
+msgstr "ਹਟਾਓ"
 
 #: app/JobMan/krjob.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete files"
 msgid "Delete %1 file"
 msgid_plural "Delete %1 files"
-msgstr[0] "%1 ਫਾਇਲਾਂ ਹਟਾਓ"
-msgstr[1] "%1 ਫਾਇਲਾਂ ਹਟਾਓ"
+msgstr[0] "ਫਾਇਲਾਂ ਹਟਾਓ"
+msgstr[1] "ਫਾਇਲਾਂ ਹਟਾਓ"
 
 #: app/JobMan/krjob.cpp:49
-#, kde-format
+#, fuzzy, kde-format
 msgid "Copy to %1"
-msgstr "%1 ਉੱਤੇ ਕਾਪੀ ਕਰੋ"
+msgstr "ਕਾਪੀ ਕਰੋ"
 
 #: app/JobMan/krjob.cpp:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move to trash"
 msgid "Move to %1"
-msgstr "%1 ਵਿੱਚ ਭੇਜੋ"
+msgstr "ਰੱਦੀ 'ਚ ਭੇਜੋ"
 
 #: app/JobMan/krjob.cpp:57
 #, kde-format
 msgid "Link to %1"
-msgstr "%1 ਲਈ ਲਿੰਕ ਕਰੋ"
+msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:29 app/Konfigurator/kgcolors.cpp:45
 #: app/Konfigurator/kgdependencies.cpp:42 app/Konfigurator/kggeneral.cpp:200
@@ -2645,7 +2662,7 @@ msgstr ""
 #: app/Konfigurator/kgadvanced.cpp:57
 #, kde-format
 msgid "Confirmations"
-msgstr "ਤਸਦੀਕ"
+msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:60
 #, kde-format
@@ -2673,7 +2690,7 @@ msgstr "ਫਾਇਲਾਂ ਕਾਪੀ ਕੀਤੀਆਂ ਜਾ ਰਹੀਆ�
 #: app/Konfigurator/kgadvanced.cpp:68
 #, kde-format
 msgid "Moving files"
-msgstr "ਫਾਇਲਾਂ ਭੇਜੀਆਂ ਜਾ ਰਹੀਆਂ ਹਨ"
+msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:69
 #, kde-format
@@ -2795,7 +2812,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:53
 #, kde-format
 msgid "Use the default KDE colors"
-msgstr "ਮੂਲ KDE ਰੰਗ ਵਰਤੋਂ"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:53
 #, kde-format
@@ -2864,9 +2881,10 @@ msgid "Foreground:"
 msgstr "ਫਾਰਗਰਾਊਂਡ:"
 
 #: app/Konfigurator/kgcolors.cpp:93 app/Konfigurator/kgcolors.cpp:131
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Foreground:"
 msgid "Folder foreground:"
-msgstr "ਫੋਲਡਰ ਫਾਰਗਰਾਊਂਡ:"
+msgstr "ਫਾਰਗਰਾਊਂਡ:"
 
 #: app/Konfigurator/kgcolors.cpp:93 app/Konfigurator/kgcolors.cpp:94
 #: app/Konfigurator/kgcolors.cpp:95 app/Konfigurator/kgcolors.cpp:96
@@ -5478,7 +5496,7 @@ msgstr "ਵਿੰਡੋ(&W)"
 #: app/krusaderui.rc:166
 #, kde-format
 msgid "&Help"
-msgstr "ਮਦਦ(&H)"
+msgstr "ਮੱਦਦ(&H)"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: app/krusaderui.rc:170
@@ -5494,9 +5512,10 @@ msgstr "ਕਾਰਵਾਈ ਟੂਲਬਾਰ"
 
 #. i18n: ectx: ToolBar (jobToolBar)
 #: app/krusaderui.rc:200
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Main Toolbar"
 msgid "Job Toolbar"
-msgstr "ਜਾਬ ਟੂਲਬਾਰ"
+msgstr "ਮੁੱਖ ਟੂਲਬਾਰ"
 
 #: app/krusaderview.cpp:78
 #, kde-format
@@ -5516,7 +5535,7 @@ msgstr ""
 #: app/KViewer/krviewer.cpp:87
 #, kde-format
 msgid "&Text Viewer"
-msgstr "ਲਿਖਤ ਦਰਸ਼ਕ(&T)"
+msgstr ""
 
 #: app/KViewer/krviewer.cpp:88
 #, kde-format
@@ -5529,29 +5548,29 @@ msgid "&Lister"
 msgstr ""
 
 #: app/KViewer/krviewer.cpp:92
-#, kde-format
+#, fuzzy, kde-format
 msgid "Text &Editor"
-msgstr "ਲਿਖਤ ਐਡੀਟਰ(&E)"
+msgstr "ਟੈਕਸਟ ਐਡੀਟਰ"
 
 #: app/KViewer/krviewer.cpp:116
-#, kde-format
+#, fuzzy, kde-format
 msgid "&Detach Tab"
 msgstr "ਟੈਬ ਵੱਖ ਕਰੋ(&D)"
 
 #: app/KViewer/krviewer.cpp:128
-#, kde-format
+#, fuzzy, kde-format
 msgid "&Close Current Tab"
-msgstr "ਮੌਜੂਦਾ ਟੈਬ ਬੰਦ ਕਰੋ(&C)"
+msgstr "ਮੌਜੂਦਾ ਟੈਬ ਬੰਦ ਕਰੋ(&l)"
 
 #: app/KViewer/krviewer.cpp:134
-#, kde-format
+#, fuzzy, kde-format
 msgid "&Next Tab"
-msgstr "ਅਗਲੀ ਟੈਬ(&N)"
+msgstr "ਨਵੀਂ ਟੈਬ"
 
 #: app/KViewer/krviewer.cpp:140
-#, kde-format
+#, fuzzy, kde-format
 msgid "&Previous Tab"
-msgstr "ਪਿਛਲੀ ਟੈਬ(&P)"
+msgstr "ਟੈਗ ਪਿੱਛੇ"
 
 #: app/KViewer/krviewer.cpp:218
 #, kde-format
@@ -5572,10 +5591,10 @@ msgid "Can not open \"%1\""
 msgstr ""
 
 #: app/KViewer/krviewer.cpp:634
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
-msgstr "%1 (ਸੰਪਾਦਨ)"
+msgstr "ਸੰਪਾਦਨ"
 
 #: app/KViewer/krviewer.cpp:635
 #, fuzzy, kde-format
@@ -5584,10 +5603,10 @@ msgid "%1 (Viewing)"
 msgstr "ਲਿੰਕ"
 
 #: app/KViewer/krviewer.cpp:642
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
-msgstr "ਸੰਪਾਦਨ: %1"
+msgstr "ਸੰਪਾਦਨ"
 
 #: app/KViewer/krviewer.cpp:643
 #, fuzzy, kde-format
@@ -5601,9 +5620,9 @@ msgid "Save selection..."
 msgstr ""
 
 #: app/KViewer/lister.cpp:1198
-#, kde-format
+#, fuzzy, kde-format
 msgid "Save as..."
-msgstr "...ਵਜੋਂ ਸੰਭਾਲੋ"
+msgstr "ਇੰਝ ਸੰਭਾਲੋ..."
 
 #: app/KViewer/lister.cpp:1202
 #, fuzzy, kde-format
@@ -6994,9 +7013,10 @@ msgid "&New Text File..."
 msgstr ""
 
 #: app/Panel/listpanelactions.cpp:67
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move to trash"
 msgid "Copy to other panel"
-msgstr ""
+msgstr "ਰੱਦੀ 'ਚ ਭੇਜੋ"
 
 #: app/Panel/listpanelactions.cpp:68
 #, fuzzy, kde-format
@@ -9590,35 +9610,12 @@ msgstr "ਫਾਇਲ ਵਰਤਣ ਲਈ ਪਾਸਵਰਡ ਚਾਹੀਦਾ �
 #~ msgid "Your emails"
 #~ msgstr "aalam@users.sf.net"
 
-#, fuzzy
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਕਰੋ"
-
-#, fuzzy
-#~ msgid "JavaScript Error"
-#~ msgstr "ਜਾਵਾ ਸਕਰਿਪਟ ਗਲਤੀ"
-
-#, fuzzy
-#~| msgid "New Folder"
-#~ msgid "New folder"
-#~ msgstr "ਨਵਾਂ ਫੋਲਡਰ"
-
 #~ msgid "Directories:"
 #~ msgstr "ਡਾਇਰੈਕਟਰੀਆਂ:"
 
 #, fuzzy
-#~ msgid "Folder..."
-#~ msgstr "ਫੋਲਡਰ..."
-
-#, fuzzy
-#~ msgid "Text File..."
-#~ msgstr "ਟੈਕਸਟ ਫਾਇਲ..."
-
-#~ msgid "View File (F3)"
-#~ msgstr "ਫਾਇਲ ਵੇਖੋ (F3)"
-
-#~ msgid "Edit File (F4)"
-#~ msgstr "ਫਾਇਲ ਸੋਧ (F4)"
+#~ msgid "JavaScript Error"
+#~ msgstr "ਜਾਵਾ ਸਕਰਿਪਟ ਗਲਤੀ"
 
 #, fuzzy
 #~ msgid "%1 ZB"
@@ -9639,6 +9636,29 @@ msgstr "ਫਾਇਲ ਵਰਤਣ ਲਈ ਪਾਸਵਰਡ ਚਾਹੀਦਾ �
 #, fuzzy
 #~ msgid "%1 KB"
 #~ msgstr "%1 KB"
+
+#, fuzzy
+#~| msgid "New Folder"
+#~ msgid "New folder"
+#~ msgstr "ਨਵਾਂ ਫੋਲਡਰ"
+
+#, fuzzy
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਕਰੋ"
+
+#, fuzzy
+#~ msgid "Folder..."
+#~ msgstr "ਫੋਲਡਰ..."
+
+#, fuzzy
+#~ msgid "Text File..."
+#~ msgstr "ਟੈਕਸਟ ਫਾਇਲ..."
+
+#~ msgid "View File (F3)"
+#~ msgstr "ਫਾਇਲ ਵੇਖੋ (F3)"
+
+#~ msgid "Edit File (F4)"
+#~ msgstr "ਫਾਇਲ ਸੋਧ (F4)"
 
 #, fuzzy
 #~| msgid "Terminal"

@@ -11,15 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2022-10-17 10:27+0200\n"
-"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2022-09-24 17:27+0200\n"
+"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 22.08.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -1005,11 +1005,11 @@ msgid "Create Checksums"
 msgstr "Crea les sumes de verificació"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "About to calculate checksum for the following files or directories:"
 msgid "About to calculate checksum for the following files or folders:"
 msgstr ""
-"A punt de: calcular la suma de verificació per als fitxers següents o "
-"carpetes:"
+"A punt de: calcular la suma de verificació pels fitxers següents o carpetes:"
 
 #: app/Dialogs/checksumdlg.cpp:269
 #, kde-format
@@ -1432,9 +1432,10 @@ msgid "Files:"
 msgstr "Fitxers:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
-msgstr "Carpetes:"
+msgstr "Carpetes"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1875,16 +1876,18 @@ msgid "Custom"
 msgstr "Personalitzat"
 
 #: app/FileSystem/krquery.cpp:547
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "%1=filename, %2=percentage"
+#| msgid "Searching content of '%1' (%2%)"
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr "S'està buscant el contingut de «%1» (%2)"
+msgstr "S'està buscant el contingut de «%1» (%2%)"
 
 #: app/FileSystem/krquery.cpp:552
 #, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr "%1%"
+msgstr ""
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, kde-format
@@ -2218,7 +2221,7 @@ msgstr "Distingix entre majús&cules/minúscules"
 #: app/Filter/generalfilter.cpp:101
 #, kde-format
 msgid "Search &for:"
-msgstr "Busca &per:"
+msgstr "Bu&sca:"
 
 #: app/Filter/generalfilter.cpp:116 app/Synchronizer/synchronizergui.cpp:204
 #, kde-format
@@ -2345,7 +2348,8 @@ msgid "Exclude Folder Names"
 msgstr "Exclou els noms de les carpetes"
 
 #: app/Filter/generalfilter.cpp:468
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Filters out specified directory names from the results."
 msgid "Filters out specified folder names from the results."
 msgstr "Exclou dels resultats els noms de les carpetes especificades."
 
@@ -2579,7 +2583,7 @@ msgstr "Introduïu el nom del perfil:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr "Buida les pestanyes tancades recentment"
+msgstr ""
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -3092,14 +3096,16 @@ msgid "Current background:"
 msgstr "Color de fons actual:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete foreground:"
 msgid "Rename foreground:"
-msgstr "Canvia el nom el primer pla:"
+msgstr "Suprimix el primer pla:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
-msgstr "Canvia el nom el fons:"
+msgstr "Color de fons alternatiu:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3395,16 +3401,16 @@ msgstr ""
 "el visor treballarà en una única finestra amb diverses pestanyes"
 
 #: app/Konfigurator/kggeneral.cpp:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "Oculta la barra de pestanyes quan només n'hi ha una oberta"
+msgstr "Mostra la barra de pestanyes en només una pestanya."
 
 #: app/Konfigurator/kggeneral.cpp:75
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr ""
-"Si està marcada, el visor de la barra pestanyes s'ocultarà si només hi ha "
-"una pestanya oberta"
+msgstr "Mostra la barra de pestanyes en només una pestanya."
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3475,8 +3481,6 @@ msgstr ""
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
 msgstr ""
-"Si un fitxer de text és més gran que esta mida, llavors s'utilitzarà el "
-"visor incremental."
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3607,18 +3611,20 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:274
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
-msgstr "El quadro actiu seguix el directori de treball del terminal incrustat"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "When checked, whenever the panel is changed (for example, by pressing "
+#| "Tab), Krusader changes the current folder in the embedded terminal."
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"Si està marcada, cada vegada que es canvie el directori de treball del "
-"terminal (per exemple, executant les ordres «cd» o «popd»), Krusader "
-"canviarà la carpeta actual del quadro actiu."
+"Si està marcada, cada vegada que es canvie de quadro (p. ex., prement el "
+"tabulador), Krusader canviarà la carpeta actual al terminal incrustat."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
@@ -3761,44 +3767,49 @@ msgstr ""
 "només es mostrarà la part final del camí."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons"
-msgstr "Mostra els botons de tancar la pestanya"
+msgstr "Mostra els botons «Pestanya nova» i «Tanca la pestanya»"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons."
-msgstr "Mostra els botons de tancar la pestanya."
+msgstr "Mostra els botons «Pestanya nova» i «Tanca la pestanya»"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr "Pestanyes en expansió"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr "Pestanyes en expansió."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button"
-msgstr "Mostra el botó de pestanya nova"
+msgstr "Mostra els botons «Pestanya nova» i «Tanca la pestanya»"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button."
-msgstr "Mostra el botó de pestanya nova."
+msgstr "Mostra els botons «Pestanya nova» i «Tanca la pestanya»"
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr "Inserix les pestanyes després de l'actual"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set root of the tree to the current folder"
 msgid "Insert new tabs to the right of the current one."
-msgstr "Inserix les pestanyes noves després de l'actual."
+msgstr "Establix l'arrel de l'arbre a la carpeta actual"
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
@@ -3813,17 +3824,17 @@ msgstr "Mostra la barra de pestanyes en només una pestanya."
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr "Tanca la pestanya amb un doble clic"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr "Tanca la pestanya amb un doble clic."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr "El botó de pestanya nova duplicarà una pestanya"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3831,34 +3842,32 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
-"Si està marcada, el botó de pestanya nova duplicarà una pestanya, altrament, "
-"l'obrirà en el directori d'inici."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr "Duplica la pestanya activa fent clic a:"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "disabled"
 msgid "Disabled"
-msgstr "Desactivat"
+msgstr "desactivat"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr "Alt+Clic"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr "Ctrl+Clic"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
 msgstr ""
-"Duplica la pestanya activa fent clic a Ctrl/Alt+Botó esquerre del ratolí"
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -3914,12 +3923,16 @@ msgstr ""
 "mode de busca)."
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Directory navigation with Right Arrow"
 msgid "Folder navigation with Right Arrow"
 msgstr "Navegació per la carpeta amb la fletxa dreta"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Pressing the Right button enters directory if no search text editing "
+#| "intention is captured."
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
@@ -4676,9 +4689,10 @@ msgstr ""
 "dret del ratolí durant uns 500 ms."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Right mouse button preserves selection"
 msgid "A plain mouse button resets selection"
-msgstr "Es reinicia la selecció amb el botó normal del ratolí"
+msgstr "Es manté la selecció amb el botó dret del ratolí"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4687,10 +4701,6 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
-"Es reinicia la selecció amb un clic de ratolí sense modificadors (p. ex. Maj "
-"o Ctrl).\n"
-"Cal habilitar la selecció amb Maj/Ctrl amb el botó del ratolí perquè "
-"funcione esta opció."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4710,7 +4720,7 @@ msgstr "Mostra el tipus del sistema de fitxers"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr "Oculta les entrades SquashFS"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4736,19 +4746,22 @@ msgid "Never"
 msgstr "Mai"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "MountMan will not (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
-msgstr "Oculta els punts de muntatge següents:"
+msgstr ""
+"El «Gestor del muntatge» no des/muntarà els següents punts de muntatge:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr "Afig un punt de muntatge nou"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mnt.Point"
 msgid "Mount point:"
-msgstr "Punt de muntatge:"
+msgstr "Punt de muntatge"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5455,7 +5468,7 @@ msgstr "Selecciona el joc de caràcters remot"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr "Pestanyes tancades recentment"
+msgstr ""
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5520,7 +5533,7 @@ msgstr "S'ha produït un error quan s'executava %1."
 #: app/krslots.cpp:161
 #, kde-format
 msgid "Do not know which files to compare."
-msgstr "Abans de res seleccioneu els fitxers a comparar."
+msgstr "Abans de res seleccioneu els fitxers que es compararan."
 
 #: app/krslots.cpp:161
 #, kde-format
@@ -5569,13 +5582,16 @@ msgstr ""
 "%1"
 
 #: app/krslots.cpp:420
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Cannot find a batch rename tool.\n"
+#| "You can get KRename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 "No s'ha trobat una eina per a canviar el nom per lots.\n"
-"Trobareu KRename a %1"
+"Trobareu KRename a http://www.krename.net"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -6186,22 +6202,34 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader: AMB PRIVILEGIS D'ADMINISTRADOR"
 
 #: app/main.cpp:113
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
+#| "© 2004-2019 Krusader Krew"
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2022 Krusader Krew"
+"© 2004-2019 Krusader Krew"
 
 #: app/main.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Feedback:\n"
+#| "https://forum.kde.org/viewforum.php?f=225\n"
+#| "\n"
+#| "IRC\n"
+#| "server: irc.freenode.net, channel: #krusader"
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
 "Comentaris:\n"
-"https://forum.kde.org/viewforum.php?f=225"
+"https://forum.kde.org/viewforum.php?f=225\n"
+"\n"
+"IRC\n"
+"servidor: irc.freenode.net, canal: #krusader"
 
 #: app/main.cpp:120
 #, kde-format
@@ -7174,7 +7202,8 @@ msgstr ""
 "i la seua mida en bytes"
 
 #: app/Panel/listpanel.cpp:229
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Cancel directory space calculation"
 msgid "Cancel folder space calculation"
 msgstr "Cancel·la el càlcul de l'espai de la carpeta"
 
@@ -7537,9 +7566,10 @@ msgstr ""
 "qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open/Run"
 msgid "Open/Run Files"
-msgstr "Obri/executa fitxers"
+msgstr "Obri/executa"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7547,9 +7577,10 @@ msgid "Run"
 msgstr "Executa"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
-msgstr "Obri en pestanyes noves"
+msgstr "Obri en una pestanya nova"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7875,9 +7906,10 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 de %2, %3 de %4"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
-msgstr "Aplica el &filtre a les carpetes"
+msgstr "Aplica el filtre a les carpetes"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
@@ -7885,9 +7917,10 @@ msgid "Filter Files"
 msgstr "Filtratge de fitxers"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
-msgstr "Aplica la &selecció a les carpetes"
+msgstr "Aplica la selecció a les carpetes"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, kde-format
@@ -8217,9 +8250,10 @@ msgstr ""
 "d'este tipus de vista"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in a new tab"
 msgid "Open a new tab"
-msgstr "Obri una pestanya nova"
+msgstr "Obri en una pestanya nova"
 
 #: app/paneltabbar.cpp:172
 #, kde-format
@@ -8265,7 +8299,7 @@ msgstr "Text trobat:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "En espera"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -9119,14 +9153,16 @@ msgid "Move Current Tab to Other Side"
 msgstr "Mou la pestanya actual a l'altre costat"
 
 #: app/tabactions.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Left"
-msgstr "Mou la pestanya actual a l'esquerra"
+msgstr "Mou la pestanya actual a l'altre costat"
 
 #: app/tabactions.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Right"
-msgstr "Mou la pestanya actual a la dreta"
+msgstr "Mou la pestanya actual a l'altre costat"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9134,9 +9170,10 @@ msgid "Close Current Tab"
 msgstr "Tanca la pestanya actual"
 
 #: app/tabactions.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Undo Close Tab"
-msgstr "Desfés el tancament de la pestanya"
+msgstr "Desbloqueja la pestanya"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9514,7 +9551,7 @@ msgstr "Visualitza el fitxer amb el visor intern de Krusader..."
 #: app/UserAction/expander.cpp:867
 #, kde-format
 msgid "Which file to view (normally '%aCurrent%'):"
-msgstr "Nom del fitxer a visualitzar (normalment «%aCurrent%»):"
+msgstr "Nom del fitxer que s'ha de visualitzar (normalment «%aCurrent%»):"
 
 #: app/UserAction/expander.cpp:868
 #, kde-format
@@ -9740,12 +9777,12 @@ msgstr "Multimèdia"
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Copia el camí del fitxer de l'element actual (escapant els espais)"
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
-msgstr "Copia el camí del fitxer de l'element o dels elements actuals"
+msgstr ""
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
@@ -9822,7 +9859,8 @@ msgstr ""
 "La podeu activar a la pàgina «Arxius» del Konfigurador."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Creating directories is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives"
 msgstr "La creació de carpetes no està admesa amb els arxius %1"
 
@@ -9857,13 +9895,11 @@ msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
-"s'ha produït un error, relacionat amb el programa extern «%1». El missatge "
-"d'error és: «%2»."
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
 msgid "Deleting files from %1 archives is not supported"
-msgstr "No s'admet suprimir fitxers des d'arxius %1"
+msgstr "Suprimir fitxers des d'arxius %1 no està admés"
 
 #: plugins/krarc/krarc.cpp:943 plugins/krarc/krarc.cpp:957
 #, kde-format
@@ -9871,7 +9907,8 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "L'accés a fitxers no està admés amb arxius %1"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives"
 msgstr "Llistar les carpetes no està admés amb els arxius %1"
 
@@ -9894,3 +9931,86 @@ msgstr "Diàleg de contrasenyes del Krarc"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "L'accés al fitxer requerix una contrasenya."
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Joaquim Perez Noguer"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "linux@softcatala.org"
+
+#~ msgid "Directories:"
+#~ msgstr "Carpetes:"
+
+#~ msgid "Show the new/close tab buttons."
+#~ msgstr "Mostra els botons «Pestanya nova» i «Tanca la pestanya»."
+
+#~ msgid "JavaScript Console..."
+#~ msgstr "Consola de JavaScript..."
+
+#~ msgid ""
+#~ "In %1:\n"
+#~ "Uncaught JavaScript exception '%2'\n"
+#~ "%3"
+#~ msgstr ""
+#~ "En %1:\n"
+#~ "S'ha produït una excepció JavaScript «%2»\n"
+#~ "%3"
+
+#~ msgid ""
+#~ "In %1:\n"
+#~ "Uncaught JavaScript exception '%2' at line %3\n"
+#~ "%4"
+#~ msgstr ""
+#~ "En %1:\n"
+#~ "S'ha produït una excepció JavaScript «%2» a la línia %3\n"
+#~ "%4"
+
+#~ msgid "JavaScript Error"
+#~ msgstr "S'ha produït un error de JavaScript"
+
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 kB"
+
+#~ msgid "Browse"
+#~ msgstr "Navega"
+
+#~ msgid "New folder"
+#~ msgstr "Carpeta nova"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Obri una pestanya nova amb la carpeta inici"
+
+#~ msgid "Execute a JavaScript Extension..."
+#~ msgstr "Executa una extensió JavaScript..."
+
+#~ msgid "Location of the script"
+#~ msgstr "Ubicació de l'script"
+
+#~ msgid ""
+#~ "Set some variables for the execution (optional).\n"
+#~ "i.e. \"return=return_var;foo=bar\", consult the handbook for more "
+#~ "information"
+#~ msgstr ""
+#~ "Introduïu el valor dels paràmetres de l'execució (opcional).\n"
+#~ "Per exemple «return=variable_retorn;any=2005», si teniu dubtes consulteu "
+#~ "el manual"
+
+#~ msgid "Expander: no script specified for %_Script(script)%"
+#~ msgstr "Completador: no s'ha especificat cap script per a %_Script(script)%"
+
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Copia l'element actual al porta-retalls"

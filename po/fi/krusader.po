@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
 "PO-Revision-Date: 2022-08-22 22:00+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -1006,7 +1006,8 @@ msgid "Create Checksums"
 msgstr "Luo tarkistussummia"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "About to calculate checksum for the following files or directories:"
 msgid "About to calculate checksum for the following files or folders:"
 msgstr "Lasketaan tarkistussumma seuraaville tiedostoille ja kansioille:"
 
@@ -1427,9 +1428,10 @@ msgid "Files:"
 msgstr "Tiedostoja:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
-msgstr "Kansiot:"
+msgstr "Kansiot"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1869,10 +1871,12 @@ msgid "Custom"
 msgstr "Mukautettu"
 
 #: app/FileSystem/krquery.cpp:547
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "%1=filename, %2=percentage"
+#| msgid "Searching content of '%1' (%2%)"
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr "Etsitään sisältöä: ”%1” (%2)"
+msgstr "Etsitään sisältöä: ”%1” (%2 %)"
 
 #: app/FileSystem/krquery.cpp:552
 #, fuzzy, kde-format
@@ -2340,7 +2344,8 @@ msgid "Exclude Folder Names"
 msgstr "Ohita kansionimet"
 
 #: app/Filter/generalfilter.cpp:468
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Filters out specified directory names from the results."
 msgid "Filters out specified folder names from the results."
 msgstr "Suodattaa annetut kansionimet tuloksista."
 
@@ -2580,7 +2585,7 @@ msgstr "Anna profiilin nimi:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr "Unohda äskettäin suljetut välilehdet"
+msgstr ""
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -3089,14 +3094,16 @@ msgid "Current background:"
 msgstr "Nykyinen tausta:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete foreground:"
 msgid "Rename foreground:"
-msgstr "Muuta edustan nimeä:"
+msgstr "Poista – teksti:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
-msgstr "Muuta taustan nimeä:"
+msgstr "Vaihtoehtoinen tausta:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3392,15 +3399,16 @@ msgstr ""
 "yhdessä välilehdellisessä ikkunassa."
 
 #: app/Konfigurator/kggeneral.cpp:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "Piilota välilehtipalkki, jos välilehtiä on auki vain yksi"
+msgstr "Näytä välilehtipalkki, vaikka välilehtiä olisi vain yksi."
 
 #: app/Konfigurator/kggeneral.cpp:75
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr ""
-"Jos valittu, välilehtipalkki piilotetaan, jos välilehtiä on auki vain yksi"
+msgstr "Näytä välilehtipalkki, vaikka välilehtiä olisi vain yksi."
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3467,7 +3475,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:112
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
-msgstr "Jos tekstin koko on tätä suurempi, käytetään selainta."
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3598,17 +3606,20 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:274
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
-msgstr "Aktiivinen paneeli seuraa upotetun päätteen työkansiota"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "When checked, whenever the panel is changed (for example, by pressing "
+#| "Tab), Krusader changes the current folder in the embedded terminal."
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"Kun valittu, päätteen työkansion vaihduttua (esim. ”cd”- tai ”popd”-komennon "
-"tuloksena) Krusader muuttaa aktiivisen paneelin näyttämää kansiota."
+"Kun valittu, paneelin tilan muututtua (esim. kun on painettu sarkainta) "
+"Krusader vaihtaa upotetun päätteen työkansiota."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
@@ -3748,44 +3759,49 @@ msgstr ""
 "viimeinen osa näytetään."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons"
-msgstr "Näytä välilehden sulkemispainikkeet"
+msgstr "Näytä Uusi/Sulje-välilehtipainikkeet"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons."
-msgstr "Näytä välilehden sulkemispainikkeet."
+msgstr "Näytä Uusi/Sulje-välilehtipainikkeet"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr "Laajennetaan välilehtiä"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr "Laajennetaan välilehtiä."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button"
-msgstr "Näytä Uusi välilehti -painike"
+msgstr "Näytä Uusi/Sulje-välilehtipainikkeet"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button."
-msgstr "Näytä Uusi välilehti -painike."
+msgstr "Näytä Uusi/Sulje-välilehtipainikkeet"
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr "Lisää välilehdet nykyisen perään"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set root of the tree to the current folder"
 msgid "Insert new tabs to the right of the current one."
-msgstr "Lisää uudet välilehdet nykyisestä oikealle."
+msgstr "Aloita puu nykyisestä kansiosta"
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
@@ -3800,12 +3816,12 @@ msgstr "Näytä välilehtipalkki, vaikka välilehtiä olisi vain yksi."
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr "Sulje välilehti kaksoisnapsauttamalla"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr "Sulje välilehti kaksoisnapsauttamalla."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3897,18 +3913,23 @@ msgid ""
 msgstr "Ylös- ja Alas-nuolipainikkeet sulkevat hakurivin (vain hakutilassa)."
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Directory navigation with Right Arrow"
 msgid "Folder navigation with Right Arrow"
 msgstr "Kansionavigointi oikealla nuolinäppäimellä"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Pressing the Right button enters directory if no search text editing "
+#| "intention is captured."
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
 msgstr ""
-"Oikean nuolipainikkeen painalluksella siirrytään kansioon, ellei aietta "
-"muokata hakutekstiä havaita."
+"Oikean nuolipainikkeen painaminen siirtyy kansioon, ellei hakutekstin "
+"muokkausaietta havaita.Oikean nuolipainikkeen painaminen siirtyy kansioon, "
+"ellei hakutekstin muokkausaietta havaita."
 
 #: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
@@ -4657,9 +4678,10 @@ msgstr ""
 "pohjassa 500 millisekuntia."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Right mouse button preserves selection"
 msgid "A plain mouse button resets selection"
-msgstr "Pelkkä hiiren painike tyhjentää valinnan"
+msgstr "Hiiren oikea painike säilyttää valinnan"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4668,9 +4690,6 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
-"Tyhjennä valinta napsauttamalla vain hiirtä muunnosnäppäimittä.\n"
-"Jotta asetus toimisi, valintaa varten täytyy hiirelle asettaa Vaihto/Ctrl-"
-"näppäin."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4690,7 +4709,7 @@ msgstr "Näytä tiedostojärjestelmän tyyppi"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr "Piilota SquashFS-tietueet"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4716,19 +4735,21 @@ msgid "Never"
 msgstr "Ei koskaan"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "MountMan will not (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
-msgstr "Piilota seuraavat liitospisteet:"
+msgstr "MountMan ei liitä tai irrota seuraavia liitospisteitä:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr "Lisää uusi piilotettu liitospiste"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mnt.Point"
 msgid "Mount point:"
-msgstr "Liitospiste:"
+msgstr "Mnt.Point"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5435,7 +5456,7 @@ msgstr "Valitse etämerkistö"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr "Äskettäin suljetut välilehdet"
+msgstr ""
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5553,13 +5574,16 @@ msgstr ""
 "%1"
 
 #: app/krslots.cpp:420
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Cannot find a batch rename tool.\n"
+#| "You can get KRename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
-"Työkalua tiedostonimien muuttamiseksi eräajona ei löydy.\n"
-"KRename löytyy osoitteesta %1"
+"Työkalua useiden tiedostonimien muuttamiseen ei löydy.\n"
+"Voit hankkia KRenamen osoitteesta http://www.krename.net"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -6173,22 +6197,31 @@ msgstr "Krusader – PÄÄKÄYTTÄJÄOIKEUDET"
 #, fuzzy, kde-format
 #| msgid ""
 #| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2020 Krusader Krew"
+#| "© 2004-2019 Krusader Krew"
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000–03 Shie Erlich, Rafi Yanai\n"
-"© 2004–20 Krusader-työryhmä"
+"© 2004–19 Krusader-työryhmä"
 
 #: app/main.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Feedback:\n"
+#| "https://forum.kde.org/viewforum.php?f=225\n"
+#| "\n"
+#| "IRC\n"
+#| "server: irc.freenode.net, channel: #krusader"
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
 "Palaute:\n"
-"https://forum.kde.org/viewforum.php?f=225/"
+"https://forum.kde.org/viewforum.php?f=225/\n"
+"\n"
+"IRC\n"
+"palvelin: irc.freenode.net, kanava: #krusader"
 
 #: app/main.cpp:120
 #, kde-format
@@ -7159,7 +7192,8 @@ msgstr ""
 "määrän sekä yhteiskoon."
 
 #: app/Panel/listpanel.cpp:229
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Cancel directory space calculation"
 msgid "Cancel folder space calculation"
 msgstr "Peru kansiotilan laskenta"
 
@@ -7522,9 +7556,10 @@ msgstr ""
 "Konfiguratorissa, oletusarvo on <b>konsole</b>.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open/Run"
 msgid "Open/Run Files"
-msgstr "Avaa tai suorita tiedostoja"
+msgstr "Avaa tai suorita"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7532,9 +7567,10 @@ msgid "Run"
 msgstr "Suorita"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
-msgstr "Avaa uusiin välilehtiin"
+msgstr "Avaa uuteen välilehteen"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7861,9 +7897,10 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%1/%2, %3/%4"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
-msgstr "Käytä kansioihin &suodatinta"
+msgstr "Käytä suodatinta kansioihin"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
@@ -7871,9 +7908,10 @@ msgid "Filter Files"
 msgstr "Suodata tiedostoja"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
-msgstr "Käytä kansioihin &valintaa"
+msgstr "Käytä valintaa kansioihin"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, kde-format
@@ -8202,7 +8240,8 @@ msgid "Save settings as default for new instances of this view type"
 msgstr "Tallenna asetukset tämän näkymätyypin tuleviksi oletuksiksi"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in a new tab"
 msgid "Open a new tab"
 msgstr "Avaa uuteen välilehteen"
 
@@ -8250,7 +8289,7 @@ msgstr "Löydetty teksti:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "Jouten"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -9095,14 +9134,16 @@ msgid "Move Current Tab to Other Side"
 msgstr "Siirrä nykyinen välilehti toiselle puolen"
 
 #: app/tabactions.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Left"
-msgstr "Siirrä nykyinen välilehti vasemmalle"
+msgstr "Siirrä nykyinen välilehti toiselle puolen"
 
 #: app/tabactions.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Right"
-msgstr "Siirrä nykyinen välilehti oikealle"
+msgstr "Siirrä nykyinen välilehti toiselle puolen"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9110,9 +9151,10 @@ msgid "Close Current Tab"
 msgstr "Sulje nykyinen välilehti"
 
 #: app/tabactions.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Undo Close Tab"
-msgstr "Kumoa välilehden sulkeminen"
+msgstr "Poista välilehden lukitus"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9724,10 +9766,9 @@ msgid "Multimedia"
 msgstr "Multimedia"
 
 #: app/useraction_examples.xml:39
-#, fuzzy, kde-format
-#| msgid "Always show current item"
+#, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Näytä aina nykyiselle tietueelle"
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, kde-format
@@ -9808,7 +9849,8 @@ msgstr ""
 "Voit ottaa sen käyttöön asetusten Arkistot-sivulta."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Creating directories is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives"
 msgstr "Kansioiden luomista %1-arkistoihin ei tueta"
 
@@ -9843,7 +9885,6 @@ msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
-"Ulkoiseen ohjelmaan ”%1” liittyen tapahtui virhe. Virheilmoitus oli: ”%2”."
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
@@ -9856,9 +9897,10 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "%1-arkistojen tiedostoihin pääsyä ei tueta"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives"
-msgstr "%1-arkistojen kansioiden luettelemista ei tueta"
+msgstr "%1-arkistojen kansioiden listaamista ei tueta"
 
 #: plugins/krarc/krarc.cpp:2144 plugins/krarc/krarc.cpp:2150
 #, kde-format
@@ -9888,11 +9930,8 @@ msgstr "Tiedostoon pääsy vaatii salasanan."
 #~ msgid "Your emails"
 #~ msgstr "translator@legisign.org, lasse.liehu@gmail.com"
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Kopioi nykyinen tietue leikepöydälle"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Avaa uusi välilehti kotikansioon"
+#~ msgid "Directories:"
+#~ msgstr "Kansioita:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Näytä Uusi/Sulje-välilehtipainikkeet."
@@ -9923,6 +9962,30 @@ msgstr "Tiedostoon pääsy vaatii salasanan."
 #~ msgid "JavaScript Error"
 #~ msgstr "JavaScript-virhe"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 Zt"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 Tt"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 Gt"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 Mt"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 kt"
+
+#~ msgid "Browse"
+#~ msgstr "Selaa"
+
+#~ msgid "New folder"
+#~ msgstr "Uusi kansio"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Avaa uusi välilehti kotikansioon"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Suorita JavaScript-laajennus…"
 
@@ -9941,14 +10004,8 @@ msgstr "Tiedostoon pääsy vaatii salasanan."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Laajennin: skriptiä ei määritetty kohteelle %_Script(s)%"
 
-#~ msgid "New folder"
-#~ msgstr "Uusi kansio"
-
-#~ msgid "Directories:"
-#~ msgstr "Kansioita:"
-
-#~ msgid "Browse"
-#~ msgstr "Selaa"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Kopioi nykyinen tietue leikepöydälle"
 
 #~ msgid "Folder..."
 #~ msgstr "Kansio…"
@@ -9961,21 +10018,6 @@ msgstr "Tiedostoon pääsy vaatii salasanan."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Muokkaa tiedostoa (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 Zt"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 Tt"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 Gt"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 Mt"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 kt"
 
 #~ msgid "Open search filter"
 #~ msgstr "Avaa hakusuodatin"

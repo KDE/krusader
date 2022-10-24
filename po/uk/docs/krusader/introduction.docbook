@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <chapter id="introduction">
   <title
 >Вступ</title>
@@ -26,6 +38,26 @@
 >Майже будь-який параметр у &krusader; можна налаштувати, тому програма є дуже дружньою до користувача.</para>
     <para
 >Спробуйте &krusader;.</para>
+    <!-- OLD
+<screenshot>
+  <screeninfo
+>&krusader; screenshot</screeninfo>
+  <mediaobject id="krusader_screenshot">
+    <imageobject
+><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
+    <imageobject
+><imagedata fileref="krusader1.png" format="EPS"/></imageobject>
+    <textobject
+><phrase
+>&krusader; screenshot</phrase
+></textobject>
+    <caption
+><para
+>&krusader; screenshot</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
     <figure id="screenshot-krusader" float="1">
       <title
 >Знімок вікна &krusader;</title>
@@ -52,7 +84,7 @@
     <para
 >Нашою метою є створення простого, інтуїтивно зрозумілого інструменту, який з легкістю міг би виконувати більшість важливих завдань, які ви виконуєте на вашому комп’ютері кожного дня: керування і обробку ваших файлів у бажаний вами спосіб.</para>
     <para
->Є ви експертом чи новачком у &Linux;, &krusader; зробить завдання з щоденного керування файлами швидким і точним, надаючи вам можливість зосередитися на загальній картині, а не на синтаксису командного рядка. Це буде особливо корисним, якщо ви ще не достатньо ознайомлені з операційними системами xxNIX. Для виконання цих завдань у &krusader; використовується приємний графічний інтерфейс, підтримка перетягування зі скиданням, а також типи &MIME;, що робить програму простою у користуванні.</para>
+>Є ви експертом чи новачком у &Linux;, &krusader; зробить завдання з щоденного керування файлами швидким і точним, надаючи вам можливість зосередитися на загальній картині, а не на синтаксису командного рядка. Це буде особливо корисним, якщо ви ще не достатньо ознайомлені з операційними системами xxNIX. Для виконання цих завдань у &krusader; використовується приємний графічний інтерфейс, підтримка перетягування зі скиданням, а також типи MIME, що робить програму простою у користуванні.</para>
     <para
 >У &krusader; передбачено багато корисних можливостей. Програма швидка і обробляє <link linkend="archives"
 >архіви</link
@@ -74,7 +106,7 @@
     <para
 >Від початку, основний наголос зроблено на віртуальних файлових системах. <link linkend="vfs"
 >Віртуальні файлові системи (VFS)</link
-> є шаром абстрагування на усіма типами архівованих даних (файлами ZIP, серверами &FTP;, архівами TAR, файловими системами NFS, спільними ресурсами SAMBA, образами ISO компакт-дисків та DVD, каталогами RPM тощо), що надає змогу користувачеві отримувати доступ до всіх даних у цих різноманітних типах файлових систем у прозорому режимі, подібно до роботи зі звичайними підкаталогами. Ви можете без додаткових зусиль копіювати або пересувати дані у цих сховищах (окрім ISO, rpm, tar.gz). Поточна версія &krusader; підтримує VFS для всіх популярних і деяких спеціальних типів архівів (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip і 7-zip), пакунків налаштування (rpm, deb) і традиційних типів віддалених файлових систем (&FTP;, &NFS;, Samba, FISH, SFTP).</para>
+> є шаром абстрагування на усіма типами архівованих даних (файлами ZIP, серверами &FTP;, архівами TAR, файловими системами NFS, спільними ресурсами SAMBA, образами ISO компакт-дисків та DVD, каталогами RPM тощо), що надає змогу користувачеві отримувати доступ до всіх даних у цих різноманітних типах файлових систем у прозорому режимі, подібно до роботи зі звичайними підкаталогами. Ви можете без додаткових зусиль копіювати або пересувати дані у цих сховищах (окрім ISO, rpm, tar.gz). Поточна версія &krusader; підтримує VFS для всіх популярних і деяких спеціальних типів архівів (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip і 7-zip), пакунків налаштування (rpm, deb) і традиційних типів віддалених файлових систем (&FTP;, NFS, Samba, FISH, SFTP).</para>
     <para
 >Крім того, до складу &krusader; вбудовано інструмент <link linkend="mount-man"
 >керування монтуванням</link
@@ -90,8 +122,8 @@
     <para
 >Нові можливості забезпечуються гнучкими <link linkend="useractions"
 >діями користувача</link
->, новітніми інструментами &krusader;, які надають майже безмежні можливості додавання функцій, потрібних для задоволення особливих потреб користувачів. Найближчим часом ми плануємо розробити додаткові модулі, що розширять можливості &krusader;. Відомості щодо запропонованих, схвалених або ще незавершених додатків можна знайти на <ulink url="https://invent.kde.org/utilities/krusader"
->сторінці GitLab &krusader;</ulink
+>, новітніми інструментами &krusader;, які надають майже безмежні можливості додавання функцій, потрібних для задоволення особливих потреб користувачів. Найближчим часом ми плануємо розробити додаткові модулі, що розширять можливості &krusader;. Відомості щодо запропонованих, схвалених або ще незавершених додатків можна знайти на <ulink url="https://phabricator.kde.org/tag/krusader/"
+>сторінці Phabricator &krusader;</ulink
 >.</para>
     <para
 >Нам невідомі програми, які пропонують користувачеві до багатьох корисних, простих у доступі можливостей у такий інтуїтивний і простий спосіб. Крім того, ми дослухаємося і реалізуємо найкращі пропозиції, сумісні з метою проєкту &krusader;: зробити &krusader; найкращим з інструментів керування файлами.</para>

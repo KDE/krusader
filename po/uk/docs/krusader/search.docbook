@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="krusearcher">
   <title
 >KruSearcher: знайдіть те, що шукали</title>
@@ -13,6 +25,26 @@
   </indexterm>
   <para
 >Ласкаво просимо до потужного модуля пошуку &krusader; з назвою KruSearcher. Цей інструмент є найпотужнішим серед відомих нам інструментів пошуку у &Linux;, оскільки у ньому передбачено багато різних способів швидко знайти потрібний вам файл. Функціональною можливістю пошуку можна скористатися і на віддалених файлових системах. Вікно інструменту поділено на два рівні: загальний і додатковий. Розгляньмо загальну сторінку.</para>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>Krusearcher General</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="search_general.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="search_general.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>Krusearcher General</phrase
+></textobject>
+  <caption
+><para
+>Krusearcher General.</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
   <figure id="screenshot-search-general" float="1">
     <title
 >Загальний пошук</title>
@@ -54,19 +86,7 @@
 >'*.cpp *.h | *.moc.cpp'</literal
 >). Ви можете використовувати лапки для назв, які містять пробіли. Якщо ввести критерій «Program Files», інструмент пошуку знайде всі файли або каталоги, які називаються <filename
 >Program Files</filename
->. За допомогою спадного списку, який програма показує у відповідь на натискання стрілочки, розташованої у правій частині поля, ви можете вибрати один із раніше введених критеріїв пошуку.</para>
-      <note>
-          <para
->Ви можете редагувати список пропозицій поля <guilabel
->Шукати у</guilabel
->. Якщо вам не подобається якийсь із пунктів, просто позначте його, натисніть комбінацію клавіш <keycombo action="simul"
->&Shift;<keycap
->Del</keycap
-></keycombo
-> і непотрібний пункт буде вилучено. Ви також можете скористатися клавішами зі стрілками вгору і вниз для переходу між пунктами у журналі поля <guilabel
->Шукати у</guilabel
-> і вилучити зі списку усі непотрібні вам пункти. </para>
-      </note>
+>.</para>
     </listitem>
     <listitem>
       <para
@@ -84,7 +104,7 @@
       <para
 ><guilabel
 >Типу</guilabel
->: за допомогою цього поля файл можна шукати не лише за його назвою, але й за типом &MIME;. Ви, наприклад, можете знайти всі звукові файли, назва яких починається з літери «B». Зазвичай, типовим значенням цього параметра є «Всі файли», але ви можете наказати програмі шукати архіви, каталоги, зображення, текстові файли, відео та звукові файли.</para>
+>: за допомогою цього поля файл можна шукати не лише за його назвою, але й за типом MIME. Ви, наприклад, можете знайти всі звукові файли, назва яких починається з літери «B». Зазвичай, типовим значенням цього параметра є «Всі файли», але ви можете наказати програмі шукати архіви, каталоги, зображення, текстові файли, відео та звукові файли.</para>
     </listitem>
   </itemizedlist>
   <itemizedlist>
@@ -234,9 +254,29 @@
 >Закрити</guibutton
 > вікно. Якщо буде знайдено файл, подвійне клацання лівою кнопкою миші на його позначці пересуне знайдені файли на активну панель &krusader;, але не закриє вікно пошуку, отже ви зможете натиснути іншу позначку результату.</para>
   <para
->Іноді у вас виникатиме потреба звузити коло пошуків. KruSearcher надасть вам змогу виконати точніший пошук, для цього ви можете скористатися сторінкою <guilabel
+>Іноді у вас виникатиме потреба звузити коло пошуків. Krusearcher надасть вам змогу виконати точніший пошук, для цього ви можете скористатися сторінкою <guilabel
 >Додатково</guilabel
 >...</para>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>Krusearcher Advanced</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="search_advanced.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="search_advanced.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>Krusearcher Advanced</phrase
+></textobject>
+  <caption
+><para
+>Krusearcher Advanced.</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
   <figure id="screenshot-search-advanced" float="1">
     <title
 >Складний пошук</title>
@@ -330,7 +370,7 @@
 >&Ctrl;<keycap
 >C</keycap
 ></keycombo
->). Після закриття вікна KruSearcher позначений пункт буде позначено на активній панелі.</para>
+>). Після закриття вікна Krusearcher позначений пункт буде позначено на активній панелі.</para>
   <para>
     <emphasis role="bold"
 >Подача у список</emphasis>

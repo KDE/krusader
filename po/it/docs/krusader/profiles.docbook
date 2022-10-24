@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="profiles">
   <title
 >Profili</title>
@@ -17,7 +29,7 @@
     <title
 >Profili del pannello</title>
     <para
->Un profilo del pannello contiene le seguenti informazioni: tutti i percorsi delle schede (sinistra o destra), la scheda attuale (sinistra o destra) e il pannello attivo (sinistra o destra). Tutte queste informazioni sono memorizzate nel file <link linkend="config_files"
+>Un profilo del pannello contiene le seguenti informazioni: tutti i percorsi delle schede (sinistra o destra), la scheda attuale (sinistra o destra) ed il pannello attivo (sinistra o destra). Tutte queste informazioni sono memorizzate nel file <link linkend="config_files"
 >krusaderrc</link
 >. Potete avere diversi profili del pannello: ad esempio, per la gestione dei file, per le sessioni &FTP;, per casa, per il lavoro, &etc;. Il profilo del pannello può essere <link linkend="c_panel_profiles"
 >salvato e recuperato</link
@@ -25,7 +37,9 @@
 >Finestra</guimenu
 >. Il <link linkend="konfig-startup"
 >profilo predefinito di avvio</link
-> sarà usato all'avvio di &krusader;, ma puoi modificare questo comportamento utilizzando un'opzione da riga di comando.</para>
+> sarà usato all'avvio di &krusader;, ma puoi modificare questo comportamento utilizzando una <link linkend="starting-krusader"
+>opzione da riga di comando</link
+>.</para>
   </sect2>
   <sect2 id="color_profiles">
     <title

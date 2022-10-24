@@ -42,29 +42,5 @@
 >filename=exempel size=432998467868 crc32=21EB719A</programlisting
 ></para>
   <para
->För att kombinera flera filer, markera en partiell fil <filename
->exempel.xxx</filename
-> och välj <menuchoice
-><guimenu
->Arkiv</guimenu
-> <guimenuitem
->Kombinera filer...</guimenuitem
-> </menuchoice
-> eller <keycombo action="simul"
->&Ctrl;<keycap
->B</keycap
-></keycombo
->. Målkatalogen är den inaktiva panelen, och kan ändras. Filnamnen måste vara i stigande ordning: <filename
->exempel.001, exempel.002, exempel.003</filename
-> etc., eller ha bokstäver i stigande ordning: (" <userinput
-><command
->split</command
-> <option
->-b</option
-> </userinput
->bokstav metod") <filename
->filaa, filab, filac</filename
-> etc. Om filen <filename
->exempel.crc</filename
-> hittas i samma katalog som de partiella filerna, använder &krusader; filen för att kontrollera om den kombinerade filen har några fel.</para>
+>För att kombinera flera filer, markera en partiell fil <filename>exempel.xxx</filename> och välj <menuchoice><guimenu>Arkiv</guimenu> <guimenuitem>Kombinera filer</guimenuitem> </menuchoice> eller <keycombo action="simul">&Ctrl;<keycap>B</keycap></keycombo>. Målkatalogen är den inaktiva panelen, och kan ändras. Filnamnen måste vara i stigande ordning: <filename>exempel.001, exempel.002, exempel.003</filename> etc., eller ha bokstäver i stigande ordning: (" <userinput><command>split</command> <option>-b</option> </userinput>bokstav metod") <filename>filaa, filab, filac</filename> etc. Om filen <filename>exempel.crc</filename> hittas i samma katalog som de partiella filerna, använder &krusader; filen för att kontrollera om den kombinerade filen har några fel.</para>
 </sect1>

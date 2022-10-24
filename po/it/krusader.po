@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2022-10-06 18:57+0200\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2022-02-03 22:26+0100\n"
 "Last-Translator: Valter Mura <valtermura@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -1000,7 +1000,8 @@ msgid "Create Checksums"
 msgstr "Crea codice di controllo"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "About to calculate checksum for the following files or directories:"
 msgid "About to calculate checksum for the following files or folders:"
 msgstr ""
 "Stai per calcolare il codice di controllo dei seguenti file o cartelle:"
@@ -1426,9 +1427,10 @@ msgid "Files:"
 msgstr "File:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
-msgstr "Cartelle:"
+msgstr "Cartelle"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1868,16 +1870,20 @@ msgid "Custom"
 msgstr "Personalizzato"
 
 #: app/FileSystem/krquery.cpp:547
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "%1=filename, %2=percentage"
+#| msgid "Searching content of '%1' (%2%)"
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr "Ricerca nel contenuto di «%1» (%2)"
+msgstr "Ricerca nel contenuto di «%1» (%2%)"
 
 #: app/FileSystem/krquery.cpp:552
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "filestate: filename"
+#| msgid "%1: %2"
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr "%1%"
+msgstr "%1: %2"
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, kde-format
@@ -2337,7 +2343,8 @@ msgid "Exclude Folder Names"
 msgstr "Escludi nomi delle cartelle"
 
 #: app/Filter/generalfilter.cpp:468
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Filters out specified directory names from the results."
 msgid "Filters out specified folder names from the results."
 msgstr "Esclude dai risultati i nomi delle cartelle specificate."
 
@@ -2573,7 +2580,7 @@ msgstr "Inserisci il nome del profilo:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr "Svuota le schede chiuse di recente"
+msgstr ""
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -3085,14 +3092,16 @@ msgid "Current background:"
 msgstr "Sfondo attuale:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete foreground:"
 msgid "Rename foreground:"
-msgstr "Rinomina primo piano:"
+msgstr "Primo piano Da eliminare:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
-msgstr "Rinomina sfondo:"
+msgstr "Sfondo alternato:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3389,16 +3398,16 @@ msgstr ""
 "il visualizzatore funzionerà nella modalità a schede"
 
 #: app/Konfigurator/kggeneral.cpp:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "Nascondi la barra delle schede quando ce n'è solo una aperta"
+msgstr "Mostra la barra delle schede in una scheda singola."
 
 #: app/Konfigurator/kggeneral.cpp:75
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr ""
-"Se selezionata, la barra delle schede del visualizzatore verrà nascosta se è "
-"aperta solo una scheda"
+msgstr "Mostra la barra delle schede in una scheda singola."
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3468,8 +3477,6 @@ msgstr ""
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
 msgstr ""
-"Se un file di testo è più grande di questa dimensione, allora sarà "
-"utilizzato il lister."
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3602,18 +3609,20 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:274
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
-msgstr "Il pannello attivo segue la cartella di lavoro del terminale integrato"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "When checked, whenever the panel is changed (for example, by pressing "
+#| "Tab), Krusader changes the current folder in the embedded terminal."
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"Se selezionato, ogni volta che si cambia la cartella di lavoro del terminale "
-"(per esempio, eseguendo il comando 'cd' o 'popd'), Krusader cambia la "
-"cartella corrente del pannello attivo."
+"Se selezionato, ogni volta che si cambia il pannello (per esempio, premendo "
+"il tasto Tab), Krusader cambia la cartella corrente nel terminale integrato."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
@@ -3757,44 +3766,49 @@ msgstr ""
 "mostrata solo l'ultima parte del percorso."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons"
-msgstr "Mostra pulsanti chiudi scheda"
+msgstr "Mostra pulsanti nuova/chiudi scheda"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons."
-msgstr "Mostra i pulsanti chiudi scheda."
+msgstr "Mostra pulsanti nuova/chiudi scheda"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr "Schede a espansione"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr "Schede a espansione."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button"
-msgstr "Mostra pulsante nuova scheda"
+msgstr "Mostra pulsanti nuova/chiudi scheda"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button."
-msgstr "Mostra il pulsante nuova scheda."
+msgstr "Mostra pulsanti nuova/chiudi scheda"
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr "Inserisci le schede dopo quella attuale"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set root of the tree to the current folder"
 msgid "Insert new tabs to the right of the current one."
-msgstr "Inserisci le nuove schede alla destra di quella attuale."
+msgstr "Seleziona la radice dell'albero alla cartella attiva"
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
@@ -3809,17 +3823,17 @@ msgstr "Mostra la barra delle schede in una scheda singola."
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr "Chiudi scheda con doppio clic"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr "Chiudi la scheda con doppio clic."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr "Il pulsante Nuova scheda duplica una scheda"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3827,33 +3841,32 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
-"Se attivato, il pulsante «Nuova scheda» duplica una scheda, diversamente "
-"apre una scheda nella cartella Home."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr "Duplica la scheda attiva con:"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "disabled"
 msgid "Disabled"
-msgstr "Disabilitato"
+msgstr "disabilitato"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr "Alt+clic"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr "Ctrl+clic"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr "Duplica la scheda attiva con clic Ctrl/Alt+LMB"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -3909,12 +3922,16 @@ msgstr ""
 "ricerca)."
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Directory navigation with Right Arrow"
 msgid "Folder navigation with Right Arrow"
 msgstr "Navigazione cartelle con freccia destra"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Pressing the Right button enters directory if no search text editing "
+#| "intention is captured."
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
@@ -4667,9 +4684,10 @@ msgstr ""
 "secondo."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Right mouse button preserves selection"
 msgid "A plain mouse button resets selection"
-msgstr "Il semplice clic del pulsante del mouse azzera la selezione"
+msgstr "Il pulsante destro del mouse preserva la selezione"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4678,10 +4696,6 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
-"Azzera la selezione con un clic del mouse senza modificatori (ossia Maiusc o "
-"Ctrl).\n"
-"La selezione con Maiusc/Ctrl per il pulsante del mouse va abilitata affinché "
-"questa impostazione funzioni."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4701,7 +4715,7 @@ msgstr "Mostra tipo di file system"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr "Nascondi voci SquashFS"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4727,19 +4741,21 @@ msgid "Never"
 msgstr "Mai"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "MountMan will not (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
-msgstr "Nascondi i seguenti punti di montaggio:"
+msgstr "MountMan non (s)monterà i seguenti punti di montaggio:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr "Aggiungi nuovo punto di montaggio nascosto"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mnt.Point"
 msgid "Mount point:"
-msgstr "Punto di montaggio:"
+msgstr "Punto di montaggio"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5445,7 +5461,7 @@ msgstr "Seleziona insieme di caratteri remoto"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr "Schede chiuse di recente"
+msgstr ""
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5563,13 +5579,16 @@ msgstr ""
 "%1"
 
 #: app/krslots.cpp:420
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Cannot find a batch rename tool.\n"
+#| "You can get KRename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 "Impossibile trovare uno strumento per il cambio di nome multiplo.\n"
-"Puoi ottenere KRename all'indirizzo %1"
+"Puoi ottenere KRename all'indirizzo http://www.krename.net"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -6179,22 +6198,31 @@ msgstr "Krusader - PRIVILEGI DI AMMINISTRAZIONE"
 #, fuzzy, kde-format
 #| msgid ""
 #| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2020 Krusader Krew"
+#| "© 2004-2019 Krusader Krew"
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2020 Krusader Krew"
+"© 2004-2019 Krusader Krew"
 
 #: app/main.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Feedback:\n"
+#| "https://forum.kde.org/viewforum.php?f=225\n"
+#| "\n"
+#| "IRC\n"
+#| "server: irc.freenode.net, channel: #krusader"
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
 "Commenti:\n"
-"https://forum.kde.org/viewforum.php?f=225"
+"https://forum.kde.org/viewforum.php?f=225\n"
+"\n"
+"server\n"
+"IRC: irc.freenode.net, canale: #krusader"
 
 #: app/main.cpp:120
 #, kde-format
@@ -7167,7 +7195,8 @@ msgstr ""
 "il numero di byte"
 
 #: app/Panel/listpanel.cpp:229
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Cancel directory space calculation"
 msgid "Cancel folder space calculation"
 msgstr "Annulla il calcolo dello spazio cartella"
 
@@ -7529,9 +7558,10 @@ msgstr ""
 "terminale in Konfigurator; quello predefinito è <b>konsole</b>.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open/Run"
 msgid "Open/Run Files"
-msgstr "Apri/Esegui file"
+msgstr "Apri/Esegui"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7539,9 +7569,10 @@ msgid "Run"
 msgstr "Esegui"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
-msgstr "Apri in nuove schede"
+msgstr "Apri in una nuova scheda"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7868,9 +7899,10 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 di %2, %3 di %4"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
-msgstr "Applica il filtro alle car&telle"
+msgstr "Applica il filtro alle cartelle"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
@@ -7878,9 +7910,10 @@ msgid "Filter Files"
 msgstr "Filtro file"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
-msgstr "Applica la &selezione alle cartelle"
+msgstr "Applica la selezione alle cartelle"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, kde-format
@@ -8211,9 +8244,10 @@ msgstr ""
 "di visualizzazione"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in a new tab"
 msgid "Open a new tab"
-msgstr "Apri una nuova scheda"
+msgstr "Apri in una nuova scheda"
 
 #: app/paneltabbar.cpp:172
 #, kde-format
@@ -8261,7 +8295,7 @@ msgstr "Testo trovato:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "Inattivo"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -9109,14 +9143,16 @@ msgid "Move Current Tab to Other Side"
 msgstr "Sposta la scheda attiva nell'altro lato"
 
 #: app/tabactions.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Left"
-msgstr "Sposta la scheda attiva a sinistra"
+msgstr "Sposta la scheda attiva nell'altro lato"
 
 #: app/tabactions.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Right"
-msgstr "Sposta la scheda attiva a destra"
+msgstr "Sposta la scheda attiva nell'altro lato"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9124,9 +9160,10 @@ msgid "Close Current Tab"
 msgstr "Chiudi la scheda attiva"
 
 #: app/tabactions.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Undo Close Tab"
-msgstr "Annulla Chiudi scheda"
+msgstr "Sblocca scheda"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9726,12 +9763,12 @@ msgstr "Multimedia"
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Copia il percorso file dell'elemento attuale (spazi di escape)"
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
-msgstr "Copia i percorsi file degli elementi selezionati"
+msgstr ""
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
@@ -9808,7 +9845,8 @@ msgstr ""
 "Puoi abilitarlo nella pagina «Archivi» di Konfigurator."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Creating directories is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives"
 msgstr "La creazione di cartelle all'interno degli archivi %1 non è supportata"
 
@@ -9843,8 +9881,6 @@ msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
-"Si è verificato un errore collegato al programma esterno «%1». Messaggio di "
-"errore: «%2»."
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
@@ -9857,7 +9893,8 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "L'accesso ai file negli archivi %1 non è supportato"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives"
 msgstr "L'elencazione delle cartelle negli archivi %1 non è supportata"
 
@@ -9889,11 +9926,8 @@ msgstr "L'accesso al file richiede una password."
 #~ msgid "Your emails"
 #~ msgstr "valtermura@gmail.com,"
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Copia l'elemento attuale negli appunti"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Apri una nuova scheda nella cartella home"
+#~ msgid "Directories:"
+#~ msgstr "Cartelle:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Mostra i pulsanti nuova/chiudi scheda."
@@ -9922,6 +9956,30 @@ msgstr "L'accesso al file richiede una password."
 #~ msgid "JavaScript Error"
 #~ msgstr "Errore JavaScript"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Sfoglia"
+
+#~ msgid "New folder"
+#~ msgstr "Nuova cartella"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Apri una nuova scheda nella cartella home"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Esegui un'estensione JavaScript..."
 
@@ -9940,14 +9998,8 @@ msgstr "L'accesso al file richiede una password."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Estensore - Nessuno script specificato per %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Nuova cartella"
-
-#~ msgid "Directories:"
-#~ msgstr "Cartelle:"
-
-#~ msgid "Browse"
-#~ msgstr "Sfoglia"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Copia l'elemento attuale negli appunti"
 
 #~ msgid "Folder..."
 #~ msgstr "Cartella..."
@@ -9960,21 +10012,6 @@ msgstr "L'accesso al file richiede una password."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Modifica file (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
 
 #~ msgid "Open search filter"
 #~ msgstr "Apri il filtro di ricerca"

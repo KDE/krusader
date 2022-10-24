@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <chapter id="keyboard-commands">
   <title
 >Comandi da tastiera</title>
@@ -23,20 +35,24 @@
 >profili per le combinazioni</link
 > per passare agevolmente ad altre configurazioni di combinazioni, &eg; di altri gestori, oppure puoi crearne di tue proprie.</para>
     <para
->Dopo aver avviato &krusader;, puoi iniziare a usare le combinazioni da tastiera. Usa <keycombo action="simul"
+>Dopo aver <link linkend="starting-krusader"
+>avviato</link
+> &krusader;, puoi iniziare a usare le combinazioni da tastiera. Usa <keycombo action="simul"
 >&Ctrl;<keycap
 >L</keycap
 ></keycombo
 > per passare alla <link linkend="list_panel"
 >barra degli strumenti Posizione</link
 >, dove digitare la cartella desiderata. Con <keycombo action="simul"
->&Ctrl;&Down;</keycombo
+>&Ctrl;<keycap
+>freccia giù</keycap
+></keycombo
 > ti sposti nell'<link linkend="termemu"
 >emulatore di terminale</link
->, in cui digitare tutti i comandi che preferisci, ammesso che il <link linkend="konfig-startup"
->terminale venga mostrato</link
->. Usa <keycombo action="simul"
->&Ctrl;&Up;</keycombo
+>, in cui digitare tutti i comandi  che preferisci. Usa <keycombo action="simul"
+>&Ctrl;<keycap
+>freccia su</keycap
+></keycombo
 > per tornare al pannello attivo. Se vuoi posizionarti su un file o una cartella che inizia per <literal
 >f</literal
 >, basta premere sulla tastiera <keycap
@@ -81,7 +97,7 @@
 > <guimenu
 >Impostazioni</guimenu
 > <guimenuitem
->Configura le scorciatoie...</guimenuitem
+>Configura le scorciatoie</guimenuitem
 > </menuchoice
 >, se desideri usare altre associazioni oltre quelle predefinite. Puoi anche configurare ulteriori azioni in un'associazione di tasti (per le azioni che non hanno un'associazione di tasti impostata in maniera predefinita). Nota che alcune associazioni di tasti non sono proprie di &krusader; (&eg;, quelle di &plasma;). Le associazioni di tasti predefinite di &krusader; sono elencate di seguito.</para>
 
@@ -396,7 +412,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; &Left;</keycombo>
+>&Shift; <keycap
+>Freccia sinistra</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -410,7 +428,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; &Right;</keycombo>
+>&Shift; <keycap
+>Freccia destra</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -531,12 +551,14 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Home;</keycombo>
+>&Alt; <keycap
+>Home</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
               <para
->Home.</para>
+>Home</para>
             </entry>
           </row>
           <row>
@@ -557,7 +579,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Left;</keycombo>
+>&Alt; <keycap
+>Freccia sinistra</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -571,7 +595,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Right;</keycombo>
+>&Alt; <keycap
+>Freccia destra</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -585,7 +611,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Down;</keycombo>
+>&Alt; <keycap
+>Freccia giù</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -730,9 +758,7 @@
             <entry>
               <para>
                 <link linkend="panel_toolbar"
->Sincronizzazione pannelli, conosciuto anche come <quote
->pulsante Uguale (=)</quote
->.</link>
+>Sincronizzazione pannelli, conosciuto anche come «pulsante Uguale (=)».</link>
               </para>
             </entry>
           </row>
@@ -974,6 +1000,22 @@
 >.</para>
             </entry>
           </row>
+          <!-- TODO: Is this entry gone ????
+<row>
+<entry
+><para
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>the inactive panel gets the same path as the active panel</para
+></entry
+></row>
+-->
           <row>
             <entry>
               <para>
@@ -1110,7 +1152,7 @@
             <entry>
               <para>
                 <link linkend="bookman"
->&URL; ricorrenti.</link>
+>URL ricorrenti.</link>
               </para>
             </entry>
           </row>
@@ -1166,7 +1208,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Down;</keycombo>
+>&Ctrl; <keycap
+>Freccia giù</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1180,7 +1224,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Up;</keycombo>
+>&Ctrl; <keycap
+>Freccia su</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1194,7 +1240,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Up;</keycombo>
+>&Ctrl; <keycap
+>Freccia su</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1208,7 +1256,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Home;</keycombo>
+>&Ctrl; <keycap
+>Home</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1220,15 +1270,21 @@
             <entry>
               <para
 ><keycombo action="simul"
->&Ctrl; &Left;</keycombo
+>&Ctrl; <keycap
+>freccia sinistra</keycap
+></keycombo
 > o <keycombo
-> &Right; </keycombo
+> <keycap
+>destra</keycap
+> </keycombo
 ></para>
             </entry>
             <entry>
               <para
 >Evidenzia un file o una cartella nel pannello sinistro, premi <keycombo action="simul"
->&Ctrl; &Left;</keycombo
+>&Ctrl; <keycap
+>freccia sinistra</keycap
+></keycombo
 > e il <link linkend="panels"
 >pannello</link
 > cambia: <itemizedlist
@@ -1244,7 +1300,9 @@
 > </listitem
 > </itemizedlist
 >Per il pannello destro: premi <keycombo action="simul"
->&Ctrl; &Right;</keycombo
+>&Ctrl; <keycap
+>freccia destra</keycap
+></keycombo
 > e il pannello sinistro cambierà.</para>
             </entry>
           </row>
@@ -1264,7 +1322,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &PgUp;</keycombo>
+>&Ctrl; <keycap
+>PaginaSu</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1327,6 +1387,22 @@
                 <link linkend="remote-connections"
 >Disconnette la connessione remota.</link>
               </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Attiva la <link linkend="remote-connections"
+>barra di ricerca</link
+> per trovare elementi nella scheda attiva. </para>
             </entry>
           </row>
           <row>
@@ -1413,7 +1489,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; &Left;</keycombo>
+>&Ctrl;&Shift; <keycap
+>Freccia sinistra</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1427,7 +1505,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; &Right;</keycombo>
+>&Ctrl;&Shift; <keycap
+>Freccia destra</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1441,7 +1521,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; &Up;</keycombo>
+>&Ctrl;&Shift; <keycap
+>Freccia su</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1455,7 +1537,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; &Down;</keycombo>
+>&Ctrl;&Shift; <keycap
+>Freccia giù</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1463,30 +1547,6 @@
 >Chiude l'<link linkend="cmdline"
 >emulatore di terminale</link
 >, indipendentemente dal fatto che sia mostrata o no la riga di comando.</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul"
->&Ctrl;&Shift; &PgUp;</keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para
->Sposta la scheda attiva a sinistra.</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul"
->&Ctrl;&Shift; &PgDn;</keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para
->Sposta la scheda attiva a destra.</para>
             </entry>
           </row>
         </tbody>
@@ -1500,22 +1560,24 @@
     <informaltable>
       <tgroup cols="2">
         <tbody>
-          <row>
+<!--          <row>
             <entry>
               <para>
-                <keycombo action="simul"
->&Ctrl;&Alt; <keycap
->E</keycap
+                <keycombo action="simul">
+                &Ctrl;&Alt;
+                <keycap
+>J</keycap
 ></keycombo>
               </para>
             </entry>
             <entry>
               <para
->Mostra/nasconde il <link linkend="cmdline"
->terminale integrato</link
->.</para>
+><link linkend="javascript_console"
+>JavaScript console</link
+></para>
             </entry>
-          </row>
+	  </row
+> disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
           <row>
             <entry>
               <para>
@@ -1580,7 +1642,25 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Alt; &Left;</keycombo>
+>&Ctrl;&Alt; <keycap
+>T</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Mostra/nasconde il <link linkend="cmdline"
+>terminale integrato</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>Freccia sinistra</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1594,7 +1674,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Alt; &Right;</keycombo>
+>&Ctrl;&Alt; <keycap
+>Freccia destra</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1677,7 +1759,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &PgDn;</keycombo>
+>&Ctrl; <keycap
+>PaginaGiù</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1800,7 +1884,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
+>&Shift; <keycap
 >Canc</keycap
 ></keycombo>
               </para>
@@ -1808,20 +1892,22 @@
             <entry>
               <para>
                 <link linkend="basic"
->Eliminazione alternativa.</link>
+>Elimina definitivamente.</link>
               </para>
             </entry>
           </row>
           <row>
             <entry>
-              <para
->&Space; </para>
+              <para>
+                <keycap
+>Barra spaziatrice</keycap>
+              </para>
             </entry>
             <entry>
               <para
 ><link linkend="selecting-files"
 >Su un file:</link
-> alterna la selezione del file giù di una posizione senza comprendere la selezione di altri file o cartelle.</para>
+> alterna la selezione del file giù di una posizione senza comprendere la selezione di altri file/cartelle.</para>
             </entry>
           </row>
           <row>
@@ -1836,13 +1922,17 @@
           </row>
           <row>
             <entry>
-              <para
->&Ins; </para>
+              <para>
+                <keycap
+>Ins</keycap>
+              </para>
             </entry>
             <entry>
               <para
->Esegue la stessa azione del tasto &Space; <link linkend="selecting-files"
-> e scende di una posizione per passare al file successivo.</link
+>Esegue la stessa azione della <keycap
+>barra spaziatrice</keycap
+> <link linkend="selecting-files"
+>e scende di una posizione per passare al file successivo.</link
 ></para>
             </entry>
           </row>
@@ -1860,8 +1950,10 @@
           </row>
           <row>
             <entry>
-              <para
->&Home; </para>
+              <para>
+                <keycap
+>Home</keycap>
+              </para>
             </entry>
             <entry>
               <para
@@ -1870,8 +1962,10 @@
           </row>
           <row>
             <entry>
-              <para
->&End; </para>
+              <para>
+                <keycap
+>Fine</keycap>
+              </para>
             </entry>
             <entry>
               <para
@@ -1897,7 +1991,11 @@
           <row>
             <entry>
               <para
->Freccia &Up; e freccia &Down;</para>
+><keycap
+>Freccia su</keycap
+> e <keycap
+>freccia giù</keycap
+></para>
             </entry>
             <entry>
               <para
@@ -1922,7 +2020,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Up;</keycombo>
+>&Ctrl; <keycap
+>Freccia su</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1934,7 +2034,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Down;</keycombo>
+>&Ctrl; <keycap
+>Freccia giù</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1951,7 +2053,7 @@
             </entry>
             <entry>
               <para
->Inserisce il nome del file o della cartella attuale senza percorso nella posizione corrente nella riga di comando.</para>
+>Inserisce il nome del file / cartella attuale senza percorso nella posizione attuale nella riga di comando.</para>
             </entry>
           </row>
           <row>
@@ -1963,9 +2065,10 @@
             </entry>
             <entry>
               <para
->Inserisce il nome del file o della cartella attuale col percorso completo nella posizione corrente nella riga di comando.</para>
+>Inserisce il nome del file / cartella attuale col percorso completo nella posizione attuale nella riga di comando.</para>
             </entry>
           </row>
+          <!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
         </tbody>
       </tgroup>
     </informaltable>
@@ -2016,7 +2119,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Up;</keycombo>
+>&Ctrl; <keycap
+>Freccia su</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2028,7 +2133,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Down;</keycombo>
+>&Ctrl; <keycap
+>Freccia giù</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2054,7 +2161,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; &Ins;</keycombo>
+>&Shift; <keycap
+>Ins</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2062,6 +2171,8 @@
 >Incolla dagli appunti.</para>
             </entry>
           </row>
+
+          <!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
         </tbody>
       </tgroup>
     </informaltable>
@@ -2096,7 +2207,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Down;</keycombo>
+>&Alt; <keycap
+>Freccia giù</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2108,7 +2221,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Up;</keycombo>
+>&Alt; <keycap
+>Freccia su</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2120,7 +2235,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Left;</keycombo>
+>&Alt; <keycap
+>Freccia sinistra</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2132,7 +2249,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Right;</keycombo>
+>&Alt; <keycap
+>Freccia destra</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2230,7 +2349,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Meta; <keycap
+><keycap
+>Meta</keycap
+> <keycap
 >A</keycap
 > </keycombo>
               </para>
@@ -2244,7 +2365,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Meta; <keycap
+><keycap
+>Meta</keycap
+> <keycap
 >1</keycap
 > </keycombo>
               </para>
@@ -2258,7 +2381,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Meta; <keycap
+><keycap
+>Meta</keycap
+> <keycap
 >2</keycap
 > </keycombo>
               </para>
@@ -2272,7 +2397,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Meta; <keycap
+><keycap
+>Meta</keycap
+> <keycap
 >3</keycap
 > </keycombo>
               </para>
@@ -2286,7 +2413,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Meta; <keycap
+><keycap
+>Meta</keycap
+> <keycap
 >4</keycap
 > </keycombo>
               </para>
@@ -2300,7 +2429,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Meta; <keycap
+><keycap
+>Meta</keycap
+> <keycap
 >F5</keycap
 ></keycombo>
               </para>
@@ -2345,13 +2476,11 @@
       </listitem>
       <listitem>
         <para
->Modulo <menuchoice
-><guimenu
->Aspetto e comportamento comune</guimenu
-><guisubmenu
->Scorciatoie e gesti</guisubmenu
-></menuchoice
-> in &systemsettings; di &plasma;</para>
+>&systemsettings; -&gt; <guilabel
+>Aspetto e comportamento comune</guilabel
+> -&gt; <guilabel
+>Scorciatoie e gesti</guilabel
+></para>
       </listitem>
       <listitem>
         <para

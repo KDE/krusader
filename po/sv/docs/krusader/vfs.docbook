@@ -12,21 +12,19 @@
 >VFS</primary>
   </indexterm>
   <para
->En grundläggande <link linkend="features"
->funktion i ortodoxa filhanterare</link
-> är VFS, ett abstrakt lager över alla sorters arkiverad information (ZIP-filer, &FTP;-servrar, TAR-arkiv, &NFS;-filsystem, SAMBA delade kataloger, ISO cd/dvd-avbilder, RPM-kataloger, etc.), som gör det möjligt för användaren att transparent komma åt all information i dessa väsenskilda typer av filsystem, precis som att gå ner i en vanlig underkatalog. &krusader; stöder flera olika virtuella filsystem:</para>
+>En grundläggande <link linkend="features">funktion i ortodoxa filhanterare</link> är VFS, ett abstrakt lager över alla sorters arkiverad information (ZIP-filer, &FTP;-servrar, TAR-arkiv, NFS-filsystem, SAMBA delade kataloger, ISO cd/dvd-avbilder, RPM-kataloger, etc.), som gör det möjligt för användaren att transparent komma åt all information i dessa väsenskilda typer av filsystem, precis som att gå ner i en vanlig underkatalog. &krusader; stöder flera olika virtuella filsystem:</para>
   <itemizedlist>
     <listitem>
       <para
 ><link linkend="remote-connections"
->VFS för fjärranslutning</link
->: Tillhandahåller möjlighet att arbeta med en fjärransluten session (&FTP;, &NFS;, Samba, FISH, SFTP) precis som med lokala filsystem. Det är perfekt för komplexa fjärroperationer, och nästan lika kraftfullt som de flesta fristående grafiska fjärranslutningsprogram.</para>
+>Remote connections VFS</link
+>: provides the capability of working with a remote connection session (&FTP;, &NFS;, Samba, FISH, SFTP) like with local filesystems. It is perfect for complex remote operations and almost as powerful as most standalone &GUI; remote clients.</para>
     </listitem>
     <listitem>
       <para
 ><link linkend="archives"
->VFS för arkiv</link
->: Gör det möjligt att bläddra i arkiv med VFS som om de var kataloger (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip och 7-zip).</para>
+>Archive VFS</link
+>: allows to browse archives in VFS as it was a folder (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip).</para>
     </listitem>
     <listitem>
       <para
@@ -44,27 +42,29 @@
     </listitem>
   </itemizedlist>
   <para
->Åtgärder du utför med filer i VFS utförs med de 'riktiga' filerna. Du tar inte bara bort filer från VFS, du tar bort dem från hårddisken. Begränsningar: Du kan inte skapa kataloger inne i ett VFS.</para>
+>Actions you perform on the files in VFS are performed on the 'real' files. You do not just delete files from the VFS - you delete them from your hard drive. Limitations: you cannot create folders inside a VFS.</para>
   <para
->Det är möjligt att behålla katalogstrukturen när en kopia från en virtuell katalog till en icke-virtuell katalog görs, genom att markera kryssrutan "Behåll virtuell katalogstruktur" i kopieringsdialogrutan. Föreställ dig följande virtuella katalog: <screen
+>It is possible to keep the folder structure when doing a copy from a virtual folder to a non virtual folder, by selecting the <quote
+>Keep virtual folder structure</quote
+> check box of the copy dialog. Imagine the following virtual folder: <screen
 ><prompt
 >$</prompt
 > <userinput
->file:/home/min_hemkatalog/min_kat1/min_fil1</userinput
+>file:/home/myhome/mydir1/myfile1</userinput
 ></screen
 > <screen
 ><prompt
 >$</prompt
 > <userinput
->file:/home/min_hemkatalog/min_kat1/min_fil2</userinput
+>file:/home/myhome/mydir1/myfile2</userinput
 ></screen
 > <screen
 ><prompt
 >$</prompt
 > <userinput
->file:/home/min_hemkatalog/min_kat2/min_fil3</userinput
+>file:/home/myhome/mydir2/myfile3</userinput
 ></screen
-> Utför därefter följande steg:</para>
+> Then do the following steps:</para>
   <itemizedlist>
     <listitem>
       <para
@@ -82,8 +82,8 @@
     </listitem>
     <listitem>
       <para
->Markera <guilabel
->Behåll virtuell katalogstruktur</guilabel
+>Check <guilabel
+>Keep virtual folder structure</guilabel
 ></para>
     </listitem>
     <listitem>

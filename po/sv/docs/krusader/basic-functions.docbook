@@ -81,15 +81,11 @@
         </listitem>
         <listitem>
           <para
-><keycombo action="simul"
->&Ctrl; <keycap
->Neråtpil</keycap
-></keycombo
-> tar dig från den aktiva panelen till kommandoraden eller terminalemulatorn, och <keycombo action="simul"
->&Ctrl; <keycap
->Uppåtpil</keycap
-></keycombo
-> tar dig tillbaka från kommandoraden till den aktiva panelen.</para>
+>The <keycombo action="simul"
+>&Ctrl; &Down;</keycombo
+> will take you from the Active Panel to the Command Line or Terminal Emulator, and the <keycombo action="simul"
+>&Ctrl; &Up;</keycombo
+> will take you back from the Command Line to the Active Panel.</para>
         </listitem>
         <listitem>
           <para
@@ -103,13 +99,13 @@
         </listitem>
         <listitem>
           <para
->Att trycka på <keycombo action="simul"
+>Pressing <keycombo action="simul"
 >&Alt; <keycap
->Understruken bokstav</keycap
+>Underlined Letter</keycap
 ></keycombo
-> i menyraden öppnar den menyn (om inte tangentkombinationen är en <quote
->reserverad tangent</quote
->, använd av en av &krusader;s åtgärder).</para>
+> from the Menu Bar will open that menu (unless this key combination is a <quote
+>Reserved Key</quote
+>, used by one of &krusader;'s actions).</para>
         </listitem>
       </itemizedlist
 ></para>
@@ -126,18 +122,14 @@
 >. Bara &krusader;s markeringsläge förklaras här.</para>
       </note>
       <para
->Att markera är en färdighet du måste behärska för att kunna få ut så mycket som möjligt av &krusader;. Eftersom trädpanelen bara låter dig markera en katalog åt gången, förklarar det här stycket i huvudsak hur man markerar filer i listpanelen.</para>
+>Selecting is a skill you need to master in order to get the most out of &krusader;. Since the Tree Panel allows select only one folder at a time, this paragraph mainly explains how to select files in the List Panel.</para>
       <para
->Att flytta markören är enkelt. Vänsterklick på en fil eller katalog (som här kallas <quote
->element</quote
->, vilket betyder filer och kataloger) markerar den. Här är några användbara anvisningar som gör &krusader; ännu lättare att använda (under förutsättning att du använder &krusader;s musmarkeringsläge): <itemizedlist>
+>Moving the cursor is easy. Left-clicking on a file or folder (referred to herein as <quote
+>elements</quote
+> meaning files and folders) will select it. Here are some useful pointers that will make &krusader; even easier to use (assuming you are using &krusader;'s Mouse Selection Mode): <itemizedlist>
         <listitem>
           <para
-><keycap
->Mellanslag</keycap
->- och <keycap
->Insert</keycap
->-tangenterna ändrar markering för filen under markören utan att påverkar markeringen av andra filer eller kataloger, och markören går neråt ett steg.</para>
+>The &Space; and &Ins; keys will toggle the selection of the file under the cursor without affecting the selection of other files/folders, the cursor will go one position down.</para>
         </listitem>
         <listitem>
           <para
@@ -149,9 +141,9 @@
           <para
 ><keycombo action="simul"
 >&Ctrl; <keycap
->Vänsterklick</keycap
+>Left Clicking</keycap
 ></keycombo
-> ändrar markeringen för filen under markören utan att påverka markeringen av andra filer eller kataloger.</para>
+> will toggle the selection of the file under the cursor without affecting the selection of other files/folders.</para>
         </listitem>
         <listitem>
           <para
@@ -164,24 +156,20 @@
         <listitem>
           <para
 ><keycombo action="simul"
->&Shift; <keycap
->Home</keycap
-></keycombo
-> markerar allting ovanför markören (och avmarkerar allting under markören, om markerat).</para>
+>&Shift;&Home;</keycombo
+> selects everything above the cursor (and deselects everything below the cursor, if selected).</para>
         </listitem>
         <listitem>
           <para
 ><keycombo action="simul"
->&Shift; <keycap
->End</keycap
-></keycombo
-> markerar allting under markören (och avmarkerar allting ovanför markören, om markerat).</para>
+>&Shift;&End;</keycombo
+> selects everything below the cursor (and unselects everything above the cursor, if selected).</para>
         </listitem>
         <listitem>
           <para
->Posten <quote
+>The <quote
 >..</quote
-> går inte att markera.</para>
+> entry is not selectable.</para>
         </listitem>
         <listitem>
           <para
@@ -196,10 +184,10 @@
       <title
 >Köra kommandon</title>
       <para
->Det finns inte så mycket att säga här, allt du behöver göra är att markera några filer (om du inte gör det, utför &krusader; åtgärden för de filer eller kataloger som har fokus), välja ett <link linkend="menu-commands"
->kommando</link
-> i menyraden eller använda snabbtangenten (eller högerklickmenyn) så utförs det valda kommandot. Se också <link linkend="executing_files"
->Köra filer</link
+>There is not a lot to say here, all you need to do is select some files (if you do not, &krusader; will operate on the file(s) or folder(s) that have the focus), choose a <link linkend="menu-commands"
+>Command</link
+> from the Menu Bar or use a Keyboard Shortcut (or the Right Click Menu) and the selected Command executes. See also <link linkend="executing_files"
+>Executing Files</link
 >.</para>
     </sect2>
     <sect2 id="quicksearch">
@@ -209,21 +197,7 @@
       <para
 >Den här funktionen gör en snabbsökning efter filnamnet i den aktiva listpanelen.</para>
       <para
->Skriv <keycap
->X</keycap
-> (ett tecken) för att göra en snabbsökning i den aktiva listpanelen efter en fil som börjar med <quote
->X</quote
->. En liten dialogruta för snabbsökning öppnas under den aktiva listpanelen. Skriv in några av de första tecknen i önskat filnamn, så går markören till det filnamnet (om det finns), skriv t.ex. <quote
->ab</quote
-> för att söka efter en fil som börjar med <quote
->ab</quote
->. <keycap
->Uppåtpil/Neråtpil</keycap
-> går till nästa eller föregående träff. <keycap
->Esc</keycap
-> stänger snabbsökraden. Markören förblir på filen som senast hittades. Snabbsökningen stöder <ulink url="https://sv.wikipedia.org/wiki/Reguljära_uttryck"
->reguljära uttryck</ulink
-> för att söka i filer.</para>
+>Skriv <keycap>X</keycap> (ett tecken) för att göra en snabbsökning i den aktiva listpanelen efter en fil som börjar med "X". En liten dialogruta för snabbsökning öppnas under den aktiva listpanelen. Skriv in några av de första tecknen i önskat filnamn, så går markören till det filnamnet (om det finns), skriv t.ex. "ab" för att söka efter en fil som börjar med "ab". <keycap>Uppåtpil/Neråtpil</keycap> går till nästa eller föregående träff. <keycap>Esc</keycap> stänger snabbsökraden. Markören förblir på filen som senast hittades. Snabbsökningen stöder <ulink url="https://sv.wikipedia.org/wiki/Reguljära_uttryck">reguljära uttryck</ulink> för att söka i filer.</para>
       <note>
         <para
 >Om du trycker på <keycombo action="simul"
@@ -251,21 +225,7 @@
       <para
 >Den här funktionen gör en snabb filtrering av fillistan i den aktiva panelen.</para>
       <para
->Tryck på <keycombo
->&Ctrl;<keycap
->I</keycap
-></keycombo
-> för att öppna snabbfilterraden. Skriv <keycap
->x</keycap
-> (ett tecken) för att filtrera bort alla filer som inte har <quote
->x</quote
-> i sina namn från den aktiva panelen. Man kan använda jokertecken i filtreringen, använd t.ex. a*b för att filtrera filer som har <quote
->a</quote
-> följt av <quote
->b</quote
-> i sina namn. Snabbfiltret följer <link linkend="konfig-panel-general"
->inställningen av skiftlägeskänslighet</link
-> i snabbsökningen.</para>
+>Skriv <keycap>X</keycap> (ett tecken) för att göra en snabbsökning i den aktiva listpanelen efter en fil som börjar med "X". En liten dialogruta för snabbsökning öppnas under den aktiva listpanelen. Skriv in några av de första tecknen i önskat filnamn, så går markören till det filnamnet (om det finns), skriv t.ex. "ab" för att söka efter en fil som börjar med "ab". <keycap>Uppåtpil/Neråtpil</keycap> går till nästa eller föregående träff. <keycap>Esc</keycap> stänger snabbsökraden. Markören förblir på filen som senast hittades. Snabbsökningen stöder <ulink url="https://sv.wikipedia.org/wiki/Reguljära_uttryck">reguljära uttryck</ulink> för att söka i filer.</para>
       <para
 >Att klicka på returtangenten i snabbfilterläge ger fokus till panelen, när panelen eller snabbfiltret har fokus. Esc stänger snabbfiltret. </para>
       <para
@@ -285,23 +245,7 @@
       <para
 >Den här funktionen gör en snabbmarkering av fillistan i den aktiva panelen.</para>
       <para
->Tryck på <keycombo
->&Ctrl;&Shift;<keycap
->S</keycap
-></keycombo
-> för att öppna snabbmarkeringsraden. Skriv <keycap
->x</keycap
-> (ett tecken) för att filtrera bort alla filer som inte har <quote
->x</quote
-> i sina namn från den aktiva panelen. Man kan använda jokertecken i filtreringen, använd t.ex. <quote
->a*b</quote
-> för att filtrera filer som har <quote
->a</quote
-> följt av <quote
->b</quote
-> i sina namn. Snabbmarkering följer <link linkend="konfig-panel-general"
->inställningen av skiftlägeskänslighet</link
-> i snabbsökningen.</para>
+>Tryck på <keycombo>&Ctrl;<keycap>I</keycap></keycombo> för att öppna snabbfilterraden. Skriv <keycap>x</keycap> (ett tecken) för att filtrera bort alla filer som inte har "x" i sina namn från den aktiva panelen. Man kan använda jokertecken i filtreringen, använd t.ex. a*b för att filtrera filer som har "a" följt av "b" i sina namn. Snabbfiltret följer <link linkend="konfig-panel-general">inställningen av skiftlägeskänslighet</link> i snabbsökningen.</para>
       <para
 >Att klicka på returtangenten i snabbmarkeringsläge ger fokus till panelen, när panelen eller snabbmarkeringen har fokus. Esc stänger snabbmarkering. </para>
       <para
@@ -331,8 +275,8 @@
         <listitem>
           <para
 ><link linkend="list_panel"
->Listpanel</link
-> på en fil eller katalog</para>
+>List Panel</link
+> on a file or folder</para>
         </listitem>
         <listitem>
           <para
@@ -371,8 +315,8 @@
         <listitem>
           <para
 ><link linkend="synchronizer"
->Synkronisera kataloger</link
-> Fillista</para>
+>Synchronize Folders</link
+> File List</para>
         </listitem>
         <listitem>
           <para
@@ -435,11 +379,11 @@
         </mediaobject>
       </figure>
       <para
->För att kopiera eller flytta filer och kataloger, markera dem bara och tryck på <keycap
+>To copy or move files/folders just select them and press <keycap
 >F5</keycap
-> för att kopiera eller <keycap
+> to copy or <keycap
 >F6</keycap
-> för att flytta dem. &krusader; försöker bevara ändringstiden. När en katalog kopieras ändras ägare till användaren som kopierar filen, och grupp ändras till användarens standardgrupp. När en fil kopieras ändras ägare till användaren som kopierar filen, grupp ändras till användarens standardgrupp och rättigheter bevaras. Ägare, grupp och rättigheter bevaras när en fil eller katalog flyttas. När filer och kataloger kopieras eller flyttas visas en dialogruta som låter dig välja åtgärdens mål. Standardmålet är katalogen som har bläddrats till i den andra panelen. Om du skriver in en partiell webbadress, använder &krusader; den aktuella panelens katalog som webbadressens bas.</para>
+> to move them. &krusader; tries to preserve the time of modification. When copying a folder owner is changed to the user which copies the folder, group is changed to the default group of the user. When copying a file owner is changed to the user which copies the file, group is changed to default group of the user, and permissions are preserved. The owner, the group and the permissions are preserved when moving file or folder. When copying or moving files/folders a dialog appears and allows you to choose the operation destination. The default destination is the other-panel browsed folder. If you enter a partial &URL;, &krusader; will use the current panel folder as the &URL; base.</para>
     </sect2>
     <sect2 id="queue">
       <title
@@ -472,77 +416,75 @@
       <title
 >Borttagning - flytta till &plasma;s papperskorg</title>
       <para
->Att ta bort filer eller kataloger görs genom att markera dem och trycka på <keycap
+>Deleting files/folders is done by selecting them and pressing <keycap
 >F8</keycap
-> eller <keycap
+> or <keycap
 >Delete</keycap
->. <link linkend="konfig-general"
->Normalt</link
-> flyttas de till &plasma;s papperskorg. Du kan öppna &plasma;s papperskorg med papperskorgsikonen på <link linkend="main_toolbar"
->huvudverktygsraden</link
-> eller med I/O-slaven <filename
+>. By <link linkend="konfig-general"
+>default</link
+> it will be moved to &plasma; Trash. You can open the &plasma; Trash with the Trash icon in the <link linkend="main_toolbar"
+>Main Toolbar</link
+> or with the <filename
 >trash:/</filename
->. Fysiskt är &plasma;s papperskorg placerad i <filename
+> KIO slave. Physically &plasma; Trash is located in <filename
 >~/.local/share/Trash/</filename
-> eller i <filename
+> or <filename
 >Trash</filename
-> i underkatalogen i användarens hemkatalog som kan bestämmas genom att använda kommandot <userinput
+> in the subfolder in user home folder which can be determined using the <userinput
 >qtpaths --paths GenericDataLocation</userinput
->. <keycombo action="simul"
+> command. <keycombo action="simul"
 >&Ctrl; <keycap
 >Delete</keycap
 ></keycombo
-> tar bort filen permanent. En dialogruta ber dig att bekräfta det, och varnar dig om du tar bort kataloger som inte är tomma. Naturligtvis utförs bara åtgärder som du har tillåtelse att göra av operativsystemet, annars blir du underrättad. Om du inte vill se bekräftelsedialogrutorna, kan du inaktivera dem på <link linkend="konfig-advanced"
->sidan Avancerat  i Konfigurator</link
->. Om du ställer in att ta bort filer permanent på <link linkend="konfig-general"
->sidan Allmänt i Konfigurator</link
->, tar <keycap
+> will delete the file permanently. A dialog will ask for your confirmation and will warn you when deleting non-empty folders. Of course only operations that are permitted to do by the Operating System will be performed - you will be notified otherwise. If you do not wish to see the confirmation dialogs, you can disable them in the <link linkend="konfig-advanced"
+>Konfigurator advanced page</link
+>. If you set to delete permanently files in the <link linkend="konfig-general"
+>Konfigurator general page</link
+>, <keycap
 >F8</keycap
-> eller <keycap
+> or <keycap
 >Delete</keycap
-> permanent bort filer, medan <keycombo action="simul"
+> will permanently delete files, while <keycombo action="simul"
 >&Ctrl; <keycap
 >Delete</keycap
 ></keycombo
-> flyttar dem till &plasma;s papperskorg.</para>
+> will move them to &plasma; Trash.</para>
     </sect2>
     <sect2 id="shred">
       <title
 >Förstöra filer</title>
       <para
->Förstör togs bort från &kde; 4 (och följaktligen från &krusader;-2 för &kde; 4). Huvudorsaken är troligen att förstöra beror på filsystemet och även om du skriver över filen 100 gånger, är det inte säkert att den slutligen tas bort från disken. Ett citat från inlägg för <application
->Kgpg</application
->: <quote
->Funktionen förstör har tagits bort från KDE:s bibliotek. Kgpg kommer inte att stödja funktionen längre. Moderna filsystem använder journalhantering. Alltså måste funktionen implementeras i filsystemet, inte i Kgpg.</quote
-> Dock kan du använda en riktig <link linkend="useractions"
->användaråtgärd</link
-> som förstör med ditt filsystem. Kom dock ihåg att om du vill vara 100 % säker på att det är omöjligt att någon kan läsa en borttagen fil, måste du förstöra hårddiskens hårdvara... </para>
+>Shred was removed from &kde; 4 (and as consequence &krusader;-2 for &kde; 4). The main reason is probably that shredding is filesystem dependent and even if you overwrite the file 100 times, it is not sure, that it will be deleted from the disk finally. Quote from the &kgpg; posts: <quote
+>The shred feature has been removed from the &kde; library. &kgpg; will not support this feature anymore. Moderns file systems use journalisation. So the shred feature should be implemented in the file system. Not in &kgpg;.</quote
+> But you might use a proper shred <link linkend="useractions"
+>UserAction</link
+> for your filesystem. But keep in mind that if you want to be 100% sure that it is impossible that someone can read a deleted file, you need to destroy your harddrive hardware... </para>
     </sect2>
     <sect2 id="renaming">
       <title
 >Byta namn på filer, skapa kataloger och länkhantering</title>
       <para
->Byt namn på filen under markören med tangenten <keycap
+>Rename the file under the cursor with the <keycap
 >F2</keycap
-> eller med två enkla musklick. Om bara filnamnet behöver bytas, och inte filändelsen, kan du ställa in det på sidan <link linkend="konfig-general-atomic"
->Allmänt</link
-> i Konfigurator. <guilabel
->Skapa en ny katalog</guilabel
-> med tangenten <keycap
+> key or with two single mouse clicks. If only the file name needs to be renamed and not the extension, you can configure this in the <link linkend="konfig-general-atomic"
+>Konfigurator General page</link
+>. <guilabel
+>Create a new folder</guilabel
+> with the <keycap
 >F7</keycap
->. Högerklick på en vanlig fil ger dig alternativet <menuchoice
+> key. Right-clicking on a regular file will give you the option <menuchoice
 ><guisubmenu
->Länkhantering</guisubmenu
+>Link Handling</guisubmenu
 > <guimenuitem
->Ny symbolisk länk...</guimenuitem
+>New Symlink...</guimenuitem
 ></menuchoice
->. En dialogruta ber dig skriva in den symboliska länkens namn. Namnet pekar på filen eller katalogen som du högerklickade på. Om filen du högerklickade på är en symbolisk länk, får du också alternativet <menuchoice
+>. A dialog will prompt you to enter a symlink name. That symlink will point to the file/folder you right-clicked on. If the file you right-clicked on is a symlink, you will also be presented with the <menuchoice
 ><guisubmenu
->Länkhantering</guisubmenu
+>Link Handling</guisubmenu
 > <guimenuitem
->Omdirigera länk</guimenuitem
+>Redirect Link</guimenuitem
 ></menuchoice
->, som låter dig ändra länkens mål.</para>
+> option that will allow you to change the link target.</para>
     </sect2>
     <sect2 id="viewing">
       <title

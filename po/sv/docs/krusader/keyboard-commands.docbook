@@ -23,41 +23,7 @@
 >snabbtangentprofiler</link
 > för att enkelt byta till andra inställningar av snabbtangenter, t.ex. från andra filhanterare, och du kan också skapa dina egna snabbtangenter.</para>
     <para
->Efter att ha startat &krusader;, kan användningen av tangentbordet börja. Använd <keycombo action="simul"
->&Ctrl;<keycap
->L</keycap
-></keycombo
-> för att gå till <link linkend="list_panel"
->platsraden</link
-> där du kan skriva in önskad katalog. Efter <keycombo action="simul"
->&Ctrl;<keycap
->Neråtpil</keycap
-></keycombo
-> är du i <link linkend="termemu"
->terminalemulatorn</link
-> och du kan skriva vilket kommando du önskar, under förutsättning att <link linkend="konfig-startup"
->terminalen visas</link
->. Använd <keycombo action="simul"
->&Ctrl;<keycap
->Uppåtpil</keycap
-></keycombo
-> för att gå tillbaka till den aktiva panelen. Om du vill gå till en fil eller katalog som börjar med <literal
->f</literal
->, tryck helt enkelt <keycap
->f</keycap
-> på tangentbordet för att använda <link linkend="quicksearch"
->sökraden</link
->. Använd returtangenten för att köra filen eller öppna en katalog som har fokus. Tänk på att komma ihåg funktionstangenterna: <keycap
->F3</keycap
-> för att granska, <keycap
->F4</keycap
-> för att redigera, <keycap
->F5</keycap
-> för att kopiera, <keycombo action="simul"
->&Alt;&Shift;<keycap
->U</keycap
-></keycombo
-> för att packa upp, etc.</para>
+>Efter att ha startat &krusader;, kan användningen av tangentbordet börja. Använd <keycombo action="simul">&Ctrl;<keycap>L</keycap></keycombo> för att gå till <link linkend="list_panel">platsraden</link> där du kan skriva in önskad katalog. Efter <keycombo action="simul">&Ctrl;<keycap>Neråtpil</keycap></keycombo> är du i <link linkend="termemu">terminalemulatorn</link> och du kan skriva vilket kommando du önskar. Använd <keycombo action="simul">&Ctrl;<keycap>Uppåtpil</keycap></keycombo> för att gå tillbaka till den aktiva panelen. Om du vill gå till en fil eller katalog som börjar med <literal>f</literal>, tryck helt enkelt <keycap>f</keycap> på tangentbordet för att använda <link linkend="quicksearch">sökraden</link>. Använd returtangenten för att köra filen eller öppna en katalog som har fokus. Tänk på att komma ihåg funktionstangenterna: <keycap>F3</keycap> för att granska, <keycap>F4</keycap> för att redigera, <keycap>F5</keycap> för att kopiera, <keycombo action="simul">&Alt;&Shift;<keycap>U</keycap></keycombo> för att packa upp, etc.</para>
     <para
 >Du kan också utföra flera åtgärder med <link linkend="folder-tabs"
 >katalogflikar</link
@@ -81,13 +47,7 @@
 >Tangentbord</secondary>
     </indexterm>
     <para
->De flesta snabbtangenterna (genvägarna) går att ställa in med menyn <menuchoice
-> <guimenu
->Inställningar</guimenu
-> <guimenuitem
->Anpassa genvägar...</guimenuitem
-> </menuchoice
->, om du vill använda andra snabbtangenter än de förinställda. Du kan till och med ställa in flera åtgärder för en snabbtangent (för åtgärder som inte har en förinställd snabbtangent). Observera att vissa snabbtangenter hör inte till &krusader; (t.ex. &plasma;s snabbtangenter). Snabbtangenterna som är förinställda i &krusader; listas nedan.</para>
+>De flesta snabbtangenterna (genvägarna) går att ställa in med menyn <menuchoice> <guimenu>Inställningar</guimenu> <guimenuitem>Anpassa genvägar</guimenuitem> </menuchoice>, om du vill använda andra snabbtangenter än de förinställda. Du kan till och med ställa in flera åtgärder för en snabbtangent (för åtgärder som inte har en förinställd snabbtangent). Observera att vissa snabbtangenter hör inte till &krusader; (t.ex. &plasma;s snabbtangenter). Snabbtangenterna som är förinställda i &krusader; listas nedan.</para>
 
     <!-- FN keys -->
     <para>
@@ -193,7 +153,7 @@
             <entry>
               <para>
                 <link linkend="basic"
->Skapa en ny katalog.</link>
+>Create a new folder.</link>
               </para>
             </entry>
           </row>
@@ -400,9 +360,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift;<keycap
->Vänsterpil</keycap
-></keycombo>
+>&Shift; &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -416,9 +374,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; <keycap
->Högerpil</keycap
-></keycombo>
+>&Shift; &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -539,14 +495,12 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Home</keycap
-></keycombo>
+>&Alt; &Home;</keycombo>
               </para>
             </entry>
             <entry>
               <para
->Hem.</para>
+>Home.</para>
             </entry>
           </row>
           <row>
@@ -569,9 +523,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Vänsterpil</keycap
-></keycombo>
+>&Alt; &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -585,9 +537,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Högerpil</keycap
-></keycombo>
+>&Alt; &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -601,9 +551,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Neråtpil</keycap
-></keycombo>
+>&Alt; &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -667,7 +615,7 @@
             <entry>
               <para
 ><link linkend="compare-dir"
->Jämför kataloger</link
+>Compare Folders</link
 ></para>
             </entry>
           </row
@@ -748,8 +696,8 @@
             <entry>
               <para>
                 <link linkend="panel_toolbar"
->Synkronisera paneler, alias <quote
->likhetsteckenknappen (=)</quote
+>Sync panels aka <quote
+>Equals Button (=)</quote
 >.</link>
               </para>
             </entry>
@@ -1003,7 +951,7 @@
             </entry>
             <entry>
               <para
->Visa dialogruta för att välja katalog att öppna i panelen.</para>
+>Select folder dialog to open this folder in the panel.</para>
             </entry>
           </row>
           <row>
@@ -1112,7 +1060,7 @@
             <entry>
               <para
 ><link linkend="synchronizer"
->Synkronisera kataloger</link
+>Synchronize Folders</link
 >.</para>
             </entry>
           </row>
@@ -1128,7 +1076,7 @@
             <entry>
               <para>
                 <link linkend="bookman"
->Populära webbadresser.</link>
+>Popular &URL;s.</link>
               </para>
             </entry>
           </row>
@@ -1184,9 +1132,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;<keycap
->Neråtpil</keycap
-></keycombo>
+>&Ctrl; &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1200,9 +1146,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;<keycap
->Uppåtpil</keycap
-></keycombo>
+>&Ctrl; &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1216,9 +1160,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;<keycap
->Uppåtpil</keycap
-></keycombo>
+>&Ctrl; &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1232,54 +1174,44 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;<keycap
->Home</keycap
-></keycombo>
+>&Ctrl; &Home;</keycombo>
               </para>
             </entry>
             <entry>
               <para
->Gå till hemkatalogen.</para>
+>Jump to the Home folder.</para>
             </entry>
           </row>
           <row>
             <entry>
               <para
 ><keycombo action="simul"
->&Ctrl; <keycap
->Vänsterpil</keycap
-></keycombo
-> eller <keycombo
-><keycap
->Högerpil</keycap
-> </keycombo
+>&Ctrl; &Left;</keycombo
+> or <keycombo
+> &Right; </keycombo
 ></para>
             </entry>
             <entry>
               <para
->Fokusera på en fil eller katalog i vänstra panelen, tryck på <keycombo action="simul"
->&Ctrl; <keycap
->Vänsterpil</keycap
-></keycombo
-> så ändras den högra <link linkend="panels"
->panelen</link
->: <itemizedlist
+>Focus a file or folder on the left panel, press <keycombo action="simul"
+>&Ctrl; &Left;</keycombo
+> and the right <link linkend="panels"
+>panel</link
+> changes: <itemizedlist
 > <listitem
 > <para
->På en fil: den högra panelen får samma sökväg som den vänstra <link linkend="panels"
->panelen</link
+>on a file: the right panel gets the same path as the left <link linkend="panels"
+>panel</link
 >.</para
 > </listitem
 > <listitem
 > <para
->På en katalog: Uppdaterar den högra panelen med innehållet i katalogen.</para
+>on a folder: refreshes the right panel with the contents of the folder.</para
 > </listitem
 > </itemizedlist
->För den högra panelen: Tryck på <keycombo action="simul"
->&Ctrl; <keycap
->Högerpil</keycap
-></keycombo
-> så ändras den vänstra panelen.</para>
+>For the right panel: press <keycombo action="simul"
+>&Ctrl; &Right;</keycombo
+> and the left panel will change.</para>
             </entry>
           </row>
           <row>
@@ -1293,21 +1225,19 @@
             </entry>
             <entry>
               <para
->Gå till rotkatalogen.</para>
+>Jump to the Root folder.</para>
             </entry>
           </row>
           <row>
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;<keycap
->Page Up</keycap
-></keycombo>
+>&Ctrl; &PgUp;</keycombo>
               </para>
             </entry>
             <entry>
               <para
->Upp en katalog.</para>
+>Up one folder.</para>
             </entry>
           </row>
 	  <row>
@@ -1321,7 +1251,7 @@
             </entry>
             <entry>
               <para
->Gå till katalogen från den andra panelen.</para>
+>Go to the folder from other panel.</para>
             </entry>
           </row>
 	  <row>
@@ -1451,9 +1381,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Vänsterpil</keycap
-></keycombo>
+>&Ctrl;&Shift; &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1467,9 +1395,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Högerpil</keycap
-></keycombo>
+>&Ctrl;&Shift; &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1483,9 +1409,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Uppåtpil</keycap
-></keycombo>
+>&Ctrl;&Shift; &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1499,9 +1423,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Neråtpil</keycap
-></keycombo>
+>&Ctrl;&Shift; &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1515,28 +1437,24 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Page Up</keycap
-></keycombo>
+>&Ctrl;&Shift; &PgUp;</keycombo>
               </para>
             </entry>
             <entry>
               <para
->Flytta aktuell flik åt vänster.</para>
+>Move current tab to the left.</para>
             </entry>
           </row>
           <row>
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Page Down</keycap
-></keycombo>
+>&Ctrl;&Shift; &PgDn;</keycombo>
               </para>
             </entry>
             <entry>
               <para
->Flytta aktuell flik åt höger.</para>
+>Move current tab to the right.</para>
             </entry>
           </row>
         </tbody>
@@ -1630,9 +1548,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Alt; <keycap
->Vänsterpil</keycap
-></keycombo>
+>&Ctrl;&Alt; &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1646,9 +1562,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Alt; <keycap
->Högerpil</keycap
-></keycombo>
+>&Ctrl;&Alt; &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1733,14 +1647,12 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;<keycap
->Page Down</keycap
-></keycombo>
+>&Ctrl; &PgDn;</keycombo>
               </para>
             </entry>
             <entry>
               <para
->Gå till den lägre delen av aktuell katalog.</para>
+>Move to the lower part in the current folder.</para>
             </entry>
           </row>
           <row>
@@ -1803,9 +1715,7 @@
           <row>
             <entry>
               <para
-><keycap
->Tabulator</keycap
-></para>
+>Tabulator</para>
             </entry>
             <entry>
               <para>
@@ -1817,9 +1727,7 @@
           <row>
             <entry>
               <para
-><keycap
->Retur</keycap
-></para>
+>Retur</para>
             </entry>
             <entry>
               <para
@@ -1828,16 +1736,14 @@
 > Öppna eller kör filen</para>
               <para
 ><link linkend="browsing-archives"
->På en arkivfil:</link
-> Bläddra i arkivet som om det var en katalog.</para>
+>On an archive file:</link
+> browse the archive as if it was a folder.</para>
             </entry>
           </row>
           <row>
             <entry>
               <para
-><keycap
->Esc</keycap
-></para>
+>Esc</para>
             </entry>
             <entry>
               <para>
@@ -1872,22 +1778,20 @@
             <entry>
               <para>
                 <link linkend="basic"
->Alternativ borttagning.</link>
+>Alternate delete.</link>
               </para>
             </entry>
           </row>
           <row>
             <entry>
               <para
-><keycap
->Mellanslag</keycap
-> </para>
+>&Space; </para>
             </entry>
             <entry>
               <para
-><link linkend="calculate"
->På en fil:</link
-> Ändra markering för filen en position ner, utan att påverka markeringen av andra filer och kataloger.</para>
+><link linkend="selecting-files"
+>On a file:</link
+> toggle the selection of the file down one position without affecting the selection of other files/folders.</para>
             </entry>
           </row>
           <row>
@@ -1899,23 +1803,19 @@
             </entry>
             <entry>
               <para
->En katalog upp.</para>
+>One folder up.</para>
             </entry>
           </row>
           <row>
             <entry>
               <para
-><keycap
->Insert</keycap
-> </para>
+>&Ins; </para>
             </entry>
             <entry>
               <para
->Gör samma sak som <keycap
->mellanslag</keycap
-> <link linkend="selecting-files"
->och går ner en position för att växla nästa fil</link
->.</para>
+>Does the same as the &Space; key <link linkend="selecting-files"
+>and goes down one position to toggle the next file.</link
+></para>
             </entry>
           </row>
           <row>
@@ -1933,9 +1833,7 @@
           <row>
             <entry>
               <para
-><keycap
->Home</keycap
-> </para>
+>&Home; </para>
             </entry>
             <entry>
               <para
@@ -1945,9 +1843,7 @@
           <row>
             <entry>
               <para
-><keycap
->End</keycap
-> </para>
+>&End; </para>
             </entry>
             <entry>
               <para
@@ -1973,11 +1869,7 @@
           <row>
             <entry>
               <para
-><keycap
->Uppåtpil</keycap
-> och <keycap
->Neråtpil</keycap
-></para>
+>&Up; arrow and &Down; arrow</para>
             </entry>
             <entry>
               <para
@@ -2002,9 +1894,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;<keycap
->Uppåtpil</keycap
-></keycombo>
+>&Ctrl; &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2016,9 +1906,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;<keycap
->Neråtpil</keycap
-></keycombo>
+>&Ctrl; &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2037,7 +1925,7 @@
             </entry>
             <entry>
               <para
->Infoga aktuellt fil- eller katalognamn utan sökväg på nuvarande position i kommandoraden.</para>
+>Insert current file / folder name without path to current command line position.</para>
             </entry>
           </row>
           <row>
@@ -2051,7 +1939,7 @@
             </entry>
             <entry>
               <para
->Infoga aktuellt fil- eller katalognamn med fullständig sökväg på nuvarande position i kommandoraden.</para>
+>Insert current file / folder with full path name to current command line position.</para>
             </entry>
           </row>
         </tbody>
@@ -2104,9 +1992,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;<keycap
->Uppåtpil</keycap
-></keycombo>
+>&Ctrl; &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2118,9 +2004,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;<keycap
->Neråtpil</keycap
-></keycombo>
+>&Ctrl; &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2146,9 +2030,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; <keycap
->Insert</keycap
-></keycombo>
+>&Shift; &Ins;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2190,9 +2072,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Neråtpil</keycap
-></keycombo>
+>&Alt; &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2204,9 +2084,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Uppåtpil</keycap
-></keycombo>
+>&Alt; &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2218,9 +2096,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Vänsterpil</keycap
-></keycombo>
+>&Alt; &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2232,9 +2108,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Högerpil</keycap
-></keycombo>
+>&Alt; &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2332,9 +2206,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
-><keycap
->Meta</keycap
-> <keycap
+>&Meta; <keycap
 >A</keycap
 > </keycombo>
               </para>
@@ -2348,9 +2220,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
-><keycap
->Meta</keycap
-> <keycap
+>&Meta; <keycap
 >1</keycap
 > </keycombo>
               </para>
@@ -2364,9 +2234,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
-><keycap
->Meta</keycap
-> <keycap
+>&Meta; <keycap
 >2</keycap
 > </keycombo>
               </para>
@@ -2380,9 +2248,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
-><keycap
->Meta</keycap
-> <keycap
+>&Meta; <keycap
 >3</keycap
 > </keycombo>
               </para>
@@ -2396,9 +2262,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
-><keycap
->Meta</keycap
-> <keycap
+>&Meta; <keycap
 >4</keycap
 > </keycombo>
               </para>
@@ -2412,9 +2276,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
-><keycap
->Meta</keycap
-> <keycap
+>&Meta; <keycap
 >F5</keycap
 ></keycombo>
               </para>
@@ -2461,11 +2323,11 @@
         <para
 ><menuchoice
 ><guimenu
->Gemensamt utseende och beteende</guimenu
+>Common Appearance and Behavior</guimenu
 ><guisubmenu
->Genvägar och gester</guisubmenu
+>Shortcuts and Gestures</guisubmenu
 ></menuchoice
-> i &plasma; systeminställningar.</para>
+> module in the &plasma; system settings.</para>
       </listitem>
       <listitem>
         <para

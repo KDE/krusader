@@ -26,7 +26,7 @@
 ><command
 >ftp://</command
 ><replaceable
->publik.ftpserver.se/katalog/</replaceable
+>public.ftpserver.org/folder/</replaceable
 > </userinput>
       </para>
     </listitem>
@@ -56,7 +56,7 @@
 ><command
 >ftp://</command
 ><replaceable
->användarnamn@min.server.se:21/katalog/</replaceable
+>username@my.server.org:21/folder/</replaceable
 > </userinput>
       </para>
     </listitem>
@@ -76,7 +76,7 @@
 ><command
 >ftp://</command
 ><replaceable
->användarnamn@proxyanvändarnamn:lösenord@proxylösenord@värddatornamn/katalog</replaceable
+>username@proxyusername:password@proxipassword@hostname/folder</replaceable
 > </userinput>
       </para>
     </listitem>
@@ -133,7 +133,7 @@
     </listitem>
     <listitem>
       <para
->Du kan lägga till ett bokmärke till en annan dator och återvända till katalogen med bokmärkesknappen i övre hörnet av panelen, precis som i en webbläsare.</para>
+>You can bookmark a folder on a remote host and return to this folder from the bookmark button on the top corner of your panel just like in a web browser.</para>
     </listitem>
   </itemizedlist>
   <para
@@ -218,19 +218,11 @@
 
  <note>
    <para
->Följande fungerar på ett &Debian;-system, så det kommer att fungera på &Debian; och liknande system (&kubuntu;, etc.), även om det också bör fungera på andra varianter av Linux. Vi antar att du har installerat <link linkend="gloss-ssh"
->SSH</link
->, och har ställt in det så att det fungerar med alla datorer på det lokala nätverket du vill ansluta till eller från. Det finns många verkligt bra handledningar om <link linkend="gloss-ssh"
->SSH</link
-> på nätet, t.ex. på <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying"
->linuxhomenetworking.com</ulink
->. Annars kan du bara söka efter det med Google. Vi använder standardporten för <link linkend="gloss-ssh"
->SSH</link
-> (22) i det här kapitlet. Kom ihåg att ändra den om du använder en annan. Alla ändringar, redigeringar, etc., måste göras som systemadministratör. </para>
+>Följande fungerar på ett <trademark class="registered">Debian</trademark>-system, så det kommer att fungera på <trademark class="registered">Debian</trademark> och liknande system (<trademark class="registered">Kubuntu</trademark>, etc.), även om det också bör fungera på andra varianter av Linux. Vi antar att du har installerat <link linkend="gloss-ssh">SSH</link>, och har ställt in det så att det fungerar med alla datorer på det lokala nätverket du vill ansluta till eller från. Det finns många verkligt bra handledningar om <link linkend="gloss-ssh">SSH</link> på nätet, t.ex. på <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying">linuxhomenetworking.com</ulink>. Annars kan du bara söka efter det med Google. Vi använder standardporten för <link linkend="gloss-ssh">SSH</link> (22) i det här kapitlet. Kom ihåg att ändra den om du använder en annan. Alla ändringar, redigeringar, etc., måste göras som systemadministratör.</para>
  </note>
 
 <para
->Låt oss börja med att installera alla paket vi behöver: <screen>
+>Let's start with installing all the packages we need: <screen>
 <prompt
 >#</prompt
 > <userinput
@@ -240,13 +232,13 @@
 >avahi-daemon libnss-mdns kdnssd</option
 ></userinput>
 </screen
-> Allt är installerat, låt oss nu göra några inställningar. Först av allt kräver vi att våra tjänster annonseras på det lokala nätverket. Det är därför vi installerade avahi-daemon: den representerar din dator på det lokala nätverket, och låter andra program publicera tjänster de tillhandahåller. Avahi-demonen levereras med exempel på inställningsfiler för <filename
+> Everything is installed, now let's do some configuration. First, we need our services to be announced on LAN. That is why we installed avahi-daemon: it represents your machine on local network and allows other applications to publish services they provide. Avahi-daemon comes with example <filename
 >ssh.service</filename
-> som finns i <filename class="directory"
+> configuration file found in <filename class="directory"
 >/usr/share/doc/avahi-daemon/examples</filename
-> . För att få tjänsten att annonseras på det lokala nätverket måste vi kopiera filen till <filename class="directory"
+>. In order to get the service to be announced on LAN we need to copy this file to <filename class="directory"
 >/etc/avahi/services</filename
-> directory: <screen>
+> folder: <screen>
 <prompt
 >#</prompt
 > <userinput
@@ -256,7 +248,7 @@
 >/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option
 ></userinput>
 </screen
-> Nu kräver vi att också protokollet fish:/ annonseras, så vi använder filen ssh.service som en mall för fish.service: <screen>
+> Now we need fish:/ protocol to be announced too, so we use an ssh.service file as a template for fish.service: <screen>
 <prompt
 >#</prompt
 > <userinput
@@ -266,62 +258,70 @@
 >/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option
 ></userinput>
 </screen
-> Filen är bara en kopia av ssh.service, Redigera filen <filename
+> This file is just a copy of ssh.service. Edit the <filename
 >fish.service</filename
-> och ersätt <quote
+> file and replace <quote
 >Remote Terminal on %h</quote
-> med <quote
+> with <quote
 >Fish to %h</quote
-> och <quote
+> and <quote
 >_ssh._tcp</quote
-> med <quote
+> with <quote
 >_fish._tcp</quote
->. Så här ser det ut efter redigeringen: <programlisting>
-&lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*-->
+>. Here is how it looks after edit: <programlisting
+> 
+&lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--> 
 &lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
 
-&lt;!-- $Id: remote-connections.docbook,v 1.6 2007/05/02 18:07:28 codeknight Exp $ -->
+&lt;!-- $Id: remote-connections.docbook,v 1.6 2007/05/02 18:07:28 codeknight Exp $ --> 
 
-&lt;!--
-  This file is part of avahi.
+&lt;!-- 
+  This file is part of avahi. 
+  
+  avahi is free software; you can redistribute it and/or modify it 
+  under the terms of the GNU Lesser General Public License as 
+  published by the Free Software Foundation; either version 2 of the 
+  License, or (at your option) any later version. 
 
-  avahi is free software; you can redistribute it and/or modify it
-  under the terms of the GNU Lesser General Public License as
-  published by the Free Software Foundation; either version 2 of the
-  License, or (at your option) any later version.
+  avahi is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR 
 
-  avahi is distributed in the hope that it will be useful, but
-  WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR
+&lt;!-- See avahi.service(5) for more information about this configuration file --> 
 
-&lt;!-- See avahi.service(5) for more information about this configuration file -->
-
-&lt;service-group>
+&lt;service-group
+> 
 
   &lt;name replace-wildcards="yes"
->FISH to %h&lt;/name>
+>FISH to %h&lt;/name
+> 
 
-  &lt;service>
+  &lt;service
+> 
     &lt;type
->_fish._tcp&lt;/type>
+>_fish._tcp&lt;/type
+> 
     &lt;port
->22&lt;/port>
-  &lt;/service>
+>22&lt;/port
+> 
+  &lt;/service
+> 
 
-&lt;/service-group>
+&lt;/service-group
+>  
 </programlisting
-> Spara den ändrade filen. Nu måste vi skapa den nya filen <filename
+> Save the modified file. Now we need to create a new file <filename
 >_fish._tcp</filename
->, öppna en texteditor och lägga följande rader: <programlisting>
-Name=FISH Protocol (ssh)
-Type=_fish._tcp
-UserEntry=u
-PathEntry=path
+>, open a text editor and add the next lines: <programlisting>
+Name=FISH Protocol (ssh) 
+Type=_fish._tcp 
+UserEntry=u 
+PathEntry=path 
 PasswordEntry=p
 </programlisting
-> Spara filen som <filename
+> And save the file <filename
 >/usr/share/apps/zeroconf/_fish._tcp</filename
-> Gör samma sak för alla datorer på det lokala nätverket, och starta därefter om avahi-demonen: <screen>
+> Do the same on each machine on your LAN, then restart avahi-daemon: <screen>
 <prompt
 ># /etc/init.d/</prompt
 > <userinput
@@ -331,17 +331,17 @@ PasswordEntry=p
 >restart</option
 ></userinput>
 </screen
-> Öppna därefter &krusader; och skriv följande platsradens-länk:<filename
+> Then open &krusader; and type in location-toolbar-lnk: <filename
 >zeroconf:/</filename
-> för att öppna <link linkend="gloss-zeroconf"
+> to open the <link linkend="gloss-zeroconf"
 >zeroconf</link
->-anslutningen. Gå till katalogen för protokollet <guilabel
->Fish</guilabel
->. Där hittar du länkar till alla datorer som annonserar <filename
+> connection. Enter the <guilabel
+>Fish Protocol</guilabel
+> folder. Inside you will find the links to each machine that announced <filename
 >fish:/</filename
-> på det lokala nätverket, platsradens-länk: pekar på <filename
+> on your LAN, the location-toolbar-lnk: will point to <filename
 >zeroconf:/_fish._tcp</filename
->. Genom att dubbelklicka på någon av datorerna visas lösenordsrutan, som frågar dig efter lösenordsfrasen för ssh-nyckeln (om lösenord är inställt). Ange din lösenordsfras. Gratulerar, du har just anslutit till en annan dator med &krusader;! </para
+> Double clicking on any of these machines, them will bring up the password prompt, asking you for your ssh key passphrase (if password was set). Enter your passphrase. Congratulations: you connected to remote machine using &krusader;! </para
 > 
 
 </sect2>

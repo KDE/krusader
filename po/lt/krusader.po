@@ -7,22 +7,22 @@
 # Andrius Štikonas <andrius@stikonas.eu>, 2008-2009.
 # Remigijus Jarmalavičius <remigijus@jarmalavicius.lt>, 2011.
 # Liudas Ališauskas <liudas@akmc.lt>, 2013, 2014.
-# Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>, 2015, 2019.
+# Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2019-03-17 17:31+0200\n"
-"Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
-"Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2018-08-01 23:17+0100\n"
+"Last-Translator: Andrius Štikonas <andrius@stikonas.eu>\n"
+"Language-Team: lt <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -66,7 +66,6 @@ msgstr "Naujas MIME tipas"
 
 #: app/ActionMan/actionproperty.cpp:392
 #, fuzzy, kde-format
-#| msgid "Set a mime-type:"
 msgid "Set a MIME type:"
 msgstr "Nurodyti mime-tipą:"
 
@@ -77,7 +76,6 @@ msgstr "Keisti MIME tipą"
 
 #: app/ActionMan/actionproperty.cpp:409
 #, fuzzy, kde-format
-#| msgid "Set another mime-type:"
 msgid "Set another MIME type:"
 msgstr "Nurodyti kitą mime-tipą:"
 
@@ -88,19 +86,16 @@ msgstr "Naujos failo pavadinimas"
 
 #: app/ActionMan/actionproperty.cpp:433
 #, fuzzy, kde-format
-#| msgid "Set a filename:"
 msgid "Set a file name:"
 msgstr "Nurodyti failo pavadinimą:"
 
 #: app/ActionMan/actionproperty.cpp:450
 #, fuzzy, kde-format
-#| msgid "Edit filename"
 msgid "Edit File Name"
 msgstr "Keisti failo pavadinimą"
 
 #: app/ActionMan/actionproperty.cpp:450
 #, fuzzy, kde-format
-#| msgid "Set another filename:"
 msgid "Set another file name:"
 msgstr "Nurodyti kitą failo pavadinimą:"
 
@@ -121,10 +116,6 @@ msgstr "Komandos eilutė tuščia!"
 
 #: app/ActionMan/actionproperty.cpp:487
 #, fuzzy, kde-format
-#| msgid ""
-#| "There already is an action with this name\n"
-#| "If you don't have such an useraction the name is used by Krusader for an "
-#| "internal action"
 msgid ""
 "There already is an action with this name.\n"
 "If you do not have such a useraction the name is used by Krusader for an "
@@ -170,14 +161,12 @@ msgstr "Aprašymas:"
 #. i18n: ectx: property (title), widget (QGroupBox, bgAccept)
 #: app/ActionMan/actionproperty.ui:77
 #, fuzzy, kde-format
-#| msgid "Command line is empty"
 msgid "Command Accepts"
 msgstr "Komandos eilutė tuščia!"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioLocal)
 #: app/ActionMan/actionproperty.ui:83
 #, fuzzy, kde-format
-#| msgid "Add <b>Placeholders</b> for the selected files in the panel."
 msgid "Substitute the <b>Placeholders</b> with local filenames."
 msgstr "Įdėti <b>pakaitalus</b> pažymėtiems lange failams."
 
@@ -190,7 +179,6 @@ msgstr ""
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioUrl)
 #: app/ActionMan/actionproperty.ui:96
 #, fuzzy, kde-format
-#| msgid "Add <b>Placeholders</b> for the selected files in the panel."
 msgid "Substitute the <b>Placeholders</b> with valid URLs."
 msgstr "Įdėti <b>pakaitalus</b> pažymėtiems lange failams."
 
@@ -293,7 +281,6 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, LabelTooltip)
 #: app/ActionMan/actionproperty.ui:247
 #, fuzzy, kde-format
-#| msgid "Tool"
 msgid "Tooltip:"
 msgstr "Paaiškinimas"
 
@@ -330,14 +317,12 @@ msgstr "&Pridėti"
 #. i18n: ectx: property (text), widget (QLabel, LabelStartpath)
 #: app/ActionMan/actionproperty.ui:329
 #, fuzzy, kde-format
-#| msgid "Working"
 msgid "Workdir:"
 msgstr "Dirbama"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelShortcut)
 #: app/ActionMan/actionproperty.ui:357
 #, fuzzy, kde-format
-#| msgid "Defaults"
 msgid "Default shortcut:"
 msgstr "Numatyta"
 
@@ -350,7 +335,6 @@ msgstr ""
 #. i18n: ectx: property (text), widget (KKeySequenceWidget, KeyButtonShortcut)
 #: app/ActionMan/actionproperty.ui:386
 #, fuzzy, kde-format
-#| msgid "Note"
 msgctxt "No shortcut"
 msgid "None"
 msgstr "Nieko"
@@ -394,14 +378,12 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QCheckBox, chkSeparateStdError)
 #: app/ActionMan/actionproperty.ui:436
 #, fuzzy, kde-format
-#| msgid "Display &Separated Standard and Error Output"
 msgid "Separate standard error"
 msgstr "&Atskirti standartinę išvestį nuo klaidų išvesties"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioNormal)
 #: app/ActionMan/actionproperty.ui:443
 #, fuzzy, kde-format
-#| msgid "Format"
 msgid "&Normal"
 msgstr "Normalus"
 
@@ -420,14 +402,12 @@ msgstr "Vykdyti terminale"
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioTE)
 #: app/ActionMan/actionproperty.ui:463
 #, fuzzy, kde-format
-#| msgid "Send to &Embedded Terminal Emulator"
 msgid "Run the command in the embedded terminal emulator."
 msgstr "Persiųsti į vidinį &terminalą"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioTE)
 #: app/ActionMan/actionproperty.ui:466
 #, fuzzy, kde-format
-#| msgid "Send to &Embedded Terminal Emulator"
 msgid "Run in the embedded terminal emulator"
 msgstr "Persiųsti į vidinį &terminalą"
 
@@ -452,7 +432,6 @@ msgstr "Protokolas"
 #. i18n: ectx: property (text), widget (QToolButton, ButtonNewProtocol)
 #: app/ActionMan/actionproperty.ui:523
 #, fuzzy, kde-format
-#| msgid "&New..."
 msgctxt "New protocol"
 msgid "&New..."
 msgstr "&Naujas..."
@@ -495,7 +474,6 @@ msgstr "Kelias"
 #. i18n: ectx: property (text), widget (QToolButton, ButtonAddPath)
 #: app/ActionMan/actionproperty.ui:635
 #, fuzzy, kde-format
-#| msgid "&New..."
 msgctxt "New path"
 msgid "&New..."
 msgstr "&Naujas..."
@@ -509,7 +487,6 @@ msgstr "MIME tipas"
 #. i18n: ectx: property (text), widget (QToolButton, ButtonAddMime)
 #: app/ActionMan/actionproperty.ui:740
 #, fuzzy, kde-format
-#| msgid "&New..."
 msgctxt "New MIME"
 msgid "&New..."
 msgstr "&Naujas..."
@@ -531,7 +508,6 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QToolButton, ButtonNewFile)
 #: app/ActionMan/actionproperty.ui:845
 #, fuzzy, kde-format
-#| msgid "&New..."
 msgctxt "New file"
 msgid "&New..."
 msgstr "&Naujas..."
@@ -608,9 +584,6 @@ msgstr "Pavadinimas"
 
 #: app/ActionMan/useractionpage.cpp:38
 #, fuzzy, kde-format
-#| msgid ""
-#| "*.xml|xml-files\n"
-#| "*|all files"
 msgid ""
 "*.xml|XML files\n"
 "*|All files"
@@ -661,7 +634,6 @@ msgstr "Ar tikrai norite pašalinti visus pažymėtus veiksmus?"
 
 #: app/ActionMan/useractionpage.cpp:215
 #, fuzzy, kde-format
-#| msgid "Remove selected actions?"
 msgid "Remove Selected Actions?"
 msgstr "Pašalinti pažymėtus veiksmus?"
 
@@ -676,7 +648,6 @@ msgstr ""
 
 #: app/ActionMan/useractionpage.cpp:266
 #, fuzzy, kde-format
-#| msgid "Overwrite or merge?"
 msgid "Overwrite or Merge?"
 msgstr "Perrašyti ar sujungti?"
 
@@ -697,9 +668,6 @@ msgstr "Perrašyti egzistuojantį failą?"
 
 #: app/ActionMan/useractionpage.cpp:290 app/UserAction/kraction.cpp:183
 #, fuzzy, kde-format
-#| msgid ""
-#| "Can't open %1 for writing!\n"
-#| "Nothing exported."
 msgid ""
 "Cannot open %1 for writing.\n"
 "Nothing exported."
@@ -719,13 +687,11 @@ msgstr ""
 
 #: app/Archive/abstractthreadedjob.cpp:340
 #, fuzzy, kde-format
-#| msgid "Delete files"
 msgid "Downloading remote files"
 msgstr "Pašalinti failus"
 
 #: app/Archive/abstractthreadedjob.cpp:488
 #, fuzzy, kde-format
-#| msgid "Copying files"
 msgid "Counting files"
 msgstr "Kopijuojamo failai"
 
@@ -736,7 +702,6 @@ msgstr ""
 
 #: app/Archive/abstractthreadedjob.cpp:639
 #, fuzzy, kde-format
-#| msgid "%1, unsupported archive type."
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
 msgstr "%1, nepalaikomo tipo archyvas."
@@ -748,25 +713,21 @@ msgstr "Skaičiuojami failai archyve"
 
 #: app/Archive/krarchandler.cpp:215
 #, fuzzy, kde-format
-#| msgid "Failed to list the content of the archive (%1)!"
 msgid "Failed to list the content of the archive (%1)."
 msgstr "Nepavyko pateikti archyvo %1 turinio!"
 
 #: app/Archive/krarchandler.cpp:234 app/Archive/krarchandler.cpp:351
 #, fuzzy, kde-format
-#| msgid "Failed to unpack %1!"
 msgid "Failed to unpack %1."
 msgstr "Nepavyko išpakuoti %1!"
 
 #: app/Archive/krarchandler.cpp:280
 #, fuzzy, kde-format
-#| msgid "Failed to convert rpm (%1) to cpio!"
 msgid "Failed to convert rpm (%1) to cpio."
 msgstr "Nepavyko pakeisti rpm (%1) į cpio!"
 
 #: app/Archive/krarchandler.cpp:295
 #, fuzzy, kde-format
-#| msgid "Failed to convert deb (%1) to tar!"
 msgid "Failed to convert deb (%1) to tar."
 msgstr "Nepavyko pakeisti deb (%1) į tar!"
 
@@ -792,7 +753,6 @@ msgstr "Failai supakuojami"
 
 #: app/Archive/krarchandler.cpp:546 app/Archive/krarchandler.cpp:554
 #, fuzzy, kde-format
-#| msgid "Failed to pack %1!"
 msgid "Failed to pack %1."
 msgstr "Nepavyko supakuoti %1!"
 
@@ -803,32 +763,27 @@ msgstr "Archyvas užšifruotas, prašome pateikti slaptažodį:"
 
 #: app/Archive/packjob.cpp:51 app/Archive/packjob.cpp:139
 #, fuzzy, kde-format
-#| msgid "Profiles"
 msgid "Processed files"
 msgstr "Profilis"
 
 #: app/Archive/packjob.cpp:61
 #, fuzzy, kde-format
-#| msgid "Error at opening %1!"
 msgid "Error while packing"
 msgstr "Atveriant %1 įvyko klaida!"
 
 #: app/Archive/packjob.cpp:100
 #, fuzzy, kde-format
-#| msgid "%1, test failed!"
 msgctxt "%1=archive filename"
 msgid "%1, test failed."
 msgstr "<b style=\"color: red;\">Bandymas nepavyko</b>"
 
 #: app/Archive/packjob.cpp:105
 #, fuzzy, kde-format
-#| msgid "%1, test passed."
 msgid "Archive tests passed."
 msgstr "%1, patikrinimas atliktas sėmingai."
 
 #: app/Archive/packjob.cpp:146
 #, fuzzy, kde-format
-#| msgid "Error at opening %1!"
 msgid "Error while unpacking"
 msgstr "Atveriant %1 įvyko klaida!"
 
@@ -897,7 +852,6 @@ msgstr "Žymelės II"
 
 #: app/BookMan/krbookmarkhandler.cpp:74
 #, fuzzy, kde-format
-#| msgid "Search"
 msgid "Type to search..."
 msgstr "Paieška"
 
@@ -916,20 +870,17 @@ msgstr "Nepavyko įrašyti į %1"
 
 #: app/BookMan/krbookmarkhandler.cpp:225
 #, fuzzy, kde-format
-#| msgid " instead of "
 msgid "%1 instead of %2"
 msgstr "vietoje"
 
 #: app/BookMan/krbookmarkhandler.cpp:230 app/BookMan/krbookmarkhandler.cpp:236
 #: app/BookMan/krbookmarkhandler.cpp:271
 #, fuzzy, kde-format
-#| msgid "missing tag "
 msgid "missing tag %1"
 msgstr "TRŪKSTA ŽYMĖS"
 
 #: app/BookMan/krbookmarkhandler.cpp:311
 #, fuzzy, kde-format
-#| msgid "%1 doesn't seem to be a valid Bookmarks file"
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "%1 nėra tinkamas žymelių failas"
 
@@ -980,7 +931,6 @@ msgstr "Pašalinti"
 
 #: app/Dialogs/checksumdlg.cpp:111
 #, fuzzy, kde-format
-#| msgid "Could not start %1"
 msgid "<qt>Could not start <b>%1</b>.</qt>"
 msgstr "Nepavyko paleisti %1"
 
@@ -1003,9 +953,6 @@ msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:201
 #, fuzzy, kde-format
-#| msgid ""
-#| "<qt>Krusader can't find a checksum tool that handles %1 on your system. "
-#| "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>"
 msgid ""
 "<qt>Krusader cannot find a checksum tool that handles %1 on your system. "
 "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>"
@@ -1015,19 +962,16 @@ msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:239
 #, fuzzy, kde-format
-#| msgid "Create Checksum"
 msgid "Creating Checksums"
 msgstr "Kurti kontrolinę sumą"
 
 #: app/Dialogs/checksumdlg.cpp:253
 #, fuzzy, kde-format
-#| msgid "Create Checksum"
 msgid "Create Checksums"
 msgstr "Kurti kontrolinę sumą"
 
 #: app/Dialogs/checksumdlg.cpp:256
 #, fuzzy, kde-format
-#| msgid "About to calculate checksum for the following files"
 msgid "About to calculate checksum for the following files or folders:"
 msgstr "Ruošiamasi skaičiuoti šių failų kontrolines sumas"
 
@@ -1038,7 +982,6 @@ msgstr "Nurodykite kontrolinės sumos skaičiavimo būdą:"
 
 #: app/Dialogs/checksumdlg.cpp:288
 #, fuzzy, kde-format
-#| msgid "Checksum Utilities"
 msgid "Checksum Results"
 msgstr "Kontrolinių sumų įrankiai"
 
@@ -1055,13 +998,11 @@ msgstr "Maiša (hash)"
 
 #: app/Dialogs/checksumdlg.cpp:298
 #, fuzzy, kde-format
-#| msgid "Here are the errors received:"
 msgid "Errors received:"
 msgstr "Gautos klaidos:"
 
 #: app/Dialogs/checksumdlg.cpp:304
 #, fuzzy, kde-format
-#| msgid "Checksum file for each source file"
 msgid "Save one checksum file for each source file"
 msgstr "Kontrolinis failas kiekvienam pradiniam failui"
 
@@ -1087,7 +1028,6 @@ msgstr "Įrašomi kontrolinių sumų failai..."
 
 #: app/Dialogs/checksumdlg.cpp:384
 #, fuzzy, kde-format
-#| msgid "Errors occured while saving multiple checksums. Stopping"
 msgid "Errors occurred while saving multiple checksums. Stopping"
 msgstr "Įrašant kelias kontrolines sumas įvyko klaidos. Darbas nutraukiamas"
 
@@ -1098,19 +1038,16 @@ msgstr "Įrašant failą %1 įvyko klaida"
 
 #: app/Dialogs/checksumdlg.cpp:434
 #, fuzzy, kde-format
-#| msgid "Verify Checksum"
 msgid "Verifying Checksums"
 msgstr "Tikrinti kontrolinę sumą"
 
 #: app/Dialogs/checksumdlg.cpp:466
 #, fuzzy, kde-format
-#| msgid "Verify Checksum"
 msgid "Verify Checksum File"
 msgstr "Tikrinti kontrolinę sumą"
 
 #: app/Dialogs/checksumdlg.cpp:469
 #, fuzzy, kde-format
-#| msgid "About to verify checksum for the following files"
 msgid "About to verify the following checksum file"
 msgstr "Ruošiamasi patikrinti šių failų kontrolines sumas"
 
@@ -1121,13 +1058,11 @@ msgstr "Kontrolinės sumos failas:"
 
 #: app/Dialogs/checksumdlg.cpp:505
 #, fuzzy, kde-format
-#| msgid "Verify Checksum"
 msgid "Verify Result"
 msgstr "Tikrinti kontrolinę sumą"
 
 #: app/Dialogs/checksumdlg.cpp:510
 #, fuzzy, kde-format
-#| msgid "Defaults"
 msgid "Result output:"
 msgstr "Numatyta"
 
@@ -1153,7 +1088,6 @@ msgstr "F2 Eilė"
 
 #: app/Dialogs/krdialogs.cpp:111
 #, fuzzy, kde-format
-#| msgid "&Don't search in"
 msgid "Do not start the job now."
 msgstr "&Neieškoti"
 
@@ -1179,14 +1113,6 @@ msgstr "Žymėjimų šablonai"
 
 #: app/Dialogs/krmaskchoice.cpp:70
 #, fuzzy, kde-format
-#| msgid ""
-#| "A predefined selection is a file-mask which you use often.\n"
-#| "Some examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\n"
-#| "You can add these masks to the list by typing them and pressing the Add "
-#| "button.\n"
-#| "Delete removes a predefined selection and Clear removes all of them.\n"
-#| "Notice that the line in which you edit the mask has it's own history, you "
-#| "can scroll it, if needed."
 msgid ""
 "A predefined selection is a file-mask which you often use.\n"
 "Some examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\n"
@@ -1321,7 +1247,6 @@ msgstr[3] "Supakuoti %1 failą"
 
 #: app/Dialogs/packgui.cpp:88
 #, fuzzy, kde-format
-#| msgid "Please select a directory"
 msgid "Please select a folder"
 msgstr "Prašome parinkti aplanką"
 
@@ -1337,7 +1262,6 @@ msgstr "Į archyvą"
 
 #: app/Dialogs/packguibase.cpp:89
 #, fuzzy, kde-format
-#| msgid "New Folder"
 msgid "In folder"
 msgstr "Naujas aplankas"
 
@@ -1388,13 +1312,11 @@ msgstr "Komandinės eilutės raktai:"
 
 #: app/Dialogs/packguibase.cpp:286 app/Dialogs/packguibase.cpp:327
 #, fuzzy, kde-format
-#| msgid "&Advanced"
 msgid "&Advanced >>"
 msgstr "Sudėtingesni"
 
 #: app/Dialogs/packguibase.cpp:327
 #, fuzzy, kde-format
-#| msgid "&Advanced"
 msgid "&Advanced <<"
 msgstr "Sudėtingesni"
 
@@ -1415,21 +1337,16 @@ msgstr "Slaptažodžiai nesutampa"
 
 #: app/Dialogs/packguibase.cpp:393
 #, fuzzy, kde-format
-#| msgid "Cannot pack! The passwords are different!"
 msgid "Cannot pack, the passwords are different."
 msgstr "Supakuoti nepavyko! Slaptažodžiai nesutampa!"
 
 #: app/Dialogs/packguibase.cpp:421
 #, fuzzy, kde-format
-#| msgid "Invalid volume size!"
 msgid "Invalid volume size."
 msgstr "Nurodytas neteisingas tomo dydis!"
 
 #: app/Dialogs/packguibase.cpp:453
 #, fuzzy, kde-format
-#| msgid ""
-#| "Invalid command line switch!\n"
-#| "Switch must start with '-'!"
 msgid ""
 "Invalid command line switch.\n"
 "A switch must start with '-'."
@@ -1439,9 +1356,6 @@ msgstr ""
 
 #: app/Dialogs/packguibase.cpp:465
 #, fuzzy, kde-format
-#| msgid ""
-#| "Invalid command line switch!\n"
-#| "Backslash cannot be the last character"
 msgid ""
 "Invalid command line switch.\n"
 "Backslashes cannot be the last character."
@@ -1451,9 +1365,6 @@ msgstr ""
 
 #: app/Dialogs/packguibase.cpp:473
 #, fuzzy, kde-format
-#| msgid ""
-#| "Invalid command line switch!\n"
-#| "Unclosed quotation mark!"
 msgid ""
 "Invalid command line switch.\n"
 "Unclosed quotation mark."
@@ -1463,7 +1374,6 @@ msgstr ""
 
 #: app/Dialogs/popularurls.cpp:86
 #, fuzzy, kde-format
-#| msgid "Saved 'Popular Urls' are invalid. List will be cleared"
 msgid "The saved 'Popular URLs' are invalid. The list will be cleared."
 msgstr "Įrašyti Dažniausi URL yra klaidingi. Sąrašas bus išvalytas"
 
@@ -1500,9 +1410,6 @@ msgstr "Įkeliama nauja naudojamos vietos informacija..."
 
 #: app/DiskUsage/diskusage.cpp:382
 #, fuzzy, kde-format
-#| msgid ""
-#| "Stepping into the parent directory requires loading the content of the "
-#| "\"%1\" URL. Do you wish to continue?"
 msgid ""
 "Stepping into the parent folder requires loading the content of the \"%1\" "
 "URL. Do you wish to continue?"
@@ -1546,7 +1453,6 @@ msgstr "Šalinama %1..."
 
 #: app/DiskUsage/diskusage.cpp:697
 #, fuzzy, kde-format
-#| msgid "Current directory:%1,  Total size:%2,  Own size:%3"
 msgid "Current folder:%1,  Total size:%2,  Own size:%3"
 msgstr "Dabartinis aplankas: %1, Talpa: %2, Atskira talpa: %3"
 
@@ -1562,7 +1468,6 @@ msgstr "Išskyrus"
 
 #: app/DiskUsage/diskusage.cpp:737
 #, fuzzy, kde-format
-#| msgid "Up one directory"
 msgid "Up one folder"
 msgstr "Vienu aplanku aukštyn"
 
@@ -1654,7 +1559,6 @@ msgstr "Pradėti naują naudojamos vietos paiešką"
 
 #: app/DiskUsage/diskusagegui.cpp:62
 #, fuzzy, kde-format
-#| msgid "Parent directory"
 msgid "Parent folder"
 msgstr "Aukštesnis aplankas"
 
@@ -1675,7 +1579,6 @@ msgstr "Skritulio vaizdas"
 
 #: app/DiskUsage/diskusagegui.cpp:221
 #, fuzzy, kde-format
-#| msgid "Viewing the usage of directory:"
 msgid "Viewing the usage of folder:"
 msgstr "Naudojama vieta aplanke:"
 
@@ -1802,7 +1705,6 @@ msgstr "Grupė"
 
 #: app/DiskUsage/radialMap/builder.cpp:131
 #, fuzzy, kde-format
-#| msgid "%1 files: ~ %2"
 msgid "%1 file: ~ %2"
 msgid_plural "%1 files: ~ %2"
 msgstr[0] "&Failas"
@@ -1817,13 +1719,11 @@ msgstr "Failai: %1"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:170
 #, fuzzy, kde-format
-#| msgid "Open &Konqueror Here"
 msgid "Open File Manager Here"
 msgstr "Atverti šią vietą su &Konqueror"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:172
 #, fuzzy, kde-format
-#| msgid "Start Terminal Here"
 msgid "Open Terminal Here"
 msgstr "Paleisti terminalą čia"
 
@@ -1844,9 +1744,6 @@ msgstr "&Trinti"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:212
 #, fuzzy, kde-format
-#| msgid ""
-#| "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and "
-#| "<b>permanently</b> deleted!</qt>"
 msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
 "b> deleted.</qt>"
@@ -1860,7 +1757,6 @@ msgstr "<qt><i>„%1“</i> bus <b>galutinai</b> ištrintas.</qt>"
 
 #: app/FileSystem/defaultfilesystem.cpp:142
 #, fuzzy, kde-format
-#| msgid "No space information on [dev]"
 msgid "Space information disabled"
 msgstr "Informacija apie talpą [dev] neprieinama"
 
@@ -1871,7 +1767,6 @@ msgstr "Informacija apie talpą ne vietinėse failų sistemose neprieinama"
 
 #: app/FileSystem/defaultfilesystem.cpp:157
 #, fuzzy, kde-format
-#| msgid "No space information on [dev]"
 msgid "Space information unavailable"
 msgstr "Informacija apie talpą [dev] neprieinama"
 
@@ -1892,13 +1787,11 @@ msgstr "Aplankas %1 neegzistuoja."
 #: app/FileSystem/defaultfilesystem.cpp:331
 #: app/Synchronizer/synchronizerdirlist.cpp:111
 #, fuzzy, kde-format
-#| msgid "Can't open the %1 directory!"
 msgid "Cannot open the folder %1."
 msgstr "Nepavyko atverti aplanko %1!"
 
 #: app/FileSystem/defaultfilesystem.cpp:338
 #, fuzzy, kde-format
-#| msgid "Access denied to"
 msgctxt "%1=folder path"
 msgid "Access to %1 denied"
 msgstr "Prieiga nesuteikta naudotojui"
@@ -1945,7 +1838,6 @@ msgstr "Pasirinkti failai"
 
 #: app/FileSystem/krquery.cpp:547
 #, fuzzy, kde-format
-#| msgid "Searching content of '%1' (%2%)"
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
 msgstr "Ieškomas „%1“ turinys (%2%)"
@@ -1958,9 +1850,6 @@ msgstr ""
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, fuzzy, kde-format
-#| msgid ""
-#| "You can't copy files directly to the 'virt:/' directory.\n"
-#| "You can create a sub directory and copy your files into it."
 msgid ""
 "You cannot copy files directly to the 'virt:/' folder.\n"
 "You can create a sub folder and copy your files into it."
@@ -1970,13 +1859,11 @@ msgstr ""
 
 #: app/FileSystem/virtualfilesystem.cpp:125
 #, fuzzy, kde-format
-#| msgid "Creating new directories is allowed only in the 'virt:/' directory."
 msgid "Creating new folders is allowed only in the 'virt:/' folder."
 msgstr "Kurti naujus aplankus galima tik „virt:/“ aplanke."
 
 #: app/FileSystem/virtualfilesystem.cpp:208
 #, fuzzy, kde-format
-#| msgid "Virtual Filesystem"
 msgid "Virtual filesystem"
 msgstr "Virtuali failų sistema"
 
@@ -2022,7 +1909,6 @@ msgstr "daugiausiai"
 
 #: app/Filter/advancedfilter.cpp:115
 #, fuzzy, kde-format
-#| msgid "Any Character"
 msgid "Any date"
 msgstr "Bet koks simbolis"
 
@@ -2163,7 +2049,6 @@ msgstr ""
 
 #: app/Filter/advancedfilter.cpp:479
 #, fuzzy, kde-format
-#| msgid "Specified sizes are inconsistent!"
 msgid "Specified sizes are inconsistent."
 msgstr "Nurodyti dydžiai nesuderinami!"
 
@@ -2178,7 +2063,6 @@ msgstr ""
 
 #: app/Filter/advancedfilter.cpp:499 app/Filter/advancedfilter.cpp:527
 #, fuzzy, kde-format
-#| msgid "Dates are inconsistent!"
 msgid "Dates are inconsistent."
 msgstr "Nurodytos datos nesuderinamos!"
 
@@ -2218,7 +2102,6 @@ msgstr "&Sudėtingiau"
 
 #: app/Filter/filtertabs.cpp:103
 #, fuzzy, kde-format
-#| msgid "Choose a profile:"
 msgid "Could not load profile."
 msgstr "Nurodykite profilį:"
 
@@ -2299,24 +2182,6 @@ msgstr "&Ieškoti:"
 
 #: app/Filter/generalfilter.cpp:116 app/Synchronizer/synchronizergui.cpp:204
 #, fuzzy, kde-format
-#| msgid ""
-#| "<p>The filename filtering criteria is defined here.</p><p>You can make "
-#| "use of wildcards. Multiple patterns are separated by space (means logical "
-#| "OR) and patterns are excluded from the search using the pipe symbol.</"
-#| "p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that "
-#| "means that pattern relates to recursive search of directories."
-#| "<ul><li><code>pattern</code> - means to search those files/directories "
-#| "that name is <code>pattern</code>, recursive search goes through all "
-#| "subdirectories independently of the value of <code>pattern</code></"
-#| "li><li><code>pattern/</code> - means to search all files/directories, but "
-#| "recursive search goes through/excludes the directories that name is "
-#| "<code>pattern</code></li></ul><p></p><p>It's allowed to use quotation "
-#| "marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</"
-#| "code> searches out those files/directories that name is "
-#| "<code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</"
-#| "li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</"
-#| "li></code></ul><b>Note</b>: the search term '<code>text</code>' is "
-#| "equivalent to '<code>*text*</code>'.</p>"
 msgid ""
 "<p>The filename filtering criteria is defined here.</p><p>You can make use "
 "of wildcards. Multiple patterns are separated by space (means logical OR) "
@@ -2375,13 +2240,11 @@ msgstr "&Įkelti"
 
 #: app/Filter/generalfilter.cpp:209
 #, fuzzy, kde-format
-#| msgid "&Search in"
 msgid "Searc&h in"
 msgstr "Ieškoti „%1“..."
 
 #: app/Filter/generalfilter.cpp:224
 #, fuzzy, kde-format
-#| msgid "&Don't search in"
 msgid "&Do not search in"
 msgstr "&Neieškoti"
 
@@ -2407,7 +2270,6 @@ msgstr "Koduotė:"
 
 #: app/Filter/generalfilter.cpp:311 app/GUI/krremoteencodingmenu.cpp:119
 #, fuzzy, kde-format
-#| msgid "Default"
 msgctxt "Default encoding"
 msgid "Default"
 msgstr "Numatyta"
@@ -2424,7 +2286,6 @@ msgstr "&Svarbu raidžių dydis"
 
 #: app/Filter/generalfilter.cpp:347
 #, fuzzy, kde-format
-#| msgid "Search in s&ubdirectories"
 msgid "Search in s&ub folders"
 msgstr "Ieškoti &gilesniuose aplankuose"
 
@@ -2440,7 +2301,6 @@ msgstr "S&ekti nuorodas"
 
 #: app/Filter/generalfilter.cpp:467
 #, fuzzy, kde-format
-#| msgid "Edit filename"
 msgid "Exclude Folder Names"
 msgstr "Keisti failo pavadinimą"
 
@@ -2463,7 +2323,6 @@ msgstr ""
 
 #: app/Filter/generalfilter.cpp:571
 #, fuzzy, kde-format
-#| msgid "No search criteria entered!"
 msgid "No search criteria entered."
 msgstr "Neįvesti jokie paieškos kriterijai!"
 
@@ -2474,22 +2333,16 @@ msgstr "Nurodykite adresą, kuriame ieškoti."
 
 #: app/GUI/dirhistorybutton.cpp:29 app/GUI/dirhistorybutton.cpp:30
 #, fuzzy, kde-format
-#| msgid "Open the directory history list"
 msgid "Open the folder history list"
 msgstr "Atverti lankytų aplankų sąrašą"
 
 #: app/GUI/kcmdline.cpp:45
 #, fuzzy, kde-format
-#| msgid "Name of directory where command will be processed."
 msgid "Name of folder where command will be processed."
 msgstr "Aplanko, kuriame bus vykdoma komanda, pavadinimas."
 
 #: app/GUI/kcmdline.cpp:173
 #, fuzzy, kde-format
-#| msgid ""
-#| "<qt><p>Well, it's actually quite simple: You type your command here and "
-#| "Krusader obeys.</p><p><b>Tip</b>: Move within command line history with "
-#| "&lt;Up&gt; and &lt;Down&gt; arrows.</p></qt>"
 msgid ""
 "<qt><p>Well, it is actually quite simple: you type your command here and "
 "Krusader obeys.</p><p><b>Tip</b>: move within command line history with &lt;"
@@ -2556,21 +2409,18 @@ msgstr "Atverti laikmenų sąrašą"
 
 #: app/GUI/mediabutton.cpp:144 app/GUI/mediabutton.cpp:605
 #, fuzzy, kde-format
-#| msgid "Remote Share"
 msgctxt "%1 is the mount point of the remote share"
 msgid "Remote Share [%1]"
 msgstr "Nutolusi talpykla"
 
 #: app/GUI/mediabutton.cpp:164
 #, fuzzy, kde-format
-#| msgid "Unknown"
 msgctxt "Unknown label"
 msgid "Unknown"
 msgstr "Nežinoma"
 
 #: app/GUI/mediabutton.cpp:167
 #, fuzzy, kde-format
-#| msgid "Unknown"
 msgctxt "Unknown media type"
 msgid "Unknown"
 msgstr "Nežinoma"
@@ -2704,25 +2554,21 @@ msgstr ""
 
 #: app/JobMan/jobman.cpp:54
 #, fuzzy, kde-format
-#| msgid "Cancel"
 msgid "Cancel Job"
 msgstr "Atšaukti"
 
 #: app/JobMan/jobman.cpp:97
 #, fuzzy, kde-format
-#| msgid "Pause"
 msgid "Pause Job"
 msgstr "Pristabdyti"
 
 #: app/JobMan/jobman.cpp:98
 #, fuzzy, kde-format
-#| msgid "Resume"
 msgid "Resume Job"
 msgstr "Pratęsti"
 
 #: app/JobMan/jobman.cpp:99
 #, fuzzy, kde-format
-#| msgid "&Start"
 msgid "Start Job"
 msgstr "P&radėti"
 
@@ -2801,14 +2647,11 @@ msgstr ""
 
 #: app/JobMan/krjob.cpp:24
 #, fuzzy, kde-format
-#| msgid "Move to trash"
 msgid "Move %1 to trash"
 msgstr "Perkelti į šiukšlinę"
 
 #: app/JobMan/krjob.cpp:25
 #, fuzzy, kde-format
-#| msgid "Move %1 file to:"
-#| msgid_plural "Move %1 files to:"
 msgid "Move %1 file to trash"
 msgid_plural "Move %1 files to trash"
 msgstr[0] "Perkelti %1 failą į:"
@@ -2861,9 +2704,6 @@ msgstr "Automatiškai montuoti failų sistemas"
 
 #: app/Konfigurator/kgadvanced.cpp:35
 #, fuzzy, kde-format
-#| msgid ""
-#| "When stepping into a directory which is defined as a mount point in the "
-#| "<b>fstab</b>, try mounting it with the defined parameters."
 msgid ""
 "When stepping into a folder which is defined as a mount point in the "
 "<b>fstab</b>, try mounting it with the defined parameters."
@@ -2873,7 +2713,6 @@ msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:42
 #, fuzzy, kde-format
-#| msgid "MountMan won't (un)mount the following mount-points:"
 msgid "MountMan will not (un)mount the following mount-points:"
 msgstr "Prijungiamų įrenginių tarnyba neprijungs (neatjungs) šių taškų:"
 
@@ -2884,7 +2723,6 @@ msgstr "Patvirtinimai"
 
 #: app/Konfigurator/kgadvanced.cpp:60
 #, fuzzy, kde-format
-#| msgid "Request user confirmation for the following operations:"
 msgid ""
 "\n"
 "Request user confirmation for the following operations:\n"
@@ -2892,7 +2730,6 @@ msgstr "Šiems veiksmams bus reikalaujama naudotojo patvirtinimo:"
 
 #: app/Konfigurator/kgadvanced.cpp:65
 #, fuzzy, kde-format
-#| msgid "Deleting non-empty directories"
 msgid "Deleting non-empty folders"
 msgstr "Šalinti netuščius aplankus"
 
@@ -2956,7 +2793,6 @@ msgstr "updatedb komandos raktai:"
 
 #: app/Konfigurator/kgarchives.cpp:37
 #, fuzzy, kde-format
-#| msgid "disabled"
 msgid "krarc ioslave"
 msgstr "išjungta"
 
@@ -2980,13 +2816,11 @@ msgstr ""
 
 #: app/Konfigurator/kgarchives.cpp:59
 #, fuzzy, kde-format
-#| msgid "Link Handling"
 msgid "Archives handling"
 msgstr "Nuoroda"
 
 #: app/Konfigurator/kgarchives.cpp:65
 #, fuzzy, kde-format
-#| msgid "Krusader::Synchronize Directories"
 msgid "Browse Archives As Folders"
 msgstr "Krusader::Aplankų sinchronizavimas"
 
@@ -3044,9 +2878,6 @@ msgstr "Naudoti numatytas KDE spalvas"
 
 #: app/Konfigurator/kgcolors.cpp:53
 #, fuzzy, kde-format
-#| msgid ""
-#| "<p>Use KDE's global color configuration.</p><p><i>KDE Control Center -> "
-#| "Appearance & Themes -> Colors</i></p>"
 msgid ""
 "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
 "Application Appearance  -> Colors</i></p>"
@@ -3122,7 +2953,6 @@ msgstr "Spalva:"
 
 #: app/Konfigurator/kgcolors.cpp:93 app/Konfigurator/kgcolors.cpp:131
 #, fuzzy, kde-format
-#| msgid "Delete foreground:"
 msgid "Folder foreground:"
 msgstr "Šalinamų objektų spalva:"
 
@@ -3346,7 +3176,6 @@ msgstr "Aplankas:"
 
 #: app/Konfigurator/kgcolors.cpp:227
 #, fuzzy, kde-format
-#| msgid "Alternate background:"
 msgid "Statusbar, active background:"
 msgstr "Kaitomo fono spalva:"
 
@@ -3357,7 +3186,6 @@ msgstr "Aplankas:"
 
 #: app/Konfigurator/kgcolors.cpp:229
 #, fuzzy, kde-format
-#| msgid "Alternate background:"
 msgid "Statusbar, inactive background:"
 msgstr "Kaitomo fono spalva:"
 
@@ -3449,13 +3277,11 @@ msgstr "Greitoji paieška"
 
 #: app/Konfigurator/kgcolors.cpp:538
 #, fuzzy, kde-format
-#| msgid "Same as active"
 msgid "Statusbar active"
 msgstr "Tokia kaip aktyviame lange"
 
 #: app/Konfigurator/kgcolors.cpp:539
 #, fuzzy, kde-format
-#| msgid "Same as active"
 msgid "Statusbar inactive"
 msgstr "Tokia kaip aktyviame lange"
 
@@ -3506,7 +3332,6 @@ msgstr "Kelias %1 neteisingas, todėl buvo panaudotas kelias %2."
 
 #: app/Konfigurator/kggeneral.cpp:64
 #, fuzzy, kde-format
-#| msgid "Editor:"
 msgid "Viewer/Editor"
 msgstr "Redaktorius:"
 
@@ -3536,7 +3361,6 @@ msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, fuzzy, kde-format
-#| msgid "View"
 msgid "Viewer"
 msgstr "Žiūriklis"
 
@@ -3579,20 +3403,17 @@ msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:97
 #, fuzzy, kde-format
-#| msgid "Last modified:"
 msgid "Lister mode"
 msgstr "Keitimo data:"
 
 #: app/Konfigurator/kggeneral.cpp:97
 #, fuzzy, kde-format
-#| msgid "View the file in hex-mode (better for binary files)"
 msgid "View the file with lister (for huge text files)"
 msgstr ""
 "Peržiūrėti failą šešioliktainiame režime (labiau tinka dvejetainiams failams)"
 
 #: app/Konfigurator/kggeneral.cpp:105
 #, fuzzy, kde-format
-#| msgid "Use the system's default viewer"
 msgid "Use Okteta as Hex viewer"
 msgstr "Naudoti sistemos numatytą žiūryklę"
 
@@ -3636,7 +3457,6 @@ msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:148
 #, fuzzy, kde-format
-#| msgid "Atomic extensions:"
 msgid "Atomic extensions"
 msgstr "Nedalomi plėtiniai:"
 
@@ -3657,7 +3477,6 @@ msgstr "Perspėti prieš uždarant pagrindinį langą."
 
 #: app/Konfigurator/kggeneral.cpp:215
 #, fuzzy, kde-format
-#| msgid "Show terminal emulator"
 msgid "Show and close to tray"
 msgstr "Rodyti terminalą"
 
@@ -3670,19 +3489,16 @@ msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:224
 #, fuzzy, kde-format
-#| msgid "New Folder"
 msgid "Temp Folder:"
 msgstr "Naujas aplankas"
 
 #: app/Konfigurator/kggeneral.cpp:233
 #, fuzzy, kde-format
-#| msgid "Note: you must have full permissions for the temporary directory!"
 msgid "Note: you must have full permissions for the temporary folder."
 msgstr "Dėmesio! Laikinam aplankui būtina turėti visas rašymo teises!"
 
 #: app/Konfigurator/kggeneral.cpp:243
 #, fuzzy, kde-format
-#| msgid "Delete"
 msgid "Delete mode"
 msgstr "Pašalinti"
 
@@ -3713,7 +3529,6 @@ msgstr "Terminale"
 
 #: app/Konfigurator/kggeneral.cpp:263
 #, fuzzy, kde-format
-#| msgid "Terminal:"
 msgid "External Terminal:"
 msgstr "Terminalas:"
 
@@ -3724,15 +3539,11 @@ msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:273
 #, fuzzy, kde-format
-#| msgid "Terminal Emulator sends Chdir on panel change"
 msgid "Embedded Terminal sends Chdir on panel change"
 msgstr "Terminalas keičia aplanką paskui aktyvų langą"
 
 #: app/Konfigurator/kggeneral.cpp:273
 #, fuzzy, kde-format
-#| msgid ""
-#| "When checked, whenever the panel is changed (for example, by pressing "
-#| "TAB), krusader changes the current directory in the terminal emulator."
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing Tab), "
 "Krusader changes the current folder in the embedded terminal."
@@ -3747,9 +3558,6 @@ msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:274
 #, fuzzy, kde-format
-#| msgid ""
-#| "When checked, whenever the panel is changed (for example, by pressing "
-#| "TAB), krusader changes the current directory in the terminal emulator."
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
@@ -3783,9 +3591,6 @@ msgstr "Priesaga:"
 
 #: app/Konfigurator/kggeneral.cpp:311
 #, fuzzy, kde-format
-#| msgid ""
-#| "Atomic extensions must start with '.'\n"
-#| " and must contain at least one more '.' character"
 msgid ""
 "Atomic extensions must start with '.' and must contain at least one more '.' "
 "character."
@@ -3810,7 +3615,6 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:86
 #, fuzzy, kde-format
-#| msgid "Show previews"
 msgid "Show full path by default"
 msgstr "Rodyti peržiūras"
 
@@ -3826,15 +3630,11 @@ msgstr "Veiksmai"
 
 #: app/Konfigurator/kgpanel.cpp:100
 #, fuzzy, kde-format
-#| msgid "Autoselect directories"
 msgid "Autoselect folders"
 msgstr "Automatiškai žymėti ir aplankus"
 
 #: app/Konfigurator/kgpanel.cpp:100
 #, fuzzy, kde-format
-#| msgid ""
-#| "When matching the select criteria, not only files will be selected, but "
-#| "also directories."
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "folders."
@@ -3899,13 +3699,11 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:119
 #, fuzzy, kde-format
-#| msgid "Show terminal emulator"
 msgid "Show close tab buttons"
 msgstr "Rodyti terminalą"
 
 #: app/Konfigurator/kgpanel.cpp:119
 #, fuzzy, kde-format
-#| msgid "Show terminal emulator"
 msgid "Show close tab buttons."
 msgstr "Rodyti terminalą"
 
@@ -3921,13 +3719,11 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:121
 #, fuzzy, kde-format
-#| msgid "Show terminal emulator"
 msgid "Show new tab button"
 msgstr "Rodyti terminalą"
 
 #: app/Konfigurator/kgpanel.cpp:121
 #, fuzzy, kde-format
-#| msgid "Show terminal emulator"
 msgid "Show new tab button."
 msgstr "Rodyti terminalą"
 
@@ -3938,7 +3734,6 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, fuzzy, kde-format
-#| msgid "Select all files in the current directory"
 msgid "Insert new tabs to the right of the current one."
 msgstr "Pažymėti visus failus šiame aplanke"
 
@@ -4002,7 +3797,6 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, fuzzy, kde-format
-#| msgid "&Search in"
 msgid "Tab Bar position:"
 msgstr "Kortelių juostos vieta:"
 
@@ -4013,19 +3807,16 @@ msgstr "Viršuje"
 
 #: app/Konfigurator/kgpanel.cpp:159
 #, fuzzy, kde-format
-#| msgid "Both"
 msgid "Bottom"
 msgstr "Apačia"
 
 #: app/Konfigurator/kgpanel.cpp:174
 #, fuzzy, kde-format
-#| msgid "Search for:"
 msgid "Search bar"
 msgstr "Ko ieškoti:"
 
 #: app/Konfigurator/kgpanel.cpp:178
 #, fuzzy, kde-format
-#| msgid "Start of Line"
 msgid "Start by typing"
 msgstr "Eilutės pradžia"
 
@@ -4074,7 +3865,6 @@ msgstr "Pozicija:"
 
 #: app/Konfigurator/kgpanel.cpp:202
 #, fuzzy, kde-format
-#| msgid "Default viewer mode:"
 msgid "Default mode:"
 msgstr "Numatytoji peržiūros veiksena"
 
@@ -4086,7 +3876,6 @@ msgstr "Paieška"
 
 #: app/Konfigurator/kgpanel.cpp:206 app/Panel/krsearchbar.cpp:41
 #, fuzzy, kde-format
-#| msgid "Selected 2"
 msgid "Select"
 msgstr "Pažymėtas 2"
 
@@ -4102,25 +3891,21 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:221
 #, fuzzy, kde-format
-#| msgid "Bookmarks"
 msgid "Bookmark Search"
 msgstr "Žymelės"
 
 #: app/Konfigurator/kgpanel.cpp:226
 #, fuzzy, kde-format
-#| msgid "Always sort dirs by name"
 msgid "Always show search bar"
 msgstr "Aplankus visada rūšiuoti pagal pavadinimą"
 
 #: app/Konfigurator/kgpanel.cpp:226
 #, fuzzy, kde-format
-#| msgid "The bookmarks button will be visible."
 msgid "Make bookmark search bar always visible"
 msgstr "Žymelių mygtukas bus matomas."
 
 #: app/Konfigurator/kgpanel.cpp:227
 #, fuzzy, kde-format
-#| msgid "Search in arch&ives"
 msgid "Search in special items"
 msgstr "Ieškoti &archyvuose"
 
@@ -4133,7 +3918,6 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:237
 #, fuzzy, kde-format
-#| msgid "Show statusbar"
 msgid "Status/Totalsbar"
 msgstr "Rodyti būsenos juostą"
 
@@ -4169,14 +3953,12 @@ msgstr "&Rėmelio spalva:"
 
 #: app/Konfigurator/kgpanel.cpp:289
 #, fuzzy, kde-format
-#| msgid "Defined Links"
 msgctxt "Frame color"
 msgid "Defined by Layout"
 msgstr "Nurodyti sąryšiai"
 
 #: app/Konfigurator/kgpanel.cpp:290
 #, fuzzy, kde-format
-#| msgid "Note"
 msgctxt "Frame color"
 msgid "None"
 msgstr "Nieko"
@@ -4194,14 +3976,12 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:303
 #, fuzzy, kde-format
-#| msgid "Defined Links"
 msgctxt "Frame shape"
 msgid "Defined by Layout"
 msgstr "Nurodyti sąryšiai"
 
 #: app/Konfigurator/kgpanel.cpp:304
 #, fuzzy, kde-format
-#| msgid "Note"
 msgctxt "Frame shape"
 msgid "None"
 msgstr "Nieko"
@@ -4214,7 +3994,6 @@ msgstr "Stačiakampis"
 
 #: app/Konfigurator/kgpanel.cpp:306
 #, fuzzy, kde-format
-#| msgid "Panel"
 msgctxt "Frame shape"
 msgid "Panel"
 msgstr "Langas"
@@ -4226,14 +4005,12 @@ msgstr "Rėmelio šešėlis"
 
 #: app/Konfigurator/kgpanel.cpp:318
 #, fuzzy, kde-format
-#| msgid "Defined Links"
 msgctxt "Frame shadow"
 msgid "Defined by Layout"
 msgstr "Nurodyti sąryšiai"
 
 #: app/Konfigurator/kgpanel.cpp:319
 #, fuzzy, kde-format
-#| msgid "Note"
 msgctxt "Frame shadow"
 msgid "None"
 msgstr "Nieko"
@@ -4252,7 +4029,6 @@ msgstr "Nuleistas"
 
 #: app/Konfigurator/kgpanel.cpp:336
 #, fuzzy, kde-format
-#| msgid "Filelist icon size:"
 msgid "Default icon size:"
 msgstr "Failų ženkliukų dydis:"
 
@@ -4263,25 +4039,21 @@ msgstr "Prie pavadinimų rodyti ženkliukus"
 
 #: app/Konfigurator/kgpanel.cpp:357
 #, fuzzy, kde-format
-#| msgid "Show the icons for filenames and folders."
 msgid "Show the icons for filenames and folders."
 msgstr "Prie failų ir aplankų pavadinimų rodyti ženkliukus."
 
 #: app/Konfigurator/kgpanel.cpp:358
 #, fuzzy, kde-format
-#| msgid "Show previews"
 msgid "Show previews by default"
 msgstr "Rodyti peržiūras"
 
 #: app/Konfigurator/kgpanel.cpp:358
 #, fuzzy, kde-format
-#| msgid "Show the icons for filenames and folders."
 msgid "Show previews of files and folders."
 msgstr "Prie failų ir aplankų pavadinimų rodyti ženkliukus."
 
 #: app/Konfigurator/kgpanel.cpp:393
 #, fuzzy, kde-format
-#| msgid "Panel font:"
 msgid "View font:"
 msgstr "Lango šriftas:"
 
@@ -4348,7 +4120,6 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:427
 #, fuzzy, kde-format
-#| msgid "Show current item even if not focused"
 msgid "Show current item border decoration in inactive panel."
 msgstr "Rodyti dabartinį objektą net jei aktyvus kitas langas"
 
@@ -4400,7 +4171,6 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:464
 #, fuzzy, kde-format
-#| msgid "Show directories first"
 msgid "Show folders first"
 msgstr "Aplankus rodyti viršuje"
 
@@ -4411,7 +4181,6 @@ msgstr "Aplankus visada rūšiuoti pagal pavadinimą"
 
 #: app/Konfigurator/kgpanel.cpp:466
 #, fuzzy, kde-format
-#| msgid "Directories are sorted by name, regardless of the sort column."
 msgid "Folders are sorted by name, regardless of the sort column."
 msgstr ""
 "Aplankus visada rūšiuoti pagal pavadinimą nepaisant pagal ką rūšiuojami "
@@ -4431,13 +4200,11 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:482
 #, fuzzy, kde-format
-#| msgid "Hex mode"
 msgid "View modes"
 msgstr "Rodymo būdai"
 
 #: app/Konfigurator/kgpanel.cpp:489
 #, fuzzy, kde-format
-#| msgid "Default viewer mode:"
 msgid "Default view mode:"
 msgstr "Numatytoji peržiūros veiksena"
 
@@ -4453,25 +4220,21 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:548
 #, fuzzy, kde-format
-#| msgid "Show terminal emulator"
 msgid "Show Media Button"
 msgstr "Rodyti terminalą"
 
 #: app/Konfigurator/kgpanel.cpp:548
 #, fuzzy, kde-format
-#| msgid "The panel toolbar will be visible."
 msgid "The media button will be visible."
 msgstr "Mygtukų juosta bus matoma."
 
 #: app/Konfigurator/kgpanel.cpp:549
 #, fuzzy, kde-format
-#| msgid "Right Bookmarks"
 msgid "Show Back Button"
 msgstr "Žymelės dešinėje"
 
 #: app/Konfigurator/kgpanel.cpp:550
 #, fuzzy, kde-format
-#| msgid "Right Bookmarks"
 msgid "Show Forward Button"
 msgstr "Žymelės dešinėje"
 
@@ -4517,7 +4280,6 @@ msgstr "Sulyginimo mygtukas (=)"
 
 #: app/Konfigurator/kgpanel.cpp:563
 #, fuzzy, kde-format
-#| msgid "Changes the panel directory to the other panel directory."
 msgid "Changes the panel folder to the other panel folder."
 msgstr "Lange rodo tą patį aplanką kaip ir kitame lange."
 
@@ -4528,7 +4290,6 @@ msgstr "Mygtukas aukštyn (..)"
 
 #: app/Konfigurator/kgpanel.cpp:564
 #, fuzzy, kde-format
-#| msgid "Changes the panel directory to the parent directory."
 msgid "Changes the panel folder to the parent folder."
 msgstr "Pakelia vienu aplanku aukštyn."
 
@@ -4539,7 +4300,6 @@ msgstr "Pradžios mygtukas (~)"
 
 #: app/Konfigurator/kgpanel.cpp:565
 #, fuzzy, kde-format
-#| msgid "Changes the panel directory to the home directory."
 msgid "Changes the panel folder to the home folder."
 msgstr "Rodo pradžios aplanką."
 
@@ -4550,7 +4310,6 @@ msgstr "Šakninio aplanko mygtukas (/)"
 
 #: app/Konfigurator/kgpanel.cpp:566
 #, fuzzy, kde-format
-#| msgid "Changes the panel directory to the root directory."
 msgid "Changes the panel folder to the root folder."
 msgstr "Rodo šakninį aplanką."
 
@@ -4561,8 +4320,6 @@ msgstr "Sinchroninio naršymo mygtukas"
 
 #: app/Konfigurator/kgpanel.cpp:567
 #, fuzzy, kde-format
-#| msgid ""
-#| "Each directory change in the panel is also performed in the other panel."
 msgid "Each folder change in the panel is also performed in the other panel."
 msgstr "Kiekvieną aplanko pakeitimą atspindi kitame lange."
 
@@ -4643,7 +4400,6 @@ msgstr "Individuali naudotojo veiksena"
 
 #: app/Konfigurator/kgpanel.cpp:606
 #, fuzzy, kde-format
-#| msgid "Design your own selection mode!"
 msgid "Design your own selection mode."
 msgstr "Sukurkite savo žymėjimo veikseną!"
 
@@ -4659,9 +4415,6 @@ msgstr "Spragtelėti dukart (klasikinis būdas)"
 
 #: app/Konfigurator/kgpanel.cpp:625
 #, fuzzy, kde-format
-#| msgid ""
-#| "A single click on a file will select and focus, a double click opens the "
-#| "file or steps into the directory."
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the folder."
@@ -4671,15 +4424,11 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:626
 #, fuzzy, kde-format
-#| msgid "Obey KDE's global selection policy"
 msgid "Obey global selection policy"
 msgstr "Elgtis pagal KDE bendras parinktis"
 
 #: app/Konfigurator/kgpanel.cpp:626
 #, fuzzy, kde-format
-#| msgid ""
-#| "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -"
-#| "> Mouse</i></p>"
 msgid ""
 "<p>Use global setting:</p><p><i>Plasma System Settings -> Input Devices -> "
 "Mouse</i></p>"
@@ -4731,9 +4480,6 @@ msgstr "Pažymėti kairiuoju pelės klavišu ir Lyg2/Vald mygtukais"
 
 #: app/Konfigurator/kgpanel.cpp:647
 #, fuzzy, kde-format
-#| msgid ""
-#| "If checked, shift/ctrl left clicking will select items. \n"
-#| "Note: This is meaningless if 'Left Button Selects' is checked."
 msgid ""
 "If checked, Shift/Ctrl left clicking will select items.\n"
 "Note: this is meaningless if 'Left Button Selects' is checked."
@@ -4777,9 +4523,6 @@ msgstr "Pažymėti dešiniuoju pelės klavišu ir Lyg2/Vald mygtukais"
 
 #: app/Konfigurator/kgpanel.cpp:656
 #, fuzzy, kde-format
-#| msgid ""
-#| "If checked, shift/ctrl right clicking will select items. \n"
-#| "Note: This is meaningless if 'Right Button Selects' is checked."
 msgid ""
 "If checked, Shift/Ctrl right clicking will select items.\n"
 "Note: this is meaningless if 'Right Button Selects' is checked."
@@ -4796,10 +4539,6 @@ msgstr "Nuspaudus tarpo klavišą eiti žemyn"
 
 #: app/Konfigurator/kgpanel.cpp:659
 #, fuzzy, kde-format
-#| msgid ""
-#| "If checked, pressing the spacebar will select the current item and move "
-#| "down. \n"
-#| "Otherwise, current item is selected, but remains the current item."
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
 "down.\n"
@@ -4817,10 +4556,6 @@ msgstr "Nuspaudus tarpo klavišą skaičiuojama užimama vieta"
 
 #: app/Konfigurator/kgpanel.cpp:662
 #, fuzzy, kde-format
-#| msgid ""
-#| "If checked, pressing the spacebar while the current item is a folder, "
-#| "will (except from selecting the folder) \n"
-#| "calculate space occupied by the folder (recursively)."
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
 "(except from selecting the folder)\n"
@@ -4836,10 +4571,6 @@ msgstr "Nuspaudus Insert klavišą eiti žemyn"
 
 #: app/Konfigurator/kgpanel.cpp:665
 #, fuzzy, kde-format
-#| msgid ""
-#| "If checked, pressing INSERT will select the current item, and move down "
-#| "to the next item. \n"
-#| "Otherwise, current item is not changed."
 msgid ""
 "If checked, pressing Insert will select the current item, and move down to "
 "the next item.\n"
@@ -4856,10 +4587,6 @@ msgstr "Spragtelėjus dešinį klavišą iškart parodyti kontekstinį meniu"
 
 #: app/Konfigurator/kgpanel.cpp:668
 #, fuzzy, kde-format
-#| msgid ""
-#| "If checked, right clicking will result in an immediate showing of the "
-#| "context menu. \n"
-#| "Otherwise, user needs to click and hold the right mouse button for 500ms."
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
 "context menu.\n"
@@ -4886,7 +4613,6 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, fuzzy, kde-format
-#| msgid "Media"
 msgid "Media Menu"
 msgstr "Laikmenos"
 
@@ -4930,7 +4656,6 @@ msgstr "Niekada"
 
 #: app/Konfigurator/kgpanel.cpp:757
 #, fuzzy, kde-format
-#| msgid "MountMan won't (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
 msgstr "Prijungiamų įrenginių tarnyba neprijungs (neatjungs) šių taškų:"
 
@@ -4967,13 +4692,11 @@ msgstr "Pašalinti protokolą iš sąryšių sąrašo."
 
 #: app/Konfigurator/kgprotocols.cpp:73
 #, fuzzy, kde-format
-#| msgid "Add mime to the selected protocol on the link list."
 msgid "Add MIME to the selected protocol on the link list."
 msgstr "Įdėti mime tipą pažymėtam protokolui iš sąryšių sąrašo."
 
 #: app/Konfigurator/kgprotocols.cpp:78
 #, fuzzy, kde-format
-#| msgid "Remove mime from the link list."
 msgid "Remove MIME from the link list."
 msgstr "Pašalinti mime tipą iš sąryšių sąrašo."
 
@@ -5017,7 +4740,6 @@ msgstr "Rodyti pasveikinimo langą"
 
 #: app/Konfigurator/kgstartup.cpp:57
 #, fuzzy, kde-format
-#| msgid "Display a splashscreen when starting krusader."
 msgid "Display a splashscreen when starting Krusader."
 msgstr "Paleidžiant Krusader rodyti pasveikinimo langą."
 
@@ -5058,12 +4780,6 @@ msgstr "Įsiminti paskutinę lango vietą, dydį ir langų parinktis"
 
 #: app/Konfigurator/kgstartup.cpp:87
 #, fuzzy, kde-format
-#| msgid ""
-#| "<p>At startup, the main window will resize itself to the size it was when "
-#| "last shutdown. It will also appear in the same location of the screen, "
-#| "having panels sorted and aligned as they were before.</p><p>If this "
-#| "option is disabled, you can use the menu <i>Window -> Save Position</i> "
-#| "option to manually set the main window's size and position at startup.</p>"
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
 "last shutdown. It will also appear in the same location of the screen, "
@@ -5079,7 +4795,6 @@ msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:91
 #, fuzzy, kde-format
-#| msgid "Panel settings"
 msgid "Update default panel settings"
 msgstr "Lango parinktys"
 
@@ -5097,9 +4812,6 @@ msgstr "Paleidus sumažinti į sistemos dėklą"
 
 #: app/Konfigurator/kgstartup.cpp:94
 #, fuzzy, kde-format
-#| msgid ""
-#| "Krusader starts to tray (if minimize to tray is set), without showing the "
-#| "main window"
 msgid "Krusader starts to tray, without showing the main window"
 msgstr ""
 "Krusader pradėjęs darbą susimažins į sistemos dėklą. Pagrindinis langa nebus "
@@ -5107,7 +4819,6 @@ msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:101
 #, fuzzy, kde-format
-#| msgid "Save settings on exit"
 msgid "Save component settings on exit"
 msgstr "Įrašyti parinktis baigiant darbą"
 
@@ -5142,13 +4853,11 @@ msgstr "Rodyti komandų eilutę pradedant darbą."
 
 #: app/Konfigurator/kgstartup.cpp:105
 #, fuzzy, kde-format
-#| msgid "Send to &Embedded Terminal Emulator"
 msgid "Show embedded terminal"
 msgstr "Persiųsti į vidinį &terminalą"
 
 #: app/Konfigurator/kgstartup.cpp:106
 #, fuzzy, kde-format
-#| msgid "Terminal emulator will be visible after startup."
 msgid "Embedded terminal will be visible after startup."
 msgstr "Rodyti terminalą pradedant darbą."
 
@@ -5240,7 +4949,6 @@ msgstr "Sudėtingesni"
 
 #: app/Konfigurator/konfigurator.cpp:122
 #, fuzzy, kde-format
-#| msgid "Be sure you know what you're doing!"
 msgid "Be sure you know what you are doing."
 msgstr "Nedarykite, jei nesate tikri tuo ką darote!"
 
@@ -5272,7 +4980,6 @@ msgstr "Savo sukurtų veiksmų konfigūravimas"
 
 #: app/Konfigurator/konfigurator.cpp:133
 #, fuzzy, kde-format
-#| msgid "Link mimes to protocols"
 msgid "Link MIMEs to protocols"
 msgstr "Susieti mime tipus su protokolais"
 
@@ -5288,7 +4995,6 @@ msgstr "Parinkta spalva"
 
 #: app/Konfigurator/konfiguratoritems.cpp:562
 #, fuzzy, kde-format
-#| msgid "Default"
 msgctxt "Default color"
 msgid "Default"
 msgstr "Numatyta"
@@ -5466,7 +5172,6 @@ msgstr "Pagrindinė priemonių juosta"
 
 #: app/kractions.cpp:171
 #, fuzzy, kde-format
-#| msgid "Show Main Toolbar"
 msgid "Show Job Toolbar"
 msgstr "Pagrindinė priemonių juosta"
 
@@ -5487,7 +5192,6 @@ msgstr "Rodyti &Komandų eilutę"
 
 #: app/kractions.cpp:187
 #, fuzzy, kde-format
-#| msgid "Send to &Embedded Terminal Emulator"
 msgid "Show &Embedded Terminal"
 msgstr "Persiųsti į vidinį &terminalą"
 
@@ -5608,7 +5312,6 @@ msgstr "&Paieška (locate)..."
 
 #: app/kractions.cpp:258
 #, fuzzy, kde-format
-#| msgid "Synchronize &Directories..."
 msgid "Synchronize Fol&ders..."
 msgstr "&Sinchronizuoti aplankus..."
 
@@ -5674,7 +5377,6 @@ msgstr "Dažniausi URL..."
 
 #: app/kractions.cpp:281
 #, fuzzy, kde-format
-#| msgid "Toggle Fullwidget Terminal Emulator"
 msgid "Toggle Fullscreen Embedded Terminal"
 msgstr "Įj/išj. terminalą"
 
@@ -5705,9 +5407,6 @@ msgstr "Tik pažymėtus failus"
 
 #: app/krslots.cpp:98
 #, fuzzy, kde-format
-#| msgid ""
-#| "Krusader can't find a supported mail client. Please install one to your "
-#| "path. Hint: Krusader supports Kmail."
 msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
 "path. Hint: Krusader supports KMail."
@@ -5727,13 +5426,11 @@ msgstr[3] "Siunčiami failai: %2"
 #: app/krslots.cpp:137 app/krslots.cpp:223 app/krslots.cpp:407
 #: app/krslots.cpp:473 app/Synchronizer/synchronizer.cpp:1382
 #, fuzzy, kde-format
-#| msgid "Error executing %1!"
 msgid "Error executing %1."
 msgstr "Klaida vykdant %1!"
 
 #: app/krslots.cpp:161
 #, fuzzy, kde-format
-#| msgid "Don't know which files to compare."
 msgid "Do not know which files to compare."
 msgstr "Neaišku, kuriuos failus reikia palyginti."
 
@@ -5757,9 +5454,6 @@ msgstr "Krusader negali atsiųsti %1"
 
 #: app/krslots.cpp:193
 #, fuzzy, kde-format
-#| msgid ""
-#| "Krusader can't find any of the supported diff-frontends. Please install "
-#| "one to your path. Hint: Krusader supports Kompare, Kdiff3 and Xxdiff."
 msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports Kompare, KDiff3 and Xxdiff."
@@ -5769,9 +5463,6 @@ msgstr ""
 
 #: app/krslots.cpp:372
 #, fuzzy, kde-format
-#| msgid ""
-#| "Can't find the 'locate' command. Please install the findutils-locate "
-#| "package of GNU, or set its dependencies in Konfigurator"
 msgid ""
 "Cannot find the 'locate' command. Please install the findutils-locate "
 "package of GNU, or set its dependencies in Konfigurator"
@@ -5789,9 +5480,6 @@ msgstr ""
 
 #: app/krslots.cpp:420
 #, fuzzy, kde-format
-#| msgid ""
-#| "Can't find a batch rename tool.\n"
-#| "You can get Krename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
@@ -5801,7 +5489,6 @@ msgstr ""
 
 #: app/krslots.cpp:447
 #, fuzzy, kde-format
-#| msgid "Error executing %1!"
 msgid "Error executing '%1'."
 msgstr "Klaida vykdant %1!"
 
@@ -5822,43 +5509,36 @@ msgstr ""
 
 #: app/krslots.cpp:486
 #, fuzzy, kde-format
-#| msgid "Don't know which file to split."
 msgid "Do not know which file to split."
 msgstr "Neaišku kurį failą suskaidyti."
 
 #: app/krslots.cpp:495
 #, fuzzy, kde-format
-#| msgid "You can't split a directory!"
 msgid "You cannot split a folder."
 msgstr "Aplanko suskaidyti nepavyks!"
 
 #: app/krslots.cpp:519
 #, fuzzy, kde-format
-#| msgid "Don't know which files to combine."
 msgid "Do not know which files to combine."
 msgstr "Neaišku kuriuos failus sujungti."
 
 #: app/krslots.cpp:536
 #, fuzzy, kde-format
-#| msgid "You can't combine a directory!"
 msgid "You cannot combine a folder."
 msgstr "Aplanko sujungti nepavyks!"
 
 #: app/krslots.cpp:553 app/krslots.cpp:605
 #, fuzzy, kde-format
-#| msgid "Not a split file %1!"
 msgid "Not a split file: %1."
 msgstr "Failas %1 nėra skaidymo dalis!"
 
 #: app/krslots.cpp:565
 #, fuzzy, kde-format
-#| msgid "Select only one split file!"
 msgid "Select only one split file."
 msgstr "Pažymėkite tik vieną skaidymo dalį!"
 
 #: app/krslots.cpp:612
 #, fuzzy, kde-format
-#| msgid "Combining %1.* to directory:"
 msgid "Combining %1.* to folder:"
 msgstr "Sujungiamas failas %1.* į aplanką:"
 
@@ -5881,10 +5561,6 @@ msgstr ""
 
 #: app/krusader.cpp:304
 #, fuzzy, kde-format
-#| msgid ""
-#| "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine "
-#| "will now be checked for external applications. Then the Konfigurator will "
-#| "be launched where you can customize Krusader to your needs.</p></qt>"
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
 "will now be checked for external applications. Then the Konfigurator will be "
@@ -5903,7 +5579,6 @@ msgstr ""
 #: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1883
 #: app/KViewer/lister.cpp:1918
 #, fuzzy, kde-format
-#| msgid "History"
 msgid "Lister"
 msgstr "Žurnalas"
 
@@ -5922,7 +5597,6 @@ msgstr "&Keisti"
 #. i18n: ectx: Menu (compare setup)
 #: app/krusaderui.rc:53
 #, fuzzy, kde-format
-#| msgid "Compare"
 msgid "Compare Se&tup"
 msgstr "Palyginti"
 
@@ -5959,7 +5633,6 @@ msgstr "Į&rankinės"
 #. i18n: ectx: Menu (command_execution_mode)
 #: app/krusaderui.rc:131
 #, fuzzy, kde-format
-#| msgid "Execution mode"
 msgid "Command Execution &Mode Setup"
 msgstr "Vykdymo veiksena"
 
@@ -5990,7 +5663,6 @@ msgstr "Veiksmų įrankinė"
 #. i18n: ectx: ToolBar (jobToolBar)
 #: app/krusaderui.rc:200
 #, fuzzy, kde-format
-#| msgid "Show Panel Toolbar"
 msgid "Job Toolbar"
 msgstr "Pagrindinė įrankinė"
 
@@ -6064,41 +5736,35 @@ msgstr ""
 
 #: app/KViewer/krviewer.cpp:327
 #, fuzzy, kde-format
-#| msgid "Cannot open %1!"
 msgid "Can not open \"%1\""
 msgstr "Nepavyko atverti %1!"
 
 #: app/KViewer/krviewer.cpp:634
 #, fuzzy, kde-format
-#| msgid "Editing"
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "Redagavimas"
 
 #: app/KViewer/krviewer.cpp:635
 #, fuzzy, kde-format
-#| msgid "Viewing"
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "Žvalgosi"
 
 #: app/KViewer/krviewer.cpp:642
 #, fuzzy, kde-format
-#| msgid "Editing"
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Redagavimas"
 
 #: app/KViewer/krviewer.cpp:643
 #, fuzzy, kde-format
-#| msgid "View: "
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Žvalgosi"
 
 #: app/KViewer/lister.cpp:1194 app/KViewer/lister.cpp:1907
 #, fuzzy, kde-format
-#| msgid "I&nvert selection"
 msgid "Save selection..."
 msgstr "Ap&versti žymėjimą"
 
@@ -6114,13 +5780,11 @@ msgstr "Spausdinti..."
 
 #: app/KViewer/lister.cpp:1212
 #, fuzzy, kde-format
-#| msgid "&Search in"
 msgid "Search next"
 msgstr "Ieškoti kito"
 
 #: app/KViewer/lister.cpp:1217
 #, fuzzy, kde-format
-#| msgid "Search results"
 msgid "Search previous"
 msgstr "Ieškoti ankstesnio"
 
@@ -6128,25 +5792,21 @@ msgstr "Ieškoti ankstesnio"
 #: app/KViewer/lister.cpp:1857 app/KViewer/lister.cpp:1865
 #: app/KViewer/lister.cpp:1872
 #, fuzzy, kde-format
-#| msgid "Jump to a Location..."
 msgid "Jump to position"
 msgstr "Šokti į poziciją"
 
 #: app/KViewer/lister.cpp:1232
 #, fuzzy, kde-format
-#| msgid "Select Remote Charset"
 msgid "Select charset"
 msgstr "Parinkti koduotę"
 
 #: app/KViewer/lister.cpp:1251 app/KViewer/lister.cpp:1477
 #, fuzzy, kde-format
-#| msgid "History"
 msgid "Lister:"
 msgstr "Žurnalas"
 
 #: app/KViewer/lister.cpp:1262
 #, fuzzy, kde-format
-#| msgid "Search"
 msgid "Stop search"
 msgstr "Paieška"
 
@@ -6187,7 +5847,6 @@ msgstr "Šešioliktainė"
 
 #: app/KViewer/lister.cpp:1351
 #, fuzzy, kde-format
-#| msgid "Error reading file %1!"
 msgid "Error reading file %1."
 msgstr "Klaida skaitant failą."
 
@@ -6203,7 +5862,6 @@ msgstr "Ieškoti:"
 
 #: app/KViewer/lister.cpp:1830
 #, fuzzy, kde-format
-#| msgid "&Search in"
 msgid "Search position:"
 msgstr "&Ieškoti"
 
@@ -6214,13 +5872,11 @@ msgstr "Teksto pozicija:"
 
 #: app/KViewer/lister.cpp:1857 app/KViewer/lister.cpp:1865
 #, fuzzy, kde-format
-#| msgid "Invalid volume size!"
 msgid "Invalid number."
 msgstr "netaisyklingas skaičius"
 
 #: app/KViewer/lister.cpp:1872
 #, fuzzy, kde-format
-#| msgid "Number of..."
 msgid "Number out of range."
 msgstr "Kiekis..."
 
@@ -6236,7 +5892,6 @@ msgstr ""
 
 #: app/KViewer/panelviewer.cpp:53
 #, fuzzy, kde-format
-#| msgid "No file selected or selected file can't be displayed."
 msgid "No file selected or selected file cannot be displayed."
 msgstr "Nepažymėtas joks failas arba pažymėtų failų nepavyko parodyti."
 
@@ -6266,7 +5921,6 @@ msgstr ""
 
 #: app/KViewer/panelviewer.cpp:431
 #, fuzzy, kde-format
-#| msgid "Cannot open %1!"
 msgid "Cannot edit %1"
 msgstr "Negali taisyti"
 
@@ -6282,7 +5936,6 @@ msgstr "Ko ieškoti:"
 
 #: app/Locate/locate.cpp:147
 #, fuzzy, kde-format
-#| msgid "Don't search in path"
 msgid "Do not search in path"
 msgstr "Neieškoti šiame kelyje"
 
@@ -6313,7 +5966,6 @@ msgstr "Atnaujinti duomenų bazę"
 
 #: app/Locate/locate.cpp:276
 #, fuzzy, kde-format
-#| msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
 msgid "Cannot start 'locate'. Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Nepavyksta paleisti „locate“! Patikrinkite skyrelį „Priklausomybės“ "
@@ -6321,15 +5973,11 @@ msgstr ""
 
 #: app/Locate/locate.cpp:315
 #, fuzzy, kde-format
-#| msgid "Error during the start of 'locate' process!"
 msgid "Error during the start of 'locate' process."
 msgstr "Klaida pradedant vykdyti Paiešką (locate)!"
 
 #: app/Locate/locate.cpp:322
 #, fuzzy, kde-format
-#| msgid ""
-#| "Locate produced the following error message:\n"
-#| "\n"
 msgid ""
 "Locate produced the following error message:\n"
 "\n"
@@ -6381,7 +6029,6 @@ msgstr "Kopijuoti pažymėtus į talpyklę"
 
 #: app/Locate/locate.cpp:541 app/Locate/locate.cpp:561
 #, fuzzy, kde-format
-#| msgid "Search string not found!"
 msgid "Search string not found."
 msgstr "<span foreground=\"red\">Ieškomas tekstas nerasta</span>"
 
@@ -6392,13 +6039,11 @@ msgstr "Paieškos rezultatai"
 
 #: app/Locate/locate.cpp:636
 #, fuzzy, kde-format
-#| msgid "Query name"
 msgid "Query Name"
 msgstr "Paieškos pavadinimas"
 
 #: app/Locate/locate.cpp:636
 #, fuzzy, kde-format
-#| msgid "Here you can name the file collection"
 msgid "Here you can name the file collection:"
 msgstr "Čia galite pavadinti failų rinkinį"
 
@@ -6416,7 +6061,6 @@ msgstr "Rezultatus į atskirą langą"
 
 #: app/main.cpp:46
 #, fuzzy, kde-format
-#| msgid "Krusader::ProfileManager"
 msgid ""
 "Krusader\n"
 "Twin-Panel File Manager by KDE"
@@ -6516,7 +6160,6 @@ msgstr "Csaba Karai"
 #: app/main.cpp:130 app/main.cpp:131 app/main.cpp:132 app/main.cpp:133
 #: app/main.cpp:134
 #, fuzzy, kde-format
-#| msgid "Developer"
 msgid "Developer (retired)"
 msgstr "Programuotojas"
 
@@ -6567,7 +6210,6 @@ msgstr "Dirk Eschler"
 
 #: app/main.cpp:135
 #, fuzzy, kde-format
-#| msgid "Developer"
 msgid "Webmaster (retired)"
 msgstr "Programuotojas"
 
@@ -6578,7 +6220,6 @@ msgstr "Frank Schoolmeesters"
 
 #: app/main.cpp:136
 #, fuzzy, kde-format
-#| msgid "Documentation and marketing coordinator"
 msgid "Documentation and marketing coordinator (retired)"
 msgstr "Dokumentacija ir marketingo koordinatorius"
 
@@ -6589,7 +6230,6 @@ msgstr "Richard Holt"
 
 #: app/main.cpp:137
 #, fuzzy, kde-format
-#| msgid "Documentation and marketing coordinator"
 msgid "Documentation & Proofing (retired)"
 msgstr "Dokumentacija ir marketingo koordinatorius"
 
@@ -7150,13 +6790,11 @@ msgstr "&Prijungiami įrenginiai..."
 
 #: app/MountMan/kmountman.cpp:54
 #, fuzzy, kde-format
-#| msgid "MountMan"
 msgid "Open &MountMan"
 msgstr "Prijungiami įrenginiai"
 
 #: app/MountMan/kmountman.cpp:118
 #, fuzzy, kde-format
-#| msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
 msgid "Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Nepavyko paleisti komandos „mount“! Patikrinkite skyrių „Priklausomybės“ "
@@ -7234,7 +6872,6 @@ msgstr "Suskaičiuoti užimtą vietą"
 
 #: app/Panel/krcalcspacedialog.cpp:107
 #, fuzzy, kde-format
-#| msgid "Name: "
 msgid "Name: %1\n"
 msgstr "  NAME\n"
 
@@ -7245,8 +6882,6 @@ msgstr "Užimta vieta: %1"
 
 #: app/Panel/krcalcspacedialog.cpp:111
 #, fuzzy, kde-format
-#| msgid "(1 byte)"
-#| msgid_plural "(%1 bytes)"
 msgid " (%2 byte)"
 msgid_plural " (%2 bytes)"
 msgstr[0] "B"
@@ -7256,8 +6891,6 @@ msgstr[3] "(%1 baitas)"
 
 #: app/Panel/krcalcspacedialog.cpp:113
 #, fuzzy, kde-format
-#| msgid "and %1 file"
-#| msgid_plural "and %1 files"
 msgid "in %1 folder"
 msgid_plural "in %1 folders"
 msgstr[0] "ir %1 faile"
@@ -7276,61 +6909,51 @@ msgstr[3] "ir %1 faile"
 
 #: app/Panel/krfiletreeview.cpp:176
 #, fuzzy, kde-format
-#| msgid "Details"
 msgid "Show Details"
 msgstr "Išsamiau"
 
 #: app/Panel/krfiletreeview.cpp:179
 #, fuzzy, kde-format
-#| msgid "Show excluded files (CTRL+D)."
 msgid "Show columns with details"
 msgstr "Rodyti išskirtus failus (Vald+D)."
 
 #: app/Panel/krfiletreeview.cpp:180
 #, fuzzy, kde-format
-#| msgid "Show &Hidden Files"
 msgid "Show Hidden Folders"
 msgstr "Rodyti &slepiamus failus"
 
 #: app/Panel/krfiletreeview.cpp:183
 #, fuzzy, kde-format
-#| msgid "Display files beginning with a dot."
 msgid "Show folders starting with a dot"
 msgstr "Rodyti failus, kurių pirmasis pavadinimo simbolis yra taškas."
 
 #: app/Panel/krfiletreeview.cpp:188
 #, fuzzy, kde-format
-#| msgid "Start to tray"
 msgid "Start From Root"
 msgstr "Paleidus sumažinti į sistemos dėklą"
 
 #: app/Panel/krfiletreeview.cpp:191
 #, fuzzy, kde-format
-#| msgid "Select all files in the current directory"
 msgid "Set root of the tree to root of filesystem"
 msgstr "Pažymėti visus failus šiame aplanke"
 
 #: app/Panel/krfiletreeview.cpp:194
 #, fuzzy, kde-format
-#| msgid "Start and &Forget"
 msgid "Start From Current"
 msgstr "&Paleisti ir palikti"
 
 #: app/Panel/krfiletreeview.cpp:197
 #, fuzzy, kde-format
-#| msgid "Select all files in the current directory"
 msgid "Set root of the tree to the current folder"
 msgstr "Pažymėti visus failus šiame aplanke"
 
 #: app/Panel/krfiletreeview.cpp:200
 #, fuzzy, kde-format
-#| msgid "Startup profile:"
 msgid "Start From Place"
 msgstr "Pradžios profilis:"
 
 #: app/Panel/krfiletreeview.cpp:204
 #, fuzzy, kde-format
-#| msgid "Select all files in the current directory"
 msgid "Set root of the tree to closest folder listed in 'Places'"
 msgstr "Pažymėti visus failus šiame aplanke"
 
@@ -7348,7 +6971,6 @@ msgstr "Kopijuoti"
 
 #: app/Panel/krfiletreeview.cpp:260
 #, fuzzy, kde-format
-#| msgid "Move to Trash"
 msgctxt "@action:inmenu"
 msgid "Move to Trash"
 msgstr "Perkelti į šiukšlinę"
@@ -7361,7 +6983,6 @@ msgstr "Pašalinti"
 
 #: app/Panel/krfiletreeview.cpp:282
 #, fuzzy, kde-format
-#| msgid "&Properties..."
 msgctxt "@action:inmenu"
 msgid "Properties"
 msgstr "&Parinktys..."
@@ -7404,19 +7025,16 @@ msgstr ""
 
 #: app/Panel/krsearchbar.cpp:50
 #, fuzzy, kde-format
-#| msgid "Enter a selection:"
 msgid "Enter or select search string"
 msgstr "Įrašykite žymėjimą:"
 
 #: app/Panel/krsearchbar.cpp:62
 #, fuzzy, kde-format
-#| msgid "store the current selection"
 msgid "Save the current search string"
 msgstr "įrašyti dabartinį žymėjimą"
 
 #: app/Panel/krsearchbar.cpp:68
 #, fuzzy, kde-format
-#| msgid "select group dialog"
 msgid "Open selection dialog"
 msgstr "žymėti grupę"
 
@@ -7427,9 +7045,6 @@ msgstr ""
 
 #: app/Panel/listpanel.cpp:142
 #, fuzzy, kde-format
-#| msgid ""
-#| "The statusbar displays information about the FILESYSTEM which holds your "
-#| "current directory: Total size, free space, type of filesystem, etc."
 msgid ""
 "The statusbar displays information about the filesystem which holds your "
 "current folder: total size, free space, type of filesystem, etc."
@@ -7448,9 +7063,6 @@ msgstr ""
 
 #: app/Panel/listpanel.cpp:173
 #, fuzzy, kde-format
-#| msgid ""
-#| "Name of directory where you are. You can also enter name of desired "
-#| "location to move there. Use of Net protocols like ftp or fish is possible."
 msgid ""
 "Name of folder where you are. You can also enter name of desired location to "
 "move there. Use of Net protocols like ftp or fish is possible."
@@ -7480,16 +7092,11 @@ msgstr ""
 
 #: app/Panel/listpanel.cpp:260 app/Panel/listpanel.cpp:575
 #, fuzzy, kde-format
-#| msgid "Opens the directory browser."
 msgid "Open the Sidebar"
 msgstr "Atveria aplankų langą."
 
 #: app/Panel/listpanel.cpp:283
 #, fuzzy, kde-format
-#| msgid ""
-#| "This button toggles the sync-browse mode.\n"
-#| "When active, each directory change is performed in the\n"
-#| "active and inactive panel - if possible."
 msgid ""
 "This button toggles the sync-browse mode.\n"
 "When active, each folder change is performed in the\n"
@@ -7512,10 +7119,6 @@ msgstr ""
 
 #: app/Panel/listpanel.cpp:786
 #, fuzzy, kde-format
-#| msgctxt ""
-#| "%1=free space,%2=total space,%3=percentage of "
-#| "usage,                           %4=mountpoint,%5=filesystem type"
-#| msgid "%1 free out of %2 (%3%) on %4 [(%5)]"
 msgctxt ""
 "%1=free space,%2=total space,%3=percentage of usage, %4=mountpoint,"
 "%5=filesystem type"
@@ -7529,7 +7132,6 @@ msgstr "%1 laisvos"
 
 #: app/Panel/listpanel.cpp:1008
 #, fuzzy, kde-format
-#| msgid "loading previews"
 msgid "loading previews: %p%"
 msgstr "įkeliamos peržiūros"
 
@@ -7540,13 +7142,11 @@ msgstr ">> Skaitoma..."
 
 #: app/Panel/listpanel.cpp:1076
 #, fuzzy, kde-format
-#| msgid ">> Reading..."
 msgid ">> Reading: %1 % complete..."
 msgstr ">> Skaitoma..."
 
 #: app/Panel/listpanel.cpp:1082
 #, fuzzy, kde-format
-#| msgid "Reading: "
 msgid ">> Reading: %1"
 msgstr ">> Skaitoma..."
 
@@ -7563,7 +7163,7 @@ msgstr "Iškirpti į talpyklę"
 #: app/Panel/listpanelactions.cpp:58 app/Search/krsearchdialog.cpp:205
 #, kde-format
 msgid "Copy to Clipboard"
-msgstr "Kuopijuoti į iškarpinę"
+msgstr "Kopijuoti į talpyklę"
 
 #: app/Panel/listpanelactions.cpp:60
 #, kde-format
@@ -7587,13 +7187,11 @@ msgstr "&Nauja tekstinis failas..."
 
 #: app/Panel/listpanelactions.cpp:67
 #, fuzzy, kde-format
-#| msgid "Other panel"
 msgid "Copy to other panel"
 msgstr "Kitas langas"
 
 #: app/Panel/listpanelactions.cpp:68
 #, fuzzy, kde-format
-#| msgid "Other panel"
 msgid "Move to other panel"
 msgstr "Kitas langas"
 
@@ -7609,7 +7207,6 @@ msgstr "Perkelti..."
 
 #: app/Panel/listpanelactions.cpp:71
 #, fuzzy, kde-format
-#| msgid "New Folder"
 msgid "New Folder..."
 msgstr "Naujas aplankas"
 
@@ -7635,7 +7232,6 @@ msgstr "&Parinktys..."
 
 #: app/Panel/listpanelactions.cpp:79
 #, fuzzy, kde-format
-#| msgid "&Compare Files"
 msgid "&Compare Folders"
 msgstr "Pa&lyginti failus"
 
@@ -7676,7 +7272,6 @@ msgstr "&Tikrinti archyvą"
 
 #: app/Panel/listpanelactions.cpp:87
 #, fuzzy, kde-format
-#| msgid "Alternate selected background:"
 msgid "Alternative Delete"
 msgstr "Pažymėto obj. kaitomo fono spalva:"
 
@@ -7687,7 +7282,6 @@ msgstr "Šakninis aplankas"
 
 #: app/Panel/listpanelactions.cpp:91
 #, fuzzy, kde-format
-#| msgid "Other panel"
 msgid "Go to Other Panel's Folder"
 msgstr "Kitas langas"
 
@@ -7728,7 +7322,6 @@ msgstr "Nurodyti, kad būtų grįžtama čia"
 
 #: app/Panel/listpanelactions.cpp:99
 #, fuzzy, kde-format
-#| msgid "S&ynchron Directory Changes"
 msgid "S&ynchron Folder Changes"
 msgstr "Sin&chronizuoti aplankų pasikeitimus"
 
@@ -7784,19 +7377,16 @@ msgstr "Laikmenos dešinėje"
 
 #: app/Panel/listpanelactions.cpp:113
 #, fuzzy, kde-format
-#| msgid "Folder..."
 msgid "Find in folder..."
 msgstr "Aplankas..."
 
 #: app/Panel/listpanelactions.cpp:114
 #, fuzzy, kde-format
-#| msgid "Selection Mode"
 msgid "Select in folder..."
 msgstr "Žymėjimo veiksena"
 
 #: app/Panel/listpanelactions.cpp:115
 #, fuzzy, kde-format
-#| msgid "Folder..."
 msgid "Filter in folder..."
 msgstr "Aplankas..."
 
@@ -7817,9 +7407,6 @@ msgstr "Atverti failą žiūryklėje."
 
 #: app/Panel/listpanelactions.cpp:122
 #, fuzzy, kde-format
-#| msgid ""
-#| "<p>Edit file.</p><p>The editor can be defined in Konfigurator, default is "
-#| "<b>internal editor</b>.</p>"
 msgid ""
 "<qt><p>Edit file.</p><p>The editor can be defined in Konfigurator, default "
 "is <b>internal editor</b>.</p></qt>"
@@ -7839,21 +7426,16 @@ msgstr "Perkelti failą iš vieno skydelio į kitą."
 
 #: app/Panel/listpanelactions.cpp:127
 #, fuzzy, kde-format
-#| msgid "Create directory in current panel."
 msgid "Create folder in current panel."
 msgstr "Sukurti aplanką dabartiniame lange."
 
 #: app/Panel/listpanelactions.cpp:128
 #, fuzzy, kde-format
-#| msgid "Delete file, directory, etc."
 msgid "Delete file, folder, etc."
 msgstr "Pašalinti failą, aplanką ir pan."
 
 #: app/Panel/listpanelactions.cpp:129
 #, fuzzy, kde-format
-#| msgid ""
-#| "<p>Open terminal in current directory.</p><p>The terminal can be defined "
-#| "in Konfigurator, default is <b>konsole</b>.</p>"
 msgid ""
 "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
 "Konfigurator, default is <b>konsole</b>.</p></qt>"
@@ -7886,7 +7468,6 @@ msgstr "Atverti naujoje kortelėje"
 
 #: app/Panel/panelcontextmenu.cpp:148
 #, fuzzy, kde-format
-#| msgid "T&est Archive"
 msgid "Browse Archive"
 msgstr "&Tikrinti archyvą"
 
@@ -7947,7 +7528,6 @@ msgstr "Keisti nuorodas galima tik vietinėse failų sistemose"
 
 #: app/Panel/panelfunc.cpp:382
 #, fuzzy, kde-format
-#| msgid "The current file is not a link, so I can't redirect it."
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "Dabartinis failas nėra nuoroda, todėl jo pakeisti nepavyko!"
 
@@ -7963,13 +7543,11 @@ msgstr "Įveskite naują nuorodos paskirties vietą:"
 
 #: app/Panel/panelfunc.cpp:396
 #, fuzzy, kde-format
-#| msgid "Can't remove old link: "
 msgid "Cannot remove old link: %1"
 msgstr "Nepavyko pašalinti senos nuorodos:"
 
 #: app/Panel/panelfunc.cpp:401
 #, fuzzy, kde-format
-#| msgid "Failed to create a new link: "
 msgid "Failed to create a new link: %1"
 msgstr "Nepavyko sukurti naujos nuorodos:"
 
@@ -7985,25 +7563,21 @@ msgstr "Nauja nuoroda"
 
 #: app/Panel/panelfunc.cpp:419
 #, fuzzy, kde-format
-#| msgid "Create a new link to: "
 msgid "Create a new link to: %1"
 msgstr "Sukurti naują nuorodą į:"
 
 #: app/Panel/panelfunc.cpp:427 app/Panel/panelfunc.cpp:781
 #, fuzzy, kde-format
-#| msgid "A directory or a file with this name already exists."
 msgid "A folder or a file with this name already exists."
 msgstr "Aplankas arba failas tokiu vardu jau egzistuoja."
 
 #: app/Panel/panelfunc.cpp:439
 #, fuzzy, kde-format
-#| msgid "Failed to create a new symlink: "
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Nepavyko sukurti naujos nuorodos:"
 
 #: app/Panel/panelfunc.cpp:443
 #, fuzzy, kde-format
-#| msgid "Failed to create a new link: "
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Nepavyko sukurti naujos nuorodos:"
 
@@ -8019,7 +7593,6 @@ msgstr "Įrašykite peržiūrimą URL:"
 
 #: app/Panel/panelfunc.cpp:501 app/Panel/panelfunc.cpp:578
 #, fuzzy, kde-format
-#| msgid "You can't edit a directory"
 msgid "You cannot edit a folder"
 msgstr "Keisti aplanko negalima!"
 
@@ -8063,7 +7636,6 @@ msgstr[3] "Kopijuoti %1 failą į:"
 
 #: app/Panel/panelfunc.cpp:704
 #, fuzzy, kde-format
-#| msgid "Folder name:"
 msgid "Folder's name:"
 msgstr "Aplanko pavadinimas:"
 
@@ -8108,9 +7680,6 @@ msgstr[3] "Ar tikrai norite pašalinti %1 objektą?"
 
 #: app/Panel/panelfunc.cpp:900
 #, fuzzy, kde-format
-#| msgid ""
-#| "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete "
-#| "All?</p></qt>"
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr ""
 "<qt><p>Aplankas <b>%1</b> netuščias!</p><p>Praleisti šį aplanką ar pašalinti "
@@ -8123,9 +7692,6 @@ msgstr ""
 
 #: app/Panel/panelfunc.cpp:902
 #, fuzzy, kde-format
-#| msgid ""
-#| "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete "
-#| "All?</p></qt>"
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr ""
 "<qt><p>Aplankas <b>%1</b> netuščias!</p><p>Praleisti šį aplanką ar pašalinti "
@@ -8138,7 +7704,6 @@ msgstr "Pralei&sti"
 
 #: app/Panel/panelfunc.cpp:904
 #, fuzzy, kde-format
-#| msgid "&Trash"
 msgid "&Trash All"
 msgstr "&Šiukšlinė"
 
@@ -8175,15 +7740,11 @@ msgstr "Nepavyko paleisti %1"
 
 #: app/Panel/panelfunc.cpp:992
 #, fuzzy, kde-format
-#| msgid "Cannot open %1!"
 msgid "%1 cannot open %2"
 msgstr "Nepavyksta atverti %1 : %2"
 
 #: app/Panel/panelfunc.cpp:1066
 #, fuzzy, kde-format
-#| msgid ""
-#| "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite "
-#| "it?</p><p>All data in the previous archive will be lost!</p></qt>"
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost.</p></qt>"
@@ -8204,7 +7765,6 @@ msgstr ""
 
 #: app/Panel/panelfunc.cpp:1074
 #, fuzzy, kde-format
-#| msgid "Cannot pack files onto a virtual destination!"
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Nepavyks supakuoti failų į virtualią paskirties vietą!"
 
@@ -8230,13 +7790,11 @@ msgstr "Stulpeliai"
 
 #: app/Panel/PanelView/krinterdetailedview.cpp:303
 #, fuzzy, kde-format
-#| msgid "Automatically escape spaces"
 msgid "Automatically Resize Columns"
 msgstr "Automatiškai apsaugoti tarpo simbolius"
 
 #: app/Panel/PanelView/krview.cpp:418
 #, fuzzy, kde-format
-#| msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
 "%3=filesize of selected items,%4=filesize in Bytes,                     "
@@ -8246,7 +7804,6 @@ msgstr "%1 iš %2, %3 (%4) iš %5 (%6)"
 
 #: app/Panel/PanelView/krview.cpp:426
 #, fuzzy, kde-format
-#| msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
 "%3=filesize of selected items,%4=filesize of all items in folder"
@@ -8255,7 +7812,6 @@ msgstr "%1 iš %2, %3 (%4) iš %5 (%6)"
 
 #: app/Panel/PanelView/krview.cpp:1073
 #, fuzzy, kde-format
-#| msgid "Split the file %1 to directory:"
 msgid "Apply filter to folder&s"
 msgstr "Suskaidyti failą %1 į aplanką:"
 
@@ -8266,7 +7822,6 @@ msgstr "Filtro failai"
 
 #: app/Panel/PanelView/krview.cpp:1104
 #, fuzzy, kde-format
-#| msgid "Split the file %1 to directory:"
 msgid "Apply &selection to folders"
 msgstr "Suskaidyti failą %1 į aplanką:"
 
@@ -8287,13 +7842,11 @@ msgstr "&Glaustas vaizdas"
 
 #: app/Panel/PanelView/krviewitem.cpp:62
 #, fuzzy, kde-format
-#| msgid "Climb up the directory tree"
 msgid "Climb up the folder tree"
 msgstr "Pakilti aplankų medžiu aukštyn"
 
 #: app/Panel/PanelView/krviewitem.cpp:75
 #, fuzzy, kde-format
-#| msgid "(broken link!)"
 msgid "(Broken Link)"
 msgstr "(sugadinta nuoroda!)"
 
@@ -8310,7 +7863,6 @@ msgstr "%1 (Nuoroda)"
 #: app/Panel/PanelView/listmodel.cpp:130
 #: app/Synchronizer/synchronizergui.cpp:1571
 #, fuzzy, kde-format
-#| msgid "<DIR>"
 msgctxt ""
 "Show the string 'DIR' instead of file size in detailed view (for folders)"
 msgid "DIR"
@@ -8324,7 +7876,6 @@ msgstr "Pavadinimas"
 
 #: app/Panel/PanelView/listmodel.cpp:372
 #, fuzzy, kde-format
-#| msgid "Ext"
 msgctxt "File property"
 msgid "Ext"
 msgstr "ext2"
@@ -8349,7 +7900,6 @@ msgstr "Pakeista"
 
 #: app/Panel/PanelView/listmodel.cpp:376
 #, fuzzy, kde-format
-#| msgid "Chan&ge..."
 msgctxt "File property"
 msgid "Changed"
 msgstr "&Keisti..."
@@ -8391,7 +7941,6 @@ msgstr "Dydis: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:486
 #, fuzzy, kde-format
-#| msgid "Type:"
 msgctxt "File property"
 msgid "Type: %1"
 msgstr "Tipas:"
@@ -8404,7 +7953,6 @@ msgstr "Pakeista: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:488
 #, fuzzy, kde-format
-#| msgid "Used: %1"
 msgctxt "File property"
 msgid "Changed: %1"
 msgstr "Naudojama: %1"
@@ -8417,14 +7965,12 @@ msgstr ""
 
 #: app/Panel/PanelView/listmodel.cpp:490
 #, fuzzy, kde-format
-#| msgid "Permissions:"
 msgctxt "File property"
 msgid "Permissions: %1"
 msgstr "Teisės:"
 
 #: app/Panel/PanelView/listmodel.cpp:492
 #, fuzzy, kde-format
-#| msgid "Owner:"
 msgctxt "File property"
 msgid "Owner: %1"
 msgstr "Savininkas:"
@@ -8464,7 +8010,6 @@ msgstr "Peržiūros langas: peržiūrėti dabartinį failą"
 
 #: app/Panel/sidebar.cpp:77
 #, fuzzy, kde-format
-#| msgid "Disk Usage Panel: view the usage of a directory"
 msgid "Disk Usage Panel: view the usage of a folder"
 msgstr "Disko naudojimo skydelis: žiūrėti aplanko naudojimą"
 
@@ -8495,7 +8040,6 @@ msgstr "Peržiūra: %1"
 
 #: app/Panel/sidebar.cpp:254
 #, fuzzy, kde-format
-#| msgid "View: "
 msgid "View: %1"
 msgstr "&Rodymas"
 
@@ -8506,7 +8050,6 @@ msgstr "Disko naudojimas: %1"
 
 #: app/Panel/viewactions.cpp:22
 #, fuzzy, kde-format
-#| msgid "Default"
 msgid "Default Zoom"
 msgstr "&Numatytas mastelis:"
 
@@ -8549,7 +8092,6 @@ msgstr "&Apversti žymėjimą"
 
 #: app/Panel/viewactions.cpp:36
 #, fuzzy, kde-format
-#| msgid "&Invert Selection"
 msgid "Restore Selection"
 msgstr "&Apversti žymėjimą"
 
@@ -8560,19 +8102,16 @@ msgstr ""
 
 #: app/Panel/viewactions.cpp:38
 #, fuzzy, kde-format
-#| msgid "Select a file to save to"
 msgid "Select Files with the Same Extension"
 msgstr "Nurodykite failą, į kurį įrašyti"
 
 #: app/Panel/viewactions.cpp:41
 #, fuzzy, kde-format
-#| msgid "S&how options"
 msgid "Show View Options Menu"
 msgstr "&Rodyti parinktis"
 
 #: app/Panel/viewactions.cpp:42
 #, fuzzy, kde-format
-#| msgid "Set Relation Between the Panels..."
 msgid "Set Focus to the Panel"
 msgstr "Nurodykite santykį tarp langų..."
 
@@ -8588,25 +8127,21 @@ msgstr "Rodyti peržiūras"
 
 #: app/Panel/viewactions.cpp:45
 #, fuzzy, kde-format
-#| msgid "Save settings on exit"
 msgid "Save settings as default"
 msgstr "Įrašyti parinktis baigiant darbą"
 
 #: app/Panel/viewactions.cpp:48
 #, fuzzy, kde-format
-#| msgid "Select &Group..."
 msgid "Select group"
 msgstr "Pažymėti &grupę..."
 
 #: app/Panel/viewactions.cpp:49
 #, fuzzy, kde-format
-#| msgid "Select all files in the current directory"
 msgid "Select all files in the current folder"
 msgstr "Pažymėti visus failus šiame aplanke"
 
 #: app/Panel/viewactions.cpp:50
 #, fuzzy, kde-format
-#| msgid "U&nselect All"
 msgid "Unselect all"
 msgstr "A&tžymėti viską"
 
@@ -8628,7 +8163,6 @@ msgstr ""
 
 #: app/paneltabbar.cpp:191
 #, fuzzy, kde-format
-#| msgid "?"
 msgctxt "invalid URL path"
 msgid "?"
 msgstr "?"
@@ -8640,7 +8174,6 @@ msgstr "Krusader::Paieška"
 
 #: app/Search/krsearchdialog.cpp:142
 #, fuzzy, kde-format
-#| msgid "Cut to Clipboard"
 msgid "Query to clipboard"
 msgstr "Iškirpti į talpyklę"
 
@@ -8676,7 +8209,6 @@ msgstr "&Rezultatai"
 
 #: app/Search/krsearchdialog.cpp:393
 #, fuzzy, kde-format
-#| msgid "Found %1 matches."
 msgid "Found %1 match."
 msgid_plural "Found %1 matches."
 msgstr[0] "Rasta %1 atitikčių."
@@ -8712,7 +8244,6 @@ msgstr "Krusader paieška"
 
 #: app/Search/krsearchdialog.cpp:599
 #, fuzzy, kde-format
-#| msgid "Search results"
 msgid "Search results for \"%1\" in %2"
 msgstr "Paieškos rezultatai"
 
@@ -8744,9 +8275,6 @@ msgstr "Sujungiamas failas %1..."
 
 #: app/Splitter/combiner.cpp:62
 #, fuzzy, kde-format
-#| msgid ""
-#| "The CRC information file (%1) is missing!\n"
-#| "Validity checking is impossible without it. Continue combining?"
 msgid ""
 "The CRC information file (%1) is missing.\n"
 "Validity checking is impossible without it. Continue combining?"
@@ -8756,21 +8284,16 @@ msgstr ""
 
 #: app/Splitter/combiner.cpp:96
 #, fuzzy, kde-format
-#| msgid "Error at reading the CRC file (%1)!"
 msgid "Error at reading the CRC file (%1)."
 msgstr "Įvyko klaida skaitant CRC failą (%1)!"
 
 #: app/Splitter/combiner.cpp:125
 #, fuzzy, kde-format
-#| msgid "Not a valid CRC file!"
 msgid "Not a valid CRC file."
 msgstr "Tai ne CRC failas!"
 
 #: app/Splitter/combiner.cpp:132
 #, fuzzy, kde-format
-#| msgid ""
-#| "Validity checking is impossible without a good CRC file. Continue "
-#| "combining?"
 msgid ""
 "\n"
 "Validity checking is impossible without a good CRC file. Continue combining?"
@@ -8785,19 +8308,16 @@ msgstr "Failas jau yra"
 
 #: app/Splitter/combiner.cpp:266
 #, fuzzy, kde-format
-#| msgid "Can't open the first split file of %1!"
 msgid "Cannot open the first split file of %1."
 msgstr "Nepavyko atverti pirmos suskaidyto failo %1 dalies!"
 
 #: app/Splitter/combiner.cpp:278
 #, fuzzy, kde-format
-#| msgid "Incorrect filesize! The file might have been corrupted!"
 msgid "Incorrect filesize, the file might have been corrupted."
 msgstr "Neteisingas failo dydis! Failas tikriausiai sugadintas!"
 
 #: app/Splitter/combiner.cpp:280
 #, fuzzy, kde-format
-#| msgid "Incorrect CRC checksum! The file might have been corrupted!"
 msgid "Incorrect CRC checksum, the file might have been corrupted."
 msgstr "Neteisinga CRC kontrolinė suma! Failas tikriausiai sugadinta!"
 
@@ -8813,19 +8333,16 @@ msgstr "Skaidomas failas %1..."
 
 #: app/Splitter/splitter.cpp:76
 #, fuzzy, kde-format
-#| msgid "Can't split a directory!"
 msgid "Cannot split a folder."
 msgstr "Aplanko suskaidyti nepavyks!"
 
 #: app/Splitter/splitter.cpp:121
 #, fuzzy, kde-format
-#| msgid "Error reading file %1!"
 msgid "Error reading file %1: %2"
 msgstr "Klaida skaitant failą."
 
 #: app/Splitter/splitter.cpp:236 app/Splitter/splitter.cpp:281
 #, fuzzy, kde-format
-#| msgid "Error writing file %1!"
 msgid "Error writing file %1: %2"
 msgstr "Klaida rašant į failą"
 
@@ -8871,7 +8388,6 @@ msgstr "700 MB (CD-R)"
 
 #: app/Splitter/splittergui.cpp:76
 #, fuzzy, kde-format
-#| msgid "Split the file %1 to directory:"
 msgid "Split the file %1 to folder:"
 msgstr "Suskaidyti failą %1 į aplanką:"
 
@@ -8917,7 +8433,6 @@ msgstr "Krusader::Skaidytojas"
 
 #: app/Splitter/splittergui.cpp:235
 #, fuzzy, kde-format
-#| msgid "The directory path URL is malformed!"
 msgid "The folder path URL is malformed."
 msgstr "Aplanko kelio URL yra neteisingas!"
 
@@ -8928,7 +8443,6 @@ msgstr "Krusader::Rezultatus į atskirą langą"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:73
 #, fuzzy, kde-format
-#| msgid "No elements to feed!"
 msgid "No elements to feed."
 msgstr "Nėra nei vieno įrašo!"
 
@@ -8964,7 +8478,6 @@ msgstr "Tik pažymėtus failus"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:185
 #, fuzzy, kde-format
-#| msgid "Cannot open %1!"
 msgid "Cannot open %1."
 msgstr "Nepavyksta atverti %1 : %2"
 
@@ -9000,8 +8513,6 @@ msgstr[3] "(%1 baitas)"
 #: app/Synchronizer/synchronizedialog.cpp:158
 #: app/Synchronizer/synchronizedialog.cpp:161
 #, fuzzy, kde-format
-#| msgid "\tReady: %2/1 file, %3/%4"
-#| msgid_plural "Ready: %2/%1 files, %3/%4"
 msgid "\tReady: %2/1 file, %3/%4"
 msgid_plural "\tReady: %2/%1 files, %3/%4"
 msgstr[0] "\tParuošta: %2/%1 failo, %3/%4"
@@ -9067,20 +8578,17 @@ msgstr "Failų skaičius: %1"
 
 #: app/Synchronizer/synchronizer.cpp:186
 #, fuzzy, kde-format
-#| msgid "Number of compared directories: %1"
 msgid "Number of compared folders: %1"
 msgstr "Palygintų aplankų skaičius: %1"
 
 #: app/Synchronizer/synchronizer.cpp:1159
 #: app/Synchronizer/synchronizer.cpp:1164
 #, fuzzy, kde-format
-#| msgid "Error at copying file %1 to %2!"
 msgid "Error at copying file %1 to %2."
 msgstr "Kopijuojant failą %1 į %2 įvyko klaida!"
 
 #: app/Synchronizer/synchronizer.cpp:1169
 #, fuzzy, kde-format
-#| msgid "Error at deleting file %1!"
 msgid "Error at deleting file %1."
 msgstr "Šalinant failą %1 įvyko klaida!"
 
@@ -9091,20 +8599,17 @@ msgstr "Krusader::Sinchronizavimas"
 
 #: app/Synchronizer/synchronizer.cpp:1337
 #, fuzzy, kde-format
-#| msgid "Feeding the URLs to Kget"
 msgid "Feeding the URLs to KGet"
 msgstr "URL pateikiami KGet"
 
 #: app/Synchronizer/synchronizergui.cpp:138
 #: app/Synchronizer/synchronizergui.cpp:1295
 #, fuzzy, kde-format
-#| msgid "Krusader::Synchronizer"
 msgid "Krusader::Synchronize Folders"
 msgstr "Krusader::Sinchronizavimas"
 
 #: app/Synchronizer/synchronizergui.cpp:154
 #, fuzzy, kde-format
-#| msgid "Directory Comparison"
 msgid "Folder Comparison"
 msgstr "Aplankų palyginimas"
 
@@ -9115,26 +8620,21 @@ msgstr "Failų &filtras:"
 
 #: app/Synchronizer/synchronizergui.cpp:187
 #, fuzzy, kde-format
-#| msgid "The left base directory used during the synchronisation process."
 msgid "The left base folder used during the synchronization process."
 msgstr "Bazinis kairysis aplankas, naudojamas sinchronizavimo metu."
 
 #: app/Synchronizer/synchronizergui.cpp:220
 #, fuzzy, kde-format
-#| msgid "The right base directory used during the synchronisation process."
 msgid "The right base folder used during the synchronization process."
 msgstr "Bazinis dešinysis aplankas, naudojamas sinchronizavimo metu."
 
 #: app/Synchronizer/synchronizergui.cpp:234
 #, fuzzy, kde-format
-#| msgid "Recurse subdirectories"
 msgid "Recurse subfolders"
 msgstr "Aplankus peržiūrėti rekursyviai"
 
 #: app/Synchronizer/synchronizergui.cpp:237
 #, fuzzy, kde-format
-#| msgid ""
-#| "Compare not only the base directories but their subdirectories as well."
 msgid "Compare not only the base folders but their subfolders as well."
 msgstr "Palyginti ne tik aplankų pagrindinį turinį, bet ir poaplankius."
 
@@ -9174,12 +8674,6 @@ msgstr "Asimetriška veiksena"
 
 #: app/Synchronizer/synchronizergui.cpp:254
 #, fuzzy, kde-format
-#| msgid ""
-#| "<p><b>Asymmetric mode</b></p><p>The left side is the destination, the "
-#| "right is the source directory. Files existing only in the left directory "
-#| "will be deleted, the other differing ones will be copied from right to "
-#| "left.</p><p><b>Note</b>: useful when updating a directory from a file "
-#| "server.</p>"
 msgid ""
 "<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right "
 "is the source folder. Files existing only in the left folder will be "
@@ -9213,25 +8707,21 @@ msgstr "&Rodyti parinktis"
 
 #: app/Synchronizer/synchronizergui.cpp:276
 #, fuzzy, kde-format
-#| msgid "Show files marked to <i>Copy from left to right</i> (CTRL+L)."
 msgid "Show files marked to <i>Copy from left to right</i>."
 msgstr "Rodyti failus, pažymėtus <i>Kopijuoti iš kairės į dešinę</i> (Vald+L)."
 
 #: app/Synchronizer/synchronizergui.cpp:282
 #, fuzzy, kde-format
-#| msgid "Show files considered to be identical (CTRL+E)."
 msgid "Show files considered to be identical."
 msgstr "Rodytas vienodus failus (Vald+E)."
 
 #: app/Synchronizer/synchronizergui.cpp:288
 #, fuzzy, kde-format
-#| msgid "Show excluded files (CTRL+D)."
 msgid "Show excluded files."
 msgstr "Rodyti išskirtus failus (Vald+D)."
 
 #: app/Synchronizer/synchronizergui.cpp:294
 #, fuzzy, kde-format
-#| msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
 msgid "Show files marked to <i>Copy from right to left</i>."
 msgstr "Rodyti failus, pažymėtus <i>Kopijuoti iš dešinės į kairę</i> (Vald+R)."
 
@@ -9262,14 +8752,12 @@ msgstr "Vieniši failai"
 
 #: app/Synchronizer/synchronizergui.cpp:323
 #, fuzzy, kde-format
-#| msgid "The compare results of the synchronizer (CTRL+M)."
 msgid "The compare results of the synchronizer (Ctrl+M)."
 msgstr "Palyginti sinchronizavimo rezultatus (Vald+M)."
 
 #: app/Synchronizer/synchronizergui.cpp:334
 #: app/Synchronizer/synchronizergui.cpp:340
 #, fuzzy, kde-format
-#| msgid "Name"
 msgctxt "@title:column file name"
 msgid "Name"
 msgstr "Pavadinimas"
@@ -9381,61 +8869,51 @@ msgstr "Sinchronizuoti"
 
 #: app/Synchronizer/synchronizergui.cpp:608
 #, fuzzy, kde-format
-#| msgid "Selected files from targ&et directory:"
 msgid "Selected files from targ&et folder:"
 msgstr "&Paskirties aplanke pažymėti failai:"
 
 #: app/Synchronizer/synchronizergui.cpp:609
 #, fuzzy, kde-format
-#| msgid "Selected files from sou&rce directory:"
 msgid "Selected files from sou&rce folder:"
 msgstr "&Pradiniame aplanke pažymėti failai:"
 
 #: app/Synchronizer/synchronizergui.cpp:611
 #, fuzzy, kde-format
-#| msgid "Selected files from &left directory:"
 msgid "Selected files from &left folder:"
 msgstr "&Kairiajame aplanke pažymėti failai:"
 
 #: app/Synchronizer/synchronizergui.cpp:612
 #, fuzzy, kde-format
-#| msgid "Selected files from &right directory:"
 msgid "Selected files from &right folder:"
 msgstr "&Dešiniajame aplanke pažymėti failai:"
 
 #: app/Synchronizer/synchronizergui.cpp:614
 #, fuzzy, kde-format
-#| msgid "Targ&et directory:"
 msgid "Targ&et folder:"
 msgstr "&Paskirties aplankas:"
 
 #: app/Synchronizer/synchronizergui.cpp:615
 #, fuzzy, kde-format
-#| msgid "Sou&rce directory:"
 msgid "Sou&rce folder:"
 msgstr "P&radinis aplankas:"
 
 #: app/Synchronizer/synchronizergui.cpp:617
 #, fuzzy, kde-format
-#| msgid "&Left directory:"
 msgid "&Left folder:"
 msgstr "&Kairysis aplankas:"
 
 #: app/Synchronizer/synchronizergui.cpp:618
 #, fuzzy, kde-format
-#| msgid "&Right directory:"
 msgid "&Right folder:"
 msgstr "&Dešinysis aplankas:"
 
 #: app/Synchronizer/synchronizergui.cpp:651
 #, fuzzy, kde-format
-#| msgid "URL must be the descendant of either the left or the right base URL!"
 msgid "URL must be the descendant of either the left or the right base URL."
 msgstr "URL turi prasidėti nuo kairiojo arba dešiniojo bazinio URL!"
 
 #: app/Synchronizer/synchronizergui.cpp:709
 #, fuzzy, kde-format
-#| msgid "Synchronizer"
 msgid "Synchronize Folders"
 msgstr "Sinchronizavimas"
 
@@ -9526,19 +9004,16 @@ msgstr "Atžymėti objektus"
 
 #: app/Synchronizer/synchronizergui.cpp:959
 #, fuzzy, kde-format
-#| msgid "Directory %1 does not exist!"
 msgid "The target folder must not be empty."
 msgstr "Aplankas %1 neegzistuoja"
 
 #: app/Synchronizer/synchronizergui.cpp:964
 #, fuzzy, kde-format
-#| msgid "Directory %1 does not exist!"
 msgid "The source folder must not be empty."
 msgstr "Aplankas %1 neegzistuoja"
 
 #: app/Synchronizer/synchronizergui.cpp:1204
 #, fuzzy, kde-format
-#| msgid "Synchronizer has nothing to do!"
 msgid "Synchronizer has nothing to do."
 msgstr "Sinchronizavimui nepateikta užduotis!"
 
@@ -9553,7 +9028,6 @@ msgstr ""
 
 #: app/Synchronizer/synchronizertask.cpp:289
 #, fuzzy, kde-format
-#| msgid "IO error at comparing file %1 with %2!"
 msgid "I/O error while comparing file %1 with %2."
 msgstr "Palyginant failą %1 su failu %2 įvyko Į/I klaida!"
 
@@ -9627,7 +9101,6 @@ msgstr "Užrakinti kortelę"
 
 #: app/tabactions.cpp:36 app/tabactions.cpp:61
 #, fuzzy, kde-format
-#| msgid "Previous Tab"
 msgid "Pin Tab"
 msgstr "Ankstesnė kortelė"
 
@@ -9638,7 +9111,6 @@ msgstr "Atrakinti kortelę"
 
 #: app/tabactions.cpp:61
 #, fuzzy, kde-format
-#| msgid "Unlock Tab"
 msgid "Unpin Tab"
 msgstr "Atrakinti kortelę"
 
@@ -9729,7 +9201,6 @@ msgstr "Skirtukas tarp objektų (nebūtina)"
 
 #: app/UserAction/expander.cpp:419
 #, fuzzy, kde-format
-#| msgid "Expander: tempfile couldn't be opened (%1)"
 msgid "Expander: temporary file could not be opened (%1)"
 msgstr "Išplėtiklis: nepavyko atverti laikino failo (%1)"
 
@@ -9827,7 +9298,6 @@ msgstr ""
 
 #: app/UserAction/expander.cpp:588
 #, fuzzy, kde-format
-#| msgid "Copy a File/Directory..."
 msgid "Copy a File/Folder..."
 msgstr "Kopijuoti failą/aplanką..."
 
@@ -9850,7 +9320,6 @@ msgstr ""
 
 #: app/UserAction/expander.cpp:620
 #, fuzzy, kde-format
-#| msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
 msgid "Expander: invalid URLs in %_Copy(\"src\", \"dest\")%"
 msgstr ""
 "Naudotojo veiksmas: pakaitale %_Copy(\"src\", \"dest\")% nurodytas "
@@ -9858,7 +9327,6 @@ msgstr ""
 
 #: app/UserAction/expander.cpp:632
 #, fuzzy, kde-format
-#| msgid "Move/Rename a File/Folder..."
 msgid "Move/Rename a File/Folder..."
 msgstr "Perkelti/pervadinti failą/aplanką..."
 
@@ -9886,7 +9354,6 @@ msgstr ""
 
 #: app/UserAction/expander.cpp:658
 #, fuzzy, kde-format
-#| msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
 msgid "Expander: invalid URLs in %_Move(\"src\", \"dest\")%"
 msgstr ""
 "Naudotojo veiksmas: pakaitale %_Move(\"src\", \"dest\")% nurodytas "
@@ -10027,13 +9494,11 @@ msgstr "Klaida: trūksta % Expander::expandCurrent"
 
 #: app/UserAction/expander.cpp:997
 #, fuzzy, kde-format
-#| msgid "Error: unrecognized %%%1%2%% in Expander::expand"
 msgid "Error: unrecognized %%%1%2%% in Expander"
 msgstr "Klaida: neatpažintas %%%1%2%% Expander::expand"
 
 #: app/UserAction/expander.cpp:1037
 #, fuzzy, kde-format
-#| msgid "Error: missing ')' in Expander::separateParameter"
 msgid "Error: missing ')' in Expander"
 msgstr "Klaida: trūksta ')' Expander::separateParameter"
 
@@ -10069,9 +9534,6 @@ msgstr "Nutraukti dabartinio proceso darbą"
 
 #: app/UserAction/kraction.cpp:161
 #, fuzzy, kde-format
-#| msgid ""
-#| "*.txt|Text files\n"
-#| "*|all files"
 msgid ""
 "*.txt|Text files\n"
 "*|All files"
@@ -10119,7 +9581,6 @@ msgstr ""
 
 #: app/UserAction/kractionbase.cpp:48
 #, fuzzy, kde-format
-#| msgid "Confirm execution"
 msgid "Confirm Execution"
 msgstr "Patvirtinti vykdymą"
 
@@ -10136,7 +9597,6 @@ msgstr "Nurodytame faile %1 nerasta jokių NaudotojoVeiksmų.\n"
 #: app/UserAction/useraction.cpp:158 app/UserAction/useraction.cpp:171
 #: app/UserAction/useraction.cpp:183
 #, fuzzy, kde-format
-#| msgid "UserActions - can't read from file!"
 msgid "UserActions - cannot read from file"
 msgstr "NaudotojoVeiksmai: nepavyko perskaityti failo!"
 
@@ -10147,15 +9607,11 @@ msgstr ""
 
 #: app/UserAction/useraction.cpp:182
 #, fuzzy, kde-format
-#| msgid "Unable to open actionfile %1"
 msgid "Unable to open actions file %1"
 msgstr "Nepavyko atverti veiksmų failo %1"
 
 #: app/UserAction/useraction.cpp:200
 #, fuzzy, kde-format
-#| msgid ""
-#| "Action without name detected. This action will not be imported!\n"
-#| "This is an error in the file, you may want to correct it."
 msgid ""
 "Action without name detected. This action will not be imported.\n"
 "This is an error in the file, you may want to correct it."
@@ -10175,7 +9631,6 @@ msgstr ""
 
 #: app/useraction_examples.xml:6
 #, fuzzy, kde-format
-#| msgid "Set Relation Between the Panels..."
 msgid "Sets the ratio between the two panels to 50/50"
 msgstr "Nurodykite santykį tarp langų..."
 
@@ -10188,13 +9643,11 @@ msgstr ""
 
 #: app/useraction_examples.xml:13
 #, fuzzy, kde-format
-#| msgid "Edit path"
 msgid "Edit as root"
 msgstr "Keisti kelią"
 
 #: app/useraction_examples.xml:14
 #, fuzzy, kde-format
-#| msgid "Edit filename"
 msgid "Edit a file as root"
 msgstr "Keisti failo pavadinimą"
 
@@ -10205,7 +9658,6 @@ msgstr ""
 
 #: app/useraction_examples.xml:23
 #, fuzzy, kde-format
-#| msgid "Automount filesystems"
 msgid "Mount a new filesystem"
 msgstr "Automatiškai montuoti failų sistemas"
 
@@ -10221,7 +9673,6 @@ msgstr ""
 
 #: app/useraction_examples.xml:33
 #, fuzzy, kde-format
-#| msgid "Media"
 msgid "Multimedia"
 msgstr "Laikmenos"
 
@@ -10237,43 +9688,36 @@ msgstr ""
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, fuzzy, kde-format
-#| msgid "Query name"
 msgid "Sort by Name"
 msgstr "Paieškos pavadinimas"
 
 #: app/useraction_examples.xml:55
 #, fuzzy, kde-format
-#| msgid "Dim the colors of the inactive panel"
 msgid "Sorts the active panel by Name"
 msgstr "Pritemdyti neaktyvaus lango spalvas"
 
 #: app/useraction_examples.xml:60 app/useraction_examples.xml:61
 #, fuzzy, kde-format
-#| msgid "Extension:"
 msgid "Sort by Extension"
 msgstr "Priesaga:"
 
 #: app/useraction_examples.xml:64
 #, fuzzy, kde-format
-#| msgid "Select a file to save to"
 msgid "Sorts the active panel by Extension"
 msgstr "Nurodykite failą, į kurį įrašyti"
 
 #: app/useraction_examples.xml:69 app/useraction_examples.xml:70
 #, fuzzy, kde-format
-#| msgid "Total Size:"
 msgid "Sort by Size"
 msgstr "Rodyti dydį"
 
 #: app/useraction_examples.xml:73
 #, fuzzy, kde-format
-#| msgid "Dim the colors of the inactive panel"
 msgid "Sorts the active panel by Size"
 msgstr "Pritemdyti neaktyvaus lango spalvas"
 
 #: app/useraction_examples.xml:78 app/useraction_examples.xml:79
 #, fuzzy, kde-format
-#| msgid "Modified"
 msgid "Sort by Modified"
 msgstr "Pakeista"
 
@@ -10284,13 +9728,11 @@ msgstr ""
 
 #: app/useraction_examples.xml:87
 #, fuzzy, kde-format
-#| msgid "Bookmark Current"
 msgid "Backup current"
 msgstr "Įtraukti į žymeles"
 
 #: app/useraction_examples.xml:88
 #, fuzzy, kde-format
-#| msgid "Select all files in the current directory"
 msgid "Backup current file in current folder"
 msgstr "Pažymėti visus failus šiame aplanke"
 
@@ -10358,7 +9800,6 @@ msgstr "Failų trynimas iš %1 archyvų nepalaikomas"
 
 #: plugins/krarc/krarc.cpp:943 plugins/krarc/krarc.cpp:957
 #, fuzzy, kde-format
-#| msgid "Accessing files is not supported with the %1 archives"
 msgid "Accessing files is not supported with %1 archives"
 msgstr "Prieiga prie failų nepalaikoma %1 archyvuose"
 
@@ -10370,9 +9811,6 @@ msgstr "Aplankų išvardinimas nepalaikomas %1 archyvuose"
 
 #: plugins/krarc/krarc.cpp:2144 plugins/krarc/krarc.cpp:2150
 #, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary are installed properly on your system."
 msgid ""
 "\n"
 "Make sure that the %1 binary is installed properly on your system."
@@ -10388,7 +9826,6 @@ msgstr "Krarc slaptažodžio dialogas"
 #: plugins/krarc/krarc.cpp:2280 plugins/krarc/krarc.cpp:2290
 #: plugins/krarc/krarc.cpp:2293
 #, fuzzy, kde-format
-#| msgid "Accessing the file requires password."
 msgid "Accessing the file requires a password."
 msgstr "Prieiga prie failo reikalauja slaptažodžio."
 
@@ -10400,16 +9837,10 @@ msgstr "Prieiga prie failo reikalauja slaptažodžio."
 #~ msgid "Your emails"
 #~ msgstr "laisve@gmail.com, andrius@stikonas.eu"
 
-#, fuzzy
-#~| msgid "Copy selected to clipboard"
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Kopijuoti pažymėtus į talpyklę"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Naujoje kortelėje atverti pradžios aplanką"
+#~ msgid "Directories:"
+#~ msgstr "Aplankai:"
 
 #, fuzzy
-#~| msgid "Show terminal emulator"
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Rodyti terminalą"
 
@@ -10437,6 +9868,30 @@ msgstr "Prieiga prie failo reikalauja slaptažodžio."
 #~ msgid "JavaScript Error"
 #~ msgstr "JavaScript klaida"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Naršyti"
+
+#~ msgid "New folder"
+#~ msgstr "Naujas aplankas"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Naujoje kortelėje atverti pradžios aplanką"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Įvykdyti JavaScript scenarijų..."
 
@@ -10456,14 +9911,9 @@ msgstr "Prieiga prie failo reikalauja slaptažodžio."
 #~ msgstr ""
 #~ "Naudotojo veiksmas: pakaitalui %_Script(script)% nenurodytas scenarijus"
 
-#~ msgid "New folder"
-#~ msgstr "Naujas aplankas"
-
-#~ msgid "Directories:"
-#~ msgstr "Aplankai:"
-
-#~ msgid "Browse"
-#~ msgstr "Naršyti"
+#, fuzzy
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Kopijuoti pažymėtus į talpyklę"
 
 #~ msgid "Folder..."
 #~ msgstr "Aplankas..."
@@ -10476,795 +9926,3 @@ msgstr "Prieiga prie failo reikalauja slaptažodžio."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Keisti failą (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
-
-#, fuzzy
-#~| msgid "Start Terminal Here"
-#~ msgid "Open search filter"
-#~ msgstr "Paleisti terminalą čia"
-
-#~ msgid "Karai Csaba"
-#~ msgstr "Karai Csaba"
-
-#~ msgid "Open the popup panel"
-#~ msgstr "Atverti pagalbinį langą"
-
-#~ msgid "Close the popup panel"
-#~ msgstr "Užverti pagalbinį langą"
-
-#~ msgid "Toggle Popup Panel"
-#~ msgstr "Įj./išj. pagalbinį langą"
-
-#~ msgid " Quit"
-#~ msgstr " Baigti"
-
-#~ msgid "Copy..."
-#~ msgstr "Kopijuoti..."
-
-#~ msgid "Move..."
-#~ msgstr "Perkelti..."
-
-#, fuzzy
-#~| msgid ""
-#~| "A configuration of 1.51 or older was detected. Krusader has to reset "
-#~| "your configuration to default values.\n"
-#~| "Note: Your bookmarks and keybindings will remain intact.\n"
-#~| " Krusader will now run Konfigurator."
-#~ msgid ""
-#~ "A configuration of 1.51 or older was detected. Krusader has to reset your "
-#~ "configuration to default values.\n"
-#~ "Note: your bookmarks and keybindings will remain intact.\n"
-#~ "Krusader will now run Konfigurator."
-#~ msgstr ""
-#~ "Aptikta Krusader 1.51 arba dar senesnė konfigūracija. Krusader nustatys "
-#~ "konfigūraciją į numatytas vertes.\n"
-#~ "Dėmesio: Žymelės ir spačiųjų klavišų parinktys nebus pakeistos.\n"
-#~ " Dabar bus atvertas Konfigūratorius."
-
-#~ msgid "ftp://"
-#~ msgstr "ftp://"
-
-#~ msgid "smb://"
-#~ msgstr "smb://"
-
-#~ msgid "fish://"
-#~ msgstr "fish://"
-
-#~ msgid "sftp://"
-#~ msgstr "sftp://"
-
-#, fuzzy
-#~| msgid "Keep virtual directory structure"
-#~ msgid "Keep virtual folder structure"
-#~ msgstr "Išlaikyti virtualią aplankų struktūrą"
-
-#~ msgid "Base URL:"
-#~ msgstr "Bazinis URL:"
-
-#~ msgid "Minimize to tray"
-#~ msgstr "Mažinti į sistemos dėklą"
-
-#~ msgid ""
-#~ "The icon will appear in the system tray instead of the taskbar, when "
-#~ "Krusader is minimized."
-#~ msgstr ""
-#~ "Kai Krusader langas sumažinamas, Krusader ženkliukas bus rodomas sistemos "
-#~ "dėkle, o ne užduočių juostoje."
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt>Can't calculate checksum since no supported tool was found. Please "
-#~| "check the <b>Dependencies</b> page in Krusader's settings.</qt>"
-#~ msgid ""
-#~ "<qt>Cannot calculate checksum since no supported tool was found. Please "
-#~ "check the <b>Dependencies</b> page in Krusader's settings.</qt>"
-#~ msgstr ""
-#~ "<qt>Kontrolinės sumos apskaičiuoti nepavyko, nes nerasta jokių įrankių. "
-#~ "Patikrinkite <b>Priklausomybių</b> puslapį Krusader nuostatose.</qt>"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><b>Note</b>: you've selected directories, and probably have no "
-#~| "recursive checksum tool installed. Krusader currently supports "
-#~| "<i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>"
-#~ msgid ""
-#~ "<qt><b>Note</b>: you have selected folders, and probably have no "
-#~ "recursive checksum tool installed. Krusader currently supports "
-#~ "<i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>"
-#~ msgstr ""
-#~ "<qt><b>Dėmesio</b>: pažymėjote aplankus, bet tikriausiai neįdiegėte jokių "
-#~ "rekursyvių kontrolinių sumų skaičiavimo įrankių. Krusader dirba su šiais "
-#~ "įrankiais <i>md5deep, sha1deep, sha256deep, tigerdeep ir cfv</i>.</qt>"
-
-#, fuzzy
-#~| msgid "About to calculate checksum for the following files"
-#~ msgid "About to calculate checksum for the following files:"
-#~ msgstr "Ruošiamasi skaičiuoti šių failų kontrolines sumas"
-
-#, fuzzy
-#~| msgid "Calculating checksums ..."
-#~ msgid "Calculating checksums..."
-#~ msgstr "Skaičiuojamos kontrolinės sumos..."
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt>Can't verify checksum since no supported tool was found. Please "
-#~| "check the <b>Dependencies</b> page in Krusader's settings.</qt>"
-#~ msgid ""
-#~ "<qt>Cannot verify checksum since no supported tool was found. Please "
-#~ "check the <b>Dependencies</b> page in Krusader's settings.</qt>"
-#~ msgstr ""
-#~ "<qt>Kontrolinės sumos patinkrinti nepavyko, nes nerasta jokių įrankių. "
-#~ "Patikrinkite <b>Priklausomybių</b> puslapį Krusader nuostatose.</qt>"
-
-#, fuzzy
-#~| msgid "About to verify checksum for the following files"
-#~ msgid "About to verify checksum for the following files and folders:"
-#~ msgstr "Ruošiamasi patikrinti šių failų kontrolines sumas"
-
-#~ msgid ""
-#~ "<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid "
-#~ "checksum file.</qt>"
-#~ msgstr ""
-#~ "<qt>Skaitant kontrolinės sumos failą <i>%1</i> įvyko klaida.<br /> "
-#~ "Nurodykite teisingą kontrolinės sumos failą.</qt>"
-
-#, fuzzy
-#~| msgid "Verifying checksums ..."
-#~ msgid "Verifying checksums..."
-#~ msgstr "Tikrinamos kontrolinės sumos..."
-
-#~ msgid "The following files have failed:"
-#~ msgstr "Šie failai klaidingi:"
-
-#~ msgid "Here are the calculated checksums:"
-#~ msgstr "Apskaičiuotosios kontrolinės sumos:"
-
-#~ msgid "File and hash"
-#~ msgstr "Failas ir maiša"
-
-#~ msgid "Save checksum to file:"
-#~ msgstr "Įrašyti kontrolines sumas į failą:"
-
-#~ msgid ""
-#~ "File %1 already exists.\n"
-#~ "Are you sure you want to overwrite it?"
-#~ msgstr ""
-#~ "Failas %1 jau egzistuoja.\n"
-#~ "Ar tikrai norite jį perrašyti?"
-
-#~ msgid "Select a file to save to"
-#~ msgstr "Nurodykite failą, į kurį įrašyti"
-
-#, fuzzy
-#~| msgid ""
-#~| "Can't start root mode krusader, because krusader or kdesu is missing "
-#~| "from the path. Please configure the dependencies in Konfigurator!"
-#~ msgid ""
-#~ "Cannot start root mode Krusader, because Krusader or kdesu is missing "
-#~ "from the path. Please configure the dependencies in Konfigurator."
-#~ msgstr ""
-#~ "Negalima paleisti Krusader root naudotojo teisėmis, nes programų kelyje "
-#~ "nerasta krusader arba kdesu programos. Prašome sukonfigūruoti "
-#~ "priklausomybes Konfigūratoriuje!"
-
-#, fuzzy
-#~| msgid "Calculate Occupied Space"
-#~ msgid "Calculating space"
-#~ msgstr "Suskaičiuoti užimtą vietą"
-
-#, fuzzy
-#~| msgid "&Pause"
-#~ msgid "Start &Paused"
-#~ msgstr "&Pristabdyti"
-
-#~ msgid "User Menu"
-#~ msgstr "Meniu"
-
-#, fuzzy
-#~| msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
-#~ msgid "Cannot find \"KsysCtrl\". Please install KDE admin package"
-#~ msgstr ""
-#~ "Nepavyko rasti „KsysVald“ programos. Įdiekite KDE administravimo paketą"
-
-#~ msgid "Manage user actions"
-#~ msgstr "Tvarkyti veiksmus"
-
-#~ msgid "Rename %1 to:"
-#~ msgstr "Pervadinti %1 į:"
-
-#~ msgid "Cancel"
-#~ msgstr "Atšaukti"
-
-#~ msgid "Quick Navigation"
-#~ msgstr "Greitas naršymas"
-
-#~ msgid "Already at <i>%1</i>"
-#~ msgstr "Jau <i>%1</i>"
-
-#~ msgid "Click to go to <i>%1</i>"
-#~ msgstr "Spragtelėkite norėdami patekti į <i>%1</i>"
-
-#, fuzzy
-#~| msgid "Fullscreen terminal (mc-style)"
-#~ msgid "Fullscreen embedded terminal (mc-style)"
-#~ msgstr "Terminalas visame lange (kaip mc)"
-
-#~ msgid "Terminal is shown instead of the Krusader window (full screen)."
-#~ msgstr "Vietoje Krusader lango matysite terminalą visame lange."
-
-#~ msgid "Show terminal emulator"
-#~ msgstr "Rodyti terminalą"
-
-#~ msgid "Show Terminal &Emulator"
-#~ msgstr "Rodyti &terminalą"
-
-#, fuzzy
-#~| msgid "unknown"
-#~ msgctxt "Unknown file system type"
-#~ msgid "unknown"
-#~ msgstr "nežinoma"
-
-#~ msgid "No space information on [dev]"
-#~ msgstr "Informacija apie talpą [dev] neprieinama"
-
-#~ msgid "No space information on [procfs]"
-#~ msgstr "Informacija apie talpą [procfs] neprieinama"
-
-#~ msgid "No space information on [proc]"
-#~ msgstr "Informacija apie talpą [proc] neprieinama"
-
-#~ msgid "Overwrite"
-#~ msgstr "Perrašyti"
-
-#~ msgid "&Overwrite"
-#~ msgstr "&Perrašyti"
-
-#~ msgid "&Remove"
-#~ msgstr "P&ašalinti"
-
-#, fuzzy
-#~| msgid "Use mimetype magic"
-#~ msgid "Use MIME type magic"
-#~ msgstr "Įjungti mime tipų magiją"
-
-#, fuzzy
-#~| msgid ""
-#~| "Mimetype magic allows better distinction of file types, but is slower."
-#~ msgid ""
-#~ "MIME type magic allows better distinction of file types, but is slower."
-#~ msgstr ""
-#~ "Mime tipų magija leidžia geriau atskirti failų tipus, bet yra lėtesnė."
-
-#, fuzzy
-#~ msgid "&Queue Manager..."
-#~ msgstr "Eilės valdyklė"
-
-#, fuzzy
-#~| msgid "You can't move files to this file system"
-#~ msgid "You cannot move files to this file system"
-#~ msgstr "Nepavyko perkelti failų į nurodytą failų sistemą"
-
-#, fuzzy
-#~| msgid "You can't copy files to this file system"
-#~ msgid "You cannot copy files to this file system"
-#~ msgstr "Nepavyko nukopijuoti failų į nurodytą failų sistemą"
-
-#, fuzzy
-#~| msgid "You do not have write permission to this directory"
-#~ msgid "You do not have write permission to this folder"
-#~ msgstr "Nepakanka teisių rašyti į šį aplanką"
-
-#, fuzzy
-#~ msgid "Krusader::Queue"
-#~ msgstr "Krusader::Paieška (locate)"
-
-#, fuzzy
-#~ msgid "Suspend"
-#~ msgstr "Sustabdyti"
-
-#, fuzzy
-#~ msgid "default"
-#~ msgstr "įprastas"
-
-#, fuzzy
-#~ msgid "Krusader::Queue Manager"
-#~ msgstr "Krusader::Paieška (locate)"
-
-#, fuzzy
-#~ msgid "Please enter the time to start processing the queue:"
-#~ msgstr "Įveskite naują nuorodos paskirties vietą:"
-
-#, fuzzy
-#~ msgid "Create a new queue"
-#~ msgstr "Sukurti naują nuorodą į:"
-
-#, fuzzy
-#~ msgid "Remove the current queue"
-#~ msgstr "įrašyti dabartinį žymėjimą"
-
-#, fuzzy
-#~ msgid "unused"
-#~ msgstr "%1 minutė"
-
-#, fuzzy
-#~ msgid "Please enter the name of the new queue"
-#~ msgstr "Įrašykite veiksmo pavadinimą"
-
-#, fuzzy
-#~ msgid ""
-#~ "Deleting the queue requires aborting all pending jobs. Do you wish to "
-#~ "continue?"
-#~ msgstr ""
-#~ "Pereinant į aukštesnį aplanką reikės apskaičiuoti aplanko %1 talpą. Ar "
-#~ "norite tęsti?"
-
-#~ msgid "Queue Manager"
-#~ msgstr "Eilės valdyklė"
-
-#, fuzzy
-#~| msgid ""
-#~| "Krusader doesn't support FTP access via HTTP.\n"
-#~| "If it is not the case, please check and change the Proxy settings in "
-#~| "kcontrol."
-#~ msgid ""
-#~ "Krusader does not support FTP access via HTTP.\n"
-#~ "If it is not the case, please check and change the proxy settings in the "
-#~ "System Settings."
-#~ msgstr ""
-#~ "Krusader negali pasiekti ftp serverio http protokolu.\n"
-#~ "Jei problema ne čia, pakeiskite atstovaujančio serverio parinktis KDE "
-#~ "Valdymo centre."
-
-#, fuzzy
-#~| msgid "Status"
-#~ msgctxt "Job type"
-#~ msgid "Status"
-#~ msgstr "Būsena"
-
-#, fuzzy
-#~| msgid "Free Size"
-#~ msgctxt "Job type"
-#~ msgid "Folder Size"
-#~ msgstr "Laisva vieta"
-
-#~ msgctxt "Job type"
-#~ msgid "Copy"
-#~ msgstr "Kopijuoti"
-
-#, fuzzy
-#~| msgid "Move"
-#~ msgctxt "Job type"
-#~ msgid "Move"
-#~ msgstr "Perkelti"
-
-#~ msgctxt "Job type"
-#~ msgid "Pack"
-#~ msgstr "Pakuoti"
-
-#, fuzzy
-#~| msgid "Unpack"
-#~ msgctxt "Job type"
-#~ msgid "Unpack"
-#~ msgstr "&Išpakuoti..."
-
-#, fuzzy
-#~| msgid "Unknown"
-#~ msgctxt "Job type"
-#~ msgid "Unknown"
-#~ msgstr "Nežinoma"
-
-#, fuzzy
-#~ msgid "Target"
-#~ msgstr "Tikslas"
-
-#~ msgid "Source"
-#~ msgstr "Šaltinis"
-
-#, fuzzy
-#~| msgid "Can't create a directory. Check your permissions."
-#~ msgid "Cannot create a folder. Check your permissions."
-#~ msgstr "Nepavyko sukurti aplanko. Patikrinkite ar turite pakankamas teises."
-
-#~ msgctxt "@title job"
-#~ msgid "Copying"
-#~ msgstr "Kopijuojama"
-
-#~ msgctxt "@title job"
-#~ msgid "Moving"
-#~ msgstr "Perkeliama"
-
-#~ msgid "OK"
-#~ msgstr "Gerai"
-
-#~ msgid "Show statusbar"
-#~ msgstr "Rodyti būsenos juostą"
-
-#~ msgid "Statusbar will be visible after startup."
-#~ msgstr "Rodyti būsenos juostą pradedant darbą."
-
-#~ msgid "Show toolbar"
-#~ msgstr "Rodyti įrankinę"
-
-#~ msgid "Toolbar will be visible after startup."
-#~ msgstr "Rodyti įrankinę pradedant darbą."
-
-#~ msgid "Show actions toolbar"
-#~ msgstr "Rodyti veiksmų įrankinę"
-
-#~ msgid "Actions toolbar will be visible after startup."
-#~ msgstr "Rodyti veiksmų įrankinę pradedant darbą."
-
-#~ msgid "Webmaster"
-#~ msgstr "Svetainės administratorius"
-
-#, fuzzy
-#~| msgid "&Remote content search"
-#~ msgid "Remote co&ntent search"
-#~ msgstr "&Nutolusio turinio paieška"
-
-#, fuzzy
-#~| msgid "Can't drop here, no write permissions."
-#~ msgid "Cannot drop here, no write permissions."
-#~ msgstr "Nepavyko įmesti čia – trūksta leidimo rašyti."
-
-#~ msgid "Copy Here"
-#~ msgstr "Kopijuoti"
-
-#~ msgid "Move Here"
-#~ msgstr "Perkelti"
-
-#~ msgid "Link Here"
-#~ msgstr "Kurti nuorodą"
-
-#, fuzzy
-#~| msgid "Quicksearch"
-#~ msgid "Quicksearch/Quickfilter"
-#~ msgstr "Greitoji paieška"
-
-#, fuzzy
-#~| msgid "New style quicksearch"
-#~ msgid "New style Quicksearch"
-#~ msgstr "Naujoviška greitoji paieška"
-
-#~ msgid "Opens a quick search dialog box."
-#~ msgstr "Bus atvertas paieškos laukelis."
-
-#, fuzzy
-#~| msgid "Case sensitive quicksearch"
-#~ msgid "Case sensitive Quicksearch/QuickFilter"
-#~ msgstr "Greitajai paieškai svarbu raidžių dydis"
-
-#~ msgid "Quick Panel: quick way to perform actions"
-#~ msgstr "Greitas skydelis: greitas būdas atlikti veiksmus"
-
-#~ msgid "Quick Select"
-#~ msgstr "Greitas žymėjimas"
-
-#, fuzzy
-#~| msgid "apply the selection"
-#~ msgid "Apply the selection"
-#~ msgstr "pritaikyti žymėjimą"
-
-#~ msgid "Quick Select:"
-#~ msgstr "Greitas pažymėjimas:"
-
-#, fuzzy
-#~| msgid "Quicksearch"
-#~ msgid "QuickFilter"
-#~ msgstr "Greitoji paieška"
-
-#~ msgid "Open button"
-#~ msgstr "Atvėrimo mygtukas"
-
-#, fuzzy
-#~| msgid "Use superb KDE file dialog to choose location. "
-#~ msgid "Use superb KDE file dialog to choose location."
-#~ msgstr "Adreso keitimui naudoti sudėtingesnį KDE failų dialogą."
-
-#~ msgid "In directory"
-#~ msgstr "Aplanke"
-
-#~ msgid "Directories"
-#~ msgstr "Aplankai"
-
-#~ msgid "Directory foreground:"
-#~ msgstr "Aplankas:"
-
-#~ msgid "Directory"
-#~ msgstr "Aplankas"
-
-#~ msgid "Temp Directory:"
-#~ msgstr "Laikinų failų aplankas:"
-
-#~ msgid "in %1 directory"
-#~ msgid_plural "in %1 directories"
-#~ msgstr[0] "%1 aplanke"
-#~ msgstr[1] "%1 aplankuose"
-#~ msgstr[2] "%1 aplankų"
-#~ msgstr[3] "%1 aplanke"
-
-#~ msgid "New Directory..."
-#~ msgstr "Naujas aplankas..."
-
-#~ msgid "&Compare Directories"
-#~ msgstr "Pal&yginti aplankus"
-
-#~ msgid "New directory"
-#~ msgstr "Naujas aplankas"
-
-#~ msgid "Directory's name:"
-#~ msgstr "Aplanko pavadinimas:"
-
-#, fuzzy
-#~| msgid "Can't open the %1 directory!"
-#~ msgid "Cannot open the %1 directory."
-#~ msgstr "Nepavyko atverti aplanko %1!"
-
-#~ msgid "Krusader::Synchronize Directories"
-#~ msgstr "Krusader::Aplankų sinchronizavimas"
-
-#~ msgid "Synchronize Directories"
-#~ msgstr "Sinchronizuoti aplankus"
-
-#, fuzzy
-#~| msgid "Directory Size"
-#~ msgctxt "Job type"
-#~ msgid "Directory Size"
-#~ msgstr "Aplanko dydis"
-
-#~ msgid "Select files using a filter"
-#~ msgstr "Pažymėti failus naudojant filtrą"
-
-#~ msgid "Unselect all selected files"
-#~ msgstr "Atžymėti visus failus"
-
-#~ msgid "Open &Konsole Here"
-#~ msgstr "Atverti šią vietą su K&onsole"
-
-#, fuzzy
-#~| msgid ""
-#~| "*.keymap|Krusader keymaps\n"
-#~| "*|all files"
-#~ msgid ""
-#~ "*.keymap|Krusader keymaps\n"
-#~ "*|All files"
-#~ msgstr ""
-#~ "*.keymap|Krusader keymap failai\n"
-#~ "*|visi failai"
-
-#, fuzzy
-#~| msgid "Import shortcuts"
-#~ msgid "Import Shortcuts"
-#~ msgstr "Importuoti sparčiuosius klavišus"
-
-#~ msgid "Load a keybinding profile, e.g., total_commander.keymap"
-#~ msgstr "Įkelti sparčiųjų klavišų profilį, pvz: total_commander.keymap"
-
-#, fuzzy
-#~| msgid "Export shortcuts"
-#~ msgid "Export Shortcuts"
-#~ msgstr "Eksportuoti sparčiuosius klavišus"
-
-#~ msgid "Save current keybindings in a keymap file."
-#~ msgstr "Įrašyti dabartines sparčiųjų klavišų parinktis į keymap failą."
-
-#~ msgid "Select a keymap file"
-#~ msgstr "Nurodykite keymap failą"
-
-#, fuzzy
-#~| msgid ""
-#~| "This file does not seem to be a valid keymap.\n"
-#~| "It may be a keymap using a legacy format. The import can't be undone!"
-#~ msgid ""
-#~ "This file does not seem to be a valid keymap.\n"
-#~ "It may be a keymap using a legacy format. The import cannot be undone."
-#~ msgstr ""
-#~ "Šis failas nėra keymap failas.\n"
-#~ "Galbūt keymap naudoja pasenusį failo formatą. Importavimo nebegalima "
-#~ "atšaukti!"
-
-#, fuzzy
-#~| msgid "Try to import legacy format?"
-#~ msgid "Try to Import Legacy Format?"
-#~ msgstr "Pabandyti importuoti nebenaudojamą formatą?"
-
-#~ msgid "Import Anyway"
-#~ msgstr "Vis tiek importuoti"
-
-#~ msgid ""
-#~ "The following information was attached to the keymap. Do you really want "
-#~ "to import this keymap?"
-#~ msgstr ""
-#~ "Ši informacija buvo keymap faile. Ar tikrai norite importuoti šią keymap "
-#~ "failą?"
-
-#~ msgid "Please restart this dialog in order to see the changes"
-#~ msgstr "Norėdami pamatyti pasikeitimus atverkite šį langą iš naujo"
-
-#, fuzzy
-#~| msgid "Legacy import completed"
-#~ msgid "Legacy Import Completed"
-#~ msgstr "Nebenaudojamo formato importavimas baigtas"
-
-#~ msgid ""
-#~ "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</"
-#~ "qt>"
-#~ msgstr ""
-#~ "<qt>Failas <b>%1</b> jau egzistuoja. Ar tikrai norite jį perrašyti?</qt>"
-
-#, fuzzy
-#~| msgid "<qt>Can't open <b>%1</b> for writing!</qt>"
-#~ msgid "<qt>Cannot open <b>%1</b> for writing.</qt>"
-#~ msgstr "<qt>Nepavyko atverti <b>%1</b> rašymui!</qt>"
-
-#~ msgid "Source:"
-#~ msgstr "Iš kur:"
-
-#~ msgid "Destination:"
-#~ msgstr "Į kur:"
-
-#~ msgid "Krusader Progress"
-#~ msgstr "Krusader pažanga"
-
-#~ msgid "%1 directory"
-#~ msgid_plural "%1 directories"
-#~ msgstr[0] "%1 aplankas"
-#~ msgstr[1] "%1 aplankai"
-#~ msgstr[2] "%1 aplankų"
-#~ msgstr[3] "%1 aplankas"
-
-#~ msgid "%1 file"
-#~ msgid_plural "%1 files"
-#~ msgstr[0] "%1 failas"
-#~ msgstr[1] "%1 failai"
-#~ msgstr[2] "%1 failų"
-#~ msgstr[3] "%1 failas"
-
-#~ msgid "%1 of %2 complete"
-#~ msgstr "%1 iš %2 baigta"
-
-#~ msgid "%2 / %1 directory"
-#~ msgid_plural "%2 / %1 directories"
-#~ msgstr[0] "%2 / %1 aplanko"
-#~ msgstr[1] "%2 / %1 aplankų"
-#~ msgstr[2] "%2 / %1 aplankų"
-#~ msgstr[3] "%2 / %1 aplanko"
-
-#~ msgid "%2 / %1 file"
-#~ msgid_plural "%2 / %1 files"
-#~ msgstr[0] "%2 / %1 failo"
-#~ msgstr[1] "%2 / %1 failų"
-#~ msgstr[2] "%2 / %1 failų"
-#~ msgstr[3] "%2 / %1 failo"
-
-#~ msgid "Working"
-#~ msgstr "Dirbama"
-
-#, fuzzy
-#~| msgid "%1/s ( %2 remaining )"
-#~ msgid "%1/s (%2 remaining)"
-#~ msgstr "%2/s (liko %3)"
-
-#~ msgid "Krusader transparently handles the following types of archives:"
-#~ msgstr "Krusader visiškai supranta šiuos archyvų tipus:"
-
-#~ msgid "Tar"
-#~ msgstr "Tar"
-
-#~ msgid "GZip"
-#~ msgstr "GZip"
-
-#~ msgid "LZMA"
-#~ msgstr "LZMA"
-
-#~ msgid "BZip2"
-#~ msgstr "BZip2"
-
-#~ msgid "Zip"
-#~ msgstr "Zip"
-
-#~ msgid "Rar"
-#~ msgstr "Rar"
-
-#~ msgid "Arj"
-#~ msgstr "Arj"
-
-#~ msgid "Rpm"
-#~ msgstr "Rpm"
-
-#~ msgid "Ace"
-#~ msgstr "Ace"
-
-#~ msgid "Lha"
-#~ msgstr "Lha"
-
-#~ msgid "Deb"
-#~ msgstr "Deb"
-
-#~ msgid "7zip"
-#~ msgstr "7zip"
-
-#, fuzzy
-#~| msgid ""
-#~| "The archives that are \"greyed-out\" were unavailable on your\n"
-#~| "system last time Krusader checked. If you wish Krusader to\n"
-#~| "search again, click the 'Auto Configure' button."
-#~ msgid ""
-#~ "The archives that are \"grayed out\" were unavailable on your\n"
-#~ "system last time Krusader checked. If you wish Krusader to\n"
-#~ "search again, click the 'Auto Configure' button."
-#~ msgstr ""
-#~ "Įrašai, kurie rodomi pilka spalva, buvo nesuprantami Krusader tuo metu,\n"
-#~ "kaip paskutinį kartą buvo tikrinama. Jei pageidaujate, kad Krusader iš "
-#~ "naujo\n"
-#~ "peržiūrėtų parinktis, spauskite „Derinti automatiškai“ mygtuką."
-
-#~ msgid "Auto Configure"
-#~ msgstr "Derinti automatiškai"
-
-#~ msgid "Konfigurator"
-#~ msgstr "Konfigūratorius"
-
-#~ msgid "&Quit"
-#~ msgstr "&Baigti"
-
-#~ msgctxt "@title:window"
-#~ msgid "Locate"
-#~ msgstr "Ieškoti"
-
-#, fuzzy
-#~ msgid "Mount.Man"
-#~ msgstr "Prijungiami įrenginiai"
-
-#~ msgid "Critical Error"
-#~ msgstr "Kritinė klaida"
-
-#, fuzzy
-#~| msgid ""
-#~| "Internal error in MountMan\n"
-#~| "Please email the developers"
-#~ msgid ""
-#~ "Internal error in MountMan.\n"
-#~ "Please email the developers."
-#~ msgstr ""
-#~ "Vidinė prijungiamų įrenginių tarnybos klaida.\n"
-#~ "Prašome pranešti kūrėjams apie klaidą el. paštu."
-
-#, fuzzy
-#~| msgid "Mt.Man: working ..."
-#~ msgid "Mt.Man: working..."
-#~ msgstr "Prijungiamų įrenginių tarnyba: vykdoma..."
-
-#, fuzzy
-#~| msgid "Cannot cut a virtual URL collection to the clipboard!"
-#~ msgid "Cannot cut a virtual URL collection to the clipboard."
-#~ msgstr "Virtualių URL sąrašo iškirpti į talpyklę nepavyks!"
-
-#, fuzzy
-#~| msgid "Cannot copy a virtual URL collection onto the clipboard!"
-#~ msgid "Cannot copy a virtual URL collection onto the clipboard."
-#~ msgstr "Virtualių URL sąrašo nukopijuoti į talpyklę nepavyks!"
-
-#~ msgid "Save as"
-#~ msgstr "Įrašyti kaip"
-
-#~ msgid "This protocol does not support resuming"
-#~ msgstr "Protokolas nepalaiko pratęsimo"
-
-#~ msgid "Writing to %1 is not supported"
-#~ msgstr "Rašymas į %1 nepalaikomas"

@@ -176,16 +176,16 @@
 
       <listitem
 ><para
->Gör en säkerhetskopia av den aktuella filen eller katalogen till <filename
->objekt.bak</filename
-> i den aktuella katalogen: <programlisting
+>Make a backup of the current file/folder to <filename
+>foo.bak</filename
+> into the current folder: <programlisting
 >&lt;!DOCTYPE KrusaderUserActions>
 &lt;KrusaderUserActions>
  &lt;action name="backup current" >
   &lt;title
 >Backup in Current Directory&lt;/title>
   &lt;tooltip
->Backup in current directory&lt;/tooltip>
+>Backup in current folder&lt;/tooltip>
   &lt;icon
 >document-save-as&lt;/icon>
   &lt;category

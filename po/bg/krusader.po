@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
 "PO-Revision-Date: 2012-11-1 16:01+0200\n"
 "Last-Translator: Milen Ivanov <milen.kerat@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -1423,6 +1423,7 @@ msgstr "Файлове:"
 
 #: app/DiskUsage/diskusage.cpp:105
 #, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
 msgstr "Папки"
 
@@ -3075,11 +3076,13 @@ msgstr "Текущ фон:"
 
 #: app/Konfigurator/kgcolors.cpp:108
 #, fuzzy, kde-format
+#| msgid "Delete foreground:"
 msgid "Rename foreground:"
 msgstr "Изтриване цвета на текста:"
 
 #: app/Konfigurator/kgcolors.cpp:109
 #, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
 msgstr "Редуващ се цвят:"
 
@@ -4622,6 +4625,7 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:670
 #, fuzzy, kde-format
+#| msgid "Right mouse button preserves selection"
 msgid "A plain mouse button resets selection"
 msgstr "Десният бутон на мишката запазва селекция"
 
@@ -4678,6 +4682,7 @@ msgstr "Никога"
 
 #: app/Konfigurator/kgpanel.cpp:757
 #, fuzzy, kde-format
+#| msgid "MountMan will not (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
 msgstr ""
 "Управлението за монтиране няма да (раз)монтира тези точки за монтиране:"
@@ -4689,6 +4694,7 @@ msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, fuzzy, kde-format
+#| msgid "Mnt.Point"
 msgid "Mount point:"
 msgstr "Точка за монтиране"
 
@@ -7469,6 +7475,7 @@ msgstr "Стартиране"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
 msgstr "Отваряне в нов раздел"
 
@@ -8141,6 +8148,7 @@ msgstr "Запазване на настройките като стандарт
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
 #, fuzzy, kde-format
+#| msgid "Open in a new tab"
 msgid "Open a new tab"
 msgstr "Отваряне в нов раздел"
 
@@ -9035,11 +9043,13 @@ msgstr "Преместване на раздела от другата стра�
 
 #: app/tabactions.cpp:26
 #, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Left"
 msgstr "Преместване на раздела от другата страна"
 
 #: app/tabactions.cpp:27
 #, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Right"
 msgstr "Преместване на раздела от другата страна"
 
@@ -9050,6 +9060,7 @@ msgstr "Затваряне на раздела"
 
 #: app/tabactions.cpp:29
 #, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Undo Close Tab"
 msgstr "Отключване на раздела"
 
@@ -9793,3 +9804,39 @@ msgstr "Krarc Парола"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Достъпът до файла изисква парола."
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Милен Иванов"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "milen.kerat@gmail.com"
+
+#, fuzzy
+#~ msgid "Directories:"
+#~ msgstr "Степен на избледняване:"
+
+#, fuzzy
+#~ msgid "Show the new/close tab buttons."
+#~ msgstr "Показване на бутони за нов и за затваряне"
+
+#, fuzzy
+#~ msgid "Browse"
+#~ msgstr "&Тестване на архив"
+
+#, fuzzy
+#~ msgid "New folder"
+#~ msgstr "Нова папка"
+
+#, fuzzy
+#~ msgid "Open a new tab in home"
+#~ msgstr "Отваряне в нов раздел"
+
+#, fuzzy
+#~ msgid "Expander: no script specified for %_Script(script)%"
+#~ msgstr "Експандер: не е зададен профил за %_Sync(profile)%"
+
+#, fuzzy
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Копиране на избраното в клипборда"

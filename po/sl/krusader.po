@@ -7,28 +7,28 @@
 # Jure Repinc <jlp@holodeck1.com>, 2009, 2010, 2011.
 # Matej Urbančič <mateju@svn.gnome.org>, 2005 - 2009, 2012.
 # Andrej Mernik <andrejm@ubuntu.si>, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
-# Matjaž Jeran <matjaz.jeran@amis.net>, 2020, 2021, 2022.
+# Matjaž Jeran <matjaz.jeran@amis.net>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-2.4.0-beta1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2022-10-18 09:03+0200\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2021-03-22 08:52+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
-"%100<=4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Lokalize 20.08.1\n"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
 msgid "ActionMan - Manage Your Useractions"
-msgstr "ActionMan - Upravljajte vaše dejavnosti"
+msgstr "Upravljalnik skriptov"
 
 #: app/ActionMan/actionproperty.cpp:317
 #, kde-format
@@ -746,7 +746,7 @@ msgstr "Ni bilo mogoče izpisati vsebine arhiva (%1)."
 #: app/Archive/krarchandler.cpp:234 app/Archive/krarchandler.cpp:351
 #, kde-format
 msgid "Failed to unpack %1."
-msgstr "Ni bilo mogoče razpakirati %1."
+msgstr "Ni bilo mogoče odpakirati %1."
 
 #: app/Archive/krarchandler.cpp:280
 #, kde-format
@@ -761,7 +761,7 @@ msgstr "Ni bilo mogoče pretvoriti deb (%1) v tar."
 #: app/Archive/krarchandler.cpp:326
 #, kde-format
 msgid "Unpacking File(s)"
-msgstr "Razpakiranje datotek"
+msgstr "Odpakiranje datotek"
 
 #: app/Archive/krarchandler.cpp:352 app/Archive/krarchandler.cpp:547
 #, kde-format
@@ -812,7 +812,7 @@ msgstr "Preizkus arhiva je uspešno končan."
 #: app/Archive/packjob.cpp:146
 #, kde-format
 msgid "Error while unpacking"
-msgstr "Napaka med razpakiranjem"
+msgstr "Napaka med odpakiranjem"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:29 app/kractions.cpp:266
 #, kde-format
@@ -996,9 +996,10 @@ msgid "Create Checksums"
 msgstr "Ustvari nadzorne vsote"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "About to calculate checksum for the following files or directories:"
 msgid "About to calculate checksum for the following files or folders:"
-msgstr "Na tem, da izračunam kontrolne vsote naslednjih datotek ali map:"
+msgstr "Izračunana bo nadzorna vsota za naslednje datoteke ali mape:"
 
 #: app/Dialogs/checksumdlg.cpp:269
 #, kde-format
@@ -1417,9 +1418,10 @@ msgid "Files:"
 msgstr "Datoteke:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
-msgstr "Mape:"
+msgstr "Mape"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1860,16 +1862,18 @@ msgid "Custom"
 msgstr "Po meri"
 
 #: app/FileSystem/krquery.cpp:547
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "%1=filename, %2=percentage"
+#| msgid "Searching content of '%1' (%2%)"
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr "Iskanje vsebine '%1' (%2)"
+msgstr "Iskanje vsebine '%1' (%2 %)"
 
 #: app/FileSystem/krquery.cpp:552
 #, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr "%1%"
+msgstr ""
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, kde-format
@@ -2327,9 +2331,10 @@ msgid "Exclude Folder Names"
 msgstr "Izvzemi imena map"
 
 #: app/Filter/generalfilter.cpp:468
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Filters out specified directory names from the results."
 msgid "Filters out specified folder names from the results."
-msgstr "Iz rezultatov filtriraj določena imena map."
+msgstr "Prefiltrira stran podana imena imenikov iz rezultatov."
 
 #: app/Filter/generalfilter.cpp:483
 #, kde-format
@@ -2561,7 +2566,7 @@ msgstr "Vnesite ime profila:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr "Izprazni zadnje zaprte zavihke"
+msgstr ""
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -2874,7 +2879,7 @@ msgstr "Preveri celovitost arhiva po pakiranju."
 #: app/Konfigurator/kgarchives.cpp:83
 #, kde-format
 msgid "Test archive before unpacking"
-msgstr "Preveri arhiv pred razpakiranjem"
+msgstr "Preveri arhiv pred odpakiranjem"
 
 #: app/Konfigurator/kgarchives.cpp:83
 #, kde-format
@@ -3078,14 +3083,16 @@ msgid "Current background:"
 msgstr "Trenutna barva ozadja:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete foreground:"
 msgid "Rename foreground:"
-msgstr "Preimenuj ospredje:"
+msgstr "Barva besedila izbrisa:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
-msgstr "Preimenuj ozadje:"
+msgstr "Druga barva ozadja:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3380,16 +3387,16 @@ msgstr ""
 "nasprotnem primeru pa bo nov dokument odprt v novem zavihku"
 
 #: app/Konfigurator/kggeneral.cpp:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "Skrij vrstico z zavihki, kadar je odprt le en zavihek"
+msgstr "Vedno pokaži vrstico z zavihki, četudi je odprt le en zavihek."
 
 #: app/Konfigurator/kggeneral.cpp:75
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr ""
-"Če je odkljukano, bo prikazovalnik skril vrstico z zavihki, kadar je odprt "
-"le en zavihek"
+msgstr "Vedno pokaži vrstico z zavihki, četudi je odprt le en zavihek."
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3458,8 +3465,6 @@ msgstr ""
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
 msgstr ""
-"Če je besedilna datoteka večja od te velikosti, se uporabi program za "
-"listanje."
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3587,18 +3592,20 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:274
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
-msgstr "Aktivna plošča sledi delovnemu imeniku vgrajenega terminala"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "When checked, whenever the panel is changed (for example, by pressing "
+#| "Tab), Krusader changes the current folder in the embedded terminal."
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"Če je to potrjeno, bo v primeru spremembe delovnega imenika (na primer ob "
-"izvedbi ukaza 'cd' ali 'popd') Krusader spremenil trenutno mapo aktivne "
-"plošče."
+"Če je to označeno, bo v primeru spremembe pulta (na primer ob pritisku "
+"tabulatorja) Krusader spremenil trenutno mapo v vgrajenem terminalu."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
@@ -3733,44 +3740,49 @@ msgstr ""
 "Izpiši polno pot v zavihkih map. Privzeta vrednost izpiše le končni del poti."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons"
-msgstr "Pokaži gumbe za zapiranje zavihkov"
+msgstr "Pokaži gumbe Nov/Zapri za zavihke"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons."
-msgstr "Pokaži gumbe za zapiranje zavihkov."
+msgstr "Pokaži gumbe Nov/Zapri za zavihke"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr "Razširjanje zavihkov"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr "Razširjanje zavihkov."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button"
-msgstr "Pokaži gumb za nov zavihek"
+msgstr "Pokaži gumbe Nov/Zapri za zavihke"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button."
-msgstr "Pokaži gumb za nov zavihek."
+msgstr "Pokaži gumbe Nov/Zapri za zavihke"
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr "Vstavi zavihek pred trenutnega"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set root of the tree to the current folder"
 msgid "Insert new tabs to the right of the current one."
-msgstr "Vstavi nove zavihke desno od trenutnega."
+msgstr "Nastavi koren drevesa na trenutno mapo"
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
@@ -3785,17 +3797,17 @@ msgstr "Vedno pokaži vrstico z zavihki, četudi je odprt le en zavihek."
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr "Zapri zavihek z dvojnim klikom"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr "Zapri zavihek z dvojnim klikom."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr "Novi gumb zavihka podvoji zavihek"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3803,33 +3815,32 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
-"Če je odkljukano, novi gumb zavihka podvaja zavihek sicer pa odpre zavihek v "
-"domači mapi."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr "Podvoji aktivni zavihek s klikom:"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "disabled"
 msgid "Disabled"
-msgstr "Onemogočeno"
+msgstr "onemogočeno"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr "Alt+Klik"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr "Kontrolka+Klik"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr "Podvoji aktivni zavihek s klikom Ctrl/Alt+LMB"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -3885,18 +3896,22 @@ msgstr ""
 "iskanja)."
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Directory navigation with Right Arrow"
 msgid "Folder navigation with Right Arrow"
 msgstr "Krmarjenje po mapah s puščico desno"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Pressing the Right button enters directory if no search text editing "
+#| "intention is captured."
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
 msgstr ""
-"Pritisk na puščico desno vstopi v mapo, če pri tem ni zmoten vnos iskanja "
-"besedila."
+"Pritisk na puščico desno vstopi v mapo, če pri tem ni zajeto urejanje "
+"besedila iskanja."
 
 #: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
@@ -3961,7 +3976,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:237
 #, kde-format
 msgid "Status/Totalsbar"
-msgstr "Stanja/vrstica vsote"
+msgstr "Vrstica stanja"
 
 #: app/Konfigurator/kgpanel.cpp:242
 #, kde-format
@@ -4636,9 +4651,10 @@ msgstr ""
 "milisekund."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Right mouse button preserves selection"
 msgid "A plain mouse button resets selection"
-msgstr "Preprosti klik miške ponovno nastavi izbor"
+msgstr "Desni klik miške ohrani izbor"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4647,10 +4663,6 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
-"Ponovno nastavi izbor s klikom miške brez modifikatorjev (npr. Shift ali "
-"Ctrl).\n"
-"Da bi ta nastavitev delovala, mora biti omogočena izbira s tipko Shift/Ctrl "
-"ob miškinem gumbu."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4670,7 +4682,7 @@ msgstr "Pokaži vrsto datotečnega sistema"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr "Skrij vnose SquashFS"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4696,19 +4708,22 @@ msgid "Never"
 msgstr "Nikoli"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "MountMan will not (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
-msgstr "Skrij naslednje priklopne točke:"
+msgstr ""
+"S priklopnikom ni mogoče odklopiti ali priklopiti naslednjih priklopnih točk:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr "Dodaj novo skrito priklopno točko"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mnt.Point"
 msgid "Mount point:"
-msgstr "Priklopna točka:"
+msgstr "Priklop.točka"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5135,14 +5150,14 @@ msgstr "Črna"
 msgid "unarj not found, but arj found, which will be used for unpacking"
 msgstr ""
 "programa unarj ni mogoče najti, vendar je najden arj, ki bo uporabljen tudi "
-"za razpakiranje"
+"za odpakiranje"
 
 #: app/Konfigurator/krresulttable.cpp:127
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr ""
 "rpm je najden, vendar ni mogoče najti programa cpio, ki je nujen za "
-"razpakiranje"
+"odpakiranje"
 
 #: app/Konfigurator/krresulttable.cpp:130
 #: app/Konfigurator/krresulttable.cpp:286
@@ -5158,7 +5173,7 @@ msgstr "Pakiranje"
 #: app/Konfigurator/krresulttable.cpp:132
 #, kde-format
 msgid "Unpacking"
-msgstr "Razpakiranje"
+msgstr "Odpakiranje"
 
 #: app/Konfigurator/krresulttable.cpp:133
 #, kde-format
@@ -5412,7 +5427,7 @@ msgstr "Izberi oddaljen nabor znakov"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr "Zadnji zaprti zavihki"
+msgstr ""
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5531,13 +5546,16 @@ msgstr ""
 "%1"
 
 #: app/krslots.cpp:420
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Cannot find a batch rename tool.\n"
+#| "You can get KRename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 "Ni mogoče najti paketnega orodja za preimenovanje.\n"
-"Lahko dobite KRename na %1"
+"Namig: program KRename je mogoče prejeti preko http://www.krename.net"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -6143,22 +6161,34 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - skrbniška dovoljenja"
 
 #: app/main.cpp:113
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
+#| "© 2004-2019 Krusader Krew"
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
-"(c) 2004-2022, eKipa Krusaderja"
+"(c) 2004-2019, eKipa Krusaderja"
 
 #: app/main.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Feedback:\n"
+#| "https://forum.kde.org/viewforum.php?f=225\n"
+#| "\n"
+#| "IRC\n"
+#| "server: irc.freenode.net, channel: #krusader"
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
 "Odzivi\n"
-"https://forum.kde.org/viewforum.php?f=225"
+"https://forum.kde.org/viewforum.php?f=225\n"
+"\n"
+"IRC\n"
+"strežnik: irc.freenode.net, kanal: #krusader"
 
 #: app/main.cpp:120
 #, kde-format
@@ -6440,7 +6470,7 @@ msgstr "Aurelien Gateau"
 #: app/main.cpp:153
 #, kde-format
 msgid "patch for KViewer"
-msgstr "popravki za KViewer"
+msgstr "Popravki za KViewer"
 
 #: app/main.cpp:154
 #, kde-format
@@ -6450,7 +6480,7 @@ msgstr "Milan Brabec"
 #: app/main.cpp:154
 #, kde-format
 msgid "the first patch ever!"
-msgstr "čisto prvi programski popravek!"
+msgstr "Čisto prvi programski popravek!"
 
 #: app/main.cpp:155
 #, kde-format
@@ -6856,7 +6886,7 @@ msgstr ""
 #: app/MountMan/kmountman.cpp:344
 #, kde-format
 msgid "MountMan is not operational. Sorry"
-msgstr "MountMan ne deluje. Se opravičujem"
+msgstr "Priklopnik naprav ni omogočen."
 
 #: app/MountMan/kmountmangui.cpp:58
 #, kde-format
@@ -7134,7 +7164,8 @@ msgstr ""
 "zasedenost prostora"
 
 #: app/Panel/listpanel.cpp:229
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Cancel directory space calculation"
 msgid "Cancel folder space calculation"
 msgstr "Prekliči izračun velikosti mape"
 
@@ -7300,7 +7331,7 @@ msgstr "&Pakiranje ..."
 #: app/Panel/listpanelactions.cpp:82
 #, kde-format
 msgid "&Unpack..."
-msgstr "Razpakiranje..."
+msgstr "&Odpakiranje ..."
 
 #: app/Panel/listpanelactions.cpp:83
 #, kde-format
@@ -7497,9 +7528,10 @@ msgstr ""
 "Konfiguratorju. Privzeto je določen program <b>Konsole</b>.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open/Run"
 msgid "Open/Run Files"
-msgstr "Odpri/Zaženi datoteke"
+msgstr "Odpri/Zaženi"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7507,9 +7539,10 @@ msgid "Run"
 msgstr "Zaženi"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
-msgstr "Odpri v novih zavihkih"
+msgstr "Odpri v novem zavihku"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7817,16 +7850,16 @@ msgstr "Ni mogoče spakirati datotek v navidezni cilj."
 #: app/Panel/panelfunc.cpp:1108
 #, kde-format
 msgid "Unpack %1 to:"
-msgstr "Razpakiraj %1 v:"
+msgstr "Odpakiraj %1 v:"
 
 #: app/Panel/panelfunc.cpp:1110
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
-msgstr[0] "Razpakiraj %1 datotek v:"
-msgstr[1] "Razpakiraj %1 datoteko v:"
-msgstr[2] "Razpakiraj %1 datoteki v:"
-msgstr[3] "Razpakiraj %1 datoteke v:"
+msgstr[0] "Odpakiraj %1 datotek v:"
+msgstr[1] "Odpakiraj %1 datoteko v:"
+msgstr[2] "Odpakiraj %1 datoteki v:"
+msgstr[3] "Odpakiraj %1 datoteke v:"
 
 #: app/Panel/PanelView/krinterbriefview.cpp:238
 #: app/Panel/PanelView/krinterdetailedview.cpp:289
@@ -7857,7 +7890,8 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 od %2, %3 od %4"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
 msgstr "Uveljavi filter na mapah"
 
@@ -7867,7 +7901,8 @@ msgid "Filter Files"
 msgstr "Filtriraj datoteke"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
 msgstr "Uveljavi izbor na mapah"
 
@@ -8197,9 +8232,10 @@ msgid "Save settings as default for new instances of this view type"
 msgstr "Shrani nastavitve kot privzete za nove primerke te vrste"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in a new tab"
 msgid "Open a new tab"
-msgstr "Odpri novi zavihek"
+msgstr "Odpri v novem zavihku"
 
 #: app/paneltabbar.cpp:172
 #, kde-format
@@ -8245,7 +8281,7 @@ msgstr "Najdeno besedilo:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "Nedejaven"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -9100,14 +9136,16 @@ msgid "Move Current Tab to Other Side"
 msgstr "Premakni trenutni zavihek na drugo stran"
 
 #: app/tabactions.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Left"
-msgstr "Premakni trenutni zavihek na levo"
+msgstr "Premakni trenutni zavihek na drugo stran"
 
 #: app/tabactions.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Right"
-msgstr "Premakni trenutni zavihek na desno"
+msgstr "Premakni trenutni zavihek na drugo stran"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9115,9 +9153,10 @@ msgid "Close Current Tab"
 msgstr "Zapri trenutni zavihek"
 
 #: app/tabactions.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Undo Close Tab"
-msgstr "Razveljavi zaprtje zavihka"
+msgstr "Odkleni zavihek"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9716,12 +9755,12 @@ msgstr "Predstavnost"
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Kopiraj pot datoteke trenutnega predmeta (preskoči presledke)"
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
-msgstr "Kopiraj poti datotek(e) izbran(ega/ih) predmet(a/ov)"
+msgstr ""
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
@@ -9785,8 +9824,8 @@ msgid ""
 "filename. By default \".old\" is appended to the original filename."
 msgstr ""
 "Varnostno kopira trenutno datoteko v trenutno mapo in vpraša uporabnika za "
-"novo ime datoteke. Privzeto je izvirnemu imenu datoteke pripeta pripona \"."
-"old\"."
+"novo ime datoteke. Privzeto je izvirnemu imenu datoteke pripeta pripona »."
+"old«"
 
 #: plugins/krarc/krarc.cpp:224 plugins/krarc/krarc.cpp:231
 #, kde-format
@@ -9798,9 +9837,10 @@ msgstr ""
 "Omogočite jo lahko na strani 'Arhivi' v Konfiguratorju."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Creating directories is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives"
-msgstr "Ustvarjanje map ni podprto v arhivih %1"
+msgstr "Ustvarjanje map v arhivih %1 ni podprto"
 
 #: plugins/krarc/krarc.cpp:345
 #, kde-format
@@ -9825,7 +9865,7 @@ msgstr "Pridobivanje podatkov iz arhivov %1 ni podprto"
 #: plugins/krarc/krarc.cpp:663 plugins/krarc/krarc.cpp:1085
 #, kde-format
 msgid "Unpacking %1..."
-msgstr "Razpakiranje %1 ..."
+msgstr "Odpakiranje %1 ..."
 
 #: plugins/krarc/krarc.cpp:676 plugins/krarc/krarc.cpp:681
 #, kde-format
@@ -9833,8 +9873,6 @@ msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
-"Prišlo je do napake vezane na zunanji program '%1'. Sporočilo napake je: "
-"'%2'."
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
@@ -9847,9 +9885,10 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "Dostop do datotek v arhivih %1 ni podprt"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives"
-msgstr "Prikaz seznama map ni podprto v arhivih %1"
+msgstr "Prikaz seznama map v arhivih %1 ni podprt"
 
 #: plugins/krarc/krarc.cpp:2144 plugins/krarc/krarc.cpp:2150
 #, kde-format
@@ -9858,7 +9897,7 @@ msgid ""
 "Make sure that the %1 binary is installed properly on your system."
 msgstr ""
 "\n"
-"Prepričajte se, da je binarna datoteka %1 pravilno nameščena v sistemu."
+"Prepričajte se, da je dvojiška datoteka %1 pravilno nameščena v sistemu."
 
 #: plugins/krarc/krarc.cpp:2236 plugins/krarc/krarc.cpp:2262
 #, kde-format
@@ -9879,11 +9918,8 @@ msgstr "Dostop do datoteke zahteva geslo."
 #~ msgid "Your emails"
 #~ msgstr "mateju@svn.gnome.org,andrejm@ubuntu.si"
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Kopiraj trenutni predmet v odložišče"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Odpri nov zavihek v domači mapi"
+#~ msgid "Directories:"
+#~ msgstr "Mape:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Pokaži gumba zavihkov Nov/Zapri."
@@ -9912,6 +9948,30 @@ msgstr "Dostop do datoteke zahteva geslo."
 #~ msgid "JavaScript Error"
 #~ msgstr "Napaka JavaScripta"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Prebrskaj"
+
+#~ msgid "New folder"
+#~ msgstr "Nova mapa"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Odpri nov zavihek v domači mapi"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Izvedi razširitev JavaScript ..."
 
@@ -9930,14 +9990,8 @@ msgstr "Dostop do datoteke zahteva geslo."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Razširjevalnik: ni določenega skripta za %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Nova mapa"
-
-#~ msgid "Directories:"
-#~ msgstr "Mape:"
-
-#~ msgid "Browse"
-#~ msgstr "Prebrskaj"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Kopiraj trenutni predmet v odložišče"
 
 #~ msgid "Folder..."
 #~ msgstr "Mapa ..."
@@ -9950,21 +10004,6 @@ msgstr "Dostop do datoteke zahteva geslo."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Uredi datoteko (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
 
 #~ msgid "Open search filter"
 #~ msgstr "Odpri iskalni filter"

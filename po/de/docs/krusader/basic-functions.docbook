@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <chapter id="basic-functions">
   <title
 >Grundlegende Funktionen</title>
@@ -82,9 +94,13 @@
         <listitem>
           <para
 >Mit <keycombo action="simul"
->&Ctrl;&Down;</keycombo
+>&Ctrl;<keycap
+>Pfeil abwärts</keycap
+></keycombo
 > wechseln Sie vom aktiven Dateifenster zur Befehlszeile oder zum Terminal-Emulator und mit <keycombo action="simul"
->&Ctrl; &Up;</keycombo
+>&Ctrl; <keycap
+>Pfeil aufwärts</keycap
+></keycombo
 > wechseln Sie wieder zurück.</para>
         </listitem>
         <listitem>
@@ -101,9 +117,7 @@
 >&Alt;<keycap
 >Unterstrichener Buchstabe</keycap
 ></keycombo
->, um das Menü zu öffnen und eine Aktion aufzurufen, wenn diese Tastenkombination nicht <quote
->reserviert</quote
-> ist und von einer &krusader;-Aktion verwendet wird.</para>
+>, um das Menü zu öffnen und eine Aktion aufzurufen, wenn diese Tastenkombination nicht „reserviert“ ist und von einer &krusader;-Aktion verwendet wird.</para>
         </listitem>
       </itemizedlist
 ></para>
@@ -125,7 +139,11 @@
 >Das Verschieben des Cursors ist einfach. Klicken Sie mit der &LMBn; auf eine Datei oder einen Ordner, wird er ausgewählt. Jetzt erhalten Sie einige nützliche Hinweise, um &krusader; einfacher benutzen zu können. Dabei wird angenommen, dass Sie dem Mausauswahl-Modus in &krusader; verwenden. <itemizedlist>
         <listitem>
           <para
->Die &Space; und die Taste &Ins; schalten die Auswahl der aktiven Eintrags um, ohne die Auswahl der anderen Einträge zu verändern und geht dann um einen Eintrag nach unten.</para>
+>Die <keycap
+>Leertaste</keycap
+> und die Taste <keycap
+>Einfg</keycap
+> schalten die Auswahl der aktiven Eintrags um, ohne die Auswahl der anderen Einträge zu verändern und geht dann um einen Eintrag nach unten.</para>
         </listitem>
         <listitem>
           <para
@@ -152,20 +170,22 @@
         <listitem>
           <para
 ><keycombo action="simul"
->&Shift; &Home;</keycombo
+>&Shift; <keycap
+>Pos1</keycap
+></keycombo
 > wählt alles über dem Cursor aus und entfernt alle Einträge unter dem Cursor aus der Auswahl.</para>
         </listitem>
         <listitem>
           <para
 ><keycombo action="simul"
->&Shift; &End;</keycombo
+>&Shift; <keycap
+>Ende</keycap
+></keycombo
 > wählt alles unter dem Cursor aus und entfernt alle Einträge über dem Cursor aus der Auswahl.</para>
         </listitem>
         <listitem>
           <para
->Der Eintrag <quote
->..</quote
-> kann nicht ausgewählt werden.</para>
+>Der Eintrag „..“ kann nicht ausgewählt werden.</para>
         </listitem>
         <listitem>
           <para
@@ -195,7 +215,11 @@
       <para
 >Geben Sie <keycap
 >f</keycap
-> für eine Schnellsuche im aktiven Dateifenster für die Suche nach Dateien ein, deren Namen mit diesem Buchstaben beginnt. Ein kleiner Suchdialog wird unter dem aktiven Dateifenster geöffnet. Geben Sie die ersten Buchstaben des gesuchten Namens ein und der Cursor springt zum ersten passenden Dateinamen, wenn es ihn gibt. Mit den Tasten &Down;/&Down; springen Sie zur nächsten oder vorherigen Übereinstimmung. Mit &Esc; schließen Sie die Suchleiste. Die Schnellsuche unterstützt <ulink url="https://de.wikipedia.org/wiki/Reguläre_Ausdrücke"
+> für eine Schnellsuche im aktiven Dateifenster für die Suche nach Dateien ein, deren Namen mit diesem Buchstaben beginnt. Ein kleiner Suchdialog wird unter dem aktiven Dateifenster geöffnet. Geben Sie die ersten Buchstaben des gesuchten Namens ein und der Cursor springt zum ersten passenden Dateinamen, wenn es ihn gibt. Mit den Tasten <keycap
+>Pfeil abwärts</keycap
+>/<keycap
+>Pfeil aufwärts</keycap
+> springen Sie zur nächsten oder vorherigen Übereinstimmung. Mit &Esc; schließen Sie die Suchleiste. Die Schnellsuche unterstützt <ulink url="https://de.wikipedia.org/wiki/Reguläre_Ausdrücke"
 >reguläre Ausdrücke</ulink
 > für die Suche nach Dateien.</para>
       <note>
@@ -229,15 +253,7 @@
 ></keycombo
 >, um die Schnellfilterleiste zu öffnen. Geben Sie <keycap
 >foo</keycap
-> ein, um im aktiven Dateifenster alle Dateien auszufiltern, die nicht <quote
->foo</quote
-> im Namen haben. Sie können Platzhalter zum Filtern benutzen, &eg; <quote
->a*b</quote
->, um alle Dateien zu filtern, die <quote
->a</quote
-> und <quote
->b</quote
-> im Namen haben. Der Schnellfilter berücksichtigt die Einstellungen zur <link linkend="konfig-panel-general"
+> ein, um im aktiven Dateifenster alle Dateien auszufiltern, die nicht "foo" im Namen haben. Sie können Platzhalter zum Filtern benutzen, &eg; "a*b", um alle Dateien zu filtern, die "a" und "b" im Namen haben. Der Schnellfilter berücksichtigt die Einstellungen zur <link linkend="konfig-panel-general"
 >Groß- und Kleinschreibung</link
 > der Schnellsuche.</para>
       <para
@@ -263,15 +279,7 @@
 ></keycombo
 >, um die Schnellauswahlleiste zu öffnen. Geben Sie <keycap
 >foo</keycap
-> ein, um im aktiven Dateifenster alle Dateien auszufiltern, die nicht <quote
->foo</quote
-> im Namen haben. Sie können Platzhalter zum Filtern benutzen, &eg; <quote
->a*b</quote
->, um alle Dateien zu filtern, die <quote
->a</quote
-> und <quote
->b</quote
-> im Namen haben. Die Schnellauswahl berücksichtigt die Einstellungen zur <link linkend="konfig-panel-general"
+> ein, um im aktiven Dateifenster alle Dateien auszufiltern, die nicht "foo" im Namen haben. Sie können Platzhalter zum Filtern benutzen, &eg; "a*b", um alle Dateien zu filtern, die "a" und "b" im Namen haben. Die Schnellauswahl berücksichtigt die Einstellungen zur <link linkend="konfig-panel-general"
 >Groß- und Kleinschreibung</link
 > der Schnellsuche.</para>
       <para
@@ -390,6 +398,12 @@
     <sect2 id="copying">
       <title
 >Kopieren und Verschieben</title>
+      <para
+>Um Dateien und Ordner zu kopieren oder zu verschieben, wählen Sie sie aus und drücken <keycap
+>F5</keycap
+> um sie zu kopieren <keycap
+>F6</keycap
+> zu verschieben. &krusader; versucht die Änderungszeiten zu erhalten. Beim Kopieren eines Ordners wird der Eigentümer zum Benutzer geändert, der kopiert, und die Gruppe wird zur primären Gruppe des Benutzers geändert. Beim Kopieren einer Datei wird der Eigentümer zum Benutzer geändert, der kopiert, die Gruppe wird zur primären Gruppe des Benutzers geändert und die Berechtigungen bleiben erhalten. Eigentümer, Gruppe und Berechtigungen bleiben beim Verschieben von Dateien und Ordnern erhalten. Beim Kopieren und Verschieben wird ein Dialog geöffnet, in dem Sie das Ziel der Operation auswählen können. Als Vorgabe ist der Ordner des anderen Dateifensters als Ziel eingestellt. Geben Sie eine teilweise &URL; ein, wird der aktuelle Ordner des Dateifensters als Basis der &krusader; benutzt.</para>
       <figure id="screenshot-copyjob" float="1">
         <title
 >Kopieren-Dialog</title>
@@ -404,12 +418,6 @@
           </textobject>
         </mediaobject>
       </figure>
-      <para
->Um Dateien und Ordner zu kopieren oder zu verschieben, wählen Sie sie aus und drücken <keycap
->F5</keycap
-> um sie zu kopieren <keycap
->F6</keycap
-> zu verschieben. &krusader; versucht die Änderungszeiten zu erhalten. Beim Kopieren eines Ordners wird der Eigentümer zum Benutzer geändert, der kopiert, und die Gruppe wird zur primären Gruppe des Benutzers geändert. Beim Kopieren einer Datei wird der Eigentümer zum Benutzer geändert, der kopiert, die Gruppe wird zur primären Gruppe des Benutzers geändert und die Berechtigungen bleiben erhalten. Eigentümer, Gruppe und Berechtigungen bleiben beim Verschieben von Dateien und Ordnern erhalten. Beim Kopieren und Verschieben wird ein Dialog geöffnet, in dem Sie das Ziel der Operation auswählen können. Als Vorgabe ist der Ordner des anderen Dateifensters als Ziel eingestellt. Geben Sie eine teilweise &URL; ein, wird der aktuelle Ordner des Dateifensters als Basis der &krusader; benutzt.</para>
     </sect2>
     <sect2 id="queue">
       <title
@@ -459,18 +467,12 @@
 > im Unterordner im Persönlichen Ordner, der mit dem Befehl <userinput
 >qtpaths --paths GenericDataLocation</userinput
 > ermittelt werden kann. <keycombo action="simul"
->&Ctrl; <keycap
+>&Shift; <keycap
 >Entf</keycap
 ></keycombo
 > löscht eine Datei tatsächlich, ohne sie vorher in den Papierkorb zu verschieben. In einem Dialog werden Sie um Bestätigung dieser Aktion gebeten und warnt Sie beim Löschen von Ordnern, die nicht leer sind. Es können natürlich nur vom Betriebssystem zugelassene Operationen ausgeführt werden, ansonsten erhalten Sie eine Benachrichtigung. Möchten Sie diese Bestätigungs-Dialoge überspringen, schalten Sie sie auf der Seite <link linkend="konfig-advanced"
 >Erweitert</link
-> im Konfigurator ab. Wenn Sie auf der Seite <link linkend="konfig-general"
->Allgemein</link
-> im Konfigurator das dauerhafte Löschen von Dateien einstellen, werden Dateien mit <keycap
->F8</keycap
-> or &Del; tatsächlich gelöscht und mit <keycombo action="simul"
->&Ctrl; &Del;</keycombo
-> in den &plasma;-Papierkorb verschoben.</para>
+> im Konfigurator ab.</para>
     </sect2>
     <sect2 id="shred">
       <title

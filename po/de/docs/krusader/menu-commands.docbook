@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <chapter id="menu-commands">
   <title
 >Menübefehle</title>
@@ -49,7 +61,7 @@
 > <guimenu
 >Datei</guimenu
 > <guimenuitem
->Neuer Ordner</guimenuitem
+>Neuer Ordner ...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -825,7 +837,9 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt;&Up;</keycombo
+>&Alt;<keysym
+>Pfeil hoch</keysym
+></keycombo
 > </shortcut
 > <guimenu
 >Gehe zu</guimenu
@@ -843,7 +857,9 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt;&Left;</keycombo
+>&Alt;<keysym
+>Pfeil links</keysym
+></keycombo
 > </shortcut
 > <guimenu
 >Gehe zu</guimenu
@@ -861,7 +877,9 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt;&Right;</keycombo
+>&Alt;<keycap
+>Pfeil rechts</keycap
+></keycombo
 > </shortcut
 > <guimenu
 >Gehe zu</guimenu
@@ -885,7 +903,9 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt;&Home;</keycombo
+>&Alt;<keycap
+>Pos1</keycap
+></keycombo
 > </shortcut
 > <guimenu
 >Gehe zu</guimenu
@@ -1245,7 +1265,9 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Meta; <keycap
+> <keycap
+>Meta</keycap
+> <keycap
 >A</keycap
 > </keycombo
 > </shortcut
@@ -1355,7 +1377,9 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Meta;<keycap
+> <keycap
+>Meta</keycap
+><keycap
 >F5</keycap
 > </keycombo
 > </shortcut
@@ -1379,7 +1403,9 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Meta; <keycap
+> <keycap
+>Meta</keycap
+> <keycap
 >1</keycap
 > </keycombo
 > </shortcut
@@ -1401,7 +1427,9 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Meta; <keycap
+> <keycap
+>Meta</keycap
+> <keycap
 >2</keycap
 > </keycombo
 > </shortcut
@@ -1423,7 +1451,9 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Meta; <keycap
+> <keycap
+>Meta</keycap
+> <keycap
 >3</keycap
 > </keycombo
 > </shortcut
@@ -1445,7 +1475,9 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Meta; <keycap
+> <keycap
+>Meta</keycap
+> <keycap
 >4</keycap
 > </keycombo
 > </shortcut
@@ -1682,6 +1714,33 @@
         </listitem>
       </varlistentry>
       <!-- vertical bar -->
+      <!-- disabled due to KrJS does not compile (cannot find kjsembed from kdelibs
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">
+              &Alt;&Ctrl;
+              <keycap
+>J</keycap
+></keycombo>
+            </shortcut>
+            <guimenu
+>Tools</guimenu>
+            <guimenuitem
+>Javascript Console</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Opens the 
+          <link linkend="javascript_console"
+>Javascript
+          Console</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      -->
       <varlistentry>
         <term>
           <menuchoice
@@ -2280,7 +2339,7 @@
     <para
 >Zusätzlich hat &krusader; die bekannten &kde;-Einträge im Menü <guimenu
 >Hilfe</guimenu
->, weitere Informationen dazu finden Sie im Abschnitt über das Menü <ulink url="help:/fundamentals/menus.html#menus-help"
+>, weitere Informationen dazu finden Sie im Abschnitt über das Menü <ulink url="help:/fundamentals/ui.html#menus-help"
 >Hilfe</ulink
 > der &kde;-Grundlagen. </para>
   </sect1>

@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2022-10-18 05:50+0300\n"
+"POT-Creation-Date: 2022-10-24 02:35+0000\n"
+"PO-Revision-Date: 2022-10-08 12:39+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -32,12 +32,12 @@ msgstr "ActionMan - Kullanıcı Eylemlerinizi Yönetin"
 #: app/ActionMan/actionproperty.cpp:317
 #, kde-format
 msgid "New protocol"
-msgstr "Yeni protokol"
+msgstr "Yeni yordam"
 
 #: app/ActionMan/actionproperty.cpp:317
 #, kde-format
 msgid "Set a protocol:"
-msgstr "Protokol ayarla:"
+msgstr "Yordam tanımla:"
 
 #: app/ActionMan/actionproperty.cpp:334
 #, kde-format
@@ -47,17 +47,17 @@ msgstr "Protokolü Düzenle"
 #: app/ActionMan/actionproperty.cpp:334
 #, kde-format
 msgid "Set another protocol:"
-msgstr "Başka bir protokol ayarla:"
+msgstr "Başka bir yordam tanımla:"
 
 #: app/ActionMan/actionproperty.cpp:368
 #, kde-format
 msgid "Edit Path"
-msgstr "Yolu Düzenle"
+msgstr "Yolu düzenle"
 
 #: app/ActionMan/actionproperty.cpp:368
 #, kde-format
 msgid "Set another path:"
-msgstr "Başka bir yol ayarla:"
+msgstr "Başka bir yol tanımla:"
 
 #: app/ActionMan/actionproperty.cpp:392
 #, kde-format
@@ -67,7 +67,7 @@ msgstr "Yeni MIME Türü"
 #: app/ActionMan/actionproperty.cpp:392
 #, kde-format
 msgid "Set a MIME type:"
-msgstr "MIME türü ayarla:"
+msgstr "MIME türü tanımla:"
 
 #: app/ActionMan/actionproperty.cpp:409
 #, kde-format
@@ -77,7 +77,7 @@ msgstr "MIME Türü Düzenle"
 #: app/ActionMan/actionproperty.cpp:409
 #, kde-format
 msgid "Set another MIME type:"
-msgstr "Başka bir MIME türü ayarla:"
+msgstr "Başka bir MIME türü tanımla:"
 
 #: app/ActionMan/actionproperty.cpp:433
 #, kde-format
@@ -87,7 +87,7 @@ msgstr "Yeni Dosya Adı"
 #: app/ActionMan/actionproperty.cpp:433
 #, kde-format
 msgid "Set a file name:"
-msgstr "Bir dosya adı ayarla:"
+msgstr "Bir Dosya adı tanımla:"
 
 #: app/ActionMan/actionproperty.cpp:450
 #, kde-format
@@ -97,12 +97,12 @@ msgstr "Dosya Adını Düzenle"
 #: app/ActionMan/actionproperty.cpp:450
 #, kde-format
 msgid "Set another file name:"
-msgstr "Başka bir dosya adı ayarla:"
+msgstr "Başka bir dosyaadı tanımla:"
 
 #: app/ActionMan/actionproperty.cpp:470
 #, kde-format
 msgid "Please set a unique name for the useraction"
-msgstr "Kullanıcı eylemi için benzersiz bir ad ayarlayın"
+msgstr "Kullanıcı eylemi için benzersiz bir ad tanımlayın"
 
 #: app/ActionMan/actionproperty.cpp:475
 #, kde-format
@@ -121,7 +121,7 @@ msgid ""
 "If you do not have such a useraction the name is used by Krusader for an "
 "internal action."
 msgstr ""
-"Bu adda bir eylem zaten var.\n"
+"Bu adda bir eylem zaten mevcut.\n"
 "Eğer bu sizin kullandığınız bir ad değilse onu Krusader'ın dahili bir eylem "
 "için kullanıyordur."
 
@@ -151,8 +151,8 @@ msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
 "<i>Konfigurator</i> and via <code>Shift+F1</code>."
 msgstr ""
-"<b>Kullanıcı eyleminin</b> ayrıntılı bir açıklaması. Yalnızca "
-"<i>Konfigurator</i> içinde <code>Shift+F1</code> ile görüntülenir."
+"<b>Kullanıcı eyleminin</b> ayrıntılı bir açıklaması. Sadece <i>Konfigurator</"
+"i> içinde <code>Shift+F1</code> ile görüntülenir."
 
 #. i18n: ectx: property (text), widget (QLabel, LabelDescription)
 #: app/ActionMan/actionproperty.ui:61
@@ -170,13 +170,13 @@ msgstr "Komutun Kabul Ettikleri"
 #: app/ActionMan/actionproperty.ui:83
 #, kde-format
 msgid "Substitute the <b>Placeholders</b> with local filenames."
-msgstr "<b>Yer Tutucuları</b> yerel dosya adları ile değiştir."
+msgstr "<b>Yer Tutucuları</b> yerel dosya adlası ile değiştir."
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioLocal)
 #: app/ActionMan/actionproperty.ui:86
 #, kde-format
 msgid "&Local files only (no URLs)"
-msgstr "Ya&lnızca yerel dosyalar (Adresler hariç)"
+msgstr "&Sadece yerel dosyalar (Adresler hariç)"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioUrl)
 #: app/ActionMan/actionproperty.ui:96
@@ -224,7 +224,7 @@ msgid ""
 "Choose a existing <i>Category</i> or create a new one by entering a name."
 msgstr ""
 "<b>Kullanıcı eylemleri</b> sınıflar altında toplanarak daha iyi ayrılabilir. "
-"Var olan bir <i>Sınıf</i> seçin veya seçtiğiniz ad ile yeni bir tane yaratın."
+"Varolan bir <i>Sınıf</i> seçin veya seçtiğiniz ad ile yeni bir tane yaratın."
 
 #. i18n: ectx: property (whatsThis), widget (KIconButton, ButtonIcon)
 #: app/ActionMan/actionproperty.ui:176
@@ -298,7 +298,7 @@ msgid ""
 "The <i>Workdir</i> defines in which folder the <i>Command</i> will be "
 "executed."
 msgstr ""
-"<i>Çalışma dizini</i>, <i>Komut</i>un çalıştırılacağı klasörü tanımlar."
+"<i>Çalışma-dizini</i>, <i>Komut</i>un çalıştırılacağı dizin'i tanımlar."
 
 #. i18n: ectx: property (text), widget (QLabel, LabelTooltip)
 #: app/ActionMan/actionproperty.ui:247
@@ -328,13 +328,13 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:278
 #, kde-format
 msgid "Category:"
-msgstr "Kategori:"
+msgstr "Sınıf:"
 
 #. i18n: ectx: property (whatsThis), widget (QToolButton, ButtonAddPlaceholder)
 #: app/ActionMan/actionproperty.ui:300 app/GUI/kcmdline.cpp:180
 #, kde-format
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
-msgstr "Pencerede seçilen dosyalar için <b>Yer tutucular</b> ekler."
+msgstr "Pencerede seçilen dosyalar için <b>Yer-tutucular</b> ekler."
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonAddPlaceholder)
 #: app/ActionMan/actionproperty.ui:303
@@ -346,7 +346,7 @@ msgstr "&Ekle"
 #: app/ActionMan/actionproperty.ui:329
 #, kde-format
 msgid "Workdir:"
-msgstr "Çalışma dizini:"
+msgstr "Çalışma-dizini:"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelShortcut)
 #: app/ActionMan/actionproperty.ui:357
@@ -371,7 +371,7 @@ msgstr "Hiçbiri"
 #: app/ActionMan/actionproperty.ui:398
 #, kde-format
 msgid "If checked, the action is shown in the Useractions menus."
-msgstr "Seçiliyse bu eylem kullanıcı eylemleri menüsünde gösterilir."
+msgstr "Eğer seçilirse, bu eylem Kullanıcı eylemleri menüsünde gösterilir."
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkEnabled)
 #: app/ActionMan/actionproperty.ui:401
@@ -408,7 +408,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:436
 #, kde-format
 msgid "Separate standard error"
-msgstr "Geleneksel hatayı ayrı tut"
+msgstr "Geleneksel hatayı ayrı-tut"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioNormal)
 #: app/ActionMan/actionproperty.ui:443
@@ -456,7 +456,7 @@ msgstr "Kullanıcı eyleminin geçerliliği yalnızca"
 #: app/ActionMan/actionproperty.ui:499
 #, kde-format
 msgid "Protocol"
-msgstr "Protokol"
+msgstr "Yordam"
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonNewProtocol)
 #: app/ActionMan/actionproperty.ui:523
@@ -473,7 +473,7 @@ msgstr "&Yeni..."
 #: app/ActionMan/actionproperty.ui:765 app/ActionMan/actionproperty.ui:870
 #, kde-format
 msgid "Chan&ge..."
-msgstr "&Değiştir..."
+msgstr "&Değiştir"
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonRemoveProtocol)
 #. i18n: ectx: property (text), widget (QToolButton, ButtonRemovePath)
@@ -533,9 +533,8 @@ msgid ""
 "Show the <b>Useraction</b> only for the file names defined here. The "
 "wildcards '<code>?</code>' and '<code>*</code>' can be used."
 msgstr ""
-"Yalnızca burada tanımlanan dosya adları için <b>Kullanıcı eylemini</b> "
-"göster. '<code>?</code>' ve '<code>*</code>' joker karakterleri "
-"kullanılabilir."
+"Sadece burada tanımlanan dosya adları için <b>Kullanıcı eylemini</b> göster. "
+"'<code>?</code>' ve '<code>*</code>' joker karakterleri kullanılabilir."
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonNewFile)
 #: app/ActionMan/actionproperty.ui:845
@@ -567,37 +566,37 @@ msgstr "<i>Komut</i>u başka bir kullanıcı kimliği ile çalıştır."
 #: app/ActionMan/actionproperty.ui:938
 #, kde-format
 msgid "Run as different user:"
-msgstr "Farklı bir kullanıcı olarak çalıştır:"
+msgstr "Farklı bir kullanıcı olarakçalıştır:"
 
 #: app/ActionMan/addplaceholderpopup.cpp:45
 #, kde-format
 msgid "Active panel"
-msgstr "Etkin panel"
+msgstr "Etkin pencere"
 
 #: app/ActionMan/addplaceholderpopup.cpp:46
 #, kde-format
 msgid "Other panel"
-msgstr "Diğer panel"
+msgstr "Diğer pencere"
 
 #: app/ActionMan/addplaceholderpopup.cpp:47
 #, kde-format
 msgid "Left panel"
-msgstr "Sol panel"
+msgstr "Sol pencere"
 
 #: app/ActionMan/addplaceholderpopup.cpp:48
 #, kde-format
 msgid "Right panel"
-msgstr "Sağ panel"
+msgstr "Sağ pencere"
 
 #: app/ActionMan/addplaceholderpopup.cpp:49
 #, kde-format
 msgid "Panel independent"
-msgstr "Bağımsız panel"
+msgstr "Bağımsız pencere"
 
 #: app/ActionMan/addplaceholderpopup.cpp:57
 #, kde-format
 msgid "Choose executable..."
-msgstr "Çalıştırılabilir dosya seç..."
+msgstr "Çalıştırılabilir dosyayı seç..."
 
 #: app/ActionMan/addplaceholderpopup.cpp:143
 #, kde-format
@@ -607,7 +606,7 @@ msgstr "Kullanıcı Eylemi Parametre Penceresi"
 #: app/ActionMan/addplaceholderpopup.cpp:156
 #, kde-format
 msgid "This placeholder allows some parameter:"
-msgstr "Bu yer tutucu bazı parametrelere izin verir:"
+msgstr "Bu yer-tutucu bazı parametrelere izin verir:"
 
 #: app/ActionMan/useractionlistview.cpp:29
 #, kde-format
@@ -631,12 +630,12 @@ msgstr "Yeni kullanıcı eylemi oluştur"
 #: app/ActionMan/useractionpage.cpp:61
 #, kde-format
 msgid "Import useractions"
-msgstr "Kullanıcı eylemlerini içe aktar"
+msgstr "Kullanıcı eylemlerini içeriye aktar"
 
 #: app/ActionMan/useractionpage.cpp:66
 #, kde-format
 msgid "Export useractions"
-msgstr "Kullanıcı eylemlerini dışa aktar"
+msgstr "Kullanıcı eylemlerini dışarıya aktar"
 
 #: app/ActionMan/useractionpage.cpp:71
 #, kde-format
@@ -646,7 +645,7 @@ msgstr "Kullanıcı eylemlerini panoya kopyala"
 #: app/ActionMan/useractionpage.cpp:76
 #, kde-format
 msgid "Paste useractions from clipboard"
-msgstr "Kullanıcı eylemlerini panodan yapıştır"
+msgstr "Kullanıcıe eylemlerini panodan yapıştır"
 
 #: app/ActionMan/useractionpage.cpp:81
 #, kde-format
@@ -667,7 +666,7 @@ msgstr "Seçili tüm eylemleri silmek istediğinizden emin misiniz?"
 #: app/ActionMan/useractionpage.cpp:215
 #, kde-format
 msgid "Remove Selected Actions?"
-msgstr "Seçili Eylemler Kaldırılsın mı?"
+msgstr "Seçili Eylemler Kaldırılsın Mı?"
 
 #: app/ActionMan/useractionpage.cpp:265
 #, kde-format
@@ -681,7 +680,7 @@ msgstr ""
 #: app/ActionMan/useractionpage.cpp:266
 #, kde-format
 msgid "Overwrite or Merge?"
-msgstr "Üzerine Yaz veya Birleştir?"
+msgstr "Üzerine mi yazılsın, Birleştirilsin mi?"
 
 #: app/ActionMan/useractionpage.cpp:268
 #, kde-format
@@ -696,7 +695,7 @@ msgstr "Bu dosya zaten var. Üzerine yazmak istediğinizden emin misiniz?"
 #: app/ActionMan/useractionpage.cpp:275
 #, kde-format
 msgid "Overwrite Existing File?"
-msgstr "Var Olan Dosyanın Üzerine Yazılsın mı?"
+msgstr "Varolan Dosyanın Üzerine Yazılsın mı?"
 
 #: app/ActionMan/useractionpage.cpp:290 app/UserAction/kraction.cpp:183
 #, kde-format
@@ -807,7 +806,7 @@ msgstr "Paketleme sırasında hata oluştu"
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, test failed."
-msgstr "%1, sınama başarısız."
+msgstr "%1, test başarısız."
 
 #: app/Archive/packjob.cpp:105
 #, kde-format
@@ -822,7 +821,7 @@ msgstr "Açılırken hata oluştu"
 #: app/BookMan/kraddbookmarkdlg.cpp:29 app/kractions.cpp:266
 #, kde-format
 msgid "Add Bookmark"
-msgstr "Yer imi Ekle"
+msgstr "Yer-imi Ekle"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:36 app/DiskUsage/diskusage.cpp:1017
 #, kde-format
@@ -843,19 +842,19 @@ msgstr "Şurada oluştur:"
 #: app/Panel/panelfunc.cpp:699
 #, kde-format
 msgid "New Folder"
-msgstr "Yeni Klasör"
+msgstr "Yeni Dizin"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:97 app/FileSystem/krquery.cpp:230
 #: app/Filter/generalfilter.cpp:154 app/Filter/generalfilter.cpp:533
 #, kde-format
 msgid "Folders"
-msgstr "Klasörler"
+msgstr "Dizinler"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:103 app/BookMan/krbookmarkbutton.cpp:33
 #: app/BookMan/krbookmarkhandler.cpp:60 app/Panel/listpanelactions.cpp:102
 #, kde-format
 msgid "Bookmarks"
-msgstr "Yer İmleri"
+msgstr "Yer-imleri"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:143
 #, kde-format
@@ -865,7 +864,7 @@ msgstr "Klasör adı:"
 #: app/BookMan/krbookmark.cpp:22 app/BookMan/krbookmarkhandler.cpp:771
 #, kde-format
 msgid "Trash bin"
-msgstr "Çöp Kutusu"
+msgstr "Çöp kutusu"
 
 #: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:779
 #, kde-format
@@ -883,9 +882,10 @@ msgid "BookMan II"
 msgstr "BookMan II"
 
 #: app/BookMan/krbookmarkhandler.cpp:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Stop search"
 msgid "Type to search..."
-msgstr "Aramak için yazın..."
+msgstr "Aramayı durdur"
 
 #: app/BookMan/krbookmarkhandler.cpp:216 app/BookMan/krbookmarkhandler.cpp:318
 #: app/Konfigurator/kgcolors.cpp:566 app/Konfigurator/kgcolors.cpp:586
@@ -930,7 +930,7 @@ msgstr "Sık kullanılanlar"
 #: app/BookMan/krbookmarkhandler.cpp:519
 #, kde-format
 msgid "Manage Bookmarks"
-msgstr "Yer İmlerini Yönet"
+msgstr "Yer-im'lerini Düzenle"
 
 #: app/BookMan/krbookmarkhandler.cpp:763
 #, kde-format
@@ -940,7 +940,7 @@ msgstr "Özel yer imlerini etkinleştir"
 #: app/BookMan/krbookmarkhandler.cpp:783
 #, kde-format
 msgid "Jump back"
-msgstr "Geri git"
+msgstr "Geriye Git"
 
 #: app/BookMan/krbookmarkhandler.cpp:835 app/GUI/mediabutton.cpp:328
 #: app/Panel/panelcontextmenu.cpp:127
@@ -979,7 +979,7 @@ msgstr "stdout okuma hatası veya stderr"
 #: app/Dialogs/checksumdlg.cpp:183
 #, kde-format
 msgid "Please wait..."
-msgstr "Lütfen bekleyin..."
+msgstr "Lütfen bekleniz..."
 
 #: app/Dialogs/checksumdlg.cpp:201
 #, kde-format
@@ -988,32 +988,33 @@ msgid ""
 "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr ""
 "<qt>Krusader %1 işleyecek bir imza özeti aracı bulamadı. Lütfen Krusader'ın "
-"ayarlarından <b>Bağımlılıklar</b> sayfasını denetleyin.</qt>"
+"ayarlarından <b>Bağımlılıklar</b> sayfasını kontrol edin.</qt>"
 
 #: app/Dialogs/checksumdlg.cpp:239
 #, kde-format
 msgid "Creating Checksums"
-msgstr "Sağlama Toplamı Oluşturuluyor"
+msgstr "Sağlama Oluşturuluyor"
 
 #: app/Dialogs/checksumdlg.cpp:253
 #, kde-format
 msgid "Create Checksums"
-msgstr "Sağlama Toplamı Oluştur"
+msgstr "Sağlama Oluştur"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "About to calculate checksum for the following files or directories:"
 msgid "About to calculate checksum for the following files or folders:"
-msgstr "Aşağıdaki dosya ve klasörlerin sağlama toplamı hesaplanmak üzere:"
+msgstr "Aşağıdaki dosya ve dizinlerin sağlaması hesaplanmak üzere:"
 
 #: app/Dialogs/checksumdlg.cpp:269
 #, kde-format
 msgid "Select the checksum method:"
-msgstr "Sağlama toplamı yöntemini seçin:"
+msgstr "Sağlama yöntemini seçin:"
 
 #: app/Dialogs/checksumdlg.cpp:288
 #, kde-format
 msgid "Checksum Results"
-msgstr "Sağlama Toplamı Sonuçları"
+msgstr "Sağlama Sonuçları"
 
 #: app/Dialogs/checksumdlg.cpp:295 app/Dialogs/checksumdlg.cpp:495
 #: app/Konfigurator/kgcolors.cpp:450
@@ -1044,48 +1045,47 @@ msgstr "Dosya bulunamadı"
 #: app/Dialogs/checksumdlg.cpp:355
 #, kde-format
 msgid "Errors were detected while creating the checksums"
-msgstr "Sağlama toplamları oluşturulurken hatalar algılandı"
+msgstr "Sağlamalar yaratılırken hatalar oluştu."
 
 #: app/Dialogs/checksumdlg.cpp:356
 #, kde-format
 msgid "Checksums were created successfully"
-msgstr "Sağlama toplamları başarıyla oluşturuldu"
+msgstr "Sağlamaların yaratılması başarılı."
 
 #: app/Dialogs/checksumdlg.cpp:380
 #, kde-format
 msgid "Saving checksum files..."
-msgstr "Sağlama toplamı dosyalarını kaydediliyor..."
+msgstr "Sağlama dosyalarını kaydediyor.."
 
 #: app/Dialogs/checksumdlg.cpp:384
 #, kde-format
 msgid "Errors occurred while saving multiple checksums. Stopping"
-msgstr ""
-"Birden fazla sağlama toplamı kaydedilirken hatalar oluştu. Durduruluyor"
+msgstr "Birden fazla sağlama kaydedilirken hatalar oluştu. Durduruluyor"
 
 #: app/Dialogs/checksumdlg.cpp:412
 #, kde-format
 msgid "Error saving file %1"
-msgstr "%1 dosyası kaydedilirken hata"
+msgstr "%1 dosyası kaydedilirken hata."
 
 #: app/Dialogs/checksumdlg.cpp:434
 #, kde-format
 msgid "Verifying Checksums"
-msgstr "Sağlama Toplamları Doğrulanıyor"
+msgstr "Sağlamalar Doğrulanıyor"
 
 #: app/Dialogs/checksumdlg.cpp:466
 #, kde-format
 msgid "Verify Checksum File"
-msgstr "Sağlama Toplamları Dosyasını Doğrula"
+msgstr "Sağlama Dosyasını Doğrula"
 
 #: app/Dialogs/checksumdlg.cpp:469
 #, kde-format
 msgid "About to verify the following checksum file"
-msgstr "Aşağıdaki sağlama toplamı dosyası doğrulanmak üzere"
+msgstr "Aşağıdaki sağlama dosyası doğrulanmak üzere"
 
 #: app/Dialogs/checksumdlg.cpp:476
 #, kde-format
 msgid "Checksum file:"
-msgstr "Sağlama toplamı dosyası:"
+msgstr "Sağlama dosyası:"
 
 #: app/Dialogs/checksumdlg.cpp:505
 #, kde-format
@@ -1100,12 +1100,12 @@ msgstr "Sonuç çıktısı:"
 #: app/Dialogs/checksumdlg.cpp:545
 #, kde-format
 msgid "Errors were detected while verifying the checksums"
-msgstr "Sağlama toplamları doğrulanırken hata(lar) algılandı"
+msgstr "Sağlamaları denetlerken hata(lar) oluştu."
 
 #: app/Dialogs/checksumdlg.cpp:546
 #, kde-format
 msgid "Checksums were verified successfully"
-msgstr "Sağlama toplamları başarıyla doğrulandı"
+msgstr "Sağlama denetlemesi başarıyla bitti."
 
 #: app/Dialogs/krdialogs.cpp:109
 #, kde-format
@@ -1156,7 +1156,7 @@ msgid ""
 msgstr ""
 "Önceden tanımlanmış bir seçim sık kullandığınız bir dosya maskesidir.\n"
 "Bazı örnekler: \"*.c, *.h\", \"*.c, *.o\".\n"
-"Bu maskeleri yazıp Ekle düğmesine tıklayarak listeye ekleyebilirsiniz.\n"
+"Bu maskeleri yazıp Ekle tuşuna tıklayarak listeye ekleyebilirsiniz.\n"
 "Sil bir önceden tanımlanmış seçimi kaldırır, Temizle ise tümünü kaldırır.\n"
 "Düzenlediğiniz maskenin kendi geçmişi olduğunu ve gerektiğinde "
 "kaydırabileceğinizi unutmayın."
@@ -1169,12 +1169,12 @@ msgstr "Ekle"
 #: app/Dialogs/krmaskchoice.cpp:78
 #, kde-format
 msgid "Adds the selection in the line-edit to the list"
-msgstr "Satır düzenlemedeki seçimi listeye ekler"
+msgstr "Seçilen Düzenleme Satırını listeye ekler."
 
 #: app/Dialogs/krmaskchoice.cpp:83
 #, kde-format
 msgid "Delete the marked selection from the list"
-msgstr "İmli seçimi listeden sil"
+msgstr "İşaretli seçim'i listeden siler"
 
 #: app/Dialogs/krmaskchoice.cpp:87 app/JobMan/jobman.cpp:116
 #, kde-format
@@ -1276,7 +1276,7 @@ msgstr[1] "%1 dosyayı paketle"
 #: app/Dialogs/packgui.cpp:88
 #, kde-format
 msgid "Please select a folder"
-msgstr "Lütfen bir klasör seçin"
+msgstr "Lütfen bir dizin seçin"
 
 #: app/Dialogs/packguibase.cpp:60 app/Dialogs/packguibase.cpp:114
 #, kde-format
@@ -1291,7 +1291,7 @@ msgstr "Arşive"
 #: app/Dialogs/packguibase.cpp:89
 #, kde-format
 msgid "In folder"
-msgstr "Klasörde"
+msgstr "Dizinde"
 
 #: app/Dialogs/packguibase.cpp:139
 #, kde-format
@@ -1306,17 +1306,17 @@ msgstr "Büyüklük:"
 #: app/Dialogs/packguibase.cpp:167
 #, kde-format
 msgid "Set compression level"
-msgstr "Sıkıştırma düzeyini ayarla"
+msgstr "Sıkıştırma seviyesini ayarla"
 
 #: app/Dialogs/packguibase.cpp:194
 #, kde-format
 msgid "MIN"
-msgstr "EN AZ"
+msgstr "MIN"
 
 #: app/Dialogs/packguibase.cpp:195
 #, kde-format
 msgid "MAX"
-msgstr "EN ÇOK"
+msgstr "MAZ"
 
 #: app/Dialogs/packguibase.cpp:219
 #, kde-format
@@ -1421,9 +1421,10 @@ msgid "Files:"
 msgstr "Dosyalar:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Folders"
 msgid "Folders:"
-msgstr "Klasörler:"
+msgstr "Dizinler"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1433,7 +1434,7 @@ msgstr "Toplam Büyüklük:"
 #: app/DiskUsage/diskusage.cpp:230
 #, kde-format
 msgid "Loading the disk usage information..."
-msgstr "Disk kullanım bilgisi yükleniyor..."
+msgstr "Disk kullanım bilgisi yükleniyor.."
 
 #: app/DiskUsage/diskusage.cpp:382
 #, kde-format
@@ -1441,7 +1442,7 @@ msgid ""
 "Stepping into the parent folder requires loading the content of the \"%1\" "
 "URL. Do you wish to continue?"
 msgstr ""
-"Üst klasöre geçmek \"%1\" URL içeriğinin yüklenmesini gerektirir. Sürdürmek "
+"Üst dizine geçmek \"%1\" URL içeriğinin yüklenmesini gerektirir. Devam etmek "
 "istiyor musunuz?"
 
 #: app/DiskUsage/diskusage.cpp:385
@@ -1476,12 +1477,12 @@ msgstr "Uyarı"
 #: app/DiskUsage/diskusage.cpp:583 plugins/krarc/krarc.cpp:898
 #, kde-format
 msgid "Deleting %1..."
-msgstr "%1 siliniyor..."
+msgstr "%1 siliniyor.."
 
 #: app/DiskUsage/diskusage.cpp:697
 #, kde-format
 msgid "Current folder:%1,  Total size:%2,  Own size:%3"
-msgstr "Geçerli klasör:%1,  Toplam boyut:%2,  Kendi boyutu:%3"
+msgstr "Mevcut dizin:%1,  Toplam boyut:%2,  Kendi boyutu:%3"
 
 #: app/DiskUsage/diskusage.cpp:723
 #, kde-format
@@ -1496,7 +1497,7 @@ msgstr "Hariç tut"
 #: app/DiskUsage/diskusage.cpp:737
 #, kde-format
 msgid "Up one folder"
-msgstr "Bir klasör yukarı"
+msgstr "Bir dizin yukarı"
 
 #: app/DiskUsage/diskusage.cpp:741
 #, kde-format
@@ -1587,7 +1588,7 @@ msgstr "Yeni bir disk kullanım incelemesi başlat"
 #: app/DiskUsage/diskusagegui.cpp:62
 #, kde-format
 msgid "Parent folder"
-msgstr "Üst klasör"
+msgstr "Üst dizin"
 
 #: app/DiskUsage/diskusagegui.cpp:72
 #, kde-format
@@ -1602,12 +1603,12 @@ msgstr "Ayrıntılı görünüm"
 #: app/DiskUsage/diskusagegui.cpp:84
 #, kde-format
 msgid "Filelight view"
-msgstr "Renkli dosya görünüm"
+msgstr "DosyaRenkli görünüm"
 
 #: app/DiskUsage/diskusagegui.cpp:221
 #, kde-format
 msgid "Viewing the usage of folder:"
-msgstr "Kullanımı görüntülenecek klasör:"
+msgstr "Dizin kullanımı görüntüleniyor:"
 
 #: app/DiskUsage/dufilelight.cpp:77 app/Panel/viewactions.cpp:20
 #, kde-format
@@ -1773,13 +1774,13 @@ msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
 "b> deleted.</qt>"
 msgstr ""
-"<qt><i>'%1'</i> konumundaki klasör, <b>özyineli</b> ve <b>kalıcı olarak</b> "
-"silinecek.</qt>"
+"<qt><i>'%1'</i> konumundaki dizin <b>alt dizinleriyle birlikte</b> ve "
+"<b>kalıcı olarak</b> silinecek.</qt>"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:213
 #, kde-format
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
-msgstr "<qt><i>'%1'</i>, <b>kalıcı olarak</b> silinecek.</qt>"
+msgstr "<qt><i>'%1'</i> dizini <b>kalıcı olarak</b> silinecek.</qt>"
 
 #: app/FileSystem/defaultfilesystem.cpp:142
 #, kde-format
@@ -1808,13 +1809,13 @@ msgstr ""
 #: app/FileSystem/defaultfilesystem.cpp:315
 #, kde-format
 msgid "The folder %1 does not exist."
-msgstr "%1 klasörü yok."
+msgstr "%1 dizini yok."
 
 #: app/FileSystem/defaultfilesystem.cpp:331
 #: app/Synchronizer/synchronizerdirlist.cpp:111
 #, kde-format
 msgid "Cannot open the folder %1."
-msgstr "%1 klasörü açılamıyor."
+msgstr "%1 dizini açılamıyor."
 
 #: app/FileSystem/defaultfilesystem.cpp:338
 #, kde-format
@@ -1863,16 +1864,18 @@ msgid "Custom"
 msgstr "Özel"
 
 #: app/FileSystem/krquery.cpp:547
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "%1=filename, %2=percentage"
+#| msgid "Searching content of '%1' (%2%)"
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr "'%1' içeriğinde aranıyor (%2)"
+msgstr "'%1' içeriğinde aranıyor (%%2)"
 
 #: app/FileSystem/krquery.cpp:552
 #, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr "%​%1"
+msgstr ""
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, kde-format
@@ -1880,14 +1883,14 @@ msgid ""
 "You cannot copy files directly to the 'virt:/' folder.\n"
 "You can create a sub folder and copy your files into it."
 msgstr ""
-"Dosyaları doğrudan 'virt:/' klasörüne kopyalayamazsınız.\n"
-"Bir alt klasör oluşturup dosyalarınızı onun içine kopyalayabilirsiniz."
+"Dosyaları dorudan 'virt:/' dizinine kopyalayamazsınız.\n"
+"Bir alt dizin oluşturup dosyalarınızı onun içine kopyalayabilirsiniz."
 
 #: app/FileSystem/virtualfilesystem.cpp:125
 #, kde-format
 msgid "Creating new folders is allowed only in the 'virt:/' folder."
 msgstr ""
-"Yalnızca 'virt:/' klasörü içinde yeni klasörler oluşturmaya izin veriliyor."
+"Sadece 'virt:/' dizini içerisinde yeni dizinler oluşturmaya izin veriliyor."
 
 #: app/FileSystem/virtualfilesystem.cpp:208
 #, kde-format
@@ -1942,12 +1945,12 @@ msgstr "Herhangi bir tarih"
 #: app/Filter/advancedfilter.cpp:120
 #, kde-format
 msgid "&Modified between"
-msgstr "Tarihler arasında d&eğiştirilmiş"
+msgstr "arasında &değiştirilmiş "
 
 #: app/Filter/advancedfilter.cpp:133
 #, kde-format
 msgid "an&d"
-msgstr "&ve"
+msgstr "&VE"
 
 #: app/Filter/advancedfilter.cpp:146
 #, kde-format
@@ -2048,17 +2051,17 @@ msgstr "x"
 #: app/Filter/advancedfilter.cpp:283
 #, kde-format
 msgid "Grou&p"
-msgstr "Gru&pla"
+msgstr "Gru&p"
 
 #: app/Filter/advancedfilter.cpp:310
 #, kde-format
 msgid "A&ll"
-msgstr "&Tümü"
+msgstr "&Hepsi"
 
 #: app/Filter/advancedfilter.cpp:340
 #, kde-format
 msgid "Note: a '?' is a wildcard"
-msgstr "Not: '?', bir joker karakteridir"
+msgstr "Not: '?' arama-maskesi karakteridir."
 
 #: app/Filter/advancedfilter.cpp:463
 #, kde-format
@@ -2175,12 +2178,12 @@ msgstr "Esc"
 #: app/Filter/generalfilter.cpp:45
 #, kde-format
 msgid "TAB"
-msgstr "SEKME"
+msgstr "TAB"
 
 #: app/Filter/generalfilter.cpp:46
 #, kde-format
 msgid "Newline"
-msgstr "Yenisatır"
+msgstr "Yeni Satır"
 
 #: app/Filter/generalfilter.cpp:47
 #, kde-format
@@ -2190,7 +2193,7 @@ msgstr "Satır Başı"
 #: app/Filter/generalfilter.cpp:48
 #, kde-format
 msgid "White Space"
-msgstr "Boşluk"
+msgstr "Beyaz Boşluk"
 
 #: app/Filter/generalfilter.cpp:49
 #, kde-format
@@ -2200,7 +2203,7 @@ msgstr "Hane"
 #: app/Filter/generalfilter.cpp:96
 #, kde-format
 msgid "&Case sensitive"
-msgstr "BÜYÜK/küçük &duyarlı"
+msgstr "küçük/BÜYÜK &duyarlı"
 
 #: app/Filter/generalfilter.cpp:101
 #, kde-format
@@ -2227,11 +2230,11 @@ msgid ""
 "svn/ .git/</code></li></ul><p><b>Note</b>: the search term '<code>text</"
 "code>' is equivalent to '<code>*text*</code>'.</p>"
 msgstr ""
-"<p>Dosya adı süzme ölçütleri burada tanımlanır.</p><p>Maskeleme karakterleri "
-"kullanabilirsiniz. Birden çok kalıp boşluklarla ayrılır (mantıksal OR "
-"anlamına gelir) ve dizgi aramadan boru sembolüyle hariç tutulur. </"
-"p><p>Dizgi bir yatık çizgi ile bitiyorsa (<code>*kalıp*/</code>) dizginin "
-"klasörleri yinelemeli olarak aramayla ilgili olduğu anlaşılır."
+"<p>Dosya adı süzme kıstasları burada tanımlanır.</p><p>Maskeleme "
+"karakterleri kullanabilirsiniz. Birden çok kalıp boşluklarla ayrılır "
+"(mantıksal OR anlamına gelir) ve dizgi aramadan boru sembolüyle hariç "
+"tutulur. </p><p>Dizgi bir yatık çizgi ile bitiyorsa (<code>*kalıp*/</code>) "
+"dizginin klasörleri yinelemeli olarak aramayla ilgili olduğu anlaşılır."
 "<ul><li><code>dizgi</code> - adı <code>dizgi</code> olan dosyaların/"
 "klasörlerin aranması anlamına gelir, yinelemeli arama <code>dizginin</code> "
 "değerinden bağımsız olarak tüm alt klasörler üzerinde çalışır.</"
@@ -2239,7 +2242,7 @@ msgstr ""
 "ama yinelemeli arama adı <code>dizgi</code> olan klasörlerin üstünden geçer/"
 "hariç tutar.</li></ul></p><p>Boşluk içeren adlar için tırnak imi "
 "kullanılabilir. <code>\"Program&nbsp;Files\"</code> süzgeci adı <code>"
-"\"Program&nbsp;Files\"</code> olan dosyaları/klasörleri arar.</p><p>Örnekler:"
+"\"Program&nbsp;Files\"</code> olan dosyaları/dizinleri arar.</p><p>Örnekler:"
 "</p><ul><li><code>*.o</code></li><li><code>*.h *.c??</code></li><li><code>*."
 "cpp *.h | *.moc.cpp</code></li><li><code>* | .svn/ .git/</code></li></"
 "ul><p><b>Not</b>: arama ifadesi '<code>text</code>' '<code>*text*</code>' "
@@ -2258,7 +2261,7 @@ msgstr "Tüm Dosyalar"
 #: app/Filter/generalfilter.cpp:172
 #, kde-format
 msgid "&Profile handler"
-msgstr "&Profil işleyici"
+msgstr "&Görünüm İşleyici"
 
 #: app/Filter/generalfilter.cpp:185
 #, kde-format
@@ -2278,12 +2281,12 @@ msgstr "&İçinde arama"
 #: app/Filter/generalfilter.cpp:257
 #, kde-format
 msgid "Containing text"
-msgstr "İçerdiği metin"
+msgstr "İçerdiği ifade"
 
 #: app/Filter/generalfilter.cpp:271
 #, kde-format
 msgid "&Text:"
-msgstr "Me&tin:"
+msgstr "&ifade"
 
 #: app/Filter/generalfilter.cpp:287 app/KViewer/lister.cpp:1295
 #, kde-format
@@ -2304,17 +2307,17 @@ msgstr "Öntanımlı"
 #: app/Filter/generalfilter.cpp:322
 #, kde-format
 msgid "&Match whole word only"
-msgstr "Tü&m sözcüğü eşleştir"
+msgstr "Sadece &Kelimenin Tümü"
 
 #: app/Filter/generalfilter.cpp:330
 #, kde-format
 msgid "Cas&e sensitive"
-msgstr "BÜYÜK/&küçük duyarlı"
+msgstr "&küçük/BÜYÜK duyarlı"
 
 #: app/Filter/generalfilter.cpp:347
 #, kde-format
 msgid "Search in s&ub folders"
-msgstr "Alt &klasörlerde ara"
+msgstr "Alt &dizinlerde ara"
 
 #: app/Filter/generalfilter.cpp:352
 #, kde-format
@@ -2327,19 +2330,20 @@ msgid "Follow &links"
 msgstr "&Bağları izle"
 
 #: app/Filter/generalfilter.cpp:467
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Edit File Name"
 msgid "Exclude Folder Names"
-msgstr "Klasör Adlarını Dışarıda Tut"
+msgstr "Dosya Adı Düzenle"
 
 #: app/Filter/generalfilter.cpp:468
 #, kde-format
 msgid "Filters out specified folder names from the results."
-msgstr "Sonuçlardan, belirtilen klasör adlarını çıkarır."
+msgstr ""
 
 #: app/Filter/generalfilter.cpp:483
 #, kde-format
 msgid "Enter space-separated folder names"
-msgstr "Boşluk ile ayırılmış klasör adları gir"
+msgstr ""
 
 #: app/Filter/generalfilter.cpp:485
 #, kde-format
@@ -2347,28 +2351,26 @@ msgid ""
 "You can insert names with escaped spaces or quoted.\n"
 "Example: .git \"target build\" build\\ krusader"
 msgstr ""
-"Kaçırılmış boşluklar veya tırnak içine alınmış adları girebilirsiniz.\n"
-"Örnek: .git\"hedef yapı\" yapı\\ krusader"
 
 #: app/Filter/generalfilter.cpp:571
 #, kde-format
 msgid "No search criteria entered."
-msgstr "Arama ölçütü girilmedi."
+msgstr "Arama kıstası girilmedi."
 
 #: app/Filter/generalfilter.cpp:602
 #, kde-format
 msgid "Please specify a location to search in."
-msgstr "İçinde aranacak bir konum belirtin."
+msgstr "Aramanın başlatılacağı yeri belirleyin"
 
 #: app/GUI/dirhistorybutton.cpp:29 app/GUI/dirhistorybutton.cpp:30
 #, kde-format
 msgid "Open the folder history list"
-msgstr "Klasör geçmişi listesini aç"
+msgstr "Dizin geçmişi listesini aç"
 
 #: app/GUI/kcmdline.cpp:45
 #, kde-format
 msgid "Name of folder where command will be processed."
-msgstr "Komutun çalıştırılacağı klasörün adı."
+msgstr "Komutun çalıştırılacağı dizinin adı."
 
 #: app/GUI/kcmdline.cpp:173
 #, kde-format
@@ -2389,7 +2391,7 @@ msgstr "Çalıştırma kipi"
 #: app/GUI/kfnkeys.cpp:24 app/Panel/listpanelactions.cpp:63
 #, kde-format
 msgid "Rename"
-msgstr "Yeniden Adlandır"
+msgstr "Adlandır"
 
 #: app/GUI/kfnkeys.cpp:26
 #, kde-format
@@ -2409,7 +2411,7 @@ msgstr "Taşı"
 #: app/GUI/kfnkeys.cpp:29
 #, kde-format
 msgid "Mkdir"
-msgstr "Dizin Oluştur"
+msgstr "Mkdir"
 
 #: app/GUI/kfnkeys.cpp:31
 #, kde-format
@@ -2467,7 +2469,7 @@ msgstr "CD/DVD-ROM"
 #: app/GUI/mediabutton.cpp:186
 #, kde-format
 msgid "USB pen drive"
-msgstr "USB parmak bellek"
+msgstr "USB çubuk sürücüsü"
 
 #: app/GUI/mediabutton.cpp:188
 #, kde-format
@@ -2515,13 +2517,13 @@ msgstr "Bağla"
 #: app/MountMan/kmountmangui.cpp:405 app/Panel/panelcontextmenu.cpp:283
 #, kde-format
 msgid "Unmount"
-msgstr "Bağlantıyı Kes"
+msgstr "Ayır"
 
 #: app/GUI/mediabutton.cpp:342 app/MountMan/kmountmangui.cpp:412
 #: app/Panel/panelcontextmenu.cpp:287
 #, kde-format
 msgid "Eject"
-msgstr "Çıkar"
+msgstr "Çıkart"
 
 #: app/GUI/mediabutton.cpp:475
 #, kde-format
@@ -2567,7 +2569,7 @@ msgstr "Profil adını girin:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr "Son Kapatılan Sekmeleri Boşalt"
+msgstr ""
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -2581,58 +2583,58 @@ msgid ""
 "<b>Cannot create embedded terminal.</b><br>You can fix this by installing "
 "Konsole:<br/>%1"
 msgstr ""
-"<b>Gömülü uçbirim oluşturulamıyor.</b><br>Bunu Konsole'yi kurarak "
+"<b>Gömülü uç birim oluşturulamaz.</b><br>Bunu Konsol yükleyerek "
 "çözebilirsiniz:<br/>%1"
 
 #: app/JobMan/jobman.cpp:54
 #, kde-format
 msgid "Cancel Job"
-msgstr "İşi İptal Et"
+msgstr "Görevi İptal Et"
 
 #: app/JobMan/jobman.cpp:97
 #, kde-format
 msgid "Pause Job"
-msgstr "İşi Duraklat"
+msgstr "Görevi Duraklat"
 
 #: app/JobMan/jobman.cpp:98
 #, kde-format
 msgid "Resume Job"
-msgstr "İşi Sürdür"
+msgstr "Görevi Devam Ettir"
 
 #: app/JobMan/jobman.cpp:99
 #, kde-format
 msgid "Start Job"
-msgstr "İşi Başlat"
+msgstr "Görevi Başlat"
 
 #: app/JobMan/jobman.cpp:168
 #, kde-format
 msgid "No jobs"
-msgstr "İş yok"
+msgstr "Görev yok"
 
 #: app/JobMan/jobman.cpp:174
 #, kde-format
 msgid "Play/Pause &Job"
-msgstr "Görevi &Oynat/Duraklat"
+msgstr "Görevi &Durdur/Devam Ettir"
 
 #: app/JobMan/jobman.cpp:192
 #, kde-format
 msgid "Job Progress Bar"
-msgstr "İş İlerleme Çubuğu"
+msgstr "Görev İlerleme Çubuğu"
 
 #: app/JobMan/jobman.cpp:199
 #, kde-format
 msgid "Job Queue Mode"
-msgstr "İş Kuyruk Kipi"
+msgstr "Görev Kuyruk Kipi"
 
 #: app/JobMan/jobman.cpp:201
 #, kde-format
 msgid "Run only one job in parallel"
-msgstr "Paralel olarak tek iş çalıştır"
+msgstr "Paralel olarak tek görev çalıştır"
 
 #: app/JobMan/jobman.cpp:213 app/JobMan/jobman.cpp:366
 #, kde-format
 msgid "Undo Last Job"
-msgstr "Son İşi Geri Al"
+msgstr "Son Görevi Geri Al"
 
 #: app/JobMan/jobman.cpp:235
 #, kde-format
@@ -2643,52 +2645,52 @@ msgstr "Çıkmak istediğinize emin misiniz?"
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
-msgstr[0] "Bir iş kaldı."
-msgstr[1] "%1 iş kaldı."
+msgstr[0] "Bir görev işlemi kaldı."
+msgstr[1] "%1 görev işlemi kaldı."
 
 #: app/JobMan/jobman.cpp:433
 #, kde-format
 msgid "No Jobs"
-msgstr "İş Yok"
+msgstr "Görev Yok"
 
 #: app/JobMan/jobman.cpp:435
 #, kde-format
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
-msgstr[0] "%1 İş"
-msgstr[1] "%1 İş"
+msgstr[0] "%1 Görev"
+msgstr[1] "%1 Görev"
 
 #: app/JobMan/jobman.cpp:440
 #, kde-format
 msgid "Clear Job List"
-msgstr "İş Listesini Temizle"
+msgstr "Görev Listesini Temizle"
 
 #: app/JobMan/jobman.cpp:441
 #, kde-format
 msgid "Pause All Jobs"
-msgstr "Tüm İşleri Duraklat"
+msgstr "Tüm Görevleri Duraklat"
 
 #: app/JobMan/jobman.cpp:442
 #, kde-format
 msgid "Resume Job List"
-msgstr "İş Listesini Sürdür"
+msgstr "Görev Listesini Devam Ettir"
 
 #: app/JobMan/krjob.cpp:24
 #, kde-format
 msgid "Move %1 to trash"
-msgstr "%1 ögesini çöpe at"
+msgstr "%1 i çöpe taşı"
 
 #: app/JobMan/krjob.cpp:25
 #, kde-format
 msgid "Move %1 file to trash"
 msgid_plural "Move %1 files to trash"
-msgstr[0] "%1 dosyayı çöpe at"
-msgstr[1] "%1 dosyayı çöpe at"
+msgstr[0] "%1 dosyayı çöpe taşı"
+msgstr[1] "%1 dosyayı çöpe taşı"
 
 #: app/JobMan/krjob.cpp:26
 #, kde-format
 msgid "Delete %1"
-msgstr "%1 ögesini sil"
+msgstr "%1 i Sil"
 
 #: app/JobMan/krjob.cpp:27
 #, kde-format
@@ -2700,17 +2702,17 @@ msgstr[1] "%1 dosyayı sil"
 #: app/JobMan/krjob.cpp:49
 #, kde-format
 msgid "Copy to %1"
-msgstr "%1 konumuna kopyala"
+msgstr "%1 e kopyala"
 
 #: app/JobMan/krjob.cpp:53
 #, kde-format
 msgid "Move to %1"
-msgstr "%1 konumuna taşı"
+msgstr "%1 e Taşı"
 
 #: app/JobMan/krjob.cpp:57
 #, kde-format
 msgid "Link to %1"
-msgstr "%1 konumuna bağlantıla"
+msgstr "%1 e bağla"
 
 #: app/Konfigurator/kgadvanced.cpp:29 app/Konfigurator/kgcolors.cpp:45
 #: app/Konfigurator/kgdependencies.cpp:42 app/Konfigurator/kggeneral.cpp:200
@@ -2724,7 +2726,7 @@ msgstr "Genel"
 #: app/Konfigurator/kgadvanced.cpp:35
 #, kde-format
 msgid "Automount filesystems"
-msgstr "Dosya sistemlerini kendiliğinden bağla"
+msgstr "Dosya-sistemlerini kendiliğinden bağla"
 
 #: app/Konfigurator/kgadvanced.cpp:35
 #, kde-format
@@ -2732,7 +2734,7 @@ msgid ""
 "When stepping into a folder which is defined as a mount point in the "
 "<b>fstab</b>, try mounting it with the defined parameters."
 msgstr ""
-"<b>fstab</b> içinde bağlama noktası olarak tanımlanmış bir klasöre girerken, "
+"<b>fstab</b> içinde bağlama noktası olarak tanımlanmış bir dizine girerken, "
 "tanımlanan parametreler ile bağlamaya özen gösterin."
 
 #: app/Konfigurator/kgadvanced.cpp:42
@@ -2757,27 +2759,27 @@ msgstr ""
 #: app/Konfigurator/kgadvanced.cpp:65
 #, kde-format
 msgid "Deleting non-empty folders"
-msgstr "Boş olmayan klasörler siliniyor"
+msgstr "Boş-olmayan dizinlerin silinmesi"
 
 #: app/Konfigurator/kgadvanced.cpp:66
 #, kde-format
 msgid "Deleting files"
-msgstr "Dosyalar siliniyor"
+msgstr "Dosya silme"
 
 #: app/Konfigurator/kgadvanced.cpp:67
 #, kde-format
 msgid "Copying files"
-msgstr "Dosyalar kopyalanıyor"
+msgstr "Dosya kopyalama"
 
 #: app/Konfigurator/kgadvanced.cpp:68
 #, kde-format
 msgid "Moving files"
-msgstr "Dosyalar taşınıyor"
+msgstr "Dosya taşıma"
 
 #: app/Konfigurator/kgadvanced.cpp:69
 #, kde-format
 msgid "Confirm feed to listbox"
-msgstr "Liste kutusuna beslemeyi onayla"
+msgstr "Liste-kutusuna döküm onayı"
 
 #: app/Konfigurator/kgadvanced.cpp:69
 #, kde-format
@@ -2785,13 +2787,13 @@ msgid ""
 "Ask for a result name when feeding items to the listbox. By default the "
 "standard value is used."
 msgstr ""
-"Liste kutusuna dökümlenen ögeler için bir sonuç iste. Öntanımlı olarak "
-"halihazırdaki girdiler kullanılacaktır."
+"Liste-kutusuna dökümlenen ögeler için bir lakap (tanım) ister. Öntanımlı "
+"olarak halihazırdaki girdiler kullanılacaktır."
 
 #: app/Konfigurator/kgadvanced.cpp:70
 #, kde-format
 msgid "Removing Useractions"
-msgstr "Kullanıcı Eylemleri Kaldırma"
+msgstr "Kullanıcı Eylemleri Silme"
 
 #: app/Konfigurator/kgadvanced.cpp:82 app/Konfigurator/kgarchives.cpp:76
 #, kde-format
@@ -2804,7 +2806,7 @@ msgid ""
 "The icon cache size influences how fast the contents of a panel can be "
 "displayed. However, too large a cache might consume your memory."
 msgstr ""
-"Simge önbellek büyüklüğü, panel içeriğinin görüntülenme hızını "
+"Simge önbellek büyüklüğü, pencere içeriğinin görüntülenme hızını "
 "etkileyecektir. Çok yüksek önbellek değerleri, bellek harcamasını "
 "artırabilir."
 
@@ -2852,12 +2854,12 @@ msgstr "Arşiv işleme"
 #: app/Konfigurator/kgarchives.cpp:65
 #, kde-format
 msgid "Browse Archives As Folders"
-msgstr "Arşivlere Klasör Olarak Göz At"
+msgstr "Arşivlere Dizin Olarak Gözat"
 
 #: app/Konfigurator/kgarchives.cpp:65
 #, kde-format
 msgid "Krusader will browse archives as folders."
-msgstr "Krusader arşivlere klasör olarak göz atacak."
+msgstr "Krusader arşivlere dizin olarak göz atacak."
 
 #: app/Konfigurator/kgarchives.cpp:82
 #, kde-format
@@ -2891,15 +2893,15 @@ msgstr "Arama sonuçları"
 #: app/Konfigurator/kgarchives.cpp:104
 #, kde-format
 msgid "Searching for packers..."
-msgstr "Paketleyiciler aranıyor..."
+msgstr "Paketleyiciler aranıyor.."
 
 #: app/Konfigurator/kgarchives.cpp:106
 #, kde-format
 msgid ""
 "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
-"Yeni paketleyicileri <code>$PATH</code> içine kurduğunuza emin olun (Örn.: /"
-"usr/bin)"
+"Yeni paketleyicilerinizin <code>$PATH</code>içinde bulunduğundan emin olun "
+"(Ö.: /usr/bin)"
 
 #: app/Konfigurator/kgcolors.cpp:53
 #, kde-format
@@ -2918,7 +2920,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:54
 #, kde-format
 msgid "Use alternate background color"
-msgstr "Başka bir arka plan rengi kullan"
+msgstr "Başka-bir zemin rengi kullan"
 
 #: app/Konfigurator/kgcolors.cpp:54
 #, kde-format
@@ -2935,7 +2937,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:55
 #, kde-format
 msgid "Show current item even if not focused"
-msgstr "Odaklı değilse bile geçerli ögeyi göster"
+msgstr "Bulunulan ögeyi göster,-hatta seçilmese de."
 
 #: app/Konfigurator/kgcolors.cpp:55
 #, kde-format
@@ -2944,14 +2946,14 @@ msgid ""
 "option is only available when you don't use the <i>KDE default colors</i>.</"
 "p>"
 msgstr ""
-"<p>Etkin olmayan panelde, imlecin en son bulunduğu yeri göster.</p> <p>Bu "
-"seçenek yalnızca <i>KDE öntanımlı renkleri</i> kullanılmamışsa etkin "
-"olacaktır.</p>"
+"<p>Etkin olmayan pencerede, imleçin en son bulunduğu yeri göster.</p> <p>Bu "
+"seçenek sadece <i>KDE öntanımlı renkleri</i> kullanılmamışsa etkin olacaktır."
+"</p>"
 
 #: app/Konfigurator/kgcolors.cpp:56
 #, kde-format
 msgid "Dim the colors of the inactive panel"
-msgstr "Etkin olmayan paneldeki renkleri soldur"
+msgstr "Etkisiz penceredeki renk solgunluğu"
 
 #: app/Konfigurator/kgcolors.cpp:56
 #, kde-format
@@ -2959,7 +2961,7 @@ msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
 "factor.</p>"
 msgstr ""
-"<p>Etkisiz paneldeki renkler, solgun renk ve çarpanı aracılığıyla "
+"<p>Etkisiz penceredeki renkler, solgun renk ve çarpanı aracılığıyla "
 "hesaplanacaktır.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:74 app/Konfigurator/kgcolors.cpp:246
@@ -2976,85 +2978,85 @@ msgstr "Etkin"
 #: app/Konfigurator/kgcolors.cpp:88
 #, kde-format
 msgid "Transparent"
-msgstr "Saydam"
+msgstr "Şeffaf"
 
 #: app/Konfigurator/kgcolors.cpp:92 app/Konfigurator/kgcolors.cpp:129
 #, kde-format
 msgid "Foreground:"
-msgstr "Ön plan:"
+msgstr "Önplan:"
 
 #: app/Konfigurator/kgcolors.cpp:93 app/Konfigurator/kgcolors.cpp:131
 #, kde-format
 msgid "Folder foreground:"
-msgstr "Klasör ön planı:"
+msgstr "Dizin önplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:93 app/Konfigurator/kgcolors.cpp:94
 #: app/Konfigurator/kgcolors.cpp:95 app/Konfigurator/kgcolors.cpp:96
 #: app/Konfigurator/kgcolors.cpp:108 app/Konfigurator/kgcolors.cpp:130
 #, kde-format
 msgid "Same as foreground"
-msgstr "Ön plan ile aynı"
+msgstr "Önplan ile aynı"
 
 #: app/Konfigurator/kgcolors.cpp:94 app/Konfigurator/kgcolors.cpp:132
 #, kde-format
 msgid "Executable foreground:"
-msgstr "Çalıştırılabilir dosya ön planı:"
+msgstr "Çalıştırılabilir dosya önplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:95 app/Konfigurator/kgcolors.cpp:133
 #, kde-format
 msgid "Symbolic link foreground:"
-msgstr "Sembolik bağlantı ön planı:"
+msgstr "Sembolik bağlantı önplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:96 app/Konfigurator/kgcolors.cpp:134
 #, kde-format
 msgid "Invalid symlink foreground:"
-msgstr "Geçersiz sembolik bağlantı ön planı:"
+msgstr "Geçersiz sembolik bağlantı önplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:97 app/Konfigurator/kgcolors.cpp:135
 #, kde-format
 msgid "Background:"
-msgstr "Arka plan:"
+msgstr "Arkaplan:"
 
 #: app/Konfigurator/kgcolors.cpp:98 app/Konfigurator/kgcolors.cpp:109
 #: app/Konfigurator/kgcolors.cpp:136
 #, kde-format
 msgid "Same as background"
-msgstr "Arka plan ile aynı"
+msgstr "Arkaplan ile aynı"
 
 #: app/Konfigurator/kgcolors.cpp:99 app/Konfigurator/kgcolors.cpp:137
 #, kde-format
 msgid "Alternate background:"
-msgstr "Alternatif arka plan:"
+msgstr "Alternatif arkaplan:"
 
 #: app/Konfigurator/kgcolors.cpp:100 app/Konfigurator/kgcolors.cpp:138
 #, kde-format
 msgid "Selected foreground:"
-msgstr "Seçili ön plan:"
+msgstr "Seçili önplan:"
 
 #: app/Konfigurator/kgcolors.cpp:101 app/Konfigurator/kgcolors.cpp:139
 #, kde-format
 msgid "Selected background:"
-msgstr "Seçili arka plan:"
+msgstr "Seçili arkaplan:"
 
 #: app/Konfigurator/kgcolors.cpp:102 app/Konfigurator/kgcolors.cpp:140
 #, kde-format
 msgid "Same as alt. background"
-msgstr "Alternatif arka plan ile aynı"
+msgstr "Alternatif arkaplan ile aynı"
 
 #: app/Konfigurator/kgcolors.cpp:103 app/Konfigurator/kgcolors.cpp:143
 #, kde-format
 msgid "Alternate selected background:"
-msgstr "Seçili arka planı değiştir:"
+msgstr "Seçili arkaplanı değiştir:"
 
 #: app/Konfigurator/kgcolors.cpp:103 app/Konfigurator/kgcolors.cpp:141
 #, kde-format
 msgid "Same as selected background"
-msgstr "Seçilen arka plan ile aynı"
+msgstr "Seçilen arkaplan ile aynı"
 
 #: app/Konfigurator/kgcolors.cpp:104 app/Konfigurator/kgcolors.cpp:144
 #, kde-format
 msgid "Current foreground:"
-msgstr "Şimdiki ön plan:"
+msgstr "Şimdiki önplan:"
 
 #: app/Konfigurator/kgcolors.cpp:104 app/Konfigurator/kgcolors.cpp:106
 #: app/Konfigurator/kgcolors.cpp:107
@@ -3065,27 +3067,29 @@ msgstr "Kullanılmıyor"
 #: app/Konfigurator/kgcolors.cpp:105 app/Konfigurator/kgcolors.cpp:145
 #, kde-format
 msgid "Same as selected foreground"
-msgstr "Seçilen ön plan ile aynı"
+msgstr "Seçilen önplan ile aynı"
 
 #: app/Konfigurator/kgcolors.cpp:106 app/Konfigurator/kgcolors.cpp:146
 #, kde-format
 msgid "Selected current foreground:"
-msgstr "Seçili şimdiki ön plan:"
+msgstr "Seçili şimdiki önplan:"
 
 #: app/Konfigurator/kgcolors.cpp:107 app/Konfigurator/kgcolors.cpp:147
 #, kde-format
 msgid "Current background:"
-msgstr "Şimdiki arka plan:"
+msgstr "Şimdiki arkaplan:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete foreground:"
 msgid "Rename foreground:"
-msgstr "Ön planı yeniden adlandır:"
+msgstr "Silme önplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Alternate background:"
 msgid "Rename background:"
-msgstr "Arka planı yeniden adlandır:"
+msgstr "Alternatif arkaplan:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3127,52 +3131,52 @@ msgstr "Eşzamanlayıcı"
 #: app/Konfigurator/kgcolors.cpp:197
 #, kde-format
 msgid "Equals foreground:"
-msgstr "Aynılık ön planı:"
+msgstr "Aynılık önplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:198
 #, kde-format
 msgid "Equals background:"
-msgstr "Aynılık arka planı:"
+msgstr "Aynılık arkaplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:199
 #, kde-format
 msgid "Differing foreground:"
-msgstr "Farklılık ön planı:"
+msgstr "Farklılık önplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:200
 #, kde-format
 msgid "Differing background:"
-msgstr "Farkılık arka planı:"
+msgstr "Farkılık arkaplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:201
 #, kde-format
 msgid "Copy to left foreground:"
-msgstr "Sola kopyala ön planı:"
+msgstr "Sola kopyala önplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:202
 #, kde-format
 msgid "Copy to left background:"
-msgstr "Sola kopyala arka planı:"
+msgstr "Sola kopyala arkaplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:203
 #, kde-format
 msgid "Copy to right foreground:"
-msgstr "Sağa kopyala ön planı:"
+msgstr "Sağa kopyala önplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:204
 #, kde-format
 msgid "Copy to right background:"
-msgstr "Sağa kopyala arka planı:"
+msgstr "Sağa kopyala arkaplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:205
 #, kde-format
 msgid "Delete foreground:"
-msgstr "Silme ön planı:"
+msgstr "Silme önplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:206
 #, kde-format
 msgid "Delete background:"
-msgstr "Silme arka planı:"
+msgstr "Silme arkaplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:212
 #, kde-format
@@ -3182,22 +3186,22 @@ msgstr "Diğer"
 #: app/Konfigurator/kgcolors.cpp:220
 #, kde-format
 msgid "Quicksearch, match foreground:"
-msgstr "Hızlı arama eşleşmesi ön planı:"
+msgstr "Hızlı arama eşleşmesi önplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:221
 #, kde-format
 msgid "Quicksearch, match background:"
-msgstr "Hızlı arama, eşleşme arka planı:"
+msgstr "Hızlı arama, eşleşme arkaplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:222
 #, kde-format
 msgid "Quicksearch, non-match foreground:"
-msgstr "Hızlı arama eşleşmesi yok ön planı:"
+msgstr "Hızlı arama eşleşmesi yok önplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:223
 #, kde-format
 msgid "Quicksearch, non-match background:"
-msgstr "Hızlı arama eşleşmesi yok arka planı:"
+msgstr "Hızlı arama eşleşmesi yok arkaplanı:"
 
 #: app/Konfigurator/kgcolors.cpp:226
 #, kde-format
@@ -3207,33 +3211,33 @@ msgstr "Durum çubuğu, etkin ön plan:"
 #: app/Konfigurator/kgcolors.cpp:227
 #, kde-format
 msgid "Statusbar, active background:"
-msgstr "Durum çubuğu, etkin arka plan:"
+msgstr "Durum çubuğu, etkin arkaplan:"
 
 #: app/Konfigurator/kgcolors.cpp:228
 #, kde-format
 msgid "Statusbar, inactive foreground:"
-msgstr "Durum çubuğu, etkin olmayan ön plan:"
+msgstr "Durum çubuğu, etkin olmayan önplan:"
 
 #: app/Konfigurator/kgcolors.cpp:229
 #, kde-format
 msgid "Statusbar, inactive background:"
-msgstr "Durum çubuğu, etkin olmayan arka plan:"
+msgstr "Durum çubuğu, etkin olmayan arkaplan:"
 
 #: app/Konfigurator/kgcolors.cpp:238 app/Konfigurator/kgpanel.cpp:686
 #: app/Panel/panelcontextmenu.cpp:160
 #, kde-format
 msgid "Preview"
-msgstr "Önizleme"
+msgstr "Ön-görünüm"
 
 #: app/Konfigurator/kgcolors.cpp:262
 #, kde-format
 msgid "Import color-scheme"
-msgstr "Renk şeması içe aktar"
+msgstr "Renk-şeması al"
 
 #: app/Konfigurator/kgcolors.cpp:264
 #, kde-format
 msgid "Export color-scheme"
-msgstr "Renk şeması dışa aktar"
+msgstr "Renk-şeması aktar"
 
 #: app/Konfigurator/kgcolors.cpp:443
 #, kde-format
@@ -3273,17 +3277,17 @@ msgstr "Uygulama"
 #: app/Konfigurator/kgcolors.cpp:451
 #, kde-format
 msgid "Folder"
-msgstr "Klasör"
+msgstr "Dizin"
 
 #: app/Konfigurator/kgcolors.cpp:514
 #, kde-format
 msgid "Copy to right"
-msgstr "Sağa kopyala"
+msgstr "Sağa-kopyala"
 
 #: app/Konfigurator/kgcolors.cpp:515
 #, kde-format
 msgid "Copy to left"
-msgstr "Sola kopyala"
+msgstr "Sola-kopyala"
 
 #: app/Konfigurator/kgcolors.cpp:516
 #, kde-format
@@ -3338,7 +3342,7 @@ msgstr "%1 dosyası zaten var. Üzerine yazmak istediğinizden emin misiniz?"
 #: app/Konfigurator/kgcolors.cpp:586
 #, kde-format
 msgid "Error: unable to write to file"
-msgstr "Hata: Dosyaya yazılamıyor"
+msgstr "Hata: dosyaya yazılamıyor"
 
 #: app/Konfigurator/kgdependencies.cpp:64
 #, kde-format
@@ -3376,18 +3380,20 @@ msgid ""
 "If checked, each file will open in a separate window, otherwise, the viewer "
 "will work in a single, tabbed mode"
 msgstr ""
-"Seçiliyse görüntüleyici, her dosyayı ayrı bir pencerede açar. Diğer türlü,"
-"görüntüleyici, tek pencereli - sekmeli kip'te çalışacak"
+"İşaretlendiğinde, Gösterici, her dosyayı ayrı bir pencerede açacak. Aksi "
+"takdirde gösterici, tek pencereli - sekmeli kip'de çalışacak"
 
 #: app/Konfigurator/kggeneral.cpp:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "Tek bir sekme açıkken sekme çubuğunu gizle"
+msgstr "Sekme çubuğunu tek bir sekmeyle göster."
 
 #: app/Konfigurator/kggeneral.cpp:75
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr "Seçiliyse Görüntüleyici sekmesi bir sekme açıkken gizlenecektir"
+msgstr "Sekme çubuğunu tek bir sekmeyle göster."
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3454,7 +3460,6 @@ msgstr "Kullanılabilir ise dahili Hex görüntüleyici yerine Okteta kullan"
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
 msgstr ""
-"Eğer bir metin dosyası bu boyuttan büyükse listeleyici kullanılacaktır."
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3482,8 +3487,7 @@ msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
 msgstr ""
-"İpucu: Krusader'in kendi hızlı düzenleyicisini kullanmak isterseniz "
-"'internal editor' yazın"
+"İpucu:Krusader'in kendi içindeki düzenleyici gayet hızlı ve yeteneklidir."
 
 #: app/Konfigurator/kggeneral.cpp:148
 #, kde-format
@@ -3498,7 +3502,7 @@ msgstr "Atomik uzantılar:"
 #: app/Konfigurator/kggeneral.cpp:214
 #, kde-format
 msgid "Warn on exit"
-msgstr "Çıkışta uyar"
+msgstr "Çıkışta uyar!"
 
 #: app/Konfigurator/kggeneral.cpp:214
 #, kde-format
@@ -3522,12 +3526,12 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:224
 #, kde-format
 msgid "Temp Folder:"
-msgstr "Geçici Klasör:"
+msgstr "Geçici Dizin:"
 
 #: app/Konfigurator/kggeneral.cpp:233
 #, kde-format
 msgid "Note: you must have full permissions for the temporary folder."
-msgstr "Not: Geçici klasör için tam izne sahip olmalısınız."
+msgstr "Not: geçici dizin için tam izne sahip olmalısınız."
 
 #: app/Konfigurator/kggeneral.cpp:243
 #, kde-format
@@ -3542,7 +3546,7 @@ msgstr "Çöp kutusuna at"
 #: app/Konfigurator/kggeneral.cpp:248
 #, kde-format
 msgid "Files will be moved to trash when deleted."
-msgstr "Dosyalar silindiğinde çöpe atılacak."
+msgstr "Dosyalar silindiğinde Çöpe atılacak"
 
 #: app/Konfigurator/kggeneral.cpp:249
 #, kde-format
@@ -3562,17 +3566,17 @@ msgstr "Uçbirim"
 #: app/Konfigurator/kggeneral.cpp:263
 #, kde-format
 msgid "External Terminal:"
-msgstr "Dış Uçbirim:"
+msgstr "Harici Uçbirim:"
 
 #: app/Konfigurator/kggeneral.cpp:268
 #, kde-format
 msgid "%d will be replaced by the workdir."
-msgstr "%d, çalışma dizini ile değiştirilecek."
+msgstr "%d çalışma dizini ile değiştirilecek."
 
 #: app/Konfigurator/kggeneral.cpp:273
 #, kde-format
 msgid "Embedded Terminal sends Chdir on panel change"
-msgstr "Gömülü Uçbirim panel değişiminde Chdir gönderir"
+msgstr "Gömülü Uçbirim pano değişiminde Chdir gönderir"
 
 #: app/Konfigurator/kggeneral.cpp:273
 #, kde-format
@@ -3580,36 +3584,38 @@ msgid ""
 "When checked, whenever the panel is changed (for example, by pressing Tab), "
 "Krusader changes the current folder in the embedded terminal."
 msgstr ""
-"İşaretlendiğinde panel değiştiğinde (örneğin Sekme düğmesine basıldığında) "
-"Krusader gömülü uçbirimde geçerli klasörü değiştirir."
+"İşaretlendiğinde pano değiştiğinde (örneğin Tab tuşuna basıldığında) "
+"Krusader gömülü konsolda geçerli dizini değiştirir."
 
 #: app/Konfigurator/kggeneral.cpp:274
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
-msgstr "Etkin panel, Gömülü Uçbirim çalışma dizinini izler"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "When checked, whenever the panel is changed (for example, by pressing "
+#| "Tab), Krusader changes the current folder in the embedded terminal."
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"İşaretlendiğinde, uçbirim çalışma dizini değiştiğinde (örneğin 'cd' veya "
-"'popd' komutu çalıştırıldığında), Krusader etkin paneldeki geçerli klasörü "
-"değiştirir."
+"İşaretlendiğinde pano değiştiğinde (örneğin Tab tuşuna basıldığında) "
+"Krusader gömülü konsolda geçerli dizini değiştirir."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
 msgid "Searching for tools..."
-msgstr "Araçlar aranıyor..."
+msgstr "Araçlar araştırılıyor.."
 
 #: app/Konfigurator/kggeneral.cpp:298
 #, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
-"Yeni araçları <code>$PATH</code> içine kurduğunuza emin olun. (Örn. /usr/bin)"
+"Yeni araçları <code>$PATH</code> içine kurduğunuza emin olun. (Ör. /usr/bin)"
 
 #: app/Konfigurator/kggeneral.cpp:306
 #, kde-format
@@ -3633,17 +3639,17 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:80
 #, kde-format
 msgid "Navigator bar"
-msgstr "Dolaşım çubuğu"
+msgstr "Gezinti çubuğu"
 
 #: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
 msgid "Edit Mode by default"
-msgstr "Öntanımlı dlarak düzenleme kipi"
+msgstr "Öntanımlı Düzenle Kipi"
 
 #: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
 msgid "Show editable path in Navigator bar by default"
-msgstr "Öntanımlı olarak, dolaşım çubuğunda düzenlenebilir yolu göster"
+msgstr "Öntanımlı olarak düzenlenebilir yolu Gezginde göster"
 
 #: app/Konfigurator/kgpanel.cpp:86
 #, kde-format
@@ -3653,7 +3659,7 @@ msgstr "Öntanımlı olarak tam yolu göster"
 #: app/Konfigurator/kgpanel.cpp:86
 #, kde-format
 msgid "Always show full path in Navigator bar by default."
-msgstr "Öntanımlı olarak, dolaşım çubuğunda her zaman tam yolu göster."
+msgstr "Navigator'da her zaman öntanımlı olarak tam yolu göster."
 
 #: app/Konfigurator/kgpanel.cpp:96
 #, kde-format
@@ -3663,7 +3669,7 @@ msgstr "İşlem"
 #: app/Konfigurator/kgpanel.cpp:100
 #, kde-format
 msgid "Autoselect folders"
-msgstr "Klasörleri kendiliğinden seç"
+msgstr "Dizinleri otomatik olarak seç"
 
 #: app/Konfigurator/kgpanel.cpp:100
 #, kde-format
@@ -3671,7 +3677,7 @@ msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "folders."
 msgstr ""
-"Seçim ölçütüyle eşleştirme yaparken dosyaların yanında klasörler de "
+"Seçim kıstasıyla eşleştirme yaparken dosyaların yanında dizinler de "
 "seçilecek."
 
 #: app/Konfigurator/kgpanel.cpp:101
@@ -3704,14 +3710,14 @@ msgstr "Kopyalanacak/taşınacak dosyaların seçimini işlem başlamadan kaldı
 #: app/Konfigurator/kgpanel.cpp:103
 #, kde-format
 msgid "Filter dialog remembers settings"
-msgstr "Süzgeç penceresi ayarları hatırlar"
+msgstr "Filtre penceresi hatırlama ayarları"
 
 #: app/Konfigurator/kgpanel.cpp:103
 #, kde-format
 msgid ""
 "The filter dialog is opened with the last filter settings that where applied "
 "to the panel."
-msgstr "Süzgeç penceresi, panele uygulanan son süzgeç ayarlarıyla açıldı."
+msgstr "Filtre penceresi panoya son uygulanan ayarlarla açıldı."
 
 #: app/Konfigurator/kgpanel.cpp:113
 #, kde-format
@@ -3721,7 +3727,7 @@ msgstr "Sekmeler"
 #: app/Konfigurator/kgpanel.cpp:118
 #, kde-format
 msgid "Use full path tab names"
-msgstr "Tam yolu içeren sekme adları kullan"
+msgstr "Sekmede tüm dizin yolu"
 
 #: app/Konfigurator/kgpanel.cpp:118
 #, kde-format
@@ -3729,73 +3735,78 @@ msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
 "the path is displayed."
 msgstr ""
-"Sekme başlığında tüm klasör yolunu gösterir. Öntanımlı olarak yolun yalnızca "
+"Sekme başlığında tüm dizin yolunu gösterir. Öntanımlı olarak yolağın sadece "
 "son parçası gösterilir."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons"
-msgstr "Sekmeyi kapat düğmelerini göster"
+msgstr "Yeni sekme/sekmeyi kapat tuşlarını göster"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show close tab buttons."
-msgstr "Sekmeyi kapat düğmelerini göster."
+msgstr "Yeni sekme/sekmeyi kapat tuşlarını göster"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr "Genişleyen sekmeler"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr "Genişleyen sekmeler."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button"
-msgstr "Yeni sekme düğmesini göster"
+msgstr "Yeni sekme/sekmeyi kapat tuşlarını göster"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show new/close tab buttons"
 msgid "Show new tab button."
-msgstr "Yeni sekme düğmesini göster."
+msgstr "Yeni sekme/sekmeyi kapat tuşlarını göster"
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr "Sekmeleri geçerli sekmeden sonra ekle"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set root of the tree to the current folder"
 msgid "Insert new tabs to the right of the current one."
-msgstr "Yeni sekmeleri, geçerli sekmenin sağına ekle."
+msgstr "Mevcut klasör için ağacın kökünü ayarla"
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
 msgid "Show Tab Bar on single tab"
-msgstr "Tek sekme varken sekme çubuğunu göster"
+msgstr "Sekme Çubunu tek sekmede göster"
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
 msgid "Show the tab bar with only one tab."
-msgstr "Tek sekme varken sekme çubuğunu göster."
+msgstr "Sekme çubuğunu tek bir sekmeyle göster."
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr "Çift tıklayarak sekmeyi kapat"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr "Çift tıklayarak sekmeyi kapat."
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr "Yeni sekme düğmesi, bir sekmeyi yineler"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3803,33 +3814,32 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
-"Seçiliyse yeni sekme düğmesi bir sekmeyi yineler, diğer türlü ana dizin için "
-"yeni bir sekme açar."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr "Tıklamayla etkin sekmeyi çoğalt:"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "disabled"
 msgid "Disabled"
-msgstr "Devre Dışı"
+msgstr "etkisizleştirildi"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr "Alt+Tıkla"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr "Ctrl+Tıkla"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr "Ctrl/Alt+SOFADÜ tıklayarak etkin sekmeyi çoğalt"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -3859,35 +3869,35 @@ msgstr "Yazmaya başla"
 #: app/Konfigurator/kgpanel.cpp:178
 #, kde-format
 msgid "Open search bar and start searching by typing in panel."
-msgstr "Arama çubuğunu aç ve panelde yazarak aramaya başla."
+msgstr "Arama çubuğunu aç ve panoya yazarak aramaya başla."
 
 #: app/Konfigurator/kgpanel.cpp:179 app/KViewer/lister.cpp:1291
 #, kde-format
 msgid "Case sensitive"
-msgstr "BÜYÜK/küçük harf duyarlı"
+msgstr "Büyük küçük haf duyarlı"
 
 #: app/Konfigurator/kgpanel.cpp:179
 #, kde-format
 msgid "Search must match case."
-msgstr "Arama BÜYÜK/küçük harfle eşleşmeli."
+msgstr "Arama büyük küçük harfle eşleşmeli."
 
 #: app/Konfigurator/kgpanel.cpp:180
 #, kde-format
 msgid "Up/Down cancels search"
-msgstr "Yukarı/Aşağı düğmeleri aramayı iptal eder"
+msgstr "Yukarı/Aşağı tuşları aramayı iptal eder"
 
 #: app/Konfigurator/kgpanel.cpp:180
 #, kde-format
 msgid ""
 "Pressing the Up/Down buttons closes the search bar (only in search mode)."
 msgstr ""
-"Yukarı/Aşağı düğmelerine basmak arama çubuğunu kapatır (yalnızca arama "
+"Yukarı/Aşağı tuşlarına basmak arama çubuğunu kapatır (yalnızca arama "
 "kipinde)."
 
 #: app/Konfigurator/kgpanel.cpp:181
 #, kde-format
 msgid "Folder navigation with Right Arrow"
-msgstr "Sağ Ok ile klasör dolaşımı"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:181
 #, kde-format
@@ -3895,7 +3905,6 @@ msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
 msgstr ""
-"Sağ düğmesine basmak, bir metin düzenleme amacı algılanmamışsa klasöre girer."
 
 #: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
@@ -3929,24 +3938,28 @@ msgid "Set the default mode on first usage"
 msgstr "İlk kullanımda öntanımlı kipi ayarla"
 
 #: app/Konfigurator/kgpanel.cpp:221
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Bookmarks"
 msgid "Bookmark Search"
-msgstr "Yer İmleri Arama"
+msgstr "Yer-imleri"
 
 #: app/Konfigurator/kgpanel.cpp:226
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Close the search bar"
 msgid "Always show search bar"
-msgstr "Arama çubuğunu her zaman göster"
+msgstr "Arama çubuğunu kapat"
 
 #: app/Konfigurator/kgpanel.cpp:226
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "The bookmarks button will be visible."
 msgid "Make bookmark search bar always visible"
-msgstr "Yer imleri arama düğmesini her zaman görünür kıl"
+msgstr "Yer imleri düğmesi görünür olacaktır."
 
 #: app/Konfigurator/kgpanel.cpp:227
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search in arch&ives"
 msgid "Search in special items"
-msgstr "Özel ögelerde ara"
+msgstr "Arşi&vlerde de Ara"
 
 #: app/Konfigurator/kgpanel.cpp:227
 #, kde-format
@@ -3954,13 +3967,11 @@ msgid ""
 "Bookmark search is also applied to special items in bookmark menu like "
 "Trash, Popular URLs, Jump Back, etc."
 msgstr ""
-"Yer imleri arama, menüdeki özel ögelere de uygulanır; örn. Çöp Kutusu, "
-"Popüler URL'ler, Geri Atlama vb."
 
 #: app/Konfigurator/kgpanel.cpp:237
 #, kde-format
 msgid "Status/Totalsbar"
-msgstr "Durum/Toplam Çubuğu"
+msgstr "Durum/Araç Çubuğu"
 
 #: app/Konfigurator/kgpanel.cpp:242
 #, kde-format
@@ -4008,7 +4019,7 @@ msgstr "Hiçbiri"
 #, kde-format
 msgctxt "Frame color"
 msgid "Statusbar"
-msgstr "Durum Çubuğu"
+msgstr "Durum çubuğu"
 
 #: app/Konfigurator/kgpanel.cpp:299
 #, kde-format
@@ -4048,7 +4059,7 @@ msgstr "Çerçeve Gölgesi:"
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Defined by Layout"
-msgstr "Yerleşim ile Tanımlı"
+msgstr "Yerleşim ile tanımlı"
 
 #: app/Konfigurator/kgpanel.cpp:319
 #, kde-format
@@ -4066,7 +4077,7 @@ msgstr "Kabarık"
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Sunken"
-msgstr "Batık"
+msgstr "Çökük"
 
 #: app/Konfigurator/kgpanel.cpp:336
 #, kde-format
@@ -4086,17 +4097,17 @@ msgstr "Dosya adları ve klasörler için simgeleri göster."
 #: app/Konfigurator/kgpanel.cpp:358
 #, kde-format
 msgid "Show previews by default"
-msgstr "Öntanımlı olarak önizlemeleri göster"
+msgstr "Ön izlemeleri varsayılan olarak göster"
 
 #: app/Konfigurator/kgpanel.cpp:358
 #, kde-format
 msgid "Show previews of files and folders."
-msgstr "Dosya ve klasörlerin önizlemelerini göster."
+msgstr "Dosya veya dizinlerin ön izlemelerini göster."
 
 #: app/Konfigurator/kgpanel.cpp:393
 #, kde-format
 msgid "View font:"
-msgstr "Görüntüleme yazıtipi:"
+msgstr "Görünüm yazı tipi:"
 
 #: app/Konfigurator/kgpanel.cpp:404
 #, kde-format
@@ -4115,7 +4126,7 @@ msgstr "İpucu gecikmesi (mili sn):"
 #: app/Konfigurator/kgpanel.cpp:423
 #, kde-format
 msgid "Use human-readable file size"
-msgstr "Okunaklı dosya büyüklüğü kullan"
+msgstr "Okunaklı dosya-büyüklüğü kullan"
 
 #: app/Konfigurator/kgpanel.cpp:423
 #, kde-format
@@ -4135,7 +4146,7 @@ msgstr "Nokta (.) ile başlayan dosyaları göster."
 #: app/Konfigurator/kgpanel.cpp:425
 #, kde-format
 msgid "Numeric Permissions"
-msgstr "Numaralandırılmış İzinler"
+msgstr "Numaralandırılmış Yetkiler"
 
 #: app/Konfigurator/kgpanel.cpp:425
 #, kde-format
@@ -4143,7 +4154,7 @@ msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
 "the permission column."
 msgstr ""
-"İzinler kolonunda, geleneksel yetkiler (rwxr-xr-x) yerine numaralarını "
+"Yetkiler kolonunda, geleneksel yetkiler (rwxr-xr-x) yerine numaralarını "
 "(0755) görüntüler."
 
 #: app/Konfigurator/kgpanel.cpp:426
@@ -4159,12 +4170,12 @@ msgstr "Kullanıcı tanımlı klasör simgelerini yükle (başarımı düşüreb
 #: app/Konfigurator/kgpanel.cpp:427
 #, kde-format
 msgid "Always show current item"
-msgstr "Her zaman geçerli ögeyi göster"
+msgstr "Her zaman mevcut ögeyi göster"
 
 #: app/Konfigurator/kgpanel.cpp:427
 #, kde-format
 msgid "Show current item border decoration in inactive panel."
-msgstr "Etkin olmayan panelde geçerli öge kenarlık dekorasyonunu göster."
+msgstr "Etkin olmayan panelde, mevcut öge kenarlık dekorasyonunu göster."
 
 #: app/Konfigurator/kgpanel.cpp:441
 #, kde-format
@@ -4200,7 +4211,7 @@ msgstr "Krusader"
 #: app/Konfigurator/kgpanel.cpp:462
 #, kde-format
 msgid "Case sensitive sorting"
-msgstr "BÜYÜK/küçük harf duyarlı sıralama"
+msgstr "BÜYÜK/küçük duyarlı sıralama"
 
 #: app/Konfigurator/kgpanel.cpp:463
 #, kde-format
@@ -4208,18 +4219,18 @@ msgid ""
 "All files beginning with capital letters appear before files beginning with "
 "non-capital letters (UNIX default)."
 msgstr ""
-"BÜYÜK harf ile başlayan dosyalar, küçük harfle başlayanlardan önce "
-"listelenecek (UNIX öntanımlısı)."
+"Büyük harf ile başlayan dosyalar, küçük harfle başlayanlardan daha önce "
+"listelenecek ( UNIX öntanımlı kural uyarınca )"
 
 #: app/Konfigurator/kgpanel.cpp:464
 #, kde-format
 msgid "Show folders first"
-msgstr "Önce klasörleri göster"
+msgstr "Önce dizinleri göster"
 
 #: app/Konfigurator/kgpanel.cpp:465
 #, kde-format
 msgid "Always sort dirs by name"
-msgstr "Dizinleri her zaman ada göre sırala"
+msgstr "Dizinleri her zaman adlarına göre sırala"
 
 #: app/Konfigurator/kgpanel.cpp:466
 #, kde-format
@@ -4262,12 +4273,12 @@ msgstr "Araç çubuğu düğmelerinin simgeleri var"
 #: app/Konfigurator/kgpanel.cpp:548
 #, kde-format
 msgid "Show Media Button"
-msgstr "Ortam Düğmesini Göster"
+msgstr "Medya Düğmesini Göster"
 
 #: app/Konfigurator/kgpanel.cpp:548
 #, kde-format
 msgid "The media button will be visible."
-msgstr "Ortam düğmesi görünür olacaktır."
+msgstr "Medya düğmesi görünür olacaktır."
 
 #: app/Konfigurator/kgpanel.cpp:549
 #, kde-format
@@ -4302,27 +4313,27 @@ msgstr "Yer imleri düğmesi görünür olacaktır."
 #: app/Konfigurator/kgpanel.cpp:553
 #, kde-format
 msgid "Show Panel Toolbar"
-msgstr "Panel Araç Çubuğunu Göster"
+msgstr "Pencere Araç-çubuğunu Göster"
 
 #: app/Konfigurator/kgpanel.cpp:553
 #, kde-format
 msgid "The panel toolbar will be visible."
-msgstr "Panel araç çubuğu görünür olacak."
+msgstr "Pencere Araç-çubuğu görülebilir olacak."
 
 #: app/Konfigurator/kgpanel.cpp:559
 #, kde-format
 msgid "Visible Panel Toolbar buttons"
-msgstr "Görünür Panel Araç Çubuğu düğmeleri"
+msgstr "Görülebilir Pencere Araç-çubuğu düğmeleri"
 
 #: app/Konfigurator/kgpanel.cpp:563
 #, kde-format
 msgid "Equal button (=)"
-msgstr "Eşittir düğmesi (=)"
+msgstr "Eşitle düğmesi (=)"
 
 #: app/Konfigurator/kgpanel.cpp:563
 #, kde-format
 msgid "Changes the panel folder to the other panel folder."
-msgstr "Panel klasörünü, diğer panel klasörüne değiştirir."
+msgstr "Pano dizinini diğer pano dizinine değiştirir."
 
 #: app/Konfigurator/kgpanel.cpp:564
 #, kde-format
@@ -4332,37 +4343,37 @@ msgstr "Yukarı düğmesi (..)"
 #: app/Konfigurator/kgpanel.cpp:564
 #, kde-format
 msgid "Changes the panel folder to the parent folder."
-msgstr "Panel klasörünü üst klasöre değiştirir."
+msgstr "Pano dizinini üst dizine değiştirir."
 
 #: app/Konfigurator/kgpanel.cpp:565
 #, kde-format
 msgid "Home button (~)"
-msgstr "Ana dizin düğmesi (~)"
+msgstr "Home düğmesi (~)"
 
 #: app/Konfigurator/kgpanel.cpp:565
 #, kde-format
 msgid "Changes the panel folder to the home folder."
-msgstr "Panel klasörünü ana klasöre değiştirir."
+msgstr "Pano dizinini ev dizinine değiştirir."
 
 #: app/Konfigurator/kgpanel.cpp:566
 #, kde-format
 msgid "Root button (/)"
-msgstr "Kök düğmesi (/)"
+msgstr "Root düğmesi (/)"
 
 #: app/Konfigurator/kgpanel.cpp:566
 #, kde-format
 msgid "Changes the panel folder to the root folder."
-msgstr "Panel klasörünü kök klasöre değiştirir."
+msgstr "Pano dizinini kök dizine değiştirir."
 
 #: app/Konfigurator/kgpanel.cpp:567
 #, kde-format
 msgid "Toggle-button for sync-browsing"
-msgstr "Eşzamanlı tarama için aç/kapat düğmesi"
+msgstr "Eşgüdüm-tarayıcı için YerDeğiştir düğmesi"
 
 #: app/Konfigurator/kgpanel.cpp:567
 #, kde-format
 msgid "Each folder change in the panel is also performed in the other panel."
-msgstr "Paneldeki her klasör değişikliği, diğer panelde de yapılır."
+msgstr "Panodaki her dizin değişikliği diğer panoda da yapılır."
 
 #: app/Konfigurator/kgpanel.cpp:589
 #, kde-format
@@ -4381,9 +4392,9 @@ msgid ""
 "key and click the left mouse button. Right-click menu is invoked using a "
 "short click on the right mouse button."
 msgstr ""
-"Her iki düğme ile de dosyaları seçebilirsiniz. Birden fazla dosyayı seçmek "
-"için CTRL düğmesine basılı tutarak sol fare düğmesini kullanabilirsiniz. Sağ "
-"tıklama ile seçili ögeleri sağ düğme menüsü ile işleyebilirsiniz."
+"Her iki tuş ile de dosyaları seçebilirsiniz. Birden fazla dosyayı seçmek "
+"için CTRL tuşuna basılı tutarak sol fare düğmesini kullanabilirsiniz. "
+"Sağtıklama ile seçili ögeleri sağ düğme menüsü ile işleyebilirsiniz."
 
 #: app/Konfigurator/kgpanel.cpp:603
 #, kde-format
@@ -4397,7 +4408,7 @@ msgid ""
 "multiple files. Right-click menu is invoked using a short click on the right "
 "mouse button."
 msgstr ""
-"Sol fare düğmesi ile tıklayarak birden fazla dosya seçebilirsiniz. Sağ tık "
+"Sol fare tuşu ile tıklayarak birden fazla dosya seçebilirsiniz. Sağ tık "
 "menüsü için farenin sağ düğmesine kısa bir süre basabilirsiniz."
 
 #: app/Konfigurator/kgpanel.cpp:604
@@ -4415,7 +4426,7 @@ msgid ""
 msgstr ""
 "Sol fare düğmesi ile seçim yapmaz, ama seçimini etkilemeksizin bulunulan "
 "dosyaya konumlanır. Sağ fare düğmesi ile birden fazla dosya seçebilir, ve "
-"sağ fare düğmesine basılı tutmayı sürdürerek sağ fare menüsünü "
+"sağ fare tuşuna basılı tutmaya devam ederek sağ fare menüsünü "
 "etkinleştirebilirsiniz."
 
 #: app/Konfigurator/kgpanel.cpp:605
@@ -4430,7 +4441,7 @@ msgid ""
 "affecting the current selection. The right mouse button invokes the context-"
 "menu. You can select with Ctrl key and the left button."
 msgstr ""
-"Sol fare düğmesi ile seçim yapmaz; ancak seçimini etkilemeksizin bulunulan "
+"Sol fare düğmesi ile seçim yapmaz, ama seçimini etkilemeksizin bulunulan "
 "dosyaya konumlanır. Sağ fare düğmesi bağlam menüsünü açar. Ctrl düğmesi ve "
 "sol fare tıklaması ile seçebilirsiniz."
 
@@ -4452,14 +4463,14 @@ msgstr "Ayrıntılar"
 #: app/Konfigurator/kgpanel.cpp:625
 #, kde-format
 msgid "Double-click selects (classic)"
-msgstr "Çift tıklama ile seç (klasik)"
+msgstr "Çift tık ile seç (Klasik)"
 
 #: app/Konfigurator/kgpanel.cpp:625
 #, kde-format
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the folder."
-msgstr "Dosya üzerinde tek tık ile dosyayı seçip odaklanır, çift tık ile açar."
+msgstr "Dosya üzerinde tek tık ile dosyayı seçip-odaklanır, çift tık ile açar."
 
 #: app/Konfigurator/kgpanel.cpp:626
 #, kde-format
@@ -4478,27 +4489,27 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:637
 #, kde-format
 msgid "Based on KDE's selection mode"
-msgstr "KDE'nin seçim kipi temel al"
+msgstr "KDE'nin seçim kipi temelinde"
 
 #: app/Konfigurator/kgpanel.cpp:638
 #, kde-format
 msgid "If checked, use a mode based on KDE's style."
-msgstr "Seçiliyse KDE biçeminde kullanım sağlar."
+msgstr "İşaretli ise KDE görümünde kullanım sağlar."
 
 #: app/Konfigurator/kgpanel.cpp:640
 #, kde-format
 msgid "Left mouse button selects"
-msgstr "Sol fare düğmesi ile seç"
+msgstr "Sol fare tuşu ile seç"
 
 #: app/Konfigurator/kgpanel.cpp:641
 #, kde-format
 msgid "If checked, left clicking an item will select it."
-msgstr "Seçiliyse ise sol tıklama ile ögeyi seçer."
+msgstr "İşaretli ise, sol tıklama ile öge'yi seçer"
 
 #: app/Konfigurator/kgpanel.cpp:643
 #, kde-format
 msgid "Left mouse button preserves selection"
-msgstr "Sol fare düğmesi ile korunacak seçim"
+msgstr "Sol fare tuşu ile korunacak seçim"
 
 #: app/Konfigurator/kgpanel.cpp:644
 #, kde-format
@@ -4506,13 +4517,13 @@ msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr ""
-"Seçiliyse sol tıklama ile ögeyi seçer; ancak -varsa- diğer seçili ögelerin "
+"İşaretli ise, sol tıklama ile öge'yi seçer ama -varsa- diğer seçili ögelerin "
 "seçimini bırakmaz."
 
 #: app/Konfigurator/kgpanel.cpp:646
 #, kde-format
 msgid "Shift/Ctrl-Left mouse button selects"
-msgstr "Shift/Ctrl-Sol fare düğmesi seçer"
+msgstr "Shift/Ctrl-Sol fare tuşu seçimi"
 
 #: app/Konfigurator/kgpanel.cpp:647
 #, kde-format
@@ -4520,23 +4531,23 @@ msgid ""
 "If checked, Shift/Ctrl left clicking will select items.\n"
 "Note: this is meaningless if 'Left Button Selects' is checked."
 msgstr ""
-"Seçiliyse Shift/Ctrl sol tıklama ögeleri seçecektir.\n"
-"Not: 'Sol Düğme Seçer' işaretlendiğinde işlevsizdir."
+"Seçildiğinde Shift/Ctrl sol tıklama ögeleri seçecektir.\n"
+"Not: 'Sol Tuş Seçer' işaretlendiğinde işlevsizdir."
 
 #: app/Konfigurator/kgpanel.cpp:649
 #, kde-format
 msgid "Right mouse button selects"
-msgstr "Sağ fare düğmesi seçer"
+msgstr "Sağ fare tuşu ile korunacak seçim"
 
 #: app/Konfigurator/kgpanel.cpp:650
 #, kde-format
 msgid "If checked, right clicking an item will select it."
-msgstr "Seçiliyse ise sağ tıklama ile ögeyi seçer."
+msgstr "İşaretli ise, sağ-tıklama ile öge'yi seçer"
 
 #: app/Konfigurator/kgpanel.cpp:652
 #, kde-format
 msgid "Right mouse button preserves selection"
-msgstr "Sağ fare düğmesi seçimi korur"
+msgstr "Sağ fare tuşu ile korunacak seçim"
 
 #: app/Konfigurator/kgpanel.cpp:653
 #, kde-format
@@ -4544,13 +4555,13 @@ msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr ""
-"Seçiliyse sağ tıklama ile ögeyi seçer; ancak -varsa- diğer seçili ögelerin "
+"İşaretli ise, sağ tıklama ile öge'yi seçer ama -varsa- diğer seçili ögelerin "
 "seçimini bırakmaz."
 
 #: app/Konfigurator/kgpanel.cpp:655
 #, kde-format
 msgid "Shift/Ctrl-Right mouse button selects"
-msgstr "Shift/Ctrl-Sağ fare düğmesi seçer"
+msgstr "Shift/Ctrl-Sağ fare tuşu seçimi"
 
 #: app/Konfigurator/kgpanel.cpp:656
 #, kde-format
@@ -4558,13 +4569,13 @@ msgid ""
 "If checked, Shift/Ctrl right clicking will select items.\n"
 "Note: this is meaningless if 'Right Button Selects' is checked."
 msgstr ""
-"Seçiliyse Shift/Ctrl sağ tıklama ögeleri seçecektir.\n"
-"Not: 'Sağ Düğme Seçer' işaretlendiğinde işlevsizdir."
+"Seçildiğinde Shift/Ctrl sağ tıklama ögeleri seçecektir.\n"
+"Not: 'Sağ Tuş Seçer' işaretlendiğinde işlevsizdir."
 
 #: app/Konfigurator/kgpanel.cpp:658
 #, kde-format
 msgid "Spacebar moves down"
-msgstr "Boşluk düğmesi aşağı iner"
+msgstr "Boşluk tuşu ile aşağı in"
 
 #: app/Konfigurator/kgpanel.cpp:659
 #, kde-format
@@ -4573,13 +4584,13 @@ msgid ""
 "down.\n"
 "Otherwise, current item is selected, but remains the current item."
 msgstr ""
-"Seçiliyse boşluk düğmesine basmak geçerli ögeyi seçer ve aşağıya geçer.\n"
-"Aksi halde geçerli öge seçilir; ancak geçerli olarak kalır."
+"Seçildiğinde boşluk tuşuna basmak mevcut ögeyi seçer ve aşağıya geçer.\n"
+"Aksi halde geçerli öge seçilir ama geçerli olarak kalır."
 
 #: app/Konfigurator/kgpanel.cpp:661
 #, kde-format
 msgid "Spacebar calculates disk space"
-msgstr "Boşluk düğmesi ile büyüklüğü hesapla"
+msgstr "Boşluk-tuşu ile büyüklüğü hesapla"
 
 #: app/Konfigurator/kgpanel.cpp:662
 #, kde-format
@@ -4588,14 +4599,14 @@ msgid ""
 "(except from selecting the folder)\n"
 "calculate space occupied of the folder (recursively)."
 msgstr ""
-"Seçiliyse geçerli öge bir klasör olduğunda, boşluk düğmesine basarsanız "
+"Seçilirse, geçerli öge bir klasör olduğunda, space tuşuna basarsanız "
 "(klasörü seçmek dışında),\n"
-"klasörün kapladığı alan hesaplanır (özyineli olarak)."
+"klasörün kapladığı alan hesaplanır (özyinemeli olarak)."
 
 #: app/Konfigurator/kgpanel.cpp:664
 #, kde-format
 msgid "Insert moves down"
-msgstr "Insert aşağı iner"
+msgstr "INS tuşu ile aşağı"
 
 #: app/Konfigurator/kgpanel.cpp:665
 #, kde-format
@@ -4604,14 +4615,13 @@ msgid ""
 "the next item.\n"
 "Otherwise, current item is not changed."
 msgstr ""
-"Seçiliyse Insert düğmesine basmak geçerli ögeyi seçer ve sonraki ögeye "
-"iner.\n"
-"Diğer türlü, geçerli öge değiştirilmez."
+"Seçildiğinde Insert tuşuna basmak mevcut ögeyi seçer ve bir sonraki ögeye "
+"geçer.\\Aksi halde geçerli öge değişmez."
 
 #: app/Konfigurator/kgpanel.cpp:667
 #, kde-format
 msgid "Right clicking pops context menu immediately"
-msgstr "Sağ tıklama, anında bağlam menüsünü açar"
+msgstr "Sağ tıklama ile içerik menüsü göster"
 
 #: app/Konfigurator/kgpanel.cpp:668
 #, kde-format
@@ -4620,14 +4630,15 @@ msgid ""
 "context menu.\n"
 "Otherwise, user needs to click and hold the right mouse button for 500ms."
 msgstr ""
-"Seçiliyse sağ tıklama içerik menüsünün gösterilmesine neden olur.\n"
-"Diğer türlü, kullanıcının farenin sağ düğmesine 500ms kadar basılı tutması "
+"Seçildiğinde sağ tıklama içerik menüsünün gösterilmesine neden olur.\n"
+"Aksi halde kullanıcının farenin sağ tuşuna 500ms kadar basılı tutması "
 "gerekir."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Right mouse button preserves selection"
 msgid "A plain mouse button resets selection"
-msgstr "Düz fare düğmesi seçimi sıfırlar"
+msgstr "Sağ fare tuşu ile korunacak seçim"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4636,9 +4647,6 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
-"Değiştirici (Shift veya Ctrl) olmadan bir fare tıklaması seçimi sıfırlar.\n"
-"Bu ayarın çalışması için fare düğmesiyle Ctrl/Shift seçiminin "
-"etkinleştirilmesi gerekir."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4658,7 +4666,7 @@ msgstr "Dosya Sistemi Türünü Göster"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr "SquashFS girdilerini gizle"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4684,19 +4692,21 @@ msgid "Never"
 msgstr "Asla"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "MountMan will not (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
-msgstr "Aşağıdaki bağlama noktalarını gizle:"
+msgstr "MountMan aşağıdaki bağlama noktalarını bağlamayacak (ayırmayacak):"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr "Yeni gizli bağlama noktası ekle"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mnt.Point"
 msgid "Mount point:"
-msgstr "Bağlama noktası:"
+msgstr "Bağ.Yeri"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -4711,12 +4721,12 @@ msgstr "Tanımlanmış Bağlantılar"
 #: app/Konfigurator/kgprotocols.cpp:56
 #, kde-format
 msgid "Add protocol to the link list."
-msgstr "Bağlantı listesine iletişim kuralı ekle."
+msgstr "Bağ listesine iletişim kuralı ekle."
 
 #: app/Konfigurator/kgprotocols.cpp:61
 #, kde-format
 msgid "Remove protocol from the link list."
-msgstr "Bağlantı listesinden iletişim kuralı sil."
+msgstr "Bağ listesinden iletişim kuralı sil."
 
 #: app/Konfigurator/kgprotocols.cpp:73
 #, kde-format
@@ -4726,7 +4736,7 @@ msgstr "Bağlantı listesinde seçili protokole MIME ekle."
 #: app/Konfigurator/kgprotocols.cpp:78
 #, kde-format
 msgid "Remove MIME from the link list."
-msgstr "Bağlantı listesinden MIME çıkar."
+msgstr "Bağlantı listesinden MIME çıkart."
 
 #: app/Konfigurator/kgprotocols.cpp:86 app/Konfigurator/konfigurator.cpp:133
 #, kde-format
@@ -4746,15 +4756,15 @@ msgid ""
 "li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is "
 "saved automatically when Krusader is closed."
 msgstr ""
-"Açılışta kullanılacak panel profilini tanımlar. Bir panel profili şunları "
-"içerir:<ul><li>Tüm yol sekmelerini</li> <li>bulunulan sekme</li> <li>etkin "
-"panel</li></ul><b>&lt;Son oturum&gt;</b>, Krusader kapanırken kendiliğinden "
-"kaydedilen özel bir panel profilidir."
+"Açılışta kullanılacak pencere görünümünü tanımlar. Bir pencere görünümü "
+"şunları içerir:<ul><li>Tüm yol sekmelerini</li> <li>bulunulan sekme</li> "
+"<li>etkin pencere</li></ul><b>&lt;Son oturum&gt;</b>, Krusader kapanırken "
+"kendiliğinden kaydedilen özel bir pencere görünümüdür."
 
 #: app/Konfigurator/kgstartup.cpp:34
 #, kde-format
 msgid "Startup profile:"
-msgstr "Açılış profili:"
+msgstr "Açılış görünümü:"
 
 #: app/Konfigurator/kgstartup.cpp:38
 #, kde-format
@@ -4774,17 +4784,17 @@ msgstr "Krusader başlatılırken bir açılış ekranı göster."
 #: app/Konfigurator/kgstartup.cpp:58
 #, kde-format
 msgid "Single instance mode"
-msgstr "Tekil örnek kipi"
+msgstr "Tekil varoluş kipi"
 
 #: app/Konfigurator/kgstartup.cpp:58
 #, kde-format
 msgid "Only one Krusader instance is allowed to run."
-msgstr "Yalnızca 1 Krusader örneğinin çalışmasına izin verilir."
+msgstr "Sadece 1 Krusader varlığının çalışmasına izin verilir."
 
 #: app/Konfigurator/kgstartup.cpp:65
 #, kde-format
 msgid "Fallback Icon Theme:"
-msgstr "Yedek Simge Teması:"
+msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:66
 #, kde-format
@@ -4793,9 +4803,6 @@ msgid ""
 "a fallback. If fallback theme doesn't contain the icon, Breeze or Oxygen "
 "will be used if any of these are present."
 msgstr ""
-"Sistem simge temasında bir simge bulunamadığında bu tema yedek olarak "
-"kullanılacaktır. Yedek tema da simgeyi içermiyorsa Breeze veya Oxygen "
-"temalarından bir seçim yapılacaktır."
 
 #: app/Konfigurator/kgstartup.cpp:81 app/useraction_examples.xml:54
 #: app/useraction_examples.xml:63 app/useraction_examples.xml:72
@@ -4807,7 +4814,7 @@ msgstr "Kullanıcı Arayüzü"
 #: app/Konfigurator/kgstartup.cpp:86
 #, kde-format
 msgid "Save last position, size and panel settings"
-msgstr "Son konumu, boyut ve panel ayarlarını sakla"
+msgstr "Son konumu, boyut ve pencere ayarlarını sakla"
 
 #: app/Konfigurator/kgstartup.cpp:87
 #, kde-format
@@ -4840,12 +4847,12 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:93
 #, kde-format
 msgid "Start to tray"
-msgstr "Tepside başlat"
+msgstr "İzlem-çubuğunda başlat"
 
 #: app/Konfigurator/kgstartup.cpp:94
 #, kde-format
 msgid "Krusader starts to tray, without showing the main window"
-msgstr "Krusader, ana pencere görünmeden sistem tepsisinde başlar"
+msgstr "Krusader, ana pencere görünmeden sistem çekmecesinde başlar"
 
 #: app/Konfigurator/kgstartup.cpp:101
 #, kde-format
@@ -4864,17 +4871,17 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
 msgid "Show function keys"
-msgstr "İşlev düğmelerini göster"
+msgstr "Göster: Fonksiyon Tuşları"
 
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
 msgid "Function keys will be visible after startup."
-msgstr "İşlev düğmeleri, açılıştan sonra görülebilir olacak."
+msgstr "Fonksiyon tuşları açılıştan sonra görülebilir olacak."
 
 #: app/Konfigurator/kgstartup.cpp:104
 #, kde-format
 msgid "Show command line"
-msgstr "Komut satırını göster"
+msgstr "Göster: Komut satırı"
 
 #: app/Konfigurator/kgstartup.cpp:104
 #, kde-format
@@ -4937,17 +4944,17 @@ msgstr "Çıktı toplama"
 #: app/Konfigurator/kguseractions.cpp:66
 #, kde-format
 msgid "Normal font:"
-msgstr "Normal yazıtipi:"
+msgstr "Normal yazı tipi:"
 
 #: app/Konfigurator/kguseractions.cpp:80
 #, kde-format
 msgid "Font with fixed width:"
-msgstr "Eş aralıklı yazıtipi:"
+msgstr "Sabit büyüklükte yazı tipi:"
 
 #: app/Konfigurator/kguseractions.cpp:93
 #, kde-format
 msgid "Use fixed width font as default"
-msgstr "Öntanımlı olarak eş aralıklı yazıtipi kullan"
+msgstr "Öntanımlı olarak sabit büyüklükte yazıtipleri kullan"
 
 #: app/Konfigurator/konfigurator.cpp:43
 #, kde-format
@@ -4962,12 +4969,12 @@ msgstr "Başlangıç"
 #: app/Konfigurator/konfigurator.cpp:114
 #, kde-format
 msgid "Krusader's settings upon startup"
-msgstr "İlk ayarlar"
+msgstr "Başlangıçtaki Krusader ayarları"
 
 #: app/Konfigurator/konfigurator.cpp:116 app/paneltabbar.cpp:46
 #, kde-format
 msgid "Panel"
-msgstr "Panel"
+msgstr "Pencere"
 
 #: app/Konfigurator/konfigurator.cpp:120
 #, kde-format
@@ -4977,7 +4984,7 @@ msgstr "Temel İşlemler"
 #: app/Konfigurator/konfigurator.cpp:122
 #, kde-format
 msgid "Advanced"
-msgstr "Gelişmiş"
+msgstr "Gelişkin"
 
 #: app/Konfigurator/konfigurator.cpp:122
 #, kde-format
@@ -4997,7 +5004,7 @@ msgstr "Bağımlılıklar"
 #: app/Konfigurator/konfigurator.cpp:127
 #, kde-format
 msgid "Set the full path of the external applications"
-msgstr "Dış uygulamaların tam yolunu ayarla"
+msgstr "Harici uygulamaların tam-yollarını belirle"
 
 #: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:208
 #: app/UserAction/useractionpopupmenu.cpp:20
@@ -5023,7 +5030,7 @@ msgstr "Bulunulan sayfa değişti. Değişiklikleri uygulamak ister misiniz?"
 #: app/Konfigurator/konfiguratoritems.cpp:561
 #, kde-format
 msgid "Custom color"
-msgstr "Özel renk"
+msgstr "Özgün renk"
 
 #: app/Konfigurator/konfiguratoritems.cpp:562
 #, kde-format
@@ -5152,24 +5159,24 @@ msgstr "Not"
 #: app/Konfigurator/krresulttable.cpp:358
 #, kde-format
 msgid "enabled"
-msgstr "etkin"
+msgstr "etkinleştirildi"
 
 #: app/Konfigurator/krresulttable.cpp:205
 #: app/Konfigurator/krresulttable.cpp:223
 #: app/Konfigurator/krresulttable.cpp:363
 #, kde-format
 msgid "disabled"
-msgstr "devre dışı"
+msgstr "etkisizleştirildi"
 
 #: app/Konfigurator/krresulttable.cpp:279
 #, kde-format
 msgid "diff utility"
-msgstr "diff izlencesi"
+msgstr "diff araç-gereci"
 
 #: app/Konfigurator/krresulttable.cpp:280
 #, kde-format
 msgid "email client"
-msgstr "e-posta istemcisi"
+msgstr "ePosta istemci"
 
 #: app/Konfigurator/krresulttable.cpp:281
 #, kde-format
@@ -5179,7 +5186,7 @@ msgstr "toplu yeniden adlandırıcı"
 #: app/Konfigurator/krresulttable.cpp:282
 #, kde-format
 msgid "checksum utility"
-msgstr "sağlama toplamı izlencesi"
+msgstr "sağlama araç-gereci"
 
 #: app/Konfigurator/krresulttable.cpp:285
 #, kde-format
@@ -5194,7 +5201,7 @@ msgstr "Durum"
 #: app/kractions.cpp:166
 #, kde-format
 msgid "Tab-Switch panel"
-msgstr "Sekme değiştirme paneli"
+msgstr "Sekme değiştirme panosu"
 
 #: app/kractions.cpp:168
 #, kde-format
@@ -5209,17 +5216,17 @@ msgstr "Görev Araç Çubuğunu Göster"
 #: app/kractions.cpp:174
 #, kde-format
 msgid "Show Actions Toolbar"
-msgstr "Eylemler Araç Çubuğunu Göster"
+msgstr "Göster:Eylemler Araç-çubuğu"
 
 #: app/kractions.cpp:183
 #, kde-format
 msgid "Show &FN Keys Bar"
-msgstr "&FN Düğmeleri Çubuğunu Göster"
+msgstr "Göster:&FN Tuş-çubuğu"
 
 #: app/kractions.cpp:185
 #, kde-format
 msgid "Show &Command Line"
-msgstr "&Komut Satırını Göster"
+msgstr "Göster:&Komut Satırı"
 
 #: app/kractions.cpp:187
 #, kde-format
@@ -5229,12 +5236,12 @@ msgstr "Gömülü Uçbirimi &Göster"
 #: app/kractions.cpp:190
 #, kde-format
 msgid "Show &Hidden Files"
-msgstr "Gizli Dosyaları Göster"
+msgstr "Göster:&Gizli Dosyalar"
 
 #: app/kractions.cpp:192
 #, kde-format
 msgid "S&wap Panels"
-msgstr "&Pencerelerin Yerlerini Değiştir"
+msgstr "&Pencereleri Yerdeğiştir"
 
 #: app/kractions.cpp:194 app/Panel/panelcontextmenu.cpp:299
 #, kde-format
@@ -5244,27 +5251,27 @@ msgstr "Çöp Kutusunu Boşalt"
 #: app/kractions.cpp:196
 #, kde-format
 msgid "Trash Popup Menu"
-msgstr "Açılır Çöp Kutusu Menüsü"
+msgstr "Çöp Açılan Menüsü"
 
 #: app/kractions.cpp:198
 #, kde-format
 msgid "Sw&ap Sides"
-msgstr "Tarafların Yerlerini Değiştir"
+msgstr "Tarafları Yerdeğiştir."
 
 #: app/kractions.cpp:202
 #, kde-format
 msgid "popup cmdline"
-msgstr "açılır komut satırı"
+msgstr "zıpçıktı komutsatırı"
 
 #: app/kractions.cpp:205
 #, kde-format
 msgid "Start &Root Mode Krusader"
-msgstr "K&rusader'i Yönetici Kipinde Başlat"
+msgstr "Krusader'i Yönetici Kipinde Başlat"
 
 #: app/kractions.cpp:206
 #, kde-format
 msgid "Pro&files"
-msgstr "Pro&filler"
+msgstr "&Görünümler"
 
 #: app/kractions.cpp:207
 #, kde-format
@@ -5294,27 +5301,27 @@ msgstr "&Tek Olanı Seç"
 #: app/kractions.cpp:212
 #, kde-format
 msgid "Select Different &and Single"
-msgstr "Farklı ve &Yalnız Olanı Seç"
+msgstr "Farklı ve &Yalnız olanı işaretle"
 
 #: app/kractions.cpp:213
 #, kde-format
 msgid "Select &Different"
-msgstr "&Farklı Olanı Seç"
+msgstr "&Farklı olanı işaretle"
 
 #: app/kractions.cpp:228
 #, kde-format
 msgid "Start and &Forget"
-msgstr "Başlat ve &Unut"
+msgstr "Başla ve &Unut"
 
 #: app/kractions.cpp:229
 #, kde-format
 msgid "Display &Separated Standard and Error Output"
-msgstr "Standart ve Hata Çıktısını Ayrı Ayrı Görüntüle"
+msgstr "Geleneksel ve Hata Çıktılarını &Ayrı-ayrı Göster"
 
 #: app/kractions.cpp:230
 #, kde-format
 msgid "Display &Mixed Standard and Error Output"
-msgstr "Standart ve Hata Çıktısını Karışık Görüntüle"
+msgstr "Geleneksel ve Hata Çıktılarını &Birleşik Göster"
 
 #: app/kractions.cpp:231
 #, kde-format
@@ -5324,7 +5331,7 @@ msgstr "Yeni &Uçbirimde Başlat"
 #: app/kractions.cpp:232
 #, kde-format
 msgid "Send to &Embedded Terminal Emulator"
-msgstr "&Gömülü Uçbirim Öykünücüye Gönder"
+msgstr "&Gömülü Uçbirim Öykünücüsüne Gönder"
 
 #: app/kractions.cpp:249
 #, kde-format
@@ -5364,7 +5371,7 @@ msgstr "&Konumu Kaydet"
 #: app/kractions.cpp:263
 #, kde-format
 msgid "Compare b&y Content..."
-msgstr "İçeriğe &Göre Karşılaştır..."
+msgstr "İçeriğe &göre Karşılaştır..."
 
 #: app/kractions.cpp:264
 #, kde-format
@@ -5379,7 +5386,7 @@ msgstr "Dikey Kip"
 #: app/kractions.cpp:268
 #, kde-format
 msgid "User&actions"
-msgstr "Kullanıcı &Eylemleri"
+msgstr "Kullanıcı &eylemleri"
 
 #: app/kractions.cpp:270
 #, kde-format
@@ -5394,22 +5401,22 @@ msgstr "Uzak Karakter Kümesi Seç"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr "Son Kapatılan Sekmeler"
+msgstr ""
 
 #: app/kractions.cpp:278
 #, kde-format
 msgid "Quit Krusader."
-msgstr "Krusader uygulamasından çık."
+msgstr "Krusader uygulamasından çıkmayı sağlar."
 
 #: app/kractions.cpp:280
 #, kde-format
 msgid "Popular URLs..."
-msgstr "Sık Kullanılan URL'ler..."
+msgstr "Sık Kullanılan Adresler..."
 
 #: app/kractions.cpp:281
 #, kde-format
 msgid "Toggle Fullscreen Embedded Terminal"
-msgstr "Tam Ekran Uçbirimi Aç/Kapat"
+msgstr "Tam Ekran Uçbirimine Geç"
 
 #: app/kractions.cpp:285
 #, kde-format
@@ -5442,8 +5449,8 @@ msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
 "path. Hint: Krusader supports KMail."
 msgstr ""
-"Krusader desteklenen bir e-posta istemcisi bulamadı. Lütfen birini yolunuza "
-"yükleyin. İpucu: Krusader KMail destekler."
+"Krusader desteklenen bir eposta istemcisi bulamadı. Lütfen birini yolunuza "
+"yükleyin. İp ucu: Krusader KMail destekler."
 
 #: app/krslots.cpp:107
 #, kde-format
@@ -5479,7 +5486,7 @@ msgstr ""
 #: app/krslots.cpp:179
 #, kde-format
 msgid "Krusader is unable to download %1"
-msgstr "Krusader, %1 ögesini indiremiyor"
+msgstr "Krusader %1 ögesini indiremiyor"
 
 #: app/krslots.cpp:193
 #, kde-format
@@ -5506,17 +5513,20 @@ msgid ""
 "Bad quoting in terminal command:\n"
 "%1"
 msgstr ""
-"Uçbirim komutunda kötü tırnak kullanımı:\n"
+"Terminal komutunda kötü alıntılama:\n"
 "%1"
 
 #: app/krslots.cpp:420
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Cannot find a batch rename tool.\n"
+#| "You can get KRename at http://www.krename.net"
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 "Toplu yeniden adlandırma aracı bulunamadı.\n"
-"%1 adresinde KRename aracını bulabilirsiniz"
+"http://www.krename.net adresinde KRename aracını bulabilirsiniz"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -5551,7 +5561,7 @@ msgstr "Hangi dosyanın ayrılacağı bilinmiyor."
 #: app/krslots.cpp:495
 #, kde-format
 msgid "You cannot split a folder."
-msgstr "Bir klasörü ayıramazsınız."
+msgstr "Bir dizini ayıramazsınız."
 
 #: app/krslots.cpp:519
 #, kde-format
@@ -5561,7 +5571,7 @@ msgstr "Hangi dosyaların birleştirileceği bilinmiyor."
 #: app/krslots.cpp:536
 #, kde-format
 msgid "You cannot combine a folder."
-msgstr "Bir klasörü birleştiremezsiniz."
+msgstr "Bir dizini birleştiremezsiniz."
 
 #: app/krslots.cpp:553 app/krslots.cpp:605
 #, kde-format
@@ -5571,29 +5581,28 @@ msgstr "Bir ayırma dosyası değil: %1."
 #: app/krslots.cpp:565
 #, kde-format
 msgid "Select only one split file."
-msgstr "Yalnızca bir ayırma dosyası seçin."
+msgstr "Sadece bir ayırma dosyası seçin."
 
 #: app/krslots.cpp:612
 #, kde-format
 msgid "Combining %1.* to folder:"
-msgstr "%1.* klasörüne birleştiriliyor:"
+msgstr "%1.* dizine birleştiriliyor:"
 
 #: app/krslots.cpp:696
 #, kde-format
 msgid "Open trash bin"
-msgstr "Çöp kutusunu aç"
+msgstr "Çöpü aç"
 
 #: app/krslots.cpp:698
 #, kde-format
 msgid "Empty trash bin"
-msgstr "Çöp kutusunu boşalt"
+msgstr "Çöpü boşalt"
 
 #: app/krusader.cpp:174
 #, kde-format
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr ""
-"Durum çubuğu, fare imleci altındaki dosya hakkında temel bilgileri "
-"gösterecek."
+"Durum-çubuğu, fare'nin altındaki dosya hakkında temel bilgileri gösterecek."
 
 #: app/krusader.cpp:304
 #, kde-format
@@ -5602,8 +5611,8 @@ msgid ""
 "will now be checked for external applications. Then the Konfigurator will be "
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr ""
-"<qt><b>Krusader'a hoş geldiniz.</b><p>Bu ilk çalıştırma olduğundan dış "
-"uygulamalar denetlenecek. Ardından, Krusader'ı gereksinimleriniz için "
+"<qt><b>Krusader'a Hoş Geldiniz.</b><p>Bu ilk çalıştırma olduğundan harici "
+"uygulamalar kontrol edilecek. Ardından Krusader'ı ihtiyaçlarınız için "
 "özelleştirilebilmeniz için Konfigurator başlatılacak.</p></qt>"
 
 #: app/krusader.cpp:334
@@ -5705,7 +5714,7 @@ msgstr "Görev Araç Çubuğu"
 #: app/krusaderview.cpp:78
 #, kde-format
 msgid "Function keys allow performing fast operations on files."
-msgstr "İşlev düğmeleri, dosyalar üzerinde hızlı işlemlere izin verir."
+msgstr "Fonksiyon tuşları, dosya işlemlerini çabuklaştırır."
 
 #: app/krusaderview.cpp:451
 #, kde-format
@@ -5876,7 +5885,7 @@ msgstr "İmleçten itibaren"
 #: app/KViewer/lister.cpp:1293
 #, kde-format
 msgid "Match whole words only"
-msgstr "Yalnızca tam sözcükleri eşle"
+msgstr "Sadece tam sözcükleri eşle"
 
 #: app/KViewer/lister.cpp:1297
 #, kde-format
@@ -5916,7 +5925,7 @@ msgstr "Geçersiz numara."
 #: app/KViewer/lister.cpp:1872
 #, kde-format
 msgid "Number out of range."
-msgstr "Numara, erim dışı."
+msgstr "Kapsam dışı numara."
 
 #: app/KViewer/lister.cpp:1907
 #, kde-format
@@ -5926,7 +5935,7 @@ msgstr "Hiçbir şey seçilmedi."
 #: app/KViewer/lister.cpp:1985
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
-msgstr "Tersten yazdırma desteklenmiyor. Normal yazdırma sürdürülsün mü?"
+msgstr "Tersten yazdırma desteklenmiyor. Normal yazdırmaya devam edilsin mi?"
 
 #: app/KViewer/panelviewer.cpp:53
 #, kde-format
@@ -5982,12 +5991,12 @@ msgstr "Yolda aramayın"
 #: app/Locate/locate.cpp:151
 #, kde-format
 msgid "Show only the existing files"
-msgstr "Yalnızca var olan dosyaları göster"
+msgstr "Sadece mevcut dosyaları göster"
 
 #: app/Locate/locate.cpp:155
 #, kde-format
 msgid "Case Sensitive"
-msgstr "BÜYÜK/küçük Harf Duyarlı"
+msgstr "BÜYÜK/küçük Duyarlı"
 
 #: app/Locate/locate.cpp:167
 #, kde-format
@@ -6008,7 +6017,7 @@ msgstr "Veritabanını güncelle"
 #, kde-format
 msgid "Cannot start 'locate'. Check the 'Dependencies' page in konfigurator."
 msgstr ""
-"'locate' başlatılamadı. Konfigurator 'Bağımlılıklar' sayfasını denetleyin."
+"'locate' başlatılamadı. Konfigurator 'Bağımlılıklar' sayfasını kontrol edin."
 
 #: app/Locate/locate.cpp:315
 #, kde-format
@@ -6065,7 +6074,7 @@ msgstr "Öncekini Bul (Ctrl+P)"
 #: app/Locate/locate.cpp:399
 #, kde-format
 msgid "Copy selected to clipboard"
-msgstr "Seçiliyi panoya kopyala"
+msgstr "Seçileni panoya kopyala"
 
 #: app/Locate/locate.cpp:541 app/Locate/locate.cpp:561
 #, kde-format
@@ -6075,7 +6084,7 @@ msgstr "Aranan dizi bulunamadı."
 #: app/Locate/locate.cpp:629
 #, kde-format
 msgid "Locate results"
-msgstr "Bul sonuçları"
+msgstr "Bulunan(lar):"
 
 #: app/Locate/locate.cpp:636
 #, kde-format
@@ -6091,13 +6100,13 @@ msgstr "Dosya koleksiyonu için bir ad verebilirsiniz:"
 #: app/Search/krsearchdialog.cpp:162 app/Synchronizer/synchronizergui.cpp:479
 #, kde-format
 msgid "Stop"
-msgstr "Durdur"
+msgstr "Dur"
 
 #: app/Locate/locate.cpp:678 app/Search/krsearchdialog.cpp:262
 #: app/Synchronizer/synchronizergui.cpp:485
 #, kde-format
 msgid "Feed to listbox"
-msgstr "Liste kutusuna besle"
+msgstr "Listele"
 
 #: app/main.cpp:46
 #, kde-format
@@ -6106,7 +6115,7 @@ msgid ""
 "Twin-Panel File Manager by KDE"
 msgstr ""
 "Krusader\n"
-"KDE için İki Panelli Dosya Yöneticisi"
+"KDE için Çift-Panolu Dosya Yöneticisi"
 
 #: app/main.cpp:111
 #, kde-format
@@ -6116,25 +6125,37 @@ msgstr "Krusader"
 #: app/main.cpp:111
 #, kde-format
 msgid "Krusader - ROOT PRIVILEGES"
-msgstr "Krusader - KÖK AYRICALIKLI"
+msgstr "Krusader - ROOT AYRICALIKLI"
 
 #: app/main.cpp:113
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
+#| "(c) 2004-2016, Krusader Krew"
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
-"© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2022 Krusader Takımı"
+"(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
+"(c) 2004-2016, Krusader Krew"
 
 #: app/main.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Feedback:\n"
+#| "https://forum.kde.org/viewforum.php?f=225\n"
+#| "\n"
+#| "IRC\n"
+#| "server: irc.freenode.net, channel: #krusader"
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
-"Geri Bildirim:\n"
-"https://forum.kde.org/viewforum.php?f=225"
+"Geribildirim:\n"
+"https://forum.kde.org/viewforum.php?f=225\n"
+"\n"
+"IRC\n"
+"sunucu: irc.freenode.net, kanal: #krusader"
 
 #: app/main.cpp:120
 #, kde-format
@@ -6154,17 +6175,18 @@ msgstr "Toni Asensi Esteve"
 #: app/main.cpp:122
 #, kde-format
 msgid "Nikita Melnichenko"
-msgstr "Nikita Melnichenko"
+msgstr ""
 
 #: app/main.cpp:123
 #, kde-format
 msgid "Yuri Chornoivan"
-msgstr "Yuri Chornoivan"
+msgstr ""
 
 #: app/main.cpp:123
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Destination"
 msgid "Documentation"
-msgstr "Belgelendirme"
+msgstr "Hedef"
 
 #: app/main.cpp:124
 #, kde-format
@@ -6174,7 +6196,7 @@ msgstr "Rafi Yanai"
 #: app/main.cpp:124 app/main.cpp:125
 #, kde-format
 msgid "Author (retired)"
-msgstr "Yazar (emekli)"
+msgstr "Yazar (eski)"
 
 #: app/main.cpp:125
 #, kde-format
@@ -6184,14 +6206,14 @@ msgstr "Shie Erlich"
 #: app/main.cpp:126
 #, kde-format
 msgid "Csaba Karai"
-msgstr "Csaba Karai"
+msgstr ""
 
 #: app/main.cpp:126 app/main.cpp:127 app/main.cpp:128 app/main.cpp:129
 #: app/main.cpp:130 app/main.cpp:131 app/main.cpp:132 app/main.cpp:133
 #: app/main.cpp:134
 #, kde-format
 msgid "Developer (retired)"
-msgstr "Geliştirici (emekli)"
+msgstr "Geliştirici (eski)"
 
 #: app/main.cpp:127
 #, kde-format
@@ -6231,7 +6253,7 @@ msgstr "Alexander Bikadorov"
 #: app/main.cpp:134
 #, kde-format
 msgid "Martin Kostolný"
-msgstr "Martin Kostolný"
+msgstr ""
 
 #: app/main.cpp:135 app/main.cpp:169
 #, kde-format
@@ -6241,7 +6263,7 @@ msgstr "Dirk Eschler"
 #: app/main.cpp:135
 #, kde-format
 msgid "Webmaster (retired)"
-msgstr "Web sayfası (emekli)"
+msgstr "Web uzmanı (emekli)"
 
 #: app/main.cpp:136 app/main.cpp:165
 #, kde-format
@@ -6251,7 +6273,7 @@ msgstr "Frank Schoolmeesters"
 #: app/main.cpp:136
 #, kde-format
 msgid "Documentation and marketing coordinator (retired)"
-msgstr "Belgelendirme ve pazarlama koordinatörü (emekli)"
+msgstr "Belgelendirme ve pazarlama koordinatörü (eski)"
 
 #: app/main.cpp:137
 #, kde-format
@@ -6261,7 +6283,7 @@ msgstr "Richard Holt"
 #: app/main.cpp:137
 #, kde-format
 msgid "Documentation & Proofing (retired)"
-msgstr "Belgelendirme ve Yazım Denetimi (emekli)"
+msgstr "Belgelendirme ve Kontrol (eski)"
 
 #: app/main.cpp:138 app/main.cpp:185
 #, kde-format
@@ -6271,7 +6293,7 @@ msgstr "Matej Urbancic"
 #: app/main.cpp:138
 #, kde-format
 msgid "Marketing & Product Research (retired)"
-msgstr "Pazarlama ve Ürün Araştırması (emekli)"
+msgstr "Pazarlama ve Ürün Araştırması (eski)"
 
 #: app/main.cpp:139
 #, kde-format
@@ -6291,7 +6313,7 @@ msgstr "l10n.kde.org"
 #: app/main.cpp:140
 #, kde-format
 msgid "KDE Translation Teams"
-msgstr "KDE Çeviri Takımı"
+msgstr "KDE Çeviri Ekibi"
 
 #: app/main.cpp:141
 #, kde-format
@@ -6376,7 +6398,7 @@ msgstr "Dizin geçmişi düğmesi"
 #: app/main.cpp:149
 #, kde-format
 msgid "Szombathelyi György"
-msgstr "Szombathelyi György"
+msgstr "Szombathelyi György "
 
 #: app/main.cpp:149
 #, kde-format
@@ -6511,7 +6533,7 @@ msgstr "Anders Bruun Olsen"
 #: app/main.cpp:163
 #, kde-format
 msgid "Old Danish translation"
-msgstr "Eski Danca çeviri"
+msgstr "Eski Danimarkaca çeviri"
 
 #: app/main.cpp:164
 #, kde-format
@@ -6521,7 +6543,7 @@ msgstr "Peter H. Sorensen"
 #: app/main.cpp:164
 #, kde-format
 msgid "Danish translation"
-msgstr "Danca çeviri"
+msgstr "Danimarkaca çeviri"
 
 #: app/main.cpp:165
 #, kde-format
@@ -6631,7 +6653,7 @@ msgstr "Dovydas Sankauskas"
 #: app/main.cpp:176
 #, kde-format
 msgid "Lithuanian translation"
-msgstr "Litvanca çeviri"
+msgstr "Litvanyaca çeviri"
 
 #: app/main.cpp:177
 #, kde-format
@@ -6791,17 +6813,17 @@ msgstr "Korece çeviri"
 #: app/main.cpp:203
 #, kde-format
 msgid "Start left panel at <path>"
-msgstr "Sol panelin başlatılacağı <yol>"
+msgstr "Sol pencerenin başlatılacağı <path>"
 
 #: app/main.cpp:204
 #, kde-format
 msgid "Start right panel at <path>"
-msgstr "Sağ panelin başlatılacağı <yol>"
+msgstr "Sağ pencerenin başlatılacağı <path>"
 
 #: app/main.cpp:205
 #, kde-format
 msgid "Load this profile on startup"
-msgstr "Açılışta bu profili yükle"
+msgstr "Açılışta bu görünümü yükle"
 
 #: app/main.cpp:206
 #, kde-format
@@ -6819,41 +6841,42 @@ msgid "&MountMan..."
 msgstr "&Disk Bağlama Yöneticisi..."
 
 #: app/MountMan/kmountman.cpp:54
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "MountMan"
 msgid "Open &MountMan"
-msgstr "Bağlamacı'yı Aç"
+msgstr "Bağlamacı"
 
 #: app/MountMan/kmountman.cpp:118
 #, kde-format
 msgid "Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."
 msgstr ""
-"'mount' komutu başlatılamadı. Konfigurator 'Bağımlılıklar' sayfasını "
-"denetleyin."
+"'mount' komutu başlatılamadı. Konfigurator 'Bağımlılıklar' sayfasını kontrol "
+"edin."
 
 #: app/MountMan/kmountman.cpp:344
 #, kde-format
 msgid "MountMan is not operational. Sorry"
-msgstr "Bağlamacı, şu anda çalışmıyor. Üzgünüz"
+msgstr "Maalesef Bağlamacı çalışamıyor."
 
 #: app/MountMan/kmountmangui.cpp:58
 #, kde-format
 msgid "MountMan - Your Mount-Manager"
-msgstr "Bağlamacı - Bağlama yöneticiniz"
+msgstr "Bağlamacı,-Bağlama Yöneticiniz"
 
 #: app/MountMan/kmountmangui.cpp:72
 #, kde-format
 msgid "&Eject"
-msgstr "&Çıkar"
+msgstr "&Çıkart"
 
 #: app/MountMan/kmountmangui.cpp:77 app/MountMan/kmountmangui.cpp:376
 #, kde-format
 msgid "&Unmount"
-msgstr "&Bağlantıyı Kes"
+msgstr "&Ayır"
 
 #: app/MountMan/kmountmangui.cpp:148
 #, kde-format
 msgid "Mnt.Point"
-msgstr "Bağlama Noktası"
+msgstr "Bağ.Yeri"
 
 #: app/MountMan/kmountmangui.cpp:149
 #, kde-format
@@ -6863,7 +6886,7 @@ msgstr "Toplam Büyüklük"
 #: app/MountMan/kmountmangui.cpp:150
 #, kde-format
 msgid "Free Size"
-msgstr "Boş Alan"
+msgstr "Boş yer"
 
 #: app/MountMan/kmountmangui.cpp:151
 #, kde-format
@@ -6878,7 +6901,7 @@ msgstr "MountMan.Info"
 #: app/MountMan/kmountmangui.cpp:187
 #, kde-format
 msgid "Show only removable devices"
-msgstr "Yalnızca çıkarılabilir aygıtları göster"
+msgstr "Sadece ayrılabilir aygıtları göster"
 
 #: app/MountMan/kmountmangui.cpp:378
 #, kde-format
@@ -6921,8 +6944,8 @@ msgstr[1] " (%2 bayt)"
 #, kde-format
 msgid "in %1 folder"
 msgid_plural "in %1 folders"
-msgstr[0] "%1 klasörde"
-msgstr[1] "%1 klasörde"
+msgstr[0] "%1 dizinde"
+msgstr[1] "%1 dizinde"
 
 #: app/Panel/krcalcspacedialog.cpp:115
 #, kde-format
@@ -6959,17 +6982,17 @@ msgstr "Kökten Başlat"
 #: app/Panel/krfiletreeview.cpp:191
 #, kde-format
 msgid "Set root of the tree to root of filesystem"
-msgstr "Ağacın kökünü, dosya sisteminin köküne ayarla"
+msgstr "Dosya sisteminin kökü için ağacın kökünü ayarla"
 
 #: app/Panel/krfiletreeview.cpp:194
 #, kde-format
 msgid "Start From Current"
-msgstr "Geçerliden Başlat"
+msgstr "Buradan Başlat"
 
 #: app/Panel/krfiletreeview.cpp:197
 #, kde-format
 msgid "Set root of the tree to the current folder"
-msgstr "Ağacın kökünü, geçerli klasöre ayarla"
+msgstr "Mevcut klasör için ağacın kökünü ayarla"
 
 #: app/Panel/krfiletreeview.cpp:200
 #, kde-format
@@ -6979,7 +7002,7 @@ msgstr "Bir Yerden Başlat"
 #: app/Panel/krfiletreeview.cpp:204
 #, kde-format
 msgid "Set root of the tree to closest folder listed in 'Places'"
-msgstr "Ağacın kökünü, 'Yerler' içinde listelenmiş en yakın klasöre ayarla"
+msgstr "'Yerler' içinde listelenmiş en yakın klasör için ağacın kökünü ayarla"
 
 #: app/Panel/krfiletreeview.cpp:233
 #, kde-format
@@ -7015,7 +7038,7 @@ msgstr "Özellikler"
 #, kde-format
 msgctxt "Default layout"
 msgid "Default"
-msgstr "Öntanımlı"
+msgstr "Varsayılan"
 
 #: app/Panel/krlayoutfactory.cpp:47
 #, kde-format
@@ -7035,7 +7058,7 @@ msgstr "Özel yerleşim: \"%1\""
 #: app/Panel/krpreviewpopup.cpp:91
 #, kde-format
 msgid "Preview not available"
-msgstr "Önizleme kullanılamıyor"
+msgstr "Öngörünüm mümkün değil"
 
 #: app/Panel/krsearchbar.cpp:36
 #, kde-format
@@ -7055,7 +7078,7 @@ msgstr "Arama karakter dizisi girin ya da seçin"
 #: app/Panel/krsearchbar.cpp:62
 #, kde-format
 msgid "Save the current search string"
-msgstr "Geçerli arama dizisini kaydet"
+msgstr "Mevcut arama dizisini kaydet"
 
 #: app/Panel/krsearchbar.cpp:68
 #, kde-format
@@ -7073,8 +7096,8 @@ msgid ""
 "The statusbar displays information about the filesystem which holds your "
 "current folder: total size, free space, type of filesystem, etc."
 msgstr ""
-"Durum çubuğu geçerli klasörünüzü tutan dosya sistemi hakkında bilgiler "
-"görüntüler: Toplam boyut, boş alan, dosya sistemi türü, vb."
+"Durum çubuğu geçerli dizininizi tutan dosya sistemi hakkında bilgiler "
+"görüntüler: toplam boyut, boş alan, dosya sistemi türü, vb."
 
 #: app/Panel/listpanel.cpp:166
 #, kde-format
@@ -7082,8 +7105,8 @@ msgid ""
 "Open menu with bookmarks. You can also add current location to the list, "
 "edit bookmarks or add subfolder to the list."
 msgstr ""
-"Yer imleri menüsünü açar. Yer imlerini düzenleyebilir, geçerli konumu veya "
-"alt klasörleri listeye ekleyebilirsiniz."
+"Yer-imleri menüsünü açar. Yer-imlerini düzenleyebilir, mevcut konum'u veya "
+"altdizinleri listeye ekleyebilirsiniz."
 
 #: app/Panel/listpanel.cpp:173
 #, kde-format
@@ -7091,8 +7114,8 @@ msgid ""
 "Name of folder where you are. You can also enter name of desired location to "
 "move there. Use of Net protocols like ftp or fish is possible."
 msgstr ""
-"Bulunduğunuz klasörün adı. Buraya, gitmek istediğiniz yeri de "
-"yazabilirsiniz. Ayrıca ftp, fish gibi ağ protokollerini de kullanabilirsiniz."
+"Bulunduğunuz dizinin adı. Buraya, gitmek istediğiniz yeri de yazabilirsiniz. "
+"Ayrıca ftp, fish gibi ağ protokollerini de kullanabilirsiniz."
 
 #: app/Panel/listpanel.cpp:210
 #, kde-format
@@ -7100,23 +7123,24 @@ msgid ""
 "The totals bar shows how many files exist, how many selected and the bytes "
 "math"
 msgstr ""
-"Toplamlar çubuğu; Kaç dosyanız olduğunu, kaçının seçili olduğunu ve bayt "
-"türünden toplamlarını görüntüler"
+"Toplamlar-çubuğu kaç dosyanız olduğunu, kaçının seçili olduğunu ve bayt "
+"cinsinden toplamlarını görüntüler."
 
 #: app/Panel/listpanel.cpp:229
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Cancel directory space calculation"
 msgid "Cancel folder space calculation"
-msgstr "Klasör alan hesaplamasını iptal et"
+msgstr "Dizinin kapladığı alanı hesaplamayı iptal et"
 
 #: app/Panel/listpanel.cpp:249
 #, kde-format
 msgid "Move Sidebar clockwise"
-msgstr "Kenar çubuğunu saat yönünde taşı"
+msgstr "Yan çubuğu saat yönünde hareket ettir"
 
 #: app/Panel/listpanel.cpp:260 app/Panel/listpanel.cpp:575
 #, kde-format
 msgid "Open the Sidebar"
-msgstr "Kenar çubuğunu aç"
+msgstr "Yan Çubuğu Aç"
 
 #: app/Panel/listpanel.cpp:283
 #, kde-format
@@ -7125,19 +7149,19 @@ msgid ""
 "When active, each folder change is performed in the\n"
 "active and inactive panel - if possible."
 msgstr ""
-"Bu düğme eşzamanlı tarama kipini değiştirir.\n"
-"Etkinken, eğer olanaklıysa - her klasör değiştirme, etkin ve etkin olmayan\n"
-"panellerde uygulanır."
+"Bu düğme eşgüdümlü-tarama kipini değiştirir.\n"
+"Etkinken, eğer mümkünse - her dizin değiştirme, etkin ve etkin olmayan\n"
+"pencerelerde uygulanır."
 
 #: app/Panel/listpanel.cpp:568
 #, kde-format
 msgid "Close the Sidebar"
-msgstr "Kenar Çubuğunu Kapat"
+msgstr "Yan Çubuğu Kapat"
 
 #: app/Panel/listpanel.cpp:628 app/Synchronizer/synchronizergui.cpp:970
 #, kde-format
 msgid "Warning: The left and the right side are showing the same folder."
-msgstr "Uyarı: Sol ve sağ taraf aynı klasörü gösteriyor."
+msgstr "Uyarı: Sol ve sağ taraf aynı dizini gösteriyor."
 
 #: app/Panel/listpanel.cpp:786
 #, kde-format
@@ -7145,7 +7169,7 @@ msgctxt ""
 "%1=free space,%2=total space,%3=percentage of usage, %4=mountpoint,"
 "%5=filesystem type"
 msgid "%1 free out of %2 (%3%) on %4 [(%5)]"
-msgstr "%4 [(%5)] üzerinde %2 alanın %1 (%​%3) kadarı kullanılıyor"
+msgstr "%4 [(%5)] üzerinde %2 (%3%) alanın %1 kadarı kullanılıyor"
 
 #: app/Panel/listpanel.cpp:789
 #, kde-format
@@ -7155,17 +7179,17 @@ msgstr "%1 boş"
 #: app/Panel/listpanel.cpp:1008
 #, kde-format
 msgid "loading previews: %p%"
-msgstr "önizlemeler yükleniyor: %​%p"
+msgstr "ön izlemeler yükleniyor: %p%"
 
 #: app/Panel/listpanel.cpp:1050
 #, kde-format
 msgid ">> Reading..."
-msgstr ">> Okunuyor..."
+msgstr ">> Okuyor.."
 
 #: app/Panel/listpanel.cpp:1076
 #, kde-format
 msgid ">> Reading: %1 % complete..."
-msgstr ">> Okunuyor: %​%1 tamamlandı..."
+msgstr ">> Okunuyor: %1 % tamamlandı..."
 
 #: app/Panel/listpanel.cpp:1082
 #, kde-format
@@ -7210,7 +7234,7 @@ msgstr "Yeni &Metin Dosyası..."
 #: app/Panel/listpanelactions.cpp:67
 #, kde-format
 msgid "Copy to other panel"
-msgstr "Diğer Panele Kopyala"
+msgstr "Diğer panoya kopyala"
 
 #: app/Panel/listpanelactions.cpp:68
 #, kde-format
@@ -7230,7 +7254,7 @@ msgstr "Taşıma ertelendi..."
 #: app/Panel/listpanelactions.cpp:71
 #, kde-format
 msgid "New Folder..."
-msgstr "Yeni Klasör..."
+msgstr "Yeni Dizin..."
 
 #: app/Panel/listpanelactions.cpp:73
 #, kde-format
@@ -7240,12 +7264,12 @@ msgstr "Burada Uçbirim Aç"
 #: app/Panel/listpanelactions.cpp:74
 #, kde-format
 msgid "F3 View Dialog"
-msgstr "F3 Görüntüle Penceresi"
+msgstr "F3 Göster İletişimi"
 
 #: app/Panel/listpanelactions.cpp:77
 #, kde-format
 msgid "Right-click Menu"
-msgstr "Sağ Tıklama Menüsü"
+msgstr "Sağ-tık Menüsü"
 
 #: app/Panel/listpanelactions.cpp:78
 #, kde-format
@@ -7255,7 +7279,7 @@ msgstr "&Özellikler..."
 #: app/Panel/listpanelactions.cpp:79
 #, kde-format
 msgid "&Compare Folders"
-msgstr "&Klasörleri Karşılaştır"
+msgstr "&Dizinleri Karşılaştır"
 
 #: app/Panel/listpanelactions.cpp:80
 #, kde-format
@@ -7270,17 +7294,17 @@ msgstr "&Paketle..."
 #: app/Panel/listpanelactions.cpp:82
 #, kde-format
 msgid "&Unpack..."
-msgstr "Paketi &Aç..."
+msgstr "&Aç..."
 
 #: app/Panel/listpanelactions.cpp:83
 #, kde-format
 msgid "Create Checksum..."
-msgstr "Sağlama Toplama Oluştur..."
+msgstr "Sağlama Oluştur..."
 
 #: app/Panel/listpanelactions.cpp:84
 #, kde-format
 msgid "Verify Checksum..."
-msgstr "Sağlama Toplamını Doğrula..."
+msgstr "Sağlamayı Doğrula..."
 
 #: app/Panel/listpanelactions.cpp:85 app/Panel/panelcontextmenu.cpp:264
 #, kde-format
@@ -7300,22 +7324,22 @@ msgstr "Alternatif Silme"
 #: app/Panel/listpanelactions.cpp:90
 #, kde-format
 msgid "Root"
-msgstr "Kök"
+msgstr "Root"
 
 #: app/Panel/listpanelactions.cpp:91
 #, kde-format
 msgid "Go to Other Panel's Folder"
-msgstr "Diğer Panelin Klasörüne Git"
+msgstr "Diğer Pano'nun Dizinine Git"
 
 #: app/Panel/listpanelactions.cpp:92
 #, kde-format
 msgid "&Reload"
-msgstr "&Yeniden Yükle"
+msgstr "&Yeniden Yükle "
 
 #: app/Panel/listpanelactions.cpp:93
 #, kde-format
 msgid "Cancel Refresh of View"
-msgstr "Görünümü Yenilemeyi İptal Et"
+msgstr "Görünümü Tazelemeyi İptal Et"
 
 #: app/Panel/listpanelactions.cpp:94
 #, kde-format
@@ -7330,7 +7354,7 @@ msgstr "Ağ Bağlantısını &Kes"
 #: app/Panel/listpanelactions.cpp:96
 #, kde-format
 msgid "Sync Panels"
-msgstr "Panelleri Eşzamanla"
+msgstr "Pencereleri Eş'le"
 
 #: app/Panel/listpanelactions.cpp:97
 #, kde-format
@@ -7345,7 +7369,7 @@ msgstr "Geriye Gitme Noktası Ayarla"
 #: app/Panel/listpanelactions.cpp:99
 #, kde-format
 msgid "S&ynchron Folder Changes"
-msgstr "Klasör Değişikliklerini &Eşzamanla"
+msgstr "Dizin Değişikliklerini &Eşzamanla"
 
 #: app/Panel/listpanelactions.cpp:100
 #, kde-format
@@ -7355,7 +7379,7 @@ msgstr "Konum Çubuğuna Git"
 #: app/Panel/listpanelactions.cpp:101
 #, kde-format
 msgid "Toggle Sidebar"
-msgstr "Kenar Çubuğunu Aç/Kapat"
+msgstr "Kenar çubuğunu aç/kapat"
 
 #: app/Panel/listpanelactions.cpp:103
 #, kde-format
@@ -7390,42 +7414,44 @@ msgstr "Ortam"
 #: app/Panel/listpanelactions.cpp:109
 #, kde-format
 msgid "Left Media"
-msgstr "Sol Ortam"
+msgstr "Sol pencere"
 
 #: app/Panel/listpanelactions.cpp:110
 #, kde-format
 msgid "Right Media"
-msgstr "Sağ Ortam"
+msgstr "Sağ pencere"
 
 #: app/Panel/listpanelactions.cpp:113
 #, kde-format
 msgid "Find in folder..."
-msgstr "Klasörde Bul..."
+msgstr "Dizinde bul..."
 
 #: app/Panel/listpanelactions.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Selection Mode"
 msgid "Select in folder..."
-msgstr "Klasörde seç..."
+msgstr "Seçim Kipi"
 
 #: app/Panel/listpanelactions.cpp:115
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Find in folder..."
 msgid "Filter in folder..."
-msgstr "Klasörde süz..."
+msgstr "Dizinde bul..."
 
 #: app/Panel/listpanelactions.cpp:118
 #, kde-format
 msgid "ROOT (/)"
-msgstr "KÖK (/)"
+msgstr "ROOT (/)"
 
 #: app/Panel/listpanelactions.cpp:120
 #, kde-format
 msgid "Rename file, folder, etc."
-msgstr "Dosya, klasör vb. yeniden adlandır"
+msgstr "Dosya, dizin vs. yeniden adlandır"
 
 #: app/Panel/listpanelactions.cpp:121
 #, kde-format
 msgid "Open file in viewer."
-msgstr "Dosyayı görüntüleyicide aç."
+msgstr "Dosya içeriğini gösterir."
 
 #: app/Panel/listpanelactions.cpp:122
 #, kde-format
@@ -7440,22 +7466,22 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:125
 #, kde-format
 msgid "Copy file from one panel to the other."
-msgstr "Dosya(lar)ı bir panelden öbürüne kopyala."
+msgstr "Dosya(lar)ı bir pencereden öbürüne kopyalar."
 
 #: app/Panel/listpanelactions.cpp:126
 #, kde-format
 msgid "Move file from one panel to the other."
-msgstr "Dosya(lar)ı bir panelden öbürüne taşı."
+msgstr "Dosya(lar)ı bir pencereden öbürüne taşır."
 
 #: app/Panel/listpanelactions.cpp:127
 #, kde-format
 msgid "Create folder in current panel."
-msgstr "Geçerli panelde yeni klasör oluştur."
+msgstr "Mevcut panoda yeni dizin oluştur."
 
 #: app/Panel/listpanelactions.cpp:128
 #, kde-format
 msgid "Delete file, folder, etc."
-msgstr "Dosya, klasör vb. sil"
+msgstr "Dosya, dizin vs. sil"
 
 #: app/Panel/listpanelactions.cpp:129
 #, kde-format
@@ -7463,13 +7489,14 @@ msgid ""
 "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
 "Konfigurator, default is <b>konsole</b>.</p></qt>"
 msgstr ""
-"<qt><p>Bulunulan klasörde uçbirim aç.</p><p>Uçbirimi yapılandırıcı içinde "
-"tanımlanabilir, öntanımlı olarak <b>Konsole</b> açılacaktır.</p></qt>"
+"<qt><p>Bulunulan dizinde uçbirim açar.</p><p>Uçbirimi yapılandırıcı içinde "
+"tanımlanabilir, öntanımlı olarak <b>konsole</b> açılacaktır.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open/Run"
 msgid "Open/Run Files"
-msgstr "Dosyaları Aç/Çalıştır"
+msgstr "Aç/Çalıştır"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7477,9 +7504,10 @@ msgid "Run"
 msgstr "Çalıştır"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
-msgstr "Yeni Sekmelerde Aç"
+msgstr "Yeni Sekmede Aç"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7489,7 +7517,7 @@ msgstr "Yeni Sekmede Aç"
 #: app/Panel/panelcontextmenu.cpp:148
 #, kde-format
 msgid "Browse Archive"
-msgstr "Arşive Göz At"
+msgstr "Arşive Gözat"
 
 #: app/Panel/panelcontextmenu.cpp:198
 #, kde-format
@@ -7499,7 +7527,7 @@ msgstr "Diğer..."
 #: app/Panel/panelcontextmenu.cpp:200
 #, kde-format
 msgid "Open With"
-msgstr "Birlikte Aç"
+msgstr ".. ile Aç"
 
 #: app/Panel/panelcontextmenu.cpp:249
 #, kde-format
@@ -7509,7 +7537,7 @@ msgstr "Çöp Kutusuna Taşı"
 #: app/Panel/panelcontextmenu.cpp:265
 #, kde-format
 msgid "New Hardlink..."
-msgstr "Yeni Sabit Bağlantı..."
+msgstr "Yeni Doğrudan Bağlantı..."
 
 #: app/Panel/panelcontextmenu.cpp:267
 #, kde-format
@@ -7544,12 +7572,12 @@ msgstr "Yeni Oluştur"
 #: app/Panel/panelfunc.cpp:371
 #, kde-format
 msgid "You can edit links only on local file systems"
-msgstr "Yalnızca yerel dosya sisteminizdeki bağları düzenleyebilirsiniz"
+msgstr "Sadece yerel dosya sisteminizdeki bağları düzenleyebilirsiniz"
 
 #: app/Panel/panelfunc.cpp:382
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
-msgstr "Geçerli dosya bir bağlantı olmadığından yeniden yönlendirilemez."
+msgstr "Mevcut dosya bir bağlantı olmadığından yeniden yönlendirilemez."
 
 #: app/Panel/panelfunc.cpp:389
 #, kde-format
@@ -7559,7 +7587,7 @@ msgstr "Bağ yönlendirme"
 #: app/Panel/panelfunc.cpp:389
 #, kde-format
 msgid "Please enter the new link destination:"
-msgstr "Yeni bağ hedefini girin:"
+msgstr "Yeni bağ'ın hedefini belirtin:"
 
 #: app/Panel/panelfunc.cpp:396
 #, kde-format
@@ -7574,7 +7602,7 @@ msgstr "Yeni bağlantı oluşturulamadı: %1"
 #: app/Panel/panelfunc.cpp:409
 #, kde-format
 msgid "You can create links only on local file systems"
-msgstr "Yalnızca yerel dosya sisteminizde bağlar yaratabilirsiniz"
+msgstr "Sadece yerel dosya sisteminizde bağlar yaratabilirsiniz"
 
 #: app/Panel/panelfunc.cpp:418
 #, kde-format
@@ -7604,17 +7632,17 @@ msgstr "'%1' ile '%2' arasında yeni bağlantı oluşturulamadı"
 #: app/Panel/panelfunc.cpp:460
 #, kde-format
 msgid "No permissions to view this file."
-msgstr "Bu dosyayı görüntüleme yetkiniz yok."
+msgstr "Bu dosyayı görme yetkiniz yok."
 
 #: app/Panel/panelfunc.cpp:471
 #, kde-format
 msgid "Enter a URL to view:"
-msgstr "Görüntülenecek URL'yi girin:"
+msgstr "Gözatılacak adresi girin:"
 
 #: app/Panel/panelfunc.cpp:501 app/Panel/panelfunc.cpp:578
 #, kde-format
 msgid "You cannot edit a folder"
-msgstr "Bir klasörü düzenleyemezsiniz"
+msgstr "Bir dizini düzenleyemezsiniz"
 
 #: app/Panel/panelfunc.cpp:506
 #, kde-format
@@ -7629,26 +7657,26 @@ msgstr "Düzenlenecek dosyanın adı:"
 #: app/Panel/panelfunc.cpp:632
 #, kde-format
 msgid "Move %1 to:"
-msgstr "%1, şuraya taşınacak:"
+msgstr "%1 taşınacak:"
 
 #: app/Panel/panelfunc.cpp:633
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
-msgstr[0] "%1 dosyayı şuraya taşı:"
-msgstr[1] "%1 dosyayı şuraya taşı:"
+msgstr[0] "%1 dosyayı buraya taşı:"
+msgstr[1] "%1 dosyayı buraya taşı:"
 
 #: app/Panel/panelfunc.cpp:636
 #, kde-format
 msgid "Copy %1 to:"
-msgstr "%1, şuraya taşınacak:"
+msgstr "%1 taşınacak:"
 
 #: app/Panel/panelfunc.cpp:637
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
-msgstr[0] "%1 dosyayı şuraya kopyala:"
-msgstr[1] "%1 dosyayı şuraya kopyala:"
+msgstr[0] "%1 dosyayı buraya kopyala:"
+msgstr[1] "%1 dosyayı buraya kopyala:"
 
 #: app/Panel/panelfunc.cpp:704
 #, kde-format
@@ -7672,32 +7700,32 @@ msgid_plural ""
 "removing them from the virtual items)?</qt>"
 msgstr[0] ""
 "<qt>Bu ögeyi <b>fiziksel</b> olarak silmeyi gerçekten istiyor musunuz "
-"(yalnızca sanal ögelerden kaldırmayı değil)?</qt>"
+"(sadece sanal ögelerden kaldırmayı değil)?</qt>"
 msgstr[1] ""
 "<qt>Bu %1 ögeyi <b>fiziksel</b> olarak silmeyi gerçekten istiyor musunuz "
-"(yalnızca sanal ögelerden kaldırmayı değil)?</qt>"
+"(sadece sanal ögelerden kaldırmayı değil)?</qt>"
 
 #: app/Panel/panelfunc.cpp:858
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
-msgstr[0] "Bu %1 ögeyi gerçekten silmek istiyor musunuz?"
-msgstr[1] "Bu %1 ögeyi gerçekten silmek nstiyor musunuz?"
+msgstr[0] "Bu %1 ögeyi silmek istiyor musunuz?"
+msgstr[1] "Bu %1 ögeyi silmek istiyor musunuz?"
 
 #: app/Panel/panelfunc.cpp:900
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
-msgstr "<qt><p><b>%1</b> klasörü boş değil.</p>"
+msgstr "<qt><p><b>%1</b> dizini boş değil.</p>"
 
 #: app/Panel/panelfunc.cpp:901
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
-msgstr "<p>Bu atlansın mı yoksa hepsi çöpe mi atılsın?</p></qt>"
+msgstr "<p>Bu atlansın mı silinsin mi?</p></qt>"
 
 #: app/Panel/panelfunc.cpp:902
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
-msgstr "<p>Bu atlansın mı yoksa hepsi silinsin mi?</p></qt>"
+msgstr "<p>Atlansın mı hepsi silinsin mi?</p></qt>"
 
 #: app/Panel/panelfunc.cpp:903
 #, kde-format
@@ -7712,7 +7740,7 @@ msgstr "Hepsini Çöpe &At"
 #: app/Panel/panelfunc.cpp:904
 #, kde-format
 msgid "&Delete All"
-msgstr "&Tümünü Sil"
+msgstr "&Hepsini Sil"
 
 #: app/Panel/panelfunc.cpp:942
 #, kde-format
@@ -7745,7 +7773,7 @@ msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost.</p></qt>"
 msgstr ""
-"<qt><p><b>%1.%2</b> arşivi zaten var. Üzerine yazmak istiyor musunuz?</"
+"<qt><p><b>%1.%2</b> arşivi zaten mevcut. Üzerine yazmak istiyor musunuz?</"
 "p><p>Eski arşivin tüm verisi kaybolacaktır.</p></qt>"
 
 #: app/Panel/panelfunc.cpp:1068
@@ -7755,19 +7783,19 @@ msgid ""
 "</p><p>Zip will replace identically named entries in the zip archive or add "
 "entries for new names.</p></qt>"
 msgstr ""
-"<qt><p><b>%1.%2</b> arşiv dosyası zaten var. Üzerine yazmak ister misiniz?</"
+"<qt><p><b>%1.%2</b> arşiv dosyası zaten var.. Üzerine yazmak ister misiniz?</"
 "p><p>ZIP, ad olarak aynı olanları değiştirecek veya yeni adlıları arşive "
 "ekleyecek.</p></qt>"
 
 #: app/Panel/panelfunc.cpp:1074
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
-msgstr "Dosyalar sanal bir hedefe paketlenemez."
+msgstr "Dosyalar sanal bir hedefe açılamaz."
 
 #: app/Panel/panelfunc.cpp:1108
 #, kde-format
 msgid "Unpack %1 to:"
-msgstr "%1 paketini şuraya aç:"
+msgstr "%1 açılacağı yer:"
 
 #: app/Panel/panelfunc.cpp:1110
 #, kde-format
@@ -7780,7 +7808,7 @@ msgstr[1] "%1 dosyayı buraya aç:"
 #: app/Panel/PanelView/krinterdetailedview.cpp:289
 #, kde-format
 msgid "Columns"
-msgstr "Sütunlar"
+msgstr "Kolonlar"
 
 #: app/Panel/PanelView/krinterdetailedview.cpp:303
 #, kde-format
@@ -7805,24 +7833,26 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 / %2, %3 / %4"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
-msgstr "Klasörlere &süzgeç uygula"
+msgstr "Dizinlere süzgeç uygula"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
 msgid "Filter Files"
-msgstr "Dosyaları Süz"
+msgstr "Dosyaları Filtrele"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
-msgstr "Klasörlere &seçimi uygula"
+msgstr "Seçimi dizinlere uygula"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, kde-format
 msgid "Select Files"
-msgstr "Dosyaları Seç"
+msgstr "Dosyaları Seçin"
 
 #: app/Panel/PanelView/krviewfactory.cpp:54
 #, kde-format
@@ -7837,7 +7867,7 @@ msgstr "&Özet Görünüm"
 #: app/Panel/PanelView/krviewitem.cpp:62
 #, kde-format
 msgid "Climb up the folder tree"
-msgstr "Klasör ağacında yukarı tırman"
+msgstr "Dizin ağacında yukarı tırman"
 
 #: app/Panel/PanelView/krviewitem.cpp:75
 #, kde-format
@@ -7995,17 +8025,17 @@ msgstr "Ağaç Penceresi: Yerel dosya sisteminin ağaç görünümü"
 #: app/Panel/sidebar.cpp:63
 #, kde-format
 msgid "Preview Panel: display a preview of the current file"
-msgstr "Önizleme Penceresi: Seçili dosya içeriğini gösterir"
+msgstr "Ön-görünüm Penceresi: Seçili dosya içeriğini gösterir"
 
 #: app/Panel/sidebar.cpp:70
 #, kde-format
 msgid "View Panel: view the current file"
-msgstr "Görünüm Paneli: Seçili dosyayı görüntüler"
+msgstr "Görünüm Penceresi:Seçili dosyayı görüntüler"
 
 #: app/Panel/sidebar.cpp:77
 #, kde-format
 msgid "Disk Usage Panel: view the usage of a folder"
-msgstr "Disk Kullanım Paneli: Bir klasörün kullanımını görüntüle"
+msgstr "Disk Kullanım Panosu: bir dizinin kullanımını görüntüle"
 
 #: app/Panel/sidebar.cpp:118 app/Panel/sidebar.cpp:225
 #, kde-format
@@ -8020,7 +8050,7 @@ msgstr "Ağaç:"
 #: app/Panel/sidebar.cpp:213
 #, kde-format
 msgid "Preview:"
-msgstr "Önizleme:"
+msgstr "Ön-görünüm:"
 
 #: app/Panel/sidebar.cpp:218
 #, kde-format
@@ -8030,7 +8060,7 @@ msgstr "Görünüm:"
 #: app/Panel/sidebar.cpp:247
 #, kde-format
 msgid "Preview: %1"
-msgstr "Önizleme: %1"
+msgstr "Ön izleme: %1"
 
 #: app/Panel/sidebar.cpp:254
 #, kde-format
@@ -8067,22 +8097,22 @@ msgstr "&Grup Seçim..."
 #: app/Panel/viewactions.cpp:32
 #, kde-format
 msgid "&Select All"
-msgstr "&Tümünü Seç"
+msgstr "&Hepsini Seç"
 
 #: app/Panel/viewactions.cpp:33
 #, kde-format
 msgid "&Unselect Group..."
-msgstr "Grup Seçi&mini Kaldır..."
+msgstr "Grubu Seç&me..."
 
 #: app/Panel/viewactions.cpp:34
 #, kde-format
 msgid "U&nselect All"
-msgstr "Tümü&nün Seçimini Kaldır"
+msgstr "Hepsini &Bırak"
 
 #: app/Panel/viewactions.cpp:35
 #, kde-format
 msgid "&Invert Selection"
-msgstr "Seçimi &Tersine Çevir"
+msgstr "Seçimi &Tersine-çevir"
 
 #: app/Panel/viewactions.cpp:36
 #, kde-format
@@ -8107,7 +8137,7 @@ msgstr "Görünüm Seçenekleri Menüsünü Göster"
 #: app/Panel/viewactions.cpp:42
 #, kde-format
 msgid "Set Focus to the Panel"
-msgstr "Odağı Panele Ayarla"
+msgstr "Odağı Panoya Ayarla"
 
 #: app/Panel/viewactions.cpp:43
 #, kde-format
@@ -8122,7 +8152,7 @@ msgstr "Önizlemeleri Göster"
 #: app/Panel/viewactions.cpp:45
 #, kde-format
 msgid "Save settings as default"
-msgstr "Ayarları Öntanımlı Olarak Kaydet"
+msgstr "Ayarları varsayılan olarak kaydet"
 
 #: app/Panel/viewactions.cpp:48
 #, kde-format
@@ -8132,22 +8162,23 @@ msgstr "&Grup seçim"
 #: app/Panel/viewactions.cpp:49
 #, kde-format
 msgid "Select all files in the current folder"
-msgstr "Gçerli klasördeki tüm dosyaları seç"
+msgstr "Mevcut dizindeki tüm dosyaları seç"
 
 #: app/Panel/viewactions.cpp:50
 #, kde-format
 msgid "Unselect all"
-msgstr "Tümünün seçimini kaldır"
+msgstr "Hiçbirini seçme"
 
 #: app/Panel/viewactions.cpp:51
 #, kde-format
 msgid "Save settings as default for new instances of this view type"
-msgstr "Bu görünüm türü için ayarları öntanımlı olarak kaydet"
+msgstr "Bu görünüm türü için ayarları varsayılan olarak kaydet"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in a new tab"
 msgid "Open a new tab"
-msgstr "Yeni bir sekme aç"
+msgstr "Yeni bir sekmede aç"
 
 #: app/paneltabbar.cpp:172
 #, kde-format
@@ -8193,7 +8224,7 @@ msgstr "Metin bulundu:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "Boşta"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -8220,7 +8251,7 @@ msgstr ""
 #: app/Search/krsearchdialog.cpp:432
 #, kde-format
 msgid "Found 0 matches."
-msgstr "Eşleşme yok."
+msgstr "Uyan yok"
 
 #: app/Search/krsearchdialog.cpp:466
 #, kde-format
@@ -8256,12 +8287,12 @@ msgstr "Sorgu adı"
 #: app/Splitter/combiner.cpp:51
 #, kde-format
 msgid "Krusader::Combining..."
-msgstr "Krusader::Birleştiriyor..."
+msgstr "Krusader::Birleştiriyor.."
 
 #: app/Splitter/combiner.cpp:52
 #, kde-format
 msgid "Combining the file %1..."
-msgstr "%1 dosyası birleştiriliyor..."
+msgstr "%1 dosyası birleştiriliyor.."
 
 #: app/Splitter/combiner.cpp:62
 #, kde-format
@@ -8270,7 +8301,8 @@ msgid ""
 "Validity checking is impossible without it. Continue combining?"
 msgstr ""
 "CRC bilgi dosyası (%1) eksik.\n"
-"O olmadan geçerlilik denetimi olanaklı değildir. Birleştirme sürdürülsün mü?"
+"O olmadan geçerlilik kontrolü mümkün değildir. Birleştirmeye devam edilsin "
+"mi?"
 
 #: app/Splitter/combiner.cpp:96
 #, kde-format
@@ -8289,8 +8321,8 @@ msgid ""
 "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "\n"
-"Sağlam bir CRC dosyası olmadan bütünlük denetimi olanaksız. Birleştirme "
-"sürdürülsün mü?"
+"Sağlam bir CRC dosyası olmadan bütünlük denetimi olanaksız. Birleştirmeye "
+"devam edilsin mi?"
 
 #: app/Splitter/combiner.cpp:177 app/Splitter/splitter.cpp:180
 #: app/Synchronizer/synchronizer.cpp:1110
@@ -8317,17 +8349,17 @@ msgstr "CRC imza özeti hatalı, dosya zarar görmüş olabilir."
 #: app/Splitter/splitter.cpp:72
 #, kde-format
 msgid "Krusader::Splitting..."
-msgstr "Krusader::Bölüyor..."
+msgstr "Krusader::Bölüyor.."
 
 #: app/Splitter/splitter.cpp:73
 #, kde-format
 msgid "Splitting the file %1..."
-msgstr "%1 dosyası bölünüyor..."
+msgstr "%1 dosyası bölünüyor.."
 
 #: app/Splitter/splitter.cpp:76
 #, kde-format
 msgid "Cannot split a folder."
-msgstr "Bir klasör ayrılamaz."
+msgstr "Bir dizin ayrılamaz."
 
 #: app/Splitter/splitter.cpp:121
 #, kde-format
@@ -8342,22 +8374,22 @@ msgstr "%1 dosyasına yazılamıyor: %2"
 #: app/Splitter/splittergui.cpp:52
 #, kde-format
 msgid "1.44 MB (3.5\")"
-msgstr "1,44 MB (3,5\")"
+msgstr "1.44 MB (3.5\")"
 
 #: app/Splitter/splittergui.cpp:53
 #, kde-format
 msgid "1.2 MB (5.25\")"
-msgstr "1,2 MB (5,25\")"
+msgstr "1.2 MB (5.25\")"
 
 #: app/Splitter/splittergui.cpp:54
 #, kde-format
 msgid "720 kB (3.5\")"
-msgstr "720 kB (3,5\")"
+msgstr "720 kB (3.5\")"
 
 #: app/Splitter/splittergui.cpp:55
 #, kde-format
 msgid "360 kB (5.25\")"
-msgstr "360 kB (5,25\")"
+msgstr "360 kB (5.25\")"
 
 #: app/Splitter/splittergui.cpp:56
 #, kde-format
@@ -8382,7 +8414,7 @@ msgstr "700 MB (CD-R)"
 #: app/Splitter/splittergui.cpp:76
 #, kde-format
 msgid "Split the file %1 to folder:"
-msgstr "%1 dosyasını klasöre ayır:"
+msgstr "%1 dosyasını dizine ayır:"
 
 #: app/Splitter/splittergui.cpp:93
 #, kde-format
@@ -8392,7 +8424,7 @@ msgstr "Kullanıcı Tanımlı"
 #: app/Splitter/splittergui.cpp:102
 #, kde-format
 msgid "Max file size:"
-msgstr "En büyük dosya boyu:"
+msgstr "Enfazla dosya boyu:"
 
 #: app/Splitter/splittergui.cpp:113
 #, kde-format
@@ -8427,22 +8459,22 @@ msgstr "Krusader::Bölücü"
 #: app/Splitter/splittergui.cpp:235
 #, kde-format
 msgid "The folder path URL is malformed."
-msgstr "Klasör yol URL'si bozuk."
+msgstr "Dizin yol URL'si bozuk."
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:38
 #, kde-format
 msgid "Krusader::Feed to listbox"
-msgstr "Krusader::Liste kutusuna besle"
+msgstr "Krusader::Listeye dök"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:73
 #, kde-format
 msgid "No elements to feed."
-msgstr "Beslenecek öge yok."
+msgstr "Besleme ögesi yok."
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:87
 #, kde-format
 msgid "Synchronize results"
-msgstr "Sonuçları eşzamanla"
+msgstr "Sonuçları Eşgüdümle"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:104
 #, kde-format
@@ -8467,7 +8499,7 @@ msgstr "Her ikisi"
 #: app/Synchronizer/feedtolistboxdialog.cpp:129
 #, kde-format
 msgid "Selected files only"
-msgstr "Yalnızca seçilen dosyalar"
+msgstr "Sadece seçilen dosyalar"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:185
 #, kde-format
@@ -8477,7 +8509,7 @@ msgstr "%1 açılamaz."
 #: app/Synchronizer/synchronizedialog.cpp:32
 #, kde-format
 msgid "Krusader::Synchronize"
-msgstr "Krusader::Eşzamanla"
+msgstr "Krusader::Eşgüdümle"
 
 #: app/Synchronizer/synchronizedialog.cpp:39
 #, kde-format
@@ -8529,7 +8561,7 @@ msgstr "Üstüne yazmayı onayla"
 #: app/Synchronizer/synchronizedialog.cpp:99
 #, kde-format
 msgid "&Start"
-msgstr "&Başlat"
+msgstr "&Başla"
 
 #: app/Synchronizer/synchronizedialog.cpp:106
 #, kde-format
@@ -8552,7 +8584,7 @@ msgstr "Duraklat"
 #: app/Synchronizer/synchronizer.cpp:1303
 #, kde-format
 msgid "Resume"
-msgstr "Sürdür"
+msgstr "Devam"
 
 #: app/Synchronizer/synchronizer.cpp:154 app/Synchronizer/synchronizer.cpp:635
 #, kde-format
@@ -8562,7 +8594,7 @@ msgstr "Dosya sayısı: %1"
 #: app/Synchronizer/synchronizer.cpp:186
 #, kde-format
 msgid "Number of compared folders: %1"
-msgstr "Karşılaştırılan klasörlerin sayısı: %1"
+msgstr "Karşılaştırılan dizinlerin sayısı: %1"
 
 #: app/Synchronizer/synchronizer.cpp:1159
 #: app/Synchronizer/synchronizer.cpp:1164
@@ -8578,7 +8610,7 @@ msgstr "%1 dosyası silinirken hata oluştu."
 #: app/Synchronizer/synchronizer.cpp:1336
 #, kde-format
 msgid "Krusader::Synchronizer"
-msgstr "Krusader::Eşzamanlayıcı"
+msgstr "Krusader::Eşgüdümleyici"
 
 #: app/Synchronizer/synchronizer.cpp:1337
 #, kde-format
@@ -8589,38 +8621,37 @@ msgstr "Adresler KGet'e aktarılıyor"
 #: app/Synchronizer/synchronizergui.cpp:1295
 #, kde-format
 msgid "Krusader::Synchronize Folders"
-msgstr "Krusader::Klasörleri Eşzamanla"
+msgstr "Krusader::Dizinleri Eşleştir"
 
 #: app/Synchronizer/synchronizergui.cpp:154
 #, kde-format
 msgid "Folder Comparison"
-msgstr "Klasör Karşılaştırma"
+msgstr "Dizin Karşılaştırma"
 
 #: app/Synchronizer/synchronizergui.cpp:165
 #, kde-format
 msgid "File &Filter:"
-msgstr "Dosya &Süzgeci:"
+msgstr "Dosya &Filtresi:"
 
 #: app/Synchronizer/synchronizergui.cpp:187
 #, kde-format
 msgid "The left base folder used during the synchronization process."
-msgstr "Eşzamanlama sırasında soldaki temel klasör kullanıldı."
+msgstr "Eşzamanlama sırasında soldaki temel dizin kullanıldı."
 
 #: app/Synchronizer/synchronizergui.cpp:220
 #, kde-format
 msgid "The right base folder used during the synchronization process."
-msgstr "Eşzamanlama sırasında sağdaki temel klasör kullanıldı."
+msgstr "Eşzamanlama sırasında sağdaki temel dizin kullanıldı."
 
 #: app/Synchronizer/synchronizergui.cpp:234
 #, kde-format
 msgid "Recurse subfolders"
-msgstr "Alt klasörleri özyinele"
+msgstr "Altdizinlerde yinele"
 
 #: app/Synchronizer/synchronizergui.cpp:237
 #, kde-format
 msgid "Compare not only the base folders but their subfolders as well."
-msgstr ""
-"Yalnızca ana klasörleri değil, alt klasörlerini de aynı biçimde karşılaştır."
+msgstr "Sadece ana dizini değil, alt dizinlerini de aynı şekilde karşılaştır."
 
 #: app/Synchronizer/synchronizergui.cpp:238
 #, kde-format
@@ -8640,7 +8671,7 @@ msgstr "Aynı büyüklükteki çift dosyaları bir de içerikleriyle karşılaş
 #: app/Synchronizer/synchronizergui.cpp:247
 #, kde-format
 msgid "Ignore Date"
-msgstr "Tarihi Yok Say"
+msgstr "Tarihi Umursama"
 
 #: app/Synchronizer/synchronizergui.cpp:250
 #, kde-format
@@ -8648,8 +8679,8 @@ msgid ""
 "<p>Ignore date information during the compare process.</p><p><b>Note</b>: "
 "useful if the files are located on network filesystems or in archives.</p>"
 msgstr ""
-"<p>Karşılaştırma sürecinde tarih bilgisini yok say.</p><p><b>Not</b>: "
-"Dosyalar ağ dosya sisteminde veya arşivde bulunduğunda yararlıdır.</p>"
+"<p>Karşılaştırma sürecinde tarih bilgisini yoksay.</p><p><b>Not</b>: "
+"Dosyalar ağ dosya sisteminde veya arşivde bulunduğunda faydalıdır.</p>"
 
 #: app/Synchronizer/synchronizergui.cpp:251
 #, kde-format
@@ -8664,15 +8695,15 @@ msgid ""
 "deleted, the other differing ones will be copied from right to left.</"
 "p><p><b>Note</b>: useful when updating a folder from a file server.</p>"
 msgstr ""
-"<p><b>Benzeşimsiz kip</b></p><p>Sol taraf hedef, sağ taraf kaynak klasördür. "
-"Yalnızca soldaki klasörde bulunan dosyalar silinir, diğer farklı olanlar "
+"<p><b>Asimetrik kip</b></p><p>Sol taraf hedef, sağ taraf kaynak klasördür. "
+"Sadece soldaki klasörde bulunan dosyalar silinir, diğer farklı olanlar "
 "sağdan sola kopyalanır.</p><p><b>Not</b>: Bir dosya sunucusundan klasör "
 "güncellerken yararlıdır.</p>"
 
 #: app/Synchronizer/synchronizergui.cpp:255
 #, kde-format
 msgid "Ignore Case"
-msgstr "BÜYÜK/küçük Harf Yok Say"
+msgstr "Büyük/Küçük Harfleri Dikkate Alma"
 
 #: app/Synchronizer/synchronizergui.cpp:258
 #, kde-format
@@ -8680,8 +8711,8 @@ msgid ""
 "<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when "
 "synchronizing Windows filesystems.</p>"
 msgstr ""
-"<p>Dosya adı karşılaştırmasını BÜYÜK/küçük harf duyarlı yapma.</p><p><b>Not</"
-"b>: Windows dosya sistemleriyle eşleme yaparken faydalıdır.</p>"
+"<p>Dosya adı karşılaştırmasını büyük küçük harfe duyarlı yapma.</"
+"p><p><b>Not</b>: Windows dosya sistemleriyle eşleme yaparken faydalıdır.</p>"
 
 #: app/Synchronizer/synchronizergui.cpp:265
 #, kde-format
@@ -8716,7 +8747,7 @@ msgstr "Silinmek için işaretlenen dosyaları göster."
 #: app/Synchronizer/synchronizergui.cpp:306
 #, kde-format
 msgid "Show files that exist on both sides."
-msgstr "Her iki tarafta da var olan dosyaları göster."
+msgstr "Her iki tarafta da mevcut olan dosyaları göster."
 
 #: app/Synchronizer/synchronizergui.cpp:308
 #, kde-format
@@ -8726,7 +8757,7 @@ msgstr "İkiz (aynı) olanlar"
 #: app/Synchronizer/synchronizergui.cpp:312
 #, kde-format
 msgid "Show files that exist on one side only."
-msgstr "Yalnızca bir tarafta var olan dosyaları göster."
+msgstr "Sadece bir tarafta mevcut olan dosyaları göster"
 
 #: app/Synchronizer/synchronizergui.cpp:314
 #, kde-format
@@ -8767,7 +8798,7 @@ msgstr "<=>"
 #: app/Synchronizer/synchronizergui.cpp:372
 #, kde-format
 msgid "&Synchronizer"
-msgstr "&Eşzamanlayıcı"
+msgstr "&Eşgüdümleyici"
 
 #: app/Synchronizer/synchronizergui.cpp:383
 #, kde-format
@@ -8777,7 +8808,7 @@ msgstr "&Seçenekler"
 #: app/Synchronizer/synchronizergui.cpp:390
 #, kde-format
 msgid "Parallel threads:"
-msgstr "Koşut iş parçacıkları:"
+msgstr "Koşut İşparçacıkları"
 
 #: app/Synchronizer/synchronizergui.cpp:400
 #, kde-format
@@ -8811,22 +8842,22 @@ msgstr "gün"
 #: app/Synchronizer/synchronizergui.cpp:414
 #, kde-format
 msgid "Time shift (right-left):"
-msgstr "Zaman kayması (sağ-sol):"
+msgstr "Zaman değişimi (sağ-sol)"
 
 #: app/Synchronizer/synchronizergui.cpp:433
 #, kde-format
 msgid "Ignore hidden files"
-msgstr "Gizli dosyaları yok say"
+msgstr "Gizli dosyaları yoksay"
 
 #: app/Synchronizer/synchronizergui.cpp:447
 #, kde-format
 msgid "Profile manager (Ctrl+P)."
-msgstr "Profil yöneticisi (Ctrl+P)."
+msgstr "Görünüm Yönetici (Ctrl+P)."
 
 #: app/Synchronizer/synchronizergui.cpp:453
 #, kde-format
 msgid "Swap sides (Ctrl+S)."
-msgstr "Tarafları birbirleriyle değiştir (Ctrl+S)."
+msgstr "Tarafları takas yap (Ctrl+S)."
 
 #: app/Synchronizer/synchronizergui.cpp:463
 #, kde-format
@@ -8843,52 +8874,52 @@ msgstr "Sessiz"
 #: app/Synchronizer/synchronizergui.cpp:1471
 #, kde-format
 msgid "Scroll Results"
-msgstr "Sonuçları Kaydır"
+msgstr "Sonuçları izlet"
 
 #: app/Synchronizer/synchronizergui.cpp:492
 #, kde-format
 msgid "Synchronize"
-msgstr "Eşzamanla"
+msgstr "Eşgüdümle"
 
 #: app/Synchronizer/synchronizergui.cpp:608
 #, kde-format
 msgid "Selected files from targ&et folder:"
-msgstr "&Hedef klasörden seçilen dosyalar:"
+msgstr "&Hedef dizinden seçilen dosyalar:"
 
 #: app/Synchronizer/synchronizergui.cpp:609
 #, kde-format
 msgid "Selected files from sou&rce folder:"
-msgstr "&Kaynak klasörden seçilen dosyalar:"
+msgstr "&Kaynak dizinden seçilen dosyalar:"
 
 #: app/Synchronizer/synchronizergui.cpp:611
 #, kde-format
 msgid "Selected files from &left folder:"
-msgstr "S&ol klasörden seçilen dosyalar:"
+msgstr "S&ol dizinden seçilen dosyalar:"
 
 #: app/Synchronizer/synchronizergui.cpp:612
 #, kde-format
 msgid "Selected files from &right folder:"
-msgstr "S&ağ klasörden seçilen dosyalar:"
+msgstr "S&ağ dizinden seçilen dosyalar:"
 
 #: app/Synchronizer/synchronizergui.cpp:614
 #, kde-format
 msgid "Targ&et folder:"
-msgstr "He&def klasör:"
+msgstr "Hedef d&izin:"
 
 #: app/Synchronizer/synchronizergui.cpp:615
 #, kde-format
 msgid "Sou&rce folder:"
-msgstr "&Kaynak klasör:"
+msgstr "&Kaynak dizin:"
 
 #: app/Synchronizer/synchronizergui.cpp:617
 #, kde-format
 msgid "&Left folder:"
-msgstr "So&l klasör:"
+msgstr "So&l dizin:"
 
 #: app/Synchronizer/synchronizergui.cpp:618
 #, kde-format
 msgid "&Right folder:"
-msgstr "&Sağ klasör:"
+msgstr "&Sağ dizin:"
 
 #: app/Synchronizer/synchronizergui.cpp:651
 #, kde-format
@@ -8898,12 +8929,12 @@ msgstr "Adres sol veya sağ taban adresinin türünden olmalıdır."
 #: app/Synchronizer/synchronizergui.cpp:709
 #, kde-format
 msgid "Synchronize Folders"
-msgstr "Klasörleri Eşzamanla"
+msgstr "Dizinleri Eşzamanla"
 
 #: app/Synchronizer/synchronizergui.cpp:711
 #, kde-format
 msgid "E&xclude"
-msgstr "Dışarıda &tut"
+msgstr "Hariç &tut"
 
 #: app/Synchronizer/synchronizergui.cpp:713
 #, kde-format
@@ -8948,12 +8979,12 @@ msgstr "&Dosyaları Karşılaştır"
 #: app/Synchronizer/synchronizergui.cpp:738
 #, kde-format
 msgid "C&opy selected to clipboard (left)"
-msgstr "&Seçiliyi panoya kopyala (sol)"
+msgstr "&Seçileni panoya kopyala (sol)"
 
 #: app/Synchronizer/synchronizergui.cpp:740
 #, kde-format
 msgid "Co&py selected to clipboard (right)"
-msgstr "Seçiliyi &panoya kopyala (sağ)"
+msgstr "Seçileni &panoya kopyala (sağ)"
 
 #: app/Synchronizer/synchronizergui.cpp:745
 #, kde-format
@@ -8988,12 +9019,12 @@ msgstr "Öge seçimlerini bırak"
 #: app/Synchronizer/synchronizergui.cpp:959
 #, kde-format
 msgid "The target folder must not be empty."
-msgstr "Hedef klasör boş olamaz."
+msgstr "Hedef dizin boş olamaz."
 
 #: app/Synchronizer/synchronizergui.cpp:964
 #, kde-format
 msgid "The source folder must not be empty."
-msgstr "Kaynak klasör boş olamaz."
+msgstr "Kaynak dizin boş olamaz."
 
 #: app/Synchronizer/synchronizergui.cpp:1204
 #, kde-format
@@ -9035,14 +9066,16 @@ msgid "Move Current Tab to Other Side"
 msgstr "Geçerli Sekmeyi Diğer Tarafa Taşı"
 
 #: app/tabactions.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Left"
-msgstr "Geçerli Sekmeyi Sola Taşı"
+msgstr "Geçerli Sekmeyi Diğer Tarafa Taşı"
 
 #: app/tabactions.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move Current Tab to Other Side"
 msgid "Move Current Tab to the Right"
-msgstr "Geçerli Sekmeyi Sağa Taşı"
+msgstr "Geçerli Sekmeyi Diğer Tarafa Taşı"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9050,9 +9083,10 @@ msgid "Close Current Tab"
 msgstr "Geçerli Sekmeyi Kapat"
 
 #: app/tabactions.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Undo Close Tab"
-msgstr "Sekme Kapatmayı Geri Al"
+msgstr "Sekmenin Kilidini Aç"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9080,9 +9114,10 @@ msgid "Lock Tab"
 msgstr "Sekmeyi Kilitle"
 
 #: app/tabactions.cpp:36 app/tabactions.cpp:61
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Previous Tab"
 msgid "Pin Tab"
-msgstr "Sekmeyi İğnele"
+msgstr "Önceki Sekme"
 
 #: app/tabactions.cpp:59
 #, kde-format
@@ -9090,14 +9125,15 @@ msgid "Unlock Tab"
 msgstr "Sekmenin Kilidini Aç"
 
 #: app/tabactions.cpp:61
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock Tab"
 msgid "Unpin Tab"
-msgstr "Sekme İğnesini Kaldır"
+msgstr "Sekmenin Kilidini Aç"
 
 #: app/UserAction/expander.cpp:62
 #, kde-format
 msgid "Needed panel specification missing in expander %1"
-msgstr "Gereken panel belirtimi, %1 genişleticisinde eksik"
+msgstr "Gerekli pencere tanımlaması %1 açımlayıcısında bulunamadı."
 
 #: app/UserAction/expander.cpp:77
 #, kde-format
@@ -9107,7 +9143,7 @@ msgstr "Genişletici: %1 için kötü değişken: %2 bir geçerli öge seçici d
 #: app/UserAction/expander.cpp:262
 #, kde-format
 msgid "Panel's Path..."
-msgstr "Panelin Yolu..."
+msgstr "Pencere Yol'u"
 
 #: app/UserAction/expander.cpp:265 app/UserAction/expander.cpp:333
 #: app/UserAction/expander.cpp:367 app/UserAction/expander.cpp:401
@@ -9124,7 +9160,7 @@ msgstr "Sayısı..."
 #: app/UserAction/expander.cpp:290
 #, kde-format
 msgid "Count:"
-msgstr "Sayım:"
+msgstr "Sayı:"
 
 #: app/UserAction/expander.cpp:306
 #, kde-format
@@ -9134,12 +9170,12 @@ msgstr "Açımlayıcı: Sayım için yanlış girdi: %1 geçerli bir tanımlayı
 #: app/UserAction/expander.cpp:316
 #, kde-format
 msgid "Filter Mask (*.h, *.cpp, etc.)"
-msgstr "Süzgeç Maskesi (*.h, *.cpp vb.)"
+msgstr "Süzme Maskesi: *.h, *.cpp, vs."
 
 #: app/UserAction/expander.cpp:329
 #, kde-format
 msgid "Current File (!= Selected File)..."
-msgstr "Geçerli Dosya (!= Seçili Dosya)..."
+msgstr "Mevcut Dosya ( EŞİT DEĞİLDİR Seçili Dosya !)"
 
 #: app/UserAction/expander.cpp:332 app/UserAction/expander.cpp:365
 #: app/UserAction/expander.cpp:399 app/UserAction/expander.cpp:737
@@ -9161,13 +9197,13 @@ msgstr "Hangi ögeler:"
 #: app/UserAction/expander.cpp:364
 #, kde-format
 msgid "Separator between the items (optional):"
-msgstr "Ögeler arasındaki ayırıcı (isteğe bağlı):"
+msgstr "Ögeler arasındaki ayraç (seçimlik):"
 
 #: app/UserAction/expander.cpp:366 app/UserAction/expander.cpp:400
 #: app/UserAction/expander.cpp:738
 #, kde-format
 msgid "Mask (optional, all but 'Selected'):"
-msgstr "Maskele (isteğe bağlı; ancak 'Seçili' dışında hepsi):"
+msgstr "Maskele (seçimlik, ama 'Seçili' ile hepsi):"
 
 #: app/UserAction/expander.cpp:394
 #, kde-format
@@ -9177,17 +9213,17 @@ msgstr "Öge Lstesinin Dosya Adı..."
 #: app/UserAction/expander.cpp:398
 #, kde-format
 msgid "Separator between the items (optional)"
-msgstr "Ögeler arasındaki ayırıcı (isteğe bağlı)"
+msgstr "Ögeler arasındaki ayıraç (seçimlik)"
 
 #: app/UserAction/expander.cpp:419
 #, kde-format
 msgid "Expander: temporary file could not be opened (%1)"
-msgstr "Genişletici: Geçici dosya açılamadı (%1)"
+msgstr "Genişletici: geçici dosya açılamadı (%1)"
 
 #: app/UserAction/expander.cpp:440
 #, kde-format
 msgid "Manipulate the Selection..."
-msgstr "Seçimi Değiştir..."
+msgstr "Seçileni Değiştir..."
 
 #: app/UserAction/expander.cpp:443
 #, kde-format
@@ -9207,7 +9243,7 @@ msgstr "Bir Konuma Atla..."
 #: app/UserAction/expander.cpp:474
 #, kde-format
 msgid "Choose a path:"
-msgstr "Bir yol seçin:"
+msgstr "Lütfen yol'u belirtin:"
 
 #: app/UserAction/expander.cpp:475
 #, kde-format
@@ -9217,12 +9253,12 @@ msgstr "Konumu yeni sekmede aç"
 #: app/UserAction/expander.cpp:486
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Goto."
-msgstr "Genişletici: Goto için en az 1 parametre gerekiyor."
+msgstr "Genişletici: Goto için en azından 1 parametre gerekiyor."
 
 #: app/UserAction/expander.cpp:518
 #, kde-format
 msgid "Ask Parameter from User..."
-msgstr "Kullanıcıya Parametre Sor..."
+msgstr "Kullanıcıya Paramtre Sor..."
 
 #: app/UserAction/expander.cpp:521
 #, kde-format
@@ -9232,12 +9268,12 @@ msgstr "Soru:"
 #: app/UserAction/expander.cpp:522
 #, kde-format
 msgid "Preset (optional):"
-msgstr "Önayarlı (isteğe bağlı):"
+msgstr "Ön-ayarlı (seçimlik):"
 
 #: app/UserAction/expander.cpp:523
 #, kde-format
 msgid "Caption (optional):"
-msgstr "Başlık (isteğe bağlı):"
+msgstr "Başlık (seçimlik):"
 
 #: app/UserAction/expander.cpp:530
 #, kde-format
@@ -9262,12 +9298,12 @@ msgstr "Kopyalanacak şey:"
 #: app/UserAction/expander.cpp:562
 #, kde-format
 msgid "Append to current clipboard content with this separator (optional):"
-msgstr "Bu ayırıcı ile geçerli pano içeriğine ekle (isteğe bağlı):"
+msgstr "Mevcut hafıza-içeriğine bu ayıraç ile ekle (seçimlik):"
 
 #: app/UserAction/expander.cpp:568
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Clipboard."
-msgstr "Genişletici: Pano için en az 1 parametre gereklidir."
+msgstr "Genişletici: Taşıma Panosu için en az 1 parametre gereklidir."
 
 #: app/UserAction/expander.cpp:574
 #, kde-format
@@ -9277,7 +9313,7 @@ msgstr "Genişletici: %Each%, %Clipboard% için ikinci parametre olmamalı"
 #: app/UserAction/expander.cpp:588
 #, kde-format
 msgid "Copy a File/Folder..."
-msgstr "Bir Dosya/Klasör Kopyala..."
+msgstr "Bir Dosya/Dizin Kopyala..."
 
 #: app/UserAction/expander.cpp:592
 #, kde-format
@@ -9297,17 +9333,17 @@ msgstr "Genişletici: %Each%, %Copy% için ikinci parametre olmamalı"
 #: app/UserAction/expander.cpp:620
 #, kde-format
 msgid "Expander: invalid URLs in %_Copy(\"src\", \"dest\")%"
-msgstr "Genişletici: %_Copy(\"kaynak\", \"hedef\")% içinde geçersiz adresler"
+msgstr "Genişletici: %_Copy(\"src\", \"dest\")% içinde geçersiz adresler"
 
 #: app/UserAction/expander.cpp:632
 #, kde-format
 msgid "Move/Rename a File/Folder..."
-msgstr "Bir Dosya/Klasör Taşı/Yeniden Adlandır..."
+msgstr "Bir Dosya/Dizin Taşı/Yeniden Adlandır..."
 
 #: app/UserAction/expander.cpp:635
 #, kde-format
 msgid "What to move/rename:"
-msgstr "Neyi Taşı/Adlandır:"
+msgstr "Ne'ye Taşı/Adlandır:"
 
 #: app/UserAction/expander.cpp:636
 #, kde-format
@@ -9332,13 +9368,13 @@ msgstr "Genişletici: %_Move(\"src\", \"dest\")% içinde geçersiz adresler"
 #: app/UserAction/expander.cpp:671
 #, kde-format
 msgid "Load a Synchronizer Profile..."
-msgstr "Bir Eşzamanlayıcı Profili Yükle..."
+msgstr "Eşgüdümleyici-görünümünü aç.."
 
 #: app/UserAction/expander.cpp:674 app/UserAction/expander.cpp:696
 #: app/UserAction/expander.cpp:716
 #, kde-format
 msgid "Choose a profile:"
-msgstr "Bir profil seç:"
+msgstr "Görünüm seç:"
 
 #: app/UserAction/expander.cpp:679
 #, kde-format
@@ -9348,7 +9384,7 @@ msgstr "Genişletici: %_Sync(profile)% için bir profil belirtilmedi"
 #: app/UserAction/expander.cpp:693
 #, kde-format
 msgid "Load a Searchmodule Profile..."
-msgstr "Bir Arama Modülü Profili Aç..."
+msgstr "Modül-arama-görünümü aç.."
 
 #: app/UserAction/expander.cpp:701
 #, kde-format
@@ -9358,7 +9394,7 @@ msgstr "Genişletici: %_NewSearch(profile)% için bir profil belirtilmedi"
 #: app/UserAction/expander.cpp:713
 #, kde-format
 msgid "Load a Panel Profile..."
-msgstr "Bir Panel Profili Yükle..."
+msgstr "Bir panel Profili Yükle..."
 
 #: app/UserAction/expander.cpp:721
 #, kde-format
@@ -9375,12 +9411,12 @@ msgstr "Herbiri için Ayrı Uygulama Çağrısı..."
 #: app/UserAction/expander.cpp:767
 #, kde-format
 msgid "Set Sorting for This Panel..."
-msgstr "Bu Panel için Sıralamayı Ayarla..."
+msgstr "Bu penceredeki sıralamayı belirleyin.."
 
 #: app/UserAction/expander.cpp:770
 #, kde-format
 msgid "Choose a column:"
-msgstr "Sütun seç:"
+msgstr "Kolon seç:"
 
 #: app/UserAction/expander.cpp:771
 #, kde-format
@@ -9390,7 +9426,7 @@ msgstr "Sıralama yönünü seç:"
 #: app/UserAction/expander.cpp:778
 #, kde-format
 msgid "Expander: no column specified for %_ColSort(column)%"
-msgstr "Açımlayıcı: Sütun tanımlanmamış %_ColSort(column)%"
+msgstr "Açımlayıcı: Kolon tanımlanmamış %_ColSort(column)%"
 
 #: app/UserAction/expander.cpp:809
 #, kde-format
@@ -9400,12 +9436,12 @@ msgstr "Genişletici: %_ColSort(%1)% için bilinmeyen sütun belirtilmiş"
 #: app/UserAction/expander.cpp:836
 #, kde-format
 msgid "Set Relation Between the Panels..."
-msgstr "Paneller Arasındaki İlişkiyi Ayarla..."
+msgstr "İki pencere arasındaki ilişkiyi belirle.."
 
 #: app/UserAction/expander.cpp:839
 #, kde-format
 msgid "Set the new size in percent:"
-msgstr "Yüzde türünden yeni büyüklük:"
+msgstr "Yüzde cinsinden yeni büyüklük:"
 
 #: app/UserAction/expander.cpp:852
 #, kde-format
@@ -9414,12 +9450,12 @@ msgid ""
 "parameter has to be >0 and <100"
 msgstr ""
 "Açımlayıcı: %1 değeri %_PanelSize(percent)% aralığının dışında. İlk girdi 0 "
-"-100 arasında belirlenmeli"
+"-100 arasında belirlenmeli."
 
 #: app/UserAction/expander.cpp:864
 #, kde-format
 msgid "View File with Krusader's Internal Viewer..."
-msgstr "Dosyayı Krusader'in Kendi Görüntüleyicisi ile Görüntüle..."
+msgstr "Dosyayı Krusader'in dahili görüntüleyicisi ile göster.."
 
 #: app/UserAction/expander.cpp:867
 #, kde-format
@@ -9429,14 +9465,14 @@ msgstr "Görüntülenecek dosya (normal olarak '%aCurrent%'):"
 #: app/UserAction/expander.cpp:868
 #, kde-format
 msgid "Choose a view mode:"
-msgstr "Görüntüleme kipi seç:"
+msgstr "Görüntüleme-kipini seç:"
 
 #. i18n("Choose a window-mode"), "__choose:tab;window;panel", false ) );
 #. TODO: window-mode 'panel' should open the file in the third-hand viewer
 #: app/UserAction/expander.cpp:871
 #, kde-format
 msgid "Choose a window mode:"
-msgstr "Pencere kipi seç:"
+msgstr "Pencere-kipini seç:"
 
 #: app/UserAction/expander.cpp:876
 #, kde-format
@@ -9451,7 +9487,7 @@ msgstr "%Each%, %1 için parametre olarak kullanılamaz"
 #: app/UserAction/expander.cpp:936
 #, kde-format
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
-msgstr "Açımlayıcı: %2 yer tutucusu içinde hatalı panel tanımlayıcısı %1"
+msgstr "Açımlayıcı: %2 Yertutucusu içindeki %1 pencere tanımlayıcısı yanlış"
 
 #: app/UserAction/expander.cpp:968
 #, no-c-format, kde-format
@@ -9486,7 +9522,7 @@ msgstr "Çıktı"
 #: app/UserAction/kraction.cpp:101
 #, kde-format
 msgid "Use font with fixed width"
-msgstr "Eş aralıklı yazıtipi kullan"
+msgstr "Sabit büyüklükte font kullan"
 
 #: app/UserAction/kraction.cpp:117
 #, kde-format
@@ -9514,17 +9550,17 @@ msgid ""
 "Do you want to overwrite it or append the output?"
 msgstr ""
 "Dosya zaten var.\n"
-"Üzerine yazmak veya çıktıyı iliştirmek istediğinize emin misiniz?"
+"Üzerine yazmak veya çıktıyı üzerine eklemek istediğinizden emin misiniz?"
 
 #: app/UserAction/kraction.cpp:169
 #, kde-format
 msgid "Overwrite or append?"
-msgstr "Üzerine yaz veya iliştir"
+msgstr "Üzerine yaz veya Ekle"
 
 #: app/UserAction/kraction.cpp:171
 #, kde-format
 msgid "Append"
-msgstr "İliştir"
+msgstr "Ekle"
 
 #: app/UserAction/kraction.cpp:184
 #, kde-format
@@ -9545,7 +9581,7 @@ msgstr ""
 msgid ""
 "Embedded terminal emulator does not work, using output collection instead."
 msgstr ""
-"Gömülü uçbirim öykünücüsü çalışmadığından çıktı koleksiyonu kullanılıyor."
+"Gömülü uç birim öykünücüsü çalışmadığından çıktı koleksiyonu kullanılıyor."
 
 #: app/UserAction/kractionbase.cpp:48
 #, kde-format
@@ -9590,17 +9626,17 @@ msgstr ""
 #: app/UserAction/useraction.cpp:201
 #, kde-format
 msgid "UserActions - invalid action"
-msgstr "Kullanıcı Eylemleri- geçersiz eylem"
+msgstr "KullanıcıEylemleri- yasadışı eylem"
 
 #: app/useraction_examples.xml:5
 #, kde-format
 msgid "Equal panel-size"
-msgstr "Eşit Panel Boyutu"
+msgstr "Eşit pano boyutu"
 
 #: app/useraction_examples.xml:6
 #, kde-format
 msgid "Sets the ratio between the two panels to 50/50"
-msgstr "İki panel arasındaki oranı 50/50 olarak ayarlar"
+msgstr "İki pencere arasındaki oranı 50/50 olarak ayarlar"
 
 #: app/useraction_examples.xml:8 app/useraction_examples.xml:16
 #: app/useraction_examples.xml:25 app/useraction_examples.xml:41
@@ -9612,17 +9648,17 @@ msgstr "Örnekler"
 #: app/useraction_examples.xml:13
 #, kde-format
 msgid "Edit as root"
-msgstr "Kök Olarak Düzenle"
+msgstr "Root olarak düzenle"
 
 #: app/useraction_examples.xml:14
 #, kde-format
 msgid "Edit a file as root"
-msgstr "Bir dosyayı kök olarak düzenle"
+msgstr "Bir dosyayı root olarak düzenle"
 
 #: app/useraction_examples.xml:17
 #, kde-format
 msgid "Edit a file with root permissions"
-msgstr "Bir dosyayı kök izinleriyle düzenle"
+msgstr "Bir dosyayı root izinleriyle düzenle"
 
 #: app/useraction_examples.xml:23
 #, kde-format
@@ -9632,27 +9668,27 @@ msgstr "Yeni bir dosya sistemi bağla"
 #: app/useraction_examples.xml:30
 #, kde-format
 msgid "Enqueue in Amarok"
-msgstr "Amarok'ta Kuyruğa Ekle"
+msgstr "Amarok'da sıraya koy"
 
 #: app/useraction_examples.xml:31
 #, kde-format
 msgid "Append selected item(s) to Amarok playlist"
-msgstr "Seçili öğe(ler)i Amarok çalma listesine ekle"
+msgstr "Seçili öğe(ler)i Amarok oynatma listesine ekle"
 
 #: app/useraction_examples.xml:33
 #, kde-format
 msgid "Multimedia"
-msgstr "Çoklu Ortam"
+msgstr "Çokluortam"
 
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Geçerli ögenin dosya yolunu kopyala (boşlukları kaçırarak)"
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
-msgstr "Seçili ögelerin dosya yollarını kopyala"
+msgstr ""
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
@@ -9662,47 +9698,47 @@ msgstr "Ada Göre Sırala"
 #: app/useraction_examples.xml:55
 #, kde-format
 msgid "Sorts the active panel by Name"
-msgstr "Etkin paneli ada göre sıralar"
+msgstr "Etkin panoyu ada göre sıralar"
 
 #: app/useraction_examples.xml:60 app/useraction_examples.xml:61
 #, kde-format
 msgid "Sort by Extension"
-msgstr "Uzantıya Göre Sırala"
+msgstr "Uzantıya göre Sırala"
 
 #: app/useraction_examples.xml:64
 #, kde-format
 msgid "Sorts the active panel by Extension"
-msgstr "Etkin paneli uzantıya göre sıralanır"
+msgstr "Etkin pano uzantıya göre sıralanır"
 
 #: app/useraction_examples.xml:69 app/useraction_examples.xml:70
 #, kde-format
 msgid "Sort by Size"
-msgstr "Boyuta Göre Sırala"
+msgstr "Boyuta göre Sırala"
 
 #: app/useraction_examples.xml:73
 #, kde-format
 msgid "Sorts the active panel by Size"
-msgstr "Etkin panel Boyuta göre sıralanır"
+msgstr "Etkin pano Boyuta göre sıralanır"
 
 #: app/useraction_examples.xml:78 app/useraction_examples.xml:79
 #, kde-format
 msgid "Sort by Modified"
-msgstr "Değiştirilmeye Göre Sırala"
+msgstr "Değiştirilmeye göre Sırala"
 
 #: app/useraction_examples.xml:82
 #, kde-format
 msgid "Sorts the active panel by Modified"
-msgstr "Etkin panel Değiştirilmeye göre sıralanır"
+msgstr "Etkin pano Değiştirilmeye göre sıralanır"
 
 #: app/useraction_examples.xml:87
 #, kde-format
 msgid "Backup current"
-msgstr "Geçerliyi Yedekle"
+msgstr "Mevcutu yedekle"
 
 #: app/useraction_examples.xml:88
 #, kde-format
 msgid "Backup current file in current folder"
-msgstr "Geçerli dosyayı geçerli klasörde yedekle"
+msgstr "Mevcut dosyayı mevcut dizinde yedekle"
 
 #: app/useraction_examples.xml:90
 #, kde-format
@@ -9715,7 +9751,7 @@ msgid ""
 "Backs current file up in current folder and asks the user for a new "
 "filename. By default \".old\" is appended to the original filename."
 msgstr ""
-"Geçerli dosya geçerli klasörde yedeklenir ve kullanıcıya yeni bir dosya adı "
+"Mevcut dosya mevcut klasörde yedeklenir ve kullanıcıya yeni bir dosya adı "
 "sorulur. Öntanımlı olarak asıl dosya adına \".old\" eklenir."
 
 #: plugins/krarc/krarc.cpp:224 plugins/krarc/krarc.cpp:231
@@ -9728,9 +9764,10 @@ msgstr ""
 "Konfigurator içinde 'Arşivler' ile açabilirsiniz."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Creating directories is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives"
-msgstr "%1 arşivlerinde klasör oluşturma işlemi desteklenmiyor"
+msgstr "%1 arşivlerinde dizin oluşturma işlemi desteklenmiyor"
 
 #: plugins/krarc/krarc.cpp:345
 #, kde-format
@@ -9762,7 +9799,7 @@ msgstr "%1 paketi açılıyor ..."
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
-msgstr "'%1' dış programı ile ilişkili bir hata oluştu. Hata iletisi: '%2'."
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
@@ -9775,9 +9812,10 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "%1 arşivi olan dosyalara erişim desteklenmiyor"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives"
-msgstr "%1 arşivleri için klasör listeleme özelliği desteklenmiyor"
+msgstr "%1 arşivleri için dizin listeleme özelliği desteklenmiyor"
 
 #: plugins/krarc/krarc.cpp:2144 plugins/krarc/krarc.cpp:2150
 #, kde-format
@@ -9786,7 +9824,7 @@ msgid ""
 "Make sure that the %1 binary is installed properly on your system."
 msgstr ""
 "\n"
-"Sisteminizde %1 ikilisinin kurulu olduğundan emin olun."
+"Sisteminizde %1 çalıştırılabilir dosyasının kurulu olduğundan emin olun."
 
 #: plugins/krarc/krarc.cpp:2236 plugins/krarc/krarc.cpp:2262
 #, kde-format
@@ -9805,7 +9843,747 @@ msgstr "Dosyaya erişmek için parola gerekiyor."
 
 #~ msgctxt "EMAIL OF TRANSLATORS"
 #~ msgid "Your emails"
-#~ msgstr "tulliana@gmail.com, bekirsonat@kde.org.tr, emir_sari@icloud.com"
+#~ msgstr "tulliana@gmail.com, bekirsonat@kde.org.tr"
+
+#~ msgid "Directories:"
+#~ msgstr "Dizinler:"
+
+#~ msgid "Show the new/close tab buttons."
+#~ msgstr "Yeni/Kapat sekme düğmelerini göster."
+
+#~ msgid "JavaScript Console..."
+#~ msgstr "JavaScript Konsolu..."
+
+#~ msgid ""
+#~ "In %1:\n"
+#~ "Uncaught JavaScript exception '%2'\n"
+#~ "%3"
+#~ msgstr ""
+#~ "%1 içinde:\n"
+#~ "Anlaşılamayan JavaScript uygunsuzluğu'%2'\n"
+#~ "%3"
+
+#~ msgid ""
+#~ "In %1:\n"
+#~ "Uncaught JavaScript exception '%2' at line %3\n"
+#~ "%4"
+#~ msgstr ""
+#~ "%1 içinde:\n"
+#~ "Anlaşılamayan JavaScript uygunsuzluğu '%2' saptanan satır: %3\n"
+#~ "%4"
+
+#~ msgid "JavaScript Error"
+#~ msgstr "JavaScript Hatası"
+
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Gözat"
+
+#~ msgid "New folder"
+#~ msgstr "Yeni dizin"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Yeni sekmede home dizini"
+
+#~ msgid "Execute a JavaScript Extension..."
+#~ msgstr "JavaScript-uzantısını çalıştır.."
+
+#~ msgid "Location of the script"
+#~ msgstr "Betiğin konumu"
+
+#~ msgid ""
+#~ "Set some variables for the execution (optional).\n"
+#~ "i.e. \"return=return_var;foo=bar\", consult the handbook for more "
+#~ "information"
+#~ msgstr ""
+#~ "Çalıştırma için bazı değişkenleri belirleyin (isteğe bağlı).\n"
+#~ "Örneğin: \"return=return_var;foo=bar\", daha fazla bilgi için el kitabına "
+#~ "bakın"
+
+#~ msgid "Expander: no script specified for %_Script(script)%"
+#~ msgstr "Genişletici: %_Script(script)% için betik belirtilmedi"
 
 #~ msgid "Copy current item to clipboard"
 #~ msgstr "Seçili öğeyi panoya kopyala"
+
+#~ msgid "Folder..."
+#~ msgstr "Dizin..."
+
+#~ msgid "Text File..."
+#~ msgstr "Metin Dosyası..."
+
+#~ msgid "View File (F3)"
+#~ msgstr "Dosyayı Göster (F3)"
+
+#~ msgid "Edit File (F4)"
+#~ msgstr "Dosya Düzenle (F4)"
+
+#~ msgid "Open search filter"
+#~ msgstr "Arama süzgecini aç"
+
+#~ msgid "Karai Csaba"
+#~ msgstr "Karai Csaba"
+
+#~ msgid "Open the popup panel"
+#~ msgstr "Zıpçıktı pencereyi açar"
+
+#~ msgid "Close the popup panel"
+#~ msgstr "Zıpçıktı pencereyi kapat"
+
+#~ msgid "Toggle Popup Panel"
+#~ msgstr "Zıpçıktı Pencereyi Aç/Kapa"
+
+#~ msgid " Quit"
+#~ msgstr " Çık"
+
+#~ msgid "Copy..."
+#~ msgstr "Kopyala..."
+
+#~ msgid "Move..."
+#~ msgstr "Taşı..."
+
+#~ msgid ""
+#~ "A configuration of 1.51 or older was detected. Krusader has to reset your "
+#~ "configuration to default values.\n"
+#~ "Note: your bookmarks and keybindings will remain intact.\n"
+#~ "Krusader will now run Konfigurator."
+#~ msgstr ""
+#~ "1.51 veya daha eski bir yapılandırma algılandı. Krusader yapılandırmanızı "
+#~ "varsayılan değerlere sıfırladı.\n"
+#~ "Not: Yer imleriniz ve tuş atamalarınız değişmeden kaldı.\n"
+#~ "Krusader şimdi Konfigurator'u çalıştıracak."
+
+#~ msgid "ftp://"
+#~ msgstr "ftp://"
+
+#~ msgid "smb://"
+#~ msgstr "smb://"
+
+#~ msgid "fish://"
+#~ msgstr "fish://"
+
+#~ msgid "sftp://"
+#~ msgstr "sftp://"
+
+#~| msgid "Keep virtual directory structure"
+#~ msgid "Keep virtual folder structure"
+#~ msgstr "Sanal dizin yapısını koru"
+
+#~ msgid "Base URL:"
+#~ msgstr "Temel URL:"
+
+#~ msgid "Minimize to tray"
+#~ msgstr "Çekmeceye küçült"
+
+#~ msgid ""
+#~ "The icon will appear in the system tray instead of the taskbar, when "
+#~ "Krusader is minimized."
+#~ msgstr ""
+#~ "Krusader küçültüldüğünde, simgesi, görev çubuğunda değil de, sistem "
+#~ "çekmecesinde yerini alacak."
+
+#~ msgid ""
+#~ "<qt>Cannot calculate checksum since no supported tool was found. Please "
+#~ "check the <b>Dependencies</b> page in Krusader's settings.</qt>"
+#~ msgstr ""
+#~ "<qt>Desteklenen hiçbir araç bulunamadığından sağlama toplamı "
+#~ "hesaplanamadı. Lütfen Krusader'ın ayarlar sayfasındaki <b>Bağımlılıkları</"
+#~ "b> kontrol edin.</qt>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt><b>Note</b>: you have selected directories, and probably have no "
+#~| "recursive checksum tool installed. Krusader currently supports "
+#~| "<i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>"
+#~ msgid ""
+#~ "<qt><b>Note</b>: you have selected folders, and probably have no "
+#~ "recursive checksum tool installed. Krusader currently supports "
+#~ "<i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>"
+#~ msgstr ""
+#~ "<qt><b>Not</b>: dizinleri seçtiniz ve kurulu özyinelemeli sağlama toplamı "
+#~ "hesaplayan aracınız yok. Krusader şimdilik sadece <i>md5deep, sha1deep, "
+#~ "sha256deep, tigerdeep and cfv</i> desteğine sahip</qt>"
+
+#~ msgid "About to calculate checksum for the following files:"
+#~ msgstr "Aşağıdaki dosyaların sağlaması hesaplanmak üzere:"
+
+#~ msgid "Calculating checksums..."
+#~ msgstr "Sağlama toplamları hesaplanıyor..."
+
+#~ msgid ""
+#~ "<qt>Cannot verify checksum since no supported tool was found. Please "
+#~ "check the <b>Dependencies</b> page in Krusader's settings.</qt>"
+#~ msgstr ""
+#~ "<qt>Desteklenen araç bulunamadığından hesaplama toplamı doğrulanamadı. "
+#~ "Lütfen Krusader'ın ayarlar sayfasındaki <b>Bağımlılıkları</b> kontrol "
+#~ "edin.</qt>"
+
+#~ msgid "About to verify checksum for the following files and folders:"
+#~ msgstr ""
+#~ "Aşağıdaki dosya ve dizinlerin imza özetlerinin doğrulanması hakkında:"
+
+#~ msgid ""
+#~ "<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid "
+#~ "checksum file.</qt>"
+#~ msgstr ""
+#~ "<qt><i>%1</i> sağlama dosyası okunamadı.<br/>Lütfen geçerli bir sağlama "
+#~ "dosyası belirtin.</qt>"
+
+#~ msgid "Verifying checksums..."
+#~ msgstr "Sağlama toplamları doğrulanıyor..."
+
+#~ msgid "The following files have failed:"
+#~ msgstr "Aşağıdaki dosyalarda başarısızlık:"
+
+#~ msgid "Here are the calculated checksums:"
+#~ msgstr "Hasaplanan sağlamalar:"
+
+#~ msgid "File and hash"
+#~ msgstr "Dosya ve özet"
+
+#~ msgid "Save checksum to file:"
+#~ msgstr "Sağlama dosyasını Sakla:"
+
+#~ msgid ""
+#~ "File %1 already exists.\n"
+#~ "Are you sure you want to overwrite it?"
+#~ msgstr ""
+#~ "%1 dosyası zaten var.\n"
+#~ "Üzerine yazmak istediğinize emin misiniz?"
+
+#~ msgid "Select a file to save to"
+#~ msgstr "Kaydedilecek dosyayı seçin"
+
+#~ msgid ""
+#~ "Cannot start root mode Krusader, because Krusader or kdesu is missing "
+#~ "from the path. Please configure the dependencies in Konfigurator."
+#~ msgstr ""
+#~ "Krusader root kipinde başlatılamadı, Krusader veya kdesu çalıştırma "
+#~ "yolunuzda değil. Konfigurator ile bağımlılıkları yapılandırın."
+
+#~ msgid "Calculating space"
+#~ msgstr "Alan hesaplanıyor"
+
+#, fuzzy
+#~| msgid "&Pause"
+#~ msgid "Start &Paused"
+#~ msgstr "&Duraklat"
+
+#~ msgid "User Menu"
+#~ msgstr "Kullanıcı Menüsü"
+
+#~ msgid "Cannot find \"KsysCtrl\". Please install KDE admin package"
+#~ msgstr "\"KsysCtrl\" bulunamadı. Lütfen KDE yönetici paketini kurun"
+
+#, fuzzy
+#~| msgid ""
+#~| "Could not create a temporary directory. Handling of Archives will not be "
+#~| "possible until this is fixed."
+#~ msgid ""
+#~ "Could not create a temporary folder. Handling of Archives will not be "
+#~ "possible until this is fixed."
+#~ msgstr ""
+#~ "Geçici bir dizin oluşturulamadı. Bu çözülmeden Arşivler işlenemeyecektir."
+
+#~ msgid "Manage user actions"
+#~ msgstr "Kullanıcı Eylemlerini Yönet"
+
+#~ msgid "Rename %1 to:"
+#~ msgstr "%1 ögesini yeniden adlandır:"
+
+#~ msgid "Cancel"
+#~ msgstr "Vazgeç"
+
+#~ msgid "Quick Navigation"
+#~ msgstr "Hızlı Gezinme"
+
+#~ msgid "Already at <i>%1</i>"
+#~ msgstr "Zaten <i>%1</i> konumunda"
+
+#~ msgid "Click to go to <i>%1</i>"
+#~ msgstr "<i>%1</i> konumu için tıklayın"
+
+#, fuzzy
+#~| msgid "Fullscreen terminal (mc-style)"
+#~ msgid "Fullscreen embedded terminal (mc-style)"
+#~ msgstr "Tam-Ekran Uçbirim (mc-biçimi)"
+
+#~ msgid "Terminal is shown instead of the Krusader window (full screen)."
+#~ msgstr "Krusader penceresi yerine Uçbirim (tam-ekran olarak) gösterilir."
+
+#~ msgid "Show terminal emulator"
+#~ msgstr "Göster: Uçbirim öykünücü"
+
+#~ msgid "Show Terminal &Emulator"
+#~ msgstr "Göster:&Uçbirim Öykünücüsü"
+
+#~ msgctxt "Unknown file system type"
+#~ msgid "unknown"
+#~ msgstr "bilinmiyor"
+
+#~ msgid "No space information on [dev]"
+#~ msgstr "[dev] hakkında bilgi için yer yok"
+
+#~ msgid "No space information on [procfs]"
+#~ msgstr "[procfs] hakkında bilgi için yer yok"
+
+#~ msgid "No space information on [proc]"
+#~ msgstr "[proc] hakkında bilgi için yer yok"
+
+#~ msgid "Overwrite"
+#~ msgstr "Üzerine yaz"
+
+#~ msgid "&Overwrite"
+#~ msgstr "Ü&zerineYaz"
+
+#~ msgid "&Remove"
+#~ msgstr "&Kaldır"
+
+#~ msgid "Use MIME type magic"
+#~ msgstr "Büyülü MIME türü kullan"
+
+#~ msgid ""
+#~ "MIME type magic allows better distinction of file types, but is slower."
+#~ msgstr "Büyülü MIME türü dosya ayrımını daha iyi yapar ama daha yavaştır."
+
+#~ msgid "&Queue Manager..."
+#~ msgstr "&Sıralama Yöneticisi..."
+
+#~ msgid "You cannot move files to this file system"
+#~ msgstr "Dosyaları bu dosya sistemine taşıyamazsınız"
+
+#~ msgid "You cannot copy files to this file system"
+#~ msgstr "Dosyaları bu dosya sistemine kopyalayamazsınız"
+
+#, fuzzy
+#~| msgid "You do not have write permission to this directory"
+#~ msgid "You do not have write permission to this folder"
+#~ msgstr "Bu dizine yazma hakkınız yok"
+
+#~ msgid "An error occurred during processing the queue.\n"
+#~ msgstr "Kuyruk işlenirken bir hata oluştu.\n"
+
+#~ msgid "The last processed element in the queue was aborted.\n"
+#~ msgstr "Kuyrukta son işlenen öge iptal edildi.\n"
+
+#~ msgid ""
+#~ "Do you wish to continue with the next element, delete the queue or "
+#~ "suspend the queue?"
+#~ msgstr ""
+#~ "Sıradaki öge ile devam etmek, kuyruğu silmek veya kuyruğu bekletmek mi "
+#~ "istersiniz?"
+
+#~ msgid "Krusader::Queue"
+#~ msgstr "Krusader::Kuyruk"
+
+#~ msgid "Suspend"
+#~ msgstr "Uykuya Al"
+
+#~ msgid "default"
+#~ msgstr "öntanımlı"
+
+#~ msgid "Krusader::Queue Manager"
+#~ msgstr "Krusader::Sıralama Yöneticisi"
+
+#~ msgid "Please enter the time to start processing the queue:"
+#~ msgstr "Lütfen kuyruğun işletileceği zamanı girin:"
+
+#~ msgid "Create a new queue"
+#~ msgstr "Yeni bir kuyruk oluştur"
+
+#~ msgid "Remove the current queue"
+#~ msgstr "Geçerli kuyruğu sil"
+
+#~ msgid "unused"
+#~ msgstr "kullanılmayan"
+
+#~ msgid "Schedule queue starting (Ctrl+S)"
+#~ msgstr "Kuyruğun başlamasını programla (Ctrl+S)"
+
+#~ msgid "Start processing the queue (Ctrl+P)"
+#~ msgstr "Kuyruğu işletmeye başla (Ctrl+P)"
+
+#~ msgid "The queue is paused."
+#~ msgstr "Kuyruk duraklatıldı."
+
+#~ msgid "Scheduled to start at %1."
+#~ msgstr "Başlama saati %1 olarak zamanlandı."
+
+#~ msgid "The queue is running."
+#~ msgstr "Kuyruk çalışıyor."
+
+#~ msgid "Pause processing the queue (Ctrl+P)"
+#~ msgstr "Kuyruğu işletmeyi duraklat (Ctrl+P)"
+
+#~ msgid "Please enter the name of the new queue"
+#~ msgstr "Lütfen yeni kuyruk için bir isim girin"
+
+#~ msgid "A queue already exists with this name."
+#~ msgstr "Bu isimde bir kuyruk zaten var."
+
+#~ msgid ""
+#~ "Deleting the queue requires aborting all pending jobs. Do you wish to "
+#~ "continue?"
+#~ msgstr ""
+#~ "Bir kuyruğu silmek bekleyen tüm işlerin sonlanmasını gerektirir. Devam "
+#~ "etmek istiyor musunuz?"
+
+#~ msgid "Queue Manager"
+#~ msgstr "Sıralama Yöneticisi"
+
+#~ msgid ""
+#~ "Deleting this job will abort the pending job. Do you wish to continue?"
+#~ msgstr ""
+#~ "Bu işin silinmesi bekleyen işi iptal edecektir. Devam etmek istiyor "
+#~ "musunuz?"
+
+#~ msgid ""
+#~ "Krusader does not support FTP access via HTTP.\n"
+#~ "If it is not the case, please check and change the proxy settings in the "
+#~ "System Settings."
+#~ msgstr ""
+#~ "Krusader HTTP üzerinden FTP erişimini desteklemiyor.\n"
+#~ "Eğer durum bu değilse Sistem Ayarlarından vekil sunucu ayarlarınızı "
+#~ "kontrol edin ve değiştirin."
+
+#~ msgctxt "Job type"
+#~ msgid "Status"
+#~ msgstr "Durum"
+
+#, fuzzy
+#~| msgid "Free Size"
+#~ msgctxt "Job type"
+#~ msgid "Folder Size"
+#~ msgstr "Boş yer"
+
+#~ msgctxt "Job type"
+#~ msgid "Copy"
+#~ msgstr "Kopyala"
+
+#~ msgctxt "Job type"
+#~ msgid "Move"
+#~ msgstr "Taşı"
+
+#~ msgctxt "Job type"
+#~ msgid "Pack"
+#~ msgstr "Sıkıştır"
+
+#~ msgctxt "Job type"
+#~ msgid "Unpack"
+#~ msgstr "Aç"
+
+#~ msgctxt "Job type"
+#~ msgid "Unknown"
+#~ msgstr "Bilinmiyor"
+
+#~ msgid "Target"
+#~ msgstr "Hedef"
+
+#~ msgid "Source"
+#~ msgstr "Kaynak"
+
+#, fuzzy
+#~| msgid "Cannot create a directory. Check your permissions."
+#~ msgid "Cannot create a folder. Check your permissions."
+#~ msgstr "Dizin oluşturulamaz. İzinlerinizi kontrol edin."
+
+#~ msgctxt "@title job"
+#~ msgid "Copying"
+#~ msgstr "Kopyalanıyor"
+
+#~ msgctxt "@title job"
+#~ msgid "Moving"
+#~ msgstr "Taşınıyor"
+
+#~ msgid "OK"
+#~ msgstr "Tamam"
+
+#~ msgid "Show statusbar"
+#~ msgstr "Göster: Durum-çubuğu"
+
+#~ msgid "Statusbar will be visible after startup."
+#~ msgstr "Durum-çubuğu açılıştan sonra görünebilir olacak"
+
+#~ msgid "Show toolbar"
+#~ msgstr "Göster: Araç-çubuğu"
+
+#~ msgid "Toolbar will be visible after startup."
+#~ msgstr "Araç-çubuğu açılıştan sonra görünebilir olacak."
+
+#~ msgid "Show actions toolbar"
+#~ msgstr "Eylemler araç çubuğunu göster"
+
+#~ msgid "Actions toolbar will be visible after startup."
+#~ msgstr "Eylemler araç çubuğu başlangıçtan sonra görünür olacaktır."
+
+#~ msgid "Webmaster"
+#~ msgstr "Webmaster"
+
+#~ msgid "Remote co&ntent search"
+#~ msgstr "Uzak içe&rik araması"
+
+#~ msgid "Cannot drop here, no write permissions."
+#~ msgstr "Buraya bırakamazsınız, yazma hakkınız yok."
+
+#~ msgid "Copy Here"
+#~ msgstr "Buraya kopyala"
+
+#~ msgid "Move Here"
+#~ msgstr "Buraya taşı"
+
+#~ msgid "Link Here"
+#~ msgstr "Buraya Bağ koy"
+
+#~ msgid "Quicksearch/Quickfilter"
+#~ msgstr "Hızlı ara/Hızlı süz"
+
+#~ msgid "New style Quicksearch"
+#~ msgstr "Yeni stil Hızlı arama"
+
+#~ msgid "Opens a quick search dialog box."
+#~ msgstr "hızlı-ara iletişim kutusunu açar."
+
+#~ msgid "Case sensitive Quicksearch/QuickFilter"
+#~ msgstr "Büyük küçük harfe duyarlı Hızlı arama/HızlıFiltre"
+
+#~ msgid "Quick Panel: quick way to perform actions"
+#~ msgstr "Hızlı Pencere: Eylemler hızlıca yerine getirilir"
+
+#~ msgid "Quick Select"
+#~ msgstr "Hızlı Seçim"
+
+#~ msgid "Apply the selection"
+#~ msgstr "Seçimi uygula"
+
+#~ msgid "Quick Select:"
+#~ msgstr "Hızlı Seçim:"
+
+#~ msgid "QuickFilter"
+#~ msgstr "HızlıFiltre"
+
+#~ msgid "Flat Origin Bar"
+#~ msgstr "Düz Başlangıç Çubuğu"
+
+#~ msgid "Open button"
+#~ msgstr "Aç düğmesi"
+
+#~ msgid "Use superb KDE file dialog to choose location."
+#~ msgstr "Konum seçmek için KDE dosya penceresini kullanın."
+
+#~ msgid "In directory"
+#~ msgstr "Dizinde"
+
+#~ msgid "Directories"
+#~ msgstr "Dizinler"
+
+#~ msgid "Directory foreground:"
+#~ msgstr "Dizin önplanı:"
+
+#~ msgid "Directory"
+#~ msgstr "Dizin"
+
+#~ msgid "Temp Directory:"
+#~ msgstr "Temp dizini:"
+
+#~ msgid "in %1 directory"
+#~ msgid_plural "in %1 directories"
+#~ msgstr[0] "%1 dizin"
+#~ msgstr[1] "%1 dizin"
+
+#~ msgid "New Directory..."
+#~ msgstr "Yeni dizin..."
+
+#~ msgid "&Compare Directories"
+#~ msgstr "Dizinleri &Karşılaştır"
+
+#~ msgid "New directory"
+#~ msgstr "Yeni dizin"
+
+#~ msgid "Directory's name:"
+#~ msgstr "Dizin'in adı:"
+
+#~ msgid "Cannot open the %1 directory."
+#~ msgstr "%1 dizini açılamaz."
+
+#~ msgid "Krusader::Synchronize Directories"
+#~ msgstr "Krusader::Dizinleri Eşzamanla"
+
+#~ msgid "Synchronize Directories"
+#~ msgstr "Dizinleri eşgüdümle"
+
+#~ msgctxt "Job type"
+#~ msgid "Directory Size"
+#~ msgstr "Dizin Boyutu"
+
+#~ msgid "Select files using a filter"
+#~ msgstr "Dosyaları süzerek seç"
+
+#~ msgid "Unselect all selected files"
+#~ msgstr "Tüm seçili dosyaların seçimini kaldır"
+
+#~ msgid ""
+#~ "In the target directory the synchronizer does not directly support "
+#~ "protocols like FISH, SFTP, SMB, etc."
+#~ msgstr ""
+#~ "Eşitleyici hedef dizininde FISH, SFTP, SMB gibi protokolleri doğrudan "
+#~ "desteklemez."
+
+#~ msgid ""
+#~ "In the source directory the synchronizer does not directly support "
+#~ "protocols like FISH, SFTP, SMB, etc."
+#~ msgstr ""
+#~ "Eşitleyici kaynak dizininde FISH, SFTP, SMB gibi protokolleri doğrudan "
+#~ "desteklemez."
+
+#~ msgid "Open &Konsole Here"
+#~ msgstr "&Konsol'u burada aç"
+
+#~ msgid "Import Shortcuts"
+#~ msgstr "Kısayolları İçe Aktar"
+
+#~ msgid "Load a keybinding profile, e.g., total_commander.keymap"
+#~ msgstr "Tuştakımı şeması yükle (Ör.: total_commander.keymap)"
+
+#~ msgid "Export Shortcuts"
+#~ msgstr "Kısayolları Dışa Aktar"
+
+#~ msgid "Save current keybindings in a keymap file."
+#~ msgstr "Şimdiki tuştakımını bir .keymap dosyasına sakla."
+
+#~ msgid "Select a keymap file"
+#~ msgstr "Bir klavye haritası dosyası seçin"
+
+#~ msgid ""
+#~ "The following information was attached to the keymap. Do you really want "
+#~ "to import this keymap?"
+#~ msgstr ""
+#~ "Aşağıdaki bilgiler keymap dosyasına iliştirildi. Bu keymap'ı almak "
+#~ "istediğinizden emin misiniz?"
+
+#~ msgid "Please restart this dialog in order to see the changes"
+#~ msgstr "Değişiklikleri görmek için uygulamayı yeniden başlatmalısınız."
+
+#~ msgid ""
+#~ "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</"
+#~ "qt>"
+#~ msgstr ""
+#~ "<qt><b>%1</b> dosyası zaten var. Üzerine yazmak istediğinizden emin "
+#~ "misiniz?</qt>"
+
+#~ msgid "Source:"
+#~ msgstr "Kaynak:"
+
+#~ msgid "Destination:"
+#~ msgstr "Hedef:"
+
+#~ msgid "Krusader Progress"
+#~ msgstr "Krusader çalışıyor.."
+
+#~ msgid "%1 directory"
+#~ msgid_plural "%1 directories"
+#~ msgstr[0] "%1 dizin"
+#~ msgstr[1] "%1 dizin"
+
+#~ msgid "%1 file"
+#~ msgid_plural "%1 files"
+#~ msgstr[0] "%1 dosya"
+#~ msgstr[1] "%1 dosya"
+
+#~ msgid "%1 of %2 complete"
+#~ msgstr "%2 için %1 tamamlandı"
+
+#~ msgid "%2 / %1 directory"
+#~ msgid_plural "%2 / %1 directories"
+#~ msgstr[0] "%2 / %1 dizin"
+#~ msgstr[1] "%2 / %1 dizin"
+
+#~ msgid "%2 / %1 file"
+#~ msgid_plural "%2 / %1 files"
+#~ msgstr[0] "%2 / %1 dosya"
+#~ msgstr[1] "%2 / %1 dosya"
+
+#~ msgid "Working"
+#~ msgstr "Çalışıyor.."
+
+#~ msgid "Krusader transparently handles the following types of archives:"
+#~ msgstr "Krusader, aşağıdaki arşiv tiplerini zahmetsizce işler:"
+
+#~ msgid "Tar"
+#~ msgstr "Tar"
+
+#~ msgid "GZip"
+#~ msgstr "GZip"
+
+#~ msgid "LZMA"
+#~ msgstr "LZMA"
+
+#~ msgid "XZ"
+#~ msgstr "XZ"
+
+#~ msgid "BZip2"
+#~ msgstr "BZip2"
+
+#~ msgid "Zip"
+#~ msgstr "Zip"
+
+#~ msgid "Rar"
+#~ msgstr "Rar"
+
+#~ msgid "Arj"
+#~ msgstr "Arj"
+
+#~ msgid "Rpm"
+#~ msgstr "Rpm"
+
+#~ msgid "Ace"
+#~ msgstr "Ace"
+
+#~ msgid "Lha"
+#~ msgstr "Lha"
+
+#~ msgid "Deb"
+#~ msgstr "Deb"
+
+#~ msgid "7zip"
+#~ msgstr "7zip"
+
+#~ msgid ""
+#~ "The archives that are \"grayed out\" were unavailable on your\n"
+#~ "system last time Krusader checked. If you wish Krusader to\n"
+#~ "search again, click the 'Auto Configure' button."
+#~ msgstr ""
+#~ "Krusader sisteminizi son denetlediğinde, \"gri-görünen\" arşivlerin\n"
+#~ "sisteminizde bulunmadığını saptamıştı. Eğer sisteminizin yeniden\n"
+#~ "taranmasını istiyorsanız, 'Otomatik Yapılandır' düğmesine basın."
+
+#~ msgid "Auto Configure"
+#~ msgstr "Kendiliğinden Yapılandır"
+
+#~ msgid "Konfigurator"
+#~ msgstr "Yapılandırıcı"
+
+#~ msgid "&Quit"
+#~ msgstr "&ÇIK"
+
+#~ msgid "Mount.Man"
+#~ msgstr "Disk Bağlama Yöneticisi"
+
+#~ msgid "Critical Error"
+#~ msgstr "Önemli Hata"
+
+#~ msgid "Save as"
+#~ msgstr "Farklı Kaydet"
