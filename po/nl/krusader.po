@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-24 02:35+0000\n"
-"PO-Revision-Date: 2022-10-21 11:50+0200\n"
+"PO-Revision-Date: 2022-10-24 10:16+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
 "Language: nl\n"
@@ -1009,8 +1009,7 @@ msgid "Create Checksums"
 msgstr "Controlesommen aanmaken"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, fuzzy, kde-format
-#| msgid "About to calculate checksum for the following files or directories:"
+#, kde-format
 msgid "About to calculate checksum for the following files or folders:"
 msgstr ""
 "Op het punt om van de volgende bestanden of mappen een controlesom te "
@@ -1437,10 +1436,9 @@ msgid "Files:"
 msgstr "Bestanden:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, fuzzy, kde-format
-#| msgid "Folders"
+#, kde-format
 msgid "Folders:"
-msgstr "Mappen"
+msgstr "Mappen:"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1880,20 +1878,16 @@ msgid "Custom"
 msgstr "Aangepast"
 
 #: app/FileSystem/krquery.cpp:547
-#, fuzzy, kde-format
-#| msgctxt "%1=filename, %2=percentage"
-#| msgid "Searching content of '%1' (%2%)"
+#, kde-format
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr "Inhoud zoeken van '%1' (%2%)"
+msgstr "Inhoud zoeken van '%1' (%2)"
 
 #: app/FileSystem/krquery.cpp:552
-#, fuzzy, kde-format
-#| msgctxt "filestate: filename"
-#| msgid "%1: %2"
+#, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr "%1: %2"
+msgstr "%1%"
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, kde-format
@@ -2354,8 +2348,7 @@ msgid "Exclude Folder Names"
 msgstr "Mapnamen uitsluiten"
 
 #: app/Filter/generalfilter.cpp:468
-#, fuzzy, kde-format
-#| msgid "Filters out specified directory names from the results."
+#, kde-format
 msgid "Filters out specified folder names from the results."
 msgstr "Filtert gespecificeerde mapnamen uit de resultaten."
 
@@ -2591,7 +2584,7 @@ msgstr "Profielnaam invoeren:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr ""
+msgstr "Recent gesloten tabbladen leegmaken"
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -3103,16 +3096,14 @@ msgid "Current background:"
 msgstr "Huidige achtergrond:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, fuzzy, kde-format
-#| msgid "Delete foreground:"
+#, kde-format
 msgid "Rename foreground:"
-msgstr "Wissen voorgrond:"
+msgstr "Voorgrond hernoemen:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, fuzzy, kde-format
-#| msgid "Alternate background:"
+#, kde-format
 msgid "Rename background:"
-msgstr "Beurtelings afwisselende achtergrond:"
+msgstr "Achtergrond hernoemen:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3409,16 +3400,16 @@ msgstr ""
 "de viewer werken met tabbladen."
 
 #: app/Konfigurator/kggeneral.cpp:74
-#, fuzzy, kde-format
-#| msgid "Show the tab bar with only one tab."
+#, kde-format
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "De tabbladbalk tonen met maar één tabblad."
+msgstr "De tabbladbalk verbergen wanneer maar één tabblad is geopend."
 
 #: app/Konfigurator/kggeneral.cpp:75
-#, fuzzy, kde-format
-#| msgid "Show the tab bar with only one tab."
+#, kde-format
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr "De tabbladbalk tonen met maar één tabblad."
+msgstr ""
+"Indien geactiveerd zal be tabbladbalk worden verborgen als maar één tabblad "
+"is geopend."
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3487,6 +3478,7 @@ msgstr ""
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
 msgstr ""
+"Als een tekstbestand groter is dan deze grootte zal lister worden gebruikt."
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3620,20 +3612,18 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:274
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
-msgstr ""
+msgstr "Actief paneel volgt de werkmap van ingebedde terminal"
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, fuzzy, kde-format
-#| msgid ""
-#| "When checked, whenever the panel is changed (for example, by pressing "
-#| "Tab), Krusader changes the current folder in the embedded terminal."
+#, kde-format
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"Indien aangevinkt, wanneer het venster wijzigt (bv. bij het gebruiken van "
-"Tab), zal Krusader de huidige map wijzigen in de ingebedde terminal."
+"Indien geactiveerd, wanneer de werkmap van de terminal wijzigt "
+"(bijvoorbeeld, bij het gebruiken van de commando's 'cd' of 'popd'), zal "
+"Krusader de huidige map wijzigen van het actieve paneel."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
@@ -3772,49 +3762,44 @@ msgstr ""
 "gedeelte van het pad weergegeven worden."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show close tab buttons"
-msgstr "Nieuw/sluiten tab knoppen tonen"
+msgstr "Knoppen voor sluiten van tabbladen tonen"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show close tab buttons."
-msgstr "Nieuw/sluiten tab knoppen tonen"
+msgstr "Knoppen voor sluiten van tabbladen tonen."
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr ""
+msgstr "Tabbladen uitbreiden"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr ""
+msgstr "Tabbladen worden uitgebreid."
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show new tab button"
-msgstr "Nieuw/sluiten tab knoppen tonen"
+msgstr "Knop nieuw tabblad tonen"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show new tab button."
-msgstr "Nieuw/sluiten tab knoppen tonen"
+msgstr "Knop nieuw tabblad tonen."
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr ""
+msgstr "Tabbladen invoegen na de huidige"
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, fuzzy, kde-format
-#| msgid "Set root of the tree to the current folder"
+#, kde-format
 msgid "Insert new tabs to the right of the current one."
-msgstr "Stel de start van de boomstruktuur in op de huidige map"
+msgstr "Nieuwe tabbladen invoegen rechts van de huidige."
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
@@ -3829,17 +3814,17 @@ msgstr "De tabbladbalk tonen met maar één tabblad."
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr ""
+msgstr "Tabblad sluiten door dubbelklik"
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr ""
+msgstr "Tabblad sluiten door dubbelklik."
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr ""
+msgstr "Knop nieuw tabblad dupliceert een tabblad"
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3847,32 +3832,33 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
+"Indien geactiveerd, dupliceert knop nieuw tabblad een tabblad, anders opent "
+"het een tabblad in de thuismap."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr ""
+msgstr "Actief tabblad dupliceren met klik:"
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, fuzzy, kde-format
-#| msgid "disabled"
+#, kde-format
 msgid "Disabled"
-msgstr "uitgeschakeld"
+msgstr "Uitgeschakeld"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr ""
+msgstr "Alt+klik"
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr ""
+msgstr "Ctrl+klik"
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr ""
+msgstr "Actief tabblad dupliceren met klikken van Ctrl/Alt+LMB"
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -3926,16 +3912,12 @@ msgid ""
 msgstr "Op de Up/Down-toetsen drukken sluit de zoekbalk (alleen modus zoeken)."
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, fuzzy, kde-format
-#| msgid "Directory navigation with Right Arrow"
+#, kde-format
 msgid "Folder navigation with Right Arrow"
 msgstr "Navigatie door map met rechter pijltoets"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, fuzzy, kde-format
-#| msgid ""
-#| "Pressing the Right button enters directory if no search text editing "
-#| "intention is captured."
+#, kde-format
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
@@ -4684,10 +4666,9 @@ msgstr ""
 "Anders moet de gebruiker klikken en gedurende 500ms ingedrukt houden."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, fuzzy, kde-format
-#| msgid "Right mouse button preserves selection"
+#, kde-format
 msgid "A plain mouse button resets selection"
-msgstr "Rechter muisknop behoudt de selectie."
+msgstr "Een gewone muisknop doet een reset van de selectie."
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4696,6 +4677,9 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
+"Selectie resetten bij een muisklik zonder modifiers (d.w.z. Shift of Ctrl).\n"
+"Selectie met Shift/Ctrl voor de muisknop moet ingeschakeld zijn om deze "
+"instelling te laten werken."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4715,7 +4699,7 @@ msgstr "Type bestandssysteem tonen"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr ""
+msgstr "SquashFS items verbergen"
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4741,21 +4725,19 @@ msgid "Never"
 msgstr "Nooit"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, fuzzy, kde-format
-#| msgid "MountMan will not (un)mount the following mount-points:"
+#, kde-format
 msgid "Hide following mountpoints:"
-msgstr "MountMan zal de volgende aankoppelpunten niet (aan/af)koppelen:"
+msgstr "Volgende aankoppelpunten verbergen:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr ""
+msgstr "Nieuw verborgen aankoppelpunt toevoegen"
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, fuzzy, kde-format
-#| msgid "Mnt.Point"
+#, kde-format
 msgid "Mount point:"
-msgstr "Mountpunt"
+msgstr "Aankoppelpunt (mount point):"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5461,7 +5443,7 @@ msgstr "Remote Taalcodering selecteren"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr ""
+msgstr "Recent gesloten tabbladen"
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5579,16 +5561,13 @@ msgstr ""
 "%1"
 
 #: app/krslots.cpp:420
-#, fuzzy, kde-format
-#| msgid ""
-#| "Cannot find a batch rename tool.\n"
-#| "You can get KRename at http://www.krename.net"
+#, kde-format
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 "Kan geen hulpmiddel vinden voor in bulk hernoemen.\n"
-"U kunt KRename vinden op http://www.krename.net"
+"U kunt KRename vinden op %1"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -6197,34 +6176,22 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - ROOT PRIVILEGES"
 
 #: app/main.cpp:113
-#, fuzzy, kde-format
-#| msgid ""
-#| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2019 Krusader Krew"
+#, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
-"(c) 2004-2019, team van Krusader"
+"(c) 2004-2022, team van Krusader"
 
 #: app/main.cpp:114
-#, fuzzy, kde-format
-#| msgid ""
-#| "Feedback:\n"
-#| "https://forum.kde.org/viewforum.php?f=225\n"
-#| "\n"
-#| "IRC\n"
-#| "server: irc.freenode.net, channel: #krusader"
+#, kde-format
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
 "Terugkoppeling:\n"
-"https://forum.kde.org/viewforum.php?f=225\n"
-"\n"
-"IRC\n"
-"server: irc.freenode.net, channel: #krusader"
+"https://forum.kde.org/viewforum.php?f=225"
 
 #: app/main.cpp:120
 #, kde-format
@@ -7197,10 +7164,9 @@ msgstr ""
 "aantal bestanden en het aantal bytes"
 
 #: app/Panel/listpanel.cpp:229
-#, fuzzy, kde-format
-#| msgid "Cancel directory space calculation"
+#, kde-format
 msgid "Cancel folder space calculation"
-msgstr "Berekening van mappen ruimte annuleren"
+msgstr "Berekening van mappenruimte annuleren"
 
 #: app/Panel/listpanel.cpp:249
 #, kde-format
@@ -7560,10 +7526,9 @@ msgstr ""
 "Konfigurator, de standaard terminal is <b>konsole</b>.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, fuzzy, kde-format
-#| msgid "Open/Run"
+#, kde-format
 msgid "Open/Run Files"
-msgstr "Openen/Uitvoeren"
+msgstr "Bestanden openen/uitvoeren"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7571,10 +7536,9 @@ msgid "Run"
 msgstr "Uitvoeren"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, fuzzy, kde-format
-#| msgid "Open in New Tab"
+#, kde-format
 msgid "Open in New Tabs"
-msgstr "In een nieuwe tab openen"
+msgstr "In nieuwe tabbladen openen"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7903,10 +7867,9 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 van de %2, %3 van de %4"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, fuzzy, kde-format
-#| msgid "Apply filter to folders"
+#, kde-format
 msgid "Apply filter to folder&s"
-msgstr "Filter toepassen op mappen"
+msgstr "Filter toepas&sen op mappen"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
@@ -7914,10 +7877,9 @@ msgid "Filter Files"
 msgstr "Bestanden filteren"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, fuzzy, kde-format
-#| msgid "Apply selection to folders"
+#, kde-format
 msgid "Apply &selection to folders"
-msgstr "Selectie toepassen op mappen"
+msgstr "&Selectie toepassen op mappen"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, kde-format
@@ -8248,10 +8210,9 @@ msgstr ""
 "weergave"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, fuzzy, kde-format
-#| msgid "Open in a new tab"
+#, kde-format
 msgid "Open a new tab"
-msgstr "In een nieuwe tab openen"
+msgstr "Een nieuw tabblad openen"
 
 #: app/paneltabbar.cpp:172
 #, kde-format
@@ -8298,7 +8259,7 @@ msgstr "Gevonden Tekst:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr ""
+msgstr "Inactief"
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -9145,16 +9106,14 @@ msgid "Move Current Tab to Other Side"
 msgstr "Het huidige tabblad naar de nadere kant verplaatsen"
 
 #: app/tabactions.cpp:26
-#, fuzzy, kde-format
-#| msgid "Move Current Tab to Other Side"
+#, kde-format
 msgid "Move Current Tab to the Left"
-msgstr "Het huidige tabblad naar de nadere kant verplaatsen"
+msgstr "Het huidige tabblad naar links verplaatsen"
 
 #: app/tabactions.cpp:27
-#, fuzzy, kde-format
-#| msgid "Move Current Tab to Other Side"
+#, kde-format
 msgid "Move Current Tab to the Right"
-msgstr "Het huidige tabblad naar de nadere kant verplaatsen"
+msgstr "Het huidige tabblad naar rechts verplaatsen"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9162,10 +9121,9 @@ msgid "Close Current Tab"
 msgstr "Huidige tab sluiten"
 
 #: app/tabactions.cpp:29
-#, fuzzy, kde-format
-#| msgid "Unlock Tab"
+#, kde-format
 msgid "Undo Close Tab"
-msgstr "Tab ontgrendelen"
+msgstr "Tabblad sluiten ongedaan maken"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9773,12 +9731,12 @@ msgstr "Multimedia"
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr ""
+msgstr "Bestandspad van huidig item kopiëren (spaties escapen)"
 
 #: app/useraction_examples.xml:46
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
-msgstr ""
+msgstr "Bestandspad(en) van geselecteerde item(s) kopiëren"
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
@@ -9855,8 +9813,7 @@ msgstr ""
 "U kunt het inschakelen op de pagina 'Archieven' in Konfigurator."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, fuzzy, kde-format
-#| msgid "Creating directories is not supported with %1 archives"
+#, kde-format
 msgid "Creating folders is not supported with %1 archives"
 msgstr "Het aanmaken van mappen is niet ondersteund in %1 archieven."
 
@@ -9891,6 +9848,8 @@ msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
+"Er deed zich een fout voor, gerelateerd aan het externe programma '%1'. De "
+"foutmelding is: '%2'."
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
@@ -9903,8 +9862,7 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "Bestandstoegang in %1 archieven is niet ondersteund"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, fuzzy, kde-format
-#| msgid "Listing directories is not supported for %1 archives"
+#, kde-format
 msgid "Listing folders is not supported for %1 archives"
 msgstr "Het tonen van mappen in %1 archieven is niet ondersteund."
 
