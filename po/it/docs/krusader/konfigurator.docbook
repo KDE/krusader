@@ -1,21 +1,9 @@
-<!-- **********************************************************************
-  copyright            : (C) 2000-2019
-                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                         & the Krusader Krew
-  e-mail               : krusader-devel@googlegroups.com
-  web site             : https://krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <chapter id="konfigurator">
   <title
 >Konfigurator: il centro di configurazione di &krusader;</title>
@@ -30,7 +18,7 @@
 > <guimenu
 >Impostazioni</guimenu
 > <guimenuitem
->Configura &krusader;</guimenuitem
+>Configura &krusader;...</guimenuitem
 > </menuchoice
 > per avviare Konfigurator. Qui puoi modificare il modo in cui agisce &krusader; e personalizzarlo in base alle tue esigenze. In qualsiasi momento, col pulsante <guibutton
 >Applica</guibutton
@@ -38,7 +26,9 @@
 >Chiudi</guibutton
 > chiudi Konfigurator e con <guibutton
 >Valori predefiniti</guibutton
-> applichi di nuovo le impostazioni di «fabbrica» di &krusader;. Konfigurator è diviso in pagine, ognuna contenente gli elementi inerenti a quella pagina. Per alcune modifiche all'interfaccia devi chiudere e riavviare il programma.</para>
+> applichi di nuovo le impostazioni di <quote
+>fabbrica</quote
+> di &krusader;. Konfigurator è diviso in pagine, ognuna contenente gli elementi inerenti a quella pagina. Per alcune modifiche all'interfaccia devi chiudere e riavviare il programma.</para>
 
 <note>
  <para
@@ -257,7 +247,9 @@
 >Estensioni selezionate nella rinomina</guilabel
 >: quando <link linkend="renaming"
 >rinomini un file</link
->, viene selezionato l'intero testo. Se preferisci uno stile tipo total commander per la rinomina del solo nome, deseleziona questa opzione.</para>
+>, viene selezionato l'intero testo. Se preferisci uno stile tipo <trademark class="copyright"
+>Total Commander</trademark
+> per la rinomina del solo nome, deseleziona questa opzione.</para>
         </listitem>
         <listitem>
           <para
@@ -290,10 +282,38 @@
         <listitem>
           <para
 ><guilabel
->Mostra pulsanti nuova/chiudi scheda</guilabel
->: se selezionata, &krusader; mostra i pulsanti «nuova» e «chiudi» sulle <link linkend="folder-tabs"
+>Schede a espansione</guilabel
+>: se selezionata, &krusader; espande le <link linkend="folder-tabs"
 >schede</link
+> per occupare l'intera barra.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Chiudi scheda con doppio clic</guilabel
+>: se selezionata, &krusader; permette di chiudere le <link linkend="folder-tabs"
+>schede</link
+> facendovi sopra doppio clic.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Inserisci le schede dopo quella attuale</guilabel
+>: se selezionata, &krusader; inserisce le nuove schede alla destra di quella attiva anziché posizionarle alla fine della <link linkend="folder-tabs"
+>barra delle schede</link
 >.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Duplica la scheda attiva con</guilabel
+>: ti permette di selezionare la modalità di duplicazione della scheda attiva (<guimenuitem
+>Disabilitato</guimenuitem
+> (nessun clic associato), <guimenuitem
+>Alt+clic</guimenuitem
+> o <guimenuitem
+>Ctrl+clic</guimenuitem
+>).</para>
         </listitem>
         <listitem>
           <para
@@ -307,6 +327,22 @@
 >sopra</guimenuitem
 >).</para>
         </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra pulsanti chiudi scheda</guilabel
+>: se selezionata, &krusader; mostra i pulsanti «chiudi» sulle <link linkend="folder-tabs"
+>schede</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Mostra pulsanti nuova scheda</guilabel
+>: se selezionata, &krusader; mostra i pulsanti «nuova» sulle <link linkend="folder-tabs"
+>schede</link
+>.</para>
+        </listitem>
 	<listitem>
           <para
 ><guilabel
@@ -314,6 +350,14 @@
 >: se selezionata, &krusader; mostra la barra delle schede anche se nel pannello è presente solo una <link linkend="folder-tabs"
 >scheda</link
 >.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Il pulsante Nuova scheda duplica una scheda</guilabel
+>: se l'opzione è attivata, il pulsante Nuova scheda duplica una <link linkend="folder-tabs"
+>scheda</link
+>, in caso contrario apre una scheda nella cartella Home.</para>
         </listitem>
       </itemizedlist>
       <itemizedlist>
@@ -343,11 +387,7 @@
           <para
 ><guilabel
 >Su/giù annulla la ricerca</guilabel
->: premendo i tasti <keycap
->freccia su</keycap
-> o <keycap
->freccia giù</keycap
-> si annulla la barra della <link linkend="quicksearch"
+>: premendo i tasti &Up; o &Down; si annulla la barra della <link linkend="quicksearch"
 >ricerca</link
 >.</para>
         </listitem>
@@ -355,9 +395,7 @@
           <para
 ><guilabel
 >Navigazione cartelle con freccia destra</guilabel
->: se attivata, premendo la <keycap
->freccia destra</keycap
-> si entra nella cartella, se non viene rilevata intenzione di modifica del testo di ricerca. </para>
+>: se attivata, premendo il tasto &Right; si entra nella cartella, se non viene rilevata intenzione di modifica del testo di ricerca. </para>
         </listitem>
         <listitem>
           <para
@@ -408,7 +446,7 @@
 > si applica anche agli elementi speciali nel menu Segnalibri, quali <guimenuitem
 >Cestino</guimenuitem
 >, <guimenuitem
->URL ricorrenti</guimenuitem
+>&URL; ricorrenti</guimenuitem
 >, <guimenuitem
 >Salta indietro</guimenuitem
 >, &etc;</para>
@@ -463,17 +501,21 @@
           <para
 ><guilabel
 >Permessi numerici</guilabel
->: la colonna dei permessi (scheda <guilabel
->Pannello</guilabel
-> <guilabel
->Vista</guilabel
->) mostra i numeri ottali «0755» anziché «rwxr-xr-x».</para>
+>: la colonna <guilabel
+>Permessi</guilabel
+> mostra i numeri ottali '<literal
+>0755</literal
+>' anziché '<literal
+>rwxr-xr-x</literal
+>'.</para>
         </listitem>
         <listitem>
           <para
 ><guilabel
 >Mostra i file nascosti</guilabel
->: se selezionata, &krusader; mostra i «file che iniziano col punto», che in caso contrario risulterebbero nascosti.</para>
+>: se selezionata, &krusader; mostra i <quote
+>file che iniziano col punto</quote
+>, che in caso contrario risulterebbero nascosti.</para>
         </listitem>
         <listitem>
           <para
@@ -569,7 +611,7 @@
           <para
 ><guilabel
 >Dimensione predefinita delle icone</guilabel
->: ti permette di cambiare la dimensione delle icone negli elenchi dei file. Sono disponibili le dimensioni 16x16, 22x22, 32x32 e 48x48 pixel.</para>
+>: ti permette di cambiare la dimensione delle icone negli elenchi dei file. Sono disponibili le dimensioni 12x12, 16x16, 22x22, 32x32, 48x48, 64x64, 128x128 e 256x256 pixel.</para>
         </listitem>
         <listitem>
           <para
@@ -612,7 +654,7 @@
               <para
 ><guilabel
 >Tipo</guilabel
->: mostra il campo del tipo MIME.</para>
+>: mostra il campo del tipo &MIME;.</para>
             </listitem>
             <listitem>
               <para
@@ -630,19 +672,23 @@
               <para
 ><guilabel
 >Perm.</guilabel
->: mostra tutti i permessi, &eg; «rwxr-xr-x», oppure come numeri ottali «0755» se abiliti/disabiliti i <guilabel
+>: mostra tutti i permessi, &eg; '<literal
+>rwxr-xr-x</literal
+>', oppure come numeri ottali '<literal
+>0755</literal
+>' se abiliti/disabiliti i <guilabel
 >Permessi numerici</guilabel
 > nella scheda <guilabel
->Vista</guilabel
-> della pagina <guilabel
->Pannello</guilabel
+>Vista pannello</guilabel
 >.</para>
             </listitem>
             <listitem>
               <para
 ><guilabel
 >rwx</guilabel
->: mostra solo i diritti dell'utente attuale, &eg; «-rw».</para>
+>: mostra solo i diritti dell'utente attuale, &eg; <quote
+>-rw</quote
+>.</para>
             </listitem>
             <listitem>
               <para
@@ -767,7 +813,7 @@
         <listitem>
           <para
 ><guilabel
->Modo Konqueror</guilabel
+>Modo &konqueror;</guilabel
 >: la pressione del &LMB; seleziona i file; puoi fare clic su più file per selezionarli. Il menu contestuale appare con un breve clic del &RMB;.</para>
         </listitem>
         <listitem>
@@ -776,7 +822,7 @@
 >Modo Total Commander</guilabel
 >: col &RMB; si selezionano più file e il menu contestuale appare <guilabel
 >tenendo premuto</guilabel
-> il &RMB;. Il pulsante sinistro del mouse non seleziona ma imposta il file attuale senza influenzare la selezione corrente.</para>
+> il &RMB;. Il &LMB; non seleziona ma imposta il file attuale senza influenzare la selezione corrente.</para>
         </listitem>
 	<listitem>
           <para
@@ -806,7 +852,13 @@
           <para
 ><guilabel
 >Segui le impostazioni globali</guilabel
->: la pressione del &LMB; seleziona i file -- Usa le impostazioni globali: Impostazioni di sistema di &plasma; -&gt; Dispositivi di immissione -&gt; Mouse.</para>
+>: la pressione del &LMB; seleziona i file -- Usa le impostazioni globali: modulo <menuchoice
+><guimenu
+>Dispositivi di immissione</guimenu
+> <guimenuitem
+>Mouse </guimenuitem
+></menuchoice
+> in &systemsettings; di &plasma;.</para>
         </listitem>
         <listitem>
           <para
@@ -820,37 +872,37 @@
             <listitem>
               <para>
                 <guilabel
->Il pulsante sinistro del mouse seleziona</guilabel>
+>&LMB; seleziona</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
                 <guilabel
->Il pulsante sinistro del mouse preserva la selezione</guilabel>
+>Il &LMB; preserva la selezione</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;/&Ctrl; - clic sinistro del mouse seleziona</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
                 <guilabel
->&Shift;/&Ctrl; - pulsante sinistro del mouse seleziona</guilabel>
+>&RMB; seleziona</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
                 <guilabel
->Il pulsante destro del mouse seleziona</guilabel>
+>Il &RMB; preserva la selezione</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
-                <guilabel
->Il pulsante destro del mouse preserva la selezione</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel
->&Shift;/&Ctrl; - pulsante destro del mouse seleziona</guilabel>
+                  <guilabel
+>&Shift;/&Ctrl; - clic destro del mouse seleziona</guilabel>
               </para>
             </listitem>
             <listitem>
@@ -870,6 +922,12 @@
                 <guilabel
 >Il clic col pulsante destro fa apparire immediatamente il menu contestuale</guilabel>
               </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Il semplice clic del pulsante del mouse azzera la selezione</guilabel
+> - azzera la selezione con un clic del mouse senza modificatori (&ie; &Shift; o &Ctrl;). La selezione con &Shift;/&Ctrl; per il pulsante del mouse va abilitata affinché funzioni per questa impostazione. </para>
             </listitem>
           </itemizedlist
 ></para>
@@ -895,6 +953,32 @@
 ><guilabel
 >Mostra tipo di file system</guilabel
 >: se selezionata, mostra il tipo di file system della partizione.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Nascondi voci SquashFS</guilabel
+>: <ulink url="https://snapcraft.io/"
+>Snap</ulink
+> crea molte partizioni montate con <ulink url="https://en.wikipedia.org/wiki/SquashFS"
+>SquashFS</ulink
+>, praticamente inutili nel <link linkend="list_panel"
+>Menu Dispositivi</link
+>, in quanto è <application
+>snap</application
+> che le gestisce. Attivando questa opzione è possibile nascondere le voci SquashFS.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Nascondi i seguenti punti di montaggio</guilabel
+>: questo elenco permette di escludere gli elementi indesiderati dal <link linkend="list_panel"
+>Media Dispositivi</link
+>. Premi il pulsante <guibutton
+>+</guibutton
+> sopra l'elenco per aggiungere i punti di montaggio da ignorare. Nel caso decidessi di rimuovere dall'elenco il punto di montaggio aggiunto, facci sopra clic e premi il pulsante <guibutton
+>-</guibutton
+>. </para>
         </listitem>
         <listitem>
           <para
@@ -948,8 +1032,10 @@
 >Definita dalla disposizione</guimenuitem
 >, <guimenuitem
 >Nessuna</guimenuitem
+>, <guimenuitem
+>Riquadro</guimenuitem
 > o <guimenuitem
->Barra di stato</guimenuitem
+>Pannello</guimenuitem
 >.</para>
         </listitem>
         <listitem>
@@ -960,8 +1046,10 @@
 >Definita dalla disposizione</guimenuitem
 >, <guimenuitem
 >Nessuna</guimenuitem
+>, <guimenuitem
+>Rilievo</guimenuitem
 > o <guimenuitem
->Barra di stato</guimenuitem
+>Incassata</guimenuitem
 >.</para>
         </listitem>
       </itemizedlist
@@ -977,7 +1065,7 @@
 > e della <link linkend="synchronizer"
 >sincronizzazione</link
 >. La configurazione di colori predefinita sono i <guilabel
->colori predefiniti di KDE</guilabel
+>colori predefiniti di &kde;</guilabel
 >.</para>
 
     <variablelist>
@@ -991,7 +1079,7 @@
             <listitem>
               <para
 ><guilabel
->Usa i colori predefiniti di KDE</guilabel
+>Usa i colori predefiniti di &kde;</guilabel
 >: è l'impostazione predefinita, usa i colori di &plasma; definiti nelle &systemsettings;.</para>
             </listitem>
             <listitem>
@@ -1045,7 +1133,7 @@
             <listitem>
               <para>
                 <guilabel
->Primo piano cartella</guilabel>
+>Primo piano della cartella</guilabel>
               </para>
             </listitem>
             <listitem>
@@ -1112,6 +1200,18 @@
               <para>
                 <guilabel
 >Sfondo attuale</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Rinomina primo piano</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Rinomina sfondo</guilabel>
               </para>
             </listitem>
           </itemizedlist>
@@ -1253,22 +1353,24 @@
 	<listitem>
 	  <para
 ><guilabel
->Minimizza nel vassoio di sistema</guilabel
->: se selezionata, l'icona di &krusader; apparirà nel vassoio di sistema. Se minimizzi &krusader;, esso non apparirà nella barra delle attività. Inoltre, non uscirai dal programma se chiudi la finestra principale. Potrai uscire da &krusader; selezionando <guimenuitem
->Esci</guimenuitem
-> dal menu <guimenu
+>Mostra e chiudi nel vassoio di sistema</guilabel
+>: se selezionata, l'icona di &krusader; apparirà nel vassoio di sistema. Se minimizzi &krusader;, esso non apparirà nella barra delle attività. Inoltre, non uscirai dal programma se chiudi la finestra principale. Potrai uscire da &krusader; selezionando la voce di menu <menuchoice
+><guimenu
 >File</guimenu
+> <guimenuitem
+>Esci</guimenuitem
+></menuchoice
 > o dal menu contestuale dell'icona del vassoio. </para>
 	</listitem>
 	<listitem>
 	  <para
 ><guilabel
->Usa il riconoscimento automatico del tipo MIME</guilabel
+>Usa il riconoscimento automatico del tipo &MIME;</guilabel
 >: questo meccanismo permette a &krusader; di ispezionare i file presenti nei pannelli e determinarne il tipo anche se non possiedono un'estensione identificativa. Ad esempio, se rinomini un file immagine <filename
 >immagine1.jpg</filename
 > in <filename
 >immagine1</filename
->, &krusader; lo riconoscerà ancora come file immagine e agirà di conseguenza. Questa modalità operativa è tuttavia più lenta (durante l'aggiornamento del pannello o il cambio di cartella), perciò prova &krusader; con o senza il riconoscimento automatico del tipo MIME e decidi cos'è meglio per te.</para>
+>, &krusader; lo riconoscerà ancora come file immagine e agirà di conseguenza. Questa modalità operativa è tuttavia più lenta (durante l'aggiornamento del pannello o il cambio di cartella), perciò prova &krusader; con o senza il riconoscimento automatico del tipo &MIME; e decidi cos'è meglio per te.</para>
 	 </listitem>
 	 <listitem>
 	   <para
@@ -1309,6 +1411,10 @@
 > all'emulatore di terminale se la cartella del pannello cambia.</para>
       <para
 ><guilabel
+>Il pannello attivo segue la cartella di lavoro del terminale integrato</guilabel
+>: se disattivata, il pannello attivo non cambia quando l'utente naviga nel terminale integrato (usando cd, popd, ecc). </para>
+      <para
+><guilabel
 >Commuta la visualizzazione a tutto schermo del terminale integrato</guilabel
 >: se selezionata, &krusader; mostra il terminale a schermo intero in stile <application
 >Midnight Commander</application
@@ -1324,7 +1430,13 @@
 	<para
 ><guilabel
 >L'editor e il visualizzatore interni aprono ogni file in una finestra separata</guilabel
->: seleziona questo elemento se vuoi che ciascun file sia aperto in una finestra separata. </para>
+>: seleziona questo elemento se vuoi che ciascun file sia aperto in una finestra separata. Se deselezionato, ogni file sarà aperto in una scheda nella stessa finestra del visore / editor. Ciascuna scheda nella finestra può essere chiusa, in aggiunta ai soliti metodi noti, facendo clic sulla scheda col &MMB;. </para>
+      </listitem>
+      <listitem>
+	<para
+><guilabel
+>Nascondi la barra delle schede quando ce n'è solo una aperta</guilabel
+>: seleziona questo elemento se desideri che la barra delle schede del visore/editor venga nascosta quando è aperta solo una scheda. </para>
       </listitem>
       <listitem>
         <para
@@ -1441,7 +1553,7 @@
 >/mnt/cdrom</filename
 > appare in <filename class="directory"
 >/etc/fstab</filename
-> come punto di montaggio), &krusader; controllerà se è montato. Se non lo fosse, tenterà di montarlo e poi vi accederà, in modo da poterne visualizzare i contenuti. Nota però che &krusader; NON smonterà il file system all'uscita da <filename class="directory"
+> come punto di montaggio), &krusader; controllerà se è montato. Se non lo fosse, tenterà di montarlo e poi vi accederà, in modo da poter visualizzare i contenuti del &CD-ROM;. Nota però che &krusader; NON smonterà il file system all'uscita da <filename class="directory"
 >/mnt/cdrom</filename
 >.</para>
             </listitem>
@@ -1485,19 +1597,19 @@
           <itemizedlist>
             <listitem>
               <para
->eliminazione di cartelle non vuote</para>
+>Eliminazione di cartelle non vuote</para>
             </listitem>
             <listitem>
               <para
->eliminazione file</para>
+>Eliminazione di file</para>
             </listitem>
             <listitem>
               <para
->copia file</para>
+>Copia di file</para>
             </listitem>
             <listitem>
               <para
->spostamento file</para>
+>Spostamento di file</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -1512,7 +1624,7 @@
             <listitem>
               <para
 ><guilabel
->Dimensione cache icone</guilabel
+>Dimensione cache icone (KB)</guilabel
 >: &krusader; utilizza una cache per le icone, in modo da non ricaricare quelle usate in precedenza. Ovviamente, aumentando la cache aumenta la capacità di memorizzare più icone e velocizzare le operazioni, al costo, però, di un maggiore uso di risorse da parte di &krusader;.</para>
             </listitem>
             <listitem>
@@ -1585,9 +1697,9 @@
             LOST. They were actually moved into a subfolder in
             &krusader;'s
             <link linkend="konfig-general"
->temp directory</link
+>temp folder</link
 >.
-            You can search the directory and recover your
+            You can search the folder and recover your
             files.</para>
           </note
 ></para>
@@ -2363,7 +2475,11 @@
     <title
 >Protocolli</title>
     <para
->Questa pagina collega i tipi MIME ai protocolli. &eg;, il protocollo «tar» è collegato al tipo MIME «application/x-tar».</para>
+>Questa pagina collega i tipi &MIME; ai protocolli. &eg;, il protocollo <quote
+>tar</quote
+> è collegato al tipo &MIME; <quote
+>application/x-tar</quote
+>.</para>
 
     <para
 >Nei <guilabel

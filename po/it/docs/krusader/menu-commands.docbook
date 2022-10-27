@@ -1,21 +1,9 @@
-<!-- **********************************************************************
-  copyright            : (C) 2000-2019
-                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                         & the Krusader Krew
-  e-mail               : krusader-devel@googlegroups.com
-  web site             : https://krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <chapter id="menu-commands">
   <title
 >Comandi dei menu</title>
@@ -41,7 +29,7 @@
 > <guimenu
 >File</guimenu
 > <guimenuitem
->Nuovo file di testo</guimenuitem
+>Nuovo file di testo...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -79,7 +67,7 @@
 > <guimenu
 >File</guimenu
 > <guimenuitem
->Nuovo collegamento simbolico</guimenuitem
+>Nuovo collegamento simbolico...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -177,7 +165,7 @@
 > <guimenu
 >File</guimenu
 > <guimenuitem
->Comprimi</guimenuitem
+>Comprimi...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -199,7 +187,7 @@
 > <guimenu
 >File</guimenu
 > <guimenuitem
->Estrai</guimenuitem
+>Estrai...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -237,7 +225,7 @@
 ><guimenu
 >File</guimenu
 > <guimenuitem
->Confronta per contenuto</guimenuitem
+>Confronta per contenuto...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -267,7 +255,7 @@
 > <guimenu
 >File</guimenu
 > <guimenuitem
->Rinomina multipla</guimenuitem
+>Rinomina multipla...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -341,7 +329,7 @@
 ><guimenu
 >File</guimenu
 > <guimenuitem
->Crea codice di controllo</guimenuitem
+>Crea codice di controllo...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -357,7 +345,7 @@
 ><guimenu
 >File</guimenu
 > <guimenuitem
->Verifica codice di controllo</guimenuitem
+>Verifica codice di controllo...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -380,7 +368,7 @@
 > <guimenu
 >File</guimenu
 > <guimenuitem
->Dividi file</guimenuitem
+>Dividi file...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -404,7 +392,7 @@
 > <guimenu
 >File</guimenu
 > <guimenuitem
->Unisci file</guimenuitem
+>Unisci file...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -566,7 +554,7 @@
 > <guimenu
 >Modifica</guimenu
 > <guimenuitem
->Seleziona gruppo</guimenuitem
+>Seleziona gruppo...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -606,7 +594,7 @@
 > <guimenu
 >Modifica</guimenu
 > <guimenuitem
->Deseleziona gruppo</guimenuitem
+>Deseleziona gruppo...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -706,7 +694,7 @@
 > <guimenu
 >Modifica</guimenu
 > <guimenuitem
->Trova nella cartella</guimenuitem
+>Trova nella cartella...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -814,7 +802,7 @@
 > <guimenu
 >Modifica</guimenu
 > <guimenuitem
->Proprietà</guimenuitem
+>Proprietà...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -833,9 +821,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt; <keysym
->Su</keysym
-></keycombo
+>&Alt; &Up;</keycombo
 > </shortcut
 > <guimenu
 >Vai</guimenu
@@ -853,9 +839,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt; <keysym
->Sinistra</keysym
-></keycombo
+>&Alt; &Left;</keycombo
 > </shortcut
 > <guimenu
 >Vai</guimenu
@@ -873,9 +857,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt; <keysym
->Destra</keysym
-></keycombo
+>&Alt; &Right;</keycombo
 > </shortcut
 > <guimenu
 >Vai</guimenu
@@ -899,9 +881,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt; <keysym
->Home</keysym
-></keycombo
+>&Alt; &Home;</keycombo
 > </shortcut
 > <guimenu
 >Vai</guimenu
@@ -944,7 +924,7 @@
 > <guimenu
 >Vai</guimenu
 > <guimenuitem
->URL ricorrenti</guimenuitem
+>&URL; ricorrenti</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -969,7 +949,9 @@
         </term>
         <listitem>
           <para
->Imposta la cartella attuale come punto per il «salto indietro». Per navigare rapidamente a questa cartella, seleziona il comando <guimenuitem
+>Imposta la cartella attuale come punto per il <quote
+>salto indietro</quote
+>. Per navigare rapidamente a questa cartella, seleziona il comando <guimenuitem
 >Salto indietro</guimenuitem
 > dal menu <guimenuitem
 >Vai</guimenuitem
@@ -993,7 +975,9 @@
         </term>
         <listitem>
           <para
->Ritorna a un punto precedente effettuato con un «salto indietro».</para>
+>Ritorna a un punto precedente effettuato con un <quote
+>salto indietro</quote
+>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -1257,9 +1241,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> <keycap
->Win</keycap
-> <keycap
+> &Meta; <keycap
 >A</keycap
 > </keycombo
 > </shortcut
@@ -1369,9 +1351,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> <keycap
->Meta</keycap
-><keycap
+> &Meta;<keycap
 >F5</keycap
 > </keycombo
 > </shortcut
@@ -1393,9 +1373,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> <keycap
->Win</keycap
-> <keycap
+> &Meta; <keycap
 >1</keycap
 > </keycombo
 > </shortcut
@@ -1417,9 +1395,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> <keycap
->Win</keycap
-> <keycap
+> &Meta; <keycap
 >2</keycap
 > </keycombo
 > </shortcut
@@ -1441,9 +1417,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> <keycap
->Win</keycap
-> <keycap
+> &Meta; <keycap
 >3</keycap
 > </keycombo
 > </shortcut
@@ -1465,9 +1439,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> <keycap
->Win</keycap
-> <keycap
+> &Meta; <keycap
 >4</keycap
 > </keycombo
 > </shortcut
@@ -1502,7 +1474,7 @@
 > <guimenu
 >Strumenti</guimenu
 > <guimenuitem
->Cerca</guimenuitem
+>Cerca...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1524,7 +1496,7 @@
 > <guimenu
 >Strumenti</guimenu
 > <guimenuitem
->Localizza</guimenuitem
+>Localizza...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1568,7 +1540,7 @@
 > <guimenu
 >Strumenti</guimenu
 > <guimenuitem
->MountMan</guimenuitem
+>MountMan...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1590,7 +1562,7 @@
 > <guimenu
 >Strumenti</guimenu
 > <guimenuitem
->Uso del disco</guimenuitem
+>Uso del disco...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1702,33 +1674,6 @@
         </listitem>
       </varlistentry>
       <!-- vertical bar -->
-      <!-- disabled due to KrJS does not compile (cannot find kjsembed from kdelibs
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">
-              &Alt;&Ctrl;
-              <keycap
->J</keycap
-></keycombo>
-            </shortcut>
-            <guimenu
->Tools</guimenu>
-            <guimenuitem
->Javascript Console</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para
->Opens the 
-          <link linkend="javascript_console"
->Javascript
-          Console</link
->.</para>
-        </listitem>
-      </varlistentry>
-      -->
       <varlistentry>
         <term>
           <menuchoice
@@ -2237,7 +2182,7 @@
 ><guimenu
 >Impostazioni</guimenu
 > <guimenuitem
->Configura le scorciatoie</guimenuitem
+>Configura le scorciatoie...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2283,7 +2228,7 @@
 ><guimenu
 >Impostazioni</guimenu
 > <guimenuitem
->Configura le barre degli strumenti</guimenuitem
+>Configura le barre degli strumenti...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2303,7 +2248,7 @@
 ><guimenu
 >Impostazioni</guimenu
 > <guimenuitem
->Configura &krusader;</guimenuitem
+>Configura &krusader;...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2321,7 +2266,7 @@
     <para
 >In aggiunta, &krusader; contiene gli elementi di menu <guimenu
 >Aiuto</guimenu
-> di &kde;; per altre informazioni, leggi le sezioni relative al <ulink url="help:/fundamentals/ui.html#menus-help"
+> di &kde;; per altre informazioni, leggi le sezioni relative al <ulink url="help:/fundamentals/menus.html#menus-help"
 >Menu Aiuto</ulink
 > dei Fondamentali di &kde;. </para>
   </sect1>

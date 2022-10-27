@@ -1,21 +1,9 @@
-<!-- **********************************************************************
-  copyright            : (C) 2000-2019
-                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                         & the Krusader Krew
-  e-mail               : krusader-devel@googlegroups.com
-  web site             : https://krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <chapter id="user-interface">
   <title
 >Interfaccia utente</title>
@@ -119,12 +107,14 @@
 >, e puoi attivarla o disattivarla nella sessione attiva dal <link linkend="settings-menu"
 >menu Impostazioni</link
 >. Il contenuto della barra può essere deciso tramite il comando <guimenuitem
->Configura le barre degli strumenti</guimenuitem
+>Configura le barre degli strumenti...</guimenuitem
 > all'interno del <link linkend="settings-menu"
 >menu Impostazioni</link
 >. Dato che in &krusader; vari comandi e opzioni sono dipendenti dal contesto, certi comandi non sono sempre disponibili. Le icone delle azioni inappropriate o inattive verranno disattivate (mostrate in grigio), rendendone impossibile l'uso. I <link linkend="bookman"
 >segnalibri</link
-> possono essere inseriti nella barra degli strumenti sia principale, sia delle azioni, tramite il trascinamento col mouse («drag and drop»).</para>
+> possono essere inseriti nella barra degli strumenti sia principale, sia delle azioni, tramite il trascinamento col mouse (<quote
+>drag and drop</quote
+>).</para>
     </sect2>
     <sect2 id="job_toolbar">
       <title
@@ -154,7 +144,9 @@
 >azioni</link
 > e i <link linkend="bookman"
 >Segnalibri</link
-> si possono inserire all'interno della <guilabel
+> si possono <quote
+>inserire</quote
+> all'interno della <guilabel
 >barra degli strumenti delle azioni</guilabel
 >. Per visualizzare la barra, usa <menuchoice
 > <guimenu
@@ -166,7 +158,7 @@
 > <guimenu
 >Impostazioni</guimenu
 > <guimenuitem
->Configura le barre degli strumenti</guimenuitem
+>Configura le barre degli strumenti...</guimenuitem
 > </menuchoice
 > e seleziona la barra degli strumenti delle azioni. Puoi, per esempio, trascinare col mouse la barra delle azioni sul lato destro.</para>
     </sect2>
@@ -184,7 +176,9 @@
 >barra degli strumenti principale</guibutton
 > si trova la <guibutton
 >barra degli strumenti della posizione</guibutton
->, per ciascun pannello. Essa mostra il percorso cui punta attualmente il pannello. Se accedi a un archivio, il percorso sarà visualizzato nel seguente formato: «tipo archivio:/cartella/nome_archivio/la cartella dentro l'archivio». Questo formato rende il percorso uniforme e facile da leggere. La <guibutton
+>, per ciascun pannello. Essa mostra il percorso cui punta attualmente il pannello. Se accedi a un archivio, il percorso sarà visualizzato nel seguente formato: <quote
+>tipo archivio:/cartella/nome_archivio/la cartella dentro l'archivio</quote
+>. Questo formato rende il percorso uniforme e facile da leggere. La <guibutton
 >barra degli strumenti della posizione</guibutton
 > supporta anche gli slave KIO, ma non tutti: alcuni possono essere usati solo col <link linkend="krviewer"
 >visore</link
@@ -240,7 +234,7 @@
       <para
 >Navigazione rapida: premi &Ctrl; e punta con il mouse in mezzo all'&URL; presente nella <guibutton
 >barra della posizione</guibutton
->. Si apre una finestrella che mostra la posizione del prossimo &URL;. Se premi &Ctrl; + pulsante sinistro del mouse ti viene mostrata la posizione cui il mouse stava puntando. Questa funzionalità consente una navigazione più rapida nelle strutture ad albero grandi.</para>
+>. Si apre una finestrella che mostra la posizione del prossimo &URL;. Se premi &Ctrl; + &LMB; ti viene mostrata la posizione cui il mouse stava puntando. Questa funzionalità consente una navigazione più rapida nelle strutture ad albero grandi.</para>
     </sect2>
     <sect2 id="panel_toolbar">
       <title
@@ -315,7 +309,13 @@
       </listitem>
     </itemizedlist>
     <para
->&krusader; è un gestore di file a «doppio pannello», dunque possiede due pannelli: il pannello «destro» e quello «sinistro» o, in base a una distinzione logica più importante, il pannello «attivo» e quello «inattivo». Il pannello attivo è quello che accetta le immissioni tramite il mouse e la tastiera. Se scegli un comando dalla <guilabel
+>&krusader; è un gestore di file a <quote
+>doppio pannello</quote
+>, dunque possiede due pannelli: il pannello <quote
+>destro</quote
+> e quello <quote
+>sinistro</quote
+> o, in base a una distinzione logica più importante, il pannello «attivo» e quello «inattivo». Il pannello attivo è quello che accetta le immissioni tramite il mouse e la tastiera. Se scegli un comando dalla <guilabel
 >barra dei menu</guilabel
 > o dalla <guilabel
 >barra degli strumenti</guilabel
@@ -350,7 +350,7 @@
 >Pannello elenco</secondary>
       </indexterm>
       <para
->È il pannello predefinito e anche quello che probabilmente userai di più. Mostra i contenuti di una cartella, che può essere locale (parte dei tuoi file system montati, come un file nativo o come file all'interno di un archivio) oppure un file remoto (con accesso tramite &FTP;, NFS o Samba). Esistono due modalità: la <link linkend="view-menu"
+>È il pannello predefinito e anche quello che probabilmente userai di più. Mostra i contenuti di una cartella, che può essere locale (parte dei tuoi file system montati, come un file nativo o come file all'interno di un archivio) oppure un file remoto (con accesso tramite &FTP;, &NFS; o Samba). Esistono due modalità: la <link linkend="view-menu"
 >vista dettagliata</link
 >, che mostra i nomi dei file, la dimensione, la data e l'ora di creazione e i loro attributi; la <link linkend="view-menu"
 >vista sintetica</link
@@ -390,7 +390,7 @@
 >pulsante dei dispositivi</guibutton
 > a sinistra della <guilabel
 >Etichetta Informazioni</guilabel
-> mostra un elenco tutti i dispositivi a disposizione, nel quale puoi selezionare il dispositivo desiderato (partizione del disco, DVD, penna USB, &etc;). Se premi <keycombo
+> mostra un elenco tutti i dispositivi a disposizione, nel quale puoi selezionare il dispositivo desiderato (partizione del disco, &DVD;, penna &USB;, &etc;). Se premi <keycombo
 >&Ctrl;<keycap
 >Invio</keycap
 ></keycombo
@@ -454,9 +454,7 @@
 > </emphasis
 >: mostra i file e le cartelle nella cartella in cui ti posizioni. La <link linkend="quicksearch"
 >barra della ricerca</link
-> ti permette di ricercare file digitando il loro nome o suoi i primi caratteri. Se premi &Enter; o fai doppio-clic su un file, lo apri o lo esegui. Puoi selezionare/deselezionare i file con il mouse, con il tasto <keycap
->Ins</keycap
-> o il <link linkend="edit-menu"
+> ti permette di ricercare file digitando il loro nome o suoi i primi caratteri. Se premi &Enter; o fai doppio-clic su un file, lo apri o lo esegui. Puoi selezionare/deselezionare i file con il mouse, con il tasto &Ins; o il <link linkend="edit-menu"
 >menu Modifica</link
 >.</para>
         </listitem>
@@ -470,15 +468,21 @@
 > <guilabel
 >etichetta dei totali</guilabel
 > </emphasis
-> nella parte inferiore del pannello, che mostra quanti file hai selezionato (e quanto spazio su disco occupano), così come i file complessivi e l'uso del disco dell'attuale cartella (al contrario dell'etichetta che mostra le informazioni sull'intero file system). Se una cartella contiene molte sotto-cartelle, potrebbe non essere possibile trascinare l'&URL; sul pannello (su cui sono visibili sono le cartelle), ma potrebbe essere rilasciato invece sulla «etichetta delle informazioni» o su quella dei «totali». Se imposti un <link linkend="view-menu"
+> nella parte inferiore del pannello, che mostra quanti file hai selezionato (e quanto spazio su disco occupano), così come i file complessivi e l'uso del disco dell'attuale cartella (al contrario dell'etichetta che mostra le informazioni sull'intero file system). Se una cartella contiene molte sotto-cartelle, potrebbe non essere possibile trascinare l'&URL; sul pannello (su cui sono visibili sono le cartelle), ma potrebbe essere rilasciato invece sulla <quote
+>etichetta delle informazioni</quote
+> o su quella dei <quote
+>totali</quote
+>. Se imposti un <link linkend="view-menu"
 >filtro personalizzato</link
 >, esso mostrerà l'impostazione, esempio: [*.cpp].</para>
         </listitem>
       </itemizedlist>
       <para
->Quando usi i «<link linkend="konfig-color"
+>Quando usi i <quote
+><link linkend="konfig-color"
 >colori</link
-> predefiniti di &kde;» i file selezionati sono mostrati in blu e il file corrente è circondato da una cornice rettangolare fine. Per impostazione predefinita, viene mostrata l'icona in base al tipo di file. Usa la <link linkend="konfig-panel"
+> predefiniti di &kde;</quote
+> i file selezionati sono mostrati in blu e il file corrente è circondato da una cornice rettangolare fine. Per impostazione predefinita, viene mostrata l'icona in base al tipo di file. Usa la <link linkend="konfig-panel"
 >pagina Pannello di Konfigurator</link
 > per modificare la configurazione predefinita adatta alle tue esigenze.</para>
       <para
@@ -499,9 +503,7 @@
         <listitem>
           <para
 >Evidenzia un file o una cartella sul pannello sinistro, se premi <keycombo action="simul"
->&Ctrl; <keycap
->freccia destra</keycap
-></keycombo
+>&Ctrl; &Right;</keycombo
 > il pannello destro cambia: <itemizedlist>
             <listitem>
               <para
@@ -517,9 +519,7 @@
         <listitem>
           <para
 >Per il pannello destro: premi <keycombo action="simul"
->&Ctrl; <keycap
->freccia sinistra</keycap
-></keycombo
+>&Ctrl; &Left; </keycombo
 > e il pannello sinistro cambia.</para>
         </listitem>
       </itemizedlist>
@@ -534,12 +534,12 @@
 >Barra laterale (terzo pannello)</secondary>
       </indexterm>
       <para
->Questa è la «terza mano di &krusader;», detto anche terzo pannello, premi il pulsante a forma di freccia in alto alla destra dell'<guilabel
+>Questa è la <quote
+>terza mano di &krusader;</quote
+>, detto anche terzo pannello, premi il pulsante a forma di freccia in alto alla destra dell'<guilabel
 >etichetta dei totali</guilabel
 > oppure <keycombo action="simul"
->&Alt; <keycap
->freccia giù</keycap
-></keycombo
+>&Alt; &Down;</keycombo
 > per aprire la <guilabel
 >barra laterale</guilabel
 >. Questo pannello possiede varie modalità di visualizzazione che possono essere attivate premendo il giusto pulsante.</para>
@@ -570,7 +570,11 @@
 >*.png</literal
 > e premi il pulsante <guibutton
 >Vai</guibutton
->. Il pulsante «floppy» memorizza la selezione corrente. È disponibile pure la «finestra per la selezione del gruppo».</para>
+>. Il pulsante <quote
+>floppy</quote
+> memorizza la selezione corrente. È disponibile pure la <quote
+>finestra per la selezione del gruppo</quote
+>.</para>
         </listitem>
         <listitem>
           <para
@@ -594,7 +598,9 @@
         </listitem>
       </itemizedlist>
       <para
->È possibile cambiare la posizione della barra laterale utilizzando il pulsante di rotazione che si trova alla sinistra del pulsante freccia in basso nella parte inferiore della scheda di &krusader;. Ogni clic sul pulsante sposta la barra laterale di una posizione con sequenza «inferiore-sinistra-superiore-destra». </para>
+>È possibile cambiare la posizione della barra laterale utilizzando il pulsante di rotazione che si trova alla sinistra del pulsante freccia in basso nella parte inferiore della scheda di &krusader;. Ogni clic sul pulsante sposta la barra laterale di una posizione con sequenza <quote
+>inferiore-sinistra-superiore-destra</quote
+>. </para>
       <para
 >Se necessario, puoi modificare le dimensioni della finestra, &eg; per meglio visualizzare un'immagine o i contenuti di un file. Per chiudere il <guilabel
 >terzo pannello</guilabel
@@ -790,7 +796,9 @@
 >Mkdir</guilabel
 > <keycap
 >F7</keycap
-> può creare strutture di cartelle complete al volo, &eg; <literal
+> (nome tradotto del comando <command
+>mkdir</command
+>) può creare strutture di cartelle complete al volo, per esempio <literal
 >foo/bar/test</literal
 >. Puoi scegliere di visualizzare <link linkend="faqu_resize"
 >o no</link
@@ -846,7 +854,7 @@
 >premi il pulsante destro del mouse</keycap
 > sopra una cartella e seleziona <guimenuitem
 >Apri in una nuova scheda</guimenuitem
->.</para>
+> oppure fai clic sul pulsante all'estrema destra della barra delle schede.</para>
       </listitem>
       <listitem>
         <para
@@ -882,7 +890,7 @@
 > &Ctrl;&Alt;&Shift; <keycap
 >N</keycap
 ></keycombo
->.</para>
+>. </para>
       </listitem>
       <listitem>
         <para
@@ -898,14 +906,6 @@
 >&Ctrl; <keycap
 >W</keycap
 ></keycombo
->.</para>
-      </listitem>
-      <listitem>
-        <para
->Per <action
->creare una scheda «home»</action
->: premi il pulsante <guibutton
->Home</guibutton
 >.</para>
       </listitem>
       <listitem>

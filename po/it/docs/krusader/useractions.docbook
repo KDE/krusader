@@ -1,21 +1,9 @@
-<!-- **********************************************************************
-  copyright            : (C) 2000-2019
-                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                         & the Krusader Krew
-  e-mail               : krusader-devel@googlegroups.com
-  web site             : https://krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="useractions">
   <title
 >Azioni</title>
@@ -37,7 +25,9 @@
 >esempi</link
 >. Le azioni possono essere modificate / aggiunte / importate / esportate tramite ActionMan. Le azioni predefinite sono memorizzate in <filename
 > /usr/share/krusader/useraction-examples.xml</filename
->. Esse possono apparire praticamente ovunque può essere inserita una KAction «normale». Possono essere pure inserite nella barra dei menu, ma in questo caso deve essere modificato il file <filename
+>. Esse possono apparire praticamente ovunque può essere inserita una KAction <quote
+>normale</quote
+>. Possono essere pure inserite nella barra dei menu, ma in questo caso deve essere modificato il file <filename
 >krusaderui.rc</filename
 >. Alcuni esempi:</para
 > 
@@ -258,7 +248,9 @@
           <para
 ><guimenuitem
 >Standard error separato</guimenuitem
->: quando viene usato «Cattura output», stdout e stderr vengono catturati separatamente.</para>
+>: quando viene usato <quote
+>Cattura output</quote
+>, stdout e stderr vengono catturati separatamente.</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -271,13 +263,13 @@
         <listitem>
           <para
 ><guimenuitem
->Solo file locali (non URL)</guimenuitem
+>Solo file locali (non &URL;)</guimenuitem
 >: indica al segnaposto che deve restituire indirizzi locali.</para>
         </listitem>
         <listitem>
           <para
 ><guimenuitem
->URL (remoti e locali)</guimenuitem
+>&URL; (remoti e locali)</guimenuitem
 >: indica al segnaposto che deve restituire &URL;.</para>
         </listitem>
       </itemizedlist>
@@ -319,7 +311,11 @@
 >Sintassi della riga di comando</emphasis>
   </para>
   <para
->Fondamentalmente, tutto ciò che digiti nella riga di comando viene eseguito (se digiti «ls -l», «ls -l» viene eseguito). Hai la possibilità di ottenere una stringa di caratteri da &krusader; che rappresenta lo stato corrente del pannello. Questo viene fatto utilizzando i segnaposti. Un segnaposto inizia con un segno percentuale ('%') seguito da un indicatore di pannello ('a' per il pannello attivo, 'o' per l'altro, 'l' per il sinistro e 'r' per il destro (le iniziali sono quelle delle parole inglesi, N.d.T.). Se il segnaposto non necessita di un pannello per operare, devi indicarlo con un trattino basso ('_')). Poi segue il nome del segnaposto (consulta l'elenco sottostante), che può contenere qualche parametro racchiuso tra virgolette. Segue di nuovo, per finire, il segno percentuale.</para>
+>Fondamentalmente, tutto ciò che digiti nella riga di comando viene eseguito (se digiti <quote
+>ls -l</quote
+>, <quote
+>ls -l</quote
+> viene eseguito). Hai la possibilità di ottenere una stringa di caratteri da &krusader; che rappresenta lo stato corrente del pannello. Questo viene fatto utilizzando i segnaposti. Un segnaposto inizia con un segno percentuale ('%') seguito da un indicatore di pannello ('a' per il pannello attivo, 'o' per l'altro, 'l' per il sinistro e 'r' per il destro (le iniziali sono quelle delle parole inglesi, N.d.T.). Se il segnaposto non necessita di un pannello per operare, devi indicarlo con un trattino basso ('_')). Poi segue il nome del segnaposto (consulta l'elenco sottostante), che può contenere qualche parametro racchiuso tra virgolette. Segue di nuovo, per finire, il segno percentuale.</para>
   <para
 >Tutto questo sembra molto complicato, facciamo dunque un esempio: '%aList("Selected")%' viene sostituito da un elenco di tutti gli elementi selezionati nel pannello attivo. Perciò, un comando come «xmms --enqueue %aList("All", " ", "", "*.mp3")%» eseguirà xmms con un elenco di tutti i file .mp3 presenti nel pannello attivo, separati da uno spazio vuoto.</para>
   <para
@@ -346,7 +342,15 @@
       <orderedlist>
         <listitem>
           <para
->Parametro: quali elementi; «Tutto», «Selezionato», «File» o «Cartelle»</para>
+>Parametro: quali elementi; <quote
+>Tutto</quote
+>, <quote
+>Selezionato</quote
+>, <quote
+>File</quote
+> o <quote
+>Cartelle</quote
+></para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -380,11 +384,21 @@
       <orderedlist>
         <listitem>
           <para
->Parametro: quali elementi; «Tutto», «Selezionato», «File» o «Cartelle»</para>
+>Parametro: quali elementi; <quote
+>Tutto</quote
+>, <quote
+>Selezionato</quote
+>, <quote
+>File</quote
+> o <quote
+>Cartelle</quote
+></para>
         </listitem>
         <listitem>
           <para
->Parametro (facoltativo): separatore tra gli elementi. Predefinito: «&nbsp;»</para>
+>Parametro (facoltativo): separatore tra gli elementi. Predefinito: <quote
+>&nbsp;</quote
+></para>
         </listitem>
         <listitem>
           <para
@@ -392,7 +406,9 @@
         </listitem>
         <listitem>
           <para
->Parametro (facoltativo): maschera filtro (per tutti eccetto che per «Selezionato»). Predefinito: *</para>
+>Parametro (facoltativo): maschera filtro (per tutti eccetto che per <quote
+>Selezionato</quote
+>). Predefinito: *</para>
         </listitem>
         <listitem>
           <para
@@ -412,7 +428,15 @@
         </listitem>
         <listitem>
           <para
->Parametro (facoltativo): manipola in che modo; «Imposta», «Aggiungi» o «Rimuovi». Predefinito: «Imposta»</para>
+>Parametro (facoltativo): manipola in che modo; <quote
+>Imposta</quote
+>, <quote
+>Aggiungi</quote
+> o <quote
+>Rimuovi</quote
+>. Predefinito: <quote
+>Imposta</quote
+></para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -424,7 +448,7 @@
       <orderedlist>
         <listitem>
           <para
->Parametro: percorso relativo o assoluto, oppure un URL</para>
+>Parametro: percorso relativo o assoluto, oppure un &URL;</para>
         </listitem>
         <listitem>
           <para
@@ -460,7 +484,9 @@
       <orderedlist>
         <listitem>
           <para
->Parametro: il testo che deve essere copiato negli appunti (qui potresti usare, se vuoi, «%aCurrent%»)</para>
+>Parametro: il testo che deve essere copiato negli appunti (qui potresti usare, se vuoi, <quote
+>%aCurrent%</quote
+>)</para>
         </listitem>
         <listitem>
           <para
@@ -572,56 +598,6 @@
         </listitem>
       </orderedlist>
     </listitem>
-<!--    <listitem>
-      <para>
-      <userinput
->Script</userinput
-> - executes an external 
-      <link linkend="javascript_console">
-      Javascript</link
-> file.</para>
-      <para
->NOTE: This is still experimental and the interface may
-      change, feedback is always welcome.</para>
-      <orderedlist>
-        <listitem>
-          <para
->Parameter: path to the
-          external foo.js file, absolute path or relative to 
-          <filename>
-          &lt;kde-app-data&gt;/krusader/js/</filename
->.
-          &lt;kde-app-data&gt; is 
-          <filename
->$(kde-config
-          - -localprefix)/share/apps/</filename
-> or 
-          <filename
->$(kde-config - -prefix)/share/apps/</filename
->,
-          for those who do not know where to copy the
-          scripts/extensions. If all the needed files (normally 
-          <filename
->.js</filename
-> and maybe 
-          <filename
->.ui</filename
->) are in one of these dirs it is
-          sufficient to give the file name only as &lt;first parameter&gt;.
-          </para>
-        </listitem>
-        <listitem>
-          <para
->Parameter (optional): a list
-          of variables which should be set, like "return=cmd;
-          a=lalala; b='%_Ask(..)'" so that the placeholder is
-          replaced be the content of the variable cmd and the other
-          two have already these values when the script
-          starts.</para>
-        </listitem>
-      </orderedlist>
-    </listitem>
-    disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
     <listitem>
       <para
 ><userinput
@@ -642,11 +618,35 @@
       <orderedlist>
         <listitem>
           <para
->Parametro: colonna; «Name», «Ext», «Type», «Size», «Modified», «Perms», «rwx», «Owner» e «Group»</para>
+>Parametro: colonna <quote
+>Name</quote
+>, <quote
+>Ext</quote
+>, <quote
+>Type</quote
+>, <quote
+>Size</quote
+>, <quote
+>Modified</quote
+>, <quote
+>Perms</quote
+>, <quote
+>rwx</quote
+>, <quote
+>Owner</quote
+> and <quote
+>Group</quote
+></para>
         </listitem>
         <listitem>
           <para
->Parametro: sequenza di ordinamento; «Toggle», «Asc» o «Desc»</para>
+>Parametro: sequenza di ordinamento; <quote
+>Toggle</quote
+>, <quote
+>Asc</quote
+> o <quote
+>Desc</quote
+></para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -658,11 +658,21 @@
       <orderedlist>
         <listitem>
           <para
->Parametro: modo visualizzazione «generic», «text» o «hex»</para>
+>Parametro: modo visualizzazione; <quote
+>generic</quote
+>, <quote
+>text</quote
+> o <quote
+>hex</quote
+></para>
         </listitem>
         <listitem>
           <para
->Parametro: modalità della finestra «tab», «window»</para>
+>Parametro: modalità della finestra; <quote
+>tab</quote
+> o <quote
+>window</quote
+></para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -679,7 +689,7 @@
   <itemizedlist>
     <listitem>
       <para
->Configura se l'azione è valida per un protocollo, un percorso, un tipo MIME o un nome di file.</para>
+>Configura se l'azione è valida per un protocollo, un percorso, un tipo &MIME; o un nome di file.</para>
     </listitem>
     <listitem>
       <para

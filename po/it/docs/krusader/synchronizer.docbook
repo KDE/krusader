@@ -1,21 +1,9 @@
-<!-- **********************************************************************
-  copyright            : (C) 2000-2019
-                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                         & the Krusader Krew
-  e-mail               : krusader-devel@googlegroups.com
-  web site             : https://krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="synchronizer">
   <title
 >Sincronizzazione</title>
@@ -225,11 +213,13 @@
           </listitem>
           <listitem>
             <para
->modello/ - indica la ricerca di tutti i file/cartelle, ma la ricerca ricorsiva si estende/esclude le cartelle il cui nome è un modello.</para>
+>modello/ - indica la ricerca di tutti i file/cartelle, ma la ricerca ricorsiva si estende alle/esclude le cartelle il cui nome è un modello.</para>
           </listitem>
           <listitem>
             <para
->Puoi usare le virgolette doppie per i nomi che contengono spazi. Il filtro "File di programma" ricerca quei file/cartelle il cui nome è <filename
+>Puoi usare le virgolette doppie per i nomi che contengono spazi. Il filtro <quote
+>File di programma</quote
+> ricerca quei file/cartelle il cui nome è <filename
 >File di programma</filename
 >.</para>
           </listitem>
@@ -329,7 +319,9 @@
             <para
 ><guilabel
 >Scorri risultati</guilabel
->: per server &FTP; lenti, ... Quando la sincronizzazione ha terminato di confrontare un file, inserisce il file alla fine dell'elenco e fa scorrere la finestra, se necessario. Ciò è importante, se vuoi sapere cosa sta facendo la sincronizzazione. Se il server &FTP; è lento, il confronto di una cartella può richiedere del tempo. Attivando questa opzione, noterai che il comparatore è «attivo» ma lento. In file system veloci, può ridurre leggermente la velocità del confronto.</para>
+>: per server &FTP; lenti, ... Quando la sincronizzazione ha terminato di confrontare un file, inserisce il file alla fine dell'elenco e fa scorrere la finestra, se necessario. Ciò è importante, se vuoi sapere cosa sta facendo la sincronizzazione. Se il server &FTP; è lento, il confronto di una cartella può richiedere del tempo. Attivando questa opzione, noterai che il comparatore è <quote
+>attivo</quote
+> ma lento. In file system veloci può ridurre leggermente la velocità del confronto.</para>
           </listitem>
           <listitem>
             <para
@@ -361,7 +353,9 @@
         <para
 >L'<guilabel
 >Elenco dei file</guilabel
-> contiene le seguenti colonne: «Nome (sinistra) | Dimensione (sinistra) | Data (sinistra) | Attività | Data (destra) | Dimensione (destra) | Nome (destra)». Qui puoi controllare i risultati del confronto e modificare le opzioni di sincronizzazione a piacimento. Il colore del testo definisce la direzione predefinita della copia determinata dal comparatore. <itemizedlist
+> contiene le seguenti colonne: <quote
+>Nome (sinistra) | Dimensione (sinistra) | Data (sinistra) | Attività | Data (destra) | Dimensione (destra) | Nome (destra)</quote
+>. Qui puoi controllare i risultati del confronto e modificare le opzioni di sincronizzazione a piacimento. Il colore del testo definisce la direzione predefinita della copia determinata dal comparatore. <itemizedlist
 > <listitem
 > <para
 >Verde: copia da sinistra a destra.</para
@@ -459,7 +453,9 @@
             <para
 ><guibutton
 >!=</guibutton
->: attiva/disattiva l'elencazione dei file esclusi / «non so cosa fare».</para>
+>: attiva/disattiva l'elencazione dei file esclusi / <quote
+>non so cosa fare</quote
+>.</para>
           </listitem>
           <listitem>
             <para
@@ -553,12 +549,12 @@
         <para
 >1. cambia le operazioni delle <guilabel
 >Attività</guilabel
-> determinate dal Comparatore. Seleziona uno o più file. La modifica sarà applicata sulla selezione e non solo sull'elemento sopra cui fai clic. Se l'elemento selezionato è una cartella, la modifica sarà applicata anche a tutti i file e le sotto-cartelle.</para>
+> determinate dal Comparatore. Seleziona uno o più file. La modifica sarà applicata sulla selezione e non solo sull'elemento sopra cui fai clic. Se l'elemento selezionato è una cartella, la modifica sarà applicata anche a tutti i file e le sottocartelle.</para>
         <itemizedlist>
           <listitem>
             <para
 ><guibutton
->Sincronizza cartelle</guibutton
+>Sincronizza cartelle...</guibutton
 >: avvia la sincronizzazione.</para>
           </listitem>
           <listitem>
@@ -661,7 +657,7 @@
             <para
 ><guibutton
 >Profili</guibutton
->: se devi sincronizzare spesso le stesse cartelle, puoi salvare le impostazioni, &eg;, includi i file, escludi i file, e via discorrendo. Premi il pulsante <guibutton
+>: se devi sincronizzare spesso le stesse cartelle, puoi salvare le impostazioni, per esempio includi i file, escludi i file, e via discorrendo. Premi il pulsante <guibutton
 >Profilo</guibutton
 > per aggiungere, caricare, salvare e rimuovere i profili di sincronizzazione.</para>
           </listitem>
@@ -809,11 +805,19 @@
           </listitem>
           <listitem>
             <para
->Le operazioni remote «confronta per contenuto» e «confronta cartelle» vengono eseguite in parallelo.</para>
+>Le operazioni remote <quote
+>confronta per contenuto</quote
+> e <quote
+>confronta cartelle</quote
+> vengono eseguite in parallelo.</para>
           </listitem>
           <listitem>
             <para
->Anche la sincronizzazione remota viene eseguita in parallelo, ad eccezione delle attività mkdir (mkdir deve essere eseguito prima della copia).</para>
+>Anche la sincronizzazione remota viene eseguita in parallelo, ad eccezione delle attività <command
+>mkdir</command
+> (<command
+>mkdir</command
+> deve essere eseguito prima della copia).</para>
           </listitem>
         </itemizedlist>
       </listitem>
