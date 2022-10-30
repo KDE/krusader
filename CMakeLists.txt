@@ -155,6 +155,7 @@ add_subdirectory(plugins/krarc)
 # ===== Translations =====
 
 ki18n_install(po)
+kdoctools_install(po)
 
 
 # ===== Output configuration =====
