@@ -1,111 +1,112 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the krusader package.
+#
+# Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"Project-Id-Version: kdeorg\n"
+"Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-24 02:35+0000\n"
-"PO-Revision-Date: 2022-11-06 01:09\n"
-"Last-Translator: \n"
-"Language-Team: Chinese Simplified\n"
-"Language: zh_CN\n"
+"PO-Revision-Date: 2022-11-05 21:02+0400\n"
+"Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
+"Language-Team: ar\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Crowdin-Project: kdeorg\n"
-"X-Crowdin-Project-ID: 269464\n"
-"X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-stable/messages/krusader/krusader.pot\n"
-"X-Crowdin-File-ID: 7467\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Lokalize 21.12.3\n"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
 msgid "ActionMan - Manage Your Useractions"
-msgstr "ActionMan - 管理您的用户操作"
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:317
 #, kde-format
 msgid "New protocol"
-msgstr "新建协议"
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:317
 #, kde-format
 msgid "Set a protocol:"
-msgstr "设定协议："
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:334
 #, kde-format
 msgid "Edit Protocol"
-msgstr "编辑协议"
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:334
 #, kde-format
 msgid "Set another protocol:"
-msgstr "设置其他协议："
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:368
 #, kde-format
 msgid "Edit Path"
-msgstr "编辑路径"
+msgstr "حرر المسار"
 
 #: app/ActionMan/actionproperty.cpp:368
 #, kde-format
 msgid "Set another path:"
-msgstr "设置其他路径："
+msgstr "عيّن مسار أخر:"
 
 #: app/ActionMan/actionproperty.cpp:392
 #, kde-format
 msgid "New MIME Type"
-msgstr "新建 MIME 类型"
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:392
 #, kde-format
 msgid "Set a MIME type:"
-msgstr "设置 MIME 类型："
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:409
 #, kde-format
 msgid "Edit MIME Type"
-msgstr "编辑 MIME 类型"
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:409
 #, kde-format
 msgid "Set another MIME type:"
-msgstr "设置其他 MIME 类型："
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:433
 #, kde-format
 msgid "New File Name"
-msgstr "新建文件名"
+msgstr "اسم الملفّ الجديد"
 
 #: app/ActionMan/actionproperty.cpp:433
 #, kde-format
 msgid "Set a file name:"
-msgstr "设定文件名称："
+msgstr "عيّن اسم ملف:"
 
 #: app/ActionMan/actionproperty.cpp:450
 #, kde-format
 msgid "Edit File Name"
-msgstr "编辑文件名称"
+msgstr "حرر اسم الملفّ"
 
 #: app/ActionMan/actionproperty.cpp:450
 #, kde-format
 msgid "Set another file name:"
-msgstr "设置其他文件名称："
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:470
 #, kde-format
 msgid "Please set a unique name for the useraction"
-msgstr "请为用户操作指定一个唯一的名称"
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:475
 #, kde-format
 msgid "Please set a title for the menu entry"
-msgstr "请设置菜单项的名称"
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:480
 #, kde-format
 msgid "Command line is empty"
-msgstr "命令行为空"
+msgstr ""
 
 #: app/ActionMan/actionproperty.cpp:487
 #, kde-format
@@ -119,19 +120,19 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:14
 #, kde-format
 msgid "Action Property"
-msgstr "操作属性"
+msgstr "خاصية الإجراء"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabBasic)
 #: app/ActionMan/actionproperty.ui:39
 #, kde-format
 msgid "Basic Properties"
-msgstr "基本属性"
+msgstr "خصائص أساسية"
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonAddStartpath)
 #: app/ActionMan/actionproperty.ui:45
 #, kde-format
 msgid "..."
-msgstr "..."
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelDescription)
 #. i18n: ectx: property (whatsThis), widget (KTextEdit, textDescription)
@@ -141,26 +142,24 @@ msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
 "<i>Konfigurator</i> and via <code>Shift+F1</code>."
 msgstr ""
-"<b>Useraction</b> 的详细描述， 仅在 <i>Konfigurator</i> 里或使用快捷键 "
-"<code>Shift-F1</code> 时显示"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelDescription)
 #: app/ActionMan/actionproperty.ui:61
 #, kde-format
 msgid "Description:"
-msgstr "描述："
+msgstr "الوصف:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, bgAccept)
 #: app/ActionMan/actionproperty.ui:77
 #, kde-format
 msgid "Command Accepts"
-msgstr "命令接受"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioLocal)
 #: app/ActionMan/actionproperty.ui:83
 #, kde-format
 msgid "Substitute the <b>Placeholders</b> with local filenames."
-msgstr "用本地文件名称替换 <b>Placeholders</b> "
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioLocal)
 #: app/ActionMan/actionproperty.ui:86
@@ -185,13 +184,13 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:109 app/ActionMan/actionproperty.ui:122
 #, kde-format
 msgid "The title displayed in the <b>Usermenu</b>."
-msgstr "在<b>用户菜单</b>中显示的标题。"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, LabelTitle)
 #: app/ActionMan/actionproperty.ui:125
 #, kde-format
 msgid "Title:"
-msgstr "标题："
+msgstr "العنوان:"
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leDistinctName)
 #: app/ActionMan/actionproperty.ui:139
@@ -232,7 +231,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:194
 #, kde-format
 msgid "Identifier:"
-msgstr "标识："
+msgstr "المعرّف:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelCommandline)
 #: app/ActionMan/actionproperty.ui:211
@@ -250,7 +249,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:214
 #, kde-format
 msgid "Command:"
-msgstr "命令："
+msgstr "الأمر:"
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leTooltip)
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelTooltip)
@@ -274,7 +273,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:247
 #, kde-format
 msgid "Tooltip:"
-msgstr "提示："
+msgstr "التلميحة:"
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leCommandline)
 #: app/ActionMan/actionproperty.ui:259
@@ -292,44 +291,44 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:278
 #, kde-format
 msgid "Category:"
-msgstr "分类："
+msgstr "الفئة:"
 
 #. i18n: ectx: property (whatsThis), widget (QToolButton, ButtonAddPlaceholder)
 #: app/ActionMan/actionproperty.ui:300 app/GUI/kcmdline.cpp:180
 #, kde-format
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
-msgstr "添加面板选择中的文件到 <b>Placeholders</b>"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonAddPlaceholder)
 #: app/ActionMan/actionproperty.ui:303
 #, kde-format
 msgid "&Add"
-msgstr "添加(&A)"
+msgstr "أ&ضف"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelStartpath)
 #: app/ActionMan/actionproperty.ui:329
 #, kde-format
 msgid "Workdir:"
-msgstr "工作目录："
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, LabelShortcut)
 #: app/ActionMan/actionproperty.ui:357
 #, kde-format
 msgid "Default shortcut:"
-msgstr "默认快捷方式："
+msgstr "الاختصار مبدئي:"
 
 #. i18n: ectx: property (whatsThis), widget (KKeySequenceWidget, KeyButtonShortcut)
 #: app/ActionMan/actionproperty.ui:383
 #, kde-format
 msgid "Set a default keyboard shortcut."
-msgstr "设置默认键盘快捷键。"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (KKeySequenceWidget, KeyButtonShortcut)
 #: app/ActionMan/actionproperty.ui:386
 #, kde-format
 msgctxt "No shortcut"
 msgid "None"
-msgstr "未分组"
+msgstr "بلا"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, chkEnabled)
 #: app/ActionMan/actionproperty.ui:398
@@ -341,92 +340,92 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:401
 #, kde-format
 msgid "Enabled"
-msgstr "已启用"
+msgstr "ممكّن"
 
 #. i18n: ectx: property (title), widget (QGroupBox, bgExecType)
 #: app/ActionMan/actionproperty.ui:414
 #, kde-format
 msgid "Execution Mode"
-msgstr "执行模式"
+msgstr "وضع التّنفيذ"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioCollectOutput)
 #: app/ActionMan/actionproperty.ui:420
 #, kde-format
 msgid "Collect the output of the executed program."
-msgstr "收集可执行程序的输出。"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioCollectOutput)
 #: app/ActionMan/actionproperty.ui:423
 #, kde-format
 msgid "Collect output"
-msgstr "捕获输出"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, chkSeparateStdError)
 #: app/ActionMan/actionproperty.ui:433
 #, kde-format
 msgid "Separate standard out and standard error in the output collection."
-msgstr "分离输出中的标准输出和标准错误。"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkSeparateStdError)
 #: app/ActionMan/actionproperty.ui:436
 #, kde-format
 msgid "Separate standard error"
-msgstr "分离标准错误"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioNormal)
 #: app/ActionMan/actionproperty.ui:443
 #, kde-format
 msgid "&Normal"
-msgstr "正常(&N)"
+msgstr "عا&دي"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioTerminal)
 #: app/ActionMan/actionproperty.ui:453
 #, kde-format
 msgid "Run the command in a terminal."
-msgstr "在终端中运行命令。"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioTerminal)
 #: app/ActionMan/actionproperty.ui:456
 #, kde-format
 msgid "Run in terminal"
-msgstr "在终端中运行"
+msgstr "شغّل في الطّرفيّة"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioTE)
 #: app/ActionMan/actionproperty.ui:463
 #, kde-format
 msgid "Run the command in the embedded terminal emulator."
-msgstr "在嵌入式终端模拟器中运行命令。"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioTE)
 #: app/ActionMan/actionproperty.ui:466
 #, kde-format
 msgid "Run in the embedded terminal emulator"
-msgstr "在嵌入式终端模拟器中运行"
+msgstr ""
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabAdv)
 #: app/ActionMan/actionproperty.ui:477
 #, kde-format
 msgid "Advanced Properties"
-msgstr "高级属性"
+msgstr "خصائص متقدّمة"
 
 #. i18n: ectx: property (title), widget (QGroupBox, gbShowonly)
 #: app/ActionMan/actionproperty.ui:489
 #, kde-format
 msgid "The Useraction is only available for"
-msgstr "此用户操作只在下列情况下有效"
+msgstr ""
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabProt)
 #: app/ActionMan/actionproperty.ui:499
 #, kde-format
 msgid "Protocol"
-msgstr "协议"
+msgstr "الميفاق"
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonNewProtocol)
 #: app/ActionMan/actionproperty.ui:523
 #, kde-format
 msgctxt "New protocol"
 msgid "&New..."
-msgstr "新建(&N)..."
+msgstr "&جديد..."
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonEditProtocol)
 #. i18n: ectx: property (text), widget (QToolButton, ButtonEditPath)
@@ -436,7 +435,7 @@ msgstr "新建(&N)..."
 #: app/ActionMan/actionproperty.ui:765 app/ActionMan/actionproperty.ui:870
 #, kde-format
 msgid "Chan&ge..."
-msgstr "更改(&G)..."
+msgstr "&غيّر"
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonRemoveProtocol)
 #. i18n: ectx: property (text), widget (QToolButton, ButtonRemovePath)
@@ -446,7 +445,7 @@ msgstr "更改(&G)..."
 #: app/ActionMan/actionproperty.ui:790 app/ActionMan/actionproperty.ui:895
 #, kde-format
 msgid "De&lete"
-msgstr "删除(&L)"
+msgstr "ا&حذف"
 
 #. i18n: ectx: property (whatsThis), widget (KrListWidget, lbShowonlyProtocol)
 #. i18n: ectx: property (whatsThis), widget (KrListWidget, lbShowonlyPath)
@@ -455,39 +454,39 @@ msgstr "删除(&L)"
 #: app/ActionMan/actionproperty.ui:715
 #, kde-format
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr "只在这些文件类型时显示<b>用户操作</b>。"
+msgstr ""
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabPath)
 #: app/ActionMan/actionproperty.ui:604
 #, kde-format
 msgid "Path"
-msgstr "路径"
+msgstr "المسار"
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonAddPath)
 #: app/ActionMan/actionproperty.ui:635
 #, kde-format
 msgctxt "New path"
 msgid "&New..."
-msgstr "新建(&N)..."
+msgstr "&جديد..."
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabMime)
 #: app/ActionMan/actionproperty.ui:709
 #, kde-format
 msgid "MIME Type"
-msgstr "MIME 类型"
+msgstr "نوع تنسيق الملف"
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonAddMime)
 #: app/ActionMan/actionproperty.ui:740
 #, kde-format
 msgctxt "New MIME"
 msgid "&New..."
-msgstr "新建(&N)..."
+msgstr "&جديد..."
 
 #. i18n: ectx: attribute (title), widget (QWidget, TabFile)
 #: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:89
 #, kde-format
 msgid "File Name"
-msgstr "文件名称"
+msgstr "اسم الملفّ"
 
 #. i18n: ectx: property (whatsThis), widget (KrListWidget, lbShowonlyFile)
 #: app/ActionMan/actionproperty.ui:820
@@ -502,7 +501,7 @@ msgstr ""
 #, kde-format
 msgctxt "New file"
 msgid "&New..."
-msgstr "新建(&N)..."
+msgstr "&جديد..."
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, chkConfirmExecution)
 #: app/ActionMan/actionproperty.ui:925
@@ -514,7 +513,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:928
 #, kde-format
 msgid "Confirm each program call separately"
-msgstr "每次独立调用程序时进行确认"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, chkDifferentUser)
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leDifferentUser)
@@ -527,52 +526,52 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:938
 #, kde-format
 msgid "Run as different user:"
-msgstr "以其他用户运行："
+msgstr ""
 
 #: app/ActionMan/addplaceholderpopup.cpp:45
 #, kde-format
 msgid "Active panel"
-msgstr "活动面板"
+msgstr ""
 
 #: app/ActionMan/addplaceholderpopup.cpp:46
 #, kde-format
 msgid "Other panel"
-msgstr "其他面板"
+msgstr ""
 
 #: app/ActionMan/addplaceholderpopup.cpp:47
 #, kde-format
 msgid "Left panel"
-msgstr "左侧面板"
+msgstr "اللوحة اليسرى"
 
 #: app/ActionMan/addplaceholderpopup.cpp:48
 #, kde-format
 msgid "Right panel"
-msgstr "右侧面板"
+msgstr "اللوحة اليمنى"
 
 #: app/ActionMan/addplaceholderpopup.cpp:49
 #, kde-format
 msgid "Panel independent"
-msgstr "独立面板"
+msgstr ""
 
 #: app/ActionMan/addplaceholderpopup.cpp:57
 #, kde-format
 msgid "Choose executable..."
-msgstr "选择可执行程序..."
+msgstr ""
 
 #: app/ActionMan/addplaceholderpopup.cpp:143
 #, kde-format
 msgid "User Action Parameter Dialog"
-msgstr "用户操作参数对话框"
+msgstr ""
 
 #: app/ActionMan/addplaceholderpopup.cpp:156
 #, kde-format
 msgid "This placeholder allows some parameter:"
-msgstr "占位符包含允许包含一些参数："
+msgstr ""
 
 #: app/ActionMan/useractionlistview.cpp:29
 #, kde-format
 msgid "Title"
-msgstr "标题"
+msgstr "العنوان"
 
 #: app/ActionMan/useractionpage.cpp:38
 #, kde-format
@@ -580,49 +579,47 @@ msgid ""
 "*.xml|XML files\n"
 "*|All files"
 msgstr ""
-"*.xml|xml 文件\n"
-"*|所有文件"
 
 #: app/ActionMan/useractionpage.cpp:56
 #, kde-format
 msgid "Create new useraction"
-msgstr "创建新用户操作"
+msgstr ""
 
 #: app/ActionMan/useractionpage.cpp:61
 #, kde-format
 msgid "Import useractions"
-msgstr "导入用户操作"
+msgstr ""
 
 #: app/ActionMan/useractionpage.cpp:66
 #, kde-format
 msgid "Export useractions"
-msgstr "导出用户操作"
+msgstr ""
 
 #: app/ActionMan/useractionpage.cpp:71
 #, kde-format
 msgid "Copy useractions to clipboard"
-msgstr "复制用户操作到剪贴板"
+msgstr ""
 
 #: app/ActionMan/useractionpage.cpp:76
 #, kde-format
 msgid "Paste useractions from clipboard"
-msgstr "从剪贴板中粘贴用户操作"
+msgstr ""
 
 #: app/ActionMan/useractionpage.cpp:81
 #, kde-format
 msgid "Delete selected useractions"
-msgstr "删除选中的用户操作"
+msgstr ""
 
 #: app/ActionMan/useractionpage.cpp:136
 #, kde-format
 msgid ""
 "The current action has been modified. Do you want to apply these changes?"
-msgstr "当前操作已被修改。您想要应用这些更改吗?"
+msgstr ""
 
 #: app/ActionMan/useractionpage.cpp:214
 #, kde-format
 msgid "Are you sure that you want to remove all selected actions?"
-msgstr "您确定要移除所有选中的操作吗？"
+msgstr ""
 
 #: app/ActionMan/useractionpage.cpp:215
 #, kde-format
@@ -639,22 +636,22 @@ msgstr ""
 #: app/ActionMan/useractionpage.cpp:266
 #, kde-format
 msgid "Overwrite or Merge?"
-msgstr "覆盖或合并？"
+msgstr ""
 
 #: app/ActionMan/useractionpage.cpp:268
 #, kde-format
 msgid "Merge"
-msgstr "合并"
+msgstr "ادمج"
 
 #: app/ActionMan/useractionpage.cpp:274
 #, kde-format
 msgid "This file already exists. Do you want to overwrite it?"
-msgstr "文件已经存在。您是否想要覆盖？"
+msgstr ""
 
 #: app/ActionMan/useractionpage.cpp:275
 #, kde-format
 msgid "Overwrite Existing File?"
-msgstr "覆盖已有文件吗？"
+msgstr "الكتابة على الملف الحالي؟"
 
 #: app/ActionMan/useractionpage.cpp:290 app/UserAction/kraction.cpp:183
 #, kde-format
@@ -662,13 +659,11 @@ msgid ""
 "Cannot open %1 for writing.\n"
 "Nothing exported."
 msgstr ""
-"无法打开 %1 以写入！\n"
-"未导出任何数据。"
 
 #: app/ActionMan/useractionpage.cpp:291
 #, kde-format
 msgid "Export Failed"
-msgstr "导出失败"
+msgstr ""
 
 #: app/Archive/abstractthreadedjob.cpp:208
 #, kde-format
@@ -678,28 +673,28 @@ msgstr ""
 #: app/Archive/abstractthreadedjob.cpp:340
 #, kde-format
 msgid "Downloading remote files"
-msgstr "正在下载远程文件"
+msgstr ""
 
 #: app/Archive/abstractthreadedjob.cpp:488
 #, kde-format
 msgid "Counting files"
-msgstr "正在统计文件"
+msgstr "يعد الملفات"
 
 #: app/Archive/abstractthreadedjob.cpp:517
 #, kde-format
 msgid "Uploading to remote destination"
-msgstr "正在上传到远程目标"
+msgstr ""
 
 #: app/Archive/abstractthreadedjob.cpp:639
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
-msgstr ""
+msgstr "نوع الأرشيف %1 غير مدعوم."
 
 #: app/Archive/krarchandler.cpp:193
 #, kde-format
 msgid "Counting files in archive"
-msgstr "正在统计归档中的文件数量"
+msgstr ""
 
 #: app/Archive/krarchandler.cpp:215
 #, kde-format
@@ -709,141 +704,141 @@ msgstr ""
 #: app/Archive/krarchandler.cpp:234 app/Archive/krarchandler.cpp:351
 #, kde-format
 msgid "Failed to unpack %1."
-msgstr "解包 %1 失败."
+msgstr ""
 
 #: app/Archive/krarchandler.cpp:280
 #, kde-format
 msgid "Failed to convert rpm (%1) to cpio."
-msgstr "将 rpm (%1) 转换为 cpio 失败。"
+msgstr ""
 
 #: app/Archive/krarchandler.cpp:295
 #, kde-format
 msgid "Failed to convert deb (%1) to tar."
-msgstr "将 deb (%1) 转换为 tar 失败。"
+msgstr ""
 
 #: app/Archive/krarchandler.cpp:326
 #, kde-format
 msgid "Unpacking File(s)"
-msgstr "正在解包文件"
+msgstr ""
 
 #: app/Archive/krarchandler.cpp:352 app/Archive/krarchandler.cpp:547
 #, kde-format
 msgid "User cancelled."
-msgstr "用户已取消。"
+msgstr ""
 
 #: app/Archive/krarchandler.cpp:400
 #, kde-format
 msgid "Testing Archive"
-msgstr "正在测试归档"
+msgstr "يختبر الأرشيف"
 
 #: app/Archive/krarchandler.cpp:527
 #, kde-format
 msgid "Packing File(s)"
-msgstr "正在打包文件"
+msgstr ""
 
 #: app/Archive/krarchandler.cpp:546 app/Archive/krarchandler.cpp:554
 #, kde-format
 msgid "Failed to pack %1."
-msgstr "打包 %1 失败"
+msgstr ""
 
 #: app/Archive/krarchandler.cpp:598
 #, kde-format
 msgid "This archive is encrypted, please supply the password:"
-msgstr "此归档经过加密，请输入密码："
+msgstr ""
 
 #: app/Archive/packjob.cpp:51 app/Archive/packjob.cpp:139
 #, kde-format
 msgid "Processed files"
-msgstr "已处理的文件"
+msgstr ""
 
 #: app/Archive/packjob.cpp:61
 #, kde-format
 msgid "Error while packing"
-msgstr "打包时出错"
+msgstr ""
 
 #: app/Archive/packjob.cpp:100
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, test failed."
-msgstr "%1, 测试失败。"
+msgstr ""
 
 #: app/Archive/packjob.cpp:105
 #, kde-format
 msgid "Archive tests passed."
-msgstr "归档测试通过。"
+msgstr ""
 
 #: app/Archive/packjob.cpp:146
 #, kde-format
 msgid "Error while unpacking"
-msgstr "解包时出错"
+msgstr ""
 
 #: app/BookMan/kraddbookmarkdlg.cpp:29 app/kractions.cpp:266
 #, kde-format
 msgid "Add Bookmark"
-msgstr "添加书签"
+msgstr "أضف علامة"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:36 app/DiskUsage/diskusage.cpp:1017
 #, kde-format
 msgid "Name:"
-msgstr "名称："
+msgstr "الاسم:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:43
 #, kde-format
 msgid "URL:"
-msgstr "URL："
+msgstr "المسار:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:50
 #, kde-format
 msgid "Create in:"
-msgstr "创建于："
+msgstr "أنشئ في:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:74 app/BookMan/kraddbookmarkdlg.cpp:143
 #: app/Panel/panelfunc.cpp:699
 #, kde-format
 msgid "New Folder"
-msgstr "新建文件夹"
+msgstr "مجلّد جديد"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:97 app/FileSystem/krquery.cpp:230
 #: app/Filter/generalfilter.cpp:154 app/Filter/generalfilter.cpp:533
 #, kde-format
 msgid "Folders"
-msgstr "文件夹"
+msgstr "المجلّدات"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:103 app/BookMan/krbookmarkbutton.cpp:33
 #: app/BookMan/krbookmarkhandler.cpp:60 app/Panel/listpanelactions.cpp:102
 #, kde-format
 msgid "Bookmarks"
-msgstr "书签"
+msgstr "العلامات"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:143
 #, kde-format
 msgid "Folder name:"
-msgstr "文件夹名称："
+msgstr "اسم المجلد:"
 
 #: app/BookMan/krbookmark.cpp:22 app/BookMan/krbookmarkhandler.cpp:771
 #, kde-format
 msgid "Trash bin"
-msgstr "回收站"
+msgstr "سلة المهملات"
 
 #: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:779
 #, kde-format
 msgid "Virtual Filesystem"
-msgstr "虚拟文件系统"
+msgstr "نظام ملفات افتراضي"
 
 #: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:775
 #, kde-format
 msgid "Local Network"
-msgstr "本地网络"
+msgstr "الشبكة المحلية"
 
 #: app/BookMan/krbookmarkbutton.cpp:28 app/BookMan/krbookmarkbutton.cpp:29
 #, kde-format
 msgid "BookMan II"
-msgstr "BookMan II"
+msgstr ""
 
 #: app/BookMan/krbookmarkhandler.cpp:74
 #, kde-format
 msgid "Type to search..."
-msgstr "输入搜索..."
+msgstr "اكتب لتبحث…"
 
 #: app/BookMan/krbookmarkhandler.cpp:216 app/BookMan/krbookmarkhandler.cpp:318
 #: app/Konfigurator/kgcolors.cpp:566 app/Konfigurator/kgcolors.cpp:586
@@ -851,12 +846,12 @@ msgstr "输入搜索..."
 #: app/Synchronizer/synchronizerdirlist.cpp:111
 #, kde-format
 msgid "Error"
-msgstr "错误"
+msgstr "خطأ"
 
 #: app/BookMan/krbookmarkhandler.cpp:216
 #, kde-format
 msgid "Unable to write to %1"
-msgstr "无法写入 %1"
+msgstr ""
 
 #: app/BookMan/krbookmarkhandler.cpp:225
 #, kde-format
@@ -877,39 +872,39 @@ msgstr ""
 #: app/BookMan/krbookmarkhandler.cpp:318
 #, kde-format
 msgid "Error reading bookmarks file: %1"
-msgstr "读取书签文件出错：%1"
+msgstr ""
 
 #: app/BookMan/krbookmarkhandler.cpp:428 app/BookMan/krbookmarkhandler.cpp:767
 #: app/Dialogs/popularurls.cpp:267
 #, kde-format
 msgid "Popular URLs"
-msgstr "最常用的 URLs"
+msgstr ""
 
 #: app/BookMan/krbookmarkhandler.cpp:519
 #, kde-format
 msgid "Manage Bookmarks"
-msgstr "管理书签"
+msgstr "أدر العلامات"
 
 #: app/BookMan/krbookmarkhandler.cpp:763
 #, kde-format
 msgid "Enable special bookmarks"
-msgstr "启用特殊书签"
+msgstr ""
 
 #: app/BookMan/krbookmarkhandler.cpp:783
 #, kde-format
 msgid "Jump back"
-msgstr "跳回"
+msgstr ""
 
 #: app/BookMan/krbookmarkhandler.cpp:835 app/GUI/mediabutton.cpp:328
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
 msgid "Open"
-msgstr "打开"
+msgstr "افتح"
 
 #: app/BookMan/krbookmarkhandler.cpp:837 app/GUI/mediabutton.cpp:330
 #, kde-format
 msgid "Open in a new tab"
-msgstr "在新标签打开"
+msgstr ""
 
 #: app/BookMan/krbookmarkhandler.cpp:841 app/Dialogs/krmaskchoice.cpp:82
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:728
@@ -917,27 +912,27 @@ msgstr "在新标签打开"
 #: app/Panel/listpanelactions.cpp:72 app/Panel/panelcontextmenu.cpp:253
 #, kde-format
 msgid "Delete"
-msgstr "删除"
+msgstr "احذف"
 
 #: app/Dialogs/checksumdlg.cpp:111
 #, kde-format
 msgid "<qt>Could not start <b>%1</b>.</qt>"
-msgstr ""
+msgstr "<qt>تعذّر بدء <b>%1</b>.</qt>"
 
 #: app/Dialogs/checksumdlg.cpp:118
 #, kde-format
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
-msgstr "<qt>运行 <b>%1</b>时出错。</qt>"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:126
 #, kde-format
 msgid "Error reading stdout or stderr"
-msgstr "读取标准输出或标准输入时出错"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:183
 #, kde-format
 msgid "Please wait..."
-msgstr "请稍候..."
+msgstr "فضلًا انتظر..."
 
 #: app/Dialogs/checksumdlg.cpp:201
 #, kde-format
@@ -949,153 +944,153 @@ msgstr ""
 #: app/Dialogs/checksumdlg.cpp:239
 #, kde-format
 msgid "Creating Checksums"
-msgstr "正在创建校验和"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:253
 #, kde-format
 msgid "Create Checksums"
-msgstr "创建校验和"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:256
 #, kde-format
 msgid "About to calculate checksum for the following files or folders:"
-msgstr "即将计算以下文件或目录的校验和："
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:269
 #, kde-format
 msgid "Select the checksum method:"
-msgstr "选择校验和计算方法："
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:288
 #, kde-format
 msgid "Checksum Results"
-msgstr "校验和结果"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:295 app/Dialogs/checksumdlg.cpp:495
 #: app/Konfigurator/kgcolors.cpp:450
 #, kde-format
 msgid "File"
-msgstr "文件"
+msgstr "ملف"
 
 #: app/Dialogs/checksumdlg.cpp:295 app/Dialogs/checksumdlg.cpp:495
 #, kde-format
 msgid "Hash"
-msgstr "Hash"
+msgstr "التلبيدة"
 
 #: app/Dialogs/checksumdlg.cpp:298
 #, kde-format
 msgid "Errors received:"
-msgstr "收到错误："
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:304
 #, kde-format
 msgid "Save one checksum file for each source file"
-msgstr "为每个源文件保存一个校验和文件"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:331
 #, kde-format
 msgid "No files found"
-msgstr "找不到文件"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:355
 #, kde-format
 msgid "Errors were detected while creating the checksums"
-msgstr "生成校验和时检测到错误"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:356
 #, kde-format
 msgid "Checksums were created successfully"
-msgstr "校验和创建生成"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:380
 #, kde-format
 msgid "Saving checksum files..."
-msgstr "正在保存检验和文件..."
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:384
 #, kde-format
 msgid "Errors occurred while saving multiple checksums. Stopping"
-msgstr "保存多个校验和时发生错误。正在停止"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:412
 #, kde-format
 msgid "Error saving file %1"
-msgstr "保存文件 %1 错误！"
+msgstr "خطأ في حفظ الملفّ %1"
 
 #: app/Dialogs/checksumdlg.cpp:434
 #, kde-format
 msgid "Verifying Checksums"
-msgstr "正在验证校验和"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:466
 #, kde-format
 msgid "Verify Checksum File"
-msgstr "验证校验和文件"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:469
 #, kde-format
 msgid "About to verify the following checksum file"
-msgstr "即将验证以下校验和文件"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:476
 #, kde-format
 msgid "Checksum file:"
-msgstr "校验和文件："
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:505
 #, kde-format
 msgid "Verify Result"
-msgstr "验证结果"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:510
 #, kde-format
 msgid "Result output:"
-msgstr "结果输出："
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:545
 #, kde-format
 msgid "Errors were detected while verifying the checksums"
-msgstr "验证校验和时出错"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:546
 #, kde-format
 msgid "Checksums were verified successfully"
-msgstr "校验和验证成功"
+msgstr ""
 
 #: app/Dialogs/krdialogs.cpp:109
 #, kde-format
 msgid "F2 Delay Job Start"
-msgstr "F2 延迟作业开始"
+msgstr ""
 
 #: app/Dialogs/krdialogs.cpp:109
 #, kde-format
 msgid "F2 Queue"
-msgstr "F2 队列"
+msgstr ""
 
 #: app/Dialogs/krdialogs.cpp:111
 #, kde-format
 msgid "Do not start the job now."
-msgstr "现在不要开始作业。"
+msgstr ""
 
 #: app/Dialogs/krdialogs.cpp:112
 #, kde-format
 msgid "Enqueue the job if another job is running. Otherwise start immediately."
-msgstr "如果另一个任务正在运行，则排队作业。否则立即开始。"
+msgstr ""
 
 #: app/Dialogs/krmaskchoice.cpp:40
 #, kde-format
 msgid "Choose Files"
-msgstr "选择文件"
+msgstr "حدد ملفات"
 
 #: app/Dialogs/krmaskchoice.cpp:53
 #, kde-format
 msgid "Select the following files:"
-msgstr "选择了以下文件："
+msgstr ""
 
 #: app/Dialogs/krmaskchoice.cpp:63
 #, kde-format
 msgid "Predefined Selections"
-msgstr "预定义的选择"
+msgstr ""
 
 #: app/Dialogs/krmaskchoice.cpp:70
 #, kde-format
@@ -1112,133 +1107,138 @@ msgstr ""
 #: app/Dialogs/krmaskchoice.cpp:77
 #, kde-format
 msgid "Add"
-msgstr "添加"
+msgstr "أضف"
 
 #: app/Dialogs/krmaskchoice.cpp:78
 #, kde-format
 msgid "Adds the selection in the line-edit to the list"
-msgstr "Adds the selection in the line-edit to the list"
+msgstr ""
 
 #: app/Dialogs/krmaskchoice.cpp:83
 #, kde-format
 msgid "Delete the marked selection from the list"
-msgstr "在列表中删除标记的选择"
+msgstr ""
 
 #: app/Dialogs/krmaskchoice.cpp:87 app/JobMan/jobman.cpp:116
 #, kde-format
 msgid "Clear"
-msgstr "清除"
+msgstr "امسح"
 
 #: app/Dialogs/krmaskchoice.cpp:88
 #, kde-format
 msgid "Clears the entire list of selections"
-msgstr "删除选择的项目"
+msgstr ""
 
 #: app/Dialogs/krpleasewait.cpp:33
 #, kde-format
 msgid "Krusader::Wait"
-msgstr "Krusader::Wait"
+msgstr ""
 
 #: app/Dialogs/krpleasewait.cpp:49
 #, kde-format
 msgid "&Cancel"
-msgstr "取消(&C)"
+msgstr "أل&غِ"
 
 #: app/Dialogs/krspecialwidgets.cpp:98
 #, kde-format
 msgid "Capacity: %1"
-msgstr "容量：%1"
+msgstr "السّعة: %1"
 
 #: app/Dialogs/krspecialwidgets.cpp:108
 #, kde-format
 msgid "Used: %1"
-msgstr "己用：%1"
+msgstr "المستخدم: %1"
 
 #: app/Dialogs/krspecialwidgets.cpp:109
 #, kde-format
 msgid "Free: %1"
-msgstr "空闲：%1"
+msgstr "المتبقي: %1"
 
 #: app/Dialogs/krspecialwidgets.cpp:137
 #, kde-format
 msgid "Not mounted."
-msgstr "未挂载。"
+msgstr "غير مضموم"
 
 #: app/Dialogs/krspwidgets.cpp:158
 #, kde-format
 msgid "Enter a selection:"
-msgstr "输入一个选择："
+msgstr "أدخل تحديد:"
 
 #: app/Dialogs/newftpgui.cpp:51
 #, kde-format
 msgid "New Network Connection"
-msgstr "新建网络连接"
+msgstr "اتّصال شبكيّ جديد"
 
 #: app/Dialogs/newftpgui.cpp:65
 #, kde-format
 msgid "About to connect to..."
-msgstr "将要连接到..."
+msgstr ""
 
 #: app/Dialogs/newftpgui.cpp:70
 #, kde-format
 msgid "Protocol:"
-msgstr "协议："
+msgstr "الميفاق:"
 
 #: app/Dialogs/newftpgui.cpp:71
 #, kde-format
 msgid "Host:"
-msgstr "主机："
+msgstr "المضيف:"
 
 #: app/Dialogs/newftpgui.cpp:72
 #, kde-format
 msgid "Port:"
-msgstr "端口："
+msgstr "المنفذ:"
 
 #: app/Dialogs/newftpgui.cpp:106
 #, kde-format
 msgid "Username:"
-msgstr "用户名："
+msgstr "اسم المستخدم:"
 
 #: app/Dialogs/newftpgui.cpp:108
 #, kde-format
 msgid "Password:"
-msgstr "密码："
+msgstr "كلمة المرور:"
 
 #: app/Dialogs/newftpgui.cpp:136
 #, kde-format
 msgid "&Connect"
-msgstr "连接(&C)"
+msgstr "ا&تصل"
 
 #: app/Dialogs/packgui.cpp:41
 #, kde-format
 msgid "Pack %1"
-msgstr "打包 %1"
+msgstr ""
 
 #: app/Dialogs/packgui.cpp:43
 #, kde-format
 msgid "Pack %1 file"
 msgid_plural "Pack %1 files"
-msgstr[0] "打包 %1 个文件"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/Dialogs/packgui.cpp:88
 #, kde-format
 msgid "Please select a folder"
-msgstr "选择选择一个文件夹"
+msgstr "رجاءً اختر مجلّدًا"
 
 #: app/Dialogs/packguibase.cpp:60 app/Dialogs/packguibase.cpp:114
 #, kde-format
 msgid "Pack"
-msgstr "打包"
+msgstr ""
 
 #: app/Dialogs/packguibase.cpp:70
 #, kde-format
 msgid "To archive"
-msgstr "到归档"
+msgstr ""
 
 #: app/Dialogs/packguibase.cpp:89
 #, kde-format
 msgid "In folder"
-msgstr ""
+msgstr "في المجلّد"
 
 #: app/Dialogs/packguibase.cpp:139
 #, kde-format
@@ -1248,37 +1248,37 @@ msgstr ""
 #: app/Dialogs/packguibase.cpp:148 app/DiskUsage/diskusage.cpp:1019
 #, kde-format
 msgid "Size:"
-msgstr "大小："
+msgstr "الحجم:"
 
 #: app/Dialogs/packguibase.cpp:167
 #, kde-format
 msgid "Set compression level"
-msgstr "设定压缩等级"
+msgstr ""
 
 #: app/Dialogs/packguibase.cpp:194
 #, kde-format
 msgid "MIN"
-msgstr "最小"
+msgstr "الأدنى"
 
 #: app/Dialogs/packguibase.cpp:195
 #, kde-format
 msgid "MAX"
-msgstr "最大"
+msgstr "الأقصى"
 
 #: app/Dialogs/packguibase.cpp:219
 #, kde-format
 msgid "Password"
-msgstr "密码"
+msgstr "كلمة السّرّ"
 
 #: app/Dialogs/packguibase.cpp:229
 #, kde-format
 msgid "Again"
-msgstr ""
+msgstr "مرة أخرى"
 
 #: app/Dialogs/packguibase.cpp:247
 #, kde-format
 msgid "Encrypt headers"
-msgstr "加密文件头"
+msgstr ""
 
 #: app/Dialogs/packguibase.cpp:259
 #, kde-format
@@ -1288,12 +1288,12 @@ msgstr ""
 #: app/Dialogs/packguibase.cpp:286 app/Dialogs/packguibase.cpp:327
 #, kde-format
 msgid "&Advanced >>"
-msgstr "&高级 >>"
+msgstr "&متقدّم >>"
 
 #: app/Dialogs/packguibase.cpp:327
 #, kde-format
 msgid "&Advanced <<"
-msgstr "&高级 <<"
+msgstr "&متقدّم <<"
 
 #: app/Dialogs/packguibase.cpp:346
 #, kde-format
@@ -1303,12 +1303,12 @@ msgstr ""
 #: app/Dialogs/packguibase.cpp:349
 #, kde-format
 msgid "The passwords are equal"
-msgstr "密码相同"
+msgstr ""
 
 #: app/Dialogs/packguibase.cpp:352
 #, kde-format
 msgid "The passwords are different"
-msgstr "密码不同"
+msgstr ""
 
 #: app/Dialogs/packguibase.cpp:393
 #, kde-format
@@ -1318,7 +1318,7 @@ msgstr ""
 #: app/Dialogs/packguibase.cpp:421
 #, kde-format
 msgid "Invalid volume size."
-msgstr "无效的卷大小。"
+msgstr ""
 
 #: app/Dialogs/packguibase.cpp:453
 #, kde-format
@@ -1349,32 +1349,32 @@ msgstr ""
 #: app/Dialogs/popularurls.cpp:284
 #, kde-format
 msgid "&Search:"
-msgstr "查找(&S)："
+msgstr "ا&بحث:"
 
 #: app/DiskUsage/diskusage.cpp:96
 #, kde-format
 msgid "Loading Usage Information"
-msgstr "正在加载使用率信息"
+msgstr ""
 
 #: app/DiskUsage/diskusage.cpp:100
 #, kde-format
 msgid "Files:"
-msgstr "文件："
+msgstr "الملفات:"
 
 #: app/DiskUsage/diskusage.cpp:105
 #, kde-format
 msgid "Folders:"
-msgstr ""
+msgstr "المجلّدات:"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
 msgid "Total Size:"
-msgstr "总共大小："
+msgstr "الحجم الكليّ:"
 
 #: app/DiskUsage/diskusage.cpp:230
 #, kde-format
 msgid "Loading the disk usage information..."
-msgstr "正在加载磁盘使用率信息..."
+msgstr ""
 
 #: app/DiskUsage/diskusage.cpp:382
 #, kde-format
@@ -1386,18 +1386,18 @@ msgstr ""
 #: app/DiskUsage/diskusage.cpp:385
 #, kde-format
 msgid "Krusader::DiskUsage"
-msgstr "Krusader::DiskUsage"
+msgstr ""
 
 #: app/DiskUsage/diskusage.cpp:568
 #, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
-msgstr ""
+msgstr "أمتأكّد من نقل هذا العنصر إلى المهملات؟"
 
 #: app/DiskUsage/diskusage.cpp:569 app/Panel/panelfunc.cpp:849
 #, kde-format
 msgid "&Trash"
-msgstr "移入回收站(&T)"
+msgstr "ال&مهملات"
 
 #: app/DiskUsage/diskusage.cpp:571
 #, kde-format
@@ -1410,12 +1410,12 @@ msgstr ""
 #: app/Panel/panelfunc.cpp:946
 #, kde-format
 msgid "Warning"
-msgstr "警告"
+msgstr "تحذير"
 
 #: app/DiskUsage/diskusage.cpp:583 plugins/krarc/krarc.cpp:898
 #, kde-format
 msgid "Deleting %1..."
-msgstr "正在删除 %1..."
+msgstr "يحذف %1..."
 
 #: app/DiskUsage/diskusage.cpp:697
 #, kde-format
@@ -1425,12 +1425,12 @@ msgstr ""
 #: app/DiskUsage/diskusage.cpp:723
 #, kde-format
 msgid "Disk Usage"
-msgstr "磁盘使用率"
+msgstr "استخدام القرص"
 
 #: app/DiskUsage/diskusage.cpp:731
 #, kde-format
 msgid "Exclude"
-msgstr "排除"
+msgstr "استثنِ"
 
 #: app/DiskUsage/diskusage.cpp:737
 #, kde-format
@@ -1440,83 +1440,83 @@ msgstr ""
 #: app/DiskUsage/diskusage.cpp:741
 #, kde-format
 msgid "New search"
-msgstr "新建搜索"
+msgstr "بحث جديد"
 
 #: app/DiskUsage/diskusage.cpp:745 app/DiskUsage/diskusagegui.cpp:57
 #, kde-format
 msgid "Refresh"
-msgstr "刷新"
+msgstr "أنعش"
 
 #: app/DiskUsage/diskusage.cpp:749
 #, kde-format
 msgid "Include all"
-msgstr "包括所有的"
+msgstr "ضمن الكل"
 
 #: app/DiskUsage/diskusage.cpp:753
 #, kde-format
 msgid "Step into"
-msgstr "进入"
+msgstr "أُدخل في"
 
 #: app/DiskUsage/diskusage.cpp:767 app/DiskUsage/dulines.cpp:451
 #, kde-format
 msgid "Lines"
-msgstr "行"
+msgstr "الخطوط"
 
 #: app/DiskUsage/diskusage.cpp:771
 #, kde-format
 msgid "Detailed"
-msgstr "详细的"
+msgstr "مفصل"
 
 #: app/DiskUsage/diskusage.cpp:775 app/DiskUsage/dufilelight.cpp:105
 #, kde-format
 msgid "Filelight"
-msgstr "Filelight"
+msgstr "كشاف الملفات"
 
 #: app/DiskUsage/diskusage.cpp:781 app/KViewer/lister.cpp:1277
 #, kde-format
 msgid "Next"
-msgstr "下一个"
+msgstr "التالي"
 
 #: app/DiskUsage/diskusage.cpp:785 app/KViewer/lister.cpp:1281
 #, kde-format
 msgid "Previous"
-msgstr "上一个"
+msgstr "السابق"
 
 #: app/DiskUsage/diskusage.cpp:790 app/GUI/kfnkeys.cpp:25
 #: app/Konfigurator/kgpanel.cpp:376
 #, kde-format
 msgid "View"
-msgstr "查看  "
+msgstr "اعرض"
 
 #: app/DiskUsage/diskusage.cpp:1018
 #, kde-format
 msgid "Type:"
-msgstr "类型："
+msgstr "النوع:"
 
 #: app/DiskUsage/diskusage.cpp:1022
 #, kde-format
 msgid "Own size:"
-msgstr "占用空间："
+msgstr ""
 
 #: app/DiskUsage/diskusage.cpp:1024
 #, kde-format
 msgid "Last modified:"
-msgstr "最后修改于："
+msgstr "آخر تغيير:"
 
 #: app/DiskUsage/diskusage.cpp:1025
 #, kde-format
 msgid "Permissions:"
-msgstr "权限："
+msgstr "التّصاريح:"
 
 #: app/DiskUsage/diskusage.cpp:1026
 #, kde-format
 msgid "Owner:"
-msgstr "所有者："
+msgstr "المالك:"
 
 #: app/DiskUsage/diskusagegui.cpp:32
 #, kde-format
 msgid "Krusader::Disk Usage"
-msgstr "Krusader::Disk Usage"
+msgstr ""
 
 #: app/DiskUsage/diskusagegui.cpp:52
 #, kde-format
@@ -1526,7 +1526,7 @@ msgstr ""
 #: app/DiskUsage/diskusagegui.cpp:62
 #, kde-format
 msgid "Parent folder"
-msgstr ""
+msgstr "المجلّد الأبّ"
 
 #: app/DiskUsage/diskusagegui.cpp:72
 #, kde-format
@@ -1536,7 +1536,7 @@ msgstr ""
 #: app/DiskUsage/diskusagegui.cpp:78
 #, kde-format
 msgid "Detailed view"
-msgstr "详情视图"
+msgstr "منظور مفصّل"
 
 #: app/DiskUsage/diskusagegui.cpp:84
 #, kde-format
@@ -1551,171 +1551,176 @@ msgstr ""
 #: app/DiskUsage/dufilelight.cpp:77 app/Panel/viewactions.cpp:20
 #, kde-format
 msgid "Zoom In"
-msgstr "放大"
+msgstr "قرّب"
 
 #: app/DiskUsage/dufilelight.cpp:78 app/Panel/viewactions.cpp:21
 #, kde-format
 msgid "Zoom Out"
-msgstr "缩小"
+msgstr "بعّد"
 
 #: app/DiskUsage/dufilelight.cpp:81
 #, kde-format
 msgid "Rainbow"
-msgstr "彩虹"
+msgstr "قوس قزح"
 
 #: app/DiskUsage/dufilelight.cpp:82
 #, kde-format
 msgid "High Contrast"
-msgstr "高对比度"
+msgstr "تباين عالٍ"
 
 #: app/DiskUsage/dufilelight.cpp:83
 #, kde-format
 msgid "KDE"
-msgstr "KDE"
+msgstr "كدي"
 
 #: app/DiskUsage/dufilelight.cpp:86
 #, kde-format
 msgid "Scheme"
-msgstr "Scheme"
+msgstr "المخطّط"
 
 #: app/DiskUsage/dufilelight.cpp:88
 #, kde-format
 msgid "Increase contrast"
-msgstr "增加对比度"
+msgstr "زد التباين"
 
 #: app/DiskUsage/dufilelight.cpp:89
 #, kde-format
 msgid "Decrease contrast"
-msgstr "减小对比度"
+msgstr "انقص التباين"
 
 #: app/DiskUsage/dufilelight.cpp:91
 #, kde-format
 msgid "Use anti-aliasing"
-msgstr "使用 “抗锯齿”"
+msgstr "استخدم إزالة التسنّن"
 
 #: app/DiskUsage/dufilelight.cpp:95
 #, kde-format
 msgid "Show small files"
-msgstr "显示小文件"
+msgstr "أعرض الملفات الصغيرة"
 
 #: app/DiskUsage/dufilelight.cpp:99
 #, kde-format
 msgid "Vary label font sizes"
-msgstr "可变的标签字体大小"
+msgstr "غير حجم خط التسميات"
 
 #: app/DiskUsage/dufilelight.cpp:103 app/DiskUsage/dufilelight.cpp:173
 #, kde-format
 msgid "Minimum font size"
-msgstr "最小字体大小"
+msgstr "الحد الأدنى لمقاس الخط"
 
 #: app/DiskUsage/dufilelight.cpp:173
 #, kde-format
 msgid "Krusader::Filelight"
-msgstr "Krusader::Filelight"
+msgstr ""
 
 #: app/DiskUsage/dulines.cpp:173
 #, kde-format
 msgid "Line View"
-msgstr ""
+msgstr "عرض السطر"
 
 #: app/DiskUsage/dulines.cpp:174 app/DiskUsage/dulistview.cpp:40
 #, kde-format
 msgid "Percent"
-msgstr "百分比"
+msgstr "النسبة المئوية"
 
 #: app/DiskUsage/dulines.cpp:175 app/DiskUsage/dulistview.cpp:39
 #: app/Konfigurator/krresulttable.cpp:129 app/MountMan/kmountmangui.cpp:146
 #, kde-format
 msgid "Name"
-msgstr "名称"
+msgstr "الاسم"
 
 #: app/DiskUsage/dulines.cpp:448
 #, kde-format
 msgid "Show file sizes"
-msgstr "显示文件大小"
+msgstr "أظهر حجم الملفات"
 
 #: app/DiskUsage/dulistview.cpp:41
 #, kde-format
 msgid "Total size"
-msgstr "总共大小"
+msgstr "الحجم الكليّ"
 
 #: app/DiskUsage/dulistview.cpp:42
 #, kde-format
 msgid "Own size"
-msgstr "占用空间"
+msgstr "حجمه"
 
 #: app/DiskUsage/dulistview.cpp:43 app/MountMan/kmountmangui.cpp:147
 #, kde-format
 msgid "Type"
-msgstr "类型"
+msgstr "النّوع"
 
 #: app/DiskUsage/dulistview.cpp:44 app/Filter/advancedfilter.cpp:107
 #, kde-format
 msgid "Date"
-msgstr "日期"
+msgstr "التاريخ"
 
 #: app/DiskUsage/dulistview.cpp:45
 #, kde-format
 msgid "Permissions"
-msgstr "权限"
+msgstr "التّصاريح"
 
 #: app/DiskUsage/dulistview.cpp:46
 #, kde-format
 msgid "Owner"
-msgstr "所有者"
+msgstr "المالك"
 
 #: app/DiskUsage/dulistview.cpp:47 app/Konfigurator/krresulttable.cpp:284
 #, kde-format
 msgid "Group"
-msgstr "组"
+msgstr "المجموعة"
 
 #: app/DiskUsage/radialMap/builder.cpp:131
 #, kde-format
 msgid "%1 file: ~ %2"
 msgid_plural "%1 files: ~ %2"
-msgstr[0] ""
+msgstr[0] "ملف: ~ %2"
+msgstr[1] "ملفّ واحد: ~ %2"
+msgstr[2] "ملفّان: ~ %2"
+msgstr[3] "%1 ملفّات: ~ %2"
+msgstr[4] "%1 ملفًّا: ~ %2"
+msgstr[5] "%1 ملفّ: ~ %2"
 
 #: app/DiskUsage/radialMap/segmentTip.cpp:118
 #, kde-format
 msgid "Files: %1"
-msgstr "文件：%1"
+msgstr "الملفات: %1"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:170
 #, kde-format
 msgid "Open File Manager Here"
-msgstr ""
+msgstr "افتح مدير الملفات هنا"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:172
 #, kde-format
 msgid "Open Terminal Here"
-msgstr "在此打开终端"
+msgstr "افتح الطرفية هنا"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:176
 #, kde-format
 msgid "&Center Map Here"
-msgstr "在此居中图示(&C)"
+msgstr "&وسط الخريطة هنا"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:179
 #, kde-format
 msgid "&Open"
-msgstr "打开(&O)"
+msgstr "ا&فتح"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:182
 #, kde-format
 msgid "&Delete"
-msgstr "删除(&D)"
+msgstr "ا&حذف"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:212
 #, kde-format
 msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
 "b> deleted.</qt>"
-msgstr "<qt>位于<i>“%1”</i>的文件夹将以<b>递归</b>方式被<b>永久</b>删除。</qt>"
+msgstr "<qt>سيحذف المجلد <i>'%1'</i> بشكل <b>تكراري</b> و <b>دائم</b> .</qt>"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:213
 #, kde-format
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
-msgstr "<qt><i>“%1”</i>将被<b>永久</b>删除。</qt>"
+msgstr "<qt> سيحذف <i>'%1'</i>  <b>نهائيا</b> .</qt>"
 
 #: app/FileSystem/defaultfilesystem.cpp:142
 #, kde-format
@@ -1725,7 +1730,7 @@ msgstr ""
 #: app/FileSystem/defaultfilesystem.cpp:149
 #, kde-format
 msgid "No space information on non-local filesystems"
-msgstr "没有非本地文件系统的空间使用信息"
+msgstr ""
 
 #: app/FileSystem/defaultfilesystem.cpp:157
 #, kde-format
@@ -1738,13 +1743,11 @@ msgid ""
 "Protocol not supported by Krusader:\n"
 "%1"
 msgstr ""
-"Krusader 不支持该协议：\n"
-"%1"
 
 #: app/FileSystem/defaultfilesystem.cpp:315
 #, kde-format
 msgid "The folder %1 does not exist."
-msgstr ""
+msgstr "المجلد ”%1“ ليس موجودًا!"
 
 #: app/FileSystem/defaultfilesystem.cpp:331
 #: app/Synchronizer/synchronizerdirlist.cpp:111
@@ -1764,39 +1767,39 @@ msgid ""
 "Malformed URL:\n"
 "%1"
 msgstr ""
-"无效的 URL：\n"
+"عنوان المسار خاطئ التكوين:\n"
 "%1"
 
 #: app/FileSystem/krquery.cpp:228 app/Filter/generalfilter.cpp:153
 #: app/Konfigurator/konfigurator.cpp:124
 #, kde-format
 msgid "Archives"
-msgstr "归档"
+msgstr "الأرشيفات"
 
 #: app/FileSystem/krquery.cpp:232 app/Filter/generalfilter.cpp:155
 #, kde-format
 msgid "Image Files"
-msgstr "图像文件"
+msgstr "ملفّات الصّور"
 
 #: app/FileSystem/krquery.cpp:234 app/Filter/generalfilter.cpp:156
 #, kde-format
 msgid "Text Files"
-msgstr "文本文件"
+msgstr "ملفّات نصّيّة"
 
 #: app/FileSystem/krquery.cpp:236 app/Filter/generalfilter.cpp:157
 #, kde-format
 msgid "Video Files"
-msgstr "视频文件"
+msgstr "ملفّات الفيديو"
 
 #: app/FileSystem/krquery.cpp:238 app/Filter/generalfilter.cpp:158
 #, kde-format
 msgid "Audio Files"
-msgstr "音频文件"
+msgstr "ملفات الصّوت"
 
 #: app/FileSystem/krquery.cpp:240
 #, kde-format
 msgid "Custom"
-msgstr "自定义"
+msgstr "مخصّص"
 
 #: app/FileSystem/krquery.cpp:547
 #, kde-format
@@ -1816,8 +1819,6 @@ msgid ""
 "You cannot copy files directly to the 'virt:/' folder.\n"
 "You can create a sub folder and copy your files into it."
 msgstr ""
-"您不能直接复制文件到目录 ‘virl：/’。\n"
-"不过您可以创建一个子目录然后复制到它里面。"
 
 #: app/FileSystem/virtualfilesystem.cpp:125
 #, kde-format
@@ -1832,117 +1833,117 @@ msgstr ""
 #: app/Filter/advancedfilter.cpp:49
 #, kde-format
 msgid "Size"
-msgstr "大小"
+msgstr "الحجم"
 
 #: app/Filter/advancedfilter.cpp:56
 #, kde-format
 msgid "At Least"
-msgstr "至少"
+msgstr "على الأقل"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:67 app/Filter/advancedfilter.cpp:89
 #: app/Splitter/splittergui.cpp:112
 #, kde-format
 msgid "Byte"
-msgstr "字节"
+msgstr "بايت"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:69 app/Filter/advancedfilter.cpp:91
 #, kde-format
 msgid "KiB"
-msgstr "KB"
+msgstr "ك.بايت"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:71 app/Filter/advancedfilter.cpp:93
 #, kde-format
 msgid "MiB"
-msgstr "MB"
+msgstr "م.بايت"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:73 app/Filter/advancedfilter.cpp:95
 #, kde-format
 msgid "GiB"
-msgstr "GB"
+msgstr "ج.بايت"
 
 #: app/Filter/advancedfilter.cpp:78
 #, kde-format
 msgid "At Most"
-msgstr "最多"
+msgstr "على الأكثر"
 
 #: app/Filter/advancedfilter.cpp:115
 #, kde-format
 msgid "Any date"
-msgstr "任意日期"
+msgstr "أي تاريخ"
 
 #: app/Filter/advancedfilter.cpp:120
 #, kde-format
 msgid "&Modified between"
-msgstr "修改于(&M)"
+msgstr ""
 
 #: app/Filter/advancedfilter.cpp:133
 #, kde-format
 msgid "an&d"
-msgstr "和(&D)"
+msgstr "&و"
 
 #: app/Filter/advancedfilter.cpp:146
 #, kde-format
 msgid "&Not modified after"
-msgstr "修改不晚于(&N)"
+msgstr ""
 
 #: app/Filter/advancedfilter.cpp:159
 #, kde-format
 msgid "Mod&ified in the last"
-msgstr "最后修改于(&I)"
+msgstr ""
 
 #: app/Filter/advancedfilter.cpp:167 app/Filter/advancedfilter.cpp:182
 #, kde-format
 msgid "days"
-msgstr "天"
+msgstr "يوم"
 
 #: app/Filter/advancedfilter.cpp:168 app/Filter/advancedfilter.cpp:183
 #, kde-format
 msgid "weeks"
-msgstr "星期"
+msgstr "أسبوع"
 
 #: app/Filter/advancedfilter.cpp:169 app/Filter/advancedfilter.cpp:184
 #, kde-format
 msgid "months"
-msgstr "月"
+msgstr "شهر"
 
 #: app/Filter/advancedfilter.cpp:170 app/Filter/advancedfilter.cpp:185
 #, kde-format
 msgid "years"
-msgstr "年"
+msgstr "سنة"
 
 #: app/Filter/advancedfilter.cpp:178
 #, kde-format
 msgid "No&t modified in the last"
-msgstr "最后修改不在(&T)"
+msgstr ""
 
 #: app/Filter/advancedfilter.cpp:220
 #, kde-format
 msgid "Ownership"
-msgstr "所有关系"
+msgstr "الملكيّة"
 
 #: app/Filter/advancedfilter.cpp:231
 #, kde-format
 msgid "Belongs to &user"
-msgstr "属于用户(&U)"
+msgstr ""
 
 #: app/Filter/advancedfilter.cpp:240
 #, kde-format
 msgid "Belongs to gr&oup"
-msgstr "属于组(&O)"
+msgstr ""
 
 #: app/Filter/advancedfilter.cpp:251
 #, kde-format
 msgid "P&ermissions"
-msgstr "权限(&E)"
+msgstr "ال&تّصاريح"
 
 #: app/Filter/advancedfilter.cpp:256
 #, kde-format
 msgid "O&wner"
-msgstr "所有者(&W)"
+msgstr "ال&مالك"
 
 #: app/Filter/advancedfilter.cpp:259 app/Filter/advancedfilter.cpp:266
 #: app/Filter/advancedfilter.cpp:273 app/Filter/advancedfilter.cpp:286
@@ -1951,13 +1952,13 @@ msgstr "所有者(&W)"
 #: app/Filter/advancedfilter.cpp:327
 #, kde-format
 msgid "?"
-msgstr "?"
+msgstr "؟"
 
 #: app/Filter/advancedfilter.cpp:260 app/Filter/advancedfilter.cpp:287
 #: app/Filter/advancedfilter.cpp:314
 #, kde-format
 msgid "r"
-msgstr "r"
+msgstr "ق"
 
 #: app/Filter/advancedfilter.cpp:261 app/Filter/advancedfilter.cpp:268
 #: app/Filter/advancedfilter.cpp:275 app/Filter/advancedfilter.cpp:288
@@ -1972,33 +1973,33 @@ msgstr "-"
 #: app/Filter/advancedfilter.cpp:321
 #, kde-format
 msgid "w"
-msgstr "w"
+msgstr "ك"
 
 #: app/Filter/advancedfilter.cpp:274 app/Filter/advancedfilter.cpp:301
 #: app/Filter/advancedfilter.cpp:328
 #, kde-format
 msgid "x"
-msgstr "x"
+msgstr "ت"
 
 #: app/Filter/advancedfilter.cpp:283
 #, kde-format
 msgid "Grou&p"
-msgstr "组(&P)"
+msgstr "ال&مجموعة"
 
 #: app/Filter/advancedfilter.cpp:310
 #, kde-format
 msgid "A&ll"
-msgstr "所有(&L)"
+msgstr "ال&كلّ"
 
 #: app/Filter/advancedfilter.cpp:340
 #, kde-format
 msgid "Note: a '?' is a wildcard"
-msgstr "注意：“?”是通配符"
+msgstr ""
 
 #: app/Filter/advancedfilter.cpp:463
 #, kde-format
 msgid "Invalid date entered."
-msgstr "输入的日期无效。"
+msgstr ""
 
 #: app/Filter/advancedfilter.cpp:464
 #, kde-format
@@ -2017,7 +2018,7 @@ msgstr ""
 msgid ""
 "Please re-enter the values, so that the left side size will be smaller than "
 "(or equal to) the right side size."
-msgstr "请重新输入, 左边的值必须小于或等于右边的值。"
+msgstr ""
 
 #: app/Filter/advancedfilter.cpp:499 app/Filter/advancedfilter.cpp:527
 #, kde-format
@@ -2031,7 +2032,6 @@ msgid ""
 "the dates, so that the left side date will be earlier than the right side "
 "date."
 msgstr ""
-"左边的日期大于右边的日期。请重新输入，且左边的必须小于或等于右边的日期。"
 
 #: app/Filter/advancedfilter.cpp:528
 #, kde-format
@@ -2039,68 +2039,66 @@ msgid ""
 "The date on top is later than the date on the bottom. Please re-enter the "
 "dates, so that the top date will be earlier than the bottom date."
 msgstr ""
-"最上面的日期大于最下面的日期。请重新输入日期，且最上面的必须早于最下面的日"
-"期。"
 
 #: app/Filter/filterdialog.cpp:23
 #, kde-format
 msgid "Krusader::Choose Files"
-msgstr "Krusader::Choose Files"
+msgstr ""
 
 #: app/Filter/filtertabs.cpp:30
 #, kde-format
 msgid "&General"
-msgstr "常规(&G)"
+msgstr "&عام"
 
 #: app/Filter/filtertabs.cpp:35
 #, kde-format
 msgid "&Advanced"
-msgstr "高级(&A)"
+msgstr "مت&قدم"
 
 #: app/Filter/filtertabs.cpp:103
 #, kde-format
 msgid "Could not load profile."
-msgstr ""
+msgstr "تعذّر تحميل التشكيلة."
 
 #: app/Filter/generalfilter.cpp:37
 #, kde-format
 msgid "Any Character"
-msgstr "任意字符"
+msgstr "أي حرف"
 
 #: app/Filter/generalfilter.cpp:38
 #, kde-format
 msgid "Start of Line"
-msgstr "开始行"
+msgstr "بداية السطر"
 
 #: app/Filter/generalfilter.cpp:39
 #, kde-format
 msgid "End of Line"
-msgstr "结束行"
+msgstr "نهاية السطر"
 
 #: app/Filter/generalfilter.cpp:40
 #, kde-format
 msgid "Set of Characters"
-msgstr "字符集"
+msgstr "مجموعة محارف"
 
 #: app/Filter/generalfilter.cpp:41
 #, kde-format
 msgid "Repeats, Zero or More Times"
-msgstr "重复，零次或更多次"
+msgstr "التكرار ، صفر أو أكثر"
 
 #: app/Filter/generalfilter.cpp:42
 #, kde-format
 msgid "Repeats, One or More Times"
-msgstr "重复，一次或更多次"
+msgstr "التكرار ، مرة واحدة أو أكثر"
 
 #: app/Filter/generalfilter.cpp:43
 #, kde-format
 msgid "Optional"
-msgstr "可选"
+msgstr "اختياري"
 
 #: app/Filter/generalfilter.cpp:44
 #, kde-format
 msgid "Escape"
-msgstr "Esc"
+msgstr "افلات"
 
 #: app/Filter/generalfilter.cpp:45
 #, kde-format
@@ -2110,32 +2108,32 @@ msgstr "TAB"
 #: app/Filter/generalfilter.cpp:46
 #, kde-format
 msgid "Newline"
-msgstr "新的一行"
+msgstr "سطر جديد"
 
 #: app/Filter/generalfilter.cpp:47
 #, kde-format
 msgid "Carriage Return"
-msgstr "回车符"
+msgstr "الرجوع الى بداية السّطر"
 
 #: app/Filter/generalfilter.cpp:48
 #, kde-format
 msgid "White Space"
-msgstr "空白"
+msgstr "فراغ"
 
 #: app/Filter/generalfilter.cpp:49
 #, kde-format
 msgid "Digit"
-msgstr "数字"
+msgstr "خانة"
 
 #: app/Filter/generalfilter.cpp:96
 #, kde-format
 msgid "&Case sensitive"
-msgstr "区分大小写(&C)"
+msgstr "&حسّاس لحالة الأحرف"
 
 #: app/Filter/generalfilter.cpp:101
 #, kde-format
 msgid "Search &for:"
-msgstr "搜索(&F)："
+msgstr "ا&بحث عن:"
 
 #: app/Filter/generalfilter.cpp:116 app/Synchronizer/synchronizergui.cpp:204
 #, kde-format
@@ -2161,27 +2159,27 @@ msgstr ""
 #: app/Filter/generalfilter.cpp:142
 #, kde-format
 msgid "&Of type:"
-msgstr "类型(&O)："
+msgstr "&نوعه:"
 
 #: app/Filter/generalfilter.cpp:152 app/Filter/generalfilter.cpp:579
 #, kde-format
 msgid "All Files"
-msgstr "所有文件"
+msgstr "كلّ الملفّات"
 
 #: app/Filter/generalfilter.cpp:172
 #, kde-format
 msgid "&Profile handler"
-msgstr "配置处理器(&P)"
+msgstr ""
 
 #: app/Filter/generalfilter.cpp:185
 #, kde-format
 msgid "&Load"
-msgstr "加载(&L)"
+msgstr "&حمّل"
 
 #: app/Filter/generalfilter.cpp:209
 #, kde-format
 msgid "Searc&h in"
-msgstr ""
+msgstr "ال&بحث في"
 
 #: app/Filter/generalfilter.cpp:224
 #, kde-format
@@ -2191,38 +2189,38 @@ msgstr ""
 #: app/Filter/generalfilter.cpp:257
 #, kde-format
 msgid "Containing text"
-msgstr "包含文本"
+msgstr "يحوي النصّ"
 
 #: app/Filter/generalfilter.cpp:271
 #, kde-format
 msgid "&Text:"
-msgstr "文本(&T)："
+msgstr "ال&نص:"
 
 #: app/Filter/generalfilter.cpp:287 app/KViewer/lister.cpp:1295
 #, kde-format
 msgid "RegExp"
-msgstr "正则表达式"
+msgstr "العبارة المنطقية"
 
 #: app/Filter/generalfilter.cpp:307
 #, kde-format
 msgid "Encoding:"
-msgstr "编码："
+msgstr "الترميز:"
 
 #: app/Filter/generalfilter.cpp:311 app/GUI/krremoteencodingmenu.cpp:119
 #, kde-format
 msgctxt "Default encoding"
 msgid "Default"
-msgstr "默认"
+msgstr "المبدئيّ"
 
 #: app/Filter/generalfilter.cpp:322
 #, kde-format
 msgid "&Match whole word only"
-msgstr "匹配整个单词(&M)"
+msgstr ""
 
 #: app/Filter/generalfilter.cpp:330
 #, kde-format
 msgid "Cas&e sensitive"
-msgstr "区分大小写(&E)"
+msgstr "&حسّاس لحالة الأحرف"
 
 #: app/Filter/generalfilter.cpp:347
 #, kde-format
@@ -2232,12 +2230,12 @@ msgstr ""
 #: app/Filter/generalfilter.cpp:352
 #, kde-format
 msgid "Search in arch&ives"
-msgstr "搜索归档(&I)"
+msgstr ""
 
 #: app/Filter/generalfilter.cpp:356
 #, kde-format
 msgid "Follow &links"
-msgstr "跟随链接(&L)"
+msgstr ""
 
 #: app/Filter/generalfilter.cpp:467
 #, kde-format
@@ -2269,7 +2267,7 @@ msgstr ""
 #: app/Filter/generalfilter.cpp:602
 #, kde-format
 msgid "Please specify a location to search in."
-msgstr "请指定要搜索的位置。"
+msgstr ""
 
 #: app/GUI/dirhistorybutton.cpp:29 app/GUI/dirhistorybutton.cpp:30
 #, kde-format
@@ -2292,85 +2290,85 @@ msgstr ""
 #: app/GUI/kcmdmodebutton.cpp:36
 #, kde-format
 msgid "Execution mode"
-msgstr "执行模式"
+msgstr "وضع التّنفيذ"
 
 #: app/GUI/kfnkeys.cpp:24 app/Panel/listpanelactions.cpp:63
 #, kde-format
 msgid "Rename"
-msgstr "重命名"
+msgstr "غيّر الاسم"
 
 #: app/GUI/kfnkeys.cpp:26
 #, kde-format
 msgid "Edit"
-msgstr "编辑"
+msgstr "حرّر"
 
 #: app/GUI/kfnkeys.cpp:27
 #, kde-format
 msgid "Copy"
-msgstr "复制"
+msgstr "انسخ"
 
 #: app/GUI/kfnkeys.cpp:28
 #, kde-format
 msgid "Move"
-msgstr "移动"
+msgstr "انقل"
 
 #: app/GUI/kfnkeys.cpp:29
 #, kde-format
 msgid "Mkdir"
-msgstr ""
+msgstr "إنشاء مجلد"
 
 #: app/GUI/kfnkeys.cpp:31
 #, kde-format
 msgid "Term"
-msgstr "终端"
+msgstr "الفترة"
 
 #: app/GUI/kfnkeys.cpp:32 app/kractions.cpp:277
 #, kde-format
 msgid "Quit"
-msgstr "退出"
+msgstr "أنهِ"
 
 #: app/GUI/krremoteencodingmenu.cpp:115
 #, kde-format
 msgid "Reload"
-msgstr "重新加载"
+msgstr "أعد التحميل"
 
 #: app/GUI/krusaderstatus.cpp:19
 #, kde-format
 msgid "Ready."
-msgstr "就绪。"
+msgstr "جاهز."
 
 #: app/GUI/mediabutton.cpp:43 app/GUI/mediabutton.cpp:44
 #, kde-format
 msgid "Open the available media list"
-msgstr "打开可用媒体列表"
+msgstr ""
 
 #: app/GUI/mediabutton.cpp:144 app/GUI/mediabutton.cpp:605
 #, kde-format
 msgctxt "%1 is the mount point of the remote share"
 msgid "Remote Share [%1]"
-msgstr ""
+msgstr "مشاركة عن بعد [%1]"
 
 #: app/GUI/mediabutton.cpp:164
 #, kde-format
 msgctxt "Unknown label"
 msgid "Unknown"
-msgstr "未知"
+msgstr "مجهول"
 
 #: app/GUI/mediabutton.cpp:167
 #, kde-format
 msgctxt "Unknown media type"
 msgid "Unknown"
-msgstr "未知"
+msgstr "مجهول"
 
 #: app/GUI/mediabutton.cpp:182
 #, kde-format
 msgid "Floppy"
-msgstr "软盘"
+msgstr "قرص مرن"
 
 #: app/GUI/mediabutton.cpp:184
 #, kde-format
 msgid "CD/DVD-ROM"
-msgstr "CD/DVD-ROM"
+msgstr ""
 
 #: app/GUI/mediabutton.cpp:186
 #, kde-format
@@ -2380,101 +2378,101 @@ msgstr ""
 #: app/GUI/mediabutton.cpp:188
 #, kde-format
 msgid "USB device"
-msgstr "USB 设备"
+msgstr ""
 
 #: app/GUI/mediabutton.cpp:190
 #, kde-format
 msgid "Removable media"
-msgstr "可移动媒体"
+msgstr "وسائط متعددة قابلة للإزالة"
 
 #: app/GUI/mediabutton.cpp:192
 #, kde-format
 msgid "Hard Disk"
-msgstr "硬盘"
+msgstr "قرص صلب"
 
 #: app/GUI/mediabutton.cpp:194
 #, kde-format
 msgid "Camera"
-msgstr "相机"
+msgstr "كاميرا"
 
 #: app/GUI/mediabutton.cpp:196
 #, kde-format
 msgid "Video CD/DVD-ROM"
-msgstr "视频 CD/DVD-ROM"
+msgstr ""
 
 #: app/GUI/mediabutton.cpp:198
 #, kde-format
 msgid "Audio CD/DVD-ROM"
-msgstr "音频 CD/DVD-ROM"
+msgstr ""
 
 #: app/GUI/mediabutton.cpp:200
 #, kde-format
 msgid "Recordable CD/DVD-ROM"
-msgstr "可录制 CD/DVD-ROM"
+msgstr ""
 
 #: app/GUI/mediabutton.cpp:335 app/MountMan/kmountman.cpp:377
 #: app/MountMan/kmountmangui.cpp:400 app/Panel/panelcontextmenu.cpp:285
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
-msgstr "挂载"
+msgstr "ضمّ"
 
 #: app/GUI/mediabutton.cpp:338 app/MountMan/kmountman.cpp:377
 #: app/MountMan/kmountmangui.cpp:405 app/Panel/panelcontextmenu.cpp:283
 #, kde-format
 msgid "Unmount"
-msgstr "卸载"
+msgstr "أزل الضم"
 
 #: app/GUI/mediabutton.cpp:342 app/MountMan/kmountmangui.cpp:412
 #: app/Panel/panelcontextmenu.cpp:287
 #, kde-format
 msgid "Eject"
-msgstr "弹出"
+msgstr "أخرِج"
 
 #: app/GUI/mediabutton.cpp:475
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
-msgstr "访问“%1”时发生错误，系统响应：%2"
+msgstr "حدث خطأ أثناء النّفاذ إلى ’%1‘، ردّ النّظام بِ‍: %2"
 
 #: app/GUI/mediabutton.cpp:478
 #, kde-format
 msgid "An error occurred while accessing '%1'"
-msgstr "访问“%1”时发生错误"
+msgstr "حدث خطأ أثناء النّفاذ إلى ’%1‘"
 
 #: app/GUI/profilemanager.cpp:28 app/GUI/profilemanager.cpp:48
 #, kde-format
 msgid "Profiles"
-msgstr "配置"
+msgstr "التّشكيلات"
 
 #: app/GUI/profilemanager.cpp:61
 #, kde-format
 msgid "Remove entry"
-msgstr "删除条目"
+msgstr "أزِل المدخلة"
 
 #: app/GUI/profilemanager.cpp:62
 #, kde-format
 msgid "Overwrite entry"
-msgstr "覆盖条目"
+msgstr ""
 
 #: app/GUI/profilemanager.cpp:65
 #, kde-format
 msgid "Add new entry"
-msgstr "添加新条目"
+msgstr "أضف مدخلة جديدة"
 
 #: app/GUI/profilemanager.cpp:92
 #, kde-format
 msgid "Krusader::ProfileManager"
-msgstr "Krusader::ProfileManager"
+msgstr ""
 
 #: app/GUI/profilemanager.cpp:92
 #, kde-format
 msgid "Enter the profile name:"
-msgstr "输入配置名称："
+msgstr "أدخل اسم التشكيلة:"
 
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr ""
+msgstr "امسح الألسنة المُغلقة حديثًا"
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -2507,12 +2505,12 @@ msgstr ""
 #: app/JobMan/jobman.cpp:99
 #, kde-format
 msgid "Start Job"
-msgstr "执行任务"
+msgstr "ابدأ المهمّة"
 
 #: app/JobMan/jobman.cpp:168
 #, kde-format
 msgid "No jobs"
-msgstr "没有任务"
+msgstr "لا مهام"
 
 #: app/JobMan/jobman.cpp:174
 #, kde-format
@@ -2542,76 +2540,96 @@ msgstr ""
 #: app/JobMan/jobman.cpp:235
 #, kde-format
 msgid "Are you sure you want to quit?"
-msgstr "您确定要退出吗？"
+msgstr "هل أنت متأكد أنك تريد الخروج ؟"
 
 #: app/JobMan/jobman.cpp:385
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/JobMan/jobman.cpp:433
 #, kde-format
 msgid "No Jobs"
-msgstr "没有任务"
+msgstr "لا مهام"
 
 #: app/JobMan/jobman.cpp:435
 #, kde-format
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
-msgstr[0] "%1 个任务"
+msgstr[0] "مهمة"
+msgstr[1] "مهمّة واحدة"
+msgstr[2] "مهمّتان"
+msgstr[3] "%1 مهامّ"
+msgstr[4] "%1 مهمّة"
+msgstr[5] "%1 مهمّة"
 
 #: app/JobMan/jobman.cpp:440
 #, kde-format
 msgid "Clear Job List"
-msgstr ""
+msgstr "امسح قائمة المهام"
 
 #: app/JobMan/jobman.cpp:441
 #, kde-format
 msgid "Pause All Jobs"
-msgstr ""
+msgstr "ألبث قائمة المهام"
 
 #: app/JobMan/jobman.cpp:442
 #, kde-format
 msgid "Resume Job List"
-msgstr ""
+msgstr "استكمل قائمة المهام"
 
 #: app/JobMan/krjob.cpp:24
 #, kde-format
 msgid "Move %1 to trash"
-msgstr ""
+msgstr "انقل %1 إلى المهملات"
 
 #: app/JobMan/krjob.cpp:25
 #, kde-format
 msgid "Move %1 file to trash"
 msgid_plural "Move %1 files to trash"
-msgstr[0] ""
+msgstr[0] "انقل إلى المهملات"
+msgstr[1] "انقل الملفّ إلى المهملات"
+msgstr[2] "انقل الملفّين إلى المهملات"
+msgstr[3] "انقل %1 ملفّات إلى المهملات"
+msgstr[4] "انقل %1 ملفًّا إلى المهملات"
+msgstr[5] "انقل %1 ملفّ إلى المهملات"
 
 #: app/JobMan/krjob.cpp:26
 #, kde-format
 msgid "Delete %1"
-msgstr "删除 %1"
+msgstr "احذف %1"
 
 #: app/JobMan/krjob.cpp:27
 #, kde-format
 msgid "Delete %1 file"
 msgid_plural "Delete %1 files"
-msgstr[0] ""
+msgstr[0] "احذف الملفّ"
+msgstr[1] "احذف الملف"
+msgstr[2] "احذف الملفين"
+msgstr[3] "احذف %1 ملفات"
+msgstr[4] "احذف %1 ملفا"
+msgstr[5] "احذف %1 ملف"
 
 #: app/JobMan/krjob.cpp:49
 #, kde-format
 msgid "Copy to %1"
-msgstr "复制到 %1"
+msgstr "انسخ إلى %1"
 
 #: app/JobMan/krjob.cpp:53
 #, kde-format
 msgid "Move to %1"
-msgstr ""
+msgstr "انقل إلى %1"
 
 #: app/JobMan/krjob.cpp:57
 #, kde-format
 msgid "Link to %1"
-msgstr "链接到 %1"
+msgstr "اربط إلى %1"
 
 #: app/Konfigurator/kgadvanced.cpp:29 app/Konfigurator/kgcolors.cpp:45
 #: app/Konfigurator/kgdependencies.cpp:42 app/Konfigurator/kggeneral.cpp:200
@@ -2620,19 +2638,19 @@ msgstr "链接到 %1"
 #: app/Konfigurator/kgstartup.cpp:30 app/Konfigurator/konfigurator.cpp:120
 #, kde-format
 msgid "General"
-msgstr "常规"
+msgstr "عامّ"
 
 #: app/Konfigurator/kgadvanced.cpp:35
 #, kde-format
 msgid "Automount filesystems"
-msgstr "自动挂载文件系统"
+msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:35
 #, kde-format
 msgid ""
 "When stepping into a folder which is defined as a mount point in the "
 "<b>fstab</b>, try mounting it with the defined parameters."
-msgstr "当进入一个在 <b>fstab</b> 中定义的目录时， 尝试用定义好的参数挂载它。"
+msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:42
 #, kde-format
@@ -2642,7 +2660,7 @@ msgstr ""
 #: app/Konfigurator/kgadvanced.cpp:57
 #, kde-format
 msgid "Confirmations"
-msgstr "确认"
+msgstr "التأكيدات"
 
 #: app/Konfigurator/kgadvanced.cpp:60
 #, kde-format
@@ -2659,22 +2677,22 @@ msgstr ""
 #: app/Konfigurator/kgadvanced.cpp:66
 #, kde-format
 msgid "Deleting files"
-msgstr "正在删除文件"
+msgstr "يحذف الملفّات"
 
 #: app/Konfigurator/kgadvanced.cpp:67
 #, kde-format
 msgid "Copying files"
-msgstr "正在复制文件"
+msgstr "ينسخ الملفّات"
 
 #: app/Konfigurator/kgadvanced.cpp:68
 #, kde-format
 msgid "Moving files"
-msgstr "正在移动文件"
+msgstr "ينقل الملفات"
 
 #: app/Konfigurator/kgadvanced.cpp:69
 #, kde-format
 msgid "Confirm feed to listbox"
-msgstr "确认添加到列表框"
+msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:69
 #, kde-format
@@ -2686,12 +2704,12 @@ msgstr ""
 #: app/Konfigurator/kgadvanced.cpp:70
 #, kde-format
 msgid "Removing Useractions"
-msgstr "移除用户操作"
+msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:82 app/Konfigurator/kgarchives.cpp:76
 #, kde-format
 msgid "Fine-Tuning"
-msgstr "优化调整"
+msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:86
 #, kde-format
@@ -2699,18 +2717,16 @@ msgid ""
 "The icon cache size influences how fast the contents of a panel can be "
 "displayed. However, too large a cache might consume your memory."
 msgstr ""
-"图标的缓存大小会影响了 Krusader 面板的显示速度. 不过一个大的缓存也会消耗掉您"
-"的内存。"
 
 #: app/Konfigurator/kgadvanced.cpp:87
 #, kde-format
 msgid "Icon cache size (KB):"
-msgstr "图标缓存大小(KB)："
+msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:94
 #, kde-format
 msgid "Arguments of updatedb:"
-msgstr "updatedb 的参数："
+msgstr ""
 
 #: app/Konfigurator/kgarchives.cpp:37
 #, kde-format
@@ -2753,45 +2769,45 @@ msgstr ""
 #: app/Konfigurator/kgarchives.cpp:82
 #, kde-format
 msgid "Test archive after packing"
-msgstr "在解开档案前先测试档案"
+msgstr ""
 
 #: app/Konfigurator/kgarchives.cpp:82
 #, kde-format
 msgid "Check the archive's integrity after packing it."
-msgstr "在打包之后测试档案。"
+msgstr ""
 
 #: app/Konfigurator/kgarchives.cpp:83
 #, kde-format
 msgid "Test archive before unpacking"
-msgstr "在解开档案前先测试档案"
+msgstr ""
 
 #: app/Konfigurator/kgarchives.cpp:83
 #, kde-format
 msgid ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr "一些错误的档案可能导致崩溃; 因此建议您先检测档案。"
+msgstr ""
 
 #: app/Konfigurator/kgarchives.cpp:103 app/Konfigurator/kggeneral.cpp:295
 #: app/Search/krsearchdialog.cpp:604
 #, kde-format
 msgid "Search results"
-msgstr "搜索结果"
+msgstr "نتائج البحث"
 
 #: app/Konfigurator/kgarchives.cpp:104
 #, kde-format
 msgid "Searching for packers..."
-msgstr "正在搜索打包器..."
+msgstr ""
 
 #: app/Konfigurator/kgarchives.cpp:106
 #, kde-format
 msgid ""
 "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr "请确认新的打包器安装在您的 <code>$PATH</code> 中(比如: /usr/bin)"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:53
 #, kde-format
 msgid "Use the default KDE colors"
-msgstr "使用 KDE 的默认颜色方案"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:53
 #, kde-format
@@ -2803,7 +2819,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:54
 #, kde-format
 msgid "Use alternate background color"
-msgstr "使用自定义的背景颜色"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:54
 #, kde-format
@@ -2816,7 +2832,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:55
 #, kde-format
 msgid "Show current item even if not focused"
-msgstr "显示当然的项目即使它没有获得焦点"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:55
 #, kde-format
@@ -2842,22 +2858,22 @@ msgstr ""
 #: app/Konfigurator/konfigurator.cpp:118
 #, kde-format
 msgid "Colors"
-msgstr "颜色"
+msgstr "الألوان"
 
 #: app/Konfigurator/kgcolors.cpp:82
 #, kde-format
 msgid "Active"
-msgstr "激活"
+msgstr "نشط"
 
 #: app/Konfigurator/kgcolors.cpp:88
 #, kde-format
 msgid "Transparent"
-msgstr "透明"
+msgstr "شفاف"
 
 #: app/Konfigurator/kgcolors.cpp:92 app/Konfigurator/kgcolors.cpp:129
 #, kde-format
 msgid "Foreground:"
-msgstr "前景色："
+msgstr "الأماميّة:"
 
 #: app/Konfigurator/kgcolors.cpp:93 app/Konfigurator/kgcolors.cpp:131
 #, kde-format
@@ -2869,38 +2885,38 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:108 app/Konfigurator/kgcolors.cpp:130
 #, kde-format
 msgid "Same as foreground"
-msgstr "与前景色相同"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:94 app/Konfigurator/kgcolors.cpp:132
 #, kde-format
 msgid "Executable foreground:"
-msgstr "可执行文件前景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:95 app/Konfigurator/kgcolors.cpp:133
 #, kde-format
 msgid "Symbolic link foreground:"
-msgstr "符号链接前景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:96 app/Konfigurator/kgcolors.cpp:134
 #, kde-format
 msgid "Invalid symlink foreground:"
-msgstr "无效的符号链接前景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:97 app/Konfigurator/kgcolors.cpp:135
 #, kde-format
 msgid "Background:"
-msgstr "背景色："
+msgstr "الخلفيّة:"
 
 #: app/Konfigurator/kgcolors.cpp:98 app/Konfigurator/kgcolors.cpp:109
 #: app/Konfigurator/kgcolors.cpp:136
 #, kde-format
 msgid "Same as background"
-msgstr "与背景色相同"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:99 app/Konfigurator/kgcolors.cpp:137
 #, kde-format
 msgid "Alternate background:"
-msgstr "自定义的背景色："
+msgstr "الخلفية البديلة:"
 
 #: app/Konfigurator/kgcolors.cpp:100 app/Konfigurator/kgcolors.cpp:138
 #, kde-format
@@ -2910,12 +2926,12 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:101 app/Konfigurator/kgcolors.cpp:139
 #, kde-format
 msgid "Selected background:"
-msgstr "选中的背景:"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:102 app/Konfigurator/kgcolors.cpp:140
 #, kde-format
 msgid "Same as alt. background"
-msgstr "与自定义的背景色相同"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:103 app/Konfigurator/kgcolors.cpp:143
 #, kde-format
@@ -2930,13 +2946,13 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:104 app/Konfigurator/kgcolors.cpp:144
 #, kde-format
 msgid "Current foreground:"
-msgstr "当前的前景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:104 app/Konfigurator/kgcolors.cpp:106
 #: app/Konfigurator/kgcolors.cpp:107
 #, kde-format
 msgid "Not used"
-msgstr "没有使用。"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:105 app/Konfigurator/kgcolors.cpp:145
 #, kde-format
@@ -2951,7 +2967,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:107 app/Konfigurator/kgcolors.cpp:147
 #, kde-format
 msgid "Current background:"
-msgstr "当前的背景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:108
 #, kde-format
@@ -2966,7 +2982,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
 msgid "Inactive"
-msgstr "非活动"
+msgstr "خامل"
 
 #: app/Konfigurator/kgcolors.cpp:129 app/Konfigurator/kgcolors.cpp:131
 #: app/Konfigurator/kgcolors.cpp:132 app/Konfigurator/kgcolors.cpp:133
@@ -2977,7 +2993,7 @@ msgstr "非活动"
 #: app/Konfigurator/kgcolors.cpp:147
 #, kde-format
 msgid "Same as active"
-msgstr "与活动的相同"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:166
 #, kde-format
@@ -2993,67 +3009,67 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:224 app/Konfigurator/kgcolors.cpp:225
 #, kde-format
 msgid "KDE default"
-msgstr "KDE 默认值"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:186
 #, kde-format
 msgid "Synchronizer"
-msgstr "同步器"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:197
 #, kde-format
 msgid "Equals foreground:"
-msgstr "相同的前景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:198
 #, kde-format
 msgid "Equals background:"
-msgstr "相同的背景色相同："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:199
 #, kde-format
 msgid "Differing foreground:"
-msgstr "相异的前景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:200
 #, kde-format
 msgid "Differing background:"
-msgstr "相异的背景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:201
 #, kde-format
 msgid "Copy to left foreground:"
-msgstr "复制到左侧面板前景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:202
 #, kde-format
 msgid "Copy to left background:"
-msgstr "复制到左侧面板背景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:203
 #, kde-format
 msgid "Copy to right foreground:"
-msgstr "复制到右侧面板前景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:204
 #, kde-format
 msgid "Copy to right background:"
-msgstr "复制到右侧面板背景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:205
 #, kde-format
 msgid "Delete foreground:"
-msgstr "删除前景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:206
 #, kde-format
 msgid "Delete background:"
-msgstr "删除背景色："
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:212
 #, kde-format
 msgid "Other"
-msgstr "其他"
+msgstr "أخرى"
 
 #: app/Konfigurator/kgcolors.cpp:220
 #, kde-format
@@ -3099,17 +3115,17 @@ msgstr ""
 #: app/Panel/panelcontextmenu.cpp:160
 #, kde-format
 msgid "Preview"
-msgstr "预览"
+msgstr "معاينة"
 
 #: app/Konfigurator/kgcolors.cpp:262
 #, kde-format
 msgid "Import color-scheme"
-msgstr "导入颜色方案"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:264
 #, kde-format
 msgid "Export color-scheme"
-msgstr "导出颜色方案"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:443
 #, kde-format
@@ -3119,57 +3135,57 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:444
 #, kde-format
 msgid "Selected 2"
-msgstr ""
+msgstr "محدّد ٢"
 
 #: app/Konfigurator/kgcolors.cpp:445
 #, kde-format
 msgid "Selected 1"
-msgstr ""
+msgstr "محدّد ١"
 
 #: app/Konfigurator/kgcolors.cpp:446
 #, kde-format
 msgid "Current"
-msgstr "当前"
+msgstr "الحالي"
 
 #: app/Konfigurator/kgcolors.cpp:447
 #, kde-format
 msgid "Invalid symlink"
-msgstr "无效的符号链接"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:448
 #, kde-format
 msgid "Symbolic link"
-msgstr "符号链接"
+msgstr "وصلة لينة"
 
 #: app/Konfigurator/kgcolors.cpp:449
 #, kde-format
 msgid "Application"
-msgstr "应用程序"
+msgstr "التطبيق"
 
 #: app/Konfigurator/kgcolors.cpp:451
 #, kde-format
 msgid "Folder"
-msgstr "文件夹"
+msgstr "المجلد"
 
 #: app/Konfigurator/kgcolors.cpp:514
 #, kde-format
 msgid "Copy to right"
-msgstr "复制到右侧面板"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:515
 #, kde-format
 msgid "Copy to left"
-msgstr "复制到左侧面板"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:516
 #, kde-format
 msgid "Differing"
-msgstr "相异"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:517
 #, kde-format
 msgid "Equals"
-msgstr "相同"
+msgstr "يساوي"
 
 #: app/Konfigurator/kgcolors.cpp:532
 #, kde-format
@@ -3194,7 +3210,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:560
 #, kde-format
 msgid "Select a color-scheme file"
-msgstr "选择一个颜色方案"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:566
 #, kde-format
@@ -3204,7 +3220,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:577
 #, kde-format
 msgid "Select a color scheme file"
-msgstr "选择一个颜色方案"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:583
 #, kde-format
@@ -3214,27 +3230,27 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:586
 #, kde-format
 msgid "Error: unable to write to file"
-msgstr "错误：写入文件错误"
+msgstr ""
 
 #: app/Konfigurator/kgdependencies.cpp:64
 #, kde-format
 msgid "Packers"
-msgstr "打包器"
+msgstr ""
 
 #: app/Konfigurator/kgdependencies.cpp:94
 #, kde-format
 msgid "Checksum Utilities"
-msgstr "检验和检查工具"
+msgstr ""
 
 #: app/Konfigurator/kgdependencies.cpp:148
 #, kde-format
 msgid "The %1 path is incorrect, no valid path found."
-msgstr "没有找到路径, 路径%1不正确。"
+msgstr ""
 
 #: app/Konfigurator/kgdependencies.cpp:152
 #, kde-format
 msgid "The %1 path is incorrect, %2 used instead."
-msgstr "路径 %1 不正确, 用 %2 替换。"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:64
 #, kde-format
@@ -3252,8 +3268,6 @@ msgid ""
 "If checked, each file will open in a separate window, otherwise, the viewer "
 "will work in a single, tabbed mode"
 msgstr ""
-"打开此选项后, 每个文件将会在单独的窗口中打开， 否则则在单个窗口中以标签模式打"
-"开。"
 
 #: app/Konfigurator/kggeneral.cpp:74
 #, kde-format
@@ -3268,43 +3282,43 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
 msgid "Viewer"
-msgstr "查看器"
+msgstr "المستعرض"
 
 #: app/Konfigurator/kggeneral.cpp:90
 #, kde-format
 msgid "Default viewer mode:"
-msgstr "默认的查看模式"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:94
 #, kde-format
 msgid "Generic mode"
-msgstr "通用模式"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:94
 #, kde-format
 msgid "Use the system's default viewer"
-msgstr "使用系统的默认查看器"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:95 app/KViewer/lister.cpp:2263
 #, kde-format
 msgid "Text mode"
-msgstr "文本模式"
+msgstr "وضع النص"
 
 #: app/Konfigurator/kggeneral.cpp:95
 #, kde-format
 msgid "View the file in text-only mode"
-msgstr "以文本模式查看文件"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:96 app/KViewer/lister.cpp:1227
 #: app/KViewer/lister.cpp:2266
 #, kde-format
 msgid "Hex mode"
-msgstr "十六进制模式"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:96
 #, kde-format
 msgid "View the file in hex-mode (better for binary files)"
-msgstr "以十六进制模式打开文件 (适合于二进制文件)"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:97
 #, kde-format
@@ -3339,24 +3353,24 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:118
 #, kde-format
 msgid "MB"
-msgstr "MB"
+msgstr "م.بايت"
 
 #: app/Konfigurator/kggeneral.cpp:130
 #, kde-format
 msgid "Editor"
-msgstr "编辑"
+msgstr "المحرّر"
 
 #: app/Konfigurator/kggeneral.cpp:134
 #, kde-format
 msgid "Editor:"
-msgstr "编辑器："
+msgstr "المحرر:"
 
 #: app/Konfigurator/kggeneral.cpp:140
 #, kde-format
 msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
-msgstr "提示： 如果您要使用 Krusader 快速的内建编辑器就选择 “内建编辑器”。"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:148
 #, kde-format
@@ -3371,12 +3385,12 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:214
 #, kde-format
 msgid "Warn on exit"
-msgstr "退出时警告"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:214
 #, kde-format
 msgid "Display a warning when trying to close the main window."
-msgstr "显示一个警告当您要退出 Krusader 时。"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:215
 #, kde-format
@@ -3408,27 +3422,27 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:248
 #, kde-format
 msgid "Move to trash"
-msgstr "移入回收站"
+msgstr "انقل إلى المهملات"
 
 #: app/Konfigurator/kggeneral.cpp:248
 #, kde-format
 msgid "Files will be moved to trash when deleted."
-msgstr "删除文件到回收站。"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:249
 #, kde-format
 msgid "Delete files"
-msgstr "删除文件"
+msgstr "احذف الملفات"
 
 #: app/Konfigurator/kggeneral.cpp:249
 #, kde-format
 msgid "Files will be permanently deleted."
-msgstr "文件将会永久的删除。"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:260 app/Panel/panelcontextmenu.cpp:196
 #, kde-format
 msgid "Terminal"
-msgstr "终端"
+msgstr "الطّرفيّة"
 
 #: app/Konfigurator/kggeneral.cpp:263
 #, kde-format
@@ -3468,7 +3482,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
 msgid "Searching for tools..."
-msgstr "正在搜索工具..."
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:298
 #, kde-format
@@ -3484,7 +3498,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:306
 #, kde-format
 msgid "Extension:"
-msgstr "扩展："
+msgstr "الامتداد:"
 
 #: app/Konfigurator/kggeneral.cpp:311
 #, kde-format
@@ -3496,7 +3510,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:80
 #, kde-format
 msgid "Navigator bar"
-msgstr "导航栏"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
@@ -3511,7 +3525,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:86
 #, kde-format
 msgid "Show full path by default"
-msgstr "默认显示完整路径"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:86
 #, kde-format
@@ -3521,12 +3535,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:96
 #, kde-format
 msgid "Operation"
-msgstr "操作"
+msgstr "العملية"
 
 #: app/Konfigurator/kgpanel.cpp:100
 #, kde-format
 msgid "Autoselect folders"
-msgstr "自动选择文件夹"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:100
 #, kde-format
@@ -3538,7 +3552,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:101
 #, kde-format
 msgid "Rename selects extension"
-msgstr "重命名选择扩展"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:101
 #, kde-format
@@ -3551,7 +3565,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:102
 #, kde-format
 msgid "Unselect files before copy/move"
-msgstr "复制/移动前取消选择文件"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:102
 #, kde-format
@@ -3574,19 +3588,19 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:113
 #, kde-format
 msgid "Tabs"
-msgstr "制表符"
+msgstr "الألسنة"
 
 #: app/Konfigurator/kgpanel.cpp:118
 #, kde-format
 msgid "Use full path tab names"
-msgstr "标签名称使用完整路径名"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:118
 #, kde-format
 msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
 "the path is displayed."
-msgstr "在标签中显示完整的路径名， 否则，只是路径的最后一部分被显示。"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:119
 #, kde-format
@@ -3611,12 +3625,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:121
 #, kde-format
 msgid "Show new tab button"
-msgstr ""
+msgstr "أظهر زر لسان جديد"
 
 #: app/Konfigurator/kgpanel.cpp:121
 #, kde-format
 msgid "Show new tab button."
-msgstr ""
+msgstr "أظهر زر لسان جديد."
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
@@ -3668,7 +3682,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:137
 #, kde-format
 msgid "Disabled"
-msgstr ""
+msgstr "معطّل"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
@@ -3688,22 +3702,22 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
 msgid "Tab Bar position:"
-msgstr "标签栏位置："
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:158
 #, kde-format
 msgid "Top"
-msgstr "顶部"
+msgstr "الأعلى"
 
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
 msgid "Bottom"
-msgstr "底部"
+msgstr "الأسفل"
 
 #: app/Konfigurator/kgpanel.cpp:174
 #, kde-format
 msgid "Search bar"
-msgstr ""
+msgstr "شريط البحث"
 
 #: app/Konfigurator/kgpanel.cpp:178
 #, kde-format
@@ -3718,7 +3732,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:179 app/KViewer/lister.cpp:1291
 #, kde-format
 msgid "Case sensitive"
-msgstr "区分大小写"
+msgstr "حسّاس لحالة الأحرف"
 
 #: app/Konfigurator/kgpanel.cpp:179
 #, kde-format
@@ -3751,28 +3765,28 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
 msgid "Position:"
-msgstr "位置："
+msgstr "الموقع:"
 
 #: app/Konfigurator/kgpanel.cpp:202
 #, kde-format
 msgid "Default mode:"
-msgstr ""
+msgstr "الوضع المبدئيّ:"
 
 #: app/Konfigurator/kgpanel.cpp:205 app/KViewer/lister.cpp:1207
 #: app/Panel/krsearchbar.cpp:41 app/Search/krsearchdialog.cpp:155
 #, kde-format
 msgid "Search"
-msgstr "搜索"
+msgstr "ابحث"
 
 #: app/Konfigurator/kgpanel.cpp:206 app/Panel/krsearchbar.cpp:41
 #, kde-format
 msgid "Select"
-msgstr "选择"
+msgstr "اختر"
 
 #: app/Konfigurator/kgpanel.cpp:207 app/Panel/krsearchbar.cpp:41
 #, kde-format
 msgid "Filter"
-msgstr "滤镜"
+msgstr "المرشّح"
 
 #: app/Konfigurator/kgpanel.cpp:211
 #, kde-format
@@ -3819,7 +3833,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:243
 #, kde-format
 msgid "Show space information"
-msgstr "显示空间信息"
+msgstr "أظهر معلومات المساحة"
 
 #: app/Konfigurator/kgpanel.cpp:243
 #, kde-format
@@ -3829,17 +3843,17 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:262
 #, kde-format
 msgid "Layout"
-msgstr "布局"
+msgstr "التّخطيط"
 
 #: app/Konfigurator/kgpanel.cpp:271
 #, kde-format
 msgid "Layout:"
-msgstr "布局:"
+msgstr "التّخطيط:"
 
 #: app/Konfigurator/kgpanel.cpp:285
 #, kde-format
 msgid "Frame Color:"
-msgstr "边框颜色:"
+msgstr "لون الإطار:"
 
 #: app/Konfigurator/kgpanel.cpp:289
 #, kde-format
@@ -3851,18 +3865,18 @@ msgstr ""
 #, kde-format
 msgctxt "Frame color"
 msgid "None"
-msgstr "未分组"
+msgstr "بلا"
 
 #: app/Konfigurator/kgpanel.cpp:291
 #, kde-format
 msgctxt "Frame color"
 msgid "Statusbar"
-msgstr "状态栏"
+msgstr "شريط الحالة"
 
 #: app/Konfigurator/kgpanel.cpp:299
 #, kde-format
 msgid "Frame Shape:"
-msgstr "框架形状:"
+msgstr "شكل الإطار:"
 
 #: app/Konfigurator/kgpanel.cpp:303
 #, kde-format
@@ -3874,24 +3888,24 @@ msgstr ""
 #, kde-format
 msgctxt "Frame shape"
 msgid "None"
-msgstr "未分组"
+msgstr "بلا"
 
 #: app/Konfigurator/kgpanel.cpp:305
 #, kde-format
 msgctxt "Frame shape"
 msgid "Box"
-msgstr "框"
+msgstr "صندوق"
 
 #: app/Konfigurator/kgpanel.cpp:306
 #, kde-format
 msgctxt "Frame shape"
 msgid "Panel"
-msgstr "面板"
+msgstr "اللوحة"
 
 #: app/Konfigurator/kgpanel.cpp:314
 #, kde-format
 msgid "Frame Shadow:"
-msgstr "框架阴影:"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:318
 #, kde-format
@@ -3903,29 +3917,29 @@ msgstr ""
 #, kde-format
 msgctxt "Frame shadow"
 msgid "None"
-msgstr "未分组"
+msgstr "بلا"
 
 #: app/Konfigurator/kgpanel.cpp:320
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Raised"
-msgstr "升起"
+msgstr "مرفوع"
 
 #: app/Konfigurator/kgpanel.cpp:321
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Sunken"
-msgstr "下沉"
+msgstr "غارق"
 
 #: app/Konfigurator/kgpanel.cpp:336
 #, kde-format
 msgid "Default icon size:"
-msgstr "默认图标大小："
+msgstr "حجم الأيقونة المبدئي:"
 
 #: app/Konfigurator/kgpanel.cpp:357
 #, kde-format
 msgid "Use icons in the filenames"
-msgstr "在文件名中使用图标"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:357
 #, kde-format
@@ -3962,27 +3976,27 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:423
 #, kde-format
 msgid "Use human-readable file size"
-msgstr "文件大小使用可读性好的文字"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:423
 #, kde-format
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr "文件‘大小’以 B, KB, MB 和 GB 来表示而不是字节数。"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:424
 #, kde-format
 msgid "Show hidden files"
-msgstr "显示隐藏文件"
+msgstr "أظهر الملفات المخفية"
 
 #: app/Konfigurator/kgpanel.cpp:424
 #, kde-format
 msgid "Display files beginning with a dot."
-msgstr "显示以 . 开头的文件。"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:425
 #, kde-format
 msgid "Numeric Permissions"
-msgstr "数字式权限"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:425
 #, kde-format
@@ -4014,12 +4028,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:441
 #, kde-format
 msgid "Sort method:"
-msgstr "排序方式："
+msgstr "طريقة الفرز:"
 
 #: app/Konfigurator/kgpanel.cpp:444
 #, kde-format
 msgid "Alphabetical"
-msgstr "按字母序"
+msgstr "أبجديّ"
 
 #: app/Konfigurator/kgpanel.cpp:445
 #, kde-format
@@ -4029,7 +4043,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:446
 #, kde-format
 msgid "Character code"
-msgstr "字符码"
+msgstr "شفرة المحرف"
 
 #: app/Konfigurator/kgpanel.cpp:447
 #, kde-format
@@ -4040,24 +4054,24 @@ msgstr ""
 #, kde-format
 msgctxt "Krusader sort"
 msgid "Krusader"
-msgstr "Krusader"
+msgstr "كروسادر"
 
 #: app/Konfigurator/kgpanel.cpp:462
 #, kde-format
 msgid "Case sensitive sorting"
-msgstr "区分大小写排序"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:463
 #, kde-format
 msgid ""
 "All files beginning with capital letters appear before files beginning with "
 "non-capital letters (UNIX default)."
-msgstr "以大写字母开头的文件显示在小富字体开头的文件卷面 (UNIX 默认的)。"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:464
 #, kde-format
 msgid "Show folders first"
-msgstr "文件夹在前"
+msgstr "أظهر المجلدات أولًا"
 
 #: app/Konfigurator/kgpanel.cpp:465
 #, kde-format
@@ -4084,17 +4098,17 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:482
 #, kde-format
 msgid "View modes"
-msgstr ""
+msgstr "أنماط العرض"
 
 #: app/Konfigurator/kgpanel.cpp:489
 #, kde-format
 msgid "Default view mode:"
-msgstr ""
+msgstr "طريقة العرض الأساسية:"
 
 #: app/Konfigurator/kgpanel.cpp:538
 #, kde-format
 msgid "Buttons"
-msgstr "按钮"
+msgstr "أزرار"
 
 #: app/Konfigurator/kgpanel.cpp:547
 #, kde-format
@@ -4134,7 +4148,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:552
 #, kde-format
 msgid "Show Bookmarks Button"
-msgstr ""
+msgstr "أظهر زر العلامات"
 
 #: app/Konfigurator/kgpanel.cpp:552
 #, kde-format
@@ -4144,22 +4158,22 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:553
 #, kde-format
 msgid "Show Panel Toolbar"
-msgstr "显示面板工具栏"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:553
 #, kde-format
 msgid "The panel toolbar will be visible."
-msgstr "显示面板工具栏。"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:559
 #, kde-format
 msgid "Visible Panel Toolbar buttons"
-msgstr "显示面板工具栏按钮"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:563
 #, kde-format
 msgid "Equal button (=)"
-msgstr "相等按钮 (=)"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:563
 #, kde-format
@@ -4169,7 +4183,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:564
 #, kde-format
 msgid "Up button (..)"
-msgstr "向上按钮 (..) "
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:564
 #, kde-format
@@ -4179,7 +4193,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:565
 #, kde-format
 msgid "Home button (~)"
-msgstr "主文件夹按钮 (~)"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:565
 #, kde-format
@@ -4189,7 +4203,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:566
 #, kde-format
 msgid "Root button (/)"
-msgstr "根按钮 (/)"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:566
 #, kde-format
@@ -4199,22 +4213,22 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:567
 #, kde-format
 msgid "Toggle-button for sync-browsing"
-msgstr "同步浏览按钮"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:567
 #, kde-format
 msgid "Each folder change in the panel is also performed in the other panel."
-msgstr "对两个面板同步进行操作。"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:589
 #, kde-format
 msgid "Selection Mode"
-msgstr "选择模式"
+msgstr "وضع التّحديد"
 
 #: app/Konfigurator/kgpanel.cpp:602
 #, kde-format
 msgid "Krusader Mode"
-msgstr "Krusader 模式"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:602
 #, kde-format
@@ -4223,13 +4237,11 @@ msgid ""
 "key and click the left mouse button. Right-click menu is invoked using a "
 "short click on the right mouse button."
 msgstr ""
-"所有的键都可以选择文件。要选择多个文件， 请按住 Ctrl 键 并且单击鼠标左键。\n"
-"缓慢的右键单击将会打开右键菜单。"
 
 #: app/Konfigurator/kgpanel.cpp:603
 #, kde-format
 msgid "Konqueror Mode"
-msgstr "Konqueror 模式"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:603
 #, kde-format
@@ -4238,13 +4250,11 @@ msgid ""
 "multiple files. Right-click menu is invoked using a short click on the right "
 "mouse button."
 msgstr ""
-"鼠标左键都可以选择文件 - 您可以单击和选择多个文件， 快速点击右键可以打开右键"
-"菜单。"
 
 #: app/Konfigurator/kgpanel.cpp:604
 #, kde-format
 msgid "Total-Commander Mode"
-msgstr "Total-Commander 模式"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:604
 #, kde-format
@@ -4254,8 +4264,6 @@ msgid ""
 "files and the right-click menu is invoked by pressing and holding the right "
 "mouse button."
 msgstr ""
-"鼠标左键并不是选择文件， 而只是设置当前的文件不影响当前的选择。右键可以选择多"
-"个文件， 右键菜单可以用一直按住右键的方式来调出。"
 
 #: app/Konfigurator/kgpanel.cpp:605
 #, kde-format
@@ -4273,29 +4281,29 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:606
 #, kde-format
 msgid "Custom Selection Mode"
-msgstr "自定义选择模式"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:606
 #, kde-format
 msgid "Design your own selection mode."
-msgstr "设计您自己的选择模式。"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:618
 #, kde-format
 msgid "Details"
-msgstr "详细信息"
+msgstr "التفاصيل"
 
 #: app/Konfigurator/kgpanel.cpp:625
 #, kde-format
 msgid "Double-click selects (classic)"
-msgstr "双击选择 (经典)"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:625
 #, kde-format
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the folder."
-msgstr "单击一个文件来选择它，双击打开文件或者进入一个目录。"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:626
 #, kde-format
@@ -4312,39 +4320,39 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:637
 #, kde-format
 msgid "Based on KDE's selection mode"
-msgstr "遵循 KDE 的选择模式"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:638
 #, kde-format
 msgid "If checked, use a mode based on KDE's style."
-msgstr "选择这个将会创建基于 kde 样式的模式"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:640
 #, kde-format
 msgid "Left mouse button selects"
-msgstr "鼠标按键选择"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:641
 #, kde-format
 msgid "If checked, left clicking an item will select it."
-msgstr "如果您选择了它，左键单击项目将会选择它。"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:643
 #, kde-format
 msgid "Left mouse button preserves selection"
-msgstr "鼠标左键取消选择"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:644
 #, kde-format
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
 "other, already selected items."
-msgstr "勾选此项后，左键单击将会选择项目， 但不是取消其他已经选择的项目。"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:646
 #, kde-format
 msgid "Shift/Ctrl-Left mouse button selects"
-msgstr "Shift/Ctrl-Left 加鼠标键选择"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:647
 #, kde-format
@@ -4352,23 +4360,21 @@ msgid ""
 "If checked, Shift/Ctrl left clicking will select items.\n"
 "Note: this is meaningless if 'Left Button Selects' is checked."
 msgstr ""
-"如果您选择了它， shift/ctrl 同时单击左键将会选择您的项目。\n"
-"注意， 如果您选择了左键选择，这项选择是没有任何意义的。"
 
 #: app/Konfigurator/kgpanel.cpp:649
 #, kde-format
 msgid "Right mouse button selects"
-msgstr "右键选择"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:650
 #, kde-format
 msgid "If checked, right clicking an item will select it."
-msgstr "如果您选择了它，右键单击将会选择一个您单击的项目。"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:652
 #, kde-format
 msgid "Right mouse button preserves selection"
-msgstr "右键取消选择"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:653
 #, kde-format
@@ -4380,7 +4386,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:655
 #, kde-format
 msgid "Shift/Ctrl-Right mouse button selects"
-msgstr "Shift/Ctrl-Right 加鼠标按键选择"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:656
 #, kde-format
@@ -4388,13 +4394,11 @@ msgid ""
 "If checked, Shift/Ctrl right clicking will select items.\n"
 "Note: this is meaningless if 'Right Button Selects' is checked."
 msgstr ""
-"如果您选择了它， shift/ctrl 同时单击左键将会选择您的项目。\n"
-"注意， 如果您选择了左键选择，这项选择是没有任何意义的。"
 
 #: app/Konfigurator/kgpanel.cpp:658
 #, kde-format
 msgid "Spacebar moves down"
-msgstr "空格键向下移"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:659
 #, kde-format
@@ -4407,7 +4411,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:661
 #, kde-format
 msgid "Spacebar calculates disk space"
-msgstr "空格键计算硬盘空间"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:662
 #, kde-format
@@ -4420,7 +4424,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:664
 #, kde-format
 msgid "Insert moves down"
-msgstr "插入键向下移"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:665
 #, kde-format
@@ -4433,7 +4437,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:667
 #, kde-format
 msgid "Right clicking pops context menu immediately"
-msgstr "右键单击立即弹出菜单"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:668
 #, kde-format
@@ -4479,13 +4483,13 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
 msgid "Show Size:"
-msgstr ""
+msgstr "أظهر الحجم:"
 
 #: app/Konfigurator/kgpanel.cpp:729
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Always"
-msgstr "总是显示"
+msgstr "دائما"
 
 #: app/Konfigurator/kgpanel.cpp:730
 #, kde-format
@@ -4497,7 +4501,7 @@ msgstr ""
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Never"
-msgstr "永不"
+msgstr "أبدًا"
 
 #: app/Konfigurator/kgpanel.cpp:757
 #, kde-format
@@ -4512,27 +4516,27 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Mount point:"
-msgstr ""
+msgstr "نقطة الضم:"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
 msgid "Links"
-msgstr "链接"
+msgstr "روابط"
 
 #: app/Konfigurator/kgprotocols.cpp:39
 #, kde-format
 msgid "Defined Links"
-msgstr "预定义链接"
+msgstr ""
 
 #: app/Konfigurator/kgprotocols.cpp:56
 #, kde-format
 msgid "Add protocol to the link list."
-msgstr "添加协议到列表"
+msgstr ""
 
 #: app/Konfigurator/kgprotocols.cpp:61
 #, kde-format
 msgid "Remove protocol from the link list."
-msgstr "从列表移除协议"
+msgstr ""
 
 #: app/Konfigurator/kgprotocols.cpp:73
 #, kde-format
@@ -4547,7 +4551,7 @@ msgstr ""
 #: app/Konfigurator/kgprotocols.cpp:86 app/Konfigurator/konfigurator.cpp:133
 #, kde-format
 msgid "Protocols"
-msgstr "协议"
+msgstr "البروتوكولات"
 
 #: app/Konfigurator/kgprotocols.cpp:97
 #, kde-format
@@ -4562,15 +4566,11 @@ msgid ""
 "li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is "
 "saved automatically when Krusader is closed."
 msgstr ""
-"Defines the panel profile used at startup. A panel profile contains:"
-"<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</"
-"li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is "
-"saved automatically when Krusader is closed."
 
 #: app/Konfigurator/kgstartup.cpp:34
 #, kde-format
 msgid "Startup profile:"
-msgstr "启动时的配置文件："
+msgstr "الحساب المستخدم عند البدء:"
 
 #: app/Konfigurator/kgstartup.cpp:38
 #, kde-format
@@ -4580,7 +4580,7 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:57
 #, kde-format
 msgid "Show splashscreen"
-msgstr "显示飞溅屏幕"
+msgstr "أظهر شاشة البداية"
 
 #: app/Konfigurator/kgstartup.cpp:57
 #, kde-format
@@ -4590,7 +4590,7 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:58
 #, kde-format
 msgid "Single instance mode"
-msgstr "单实例模式"
+msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:58
 #, kde-format
@@ -4615,12 +4615,12 @@ msgstr ""
 #: app/useraction_examples.xml:81
 #, kde-format
 msgid "User Interface"
-msgstr "用户界面"
+msgstr "واجهة المستخدم"
 
 #: app/Konfigurator/kgstartup.cpp:86
 #, kde-format
 msgid "Save last position, size and panel settings"
-msgstr "保存上一次的位置和大小和面板的设置"
+msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:87
 #, kde-format
@@ -4664,27 +4664,27 @@ msgstr ""
 msgid ""
 "Check the state of the user interface components and restore them to their "
 "condition when last shutdown."
-msgstr "Krusader 检查每个用户界面的状态，并且保存它们最后关闭时的状态。"
+msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
 msgid "Show function keys"
-msgstr "显示功能键"
+msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
 msgid "Function keys will be visible after startup."
-msgstr "在启动之后显示功能键。"
+msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:104
 #, kde-format
 msgid "Show command line"
-msgstr "显示命令行"
+msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:104
 #, kde-format
 msgid "Command line will be visible after startup."
-msgstr "在启动之后显示命令行。"
+msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:105
 #, kde-format
@@ -4699,7 +4699,7 @@ msgstr ""
 #: app/Konfigurator/kguseractions.cpp:28
 #, kde-format
 msgid "Information"
-msgstr "信息"
+msgstr "معلومات"
 
 #: app/Konfigurator/kguseractions.cpp:33
 #, kde-format
@@ -4738,12 +4738,12 @@ msgstr ""
 #: app/Konfigurator/kguseractions.cpp:66
 #, kde-format
 msgid "Normal font:"
-msgstr "普通字体："
+msgstr ""
 
 #: app/Konfigurator/kguseractions.cpp:80
 #, kde-format
 msgid "Font with fixed width:"
-msgstr "等宽字体："
+msgstr ""
 
 #: app/Konfigurator/kguseractions.cpp:93
 #, kde-format
@@ -4753,32 +4753,32 @@ msgstr ""
 #: app/Konfigurator/konfigurator.cpp:43
 #, kde-format
 msgid "Konfigurator - Creating Your Own Krusader"
-msgstr "Konfigurator - 创建您的个性化 Krusader"
+msgstr ""
 
 #: app/Konfigurator/konfigurator.cpp:114
 #, kde-format
 msgid "Startup"
-msgstr "启动"
+msgstr "بدء التشغيل"
 
 #: app/Konfigurator/konfigurator.cpp:114
 #, kde-format
 msgid "Krusader's settings upon startup"
-msgstr "Krusader 启动选项"
+msgstr ""
 
 #: app/Konfigurator/konfigurator.cpp:116 app/paneltabbar.cpp:46
 #, kde-format
 msgid "Panel"
-msgstr "面板"
+msgstr "اللوحة"
 
 #: app/Konfigurator/konfigurator.cpp:120
 #, kde-format
 msgid "Basic Operations"
-msgstr "基本操作"
+msgstr ""
 
 #: app/Konfigurator/konfigurator.cpp:122
 #, kde-format
 msgid "Advanced"
-msgstr "高级"
+msgstr "متقدّم"
 
 #: app/Konfigurator/konfigurator.cpp:122
 #, kde-format
@@ -4788,28 +4788,28 @@ msgstr ""
 #: app/Konfigurator/konfigurator.cpp:124
 #, kde-format
 msgid "Customize the way Krusader deals with archives"
-msgstr "自定义 Krusader 处理档案的方式"
+msgstr ""
 
 #: app/Konfigurator/konfigurator.cpp:127
 #, kde-format
 msgid "Dependencies"
-msgstr "依赖"
+msgstr "الاعتماديات"
 
 #: app/Konfigurator/konfigurator.cpp:127
 #, kde-format
 msgid "Set the full path of the external applications"
-msgstr "设置外部程序路径"
+msgstr ""
 
 #: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:208
 #: app/UserAction/useractionpopupmenu.cpp:20
 #, kde-format
 msgid "User Actions"
-msgstr "用户操作"
+msgstr "إجراءات المستخدم"
 
 #: app/Konfigurator/konfigurator.cpp:130
 #, kde-format
 msgid "Configure your personal actions"
-msgstr "配置自定义用户操作"
+msgstr ""
 
 #: app/Konfigurator/konfigurator.cpp:133
 #, kde-format
@@ -4819,103 +4819,103 @@ msgstr ""
 #: app/Konfigurator/konfigurator.cpp:171
 #, kde-format
 msgid "The current page has been changed. Do you want to apply changes?"
-msgstr "当前页已经改变。您要应用这些修改吗?"
+msgstr ""
 
 #: app/Konfigurator/konfiguratoritems.cpp:561
 #, kde-format
 msgid "Custom color"
-msgstr "自定义颜色"
+msgstr "لون مخصّص"
 
 #: app/Konfigurator/konfiguratoritems.cpp:562
 #, kde-format
 msgctxt "Default color"
 msgid "Default"
-msgstr "默认"
+msgstr "المبدئيّ"
 
 #: app/Konfigurator/konfiguratoritems.cpp:569
 #, kde-format
 msgid "Red"
-msgstr "红色"
+msgstr "أحمر"
 
 #: app/Konfigurator/konfiguratoritems.cpp:570
 #, kde-format
 msgid "Green"
-msgstr "绿色"
+msgstr "أخضر"
 
 #: app/Konfigurator/konfiguratoritems.cpp:571
 #, kde-format
 msgid "Blue"
-msgstr "蓝色"
+msgstr "أزرق"
 
 #: app/Konfigurator/konfiguratoritems.cpp:572
 #, kde-format
 msgid "Cyan"
-msgstr "青色"
+msgstr "سماوي"
 
 #: app/Konfigurator/konfiguratoritems.cpp:573
 #, kde-format
 msgid "Magenta"
-msgstr "洋红"
+msgstr "أرجواني"
 
 #: app/Konfigurator/konfiguratoritems.cpp:574
 #, kde-format
 msgid "Yellow"
-msgstr "黄色"
+msgstr "أصفر"
 
 #: app/Konfigurator/konfiguratoritems.cpp:575
 #, kde-format
 msgid "Dark Red"
-msgstr "暗红"
+msgstr "أحمر داكن"
 
 #: app/Konfigurator/konfiguratoritems.cpp:576
 #, kde-format
 msgid "Dark Green"
-msgstr "暗绿"
+msgstr "أخضر داكن"
 
 #: app/Konfigurator/konfiguratoritems.cpp:577
 #, kde-format
 msgid "Dark Blue"
-msgstr "暗蓝"
+msgstr "أزرق داكن"
 
 #: app/Konfigurator/konfiguratoritems.cpp:578
 #, kde-format
 msgid "Dark Cyan"
-msgstr "暗青"
+msgstr "سماوي داكن"
 
 #: app/Konfigurator/konfiguratoritems.cpp:579
 #, kde-format
 msgid "Dark Magenta"
-msgstr "深洋红"
+msgstr "أرجواني داكن"
 
 #: app/Konfigurator/konfiguratoritems.cpp:580
 #, kde-format
 msgid "Dark Yellow"
-msgstr "暗黄"
+msgstr "أصفر داكن"
 
 #: app/Konfigurator/konfiguratoritems.cpp:581
 #, kde-format
 msgid "White"
-msgstr "白色"
+msgstr "أبيض"
 
 #: app/Konfigurator/konfiguratoritems.cpp:582
 #, kde-format
 msgid "Light Gray"
-msgstr "淡红"
+msgstr "رمادي خفيف"
 
 #: app/Konfigurator/konfiguratoritems.cpp:583
 #, kde-format
 msgid "Gray"
-msgstr "灰色"
+msgstr "رصاصيّ"
 
 #: app/Konfigurator/konfiguratoritems.cpp:584
 #, kde-format
 msgid "Dark Gray"
-msgstr "暗灰"
+msgstr "رمادي داكن"
 
 #: app/Konfigurator/konfiguratoritems.cpp:585
 #, kde-format
 msgid "Black"
-msgstr "黑色"
+msgstr "أسود"
 
 #: app/Konfigurator/krresulttable.cpp:121
 #, kde-format
@@ -4931,66 +4931,66 @@ msgstr ""
 #: app/Konfigurator/krresulttable.cpp:286
 #, kde-format
 msgid "Found"
-msgstr "找到"
+msgstr "عُثر عليه"
 
 #: app/Konfigurator/krresulttable.cpp:131
 #, kde-format
 msgid "Packing"
-msgstr "打包"
+msgstr ""
 
 #: app/Konfigurator/krresulttable.cpp:132
 #, kde-format
 msgid "Unpacking"
-msgstr "解包"
+msgstr ""
 
 #: app/Konfigurator/krresulttable.cpp:133
 #, kde-format
 msgid "Note"
-msgstr "注意"
+msgstr "ملاحظة"
 
 #: app/Konfigurator/krresulttable.cpp:200
 #: app/Konfigurator/krresulttable.cpp:218
 #: app/Konfigurator/krresulttable.cpp:358
 #, kde-format
 msgid "enabled"
-msgstr "已启用"
+msgstr "ممكّن"
 
 #: app/Konfigurator/krresulttable.cpp:205
 #: app/Konfigurator/krresulttable.cpp:223
 #: app/Konfigurator/krresulttable.cpp:363
 #, kde-format
 msgid "disabled"
-msgstr "已禁用"
+msgstr "معطّل"
 
 #: app/Konfigurator/krresulttable.cpp:279
 #, kde-format
 msgid "diff utility"
-msgstr "diff 工具"
+msgstr ""
 
 #: app/Konfigurator/krresulttable.cpp:280
 #, kde-format
 msgid "email client"
-msgstr "邮件客户端"
+msgstr "عميل البريد الإلكتروني"
 
 #: app/Konfigurator/krresulttable.cpp:281
 #, kde-format
 msgid "batch renamer"
-msgstr "批量重命名工具"
+msgstr ""
 
 #: app/Konfigurator/krresulttable.cpp:282
 #, kde-format
 msgid "checksum utility"
-msgstr "校验和检验工具"
+msgstr ""
 
 #: app/Konfigurator/krresulttable.cpp:285
 #, kde-format
 msgid "Tool"
-msgstr "工具"
+msgstr "أداة"
 
 #: app/Konfigurator/krresulttable.cpp:287
 #, kde-format
 msgid "Status"
-msgstr "状态"
+msgstr "الحالة"
 
 #: app/kractions.cpp:166
 #, kde-format
@@ -5000,7 +5000,7 @@ msgstr ""
 #: app/kractions.cpp:168
 #, kde-format
 msgid "Show Main Toolbar"
-msgstr "显示主工具栏"
+msgstr "اعرض شريط الأدوات الرئيسي"
 
 #: app/kractions.cpp:171
 #, kde-format
@@ -5010,17 +5010,17 @@ msgstr ""
 #: app/kractions.cpp:174
 #, kde-format
 msgid "Show Actions Toolbar"
-msgstr "显示操作工具栏"
+msgstr ""
 
 #: app/kractions.cpp:183
 #, kde-format
 msgid "Show &FN Keys Bar"
-msgstr "显示 &FN 键栏"
+msgstr ""
 
 #: app/kractions.cpp:185
 #, kde-format
 msgid "Show &Command Line"
-msgstr "显示命令行(&C)"
+msgstr ""
 
 #: app/kractions.cpp:187
 #, kde-format
@@ -5030,17 +5030,17 @@ msgstr ""
 #: app/kractions.cpp:190
 #, kde-format
 msgid "Show &Hidden Files"
-msgstr "显示隐藏文件(&H)"
+msgstr "أظهر الملفات ال&مخفية"
 
 #: app/kractions.cpp:192
 #, kde-format
 msgid "S&wap Panels"
-msgstr "交换面板(&W)"
+msgstr ""
 
 #: app/kractions.cpp:194 app/Panel/panelcontextmenu.cpp:299
 #, kde-format
 msgid "Empty Trash"
-msgstr "清空废件夹"
+msgstr "أفرغ المهملات"
 
 #: app/kractions.cpp:196
 #, kde-format
@@ -5055,27 +5055,27 @@ msgstr ""
 #: app/kractions.cpp:202
 #, kde-format
 msgid "popup cmdline"
-msgstr "弹出命令行"
+msgstr ""
 
 #: app/kractions.cpp:205
 #, kde-format
 msgid "Start &Root Mode Krusader"
-msgstr "启动超级用户模式 Krusader(&R)"
+msgstr ""
 
 #: app/kractions.cpp:206
 #, kde-format
 msgid "Pro&files"
-msgstr "配置(&F)"
+msgstr "ال&تّشكيلات"
 
 #: app/kractions.cpp:207
 #, kde-format
 msgid "Sp&lit File..."
-msgstr "分解文件(&L)..."
+msgstr "ا&قسم ملف…"
 
 #: app/kractions.cpp:208
 #, kde-format
 msgid "Com&bine Files..."
-msgstr "合并文件(&B)..."
+msgstr ""
 
 #: app/kractions.cpp:209
 #, kde-format
@@ -5110,102 +5110,102 @@ msgstr ""
 #: app/kractions.cpp:229
 #, kde-format
 msgid "Display &Separated Standard and Error Output"
-msgstr "显示分离的标准错误输出(&S)"
+msgstr ""
 
 #: app/kractions.cpp:230
 #, kde-format
 msgid "Display &Mixed Standard and Error Output"
-msgstr "显示混合的标准错误输出(&M)"
+msgstr ""
 
 #: app/kractions.cpp:231
 #, kde-format
 msgid "Start in &New Terminal"
-msgstr "在终端模拟器中启动(&N)"
+msgstr ""
 
 #: app/kractions.cpp:232
 #, kde-format
 msgid "Send to &Embedded Terminal Emulator"
-msgstr "发送到嵌入式终端模拟器(&E)"
+msgstr ""
 
 #: app/kractions.cpp:249
 #, kde-format
 msgid "Start &Terminal"
-msgstr "启动终端(&T)"
+msgstr ""
 
 #: app/kractions.cpp:255
 #, kde-format
 msgid "&Search..."
-msgstr "搜索(&S)..."
+msgstr "ا&بحث"
 
 #: app/kractions.cpp:256
 #, kde-format
 msgid "&Locate..."
-msgstr "定位(&L)..."
+msgstr "&حدد مكان…"
 
 #: app/kractions.cpp:258
 #, kde-format
 msgid "Synchronize Fol&ders..."
-msgstr ""
+msgstr "&زامِن المجلدات…"
 
 #: app/kractions.cpp:260
 #, kde-format
 msgid "D&isk Usage..."
-msgstr "磁盘使用率(&I)..."
+msgstr "ا&ستخدام القرص…"
 
 #: app/kractions.cpp:261
 #, kde-format
 msgid "Configure &Krusader..."
-msgstr "配置 &Krusader..."
+msgstr ""
 
 #: app/kractions.cpp:262
 #, kde-format
 msgid "Save &Position"
-msgstr "保存位置(&P)"
+msgstr ""
 
 #: app/kractions.cpp:263
 #, kde-format
 msgid "Compare b&y Content..."
-msgstr "比较内容(&Y)..."
+msgstr ""
 
 #: app/kractions.cpp:264
 #, kde-format
 msgid "Multi &Rename..."
-msgstr "多文件重命名(&R)..."
+msgstr ""
 
 #: app/kractions.cpp:267 app/krusaderview.cpp:447
 #, kde-format
 msgid "Vertical Mode"
-msgstr "垂直模式"
+msgstr ""
 
 #: app/kractions.cpp:268
 #, kde-format
 msgid "User&actions"
-msgstr "用户操作(&A)"
+msgstr ""
 
 #: app/kractions.cpp:270
 #, kde-format
 msgid "Manage User Actions..."
-msgstr "管理用户操作..."
+msgstr ""
 
 #: app/kractions.cpp:272
 #, kde-format
 msgid "Select Remote Charset"
-msgstr "选择远程字符集"
+msgstr "اختر طقم محارف بعيد"
 
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr ""
+msgstr "الألسنة المُغلقة حديثًا"
 
 #: app/kractions.cpp:278
 #, kde-format
 msgid "Quit Krusader."
-msgstr "退出 Krusader。"
+msgstr ""
 
 #: app/kractions.cpp:280
 #, kde-format
 msgid "Popular URLs..."
-msgstr "最常用的 URLs..."
+msgstr ""
 
 #: app/kractions.cpp:281
 #, kde-format
@@ -5225,12 +5225,12 @@ msgstr ""
 #: app/kractions.cpp:302
 #, kde-format
 msgid "Setup Krusader the way you like it"
-msgstr "按您喜欢的方式设置 Krusader"
+msgstr ""
 
 #: app/kractions.cpp:303
 #, kde-format
 msgid "Search for files"
-msgstr "搜索文件"
+msgstr "ابحث عن ملفّات"
 
 #: app/krslots.cpp:90
 #, kde-format
@@ -5243,14 +5243,17 @@ msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
 "path. Hint: Krusader supports KMail."
 msgstr ""
-"Krusader 没有找到任何支持的邮件客户端. 请您安装一个.\n"
-"提示： Krusader 支持 kmail。"
 
 #: app/krslots.cpp:107
 #, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
-msgstr[0] "正在发送文件：%2"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/krslots.cpp:137 app/krslots.cpp:223 app/krslots.cpp:407
 #: app/krslots.cpp:473 app/Synchronizer/synchronizer.cpp:1382
@@ -5271,14 +5274,11 @@ msgid ""
 "in the active panel.</li><li>Make sure there is a file in the other panel, "
 "with the same name as the current file in the active panel.</li></ul>"
 msgstr ""
-"要比较两个文件的内容, 您可以:<ul><li>在左面板中选择一个文件, 在右面板中选择另"
-"外一个.</li><li>在主面板中选择两个文件。</li><li>在主面板中选择一个也存在于非"
-"主面板中存在的文件。</li></ul>"
 
 #: app/krslots.cpp:179
 #, kde-format
 msgid "Krusader is unable to download %1"
-msgstr "Krusader 无法下载 %1"
+msgstr ""
 
 #: app/krslots.cpp:193
 #, kde-format
@@ -5286,8 +5286,6 @@ msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports Kompare, KDiff3 and Xxdiff."
 msgstr ""
-"Krusader 没有找到任何可用 diff 的前端。 请在您的安装一个。\n"
-"提示： Krusader 支持 Kompare, kdiff 和 xxdiff。"
 
 #: app/krslots.cpp:372
 #, kde-format
@@ -5295,8 +5293,6 @@ msgid ""
 "Cannot find the 'locate' command. Please install the findutils-locate "
 "package of GNU, or set its dependencies in Konfigurator"
 msgstr ""
-"没有找到命令 'locate'. 请安装 GNU 的 findutils-locate 包 , 或者 Konfigurator "
-"设置好其路径"
 
 #: app/krslots.cpp:397 app/UserAction/kraction.cpp:283
 #, kde-format
@@ -5312,8 +5308,6 @@ msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
-"没有找到批量重命名工具。\n"
-"您可以在 %1 下载到 KRename。"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -5378,12 +5372,12 @@ msgstr ""
 #: app/krslots.cpp:698
 #, kde-format
 msgid "Empty trash bin"
-msgstr ""
+msgstr "أفرغ المهملات"
 
 #: app/krusader.cpp:174
 #, kde-format
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr "状态栏将会显示鼠标指示文件的基本信息。"
+msgstr ""
 
 #: app/krusader.cpp:304
 #, kde-format
@@ -5392,8 +5386,6 @@ msgid ""
 "will now be checked for external applications. Then the Konfigurator will be "
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr ""
-"<qt><b>欢迎使用 Krusader！</b><p>这是您的首次运行，您的机器将检查外部应用程"
-"序。之后会启动 Konfigurator，让您按您所需自定义 Krusader 。</p></qt>"
 
 #: app/krusader.cpp:334
 #, kde-format
@@ -5411,49 +5403,49 @@ msgstr ""
 #: app/krusaderui.rc:8
 #, kde-format
 msgid "&File"
-msgstr "文件(&F)"
+msgstr "&ملف"
 
 #. i18n: ectx: Menu (edit)
 #: app/krusaderui.rc:35
 #, kde-format
 msgid "&Edit"
-msgstr "编辑(&E)"
+msgstr "ت&حرير"
 
 #. i18n: ectx: Menu (compare setup)
 #: app/krusaderui.rc:53
 #, kde-format
 msgid "Compare Se&tup"
-msgstr "比较设置(&T)"
+msgstr ""
 
 #. i18n: ectx: Menu (myview)
 #: app/krusaderui.rc:65
 #, kde-format
 msgid "&View"
-msgstr "视图(&V)"
+msgstr "&عرض"
 
 #. i18n: ectx: Menu (go)
 #: app/krusaderui.rc:87
 #, kde-format
 msgid "&Go"
-msgstr "转到(&G)"
+msgstr "ا&ذهب"
 
 #. i18n: ectx: Menu (_tools)
 #: app/krusaderui.rc:98
 #, kde-format
 msgid "&Tools"
-msgstr "工具(&T)"
+msgstr "أ&دوات"
 
 #. i18n: ectx: Menu (settings)
 #: app/krusaderui.rc:118
 #, kde-format
 msgid "&Settings"
-msgstr "设置(&S)"
+msgstr "إ&عدادات"
 
 #. i18n: ectx: Menu (show_toolbars)
 #: app/krusaderui.rc:121
 #, kde-format
 msgid "&Toolbars"
-msgstr "&工具栏"
+msgstr "أ&شرطة الأدوات"
 
 #. i18n: ectx: Menu (command_execution_mode)
 #: app/krusaderui.rc:131
@@ -5465,41 +5457,41 @@ msgstr ""
 #: app/krusaderui.rc:145
 #, kde-format
 msgid "&Window"
-msgstr "窗口(&W)"
+msgstr "&نافذة"
 
 #. i18n: ectx: Menu (help)
 #: app/krusaderui.rc:166
 #, kde-format
 msgid "&Help"
-msgstr "帮助(&H)"
+msgstr "م&ساعدة"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: app/krusaderui.rc:170
 #, kde-format
 msgid "Main Toolbar"
-msgstr "主工具栏"
+msgstr "شريط الأدوات الرئيسي"
 
 #. i18n: ectx: ToolBar (actionsToolBar)
 #: app/krusaderui.rc:197
 #, kde-format
 msgid "Actions Toolbar"
-msgstr "操作工具栏"
+msgstr "شريط أدوات الإجراءات"
 
 #. i18n: ectx: ToolBar (jobToolBar)
 #: app/krusaderui.rc:200
 #, kde-format
 msgid "Job Toolbar"
-msgstr ""
+msgstr "شريط أدوات المهام"
 
 #: app/krusaderview.cpp:78
 #, kde-format
 msgid "Function keys allow performing fast operations on files."
-msgstr "功能键允许您更快的操作。"
+msgstr ""
 
 #: app/krusaderview.cpp:451
 #, kde-format
 msgid "Horizontal Mode"
-msgstr "水平模式"
+msgstr ""
 
 #: app/KViewer/krviewer.cpp:86
 #, kde-format
@@ -5509,7 +5501,7 @@ msgstr ""
 #: app/KViewer/krviewer.cpp:87
 #, kde-format
 msgid "&Text Viewer"
-msgstr ""
+msgstr "عارض ال&نص"
 
 #: app/KViewer/krviewer.cpp:88
 #, kde-format
@@ -5524,32 +5516,32 @@ msgstr ""
 #: app/KViewer/krviewer.cpp:92
 #, kde-format
 msgid "Text &Editor"
-msgstr ""
+msgstr "محرّر &نصوص"
 
 #: app/KViewer/krviewer.cpp:116
 #, kde-format
 msgid "&Detach Tab"
-msgstr "漂移标签(&D)"
+msgstr "ا&فصل اللسان"
 
 #: app/KViewer/krviewer.cpp:128
 #, kde-format
 msgid "&Close Current Tab"
-msgstr "&关闭当前标签"
+msgstr "أ&غلق اللسان الحالي"
 
 #: app/KViewer/krviewer.cpp:134
 #, kde-format
 msgid "&Next Tab"
-msgstr "下一个标签(&N)"
+msgstr "اللسان ال&تّالي"
 
 #: app/KViewer/krviewer.cpp:140
 #, kde-format
 msgid "&Previous Tab"
-msgstr "前一个标签(&P)"
+msgstr "اللسان ال&سابق"
 
 #: app/KViewer/krviewer.cpp:218
 #, kde-format
 msgid "&KrViewer"
-msgstr "&KrViewer"
+msgstr ""
 
 #: app/KViewer/krviewer.cpp:320
 #, kde-format
@@ -5568,62 +5560,62 @@ msgstr ""
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
-msgstr ""
+msgstr "‏%1 (يُحرَر)"
 
 #: app/KViewer/krviewer.cpp:635
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
-msgstr ""
+msgstr "%1 (عرض)"
 
 #: app/KViewer/krviewer.cpp:642
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
-msgstr ""
+msgstr "‏%1 (يُحرَر)"
 
 #: app/KViewer/krviewer.cpp:643
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
-msgstr ""
+msgstr "يعرض: %1"
 
 #: app/KViewer/lister.cpp:1194 app/KViewer/lister.cpp:1907
 #, kde-format
 msgid "Save selection..."
-msgstr "保存选择..."
+msgstr "حفظ التحديد..."
 
 #: app/KViewer/lister.cpp:1198
 #, kde-format
 msgid "Save as..."
-msgstr "另存为..."
+msgstr "احفظ كَ‍..."
 
 #: app/KViewer/lister.cpp:1202
 #, kde-format
 msgid "Print..."
-msgstr "打印..."
+msgstr "اطبع…"
 
 #: app/KViewer/lister.cpp:1212
 #, kde-format
 msgid "Search next"
-msgstr "搜索下一个"
+msgstr ""
 
 #: app/KViewer/lister.cpp:1217
 #, kde-format
 msgid "Search previous"
-msgstr "搜索上一个"
+msgstr ""
 
 #: app/KViewer/lister.cpp:1222 app/KViewer/lister.cpp:1845
 #: app/KViewer/lister.cpp:1857 app/KViewer/lister.cpp:1865
 #: app/KViewer/lister.cpp:1872
 #, kde-format
 msgid "Jump to position"
-msgstr "转到位置"
+msgstr "اقفز إلى موضع"
 
 #: app/KViewer/lister.cpp:1232
 #, kde-format
 msgid "Select charset"
-msgstr "选择字符集"
+msgstr ""
 
 #: app/KViewer/lister.cpp:1251 app/KViewer/lister.cpp:1477
 #, kde-format
@@ -5633,32 +5625,32 @@ msgstr ""
 #: app/KViewer/lister.cpp:1262
 #, kde-format
 msgid "Stop search"
-msgstr "停止搜索"
+msgstr ""
 
 #: app/KViewer/lister.cpp:1278
 #, kde-format
 msgid "Jump to next match"
-msgstr "转到下一个匹配"
+msgstr "اقفز إلى المطابقة التّالية"
 
 #: app/KViewer/lister.cpp:1282
 #, kde-format
 msgid "Jump to previous match"
-msgstr "转到上一个匹配"
+msgstr "اقفز إلى المطابقة السّابقة"
 
 #: app/KViewer/lister.cpp:1285
 #, kde-format
 msgid "Options"
-msgstr "选项"
+msgstr "خيارات"
 
 #: app/KViewer/lister.cpp:1286
 #, kde-format
 msgid "Modify search behavior"
-msgstr "修改搜索行为"
+msgstr "عدّل سلوك البحث"
 
 #: app/KViewer/lister.cpp:1288
 #, kde-format
 msgid "From cursor"
-msgstr ""
+msgstr "من المؤشر"
 
 #: app/KViewer/lister.cpp:1293
 #, kde-format
@@ -5668,32 +5660,32 @@ msgstr ""
 #: app/KViewer/lister.cpp:1297
 #, kde-format
 msgid "Hexadecimal"
-msgstr "十六进制"
+msgstr "ست عشري"
 
 #: app/KViewer/lister.cpp:1351
 #, kde-format
 msgid "Error reading file %1."
-msgstr ""
+msgstr "خطأ أثناء قراءة الملف %1."
 
 #: app/KViewer/lister.cpp:1448
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
-msgstr "列：%1，位置：%2 (%3，%4%)"
+msgstr ""
 
 #: app/KViewer/lister.cpp:1463 app/KViewer/lister.cpp:1814
 #, kde-format
 msgid "Search:"
-msgstr "搜索："
+msgstr "ابحث:"
 
 #: app/KViewer/lister.cpp:1830
 #, kde-format
 msgid "Search position:"
-msgstr "搜索位置："
+msgstr ""
 
 #: app/KViewer/lister.cpp:1845
 #, kde-format
 msgid "Text position:"
-msgstr "文本位置："
+msgstr "موقع النصّ:"
 
 #: app/KViewer/lister.cpp:1857 app/KViewer/lister.cpp:1865
 #, kde-format
@@ -5729,7 +5721,7 @@ msgstr ""
 #: app/KViewer/panelviewer.cpp:377
 #, kde-format
 msgid "Missing Plugin"
-msgstr "缺少插件"
+msgstr "ملحق مفقود"
 
 #: app/KViewer/panelviewer.cpp:384
 #, kde-format
@@ -5752,12 +5744,12 @@ msgstr ""
 #: app/Locate/locate.cpp:107
 #, kde-format
 msgid "Krusader::Locate"
-msgstr "Krusader::Locate"
+msgstr ""
 
 #: app/Locate/locate.cpp:121
 #, kde-format
 msgid "Search for:"
-msgstr "搜索："
+msgstr "ابحث عن:"
 
 #: app/Locate/locate.cpp:147
 #, kde-format
@@ -5767,27 +5759,27 @@ msgstr ""
 #: app/Locate/locate.cpp:151
 #, kde-format
 msgid "Show only the existing files"
-msgstr "只显示已存在文件"
+msgstr ""
 
 #: app/Locate/locate.cpp:155
 #, kde-format
 msgid "Case Sensitive"
-msgstr "区分大小写"
+msgstr "حساس للحالة"
 
 #: app/Locate/locate.cpp:167
 #, kde-format
 msgid "Results"
-msgstr "结果"
+msgstr "النّتائج"
 
 #: app/Locate/locate.cpp:196
 #, kde-format
 msgid "Locate"
-msgstr "定位"
+msgstr "حدد المكان"
 
 #: app/Locate/locate.cpp:201
 #, kde-format
 msgid "Update DB"
-msgstr "更新数据库"
+msgstr ""
 
 #: app/Locate/locate.cpp:276
 #, kde-format
@@ -5806,50 +5798,47 @@ msgid ""
 "\n"
 "%1"
 msgstr ""
-"Locate 产生了以下错误信息：\n"
-"\n"
-"%1"
 
 #: app/Locate/locate.cpp:385
 #, kde-format
 msgctxt "@title:menu"
 msgid "Locate"
-msgstr "定位"
+msgstr "حدد المكان"
 
 #: app/Locate/locate.cpp:387
 #, kde-format
 msgid "View (F3)"
-msgstr "查看 (F3)"
+msgstr ""
 
 #: app/Locate/locate.cpp:388
 #, kde-format
 msgid "Edit (F4)"
-msgstr "编辑 (F4)"
+msgstr ""
 
 #: app/Locate/locate.cpp:389
 #, kde-format
 msgid "Compare by content (F10)"
-msgstr "比较内容 (F10)"
+msgstr ""
 
 #: app/Locate/locate.cpp:394
 #, kde-format
 msgid "Find (Ctrl+F)"
-msgstr "查找 (Ctrl+F)"
+msgstr ""
 
 #: app/Locate/locate.cpp:395
 #, kde-format
 msgid "Find next (Ctrl+N)"
-msgstr "查找下一个 (Ctrl+N)"
+msgstr ""
 
 #: app/Locate/locate.cpp:396
 #, kde-format
 msgid "Find previous (Ctrl+P)"
-msgstr "查找上一个 (Ctrl+P)"
+msgstr ""
 
 #: app/Locate/locate.cpp:399
 #, kde-format
 msgid "Copy selected to clipboard"
-msgstr "复制选中项到剪贴板"
+msgstr ""
 
 #: app/Locate/locate.cpp:541 app/Locate/locate.cpp:561
 #, kde-format
@@ -5859,23 +5848,23 @@ msgstr ""
 #: app/Locate/locate.cpp:629
 #, kde-format
 msgid "Locate results"
-msgstr "定位结果"
-
-#: app/Locate/locate.cpp:636
-#, kde-format
-msgid "Query Name"
 msgstr ""
 
 #: app/Locate/locate.cpp:636
 #, kde-format
+msgid "Query Name"
+msgstr "اسم الاستعلام"
+
+#: app/Locate/locate.cpp:636
+#, kde-format
 msgid "Here you can name the file collection:"
-msgstr "这里您可以给文件集命名:"
+msgstr ""
 
 #: app/Locate/locate.cpp:669 app/Locate/locate.cpp:674
 #: app/Search/krsearchdialog.cpp:162 app/Synchronizer/synchronizergui.cpp:479
 #, kde-format
 msgid "Stop"
-msgstr "停止"
+msgstr "أوقف"
 
 #: app/Locate/locate.cpp:678 app/Search/krsearchdialog.cpp:262
 #: app/Synchronizer/synchronizergui.cpp:485
@@ -5893,12 +5882,12 @@ msgstr ""
 #: app/main.cpp:111
 #, kde-format
 msgid "Krusader"
-msgstr "Krusader"
+msgstr "كروسادر"
 
 #: app/main.cpp:111
 #, kde-format
 msgid "Krusader - ROOT PRIVILEGES"
-msgstr "Krusader - 超级用户权限"
+msgstr "كروسادر - صلاحيات الجذر"
 
 #: app/main.cpp:113
 #, kde-format
@@ -5922,7 +5911,7 @@ msgstr ""
 #: app/main.cpp:120 app/main.cpp:121 app/main.cpp:122
 #, kde-format
 msgid "Developer"
-msgstr "开发者"
+msgstr "مطوّر"
 
 #: app/main.cpp:121
 #, kde-format
@@ -5942,12 +5931,12 @@ msgstr "Yuri Chornoivan"
 #: app/main.cpp:123
 #, kde-format
 msgid "Documentation"
-msgstr "文档撰写"
+msgstr "التّوثيق"
 
 #: app/main.cpp:124
 #, kde-format
 msgid "Rafi Yanai"
-msgstr "Rafi Yanai"
+msgstr ""
 
 #: app/main.cpp:124 app/main.cpp:125
 #, kde-format
@@ -5957,7 +5946,7 @@ msgstr ""
 #: app/main.cpp:125
 #, kde-format
 msgid "Shie Erlich"
-msgstr "Shie Erlich"
+msgstr ""
 
 #: app/main.cpp:126
 #, kde-format
@@ -5979,17 +5968,17 @@ msgstr "Heiner Eichmann"
 #: app/main.cpp:128
 #, kde-format
 msgid "Jonas Bähr"
-msgstr "Jonas Bähr"
+msgstr ""
 
 #: app/main.cpp:129
 #, kde-format
 msgid "Václav Jůza"
-msgstr "Václav Jůza"
+msgstr ""
 
 #: app/main.cpp:130
 #, kde-format
 msgid "Jan Lepper"
-msgstr "Jan Lepper"
+msgstr ""
 
 #: app/main.cpp:131
 #, kde-format
@@ -5999,7 +5988,7 @@ msgstr ""
 #: app/main.cpp:132
 #, kde-format
 msgid "Simon Persson"
-msgstr ""
+msgstr "Simon Persson"
 
 #: app/main.cpp:133
 #, kde-format
@@ -6014,7 +6003,7 @@ msgstr ""
 #: app/main.cpp:135 app/main.cpp:169
 #, kde-format
 msgid "Dirk Eschler"
-msgstr "Dirk Eschler"
+msgstr ""
 
 #: app/main.cpp:135
 #, kde-format
@@ -6024,7 +6013,7 @@ msgstr ""
 #: app/main.cpp:136 app/main.cpp:165
 #, kde-format
 msgid "Frank Schoolmeesters"
-msgstr "Frank Schoolmeesters"
+msgstr ""
 
 #: app/main.cpp:136
 #, kde-format
@@ -6034,7 +6023,7 @@ msgstr ""
 #: app/main.cpp:137
 #, kde-format
 msgid "Richard Holt"
-msgstr "Richard Holt"
+msgstr "ريتشارد هولت"
 
 #: app/main.cpp:137
 #, kde-format
@@ -6044,7 +6033,7 @@ msgstr ""
 #: app/main.cpp:138 app/main.cpp:185
 #, kde-format
 msgid "Matej Urbancic"
-msgstr "Matej Urbancic"
+msgstr ""
 
 #: app/main.cpp:138
 #, kde-format
@@ -6059,22 +6048,22 @@ msgstr "kde.org"
 #: app/main.cpp:139
 #, kde-format
 msgid "Everyone involved in KDE"
-msgstr "所有热爱 KDE 的人们"
+msgstr ""
 
 #: app/main.cpp:140
 #, kde-format
 msgid "l10n.kde.org"
-msgstr "l10n.kde.org"
+msgstr ""
 
 #: app/main.cpp:140
 #, kde-format
 msgid "KDE Translation Teams"
-msgstr "KDE 翻译团队"
+msgstr ""
 
 #: app/main.cpp:141
 #, kde-format
 msgid "Jiří Paleček"
-msgstr "Jiří Paleček"
+msgstr ""
 
 #: app/main.cpp:141 app/main.cpp:152
 #, kde-format
@@ -6084,17 +6073,17 @@ msgstr ""
 #: app/main.cpp:142
 #, kde-format
 msgid "Jiří Klement"
-msgstr "Jiří Klement"
+msgstr ""
 
 #: app/main.cpp:142
 #, kde-format
 msgid "Important help in KDE 4 porting"
-msgstr "KDE 4 移植的重要帮助"
+msgstr ""
 
 #: app/main.cpp:143
 #, kde-format
 msgid "Andrew Neupokoev"
-msgstr "Andrew Neupokoev"
+msgstr ""
 
 #: app/main.cpp:143
 #, kde-format
@@ -6114,7 +6103,7 @@ msgstr ""
 #: app/main.cpp:145
 #, kde-format
 msgid "Gábor Lehel"
-msgstr "Gábor Lehel"
+msgstr ""
 
 #: app/main.cpp:145
 #, kde-format
@@ -6124,7 +6113,7 @@ msgstr ""
 #: app/main.cpp:146
 #, kde-format
 msgid "Mark Eatough"
-msgstr "Mark Eatough"
+msgstr ""
 
 #: app/main.cpp:146
 #, kde-format
@@ -6134,42 +6123,42 @@ msgstr ""
 #: app/main.cpp:147
 #, kde-format
 msgid "Jan Halasa"
-msgstr "Jan Halasa"
+msgstr ""
 
 #: app/main.cpp:147
 #, kde-format
 msgid "The old Bookmark Module"
-msgstr "旧的书签模块"
+msgstr ""
 
 #: app/main.cpp:148
 #, kde-format
 msgid "Hans Löffler"
-msgstr "Hans Löffler"
+msgstr ""
 
 #: app/main.cpp:148
 #, kde-format
 msgid "Dir history button"
-msgstr "目录历史按钮"
+msgstr ""
 
 #: app/main.cpp:149
 #, kde-format
 msgid "Szombathelyi György"
-msgstr "Szombathelyi György"
+msgstr ""
 
 #: app/main.cpp:149
 #, kde-format
 msgid "ISO KIO slave"
-msgstr "ISO KIO 后端"
+msgstr ""
 
 #: app/main.cpp:150
 #, kde-format
 msgid "Jan Willem van de Meent (Adios)"
-msgstr "Jan Willem van de Meent (Adios)"
+msgstr ""
 
 #: app/main.cpp:150
 #, kde-format
 msgid "Icons for Krusader"
-msgstr "Krusader 的图标"
+msgstr ""
 
 #: app/main.cpp:151
 #, kde-format
@@ -6179,7 +6168,7 @@ msgstr "Mikolaj Machowski"
 #: app/main.cpp:151
 #, kde-format
 msgid "Usability and QA"
-msgstr "易用性和质量担保"
+msgstr ""
 
 #: app/main.cpp:152
 #, kde-format
@@ -6189,17 +6178,17 @@ msgstr "Cristi Dumitrescu"
 #: app/main.cpp:153
 #, kde-format
 msgid "Aurelien Gateau"
-msgstr "Aurelien Gateau"
+msgstr ""
 
 #: app/main.cpp:153
 #, kde-format
 msgid "patch for KViewer"
-msgstr "KViewer 的补丁"
+msgstr ""
 
 #: app/main.cpp:154
 #, kde-format
 msgid "Milan Brabec"
-msgstr "Milan Brabec"
+msgstr ""
 
 #: app/main.cpp:154
 #, kde-format
@@ -6219,7 +6208,7 @@ msgstr ""
 #: app/main.cpp:156
 #, kde-format
 msgid "Doutor Zero"
-msgstr "Doutor Zero"
+msgstr ""
 
 #: app/main.cpp:156
 #, kde-format
@@ -6229,7 +6218,7 @@ msgstr ""
 #: app/main.cpp:157
 #, kde-format
 msgid "Milen Ivanov"
-msgstr "Milen Ivanov"
+msgstr "ميلين ايفانوف"
 
 #: app/main.cpp:157
 #, kde-format
@@ -6239,7 +6228,7 @@ msgstr ""
 #: app/main.cpp:158
 #, kde-format
 msgid "Quim Perez"
-msgstr "Quim Perez"
+msgstr ""
 
 #: app/main.cpp:158
 #, kde-format
@@ -6249,17 +6238,17 @@ msgstr ""
 #: app/main.cpp:159
 #, kde-format
 msgid "Jinghua Luo"
-msgstr "Jinghua Luo"
+msgstr ""
 
 #: app/main.cpp:159
 #, kde-format
 msgid "Chinese Simplified translation"
-msgstr "简体中文翻译"
+msgstr ""
 
 #: app/main.cpp:160
 #, kde-format
 msgid "Mitek"
-msgstr "Mitek"
+msgstr ""
 
 #: app/main.cpp:160 app/main.cpp:161
 #, kde-format
@@ -6269,22 +6258,22 @@ msgstr ""
 #: app/main.cpp:161
 #, kde-format
 msgid "Martin Sixta"
-msgstr "Martin Sixta"
+msgstr ""
 
 #: app/main.cpp:162
 #, kde-format
 msgid "Vaclav Jůza"
-msgstr "Vaclav Jůza"
+msgstr ""
 
 #: app/main.cpp:162
 #, kde-format
 msgid "Czech translation"
-msgstr "捷克文翻译"
+msgstr "التّرجمة التّشيكيّة"
 
 #: app/main.cpp:163
 #, kde-format
 msgid "Anders Bruun Olsen"
-msgstr "Anders Bruun Olsen"
+msgstr ""
 
 #: app/main.cpp:163
 #, kde-format
@@ -6294,7 +6283,7 @@ msgstr ""
 #: app/main.cpp:164
 #, kde-format
 msgid "Peter H. Sorensen"
-msgstr "Peter H. Sorensen"
+msgstr ""
 
 #: app/main.cpp:164
 #, kde-format
@@ -6309,7 +6298,7 @@ msgstr ""
 #: app/main.cpp:166
 #, kde-format
 msgid "Rene-Pierre Lehmann"
-msgstr "Rene-Pierre Lehmann"
+msgstr ""
 
 #: app/main.cpp:166
 #, kde-format
@@ -6319,12 +6308,12 @@ msgstr ""
 #: app/main.cpp:167
 #, kde-format
 msgid "David Guillerm"
-msgstr "David Guillerm"
+msgstr ""
 
 #: app/main.cpp:167
 #, kde-format
 msgid "French translation"
-msgstr "法语翻译"
+msgstr ""
 
 #: app/main.cpp:168
 #, kde-format
@@ -6339,12 +6328,12 @@ msgstr ""
 #: app/main.cpp:169
 #, kde-format
 msgid "German translation"
-msgstr "德语翻译"
+msgstr ""
 
 #: app/main.cpp:170
 #, kde-format
 msgid "Spiros Georgaras"
-msgstr "Spiros Georgaras"
+msgstr ""
 
 #: app/main.cpp:170
 #, kde-format
@@ -6354,7 +6343,7 @@ msgstr ""
 #: app/main.cpp:171
 #, kde-format
 msgid "Kukk Zoltan"
-msgstr "Kukk Zoltan"
+msgstr ""
 
 #: app/main.cpp:171
 #, kde-format
@@ -6374,17 +6363,17 @@ msgstr ""
 #: app/main.cpp:173
 #, kde-format
 msgid "Giuseppe Bordoni"
-msgstr "Giuseppe Bordoni"
+msgstr ""
 
 #: app/main.cpp:173
 #, kde-format
 msgid "Italian translation"
-msgstr "意大利语翻译"
+msgstr "التّرجمة الإيطاليّة"
 
 #: app/main.cpp:174
 #, kde-format
 msgid "Hideki Kimura"
-msgstr "Hideki Kimura"
+msgstr ""
 
 #: app/main.cpp:174
 #, kde-format
@@ -6404,7 +6393,7 @@ msgstr ""
 #: app/main.cpp:176
 #, kde-format
 msgid "Dovydas Sankauskas"
-msgstr "Dovydas Sankauskas"
+msgstr ""
 
 #: app/main.cpp:176
 #, kde-format
@@ -6414,7 +6403,7 @@ msgstr ""
 #: app/main.cpp:177
 #, kde-format
 msgid "Bruno Queiros"
-msgstr "Bruno Queiros"
+msgstr ""
 
 #: app/main.cpp:177
 #, kde-format
@@ -6424,7 +6413,7 @@ msgstr ""
 #: app/main.cpp:178
 #, kde-format
 msgid "Lukasz Janyst"
-msgstr "Lukasz Janyst"
+msgstr ""
 
 #: app/main.cpp:178
 #, kde-format
@@ -6434,32 +6423,32 @@ msgstr ""
 #: app/main.cpp:179
 #, kde-format
 msgid "Pawel Salawa"
-msgstr "Pawel Salawa"
+msgstr ""
 
 #: app/main.cpp:179 app/main.cpp:180
 #, kde-format
 msgid "Polish translation"
-msgstr ""
+msgstr "التّرجمة البولنديّة"
 
 #: app/main.cpp:180
 #, kde-format
 msgid "Tomek Grzejszczyk"
-msgstr "Tomek Grzejszczyk"
+msgstr ""
 
 #: app/main.cpp:181
 #, kde-format
 msgid "Dmitry A. Bugay"
-msgstr "Dmitry A. Bugay"
+msgstr ""
 
 #: app/main.cpp:181
 #, kde-format
 msgid "Russian translation"
-msgstr ""
+msgstr "الترجمة الروسية"
 
 #: app/main.cpp:182
 #, kde-format
 msgid "Dmitry Chernyak"
-msgstr "Dmitry Chernyak"
+msgstr ""
 
 #: app/main.cpp:182
 #, kde-format
@@ -6469,7 +6458,7 @@ msgstr ""
 #: app/main.cpp:183
 #, kde-format
 msgid "Sasa Tomic"
-msgstr "Sasa Tomic"
+msgstr ""
 
 #: app/main.cpp:183
 #, kde-format
@@ -6479,7 +6468,7 @@ msgstr ""
 #: app/main.cpp:184
 #, kde-format
 msgid "Zdenko Podobný and Ondrej Pačay (Yogi)"
-msgstr "Zdenko Podobný 和 Ondrej Pačay (Yogi)"
+msgstr ""
 
 #: app/main.cpp:184
 #, kde-format
@@ -6494,7 +6483,7 @@ msgstr ""
 #: app/main.cpp:186
 #, kde-format
 msgid "Rafael Munoz"
-msgstr "Rafael Munoz"
+msgstr ""
 
 #: app/main.cpp:186
 #, kde-format
@@ -6504,17 +6493,17 @@ msgstr ""
 #: app/main.cpp:187
 #, kde-format
 msgid "Alejandro Araiza Alvarado"
-msgstr "Alejandro Araiza Alvarado"
+msgstr ""
 
 #: app/main.cpp:187
 #, kde-format
 msgid "Spanish translation"
-msgstr "西班牙文翻译"
+msgstr ""
 
 #: app/main.cpp:188
 #, kde-format
 msgid "Erik Johanssen"
-msgstr "Erik Johanssen"
+msgstr ""
 
 #: app/main.cpp:188 app/main.cpp:189
 #, kde-format
@@ -6524,22 +6513,22 @@ msgstr ""
 #: app/main.cpp:189
 #, kde-format
 msgid "Anders Linden"
-msgstr "Anders Linden"
+msgstr ""
 
 #: app/main.cpp:190
 #, kde-format
 msgid "Peter Landgren"
-msgstr "Peter Landgren"
+msgstr ""
 
 #: app/main.cpp:190
 #, kde-format
 msgid "Swedish translation"
-msgstr "瑞典语翻译"
+msgstr ""
 
 #: app/main.cpp:191
 #, kde-format
 msgid "Bekir Sonat"
-msgstr "Bekir Sonat"
+msgstr ""
 
 #: app/main.cpp:191
 #, kde-format
@@ -6549,7 +6538,7 @@ msgstr ""
 #: app/main.cpp:192
 #, kde-format
 msgid "Ivan Petrouchtchak"
-msgstr "Ivan Petrouchtchak"
+msgstr ""
 
 #: app/main.cpp:192
 #, kde-format
@@ -6559,7 +6548,7 @@ msgstr ""
 #: app/main.cpp:193
 #, kde-format
 msgid "Seongnam Jee"
-msgstr "Seongnam Jee"
+msgstr ""
 
 #: app/main.cpp:193
 #, kde-format
@@ -6569,32 +6558,32 @@ msgstr ""
 #: app/main.cpp:203
 #, kde-format
 msgid "Start left panel at <path>"
-msgstr "左侧面板开始于<path>"
+msgstr ""
 
 #: app/main.cpp:204
 #, kde-format
 msgid "Start right panel at <path>"
-msgstr "右侧面板开始于<path>"
+msgstr ""
 
 #: app/main.cpp:205
 #, kde-format
 msgid "Load this profile on startup"
-msgstr "启动时加载此配置"
+msgstr ""
 
 #: app/main.cpp:206
 #, kde-format
 msgid "Enable debug output"
-msgstr "启用调试输出"
+msgstr ""
 
 #: app/main.cpp:207
 #, kde-format
 msgid "URL to open"
-msgstr "要打开的 URL"
+msgstr "العنوان لفتحه"
 
 #: app/MountMan/kmountman.cpp:51
 #, kde-format
 msgid "&MountMan..."
-msgstr "挂载管理器(&M)..."
+msgstr ""
 
 #: app/MountMan/kmountman.cpp:54
 #, kde-format
@@ -6609,47 +6598,47 @@ msgstr ""
 #: app/MountMan/kmountman.cpp:344
 #, kde-format
 msgid "MountMan is not operational. Sorry"
-msgstr "对不起，挂载管理器是不可操作的。"
+msgstr ""
 
 #: app/MountMan/kmountmangui.cpp:58
 #, kde-format
 msgid "MountMan - Your Mount-Manager"
-msgstr "MountMan - 您的挂载管理器"
+msgstr ""
 
 #: app/MountMan/kmountmangui.cpp:72
 #, kde-format
 msgid "&Eject"
-msgstr "弹出(&E)"
+msgstr "أ&خرِج"
 
 #: app/MountMan/kmountmangui.cpp:77 app/MountMan/kmountmangui.cpp:376
 #, kde-format
 msgid "&Unmount"
-msgstr "卸载(&U)"
+msgstr "أزل ال&ضمّ"
 
 #: app/MountMan/kmountmangui.cpp:148
 #, kde-format
 msgid "Mnt.Point"
-msgstr "Mnt.Point"
+msgstr ""
 
 #: app/MountMan/kmountmangui.cpp:149
 #, kde-format
 msgid "Total Size"
-msgstr "总共大小"
+msgstr "الحجم الكليّ"
 
 #: app/MountMan/kmountmangui.cpp:150
 #, kde-format
 msgid "Free Size"
-msgstr "空闲空间大小"
+msgstr ""
 
 #: app/MountMan/kmountmangui.cpp:151
 #, kde-format
 msgid "Free %"
-msgstr "空闲 %"
+msgstr "المتبقي ٪"
 
 #: app/MountMan/kmountmangui.cpp:180
 #, kde-format
 msgid "MountMan.Info"
-msgstr "MountMan.Info"
+msgstr ""
 
 #: app/MountMan/kmountmangui.cpp:187
 #, kde-format
@@ -6659,22 +6648,22 @@ msgstr ""
 #: app/MountMan/kmountmangui.cpp:378
 #, kde-format
 msgid "&Mount"
-msgstr "挂载(&M)"
+msgstr "&ضمّ"
 
 #: app/MountMan/kmountmangui.cpp:398
 #, kde-format
 msgid "MountMan"
-msgstr "MountMan"
+msgstr ""
 
 #: app/MountMan/kmountmangui.cpp:414
 #, kde-format
 msgid "Format"
-msgstr "格式"
+msgstr "هيئ"
 
 #: app/Panel/krcalcspacedialog.cpp:29
 #, kde-format
 msgid "Calculate Occupied Space"
-msgstr "计算已用空间"
+msgstr ""
 
 #: app/Panel/krcalcspacedialog.cpp:107
 #, kde-format
@@ -6684,30 +6673,45 @@ msgstr ""
 #: app/Panel/krcalcspacedialog.cpp:109
 #, kde-format
 msgid "Total occupied space: %1"
-msgstr "已用空间大小：%1"
+msgstr ""
 
 #: app/Panel/krcalcspacedialog.cpp:111
 #, kde-format
 msgid " (%2 byte)"
 msgid_plural " (%2 bytes)"
-msgstr[0] " (%2 字节)"
+msgstr[0] " (%2 بايت)"
+msgstr[1] " (%2 بايت)"
+msgstr[2] " (%2 بايت)"
+msgstr[3] " (%2 بايت)"
+msgstr[4] " (%2 بايت)"
+msgstr[5] " (%2 بايت)"
 
 #: app/Panel/krcalcspacedialog.cpp:113
 #, kde-format
 msgid "in %1 folder"
 msgid_plural "in %1 folders"
-msgstr[0] ""
+msgstr[0] "في مجلّد"
+msgstr[1] "في مجلد"
+msgstr[2] "في مجلدين"
+msgstr[3] "في %1 مجلدات"
+msgstr[4] "في %1 مجلدا"
+msgstr[5] "في %1 مجلد"
 
 #: app/Panel/krcalcspacedialog.cpp:115
 #, kde-format
 msgid "and %1 file"
 msgid_plural "and %1 files"
-msgstr[0] "和 %1 个文件"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/Panel/krfiletreeview.cpp:176
 #, kde-format
 msgid "Show Details"
-msgstr "显示细节"
+msgstr "أظهر التّفاصيل"
 
 #: app/Panel/krfiletreeview.cpp:179
 #, kde-format
@@ -6717,7 +6721,7 @@ msgstr ""
 #: app/Panel/krfiletreeview.cpp:180
 #, kde-format
 msgid "Show Hidden Folders"
-msgstr "显示隐藏文件夹"
+msgstr "أظهر المجلدات المخفية"
 
 #: app/Panel/krfiletreeview.cpp:183
 #, kde-format
@@ -6758,47 +6762,47 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Cut"
-msgstr "剪切"
+msgstr "قصّ"
 
 #: app/Panel/krfiletreeview.cpp:238
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy"
-msgstr "复制"
+msgstr "انسخ"
 
 #: app/Panel/krfiletreeview.cpp:260
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Move to Trash"
-msgstr "移动到废件夹"
+msgstr "انقل إلى المهملات"
 
 #: app/Panel/krfiletreeview.cpp:271
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete"
-msgstr "删除"
+msgstr "احذف"
 
 #: app/Panel/krfiletreeview.cpp:282
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Properties"
-msgstr "属性"
+msgstr "خصائص"
 
 #: app/Panel/krlayoutfactory.cpp:45
 #, kde-format
 msgctxt "Default layout"
 msgid "Default"
-msgstr "默认"
+msgstr "المبدئيّ"
 
 #: app/Panel/krlayoutfactory.cpp:47
 #, kde-format
 msgid "Compact"
-msgstr "紧凑"
+msgstr "مُدمج"
 
 #: app/Panel/krlayoutfactory.cpp:49
 #, kde-format
 msgid "Classic"
-msgstr "经典"
+msgstr "تقليدي"
 
 #: app/Panel/krlayoutfactory.cpp:51
 #, kde-format
@@ -6808,12 +6812,12 @@ msgstr ""
 #: app/Panel/krpreviewpopup.cpp:91
 #, kde-format
 msgid "Preview not available"
-msgstr "预览不可用"
+msgstr "لا معاينة"
 
 #: app/Panel/krsearchbar.cpp:36
 #, kde-format
 msgid "Close the search bar"
-msgstr "关闭搜索栏"
+msgstr "أغلق شريط البحث"
 
 #: app/Panel/krsearchbar.cpp:42
 #, kde-format
@@ -6846,8 +6850,6 @@ msgid ""
 "The statusbar displays information about the filesystem which holds your "
 "current folder: total size, free space, type of filesystem, etc."
 msgstr ""
-"状态条会显示一些关于当前目录的文件系统的信息，如当前目录， 总共空间大小， 空"
-"闲空间大小， 文件系统类型等等。"
 
 #: app/Panel/listpanel.cpp:166
 #, kde-format
@@ -6855,8 +6857,6 @@ msgid ""
 "Open menu with bookmarks. You can also add current location to the list, "
 "edit bookmarks or add subfolder to the list."
 msgstr ""
-"打开书签菜单。 您也可以把当前位置添加到列表中， 也可以编辑书签或者添加摺叠器"
-"到列表中。"
 
 #: app/Panel/listpanel.cpp:173
 #, kde-format
@@ -6864,7 +6864,6 @@ msgid ""
 "Name of folder where you are. You can also enter name of desired location to "
 "move there. Use of Net protocols like ftp or fish is possible."
 msgstr ""
-"您所在的目录名。 您也可以输入您要的位置。网络协议 ftp, fish也可以使用的。"
 
 #: app/Panel/listpanel.cpp:210
 #, kde-format
@@ -6895,9 +6894,6 @@ msgid ""
 "When active, each folder change is performed in the\n"
 "active and inactive panel - if possible."
 msgstr ""
-"这个按钮可切换同步浏览模式。\n"
-"激活时，只要可能对目录的操作将同时应用到\n"
-"活动与非活动面板中。"
 
 #: app/Panel/listpanel.cpp:568
 #, kde-format
@@ -6920,7 +6916,7 @@ msgstr ""
 #: app/Panel/listpanel.cpp:789
 #, kde-format
 msgid "%1 free"
-msgstr "%1 空闲"
+msgstr "المتبقي %1"
 
 #: app/Panel/listpanel.cpp:1008
 #, kde-format
@@ -6930,7 +6926,7 @@ msgstr ""
 #: app/Panel/listpanel.cpp:1050
 #, kde-format
 msgid ">> Reading..."
-msgstr ">> 正在读取..."
+msgstr ">> يقرأ..."
 
 #: app/Panel/listpanel.cpp:1076
 #, kde-format
@@ -6940,47 +6936,47 @@ msgstr ""
 #: app/Panel/listpanel.cpp:1082
 #, kde-format
 msgid ">> Reading: %1"
-msgstr ""
+msgstr ">> يقرأ: %1"
 
 #: app/Panel/listpanel.cpp:1121
 #, kde-format
 msgid "Error: %1"
-msgstr "错误：%1"
+msgstr "الخطأ: %1"
 
 #: app/Panel/listpanelactions.cpp:52
 #, kde-format
 msgid "Cut to Clipboard"
-msgstr "剪切到剪贴板"
+msgstr "قص إلى الحافظة"
 
 #: app/Panel/listpanelactions.cpp:58 app/Search/krsearchdialog.cpp:205
 #, kde-format
 msgid "Copy to Clipboard"
-msgstr "复制到剪贴板"
+msgstr "انسخ إلى الحافظة"
 
 #: app/Panel/listpanelactions.cpp:60
 #, kde-format
 msgid "Paste from Clipboard"
-msgstr "从剪贴板中粘贴"
+msgstr "ألصق من الحافظة"
 
 #: app/Panel/listpanelactions.cpp:64 app/Search/krsearchdialog.cpp:189
 #, kde-format
 msgid "View File"
-msgstr "查看文件"
+msgstr "شاهد الملف"
 
 #: app/Panel/listpanelactions.cpp:65 app/Search/krsearchdialog.cpp:194
 #, kde-format
 msgid "Edit File"
-msgstr "编辑文件"
+msgstr "حرّر الملفّ"
 
 #: app/Panel/listpanelactions.cpp:66
 #, kde-format
 msgid "&New Text File..."
-msgstr "新建文本文件(&N)..."
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:67
 #, kde-format
 msgid "Copy to other panel"
-msgstr "复制到其他面板"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:68
 #, kde-format
@@ -7000,27 +6996,27 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:71
 #, kde-format
 msgid "New Folder..."
-msgstr "新建文件夹..."
+msgstr "مجلّد جديد..."
 
 #: app/Panel/listpanelactions.cpp:73
 #, kde-format
 msgid "Start Terminal Here"
-msgstr "在此启动终端"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:74
 #, kde-format
 msgid "F3 View Dialog"
-msgstr "F3 查看对话框  "
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:77
 #, kde-format
 msgid "Right-click Menu"
-msgstr "右键菜单"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:78
 #, kde-format
 msgid "&Properties..."
-msgstr "属性(&P)..."
+msgstr "&خصائص..."
 
 #: app/Panel/listpanelactions.cpp:79
 #, kde-format
@@ -7030,37 +7026,37 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:80
 #, kde-format
 msgid "Calculate &Occupied Space"
-msgstr "计算已用空间(&O)"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:81
 #, kde-format
 msgid "Pac&k..."
-msgstr "打包(&K)..."
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:82
 #, kde-format
 msgid "&Unpack..."
-msgstr "解包(&U)..."
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:83
 #, kde-format
 msgid "Create Checksum..."
-msgstr "创建校验和..."
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:84
 #, kde-format
 msgid "Verify Checksum..."
-msgstr "验证校验和..."
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:85 app/Panel/panelcontextmenu.cpp:264
 #, kde-format
 msgid "New Symlink..."
-msgstr "新建符号链接..."
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:86
 #, kde-format
 msgid "T&est Archive"
-msgstr "测试归档(&E)"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:87
 #, kde-format
@@ -7070,7 +7066,7 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:90
 #, kde-format
 msgid "Root"
-msgstr "根"
+msgstr "جذر"
 
 #: app/Panel/listpanelactions.cpp:91
 #, kde-format
@@ -7080,7 +7076,7 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:92
 #, kde-format
 msgid "&Reload"
-msgstr "重新加载(&R)"
+msgstr "أ&عد التحميل"
 
 #: app/Panel/listpanelactions.cpp:93
 #, kde-format
@@ -7090,27 +7086,27 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:94
 #, kde-format
 msgid "New Net &Connection..."
-msgstr "新建网络连接(&C)..."
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:95
 #, kde-format
 msgid "Disconnect &from Net"
-msgstr "断开网络连接(&F)"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:96
 #, kde-format
 msgid "Sync Panels"
-msgstr "同步面板"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:97
 #, kde-format
 msgid "Jump Back"
-msgstr "跳回"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:98
 #, kde-format
 msgid "Set Jump Back Point"
-msgstr "设定跳回点"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:99
 #, kde-format
@@ -7120,7 +7116,7 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:100
 #, kde-format
 msgid "Go to Location Bar"
-msgstr "转到位置栏"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:101
 #, kde-format
@@ -7130,42 +7126,42 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:103
 #, kde-format
 msgid "Left Bookmarks"
-msgstr "左侧书签"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:104
 #, kde-format
 msgid "Right Bookmarks"
-msgstr "右侧书签"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:105
 #, kde-format
 msgid "History"
-msgstr "历史"
+msgstr "التاريخ"
 
 #: app/Panel/listpanelactions.cpp:106
 #, kde-format
 msgid "Left History"
-msgstr "左侧历史"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:107
 #, kde-format
 msgid "Right History"
-msgstr "右侧历史"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:108
 #, kde-format
 msgid "Media"
-msgstr "媒体"
+msgstr "وسائط"
 
 #: app/Panel/listpanelactions.cpp:109
 #, kde-format
 msgid "Left Media"
-msgstr "左侧媒体"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:110
 #, kde-format
 msgid "Right Media"
-msgstr "右侧媒体"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:113
 #, kde-format
@@ -7185,7 +7181,7 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:118
 #, kde-format
 msgid "ROOT (/)"
-msgstr "根(/)"
+msgstr "الجذر  (/)"
 
 #: app/Panel/listpanelactions.cpp:120
 #, kde-format
@@ -7195,7 +7191,7 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:121
 #, kde-format
 msgid "Open file in viewer."
-msgstr "在查看器中打开文件。"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:122
 #, kde-format
@@ -7207,12 +7203,12 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:125
 #, kde-format
 msgid "Copy file from one panel to the other."
-msgstr "从一个面板复制文件到另外一个面板。"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:126
 #, kde-format
 msgid "Move file from one panel to the other."
-msgstr "从一个面板移动文件到另一个面板。"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:127
 #, kde-format
@@ -7239,17 +7235,17 @@ msgstr ""
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
 msgid "Run"
-msgstr "运行"
+msgstr "شغّل"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
 msgid "Open in New Tabs"
-msgstr ""
+msgstr "افتح في ألسنة جديدة"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
 msgid "Open in New Tab"
-msgstr "在新标签页中打开"
+msgstr "افتح في لسان جديد"
 
 #: app/Panel/panelcontextmenu.cpp:148
 #, kde-format
@@ -7259,57 +7255,57 @@ msgstr ""
 #: app/Panel/panelcontextmenu.cpp:198
 #, kde-format
 msgid "Other..."
-msgstr "其他..."
+msgstr "أخرى..."
 
 #: app/Panel/panelcontextmenu.cpp:200
 #, kde-format
 msgid "Open With"
-msgstr "打开方式"
+msgstr "افتح ب‍"
 
 #: app/Panel/panelcontextmenu.cpp:249
 #, kde-format
 msgid "Move to Trash"
-msgstr "移入回收站"
+msgstr "انقل إلى المهملات"
 
 #: app/Panel/panelcontextmenu.cpp:265
 #, kde-format
 msgid "New Hardlink..."
-msgstr "新建硬链接..."
+msgstr ""
 
 #: app/Panel/panelcontextmenu.cpp:267
 #, kde-format
 msgid "Redirect Link..."
-msgstr "重定向链接..."
+msgstr ""
 
 #: app/Panel/panelcontextmenu.cpp:270
 #, kde-format
 msgid "Link Handling"
-msgstr "链接处理"
+msgstr ""
 
 #: app/Panel/panelcontextmenu.cpp:293
 #, kde-format
 msgid "Send by Email"
-msgstr "发送邮件"
+msgstr ""
 
 #: app/Panel/panelcontextmenu.cpp:298
 #, kde-format
 msgid "Restore"
-msgstr "还原"
+msgstr "استعد"
 
 #: app/Panel/panelcontextmenu.cpp:305
 #, kde-format
 msgid "Synchronize Selected Files..."
-msgstr "同步选中的文件..."
+msgstr ""
 
 #: app/Panel/panelcontextmenu.cpp:332
 #, kde-format
 msgid "Create New"
-msgstr "创建新"
+msgstr "أنشئ واحداً جديداً"
 
 #: app/Panel/panelfunc.cpp:371
 #, kde-format
 msgid "You can edit links only on local file systems"
-msgstr "您只能编辑本地文件系统的链接"
+msgstr ""
 
 #: app/Panel/panelfunc.cpp:382
 #, kde-format
@@ -7319,12 +7315,12 @@ msgstr ""
 #: app/Panel/panelfunc.cpp:389
 #, kde-format
 msgid "Link Redirection"
-msgstr "链接重定向"
+msgstr ""
 
 #: app/Panel/panelfunc.cpp:389
 #, kde-format
 msgid "Please enter the new link destination:"
-msgstr "请输入新的链接目标："
+msgstr ""
 
 #: app/Panel/panelfunc.cpp:396
 #, kde-format
@@ -7339,7 +7335,7 @@ msgstr ""
 #: app/Panel/panelfunc.cpp:409
 #, kde-format
 msgid "You can create links only on local file systems"
-msgstr "您只能在本地文件系统中创建链接"
+msgstr ""
 
 #: app/Panel/panelfunc.cpp:418
 #, kde-format
@@ -7369,12 +7365,12 @@ msgstr ""
 #: app/Panel/panelfunc.cpp:460
 #, kde-format
 msgid "No permissions to view this file."
-msgstr "没有查看此文件的权限。"
+msgstr ""
 
 #: app/Panel/panelfunc.cpp:471
 #, kde-format
 msgid "Enter a URL to view:"
-msgstr "输入要查看的 URL："
+msgstr ""
 
 #: app/Panel/panelfunc.cpp:501 app/Panel/panelfunc.cpp:578
 #, kde-format
@@ -7384,34 +7380,44 @@ msgstr ""
 #: app/Panel/panelfunc.cpp:506
 #, kde-format
 msgid "No permissions to edit this file."
-msgstr "没有修改此文件的权限。"
+msgstr ""
 
 #: app/Panel/panelfunc.cpp:520
 #, kde-format
 msgid "Enter the filename to edit:"
-msgstr "输入要编辑的文件名："
+msgstr ""
 
 #: app/Panel/panelfunc.cpp:632
 #, kde-format
 msgid "Move %1 to:"
-msgstr "移动 %1 到："
+msgstr "انقل %1 إلى:"
 
 #: app/Panel/panelfunc.cpp:633
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
-msgstr[0] "移动 %1 个文件到："
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/Panel/panelfunc.cpp:636
 #, kde-format
 msgid "Copy %1 to:"
-msgstr "复制 %1 到："
+msgstr "انسخ %1 إلى:"
 
 #: app/Panel/panelfunc.cpp:637
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
-msgstr[0] "复制 %1 个文件到："
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/Panel/panelfunc.cpp:704
 #, kde-format
@@ -7422,7 +7428,12 @@ msgstr ""
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
-msgstr[0] "您真的要将这 %1 项移动至回收站吗？"
+msgstr[0] "أمتأكّد من نقل هذا العنصر إلى المهملات؟"
+msgstr[1] "أمتأكّد من نقل هذا %1 عنصر إلى المهملات؟"
+msgstr[2] "أمتأكّد من نقل هذين العنصرين إلى المهملات؟"
+msgstr[3] "أمتأكّد من نقل هذا %1 العناصر إلى المهملات؟"
+msgstr[4] "أمتأكّد من نقل هذا %1 عنصرا إلى المهملات؟"
+msgstr[5] "أمتأكّد من نقل هذا %1 عنصر إلى المهملات؟"
 
 #: app/Panel/panelfunc.cpp:851
 #, kde-format
@@ -7433,12 +7444,22 @@ msgid_plural ""
 "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/Panel/panelfunc.cpp:858
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
-msgstr[0] "您确实想要删除这 %1 项吗？"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/Panel/panelfunc.cpp:900
 #, kde-format
@@ -7458,7 +7479,7 @@ msgstr ""
 #: app/Panel/panelfunc.cpp:903
 #, kde-format
 msgid "&Skip"
-msgstr "跳过(&S)"
+msgstr "ت&خطّ"
 
 #: app/Panel/panelfunc.cpp:904
 #, kde-format
@@ -7468,7 +7489,7 @@ msgstr ""
 #: app/Panel/panelfunc.cpp:904
 #, kde-format
 msgid "&Delete All"
-msgstr "全部删除(&D)"
+msgstr "احذف ال&كل"
 
 #: app/Panel/panelfunc.cpp:942
 #, kde-format
@@ -7479,16 +7500,21 @@ msgid_plural ""
 "Do you really want to delete these %1 virtual items (physical files stay "
 "untouched)?"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/Panel/panelfunc.cpp:980
 #, kde-format
 msgid "Could not start %1"
-msgstr "无法启动 %1"
+msgstr "تعذّر بدء %1."
 
 #: app/Panel/panelfunc.cpp:992
 #, kde-format
 msgid "%1 cannot open %2"
-msgstr ""
+msgstr "لم يستطع %1 فتح %2"
 
 #: app/Panel/panelfunc.cpp:1066
 #, kde-format
@@ -7513,19 +7539,24 @@ msgstr ""
 #: app/Panel/panelfunc.cpp:1108
 #, kde-format
 msgid "Unpack %1 to:"
-msgstr "解包 %1 到："
+msgstr ""
 
 #: app/Panel/panelfunc.cpp:1110
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
-msgstr[0] "解包 %1 个文件到："
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/Panel/PanelView/krinterbriefview.cpp:238
 #: app/Panel/PanelView/krinterdetailedview.cpp:289
 #, kde-format
 msgid "Columns"
-msgstr "列"
+msgstr "الأعمدة"
 
 #: app/Panel/PanelView/krinterdetailedview.cpp:303
 #, kde-format
@@ -7557,7 +7588,7 @@ msgstr ""
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
 msgid "Filter Files"
-msgstr ""
+msgstr "رشّح الملفّات"
 
 #: app/Panel/PanelView/krview.cpp:1104
 #, kde-format
@@ -7572,12 +7603,12 @@ msgstr ""
 #: app/Panel/PanelView/krviewfactory.cpp:54
 #, kde-format
 msgid "&Detailed View"
-msgstr "详情视图(&D)"
+msgstr "&منظور مفصّل"
 
 #: app/Panel/PanelView/krviewfactory.cpp:57
 #, kde-format
 msgid "&Brief View"
-msgstr "简要查看(&B)"
+msgstr ""
 
 #: app/Panel/PanelView/krviewitem.cpp:62
 #, kde-format
@@ -7592,12 +7623,12 @@ msgstr ""
 #: app/Panel/PanelView/krviewitem.cpp:77
 #, kde-format
 msgid "Symbolic Link"
-msgstr "符号链接"
+msgstr "رابط رمزي"
 
 #: app/Panel/PanelView/krviewitem.cpp:79
 #, kde-format
 msgid "%1 (Link)"
-msgstr "%1(链接)"
+msgstr "%1 (رابط)"
 
 #: app/Panel/PanelView/listmodel.cpp:130
 #: app/Synchronizer/synchronizergui.cpp:1571
@@ -7605,49 +7636,49 @@ msgstr "%1(链接)"
 msgctxt ""
 "Show the string 'DIR' instead of file size in detailed view (for folders)"
 msgid "DIR"
-msgstr "DIR"
+msgstr ""
 
 #: app/Panel/PanelView/listmodel.cpp:371
 #, kde-format
 msgctxt "File property"
 msgid "Name"
-msgstr "名称"
+msgstr "الاسم"
 
 #: app/Panel/PanelView/listmodel.cpp:372
 #, kde-format
 msgctxt "File property"
 msgid "Ext"
-msgstr "扩展名"
+msgstr ""
 
 #: app/Panel/PanelView/listmodel.cpp:373
 #, kde-format
 msgctxt "File property"
 msgid "Size"
-msgstr "大小"
+msgstr "الحجم"
 
 #: app/Panel/PanelView/listmodel.cpp:374
 #, kde-format
 msgctxt "File property"
 msgid "Type"
-msgstr "文件系统"
+msgstr "النّوع"
 
 #: app/Panel/PanelView/listmodel.cpp:375
 #, kde-format
 msgctxt "File property"
 msgid "Modified"
-msgstr "修改日期"
+msgstr "معدّل"
 
 #: app/Panel/PanelView/listmodel.cpp:376
 #, kde-format
 msgctxt "File property"
 msgid "Changed"
-msgstr "已更改"
+msgstr "مُغير"
 
 #: app/Panel/PanelView/listmodel.cpp:377
 #, kde-format
 msgctxt "File property"
 msgid "Accessed"
-msgstr "访问时间"
+msgstr "وُصِل إليه"
 
 #: app/Panel/PanelView/listmodel.cpp:378
 #, kde-format
@@ -7659,66 +7690,66 @@ msgstr ""
 #, kde-format
 msgctxt "File property"
 msgid "rwx"
-msgstr "rwx"
+msgstr ""
 
 #: app/Panel/PanelView/listmodel.cpp:380
 #, kde-format
 msgctxt "File property"
 msgid "Owner"
-msgstr "用户"
+msgstr "المالك"
 
 #: app/Panel/PanelView/listmodel.cpp:381
 #, kde-format
 msgctxt "File property"
 msgid "Group"
-msgstr "分组"
+msgstr "المجموعة"
 
 #: app/Panel/PanelView/listmodel.cpp:484
 #, kde-format
 msgid "Size: %1"
-msgstr "大小：%1"
+msgstr "الحجم: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:486
 #, kde-format
 msgctxt "File property"
 msgid "Type: %1"
-msgstr "类型：%1"
+msgstr "النّوع: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:487
 #, kde-format
 msgctxt "File property"
 msgid "Modified: %1"
-msgstr "修改时间：%1"
+msgstr "معدل: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:488
 #, kde-format
 msgctxt "File property"
 msgid "Changed: %1"
-msgstr ""
+msgstr "مُغير: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:489
 #, kde-format
 msgctxt "File property"
 msgid "Last Access: %1"
-msgstr ""
+msgstr "أخر وصول: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:490
 #, kde-format
 msgctxt "File property"
 msgid "Permissions: %1"
-msgstr ""
+msgstr "التّصاريح: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:492
 #, kde-format
 msgctxt "File property"
 msgid "Owner: %1"
-msgstr "所有者：%1"
+msgstr "المالك: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:493
 #, kde-format
 msgctxt "File property"
 msgid "Group: %1"
-msgstr "组：%1"
+msgstr "المجموعة: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:497
 #, kde-format
@@ -7730,22 +7761,22 @@ msgstr ""
 #, kde-format
 msgctxt "File property"
 msgid "Link to: %1"
-msgstr ""
+msgstr "رابط إلى: %1"
 
 #: app/Panel/sidebar.cpp:56
 #, kde-format
 msgid "Tree Panel: a tree view of the local file system"
-msgstr "树型面板：本地文件系统的树型视图"
+msgstr ""
 
 #: app/Panel/sidebar.cpp:63
 #, kde-format
 msgid "Preview Panel: display a preview of the current file"
-msgstr "预览面板：显示当前文件的预览"
+msgstr ""
 
 #: app/Panel/sidebar.cpp:70
 #, kde-format
 msgid "View Panel: view the current file"
-msgstr "查看面板：查看当前文件"
+msgstr ""
 
 #: app/Panel/sidebar.cpp:77
 #, kde-format
@@ -7755,84 +7786,84 @@ msgstr ""
 #: app/Panel/sidebar.cpp:118 app/Panel/sidebar.cpp:225
 #, kde-format
 msgid "Disk Usage:"
-msgstr "磁盘使用率："
+msgstr "استخدام القرص"
 
 #: app/Panel/sidebar.cpp:205
 #, kde-format
 msgid "Tree:"
-msgstr "树型目录："
+msgstr "الشجرة:"
 
 #: app/Panel/sidebar.cpp:213
 #, kde-format
 msgid "Preview:"
-msgstr "预览："
+msgstr "معاينة:"
 
 #: app/Panel/sidebar.cpp:218
 #, kde-format
 msgid "View:"
-msgstr "查看："
+msgstr "العرض:"
 
 #: app/Panel/sidebar.cpp:247
 #, kde-format
 msgid "Preview: %1"
-msgstr "预览： %1"
+msgstr "معاينة: %1"
 
 #: app/Panel/sidebar.cpp:254
 #, kde-format
 msgid "View: %1"
-msgstr ""
+msgstr "عرض: %1"
 
 #: app/Panel/sidebar.cpp:259
 #, kde-format
 msgid "Disk Usage: %1"
-msgstr ""
+msgstr "استخدام القرص: %1"
 
 #: app/Panel/viewactions.cpp:22
 #, kde-format
 msgid "Default Zoom"
-msgstr "默认缩放"
+msgstr "الحجم المبدئي"
 
 #: app/Panel/viewactions.cpp:25
 #, kde-format
 msgid "&All Files"
-msgstr "所有文件(&A)"
+msgstr "&كلّ الملفّات"
 
 #. i18n( "&Executables" ), SHIFT + Qt::Key_F11,
 #. SLOTS, SLOT(execFilter()), actionCollection(), "exec files" );
 #: app/Panel/viewactions.cpp:28
 #, kde-format
 msgid "&Custom"
-msgstr "自定义(&C)"
+msgstr "م&خصّص"
 
 #: app/Panel/viewactions.cpp:31
 #, kde-format
 msgid "Select &Group..."
-msgstr "选择组(&G)..."
+msgstr ""
 
 #: app/Panel/viewactions.cpp:32
 #, kde-format
 msgid "&Select All"
-msgstr "全部选择(&S)"
+msgstr "&حدّد الكلّ"
 
 #: app/Panel/viewactions.cpp:33
 #, kde-format
 msgid "&Unselect Group..."
-msgstr "取消选择组(&U)..."
+msgstr ""
 
 #: app/Panel/viewactions.cpp:34
 #, kde-format
 msgid "U&nselect All"
-msgstr "取消全部选择(&N)"
+msgstr "أزِل &تحديد الكلّ"
 
 #: app/Panel/viewactions.cpp:35
 #, kde-format
 msgid "&Invert Selection"
-msgstr "反向选择(&I)"
+msgstr "ا&عكس التّحديد"
 
 #: app/Panel/viewactions.cpp:36
 #, kde-format
 msgid "Restore Selection"
-msgstr ""
+msgstr "استعد التحديد"
 
 #: app/Panel/viewactions.cpp:37
 #, kde-format
@@ -7862,12 +7893,12 @@ msgstr ""
 #: app/Panel/viewactions.cpp:44
 #, kde-format
 msgid "Show Previews"
-msgstr "显示预览"
+msgstr "اعرض المعاينات"
 
 #: app/Panel/viewactions.cpp:45
 #, kde-format
 msgid "Save settings as default"
-msgstr "存储设置作为默认"
+msgstr ""
 
 #: app/Panel/viewactions.cpp:48
 #, kde-format
@@ -7877,12 +7908,12 @@ msgstr ""
 #: app/Panel/viewactions.cpp:49
 #, kde-format
 msgid "Select all files in the current folder"
-msgstr ""
+msgstr "حدد جميع الملفات في المجلد الحالي"
 
 #: app/Panel/viewactions.cpp:50
 #, kde-format
 msgid "Unselect all"
-msgstr "放弃所有选择"
+msgstr "أزل تحديد الكلّ"
 
 #: app/Panel/viewactions.cpp:51
 #, kde-format
@@ -7892,23 +7923,23 @@ msgstr ""
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
 #, kde-format
 msgid "Open a new tab"
-msgstr ""
+msgstr "افتح لسانًا جديدًا"
 
 #: app/paneltabbar.cpp:172
 #, kde-format
 msgid "[invalid]"
-msgstr ""
+msgstr "[غير صالح]"
 
 #: app/paneltabbar.cpp:191
 #, kde-format
 msgctxt "invalid URL path"
 msgid "?"
-msgstr ""
+msgstr "؟"
 
 #: app/Search/krsearchdialog.cpp:125
 #, kde-format
 msgid "Krusader::Search"
-msgstr "Krusader::Search"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:142
 #, kde-format
@@ -7923,33 +7954,38 @@ msgstr ""
 #: app/Search/krsearchdialog.cpp:167 app/Synchronizer/synchronizergui.cpp:498
 #, kde-format
 msgid "Close"
-msgstr "关闭"
+msgstr "أغلق"
 
 #: app/Search/krsearchdialog.cpp:199 app/Synchronizer/synchronizergui.cpp:243
 #, kde-format
 msgid "Compare by content"
-msgstr "比较内容"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:241
 #, kde-format
 msgid "Text found:"
-msgstr "找到的文本："
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr "空闲"
+msgstr "خاملة"
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
 msgid "&Results"
-msgstr "结果(&R)"
+msgstr "ال&نّتائج"
 
 #: app/Search/krsearchdialog.cpp:393
 #, kde-format
 msgid "Found %1 match."
 msgid_plural "Found %1 matches."
-msgstr[0] "找到 %1 个匹配."
+msgstr[0] "لم يعثر على تطابق"
+msgstr[1] "عثر على تطابق واحد"
+msgstr[2] "عثر على تطابقان"
+msgstr[3] "عثر على %1 تطابقات"
+msgstr[4] "عثر على %1 تطابقاً"
+msgstr[5] "عثر على %1 تطابق"
 
 #: app/Search/krsearchdialog.cpp:418
 #, kde-format
@@ -7958,24 +7994,21 @@ msgid ""
 "You cannot search for text (grep) while doing a search that includes "
 "archives."
 msgstr ""
-"既然您选择了搜索档案,\n"
-"请您注意以下缺点：\n"
-"您不能 (使用 grep 来) 搜索档案中的文件。"
 
 #: app/Search/krsearchdialog.cpp:432
 #, kde-format
 msgid "Found 0 matches."
-msgstr "没有可匹配的。"
+msgstr "لم يعثر على أي تطابق."
 
 #: app/Search/krsearchdialog.cpp:466
 #, kde-format
 msgid "Finished searching."
-msgstr "搜索已完成。"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:576
 #, kde-format
 msgid "Krusader Search"
-msgstr "Krusader 搜索"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:599
 #, kde-format
@@ -7991,22 +8024,22 @@ msgstr ""
 #: app/Synchronizer/feedtolistboxdialog.cpp:93
 #, kde-format
 msgid "Here you can name the file collection"
-msgstr "这里您可以给文件集命名"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:611
 #, kde-format
 msgid "Query name"
-msgstr "查询名称"
+msgstr "اسم الاستعلام"
 
 #: app/Splitter/combiner.cpp:51
 #, kde-format
 msgid "Krusader::Combining..."
-msgstr "Krusader::Combining..."
+msgstr ""
 
 #: app/Splitter/combiner.cpp:52
 #, kde-format
 msgid "Combining the file %1..."
-msgstr "正在合并文件 %1..."
+msgstr ""
 
 #: app/Splitter/combiner.cpp:62
 #, kde-format
@@ -8014,8 +8047,6 @@ msgid ""
 "The CRC information file (%1) is missing.\n"
 "Validity checking is impossible without it. Continue combining?"
 msgstr ""
-"文件 (%1) 的 CRC 信息丢失\n"
-"无法进行校验. 要继续合并文件吗?"
 
 #: app/Splitter/combiner.cpp:96
 #, kde-format
@@ -8033,15 +8064,13 @@ msgid ""
 "\n"
 "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
-"\n"
-"没有 CRC 文件无法检验文件. 要继续合并文件吗?"
 
 #: app/Splitter/combiner.cpp:177 app/Splitter/splitter.cpp:180
 #: app/Synchronizer/synchronizer.cpp:1110
 #: app/Synchronizer/synchronizer.cpp:1118
 #, kde-format
 msgid "File Already Exists"
-msgstr "文件己存在"
+msgstr "الملفّ موجود فعلًا"
 
 #: app/Splitter/combiner.cpp:266
 #, kde-format
@@ -8061,12 +8090,12 @@ msgstr ""
 #: app/Splitter/splitter.cpp:72
 #, kde-format
 msgid "Krusader::Splitting..."
-msgstr "Krusader::Splitting..."
+msgstr ""
 
 #: app/Splitter/splitter.cpp:73
 #, kde-format
 msgid "Splitting the file %1..."
-msgstr "正在分解文件 %1..."
+msgstr ""
 
 #: app/Splitter/splitter.cpp:76
 #, kde-format
@@ -8076,52 +8105,52 @@ msgstr ""
 #: app/Splitter/splitter.cpp:121
 #, kde-format
 msgid "Error reading file %1: %2"
-msgstr ""
+msgstr "خطأ أثناء قراءة الملف %1: %2"
 
 #: app/Splitter/splitter.cpp:236 app/Splitter/splitter.cpp:281
 #, kde-format
 msgid "Error writing file %1: %2"
-msgstr ""
+msgstr "خطأ عند كتابة الملف %1: %2"
 
 #: app/Splitter/splittergui.cpp:52
 #, kde-format
 msgid "1.44 MB (3.5\")"
-msgstr "1.44 MB (3.5\")"
+msgstr "1.44 م.بايت (3.5\")"
 
 #: app/Splitter/splittergui.cpp:53
 #, kde-format
 msgid "1.2 MB (5.25\")"
-msgstr "1.2 MB (5.25\")"
+msgstr "1.2 م.بايت (5.25\")"
 
 #: app/Splitter/splittergui.cpp:54
 #, kde-format
 msgid "720 kB (3.5\")"
-msgstr "720 kB (3.5\")"
+msgstr "720 ك.بايت (3.5\")"
 
 #: app/Splitter/splittergui.cpp:55
 #, kde-format
 msgid "360 kB (5.25\")"
-msgstr "360 kB (5.25\")"
+msgstr "360 ك.بايت (5.25\")"
 
 #: app/Splitter/splittergui.cpp:56
 #, kde-format
 msgid "100 MB (ZIP)"
-msgstr "100 MB (ZIP)"
+msgstr ""
 
 #: app/Splitter/splittergui.cpp:57
 #, kde-format
 msgid "250 MB (ZIP)"
-msgstr "250 MB (ZIP)"
+msgstr ""
 
 #: app/Splitter/splittergui.cpp:58
 #, kde-format
 msgid "650 MB (CD-R)"
-msgstr "650 MB (CD-R)"
+msgstr ""
 
 #: app/Splitter/splittergui.cpp:59
 #, kde-format
 msgid "700 MB (CD-R)"
-msgstr "700 MB (CD-R)"
+msgstr ""
 
 #: app/Splitter/splittergui.cpp:76
 #, kde-format
@@ -8131,27 +8160,27 @@ msgstr ""
 #: app/Splitter/splittergui.cpp:93
 #, kde-format
 msgid "User Defined"
-msgstr "用户自定义"
+msgstr "عرّفها المستخدم"
 
 #: app/Splitter/splittergui.cpp:102
 #, kde-format
 msgid "Max file size:"
-msgstr "文件最大长度："
+msgstr ""
 
 #: app/Splitter/splittergui.cpp:113
 #, kde-format
 msgid "kByte"
-msgstr "千字节"
+msgstr ""
 
 #: app/Splitter/splittergui.cpp:114
 #, kde-format
 msgid "MByte"
-msgstr "兆字节"
+msgstr ""
 
 #: app/Splitter/splittergui.cpp:115
 #, kde-format
 msgid "GByte"
-msgstr "吉字节"
+msgstr ""
 
 #: app/Splitter/splittergui.cpp:120
 #, kde-format
@@ -8161,12 +8190,12 @@ msgstr ""
 #: app/Splitter/splittergui.cpp:130
 #, kde-format
 msgid "&Split"
-msgstr "分解(&S)"
+msgstr "ا&قسم"
 
 #: app/Splitter/splittergui.cpp:134
 #, kde-format
 msgid "Krusader::Splitter"
-msgstr "Krusader::Splitter"
+msgstr ""
 
 #: app/Splitter/splittergui.cpp:235
 #, kde-format
@@ -8176,7 +8205,7 @@ msgstr ""
 #: app/Synchronizer/feedtolistboxdialog.cpp:38
 #, kde-format
 msgid "Krusader::Feed to listbox"
-msgstr "Krusader::Feed to listbox"
+msgstr ""
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:73
 #, kde-format
@@ -8186,7 +8215,7 @@ msgstr ""
 #: app/Synchronizer/feedtolistboxdialog.cpp:87
 #, kde-format
 msgid "Synchronize results"
-msgstr "同步结果"
+msgstr ""
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:104
 #, kde-format
@@ -8196,38 +8225,43 @@ msgstr ""
 #: app/Synchronizer/feedtolistboxdialog.cpp:110
 #, kde-format
 msgid "Left"
-msgstr "左侧"
+msgstr "اليسار"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:111
 #, kde-format
 msgid "Right"
-msgstr "右侧"
+msgstr "اليمين"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:112
 #, kde-format
 msgid "Both"
-msgstr "两者"
+msgstr "كليهما"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:129
 #, kde-format
 msgid "Selected files only"
-msgstr "仅选中的文件"
+msgstr "الملفات المحددة فقط"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:185
 #, kde-format
 msgid "Cannot open %1."
-msgstr ""
+msgstr "تعذّر فتح %1."
 
 #: app/Synchronizer/synchronizedialog.cpp:32
 #, kde-format
 msgid "Krusader::Synchronize"
-msgstr "Krusader::Synchronize"
+msgstr ""
 
 #: app/Synchronizer/synchronizedialog.cpp:39
 #, kde-format
 msgid "Right to left: Copy 1 file"
 msgid_plural "Right to left: Copy %1 files"
-msgstr[0] "从右到左：复制 %1 个文件"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/Synchronizer/synchronizedialog.cpp:40
 #: app/Synchronizer/synchronizedialog.cpp:53
@@ -8235,7 +8269,12 @@ msgstr[0] "从右到左：复制 %1 个文件"
 #, kde-format
 msgid "(1 byte)"
 msgid_plural "(%1 bytes)"
-msgstr[0] "(%1 字节)"
+msgstr[0] "(بايت)"
+msgstr[1] "(بايت)"
+msgstr[2] "(بايتان)"
+msgstr[3] "(%1 بايت)"
+msgstr[4] "(%1 بايت)"
+msgstr[5] "(%1 بايت)"
 
 #: app/Synchronizer/synchronizedialog.cpp:46
 #: app/Synchronizer/synchronizedialog.cpp:59
@@ -8247,56 +8286,71 @@ msgstr[0] "(%1 字节)"
 msgid "\tReady: %2/1 file, %3/%4"
 msgid_plural "\tReady: %2/%1 files, %3/%4"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/Synchronizer/synchronizedialog.cpp:52
 #, kde-format
 msgid "Left to right: Copy 1 file"
 msgid_plural "Left to right: Copy %1 files"
-msgstr[0] "从左到右：复制 %1 个文件"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/Synchronizer/synchronizedialog.cpp:65
 #, kde-format
 msgid "Left: Delete 1 file"
 msgid_plural "Left: Delete %1 files"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: app/Synchronizer/synchronizedialog.cpp:90
 #, kde-format
 msgid "Confirm overwrites"
-msgstr "覆盖需要确定"
+msgstr ""
 
 #: app/Synchronizer/synchronizedialog.cpp:99
 #, kde-format
 msgid "&Start"
-msgstr "开始(&S)"
+msgstr "ا&بدأ"
 
 #: app/Synchronizer/synchronizedialog.cpp:106
 #, kde-format
 msgid "&Pause"
-msgstr "暂停(&P)"
+msgstr "أ&لبث"
 
 #: app/Synchronizer/synchronizedialog.cpp:111
 #, kde-format
 msgid "&Close"
-msgstr "关闭(&C)"
+msgstr "أ&غلق"
 
 #: app/Synchronizer/synchronizedialog.cpp:180
 #: app/Synchronizer/synchronizer.cpp:1288
 #: app/Synchronizer/synchronizer.cpp:1301
 #, kde-format
 msgid "Pause"
-msgstr "暂停"
+msgstr "ألبث"
 
 #: app/Synchronizer/synchronizedialog.cpp:188
 #: app/Synchronizer/synchronizer.cpp:1303
 #, kde-format
 msgid "Resume"
-msgstr "恢复"
+msgstr "استكمل"
 
 #: app/Synchronizer/synchronizer.cpp:154 app/Synchronizer/synchronizer.cpp:635
 #, kde-format
 msgid "Number of files: %1"
-msgstr "文件数：%1"
+msgstr ""
 
 #: app/Synchronizer/synchronizer.cpp:186
 #, kde-format
@@ -8317,7 +8371,7 @@ msgstr ""
 #: app/Synchronizer/synchronizer.cpp:1336
 #, kde-format
 msgid "Krusader::Synchronizer"
-msgstr "Krusader::Synchronizer"
+msgstr ""
 
 #: app/Synchronizer/synchronizer.cpp:1337
 #, kde-format
@@ -8338,7 +8392,7 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:165
 #, kde-format
 msgid "File &Filter:"
-msgstr "文件过滤(&F)："
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:187
 #, kde-format
@@ -8358,27 +8412,27 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:237
 #, kde-format
 msgid "Compare not only the base folders but their subfolders as well."
-msgstr "不但比较基目录也比较子目录"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:238
 #, kde-format
 msgid "Follow symlinks"
-msgstr "跟随符号链接"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:242
 #, kde-format
 msgid "Follow symbolic links during the compare process."
-msgstr "比较处理时跟随符号链接。"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:246
 #, kde-format
 msgid "Compare duplicated files with same size by content."
-msgstr "对同名和大小相同文件，比较其内容"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:247
 #, kde-format
 msgid "Ignore Date"
-msgstr "忽略日期"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:250
 #, kde-format
@@ -8390,7 +8444,7 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:251
 #, kde-format
 msgid "Asymmetric"
-msgstr "非对称的"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:254
 #, kde-format
@@ -8404,7 +8458,7 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:255
 #, kde-format
 msgid "Ignore Case"
-msgstr "忽略大小写"
+msgstr "تجاهل الحالة"
 
 #: app/Synchronizer/synchronizergui.cpp:258
 #, kde-format
@@ -8416,7 +8470,7 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:265
 #, kde-format
 msgid "S&how options"
-msgstr "显示选项(&H)"
+msgstr "أ&ظهر الخيارات"
 
 #: app/Synchronizer/synchronizergui.cpp:276
 #, kde-format
@@ -8446,22 +8500,22 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:306
 #, kde-format
 msgid "Show files that exist on both sides."
-msgstr "列出在两边同时存在的文件"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:308
 #, kde-format
 msgid "Duplicates"
-msgstr "重复的"
+msgstr "المكررات"
 
 #: app/Synchronizer/synchronizergui.cpp:312
 #, kde-format
 msgid "Show files that exist on one side only."
-msgstr "列出在只存在一侧的文件"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:314
 #, kde-format
 msgid "Singles"
-msgstr "单个的"
+msgstr "فردي"
 
 #: app/Synchronizer/synchronizergui.cpp:323
 #, kde-format
@@ -8473,36 +8527,36 @@ msgstr ""
 #, kde-format
 msgctxt "@title:column file name"
 msgid "Name"
-msgstr "名称"
+msgstr "الاسم"
 
 #: app/Synchronizer/synchronizergui.cpp:335
 #: app/Synchronizer/synchronizergui.cpp:339
 #, kde-format
 msgctxt "@title:column"
 msgid "Size"
-msgstr "大小"
+msgstr "الحجم"
 
 #: app/Synchronizer/synchronizergui.cpp:336
 #: app/Synchronizer/synchronizergui.cpp:338
 #, kde-format
 msgctxt "@title:column"
 msgid "Date"
-msgstr "日期"
+msgstr "التاريخ"
 
 #: app/Synchronizer/synchronizergui.cpp:337
 #, kde-format
 msgid "<=>"
-msgstr "<=>"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:372
 #, kde-format
 msgid "&Synchronizer"
-msgstr "同步器(&S)"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:383
 #, kde-format
 msgid "&Options"
-msgstr "选项(&O)"
+msgstr "&خيارات"
 
 #: app/Synchronizer/synchronizergui.cpp:390
 #, kde-format
@@ -8518,25 +8572,25 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:423
 #, kde-format
 msgid "sec"
-msgstr "秒"
+msgstr " ث"
 
 #: app/Synchronizer/synchronizergui.cpp:409
 #: app/Synchronizer/synchronizergui.cpp:424
 #, kde-format
 msgid "min"
-msgstr "分钟"
+msgstr "دق"
 
 #: app/Synchronizer/synchronizergui.cpp:410
 #: app/Synchronizer/synchronizergui.cpp:425
 #, kde-format
 msgid "hour"
-msgstr "小时"
+msgstr "الساعة"
 
 #: app/Synchronizer/synchronizergui.cpp:411
 #: app/Synchronizer/synchronizergui.cpp:426
 #, kde-format
 msgid "day"
-msgstr "天"
+msgstr "يوم"
 
 #: app/Synchronizer/synchronizergui.cpp:414
 #, kde-format
@@ -8546,12 +8600,12 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:433
 #, kde-format
 msgid "Ignore hidden files"
-msgstr "忽略隐藏文件"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:447
 #, kde-format
 msgid "Profile manager (Ctrl+P)."
-msgstr "配置管理器 (Ctrl+P)。"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:453
 #, kde-format
@@ -8561,24 +8615,24 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:463
 #, kde-format
 msgid "Compare"
-msgstr "比较"
+msgstr "قارن"
 
 #: app/Synchronizer/synchronizergui.cpp:473
 #: app/Synchronizer/synchronizergui.cpp:1469
 #, kde-format
 msgid "Quiet"
-msgstr "安静"
+msgstr "أنهِ"
 
 #: app/Synchronizer/synchronizergui.cpp:475
 #: app/Synchronizer/synchronizergui.cpp:1471
 #, kde-format
 msgid "Scroll Results"
-msgstr "滚动结果"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:492
 #, kde-format
 msgid "Synchronize"
-msgstr "同步"
+msgstr "زامِن"
 
 #: app/Synchronizer/synchronizergui.cpp:608
 #, kde-format
@@ -8603,12 +8657,12 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:614
 #, kde-format
 msgid "Targ&et folder:"
-msgstr ""
+msgstr "المجلّد ال&هدف:"
 
 #: app/Synchronizer/synchronizergui.cpp:615
 #, kde-format
 msgid "Sou&rce folder:"
-msgstr ""
+msgstr "مجلد ال&مصدر:"
 
 #: app/Synchronizer/synchronizergui.cpp:617
 #, kde-format
@@ -8628,32 +8682,32 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:709
 #, kde-format
 msgid "Synchronize Folders"
-msgstr ""
+msgstr "زامِن المجلدات"
 
 #: app/Synchronizer/synchronizergui.cpp:711
 #, kde-format
 msgid "E&xclude"
-msgstr "排除(&X)"
+msgstr "ا&ستثنِ"
 
 #: app/Synchronizer/synchronizergui.cpp:713
 #, kde-format
 msgid "Restore ori&ginal operation"
-msgstr "还原原始操作(&G)"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:715
 #, kde-format
 msgid "Re&verse direction"
-msgstr "反转方向(&V)"
+msgstr "ا&عكس الاتجاه"
 
 #: app/Synchronizer/synchronizergui.cpp:717
 #, kde-format
 msgid "Copy from &right to left"
-msgstr "从右侧复制到左侧(&R)"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:719
 #, kde-format
 msgid "Copy from &left to right"
-msgstr "从左侧复制到右侧(&L)"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:721
 #, kde-format
@@ -8663,17 +8717,17 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:726
 #, kde-format
 msgid "V&iew left file"
-msgstr "查看左侧的文件(&I)"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:729
 #, kde-format
 msgid "Vi&ew right file"
-msgstr "查看右侧的文件(&E)"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:732
 #, kde-format
 msgid "&Compare Files"
-msgstr "比较文件(&C)"
+msgstr "&قارن الملفات"
 
 #: app/Synchronizer/synchronizergui.cpp:738
 #, kde-format
@@ -8688,32 +8742,32 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:745
 #, kde-format
 msgid "&Select items"
-msgstr "选择项目(&S)"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:747
 #, kde-format
 msgid "Deselec&t items"
-msgstr "取消选择项目(&T)"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:749
 #, kde-format
 msgid "I&nvert selection"
-msgstr "反向选择(&I)"
+msgstr "اعكس ال&تّحديد"
 
 #: app/Synchronizer/synchronizergui.cpp:759
 #, kde-format
 msgid "Synchronize with &KGet"
-msgstr "使用 &Kget 同步"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:834
 #, kde-format
 msgid "Select items"
-msgstr "选择项目"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:835
 #, kde-format
 msgid "Deselect items"
-msgstr "取消选择项目"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:959
 #, kde-format
@@ -8745,17 +8799,17 @@ msgstr ""
 #: app/Synchronizer/synchronizertask.cpp:325
 #, kde-format
 msgid "Comparing file %1 (%2)..."
-msgstr "正在比较文件 %1 (%2)..."
+msgstr "يقارن الملف %1 (%2)..."
 
 #: app/tabactions.cpp:23
 #, kde-format
 msgid "New Tab"
-msgstr "新建标签"
+msgstr "لسان جديد"
 
 #: app/tabactions.cpp:24
 #, kde-format
 msgid "Duplicate Current Tab"
-msgstr "复制当前标签"
+msgstr "كرّر اللسان الحالي"
 
 #: app/tabactions.cpp:25
 #, kde-format
@@ -8775,37 +8829,37 @@ msgstr ""
 #: app/tabactions.cpp:28
 #, kde-format
 msgid "Close Current Tab"
-msgstr "关闭当前标签"
+msgstr "أغلق اللسان الحالي"
 
 #: app/tabactions.cpp:29
 #, kde-format
 msgid "Undo Close Tab"
-msgstr ""
+msgstr "تراجع عن إغلاق اللسان"
 
 #: app/tabactions.cpp:31
 #, kde-format
 msgid "Next Tab"
-msgstr "下一个标签"
+msgstr "اللسان التالي"
 
 #: app/tabactions.cpp:32
 #, kde-format
 msgid "Previous Tab"
-msgstr "上一个标签"
+msgstr "اللسان السابق"
 
 #: app/tabactions.cpp:33
 #, kde-format
 msgid "Close Inactive Tabs"
-msgstr "关闭非活动标签"
+msgstr ""
 
 #: app/tabactions.cpp:34
 #, kde-format
 msgid "Close Duplicated Tabs"
-msgstr "关闭重复的标签"
+msgstr ""
 
 #: app/tabactions.cpp:35 app/tabactions.cpp:59
 #, kde-format
 msgid "Lock Tab"
-msgstr "锁定标签"
+msgstr ""
 
 #: app/tabactions.cpp:36 app/tabactions.cpp:61
 #, kde-format
@@ -8815,7 +8869,7 @@ msgstr ""
 #: app/tabactions.cpp:59
 #, kde-format
 msgid "Unlock Tab"
-msgstr "解锁标签"
+msgstr ""
 
 #: app/tabactions.cpp:61
 #, kde-format
@@ -8835,24 +8889,24 @@ msgstr ""
 #: app/UserAction/expander.cpp:262
 #, kde-format
 msgid "Panel's Path..."
-msgstr "面板路径..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:265 app/UserAction/expander.cpp:333
 #: app/UserAction/expander.cpp:367 app/UserAction/expander.cpp:401
 #: app/UserAction/expander.cpp:739
 #, kde-format
 msgid "Automatically escape spaces"
-msgstr "自动过滤空格"
+msgstr ""
 
 #: app/UserAction/expander.cpp:287
 #, kde-format
 msgid "Number of..."
-msgstr "数量..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:290
 #, kde-format
 msgid "Count:"
-msgstr "计数："
+msgstr "العدد:"
 
 #: app/UserAction/expander.cpp:306
 #, kde-format
@@ -8862,18 +8916,18 @@ msgstr ""
 #: app/UserAction/expander.cpp:316
 #, kde-format
 msgid "Filter Mask (*.h, *.cpp, etc.)"
-msgstr "过滤掩码(*.h、*.cpp 等)"
+msgstr ""
 
 #: app/UserAction/expander.cpp:329
 #, kde-format
 msgid "Current File (!= Selected File)..."
-msgstr "当前文件(!=所选文件)..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:332 app/UserAction/expander.cpp:365
 #: app/UserAction/expander.cpp:399 app/UserAction/expander.cpp:737
 #, kde-format
 msgid "Omit the current path (optional)"
-msgstr "忽略当前路径(可选)"
+msgstr ""
 
 #: app/UserAction/expander.cpp:360
 #, kde-format
@@ -8889,23 +8943,23 @@ msgstr ""
 #: app/UserAction/expander.cpp:364
 #, kde-format
 msgid "Separator between the items (optional):"
-msgstr "项目分隔符(可选)："
+msgstr ""
 
 #: app/UserAction/expander.cpp:366 app/UserAction/expander.cpp:400
 #: app/UserAction/expander.cpp:738
 #, kde-format
 msgid "Mask (optional, all but 'Selected'):"
-msgstr "掩码(可选，全部但除了\"选中的\")："
+msgstr ""
 
 #: app/UserAction/expander.cpp:394
 #, kde-format
 msgid "Filename of an Item List..."
-msgstr "项目列表的文件名..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:398
 #, kde-format
 msgid "Separator between the items (optional)"
-msgstr "项目分隔符(可选)"
+msgstr ""
 
 #: app/UserAction/expander.cpp:419
 #, kde-format
@@ -8915,32 +8969,32 @@ msgstr ""
 #: app/UserAction/expander.cpp:440
 #, kde-format
 msgid "Manipulate the Selection..."
-msgstr "操作选择项..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:443
 #, kde-format
 msgid "Selection mask:"
-msgstr "选择掩码："
+msgstr "قناع تحديد:"
 
 #: app/UserAction/expander.cpp:444
 #, kde-format
 msgid "Manipulate in which way:"
-msgstr "操作方法："
+msgstr ""
 
 #: app/UserAction/expander.cpp:471
 #, kde-format
 msgid "Jump to a Location..."
-msgstr "转到位置..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:474
 #, kde-format
 msgid "Choose a path:"
-msgstr "选择路径："
+msgstr ""
 
 #: app/UserAction/expander.cpp:475
 #, kde-format
 msgid "Open location in a new tab"
-msgstr "在新标签打开位置"
+msgstr ""
 
 #: app/UserAction/expander.cpp:486
 #, kde-format
@@ -8950,22 +9004,22 @@ msgstr ""
 #: app/UserAction/expander.cpp:518
 #, kde-format
 msgid "Ask Parameter from User..."
-msgstr "向用户询问参数..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:521
 #, kde-format
 msgid "Question:"
-msgstr "问题："
+msgstr "السؤال:"
 
 #: app/UserAction/expander.cpp:522
 #, kde-format
 msgid "Preset (optional):"
-msgstr "预设(可选)："
+msgstr ""
 
 #: app/UserAction/expander.cpp:523
 #, kde-format
 msgid "Caption (optional):"
-msgstr "说明(可选)："
+msgstr ""
 
 #: app/UserAction/expander.cpp:530
 #, kde-format
@@ -8975,17 +9029,17 @@ msgstr ""
 #: app/UserAction/expander.cpp:535
 #, kde-format
 msgid "User Action"
-msgstr "用户操作"
+msgstr ""
 
 #: app/UserAction/expander.cpp:558
 #, kde-format
 msgid "Copy to Clipboard..."
-msgstr "复制到剪贴板..."
+msgstr "انسخ إلى الحافظة…"
 
 #: app/UserAction/expander.cpp:561 app/UserAction/expander.cpp:591
 #, kde-format
 msgid "What to copy:"
-msgstr "复制内容："
+msgstr ""
 
 #: app/UserAction/expander.cpp:562
 #, kde-format
@@ -9010,7 +9064,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:592
 #, kde-format
 msgid "Where to copy:"
-msgstr "复制目标："
+msgstr ""
 
 #: app/UserAction/expander.cpp:597
 #, kde-format
@@ -9035,12 +9089,12 @@ msgstr ""
 #: app/UserAction/expander.cpp:635
 #, kde-format
 msgid "What to move/rename:"
-msgstr "移动/重命名内容："
+msgstr ""
 
 #: app/UserAction/expander.cpp:636
 #, kde-format
 msgid "New target/name:"
-msgstr "新的目标/名称："
+msgstr ""
 
 #: app/UserAction/expander.cpp:641
 #, kde-format
@@ -9060,13 +9114,13 @@ msgstr ""
 #: app/UserAction/expander.cpp:671
 #, kde-format
 msgid "Load a Synchronizer Profile..."
-msgstr "加载同步器配置..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:674 app/UserAction/expander.cpp:696
 #: app/UserAction/expander.cpp:716
 #, kde-format
 msgid "Choose a profile:"
-msgstr "选择一个配置："
+msgstr ""
 
 #: app/UserAction/expander.cpp:679
 #, kde-format
@@ -9076,7 +9130,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:693
 #, kde-format
 msgid "Load a Searchmodule Profile..."
-msgstr "加载搜索模块配置..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:701
 #, kde-format
@@ -9086,7 +9140,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:713
 #, kde-format
 msgid "Load a Panel Profile..."
-msgstr "加载面板配置..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:721
 #, kde-format
@@ -9101,17 +9155,17 @@ msgstr ""
 #: app/UserAction/expander.cpp:767
 #, kde-format
 msgid "Set Sorting for This Panel..."
-msgstr "为此面板设定排序..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:770
 #, kde-format
 msgid "Choose a column:"
-msgstr "选择一列："
+msgstr ""
 
 #: app/UserAction/expander.cpp:771
 #, kde-format
 msgid "Choose a sort sequence:"
-msgstr "选择排序序列："
+msgstr ""
 
 #: app/UserAction/expander.cpp:778
 #, kde-format
@@ -9126,7 +9180,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:836
 #, kde-format
 msgid "Set Relation Between the Panels..."
-msgstr "设定面板间的关系..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:839
 #, kde-format
@@ -9143,7 +9197,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:864
 #, kde-format
 msgid "View File with Krusader's Internal Viewer..."
-msgstr "使用 Krusader 内部查看器查看文件..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:867
 #, kde-format
@@ -9153,14 +9207,14 @@ msgstr ""
 #: app/UserAction/expander.cpp:868
 #, kde-format
 msgid "Choose a view mode:"
-msgstr "选择查看模式："
+msgstr ""
 
 #. i18n("Choose a window-mode"), "__choose:tab;window;panel", false ) );
 #. TODO: window-mode 'panel' should open the file in the third-hand viewer
 #: app/UserAction/expander.cpp:871
 #, kde-format
 msgid "Choose a window mode:"
-msgstr "选择窗口模式："
+msgstr ""
 
 #: app/UserAction/expander.cpp:876
 #, kde-format
@@ -9195,32 +9249,32 @@ msgstr ""
 #: app/UserAction/kraction.cpp:69
 #, kde-format
 msgid "Standard Output (stdout)"
-msgstr "标准输出(stdout)"
+msgstr ""
 
 #: app/UserAction/kraction.cpp:77
 #, kde-format
 msgid "Standard Error (stderr)"
-msgstr "标准错误(stderr)"
+msgstr ""
 
 #: app/UserAction/kraction.cpp:83
 #, kde-format
 msgid "Output"
-msgstr "输出"
+msgstr "الخرج"
 
 #: app/UserAction/kraction.cpp:101
 #, kde-format
 msgid "Use font with fixed width"
-msgstr "使用等宽字体"
+msgstr ""
 
 #: app/UserAction/kraction.cpp:117
 #, kde-format
 msgid "Kill"
-msgstr "杀死"
+msgstr "اقتل"
 
 #: app/UserAction/kraction.cpp:118
 #, kde-format
 msgid "Kill the running process"
-msgstr "杀死正在运行的进程"
+msgstr ""
 
 #: app/UserAction/kraction.cpp:161
 #, kde-format
@@ -9228,8 +9282,6 @@ msgid ""
 "*.txt|Text files\n"
 "*|All files"
 msgstr ""
-"*.txt|文本文件\n"
-"*|所有文件"
 
 #: app/UserAction/kraction.cpp:168
 #, kde-format
@@ -9237,18 +9289,16 @@ msgid ""
 "This file already exists.\n"
 "Do you want to overwrite it or append the output?"
 msgstr ""
-"此文件已存在。\n"
-"您想要覆盖它或追加到输出吗？"
 
 #: app/UserAction/kraction.cpp:169
 #, kde-format
 msgid "Overwrite or append?"
-msgstr "覆盖或追加？"
+msgstr ""
 
 #: app/UserAction/kraction.cpp:171
 #, kde-format
 msgid "Append"
-msgstr "追加"
+msgstr "الإلحاق"
 
 #: app/UserAction/kraction.cpp:184
 #, kde-format
@@ -9276,7 +9326,7 @@ msgstr ""
 #: app/UserAction/kractionbase.cpp:48
 #, kde-format
 msgid "Command being executed:"
-msgstr "将要执行的命令："
+msgstr ""
 
 #: app/UserAction/useraction.cpp:157
 #, kde-format
@@ -9309,7 +9359,7 @@ msgstr ""
 #: app/UserAction/useraction.cpp:201
 #, kde-format
 msgid "UserActions - invalid action"
-msgstr "用户操作 - 无效操作"
+msgstr ""
 
 #: app/useraction_examples.xml:5
 #, kde-format
@@ -9326,22 +9376,22 @@ msgstr ""
 #: app/useraction_examples.xml:47
 #, kde-format
 msgid "Samples"
-msgstr "采样数"
+msgstr "العينات"
 
 #: app/useraction_examples.xml:13
 #, kde-format
 msgid "Edit as root"
-msgstr "以 root 身份编辑"
+msgstr "حرر كجذر"
 
 #: app/useraction_examples.xml:14
 #, kde-format
 msgid "Edit a file as root"
-msgstr "以 root 身份编辑文件"
+msgstr "حرر ملف كجذر"
 
 #: app/useraction_examples.xml:17
 #, kde-format
 msgid "Edit a file with root permissions"
-msgstr "以 root 权限编辑文件"
+msgstr ""
 
 #: app/useraction_examples.xml:23
 #, kde-format
@@ -9361,7 +9411,7 @@ msgstr ""
 #: app/useraction_examples.xml:33
 #, kde-format
 msgid "Multimedia"
-msgstr "多媒体"
+msgstr "الوسائط المتعدّدة"
 
 #: app/useraction_examples.xml:39
 #, kde-format
@@ -9376,7 +9426,7 @@ msgstr ""
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
 msgid "Sort by Name"
-msgstr "按名称排序"
+msgstr "رتّب بالاسم"
 
 #: app/useraction_examples.xml:55
 #, kde-format
@@ -9396,7 +9446,7 @@ msgstr ""
 #: app/useraction_examples.xml:69 app/useraction_examples.xml:70
 #, kde-format
 msgid "Sort by Size"
-msgstr "按大小排序"
+msgstr "رتب بالحجم"
 
 #: app/useraction_examples.xml:73
 #, kde-format
@@ -9426,7 +9476,7 @@ msgstr ""
 #: app/useraction_examples.xml:90
 #, kde-format
 msgid "System"
-msgstr "系统"
+msgstr "النظام"
 
 #: app/useraction_examples.xml:91
 #, kde-format
@@ -9445,54 +9495,54 @@ msgstr ""
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
 #, kde-format
 msgid "Creating folders is not supported with %1 archives"
-msgstr "%1 档案不支持创建目录"
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:345
 #, kde-format
 msgid "Creating %1..."
-msgstr "正在创建 %1..."
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:407 plugins/krarc/krarc.cpp:424
 #, kde-format
 msgid "Writing to %1 archives is not supported"
-msgstr "不支持写入 %1。"
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:497
 #, kde-format
 msgid "Packing %1..."
-msgstr "正在打包 %1..."
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:560 plugins/krarc/krarc.cpp:581
 #, kde-format
 msgid "Retrieving data from %1 archives is not supported"
-msgstr "不支持从 %1 获取数据。"
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:663 plugins/krarc/krarc.cpp:1085
 #, kde-format
 msgid "Unpacking %1..."
-msgstr "正在解包 %1..."
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:676 plugins/krarc/krarc.cpp:681
 #, kde-format
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
-msgstr "发生了一个错误，与外部程序%1相关。错误信息为：%2。"
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
 msgid "Deleting files from %1 archives is not supported"
-msgstr "不支持从 %1 档案删除文件"
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:943 plugins/krarc/krarc.cpp:957
 #, kde-format
 msgid "Accessing files is not supported with %1 archives"
-msgstr "%1 档案不支持访问文件"
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
 #, kde-format
 msgid "Listing folders is not supported for %1 archives"
-msgstr "%1 档案不支持列出目录"
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:2144 plugins/krarc/krarc.cpp:2150
 #, kde-format
@@ -9500,16 +9550,22 @@ msgid ""
 "\n"
 "Make sure that the %1 binary is installed properly on your system."
 msgstr ""
-"\n"
-"请确认 %1 二进制文件在您的系统上已经正确安装。"
 
 #: plugins/krarc/krarc.cpp:2236 plugins/krarc/krarc.cpp:2262
 #, kde-format
 msgid "Krarc Password Dialog"
-msgstr "Krarc 密码对话框"
+msgstr ""
 
 #: plugins/krarc/krarc.cpp:2280 plugins/krarc/krarc.cpp:2290
 #: plugins/krarc/krarc.cpp:2293
 #, kde-format
 msgid "Accessing the file requires a password."
-msgstr "访问该文件需要密码。"
+msgstr ""
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "زايد السعيدي"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "zayed.alsaidi@gmail.com"

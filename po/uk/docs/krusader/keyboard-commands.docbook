@@ -1,21 +1,9 @@
-<!-- **********************************************************************
-  copyright            : (C) 2000-2019
-                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                         & the Krusader Krew
-  e-mail               : krusader-devel@googlegroups.com
-  web site             : https://krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <chapter id="keyboard-commands">
   <title
 >Клавіатурні команди</title>
@@ -35,9 +23,7 @@
 >профілями клавіатурних скорочень</link
 >, які нададуть вам змогу швидко перемикатися між різними варіантами наборів клавіатурних скорочень, наприклад, клавіатурними скороченнями, запозиченими з інших інструментів для роботи з файлами, та створеними вами наборами клавіатурних скорочень.</para>
     <para
->Ви можете розпочати користування клавіатурними скороченнями одразу після <link linkend="starting-krusader"
->запуску</link
-> &krusader;. Скористайтеся натисканням комбінації клавіш <keycombo action="simul"
+>Ви можете розпочати користування клавіатурними скороченнями одразу після запуску &krusader;. Скористайтеся натисканням комбінації клавіш <keycombo action="simul"
 >&Ctrl;<keycap
 >L</keycap
 ></keycombo
@@ -45,13 +31,15 @@
 >панелі адреси</link
 >, у поле якої ви зможете ввести потрібну вам адресу каталогу. Після натискання комбінації клавіш <keycombo action="simul"
 >&Ctrl;<keycap
->Стрілка вниз</keycap
+>↓</keycap
 ></keycombo
 > фокус буде переведено до <link linkend="termemu"
 >емулятора термінала</link
->, де ви зможете ввести і виконати будь-яку потрібну вам команду. За допомогою натискання комбінації клавішe <keycombo action="simul"
+>, якщо <link linkend="konfig-startup"
+>було увімкнено показ термінала</link
+>, де ви зможете ввести і виконати будь-яку потрібну вам команду. За допомогою натискання комбінації клавіш <keycombo action="simul"
 >&Ctrl;<keycap
->Стрілка вгору</keycap
+>↑</keycap
 ></keycombo
 > ви зможете повернути фокус до активної панелі. Якщо ви бажаєте перевести фокус на файл або каталог, назва якого починається з літери <literal
 >f</literal
@@ -97,7 +85,7 @@
 > <guimenu
 >Параметри</guimenu
 > <guimenuitem
->Налаштувати скорочення</guimenuitem
+>Налаштувати скорочення...</guimenuitem
 > </menuchoice
 >. За допомогою цього пункту ви зможете вказати клавіатурні скорочення, відмінні від типових. Ви навіть можете налаштувати прив’язку клавіш до додаткових дій (дій, які не мають типової прив’язки до клавіш). Будь ласка, зауважте, що деякі з клавіатурних скорочень не є клавіатурними скороченнями &krusader; (наприклад, є клавіатурними скороченнями Плазми). Нижче наведено перелік клавіатурних скорочень, типових для &krusader;.</para>
 
@@ -205,7 +193,7 @@
             <entry>
               <para>
                 <link linkend="basic"
->Створення каталогу.</link>
+>Створення теки.</link>
               </para>
             </entry>
           </row>
@@ -412,8 +400,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; <keycap
->Стрілка ліворуч</keycap
+>&Shift;<keycap
+>←</keycap
 ></keycombo>
               </para>
             </entry>
@@ -428,9 +416,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; <keycap
->Стрілка праворуч</keycap
-></keycombo>
+>&Shift; &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -551,14 +537,12 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Home</keycap
-></keycombo>
+>&Alt; &Home;</keycombo>
               </para>
             </entry>
             <entry>
               <para
->Домівка</para>
+>Домівка.</para>
             </entry>
           </row>
           <row>
@@ -579,8 +563,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Стрілка ліворуч</keycap
+>&Alt;<keycap
+>←</keycap
 ></keycombo>
               </para>
             </entry>
@@ -595,8 +579,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Стрілка праворуч</keycap
+>&Alt;<keycap
+>→</keycap
 ></keycombo>
               </para>
             </entry>
@@ -611,8 +595,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Стрілка вниз</keycap
+>&Alt;<keycap
+>↓</keycap
 ></keycombo>
               </para>
             </entry>
@@ -677,7 +661,7 @@
             <entry>
               <para
 ><link linkend="compare-dir"
->Порівняння каталогів.</link
+>Порівняння тек.</link
 ></para>
             </entry>
           </row
@@ -1000,22 +984,6 @@
 >.</para>
             </entry>
           </row>
-          <!-- TODO: Is this entry gone ????
-<row>
-<entry
-><para
-><keycombo action="simul"
->&Ctrl;<keycap
->O</keycap
-></keycombo
-></para
-></entry>
-<entry
-><para
->the inactive panel gets the same path as the active panel</para
-></entry
-></row>
--->
           <row>
             <entry>
               <para>
@@ -1136,7 +1104,7 @@
             <entry>
               <para
 ><link linkend="synchronizer"
->Синхронізувати каталоги</link
+>Синхронізувати теки</link
 >.</para>
             </entry>
           </row>
@@ -1209,7 +1177,7 @@
               <para>
                 <keycombo action="simul"
 >&Ctrl;<keycap
->Стрілка вниз</keycap
+>↓</keycap
 ></keycombo>
               </para>
             </entry>
@@ -1225,7 +1193,7 @@
               <para>
                 <keycombo action="simul"
 >&Ctrl;<keycap
->Стрілка вгору</keycap
+>↑</keycap
 ></keycombo>
               </para>
             </entry>
@@ -1241,7 +1209,7 @@
               <para>
                 <keycombo action="simul"
 >&Ctrl;<keycap
->Стрілка вгору</keycap
+>↑</keycap
 ></keycombo>
               </para>
             </entry>
@@ -1256,9 +1224,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
->Home</keycap
-></keycombo>
+>&Ctrl; &Home;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1270,20 +1236,20 @@
             <entry>
               <para
 ><keycombo action="simul"
->&Ctrl; <keycap
->Стрілка ліворуч</keycap
+>&Ctrl;<keycap
+>←</keycap
 ></keycombo
 > або <keycombo
-> <keycap
->Стрілка праворуч</keycap
-> </keycombo
+><keycap
+>→</keycap
+></keycombo
 ></para>
             </entry>
             <entry>
               <para
 >Позначте пункт файла або каталогу на лівій панелі і натисніть комбінацію клавіш <keycombo action="simul"
 >&Ctrl; <keycap
->Стрілка ліворуч</keycap
+>←</keycap
 ></keycombo
 > — вміст правою <link linkend="panels"
 >панелі</link
@@ -1301,7 +1267,7 @@
 > </itemizedlist
 >Для правої панелі: натисніть комбінацію клавіш <keycombo action="simul"
 >&Ctrl; <keycap
->Стрілка праворуч</keycap
+>→</keycap
 ></keycombo
 > — відповідним чином буде змінено вміст лівої панелі.</para>
             </entry>
@@ -1322,9 +1288,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
->PageUp</keycap
-></keycombo>
+>&Ctrl; &PgUp;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1385,22 +1349,6 @@
                 <link linkend="remote-connections"
 >Розірвати віддалене з’єднання.</link>
               </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->F</keycap
-></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para
->Показати <link linkend="remote-connections"
->панель пошуку</link
-> для відшукання записів на активній вкладці. </para>
             </entry>
           </row>
           <row>
@@ -1487,8 +1435,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Стрілка ліворуч</keycap
+>&Ctrl;&Shift;<keycap
+>←</keycap
 ></keycombo>
               </para>
             </entry>
@@ -1503,8 +1451,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Стрілка праворуч</keycap
+>&Ctrl;&Shift;<keycap
+>→</keycap
 ></keycombo>
               </para>
             </entry>
@@ -1519,8 +1467,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Стрілка вгору</keycap
+>&Ctrl;&Shift;<keycap
+>↑</keycap
 ></keycombo>
               </para>
             </entry>
@@ -1535,8 +1483,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Стрілка вниз</keycap
+>&Ctrl;&Shift;<keycap
+>↓</keycap
 ></keycombo>
               </para>
             </entry>
@@ -1545,6 +1493,30 @@
 >Закрити <link linkend="cmdline"
 >емулятор термінала</link
 >, незалежно від того, чи показано командний рядок.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &PgUp;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Пересунути поточну вкладку ліворуч.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &PgDn;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Пересунути поточну вкладку праворуч.</para>
             </entry>
           </row>
         </tbody>
@@ -1558,24 +1530,22 @@
     <informaltable>
       <tgroup cols="2">
         <tbody>
-<!--          <row>
+          <row>
             <entry>
               <para>
-                <keycombo action="simul">
-                &Ctrl;&Alt;
-                <keycap
->J</keycap
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>E</keycap
 ></keycombo>
               </para>
             </entry>
             <entry>
               <para
-><link linkend="javascript_console"
->JavaScript console</link
-></para>
+>Показати/Приховати <link linkend="cmdline"
+>вбудований термінал</link
+>.</para>
             </entry>
-	  </row
-> disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
+          </row>
           <row>
             <entry>
               <para>
@@ -1640,24 +1610,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Alt; <keycap
->T</keycap
-></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para
->Показати/Приховати <link linkend="cmdline"
->вбудований термінал</link
->.</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul"
->&Ctrl;&Alt; <keycap
->Стрілка ліворуч</keycap
+>&Ctrl;&Alt;<keycap
+>←</keycap
 ></keycombo>
               </para>
             </entry>
@@ -1672,8 +1626,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Alt; <keycap
->Стрілка праворуч</keycap
+>&Ctrl;&Alt;<keycap
+>→</keycap
 ></keycombo>
               </para>
             </entry>
@@ -1757,9 +1711,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
->PageDown</keycap
-></keycombo>
+>&Ctrl; &PgDn;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1882,7 +1834,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; <keycap
+>&Ctrl; <keycap
 >Delete</keycap
 ></keycombo>
               </para>
@@ -1890,16 +1842,16 @@
             <entry>
               <para>
                 <link linkend="basic"
->Остаточно вилучити.</link>
+>Альтернативне вилучення.</link>
               </para>
             </entry>
           </row>
           <row>
             <entry>
-              <para>
-                <keycap
->Пробіл</keycap>
-              </para>
+              <para
+><keycap
+>Пробіл</keycap
+> </para>
             </entry>
             <entry>
               <para
@@ -1920,10 +1872,8 @@
           </row>
           <row>
             <entry>
-              <para>
-                <keycap
->Insert</keycap>
-              </para>
+              <para
+>&Ins; </para>
             </entry>
             <entry>
               <para
@@ -1948,10 +1898,8 @@
           </row>
           <row>
             <entry>
-              <para>
-                <keycap
->Home</keycap>
-              </para>
+              <para
+>&Home; </para>
             </entry>
             <entry>
               <para
@@ -1960,10 +1908,8 @@
           </row>
           <row>
             <entry>
-              <para>
-                <keycap
->End</keycap>
-              </para>
+              <para
+>&End; </para>
             </entry>
             <entry>
               <para
@@ -1989,11 +1935,7 @@
           <row>
             <entry>
               <para
-><keycap
->Стрілка вгору</keycap
-> і <keycap
->Стрілка вниз</keycap
-></para>
+>Стрілки вгору і вниз</para>
             </entry>
             <entry>
               <para
@@ -2019,7 +1961,7 @@
               <para>
                 <keycombo action="simul"
 >&Ctrl;<keycap
->Стрілка вгору</keycap
+>↑</keycap
 ></keycombo>
               </para>
             </entry>
@@ -2033,7 +1975,7 @@
               <para>
                 <keycombo action="simul"
 >&Ctrl;<keycap
->Стрілка вниз</keycap
+>↓</keycap
 ></keycombo>
               </para>
             </entry>
@@ -2066,7 +2008,6 @@
 >Вставити поточний файл/каталог з повним шляхом до поточної позиції у командному рядку.</para>
             </entry>
           </row>
-          <!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
         </tbody>
       </tgroup>
     </informaltable>
@@ -2118,7 +2059,7 @@
               <para>
                 <keycombo action="simul"
 >&Ctrl;<keycap
->Стрілка вгору</keycap
+>↑</keycap
 ></keycombo>
               </para>
             </entry>
@@ -2132,7 +2073,7 @@
               <para>
                 <keycombo action="simul"
 >&Ctrl;<keycap
->Стрілка вниз</keycap
+>↓</keycap
 ></keycombo>
               </para>
             </entry>
@@ -2159,9 +2100,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; <keycap
->Insert</keycap
-></keycombo>
+>&Shift; &Ins;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2169,8 +2108,6 @@
 >Вставити з буфера обміну даними.</para>
             </entry>
           </row>
-
-          <!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
         </tbody>
       </tgroup>
     </informaltable>
@@ -2205,8 +2142,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Стрілка вниз</keycap
+>&Alt;<keycap
+>↓</keycap
 ></keycombo>
               </para>
             </entry>
@@ -2220,7 +2157,7 @@
               <para>
                 <keycombo action="simul"
 >&Alt; <keycap
->Стрілка вгору</keycap
+>↑</keycap
 ></keycombo>
               </para>
             </entry>
@@ -2233,8 +2170,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Стрілка ліворуч</keycap
+>&Alt;<keycap
+>←</keycap
 ></keycombo>
               </para>
             </entry>
@@ -2247,8 +2184,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Стрілка праворуч</keycap
+>&Alt;<keycap
+>→</keycap
 ></keycombo>
               </para>
             </entry>
@@ -2474,11 +2411,13 @@
       </listitem>
       <listitem>
         <para
->Системні параметри → <guilabel
->Загальний вигляд і поведінка</guilabel
-> → <guilabel
->Скорочення і жести</guilabel
-></para>
+>Модуль <menuchoice
+> <guimenu
+>Загальний вигляд і поведінка</guimenu
+><guisubmenu
+>Скорочення і жести</guisubmenu
+></menuchoice
+> у «Системних параметрах» Плазми.</para>
       </listitem>
       <listitem>
         <para

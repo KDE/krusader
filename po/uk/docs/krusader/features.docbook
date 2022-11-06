@@ -1,21 +1,9 @@
-<!-- **********************************************************************
-  copyright            : (C) 2000-2019
-                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                         & the Krusader Krew
-  e-mail               : krusader-devel@googlegroups.com
-  web site             : https://krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <chapter id="features">
 <title
 >Можливості</title>
@@ -139,7 +127,7 @@
           <listitem>
             <para
 ><link linkend="synchronizer"
->Синхронізувати каталоги</link
+>Синхронізувати теки</link
 ></para>
           </listitem>
           <listitem>
@@ -388,8 +376,8 @@
 >Профілі клавіатурних скорочень</link
 ></para>
         </listitem>
-      </itemizedlist>
-Отримайте і вивантажте власні додатки до &krusader; за адресою <ulink url="https://store.kde.org/"
+      </itemizedlist
+>Отримайте і вивантажте власні додатки до &krusader; за адресою <ulink url="https://store.kde.org/"
 >store.kde.org</ulink
 >. </para>
     </listitem>
@@ -657,14 +645,63 @@
   </itemizedlist>
 </para>
 
+<para>
+  <itemizedlist>
+    <title
+>Нові можливості у випуску &krusader;-2.8.0 «A New Day»</title>
+    <listitem>
+      <para
+>Дублювання вкладок подвійним клацанням. </para>
+    </listitem>
+    <listitem>
+      <para
+>Закриття вкладок за допомогою &Ctrl;+&LMB; або &Alt;+&LMB; (можна налаштувати). </para>
+    </listitem>
+    <listitem>
+      <para
+>Скасовування закриття вкладок протягом терміну роботи програми. </para>
+    </listitem>
+    <listitem>
+      <para
+>Динамічне масштабування вкладок. </para>
+    </listitem>
+    <listitem>
+      <para
+>Придатні до налаштовування розташування нової вкладки, видимість кнопки вкладки та поведінка у відповідь на натискання кнопки створення вкладки. </para>
+    </listitem>
+    <listitem>
+      <para
+>Журнал і пропозиції у вікні створення теки. </para>
+    </listitem>
+    <listitem>
+      <para
+>Циклічний перехід між повною назвою, назвою файла і суфіксом за допомогою скорочення перейменування (типово, <keycap
+>F2</keycap
+>). </para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo
+>&Shift;<keycap
+>Del</keycap
+></keycombo
+> вилучає небажані записи з журналу у вікнах програми. </para>
+    </listitem>
+    <listitem>
+      <para
+>Удосконалено синхронізацію між панеллю та вбудованим терміналом. </para>
+    </listitem>
+    <listitem>
+      <para
+>Удосконалено налаштовування кольорів. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
 <para
 ><note
 ><para
->Якщо ви користуєтеся <link linkend="krusader_devel"
->експериментальною</link
-> версією або версією з <link linkend="krusader_git"
->Git</link
->, ймовірно, що найсвіжіші нові можливості програми ще не описано у «Підручнику з &krusader;». Будь ласка, ознайомтеся з вмістом файла <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+>Якщо ви користуєтеся експериментальною версією або версією з git, ймовірно, що найсвіжіші нові можливості програми ще не описано у «Підручнику з &krusader;». Будь ласка, ознайомтеся з вмістом файла <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
 >Changelog</ulink
 > у мережі або у кодах &krusader;, щоб дізнатися більше про нові можливості. Короткий опис можна знайти у файлі <ulink url="https://commits.kde.org/krusader?path=NEWS"
 >NEWS</ulink
