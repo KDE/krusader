@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-17 00:50+0000\n"
-"PO-Revision-Date: 2022-02-07 22:48+0400\n"
+"PO-Revision-Date: 2022-11-05 21:02+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: Lokalize 21.07.70\n"
+"X-Generator: Lokalize 21.12.3\n"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -46,12 +46,12 @@ msgstr ""
 #: app/ActionMan/actionproperty.cpp:368
 #, kde-format
 msgid "Edit Path"
-msgstr ""
+msgstr "حرر المسار"
 
 #: app/ActionMan/actionproperty.cpp:368
 #, kde-format
 msgid "Set another path:"
-msgstr ""
+msgstr "عيّن مسار أخر:"
 
 #: app/ActionMan/actionproperty.cpp:392
 #, kde-format
@@ -81,12 +81,12 @@ msgstr "اسم الملفّ الجديد"
 #: app/ActionMan/actionproperty.cpp:433
 #, kde-format
 msgid "Set a file name:"
-msgstr ""
+msgstr "عيّن اسم ملف:"
 
 #: app/ActionMan/actionproperty.cpp:450
 #, kde-format
 msgid "Edit File Name"
-msgstr ""
+msgstr "حرر اسم الملفّ"
 
 #: app/ActionMan/actionproperty.cpp:450
 #, kde-format
@@ -120,13 +120,13 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:14
 #, kde-format
 msgid "Action Property"
-msgstr ""
+msgstr "خاصية الإجراء"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabBasic)
 #: app/ActionMan/actionproperty.ui:39
 #, kde-format
 msgid "Basic Properties"
-msgstr ""
+msgstr "خصائص أساسية"
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonAddStartpath)
 #: app/ActionMan/actionproperty.ui:45
@@ -406,7 +406,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:477
 #, kde-format
 msgid "Advanced Properties"
-msgstr ""
+msgstr "خصائص متقدّمة"
 
 #. i18n: ectx: property (title), widget (QGroupBox, gbShowonly)
 #: app/ActionMan/actionproperty.ui:489
@@ -678,7 +678,7 @@ msgstr ""
 #: app/Archive/abstractthreadedjob.cpp:488
 #, kde-format
 msgid "Counting files"
-msgstr ""
+msgstr "يعد الملفات"
 
 #: app/Archive/abstractthreadedjob.cpp:517
 #, kde-format
@@ -818,17 +818,17 @@ msgstr "اسم المجلد:"
 #: app/BookMan/krbookmark.cpp:22 app/BookMan/krbookmarkhandler.cpp:771
 #, kde-format
 msgid "Trash bin"
-msgstr ""
+msgstr "سلة المهملات"
 
 #: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:779
 #, kde-format
 msgid "Virtual Filesystem"
-msgstr ""
+msgstr "نظام ملفات افتراضي"
 
 #: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:775
 #, kde-format
 msgid "Local Network"
-msgstr ""
+msgstr "الشبكة المحلية"
 
 #: app/BookMan/krbookmarkbutton.cpp:28 app/BookMan/krbookmarkbutton.cpp:29
 #, kde-format
@@ -1581,12 +1581,12 @@ msgstr "المخطّط"
 #: app/DiskUsage/dufilelight.cpp:88
 #, kde-format
 msgid "Increase contrast"
-msgstr ""
+msgstr "زد التباين"
 
 #: app/DiskUsage/dufilelight.cpp:89
 #, kde-format
 msgid "Decrease contrast"
-msgstr ""
+msgstr "انقص التباين"
 
 #: app/DiskUsage/dufilelight.cpp:91
 #, kde-format
@@ -1616,7 +1616,7 @@ msgstr ""
 #: app/DiskUsage/dulines.cpp:173
 #, kde-format
 msgid "Line View"
-msgstr ""
+msgstr "عرض السطر"
 
 #: app/DiskUsage/dulines.cpp:174 app/DiskUsage/dulistview.cpp:40
 #, kde-format
@@ -1632,7 +1632,7 @@ msgstr "الاسم"
 #: app/DiskUsage/dulines.cpp:448
 #, kde-format
 msgid "Show file sizes"
-msgstr ""
+msgstr "أظهر حجم الملفات"
 
 #: app/DiskUsage/dulistview.cpp:41
 #, kde-format
@@ -1642,7 +1642,7 @@ msgstr "الحجم الكليّ"
 #: app/DiskUsage/dulistview.cpp:42
 #, kde-format
 msgid "Own size"
-msgstr ""
+msgstr "حجمه"
 
 #: app/DiskUsage/dulistview.cpp:43 app/MountMan/kmountmangui.cpp:147
 #, kde-format
@@ -2346,7 +2346,7 @@ msgstr ""
 #, kde-format
 msgctxt "%1 is the mount point of the remote share"
 msgid "Remote Share [%1]"
-msgstr ""
+msgstr "مشاركة عن بعد [%1]"
 
 #: app/GUI/mediabutton.cpp:164
 #, kde-format
@@ -2467,7 +2467,7 @@ msgstr ""
 #: app/GUI/profilemanager.cpp:92
 #, kde-format
 msgid "Enter the profile name:"
-msgstr ""
+msgstr "أدخل اسم التشكيلة:"
 
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
@@ -2510,7 +2510,7 @@ msgstr "ابدأ المهمّة"
 #: app/JobMan/jobman.cpp:168
 #, kde-format
 msgid "No jobs"
-msgstr ""
+msgstr "لا مهام"
 
 #: app/JobMan/jobman.cpp:174
 #, kde-format
@@ -2556,7 +2556,7 @@ msgstr[5] ""
 #: app/JobMan/jobman.cpp:433
 #, kde-format
 msgid "No Jobs"
-msgstr ""
+msgstr "لا مهام"
 
 #: app/JobMan/jobman.cpp:435
 #, kde-format
@@ -2572,17 +2572,17 @@ msgstr[5] "%1 مهمّة"
 #: app/JobMan/jobman.cpp:440
 #, kde-format
 msgid "Clear Job List"
-msgstr ""
+msgstr "امسح قائمة المهام"
 
 #: app/JobMan/jobman.cpp:441
 #, kde-format
 msgid "Pause All Jobs"
-msgstr ""
+msgstr "ألبث قائمة المهام"
 
 #: app/JobMan/jobman.cpp:442
 #, kde-format
 msgid "Resume Job List"
-msgstr ""
+msgstr "استكمل قائمة المهام"
 
 #: app/JobMan/krjob.cpp:24
 #, kde-format
@@ -2593,12 +2593,12 @@ msgstr "انقل %1 إلى المهملات"
 #, kde-format
 msgid "Move %1 file to trash"
 msgid_plural "Move %1 files to trash"
-msgstr[0] ""
+msgstr[0] "انقل إلى المهملات"
 msgstr[1] "انقل الملفّ إلى المهملات"
 msgstr[2] "انقل الملفّين إلى المهملات"
-msgstr[3] "انقل ال‍ %1 ملفّات إلى المهملات"
-msgstr[4] "انقل ال‍ %1 ملفًّا إلى المهملات"
-msgstr[5] "انقل ال‍ %1 ملفّ إلى المهملات"
+msgstr[3] "انقل %1 ملفّات إلى المهملات"
+msgstr[4] "انقل %1 ملفًّا إلى المهملات"
+msgstr[5] "انقل %1 ملفّ إلى المهملات"
 
 #: app/JobMan/krjob.cpp:26
 #, kde-format
@@ -3302,7 +3302,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:95 app/KViewer/lister.cpp:2263
 #, kde-format
 msgid "Text mode"
-msgstr ""
+msgstr "وضع النص"
 
 #: app/Konfigurator/kggeneral.cpp:95
 #, kde-format
@@ -3680,8 +3680,7 @@ msgid "Duplicate active tab by click:"
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, fuzzy, kde-format
-#| msgid "disabled"
+#, kde-format
 msgid "Disabled"
 msgstr "معطّل"
 
@@ -3771,7 +3770,7 @@ msgstr "الموقع:"
 #: app/Konfigurator/kgpanel.cpp:202
 #, kde-format
 msgid "Default mode:"
-msgstr ""
+msgstr "الوضع المبدئيّ:"
 
 #: app/Konfigurator/kgpanel.cpp:205 app/KViewer/lister.cpp:1207
 #: app/Panel/krsearchbar.cpp:41 app/Search/krsearchdialog.cpp:155
@@ -3877,7 +3876,7 @@ msgstr "شريط الحالة"
 #: app/Konfigurator/kgpanel.cpp:299
 #, kde-format
 msgid "Frame Shape:"
-msgstr ""
+msgstr "شكل الإطار:"
 
 #: app/Konfigurator/kgpanel.cpp:303
 #, kde-format
@@ -4029,7 +4028,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:441
 #, kde-format
 msgid "Sort method:"
-msgstr ""
+msgstr "طريقة الفرز:"
 
 #: app/Konfigurator/kgpanel.cpp:444
 #, kde-format
@@ -4104,7 +4103,7 @@ msgstr "أنماط العرض"
 #: app/Konfigurator/kgpanel.cpp:489
 #, kde-format
 msgid "Default view mode:"
-msgstr ""
+msgstr "طريقة العرض الأساسية:"
 
 #: app/Konfigurator/kgpanel.cpp:538
 #, kde-format
@@ -4581,7 +4580,7 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:57
 #, kde-format
 msgid "Show splashscreen"
-msgstr ""
+msgstr "أظهر شاشة البداية"
 
 #: app/Konfigurator/kgstartup.cpp:57
 #, kde-format
@@ -4805,7 +4804,7 @@ msgstr ""
 #: app/UserAction/useractionpopupmenu.cpp:20
 #, kde-format
 msgid "User Actions"
-msgstr ""
+msgstr "إجراءات المستخدم"
 
 #: app/Konfigurator/konfigurator.cpp:130
 #, kde-format
@@ -5071,7 +5070,7 @@ msgstr "ال&تّشكيلات"
 #: app/kractions.cpp:207
 #, kde-format
 msgid "Sp&lit File..."
-msgstr ""
+msgstr "ا&قسم ملف…"
 
 #: app/kractions.cpp:208
 #, kde-format
@@ -5482,7 +5481,7 @@ msgstr "شريط أدوات الإجراءات"
 #: app/krusaderui.rc:200
 #, kde-format
 msgid "Job Toolbar"
-msgstr ""
+msgstr "شريط أدوات المهام"
 
 #: app/krusaderview.cpp:78
 #, kde-format
@@ -5502,7 +5501,7 @@ msgstr ""
 #: app/KViewer/krviewer.cpp:87
 #, kde-format
 msgid "&Text Viewer"
-msgstr ""
+msgstr "عارض ال&نص"
 
 #: app/KViewer/krviewer.cpp:88
 #, kde-format
@@ -5567,7 +5566,7 @@ msgstr "‏%1 (يُحرَر)"
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
-msgstr ""
+msgstr "%1 (عرض)"
 
 #: app/KViewer/krviewer.cpp:642
 #, kde-format
@@ -5579,12 +5578,12 @@ msgstr "‏%1 (يُحرَر)"
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
-msgstr ""
+msgstr "يعرض: %1"
 
 #: app/KViewer/lister.cpp:1194 app/KViewer/lister.cpp:1907
 #, kde-format
 msgid "Save selection..."
-msgstr ""
+msgstr "حفظ التحديد..."
 
 #: app/KViewer/lister.cpp:1198
 #, kde-format
@@ -5666,7 +5665,7 @@ msgstr "ست عشري"
 #: app/KViewer/lister.cpp:1351
 #, kde-format
 msgid "Error reading file %1."
-msgstr ""
+msgstr "خطأ أثناء قراءة الملف %1."
 
 #: app/KViewer/lister.cpp:1448
 #, kde-format
@@ -5854,7 +5853,7 @@ msgstr ""
 #: app/Locate/locate.cpp:636
 #, kde-format
 msgid "Query Name"
-msgstr ""
+msgstr "اسم الاستعلام"
 
 #: app/Locate/locate.cpp:636
 #, kde-format
@@ -6427,7 +6426,7 @@ msgid "Pawel Salawa"
 msgstr ""
 
 #: app/main.cpp:179 app/main.cpp:180
-#, fuzzy, kde-format
+#, kde-format
 msgid "Polish translation"
 msgstr "التّرجمة البولنديّة"
 
@@ -6677,26 +6676,26 @@ msgid "Total occupied space: %1"
 msgstr ""
 
 #: app/Panel/krcalcspacedialog.cpp:111
-#, fuzzy, kde-format
+#, kde-format
 msgid " (%2 byte)"
 msgid_plural " (%2 bytes)"
-msgstr[0] "بايت"
-msgstr[1] "بايت"
-msgstr[2] "بايت"
-msgstr[3] "بايت"
-msgstr[4] "بايت"
-msgstr[5] "بايت"
+msgstr[0] " (%2 بايت)"
+msgstr[1] " (%2 بايت)"
+msgstr[2] " (%2 بايت)"
+msgstr[3] " (%2 بايت)"
+msgstr[4] " (%2 بايت)"
+msgstr[5] " (%2 بايت)"
 
 #: app/Panel/krcalcspacedialog.cpp:113
-#, fuzzy, kde-format
+#, kde-format
 msgid "in %1 folder"
 msgid_plural "in %1 folders"
-msgstr[0] "في المجلّد"
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "في مجلّد"
+msgstr[1] "في مجلد"
+msgstr[2] "في مجلدين"
+msgstr[3] "في %1 مجلدات"
+msgstr[4] "في %1 مجلدا"
+msgstr[5] "في %1 مجلد"
 
 #: app/Panel/krcalcspacedialog.cpp:115
 #, kde-format
@@ -6927,7 +6926,7 @@ msgstr ""
 #: app/Panel/listpanel.cpp:1050
 #, kde-format
 msgid ">> Reading..."
-msgstr ""
+msgstr ">> يقرأ..."
 
 #: app/Panel/listpanel.cpp:1076
 #, kde-format
@@ -6935,9 +6934,9 @@ msgid ">> Reading: %1 % complete..."
 msgstr ""
 
 #: app/Panel/listpanel.cpp:1082
-#, fuzzy, kde-format
+#, kde-format
 msgid ">> Reading: %1"
-msgstr "القراءة"
+msgstr ">> يقرأ: %1"
 
 #: app/Panel/listpanel.cpp:1121
 #, kde-format
@@ -6947,7 +6946,7 @@ msgstr "الخطأ: %1"
 #: app/Panel/listpanelactions.cpp:52
 #, kde-format
 msgid "Cut to Clipboard"
-msgstr ""
+msgstr "قص إلى الحافظة"
 
 #: app/Panel/listpanelactions.cpp:58 app/Search/krsearchdialog.cpp:205
 #, kde-format
@@ -6957,7 +6956,7 @@ msgstr "انسخ إلى الحافظة"
 #: app/Panel/listpanelactions.cpp:60
 #, kde-format
 msgid "Paste from Clipboard"
-msgstr ""
+msgstr "ألصق من الحافظة"
 
 #: app/Panel/listpanelactions.cpp:64 app/Search/krsearchdialog.cpp:189
 #, kde-format
@@ -7864,7 +7863,7 @@ msgstr "ا&عكس التّحديد"
 #: app/Panel/viewactions.cpp:36
 #, kde-format
 msgid "Restore Selection"
-msgstr ""
+msgstr "استعد التحديد"
 
 #: app/Panel/viewactions.cpp:37
 #, kde-format
@@ -7909,7 +7908,7 @@ msgstr ""
 #: app/Panel/viewactions.cpp:49
 #, kde-format
 msgid "Select all files in the current folder"
-msgstr ""
+msgstr "حدد جميع الملفات في المجلد الحالي"
 
 #: app/Panel/viewactions.cpp:50
 #, kde-format
@@ -8030,7 +8029,7 @@ msgstr ""
 #: app/Search/krsearchdialog.cpp:611
 #, kde-format
 msgid "Query name"
-msgstr ""
+msgstr "اسم الاستعلام"
 
 #: app/Splitter/combiner.cpp:51
 #, kde-format
@@ -8106,7 +8105,7 @@ msgstr ""
 #: app/Splitter/splitter.cpp:121
 #, kde-format
 msgid "Error reading file %1: %2"
-msgstr ""
+msgstr "خطأ أثناء قراءة الملف %1: %2"
 
 #: app/Splitter/splitter.cpp:236 app/Splitter/splitter.cpp:281
 #, kde-format
@@ -8114,24 +8113,24 @@ msgid "Error writing file %1: %2"
 msgstr "خطأ عند كتابة الملف %1: %2"
 
 #: app/Splitter/splittergui.cpp:52
-#, fuzzy, kde-format
+#, kde-format
 msgid "1.44 MB (3.5\")"
-msgstr "م.بايت"
+msgstr "1.44 م.بايت (3.5\")"
 
 #: app/Splitter/splittergui.cpp:53
-#, fuzzy, kde-format
+#, kde-format
 msgid "1.2 MB (5.25\")"
-msgstr "م.بايت"
+msgstr "1.2 م.بايت (5.25\")"
 
 #: app/Splitter/splittergui.cpp:54
-#, fuzzy, kde-format
+#, kde-format
 msgid "720 kB (3.5\")"
-msgstr "ك.بايت"
+msgstr "720 ك.بايت (3.5\")"
 
 #: app/Splitter/splittergui.cpp:55
-#, fuzzy, kde-format
+#, kde-format
 msgid "360 kB (5.25\")"
-msgstr "ك.بايت"
+msgstr "360 ك.بايت (5.25\")"
 
 #: app/Splitter/splittergui.cpp:56
 #, kde-format
@@ -8267,15 +8266,15 @@ msgstr[5] ""
 #: app/Synchronizer/synchronizedialog.cpp:40
 #: app/Synchronizer/synchronizedialog.cpp:53
 #: app/Synchronizer/synchronizedialog.cpp:66
-#, fuzzy, kde-format
+#, kde-format
 msgid "(1 byte)"
 msgid_plural "(%1 bytes)"
-msgstr[0] "بايت"
-msgstr[1] "بايت"
-msgstr[2] "بايت"
-msgstr[3] "بايت"
-msgstr[4] "بايت"
-msgstr[5] "بايت"
+msgstr[0] "(بايت)"
+msgstr[1] "(بايت)"
+msgstr[2] "(بايتان)"
+msgstr[3] "(%1 بايت)"
+msgstr[4] "(%1 بايت)"
+msgstr[5] "(%1 بايت)"
 
 #: app/Synchronizer/synchronizedialog.cpp:46
 #: app/Synchronizer/synchronizedialog.cpp:59
@@ -8471,7 +8470,7 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:265
 #, kde-format
 msgid "S&how options"
-msgstr ""
+msgstr "أ&ظهر الخيارات"
 
 #: app/Synchronizer/synchronizergui.cpp:276
 #, kde-format
@@ -8516,7 +8515,7 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:314
 #, kde-format
 msgid "Singles"
-msgstr ""
+msgstr "فردي"
 
 #: app/Synchronizer/synchronizergui.cpp:323
 #, kde-format
@@ -9377,17 +9376,17 @@ msgstr ""
 #: app/useraction_examples.xml:47
 #, kde-format
 msgid "Samples"
-msgstr ""
+msgstr "العينات"
 
 #: app/useraction_examples.xml:13
 #, kde-format
 msgid "Edit as root"
-msgstr ""
+msgstr "حرر كجذر"
 
 #: app/useraction_examples.xml:14
 #, kde-format
 msgid "Edit a file as root"
-msgstr ""
+msgstr "حرر ملف كجذر"
 
 #: app/useraction_examples.xml:17
 #, kde-format
