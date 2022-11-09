@@ -12,6 +12,7 @@
 
 #include "defaults.h"
 #include "tabactions.h"
+#include "abstractpanelmanager.h"
 #include "../krglobal.h"
 #include "../icon.h"
 #include "Panel/listpanel.h"
@@ -260,8 +261,22 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
     }
 
     bool isActiveTab = currentIndex() == clickedTabIndex;
+    KrPanel *tabPane = getPanel(clickedTabIndex)->manager()->currentPanel();
+    KrPanel *activePane = ACTIVE_PANEL;
 
     _tabClicked = true;
+
+    // activate the pane with the clicked tab unless it's active already
+    if (tabPane && tabPane != activePane) {
+        // slotFocusOnMe() is an expensive call, make it only when necessary
+        // If current tab is not active, the QTabBar::mousePressEvent will trigger
+        // current tab index change signal and the slot will call slotFocusOnMe().
+        // This way we avoid extra calls.
+        if (isActiveTab)
+            tabPane->gui->slotFocusOnMe();
+        else
+            emit tabPane->gui->activate();
+    }
 
     if (e->button() == Qt::RightButton) {
         if (!isActiveTab)
