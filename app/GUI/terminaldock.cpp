@@ -220,6 +220,12 @@ bool TerminalDock::eventFilter(QObject * watched, QEvent * e)
     switch (e->type()) {
     case QEvent::ShortcutOverride: {
         auto *ke = dynamic_cast<QKeyEvent *>(e);
+        // Opens a new tab in the embedded terminal emulator
+        if (ke->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier) && ke->key() == Qt::Key_T) {
+            ke->accept();
+            QMetaObject::invokeMethod(konsole_part, "newTab");
+            return true;
+        }
         // If not present, some keys would be considered a shortcut, for example "a"
         if ((ke->key() ==  Qt::Key_Insert) && (ke->modifiers()  == Qt::ShiftModifier)) {
             ke->accept();
