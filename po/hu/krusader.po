@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 00:50+0000\n"
-"PO-Revision-Date: 2022-11-16 23:15+0100\n"
+"PO-Revision-Date: 2022-11-17 23:04+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2947,7 +2947,7 @@ msgid ""
 "i>, you can configure the alternate colors in the <i>colors</i> box.</p>"
 msgstr ""
 "<p>A <b>háttérszín</b> és a <b>másodlagos háttérszín</b> soronként váltják "
-"egymást.</p><p>Ha nem az <i>alapértelmezett KDE-színek</i> vannak használva, "
+"egymást.</p><p>Ha nem az <i>alapértelmezett KDE színeket</i> használja, "
 "akkor beállíthatók a másodlagos színek a <i>színbeállításoknál</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:55
@@ -2963,8 +2963,8 @@ msgid ""
 "p>"
 msgstr ""
 "<p>A legutóbbi kurzorpozíció megjelenítése a nem aktív listapanelen.</"
-"p><p>Ez az opció csak akkor elérhető, ha nem az <i>alapértelmezett KDE-"
-"színek</i> vannak használva.</p>"
+"p><p>Ez az opció csak akkor elérhető, ha nem az <i>alapértelmezett KDE "
+"színeket</i> használja.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:56
 #, kde-format
@@ -3002,10 +3002,9 @@ msgid "Foreground:"
 msgstr "Alap:"
 
 #: app/Konfigurator/kgcolors.cpp:93 app/Konfigurator/kgcolors.cpp:131
-#, fuzzy, kde-format
-#| msgid "Delete foreground:"
+#, kde-format
 msgid "Folder foreground:"
-msgstr "Előtér, törlés:"
+msgstr "Mappa:"
 
 #: app/Konfigurator/kgcolors.cpp:93 app/Konfigurator/kgcolors.cpp:94
 #: app/Konfigurator/kgcolors.cpp:95 app/Konfigurator/kgcolors.cpp:96
@@ -3027,7 +3026,7 @@ msgstr "Szimbolikus link:"
 #: app/Konfigurator/kgcolors.cpp:96 app/Konfigurator/kgcolors.cpp:134
 #, kde-format
 msgid "Invalid symlink foreground:"
-msgstr "Érvénytelen szimb. link:"
+msgstr "Érvénytelen szimbolikus link:"
 
 #: app/Konfigurator/kgcolors.cpp:97 app/Konfigurator/kgcolors.cpp:135
 #, kde-format
@@ -3097,16 +3096,14 @@ msgid "Current background:"
 msgstr "Aktuális háttér:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, fuzzy, kde-format
-#| msgid "Delete foreground:"
+#, kde-format
 msgid "Rename foreground:"
-msgstr "Előtér, törlés:"
+msgstr "Átnevezés:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, fuzzy, kde-format
-#| msgid "Alternate background:"
+#, kde-format
 msgid "Rename background:"
-msgstr "Másodlagos háttér:"
+msgstr "Átnevezés háttér:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3138,7 +3135,7 @@ msgstr "Elmosási faktor:"
 #: app/Konfigurator/kgcolors.cpp:224 app/Konfigurator/kgcolors.cpp:225
 #, kde-format
 msgid "KDE default"
-msgstr "KDE-alapértelmezés"
+msgstr "KDE alapértelmezés"
 
 #: app/Konfigurator/kgcolors.cpp:186
 #, kde-format
@@ -3279,7 +3276,7 @@ msgstr "Aktuális"
 #: app/Konfigurator/kgcolors.cpp:447
 #, kde-format
 msgid "Invalid symlink"
-msgstr "Érvénytelen szimb. link"
+msgstr "Érvénytelen szimbolikus link"
 
 #: app/Konfigurator/kgcolors.cpp:448
 #, kde-format
@@ -3292,10 +3289,9 @@ msgid "Application"
 msgstr "Alkalmazás"
 
 #: app/Konfigurator/kgcolors.cpp:451
-#, fuzzy, kde-format
-#| msgid "Folders"
+#, kde-format
 msgid "Folder"
-msgstr "Könyvtárak"
+msgstr "Mappa"
 
 #: app/Konfigurator/kgcolors.cpp:514
 #, kde-format
@@ -3355,7 +3351,7 @@ msgstr "Válasszon ki egy színséma-fájlt"
 #: app/Konfigurator/kgcolors.cpp:583
 #, kde-format
 msgid "File %1 already exists. Are you sure you want to overwrite it?"
-msgstr "\"%1\" nevű fájl már létezik. Felül szeretné írni?"
+msgstr "„%1” nevű fájl már létezik. Felül szeretné írni?"
 
 #: app/Konfigurator/kgcolors.cpp:586
 #, kde-format
@@ -3375,12 +3371,12 @@ msgstr "Ellenőrzőösszeg-alkalmazások"
 #: app/Konfigurator/kgdependencies.cpp:148
 #, kde-format
 msgid "The %1 path is incorrect, no valid path found."
-msgstr "A(z) \"%1\" útvonal érvénytelen. Érvényes útvonal nem található."
+msgstr "A(z) „%1” elérési út érvénytelen. Nem található érvényes elérési út."
 
 #: app/Konfigurator/kgdependencies.cpp:152
 #, kde-format
 msgid "The %1 path is incorrect, %2 used instead."
-msgstr "A(z) \"%1\" útvonal érvénytelen. \"%2\" lesz használva."
+msgstr "A(z) „%1” elérési út helytelen, „%2” lesz használva."
 
 #: app/Konfigurator/kggeneral.cpp:64
 #, kde-format
@@ -3399,19 +3395,21 @@ msgid ""
 "If checked, each file will open in a separate window, otherwise, the viewer "
 "will work in a single, tabbed mode"
 msgstr ""
-"Ha be van jelölve, akkor minden fájl különálló ablakban lesz megnyitva. Ha "
-"nincs bejelölve, akkor a megjelenítő egyetlen, több lapot tartalmazó ablakot "
+"Ha be van jelölve, akkor minden fájl külön ablakban lesz megnyitva. Ha nincs "
+"bejelölve, akkor a megjelenítő egyetlen, több lapot tartalmazó ablakot "
 "használ."
 
 #: app/Konfigurator/kggeneral.cpp:74
 #, kde-format
 msgid "Hide the tab bar when only one tab is opened"
-msgstr ""
+msgstr "A lapsáv elrejtése, ha csak egy lap van megnyitva"
 
 #: app/Konfigurator/kggeneral.cpp:75
 #, kde-format
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
 msgstr ""
+"Ha be van jelölve, a Megjelenítő lapsávja nem látszódik, ha csak egy lap van "
+"megnyitva"
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3421,7 +3419,7 @@ msgstr "Megjelenítő"
 #: app/Konfigurator/kggeneral.cpp:90
 #, kde-format
 msgid "Default viewer mode:"
-msgstr "Alapértelmezett megjelenítési módszer:"
+msgstr "Alapértelmezett megjelenítési mód:"
 
 #: app/Konfigurator/kggeneral.cpp:94
 #, kde-format
@@ -3458,34 +3456,34 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:97
 #, kde-format
 msgid "Lister mode"
-msgstr "Listázó mód"
+msgstr "Nézőke mód"
 
 #: app/Konfigurator/kggeneral.cpp:97
 #, kde-format
 msgid "View the file with lister (for huge text files)"
-msgstr "A fájl megjelenítése a Listázóban (nagy szöveges fájlokhoz)"
+msgstr "A fájl megtekintése a nézőkével (óriási szövegfájlokhoz)"
 
 #: app/Konfigurator/kggeneral.cpp:105
 #, kde-format
 msgid "Use Okteta as Hex viewer"
-msgstr "Okteta használata Hexa megjelenítőként"
+msgstr "Okteta használata hexadecimális megjelenítőként"
 
 #: app/Konfigurator/kggeneral.cpp:106
 #, kde-format
 msgid "If available, use Okteta as Hex viewer instead of the internal viewer"
 msgstr ""
-"Ha elérhető, az Okteta használata Hexa megjelenítőként a belső megjelenítő "
-"helyett"
+"Ha elérhető, az Okteta használata hexadecimális megjelenítőként a belső "
+"megjelenítő helyett"
 
 #: app/Konfigurator/kggeneral.cpp:112
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
-msgstr ""
+msgstr "Ha a szövegfájl nagyobb, mint ez a méret, a nézőke lesz használva."
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
 msgid "Use lister if the text file is bigger than:"
-msgstr "Listázó használata, ha a szöveges fájl nagyobb, mint:"
+msgstr "Nézőke használata, ha a szövegfájl nagyobb, mint:"
 
 #: app/Konfigurator/kggeneral.cpp:118
 #, kde-format
@@ -3509,7 +3507,7 @@ msgid ""
 "editor"
 msgstr ""
 "Tipp: ha a Krusader gyors beépített szerkesztőjét szeretné használni, akkor "
-"írjon be \"internal editor\"-t."
+"írjon be „internal editor”-t."
 
 #: app/Konfigurator/kggeneral.cpp:148
 #, kde-format
@@ -3529,13 +3527,12 @@ msgstr "Figyelmeztetés kilépéskor"
 #: app/Konfigurator/kggeneral.cpp:214
 #, kde-format
 msgid "Display a warning when trying to close the main window."
-msgstr "Figyelmeztetés megjelenítése a főablak bezárásának kezdeményezésekor"
+msgstr "Figyelmeztetés megjelenítése a főablak bezárásának kezdeményezésekor."
 
 #: app/Konfigurator/kggeneral.cpp:215
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show and close to tray"
-msgstr "Az Új lap/Lap bezárása gombok mutatása"
+msgstr "Minimalizálás a paneltálcára"
 
 #: app/Konfigurator/kggeneral.cpp:215
 #, kde-format
@@ -3543,19 +3540,18 @@ msgid ""
 "Show an icon in the system tray and keep running in the background when the "
 "window is closed."
 msgstr ""
+"Ikon megjelenítése a paneltálcán, és futás a háttérben az ablak bezárásakor."
 
 #: app/Konfigurator/kggeneral.cpp:224
-#, fuzzy, kde-format
-#| msgid "New Folder"
+#, kde-format
 msgid "Temp Folder:"
-msgstr "Új könyvtár"
+msgstr "Átmeneti mappa:"
 
 #: app/Konfigurator/kggeneral.cpp:233
-#, fuzzy, kde-format
-#| msgid "Note: you must have full permissions for the temporary directory."
+#, kde-format
 msgid "Note: you must have full permissions for the temporary folder."
 msgstr ""
-"Megjegyzés: teljes jogosultsággal kell rendelkeznie az átmeneti könyvtárhoz."
+"Megjegyzés: teljes jogosultsággal kell rendelkeznie az átmeneti mappához."
 
 #: app/Konfigurator/kggeneral.cpp:243
 #, kde-format
@@ -3565,12 +3561,12 @@ msgstr "Törlés mód"
 #: app/Konfigurator/kggeneral.cpp:248
 #, kde-format
 msgid "Move to trash"
-msgstr "Áthelyezés a szemetesbe"
+msgstr "Áthelyezés a kukába"
 
 #: app/Konfigurator/kggeneral.cpp:248
 #, kde-format
 msgid "Files will be moved to trash when deleted."
-msgstr "Törléskor a fájlok áthelyeződnek a szemetesbe"
+msgstr "Törléskor a fájlok áthelyeződnek kukába."
 
 #: app/Konfigurator/kggeneral.cpp:249
 #, kde-format
@@ -3580,7 +3576,7 @@ msgstr "Fájlok törlése"
 #: app/Konfigurator/kggeneral.cpp:249
 #, kde-format
 msgid "Files will be permanently deleted."
-msgstr "A fájlok véglegesen törlésre kerülnek"
+msgstr "A fájlok véglegesen törlésre kerülnek."
 
 #: app/Konfigurator/kggeneral.cpp:260 app/Panel/panelcontextmenu.cpp:196
 #, kde-format
@@ -3588,68 +3584,57 @@ msgid "Terminal"
 msgstr "Terminál"
 
 #: app/Konfigurator/kggeneral.cpp:263
-#, fuzzy, kde-format
-#| msgid "Terminal:"
+#, kde-format
 msgid "External Terminal:"
-msgstr "Terminál:"
+msgstr "Külső terminál:"
 
 #: app/Konfigurator/kggeneral.cpp:268
-#, fuzzy, kde-format
-#| msgid ""
-#| "%t will be replaced by the title of the action,\n"
-#| "%d with the workdir."
+#, kde-format
 msgid "%d will be replaced by the workdir."
-msgstr "%t le lesz cserélve a művelet címére, %d pedig a munkakönyvtárra."
+msgstr "A %d le lesz cserélve a munkakönyvtárra."
 
 #: app/Konfigurator/kggeneral.cpp:273
-#, fuzzy, kde-format
-#| msgid "Terminal Emulator sends Chdir on panel change"
+#, kde-format
 msgid "Embedded Terminal sends Chdir on panel change"
-msgstr "Panelváltáskor könyvtárváltás a terminálemulátorban"
+msgstr "Panelváltáskor mappaváltás a beágyazott terminálban"
 
 #: app/Konfigurator/kggeneral.cpp:273
-#, fuzzy, kde-format
-#| msgid ""
-#| "When checked, whenever the panel is changed (for example, by pressing "
-#| "Tab), Krusader changes the current directory in the terminal emulator."
+#, kde-format
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing Tab), "
 "Krusader changes the current folder in the embedded terminal."
 msgstr ""
 "Ha be van jelölve, akkor a Krusader minden (például a Tab billentyű "
-"lenyomására történő) panelváltáskor belép az ekkor aktuálissá váló "
-"könyvtárba a terminálemulátorban."
+"lenyomására történő) panelváltáskor belép az ekkor aktuálissá váló mappába a "
+"beágyazott terminálban."
 
 #: app/Konfigurator/kggeneral.cpp:274
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
-msgstr ""
+msgstr "Beágyazott terminál munkakönyvtárának követése az aktív panelen"
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, fuzzy, kde-format
-#| msgid ""
-#| "When checked, whenever the panel is changed (for example, by pressing "
-#| "Tab), Krusader changes the current directory in the terminal emulator."
+#, kde-format
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"Ha be van jelölve, akkor a Krusader minden (például a Tab billentyű "
-"lenyomására történő) panelváltáskor belép az ekkor aktuálissá váló "
-"könyvtárba a terminálemulátorban."
+"Ha be van jelölve, akárhányszor megváltozik a terminál munkakönyvtára "
+"(például a „cd” vagy „popd” parancsok hatására), a Krusader megváltoztatja "
+"az aktív panelen is az aktuális mappát."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
 msgid "Searching for tools..."
-msgstr "Eszközök keresése..."
+msgstr "Eszközök keresése…"
 
 #: app/Konfigurator/kggeneral.cpp:298
 #, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
-"Új eszközöket a <code>$PATH</code> útvonalra telepítsen (példa: /usr/bin)"
+"Új eszközöket a <code>$PATH</code> elérési útra telepítsen (példa: /usr/bin)"
 
 #: app/Konfigurator/kggeneral.cpp:306
 #, kde-format
@@ -3673,28 +3658,29 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:80
 #, kde-format
 msgid "Navigator bar"
-msgstr ""
+msgstr "Navigátor sáv"
 
 #: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
 msgid "Edit Mode by default"
-msgstr ""
+msgstr "Szerkesztési mód"
 
 #: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
 msgid "Show editable path in Navigator bar by default"
 msgstr ""
+"Szerkeszthető elérési út megjelenítése a Navigátor sávon alapértelmezetten"
 
 #: app/Konfigurator/kgpanel.cpp:86
-#, fuzzy, kde-format
-#| msgid "Show previews by default"
+#, kde-format
 msgid "Show full path by default"
-msgstr "Előnézetek mutatása alapértelmezésként"
+msgstr "Teljes elérési út megjelenítése"
 
 #: app/Konfigurator/kgpanel.cpp:86
 #, kde-format
 msgid "Always show full path in Navigator bar by default."
 msgstr ""
+"A teljes elérési út jelenjen meg mindig a Navigátor sávon alapértelmezetten."
 
 #: app/Konfigurator/kgpanel.cpp:96
 #, kde-format
@@ -3702,21 +3688,17 @@ msgid "Operation"
 msgstr "Működés"
 
 #: app/Konfigurator/kgpanel.cpp:100
-#, fuzzy, kde-format
-#| msgid "Autoselect directories"
+#, kde-format
 msgid "Autoselect folders"
-msgstr "Könyvtárak automatikus kijelölése"
+msgstr "Mappák automatikus kijelölése"
 
 #: app/Konfigurator/kgpanel.cpp:100
-#, fuzzy, kde-format
-#| msgid ""
-#| "When matching the select criteria, not only files will be selected, but "
-#| "also directories."
+#, kde-format
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "folders."
 msgstr ""
-"A kijelölési feltétel kiértékelésekor a megfelelő könyvtárak is ki lesznek "
+"A kijelölési feltétel kiértékelésekor a megfelelő mappák is ki lesznek "
 "jelölve."
 
 #: app/Konfigurator/kgpanel.cpp:101
@@ -3733,7 +3715,7 @@ msgid ""
 msgstr ""
 "Egy fájl átnevezésénél a teljes szöveg kijelölésre kerül. Ha azt szeretné, "
 "hogy csak a név legyen kijelölve kiterjesztés nélkül - úgy, ahogy a Total "
-"Commander-ben működik -, kapcsolja ki ezt az opciót."
+"Commanderben működik -, kapcsolja ki ezt az opciót."
 
 #: app/Konfigurator/kgpanel.cpp:102
 #, kde-format
@@ -3778,78 +3760,73 @@ msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
 "the path is displayed."
 msgstr ""
-"A teljes elérési út megjelenítése a könyvtárfüleken. Ha ki van kapcsolva, "
-"akkor csak az útvonal utolsó része jelenik meg a füleken."
+"A teljes elérési út megjelenítése a mappafüleken. Ha ki van kapcsolva, akkor "
+"csak az útvonal utolsó része jelenik meg a füleken."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show close tab buttons"
-msgstr "Az Új lap/Lap bezárása gombok mutatása"
+msgstr "Lap bezárása gombok megjelenítése"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show close tab buttons."
-msgstr "Az Új lap/Lap bezárása gombok mutatása"
+msgstr "A lap bezárása gomb megjelenítése."
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr ""
+msgstr "Lapok kibontása"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr ""
+msgstr "Lapok kibontása."
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show new tab button"
-msgstr "Az Új lap/Lap bezárása gombok mutatása"
+msgstr "Új lap gomb megjelenítése"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show new tab button."
-msgstr "Az Új lap/Lap bezárása gombok mutatása"
+msgstr "Az új lap gomb megjelenítése."
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr ""
+msgstr "Lapok beszúrása az aktuális után"
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, fuzzy, kde-format
-#| msgid "Select all files in the current directory"
+#, kde-format
 msgid "Insert new tabs to the right of the current one."
-msgstr "Az aktuális könyvtárban levő összes fájl kijelölése"
+msgstr "Az új lapok az aktuálistól jobbra lesznek beszúrva."
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
 msgid "Show Tab Bar on single tab"
-msgstr ""
+msgstr "Lapsáv megjelenítése egy lapnál"
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
 msgid "Show the tab bar with only one tab."
-msgstr ""
+msgstr "Lapsáv megjelenítése egyetlen lappal is."
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr ""
+msgstr "Lap bezárása dupla kattintásra"
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr ""
+msgstr "Lap bezárása dupla kattintásra."
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr ""
+msgstr "Az új lap gomb duplázza a lapot"
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3857,42 +3834,43 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
+"Ha be van jelölve, az új lap gomb megduplázza a lapot, egyébként új lapot "
+"nyit a saját mappában."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr ""
+msgstr "Aktív lap duplikálása kattintással:"
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, fuzzy, kde-format
-#| msgid "disabled"
+#, kde-format
 msgid "Disabled"
-msgstr "kikapcsolva"
+msgstr "Kikapcsolva"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr ""
+msgstr "Alt+kattintás"
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr ""
+msgstr "Ctrl+kattintás"
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr ""
+msgstr "Aktív lap duplikálása Ctrl/Alt+bal egérgombbal kattintással"
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
 msgid "Tab Bar position:"
-msgstr "A fülsáv helye:"
+msgstr "Lapsáv helye:"
 
 #: app/Konfigurator/kgpanel.cpp:158
 #, kde-format
 msgid "Top"
-msgstr "Teteje"
+msgstr "Fent"
 
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
@@ -3900,21 +3878,20 @@ msgid "Bottom"
 msgstr "Lent"
 
 #: app/Konfigurator/kgpanel.cpp:174
-#, fuzzy, kde-format
-#| msgid "Search for:"
+#, kde-format
 msgid "Search bar"
-msgstr "Keresendő:"
+msgstr "Keresősáv"
 
 #: app/Konfigurator/kgpanel.cpp:178
-#, fuzzy, kde-format
-#| msgid "Start of Line"
+#, kde-format
 msgid "Start by typing"
-msgstr "Sor eleje"
+msgstr "Indítás gépeléssel"
 
 #: app/Konfigurator/kgpanel.cpp:178
 #, kde-format
 msgid "Open search bar and start searching by typing in panel."
 msgstr ""
+"A keresősáv megnyitása és a panelen belüli keresés indítása gépeléssel."
 
 #: app/Konfigurator/kgpanel.cpp:179 app/KViewer/lister.cpp:1291
 #, kde-format
@@ -3924,25 +3901,24 @@ msgstr "Nagybetűérzékeny"
 #: app/Konfigurator/kgpanel.cpp:179
 #, kde-format
 msgid "Search must match case."
-msgstr ""
+msgstr "A keresésnek egyeztetnie kell a kis- és nagybetűket."
 
 #: app/Konfigurator/kgpanel.cpp:180
-#, fuzzy, kde-format
-#| msgid "Up/Down cancels Quicksearch"
+#, kde-format
 msgid "Up/Down cancels search"
-msgstr "A Fel/Le gombok megszakítják a Gyorskeresést"
+msgstr "A Fel/Le gombok megszakítják a keresést"
 
 #: app/Konfigurator/kgpanel.cpp:180
-#, fuzzy, kde-format
-#| msgid "Pressing the Up/Down buttons cancels Quicksearch."
+#, kde-format
 msgid ""
 "Pressing the Up/Down buttons closes the search bar (only in search mode)."
-msgstr "A Fel/Le gombok megnyomása megszakítja a Gyorskeresést."
+msgstr ""
+"A Fel/Le gombog megnyomása bezárja a keresősávot (csak keresési módban)."
 
 #: app/Konfigurator/kgpanel.cpp:181
 #, kde-format
 msgid "Folder navigation with Right Arrow"
-msgstr ""
+msgstr "Mappanavigáció a Jobbra nyíllal"
 
 #: app/Konfigurator/kgpanel.cpp:181
 #, kde-format
@@ -3950,6 +3926,8 @@ msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
 msgstr ""
+"A Jobbra gomb megnyomása belép a mappába, ha nem a keresési szöveget kívánja "
+"módosítani."
 
 #: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
@@ -3957,10 +3935,9 @@ msgid "Position:"
 msgstr "Pozíció:"
 
 #: app/Konfigurator/kgpanel.cpp:202
-#, fuzzy, kde-format
-#| msgid "Default view mode:"
+#, kde-format
 msgid "Default mode:"
-msgstr "Alapértelmezett nézetmód:"
+msgstr "Alapértelmezett mód:"
 
 #: app/Konfigurator/kgpanel.cpp:205 app/KViewer/lister.cpp:1207
 #: app/Panel/krsearchbar.cpp:41 app/Search/krsearchdialog.cpp:155
@@ -3969,45 +3946,39 @@ msgid "Search"
 msgstr "Keresés"
 
 #: app/Konfigurator/kgpanel.cpp:206 app/Panel/krsearchbar.cpp:41
-#, fuzzy, kde-format
-#| msgid "Selected 2"
+#, kde-format
 msgid "Select"
-msgstr "Kiválasztott 2"
+msgstr "Kijelölés"
 
 #: app/Konfigurator/kgpanel.cpp:207 app/Panel/krsearchbar.cpp:41
-#, fuzzy, kde-format
-#| msgid "Filter:"
+#, kde-format
 msgid "Filter"
-msgstr "Szűrő:"
+msgstr "Szűrő"
 
 #: app/Konfigurator/kgpanel.cpp:211
 #, kde-format
 msgid "Set the default mode on first usage"
-msgstr ""
+msgstr "Alapértelmezett mód megadása az első használatkor"
 
 #: app/Konfigurator/kgpanel.cpp:221
-#, fuzzy, kde-format
-#| msgid "Bookmarks"
+#, kde-format
 msgid "Bookmark Search"
-msgstr "Könyvjelzők"
+msgstr "Könyvjelzőkeresés"
 
 #: app/Konfigurator/kgpanel.cpp:226
-#, fuzzy, kde-format
-#| msgid "Always sort dirs by name"
+#, kde-format
 msgid "Always show search bar"
-msgstr "Könyvárakat mindig név szerint rendezzen"
+msgstr "A keresősáv mindig látszódjon"
 
 #: app/Konfigurator/kgpanel.cpp:226
-#, fuzzy, kde-format
-#| msgid "The bookmarks button will be visible."
+#, kde-format
 msgid "Make bookmark search bar always visible"
-msgstr "A könyvjelzők gomb látható lesz."
+msgstr "A könyvjelzőkeresési sáv mindig legyen látható"
 
 #: app/Konfigurator/kgpanel.cpp:227
-#, fuzzy, kde-format
-#| msgid "Search in arch&ives"
+#, kde-format
 msgid "Search in special items"
-msgstr "Keresés arc&hívumokban"
+msgstr "Keresés a különleges elemekben"
 
 #: app/Konfigurator/kgpanel.cpp:227
 #, kde-format
@@ -4015,6 +3986,8 @@ msgid ""
 "Bookmark search is also applied to special items in bookmark menu like "
 "Trash, Popular URLs, Jump Back, etc."
 msgstr ""
+"A könyvjelzőkeresés a könyvjelző menü elemeire, például a Kukára, Népszerű "
+"URL-ekre, Ugrás visszára, stb. is érvényes"
 
 #: app/Konfigurator/kgpanel.cpp:237
 #, kde-format
@@ -4049,7 +4022,7 @@ msgstr "Elrendezés:"
 #: app/Konfigurator/kgpanel.cpp:285
 #, kde-format
 msgid "Frame Color:"
-msgstr "Keret szín:"
+msgstr "Keretszín:"
 
 #: app/Konfigurator/kgpanel.cpp:289
 #, kde-format
@@ -4101,7 +4074,7 @@ msgstr "Panel"
 #: app/Konfigurator/kgpanel.cpp:314
 #, kde-format
 msgid "Frame Shadow:"
-msgstr "Keret árnyék:"
+msgstr "Keret árnyéka:"
 
 #: app/Konfigurator/kgpanel.cpp:318
 #, kde-format
@@ -4138,10 +4111,9 @@ msgid "Use icons in the filenames"
 msgstr "Ikonok használata a fájlneveknél"
 
 #: app/Konfigurator/kgpanel.cpp:357
-#, fuzzy, kde-format
-#| msgid "Show the icons for filenames and directories."
+#, kde-format
 msgid "Show the icons for filenames and folders."
-msgstr "A fájlnevekhez és könyvtárakhoz tartozó ikonok megjelenítése."
+msgstr "A fájlnevekhez és mappákhoz tartozó ikonok megjelenítése."
 
 #: app/Konfigurator/kgpanel.cpp:358
 #, kde-format
@@ -4149,10 +4121,9 @@ msgid "Show previews by default"
 msgstr "Előnézetek mutatása alapértelmezésként"
 
 #: app/Konfigurator/kgpanel.cpp:358
-#, fuzzy, kde-format
-#| msgid "Show previews of files and directories."
+#, kde-format
 msgid "Show previews of files and folders."
-msgstr "Fájlok és könyvtárak előnézetének mutatása"
+msgstr "Fájlok és mappák előnézetének mutatása."
 
 #: app/Konfigurator/kgpanel.cpp:393
 #, kde-format
@@ -4165,11 +4136,13 @@ msgid ""
 "The duration after a tooltip is shown for a file item, in milliseconds. Set "
 "a negative value to disable tooltips."
 msgstr ""
+"A fájlok buboréksúgójának megjelenítése előtti időtartam, ezredmásodpercben. "
+"Negatív érték megadásával kikapcsolhatja a buboréksúgókat."
 
 #: app/Konfigurator/kgpanel.cpp:406
 #, kde-format
 msgid "Tooltip delay (msec):"
-msgstr ""
+msgstr "Buboréksúgó késleltetés (ms):"
 
 #: app/Konfigurator/kgpanel.cpp:423
 #, kde-format
@@ -4191,12 +4164,12 @@ msgstr "Rejtett fájlok megjelenítése"
 #: app/Konfigurator/kgpanel.cpp:424
 #, kde-format
 msgid "Display files beginning with a dot."
-msgstr "Ponttal kezdődő nevű fájlok megjelenítése"
+msgstr "Ponttal kezdődő nevű fájlok megjelenítése."
 
 #: app/Konfigurator/kgpanel.cpp:425
 #, kde-format
 msgid "Numeric Permissions"
-msgstr "Jogosultságok numerikusan"
+msgstr "Numerikus jogosultságok"
 
 #: app/Konfigurator/kgpanel.cpp:425
 #, kde-format
@@ -4205,7 +4178,7 @@ msgid ""
 "the permission column."
 msgstr ""
 "A jogosultságok oszlopában oktális számok jelenjenek meg (példa: 0755) az "
-"alapértelmezett jogosultságformátum (példa: rwxr-xr-x) helyett"
+"alapértelmezett jogosultságformátum (példa: rwxr-xr-x) helyett."
 
 #: app/Konfigurator/kgpanel.cpp:426
 #, kde-format
@@ -4213,9 +4186,7 @@ msgid "Load the user defined folder icons"
 msgstr "A felhasználó által megadott mappaikonok betöltése"
 
 #: app/Konfigurator/kgpanel.cpp:426
-#, fuzzy, kde-format
-#| msgid ""
-#| "Load the user defined directory icons (can cause decrease in performance)."
+#, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
 msgstr ""
 "A felhasználó által megadott mappaikonok betöltése (sebességcsökkenést "
@@ -4224,13 +4195,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:427
 #, kde-format
 msgid "Always show current item"
-msgstr ""
+msgstr "Az aktuális elem mindig jelenjen meg"
 
 #: app/Konfigurator/kgpanel.cpp:427
-#, fuzzy, kde-format
-#| msgid "Show current item even if not focused"
+#, kde-format
 msgid "Show current item border decoration in inactive panel."
-msgstr "Aktuális elem mutatása akkor is, ha nincsen fókuszban"
+msgstr "Az aktuális elem keretdekorációjának megjelenítése az inaktív panelen."
 
 #: app/Konfigurator/kgpanel.cpp:441
 #, kde-format
@@ -4278,10 +4248,9 @@ msgstr ""
 "jelenik meg (a UNIX-rendszerek alapértelmezése)"
 
 #: app/Konfigurator/kgpanel.cpp:464
-#, fuzzy, kde-format
-#| msgid "Show directories first"
+#, kde-format
 msgid "Show folders first"
-msgstr "Előbb a mappák, utána a fájlok"
+msgstr "A mappák előre"
 
 #: app/Konfigurator/kgpanel.cpp:465
 #, kde-format
@@ -4289,12 +4258,11 @@ msgid "Always sort dirs by name"
 msgstr "Könyvárakat mindig név szerint rendezzen"
 
 #: app/Konfigurator/kgpanel.cpp:466
-#, fuzzy, kde-format
-#| msgid "Directories are sorted by name, regardless of the sort column."
+#, kde-format
 msgid "Folders are sorted by name, regardless of the sort column."
 msgstr ""
-"A könyvtárakat mindig név szerint rendezi, tekintet nélkül arra, hogy melyik "
-"a rendező oszlop."
+"A mappákat mindig név szerint rendezi, tekintet nélkül arra, hogy melyik a "
+"rendező oszlop."
 
 #: app/Konfigurator/kgpanel.cpp:467
 #, kde-format
@@ -4323,7 +4291,7 @@ msgstr "Alapértelmezett nézetmód:"
 #: app/Konfigurator/kgpanel.cpp:538
 #, kde-format
 msgid "Buttons"
-msgstr "Nyomógombok"
+msgstr "Gombok"
 
 #: app/Konfigurator/kgpanel.cpp:547
 #, kde-format
@@ -4333,7 +4301,7 @@ msgstr "Az eszköztárgombok ikonjainak megjelenítése"
 #: app/Konfigurator/kgpanel.cpp:548
 #, kde-format
 msgid "Show Media Button"
-msgstr "A média gomb mutatása"
+msgstr "Média gomb megjelenítése"
 
 #: app/Konfigurator/kgpanel.cpp:548
 #, kde-format
@@ -4343,7 +4311,7 @@ msgstr "A média gomb látható lesz."
 #: app/Konfigurator/kgpanel.cpp:549
 #, kde-format
 msgid "Show Back Button"
-msgstr "A vissza gomb mutatása"
+msgstr "Vissza gomb megjelenítése"
 
 #: app/Konfigurator/kgpanel.cpp:550
 #, kde-format
@@ -7161,11 +7129,10 @@ msgid "Copy"
 msgstr "Másolás"
 
 #: app/Panel/krfiletreeview.cpp:260
-#, fuzzy, kde-format
-#| msgid "Move to Trash"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Move to Trash"
-msgstr "Áthelyezés a szemetesbe"
+msgstr "Áthelyezés a Kukába"
 
 #: app/Panel/krfiletreeview.cpp:271
 #, fuzzy, kde-format
@@ -7398,10 +7365,9 @@ msgid "Copy to other panel"
 msgstr "Másolás másik panelre"
 
 #: app/Panel/listpanelactions.cpp:68
-#, fuzzy, kde-format
-#| msgid "Copy to other panel"
+#, kde-format
 msgid "Move to other panel"
-msgstr "Másolás másik panelre"
+msgstr "Áthelyezés másik panelre"
 
 #: app/Panel/listpanelactions.cpp:69
 #, fuzzy, kde-format
@@ -7416,10 +7382,9 @@ msgid "Move delayed..."
 msgstr "Áthelyezés sorral..."
 
 #: app/Panel/listpanelactions.cpp:71
-#, fuzzy, kde-format
-#| msgid "New Folder"
+#, kde-format
 msgid "New Folder..."
-msgstr "Új könyvtár"
+msgstr "Új mappa…"
 
 #: app/Panel/listpanelactions.cpp:73
 #, kde-format
@@ -7711,7 +7676,7 @@ msgstr "Megnyitás ezzel"
 #: app/Panel/panelcontextmenu.cpp:249
 #, kde-format
 msgid "Move to Trash"
-msgstr "Áthelyezés a szemetesbe"
+msgstr "Áthelyezés a Kukába"
 
 #: app/Panel/panelcontextmenu.cpp:265
 #, kde-format
@@ -9343,10 +9308,9 @@ msgid "Close Current Tab"
 msgstr "Aktuális lap bezárása"
 
 #: app/tabactions.cpp:29
-#, fuzzy, kde-format
-#| msgid "Unlock Tab"
+#, kde-format
 msgid "Undo Close Tab"
-msgstr "Lap felnyitása"
+msgstr "Lapbezárás visszavonása"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9925,10 +9889,9 @@ msgid "Edit a file with root permissions"
 msgstr ""
 
 #: app/useraction_examples.xml:23
-#, fuzzy, kde-format
-#| msgid "Automount filesystems"
+#, kde-format
 msgid "Mount a new filesystem"
-msgstr "Fájlrendszerek automatikus csatolása"
+msgstr "Új fájlrendszer csatolása"
 
 #: app/useraction_examples.xml:30
 #, kde-format
