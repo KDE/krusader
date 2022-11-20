@@ -4,20 +4,21 @@
 # Frederik Schwarzer <schwarzer@kde.org>, 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017, 2018, 2022.
 # Johannes Obermayr <johannesobermayr@gmx.de>, 2010.
 # Panagiotis Papadopoulos <pano_90@gmx.net>, 2010.
+# Alois Spitzbart <spitz234@hotmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 02:46+0000\n"
-"PO-Revision-Date: 2022-03-11 20:47+0100\n"
-"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
-"Language-Team: German <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2022-11-14 00:13+0100\n"
+"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -1877,12 +1878,10 @@ msgid "Searching content of '%1' (%2)"
 msgstr "Suche Inhalt von „%1“ (%2)"
 
 #: app/FileSystem/krquery.cpp:552
-#, fuzzy, kde-format
-#| msgctxt "filestate: filename"
-#| msgid "%1: %2"
+#, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr "%1: %2"
+msgstr "%1 %"
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, kde-format
@@ -3611,19 +3610,18 @@ msgstr ""
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
 msgstr ""
+"Aktives Dateifenster folgt dem aktuellen Ordner des eingebetteten Terminals"
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, fuzzy, kde-format
-#| msgid ""
-#| "When checked, whenever the panel is changed (for example, by pressing "
-#| "Tab), Krusader changes the current folder in the embedded terminal."
+#, kde-format
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"Beim Wechseln des Dateifensters (z. B. mittels Tab), wird der aktuelle "
-"Ordner im eingebetteten Terminal angeglichen."
+"Beim Wechseln des Ordners im eingebetteten Terminal (z. B. durch Ausführen "
+"des Befehls „cd“ oder „popd“), wird von Krusader der aktuelle Ordner im "
+"aktiven Dateifenster angeglichen."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
@@ -3826,7 +3824,7 @@ msgstr "Unterfenster durch Doppelklick schließen."
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr ""
+msgstr "Knopf für ein neues Unterfenster dupliziert ein Unterfenster"
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3834,32 +3832,34 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
+"Der Knopf für ein neues Unterfenster dupliziert ein Unterfenster. Ist die "
+"Option deaktiviert, wird ein Unterfenster mit dem persönlichen Ordner "
+"geöffnet."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr ""
+msgstr "Aktives Unterfenster durch Klicken duplizieren:"
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, fuzzy, kde-format
-#| msgid "disabled"
+#, kde-format
 msgid "Disabled"
-msgstr "deaktiviert"
+msgstr "Deaktiviert"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr ""
+msgstr "Alt+Klicken"
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr ""
+msgstr "Strg+Klicken"
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr ""
+msgstr "Aktives Unterfenster durch Klicken von Strg/Alt+LMB duplizieren"
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -6188,16 +6188,13 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader – Systemverwaltungsmodus (root)"
 
 #: app/main.cpp:113
-#, fuzzy, kde-format
-#| msgid ""
-#| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2019 Krusader Krew"
+#, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2019 Krusader Krew"
+"© 2004-2022 Krusader Krew"
 
 #: app/main.cpp:114
 #, kde-format
@@ -9757,12 +9754,12 @@ msgstr "Multimedia"
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr ""
+msgstr "Dateipfad des ausgewählten Eintrags kopieren (maskiert Leerzeichen)"
 
 #: app/useraction_examples.xml:46
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
-msgstr ""
+msgstr "Dateipfade der ausgewählten Einträge kopieren"
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
