@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(krusader)
 
-set(VERSION "2.8.0")
+set(VERSION "2.8.1-dev")
 set(RELEASE_NAME "A New Day")
 
 set(MIN_QT_VERSION 5.12)
