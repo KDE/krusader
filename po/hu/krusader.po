@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 00:50+0000\n"
-"PO-Revision-Date: 2022-11-17 23:04+0100\n"
+"PO-Revision-Date: 2022-11-21 17:29+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4316,12 +4316,12 @@ msgstr "Vissza gomb megjelenítése"
 #: app/Konfigurator/kgpanel.cpp:550
 #, kde-format
 msgid "Show Forward Button"
-msgstr "Az előre gomb mutatása"
+msgstr "Előre gomb megjelenítése"
 
 #: app/Konfigurator/kgpanel.cpp:551
 #, kde-format
 msgid "Show History Button"
-msgstr "Az előzmények gomb mutatása"
+msgstr "Előzmények gomb megjelenítése"
 
 #: app/Konfigurator/kgpanel.cpp:551
 #, kde-format
@@ -4331,7 +4331,7 @@ msgstr "Az előzmények gomb látható lesz."
 #: app/Konfigurator/kgpanel.cpp:552
 #, kde-format
 msgid "Show Bookmarks Button"
-msgstr "A könyvjelzők gomb mutatása"
+msgstr "Könyvjelzők gomb megjelenítése"
 
 #: app/Konfigurator/kgpanel.cpp:552
 #, kde-format
@@ -4341,12 +4341,12 @@ msgstr "A könyvjelzők gomb látható lesz."
 #: app/Konfigurator/kgpanel.cpp:553
 #, kde-format
 msgid "Show Panel Toolbar"
-msgstr "Panel-eszköztár megjelenítése"
+msgstr "Panel eszköztár megjelenítése"
 
 #: app/Konfigurator/kgpanel.cpp:553
 #, kde-format
 msgid "The panel toolbar will be visible."
-msgstr "A panel-eszköztár látható lesz"
+msgstr "A panel eszköztár látható lesz"
 
 #: app/Konfigurator/kgpanel.cpp:559
 #, kde-format
@@ -4356,59 +4356,52 @@ msgstr "Megjelenített paneleszköztár-gombok"
 #: app/Konfigurator/kgpanel.cpp:563
 #, kde-format
 msgid "Equal button (=)"
-msgstr "\"Egyenlőség\" gomb (=)"
+msgstr "Egyenlőség gomb (=)"
 
 #: app/Konfigurator/kgpanel.cpp:563
-#, fuzzy, kde-format
-#| msgid "Changes the panel directory to the other panel directory."
+#, kde-format
 msgid "Changes the panel folder to the other panel folder."
-msgstr "Könyvtárváltás a panelen a másik panel könyvtárára"
+msgstr "Mappaváltás a panelen a másik panel mappájára."
 
 #: app/Konfigurator/kgpanel.cpp:564
 #, kde-format
 msgid "Up button (..)"
-msgstr "\"Fel\" gomb (..)"
+msgstr "Fel gomb (..)"
 
 #: app/Konfigurator/kgpanel.cpp:564
-#, fuzzy, kde-format
-#| msgid "Changes the panel directory to the parent directory."
+#, kde-format
 msgid "Changes the panel folder to the parent folder."
-msgstr "Könyvtárváltás a panelen a szülőkönyvtárra"
+msgstr "Mappaváltás a panelen a szülőmappára."
 
 #: app/Konfigurator/kgpanel.cpp:565
 #, kde-format
 msgid "Home button (~)"
-msgstr "\"Saját könyvtár\" gomb (~)"
+msgstr "Saját könyvtár gomb (~)"
 
 #: app/Konfigurator/kgpanel.cpp:565
-#, fuzzy, kde-format
-#| msgid "Changes the panel directory to the home directory."
+#, kde-format
 msgid "Changes the panel folder to the home folder."
-msgstr "Könyvtárváltás a panelen a saját könyvtárra"
+msgstr "Mappaváltás a panelen a saját mappára."
 
 #: app/Konfigurator/kgpanel.cpp:566
 #, kde-format
 msgid "Root button (/)"
-msgstr "\"Gyökér\" gomb (/)"
+msgstr "Gyökér gomb (/)"
 
 #: app/Konfigurator/kgpanel.cpp:566
-#, fuzzy, kde-format
-#| msgid "Changes the panel directory to the root directory."
+#, kde-format
 msgid "Changes the panel folder to the root folder."
-msgstr "Könyvtárváltás a panelen a gyökérkönyvtárra"
+msgstr "Mappaváltás a panelen a gyökérmappára."
 
 #: app/Konfigurator/kgpanel.cpp:567
 #, kde-format
 msgid "Toggle-button for sync-browsing"
-msgstr "\"Szinkronizált böngésző\" mód gombja"
+msgstr "Szinkronizált böngészés mód gombja"
 
 #: app/Konfigurator/kgpanel.cpp:567
-#, fuzzy, kde-format
-#| msgid ""
-#| "Each directory change in the panel is also performed in the other panel."
+#, kde-format
 msgid "Each folder change in the panel is also performed in the other panel."
-msgstr ""
-"A panelen történő minden könyvtárváltás végrehajtódik a másik panelen is"
+msgstr "A panelen történő minden mappaváltás végrehajtódik a másik panelen is."
 
 #: app/Konfigurator/kgpanel.cpp:589
 #, kde-format
@@ -4428,8 +4421,8 @@ msgid ""
 "short click on the right mouse button."
 msgstr ""
 "Mindkét gomb használható fájlkijelölésre. Több fájl kijelöléséhez tartsa "
-"lenyomva a Ctrl billentyűt és nyomja le a bal oldali egérgombot. A "
-"környezeti menüt a jobb oldali egérgomb lenyomásával lehet előhívni."
+"lenyomva a Ctrl billentyűt és kattintson a bal egérgombbal. A helyi menüt a "
+"jobb oldali egérgomb lenyomásával lehet előhívni."
 
 #: app/Konfigurator/kgpanel.cpp:603
 #, kde-format
@@ -4443,8 +4436,8 @@ msgid ""
 "multiple files. Right-click menu is invoked using a short click on the right "
 "mouse button."
 msgstr ""
-"A bal oldali egérgomb fájlokat jelöl ki; több fájl is kijelölhető. A "
-"környezeti menüt a jobb oldali egérgomb lenyomásával lehet előhívni."
+"A bal oldali egérgomb fájlokat jelöl ki; több fájl is kijelölhető. A helyi "
+"menüt a jobb oldali egérgomb lenyomásával lehet előhívni."
 
 #: app/Konfigurator/kgpanel.cpp:604
 #, kde-format
@@ -4461,13 +4454,13 @@ msgid ""
 msgstr ""
 "A bal oldali egérgomb nem végez kijelölést, viszont a kijelölés módosítása "
 "nélkül aktuálissá teszi az adott fájlt. A jobb oldali egérgomb több fájlt "
-"jelöl ki. A környezeti menüt a jobb oldali egérgomb lenyomva tartásával "
-"lehet előhívni."
+"jelöl ki. A helyi menüt a jobb oldali egérgomb lenyomva tartásával lehet "
+"előhívni."
 
 #: app/Konfigurator/kgpanel.cpp:605
 #, kde-format
 msgid "Ergonomic Mode"
-msgstr "Ergonóm mód"
+msgstr "Ergonómikus mód"
 
 #: app/Konfigurator/kgpanel.cpp:605
 #, kde-format
@@ -4476,10 +4469,9 @@ msgid ""
 "affecting the current selection. The right mouse button invokes the context-"
 "menu. You can select with Ctrl key and the left button."
 msgstr ""
-"A bal oldali egérgomb nem végez kijelölést, viszont a kijelölés módosítása "
-"nélkül aktuálissá teszi az adott fájlt. A jobb oldali egérgomb előhívja a "
-"környezeti menüt. A kiválasztás a Ctrl billentyű és a bal oldali egérgomb "
-"lenyomásával történik."
+"A bal egérgomb nem végez kijelölést, viszont a kijelölés módosítása nélkül "
+"aktuálissá teszi az adott fájlt. A jobb egérgomb előhívja a helyi menüt. A "
+"kiválasztás a Ctrl billentyű és a bal egérgomb lenyomásával történik."
 
 #: app/Konfigurator/kgpanel.cpp:606
 #, kde-format
@@ -4494,7 +4486,7 @@ msgstr "Egyéni kijelölési mód készítése."
 #: app/Konfigurator/kgpanel.cpp:618
 #, kde-format
 msgid "Details"
-msgstr "Részletes"
+msgstr "Részletek"
 
 #: app/Konfigurator/kgpanel.cpp:625
 #, kde-format
@@ -4502,34 +4494,27 @@ msgid "Double-click selects (classic)"
 msgstr "Dupla kattintásos kijelölés (klasszikus)"
 
 #: app/Konfigurator/kgpanel.cpp:625
-#, fuzzy, kde-format
-#| msgid ""
-#| "A single click on a file will select and focus, a double click opens the "
-#| "file or steps into the directory."
+#, kde-format
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the folder."
 msgstr ""
 "Egy fájlon való kattintás kijelöli és aktuálissá teszi azt; egy dupla "
-"kattintás pedig megnyitja a fájlt illetve belép a könyvtárba"
+"kattintás pedig megnyitja a fájlt illetve belép a mappába."
 
 #: app/Konfigurator/kgpanel.cpp:626
-#, fuzzy, kde-format
-#| msgid "Obey KDE's global selection policy"
+#, kde-format
 msgid "Obey global selection policy"
-msgstr "A KDE globális kijelölési módszerének használata"
+msgstr "A globális kijelölési módszer használata"
 
 #: app/Konfigurator/kgpanel.cpp:626
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Use KDE's global setting:</p><p><i>KDE System Settings -> Input "
-#| "Devices -> Mouse</i></p>"
+#, kde-format
 msgid ""
 "<p>Use global setting:</p><p><i>Plasma System Settings -> Input Devices -> "
 "Mouse</i></p>"
 msgstr ""
-"<p>A KDE globális beállításának használata:</p><p><i>KDE Rendszerbeállítások "
-"-> Beviteli eszközök -> Egér</i></p>"
+"<p>Globális beállítások használata:</p><p><i>Plasma Rendszerbeállítások -> "
+"Beviteli eszközök -> Egér</i></p>"
 
 #: app/Konfigurator/kgpanel.cpp:637
 #, kde-format
@@ -4539,19 +4524,19 @@ msgstr "A KDE kijelölési módszerének használata"
 #: app/Konfigurator/kgpanel.cpp:638
 #, kde-format
 msgid "If checked, use a mode based on KDE's style."
-msgstr "Ha be van jelölve, akkor a KDE stílusán alapuló mód jön létre"
+msgstr "Ha be van jelölve, akkor a KDE stílusán alapuló mód jön létre."
 
 #: app/Konfigurator/kgpanel.cpp:640
 #, kde-format
 msgid "Left mouse button selects"
-msgstr "Bal oldali egérgomb: kijelölés"
+msgstr "Bal egérgombbal kijelölés"
 
 #: app/Konfigurator/kgpanel.cpp:641
 #, kde-format
 msgid "If checked, left clicking an item will select it."
 msgstr ""
-"Ha be van jelölve, akkor a bal oldali egérgombnak egy elemen való lenyomása\n"
-"kijelöli azon elemet"
+"Ha be van jelölve, akkor a bal egérgombbal egy elemre kattintva kijelölheti "
+"azt."
 
 #: app/Konfigurator/kgpanel.cpp:643
 #, kde-format
@@ -4564,9 +4549,8 @@ msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr ""
-"Ha be van jelölve, akkor a bal oldali egérgombnak egy elemen való lenyomása\n"
-"kijelöli azon elemet, de nem szünteti meg más, korábban kijelölt elemek\n"
-"kijelölését"
+"Ha be van jelölve, akkor a bal egérgombbal egy elemre kattintva kijelöli "
+"azt, de nem szünteti meg más, korábban kijelölt elemek kijelölését."
 
 #: app/Konfigurator/kgpanel.cpp:646
 #, kde-format
@@ -4579,27 +4563,27 @@ msgid ""
 "If checked, Shift/Ctrl left clicking will select items.\n"
 "Note: this is meaningless if 'Left Button Selects' is checked."
 msgstr ""
-"Ha be van jelölve, akkor a bal oldali egérgombnak a Shift/Ctrl nyomva\n"
-"tartásával történő lenyomása elemeket jelöl ki. Ha a „Bal oldali\n"
-"egérgomb: kijelölés” opció be van jelölve, akkor ennek nincs értelme."
+"Ha be van jelölve, akkor a Shift/Ctrl+bal kattintással jelölhet ki "
+"elemeket.\n"
+"Megjegyzés: ennek nincs értelme, ha a „Bal egérgombbal kijelölés” be van "
+"jelölve."
 
 #: app/Konfigurator/kgpanel.cpp:649
 #, kde-format
 msgid "Right mouse button selects"
-msgstr "Jobb oldali egérgomb: kijelölés"
+msgstr "Jobb egérgombbal kijelölés"
 
 #: app/Konfigurator/kgpanel.cpp:650
 #, kde-format
 msgid "If checked, right clicking an item will select it."
 msgstr ""
-"Ha be van jelölve, akkor a jobb oldali egérgombnak egy elemen való "
-"lenyomása\n"
-"kijelöli azon elemet"
+"Ha be van jelölve, akkor a jobb egérgombbal kattintva egy elemre kijelöli "
+"azt."
 
 #: app/Konfigurator/kgpanel.cpp:652
 #, kde-format
 msgid "Right mouse button preserves selection"
-msgstr "A jobb oldali egérgomb megtartja a kijelölést"
+msgstr "A jobb egérgomb megtartja a kijelölést"
 
 #: app/Konfigurator/kgpanel.cpp:653
 #, kde-format
@@ -4607,15 +4591,13 @@ msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr ""
-"Ha be van jelölve, akkor a jobb oldali egérgombnak egy elemen való "
-"lenyomása\n"
-"kijelöli azon elemet, de nem szünteti meg más, korábban kijelölt elemek\n"
-"kijelölését"
+"Ha be van jelölve, akkor a jobb egérgombbal egy elemre kattintva kijelöli "
+"azt, de nem szüntetni meg más, korábban kijelölt elem kijelölését."
 
 #: app/Konfigurator/kgpanel.cpp:655
 #, kde-format
 msgid "Shift/Ctrl-Right mouse button selects"
-msgstr "Shift/Ctrl+jobb oldali egérgomb: kijelölés"
+msgstr "Shift/Ctrl+jobb egérgombbal kijelölés"
 
 #: app/Konfigurator/kgpanel.cpp:656
 #, kde-format
@@ -4623,14 +4605,15 @@ msgid ""
 "If checked, Shift/Ctrl right clicking will select items.\n"
 "Note: this is meaningless if 'Right Button Selects' is checked."
 msgstr ""
-"Ha be van jelölve, akkor a jobb oldali egérgombnak a Shift/Ctrl nyomva\n"
-"tartásával történő lenyomása elemeket jelöl ki. Ha a „Jobb oldali\n"
-"egérgomb: kijelölés” opció be van jelölve, akkor ennek nincs értelme."
+"Ha be van jelölve, a Shift/Ctrl+jobb egérgombbal kattintással jelölhet ki "
+"elemeket.\n"
+"Megjegyzés: ennek nincs értelme, ha a „Jobb egérgombbal kijelölés” be van "
+"jelölve."
 
 #: app/Konfigurator/kgpanel.cpp:658
 #, kde-format
 msgid "Spacebar moves down"
-msgstr "A szóközbillentyű lefelé léptet"
+msgstr "A szóköz billentyű lefelé léptet"
 
 #: app/Konfigurator/kgpanel.cpp:659
 #, kde-format
@@ -4639,10 +4622,9 @@ msgid ""
 "down.\n"
 "Otherwise, current item is selected, but remains the current item."
 msgstr ""
-"Ha be van jelölve, akkor a szóközbillentyű lenyomására kijelölésre kerül az\n"
-"aktuális elem, és a lejjebb levő következő elem lesz az aktuális. Ha nincs\n"
-"bejelölve, akkor szintén kijelölésre kerül az aktuális elem, de az marad az\n"
-"aktuális."
+"Ha be van jelölve, a szóköz lenyomásával kijelöli az aktuális elemet, és "
+"lejjebb lép.\n"
+"Egyébként kijelöli az aktuális elemet, de azon marad."
 
 #: app/Konfigurator/kgpanel.cpp:661
 #, kde-format
@@ -4650,21 +4632,15 @@ msgid "Spacebar calculates disk space"
 msgstr "Lemezfoglalás számítása szóközbillentyűre"
 
 #: app/Konfigurator/kgpanel.cpp:662
-#, fuzzy, kde-format
-#| msgid ""
-#| "If checked, pressing the spacebar while the current item is a directory, "
-#| "will (except from selecting the directory)\n"
-#| "calculate space occupied of the directory (recursively)."
+#, kde-format
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
 "(except from selecting the folder)\n"
 "calculate space occupied of the folder (recursively)."
 msgstr ""
-"Ha be van jelölve, akkor a szóközbillentyűnek egy könyvtáron való "
-"lenyomására\n"
-"a program kiszámítja az adott könyvtár (és annak alkönyvtárai) által "
-"elfoglalt\n"
-"lemezhelyet (rekurzív)."
+"Ha be van jelölve, a szóköz lenyomása, ha az aktuális elem egy mappa, "
+"(kivéve a mappa kijelölésekor)\n"
+"kiszámítja a mappa által elfoglalt lemezterületet (rekurzívan)."
 
 #: app/Konfigurator/kgpanel.cpp:664
 #, kde-format
@@ -4678,15 +4654,14 @@ msgid ""
 "the next item.\n"
 "Otherwise, current item is not changed."
 msgstr ""
-"Ha be van jelölve, akkor az Insert billentyű lenyomására kijelölésre kerül "
-"az\n"
-"aktuális elem, és a lejjebb levő következő elem lesz az aktuális. Ha nincs\n"
-"bejelölve, akkor az adott elem marad az aktuális."
+"Ha be van jelölve, az Insert billentyű lenyomása kijelöli az aktuális "
+"elemet, és lejjebb lép a következő elemre.\n"
+"Egyébként az aktuális elem nem változik."
 
 #: app/Konfigurator/kgpanel.cpp:667
 #, kde-format
 msgid "Right clicking pops context menu immediately"
-msgstr "Jobb oldali egérgomb lenyomásakor környezeti menü azonnal"
+msgstr "Jobb egérgombbal kattintásra azonnal felugrik a helyi menü"
 
 #: app/Konfigurator/kgpanel.cpp:668
 #, kde-format
@@ -4695,16 +4670,15 @@ msgid ""
 "context menu.\n"
 "Otherwise, user needs to click and hold the right mouse button for 500ms."
 msgstr ""
-"Ha be van jelölve, akkor a jobb oldali egérgomb lenyomása azonnali módon\n"
-"előhívja a környezeti menüt. Ha nincs bejelölve, akkor a menü előhívásához\n"
-"a felhasználónak a lenyomás után nyomva kell tartania a gombot 500\n"
-"ezredmásodpercig."
+"Ha be van jelölve, a jobb egérgombbal kattintásra azonnal megjelenik a helyi "
+"menü.\n"
+"Egyébként a felhasználónak legalább 500 ms-ig nyomva kell tartania a jobb "
+"egérgombot."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, fuzzy, kde-format
-#| msgid "Right mouse button preserves selection"
+#, kde-format
 msgid "A plain mouse button resets selection"
-msgstr "A jobb oldali egérgomb megtartja a kijelölést"
+msgstr "Egy egyszerű egérkattintás visszaállítja a kiválasztást"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4713,6 +4687,10 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
+"A kijelölések visszaállítása egérkattintással módosítóbillentyűk (például "
+"Shift vagy Ctrl) nélkül.\n"
+"A Shift/Ctrl+egérgombokkal kijelölést be kell kapcsolni ahhoz, hogy ez a "
+"beállítás működjön."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4732,7 +4710,7 @@ msgstr "Fájlrendszer típusának megjelenítése"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr ""
+msgstr "SquashFS bejegyzések elrejtése"
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4758,21 +4736,19 @@ msgid "Never"
 msgstr "Soha"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, fuzzy, kde-format
-#| msgid "MountMan will not (un)mount the following mount-points:"
+#, kde-format
 msgid "Hide following mountpoints:"
-msgstr "A csatoláskezelő nem csatolja (le) a következő csatolási pontokat:"
+msgstr "Alábbi csatolási pontok elrejtése:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr ""
+msgstr "Új rejtett csatolási pont hozzáadása"
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, fuzzy, kde-format
-#| msgid "Mnt.Point"
+#, kde-format
 msgid "Mount point:"
-msgstr "Csatolási pont"
+msgstr "Csatolási pont:"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -4823,8 +4799,8 @@ msgid ""
 "saved automatically when Krusader is closed."
 msgstr ""
 "Megadja az indításkor használt panelprofilt. Egy panelprofil a következőket "
-"tartalmazza:<ul><li>az összes lap útvonala</li><li>az aktuális lap</"
-"li><li>az aktív panel</li></ul>A <b>&lt;Legutóbbi munkafolyamat&gt;</b> egy "
+"tartalmazza:<ul><li>az összes lap elérési útját</li><li>az aktuális lapot</"
+"li><li>az aktív panelt</li></ul>A <b>&lt;Legutóbbi munkamenet&gt;</b> egy "
 "speciális panelprofil, amely automatikusan mentésre kerül a Krusaderből való "
 "kilépéskor."
 
@@ -4836,17 +4812,17 @@ msgstr "Indítási profil:"
 #: app/Konfigurator/kgstartup.cpp:38
 #, kde-format
 msgid "<Last session>"
-msgstr "<Legutóbbi munkafolyamat>"
+msgstr "<Legutóbbi munkamenet>"
 
 #: app/Konfigurator/kgstartup.cpp:57
 #, kde-format
 msgid "Show splashscreen"
-msgstr "Nyitókép megjelenítése"
+msgstr "Indítókép megjelenítése"
 
 #: app/Konfigurator/kgstartup.cpp:57
 #, kde-format
 msgid "Display a splashscreen when starting Krusader."
-msgstr "Nyitókép megjelenítése a Krusader indításakor."
+msgstr "Indítókép megjelenítése a Krusader indításakor."
 
 #: app/Konfigurator/kgstartup.cpp:58
 #, kde-format
@@ -4856,12 +4832,12 @@ msgstr "Egy példányos mód"
 #: app/Konfigurator/kgstartup.cpp:58
 #, kde-format
 msgid "Only one Krusader instance is allowed to run."
-msgstr "Egyszerre egy Krusader példány futása engedélyezett."
+msgstr "Csak egy Krusader példány futhat egyszerre."
 
 #: app/Konfigurator/kgstartup.cpp:65
 #, kde-format
 msgid "Fallback Icon Theme:"
-msgstr ""
+msgstr "Tartalék ikontéma:"
 
 #: app/Konfigurator/kgstartup.cpp:66
 #, kde-format
@@ -4870,6 +4846,9 @@ msgid ""
 "a fallback. If fallback theme doesn't contain the icon, Breeze or Oxygen "
 "will be used if any of these are present."
 msgstr ""
+"Ha egy ikon nem található a rendszer ikontémájában, ez a téma lesz a "
+"tartalék. Ha a tartalék sem tartalmazza az ikont, a Breeze vagy Oxygen lesz "
+"használva, ha bármelyik megtalálható."
 
 #: app/Konfigurator/kgstartup.cpp:81 app/useraction_examples.xml:54
 #: app/useraction_examples.xml:63 app/useraction_examples.xml:72
@@ -5484,7 +5463,7 @@ msgstr "Távoli karakterkészlet kiválasztása"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr ""
+msgstr "Nemrég bezárt lapok"
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -7407,10 +7386,9 @@ msgid "&Properties..."
 msgstr "T&ulajdonságok..."
 
 #: app/Panel/listpanelactions.cpp:79
-#, fuzzy, kde-format
-#| msgid "&Compare Files"
+#, kde-format
 msgid "&Compare Folders"
-msgstr "&Fájlok összehasonlítása"
+msgstr "Mappák öss&zehasonlítása"
 
 #: app/Panel/listpanelactions.cpp:80
 #, kde-format
@@ -7556,10 +7534,9 @@ msgid "Right Media"
 msgstr "Jobb oldali média-lista"
 
 #: app/Panel/listpanelactions.cpp:113
-#, fuzzy, kde-format
-#| msgid "Folder..."
+#, kde-format
 msgid "Find in folder..."
-msgstr "Könyvtár..."
+msgstr "Keresés a mappában…"
 
 #: app/Panel/listpanelactions.cpp:114
 #, fuzzy, kde-format
@@ -9896,7 +9873,7 @@ msgstr "Új fájlrendszer csatolása"
 #: app/useraction_examples.xml:30
 #, kde-format
 msgid "Enqueue in Amarok"
-msgstr ""
+msgstr "Sorba állítás Amarokban"
 
 #: app/useraction_examples.xml:31
 #, kde-format
@@ -9904,10 +9881,9 @@ msgid "Append selected item(s) to Amarok playlist"
 msgstr ""
 
 #: app/useraction_examples.xml:33
-#, fuzzy, kde-format
-#| msgid "Media"
+#, kde-format
 msgid "Multimedia"
-msgstr "Tárolóeszközök"
+msgstr "Multimédia"
 
 #: app/useraction_examples.xml:39
 #, kde-format
@@ -9968,16 +9944,14 @@ msgid "Sorts the active panel by Modified"
 msgstr ""
 
 #: app/useraction_examples.xml:87
-#, fuzzy, kde-format
-#| msgid "Bookmark Current"
+#, kde-format
 msgid "Backup current"
-msgstr "Hozzáadás a könyvjelzőkhöz"
+msgstr "Aktuális biztonsági mentése"
 
 #: app/useraction_examples.xml:88
-#, fuzzy, kde-format
-#| msgid "Select all files in the current directory"
+#, kde-format
 msgid "Backup current file in current folder"
-msgstr "Az aktuális könyvtárban levő összes fájl kijelölése"
+msgstr "Aktuális fájl biztonsági mentése az aktuális mappában"
 
 #: app/useraction_examples.xml:90
 #, kde-format
