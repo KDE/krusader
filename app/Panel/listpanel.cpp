@@ -913,26 +913,26 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
             // user pressed CTRL+Right/Left - refresh other panel to the selected path if it's a
             // directory otherwise as this one
             if ((isLeft() && e->key() == Qt::Key_Right) || (!isLeft() && e->key() == Qt::Key_Left)) {
-                QUrl newPath;
-                KrViewItem *it = view->getCurrentKrViewItem();
-
-                if (it->name() == "..") {
-                    newPath = KIO::upUrl(virtualPath());
-                } else {
-                    FileItem *v = func->getFileItem(it);
-                    // If it's a directory different from ".."
-                    if (v && v->isDir() && v->getName() != "..") {
-                        newPath = v->getUrl();
+                if (KrViewItem *it = view->getCurrentKrViewItem()) {
+                    QUrl newPath;
+                    if (it->name() == "..") {
+                        newPath = KIO::upUrl(virtualPath());
                     } else {
-                        // If it's a supported compressed file
-                        if (v && KrArcHandler::arcSupported(v->getMime()))   {
-                            newPath = func->browsableArchivePath(v->getUrl().fileName());
+                        FileItem *v = func->getFileItem(it);
+                        // If it's a directory different from ".."
+                        if (v && v->isDir() && v->getName() != "..") {
+                            newPath = v->getUrl();
                         } else {
-                            newPath = virtualPath();
+                            // If it's a supported compressed file
+                            if (v && KrArcHandler::arcSupported(v->getMime()))   {
+                                newPath = func->browsableArchivePath(v->getUrl().fileName());
+                            } else {
+                                newPath = virtualPath();
+                            }
                         }
                     }
+                    otherPanel()->func->openUrl(newPath);
                 }
-                otherPanel()->func->openUrl(newPath);
             } else {
                 func->openUrl(otherPanel()->virtualPath());
             }
