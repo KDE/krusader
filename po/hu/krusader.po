@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-24 00:49+0000\n"
-"PO-Revision-Date: 2022-11-21 17:29+0100\n"
+"PO-Revision-Date: 2022-11-30 22:39+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4908,20 +4908,14 @@ msgid "Start to tray"
 msgstr "Tálcára indulás"
 
 #: app/Konfigurator/kgstartup.cpp:94
-#, fuzzy, kde-format
-#| msgid ""
-#| "Krusader starts to tray (if minimize to tray is set), without showing the "
-#| "main window"
+#, kde-format
 msgid "Krusader starts to tray, without showing the main window"
-msgstr ""
-"A Krusader tálcára indul, anélkül, hogy a főablakot megjelenítené (csak "
-"akkor működik, ha a minimalizálás tálcára opció ki van választva)."
+msgstr "A Krusader tálcára indul, anélkül, hogy a főablakot megjelenítené"
 
 #: app/Konfigurator/kgstartup.cpp:101
-#, fuzzy, kde-format
-#| msgid "Save settings on exit"
+#, kde-format
 msgid "Save component settings on exit"
-msgstr "A beállítások mentése kilépéskor"
+msgstr "Komponensbeállítások mentése kilépéskor"
 
 #: app/Konfigurator/kgstartup.cpp:102
 #, kde-format
@@ -4930,7 +4924,7 @@ msgid ""
 "condition when last shutdown."
 msgstr ""
 "A felhasználói felület komponenseinek állapotának ellenőrzése és "
-"visszaállítása a legutóbbi leállításkor érvényben levő állapotra"
+"visszaállítása a legutóbbi leállításkor érvényben levő állapotra."
 
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
@@ -4940,7 +4934,7 @@ msgstr "Funkciógombok megjelenítése"
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
 msgid "Function keys will be visible after startup."
-msgstr "A funkciógombok láthatók lesznek indítás után"
+msgstr "A funkciógombok láthatók lesznek indítás után."
 
 #: app/Konfigurator/kgstartup.cpp:104
 #, kde-format
@@ -4950,19 +4944,17 @@ msgstr "Parancssor megjelenítése"
 #: app/Konfigurator/kgstartup.cpp:104
 #, kde-format
 msgid "Command line will be visible after startup."
-msgstr "A parancssor látható lesz indítás után"
+msgstr "A parancssor látható lesz indítás után."
 
 #: app/Konfigurator/kgstartup.cpp:105
-#, fuzzy, kde-format
-#| msgid "Run in the embedded terminal emulator"
+#, kde-format
 msgid "Show embedded terminal"
-msgstr "Futtatás a beágyazott terminál&emulátorban"
+msgstr "Beágyazott terminál megjelenítése"
 
 #: app/Konfigurator/kgstartup.cpp:106
-#, fuzzy, kde-format
-#| msgid "Terminal emulator will be visible after startup."
+#, kde-format
 msgid "Embedded terminal will be visible after startup."
-msgstr "A terminálemulátor látható lesz indítás után"
+msgstr "A beágyazott terminál látható lesz indítás után."
 
 #: app/Konfigurator/kguseractions.cpp:28
 #, kde-format
@@ -4977,17 +4969,17 @@ msgid ""
 msgstr ""
 "Itt tudja konfigurálni a felhasználói műveletekhez tartozó beállításokat.\n"
 "A beállításokhoz és a felhasználói műveletek kezeléséhez kérem használja a "
-"Felhasználói Műveletkezelőt."
+"Műveletkezelőt."
 
 #: app/Konfigurator/kguseractions.cpp:37
 #, kde-format
 msgid "Start ActionMan"
-msgstr "Felhasználói műveletkezelő indítása"
+msgstr "Műveletkezelő indítása"
 
 #: app/Konfigurator/kguseractions.cpp:44
 #, kde-format
 msgid "Terminal execution"
-msgstr "Terminál a Felhasználói műveletekhez"
+msgstr "Terminálos végrehajtás"
 
 #: app/Konfigurator/kguseractions.cpp:48
 #, kde-format
@@ -4999,12 +4991,12 @@ msgstr "Terminál a Felhasználói műveletekhez:"
 msgid ""
 "%t will be replaced by the title of the action,\n"
 "%d with the workdir."
-msgstr "%t le lesz cserélve a művelet címére, %d pedig a munkakönyvtárra."
+msgstr "A %t le lesz cserélve a művelet címére, a %d pedig a munkakönyvtárra."
 
 #: app/Konfigurator/kguseractions.cpp:61
 #, kde-format
 msgid "Output collection"
-msgstr "Kimenet gyűjtés"
+msgstr "Kimenetgyűjtés"
 
 #: app/Konfigurator/kguseractions.cpp:66
 #, kde-format
@@ -5014,12 +5006,12 @@ msgstr "Normál betűtípus:"
 #: app/Konfigurator/kguseractions.cpp:80
 #, kde-format
 msgid "Font with fixed width:"
-msgstr "Fix szélességű betűtípus:"
+msgstr "Rögzített szélességű:"
 
 #: app/Konfigurator/kguseractions.cpp:93
 #, kde-format
 msgid "Use fixed width font as default"
-msgstr "Fix szélességű betűtípus használata alapértelmezésben"
+msgstr "Rögzített szélességű betűtípus használata alapértelmezésben"
 
 #: app/Konfigurator/konfigurator.cpp:43
 #, kde-format
@@ -5049,7 +5041,7 @@ msgstr "Alapvető műveletek"
 #: app/Konfigurator/konfigurator.cpp:122
 #, kde-format
 msgid "Advanced"
-msgstr "Haladó"
+msgstr "Speciális"
 
 #: app/Konfigurator/konfigurator.cpp:122
 #, kde-format
@@ -5192,14 +5184,14 @@ msgstr "Fekete"
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
 msgstr ""
-"\"unarj\" nem található, viszont \"arj\" igen - az utóbbi lesz használva "
+"Az „unarj” nem található, viszont az „arj” igen - az utóbbi lesz használva "
 "kicsomagoláshoz"
 
 #: app/Konfigurator/krresulttable.cpp:127
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr ""
-"\"rpm\" található, de \"cpio\" nem - az utóbbi program szükséges "
+"Az „rpm” található, de a „cpio” nem - az utóbbi program szükséges "
 "kicsomagoláshoz"
 
 #: app/Konfigurator/krresulttable.cpp:130
@@ -5240,7 +5232,7 @@ msgstr "kikapcsolva"
 #: app/Konfigurator/krresulttable.cpp:279
 #, kde-format
 msgid "diff utility"
-msgstr "összehasonlító"
+msgstr "diff eszköz"
 
 #: app/Konfigurator/krresulttable.cpp:280
 #, kde-format
@@ -5275,13 +5267,12 @@ msgstr "Lap-váltás panel"
 #: app/kractions.cpp:168
 #, kde-format
 msgid "Show Main Toolbar"
-msgstr "A fő eszköztár megjelenítése"
+msgstr "A Fő eszköztár megjelenítése"
 
 #: app/kractions.cpp:171
-#, fuzzy, kde-format
-#| msgid "Show Main Toolbar"
+#, kde-format
 msgid "Show Job Toolbar"
-msgstr "A fő eszköztár megjelenítése"
+msgstr "A Feladatok eszköztár megjelenítése"
 
 #: app/kractions.cpp:174
 #, kde-format
@@ -5299,10 +5290,9 @@ msgid "Show &Command Line"
 msgstr "A paran&cssor megjelenítése"
 
 #: app/kractions.cpp:187
-#, fuzzy, kde-format
-#| msgid "Send to &Embedded Terminal Emulator"
+#, kde-format
 msgid "Show &Embedded Terminal"
-msgstr "Terminál&emulátorhoz küldés"
+msgstr "B&eágyazott terminál megjelenítése"
 
 #: app/kractions.cpp:190
 #, kde-format
@@ -5322,7 +5312,7 @@ msgstr "A Kuka ürítése"
 #: app/kractions.cpp:196
 #, kde-format
 msgid "Trash Popup Menu"
-msgstr ""
+msgstr "A Kuka helyi menüje"
 
 #: app/kractions.cpp:198
 #, kde-format
@@ -5347,12 +5337,12 @@ msgstr "Pro&filok"
 #: app/kractions.cpp:207
 #, kde-format
 msgid "Sp&lit File..."
-msgstr "Fájl &darabolása..."
+msgstr "Fájl &darabolása…"
 
 #: app/kractions.cpp:208
 #, kde-format
 msgid "Com&bine Files..."
-msgstr "Fájlok &egyesítése..."
+msgstr "Fájlok &egyesítése…"
 
 #: app/kractions.cpp:209
 #, kde-format
@@ -5387,12 +5377,12 @@ msgstr "Elindít és el&felejt"
 #: app/kractions.cpp:229
 #, kde-format
 msgid "Display &Separated Standard and Error Output"
-msgstr "Elkülönített &standard és a hibakimenet megjelenítése"
+msgstr "Elkülönített &standard és hibakimenet megjelenítése"
 
 #: app/kractions.cpp:230
 #, kde-format
 msgid "Display &Mixed Standard and Error Output"
-msgstr "Összeolvasztott standard és a hibakimenet &megjelenítése"
+msgstr "Közös standard és hibakimenet &megjelenítése"
 
 #: app/kractions.cpp:231
 #, kde-format
