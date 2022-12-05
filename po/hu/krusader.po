@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 02:46+0000\n"
-"PO-Revision-Date: 2022-11-30 22:39+0100\n"
+"PO-Revision-Date: 2022-12-04 22:57+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5390,33 +5390,32 @@ msgstr "Terminál&emulátorhoz küldés"
 #: app/kractions.cpp:249
 #, kde-format
 msgid "Start &Terminal"
-msgstr "&Terminál indítás"
+msgstr "&Terminál indítása"
 
 #: app/kractions.cpp:255
 #, kde-format
 msgid "&Search..."
-msgstr "Kere&sés..."
+msgstr "Kere&sés…"
 
 #: app/kractions.cpp:256
 #, kde-format
 msgid "&Locate..."
-msgstr "Fáj&lkeresés..."
+msgstr "Fáj&lkeresés…"
 
 #: app/kractions.cpp:258
-#, fuzzy, kde-format
-#| msgid "Synchronize &Directories..."
+#, kde-format
 msgid "Synchronize Fol&ders..."
-msgstr "&Könyvtárak szinkronizálása..."
+msgstr "&Mappák szinkronizálása…"
 
 #: app/kractions.cpp:260
 #, kde-format
 msgid "D&isk Usage..."
-msgstr "&Lemezhasználat..."
+msgstr "&Lemezhasználat…"
 
 #: app/kractions.cpp:261
 #, kde-format
 msgid "Configure &Krusader..."
-msgstr "A &Krusader beállítása..."
+msgstr "A &Krusader beállítása…"
 
 #: app/kractions.cpp:262
 #, kde-format
@@ -5426,12 +5425,12 @@ msgstr "Pozíció &mentése"
 #: app/kractions.cpp:263
 #, kde-format
 msgid "Compare b&y Content..."
-msgstr "Összehasonlítás ta&rtalom alapján..."
+msgstr "Összehasonlítás ta&rtalomra…"
 
 #: app/kractions.cpp:264
 #, kde-format
 msgid "Multi &Rename..."
-msgstr "Tömeges átne&vezés..."
+msgstr "Tömeges átne&vezés…"
 
 #: app/kractions.cpp:267 app/krusaderview.cpp:447
 #, kde-format
@@ -5446,7 +5445,7 @@ msgstr "Felhasználói mű&veletek"
 #: app/kractions.cpp:270
 #, kde-format
 msgid "Manage User Actions..."
-msgstr "Felhasználói műveletek kezelése..."
+msgstr "Felhasználói műveletek kezelése…"
 
 #: app/kractions.cpp:272
 #, kde-format
@@ -5461,18 +5460,17 @@ msgstr "Nemrég bezárt lapok"
 #: app/kractions.cpp:278
 #, kde-format
 msgid "Quit Krusader."
-msgstr "Kilépés a Krusaderből"
+msgstr "Kilépés a Krusaderből."
 
 #: app/kractions.cpp:280
 #, kde-format
 msgid "Popular URLs..."
-msgstr "Gyakran látogatott helyek..."
+msgstr "Gyakran látogatott helyek…"
 
 #: app/kractions.cpp:281
-#, fuzzy, kde-format
-#| msgid "Toggle Fullscreen Terminal Emulator"
+#, kde-format
 msgid "Toggle Fullscreen Embedded Terminal"
-msgstr "Teljes képernyős terminálemulátor váltó"
+msgstr "Teljes képernyős beágyazott terminál be/ki"
 
 #: app/kractions.cpp:285
 #, kde-format
@@ -5519,7 +5517,7 @@ msgstr[1] "Fájlok küldése: %2"
 #: app/krslots.cpp:473 app/Synchronizer/synchronizer.cpp:1382
 #, kde-format
 msgid "Error executing %1."
-msgstr "Hiba %1 végrehajtása közben."
+msgstr "Hiba a(z) %1 végrehajtása közben."
 
 #: app/krslots.cpp:161
 #, kde-format
@@ -5535,10 +5533,10 @@ msgid ""
 "with the same name as the current file in the active panel.</li></ul>"
 msgstr ""
 "Két fájl tartalom szerinti összehasonlításához az alábbiakat teheti:"
-"<ul><li>kijelöl egy fájlt a bal panelen és egyet a jobb panelen</"
-"li><li>kijelöl pontosan kettő fájlt az aktív panelen</li><li>meggyőződik "
+"<ul><li>Kijelöl egy fájlt a bal panelen és egyet a jobb panelen.</"
+"li><li>Kijelöl pontosan kettő fájlt az aktív panelen.</li><li>Meggyőződik "
 "arról, hogy a másik panelen létezik az aktív panel aktuális fájljával "
-"megegyező nevű fájl</li></ul>"
+"megegyező nevű fájl.</li></ul>"
 
 #: app/krslots.cpp:179
 #, kde-format
@@ -5551,9 +5549,8 @@ msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports Kompare, KDiff3 and Xxdiff."
 msgstr ""
-"A Krusader nem talált támogatott grafikus felületet a diff programhoz. "
-"Telepítsen egyet. A Krusader a következőket támogatja: Kompare, KDiff3, "
-"Xxdiff."
+"A Krusader nem talált támogatott grafikus diff előtétprogramot. Telepítsen "
+"egyet. A Krusader a következőket támogatja: Kompare, KDiff3, Xxdiff."
 
 #: app/krslots.cpp:372
 #, kde-format
@@ -5571,26 +5568,22 @@ msgid ""
 "Bad quoting in terminal command:\n"
 "%1"
 msgstr ""
-"Rossz idézés a terminál parancsban:\n"
+"Hibás idézőjelezés a terminálparancsban:\n"
 "%1"
 
 #: app/krslots.cpp:420
-#, fuzzy, kde-format
-#| msgid ""
-#| "Cannot find a batch rename tool.\n"
-#| "You can get KRename at http://www.krename.net"
+#, kde-format
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
-"Nem található tömeges átnevezési eszköz.\n"
-"A KRename program beszerezhető a http://www.krename.net helyen."
+"Nem található tömeges átnevező eszköz.\n"
+"A KRename beszerezhető itt: %1"
 
 #: app/krslots.cpp:447
-#, fuzzy, kde-format
-#| msgid "Error executing %1."
+#, kde-format
 msgid "Error executing '%1'."
-msgstr "Hiba %1 végrehajtása közben."
+msgstr "Hiba a(z) „%1” végrehajtásakor."
 
 #: app/krslots.cpp:453
 #, kde-format
@@ -5599,6 +5592,9 @@ msgid ""
 "<p>Furthermore, running UI applications as root is insecure and can allow "
 "attackers to gain root access."
 msgstr ""
+"A root módban végrehajtott, helytelen műveletek károsíthatják az operációs "
+"rendszert.<p>A grafikus alkalmazások root felhasználóként futtatása nem "
+"biztonságos, és lehetővé teheti támadóknak root jogosultság megszerzését."
 
 #: app/krslots.cpp:462
 #, kde-format
@@ -5606,6 +5602,8 @@ msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
 "verify that kde-cli-tools are installed."
 msgstr ""
+"Nem lehet elindítani a Krusadert root módban, a(z) %1 nem található vagy nem "
+"végrehajtható. Ellenőrizze, hogy a kde-cli-tools telepítve van-e."
 
 #: app/krslots.cpp:486
 #, kde-format
@@ -5613,10 +5611,9 @@ msgid "Do not know which file to split."
 msgstr "Nem tudni, hogy melyik fájlt kell darabolni."
 
 #: app/krslots.cpp:495
-#, fuzzy, kde-format
-#| msgid "You cannot split a directory."
+#, kde-format
 msgid "You cannot split a folder."
-msgstr "Könyvtárt nem lehet darabolni."
+msgstr "Mappát nem lehet darabolni."
 
 #: app/krslots.cpp:519
 #, kde-format
@@ -5624,10 +5621,9 @@ msgid "Do not know which files to combine."
 msgstr "Nem tudni, hogy mely fájlokat kell egyesíteni."
 
 #: app/krslots.cpp:536
-#, fuzzy, kde-format
-#| msgid "You cannot combine a directory."
+#, kde-format
 msgid "You cannot combine a folder."
-msgstr "Könyvtárt nem lehet egyesíteni."
+msgstr "Mappát nem lehet egyesíteni."
 
 #: app/krslots.cpp:553 app/krslots.cpp:605
 #, kde-format
@@ -5640,10 +5636,9 @@ msgid "Select only one split file."
 msgstr "Csak egy darabolt fájlt jelöljön ki."
 
 #: app/krslots.cpp:612
-#, fuzzy, kde-format
-#| msgid "Combining %1.* to directory:"
+#, kde-format
 msgid "Combining %1.* to folder:"
-msgstr "\"%1.*\" egyesítése ebbe a könyvtárba:"
+msgstr "„%1.*” egyesítése ebbe a mappába:"
 
 #: app/krslots.cpp:696
 #, kde-format
@@ -5658,7 +5653,7 @@ msgstr "Kuka ürítése"
 #: app/krusader.cpp:174
 #, kde-format
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr "Az állapotsor alapvető információkat ad az egérmutató alatti fájlról"
+msgstr "Az állapotsor alapvető információkat ad az egérmutató alatti fájlról."
 
 #: app/krusader.cpp:304
 #, kde-format
@@ -5669,8 +5664,8 @@ msgid ""
 msgstr ""
 "<qt><b>Üdvözli a Krusader!</b><p>Mivel a programot most indította először, "
 "ezért a Krusader megkeresi a külső alkalmazásokat a számítógépen. Ezt "
-"követően elindul a Konfigurátor, ahol igény szerint módosíthatók a Krusader "
-"beállításai.</p></qt>"
+"követően elindul a Konfigurátor, ahol igény szerint módosíthatja a Krusader "
+"beállításait.</p></qt>"
 
 #: app/krusader.cpp:334
 #, kde-format
@@ -5682,7 +5677,7 @@ msgstr "A főablak felülre hozása"
 #: app/KViewer/lister.cpp:1918
 #, kde-format
 msgid "Lister"
-msgstr "Listázó"
+msgstr "Nézőke"
 
 #. i18n: ectx: Menu (file)
 #: app/krusaderui.rc:8
@@ -5694,7 +5689,7 @@ msgstr "&Fájl"
 #: app/krusaderui.rc:35
 #, kde-format
 msgid "&Edit"
-msgstr " S&zerkesztés"
+msgstr "S&zerkesztés"
 
 #. i18n: ectx: Menu (compare setup)
 #: app/krusaderui.rc:53
@@ -5706,7 +5701,7 @@ msgstr "Össze&hasonlítási beállítások"
 #: app/krusaderui.rc:65
 #, kde-format
 msgid "&View"
-msgstr "Me&gjelenítés"
+msgstr "&Nézet"
 
 #. i18n: ectx: Menu (go)
 #: app/krusaderui.rc:87
@@ -5728,17 +5723,15 @@ msgstr "&Beállítások"
 
 #. i18n: ectx: Menu (show_toolbars)
 #: app/krusaderui.rc:121
-#, fuzzy, kde-format
-#| msgid "&Tools"
+#, kde-format
 msgid "&Toolbars"
-msgstr "Eszk&özök"
+msgstr "Eszköz&tárak"
 
 #. i18n: ectx: Menu (command_execution_mode)
 #: app/krusaderui.rc:131
-#, fuzzy, kde-format
-#| msgid "Command Execution Mode Se&tup"
+#, kde-format
 msgid "Command Execution &Mode Setup"
-msgstr "Futtatási mód beállí&tás"
+msgstr "Parancsfuttatási &mód"
 
 #. i18n: ectx: Menu (window)
 #: app/krusaderui.rc:145
@@ -5750,13 +5743,13 @@ msgstr "&Ablak"
 #: app/krusaderui.rc:166
 #, kde-format
 msgid "&Help"
-msgstr "&Segítség"
+msgstr "&Súgó"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: app/krusaderui.rc:170
 #, kde-format
 msgid "Main Toolbar"
-msgstr "Fő eszköztár"
+msgstr "Alap eszköztár"
 
 #. i18n: ectx: ToolBar (actionsToolBar)
 #: app/krusaderui.rc:197
@@ -5766,10 +5759,9 @@ msgstr "Műveletek eszköztár"
 
 #. i18n: ectx: ToolBar (jobToolBar)
 #: app/krusaderui.rc:200
-#, fuzzy, kde-format
-#| msgid "Main Toolbar"
+#, kde-format
 msgid "Job Toolbar"
-msgstr "Fő eszköztár"
+msgstr "Feladat eszköztár"
 
 #: app/krusaderview.cpp:78
 #, kde-format
@@ -5799,7 +5791,7 @@ msgstr "&Hexadecimális megjelenítő"
 #: app/KViewer/krviewer.cpp:89
 #, kde-format
 msgid "&Lister"
-msgstr "&Listázó"
+msgstr "&Nézőke"
 
 #: app/KViewer/krviewer.cpp:92
 #, kde-format
