@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 02:46+0000\n"
-"PO-Revision-Date: 2022-12-04 22:57+0100\n"
+"PO-Revision-Date: 2022-12-11 22:52+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5836,7 +5836,7 @@ msgstr ""
 #: app/KViewer/krviewer.cpp:327
 #, kde-format
 msgid "Can not open \"%1\""
-msgstr "Nem nyitható meg: „%1”!"
+msgstr "A(z) „%1” nem nyitható meg"
 
 #: app/KViewer/krviewer.cpp:634
 #, kde-format
@@ -5865,17 +5865,17 @@ msgstr "Megjelenítés: %1"
 #: app/KViewer/lister.cpp:1194 app/KViewer/lister.cpp:1907
 #, kde-format
 msgid "Save selection..."
-msgstr "Kijelölés mentése..."
+msgstr "Kijelölés mentése…"
 
 #: app/KViewer/lister.cpp:1198
 #, kde-format
 msgid "Save as..."
-msgstr "Mentés másként..."
+msgstr "Mentés másként…"
 
 #: app/KViewer/lister.cpp:1202
 #, kde-format
 msgid "Print..."
-msgstr "Nyomtatás..."
+msgstr "Nyomtatás…"
 
 #: app/KViewer/lister.cpp:1212
 #, kde-format
@@ -5902,7 +5902,7 @@ msgstr "Karakterkészlet kiválasztása"
 #: app/KViewer/lister.cpp:1251 app/KViewer/lister.cpp:1477
 #, kde-format
 msgid "Lister:"
-msgstr "Listázó:"
+msgstr "Nézőke:"
 
 #: app/KViewer/lister.cpp:1262
 #, kde-format
@@ -5912,12 +5912,12 @@ msgstr "Keresés leállítása"
 #: app/KViewer/lister.cpp:1278
 #, kde-format
 msgid "Jump to next match"
-msgstr "A következő egyezésre ugrás"
+msgstr "Ugrás a következő találatra"
 
 #: app/KViewer/lister.cpp:1282
 #, kde-format
 msgid "Jump to previous match"
-msgstr "Az előző megegyezőre ugrás"
+msgstr "Ugrás az előző találatra"
 
 #: app/KViewer/lister.cpp:1285
 #, kde-format
@@ -5927,7 +5927,7 @@ msgstr "Beállítások"
 #: app/KViewer/lister.cpp:1286
 #, kde-format
 msgid "Modify search behavior"
-msgstr "Kereső viselkedésének módosítása"
+msgstr "A keresési beállítások módosítása"
 
 #: app/KViewer/lister.cpp:1288
 #, kde-format
@@ -5988,7 +5988,7 @@ msgstr "Semmi nincs kijelölve."
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
-"Fordított nyomtatás nem támogatott. Folytatni szeretné normál nyomtatással?"
+"Fordított nyomtatás nem támogatott. Szeretné folytatni normál nyomtatással?"
 
 #: app/KViewer/panelviewer.cpp:53
 #, kde-format
@@ -6039,7 +6039,7 @@ msgstr "Keresendő:"
 #: app/Locate/locate.cpp:147
 #, kde-format
 msgid "Do not search in path"
-msgstr "Az elérési útvonal kihagyása a keresésből"
+msgstr "Az elérési út kihagyása a keresésből"
 
 #: app/Locate/locate.cpp:151
 #, kde-format
@@ -6054,7 +6054,7 @@ msgstr "Nagybetűérzékeny"
 #: app/Locate/locate.cpp:167
 #, kde-format
 msgid "Results"
-msgstr "Eredmények"
+msgstr "Találatok"
 
 #: app/Locate/locate.cpp:196
 #, kde-format
@@ -6085,7 +6085,7 @@ msgid ""
 "\n"
 "%1"
 msgstr ""
-"A Locate a következő hibaüzenetet adta:\n"
+"A locate a következő hibaüzenetet adta:\n"
 "\n"
 "%1"
 
@@ -6108,7 +6108,7 @@ msgstr "Szerkesztés (F4)"
 #: app/Locate/locate.cpp:389
 #, kde-format
 msgid "Compare by content (F10)"
-msgstr "Tartalom összehasonlítása (F10)"
+msgstr "Összehasonlítás tartalomra (F10)"
 
 #: app/Locate/locate.cpp:394
 #, kde-format
@@ -6163,16 +6163,13 @@ msgid "Feed to listbox"
 msgstr "Listába való felvétel"
 
 #: app/main.cpp:46
-#, fuzzy, kde-format
-#| msgid ""
-#| "Krusader\n"
-#| "Twin-Panel File Manager for KDE"
+#, kde-format
 msgid ""
 "Krusader\n"
 "Twin-Panel File Manager by KDE"
 msgstr ""
 "Krusader\n"
-"Kétpaneles fájlkezelő a KDE-hez"
+"Kétpaneles fájlkezelő a KDE-től"
 
 #: app/main.cpp:111
 #, kde-format
@@ -6185,40 +6182,27 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - RENDSZERGAZDAI JOGOK"
 
 #: app/main.cpp:113
-#, fuzzy, kde-format
-#| msgid ""
-#| "(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
-#| "(c) 2004-2012, Krusader Krew"
+#, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© Shie Erlich, Rafi Yanai, 2000-2003.\n"
-"© A Krusader csapat, 2004-2012."
+"© A Krusader csapat, 2004-2022."
 
 #: app/main.cpp:114
-#, fuzzy, kde-format
-#| msgid ""
-#| "Feedback:\n"
-#| "http://www.krusader.org/phpBB/\n"
-#| "\n"
-#| "IRC\n"
-#| "server: irc.freenode.net, channel: #krusader"
+#, kde-format
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
-"Kapcsolat:\n"
-"http://www.krusader.org/phpBB/\n"
-"\n"
-"IRC\n"
-"szerver: irc.freenode.net, csatorna: #krusader"
+"Visszajelzés:\n"
+"https://forum.kde.org/viewforum.php?f=225"
 
 #: app/main.cpp:120
-#, fuzzy, kde-format
-#| msgid "David Guillerm"
+#, kde-format
 msgid "Davide Gianforte"
-msgstr "David Guillerm"
+msgstr "Davide Gianforte"
 
 #: app/main.cpp:120 app/main.cpp:121 app/main.cpp:122
 #, kde-format
@@ -6228,23 +6212,22 @@ msgstr "Fejlesztő"
 #: app/main.cpp:121
 #, kde-format
 msgid "Toni Asensi Esteve"
-msgstr ""
+msgstr "Toni Asensi Esteve"
 
 #: app/main.cpp:122
 #, kde-format
 msgid "Nikita Melnichenko"
-msgstr ""
+msgstr "Nikita Melnichenko"
 
 #: app/main.cpp:123
 #, kde-format
 msgid "Yuri Chornoivan"
-msgstr ""
+msgstr "Yuri Chornoivan"
 
 #: app/main.cpp:123
-#, fuzzy, kde-format
-#| msgid "Destination"
+#, kde-format
 msgid "Documentation"
-msgstr "Cél"
+msgstr "Dokumentáció"
 
 #: app/main.cpp:124
 #, kde-format
@@ -6264,7 +6247,7 @@ msgstr "Shie Erlich"
 #: app/main.cpp:126
 #, kde-format
 msgid "Csaba Karai"
-msgstr ""
+msgstr "Csaba Karai"
 
 #: app/main.cpp:126 app/main.cpp:127 app/main.cpp:128 app/main.cpp:129
 #: app/main.cpp:130 app/main.cpp:131 app/main.cpp:132 app/main.cpp:133
@@ -6301,17 +6284,17 @@ msgstr "Andrey Matveyakin"
 #: app/main.cpp:132
 #, kde-format
 msgid "Simon Persson"
-msgstr ""
+msgstr "Simon Persson"
 
 #: app/main.cpp:133
 #, kde-format
 msgid "Alexander Bikadorov"
-msgstr ""
+msgstr "Alexander Bikadorov"
 
 #: app/main.cpp:134
 #, kde-format
 msgid "Martin Kostolný"
-msgstr ""
+msgstr "Martin Kostolný"
 
 #: app/main.cpp:135 app/main.cpp:169
 #, kde-format
@@ -6319,10 +6302,9 @@ msgid "Dirk Eschler"
 msgstr "Dirk Eschler"
 
 #: app/main.cpp:135
-#, fuzzy, kde-format
-#| msgid "Author (retired)"
+#, kde-format
 msgid "Webmaster (retired)"
-msgstr "Szerző (visszavonult)"
+msgstr "Webgazda (visszavonult)"
 
 #: app/main.cpp:136 app/main.cpp:165
 #, kde-format
@@ -6372,7 +6354,7 @@ msgstr "l10n.kde.org"
 #: app/main.cpp:140
 #, kde-format
 msgid "KDE Translation Teams"
-msgstr "KDE fordítási csapatok"
+msgstr "KDE fordítócsapatok"
 
 #: app/main.cpp:141
 #, kde-format
@@ -6392,7 +6374,7 @@ msgstr "Jiří Klement"
 #: app/main.cpp:142
 #, kde-format
 msgid "Important help in KDE 4 porting"
-msgstr "Komoly segítség KDE 4 portolásban."
+msgstr "Komoly segítség a KDE 4 portolásban."
 
 #: app/main.cpp:143
 #, kde-format
@@ -6402,7 +6384,7 @@ msgstr "Andrew Neupokoev"
 #: app/main.cpp:143
 #, kde-format
 msgid "Killer Logo and Icons for Krusader (contest winner)"
-msgstr "Fantasztikus Krusader logo és ikonok (pályázat nyertes)"
+msgstr "Fantasztikus Krusader logó és ikonok (pályázat nyertes)"
 
 #: app/main.cpp:144
 #, kde-format
@@ -6497,7 +6479,7 @@ msgstr "Aurelien Gateau"
 #: app/main.cpp:153
 #, kde-format
 msgid "patch for KViewer"
-msgstr "Megjelenítő foltok"
+msgstr "KViewer folt"
 
 #: app/main.cpp:154
 #, kde-format
@@ -6507,7 +6489,7 @@ msgstr "Milan Brabec"
 #: app/main.cpp:154
 #, kde-format
 msgid "the first patch ever!"
-msgstr "a legelső patch!"
+msgstr "A legelső folt!"
 
 #: app/main.cpp:155
 #, kde-format
@@ -6712,7 +6694,7 @@ msgstr "Dovydas Sankauskas"
 #: app/main.cpp:176
 #, kde-format
 msgid "Lithuanian translation"
-msgstr "Littván fordítás"
+msgstr "Litván fordítás"
 
 #: app/main.cpp:177
 #, kde-format
@@ -6872,12 +6854,12 @@ msgstr "Koreai fordítás"
 #: app/main.cpp:203
 #, kde-format
 msgid "Start left panel at <path>"
-msgstr "A bal panel kezdőkönyvtára: <path>"
+msgstr "A bal panel kezdőmappája: <path>"
 
 #: app/main.cpp:204
 #, kde-format
 msgid "Start right panel at <path>"
-msgstr "A jobb panel kezdőkönyvtára: <path>"
+msgstr "A jobb panel kezdőmappája: <path>"
 
 #: app/main.cpp:205
 #, kde-format
@@ -6885,10 +6867,9 @@ msgid "Load this profile on startup"
 msgstr "Ezen profil betöltése induláskor"
 
 #: app/main.cpp:206
-#, fuzzy, kde-format
-#| msgid "Enable Write Support"
+#, kde-format
 msgid "Enable debug output"
-msgstr "Írástámogatás engedélyezése"
+msgstr "Hibakereső kimenet engedélyezése"
 
 #: app/main.cpp:207
 #, kde-format
@@ -6898,25 +6879,24 @@ msgstr "A megnyitandó URL"
 #: app/MountMan/kmountman.cpp:51
 #, kde-format
 msgid "&MountMan..."
-msgstr "&Csatoláskezelő..."
+msgstr "&Csatoláskezelő…"
 
 #: app/MountMan/kmountman.cpp:54
-#, fuzzy, kde-format
-#| msgid "MountMan"
+#, kde-format
 msgid "Open &MountMan"
-msgstr "Csatoláskezelő"
+msgstr "Cs&atoláskezelő megnyitása"
 
 #: app/MountMan/kmountman.cpp:118
 #, kde-format
 msgid "Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."
 msgstr ""
-"Nem lehet elindítani a „mount” programot. Ellenőrizze a „Függőségek” lapot a "
-"Konfigurátorban."
+" Nem lehet elindítani a „mount” programot. Ellenőrizze a „Függőségek” lapot "
+"a Konfigurátorban."
 
 #: app/MountMan/kmountman.cpp:344
 #, kde-format
 msgid "MountMan is not operational. Sorry"
-msgstr "A csatoláskezelő nem működőképes."
+msgstr "A Csatoláskezelő nem működőképes."
 
 #: app/MountMan/kmountmangui.cpp:58
 #, kde-format
@@ -6931,7 +6911,7 @@ msgstr "Kia&dás"
 #: app/MountMan/kmountmangui.cpp:77 app/MountMan/kmountmangui.cpp:376
 #, kde-format
 msgid "&Unmount"
-msgstr "Leválasztás (&unmount)"
+msgstr "&Leválasztás"
 
 #: app/MountMan/kmountmangui.cpp:148
 #, kde-format
@@ -6961,12 +6941,12 @@ msgstr "Csatolás-info"
 #: app/MountMan/kmountmangui.cpp:187
 #, kde-format
 msgid "Show only removable devices"
-msgstr "Csak a cserélhető eszközök mutatása"
+msgstr "Csak az eltávolítható eszközök megjelenítése"
 
 #: app/MountMan/kmountmangui.cpp:378
 #, kde-format
 msgid "&Mount"
-msgstr "Csatolás (&mount)"
+msgstr "Csat&olás"
 
 #: app/MountMan/kmountmangui.cpp:398
 #, kde-format
@@ -6981,7 +6961,7 @@ msgstr "Formázás"
 #: app/Panel/krcalcspacedialog.cpp:29
 #, kde-format
 msgid "Calculate Occupied Space"
-msgstr "Elfoglalt terület számítása"
+msgstr "Foglalt terület számítása"
 
 #: app/Panel/krcalcspacedialog.cpp:107
 #, kde-format
@@ -6991,25 +6971,21 @@ msgstr "Név: %1\n"
 #: app/Panel/krcalcspacedialog.cpp:109
 #, kde-format
 msgid "Total occupied space: %1"
-msgstr "Teljes elfoglalt terület: %1"
+msgstr "Teljes foglalt terület: %1"
 
 #: app/Panel/krcalcspacedialog.cpp:111
-#, fuzzy, kde-format
-#| msgid " (%1 byte)"
-#| msgid_plural " (%1 bytes)"
+#, kde-format
 msgid " (%2 byte)"
 msgid_plural " (%2 bytes)"
-msgstr[0] "(%1 bájt)"
-msgstr[1] "(%1 bájt)"
+msgstr[0] " (%2 bájt)"
+msgstr[1] " (%2 bájt)"
 
 #: app/Panel/krcalcspacedialog.cpp:113
-#, fuzzy, kde-format
-#| msgid "and %1 file"
-#| msgid_plural "and %1 files"
+#, kde-format
 msgid "in %1 folder"
 msgid_plural "in %1 folders"
-msgstr[0] "és %1 fájlban"
-msgstr[1] "és %1 fájlban"
+msgstr[0] "%1 mappában"
+msgstr[1] "%1 mappában"
 
 #: app/Panel/krcalcspacedialog.cpp:115
 #, kde-format
@@ -7019,75 +6995,64 @@ msgstr[0] "és %1 fájlban"
 msgstr[1] "és %1 fájlban"
 
 #: app/Panel/krfiletreeview.cpp:176
-#, fuzzy, kde-format
-#| msgid "Details"
+#, kde-format
 msgid "Show Details"
-msgstr "Részletes"
+msgstr "Részletek megjelenítése"
 
 #: app/Panel/krfiletreeview.cpp:179
-#, fuzzy, kde-format
-#| msgid "Show excluded files (Ctrl+D)."
+#, kde-format
 msgid "Show columns with details"
-msgstr "Kihagyott fájlok megjelenítése (Ctrl+D)."
+msgstr "Oszlopok megjelenítése a részletekkel"
 
 #: app/Panel/krfiletreeview.cpp:180
-#, fuzzy, kde-format
-#| msgid "Show &Hidden Files"
+#, kde-format
 msgid "Show Hidden Folders"
-msgstr "&Rejtett fájlok megjelenítése"
+msgstr "Rejtett mappák megjelenítése"
 
 #: app/Panel/krfiletreeview.cpp:183
-#, fuzzy, kde-format
-#| msgid "Display files beginning with a dot."
+#, kde-format
 msgid "Show folders starting with a dot"
-msgstr "Ponttal kezdődő nevű fájlok megjelenítése"
+msgstr "Ponttal kezdődő nevű mappák megjelenítése"
 
 #: app/Panel/krfiletreeview.cpp:188
-#, fuzzy, kde-format
-#| msgid "Start to tray"
+#, kde-format
 msgid "Start From Root"
-msgstr "Tálcára indulás"
+msgstr "Indítás a rootból"
 
 #: app/Panel/krfiletreeview.cpp:191
-#, fuzzy, kde-format
-#| msgid "Select all files in the current directory"
+#, kde-format
 msgid "Set root of the tree to root of filesystem"
-msgstr "Az aktuális könyvtárban levő összes fájl kijelölése"
+msgstr "A fa gyökerének beállítása a fájlrendszer gyökerére"
 
 #: app/Panel/krfiletreeview.cpp:194
-#, fuzzy, kde-format
-#| msgid "Start and &Forget"
+#, kde-format
 msgid "Start From Current"
-msgstr "Elindít és el&felejt"
+msgstr "Indítás a jelenlegiből"
 
 #: app/Panel/krfiletreeview.cpp:197
-#, fuzzy, kde-format
-#| msgid "Select all files in the current directory"
+#, kde-format
 msgid "Set root of the tree to the current folder"
-msgstr "Az aktuális könyvtárban levő összes fájl kijelölése"
+msgstr "A fa gyökerének beállítása az aktuális mappára"
 
 #: app/Panel/krfiletreeview.cpp:200
-#, fuzzy, kde-format
-#| msgid "Startup profile:"
+#, kde-format
 msgid "Start From Place"
-msgstr "Indítási profil:"
+msgstr "Indítás egy helyről"
 
 #: app/Panel/krfiletreeview.cpp:204
-#, fuzzy, kde-format
-#| msgid "Select all files in the current directory"
+#, kde-format
 msgid "Set root of the tree to closest folder listed in 'Places'"
-msgstr "Az aktuális könyvtárban levő összes fájl kijelölése"
+msgstr ""
+"A fa gyökerének beállítása a „Helyek”-ben listázott legközelebbi mappára"
 
 #: app/Panel/krfiletreeview.cpp:233
-#, fuzzy, kde-format
-#| msgid "Custom"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Cut"
-msgstr "Egyéni"
+msgstr "Kivágás"
 
 #: app/Panel/krfiletreeview.cpp:238
-#, fuzzy, kde-format
-#| msgid "Copy"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy"
 msgstr "Másolás"
@@ -7099,18 +7064,16 @@ msgid "Move to Trash"
 msgstr "Áthelyezés a Kukába"
 
 #: app/Panel/krfiletreeview.cpp:271
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete"
 msgstr "Törlés"
 
 #: app/Panel/krfiletreeview.cpp:282
-#, fuzzy, kde-format
-#| msgid "&Properties..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Properties"
-msgstr "T&ulajdonságok..."
+msgstr "Tulajdonságok"
 
 #: app/Panel/krlayoutfactory.cpp:45
 #, kde-format
@@ -7141,30 +7104,27 @@ msgstr "Nincs előnézet"
 #: app/Panel/krsearchbar.cpp:36
 #, kde-format
 msgid "Close the search bar"
-msgstr ""
+msgstr "Keresősáv bezárása"
 
 #: app/Panel/krsearchbar.cpp:42
 #, kde-format
 msgid "Change the search mode"
-msgstr ""
+msgstr "Keresési mód módosítása"
 
 #: app/Panel/krsearchbar.cpp:50
-#, fuzzy, kde-format
-#| msgid "Enter a selection:"
+#, kde-format
 msgid "Enter or select search string"
-msgstr "Adjon meg egy kijelölést:"
+msgstr "Adjon meg vagy válasszon ki egy kereső kifejezést"
 
 #: app/Panel/krsearchbar.cpp:62
-#, fuzzy, kde-format
-#| msgid "Store the current selection"
+#, kde-format
 msgid "Save the current search string"
-msgstr "Aktuális kijelölés tárolása"
+msgstr "Aktuális kereső kifejezés mentése"
 
 #: app/Panel/krsearchbar.cpp:68
-#, fuzzy, kde-format
-#| msgid "Select group dialog"
+#, kde-format
 msgid "Open selection dialog"
-msgstr "Csoportkijelölés-ablak"
+msgstr "Kiválasztó párbeszédablak megnyitása"
 
 #: app/Panel/krsearchbar.cpp:188
 #, kde-format
