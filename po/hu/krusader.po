@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-24 00:49+0000\n"
-"PO-Revision-Date: 2022-12-11 22:52+0100\n"
+"PO-Revision-Date: 2022-12-12 23:19+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -7136,18 +7136,15 @@ msgstr "Kiválasztó párbeszédablak megnyitása"
 #: app/Panel/krsearchbar.cpp:188
 #, kde-format
 msgid "Saved search text to history"
-msgstr ""
+msgstr "Kereső szöveg mentve az előzményekbe"
 
 #: app/Panel/listpanel.cpp:142
-#, fuzzy, kde-format
-#| msgid ""
-#| "The statusbar displays information about the filesystem which holds your "
-#| "current directory: total size, free space, type of filesystem, etc."
+#, kde-format
 msgid ""
 "The statusbar displays information about the filesystem which holds your "
 "current folder: total size, free space, type of filesystem, etc."
 msgstr ""
-"Az állapotsor információt közöl az aktuális könyvtárt tartalmazó "
+"Az állapotsor információkatt jelenít meg az aktuális mappát tartalmazó "
 "fájlrendszerről: teljes méret, szabad hely, fájlrendszer típusa stb."
 
 #: app/Panel/listpanel.cpp:166
@@ -7156,19 +7153,16 @@ msgid ""
 "Open menu with bookmarks. You can also add current location to the list, "
 "edit bookmarks or add subfolder to the list."
 msgstr ""
-"A könyvjelzőmenü megnyitása. Felvehető a listába az aktuális hely, "
+"A könyvjelző menü megnyitása. Felvehető a listába az aktuális hely, "
 "szerkeszthetők a könyvjelzők, továbbá új almappa vehető fel a listába."
 
 #: app/Panel/listpanel.cpp:173
-#, fuzzy, kde-format
-#| msgid ""
-#| "Name of directory where you are. You can also enter name of desired "
-#| "location to move there. Use of Net protocols like ftp or fish is possible."
+#, kde-format
 msgid ""
 "Name of folder where you are. You can also enter name of desired location to "
 "move there. Use of Net protocols like ftp or fish is possible."
 msgstr ""
-"Azon könyvtár neve, ahol Ön éppen van. Egy másik helyre való ugráshoz "
+"Azon mappa neve, ahol Ön éppen van. Egy másik helyre való ugráshoz "
 "megadhatja a kívánt hely nevét. Lehetőség van hálózati protokollok "
 "használatára (például ftp:// vagy fish://)."
 
@@ -7178,49 +7172,44 @@ msgid ""
 "The totals bar shows how many files exist, how many selected and the bytes "
 "math"
 msgstr ""
-"Az \"összesen\" jelző mutatja a fájlok számát, a kijelöltek számát és az "
+"Az „összesen” jelző mutatja a fájlok számát, a kijelöltek számát és az "
 "összméretet"
 
 #: app/Panel/listpanel.cpp:229
 #, kde-format
 msgid "Cancel folder space calculation"
-msgstr ""
+msgstr "Mappaméret számításának megszakítása"
 
 #: app/Panel/listpanel.cpp:249
 #, kde-format
 msgid "Move Sidebar clockwise"
-msgstr ""
+msgstr "Oldalsáv áthelyezése jobbra"
 
 #: app/Panel/listpanel.cpp:260 app/Panel/listpanel.cpp:575
-#, fuzzy, kde-format
-#| msgid "Opens the directory browser."
+#, kde-format
 msgid "Open the Sidebar"
-msgstr "Könyvtárböngésző megnyitása"
+msgstr "Oldalsáv megnyitása"
 
 #: app/Panel/listpanel.cpp:283
-#, fuzzy, kde-format
-#| msgid ""
-#| "This button toggles the sync-browse mode.\n"
-#| "When active, each directory change is performed in the\n"
-#| "active and inactive panel - if possible."
+#, kde-format
 msgid ""
 "This button toggles the sync-browse mode.\n"
 "When active, each folder change is performed in the\n"
 "active and inactive panel - if possible."
 msgstr ""
-"Ez a gomb átkapcsolja a \"szinkronizált böngésző\" módot.\n"
-"Ha be van kapcsolva, akkor minden könyvtárváltás el lesz\n"
+"Ez a gomb átkapcsolja a szinkronizált böngésző módot.\n"
+"Ha aktív, akkor minden könyvtárváltás el lesz\n"
 "végezve az aktív és az inaktív panelen is, ha lehetséges."
 
 #: app/Panel/listpanel.cpp:568
 #, kde-format
 msgid "Close the Sidebar"
-msgstr ""
+msgstr "Oldalsáv bezárása"
 
 #: app/Panel/listpanel.cpp:628 app/Synchronizer/synchronizergui.cpp:970
 #, kde-format
 msgid "Warning: The left and the right side are showing the same folder."
-msgstr ""
+msgstr "Figyelmeztetés: a bal és a jobb oldal ugyanazt a mappát mutatja."
 
 #: app/Panel/listpanel.cpp:786
 #, kde-format
@@ -7228,7 +7217,7 @@ msgctxt ""
 "%1=free space,%2=total space,%3=percentage of usage, %4=mountpoint,"
 "%5=filesystem type"
 msgid "%1 free out of %2 (%3%) on %4 [(%5)]"
-msgstr "%1 szabad (összesen %2) (%3%) itt: %4 [(%5)]"
+msgstr "%1 / %2 szabad (%3%) itt: %4 [(%5)]"
 
 #: app/Panel/listpanel.cpp:789
 #, kde-format
@@ -7243,7 +7232,7 @@ msgstr "előnézetek betöltése: %p%"
 #: app/Panel/listpanel.cpp:1050
 #, kde-format
 msgid ">> Reading..."
-msgstr ">> Olvasás..."
+msgstr ">> Olvasás…"
 
 #: app/Panel/listpanel.cpp:1076
 #, kde-format
@@ -7288,7 +7277,7 @@ msgstr "Fájl szerkesztése"
 #: app/Panel/listpanelactions.cpp:66
 #, kde-format
 msgid "&New Text File..."
-msgstr "Ú&j szövegfájl..."
+msgstr "Ú&j szövegfájl…"
 
 #: app/Panel/listpanelactions.cpp:67
 #, kde-format
@@ -7301,16 +7290,14 @@ msgid "Move to other panel"
 msgstr "Áthelyezés másik panelre"
 
 #: app/Panel/listpanelactions.cpp:69
-#, fuzzy, kde-format
-#| msgid "Copy by queue..."
+#, kde-format
 msgid "Copy delayed..."
-msgstr "Másolás sorral..."
+msgstr "Másolás késleltetve…"
 
 #: app/Panel/listpanelactions.cpp:70
-#, fuzzy, kde-format
-#| msgid "Move by queue..."
+#, kde-format
 msgid "Move delayed..."
-msgstr "Áthelyezés sorral..."
+msgstr "Áthelyezés késleltetve…"
 
 #: app/Panel/listpanelactions.cpp:71
 #, kde-format
@@ -7335,7 +7322,7 @@ msgstr "Jobb kattintásos menü"
 #: app/Panel/listpanelactions.cpp:78
 #, kde-format
 msgid "&Properties..."
-msgstr "T&ulajdonságok..."
+msgstr "T&ulajdonságok…"
 
 #: app/Panel/listpanelactions.cpp:79
 #, kde-format
@@ -7350,27 +7337,27 @@ msgstr "Elf&oglalt terület számítása"
 #: app/Panel/listpanelactions.cpp:81
 #, kde-format
 msgid "Pac&k..."
-msgstr "Cso&magolás..."
+msgstr "Cso&magolás…"
 
 #: app/Panel/listpanelactions.cpp:82
 #, kde-format
 msgid "&Unpack..."
-msgstr "Kics&omagolás..."
+msgstr "Kics&omagolás…"
 
 #: app/Panel/listpanelactions.cpp:83
 #, kde-format
 msgid "Create Checksum..."
-msgstr "Ellenőrzőösszeg létrehozása..."
+msgstr "Ellenőrzőösszeg létrehozása…"
 
 #: app/Panel/listpanelactions.cpp:84
 #, kde-format
 msgid "Verify Checksum..."
-msgstr "Ellenőrzőösszeg ellenőrzése..."
+msgstr "Ellenőrzőösszeg ellenőrzése…"
 
 #: app/Panel/listpanelactions.cpp:85 app/Panel/panelcontextmenu.cpp:264
 #, kde-format
 msgid "New Symlink..."
-msgstr "Új szimbolikus link..."
+msgstr "Új szimbolikus link…"
 
 #: app/Panel/listpanelactions.cpp:86
 #, kde-format
@@ -7378,10 +7365,9 @@ msgid "T&est Archive"
 msgstr "Archívum vizsgála&ta"
 
 #: app/Panel/listpanelactions.cpp:87
-#, fuzzy, kde-format
-#| msgid "Alternate selected background:"
+#, kde-format
 msgid "Alternative Delete"
-msgstr "Kijelölt másodlagos háttér:"
+msgstr "Alternatív törlés"
 
 #: app/Panel/listpanelactions.cpp:90
 #, kde-format
@@ -7389,10 +7375,9 @@ msgid "Root"
 msgstr "Gyökérkönyvtár"
 
 #: app/Panel/listpanelactions.cpp:91
-#, fuzzy, kde-format
-#| msgid "Go to Other Panel's Directory"
+#, kde-format
 msgid "Go to Other Panel's Folder"
-msgstr "Ugrás a másik panel könyvtárához"
+msgstr "Ugrás a másik panel mappájához"
 
 #: app/Panel/listpanelactions.cpp:92
 #, kde-format
@@ -7407,7 +7392,7 @@ msgstr "Nézet frissítésének megszakítása"
 #: app/Panel/listpanelactions.cpp:94
 #, kde-format
 msgid "New Net &Connection..."
-msgstr "Új kap&csolat..."
+msgstr "Új kap&csolat…"
 
 #: app/Panel/listpanelactions.cpp:95
 #, kde-format
@@ -7430,20 +7415,19 @@ msgid "Set Jump Back Point"
 msgstr "Visszaugrási pont beállítása ide"
 
 #: app/Panel/listpanelactions.cpp:99
-#, fuzzy, kde-format
-#| msgid "S&ynchron Directory Changes"
+#, kde-format
 msgid "S&ynchron Folder Changes"
-msgstr "Könyvtárváltások sz&inkronizálása"
+msgstr "Mappaváltások sz&inkronizálása"
 
 #: app/Panel/listpanelactions.cpp:100
 #, kde-format
 msgid "Go to Location Bar"
-msgstr "Ugrás a helymegadási sorra"
+msgstr "Ugrás a címsávra"
 
 #: app/Panel/listpanelactions.cpp:101
 #, kde-format
 msgid "Toggle Sidebar"
-msgstr ""
+msgstr "Oldalsáv be/ki"
 
 #: app/Panel/listpanelactions.cpp:103
 #, kde-format
@@ -7473,17 +7457,17 @@ msgstr "Jobb oldali előzmények"
 #: app/Panel/listpanelactions.cpp:108
 #, kde-format
 msgid "Media"
-msgstr "Tárolóeszközök"
+msgstr "Adathordozók"
 
 #: app/Panel/listpanelactions.cpp:109
 #, kde-format
 msgid "Left Media"
-msgstr "Bal oldali média-lista"
+msgstr "Bal oldali adathordozók"
 
 #: app/Panel/listpanelactions.cpp:110
 #, kde-format
 msgid "Right Media"
-msgstr "Jobb oldali média-lista"
+msgstr "Jobb oldali adathordozók"
 
 #: app/Panel/listpanelactions.cpp:113
 #, kde-format
@@ -7491,16 +7475,14 @@ msgid "Find in folder..."
 msgstr "Keresés a mappában…"
 
 #: app/Panel/listpanelactions.cpp:114
-#, fuzzy, kde-format
-#| msgid "Selection Mode"
+#, kde-format
 msgid "Select in folder..."
-msgstr "Kijelölési mód"
+msgstr "Kijelölés a mappában…"
 
 #: app/Panel/listpanelactions.cpp:115
-#, fuzzy, kde-format
-#| msgid "Folder..."
+#, kde-format
 msgid "Filter in folder..."
-msgstr "Könyvtár..."
+msgstr "Szűrés a mappában…"
 
 #: app/Panel/listpanelactions.cpp:118
 #, kde-format
@@ -7508,67 +7490,58 @@ msgid "ROOT (/)"
 msgstr "Gyökér (/)"
 
 #: app/Panel/listpanelactions.cpp:120
-#, fuzzy, kde-format
-#| msgid "Rename file, directory, etc."
+#, kde-format
 msgid "Rename file, folder, etc."
-msgstr "Fájl, könyvtár, stb. átnevezése"
+msgstr "Fájl, mappa, stb. átnevezése"
 
 #: app/Panel/listpanelactions.cpp:121
 #, kde-format
 msgid "Open file in viewer."
-msgstr "Fájl megnyitása a megjelenítőben"
+msgstr "Fájl megnyitása a megjelenítőben."
 
 #: app/Panel/listpanelactions.cpp:122
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Edit file.</p><p>The editor can be defined in Konfigurator, default is "
-#| "<b>internal editor</b>.</p>"
+#, kde-format
 msgid ""
 "<qt><p>Edit file.</p><p>The editor can be defined in Konfigurator, default "
 "is <b>internal editor</b>.</p></qt>"
 msgstr ""
-"<p>Fájl szerkesztése.</p><p>A szerkesztő beállítható a Konfigurátorban, az "
-"<b>internal editor</b> (beépített szerkesztő) az alapértelmezett.</p>"
+"<qt><p>Fájl szerkesztése.</p><p>A szerkesztő beállítható a Konfigurátorban, "
+"az <b>internal editor</b> (beépített szerkesztő) az alapértelmezett.</p></qt>"
 
 #: app/Panel/listpanelactions.cpp:125
 #, kde-format
 msgid "Copy file from one panel to the other."
-msgstr "Fájl másolása az egyik panelról a másikra"
+msgstr "Fájl másolása az egyik panelról a másikra."
 
 #: app/Panel/listpanelactions.cpp:126
 #, kde-format
 msgid "Move file from one panel to the other."
-msgstr "Fájl áthelyezése az egyik panelról a másikra"
+msgstr "Fájl áthelyezése az egyik panelról a másikra."
 
 #: app/Panel/listpanelactions.cpp:127
-#, fuzzy, kde-format
-#| msgid "Create directory in current panel."
+#, kde-format
 msgid "Create folder in current panel."
-msgstr "Könyvtár létrehozása az aktuális panelen"
+msgstr "Mappa létrehozása az aktuális panelen."
 
 #: app/Panel/listpanelactions.cpp:128
-#, fuzzy, kde-format
-#| msgid "Delete file, directory, etc."
+#, kde-format
 msgid "Delete file, folder, etc."
-msgstr "Fájl, könyvtár, stb. törlése"
+msgstr "Fájl, mappa, stb. törlése"
 
 #: app/Panel/listpanelactions.cpp:129
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Open terminal in current directory.</p><p>The terminal can be defined "
-#| "in Konfigurator, default is <b>konsole</b>.</p>"
+#, kde-format
 msgid ""
 "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
 "Konfigurator, default is <b>konsole</b>.</p></qt>"
 msgstr ""
-"<p>Terminálablak nyitása az aktuális könyvtárban.</p><p>A terminálprogram a "
-"Konfigurátorban adható meg. A <b>konsole</b> az alapértelmezett terminál.</p>"
+"<qt><p>Terminál megnyitása az aktuális mappában.</p><p>A terminálprogram a "
+"Konfigurátorban adható meg. A <b>konsole</b> az alapértelmezett terminál.</"
+"p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, fuzzy, kde-format
-#| msgid "Open/Run"
+#, kde-format
 msgid "Open/Run Files"
-msgstr "Megnyitás/futtatás"
+msgstr "Fájlok megnyitása/futtatása"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7576,26 +7549,24 @@ msgid "Run"
 msgstr "Futtatás"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, fuzzy, kde-format
-#| msgid "Open in New Tab"
+#, kde-format
 msgid "Open in New Tabs"
-msgstr "Megnyitás egy új lapon"
+msgstr "Megnyitás új lapokon"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
 msgid "Open in New Tab"
-msgstr "Megnyitás egy új lapon"
+msgstr "Megnyitás új lapon"
 
 #: app/Panel/panelcontextmenu.cpp:148
-#, fuzzy, kde-format
-#| msgid "T&est Archive"
+#, kde-format
 msgid "Browse Archive"
-msgstr "Archívum vizsgála&ta"
+msgstr "Archívum böngészése"
 
 #: app/Panel/panelcontextmenu.cpp:198
 #, kde-format
 msgid "Other..."
-msgstr "Egyéb..."
+msgstr "Egyéb…"
 
 #: app/Panel/panelcontextmenu.cpp:200
 #, kde-format
@@ -7610,12 +7581,12 @@ msgstr "Áthelyezés a Kukába"
 #: app/Panel/panelcontextmenu.cpp:265
 #, kde-format
 msgid "New Hardlink..."
-msgstr "Új keménylink..."
+msgstr "Új hard link…"
 
 #: app/Panel/panelcontextmenu.cpp:267
 #, kde-format
 msgid "Redirect Link..."
-msgstr "Link átirányítása..."
+msgstr "Link átirányítása…"
 
 #: app/Panel/panelcontextmenu.cpp:270
 #, kde-format
@@ -7625,27 +7596,27 @@ msgstr "Linkkezelés"
 #: app/Panel/panelcontextmenu.cpp:293
 #, kde-format
 msgid "Send by Email"
-msgstr "Küldés emailben"
+msgstr "Küldés e-mailben"
 
 #: app/Panel/panelcontextmenu.cpp:298
 #, kde-format
 msgid "Restore"
-msgstr "Folytatás"
+msgstr "Visszaállítás"
 
 #: app/Panel/panelcontextmenu.cpp:305
 #, kde-format
 msgid "Synchronize Selected Files..."
-msgstr "Kijelölt fájlok szinkronizálása..."
+msgstr "Kijelölt fájlok szinkronizálása…"
 
 #: app/Panel/panelcontextmenu.cpp:332
 #, kde-format
 msgid "Create New"
-msgstr "Új elem létrehozása"
+msgstr "Új létrehozása"
 
 #: app/Panel/panelfunc.cpp:371
 #, kde-format
 msgid "You can edit links only on local file systems"
-msgstr "Linkeket csak helyi fájlrendszereken lehet szerkeszteni."
+msgstr "Linkeket csak helyi fájlrendszereken lehet szerkeszteni"
 
 #: app/Panel/panelfunc.cpp:382
 #, kde-format
@@ -7675,7 +7646,7 @@ msgstr "Új link létrehozása nem sikerült: %1"
 #: app/Panel/panelfunc.cpp:409
 #, kde-format
 msgid "You can create links only on local file systems"
-msgstr "Linkeket csak helyi fájlrendszereken lehet létrehozni."
+msgstr "Linkeket csak helyi fájlrendszereken lehet létrehozni"
 
 #: app/Panel/panelfunc.cpp:418
 #, kde-format
@@ -7688,20 +7659,19 @@ msgid "Create a new link to: %1"
 msgstr "Új link létrehozása erre: %1"
 
 #: app/Panel/panelfunc.cpp:427 app/Panel/panelfunc.cpp:781
-#, fuzzy, kde-format
-#| msgid "A directory or a file with this name already exists."
+#, kde-format
 msgid "A folder or a file with this name already exists."
-msgstr "Ezen a néven már létezik fájl vagy könyvtár."
+msgstr "Ezen a néven már létezik fájl vagy mappa."
 
 #: app/Panel/panelfunc.cpp:439
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
-msgstr "Új szimbolikus link (%1) létrehozása nem sikerült erre: %2"
+msgstr "Nem sikerült új szimbolikus linket („%1”) létrehozni erre: „%2”"
 
 #: app/Panel/panelfunc.cpp:443
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
-msgstr "Új link (%1) létrehozása nem sikerült erre: %2"
+msgstr "Nem sikerült új linket („%1”) létrehozni erre: „%2”"
 
 #: app/Panel/panelfunc.cpp:460
 #, kde-format
@@ -7714,10 +7684,9 @@ msgid "Enter a URL to view:"
 msgstr "Adja meg a megjelenítendő URL-t:"
 
 #: app/Panel/panelfunc.cpp:501 app/Panel/panelfunc.cpp:578
-#, fuzzy, kde-format
-#| msgid "You cannot edit a directory"
+#, kde-format
 msgid "You cannot edit a folder"
-msgstr "Könyvtárat nem lehet szerkeszteni."
+msgstr "Mappát nem lehet szerkeszteni"
 
 #: app/Panel/panelfunc.cpp:506
 #, kde-format
@@ -7754,17 +7723,16 @@ msgstr[0] "%1 fájl másolása ide:"
 msgstr[1] "%1 fájl másolása ide:"
 
 #: app/Panel/panelfunc.cpp:704
-#, fuzzy, kde-format
-#| msgid "Folder name:"
+#, kde-format
 msgid "Folder's name:"
-msgstr "Könyvtárnév:"
+msgstr "Mappa neve:"
 
 #: app/Panel/panelfunc.cpp:847
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
-msgstr[0] "Valóban áthelyezi ezt az elemet a kukába?"
-msgstr[1] "Valóban áthelyezi ezt a(z) %1 elemet a kukába?"
+msgstr[0] "Biztosan áthelyezi ezt az elemet a kukába?"
+msgstr[1] "Biztosan áthelyezi ezt a(z) %1 elemet a kukába?"
 
 #: app/Panel/panelfunc.cpp:851
 #, kde-format
@@ -7775,43 +7743,33 @@ msgid_plural ""
 "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
 msgstr[0] ""
-"<qt>Valóban <b>fizikailag</b> törölni szeretné ezt a fájlt (nem csupán "
+"<qt>Biztosan <b>fizikailag</b> törölni szeretné ezt a fájlt (nem csupán "
 "eltávolítani a virtuális mappából)?</qt>"
 msgstr[1] ""
-"<qt>Valóban <b>fizikailag</b> törölni szeretné ezt a(z) %1 fájlt (nem csupán "
-"eltávolítani a virtuális mappából)?</qt>"
+"<qt>Biztosan <b>fizikailag</b> törölni szeretné ezt a(z) %1 fájlt (nem "
+"csupán eltávolítani a virtuális mappából)?</qt>"
 
 #: app/Panel/panelfunc.cpp:858
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
-msgstr[0] "Valóban törli ezt az elemet?"
-msgstr[1] "Valóban törli ezt a(z) %1 elemet?"
+msgstr[0] "Biztosan törli ezt az elemet?"
+msgstr[1] "Biztosan törli ezt a(z) %1 elemet?"
 
 #: app/Panel/panelfunc.cpp:900
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt><p>Directory <b>%1</b> is not empty.</p><p>Skip this one or delete "
-#| "all?</p></qt>"
+#, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
-msgstr ""
-"<qt><p>A(z) <b>%1</b> könyvtár nem üres.</p><p>Kihagyja, vagy mindent töröl?"
-"</p></qt>"
+msgstr "<qt><p>A(z) <b>%1</b> mappa nem üres.</p>"
 
 #: app/Panel/panelfunc.cpp:901
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
-msgstr ""
+msgstr "<p>Kihagyja, vagy mindent áthelyez a kukába?</p></qt>"
 
 #: app/Panel/panelfunc.cpp:902
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt><p>Directory <b>%1</b> is not empty.</p><p>Skip this one or delete "
-#| "all?</p></qt>"
+#, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
-msgstr ""
-"<qt><p>A(z) <b>%1</b> könyvtár nem üres.</p><p>Kihagyja, vagy mindent töröl?"
-"</p></qt>"
+msgstr "<p>Kihagyja, vagy mindent töröl?</p></qt>"
 
 #: app/Panel/panelfunc.cpp:903
 #, kde-format
@@ -7819,10 +7777,9 @@ msgid "&Skip"
 msgstr "&Kihagyás"
 
 #: app/Panel/panelfunc.cpp:904
-#, fuzzy, kde-format
-#| msgid "&Trash"
+#, kde-format
 msgid "&Trash All"
-msgstr "&Szemetesbe"
+msgstr "Összes a &Kukába"
 
 #: app/Panel/panelfunc.cpp:904
 #, kde-format
@@ -7838,10 +7795,10 @@ msgid_plural ""
 "Do you really want to delete these %1 virtual items (physical files stay "
 "untouched)?"
 msgstr[0] ""
-"Valóban törölni szeretné ezt a virtuális elemet (a valós fájlok érintetlenül "
-"maradnak)?"
+"Biztosan törölni szeretné ezt a virtuális elemet (a valós fájlok "
+"érintetlenül maradnak)?"
 msgstr[1] ""
-"Valóban törölni szeretné ezt a(z) %1 virtuális elemet (a valós fájlok "
+"Biztosan törölni szeretné ezt a(z) %1 virtuális elemet (a valós fájlok "
 "maradnak)?"
 
 #: app/Panel/panelfunc.cpp:980
@@ -7852,7 +7809,7 @@ msgstr "Nem sikerült elindítani: %1"
 #: app/Panel/panelfunc.cpp:992
 #, kde-format
 msgid "%1 cannot open %2"
-msgstr "A következő nem nyitható meg %1 által: %2"
+msgstr "A(z) %1 nem tudja megnyitni ezt: %2"
 
 #: app/Panel/panelfunc.cpp:1066
 #, kde-format
@@ -7860,11 +7817,11 @@ msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost.</p></qt>"
 msgstr ""
-"<qt><p> A(z) <b>%1.%2</b> archívum már létezik. Felül szeretné írni?</"
-"p><p>Minden adat a régi archívumban el fog veszni!</p></qt>"
+"<qt><p> A(z) <b>%1.%2</b> archívum már létezik. Szeretné felülírni?</p><p>A "
+"régi archívum összes adata el fog veszni!</p></qt>"
 
 #: app/Panel/panelfunc.cpp:1068
-#, kde-format
+#, fuzzy, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>Zip will replace identically named entries in the zip archive or add "
@@ -8287,19 +8244,17 @@ msgid "Save settings as default for new instances of this view type"
 msgstr "Beállítások mentése alapértelmezésként ezen nézettípus új példányainak"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, fuzzy, kde-format
-#| msgid "Open in a new tab"
+#, kde-format
 msgid "Open a new tab"
-msgstr "Megnyitás egy új lapon"
+msgstr "Új lap megnyitása"
 
 #: app/paneltabbar.cpp:173
 #, kde-format
 msgid "[invalid]"
-msgstr ""
+msgstr "[érvénytelen]"
 
 #: app/paneltabbar.cpp:192
-#, fuzzy, kde-format
-#| msgid "?"
+#, kde-format
 msgctxt "invalid URL path"
 msgid "?"
 msgstr "?"
