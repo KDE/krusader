@@ -5,58 +5,54 @@
     SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
 -->
 <sect1 id="profiles">
-  <title
->Profile</title>
+  <title>Profiles</title>
   <indexterm>
-    <primary
->Profile</primary>
+    <primary>Profiles</primary>
   </indexterm>
-  <para
->Mit Profilen können Sie Ihre bevorzugten Einstellungen speichern und wieder laden. Mehrere Funktionen unterstützen Profile. Sie können &eg; verschiedene Profile für Dateifenster (bei der Arbeit, zu Hause, für entfernte Verbindung &etc;), Suchprofile und Abgleichprofile &etc; verwenden.</para>
+  <para>With profiles you can save and restore your favorite
+  settings. Several features support profiles, you can have
+  &eg; different panel profiles (work, home, remote
+  connections, &etc;), search profiles, synchroniser
+  profiles, &etc;</para>
   <sect2 id="panel_profiles">
-    <title
->Profile für Dateifenster</title>
-    <para
->Ein Profil für Dateifenster enthält folgende Einträge: Pfade für alle Unterfenster (links oder rechts), das aktuelle Unterfenster (links oder rechts) und das aktive Dateifenster (links oder rechts). Diese Informationen werden in der Datei <link linkend="config_files"
->krusaderrc</link
-> gespeichert. Sie können mehrere Profile für Dateifenster benutzen, &eg; für Dateiverwaltung, &FTP;-Verwaltung, zu Hause, bei der Arbeit &etc; Die Profile für Dateifenster können mit dem Menü <guimenu
->Fenster</guimenu
-> <link linkend="c_panel_profiles"
->gespeichert und wieder geladen</link
-> werden. Das <link linkend="konfig-startup"
->Startprofil</link
-> wird benutzt, wenn Sie &krusader; aufrufen. Diese Einstellung können Sie jedoch mit einer Befehlszeilenoption überschreiben.</para>
+    <title>Panel Profiles</title>
+    <para>A panel profile contains the following: all the tab
+    paths (left or right), the current tab (left or right) and the
+    active panel (left or right). All this information is stored in
+    the <link linkend="config_files">krusaderrc</link> file. You can have several
+    panel profiles, &eg; file management, &FTP;
+    management, home, work, &etc; The panel profile can
+    be 
+    <link linkend="c_panel_profiles">saved and restored</link> in
+    the 
+    <guimenu>Window</guimenu> menu. The 
+    <link linkend="konfig-startup">default startup
+    profile</link> will be used when starting &krusader;, but you can
+    override it with a command-line option.</para>
   </sect2>
   <sect2 id="color_profiles">
-    <title
->Farbprofile</title>
-    <para
->Farbprofile können können wie im Abschnitt <link linkend="konfig-color"
->Farbprofile</link
-> beschrieben gespeichert und wieder hergestellt werden.</para>
+    <title>Color Profiles</title>
+    <para>Colormaps can be saved and restored with 
+    <link linkend="konfig-color">Color Profiles</link>.</para>
   </sect2>
   <sect2 id="key_profiles">
-    <title
->Kurzbefehl-Profile</title>
-    <para
->Kurzbefehl-Schemata können mit <link linkend="konfig-color"
->Kurzbefehl-Profilen</link
-> gespeichert und wieder geladen werden.</para>
+    <title>Key-binding Profiles</title>
+    <para>Keymaps can be saved and restored with 
+    <link linkend="configure-shortcuts">Key-binding
+    Profiles</link>.</para>
   </sect2>
   <sect2 id="search_profiles">
-    <title
->Suchprofile</title>
-    <para
->Wenn Sie regelmäßig die gleiche Suche ausführen, können Sie die Einstellungen zur Suche (&eg; einzuschließende und auszuschließende Dateien &etc;) in einem <link linkend="krusearcher"
->Suchprofil</link
-> speichern.</para>
+    <title>Search Profiles</title>
+    <para>If you regularly perform the same search operation,
+    you can save the search settings (&eg; include
+    files, exclude files, &etc;) in a 
+    <link linkend="krusearcher">Search Profile</link>.</para>
   </sect2>
   <sect2 id="synchronizer_profiles">
-    <title
->Abgleichprofile</title>
-    <para
->Wenn Sie regelmäßig den gleichen Abgleich ausführen, können Sie die Einstellungen zum Abgleich in einem <link linkend="synchronizer"
->Abgleich-Profil</link
-> speichern.</para>
+    <title>Synchronizer Profiles</title>
+    <para>If you regularly perform the same synchronize
+    operation, you can save the synchronize settings in a 
+    <link linkend="synchronizer">Synchronizer
+    Profile</link>.</para>
   </sect2>
 </sect1>

@@ -2,517 +2,437 @@
     SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
     SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
     SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
 -->
 <chapter id="basic-functions">
-  <title
->Grundlegende Funktionen</title>
+  <title>Basic Functions</title>
   <sect1 id="controls">
-    <title
->Bedienelemente</title>
+    <title>Controls</title>
     <sect2 id="control-general">
-      <title
->Allgemein</title>
-      <para
->Die in ein kurzer aber wichtiger Abschnitt, der sich mit der Kontrolle von &krusader; beschäftigt. In diesem Abschnitt werden aus zwei Gründen nicht alle verschiedenen Kurzbefehle behandelt: <orderedlist numeration="arabic"
-> <listitem
-> <para
->Es gibt zu viele Kurzbefehle</para
-> </listitem
-> <listitem
-> <para
->Die meisten Aktionen in &krusader; können auf der Seite <link linkend="konfig-panel"
->Dateifenster</link
-> im Konfigurator geändert werden</para
-> </listitem
-> </orderedlist
-> Es werden hier nur die wichtigsten Kurzbefehle aus der Standardeinstellung genannt, denken sich jedoch daran, dass die meisten <link linkend="key_bindings"
->Kurzbefehle</link
-> eingerichtet werden können. Stellen Sie fest, dass Sie einen bestimmten Befehl oft benutzen, und möchten Sie den Kurzbefehl dafür ändern, dann öffnen Sie den Dialog <link linkend="key_bindings"
->Kurzbefehl festlegen</link
-> mit <menuchoice
-><guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Kurzbefehle festlegen ...</guimenuitem
-></menuchoice
-></para>
+      <title>General</title>
+      <para>This is a rather short but important section that will
+      go into the details of controlling &krusader;.
+      This section does not try to cover all the various key
+      combinations for two reasons: 
+      <orderedlist numeration="arabic">
+        <listitem>
+          <para>there are just too many of them</para>
+        </listitem>
+        <listitem>
+          <para>most of &krusader; actions are
+          configurable in the
+          <link linkend="konfig-panel">Konfigurator Panel page</link></para>
+        </listitem>
+      </orderedlist>We will only mention the most important
+      keyboard shortcuts with the default configuration, but keep
+      in mind that most of the <link linkend="key_bindings">Key-Bindings</link> are
+      configurable. If you find that you use a certain command a
+      lot and want to know the shortcut for this command, or you
+      want to change this command shortcut, then check out the
+      <link linkend="key_bindings">Configure Shortcuts</link> window (<menuchoice><guimenu>Settings</guimenu> 
+      <guimenuitem>Configure Shortcuts...</guimenuitem></menuchoice>).</para>
     </sect2>
     <sect2 id="moving-around">
-      <title
->Navigation</title>
-      <para
->Mit Navigation ist das Übertragen des Fokus von Tastatur und Maus zwischen den verschiedenen Teile von &krusader;s <link linkend="mainwindow"
->Hauptfenster</link
->. Fünf verschiedene Bereiche können den Fokus haben: das linke oder rechte Dateifenster, die Menüleiste, die Befehlszeile oder der Terminal-Emulator. Das Dateifenster mit dem Fokus wird das aktive Dateifenster genannt. Ein aktives Dateifenster bleibt aktiv, bis das andere Dateifenster den Fokus erhält, &ie; wenn das linke Dateifenster aktiv ist und Sie in die Befehlszeile klicken, dann behält das linke Dateifenster den Fokus. Sie müssen das aktive Dateifenster mit Absicht ändern.</para>
-      <para
->Die häufigste Methode zum Wechseln des Fokus zu einem bestimmten Dateifenster ist das Klicken mit der Maus auf diese Dateifenster. Dabei sollten Sie aber folgendes bedenken: <itemizedlist>
+      <title>Moving Around</title>
+      <para>By Moving Around we mean the transfer of the keyboard
+      and mouse focus between the different parts of the
+      &krusader; 
+      <link linkend="mainwindow">main window</link>. The focus can
+      be in one of five places: the Left or Right Panel, the Menu
+      Bar, the Command Line or the Terminal Emulator. The panel
+      that has the focus is called the Active Panel. An Active
+      Panel will remain active until the other panel receives the
+      focus (&ie;: if the Left Panel was active and you
+      clicked on the Command Line - then the Left Panel remains the
+      Active Panel). You must deliberately change which panel is
+      active.</para>
+      <para>The most common way to transfer the focus to a specific
+      panel is to use the mouse to click on that panel. But you
+      should be aware of the following: 
+      <itemizedlist>
         <listitem>
-          <para
->Klicken auf die Werkzeugleiste, die Funktionstastenleiste oder die Statusleiste ändert <emphasis
->nicht</emphasis
-> den Fokus.</para>
+          <para>Clicking on the Toolbar, the FN keys bar or the
+          Status Bar does <emphasis>not</emphasis> change the focus.</para>
         </listitem>
         <!--
    Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
    <listitem>
-     <para
->The display part of the Quick View Panel does not accept clicks so you should click on the
+     <para>The display part of the Quick View Panel does not accept clicks so you should click on the
            Location Toolbar of this panel if you want it to have focus.</para>
    </listitem>
 -->
         <listitem>
-          <para
->Drücken Sie auf den Knopf <guibutton
->Im Terminal-Modus</guibutton
-> in der Befehlszeile überträgt nicht den Fokus, Sie müssen in die Eingabezeile klicken.</para>
+          <para>Pushing the 
+          <guibutton>Run in Terminal Mode</guibutton> button in the
+          Command Line will not transfer the focus, so you have to
+          click inside the Input Line.</para>
         </listitem>
         <listitem>
-          <para
->Wenn Sie ein Menü öffnen, erhält die Menüleiste den Fokus, der erst nach der Auswahl einer Menüaktion zurück zum vorher aktivierten Element geht.</para>
+          <para>When you choose a menu, the Menu Bar will become
+          focused. It remains focused until you choose a command -
+          the focus returns to the previous owner.</para>
         </listitem>
-      </itemizedlist
-></para>
-      <para
->Es gibt natürlich Möglichkeiten, den Fokus mit der Tastatur zu ändern: <itemizedlist>
+      </itemizedlist></para>
+      <para>There are, of course, ways to use the keyboard to
+      change the focus: 
+      <itemizedlist>
         <listitem>
-          <para
->Mit der &Tab;taste wechseln Sie zwischen den Dateifenstern, wenn eines der Dateifenster den Fokus hat oder Sie wechseln zwischen allen Befehlen in einem Menü, wenn die Menüleiste aktiviert ist.</para>
-        </listitem>
-        <listitem>
-          <para
->Mit <keycombo action="simul"
->&Ctrl;&Down;</keycombo
-> wechseln Sie vom aktiven Dateifenster zur Befehlszeile oder zum Terminal-Emulator und mit <keycombo action="simul"
->&Ctrl; &Up;</keycombo
-> wechseln Sie wieder zurück.</para>
+          <para>The &Tab; Key will switch panels, if one
+          of the panels has the focus or rotate between all the
+          commands in a menu, if the Menu Bar is active.</para>
         </listitem>
         <listitem>
-          <para
->Mit der Taste &Esc; wird der Fokus von der Menüleiste wieder zum vorher aktiven Dateifenster zurückgegeben.</para>
+          <para>The 
+          <keycombo action="simul">&Ctrl;
+          &Down;</keycombo> will take you from
+          the Active Panel to the Command Line or Terminal
+          Emulator, and the 
+          <keycombo action="simul">&Ctrl;
+          &Up;</keycombo> will take you back
+          from the Command Line to the Active Panel.</para>
         </listitem>
         <listitem>
-          <para
->Im Terminal-Emulator können Sie die &Tab;taste oder die Maus benutzen, um zu einem aktiven Dateifenster zu gehen.</para>
+          <para>The &Esc; Key will make the Menu Bar
+          return the focus, if it has it, to the previous Active
+          Panel.</para>
         </listitem>
         <listitem>
-          <para
->Drücken Sie <keycombo action="simul"
->&Alt;<keycap
->Unterstrichener Buchstabe</keycap
-></keycombo
->, um das Menü zu öffnen und eine Aktion aufzurufen, wenn diese Tastenkombination nicht <quote
->reserviert</quote
-> ist und von einer &krusader;-Aktion verwendet wird.</para>
+          <para>If you happen to be inside the Terminal Emulator,
+          you can use the &Tab; Key, or the mouse, to
+          navigate to an Active Panel.</para>
         </listitem>
-      </itemizedlist
-></para>
+        <listitem>
+          <para>Pressing 
+          <keycombo action="simul">&Alt;
+          <keycap>Underlined Letter</keycap></keycombo> from the
+          Menu Bar will open that menu (unless this key combination
+          is a <quote>Reserved Key</quote>, used by one of
+          &krusader;'s actions).</para>
+        </listitem>
+      </itemizedlist></para>
     </sect2>
     <sect2 id="selecting-files">
-      <title
->Auswahl</title>
+      <title>Selecting</title>
       <note>
-        <para
->&krusader; bietet vier <link linkend="selection_modes"
->Auswahlmodi</link
->. Hier wird nur der Auswahlmodus von &krusader; beschrieben, nicht die <link linkend="quickselect"
->Schnellauswahl</link
->.</para>
+        <para>&krusader; offers 4
+            <link linkend="selection_modes">Selection Modes</link>, to say nothing about the <link linkend="quickselect">Quickselect bar</link>, only
+        &krusader;'s Selection Mode is explained
+        here.</para>
       </note>
-      <para
->Auswählen ist eine Fähigkeit, die Sie erlernen sollten, um &krusader; effektiv zu benutzen. Da Sie im Dateifenster nur einen Ordner gleichzeitig auswählen können, wird in diesem Absatz hauptsächlich erklärt, wie Dateien im Dateifenster ausgewählt werden können.</para>
-      <para
->Das Verschieben des Cursors ist einfach. Klicken Sie mit der &LMBn; auf eine Datei oder einen Ordner, wird er ausgewählt. Jetzt erhalten Sie einige nützliche Hinweise, um &krusader; einfacher benutzen zu können. Dabei wird angenommen, dass Sie dem Mausauswahl-Modus in &krusader; verwenden. <itemizedlist>
+      <para>Selecting is a skill you need to master in order to get
+      the most out of &krusader;. Since the Tree Panel allows select 
+      only one folder at a time, this paragraph mainly explains how
+      to select files in the List Panel.</para>
+      <para>Moving the cursor is easy. Left-clicking on a file or
+      folder (referred to herein as <quote>elements</quote> meaning files and
+      folders) will select it. Here are some useful pointers
+      that will make &krusader; even easier to use (assuming you are
+      using &krusader;'s Mouse Selection Mode): 
+      <itemizedlist>
         <listitem>
-          <para
->Die &Space; und die Taste &Ins; schalten die Auswahl der aktiven Eintrags um, ohne die Auswahl der anderen Einträge zu verändern und geht dann um einen Eintrag nach unten.</para>
+          <para>The 
+          &Space; and &Ins; keys will toggle the selection of
+          the file under the cursor without affecting the selection
+          of other files/folders, the cursor will go one
+          position down.</para>
         </listitem>
         <listitem>
-          <para
-><keycap
->Klick mit linker Maustaste</keycap
-> auf eine Datei wählt sie aus und hebt dies Auswahl aller vorherigen Dateien oder Ordner auf.</para>
+          <para>
+          <keycap>Left Clicking</keycap> on a file will select, or
+          unselect, all previously selected files.</para>
         </listitem>
         <listitem>
-          <para
-><keycombo action="simul"
->&Ctrl;<keycap
->Klick mit linker Maustaste</keycap
-></keycombo
-> schaltet die Auswahl der Datei um, auf die Sie geklickt haben, ohne die Auswahl anderer Dateien oder Ordner zu verändern.</para>
+          <para>
+          <keycombo action="simul">&Ctrl;
+          <keycap>Left Clicking</keycap></keycombo> will toggle the
+          selection of the file under the cursor without affecting
+          the selection of other files/folders.</para>
         </listitem>
         <listitem>
-          <para
-><keycombo action="simul"
->&Shift;<keycap
->Klick mit linker Maustaste</keycap
-></keycombo
-> wählt alle Einträge zwischen der vorherigen Cursor-Position und der neuen Position.</para>
+          <para>
+          <keycombo action="simul">&Shift;
+          <keycap>Left Clicking</keycap></keycombo> will select all
+          the elements between the previous cursor location and the
+          new one.</para>
         </listitem>
         <listitem>
-          <para
-><keycombo action="simul"
->&Shift; &Home;</keycombo
-> wählt alles über dem Cursor aus und entfernt alle Einträge unter dem Cursor aus der Auswahl.</para>
+          <para>
+          <keycombo action="simul">&Shift;&Home;</keycombo> selects
+          everything above the cursor (and deselects everything
+          below the cursor, if selected).</para>
         </listitem>
         <listitem>
-          <para
-><keycombo action="simul"
->&Shift; &End;</keycombo
-> wählt alles unter dem Cursor aus und entfernt alle Einträge über dem Cursor aus der Auswahl.</para>
+          <para>
+          <keycombo action="simul">&Shift;&End;</keycombo> selects
+          everything below the cursor (and unselects everything
+          above the cursor, if selected).</para>
         </listitem>
         <listitem>
-          <para
->Der Eintrag <quote
->..</quote
-> kann nicht ausgewählt werden.</para>
+          <para>The <quote>..</quote> entry is not selectable.</para>
         </listitem>
         <listitem>
-          <para
->Im Menü <link linkend="edit-menu"
->Bearbeiten</link
-> finden Sie weitere Möglichkeiten, um Dateien auszuwählen.</para>
+          <para>The <link linkend="edit-menu">Edit menu</link> can offer more ways
+          to select your files.</para>
         </listitem>
-      </itemizedlist
-></para>
+      </itemizedlist></para>
     </sect2>
     <sect2 id="executing_commands">
-      <title
->Befehle ausführen</title>
-      <para
->Darüber ist nicht viel zu sagen, Sie müssen nur einige Dateien auswählen, wenn nicht, führt &krusader; Operationen für die Dateien und Ordner aus, die den Fokus haben. Wählen Sie eine <link linkend="menu-commands"
->Aktion</link
-> aus der Menüleiste, benutzen Sie einen Kurzbefehl oder das Kontextmenü und die ausgewählte Aktion wird ausgeführt. Siehe auch <link linkend="executing_files"
->Ausführen von Dateien</link
->.</para>
+      <title>Executing Commands</title>
+      <para>There is not a lot to say here, all you need to do is
+      select some files (if you do not, &krusader; will
+      operate on the file(s) or folder(s) that have the focus),
+      choose a 
+      <link linkend="menu-commands">Command</link> from the Menu Bar
+      or use a Keyboard Shortcut (or the Right Click Menu) and the
+      selected Command executes. See also 
+      <link linkend="executing_files">Executing
+      Files</link>.</para>
     </sect2>
     <sect2 id="quicksearch">
-      <title
->Schnellsuche</title>
+      <title>Quick search</title>
       <!-- Thanks to Heiner Eichmann -->
-      <para
->Diese Funktion führt eine schnelle Suche nach dem Dateinamen im aktiven Dateifenster durch.</para>
-      <para
->Geben Sie <keycap
->f</keycap
-> für eine Schnellsuche im aktiven Dateifenster für die Suche nach Dateien ein, deren Namen mit diesem Buchstaben beginnt. Ein kleiner Suchdialog wird unter dem aktiven Dateifenster geöffnet. Geben Sie die ersten Buchstaben des gesuchten Namens ein und der Cursor springt zum ersten passenden Dateinamen, wenn es ihn gibt. Mit den Tasten &Down;/&Down; springen Sie zur nächsten oder vorherigen Übereinstimmung. Mit &Esc; schließen Sie die Suchleiste. Die Schnellsuche unterstützt <ulink url="https://de.wikipedia.org/wiki/Reguläre_Ausdrücke"
->reguläre Ausdrücke</ulink
-> für die Suche nach Dateien.</para>
+      <para>This feature will do a quick search for the file name
+      in the Active List Panel.</para>
+      <para>Type 
+      <keycap>foo</keycap>(one character) to do a quick search in
+      the Active List Panel for a file beginning with <quote>foo</quote>. A
+      small quick search dialog box will open below the Active List
+      Panel. Type the first few characters of the desired file name
+      (more than one character allowed), the cursor will jump to
+      that filename (if it exists), &eg; type <quote>ab</quote> to
+      search for a file which begins with <quote>ab</quote>. The
+      &Up;/&Down; keys will jump to the next or
+      previous match. &Esc; will close the quick search
+      line. The cursor will stay on the last file
+      found. The Quicksearch supports <ulink url="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</ulink> for searching files.</para>
       <note>
-        <para
->Drücken Sie <keycombo action="simul"
->&Alt;<keycap
->foo</keycap
-></keycombo
->, dann wird der zugehörige Kurzbefehl ausgeführt. Ist für diese Tastenkombination kein Kurzbefehl definiert, werden die restlichen Buchstaben <keycap
->foo</keycap
-> für die Schnellsuche verwendet.</para>
+        <para>If you press 
+        <keycombo action="simul">&Alt;
+        <keycap>foo</keycap></keycombo>, the key binding shortcut
+        will be executed. If there is no configured key binding,
+        the remaining letter 
+        <keycap>foo</keycap> will be used for the quick
+        search.</para>
       </note>
-      <para
->Benutzen Sie den Dialog <link linkend="key_bindings"
->Kurzbefehle festlegen</link
-> (<guimenu
->Einstellungen</guimenu
->-><guimenuitem
->Kurzbefehle festlegen</guimenuitem
->)</para>
+      <para>Use <link linkend="key_bindings">Configure Shortcuts</link> window (<menuchoice><guimenu>Settings</guimenu> 
+      <guimenuitem>Configure Shortcuts...</guimenuitem></menuchoice>).</para>
     </sect2>
     <sect2 id="quickfilter">
-      <title
->Schnellfilter</title>
-      <para
->Diese Funktion führt eine schnelle Filterung in der Dateiliste im aktiven Dateifenster durch.</para>
-      <para
->Drücken Sie <keycombo
->&Ctrl;<keycap
->I</keycap
-></keycombo
->, um die Schnellfilterleiste zu öffnen. Geben Sie <keycap
->foo</keycap
-> ein, um im aktiven Dateifenster alle Dateien auszufiltern, die nicht <quote
->foo</quote
-> im Namen haben. Sie können Platzhalter zum Filtern benutzen, &eg; <quote
->a*b</quote
->, um alle Dateien zu filtern, die <quote
->a</quote
-> und <quote
->b</quote
-> im Namen haben. Der Schnellfilter berücksichtigt die Einstellungen zur <link linkend="konfig-panel-general"
->Groß- und Kleinschreibung</link
-> der Schnellsuche.</para>
-      <para
->Beim Drücken der &Enter;taste im Schnellfiltermodus wird das Dateifenster aktiviert, ist der Schnellfilter oder das Dateifenster aktiviert, schließt die &Esc;-Taste den Schnellfilter. </para>
-      <para
->Um den Standardkurzbefehl für den Schnellfilter zu ändern, öffnen Sie mit <menuchoice
-><guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Kurzbefehle  festlegen ...</guimenuitem
-></menuchoice
-> den Einrichtungsdialog für Kurzbefehle.</para>
+      <title>Quick filter</title>
+      <para>This feature will do a quick filter for the file list
+      in the Active Panel.</para>
+      <para>Press <keycombo>&Ctrl;<keycap>I</keycap></keycombo> to open Quickfilter bar.
+      Type <keycap>foo</keycap> (one character) to filter out from the Active Panel all the files
+      that do not have <quote>foo</quote> in names. You can use wildcards for the filtering. &eg; use <quote>a*b</quote> to
+      filter files which have <quote>a</quote> and <quote>b</quote> in their names. The Quickfilter follows the
+      <link linkend="konfig-panel-general">case-sensitivity setting</link> of Quicksearch.</para>
+      <para>Pressing &Enter; in Quickfilter mode sets focus to panel, when panel or Quickfilter is focused, &Esc; closes Quickfilter.
+      </para>
+      <para>To change the default shortcut of Quickfilter use <link linkend="key_bindings">Configure Shortcuts</link> window (<menuchoice><guimenu>Settings</guimenu> 
+      <guimenuitem>Configure Shortcuts...</guimenuitem></menuchoice>).</para>
     </sect2>
     <sect2 id="quickselect">
-      <title
->Schnellauswahl</title>
-      <para
->Diese Funktion führt eine schnelle Auswahl in der Dateiliste im aktiven Dateifenster durch.</para>
-      <para
->Drücken Sie <keycombo
->&Ctrl;&Shift;<keycap
->S</keycap
-></keycombo
->, um die Schnellauswahlleiste zu öffnen. Geben Sie <keycap
->foo</keycap
-> ein, um im aktiven Dateifenster alle Dateien auszufiltern, die nicht <quote
->foo</quote
-> im Namen haben. Sie können Platzhalter zum Filtern benutzen, &eg; <quote
->a*b</quote
->, um alle Dateien zu filtern, die <quote
->a</quote
-> und <quote
->b</quote
-> im Namen haben. Die Schnellauswahl berücksichtigt die Einstellungen zur <link linkend="konfig-panel-general"
->Groß- und Kleinschreibung</link
-> der Schnellsuche.</para>
-      <para
->Beim Drücken der &Enter;taste im Schnellauswahlmodus wird das Dateifenster aktiviert, ist die Schnellauswahl oder das Dateifenster aktiviert, schließt die &Esc;-Taste die Schnellauswahl. </para>
-      <para
->Um den Standardkurzbefehl für den Schnellauswahl zu ändern, öffnen Sie mit <menuchoice
-><guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Kurzbefehle  festlegen ...</guimenuitem
-></menuchoice
-> den Einrichtungsdialog für Kurzbefehle.</para>
+      <title>Quick select</title>
+      <para>This feature will do a quick select for the file list
+      in the Active Panel.</para>
+      <para>Press <keycombo>&Ctrl;&Shift;<keycap>S</keycap></keycombo> to open Quickselect bar.
+      Type <keycap>foo</keycap> (one character) to filter out from the Active Panel all the files
+      that do not have <quote>foo</quote> in names. You can use wildcards for the filtering. &eg; use <quote>a*b</quote> to
+      filter files which have <quote>a</quote> and <quote>b</quote> in their names. The Quickselect follows the
+      <link linkend="konfig-panel-general">case-sensitivity setting</link> of Quicksearch.</para>
+      <para>Pressing &Enter; in Quickselect mode sets focus to panel, when panel or Quickselect is focused, &Esc; closes Quickselect.
+      </para>
+      <para>To change the default shortcut of Quickselect use <link linkend="key_bindings">Configure Shortcuts</link> window (<menuchoice><guimenu>Settings</guimenu> 
+      <guimenuitem>Configure Shortcuts...</guimenuitem></menuchoice>).</para>
     </sect2>
     <sect2 id="context-menu">
-      <title
->Kontextmenü</title>
-      <para
->&krusader; hat viele Kontextmenüs, mit denen Sie schnelle Aktionen mit der Maus ausführen können. Normalerweise öffnet ein Klicken mit der &RMBn; das Kontextmenü, abhängig von Ihren Einstellungen zum <link linkend="selection_modes"
->Auswahlmodus</link
->. Im folgenden erhalten Sie eine Übersicht der wichtigsten Kontextmenüs. Benutzen Sie die Kontextmenüs, um verfügbare Aktionen zu entdecken. <itemizedlist>
+      <title>Context Menu</title>
+      <para>&krusader; has many Context menus that allow
+      you to do fast operations with the mouse, usually a
+      right-click will open the Context menu (depending on your
+      <link linkend="selection_modes">Selection Modes</link> settings). This list
+      gives an overview of the most important context menus. Use
+      them to discover the available commands. 
+      <itemizedlist>
         <listitem>
-          <para
-><link linkend="mainwindow"
->Haupt-Werkzeugleiste</link
-> (Ausrichtung, Textposition, Symbolgröße)</para>
+          <para><link linkend="mainwindow">Main Toolbar</link> (orientation, text
+          position, icon size)</para>
         </listitem>
         <listitem>
-          <para
-><link linkend="list_panel"
->Dateifenster</link
-> auf einer Datei oder einem Ordner</para>
+          <para><link linkend="list_panel">List Panel</link> on a file or
+          folder</para>
         </listitem>
         <listitem>
-          <para
-><link linkend="cmdline"
->Befehlszeile</link
-> (Rückgängig, Einfügen, Textvervollständigung ...)</para>
+          <para><link linkend="cmdline">Command Line</link> (undo, paste, text
+          completion...)</para>
         </listitem>
         <listitem>
-          <para
-><link linkend="termemu"
->Terminal-Emulator</link
-> (Signale senden, Schrift, Verlauf ...)</para>
+          <para><link linkend="termemu">Terminal emulator</link> (send signal, font,
+          history...)</para>
         </listitem>
         <listitem>
-          <para
-><link linkend="folder-tabs"
->Unterfenster für Ordner</link
-> (Neu, Duplizieren, Schließen)</para>
+          <para><link linkend="folder-tabs">Folder tabs</link> (new, duplicate,
+          close)</para>
         </listitem>
         <listitem>
-          <para
-><link linkend="krusearcher"
->KruSearcher</link
-> Dateiliste der Suchergebnisse (<keycap
->F3</keycap
-> Ansicht, <keycap
->F4</keycap
-> Bearbeiten)</para>
+          <para>
+          <link linkend="krusearcher">KruSearcher</link> Search
+          results file list (<keycap>F3</keycap> View, <keycap>F4</keycap> Edit)</para>
         </listitem>
         <listitem>
-          <para
-><link linkend="mount-man"
->MountMan</link
-> (Aushängen, Formatieren ...)</para>
+          <para><link linkend="mount-man">MountMan</link> (unmount,
+          format...)</para>
         </listitem>
         <listitem>
-          <para
-><link linkend="synchronizer"
->Ordner abgleichen</link
-> Dateiliste.</para>
+          <para><link linkend="synchronizer">Synchronize Folders</link> File List</para>
         </listitem>
         <listitem>
-          <para
-><link linkend="useractions"
->Benutzeraktionen</link
-></para>
+          <para><link linkend="useractions">UserActions</link></para>
         </listitem>
         <listitem>
-          <para
->Kontextmenüs von &konqueror; werden auch in &krusader; angezeigt</para>
+          <para>&konqueror; Right-Click actions are
+          shown in &krusader;</para>
         </listitem>
         <listitem>
-          <para
-><link linkend="list_panel"
->Spalten</link
-> anzeigen oder ausblenden</para>
+          <para>Show/hide 
+          <link linkend="list_panel">Column Headers</link></para>
         </listitem>
         <listitem>
-          <para
-><link linkend="bookman"
->Lesezeichen</link
-> Dauerhafte Lesezeichen ein-/ausschalten</para>
+          <para><link linkend="bookman">Bookmarks</link> enable/disable permanent
+          bookmarks</para>
         </listitem>
         <listitem>
-          <para
->...</para>
+          <para>...</para>
         </listitem>
-      </itemizedlist
-></para>
+      </itemizedlist></para>
     </sect2>
   </sect1>
   <sect1 id="basic">
-    <title
->Grundlegende Dateiverwaltung</title>
+    <title>Basic File Management</title>
     <sect2 id="executing_files">
-      <title
->Dateien ausführen</title>
-      <para
->Sie können nur die Dateien im aktiven Dateifenster ausführen. Um eine Datei auszuführen, doppelklicken Sie darauf oder drücken Sie die &Enter;taste, wenn die Datei den Fokus hat. &krusader; öffnet die Standardanwendung für diesen Dateityp, Bild, Textdatei usw., oder die Datei wird ausgeführt, ein Skript oder ein Programm usw. Möchten Sie die Datei mit einer anderen Anwendung öffnen, klicken Sie mit der &RMBn; auf die Datei und wählen Sie im Kontextmenü den Untermenüeintrag <guisubmenu
->Öffne mit</guisubmenu
->, der Ihnen weitere Optionen anbietet. &krusader; ist kompatibel mit der &plasma;-Standard-Dateiverwaltung für alle Dateiarten, ausgenommen Archive, die im internen &krusader;-Dateifenster geöffnet und nicht in einer externen Anwendung. Weitere Informationen finden Sie auf der Seite <link linkend="konfig-archives"
->Archive</link
-> im Konfigurator.</para>
+      <title>Executing Files</title>
+      <para>You can only execute files in the Active List Panel. To
+      execute a file just 
+      (double-)click on it or press &Enter; when it
+      is under the list cursor. &krusader; will open it
+      in the default application for this file type (picture,
+      text file...) or the file will be executed (script,
+      binary...). If you want to use 
+      another application to open the file, 
+      click with the &RMB; on the file and go to the <guisubmenu>Open
+      with</guisubmenu> sub-menu which will offer more options.
+      &krusader; is compatible with the &plasma;
+      default file manager for all file types except archives that
+      are opened inside the &krusader; panel and not in
+      an external application. See 
+      <link linkend="konfig-archives">the archives page in
+      Konfigurator</link> for details.</para>
     </sect2>
     <sect2 id="copying">
-      <title
->Kopieren und Verschieben</title>
+      <title>Copying and Moving</title>
       <figure id="screenshot-copyjob" float="1">
-        <title
->Kopieren-Dialog</title>
+        <title>Copy dialog</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="copyjob.png"
-></imagedata>
+            <imagedata fileref="copyjob.png"></imagedata>
           </imageobject>
           <textobject>
-            <phrase
->Kopieren-Dialog</phrase>
+            <phrase>Copy dialog</phrase>
           </textobject>
         </mediaobject>
       </figure>
-      <para
->Um Dateien und Ordner zu kopieren oder zu verschieben, wählen Sie sie aus und drücken <keycap
->F5</keycap
-> um sie zu kopieren <keycap
->F6</keycap
-> zu verschieben. &krusader; versucht die Änderungszeiten zu erhalten. Beim Kopieren eines Ordners wird der Eigentümer zum Benutzer geändert, der kopiert, und die Gruppe wird zur primären Gruppe des Benutzers geändert. Beim Kopieren einer Datei wird der Eigentümer zum Benutzer geändert, der kopiert, die Gruppe wird zur primären Gruppe des Benutzers geändert und die Berechtigungen bleiben erhalten. Eigentümer, Gruppe und Berechtigungen bleiben beim Verschieben von Dateien und Ordnern erhalten. Beim Kopieren und Verschieben wird ein Dialog geöffnet, in dem Sie das Ziel der Operation auswählen können. Als Vorgabe ist der Ordner des anderen Dateifensters als Ziel eingestellt. Geben Sie eine teilweise &URL; ein, wird der aktuelle Ordner des Dateifensters als Basis der &krusader; benutzt.</para>
+      <para>To copy or move files/folders just select them and
+      press 
+      <keycap>F5</keycap> to 
+      copy or
+      <keycap>F6</keycap> to 
+      move them. &krusader; tries to preserve the time of
+      modification. When copying a folder owner is changed to the user which
+      copies the folder, group is changed to the default group of the user.
+      When copying a file owner is changed to the user which copies the file,
+      group is changed to default group of the user, and permissions are
+      preserved. The owner, the group and the permissions are preserved when
+      moving file or folder. When copying or moving files/folders a dialog
+      appears and allows you to choose the operation destination.
+      The default destination is the other-panel browsed folder. If you enter
+      a partial &URL;, &krusader; will use the current
+      panel folder as the &URL; base.</para>
     </sect2>
     <sect2 id="queue">
-      <title
->Warteschlangenverwaltung</title
-> 
-      <para
->Kopieren, Verschieben, Packen und Entpacken kann in Warteschlangen durchgeführt werden. Nach der Auswahl der Aktionen Kopieren oder Verschieben drücken Sie die Funktionstaste <keycap
->F2</keycap
->, um die Warteschlange zu verwenden. Das gleiche führen Sie für die Aktionen Packen und Entpacken durch. Sie können auch die direkten Kurzbefehle <keycombo action="simul"
->&Shift;<keycap
->F5</keycap
-></keycombo
-> zum Kopieren oder <keycombo action="simul"
->&Shift;<keycap
->F6</keycap
-></keycombo
-> zum Verschieben mit der Warteschlange benutzen. Die Warteschlangenverwaltung führt alle Aktionen nacheinander durch. Wenn Sie zum Beispiel 40 Dateien auf ein langsames Pen-Gerät kopieren möchten, ist es viel besser, dies nacheinander anstatt parallel durchzuführen. Darum ist eine Warteschlange nützlich. Wenn Sie 40 Dateien parallel packen oder entpacken, überlasten Sie den Rechner, in einer Warteschlange nacheinander ist das kein Problem. </para>
-      <para
->Sie können den Modus der <link linkend="job-queue-mode"
->Warteschlange</link
-> im Menüeintrag <menuchoice
-><guimenu
->Einstellungen</guimenu
-><guimenuitem
->Auftrags-Warteschlangenmodus</guimenuitem
-></menuchoice
-> umschalten. </para>
+      <title>Queue manager</title> 
+      <para>
+      The copy, move, pack and unpack operations can be queued.
+      After selecting copy or move, hit <keycap>F2</keycap> to use it.
+      After selecting pack or unpack, hit <keycap>F2</keycap> to use it. 
+      Or the direct shortcuts: copy by queue <keycombo action="simul">&Shift;<keycap>F5</keycap></keycombo> , 
+      move by queue <keycombo action="simul">&Shift;<keycap>F6</keycap></keycombo> .
+      Queue manager performs actions one-by-one.
+      For example, if you have a pen drive (which is slow), and you want to copy 40 files onto it, 
+      it is much better copying them one-by-one instead of starting to copy 40 files in parallel.
+      That is why enqueuing is important.
+      If you pack/unpack 40 files in parallel, you overload your computer,
+      but adding them to a queue, is much more useful.
+      </para>
+      <para>It is possible to switch the <link linkend="job-queue-mode">Queue Manager mode</link> by the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Job Queue Mode</guimenuitem></menuchoice> menu item.
+      </para>
     </sect2>
     <sect2 id="deleting">
-      <title
->Löschen - in den &plasma;-Papierkorb verschieben</title>
-      <para
->Zum Löschen von Dateien oder Ordnern werden sie ausgewählt, dann drücken Sie die Funktionstaste <keycap
->F8</keycap
-> oder die Taste <keycap
->Entf</keycap
->. In der <link linkend="konfig-general"
->Voreinstellung</link
-> werden sie in den &kde;-Papierkorb verschoben. Sie können den &plasma;-Papierkorb mit dem Symbol in der <link linkend="main_toolbar"
->Haupt-Werkzeugleiste</link
-> oder mit dem Ein-Ausgabemodul <filename
->trash:/</filename
->. Der &plasma;-Papierkorb befindet sich tatsächlich im Ordner <filename
->~/.local/share/Trash/</filename
->oder <filename
->Trash</filename
-> im Unterordner im Persönlichen Ordner, der mit dem Befehl <userinput
->qtpaths --paths GenericDataLocation</userinput
-> ermittelt werden kann. <keycombo action="simul"
->&Ctrl; <keycap
->Entf</keycap
-></keycombo
-> löscht eine Datei tatsächlich, ohne sie vorher in den Papierkorb zu verschieben. In einem Dialog werden Sie um Bestätigung dieser Aktion gebeten und warnt Sie beim Löschen von Ordnern, die nicht leer sind. Es können natürlich nur vom Betriebssystem zugelassene Operationen ausgeführt werden, ansonsten erhalten Sie eine Benachrichtigung. Möchten Sie diese Bestätigungs-Dialoge überspringen, schalten Sie sie auf der Seite <link linkend="konfig-advanced"
->Erweitert</link
-> im Konfigurator ab. Wenn Sie auf der Seite <link linkend="konfig-general"
->Allgemein</link
-> im Konfigurator das dauerhafte Löschen von Dateien einstellen, werden Dateien mit <keycap
->F8</keycap
-> or &Del; tatsächlich gelöscht und mit <keycombo action="simul"
->&Ctrl; &Del;</keycombo
-> in den &plasma;-Papierkorb verschoben.</para>
+      <title>Deleting - move to &plasma; Trash</title>
+      <para>Deleting files/folders is done by selecting them and pressing <keycap>F8</keycap> or <keycap>Delete</keycap>.
+      By <link linkend="konfig-general">default</link> it will be moved to &plasma; Trash.
+      You can open the &plasma; Trash with the Trash icon in the <link linkend="main_toolbar">Main Toolbar</link> or with 
+      the <filename>trash:/</filename> KIO slave.
+      Physically &plasma; Trash is located in <filename>~/.local/share/Trash/</filename> or <filename>Trash</filename> in the subfolder in user home folder which can be determined using the <userinput>qtpaths --paths GenericDataLocation</userinput> command.
+      <keycombo action="simul">&Ctrl;
+      <keycap>Delete</keycap></keycombo> will delete the file
+      permanently. A dialog will ask for your confirmation and will
+      warn you when deleting non-empty folders. Of course only
+      operations that are permitted to do by the Operating
+      System will be performed - you will be notified otherwise. If
+      you do not wish to see the confirmation dialogs, you can
+      disable them in the 
+      <link linkend="konfig-advanced">Konfigurator advanced
+      page</link>. If you set to delete permanently files in the <link linkend="konfig-general">Konfigurator general
+      page</link>, <keycap>F8</keycap> or <keycap>Delete</keycap> will permanently delete files,
+      while <keycombo action="simul">&Ctrl; <keycap>Delete</keycap></keycombo> will move them to &plasma; Trash.</para>
     </sect2>
     <sect2 id="shred">
-      <title
->Dateien in den Reißwolf werfen</title>
-      <para
->Diese Funktion wurde aus &kde; 4 und damit auch aus &krusader;-2 für &kde; 4 entfernt. Der wichtigste Grund liegt darin, das diese Funktion vom Dateisystem abhängt. Sogar wenn Sie eine Datei 100 mal überschreiben, ist nicht sicher, dass sie nicht tatsächlich noch lesbar ist. Aktuelle moderne Dateisysteme verwenden <quote
->Journale</quote
->, daher muss diese Funktion im Dateisystem selbst implementiert werden. Sie können aber eine <link linkend="useractions"
->Benutzeraktion</link
-> für ihr Dateisystem benutzen. Bedenken Sie jedoch, dass sie die Hardware der Festplatte zerstören müssen, um 100-prozentig sicher zu sein, dass niemand die Daten lesen lesen kann. </para>
+      <title>Shred Files</title>
+      <para>Shred was removed from &kde; 4 (and as consequence &krusader;-2 for &kde; 4).
+           The main reason is probably that shredding is filesystem dependent and even if you overwrite the file 100 times, it is not sure, that it will be deleted from the disk finally.
+           Quote from the &kgpg; posts: <quote>The shred feature has been removed from the &kde; library. &kgpg; will not support this feature anymore. Moderns file systems use journalisation. So the shred feature should be implemented in the file system. Not in &kgpg;.</quote>
+           But you might use a proper shred <link linkend="useractions">UserAction</link> for your filesystem.
+	   But keep in mind that if you want to be 100% sure that it is impossible that someone can read a deleted file, you need to destroy your harddrive hardware...
+	   </para>
     </sect2>
     <sect2 id="renaming">
-      <title
->Dateien umbenennen, Ordner erstellen und Verknüpfungen verwalten</title>
-      <para
->Die aktive Datei oder den aktiven Ordner mit der gestrichelten Umrandung können Sie mit <keycap
->F2</keycap
-> zwei einzelnen Mausklicks umbenennen. Soll bei einer Datei nur der Name und nicht zusätzlich auch die Erweiterung umbenannt werden, können Sie dies auf der Seite <link linkend="konfig-general-atomic"
->Allgemein</link
-> im Konfigurator einstellen. Mit der Taste <keycap
->F7</keycap
-> erstellen Sie einen neuen Ordner. Im Kontextmenü einer regulären Datei oder Ordner können Sie <menuchoice
-><guisubmenu
->Verknüpfungsbehandlung</guisubmenu
-> <guimenuitem
->Neue symbolische Verknüpfung / Neue harte Verknüpfung</guimenuitem
-></menuchoice
-> wählen. Dann wird ein Dialog geöffnet, in dem Sie einen Namen eingeben. Diese Verknüpfung zeigt auf den Eintrag, dessen Kontextmenü Sie geöffnet haben. Haben Sie das Kontextmenü einer Verknüpfung geöffnet, gibt es die Aktion <menuchoice
-><guisubmenu
->Verknüpfungsbehandlung</guisubmenu
-> <guimenuitem
->Verknüpfungsziel ändern</guimenuitem
-></menuchoice
->.</para>
+      <title>Renaming Files, Creating Directories and Link
+      Handling</title>
+      <para>
+      Rename the file under the cursor with the 
+      <keycap>F2</keycap> key or with two single mouse clicks. If
+      only the file name needs to be renamed and not the extension,
+      you can configure this in the
+      <link linkend="konfig-general-atomic">Konfigurator General page</link>. 
+      <guilabel>Create a new folder</guilabel> with the
+      <keycap>F7</keycap> key. 
+      Right-clicking on a regular file will give
+	you the option <menuchoice><guisubmenu>Link Handling</guisubmenu> <guimenuitem>New Symlink...</guimenuitem></menuchoice>. A dialog will prompt
+      you to enter a symlink name. That symlink will point to the
+      file/folder you right-clicked on. If the file you
+      right-clicked on is a symlink, you will also be presented
+      with the <menuchoice><guisubmenu>Link Handling</guisubmenu> <guimenuitem>Redirect Link</guimenuitem></menuchoice> option that will allow you to change
+      the link target.</para>
     </sect2>
     <sect2 id="viewing">
-      <title
->Dateien anzeigen und bearbeiten</title>
-      <para
->Für <link linkend="krviewer"
->KrViewer</link
-> gibt es ein eigenes Kapitel.</para>
+      <title>Viewing and Editing files</title>
+      <para>
+      <link linkend="krviewer">KrViewer</link> has a chapter of its
+      own.</para>
     </sect2>
-  </sect1
->&archives; </chapter>
+  </sect1>
+
+<!-- call the archives sect1 section -->
+&archives;
+
+</chapter>

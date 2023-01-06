@@ -2,656 +2,593 @@
     SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
     SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
     SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
 -->
 <chapter id="user-interface">
-  <title
->Die Benutzerschnittstelle</title>
+  <title>User Interface</title>
   <indexterm>
-    <primary
->Benutzerschnittstelle</primary>
+    <primary>User Interface</primary>
   </indexterm>
   <sect1 id="ofm-userinterface">
-    <title
->Benutzerschnittstelle mit zwei Dateifenstern</title>
-    <para
->Das Konzept der Dateiverwaltung mit zwei Dateifenstern enthält <link linkend="features"
->viele Funktionen</link
->, die sie leistungsfähig genug machen, um zu den besten heutigen Dateiverwaltungen zu gehören. Die Bedienungsoberfläche ist einfach: linkes  und rechtes Dateifenster, darunter eine Befehlszeile. Wegen der Interaktion zwischen diesen Bereichen wird die Dateiverwaltung effizienter.</para>
-    <para
->Möchten Sie wissen, wie man mit <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
->&krusader; arbeiten</ulink
-> kann, gibt es nur einen Weg, das festzustellen: Installieren Sie &krusader; auf Ihrem Rechner und benutzen Sie das Programm eine Zeit lang. Um den Umgang mit einer <ulink url="http://www.softpanorama.org/OFM/index.shtml"
->Dateiverwaltung mit zwei Dateifenstern</ulink
-> wie &krusader; zu lernen, müssen die Benutzer sich an einige <emphasis
->neue Ideen</emphasis
-> gewöhnen, die tatsächlich bereits 20 Jahre alt sind. Möchten Sie Ihre Zeit verschwenden und weiter unproduktiv arbeiten, verwenden Sie weiterhin eine Dateiverwaltung mit nur einem Dateifenster, die vom &Windows;-Explorer abgeleitet sind.</para>
+    <title>OFM User Interface</title>
+    <para>The OFM file manager concept contains
+    <link linkend="features">many features</link> that make them
+    powerful enough to belong among the best file managers today.
+    The interface is simple: left panel, right panel and a command
+    line below. Because of interaction between these three items
+    the file managing will become more efficient.</para>
+    <para>If you would like to know
+    <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml">
+    how &krusader; works</ulink> you can try it yourself,
+    just install it on your computer. To accept an
+    <ulink url="http://www.softpanorama.org/OFM/index.shtml">Orthodox File Manager (OFM)</ulink> like &krusader;, the user needs
+    to get used to
+    <emphasis>new ideas</emphasis> that are actually already 20
+    years old. If you prefer to waste time and lose a lot of
+    productivity, you can always continue to use one panel file
+    managers that are based on &Windows;
+    Explorer.</para>
   </sect1>
   <sect1 id="mainwindow">
-    <title
->Das Hauptfenster von &krusader;</title>
+    <title>&krusader; Main Window</title>
     <figure id="screenshot-mainwindow" float="1">
-      <title
->Das Hauptfenster von &krusader;</title>
+      <title>&krusader; Main Window</title>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="mainwindow.png"
-></imagedata>
+          <imagedata fileref="mainwindow.png"></imagedata>
         </imageobject>
         <textobject>
-          <phrase
->Das Hauptfenster von &krusader;</phrase>
+          <phrase>&krusader; Main Window</phrase>
         </textobject>
       </mediaobject>
     </figure>
-    <para
->Die Basis der Benutzerschnittstelle ist das Paradigma der <ulink url="http://www.softpanorama.org/OFM/index.shtml"
->Dateiverwaltung mit zwei Dateifenstern</ulink
->, einem 20 Jahre alten Prinzip, das sich bewährt hat. Es ist einfach und leistungsfähig. In den folgenden Abschnitten werden die grundlegenden Funktionen jedes Teils erläutert, mit folgender Ausnahme:</para>
+    <para>The User Interface is based on <ulink url="http://www.softpanorama.org/OFM/index.shtml">Orthodox File Manager (OFM)</ulink>
+    paradigm, a 20- year old principle that has proven its bones.
+    It is known as simple, easy and powerful. In the following
+    sections we will cover the basic functions of each part with the
+    exception of:</para>
     <itemizedlist>
       <listitem>
-        <para
->Für die <link linkend="menu-commands"
->Menüleiste</link
-> gibt es eine eigenes Kapitel.</para>
+        <para>The
+        <link linkend="menu-commands">Menu Bar</link> which has a
+        chapter of its own.</para>
       </listitem>
       <listitem>
-        <para
->Für <link linkend="bookman"
->Lesezeichen</link
-> gibt es ebenfalls eine eigenes Kapitel.</para>
+        <para>The
+        <link linkend="bookman">Bookmarks</link> which has a chapter
+        of its own.</para>
       </listitem>
       <listitem>
-        <para
->Die <emphasis role="bold"
->Statusleiste</emphasis
-> zeigt die Eigenschaften der Datei, die den Fokus hat, an. </para>
+        <para>The
+        <emphasis role="bold">Status Bar</emphasis> shows the
+        properties of the current file (that is being) in focus.
+        </para>
       </listitem>
     </itemizedlist>
   </sect1>
   <sect1 id="toolbars">
-    <title
->Werkzeugleisten</title>
-    <para
->&krusader; enthält mehrere Werkzeugleisten.</para>
+    <title>Toolbars</title>
+    <para>&krusader; comes with several Toolbars.</para>
     <sect2 id="main_toolbar">
-      <title
->Haupt-Werkzeugleiste</title>
+      <title>Main Toolbar</title>
       <indexterm>
-        <primary
->Werkzeugleiste</primary>
-        <secondary
->Haupt-Werkzeugleiste</secondary>
+        <primary>Toolbar</primary>
+        <secondary>Main Toolbar</secondary>
       </indexterm>
       <figure id="screenshot-maintoolbar" float="1">
-        <title
->Haupt-Werkzeugleiste</title>
+        <title>Main Toolbar</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="toolbar.png"
-></imagedata>
+            <imagedata fileref="toolbar.png"></imagedata>
           </imageobject>
           <textobject>
-            <phrase
->Haupt-Werkzeugleiste</phrase>
+            <phrase>Main Toolbar</phrase>
           </textobject>
         </mediaobject>
       </figure>
-      <para
->Die Haupt-Werkzeugleiste von &krusader; ist eine normale &kde;-Werkzeugleiste, die im Anwendungsfenster verschoben und mit dem Kontextmenü eingerichtet werden kann. Dazu müssen Sie zuerst die Leiste mit <guimenuitem
->Werkzeugleisten sperren</guimenuitem
-> im Kontextmenü entsperren.Auf der Seite <link linkend="konfigurator"
->Start</link
-> im Konfigurator können Sie einstellen, ob die Werkzeugleiste beim Start von &krusader; angezeigt wird. In der laufenden Sitzung schalten Sie die Ansicht im Menü <link linkend="settings-menu"
->Einstellungen</link
-> an und aus. Der Inhalt der Haupt-Werkzeugleiste kann mit <guimenuitem
->Werkzeugleisten einrichten</guimenuitem
-> im Menü <link linkend="settings-menu"
->Einstellungen</link
-> geändert werden. Da viele Befehle und Einstellungen in &krusader; kontextabhängig sind,  werden nicht alle Befehle immer verfügbar sein. Das Symbol für eine nicht aktive Aktion wird grau angezeigt, um diesen Zustand zu kennzeichnen. <link linkend="bookman"
->Lesezeichen</link
-> können durch Ziehen und Ablegen mit der Maus in die Haupt- und die Aktionen-Werkzeugleiste platziert werden.</para>
+      <para>The &krusader; Main Toolbar is a standard
+      &kde; toolbar that can be dragged around the
+      application (please unlock it first by unchecking the <guimenuitem>Lock
+      Toolbar Positions</guimenuitem> item in the right-click menu)
+      or configured via a
+      <keycap>Right-Click</keycap> menu. You can decide whether or
+      not you want to display it each time you start
+      &krusader; in the <link linkend="konfigurator">Konfigurator Startup page</link>,
+      and you can toggle its use in the current session in the
+      <link linkend="settings-menu">Settings menu</link>. The Main Toolbar contents can be
+      configured from the
+      <guimenuitem>Configure Toolbars...</guimenuitem> in the
+      <link linkend="settings-menu">Settings menu</link>. Since various commands
+      and options in &krusader; are context-dependent,
+      some commands are not always available. The icon of an
+      inappropriate or inactive action will be deactivated
+      (grayed-out) disabling its use. <link linkend="bookman">Bookmarks</link>
+      can be placed into the Main Toolbar and the Actions Toolbar
+      with the mouse using <quote>drag and drop</quote>.</para>
     </sect2>
     <sect2 id="job_toolbar">
-      <title
->Aufgaben-Werkzeugleiste</title>
+      <title>Job Toolbar</title>
       <indexterm>
-        <primary
->Werkzeugleiste</primary>
-        <secondary
->Aufgaben-Werkzeugleiste</secondary>
+        <primary>Toolbar</primary>
+        <secondary>Job Toolbar</secondary>
       </indexterm>
-      <para
->In der Voreinstellung wird die Auftrags-Werkzeugleiste von &krusader; (<link linkend="queue"
->Warteschlange-Verwaltung</link
-> oder auch JobMan) rechts in der Haupt-Werkzeugleiste angezeigt. In dieser Werkzeugleiste können Sie den Verlauf von Aufträgen ansehen, Aufträge anhalten und wieder starten und den zuletzt ausgeführten Auftrag wieder zurücknehmen.</para>
+      <para>By default, the &krusader; Job Toolbar (<link linkend="queue">Queue
+      Manager</link> or simply the JobMan) is located at the right part of the
+      Main Toolbar. This toolbar allows you to view the job progress, to pause
+      and resume the job list execution and to undo the last executed job.</para>
     </sect2>
     <sect2 id="actions_toolbar">
-      <title
->Aktionen-Werkzeugleiste</title>
+      <title>Actions Toolbar</title>
       <indexterm>
-        <primary
->Werkzeugleiste</primary>
-        <secondary
->Aktionen-Werkzeugleiste</secondary>
+        <primary>Toolbar</primary>
+        <secondary>Actions Toolbar</secondary>
       </indexterm>
-      <para
-><link linkend="useractions"
->Benutzeraktionen</link
-> und <link linkend="bookman"
->Lesezeichen</link
-> können in die <guilabel
->Aktionen-Werkzeugleiste</guilabel
-> eingefügt werden. Um diese zu anzuzeigen, wählen Sie <menuchoice
-> <guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Aktionen-Werkzeugleiste anzeigen</guimenuitem
-> </menuchoice
->. Um Benutzeraktionen hinzuzufügen, gehen Sie zu <menuchoice
-> <guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Werkzeugleisten einrichten</guimenuitem
-> </menuchoice
-> und wählen die Aktionen-Werkzeugleiste aus. Diese Werkzeugleiste können Sie wie alle Werkzeugleisten an alle vier Seiten des Hauptfensters mit der Maus ziehen.</para>
+      <para><link linkend="useractions">UserActions</link> and
+      <link linkend="bookman">Bookmarks</link> can be <quote>plugged</quote> into the
+      <guilabel>Actions Toolbar</guilabel>. To show it, use
+        <menuchoice>
+          <guimenu>Settings</guimenu>
+          <guimenuitem>Show Actions Toolbar</guimenuitem>
+        </menuchoice>
+      . To add user actions, use
+        <menuchoice>
+          <guimenu>Settings</guimenu>
+          <guimenuitem>Configure Toolbars...</guimenuitem>
+        </menuchoice>
+      and select Actions Toolbar. You can, for example,
+      drag the Actions Toolbar to the right side using the
+      mouse.</para>
     </sect2>
     <sect2 id="location_toolbar">
-      <title
->Adressleiste</title>
+      <title>Location Toolbar</title>
       <indexterm>
-        <primary
->Werkzeugleiste</primary>
-        <secondary
->Adressleiste</secondary>
+        <primary>Toolbar</primary>
+        <secondary>Location Toolbar</secondary>
       </indexterm>
-      <para
->Unter der <guibutton
->Werkzeugleiste</guibutton
-> gibt es eine <guibutton
->Adressleiste</guibutton
-> für jedes Dateifenster. Hier wird der Pfad zum Ordner im aktiven Dateifenster angezeigt. Öffnen Sie ein Archiv, dann wird der Pfad im folgenden Format angezeigt: <quote
->Archivtyp:/ordner/archiv_dateiname/ordner_im_archiv</quote
->. Mit diesem Format ist der Pfad eindeutig und leicht zu lesen. Die <guibutton
->Adressleiste</guibutton
-> unterstützt auch Ein-/Ausgabemodule, aber nicht alle. Einige können nur mit dem <link linkend="krviewer"
->Betrachter</link
-> verwendet werden und andere gar nicht. Sie können die Adressleiste zur Bearbeitung öffnen, indem Sie darauf klicken.</para>
+      <para>Below the
+      <guibutton>Main Toolbar</guibutton> there is a
+      <guibutton>Location Toolbar</guibutton> for each panel. It
+      shows the path the panel is currently pointing to.
+      When entering archives the path will be displayed
+      in the following format: <quote>archive
+      type:/folder/archive_filename/the folder inside the
+      archive</quote>. This format makes the paths uniform and easy to
+      read. The
+      <guibutton>Location Toolbar</guibutton> supports also
+      KIO Slaves but not all of them, some can
+      only be used with the
+      <link linkend="krviewer">viewer</link> and some can not be
+      used. The user can enter a desired path by clicking on it.</para>
       <itemizedlist>
         <listitem>
           <para>
             <userinput>
-              <replaceable
->/mnt/cdrom/</replaceable>
+              <replaceable>/mnt/cdrom/</replaceable>
             </userinput>
           </para>
         </listitem>
         <listitem>
-          <para
-><userinput
-><command
->settings:/</command
-></userinput
-> zeigt die Einträge in den &systemsettings; an.</para>
+          <para>
+          <userinput>
+            <command>settings:/</command>
+          </userinput>will browse and open entries of the
+          &systemsettings;.</para>
         </listitem>
         <listitem>
-          <para
-><userinput
-> <command
->trash:/</command
-> </userinput
->öffnet den Papierkorb.</para>
+          <para>
+          <userinput>
+            <command>trash:/</command>
+          </userinput>opens trash folder.</para>
         </listitem>
         <listitem>
-          <para
-><userinput
-> <command
->mtp:/</command
-></userinput
-> verwendet das Ein-/Ausgabemodul „kio_mtp“ zum Zugriff, Hochladen und Organisieren der auf einem <trademark
->Android</trademark
->-Gerät gespeicherten Musik.</para>
+          <para>
+          <userinput>
+            <command>mtp:/</command>
+          </userinput>uses the kio_mtp to
+          access, upload and organize the multimedia stored on
+          <trademark>Android</trademark>-based devices.</para>
         </listitem>
         <listitem>
-          <para
->Und dann auch noch <link linkend="remote-connections"
->Entfernte Verbindungen</link
->.</para>
+          <para>And last but not least
+          <link linkend="remote-connections">Remote Connections</link> .</para>
         </listitem>
       </itemizedlist>
-      <para
->Sie können eine &URL; kopieren und in der <guibutton
->Adressleiste</guibutton
-> einfügen oder die &MMB; benutzen. Mit dem Kontextmenü können Sie die automatische Vervollständigung einstellen. Ein optionaler Knopf <guilabel
->Text löschen</guilabel
-> ist auch verfügbar.</para>
-      <para
->Schnellnavigation: Halten Sie den Mauszeiger mit gedrückter &Ctrl;-Taste auf einen Teil der &URL; in der <guilabel
->Adressleiste</guilabel
->. Dann wird in einem Aufklappfenster die nächste &URL; angezeigt. Klicken Sie mit der &LMBn; auf eines Teil in der Adresse, um dorthin zu springen. Damit ist einen schnellere Navigation in einem tiefen Ordnerbaum möglich.</para>
+      <para>You can copy-paste a &URL; in the
+      <guibutton>Location Toolbar</guibutton> or use a middle click.
+      With the Right-Click menu you can configure the auto-complete
+      function. An optional
+      <guilabel>Clear Location Toolbar</guilabel> button is also
+      available.</para>
+      <para>Quick Navigation:
+      &Ctrl; point with mouse in the middle of &URL; of the
+      <guibutton>Location Toolbar</guibutton>. A pop-up window shows
+      the next &URL; location. Pressing &Ctrl; + &LMB; shows
+      the location where the mouse was pointing to. This feature
+      allows faster navigation in a big folder tree.</para>
     </sect2>
     <sect2 id="panel_toolbar">
-      <title
->Dateifenster-Werkzeugleiste</title>
+      <title>Panel Toolbar</title>
       <indexterm>
-        <primary
->Werkzeugleiste</primary>
-        <secondary
->Dateifenster-Werkzeugleiste</secondary>
+        <primary>Toolbar</primary>
+        <secondary>Panel Toolbar</secondary>
       </indexterm>
-      <para
->Jedes Dateifenster hat eine einstellbare <link linkend="konfig-panel-buttons"
->Dateifenster-Werkzeugleiste</link
->. Die vollständige Dateifenster-Werkzeugleiste oder bestimmte Knöpfe können angezeigt oder ausgeblendet werden.</para>
+      <para>Each panel has a
+      <link linkend="konfig-panel-buttons">configurable Panel
+      Toolbar</link>. The complete Panel Toolbar or specific
+      buttons can be made visible or be hidden.</para>
       <itemizedlist>
         <listitem>
-          <para
-><guibutton
->Öffnen</guibutton
->: Öffnet der Ordner-Browser.</para>
+          <para>
+          <guibutton>OpenDir Button</guibutton>: opens the
+          folder browser.</para>
         </listitem>
         <listitem>
-          <para
-><guibutton
->Gleich (=)</guibutton
->: Ändert den Ordner im Dateifenster zum Ordner des anderen Dateifensters.</para>
+          <para>
+          <guibutton>Equals Button (=)</guibutton>: changes the
+          panel folder to the other panel folder.</para>
         </listitem>
         <listitem>
-          <para
-><guibutton
->Aufwärts (..)</guibutton
->: Wechselt zum übergeordneten Ordner im Dateifenster.</para>
+          <para>
+          <guibutton>Up Button (..)</guibutton>: changes the panel
+          folder to the parent folder.</para>
         </listitem>
         <listitem>
-          <para
-><guibutton
->Persönlicher Ordner (~)</guibutton
->: Geht zum Persönlichen Ordner im Dateifenster.</para>
+          <para>
+          <guibutton>Home Button (~)</guibutton>: changes the panel
+          folder to the home folder.</para>
         </listitem>
         <listitem>
-          <para
-><guibutton
->Basisordner (/)</guibutton
->: Geht im Dateifenster zum Basisordner des Dateisystems.</para>
+          <para>
+          <guibutton>Root Button (/)</guibutton>: changes the panel
+          folder to the root folder.</para>
         </listitem>
         <listitem>
-          <para
-><guibutton
->Fensterabgleich</guibutton
->: Ist dies aktiviert, wird jede Änderung des Ordners im angegebenen Dateifenster auch im anderen Dateifenster ausgeführt.</para>
+          <para>
+          <guibutton>Sync-browsing Button</guibutton>: when active,
+          each folder change in the specific panel is performed
+          in the other panel as well.</para>
         </listitem>
       </itemizedlist>
     </sect2>
   </sect1>
   <sect1 id="panels">
-    <title
->Dateifenster</title>
-    <para
->In den Dateifenstern von &krusader; finden die meisten Aktionen statt. Zur Zeit gibt es zwei Arten von Dateifenstern:</para>
+    <title>Panels</title>
+    <para>The &krusader; panels are where most of the
+    action takes place. Currently, there are two types of panels:</para>
     <itemizedlist>
       <listitem>
-        <para
->Das <link linkend="list_panel"
->Dateifenster</link
-> zeigt die Dateien und Ordner an.</para>
+        <para><link linkend="list_panel">List Panel</link>: shows the files and
+        folders.</para>
       </listitem>
       <listitem>
-        <para
->in der <link linkend="sidebar"
->Seitenleiste</link
-> gibt es mehrere Ansichtsmodi: Vorschau, Baum, Schnellwahl, Ansicht und Festplattenbelegung für die ausgewählte Datei oder den ausgewählten Ordner. Die Seitenleiste kann auch geöffnet bleiben oder geschlossen werden.</para>
+        <para><link linkend="sidebar">Sidebar</link>: has several display
+        modes: Preview, Tree, Quickselect, View and Disk Usage for
+        the file or folder that has the focus. The Sidebar
+        may be left open or closed, as desired.</para>
       </listitem>
     </itemizedlist>
-    <para
->&krusader; ist ein Dateiverwaltungsprogramm mit zwei Dateifenstern, dem linken und rechten Fenster, oder mit einem noch wichtigeren logischen Unterschied, dem aktiven und nicht aktiven Dateifenster. Das aktive Dateifenster erhält die Eingaben der Maus und der Tastatur. Wenn Sie eine Aktion aus der <guilabel
->Menüleiste</guilabel
-> oder der <guilabel
->Werkzeugleiste</guilabel
-> auswählen, wird sie für die ausgewählten Dateien oder Ordner im aktiven Dateifenster ausgeführt. Sie können mit der &Tab;taste oder durch Klicken auf die Informationen- oder Zusammenfassungsleiste oder durch Auswahl auf eines beliebigen Eintrags in einem Dateifenster mit der Maus. Wie auch sonst kann dieses Verhalten auf der Seite <link linkend="konfigurator"
->Start</link
-> im Konfigurator oder für die aktuelle Sitzung im Menü <guilabel
->Einstellungen</guilabel
-> eingestellt werden.</para>
+    <para>&krusader; is a <quote>twin-panel</quote> file
+    manager so there are two panels: the <quote>Left</quote> panel and the
+    <quote>Right</quote> panel, or a more important logical distinction, the
+    *Active* panel and the *Inactive* panel. The active panel is
+    the one that will accept your mouse and keyboard input. If you
+    choose a command from the
+    <guilabel>Menu-Bar</guilabel> or
+    <guilabel>Toolbar</guilabel> the command will act upon the
+    selected files/folders in the active panel. You can switch
+    between panels using the &Tab; key or by clicking on
+    the
+    <guilabel>Information or Totals labels</guilabel>, or by
+    selecting any file in a panel with the mouse. As always,
+    default startup settings can be modified with the
+    <link linkend="konfigurator">Konfigurator Startup page</link>, and you control the current
+    session with the <link linkend="settings-menu">Settings menu</link>.</para>
     <figure id="screenshot-listpanel" float="1">
-      <title
->Dateifenster</title>
+      <title>List Panel</title>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="listpanel.png"
-></imagedata>
+          <imagedata fileref="listpanel.png"></imagedata>
         </imageobject>
         <textobject>
-          <phrase
->Dateifenster</phrase>
+          <phrase>List Panel</phrase>
         </textobject>
       </mediaobject>
     </figure>
     <sect2 id="list_panel">
-      <title
->Dateifenster</title>
+      <title>List Panel</title>
       <indexterm>
-        <primary
->Dateifenster</primary>
-        <secondary
->Dateifenster</secondary>
+        <primary>Panel</primary>
+        <secondary>List Panel</secondary>
       </indexterm>
-      <para
->Dies ist das Standardfenster, das Sie wahrscheinlich die meiste Zeit benutzen werden. Das Dateifenster zeigt den Inhalt eines Ordners, der aus lokalen Dateien und auch aus Dateien in einem Archiv oder aus entfernten Dateien besteht, auf die über  &FTP;, &NFS; oder &Samba; zugegriffen wird. Es gibt zwei Ansichtsmodi: <link linkend="view-menu"
->Ausführliche Anzeige</link
-> mit Dateinamen, Dateigröße, Erstellungsdatum und -zeit und Dateiattributen und die <link linkend="view-menu"
->Kurzübersicht</link
->, in der nur die Dateinamen angezeigt werden. Die Anzahl der Spalten in der Kurzübersicht kann im Kontextmenü der Titelleiste angepasst werden. Das Kopieren, Einfügen und Ausschneiden von Dateien über die Zwischenablage zwischen &konqueror; und &krusader; ist mit den Kurzbefehlen <keycombo action="simul"
->&Ctrl; <keycap
->C</keycap
-></keycombo
->, <keycombo action="simul"
->&Ctrl; <keycap
->V</keycap
-></keycombo
->, <keycombo action="simul"
->&Ctrl; <keycap
->X</keycap
-></keycombo
-> möglich. <keycombo action="simul"
->&Alt;&Ctrl; <keycap
->R</keycap
-></keycombo
-> schaltet die <guilabel
->Dateifenster</guilabel
-> zwischen waagerechten und senkrechtem Modus um.</para>
-      <para
->Die folgenden Einträge sind vorhanden:</para>
+      <para>This is the default panel and the one you will probably
+      use most of the time. This panel shows the contents of one
+      folder which can be local (part of your mounted file
+      systems, either a native file or the files inside an archive)
+      or remote files (accessed via &FTP;, &NFS; or Samba).
+      There are two modes: <link linkend="view-menu">Detailed View</link> that shows the file names,
+      file size, creation date and time and their attributes.
+      And <link linkend="view-menu">Brief View</link> that shows only the file names,
+      the number of brief columns can be changed, by right clicking on the <guilabel>Name</guilabel> header.
+      File copy/paste/cut via clipboard between
+      &konqueror; and &krusader;
+      <keycombo action="simul">&Ctrl;
+      <keycap>C</keycap></keycombo>,
+      <keycombo action="simul">&Ctrl;
+      <keycap>V</keycap></keycombo>,
+      <keycombo action="simul">&Ctrl;
+      <keycap>X</keycap></keycombo> is supported.
+      <keycombo action="simul">&Alt;&Ctrl;
+      <keycap>R</keycap></keycombo> toggles the
+      <guilabel>List Panel</guilabel> between horizontal and
+      vertical mode.</para>
+      <para>The following items are available:</para>
       <itemizedlist>
         <listitem>
-          <para
-><emphasis
->Informationsleiste</emphasis
->: Zeigt den freien Platz auf dem Dateisystem, die Kapazität des Dateisystems und den Mount-Punkt sowie den Typ des Dateisystems. Sind diese Informationen nicht verfügbar, wie häufig bei einem entfernten Dateisystem, wird eine Nachricht darüber mit der Ursache anstelle der Information angezeigt.</para>
-          <para id="media_button"
->Der <guibutton
->Geräteknopf</guibutton
-> links neben der <emphasis
->Informationsleiste</emphasis
-> zeigt eine Liste aller verfügbaren Geräte, aus denen Sie eines (HDD-Partition, &DVD;, &DVD;-Stick, &etc;) auswählen können. Drücken Sie <keycombo
->&Ctrl;<keycap
->Rücktaste</keycap
-></keycombo
->, wenn das <guibutton
->Medienmenü</guibutton
-> geöffnet ist, um das hervorgehobene Gerät einzuhängen oder auszuhängen. Im Kontextmenü eines Geräts finden Sie mehrere Aktionen wie <guilabel
->Einhängen</guilabel
->, <guilabel
->In neuem Unterfenster öffnen</guilabel
->, &etc; Das  <guibutton
->Medienmenü</guibutton
-> können Sie im <link linkend="konfig-panel-mediamenu"
->Konfigurator</link
-> einstellen.</para>
+          <para>
+          <emphasis>
+            <guilabel>Information Label</guilabel>
+          </emphasis>: shows how much free space is physically
+          available on the file system, the file system capacity
+          and where the filesystem is mounted. If the information is not
+          available (most often in the case of remote file system)
+          a message will be displayed with the reason for
+          unavailability instead of the information.</para>
+          <para id="media_button">The
+          <guibutton>Media button</guibutton> on the left of the
+          <guilabel>Information Label</guilabel> displays a list of
+          all available media, where you can select the desired
+          media (HDD partition, &DVD;, &USB; stick, &etc;).
+          Pressing <keycombo>&Ctrl;<keycap>Return</keycap></keycombo> when the
+          <guibutton>Media menu</guibutton>
+          is opened mounts the highlighted media when it is unmounted,
+          and unmounts it when it is mounted.
+          The context menu of a medium gives several options like
+          <guilabel>Mount</guilabel>,
+          <guilabel>Open in a new tab</guilabel>, &etc;
+          The <guibutton>Media menu</guibutton> is <link linkend="konfig-panel-mediamenu">
+          configurable</link>.</para>
         </listitem>
           <listitem>
-          <para
-><emphasis
->Spaltentitel</emphasis
->: Hier können Sie die Reihenfolge der Sortierung von Dateien und Ordner ändern. Die Sortierung erfolgt in der Voreinstellung nach <guilabel
->Name</guilabel
->. Die Sortierrichtung der Spalten kann sofort direkt durch Klicken auf den <emphasis
->Spaltentitel</emphasis
-> geändert werden. Um die Richtung umzukehren, klicken Sie noch einmal auf den Spaltentitel. Rechts neben dem Titel zeigt ein Pfeil die Richtung der Sortierung an, Pfeil abwärts = Sortierung von A nach Z, Pfeil aufwärts = Sortierung von Z nach A. In der Standard-<link linkend="useractions"
->Benutzeraktionen</link
-> gibt es Kurzbefehle für die Auswahl ser Sortierspalten. In der Voreinstellung werden folgende <emphasis
->Spaltentitel</emphasis
-> angezeigt: <guilabel
->Name</guilabel
->, <guilabel
->Erw</guilabel
->, <guilabel
->Größe</guilabel
->, <guilabel
->Geändert</guilabel
->, <guilabel
->rwx</guilabel
->. Vordefinierte <link linkend="konfig-general"
->atomare Erweiterungen</link
-> wie <literal role="extension"
->.tar.gz</literal
-> werden als ein Teil in der Spalte <guilabel
->Erw</guilabel
-> angezeigt. Zusätzliche Spalten können Sie aus dem Kontextmenü der Spaltentitel auswählen. Die Breite der Spalten können Sie mit der Maus durch Ziehen des Trennbalkens verändern. Für beide <guilabel
->Dateifenster</guilabel
-> wird die Sortierrichtung und Spaltenbreite sowie die angezeigten Spalten getrennt gespeichert. </para>
+          <para>
+          <emphasis>
+            <guilabel>Column Headers</guilabel>
+          </emphasis>: here you can change the sort order of the
+          files and folders as desired. The default sort order
+          is by
+          <guilabel>Name</guilabel>. The sort order can be
+          instantly changed by clicking on one of the
+          <guilabel>Column Headers</guilabel>. To reverse the sort
+          order, click a second time on the Column Header. An arrow
+          will appear on the right of the Column Header text,
+          showing the sort direction (Up arrow = A to Z sorting,
+          Down arrow = Z to A sorting). Default
+          <link linkend="useractions">UserActions</link> set a keybinding for the
+          Column Headers. The default
+          <guilabel>Column Headers</guilabel> are:
+          <guilabel>Name</guilabel>, <guilabel>Ext</guilabel>,
+          <guilabel>Size</guilabel>, <guilabel>Modified</guilabel>, <guilabel>rwx</guilabel>.
+          Predefined <link linkend="konfig-general">Atomic extensions</link> like
+          <literal role="extension">.tar.gz</literal> are shown as one part in the
+          <guilabel>Ext</guilabel> Column. More
+          optional Column Headers are available with the &RMB;.
+          The width
+          <guilabel>Column Headers</guilabel> can be changed with
+          the mouse by single clicking and moving the divider line
+          to the desired width (keep the mouse button pressed).
+          Both
+          <guilabel>List Panels</guilabel> remember the sort order
+          and column width. The
+          <guilabel>Column Headers</guilabel> can be changed and
+          saved individually to each panel.</para>
         </listitem>
         <listitem>
-          <para
-><emphasis
-><guilabel
->Dateiliste</guilabel
-></emphasis
->: Zeigt die Dateien und Ordner im geöffneten Ordner an. Mit der <link linkend="quicksearch"
->Suchleiste</link
-> können Sie nach Dateien durch Eingabe des Namens oder nur der ersten Zeichen suchen. Drücken Sie die &Enter;taste oder doppelklicken Sie auf eine Datei, um sie zu öffne oder auszuführen. Sie können Einträge mit der Maus, der Taste &Ins; oder dem Menü <link linkend="edit-menu"
->Bearbeiten</link
-> auswählen oder aus der Auswahl entfernen</para>
+          <para>
+          <emphasis>
+            <guilabel>File List</guilabel>
+          </emphasis>: displays the files and folders in the
+          browsed folder. The <link linkend="quicksearch">search bar</link>
+          allows you to search for files by typing their names, or
+          the first few characters of a file name. Pressing
+          &Enter; or double clicking on a file will
+          open/execute that file. You can select/unselect files
+          using the mouse, with the &Ins; key or the
+          <link linkend="edit-menu">Edit menu</link>.</para>
         </listitem>
         <listitem>
-          <para
-><emphasis
-><guilabel
->Übersichtsleiste</guilabel
-> </emphasis
->: Hier wird unter dem Dateifenster angezeigt, wie viele Dateien Sie ausgewählt haben und wie viel Speicherplatz sie belegen, wie auch die gesamte Anzahl von Dateien und deren Speicherplatzbedarf im aktuellen Ordner. Im Gegensatz dazu zeigt die Informationsleiste diese Informationen für das gesamte Dateisystem. Enthält ein Ordner sehr viele Unterordner, ist es manchmal nicht möglich, eine &URL; im Dateifenster abzulegen, da dort dann nur die Unterordner sichtbar sind. Dann kann die &URL; stattdessen in der Übersichtsleiste oder in der Informationsleiste abgelegt werden. Ist ein <link linkend="view-menu"
->benutzerdefinierter Filter</link
-> festgelegt, wird diese Einstellung angezeigt. Beispiel: [*.cpp].</para>
+          <para>
+          <emphasis>
+            <guilabel>Totals Label</guilabel>
+          </emphasis>: selecting or deselecting files will change
+          the
+          <emphasis>
+            <guilabel>Totals Label</guilabel>
+          </emphasis>: selecting or
+          deselecting files will change the <emphasis> <guilabel>Totals Label</guilabel>
+          </emphasis>at the bottom of the panel, which displays how many files you have
+          selected (and how much total disk space they use) as well as the total file and
+          disk usage of the current folder (as opposed to the information label that
+          displays information for the whole file system). If a folder contains a lot
+          of subfolders, it may not be possible to drop the &URL; onto the panel (on
+          which only folders are visible), but the &URL; can be dropped onto the
+          <quote>Information Label</quote> or <quote>Totals Label</quote> instead. When a <link
+          linkend="view-menu">custom filter</link> is set, it will show the setting,
+          example: [*.cpp].</para>
         </listitem>
       </itemizedlist>
-      <para
->Wenn Sie die &kde;-<link linkend="konfig-color"
->Standardfarben</link
-> verwenden, werden ausgewählte Dateien blau angezeigt und die aktuelle Datei ist von einem dünnen gestrichelten Rechteck umgeben. Als Voreinstellung wird ein Symbol passen zum Inhalt des Eintrags angezeigt. Verwenden Sie die Seite <link linkend="konfig-panel"
->Dateifenster</link
-> im Konfigurator, um die Einstellungen an Ihre Wünsche anzupassen.</para>
-      <para
->Einige nützliche <link linkend="key_bindings"
->Kurzbefehle</link
-> für die <guilabel
->Dateifenster</guilabel
->:</para>
+      <para>When using the <quote>&kde; default
+      <link linkend="konfig-color">colors</link></quote>, then the
+      selected files are shown in blue and the current file is
+      surrounded by a fine-lined rectangle. By default an icon is
+      shown according to the file type. Use
+      <link linkend="konfig-panel">Konfigurator Panel page</link> to change the default
+      configuration to meet your individual needs.</para>
+      <para>Some useful
+      <guilabel>List panel</guilabel> <link linkend="key_bindings">Key-Bindings</link>:</para>
       <itemizedlist>
         <listitem>
-          <para
->Mit dem Kurzbefehl <keycombo action="simul"
->&Ctrl; <keycap
->R</keycap
-></keycombo
-> wird ein Dateifenster erneut geladen.</para>
+          <para>
+          <keycombo action="simul">&Ctrl;
+          <keycap>R</keycap></keycombo> will refresh the
+          panel.</para>
         </listitem>
         <listitem>
-          <para
->Aktivieren sie eine Datei oder einen Ordner im linken Dateifenster, drücken dann <keycombo action="simul"
->&Ctrl; &Right;</keycombo
-> und im rechten Dateifenster wird dies geändert: <itemizedlist>
+          <para>Focus a file or folder on the left panel, press
+          <keycombo action="simul">&Ctrl;
+          &Right;</keycombo> and the right panel
+          changes:
+          <itemizedlist>
             <listitem>
-              <para
->Bei einer Datei: Das rechte Dateifenster erhält den gleichen Pfad wie das linke Dateifenster.</para>
+              <para>On a file: the right panel gets the same path
+              as the left panel.</para>
             </listitem>
             <listitem>
-              <para
->Bei einem Ordner: Das rechte Dateifenster öffnet den im linken Dateifenster aktivierten Ordner.</para>
+              <para>On a folder: right panel opens the folder focused on the left panel.</para>
             </listitem>
-          </itemizedlist
-></para>
+          </itemizedlist></para>
         </listitem>
         <listitem>
-          <para
->Für das rechte Dateifenster: Drücken Sie <keycombo action="simul"
->&Ctrl; &Left;</keycombo
-> und das linke Dateifenster wird geändert.</para>
+          <para>For the right panel: press
+          <keycombo action="simul">&Ctrl;
+          &Left;</keycombo> and the left panel
+          will change.</para>
         </listitem>
       </itemizedlist>
     </sect2>
     <sect2 id="sidebar">
-      <title
->Seitenleiste</title>
+      <title>Sidebar</title>
       <indexterm>
-        <primary
->Seitenleiste</primary>
-        <secondary
->Seitenleiste (Dritte Leiste)</secondary>
+        <primary>Sidebar</primary>
+        <secondary>Sidebar (3rd Panel)</secondary>
       </indexterm>
-      <para
->Dies ist die <quote
->dritte Hand</quote
-> von &krusader; oder die dritte Leiste. Klicken Sie auf den Pfeil abwärts rechts neben der Zusammenfassungsleiste oder benutzen Sie den Kurzbefehl <keycombo action="simul"
->&Alt; &Down;</keycombo
->, um die <guilabel
->Seitenleiste</guilabel
-> zu öffnen. In dieser Leiste gibt es mehrere Anzeigemodi, die durch Klicken auf die entsprechenden Knöpfe aktiviert werden können.</para>
+      <para>This is <quote>&krusader; is 3rd Hand</quote> or the 3rd
+      Panel, click on the arrow-up button on the right of the
+      <guilabel>Totals Label</guilabel> or
+      <keycombo action="simul">&Alt;
+      &Down;</keycombo> to open the
+      <guilabel>Sidebar</guilabel>. This panel has several
+      display modes which can be activated by clicking on the
+      appropriate button.</para>
       <itemizedlist>
         <listitem>
-          <para
-><emphasis
-> <guilabel
->Vorschauleiste</guilabel
-> </emphasis
->: Gibt eine Vorschau der Datei mit dem Fokus, das ist die aktuell ausgewählte Datei.</para>
+          <para>
+          <emphasis>
+            <guilabel>Preview Panel</guilabel>
+          </emphasis>: gives a preview of the file that has the
+          focus (currently selected file).</para>
         </listitem>
         <listitem>
-          <para
-><emphasis
-><guilabel
->Baumleiste</guilabel
-></emphasis
->: Damit können Sie schnell den lokalen Ordnerbaum durchsehen. Diese Leiste verhält sich wie die Dateifenster, aber es kann nur ein Ordner auf einmal ausgewählt werden und doppelklicken oder Drücken der &Enter;taste öffnet den Ordner im aktiven Dateifenster. Die Leisten unterstützen Ziehen und Ablegen mit der Maus (kopieren, verschieben, verknüpfen).</para>
+          <para>
+          <emphasis>
+            <guilabel>Tree Panel</guilabel>
+          </emphasis>: is used to quickly browse the local
+          folder tree. This panel behaves like the list panel
+          but only one folder may be selected at a time and
+          double clicking or pressing &Enter; on a
+          folder will open that folder in the active panel.
+          The panels fully support drag and drop (copy, move, link)
+          mouse actions.</para>
         </listitem>
         <listitem>
-          <para
-><emphasis
-> <guilabel
->Schnellleiste</guilabel
-> </emphasis
->: Damit können Sie schnell Dateien auswählen, geben Sie &eg; <literal role="extension"
->*.png</literal
-> und klicken Sie auf den Knopf <guibutton
->Auswahl anwenden</guibutton
->. Durch Klicken auf das Symbol der <quote
->Floppy</quote
-> speichert die aktuelle Auswahl. Es gibt auch eine Aktion <quote
->Gruppendialog auswählen</quote
->.</para>
+          <para>
+          <emphasis>
+            <guilabel>Quick Panel</guilabel>
+          </emphasis>: is used to quickly select files,
+          &eg; enter
+          <literal role="extension">*.png</literal> and click on the
+          <guibutton>Go</guibutton> button. The <quote>floppy</quote> button
+          stores the current selection. The <quote>select group dialog</quote>
+          is also available.</para>
         </listitem>
         <listitem>
-          <para
-><emphasis
-><guilabel
->Ansichtsleiste</guilabel
-></emphasis
->: Zeigt den Inhalt einer Textdatei oder ein Bild &etc; an. Ein Vorschaubild wird immer generiert wenn Sie die <guilabel
->Ansichtsleiste</guilabel
-> öffnen.</para>
+          <para>
+          <emphasis>
+            <guilabel>Viewer Panel</guilabel>
+          </emphasis>: views a text file, views an image,
+          &etc; A thumbnail view is generated whenever
+          you open the
+          <guilabel>Viewer Panel</guilabel>.</para>
         </listitem>
         <listitem>
-          <para
-><emphasis
-> <guilabel
->Festplattenbelegungsleiste</guilabel
-> </emphasis
->: Zeigt die <link linkend="diskusage"
->Festplattenbelegung</link
-> eines Ordners.</para>
+          <para>
+          <emphasis>
+            <guilabel>Disk Usage Panel</guilabel>
+          </emphasis>: views the <link linkend="diskusage">Disk Usage</link> of a
+          folder.</para>
         </listitem>
       </itemizedlist>
-      <para
->Sie können die Anordnung der Seitenleiste mit dem Drehknopf ändern, den Sie links vom Knopf „Pfeil runter“ im unteren Bereich der &krusader;-Karteikarte finden. Jeder Klick auf diesen Knopf verschiebt die Position der Seitenleiste zyklisch über unten, links, oben, rechts </para>
-      <para
->Falls nötig können Sie die Größe des Fensters ändern, um &eg; ein Bild oder einen Dateiinhalt besser zu sehen. Klicken Sie auf den Pfeil nach unten, um die <guilabel
->Seitenleiste</guilabel
-> zu schließen.</para>
+      <para>
+      It is possible to change the sidebar placement using the rotation button
+      which is located to the left of the arrow down button at the bottom part of the &krusader; tab.
+      Each click on this button moves the sidebar on one position in the loop <quote>bottom-left-top-right</quote>.
+      </para>
+      <para>If needed you can resize the window
+      &eg; to better display a picture or view a file contents. Click
+      on the arrow down button to close the
+      <guilabel>3rd Hand Panel</guilabel>.</para>
     </sect2>
     <sect2 id="folderhistory">
-      <title
->Ordnerverlauf</title>
-      <para
->Für beide Dateifenster Gibt es einen Verlauf der zuletzt geöffneten Ordner. Klicken Sie auf den Knopf <guibutton
->Ordnerverlauf öffnen</guibutton
->, das Uhrensymbol, um die Liste der zuletzt geöffneten Ordner anzuzeigen und schnell dorthin zu wechseln. Der zurzeit aktuelle Ordner ist angekreuzt. Bei jedem neuen Start von &krusader; wird die wieder mit den gespeicherten Einträgen der letzten Ausführung gefüllt.</para>
+      <title>Folder History</title>
+      <para>Both panels remember recently visited folders. Click on
+      the
+      <guibutton>Folder history</guibutton> button ("watch"
+      symbol) to open the folder history list. Here you can quickly
+      change to previously visited folders. The currently focused
+      folder is checked. On every new start of &krusader;, the
+      history list is populated by the items from previous run (history is saved).</para>
     </sect2>
   </sect1>
   <sect1 id="cmdline_termemu">
-    <title
->Befehlszeile / Terminal-Emulator</title>
-    <para
->Dieser Teil der <link linkend="gloss-gui"
->grafischen Benutzeroberfläche</link
-> kann vier Modi haben: Befehlszeile, Terminal-Emulator, beides, oder nichts. Sie können einen Modus für den Start auf der Seite <link linkend="konfigurator"
->Start</link
-> im Konfigurator oder für die aktuelle Sitzung im Menü <link linkend="settings-menu"
->Einstellungen</link
-> festlegen. </para>
+    <title>Command Line / Terminal Emulator</title>
+    <para>This part of the <link linkend="gloss-gui">&GUI;</link>
+    can have four modes: Command Line, Terminal Emulator, show both and show none.
+    You can choose your mode of operation either on start-up with the
+    <link linkend="konfigurator">Konfigurator Startup page</link>, or for the current session with the <link linkend="settings-menu">Settings menu</link> .
+    </para>
 
   <sect2 id="cmdline">
-    <title
->Befehlszeile</title>
+    <title>Command Line</title>
 
     <figure id="screenshot-commandline" float="1">
-      <title
->Befehlszeile</title>
+      <title>Command Line</title>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="cmdline.png"
-></imagedata>
+          <imagedata fileref="cmdline.png"></imagedata>
         </imageobject>
         <textobject>
-          <phrase
->Befehlszeile</phrase>
+          <phrase>Command line</phrase>
         </textobject>
       </mediaobject>
     </figure>
-    <para
->Im traditionellen Befehlszeilenmodus gibt es eine einzelne Zeile zur Eingabe von Befehlen, aber auch noch drei Knöpfe:</para>
+    <para>The traditional command line mode offers a single line of
+    input to enter commands, it also features three buttons:</para>
      <itemizedlist>
         <listitem>
-          <para
-><guibutton
->Befehlsverlauf</guibutton
-> (Pfeil abwärts) um schnell vorher benutzte Befehle zu öffnen </para>
+          <para><guibutton>command history</guibutton> (down arrow) to quick open previous used commands
+          </para>
         </listitem>
 
         <listitem>
-          <para
-><guibutton
->Benutzeraktionen-Erweiterung</guibutton
-> (grünes Plus Symbol) um einfach Platzhalter für <link linkend="useractions"
->Benutzeraktionen</link
-> einzufügen </para>
+          <para><guibutton>Useraction expander</guibutton> (green plus button) to add easy
+                <link linkend="useractions">Useraction placeholders</link>
+          </para>
         </listitem>
 
         <listitem>
-          <para
-><guibutton
->Ausführung in Terminal-Modus</guibutton
-> (Konsole-Symbol) mit den nächsten Optionen: <itemizedlist>
-          <listitem
-><para
->Starten und Vergessen</para>
+          <para><guibutton>run in terminal mode</guibutton> (console icon) button with the next options:
+         <itemizedlist>
+          <listitem><para>Start and Forget</para>
           </listitem>
 
-          <listitem
-><para
->Standardausgabe und Standardfehler separat darstellen</para>
+          <listitem><para>Display Separated Standard and Error Output</para>
            </listitem>
 
-          <listitem
-><para
->Standardausgabe und Standardfehler gemeinsam darstellen</para>
+          <listitem><para>Display Mixed Standard and Error Output</para>
           </listitem>
 
-           <listitem
-><para
->In neuem Terminal starten</para>
+           <listitem><para>Start in New Terminal</para>
           </listitem>
 
-           <listitem
-><para
->An eingebetteten Terminal-Emulator senden</para>
+           <listitem><para>Send to Embedded Terminal Emulator</para>
            </listitem>
 
          </itemizedlist>
@@ -661,261 +598,205 @@
 
 
      </itemizedlist>
-    <para
->Wenn Sie damit beginnen, Ihre Befehle einzugeben, erhalten Sie von der automatischen Vervollständigung Vorschläge. Möchten Sie das Verhalten der Vervollständigung in der aktuellen &krusader;-Sitzung ändern, klicken Sie mit der &RMBn; in die Befehlszeile. Links in der Befehlszeile wird der lokale Pfad des aktiven Dateifensters angezeigt. In diesem Pfad wird Ihr Befehl ausgeführt. Geben Sie <userinput
-> <command
->cd</command
-> <replaceable
-> &lt;ordner&gt;</replaceable
-> </userinput
-> in der Befehlszeile ein, wird auch der Pfad im aktiven Dateifenster entsprechend geändert. Klicken Sie <link linkend="cmdline_keybindings"
->hier</link
->, um die Kurzbefehle der Befehlszeile zu sehen.</para>
+    <para>When you start typing your commands,
+    the command line auto-completion feature will make its offers
+    according to what you choose in the
+    &systemsettings;. If you want to change the way
+    auto-complete behaves in the current &krusader;
+    session,
+    <keycap>right click</keycap> on the command line and change it.
+    To the left of the input line you can find the local path that
+    the active panel is currently pointing to. This path is where
+    your command will be executed. Typing
+    <userinput>
+      <command>cd</command>
+      <replaceable>
+      &lt;folder&gt;</replaceable>
+    </userinput> in the command line will also cause the active
+    panel to point to this folder.
+
+    Click
+    <link linkend="cmdline_keybindings">here</link> to view the
+    command line keybindings.</para>
 </sect2>
 
   <sect2 id="termemu">
-    <title
->Terminal-Emulator</title>
+    <title>Terminal Emulator</title>
 
     <figure id="screenshot-terminalemulator" float="1">
-      <title
->Terminal-Emulator</title>
+      <title>Terminal Emulator</title>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="terminalEmu.png"
-></imagedata>
+          <imagedata fileref="terminalEmu.png"></imagedata>
         </imageobject>
         <textobject>
-          <phrase
->Terminal-Emulator</phrase>
+          <phrase>Terminal emulator</phrase>
         </textobject>
       </mediaobject>
     </figure>
-    <para
->Der Terminal-Emulator ist tatsächlich eine kleine Konsole und funktioniert auch so. Sie können den aktiven Ordner im Terminal mit dem Befehl <userinput
-> <command
->cd</command
-> </userinput
-> ändern. Der Terminal-Emulator folgt dem aktiven Dateifenster. Sie können eine oder mehrere Dateien aus der <interface
->Dateiliste</interface
-> in den Terminal-Emulator ziehen und die Namen werden eingefügt. Den Terminal-Emulator können Sie im Vollbildmodus im &krusader;-Fenster anzeigen, wenn dies <link linkend="konfig-general-general"
->eingestellt</link
-> ist oder mit <keycombo action="simul"
->&Ctrl;&Shift;<keycap
->F</keycap
-></keycombo
-> zwischen Normal- und Vollbildmodus umschalten. Ist die Befehlszeile ausgeblendet, wechseln Sie mit <keycombo action="simul"
->&Ctrl; <keycap
->Pfeil abwärts</keycap
-></keycombo
-> zum Terminal-Emulator und mit <keycombo action="simul"
->&Ctrl; <keycap
->Pfeil aufwärts</keycap
-></keycombo
-> zurück zum Dateifenster. <keycombo action="simul"
->&Ctrl;&Enter;</keycombo
-> und <keycombo action="simul"
->&Ctrl; &Shift; &Enter;</keycombo
-> fügen den Dateinamen ein. Durch Eingabe von <userinput
-> <command
->exit</command
-> </userinput
-> können Sie den Emulator schließen.</para>
-    <para
->In diesem <link linkend="termemu_keybindings"
->Abschnitt</link
-> finden Sie die Kurzbefehle für den Terminal-Emulator.</para>
+    <para>The terminal emulator mode is in fact a small console and
+    acts like one. You can change the active folder in the
+    terminal by using the
+    <userinput>
+      <command>cd</command>
+    </userinput> command. The terminal emulator will follow the
+    active panel folder. You can drag a file from the
+    <interface>List Panel</interface> and name of file will pasted
+    into Terminal Emulator. If you drag multiple files, the names will
+    pasted into Terminal Emulator. A full-screen terminal emulator can
+    be used when <link linkend="konfig-general-general">configured</link> or
+    <keycombo action="simul">&Ctrl; &Shift;<keycap>F</keycap></keycombo> toggles
+    between normal and full screen mode. If the command line is hidden,
+    press <keycombo action="simul">&Ctrl; <keycap>Arrow down</keycap></keycombo>
+    to focus the terminal emulator. <keycombo action="simul">&Ctrl;
+    <keycap>Arrow up</keycap></keycombo> brings you back down.
+    <keycombo action="simul">&Ctrl;&Enter;</keycombo> and
+    <keycombo action="simul">&Ctrl; &Shift; &Enter;</keycombo> paste the filename.
+    You can close the emulator by typing
+    <userinput>
+      <command>exit</command>
+    </userinput>.</para>
+    <para>
+    Click
+    <link linkend="termemu_keybindings">here</link> to view the
+    Terminal emulator keybindings.</para>
     </sect2>
 
   </sect1>
   <sect1 id="fnkeys">
-    <title
->Funktionstasten (F1-F12)</title>
+    <title>Function (FN) Keys Bar</title>
     <figure id="screenshot-fnkeys" float="1">
-      <title
->Funktionstasten (F1-F12)</title>
+      <title>Function (FN) Keys Bar</title>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="fnkeys.png"
-></imagedata>
+          <imagedata fileref="fnkeys.png"></imagedata>
         </imageobject>
         <textobject>
-          <phrase
->Funktionstasten (F1-F12)</phrase>
+          <phrase>Function (FN) Keys Bar</phrase>
         </textobject>
       </mediaobject>
     </figure>
-    <para
->Diese Leiste hat Ihren Namen von den Funktionstasten, die sie anzeigt. Für jeden Knopf in dieser Leiste gibt es eine zugehörige Funktionstaste, die die gleiche Aktion ausführt. Diese Leiste wurde aus dem Design der ersten Dateiverwaltungen mit zwei Fenstern abgeleitet und die Funktionstasten funktionieren normalerweise auf die gleiche Weise mit zwei Änderungen: Die Taste <keycap
->F2</keycap
-> wird zum Umbenennen von Dateien benutzt und die Taste <keycap
->F9</keycap
-> öffnet ein Terminal mit dem letzten lokalen Pfad im aktiven Dateifenster . Mit der Taste <keycap
->F7</keycap
-> oder Klicken auf <guilabel
->Mkdir</guilabel
-> (Lokalisierter Name des Befehls <command
->mkdir</command
->) können Sie direkt vollständige Ordnerbäume erzeugen, &eg; <literal
->foo/bar/test</literal
->. Sie können auf der Seite <link linkend="konfigurator"
->Start</link
-> im Konfigurator auswählen, ob die Leiste mit den Funktionstasten beim Start von &krusader; angezeigt werden soll. In der aktuellen Sitzung können Sie diese Anzeige im Menü <link linkend="settings-menu"
->Einstellungen</link
-> ein- oder ausschalten. Die Aktionen und die ausgeführten <link linkend="key_bindings"
->Kurzbefehle</link
-> können seit der Version 1.51 geändert werden, sie können mit oder ohne angezeigte Funktionstastenleiste ausgeführt werden. </para>
+    <para>This bar gets its name from the function (FN) keys it
+    represents. For each button on this bar there is a
+    corresponding function key that performs the same action. This
+    bar is derived from the design of the first twin-panel file
+    managers and the FN keys usually act the same way with two
+    changes: the
+    <keycap>F2</keycap> key is used to rename files and the
+    <keycap>F9</keycap> key will open a terminal at the last local
+    path that the active panel pointed to.
+    <guilabel>Mkdir</guilabel> <keycap>F7</keycap> (translated name of
+    <command>mkdir</command> command) can create whole folder trees
+    on the fly &eg; <literal>foo/bar/test</literal>. You can choose to display
+    <link linkend="faqu_resize">or not</link> the
+    <guilabel>FN keys bar</guilabel> when starting up
+    &krusader; via the <link linkend="konfigurator">Konfigurator Startup page</link>,
+    and you can toggle its use in the current session with the
+    <link linkend="settings-menu">Settings menu</link>. The actions and
+    <link linkend="key_bindings">Key-Bindings</link> performed by the function keys are
+    configurable since version 1.51, they will remain active with
+    or without the
+    <guilabel>FN keys bar</guilabel> displayed.</para>
   </sect1>
   <sect1 id="folder-tabs">
-    <title
->Unterfenster für Ordner</title>
+    <title>Folder Tabs</title>
     <figure id="screenshot-tabbedbrowsing" float="1">
-      <title
->Unterfenster für Ordner</title>
+      <title>Folder Tabs</title>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="tabbed_browsing.png"
-></imagedata>
+          <imagedata fileref="tabbed_browsing.png"></imagedata>
         </imageobject>
         <textobject>
-          <phrase
->Unterfenster für Ordner</phrase>
+          <phrase>Folder Tabs</phrase>
         </textobject>
       </mediaobject>
     </figure>
-    <para
->Mit den Unterfenstern der Ordner können Sie schnell zwischen mehreren Ordnern wechseln. Für jedes Dateifenster gibt es eigene Unterfenster. Die Positionen der Unterfenster werden beim Beenden von &krusader; gespeichert. um zwischen Unterfenstern zu wechseln, klicken Sie mit der Maus auf die Karteireiter. Zusammen gequetschte Karteireiter haben Kurzinfos mit dem vollständigen Pfad. Folgende Operationen für Unterfenster sind verfügbar:</para>
+    <para>With <guibutton>Folder Tabs</guibutton> you can quickly change to
+    multiple folders; each panel has its own
+    <guibutton>Folder Tabs</guibutton>. The <guibutton>Folder Tabs</guibutton>
+    positions are saved when closing &krusader;. To
+    switch between <guibutton>Folder Tabs</guibutton>, click them with the
+    mouse. Squeezed <guibutton>Folder Tabs</guibutton> have tooltips to
+    display the full path. The following <guibutton>Folder Tabs</guibutton>
+    operations are available:</para>
     <itemizedlist>
       <listitem>
-        <para
->Um zusätzlich zum aktivem Unterfenster ein <action
->neues Unterfenster zu öffnen</action
->, klicken Sie mit der &RMBn; auf einen Ordner und wählen im Kontextmenü den Eintrag <guimenuitem
->In neuem Unterfenster öffnen</guimenuitem
->.</para>
+        <para>To
+        <action>open a new tab</action> and keep the current
+        tab opened: <keycap>Right-click</keycap> on a folder and
+        select
+        <guimenuitem>Open in New Tab</guimenuitem>, or click on 
+        the rightmost button on the Tab bar.</para>
       </listitem>
       <listitem>
-        <para
->Um ein <action
->Unterfenster zu sperren</action
->, klicken Sie mit der &RMBn; auf einen Karteireiter und wählen im Kontextmenü den Eintrag <guimenuitem
->Unterfenster sperren</guimenuitem
->.</para>
+        <para>To <action>lock a tab</action>, <keycap>Right-click</keycap> and
+        select <guimenuitem>Lock Tab</guimenuitem>.</para>
       </listitem>
       <listitem>
-        <para
->Um ein <action
->Unterfenster anzuheften</action
->. klicken Sie mit der &RMBn; auf den Reiter und wählen Sie im Kontextmenü <guimenuitem
->Unterfenster sperren</guimenuitem
->. Das Unterfenster wird gesperrt, aber die Adresse kann temporär geändert werden. Wenn Sie das Unterfenster wieder aktivieren, wird die ursprüngliche Adresse wieder geladen. Um diese Sperre wieder aufzuheben, wählen Sie im Kontextmenü den Eintrag <guimenuitem
->Unterfenster entsperren</guimenuitem
->.</para>
+        <para>To <action>pin a tab</action>, <keycap>Right-click</keycap> and
+            select <guimenuitem>Pin Tab</guimenuitem>. The pinned tab is a locked tab but with temporarily changeable address. It resets to pinned address on tab reactivation. To unpin the pinned tab right-click on it and choose the <guimenuitem>Unpin Tab</guimenuitem> item.</para>
       </listitem>
       <listitem>
-        <para
->Um ein <action
->Unterfenster zu duplizieren</action
->, klicken Sie mit der &RMBn; auf einen Karteireiter und wählen im Kontextmenü den Eintrag <guimenuitem
->Aktuelles Unterfenster duplizieren</guimenuitem
-> oder benutzen den Kurzbefehl <keycombo action="simul"
-> &Alt;&Ctrl;&Shift;<keycap
->N</keycap
-></keycombo
->.</para>
+        <para>To
+        <action>duplicate a tab</action>: <keycap>Right-click</keycap>
+        on the folder tab and select
+        <guimenuitem>Duplicate Current Tab</guimenuitem>, or use
+        <keycombo action="simul">
+        &Ctrl;&Alt;&Shift;
+        <keycap>N</keycap></keycombo>.
+        </para>
       </listitem>
       <listitem>
-        <para
->Um ein <action
->Unterfenster außer dem letzten im Dateifenster zu schließen</action
->, klicken Sie mit der &RMBn; auf einen Karteireiter und wählen im Kontextmenü den Eintrag <guimenuitem
->Aktuelles Unterfenster schließen</guimenuitem
->, klicken mit der &MMBn; auf den Karteireiter, klicken auf das rote Kreuz auf dem Karteireiter oder benutzen den Kurzbefehl <keycombo action="simul"
->&Ctrl;<keycap
->W</keycap
-></keycombo
->.</para>
+        <para>To
+        <action>close a tab</action> (except for the last tab):
+        <keycap>Right-click</keycap> on the tab and select
+        <guimenuitem>Close Current Tab</guimenuitem>, or use the &MMB;, or
+        use the Folder tab
+        <guibutton>red cross</guibutton> button, or use
+        <keycombo action="simul">&Ctrl;
+        <keycap>W</keycap></keycombo>.</para>
       </listitem>
       <listitem>
-        <para
->Um ein <action
->Unterfenster für den persönlichen Ordner zu öffnen</action
->, klicken Sie auf den Knopf <guibutton
->Neues Unterfenster im persönlichen Ordner öffnen</guibutton
->.</para>
+        <para>To
+        <action>change tabs</action>:
+        <keycombo action="simul">&Ctrl;
+        <keycap>,</keycap></keycombo> or
+        <keycombo action="simul">&Ctrl;
+        <keycap>.</keycap></keycombo>.</para>
       </listitem>
       <listitem>
-        <para
->Mit <keycombo action="simul"
->&Shift; <keycap
->,</keycap
-></keycombo
-> oder <keycombo action="simul"
->&Shift; <keycap
->.</keycap
-></keycombo
-> können Sie zu anderen <action
->Unterfenstern in einem Dateifenster wechseln</action
->.</para>
+        <para>To <action>open the current folder in a new tab</action>: use
+        <keycombo action="simul">
+        &Ctrl;&Alt;&Enter;</keycombo>.</para>
       </listitem>
       <listitem>
-        <para
->Mit <keycombo action="simul"
-> &Ctrl;&Alt;&Enter;</keycombo
-> wird der <action
->aktuelle Ordner in einem neuen Unterfenster geöffnet</action
->.</para>
+        <para>To <action>close all other tabs</action>, <keycap>Right-click</keycap> and
+        select <guimenuitem>Close Inactive Tabs</guimenuitem>.</para>
       </listitem>
       <listitem>
-        <para
->Um <action
->alle anderen Unterfenster zu schließen</action
->, klicken Sie mit der &RMBn; auf den Karteireiter und wählen im Kontextmenü <guimenuitem
->Inaktive Unterfenster schließen</guimenuitem
->.</para>
+        <para>To <action>close duplicated tabs</action>, <keycap>Right-click</keycap> and
+        select <guimenuitem>Close Duplicated Tabs</guimenuitem>.</para>
       </listitem>
       <listitem>
-        <para
->Um <action
->doppelte Unterfenster zu schließen</action
->, klicken Sie mit der &RMBn; auf den Karteireiter und wählen im Kontextmenü <guimenuitem
->Doppelte Unterfenster schließen</guimenuitem
->.</para>
-      </listitem>
-      <listitem>
-        <para
->Um ein Unterfenster in das andere Dateifenster zu verschieben, ziehen Sie es mit gedrückter &LMB; dorthin und lassen die Maustaste los. Beim Verschieben ändert sich der Mauszeiger in einen Pfeil, der nach links oder rechts zeigt. Sie können außerdem auch <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->O</keycap
-></keycombo
-> für diese Aktion verwenden.</para>
+        <para>To move tab on the other panel, drag it to the area of the other panel
+	  with the &LMB; (the mouse cursor will become an arrow pointing left or right)
+	  and drop it. You can also press <keycombo action="simul">&Ctrl;&Shift;
+          <keycap>O</keycap></keycombo>.</para>
       </listitem>
 </itemizedlist>
   </sect1>
   <sect1 id="ui_buttons">
-    <title
->Knöpfe</title>
-    <para
->Mehrere Knöpfe für schnelle Operationen sind vorhanden:<link linkend="main_toolbar"
->Haupt-Werkzeugleiste</link
->, <link linkend="actions_toolbar"
->Aktionen-Werkzeugleiste</link
->, <link linkend="panel_toolbar"
->Dateifenster-Werkzeugleiste</link
->, <link linkend="location_toolbar"
->Adressleiste</link
->, <link linkend="list_panel"
->Medien</link
->, <link linkend="folderhistory"
->Ordnerverlauf</link
->, <link linkend="bookman"
->Lesezeichen</link
->, <link linkend="folder-tabs"
->Unterfenster</link
->, <link linkend="cmdline"
->Befehlszeile</link
-> und die <link linkend="fnkeys"
->Funktionstasten</link
->.</para>
+    <title>Buttons</title>
+    <para>Several buttons for fast operations are available:
+    <link linkend="main_toolbar">Main Toolbar</link>,
+    <link linkend="actions_toolbar">Actions Toolbar</link>,
+    <link linkend="panel_toolbar">Panel Toolbar</link>,
+    <link linkend="location_toolbar">Location Toolbar</link>,
+    <link linkend="list_panel">Media</link>,
+    <link linkend="folderhistory">Folder history</link>,
+    <link linkend="bookman">Bookmarks</link>,
+    <link linkend="folder-tabs">Tab</link>,
+    <link linkend="cmdline">Commandline</link>,
+    <link linkend="fnkeys">Function keys</link>.</para>
   </sect1>
 </chapter>

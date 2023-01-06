@@ -2,282 +2,210 @@
     SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
     SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
     SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
 -->
 <sect1 id="remote-connections">
-  <title
->Entfernte Verbindungen</title>
+  <title>Remote Connections</title>
   <indexterm>
-    <primary
->Entfernte Verbindungen</primary>
+    <primary>Remote Connections</primary>
   </indexterm>
-  <para
->Entfernte Verbindungen erstellen Sie einfach, indem Sie die &URL; in die <link linkend="list_panel"
->Adressleiste</link
->  eingeben. Diese Verbindungen funktionieren über Ein-/Ausgabemodule. Beachten Sie dass nicht alle Ein-/Ausgabemodule in der Adressleiste von &krusader; unterstützt werden, &eg; <command
->http://</command
-> funktioniert hier nicht, aber im <link linkend="krviewer"
->Betrachter</link
->. Einige Bespiele:</para>
+  <para>Remote connections are easily made by typing the
+  &URL; in the 
+  <link linkend="list_panel">Location Toolbar</link>; these are
+  actually KIO Slaves. Please note that the
+  &krusader; panel does not support all
+  KIO Slave &eg; 
+  <command>http://</command> will not work in the panel, but will
+  work in the 
+  <link linkend="krviewer">viewer</link>. Some examples:</para>
   <itemizedlist>
     <listitem>
       <para>
-        <userinput
-><command
->ftp://</command
-><replaceable
->public.ftpserver.org/directory/</replaceable
-> </userinput>
+        <userinput>
+          <command>ftp://</command><replaceable>public.ftpserver.org/folder/</replaceable>
+        </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
-        <userinput
-><command
->fish://</command
-><replaceable
->username@hostname/</replaceable
-> </userinput>
+        <userinput>
+          <command>fish://</command><replaceable>username@hostname/</replaceable>
+        </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
-        <userinput
-><command
->sftp://</command
-><replaceable
->username:password@sftp.foo.org/</replaceable
-> </userinput>
+        <userinput>
+          <command>sftp://</command><replaceable>username:password@sftp.foo.org/</replaceable>
+        </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
-        <userinput
-><command
->ftp://</command
-><replaceable
->username@my.server.org:21/directory/</replaceable
-> </userinput>
+        <userinput>
+          <command>ftp://</command><replaceable>username@my.server.org:21/folder/</replaceable>
+        </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
-        <userinput
-><command
->smb://</command
-><replaceable
->username:password@server/share</replaceable
-> </userinput>
+        <userinput>
+          <command>smb://</command><replaceable>username:password@server/share</replaceable>
+        </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
-        <userinput
-><command
->ftp://</command
-><replaceable
->username@proxyusername:password@proxipassword@hostname/directory</replaceable
-> </userinput>
+        <userinput>
+          <command>ftp://</command><replaceable>username@proxyusername:password@proxipassword@hostname/folder</replaceable>
+        </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
-        <userinput
-><command
->nfs://</command
-><replaceable
->&lt;host&gt;:&lt;port&gt;&lt;url-path&gt;</replaceable
-> </userinput>
+        <userinput>
+          <command>nfs://</command><replaceable>&lt;host&gt;:&lt;port&gt;&lt;url-path&gt;</replaceable>
+        </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
-        <userinput
-><command
->webdav://</command
-><replaceable
->www.server.com/path/</replaceable
-> </userinput>
+        <userinput>
+          <command>webdav://</command><replaceable>www.server.com/path/</replaceable>
+        </userinput>
       </para>
     </listitem>
   </itemizedlist>
-  <para
->Sie können Lesezeichen für diese &URL;s setzen. Bitte Lesen Sie aber den Abschnitt <link linkend="bookman"
->Bookman</link
-> mit den Hinweisen zu <emphasis
->sicher gespeicherten Passwörtern</emphasis
->. Um Verbindungen zu mehreren Orten herzustellen, setzen Sie Lesezeichen für diese &URL;s und öffnen Sie dann nacheinander oder alle zusammen, indem Sie <link linkend="panel_profiles"
->Dateifenster-Profile</link
-> benutzen. Um von einem Ort zum anderen zu wechseln, öffnen Sie ein <link linkend="folder-tabs"
->Ordner-Unterfenster</link
-> für jeden Ort.</para>
-  <para
->Es gibt drei Möglichkeiten, eine entfernte Verbindung zu starten:</para
-> 
+  <para>You can bookmark these &URL;s, however, please
+  read the 
+  <link linkend="bookman">Bookman</link> section regarding 
+  <emphasis>securely save passwords</emphasis>. For connecting to
+  multiple locations, bookmark these &URL;s and open
+  them one by one, or open them all together by using
+  <link linkend="panel_profiles">Panel profiles</link>. To switch from one to another
+  location, just open a <link linkend="folder-tabs">Folder tabs</link> for
+  each.</para>
+  <para>There are three ways to start a remote connection:</para> 
   <itemizedlist>
     <listitem>
-      <para
->Geben Sie die &URL; (Adresse) in der <link linkend="list_panel"
->Adressleiste</link
-> ein</para>
+      <para>Type the &URL; in the 
+      <link linkend="list_panel">Location Toolbar</link></para>
     </listitem>
     <listitem>
-      <para
->Wählen Sie <menuchoice
-><guimenu
->Extras</guimenu
-><guimenuitem
->Neue Netzwerkverbindung</guimenuitem
-></menuchoice
->. Damit öffnen Sie einen Dialog, in dem die Angaben zum entfernten Rechner abgefragt werden. Dieser Dialog ist hilfreich, wenn Sie es nicht gewohnt sind, entfernte &URL;s in der Adressleiste einzugeben. Wenn Sie Passwort und Benutzernamen leer lassen, werden Sie als anonymer Benutzer angemeldet. Dieser Dialog soll neu geschrieben werden.</para>
+      <para>Select 
+        <menuchoice>
+          <guimenu>Tools</guimenu>
+          <guimenuitem>New Net Connection</guimenuitem>
+        </menuchoice>
+      which will pop-up a dialog that will ask for the
+      remote site details. This dialog is handy if you are not used
+      to type remote &URL;s in the Location Toolbar.
+      Leaving the password and user name fields empty will log you
+      in as anonymous. Note: we are planning to rewrite this dialog
+      window.</para>
     </listitem>
     <listitem>
-      <para
->Für Ordner auf entfernten Rechnern können Sie Lesezeichen anlegen und dann zu diesem Ordner gehen, indem Sie den Lesezeichen-Knopf in der oberen Ecke der Leiste wie in einem Webbrowser verwenden.</para>
+      <para>You can bookmark a folder on a remote host and
+      return to this folder from the bookmark button on the top
+      corner of your panel just like in a web browser.</para>
     </listitem>
   </itemizedlist>
-  <para
->Nach der Anmeldung an einem entfernten Server können Sie die Dateien und Ordner wie auf Ihrer lokalen Festplatte durchsehen, es gibt dabei aber folgende Einschränkungen:</para
-> 
+  <para>After you log on to a remote server you can browse it just
+  like your local hard drive with the following exceptions:</para> 
   <itemizedlist>
     <listitem>
-      <para
->Auf dem entfernten Server können Sie keine Programme ausführen.</para>
+      <para>You cannot execute files on remote servers.</para>
     </listitem>
     <listitem>
-      <para
->Berechtigungen lassen sich nicht immer auf entfernten Servern ermitteln. abhängig vom Server und der Zugriffsmethode. Daher wird manchmal ein <guilabel
->?</guilabel
-> in der Spalte Berechtigungen für einige Dateien angezeigt.</para>
+      <para>Permissions cannot always be calculated on remote
+      servers (depends on server and access method) so you might
+      get a <guilabel>?</guilabel> on the permissions columns for some files.</para>
     </listitem>
     <listitem>
-      <para
->Informationen über die Festplattenbelegung ist auf den meisten entfernten Dateisystemen nicht verfügbar.</para>
+      <para>Disk usage information is not available for most remote
+      filesystems.</para>
     </listitem>
   </itemizedlist>
-  <para
->Um den Zeichensatz des entfernten Rechners zu ändern, verwenden Sie <menuchoice
-> <guimenu
->Ansicht</guimenu
-> <guimenuitem
->Entfernte Zeichenkodierung wählen</guimenuitem
-> </menuchoice
->.</para>
-  <para
->Sie können die gerade aktive entfernte Verbindung auf zwei Arten schließen:</para
-> 
+  <para>To change the charset of the remote host use 
+    <menuchoice>
+      <guimenu>View</guimenu>
+      <guimenuitem>Select Remote Charset</guimenuitem>
+    </menuchoice>
+  .</para>
+  <para>You can close the current Active Remote
+  Connection by two separate methods:</para> 
   <itemizedlist>
     <!--
         <listitem>
-           <para
->Manually: <emphasis role="bold"
-><menuchoice
-><guimenu
->Commands</guimenu>
-                 <guimenuitem
->Disconnect From Net</guimenuitem
-></menuchoice
-></emphasis
-></para>
+           <para>Manually: <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
+                 <guimenuitem>Disconnect From Net</guimenuitem></menuchoice></emphasis></para>
         </listitem>
         -->
     <listitem>
-      <para
->Manuell: Fügen Sie den Knopf zur Trennung einer Verbindung in die <link linkend="mainwindow"
->Haupt-Werkzeugleiste</link
-> einfügen und dann darauf klicken.</para>
+      <para>Manually: Add the disconnect button to the
+      <link linkend="mainwindow">Main Toolbar</link> and click on it.</para>
     </listitem>
     <listitem>
-      <para
->Automatisch: Ändern Sie die &URL; (Adresse) in der <link linkend="list_panel"
->Adressleiste</link
->.</para>
+      <para>Automatically: Change the &URL; in the
+      <link linkend="list_panel">Location Toolbar</link> .</para>
     </listitem>
   </itemizedlist>
   <note>
-    <para
->&krusader; ist eine Dateiverwaltung, die entfernte Verbindungen über KIO-Ein-/Ausgabemodule unterstützt. Brauchen Sie noch weitergehende Funktionen &eg; für &FTP;, wird empfohlen, &eg; <ulink url="https://lftp.yar.ru/"
->LFTP</ulink
-> oder <ulink url="https://filezilla-project.org/"
-><application
->FileZilla</application
-></ulink
-> zu benutzen.</para>
+    <para>&krusader; is a file manager that supports
+    remote connections via KIO Slaves, but if you
+    are looking for even more advanced remote connections features,
+    &eg; an advanced &FTP; client we
+    recommend you to use &eg;
+    <ulink url="https://lftp.yar.ru/">LFTP</ulink> or
+    <ulink url="https://filezilla-project.org/"><application>FileZilla</application></ulink>.</para>
   </note>
 
 <sect2 id="remote-connections-lan-fish">
-  <title
->LAN-(Netzwerk)-Verbindungen über das Protokoll „fish:/“ (zeroconf)</title>
+  <title>LAN connections via fish:/ protocol (zeroconf)</title>
   <indexterm>
-    <primary
->Entfernte LAN-(Netzwerk)-Verbindungen (zeroconf)</primary>
+    <primary>Remote LAN Connections (zeroconf)</primary>
   </indexterm>
 
-<para
->Dieser Abschnitt wurde von Andrew Svet (z-vet) geschrieben. Vielen Dank.</para>
+<para>This section is contributed by Andrew Svet (z-vet),
+      feedback about this chapter is appreciated. Thanks!</para>
 
  <note>
-   <para
->Dies funktioniert auf &Debian;-Systemen und allen Derivaten wie &kubuntu; &etc;, sollte aber auch auf allen anderen Linux-Systemen funktionieren. <link linkend="gloss-ssh"
->SSH</link
-> muss auf allen Rechnern im LAN installiert und eingerichtet sein, die mit denen Sie Verbindungen herstellen möchten. Es gibt viele gute Anleitungen zu <link linkend="gloss-ssh"
->SSH</link
-> im Internet, &eg; at <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying"
->linuxhomenetworking.com</ulink
->. Hier wird der Standard-Port 22 für <link linkend="gloss-ssh"
->SSH</link
-> benutzt, passen Sie dies falls nötig an. Alle Änderungen und Bearbeitungen müssen als Systemverwalter ausgeführt werden. </para>
+   <para>This works on a &Debian; system, so it will work on &Debian; and derivatives (&kubuntu;, &etc;), though
+   it should work on other Linuxes as well. 
+   We assume that you have <link linkend="gloss-ssh">SSH</link> installed, configured and working on 
+   every machine on LAN you want to connect to/from.
+   There are plenty of very good tutorials about <link linkend="gloss-ssh">SSH</link> on the net, &eg;
+   at <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying">linuxhomenetworking.com</ulink> 
+   or just google for it.  We use the default <link linkend="gloss-ssh">SSH</link> port (22) for this chapter.
+   Remember to change it if you use different one. All modifications, editing &etc; must be done as root. 
+   </para>
  </note>
 
-<para
->Beginnen Sie mit der Installation aller erforderlichen Pakete: <screen>
-<prompt
->#</prompt
-> <userinput
-><command
->apt-get install</command
-> <option
->avahi-daemon libnss-mdns kdnssd</option
-></userinput>
-</screen
-> Wenn alles installiert ist, beginnen Sie mit der Einrichtung. Zuerst müssen die Dienste im LAN angekündigt werden. Dafür wurde avahi-daemon installiert: Dieser Dienst kündigt Ihren Rechner im lokalen Netzwerk an und ermöglicht anderen Anwendungen, ihre bereitgestellten Dienste freizugeben. Für Avahi-daemon gibt es Beispiele von Einrichtungsdateien für <filename
->ssh.service</filename
-> im Ordner <filename class="directory"
->/usr/share/doc/avahi-daemon/examples</filename
->. Damit diese Dienste im LAN angekündigt werden, muss diese Datei in den Ordner <filename class="directory"
->/etc/avahi/services</filename
-> kopiert werden: <screen>
-<prompt
->#</prompt
-> <userinput
-><command
->cp</command
-> <option
->/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option
-></userinput>
-</screen
-> Nun muss auch das Protokoll fish./ angekündigt werden, dafür wird eine Datei ssh.service als Vorlage für fish.service: <screen>
-<prompt
->#</prompt
-> <userinput
-><command
->cp</command
-> <option
->/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option
-></userinput>
-</screen
-> Diese ist eine Kopie der Datei ssh.service. Bearbeiten Sie die Datei <filename
->fish.service</filename
-> und ersetzen Sie <quote
->Remote Terminal on %h</quote
-> durch <quote
->Fish to %h</quote
-> und <quote
->_ssh._tcp</quote
-> durch <quote
->_fish._tcp</quote
->. So sollte die Datei nach den Änderungen aussehen: <programlisting
-> 
+<para>
+Let's start with installing all the packages we need: 
+<screen>
+<prompt>#</prompt> <userinput><command>apt-get install</command> <option>avahi-daemon libnss-mdns kdnssd</option></userinput>
+</screen>
+
+Everything is installed, now let's do some configuration. First, we need our services to be announced on LAN.
+That is why we installed avahi-daemon: it represents your machine on local network and allows other applications 
+to publish services they provide. Avahi-daemon comes with example <filename>ssh.service</filename> configuration 
+file found in <filename class="directory">/usr/share/doc/avahi-daemon/examples</filename>. In order to get the service to be 
+announced on LAN we need to copy this file to <filename class="directory">/etc/avahi/services</filename> folder: 
+<screen>
+<prompt>#</prompt> <userinput><command>cp</command> <option>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option></userinput>
+</screen>
+
+Now we need fish:/ protocol to be announced too, so we use an ssh.service file as a template for fish.service: 
+<screen>
+<prompt>#</prompt> <userinput><command>cp</command> <option>/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option></userinput>
+</screen>
+
+This file is just a copy of ssh.service. Edit the <filename>fish.service</filename> file and replace 
+<quote>Remote Terminal on %h</quote> with <quote>Fish to %h</quote> and <quote>_ssh._tcp</quote> with <quote>_fish._tcp</quote>.
+
+Here is how it looks after edit:
+<programlisting> 
 &lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--> 
 &lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
 
@@ -297,60 +225,42 @@
 
 &lt;!-- See avahi.service(5) for more information about this configuration file --> 
 
-&lt;service-group
-> 
+&lt;service-group> 
 
-  &lt;name replace-wildcards="yes"
->FISH to %h&lt;/name
-> 
+  &lt;name replace-wildcards="yes">FISH to %h&lt;/name> 
 
-  &lt;service
-> 
-    &lt;type
->_fish._tcp&lt;/type
-> 
-    &lt;port
->22&lt;/port
-> 
-  &lt;/service
-> 
+  &lt;service> 
+    &lt;type>_fish._tcp&lt;/type> 
+    &lt;port>22&lt;/port> 
+  &lt;/service> 
 
-&lt;/service-group
->  
-</programlisting
-> Speichern Sie die geänderte Datei. Jetzt muss noch eine neue Datei<filename
->_fish._tcp</filename
-> erstellt werden. Öffnen Sie einen Texteditor und fügen Sie diese Zeilen ein: <programlisting>
+&lt;/service-group>  
+</programlisting>
+Save the modified file. 
+
+Now we need to create a new file <filename>_fish._tcp</filename>, open a text editor and add the next lines:
+<programlisting>
 Name=FISH Protocol (ssh) 
 Type=_fish._tcp 
 UserEntry=u 
 PathEntry=path 
 PasswordEntry=p
-</programlisting
-> Speichern Sie die Datei unter <filename
->/usr/share/apps/zeroconf/_fish._tcp</filename
-> Führen Sie dies auf jedem Rechner in Ihrem LAN durch und starten Sie den avahi-daemon neu: <screen>
-<prompt
-># /etc/init.d/</prompt
-> <userinput
-><command
->avahi-daemon</command
-> <option
->restart</option
-></userinput>
-</screen
-> Öffnen Sie dann &krusader; und geben Sie in der Adressleiste <filename
->zeroconf:/</filename
-> ein, um die <link linkend="gloss-zeroconf"
->zeroconf</link
->-Verbindung zu öffnen. Gehen Sie zum Ordner <guilabel
->Fish Protocol</guilabel
->. Darin finden Sie die Verknüpfungen zu jedem Rechner, der <filename
->fish:/</filename
-> in Ihrem LAN freigegeben hat. Die Adressleiste enthält <filename
->zeroconf:/_fish._tcp</filename
-> Doppelklicken Sie auf jeden dieser Rechner, dann erscheint eine Passwortabfrage, in dem die Passphrase für den SSH-Schlüssel eingegeben werden muss, wenn ein Passwort festgelegt wurde. Geben Sie Ihre Passphrase ein und Sie haben eine entfernte Verbindung mit &krusader;erstellt. </para
-> 
+</programlisting> 
+And save the file <filename>/usr/share/apps/zeroconf/_fish._tcp</filename>
+
+Do the same on each machine on your LAN, then restart avahi-daemon: 
+<screen>
+<prompt># /etc/init.d/</prompt> <userinput><command>avahi-daemon</command> <option>restart</option></userinput>
+</screen>
+
+Then open &krusader; and type in location-toolbar-lnk: <filename>zeroconf:/</filename> to open the  
+<link linkend="gloss-zeroconf">zeroconf</link> connection.
+Enter the <guilabel>Fish Protocol</guilabel> folder. Inside you will find the links to each machine that 
+announced <filename>fish:/</filename> on your LAN, the location-toolbar-lnk: will point to 
+<filename>zeroconf:/_fish._tcp</filename> Double clicking on any of these machines,
+them will bring up the password prompt, asking you for your ssh key passphrase (if password was set). 
+Enter your passphrase. Congratulations: you connected to remote machine using &krusader;!
+</para> 
 
 </sect2>
 

@@ -2,150 +2,105 @@
     SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
     SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
     SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
 -->
 <sect1 id="diskusage">
-  <title
->Festplattenbelegung</title>
+  <title>Disk Usage</title>
   <indexterm>
-    <primary
->Festplattenbelegung</primary>
+    <primary>Disk Usage</primary>
   </indexterm>
-  <para
->Die Festplattenbelegung verwendet den Quelltext des Programms &filelight;. Es gibt folgende Möglichkeiten der grafischen Anzeige der Speicherplatzbelegung des Dateisystems:</para
-> 
+  <para>The Disk Usage is based on the code of
+  &filelight;. The Disk Usage shows you how your disk
+  space is being used by a graphical representation of your
+  file system. The following presentations are possible:</para> 
   <itemizedlist>
     <listitem>
-      <para
->Linien-Ansicht</para>
+      <para>Line view</para>
     </listitem>
     <listitem>
-      <para
->Ausführlicher Anzeigemodus</para>
+      <para>Detailed view</para>
     </listitem>
     <listitem>
-      <para
-><application
->Filelight</application
->-Ansicht: konzentrische Kreissegmente</para>
+      <para><application>Filelight</application> view: as a set of concentric
+      segmented-rings</para>
     </listitem>
   </itemizedlist>
-  <para
->Wählen Sie <menuchoice
-> <guimenu
->Extras</guimenu
-> <guimenuitem
->Festplattenbelegung</guimenuitem
-> </menuchoice
-> oder den Kurzbefehl <keycombo action="simul"
->&Alt;&Shift;<keycap
->S</keycap
-></keycombo
->, um die Belegung in einen eigenen Fenster anzuzeigen oder öffnen Sie diese Ansichten im <link linkend="sidebar"
->Seitenleiste</link
->.</para>
-  <para
->Kurzbefehle für das Kontextmenü der Festplattenbelegung.</para>
+  <para>Choose 
+    <menuchoice>
+      <guimenu>Tools</guimenu>
+      <guimenuitem>Disk Usage...</guimenuitem>
+    </menuchoice>
+  or 
+  <keycombo action="simul">&Alt;&Shift;
+  <keycap>S</keycap></keycombo> to start this feature in a separate
+  window, or open it inside the
+  <link linkend="sidebar">Sidebar</link>.</para>
+  <para>Disk Usage Keybindings, right click menu.</para>
   <itemizedlist>
     <listitem>
-      <para
-><keycap
->Entf</keycap
->: Entfernen</para>
+      <para>
+      <keycap>Del</keycap>: Delete</para>
     </listitem>
     <listitem>
-      <para
-><keycombo action="simul"
->&Ctrl; <keycap
->E</keycap
-></keycombo
->: Ausschließen</para>
+      <para>
+      <keycombo action="simul">&Ctrl;
+      <keycap>E</keycap></keycombo>: Exclude</para>
     </listitem>
     <listitem>
-      <para
-><keycombo action="simul"
->&Shift; <keycap
->Pfeil hoch</keycap
-></keycombo
->: Aufwärts</para>
+      <para>
+      <keycombo action="simul">&Shift;
+      <keycap>Arrow Up</keycap></keycombo>: Up one folder</para>
     </listitem>
     <listitem>
-      <para
-><keycombo action="simul"
->&Ctrl; <keycap
->N</keycap
-></keycombo
->: Neue Suche</para>
+      <para>
+      <keycombo action="simul">&Ctrl;
+      <keycap>N</keycap></keycombo>: new search</para>
     </listitem>
     <listitem>
-      <para
-><keycombo action="simul"
->&Ctrl; <keycap
->R</keycap
-></keycombo
->: Aktualisieren</para>
+      <para>
+      <keycombo action="simul">&Ctrl;
+      <keycap>R</keycap></keycombo>: refresh</para>
     </listitem>
     <listitem>
-      <para
-><keycombo action="simul"
->&Ctrl; <keycap
->I</keycap
-></keycombo
->: Alle einbeziehen</para>
+      <para>
+      <keycombo action="simul">&Ctrl;
+      <keycap>I</keycap></keycombo>: include all</para>
     </listitem>
     <listitem>
-      <para
-><keycombo action="simul"
->&Shift; <keycap
->Pfeil runter</keycap
-></keycombo
->: In Ordner wechseln</para>
+      <para>
+      <keycombo action="simul">&Shift;
+      <keycap>Arrow Down</keycap></keycombo>: step into</para>
     </listitem>
     <listitem>
-      <para
->Das Menü Ansicht: <itemizedlist>
+      <para>View menu: 
+      <itemizedlist>
         <listitem>
-          <para
-><keycombo action="simul"
->&Ctrl; <keycap
->L</keycap
-></keycombo
->: Linien-Ansicht</para>
+          <para>
+          <keycombo action="simul">&Ctrl;
+          <keycap>L</keycap></keycombo>: Line view</para>
         </listitem>
         <listitem>
-          <para
-><keycombo action="simul"
->&Ctrl; <keycap
->D</keycap
-></keycombo
->: Ausführlich</para>
+          <para>
+          <keycombo action="simul">&Ctrl;
+          <keycap>D</keycap></keycombo>: Detailed view</para>
         </listitem>
         <listitem>
-          <para
-><keycombo action="simul"
->&Ctrl; <keycap
->F</keycap
-></keycombo
->: Filelight</para>
+          <para>
+          <keycombo action="simul">&Ctrl;
+          <keycap>F</keycap></keycombo>: Filelight view</para>
         </listitem>
         <listitem>
-          <para
-><keycombo action="simul"
->&Shift; <keycap
->Pfeil rechts</keycap
-></keycombo
->: Nächste Ansicht</para>
+          <para>
+          <keycombo action="simul">&Shift;
+          <keycap>Arrow Right</keycap></keycombo>: Next view</para>
         </listitem>
         <listitem>
-          <para
-><keycombo action="simul"
->&Shift; <keycap
->Pfeil links</keycap
-></keycombo
->: Vorherige Ansicht</para>
+          <para>
+          <keycombo action="simul">&Shift;
+          <keycap>Arrow Left</keycap></keycombo>: Previous
+          view</para>
         </listitem>
-      </itemizedlist
-></para>
+      </itemizedlist></para>
     </listitem>
   </itemizedlist>
 </sect1>

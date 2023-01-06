@@ -2,386 +2,337 @@
     SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
     SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
     SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
 -->
 <chapter id="faq">
-  <title
->Häufig gestellte Fragen (Frequently Asked Questions &FAQ;)</title>
+  <title>Frequently Asked Questions (&FAQ;)</title>
   <indexterm>
-    <primary
->FAQ</primary>
+    <primary>FAQ</primary>
   </indexterm>
-  <para
->Bei Problemen mit &krusader; überprüfen Sie bitte die <ulink url="https://krusader.org/get-involved/index.html"
->Installationsprozedur</ulink
->. Ihr Problem wird möglicherweise durch eine fehlerhafte Installation verursacht.</para>
-  <para
->Diese &FAQ; besteht aus drei Abschnitten: <itemizedlist
-> <listitem
-> <para
-> <link linkend="faq_installation"
->&FAQ; zur Installation</link
-> (dieser Abschnitt)</para
-> </listitem
-> <listitem
-> <para
-> <link linkend="faq_usage"
->&FAQ; zur Benutzung</link
-> (Probleme beim Ausführen von &krusader;)</para
-> </listitem
-> <listitem
-> <para
-> <link linkend="faq_general"
->&FAQ; zu allgemeinen Problemen</link
-> (Fehlerberichte, Forum, Mailingliste, ...)</para
-> </listitem
-> </itemizedlist
->Wenn Ihnen etwas in der &FAQ; fehlt oder unklar ist, Schreiben Sie <link linkend="editors_note"
->uns</link
-> bitte.</para>
+  <para>If you have problems with &krusader; please
+  check the
+  <ulink url="https://krusader.org/get-involved/index.html">installation
+  procedure</ulink>, as your problem may be
+  caused by a bad installation.</para>
+  <para>The &FAQ; is divided into three sections: 
+  <itemizedlist>
+    <listitem>
+      <para>
+      <link linkend="faq_installation">Installation
+      &FAQ;</link> (this page)</para>
+    </listitem>
+    <listitem>
+      <para>
+      <link linkend="faq_usage">Usage
+      &FAQ;</link> (issues with running/using
+      &krusader;)</para>
+    </listitem>
+    <listitem>
+      <para>
+      <link linkend="faq_general">General
+      &FAQ;</link> (bug reports, forum, mailing list,
+      ...)</para>
+    </listitem>
+  </itemizedlist>If you feel that a &FAQ; is missing or
+  if something is not clear to you, please 
+  <link linkend="editors_note">let us know</link>.</para>
   <sect1 id="faq_installation">
-    <title
->&FAQ; zur Installation</title>
+    <title>Installation &FAQ;</title>
     <qandaset>
       <qandaentry>
         <question id="faqi_kdelibs">
-          <para
->Kann &krusader; nur unter &plasma; ausgeführt werden?</para>
+          <para>Does &krusader; need &plasma; to
+          run?</para>
         </question>
         <answer>
-          <para
-><emphasis
->Nein, &krusader; benötigt keine &plasma;-Fensterverwaltung</emphasis
->, um auf Ihrem Rechner zu laufen, aber &krusader; benötigt die Dienste, die durch die &kf5-full;-Basis-Bibliotheken bereitgestellt werden. Es sind nur einige gemeinsam zu nutzende Bibliotheken erforderlich &eg; die &kde;-, &Qt;-Bibliotheken, &etc; Das bedeutet, dass &krusader; unter <ulink url="https://www.gnome.org"
-><application
->GNOME</application
-></ulink
->, <ulink url="http://www.afterstep.org/"
-><application
->AfterStep</application
-></ulink
->, <ulink url="https://www.xfce.org/"
-><application
->XFce</application
-></ulink
-> und anderen Fensterverwaltungen ausgeführt werden kann, wenn die nötigen Bibliotheken installiert werden. Dies ist aber kein Problem, da diese Abhängigkeiten durch die Paketverwaltung Ihrer Distribution aufgelöst werden.</para>
-          <para
-></para>
+          <para>
+          <emphasis>No, &krusader; does not need the
+          &plasma; window manager</emphasis> to run on your
+          computer but &krusader;'s natural environment
+          is &plasma;, because it relies on services
+          provided by the &kf5-full; base libraries. Only
+          some shared libraries are needed &eg;
+          &kf5; libraries, &Qt; libraries,
+          &etc; This means that &krusader;
+          runs on <ulink url="https://www.gnome.org"><application>GNOME</application></ulink>,
+          <ulink url="http://www.afterstep.org/"><application>AfterStep</application></ulink>, <ulink url="https://www.xfce.org/"><application>XFce</application></ulink> and
+          other window managers provided the appropriate libraries
+          are installed on your computer. All this is not a problem
+          since the apt-get world can resolve these dependencies
+          instantly.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
-          <para
->Sie müssen nicht zur &plasma;-Fensterverwaltung wechseln, um &krusader; zu nutzen, Auch mit <ulink url="https://www.gnome.org"
-><application
->GNOME</application
-></ulink
->, <ulink url="http://www.afterstep.org/"
-><application
->AfterStep</application
-></ulink
->, <ulink url="https://www.xfce.org/"
-><application
->XFce</application
-></ulink
-> oder anderen Fensterverwaltungen kann &krusader; ausgeführt werden. Die Einrichtung von Schriften und teilweise auch das Verhalten von &krusader; wird jedoch in den &systemsettings; durchgeführt.</para>
-          <para
-></para>
+          <para>You do not need to switch to the &plasma;
+          window manager to use &krusader;; you can
+          still use <ulink url="https://www.gnome.org"><application>GNOME</application></ulink>,
+          <ulink url="http://www.afterstep.org/"><application>AfterStep</application></ulink>, <ulink url="https://www.xfce.org/"><application>XFce</application></ulink> or
+          another window manager. However, the configuration of the
+          &krusader; fonts and some behavior is done by
+          running 
+          <command>systemsettings</command>.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
-          <para
->Es hängt im Wesentlichen davon ab, was Sie mit &krusader; machen möchten. &krusader; verwendet die &kf5;-Ein-/Ausgabemodule, um auf entfernte Dateisysteme zuzugreifen. Nur eine eingeschränkte Unterstützung von Dateisystemen sind in den &kf5;.Bibliotheken, die meisten Ein-/Ausgabemodule sind in &kf5-full; einschließlich fish, sftp und tar.</para>
-          <para
-></para>
+          <para>A lot depends on what you want to do with
+          &krusader;. You should know that
+          &krusader; uses the &kf5;
+          KIO Slaves to access remote file
+          systems, and support for only a limited number of file
+          system types are shipped with &kf5; libraries,
+          most of the KIO Slave are bundled with
+          &kf5-full; (including fish, sftp and tar).</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
-          <para
->Um es zusammenzufassen: Soll &krusader; nur gestartet werden können, installieren Sie &kf5-full;. Soll &krusader; brauchbar sein, benötigen Sie &kf5-full; und einige zusätzliche &plasma;-Pakete. Für den vollen Funktionsumfang von &krusader; aber brauchen Sie die Bibliotheken einiger &kde;-Anwendungen (&ark;, &kdiff3;, <application
->KRename</application
->), aber die &plasma;-Fensterverwaltung ist optional.</para>
-          <para
-></para>
+          <para>To summarize, if you want a working
+          &krusader; - install &kf5-full;. If
+          you want a functional &krusader; then you need
+          &kf5-full; and some additional &plasma; packages. For maximum
+          functionality, &krusader; needs some &kde; Applications
+          (&ark;, &kdiff3;, <application>KRename</application>), but the
+          &plasma; window manager is optional.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqi_rpm-notfound">
-          <para
->Ich finde kein Paket für &krusader;, was kann ich tun?</para>
+          <para>I cannot find a package for
+          &krusader;, what to do?</para>
         </question>
         <answer>
-          <para
->Überprüfen Sie, ob &krusader; in Ihrer Distribution enthalten ist. Wenn nicht, bitten Sie den Ersteller der Distribution, &krusader; aufzunehmen.</para>
-          <para
->Haben Sie die Seite <ulink url="https://krusader.org/get-involved/index.html"
->Installationsprozedur</ulink
-> gelesen? Sie können &krusader; auch aus den Quelltexten kompilieren. Bei Problemen fragen Sie nach <link linkend="faqi_help_request"
->Hilfe</link
->.</para>
-          <para
-></para>
+          <para>Check if your distribution provides
+          &krusader;, if it does not then contact your
+          distribution creator and ask them to include
+          &krusader;!</para>
+          <para>Did you take a look at the
+          <ulink url="https://krusader.org/get-involved/index.html">installation
+          procedure</ulink> page? If you have and
+          found nothing, you can always compile
+          &krusader; from source. Feel free
+          to post a <link linkend="faqi_help_request">help request</link> if you encounter
+          problems.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
  
       <qandaentry>
         <question id="faqi_help_request">
-          <para
->Ich habe Probleme beim Kompilieren und Installieren von &krusader;, wo kann ich um Hilfe nachfragen?</para>
+          <para>I am having trouble compiling and installing
+          &krusader;, how do I send a help
+          request?</para>
         </question>
         <answer>
-          <para
->Bitte lesen Sie unsere ausführliche <ulink url="https://krusader.org/get-involved/index.html"
->Installationsanleitung</ulink
-> und die <link linkend="faq"
->FAQ</link
->. Finden Sie dort keine Lösung für Ihr Problem, <emphasis role="bold"
->fragen</emphasis
-> Sie in unserem &krusader;-Forum oder benutzen Sie die Mailingliste <ulink url="https://groups.google.com/group/krusader-users"
->&krusader;-users</ulink
->. Ehe Sie Ihre Frage stellen, versuchen Sie bitte folgendes: <orderedlist>
+          <para>Please read our detailed 
+          <ulink url="https://krusader.org/get-involved/index.html">installation
+          procedure</ulink> and the <link linkend="faq">FAQ</link>. If you
+          cannot find a solution to your problem then feel free to
+          post a 
+          <emphasis role="bold">help request</emphasis> at our
+          &krusader; forum or use the
+          <ulink url="https://groups.google.com/group/krusader-users">&krusader;-users</ulink> mailing list. But before
+          posting a help request, please try the following: 
+          <orderedlist>
             <listitem>
-              <para
->Benutzen Sie die Suchfunktion im <ulink url="https://forum.kde.org/viewforum.php?f=225"
->&kde;-Forum</ulink
->, Ihr Problem ist vielleicht bereits gelöst oder diskutiert worden.</para>
+              <para>Use the search function on the <ulink url="https://forum.kde.org/viewforum.php?f=225">&kde; Forum</ulink>, your problem
+              might be solved or discussed already.</para>
             </listitem>
             <listitem>
-              <para
->Finden Sie keine Lösung, notieren Sie sich bitte folgende Informationen: <itemizedlist
-> <listitem
-> <para
->Die verwendete Version von &krusader;</para
-> </listitem
-> <listitem
-> <para
->Die verwendete Distribution und Version von &Linux;</para
-> </listitem
-> <listitem
-> <para
->Eine genaue Beschreibung Ihres Problems</para
-> </listitem
-> </itemizedlist
-> Ohne diese Angaben ist eine Hilfe sehr schwierig. <note
-> <para
->Wenn Sie die Fehlermeldungen angeben, &eg; Fehler von <command
->make</command
->, beginnen Sie mit dem ersten Fehler, alle folgenden Fehler resultieren aus dem ersten Fehler und sind nicht die Ursache des Problems.</para>
-              </note
-></para>
+              <para>If you cannot find a solution, please make a
+              note of the following issues: 
+              <itemizedlist>
+                <listitem>
+                  <para>the &krusader; version
+                  used</para>
+                </listitem>
+                <listitem>
+                  <para>the &Linux; distribution +
+                  version used</para>
+                </listitem>
+                <listitem>
+                  <para>a good description of the problem</para>
+                </listitem>
+              </itemizedlist>Without this information, it is very
+              difficult for us to help you. 
+              <note>
+                <para>If you give us the error messages
+                (&eg; 
+                <command>make</command> error messages) please start
+                with the FIRST error message, all the error
+                messages which follow the first error message are
+                consequences and not the cause of your
+                problem.</para>
+              </note></para>
             </listitem>
             <listitem>
-              <para
->Versenden Sie Ihre Hilfe-Anfrage.</para>
+              <para>Send out your help request.</para>
             </listitem>
-          </orderedlist
-></para>
-          <para
->Danke für Ihre Mitarbeit.</para>
-          <para
-></para>
+          </orderedlist></para>
+          <para>Thank you for your co-operation!</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqi_git_version">
-          <para
->Warum zeigt &krusader; eine alte Versionsnummer im Dialog „Über &krusader;“ ?</para>
+          <para>Why does &krusader;-git show an old
+          version number in the about box?</para>
         </question>
         <answer>
-          <para
->Die Versionsnummer wird immer nur kurz vor einer neuen Veröffentlichung geändert. &krusader; kompiliert aus dem Git-Archiv hat noch eine alte Versionsnummer, daher ignorieren Sie sie und überprüfen Sie das Datum des Herunterladens. Es ist noch nicht entschieden, welche Nummer die neue Version erhalten wird.</para>
-          <para
-></para>
+          <para>Because we only change the version number just
+          before we do a new release. &krusader;-git
+          will show an older version number, so ignore the version
+          number and check the download date. We simply have not yet
+          decided what the next version number will be.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
  </qandaset>
   </sect1>
   <sect1 id="faq_usage">
-    <title
->&FAQ; zur Benutzung</title>
+    <title>Usage &FAQ;</title>
     <qandaset>
       <qandaentry>
         <question id="faqu_dead_mountpoint">
-          <para
->Warum friert &krusader; auf einem nicht belegten Einhängepunkt ein oder bleibt hängen?</para>
+          <para>Why does &krusader; freeze or hang on a
+          dead mountpoint?</para>
         </question>
         <answer>
-          <para
->Wenn &krusader; &eg; eine &NFS;-Freigabe durchsieht und der &NFS;-Server herunter fährt, friert &krusader; ein. Dies ist ein fataler Fehler und kann nur mit dem Befehl <command
->kill -9</command
-> korrigiert werden. Wir haben keine Lösung für dieses Problem, es hat nichts mit einer Dateiverwaltung oder auch nicht mit dem Betriebssystem &Linux; zu tun. Beim ersten Zugriff auf die nicht mehr aktive Freigabe tritt dieses Problem auf. Das könnte nur durch Multithreading vermieden werden, das ist aber nicht allein in &krusader; möglich. Daher werden Sie mit dem Problem leben müssen.</para>
-          <para
-></para>
+          <para>When &krusader; is &eg;
+          browsing an &NFS; share and the &NFS; server goes down,
+          &krusader; will freeze. This
+          &krusader; (and all other open internal
+          viewers/editors) freeze is fatal, and can only be
+          corrected with the 
+          <command>kill -9</command>. We have no solution for this.
+          This is an issue not confined to file managers, or even
+          the &Linux; OS! The problem is that you <quote>hang</quote>
+          on the first access to the dead share - so there is no
+          way around it, no check to avoid it, even 
+          <command>ls</command> will freeze. Just trying to read
+          something - anything - is enough to get you stuck. The
+          one and only way around this architectural problem is
+          using a multi-threaded design - this way if we get stuck,
+          we do not hang the entire application event loop, but we
+          do not think that the time is right for adding threads, we
+          are not sure that *all* the &kf5; systems out
+          there are using &Qt;-mt (the multi threaded
+          version of the &Qt; library), and the &krusader;
+          Krew may not be the right people to address this major
+          issue in any case; so currently this is just a bug we
+          have to learn to live with.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqu_resize">
-          <para
->Wenn ich das Fenster für &krusader; verkleinern möchte, funktioniert das nur bis zu einer bestimmten Größe. Warum?</para>
+          <para>When I try to resize &krusader; to make
+          it smaller, I discover that I cannot resize it below a
+          certain size. Why?</para>
         </question>
         <answer>
-          <para
->Sehen Sie die Knöpfe <guibutton
->F1</guibutton
->, <guibutton
->F2</guibutton
-> &etc;. Sie verhindern, das das Fenster von &krusader; auf eine minimale Größe verringert werden kann. Schalten Sie die Anzeige mit <menuchoice
-> <guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Funktionstastenleiste anzeigen</guimenuitem
-> </menuchoice
-> ab und Sie können das Fenster von &krusader; fast beliebig verkleinern. Seit Version 1.51 wurde dies erheblich verbessert, beim Verkleinern des Fensters wird der Text zum Beispiel zu „F5 ..en“ abgekürzt. Sind die Knöpfe zu klein, um den ganzen Text anzuzeigen, lesen Sie in den Kurzinfos den vollständigen Text. Die minimale Breite beträgt 45 Pixel für jeden Knopf.</para>
-          <para
-></para>
+          <para>See the 
+          <guibutton>F1, F2</guibutton> (&etc;) buttons?
+          They are not allowing &krusader; to downsize
+          as they have a minimum size. Just disable them 
+            <menuchoice>
+              <guimenu>Settings</guimenu>
+              <guimenuitem>Show FN Keys Bar</guimenuitem>
+            </menuchoice>
+          and you will be able to resize
+          &krusader; to your liking. Since version 1.51
+          we have improved this greatly: when downsizing the
+          buttons will look like 'F5 ..py'. When the button faces
+          are too small to read a tooltip will give the complete
+          text. The minimum width is 45 pixels for each
+          button.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
 
       <qandaentry>
         <question id="faqu_samba_codepage">
-          <para
->&Samba; ISO 8859-x Codepage (Zeichensatztabelle) /  Was kann Ich tun, wenn &krusader; freigegebene Ordner mit internationalen Sonderzeichen nicht korrekt liest?</para>
+          <para>
+          &Samba; ISO 8859-x codepage /
+          What to do if &krusader; does not read shared
+          folders containing special international
+          characters?</para>
         </question>
         <answer>
-          <para
->&krusader; verarbeitet zurzeit noch keine &Samba; ISO 8859-x Zeichensatztabellen. Verwenden Sie eine andere Zeichensatztabelle als 8859-1, dann müssen Sie eine manuelle Konfiguration durchführen. Erstellen oder Bearbeiten Sie die Datei:<filename
->~/.smb/smb.conf</filename
-> <programlisting
->[global] 
+          <para>&krusader; does not handle (yet) 
+          &Samba; ISO 8859-x codepages, if
+          you use a codepage different than 8859-1 you will have to
+          do a manual configuration. Create or modify the file: 
+          <filename>~/.smb/smb.conf</filename>
+          <programlisting>[global] 
           workgroup = MyWorkGroup (ex. WORKGROUP) 
           client code page = MyCodePage (ex. 852)
           character set = MyCharSet (ex. ISO8859-2)
-          </programlisting
-> Sie können die Einrichtung von smb.conf auch mit einem passenden Modul aus den &systemsettings; vornehmen.</para>
-          <para
-></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <!-- Thanks to Karai Csaba -->
-      <qandaentry>
-        <question id="faqu_krarc_protocol">
-          <para
->&krusader; berichtet den Fehler <quote
->krarc:... protocol not supported</quote
-> beim Öffnen einer Archivdatei, was kann ich tun?</para>
-        </question>
-        <answer>
-          <para
->Installieren Sie das Eingabe-/Ausgabemodul „krarc“ richtig.</para>
-          <para
->Kopieren Sie die Dateien <filename
->kio_krarc.so</filename
->, <filename
->kio_krarc.la</filename
-> in den Ordner <filename class="directory"
-> /usr/{lib oder lib64}/qt5/plugins</filename
-></para>
-          <para
->Kopieren Sie die Datei <filename
->krarc.protocol</filename
-> in den Ordner <filename class="directory"
->/usr/share/services</filename
-></para>
-          <para
->oder in den Ordner mit den KIO-Ein-/Ausgabemodulen Ihrer &Linux;-Distribution.</para>
-          <para
-></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question id="faqu_krarc_support">
-          <para
->Ich erhalte die Fehlermeldung <quote
->Protokoll wird von Krusader nicht unterstützt: krarc:/pfad/zu/archivname</quote
->, wenn ich versuche, dieses Archiv zu öffnen. Was kann ich tun?</para>
-        </question>
-        <answer>
-          <para
->Die Symbole, Ein-/Ausgabemodule und die Dokumentation müssen am richtigen Platz im &kde;-Ordnerbaum gespeichert werden. Die Dateien <filename
->kio_krarc.*</filename
-> müssen sich im selben Ordner wie die Ein-/Ausgabemodule befinden. Versuchen Sie folgendes: locate <filename
->kio_tar.*</filename
-> und kopieren Sie dann die Dateien <filename
->kio_krarc.*</filename
-> in denselben Ordner oder verwenden Sie symbolische Verknüpfungen. Führen Sie dann <command
-># ldconfig</command
-> für diesen Ordner aus.</para>
-          <para
-></para>
+          </programlisting>
+          You can try to configure smb.conf with appropriate 
+          &systemsettings; module.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       
 <qandaentry>
   <question id="faqu_external_tool">
-  <para
->Was mache ich, wenn eine externes Programm anscheinend nicht funktioniert?</para>
+  <para>What to do if an external tool does not seem to work?</para>
   </question>
   <answer>
-  <para
->&krusader; benutzt mehrere Programme als <link linkend="konfig-dependencies"
->externe Dienstprogramme</link
->, die aber manchmal nicht zu funktionieren scheinen. Öffnen Sie ein Terminal und überprüfen Sie, ob die Programme installiert sind. Überprüfen Sie, ob die Programme auf der Seite <link linkend="konfig-dependencies"
->Abhängigkeiten</link
-> richtig eingerichtet sind. Verwenden Sie für Archivprogramme erneut den Knopf <guibutton
->Automatische Einrichtung</guibutton
-> auf der Seite <link linkend="konfig-archives"
->Archive</link
-> im Konfigurator. Überprüfen Sie die Einstellungen auf der Seite <link linkend="konfig-protocols"
->Protokolle</link
-> im Konfigurator. Wenn dies nicht funktioniert, sichern Sie die Einrichtungsdatei <filename
-><envar
->XDG_CONFIG_HOME</envar
->/krusaderrc</filename
-> (Standard ist <filename
->$<envar
->HOME</envar
->/.config/krusaderc</filename
->) und löschen sie. Starten Sie dann erneut &krusader; und folgen Sie den Anweisungen im Einrichtungsassistenten. </para>
+  <para>&krusader; uses several programs as <link linkend="konfig-dependencies">external tools</link>, 
+        and sometimes they appear not to work.
+        
+       Open a terminal and check if tool foo is installed.
+       <screen><prompt>$</prompt> <userinput><command>foo</command></userinput></screen> 
+
+       Check if tool foo is properly configured in the <link linkend="konfig-dependencies">Konfigurator Dependencies page</link>.
+
+       For Archiving tools: autodetect the archives again with the <guibutton>Auto Configure</guibutton> button
+       in the <link linkend="konfig-archives">Konfigurator archive page</link>. 
+       
+       Check the <link linkend="konfig-protocols">Konfigurator Protocol page</link>
+   
+       If it does not work, backup your <filename><envar>XDG_CONFIG_HOME</envar>/krusaderrc</filename> (default is <filename>$<envar>HOME</envar>/.config/krusaderc</filename>) configuration file and remove it from this location.
+     Restart &krusader;, &krusader; will now start the first start configuration wizard, follow these guidelines.
+   
+    </para>
   <!-- Empty line to make it more readable -->
   </answer>
 </qandaentry>
 
 <qandaentry>
   <question id="faqu_jar">
-  <para
->Wie kann ich „jar“-Dateien ausführen, ohne in das „jar“-Archiv zu wechseln?</para>
+  <para>How to executing jar files (and not enter the jar archive)?</para>
   </question>
   <answer>
-  <para
->Gehen Sie zur Seite <link linkend="konfig-protocols"
->Protokolle</link
-> im Konfigurator und entfernen Sie <guilabel
->application/x-jar</guilabel
-> aus dem „krarc“-Knoten. Dann wechselt &krusader; nicht mehr in das Archiv. Globale Dateizuordnungen werden von &plasma; und nicht von &krusader; behandelt. Um die Erweiterung „jar“ zuzuweisen, führen Sie folgende Schritte aus: <itemizedlist>
+  <para>Go to the <link linkend="konfig-protocols">Konfigurator Protocol page</link> and remove <guilabel>application/x-jar</guilabel> 
+        from the krarc node, &krusader; should no longer enter the archive.
+        Global file associations are handled by &plasma; and not by &krusader;.
+        To associate the jar extension:
+        <itemizedlist>
             <listitem>
-              <para
->Öffnen Sie die &systemsettings; für &plasma;;: <application
->systemsettings</application
-> </para>
-            </listitem>
-            <listitem>
-              <para>
-               <menuchoice
-><guimenu
->Anwendungen</guimenu
-> <guimenuitem
->Dateizuordnungen</guimenuitem
-> </menuchoice>
+              <para>Open &plasma; &systemsettings;: <application>systemsettings</application>
               </para>
             </listitem>
             <listitem>
-              <para
->Geben Sie <filename
->jar</filename
-> als Dateimuster ein </para>
+              <para>
+               <menuchoice>
+                 <guimenu>Applications</guimenu>
+                 <guimenuitem>File Associations</guimenuitem>
+              </menuchoice>
+              </para>
             </listitem>
             <listitem>
-              <para
->Fügen Sie <filename
->java</filename
-> als Anwendung hinzu </para>
+              <para>Enter <filename>jar</filename> as filename pattern
+              </para>
+            </listitem>
+            <listitem>
+              <para>Add <filename>java</filename> as application
+              </para>
             </listitem>
            </itemizedlist>
    </para>
@@ -392,708 +343,643 @@
       <!-- Thanks to Dirk Eschler -->
       <qandaentry>
         <question id="faqu_ftp_firewall">
-          <para
->Warum habe ich Probleme mit meinen &FTP;-Verbindungen?</para>
+          <para>Why do I have trouble with my &FTP;
+          connection?</para>
         </question>
         <answer>
-          <para
->Diese Problem tritt oft auf wenn Sie eine Firewall oder einen Proxy verwenden. Öffnen Sie die <menuchoice
-> <guimenu
->Systemeinstellungen</guimenu
-> <guimenuitem
->Netzwerk</guimenuitem
-> <guimenuitem
->Verbindungseinstellungen</guimenuitem
-> </menuchoice
->. Schalten Sie <guilabel
->Passiven Modus (PASV) aktivieren</guilabel
-> ein oder aus, je nach der jetzigen Einstellen. Versuchen Sie jetzt erneut Ihre &FTP;-Sitzung und überprüfen sie, ob es funktioniert. Achten Sie auch darauf, keine andere &FTP;-Sitzung geöffnet zu haben, zum Beispiel durch Webbrowser &etc;. Weitere Informationen finden Sie in <ulink url="https://slacksite.com/other/ftp.html"
->Active &FTP; vs. Passive &FTP;, a Definitive Explanation</ulink
->.</para>
-          <para
-></para>
+          <para>This problem often occurs when you are behind a
+          firewall or proxy. Open 
+            <menuchoice>
+              <guimenu>System Settings</guimenu>
+              <guimenuitem>Network</guimenuitem>
+              <guimenuitem> Settings</guimenuitem>
+              <guimenuitem>Connection Preferences</guimenuitem>
+            </menuchoice>, 
+          <guilabel>Enable Passive Mode (PASV)</guilabel> has to
+          be turned on or off, depending on its current setting.
+          Now try your &FTP; session again to see if it
+          works. Also, make sure you have no other &FTP;
+          sessions open (using web browsers, &etc;), they can cause
+          complications. More information can be found in
+          <ulink url="https://slacksite.com/other/ftp.html">Active &FTP; vs. Passive &FTP;, a Definitive Explanation</ulink>.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <!-- Thanks to Karai Csaba -->
       <qandaentry>
         <question id="faqu_ftp_http_proxy">
-          <para
->Ich erhalte die Fehlermeldung <errorcode
->&FTP;-Protokoll wird von &krusader; nicht unterstützt</errorcode
->, wenn ich versuche, einen &FTP;Ordner auf einem entfernten Rechner zu öffnen. Was kann ich tun?</para>
+          <para>I get 
+          <errorcode>&FTP; protocol not supported by
+          &krusader;</errorcode> error when trying to
+          open a remote &FTP; folder, what to
+          do?</para>
         </question>
         <answer>
-          <para
->Der Grund für diesen Fehler liegt darin, dass &krusader; die Funktion „&FTP; über &HTTP;-Proxy“ nicht unterstützt. Dieser Fehler kann durch eine falsche Einstellung des Proxy in den &systemsettings; hervorgerufen werden. Ändern Sie die Proxy-Einstellungen, so dass kein &HTTP;-Proxy benutzt wird und &FTP; wird funktionieren.</para>
-          <para
-></para>
+          <para>The reason for this error is that '&FTP;
+          via &HTTP; proxy' feature is not yet supported
+          by &krusader;. This error may be caused by a
+          misconfiguration of the proxy settings in
+          &systemsettings;. Modify the proxy settings to
+          not use &HTTP; proxy and &FTP; will
+          work.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
 
       <qandaentry>
         <question id="faqu_no_part">
-          <para
->Wie kann ich das Anhängen der Erweiterung <literal role="extension"
->.part</literal
-> beim Kopieren von Dateien über das &FTP;-Protokoll verhindern?</para>
+          <para>How do not add <literal role="extension">.part</literal> suffix when copying files via &FTP;?</para>
         </question>
         <answer>
-          <para
->Bei Hochladen von Dateien wird das Suffix <literal role="extension"
->.part</literal
-> an den Dateinamen angehängt. Ist das Hochladen beendet, wird diese Erweiterung <literal role="extension"
->.part</literal
-> automatisch wieder entfernt. Im allgemeinen funktioniert dies problemlos, aber manche &FTP;-Server erlauben kein Umbenennen. Sie können dieses Verhalten ändern, indem Sie <guilabel
->Teilweise übertragene Dateien markieren</guilabel
-> abschalten. Diese Einstellung finden Sie auf der Seite <menuchoice
-> <guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Verbindungseinstellungen</guimenuitem
-> </menuchoice
-> in der Kategorie <guimenu
->Netzwerk</guimenu
-> der &plasma;-&systemsettings;.</para>
+          <para>When uploading files a <literal role="extension">.part</literal> suffix is added to the filename,
+                once the upload is complete the filename is renamed automagically 
+                to remove the <literal role="extension">.part</literal> suffix.
+                This works great but sometimes some &FTP; servers do not allow a rename operation.
+                You can solve this by unchecking the checkbox 
+                <guilabel>Mark partially uploaded files</guilabel> in &plasma; &systemsettings;. 
+                The check box is located at 
+                <menuchoice>
+                 <guimenu>Network</guimenu>
+                 <guimenuitem>Settings</guimenuitem>
+                 <guimenuitem>Connection Preferences</guimenuitem>
+                </menuchoice>.</para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
 
       <qandaentry>
         <question id="faqu_close_connection">
-          <para
->Wie kann ich eine entfernte Verbindung &eg; eine &FTP;-Verbindung schließen?</para>
+          <para>How can I close a remote connection
+          (&eg; a &FTP; connection)?</para>
         </question>
         <answer>
-          <para
->Dies wird im Kapitel <link linkend="remote-connections"
->entfernte Verbindungen</link
-> erläutert.</para>
-          <para
-></para>
+          <para>It is explained in the 
+          <link linkend="remote-connections">remote connections
+          chapter</link>.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqu_media_protocol">
-          <para
->Ich habe Probleme mit dem Protokoll „media:/“, warum?</para>
+          <para>I am experiencing problems with the media:/
+          protocol, why?</para>
         </question>
         <answer>
-          <para
->Das Protokoll „media:/“ wurde in &kde; 4 entfernt. Benutzen Sie bitte stattdessen das Protokoll „mtp:/“</para>
-          <para
-></para>
+          <para>The media:/ protocol was removed since &kde; 4. Please use mtp:/ protocol instead.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <!-- Thanks to thepieman at the Krusader Forum -->
       <qandaentry>
         <question id="faqu_sound">
-          <para
->Wie kann Ich das Abspielen von Klängen in Benachrichtigungen, &eg; wenn die Aktion Löschen ausgeführt wird, abschalten?</para>
+          <para>How can I disable the default sounds,
+          &eg; when I do a delete action?</para>
         </question>
         <answer>
-          <para
->Dies sind die &plasma;-Standardklänge, sie können nicht in &krusader; abgeschaltet werden. Möchten Sie sie global abschalten, öffnen Sie die &plasma;-&systemsettings;, gehen zu <menuchoice
-> <guimenu
->Persönliche Informationen</guimenu
-> <guisubmenu
->Benachrichtigungen</guisubmenu
-> <guimenuitem
->Benachrichtigungen verwalten</guimenuitem
-> </menuchoice
->. Auf dieser Seite wählen Sie im Feld <guilabel
->Quelle für das Ereignis</guilabel
-> den Eintrag <quote
->KDE-Plasma-Arbeitsbereich</quote
-> aus und schalten die nicht gewünschten Klänge aus.</para>
-          <para
-></para>
+          <para>Those are the default &plasma; System
+          sounds, and not related to &krusader;. If you
+          want to disable them globally open your &plasma;
+          &systemsettings; (
+          <application>systemsettings</application>): 
+            <menuchoice>
+              <guimenu>Personalization</guimenu>
+              <guisubmenu>Notifications</guisubmenu>
+              <guimenuitem>Manage Notifications</guimenuitem>
+            </menuchoice>, 
+          <guilabel>Event Source: "Plasma Workspace"
+          </guilabel> and uncheck sound items you
+          do not like.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqu_remoteMan">
-          <para
->Wo finde ich die Verwaltungsfunktion für entfernte Verbindung?</para>
+          <para>Where the remote connection manager?</para>
         </question>
         <answer>
-          <para
->Verwenden Sie die Lesezeichen-Verwaltung. Benutzen Sie eine <link linkend="remote-connections"
->entfernte &URL;</link
-> und setzen ein Lesezeichen.</para>
-          <para
-></para>
+          <para>Use our Bookmark Manager. Use a  
+          <link linkend="remote-connections">remote
+          &URL;</link> and bookmark it.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqu_mimetypemagic_archives">
-          <para
->Warum funktioniert die &MIME;-Typ-Erkennung manchmal nicht innerhalb von Archiven?</para>
+          <para>Why does not &MIME; type magic sometimes work inside
+          archives?</para>
         </question>
         <answer>
-          <para
->Wenn Sie ein Archiv öffnen und <keycap
->F3</keycap
-> drücken, um eine Datei ohne bekannte Erweiterung wie &eg; <filename
->README, INSTALL</filename
-> &etc; zu betrachten und dann die Datei im Hex-Modus angezeigt wird, müssen Sie die Einrichtung anpassen: In den <menuchoice
-> <guimenu
->Systemeinstellungen</guimenu
-> <guimenuitem
->Dateizuordnungen</guimenuitem
-> <guimenuitem
->application</guimenuitem
-> <guimenuitem
->octet-stream</guimenuitem
-> </menuchoice
-> muss der <guilabel
->Binär-Betrachter</guilabel
-> entfernt werden.</para>
-          <para
-></para>
+          <para>When you enter an archive and press 
+          <keycap>F3</keycap> to view a file that has no known
+          extension, &eg; 
+          <filename>README, INSTALL</filename> &etc; And
+          if the viewer opens in hex-mode instead of the usual
+          mode, than you need to configure:
+            <menuchoice>
+              <guimenu>&kde; System Settings</guimenu>
+              <guimenuitem>File Associations</guimenuitem>
+              <guimenuitem>Application</guimenuitem>
+              <guimenuitem>octet-stream</guimenuitem>
+            </menuchoice>, 
+          <guilabel>binary viewer</guilabel> needs to be
+          removed.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
 
       <qandaentry>
         <question id="faqu_konfigurator">
-          <para
->Wo finde Ich den Konfigurator, muss Ich die &plasma;-Arbeitsflächenumgebung installieren, um ihn zu benutzen?</para>
+          <para>Where is Konfigurator, do i need to install the &plasma; to use it?</para>
         </question>
         <answer>
-          <para
-><link linkend="konfigurator"
->Konfigurator</link
-> ist das Einrichtungsmodul für &krusader; und wird zusammen mit &krusader; installiert. Manchmal meinen einige Personen, das sei ein weiteres &plasma;-Programm. Das ist aber nicht richtig, Sie müssen nicht die &plasma;-Arbeitsflächenumgebung installieren, um &krusader; benutzen zu können. Öffnen Sie in &krusader; <menuchoice
-> <guimenu
->Einstellungen</guimenu
-> <guimenuitem
->&krusader; einrichten ...</guimenuitem
-> </menuchoice
->, damit wird <link linkend="konfigurator"
->Konfigurator</link
-> gestartet. Bitte lesen Sie das Handbuch, es gibt sehr viele Einstellungen in &krusader;. </para>
-          <para
-></para>
+          <para><link linkend="konfigurator">Konfigurator</link> is &krusader;s configuration module,
+                if you have installed &krusader; then you have also Konfigurator.
+                For some reason some people think it is an other &plasma; application, but it is not, so
+                you do not need to install the full fledged &plasma; to use Konfigurator.
+                When running &krusader;, use 
+                <menuchoice>
+                 <guimenu>Settings</guimenu>
+                 <guimenuitem>Configure &krusader;...</guimenuitem>
+                </menuchoice>, and it will start 
+                <link linkend="konfigurator">Konfigurator</link>. 
+                Please read the manual, &krusader; has many many configuration options, 
+                a lot of things can be customized to your needs with <link linkend="konfigurator">Konfigurator</link>. 
+          </para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
 
       <qandaentry>
         <question id="faqu_equal_lookandfeel">
-          <para
->Wie kann ich für zwei verschiedene Benutzer das gleiche Erscheinungsbild &amp; Verhalten einstellen?</para>
+          <para>How can I set the look &amp; feel of 2
+          different users to be the same?</para>
         </question>
         <answer>
-          <para
->Kopieren Sie die gewünschten Einstellungen mit folgendem Befehl zum anderen Benutzer: <filename
-><envar
->XDG_CONFIG_HOME</envar
->/krusaderrc</filename
-> Für den Systemverwalter geben Sie zum Beispiel folgendes ein: <screen
-><prompt
->#</prompt
-> <userinput
-><command
->cp ~/.config/krusaderrc /root/.config</command
-></userinput
-></screen>
+          <para>Presuming that the current setup is the good
+          configuration, you can copy the configuration to the
+          other user. 
+          <screen><prompt>#</prompt> <userinput><command>cp ~/.config/krusaderrc /home/foo_user/.config</command></userinput></screen>
+          And when the other user is Root use: 
+          <screen><prompt>#</prompt> <userinput><command>cp ~/.config/krusaderrc /root/.config</command></userinput></screen>
           </para>
-          <para
-></para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_custom_embed_term">
+          <para>How to customize the embedded terminal of &krusader;?</para>
+        </question>
+        <answer>
+          <para>In order to change properties of the
+          embedded terminal emulator of &krusader;: you
+          can right-click on it and choose an option,
+          and if you don't find there what you are looking
+          for, you can use the 
+            <menuchoice>
+              <guimenu>Settings</guimenu>
+            </menuchoice>
+          menu of &konsole;
+          (because &krusader; uses a &konsole; KPart for its
+          embedded terminal). In that menu, other items
+          are seen (like 
+            <menuchoice>
+              <guimenuitem>"Manage Profiles..."</guimenuitem>
+            </menuchoice>).
+          </para>
+          <para></para>
+          <!-- Empty line to make it more readable -->
+      </answer>
       </qandaentry>
 
     </qandaset>
   </sect1>
   <sect1 id="faq_general">
-    <title
->&FAQ; zu allgemeinen Problemen</title>
+    <title>General &FAQ;</title>
     <qandaset>
       <qandaentry>
         <question id="faqg_wish">
-          <para
->Wie kann ich einen Wunsch, einen Vorschlag oder einen Kommentar berichten?</para>
+          <para>How can I report a wish, a suggestion, or a
+          comment?</para>
         </question>
         <answer>
-          <para
->Die größte Stärke eines Open-Source-Projektes ist die Rückmeldung durch die Benutzer. Darum möchten wir gern Ihre Meinung hören. Nach etwa 6 Monaten wird ein Entwickler betriebsblind und sieht manchmal seine eigenen Fehler nicht mehr. Wir brauchen Ihre Ideen, Kritik und Rückmeldungen, damit &krusader; zum besten Dateiverwaltungsprogramm werden kann.</para>
-          <para
->Die Kontaktaufnahme funktioniert am einfachsten ist über die <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
->Mailingliste krusader-users</ulink
->. Weitere Informationen finden Sie auf der <ulink url="https://groups.google.com/group/krusader-devel"
->Mailingliste &krusader;-devel</ulink
->. Jeder Beitrag wird geprüft und diskutiert.</para>
-          <para
-></para>
+          <para>An open source project's greatest strength is
+          derived from getting user feedback. That is why we love
+          to hear what you have to say. Your <quote>gripes</quote> are our
+          instructions. After about 6 months, programmers can no
+          longer see their own mistakes. It is natural. We want the
+          ideas, qritiques, and feedback because we all want to
+          make &krusader; the best and most useful file
+          manager available anywhere.</para>
+          <para>The most convenient way to contact us is to use the krusader-users
+          <ulink url="https://krusader.org/get-involved/mailing-lists/index.html">mailing list</ulink>. For information on what
+          remains to be done look at the
+          <ulink url="https://groups.google.com/group/krusader-devel">&krusader;-devel mailing list</ulink>. We review and discuss every
+          submission.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqg_patch">
-          <para
->Wie kann ich eine Fehlerkorrektur senden?</para>
+          <para>How can I send a patch?</para>
         </question>
         <answer>
-          <para
->Es ist nicht leicht, Richtlinien für Fehlerkorrekturen aufzustellen, aber beachten Sie bitte folgendes: <orderedlist numeration="arabic">
+          <para>It is not easy to write patch guidelines, but here
+          are some. 
+          <orderedlist numeration="arabic">
             <listitem>
-              <para
->Fehlerkorrekturen, neuer Quelltext und neue Funktionen sind immer willkommen.</para>
+              <para>Patches, new code or new features are always
+              welcome!</para>
             </listitem>
             <listitem>
-              <para
->Beschränken Sie sich immer nur auf ein Problem, so dass die Entwickler die Korrektur schnell verstehen und einspielen können, wenn sie funktioniert.</para
->              
+              <para>Focus only on one problem at a time, so the
+              developers can easily understand you, and commit your patch
+              it works.</para>              
             </listitem>
             <listitem>
-              <para
->Vorzugsweise sollten Sie eine Diskussion mit den Entwicklern auf der Mailingliste <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
->krusader-devel</ulink
-> oder auf der <ulink url="https://phabricator.kde.org/tag/krusader/"
->&krusader;-Phabricator-Seite</ulink
->. Leider kann manchmal eine Fehlerkorrektur nicht angenommen werden, wenn sie nicht mit der Entwicklungsrichtung von &krusader; übereinstimmt. Bitte senden Sie eine nur Korrektur je E-Mail, damit die Diskussion leichter verfolgt werden kann. </para>
+              <para>Preferably, you can start a discussion
+              with the developers on the krusader-devel
+              <ulink url="https://krusader.org/get-involved/mailing-lists/index.html">mailing lists</ulink> or on the
+              <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests">&krusader; GitLab page</ulink>. Unfortunately, we cannot apply
+              a patch if the patch is in conflict with the <quote>general
+              design</quote> of the &krusader; code (read for more
+              instructions in this FAQ).
+              Please send only one change request per mail, so
+              that the discussion is easier to follow. The
+              modifications should be committed step by step,
+              checking each line.
+              </para>
             </listitem>
             <listitem>
-             <para
->Schicken Sie Ihre Fehlerkorrektur an <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
->GitLab</ulink
->, so dass alle Vorschläge für Korrekturen nicht verloren gehen. Benutzen Sie tar.gz-Archive und diff-Dateien. Kopieren Sie die Änderungen nicht in eine E-Mail. Die meisten E-Mailprogramme verändern die Leerzeichen, so dass der Diff nicht fehlerfrei angewendet werden kann. Inder Vergangenheit gingen viele E-Mails mit Korrekturen verloren oder waren Korrekturen in vielem E-Mails verstreut, bitte nutzen Sie daher <ulink url="https://community.kde.org/Infrastructure/GitLab"
->GitLab</ulink
->, danke. </para
-> 
+             <para>Submit your patch files on the <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests">GitLab</ulink>,
+              so that all patch proposals stay organised and do not get lost,
+              tar.gz archives or diffs are usually ok.
+              Do not copy changes into a mail. Most mailers will change the
+              white spaces, so that the diff will not apply or the
+              code snipped does not diff. In the past, patch mails went lost or disorganized in many many mails,
+              so please use the <ulink url="https://community.kde.org/Infrastructure/GitLab">GitLab</ulink>, thanks! 
+              </para> 
             </listitem>
             <listitem>
-              <para
->Verwenden Sie portierbare Lösungen. &krusader; sollte auf auf folgenden Systemen laufen: <itemizedlist
-> <listitem
-> <para
->Alle POSIX-Systeme (&Linux;/BSD/&UNIX;-ähnliche Betriebssysteme), &Solaris;.</para
-> </listitem
-> <listitem
-> <para
->Alle BSD-Plattformen (<trademark class="copyright"
->FreeBSD</trademark
->/<trademark class="registered"
->NetBSD</trademark
->/<trademark class="registered"
->OpenBSD</trademark
->/&MacOS;).</para
-> </listitem
-> <listitem
-> <para
->&kde; 3.3- &kde; 3.5 und sogar unter GNOME mit den kdelibs-Bibliotheken (für  &krusader;-2.x) .</para
-> </listitem
-> <listitem
-> <para
->GCC 2.95 - GCC 5.4</para
-> </listitem
-> </itemizedlist
->Änderungen der Rechner-Architektur erfolgen nur durch das Team.</para>
+              <para>Use portable solutions, &krusader;
+              should run on: 
+              <itemizedlist>
+                <listitem>
+                  <para>All POSIX
+                  (&Linux;/BSD/&UNIX;-like
+                  OSes), &Solaris;.</para>
+                </listitem>
+                <listitem>
+                  <para>All BSD Platforms
+                  (<trademark class="copyright">FreeBSD</trademark>/<trademark class="registered">NetBSD</trademark>/<trademark class="registered">OpenBSD</trademark>/&MacOS;).</para>
+                </listitem>
+                <listitem>
+                  <para>&kde; 3.3- &kde;
+                  3.5 and even on GNOME with
+                  kdelibs (for &krusader;-2.x) .</para>
+                </listitem>
+                <listitem>
+                  <para>GCC 2.95 - GCC 5.4</para>
+                </listitem>
+              </itemizedlist>Architecture changes are made by the
+              team only.</para>
             </listitem>
             <listitem>
-              <para
->Eine letzte Anmerkung: Denken Sie daran, das ein Patch zurückgewiesen werden kann. Entweder es gibt Seiteneffekte, die wir nicht verhindern können oder er widerspricht der Richtung der Entwicklung des betroffenen Moduls. Darin unterscheidet ein Softwareprojekt z. B. von einem Wiki: In einem Softwareprojekt muss irgendjemand die endgültigen Entscheidungen treffen, sonst wird die Software nicht funktionieren. Außerdem kann die Prüfung eines Patch einige Zeit dauern, auch Entwickler haben ein Privatleben.</para>
+              <para>A final note: always keep in mind a patch might
+              be rejected. Either it has side effects, which we
+              could not fix or it contradicts with the idea behind
+              the patched module. In this sense, a software project
+              differs from, let's say a wiki: a software project
+              has to have someone to make all the final decisions.
+              Otherwise the software will not work. Furthermore:
+              keep in mind that the examination of patches might
+              take time, as we all have private lives.</para>
             </listitem>
-          </orderedlist
-></para>
-          <para
-></para>
+          </orderedlist></para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqg_bug_report">
-          <para
->Wie kann ich einen Fehler berichten?</para>
+          <para>How can I report a bug?</para>
         </question>
         <answer>
-          <para
->Fehler? Nun gut, es gibt eine Online-Fehlerdatenbank.</para>
-          <para
->Die Benutzung der Online-Fehlerdatenbank hilft dabei, einen klaren und geordneten Überblick über die Zahl der offenen Fehler, die Priorität der Fehler und die Anmerkungen dazu zu erhalten. Dadurch muss nicht das gesamte &krusader;-Forum durchsucht werden, nur um den gestrigen Fehler zu finden. Bitte benutzen Sie diese System.</para>
-          <para
->Ehe Sie einen Fehler berichten, lesen Sie bitte den folgenden Abschnitt: <orderedlist>
+          <para>Bugs?!?!? Well, ok.... We have an online Bug
+          Tracking System.</para>
+          <para>Using the online bug-tracker helps us have a clear
+          and orderly way to know how many bugs are open, bug
+          priority and follow-ups. It saves us from browsing
+          through the entire &krusader; forum, searching
+          for yesterdays bug. Please use this system.</para>
+          <para>Before reporting a bug, please read the following: 
+          <orderedlist>
             <listitem>
-              <para
-><emphasis role="bold"
->Überprüfen</emphasis
-> Sie, ob der Fehler bereits in der <ulink url="https://bugs.kde.org"
->Liste</ulink
-> in der Fehlerdatenbank enthalten ist.</para>
+              <para>
+              <emphasis role="bold">Check</emphasis> if the bug is
+              already posted in the <ulink url="https://bugs.kde.org">online bug list</ulink>
+              of the Bug Tracking System.</para>
             </listitem>
             <listitem>
-              <para
->Finden Sie dort den Fehler nicht, <emphasis role="bold"
->schicken</emphasis
-> bitte den Bericht durch Klicken auf <guibutton
->Neu</guibutton
-> im Fenster zum Fehlerverfolgungssystem. Bitte schicken Sie folgende Informationen mit: Die benutzte Version von &krusader;, die &Linux;-Distribution und Version, Prozessortyp und eine möglichst genaue Beschreibung des Problems.</para>
+              <para>If you cannot find this bug mentioned, please 
+              <emphasis role="bold">submit</emphasis> it into the
+              bug tracker by clicking the 
+              <guibutton>Submit New</guibutton> button in the
+              bug-tracker window. Please submit the following
+              issues: the &krusader; version used, the
+              &Linux; distribution + version used,
+              processor type, and as good a description of the
+              problem as you can manage.</para>
             </listitem>
-          </orderedlist
-></para>
-          <para
->Danke für Ihre Mitarbeit.</para>
+          </orderedlist></para>
+          <para>Thank you for your co-operation!</para>
           <note>
-            <para
->Wenn möglich, führen Sie die gleiche Operation mit &konqueror; oder einer anderen &kde;-Anwendung. Haben Sie dann das gleiche Problem, dann ist es möglicherweise ein Fehler im Ein-/Ausgabemodul oder in den &kf5-full;;-Bibliotheken und nicht in &krusader;. &krusader; benutzt die &kf5;-Bibliotheken und Ein-/Ausgabemodule für viele Aufgaben.  Manchmal werden die Probleme auch durch fehlerhafte Einstellungen Ihrer Distribution verursacht. Bitte überprüfen Sie dies zuerst.</para>
+            <para>If possible, try to do the same operation with
+            &konqueror; or another &kde;
+            application. If you encounter the same problem then it
+            is possibly a KIO Slaves or
+            &kf5-full; bug, and not a
+            &krusader; bug. &krusader; uses
+            the &kf5; libraries and the
+            KIO Slave for many operations. In
+            some cases you can encounter problems if your
+            distribution is incorrectly configured, please test it
+            first as explained above.</para>
           </note>
-          <para
-></para>
+          <para></para>
           <!-- Empty line to make it more readable -->
-          <para
-></para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       
 <qandaentry>
   <question id="faqg_valgrint">
-  <para
->Wie kann ich brauchbare Fehler- oder Absturzberichte schicken?</para>
+  <para>How can i send good debug or crash reports?</para>
   </question>
   <answer>
-  <para
->Normalerweise enthalten Binär-Pakete der Distributionen keine Debug-Informationen. Normalerweise entwickeln und korrigieren wir &krusader; nur aus dem Git-Archiv, kompilieren &krusader; im Debug-Modus, installieren es und überprüfen dann, ob der Fehler immer noch vorhanden ist. <screen
-><prompt
->$</prompt
-> <userinput
-><command
->cmake</command
-> <option
->-DCMAKE_BUILD_TYPE=debugfull</option
-></userinput
-></screen
-> Installieren Sie <ulink url="https://valgrind.org"
->valgrind</ulink
->, eine Gruppe von Dienstprogrammen für die Fehlersuche und das Profiling von &Linux;-Programmen. Führen Sie Valgrind/&krusader; aus <screen
-><prompt
->$</prompt
-> <userinput
-><command
->valgrind</command
-> <option
->--tool=memcheck</option
-> <replaceable
->{foo_path}/krusader</replaceable
-></userinput
-></screen
-> Valgrind schreibt die Ergebnisse in die Standardausgabe (stdout). Können Sie diese Informationen vor dem Absturz senden, können wir den Fehler meistens erkennen oder Ihnen sagen, was Sie tun müssen. </para>
+  <para>Usually binary packages that are been used by your distribution do not contain debug information.
+        Since we usually only develop and fix &krusader;-git, compile &krusader;-git in debugmode and install it, than check if the bug still exist.
+        <screen><prompt>$</prompt> <userinput><command>cmake</command> <option>-DCMAKE_BUILD_TYPE=debugfull</option></userinput></screen>  
+
+        Install <ulink url="https://valgrind.org">valgrind</ulink>, a suite of tools for debugging and profiling &Linux; programs.
+
+        Run Valgrind/&krusader;
+        <screen><prompt>$</prompt> <userinput><command>valgrind</command> <option>--tool=memcheck</option> <replaceable>{foo_path}/krusader</replaceable></userinput></screen>
+        
+        The valgrind tool will write to stdout, what really happens.
+        If you could send these information before the crash, it is almost sure, that we may fix or tell you what to do.
+  </para>
   <!-- Empty line to make it more readable -->
   </answer>
 </qandaentry>
 
 <qandaentry>
   <question id="faqg_crashhandler">
-  <para
->Was kann ich tun, wenn die KDE-Absturzbehandlung keine nützlichen Informationen zur Rückverfolgung liefert?</para>
+  <para>What to do if the KDEcrashhandler sends no useful backtrace information?</para>
   </question>
   <answer>
-  <para
->Normalerweise enthalten Binär-Pakete der Distributionen keine Debug-Informationen. Normalerweise entwickeln und korrigieren wir &krusader; nur aus dem Git-Archiv, kompilieren &krusader; im Debug-Modus, installieren es und überprüfen dann, ob der Fehler immer noch vorhanden ist. <screen
-><prompt
->$</prompt
-> <userinput
-><command
->cmake</command
-> <option
->-DCMAKE_BUILD_TYPE=debugfull</option
-></userinput
-></screen
-> Wenn der KDE-Crashhandler immer noch keine brauchbaren Backtrace-Informationen liefert, gibt Sie ein Coredump manchmal bessere Informationen. Führen Sie mit abgeschaltetem Crashhandler &krusader; aus. <screen
-><prompt
->$</prompt
-> <userinput
-><command
->krusader</command
-> <option
->--nocrashhandler</option
-></userinput
-></screen
-> Beim Absturz erhalten Sie eine <filename
->.core</filename
->-Datei, normalerweise in Ihrem persönlichen Ordner. Führen Sie <ulink url="https://sourceware.org/gdb/"
->gdb</ulink
->, den Debugger des GNU-Projekts aus: <screen
-><prompt
->$</prompt
-> <userinput
-><command
->gdb</command
-> <option
->-c</option
-> <replaceable
->corefile krusader</replaceable
-></userinput
-></screen
-> Geben Sie nun den Befehl <command
->bt</command
-> ein, um den Backtrace zu erhalten und beenden Sie gdb mit <command
->q</command
->. Oft erhalten Sie die besten Ergebnisse über Fehler mit dem Dienstprogramm Valgrind. </para>
+  <para>Usually binary packages that are been used by your distribution do not contain debug information.
+        Since we usually only develop and fix &krusader;-git, compile &krusader;-git in debugmode and install it, than check if the bug still exist.
+        <screen><prompt>$</prompt> <userinput><command>cmake</command> <option>-DCMAKE_BUILD_TYPE=debugfull</option></userinput></screen> 
+ 
+       If the KDEKrashhandler still does not provide useful backtrace information, than sometimes a coredump will give better information. 
+       Run Krusader, with disabled crashhandler.
+       <screen><prompt>$</prompt> <userinput><command>krusader</command> <option>--nocrashhandler</option></userinput></screen>
+
+       On a crash you will get a <filename>.core</filename> file, usually in your home folder.
+
+       Run <ulink url="https://sourceware.org/gdb/">gdb</ulink>, the GNU Project Debugger
+       
+       <screen><prompt>$</prompt> <userinput><command>gdb</command> <option>-c</option> <replaceable>corefile krusader</replaceable></userinput></screen>
+       
+       Now type <command>bt</command> to get the backtrace and type <command>q</command> to quit gdb.
+
+       Often the best debug results will be given when using the valgrind tool.
+  </para>
   <!-- Empty line to make it more readable -->
   </answer>
 </qandaentry>
       
 <qandaentry>
         <question id="faqg_mail_list">
-          <para
->Gibt es eine Mailingliste für &krusader;?</para>
+          <para>Does &krusader; have a mailing
+          list?</para>
         </question>
         <answer>
-          <para
->Ja, wir haben zurzeit mehrere <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
->Mailinglisten</ulink
->. Kein Spam, keine Langeweile, nur &krusader;. Bitte abonnieren Sie unsere Mailinglisten.</para>
-          <para
->Sie können unsere Mailinglisten online oder mit einem Newsreader lesen, daher müssen Sie sie nicht abonnieren, um immer auf dem neuesten Stand zu sein. <itemizedlist>
+          <para>Yes, currently we have several
+          <ulink url="https://krusader.org/get-involved/mailing-lists/index.html">mailing lists</ulink>. No spam, no bother, just
+          &krusader;. Feel free to subscribe and
+          unsubscribe.</para>
+          <para>Tip. our mailing lists can be browsed online or
+          read with a newsreader, so that you do not even need to
+          subscribe to follow the action on the mailing lists. 
+          <itemizedlist>
             <listitem>
-              <para
-><ulink url="https://groups.google.com/group/krusader-devel"
->&krusader;-devel</ulink
-> ist die Entwicklerliste (nur lesbar). Möchten Sie dem letzten Stand der Entwicklung von &krusader; folgen, sollten Sie diese Liste abonnieren.</para>
+              <para><ulink url="https://groups.google.com/group/krusader-devel">&krusader;-devel</ulink> is the developer
+              mailing list (read-only). If you want to follow the
+              development of &krusader; on the cutting
+              edge, this is the list to follow.</para>
             </listitem>
             <listitem>
-              <para
-><ulink url="https://groups.google.com/group/krusader-users"
->&krusader;-users</ulink
-> ist die Mailingliste für &krusader;-Benutzer. Hier können Sie Fragen stellen und mit &krusader;-Benutzern und Entwicklern sprechen.</para>
+              <para><ulink url="https://groups.google.com/group/krusader-users">&krusader;-users</ulink> is the
+              &krusader; users mailing list. Here you
+              can ask for help and talk with the
+              &krusader; users and developers.</para>
             </listitem>
             <listitem>
-              <para
-><ulink url="http://groups.google.com/group/krusader-news"
->&krusader;-news</ulink
-> ist eine Liste mit wenigen Nachrichten für Ankündigungen von neuen Versionen oder wichtigen Fehlerkorrekturen.</para>
+              <para><ulink url="http://groups.google.com/group/krusader-news">&krusader;-news</ulink> is a very low volume
+              list, used for announcements of new
+              versions or critical bugfixes.</para>
             </listitem>
-          </itemizedlist
-></para>
-          <para
-></para>
+          </itemizedlist></para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqg_newsfeeds">
-          <para
->Gibt es eine Nachrichtenquelle für Neuigkeiten für &krusader;?</para>
+          <para>Does &krusader; provide
+          news feeds?</para>
         </question>
         <answer>
-          <para
->Ja sicher, mehrere Nachrichtenquellen in verschiedenen Formaten sind verfügbar: <ulink url="https://groups.google.com/group/krusader-devel/feeds"
->krusader-devel feed</ulink
->, <ulink url="https://groups.google.com/group/krusader-users/feeds"
->krusader-users feed</ulink
-> and <ulink url="https://groups.google.com/group/krusader-news/feeds"
->krusader-news feed</ulink
->.</para>
-          <para
-></para>
+          <para>Yes, we do. Several news feeds in various formats
+          are available. <ulink url="https://groups.google.com/group/krusader-devel/feeds">krusader-devel feed</ulink>,
+          <ulink url="https://groups.google.com/group/krusader-users/feeds">krusader-users feed</ulink> and
+          <ulink url="https://groups.google.com/group/krusader-news/feeds">krusader-news feed</ulink>.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqg_kru-forum">
-          <para
->Wie funktioniert das &krusader;-Forum?</para>
+          <para>How does the &krusader; forum
+          work?</para>
         </question>
         <answer>
-          <para
->Nach dem Prinzip freier Software kann alles mit Bezug zu &krusader; in unserem Forum diskutiert werden. Es spielt keine Rolle, ob Sie ein neuer oder erfahrener Benutzer sind, jeder darf hier schreiben. Eine der größten Stärken eines Open-Source-Projekts sind die Rückmeldungen der Benutzer. Daher möchten wir sehr gerne Ihre Meinung hören. Mit Ihren Rückmeldungen können wir &krusader; verbessern, ansonsten wissen wir nichts von Problemen und Ideen, die Sie haben. Bitte beachten Sie die folgenden Hinweise, damit wir effektiver mit Ihren Rückmeldungen umgehen können.</para>
-          <para
->Wenn die <link linkend="index"
->Dokumentation</link
->, die  <link linkend="faq"
->FAQ</link
->, und <ulink url="https://groups.google.com/group/krusader-devel"
->&krusader;-devel</ulink
-> - benutzen Sie hier die Suchfunktion - , falls die Ihnen nicht weiterhilft, fragen Sie in unserem Forum. Die &krusader;-Krew und die &krusader;-Gemeinschaft sind immer bereit, Ihnen zu helfen.</para>
-          <para
->Bitte benutzen Sie die Such-Funktion im <ulink url="https://forum.kde.org/viewforum.php?f=225"
->&kde; Forum</ulink
->, Ihr Problem ist möglicherweise bereits vorher besprochen worden. Dies verhindert mehrfache Postings. Wurde Ihr Problem bereits früher besprochen, besteht die Möglichkeit, sofort eine Lösung finden. Wird das Problem gerade besprochen, können Sie an de Diskussion teilnehmen. Einige Fragen werden immer wieder gestellt, deshalb gibt es diese <link linkend="faq"
->FAQ</link
->. Dann haben wir mehr Zeit für die Entwicklung von &krusader;.</para>
-<!--          <para
->The <ulink url="https://krusader.org/phpBB/index.php"
->&krusader; Forum</ulink
-> is split into seven
+          <para>In the spirit of freedom of speech, everything that
+          is &krusader; related can be discussed in our
+          forum. It does not matter if you are a newcomer or an
+          advanced user, everyone is welcome. An open source
+          project's greatest strength is derived from getting user
+          feedback. That is why we love to hear what you have to
+          say. With your feedback we can make &krusader;
+          better and better; otherwise, we are not aware of issues
+          and ideas you may have. But please remember the
+          following, so that we can maintain some order in the
+          chaos.</para>
+          <para>If the 
+          <link linkend="index">Documentation</link>,
+          <link linkend="faq">FAQ</link> and
+          <ulink url="https://groups.google.com/group/krusader-devel">&krusader;-devel</ulink> (please use the search function
+          ) cannot help you, do not hesitate to post on our forum.
+          The &krusader; Krew or the
+          &krusader; community is always available to
+          help you.</para>
+          <para>Please use the search function of the <ulink url="https://forum.kde.org/viewforum.php?f=225">&kde; Forum</ulink>, your issue may
+          have been previously discussed (this allows us to
+          minimize the double/triple/... postings). If your issue
+          has already been discussed in the past there is a great
+          chance that you will have an instant solution to your
+          problem. If the issue is currently being discussed, you
+          can join in the discussion. Some questions are asked over
+          and over again, that is why we have created this
+          <link linkend="faq">FAQ</link>. This allows us to spend more time
+          developing &krusader;.</para>
+<!--          <para>The <ulink url="https://krusader.org/phpBB/index.php">&krusader; Forum</ulink> is split into seven
           sections: 
           <itemizedlist>
             <listitem>
-              <para
-><ulink url="https://krusader.org/phpBB/viewforum.php?f=7"
->News and Announcements Forum</ulink
->: all the latest
+              <para><ulink url="https://krusader.org/phpBB/viewforum.php?f=7">News and Announcements Forum</ulink>: all the latest
               news.</para>
             </listitem>
              <listitem>
-              <para
-><ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=12"
->NewsLetter Forum</ulink
->: all newsletters.</para>
+              <para><ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=12">NewsLetter Forum</ulink>: all newsletters.</para>
             </listitem>
             <listitem>
-              <para
-><ulink url="https://krusader.org/phpBB/viewforum.php?f=3"
->Bug Discussion Forum</ulink
->: discussions about
+              <para><ulink url="https://krusader.org/phpBB/viewforum.php?f=3">Bug Discussion Forum</ulink>: discussions about
               bugs, please DO NOT use the forum for
-              <link linkend="faqg_bug_report"
->bug reports</link
-> (except if you are
+              <link linkend="faqg_bug_report">bug reports</link> (except if you are
               unsure if you have found a bug).</para>
             </listitem>
             <listitem>
-              <para
-><ulink url="https://krusader.org/phpBB/viewforum.php?f=6"
->New Features Discussion/Requests Forum</ulink
->: discussions
+              <para><ulink url="https://krusader.org/phpBB/viewforum.php?f=6">New Features Discussion/Requests Forum</ulink>: discussions
               about new features for future &krusader;
               versions.</para>
             </listitem>
             <listitem>
-              <para
-><ulink url="https://krusader.org/phpBB/viewforum.php?f=10"
->ToDo Forum</ulink
-> here you will find
+              <para><ulink url="https://krusader.org/phpBB/viewforum.php?f=10">ToDo Forum</ulink> here you will find
               the list of the planned features. Registered users
               will be able to VOTE and COMMENT on the TODO items.
               Here you get the chance to push your favourite
               features (+3) and still prefer certain features over
               others (+1), if you do not care about a feature just
               simply do not vote on that feature. Unregistered users
-              may only browse the <ulink url="https://krusader.org/phpBB/viewforum.php?f=10"
->ToDo Forum</ulink
->. The
-              <ulink url="https://krusader.org/todo.php"
->ToDo ranking system</ulink
-> contains the results
+              may only browse the <ulink url="https://krusader.org/phpBB/viewforum.php?f=10">ToDo Forum</ulink>. The
+              <ulink url="https://krusader.org/todo.php">ToDo ranking system</ulink> contains the results
               based on the votes. 
-              <link linkend="faqg_patch"
->Adding ToDo items</link
-> or
+              <link linkend="faqg_patch">Adding ToDo items</link> or
               removing ToDo items which have been implemented will
               be done by the &krusader; Krew.</para>
             </listitem>
             <listitem>
-              <para
-><ulink url="https://krusader.org/phpBB/viewforum.php?f=11"
->UserActions Forum</ulink
->: discussions
-              about <link linkend="useractions"
->UserActions</link
->. Posting your own
+              <para><ulink url="https://krusader.org/phpBB/viewforum.php?f=11">UserActions Forum</ulink>: discussions
+              about <link linkend="useractions">UserActions</link>. Posting your own
               User Actions is greatly appreciated. We plan to
               include the best ones in the next
               &krusader; releases.</para>
             </listitem>
             <listitem>
-              <para
-><ulink url="https://krusader.org/phpBB/viewforum.php?f=1"
->General Discussion Forum</ulink
->: everything that
+              <para><ulink url="https://krusader.org/phpBB/viewforum.php?f=1">General Discussion Forum</ulink>: everything that
               is &krusader; related and does not belong
               in the other forums.</para>
             </listitem>
-              </itemizedlist
-></para
->-->
-          <para
->Danke für Ihre Mitarbeit.</para>
-          <!--<para
->We provide a <ulink url="http://krusader.sf.net/phpBB/rss.php"
->RSS feed</ulink
-> for our forums.
+              </itemizedlist></para>-->
+          <para>Thank you for your co-operation!</para>
+          <!--<para>We provide a <ulink url="http://krusader.sf.net/phpBB/rss.php">RSS feed</ulink> for our forums.
 	  You do not have to check for new posts all the time, instead the news
-          will come to you!</para
->-->
-          <para
-></para>
+          will come to you!</para>-->
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqg_i18n">
-          <para
->Wie kann ich &krusader; in meine Muttersprache übersetzen?</para>
+          <para>How can I translate &krusader; into my
+          native language?</para>
         </question>
         <answer>
-          <para
->Möchten Sie bei der Übersetzung der Benutzeroberfläche oder Dokumentation von &krusader; mithelfen, nehmen Sie Kontakt zum <ulink url="https://l10n.kde.org/teams-list.php"
->KDE-Übersetzungsteam</ulink
-> für Ihre Sprache auf.</para>
-          <para
-></para>
+          <para>If you are interested in translating the &krusader; &GUI; or documentation, please contact the
+               <ulink url="https://l10n.kde.org/teams-list.php">KDE translation team</ulink> of your language.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqg_support">
-          <para
->Wie kann ich &krusader; unterstützen?</para>
+          <para>How can I support &krusader;?</para>
         </question>
         <answer>
-          <para
->Sie können &krusader; auf viele Arten <link linkend="help_krusader"
->unterstützten</link
->. Bitte Senden Sie uns <link linkend="faqg_wish"
->Rückmeldungen</link
->, <link linkend="faqg_bug_report"
->Fehlerberichte</link
->, Fehlerkorrekturen, <link linkend="help_krusader"
->Spenden</link
->, Übersetzungen usw.</para>
-          <para
-></para>
+          <para>You can 
+          <link linkend="help_krusader">
+          support</link> &krusader; in many different
+          ways. Please send us 
+          <link linkend="faqg_wish">feedback</link>,
+          <link linkend="faqg_bug_report">bug reports</link>, patches, 
+          <link linkend="help_krusader">donations</link>,
+          translations, ...</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqg_mcstyle">
-          <para
->Warum ist &konqueror; im <quote
->Midnight Commander</quote
->-Profil nicht wirklich eine <link linkend="gloss-ofm"
->Dateiverwaltung mit zwei Dateifenstern(OFM)</link
->?</para>
+          <para>Why is &konqueror; in <quote>Midnight
+          Commander style</quote> not an
+          <link linkend="gloss-ofm">OFM</link>?</para>
         </question>
         <answer>
-          <para
->Es gibt zwei Dateifenster und eine Befehlszeile, aber alles andere wie die <link linkend="features"
->OFM-Funktionen</link
-> und die <link linkend="gloss-ofm"
->OFM</link
->-Interaktion mit dem Benutzer fehlt in diesem Profil.</para>
-          <para
-></para>
+          <para>The two panels and a commandline are available, all
+          the other stuff like 
+          <link linkend="features">OFM features</link> and the 
+          <link linkend="gloss-ofm">OFM</link> interaction with the
+          user is missing from this profile.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
         <question id="faqg_why_ofm">
-          <para
->Warum soll Ich eine Dateiverwaltung mit <link linkend="gloss-ofm"
->Zweispaltiger Ansicht</link
-> verwenden?</para>
+          <para>Why should I use an 
+          <link linkend="gloss-ofm">OFM</link>?</para>
         </question>
         <answer>
-          <para
->Eine <ulink url="http://www.softpanorama.org/OFM/index.shtml"
->Dateiverwaltung mit zwei Dateifenstern</ulink
-> ist viel schneller als eine Dateiverwaltung mit nur einem Dateifenster und auch schneller als eine Befehlszeile. Möchten Sie wissen, wie man mit <ulink url="http://www.softpedia.com/reviews/linux/Krusader-18193.shtml"
->&krusader; arbeiten</ulink
-> kann, gibt es nur einen Weg, das festzustellen: Installieren Sie &krusader; auf Ihrem Rechner und benutzen Sie das Programm eine Zeit lang. Möchten Sie Ihre Zeit verschwenden und weiter unproduktiv arbeiten, verwenden Sie weiterhin eine Dateiverwaltung mit nur einem Dateifenster, die vom &Windows;-Explorer abgeleitet sind. Matej Urban&ccaron;i&ccaron; hat einen <ulink url="http://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html"
->Blogeintrag</ulink
-> darüber geschrieben, warum eine <link linkend="gloss-ofm"
->Dateiverwaltung mit zwei Dateifenstern</link
-> besser ist als eine Dateiverwaltung mit nur einem Dateifenster.</para>
-          <para
-></para>
+          <para>An <ulink url="https://www.softpanorama.org/OFM/index.shtml">Orthodox File Manager (OFM)</ulink> is much faster than a one
+          panel filemanager and faster than the command line. If
+          you would like to know 
+          <ulink url="https://www.softpedia.com/reviews/linux/Krusader-18193.shtml">
+          how &krusader; feels</ulink>, there is only
+          one way to discover: install it on your computer and use
+          it for a while. If you prefer to waste time and lose
+          productivity, continue to use one panel filemanagers
+          which are based on &Windows; Explorer. Matej
+          Urban&ccaron;i&ccaron; has written
+          a 
+          <ulink url="https://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html">
+          blog</ulink> on why 
+          <link linkend="gloss-ofm">OFM</link> is better than a one
+          panel filemanager.</para>
+          <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
@@ -1101,10 +987,10 @@
   </sect1>
   <!--
   <qandaentry>
-       
+      <question><para> </para></question>
       <answer>
-         
-          // Empty line to make it more readable
+        <para> </para>
+        <para> </para> // Empty line to make it more readable
       </answer>
   </qandaentry>
 -->
