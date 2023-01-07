@@ -5,44 +5,36 @@
     SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
 -->
 <chapter id="more-features">
-<title>Advanced functions</title>
-<!-- call the vfs sect1 section -->
-&vfs; 
-<!-- call the compare sect1 section -->
-&compare; 
-<!-- call the occupied space sect1 section -->
-&occupied-space; 
-<!-- call the splitter sect1 section -->
-&splitter; 
-<!-- call the checksum sect1 section -->
-&checksum; 
-<sect1 id="send-email">
-  <title>Send Files by Email</title>
-  <para>Select a file and use 
-    <menuchoice>
-      <guimenu>Right-Click menu</guimenu>
-      <guimenuitem>Send by Email</guimenuitem>
-    </menuchoice>.
-  Selecting this option will open a new
-  &kmail; window with the file already attached. Just
-  fill in the subject and recipient(s) and send it. Of course,
-  &kmail; must be properly configured.</para>
-</sect1>
-<!-- call the profiles sect1 section -->
-&profiles; 
-<sect1 id="acl">
-  <title>ACL permissions</title>
-  <para>
-  <link linkend="gloss-acl">ACL permissions</link> are fully
-  supported when using properties, preserve attributes and the
-  synchronizer. To view/modify the ACL permissions, select a file
-  and use the <link linkend="context-menu">Context Menu</link>: 
-    <menuchoice>
-      <guimenu>Properties...</guimenu>
-      <guimenuitem>Permissions</guimenuitem>
-      <guimenuitem>Advanced permissions</guimenuitem>
-    </menuchoice>.
-  At Copy/Move, the ACL
-  permissions are also copied. The synchronizer keeps the ACL
-  permissions as well.</para>
-</sect1></chapter>
+<title
+>Fortgeschrittene Funktionen</title
+>&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>Dateien per E-Mail senden</title
+> <para
+>Wählen Sie eine Datei und dann im <menuchoice
+> <guimenu
+>Kontextmenü</guimenu
+><guimenuitem
+>Per E-Mail versenden</guimenuitem
+> </menuchoice
+>. Damit öffnen Sie den Nachrichten-Editor von &kmail;, die ausgewählte Datei ist bereits angehängt. Geben Sie noch Empfänger und Betreff an und versenden dann die Datei. Dazu muss &kmail; natürlich richtig eingerichtet sein.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>ACL-Berechtigungen</title>
+  <para
+><link linkend="gloss-acl"
+>ACL-Berechtigungen</link
+> werden vollständig unterstützt, wenn Eigenschaften oder das Abgleichen verwendet werden. Um ACL-Berechtigungen anzusehen oder zu bearbeiten, wählen Sie eine Datei oder einen Ordner aus und klicken im <link linkend="context-menu"
+>Kontextmenü</link
+> auf <menuchoice
+> <guimenu
+>Eigenschaften</guimenu
+> <guimenuitem
+>Berechtigungen</guimenuitem
+> <guimenuitem
+>Erweiterte Berechtigungen</guimenuitem
+> </menuchoice
+>. Beim Kopieren und Verschieben wie auch beim Abgleichen bleiben die ACL-Berechtigungen erhalten.</para>
+</sect1
+></chapter>

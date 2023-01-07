@@ -2,162 +2,194 @@
     SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
     SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
     SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
 -->
 <sect1 id="synchronizer">
-  <title>Synchronizer</title>
+  <title
+>Abgleichen</title>
   <indexterm>
-    <primary>Synchronizer</primary>
+    <primary
+>Abgleichen</primary>
   </indexterm>
   
 <sect2 id="synchronizer_introduction">
-  <title>Introduction</title>
-  <para>This function compares two folders with all subfolders and shows the differences between them.
-  After selecting some options and the 
-  <guilabel>Compare</guilabel> function you can synchronize the
-  files and folders. One panel could be an &FTP;
-  server. Do not forget the 
-  <guilabel>Compare by content</guilabel> option if the file size
-  stays equal. Choose 
-    <menuchoice>
-      <guimenu>Tools</guimenu>
-      <guimenuitem>Synchronize Folders</guimenuitem>
-    </menuchoice>
-  or 
-  <keycombo action="simul">&Ctrl;
-  <keycap>Y</keycap></keycombo> to start this feature. The 
-  <link linkend="konfig-color">colors</link> are
-  configurable.
-  The synchronizer has its own <link linkend="synchronizer_keybindings">keybindings</link>.
-  </para>
+  <title
+>Einleitung</title>
+  <para
+>Diese Funktion vergleicht zwei Ordner mit allen Unterordnern und zeigt den Unterschied zwischen Ihnen. Nach der Auswahl einiger Optionen drücken Sie auf <guilabel
+>Vergleichen</guilabel
+> und die Dateien und Ordner werden verglichen. In einem Dateifenster kann zum Beispiel ein &FTP;-Server angezeigt werden. Vergessen Sie nicht die Option <guilabel
+>Nach Inhalt vergleichen</guilabel
+>, wenn die Dateigrößen gleich sind. Wählen Sie <menuchoice
+> <guimenu
+>Extras</guimenu
+> <guimenuitem
+>Ordner abgleichen</guimenuitem
+> </menuchoice
+> oder <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+>, um diese Funktion zu starten. Die verwendeten <link linkend="konfig-color"
+>Farben</link
+> können eingestellt werden. Für den Abgleich gibt es eigene <link linkend="synchronizer_keybindings"
+>Kurzbefehle</link
+>. </para>
   <note>
-    <para>For local files: The synchronizer changes the date
-    information to the original dates.</para>
+    <para
+>Bei lokalen Dateien wird beim Abgleichen die Informationen zum Datum von den ursprünglichen Dateien übernommen.</para>
   </note>
   <figure id="screenshot-syncdir" float="1">
-    <title>Synchronizer</title>
+    <title
+>Abgleichen</title>
     <mediaobject>
       <imageobject>
-        <imagedata fileref="syncdir.png"></imagedata>
+        <imagedata fileref="syncdir.png"
+></imagedata>
       </imageobject>
       <textobject>
-        <phrase>Synchronizer</phrase>
+        <phrase
+>Abgleichen</phrase>
       </textobject>
     </mediaobject>
   </figure>
   <para>
   <orderedlist>
-    <title>Procedure:</title>
+    <title
+>Arbeitsweise</title>
     <listitem>
-      <para>Set the 
-      <guilabel>Left folder</guilabel> and the 
-      <guilabel>Right folder</guilabel> that you want to compare.</para>
+      <para
+>Wählen Sie in den Eingabefeldern <guilabel
+>Linker Ordner</guilabel
+> und <guilabel
+>Rechter Ordner</guilabel
+> die Ordner für den Abgleich aus.</para>
     </listitem>
     <listitem>
-      <para>Configure the optional 
-      <guilabel>File Filter</guilabel>, 
-      <guilabel>General Filters</guilabel> and 
-      <guilabel>Advanced filters</guilabel>. The 
-      <guilabel>General Filters</guilabel> includes a 
-      <guilabel>Do not search in</guilabel> option which lets you
-      exclude folders from comparison.</para>
+      <para
+>Richten Sie die optionalen <guilabel
+>Dateifilter</guilabel
+>, <guilabel
+>Allgemeiner Filter</guilabel
+> und <guilabel
+>Erweiterter Filter</guilabel
+> ein. Für den <guilabel
+>Allgemeinen Filter</guilabel
+> gibt es noch einen Option <guilabel
+>Nicht suchen in</guilabel
+>, mit der Sie Ordner vom Vergleich ausschließen können.</para>
     </listitem>
     <listitem>
-      <para>Set the 
-      <link linkend="synccomp_checkb_options">Checkbox
-      options</link>: 
-      <guilabel>Recurse subfolders</guilabel>,
-      <guilabel>Follow symlinks</guilabel>, 
-      <guilabel>Compare by content</guilabel>, 
-      <guilabel>Ignore Date</guilabel>, 
-      <guilabel>Asymmetric</guilabel> and  
-      <guilabel>Ignore Case</guilabel>.
-      </para>
+      <para
+>Markieren Sie die <link linkend="synccomp_checkb_options"
+>Ankreuzfelder</link
+>: <guilabel
+>Unterordner einbeziehen</guilabel
+>, <guilabel
+>Symbolischen Verknüpfungen folgen</guilabel
+>, <guilabel
+>Nach Inhalt vergleichen</guilabel
+>, <guilabel
+>Datum ignorieren</guilabel
+>, <guilabel
+>Asymmetrisch</guilabel
+> und <guilabel
+>Groß-/Kleinschreibung ignorieren</guilabel
+>. </para>
     </listitem>
     <listitem>
-      <para>Click on the 
-      <guibutton>Compare</guibutton> button to compare the
-      folders.</para>
+      <para
+>Klicken Sie auf den Kopf <guibutton
+>Vergleichen</guibutton
+>, um die Ordner abzugleichen.</para>
     </listitem>
     <listitem>
-      <para>By using
-      <link linkend="synccomp_show_options">Show options</link>,
-      you can include/exclude particular file types. The files that
-      are not on the list will be untouched by
-      synchronization.</para>
+      <para
+>Mit <link linkend="synccomp_show_options"
+>Optionen anzeigen</link
+> können bestimmte Dateitypen ein- oder ausgeschlossen werden. Dateien, die nicht in der Liste enthalten sind, bleiben beim Abgleich unverändert.</para>
     </listitem>
     <listitem>
-      <para>If needed, you can change the 
-      <guilabel>Task</guilabel> operations determined by the
-      Comparator with the 
-      <link linkend="synccomp_right-click">right click
-      menu</link>.</para>
+      <para
+>Falls erforderlich, können Sie die <guilabel
+>Aufgabe</guilabel
+>-Operationen, die durch den Vergleich festgelegt wurden, im <link linkend="synccomp_right-click"
+>Kontextmenü</link
+> ändern.</para>
     </listitem>
     <listitem>
-      <para>When you agree with the 
-      <guibutton>Compare</guibutton> results, click on the 
-      <guibutton>Synchronize</guibutton> button to show the
-      synchronize dialog.</para>
+      <para
+>Sind Sie mit den Vergleichsergebnissen zufrieden, klicken Sie auf den Knopf <guibutton
+>Abgleichen</guibutton
+>, um den Abgleichdialog anzuzeigen.</para>
     </listitem>
     <listitem>
-      <para>After selecting the options of the 
-      <link linkend="synchronizer">Synchronizer</link>, click on
-      the 
-      <guibutton>Start</guibutton> button to start the
-      synchronization process.</para>
+      <para
+>Nach der Auswahl der Einstellungen für den <link linkend="synchronizer"
+>Abgleich</link
+>, klicken Sie auf den Knopf <guibutton
+>Start</guibutton
+>, um den Abgleichprozess zu beginnen.</para>
     </listitem>
-  </orderedlist>
-  
-  A detailed explanation of all the functions and
-  buttons is described in the following text.</para>
+  </orderedlist
+>Eine ausführliche Erklärung aller Funktionen und Knöpfe ist im folgenden Abschnitt beschrieben.</para>
 
 </sect2>
 
 <sect2 id="synchronizer_comparator">
-  <title>Comparator</title>  
+  <title
+>Vergleichsmethode</title
+>  
 
   <variablelist>
     <varlistentry>
-      <term>Panel elements</term>
+      <term
+>Elemente der Dateifenster</term>
       <listitem>
         <itemizedlist>
           <listitem>
-            <para>
-            <guilabel>Left Directory</guilabel>: The left side base
-            folder.</para>
+            <para
+><guilabel
+>Linker Ordner</guilabel
+>: Der Basisordner im linken Dateifenster.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Right Directory</guilabel>: The right side
-            base folder.</para>
+            <para
+><guilabel
+>Rechter Ordner</guilabel
+>: Der Basisordner im rechten Dateifenster.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>File Filter</guilabel>: Filters the filenames
-            at synchronizing. &eg; 
-            <literal role="extension">*.png</literal> selects only
-            files the names of which end with 
-            <literal role="extension">.png</literal>. Folders are
-            listed if the folder name ends with 
-            <literal role="extension">.png</literal> or if the
-            folder contains files which end with 
-            <literal role="extension">.png</literal>. Multiple
-            include/exclude example: 
-            <literal role="extension">'*.cpp *.h |
-            *.moc.cpp'</literal> includes 
-            <literal role="extension">*.cpp *.h</literal> and
-            exclude 
-            <literal role="extension">*.moc.cpp</literal>.</para>
+            <para
+><guilabel
+>Dateifilter</guilabel
+>: Filtert nach Dateinamen beim Abgleichen, &eg; <literal role="extension"
+>*.png</literal
+> wählt Nur Dateien mit der Erweiterung <literal role="extension"
+>.png</literal
+>. Ordner werden mit ausgewählt, wenn ihr Name mit <literal role="extension"
+>.png</literal
+> endet oder wenn der Ordner Dateien mit der Erweiterung <literal role="extension"
+>.png</literal
+> enthält. Ein Beispiel für mehrfaches Ein- oder Ausschließen: <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+> schließt Dateien mit der Erweiterung<literal role="extension"
+>*.cpp *.h</literal
+> und <literal role="extension"
+>*.moc.cpp</literal
+> Dateien mit der Erweiterung aus.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>General filters</guilabel>: Search for,
-            containing text</para>
+            <para
+><guilabel
+>Allgemein</guilabel
+>er Filter: Suche nach Text in Dateien</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Advanced filters</guilabel>: Size, date,
-            ownership</para>
+            <para
+><guilabel
+>Erweitert</guilabel
+>e Filter: Größe, Datum, Eigentümer</para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -165,558 +197,617 @@
   </variablelist>
   <variablelist>
     <varlistentry>
-      <term>Filename filtering criteria</term>
+      <term
+>Filterkriterien für Dateinamen</term>
       <listitem>
         <itemizedlist>
           <listitem>
-            <para>You can make use of wild cards. Multiple patterns
-            are separated by space (means logical OR) and patterns
-            are excluded from the search using the pipe symbol. If
-            the pattern is ended with a slash (*pattern*/), it
-            means that pattern relates to recursive search of
-            folders.</para>
+            <para
+>Sie können hier auch Platzhalter einsetzen. Mehrere Muster werden durch Leerzeichen getrennt, das entspricht einem logischen „Oder“. Muster mit vorangestelltem Pipe-Symbol „|“ schließen von der Suche aus. Wenn das Muster mit einem Schrägstrich (*pattern*/) endet, dann wird rekursiv in Ordnern gesucht.</para>
           </listitem>
           <listitem>
-            <para>pattern - means to search those files/folders
-            whose name is a pattern, recursive search goes through
-            all subfolders independently of the value of the
-            pattern.</para>
+            <para
+>„muster“ - sucht diese Dateien und Ordner, auf die das Muster zutrifft, die rekursive Suche wird in allen Unterordnern unabhängig vom Wert des Musters.</para>
           </listitem>
           <listitem>
-            <para>pattern/ - means to search all files/folders,
-            but recursive search goes through/excludes the
-            folders whose name is a pattern.</para>
+            <para
+>„muster/“ - sucht diese Dateien und Ordner, auf die das Muster zutrifft, die rekursive Suche wird in Ordnern nur ausgeführt bzw. diese Ordner werden ausgeschlossen, wenn die auf das Muster passen.</para>
           </listitem>
           <listitem>
-            <para>You can use quotation marks for names
-            that contain spaces. Filter <quote>Program Files</quote> searches
-            out those files/folders the name of which is <filename>Program
-            Files</filename>.</para>
+            <para
+>Verwenden Sie Anführungszeichen für Namen mit Leerzeichen darin. Mit <quote
+>Program Files</quote
+> filtern Sie alle Dateien und Ordner, die den Namen <filename
+>Program Files</filename
+> haben.</para>
           </listitem>
           <listitem>
-            <para>Examples:</para>
+            <para
+>Beispiele:</para>
           </listitem>
           <listitem>
             <para>
-              <literal role="extension">*.o</literal>
+              <literal role="extension"
+>*.o</literal>
             </para>
           </listitem>
           <listitem>
             <para>
-              <literal role="extension">*.h *.c??</literal>
+              <literal role="extension"
+>*.h *.c??</literal>
             </para>
           </listitem>
           <listitem>
             <para>
-              <literal role="extension">*.cpp *.h |
-              *.moc.cpp</literal>
+              <literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal>
             </para>
           </listitem>
           <listitem>
             <para>
-              <literal role="extension">* | CVS/ .svn/</literal>
+              <literal role="extension"
+>* | CVS/ .svn/</literal>
             </para>
           </listitem>
           <listitem>
-            <para>Note: the search term 'text' is equivalent to
-            '*text*'.</para>
+            <para
+>Hinweis: Der Suchausdruck „text“ entspricht dem Ausdruck „*text*“.</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
     <varlistentry id="synccomp_checkb_options">
-      <term>Checkbox options</term>
+      <term
+>Einstellungen der Ankreuzfelder</term>
       <listitem>
         <itemizedlist>
           <listitem>
-            <para>
-            <guilabel>Recurse subfolders</guilabel>: The
-            Synchronizer walks through subfolders when
-            comparing.</para>
+            <para
+><guilabel
+>Unterordner einbeziehen</guilabel
+>: Beim Abgleich werden alle Unterordner mit einbezogen.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Follow symlinks</guilabel>: The Synchronizer
-            follows the symbolic links to folders (not the
-            files!).</para>
+            <para
+><guilabel
+>Symbolischen Verknüpfungen folgen</guilabel
+>: Beim Abgleichen wird symbolischen Verknüpfungen zu Ordnern, aber nicht Dateien, gefolgt.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Compare by content</guilabel>: The files
-            the sizes of which are equal will be compared by content as
-            well.</para>
+            <para
+><guilabel
+>Nach Inhalt vergleichen</guilabel
+>: Bei Dateien mit gleicher Größe wird auch der Inhalt der Dateien verglichen.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Ignore Date</guilabel>: Ignores the date
-            information (useful for &FTP;, smb, archive,
-            ... ) the date information is relevant *only* in the
-            local file system.</para>
+            <para
+><guilabel
+>Datum ignorieren</guilabel
+>: Ignoriert die Datumsinformation, nützlich für &FTP;, SMB und Archive. Die Information über das Datum ist nur relevant für das lokale Dateisystem.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Asymmetric</guilabel>: The 
-            <guilabel>Left Directory</guilabel> is the target
-            folder, the 
-            <guilabel>Right Directory</guilabel> is the source
-            folder. This function synchronizes the content of
-            the left folder to the right folder. 
-            <itemizedlist>
-              <listitem>
-                <para>The files that exist only on the left side
-                will be deleted.</para>
-              </listitem>
-              <listitem>
-                <para>The files that exist only on the right side
-                will be copied to left.</para>
-              </listitem>
-              <listitem>
-                <para>The files considered to be equal will be
-                untouched.</para>
-              </listitem>
-              <listitem>
-                <para>Those files considered to be different will
-                be copied to left. Use this feature with
-                care!</para>
-              </listitem>
-            </itemizedlist>This function is useful if the date
-            information is unusable, or to synchronize the left
-            folder to the content of a file server (like a
-            download). Alternatively, it is useful to make a backup
-            from the right folder to the left folder. NOTE:
-            Do NOT use this option to synchronize a desktop and a
-            notebook (&eg; files that exist only on the
-            left side will be deleted!).</para>
+            <para
+><guilabel
+>Asymmetrisch</guilabel
+>: Die linke Seite ist der Zielordner, die rechte Seite der Quellordner. Der Inhalt des linken Ordners wird zum rechten Ordner abgeglichen. <itemizedlist
+> <listitem
+> <para
+>Dateien, die nur im linken Ordner vorhanden sind, werden gelöscht.</para
+> </listitem
+> <listitem
+> <para
+>Dateien, die nur im rechten Ordner vorhanden sind, werden nach links kopiert.</para
+> </listitem
+> <listitem
+> <para
+>Gleiche Dateien bleiben unberührt.</para
+> </listitem
+> <listitem
+> <para
+>Die sich unterscheidenden Dateien werden von rechts nach links kopiert. Benutzen Sie dies mit Bedacht.</para
+> </listitem
+> </itemizedlist
+>Nützlich wenn die Information über das Datum nicht verwendet werden kann oder um den linken Ordner mit dem Inhalt eines Dateiservers abzugleichen. Alternativ ist dies nützlich bei einer Sicherung vom rechten zum linken Ordner. Achtung: Benutzen Sie diese Funktion nicht für den Abgleich von Arbeitsplatzrechner und Notebook, es werden dann &eg; Dateien, die auf der linken Seite vorhanden sind, gelöscht.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Scroll Results</guilabel>: This is for
-            slow &FTP; servers, ... When the
-            Synchronizer has finished comparing a file, it puts the
-            file into the end of the list at once and scrolls the
-            window, if necessary. It is important, if you want to
-            know what the Synchronizer is doing. If the
-            &FTP; server is slow, the comparison of a
-            folder may take a lot of time. By turning this
-            option on, you can see that the comparator is <quote>alive</quote>,
-            but slow. For fast file systems, it can reduce the
-            speed of comparing slightly.</para>
+            <para
+><guilabel
+>Ergebnisse weiterblättern</guilabel
+>: Diese Einstellung ist für langsame &FTP;-Server gedacht. Wenn der Vergleich einer Datei beendet ist, wird die Datei sofort an das Ende der Liste angefügt und weiter geblättert, falls nötig. Dies ist ein wichtiger Hinweis darauf, was beim Abgleich gerade passiert. Bein einem langsamen &FTP;-Server kann der Vergleich eines Ordners sehr lange dauern. Schalten Sie diese Einstellung ein, dass der Vergleich immer noch ausgeführt wird, wenn auch langsam. Bei schnellen Dateisystemen kann dies die Geschwindigkeit beim Vergleichen leicht verringern.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Ignore Case</guilabel>: Case insensitive filename compare, 
-            this is useful when synchronizing &Windows; filesystems.</para>
+            <para
+><guilabel
+>Groß-/Kleinschreibung ignorieren</guilabel
+>: Beim Vergleich der Dateinamen spielt die Groß- oder Kleinschreibung keine Rolle, nützlich beim Abgleichen mit &Windows;-Dateisystemen.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Ignore hidden files</guilabel>: Ignores files that start with a dot.</para>
+            <para
+><guilabel
+>Versteckte Dateien ignorieren</guilabel
+>: Ignoriert Dateien, deren Namen mit einem Punkt beginnt.</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
   </variablelist>
-  <para>When everything mentioned above is done, click on the 
-  <guibutton>Compare</guibutton> button to compare the folders,
-  the results are displayed in the <guilabel>File List</guilabel>.</para>
+  <para
+>Haben Sie alle gewünschten Einstellungen vorgenommen, klicken Sie auf <guibutton
+>Vergleichen</guibutton
+>, um den Vorgang zu starten. Die Ergebnisse werden in der <guilabel
+>Dateiliste</guilabel
+> angezeigt.</para>
   <variablelist>
     <varlistentry>
-      <term>File List</term>
+      <term
+>Dateiliste</term>
       <listitem>
-        <para>The 
-        <guilabel>File List</guilabel> has the following columns:
-        <quote>Left name | Left size | Left time | Task | Right time |
-        Right size | Right name</quote>.
-        Here you can check the compare results and modify the synchronization actions if desired.
-        The text color defines the default copy direction determined by the comparator.
-        <itemizedlist>
-              <listitem>
-                <para>Green: Copy from left to right.</para>
-              </listitem>
-              <listitem>
-                <para>Blue: Copy from right to left or delete on the right side in asymmetric mode.</para>
-              </listitem>
-              <listitem>
-                <para>Red: Files which are different by the given criteria (no copy direction).</para>
-              </listitem>
-              <listitem>
-                <para>Black: Files which are identical (no copy direction).</para>
-              </listitem>
-            </itemizedlist>
-            A double click on a file calls the &krusader;s <guilabel>Compare by content</guilabel> function.
-            The Tasks (&lt;=&gt;) column defines the default copy direction, which can be modified by the user if needed.
-            The results window supports dragging items to other windows ( drag [left], &Shift;+drag [right] )
-            and copy left/right selected items to clipboard (<keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>).
-        </para>
+        <para
+>Die <guilabel
+>Dateiliste</guilabel
+> enthält folgende Spalten: <quote
+>Linker Name | Linke Größe | Linke Zeit | Aufgabe | Rechte Zeit | Rechte Größe | Rechter Name</quote
+>. Hier können Sie die Ergebnisse des Vergleichs überprüfen und die Aktionen für den Abgleich ändern, falls gewünscht. Die Textfarbe zeigt die vorgegebene Kopierrichtung, die beim Vergleichen bestimmt wurde. <itemizedlist
+> <listitem
+> <para
+>Grün: Kopieren von links nach rechts.</para
+> </listitem
+> <listitem
+> <para
+>Blau: Kopieren von rechts nach links oder löschen auf der rechten Seite im asymmetrischen Modus.</para
+> </listitem
+> <listitem
+> <para
+>Rot: Dateien sind nach dem angegebenen Kriterium verschieden, keine Kopierrichtung. </para
+> </listitem
+> <listitem
+> <para
+>Schwarz: Dateien sind identisch, keine Kopierrichtung.</para
+> </listitem
+> </itemizedlist
+> Ein Doppelklick auf eine Datei ruft die &krusader;-Funktion <guilabel
+>Nach Inhalt vergleichen</guilabel
+> auf. Die Spalte Aufgabe (&lt;=&gt;) definiert die vorgegebene Kopierrichtung, die vom Benutzer geändert werden kann. Das Ergebnisfenster unterstützt das Ziehen von Einträgen in andere Fenster ( Ziehen [links], &Shift;+Ziehen [rechts] ) und das Kopieren von links oder rechts gewählten Einträgen in die Zwischenablage (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). </para>
       </listitem>
     </varlistentry>
     <varlistentry>
-      <term><guilabel>File List</guilabel>: Tasks (&lt;=&gt;) column</term>
+      <term
+><guilabel
+>Dateiliste</guilabel
+>: Spalte mit den Aufgaben (&lt;=&gt;)</term>
       <listitem>
-        <para>This column displays the task that is planned for the
-        Synchronizer, this task can be modified with the 
-        <link linkend="synccomp_right-click">right click menu</link>.</para>
+        <para
+>Diese Spalte zeigt die geplante Aufgabe für den Abgleich. Die Aufgabe kann mit dem <link linkend="synccomp_right-click"
+>Kontextmenü</link
+> geändert werden.</para>
         <itemizedlist>
           <listitem>
-            <para>
-            <guibutton>-&gt;</guibutton>: Copy from the
-            left side to the right side. For folders:
-            <command>mkdir</command> in the right side.</para>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Kopiert von der linken zur rechten Seite. Bei Ordnern wird der Befehl <command
+>mkdir</command
+> auf der rechten Seite ausgeführt.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>=</guibutton>: The files are the same, do not
-            do anything.</para>
+            <para
+><guibutton
+>=</guibutton
+>: Die Dateien sind identisch, es wird keine Aktion ausgeführt.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>!=</guibutton>: The file is excluded, or the
-            Synchronizer does not know what to do.</para>
+            <para
+><guibutton
+>!=</guibutton
+>: <guibutton
+>!=</guibutton
+>: Die Datei ist ausgeschlossen oder kann nicht beim Abgleich verarbeitet werden.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>&lt;-</guibutton>: copy from the
-            right side to the left side. For folders:
-            <command>mkdir</command> in the left side</para>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Kopiert von der rechten zur linken Seite. Bei Ordnern wird der Befehl <command
+>mkdir</command
+> auf der linken Seite ausgeführt</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>DEL</guibutton>: delete files from the right
-            side.</para>
+            <para
+><guibutton
+>Entf</guibutton
+>: Löscht Dateien von der rechten Seite.</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
     <varlistentry id="synccomp_show_options">
-      <term>Show options</term>
+      <term
+>Optionen anzeigen</term>
       <listitem>
-        <para>Here you can include/exclude particular file types.
-        Those files, that are not in the list, will be untouched at
-        synchronization.</para>
+        <para
+>Hier können bestimmte Dateitypen ein- oder ausgeschlossen werden. Dateien, die nicht in der Liste enthalten sind, bleiben beim Abgleich unverändert.</para>
         <itemizedlist>
           <listitem>
-            <para>
-            <guibutton>-&gt;</guibutton>: Enable/Disable
-            the copy task from left to right.</para>
+            <para
+><guibutton
+>&gt;-</guibutton
+>: Schaltet das Kopieren von links nach rechts ein und aus.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>=</guibutton>: Enable/Disable listing the
-            equal files.</para>
+            <para
+><guibutton
+>=</guibutton
+>: Schaltet die Anzeige gleicher Dateien ein und aus.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>!=</guibutton>: Enable/Disable listing the
-            excluded / <quote>do not know what to do</quote> files.</para>
+            <para
+><guibutton
+>!=</guibutton
+>: Schaltet die Anzeige ausgeschlossener Dateien ein und aus.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>&lt;-</guibutton>: Enable/Disable
-            the copy task from right to left.</para>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: Schaltet das Kopieren von rechts nach links ein und aus.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Trash</guibutton>: Enable/Disable the file
-            deleting from the left side task.</para>
+            <para
+><guibutton
+>Papierkorb</guibutton
+>: Schaltet das Löschen von linken Seite der Aufgabenliste ein und aus.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Duplicates</guibutton>: Enable/Disable those
-            files that exist on both sides.</para>
+            <para
+><guibutton
+>Duplikate</guibutton
+>: Bestimmt, ob in beiden Ordnern vorhandene Dateien einbezogen werden.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Singles</guibutton>: Enable/Disable those
-            files that exist only on one side.</para>
+            <para
+><guibutton
+>Unikate</guibutton
+>: Legt fest, ob Dateien nur in einem Ordner einbezogen werden.</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
     <varlistentry>
-      <term>Action buttons</term>
+      <term
+>Aktionsknöpfe</term>
       <listitem>
         <itemizedlist>
           <listitem>
-            <para>
-            <guibutton>Compare</guibutton>: Compares the
-            folders, the results are displayed on the
-            <guilabel>File List</guilabel>.</para>
+            <para
+><guibutton
+>Vergleichen</guibutton
+>: Vergleicht die Ordner und zeigt die Ergebnisse in der <guilabel
+>Dateiliste</guilabel
+>.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Stop</guibutton>: Stops comparing.</para>
+            <para
+><guibutton
+>Anhalten</guibutton
+>: Stoppt den Abgleich.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Synchronize</guibutton>: Shows the
-            synchronize dialog.</para>
+            <para
+><guibutton
+>Abgleichen</guibutton
+>: Öffnet den Abgleichdialog.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Close</guibutton>: Closes the Synchronizer
-            window.</para>
+            <para
+><guibutton
+>Schließen</guibutton
+>: Schließt das Abgleichfenster.</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
     <varlistentry>
-      <term>The Status line may contain</term>
+      <term
+>In der Statuszeile wird folgendes angezeigt:</term>
       <listitem>
         <itemizedlist>
           <listitem>
-            <para>The number of scanned folders while
-            comparing.</para>
+            <para
+>Die Anzahl der durchsuchten Ordner beim Vergleich.</para>
           </listitem>
           <listitem>
-            <para>The filename when comparing by content (for big
-            files).</para>
+            <para
+>Der Name großer Dateien beim Vergleich nach Inhalt.</para>
           </listitem>
           <listitem>
-            <para>The number of files on the list.</para>
+            <para
+>Die Anzahl der Dateien in der Liste.</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
     <varlistentry id="synccomp_right-click">
-      <term>Right click menu on the 
-      <guilabel>File List</guilabel></term>
+      <term
+>Kontextmenü der <guilabel
+>Dateiliste</guilabel
+></term>
       <listitem>
-        <para>The right click menu is split up in three
-        sections:</para>
-        <para>1. change the 
-        <guilabel>Task</guilabel> operations determined by the
-        Comparator. Select one or multiple files. The change will
-        be applied on the selection and not only on the right
-        clicked item. If the selected item is a folder, the
-        change will be applied on its files/subfolders as
-        well.</para>
+        <para
+>Im Kontextmenü gibt es drei Abschnitte:</para>
+        <para
+>1. Änderung der <guilabel
+>Aufgabe</guilabel
+>, die durch den Vergleich festgelegt wurden. Die Änderung wird auf die Auswahl und nicht nur auf den Eintrag, auf den mit der &RMBn; geklickt wurde, angewendet. Ist der ausgewählte Eintrag ein Ordner, werden die Änderungen auch auf die Dateien und Unterordner darin angewendet.</para>
         <itemizedlist>
           <listitem>
-            <para>
-            <guibutton>Synchronize Folders...</guibutton>: Starts
-            synchronization.</para>
+            <para
+><guibutton
+>Ordner abgleichen</guibutton
+>: Startet den Abgleich der Ordner.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Exclude</guibutton>: Excludes a file/dir
-            from synchronization ( task change to != ).</para>
+            <para
+><guibutton
+>Ausschließen</guibutton
+>: Schließt eine Datei oder einen Ordner vom Abgleichen aus, die Aufgabe wird zu!= geändert.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Restore original operation</guibutton>: Task
-            change to the original result of comparison.</para>
+            <para
+><guibutton
+>Ursprüngliche Aktion wiederherstellen</guibutton
+>: Aufgabe wird zum ursprünglichen Ergebnis des Vergleichs geändert.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Reverse direction</guibutton>: Task change (
-            -&gt; to &lt;-, and
-            &lt;- to -&gt; ).</para>
+            <para
+><guibutton
+>Umgekehrte Richtung</guibutton
+>: Aufgabe wird geändert, &gt; zu &lt;-, und &lt;- zu -&gt;.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Copy from right to left</guibutton>: Task
-            change to &lt;-.</para>
+            <para
+><guibutton
+>Von rechts nach links kopieren</guibutton
+>: Aufgabe wird zu &lt;- geändert.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Copy from left to right</guibutton>: Task
-            change to -&gt;.</para>
+            <para
+><guibutton
+>Von links nach rechts kopieren</guibutton
+>: Aufgabe wird zu -&gt; geändert.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Delete ( left single )</guibutton>: Task
-            change to DEL.</para>
+            <para
+><guibutton
+>Löschen (linke Unikate)</guibutton
+>: Aufgabe wird zu Löschen geändert.</para>
           </listitem>
         </itemizedlist>
-        <para>2. change the selections</para>
+        <para
+>2. Änderung der Auswahl</para>
         <itemizedlist>
           <listitem>
-            <para>
-            <guibutton>Select items</guibutton>: Opens a dialog
-            which allows you to select items. This is the 
-            <guimenuitem>Select Group</guimenuitem> dialog from the
-            <link linkend="edit-menu">Edit menu</link>.</para>
+            <para
+><guibutton
+>Einträge auswählen</guibutton
+>: Öffnet einen Dialog in dem Sie Einträge auswählen können. Dies ist der Dialog <guimenuitem
+>Gruppe auswählen</guimenuitem
+> aus dem Menü <link linkend="edit-menu"
+>Bearbeiten</link
+>.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Unselect items</guibutton>: Opens a dialog
-            which allows you to deselect items. This is the 
-            <guimenuitem>Unselect Group</guimenuitem> dialog from
-            the <link linkend="edit-menu">Edit menu</link>.</para>
+            <para
+><guibutton
+>Einträge abwählen</guibutton
+>: Öffnet einen Dialog in dem Sie Einträge abwählen können. Dies ist der Dialog <guimenuitem
+>Gruppenauswahl aufheben</guimenuitem
+> aus dem Menü <link linkend="edit-menu"
+>Bearbeiten</link
+>.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Invert selection</guibutton>: Invert the
-            selection status of all items.</para>
+            <para
+><guibutton
+>Auswahl umkehren</guibutton
+>: Kehrt den Auswahlstatus aller Einträge um.</para>
           </listitem>
         </itemizedlist>
-        <para>3. others (note that the following operations work on the
-        right-clicked file and not on the selection).</para>
+        <para
+>3. Sonstiges. Beachten Sie, dass die folgenden Aktionen für die Datei ausgeführt werden, auf die Sie mit der &RMBn; geklickt haben und nicht für die Auswahl.</para>
         <itemizedlist>
           <listitem>
-            <para>
-            <guibutton>View left file</guibutton>: Starts viewer on
-            the left file.</para>
+            <para
+><guibutton
+>Linke Datei anzeigen</guibutton
+>: Startet den Betrachter mit der linken Datei.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>View right file</guibutton>: Starts viewer
-            on the right file.</para>
+            <para
+><guibutton
+>Rechte Datei anzeigen</guibutton
+>: Startet den Betrachter mit der rechten Datei.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Compare Files</guibutton>: Starts the diff
-            utility (&eg; &kompare;) on the
-            files.</para>
+            <para
+><guibutton
+>Dateien vergleichen</guibutton
+>: Startet das Diff-Programm für Dateien, &eg; &kompare;.</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
     <varlistentry>
-      <term>Other buttons</term>
+      <term
+>Andere Knöpfe</term>
       <listitem>
         <itemizedlist>
           <listitem>
-            <para>
-            <guibutton>Profiles</guibutton>: If you have to
-            synchronize the same folders often, you can save the
-            settings &eg; include files, exclude files,
-            ... Press the 
-            <guibutton>Profile</guibutton> button, and you will be
-            able to add / load / save / remove synchronizer
-            profiles.</para>
+            <para
+><guilabel
+>Profile</guilabel
+>: Wenn Sie häufiger die dieselben Ordner abgleichen, können Sie Ihre Einstellungen wie &eg; eingeschlossene und ausgeschlossene Dateien &etc; speichern. Drücken Sie auf den Knopf <guibutton
+>Profil</guibutton
+> und Sie können dann Profile für den Abgleich hinzufügen, laden, speichern und entfernen.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Swap sides</guibutton>: Swaps the 
-            <guilabel>File List</guilabel>.</para>
+            <para
+><guibutton
+>Seiten vertauschen</guibutton
+>: Vertauscht die <guilabel
+>Dateiliste</guilabel
+>.</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
     <varlistentry>
-      <term>Synchronize with <application>kget</application></term>
+      <term
+>Mit <application
+>KGet</application
+> abgleichen</term>
       <listitem>
-        <para>If you want to synchronize a local folder with an
-        unstable &FTP; server, <application>kget</application> is a much better
-        solution than simple file copying. After comparing you may
-        right click on the result list and select 
-        <guimenuitem>Synchronize with KGet</guimenuitem> to execute
-        the synchronization, after that the listed files will be
-        downloaded with <application>kget</application> instead of &krusader;. Of course 
-        <application>kget</application> needs to be installed on
-        your computer; otherwise, it will not be available.</para>
+        <para
+>Möchten Sie einen lokalen Ordner mit einem &FTP;-Server über eine instabile Leitung abgleichen. dann ist <application
+>KGet</application
+> eine bessere Lösung als ein einfacher Dateivergleich. Nach dem Vergleich können Sie mit der &RMBn; in die Ergebnisliste klicken und dann <guimenuitem
+>Mit KGet abgleichen</guimenuitem
+> für das Ausführen des Abgleichs wählen. Dann wird die ausgewählte Datei mit <application
+>KGet</application
+> statt &krusader; heruntergeladen. Dazu muss natürlich <application
+>KGet</application
+> auf Ihrem Rechner installiert sein, sonst ist diese Funktion nicht verfügbar.</para>
       </listitem>
     </varlistentry>
   </variablelist>
  
-</sect2>  
+</sect2
+>  
 <sect2 id="synchronizer_synchronization">
-  <title>Synchronization</title>  
+  <title
+>Abgleichen</title
+>  
 
-  <para>After pressing the 
-  <guibutton>Synchronize</guibutton> button the synchronization
-  dialog appears.</para>
+  <para
+>Nach dem Drücken des Knopfs <guibutton
+>Abgleichen</guibutton
+> erscheint der Abgleich-Dialog.</para>
   <variablelist>
     <varlistentry>
-      <term>Check boxes</term>
+      <term
+>Ankreuzfelder</term>
       <listitem>
-        <para>Here you confirm the copy and delete operations of
-        the Synchronizer</para>
+        <para
+>Hier können Sie das Kopieren und Löschen beim Abgleichen bestätigen.</para>
         <itemizedlist>
           <listitem>
-            <para>
-            <guilabel>Right to left</guilabel>: copy X1 files ( Y1
-            bytes ) enable / disable the copy from right to
-            left.</para>
+            <para
+><guilabel
+>Rechts nach links</guilabel
+>: Kopiert X1 Dateien (Y1 Byte), aktiviert/deaktiviert das Kopieren von rechts nach links.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Left to right</guilabel>: copy X2 files ( Y2
-            bytes ) enable / disable the copy from left to
-            right.</para>
+            <para
+><guilabel
+>Links nach rechts</guilabel
+>: Kopiert X2 Dateien (Y2 Byte), aktiviert/deaktiviert das Kopieren von links nach rechts.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Left</guilabel>: delete X3 files ( Y3 bytes )
-            enable / disable the left side deleting.</para>
+            <para
+><guilabel
+>Links</guilabel
+>: Löscht X3 Dateien (Y3 Byte), aktiviert/deaktiviert das Löschen auf der linken Seite.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Confirm overwrites</guilabel>: By switching
-            this option on, Krusader will show the 
-            <guibutton>rename, skip, overwrite, skip all, overwrite
-            all</guibutton> dialog box, before overwriting the
-            file.</para>
+            <para
+><guilabel
+>Überschreiben bestätigen</guilabel
+>: Schalten Sie diese Option ein, wird vor dem Überschreiben von Dateien ein Dialog mit den Optionen Umbenennen, Überspringen, Überschreiben, Alle überspringen und Alle überschreiben angezeigt.</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
     <varlistentry>
-      <term>Status labels</term>
+      <term
+>Statusbezeichnungen</term>
       <listitem>
         <itemizedlist>
           <listitem>
-            <para>
-            <guilabel>Ready</guilabel>: A1/A2 files, B1/B2. This
-            line is changed at synchronizing, showing that
-            synchronizer finished with A1 files from A2 ( B1 bytes
-            from B2 ).</para>
+            <para
+><guilabel
+>Fertig</guilabel
+>: A1/A2 Dateien, B1/B2. Diese Zeile wird beim Abgleichen geändert und zeigt mit „A1 Dateien von A2 (B1 Byte von B2)“ an, dass der Abgleich beendet ist.</para>
           </listitem>
           <listitem>
-            <para>
-            <guilabel>Progress bar</guilabel>: Shows the progress
-            on the synchronization (based on bytes).</para>
+            <para
+><guilabel
+>Fortschrittsanzeige</guilabel
+>: Zeigt den Fortschritt beim Abgleichen auf der Grundlage von Bytes.</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
     <varlistentry>
-      <term>Action buttons</term>
+      <term
+>Aktionsknöpfe</term>
       <listitem>
         <itemizedlist>
           <listitem>
-            <para>
-            <guibutton>Start</guibutton>: Starts
-            synchronization.</para>
+            <para
+><guibutton
+>Start</guibutton
+>: Beginnt das Abgleichen.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Pause / Resume</guibutton>: Pauses/resumes
-            the synchronization process.</para>
+            <para
+><guibutton
+>Anhalten/Fortfahren</guibutton
+>: Hält den Abgleichprozess an oder setzt ihn fort.</para>
           </listitem>
           <listitem>
-            <para>
-            <guibutton>Close</guibutton>: Closes the
-            synchronization dialog (and stops
-            synchronization).</para>
+            <para
+><guibutton
+>Schließen</guibutton
+>: Schließt den Abgleichdialog und bricht den Abgleich ab.</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
     <varlistentry>
-      <term>Parallel synchronization</term>
+      <term
+>Paralleler Abgleich</term>
       <listitem>
         <itemizedlist>
           <listitem>
-            <para>One can give the number of the 'quasi'
-            threads.</para>
+            <para
+>Hier kann die Anzahl der Quasi-Threads eingegeben werden-</para>
           </listitem>
           <listitem>
-            <para>Can drastically increase the speed when
-            synchronized with slow &FTP; servers.</para>
+            <para
+>Dies kann die Geschwindigkeit beim Abgleich mit langsamen &FTP;-Servern drastisch erhöhen.</para>
           </listitem>
           <listitem>
-            <para>Does not affect the speed of local
-            synchronization.</para>
+            <para
+>Dies betrifft nicht die Geschwindigkeit beim lokalen Abgleich.</para>
           </listitem>
           <listitem>
-            <para>Remote <quote>compare by content</quote> and <quote>folder
-            compare</quote> is done in parallel.</para>
+            <para
+><guilabel
+>Nach Inhalt vergleichen</guilabel
+> und <guilabel
+>Ordner vergleichen</guilabel
+> wird parallel ausgeführt.</para>
           </listitem>
           <listitem>
-            <para>Remote synchronization is also done in parallel,
-            except the <command>mkdir</command> tasks (<command>mkdir</command> must be before
-            copy).</para>
+            <para
+>Abgleichen entfernter Ordner erfolgt auch parallel, ausgenommen das Erstellen von Ordnern. Es muss <command
+>mkdir</command
+> vor <command
+>copy</command
+> ausgeführt werden.</para>
           </listitem>
         </itemizedlist>
       </listitem>

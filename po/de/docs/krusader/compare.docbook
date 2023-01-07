@@ -2,87 +2,114 @@
     SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
     SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
     SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
 -->
 <sect1 id="compare">
-  <title>Compare</title>
-  <para>&krusader; contains several compare functions: 
-  <guimenuitem>Compare by Content</guimenuitem>, 
-  <guimenuitem>Compare Folders</guimenuitem> and the 
-  <link linkend="synchronizer">Synchronizer</link> compare
-  function.</para>
+  <title
+>Vergleichen</title>
+  <para
+>&krusader; bietet mehrere Vergleichs-Funktionen: <guimenuitem
+>Nach Inhalt vergleichen</guimenuitem
+>, <guimenuitem
+>Ordner vergleichen</guimenuitem
+> und die Funktion <link linkend="synchronizer"
+>Abgleichen</link
+>.</para>
   <sect2 id="compare-content">
-    <title>Compare by Content</title>
+    <title
+>Nach Inhalt vergleichen</title>
     <indexterm>
-      <primary>Compare</primary>
-      <secondary>Content</secondary>
+      <primary
+>Vergleichen</primary>
+      <secondary
+>Inhalt</secondary>
     </indexterm>
-    <para>Select one file in each panel and use 
-      <menuchoice>
-        <guimenu>File</guimenu>
-        <guimenuitem>Compare by content...</guimenuitem>
-      </menuchoice>.
-    &krusader; will open an external
-    graphical difference tool that is 
-    <link linkend="konfig-dependencies">configured</link>.
-    &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"><application>KDiff3</application></ulink> and
-    <ulink url="http://furius.ca/xxdiff/"><application>xxdiff</application></ulink> are supported.</para>
+    <para
+>Wählen Sie eine Datei in jedem Dateifenster und dann im Menü <menuchoice
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Nach Inhalt vergleichen</guimenuitem
+> </menuchoice
+>. &krusader; öffnet dann das dafür <link linkend="konfig-dependencies"
+>eingerichtete</link
+> externe grafische Vergleichsprogramm. Die Programme &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> und <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> können für diese Aufgabe benutzt werden.</para>
   </sect2>
   <sect2 id="compare-dir">
-    <title>Compare Folders</title>
+    <title
+>Ordner vergleichen</title>
     <indexterm>
-      <primary>Compare</primary>
-      <secondary>Folders</secondary>
+      <primary
+>Vergleichen</primary>
+      <secondary
+>Ordner</secondary>
     </indexterm>
-    <para>Compare the files of each panel by using 
-      <menuchoice>
-        <guimenu>Edit</guimenu>
-        <guimenuitem>Compare Folders</guimenuitem>
-      </menuchoice>.
-    By default newer and single files will be selected
-    in each panel, this behaviour can be changed in the 
-    <guimenuitem>Compare Setup</guimenuitem> menu. 
-    <note>
-      <para>The files are not compared by content but by their
-      names and dates only.</para>
-    </note></para>
+    <para
+>Um die Dateien in den Dateifenstern zu vergleichen, wählen Sie im Menü <menuchoice
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Ordner vergleichen</guimenuitem
+> </menuchoice
+>. Als Voreinstellung werden neue und einzelne Dateien in jedem Dateifenster gewählt, dieses Verhalten kann im Menü <guimenuitem
+>Vergleichen einrichten</guimenuitem
+> geändert werden. <note
+> <para
+>Die Dateien werden nur nach Namen und Datum, aber nicht nach dem Inhalt verglichen.</para>
+    </note
+></para>
     <variablelist>
       <varlistentry>
         <term>
-          <menuchoice>
-            <guimenu>Edit</guimenu>
-            <guimenuitem>Compare Setup</guimenuitem>
-          </menuchoice>
+          <menuchoice
+><guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Vergleichen einrichten</guimenuitem
+> </menuchoice>
         </term>
         <listitem>
-          <para>Configures the 
-          <guimenuitem>Compare
-          Folders</guimenuitem> function.</para>
+          <para
+>Einstellungen für die Funktion <guimenuitem
+>Ordner vergleichen</guimenuitem
+>.</para>
           <itemizedlist>
             <listitem>
-              <para>
-              <guimenuitem>Select Newer and
-              Single</guimenuitem> (default)</para>
+              <para
+><guimenuitem
+>Unterschiedliche und einzelne auswählen</guimenuitem
+> (Standard)</para>
             </listitem>
             <listitem>
               <para>
-                <guimenuitem>Select Single</guimenuitem>
+                <guimenuitem
+>Einzelne auswählen</guimenuitem>
               </para>
             </listitem>
             <listitem>
               <para>
-                <guimenuitem>Select Newer</guimenuitem>
+                <guimenuitem
+>Neue auswählen</guimenuitem>
               </para>
             </listitem>
             <listitem>
               <para>
-                <guimenuitem>Select Different and
-                Single</guimenuitem>
+                <guimenuitem
+>Unterschiedliche und einzelne auswählen</guimenuitem>
               </para>
             </listitem>
             <listitem>
               <para>
-                <guimenuitem>Select Different</guimenuitem>
+                <guimenuitem
+>Unterschiedliche auswählen</guimenuitem>
               </para>
             </listitem>
           </itemizedlist>
