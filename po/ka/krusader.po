@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 02:46+0000\n"
-"PO-Revision-Date: 2022-10-25 07:04+0200\n"
+"PO-Revision-Date: 2023-01-14 18:51+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -41,7 +41,7 @@ msgstr "პროტოკოლის ჩასწორება"
 #: app/ActionMan/actionproperty.cpp:334
 #, kde-format
 msgid "Set another protocol:"
-msgstr "დააყენეთ სხვა პროტოკოლი"
+msgstr "დააყენეთ სხვა პროტოკოლი:"
 
 #: app/ActionMan/actionproperty.cpp:368
 #, kde-format
@@ -81,7 +81,7 @@ msgstr "ახალი ფაილის სახელი"
 #: app/ActionMan/actionproperty.cpp:433
 #, kde-format
 msgid "Set a file name:"
-msgstr "დააყენეთ ფაილის სახელი"
+msgstr "დააყენეთ ფაილის სახელი:"
 
 #: app/ActionMan/actionproperty.cpp:450
 #, kde-format
@@ -315,7 +315,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:357
 #, kde-format
 msgid "Default shortcut:"
-msgstr ""
+msgstr "ნაგულისხმები მალსახმობი:"
 
 #. i18n: ectx: property (whatsThis), widget (KKeySequenceWidget, KeyButtonShortcut)
 #: app/ActionMan/actionproperty.ui:383
@@ -526,7 +526,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:938
 #, kde-format
 msgid "Run as different user:"
-msgstr ""
+msgstr "სხვა მომხმარებლით გაშვება:"
 
 #: app/ActionMan/addplaceholderpopup.cpp:45
 #, kde-format
@@ -651,7 +651,7 @@ msgstr ""
 #: app/ActionMan/useractionpage.cpp:275
 #, kde-format
 msgid "Overwrite Existing File?"
-msgstr ""
+msgstr "გადავაწერო არსებულ ფაილს?"
 
 #: app/ActionMan/useractionpage.cpp:290 app/UserAction/kraction.cpp:183
 #, kde-format
@@ -678,23 +678,23 @@ msgstr ""
 #: app/Archive/abstractthreadedjob.cpp:488
 #, kde-format
 msgid "Counting files"
-msgstr ""
+msgstr "ფაილების დათვლა"
 
 #: app/Archive/abstractthreadedjob.cpp:517
 #, kde-format
 msgid "Uploading to remote destination"
-msgstr ""
+msgstr "დაშორებულ ადგილას ატვირთვა"
 
 #: app/Archive/abstractthreadedjob.cpp:639
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
-msgstr ""
+msgstr "არქივის მხარდაუჭერელი ტიპი %1."
 
 #: app/Archive/krarchandler.cpp:193
 #, kde-format
 msgid "Counting files in archive"
-msgstr ""
+msgstr "არქივში ფაილების დათვლა"
 
 #: app/Archive/krarchandler.cpp:215
 #, kde-format
@@ -904,7 +904,7 @@ msgstr "გახსნა"
 #: app/BookMan/krbookmarkhandler.cpp:837 app/GUI/mediabutton.cpp:330
 #, kde-format
 msgid "Open in a new tab"
-msgstr ""
+msgstr "ახალ ჩანართშ გახსნა"
 
 #: app/BookMan/krbookmarkhandler.cpp:841 app/Dialogs/krmaskchoice.cpp:82
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:728
@@ -1197,7 +1197,7 @@ msgstr "მომხმარებელი:"
 #: app/Dialogs/newftpgui.cpp:108
 #, kde-format
 msgid "Password:"
-msgstr "პაროლი"
+msgstr "პაროლი:"
 
 #: app/Dialogs/newftpgui.cpp:136
 #, kde-format
@@ -1234,7 +1234,7 @@ msgstr ""
 #: app/Dialogs/packguibase.cpp:89
 #, kde-format
 msgid "In folder"
-msgstr ""
+msgstr "საქაღალდეში"
 
 #: app/Dialogs/packguibase.cpp:139
 #, kde-format
@@ -1254,12 +1254,12 @@ msgstr ""
 #: app/Dialogs/packguibase.cpp:194
 #, kde-format
 msgid "MIN"
-msgstr ""
+msgstr "მინ"
 
 #: app/Dialogs/packguibase.cpp:195
 #, kde-format
 msgid "MAX"
-msgstr ""
+msgstr "მაქს"
 
 #: app/Dialogs/packguibase.cpp:219
 #, kde-format
@@ -1365,7 +1365,7 @@ msgstr "საქაღალდეები:"
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
 msgid "Total Size:"
-msgstr ""
+msgstr "ჯამური ზომა:"
 
 #: app/DiskUsage/diskusage.cpp:230
 #, kde-format
@@ -1451,7 +1451,7 @@ msgstr "ყველას ჩასმა"
 #: app/DiskUsage/diskusage.cpp:753
 #, kde-format
 msgid "Step into"
-msgstr ""
+msgstr "შებიჯება"
 
 #: app/DiskUsage/diskusage.cpp:767 app/DiskUsage/dulines.cpp:451
 #, kde-format
@@ -1638,7 +1638,7 @@ msgstr "ჯამური ზომა"
 #: app/DiskUsage/dulistview.cpp:42
 #, kde-format
 msgid "Own size"
-msgstr ""
+msgstr "საკუთარი ზომა"
 
 #: app/DiskUsage/dulistview.cpp:43 app/MountMan/kmountmangui.cpp:147
 #, kde-format
@@ -1708,6 +1708,8 @@ msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
 "b> deleted.</qt>"
 msgstr ""
+"<qt>საქაღალდე მისამართზე <i>'%1'</i> <b>რეკურსიულად</b> და <b>სამუდამოდ</b> "
+"წაიშლება.</qt>"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:213
 #, kde-format
@@ -1820,7 +1822,7 @@ msgstr ""
 #: app/FileSystem/virtualfilesystem.cpp:208
 #, kde-format
 msgid "Virtual filesystem"
-msgstr ""
+msgstr "ვირტუალური ფაილური სისტემა"
 
 #: app/Filter/advancedfilter.cpp:49
 #, kde-format
@@ -1830,7 +1832,7 @@ msgstr "ზომა"
 #: app/Filter/advancedfilter.cpp:56
 #, kde-format
 msgid "At Least"
-msgstr ""
+msgstr "მინიმუმ"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:67 app/Filter/advancedfilter.cpp:89
@@ -1860,7 +1862,7 @@ msgstr "გიბ"
 #: app/Filter/advancedfilter.cpp:78
 #, kde-format
 msgid "At Most"
-msgstr ""
+msgstr "მაქსიმუმ"
 
 #: app/Filter/advancedfilter.cpp:115
 #, kde-format
@@ -2075,12 +2077,12 @@ msgstr "სიმბოლოების ნაკრები"
 #: app/Filter/generalfilter.cpp:41
 #, kde-format
 msgid "Repeats, Zero or More Times"
-msgstr ""
+msgstr "მეორდება, ნულჯერ ან მეტჯერ"
 
 #: app/Filter/generalfilter.cpp:42
 #, kde-format
 msgid "Repeats, One or More Times"
-msgstr ""
+msgstr "მეორდება, ერთხელ ან მეტჯერ"
 
 #: app/Filter/generalfilter.cpp:43
 #, kde-format
@@ -2095,22 +2097,22 @@ msgstr "Escape"
 #: app/Filter/generalfilter.cpp:45
 #, kde-format
 msgid "TAB"
-msgstr ""
+msgstr "ტაბი"
 
 #: app/Filter/generalfilter.cpp:46
 #, kde-format
 msgid "Newline"
-msgstr ""
+msgstr "ახალი ხაზი"
 
 #: app/Filter/generalfilter.cpp:47
 #, kde-format
 msgid "Carriage Return"
-msgstr ""
+msgstr "კარეტის დაბრუნება"
 
 #: app/Filter/generalfilter.cpp:48
 #, kde-format
 msgid "White Space"
-msgstr ""
+msgstr "თეთრი გამოტოვება"
 
 #: app/Filter/generalfilter.cpp:49
 #, kde-format
@@ -2191,7 +2193,7 @@ msgstr "&ტექსტი:"
 #: app/Filter/generalfilter.cpp:287 app/KViewer/lister.cpp:1295
 #, kde-format
 msgid "RegExp"
-msgstr ""
+msgstr "რეგგამოს"
 
 #: app/Filter/generalfilter.cpp:307
 #, kde-format
@@ -2360,7 +2362,7 @@ msgstr "დისკეტა"
 #: app/GUI/mediabutton.cpp:184
 #, kde-format
 msgid "CD/DVD-ROM"
-msgstr ""
+msgstr "CD/DVD-ROM"
 
 #: app/GUI/mediabutton.cpp:186
 #, kde-format
@@ -2424,12 +2426,12 @@ msgstr "გამოღება"
 #: app/GUI/mediabutton.cpp:475
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
-msgstr ""
+msgstr "შეცდომა \"%1\"-სთან წვდომისას. სისტემის პასუხია: %2"
 
 #: app/GUI/mediabutton.cpp:478
 #, kde-format
 msgid "An error occurred while accessing '%1'"
-msgstr ""
+msgstr "შეცდომა \"%1\"-სთან წვდომისას"
 
 #: app/GUI/profilemanager.cpp:28 app/GUI/profilemanager.cpp:48
 #, kde-format
@@ -2464,7 +2466,7 @@ msgstr ""
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr ""
+msgstr "ახლახანს დახურული ჩანართების გასუფთავება"
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -2605,7 +2607,7 @@ msgstr "%1-ზე გადატანა"
 #: app/JobMan/krjob.cpp:57
 #, kde-format
 msgid "Link to %1"
-msgstr ""
+msgstr "ბმული %1-მდე"
 
 #: app/Konfigurator/kgadvanced.cpp:29 app/Konfigurator/kgcolors.cpp:45
 #: app/Konfigurator/kgdependencies.cpp:42 app/Konfigurator/kggeneral.cpp:200
@@ -2653,7 +2655,7 @@ msgstr ""
 #: app/Konfigurator/kgadvanced.cpp:66
 #, kde-format
 msgid "Deleting files"
-msgstr ""
+msgstr "ფაილების წაშლა"
 
 #: app/Konfigurator/kgadvanced.cpp:67
 #, kde-format
@@ -2663,7 +2665,7 @@ msgstr "ფაილების ასლი"
 #: app/Konfigurator/kgadvanced.cpp:68
 #, kde-format
 msgid "Moving files"
-msgstr ""
+msgstr "ფაილების გადატანა"
 
 #: app/Konfigurator/kgadvanced.cpp:69
 #, kde-format
@@ -3146,12 +3148,12 @@ msgstr "საქაღალდე"
 #: app/Konfigurator/kgcolors.cpp:514
 #, kde-format
 msgid "Copy to right"
-msgstr ""
+msgstr "მარჯვნივ კოპირება"
 
 #: app/Konfigurator/kgcolors.cpp:515
 #, kde-format
 msgid "Copy to left"
-msgstr ""
+msgstr "მარცხნივ კოპირება"
 
 #: app/Konfigurator/kgcolors.cpp:516
 #, kde-format
@@ -4074,12 +4076,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:482
 #, kde-format
 msgid "View modes"
-msgstr ""
+msgstr "ნახვის რეჟიმები"
 
 #: app/Konfigurator/kgpanel.cpp:489
 #, kde-format
 msgid "Default view mode:"
-msgstr ""
+msgstr "თვალიერების ნაგულისხმები რეჟიმი:"
 
 #: app/Konfigurator/kgpanel.cpp:538
 #, kde-format
@@ -4856,12 +4858,12 @@ msgstr "მუქი ლურჯი"
 #: app/Konfigurator/konfiguratoritems.cpp:578
 #, kde-format
 msgid "Dark Cyan"
-msgstr ""
+msgstr "მუქი ცისფერი"
 
 #: app/Konfigurator/konfiguratoritems.cpp:579
 #, kde-format
 msgid "Dark Magenta"
-msgstr ""
+msgstr "მუქი ალისფერი"
 
 #: app/Konfigurator/konfiguratoritems.cpp:580
 #, kde-format
@@ -5171,7 +5173,7 @@ msgstr "აირჩიეთ დაშორებული კოდირე�
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr ""
+msgstr "ახლახანს დახურული ჩანართები"
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5435,7 +5437,7 @@ msgstr "&ფანჯარა"
 #: app/krusaderui.rc:166
 #, kde-format
 msgid "&Help"
-msgstr "დახმარება!"
+msgstr "&დახმარება"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: app/krusaderui.rc:170
@@ -5878,7 +5880,7 @@ msgstr ""
 #: app/main.cpp:120
 #, kde-format
 msgid "Davide Gianforte"
-msgstr ""
+msgstr "Davide Gianforte"
 
 #: app/main.cpp:120 app/main.cpp:121 app/main.cpp:122
 #, kde-format
@@ -5888,12 +5890,12 @@ msgstr "პროგრამისტი"
 #: app/main.cpp:121
 #, kde-format
 msgid "Toni Asensi Esteve"
-msgstr ""
+msgstr "Toni Asensi Esteve"
 
 #: app/main.cpp:122
 #, kde-format
 msgid "Nikita Melnichenko"
-msgstr ""
+msgstr "Nikita Melnichenko"
 
 #: app/main.cpp:123
 #, kde-format
@@ -5908,7 +5910,7 @@ msgstr "დოკუმენტაცია"
 #: app/main.cpp:124
 #, kde-format
 msgid "Rafi Yanai"
-msgstr ""
+msgstr "Rafi Yanai"
 
 #: app/main.cpp:124 app/main.cpp:125
 #, kde-format
@@ -5918,12 +5920,12 @@ msgstr ""
 #: app/main.cpp:125
 #, kde-format
 msgid "Shie Erlich"
-msgstr ""
+msgstr "Shie Erlich"
 
 #: app/main.cpp:126
 #, kde-format
 msgid "Csaba Karai"
-msgstr ""
+msgstr "Csaba Karai"
 
 #: app/main.cpp:126 app/main.cpp:127 app/main.cpp:128 app/main.cpp:129
 #: app/main.cpp:130 app/main.cpp:131 app/main.cpp:132 app/main.cpp:133
@@ -5940,22 +5942,22 @@ msgstr "Heiner Eichmann"
 #: app/main.cpp:128
 #, kde-format
 msgid "Jonas Bähr"
-msgstr ""
+msgstr "Jonas Bähr"
 
 #: app/main.cpp:129
 #, kde-format
 msgid "Václav Jůza"
-msgstr ""
+msgstr "Václav Jůza"
 
 #: app/main.cpp:130
 #, kde-format
 msgid "Jan Lepper"
-msgstr ""
+msgstr "Jan Lepper"
 
 #: app/main.cpp:131
 #, kde-format
 msgid "Andrey Matveyakin"
-msgstr ""
+msgstr "Andrey Matveyakin"
 
 #: app/main.cpp:132
 #, kde-format
@@ -5965,17 +5967,17 @@ msgstr "Simon Persson"
 #: app/main.cpp:133
 #, kde-format
 msgid "Alexander Bikadorov"
-msgstr ""
+msgstr "Alexander Bikadorov"
 
 #: app/main.cpp:134
 #, kde-format
 msgid "Martin Kostolný"
-msgstr ""
+msgstr "Martin Kostolný"
 
 #: app/main.cpp:135 app/main.cpp:169
 #, kde-format
 msgid "Dirk Eschler"
-msgstr ""
+msgstr "Dirk Eschler"
 
 #: app/main.cpp:135
 #, kde-format
@@ -5985,7 +5987,7 @@ msgstr ""
 #: app/main.cpp:136 app/main.cpp:165
 #, kde-format
 msgid "Frank Schoolmeesters"
-msgstr ""
+msgstr "Frank Schoolmeesters"
 
 #: app/main.cpp:136
 #, kde-format
@@ -5995,7 +5997,7 @@ msgstr ""
 #: app/main.cpp:137
 #, kde-format
 msgid "Richard Holt"
-msgstr ""
+msgstr "Richard Holt"
 
 #: app/main.cpp:137
 #, kde-format
@@ -6005,7 +6007,7 @@ msgstr ""
 #: app/main.cpp:138 app/main.cpp:185
 #, kde-format
 msgid "Matej Urbancic"
-msgstr ""
+msgstr "Matej Urbancic"
 
 #: app/main.cpp:138
 #, kde-format
@@ -6025,7 +6027,7 @@ msgstr ""
 #: app/main.cpp:140
 #, kde-format
 msgid "l10n.kde.org"
-msgstr ""
+msgstr "l10n.kde.org"
 
 #: app/main.cpp:140
 #, kde-format
@@ -6035,7 +6037,7 @@ msgstr ""
 #: app/main.cpp:141
 #, kde-format
 msgid "Jiří Paleček"
-msgstr ""
+msgstr "Jiří Paleček"
 
 #: app/main.cpp:141 app/main.cpp:152
 #, kde-format
@@ -6045,7 +6047,7 @@ msgstr ""
 #: app/main.cpp:142
 #, kde-format
 msgid "Jiří Klement"
-msgstr ""
+msgstr "Jiří Klement"
 
 #: app/main.cpp:142
 #, kde-format
@@ -6055,7 +6057,7 @@ msgstr ""
 #: app/main.cpp:143
 #, kde-format
 msgid "Andrew Neupokoev"
-msgstr ""
+msgstr "Andrew Neupokoev"
 
 #: app/main.cpp:143
 #, kde-format
@@ -6075,7 +6077,7 @@ msgstr ""
 #: app/main.cpp:145
 #, kde-format
 msgid "Gábor Lehel"
-msgstr ""
+msgstr "Gábor Lehel"
 
 #: app/main.cpp:145
 #, kde-format
@@ -6085,7 +6087,7 @@ msgstr ""
 #: app/main.cpp:146
 #, kde-format
 msgid "Mark Eatough"
-msgstr ""
+msgstr "Mark Eatough"
 
 #: app/main.cpp:146
 #, kde-format
@@ -6095,7 +6097,7 @@ msgstr ""
 #: app/main.cpp:147
 #, kde-format
 msgid "Jan Halasa"
-msgstr ""
+msgstr "Jan Halasa"
 
 #: app/main.cpp:147
 #, kde-format
@@ -6105,7 +6107,7 @@ msgstr ""
 #: app/main.cpp:148
 #, kde-format
 msgid "Hans Löffler"
-msgstr ""
+msgstr "Hans Löffler"
 
 #: app/main.cpp:148
 #, kde-format
@@ -6115,7 +6117,7 @@ msgstr ""
 #: app/main.cpp:149
 #, kde-format
 msgid "Szombathelyi György"
-msgstr ""
+msgstr "Szombathelyi György"
 
 #: app/main.cpp:149
 #, kde-format
@@ -6150,7 +6152,7 @@ msgstr "Cristi Dumitrescu"
 #: app/main.cpp:153
 #, kde-format
 msgid "Aurelien Gateau"
-msgstr ""
+msgstr "Aurelien Gateau"
 
 #: app/main.cpp:153
 #, kde-format
@@ -6160,7 +6162,7 @@ msgstr ""
 #: app/main.cpp:154
 #, kde-format
 msgid "Milan Brabec"
-msgstr ""
+msgstr "Milan Brabec"
 
 #: app/main.cpp:154
 #, kde-format
@@ -6180,7 +6182,7 @@ msgstr ""
 #: app/main.cpp:156
 #, kde-format
 msgid "Doutor Zero"
-msgstr ""
+msgstr "Doutor Zero"
 
 #: app/main.cpp:156
 #, kde-format
@@ -6190,7 +6192,7 @@ msgstr ""
 #: app/main.cpp:157
 #, kde-format
 msgid "Milen Ivanov"
-msgstr ""
+msgstr "Milen Ivanov"
 
 #: app/main.cpp:157
 #, kde-format
@@ -6200,7 +6202,7 @@ msgstr ""
 #: app/main.cpp:158
 #, kde-format
 msgid "Quim Perez"
-msgstr ""
+msgstr "Quim Perez"
 
 #: app/main.cpp:158
 #, kde-format
@@ -6210,7 +6212,7 @@ msgstr ""
 #: app/main.cpp:159
 #, kde-format
 msgid "Jinghua Luo"
-msgstr ""
+msgstr "Jinghua Luo"
 
 #: app/main.cpp:159
 #, kde-format
@@ -6220,7 +6222,7 @@ msgstr ""
 #: app/main.cpp:160
 #, kde-format
 msgid "Mitek"
-msgstr ""
+msgstr "Mitek"
 
 #: app/main.cpp:160 app/main.cpp:161
 #, kde-format
@@ -6230,12 +6232,12 @@ msgstr ""
 #: app/main.cpp:161
 #, kde-format
 msgid "Martin Sixta"
-msgstr ""
+msgstr "Martin Sixta"
 
 #: app/main.cpp:162
 #, kde-format
 msgid "Vaclav Jůza"
-msgstr ""
+msgstr "Vaclav Jůza"
 
 #: app/main.cpp:162
 #, kde-format
@@ -6245,7 +6247,7 @@ msgstr ""
 #: app/main.cpp:163
 #, kde-format
 msgid "Anders Bruun Olsen"
-msgstr ""
+msgstr "Anders Bruun Olsen"
 
 #: app/main.cpp:163
 #, kde-format
@@ -6255,7 +6257,7 @@ msgstr ""
 #: app/main.cpp:164
 #, kde-format
 msgid "Peter H. Sorensen"
-msgstr ""
+msgstr "Peter H. Sorensen"
 
 #: app/main.cpp:164
 #, kde-format
@@ -6315,7 +6317,7 @@ msgstr ""
 #: app/main.cpp:171
 #, kde-format
 msgid "Kukk Zoltan"
-msgstr ""
+msgstr "Kukk Zoltan"
 
 #: app/main.cpp:171
 #, kde-format
@@ -6335,17 +6337,17 @@ msgstr ""
 #: app/main.cpp:173
 #, kde-format
 msgid "Giuseppe Bordoni"
-msgstr ""
+msgstr "Giuseppe Bordoni"
 
 #: app/main.cpp:173
 #, kde-format
 msgid "Italian translation"
-msgstr ""
+msgstr "იტალიური თარგმანი"
 
 #: app/main.cpp:174
 #, kde-format
 msgid "Hideki Kimura"
-msgstr ""
+msgstr "Hideki Kimura"
 
 #: app/main.cpp:174
 #, kde-format
@@ -6365,7 +6367,7 @@ msgstr ""
 #: app/main.cpp:176
 #, kde-format
 msgid "Dovydas Sankauskas"
-msgstr ""
+msgstr "Dovydas Sankauskas"
 
 #: app/main.cpp:176
 #, kde-format
@@ -6375,7 +6377,7 @@ msgstr ""
 #: app/main.cpp:177
 #, kde-format
 msgid "Bruno Queiros"
-msgstr ""
+msgstr "Bruno Queiros"
 
 #: app/main.cpp:177
 #, kde-format
@@ -6385,7 +6387,7 @@ msgstr ""
 #: app/main.cpp:178
 #, kde-format
 msgid "Lukasz Janyst"
-msgstr ""
+msgstr "Lukasz Janyst"
 
 #: app/main.cpp:178
 #, kde-format
@@ -6395,7 +6397,7 @@ msgstr ""
 #: app/main.cpp:179
 #, kde-format
 msgid "Pawel Salawa"
-msgstr ""
+msgstr "Pawel Salawa"
 
 #: app/main.cpp:179 app/main.cpp:180
 #, kde-format
@@ -6405,22 +6407,22 @@ msgstr ""
 #: app/main.cpp:180
 #, kde-format
 msgid "Tomek Grzejszczyk"
-msgstr ""
+msgstr "Tomek Grzejszczyk"
 
 #: app/main.cpp:181
 #, kde-format
 msgid "Dmitry A. Bugay"
-msgstr ""
+msgstr "Dmitry A. Bugay"
 
 #: app/main.cpp:181
 #, kde-format
 msgid "Russian translation"
-msgstr ""
+msgstr "Russian translation"
 
 #: app/main.cpp:182
 #, kde-format
 msgid "Dmitry Chernyak"
-msgstr ""
+msgstr "Dmitry Chernyak"
 
 #: app/main.cpp:182
 #, kde-format
@@ -6430,7 +6432,7 @@ msgstr ""
 #: app/main.cpp:183
 #, kde-format
 msgid "Sasa Tomic"
-msgstr ""
+msgstr "Sasa Tomic"
 
 #: app/main.cpp:183
 #, kde-format
@@ -6440,7 +6442,7 @@ msgstr ""
 #: app/main.cpp:184
 #, kde-format
 msgid "Zdenko Podobný and Ondrej Pačay (Yogi)"
-msgstr ""
+msgstr "Zdenko Podobný და Ondrej Pačay (Yogi)"
 
 #: app/main.cpp:184
 #, kde-format
@@ -6455,7 +6457,7 @@ msgstr ""
 #: app/main.cpp:186
 #, kde-format
 msgid "Rafael Munoz"
-msgstr ""
+msgstr "Rafael Munoz"
 
 #: app/main.cpp:186
 #, kde-format
@@ -6465,7 +6467,7 @@ msgstr ""
 #: app/main.cpp:187
 #, kde-format
 msgid "Alejandro Araiza Alvarado"
-msgstr ""
+msgstr "Alejandro Araiza Alvarado"
 
 #: app/main.cpp:187
 #, kde-format
@@ -6475,7 +6477,7 @@ msgstr "Spanish translation"
 #: app/main.cpp:188
 #, kde-format
 msgid "Erik Johanssen"
-msgstr ""
+msgstr "Erik Johanssen"
 
 #: app/main.cpp:188 app/main.cpp:189
 #, kde-format
@@ -6485,12 +6487,12 @@ msgstr ""
 #: app/main.cpp:189
 #, kde-format
 msgid "Anders Linden"
-msgstr ""
+msgstr "Anders Linden"
 
 #: app/main.cpp:190
 #, kde-format
 msgid "Peter Landgren"
-msgstr ""
+msgstr "Peter Landgren"
 
 #: app/main.cpp:190
 #, kde-format
@@ -6500,7 +6502,7 @@ msgstr ""
 #: app/main.cpp:191
 #, kde-format
 msgid "Bekir Sonat"
-msgstr ""
+msgstr "Bekir Sonat"
 
 #: app/main.cpp:191
 #, kde-format
@@ -6510,7 +6512,7 @@ msgstr ""
 #: app/main.cpp:192
 #, kde-format
 msgid "Ivan Petrouchtchak"
-msgstr ""
+msgstr "Ivan Petrouchtchak"
 
 #: app/main.cpp:192
 #, kde-format
@@ -6520,7 +6522,7 @@ msgstr ""
 #: app/main.cpp:193
 #, kde-format
 msgid "Seongnam Jee"
-msgstr ""
+msgstr "Seongnam Jee"
 
 #: app/main.cpp:193
 #, kde-format
@@ -6640,7 +6642,7 @@ msgstr ""
 #: app/Panel/krcalcspacedialog.cpp:107
 #, kde-format
 msgid "Name: %1\n"
-msgstr ""
+msgstr "სახელი: %1\n"
 
 #: app/Panel/krcalcspacedialog.cpp:109
 #, kde-format
@@ -7520,7 +7522,7 @@ msgstr ""
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
 msgid "Filter Files"
-msgstr ""
+msgstr "ფილტრის ფაილები"
 
 #: app/Panel/PanelView/krview.cpp:1104
 #, kde-format
@@ -7622,7 +7624,7 @@ msgstr ""
 #, kde-format
 msgctxt "File property"
 msgid "rwx"
-msgstr ""
+msgstr "rwx"
 
 #: app/Panel/PanelView/listmodel.cpp:380
 #, kde-format
@@ -7651,7 +7653,7 @@ msgstr "ტიპი: %1"
 #, kde-format
 msgctxt "File property"
 msgid "Modified: %1"
-msgstr ""
+msgstr "ცვლილება: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:488
 #, kde-format
@@ -7669,7 +7671,7 @@ msgstr ""
 #, kde-format
 msgctxt "File property"
 msgid "Permissions: %1"
-msgstr ""
+msgstr "წვდომები: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:492
 #, kde-format
@@ -7790,7 +7792,7 @@ msgstr "შენიშვნის &ყველაფერზე მოხს
 #: app/Panel/viewactions.cpp:35
 #, kde-format
 msgid "&Invert Selection"
-msgstr ""
+msgstr "მონიშვნის &ინვერსია"
 
 #: app/Panel/viewactions.cpp:36
 #, kde-format
@@ -7840,7 +7842,7 @@ msgstr "ჯგუფის მონიშვნა"
 #: app/Panel/viewactions.cpp:49
 #, kde-format
 msgid "Select all files in the current folder"
-msgstr ""
+msgstr "მიმდინარე საქაღალდეში ყველაფრის მონიშვნა"
 
 #: app/Panel/viewactions.cpp:50
 #, kde-format
@@ -8352,7 +8354,7 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:251
 #, kde-format
 msgid "Asymmetric"
-msgstr ""
+msgstr "ასიმეტრიული"
 
 #: app/Synchronizer/synchronizergui.cpp:254
 #, kde-format
@@ -8413,7 +8415,7 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:308
 #, kde-format
 msgid "Duplicates"
-msgstr ""
+msgstr "დუბლიკატები"
 
 #: app/Synchronizer/synchronizergui.cpp:312
 #, kde-format
