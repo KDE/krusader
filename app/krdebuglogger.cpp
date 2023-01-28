@@ -9,39 +9,54 @@
 #include "krdebuglogger.h"
 #include "compat.h"
 
-int KrDebugLogger::indentation = 1;
-const int KrDebugLogger::indentationIncrease = 3;
-const QString KrDebugLogger::logFile = QDir::tempPath() + "/krdebug";
+#include <QStringBuilder>
 
-KrDebugLogger::KrDebugLogger(const QString &argFunction, int line)
-    : function(argFunction)
+KrDebugLogger krDebugLogger;
+
+KrDebugLogger::KrDebugLogger()
 {
-    QFile file;
-    QTextStream stream;
-    prepareWriting(file, stream);
-    stream << QString("┏"); // Indicates that a function has been started
-    stream << function << "(" << line << ")" << QT_ENDL;
+    // Sets the level of detail/verbosity
+    const QByteArray krDebugBrief = qgetenv("KRDEBUG_BRIEF").toLower();
+    briefMode = (krDebugBrief == "true" || krDebugBrief == "yes" || krDebugBrief == "on" || krDebugBrief == "1");
+}
+
+QString KrDebugLogger::indentedCodePoint(const QString &functionName, int line, const QString &indentationSymbol) const
+{
+    QString result = QString(indentation, ' ') %  // Applies the indentation level to make logs clearer
+                     indentationSymbol % functionName;  // Uses QStringBuilder to concatenate
+    if (!briefMode)
+        result = QString("Pid:%1 ").arg(getpid()) %
+                result %
+                (line != 0 ? QString("(%1)").arg(line) : "");
+    return result;
+}
+
+void KrDebugLogger::decreaseIndentation()
+{
+    indentation -= indentationIncrease;
+}
+
+void KrDebugLogger::increaseIndentation()
+{
     indentation += indentationIncrease;
 }
 
-KrDebugLogger::~KrDebugLogger()
+// ---------------------------------------------------------------------------------------
+// Member functions of the KrDebugFunctionLogger class
+// ---------------------------------------------------------------------------------------
+
+KrDebugFunctionLogger::KrDebugFunctionLogger(const QString &functionName, int line) :
+    functionName(functionName)
 {
-    indentation -= indentationIncrease;
-    QFile file;
-    QTextStream stream;
-    prepareWriting(file, stream);
-    stream << QString("┗"); // Indicates that a function is going to finish
-    stream << function << QT_ENDL;
+    // Shows that a function has been started
+    qDebug().nospace().noquote() << krDebugLogger.indentedCodePoint(functionName, line, "┏");
+
+    krDebugLogger.increaseIndentation();
 }
 
-//! Prepares some elements before a writing into the krarc debug log file
-void KrDebugLogger::prepareWriting(QFile &file, QTextStream &stream)
+KrDebugFunctionLogger::~KrDebugFunctionLogger()
 {
-    file.setFileName(logFile);
-    file.open(QIODevice::WriteOnly | QIODevice::Append);
-    stream.setDevice(&file);
-    stream << "Pid:" << (int)getpid();
-    // Applies the indentation level to make logs clearer
-    for (int x = 0; x < indentation; ++x)
-        stream << " ";
+    krDebugLogger.decreaseIndentation();
+    // Shows that a function is going to finish
+    qDebug().nospace().noquote() << krDebugLogger.indentedCodePoint(functionName, 0, "┗");
 }
