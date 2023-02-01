@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 02:46+0000\n"
-"PO-Revision-Date: 2023-01-31 01:15+0300\n"
+"PO-Revision-Date: 2023-01-31 22:06+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -383,13 +383,13 @@ msgstr "Etkinleştirildi"
 #: app/ActionMan/actionproperty.ui:414
 #, kde-format
 msgid "Execution Mode"
-msgstr "Çalıştırma Kipi"
+msgstr "Yürütme Kipi"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioCollectOutput)
 #: app/ActionMan/actionproperty.ui:420
 #, kde-format
 msgid "Collect the output of the executed program."
-msgstr "Çalıştırılan programın çıktılarını biriktirir."
+msgstr "Yürütülen programın çıktılarını biriktirir."
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioCollectOutput)
 #: app/ActionMan/actionproperty.ui:423
@@ -548,7 +548,7 @@ msgstr "&Yeni..."
 #: app/ActionMan/actionproperty.ui:925
 #, kde-format
 msgid "Allows one to tweak the <i>Command</i> before it is executed."
-msgstr "<i>Komut</i>un, çalıştırılmadan önce ayarlanabilmesine izin verir."
+msgstr "<i>Komut</i>un, yürütülmeden önce ayarlanabilmesine izin verir."
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkConfirmExecution)
 #: app/ActionMan/actionproperty.ui:928
@@ -561,7 +561,7 @@ msgstr "Her program çağrısını ayrı ayrı onayla"
 #: app/ActionMan/actionproperty.ui:935 app/ActionMan/actionproperty.ui:948
 #, kde-format
 msgid "Execute the <i>Command</i> under a different user ID."
-msgstr "<i>Komut</i>u başka bir kullanıcı kimliği ile çalıştır."
+msgstr "<i>Komut</i>u başka bir kullanıcı kimliği ile yürüt."
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkDifferentUser)
 #: app/ActionMan/actionproperty.ui:938
@@ -597,7 +597,7 @@ msgstr "Bağımsız panel"
 #: app/ActionMan/addplaceholderpopup.cpp:57
 #, kde-format
 msgid "Choose executable..."
-msgstr "Çalıştırılabilir dosya seç..."
+msgstr "Yürütülebilir seç..."
 
 #: app/ActionMan/addplaceholderpopup.cpp:143
 #, kde-format
@@ -2384,7 +2384,7 @@ msgstr ""
 #: app/GUI/kcmdmodebutton.cpp:36
 #, kde-format
 msgid "Execution mode"
-msgstr "Çalıştırma kipi"
+msgstr "Yürütme kipi"
 
 #: app/GUI/kfnkeys.cpp:24 app/Panel/listpanelactions.cpp:63
 #, kde-format
@@ -2998,7 +2998,7 @@ msgstr "Ön plan ile aynı"
 #: app/Konfigurator/kgcolors.cpp:94 app/Konfigurator/kgcolors.cpp:132
 #, kde-format
 msgid "Executable foreground:"
-msgstr "Çalıştırılabilir dosya ön planı:"
+msgstr "Yürütülebilir ön planı:"
 
 #: app/Konfigurator/kgcolors.cpp:95 app/Konfigurator/kgcolors.cpp:133
 #, kde-format
@@ -3596,7 +3596,7 @@ msgid ""
 "active panel."
 msgstr ""
 "İşaretlendiğinde, uçbirim çalışma dizini değiştiğinde (örneğin 'cd' veya "
-"'popd' komutu çalıştırıldığında), Krusader etkin paneldeki geçerli klasörü "
+"'popd' komutu yürütüldüğünde), Krusader etkin paneldeki geçerli klasörü "
 "değiştirir."
 
 #: app/Konfigurator/kggeneral.cpp:296
@@ -4913,7 +4913,7 @@ msgstr "Eylemci'yi Başlat"
 #: app/Konfigurator/kguseractions.cpp:44
 #, kde-format
 msgid "Terminal execution"
-msgstr "Uçbirim çalıştırma"
+msgstr "Uçbirim yürütme"
 
 #: app/Konfigurator/kguseractions.cpp:48
 #, kde-format
@@ -5456,7 +5456,7 @@ msgstr[1] "Dosyalar gönderiliyor: %2"
 #: app/krslots.cpp:473 app/Synchronizer/synchronizer.cpp:1382
 #, kde-format
 msgid "Error executing %1."
-msgstr "%1 çalıştırılırken hata."
+msgstr "%1 yürütülürken hata."
 
 #: app/krslots.cpp:161
 #, kde-format
@@ -5521,7 +5521,7 @@ msgstr ""
 #: app/krslots.cpp:447
 #, kde-format
 msgid "Error executing '%1'."
-msgstr "'%1' çalıştırılırken hata."
+msgstr "'%1' yürütülürken hata."
 
 #: app/krslots.cpp:453
 #, kde-format
@@ -5540,8 +5540,8 @@ msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
 "verify that kde-cli-tools are installed."
 msgstr ""
-"Krusader kök kipinde başlatılamadı, %1 bulunamadı veya çalıştırılabilir "
-"değil. Lütfen kde-cli-tools'un yüklü olduğundan emin olun."
+"Krusader kök kipinde başlatılamadı, %1 bulunamadı veya yürütülebilir değil. "
+"Lütfen kde-cli-tools'un kurulu olduğundan emin olun."
 
 #: app/krslots.cpp:486
 #, kde-format
@@ -5670,7 +5670,7 @@ msgstr "&Araç Çubukları"
 #: app/krusaderui.rc:131
 #, kde-format
 msgid "Command Execution &Mode Setup"
-msgstr "Komut Çalıştırma Kipi &Ayarları"
+msgstr "Komut Yürütme Kipi &Ayarları"
 
 #. i18n: ectx: Menu (window)
 #: app/krusaderui.rc:145
@@ -9537,8 +9537,8 @@ msgid ""
 "Cannot run user action, %1 not found or not executable. Please verify that "
 "kde-cli-tools are installed."
 msgstr ""
-"Kullanıcı eylemi çalıştırılamıyor, %1 bulunamadı ya da çalıştırılabilir "
-"değil. Lütfen kde-cli-tools'un yüklü olduğundan emin olun."
+"Kullanıcı eylemi çalıştırılamıyor, %1 bulunamadı veya yürütülebilir değil. "
+"Lütfen kde-cli-tools'un kurulu olduğundan emin olun."
 
 #: app/UserAction/kraction.cpp:245
 #, kde-format
@@ -9550,12 +9550,12 @@ msgstr ""
 #: app/UserAction/kractionbase.cpp:48
 #, kde-format
 msgid "Confirm Execution"
-msgstr "Çalıştırmayı Onaylayın"
+msgstr "Yürütmeyi Onayla"
 
 #: app/UserAction/kractionbase.cpp:48
 #, kde-format
 msgid "Command being executed:"
-msgstr "Çalıştırılacak komut:"
+msgstr "Yürütülen komut:"
 
 #: app/UserAction/useraction.cpp:157
 #, kde-format
