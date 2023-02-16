@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 02:46+0000\n"
-"PO-Revision-Date: 2023-02-07 11:05\n"
+"PO-Revision-Date: 2023-02-15 11:07\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -662,7 +662,7 @@ msgid ""
 "Cannot open %1 for writing.\n"
 "Nothing exported."
 msgstr ""
-"无法打开 %1 以写入！\n"
+"无法打开 %1 进行写入。\n"
 "未导出任何数据。"
 
 #: app/ActionMan/useractionpage.cpp:291
@@ -694,17 +694,17 @@ msgstr "正在上传到远程目标"
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
-msgstr ""
+msgstr "%1，不支持的压缩包类型。"
 
 #: app/Archive/krarchandler.cpp:193
 #, kde-format
 msgid "Counting files in archive"
-msgstr "正在统计归档中的文件数量"
+msgstr "正在统计压缩包中的文件数量"
 
 #: app/Archive/krarchandler.cpp:215
 #, kde-format
 msgid "Failed to list the content of the archive (%1)."
-msgstr ""
+msgstr "无法列出压缩包的内容 (%1)。"
 
 #: app/Archive/krarchandler.cpp:234 app/Archive/krarchandler.cpp:351
 #, kde-format
@@ -734,7 +734,7 @@ msgstr "用户已取消。"
 #: app/Archive/krarchandler.cpp:400
 #, kde-format
 msgid "Testing Archive"
-msgstr "正在测试归档"
+msgstr "正在测试压缩包"
 
 #: app/Archive/krarchandler.cpp:527
 #, kde-format
@@ -749,7 +749,7 @@ msgstr "打包 %1 失败"
 #: app/Archive/krarchandler.cpp:598
 #, kde-format
 msgid "This archive is encrypted, please supply the password:"
-msgstr "此归档经过加密，请输入密码："
+msgstr "此压缩包经过加密，请输入密码："
 
 #: app/Archive/packjob.cpp:51 app/Archive/packjob.cpp:139
 #, kde-format
@@ -770,7 +770,7 @@ msgstr "%1, 测试失败。"
 #: app/Archive/packjob.cpp:105
 #, kde-format
 msgid "Archive tests passed."
-msgstr "归档测试通过。"
+msgstr "压缩包通过测试。"
 
 #: app/Archive/packjob.cpp:146
 #, kde-format
@@ -1233,7 +1233,7 @@ msgstr "打包"
 #: app/Dialogs/packguibase.cpp:70
 #, kde-format
 msgid "To archive"
-msgstr "到归档"
+msgstr "到压缩包"
 
 #: app/Dialogs/packguibase.cpp:89
 #, kde-format
@@ -1243,7 +1243,7 @@ msgstr ""
 #: app/Dialogs/packguibase.cpp:139
 #, kde-format
 msgid "Multiple volume archive"
-msgstr ""
+msgstr "分卷压缩包"
 
 #: app/Dialogs/packguibase.cpp:148 app/DiskUsage/diskusage.cpp:1019
 #, kde-format
@@ -1771,7 +1771,7 @@ msgstr ""
 #: app/Konfigurator/konfigurator.cpp:124
 #, kde-format
 msgid "Archives"
-msgstr "归档"
+msgstr "压缩包"
 
 #: app/FileSystem/krquery.cpp:232 app/Filter/generalfilter.cpp:155
 #, kde-format
@@ -2725,7 +2725,7 @@ msgstr ""
 #: app/Konfigurator/kgarchives.cpp:43
 #, kde-format
 msgid "Enable writing to archives using the krarc ioslave."
-msgstr ""
+msgstr "启用基于 krarc ioslave 的压缩包写入功能。"
 
 #: app/Konfigurator/kgarchives.cpp:50
 #, kde-format
@@ -2734,42 +2734,46 @@ msgid ""
 "might result in data loss.</b><br/><b>Moving archives into themselves will "
 "delete them.</b>"
 msgstr ""
+"<b>移动文件到压缩包的相关警告：</b><br/><b>移动过程如果失败，可能会导致数据丢"
+"失。</b><br/><b>移动压缩包到其自身将会删除它们。</b>"
 
 #: app/Konfigurator/kgarchives.cpp:59
 #, kde-format
 msgid "Archives handling"
-msgstr ""
+msgstr "压缩包处理"
 
 #: app/Konfigurator/kgarchives.cpp:65
 #, kde-format
 msgid "Browse Archives As Folders"
-msgstr ""
+msgstr "将压缩包视作文件夹浏览"
 
 #: app/Konfigurator/kgarchives.cpp:65
 #, kde-format
 msgid "Krusader will browse archives as folders."
-msgstr ""
+msgstr "Krusader 将把压缩包视作文件夹进行浏览。"
 
 #: app/Konfigurator/kgarchives.cpp:82
 #, kde-format
 msgid "Test archive after packing"
-msgstr "在解开档案前先测试档案"
+msgstr "打包后测试压缩包"
 
 #: app/Konfigurator/kgarchives.cpp:82
 #, kde-format
 msgid "Check the archive's integrity after packing it."
-msgstr "在打包之后测试档案。"
+msgstr "打包后检查压缩包的完整性。"
 
 #: app/Konfigurator/kgarchives.cpp:83
 #, kde-format
 msgid "Test archive before unpacking"
-msgstr "在解开档案前先测试档案"
+msgstr "解压缩前测试压缩包"
 
 #: app/Konfigurator/kgarchives.cpp:83
 #, kde-format
 msgid ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr "一些错误的档案可能导致崩溃; 因此建议您先检测档案。"
+msgstr ""
+"某些包含错误数据的压缩包可能会引起程序崩溃。为了避免发生这种情况，可以在解压"
+"缩前进行测试。"
 
 #: app/Konfigurator/kgarchives.cpp:103 app/Konfigurator/kggeneral.cpp:295
 #: app/Search/krsearchdialog.cpp:604
@@ -4788,7 +4792,7 @@ msgstr ""
 #: app/Konfigurator/konfigurator.cpp:124
 #, kde-format
 msgid "Customize the way Krusader deals with archives"
-msgstr "自定义 Krusader 处理档案的方式"
+msgstr "自定义 Krusader 处理压缩包的方式"
 
 #: app/Konfigurator/konfigurator.cpp:127
 #, kde-format
@@ -7060,7 +7064,7 @@ msgstr "新建符号链接..."
 #: app/Panel/listpanelactions.cpp:86
 #, kde-format
 msgid "T&est Archive"
-msgstr "测试归档(&E)"
+msgstr "测试压缩包(&E)"
 
 #: app/Panel/listpanelactions.cpp:87
 #, kde-format
@@ -7254,7 +7258,7 @@ msgstr "在新标签页中打开"
 #: app/Panel/panelcontextmenu.cpp:148
 #, kde-format
 msgid "Browse Archive"
-msgstr ""
+msgstr "浏览压缩包"
 
 #: app/Panel/panelcontextmenu.cpp:198
 #, kde-format
@@ -7496,6 +7500,8 @@ msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost.</p></qt>"
 msgstr ""
+"<qt><p>压缩包 <b>%1.%2</b> 已存在。您想要覆盖它吗？</p><p>现有压缩包中的所有"
+"数据将会丢失。</p></qt>"
 
 #: app/Panel/panelfunc.cpp:1068
 #, kde-format
@@ -7504,6 +7510,8 @@ msgid ""
 "</p><p>Zip will replace identically named entries in the zip archive or add "
 "entries for new names.</p></qt>"
 msgstr ""
+"<qt><p>压缩包 <b>%1.%2</b> 已存在。您想要覆盖它吗？</p><p>Zip 程序将替换该 "
+"Zip 压缩包中的同名项目，或者添加新名称的项目。</p></qt>"
 
 #: app/Panel/panelfunc.cpp:1074
 #, kde-format
@@ -7958,9 +7966,9 @@ msgid ""
 "You cannot search for text (grep) while doing a search that includes "
 "archives."
 msgstr ""
-"既然您选择了搜索档案,\n"
-"请您注意以下缺点：\n"
-"您不能 (使用 grep 来) 搜索档案中的文件。"
+"您已选择搜索压缩包内容，\n"
+"请注意此功能的缺点：\n"
+"您无法 (通过 grep 等程序) 搜索压缩包中的文本信息。"
 
 #: app/Search/krsearchdialog.cpp:432
 #, kde-format
@@ -8386,6 +8394,8 @@ msgid ""
 "<p>Ignore date information during the compare process.</p><p><b>Note</b>: "
 "useful if the files are located on network filesystems or in archives.</p>"
 msgstr ""
+"<p>忽略比较过程中的日期信息。</p><p><b>Note</b>：在文件位于网络文件系统或者压"
+"缩包中时有用。</p>"
 
 #: app/Synchronizer/synchronizergui.cpp:251
 #, kde-format
@@ -9441,11 +9451,13 @@ msgid ""
 "krarc: write support is disabled.\n"
 "You can enable it on the 'Archives' page in Konfigurator."
 msgstr ""
+"krarc：写入支持已禁用。\n"
+"您可以在 Konfigurator 的“压缩包”页面启用该功能。"
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
 #, kde-format
 msgid "Creating folders is not supported with %1 archives"
-msgstr "%1 档案不支持创建目录"
+msgstr "%1 压缩包不支持创建目录"
 
 #: plugins/krarc/krarc.cpp:345
 #, kde-format
@@ -9455,7 +9467,7 @@ msgstr "正在创建 %1..."
 #: plugins/krarc/krarc.cpp:407 plugins/krarc/krarc.cpp:424
 #, kde-format
 msgid "Writing to %1 archives is not supported"
-msgstr "不支持写入 %1。"
+msgstr "不支持写入 %1 压缩包。"
 
 #: plugins/krarc/krarc.cpp:497
 #, kde-format
@@ -9465,7 +9477,7 @@ msgstr "正在打包 %1..."
 #: plugins/krarc/krarc.cpp:560 plugins/krarc/krarc.cpp:581
 #, kde-format
 msgid "Retrieving data from %1 archives is not supported"
-msgstr "不支持从 %1 获取数据。"
+msgstr "不支持从 %1 压缩包获取数据。"
 
 #: plugins/krarc/krarc.cpp:663 plugins/krarc/krarc.cpp:1085
 #, kde-format
@@ -9482,17 +9494,17 @@ msgstr "发生了一个错误，与外部程序%1相关。错误信息为：%2�
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
 msgid "Deleting files from %1 archives is not supported"
-msgstr "不支持从 %1 档案删除文件"
+msgstr "不支持从 %1 压缩包删除文件"
 
 #: plugins/krarc/krarc.cpp:943 plugins/krarc/krarc.cpp:957
 #, kde-format
 msgid "Accessing files is not supported with %1 archives"
-msgstr "%1 档案不支持访问文件"
+msgstr "不支持访问 %1 压缩包中的文件"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
 #, kde-format
 msgid "Listing folders is not supported for %1 archives"
-msgstr "%1 档案不支持列出目录"
+msgstr "不支持列出 %1 压缩包中的目录"
 
 #: plugins/krarc/krarc.cpp:2144 plugins/krarc/krarc.cpp:2150
 #, kde-format
