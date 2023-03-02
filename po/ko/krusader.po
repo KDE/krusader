@@ -3,7 +3,7 @@
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # This file is distributed under the same license as the Krusader package
 # Jee, Seongnam <snjee@intellicam.com>, 2008.
-# Shinjo Park <kde@peremen.name>, 2010, 2015, 2019, 2020, 2021, 2022.
+# Shinjo Park <kde@peremen.name>, 2010, 2015, 2019, 2020, 2021, 2022, 2023.
 # Copyright (C) 2004-2009, Krusader Krew
 #
 #
@@ -12,9 +12,9 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-24 00:49+0000\n"
-"PO-Revision-Date: 2022-10-03 15:58+0200\n"
+"PO-Revision-Date: 2023-03-01 01:53+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
-"Language-Team: Korean <kde-i18n-doc@kde.org>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1640,7 +1640,7 @@ msgstr "KDE"
 #: app/DiskUsage/dufilelight.cpp:86
 #, kde-format
 msgid "Scheme"
-msgstr "색 배열"
+msgstr "색 구성표"
 
 #: app/DiskUsage/dufilelight.cpp:88
 #, kde-format
@@ -3214,12 +3214,12 @@ msgstr "미리 보기"
 #: app/Konfigurator/kgcolors.cpp:262
 #, kde-format
 msgid "Import color-scheme"
-msgstr "색 배열 가져오기"
+msgstr "색 구성표 가져오기"
 
 #: app/Konfigurator/kgcolors.cpp:264
 #, kde-format
 msgid "Export color-scheme"
-msgstr "색 배열 내보내기"
+msgstr "색 구성표 내보내기"
 
 #: app/Konfigurator/kgcolors.cpp:443
 #, kde-format
@@ -3304,7 +3304,7 @@ msgstr "상태 표시줄 비활성"
 #: app/Konfigurator/kgcolors.cpp:560
 #, kde-format
 msgid "Select a color-scheme file"
-msgstr "색 배열 파일 선택"
+msgstr "색 구성표 파일 선택"
 
 #: app/Konfigurator/kgcolors.cpp:566
 #, kde-format
@@ -3314,7 +3314,7 @@ msgstr "오류: 파일에서 읽을 수 없음"
 #: app/Konfigurator/kgcolors.cpp:577
 #, kde-format
 msgid "Select a color scheme file"
-msgstr "색 배열 파일 선택"
+msgstr "색 구성표 파일 선택"
 
 #: app/Konfigurator/kgcolors.cpp:583
 #, kde-format
@@ -6098,16 +6098,13 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - 관리자 권한"
 
 #: app/main.cpp:113
-#, fuzzy, kde-format
-#| msgid ""
-#| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2020 Krusader Krew"
+#, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2020 Krusader Krew"
+"© 2004-2022 Krusader Krew"
 
 #: app/main.cpp:114
 #, kde-format
@@ -9600,7 +9597,7 @@ msgstr "멀티미디어"
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "현재 항목의 파일 경로 복사"
+msgstr "현재 항목의 파일 경로 복사(공백에 탈출 문자 적용)"
 
 #: app/useraction_examples.xml:46
 #, kde-format
