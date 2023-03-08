@@ -297,7 +297,7 @@ QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor & dimCol
     p.fillRect(0, 0, icon.width(), icon.height(), dimColor);
     p.setCompositionMode(QPainter::CompositionMode_SourceOver);
     p.setOpacity((qreal)dimFactor / (qreal)100);
-    p.drawPixmap(0, 0, icon.width(), icon.height(), pixmap);
+    p.drawPixmap(0, 0, pixmap);
 
     return QPixmap::fromImage(dimmed, Qt::ColorOnly | Qt::ThresholdDither |
                                 Qt::ThresholdAlphaDither | Qt::NoOpaqueDetection );
