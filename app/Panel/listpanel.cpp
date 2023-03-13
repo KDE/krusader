@@ -229,6 +229,11 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     cancelQuickSizeCalcButton->setToolTip(i18n("Cancel folder space calculation"));
     ADD_WIDGET(cancelQuickSizeCalcButton);
 
+    // make sure to reserve enough vertical space for the progress indicator to become visible
+    quickSizeCalcProgress->adjustSize();
+    cancelQuickSizeCalcButton->adjustSize();
+    totals->setMinimumHeight(std::max(quickSizeCalcProgress->height(), cancelQuickSizeCalcButton->height()));
+
     // progress indicator for the preview job
     previewProgress = new QProgressBar(this);
     previewProgress->hide();
