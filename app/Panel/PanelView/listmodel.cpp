@@ -177,7 +177,7 @@ QVariant ListModel::data(const QModelIndex& index, int role) const
             if (properties()->displayIcons) {
                 if (_justForSizeHint)
                     return QPixmap(_view->fileIconSize(), _view->fileIconSize());
-                return _view->getIcon(fileitem);
+                return QIcon(_view->getIcon(fileitem));
             }
             break;
         }
