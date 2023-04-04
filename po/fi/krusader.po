@@ -1,6 +1,6 @@
 # Copyright © 2012 This_file_is_part_of_KDE
 # This file is distributed under the same license as the krusader package.
-# Tommi Nieminen <translator@legisign.org>, 2012, 2018, 2019, 2020, 2021, 2022.
+# Tommi Nieminen <translator@legisign.org>, 2012, 2018, 2019, 2020, 2021, 2022, 2023.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2012, 2013, 2014, 2015, 2016.
 # Jiri Grönroos <jiri.gronroos+kde@iki.fi>, 2012.
 #
@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 02:46+0000\n"
-"PO-Revision-Date: 2022-08-22 22:00+0300\n"
+"PO-Revision-Date: 2023-03-29 23:23+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -1875,12 +1875,10 @@ msgid "Searching content of '%1' (%2)"
 msgstr "Etsitään sisältöä: ”%1” (%2)"
 
 #: app/FileSystem/krquery.cpp:552
-#, fuzzy, kde-format
-#| msgctxt "filestate: filename"
-#| msgid "%1: %2"
+#, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr "%1: %2"
+msgstr "%1 %"
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, kde-format
@@ -3810,7 +3808,7 @@ msgstr "Sulje välilehti kaksoisnapsauttamalla."
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr ""
+msgstr "Uusi välilehti -painike monistaa välilehden"
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3818,32 +3816,33 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
+"Jos valittu, uusi välilehti -painike monistaa välilehden, muuten se avaa "
+"välilehden kotikansioon."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr ""
+msgstr "Monista aktiivinen välilehti napsauttamalla:"
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, fuzzy, kde-format
-#| msgid "disabled"
+#, kde-format
 msgid "Disabled"
-msgstr "ei käytössä"
+msgstr "Ei käytössä"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr ""
+msgstr "Alt+napsautus"
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr ""
+msgstr "Ctrl+napsautus"
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr ""
+msgstr "Monista aktiivinen välilehti napsauttamalla Ctrl/Alt+vasen painike"
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -6170,16 +6169,13 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader – PÄÄKÄYTTÄJÄOIKEUDET"
 
 #: app/main.cpp:113
-#, fuzzy, kde-format
-#| msgid ""
-#| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2019 Krusader Krew"
+#, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
-"© 2000–03 Shie Erlich, Rafi Yanai\n"
-"© 2004–19 Krusader-työryhmä"
+"© 2000–2003 Shie Erlich, Rafi Yanai\n"
+"© 2004–2022 Krusader-työryhmä"
 
 #: app/main.cpp:114
 #, kde-format
@@ -9726,12 +9722,12 @@ msgstr "Multimedia"
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr ""
+msgstr "Kopioi nykyisen kohteen sijainti (lainaten välilyönnit)"
 
 #: app/useraction_examples.xml:46
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
-msgstr ""
+msgstr "Kopioi valittujen kohteiden sijainnit"
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
