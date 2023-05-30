@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-24 00:49+0000\n"
-"PO-Revision-Date: 2023-05-15 22:40+0300\n"
+"PO-Revision-Date: 2023-05-29 12:56+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.03.70\n"
+"X-Generator: Lokalize 23.04.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -162,7 +162,7 @@ msgid ""
 "<i>Konfigurator</i> and via <code>Shift+F1</code>."
 msgstr ""
 "<b>Kullanıcı eyleminin</b> ayrıntılı bir açıklaması. Yalnızca "
-"<i>Konfigurator</i> içinde <code>Shift+F1</code> ile görüntülenir."
+"<i>Konfigurator</i> içinde <code>Üst Karakter+F1</code> ile görüntülenir."
 
 #. i18n: ectx: property (text), widget (QLabel, LabelDescription)
 #: app/ActionMan/actionproperty.ui:61
@@ -612,7 +612,7 @@ msgstr "Yürütülebilir seç..."
 #: app/ActionMan/addplaceholderpopup.cpp:143
 #, kde-format
 msgid "User Action Parameter Dialog"
-msgstr "Kullanıcı Eylemi Parametre Penceresi"
+msgstr "Kullanıcı Eylemi Parametre İletişim Kutusu"
 
 #: app/ActionMan/addplaceholderpopup.cpp:156
 #, kde-format
@@ -2387,7 +2387,7 @@ msgid ""
 "Krusader obeys.</p><p><b>Tip</b>: move within command line history with &lt;"
 "Up&gt; and &lt;Down&gt; arrows.</p></qt>"
 msgstr ""
-"<qt><p>Aslında oldukça basit: komutu buraya girersiniz Krusader da onu "
+"<qt><p>Aslında oldukça basit: Komutu buraya girersiniz Krusader da onu "
 "uygular.</p><p><b>İpucu</b>: &lt;Yukarı&gt; ve &lt;Aşağı&gt; ok düğmeleriyle "
 "geçmiş komutlar arasında gezinebilirsiniz.</p></qt>"
 
@@ -3714,14 +3714,15 @@ msgstr "Kopyalanacak/taşınacak dosyaların seçimini işlem başlamadan kaldı
 #: app/Konfigurator/kgpanel.cpp:103
 #, kde-format
 msgid "Filter dialog remembers settings"
-msgstr "Süzgeç penceresi ayarları hatırlar"
+msgstr "Süzgeç iletişim kutusu ayarları anımsar"
 
 #: app/Konfigurator/kgpanel.cpp:103
 #, kde-format
 msgid ""
 "The filter dialog is opened with the last filter settings that where applied "
 "to the panel."
-msgstr "Süzgeç penceresi, panele uygulanan son süzgeç ayarlarıyla açıldı."
+msgstr ""
+"Süzgeç iletişim kutusu, panele uygulanan son süzgeç ayarlarıyla açıldı."
 
 #: app/Konfigurator/kgpanel.cpp:113
 #, kde-format
@@ -3829,17 +3830,17 @@ msgstr "Devre Dışı"
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr "Alt+Tıkla"
+msgstr "Seçenek+Tıkla"
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr "Ctrl+Tıkla"
+msgstr "Kontrol+Tıkla"
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr "Ctrl/Alt+SOFADÜ tıklayarak etkin sekmeyi çoğalt"
+msgstr "Kontrol/Seçenek+Sol Fare Düğmesi'ne tıklayarak etkin sekmeyi çoğalt"
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -4392,8 +4393,8 @@ msgid ""
 "short click on the right mouse button."
 msgstr ""
 "Her iki düğme ile de dosyaları seçebilirsiniz. Birden fazla dosyayı seçmek "
-"için CTRL düğmesine basılı tutarak sol fare düğmesini kullanabilirsiniz. Sağ "
-"tıklama ile seçili ögeleri sağ düğme menüsü ile işleyebilirsiniz."
+"için Kontrol düğmesine basılı tutarak sol fare düğmesini kullanabilirsiniz. "
+"Sağ tıklama ile seçili ögeleri sağ düğme menüsü ile işleyebilirsiniz."
 
 #: app/Konfigurator/kgpanel.cpp:603
 #, kde-format
@@ -4441,8 +4442,8 @@ msgid ""
 "menu. You can select with Ctrl key and the left button."
 msgstr ""
 "Sol fare düğmesi ile seçim yapmaz; ancak seçimini etkilemeksizin bulunulan "
-"dosyaya konumlanır. Sağ fare düğmesi bağlam menüsünü açar. Ctrl düğmesi ve "
-"sol fare tıklaması ile seçebilirsiniz."
+"dosyaya konumlanır. Sağ fare düğmesi bağlam menüsünü açar. Kontrol düğmesi "
+"ve sol fare tıklaması ile seçebilirsiniz."
 
 #: app/Konfigurator/kgpanel.cpp:606
 #, kde-format
@@ -4522,7 +4523,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:646
 #, kde-format
 msgid "Shift/Ctrl-Left mouse button selects"
-msgstr "Shift/Ctrl-Sol fare düğmesi seçer"
+msgstr "Üst Karakter/Kontrol-Sol Fare Düğmesi seçer"
 
 #: app/Konfigurator/kgpanel.cpp:647
 #, kde-format
@@ -4530,7 +4531,7 @@ msgid ""
 "If checked, Shift/Ctrl left clicking will select items.\n"
 "Note: this is meaningless if 'Left Button Selects' is checked."
 msgstr ""
-"Seçiliyse Shift/Ctrl sol tıklama ögeleri seçecektir.\n"
+"Seçiliyse Üst Karakter/Kontrol sol tıklama ögeleri seçecektir.\n"
 "Not: 'Sol Düğme Seçer' işaretlendiğinde işlevsizdir."
 
 #: app/Konfigurator/kgpanel.cpp:649
@@ -4560,7 +4561,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:655
 #, kde-format
 msgid "Shift/Ctrl-Right mouse button selects"
-msgstr "Shift/Ctrl-Sağ fare düğmesi seçer"
+msgstr "Üst Karakter/Kontrol-Sağ Fare Düğmesi seçer"
 
 #: app/Konfigurator/kgpanel.cpp:656
 #, kde-format
@@ -4568,7 +4569,7 @@ msgid ""
 "If checked, Shift/Ctrl right clicking will select items.\n"
 "Note: this is meaningless if 'Right Button Selects' is checked."
 msgstr ""
-"Seçiliyse Shift/Ctrl sağ tıklama ögeleri seçecektir.\n"
+"Seçiliyse Üst Karakter/Kontrol sağ tıklama ögeleri seçecektir.\n"
 "Not: 'Sağ Düğme Seçer' işaretlendiğinde işlevsizdir."
 
 #: app/Konfigurator/kgpanel.cpp:658
@@ -4605,7 +4606,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:664
 #, kde-format
 msgid "Insert moves down"
-msgstr "Insert aşağı iner"
+msgstr "Ekle düğmesi aşağı iner"
 
 #: app/Konfigurator/kgpanel.cpp:665
 #, kde-format
@@ -4646,8 +4647,9 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
-"Değiştirici (Shift veya Ctrl) olmadan bir fare tıklaması seçimi sıfırlar.\n"
-"Bu ayarın çalışması için fare düğmesiyle Ctrl/Shift seçiminin "
+"Değiştirici (Üst Karakter veya Kontrol) olmadan bir fare tıklaması seçimi "
+"sıfırlar.\n"
+"Bu ayarın çalışması için fare düğmesiyle Kontrol/Üst Karakter seçiminin "
 "etkinleştirilmesi gerekir."
 
 #: app/Konfigurator/kgpanel.cpp:706
@@ -4830,8 +4832,8 @@ msgid ""
 msgstr ""
 "<p>Başlangıçta ana pencere kendini son kapanıştaki boyutuna göre yeniden "
 "boyutlandırır. Ayrıca ekrandaki eski konumunda yer alır.</p> <p>Bu seçenek "
-"kapalı olsa bile <i>Pencere - Konumu Kaydet</i> seçeneği ile başlangıçta ana "
-"pencerenin boyutunun ve konumunun kaydedilmesini sağlayabilirsiniz.</p>"
+"kapalı olsa bile <i>Pencere -> Konumu Kaydet</i> seçeneği ile başlangıçta "
+"ana pencerenin boyutunun ve konumunun kaydedilmesini sağlayabilirsiniz.</p>"
 
 #: app/Konfigurator/kgstartup.cpp:91
 #, kde-format
@@ -6060,17 +6062,17 @@ msgstr "İçeriğe göre karşılaştır (F10)"
 #: app/Locate/locate.cpp:394
 #, kde-format
 msgid "Find (Ctrl+F)"
-msgstr "Bul (Ctrl+F)"
+msgstr "Bul (Kontrol+F)"
 
 #: app/Locate/locate.cpp:395
 #, kde-format
 msgid "Find next (Ctrl+N)"
-msgstr "Sonrakini Bul (Ctrl+N)"
+msgstr "Sonrakini Bul (Kontrol+N)"
 
 #: app/Locate/locate.cpp:396
 #, kde-format
 msgid "Find previous (Ctrl+P)"
-msgstr "Öncekini Bul (Ctrl+P)"
+msgstr "Öncekini Bul (Kontrol+P)"
 
 #: app/Locate/locate.cpp:399
 #, kde-format
@@ -7070,7 +7072,7 @@ msgstr "Geçerli arama dizisini kaydet"
 #: app/Panel/krsearchbar.cpp:68
 #, kde-format
 msgid "Open selection dialog"
-msgstr "Seçim penceresini aç"
+msgstr "Seçim iletişim kutusunu aç"
 
 #: app/Panel/krsearchbar.cpp:188
 #, kde-format
@@ -7250,7 +7252,7 @@ msgstr "Burada Uçbirim Aç"
 #: app/Panel/listpanelactions.cpp:74
 #, kde-format
 msgid "F3 View Dialog"
-msgstr "F3 Görüntüle Penceresi"
+msgstr "F3 Görüntüle İletişim Kutusu"
 
 #: app/Panel/listpanelactions.cpp:77
 #, kde-format
@@ -8746,7 +8748,7 @@ msgstr "Eşi olmayanlar"
 #: app/Synchronizer/synchronizergui.cpp:323
 #, kde-format
 msgid "The compare results of the synchronizer (Ctrl+M)."
-msgstr "Eşitleyicinin kıyaslama sonuçları (Ctrl+M)."
+msgstr "Eşzamanlayıcının karşılaştırma sonuçları (Kontrol+M)."
 
 #: app/Synchronizer/synchronizergui.cpp:334
 #: app/Synchronizer/synchronizergui.cpp:340
@@ -8831,12 +8833,12 @@ msgstr "Gizli dosyaları yok say"
 #: app/Synchronizer/synchronizergui.cpp:447
 #, kde-format
 msgid "Profile manager (Ctrl+P)."
-msgstr "Profil yöneticisi (Ctrl+P)."
+msgstr "Profil yöneticisi (Kontrol+P)."
 
 #: app/Synchronizer/synchronizergui.cpp:453
 #, kde-format
 msgid "Swap sides (Ctrl+S)."
-msgstr "Tarafları birbirleriyle değiştir (Ctrl+S)."
+msgstr "Tarafları birbirleriyle değiştir (Kontrol+S)."
 
 #: app/Synchronizer/synchronizergui.cpp:463
 #, kde-format
@@ -9008,7 +9010,7 @@ msgstr "Kaynak klasör boş olamaz."
 #: app/Synchronizer/synchronizergui.cpp:1204
 #, kde-format
 msgid "Synchronizer has nothing to do."
-msgstr "Eşitleyicinin yapacağı iş yok."
+msgstr "Eşzamanlayıcının yapacağı bir işi yok."
 
 #: app/Synchronizer/synchronizergui.cpp:1294
 #, kde-format
@@ -9016,7 +9018,7 @@ msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "
 "this data will be lost. Do you really want to exit?"
 msgstr ""
-"Eşgüdümleyici penceresinde önceki karşılaştırmadan kalma veriler var. "
+"Eşzamanlayıcı penceresinde önceki karşılaştırmadan kalma veriler var. "
 "Çıkarsanız kaybolacak. Gerçekten çıkmak istiyor musunuz?"
 
 #: app/Synchronizer/synchronizertask.cpp:289
@@ -9801,7 +9803,7 @@ msgstr ""
 #: plugins/krarc/krarc.cpp:2236 plugins/krarc/krarc.cpp:2262
 #, kde-format
 msgid "Krarc Password Dialog"
-msgstr "Krarc Parola Penceresi"
+msgstr "Krarc Parola İletişim Kutusu"
 
 #: plugins/krarc/krarc.cpp:2280 plugins/krarc/krarc.cpp:2290
 #: plugins/krarc/krarc.cpp:2293
