@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
@@ -1281,7 +1281,6 @@ msgstr "%1 を圧縮"
 msgid "Pack %1 file"
 msgid_plural "Pack %1 files"
 msgstr[0] "n n n"
-msgstr[1] "n n n"
 
 #: app/Dialogs/packgui.cpp:88
 #, fuzzy, kde-format
@@ -1761,7 +1760,6 @@ msgstr "グループ"
 msgid "%1 file: ~ %2"
 msgid_plural "%1 files: ~ %2"
 msgstr[0] "2"
-msgstr[1] "2"
 
 #: app/DiskUsage/radialMap/segmentTip.cpp:118
 #, kde-format
@@ -2678,7 +2676,6 @@ msgstr "本当に終了しますか？"
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
 msgstr[0] ""
-msgstr[1] ""
 
 #: app/JobMan/jobman.cpp:433
 #, kde-format
@@ -2690,7 +2687,6 @@ msgstr ""
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
 msgstr[0] ""
-msgstr[1] ""
 
 #: app/JobMan/jobman.cpp:440
 #, kde-format
@@ -2717,7 +2713,6 @@ msgstr "移動 to ごみ箱"
 msgid "Move %1 file to trash"
 msgid_plural "Move %1 files to trash"
 msgstr[0] "n 移動 n to n to:"
-msgstr[1] "n 移動 n to n to:"
 
 #: app/JobMan/krjob.cpp:26
 #, fuzzy, kde-format
@@ -2730,7 +2725,6 @@ msgstr "削除"
 msgid "Delete %1 file"
 msgid_plural "Delete %1 files"
 msgstr[0] "削除"
-msgstr[1] "削除"
 
 #: app/JobMan/krjob.cpp:49
 #, fuzzy, kde-format
@@ -5423,7 +5417,6 @@ msgstr ""
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
 msgstr[0] "Sending file: "
-msgstr[1] "Sending file: "
 
 #: app/krslots.cpp:137 app/krslots.cpp:223 app/krslots.cpp:407
 #: app/krslots.cpp:473 app/Synchronizer/synchronizer.cpp:1382
@@ -6918,21 +6911,18 @@ msgstr "合計 1"
 msgid " (%2 byte)"
 msgid_plural " (%2 bytes)"
 msgstr[0] "n n n バイト"
-msgstr[1] "n n n バイト"
 
 #: app/Panel/krcalcspacedialog.cpp:113
 #, fuzzy, kde-format
 msgid "in %1 folder"
 msgid_plural "in %1 folders"
 msgstr[0] "n と n n"
-msgstr[1] "n と n n"
 
 #: app/Panel/krcalcspacedialog.cpp:115
 #, fuzzy, kde-format
 msgid "and %1 file"
 msgid_plural "and %1 files"
 msgstr[0] "n と n n"
-msgstr[1] "n と n n"
 
 #: app/Panel/krfiletreeview.cpp:176
 #, fuzzy, kde-format
@@ -7665,7 +7655,6 @@ msgstr "%1 の移動先:"
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "n 移動 n to n to:"
-msgstr[1] "n 移動 n to n to:"
 
 #: app/Panel/panelfunc.cpp:636
 #, kde-format
@@ -7677,7 +7666,6 @@ msgstr "%1 のコピー先:"
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "%1 個のファイルのコピー先:"
-msgstr[1] "%1 個のファイルのコピー先:"
 
 #: app/Panel/panelfunc.cpp:704
 #, fuzzy, kde-format
@@ -7689,8 +7677,7 @@ msgstr "フォルダ名:"
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
-msgstr[0] "本当にこのアイテムをごみ箱へ移動しますか？"
-msgstr[1] "本当にこれら %1 個のアイテムをごみ箱へ移動しますか？"
+msgstr[0] "本当にこれら %1 個のアイテムをごみ箱へ移動しますか？"
 
 #: app/Panel/panelfunc.cpp:851
 #, fuzzy, kde-format
@@ -7700,15 +7687,13 @@ msgid ""
 msgid_plural ""
 "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
-msgstr[0] "n<qt> to<b></b></qt>"
-msgstr[1] "<qt> to n<b></b></qt>"
+msgstr[0] "<qt> to n<b></b></qt>"
 
 #: app/Panel/panelfunc.cpp:858
 #, fuzzy, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "本当にこれら %1 項目を削除しますか?"
-msgstr[1] "本当にこれら %1 項目を削除しますか?"
 
 #: app/Panel/panelfunc.cpp:900
 #, fuzzy, kde-format
@@ -7750,7 +7735,6 @@ msgid_plural ""
 "Do you really want to delete these %1 virtual items (physical files stay "
 "untouched)?"
 msgstr[0] "n to to?"
-msgstr[1] "n to to?"
 
 #: app/Panel/panelfunc.cpp:980
 #, kde-format
@@ -7792,7 +7776,6 @@ msgstr "%1 の解凍先:"
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
 msgstr[0] "n n to n to:"
-msgstr[1] "n n to n to:"
 
 #: app/Panel/PanelView/krinterbriefview.cpp:238
 #: app/Panel/PanelView/krinterdetailedview.cpp:289
@@ -8249,7 +8232,6 @@ msgstr "結果(&R)"
 msgid "Found %1 match."
 msgid_plural "Found %1 matches."
 msgstr[0] "一致するものがありません"
-msgstr[1] "一致するものがありません"
 
 #: app/Search/krsearchdialog.cpp:418
 #, fuzzy, kde-format
@@ -8533,7 +8515,6 @@ msgstr "同期"
 msgid "Right to left: Copy 1 file"
 msgid_plural "Right to left: Copy %1 files"
 msgstr[0] "n 右 to 左 コピー to 左 コピー n"
-msgstr[1] "n 右 to 左 コピー to 左 コピー n"
 
 #: app/Synchronizer/synchronizedialog.cpp:40
 #: app/Synchronizer/synchronizedialog.cpp:53
@@ -8542,7 +8523,6 @@ msgstr[1] "n 右 to 左 コピー to 左 コピー n"
 msgid "(1 byte)"
 msgid_plural "(%1 bytes)"
 msgstr[0] "n n n バイト"
-msgstr[1] "n n n バイト"
 
 #: app/Synchronizer/synchronizedialog.cpp:46
 #: app/Synchronizer/synchronizedialog.cpp:59
@@ -8554,21 +8534,18 @@ msgstr[1] "n n n バイト"
 msgid "\tReady: %2/1 file, %3/%4"
 msgid_plural "\tReady: %2/%1 files, %3/%4"
 msgstr[0] "n 準備完了 n 4"
-msgstr[1] "n 準備完了 n 4"
 
 #: app/Synchronizer/synchronizedialog.cpp:52
 #, fuzzy, kde-format
 msgid "Left to right: Copy 1 file"
 msgid_plural "Left to right: Copy %1 files"
 msgstr[0] "n 左 to 右 コピー to 右 コピー n"
-msgstr[1] "n 左 to 右 コピー to 右 コピー n"
 
 #: app/Synchronizer/synchronizedialog.cpp:65
 #, fuzzy, kde-format
 msgid "Left: Delete 1 file"
 msgid_plural "Left: Delete %1 files"
 msgstr[0] "n 左 削除 削除 n"
-msgstr[1] "n 左 削除 削除 n"
 
 #: app/Synchronizer/synchronizedialog.cpp:90
 #, fuzzy, kde-format
