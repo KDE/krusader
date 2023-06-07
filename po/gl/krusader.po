@@ -4,14 +4,14 @@
 # Xabier Villar <xabier.villar@gmail.com>, 2011, 2012, 2013.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2013, 2015, 2016, 2017.
 # Marce Villarino <mvillarino@kde-espana.es>, 2013, 2014.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 02:46+0000\n"
-"PO-Revision-Date: 2020-01-12 11:08+0100\n"
+"PO-Revision-Date: 2023-06-06 09:15+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.08.3\n"
+"X-Generator: Lokalize 23.04.1\n"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -284,8 +284,8 @@ msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
 msgstr ""
-"A <i>axudiña</i> aparece cando se pasa o cursor do rato por riba dunha "
-"entrada da <b>barra de accións do usuario</b>."
+"O <i>globo</i> aparece cando se pasa o cursor do rato por riba dunha entrada "
+"da <b>barra de accións do usuario</b>."
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leStartpath)
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelStartpath)
@@ -302,7 +302,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:247
 #, kde-format
 msgid "Tooltip:"
-msgstr "Axudiña:"
+msgstr "Globo:"
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leCommandline)
 #: app/ActionMan/actionproperty.ui:259
@@ -1002,8 +1002,7 @@ msgid "Create Checksums"
 msgstr "Crear sumas de comprobación"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, fuzzy, kde-format
-#| msgid "About to calculate checksum for the following files or directories:"
+#, kde-format
 msgid "About to calculate checksum for the following files or folders:"
 msgstr ""
 "A piques de calcular a suma de comprobación dos seguintes ficheiros ou "
@@ -1429,10 +1428,9 @@ msgid "Files:"
 msgstr "Ficheiros:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, fuzzy, kde-format
-#| msgid "Folders"
+#, kde-format
 msgid "Folders:"
-msgstr "Cartafoles"
+msgstr "Cartafoles:"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1874,20 +1872,16 @@ msgid "Custom"
 msgstr "Personalizado"
 
 #: app/FileSystem/krquery.cpp:547
-#, fuzzy, kde-format
-#| msgctxt "%1=filename, %2=percentage"
-#| msgid "Searching content of '%1' (%2%)"
+#, kde-format
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr "Estase a buscar o contido de «%1» (%2%)"
+msgstr "Estase a buscar o contido de «%1» (%2)"
 
 #: app/FileSystem/krquery.cpp:552
-#, fuzzy, kde-format
-#| msgctxt "filestate: filename"
-#| msgid "%1: %2"
+#, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr "%1: %2"
+msgstr "%1%"
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, kde-format
@@ -2346,8 +2340,7 @@ msgid "Exclude Folder Names"
 msgstr "Excluír nomes de cartafoles"
 
 #: app/Filter/generalfilter.cpp:468
-#, fuzzy, kde-format
-#| msgid "Filters out specified directory names from the results."
+#, kde-format
 msgid "Filters out specified folder names from the results."
 msgstr "Exclúe os nomes de cartafol indicados dos resultados."
 
@@ -2581,7 +2574,7 @@ msgstr "Insira o nome do perfil:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr ""
+msgstr "Baleirar os separadores pechados recentemente"
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -3093,16 +3086,14 @@ msgid "Current background:"
 msgstr "Fondo actual:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, fuzzy, kde-format
-#| msgid "Delete foreground:"
+#, kde-format
 msgid "Rename foreground:"
-msgstr "Eliminar o primeiro plano:"
+msgstr "Renomear o primeiro plano:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, fuzzy, kde-format
-#| msgid "Alternate background:"
+#, kde-format
 msgid "Rename background:"
-msgstr "Fondo alternativo:"
+msgstr "Renomear o fondo:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3397,16 +3388,16 @@ msgstr ""
 "o visor funciona nun modo simple con lapelas."
 
 #: app/Konfigurator/kggeneral.cpp:74
-#, fuzzy, kde-format
-#| msgid "Show the tab bar with only one tab."
+#, kde-format
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "Mostrar a barra de separadores cando só haxa un separador."
+msgstr "Agochar a barra de separadores ao abrir un separador"
 
 #: app/Konfigurator/kggeneral.cpp:75
-#, fuzzy, kde-format
-#| msgid "Show the tab bar with only one tab."
+#, kde-format
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr "Mostrar a barra de separadores cando só haxa un separador."
+msgstr ""
+"Se se marca, a barra de separadores do visor agocharase cando só haxa un "
+"separador."
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3476,7 +3467,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:112
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
-msgstr ""
+msgstr "Usarase o listador para ficheiros de texto cun tamaño superior a este."
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3544,7 +3535,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:224
 #, kde-format
 msgid "Temp Folder:"
-msgstr "Cartafol termporal:"
+msgstr "Cartafol temporal:"
 
 #: app/Konfigurator/kggeneral.cpp:233
 #, kde-format
@@ -3608,20 +3599,18 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:274
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
-msgstr ""
+msgstr "O panel activo segue o cartafol de traballo do terminal incrustado"
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, fuzzy, kde-format
-#| msgid ""
-#| "When checked, whenever the panel is changed (for example, by pressing "
-#| "Tab), Krusader changes the current folder in the embedded terminal."
+#, kde-format
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"Cando se marca, sempre que se cambia un panel (por exemplo, premendo Tab), "
-"Krusader cambia o cartafol actual no terminal incrustado."
+"Se se marca, cando cambie o cartafol de traballo do terminal (p. ex. "
+"executando as ordes «cd» ou «popd»), Krusader cambia o cartafol actual do "
+"panel activo."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
@@ -3742,7 +3731,7 @@ msgid ""
 "The filter dialog is opened with the last filter settings that where applied "
 "to the panel."
 msgstr ""
-"O diálogo de filtros abrirase coas últimas opcións de filtraxe aplicadas ao "
+"O diálogo de filtros abrirase coas últimas opcións de filtro aplicadas ao "
 "panel."
 
 #: app/Konfigurator/kgpanel.cpp:113
@@ -3765,49 +3754,44 @@ msgstr ""
 "predeterminada só se mostra a última parte da ruta."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show close tab buttons"
-msgstr "Mostrar os botóns de crear ou pechar separadores"
+msgstr "Mostrar os botóns de pechar separadores"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show close tab buttons."
-msgstr "Mostrar os botóns de crear ou pechar separadores"
+msgstr "Mostrar os botóns de pechar separadores."
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr ""
+msgstr "Separadores expansíbeis"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr ""
+msgstr "Separadores expansíbeis."
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show new tab button"
-msgstr "Mostrar os botóns de crear ou pechar separadores"
+msgstr "Mostrar o botón de novo separador"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show new tab button."
-msgstr "Mostrar os botóns de crear ou pechar separadores"
+msgstr "Mostrar o botón de novo separador."
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr ""
+msgstr "Abrir novos separadores despois do actual"
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, fuzzy, kde-format
-#| msgid "Set root of the tree to the current folder"
+#, kde-format
 msgid "Insert new tabs to the right of the current one."
-msgstr "Usar o cartafol actual como raíz da árbore"
+msgstr "Abrir novos separadores á dereita do actual."
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
@@ -3822,17 +3806,17 @@ msgstr "Mostrar a barra de separadores cando só haxa un separador."
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr ""
+msgstr "Unha prema dupla pecha un separador"
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr ""
+msgstr "Unha prema dupla pecha un separador."
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr ""
+msgstr "O botón de novo separador duplica un separador"
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3840,32 +3824,33 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
+"Se se marca, o botón de novo separador duplica un separador. Senón, abre o "
+"novo separador no cartafol persoal."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr ""
+msgstr "Unha prema duplica o separador activo:"
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, fuzzy, kde-format
-#| msgid "disabled"
+#, kde-format
 msgid "Disabled"
-msgstr "desactivado"
+msgstr "Desactivado"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr ""
+msgstr "Alt+prema"
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr ""
+msgstr "Ctrl+prema"
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr ""
+msgstr "Duplicar o separador activo premendo Ctrl/Alt+prema"
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -3921,21 +3906,17 @@ msgstr ""
 "busca)."
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, fuzzy, kde-format
-#| msgid "Directory navigation with Right Arrow"
+#, kde-format
 msgid "Folder navigation with Right Arrow"
-msgstr "Navegación de directorios coa frecha dereita"
+msgstr "Navegación de cartafoles coa frecha dereita"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, fuzzy, kde-format
-#| msgid ""
-#| "Pressing the Right button enters directory if no search text editing "
-#| "intention is captured."
+#, kde-format
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
 msgstr ""
-"Premer o botón da dereita entra nun directorio se non se captura ningunha "
+"Premer o botón da dereita entra nun cartafol se non se captura ningunha "
 "intención de edición de texto de busca."
 
 #: app/Konfigurator/kgpanel.cpp:190
@@ -4151,7 +4132,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:406
 #, kde-format
 msgid "Tooltip delay (msec):"
-msgstr "Atraso dos tooltips (msec):"
+msgstr "Atraso dos globos (msec):"
 
 #: app/Konfigurator/kgpanel.cpp:423
 #, kde-format
@@ -4616,7 +4597,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:658
 #, kde-format
 msgid "Spacebar moves down"
-msgstr "A barra espazadora baixa."
+msgstr "O espazador baixa."
 
 #: app/Konfigurator/kgpanel.cpp:659
 #, kde-format
@@ -4625,15 +4606,15 @@ msgid ""
 "down.\n"
 "Otherwise, current item is selected, but remains the current item."
 msgstr ""
-"Se se marca, ao premer a barra espazadora selecciónase o elemento actual e "
-"móvese para baixo.\n"
+"Se se marca, ao premer o espazador selecciónase o elemento actual e móvese "
+"para baixo.\n"
 "En caso contrario, selecciónase o elemento actual, que queda como elemento "
 "actual."
 
 #: app/Konfigurator/kgpanel.cpp:661
 #, kde-format
 msgid "Spacebar calculates disk space"
-msgstr "A barra espazadora calcula o espazo do disco."
+msgstr "O espazador calcula o espazo do disco."
 
 #: app/Konfigurator/kgpanel.cpp:662
 #, kde-format
@@ -4642,8 +4623,8 @@ msgid ""
 "(except from selecting the folder)\n"
 "calculate space occupied of the folder (recursively)."
 msgstr ""
-"Se se marca, ao premer a barra espazadora mentres o elemento actual é un "
-"cartafol, calcúlase (excepto seleccionar o cartafol)\n"
+"Se se marca, ao premer o espazador mentres o elemento actual é un cartafol, "
+"calcúlase (excepto seleccionar o cartafol)\n"
 "o espazo ocupado polo cartafol (de maneira recursiva)."
 
 #: app/Konfigurator/kgpanel.cpp:664
@@ -4679,10 +4660,9 @@ msgstr ""
 "En caso contrario, o usuario ten que manter o rato premido 500 ms."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, fuzzy, kde-format
-#| msgid "Right mouse button preserves selection"
+#, kde-format
 msgid "A plain mouse button resets selection"
-msgstr "O botón secundario do rato conserva a selección."
+msgstr "Unha prema restabelece a selección"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4691,6 +4671,9 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
+"Restabelecer a selección cunha prema sen modificadores como Maiús ou Ctrl.\n"
+"Para que esta opción funcione hai que activar a selección con Maiús/Ctrl"
+"+prema."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4710,7 +4693,7 @@ msgstr "Mostrar o tipo do sistema de ficheiros."
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr ""
+msgstr "Agochar as entradas de SquashFS"
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4736,21 +4719,19 @@ msgid "Never"
 msgstr "Nunca"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, fuzzy, kde-format
-#| msgid "MountMan will not (un)mount the following mount-points:"
+#, kde-format
 msgid "Hide following mountpoints:"
-msgstr "MountMan non (des)monta os puntos de montaxe seguintes:"
+msgstr "Agochar os seguintes puntos de montaxe:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr ""
+msgstr "Engadir un novo punto de montaxe agochado"
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, fuzzy, kde-format
-#| msgid "Mnt.Point"
+#, kde-format
 msgid "Mount point:"
-msgstr "Punto de montaxe"
+msgstr "Punto de montaxe:"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5182,7 +5163,7 @@ msgstr ""
 #: app/Konfigurator/krresulttable.cpp:127
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr "Atopouse rpm, pero non cpi, que se require para descomprimir"
+msgstr "Atopouse rpm, pero non cpio, que se require para descomprimir"
 
 #: app/Konfigurator/krresulttable.cpp:130
 #: app/Konfigurator/krresulttable.cpp:286
@@ -5427,7 +5408,7 @@ msgstr "Comparar polo &contido…"
 #: app/kractions.cpp:264
 #, kde-format
 msgid "Multi &Rename..."
-msgstr "Renomeamento a &varios…"
+msgstr "&Renomear en grupo…"
 
 #: app/kractions.cpp:267 app/krusaderview.cpp:447
 #, kde-format
@@ -5452,7 +5433,7 @@ msgstr "Seleccionar o conxunto de caracteres remoto"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr ""
+msgstr "Separadores pechados recentemente"
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -6185,35 +6166,22 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader — PRIVILEXIOS DE ADMINISTRADOR"
 
 #: app/main.cpp:113
-#, fuzzy, kde-format
-#| msgid ""
-#| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2019 Krusader Krew"
+#, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2019 Equipo de Krusader"
+"© 2004-2022 Equipo de Krusader"
 
 #: app/main.cpp:114
-#, fuzzy, kde-format
-#| msgid ""
-#| "Feedback:\n"
-#| "https://forum.kde.org/viewforum.php?f=225\n"
-#| "\n"
-#| "IRC\n"
-#| "server: irc.freenode.net, channel: #krusader"
+#, kde-format
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
 "Opinións:\n"
-"https://forum.kde.org/viewforum.php?f=225\n"
-"\n"
-"IRC:\n"
-"Servidor: irc.freenode.net\n"
-"Canle: #krusader"
+"https://forum.kde.org/viewforum.php?f=225"
 
 #: app/main.cpp:120
 #, kde-format
@@ -7184,10 +7152,9 @@ msgstr ""
 "seleccionados e o cómputo de bytes"
 
 #: app/Panel/listpanel.cpp:229
-#, fuzzy, kde-format
-#| msgid "Cancel directory space calculation"
+#, kde-format
 msgid "Cancel folder space calculation"
-msgstr "Cancelar o cálculo do espazo do directorio."
+msgstr "Cancelar o cálculo do espazo do cartafol"
 
 #: app/Panel/listpanel.cpp:249
 #, kde-format
@@ -8228,10 +8195,9 @@ msgstr ""
 "tipo de vista"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, fuzzy, kde-format
-#| msgid "Open in a new tab"
+#, kde-format
 msgid "Open a new tab"
-msgstr "Abrir nun novo separador"
+msgstr "Abrir un novo separador"
 
 #: app/paneltabbar.cpp:173
 #, kde-format
@@ -9146,10 +9112,9 @@ msgid "Close Current Tab"
 msgstr "Pechar o separador actual"
 
 #: app/tabactions.cpp:29
-#, fuzzy, kde-format
-#| msgid "Unlock Tab"
+#, kde-format
 msgid "Undo Close Tab"
-msgstr "Desbloquear o separador"
+msgstr "Desfacer o peche de separador"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9200,8 +9165,8 @@ msgstr "Falta unha especificación necesaria do panel no expansor %1"
 #, kde-format
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
 msgstr ""
-"Expansor: O argumento de %1 é incorrecto: %2 non é un especificador de "
-"elementos correcto"
+"Expansor: O argumento de %1 é incorrecto: %2 non é un indicador de elementos "
+"correcto"
 
 #: app/UserAction/expander.cpp:262
 #, kde-format
@@ -9229,8 +9194,8 @@ msgstr "Cantidade:"
 #, kde-format
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
 msgstr ""
-"Expansor: A cantidade de argumentos é incorrecta: %1 non é un especificador "
-"de elementos correcto"
+"Expansor: A cantidade de argumentos é incorrecta: %1 non é un indicador de "
+"elementos correcto"
 
 #: app/UserAction/expander.cpp:316
 #, kde-format
@@ -9333,7 +9298,7 @@ msgstr "Pregunta:"
 #: app/UserAction/expander.cpp:522
 #, kde-format
 msgid "Preset (optional):"
-msgstr "Preconfiguración (opcional):"
+msgstr "Predefinición (opcional):"
 
 #: app/UserAction/expander.cpp:523
 #, kde-format
@@ -9553,7 +9518,7 @@ msgstr "%Each% non está permitido no parámetro para %1"
 #: app/UserAction/expander.cpp:936
 #, kde-format
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
-msgstr "Expansor: Especificador de panel %1 incorrecto na marca de posición %2"
+msgstr "Expansor: indicador de panel %1 incorrecto na marca de posición %2"
 
 #: app/UserAction/expander.cpp:968
 #, no-c-format, kde-format
@@ -9750,12 +9715,12 @@ msgstr "Multimedia"
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr ""
+msgstr "Copiar a ruta do ficheiro do elemento actual (escapando os espazos)"
 
 #: app/useraction_examples.xml:46
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
-msgstr ""
+msgstr "Copiar as rutas dos ficheiros dos elementos seleccionados"
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
@@ -9832,10 +9797,9 @@ msgstr ""
 "Pode activala na páxina «Arquivos» de Konfigurator."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, fuzzy, kde-format
-#| msgid "Creating directories is not supported with %1 archives"
+#, kde-format
 msgid "Creating folders is not supported with %1 archives"
-msgstr "Non se permite crear directorios cos arquivos %1"
+msgstr "Non se permite crear cartafoles cos arquivos %1"
 
 #: plugins/krarc/krarc.cpp:345
 #, kde-format
@@ -9868,6 +9832,8 @@ msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
+"Produciuse un erro relacionado co programa externo «%1». A mensaxe de erro é "
+"«%2»."
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
@@ -9880,10 +9846,9 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "Non se permite acceder aos ficheiros cos arquivos %1"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, fuzzy, kde-format
-#| msgid "Listing directories is not supported for %1 archives"
+#, kde-format
 msgid "Listing folders is not supported for %1 archives"
-msgstr "Non se permite listar os directorios cos arquivos %1"
+msgstr "Non se permite listar os cartafoles cos arquivos %1"
 
 #: plugins/krarc/krarc.cpp:2144 plugins/krarc/krarc.cpp:2150
 #, kde-format
