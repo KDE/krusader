@@ -52,7 +52,7 @@
           is &plasma;, because it relies on services
           provided by the &kf5-full; base libraries. Only
           some shared libraries are needed &eg;
-          &kf5; libraries, &Qt; libraries,
+          &kde-frameworks; libraries, &Qt; libraries,
           &etc; This means that &krusader;
           runs on <ulink url="https://www.gnome.org"><application>GNOME</application></ulink>,
           <ulink url="http://www.afterstep.org/"><application>AfterStep</application></ulink>, <ulink url="https://www.xfce.org/"><application>XFce</application></ulink> and
@@ -74,10 +74,10 @@
           <!-- Empty line to make it more readable -->
           <para>A lot depends on what you want to do with
           &krusader;. You should know that
-          &krusader; uses the &kf5;
+          &krusader; uses the &kde-frameworks;
           KIO Slaves to access remote file
           systems, and support for only a limited number of file
-          system types are shipped with &kf5; libraries,
+          system types are shipped with &kde-frameworks; libraries,
           most of the KIO Slave are bundled with
           &kf5-full; (including fish, sftp and tar).</para>
           <para></para>
@@ -215,7 +215,7 @@
           using a multi-threaded design - this way if we get stuck,
           we do not hang the entire application event loop, but we
           do not think that the time is right for adding threads, we
-          are not sure that *all* the &kf5; systems out
+          are not sure that *all* the &kde-frameworks; systems out
           there are using &Qt;-mt (the multi threaded
           version of the &Qt; library), and the &krusader;
           Krew may not be the right people to address this major
@@ -710,7 +710,7 @@
             is possibly a KIO Slaves or
             &kf5-full; bug, and not a
             &krusader; bug. &krusader; uses
-            the &kf5; libraries and the
+            the &kde-frameworks; libraries and the
             KIO Slave for many operations. In
             some cases you can encounter problems if your
             distribution is incorrectly configured, please test it
