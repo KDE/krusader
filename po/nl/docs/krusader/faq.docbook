@@ -52,7 +52,7 @@
           <para
 ><emphasis
 >Nee, &krusader; heeft de &plasma; windowmanager niet nodig</emphasis
-> om op uw computer te werken maar de natuurlijke omgeving van &krusader; is &plasma;, omdat het diensten gebruikt die door de &kf5-full; basisbibliotheken worden geleverd. Alleen enkele gedeelde bibliotheken zijn nodig &eg; &kf5; libraries, &Qt; libraries, &etc; Dit houd in dat &krusader; werkt onder <ulink url="https://www.gnome.org"
+> om op uw computer te werken maar de natuurlijke omgeving van &krusader; is &plasma;, omdat het diensten gebruikt die door de &kf5-full; basisbibliotheken worden geleverd. Alleen enkele gedeelde bibliotheken zijn nodig &eg; &kde-frameworks; libraries, &Qt; libraries, &etc; Dit houd in dat &krusader; werkt onder <ulink url="https://www.gnome.org"
 ><application
 >GNOME</application
 ></ulink
@@ -88,7 +88,7 @@
 ></para>
           <!-- Empty line to make it more readable -->
           <para
->Veel is afhankelijk van wat u met &krusader; wilt doen. U moet weten dat &krusader; de &kf5; KIO Slaves gebruikt voor toegang tot externe bestandsystemen, en alleen ondersteuning voor een beperkt aantal soorten bestandsystemen komen standaard mee met de &plasma;-bibliotheken, de meeste van de KIO Slave´s komen mee met &kf5-full; basis (waaronder fish, sftp en tar).</para>
+>Veel is afhankelijk van wat u met &krusader; wilt doen. U moet weten dat &krusader; de &kde-frameworks; KIO Slaves gebruikt voor toegang tot externe bestandssystemen, en alleen ondersteuning voor een beperkt aantal soorten bestandssystemen komen standaard mee met de &kde-frameworks;-bibliotheken, de meeste van de KIO Slave´s komen mee met &kf5-full; basis (waaronder fish, sftp en tar).</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -212,7 +212,7 @@
 >hangt</quote
 > aan de eerste toegang tot de dode share - er is daarom geen weg eromheen, geen controle om het te vermijden, zelfs <command
 >ls</command
-> zal bevriezen. Alleen maar het bekijken van iets - wat dan ook - is genoeg om u vast te zetten. De enige manier om rond dit architectural probleem te gaan is een multi-threaded design te gebruiken - op deze manier zal als we vast komen te zitten, we niet de hele programma lus ophangen, maar we denken niet dat het nu het juiste moment is voor toevoegen van threads, we weten niet of *alle* &kf5; systemen daarbuiten &Qt;-mt (de multi threaded versie van de &Qt; library) gebruiken, en de &krusader; Krew zijn wellicht niet de juiste mensen om dit probleem aan te snijden; op dit moment moeten we daarom maar leven met deze bug.</para>
+> zal bevriezen. Alleen maar het bekijken van iets - wat dan ook - is genoeg om u vast te zetten. De enige manier om rond dit architectural probleem te gaan is een multi-threaded design te gebruiken - op deze manier zal als we vast komen te zitten, we niet de hele programma lus ophangen, maar we denken niet dat het nu het juiste moment is voor toevoegen van threads, we weten niet of *alle* &kde-frameworks; systemen daarbuiten &Qt;-mt (de multi threaded versie van de &Qt; library) gebruiken, en de &krusader; Krew zijn wellicht niet de juiste mensen om dit probleem aan te snijden; op dit moment moeten we daarom maar leven met deze bug.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -728,7 +728,7 @@
 >Bedankt voor uw medewerking!</para>
           <note>
             <para
->Indien mogelijk, probeer dezelfde bewerking ook uit met &konqueror; of ander &kde; programma. Als u hetzelfde probleem daar ook tegenkomt dan is het mogelijk een KIO Slaves of &kf5-full; bug, en niet een &krusader; bug. &krusader; gebruikt de &kf5;-bibliotheken en de KIO Slave voor veel bewerkingen. In sommige gevallen kunt u problemen tegenkomen als uw distributie niet correct is ingesteld, test het eerst zoals hierboven uitgelegd.</para>
+>Indien mogelijk, probeer dezelfde bewerking ook uit met &konqueror; of ander &kde; programma. Als u hetzelfde probleem daar ook tegenkomt dan is het mogelijk een KIO Slaves of &kf5-full; bug, en niet een &krusader; bug. &krusader; gebruikt de &kde-frameworks;-bibliotheken en de KIO Slave voor veel bewerkingen. In sommige gevallen kunt u problemen tegenkomen als uw distributie niet correct is ingesteld, test het eerst zoals hierboven uitgelegd.</para>
           </note>
           <para
 ></para>
