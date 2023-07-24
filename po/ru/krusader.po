@@ -16,14 +16,15 @@
 # Alexey D. <lq07829icatm@rambler.ru>, 2012.
 # Dmitry Astankov <mornie@basealt.ru>, 2019.
 # Olesya Gerasimenko <translation-team@basealt.ru>, 2022.
+# Alexander Yavorsky <kekcuha@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 02:46+0000\n"
-"PO-Revision-Date: 2022-01-26 16:35+0300\n"
-"Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
-"Language-Team: Basealt Translation Team\n"
+"PO-Revision-Date: 2023-05-31 09:50+0300\n"
+"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1016,8 +1017,7 @@ msgid "Create Checksums"
 msgstr "Создать контрольные суммы"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, fuzzy, kde-format
-#| msgid "About to calculate checksum for the following files or directories:"
+#, kde-format
 msgid "About to calculate checksum for the following files or folders:"
 msgstr "Вычисление контрольной суммы для следующих файлов и папок:"
 
@@ -1442,10 +1442,9 @@ msgid "Files:"
 msgstr "Файлы:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, fuzzy, kde-format
-#| msgid "Folders"
+#, kde-format
 msgid "Folders:"
-msgstr "Папки"
+msgstr "Папки:"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1887,20 +1886,16 @@ msgid "Custom"
 msgstr "Настраиваемый"
 
 #: app/FileSystem/krquery.cpp:547
-#, fuzzy, kde-format
-#| msgctxt "%1=filename, %2=percentage"
-#| msgid "Searching content of '%1' (%2%)"
+#, kde-format
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr "Поиск содержимого «%1» (%2%)"
+msgstr "Поиск содержимого «%1» (%2)"
 
 #: app/FileSystem/krquery.cpp:552
-#, fuzzy, kde-format
-#| msgctxt "filestate: filename"
-#| msgid "%1: %2"
+#, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr "%1: %2"
+msgstr "%1%"
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, kde-format
@@ -2358,8 +2353,7 @@ msgid "Exclude Folder Names"
 msgstr "Исключить имена папок"
 
 #: app/Filter/generalfilter.cpp:468
-#, fuzzy, kde-format
-#| msgid "Filters out specified directory names from the results."
+#, kde-format
 msgid "Filters out specified folder names from the results."
 msgstr "Исключает указанные имена папок из результатов."
 
@@ -2593,7 +2587,7 @@ msgstr "Введите имя профиля:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr ""
+msgstr "Очистить список недавно закрытых вкладок"
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -3112,16 +3106,14 @@ msgid "Current background:"
 msgstr "Текущий фон:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, fuzzy, kde-format
-#| msgid "Delete foreground:"
+#, kde-format
 msgid "Rename foreground:"
-msgstr "Удаляемый текст:"
+msgstr "Переименовать текст:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, fuzzy, kde-format
-#| msgid "Alternate background:"
+#, kde-format
 msgid "Rename background:"
-msgstr "Альтернативный цвет фона:"
+msgstr "Переименовать фон:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3418,16 +3410,16 @@ msgstr ""
 "противном случае программа просмотра будет работать в режиме вкладок"
 
 #: app/Konfigurator/kggeneral.cpp:74
-#, fuzzy, kde-format
-#| msgid "Show the tab bar with only one tab."
+#, kde-format
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "Показывать панель вкладок на одной вкладке."
+msgstr "Скрывать панель вкладок, когда открыта только одна вкладка"
 
 #: app/Konfigurator/kggeneral.cpp:75
-#, fuzzy, kde-format
-#| msgid "Show the tab bar with only one tab."
+#, kde-format
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr "Показывать панель вкладок на одной вкладке."
+msgstr ""
+"Если флажок установлен, панель вкладок средства просмотра будет скрыта, если "
+"открыта только одна вкладка"
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3496,6 +3488,7 @@ msgstr ""
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
 msgstr ""
+"Если текстовый файл больше указанного размера, будет использоваться Lister."
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3628,19 +3621,19 @@ msgstr ""
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
 msgstr ""
+"Изменять рабочий каталог активной панели в соответствии со встроенным "
+"терминалом"
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, fuzzy, kde-format
-#| msgid ""
-#| "When checked, whenever the panel is changed (for example, by pressing "
-#| "Tab), Krusader changes the current folder in the embedded terminal."
+#, kde-format
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"Менять текущую папку во встроенном терминале всякий раз, когда переключается "
-"панель, например, нажатием клавиши Tab."
+"Когда флажок установлен, каждый раз, когда рабочий каталог терминала "
+"изменяется (например, путём выполнения команды «cd» или «popd»), Krusader "
+"меняет текущую папку активной панели."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
@@ -3777,49 +3770,44 @@ msgstr ""
 "последняя часть пути."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show close tab buttons"
-msgstr "Показывать кнопки «Новая вкладка» и «Закрыть вкладку»"
+msgstr "Показывать кнопку «Закрыть вкладку»"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show close tab buttons."
-msgstr "Показывать кнопки «Новая вкладка» и «Закрыть вкладку»"
+msgstr "Показывать кнопку «Закрыть вкладку»"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr ""
+msgstr "Расширяемые вкладки"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr ""
+msgstr "Расширяемые вкладки"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show new tab button"
-msgstr "Показывать кнопки «Новая вкладка» и «Закрыть вкладку»"
+msgstr "Показывать кнопку «Новая вкладка»"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show new tab button."
-msgstr "Показывать кнопки «Новая вкладка» и «Закрыть вкладку»"
+msgstr "Показывать кнопку «Новая вкладка»"
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr ""
+msgstr "Размещать вкладки после текущей"
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, fuzzy, kde-format
-#| msgid "Set root of the tree to the current folder"
+#, kde-format
 msgid "Insert new tabs to the right of the current one."
-msgstr "Установить текущий каталог в вершине дерева"
+msgstr "Размещать новые вкладки справа от текущей"
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
@@ -3834,17 +3822,17 @@ msgstr "Показывать панель вкладок на одной вкл�
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr ""
+msgstr "Закрывать вкладку двойным щелчком"
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr ""
+msgstr "Закрывать вкладку двойным щелчком"
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr ""
+msgstr "Дублировать текущую вкладку при создании новой"
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3852,32 +3840,33 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
+"Если этот флажок установлен, кнопка новой вкладки будет дублировать вкладку, "
+"в противном случае она будет открывать вкладку в домашней папке."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr ""
+msgstr "Дублирование активной вкладки щелчком мыши:"
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, fuzzy, kde-format
-#| msgid "disabled"
+#, kde-format
 msgid "Disabled"
-msgstr "выключено"
+msgstr "Отключено"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr ""
+msgstr "Alt+щелчок"
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr ""
+msgstr "Ctrl+щелчок"
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr ""
+msgstr "Дублировать активную вкладку с помощью Ctrl/Alt+щелчок"
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -3933,22 +3922,18 @@ msgstr ""
 "поиска)."
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, fuzzy, kde-format
-#| msgid "Directory navigation with Right Arrow"
+#, kde-format
 msgid "Folder navigation with Right Arrow"
-msgstr "Навигация по каталогу с помощью стрелки вправо"
+msgstr "Переходить в папку с помощью стрелки вправо"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, fuzzy, kde-format
-#| msgid ""
-#| "Pressing the Right button enters directory if no search text editing "
-#| "intention is captured."
+#, kde-format
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
 msgstr ""
-"Если текст для поиска не изменялся, нажатие стрелки вправо приведёт к "
-"открытию каталога."
+"Нажатие клавиши с стрелкой вправо позволяет войти в папку, если не "
+"производится редактирование поискового запроса."
 
 #: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
@@ -4692,10 +4677,9 @@ msgstr ""
 "В противном случае потребуется удерживать правую кнопку в течение 500 мс."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, fuzzy, kde-format
-#| msgid "Right mouse button preserves selection"
+#, kde-format
 msgid "A plain mouse button resets selection"
-msgstr "Выбор правой кнопкой мыши оставляет выделение"
+msgstr "Сброс выделения щелчком левой кнопкой мыши"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4704,6 +4688,10 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
+"Сброс выделения щелчком кнопки мыши без участия модификаторов (Shift или "
+"Ctrl).\n"
+"Чтобы эта функция работала, необходимо включить выделение с помощью Shift/"
+"Ctrl + щелчок кнопкой мыши."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4723,7 +4711,7 @@ msgstr "Показывать тип файловой системы"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr ""
+msgstr "Скрыть записи SquashFS"
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4749,22 +4737,19 @@ msgid "Never"
 msgstr "Никогда"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, fuzzy, kde-format
-#| msgid "MountMan will not (un)mount the following mount-points:"
+#, kde-format
 msgid "Hide following mountpoints:"
-msgstr ""
-"Автоматическое (раз)монтирование не будет выполняться для следующих точек:"
+msgstr "Скрыть текущие точки монтирования:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr ""
+msgstr "Добавить точку монтирования для сокрытия"
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, fuzzy, kde-format
-#| msgid "Mnt.Point"
+#, kde-format
 msgid "Mount point:"
-msgstr "Точка монтирования"
+msgstr "Точка монтирования:"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5467,7 +5452,7 @@ msgstr "Выбрать кодировку"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr ""
+msgstr "Недавно закрытые вкладки"
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5586,16 +5571,13 @@ msgstr ""
 "%1"
 
 #: app/krslots.cpp:420
-#, fuzzy, kde-format
-#| msgid ""
-#| "Cannot find a batch rename tool.\n"
-#| "You can get KRename at http://www.krename.net"
+#, kde-format
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
-"Не найден инструмент для группового переименования.\n"
-"Вы можете найти KRename на http://www.krename.net"
+"Не удаётся найти инструмент группового переименования.\n"
+"Возможно найти KRename на %1"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -6206,34 +6188,22 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader — ПРИВИЛЕГИИ ROOT"
 
 #: app/main.cpp:113
-#, fuzzy, kde-format
-#| msgid ""
-#| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2019 Krusader Krew"
+#, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© Shie Erlich, Rafi Yanai, 2000-2003\n"
-"© Krusader Krew, 2004-2019"
+"© Krusader Krew, 2004-2022"
 
 #: app/main.cpp:114
-#, fuzzy, kde-format
-#| msgid ""
-#| "Feedback:\n"
-#| "https://forum.kde.org/viewforum.php?f=225\n"
-#| "\n"
-#| "IRC\n"
-#| "server: irc.freenode.net, channel: #krusader"
+#, kde-format
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
 "Обратная связь:\n"
-"https://forum.kde.org/viewforum.php?f=225\n"
-"\n"
-"IRC\n"
-"сервер: irc.freenode.net, канал: #krusader"
+"https://forum.kde.org/viewforum.php?f=225"
 
 #: app/main.cpp:120
 #, kde-format
@@ -7214,8 +7184,7 @@ msgstr ""
 "отмеченных файлов и размер занимаемого ими места"
 
 #: app/Panel/listpanel.cpp:229
-#, fuzzy, kde-format
-#| msgid "Cancel directory space calculation"
+#, kde-format
 msgid "Cancel folder space calculation"
 msgstr "Отменить подсчёт занимаемого места"
 
@@ -7578,8 +7547,7 @@ msgstr ""
 "диалоговом окне настройки, по умолчанию это <b>konsole</b>.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, fuzzy, kde-format
-#| msgid "Open/Run"
+#, kde-format
 msgid "Open/Run Files"
 msgstr "Открыть/запустить"
 
@@ -7589,10 +7557,9 @@ msgid "Run"
 msgstr "Запустить"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, fuzzy, kde-format
-#| msgid "Open in New Tab"
+#, kde-format
 msgid "Open in New Tabs"
-msgstr "Открыть в новой вкладке"
+msgstr "Открыть в новых вкладках"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7936,10 +7903,9 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 из %2, %3 из %4"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, fuzzy, kde-format
-#| msgid "Apply filter to folders"
+#, kde-format
 msgid "Apply filter to folder&s"
-msgstr "Применить фильтр к папкам"
+msgstr "Применить фильтр к папка&м"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
@@ -7947,10 +7913,9 @@ msgid "Filter Files"
 msgstr "Фильтр файлов"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, fuzzy, kde-format
-#| msgid "Apply selection to folders"
+#, kde-format
 msgid "Apply &selection to folders"
-msgstr "Применить выбор к папкам"
+msgstr "Применить &выбор к папкам"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, kde-format
@@ -8279,10 +8244,9 @@ msgid "Save settings as default for new instances of this view type"
 msgstr "Сохранить параметры как шаблон для новых экземпляров этого типа"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, fuzzy, kde-format
-#| msgid "Open in a new tab"
+#, kde-format
 msgid "Open a new tab"
-msgstr "Открыть в новой вкладке"
+msgstr "Открыть новую вкладку"
 
 #: app/paneltabbar.cpp:173
 #, kde-format
@@ -8328,7 +8292,7 @@ msgstr "Найденный текст:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr ""
+msgstr "Бездействие"
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -9183,16 +9147,14 @@ msgid "Move Current Tab to Other Side"
 msgstr "Переместить текущую вкладку на другую сторону"
 
 #: app/tabactions.cpp:26
-#, fuzzy, kde-format
-#| msgid "Move Current Tab to Other Side"
+#, kde-format
 msgid "Move Current Tab to the Left"
-msgstr "Переместить текущую вкладку на другую сторону"
+msgstr "Передвинуть текущую вкладку влево"
 
 #: app/tabactions.cpp:27
-#, fuzzy, kde-format
-#| msgid "Move Current Tab to Other Side"
+#, kde-format
 msgid "Move Current Tab to the Right"
-msgstr "Переместить текущую вкладку на другую сторону"
+msgstr "Передвинуть текущую вкладку вправо"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9200,10 +9162,9 @@ msgid "Close Current Tab"
 msgstr "Закрыть текущую вкладку"
 
 #: app/tabactions.cpp:29
-#, fuzzy, kde-format
-#| msgid "Unlock Tab"
+#, kde-format
 msgid "Undo Close Tab"
-msgstr "Разблокировать вкладку"
+msgstr "Восстановить закрытую вкладку"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9804,12 +9765,12 @@ msgstr "Мультимедиа"
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr ""
+msgstr "Копировать путь к текущему элементу (без пробелов)"
 
 #: app/useraction_examples.xml:46
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
-msgstr ""
+msgstr "Копировать пути к выделенным элементам"
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
@@ -9886,8 +9847,7 @@ msgstr ""
 "Её можно включить на вкладке «Архивы» в диалоге настройки."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, fuzzy, kde-format
-#| msgid "Creating directories is not supported with %1 archives"
+#, kde-format
 msgid "Creating folders is not supported with %1 archives"
 msgstr "Создание папок для архивов %1 не поддерживается"
 
@@ -9921,7 +9881,7 @@ msgstr "Распаковка %1..."
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
-msgstr ""
+msgstr "Произошла ошибка внешнего приложения «%1». Текст ошибки: «%2»."
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
@@ -9934,8 +9894,7 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "Доступ к файлам для архивов %1 не поддерживается"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, fuzzy, kde-format
-#| msgid "Listing directories is not supported for %1 archives"
+#, kde-format
 msgid "Listing folders is not supported for %1 archives"
 msgstr "Вывод списка папок для архивов %1 не поддерживается"
 

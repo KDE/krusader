@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 02:46+0000\n"
-"PO-Revision-Date: 2023-03-01 01:53+0100\n"
+"PO-Revision-Date: 2023-07-23 23:59+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -2914,7 +2914,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:55
 #, kde-format
 msgid "Show current item even if not focused"
-msgstr "초점이 맞지 않아도 현재 항목 표시"
+msgstr "포커스가 맞지 않아도 현재 항목 표시"
 
 #: app/Konfigurator/kgcolors.cpp:55
 #, kde-format
@@ -3244,7 +3244,7 @@ msgstr "심볼릭 링크"
 #: app/Konfigurator/kgcolors.cpp:449
 #, kde-format
 msgid "Application"
-msgstr "프로그램"
+msgstr "앱"
 
 #: app/Konfigurator/kgcolors.cpp:451
 #, kde-format
@@ -4426,8 +4426,8 @@ msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the folder."
 msgstr ""
-"파일을 한 번 눌렀을 때 선택 및 초점을 맞추며, 두 번 클릭하면 파일을 열거나 폴"
-"더로 들어갑니다."
+"파일을 한 번 눌렀을 때 선택 및 포커스를 맞추며, 두 번 클릭하면 파일을 열거나 "
+"폴더로 들어갑니다."
 
 #: app/Konfigurator/kgpanel.cpp:626
 #, kde-format
@@ -4968,7 +4968,7 @@ msgstr "의존성"
 #: app/Konfigurator/konfigurator.cpp:127
 #, kde-format
 msgid "Set the full path of the external applications"
-msgstr "외부 프로그램의 전체 경로 설정"
+msgstr "외부 앱의 전체 경로 설정"
 
 #: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:208
 #: app/UserAction/useractionpopupmenu.cpp:20
@@ -5385,12 +5385,12 @@ msgstr "전체 화면 내장 터미널 전환"
 #: app/kractions.cpp:285
 #, kde-format
 msgid "Move Focus Up"
-msgstr "초점 위로 이동"
+msgstr "포커스 위로 이동"
 
 #: app/kractions.cpp:286
 #, kde-format
 msgid "Move Focus Down"
-msgstr "초점 아래로 이동"
+msgstr "포커스 아래로 이동"
 
 #: app/kractions.cpp:302
 #, kde-format
@@ -5500,9 +5500,9 @@ msgid ""
 "<p>Furthermore, running UI applications as root is insecure and can allow "
 "attackers to gain root access."
 msgstr ""
-"루트 모드에서 작업을 잘못 실행하면 시스템이 손상될 수 있습니다.<p>GUI 프로그"
-"램을 루트 모드로 실행하면 보안 문제가 발생할 수 있으며 공격자가 시스템 루트 "
-"접근을 탈취할 수 있습니다."
+"루트 모드에서 작업을 잘못 실행하면 시스템이 손상될 수 있습니다.<p>GUI 앱을 루"
+"트 모드로 실행하면 보안 문제가 발생할 수 있으며 공격자가 시스템 루트 접근을 "
+"탈취할 수 있습니다."
 
 #: app/krslots.cpp:462
 #, kde-format
@@ -5571,9 +5571,9 @@ msgid ""
 "will now be checked for external applications. Then the Konfigurator will be "
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr ""
-"<qt><b>Krusader에 오신 것을 환영합니다.</b><p>이 프로그램을 처음 실행했기 때"
-"문에, 사용할 수 있는 외부 프로그램을 확인해 볼 것입니다. 그 다음 Krusader를 "
-"입맛에 맞게 설정할 수 있도록 Konfigurator를 실행합니다.</p></qt>"
+"<qt><b>Krusader에 오신 것을 환영합니다.</b><p>이 앱을 처음 실행했기 때문에, "
+"사용할 수 있는 외부 앱을 확인해 볼 것입니다. 그 다음 Krusader를 입맛에 맞게 "
+"설정할 수 있도록 Konfigurator를 실행합니다.</p></qt>"
 
 #: app/krusader.cpp:334
 #, kde-format
@@ -8058,7 +8058,7 @@ msgstr "보기 옵션 메뉴 표시"
 #: app/Panel/viewactions.cpp:42
 #, kde-format
 msgid "Set Focus to the Panel"
-msgstr "패널에 초점 맞추기"
+msgstr "패널에 포커스 맞추기"
 
 #: app/Panel/viewactions.cpp:43
 #, kde-format
@@ -9703,7 +9703,7 @@ msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
-"외부  프로그램 '%1'와(과) 연관된 오류가 발생했습니다. 오류 메시지: '%2'."
+"외부 프로그램 '%1'와(과) 연관된 오류가 발생했습니다. 오류 메시지: '%2'."
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
