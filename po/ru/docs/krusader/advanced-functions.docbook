@@ -1,0 +1,40 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="more-features">
+<title
+>Дополнительные функции</title
+>&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>Отправка файлов по почте</title
+> <para
+>Выберите файл и щёлкните по нему правой кнопкой мыши, чтобы открыть <menuchoice
+> <guimenu
+>контекстное меню</guimenu
+> <guimenuitem
+>Отправить по почте</guimenuitem
+> </menuchoice
+>. Выбор этого пункта откроет новое окно &kmail;, в котором файл уже будет прикреплён. Заполните тему и получателя и отправьте. При этом &kmail; должен быть правильно настроен.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>Права доступа ACL</title>
+  <para
+><link linkend="gloss-acl"
+>Права доступа ACL</link
+> полностью поддерживаются в свойствах, сохранении атрибутов и синхронизаторе. Для просмотра или изменения прав доступа ACL выберите файл и используйте вызываемое щелчком правой кнопкой мыши <link linkend="context-menu"
+>контекстное меню</link
+>: <menuchoice
+> <guimenu
+>Свойства...</guimenu
+> <guimenuitem
+>Права доступа</guimenuitem
+> <guimenuitem
+>Дополнительные права</guimenuitem
+> </menuchoice
+>. При копировании или перемещении права доступа ACL также копируются. Синхронизатор тоже сохраняет права доступа ACL.</para>
+</sect1
+></chapter>

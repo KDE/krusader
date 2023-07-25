@@ -1,0 +1,132 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="archives">
+  <title
+>Архивирование</title>
+  <indexterm>
+    <primary
+>Архивы</primary>
+  </indexterm>
+  <sect2 id="browsing-archives">
+    <title
+>Просмотр архивов</title>
+    <para
+><link linkend="vfs"
+>Виртуальная файловая система (ВФС)</link
+> позволяет просматривать архивы как папки. В текущей версии &krusader; поддерживает следующие типы архивов: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip и 7-zip и следующие архивы с паролями: arj, ace, rar и zip. Пароли возможно хранить в <application
+>KWallet</application
+>. Прежде чем использовать поддержку архивов, её необходимо <link linkend="konfig-archives"
+>настроить</link
+> в диалоге настройки. Чтобы открыть архив, воспользуйтесь клавишей &Enter;, (двойным) щелчком левой кнопкой мыши или клавишей <keycap
+>Стрелка вправо</keycap
+>. &krusader; также поддерживает <emphasis role="bold"
+>скрытые архивы</emphasis
+>, это архивы с «неправильным» расширением, например, <trademark class="registered"
+>OpenOffice</trademark
+> использует архивы zip со следующими расширениями: <literal role="extension"
+>.odt</literal
+>, <literal role="extension"
+>.sxw</literal
+> и <literal role="extension"
+>.odw</literal
+>. Клавиша &Enter; откроет документ <trademark class="registered"
+>OpenOffice</trademark
+>, а клавиша <keycap
+>Стрелка вправо</keycap
+> откроет архив. Другой пример — это J2EE, где расширение <literal role="extension"
+>.jar</literal
+> является zip-архивом. Поскольку &krusader; автоматически определяет поддерживаемые типы архивов, архив можно будет открыть с помощью клавиши <keycap
+>Стрелка вправо</keycap
+>, даже если он имеет другой тип &MIME;. Обратите внимание, что просмотр архивов имеет несколько ограничений: <itemizedlist>
+      <listitem>
+        <para
+>Не все функции поддерживаются всеми типами архивов (то есть, нельзя удалять файлы из архивов ace или rar).</para>
+      </listitem>
+      <listitem>
+        <para
+>Права доступа для содержимого архива те же, что и для самого архива.</para>
+      </listitem>
+      <listitem>
+        <para
+>Командная строка (если видна) не поддерживается внутри архива, а указывает на каталог, где расположен архив.</para>
+      </listitem>
+      <listitem>
+        <para
+>Любое действие с файлами или папками внутри архива требует, чтобы они были распакованы из архива. Архив будет переупакован при выходе из него или когда &krusader; обнаружит, что извлечённые файлы были изменены.</para>
+      </listitem>
+      <listitem>
+        <para
+>Упаковка и распаковка являются «блокирующими операциями», для которых открывается окно выполнения операции. Однако, это может измениться в будущем, так как планируется создать больше фоновых операций.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="unpacking-archives">
+    <title
+>Распаковка файлов</title>
+    <para
+>Есть два способа извлечь файлы из архива:</para>
+    <para
+>Чтобы распаковать архивы целиком, перейдите в соответствующую папку, выделите нужные архивы и выберите <menuchoice
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Распаковать...</guimenuitem
+></menuchoice
+> или <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+>. &krusader; спросит, куда поместить распакованные файлы. По умолчанию это будет папка, открытая в неактивной панели. Если операцию не отменять, &krusader; распакует все выделенные файлы в неактивную панель.</para>
+    <para
+>Чтобы извлечь часть архива, начните <link linkend="browsing-archives"
+>просмотр</link
+> архива и скопируйте файлы, которые нужно извлечь, как при копировании «обычных» файлов. Имейте в виду, что распаковка из архива в режиме просмотра требует больше времени (распаковка производится файл за файлом), по сравнению с распаковкой целого архива первым способом. Операцию распаковки возможно поместить в <link linkend="queue"
+>очередь</link
+>.</para>
+  </sect2>
+  <sect2 id="pack-archive">
+    <title
+>Упаковка файлов</title>
+    <para
+>Чтобы создать новый архив, выделите элементы, которые нужно упаковать, в активной панели и выберите <menuchoice
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Упаковать...</guimenuitem
+> </menuchoice
+> или воспользуйтесь комбинацией клавиш <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+>. Появится диалог, предлагающий ввести название архива и его расположение. Выберите упаковщик и укажите одно из <link linkend="konfig-archives"
+>поддерживаемых расширений имён файлов</link
+>.</para>
+    <para
+>Чтобы добавить файлы в существующие архивы, откройте архив на одной панели и копируемые файлы на другой панели, затем просто скопируйте файлы в архив, совершенно аналогично тому, как производится копирование в обычную папку. Операцию упаковки возможно поместить в <link linkend="queue"
+>очередь</link
+>.</para>
+  </sect2>
+  <sect2 id="test-archive">
+    <title
+>Проверка архивов</title>
+    <para
+>&krusader; не будет работать с повреждёнными архивами, поскольку это может привести к потере данных. Если было получено сообщение об ошибке при открытии архива или есть подозрение, что с архивом не всё в порядке, необходимо проверить его прежде чем использовать. Чтобы проверить архив, перейдите в папку с архивом и выберите архив. Далее, выберите <emphasis role="bold"
+><menuchoice
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Проверить архив</guimenuitem
+> </menuchoice
+> </emphasis
+> или <keycombo action="simul"
+>&Alt; <keycap
+>E</keycap
+></keycombo
+>. &krusader; проверит файл архива и сообщит, прошёл файл проверку или нет.</para>
+  </sect2>
+</sect1>
