@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-15 02:46+0000\n"
-"PO-Revision-Date: 2023-03-11 15:05+0100\n"
+"PO-Revision-Date: 2023-07-31 21:11+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
 "Language: nn\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.04.3\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
@@ -3796,7 +3796,7 @@ msgstr "Lukk fane ved dobbeltklikk."
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr ""
+msgstr "«Ny fane»-knapp lagar kopi av fane"
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3804,11 +3804,13 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
+"Viss det er kryssa av her, vil «Ny fane»-knappen lag kopi av fana; elles vil "
+"han opna ei ny fane i heimemappa."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr ""
+msgstr "Lag kopi gjeldande fane ved klikk:"
 
 #: app/Konfigurator/kgpanel.cpp:137
 #, kde-format
@@ -3818,17 +3820,17 @@ msgstr "Slått av"
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr ""
+msgstr "Alt + klikk"
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr ""
+msgstr "Ctrl + klikk"
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr ""
+msgstr "Lag kopi gjeldande fane ved Ctrl/Alt + venstreknapp"
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -9680,11 +9682,12 @@ msgstr "Multimedia"
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
 msgstr ""
+"Kopier filadresse til gjeldande element (med verning av mellomromsteikn)"
 
 #: app/useraction_examples.xml:46
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
-msgstr ""
+msgstr "Kopier filadresse(r) til merkt(e) element"
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
