@@ -8,14 +8,14 @@
 # Erik Johansson <erre@telia.com>, 2001.
 # Anders Lindén <connyosis@gmx.net>, 2004.
 # Peter Landgren <peter.talken@telia.com>, 2005, 2006, 2007, 2008.
-# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2023.
 # Arve Eriksson <031299870@telia.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-24 00:49+0000\n"
-"PO-Revision-Date: 2022-10-01 11:04+0200\n"
+"PO-Revision-Date: 2023-07-26 22:21+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -6159,16 +6159,13 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - ROTBEHÖRIGHET"
 
 #: app/main.cpp:113
-#, fuzzy, kde-format
-#| msgid ""
-#| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2020 Krusader Krew"
+#, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2020 Krusader Krew"
+"© 2004-2022 Krusader Krew"
 
 #: app/main.cpp:114
 #, kde-format
@@ -6894,7 +6891,7 @@ msgstr "A&vmontera"
 #: app/MountMan/kmountmangui.cpp:148
 #, kde-format
 msgid "Mnt.Point"
-msgstr "Monteringsplats"
+msgstr "Monteringspunkt"
 
 #: app/MountMan/kmountmangui.cpp:149
 #, kde-format
@@ -9816,7 +9813,7 @@ msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
-"Ett fel har inträffat, relaterat till det externa programmet '%1'. "
+"Ett fel har uppstått relaterat till det externa programmet '%1'. "
 "Felmeddelandet är: '%2'."
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
@@ -9854,11 +9851,8 @@ msgstr "Krarc lösenordsdialog"
 msgid "Accessing the file requires a password."
 msgstr "Åtkomst av filen kräver ett lösenord."
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Kopiera aktuellt objekt till klippbordet"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Öppna ny flik i hemkatalogen"
+#~ msgid "Directories:"
+#~ msgstr "Kataloger:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Visa flikknapparna ny och stäng."
@@ -9887,6 +9881,30 @@ msgstr "Åtkomst av filen kräver ett lösenord."
 #~ msgid "JavaScript Error"
 #~ msgstr "Javascript-fel"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZiB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TiB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GiB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MiB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KiB"
+
+#~ msgid "Browse"
+#~ msgstr "Läs"
+
+#~ msgid "New folder"
+#~ msgstr "Ny katalog"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Öppna ny flik i hemkatalogen"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Kör en Javascript-utökning..."
 
@@ -9905,14 +9923,8 @@ msgstr "Åtkomst av filen kräver ett lösenord."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Expander: Inget skript specificerat för %_Script(skript)%"
 
-#~ msgid "New folder"
-#~ msgstr "Ny katalog"
-
-#~ msgid "Directories:"
-#~ msgstr "Kataloger:"
-
-#~ msgid "Browse"
-#~ msgstr "Läs"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Kopiera aktuellt objekt till klippbordet"
 
 #~ msgid "Folder..."
 #~ msgstr "Katalog..."
@@ -9925,21 +9937,6 @@ msgstr "Åtkomst av filen kräver ett lösenord."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Redigera fil (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZiB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TiB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GiB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MiB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KiB"
 
 #~ msgid "Open search filter"
 #~ msgstr "Öppna sökfilter"
