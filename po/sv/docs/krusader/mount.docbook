@@ -12,7 +12,11 @@
 >Montera</primary>
   </indexterm>
   <para
->Mountman är ett verktyg som hjälper till att hantera monterade filsystem. När det väl har startats, visar det en lista med alla monterade filsystem. För varje filsystem visar Mountman dess namn (vilket är det verkliga enhetsnamnet, dvs. <filename class="directory">/dev/sda1</filename> för en <hardware>hårddisk</hardware>), dess typ (ext4, ext3, ntfs, vfat, ReiserFS, ...) och dess monteringsplats i systemet (katalogen där filsystemet är monterat).</para>
+>Mountman är ett verktyg som hjälper till att hantera monterade filsystem. När det väl har startats, visar det en lista med alla monterade filsystem. För varje filsystem visar Mountman dess namn (vilket är det verkliga enhetsnamnet, dvs. <filename class="directory"
+>/dev/sda1</filename
+> för en <hardware
+>hårddisk</hardware
+>), dess typ (ext4, ext3, ntfs, vfat, ReiserFS, ...) och dess monteringsplats i systemet (katalogen där filsystemet är monterat).</para>
   <para
 >Om du vill filtrera bort enheter som inte är flyttbara från listan, markera bara <guilabel
 >Visa bara flyttbara enheter</guilabel
@@ -53,10 +57,10 @@
   </itemizedlist>
   <note>
     <para
->We plan to expand MountMan in the next evolution of &krusader;. It will be able to format partitions, edit <filename
+>Vi planerar att expandera Mountman i &krusader;s nästa utvecklingssteg. Den kommer att kunna formatera partitioner, redigera <filename
 >/etc/fstab</filename
->, create new file systems and more.... By the way, we have started working on it, see <quote
->Quickmode for MountMan</quote
+>, skapa nya filsystem, med mera... Vi har förresten redan börjat arbeta på det; se <quote
+>Snabbläge för Mountman</quote
 >.</para>
   </note>
   <para>
@@ -68,5 +72,7 @@
 >huvudverktygsraden</link
 >.</para>
   <para
->Allmän idé: Visa en lista med alla möjliga monteringsplatser. Varje gång menyn visas, bestämmer den om en monteringspunkt är monterad eller inte, och kopplar ihop den med rätt åtgärd (montera eller avmontera). Det ger ett snabbt gränssnitt för Mountman. Det fungerar, och använder för närvarande Kmountman::mount och unmount. Det använder de nya tjänsterna i &kde; Ramverk 5 för läsning av fstab, och det gör det möjligt för oss att ta bort en mängd kod från den "gamla" Mountman.</para>
+>Allmän idé: Visa en lista med alla möjliga monteringsplatser. Varje gång menyn visas, bestämmer den om en monteringspunkt är monterad eller inte, och kopplar ihop den med rätt åtgärd (montera eller avmontera). Det ger ett snabbt gränssnitt för Mountman. Det fungerar, och använder för närvarande Kmountman::mount och unmount. Det använder de nya tjänsterna i &kde; Ramverk 5 för läsning av fstab, och det gör det möjligt för oss att ta bort en mängd kod från den <quote
+>gamla</quote
+> Mountman.</para>
 </sect1>

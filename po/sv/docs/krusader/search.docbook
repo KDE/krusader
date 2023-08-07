@@ -40,18 +40,34 @@
 >Övre delen:</title>
     <listitem>
       <para
-><guilabel>Sök efter</guilabel>: Här skriver du in det huvudsakliga sökbegreppet. Du kan skriva in ett filnamn, jokertecken ( <literal role="extension">*.o.*</literal>, <literal role="extension">*.c</literal> etc.) eller båda, åtskilda med ett mellanslag. Om du skriver <literal>'text'</literal> är resultatet samma som <literal>'*text*'</literal>. Du kan undanta filer från sökningen med '|' (t.ex. <literal role="extension">'*.cpp *.h | *.moc.cpp'</literal>) . Du kan använda citationstecken för namn som innehåller mellanslag. Filtret "Program och filer" söker efter de filer eller kataloger som har namnet <filename>Program och filer</filename>.</para>
+><guilabel
+>Sök efter</guilabel
+>: Här skriver du in det huvudsakliga sökbegreppet. Du kan skriva in ett filnamn, jokertecken ( <literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> etc.) eller båda, åtskilda med ett mellanslag. Om du skriver <literal
+>'text'</literal
+> är resultatet samma som <literal
+>'*text*'</literal
+>. Du kan undanta filer från sökningen med '|' (t.ex. <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>) . Du kan använda citationstecken för namn som innehåller mellanslag. Filtret <quote
+>Program Filer</quote
+> söker efter de filer eller kataloger som har namnet <filename
+>Program Filer</filename
+>. En kombinationslista som visas efter att ha klickat på neråtpilen till höger låter dig välja något av dina tidigare inmatade sökbegrepp.</para>
       <note>
           <para
->It is possible to edit the list of suggestions for the <guilabel
->Search for</guilabel
-> field. If you do not like some of its items just select it and press <keycombo action="simul"
+>Det är möjligt att redigera listan med förslag i fältet <guilabel
+>Sök efter</guilabel
+>. Om du inte gillar några av alternativen, markera dem bara och tryck på <keycombo action="simul"
 >&Shift;<keycap
 >Del</keycap
 ></keycombo
-> and that useless suggestion gets deleted. You can also use the arrow keys in order to see all the history in the <guilabel
->Search for</guilabel
-> field, and delete the entries that are needless. </para>
+> så tas de oanvändbara förslagen bort. Du kan också använda piltangenterna för att se hela historiken i fältet <guilabel
+>Sök efter</guilabel
+>, och ta bort onödiga poster. </para>
       </note>
     </listitem>
     <listitem>
@@ -69,8 +85,8 @@
     <listitem>
       <para
 ><guilabel
->Of type</guilabel
->: this box lets you search for a file not only by its name, but also by its &MIME; type. For example, you can search for all the audio files whose name begins with B. Usually this option defaults to 'all files', but you can choose to search for archives, folders, images, text files, videos and audio files.</para>
+>Av typ</guilabel
+>: Den här rutan låter dig söka efter en fil inte bara enligt namn, utan också enligt &MIME;-typ. Du kan till exempel söka efter alla ljudfiler vars namn börjar med B. Oftast har alternativet standardvärdet 'Alla filer', men du kan välja att söka efter arkiv, kataloger, bilder, textfiler, videor och ljudfiler.</para>
     </listitem>
   </itemizedlist>
   <itemizedlist>
@@ -78,7 +94,43 @@
 >Vänstra och högra delarna:</title>
     <listitem>
       <para
-><guilabel>Sök i</guilabel> och <guilabel>Sök inte i</guilabel>: Genom att använda dessa två delar, kan du ange en sökning exakt som du vill ha den. Du kanske exempelvis vill söka efter en fil i hela filsystemet (som börjar med <filename>/</filename>), men vill inte söka inne i <filename>/mnt</filename>. Allt du behöver göra är att skriva <filename>/</filename> i rutan <guilabel>Sök i</guilabel>, och skriva <filename>/mnt</filename> i rutan <guilabel>Sök inte i</guilabel>. Om du vill skriva in mer än en katalog i någon av rutorna, skriv bara det första namnet och tryck på returtangenten. Katalognamnet kopieras till den större listrutan, och du kommer att kunna skriva in ett nytt namn.</para>
+><guilabel
+>Sök i</guilabel
+> och <guilabel
+>Sök inte i</guilabel
+>: Genom att använda dessa två delar, kan du ange en sökning exakt som du vill ha den. Du kanske exempelvis vill söka efter en fil i hela filsystemet (som börjar med <filename
+>/</filename
+>), men vill inte söka inne i <filename
+>/mnt</filename
+>. Allt du behöver göra är att skriva <filename
+>/</filename
+> i rutan <guilabel
+>Sök i</guilabel
+>, och skriva <filename
+>/mnt</filename
+> i rutan <guilabel
+>Sök inte i</guilabel
+>. Om du vill skriva in mer än en katalog i någon av rutorna, skriv bara det första namnet och tryck på returtangenten. Katalognamnet kopieras till den större listrutan, och du kommer att kunna skriva in ett nytt namn. <note
+> <para
+>Inmatningsraden har en funktion för automatisk komplettering, som motsvarar &plasma;s allmänna inställningar. Om du vill kan du klicka på <guiicon
+>katalogikonen</guiicon
+>, och bläddra till katalogen du vill lägga till.</para>
+      </note>
+      <note>
+          <para
+>Det är möjligt att definiera filer och kataloger som ska filtreras bort från sökresultaten med inmatningsfältet <guilabel
+>Undanta katalognamn</guilabel
+> längst ner i rutan <guilabel
+>Sök inte i</guilabel
+>.</para>
+          <para
+>Objekt i filterlistan ska åtskiljas med mellanslag.</para>
+          <para
+>Mellanslag i filterlistans objekt kan undantas eller citeras. Exempel: <userinput
+>.git "target build" build\ krusader</userinput
+></para>
+      </note
+></para>
     </listitem>
   </itemizedlist>
   <itemizedlist>
@@ -123,8 +175,8 @@
     <listitem>
       <para
 ><guilabel
->Search in sub folders</guilabel
->: perform a recursive search and dive into every folder on the way.</para>
+>Sök i underkataloger</guilabel
+>: Utför en rekursiv sökning och gå ner i alla kataloger på vägen.</para>
     </listitem>
     <listitem>
       <para
@@ -182,9 +234,9 @@
 >Stäng</guibutton
 > går inte att använda under en sökning, så du måste först stoppa sökningen och därefter stänga fönstret. När ett resultat hittas, gör ett dubbelklick på det att &krusader;s aktiva panel går till filen som hittats, men sökfönstret stängs inte, så att du har möjlighet att klicka på ett annat resultat.</para>
   <para
->Sometimes, you need to narrow your search even more. KruSearcher allows a much finer search, and for that, let's look at the <guilabel
->Advanced Page</guilabel
->...</para>
+>Ibland behöver du förfina sökningen ännu mer. KruSearcher tillåter en mycket finare sökning, och för den, låt oss ta en titt på sidan <guilabel
+>Avancerat</guilabel
+> ...</para>
   <figure id="screenshot-search-advanced" float="1">
     <title
 >Avancerad sökning</title>
@@ -266,19 +318,19 @@
 >Resultat</emphasis>
   </para>
   <para
->Clicking on the <guibutton
->Search</guibutton
-> button to start the search and open the Results window. Here you can see the progress and the results of the search action. If you want you can stop the current search action with the <guibutton
->Stop</guibutton
-> button. In the result list select the file and use <keycap
+>Klicka på knappen <guibutton
+>Sök</guibutton
+> för att starta sökningen och öppna resultatfönstret. Här ser du förloppet och resultatet av sökåtgärden. Om du vill kan du stoppa den pågående sökningen med knappen <guibutton
+>Stoppa</guibutton
+>. Markera filen i resultatlistan och använd <keycap
 >F3</keycap
->/ <keycap
+> eller <keycap
 >F4</keycap
-> to view/edit or use the right-click menu. When you click on a found item, the folder of the active panel will change if the selected item is not in the current panel folder. The results window supports dragging items to other windows and copy to clipboard (<keycombo action="simul"
+> för att granska eller redigera den, eller använd högerklickmenyn. När du klickar på ett objekt som har hittats, ändras katalogen i den aktiva panelen, om det markerade objektet inte är i panelens aktuella katalog. Resultatfönstret stöder att dra objekt till andra fönster, och kopiera till klippbordet (<keycombo action="simul"
 >&Ctrl;<keycap
 >C</keycap
 ></keycombo
->). When you close the KruSearcher window, the selected item is selected in the active panel.</para>
+>). När du stänger KruSearchers fönster, blir det markerade objektet markerat i den aktiva panelen.</para>
   <para>
     <emphasis role="bold"
 >Skicka till listruta</emphasis>

@@ -58,7 +58,11 @@
     </glossterm>
     <glossdef>
       <para
->Det här är ett binärt filformat som används av <ulink url="https://sv.wikipedia.org/wiki/Debian_GNU/Linux"> <trademark class="registered">Debian</trademark></ulink> och distributioner baserade på <trademark class="registered">Debian</trademark>. Det är filändelsen för en installationsfil skapad särskilt för dessa distributioner, t.ex. <filename>krusader_1.70.1-1_amd64.deb</filename>. Med enkla ord är det ett arkiv som innehåller alla programfiler och deras föreslagna plats i systemet.</para>
+>Det här är ett binärt filformat som används av <ulink url="https://sv.wikipedia.org/wiki/Debian_GNU/Linux"
+>&Debian;</ulink
+> och distributioner baserade på &Debian;. Det är filändelsen för en installationsfil skapad särskilt för dessa distributioner, t.ex. <filename
+>krusader_1.70.1-1_amd64.deb</filename
+>. Med enkla ord är det ett arkiv som innehåller alla programfiler och deras föreslagna plats i systemet.</para>
     </glossdef>
   </glossentry>
     <glossentry id="glos-dbus">
@@ -176,16 +180,16 @@
 >Tangentbindning</glossterm>
     <glossdef>
       <para
->All features of &krusader; are available through the menubar, but you can also bind (link) a certain key combination to that function. You will find, however, that using the <link linkend="keyboard-commands"
->keyboard</link
-> is remarkably faster than using the menubar or <link linkend="gloss-gui"
->&GUI;</link
+>Alla funktioner i &krusader; är tillgängliga via menyraden, men du kan också binda (länka) vissa tangentkombinationer till funktioner. Du kommer dock att märka att det går anmärkningsvärt mycket fortare att använda <link linkend="keyboard-commands"
+>tangentbordet</link
+> istället för menyraden eller <link linkend="gloss-gui"
+>det grafiska användargränssnittet</link
 >. <link linkend="keyboard-commands"
->Keyboard usage</link
-> is an important tool for <link linkend="gloss-ofm"
->Orthodox File Managers</link
->. &krusader; comes with several predefined <link linkend="key_bindings"
->Key Bindings</link
+>Användning av tangentbordet</link
+> är ett viktigt verktyg för <link linkend="gloss-ofm"
+>ortodoxa filhanterare</link
+>. &krusader; levereras med flera fördefinierade <link linkend="key_bindings"
+>tangentbindningar</link
 >.</para>
     </glossdef>
   </glossentry>
@@ -194,7 +198,13 @@
 >KPart</glossterm>
     <glossdef>
       <para
-><ulink url="https://en.wikipedia.org/wiki/KPart"> KPart</ulink>; KPart är namnet på komponentramverket för &kde;:s skrivbordsmiljö. En KPart motsvarar en Bonobo-komponent i <ulink url="https://www.gnome.org"><application>GNOME</application></ulink>, och båda är baserade på samma koncept som &Microsoft;s objektlänkning och inbäddning. om du t.ex. använder &krusader;s granskare för att visa en PDF-fil, startas &okular; inne i &krusader;s granskare.</para>
+><ulink url="https://en.wikipedia.org/wiki/KPart"
+> KPart</ulink
+>; KPart är namnet på komponentramverket för &kde;:s skrivbordsmiljö. En KPart motsvarar en Bonobo-komponent i <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, och båda är baserade på samma koncept som &Microsoft;s objektlänkning och inbäddning. om du t.ex. använder &krusader;s granskare för att visa en &PDF;-fil, startas &okular; inne i &krusader;s granskare.</para>
     </glossdef>
   </glossentry>
   <glossentry id="gloss-kio">
@@ -227,12 +237,12 @@
     <glossdef>
       <para
 ><ulink url="http://www.softpanorama.org/OFM/index.shtml"
-> Orthodox File Manager</ulink
->; also known as <quote
->Commanders</quote
->. Members of this family of file managers use simple yet very powerful interface that is a direct derivative of the <ulink url="https://en.wikipedia.org/wiki/Norton_Commander"
+>Ortodox filhanterare</ulink
+>: Också känd som <quote
+>Commander</quote
+>. Medlemmar i den här familjen av filhanterare använder ett enkelt men ändå mycket kraftfullt gränssnitt som direkt kommer från gränssnittet i <ulink url="https://sv.wikipedia.org/wiki/Norton_Commander"
 > Norton Commander</ulink
-> (NC) interface.</para>
+> (NC).</para>
     </glossdef>
   </glossentry>
   <glossentry id="gloss-rpm">
@@ -316,7 +326,13 @@
     </glossterm>
     <glossdef>
       <para
-><link linkend="vfs">Virtuella filsystem (VFS)</link> är en grundläggande funktion hos <link linkend="features">ortodoxa filhanterare</link>, ett abstrakt lager över alla sorters arkiverad information (ZIP-filer, &FTP;-servrar, TAR-arkiv, NFS-filsystem, SAMBA delade kataloger, ISO CD/DVD-avbilder, RPM-kataloger, etc.), som gör det möjligt för användaren att transparent komma åt all information i dessa väsensskilda typer av filsystem, precis som att gå ner i en vanlig underkatalog. &krusader; stöder flera olika <link linkend="vfs">virtuella filsystem</link>.</para>
+><link linkend="vfs"
+>Virtuella filsystem (VFS)</link
+> är en grundläggande funktion hos <link linkend="features"
+>ortodoxa filhanterare</link
+>, ett abstrakt lager över alla sorters arkiverad information (ZIP-filer, &FTP;-servrar, TAR-arkiv, &NFS;-filsystem, SAMBA delade kataloger, ISO &CD;/&DVD;-avbilder, RPM-kataloger, etc.), som gör det möjligt för användaren att transparent komma åt all information i dessa väsensskilda typer av filsystem, precis som att gå ner i en vanlig underkatalog. &krusader; stöder flera olika <link linkend="vfs"
+>virtuella filsystem (VFS)</link
+>.</para>
     </glossdef>
   </glossentry>
   <glossentry id="gloss-xml">

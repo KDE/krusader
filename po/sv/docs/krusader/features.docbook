@@ -127,7 +127,7 @@
           <listitem>
             <para
 ><link linkend="synchronizer"
->Synchronize Folders</link
+>Synkronisera kataloger</link
 ></para>
           </listitem>
           <listitem>
@@ -222,9 +222,9 @@
             <para
 ><keycap
 >F9</keycap
-> opens a <link linkend="tools-menu"
->Terminal Window</link
-> in the current folder.</para>
+> öppnar ett <link linkend="tools-menu"
+>terminalfönster</link
+> i arbetskatalogen.</para>
           </listitem>
           <listitem>
             <para
@@ -249,7 +249,7 @@
           <listitem>
             <para
 ><link linkend="konfig-general"
-> &MIME; type-aware</link
+>Medveten om &MIME;-typer</link
 >.</para>
           </listitem>
           <listitem>
@@ -386,9 +386,9 @@
 <para>
   <itemizedlist>
     <title
->New features in the &krusader;-1.80.0 <quote
->Final 3rd Stone</quote
-> release</title>
+>Nya funktioner i &krusader; utgåva 1.80.0 <quote
+>Slutlig 3:e sten</quote
+></title>
     <listitem>
       <para
 >Arkivförbättringar <itemizedlist>
@@ -412,7 +412,13 @@
         </listitem>
         <listitem>
           <para
->Stöd för <link linkend="archives">automatisk detektering</link>, vilket låter dig öppna "dolda arkiv" (t.ex. <trademark class="registered">OpenOffice</trademark>-dokument).</para>
+>Stöd för <link linkend="archives"
+>automatisk detektering</link
+>, vilket låter dig öppna <quote
+>dolda arkiv</quote
+> (t.ex. <trademark class="registered"
+>OpenOffice</trademark
+>-dokument).</para>
         </listitem>
         <listitem>
           <para
@@ -429,9 +435,9 @@
     </listitem>
     <listitem>
       <para
->Many improvements of the <link linkend="useractions"
->UserActions</link
-> system.</para>
+>Många förbättringar av systemet med <link linkend="useractions"
+>användaråtgärder</link
+>.</para>
     </listitem>
     <listitem>
       <para
@@ -531,9 +537,9 @@
 <para>
   <itemizedlist>
     <title
->New features in the &krusader;-1.90.0 <quote
+>Nya funktioner i &krusader; utgåva 1.90.0 <quote
 >Power Stone</quote
-> release</title>
+></title>
     <listitem>
       <para
 >Senaste utgåva för &kde; 3.x med en stor samling användaråtgärder. </para>
@@ -544,9 +550,9 @@
 <para>
   <itemizedlist>
     <title
->New features in the &krusader;-2.0.0 <quote
+>Nya funktioner i &krusader; utgåva 2.0.0 <quote
 >Mars Pathfinder</quote
-> release</title>
+></title>
     <listitem>
       <para
 >Den första utgåvan i &kde; 4.x-serien </para>
@@ -573,9 +579,9 @@
 <para>
   <itemizedlist>
     <title
->New features in the &krusader;-2.1.0-beta1 <quote
->Rusty Clutch</quote
-> release</title>
+>Nya funktioner i &krusader; utgåva 2.1.0-beta1 <quote
+>Rostig koppling</quote
+></title>
     <listitem>
       <para
 >Snabb text- och hexadecimalgranskning av enorma filstorlekar. </para>
@@ -602,9 +608,9 @@
 <para>
   <itemizedlist>
     <title
->New features in the &krusader;-2.5.0 <quote
->Clear Skies</quote
-> release</title>
+>Nya funktioner i &krusader; utgåva 2.5.0 <quote
+>Klar himmel</quote
+></title>
     <listitem>
       <para
 >Konverterad till &kde; Ramverk 5. </para>
@@ -627,9 +633,9 @@
 <para>
   <itemizedlist>
     <title
->New features in the &krusader;-2.7.0 <quote
->Peace of Mind</quote
-> release</title>
+>Nya funktioner i &krusader; utgåva 2.7.0 <quote
+>Sinnesro</quote
+></title>
     <listitem>
       <para
 >Snabbsökning i bokmärkesmenyn. </para>
@@ -653,20 +659,75 @@
   </itemizedlist>
 </para>
 
+<para>
+  <itemizedlist>
+    <title
+>Nya funktioner i &krusader; utgåva 2.8.0 <quote
+>En ny dag</quote
+></title>
+    <listitem>
+      <para
+>Duplicera flikar med dubbelklick. </para>
+    </listitem>
+    <listitem>
+      <para
+>Stänga flikar med &Ctrl;+vänster musknapp; eller &Alt;+vänster musknapp (inställningsbart). </para>
+    </listitem>
+    <listitem>
+      <para
+>Ångra stängda flikar medan programmet kör. </para>
+    </listitem>
+    <listitem>
+      <para
+>Dynamiskt storleksändrade flikar. </para>
+    </listitem>
+    <listitem>
+      <para
+>Inställningsalternativ för ny flikposition, flikknapparnas synlighet och beteendet hos knappen Ny flik. </para>
+    </listitem>
+    <listitem>
+      <para
+>Historik och förslag i dialogrutan Ny katalog. </para>
+    </listitem>
+    <listitem>
+      <para
+>Gå igenom val av fullständigt namn, filnamn och filändelse med genvägen Byt namn (normalt <keycap
+>F2</keycap
+>). </para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo
+>&Shift;<keycap
+>Delete</keycap
+></keycombo
+> tar bort oönskade poster från historiken i olika dialogrutor. </para>
+    </listitem>
+    <listitem>
+      <para
+>Förbättrad synkronisering mellan panelen och den inbäddade terminalen. </para>
+    </listitem>
+    <listitem>
+      <para
+>Förbättrad färginställning. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
 <para
 ><note
 ><para
->If you are using a development or &git; version, it is possible that the latest new features are not yet in the <quote
->The &krusader; Handbook</quote
->. Please read the <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+>Om du använder en utvecklingsversion eller &git;-version, är det möjligt att de senaste nya funktionerna inte ännu finns i <quote
+>&krusader;s handbok</quote
+>. Läs filen <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
 >Changelog</ulink
-> file online or in the &krusader; sources to find out more about the new features. For a brief description, please read the <ulink url="https://commits.kde.org/krusader?path=NEWS"
+> på nätet eller i &krusader;s källkod, för att få reda på mer om de nya funktionerna. För en kortfattad beskrivning, läs gärna filen <ulink url="https://commits.kde.org/krusader?path=NEWS"
 >NEWS</ulink
-> file online or in the &krusader; sources. <link linkend="faqg_wish"
->User feedback</link
-> and <link linkend="faqg_bug_report"
->Bug reports</link
-> are always welcome! </para
+> på nätet eller i &krusader;s källkod. <link linkend="faqg_wish"
+>Synpunkter från användare</link
+> och <link linkend="faqg_bug_report"
+>felrapporter</link
+> är alltid välkomna. </para
 ></note
 ></para>
 </chapter>

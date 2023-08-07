@@ -23,31 +23,35 @@
     <title
 >Granskning</title>
     <para
->För att granska en fil så snabbt som möjligt enligt typ, placera bara markören på den och tryck på <keycap>F3</keycap>. &krusader;s interna granskare är egentligen en del av &konqueror;, som i stort sett kan granska alla filtyper som går att visa i &konqueror; (t.ex. visa bilder, spela musik, visa innehållet i ett arkiv). Det kallas 'generell granskning', vilket kräver att du ställer in Mimetyper.</para>
+>För att granska en fil så snabbt som möjligt enligt typ, placera bara markören på den och tryck på <keycap
+>F3</keycap
+>. &krusader;s interna granskare är egentligen en del av &konqueror;, som i stort sett kan granska alla filtyper som går att visa i &konqueror; (t.ex. visa bilder, spela musik, visa innehållet i ett arkiv). Det kallas 'generell granskning', vilket kräver att du ställer in &MIME;-typer.</para>
     <para
->The viewer works as follows: <itemizedlist
+>Granskaren fungerar på följande sätt: <itemizedlist
 > <listitem
 > <para
->It tries to view the file with the <emphasis
->'Generic viewer'.</emphasis
+>Den försöker granska filen med <emphasis
+>'Generell granskning'</emphasis
 ></para
 > </listitem
 > <listitem
 > <para
->Granskaren fungerar på följande sätt: <itemizedlist> <listitem> <para>Den försöker granska filen med <emphasis>'Generell granskning'</emphasis></para> </listitem> <listitem> <para>När filtypen (Mimetypen) inte kan bestämmas, eller när en fil (t.ex. en binärfil) inte har en tillhörande åtgärd, inaktiveras generell granskning. Filen behandlas som en textfil, vilket är <emphasis>'textgranskaren'</emphasis>.</para> </listitem> <listitem> <para>Användaren kan byta mellan 'Generell granskare' (om tillgänglig), 'textgranskare' och <emphasis>'hexgranskare'</emphasis> i menyn <link linkend="kredit_krviewer_menu">Krviewer</link>.</para> </listitem> </itemizedlist>Du kan ställa in standardgranskningsläget på sidan <link linkend="konfig-general">Allmänt</link> i Konfigurator.</para
+>När filtypen (&MIME;-typen) inte kan bestämmas, eller när en fil (t.ex. en binärfil) inte har en tillhörande åtgärd, inaktiveras generell granskning. Filen behandlas som en textfil, vilket är <emphasis
+>'textgranskaren'</emphasis
+>.</para
 > </listitem
 > <listitem
 > <para
->The user can change in the <link linkend="kredit_krviewer_menu"
->KrViewer menu</link
-> between: 'Generic viewer' (if available), 'Text viewer' and <emphasis
->'Hex viewer'</emphasis
+>Användaren kan byta mellan 'Generell granskare' (om tillgänglig), 'textgranskare' och <emphasis
+>'hexgranskare'</emphasis
+> i menyn <link linkend="kredit_krviewer_menu"
+>Krviewer</link
 >.</para
 > </listitem
 > </itemizedlist
->You can configure the default viewer mode on the <link linkend="konfig-general"
->Konfigurator General page</link
-> .</para>
+>Du kan ställa in standardgranskningsläget på sidan <link linkend="konfig-general"
+>Allmänt</link
+> i Konfigurator.</para>
     <para
 ><keycombo action="simul"
 >&Shift; <keycap
@@ -118,7 +122,7 @@
 ><replaceable
 >home/frank</replaceable
 > </userinput
->views Frank's home folder.</para>
+>granskar Franks hemkatalog.</para>
       </listitem>
       <listitem>
         <para
@@ -154,7 +158,7 @@
 > kan granskaren starta &krusader;s interna editor (vilket egentligen är samma program).</para>
     <note>
       <para
->Den inbäddade granskningen är inte skriven av oss, utan tillhandahålls via KF5 och I/O-slavar. Vi kan inte, och vill inte ändra den. Att använda dessa bibliotek minskar mängden kod att skriva. Vi behöver alltså inte återuppfinna hjulet.</para>
+>Den inbäddade granskningen är inte skriven av oss, utan tillhandahålls via &kde; Ramverk och I/O-slavar. Vi kan inte, och vill inte ändra den. Att använda dessa bibliotek minskar mängden kod att skriva. Vi behöver alltså inte återuppfinna hjulet.</para>
     </note>
   </sect2>
   <sect2 id="kredit">
@@ -278,9 +282,9 @@
 <term id="katepart-menu-export-as-html">
 <menuchoice
 ><guimenu
->File</guimenu
-> <guimenuitem
->Export as &HTML;</guimenuitem
+>Arkiv</guimenu
+><guimenuitem
+>Exportera som &HTML;</guimenuitem
 > </menuchoice>
 </term>
 <listitem>
@@ -401,7 +405,7 @@
 ></term>
 <listitem>
 <para
->This will insert the contents of the clipboard at the cursor position. The clipboard is a feature that works invisibly to provide a way to transfer data between applications.</para>
+>Det här infogar innehållet på klippbordet vid markörens position. Klippbordet är en funktion som osynligt fungerar för att erbjuda ett sätt att överföra data mellan program.</para>
 </listitem>
 </varlistentry>
 <varlistentry
@@ -409,9 +413,9 @@
 <term
 ><anchor id="katepart-menu-copy-as-html"/><menuchoice
 ><guimenu
->Edit</guimenu
+>Redigera</guimenu
 ><guimenuitem
->Copy as &HTML;</guimenuitem
+>Kopiera som &HTML;</guimenuitem
 ></menuchoice
 ></term>
 <listitem>
@@ -493,15 +497,17 @@
 <term
 ><anchor id="katepart-menu-vi-input-mode"/><menuchoice
 ><shortcut
-> <keycombo action="simul"
->&Meta;&Ctrl;<keycap
+><keycombo action="simul"
+><keycap
+>Meta</keycap
+>&Ctrl;<keycap
 >V</keycap
 ></keycombo
-> </shortcut
+></shortcut
 > <guimenu
->Edit</guimenu
+>Redigera</guimenu
 ><guimenuitem
->VI input Mode</guimenuitem
+>VI-inmatningsläge</guimenuitem
 ></menuchoice
 ></term>
 <listitem>
@@ -517,13 +523,15 @@
 <term
 ><anchor id="katepart-menu-overwrite-mode"/><menuchoice
 ><shortcut
-> <keycombo action="simul"
->&Ins;</keycombo
-> </shortcut
+><keycombo action="simul"
+><keycap
+>Insert</keycap
+></keycombo
+></shortcut
 > <guimenu
->Edit</guimenu
-><guimenuitem
->Overwrite Mode</guimenuitem
+>Redigera</guimenu
+> <guimenuitem
+>Överskrivningsläge</guimenuitem
 ></menuchoice
 ></term>
 <listitem>
@@ -1139,12 +1147,14 @@
 ><menuchoice
 ><shortcut
 ><keycombo action="simul"
->&Alt; &PgUp;</keycombo
+>&Alt; <keycap
+>Page Up</keycap
+></keycombo
 ></shortcut
-> <guimenu
->Bookmarks</guimenu
+><guimenu
+>Bokmärken</guimenu
 ><guimenuitem
->Previous</guimenuitem
+>Föregående</guimenuitem
 ></menuchoice>
 </term>
 <listitem
@@ -1336,12 +1346,14 @@ Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at
 ><menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Ctrl;&Space;</keycombo
+>&Ctrl;<keycap
+>Mellanslag</keycap
+></keycombo
 > </shortcut
 > <guimenu
->Tools</guimenu
+>Verktyg</guimenu
 > <guimenuitem
->Invoke Code Completion</guimenuitem
+>Utför kodkomplettering</guimenuitem
 > </menuchoice
 > </term>
 <listitem>
@@ -2559,7 +2571,11 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->When on, moving the insertion cursor using the &Left; and &Right; keys will go on to previous/next line at beginning/end of the line, similar to most editors.</para
+>När aktiv, och infogningsmarkören flyttas med tangenterna <keycap
+>Vänsterpil</keycap
+> och <keycap
+>Högerpil</keycap
+> går den till föregående eller nästa rad och början eller slutet av raden, på samma sätt som de flesta editorer.</para
 ><para
 >När inaktiv, kan inte infogningsmarkören flyttas till vänster om radens början, men den kan flyttas förbi radens slut, vilket kan vara mycket praktiskt för programmerare. När alternativet är aktivt, och markören flyttas förbi slutet av en rad (åt höger) med piltangenterna, gör det att den hoppar ner till början av nästa rad. På liknande sätt, om markören flyttas förbi början av en rad (åt vänster) hoppar den upp till slutet av föregående rad. När alternativet är inaktivt, och markören flyttas till höger förbi radens slut gör det bara att den fortsätter horisontellt på samma rad, och ett försök att flytta den åt vänster förbi början av raden gör ingenting.</para>
 </listitem>
@@ -2571,7 +2587,11 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->This option changes the behavior of the cursor when the user presses the &PgUp; or &PgDn; key. If unselected the text cursor will maintain its relative position within the visible text in &kappname; as new text becomes visible as a result of the operation. So if the cursor is in the middle of the visible text when the operation occurs it will remain there (except when one reaches the beginning or end.) With this option selected, the first key press will cause the cursor to move to either the top or bottom of the visible text as a new page of text is displayed.</para>
+>Det här alternativet ändrar beteendet hos markören om användaren trycker på tangenterna <keycap
+>Page Up</keycap
+> eller <keycap
+>Page Down</keycap
+>. Om det här inte är valt, behåller textmarkören sin relativa position i den synliga texten i &kappname; när ny text blir synlig som ett resultat av åtgärden. Så om markören befinner sig mitt i den synliga texten när åtgärden sker kommer den att förbli där (utom när man kommer till början eller slutet). Om det här alternativet är valt, gör den första tangenttryckningen att markören antingen flyttas längst upp eller längst ner när en ny sida med text visas.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -3184,7 +3204,7 @@ Line Length Limit missing
 <title
 >Lägen och filtyper</title>
 <para
->This page allows you to override the default configuration for documents of specified &MIME; types. When the editor loads a document, it will try if it matches the file masks or &MIME; types for one of the defined filetypes, and if so apply the variables defined. If more filetypes match, the one with the highest priority will be used. </para>
+>Den här sidan låter dig överskrida förvalda inställningar för dokument med angivna &MIME;-typer. När editorn laddar ett dokument, kontrollerar den om det matchar filmasken eller &MIME;-typerna för en av de definierade filtyperna, och om det är fallet tillämpas variablerna som är definierade. Om mer än en filtyp matchas, används den med högst prioritet. </para>
 <variablelist>
 <varlistentry>
 <term
@@ -3269,7 +3289,7 @@ Line Length Limit missing
 ></term>
 <listitem
 ><para
->Strängen låter dig ställa in &kappname;s inställningar för filer som väljes av den här Mimetypen genom att använda variabler i &kappname;. Du kan ställa in nästan alla inställningsalternativ, såsom färgläggning, indenteringsläge, etc.</para>
+>Strängen låter dig ställa in &kappname;s inställningar för filer som väljes av den här &MIME;-typen genom att använda variabler i &kappname;. Du kan ställa in nästan alla inställningsalternativ, såsom färgläggning, indenteringsläge, etc.</para>
 <para
 >Klicka på <guibutton
 >Redigera</guibutton
@@ -3317,11 +3337,11 @@ Line Length Limit missing
 <varlistentry>
 <term
 ><guilabel
->&MIME; types:</guilabel
+>&MIME;-typer:</guilabel
 ></term>
 <listitem
 ><para
->Displays a wizard that helps you easily select &MIME; types.</para
+>Visar en guide som hjälper dig att enkelt välja &MIME;-typer.</para
 ></listitem>
 </varlistentry>
 <varlistentry>
@@ -3425,19 +3445,19 @@ If you press Enter and AutoBrace is enabled, it will insert your favorite new br
 ></term>
 <listitem
 ><para
->This command allows you to export the current document with all highlighting information into a &HTML; document using <menuchoice
+>Det här kommandot låter dig exportera det nuvarande dokumentet med all färgläggningsinformation till ett &HTML;-dokument genom att använda <menuchoice
 ><guimenu
->File</guimenu
+>Arkiv</guimenu
 ><guimenuitem
->Export as &HTML;</guimenuitem
+>Exportera som &HTML;</guimenuitem
 ></menuchoice
->. Additionally you can use <menuchoice
+>. Dessutom kan du använda <menuchoice
 ><guimenu
->Edit</guimenu
-> <guimenuitem
->Copy as &HTML;</guimenuitem
+>Redigera</guimenu
+><guimenuitem
+>Kopiera som &HTML;</guimenuitem
 ></menuchoice
-> to copy the currently selected text as &HTML; to the system clipboard.</para
+> för att kopiera texten som för närvarande är markerad som &HTML; till systemets klippbord.</para
 ></listitem>
 </varlistentry>
 <!-- not in 4.7
@@ -3461,13 +3481,13 @@ If you press Enter and AutoBrace is enabled, it will insert your favorite new br
 ><para
 >Insticksprogrammet Infoga ikon är bara användbart för utvecklare av &kde;: Det lägger till alternativet <guimenuitem
 >Infoga KIcon-kod</guimenuitem
-> i editorns sammanhangsberoende meny. Om det aktiveras, visas &plasma;s ikonväljare (där programikoner, åtgärdsikoner, etc. visas). Om man klickar på den, infogas filnamnet utan filändelse som text. Bara användbart för att ange ikoner i KF5 via klassen KIcon(). </para
+> i editorns sammanhangsberoende meny. Om det aktiveras, visas &plasma;s ikonväljare (där programikoner, åtgärdsikoner, etc. visas). Om man klickar på den, infogas filnamnet utan filändelse som text. Bara användbart för att ange ikoner i &kde; Ramverk via klassen KIcon(). </para
 ></listitem>
 </varlistentry>
 <varlistentry>
 <term
 ><guilabel
->Insane (not ZEN) &HTML; coding (light edition)</guilabel
+>Insane (inte ZEN) &HTML;-kodning (enkel version)</guilabel
 ></term>
 <listitem
 ><para

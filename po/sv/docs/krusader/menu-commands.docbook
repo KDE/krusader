@@ -27,14 +27,14 @@
 ></keycombo
 > </shortcut
 > <guimenu
->File</guimenu
+>Arkiv</guimenu
 > <guimenuitem
->New Text File...</guimenuitem
+>Ny textfil...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Creates a new text file in the current folder, unless another folder is specified. The new file is opened for editing after it is created.</para>
+>Skapar en ny textfil i aktuell katalog, om inte en annan katalog har angivits. Den nya filen öppnas för redigering efter den har skapats.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -45,14 +45,14 @@
 >F7</keycap
 > </shortcut
 > <guimenu
->File</guimenu
+>Arkiv</guimenu
 > <guimenuitem
->New Folder</guimenuitem
+>Ny katalog</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Creates a new folder in the current folder.</para>
+>Skapar en ny katalog i den aktuella katalogen.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -65,9 +65,9 @@
 ></keycombo
 > </shortcut
 > <guimenu
->File</guimenu
+>Arkiv</guimenu
 > <guimenuitem
->New Symlink...</guimenuitem
+>Ny symbolisk länk...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -130,7 +130,7 @@
         </term>
         <listitem>
           <para
->Copy the currently selected files or folders to the other panel.</para>
+>Kopiera filerna eller katalogerna som för närvarande är markerade till den andra panelen.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -148,9 +148,9 @@
         </term>
         <listitem>
           <para
->Opens a dialog to <link linkend="copying"
->move</link
-> the currently selected files or folders to a specified location.</para>
+>Öppnar en dialogruta för att <link linkend="copying"
+>flytta</link
+> filerna eller katalogerna som för närvarande är markerade till en angiven plats.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -163,16 +163,16 @@
 ></keycombo
 > </shortcut
 > <guimenu
->File</guimenu
+>Arkiv</guimenu
 > <guimenuitem
->Pack...</guimenuitem
+>Packa...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Creates a <link linkend="pack-archive"
->new archive</link
-> of all the selected files and folders in the active panel.</para>
+>Skapar en <link linkend="pack-archive"
+>ny arkivfil</link
+> med alla markerade filer och kataloger i den aktiva panelen.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -185,9 +185,9 @@
 ></keycombo
 > </shortcut
 > <guimenu
->File</guimenu
+>Arkiv</guimenu
 > <guimenuitem
->Unpack...</guimenuitem
+>Packa upp...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -223,9 +223,9 @@
         <term>
           <menuchoice
 ><guimenu
->File</guimenu
+>Arkiv</guimenu
 > <guimenuitem
->Compare by Content...</guimenuitem
+>Jämför innehåll...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -253,9 +253,9 @@
 ></keycombo
 > </shortcut
 > <guimenu
->File</guimenu
+>Arkiv</guimenu
 > <guimenuitem
->Multi Rename...</guimenuitem
+>Mängdnamnbyte...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -274,7 +274,7 @@
             </listitem>
             <listitem>
               <para
->Copying/moving a list of files to another folder</para>
+>Kopiera eller flytta en lista av filer till en annan katalog</para>
             </listitem>
             <listitem>
               <para
@@ -306,7 +306,7 @@
             </listitem>
             <listitem>
               <para
->Renaming folders recursively</para>
+>Byt namn på kataloger rekursivt</para>
             </listitem>
             <listitem>
               <para
@@ -327,9 +327,9 @@
         <term>
           <menuchoice
 ><guimenu
->File</guimenu
+>Arkiv</guimenu
 > <guimenuitem
->Create Checksum...</guimenuitem
+>Skapa checksumma...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -343,9 +343,9 @@
         <term>
           <menuchoice
 ><guimenu
->File</guimenu
+>Arkiv</guimenu
 > <guimenuitem
->Verify Checksum...</guimenuitem
+>Verifiera checksumma...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -366,9 +366,9 @@
 ></keycombo
 > </shortcut
 > <guimenu
->File</guimenu
+>Arkiv</guimenu
 > <guimenuitem
->Split File...</guimenuitem
+>Dela fil...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -390,9 +390,9 @@
 ></keycombo
 > </shortcut
 > <guimenu
->File</guimenu
+>Arkiv</guimenu
 > <guimenuitem
->Combine Files...</guimenuitem
+>Kombinera filer...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -422,9 +422,9 @@
         </term>
         <listitem>
           <para
->Closes &krusader; and cleans up the temporary folder, the same as pressing <keycap
+>Stänger &krusader; och rensar den tillfälliga katalogen. Samma sak som att trycka på tangenten <keycap
 >F10</keycap
-> key.</para>
+>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -495,8 +495,8 @@
         <listitem>
           <para
 ><link linkend="copying"
->Pastes</link
-> previously cut or copied items from the clipboard to the current folder.</para>
+>Klistrar in</link
+> tidigare urklippta eller kopierade objekt från klippbordet till den aktuella katalogen.</para>
         </listitem>
       </varlistentry>
 <!--
@@ -552,9 +552,9 @@
 ></keycombo
 > </shortcut
 > <guimenu
->Edit</guimenu
+>Redigera</guimenu
 > <guimenuitem
->Select Group...</guimenuitem
+>Markera grupp...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -592,9 +592,9 @@
 ></keycombo
 > </shortcut
 > <guimenu
->Edit</guimenu
+>Redigera</guimenu
 > <guimenuitem
->Unselect Group...</guimenuitem
+>Avmarkera grupp...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -621,10 +621,10 @@
         </term>
         <listitem>
           <para
->Selects all files in the active panel. You can also select all folders by activating the <guilabel
->Autoselect folders</guilabel
-> option in the <link linkend="konfig-panel"
->Konfigurator Panel page</link
+>Markerar alla filer i den aktiva panelen. Du kan också markera alla kataloger genom att aktivera alternativet <guilabel
+>Markera kataloger automatiskt</guilabel
+> på panelsidan i <link linkend="konfig-panel"
+>Konfigurator</link
 >.</para>
         </listitem>
       </varlistentry>
@@ -692,9 +692,9 @@
 ></keycombo
 > </shortcut
 > <guimenu
->Edit</guimenu
+>Redigera</guimenu
 > <guimenuitem
->Find in folder...</guimenuitem
+>Sök i katalog...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -714,16 +714,16 @@
 ></keycombo
 > </shortcut
 > <guimenu
->Edit</guimenu
+>Redigera</guimenu
 > <guimenuitem
->Compare Folders</guimenuitem
+>Jämför kataloger</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Toggles &krusader; <link linkend="compare-dir"
->Compare Folders</link
-> function.</para>
+>Sätter på eller stänger av funktionen <link linkend="compare-dir"
+>Jämför kataloger</link
+> i &krusader;.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -737,9 +737,9 @@
         </term>
         <listitem>
           <para
->Configures the <guimenuitem
->Compare Folders</guimenuitem
-> function.</para>
+>Anpassar funktionen <guimenuitem
+>Jämför kataloger</guimenuitem
+>.</para>
           <itemizedlist>
             <listitem>
               <para
@@ -796,13 +796,13 @@
 ><shortcut
 > <keycombo action="simul"
 >&Alt; <keysym
->Return</keysym
+>Retur</keysym
 ></keycombo
 > </shortcut
 > <guimenu
->Edit</guimenu
+>Redigera</guimenu
 > <guimenuitem
->Properties...</guimenuitem
+>Egenskaper...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -821,17 +821,19 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt; &Up;</keycombo
+>&Ctrl; <keysym
+>Uppåtpil</keysym
+></keycombo
 > </shortcut
 > <guimenu
->Go</guimenu
+>Gå</guimenu
 > <guimenuitem
->Up</guimenuitem
+>Upp</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Navigates to the parent folder of the active panel.</para>
+>Går till överliggande katalog i den aktiva panelen.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -839,17 +841,19 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt; &Left;</keycombo
+>&Alt; <keysym
+>Vänsterpil</keysym
+></keycombo
 > </shortcut
 > <guimenu
->Go</guimenu
+>Gå</guimenu
 > <guimenuitem
->Back</guimenuitem
+>Bakåt</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Navigates to the previously viewed folder in the active panel.</para>
+>Går till katalogen som tidigare visades i den aktiva panelen.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -857,23 +861,25 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt; &Right;</keycombo
+>&Alt;<keysym
+>Höger</keysym
+></keycombo
 > </shortcut
 > <guimenu
->Go</guimenu
+>Gå</guimenu
 > <guimenuitem
->Forward</guimenuitem
+>Framåt</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Navigates to the next viewed folder in the active panel. Becomes available only if <menuchoice
+>Går till nästa katalog som visades i den aktiva panelen. Är bara tillgänglig om <menuchoice
 ><guimenu
->Go</guimenu
+>Gå</guimenu
 > <guimenuitem
->Back</guimenuitem
+>Bakåt</guimenuitem
 ></menuchoice
-> was used beforehand.</para>
+> tidigare har används.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -881,17 +887,19 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt; &Home;</keycombo
+>&Alt; <keycap
+>Home</keycap
+></keycombo
 > </shortcut
 > <guimenu
->Go</guimenu
+>Gå</guimenu
 > <guimenuitem
->Home</guimenuitem
+>Hem</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Navigates to the home folder of the current user.</para>
+>Går till den nuvarande användarens hemkatalog.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -911,7 +919,7 @@
         </term>
         <listitem>
           <para
->Navigates to the root folder of the system.</para>
+>Går till systemets rotkatalog.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -924,14 +932,14 @@
 ></keycombo
 > </shortcut
 > <guimenu
->Go</guimenu
+>Gå</guimenu
 > <guimenuitem
->Popular &URL;s...</guimenuitem
+>Populära webbadresser...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Displays a listing of frequently viewed folders from which you may navigate to one by double-clicking on it.</para>
+>Visar en listning med ofta visade kataloger, där du kan gå till en genom att dubbelklicka på den.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -951,13 +959,13 @@
         </term>
         <listitem>
           <para
->Sets the current folder as a <quote
->jump back</quote
-> point. To navigate to this folder quickly, select the <guimenuitem
->Jump Back</guimenuitem
-> command from the <guimenu
->Go</guimenu
-> menu.</para>
+>Ställer in aktuell katalog som en <quote
+>återhoppspunkt</quote
+>. För att snabbt gå till katalogen, välj kommandot <guimenuitem
+>Hoppa tillbaka</guimenuitem
+> i menyn <guimenu
+>Gå</guimenu
+>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -977,9 +985,9 @@
         </term>
         <listitem>
           <para
->Returns to a previous <quote
->jump back</quote
-> point.</para>
+>Går tillbaka till en tidigare <quote
+>återhoppspunkt</quote
+>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -1131,7 +1139,7 @@
         </term>
         <listitem>
           <para
->Allows you to install a custom filter on the &krusader; panel. Only files that match the filter pattern(s) and folders will be displayed. Do not forget to deactivate the custom filter after use, or some files may not be visible.</para>
+>Låter dig installera ett eget filter i &krusader;s panel. Bara filer som matchar filtermönstren och kataloger visas. Glöm inte att inaktivera filtret efter det har använts, annars kanske vissa filer inte är synliga.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1243,13 +1251,15 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Meta; <keycap
+> <keycap
+>Meta</keycap
+> <keycap
 >A</keycap
 > </keycombo
 > </shortcut
 > <guimenu
->Useractions</guimenu
-><guisubmenu
+>Användaråtgärder</guimenu
+> <guisubmenu
 >Multimedia</guisubmenu
 > <guimenuitem
 >Enqueue in Amarok</guimenuitem
@@ -1353,12 +1363,14 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Meta;<keycap
+> <keycap
+>Meta</keycap
+> <keycap
 >F5</keycap
 > </keycombo
 > </shortcut
 > <guimenu
->Useractions</guimenu
+>Användaråtgärder</guimenu
 ><guisubmenu
 >System</guisubmenu
 > <guimenuitem
@@ -1367,9 +1379,9 @@
         </term>
         <listitem>
           <para
->Backups current file in current folder and asks the user for a new filename. By default <literal role="extension"
+>Säkerhetskopierar aktuell fil i aktuell katalog och ber användaren om ett nytt filnamn. Normalt läggs <literal role="extension"
 >.old</literal
-> is appended to the original filename.</para>
+> till efter originalfilnamnet.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1377,12 +1389,14 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Meta; <keycap
+> <keycap
+>Meta</keycap
+> <keycap
 >1</keycap
 > </keycombo
 > </shortcut
 > <guimenu
->Useractions</guimenu
+>Användaråtgärder</guimenu
 ><guisubmenu
 >User Interface</guisubmenu
 > <guimenuitem
@@ -1399,12 +1413,14 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Meta; <keycap
+> <keycap
+>Meta</keycap
+> <keycap
 >2</keycap
 > </keycombo
 > </shortcut
 > <guimenu
->Useractions</guimenu
+>Användaråtgärder</guimenu
 ><guisubmenu
 >User Interface</guisubmenu
 > <guimenuitem
@@ -1421,12 +1437,14 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Meta; <keycap
+> <keycap
+>Meta</keycap
+> <keycap
 >3</keycap
 > </keycombo
 > </shortcut
 > <guimenu
->Useractions</guimenu
+>Användaråtgärder</guimenu
 ><guisubmenu
 >User Interface</guisubmenu
 > <guimenuitem
@@ -1435,7 +1453,7 @@
         </term>
         <listitem>
           <para
->When this action is turned on, the main sorting key in the &krusader; panel becomes the file size. This is useful for determining the largest files in a particular folder.</para>
+>När åtgärden aktiveras, blir huvudsorteringsnyckeln i &krusader;s panel filstorleken. Det är användbart för att avgöra vilken fil  som är störst i en viss katalog.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1443,12 +1461,14 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Meta; <keycap
+> <keycap
+>Meta</keycap
+> <keycap
 >4</keycap
 > </keycombo
 > </shortcut
 > <guimenu
->Useractions</guimenu
+>Användaråtgärder</guimenu
 ><guisubmenu
 >User Interface</guisubmenu
 > <guimenuitem
@@ -1476,9 +1496,9 @@
 ></keycombo
 > </shortcut
 > <guimenu
->Tools</guimenu
+>Verktyg</guimenu
 > <guimenuitem
->Search...</guimenuitem
+>Sök...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1493,14 +1513,14 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Ctrl;&Shift; <keycap
+>&Ctrl;&Shift; <keycap
 >L</keycap
 ></keycombo
 > </shortcut
 > <guimenu
->Tools</guimenu
+>Verktyg</guimenu
 > <guimenuitem
->Locate...</guimenuitem
+>Lokalisera...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1520,16 +1540,16 @@
 ></keycombo
 > </shortcut
 > <guimenu
->Tools</guimenu
+>Verktyg</guimenu
 > <guimenuitem
->Synchronize Folders</guimenuitem
+>Synkronisera kataloger</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->The <link linkend="synchronizer"
->Synchronize Folders</link
-> function compares the left and right panels and shows the differences between them. After the compare function, you can move files/folders so that they can be synchronized.</para>
+>Funktionen <link linkend="synchronizer"
+>Synkronisera kataloger</link
+> jämför vänster och höger panel, och visar skillnaderna mellan dem. Efter jämförelsen kan du flytta filer eller kataloger så att de kan bli synkroniserade.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1542,9 +1562,9 @@
 ></keycombo
 > </shortcut
 > <guimenu
->Tools</guimenu
+>Verktyg</guimenu
 > <guimenuitem
->MountMan...</guimenuitem
+>Mountman...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1564,9 +1584,9 @@
 ></keycombo
 > </shortcut
 > <guimenu
->Tools</guimenu
+>Verktyg</guimenu
 > <guimenuitem
->Disk Usage...</guimenuitem
+>Diskanvändning...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1634,9 +1654,9 @@
         </term>
         <listitem>
           <para
->Opens a terminal window in the default folder (usually your home folder). You can choose your favorite terminal application in the <link linkend="konfig-general"
->Konfigurator General page</link
->.</para>
+>Öppnar ett terminalfönster i förvald katalog (oftast hemkatalogen). Du kan välja ditt favoritterminalprogram på sidan <link linkend="konfig-general"
+>Allmänt</link
+> i Konfigurator.</para>
         </listitem>
       </varlistentry>
       <varlistentry id="root-mode">
@@ -2184,9 +2204,9 @@
         <term>
           <menuchoice
 ><guimenu
->Settings</guimenu
+>Inställningar</guimenu
 > <guimenuitem
->Configure Shortcuts...</guimenuitem
+>Anpassa genvägar...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2230,9 +2250,9 @@
         <term>
           <menuchoice
 ><guimenu
->Settings</guimenu
+>Inställningar</guimenu
 > <guimenuitem
->Configure Toolbars...</guimenuitem
+>Anpassa verktygsrader...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2250,9 +2270,9 @@
         <term>
           <menuchoice
 ><guimenu
->Settings</guimenu
+>Inställningar</guimenu
 > <guimenuitem
->Configure &krusader;...</guimenuitem
+>Anpassa &krusader;...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2268,10 +2288,10 @@
     <title
 >Menyn Hjälp</title>
     <para
->Additionally, &krusader; has the common &kde; <guimenu
->Help</guimenu
-> menu items, for more information read the sections about the <ulink url="help:/fundamentals/menus.html#menus-help"
->Help Menu</ulink
-> of the &kde; Fundamentals. </para>
+>Dessutom har &krusader; &kde;:s vanliga alternativ i menyn <guimenu
+>Hjälp</guimenu
+>. För mer information läs avsnittet om <ulink url="help:/fundamentals/menus.html#menus-help"
+>hjälpmenyn</ulink
+> i &kde;:s grunder. </para>
   </sect1>
 </chapter>
