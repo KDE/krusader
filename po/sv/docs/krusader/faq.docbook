@@ -52,7 +52,7 @@
           <para
 ><emphasis
 >Nej, &krusader; behöver inte &plasma;s fönsterhanterare</emphasis
-> för att köra på datorn, men &krusader;s naturliga miljö är &plasma;, eftersom det förlitar sig på tjänster som &kde; Ramverk 5 basbibliotek tillhandahåller. Bara vissa delade bibliotek behövs, t.ex. KF5:s bibliotek, &Qt;:s bibliotek, etc. Det betyder att &krusader; kan köra med <ulink url="https://www.gnome.org"
+> för att köra på datorn, men &krusader;s naturliga miljö är &plasma;, eftersom det förlitar sig på tjänster som &kde; Ramverk 5 basbibliotek tillhandahåller. Bara vissa delade bibliotek behövs, t.ex. &kde; Ramverks bibliotek, &Qt;:s bibliotek, etc. Det betyder att &krusader; kan köra med <ulink url="https://www.gnome.org"
 ><application
 >Gnome</application
 ></ulink
@@ -88,7 +88,7 @@
 ></para>
           <!-- Empty line to make it more readable -->
           <para
->En hel del beror på vad du vill göra med &krusader;. Du bör känna till att &krusader; använder KF5:s I/O-slavar för att komma åt fjärrfilsystem, och att bara stöd för ett begränsat antal filsystemtyper levereras med KF5:s bibliotek. De flesta av I/O-slavarna är samlade i &kde; Ramverk 5-biblioteken (inklusive fish, sftp och tar). Om du dock vill att egenskapsdialogrutan ska visa EXIF-data för jpeg-filer, behöver du &kde;:s grafikpaket. Om du vill ha ID3-information, behöver du &kde;:s multimediapaket, och så vidare.</para>
+>En hel del beror på vad du vill göra med &krusader;. Du bör känna till att &krusader; använder &kde; Ramverks I/O-slavar för att komma åt fjärrfilsystem, och att bara stöd för ett begränsat antal filsystemtyper levereras med &kde; Ramverks bibliotek. De flesta av I/O-slavarna är samlade i &kde; Ramverk-biblioteken (inklusive fish, sftp och tar). Om du dock vill att egenskapsdialogrutan ska visa EXIF-data för jpeg-filer, behöver du &kde;:s grafikpaket. Om du vill ha ID3-information, behöver du &kde;:s multimediapaket, och så vidare.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -216,7 +216,7 @@
 >hänger</quote
 > på den första åtkomsten till den otillgängliga delade katalogen, så det finns inget sätt att komma förbi det, ingen kontroll för att undvika det, till och med <command
 >ls</command
-> fryses. Bara att försöka läsa någonting, vad som helst, är tillräckligt för att fastna. Det enda sättet att komma förbi detta arkitekturproblem är att använda en konstruktion med flera trådar. På så sätt, om man fastnar, fryses inte hela programmets händelsesnurra. Men vi tror inte att tiden är mogen för att lägga till trådar. Vi är inte säkra på att alla KF5-system i världen använder &Qt;-mt (versionen av &Qt;-biblioteket med flera trådar), och &krusader; Krew är hur som helst kanske inte rätt personer att ta hand om detta större problem, så för närvarande är det bara ett fel som vi måste lära oss att leva med.</para>
+> fryses. Bara att försöka läsa någonting, vad som helst, är tillräckligt för att fastna. Det enda sättet att komma förbi detta arkitekturproblem är att använda en konstruktion med flera trådar. På så sätt, om man fastnar, fryses inte hela programmets händelsesnurra. Men vi tror inte att tiden är mogen för att lägga till trådar. Vi är inte säkra på att alla &kde; Ramverk-system i världen använder &Qt;-mt (versionen av &Qt;-biblioteket med flera trådar), och &krusader; Krew är hur som helst kanske inte rätt personer att ta hand om detta större problem, så för närvarande är det bara ett fel som vi måste lära oss att leva med.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -736,7 +736,7 @@
 >Tack för ditt samarbete.</para>
           <note>
             <para
->Om möjligt, försök att göra samma åtgärd med &konqueror; eller ett annat &kde;-program. Om du stöter på samma problem, är det möjligtvis ett fel i en I/O-slav eller i &kde; Ramverk 5, och inte ett fel i &krusader;. &krusader; använder KF5:s bibliotek och I/O-slavar för många åtgärder. I vissa fall kan du stöta på problem om distributionen är felaktigt inställd. Prova den först, som förklaras ovan.</para>
+>Om möjligt, försök att göra samma åtgärd med &konqueror; eller ett annat &kde;-program. Om du stöter på samma problem, är det möjligtvis ett fel i en I/O-slav eller i &kde; Ramverk 5, och inte ett fel i &krusader;. &krusader; använder &kde; Ramverks bibliotek och I/O-slavar för många åtgärder. I vissa fall kan du stöta på problem om distributionen är felaktigt inställd. Prova den först, som förklaras ovan.</para>
           </note>
           <para
 ></para>
