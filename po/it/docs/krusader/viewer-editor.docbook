@@ -158,7 +158,7 @@
 > il visualizzatore aprirà l'editor interno di &krusader; (fondamentalmente si tratta della stessa applicazione).</para>
     <note>
       <para
->Questo visualizzatore integrato non è stato sviluppato da noi, viene fornito tramite &kf5; e gli Slave KIO. Non è in nostro potere né nostra intenzione modificarlo, perché appoggiarsi a quelle librerie permette di snellire il codice. Evitiamo così di riscoprire l'acqua calda! ;-)</para>
+>Questo visualizzatore integrato non è stato sviluppato da noi, viene fornito tramite &kde-frameworks; e gli Slave KIO. Non è in nostro potere né nostra intenzione modificarlo, perché appoggiarsi a quelle librerie permette di snellire il codice. Evitiamo così di riscoprire l'acqua calda! ;-)</para>
     </note>
   </sect2>
   <sect2 id="kredit">
@@ -3473,9 +3473,9 @@ If you press Enter and AutoBrace is enabled, it will insert your favorite new br
 ></term>
 <listitem
 ><para
->L'estensione inserimento icona è utile solo agli sviluppatori di&kde;: aggiunge un elemento <guimenuitem
+>L'estensione di inserimento icona è utile solo agli sviluppatori di&kde;: aggiunge un elemento <guimenuitem
 >Inserisci codice per KIcon</guimenuitem
-> nel menu contestuale dell'editor. Se attiva, si apre il menu di selezione delle icone di &plasma; (che mostra le icone per le applicazioni, le azioni e così via). Se fai clic su una di esse, il suo nome del file senza estensione verrà inserito come testo. È utile solo per impostare le icone con &kf5; tramite la classe KIcon(). </para
+> nel menu contestuale dell'editor. Se attiva, si apre il menu di selezione delle icone di &plasma; (che mostra le icone per le applicazioni, le azioni e così via). Se fai clic su una di esse, il nome del file senza estensione verrà inserito come testo. È utile solo per impostare le icone con &kde-frameworks; tramite la classe KIcon(). </para
 ></listitem>
 </varlistentry>
 <varlistentry>

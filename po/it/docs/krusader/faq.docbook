@@ -52,7 +52,7 @@
           <para
 ><emphasis
 >No, &krusader; non ha bisogno del gestore di finestre di &plasma;</emphasis
-> per essere avviato, ma il suo ambiente naturale è &plasma;, poiché si appoggia su servizi forniti dalle librerie di base di &kf5-full;. Sono necessarie solo alcune librerie, &eg; le librerie &kf5;, le librerie &Qt;, &etc;. Questo significa che &krusader; può girare in <ulink url="https://www.gnome.org"
+> per essere avviato, ma il suo ambiente naturale è &plasma;, poiché si appoggia su servizi forniti dalle librerie di base di &kf5-full;. Sono necessarie solo alcune librerie, &eg; le librerie di &kde-frameworks;;, le librerie &Qt;, &etc;. Questo significa che &krusader; può girare in <ulink url="https://www.gnome.org"
 ><application
 >GNOME</application
 ></ulink
@@ -88,7 +88,7 @@
 ></para>
           <!-- Empty line to make it more readable -->
           <para
->Molto dipende da cosa vuoi fare con &krusader;. Devi sapere che &krusader; utilizza gli slave KIO di &kf5; per accedere ai file system remoti, e solo il supporto per un numero limitato di tipi di file system è incluso nelle librerie &kf5;; la maggior parte dei slave KIO è compresa in &kf5-full; base (incluso fish, sftp e tar).</para>
+>Molto dipende da cosa vuoi fare con &krusader;. Devi sapere che &krusader; utilizza gli slave KIO di &kde-frameworks; per accedere ai file system remoti, e solo il supporto per un numero limitato di tipi di file system è incluso nelle librerie &kde-frameworks;, la maggior parte dei slave KIO è compresa in &kf5-full; base (incluso fish, sftp e tar).</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -212,7 +212,7 @@
 >blocca</quote
 > al primo accesso alla condivisione inattiva: non c'è dunque modo di aggirarlo, nessun previo controllo per evitarlo, anche il comando <command
 >ls</command
-> si bloccherà. Basta provare a leggere qualcosa, qualsiasi cosa, per restare impantanati. Il solo e unico modo di aggirare questo problema di architettura è utilizzare una struttura multi-thread: in questo modo, se si rimane bloccati, non si blocca la gestione degli eventi per l'intera applicazione; non si pensi però che sia il momento opportuno per aggiungere thread, non siamo sicuri che *tutti* i sistemi basati su ;&kf5; utilizzino &Qt;-mt (la versione multi-thread della libreria &Qt;), e la &krusader; Krew potrebbe non essere, in ogni caso, il gruppo giusto per risolvere questo importante problema; quindi, al momento, questo è solo un errore con cui bisogna convivere.</para>
+> si bloccherà. Basta provare a leggere qualcosa, qualsiasi cosa, per restare impantanati. Il solo e unico modo di aggirare questo problema di architettura è utilizzare una struttura multi-thread: in questo modo, se si rimane bloccati, non si blocca la gestione degli eventi per l'intera applicazione; non si pensi però che sia il momento opportuno per aggiungere thread, non siamo sicuri che *tutti* i sistemi basati su ;&kde-frameworks; utilizzino &Qt;-mt (la versione multi-thread della libreria &Qt;), e la &krusader; Krew potrebbe non essere, in ogni caso, il gruppo giusto per risolvere questo importante problema; quindi, al momento, questo è solo un errore con cui bisogna convivere.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -732,7 +732,7 @@
 >Grazie per la collaborazione!</para>
           <note>
             <para
->Se possibile, prova ad eseguire la stessa operazione con &konqueror; o un'altra applicazione &kde;. Se sperimenti lo stesso problema, allora è probabile che sia un errore degli slave KIO o di &kf5-full; e non di &krusader;. &krusader; utilizza le librerie &kf5; e lo slave KIO per molte operazioni. In alcuni casi, puoi avere problemi se la tua distribuzione non è configurata correttamente, dunque verifica prima come sopra descritto.</para>
+>Se possibile, prova ad eseguire la stessa operazione con &konqueror; o un'altra applicazione &kde;. Se sperimenti lo stesso problema, allora è probabile che sia un errore degli slave KIO o di &kf5-full; e non di &krusader;. &krusader; utilizza le librerie di &kde-frameworks; e lo slave KIO per molte operazioni. In alcuni casi, puoi avere problemi se la tua distribuzione non è configurata correttamente, dunque verifica prima come sopra descritto.</para>
           </note>
           <para
 ></para>
