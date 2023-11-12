@@ -154,7 +154,7 @@
 >, el visualitzador pot iniciar l'editor intern del &krusader; (el qual és bàsicament la mateixa aplicació).</para>
     <note>
       <para
->El visualitzador incrustat no l'escrivim nosaltres, se subministra a través dels &kf5; i els esclaus KIO. No podem i no volem canviar-lo, l'ús d'aquestes biblioteques redueix la quantitat de codi escrit. D'aquesta manera no hem de reinventar la roda ;-)</para>
+>El visualitzador incrustat no l'escrivim nosaltres, se subministra a través dels &kde-frameworks; i els esclaus KIO. No podem i no volem canviar-lo, l'ús d'aquestes biblioteques redueix la quantitat de codi escrit. D'aquesta manera no hem de reinventar la roda ;-)</para>
     </note>
   </sect2>
   <sect2 id="kredit">
@@ -3473,7 +3473,7 @@ If you press Enter and AutoBrace is enabled, it will insert your favorite new br
 ><para
 >El connector d'inserció d'icones només és útil per als desenvolupadors del &kde;: afegeix un element <guimenuitem
 >Insereix el codi de la KIcon</guimenuitem
-> al menú contextual de l'editor. Si està activada, s'obrirà el selector d'icones del &plasma; (mostrant les icones d'aplicació, d'acció, &etc;). Si feu clic, s'inserirà com a text el nom del fitxer sense extensió de fitxer. D'utilitat només per a configurar les icones a través dels &kf5; mitjançant la classe «KIcon()». </para
+> al menú contextual de l'editor. Si està activada, s'obrirà el selector d'icones del &plasma; (mostrant les icones d'aplicació, d'acció, &etc;). Si feu clic, s'inserirà com a text el nom del fitxer sense extensió de fitxer. D'utilitat només per a configurar les icones a través dels &kde-frameworks; mitjançant la classe «KIcon()». </para
 ></listitem>
 </varlistentry>
 <varlistentry>

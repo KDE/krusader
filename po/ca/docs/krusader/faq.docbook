@@ -52,7 +52,7 @@
           <para
 ><emphasis
 >No, el &krusader; no necessita el gestor de finestres &plasma;</emphasis
-> per a executar-se a l'ordinador, però l'entorn natural del &krusader; és el &plasma;, perquè es basa en els serveis proporcionats per les biblioteques dels &kf5-full;. Només calen algunes biblioteques compartides, com ara les biblioteques dels &kf5;, les biblioteques de les &Qt;, &etc; Això vol dir que el &krusader; funciona en el <ulink url="https://www.gnome.org"
+> per a executar-se a l'ordinador, però l'entorn natural del &krusader; és el &plasma;, perquè es basa en els serveis proporcionats per les biblioteques dels &kf5-full;. Només calen algunes biblioteques compartides, com ara les biblioteques dels &kde-frameworks;, les biblioteques de les &Qt;, &etc; Això vol dir que el &krusader; funciona en el <ulink url="https://www.gnome.org"
 ><application
 >GNOME</application
 ></ulink
@@ -88,7 +88,7 @@
 ></para>
           <!-- Empty line to make it more readable -->
           <para
->Depèn molt del que vulgueu fer amb el &krusader;. Heu de saber que el &krusader; utilitza els esclaus KIO dels &kf5; per a accedir als sistemes de fitxers remots, i el suport per a només un nombre limitat de tipus de sistema de fitxers va amb les biblioteques dels &kf5;, la majoria dels esclaus KIO estan agrupats amb els &kf5-full; (inclosos el fish, sftp i tar).</para>
+>Depèn molt del que vulgueu fer amb el &krusader;. Heu de saber que el &krusader; utilitza els esclaus KIO dels &kde-frameworks; per a accedir als sistemes de fitxers remots, i el suport per a només un nombre limitat de tipus de sistema de fitxers va amb les biblioteques dels &kde-frameworks;, la majoria dels esclaus KIO estan agrupats amb els &kf5-full; (inclosos el fish, sftp i tar).</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -212,7 +212,7 @@
 >penja</quote
 > durant el primer accés a la compartició morta, de manera que no hi ha forma d'evitar-ho, ni cap forma de verificar, fins i tot es congelarà l'ordre <command
 >ls</command
->. Només en mirar de llegir qualsevulla cosa, serà suficient per a embussar. L'única manera d'evitar aquest problema d'arquitectura és emprant un disseny de múltiples fils. D'aquesta manera, si s'encalla, no es penjarà tot el cicle d'esdeveniments de l'aplicació, però no creiem que sigui el moment adequat per a afegir els fils, no estic segur que *tots* els sistemes &kf5; utilitzin &Qt;-mt (la versió multi fil de les biblioteques &Qt;), i en qualsevol cas, en Krew del &krusader; podria no ser la persona adequada per a abordar aquest important problema. De manera que actualment això és només un error amb el qual haurem d'aprendre a conviure.</para>
+>. Només en mirar de llegir qualsevulla cosa, serà suficient per a embussar. L'única manera d'evitar aquest problema d'arquitectura és emprant un disseny de múltiples fils. D'aquesta manera, si s'encalla, no es penjarà tot el cicle d'esdeveniments de l'aplicació, però no creiem que sigui el moment adequat per a afegir els fils, no estic segur que *tots* els sistemes &kde-frameworks; utilitzin &Qt;-mt (la versió multi fil de les biblioteques &Qt;), i en qualsevol cas, en Krew del &krusader; podria no ser la persona adequada per a abordar aquest important problema. De manera que actualment això és només un error amb el qual haurem d'aprendre a conviure.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -728,7 +728,7 @@
 >Gràcies per la vostra cooperació!</para>
           <note>
             <para
->Si és possible, intenteu fer la mateixa operació amb el &konqueror; o una altra aplicació &kde;. Si trobeu el mateix problema, possiblement serà un error dels esclaus KIO o dels &kf5-full;, i no un error del &krusader;. El &krusader; utilitza les biblioteques &kf5; i l'esclau KIO per a moltes operacions. En alguns casos, trobareu problemes si la vostra distribució està configurada incorrectament, proveu primer el que s'ha explicat anteriorment.</para>
+>Si és possible, intenteu fer la mateixa operació amb el &konqueror; o una altra aplicació &kde;. Si trobeu el mateix problema, possiblement serà un error dels esclaus KIO o dels &kf5-full;, i no un error del &krusader;. El &krusader; utilitza les biblioteques &kde-frameworks; i l'esclau KIO per a moltes operacions. En alguns casos, trobareu problemes si la vostra distribució està configurada incorrectament, proveu primer el que s'ha explicat anteriorment.</para>
           </note>
           <para
 ></para>
