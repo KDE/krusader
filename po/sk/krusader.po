@@ -1,21 +1,21 @@
 # translation of krusader.po to Slovak
 # Ondrej Pačay (Yogi) <balique@gmail.com>, 2008, 2009.
 # Zdenko Podobný <zdenop@gmail.com>, 2004, 2005, 2006, 2007, 2008, 2009.
-# Roman Paholík <wizzardsk@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
+# SPDX-FileCopyrightText: 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2023 Roman Paholík <wizzardsk@gmail.com>
 # Matej Mrenica <matejm98mthw@gmail.com>, 2018, 2019, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-11 02:38+0000\n"
-"PO-Revision-Date: 2020-05-02 17:36+0200\n"
-"Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
-"Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2023-12-07 17:27+0100\n"
+"Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
+"Language-Team: Slovak <kde-sk@linux.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.04.0\n"
+"X-Generator: Lokalize 23.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #, kde-format
@@ -1004,8 +1004,7 @@ msgid "Create Checksums"
 msgstr "Vytvoriť kontrolný súčet"
 
 #: app/Dialogs/checksumdlg.cpp:256
-#, fuzzy, kde-format
-#| msgid "About to calculate checksum for the following files or directories:"
+#, kde-format
 msgid "About to calculate checksum for the following files or folders:"
 msgstr "Spočítať kontrolný súčet pre nasledujúce súbory a adresáre:"
 
@@ -1425,10 +1424,9 @@ msgid "Files:"
 msgstr "Súbory:"
 
 #: app/DiskUsage/diskusage.cpp:105
-#, fuzzy, kde-format
-#| msgid "Folders"
+#, kde-format
 msgid "Folders:"
-msgstr "Priečinky"
+msgstr "Priečinky:"
 
 #: app/DiskUsage/diskusage.cpp:110
 #, kde-format
@@ -1869,18 +1867,16 @@ msgid "Custom"
 msgstr "Vlastné"
 
 #: app/FileSystem/krquery.cpp:547
-#, fuzzy, kde-format
-#| msgctxt "%1=filename, %2=percentage"
-#| msgid "Searching content of '%1' (%2%)"
+#, kde-format
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr "Hľadám obsah '%1' (%2%)"
+msgstr "Hľadá sa obsah '%1' (%2)"
 
 #: app/FileSystem/krquery.cpp:552
 #, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr ""
+msgstr "%1%"
 
 #: app/FileSystem/virtualfilesystem.cpp:53
 #, kde-format
@@ -2337,10 +2333,9 @@ msgid "Exclude Folder Names"
 msgstr "Vynechať názvy priečinkov"
 
 #: app/Filter/generalfilter.cpp:468
-#, fuzzy, kde-format
-#| msgid "Filters out specified directory names from the results."
+#, kde-format
 msgid "Filters out specified folder names from the results."
-msgstr "Filtruje špecifikované priečinky z výsledkov."
+msgstr "Vyfiltruje špecifikované priečinky z výsledkov."
 
 #: app/Filter/generalfilter.cpp:483
 #, kde-format
@@ -2572,7 +2567,7 @@ msgstr "Vložte názov profilu:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr ""
+msgstr "Žiadne nedávno zatvorené karty"
 
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
@@ -3085,16 +3080,14 @@ msgid "Current background:"
 msgstr "Aktuálne pozadie:"
 
 #: app/Konfigurator/kgcolors.cpp:108
-#, fuzzy, kde-format
-#| msgid "Delete foreground:"
+#, kde-format
 msgid "Rename foreground:"
-msgstr "Zmazať popredie (písmo):"
+msgstr "Premenovať popredie:"
 
 #: app/Konfigurator/kgcolors.cpp:109
-#, fuzzy, kde-format
-#| msgid "Alternate background:"
+#, kde-format
 msgid "Rename background:"
-msgstr "Alternatívne pozadie:"
+msgstr "Premenovať pozadie:"
 
 #: app/Konfigurator/kgcolors.cpp:119
 #, kde-format
@@ -3389,16 +3382,16 @@ msgstr ""
 "prehliadač pracovať v jednom okne so záložkami."
 
 #: app/Konfigurator/kggeneral.cpp:74
-#, fuzzy, kde-format
-#| msgid "Show the tab bar with only one tab."
+#, kde-format
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "Zobraziť panel kariet pri iba jednej karte"
+msgstr "Skryť panel kariet, keď je otvorená len jedna karta"
 
 #: app/Konfigurator/kggeneral.cpp:75
-#, fuzzy, kde-format
-#| msgid "Show the tab bar with only one tab."
+#, kde-format
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr "Zobraziť panel kariet pri iba jednej karte"
+msgstr ""
+"Ak je zaškrtnuté, panel kariet prehliadača sa skryje, ak je otvorená len "
+"jedna karta"
 
 #: app/Konfigurator/kggeneral.cpp:79
 #, kde-format
@@ -3466,7 +3459,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:112
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
-msgstr ""
+msgstr "Ak je textový súbor väčší ako táto veľkosť, použije sa lister."
 
 #: app/Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -3598,20 +3591,18 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:274
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
-msgstr ""
+msgstr "Aktívny panel nasleduje pracovný adresár zabudovaného terminálu"
 
 #: app/Konfigurator/kggeneral.cpp:274
-#, fuzzy, kde-format
-#| msgid ""
-#| "When checked, whenever the panel is changed (for example, by pressing "
-#| "Tab), Krusader changes the current folder in the embedded terminal."
+#, kde-format
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
 "by executing 'cd' or 'popd' command), Krusader changes the current folder of "
 "active panel."
 msgstr ""
-"Pokiaľ je zaškrtnuté, vždy keď sa zmení panel (napríklad stlačením "
-"tabulátora), Krusader zmení aktuálny priečinok v zabudovanom terminále."
+"Pokiaľ je zaškrtnuté, vždy keď sa zmení pracovný adresár terminálu "
+"(napríklad vykonaním príkazu 'cd' alebo 'popd'), Krusader zmení aktuálny "
+"priečinok aktívneho panela."
 
 #: app/Konfigurator/kggeneral.cpp:296
 #, kde-format
@@ -3750,49 +3741,44 @@ msgstr ""
 "cesty."
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show close tab buttons"
-msgstr "Ukázať tlačidlá kariet nová/zatvoriť"
+msgstr "Zobraziť tlačidlá na zatvorenie karty"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show close tab buttons."
-msgstr "Ukázať tlačidlá kariet nová/zatvoriť"
+msgstr "Zobraziť tlačidlá na zatvorenie karty."
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs"
-msgstr ""
+msgstr "Rozširujúce sa karty"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
 msgid "Expanding tabs."
-msgstr ""
+msgstr "Rozširujúce sa karty."
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show new tab button"
-msgstr "Ukázať tlačidlá kariet nová/zatvoriť"
+msgstr "Zobraziť tlačidlo novej karty"
 
 #: app/Konfigurator/kgpanel.cpp:121
-#, fuzzy, kde-format
-#| msgid "Show new/close tab buttons"
+#, kde-format
 msgid "Show new tab button."
-msgstr "Ukázať tlačidlá kariet nová/zatvoriť"
+msgstr "Zobraziť tlačidlo novej karty."
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Insert tabs after current"
-msgstr ""
+msgstr "Vložiť karty za aktuálnu"
 
 #: app/Konfigurator/kgpanel.cpp:122
-#, fuzzy, kde-format
-#| msgid "Set root of the tree to the current folder"
+#, kde-format
 msgid "Insert new tabs to the right of the current one."
-msgstr "Nastaviť aktuálny priečinok ako koreň stromu"
+msgstr "Vložiť nové karty napravo od súčasnej karty."
 
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
@@ -3807,17 +3793,17 @@ msgstr "Zobraziť panel kariet pri iba jednej karte"
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click"
-msgstr ""
+msgstr "Zatvorenie karty dvojitým kliknutím"
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid "Close tab by double click."
-msgstr ""
+msgstr "Zatvorenie karty dvojitým kliknutím."
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr ""
+msgstr "Tlačidlo Nová karta duplikuje kartu"
 
 #: app/Konfigurator/kgpanel.cpp:125
 #, kde-format
@@ -3825,32 +3811,33 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
+"Ak je zaškrtnuté, tlačidlo novej karty duplikuje kartu, inak otvorí kartu v "
+"domovskom adresári."
 
 #: app/Konfigurator/kgpanel.cpp:133
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr ""
+msgstr "Duplikovať aktívnu kartu kliknutím:"
 
 #: app/Konfigurator/kgpanel.cpp:137
-#, fuzzy, kde-format
-#| msgid "disabled"
+#, kde-format
 msgid "Disabled"
-msgstr "vypnuté"
+msgstr "Zakázané"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Alt+Click"
-msgstr ""
+msgstr "Alt+Kliknutie"
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Ctrl+Click"
-msgstr ""
+msgstr "Ctrl+Kliknutie"
 
 #: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr ""
+msgstr "Duplikovať aktívnu kartu kliknutím Ctrl/Alt+ľavé tlačidlo myši"
 
 #: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
@@ -3904,16 +3891,12 @@ msgid ""
 msgstr "Stlačením Hore/Dolu zrušíte rýchle hľadanie (iba v režime hľadania)."
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, fuzzy, kde-format
-#| msgid "Directory navigation with Right Arrow"
+#, kde-format
 msgid "Folder navigation with Right Arrow"
 msgstr "Navigovanie priečinkami šípkou doprava"
 
 #: app/Konfigurator/kgpanel.cpp:181
-#, fuzzy, kde-format
-#| msgid ""
-#| "Pressing the Right button enters directory if no search text editing "
-#| "intention is captured."
+#, kde-format
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
@@ -4652,10 +4635,9 @@ msgstr ""
 "V opačnom prípade musí používateľ stlačiť a držať pravé tlačidlo 500ms."
 
 #: app/Konfigurator/kgpanel.cpp:670
-#, fuzzy, kde-format
-#| msgid "Right mouse button preserves selection"
+#, kde-format
 msgid "A plain mouse button resets selection"
-msgstr "Pravé tlačidlo myši zachová označenie"
+msgstr "Obyčajné tlačidlo myši obnovuje výber"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4664,6 +4646,10 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
+"Obnovenie výberu pri kliknutí myšou bez modifikátorov (t.j. Shift alebo "
+"Ctrl).\n"
+"Výber s klávesmi Shift/Ctrl pre tlačidlo myši musí byť povolený, aby toto "
+"nastavenie fungovalo."
 
 #: app/Konfigurator/kgpanel.cpp:706
 #, kde-format
@@ -4683,7 +4669,7 @@ msgstr "Zobraziť typ súborového systému"
 #: app/Konfigurator/kgpanel.cpp:717
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr ""
+msgstr "Skryť položky SquashFS"
 
 #: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
@@ -4709,21 +4695,19 @@ msgid "Never"
 msgstr "Nikdy"
 
 #: app/Konfigurator/kgpanel.cpp:757
-#, fuzzy, kde-format
-#| msgid "MountMan will not (un)mount the following mount-points:"
+#, kde-format
 msgid "Hide following mountpoints:"
-msgstr "Správca pripojení nesmie pripájať/odpájať tieto prípojné body:"
+msgstr "Skryť nasledujúce body pripojenia:"
 
 #: app/Konfigurator/kgpanel.cpp:787
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr ""
+msgstr "Pridať nový skrytý prípojný bod"
 
 #: app/Konfigurator/kgpanel.cpp:787
-#, fuzzy, kde-format
-#| msgid "Mnt.Point"
+#, kde-format
 msgid "Mount point:"
-msgstr "Pripájací bod"
+msgstr "Bod pripojenia:"
 
 #: app/Konfigurator/kgprotocols.cpp:35
 #, kde-format
@@ -5427,7 +5411,7 @@ msgstr "Nastaviť vzdialenú znakovú sadu"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr ""
+msgstr "Nedávno zatvorené karty"
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5544,16 +5528,13 @@ msgstr ""
 "%1"
 
 #: app/krslots.cpp:420
-#, fuzzy, kde-format
-#| msgid ""
-#| "Cannot find a batch rename tool.\n"
-#| "You can get KRename at http://www.krename.net"
+#, kde-format
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 "Nedá sa nájsť program pre premenovanie viacerých položiek.\n"
-"KRename môžete získať na http://www.krename.net"
+"KRename môžete získať na %1"
 
 #: app/krslots.cpp:447
 #, kde-format
@@ -6157,34 +6138,22 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - privilégiá správcu"
 
 #: app/main.cpp:113
-#, fuzzy, kde-format
-#| msgid ""
-#| "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-#| "© 2004-2019 Krusader Krew"
+#, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
-"© 2004-2019 Krusader Krew"
+"© 2004-2022 Krusader Krew"
 
 #: app/main.cpp:114
-#, fuzzy, kde-format
-#| msgid ""
-#| "Feedback:\n"
-#| "https://forum.kde.org/viewforum.php?f=225\n"
-#| "\n"
-#| "IRC\n"
-#| "server: irc.freenode.net, channel: #krusader"
+#, kde-format
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
 "Spätná väzba:\n"
-"https://forum.kde.org/viewforum.php?f=225\n"
-"\n"
-"IRC\n"
-"server: irc.freenode.net, channel: #krusader"
+"https://forum.kde.org/viewforum.php?f=225"
 
 #: app/main.cpp:120
 #, kde-format
@@ -7158,8 +7127,7 @@ msgstr ""
 "bytovú matematiku"
 
 #: app/Panel/listpanel.cpp:229
-#, fuzzy, kde-format
-#| msgid "Cancel directory space calculation"
+#, kde-format
 msgid "Cancel folder space calculation"
 msgstr "Zrušiť výpočet miesta priečinku"
 
@@ -7521,10 +7489,9 @@ msgstr ""
 "definovať v Konfigurátorovi, štandardne je to <b>konsole</b>.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:124
-#, fuzzy, kde-format
-#| msgid "Open/Run"
+#, kde-format
 msgid "Open/Run Files"
-msgstr "Otvoriť/Spustiť"
+msgstr "Otvoriť/Spustiť súbory"
 
 #: app/Panel/panelcontextmenu.cpp:127
 #, kde-format
@@ -7532,10 +7499,9 @@ msgid "Run"
 msgstr "Spustiť"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, fuzzy, kde-format
-#| msgid "Open in New Tab"
+#, kde-format
 msgid "Open in New Tabs"
-msgstr "Otvoriť v novej karte"
+msgstr "Otvoriť v nových kartách"
 
 #: app/Panel/panelcontextmenu.cpp:136
 #, kde-format
@@ -7872,8 +7838,7 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 z %2, %3 z %4"
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, fuzzy, kde-format
-#| msgid "Apply filter to folders"
+#, kde-format
 msgid "Apply filter to folder&s"
 msgstr "Použiť filter na priečinky"
 
@@ -7883,8 +7848,7 @@ msgid "Filter Files"
 msgstr "Filter súborov"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, fuzzy, kde-format
-#| msgid "Apply selection to folders"
+#, kde-format
 msgid "Apply &selection to folders"
 msgstr "Použiť výber na priečinky"
 
@@ -8215,10 +8179,9 @@ msgstr ""
 "Uložiť nastavenia ako predvolené pre nové inštancie zobrazenia tohto typu"
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, fuzzy, kde-format
-#| msgid "Open in a new tab"
+#, kde-format
 msgid "Open a new tab"
-msgstr "Otvoriť v novej karte"
+msgstr "Otvoriť novú kartu"
 
 #: app/paneltabbar.cpp:173
 #, kde-format
@@ -8264,7 +8227,7 @@ msgstr "Nájdený text:"
 #: app/Search/krsearchdialog.cpp:256
 #, kde-format
 msgid "Idle"
-msgstr ""
+msgstr "Nečinný"
 
 #: app/Search/krsearchdialog.cpp:268
 #, kde-format
@@ -9116,16 +9079,14 @@ msgid "Move Current Tab to Other Side"
 msgstr "Presunúť aktuálnu kartu na druhú stranu"
 
 #: app/tabactions.cpp:26
-#, fuzzy, kde-format
-#| msgid "Move Current Tab to Other Side"
+#, kde-format
 msgid "Move Current Tab to the Left"
-msgstr "Presunúť aktuálnu kartu na druhú stranu"
+msgstr "Presunúť aktuálnu kartu naľavo"
 
 #: app/tabactions.cpp:27
-#, fuzzy, kde-format
-#| msgid "Move Current Tab to Other Side"
+#, kde-format
 msgid "Move Current Tab to the Right"
-msgstr "Presunúť aktuálnu kartu na druhú stranu"
+msgstr "Presunúť aktuálnu kartu napravo"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9133,10 +9094,9 @@ msgid "Close Current Tab"
 msgstr "Zatvoriť aktuálnu kartu"
 
 #: app/tabactions.cpp:29
-#, fuzzy, kde-format
-#| msgid "Unlock Tab"
+#, kde-format
 msgid "Undo Close Tab"
-msgstr "Odomknúť kartu"
+msgstr "Vrátiť zatvorenie karty"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -9732,12 +9692,12 @@ msgstr "Multimédiá"
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr ""
+msgstr "Kopírovať cestu k súboru aktuálnej položky (bez medzier)"
 
 #: app/useraction_examples.xml:46
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
-msgstr ""
+msgstr "Kopírovať cestu(-y) k súboru(-om) vybranej(-ých) položky(-iek)"
 
 #: app/useraction_examples.xml:51 app/useraction_examples.xml:52
 #, kde-format
@@ -9813,8 +9773,7 @@ msgstr ""
 "Môžete ju povoliť na stránke 'Archívy' v Konfigurátore."
 
 #: plugins/krarc/krarc.cpp:285 plugins/krarc/krarc.cpp:305
-#, fuzzy, kde-format
-#| msgid "Creating directories is not supported with %1 archives"
+#, kde-format
 msgid "Creating folders is not supported with %1 archives"
 msgstr "Vytváranie priečinkov nie je podporované v %1 archívoch"
 
@@ -9849,6 +9808,7 @@ msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
+"Došlo k chybe súvisiacej s externým programom '%1'. Chybová správa je: '%2'."
 
 #: plugins/krarc/krarc.cpp:859 plugins/krarc/krarc.cpp:881
 #, kde-format
@@ -9861,8 +9821,7 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "Prístup k súborom nie je podporovaný s archívmi %1"
 
 #: plugins/krarc/krarc.cpp:1202 plugins/krarc/krarc.cpp:1210
-#, fuzzy, kde-format
-#| msgid "Listing directories is not supported for %1 archives"
+#, kde-format
 msgid "Listing folders is not supported for %1 archives"
 msgstr "Zobrazenie zoznamu priečinkov nie je podporované pre %1 archívy."
 
