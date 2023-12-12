@@ -20,7 +20,7 @@ class ActionMan : public QDialog
 {
     Q_OBJECT
 public:
-    explicit ActionMan(QWidget* parent = nullptr);
+    explicit ActionMan(QWidget *parent = nullptr);
     ~ActionMan() override;
 
 protected slots:
@@ -30,7 +30,7 @@ protected slots:
     void slotDisableApplyButton();
 
 private:
-    UserActionPage* userActionPage;
+    UserActionPage *userActionPage;
     QPushButton *applyButton;
 };
 

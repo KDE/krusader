@@ -27,19 +27,19 @@ public:
 
     void setUrls(const QList<QUrl> &urls);
 public slots:
-    void addPreview(const KFileItem& file, const QPixmap& preview);
+    void addPreview(const KFileItem &file, const QPixmap &preview);
     void view(QAction *);
 
 protected:
     void showEvent(QShowEvent *event) override;
 
-    QAction * prevNotAvailAction;
+    QAction *prevNotAvailAction;
     QList<KFileItem> files;
     bool jobStarted;
 
 private:
-    static const int MAX_SIZE =400;
-    static const short MARGIN =5;
+    static const int MAX_SIZE = 400;
+    static const short MARGIN = 5;
 
     class ProxyStyle;
 };

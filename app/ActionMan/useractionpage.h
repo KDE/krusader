@@ -20,7 +20,7 @@ class UserActionPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit UserActionPage(QWidget* parent);
+    explicit UserActionPage(QWidget *parent);
     ~UserActionPage() override;
 
     /**
@@ -48,7 +48,7 @@ private:
      */
     void apply();
 
-    //bool _modified; ///< true if the action-tree was changed (= changes were applied to an action)
+    // bool _modified; ///< true if the action-tree was changed (= changes were applied to an action)
     UserActionListView *actionTree;
     ActionProperty *actionProperties;
     QToolButton *importButton, *exportButton;
@@ -56,8 +56,8 @@ private:
     QToolButton *removeButton, *newButton;
 
 private slots:
-    void slotChangeCurrent(); //loads a new action into the detail-view
-    void slotUpdateAction(); //updates the action to the xml-file
+    void slotChangeCurrent(); // loads a new action into the detail-view
+    void slotUpdateAction(); // updates the action to the xml-file
     void slotNewAction();
     void slotRemoveAction();
     void slotImport();

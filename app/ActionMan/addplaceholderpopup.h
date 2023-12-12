@@ -25,14 +25,12 @@ class QCheckBox;
 class KComboBox;
 class QSpinBox;
 
-
 /**
  * This reads Expander::placeholder[] and
  * fills a popup for easy access to the UserAction Placeholder
  */
 class AddPlaceholderPopup : public QMenu
 {
-
 public:
     explicit AddPlaceholderPopup(QWidget *parent);
 
@@ -41,7 +39,7 @@ public:
      * @param pos Position where the popup should appear
      * @return the expression which can be placed in the UserAction commandline
      */
-    QString getPlaceholder(const QPoint& pos);
+    QString getPlaceholder(const QPoint &pos);
 
 protected:
     /**
@@ -49,12 +47,11 @@ protected:
      * @param currentPlaceholder A pointer to the Placeholder the user has chosen
      * @return a parameter-string
      */
-    QString getParameter(exp_placeholder* currentPlaceholder);
+    QString getParameter(exp_placeholder *currentPlaceholder);
 
 private:
     QMenu *_activeSub, *_otherSub, *_leftSub, *_rightSub, *_independentSub;
 };
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// Parameter Widgets ///////////////////////////////////
@@ -66,7 +63,9 @@ private:
 class ParameterBase : public QWidget
 {
 public:
-    inline ParameterBase(const exp_parameter& parameter, QWidget* parent) : QWidget(parent) {
+    inline ParameterBase(const exp_parameter &parameter, QWidget *parent)
+        : QWidget(parent)
+    {
         _necessary = parameter.necessary();
     }
     /**
@@ -88,9 +87,11 @@ public:
     /**
      * @return true if the Placeholder really needs this parameter
      */
-    inline bool necessary() {
+    inline bool necessary()
+    {
         return _necessary;
     }
+
 private:
     bool _necessary;
 };
@@ -102,13 +103,14 @@ private:
 class ParameterText : public ParameterBase
 {
 public:
-    ParameterText(const exp_parameter& parameter, QWidget* parent);
+    ParameterText(const exp_parameter &parameter, QWidget *parent);
     QString text() override;
     QString preset() override;
     void reset() override;
     bool valid() override;
+
 private:
-    KLineEdit * _lineEdit;
+    KLineEdit *_lineEdit;
     QString _preset;
 };
 
@@ -120,14 +122,15 @@ class ParameterPlaceholder : public ParameterBase
 {
     Q_OBJECT
 public:
-    ParameterPlaceholder(const exp_parameter& parameter, QWidget* parent);
+    ParameterPlaceholder(const exp_parameter &parameter, QWidget *parent);
     QString text() override;
     QString preset() override;
     void reset() override;
     bool valid() override;
+
 private:
-    KLineEdit * _lineEdit;
-    QToolButton* _button;
+    KLineEdit *_lineEdit;
+    QToolButton *_button;
 private slots:
     void addPlaceholder();
 };
@@ -139,13 +142,14 @@ private slots:
 class ParameterYes : public ParameterBase
 {
 public:
-    ParameterYes(const exp_parameter& parameter, QWidget* parent);
+    ParameterYes(const exp_parameter &parameter, QWidget *parent);
     QString text() override;
     QString preset() override;
     void reset() override;
     bool valid() override;
+
 private:
-    QCheckBox* _checkBox;
+    QCheckBox *_checkBox;
 };
 
 /**
@@ -155,13 +159,14 @@ private:
 class ParameterNo : public ParameterBase
 {
 public:
-    ParameterNo(const exp_parameter& parameter, QWidget* parent);
+    ParameterNo(const exp_parameter &parameter, QWidget *parent);
     QString text() override;
     QString preset() override;
     void reset() override;
     bool valid() override;
+
 private:
-    QCheckBox* _checkBox;
+    QCheckBox *_checkBox;
 };
 
 /**
@@ -172,14 +177,15 @@ class ParameterFile : public ParameterBase
 {
     Q_OBJECT
 public:
-    ParameterFile(const exp_parameter& parameter, QWidget* parent);
+    ParameterFile(const exp_parameter &parameter, QWidget *parent);
     QString text() override;
     QString preset() override;
     void reset() override;
     bool valid() override;
+
 private:
-    KLineEdit * _lineEdit;
-    QToolButton* _button;
+    KLineEdit *_lineEdit;
+    QToolButton *_button;
 private slots:
     void addFile();
 };
@@ -191,13 +197,14 @@ private slots:
 class ParameterChoose : public ParameterBase
 {
 public:
-    ParameterChoose(const exp_parameter& parameter, QWidget* parent);
+    ParameterChoose(const exp_parameter &parameter, QWidget *parent);
     QString text() override;
     QString preset() override;
     void reset() override;
     bool valid() override;
+
 private:
-    KComboBox * _combobox;
+    KComboBox *_combobox;
 };
 
 /**
@@ -207,13 +214,14 @@ private:
 class ParameterSelect : public ParameterBase
 {
 public:
-    ParameterSelect(const exp_parameter& parameter, QWidget* parent);
+    ParameterSelect(const exp_parameter &parameter, QWidget *parent);
     QString text() override;
     QString preset() override;
     void reset() override;
     bool valid() override;
+
 private:
-    KComboBox * _combobox;
+    KComboBox *_combobox;
 };
 
 /**
@@ -224,14 +232,15 @@ class ParameterGoto : public ParameterBase
 {
     Q_OBJECT
 public:
-    ParameterGoto(const exp_parameter& parameter, QWidget* parent);
+    ParameterGoto(const exp_parameter &parameter, QWidget *parent);
     QString text() override;
     QString preset() override;
     void reset() override;
     bool valid() override;
+
 private:
-    KLineEdit * _lineEdit;
-    QToolButton* _dirButton, *_placeholderButton;
+    KLineEdit *_lineEdit;
+    QToolButton *_dirButton, *_placeholderButton;
 private slots:
     void setDir();
     void addPlaceholder();
@@ -244,13 +253,14 @@ private slots:
 class ParameterSyncprofile : public ParameterBase
 {
 public:
-    ParameterSyncprofile(const exp_parameter& parameter, QWidget* parent);
+    ParameterSyncprofile(const exp_parameter &parameter, QWidget *parent);
     QString text() override;
     QString preset() override;
     void reset() override;
     bool valid() override;
+
 private:
-    KComboBox * _combobox;
+    KComboBox *_combobox;
 };
 
 /**
@@ -260,13 +270,14 @@ private:
 class ParameterPanelprofile : public ParameterBase
 {
 public:
-    ParameterPanelprofile(const exp_parameter& parameter, QWidget* parent);
+    ParameterPanelprofile(const exp_parameter &parameter, QWidget *parent);
     QString text() override;
     QString preset() override;
     void reset() override;
     bool valid() override;
+
 private:
-    KComboBox * _combobox;
+    KComboBox *_combobox;
 };
 
 /**
@@ -276,13 +287,14 @@ private:
 class ParameterSearch : public ParameterBase
 {
 public:
-    ParameterSearch(const exp_parameter& parameter, QWidget* parent);
+    ParameterSearch(const exp_parameter &parameter, QWidget *parent);
     QString text() override;
     QString preset() override;
     void reset() override;
     bool valid() override;
+
 private:
-    KComboBox * _combobox;
+    KComboBox *_combobox;
 };
 
 /**
@@ -292,13 +304,14 @@ private:
 class ParameterInt : public ParameterBase
 {
 public:
-    ParameterInt(const exp_parameter& parameter, QWidget* parent);
+    ParameterInt(const exp_parameter &parameter, QWidget *parent);
     QString text() override;
     QString preset() override;
     void reset() override;
     bool valid() override;
+
 private:
-    QSpinBox * _spinbox;
+    QSpinBox *_spinbox;
     int _default;
 };
 
@@ -314,7 +327,7 @@ class ParameterDialog : public QDialog
 {
     Q_OBJECT
 public:
-    ParameterDialog(const exp_placeholder* currentPlaceholder, QWidget *parent);
+    ParameterDialog(const exp_placeholder *currentPlaceholder, QWidget *parent);
 
     /**
      * Use this to execute the dialog.
@@ -323,13 +336,12 @@ public:
     QString getParameter();
 
 private:
-    typedef QList<ParameterBase*> ParameterList;
+    typedef QList<ParameterBase *> ParameterList;
     ParameterList _parameter;
     int _parameterCount;
 private slots:
     void reset();
     void slotOk();
 };
-
 
 #endif // ADDPLACEHOLDERPOPUP_H

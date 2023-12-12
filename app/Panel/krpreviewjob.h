@@ -9,9 +9,9 @@
 #define KRPREVIEWJOB_H
 
 // QtCore
-#include <QVector>
 #include <QHash>
 #include <QTimer>
+#include <QVector>
 // QtGui
 #include <QPixmap>
 
@@ -23,20 +23,22 @@ class KrPreviews;
 
 class KrPreviewJob : public KJob
 {
-friend class KrPreviews;
+    friend class KrPreviews;
     Q_OBJECT
 public:
-    void start() override {}
+    void start() override
+    {
+    }
 
 protected slots:
     void slotStartJob();
     void slotJobResult(KJob *job);
-    void slotGotPreview(const KFileItem & item, const QPixmap & preview);
-    void slotFailed(const KFileItem & item);
+    void slotGotPreview(const KFileItem &item, const QPixmap &preview);
+    void slotFailed(const KFileItem &item);
 
 protected:
-    QList<KrViewItem*> _scheduled;
-    QHash<const KFileItem, KrViewItem*> _hash;
+    QList<KrViewItem *> _scheduled;
+    QHash<const KFileItem, KrViewItem *> _hash;
     KIO::PreviewJob *_job;
     QTimer _timer;
     KrPreviews *_parent;

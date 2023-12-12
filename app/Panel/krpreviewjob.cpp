@@ -7,25 +7,28 @@
 
 #include "krpreviewjob.h"
 
-#include "krpreviews.h"
-#include "PanelView/krview.h"
-#include "PanelView/krviewitem.h"
 #include "../FileSystem/fileitem.h"
 #include "../defaults.h"
+#include "PanelView/krview.h"
+#include "PanelView/krviewitem.h"
+#include "krpreviews.h"
 
 #include <stdio.h>
 
 // QtWidgets
 #include <QWidget>
 
-#define ASSERT(what) if(!(what)) abort();
+#define ASSERT(what)                                                                                                                                           \
+    if (!(what))                                                                                                                                               \
+        abort();
 
 // how much items to process by a single job
 // view becomes unresponsive during load if set too high
 #define MAX_CHUNK_SIZE 50
 
-
-KrPreviewJob::KrPreviewJob(KrPreviews *parent) : _job(nullptr), _parent(parent)
+KrPreviewJob::KrPreviewJob(KrPreviews *parent)
+    : _job(nullptr)
+    , _parent(parent)
 {
     _timer.setSingleShot(true);
     _timer.setInterval(0);
@@ -39,32 +42,32 @@ KrPreviewJob::~KrPreviewJob()
 
 void KrPreviewJob::scheduleItem(KrViewItem *item)
 {
-    if(!_scheduled.contains(item)) {
+    if (!_scheduled.contains(item)) {
         _scheduled.append(item);
         setTotalAmount(KJob::Files, totalAmount(KJob::Files) + 1);
     }
-    if(!_job)
+    if (!_job)
         _timer.start();
 }
 
 void KrPreviewJob::removeItem(KrViewItem *item)
 {
     setTotalAmount(KJob::Files, totalAmount(KJob::Files) - _scheduled.removeAll(item));
-    if(_job) {
+    if (_job) {
         doKill();
-        if(!_scheduled.isEmpty())
+        if (!_scheduled.isEmpty())
             _timer.start();
     }
-    if(_scheduled.isEmpty())
+    if (_scheduled.isEmpty())
         emitResult();
 }
 
-void KrPreviewJob::slotFailed(const KFileItem & item)
+void KrPreviewJob::slotFailed(const KFileItem &item)
 {
     slotGotPreview(item, QPixmap());
 }
 
-void KrPreviewJob::slotGotPreview(const KFileItem & item, const QPixmap & preview)
+void KrPreviewJob::slotGotPreview(const KFileItem &item, const QPixmap &preview)
 {
     KrViewItem *vi = _hash[item];
     ASSERT(vi);
@@ -90,7 +93,7 @@ void KrPreviewJob::slotStartJob()
     int size = _parent->_view->fileIconSize();
 
     KFileItemList list;
-    for(int i = 0; i < _scheduled.count() && i < MAX_CHUNK_SIZE; i++) {
+    for (int i = 0; i < _scheduled.count() && i < MAX_CHUNK_SIZE; i++) {
         KFileItem fi(_scheduled[i]->getFileItem()->getUrl(), nullptr, 0);
         list.append(fi);
         _hash.insert(fi, _scheduled[i]);
@@ -107,27 +110,27 @@ void KrPreviewJob::slotStartJob()
 
 void KrPreviewJob::slotJobResult(KJob *job)
 {
-    (void) job;
+    (void)job;
 
-    if(!disconnect(_job, nullptr, this, nullptr))
+    if (!disconnect(_job, nullptr, this, nullptr))
         abort();
 
     _job = nullptr;
     _hash.clear();
 
-    if(_scheduled.isEmpty())
+    if (_scheduled.isEmpty())
         emitResult();
     else
-         _timer.start();
+        _timer.start();
 }
 
 // move currently visible items to beginning of the list
 void KrPreviewJob::sort()
 {
-    for(int i = 0, visible_end = 0; i < _scheduled.count(); i++) {
+    for (int i = 0, visible_end = 0; i < _scheduled.count(); i++) {
         KrViewItem *item = _scheduled[i];
-        if(_parent->_view->widget()->rect().intersects(item->itemRect())) {
-            if(i != visible_end)
+        if (_parent->_view->widget()->rect().intersects(item->itemRect())) {
+            if (i != visible_end)
                 _scheduled.move(i, visible_end);
             visible_end++;
         }
@@ -137,10 +140,10 @@ void KrPreviewJob::sort()
 bool KrPreviewJob::doKill()
 {
     _timer.stop();
-    if(_job) {
-        if(!disconnect(_job, nullptr, this, nullptr))
+    if (_job) {
+        if (!disconnect(_job, nullptr, this, nullptr))
             abort();
-        if(!_job->kill())
+        if (!_job->kill())
             abort();
         _job = nullptr;
     }

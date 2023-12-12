@@ -13,13 +13,12 @@
 // QtWidgets
 #include <QDialog>
 
-#include <KIOWidgets/KUrlRequester>
 #include <KIO/Global>
+#include <KIOWidgets/KUrlRequester>
 
 class QComboBox;
 class QCheckBox;
 class QDoubleSpinBox;
-
 
 class SplitterGUI : public QDialog
 {
@@ -29,21 +28,22 @@ private:
 
     static const QList<PredefinedDevice> &predefinedDevices();
 
-    KIO::filesize_t                 userDefinedSize;
-    int                             lastSelectedDevice;
-    KIO::filesize_t                 division;
+    KIO::filesize_t userDefinedSize;
+    int lastSelectedDevice;
+    KIO::filesize_t division;
 
-    QDoubleSpinBox  *spinBox;
-    QComboBox       *deviceCombo;
-    QComboBox       *sizeCombo;
-    QCheckBox       *overwriteCb;
-    KUrlRequester   *urlReq;
+    QDoubleSpinBox *spinBox;
+    QComboBox *deviceCombo;
+    QComboBox *sizeCombo;
+    QCheckBox *overwriteCb;
+    KUrlRequester *urlReq;
 
 public:
-    SplitterGUI(QWidget* parent,  const QUrl& fileURL, const QUrl& defaultDir);
+    SplitterGUI(QWidget *parent, const QUrl &fileURL, const QUrl &defaultDir);
     ~SplitterGUI() override;
 
-    QUrl    getDestinationDir()     {
+    QUrl getDestinationDir()
+    {
         return urlReq->url();
     }
     KIO::filesize_t getSplitSize();

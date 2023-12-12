@@ -25,7 +25,6 @@
  */
 class FileItem
 {
-
 public:
     /**
      * Create a new file item.
@@ -56,13 +55,24 @@ public:
      * @param acl ACL string of file. Can be empty and is loaded on demand.
      * @param defaultAcl default ACL string of file (only for directories). Can be empty and is loaded on demand.
      */
-    FileItem(const QString &name, const QUrl &url, bool isDir,
-          KIO::filesize_t size, mode_t mode,
-          time_t mtime, time_t ctime, time_t atime, time_t btime,
-          uid_t uid = -1, gid_t gid = -1,
-          const QString &owner = QString(), const QString &group = QString(),
-          bool isLink = false, const QString &linkDest = QString(), bool isBrokenLink = false,
-          const QString &acl = QString(), const QString &defaultAcl = QString());
+    FileItem(const QString &name,
+             const QUrl &url,
+             bool isDir,
+             KIO::filesize_t size,
+             mode_t mode,
+             time_t mtime,
+             time_t ctime,
+             time_t atime,
+             time_t btime,
+             uid_t uid = -1,
+             gid_t gid = -1,
+             const QString &owner = QString(),
+             const QString &group = QString(),
+             bool isLink = false,
+             const QString &linkDest = QString(),
+             bool isBrokenLink = false,
+             const QString &acl = QString(),
+             const QString &defaultAcl = QString());
 
     /** Create a new ".." dummy file item. */
     static FileItem *createDummy();
@@ -74,29 +84,77 @@ public:
     static FileItem *createCopy(const FileItem &file, const QString &newName);
 
     // following functions give-out file details
-    inline const QString &getName() const { return m_name; }
+    inline const QString &getName() const
+    {
+        return m_name;
+    }
     /** Return the file size. Returns 0 for directories with unknown size. */
-    inline KIO::filesize_t getSize() const { return m_size == (KIO::filesize_t)-1 ? 0 : m_size; }
+    inline KIO::filesize_t getSize() const
+    {
+        return m_size == (KIO::filesize_t)-1 ? 0 : m_size;
+    }
     /** Return the file size. Returns (KIO::filesize_t)-1 for directories with unknown size. */
-    inline KIO::filesize_t getUISize() const { return m_size; }
-    inline const QString &getPerm() const { return m_permissions; }
+    inline KIO::filesize_t getUISize() const
+    {
+        return m_size;
+    }
+    inline const QString &getPerm() const
+    {
+        return m_permissions;
+    }
     /** Return true if the file is a directory or a symlink to a directory, otherwise false. */
-    inline bool isDir() const { return m_isDir; }
-    inline bool isSymLink() const { return m_isLink; }
-    inline bool isBrokenLink() const { return m_isBrokenLink; }
-    inline const QString &getSymDest() const { return m_linkDest; }
-    inline mode_t getMode() const { return m_mode; }
+    inline bool isDir() const
+    {
+        return m_isDir;
+    }
+    inline bool isSymLink() const
+    {
+        return m_isLink;
+    }
+    inline bool isBrokenLink() const
+    {
+        return m_isBrokenLink;
+    }
+    inline const QString &getSymDest() const
+    {
+        return m_linkDest;
+    }
+    inline mode_t getMode() const
+    {
+        return m_mode;
+    }
     /** Return the file modification time (mtime) or -1 if unknown. */
-    inline time_t getModificationTime() const { return m_mtime; }
+    inline time_t getModificationTime() const
+    {
+        return m_mtime;
+    }
     /** Return the file change time (ctime) or -1 if unknown. */
-    inline time_t getChangeTime() const { return m_ctime; }
+    inline time_t getChangeTime() const
+    {
+        return m_ctime;
+    }
     /** Return the file access time (atime) or -1 if unknown. */
-    inline time_t getAccessTime() const { return m_atime; }
+    inline time_t getAccessTime() const
+    {
+        return m_atime;
+    }
     /** Return the file creation time (btime) or -1 if unknown. */
-    inline time_t getCreationTime() const { return m_btime; }
-    inline const QUrl &getUrl() const { return m_url; }
-    inline const QString &getOwner() const { return m_owner; }
-    inline const QString &getGroup() const { return m_group; }
+    inline time_t getCreationTime() const
+    {
+        return m_btime;
+    }
+    inline const QUrl &getUrl() const
+    {
+        return m_url;
+    }
+    inline const QString &getOwner() const
+    {
+        return m_owner;
+    }
+    inline const QString &getGroup() const
+    {
+        return m_group;
+    }
 
     const QString &getMime();
     const QString &getIcon();
@@ -114,43 +172,48 @@ public:
      */
     void setSize(KIO::filesize_t size);
 
-    inline static void loadUserDefinedFolderIcons(bool load) {
+    inline static void loadUserDefinedFolderIcons(bool load)
+    {
         userDefinedFolderIcons = load;
     }
 
 private:
-    void setIconName(const QString &icon) { m_iconName = icon; m_mimeType = "?"; }
+    void setIconName(const QString &icon)
+    {
+        m_iconName = icon;
+        m_mimeType = "?";
+    }
     void loadACL();
 
-    QString m_name;             //< file name
-    QUrl m_url;                 //< file URL
-    bool m_isDir;               //< flag, true if it's a directory
+    QString m_name; //< file name
+    QUrl m_url; //< file URL
+    bool m_isDir; //< flag, true if it's a directory
 
-    KIO::filesize_t m_size;     //< file size
-    mode_t m_mode;              //< file mode (file type and permissions)
+    KIO::filesize_t m_size; //< file size
+    mode_t m_mode; //< file mode (file type and permissions)
 
-    time_t m_mtime;             //< file modification time
-    time_t m_ctime;             //< file change time
-    time_t m_atime;             //< file access time
-    time_t m_btime;             //< file creation time
+    time_t m_mtime; //< file modification time
+    time_t m_ctime; //< file change time
+    time_t m_atime; //< file access time
+    time_t m_btime; //< file creation time
 
-    uid_t m_uid;                //< file owner id
-    gid_t m_gid;                //< file group id
-    QString m_owner;            //< file owner name
-    QString m_group;            //< file group name
+    uid_t m_uid; //< file owner id
+    gid_t m_gid; //< file group id
+    QString m_owner; //< file owner name
+    QString m_group; //< file group name
 
-    bool m_isLink;              //< true if the file is a symlink
-    QString m_linkDest;         //< if it's a symlink - its destination
-    bool m_isBrokenLink;        //< true if the link destination does not exist
+    bool m_isLink; //< true if the file is a symlink
+    QString m_linkDest; //< if it's a symlink - its destination
+    bool m_isBrokenLink; //< true if the link destination does not exist
 
-    QString m_permissions;      //< file permissions string
+    QString m_permissions; //< file permissions string
 
-    QString m_acl;              //< ACL permission string, may lazy initialized
-    QString m_defaulfAcl;       //< ACL default string, may lazy initialized
-    bool m_AclLoaded;           //< flag, indicates that ACL permissions already loaded
+    QString m_acl; //< ACL permission string, may lazy initialized
+    QString m_defaulfAcl; //< ACL default string, may lazy initialized
+    bool m_AclLoaded; //< flag, indicates that ACL permissions already loaded
 
-    QString m_mimeType;         //< file mimetype, lazy initialized
-    QString m_iconName;             //< the name of the icon file, lazy initialized
+    QString m_mimeType; //< file mimetype, lazy initialized
+    QString m_iconName; //< the name of the icon file, lazy initialized
 
     static bool userDefinedFolderIcons;
 };

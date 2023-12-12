@@ -12,8 +12,8 @@
 #include <QAction>
 // QtWidgets
 #include <QMessageBox>
-#include <QPushButton>
 #include <QProgressBar>
+#include <QPushButton>
 
 #include <KCoreAddons/KJob>
 #include <KWidgetsAddons/KToolBarPopupAction>
@@ -61,12 +61,24 @@ public:
 
     explicit JobMan(QObject *parent = nullptr);
     /** Toolbar action icon for pausing/starting all jobs with drop down menu showing all jobs.*/
-    QAction *controlAction() const { return m_controlAction; }
+    QAction *controlAction() const
+    {
+        return m_controlAction;
+    }
     /** Toolbar action progress bar showing the average job progress percentage of all jobs.*/
-    QAction *progressAction() const { return m_progressAction; }
+    QAction *progressAction() const
+    {
+        return m_progressAction;
+    }
     /** Toolbar action combo box for changing the .*/
-    QAction *modeAction() const { return m_modeAction; }
-    QAction *undoAction() const { return m_undoAction; }
+    QAction *modeAction() const
+    {
+        return m_modeAction;
+    }
+    QAction *undoAction() const
+    {
+        return m_undoAction;
+    }
 
     /** Wait for all jobs to terminate (blocking!).
      *
@@ -79,7 +91,10 @@ public:
     bool waitForJobs(bool waitForUserInput);
 
     /** Return if queue mode is enabled or not. */
-    bool isQueueModeEnabled() const { return m_queueMode; }
+    bool isQueueModeEnabled() const
+    {
+        return m_queueMode;
+    }
 
     /** Display, monitor and give user ability to control a job.
      *
@@ -95,8 +110,7 @@ protected slots:
     void slotKJobStarted(KJob *krJob);
     void slotControlActionTriggered();
     void slotPercent(KJob *, unsigned long);
-    void slotDescription(KJob*,const QString &description, const QPair<QString,QString> &field1,
-                         const QPair<QString,QString> &field2);
+    void slotDescription(KJob *, const QString &description, const QPair<QString, QString> &field1, const QPair<QString, QString> &field2);
     void slotTerminated(KrJob *krJob);
     void slotUpdateControlAction();
     void slotUndoTextChange(const QString &text);

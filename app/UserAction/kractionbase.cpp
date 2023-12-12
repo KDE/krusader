@@ -14,11 +14,10 @@
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "kraction.h"
 #include "../krglobal.h"
+#include "kraction.h"
 
-KrActionBase::~KrActionBase()
-= default;
+KrActionBase::~KrActionBase() = default;
 
 void KrActionBase::exec()
 {
@@ -36,41 +35,39 @@ void KrActionBase::exec()
         commandList = exp.result();
     } else
         commandList << command();
-    //TODO: query expander for status and may skip the rest of the function
+    // TODO: query expander for status and may skip the rest of the function
 
     // stop here if the commandline is empty
     if (commandList.count() == 1 && commandList[0].trimmed().isEmpty())
         return;
 
     if (confirmExecution()) {
-        for (auto & it : commandList) {
+        for (auto &it : commandList) {
             bool exec = true;
-            it = QInputDialog::getText(krMainWindow, i18n("Confirm Execution"), i18n("Command being executed:"),
-                      QLineEdit::Normal, it, &exec);
+            it = QInputDialog::getText(krMainWindow, i18n("Confirm Execution"), i18n("Command being executed:"), QLineEdit::Normal, it, &exec);
             if (exec) {
                 proc = actionProcFactoryMethod();
                 proc->start(it);
             }
-        } //for
+        } // for
     } // if ( _properties->confirmExecution() )
     else {
         proc = actionProcFactoryMethod();
         proc->start(commandList);
     }
-
 }
 
-void KrActionBase::handleError(const Error& err)
+void KrActionBase::handleError(const Error &err)
 {
     // once qtHandler is instantiated, it keeps on showing all qDebug() messages
-    //QErrorMessage::qtHandler()->showMessage(err.what());
-    const QString& errorMessage = err.description();
+    // QErrorMessage::qtHandler()->showMessage(err.what());
+    const QString &errorMessage = err.description();
     if (!errorMessage.isEmpty()) {
         KMessageBox::error(krMainWindow, errorMessage);
     }
 }
 
-KrActionProc* KrActionBase::actionProcFactoryMethod()
+KrActionProc *KrActionBase::actionProcFactoryMethod()
 {
     return new KrActionProc(this);
 }

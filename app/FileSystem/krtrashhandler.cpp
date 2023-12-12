@@ -19,13 +19,12 @@
 #include <KIO/RestoreJob>
 #include <KJobWidgets/KJobWidgets>
 
-#include "filesystemprovider.h"
+#include "../icon.h"
 #include "../kractions.h"
 #include "../krglobal.h"
-#include "../icon.h"
+#include "filesystemprovider.h"
 
-
-KrTrashWatcher * KrTrashHandler::_trashWatcher = nullptr;
+KrTrashWatcher *KrTrashHandler::_trashWatcher = nullptr;
 
 bool KrTrashHandler::isTrashEmpty()
 {
@@ -43,16 +42,16 @@ void KrTrashHandler::emptyTrash()
 {
     KIO::JobUiDelegate uiDelegate;
     uiDelegate.setWindow(krMainWindow);
-    if (!uiDelegate.askDeleteConfirmation(QList<QUrl>(), KIO::JobUiDelegate::EmptyTrash,
-                                          KIO::JobUiDelegate::DefaultConfirmation))
+    if (!uiDelegate.askDeleteConfirmation(QList<QUrl>(), KIO::JobUiDelegate::EmptyTrash, KIO::JobUiDelegate::DefaultConfirmation))
         return;
 
     KIO::Job *job = KIO::emptyTrash();
     KJobWidgets::setWindow(job, krMainWindow);
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
     const QUrl url = QUrl("trash:/");
-    QObject::connect(job, &KIO::Job::result,
-                     [=]() { FileSystemProvider::instance().refreshFilesystems(url, false); });
+    QObject::connect(job, &KIO::Job::result, [=]() {
+        FileSystemProvider::instance().refreshFilesystems(url, false);
+    });
 }
 
 void KrTrashHandler::restoreTrashedFiles(const QList<QUrl> &urls)
@@ -64,8 +63,9 @@ void KrTrashHandler::restoreTrashedFiles(const QList<QUrl> &urls)
     KJobWidgets::setWindow(job, krMainWindow);
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
     const QUrl url = urls.first().adjusted(QUrl::RemoveFilename);
-    QObject::connect(job, &KIO::Job::result,
-                     [=]() { FileSystemProvider::instance().refreshFilesystems(url, false); });
+    QObject::connect(job, &KIO::Job::result, [=]() {
+        FileSystemProvider::instance().refreshFilesystems(url, false);
+    });
 }
 
 void KrTrashHandler::startWatcher()
@@ -80,14 +80,12 @@ void KrTrashHandler::stopWatcher()
     _trashWatcher = nullptr;
 }
 
-
 KrTrashWatcher::KrTrashWatcher()
 {
     _watcher = new KDirWatch();
     connect(_watcher, &KDirWatch::created, this, &KrTrashWatcher::slotTrashChanged);
     connect(_watcher, &KDirWatch::dirty, this, &KrTrashWatcher::slotTrashChanged);
-    const QString trashrcFile =
-        QDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)).filePath("trashrc");
+    const QString trashrcFile = QDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)).filePath("trashrc");
     _watcher->addFile(trashrcFile);
     _watcher->startScan(true);
 }

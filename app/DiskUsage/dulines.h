@@ -9,13 +9,13 @@
 #define DULINES_H
 
 // QtGui
+#include <QKeyEvent>
 #include <QMouseEvent>
 #include <QPixmap>
-#include <QKeyEvent>
 #include <QResizeEvent>
 
-#include "diskusage.h"
 #include "../GUI/krtreewidget.h"
+#include "diskusage.h"
 
 class DULinesToolTip;
 class DULinesItemDelegate;
@@ -28,7 +28,7 @@ public:
     explicit DULines(DiskUsage *usage);
     ~DULines() override;
 
-    File * getCurrentFile();
+    File *getCurrentFile();
 
 public slots:
     void slotDirChanged(Directory *dirEntry);
@@ -42,15 +42,15 @@ public slots:
 protected:
     DiskUsage *diskUsage;
 
-    bool event(QEvent * event) override;
-    void mouseDoubleClickEvent(QMouseEvent * e) override;
+    bool event(QEvent *event) override;
+    void mouseDoubleClickEvent(QMouseEvent *e) override;
     void keyPressEvent(QKeyEvent *e) override;
     void resizeEvent(QResizeEvent *) override;
 
 private:
     QPixmap createPixmap(int percent, int maxPercent, int maxWidth);
 
-    bool doubleClicked(QTreeWidgetItem * item);
+    bool doubleClicked(QTreeWidgetItem *item);
 
     bool refreshNeeded;
     bool started;
@@ -62,4 +62,3 @@ private:
 };
 
 #endif /* __DU_LINES_H__ */
-

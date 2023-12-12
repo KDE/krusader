@@ -10,43 +10,41 @@
 
 // QtWidgets
 #include <QFileDialog>
-#include <QSplitter>
-#include <QLayout>
-#include <QToolButton>
 #include <QHBoxLayout>
+#include <QLayout>
+#include <QSplitter>
+#include <QToolButton>
 #include <QVBoxLayout>
 // QtGui
 #include <QClipboard>
 // QtXml
 #include <QDomDocumentType>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KStandardGuiItem>
 #include <KCompletion/KLineEdit>
+#include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
+#include <KWidgetsAddons/KStandardGuiItem>
 
+#include "../UserAction/kraction.h"
+#include "../UserAction/useraction.h"
+#include "../icon.h"
+#include "../krglobal.h"
+#include "../krusader.h"
 #include "actionproperty.h"
 #include "useractionlistview.h"
-#include "../UserAction/useraction.h"
-#include "../UserAction/kraction.h"
-#include "../krusader.h"
-#include "../krglobal.h"
-#include "../icon.h"
 
+// This is the filter in the QFileDialog of Import/Export:
+static const char *FILE_FILTER = I18N_NOOP("*.xml|XML files\n*|All files");
 
-//This is the filter in the QFileDialog of Import/Export:
-static const char* FILE_FILTER = I18N_NOOP("*.xml|XML files\n*|All files");
-
-
-UserActionPage::UserActionPage(QWidget* parent)
-        : QWidget(parent)
+UserActionPage::UserActionPage(QWidget *parent)
+    : QWidget(parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
-    layout->setSpacing(6);   // 0px margin, 6px item-spacing
+    layout->setSpacing(6); // 0px margin, 6px item-spacing
 
     // ======== pseudo-toolbar start ========
-    auto* toolbarLayout = new QHBoxLayout; // neither margin nor spacing for the toolbar with autoRaise
+    auto *toolbarLayout = new QHBoxLayout; // neither margin nor spacing for the toolbar with autoRaise
     toolbarLayout->setSpacing(0);
     toolbarLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -85,9 +83,9 @@ UserActionPage::UserActionPage(QWidget* parent)
     toolbarLayout->addWidget(exportButton);
     toolbarLayout->addWidget(copyButton);
     toolbarLayout->addWidget(pasteButton);
-    toolbarLayout->addSpacing(6);   // 6 pixel nothing
+    toolbarLayout->addSpacing(6); // 6 pixel nothing
     toolbarLayout->addWidget(removeButton);
-    toolbarLayout->addStretch(1000);   // some very large stretch-factor
+    toolbarLayout->addStretch(1000); // some very large stretch-factor
     // ======== pseudo-toolbar end ========
     /* This seems obsolete now!
        // Display some help
@@ -102,12 +100,12 @@ UserActionPage::UserActionPage(QWidget* parent)
     */
     layout->addLayout(toolbarLayout);
     auto *split = new QSplitter(this);
-    layout->addWidget(split, 1000);   // again a very large stretch-factor to fix the height of the toolbar
+    layout->addWidget(split, 1000); // again a very large stretch-factor to fix the height of the toolbar
 
     actionTree = new UserActionListView(split);
     actionTree->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     actionProperties = new ActionProperty(split);
-    actionProperties->setEnabled(false);   // if there are any actions in the list, the first is displayed and this widget is enabled
+    actionProperties->setEnabled(false); // if there are any actions in the list, the first is displayed and this widget is enabled
 
     connect(actionTree, &UserActionListView::currentItemChanged, this, &UserActionPage::slotChangeCurrent);
     connect(newButton, &QToolButton::clicked, this, &UserActionPage::slotNewAction);
@@ -124,17 +122,14 @@ UserActionPage::UserActionPage(QWidget* parent)
     actionTree->setFocus();
 }
 
-UserActionPage::~UserActionPage()
-= default;
+UserActionPage::~UserActionPage() = default;
 
 bool UserActionPage::continueInSpiteOfChanges()
 {
-    if (! actionProperties->isModified())
+    if (!actionProperties->isModified())
         return true;
 
-    int answer = KMessageBox::questionYesNoCancel(this,
-                 i18n("The current action has been modified. Do you want to apply these changes?")
-                                                 );
+    int answer = KMessageBox::questionYesNoCancel(this, i18n("The current action has been modified. Do you want to apply these changes?"));
     if (answer == KMessageBox::Cancel) {
         disconnect(actionTree, &UserActionListView::currentItemChanged, this, &UserActionPage::slotChangeCurrent);
         actionTree->setCurrentAction(actionProperties->action());
@@ -142,7 +137,7 @@ bool UserActionPage::continueInSpiteOfChanges()
         return false;
     }
     if (answer == KMessageBox::Yes) {
-        if (! actionProperties->validProperties()) {
+        if (!actionProperties->validProperties()) {
             disconnect(actionTree, &UserActionListView::currentItemChanged, this, &UserActionPage::slotChangeCurrent);
             actionTree->setCurrentAction(actionProperties->action());
             connect(actionTree, &UserActionListView::currentItemChanged, this, &UserActionPage::slotChangeCurrent);
@@ -155,10 +150,10 @@ bool UserActionPage::continueInSpiteOfChanges()
 
 void UserActionPage::slotChangeCurrent()
 {
-    if (! continueInSpiteOfChanges())
+    if (!continueInSpiteOfChanges())
         return;
 
-    KrAction* action = actionTree->currentAction();
+    KrAction *action = actionTree->currentAction();
     if (action) {
         actionProperties->setEnabled(true);
         // the distinct name is used as ID it is not allowed to change it afterwards because it is may referenced anywhere else
@@ -172,34 +167,32 @@ void UserActionPage::slotChangeCurrent()
     emit applied(); // to disable the apply-button
 }
 
-
 void UserActionPage::slotUpdateAction()
 {
     // check that we have a command line, title and a name
-    if (! actionProperties->validProperties())
+    if (!actionProperties->validProperties())
         return;
 
     if (actionProperties->leDistinctName->isEnabled()) {
         // := new entry
-        KrAction* action = new KrAction(krApp->actionCollection(), actionProperties->leDistinctName->text());
+        KrAction *action = new KrAction(krApp->actionCollection(), actionProperties->leDistinctName->text());
         krUserAction->addKrAction(action);
         actionProperties->updateAction(action);
-        UserActionListViewItem* item = actionTree->insertAction(action);
+        UserActionListViewItem *item = actionTree->insertAction(action);
         actionTree->setCurrentItem(item);
     } else { // := edit an existing
         actionProperties->updateAction();
-        actionTree->update(actionProperties->action());   // update the listviewitem as well...
+        actionTree->update(actionProperties->action()); // update the listviewitem as well...
     }
     apply();
 }
 
-
 void UserActionPage::slotNewAction()
 {
     if (continueInSpiteOfChanges()) {
-        actionTree->clearSelection();  // else the user may think that he is overwriting the selected action
+        actionTree->clearSelection(); // else the user may think that he is overwriting the selected action
         actionProperties->clear();
-        actionProperties->setEnabled(true);   // it may be disabled because the tree has the focus on a category
+        actionProperties->setEnabled(true); // it may be disabled because the tree has the focus on a category
         actionProperties->leDistinctName->setEnabled(true);
         actionProperties->leDistinctName->setFocus();
     }
@@ -207,16 +200,16 @@ void UserActionPage::slotNewAction()
 
 void UserActionPage::slotRemoveAction()
 {
-    if (! dynamic_cast<UserActionListViewItem*>(actionTree->currentItem()))
+    if (!dynamic_cast<UserActionListViewItem *>(actionTree->currentItem()))
         return;
 
-    int messageDelete = KMessageBox::warningContinueCancel(this,   //parent
-                        i18n("Are you sure that you want to remove all selected actions?"), //text
-                        i18n("Remove Selected Actions?"),  //caption
-                        KStandardGuiItem::remove(), //Label for the continue-button
-                        KStandardGuiItem::cancel(),
-                        "Confirm Remove UserAction", //dontAskAgainName (for the config-file)
-                        KMessageBox::Dangerous | KMessageBox::Notify);
+    int messageDelete = KMessageBox::warningContinueCancel(this, // parent
+                                                           i18n("Are you sure that you want to remove all selected actions?"), // text
+                                                           i18n("Remove Selected Actions?"), // caption
+                                                           KStandardGuiItem::remove(), // Label for the continue-button
+                                                           KStandardGuiItem::cancel(),
+                                                           "Confirm Remove UserAction", // dontAskAgainName (for the config-file)
+                                                           KMessageBox::Dangerous | KMessageBox::Notify);
 
     if (messageDelete != KMessageBox::Continue)
         return;
@@ -249,7 +242,7 @@ void UserActionPage::slotImport()
 
 void UserActionPage::slotExport()
 {
-    if (! dynamic_cast<UserActionListViewItem*>(actionTree->currentItem()))
+    if (!dynamic_cast<UserActionListViewItem *>(actionTree->currentItem()))
         return;
 
     QString filename = QFileDialog::getSaveFileName(this, QString(), QString(), i18n(FILE_FILTER));
@@ -259,42 +252,40 @@ void UserActionPage::slotExport()
     QDomDocument doc = QDomDocument(ACTION_DOCTYPE);
     QFile file(filename);
     int answer = 0;
-    if (file.open(QIODevice::ReadOnly)) {    // getting here, means the file already exists an can be read
-        if (doc.setContent(&file))    // getting here means the file exists and already contains an UserAction-XML-tree
-            answer = KMessageBox::warningYesNoCancel(this,  //parent
-                     i18n("This file already contains some useractions.\nDo you want to overwrite it or should it be merged with the selected actions?"), //text
-                     i18n("Overwrite or Merge?"), //caption
-                     KStandardGuiItem::overwrite(), //label for Yes-Button
-                     KGuiItem(i18n("Merge")) //label for No-Button
-                                                    );
+    if (file.open(QIODevice::ReadOnly)) { // getting here, means the file already exists an can be read
+        if (doc.setContent(&file)) // getting here means the file exists and already contains an UserAction-XML-tree
+            answer = KMessageBox::warningYesNoCancel(
+                this, // parent
+                i18n("This file already contains some useractions.\nDo you want to overwrite it or should it be merged with the selected actions?"), // text
+                i18n("Overwrite or Merge?"), // caption
+                KStandardGuiItem::overwrite(), // label for Yes-Button
+                KGuiItem(i18n("Merge")) // label for No-Button
+            );
         file.close();
     }
     if (answer == 0 && file.exists())
-        answer = KMessageBox::warningContinueCancel(this,  //parent
-                 i18n("This file already exists. Do you want to overwrite it?"), //text
-                 i18n("Overwrite Existing File?"), //caption
-                 KStandardGuiItem::overwrite() //label for Continue-Button
-                                                   );
+        answer = KMessageBox::warningContinueCancel(this, // parent
+                                                    i18n("This file already exists. Do you want to overwrite it?"), // text
+                                                    i18n("Overwrite Existing File?"), // caption
+                                                    KStandardGuiItem::overwrite() // label for Continue-Button
+        );
 
     if (answer == KMessageBox::Cancel)
         return;
 
-    if (answer == KMessageBox::No)   // that means the merge-button
-        doc = actionTree->dumpSelectedActions(&doc);   // merge
+    if (answer == KMessageBox::No) // that means the merge-button
+        doc = actionTree->dumpSelectedActions(&doc); // merge
     else // Yes or Continue means overwrite
         doc = actionTree->dumpSelectedActions();
 
     bool success = UserAction::writeToFile(doc, filename);
-    if (! success)
-        KMessageBox::error(this,
-                           i18n("Cannot open %1 for writing.\nNothing exported.", filename),
-                           i18n("Export Failed")
-                          );
+    if (!success)
+        KMessageBox::error(this, i18n("Cannot open %1 for writing.\nNothing exported.", filename), i18n("Export Failed"));
 }
 
 void UserActionPage::slotToClip()
 {
-    if (! dynamic_cast<UserActionListViewItem*>(actionTree->currentItem()))
+    if (!dynamic_cast<UserActionListViewItem *>(actionTree->currentItem()))
         return;
 
     QDomDocument doc = actionTree->dumpSelectedActions();
@@ -322,7 +313,7 @@ void UserActionPage::slotFromClip()
 bool UserActionPage::readyToQuit()
 {
     // Check if the current UserAction has changed
-    if (! continueInSpiteOfChanges())
+    if (!continueInSpiteOfChanges())
         return false;
 
     krUserAction->writeActionFile();
@@ -339,4 +330,3 @@ void UserActionPage::applyChanges()
 {
     slotUpdateAction();
 }
-

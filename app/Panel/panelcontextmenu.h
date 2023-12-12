@@ -12,11 +12,10 @@
 // QtWidgets
 #include <QMenu>
 
-#include <KService/KService>
 #include <KIOWidgets/KFileItemActions>
+#include <KService/KService>
 
 class KrPanel;
-
 
 /**
  * The right-click context menu for files and folders in the panel view.
@@ -27,7 +26,7 @@ class PanelContextMenu : public QMenu
 {
     Q_OBJECT
 public:
-    static PanelContextMenu* run(const QPoint &pos, KrPanel *panel);
+    static PanelContextMenu *run(const QPoint &pos, KrPanel *panel);
 
 private:
     explicit PanelContextMenu(KrPanel *thePanel, QWidget *parent = nullptr);
@@ -63,7 +62,6 @@ private:
     KrPanel *const panel;
     KFileItemList _items;
     KService::List offers;
-
 };
 
 #endif

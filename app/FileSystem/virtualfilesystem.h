@@ -36,21 +36,22 @@ public:
     VirtualFileSystem();
 
     /// Create virtual files in this filesystem. Copy mode and showProgressInfo are ignored.
-    void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
-                   KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy, bool showProgressInfo = false,
+    void copyFiles(const QList<QUrl> &urls,
+                   const QUrl &destination,
+                   KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
+                   bool showProgressInfo = false,
                    JobMan::StartMode startMode = JobMan::Start) override;
     /// Handle file dropping in this filesystem: Always creates virtual files.
     void dropFiles(const QUrl &destination, QDropEvent *event) override;
 
     /// Add virtual files to the current directory.
-    void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
-                  const QString &dir = "") override;
+    void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy, const QString &dir = "") override;
     /// Create a virtual directory. Only possible in the root directory.
     void mkDir(const QString &name) override;
     /// Rename a (real) file in the current directory.
     void rename(const QString &fileName, const QString &newName) override;
     /// Returns the URL of the real file or an empty URL if file with name does not exist.
-    QUrl getUrl(const QString& name) const override;
+    QUrl getUrl(const QString &name) const override;
     bool canMoveToTrash(const QStringList &fileNames) const override;
 
     /// Remove virtual files or directories. Real files stay untouched.
@@ -63,11 +64,12 @@ protected:
 
 private:
     /// Return current dir: "/" or pure directory name
-    inline QString currentDir() {
+    inline QString currentDir()
+    {
         const QString path = _currentDirectory.path().mid(1); // remove slash
         return path.isEmpty() ? "/" : path;
     }
-    void mkDirInternal(const QString& name);
+    void mkDirInternal(const QString &name);
     /// Save the dictionary to file
     void save();
     /// Restore the dictionary from file

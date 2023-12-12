@@ -15,8 +15,8 @@
 #include <QTimer>
 #include <QUrl>
 // QtGui
-#include <QDragMoveEvent>
 #include <QDragEnterEvent>
+#include <QDragMoveEvent>
 // QtWidgets
 #include <QTabBar>
 
@@ -44,7 +44,7 @@ public slots:
      */
     int addPanel(ListPanel *panel, bool setCurrent = true, int insertIndex = -1);
 
-    ListPanel* getPanel(int tabIdx);
+    ListPanel *getPanel(int tabIdx);
     void changePanel(int tabIdx, ListPanel *panel);
     void layoutTabs();
 
@@ -58,8 +58,8 @@ public slots:
      * panelToDelete returns a reference to the pointer of the soon-to-die panel, to
      * be used by PanelManager.
      */
-    ListPanel* removeCurrentPanel(ListPanel* &panelToDelete); // returns the panel focused after removing the current
-    ListPanel* removePanel(int index, ListPanel* &panelToDelete);
+    ListPanel *removeCurrentPanel(ListPanel *&panelToDelete); // returns the panel focused after removing the current
+    ListPanel *removePanel(int index, ListPanel *&panelToDelete);
 
 signals:
     /**
@@ -75,15 +75,15 @@ signals:
      */
     void newTab(const QUrl &path);
 
-    void draggingTab(QMouseEvent*);
-    void draggingTabFinished(QMouseEvent*);
+    void draggingTab(QMouseEvent *);
+    void draggingTabFinished(QMouseEvent *);
 
 protected:
-    void mouseMoveEvent(QMouseEvent*e) override;
-    void mousePressEvent(QMouseEvent*) override;
-    void mouseDoubleClickEvent(QMouseEvent*) override;
-    void mouseReleaseEvent(QMouseEvent*) override;
-    void insertAction(QAction*);
+    void mouseMoveEvent(QMouseEvent *e) override;
+    void mousePressEvent(QMouseEvent *) override;
+    void mouseDoubleClickEvent(QMouseEvent *) override;
+    void mouseReleaseEvent(QMouseEvent *) override;
+    void insertAction(QAction *);
     QString squeeze(const QUrl &url, int tabIndex = -1);
     void dragEnterEvent(QDragEnterEvent *) override;
     void dragLeaveEvent(QDragLeaveEvent *) override;

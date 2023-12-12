@@ -23,7 +23,7 @@ class KrViewProperties;
 /**
  * @brief The list model for all panel views.
  */
-class ListModel: public QAbstractListModel
+class ListModel : public QAbstractListModel
 {
     Q_OBJECT
 
@@ -31,43 +31,50 @@ public:
     explicit ListModel(KrInterView *);
     ~ListModel() override;
 
-    inline bool ready() const {
+    inline bool ready() const
+    {
         return _ready;
     }
-    void populate(const QList<FileItem*> &files, FileItem *dummy);
+    void populate(const QList<FileItem *> &files, FileItem *dummy);
     QModelIndex addItem(FileItem *);
     void removeItem(FileItem *);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const  override;
-    QVariant data(const QModelIndex &index, int role) const  override;
-    bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole)  override;
-    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const  override;
-    void setExtensionEnabled(bool exten) {
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+    void setExtensionEnabled(bool exten)
+    {
         _extensionEnabled = exten;
     }
-    const KrViewProperties * properties() const;
-    void sort() {
+    const KrViewProperties *properties() const;
+    void sort()
+    {
         sort(lastSortOrder(), lastSortDir());
     }
     void clear(bool emitLayoutChanged = true);
-    QList<FileItem*> fileItems() {
+    QList<FileItem *> fileItems()
+    {
         return _fileItems;
     }
-    FileItem * fileItemAt(const QModelIndex &index);
-    FileItem *dummyFileItem() const {
+    FileItem *fileItemAt(const QModelIndex &index);
+    FileItem *dummyFileItem() const
+    {
         return _dummyFileItem;
     }
-    const QModelIndex & fileItemIndex(const FileItem *);
-    const QModelIndex & nameIndex(const QString &);
-    const QModelIndex & indexFromUrl(const QUrl &url);
-    Qt::ItemFlags flags(const QModelIndex & index) const override;
-    void emitChanged() {
+    const QModelIndex &fileItemIndex(const FileItem *);
+    const QModelIndex &nameIndex(const QString &);
+    const QModelIndex &indexFromUrl(const QUrl &url);
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
+    void emitChanged()
+    {
         emit layoutChanged();
     }
     Qt::SortOrder lastSortDir() const;
     int lastSortOrder() const;
-    void setAlternatingTable(bool altTable) {
+    void setAlternatingTable(bool altTable)
+    {
         _alternatingTable = altTable;
     }
 
@@ -75,34 +82,37 @@ public slots:
     void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
 
 protected:
-    KrSort::LessThanFunc lessThanFunc() {
+    KrSort::LessThanFunc lessThanFunc()
+    {
         return KrSort::itemLessThan;
     }
-    KrSort::LessThanFunc greaterThanFunc() const {
+    KrSort::LessThanFunc greaterThanFunc() const
+    {
         return KrSort::itemGreaterThan;
     }
-    QVariant customSortData(FileItem *) const {
+    QVariant customSortData(FileItem *) const
+    {
         return QVariant();
     }
     KrSort::Sorter createSorter();
-    QString nameWithoutExtension(const FileItem * fileitem, bool checkEnabled = true) const;
+    QString nameWithoutExtension(const FileItem *fileitem, bool checkEnabled = true) const;
 
 private:
     void updateIndices(FileItem *file, int index);
     QString toolTipText(FileItem *fileItem) const;
     static QString dateText(time_t time);
 
-    QList<FileItem*>               _fileItems;
+    QList<FileItem *> _fileItems;
     QHash<FileItem *, QModelIndex> _fileItemNdx;
     QHash<QString, QModelIndex> _nameNdx;
-    QHash<QUrl, QModelIndex>    _urlNdx;
-    bool                        _extensionEnabled;
-    KrInterView                 * _view;
-    FileItem *                     _dummyFileItem;
-    bool                        _ready;
-    QFont                       _defaultFont;
-    bool                        _justForSizeHint;
-    bool                        _alternatingTable;
+    QHash<QUrl, QModelIndex> _urlNdx;
+    bool _extensionEnabled;
+    KrInterView *_view;
+    FileItem *_dummyFileItem;
+    bool _ready;
+    QFont _defaultFont;
+    bool _justForSizeHint;
+    bool _alternatingTable;
 };
 
 #endif // __listmodel__

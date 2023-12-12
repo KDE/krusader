@@ -20,16 +20,19 @@ class FilterTabs;
 class FilterBase
 {
 public:
-    virtual ~FilterBase()   {}
+    virtual ~FilterBase()
+    {
+    }
 
-    virtual void            queryAccepted() = 0;
-    virtual QString         name() = 0;
-    virtual FilterTabs *    filterTabs() = 0;
-    virtual bool            getSettings(FilterSettings&) = 0;
-    virtual void            applySettings(const FilterSettings&) = 0;
+    virtual void queryAccepted() = 0;
+    virtual QString name() = 0;
+    virtual FilterTabs *filterTabs() = 0;
+    virtual bool getSettings(FilterSettings &) = 0;
+    virtual void applySettings(const FilterSettings &) = 0;
 
 protected:
-    static void setComboBoxValue(QComboBox *cb, QString value) {
+    static void setComboBoxValue(QComboBox *cb, QString value)
+    {
         int idx = cb->findText(value);
         cb->setCurrentIndex(idx < 0 ? 0 : idx);
     }

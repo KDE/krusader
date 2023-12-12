@@ -10,8 +10,8 @@
 #define POPULARURLS_H
 
 // QtCore
-#include <QObject>
 #include <QHash>
+#include <QObject>
 #include <QUrl>
 // QtWidgets
 #include <QDialog>
@@ -26,7 +26,7 @@
 // * hardLimit - the actual number of urls kept.
 // when the number of urls reaches hardLimit, a garbage collection is done and
 // the bottom (hardLimit-maxUrls) entries are removed from the list
-typedef struct _UrlNode* UrlNodeP;
+typedef struct _UrlNode *UrlNodeP;
 typedef struct _UrlNode {
     UrlNodeP prev;
     QUrl url;
@@ -44,7 +44,7 @@ public:
     ~PopularUrls() override;
     void save();
     void load();
-    void addUrl(const QUrl& url);
+    void addUrl(const QUrl &url);
     QList<QUrl> getMostPopularUrls(int max);
 
 public slots:
@@ -73,17 +73,17 @@ class KrTreeWidget;
 class KTreeWidgetSearchLine;
 class QModelIndex;
 
-class PopularUrlsDlg: public QDialog
+class PopularUrlsDlg : public QDialog
 {
     Q_OBJECT
 public:
     PopularUrlsDlg();
     ~PopularUrlsDlg() override;
     void run(QList<QUrl> list); // use this to open the dialog
-    inline int result() const {
+    inline int result() const
+    {
         return selection;
     } // returns index 0 - topmost, or -1
-
 
 protected slots:
     void slotVisibilityChanged();

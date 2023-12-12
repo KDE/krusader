@@ -22,14 +22,14 @@ public:
     ViewActions(QObject *parent, KrMainWindow *mainWindow);
 
 public slots:
-    //zoom 
+    // zoom
     void zoomIn();
     void zoomOut();
     void defaultZoom();
 
-    //filter
+    // filter
     void allFilter();
-    //void execFilter();
+    // void execFilter();
     void customFilter();
 
     // selection

@@ -7,13 +7,12 @@
 */
 
 #include "krselectionmode.h"
-#include "../krglobal.h"
 #include "../defaults.h"
+#include "../krglobal.h"
 
 #include <KConfigCore/KSharedConfig>
 
 static KrSelectionMode *__currentSelectionMode = nullptr; // uninitiated, at first
-
 
 KonqSelectionMode konqSelectionMode;
 OriginalSelectionMode originalSelectionMode;
@@ -21,7 +20,7 @@ TCSelectionMode tcSelectionMode;
 ErgonomicSelectionMode ergonomicSelectionMode;
 UserSelectionMode userSelectionMode;
 
-KrSelectionMode* KrSelectionMode::getSelectionHandlerForMode(const QString &mode)
+KrSelectionMode *KrSelectionMode::getSelectionHandlerForMode(const QString &mode)
 {
     KrSelectionMode *res = nullptr;
     bool isNum;
@@ -37,7 +36,7 @@ KrSelectionMode* KrSelectionMode::getSelectionHandlerForMode(const QString &mode
         res = &tcSelectionMode;
         break;
     case 3:
-        //costom mode
+        // costom mode
         break;
     case 4:
         res = &ergonomicSelectionMode;
@@ -48,7 +47,7 @@ KrSelectionMode* KrSelectionMode::getSelectionHandlerForMode(const QString &mode
     return res;
 }
 
-KrSelectionMode* KrSelectionMode::getSelectionHandler()
+KrSelectionMode *KrSelectionMode::getSelectionHandler()
 {
     if (__currentSelectionMode) { // don't check krConfig every time
         return __currentSelectionMode;
@@ -86,4 +85,3 @@ void UserSelectionMode::init()
     _showContextMenu = (group.readEntry("Immediate Context Menu", _ImmediateContextMenu) ? -1 : 500);
     _resetSelectionItems = group.readEntry("Reset Selection Items", _ResetSelectionItems);
 }
-

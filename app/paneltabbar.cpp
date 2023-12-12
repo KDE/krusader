@@ -10,21 +10,21 @@
 
 #include "paneltabbar.h"
 
-#include "defaults.h"
-#include "tabactions.h"
-#include "abstractpanelmanager.h"
-#include "../krglobal.h"
 #include "../icon.h"
+#include "../krglobal.h"
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
+#include "abstractpanelmanager.h"
 #include "compat.h"
+#include "defaults.h"
+#include "tabactions.h"
 
 // QtCore
 #include <QEvent>
 // QtGui
 #include <QFontMetrics>
-#include <QResizeEvent>
 #include <QMouseEvent>
+#include <QResizeEvent>
 // QtWidgets
 #include <QAction>
 #include <QMenu>
@@ -35,9 +35,13 @@
 
 static const int sDragEnterDelay = 500; // msec
 
-PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
-    _maxTabLength(0), _tabClicked(false), _tabDoubleClicked(false),
-    _draggingTab(false), _dragTabIndex(-1)
+PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions)
+    : QTabBar(parent)
+    , _maxTabLength(0)
+    , _tabClicked(false)
+    , _tabDoubleClicked(false)
+    , _draggingTab(false)
+    , _dragTabIndex(-1)
 {
     const KConfigGroup cfg(krConfig, "Look&Feel");
     const bool expandingTabs = cfg.readEntry("Expanding Tabs", true);
@@ -76,7 +80,7 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions): QTabBar(parent),
     setShape(QTabBar::TriangularSouth);
 }
 
-void PanelTabBar::insertAction(QAction* action)
+void PanelTabBar::insertAction(QAction *action)
 {
     _panelActionMenu->addAction(action);
 }
@@ -86,8 +90,7 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent, int insertIndex)
     // If the position where to place the new tab is not specified,
     // take the settings into account
     if (insertIndex == -1) {
-        insertIndex = KConfigGroup(krConfig, "Look&Feel").readEntry("Insert Tabs After Current", false) ?
-                    currentIndex() + 1 : count();
+        insertIndex = KConfigGroup(krConfig, "Look&Feel").readEntry("Insert Tabs After Current", false) ? currentIndex() + 1 : count();
     }
 
     QUrl virtualPath = panel->virtualPath();
@@ -111,19 +114,20 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent, int insertIndex)
     return insertIndex;
 }
 
-ListPanel* PanelTabBar::getPanel(int tabIdx)
+ListPanel *PanelTabBar::getPanel(int tabIdx)
 {
     QVariant v = tabData(tabIdx);
-    if (v.isNull()) return nullptr;
-    return (ListPanel*)v.toLongLong();
+    if (v.isNull())
+        return nullptr;
+    return (ListPanel *)v.toLongLong();
 }
 
 void PanelTabBar::changePanel(int tabIdx, ListPanel *panel)
 {
-    setTabData(tabIdx, QVariant((long long) panel));
+    setTabData(tabIdx, QVariant((long long)panel));
 }
 
-ListPanel* PanelTabBar::removePanel(int index, ListPanel* &panelToDelete)
+ListPanel *PanelTabBar::removePanel(int index, ListPanel *&panelToDelete)
 {
     panelToDelete = getPanel(index); // old panel to kill later
     disconnect(panelToDelete, nullptr, this, nullptr);
@@ -134,7 +138,7 @@ ListPanel* PanelTabBar::removePanel(int index, ListPanel* &panelToDelete)
     return getPanel(currentIndex());
 }
 
-ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete)
+ListPanel *PanelTabBar::removeCurrentPanel(ListPanel *&panelToDelete)
 {
     return removePanel(currentIndex(), panelToDelete);
 }
@@ -143,7 +147,7 @@ void PanelTabBar::updateTab(ListPanel *panel)
 {
     // find which is the correct tab
     for (int i = 0; i < count(); i++) {
-        if ((ListPanel*)tabData(i).toLongLong() == panel) {
+        if ((ListPanel *)tabData(i).toLongLong() == panel) {
             setPanelTextToTab(i, panel);
             setIcon(i, panel);
             break;
@@ -154,7 +158,7 @@ void PanelTabBar::updateTab(ListPanel *panel)
 void PanelTabBar::duplicateTab()
 {
     int id = currentIndex();
-    emit newTab(((ListPanel*)tabData(id).toLongLong())->virtualPath());
+    emit newTab(((ListPanel *)tabData(id).toLongLong())->virtualPath());
 }
 
 void PanelTabBar::setIcon(int index, ListPanel *panel)
@@ -170,8 +174,7 @@ void PanelTabBar::setIcon(int index, ListPanel *panel)
 
 QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
 {
-    const QString longText = url.isEmpty() ? i18n("[invalid]") :
-                                             url.isLocalFile() ? url.path() : url.toDisplayString();
+    const QString longText = url.isEmpty() ? i18n("[invalid]") : url.isLocalFile() ? url.path() : url.toDisplayString();
     if (tabIndex >= 0)
         setTabToolTip(tabIndex, longText);
 
@@ -193,7 +196,7 @@ QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
 
     // set the real max length
     QFontMetrics fm(fontMetrics());
-    _maxTabLength = (dynamic_cast<QWidget*>(parent())->width() - (6 * fm.horizontalAdvance("W"))) / fm.horizontalAdvance("W");
+    _maxTabLength = (dynamic_cast<QWidget *>(parent())->width() - (6 * fm.horizontalAdvance("W"))) / fm.horizontalAdvance("W");
     // each tab gets a fair share of the max tab length
     const int effectiveTabLength = _maxTabLength / (count() == 0 ? 1 : count());
     const int labelWidth = fm.horizontalAdvance("W") * effectiveTabLength;
@@ -241,16 +244,16 @@ void PanelTabBar::resizeEvent(QResizeEvent *e)
     layoutTabs();
 }
 
-void PanelTabBar::mouseMoveEvent(QMouseEvent* e)
+void PanelTabBar::mouseMoveEvent(QMouseEvent *e)
 {
     QTabBar::mouseMoveEvent(e);
-    if(_tabClicked) {
+    if (_tabClicked) {
         _draggingTab = true;
         emit draggingTab(e);
     }
 }
 
-void PanelTabBar::mousePressEvent(QMouseEvent* e)
+void PanelTabBar::mousePressEvent(QMouseEvent *e)
 {
     int clickedTabIndex = tabAt(e->pos());
 
@@ -319,12 +322,11 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
     QTabBar::mousePressEvent(e);
 }
 
-void PanelTabBar::mouseDoubleClickEvent(QMouseEvent* e)
+void PanelTabBar::mouseDoubleClickEvent(QMouseEvent *e)
 {
     _tabDoubleClicked = true;
 
-    if (!_doubleClickClose)
-    {
+    if (!_doubleClickClose) {
         QTabBar::mouseDoubleClickEvent(e);
         return;
     }
@@ -339,17 +341,16 @@ void PanelTabBar::mouseDoubleClickEvent(QMouseEvent* e)
     _tabClicked = true;
 
     // close the current tab
-    if (e->button() == Qt::LeftButton
-        && e->modifiers() == Qt::NoModifier) {
+    if (e->button() == Qt::LeftButton && e->modifiers() == Qt::NoModifier) {
         emit closeCurrentTab();
     }
     QTabBar::mouseDoubleClickEvent(e);
 }
 
-void PanelTabBar::mouseReleaseEvent(QMouseEvent* e)
+void PanelTabBar::mouseReleaseEvent(QMouseEvent *e)
 {
     QTabBar::mouseReleaseEvent(e);
-    if(_draggingTab)
+    if (_draggingTab)
         emit draggingTabFinished(e);
     _draggingTab = false;
     _tabClicked = false;
@@ -391,7 +392,7 @@ void PanelTabBar::handleDragEvent(int tabIndex)
 void PanelTabBar::layoutTabs()
 {
     for (int i = 0; i < count(); i++) {
-        setPanelTextToTab(i, (ListPanel*) tabData(i).toLongLong());
+        setPanelTextToTab(i, (ListPanel *)tabData(i).toLongLong());
     }
 }
 

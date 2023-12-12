@@ -36,24 +36,49 @@ public:
     void start(const KConfigGroup &cfg, bool restoreSettings, const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs);
     void updateGUI(const KConfigGroup &cfg);
     void saveSettings(KConfigGroup &cfg);
-    void cmdLineFocus();  // command line receives keyboard focus
-    void cmdLineUnFocus();// return focus from command line to active panel
+    void cmdLineFocus(); // command line receives keyboard focus
+    void cmdLineUnFocus(); // return focus from command line to active panel
 
-    bool isLeftActive() const { return leftMng == activeMng; }
+    bool isLeftActive() const
+    {
+        return leftMng == activeMng;
+    }
 
     // used by krGlobal macros
-    PanelManager *activeManager() const { return activeMng; }
-    PanelManager *inactiveManager() const { return activeMng == leftMng ? rightMng : leftMng; }
-    PanelManager *leftManager() const { return leftMng; }
-    PanelManager *rightManager() const { return rightMng; }
+    PanelManager *activeManager() const
+    {
+        return activeMng;
+    }
+    PanelManager *inactiveManager() const
+    {
+        return activeMng == leftMng ? rightMng : leftMng;
+    }
+    PanelManager *leftManager() const
+    {
+        return leftMng;
+    }
+    PanelManager *rightManager() const
+    {
+        return rightMng;
+    }
     KrPanel *activePanel() const;
     ListPanel *leftPanel() const;
     ListPanel *rightPanel() const;
 
-    KFnKeys *fnKeys() const { return _fnKeys; }
-    KCMDLine *cmdLine() const { return _cmdLine; }
-    TerminalDock *terminalDock() const { return _terminalDock; }
-    bool isVertical() const {
+    KFnKeys *fnKeys() const
+    {
+        return _fnKeys;
+    }
+    KCMDLine *cmdLine() const
+    {
+        return _cmdLine;
+    }
+    TerminalDock *terminalDock() const
+    {
+        return _terminalDock;
+    }
+    bool isVertical() const
+    {
         return horiz_splitter != nullptr ? horiz_splitter->orientation() == Qt::Vertical : false;
     }
     void swapSides();
@@ -74,21 +99,21 @@ public slots:
     void focusUp();
     void focusDown();
 
-    void profiles(const QString& profileName = QString());
-    void loadPanelProfiles(const QString& group);
-    void savePanelProfiles(const QString& group);
+    void profiles(const QString &profileName = QString());
+    void loadPanelProfiles(const QString &group);
+    void savePanelProfiles(const QString &group);
 
     void draggingTab(PanelManager *from, QMouseEvent *e);
     void draggingTabFinished(PanelManager *from, QMouseEvent *e);
 
 private:
-    int getFocusCandidates(QVector<QWidget*> &widgets);
+    int getFocusCandidates(QVector<QWidget *> &widgets);
     bool cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos);
     PanelManager *createManager(bool left);
     void updateCurrentActivePath();
 
-    KFnKeys *_fnKeys;            // function keys
-    KCMDLine *_cmdLine;          // command line widget
+    KFnKeys *_fnKeys; // function keys
+    KCMDLine *_cmdLine; // command line widget
     TerminalDock *_terminalDock; // docking widget for terminal emulator
     QSplitter *horiz_splitter, *vert_splitter;
     QList<int> verticalSplitterSizes;

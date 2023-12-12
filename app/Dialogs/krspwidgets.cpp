@@ -7,22 +7,22 @@
 */
 
 #include "krspwidgets.h"
-#include "../krglobal.h"
-#include "../icon.h"
 #include "../Filter/filtertabs.h"
 #include "../GUI/krlistwidget.h"
+#include "../icon.h"
+#include "../krglobal.h"
 
 // QtCore
 #include <QEvent>
 // QtGui
 #include <QBitmap>
 // QtWidgets
+#include <QCheckBox>
 #include <QComboBox>
 #include <QLabel>
 #include <QLineEdit>
-#include <QCheckBox>
 #include <QSpinBox>
-#include <qnamespace.h>		// missing ?
+#include <qnamespace.h> // missing ?
 
 #include <KCompletion/KComboBox>
 #include <KConfigCore/KSharedConfig>
@@ -34,10 +34,9 @@ QStringList KrSpWidgets::maskList;
 
 ///////////////////////////////////////////////////////////////////////////////
 
-KrSpWidgets::KrSpWidgets()
-= default;
+KrSpWidgets::KrSpWidgets() = default;
 
-KrQuery KrSpWidgets::getMask(const QString& caption, bool nameOnly, QWidget * parent)
+KrQuery KrSpWidgets::getMask(const QString &caption, bool nameOnly, QWidget *parent)
 {
     if (!nameOnly) {
         return FilterTabs::getQuery(parent);
@@ -120,11 +119,11 @@ QUrl KrSpWidgets::newFTP()
     return url;
 }
 
-newFTPSub::newFTPSub() : newFTPGUI(nullptr)
+newFTPSub::newFTPSub()
+    : newFTPGUI(nullptr)
 {
     url->setFocus();
-    setGeometry(krMainWindow->x() + krMainWindow->width() / 2 - width() / 2,
-                krMainWindow->y() + krMainWindow->height() / 2 - height() / 2, width(), height());
+    setGeometry(krMainWindow->x() + krMainWindow->width() / 2 - width() / 2, krMainWindow->y() + krMainWindow->height() / 2 - height() / 2, width(), height());
 }
 
 void newFTPSub::accept()
@@ -152,14 +151,16 @@ newFTPSub::~newFTPSub()
 }
 
 /////////////////////////// KrMaskChoiceSub ///////////////////////////////
-KrMaskChoiceSub::KrMaskChoiceSub(QWidget * parent) : KrMaskChoice(parent)
+KrMaskChoiceSub::KrMaskChoiceSub(QWidget *parent)
+    : KrMaskChoice(parent)
 {
     PixmapLabel1->setPixmap(Icon("edit-select").pixmap(32));
     label->setText(i18n("Enter a selection:"));
     // the predefined selections list
     KConfigGroup group(krConfig, "Private");
     QStringList lst = group.readEntry("Predefined Selections", QStringList());
-    if (lst.size() > 0) preSelections->addItems(lst);
+    if (lst.size() > 0)
+        preSelections->addItems(lst);
     // the combo-box tweaks
     selection->setDuplicatesEnabled(false);
     selection->addItems(KrSpWidgets::maskList);
@@ -179,7 +180,7 @@ void KrMaskChoiceSub::accept()
     bool add = true;
     // make sure we don't have that already
     for (int i = 0; i != KrSpWidgets::maskList.count(); i++)
-        if (KrSpWidgets::maskList[ i ].simplified() == selection->currentText().simplified()) {
+        if (KrSpWidgets::maskList[i].simplified() == selection->currentText().simplified()) {
             // break if we found one such as this
             add = false;
             break;

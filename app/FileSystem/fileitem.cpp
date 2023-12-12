@@ -15,9 +15,9 @@
 
 #include <KConfigCore/KDesktopFile>
 
-#include "krpermhandler.h"
-#include "filesystemprovider.h"
 #include "../compat.h"
+#include "filesystemprovider.h"
+#include "krpermhandler.h"
 
 bool FileItem::userDefinedFolderIcons = true;
 
@@ -26,25 +26,54 @@ class FileSize
 {
 public:
     const KIO::filesize_t m_size;
-    FileSize(KIO::filesize_t size) : m_size(size) {}
+    FileSize(KIO::filesize_t size)
+        : m_size(size)
+    {
+    }
 };
 
 // cache for calculated directory sizes;
 static QCache<const QUrl, FileSize> s_fileSizeCache(1000);
 
-FileItem::FileItem(const QString &name, const QUrl &url, bool isDir,
-             KIO::filesize_t size, mode_t mode,
-             time_t mtime, time_t ctime, time_t atime, time_t btime,
-             uid_t uid, gid_t gid, const QString &owner, const QString &group,
-             bool isLink, const QString &linkDest, bool isBrokenLink,
-             const QString &acl, const QString &defaultAcl)
-    : m_name(name), m_url(url), m_isDir(isDir),
-      m_size(size), m_mode(mode),
-      m_mtime(mtime), m_ctime(ctime), m_atime(atime), m_btime(btime),
-      m_uid(uid), m_gid(gid), m_owner(owner), m_group(group),
-      m_isLink(isLink), m_linkDest(linkDest), m_isBrokenLink(isBrokenLink),
-      m_acl(acl), m_defaulfAcl(defaultAcl), m_AclLoaded(false),
-      m_mimeType(), m_iconName()
+FileItem::FileItem(const QString &name,
+                   const QUrl &url,
+                   bool isDir,
+                   KIO::filesize_t size,
+                   mode_t mode,
+                   time_t mtime,
+                   time_t ctime,
+                   time_t atime,
+                   time_t btime,
+                   uid_t uid,
+                   gid_t gid,
+                   const QString &owner,
+                   const QString &group,
+                   bool isLink,
+                   const QString &linkDest,
+                   bool isBrokenLink,
+                   const QString &acl,
+                   const QString &defaultAcl)
+    : m_name(name)
+    , m_url(url)
+    , m_isDir(isDir)
+    , m_size(size)
+    , m_mode(mode)
+    , m_mtime(mtime)
+    , m_ctime(ctime)
+    , m_atime(atime)
+    , m_btime(btime)
+    , m_uid(uid)
+    , m_gid(gid)
+    , m_owner(owner)
+    , m_group(group)
+    , m_isLink(isLink)
+    , m_linkDest(linkDest)
+    , m_isBrokenLink(isBrokenLink)
+    , m_acl(acl)
+    , m_defaulfAcl(defaultAcl)
+    , m_AclLoaded(false)
+    , m_mimeType()
+    , m_iconName()
 {
     m_permissions = KrPermHandler::mode2QString(mode);
 
@@ -61,37 +90,41 @@ FileItem::FileItem(const QString &name, const QUrl &url, bool isDir,
 
 FileItem *FileItem::createDummy()
 {
-    FileItem *file = new FileItem("..", QUrl(), true,
-                            0, 0,
-                            -1, -1, -1, -1);
+    FileItem *file = new FileItem("..", QUrl(), true, 0, 0, -1, -1, -1, -1);
     file->setIconName("go-up");
     return file;
 }
 
 FileItem *FileItem::createBroken(const QString &name, const QUrl &url)
 {
-    FileItem *file = new FileItem(name, url, false,
-                                  0, 0,
-                                  -1, -1, -1, -1);
+    FileItem *file = new FileItem(name, url, false, 0, 0, -1, -1, -1, -1);
     file->setIconName("file-broken");
     return file;
 }
 
 FileItem *FileItem::createVirtualDir(const QString &name, const QUrl &url)
 {
-    return new FileItem(name, url, true,
-                     0, 0700,
-                     -1, -1, -1, -1,
-                     getuid(), getgid());
+    return new FileItem(name, url, true, 0, 0700, -1, -1, -1, -1, getuid(), getgid());
 }
 
 FileItem *FileItem::createCopy(const FileItem &file, const QString &newName)
 {
-    return new FileItem(newName, file.getUrl(), file.isDir(),
-                     file.getSize(), file.getMode(),
-                     file.getModificationTime(), file.getChangeTime(), file.getAccessTime(), file.getCreationTime(),
-                     file.m_uid, file.m_gid, file.getOwner(), file.getGroup(),
-                     file.isSymLink(), file.getSymDest(), file.isBrokenLink());
+    return new FileItem(newName,
+                        file.getUrl(),
+                        file.isDir(),
+                        file.getSize(),
+                        file.getMode(),
+                        file.getModificationTime(),
+                        file.getChangeTime(),
+                        file.getAccessTime(),
+                        file.getCreationTime(),
+                        file.m_uid,
+                        file.m_gid,
+                        file.getOwner(),
+                        file.getGroup(),
+                        file.isSymLink(),
+                        file.getSymDest(),
+                        file.isBrokenLink());
 }
 
 char FileItem::isReadable() const
@@ -153,9 +186,9 @@ const QString &FileItem::getMime()
                 const QString iconName = cfg.readIcon();
                 if (!iconName.isEmpty())
                     m_iconName = iconName.startsWith(QLatin1String("./")) ?
-                                     // relative path
-                                     url.toLocalFile() + '/' + iconName :
-                                     iconName;
+                                                                          // relative path
+                        url.toLocalFile() + '/' + iconName
+                                                                          : iconName;
             }
         }
     }

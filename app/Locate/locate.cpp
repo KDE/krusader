@@ -6,34 +6,34 @@
 */
 
 #include "locate.h"
-#include "../kractions.h"
-#include "../krglobal.h"
-#include "../filelisticon.h"
-#include "../krslots.h"
-#include "../krusaderview.h"
-#include "../Panel/krpanel.h"
-#include "../Panel/panelfunc.h"
-#include "../GUI/krtreewidget.h"
-#include "../defaults.h"
-#include "../krservices.h"
 #include "../FileSystem/filesystem.h"
 #include "../FileSystem/virtualfilesystem.h"
+#include "../GUI/krtreewidget.h"
 #include "../KViewer/krviewer.h"
-#include "../panelmanager.h"
+#include "../Panel/krpanel.h"
+#include "../Panel/panelfunc.h"
 #include "../compat.h"
+#include "../defaults.h"
+#include "../filelisticon.h"
+#include "../kractions.h"
+#include "../krglobal.h"
+#include "../krservices.h"
+#include "../krslots.h"
+#include "../krusaderview.h"
+#include "../panelmanager.h"
 
 // QtCore
-#include <QRegExp>
-#include <QEventLoop>
 #include <QDir>
+#include <QEventLoop>
 #include <QMimeData>
+#include <QRegExp>
 // QtGui
+#include <QClipboard>
+#include <QCursor>
+#include <QDrag>
+#include <QFont>
 #include <QFontMetrics>
 #include <QKeyEvent>
-#include <QCursor>
-#include <QClipboard>
-#include <QFont>
-#include <QDrag>
 // QtWidgets
 #include <QApplication>
 #include <QDialogButtonBox>
@@ -48,31 +48,34 @@
 
 #include <KConfigCore/KConfig>
 #include <KCoreAddons/KProcess>
+#include <KCoreAddons/KShell>
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KFileItem>
-#include <KWidgetsAddons/KMessageBox>
-#include <KCoreAddons/KShell>
-#include <KTextWidgets/KFindDialog>
 #include <KTextWidgets/KFind>
+#include <KTextWidgets/KFindDialog>
+#include <KWidgetsAddons/KMessageBox>
 
 // these are the values that will exist in the menu
-#define VIEW_ID                     90
-#define EDIT_ID                     91
-#define FIND_ID                     92
-#define FIND_NEXT_ID                93
-#define FIND_PREV_ID                94
-#define COPY_SELECTED_TO_CLIPBOARD  95
-#define COMPARE_ID                  96
+#define VIEW_ID 90
+#define EDIT_ID 91
+#define FIND_ID 92
+#define FIND_NEXT_ID 93
+#define FIND_PREV_ID 94
+#define COPY_SELECTED_TO_CLIPBOARD 95
+#define COMPARE_ID 96
 //////////////////////////////////////////////////////////
 
 class LocateListView : public KrTreeWidget
 {
 public:
-    explicit LocateListView(QWidget * parent) : KrTreeWidget(parent) {
+    explicit LocateListView(QWidget *parent)
+        : KrTreeWidget(parent)
+    {
         setAlternatingRowColors(true);
     }
 
-    void startDrag(Qt::DropActions supportedActs) override {
+    void startDrag(Qt::DropActions supportedActs) override
+    {
         Q_UNUSED(supportedActs);
 
         QList<QUrl> urls;
@@ -81,14 +84,13 @@ public:
         QListIterator<QTreeWidgetItem *> it(list);
 
         while (it.hasNext()) {
-            QTreeWidgetItem * item = it.next();
+            QTreeWidgetItem *item = it.next();
 
             urls.push_back(QUrl::fromLocalFile(item->text(0)));
         }
 
         if (urls.count() == 0)
             return;
-
 
         auto *drag = new QDrag(this);
         auto *mimeData = new QMimeData;
@@ -99,10 +101,12 @@ public:
     }
 };
 
-KProcess *  LocateDlg::updateProcess = nullptr;
-LocateDlg * LocateDlg::LocateDialog = nullptr;
+KProcess *LocateDlg::updateProcess = nullptr;
+LocateDlg *LocateDlg::LocateDialog = nullptr;
 
-LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
+LocateDlg::LocateDlg(QWidget *parent)
+    : QDialog(parent)
+    , isFeedToListBox(false)
 {
     setWindowTitle(i18n("Krusader::Locate"));
     setWindowModality(Qt::NonModal);
@@ -128,7 +132,7 @@ LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
     label->setBuddy(locateSearchFor);
     KConfigGroup group(krConfig, "Locate");
     QStringList list = group.readEntry("Search For", QStringList());
-    locateSearchFor->setMaxCount(25);  // remember 25 items
+    locateSearchFor->setMaxCount(25); // remember 25 items
     locateSearchFor->setHistoryItems(list);
     locateSearchFor->setEditable(true);
     locateSearchFor->setDuplicatesEnabled(false);
@@ -138,10 +142,10 @@ LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
     grid->addWidget(hboxWidget, 0, 0);
 
     QWidget *hboxWidget2 = new QWidget(this);
-    auto * hbox2 = new QHBoxLayout(hboxWidget2);
+    auto *hbox2 = new QHBoxLayout(hboxWidget2);
     hbox2->setContentsMargins(0, 0, 0, 0);
 
-    auto* spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto *spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     hbox2->addItem(spacer);
 
     dontSearchInPath = new QCheckBox(i18n("Do not search in path"), hboxWidget2);
@@ -162,7 +166,7 @@ LocateDlg::LocateDlg(QWidget *parent) : QDialog(parent), isFeedToListBox(false)
     line1->setFrameStyle(QFrame::HLine | QFrame::Sunken);
     grid->addWidget(line1, 2, 0);
 
-    resultList = new LocateListView(this);  // create the main container
+    resultList = new LocateListView(this); // create the main container
     resultList->setColumnCount(1);
     resultList->setHeaderLabel(i18n("Results"));
 
@@ -231,8 +235,7 @@ LocateDlg::~LocateDlg()
     group.writeEntry("Search For", locateSearchFor->historyItems());
 }
 
-
-void LocateDlg::slotFeedStop()   /* The stop / feed to listbox button */
+void LocateDlg::slotFeedStop() /* The stop / feed to listbox button */
 {
     if (isFeedToListBox)
         feedToListBox();
@@ -240,7 +243,7 @@ void LocateDlg::slotFeedStop()   /* The stop / feed to listbox button */
         locateProc->kill();
 }
 
-void LocateDlg::slotUpdateDb()   /* The Update DB button */
+void LocateDlg::slotUpdateDb() /* The Update DB button */
 {
     if (!updateProcess) {
         KConfigGroup group(krConfig, "Locate");
@@ -262,7 +265,7 @@ void LocateDlg::updateFinished()
     updateDbButton->setEnabled(true);
 }
 
-void LocateDlg::slotLocate()   /* The locate button */
+void LocateDlg::slotLocate() /* The locate button */
 {
     locateSearchFor->addToHistory(locateSearchFor->currentText());
 
@@ -272,8 +275,7 @@ void LocateDlg::slotLocate()   /* The locate button */
     group.writeEntry("Case Sensitive", isCs = caseSensitive->isChecked());
 
     if (!KrServices::cmdExist("locate")) {
-        KMessageBox::error(nullptr,
-                           i18n("Cannot start 'locate'. Check the 'Dependencies' page in konfigurator."));
+        KMessageBox::error(nullptr, i18n("Cannot start 'locate'. Check the 'Dependencies' page in konfigurator."));
         return;
     }
 
@@ -286,13 +288,13 @@ void LocateDlg::slotLocate()   /* The locate button */
     isFeedToListBox = false;
     resultList->setFocus();
 
-    qApp->processEvents(); //FIXME - what's this for ?
+    qApp->processEvents(); // FIXME - what's this for ?
 
     locateProc = new KProcess(this);
     locateProc->setOutputChannelMode(KProcess::SeparateChannels); // default is forwarding to the parent channels
     connect(locateProc, &KProcess::readyReadStandardOutput, this, &LocateDlg::processStdout);
     connect(locateProc, &KProcess::readyReadStandardError, this, &LocateDlg::processStderr);
-    connect(locateProc, QOverload<int,QProcess::ExitStatus>::of(&KProcess::finished), this, &LocateDlg::locateFinished);
+    connect(locateProc, QOverload<int, QProcess::ExitStatus>::of(&KProcess::finished), this, &LocateDlg::locateFinished);
     connect(locateProc, QOverload<QProcess::ProcessError>::of(&KProcess::errorOccurred), this, &LocateDlg::locateError);
 
     *locateProc << KrServices::fullPathName("locate");
@@ -339,7 +341,7 @@ void LocateDlg::processStdout()
     QStringList list = remaining.split('\n');
     int items = list.size();
 
-    for (auto & it : list) {
+    for (auto &it : list) {
         if (--items == 0 && !remaining.endsWith('\n'))
             remaining = it;
         else {
@@ -384,22 +386,21 @@ void LocateDlg::slotRightClick(QTreeWidgetItem *item, const QPoint &pos)
     QMenu popup;
     popup.setTitle(i18nc("@title:menu", "Locate"));
 
-    QAction * actView = popup.addAction(i18n("View (F3)"));
-    QAction * actEdit = popup.addAction(i18n("Edit (F4)"));
-    QAction * actComp = popup.addAction(i18n("Compare by content (F10)"));
+    QAction *actView = popup.addAction(i18n("View (F3)"));
+    QAction *actEdit = popup.addAction(i18n("Edit (F4)"));
+    QAction *actComp = popup.addAction(i18n("Compare by content (F10)"));
     if (resultList->selectedItems().count() != 2)
         actComp->setEnabled(false);
     popup.addSeparator();
 
-    QAction * actFind = popup.addAction(i18n("Find (Ctrl+F)"));
-    QAction * actNext = popup.addAction(i18n("Find next (Ctrl+N)"));
-    QAction * actPrev = popup.addAction(i18n("Find previous (Ctrl+P)"));
+    QAction *actFind = popup.addAction(i18n("Find (Ctrl+F)"));
+    QAction *actNext = popup.addAction(i18n("Find next (Ctrl+N)"));
+    QAction *actPrev = popup.addAction(i18n("Find previous (Ctrl+P)"));
     popup.addSeparator();
 
-    QAction * actClip = popup.addAction(i18n("Copy selected to clipboard"));
+    QAction *actClip = popup.addAction(i18n("Copy selected to clipboard"));
 
-
-    QAction * result = popup.exec(pos);
+    QAction *result = popup.exec(pos);
 
     int ret = -1;
 
@@ -418,7 +419,7 @@ void LocateDlg::slotRightClick(QTreeWidgetItem *item, const QPoint &pos)
     else if (result == actComp)
         ret = COMPARE_ID;
 
-    if (ret != - 1)
+    if (ret != -1)
         operate(item, ret);
 }
 
@@ -448,32 +449,32 @@ void LocateDlg::keyPressEvent(QKeyEvent *e)
     }
 
     switch (e->key()) {
-    case Qt::Key_M :
+    case Qt::Key_M:
         if (e->modifiers() == Qt::ControlModifier) {
             resultList->setFocus();
             e->accept();
         }
         break;
-    case Qt::Key_F3 :
+    case Qt::Key_F3:
         if (resultList->currentItem())
             operate(resultList->currentItem(), VIEW_ID);
         break;
-    case Qt::Key_F4 :
+    case Qt::Key_F4:
         if (resultList->currentItem())
             operate(resultList->currentItem(), EDIT_ID);
         break;
-    case Qt::Key_F10 :
+    case Qt::Key_F10:
         operate(nullptr, COMPARE_ID);
         break;
-    case Qt::Key_N :
+    case Qt::Key_N:
         if (e->modifiers() == Qt::ControlModifier)
             operate(resultList->currentItem(), FIND_NEXT_ID);
         break;
-    case Qt::Key_P :
+    case Qt::Key_P:
         if (e->modifiers() == Qt::ControlModifier)
             operate(resultList->currentItem(), FIND_PREV_ID);
         break;
-    case Qt::Key_F :
+    case Qt::Key_F:
         if (e->modifiers() == Qt::ControlModifier)
             operate(resultList->currentItem(), FIND_ID);
         break;
@@ -490,22 +491,21 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
 
     switch (task) {
     case VIEW_ID:
-        KrViewer::view(name, this);   // view the file
+        KrViewer::view(name, this); // view the file
         break;
     case EDIT_ID:
-        KrViewer::edit(name, this);   // view the file
+        KrViewer::edit(name, this); // view the file
         break;
     case COMPARE_ID: {
         QList<QTreeWidgetItem *> list = resultList->selectedItems();
         if (list.count() != 2)
             break;
 
-        QUrl url1 = QUrl::fromLocalFile(list[ 0 ]->text(0));
-        QUrl url2 = QUrl::fromLocalFile(list[ 1 ]->text(0));
+        QUrl url1 = QUrl::fromLocalFile(list[0]->text(0));
+        QUrl url2 = QUrl::fromLocalFile(list[1]->text(0));
 
-        SLOTS->compareContent(url1,url2);
-    }
-    break;
+        SLOTS->compareContent(url1, url2);
+    } break;
     case FIND_ID: {
         KConfigGroup group(krConfig, "Locate");
         long options = group.readEntry("Find Options", (long long)0);
@@ -529,8 +529,8 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
         group.writeEntry("Find Patterns", list);
 
         if (!(findOptions & KFind::FromCursor) && resultList->topLevelItemCount())
-            resultList->setCurrentItem((findOptions & KFind::FindBackwards) ?
-                                       resultList->topLevelItem(resultList->topLevelItemCount() - 1) : resultList->topLevelItem(0));
+            resultList->setCurrentItem((findOptions & KFind::FindBackwards) ? resultList->topLevelItem(resultList->topLevelItemCount() - 1)
+                                                                            : resultList->topLevelItem(0));
 
         findCurrentItem = resultList->currentItem();
 
@@ -544,8 +544,7 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
         resultList->scrollTo(resultList->currentIndex());
 
         delete dlg;
-    }
-    break;
+    } break;
     case FIND_NEXT_ID:
     case FIND_PREV_ID: {
         if (task == FIND_PREV_ID)
@@ -564,8 +563,7 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
 
         if (task == FIND_PREV_ID)
             findOptions ^= KFind::FindBackwards;
-    }
-    break;
+    } break;
     case COPY_SELECTED_TO_CLIPBOARD: {
         QList<QUrl> urls;
 
@@ -585,8 +583,7 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
         mimeData->setUrls(urls);
 
         QApplication::clipboard()->setMimeData(mimeData, QClipboard::Clipboard);
-    }
-    break;
+    } break;
     }
 }
 
@@ -631,25 +628,24 @@ void LocateDlg::feedToListBox()
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");
-    if (ga.readEntry("Confirm Feed to Listbox",  _ConfirmFeedToListbox)) {
+    if (ga.readEntry("Confirm Feed to Listbox", _ConfirmFeedToListbox)) {
         bool ok;
-        queryName = QInputDialog::getText(this, i18n("Query Name"), i18n("Here you can name the file collection:"),
-                                          QLineEdit::Normal, queryName, &ok);
-        if (! ok)
+        queryName = QInputDialog::getText(this, i18n("Query Name"), i18n("Here you can name the file collection:"), QLineEdit::Normal, queryName, &ok);
+        if (!ok)
             return;
     }
 
     QList<QUrl> urlList;
     QTreeWidgetItemIterator it(resultList);
     while (*it) {
-        QTreeWidgetItem * item = *it;
+        QTreeWidgetItem *item = *it;
         urlList.push_back(QUrl::fromLocalFile(item->text(0)));
         it++;
     }
     QUrl url = QUrl(QStringLiteral("virt:/") + queryName);
     virtFilesystem.refresh(url); // create directory if it does not exist
     virtFilesystem.addFiles(urlList);
-    //ACTIVE_FUNC->openUrl(url);
+    // ACTIVE_FUNC->openUrl(url);
     ACTIVE_MNG->slotNewTab(url);
     accept();
 }
@@ -680,4 +676,3 @@ void LocateDlg::updateButtons(bool locateIsRunning)
         }
     }
 }
-

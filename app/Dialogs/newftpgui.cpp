@@ -10,8 +10,8 @@
 #include "newftpgui.h"
 
 // QtCore
-#include <QStringList>
 #include <QEvent>
+#include <QStringList>
 // QtGui
 #include <QFont>
 // QtWidgets
@@ -26,26 +26,23 @@
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KProtocolInfo>
 
-#include "../krglobal.h"
-#include "../icon.h"
 #include "../compat.h"
+#include "../icon.h"
+#include "../krglobal.h"
 
 #define SIZE_MINIMUM QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed)
 
-const QStringList sProtocols = QStringList()
-                               << QStringLiteral("ftp") << QStringLiteral("ftps")
-                               << QStringLiteral("sftp")
-                               << QStringLiteral("fish") << QStringLiteral("nfs")
-                               << QStringLiteral("smb") << QStringLiteral("webdav")
-                               << QStringLiteral("svn") << QStringLiteral("svn+file")
-                               << QStringLiteral("svn+http") << QStringLiteral("svn+https")
-                               << QStringLiteral("svn+ssh");
+const QStringList sProtocols = QStringList() << QStringLiteral("ftp") << QStringLiteral("ftps") << QStringLiteral("sftp") << QStringLiteral("fish")
+                                             << QStringLiteral("nfs") << QStringLiteral("smb") << QStringLiteral("webdav") << QStringLiteral("svn")
+                                             << QStringLiteral("svn+file") << QStringLiteral("svn+http") << QStringLiteral("svn+https")
+                                             << QStringLiteral("svn+ssh");
 
 /**
  * Constructs a newFTPGUI which is a child of 'parent',
  * with the name 'name' and widget flags set to 'f'
  */
-newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
+newFTPGUI::newFTPGUI(QWidget *parent)
+    : QDialog(parent)
 {
     setModal(true);
     setWindowTitle(i18n("New Network Connection"));
@@ -80,7 +77,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     url->setMinimumContentsLength(10);
 
     const QStringList availableProtocols = KProtocolInfo::protocols();
-    for (const QString& protocol : sProtocols) {
+    for (const QString &protocol : sProtocols) {
         if (availableProtocols.contains(protocol))
             prefix->addItem(protocol + QStringLiteral("://"));
     }
@@ -94,7 +91,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
 
     // Select last used protocol
     const QString lastUsedProtocol = group.readEntry("newFTP Protocol", QString());
-    if(!lastUsedProtocol.isEmpty()) {
+    if (!lastUsedProtocol.isEmpty()) {
         prefix->setCurrentItem(lastUsedProtocol);
     }
 
@@ -130,7 +127,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     widgetLayout->addLayout(gridLayout, 1, 0, 1, 1);
     mainLayout->addLayout(widgetLayout);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setText(i18n("&Connect"));
@@ -143,7 +140,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : QDialog(parent)
     connect(prefix, QOverload<const QString &>::of(&KComboBox::QCOMBOBOX_ACTIVATED), this, &newFTPGUI::slotTextChanged);
     connect(url, QOverload<const QString &>::of(&KrHistoryComboBox::QCOMBOBOX_ACTIVATED), url, &KrHistoryComboBox::addToHistory);
 
-    if(!lastUsedProtocol.isEmpty()) {
+    if (!lastUsedProtocol.isEmpty()) {
         // update the port field
         slotTextChanged(lastUsedProtocol);
     }
@@ -163,9 +160,7 @@ newFTPGUI::~newFTPGUI()
 
 void newFTPGUI::slotTextChanged(const QString &string)
 {
-    if (string.startsWith(QLatin1String("ftp")) ||
-            string.startsWith(QLatin1String("sftp")) ||
-            string.startsWith(QLatin1String("fish"))) {
+    if (string.startsWith(QLatin1String("ftp")) || string.startsWith(QLatin1String("sftp")) || string.startsWith(QLatin1String("fish"))) {
         if (port->value() == 21 || port->value() == 22) {
             port->setValue(string.startsWith(QLatin1String("ftp")) ? 21 : 22);
         }
@@ -188,4 +183,3 @@ bool newFTPGUI::event(QEvent *ev)
     }
     return ret;
 }
-

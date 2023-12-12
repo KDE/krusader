@@ -8,10 +8,14 @@
 
 #include "kr7zencryptionchecker.h"
 
-Kr7zEncryptionChecker::Kr7zEncryptionChecker() : encrypted(false), lastData()
+Kr7zEncryptionChecker::Kr7zEncryptionChecker()
+    : encrypted(false)
+    , lastData()
 {
     setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
-    connect(this, &Kr7zEncryptionChecker::readyReadStandardOutput, this, [=]() {receivedOutput(); });
+    connect(this, &Kr7zEncryptionChecker::readyReadStandardOutput, this, [=]() {
+        receivedOutput();
+    });
 }
 
 void Kr7zEncryptionChecker::setupChildProcess()
@@ -31,19 +35,18 @@ void Kr7zEncryptionChecker::receivedOutput()
     QString checkable = lastData + data;
 
     QStringList lines = checkable.split('\n');
-    lastData = lines[ lines.count() - 1 ];
+    lastData = lines[lines.count() - 1];
     for (int i = 0; i != lines.count(); i++) {
-        QString line = lines[ i ].trimmed().toLower();
+        QString line = lines[i].trimmed().toLower();
         int ndx = line.indexOf("listing"); // Reminder: Lower-case letters are used
         if (ndx >= 0)
             line.truncate(ndx);
         if (line.isEmpty())
             continue;
 
-        if ((line.contains("password") && line.contains("enter")) ||
-             line == QStringLiteral("encrypted = +")) {
+        if ((line.contains("password") && line.contains("enter")) || line == QStringLiteral("encrypted = +")) {
             encrypted = true;
-            ::kill(static_cast<pid_t>(- processId()), SIGKILL); // kill the whole process group by giving the negative PID
+            ::kill(static_cast<pid_t>(-processId()), SIGKILL); // kill the whole process group by giving the negative PID
             break;
         }
     }

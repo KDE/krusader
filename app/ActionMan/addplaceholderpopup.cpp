@@ -10,10 +10,10 @@
 #include "addplaceholderpopup.h"
 
 // for ParameterDialog
-#include "../krglobal.h" // for konfig-access
-#include "../icon.h"
 #include "../BookMan/krbookmarkbutton.h"
 #include "../GUI/profilemanager.h"
+#include "../icon.h"
+#include "../krglobal.h" // for konfig-access
 
 // QtWidgets
 #include <QCheckBox>
@@ -26,22 +26,22 @@
 #include <QToolButton>
 #include <QVBoxLayout>
 
+#include <KCompletion/KComboBox>
+#include <KCompletion/KLineEdit>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KCompletion/KLineEdit>
-#include <KCompletion/KComboBox>
 #include <KIOWidgets/KUrlCompletion>
 
-#define ACTIVE_MASK  0x0100
-#define OTHER_MASK  0x0200
-#define LEFT_MASK   0x0400
-#define RIGHT_MASK   0x0800
+#define ACTIVE_MASK 0x0100
+#define OTHER_MASK 0x0200
+#define LEFT_MASK 0x0400
+#define RIGHT_MASK 0x0800
 #define INDEPENDENT_MASK 0x1000
-#define EXECUTABLE_ID  0xFFFF
+#define EXECUTABLE_ID 0xFFFF
 
-AddPlaceholderPopup::AddPlaceholderPopup(QWidget *parent) : QMenu(parent)
+AddPlaceholderPopup::AddPlaceholderPopup(QWidget *parent)
+    : QMenu(parent)
 {
-
     _activeSub = new QMenu(i18n("Active panel"), this);
     _otherSub = new QMenu(i18n("Other panel"), this);
     _leftSub = new QMenu(i18n("Left panel"), this);
@@ -71,7 +71,7 @@ AddPlaceholderPopup::AddPlaceholderPopup(QWidget *parent) : QMenu(parent)
             } else
                 _independentSub->addSeparator();
         } else {
-            QAction * action;
+            QAction *action;
 
             if (expander.placeholder(i)->needPanel()) {
                 action = _activeSub->addAction(i18n(expander.placeholder(i)->description().toUtf8()));
@@ -88,18 +88,16 @@ AddPlaceholderPopup::AddPlaceholderPopup(QWidget *parent) : QMenu(parent)
             }
         }
     }
-
 }
 
-
-QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
+QString AddPlaceholderPopup::getPlaceholder(const QPoint &pos)
 {
     QAction *res = exec(pos);
     if (res == nullptr)
         return QString();
 
     // add the selected flag to the command line
-    if (res->data().toInt() == EXECUTABLE_ID) {   // did the user need an executable ?
+    if (res->data().toInt() == EXECUTABLE_ID) { // did the user need an executable ?
         // select an executable
         QString filename = QFileDialog::getOpenFileName(this);
         if (!filename.isEmpty()) {
@@ -108,12 +106,13 @@ QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
         }
     } else { // user selected something from the menus
         Expander expander;
-        const exp_placeholder* currentPlaceholder = expander.placeholder(res->data().toInt() & ~(ACTIVE_MASK | OTHER_MASK | LEFT_MASK | RIGHT_MASK | INDEPENDENT_MASK));
-//       if ( &currentPlaceholder->expFunc == 0 ) {
-//          KMessageBox::error( this, "BOFH Excuse #93:\nFeature not yet implemented" );
-//          return QString();
-//       }
-        auto* parameterDialog = new ParameterDialog(currentPlaceholder, this);
+        const exp_placeholder *currentPlaceholder =
+            expander.placeholder(res->data().toInt() & ~(ACTIVE_MASK | OTHER_MASK | LEFT_MASK | RIGHT_MASK | INDEPENDENT_MASK));
+        // if (&currentPlaceholder->expFunc == 0) {
+        //     KMessageBox::error(this, "BOFH Excuse #93:\nFeature not yet implemented");
+        //     return QString();
+        // }
+        auto *parameterDialog = new ParameterDialog(currentPlaceholder, this);
         QString panel, parameter = parameterDialog->getParameter();
         delete parameterDialog;
         // indicate the panel with 'a' 'o', 'l', 'r' or '_'.
@@ -127,18 +126,18 @@ QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
             panel = 'r';
         else if (res->data().toInt() & INDEPENDENT_MASK)
             panel = '_';
-        //return '%' + panel + currentPlaceholder->expression() + parameter + "% "; // with extra space
+        // return '%' + panel + currentPlaceholder->expression() + parameter + "% "; // with extra space
         return '%' + panel + currentPlaceholder->expression() + parameter + '%'; // without extra space
     }
     return QString();
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// ParameterDialog ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWidget *parent) : QDialog(parent)
+ParameterDialog::ParameterDialog(const exp_placeholder *currentPlaceholder, QWidget *parent)
+    : QDialog(parent)
 {
     setWindowTitle(i18n("User Action Parameter Dialog"));
     auto *mainLayout = new QVBoxLayout;
@@ -149,7 +148,7 @@ ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWid
 
     QWidget *page = new QWidget(this);
     mainLayout->addWidget(page);
-    auto* layout = new QVBoxLayout(page);
+    auto *layout = new QVBoxLayout(page);
     layout->setSpacing(11);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -184,18 +183,18 @@ ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWid
         layout->addWidget(_parameter.last());
     }
 
-    QFrame * line = new QFrame(page);
+    QFrame *line = new QFrame(page);
     line->setFrameShape(QFrame::HLine);
     line->setFrameShadow(QFrame::Sunken);
     layout->addWidget(line);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::RestoreDefaults);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::RestoreDefaults);
     mainLayout->addWidget(buttonBox);
 
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    connect(okButton, &QPushButton:: clicked, this, &ParameterDialog::slotOk);
+    connect(okButton, &QPushButton::clicked, this, &ParameterDialog::slotOk);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &ParameterDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &ParameterDialog::reject);
     connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &ParameterDialog::reset);
@@ -203,7 +202,7 @@ ParameterDialog::ParameterDialog(const exp_placeholder* currentPlaceholder, QWid
 
 QString ParameterDialog::getParameter()
 {
-    if (_parameterCount == 0)   // meaning no parameters
+    if (_parameterCount == 0) // meaning no parameters
         return QString();
 
     if (exec() == -1)
@@ -211,18 +210,18 @@ QString ParameterDialog::getParameter()
 
     int lastParameter = _parameterCount;
     while (--lastParameter > -1) {
-        if (_parameter[ lastParameter ]->text() != _parameter[ lastParameter ]->preset()  ||  _parameter[ lastParameter ]->necessary())
+        if (_parameter[lastParameter]->text() != _parameter[lastParameter]->preset() || _parameter[lastParameter]->necessary())
             break;
     }
 
-    if (lastParameter < 0)  // all parameters have default-values
+    if (lastParameter < 0) // all parameters have default-values
         return QString();
 
     QString parameter;
     for (int i = 0; i <= lastParameter; ++i) {
         if (i > 0)
             parameter += ", ";
-        parameter += '\"' + _parameter[ i ]->text().replace('\"', "\\\"") + '\"';
+        parameter += '\"' + _parameter[i]->text().replace('\"', "\\\"") + '\"';
     }
     return '(' + parameter + ')';
 }
@@ -230,14 +229,14 @@ QString ParameterDialog::getParameter()
 void ParameterDialog::reset()
 {
     for (int i = 0; i < _parameterCount; ++i)
-        _parameter[ i ]->reset();
+        _parameter[i]->reset();
 }
 
 void ParameterDialog::slotOk()
 {
     bool valid = true;
     for (int i = 0; i < _parameterCount; ++i) {
-        if (_parameter[ i ]->necessary() && ! _parameter[ i ]->valid())
+        if (_parameter[i]->necessary() && !_parameter[i]->valid())
             valid = false;
     }
 
@@ -246,9 +245,10 @@ void ParameterDialog::slotOk()
 }
 
 ///////////// ParameterText
-ParameterText::ParameterText(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
+ParameterText::ParameterText(const exp_parameter &parameter, QWidget *parent)
+    : ParameterBase(parameter, parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -278,16 +278,17 @@ bool ParameterText::valid()
 }
 
 ///////////// ParameterPlaceholder
-ParameterPlaceholder::ParameterPlaceholder(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
+ParameterPlaceholder::ParameterPlaceholder(const exp_parameter &parameter, QWidget *parent)
+    : ParameterBase(parameter, parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
     layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
-    QWidget * hboxWidget = new QWidget(this);
+    QWidget *hboxWidget = new QWidget(this);
     layout->addWidget(hboxWidget);
-    auto * hbox = new QHBoxLayout(hboxWidget);
+    auto *hbox = new QHBoxLayout(hboxWidget);
 
     hbox->setContentsMargins(0, 0, 0, 0);
     hbox->setSpacing(6);
@@ -320,16 +321,17 @@ bool ParameterPlaceholder::valid()
 }
 void ParameterPlaceholder::addPlaceholder()
 {
-    auto* popup = new AddPlaceholderPopup(this);
+    auto *popup = new AddPlaceholderPopup(this);
     QString exp = popup->getPlaceholder(mapToGlobal(QPoint(_button->pos().x() + _button->width() + 6, _button->pos().y() + _button->height() / 2)));
     _lineEdit->insert(exp);
     delete popup;
 }
 
 ///////////// ParameterYes
-ParameterYes::ParameterYes(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
+ParameterYes::ParameterYes(const exp_parameter &parameter, QWidget *parent)
+    : ParameterBase(parameter, parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -358,9 +360,10 @@ bool ParameterYes::valid()
 }
 
 ///////////// ParameterNo
-ParameterNo::ParameterNo(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
+ParameterNo::ParameterNo(const exp_parameter &parameter, QWidget *parent)
+    : ParameterBase(parameter, parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -389,17 +392,18 @@ bool ParameterNo::valid()
 }
 
 ///////////// ParameterFile
-ParameterFile::ParameterFile(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
+ParameterFile::ParameterFile(const exp_parameter &parameter, QWidget *parent)
+    : ParameterBase(parameter, parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
     layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
 
-    QWidget * hboxWidget = new QWidget(this);
+    QWidget *hboxWidget = new QWidget(this);
     layout->addWidget(hboxWidget);
-    auto * hbox = new QHBoxLayout(hboxWidget);
+    auto *hbox = new QHBoxLayout(hboxWidget);
 
     hbox->setContentsMargins(0, 0, 0, 0);
     hbox->setSpacing(6);
@@ -437,9 +441,10 @@ void ParameterFile::addFile()
 }
 
 ///////////// ParameterChoose
-ParameterChoose::ParameterChoose(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
+ParameterChoose::ParameterChoose(const exp_parameter &parameter, QWidget *parent)
+    : ParameterBase(parameter, parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -466,9 +471,10 @@ bool ParameterChoose::valid()
 }
 
 ///////////// ParameterSelect
-ParameterSelect::ParameterSelect(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
+ParameterSelect::ParameterSelect(const exp_parameter &parameter, QWidget *parent)
+    : ParameterBase(parameter, parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -502,16 +508,17 @@ bool ParameterSelect::valid()
 }
 
 ///////////// ParameterGoto
-ParameterGoto::ParameterGoto(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
+ParameterGoto::ParameterGoto(const exp_parameter &parameter, QWidget *parent)
+    : ParameterBase(parameter, parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
     layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
 
-    QWidget * hboxWidget = new QWidget(this);
-    auto * hbox = new QHBoxLayout(hboxWidget);
+    QWidget *hboxWidget = new QWidget(this);
+    auto *hbox = new QHBoxLayout(hboxWidget);
 
     hbox->setContentsMargins(0, 0, 0, 0);
     hbox->setSpacing(6);
@@ -556,16 +563,18 @@ void ParameterGoto::setDir()
 }
 void ParameterGoto::addPlaceholder()
 {
-    auto* popup = new AddPlaceholderPopup(this);
-    QString exp = popup->getPlaceholder(mapToGlobal(QPoint(_placeholderButton->pos().x() + _placeholderButton->width() + 6, _placeholderButton->pos().y() + _placeholderButton->height() / 2)));
+    auto *popup = new AddPlaceholderPopup(this);
+    QString exp = popup->getPlaceholder(
+        mapToGlobal(QPoint(_placeholderButton->pos().x() + _placeholderButton->width() + 6, _placeholderButton->pos().y() + _placeholderButton->height() / 2)));
     _lineEdit->insert(exp);
     delete popup;
 }
 
 ///////////// ParameterSyncprofile
-ParameterSyncprofile::ParameterSyncprofile(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
+ParameterSyncprofile::ParameterSyncprofile(const exp_parameter &parameter, QWidget *parent)
+    : ParameterBase(parameter, parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -593,9 +602,10 @@ bool ParameterSyncprofile::valid()
 }
 
 ///////////// ParameterSearch
-ParameterSearch::ParameterSearch(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
+ParameterSearch::ParameterSearch(const exp_parameter &parameter, QWidget *parent)
+    : ParameterBase(parameter, parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -623,9 +633,10 @@ bool ParameterSearch::valid()
 }
 
 ///////////// ParameterPanelprofile
-ParameterPanelprofile::ParameterPanelprofile(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
+ParameterPanelprofile::ParameterPanelprofile(const exp_parameter &parameter, QWidget *parent)
+    : ParameterBase(parameter, parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -653,9 +664,10 @@ bool ParameterPanelprofile::valid()
 }
 
 ///////////// ParameterInt
-ParameterInt::ParameterInt(const exp_parameter& parameter, QWidget* parent) : ParameterBase(parameter, parent)
+ParameterInt::ParameterInt(const exp_parameter &parameter, QWidget *parent)
+    : ParameterBase(parameter, parent)
 {
-    auto* layout = new QHBoxLayout(this);
+    auto *layout = new QHBoxLayout(this);
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -687,4 +699,3 @@ bool ParameterInt::valid()
 {
     return true;
 }
-

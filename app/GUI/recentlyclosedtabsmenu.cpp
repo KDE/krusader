@@ -12,14 +12,14 @@
 
 #include "recentlyclosedtabsmenu.h"
 
+#include "../Panel/PanelView/krview.h"
+#include "../Panel/listpanel.h"
 #include "../icon.h"
 #include "../kractions.h"
 #include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
 #include "../tabactions.h"
-#include "../Panel/listpanel.h"
-#include "../Panel/PanelView/krview.h"
 
 #include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>
@@ -29,8 +29,8 @@
 // QtWidgets
 #include <QMenu>
 
-RecentlyClosedTabsMenu::RecentlyClosedTabsMenu(const QString &text, const QString &iconName, KActionCollection *parent) :
-        KActionMenu(Icon(iconName), text, parent)
+RecentlyClosedTabsMenu::RecentlyClosedTabsMenu(const QString &text, const QString &iconName, KActionCollection *parent)
+    : KActionMenu(Icon(iconName), text, parent)
 {
     parent->addAction("recently_closed_tabs", this);
 
@@ -44,8 +44,7 @@ RecentlyClosedTabsMenu::RecentlyClosedTabsMenu(const QString &text, const QStrin
     connect(menu(), &QMenu::triggered, this, &RecentlyClosedTabsMenu::slotTriggered);
 }
 
-QAction *RecentlyClosedTabsMenu::updateAfterClosingATab(const QUrl &urlClosedTab, const QByteArray &backedUpData,
-                                                        TabActions *argTabActions)
+QAction *RecentlyClosedTabsMenu::updateAfterClosingATab(const QUrl &urlClosedTab, const QByteArray &backedUpData, TabActions *argTabActions)
 {
     // Create the related action
     QAction *actReopenTab = new QAction(menu());

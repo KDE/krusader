@@ -25,14 +25,14 @@ class SegmentTip : public QWidget
 public:
     explicit SegmentTip(uint);
 
-    void updateTip(const File*, const Directory*);
-    void moveto(QPoint, QWidget&, bool);
+    void updateTip(const File *, const Directory *);
+    void moveto(QPoint, QWidget &, bool);
 
 private:
-    virtual bool eventFilter(QObject*, QEvent*) override;
-    virtual bool event(QEvent*) override;
+    virtual bool eventFilter(QObject *, QEvent *) override;
+    virtual bool event(QEvent *) override;
 
-    uint    m_cursorHeight;
+    uint m_cursorHeight;
     QPixmap m_pixmap;
     QString m_text;
 };

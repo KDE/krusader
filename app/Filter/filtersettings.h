@@ -12,7 +12,6 @@
 
 #include <KConfigCore/KConfigGroup>
 
-
 class FilterSettings
 {
     friend class FilterTabs;
@@ -21,31 +20,32 @@ class FilterSettings
 
 public:
     FilterSettings();
-    FilterSettings(const FilterSettings& other);
-    FilterSettings& operator=(const FilterSettings& other);
+    FilterSettings(const FilterSettings &other);
+    FilterSettings &operator=(const FilterSettings &other);
 
-    bool isValid() const {
+    bool isValid() const
+    {
         return valid;
     }
-    void load(const KConfigGroup& cfg);
+    void load(const KConfigGroup &cfg);
     void save(KConfigGroup cfg) const;
     KrQuery toQuery() const;
 
 private:
-    enum SizeUnit {
-        Byte = 0, KiloByte, MegaByte, GigaByte
-    };
+    enum SizeUnit { Byte = 0, KiloByte, MegaByte, GigaByte };
 
-    enum TimeUnit {
-        Day = 0, Week, Month, Year
-    };
+    enum TimeUnit { Day = 0, Week, Month, Year };
 
     class FileSize
     {
     public:
-        FileSize() : amount(0), unit(Byte) {}
+        FileSize()
+            : amount(0)
+            , unit(Byte)
+        {
+        }
         FileSize(const FileSize &other);
-        FileSize& operator=(const FileSize &other);
+        FileSize &operator=(const FileSize &other);
 
         KIO::filesize_t size() const;
 
@@ -56,9 +56,13 @@ private:
     class TimeSpan
     {
     public:
-        TimeSpan() : amount(0), unit(Day) {}
+        TimeSpan()
+            : amount(0)
+            , unit(Day)
+        {
+        }
         TimeSpan(const TimeSpan &other);
-        TimeSpan& operator=(const TimeSpan &other);
+        TimeSpan &operator=(const TimeSpan &other);
 
         int days() const;
 
@@ -66,7 +70,7 @@ private:
         TimeUnit unit;
     };
 
-    static void saveDate(const QString& key, const QDate &date, KConfigGroup &cfg);
+    static void saveDate(const QString &key, const QDate &date, KConfigGroup &cfg);
     static time_t qdate2time_t(QDate d, bool start);
 
     bool valid;
@@ -104,4 +108,4 @@ private:
     QString permissions;
 };
 
-#endif //FILTERSETTINGS_H
+#endif // FILTERSETTINGS_H

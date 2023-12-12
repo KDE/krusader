@@ -10,13 +10,12 @@
 
 #include "konfiguratorpage.h"
 
-
 class KgUserActions : public KonfiguratorPage
 {
     Q_OBJECT
 
 public:
-    explicit KgUserActions(bool first, QWidget* parent = nullptr);
+    explicit KgUserActions(bool first, QWidget *parent = nullptr);
 
 public slots:
     void startActionMan();

@@ -6,18 +6,20 @@
 */
 
 #include "krtreewidget.h"
-#include "krstyleproxy.h"
 #include "../compat.h"
+#include "krstyleproxy.h"
 
 // QtGui
 #include <QContextMenuEvent>
 // QtWidgets
+#include <QApplication>
+#include <QHeaderView>
 #include <QStyleOptionViewItem>
 #include <QToolTip>
-#include <QHeaderView>
-#include <QApplication>
 
-KrTreeWidget::KrTreeWidget(QWidget * parent) : QTreeWidget(parent), _inResize(false)
+KrTreeWidget::KrTreeWidget(QWidget *parent)
+    : QTreeWidget(parent)
+    , _inResize(false)
 {
     setRootIsDecorated(false);
     setSortingEnabled(true);
@@ -30,17 +32,17 @@ KrTreeWidget::KrTreeWidget(QWidget * parent) : QTreeWidget(parent), _inResize(fa
     setStyle(krstyle);
 }
 
-bool KrTreeWidget::event(QEvent * event)
+bool KrTreeWidget::event(QEvent *event)
 {
     switch (event->type()) {
         // HACK: QT 4 Context menu key isn't handled properly
     case QEvent::ContextMenu: {
-        auto* ce = dynamic_cast<QContextMenuEvent*>( event);
+        auto *ce = dynamic_cast<QContextMenuEvent *>(event);
 
         if (ce->reason() == QContextMenuEvent::Mouse) {
             QPoint pos = viewport()->mapFromGlobal(ce->globalPos());
 
-            QTreeWidgetItem * item = itemAt(pos);
+            QTreeWidgetItem *item = itemAt(pos);
             int column = columnAt(pos.x());
 
             emit itemRightClicked(item, ce->globalPos(), column);
@@ -54,12 +56,11 @@ bool KrTreeWidget::event(QEvent * event)
                 return true;
             }
         }
-    }
-    break;
+    } break;
     case QEvent::KeyPress: {
         // HACK: QT 4 Ctrl+A bug fix: Ctrl+A doesn't work if QTreeWidget contains parent / child items
         //       Insert doesn't change the selections for multi selection modes
-        auto* ke = dynamic_cast<QKeyEvent*>( event);
+        auto *ke = dynamic_cast<QKeyEvent *>(event);
         switch (ke->key()) {
         case Qt::Key_Insert: {
             if (ke->modifiers() != 0)
@@ -67,8 +68,7 @@ bool KrTreeWidget::event(QEvent * event)
 
             QAbstractItemView::SelectionMode mode = selectionMode();
 
-            if (mode != QAbstractItemView::ContiguousSelection && mode != QAbstractItemView::ExtendedSelection &&
-                    mode != QAbstractItemView::MultiSelection)
+            if (mode != QAbstractItemView::ContiguousSelection && mode != QAbstractItemView::ExtendedSelection && mode != QAbstractItemView::MultiSelection)
                 break;
 
             ke->accept();
@@ -83,8 +83,8 @@ bool KrTreeWidget::event(QEvent * event)
             if (ke->modifiers() == Qt::ControlModifier) {
                 QAbstractItemView::SelectionMode mode = selectionMode();
 
-                if (mode == QAbstractItemView::ContiguousSelection || mode == QAbstractItemView::ExtendedSelection ||
-                        mode == QAbstractItemView::MultiSelection) {
+                if (mode == QAbstractItemView::ContiguousSelection || mode == QAbstractItemView::ExtendedSelection
+                    || mode == QAbstractItemView::MultiSelection) {
                     selectAll();
                     ke->accept();
                     return true;
@@ -94,13 +94,12 @@ bool KrTreeWidget::event(QEvent * event)
         default:
             break;
         }
-    }
-    break;
+    } break;
     case QEvent::Resize: {
-        auto * re = dynamic_cast<QResizeEvent *>(event);
+        auto *re = dynamic_cast<QResizeEvent *>(event);
         if (!_inResize && re->oldSize() != re->size()) {
             if (_stretchingColumn != -1 && columnCount()) {
-                QList< int > columnsSizes;
+                QList<int> columnsSizes;
                 int oldSize = 0;
 
                 for (int i = 0; i != header()->count(); i++) {
@@ -118,12 +117,12 @@ bool KrTreeWidget::event(QEvent * event)
 
                     for (int i = 0; i != header()->count(); i++) {
                         if (i == _stretchingColumn) {
-                            int newNs = columnsSizes[ i ] + delta;
+                            int newNs = columnsSizes[i] + delta;
                             if (newNs < 8)
                                 newNs = 8;
                             header()->resizeSection(i, newNs);
-                        } else if (header()->sectionSize(i) != columnsSizes[ i ]) {
-                            header()->resizeSection(i, columnsSizes[ i ]);
+                        } else if (header()->sectionSize(i) != columnsSizes[i]) {
+                            header()->resizeSection(i, columnsSizes[i]);
                         }
                     }
                     _inResize = false;
@@ -134,12 +133,12 @@ bool KrTreeWidget::event(QEvent * event)
         break;
     }
     case QEvent::ToolTip: {
-        auto *he = dynamic_cast<QHelpEvent*>(event);
+        auto *he = dynamic_cast<QHelpEvent *>(event);
 
         if (viewport()) {
             QPoint pos = viewport()->mapFromGlobal(he->globalPos());
 
-            QTreeWidgetItem * item = itemAt(pos);
+            QTreeWidgetItem *item = itemAt(pos);
 
             int column = columnAt(pos.x());
 
@@ -181,8 +180,7 @@ bool KrTreeWidget::event(QEvent * event)
                 return true;
             }
         }
-    }
-    break;
+    } break;
     default:
         break;
     }

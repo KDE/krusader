@@ -16,25 +16,27 @@
 // QtGui
 #include <QPixmap>
 // QtWidgets
-#include <QSpinBox>
 #include <QButtonGroup>
 #include <QGridLayout>
-#include <QHBoxLayout>
 #include <QGroupBox>
-#include <QLayout>
+#include <QHBoxLayout>
 #include <QLabel>
+#include <QLayout>
+#include <QSpinBox>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "../krglobal.h"
-#include "../icon.h"
 #include "../Dialogs/krdialogs.h"
+#include "../icon.h"
+#include "../krglobal.h"
 
-#define USERSFILE  QString("/etc/passwd")
+#define USERSFILE QString("/etc/passwd")
 #define GROUPSFILE QString("/etc/group")
 
-AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(parent), fltTabs(tabs)
+AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent)
+    : QWidget(parent)
+    , fltTabs(tabs)
 {
     auto *filterLayout = new QGridLayout(this);
     filterLayout->setSpacing(6);
@@ -430,7 +432,8 @@ void AdvancedFilter::changeDate(KLineEdit *p)
 {
     // check if the current date is valid
     QDate d = stringToDate(p->text());
-    if (!d.isValid()) d = QDate::currentDate();
+    if (!d.isValid())
+        d = QDate::currentDate();
 
     auto *gd = new KrGetDate(d, this);
     d = gd->getDate();
@@ -440,7 +443,7 @@ void AdvancedFilter::changeDate(KLineEdit *p)
     delete gd;
 }
 
-void AdvancedFilter::fillList(KComboBox *list, const QString& filename)
+void AdvancedFilter::fillList(KComboBox *list, const QString &filename)
 {
     QFile data(filename);
     if (!data.open(QIODevice::ReadOnly)) {
@@ -460,14 +463,16 @@ void AdvancedFilter::fillList(KComboBox *list, const QString& filename)
 void AdvancedFilter::invalidDateMessage(KLineEdit *p)
 {
     // FIXME p->text() is empty sometimes (to reproduce, set date to "13.09.005")
-    KMessageBox::detailedError(this, i18n("Invalid date entered."),
-                               i18n("The date %1 is not valid according to your locale. Please re-enter a valid date (use the date button for easy access).", p->text()));
+    KMessageBox::detailedError(
+        this,
+        i18n("Invalid date entered."),
+        i18n("The date %1 is not valid according to your locale. Please re-enter a valid date (use the date button for easy access).", p->text()));
     p->setFocus();
 }
 
 bool AdvancedFilter::getSettings(FilterSettings &s)
 {
-    s.minSizeEnabled =  minSizeEnabled->isChecked();
+    s.minSizeEnabled = minSizeEnabled->isChecked();
     s.minSize.amount = minSizeAmount->value();
     s.minSize.unit = static_cast<FilterSettings::SizeUnit>(minSizeType->currentIndex());
 
@@ -476,9 +481,10 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
     s.maxSize.unit = static_cast<FilterSettings::SizeUnit>(maxSizeType->currentIndex());
 
     if (s.minSizeEnabled && s.maxSizeEnabled && (s.maxSize.size() < s.minSize.size())) {
-        KMessageBox::detailedError(this, i18n("Specified sizes are inconsistent."),
-                            i18n("Please re-enter the values, so that the left side size "
-                                 "will be smaller than (or equal to) the right side size."));
+        KMessageBox::detailedError(this,
+                                   i18n("Specified sizes are inconsistent."),
+                                   i18n("Please re-enter the values, so that the left side size "
+                                        "will be smaller than (or equal to) the right side size."));
         minSizeAmount->setFocus();
         return false;
     }
@@ -496,10 +502,11 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
             invalidDateMessage(modifiedBetweenData2);
             return false;
         } else if (s.modifiedBetween1 > s.modifiedBetween2) {
-            KMessageBox::detailedError(this, i18n("Dates are inconsistent."),
-                                i18n("The date on the left is later than the date on the right. "
-                                     "Please re-enter the dates, so that the left side date "
-                                     "will be earlier than the right side date."));
+            KMessageBox::detailedError(this,
+                                       i18n("Dates are inconsistent."),
+                                       i18n("The date on the left is later than the date on the right. "
+                                            "Please re-enter the dates, so that the left side date "
+                                            "will be earlier than the right side date."));
             modifiedBetweenData1->setFocus();
             return false;
         }
@@ -508,26 +515,24 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
     s.notModifiedAfterEnabled = notModifiedAfterEnabled->isChecked();
     s.notModifiedAfter = stringToDate(notModifiedAfterData->text());
 
-    if(s.notModifiedAfterEnabled && !s.notModifiedAfter.isValid()) {
+    if (s.notModifiedAfterEnabled && !s.notModifiedAfter.isValid()) {
         invalidDateMessage(notModifiedAfterData);
         return false;
     }
 
     s.modifiedInTheLastEnabled = modifiedInTheLastEnabled->isChecked();
     s.modifiedInTheLast.amount = modifiedInTheLastData->value();
-    s.modifiedInTheLast.unit =
-        static_cast<FilterSettings::TimeUnit>(modifiedInTheLastType->currentIndex());
+    s.modifiedInTheLast.unit = static_cast<FilterSettings::TimeUnit>(modifiedInTheLastType->currentIndex());
     s.notModifiedInTheLast.amount = notModifiedInTheLastData->value();
-    s.notModifiedInTheLast.unit =
-        static_cast<FilterSettings::TimeUnit>(notModifiedInTheLastType->currentIndex());
+    s.notModifiedInTheLast.unit = static_cast<FilterSettings::TimeUnit>(notModifiedInTheLastType->currentIndex());
 
-    if (s.modifiedInTheLastEnabled  &&
-            s.modifiedInTheLast.amount && s.notModifiedInTheLast.amount) {
+    if (s.modifiedInTheLastEnabled && s.modifiedInTheLast.amount && s.notModifiedInTheLast.amount) {
         if (s.modifiedInTheLast.days() < s.notModifiedInTheLast.days()) {
-            KMessageBox::detailedError(this, i18n("Dates are inconsistent."),
-                                i18n("The date on top is later than the date on the bottom. "
-                                     "Please re-enter the dates, so that the top date "
-                                     "will be earlier than the bottom date."));
+            KMessageBox::detailedError(this,
+                                       i18n("Dates are inconsistent."),
+                                       i18n("The date on top is later than the date on the bottom. "
+                                            "Please re-enter the dates, so that the top date "
+                                            "will be earlier than the bottom date."));
             modifiedInTheLastData->setFocus();
             return false;
         }
@@ -540,9 +545,12 @@ bool AdvancedFilter::getSettings(FilterSettings &s)
     s.group = belongsToGroupData->currentText();
 
     s.permissionsEnabled = permissionsEnabled->isChecked();
+
+    // clang-format off
     s.permissions = ownerR->currentText() + ownerW->currentText() + ownerX->currentText() +
                     groupR->currentText() + groupW->currentText() + groupX->currentText() +
                     allR->currentText()   + allW->currentText()   + allX->currentText();
+    // clang-format on
 
     return true;
 }
@@ -596,4 +604,3 @@ void AdvancedFilter::applySettings(const FilterSettings &s)
     setComboBoxValue(allW, QString(perm[7]));
     setComboBoxValue(allX, QString(perm[8]));
 }
-

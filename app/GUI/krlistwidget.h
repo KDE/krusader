@@ -16,10 +16,10 @@ class KrListWidget : public QListWidget
     Q_OBJECT
 
 public:
-    explicit KrListWidget(QWidget * parent = nullptr);
+    explicit KrListWidget(QWidget *parent = nullptr);
 
 signals:
-    void itemRightClicked(QListWidgetItem * it, const QPoint & pos);
+    void itemRightClicked(QListWidgetItem *it, const QPoint &pos);
 };
 
 #endif /* KRLISTVIEW_H */

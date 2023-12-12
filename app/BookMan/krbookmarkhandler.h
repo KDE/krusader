@@ -10,17 +10,17 @@
 #define KRBOOKMARKHANDLER_H
 
 // QtCore
-#include <QObject>
-#include <QPointer>
 #include <QEvent>
 #include <QMap>
+#include <QObject>
+#include <QPointer>
 #include <QUrl>
 // QtXml
 #include <QDomEntity>
 // QtWidgets
+#include <QLineEdit>
 #include <QMenu>
 #include <QWidgetAction>
-#include <QLineEdit>
 
 #include "krbookmark.h"
 
@@ -28,11 +28,12 @@ class KActionCollection;
 class KBookmarkManager;
 class KrMainWindow;
 
-class KrBookmarkHandler: public QObject
+class KrBookmarkHandler : public QObject
 {
     Q_OBJECT
     friend class KrAddBookmarkDlg;
     enum Actions { BookmarkCurrent = 0, ManageBookmarks };
+
 public:
     explicit KrBookmarkHandler(KrMainWindow *mainWindow);
     ~KrBookmarkHandler() override;
@@ -43,8 +44,8 @@ public:
 protected:
     void deleteBookmark(KrBookmark *bm);
     void importFromFile();
-    bool importFromFileBookmark(QDomElement &e, KrBookmark *parent, const QString& path, QString *errorMsg);
-    bool importFromFileFolder(QDomNode &first, KrBookmark *parent, const QString& path, QString *errorMsg);
+    bool importFromFileBookmark(QDomElement &e, KrBookmark *parent, const QString &path, QString *errorMsg);
+    bool importFromFileFolder(QDomNode &first, KrBookmark *parent, const QString &path, QString *errorMsg);
     void exportToFile();
     void exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder);
     void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
@@ -58,7 +59,7 @@ protected:
     void removeReferences(KrBookmark *root, KrBookmark *bmToRemove);
 
 protected slots:
-    void bookmarksChanged(const QString&, const QString&);
+    void bookmarksChanged(const QString &, const QString &);
     void slotActivated(const QUrl &url);
 
 private:
@@ -69,8 +70,8 @@ private:
     KBookmarkManager *manager;
     bool _middleClick; // if true, the user clicked the middle button to open the bookmark
 
-    QPointer<QMenu>            _mainBookmarkPopup; // main bookmark popup menu
-    QList<QAction *>           _specialBookmarks; // the action list of the special bookmarks
+    QPointer<QMenu> _mainBookmarkPopup; // main bookmark popup menu
+    QList<QAction *> _specialBookmarks; // the action list of the special bookmarks
 
     QWidgetAction *_quickSearchAction; ///< Search bar container action
     QLineEdit *_quickSearchBar; ///< Search bar containing current query

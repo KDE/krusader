@@ -20,13 +20,15 @@
 #include "../krglobal.h"
 
 DiskUsageViewer::DiskUsageViewer(QWidget *parent)
-        : QWidget(parent), diskUsage(nullptr), statusLabel(nullptr)
+    : QWidget(parent)
+    , diskUsage(nullptr)
+    , statusLabel(nullptr)
 {
     layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 }
 
-DiskUsageViewer::~ DiskUsageViewer()
+DiskUsageViewer::~DiskUsageViewer()
 {
     if (diskUsage) {
         KConfigGroup group(krConfig, "DiskUsageViewer");
@@ -40,7 +42,9 @@ void DiskUsageViewer::openUrl(QUrl url)
     if (diskUsage == nullptr) {
         diskUsage = new DiskUsage("DiskUsageViewer", this);
 
-        connect(diskUsage, &DiskUsage::enteringDirectory, this, [=]() { slotUpdateStatus(); });
+        connect(diskUsage, &DiskUsage::enteringDirectory, this, [=]() {
+            slotUpdateStatus();
+        });
         connect(diskUsage, &DiskUsage::status, this, &DiskUsageViewer::slotUpdateStatus);
         connect(diskUsage, &DiskUsage::newSearch, this, &DiskUsageViewer::slotNewSearch);
         layout->addWidget(diskUsage, 0, 0);
@@ -48,7 +52,7 @@ void DiskUsageViewer::openUrl(QUrl url)
         diskUsage->show();
 
         KConfigGroup group(krConfig, "DiskUsageViewer");
-        int view = group.readEntry("View",  VIEW_FILELIGHT);
+        int view = group.readEntry("View", VIEW_FILELIGHT);
         if (view < VIEW_LINES || view > VIEW_FILELIGHT)
             view = VIEW_FILELIGHT;
         diskUsage->setView(view);
@@ -94,7 +98,7 @@ void DiskUsageViewer::slotUpdateStatus(QString status)
 {
     if (statusLabel) {
         if (status.isEmpty()) {
-            Directory * dir = diskUsage->getCurrentDir();
+            Directory *dir = diskUsage->getCurrentDir();
             if (dir)
                 status = prefix + dir->name() + "  [" + KIO::convertSize(dir->size()) + ']';
         }
@@ -106,4 +110,3 @@ void DiskUsageViewer::slotNewSearch()
 {
     diskUsage->load(ACTIVE_PANEL->virtualPath());
 }
-

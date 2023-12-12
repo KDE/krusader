@@ -17,9 +17,9 @@
 #include <kservice_version.h>
 
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 82, 0)
-    #define CREATE_KPART_5_82 1
+#define CREATE_KPART_5_82 1
 #else
-    #define CREATE_KPART_5_82 0
+#define CREATE_KPART_5_82 0
 #endif
 
 #include <KConfigCore/KSharedConfig>
@@ -31,22 +31,25 @@
 #include <KParts/PartLoader>
 #endif
 
-#include <KWidgetsAddons/KMessageBox>
-#include <KService/KServiceTypeProfile>
-#include <KService/KMimeTypeTrader>
 #include <KIOCore/KFileItem>
+#include <KService/KMimeTypeTrader>
+#include <KService/KServiceTypeProfile>
+#include <KWidgetsAddons/KMessageBox>
 
-#include "lister.h"
 #include "../defaults.h"
+#include "lister.h"
 
 #define DICTSIZE 211
 
-PanelViewerBase::PanelViewerBase(QWidget *parent, KrViewer::Mode mode) :
-        QStackedWidget(parent), mimes(nullptr), cpart(nullptr), mode(mode)
+PanelViewerBase::PanelViewerBase(QWidget *parent, KrViewer::Mode mode)
+    : QStackedWidget(parent)
+    , mimes(nullptr)
+    , cpart(nullptr)
+    , mode(mode)
 {
     setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Ignored));
 
-    mimes = new QHash<QString, QPointer<KParts::ReadOnlyPart> >();
+    mimes = new QHash<QString, QPointer<KParts::ReadOnlyPart>>();
     cpart = nullptr;
     // NOTE: the fallback should be never visible. The viewer is not opened without a file and the
     // tab is closed if a file cannot be opened.
@@ -59,9 +62,9 @@ PanelViewerBase::PanelViewerBase(QWidget *parent, KrViewer::Mode mode) :
 
 PanelViewerBase::~PanelViewerBase()
 {
-// cpart->queryClose();
+    // cpart->queryClose();
     closeUrl();
-    QHashIterator< QString, QPointer<KParts::ReadOnlyPart> > lit(*mimes);
+    QHashIterator<QString, QPointer<KParts::ReadOnlyPart>> lit(*mimes);
     while (lit.hasNext()) {
         QPointer<KParts::ReadOnlyPart> p = lit.next().value();
         if (p)
@@ -72,24 +75,24 @@ PanelViewerBase::~PanelViewerBase()
     delete fallback;
 }
 
-void PanelViewerBase::slotStatResult(KJob* job)
+void PanelViewerBase::slotStatResult(KJob *job)
 {
     if (job->error()) {
         KMessageBox::error(this, job->errorString());
         emit openUrlFinished(this, false);
     } else {
-        KIO::UDSEntry entry = dynamic_cast<KIO::StatJob*>(job)->statResult();
+        KIO::UDSEntry entry = dynamic_cast<KIO::StatJob *>(job)->statResult();
         openFile(KFileItem(entry, curl));
     }
 }
 
-KParts::ReadOnlyPart* PanelViewerBase::getPart(const QString& mimetype)
+KParts::ReadOnlyPart *PanelViewerBase::getPart(const QString &mimetype)
 {
-    KParts::ReadOnlyPart* part = nullptr;
+    KParts::ReadOnlyPart *part = nullptr;
 
     if (mimes->find(mimetype) == mimes->end()) {
         part = createPart(mimetype);
-        if(part)
+        if (part)
             mimes->insert(mimetype, part);
     } else
         part = (*mimes)[mimetype];
@@ -97,7 +100,7 @@ KParts::ReadOnlyPart* PanelViewerBase::getPart(const QString& mimetype)
     return part;
 }
 
-void PanelViewerBase::openUrl(const QUrl& url)
+void PanelViewerBase::openUrl(const QUrl &url)
 {
     closeUrl();
     curl = url;
@@ -111,31 +114,29 @@ void PanelViewerBase::openUrl(const QUrl& url)
         }
         openFile(KFileItem(url));
     } else {
-        KIO::StatJob* statJob = KIO::stat(url, KIO::HideProgressInfo);
+        KIO::StatJob *statJob = KIO::stat(url, KIO::HideProgressInfo);
         connect(statJob, &KIO::StatJob::result, this, &PanelViewerBase::slotStatResult);
     }
 }
 
-
 /* ----==={ PanelViewer }===---- */
 
-PanelViewer::PanelViewer(QWidget *parent, KrViewer::Mode mode) :
-        PanelViewerBase(parent, mode)
+PanelViewer::PanelViewer(QWidget *parent, KrViewer::Mode mode)
+    : PanelViewerBase(parent, mode)
 {
 }
 
-PanelViewer::~PanelViewer()
-= default;
+PanelViewer::~PanelViewer() = default;
 
-KParts::ReadOnlyPart* PanelViewer::getListerPart(bool hexMode)
+KParts::ReadOnlyPart *PanelViewer::getListerPart(bool hexMode)
 {
-    KParts::ReadOnlyPart* part = nullptr;
+    KParts::ReadOnlyPart *part = nullptr;
 
     if (mimes->find(QLatin1String("krusader_lister")) == mimes->end()) {
         part = new Lister(this);
         mimes->insert(QLatin1String("krusader_lister"), part);
     } else
-        part = (*mimes)[ QLatin1String("krusader_lister")];
+        part = (*mimes)[QLatin1String("krusader_lister")];
 
     if (part) {
         auto *lister = qobject_cast<Lister *>((KParts::ReadOnlyPart *)part);
@@ -145,13 +146,13 @@ KParts::ReadOnlyPart* PanelViewer::getListerPart(bool hexMode)
     return part;
 }
 
-KParts::ReadOnlyPart* PanelViewer::getHexPart()
+KParts::ReadOnlyPart *PanelViewer::getHexPart()
 {
-    KParts::ReadOnlyPart* part = nullptr;
+    KParts::ReadOnlyPart *part = nullptr;
 
     if (KConfigGroup(krConfig, "General").readEntry("UseOktetaViewer", _UseOktetaViewer)) {
         if (mimes->find("oktetapart") == mimes->end()) {
-            KPluginFactory* factory = nullptr;
+            KPluginFactory *factory = nullptr;
             // Okteta >= 0.26 provides a desktop file, prefer that as the binary changes name
             KService::Ptr service = KService::serviceByDesktopName("oktetapart");
             if (service) {
@@ -171,25 +172,29 @@ KParts::ReadOnlyPart* PanelViewer::getHexPart()
     return part ? part : getListerPart(true);
 }
 
-KParts::ReadOnlyPart* PanelViewer::getTextPart()
+KParts::ReadOnlyPart *PanelViewer::getTextPart()
 {
-    KParts::ReadOnlyPart* part = getPart("text/plain");
-    if(!part)
+    KParts::ReadOnlyPart *part = getPart("text/plain");
+    if (!part)
         part = getPart("all/allfiles");
     return part ? part : getListerPart();
 }
 
-KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KFileItem& fi)
+KParts::ReadOnlyPart *PanelViewer::getDefaultPart(const KFileItem &fi)
 {
     KConfigGroup group(krConfig, "General");
     QString modeString = group.readEntry("Default Viewer Mode", QString("generic"));
 
     KrViewer::Mode mode = KrViewer::Generic;
 
-    if (modeString == "generic") mode = KrViewer::Generic;
-    else if (modeString == "text") mode = KrViewer::Text;
-    else if (modeString == "hex") mode = KrViewer::Hex;
-    else if (modeString == "lister") mode = KrViewer::Lister;
+    if (modeString == "generic")
+        mode = KrViewer::Generic;
+    else if (modeString == "text")
+        mode = KrViewer::Text;
+    else if (modeString == "hex")
+        mode = KrViewer::Hex;
+    else if (modeString == "lister")
+        mode = KrViewer::Lister;
 
     QMimeType mimeType = fi.determineMimeType();
     bool isBinary = false;
@@ -202,13 +207,11 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KFileItem& fi)
 
     QString mimetype = fi.mimetype();
 
-    KParts::ReadOnlyPart* part = nullptr;
+    KParts::ReadOnlyPart *part = nullptr;
 
-    switch(mode) {
+    switch (mode) {
     case KrViewer::Generic:
-        if ((mimetype.startsWith(QLatin1String("text/")) ||
-             mimetype.startsWith(QLatin1String("all/"))) &&
-            fileSize > limit) {
+        if ((mimetype.startsWith(QLatin1String("text/")) || mimetype.startsWith(QLatin1String("all/"))) && fileSize > limit) {
             part = getListerPart(isBinary);
             break;
         } else if ((part = getPart(mimetype))) {
@@ -235,7 +238,7 @@ KParts::ReadOnlyPart* PanelViewer::getDefaultPart(const KFileItem& fi)
 
 void PanelViewer::openFile(KFileItem fi)
 {
-    switch(mode) {
+    switch (mode) {
     case KrViewer::Generic:
         cpart = getPart(fi.mimetype());
         break;
@@ -260,7 +263,7 @@ void PanelViewer::openFile(KFileItem fi)
         setCurrentWidget(cpart->widget());
 
         if (cpart->inherits("KParts::ReadWritePart"))
-            dynamic_cast<KParts::ReadWritePart*>(cpart.data())->setReadWrite(false);
+            dynamic_cast<KParts::ReadWritePart *>(cpart.data())->setReadWrite(false);
         KParts::OpenUrlArguments args;
         args.setReload(true);
         cpart->setArguments(args);
@@ -318,11 +321,11 @@ static T *createKPartForMimeType(QString mimetype, QWidget *parentWidget)
     return pluginFactory->create<T>(parentWidget, parentWidget);
 }
 
-#endif  // CREATE_KPART_5_82
+#endif // CREATE_KPART_5_82
 
-KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
+KParts::ReadOnlyPart *PanelViewer::createPart(QString mimetype)
 {
-    KParts::ReadOnlyPart * part = nullptr;
+    KParts::ReadOnlyPart *part = nullptr;
 
 #if CREATE_KPART_5_82
     part = createKPartForMimeType<KParts::ReadOnlyPart>(mimetype, this);
@@ -340,7 +343,7 @@ KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
 #endif
 
     if (part) {
-        KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
+        KParts::BrowserExtension *ext = KParts::BrowserExtension::childObject(part);
         if (ext) {
             connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed, this, &PanelViewer::openUrl);
             connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed, this, &PanelViewer::openUrlRequest);
@@ -349,16 +352,14 @@ KParts::ReadOnlyPart* PanelViewer::createPart(QString mimetype)
     return part;
 }
 
-
 /* ----==={ PanelEditor }===---- */
 
-PanelEditor::PanelEditor(QWidget *parent, KrViewer::Mode mode) :
-        PanelViewerBase(parent, mode)
+PanelEditor::PanelEditor(QWidget *parent, KrViewer::Mode mode)
+    : PanelViewerBase(parent, mode)
 {
 }
 
-PanelEditor::~PanelEditor()
-= default;
+PanelEditor::~PanelEditor() = default;
 
 void PanelEditor::configureDeps()
 {
@@ -375,17 +376,15 @@ void PanelEditor::configureDeps()
 
     if (!foundPlugin)
         KMessageBox::error(nullptr, missingKPartMsg(), i18n("Missing Plugin"), KMessageBox::AllowLink);
-
 }
 
 QString PanelEditor::missingKPartMsg()
 {
     return i18nc("missing kpart - arg1 is a URL",
                  "<b>No text editor plugin available.</b><br/>"
-                    "Internal editor will not work without this.<br/>"
-                    "You can fix this by installing Kate:<br/>%1",
-                 QString("<a href='%1'>%1</a>").arg(
-                    "https://kde.org/applications/utilities/org.kde.kate"));
+                 "Internal editor will not work without this.<br/>"
+                 "You can fix this by installing Kate:<br/>%1",
+                 QString("<a href='%1'>%1</a>").arg("https://kde.org/applications/utilities/org.kde.kate"));
 }
 
 void PanelEditor::openFile(KFileItem fi)
@@ -398,11 +397,10 @@ void PanelEditor::openFile(KFileItem fi)
     if (mode == KrViewer::Generic)
         cpart = getPart(mimetype);
 
-    if(fileSize > limitMB * 0x100000) {
-        if(!cpart || mimetype.startsWith(QLatin1String("text/")) ||
-                mimetype.startsWith(QLatin1String("all/"))) {
-            if(KMessageBox::Cancel == KMessageBox::warningContinueCancel(this,
-                  i18n("%1 is bigger than %2 MB" , curl.toDisplayString(QUrl::PreferLocalFile), limitMB))) {
+    if (fileSize > limitMB * 0x100000) {
+        if (!cpart || mimetype.startsWith(QLatin1String("text/")) || mimetype.startsWith(QLatin1String("all/"))) {
+            if (KMessageBox::Cancel
+                == KMessageBox::warningContinueCancel(this, i18n("%1 is bigger than %2 MB", curl.toDisplayString(QUrl::PreferLocalFile), limitMB))) {
                 setCurrentWidget(fallback);
                 emit openUrlFinished(this, false);
                 return;
@@ -428,8 +426,7 @@ void PanelEditor::openFile(KFileItem fi)
             return;
         } // else: don't show error message - assume this has been done by the editor part
     } else
-        KMessageBox::error(this, missingKPartMsg(), i18n("Cannot edit %1", curl.toDisplayString(QUrl::PreferLocalFile)),
-                           KMessageBox::AllowLink);
+        KMessageBox::error(this, missingKPartMsg(), i18n("Cannot edit %1", curl.toDisplayString(QUrl::PreferLocalFile)), KMessageBox::AllowLink);
 
     setCurrentWidget(fallback);
     emit openUrlFinished(this, false);
@@ -437,13 +434,15 @@ void PanelEditor::openFile(KFileItem fi)
 
 bool PanelEditor::queryClose()
 {
-    if (!cpart) return true;
+    if (!cpart)
+        return true;
     return dynamic_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->queryClose();
 }
 
 bool PanelEditor::closeUrl()
 {
-    if (!cpart) return false;
+    if (!cpart)
+        return false;
 
     dynamic_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->closeUrl(false);
 
@@ -452,9 +451,9 @@ bool PanelEditor::closeUrl()
     return true;
 }
 
-KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
+KParts::ReadOnlyPart *PanelEditor::createPart(QString mimetype)
 {
-    KParts::ReadWritePart * part = nullptr;
+    KParts::ReadWritePart *part = nullptr;
 
 #if CREATE_KPART_5_82
     part = createKPartForMimeType<KParts::ReadWritePart>(mimetype, this);
@@ -472,7 +471,7 @@ KParts::ReadOnlyPart* PanelEditor::createPart(QString mimetype)
 #endif
 
     if (part) {
-        KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject(part);
+        KParts::BrowserExtension *ext = KParts::BrowserExtension::childObject(part);
         if (ext) {
             connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed, this, &PanelEditor::openUrl);
             connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed, this, &PanelEditor::openUrlRequest);
@@ -488,4 +487,3 @@ bool PanelEditor::isModified()
     else
         return false;
 }
-

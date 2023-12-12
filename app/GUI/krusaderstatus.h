@@ -6,7 +6,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef KRUSADERSTATUS_H
 #define KRUSADERSTATUS_H
 
@@ -24,7 +23,6 @@ public:
 
 private:
     QLabel *mess;
-
 };
 
 #endif

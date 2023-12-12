@@ -7,10 +7,10 @@
 */
 
 #include "krbookmarkbutton.h"
-#include "krbookmarkhandler.h"
-#include "../krglobal.h"
-#include "../icon.h"
 #include "../compat.h"
+#include "../icon.h"
+#include "../krglobal.h"
+#include "krbookmarkhandler.h"
 
 // QtGui
 #include <QPixmap>
@@ -20,8 +20,8 @@
 
 #include <KI18n/KLocalizedString>
 
-
-KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
+KrBookmarkButton::KrBookmarkButton(QWidget *parent)
+    : QToolButton(parent)
 {
     setAutoRaise(true);
     setIcon(Icon("bookmarks"));
@@ -40,7 +40,7 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent)
 
 void KrBookmarkButton::populate()
 {
-    krBookMan->populate(static_cast<QMenu*>(menu()));
+    krBookMan->populate(static_cast<QMenu *>(menu()));
 }
 
 void KrBookmarkButton::showMenu()
@@ -48,4 +48,3 @@ void KrBookmarkButton::showMenu()
     populate();
     menu()->exec(mapToGlobal(QPoint(0, height())));
 }
-

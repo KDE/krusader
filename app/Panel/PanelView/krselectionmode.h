@@ -25,49 +25,63 @@
 class KrSelectionMode
 {
 public:
-    static KrSelectionMode * getSelectionHandlerForMode(const QString &mode);
-    static KrSelectionMode * getSelectionHandler();
+    static KrSelectionMode *getSelectionHandlerForMode(const QString &mode);
+    static KrSelectionMode *getSelectionHandler();
     static void resetSelectionHandler();
 
     virtual void init() = 0; // everyone must implement this in order to be a selection mode
-    inline bool useQTSelection() {
+    inline bool useQTSelection()
+    {
         return _useQTSelection;
     }
-    inline bool spaceMovesDown() {
+    inline bool spaceMovesDown()
+    {
         return _spaceMovesDown;
     }
-    inline bool insertMovesDown() {
+    inline bool insertMovesDown()
+    {
         return _insertMovesDown;
     }
-    inline bool spaceCalculatesDiskSpace() {
+    inline bool spaceCalculatesDiskSpace()
+    {
         return _spaceCalculatesDiskSpace;
     }
-    inline bool rightButtonSelects() {
+    inline bool rightButtonSelects()
+    {
         return _rightButtonSelects;
     }
-    inline bool leftButtonSelects() {
+    inline bool leftButtonSelects()
+    {
         return _leftButtonSelects;
     }
-    inline bool rightButtonPreservesSelection() {
+    inline bool rightButtonPreservesSelection()
+    {
         return _rightButtonPreservesSelection;
     }
-    inline bool leftButtonPreservesSelection() {
+    inline bool leftButtonPreservesSelection()
+    {
         return _leftButtonPreservesSelection;
     }
-    inline bool shiftCtrlRightButtonSelects() {
+    inline bool shiftCtrlRightButtonSelects()
+    {
         return _shiftCtrlRightButtonSelects;
     }
-    inline bool shiftCtrlLeftButtonSelects() {
+    inline bool shiftCtrlLeftButtonSelects()
+    {
         return _shiftCtrlLeftButtonSelects;
     }
-    inline int showContextMenu() {
+    inline int showContextMenu()
+    {
         return _showContextMenu;
     } // 0: no, -1: yes, n>0: after n milliseconds
-    inline int resetSelectionItems() {
+    inline int resetSelectionItems()
+    {
         return _resetSelectionItems;
     }
 
-    virtual ~KrSelectionMode() {}
+    virtual ~KrSelectionMode()
+    {
+    }
 
 protected:
     bool _useQTSelection, _spaceMovesDown, _insertMovesDown, _spaceCalculatesDiskSpace;
@@ -80,7 +94,8 @@ protected:
 class KonqSelectionMode : public KrSelectionMode
 {
 public:
-    void init() override {
+    void init() override
+    {
         _useQTSelection = true;
         _spaceMovesDown = false;
         _insertMovesDown = true;
@@ -99,7 +114,8 @@ public:
 class OriginalSelectionMode : public KrSelectionMode
 {
 public:
-    void init() override {
+    void init() override
+    {
         _useQTSelection = false;
         _spaceMovesDown = true;
         _insertMovesDown = true;
@@ -118,7 +134,8 @@ public:
 class TCSelectionMode : public KrSelectionMode
 {
 public:
-    void init() override {
+    void init() override
+    {
         _useQTSelection = false;
         _spaceMovesDown = false;
         _insertMovesDown = true;
@@ -137,7 +154,8 @@ public:
 class ErgonomicSelectionMode : public KrSelectionMode
 {
 public:
-    void init() override {
+    void init() override
+    {
         _useQTSelection = false;
         _spaceMovesDown = false;
         _insertMovesDown = true;
@@ -153,7 +171,7 @@ public:
     }
 };
 
-class UserSelectionMode: public KrSelectionMode
+class UserSelectionMode : public KrSelectionMode
 {
 public:
     void init() override;

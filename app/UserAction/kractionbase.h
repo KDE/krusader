@@ -19,7 +19,9 @@ class KrActionProc;
 class KrActionBase
 {
 public:
-    KrActionBase() {}
+    KrActionBase()
+    {
+    }
     virtual ~KrActionBase();
 
     /** \brief Specifies the mode for executing the action */
@@ -87,11 +89,10 @@ public:
      *
      * @return A new instance of KrActionProc
      */
-    virtual KrActionProc* actionProcFactoryMethod();
-    virtual void handleError(const Error& err);
+    virtual KrActionProc *actionProcFactoryMethod();
+    virtual void handleError(const Error &err);
 
     void exec();
-
 };
 
 #endif

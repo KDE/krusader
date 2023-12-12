@@ -13,9 +13,9 @@
 // QtCore
 #include <QUrl>
 // QtWidgets
-#include <QLayout>
-#include <QLabel>
 #include <QGridLayout>
+#include <QLabel>
+#include <QLayout>
 
 class DiskUsageViewer : public QWidget
 {
@@ -29,7 +29,8 @@ public:
     void closeUrl();
     void setStatusLabel(QLabel *statLabel, QString pref);
 
-    inline DiskUsage * getWidget() {
+    inline DiskUsage *getWidget()
+    {
         return diskUsage;
     }
 

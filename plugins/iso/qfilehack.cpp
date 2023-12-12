@@ -7,15 +7,14 @@
 
 #include "qfilehack.h"
 
-QFileHack::QFileHack()
-= default;
+QFileHack::QFileHack() = default;
 
-QFileHack::QFileHack(const QString & name) : QFile(name)
+QFileHack::QFileHack(const QString &name)
+    : QFile(name)
 {
 }
 
-QFileHack::~QFileHack()
-= default;
+QFileHack::~QFileHack() = default;
 
 bool QFileHack::open(QFile::OpenMode m)
 {
@@ -25,8 +24,8 @@ bool QFileHack::open(QFile::OpenMode m)
 //    m |= IO_Async; // On linux, set O_NONBLOCK, opens CD-ROMs faster
 #endif
     ret = QFile::open(m);
-//    if (ret && isSequential() ) {
-//        setOpenMode(m | (QFile::OpenMode)IO_Direct);
-//    }
+    //    if (ret && isSequential() ) {
+    //        setOpenMode(m | (QFile::OpenMode)IO_Direct);
+    //    }
     return ret;
 }

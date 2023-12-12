@@ -9,33 +9,41 @@
 
 #include "krviewfactory.h"
 
-#include "krinterdetailedview.h"
 #include "krinterbriefview.h"
+#include "krinterdetailedview.h"
 
 #include <stdio.h>
 
 #include <KI18n/KLocalizedString>
 
-KrViewInstance::KrViewInstance(int id, const QString &name, const QString &desc,
-                               const QString &iconName, const QKeySequence &shortcut)
-    : m_id(id), m_name(name), m_description(desc), m_iconName(iconName), m_shortcut(shortcut)
+KrViewInstance::KrViewInstance(int id, const QString &name, const QString &desc, const QString &iconName, const QKeySequence &shortcut)
+    : m_id(id)
+    , m_name(name)
+    , m_description(desc)
+    , m_iconName(iconName)
+    , m_shortcut(shortcut)
 {
 }
 
-template <typename T>
+template<typename T>
 class KrViewInstanceImpl : public KrViewInstance
 {
-  public:
-    KrViewInstanceImpl(int id, const QString &name, const QString &desc, const QString &icon,
-                       const QKeySequence &shortcut)
-        : KrViewInstance(id, name, desc, icon, shortcut) {}
+public:
+    KrViewInstanceImpl(int id, const QString &name, const QString &desc, const QString &icon, const QKeySequence &shortcut)
+        : KrViewInstance(id, name, desc, icon, shortcut)
+    {
+    }
 
-    KrView *create(QWidget *w, KConfig *cfg) override {
+    KrView *create(QWidget *w, KConfig *cfg) override
+    {
         return new T(w, *this, cfg);
     }
 };
 
-KrViewFactory::KrViewFactory() : m_defaultViewId(-1) {}
+KrViewFactory::KrViewFactory()
+    : m_defaultViewId(-1)
+{
+}
 
 // static initialization, on first use idiom
 KrViewFactory &KrViewFactory::self()
@@ -50,11 +58,10 @@ KrViewFactory &KrViewFactory::self()
 
 void KrViewFactory::init()
 {
-    registerView(new KrViewInstanceImpl<KrInterDetailedView> (0, "KrInterDetailedView",
-        i18n("&Detailed View"), "view-list-details", Qt::ALT + Qt::SHIFT + Qt::Key_D));
+    registerView(
+        new KrViewInstanceImpl<KrInterDetailedView>(0, "KrInterDetailedView", i18n("&Detailed View"), "view-list-details", Qt::ALT + Qt::SHIFT + Qt::Key_D));
 
-    registerView(new KrViewInstanceImpl<KrInterBriefView> (1, "KrInterBriefView",
-        i18n("&Brief View"), "view-list-icons", Qt::ALT + Qt::SHIFT + Qt::Key_B));
+    registerView(new KrViewInstanceImpl<KrInterBriefView>(1, "KrInterBriefView", i18n("&Brief View"), "view-list-icons", Qt::ALT + Qt::SHIFT + Qt::Key_B));
 }
 
 KrView *KrViewFactory::createView(int id, QWidget *widget, KConfig *cfg)

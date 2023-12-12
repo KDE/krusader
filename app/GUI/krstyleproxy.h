@@ -11,16 +11,12 @@
 // QtWidgets
 #include <QProxyStyle>
 
-class KrStyleProxy: public QProxyStyle
+class KrStyleProxy : public QProxyStyle
 {
 public:
-  void drawPrimitive(PrimitiveElement element, const QStyleOption *option, QPainter *painter,
-                     const QWidget *widget = nullptr) const override;
+    void drawPrimitive(PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget = nullptr) const override;
 
-  int styleHint(StyleHint hint,
-                    const QStyleOption *option,
-                    const QWidget *widget,
-                    QStyleHintReturn *returnData) const override;
+    int styleHint(StyleHint hint, const QStyleOption *option, const QWidget *widget, QStyleHintReturn *returnData) const override;
 };
 
 #endif /* KRSTYLEPROXY_H */

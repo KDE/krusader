@@ -7,24 +7,29 @@
 */
 
 #include "krbookmark.h"
-#include "../krglobal.h"
-#include "../icon.h"
 #include "../Archive/krarchandler.h"
 #include "../FileSystem/krtrashhandler.h"
 #include "../Panel/listpanelactions.h"
+#include "../icon.h"
+#include "../krglobal.h"
 
 #include <KI18n/KLocalizedString>
 #include <KXmlGui/KActionCollection>
 #include <utility>
 
-#define BM_NAME(X)  (QString("Bookmark:")+X)
+#define BM_NAME(X) (QString("Bookmark:") + X)
 
-static const char* NAME_TRASH = I18N_NOOP("Trash bin");
-static const char* NAME_VIRTUAL = I18N_NOOP("Virtual Filesystem");
-static const char* NAME_LAN = I18N_NOOP("Local Network");
+static const char *NAME_TRASH = I18N_NOOP("Trash bin");
+static const char *NAME_VIRTUAL = I18N_NOOP("Virtual Filesystem");
+static const char *NAME_LAN = I18N_NOOP("Local Network");
 
-KrBookmark::KrBookmark(const QString& name, QUrl url, KActionCollection *parent, const QString& iconName, const QString& actionName) :
-        QAction(parent), _url(std::move(url)), _iconName(iconName), _folder(false), _separator(false), _autoDelete(true)
+KrBookmark::KrBookmark(const QString &name, QUrl url, KActionCollection *parent, const QString &iconName, const QString &actionName)
+    : QAction(parent)
+    , _url(std::move(url))
+    , _iconName(iconName)
+    , _folder(false)
+    , _separator(false)
+    , _autoDelete(true)
 {
     QString actName = actionName.isNull() ? BM_NAME(name) : BM_NAME(actionName);
     setText(name);
@@ -34,8 +39,12 @@ KrBookmark::KrBookmark(const QString& name, QUrl url, KActionCollection *parent,
     setIconName(iconName);
 }
 
-KrBookmark::KrBookmark(const QString& name, const QString& iconName) :
-        QAction(Icon(iconName), name, nullptr), _iconName(iconName), _folder(true), _separator(false), _autoDelete(false)
+KrBookmark::KrBookmark(const QString &name, const QString &iconName)
+    : QAction(Icon(iconName), name, nullptr)
+    , _iconName(iconName)
+    , _folder(true)
+    , _separator(false)
+    , _autoDelete(false)
 {
     setIcon(Icon(iconName == "" ? "folder" : iconName));
 }
@@ -50,7 +59,7 @@ KrBookmark::~KrBookmark()
     }
 }
 
-void KrBookmark::setIconName(const QString& iconName)
+void KrBookmark::setIconName(const QString &iconName)
 {
     if (!iconName.isEmpty()) {
         setIcon(Icon(iconName));
@@ -63,12 +72,12 @@ void KrBookmark::setIconName(const QString& iconName)
     }
 }
 
-KrBookmark * KrBookmark::getExistingBookmark(const QString& actionName, KActionCollection *collection)
+KrBookmark *KrBookmark::getExistingBookmark(const QString &actionName, KActionCollection *collection)
 {
-    return dynamic_cast<KrBookmark*>(collection->action(BM_NAME(actionName)));
+    return dynamic_cast<KrBookmark *>(collection->action(BM_NAME(actionName)));
 }
 
-KrBookmark * KrBookmark::trash(KActionCollection *collection)
+KrBookmark *KrBookmark::trash(KActionCollection *collection)
 {
     KrBookmark *bm = getExistingBookmark(i18n(NAME_TRASH), collection);
     if (!bm)
@@ -78,7 +87,7 @@ KrBookmark * KrBookmark::trash(KActionCollection *collection)
     return bm;
 }
 
-KrBookmark * KrBookmark::virt(KActionCollection *collection)
+KrBookmark *KrBookmark::virt(KActionCollection *collection)
 {
     KrBookmark *bm = getExistingBookmark(i18n(NAME_VIRTUAL), collection);
     if (!bm) {
@@ -88,7 +97,7 @@ KrBookmark * KrBookmark::virt(KActionCollection *collection)
     return bm;
 }
 
-KrBookmark * KrBookmark::lan(KActionCollection *collection)
+KrBookmark *KrBookmark::lan(KActionCollection *collection)
 {
     KrBookmark *bm = getExistingBookmark(i18n(NAME_LAN), collection);
     if (!bm) {
@@ -98,7 +107,7 @@ KrBookmark * KrBookmark::lan(KActionCollection *collection)
     return bm;
 }
 
-QAction * KrBookmark::jumpBackAction(KActionCollection *collection, bool isSetter, ListPanelActions *sourceActions)
+QAction *KrBookmark::jumpBackAction(KActionCollection *collection, bool isSetter, ListPanelActions *sourceActions)
 {
     auto actionName = isSetter ? QString("setJumpBack") : QString("jumpBack");
     auto action = collection->action(actionName);
@@ -123,7 +132,7 @@ QAction * KrBookmark::jumpBackAction(KActionCollection *collection, bool isSette
     return action;
 }
 
-KrBookmark * KrBookmark::separator()
+KrBookmark *KrBookmark::separator()
 {
     KrBookmark *bm = new KrBookmark("");
     bm->_separator = true;
@@ -131,9 +140,7 @@ KrBookmark * KrBookmark::separator()
     return bm;
 }
 
-
 void KrBookmark::activatedProxy()
 {
     emit activated(url());
 }
-

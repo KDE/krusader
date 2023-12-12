@@ -10,8 +10,8 @@
 #define KRCOLORCACHE_H
 
 // QtCore
-#include <QObject>
 #include <QList>
+#include <QObject>
 // QtGui
 #include <QColor>
 #include <QPalette>
@@ -46,29 +46,30 @@
  */
 class KrColorSettings
 {
-    class KrColorSettingsImpl * m_impl;
+    class KrColorSettingsImpl *m_impl;
+
 public:
     KrColorSettings();
     KrColorSettings(const KrColorSettings &);
     ~KrColorSettings();
-    const KrColorSettings & operator= (const KrColorSettings &);
+    const KrColorSettings &operator=(const KrColorSettings &);
 
-    static bool isColorNameValid(const QString & settingName);
+    static bool isColorNameValid(const QString &settingName);
     static QList<QString> getColorNames();
-    bool setColorValue(const QString & settingName, const QColor & color);
-    QColor getColorValue(const QString & settingName) const;
-    bool setColorTextValue(const QString & settingName, const QString & colorText);
-    QString getColorTextValue(const QString & settingName) const;
+    bool setColorValue(const QString &settingName, const QColor &color);
+    QColor getColorValue(const QString &settingName) const;
+    bool setColorTextValue(const QString &settingName, const QString &colorText);
+    QString getColorTextValue(const QString &settingName) const;
 
-    static bool isNumNameValid(const QString & settingName);
+    static bool isNumNameValid(const QString &settingName);
     static QList<QString> getNumNames();
-    bool setNumValue(const QString & settingName, int value);
-    int getNumValue(const QString & settingName, int defaultValue = 0) const;
+    bool setNumValue(const QString &settingName, int value);
+    int getNumValue(const QString &settingName, int defaultValue = 0) const;
 
-    static bool isBoolNameValid(const QString & settingName);
+    static bool isBoolNameValid(const QString &settingName);
     static QList<QString> getBoolNames();
-    bool setBoolValue(const QString & settingName, bool value);
-    int getBoolValue(const QString & settingName, bool defaultValue = false) const;
+    bool setBoolValue(const QString &settingName, bool value);
+    int getBoolValue(const QString &settingName, bool defaultValue = false) const;
 };
 
 /**
@@ -77,13 +78,13 @@ public:
 class KrColorItemType
 {
 public:
-    enum FileType {File, InvalidSymlink, Symlink, Directory, Executable};
+    enum FileType { File, InvalidSymlink, Symlink, Directory, Executable };
     FileType m_fileType;
     bool m_alternateBackgroundColor, m_activePanel, m_currentItem, m_selectedItem;
     KrColorItemType();
     KrColorItemType(FileType type, bool alternateBackgroundColor, bool activePanel, bool currentItem, bool selectedItem);
     KrColorItemType(const KrColorItemType &);
-    const KrColorItemType & operator= (const KrColorItemType &);
+    const KrColorItemType &operator=(const KrColorItemType &);
 };
 
 /**
@@ -100,32 +101,45 @@ public:
 class KrColorGroup
 {
 public:
-    inline KrColorGroup() : _textColor(), _backgroundColor(), _highlightedTextColor(),
-            _highlightedBackgroundColor() {}
+    inline KrColorGroup()
+        : _textColor()
+        , _backgroundColor()
+        , _highlightedTextColor()
+        , _highlightedBackgroundColor()
+    {
+    }
 
-    inline const QColor & text() const            {
+    inline const QColor &text() const
+    {
         return _textColor;
     }
-    inline const QColor & background() const      {
+    inline const QColor &background() const
+    {
         return _backgroundColor;
     }
-    inline const QColor & highlight() const       {
+    inline const QColor &highlight() const
+    {
         return _highlightedBackgroundColor;
     }
-    inline const QColor & highlightedText() const {
+    inline const QColor &highlightedText() const
+    {
         return _highlightedTextColor;
     }
 
-    inline void setText(const QColor & c)               {
+    inline void setText(const QColor &c)
+    {
         _textColor = c;
     }
-    inline void setBackground(const QColor & c)          {
+    inline void setBackground(const QColor &c)
+    {
         _backgroundColor = c;
     }
-    inline void setHighlight(const QColor & c)          {
+    inline void setHighlight(const QColor &c)
+    {
         _highlightedBackgroundColor = c;
     }
-    inline void setHighlightedText(const QColor & c)    {
+    inline void setHighlightedText(const QColor &c)
+    {
         _highlightedTextColor = c;
     }
 
@@ -139,17 +153,18 @@ protected:
 class KrColorCache : public QObject
 {
     Q_OBJECT
-    static KrColorCache * m_instance;
-    class KrColorCacheImpl * m_impl;
+    static KrColorCache *m_instance;
+    class KrColorCacheImpl *m_impl;
     KrColorCache(const KrColorCache &);
-    const KrColorCache & operator= (const KrColorCache &);
+    const KrColorCache &operator=(const KrColorCache &);
+
 public:
     KrColorCache();
     ~KrColorCache() override;
-    static KrColorCache & getColorCache();
-    void getColors(KrColorGroup & result, const KrColorItemType & type) const;
-    bool getDimSettings(QColor & dimColor, int & dimFactor);
-    static QColor dimColor(const QColor & color, int dim, const QColor & targetColor);
+    static KrColorCache &getColorCache();
+    void getColors(KrColorGroup &result, const KrColorItemType &type) const;
+    bool getDimSettings(QColor &dimColor, int &dimFactor);
+    static QColor dimColor(const QColor &color, int dim, const QColor &targetColor);
 public slots:
     void refreshColors();
     void setColors(const KrColorSettings &);

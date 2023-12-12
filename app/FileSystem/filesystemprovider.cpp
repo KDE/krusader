@@ -21,14 +21,17 @@
 
 #include <KIOCore/KMountPoint>
 
+#include "../JobMan/jobman.h"
+#include "../krservices.h"
 #include "defaultfilesystem.h"
 #include "fileitem.h"
 #include "virtualfilesystem.h"
-#include "../krservices.h"
-#include "../JobMan/jobman.h"
 
-
-FileSystemProvider::FileSystemProvider() : _defaultFileSystem(nullptr), _virtFileSystem(nullptr) {}
+FileSystemProvider::FileSystemProvider()
+    : _defaultFileSystem(nullptr)
+    , _virtFileSystem(nullptr)
+{
+}
 
 FileSystem *FileSystemProvider::getFilesystem(const QUrl &url, FileSystem *oldFilesystem)
 {
@@ -36,9 +39,11 @@ FileSystem *FileSystemProvider::getFilesystem(const QUrl &url, FileSystem *oldFi
     return oldFilesystem && oldFilesystem->type() == type ? oldFilesystem : createFilesystem(type);
 }
 
-void FileSystemProvider::startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
-                                  KIO::CopyJob::CopyMode mode, bool showProgressInfo,
-                                  JobMan::StartMode startMode)
+void FileSystemProvider::startCopyFiles(const QList<QUrl> &urls,
+                                        const QUrl &destination,
+                                        KIO::CopyJob::CopyMode mode,
+                                        bool showProgressInfo,
+                                        JobMan::StartMode startMode)
 {
     FileSystem *fs = getFilesystemInstance(destination);
     fs->copyFiles(urls, destination, mode, showProgressInfo, startMode);
@@ -78,14 +83,13 @@ void FileSystemProvider::refreshFilesystems(const QUrl &directory, bool removed)
             mountPoint = kMountPoint->mountPoint();
     }
 
-    for(const QPointer<FileSystem>& fileSystemPointer: _fileSystems) {
+    for (const QPointer<FileSystem> &fileSystemPointer : _fileSystems) {
         FileSystem *fs = fileSystemPointer.data();
         // refresh all filesystems currently showing this directory
         // and always refresh filesystems showing a virtual directory; it can contain files from
         // various places, we don't know if they were (re)moved. Refreshing is also fast enough.
         const QUrl fileSystemDir = fs->currentDirectory();
-        if ((!fs->hasAutoUpdate() && (fileSystemDir == FileSystem::cleanUrl(directory) ||
-                                      (fs->type() == FileSystem::FS_VIRTUAL && !fs->isRoot())))
+        if ((!fs->hasAutoUpdate() && (fileSystemDir == FileSystem::cleanUrl(directory) || (fs->type() == FileSystem::FS_VIRTUAL && !fs->isRoot())))
             // also refresh if a parent directory was (re)moved (not detected by file watcher)
             || (removed && directory.isParentOf(fileSystemDir))) {
             fs->refresh();
@@ -116,8 +120,11 @@ FileSystem *FileSystemProvider::createFilesystem(FileSystem::FS_TYPE type)
 {
     FileSystem *newFilesystem;
     switch (type) {
-    case (FileSystem::FS_VIRTUAL): newFilesystem = new VirtualFileSystem(); break;
-    default: newFilesystem = new DefaultFileSystem();
+    case (FileSystem::FS_VIRTUAL):
+        newFilesystem = new VirtualFileSystem();
+        break;
+    default:
+        newFilesystem = new DefaultFileSystem();
     }
 
     QPointer<FileSystem> fileSystemPointer(newFilesystem);
@@ -158,7 +165,7 @@ void FileSystemProvider::getACL(FileItem *file, QString &acl, QString &defAcl)
 #endif
 }
 
-QString FileSystemProvider::getACL(const QString & path, int type)
+QString FileSystemProvider::getACL(const QString &path, int type)
 {
     Q_UNUSED(path);
     Q_UNUSED(type);
@@ -176,9 +183,7 @@ QString FileSystemProvider::getACL(const QString & path, int type)
         while (ret == 1) {
             acl_tag_t currentTag;
             acl_get_tag_type(entry, &currentTag);
-            if (currentTag != ACL_USER_OBJ &&
-                    currentTag != ACL_GROUP_OBJ &&
-                    currentTag != ACL_OTHER) {
+            if (currentTag != ACL_USER_OBJ && currentTag != ACL_GROUP_OBJ && currentTag != ACL_OTHER) {
                 aclExtended = true;
                 break;
             }
@@ -197,7 +202,7 @@ QString FileSystemProvider::getACL(const QString & path, int type)
 
     char *aclString = acl_to_text(acl, nullptr);
     QString ret = QString::fromLatin1(aclString);
-    acl_free((void*)aclString);
+    acl_free((void *)aclString);
     acl_free(acl);
 
     return ret;

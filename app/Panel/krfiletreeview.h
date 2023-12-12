@@ -45,7 +45,7 @@ signals:
 
 private slots:
     void slotActivated(const QModelIndex &index);
-    void slotExpanded(const QModelIndex&);
+    void slotExpanded(const QModelIndex &);
     void showHeaderContextMenu();
     void slotCustomContextMenuRequested(const QPoint &point);
 
@@ -54,7 +54,7 @@ protected:
 
 private:
     QUrl urlForProxyIndex(const QModelIndex &index) const;
-    void dropMimeData(const QList<QUrl> & lst, const QUrl &url) const;
+    void dropMimeData(const QList<QUrl> &lst, const QUrl &url) const;
     void copyToClipBoard(const KFileItem &fileItem, bool cut) const;
     void deleteFile(const KFileItem &fileItem, bool moveToTrash = true) const;
     bool briefMode() const;

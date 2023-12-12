@@ -10,8 +10,8 @@
 #define DIRHISTORYBUTTON_H
 
 // QtWidgets
-#include <QWidget>
 #include <QToolButton>
+#include <QWidget>
 
 class QMenu;
 class QAction;
@@ -21,7 +21,7 @@ class DirHistoryButton : public QToolButton
 {
     Q_OBJECT
 public:
-    explicit DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent = nullptr);
+    explicit DirHistoryButton(DirHistoryQueue *hQ, QWidget *parent = nullptr);
     ~DirHistoryButton() override;
 
     void showMenu();
@@ -30,8 +30,8 @@ signals:
     void aboutToShow();
 
 private:
-    QMenu* popupMenu;
-    DirHistoryQueue* historyQueue;
+    QMenu *popupMenu;
+    DirHistoryQueue *historyQueue;
 
 public slots: // Public slots
     /** No descriptions */

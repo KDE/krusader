@@ -21,17 +21,17 @@
 #include <QMenu>
 
 #include <KI18n/KLocalizedString>
-#include <KXmlGui/KActionCollection>
 #include <KWidgetsAddons/KActionMenu>
 #include <KWidgetsAddons/KMessageBox>
+#include <KXmlGui/KActionCollection>
 
-#include "kraction.h"
 #include "../FileSystem/filesystem.h"
 #include "../Panel/PanelView/krview.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../krusader.h"
 #include "../krusaderview.h"
+#include "kraction.h"
 
 UserAction::UserAction()
 {
@@ -43,7 +43,7 @@ UserAction::~UserAction()
     // KrActions are deleted by Krusader's KActionCollection
 }
 
-void UserAction::removeKrAction(KrAction* action)
+void UserAction::removeKrAction(KrAction *action)
 {
     _actions.removeAll(action);
     if (_defaultActions.contains(action->objectName()))
@@ -57,32 +57,32 @@ void UserAction::setAvailability()
 
 void UserAction::setAvailability(const QUrl &currentURL)
 {
-    //qDebug() << "UserAction::setAvailability currentFile: " << currentURL.url();
-    // disable the entries that should not appear in this folder
+    // qDebug() << "UserAction::setAvailability currentFile: " << currentURL.url();
+    //  disable the entries that should not appear in this folder
     QListIterator<KrAction *> it(_actions);
     while (it.hasNext()) {
-        KrAction * action = it.next();
+        KrAction *action = it.next();
         action->setEnabled(action->isAvailable(currentURL));
     }
 }
 
-void UserAction::populateMenu(KActionMenu* menu, const QUrl *currentURL)
+void UserAction::populateMenu(KActionMenu *menu, const QUrl *currentURL)
 {
     // I have not found any method in Qt/KDE
     // for non-recursive searching of children by name ...
     QMap<QString, KActionMenu *> categoryMap;
     QList<KrAction *> uncategorised;
 
-    foreach(KrAction* action, _actions) {
+    foreach (KrAction *action, _actions) {
         const QString category = action->category();
-        if (! action->isEnabled())
+        if (!action->isEnabled())
             continue;
-        if (currentURL != nullptr && ! action->isAvailable(*currentURL))
+        if (currentURL != nullptr && !action->isAvailable(*currentURL))
             continue;
         if (category.isEmpty()) {
             uncategorised.append(action);
         } else {
-            if (! categoryMap.contains(category)) {
+            if (!categoryMap.contains(category)) {
                 auto *categoryMenu = new KActionMenu(category, menu);
                 categoryMenu->setObjectName(category);
                 categoryMap.insert(category, categoryMenu);
@@ -98,7 +98,7 @@ void UserAction::populateMenu(KActionMenu* menu, const QUrl *currentURL)
         menu->addAction(mapIter.value());
     }
 
-    foreach(KrAction* action, uncategorised) {
+    foreach (KrAction *action, uncategorised) {
         menu->addAction(action);
     };
 }
@@ -109,7 +109,7 @@ QStringList UserAction::allCategories()
 
     QListIterator<KrAction *> it(_actions);
     while (it.hasNext()) {
-        KrAction * action = it.next();
+        KrAction *action = it.next();
         if (actionCategories.indexOf(action->category()) == -1)
             actionCategories.append(action->category());
     }
@@ -123,7 +123,7 @@ QStringList UserAction::allNames()
 
     QListIterator<KrAction *> it(_actions);
     while (it.hasNext()) {
-        KrAction * action = it.next();
+        KrAction *action = it.next();
         actionNames.append(action->objectName());
     }
 
@@ -132,31 +132,34 @@ QStringList UserAction::allNames()
 
 void UserAction::readAllFiles()
 {
-    QString filename = QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML);   // locate returns the local file if it exists, else the global one is retrieved.
-    if (! filename.isEmpty())
+    QString filename = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
+                                              ACTION_XML); // locate returns the local file if it exists, else the global one is retrieved.
+    if (!filename.isEmpty())
         readFromFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML), renameDoublicated);
 
     filename = QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML_EXAMPLES);
-    if (! filename.isEmpty())
-        readFromFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML_EXAMPLES), ignoreDoublicated);     // ignore samples which are already in the normal file
+    if (!filename.isEmpty())
+        readFromFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, ACTION_XML_EXAMPLES),
+                     ignoreDoublicated); // ignore samples which are already in the normal file
 }
 
-void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionList* list)
+void UserAction::readFromFile(const QString &filename, ReadMode mode, KrActionList *list)
 {
-    QDomDocument* doc = new QDomDocument(ACTION_DOCTYPE);
+    QDomDocument *doc = new QDomDocument(ACTION_DOCTYPE);
     QFile file(filename);
     if (file.open(QIODevice::ReadOnly)) {
-        //qDebug() << "UserAction::readFromFile - " << filename << "could be opened";
-        if (! doc->setContent(&file)) {
-            //qDebug() << "UserAction::readFromFile - content set - failed";
-            // if the file doesn't exist till now, the content CAN be set but is empty.
-            // if the content can't be set, the file exists and is NOT an xml-file.
+        // qDebug() << "UserAction::readFromFile - " << filename << "could be opened";
+        if (!doc->setContent(&file)) {
+            // qDebug() << "UserAction::readFromFile - content set - failed";
+            //  if the file doesn't exist till now, the content CAN be set but is empty.
+            //  if the content can't be set, the file exists and is NOT an xml-file.
             file.close();
-            delete doc; doc = nullptr;
+            delete doc;
+            doc = nullptr;
             KMessageBox::error(MAIN_VIEW,
-                               i18n("The file %1 does not contain valid UserActions.\n", filename),   // text
+                               i18n("The file %1 does not contain valid UserActions.\n", filename), // text
                                i18n("UserActions - cannot read from file") // caption
-                              );
+            );
         }
         file.close();
 
@@ -167,10 +170,10 @@ void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionLi
             // useraction-file
             if (root.tagName() != ACTION_ROOT) {
                 KMessageBox::error(MAIN_VIEW,
-                                   i18n("The actionfile's root element is not called %1, using %2", QString::fromLatin1(ACTION_ROOT),  filename),
-                                   i18n("UserActions - cannot read from file")
-                                  );
-                delete doc; doc = nullptr;
+                                   i18n("The actionfile's root element is not called %1, using %2", QString::fromLatin1(ACTION_ROOT), filename),
+                                   i18n("UserActions - cannot read from file"));
+                delete doc;
+                doc = nullptr;
             }
             readFromElement(root, mode, list);
             delete doc;
@@ -178,17 +181,13 @@ void UserAction::readFromFile(const QString& filename, ReadMode mode, KrActionLi
 
     } // if ( file.open( QIODevice::ReadOnly ) )
     else {
-        KMessageBox::error(MAIN_VIEW,
-                           i18n("Unable to open actions file %1", filename),
-                           i18n("UserActions - cannot read from file")
-                          );
+        KMessageBox::error(MAIN_VIEW, i18n("Unable to open actions file %1", filename), i18n("UserActions - cannot read from file"));
     }
-
 }
 
-void UserAction::readFromElement(const QDomElement& element, ReadMode mode, KrActionList* list)
+void UserAction::readFromElement(const QDomElement &element, ReadMode mode, KrActionList *list)
 {
-    for (QDomNode node = element.firstChild(); ! node.isNull(); node = node.nextSibling()) {
+    for (QDomNode node = element.firstChild(); !node.isNull(); node = node.nextSibling()) {
         QDomElement e = node.toElement();
         if (e.isNull())
             continue; // this should skip nodes which are not elements ( i.e. comments, <!-- -->, or text nodes)
@@ -196,10 +195,10 @@ void UserAction::readFromElement(const QDomElement& element, ReadMode mode, KrAc
         if (e.tagName() == "action") {
             QString name = e.attribute("name");
             if (name.isEmpty()) {
-                KMessageBox::error(MAIN_VIEW,
-                                   i18n("Action without name detected. This action will not be imported.\nThis is an error in the file, you may want to correct it."),
-                                   i18n("UserActions - invalid action")
-                                  );
+                KMessageBox::error(
+                    MAIN_VIEW,
+                    i18n("Action without name detected. This action will not be imported.\nThis is an error in the file, you may want to correct it."),
+                    i18n("UserActions - invalid action"));
                 continue;
             }
 
@@ -215,22 +214,21 @@ void UserAction::readFromElement(const QDomElement& element, ReadMode mode, KrAc
             while (krApp->actionCollection()->action(name))
                 name = basename.arg(++i);
 
-            KrAction* act = new KrAction(krApp->actionCollection(), name);
+            KrAction *act = new KrAction(krApp->actionCollection(), name);
             if (act->xmlRead(e)) {
                 _actions.append(act);
                 if (list)
                     list->append(act);
             } else
                 delete act;
-        } else
-            if (e.tagName() == "deletedAction") {
-                QString name = e.attribute("name");
-                if (name.isEmpty()) {
-                    qWarning() << "A deleted action without name detected! \nThis is an error in the file.";
-                    continue;
-                }
-                _deletedActions.insert(name);
+        } else if (e.tagName() == "deletedAction") {
+            QString name = e.attribute("name");
+            if (name.isEmpty()) {
+                qWarning() << "A deleted action without name detected! \nThis is an error in the file.";
+                continue;
             }
+            _deletedActions.insert(name);
+        }
     } // for
 }
 
@@ -239,8 +237,8 @@ QDomDocument UserAction::createEmptyDoc()
     QDomDocument doc = QDomDocument(ACTION_DOCTYPE);
     // adding: <?xml version="1.0" encoding="UTF-8" ?>
     doc.appendChild(doc.createProcessingInstruction("xml", ACTION_PROCESSINSTR));
-    //adding root-element
-    doc.appendChild(doc.createElement(ACTION_ROOT));     // create new actionfile by adding a root-element ACTION_ROOT
+    // adding root-element
+    doc.appendChild(doc.createElement(ACTION_ROOT)); // create new actionfile by adding a root-element ACTION_ROOT
     return doc;
 }
 
@@ -251,7 +249,7 @@ bool UserAction::writeActionFile()
     QDomDocument doc = createEmptyDoc();
     QDomElement root = doc.documentElement();
 
-    foreach(const QString &name, _deletedActions) {
+    foreach (const QString &name, _deletedActions) {
         QDomElement element = doc.createElement("deletedAction");
         element.setAttribute("name", name);
         root.appendChild(element);
@@ -259,17 +257,17 @@ bool UserAction::writeActionFile()
 
     QListIterator<KrAction *> it(_actions);
     while (it.hasNext()) {
-        KrAction * action = it.next();
+        KrAction *action = it.next();
         root.appendChild(action->xmlDump(doc));
     }
 
     return writeToFile(doc, filename);
 }
 
-bool UserAction::writeToFile(const QDomDocument& doc, const QString& filename)
+bool UserAction::writeToFile(const QDomDocument &doc, const QString &filename)
 {
     QFile file(filename);
-    if (! file.open(QIODevice::WriteOnly))
+    if (!file.open(QIODevice::WriteOnly))
         return false;
 
     /* // This is not needed, because each DomDocument created with UserAction::createEmptyDoc already contains the processinstruction
@@ -287,7 +285,3 @@ bool UserAction::writeToFile(const QDomDocument& doc, const QString& filename)
     file.close();
     return true;
 }
-
-
-
-

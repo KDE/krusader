@@ -9,9 +9,9 @@
 #include "krinterdetailedview.h"
 
 // QtCore
+#include <QDebug>
 #include <QDir>
 #include <QHashIterator>
-#include <QDebug>
 // QtWidgets
 #include <QApplication>
 #include <QDirModel>
@@ -23,22 +23,22 @@
 #include <KI18n/KLocalizedString>
 #include <KIOWidgets/KDirLister>
 
-#include "krviewfactory.h"
-#include "krviewitemdelegate.h"
-#include "krviewitem.h"
-#include "listmodel.h"
 #include "../FileSystem/krpermhandler.h"
-#include "../defaults.h"
-#include "../krglobal.h"
-#include "krmousehandler.h"
-#include "../krcolorcache.h"
 #include "../GUI/krstyleproxy.h"
 #include "../compat.h"
+#include "../defaults.h"
+#include "../krcolorcache.h"
+#include "../krglobal.h"
+#include "krmousehandler.h"
+#include "krviewfactory.h"
+#include "krviewitem.h"
+#include "krviewitemdelegate.h"
+#include "listmodel.h"
 
-KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instance, KConfig *cfg):
-        QTreeView(parent),
-        KrInterView(instance, cfg, this),
-        _autoResizeColumns(true)
+KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instance, KConfig *cfg)
+    : QTreeView(parent)
+    , KrInterView(instance, cfg, this)
+    , _autoResizeColumns(true)
 {
     connect(_mouseHandler, &KrMouseHandler::renameCurrentItem, this, &KrInterDetailedView::renameCurrentItem);
     setWidget(this);
@@ -82,10 +82,10 @@ KrInterDetailedView::~KrInterDetailedView()
     _operator = nullptr;
 }
 
-void KrInterDetailedView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
+void KrInterDetailedView::currentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     if (_model->ready()) {
-        KrViewItem * item = getKrViewItem(currentIndex());
+        KrViewItem *item = getKrViewItem(currentIndex());
         op()->emitCurrentChanged(item);
     }
     QTreeView::currentChanged(current, previous);
@@ -143,7 +143,7 @@ void KrInterDetailedView::saveSettings(KConfigGroup grp, KrViewProperties::Prope
 
     grp.writeEntry("AutoResizeColumns", _autoResizeColumns);
 
-    if(properties & KrViewProperties::PropColumns) {
+    if (properties & KrViewProperties::PropColumns) {
         QByteArray state = header()->saveState();
         grp.writeEntry("Saved State", state);
     }
@@ -180,19 +180,19 @@ void KrInterDetailedView::setup()
 void KrInterDetailedView::keyPressEvent(QKeyEvent *e)
 {
     if (!e || !_model->ready())
-        return ; // subclass bug
-    if (handleKeyEvent(e))    // did the view class handled the event?
+        return; // subclass bug
+    if (handleKeyEvent(e)) // did the view class handled the event?
         return;
     QTreeView::keyPressEvent(e);
 }
 
-void KrInterDetailedView::mousePressEvent(QMouseEvent * ev)
+void KrInterDetailedView::mousePressEvent(QMouseEvent *ev)
 {
     if (!_mouseHandler->mousePressEvent(ev))
         QTreeView::mousePressEvent(ev);
 }
 
-void KrInterDetailedView::mouseReleaseEvent(QMouseEvent * ev)
+void KrInterDetailedView::mouseReleaseEvent(QMouseEvent *ev)
 {
     if (!_mouseHandler->mouseReleaseEvent(ev))
         QTreeView::mouseReleaseEvent(ev);
@@ -204,7 +204,7 @@ void KrInterDetailedView::mouseDoubleClickEvent(QMouseEvent *ev)
         QTreeView::mouseDoubleClickEvent(ev);
 }
 
-void KrInterDetailedView::mouseMoveEvent(QMouseEvent * ev)
+void KrInterDetailedView::mouseMoveEvent(QMouseEvent *ev)
 {
     if (!_mouseHandler->mouseMoveEvent(ev))
         QTreeView::mouseMoveEvent(ev);
@@ -240,7 +240,7 @@ void KrInterDetailedView::dropEvent(QDropEvent *ev)
         QTreeView::dropEvent(ev);
 }
 
-bool KrInterDetailedView::event(QEvent * e)
+bool KrInterDetailedView::event(QEvent *e)
 {
     _mouseHandler->otherEvent(e);
     return QTreeView::event(e);
@@ -283,14 +283,14 @@ bool KrInterDetailedView::eventFilter(QObject *object, QEvent *event)
     return false;
 }
 
-void KrInterDetailedView::showContextMenu(const QPoint & p)
+void KrInterDetailedView::showContextMenu(const QPoint &p)
 {
     QMenu popup(this);
     popup.setTitle(i18n("Columns"));
 
-    QVector<QAction*> actions;
+    QVector<QAction *> actions;
 
-    for(int i = KrViewProperties::Ext; i < KrViewProperties::MAX_COLUMNS; i++) {
+    for (int i = KrViewProperties::Ext; i < KrViewProperties::MAX_COLUMNS; i++) {
         QString text = (_model->headerData(i, Qt::Horizontal)).toString();
         QAction *act = popup.addAction(text);
         act->setCheckable(true);
@@ -308,18 +308,18 @@ void KrInterDetailedView::showContextMenu(const QPoint & p)
     if (res == nullptr)
         return;
 
-    if(res == actAutoResize) {
+    if (res == actAutoResize) {
         _autoResizeColumns = actAutoResize->isChecked();
         recalculateColumnSizes();
     } else {
         int column = res->data().toInt();
 
-        if(header()->isSectionHidden(column))
+        if (header()->isSectionHidden(column))
             header()->showSection(column);
         else
             header()->hideSection(column);
 
-        if(KrViewProperties::Ext == column)
+        if (KrViewProperties::Ext == column)
             _model->setExtensionEnabled(!header()->isSectionHidden(KrViewProperties::Ext));
     }
     op()->settingsChanged(KrViewProperties::PropColumns);
@@ -351,7 +351,7 @@ void KrInterDetailedView::sectionMoved(int /*logicalIndex*/, int /*oldVisualInde
 
 void KrInterDetailedView::recalculateColumnSizes()
 {
-    if(!_autoResizeColumns)
+    if (!_autoResizeColumns)
         return;
     int sum = 0;
     for (int i = 0; i != _model->columnCount(); i++) {
@@ -367,13 +367,13 @@ void KrInterDetailedView::recalculateColumnSizes()
     }
 }
 
-bool KrInterDetailedView::viewportEvent(QEvent * event)
+bool KrInterDetailedView::viewportEvent(QEvent *event)
 {
     if (event->type() == QEvent::ToolTip) {
         // only show tooltip if column is not wide enough to show all text. In this case the column
         // data text is abbreviated and the full text is shown as tooltip, see ListModel::data().
 
-        auto *he = dynamic_cast<QHelpEvent*>(event);
+        auto *he = dynamic_cast<QHelpEvent *>(event);
         const QModelIndex index = indexAt(he->pos());
         // name column has a detailed tooltip
         if (index.isValid() && index.column() != KrViewProperties::Name) {
@@ -401,8 +401,7 @@ bool KrInterDetailedView::viewportEvent(QEvent * event)
     return QTreeView::viewportEvent(event);
 }
 
-void KrInterDetailedView::drawRow(QPainter *painter, const QStyleOptionViewItem &options,
-                                  const QModelIndex &index) const
+void KrInterDetailedView::drawRow(QPainter *painter, const QStyleOptionViewItem &options, const QModelIndex &index) const
 {
     QTreeView::drawRow(painter, options, index);
     // (may) draw dashed line border around current item row. This is done internally in
@@ -440,8 +439,8 @@ QRect KrInterDetailedView::itemRect(const FileItem *item)
 
 void KrInterDetailedView::copySettingsFrom(KrView *other)
 {
-    if(other->instance() == instance()) { // the other view is of the same type
-        auto *v = dynamic_cast<KrInterDetailedView*>(other);
+    if (other->instance() == instance()) { // the other view is of the same type
+        auto *v = dynamic_cast<KrInterDetailedView *>(other);
         _autoResizeColumns = v->_autoResizeColumns;
         header()->restoreState(v->header()->saveState());
         _model->setExtensionEnabled(!isColumnHidden(KrViewProperties::Ext));

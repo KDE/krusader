@@ -9,16 +9,17 @@
 
 #include "dirhistoryqueue.h"
 
-#include "krpanel.h"
-#include "PanelView/krview.h"
 #include "../defaults.h"
 #include "../krservices.h"
+#include "PanelView/krview.h"
+#include "krpanel.h"
 
 // QtCore
 #include <QDir>
 
-DirHistoryQueue::DirHistoryQueue(KrPanel *panel) :
-    _panel(panel), _currentPos(0)
+DirHistoryQueue::DirHistoryQueue(KrPanel *panel)
+    : _panel(panel)
+    , _currentPos(0)
 {
 }
 
@@ -33,7 +34,7 @@ void DirHistoryQueue::clear()
 
 QUrl DirHistoryQueue::currentUrl()
 {
-    if(_urlQueue.count())
+    if (_urlQueue.count())
         return _urlQueue[_currentPos];
     else
         return QUrl();
@@ -41,13 +42,13 @@ QUrl DirHistoryQueue::currentUrl()
 
 void DirHistoryQueue::setCurrentUrl(const QUrl &url)
 {
-    if(_urlQueue.count())
+    if (_urlQueue.count())
         _urlQueue[_currentPos] = url;
 }
 
 QString DirHistoryQueue::currentItem()
 {
-    if(count())
+    if (count())
         return _currentItems[_currentPos];
     else
         return QString();
@@ -57,21 +58,21 @@ void DirHistoryQueue::saveCurrentItem()
 {
     // if the filesystem-url hasn't been refreshed yet,
     // avoid saving current item for the wrong url
-    if(count() &&  _panel->virtualPath().matches(_urlQueue[_currentPos], QUrl::StripTrailingSlash))
+    if (count() && _panel->virtualPath().matches(_urlQueue[_currentPos], QUrl::StripTrailingSlash))
         _currentItems[_currentPos] = _panel->view->getCurrentItem();
 }
 
-void DirHistoryQueue::add(QUrl url, const QString& currentItem)
+void DirHistoryQueue::add(QUrl url, const QString &currentItem)
 {
     url.setPath(QDir::cleanPath(url.path()));
 
-    if(_urlQueue.isEmpty()) {
+    if (_urlQueue.isEmpty()) {
         _urlQueue.push_front(url);
         _currentItems.push_front(currentItem);
         return;
     }
 
-    if(_urlQueue[_currentPos].matches(url, QUrl::StripTrailingSlash)) {
+    if (_urlQueue[_currentPos].matches(url, QUrl::StripTrailingSlash)) {
         _currentItems[_currentPos] = currentItem;
         return;
     }
@@ -97,7 +98,7 @@ void DirHistoryQueue::add(QUrl url, const QString& currentItem)
 
 bool DirHistoryQueue::gotoPos(int pos)
 {
-    if(pos >= 0 && pos < _urlQueue.count()) {
+    if (pos >= 0 && pos < _urlQueue.count()) {
         saveCurrentItem();
         _currentPos = pos;
         return true;
@@ -120,7 +121,7 @@ void DirHistoryQueue::save(KConfigGroup cfg)
     saveCurrentItem();
 
     QList<QUrl> urls;
-    foreach(const QUrl &url, _urlQueue) {
+    foreach (const QUrl &url, _urlQueue) {
         // make sure no passwords are permanently stored
         QUrl safeUrl(url);
         safeUrl.setPassword(QString());
@@ -132,18 +133,18 @@ void DirHistoryQueue::save(KConfigGroup cfg)
     cfg.writeEntry("CurrentIndex", _currentPos);
 }
 
-bool DirHistoryQueue::restore(const KConfigGroup& cfg)
+bool DirHistoryQueue::restore(const KConfigGroup &cfg)
 {
     clear();
     _urlQueue = KrServices::toUrlList(cfg.readEntry("Entrys", QStringList())); // krazy:exclude=spelling
     _currentItems = cfg.readEntry("CurrentItems", QStringList());
-    if(!_urlQueue.count() || _urlQueue.count() != _currentItems.count()) {
+    if (!_urlQueue.count() || _urlQueue.count() != _currentItems.count()) {
         clear();
         return false;
     }
     _currentPos = cfg.readEntry("CurrentIndex", 0);
-    if(_currentPos >= _urlQueue.count() || _currentPos < 0)
-        _currentPos  = 0;
+    if (_currentPos >= _urlQueue.count() || _currentPos < 0)
+        _currentPos = 0;
 
     return true;
 }

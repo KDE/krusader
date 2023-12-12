@@ -6,47 +6,46 @@
 */
 
 // QtGui
-#include <QImage>          //make() & paint()
-#include <QFont>                                    //ctor
-#include <QFontMetrics>                               //ctor
+#include <QFont> //ctor
+#include <QFontMetrics> //ctor
+#include <QImage> //make() & paint()
 #include <QPainter>
 #include <QPolygon>
 // QtWidgets
-#include <QApplication>    //make()
+#include <QApplication> //make()
 
-#include <KIconThemes/KIconEffect>                        //desaturate()
-#include <KWidgetsAddons/KCursor>         //make()
 #include <KConfigWidgets/KColorScheme>
+#include <KIconThemes/KIconEffect> //desaturate()
+#include <KWidgetsAddons/KCursor> //make()
 
-#include "builder.h"
 #include "Config.h"
+#include "builder.h"
 #include "fileTree.h"
-#include <cmath>
 #include "widget.h"
+#include <cmath>
 
-#define COLOR_GREY QColor::fromHsv( 0, 0, 140 )
+#define COLOR_GREY QColor::fromHsv(0, 0, 140)
 
 RadialMap::Map::Map()
-        : m_signature(nullptr)
-        , m_ringBreadth(MIN_RING_BREADTH)
-        , m_innerRadius(0)
-        , m_visibleDepth(DEFAULT_RING_DEPTH)
+    : m_signature(nullptr)
+    , m_ringBreadth(MIN_RING_BREADTH)
+    , m_innerRadius(0)
+    , m_visibleDepth(DEFAULT_RING_DEPTH)
 {
-    //FIXME this is all broken. No longer is a maximum depth!
-    const int fmh   = QFontMetrics(QFont()).height();
+    // FIXME this is all broken. No longer is a maximum depth!
+    const int fmh = QFontMetrics(QFont()).height();
     const int fmhD4 = fmh / 4;
-    MAP_2MARGIN = 2 * (fmh - (fmhD4 - LABEL_MAP_SPACER));   //margin is dependent on fitting in labels at top and bottom
+    MAP_2MARGIN = 2 * (fmh - (fmhD4 - LABEL_MAP_SPACER)); // margin is dependent on fitting in labels at top and bottom
 }
 
 RadialMap::Map::~Map()
 {
-    delete [] m_signature;
+    delete[] m_signature;
 }
 
-void
-RadialMap::Map::invalidate(const bool desaturateTheImage)
+void RadialMap::Map::invalidate(const bool desaturateTheImage)
 {
-    delete [] m_signature;
+    delete[] m_signature;
     m_signature = nullptr;
 
     if (desaturateTheImage) {
@@ -61,26 +60,25 @@ RadialMap::Map::invalidate(const bool desaturateTheImage)
     m_visibleDepth = Config::defaultRingDepth;
 }
 
-void
-RadialMap::Map::make(const Directory *tree, bool refresh)
+void RadialMap::Map::make(const Directory *tree, bool refresh)
 {
     //**** determineText seems pointless optimization
     //   but is it good to keep the text consistent?
     //   even if it makes it a lie?
 
-    //slow operation so set the wait cursor
+    // slow operation so set the wait cursor
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
     {
-        //build a signature of visible components
-        delete [] m_signature;
+        // build a signature of visible components
+        delete[] m_signature;
         Builder builder(this, tree, refresh);
     }
 
-    //colour the segments
+    // colour the segments
     colorise();
 
-    //determine centerText
+    // determine centerText
     if (!refresh) {
         int i;
 
@@ -91,25 +89,25 @@ RadialMap::Map::make(const Directory *tree, bool refresh)
         m_centerText = tree->humanReadableSize((File::UnitPrefix)i);
     }
 
-    //paint the pixmap
+    // paint the pixmap
     aaPaint();
 
     QApplication::restoreOverrideCursor();
 }
 
-void
-RadialMap::Map::setRingBreadth()
+void RadialMap::Map::setRingBreadth()
 {
     m_ringBreadth = (height() - MAP_2MARGIN) / (2 * m_visibleDepth + 4);
 
-    if (m_ringBreadth < MIN_RING_BREADTH) m_ringBreadth = MIN_RING_BREADTH;
-    else if (m_ringBreadth > MAX_RING_BREADTH) m_ringBreadth = MAX_RING_BREADTH;
+    if (m_ringBreadth < MIN_RING_BREADTH)
+        m_ringBreadth = MIN_RING_BREADTH;
+    else if (m_ringBreadth > MAX_RING_BREADTH)
+        m_ringBreadth = MAX_RING_BREADTH;
 }
 
-bool
-RadialMap::Map::resize(const QRect &rect)
+bool RadialMap::Map::resize(const QRect &rect)
 {
-    //there's a MAP_2MARGIN border
+    // there's a MAP_2MARGIN border
 
 #define mw width()
 #define mh height()
@@ -119,27 +117,29 @@ RadialMap::Map::resize(const QRect &rect)
     if (cw < mw || ch < mh || (cw > mw && ch > mh)) {
         uint size = ((cw < ch) ? cw : ch) - MAP_2MARGIN;
 
-        //this also causes uneven sizes to always resize when resizing but map is small in that dimension
-        //size -= size % 2; //even sizes mean less staggered non-antialiased resizing
+        // this also causes uneven sizes to always resize when resizing but map is small in that dimension
+        // size -= size % 2; //even sizes mean less staggered non-antialiased resizing
 
         {
             const uint minSize = MIN_RING_BREADTH * 2 * (m_visibleDepth + 2);
             const uint mD2 = MAP_2MARGIN / 2;
 
-            if (size < minSize) size = minSize;
+            if (size < minSize)
+                size = minSize;
 
-            //this QRect is used by paint()
+            // this QRect is used by paint()
             m_rect.setRect(mD2, mD2, size, size);
         }
 
-        //resize the pixmap
+        // resize the pixmap
         size += MAP_2MARGIN;
         this->QPixmap::operator=(QPixmap(size, size));
 
         if (m_signature != nullptr) {
             setRingBreadth();
             paint();
-        } else fill(); //FIXME I don't like having to do this..
+        } else
+            fill(); // FIXME I don't like having to do this..
 
         return true;
     }
@@ -152,35 +152,35 @@ RadialMap::Map::resize(const QRect &rect)
     return false;
 }
 
-void
-RadialMap::Map::colorise()
+void RadialMap::Map::colorise()
 {
     QColor cp, cb;
     double darkness = 1;
     double contrast = (double)Config::contrast / (double)100;
     int h, s1, s2, v1, v2;
 
-    QColor kdeColour[2] = { KColorScheme(QPalette::Inactive, KColorScheme::Window).background().color(),
-                            KColorScheme(QPalette::Active, KColorScheme::Window).background(KColorScheme::ActiveBackground).color() };
+    QColor kdeColour[2] = {KColorScheme(QPalette::Inactive, KColorScheme::Window).background().color(),
+                           KColorScheme(QPalette::Active, KColorScheme::Window).background(KColorScheme::ActiveBackground).color()};
 
-    double deltaRed   = (double)(kdeColour[0].red()   - kdeColour[1].red())   / 2880; // 2880 for semicircle
+    double deltaRed = (double)(kdeColour[0].red() - kdeColour[1].red()) / 2880; // 2880 for semicircle
     double deltaGreen = (double)(kdeColour[0].green() - kdeColour[1].green()) / 2880;
-    double deltaBlue  = (double)(kdeColour[0].blue()  - kdeColour[1].blue())  / 2880;
+    double deltaBlue = (double)(kdeColour[0].blue() - kdeColour[1].blue()) / 2880;
 
     for (uint i = 0; i <= m_visibleDepth; ++i, darkness += 0.04) {
         for (Iterator<Segment> it = m_signature[i].iterator(); it != m_signature[i].end(); ++it) {
             switch (Config::scheme) {
             case Filelight::KDE: {
-                //gradient will work by figuring out rgb delta values for 360 degrees
-                //then each component is angle*delta
+                // gradient will work by figuring out rgb delta values for 360 degrees
+                // then each component is angle*delta
 
                 int a = (*it)->start();
 
-                if (a > 2880) a = 2880 - (a - 2880);
+                if (a > 2880)
+                    a = 2880 - (a - 2880);
 
-                h  = (int)(deltaRed   * a) + kdeColour[1].red();
+                h = (int)(deltaRed * a) + kdeColour[1].red();
                 s1 = (int)(deltaGreen * a) + kdeColour[1].green();
-                v1 = (int)(deltaBlue  * a) + kdeColour[1].blue();
+                v1 = (int)(deltaBlue * a) + kdeColour[1].blue();
 
                 cb.setRgb(h, s1, v1);
                 cb.getHsv(&h, &s1, &v1);
@@ -190,13 +190,13 @@ RadialMap::Map::colorise()
 
             case Filelight::HighContrast:
 
-                cp.setHsv(0, 0, 0);   //values of h, s and v are irrelevant
+                cp.setHsv(0, 0, 0); // values of h, s and v are irrelevant
                 cb.setHsv(180, 0, int(255.0 * contrast));
                 (*it)->setPalette(cp, cb);
                 continue;
 
             default:
-                h  = int((*it)->start() / 16);
+                h = int((*it)->start() / 16);
                 s1 = 160;
                 v1 = (int)(255.0 / darkness); //****doing this more often than once seems daft!
             }
@@ -204,17 +204,18 @@ RadialMap::Map::colorise()
             v2 = v1 - int(contrast * v1);
             s2 = s1 + int(contrast * (255 - s1));
 
-            if (s1 < 80) s1 = 80;  //can fall too low and makes contrast between the files hard to discern
+            if (s1 < 80)
+                s1 = 80; // can fall too low and makes contrast between the files hard to discern
 
-            if ((*it)->isFake()) { //multi-file
-                cb.setHsv(h, s2, (v2 < 90) ? 90 : v2);   //too dark if < 100
+            if ((*it)->isFake()) { // multi-file
+                cb.setHsv(h, s2, (v2 < 90) ? 90 : v2); // too dark if < 100
                 cp.setHsv(h, 17, v1);
-            } else if (!(*it)->file()->isDir()) { //file
+            } else if (!(*it)->file()->isDir()) { // file
                 cb.setHsv(h, 17, v1);
                 cp.setHsv(h, 17, v2);
-            } else { //directory
-                cb.setHsv(h, s1, v1);   //v was 225
-                cp.setHsv(h, s2, v2);   //v was 225 - delta
+            } else { // directory
+                cb.setHsv(h, s1, v1); // v was 225
+                cp.setHsv(h, s2, v2); // v was 225 - delta
             }
 
             (*it)->setPalette(cp, cb);
@@ -226,25 +227,24 @@ RadialMap::Map::colorise()
             //**** you have to ensure the grey of files is sufficient, currently it works only with rainbow (perhaps use contrast there too)
             //**** change v1,v2 to vp, vb etc.
             //**** using percentages is not strictly correct as the eye doesn't work like that
-            //**** darkness factor is not done for kde_colour scheme, and also value for files is incorrect really for files in this scheme as it is not set like rainbow one is
+            //**** darkness factor is not done for kde_colour scheme, and also value for files is incorrect really for files in this scheme as it is not set
+            // like rainbow one is
         }
     }
 }
 
-void
-RadialMap::Map::aaPaint()
+void RadialMap::Map::aaPaint()
 {
-    //paint() is called during continuous processes
-    //aaPaint() is not and is slower so set overidecursor (make sets it too)
+    // paint() is called during continuous processes
+    // aaPaint() is not and is slower so set overidecursor (make sets it too)
     QApplication::setOverrideCursor(Qt::WaitCursor);
     paint(Config::antiAliasFactor);
     QApplication::restoreOverrideCursor();
 }
 
-void
-RadialMap::Map::paint(unsigned int scaleFactor)
+void RadialMap::Map::paint(unsigned int scaleFactor)
 {
-    if (scaleFactor == 0)  //just in case
+    if (scaleFactor == 0) // just in case
         scaleFactor = 1;
 
     QPainter paint;
@@ -252,7 +252,7 @@ RadialMap::Map::paint(unsigned int scaleFactor)
     int step = m_ringBreadth;
     int excess = -1;
 
-    //scale the pixmap, or do intelligent distribution of excess to prevent nasty resizing
+    // scale the pixmap, or do intelligent distribution of excess to prevent nasty resizing
     if (scaleFactor > 1) {
         int x1, y1, x2, y2;
         rect.getCoords(&x1, &y1, &x2, &y2);
@@ -272,29 +272,28 @@ RadialMap::Map::paint(unsigned int scaleFactor)
     //**** best option you can think of is to make the circles slightly less perfect,
     //  ** i.e. slightly elliptic when resizing inbetween
 
-
     paint.begin(this);
 
-    fill(); //erase background
+    fill(); // erase background
 
     for (int x = m_visibleDepth; x >= 0; --x) {
         int width = rect.width() / 2;
-        //clever geometric trick to find largest angle that will give biggest arrow head
+        // clever geometric trick to find largest angle that will give biggest arrow head
         auto a_max = int(acos((double)width / double((width + 5) * scaleFactor)) * (180 * 16 / M_PI));
 
         for (ConstIterator<Segment> it = m_signature[x].constIterator(); it != m_signature[x].end(); ++it) {
-            //draw the pie segments, most of this code is concerned with drawing the little
-            //arrows on the ends of segments when they have hidden files
+            // draw the pie segments, most of this code is concerned with drawing the little
+            // arrows on the ends of segments when they have hidden files
 
             paint.setPen((*it)->pen());
 
             if ((*it)->hasHiddenChildren()) {
-                //draw arrow head to indicate undisplayed files/directories
+                // draw arrow head to indicate undisplayed files/directories
                 QPolygon pts(3);
                 QPoint pos, cpos = rect.center();
-                int a[3] = {static_cast<int>((*it)->start()), static_cast<int>((*it)->length()), 0 };
+                int a[3] = {static_cast<int>((*it)->start()), static_cast<int>((*it)->length()), 0};
 
-                a[2] = a[0] + (a[1] / 2); //assign to halfway between
+                a[2] = a[0] + (a[1] / 2); // assign to halfway between
                 if (a[1] > a_max) {
                     a[1] = a_max;
                     a[0] = a[2] - a_max / 2;
@@ -307,7 +306,8 @@ RadialMap::Map::paint(unsigned int scaleFactor)
 
                     if (i == 2)
                         radius += 5 * scaleFactor;
-                    sinra = sin(ra); cosra = cos(ra);
+                    sinra = sin(ra);
+                    cosra = cos(ra);
                     pos.rx() = cpos.x() + static_cast<int>(cosra * radius);
                     pos.ry() = cpos.y() - static_cast<int>(sinra * radius);
                     pts.setPoint(i, pos);
@@ -335,8 +335,8 @@ RadialMap::Map::paint(unsigned int scaleFactor)
             }
         }
 
-        if (excess >= 0) {  //excess allows us to resize more smoothly (still crud tho)
-            if (excess < 2)  //only decrease rect by more if even number of excesses left
+        if (excess >= 0) { // excess allows us to resize more smoothly (still crud tho)
+            if (excess < 2) // only decrease rect by more if even number of excesses left
                 --step;
             excess -= 2;
         }
@@ -351,7 +351,7 @@ RadialMap::Map::paint(unsigned int scaleFactor)
     paint.drawEllipse(rect);
 
     if (scaleFactor > 1) {
-        //have to end in order to smoothscale()
+        // have to end in order to smoothscale()
         paint.end();
 
         int x1, y1, x2, y2;
@@ -373,7 +373,7 @@ RadialMap::Map::paint(unsigned int scaleFactor)
 
     paint.drawText(rect, Qt::AlignCenter, m_centerText);
 
-    m_innerRadius = rect.width() / 2; //rect.width should be multiple of 2
+    m_innerRadius = rect.width() / 2; // rect.width should be multiple of 2
 
     paint.end();
 }

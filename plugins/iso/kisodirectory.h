@@ -16,19 +16,29 @@
 class KIsoDirectory : public KArchiveDirectory
 {
 public:
-    KIsoDirectory(KArchive* archive, const QString& name, int access, time_t date,
-                  time_t adate, time_t cdate, const QString& user, const QString& group,
-                  const QString& symlink);
+    KIsoDirectory(KArchive *archive,
+                  const QString &name,
+                  int access,
+                  time_t date,
+                  time_t adate,
+                  time_t cdate,
+                  const QString &user,
+                  const QString &group,
+                  const QString &symlink);
     ~KIsoDirectory();
-    time_t date() const {
+    time_t date() const
+    {
         return m_date;
     }
-    time_t adate() const {
+    time_t adate() const
+    {
         return m_adate;
     }
-    time_t cdate() const {
+    time_t cdate() const
+    {
         return m_cdate;
     }
+
 private:
     time_t m_date, m_adate, m_cdate;
 };

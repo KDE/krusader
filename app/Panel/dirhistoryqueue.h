@@ -15,7 +15,7 @@
 #include <QStringList>
 #include <QUrl>
 
-# include <KConfigCore/KConfigGroup>
+#include <KConfigCore/KConfigGroup>
 
 class KrPanel;
 
@@ -27,37 +27,42 @@ public:
     ~DirHistoryQueue() override;
 
     void clear();
-    int currentPos() {
+    int currentPos()
+    {
         return _currentPos;
     }
-    int count() {
+    int count()
+    {
         return _urlQueue.count();
     }
     QUrl currentUrl();
     void setCurrentUrl(const QUrl &url);
-    const QUrl &get(int pos) {
+    const QUrl &get(int pos)
+    {
         return _urlQueue[pos];
     }
-    void add(QUrl url, const QString& currentItem);
+    void add(QUrl url, const QString &currentItem);
     bool gotoPos(int pos);
     bool goBack();
     bool goForward();
-    bool canGoBack() {
+    bool canGoBack()
+    {
         return _currentPos < count() - 1;
     }
-    bool canGoForward() {
+    bool canGoForward()
+    {
         return _currentPos > 0;
     }
     QString currentItem(); // current item of the view
 
     void save(KConfigGroup cfg);
-    bool restore(const KConfigGroup& cfg);
+    bool restore(const KConfigGroup &cfg);
 
 public slots:
     void saveCurrentItem();
 
 private:
-    KrPanel* _panel;
+    KrPanel *_panel;
     int _currentPos;
     QList<QUrl> _urlQueue;
     QStringList _currentItems;

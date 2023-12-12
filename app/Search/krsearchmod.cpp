@@ -19,20 +19,26 @@
 
 #include <KIO/Global>
 
-#include "../krglobal.h"
 #include "../Archive/krarchandler.h"
 #include "../FileSystem/defaultfilesystem.h"
 #include "../FileSystem/fileitem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../FileSystem/krquery.h"
 #include "../FileSystem/virtualfilesystem.h"
+#include "../krglobal.h"
 
 #define EVENT_PROCESS_DELAY 250 // milliseconds
 
-static const QStringList TAR_TYPES = QStringList() << "tbz" << "tgz" << "tarz" << "tar" << "tlz";
+static const QStringList TAR_TYPES = QStringList() << "tbz"
+                                                   << "tgz"
+                                                   << "tarz"
+                                                   << "tar"
+                                                   << "tlz";
 
 KrSearchMod::KrSearchMod(const KrQuery *query)
-    : m_defaultFileSystem(nullptr), m_virtualFileSystem(nullptr), m_stopSearch(false)
+    : m_defaultFileSystem(nullptr)
+    , m_virtualFileSystem(nullptr)
+    , m_stopSearch(false)
 {
     m_query = new KrQuery(*query);
     connect(m_query, &KrQuery::status, this, &KrSearchMod::searching);
@@ -63,7 +69,10 @@ void KrSearchMod::start()
     emit finished();
 }
 
-void KrSearchMod::stop() { m_stopSearch = true; }
+void KrSearchMod::stop()
+{
+    m_stopSearch = true;
+}
 
 void KrSearchMod::scanUrl(const QUrl &url)
 {
@@ -108,14 +117,12 @@ void KrSearchMod::scanDirectory(const QUrl &url)
     for (FileItem *fileItem : fileSystem->fileItems()) {
         const QUrl fileUrl = fileItem->getUrl();
 
-        if (m_query->isRecursive() &&
-            ((!fileItem->isSymLink() && fileItem->isDir()) || (fileItem->isSymLink() && m_query->followLinks()))) {
+        if (m_query->isRecursive() && ((!fileItem->isSymLink() && fileItem->isDir()) || (fileItem->isSymLink() && m_query->followLinks()))) {
             // query search in subdirectory
             m_unScannedUrls.push(fileUrl);
         }
 
-        if (m_query->searchInArchives() && fileUrl.isLocalFile() &&
-            KrArcHandler::arcSupported(fileItem->getMime())) {
+        if (m_query->searchInArchives() && fileUrl.isLocalFile() && KrArcHandler::arcSupported(fileItem->getMime())) {
             // query search in archive; NOTE: only supported for local files
             QUrl archiveURL = fileUrl;
             bool encrypted;

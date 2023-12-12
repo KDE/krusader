@@ -30,24 +30,30 @@ public:
     ~KrInterBriefView() override;
 
     // ---- reimplemented from QAbstractItemView ----
-    QRect visualRect(const QModelIndex&) const override;
-    QModelIndex indexAt(const QPoint&) const override;
+    QRect visualRect(const QModelIndex &) const override;
+    QModelIndex indexAt(const QPoint &) const override;
     void scrollTo(const QModelIndex &, QAbstractItemView::ScrollHint = QAbstractItemView::EnsureVisible) override;
 
     // ---- reimplemented from KrView ----
-    int  itemsPerPage() override;
+    int itemsPerPage() override;
     void updateView() override;
-    bool ensureVisibilityAfterSelect() override {
+    bool ensureVisibilityAfterSelect() override
+    {
         return false;
     }
     void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) override;
 
     // ---- reimplemented from QAbstractItemView ----
     // Don't do anything, selections are handled by the mouse handler
-    void setSelection(const QRect &, QItemSelectionModel::SelectionFlags) override {}
-    void selectAll() override {}
+    void setSelection(const QRect &, QItemSelectionModel::SelectionFlags) override
+    {
+    }
+    void selectAll() override
+    {
+    }
     // this shouldn't be called
-    QRegion visualRegionForSelection(const QItemSelection&) const override {
+    QRegion visualRegionForSelection(const QItemSelection &) const override
+    {
         return QRegion();
     }
 
@@ -59,7 +65,7 @@ protected slots:
     void updateGeometries() override;
 
     // ---- reimplemented from KrView ----
-    void currentChanged(const QModelIndex & current, const QModelIndex & previous) override;
+    void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;
 
     void renameCurrentItem() override;
 
@@ -73,9 +79,9 @@ protected:
     QModelIndex moveCursor(QAbstractItemView::CursorAction, Qt::KeyboardModifiers) override;
     int horizontalOffset() const override;
     int verticalOffset() const override;
-    bool isIndexHidden(const QModelIndex&) const override;
-//     QRegion visualRegionForSelection(const QItemSelection&) const override;
-    bool event(QEvent * e) override;
+    bool isIndexHidden(const QModelIndex &) const override;
+    //     QRegion visualRegionForSelection(const QItemSelection&) const override;
+    bool event(QEvent *e) override;
     void mousePressEvent(QMouseEvent *) override;
     void mouseReleaseEvent(QMouseEvent *) override;
     void mouseDoubleClickEvent(QMouseEvent *ev) override;
@@ -92,17 +98,17 @@ protected:
     void saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties) override;
     void copySettingsFrom(KrView *other) override;
     QRect itemRect(const FileItem *fileitem) override;
-    void showContextMenu(const QPoint & p) override;
+    void showContextMenu(const QPoint &p) override;
     QRect mapToViewport(const QRect &rect) const;
 
     int getItemHeight() const;
-    int elementWidth(const QModelIndex & index);
+    int elementWidth(const QModelIndex &index);
     void intersectionSet(const QRect &, QVector<QModelIndex> &);
 
 private:
     QFont _viewFont;
     int _numOfColumns;
-    QHeaderView * _header;
+    QHeaderView *_header;
 };
 
 #endif // KRINTERBRIEFVIEW_H

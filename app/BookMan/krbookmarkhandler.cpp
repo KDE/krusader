@@ -9,48 +9,52 @@
 #include "krbookmarkhandler.h"
 #include "kraddbookmarkdlg.h"
 
-#include "../krglobal.h"
-#include "../icon.h"
-#include "../krslots.h"
-#include "../kractions.h"
-#include "../krmainwindow.h"
 #include "../Dialogs/popularurls.h"
 #include "../FileSystem/filesystem.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/listpanelactions.h"
+#include "../icon.h"
+#include "../kractions.h"
+#include "../krglobal.h"
+#include "../krmainwindow.h"
+#include "../krslots.h"
 
 // QtCore
-#include <QTextStream>
-#include <QFile>
-#include <QEvent>
-#include <QStandardPaths>
 #include <QDebug>
+#include <QEvent>
+#include <QFile>
+#include <QStandardPaths>
+#include <QTextStream>
 #include <QTimer>
 // QtGui
-#include <QMouseEvent>
 #include <QCursor>
+#include <QMouseEvent>
 
+#include <KBookmarks/KBookmarkManager>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 #include <KXmlGui/KActionCollection>
-#include <KBookmarks/KBookmarkManager>
 #include <utility>
 
 #define SPECIAL_BOOKMARKS true
 
 // ------------------------ for internal use
 #define BOOKMARKS_FILE "krusader/krbookmarks.xml"
-#define CONNECT_BM(X) { disconnect(X, SIGNAL(activated(QUrl)), nullptr, nullptr); connect(X, SIGNAL(activated(QUrl)), this, SLOT(slotActivated(QUrl))); }
+#define CONNECT_BM(X)                                                                                                                                          \
+    {                                                                                                                                                          \
+        disconnect(X, SIGNAL(activated(QUrl)), nullptr, nullptr);                                                                                              \
+        connect(X, SIGNAL(activated(QUrl)), this, SLOT(slotActivated(QUrl)));                                                                                  \
+    }
 
-KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) :
-    QObject(mainWindow->widget()),
-    _mainWindow(mainWindow),
-    _middleClick(false),
-    _mainBookmarkPopup(nullptr),
-    _quickSearchAction(nullptr),
-    _quickSearchBar(nullptr),
-    _quickSearchMenu(nullptr)
+KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow)
+    : QObject(mainWindow->widget())
+    , _mainWindow(mainWindow)
+    , _middleClick(false)
+    , _mainBookmarkPopup(nullptr)
+    , _quickSearchAction(nullptr)
+    , _quickSearchBar(nullptr)
+    , _quickSearchMenu(nullptr)
 {
     // create our own action collection and make the shortcuts apply only to parent
     _privateCollection = new KActionCollection(this);
@@ -72,7 +76,7 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow) :
     _quickSearchAction = new QWidgetAction(this);
     _quickSearchBar = new QLineEdit();
     _quickSearchBar->setPlaceholderText(i18n("Type to search..."));
-    _quickSearchAction->setDefaultWidget(_quickSearchBar);  // ownership of the bar is transferred to the action
+    _quickSearchAction->setDefaultWidget(_quickSearchBar); // ownership of the bar is transferred to the action
     _quickSearchAction->setEnabled(false);
     _setQuickSearchText("");
 
@@ -112,10 +116,10 @@ void KrBookmarkHandler::addBookmark(KrBookmark *bm, KrBookmark *folder)
 void KrBookmarkHandler::deleteBookmark(KrBookmark *bm)
 {
     if (bm->isFolder())
-        clearBookmarks(bm);   // remove the child bookmarks
+        clearBookmarks(bm); // remove the child bookmarks
     removeReferences(_root, bm);
-    foreach(QWidget *w, bm->associatedWidgets())
-    w->removeAction(bm);
+    foreach (QWidget *w, bm->associatedWidgets())
+        w->removeAction(bm);
     delete bm;
 
     exportToFile();
@@ -199,11 +203,9 @@ void KrBookmarkHandler::exportToFile()
     exportToFileFolder(doc, root, _root);
     if (!doc.firstChild().isProcessingInstruction()) {
         // adding: <?xml version="1.0" encoding="UTF-8" ?> if not already present
-        QDomProcessingInstruction instr = doc.createProcessingInstruction("xml",
-                                          "version=\"1.0\" encoding=\"UTF-8\" ");
+        QDomProcessingInstruction instr = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" ");
         doc.insertBefore(instr, doc.firstChild());
     }
-
 
     QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
     QFile file(filename);
@@ -217,7 +219,7 @@ void KrBookmarkHandler::exportToFile()
     }
 }
 
-bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, const QString& path, QString *errorMsg)
+bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, const QString &path, QString *errorMsg)
 {
     QString url, name, iconName;
     // verify tag
@@ -229,13 +231,15 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
     if (!e.hasAttribute("href")) {
         *errorMsg = i18n("missing tag %1", QLatin1String("href"));
         return false;
-    } else url = e.attribute("href");
+    } else
+        url = e.attribute("href");
     // verify title
     QDomElement te = e.firstChild().toElement();
     if (te.tagName() != "title") {
         *errorMsg = i18n("missing tag %1", QLatin1String("title"));
         return false;
-    } else name = te.text();
+    } else
+        name = te.text();
     // do we have an icon?
     if (e.hasAttribute("icon")) {
         iconName = e.attribute("icon");
@@ -253,7 +257,7 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
     return true;
 }
 
-bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent, const QString& path, QString *errorMsg)
+bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent, const QString &path, QString *errorMsg)
 {
     QString name;
     QDomNode n = first;
@@ -264,13 +268,15 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
                 return false;
         } else if (e.tagName() == "folder") {
             QString iconName = "";
-            if (e.hasAttribute("icon")) iconName = e.attribute("icon");
+            if (e.hasAttribute("icon"))
+                iconName = e.attribute("icon");
             // the title is the first child of the folder
             QDomElement tmp = e.firstChild().toElement();
             if (tmp.tagName() != "title") {
                 *errorMsg = i18n("missing tag %1", QLatin1String("title"));
                 return false;
-            } else name = tmp.text();
+            } else
+                name = tmp.text();
             KrBookmark *folder = new KrBookmark(name, iconName);
             parent->children().append(folder);
 
@@ -284,7 +290,6 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
     }
     return true;
 }
-
 
 void KrBookmarkHandler::importFromFile()
 {
@@ -310,7 +315,8 @@ void KrBookmarkHandler::importFromFile()
     if (n.isNull() || n.toElement().tagName() != "xbel") {
         errorMsg = i18n("%1 does not seem to be a valid bookmarks file", filename);
         goto BM_ERROR;
-    } else n = n.firstChild(); // skip the xbel part
+    } else
+        n = n.firstChild(); // skip the xbel part
     importFromFileFolder(n, _root, "", &errorMsg);
     goto BM_SUCCESS;
 
@@ -378,7 +384,8 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
     while (it.hasNext()) {
         KrBookmark *bm = it.next();
 
-        if (!bm->isFolder()) continue;
+        if (!bm->isFolder())
+            continue;
         auto *newMenu = new QMenu(menu);
         newMenu->setIcon(Icon(bm->iconName()));
         newMenu->setTitle(bm->text());
@@ -393,7 +400,8 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
     it.toFront();
     while (it.hasNext()) {
         KrBookmark *bm = it.next();
-        if (bm->isFolder()) continue;
+        if (bm->isFolder())
+            continue;
         if (bm->isSeparator()) {
             menu->addSeparator();
             continue;
@@ -415,10 +423,10 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
     if (depth == 0) {
         KConfigGroup group(krConfig, "Private");
         bool hasPopularURLs = group.readEntry("BM Popular URLs", true);
-        bool hasTrash       = group.readEntry("BM Trash",        true);
-        bool hasLan         = group.readEntry("BM Lan",          true);
-        bool hasVirtualFS   = group.readEntry("BM Virtual FS",   true);
-        bool hasJumpback    = group.readEntry("BM Jumpback",     true);
+        bool hasTrash = group.readEntry("BM Trash", true);
+        bool hasLan = group.readEntry("BM Lan", true);
+        bool hasVirtualFS = group.readEntry("BM Virtual FS", true);
+        bool hasJumpback = group.readEntry("BM Jumpback", true);
 
         if (hasPopularURLs) {
             menu->addSeparator();
@@ -427,7 +435,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
             auto *newMenu = new QMenu(menu);
             newMenu->setTitle(i18n("Popular URLs"));
             newMenu->setIcon(Icon("folder-bookmark"));
-            QAction *bmfAct  = menu->addMenu(newMenu);
+            QAction *bmfAct = menu->addMenu(newMenu);
             _specialBookmarks.append(bmfAct);
             // add the top 15 urls
 #define MAX 15
@@ -435,8 +443,10 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
             QList<QUrl>::Iterator it;
             for (it = list.begin(); it != list.end(); ++it) {
                 QString name;
-                if ((*it).isLocalFile()) name = (*it).path();
-                else name = (*it).toDisplayString();
+                if ((*it).isLocalFile())
+                    name = (*it).path();
+                else
+                    name = (*it).toDisplayString();
                 // note: these bookmark are put into the private collection
                 // as to not spam the general collection
                 KrBookmark *bm = KrBookmark::getExistingBookmark(name, _privateCollection);
@@ -513,14 +523,13 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
         menu->addSeparator();
         if (KrActions::actAddBookmark != nullptr) {
             menu->addAction(KrActions::actAddBookmark);
-           _specialBookmarks.append(KrActions::actAddBookmark);
+            _specialBookmarks.append(KrActions::actAddBookmark);
         }
-        QAction *bmAct = menu->addAction(Icon("bookmarks"),
-                                         i18n("Manage Bookmarks"), manager, SLOT(slotEditBookmarks()));
+        QAction *bmAct = menu->addAction(Icon("bookmarks"), i18n("Manage Bookmarks"), manager, SLOT(slotEditBookmarks()));
         _specialBookmarks.append(bmAct);
 
         // make sure the menu is connected to us
-        disconnect(menu, SIGNAL(triggered(QAction*)), nullptr, nullptr);
+        disconnect(menu, SIGNAL(triggered(QAction *)), nullptr, nullptr);
     }
 
     menu->installEventFilter(this);
@@ -545,7 +554,7 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root, bool removeBookmarks)
     }
 }
 
-void KrBookmarkHandler::bookmarksChanged(const QString&, const QString&)
+void KrBookmarkHandler::bookmarksChanged(const QString &, const QString &)
 {
     importFromFile();
 }
@@ -599,12 +608,8 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
             return true;
         }
 
-        if ((kev->modifiers() != Qt::ShiftModifier &&
-             kev->modifiers() != Qt::NoModifier) ||
-            kev->text().isEmpty()                ||
-            kev->key() == Qt::Key_Delete         ||
-            kev->key() == Qt::Key_Return         ||
-            kev->key() == Qt::Key_Escape) {
+        if ((kev->modifiers() != Qt::ShiftModifier && kev->modifiers() != Qt::NoModifier) || kev->text().isEmpty() || kev->key() == Qt::Key_Delete
+            || kev->key() == Qt::Key_Return || kev->key() == Qt::Key_Escape) {
             return QObject::eventFilter(obj, ev);
         }
 
@@ -630,8 +635,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         // match actions
         QAction *matchedAction = nullptr;
         int nMatches = 0;
-        const Qt::CaseSensitivity matchCase =
-            _quickSearchText() == _quickSearchText().toLower() ? Qt::CaseInsensitive : Qt::CaseSensitive;
+        const Qt::CaseSensitivity matchCase = _quickSearchText() == _quickSearchText().toLower() ? Qt::CaseInsensitive : Qt::CaseSensitive;
         for (auto act : acts) {
             if (act->isSeparator() || act->text().isEmpty()) {
                 continue;
@@ -677,7 +681,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         // trigger the matched menu item or set an active item accordingly
         if (nMatches == 1) {
             _setQuickSearchText("");
-            if ((bool) matchedAction->menu()) {
+            if ((bool)matchedAction->menu()) {
                 menu->setActiveAction(matchedAction);
             } else {
                 matchedAction->activate(QAction::Trigger);
@@ -734,8 +738,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
 
 void KrBookmarkHandler::_resetActionTextAndHighlighting()
 {
-    for (QHash<QAction *, QString>::const_iterator i = _quickSearchOriginalActionTitles.constBegin();
-         i != _quickSearchOriginalActionTitles.constEnd(); ++i) {
+    for (QHash<QAction *, QString>::const_iterator i = _quickSearchOriginalActionTitles.constBegin(); i != _quickSearchOriginalActionTitles.constEnd(); ++i) {
         QAction *action = i.key();
         action->setText(i.value());
         _highlightAction(action, false);
@@ -744,20 +747,20 @@ void KrBookmarkHandler::_resetActionTextAndHighlighting()
     _quickSearchOriginalActionTitles.clear();
 }
 
-#define POPULAR_URLS_ID        100100
-#define TRASH_ID               100101
-#define LAN_ID                 100103
-#define VIRTUAL_FS_ID          100102
-#define JUMP_BACK_ID           100104
+#define POPULAR_URLS_ID 100100
+#define TRASH_ID 100101
+#define LAN_ID 100103
+#define VIRTUAL_FS_ID 100102
+#define JUMP_BACK_ID 100104
 
 void KrBookmarkHandler::rightClickOnSpecialBookmark()
 {
     KConfigGroup group(krConfig, "Private");
     bool hasPopularURLs = group.readEntry("BM Popular URLs", true);
-    bool hasTrash       = group.readEntry("BM Trash",      true);
-    bool hasLan         = group.readEntry("BM Lan",          true);
-    bool hasVirtualFS   = group.readEntry("BM Virtual FS",   true);
-    bool hasJumpback    = group.readEntry("BM Jumpback",     true);
+    bool hasTrash = group.readEntry("BM Trash", true);
+    bool hasLan = group.readEntry("BM Lan", true);
+    bool hasVirtualFS = group.readEntry("BM Virtual FS", true);
+    bool hasJumpback = group.readEntry("BM Jumpback", true);
 
     QMenu menu(_mainBookmarkPopup);
     menu.setTitle(i18n("Enable special bookmarks"));
@@ -822,14 +825,14 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark()
         _mainBookmarkPopup->close();
 }
 
-#define OPEN_ID           100200
-#define OPEN_NEW_TAB_ID   100201
-#define DELETE_ID         100202
+#define OPEN_ID 100200
+#define OPEN_NEW_TAB_ID 100201
+#define DELETE_ID 100202
 
-void KrBookmarkHandler::rightClicked(QMenu *menu, KrBookmark * bm)
+void KrBookmarkHandler::rightClicked(QMenu *menu, KrBookmark *bm)
 {
     QMenu popup(_mainBookmarkPopup);
-    QAction * act;
+    QAction *act;
 
     if (!bm->isFolder()) {
         act = popup.addAction(Icon("document-open"), i18n("Open"));
@@ -846,7 +849,7 @@ void KrBookmarkHandler::rightClicked(QMenu *menu, KrBookmark * bm)
 
     int result = -1;
     QAction *res = popup.exec(QCursor::pos());
-    if (res && res->data().canConvert<int> ())
+    if (res && res->data().canConvert<int>())
         result = res->data().toInt();
 
     popup.close();
@@ -879,4 +882,3 @@ void KrBookmarkHandler::slotActivated(const QUrl &url)
     else
         SLOTS->refresh(url);
 }
-

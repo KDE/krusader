@@ -25,7 +25,7 @@ public:
     static void read();
     static void write();
 
-    //keep everything positive, avoid using DON'T, NOT or NO
+    // keep everything positive, avoid using DON'T, NOT or NO
 
     static bool varyLabelFontSizes;
     static bool showSmallFiles;

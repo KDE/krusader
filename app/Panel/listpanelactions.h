@@ -39,8 +39,7 @@ public slots:
     void guiUpdated();
 
 public:
-    QAction *actRenameF2, *actViewFileF3, *actEditFileF4, *actCopyF5, *actMoveF6, *actNewFolderF7,
-        *actDeleteF8, *actTerminalF9;
+    QAction *actRenameF2, *actViewFileF3, *actEditFileF4, *actCopyF5, *actMoveF6, *actNewFolderF7, *actDeleteF8, *actTerminalF9;
     QAction *actNewFileShiftF4, *actCopyDelayedF5, *actMoveDelayedShiftF6;
     QAction *actProperties, *actPack, *actUnpack, *actTest, *actCompDirs, *actCalculate, *actSync;
     QAction *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
@@ -50,7 +49,7 @@ public:
     QAction *actHistoryBackward, *actHistoryForward, *actDirUp, *actRoot, *actHome, *actCdToOther;
     QAction *actSyncBrowse, *actCancelRefresh;
 
-    QHash<int/*id*/, QAction *> setViewActions;
+    QHash<int /*id*/, QAction *> setViewActions;
 
 protected:
     KrPanel *activePanel();

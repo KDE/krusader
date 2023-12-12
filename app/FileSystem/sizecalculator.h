@@ -33,7 +33,10 @@ public:
     ~SizeCalculator() override;
 
     /** Return all URLs (queued and progressed). */
-    QList<QUrl> urls() const { return m_urls; }
+    QList<QUrl> urls() const
+    {
+        return m_urls;
+    }
     /** Add a URL to the running calculation. */
     void add(const QUrl &url);
     /** Return the current total size calculation result. */

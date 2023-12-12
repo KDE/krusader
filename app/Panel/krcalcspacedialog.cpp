@@ -20,11 +20,12 @@
 
 #include <KI18n/KLocalizedString>
 
-#include "../krglobal.h"
 #include "../FileSystem/sizecalculator.h"
+#include "../krglobal.h"
 
 KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, SizeCalculator *calculator)
-    : QDialog(parent), m_calculator(calculator)
+    : QDialog(parent)
+    , m_calculator(calculator)
 {
     setWindowTitle(i18n("Calculate Occupied Space"));
 
@@ -103,8 +104,7 @@ void KrCalcSpaceDialog::updateResult()
     const unsigned long totalDirs = m_calculator->totalDirs();
 
     const QList<QUrl> urls = m_calculator->urls();
-    const QString fileName =
-        urls.count() == 1 ? i18n("Name: %1\n", urls.first().fileName()) : QString("");
+    const QString fileName = urls.count() == 1 ? i18n("Name: %1\n", urls.first().fileName()) : QString("");
 
     QString msg = fileName + i18n("Total occupied space: %1", KIO::convertSize(totalSize));
     if (totalSize >= 1024)

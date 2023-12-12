@@ -21,16 +21,21 @@
 #include <QApplication>
 
 #include <KI18n/KLocalizedString>
-#include <KIOCore/KFileItem>
 #include <KIO/JobUiDelegate>
+#include <KIOCore/KFileItem>
 #include <KWidgetsAddons/KMessageBox>
 
 #include "../FileSystem/filesystem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../krservices.h"
 
-SynchronizerDirList::SynchronizerDirList(QWidget *w, bool hidden) : fileIterator(nullptr),
-        parentWidget(w), busy(false), result(false), ignoreHidden(hidden), currentUrl()
+SynchronizerDirList::SynchronizerDirList(QWidget *w, bool hidden)
+    : fileIterator(nullptr)
+    , parentWidget(w)
+    , busy(false)
+    , result(false)
+    , ignoreHidden(hidden)
+    , currentUrl()
 {
 }
 
@@ -39,7 +44,7 @@ SynchronizerDirList::~SynchronizerDirList()
     if (fileIterator)
         delete fileIterator;
 
-    QHashIterator< QString, FileItem *> lit(*this);
+    QHashIterator<QString, FileItem *> lit(*this);
     while (lit.hasNext())
         delete lit.next().value();
 }
@@ -49,7 +54,7 @@ FileItem *SynchronizerDirList::search(const QString &name, bool ignoreCase)
     if (!ignoreCase) {
         if (!contains(name))
             return nullptr;
-        return (*this)[ name ];
+        return (*this)[name];
     }
 
     QHashIterator<QString, FileItem *> iter(*this);
@@ -68,7 +73,7 @@ FileItem *SynchronizerDirList::search(const QString &name, bool ignoreCase)
 FileItem *SynchronizerDirList::first()
 {
     if (fileIterator == nullptr)
-        fileIterator = new QHashIterator<QString, FileItem *> (*this);
+        fileIterator = new QHashIterator<QString, FileItem *>(*this);
 
     fileIterator->toFront();
     if (fileIterator->hasNext())
@@ -79,7 +84,7 @@ FileItem *SynchronizerDirList::first()
 FileItem *SynchronizerDirList::next()
 {
     if (fileIterator == nullptr)
-        fileIterator = new QHashIterator<QString, FileItem *> (*this);
+        fileIterator = new QHashIterator<QString, FileItem *>(*this);
 
     if (fileIterator->hasNext())
         return fileIterator->next().value();
@@ -94,7 +99,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     currentUrl = urlIn;
     const QUrl url = QUrl::fromUserInput(urlIn, QString(), QUrl::AssumeLocalFile);
 
-    QHashIterator< QString, FileItem *> lit(*this);
+    QHashIterator<QString, FileItem *> lit(*this);
     while (lit.hasNext())
         delete lit.next().value();
     clear();
@@ -106,20 +111,22 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     if (url.isLocalFile()) {
         const QString dir = FileSystem::ensureTrailingSlash(url).path();
 
-        QT_DIR* qdir = QT_OPENDIR(dir.toLocal8Bit());
-        if (!qdir)  {
+        QT_DIR *qdir = QT_OPENDIR(dir.toLocal8Bit());
+        if (!qdir) {
             KMessageBox::error(parentWidget, i18n("Cannot open the folder %1.", dir), i18n("Error"));
             emit finished(result = false);
             return false;
         }
 
-        QT_DIRENT* dirEnt;
+        QT_DIRENT *dirEnt;
 
         while ((dirEnt = QT_READDIR(qdir)) != nullptr) {
             const QString name = QString::fromLocal8Bit(dirEnt->d_name);
 
-            if (name == "." || name == "..") continue;
-            if (ignoreHidden && name.startsWith('.')) continue;
+            if (name == "." || name == "..")
+                continue;
+            if (ignoreHidden && name.startsWith('.'))
+                continue;
 
             FileItem *item = FileSystem::createLocalFileItem(name, dir);
 
@@ -144,10 +151,10 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     }
 }
 
-void SynchronizerDirList::slotEntries(KIO::Job *job, const KIO::UDSEntryList& entries)
+void SynchronizerDirList::slotEntries(KIO::Job *job, const KIO::UDSEntryList &entries)
 {
     auto *listJob = dynamic_cast<KIO::ListJob *>(job);
-    for (const KIO::UDSEntry& entry : entries) {
+    for (const KIO::UDSEntry &entry : entries) {
         FileItem *item = FileSystem::createFileItemFromKIO(entry, listJob->url());
         if (item) {
             insert(item->getName(), item);
@@ -165,4 +172,3 @@ void SynchronizerDirList::slotListResult(KJob *job)
     }
     emit finished(result = true);
 }
-

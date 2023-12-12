@@ -6,39 +6,38 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "kmountmangui.h"
-#include "../krglobal.h"
-#include "../icon.h"
 #include "../Dialogs/krspecialwidgets.h"
-#include "../defaults.h"
 #include "../FileSystem/filesystem.h"
 #include "../compat.h"
+#include "../defaults.h"
+#include "../icon.h"
+#include "../krglobal.h"
 
 // QtCore
 #include <QCryptographicHash>
-#include <QList>
 #include <QFileInfo>
+#include <QList>
 // QtGui
-#include <QPixmap>
 #include <QBitmap>
 #include <QCursor>
+#include <QPixmap>
 // QtWidgets
+#include <QCheckBox>
 #include <QDialogButtonBox>
-#include <QHeaderView>
 #include <QGridLayout>
 #include <QGroupBox>
-#include <QCheckBox>
+#include <QHeaderView>
 #include <QMenu>
 #include <QPushButton>
 
+#include <KCodecs/KCodecs>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/KGuiItem>
 #include <KIOCore/KDiskFreeSpaceInfo>
 #include <KIOCore/KMountPoint>
-#include <KCodecs/KCodecs>
+#include <KWidgetsAddons/KGuiItem>
+#include <KWidgetsAddons/KMessageBox>
 
 #include <Solid/StorageVolume>
 
@@ -46,14 +45,15 @@
 #define MTAB "/etc/mtab"
 #endif
 
-KMountManGUI::KMountManGUI(KMountMan *mntMan) : QDialog(mntMan->parentWindow),
-    mountMan(mntMan),
-    info(nullptr),
-    mountList(nullptr),
-    cbShowOnlyRemovable(nullptr),
-    watcher(nullptr),
-    sizeX(-1),
-    sizeY(-1)
+KMountManGUI::KMountManGUI(KMountMan *mntMan)
+    : QDialog(mntMan->parentWindow)
+    , mountMan(mntMan)
+    , info(nullptr)
+    , mountList(nullptr)
+    , cbShowOnlyRemovable(nullptr)
+    , watcher(nullptr)
+    , sizeX(-1)
+    , sizeY(-1)
 {
     setWindowTitle(i18n("MountMan - Your Mount-Manager"));
     setWindowModality(Qt::WindowModal);
@@ -96,7 +96,7 @@ KMountManGUI::KMountManGUI(KMountMan *mntMan) : QDialog(mntMan->parentWindow),
     else
         resize(600, 300);
 
-    if (group.readEntry("Window Maximized",  false))
+    if (group.readEntry("Window Maximized", false))
         showMaximized();
     else
         show();
@@ -120,7 +120,6 @@ KMountManGUI::~KMountManGUI()
     group.writeEntry("ShowOnlyRemovable", cbShowOnlyRemovable->isChecked());
 }
 
-
 void KMountManGUI::resizeEvent(QResizeEvent *e)
 {
     if (!isMaximized()) {
@@ -135,7 +134,7 @@ QLayout *KMountManGUI::createMainPage()
 {
     auto *layout = new QGridLayout();
     layout->setSpacing(10);
-    mountList = new KrTreeWidget(this);    // create the main container
+    mountList = new KrTreeWidget(this); // create the main container
     KConfigGroup grp(krConfig, "Look&Feel");
     mountList->setFont(grp.readEntry("Filelist Font", _FilelistFont));
     mountList->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -161,12 +160,12 @@ QLayout *KMountManGUI::createMainPage()
         int j = QFontMetrics(mountList->font()).horizontalAdvance("0");
         j = (i > j ? i : j);
 
-        mountList->setColumnWidth(0, j*8);
-        mountList->setColumnWidth(1, j*4);
-        mountList->setColumnWidth(2, j*8);
-        mountList->setColumnWidth(3, j*6);
-        mountList->setColumnWidth(4, j*6);
-        mountList->setColumnWidth(5, j*5);
+        mountList->setColumnWidth(0, j * 8);
+        mountList->setColumnWidth(1, j * 4);
+        mountList->setColumnWidth(2, j * 8);
+        mountList->setColumnWidth(3, j * 6);
+        mountList->setColumnWidth(4, j * 6);
+        mountList->setColumnWidth(5, j * 5);
     }
 
     mountList->setAllColumnsShowFocus(true);
@@ -186,7 +185,7 @@ QLayout *KMountManGUI::createMainPage()
 
     cbShowOnlyRemovable = new QCheckBox(i18n("Show only removable devices"), this);
     cbShowOnlyRemovable->setChecked(grp.readEntry("ShowOnlyRemovable", false));
-    connect(cbShowOnlyRemovable , &QCheckBox::stateChanged, this, &KMountManGUI::updateList);
+    connect(cbShowOnlyRemovable, &QCheckBox::stateChanged, this, &KMountManGUI::updateList);
 
     layout->addWidget(box, 0, 0);
     layout->addWidget(cbShowOnlyRemovable, 1, 0);
@@ -202,23 +201,23 @@ void KMountManGUI::getSpaceData()
 
     mounted = KMountPoint::currentMountPoints();
     possible = KMountPoint::possibleMountPoints();
-    if (mounted.size() == 0) {   // nothing is mounted
+    if (mounted.size() == 0) { // nothing is mounted
         addNonMounted();
         updateList(); // let's continue
         return;
     }
 
-    for (auto & it : mounted) {
+    for (auto &it : mounted) {
         // don't bother with invalid file systems
         if (mountMan->invalidFilesystem(it->mountType())) {
             continue;
         }
-        KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo(it ->mountPoint());
-        if(!info.isValid()) {
+        KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo(it->mountPoint());
+        if (!info.isValid()) {
             continue;
         }
         fsData data;
-        data.setMntPoint(it ->mountPoint());
+        data.setMntPoint(it->mountPoint());
         data.setMounted(true);
         data.setTotalBlks(info.size() / 1024);
         data.setFreeBlks(info.available() / 1024);
@@ -233,7 +232,7 @@ void KMountManGUI::getSpaceData()
 void KMountManGUI::addNonMounted()
 {
     // handle the non-mounted ones
-    for (auto & it : possible) {
+    for (auto &it : possible) {
         // make sure we don't add things we've already added
         if (KMountMan::findInListByMntPoint(mounted, it->mountPoint())) {
             continue;
@@ -272,12 +271,12 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     item->setText(4, (mtd ? fSize : QString("N/A")));
     item->setText(5, (mtd ? sPrct : QString("N/A")));
 
-    auto *vol = device.as<Solid::StorageVolume> ();
+    auto *vol = device.as<Solid::StorageVolume>();
     QString iconName;
 
-    if(device.isValid())
+    if (device.isValid())
         iconName = device.icon();
-    else if(mountMan->networkFilesystem(fs.type()))
+    else if (mountMan->networkFilesystem(fs.type()))
         iconName = "folder-remote";
     QStringList overlays;
     if (mtd) {
@@ -296,7 +295,7 @@ void KMountManGUI::updateList()
     QString currentMP;
     int currentIdx = 0;
     QTreeWidgetItem *currentItem = mountList->currentItem();
-    if(currentItem) {
+    if (currentItem) {
         currentMP = getMntPoint(currentItem);
         currentIdx = mountList->indexOfTopLevelItem(currentItem);
     }
@@ -304,16 +303,16 @@ void KMountManGUI::updateList()
     mountList->clearSelection();
     mountList->clear();
 
-    for (auto & fileSystem : fileSystems)
+    for (auto &fileSystem : fileSystems)
         addItemToMountList(mountList, fileSystem);
 
     currentItem = mountList->topLevelItem(currentIdx);
-    for(int i = 0; i < mountList->topLevelItemCount(); i++) {
+    for (int i = 0; i < mountList->topLevelItemCount(); i++) {
         QTreeWidgetItem *item = mountList->topLevelItem(i);
-        if(getMntPoint(item) == currentMP)
-                currentItem = item;
+        if (getMntPoint(item) == currentMP)
+            currentItem = item;
     }
-    if(!currentItem)
+    if (!currentItem)
         currentItem = mountList->topLevelItem(0);
     mountList->setCurrentItem(currentItem);
     changeActive(currentItem);
@@ -321,7 +320,7 @@ void KMountManGUI::updateList()
     mountList->setFocus();
 
     watcher->setSingleShot(true);
-    watcher->start(WATCHER_DELAY);     // starting the watch timer ( single shot )
+    watcher->start(WATCHER_DELAY); // starting the watch timer ( single shot )
 }
 
 void KMountManGUI::checkMountChange()
@@ -329,7 +328,7 @@ void KMountManGUI::checkMountChange()
     if (KrMountDetector::getInstance()->hasMountsChanged())
         getSpaceData();
     watcher->setSingleShot(true);
-    watcher->start(WATCHER_DELAY);     // starting the watch timer ( single shot )
+    watcher->start(WATCHER_DELAY); // starting the watch timer ( single shot )
 }
 
 void KMountManGUI::doubleClicked(QTreeWidgetItem *i)
@@ -346,7 +345,7 @@ void KMountManGUI::changeActive()
 {
     QList<QTreeWidgetItem *> seld = mountList->selectedItems();
     if (seld.count() > 0)
-        changeActive(seld[ 0 ]);
+        changeActive(seld[0]);
 }
 
 // when user clicks on a filesystem, change information
@@ -372,7 +371,7 @@ void KMountManGUI::changeActive(QTreeWidgetItem *i)
     info->setFreeSpace(system->freeBlks());
     info->repaint();
 
-    if(system->mounted())
+    if (system->mounted())
         mountButton->setText(i18n("&Unmount"));
     else
         mountButton->setText(i18n("&Mount"));
@@ -382,15 +381,16 @@ void KMountManGUI::changeActive(QTreeWidgetItem *i)
 }
 
 // called when right-clicked on a filesystem
-void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint & pos)
+void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint &pos)
 {
     // these are the values that will exist in the menu
-#define MOUNT_ID       90
-#define UNMOUNT_ID     91
-#define FORMAT_ID      93
-#define EJECT_ID       94
+#define MOUNT_ID 90
+#define UNMOUNT_ID 91
+#define FORMAT_ID 93
+#define EJECT_ID 94
     //////////////////////////////////////////////////////////
-    if (!item) return;
+    if (!item)
+        return;
 
     fsData *system = getFsData(item);
     // create the menu
@@ -402,7 +402,7 @@ void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint & pos)
         bool enable = !(mountMan->nonmountFilesystem(system->type(), system->mntPoint()));
         mountAct->setEnabled(enable);
     } else {
-        QAction * umountAct =  popup.addAction(i18n("Unmount"));
+        QAction *umountAct = popup.addAction(i18n("Unmount"));
         umountAct->setData(QVariant(UNMOUNT_ID));
         bool enable = !(mountMan->nonmountFilesystem(system->type(), system->mntPoint()));
         umountAct->setEnabled(enable);
@@ -418,7 +418,7 @@ void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint & pos)
 
     QString mountPoint = system->mntPoint();
 
-    QAction * res = popup.exec(pos);
+    QAction *res = popup.exec(pos);
     int result = -1;
 
     if (res && res->data().canConvert<int>())
@@ -426,14 +426,15 @@ void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint & pos)
 
     // check out the user's option
     switch (result) {
-    case - 1 : return ;     // the user clicked outside of the menu
-    case MOUNT_ID :
-    case UNMOUNT_ID :
+    case -1:
+        return; // the user clicked outside of the menu
+    case MOUNT_ID:
+    case UNMOUNT_ID:
         mountMan->toggleMount(mountPoint);
         break;
-    case FORMAT_ID :
+    case FORMAT_ID:
         break;
-    case EJECT_ID :
+    case EJECT_ID:
         mountMan->eject(mountPoint);
         break;
     }
@@ -442,7 +443,7 @@ void KMountManGUI::clicked(QTreeWidgetItem *item, const QPoint & pos)
 void KMountManGUI::slotToggleMount()
 {
     QTreeWidgetItem *item = mountList->currentItem();
-    if(item) {
+    if (item) {
         mountMan->toggleMount(getFsData(item)->mntPoint());
     }
 }
@@ -450,20 +451,20 @@ void KMountManGUI::slotToggleMount()
 void KMountManGUI::slotEject()
 {
     QTreeWidgetItem *item = mountList->currentItem();
-    if(item) {
+    if (item) {
         mountMan->eject(getFsData(item)->mntPoint());
     }
 }
 
-fsData* KMountManGUI::getFsData(QTreeWidgetItem *item)
+fsData *KMountManGUI::getFsData(QTreeWidgetItem *item)
 {
-    for (auto & fileSystem : fileSystems) {
+    for (auto &fileSystem : fileSystems) {
         // the only thing which is unique is the mount point
         if (fileSystem.mntPoint() == getMntPoint(item)) {
-            return & fileSystem;
+            return &fileSystem;
         }
     }
-    //this point shouldn't be reached
+    // this point shouldn't be reached
     abort();
     return nullptr;
 }
@@ -472,7 +473,6 @@ QString KMountManGUI::getMntPoint(QTreeWidgetItem *item)
 {
     return item->text(2); // text(2) ? ugly ugly ugly
 }
-
 
 KrMountDetector::KrMountDetector()
 {
@@ -488,7 +488,7 @@ bool KrMountDetector::hasMountsChanged()
 #endif
         KMountPoint::List mountPoints = KMountPoint::currentMountPoints(KMountPoint::NeedRealDeviceName);
         QCryptographicHash md5(QCryptographicHash::Md5);
-        for (auto & mountPoint : mountPoints) {
+        for (auto &mountPoint : mountPoints) {
             md5.addData(mountPoint->mountedFrom().toUtf8());
             md5.addData(mountPoint->realDeviceName().toUtf8());
             md5.addData(mountPoint->mountPoint().toUtf8());
@@ -507,8 +507,7 @@ bool KrMountDetector::hasMountsChanged()
 }
 
 KrMountDetector krMountDetector;
-KrMountDetector * KrMountDetector::getInstance()
+KrMountDetector *KrMountDetector::getInstance()
 {
-    return & krMountDetector;
+    return &krMountDetector;
 }
-

@@ -6,12 +6,10 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
-
 #include "konfigurator.h"
-#include "../krglobal.h"
-#include "../icon.h"
 #include "../Dialogs/krdialogs.h"
+#include "../icon.h"
+#include "../krglobal.h"
 
 // QtGui
 #include <QPixmap>
@@ -22,30 +20,34 @@
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
+#include "../GUI/kfnkeys.h"
 #include "../defaults.h"
 #include "../krusaderview.h"
-#include "../GUI/kfnkeys.h"
 
 // the frames
-#include "kgstartup.h"
-#include "kgpanel.h"
-#include "kggeneral.h"
 #include "kgadvanced.h"
 #include "kgarchives.h"
-#include "kgdependencies.h"
 #include "kgcolors.h"
-#include "kguseractions.h"
+#include "kgdependencies.h"
+#include "kggeneral.h"
+#include "kgpanel.h"
 #include "kgprotocols.h"
+#include "kgstartup.h"
+#include "kguseractions.h"
 
-Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)nullptr),
-        firstTime(f), internalCall(false), sizeX(-1), sizeY(-1)
+Konfigurator::Konfigurator(bool f, int startPage)
+    : KPageDialog((QWidget *)nullptr)
+    , firstTime(f)
+    , internalCall(false)
+    , sizeX(-1)
+    , sizeY(-1)
 {
     setWindowTitle(i18n("Konfigurator - Creating Your Own Krusader"));
     setWindowModality(Qt::ApplicationModal);
     setFaceType(KPageDialog::List);
 
-    setStandardButtons(QDialogButtonBox::Help|QDialogButtonBox::RestoreDefaults|QDialogButtonBox::Close|
-                       QDialogButtonBox::Apply|QDialogButtonBox::Reset);
+    setStandardButtons(QDialogButtonBox::Help | QDialogButtonBox::RestoreDefaults | QDialogButtonBox::Close | QDialogButtonBox::Apply
+                       | QDialogButtonBox::Reset);
     button(QDialogButtonBox::Apply)->setDefault(true);
 
     connect(button(QDialogButtonBox::Close), &QPushButton::clicked, this, &Konfigurator::slotClose);
@@ -67,7 +69,7 @@ Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)nullp
     else
         resize(900, 680);
 
-    if (group.readEntry("Window Maximized",  false))
+    if (group.readEntry("Window Maximized", false))
         showMaximized();
     else
         show();
@@ -121,17 +123,13 @@ void Konfigurator::createLayout(int startPage)
     // advanced
     newPage(new KgAdvanced(firstTime, this), i18n("Advanced"), i18n("Be sure you know what you are doing."), Icon("dialog-messages"));
     // archives
-    newPage(new KgArchives(firstTime, this), i18n("Archives"), i18n("Customize the way Krusader deals with archives"),
-            Icon("archive-extract"));
+    newPage(new KgArchives(firstTime, this), i18n("Archives"), i18n("Customize the way Krusader deals with archives"), Icon("archive-extract"));
     // dependencies
-    newPage(new KgDependencies(firstTime, this), i18n("Dependencies"), i18n("Set the full path of the external applications"),
-            Icon("debug-run"));
+    newPage(new KgDependencies(firstTime, this), i18n("Dependencies"), i18n("Set the full path of the external applications"), Icon("debug-run"));
     // useractions
-    newPage(new KgUserActions(firstTime, this), i18n("User Actions"), i18n("Configure your personal actions"),
-            Icon("user-properties"));
+    newPage(new KgUserActions(firstTime, this), i18n("User Actions"), i18n("Configure your personal actions"), Icon("user-properties"));
     // protocols
-    newPage(new KgProtocols(firstTime, this), i18n("Protocols"), i18n("Link MIMEs to protocols"),
-            Icon("document-preview"));
+    newPage(new KgProtocols(firstTime, this), i18n("Protocols"), i18n("Link MIMEs to protocols"), Icon("document-preview"));
 
     setCurrentPage(kgPages.at(startPage));
     slotApplyEnable();
@@ -140,7 +138,7 @@ void Konfigurator::createLayout(int startPage)
 void Konfigurator::closeEvent(QCloseEvent *event)
 {
     lastPage = currentPage();
-    if(slotPageSwitch(lastPage, lastPage)) {
+    if (slotPageSwitch(lastPage, lastPage)) {
         hide();
         KPageDialog::closeEvent(event);
     } else
@@ -168,7 +166,11 @@ bool Konfigurator::slotPageSwitch(KPageWidgetItem *current, KPageWidgetItem *bef
     }
 
     if (currentPg->isChanged()) {
-        int result = KMessageBox::questionYesNoCancel(nullptr, i18n("The current page has been changed. Do you want to apply changes?"), {}, KStandardGuiItem::apply(), KStandardGuiItem::discard());
+        int result = KMessageBox::questionYesNoCancel(nullptr,
+                                                      i18n("The current page has been changed. Do you want to apply changes?"),
+                                                      {},
+                                                      KStandardGuiItem::apply(),
+                                                      KStandardGuiItem::discard());
 
         switch (result) {
         case KMessageBox::No:
@@ -208,7 +210,7 @@ void Konfigurator::slotClose()
 
 void Konfigurator::slotApply()
 {
-    emit configChanged((qobject_cast<KonfiguratorPage*>(currentPage()->widget()))->apply());
+    emit configChanged((qobject_cast<KonfiguratorPage *>(currentPage()->widget()))->apply());
 }
 
 void Konfigurator::slotReset()
@@ -225,4 +227,3 @@ void Konfigurator::slotShowHelp()
 {
     KHelpClient::invokeHelp(QStringLiteral("konfigurator"));
 }
-

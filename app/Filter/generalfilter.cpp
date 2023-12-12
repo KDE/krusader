@@ -8,18 +8,18 @@
 */
 
 #include "generalfilter.h"
-#include "filtertabs.h"
-#include "../krglobal.h"
-#include "../krservices.h"
 #include "../FileSystem/filesystem.h"
 #include "../compat.h"
+#include "../krglobal.h"
+#include "../krservices.h"
+#include "filtertabs.h"
 
 // QtWidgets
-#include <QPushButton>
-#include <QHBoxLayout>
 #include <QGridLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QMenu>
+#include <QPushButton>
 
 #include <KCodecs/KCharsets>
 #include <KConfigCore/KSharedConfig>
@@ -34,35 +34,42 @@ typedef struct {
 } term;
 
 static const term items[] = {
-    { I18N_NOOP("Any Character"),                 ".",        0 },
-    { I18N_NOOP("Start of Line"),                 "^",        0 },
-    { I18N_NOOP("End of Line"),                   "$",        0 },
-    { I18N_NOOP("Set of Characters"),             "[]",       -1 },
-    { I18N_NOOP("Repeats, Zero or More Times"),   "*",        0 },
-    { I18N_NOOP("Repeats, One or More Times"),    "+",        0 },
-    { I18N_NOOP("Optional"),                      "?",        0 },
-    { I18N_NOOP("Escape"),                        "\\",       0 },
-    { I18N_NOOP("TAB"),                           "\\t",      0 },
-    { I18N_NOOP("Newline"),                       "\\n",      0 },
-    { I18N_NOOP("Carriage Return"),               "\\r",      0 },
-    { I18N_NOOP("White Space"),                   "\\s",      0 },
-    { I18N_NOOP("Digit"),                         "\\d",      0 },
+    {I18N_NOOP("Any Character"), ".", 0},
+    {I18N_NOOP("Start of Line"), "^", 0},
+    {I18N_NOOP("End of Line"), "$", 0},
+    {I18N_NOOP("Set of Characters"), "[]", -1},
+    {I18N_NOOP("Repeats, Zero or More Times"), "*", 0},
+    {I18N_NOOP("Repeats, One or More Times"), "+", 0},
+    {I18N_NOOP("Optional"), "?", 0},
+    {I18N_NOOP("Escape"), "\\", 0},
+    {I18N_NOOP("TAB"), "\\t", 0},
+    {I18N_NOOP("Newline"), "\\n", 0},
+    {I18N_NOOP("Carriage Return"), "\\r", 0},
+    {I18N_NOOP("White Space"), "\\s", 0},
+    {I18N_NOOP("Digit"), "\\d", 0},
 };
 
 class RegExpAction : public QAction
 {
 public:
     RegExpAction(QObject *parent, const QString &text, const QString &regExp, int cursor)
-            : QAction(text, parent), mText(text), mRegExp(regExp), mCursor(cursor) {
+        : QAction(text, parent)
+        , mText(text)
+        , mRegExp(regExp)
+        , mCursor(cursor)
+    {
     }
 
-    QString text() const {
+    QString text() const
+    {
         return mText;
     }
-    QString regExp() const {
+    QString regExp() const
+    {
         return mRegExp;
     }
-    int cursor() const {
+    int cursor() const
+    {
         return mCursor;
     }
 
@@ -72,10 +79,10 @@ private:
     int mCursor;
 };
 
-GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
-                             QStringList extraOptions) :
-        QWidget(parent),
-        profileManager(nullptr), fltTabs(tabs)
+GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent, QStringList extraOptions)
+    : QWidget(parent)
+    , profileManager(nullptr)
+    , fltTabs(tabs)
 {
     auto *filterLayout = new QGridLayout(this);
     filterLayout->setSpacing(6);
@@ -101,7 +108,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     searchForLabel->setText(i18n("Search &for:"));
     nameGroupLayout->addWidget(searchForLabel, 0, 0);
 
-    searchFor = new KrHistoryComboBox(false, nameGroup/*, "searchFor"*/);
+    searchFor = new KrHistoryComboBox(false, nameGroup /*, "searchFor"*/);
     QSizePolicy searchForPolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     searchForPolicy.setHeightForWidth(searchFor->sizePolicy().hasHeightForWidth());
     searchFor->setSizePolicy(searchForPolicy);
@@ -113,28 +120,28 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     nameGroupLayout->addWidget(searchFor, 0, 1, 1, 2);
 
     const QString s = "<p><img src='toolbar|find'></p>"
-                      + i18n("<p>The filename filtering criteria is defined here.</p>"
-                             "<p>You can make use of wildcards. Multiple patterns are separated by "
-                             "space (means logical OR) and patterns are excluded from the search "
-                             "using the pipe symbol.</p>"
-                             "<p>If the pattern is ended with a slash (<code>*pattern*/</code>), "
-                             "that means that pattern relates to recursive search of folders."
-                             "<ul><li><code>pattern</code> - means to search those files/folders "
-                             "that name is <code>pattern</code>, recursive search goes through all "
-                             "subfolders independently of the value of <code>pattern</code></li>"
-                             "<li><code>pattern/</code> - means to search all files/folders, but "
-                             "recursive search goes through/excludes the folders that name is "
-                             "<code>pattern</code></li></ul></p>"
-                             "<p>It is allowed to use quotation marks for names that contain space."
-                             " Filter <code>\"Program&nbsp;Files\"</code> searches out those "
-                             "files/folders that name is <code>Program&nbsp;Files</code>.</p>"
-                             "<p>Examples:</p><ul>"
-                             "<li><code>*.o</code></li>"
-                             "<li><code>*.h *.c\?\?</code></li>"
-                             "<li><code>*.cpp *.h | *.moc.cpp</code></li>"
-                             "<li><code>* | .svn/ .git/</code></li></ul><p>"
-                             "<b>Note</b>: the search term '<code>text</code>' is equivalent to "
-                             "'<code>*text*</code>'.</p>");
+        + i18n("<p>The filename filtering criteria is defined here.</p>"
+               "<p>You can make use of wildcards. Multiple patterns are separated by "
+               "space (means logical OR) and patterns are excluded from the search "
+               "using the pipe symbol.</p>"
+               "<p>If the pattern is ended with a slash (<code>*pattern*/</code>), "
+               "that means that pattern relates to recursive search of folders."
+               "<ul><li><code>pattern</code> - means to search those files/folders "
+               "that name is <code>pattern</code>, recursive search goes through all "
+               "subfolders independently of the value of <code>pattern</code></li>"
+               "<li><code>pattern/</code> - means to search all files/folders, but "
+               "recursive search goes through/excludes the folders that name is "
+               "<code>pattern</code></li></ul></p>"
+               "<p>It is allowed to use quotation marks for names that contain space."
+               " Filter <code>\"Program&nbsp;Files\"</code> searches out those "
+               "files/folders that name is <code>Program&nbsp;Files</code>.</p>"
+               "<p>Examples:</p><ul>"
+               "<li><code>*.o</code></li>"
+               "<li><code>*.h *.c\?\?</code></li>"
+               "<li><code>*.cpp *.h | *.moc.cpp</code></li>"
+               "<li><code>* | .svn/ .git/</code></li></ul><p>"
+               "<b>Note</b>: the search term '<code>text</code>' is equivalent to "
+               "'<code>*text*</code>'.</p>");
     searchFor->setWhatsThis(s);
     searchForLabel->setWhatsThis(s);
 
@@ -271,7 +278,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     containsLabel->setText(i18n("&Text:"));
     containsTextLayout->addWidget(containsLabel);
 
-    containsText = new KrHistoryComboBox(false, containsGroup/*, "containsText"*/);
+    containsText = new KrHistoryComboBox(false, containsGroup /*, "containsText"*/);
     QSizePolicy containsTextPolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     containsTextPolicy.setHeightForWidth(containsText->sizePolicy().hasHeightForWidth());
     containsText->setSizePolicy(containsTextPolicy);
@@ -288,8 +295,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     // Populate the popup menu.
     auto *patterns = new QMenu(containsRegExp);
     for (int i = 0; (unsigned)i < sizeof(items) / sizeof(items[0]); i++) {
-        patterns->addAction(new RegExpAction(patterns, i18n(items[i].description),
-                                             items[i].regExp, items[i].cursorAdjustment));
+        patterns->addAction(new RegExpAction(patterns, i18n(items[i].description), items[i].regExp, items[i].cursorAdjustment));
     }
     connect(containsRegExp, &QToolButton::toggled, this, &GeneralFilter::slotDisable);
     connect(containsRegExp, &QToolButton::triggered, this, &GeneralFilter::slotRegExpTriggered);
@@ -312,7 +318,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     contentEncoding->addItems(KCharsets::charsets()->descriptiveEncodingNames());
     containsCbsLayout->addWidget(contentEncoding);
 
-    auto* cbSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto *cbSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     containsCbsLayout->addItem(cbSpacer);
 
     containsWholeWord = new QCheckBox(containsGroup);
@@ -338,7 +344,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     auto *recurseLayout = new QHBoxLayout();
     recurseLayout->setSpacing(6);
     recurseLayout->setContentsMargins(0, 0, 0, 0);
-    auto* recurseSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto *recurseSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     recurseLayout->addItem(recurseSpacer);
 
     if (properties & FilterTabs::HasRecurseOptions) {
@@ -355,11 +361,10 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
         followLinks = new QCheckBox(this);
         followLinks->setText(i18n("Follow &links"));
         recurseLayout->addWidget(followLinks);
-
     }
     filterLayout->addLayout(recurseLayout, 3, 0);
 
-    for(int i = 0; i < extraOptions.length(); i++) {
+    for (int i = 0; i < extraOptions.length(); i++) {
         auto *option = new QCheckBox(this);
         option->setText(extraOptions[i]);
         recurseLayout->addWidget(option);
@@ -394,8 +399,8 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent,
     list = group.readEntry("ContainsText History", QStringList());
     containsText->setHistoryItems(list);
 
-    setTabOrder(searchFor, containsText);    // search for -> content
-    setTabOrder(containsText, searchType);    // content -> search type
+    setTabOrder(searchFor, containsText); // search for -> content
+    setTabOrder(containsText, searchType); // content -> search type
 
     slotDisable();
 }
@@ -423,13 +428,13 @@ GeneralFilter::~GeneralFilter()
     krConfig->sync();
 }
 
-bool GeneralFilter::isExtraOptionChecked(const QString& name)
+bool GeneralFilter::isExtraOptionChecked(const QString &name)
 {
     QCheckBox *option = extraOptions[name];
     return option ? option->isChecked() : false;
 }
 
-void GeneralFilter::checkExtraOption(const QString& name, bool check)
+void GeneralFilter::checkExtraOption(const QString &name, bool check)
 {
     QCheckBox *option = extraOptions[name];
     if (option)
@@ -535,9 +540,9 @@ void GeneralFilter::slotDisable()
     if (properties & FilterTabs::HasSearchIn) {
         QList<QUrl> urlList = searchIn->urlList();
         remoteOnly = urlList.count() != 0;
-        foreach(const QUrl &url, urlList)
-        if (url.scheme() == "file")
-            remoteOnly = false;
+        foreach (const QUrl &url, urlList)
+            if (url.scheme() == "file")
+                remoteOnly = false;
     }
 
     containsWholeWord->setEnabled(!state && global);
@@ -552,7 +557,7 @@ void GeneralFilter::slotDisable()
     containsText->setEnabled(global);
 }
 
-void GeneralFilter::slotRegExpTriggered(QAction * act)
+void GeneralFilter::slotRegExpTriggered(QAction *act)
 {
     if (act == nullptr)
         return;
@@ -568,7 +573,7 @@ bool GeneralFilter::getSettings(FilterSettings &s)
 {
     // check that we have (at least) what to search, and where to search in
     if (searchFor->currentText().simplified().isEmpty()) {
-        KMessageBox::error(this , i18n("No search criteria entered."));
+        KMessageBox::error(this, i18n("No search criteria entered."));
         searchFor->setFocus();
         return false;
     }
@@ -587,8 +592,7 @@ bool GeneralFilter::getSettings(FilterSettings &s)
     }
 
     if (contentEncoding->currentIndex() != 0)
-        s.contentEncoding =
-            KCharsets::charsets()->encodingForName(contentEncoding->currentText());
+        s.contentEncoding = KCharsets::charsets()->encodingForName(contentEncoding->currentText());
 
     if (properties & FilterTabs::HasRecurseOptions) {
         s.recursive = searchInDirs->isChecked();
@@ -599,7 +603,7 @@ bool GeneralFilter::getSettings(FilterSettings &s)
     if (properties & FilterTabs::HasSearchIn) {
         s.searchIn = searchIn->urlList();
         if (s.searchIn.isEmpty()) { // we need a place to search in
-            KMessageBox::error(this , i18n("Please specify a location to search in."));
+            KMessageBox::error(this, i18n("Please specify a location to search in."));
             searchIn->lineEdit()->setFocus();
             return false;
         }
@@ -630,8 +634,7 @@ void GeneralFilter::applySettings(const FilterSettings &s)
     containsWholeWord->setChecked(s.containsWholeWord);
     containsRegExp->setChecked(s.containsRegExp);
 
-    setComboBoxValue(contentEncoding,
-            KCharsets::charsets()->descriptionForEncoding(s.contentEncoding));
+    setComboBoxValue(contentEncoding, KCharsets::charsets()->descriptionForEncoding(s.contentEncoding));
 
     if (properties & FilterTabs::HasRecurseOptions) {
         searchInDirs->setChecked(s.recursive);
@@ -651,4 +654,3 @@ void GeneralFilter::applySettings(const FilterSettings &s)
         dontSearchIn->listBox()->addItems(KrServices::toStringList(s.dontSearchIn));
     }
 }
-

@@ -10,13 +10,12 @@
 
 #include "krcolorcache.h"
 
-
-KrErrorDisplay::KrErrorDisplay(QWidget *parent) :
-    QLabel(parent),
-    _currentDim(100)
+KrErrorDisplay::KrErrorDisplay(QWidget *parent)
+    : QLabel(parent)
+    , _currentDim(100)
 {
     setAutoFillBackground(true);
-    _startColor = QColor(240,150,150);
+    _startColor = QColor(240, 150, 150);
     QPalette p(palette());
     _targetColor = p.color(QPalette::Window);
     p.setColor(QPalette::Window, _startColor);
@@ -26,7 +25,7 @@ KrErrorDisplay::KrErrorDisplay(QWidget *parent) :
     connect(&_dimTimer, &QTimer::timeout, this, &KrErrorDisplay::slotTimeout);
 }
 
-void KrErrorDisplay::setText(const QString& text)
+void KrErrorDisplay::setText(const QString &text)
 {
     QLabel::setText(text);
     _currentDim = 100;
@@ -42,7 +41,7 @@ void KrErrorDisplay::slotTimeout()
 {
     _currentDim -= 2;
     dim();
-    if( _currentDim > 0)
+    if (_currentDim > 0)
         _dimTimer.start(50);
 }
 

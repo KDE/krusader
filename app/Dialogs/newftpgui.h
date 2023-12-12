@@ -31,11 +31,11 @@ public:
     explicit newFTPGUI(QWidget *parent = nullptr);
     ~newFTPGUI() override;
 
-    KComboBox* prefix;
-    KrHistoryComboBox* url;
-    QSpinBox* port;
-    KLineEdit* username;
-    KLineEdit* password;
+    KComboBox *prefix;
+    KrHistoryComboBox *url;
+    QSpinBox *port;
+    KLineEdit *username;
+    KLineEdit *password;
 
 protected:
     bool event(QEvent *) override;
@@ -44,13 +44,13 @@ private slots:
     void slotTextChanged(const QString &);
 
 private:
-    QLabel* iconLabel;
-    QLabel* aboutLabel;
-    QLabel* protocolLabel;
-    QLabel* passwordLabel;
-    QLabel* hostLabel;
-    QLabel* usernameLabel;
-    QLabel* portLabel;
+    QLabel *iconLabel;
+    QLabel *aboutLabel;
+    QLabel *protocolLabel;
+    QLabel *passwordLabel;
+    QLabel *hostLabel;
+    QLabel *usernameLabel;
+    QLabel *portLabel;
 };
 
 #endif

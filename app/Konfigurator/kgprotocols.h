@@ -11,40 +11,40 @@
 // QtWidgets
 #include <QPushButton>
 
-#include "konfiguratorpage.h"
-#include "../GUI/krtreewidget.h"
 #include "../GUI/krlistwidget.h"
+#include "../GUI/krtreewidget.h"
+#include "konfiguratorpage.h"
 
 class KgProtocols : public KonfiguratorPage
 {
     Q_OBJECT
 
 public:
-    explicit KgProtocols(bool first, QWidget* parent = nullptr);
+    explicit KgProtocols(bool first, QWidget *parent = nullptr);
 
     void loadInitialValues() override;
     void setDefaults() override;
     bool apply() override;
     bool isChanged() override;
 
-    static  void init();
+    static void init();
 
 public slots:
-    void         slotDisableButtons();
-    void         slotAddProtocol();
-    void         slotRemoveProtocol();
-    void         slotAddMime();
-    void         slotRemoveMime();
+    void slotDisableButtons();
+    void slotAddProtocol();
+    void slotRemoveProtocol();
+    void slotAddMime();
+    void slotRemoveMime();
 
 protected:
-    void         loadProtocols();
-    void         loadMimes();
-    void         addSpacer(QBoxLayout *parent);
+    void loadProtocols();
+    void loadMimes();
+    void addSpacer(QBoxLayout *parent);
 
-    void         addProtocol(const QString& name, bool changeCurrent = false);
-    void         removeProtocol(const QString& name);
-    void         addMime(QString name, const QString& protocol);
-    void         removeMime(const QString& name);
+    void addProtocol(const QString &name, bool changeCurrent = false);
+    void removeProtocol(const QString &name);
+    void addMime(QString name, const QString &protocol);
+    void removeMime(const QString &name);
 
     KrTreeWidget *linkList;
 

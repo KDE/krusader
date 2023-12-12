@@ -10,11 +10,11 @@
 #define EXPANDER_H
 
 // QtCore
+#include <QList>
 #include <QString>
 #include <QStringList>
-#include <QList>
 
-# include "tstring.h"
+#include "tstring.h"
 
 class KrPanel;
 class Expander;
@@ -29,17 +29,25 @@ typedef QList<TagString> TagStringList;
 class exp_parameter
 {
 public:
-    exp_parameter() {}
-    inline exp_parameter(QString desc, QString pre, bool ness) {
-        _description = desc; _preset = pre; _necessary = ness;
+    exp_parameter()
+    {
     }
-    inline QString description() const { ///< A description of the parameter
+    inline exp_parameter(QString desc, QString pre, bool ness)
+    {
+        _description = desc;
+        _preset = pre;
+        _necessary = ness;
+    }
+    inline QString description() const
+    { ///< A description of the parameter
         return _description;
     }
-    inline QString preset() const { ///< the default of the parameter
+    inline QString preset() const
+    { ///< the default of the parameter
         return _preset;
     }
-    inline bool necessary() const { ///< false if the parameter is optional
+    inline bool necessary() const
+    { ///< false if the parameter is optional
         return _necessary;
     }
 
@@ -49,8 +57,8 @@ private:
     bool _necessary;
 };
 
-#define EXP_FUNC virtual TagString expFunc ( const KrPanel*, const TagStringList&, const bool&, Expander& ) const
-#define SIMPLE_EXP_FUNC virtual TagString expFunc ( const KrPanel*, const QStringList&, const bool&, Expander& ) const
+#define EXP_FUNC virtual TagString expFunc(const KrPanel *, const TagStringList &, const bool &, Expander &) const
+#define SIMPLE_EXP_FUNC virtual TagString expFunc(const KrPanel *, const QStringList &, const bool &, Expander &) const
 /**
  * Abstract baseclass for all expander-functions (which replace placeholder).
  * A Placeholder is an entry containing the expression,
@@ -61,40 +69,49 @@ private:
 class exp_placeholder
 {
 public:
-    inline QString expression() const { ///< The placeholder (without '%' or panel-prefix)
+    inline QString expression() const
+    { ///< The placeholder (without '%' or panel-prefix)
         return _expression;
     }
-    inline QString description() const { ///< A description of the placeholder
+    inline QString description() const
+    { ///< A description of the placeholder
         return _description;
     }
-    inline bool needPanel() const { ///< true if the placeholder needs a panel to operate on
+    inline bool needPanel() const
+    { ///< true if the placeholder needs a panel to operate on
         return _needPanel;
     }
-    inline void addParameter(exp_parameter parameter) { ///< adds parameter to the placeholder
+    inline void addParameter(exp_parameter parameter)
+    { ///< adds parameter to the placeholder
         _parameter.append(parameter);
     }
-    inline int parameterCount() const { ///< returns the number of placeholders
+    inline int parameterCount() const
+    { ///< returns the number of placeholders
         return _parameter.count();
     }
-    inline const exp_parameter& parameter(int id) const { ///< returns a specific parameter
-        return _parameter[ id ];
+    inline const exp_parameter &parameter(int id) const
+    { ///< returns a specific parameter
+        return _parameter[id];
     }
 
     EXP_FUNC = 0;
+
 protected:
-    static void setError(Expander& exp, const Error& e);
-    static void panelMissingError(const QString &s, Expander& exp);
-    static QStringList splitEach(const TagString& s);
-    static QStringList fileList(const KrPanel* const panel, const QString& type, const QString& mask, const bool omitPath, const bool useUrl, Expander&, const QString&);
+    static void setError(Expander &exp, const Error &e);
+    static void panelMissingError(const QString &s, Expander &exp);
+    static QStringList splitEach(const TagString &s);
+    static QStringList
+    fileList(const KrPanel *const panel, const QString &type, const QString &mask, const bool omitPath, const bool useUrl, Expander &, const QString &);
     exp_placeholder();
-    exp_placeholder(const exp_placeholder& p);
-    virtual ~exp_placeholder() { }
+    exp_placeholder(const exp_placeholder &p);
+    virtual ~exp_placeholder()
+    {
+    }
     QString _expression;
     QString _description;
-    QList <exp_parameter> _parameter;
+    QList<exp_parameter> _parameter;
     bool _needPanel;
 };
-
 
 class Error
 {
@@ -102,21 +119,41 @@ public:
     enum Cause { exp_C_USER, exp_C_SYNTAX, exp_C_WORLD, exp_C_ARGUMENT };
     enum Severity { exp_S_OK, exp_S_WARNING, exp_S_ERROR, exp_S_FATAL };
 
-    Error() : m_severity(exp_S_OK) {}
-    Error(Severity severity, Cause cause) : m_severity(severity), m_cause(cause), m_description() {}
+    Error()
+        : m_severity(exp_S_OK)
+    {
+    }
+    Error(Severity severity, Cause cause)
+        : m_severity(severity)
+        , m_cause(cause)
+        , m_description()
+    {
+    }
     Error(Severity severity, Cause cause, QString description)
-        : m_severity(severity), m_cause(cause), m_description(description) {}
+        : m_severity(severity)
+        , m_cause(cause)
+        , m_description(description)
+    {
+    }
 
-    operator bool() const { return m_severity != exp_S_OK; }
-    Cause cause() const { return m_cause; }
-    const QString &description() const { return m_description; }
+    operator bool() const
+    {
+        return m_severity != exp_S_OK;
+    }
+    Cause cause() const
+    {
+        return m_cause;
+    }
+    const QString &description() const
+    {
+        return m_description;
+    }
 
 private:
     Severity m_severity;
     Cause m_cause;
     QString m_description;
 };
-
 
 /**
  * The Expander expands the command of an UserAction by replacing all
@@ -155,7 +192,7 @@ private:
  *    - @em Select manipulates the selection of the panel
  *       -# A filter-mask (necessary)
  *       -# Either "Add", "Remove", "Set" (default)
-  *       .
+ *       .
  *    - @em Bookmark manipulates the selection of the panel
  *       -# A path or URL (necessary)
  *       -# If "yes", the location is opened in a new tab
@@ -180,31 +217,34 @@ private:
 class Expander
 {
 public:
-
-    inline static int placeholderCount() { ///< returns the number of placeholders
+    inline static int placeholderCount()
+    { ///< returns the number of placeholders
         return _placeholder().count();
     }
-    inline static const exp_placeholder* placeholder(int id) {
-        return _placeholder()[ id ];
+    inline static const exp_placeholder *placeholder(int id)
+    {
+        return _placeholder()[id];
     }
 
     /**
-      * This expands a whole commandline
-      *
-      * @param stringToExpand the commandline with the placeholder
-      * @param useUrl true iff the path's should be expanded to an URL instead of an local path
-      * @return a list of all commands
-      */
-    void expand(const QString& stringToExpand, bool useUrl);
+     * This expands a whole commandline
+     *
+     * @param stringToExpand the commandline with the placeholder
+     * @param useUrl true iff the path's should be expanded to an URL instead of an local path
+     * @return a list of all commands
+     */
+    void expand(const QString &stringToExpand, bool useUrl);
 
     /**
      * Returns the list of all commands to be executed, provided that #expand was called
      * before, and there was no error (see #error).
      *
      * @return The list of commands to be executed
-       */
-    const QStringList& result() const {
-        assert(!error()); return resultList;
+     */
+    const QStringList &result() const
+    {
+        assert(!error());
+        return resultList;
     }
 
     /**
@@ -219,9 +259,11 @@ public:
      *
      * @return The error object
      */
-    const Error& error() const {
+    const Error &error() const
+    {
         return _err;
     }
+
 protected:
     /**
      * This expands a whole commandline by calling for each Placeholder the corresponding expander
@@ -230,7 +272,7 @@ protected:
      * @param useUrl true if the path's should be expanded to an URL instead of an local path
      * @return the expanded commanline for the current item
      */
-    TagString expandCurrent(const QString& stringToExpand, bool useUrl);
+    TagString expandCurrent(const QString &stringToExpand, bool useUrl);
     /**
      * This function searches for "\@EACH"-marks to split the string in a list for each %_Each%-item
      *
@@ -244,27 +286,28 @@ protected:
      * @param exp expander
      * @return a pointer to the right panel or NULL if no panel is needed.
      */
-    static KrPanel* getPanel(const char panelIndicator , const exp_placeholder*, Expander&);
+    static KrPanel *getPanel(const char panelIndicator, const exp_placeholder *, Expander &);
     /**
      *  This splits the parameter-string into separate parameter and expands each
      * @param exp the string holding all parameter
      * @param useUrl true if the path's should be expanded to an URL instead of an local path
      * @return a list of all parameter
      */
-    TagStringList separateParameter(QString* const exp, bool useUrl);
+    TagStringList separateParameter(QString *const exp, bool useUrl);
     /**
      * This finds the end of a placeholder, taking care of the parameter
      * @return the position where the placeholder ends
      */
-    int findEnd(const QString& str, int start);
+    int findEnd(const QString &str, int start);
 
-    void setError(const Error &e) {
+    void setError(const Error &e)
+    {
         _err = e;
     }
     friend class exp_placeholder;
 
 private:
-    static QList <const exp_placeholder*>& _placeholder();
+    static QList<const exp_placeholder *> &_placeholder();
     Error _err;
     QStringList resultList;
 };

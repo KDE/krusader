@@ -11,12 +11,12 @@
 #include <algorithm>
 
 // QtGui
-#include <QPixmap>
 #include <QPainter>
+#include <QPixmap>
 // QtWidgets
 #include <QApplication>
-#include <QStyleOptionMenuItem>
 #include <QProxyStyle>
+#include <QStyleOptionMenuItem>
 
 #include <KI18n/KLocalizedString>
 #include <KIO/PreviewJob>
@@ -26,40 +26,37 @@
 class KrPreviewPopup::ProxyStyle : public QProxyStyle
 {
 public:
-    ProxyStyle() : QProxyStyle(QApplication::style()) {}
-
-    QSize sizeFromContents(ContentsType type, const QStyleOption *option,
-                                   const QSize &contentsSize, const QWidget *widget = nullptr) const override
+    ProxyStyle()
+        : QProxyStyle(QApplication::style())
     {
-        if(type == QStyle::CT_MenuItem) {
-            const auto *menuItem =
-                    qstyleoption_cast<const QStyleOptionMenuItem*>(option);
+    }
+
+    QSize sizeFromContents(ContentsType type, const QStyleOption *option, const QSize &contentsSize, const QWidget *widget = nullptr) const override
+    {
+        if (type == QStyle::CT_MenuItem) {
+            const auto *menuItem = qstyleoption_cast<const QStyleOptionMenuItem *>(option);
 
             QFontMetrics fontMetrics(menuItem->font);
             QSize iconSize = menuItem->icon.actualSize(QSize(MAX_SIZE, MAX_SIZE));
-            QSize textSize = QSize(fontMetrics.boundingRect(menuItem->text).width(),
-                                   fontMetrics.height());
+            QSize textSize = QSize(fontMetrics.boundingRect(menuItem->text).width(), fontMetrics.height());
 
-            return QSize(std::max(iconSize.width(), textSize.width()) + MARGIN*2,
-                         iconSize.height() + textSize.height() + MARGIN*2);
+            return QSize(std::max(iconSize.width(), textSize.width()) + MARGIN * 2, iconSize.height() + textSize.height() + MARGIN * 2);
         } else
             return QProxyStyle::sizeFromContents(type, option, contentsSize, widget);
     }
 
-    void drawControl(ControlElement element, const QStyleOption *option,
-                                    QPainter *painter, const QWidget *widget = nullptr ) const override
+    void drawControl(ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget = nullptr) const override
     {
-        if(element == QStyle::CE_MenuItem) {
+        if (element == QStyle::CE_MenuItem) {
             painter->save();
 
-            const auto *menuItem =
-                    qstyleoption_cast<const QStyleOptionMenuItem*>(option);
+            const auto *menuItem = qstyleoption_cast<const QStyleOptionMenuItem *>(option);
 
             bool active = menuItem->state & State_Selected;
 
             QRect rect = menuItem->rect;
 
-            if(active)
+            if (active)
                 painter->fillRect(rect, menuItem->palette.brush(QPalette::Highlight));
 
             rect.adjust(MARGIN, MARGIN, -MARGIN, -MARGIN);
@@ -73,10 +70,8 @@ public:
 
             QRect textRect = rect;
             textRect.setTop(previewRect.bottom() + 1);
-            painter->setPen(active ? menuItem->palette.highlightedText().color() :
-                                     menuItem->palette.buttonText().color());
-            int textFlags = Qt::TextShowMnemonic | Qt::TextDontClip | Qt::TextSingleLine |
-                                Qt::AlignCenter;
+            painter->setPen(active ? menuItem->palette.highlightedText().color() : menuItem->palette.buttonText().color());
+            int textFlags = Qt::TextShowMnemonic | Qt::TextDontClip | Qt::TextSingleLine | Qt::AlignCenter;
             painter->drawText(textRect, textFlags, menuItem->text);
 
             painter->restore();
@@ -85,8 +80,8 @@ public:
     }
 };
 
-
-KrPreviewPopup::KrPreviewPopup() : jobStarted(false)
+KrPreviewPopup::KrPreviewPopup()
+    : jobStarted(false)
 {
     prevNotAvailAction = addAction(i18n("Preview not available"));
 
@@ -102,9 +97,9 @@ void KrPreviewPopup::showEvent(QShowEvent *event)
     if (!jobStarted) {
         QStringList allPlugins = KIO::PreviewJob::availablePlugins();
         KIO::PreviewJob *pjob = new KIO::PreviewJob(files, QSize(MAX_SIZE, MAX_SIZE), &allPlugins);
-            pjob->setOverlayIconSize(0);
-            pjob->setOverlayIconAlpha(1);
-            pjob->setScaleType(KIO::PreviewJob::ScaledAndCached);
+        pjob->setOverlayIconSize(0);
+        pjob->setOverlayIconAlpha(1);
+        pjob->setScaleType(KIO::PreviewJob::ScaledAndCached);
         connect(pjob, &KIO::PreviewJob::gotPreview, this, &KrPreviewPopup::addPreview);
         jobStarted = true;
     }
@@ -112,12 +107,12 @@ void KrPreviewPopup::showEvent(QShowEvent *event)
 
 void KrPreviewPopup::setUrls(const QList<QUrl> &urls)
 {
-    foreach(const QUrl &url, urls) {
+    foreach (const QUrl &url, urls) {
         files.push_back(KFileItem(url));
     }
 }
 
-void KrPreviewPopup::addPreview(const KFileItem& file, const QPixmap& preview)
+void KrPreviewPopup::addPreview(const KFileItem &file, const QPixmap &preview)
 {
     if (prevNotAvailAction) {
         removeAction(prevNotAvailAction);
@@ -135,4 +130,3 @@ void KrPreviewPopup::view(QAction *clicked)
     if (clicked && clicked->data().canConvert<QUrl>())
         KrViewer::view(clicked->data().value<QUrl>());
 }
-

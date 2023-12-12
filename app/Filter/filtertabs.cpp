@@ -6,10 +6,10 @@
 */
 
 #include "filtertabs.h"
+#include "../krglobal.h"
+#include "advancedfilter.h"
 #include "filterdialog.h"
 #include "generalfilter.h"
-#include "advancedfilter.h"
-#include "../krglobal.h"
 
 // QtWidgets
 #include <QTabWidget>
@@ -19,10 +19,8 @@
 #include <KWidgetsAddons/KMessageBox>
 #include <utility>
 
-
-FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget,
-                       QObject *parent, QStringList extraOptions) :
-        QObject(parent)
+FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget, QObject *parent, QStringList extraOptions)
+    : QObject(parent)
 {
     this->tabWidget = tabWidget;
 
@@ -41,15 +39,15 @@ FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget,
 
 bool FilterTabs::isExtraOptionChecked(QString name)
 {
-    return dynamic_cast<GeneralFilter*>(get("GeneralFilter"))->isExtraOptionChecked(std::move(name));
+    return dynamic_cast<GeneralFilter *>(get("GeneralFilter"))->isExtraOptionChecked(std::move(name));
 }
 
 void FilterTabs::checkExtraOption(QString name, bool check)
 {
-    dynamic_cast<GeneralFilter*>(get("GeneralFilter"))->checkExtraOption(std::move(name), check);
+    dynamic_cast<GeneralFilter *>(get("GeneralFilter"))->checkExtraOption(std::move(name), check);
 }
 
-FilterTabs * FilterTabs::addTo(QTabWidget *tabWidget, int props, QStringList extraOptions)
+FilterTabs *FilterTabs::addTo(QTabWidget *tabWidget, int props, QStringList extraOptions)
 {
     return new FilterTabs(props, tabWidget, tabWidget, std::move(extraOptions));
 }
@@ -59,7 +57,7 @@ FilterSettings FilterTabs::getSettings()
     FilterSettings s;
 
     for (int i = 0; i != filterList.count(); i++) {
-        if(!filterList[i]->getSettings(s)) {
+        if (!filterList[i]->getSettings(s)) {
             tabWidget->setCurrentIndex(pageNumbers[i]);
             return FilterSettings();
         }
@@ -73,8 +71,8 @@ FilterSettings FilterTabs::getSettings()
 
 void FilterTabs::applySettings(const FilterSettings &s)
 {
-    if(s.isValid()) {
-        QListIterator<FilterBase*> it(filterList);
+    if (s.isValid()) {
+        QListIterator<FilterBase *> it(filterList);
         while (it.hasNext())
             it.next()->applySettings(s);
     }
@@ -87,19 +85,19 @@ void FilterTabs::reset()
     applySettings(s);
 }
 
-void FilterTabs::saveToProfile(const QString& name)
+void FilterTabs::saveToProfile(const QString &name)
 {
     FilterSettings s(getSettings());
-    if(s.isValid())
+    if (s.isValid())
         s.save(KConfigGroup(krConfig, name));
     krConfig->sync();
 }
 
-void FilterTabs::loadFromProfile(const QString& name)
+void FilterTabs::loadFromProfile(const QString &name)
 {
     FilterSettings s;
     s.load(KConfigGroup(krConfig, name));
-    if(!s.isValid())
+    if (!s.isValid())
         KMessageBox::error(tabWidget, i18n("Could not load profile."));
     else
         applySettings(s);
@@ -122,7 +120,7 @@ bool FilterTabs::fillQuery(KrQuery *query)
     return !query->isNull();
 }
 
-FilterBase * FilterTabs::get(const QString& name)
+FilterBase *FilterTabs::get(const QString &name)
 {
     QListIterator<FilterBase *> it(filterList);
     while (it.hasNext()) {
@@ -140,4 +138,3 @@ KrQuery FilterTabs::getQuery(QWidget *parent)
     FilterDialog dialog(parent);
     return dialog.getQuery();
 }
-

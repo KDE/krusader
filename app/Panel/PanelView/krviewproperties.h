@@ -7,8 +7,8 @@
 #ifndef KRVIEWPROPERTIES_H
 #define KRVIEWPROPERTIES_H
 
-#include "../Filter/filtersettings.h"
 #include "../FileSystem/krquery.h"
+#include "../Filter/filtersettings.h"
 
 // QtCore
 #include <QStringList>
@@ -53,44 +53,36 @@ public:
         Accessed = 0xa,
         MAX_COLUMNS = 0x0b
     };
-    enum SortOptions {
-        Descending = 0x200,
-        DirsFirst = 0x400,
-        IgnoreCase = 0x800,
-        AlwaysSortDirsByName = 0x1000,
-        LocaleAwareSort = 0x2000
-    };
-    enum SortMethod {
-        Alphabetical = 0x1,
-        AlphabeticalNumbers = 0x2,
-        CharacterCode = 0x4,
-        CharacterCodeNumbers = 0x8,
-        Krusader = 0x10
-    };
+    enum SortOptions { Descending = 0x200, DirsFirst = 0x400, IgnoreCase = 0x800, AlwaysSortDirsByName = 0x1000, LocaleAwareSort = 0x2000 };
+    enum SortMethod { Alphabetical = 0x1, AlphabeticalNumbers = 0x2, CharacterCode = 0x4, CharacterCodeNumbers = 0x8, Krusader = 0x10 };
     enum FilterSpec { Dirs = 0x1, Files = 0x2, All = 0x3, Custom = 0x4 };
 
-    KrViewProperties(bool displayIcons, bool numericPermissions, SortOptions sortOptions,
-                     SortMethod sortMethod, bool humanReadableSize,
-                     bool localeAwareCompareIsCaseSensitive, QStringList atomicExtensions);
+    KrViewProperties(bool displayIcons,
+                     bool numericPermissions,
+                     SortOptions sortOptions,
+                     SortMethod sortMethod,
+                     bool humanReadableSize,
+                     bool localeAwareCompareIsCaseSensitive,
+                     QStringList atomicExtensions);
 
     const bool numericPermissions; // show full permission column as octal numbers
-    const bool displayIcons;             // true if icons should be displayed in this view
+    const bool displayIcons; // true if icons should be displayed in this view
 
     ColumnType sortColumn;
     SortOptions sortOptions;
 
     const SortMethod sortMethod; // sort method for names and extensions
 
-    FilterSpec filter;     // what items to show (all, custom, exec)
-    KrQuery filterMask;    // what items to show (*.cpp, *.h etc)
+    FilterSpec filter; // what items to show (all, custom, exec)
+    KrQuery filterMask; // what items to show (*.cpp, *.h etc)
     FilterSettings filterSettings;
     bool filterApplysToDirs;
 
     const bool localeAwareCompareIsCaseSensitive; // mostly, it is not! depends on LC_COLLATE
-    const bool humanReadableSize;                 // display size as KB, MB or just as a long number
+    const bool humanReadableSize; // display size as KB, MB or just as a long number
     // list of strings, which will be treated as one extension. Must start with a dot.
     const QStringList atomicExtensions;
-    int numberOfColumns;                          // the number of columns in the brief view
+    int numberOfColumns; // the number of columns in the brief view
 };
 
 #endif // KRVIEWPROPERTIES_H

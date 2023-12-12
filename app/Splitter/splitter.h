@@ -23,7 +23,7 @@ class Splitter : public QProgressDialog
     Q_OBJECT
 
 public:
-    Splitter(QWidget* parent,  QUrl fileNameIn, QUrl destinationDirIn, bool overWriteIn);
+    Splitter(QWidget *parent, QUrl fileNameIn, QUrl destinationDirIn, bool overWriteIn);
     ~Splitter() override;
 
     void split(KIO::filesize_t splitSizeIn);
@@ -36,32 +36,31 @@ private slots:
     void splitReceivePercent(KJob *, unsigned long);
     void splitFileSend(KIO::Job *, QByteArray &);
     void splitFileFinished(KJob *);
-    void statOutputFileResult(KJob* job);
+    void statOutputFileResult(KJob *job);
 
 private:
     void splitAbortJobs();
     void nextOutputFile();
     void openOutputFile();
 
-
     // parameters
-    QUrl            fileName;
-    QUrl            destinationDir;
+    QUrl fileName;
+    QUrl destinationDir;
     KIO::filesize_t splitSize;
-    int             permissions;
-    bool            overwrite;
+    int permissions;
+    bool overwrite;
 
     // current split file stuff
-    int             fileNumber;
-    QUrl            writeURL;
+    int fileNumber;
+    QUrl writeURL;
     // how much can still be written to the current output file
     KIO::filesize_t outputFileRemaining;
 
-    QByteArray      transferArray;
+    QByteArray transferArray;
     KIO::filesize_t receivedSize;
-    QString         splitInfoFileContent;
-    CRC32          *crcContext;
-    KIO::Job         *statJob;
+    QString splitInfoFileContent;
+    CRC32 *crcContext;
+    KIO::Job *statJob;
     KIO::TransferJob *splitReadJob;
     KIO::TransferJob *splitWriteJob;
 };

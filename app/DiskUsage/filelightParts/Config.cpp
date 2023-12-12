@@ -11,8 +11,8 @@
 #include <QFont>
 
 #include <KConfigCore/KConfig>
-#include <KConfigCore/KSharedConfig>
 #include <KConfigCore/KConfigGroup>
+#include <KConfigCore/KSharedConfig>
 
 bool Config::varyLabelFontSizes = true;
 bool Config::showSmallFiles = false;
@@ -22,30 +22,27 @@ uint Config::minFontPitch = 10;
 uint Config::defaultRingDepth = 4;
 Filelight::MapScheme Config::scheme;
 
-inline KConfigGroup
-Filelight::Config::kconfig()
+inline KConfigGroup Filelight::Config::kconfig()
 {
     KSharedConfigPtr config = KSharedConfig::openConfig();
     return KConfigGroup(config, "DiskUsage");
 }
 
-void
-Filelight::Config::read()
+void Filelight::Config::read()
 {
     KConfigGroup group = kconfig();
 
     varyLabelFontSizes = group.readEntry("varyLabelFontSizes", true);
-    showSmallFiles     = group.readEntry("showSmallFiles", false);
-    contrast           = group.readEntry("contrast", 50);
-    antiAliasFactor    = group.readEntry("antiAliasFactor", 2);
-    minFontPitch       = group.readEntry("minFontPitch", QFont().pointSize() - 3);
-    scheme = (MapScheme) group.readEntry("scheme", 0);
+    showSmallFiles = group.readEntry("showSmallFiles", false);
+    contrast = group.readEntry("contrast", 50);
+    antiAliasFactor = group.readEntry("antiAliasFactor", 2);
+    minFontPitch = group.readEntry("minFontPitch", QFont().pointSize() - 3);
+    scheme = (MapScheme)group.readEntry("scheme", 0);
 
-    defaultRingDepth   = 4;
+    defaultRingDepth = 4;
 }
 
-void
-Filelight::Config::write()
+void Filelight::Config::write()
 {
     KConfigGroup group = kconfig();
 

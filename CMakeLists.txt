@@ -18,6 +18,8 @@ set(KDE_COMPILERSETTINGS_LEVEL "5.68")
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
+include(KDEClangFormat)
+include(KDEGitCommitHooks)
 
 include(ECMInstallIcons)
 include(ECMAddAppIcon)
@@ -157,6 +159,12 @@ add_subdirectory(plugins/krarc)
 ki18n_install(po)
 kdoctools_install(po)
 
+# ==== clang-format target and commit hook ====
+
+file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
+kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
+
+kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
 
 # ===== Output configuration =====
 

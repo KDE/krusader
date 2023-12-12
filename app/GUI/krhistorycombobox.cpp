@@ -26,7 +26,10 @@ class KHBoxEventFilter : public QObject
     Q_OBJECT
 
 public:
-    explicit KHBoxEventFilter(QObject *parent = nullptr) : QObject(parent) {}
+    explicit KHBoxEventFilter(QObject *parent = nullptr)
+        : QObject(parent)
+    {
+    }
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
@@ -61,7 +64,10 @@ class KHBoxListEventFilter : public QObject
     Q_OBJECT
 
 public:
-    explicit KHBoxListEventFilter(QObject *parent = nullptr) : QObject(parent) {}
+    explicit KHBoxListEventFilter(QObject *parent = nullptr)
+        : QObject(parent)
+    {
+    }
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;

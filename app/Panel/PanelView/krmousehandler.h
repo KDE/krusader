@@ -10,9 +10,9 @@
 
 // QtCore
 #include <QPoint>
-#include <QTimer>
-#include <QTime>
 #include <QStringList>
+#include <QTime>
+#include <QTimer>
 
 class QMouseEvent;
 class QWheelEvent;
@@ -31,7 +31,7 @@ class KrMouseHandler : public QObject
     Q_OBJECT
 
 public:
-    KrMouseHandler(KrView * view, int contextMenuShift);
+    KrMouseHandler(KrView *view, int contextMenuShift);
 
     bool mousePressEvent(QMouseEvent *e);
     bool mouseReleaseEvent(QMouseEvent *e);
@@ -42,8 +42,8 @@ public:
     bool dragMoveEvent(QDragMoveEvent *e);
     bool dragLeaveEvent(QDragLeaveEvent *e);
     bool dropEvent(QDropEvent *e);
-    void handleContextMenu(KrViewItem * it, const QPoint & pos);
-    void otherEvent(QEvent * e);
+    void handleContextMenu(KrViewItem *it, const QPoint &pos);
+    void otherEvent(QEvent *e);
     void cancelTwoClickRename();
 
 public slots:
@@ -53,21 +53,21 @@ signals:
     void renameCurrentItem();
 
 protected:
-    KrView     * _view;
-    KrViewItem * _rightClickedItem;
-    KrViewItem * _clickedItem;
-    bool         _rightClickSelects;
-    bool         _singleClick;
-    QPoint       _contextMenuPoint;
-    QTimer       _contextMenuTimer;
-    int          _contextMenuShift;
-    bool         _singleClicked;
-    KrViewItem * _singleClickedItem;
-    QTime        _singleClickTime;
-    QTimer       _renameTimer;
-    QPoint       _dragStartPos;
-    bool         _emptyContextMenu;
-    QStringList  _selectedItemNames;
+    KrView *_view;
+    KrViewItem *_rightClickedItem;
+    KrViewItem *_clickedItem;
+    bool _rightClickSelects;
+    bool _singleClick;
+    QPoint _contextMenuPoint;
+    QTimer _contextMenuTimer;
+    int _contextMenuShift;
+    bool _singleClicked;
+    KrViewItem *_singleClickedItem;
+    QTime _singleClickTime;
+    QTimer _renameTimer;
+    QPoint _dragStartPos;
+    bool _emptyContextMenu;
+    QStringList _selectedItemNames;
 };
 
 #endif

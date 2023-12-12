@@ -16,15 +16,11 @@ class KrViewItemDelegate : public QItemDelegate
 public:
     explicit KrViewItemDelegate(QObject *parent = nullptr);
 
-    void paint(QPainter *painter, const QStyleOptionViewItem &option,
-               const QModelIndex &index) const override;
-    void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect,
-                     const QString &text) const override;
-    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &sovi,
-                          const QModelIndex &index) const override;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QString &text) const override;
+    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &sovi, const QModelIndex &index) const override;
     void setEditorData(QWidget *editor, const QModelIndex &index) const override;
-    QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &index) const override;
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
     bool eventFilter(QObject *object, QEvent *event) override;
 
     /// Set the next file name selection in the editor.

@@ -6,35 +6,37 @@
 */
 
 #include "feedtolistboxdialog.h"
-#include "synchronizer.h"
-#include "synchronizergui.h"
 #include "../FileSystem/filesystem.h"
 #include "../FileSystem/virtualfilesystem.h"
 #include "../krglobal.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
+#include "synchronizer.h"
+#include "synchronizergui.h"
 
 // QtWidgets
 #include <QCheckBox>
-#include <QDialogButtonBox>
-#include <QLineEdit>
-#include <QLabel>
 #include <QComboBox>
+#include <QDialogButtonBox>
+#include <QLabel>
+#include <QLineEdit>
 #include <QVBoxLayout>
 
 #include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
-#define  S_LEFT        0
-#define  S_RIGHT       1
-#define  S_BOTH        2
+#define S_LEFT 0
+#define S_RIGHT 1
+#define S_BOTH 2
 
-FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
-        QTreeWidget *syncL, bool equOK) : QDialog(parent),
-        synchronizer(sync), syncList(syncL), equalAllowed(equOK), accepted(false)
+FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync, QTreeWidget *syncL, bool equOK)
+    : QDialog(parent)
+    , synchronizer(sync)
+    , syncList(syncL)
+    , equalAllowed(equOK)
+    , accepted(false)
 {
-
     setWindowTitle(i18n("Krusader::Feed to listbox"));
     setWindowModality(Qt::WindowModal);
 
@@ -50,7 +52,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
 
     QTreeWidgetItemIterator it(syncList);
     while (*it) {
-        auto *item = dynamic_cast<SynchronizerGUI::SyncViewItem *>( * it);
+        auto *item = dynamic_cast<SynchronizerGUI::SyncViewItem *>(*it);
         SynchronizerFileItem *syncItem = item->synchronizerItemRef();
 
         if (syncItem && syncItem->isMarked()) {
@@ -99,7 +101,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     lineEdit->selectAll();
     mainLayout->addWidget(lineEdit);
 
-    auto * hbox = new QHBoxLayout;
+    auto *hbox = new QHBoxLayout;
 
     QLabel *label2 = new QLabel(i18n("Side to feed:"), this);
     label2->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -134,7 +136,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
 
     mainLayout->addLayout(hbox);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
 
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
@@ -155,8 +157,8 @@ void FeedToListBoxDialog::slotOk()
     QList<QUrl> urlList;
 
     QTreeWidgetItemIterator it(syncList);
-    for (;*it; it++) {
-        auto *item = dynamic_cast<SynchronizerGUI::SyncViewItem *>( * it);
+    for (; *it; it++) {
+        auto *item = dynamic_cast<SynchronizerGUI::SyncViewItem *>(*it);
         SynchronizerFileItem *syncItem = item->synchronizerItemRef();
 
         if (!syncItem || !syncItem->isMarked())
@@ -190,4 +192,3 @@ void FeedToListBoxDialog::slotOk()
     accepted = true;
     accept();
 }
-

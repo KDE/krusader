@@ -15,7 +15,7 @@ class KgAdvanced : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    explicit KgAdvanced(bool first, QWidget* parent = nullptr);
+    explicit KgAdvanced(bool first, QWidget *parent = nullptr);
 };
 
 #endif /* __KGADVANCED_H__ */

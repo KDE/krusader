@@ -7,12 +7,12 @@
 
 #include "krsearchbar.h"
 
-#include "PanelView/krview.h"
-#include "PanelView/krviewitem.h"
 #include "../FileSystem/dirlisterinterface.h"
 #include "../defaults.h"
-#include "../krglobal.h"
 #include "../icon.h"
+#include "../krglobal.h"
+#include "PanelView/krview.h"
+#include "PanelView/krviewitem.h"
 
 #include <QDebug>
 #include <QGuiApplication>
@@ -25,9 +25,10 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 
-
 KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
-    : QWidget(parent), _view(nullptr), _rightArrowEntersDirFlag(true)
+    : QWidget(parent)
+    , _view(nullptr)
+    , _rightArrowEntersDirFlag(true)
 {
     // close button
     auto *closeButton = new QToolButton(this);
@@ -48,8 +49,7 @@ KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
     _textBox = new KComboBox(this);
     _textBox->setEditable(true);
     _modeBox->setToolTip(i18n("Enter or select search string"));
-    QStringList savedSearches = KConfigGroup(krConfig, "Private")
-                      .readEntry("Predefined Selections", QStringList());
+    QStringList savedSearches = KConfigGroup(krConfig, "Private").readEntry("Predefined Selections", QStringList());
     if (savedSearches.count() > 0)
         _textBox->addItems(savedSearches);
     _textBox->setCurrentText("");
@@ -89,7 +89,9 @@ void KrSearchBar::setView(KrView *view)
 
     _view = view;
 
-    connect(_openSelectDialogBtn, &QToolButton::clicked, this, [this](){ _view->customSelection(true); });
+    connect(_openSelectDialogBtn, &QToolButton::clicked, this, [this]() {
+        _view->customSelection(true);
+    });
     _view->widget()->installEventFilter(this);
 }
 
@@ -103,11 +105,8 @@ void KrSearchBar::hideBarIfSearching()
 
 void KrSearchBar::showBar(SearchMode mode)
 {
-    int index = mode == MODE_DEFAULT ?
-                    KConfigGroup(krConfig, "Look&Feel")
-                        .readEntry("Default Search Mode", QString::number(KrSearchBar::MODE_SEARCH))
-                        .toInt() :
-                    mode;
+    int index =
+        mode == MODE_DEFAULT ? KConfigGroup(krConfig, "Look&Feel").readEntry("Default Search Mode", QString::number(KrSearchBar::MODE_SEARCH)).toInt() : mode;
     _modeBox->setCurrentIndex(index);
 
     show();
@@ -145,27 +144,27 @@ void KrSearchBar::onSearchChange()
 {
     const QString text = _textBox->currentText();
 
-    switch(_currentMode) {
-        case MODE_SEARCH: {
-            const bool anyMatch = _view->op()->searchItem(text, caseSensitive());
+    switch (_currentMode) {
+    case MODE_SEARCH: {
+        const bool anyMatch = _view->op()->searchItem(text, caseSensitive());
+        indicateMatch(anyMatch);
+        break;
+    }
+    case MODE_SELECT: {
+        _view->unselectAll();
+        if (!text.isEmpty()) {
+            const bool anyMatch = _view->changeSelection(KrQuery(text, caseSensitive()), true);
             indicateMatch(anyMatch);
-            break;
         }
-        case MODE_SELECT: {
-            _view->unselectAll();
-            if (!text.isEmpty()) {
-                const bool anyMatch = _view->changeSelection(KrQuery(text, caseSensitive()), true);
-                indicateMatch(anyMatch);
-            }
-            break;
-        }
-        case MODE_FILTER: {
-            const bool anyMatch =_view->op()->filterSearch(text, caseSensitive());
-            indicateMatch(anyMatch);
-            break;
-        }
-        default:
-            qWarning() << "unexpected search mode: " << _currentMode;
+        break;
+    }
+    case MODE_FILTER: {
+        const bool anyMatch = _view->op()->filterSearch(text, caseSensitive());
+        indicateMatch(anyMatch);
+        break;
+    }
+    default:
+        qWarning() << "unexpected search mode: " << _currentMode;
     }
 
     _textBox->setFocus();
@@ -192,7 +191,7 @@ void KrSearchBar::saveSearchString()
 
 void KrSearchBar::keyPressEvent(QKeyEvent *event)
 {
-    const bool handled = handleKeyPressEvent(static_cast<QKeyEvent*>(event));
+    const bool handled = handleKeyPressEvent(static_cast<QKeyEvent *>(event));
     if (handled) {
         return;
     }
@@ -239,9 +238,7 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
             }
         }
 
-        if (ke->text().isEmpty() || (modifiers != Qt::NoModifier &&
-                                     modifiers != Qt::ShiftModifier &&
-                                     modifiers != Qt::KeypadModifier)) {
+        if (ke->text().isEmpty() || (modifiers != Qt::NoModifier && modifiers != Qt::ShiftModifier && modifiers != Qt::KeypadModifier)) {
             return false;
         }
 
@@ -265,15 +262,12 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
     } else if (watched == _textBox) {
         const bool handled = handleKeyPressEvent(ke);
         if (handled) {
-             _view->widget()->setFocus();
+            _view->widget()->setFocus();
             return true;
         }
         // allow the view to handle (most) key events from the text box
-        if ((modifiers == Qt::NoModifier || modifiers == Qt::KeypadModifier) &&
-            ke->key() != Qt::Key_Space &&
-            ke->key() != Qt::Key_Backspace &&
-            ke->key() != Qt::Key_Left &&
-            ke->key() != Qt::Key_Right) {
+        if ((modifiers == Qt::NoModifier || modifiers == Qt::KeypadModifier) && ke->key() != Qt::Key_Space && ke->key() != Qt::Key_Backspace
+            && ke->key() != Qt::Key_Left && ke->key() != Qt::Key_Right) {
             const bool handled = _view->handleKeyEvent(ke);
             if (handled) {
                 _view->widget()->setFocus();
@@ -314,7 +308,7 @@ bool KrSearchBar::handleKeyPressEvent(QKeyEvent *ke)
         return handleLeftRightKeyPress(ke);
     case Qt::Key_Insert: {
         // select current item and jump to next search result
-        KrViewItem * item = _view->getCurrentKrViewItem();
+        KrViewItem *item = _view->getCurrentKrViewItem();
         if (item) {
             item->setSelected(!item->isSelected());
             _view->op()->searchItem(_textBox->currentText(), caseSensitive(), 1);
@@ -323,7 +317,7 @@ bool KrSearchBar::handleKeyPressEvent(QKeyEvent *ke)
     }
     case Qt::Key_Home: {
         // jump to first search result
-        KrViewItem * item = _view->getLast();
+        KrViewItem *item = _view->getLast();
         if (item) {
             _view->setCurrentKrViewItem(_view->getLast());
             _view->op()->searchItem(_textBox->currentText(), caseSensitive(), 1);
@@ -332,7 +326,7 @@ bool KrSearchBar::handleKeyPressEvent(QKeyEvent *ke)
     }
     case Qt::Key_End: {
         // jump to last search result
-        KrViewItem * item = _view->getFirst();
+        KrViewItem *item = _view->getFirst();
         if (item) {
             _view->setCurrentKrViewItem(_view->getFirst());
             _view->op()->searchItem(_textBox->currentText(), caseSensitive(), -1);
@@ -349,8 +343,7 @@ bool KrSearchBar::handleUpDownKeyPress(bool up)
         return false;
     }
 
-    const bool updownCancel = KConfigGroup(krConfig, "Look&Feel")
-                        .readEntry("Up/Down Cancels Quicksearch", false);
+    const bool updownCancel = KConfigGroup(krConfig, "Look&Feel").readEntry("Up/Down Cancels Quicksearch", false);
     if (updownCancel) {
         hideBar();
         return false;
@@ -363,8 +356,7 @@ bool KrSearchBar::handleUpDownKeyPress(bool up)
 
 bool KrSearchBar::handleLeftRightKeyPress(QKeyEvent *ke)
 {
-    const bool useQuickDirectoryNavigation = KConfigGroup(krConfig, "Look&Feel")
-        .readEntry("Navigation with Right Arrow Quicksearch", true);
+    const bool useQuickDirectoryNavigation = KConfigGroup(krConfig, "Look&Feel").readEntry("Navigation with Right Arrow Quicksearch", true);
     if (!useQuickDirectoryNavigation)
         return false;
 

@@ -8,11 +8,11 @@
 #include "actionproperty.h"
 #include "addplaceholderpopup.h"
 
-#include "../UserAction/useraction.h"
 #include "../UserAction/kraction.h"
-#include "../krusader.h"
-#include "../krglobal.h"
+#include "../UserAction/useraction.h"
 #include "../icon.h"
+#include "../krglobal.h"
+#include "../krusader.h"
 
 // QtWidgets
 #include <QFileDialog>
@@ -22,11 +22,10 @@
 #include <KWidgetsAddons/KMessageBox>
 #include <KXmlGui/KActionCollection>
 
-
 ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
-        : QWidget(parent), _modified(false)
+    : QWidget(parent)
+    , _modified(false)
 {
-
     setupUi(this);
 
     if (action) {
@@ -56,14 +55,30 @@ ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
     connect(ButtonRemoveFile, &QToolButton::clicked, this, &ActionProperty::removeFile);
     connect(KeyButtonShortcut, &KKeySequenceWidget::keySequenceChanged, this, &ActionProperty::changedShortcut);
     // track modifications:
-    connect(leDistinctName, &KLineEdit::textChanged, this, [=]() { setModified(true); });
-    connect(leTitle, &KLineEdit::textChanged, this, [=]() {setModified(true); });
-    connect(ButtonIcon, &KIconButton::iconChanged, this, [=]() {setModified(true); });
-    connect(cbCategory, &KComboBox::currentTextChanged, this, [=]() {setModified(true); });
-    connect(leTooltip, &KLineEdit::textChanged, this, [=]() {setModified(true); });
-    connect(textDescription, &KTextEdit::textChanged, this, [=]() {setModified(true); });
-    connect(leCommandline, &KLineEdit::textChanged, this, [=]() {setModified(true); });
-    connect(leStartpath, &KLineEdit::textChanged, this, [=]() {setModified(true); });
+    connect(leDistinctName, &KLineEdit::textChanged, this, [=]() {
+        setModified(true);
+    });
+    connect(leTitle, &KLineEdit::textChanged, this, [=]() {
+        setModified(true);
+    });
+    connect(ButtonIcon, &KIconButton::iconChanged, this, [=]() {
+        setModified(true);
+    });
+    connect(cbCategory, &KComboBox::currentTextChanged, this, [=]() {
+        setModified(true);
+    });
+    connect(leTooltip, &KLineEdit::textChanged, this, [=]() {
+        setModified(true);
+    });
+    connect(textDescription, &KTextEdit::textChanged, this, [=]() {
+        setModified(true);
+    });
+    connect(leCommandline, &KLineEdit::textChanged, this, [=]() {
+        setModified(true);
+    });
+    connect(leStartpath, &KLineEdit::textChanged, this, [=]() {
+        setModified(true);
+    });
     connect(chkSeparateStdError, &QCheckBox::clicked, this, &ActionProperty::setModified);
     connect(radioCollectOutput, &QRadioButton::clicked, this, &ActionProperty::setModified);
     connect(radioNormal, &QRadioButton::clicked, this, &ActionProperty::setModified);
@@ -71,23 +86,25 @@ ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
     connect(radioTerminal, &QRadioButton::clicked, this, &ActionProperty::setModified);
     connect(radioLocal, &QRadioButton::clicked, this, &ActionProperty::setModified);
     connect(radioUrl, &QRadioButton::clicked, this, &ActionProperty::setModified);
-    connect(KeyButtonShortcut, &KKeySequenceWidget::keySequenceChanged, this, [=]() {setModified(true); });
+    connect(KeyButtonShortcut, &KKeySequenceWidget::keySequenceChanged, this, [=]() {
+        setModified(true);
+    });
     connect(chkEnabled, &QCheckBox::clicked, this, &ActionProperty::setModified);
-    connect(leDifferentUser, &KLineEdit::textChanged, this, [=]() {setModified(true); });
+    connect(leDifferentUser, &KLineEdit::textChanged, this, [=]() {
+        setModified(true);
+    });
     connect(chkDifferentUser, &QCheckBox::clicked, this, &ActionProperty::setModified);
     connect(chkConfirmExecution, &QCheckBox::clicked, this, &ActionProperty::setModified);
     connect(chkSeparateStdError, &QCheckBox::clicked, this, &ActionProperty::setModified);
     // The modified-state of the ShowOnly-lists is tracked in the access-functions below
 }
 
-ActionProperty::~ActionProperty()
-= default;
+ActionProperty::~ActionProperty() = default;
 
-void ActionProperty::changedShortcut(const QKeySequence& shortcut)
+void ActionProperty::changedShortcut(const QKeySequence &shortcut)
 {
     KeyButtonShortcut->setKeySequence(shortcut);
 }
-
 
 void ActionProperty::clear()
 {
@@ -131,7 +148,7 @@ void ActionProperty::updateGUI(KrAction *action)
 {
     if (action)
         _action = action;
-    if (! _action)
+    if (!_action)
         return;
 
     // This prevents the changed-signal from being emitted during the GUI-update.
@@ -185,7 +202,7 @@ void ActionProperty::updateGUI(KrAction *action)
 
     chkConfirmExecution->setChecked(_action->confirmExecution());
 
-    if (! _action->icon().isNull())
+    if (!_action->icon().isNull())
         ButtonIcon->setIcon(_action->iconName());
     else
         ButtonIcon->resetIcon();
@@ -203,7 +220,7 @@ void ActionProperty::updateAction(KrAction *action)
 {
     if (action)
         _action = action;
-    if (! _action)
+    if (!_action)
         return;
 
     if (_action->category() != cbCategory->currentText()) {
@@ -225,7 +242,7 @@ void ActionProperty::updateAction(KrAction *action)
     QStringList list;
 
     for (int i1 = 0; i1 != lbShowonlyProtocol->count(); i1++) {
-        QListWidgetItem* lbi = lbShowonlyProtocol->item(i1);
+        QListWidgetItem *lbi = lbShowonlyProtocol->item(i1);
 
         list << lbi->text();
     }
@@ -233,7 +250,7 @@ void ActionProperty::updateAction(KrAction *action)
 
     list = QStringList();
     for (int i1 = 0; i1 != lbShowonlyPath->count(); i1++) {
-        QListWidgetItem* lbi = lbShowonlyPath->item(i1);
+        QListWidgetItem *lbi = lbShowonlyPath->item(i1);
 
         list << lbi->text();
     }
@@ -241,7 +258,7 @@ void ActionProperty::updateAction(KrAction *action)
 
     list = QStringList();
     for (int i1 = 0; i1 != lbShowonlyMime->count(); i1++) {
-        QListWidgetItem* lbi = lbShowonlyMime->item(i1);
+        QListWidgetItem *lbi = lbShowonlyMime->item(i1);
 
         list << lbi->text();
     }
@@ -249,7 +266,7 @@ void ActionProperty::updateAction(KrAction *action)
 
     list = QStringList();
     for (int i1 = 0; i1 != lbShowonlyFile->count(); i1++) {
-        QListWidgetItem* lbi = lbShowonlyFile->item(i1);
+        QListWidgetItem *lbi = lbShowonlyFile->item(i1);
 
         list << lbi->text();
     }
@@ -257,7 +274,7 @@ void ActionProperty::updateAction(KrAction *action)
 
     if (radioCollectOutput->isChecked() && chkSeparateStdError->isChecked())
         _action->setExecType(KrAction::CollectOutputSeparateStderr);
-    else if (radioCollectOutput->isChecked() && ! chkSeparateStdError->isChecked())
+    else if (radioCollectOutput->isChecked() && !chkSeparateStdError->isChecked())
         _action->setExecType(KrAction::CollectOutput);
     else if (radioTerminal->isChecked())
         _action->setExecType(KrAction::Terminal);
@@ -287,15 +304,10 @@ void ActionProperty::updateAction(KrAction *action)
 void ActionProperty::addPlaceholder()
 {
     AddPlaceholderPopup popup(this);
-    QString exp = popup.getPlaceholder(mapToGlobal(
-                                           QPoint(
-                                               ButtonAddPlaceholder->pos().x() + ButtonAddPlaceholder->width() + 6, // 6 is the default margin
-                                               ButtonAddPlaceholder->pos().y()
-                                           )
-                                       ));
+    QString exp = popup.getPlaceholder(mapToGlobal(QPoint(ButtonAddPlaceholder->pos().x() + ButtonAddPlaceholder->width() + 6, // 6 is the default margin
+                                                          ButtonAddPlaceholder->pos().y())));
     leCommandline->insert(exp);
 }
-
 
 void ActionProperty::addStartpath()
 {
@@ -305,7 +317,6 @@ void ActionProperty::addStartpath()
     }
 }
 
-
 void ActionProperty::newProtocol()
 {
     bool ok;
@@ -314,8 +325,7 @@ void ActionProperty::newProtocol()
     if (lbShowonlyProtocol->currentItem())
         currentText = lbShowonlyProtocol->currentItem()->text();
 
-    QString text = QInputDialog::getText(this, i18n("New protocol"), i18n("Set a protocol:"),
-                                         QLineEdit::Normal, currentText, &ok);
+    QString text = QInputDialog::getText(this, i18n("New protocol"), i18n("Set a protocol:"), QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyProtocol->addItems(text.split(';'));
         setModified();
@@ -331,8 +341,7 @@ void ActionProperty::editProtocol()
 
     QString currentText = lbShowonlyProtocol->currentItem()->text();
 
-    QString text = QInputDialog::getText(this, i18n("Edit Protocol"), i18n("Set another protocol:"),
-                                         QLineEdit::Normal, currentText, &ok);
+    QString text = QInputDialog::getText(this, i18n("Edit Protocol"), i18n("Set another protocol:"), QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyProtocol->currentItem()->setText(text);
         setModified();
@@ -365,8 +374,7 @@ void ActionProperty::editPath()
 
     QString currentText = lbShowonlyPath->currentItem()->text();
 
-    QString text = QInputDialog::getText(this, i18n("Edit Path"), i18n("Set another path:"),
-                                         QLineEdit::Normal, currentText, &ok);
+    QString text = QInputDialog::getText(this, i18n("Edit Path"), i18n("Set another path:"), QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyPath->currentItem()->setText(text);
         setModified();
@@ -389,8 +397,7 @@ void ActionProperty::addMime()
     if (lbShowonlyMime->currentItem())
         currentText = lbShowonlyMime->currentItem()->text();
 
-    QString text = QInputDialog::getText(this, i18n("New MIME Type"), i18n("Set a MIME type:"),
-                                         QLineEdit::Normal, currentText, &ok);
+    QString text = QInputDialog::getText(this, i18n("New MIME Type"), i18n("Set a MIME type:"), QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyMime->addItems(text.split(';'));
         setModified();
@@ -406,8 +413,7 @@ void ActionProperty::editMime()
 
     QString currentText = lbShowonlyMime->currentItem()->text();
 
-    QString text = QInputDialog::getText(this, i18n("Edit MIME Type"), i18n("Set another MIME type:"),
-                                         QLineEdit::Normal, currentText, &ok);
+    QString text = QInputDialog::getText(this, i18n("Edit MIME Type"), i18n("Set another MIME type:"), QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyMime->currentItem()->setText(text);
         setModified();
@@ -430,8 +436,7 @@ void ActionProperty::newFile()
     if (lbShowonlyFile->currentItem())
         currentText = lbShowonlyFile->currentItem()->text();
 
-    QString text = QInputDialog::getText(this, i18n("New File Name"), i18n("Set a file name:"),
-                                         QLineEdit::Normal, currentText, &ok);
+    QString text = QInputDialog::getText(this, i18n("New File Name"), i18n("Set a file name:"), QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyFile->addItems(text.split(';'));
         setModified();
@@ -447,8 +452,7 @@ void ActionProperty::editFile()
 
     QString currentText = lbShowonlyFile->currentItem()->text();
 
-    QString text = QInputDialog::getText(this, i18n("Edit File Name"), i18n("Set another file name:"),
-                                         QLineEdit::Normal, currentText, &ok);
+    QString text = QInputDialog::getText(this, i18n("Edit File Name"), i18n("Set another file name:"), QLineEdit::Normal, currentText, &ok);
     if (ok && !text.isEmpty()) {
         lbShowonlyFile->currentItem()->setText(text);
         setModified();
@@ -462,7 +466,6 @@ void ActionProperty::removeFile()
         setModified();
     }
 }
-
 
 bool ActionProperty::validProperties()
 {
@@ -485,8 +488,7 @@ bool ActionProperty::validProperties()
         if (krApp->actionCollection()->action(leDistinctName->text())) {
             KMessageBox::error(this,
                                i18n("There already is an action with this name.\n"
-                                    "If you do not have such a useraction the name is used by Krusader for an internal action.")
-                              );
+                                    "If you do not have such a useraction the name is used by Krusader for an internal action."));
             leDistinctName->setFocus();
             return false;
         }
@@ -496,9 +498,8 @@ bool ActionProperty::validProperties()
 
 void ActionProperty::setModified(bool m)
 {
-    if (m && !_modified) {   // emit only when the state _changes_to_true_,
+    if (m && !_modified) { // emit only when the state _changes_to_true_,
         emit changed();
     }
     _modified = m;
 }
-

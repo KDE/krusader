@@ -35,7 +35,7 @@ class KrSearchDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KrSearchDialog(const QString& profile = QString(), QWidget* parent = nullptr);
+    explicit KrSearchDialog(const QString &profile = QString(), QWidget *parent = nullptr);
     ~KrSearchDialog() override;
 
     void prepareGUI();
@@ -79,16 +79,16 @@ private:
     ProfileManager *profileManager;
     QCheckBox *searchTextToClipboard;
 
-    FilterTabs * filterTabs;
-    GeneralFilter * generalFilter;
+    FilterTabs *filterTabs;
+    GeneralFilter *generalFilter;
 
-    QPushButton* mainSearchBtn;
-    QPushButton* mainStopBtn;
-    QPushButton* mainCloseBtn;
-    QPushButton* mainFeedToListBoxBtn;
+    QPushButton *mainSearchBtn;
+    QPushButton *mainStopBtn;
+    QPushButton *mainCloseBtn;
+    QPushButton *mainFeedToListBoxBtn;
 
-    QTabWidget* searcherTabs;
-    QLabel* foundLabel;
+    QTabWidget *searcherTabs;
+    QLabel *foundLabel;
     KrSqueezedTextLabel *foundTextLabel;
     KSqueezedTextLabel *searchingLabel;
 
@@ -108,17 +108,17 @@ private:
     QAction *copyAction;
 
     static QString lastSearchText;
-    static int     lastSearchType;
-    static bool    lastSearchForCase;
-    static bool    lastContainsWholeWord;
-    static bool    lastContainsWithCase;
-    static bool    lastSearchInSubDirs;
-    static bool    lastSearchInArchives;
-    static bool    lastFollowSymLinks;
-    static bool    lastContainsRegExp;
+    static int lastSearchType;
+    static bool lastSearchForCase;
+    static bool lastContainsWholeWord;
+    static bool lastContainsWithCase;
+    static bool lastSearchInSubDirs;
+    static bool lastSearchInArchives;
+    static bool lastFollowSymLinks;
+    static bool lastContainsRegExp;
 
-    int            sizeX;
-    int            sizeY;
+    int sizeX;
+    int sizeY;
 };
 
 #endif

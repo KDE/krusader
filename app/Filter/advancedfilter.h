@@ -13,10 +13,10 @@
 #include "filterbase.h"
 
 // QtWidgets
-#include <QWidget>
 #include <QCheckBox>
 #include <QRadioButton>
 #include <QToolButton>
+#include <QWidget>
 
 #include <KCompletion/KComboBox>
 #include <KCompletion/KLineEdit>
@@ -30,15 +30,19 @@ class AdvancedFilter : public QWidget, public FilterBase
 public:
     explicit AdvancedFilter(FilterTabs *tabs, QWidget *parent = nullptr);
 
-    void          queryAccepted() override {}
-    QString       name() override {
+    void queryAccepted() override
+    {
+    }
+    QString name() override
+    {
         return "AdvancedFilter";
     }
-    FilterTabs *  filterTabs() override {
+    FilterTabs *filterTabs() override
+    {
         return fltTabs;
     }
-    bool getSettings(FilterSettings&) override;
-    void applySettings(const FilterSettings&) override;
+    bool getSettings(FilterSettings &) override;
+    void applySettings(const FilterSettings &) override;
 
 public slots:
     void modifiedBetweenSetDate1();
@@ -46,60 +50,62 @@ public slots:
     void notModifiedAfterSetDate();
 
 public:
-    QCheckBox* minSizeEnabled;
-    QSpinBox* minSizeAmount;
-    KComboBox* minSizeType;
+    QCheckBox *minSizeEnabled;
+    QSpinBox *minSizeAmount;
+    KComboBox *minSizeType;
 
-    QCheckBox* maxSizeEnabled;
-    QSpinBox* maxSizeAmount;
-    KComboBox* maxSizeType;
+    QCheckBox *maxSizeEnabled;
+    QSpinBox *maxSizeAmount;
+    KComboBox *maxSizeType;
 
-    QRadioButton* anyDateEnabled;
-    QRadioButton* modifiedBetweenEnabled;
-    QRadioButton* notModifiedAfterEnabled;
-    QRadioButton* modifiedInTheLastEnabled;
+    QRadioButton *anyDateEnabled;
+    QRadioButton *modifiedBetweenEnabled;
+    QRadioButton *notModifiedAfterEnabled;
+    QRadioButton *modifiedInTheLastEnabled;
 
-    KLineEdit* modifiedBetweenData1;
-    KLineEdit* modifiedBetweenData2;
+    KLineEdit *modifiedBetweenData1;
+    KLineEdit *modifiedBetweenData2;
 
-    QToolButton* modifiedBetweenBtn1;
-    QToolButton* modifiedBetweenBtn2;
-    QToolButton* notModifiedAfterBtn;
+    QToolButton *modifiedBetweenBtn1;
+    QToolButton *modifiedBetweenBtn2;
+    QToolButton *notModifiedAfterBtn;
 
-    KLineEdit* notModifiedAfterData;
-    QSpinBox* modifiedInTheLastData;
-    QSpinBox* notModifiedInTheLastData;
-    KComboBox* modifiedInTheLastType;
-    KComboBox* notModifiedInTheLastType;
+    KLineEdit *notModifiedAfterData;
+    QSpinBox *modifiedInTheLastData;
+    QSpinBox *notModifiedInTheLastData;
+    KComboBox *modifiedInTheLastType;
+    KComboBox *notModifiedInTheLastType;
 
-    QCheckBox* belongsToUserEnabled;
-    KComboBox* belongsToUserData;
-    QCheckBox* belongsToGroupEnabled;
-    KComboBox* belongsToGroupData;
+    QCheckBox *belongsToUserEnabled;
+    KComboBox *belongsToUserData;
+    QCheckBox *belongsToGroupEnabled;
+    KComboBox *belongsToGroupData;
 
-    QCheckBox* permissionsEnabled;
+    QCheckBox *permissionsEnabled;
 
-    KComboBox* ownerW;
-    KComboBox* ownerR;
-    KComboBox* ownerX;
-    KComboBox* groupW;
-    KComboBox* groupR;
-    KComboBox* groupX;
-    KComboBox* allW;
-    KComboBox* allX;
-    KComboBox* allR;
+    KComboBox *ownerW;
+    KComboBox *ownerR;
+    KComboBox *ownerX;
+    KComboBox *groupW;
+    KComboBox *groupR;
+    KComboBox *groupX;
+    KComboBox *allW;
+    KComboBox *allX;
+    KComboBox *allR;
 
     FilterTabs *fltTabs;
 
 private:
     void changeDate(KLineEdit *p);
-    void fillList(KComboBox *list, const QString& filename);
+    void fillList(KComboBox *list, const QString &filename);
     void invalidDateMessage(KLineEdit *p);
-    static QDate stringToDate(const QString& text) {
+    static QDate stringToDate(const QString &text)
+    {
         // 30.12.16 is interpreted as 1916-12-30
         return QLocale().toDate(text, QLocale::ShortFormat).addYears(100);
     }
-    static QString dateToString(const QDate& date) {
+    static QString dateToString(const QDate &date)
+    {
         return QLocale().toString(date, QLocale::ShortFormat);
     }
 };

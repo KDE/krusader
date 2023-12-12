@@ -9,8 +9,8 @@
 #define SYNCHRONIZEDIALOG_H
 
 // QtWidgets
-#include <QDialog>
 #include <QCheckBox>
+#include <QDialog>
 #include <QLabel>
 #include <QProgressBar>
 #include <QPushButton>
@@ -22,11 +22,11 @@ class SynchronizeDialog : QDialog
     Q_OBJECT
 
 public:
-    SynchronizeDialog(QWidget*, Synchronizer *sync,
-                      int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t, int);
+    SynchronizeDialog(QWidget *, Synchronizer *sync, int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t, int);
     ~SynchronizeDialog() override;
 
-    inline bool wasSyncronizationStarted()    {
+    inline bool wasSyncronizationStarted()
+    {
         return syncStarted;
     }
 
@@ -38,34 +38,34 @@ public slots:
     void pauseAccepted();
 
 private:
-    QProgressBar  *progress;
+    QProgressBar *progress;
 
-    QCheckBox     *cbRightToLeft;
-    QCheckBox     *cbLeftToRight;
-    QCheckBox     *cbDeletable;
+    QCheckBox *cbRightToLeft;
+    QCheckBox *cbLeftToRight;
+    QCheckBox *cbDeletable;
 
-    QLabel        *lbRightToLeft;
-    QLabel        *lbLeftToRight;
-    QLabel        *lbDeletable;
+    QLabel *lbRightToLeft;
+    QLabel *lbLeftToRight;
+    QLabel *lbDeletable;
 
-    QCheckBox     *cbOverwrite;
+    QCheckBox *cbOverwrite;
 
-    QPushButton   *btnStart;
-    QPushButton   *btnPause;
+    QPushButton *btnStart;
+    QPushButton *btnPause;
 
-    Synchronizer  *synchronizer;
+    Synchronizer *synchronizer;
 
-    int               leftCopyNr;
-    KIO::filesize_t   leftCopySize;
-    int               rightCopyNr;
-    KIO::filesize_t   rightCopySize;
-    int               deleteNr;
-    KIO::filesize_t   deleteSize;
+    int leftCopyNr;
+    KIO::filesize_t leftCopySize;
+    int rightCopyNr;
+    KIO::filesize_t rightCopySize;
+    int deleteNr;
+    KIO::filesize_t deleteSize;
 
-    int               parallelThreads;
+    int parallelThreads;
 
-    bool           isPause;
-    bool           syncStarted;
+    bool isPause;
+    bool syncStarted;
 };
 
 #endif /* __SYNCHRONIZE_DIALOG__ */

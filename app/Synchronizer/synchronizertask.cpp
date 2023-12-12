@@ -8,33 +8,44 @@
 #include "synchronizertask.h"
 
 // QtCore
-#include <QTimer>
-#include <QFile>
 #include <QElapsedTimer>
+#include <QFile>
+#include <QTimer>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "synchronizer.h"
-#include "synchronizerfileitem.h"
-#include "synchronizerdirlist.h"
 #include "../FileSystem/filesystem.h"
+#include "synchronizer.h"
+#include "synchronizerdirlist.h"
+#include "synchronizerfileitem.h"
 
-CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QString &leftURL,
-                         const QString &rightURL, const QString &leftDir,
-                         const QString &rightDir, bool hidden) :  m_parent(parentIn),
-        m_url(leftURL), m_dir(leftDir), m_otherUrl(rightURL),
-        m_otherDir(rightDir), m_duplicate(true),
-        m_dirList(nullptr), m_otherDirList(nullptr)
+CompareTask::CompareTask(SynchronizerFileItem *parentIn,
+                         const QString &leftURL,
+                         const QString &rightURL,
+                         const QString &leftDir,
+                         const QString &rightDir,
+                         bool hidden)
+    : m_parent(parentIn)
+    , m_url(leftURL)
+    , m_dir(leftDir)
+    , m_otherUrl(rightURL)
+    , m_otherDir(rightDir)
+    , m_duplicate(true)
+    , m_dirList(nullptr)
+    , m_otherDirList(nullptr)
 {
     ignoreHidden = hidden;
 }
 
-CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QString &urlIn,
-                         const QString &dirIn, bool isLeftIn, bool hidden) :
-        m_parent(parentIn), m_url(urlIn), m_dir(dirIn),
-        m_isLeft(isLeftIn), m_duplicate(false),
-        m_dirList(nullptr), m_otherDirList(nullptr)
+CompareTask::CompareTask(SynchronizerFileItem *parentIn, const QString &urlIn, const QString &dirIn, bool isLeftIn, bool hidden)
+    : m_parent(parentIn)
+    , m_url(urlIn)
+    , m_dir(dirIn)
+    , m_isLeft(isLeftIn)
+    , m_duplicate(false)
+    , m_dirList(nullptr)
+    , m_otherDirList(nullptr)
 {
     ignoreHidden = hidden;
 }
@@ -81,7 +92,6 @@ void CompareTask::slotFinished(bool result)
         m_state = ST_STATE_READY;
 }
 
-
 void CompareTask::slotOtherFinished(bool result)
 {
     if (!result) {
@@ -94,12 +104,21 @@ void CompareTask::slotOtherFinished(bool result)
         m_state = ST_STATE_READY;
 }
 
-CompareContentTask::CompareContentTask(Synchronizer *syn, SynchronizerFileItem *itemIn, const QUrl &leftURLIn,
-                                       const QUrl &rightURLIn, KIO::filesize_t sizeIn) :
-        leftURL(leftURLIn), rightURL(rightURLIn),
-        size(sizeIn), errorPrinted(false), leftReadJob(nullptr),
-        rightReadJob(nullptr), compareArray(), owner(-1), item(itemIn), timer(nullptr),
-        leftFile(nullptr), rightFile(nullptr), received(0), sync(syn)
+CompareContentTask::CompareContentTask(Synchronizer *syn, SynchronizerFileItem *itemIn, const QUrl &leftURLIn, const QUrl &rightURLIn, KIO::filesize_t sizeIn)
+    : leftURL(leftURLIn)
+    , rightURL(rightURLIn)
+    , size(sizeIn)
+    , errorPrinted(false)
+    , leftReadJob(nullptr)
+    , rightReadJob(nullptr)
+    , compareArray()
+    , owner(-1)
+    , item(itemIn)
+    , timer(nullptr)
+    , leftFile(nullptr)
+    , rightFile(nullptr)
+    , received(0)
+    , sync(syn)
 {
 }
 
@@ -160,11 +179,10 @@ void CompareContentTask::start()
 
 void CompareContentTask::localFileCompareCycle()
 {
-
     bool different = false;
 
-    char leftBuffer[ 1440 ];
-    char rightBuffer[ 1440 ];
+    char leftBuffer[1440];
+    char rightBuffer[1440];
 
     QElapsedTimer timer;
     timer.start();
@@ -209,12 +227,11 @@ void CompareContentTask::localFileCompareCycle()
     QTimer::singleShot(0, this, &CompareContentTask::localFileCompareCycle);
 }
 
-
 void CompareContentTask::slotDataReceived(KIO::Job *job, const QByteArray &data)
 {
     int jobowner = (job == leftReadJob) ? 1 : 0;
     int bufferLen = compareArray.size();
-    int dataLen   = data.size();
+    int dataLen = data.size();
 
     if (job == leftReadJob)
         received += dataLen;
@@ -231,7 +248,7 @@ void CompareContentTask::slotDataReceived(KIO::Job *job, const QByteArray &data)
             break;
         }
 
-        int minSize   = (dataLen < bufferLen) ? dataLen : bufferLen;
+        int minSize = (dataLen < bufferLen) ? dataLen : bufferLen;
 
         for (int i = 0; i != minSize; i++)
             if (data[i] != compareArray[i]) {
@@ -286,9 +303,10 @@ void CompareContentTask::slotFinished(KJob *job)
 
     if (job->error() && job->error() != KIO::ERR_USER_CANCELED && !errorPrinted) {
         errorPrinted = true;
-        KMessageBox::error(parentWidget, i18n("I/O error while comparing file %1 with %2.",
-                                              leftURL.toDisplayString(QUrl::PreferLocalFile),
-                                              rightURL.toDisplayString(QUrl::PreferLocalFile)));
+        KMessageBox::error(parentWidget,
+                           i18n("I/O error while comparing file %1 with %2.",
+                                leftURL.toDisplayString(QUrl::PreferLocalFile),
+                                rightURL.toDisplayString(QUrl::PreferLocalFile)));
     }
 
     if (leftReadJob == nullptr && rightReadJob == nullptr) {
@@ -326,4 +344,3 @@ void CompareContentTask::sendStatusMessage()
     timer->setSingleShot(true);
     timer->start(500);
 }
-

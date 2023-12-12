@@ -6,17 +6,16 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef KCMDLINE_H
 #define KCMDLINE_H
 
 // QtGui
 #include <QKeyEvent>
 // QtWidgets
-#include <QWidget>
 #include <QLabel>
 #include <QLayout>
 #include <QToolButton>
+#include <QWidget>
 
 #include <KCompletion/KLineEdit>
 #include <KIOWidgets/KShellCompletion>
@@ -34,7 +33,8 @@ public:
 
     bool eventFilter(QObject *watched, QEvent *e) override;
 
-    QString path() {
+    QString path()
+    {
         return _path;
     }
     void setPath(QString path);
@@ -56,7 +56,6 @@ protected:
     bool _handlingLineEditResize;
 };
 
-
 class KCMDLine : public QWidget, KrActionBase
 {
     Q_OBJECT
@@ -64,8 +63,8 @@ public:
     explicit KCMDLine(QWidget *parent = nullptr);
     ~KCMDLine() override;
     void setCurrent(const QString &path);
-    //virtual methods from KrActionBase
-    void setText(const QString& text);
+    // virtual methods from KrActionBase
+    void setText(const QString &text);
     QString command() const override;
     ExecType execType() const override;
     QString startpath() const override;
@@ -82,15 +81,18 @@ public slots:
     void slotReturnFocus(); // returns keyboard focus to panel
     void slotRun();
     void addPlaceholder();
-    void addText(const QString& text) {
+    void addText(const QString &text)
+    {
         cmdLine->lineEdit()->setText(cmdLine->lineEdit()->text() + text);
     }
-    void popup() {
+    void popup()
+    {
         cmdLine->showPopup();
     }
 
 protected:
-    void focusInEvent(QFocusEvent*) override {
+    void focusInEvent(QFocusEvent *) override
+    {
         cmdLine->setFocus();
     }
 

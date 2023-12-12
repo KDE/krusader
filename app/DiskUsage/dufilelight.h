@@ -12,8 +12,8 @@
 #include <QMouseEvent>
 
 #include "diskusage.h"
-#include "radialMap/widget.h"
 #include "filelightParts/Config.h"
+#include "radialMap/widget.h"
 
 class DUFilelight : public RadialMap::Widget
 {
@@ -22,7 +22,7 @@ class DUFilelight : public RadialMap::Widget
 public:
     explicit DUFilelight(DiskUsage *usage);
 
-    File * getCurrentFile();
+    File *getCurrentFile();
 
 public slots:
     void slotDirChanged(Directory *);
@@ -33,13 +33,16 @@ public slots:
 protected slots:
     void slotAboutToShow(int);
 
-    void schemeRainbow()        {
+    void schemeRainbow()
+    {
         setScheme(Filelight::Rainbow);
     }
-    void schemeHighContrast()   {
+    void schemeHighContrast()
+    {
         setScheme(Filelight::HighContrast);
     }
-    void schemeKDE()            {
+    void schemeKDE()
+    {
         setScheme(Filelight::KDE);
     }
 
@@ -51,7 +54,7 @@ protected slots:
     void minFontSize();
 
 protected:
-    void mousePressEvent(QMouseEvent*) override;
+    void mousePressEvent(QMouseEvent *) override;
 
     void setScheme(Filelight::MapScheme);
 
@@ -63,4 +66,3 @@ private:
 };
 
 #endif /* __DU_FILELIGHT_H__ */
-

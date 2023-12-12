@@ -10,8 +10,8 @@
 #define KRPLEASEWAIT_H
 
 // QtCore
-#include <QTimer>
 #include <QPointer>
+#include <QTimer>
 // QtGui
 #include <QCloseEvent>
 // QtWidgets
@@ -30,29 +30,29 @@ public:
 
 public slots:
 
-    void startWaiting(const QString& msg, int count = 0, bool cancel = false);
+    void startWaiting(const QString &msg, int count = 0, bool cancel = false);
     void stopWait();
     void cycleProgress();
     void incProgress(int i);
     void killJob();
-    void setJob(KIO::Job* j);
-    bool wasCancelled() const {
+    void setJob(KIO::Job *j);
+    bool wasCancelled() const
+    {
         return _wasCancelled;
     }
 
 private:
     QWidget *_parentWindow;
     QPointer<KIO::Job> job;
-    KrPleaseWait * dlg;
+    KrPleaseWait *dlg;
     bool cycle, cycleMutex, incMutex, _wasCancelled;
 };
-
 
 class KrPleaseWait : public QProgressDialog
 {
     Q_OBJECT
 public:
-    KrPleaseWait(const QString& msg, QWidget *parent, int count = 0 , bool cancel = false);
+    KrPleaseWait(const QString &msg, QWidget *parent, int count = 0, bool cancel = false);
 
 public slots:
     void incProgress(int howMuch);
@@ -60,8 +60,8 @@ public slots:
 
 protected:
     bool inc;
-    QTimer* timer;
-    void closeEvent(QCloseEvent * e) override;
+    QTimer *timer;
+    void closeEvent(QCloseEvent *e) override;
     bool canClose;
 };
 

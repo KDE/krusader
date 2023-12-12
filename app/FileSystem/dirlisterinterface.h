@@ -21,7 +21,10 @@ class DirListerInterface : public QObject
 {
     Q_OBJECT
 public:
-    explicit DirListerInterface(QObject *parent) : QObject(parent) {}
+    explicit DirListerInterface(QObject *parent)
+        : QObject(parent)
+    {
+    }
     ~DirListerInterface() override = default;
 
     /**

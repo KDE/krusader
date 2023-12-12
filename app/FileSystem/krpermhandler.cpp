@@ -21,29 +21,43 @@ QHash<int, QString> KrPermHandler::gidCache;
 
 QString KrPermHandler::mode2QString(mode_t m)
 {
-    char perm[ 11 ];
+    char perm[11];
     for (int i = 0; i != 10; i++)
-        perm[ i ] = '-';
-    perm[ 10 ] = 0;
+        perm[i] = '-';
+    perm[10] = 0;
 
-    if (S_ISLNK(m)) perm[ 0 ] = 'l';      // check for symLink
-    if (S_ISDIR(m)) perm[ 0 ] = 'd';      // check for directory
+    if (S_ISLNK(m))
+        perm[0] = 'l'; // check for symLink
+    if (S_ISDIR(m))
+        perm[0] = 'd'; // check for directory
 
-    //ReadUser = 0400, WriteUser = 0200, ExeUser = 0100, Suid = 04000
-    if (m & 0400) perm[ 1 ] = 'r';
-    if (m & 0200) perm[ 2 ] = 'w';
-    if (m & 0100) perm[ 3 ] = 'x';
-    if (m & 04000) perm[ 3 ] = 's';
-    //ReadGroup = 0040, WriteGroup = 0020, ExeGroup = 0010, Gid = 02000
-    if (m & 0040) perm[ 4 ] = 'r';
-    if (m & 0020) perm[ 5 ] = 'w';
-    if (m & 0010) perm[ 6 ] = 'x';
-    if (m & 02000) perm[ 6 ] = 's';
-    //ReadOther = 0004, WriteOther = 0002, ExeOther = 0001, Sticky = 01000
-    if (m & 0004) perm[ 7 ] = 'r';
-    if (m & 0002) perm[ 8 ] = 'w';
-    if (m & 0001) perm[ 9 ] = 'x';
-    if (m & 01000) perm[ 9 ] = 't';
+    // ReadUser = 0400, WriteUser = 0200, ExeUser = 0100, Suid = 04000
+    if (m & 0400)
+        perm[1] = 'r';
+    if (m & 0200)
+        perm[2] = 'w';
+    if (m & 0100)
+        perm[3] = 'x';
+    if (m & 04000)
+        perm[3] = 's';
+    // ReadGroup = 0040, WriteGroup = 0020, ExeGroup = 0010, Gid = 02000
+    if (m & 0040)
+        perm[4] = 'r';
+    if (m & 0020)
+        perm[5] = 'w';
+    if (m & 0010)
+        perm[6] = 'x';
+    if (m & 02000)
+        perm[6] = 's';
+    // ReadOther = 0004, WriteOther = 0002, ExeOther = 0001, Sticky = 01000
+    if (m & 0004)
+        perm[7] = 'r';
+    if (m & 0002)
+        perm[8] = 'w';
+    if (m & 0001)
+        perm[9] = 'x';
+    if (m & 01000)
+        perm[9] = 't';
 
     return QString(perm);
 }
@@ -51,7 +65,7 @@ QString KrPermHandler::mode2QString(mode_t m)
 void KrPermHandler::init()
 {
     // set the umask to 022
-    //umask( 022 );
+    // umask( 022 );
 
     // 200 groups should be enough
     gid_t groupList[200];
@@ -99,8 +113,7 @@ char KrPermHandler::executable(const QString &perm, gid_t gid, uid_t uid)
     return getLocalPermission(perm, gid, uid, 2, true);
 }
 
-char KrPermHandler::getLocalPermission(const QString &perm, gid_t gid, uid_t uid, int permOffset,
-                                       bool ignoreRoot)
+char KrPermHandler::getLocalPermission(const QString &perm, gid_t gid, uid_t uid, int permOffset, bool ignoreRoot)
 {
     // root override
     if (!ignoreRoot && getuid() == 0)
@@ -133,8 +146,7 @@ char KrPermHandler::ftpExecutable(const QString &fileOwner, const QString &userN
     return getFtpPermission(fileOwner, userName, perm, 2);
 }
 
-char KrPermHandler::getFtpPermission(const QString &fileOwner, const QString &userName,
-                                     const QString &perm, int permOffset)
+char KrPermHandler::getFtpPermission(const QString &fileOwner, const QString &userName, const QString &perm, int permOffset)
 {
     // first check other permissions.
     if (perm[7 + permOffset] != '-')
@@ -157,7 +169,7 @@ QString KrPermHandler::parseSize(KIO::filesize_t val)
 
 QString KrPermHandler::gid2group(gid_t groupId)
 {
-   return gidCache.value(groupId, QStringLiteral("???"));
+    return gidCache.value(groupId, QStringLiteral("???"));
 }
 
 QString KrPermHandler::uid2user(uid_t userId)

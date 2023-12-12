@@ -30,7 +30,7 @@ class FileItem;
 /**
  * Additional side widget showing various meta information for the current file/directories.
  */
-class Sidebar: public QWidget
+class Sidebar : public QWidget
 {
     Q_OBJECT
 
@@ -50,10 +50,11 @@ class Sidebar: public QWidget
 public:
     explicit Sidebar(QWidget *parent);
     ~Sidebar() override;
-    inline int currentPage() const {
+    inline int currentPage() const
+    {
         return stack->currentWidget()->property("KrusaderWidgetId").toInt();
     }
-    void saveSettings(const KConfigGroup& cfg) const;
+    void saveSettings(const KConfigGroup &cfg) const;
     void restoreSettings(const KConfigGroup &cfg);
     void setCurrentPage(int);
 
@@ -72,7 +73,7 @@ protected slots:
     void handleOpenUrlRequest(const QUrl &url);
 
 protected:
-    void focusInEvent(QFocusEvent*) override;
+    void focusInEvent(QFocusEvent *) override;
 
     bool _hidden;
     QStackedWidget *stack;

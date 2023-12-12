@@ -7,13 +7,13 @@
 
 #include "listpanelactions.h"
 
-#include "listpanel.h"
-#include "panelfunc.h"
-#include "PanelView/krviewfactory.h"
-#include "../krmainwindow.h"
 #include "../Dialogs/krdialogs.h"
 #include "../KViewer/krviewer.h"
 #include "../icon.h"
+#include "../krmainwindow.h"
+#include "PanelView/krviewfactory.h"
+#include "listpanel.h"
+#include "panelfunc.h"
 
 // QtWidgets
 #include <QActionGroup>
@@ -21,19 +21,20 @@
 #include <KI18n/KLocalizedString>
 #include <KXmlGui/KActionCollection>
 
-
-ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
-        ActionsBase(parent, mainWindow)
+ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow)
+    : ActionsBase(parent, mainWindow)
 {
     // set view type
     auto *group = new QActionGroup(this);
     group->setExclusive(true);
-    QList<KrViewInstance*> views = KrViewFactory::registeredViews();
-    for(int i = 0; i < views.count(); i++) {
+    QList<KrViewInstance *> views = KrViewFactory::registeredViews();
+    for (int i = 0; i < views.count(); i++) {
         KrViewInstance *inst = views[i];
         QAction *action = new QAction(Icon(inst->iconName()), inst->description(), group);
         action->setCheckable(true);
-        connect(action, &QAction::triggered, this, [=] {setView(inst->id());});
+        connect(action, &QAction::triggered, this, [=] {
+            setView(inst->id());
+        });
         _mainWindow->actions()->addAction("view" + QString::number(i), action);
         _mainWindow->actions()->setDefaultShortcut(action, inst->shortcut());
         setViewActions.insert(inst->id(), action);
@@ -42,8 +43,8 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     // standard actions
     actHistoryBackward = stdAction(KStandardAction::Back, _func, SLOT(historyBackward()));
     actHistoryForward = stdAction(KStandardAction::Forward, _func, SLOT(historyForward()));
-    //FIXME: second shortcut for up: see actDirUp
-    //   KStandardAction::up( this, SLOT(dirUp()), actionCollection )->setShortcut(Qt::Key_Backspace);
+    // FIXME: second shortcut for up: see actDirUp
+    //    KStandardAction::up( this, SLOT(dirUp()), actionCollection )->setShortcut(Qt::Key_Backspace);
     /* Shortcut disabled because of the Terminal Emulator bug. */
     actDirUp = stdAction(KStandardAction::Up, _func, SLOT(dirUp()));
     actHome = stdAction(KStandardAction::Home, _func, SLOT(home()));
@@ -60,17 +61,17 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     actPaste->setText(i18n("Paste from Clipboard"));
 
     // Fn keys
-    actRenameF2 = action(i18n("Rename"), "edit-rename", Qt::Key_F2, _func, SLOT(rename()) , "F2_Rename");
+    actRenameF2 = action(i18n("Rename"), "edit-rename", Qt::Key_F2, _func, SLOT(rename()), "F2_Rename");
     actViewFileF3 = action(i18n("View File"), nullptr, Qt::Key_F3, _func, SLOT(view()), "F3_View");
     actEditFileF4 = action(i18n("Edit File"), nullptr, Qt::Key_F4, _func, SLOT(editFile()), "F4_Edit");
     actNewFileShiftF4 = action(i18n("&New Text File..."), "document-new", Qt::SHIFT + Qt::Key_F4, _func, SLOT(askEditFile()), "edit_new_file");
-    actCopyF5 = action(i18n("Copy to other panel"), nullptr, Qt::Key_F5, _func, SLOT(copyFiles()) , "F5_Copy");
-    actMoveF6 = action(i18n("Move to other panel"), nullptr, Qt::Key_F6, _func, SLOT(moveFiles()) , "F6_Move");
-    actCopyDelayedF5 = action(i18n("Copy delayed..."), nullptr, Qt::SHIFT + Qt::Key_F5, _func, SLOT(copyFilesDelayed()) , "F5_Copy_Queue");
-    actMoveDelayedShiftF6 = action(i18n("Move delayed..."), nullptr, Qt::SHIFT + Qt::Key_F6, _func, SLOT(moveFilesDelayed()) , "F6_Move_Queue");
-    actNewFolderF7 = action(i18n("New Folder..."), "folder-new", Qt::Key_F7, _func, SLOT(mkdir()) , "F7_Mkdir");
-    actDeleteF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, _func, SLOT(defaultDeleteFiles()) , "F8_Delete");
-    actTerminalF9 = action(i18n("Start Terminal Here"), "utilities-terminal", Qt::Key_F9, _func, SLOT(terminal()) , "F9_Terminal");
+    actCopyF5 = action(i18n("Copy to other panel"), nullptr, Qt::Key_F5, _func, SLOT(copyFiles()), "F5_Copy");
+    actMoveF6 = action(i18n("Move to other panel"), nullptr, Qt::Key_F6, _func, SLOT(moveFiles()), "F6_Move");
+    actCopyDelayedF5 = action(i18n("Copy delayed..."), nullptr, Qt::SHIFT + Qt::Key_F5, _func, SLOT(copyFilesDelayed()), "F5_Copy_Queue");
+    actMoveDelayedShiftF6 = action(i18n("Move delayed..."), nullptr, Qt::SHIFT + Qt::Key_F6, _func, SLOT(moveFilesDelayed()), "F6_Move_Queue");
+    actNewFolderF7 = action(i18n("New Folder..."), "folder-new", Qt::Key_F7, _func, SLOT(mkdir()), "F7_Mkdir");
+    actDeleteF8 = action(i18n("Delete"), "edit-delete", Qt::Key_F8, _func, SLOT(defaultDeleteFiles()), "F8_Delete");
+    actTerminalF9 = action(i18n("Start Terminal Here"), "utilities-terminal", Qt::Key_F9, _func, SLOT(terminal()), "F9_Terminal");
     action(i18n("F3 View Dialog"), nullptr, Qt::SHIFT + Qt::Key_F3, _func, SLOT(viewDlg()), "F3_ViewDlg");
 
     // file operations
@@ -92,11 +93,13 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
     action(i18n("&Reload"), "view-refresh", Qt::CTRL + Qt::Key_R, _func, SLOT(refresh()), "std_redisplay");
     actCancelRefresh = action(i18n("Cancel Refresh of View"), "dialog-cancel", 0, _gui, SLOT(cancelProgress()), "cancel refresh");
     actFTPNewConnect = action(i18n("New Net &Connection..."), "network-connect", Qt::CTRL + Qt::Key_N, _func, SLOT(newFTPconnection()), "ftp new connection");
-    actFTPDisconnect = action(i18n("Disconnect &from Net"), "network-disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_D, _func, SLOT(FTPDisconnect()), "ftp disconnect");
+    actFTPDisconnect =
+        action(i18n("Disconnect &from Net"), "network-disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_D, _func, SLOT(FTPDisconnect()), "ftp disconnect");
     action(i18n("Sync Panels"), nullptr, Qt::ALT + Qt::SHIFT + Qt::Key_O, _func, SLOT(syncOtherPanel()), "sync panels");
     actJumpBack = action(i18n("Jump Back"), "go-jump", Qt::CTRL + Qt::Key_J, _gui, SLOT(jumpBack()), "jump_back");
     actSetJumpBack = action(i18n("Set Jump Back Point"), "go-jump-definition", Qt::CTRL + Qt::SHIFT + Qt::Key_J, _gui, SLOT(setJumpBack()), "set_jump_back");
-    actSyncBrowse = action(i18n("S&ynchron Folder Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, _gui, SLOT(toggleSyncBrowse()), "sync browse");
+    actSyncBrowse =
+        action(i18n("S&ynchron Folder Changes"), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, _gui, SLOT(toggleSyncBrowse()), "sync browse");
     actLocationBar = action(i18n("Go to Location Bar"), nullptr, Qt::CTRL + Qt::Key_L, _gui, SLOT(editLocation()), "location_bar");
     toggleAction(i18n("Toggle Sidebar"), nullptr, Qt::ALT + Qt::Key_Down, _gui, SLOT(toggleSidebar()), "toggle sidebar");
     action(i18n("Bookmarks"), nullptr, Qt::CTRL + Qt::Key_D, _gui, SLOT(openBookmarks()), "bookmarks");
@@ -119,17 +122,18 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow) :
 
     actRenameF2->setToolTip(i18n("Rename file, folder, etc."));
     actViewFileF3->setToolTip(i18n("Open file in viewer."));
-    actEditFileF4->setToolTip(i18n("<qt><p>Edit file.</p>"
-                           "<p>The editor can be defined in Konfigurator, "
-                           "default is <b>internal editor</b>.</p></qt>"));
+    actEditFileF4->setToolTip(
+        i18n("<qt><p>Edit file.</p>"
+             "<p>The editor can be defined in Konfigurator, "
+             "default is <b>internal editor</b>.</p></qt>"));
     actCopyF5->setToolTip(i18n("Copy file from one panel to the other."));
     actMoveF6->setToolTip(i18n("Move file from one panel to the other."));
     actNewFolderF7->setToolTip(i18n("Create folder in current panel."));
     actDeleteF8->setToolTip(i18n("Delete file, folder, etc."));
-    actTerminalF9->setToolTip(i18n("<qt><p>Open terminal in current folder.</p>"
-                           "<p>The terminal can be defined in Konfigurator, "
-                           "default is <b>konsole</b>.</p></qt>"));
-
+    actTerminalF9->setToolTip(
+        i18n("<qt><p>Open terminal in current folder.</p>"
+             "<p>The terminal can be defined in Konfigurator, "
+             "default is <b>konsole</b>.</p></qt>"));
 }
 
 void ListPanelActions::activePanelChanged()
@@ -140,25 +144,25 @@ void ListPanelActions::activePanelChanged()
 
 void ListPanelActions::guiUpdated()
 {
-    QList<QAction*> actions;
+    QList<QAction *> actions;
     for (QAction *action : qAsConst(setViewActions))
         actions << action;
-    static_cast<KrMainWindow*>(_mainWindow)->plugActionList("view_actionlist", actions);
+    static_cast<KrMainWindow *>(_mainWindow)->plugActionList("view_actionlist", actions);
 }
 
 inline KrPanel *ListPanelActions::activePanel()
 {
-    return static_cast<KrMainWindow*>(_mainWindow)->activePanel();
+    return static_cast<KrMainWindow *>(_mainWindow)->activePanel();
 }
 
 inline KrPanel *ListPanelActions::leftPanel()
 {
-    return static_cast<KrMainWindow*>(_mainWindow)->leftPanel();
+    return static_cast<KrMainWindow *>(_mainWindow)->leftPanel();
 }
 
 inline KrPanel *ListPanelActions::rightPanel()
 {
-    return static_cast<KrMainWindow*>(_mainWindow)->rightPanel();
+    return static_cast<KrMainWindow *>(_mainWindow)->rightPanel();
 }
 
 // set view type

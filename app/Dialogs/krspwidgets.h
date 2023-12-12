@@ -15,9 +15,9 @@
 
 #include <KCompletion/KLineEdit>
 
+#include "../FileSystem/krquery.h"
 #include "krmaskchoice.h"
 #include "newftpgui.h"
-#include "../FileSystem/krquery.h"
 
 class KrMaskChoiceSub;
 
@@ -28,11 +28,11 @@ class KrSpWidgets
 public:
     KrSpWidgets();
 
-    static KrQuery getMask(const QString& caption, bool nameOnly = false, QWidget * parent = nullptr); // get file-mask for (un)selecting files
+    static KrQuery getMask(const QString &caption, bool nameOnly = false, QWidget *parent = nullptr); // get file-mask for (un)selecting files
     static QUrl newFTP();
 
 private:
-    static QStringList maskList;  // used by KrMaskChoiceSub
+    static QStringList maskList; // used by KrMaskChoiceSub
 };
 
 /////////////////////////// newFTPSub ///////////////////////////////////////
@@ -53,7 +53,7 @@ protected:
 class KrMaskChoiceSub : public KrMaskChoice
 {
 public:
-    explicit KrMaskChoiceSub(QWidget * parent = nullptr);
+    explicit KrMaskChoiceSub(QWidget *parent = nullptr);
 
 public slots:
     void addSelection() override;

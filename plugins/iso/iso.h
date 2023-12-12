@@ -34,11 +34,11 @@ public:
 
 protected:
     void getFile(const KIsoFile *isoFileEntry, const QString &path);
-    void createUDSEntry(const KArchiveEntry * isoEntry, KIO::UDSEntry & entry);
-    bool checkNewFile(QString fullPath, QString & path, int startsec);
+    void createUDSEntry(const KArchiveEntry *isoEntry, KIO::UDSEntry &entry);
+    bool checkNewFile(QString fullPath, QString &path, int startsec);
     QString getPath(const QUrl &url);
 
-    KIso * m_isoFile;
+    KIso *m_isoFile;
     time_t m_mtime;
     int m_mode;
 };

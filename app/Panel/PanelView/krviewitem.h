@@ -30,13 +30,17 @@ class KrViewItem
 
 public:
     KrViewItem(FileItem *fileitem, KrInterView *parentView);
-    virtual ~KrViewItem() {}
+    virtual ~KrViewItem()
+    {
+    }
 
-    const QString& name(bool withExtension = true) const;
-    inline bool hasExtension() const {
+    const QString &name(bool withExtension = true) const;
+    inline bool hasExtension() const
+    {
         return _hasExtension;
     }
-    inline const QString& extension() const {
+    inline const QString &extension() const
+    {
         return _extension;
     }
     /** Return description text for status bar. */
@@ -50,19 +54,24 @@ public:
     void redraw();
 
     // DON'T USE THOSE OUTSIDE THE VIEWS!!!
-    inline const FileItem* getFileItem() const {
+    inline const FileItem *getFileItem() const
+    {
         return _fileitem;
     }
-    inline void setFileItem(FileItem *fileitem) {
+    inline void setFileItem(FileItem *fileitem)
+    {
         _fileitem = fileitem;
     }
-    inline FileItem* getMutableFileItem() {
+    inline FileItem *getMutableFileItem()
+    {
         return _fileitem;
     }
-    inline bool isDummy() const {
+    inline bool isDummy() const
+    {
         return dummyFileItem;
     }
-    inline bool isHidden() const {
+    inline bool isHidden() const
+    {
         return _hidden;
     }
 
@@ -70,10 +79,10 @@ public:
     void setSize(KIO::filesize_t size);
 
 protected:
-    FileItem* _fileitem;   // each view item holds a pointer to a corresponding file item for fast access
-    KrInterView * _view; // the parent view this item belongs to
+    FileItem *_fileitem; // each view item holds a pointer to a corresponding file item for fast access
+    KrInterView *_view; // the parent view this item belongs to
     bool dummyFileItem; // used in case our item represents the ".." (updir) item
-    const KrViewProperties* _viewProperties;
+    const KrViewProperties *_viewProperties;
     bool _hasExtension;
     bool _hidden;
     QString _name;

@@ -7,18 +7,18 @@
 */
 
 #include "packgui.h"
-#include "../krglobal.h"
 #include "../defaults.h"
+#include "../krglobal.h"
 
 // QtCore
 #include <QStringList>
 // QtWidgets
-#include <QLineEdit>
 #include <QCheckBox>
+#include <QComboBox>
 #include <QFileDialog>
 #include <QLabel>
+#include <QLineEdit>
 #include <QPushButton>
-#include <QComboBox>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
@@ -33,8 +33,8 @@ QString PackGUI::destination = nullptr;
 QString PackGUI::type = nullptr;
 QMap<QString, QString> PackGUI::extraProps;
 
-PackGUI::PackGUI(const QString& defaultName, const QString& defaultPath, int noOfFiles, const QString& filename) :
-        PackGUIBase(nullptr)
+PackGUI::PackGUI(const QString &defaultName, const QString &defaultPath, int noOfFiles, const QString &filename)
+    : PackGUIBase(nullptr)
 {
     // first, fill the WhatToPack textfield with information
     if (noOfFiles == 1)
@@ -48,18 +48,30 @@ PackGUI::PackGUI(const QString& defaultName, const QString& defaultPath, int noO
     QStringList lst = group.readEntry("Supported Packers", QStringList());
     // now, clear the type combo and begin...
     typeData->clear();
-    if (PS("tar")) typeData->addItem("tar");
-    if (PS("tar") && PS("gzip")) typeData->addItem("tar.gz");
-    if (PS("tar") && PS("bzip2")) typeData->addItem("tar.bz2");
-    if (PS("tar") && PS("lzma")) typeData->addItem("tar.lzma");
-    if (PS("tar") && PS("xz")) typeData->addItem("tar.xz");
-    if (PS("zip")) typeData->addItem("zip");
-    if (PS("zip")) typeData->addItem("cbz");
-    if (PS("rar")) typeData->addItem("rar");
-    if (PS("rar")) typeData->addItem("cbr");
-    if (PS("lha")) typeData->addItem("lha");
-    if (PS("arj")) typeData->addItem("arj");
-    if (PS("7z")) typeData->addItem("7z");
+    if (PS("tar"))
+        typeData->addItem("tar");
+    if (PS("tar") && PS("gzip"))
+        typeData->addItem("tar.gz");
+    if (PS("tar") && PS("bzip2"))
+        typeData->addItem("tar.bz2");
+    if (PS("tar") && PS("lzma"))
+        typeData->addItem("tar.lzma");
+    if (PS("tar") && PS("xz"))
+        typeData->addItem("tar.xz");
+    if (PS("zip"))
+        typeData->addItem("zip");
+    if (PS("zip"))
+        typeData->addItem("cbz");
+    if (PS("rar"))
+        typeData->addItem("rar");
+    if (PS("rar"))
+        typeData->addItem("cbr");
+    if (PS("lha"))
+        typeData->addItem("lha");
+    if (PS("arj"))
+        typeData->addItem("arj");
+    if (PS("7z"))
+        typeData->addItem("7z");
     // set the last used packer as the top one
     QString tmp = group.readEntry("lastUsedPacker", QString());
     if (!tmp.isEmpty()) {

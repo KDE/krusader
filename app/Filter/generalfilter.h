@@ -9,64 +9,65 @@
 #define GENERALFILTER_H
 
 // QtWidgets
-#include <QWidget>
-#include <QLayout>
-#include <QGroupBox>
 #include <QCheckBox>
-#include <QLabel>
+#include <QGroupBox>
 #include <QHBoxLayout>
+#include <QLabel>
+#include <QLayout>
+#include <QWidget>
 
 #include <KCompletion/KComboBox>
 #include <KShellCompletion>
 
-#include "filterbase.h"
 #include "../Dialogs/kurllistrequester.h"
-#include "../GUI/profilemanager.h"
-#include "../GUI/krlistwidget.h"
 #include "../GUI/krhistorycombobox.h"
+#include "../GUI/krlistwidget.h"
+#include "../GUI/profilemanager.h"
+#include "filterbase.h"
 
 class GeneralFilter : public QWidget, public FilterBase
 {
     Q_OBJECT
 
 public:
-    GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent = nullptr,
-                  QStringList extraOptions = QStringList());
+    GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent = nullptr, QStringList extraOptions = QStringList());
     ~GeneralFilter() override;
 
-    void          queryAccepted() override;
-    QString       name() override {
+    void queryAccepted() override;
+    QString name() override
+    {
         return "GeneralFilter";
     }
-    FilterTabs *  filterTabs() override {
+    FilterTabs *filterTabs() override
+    {
         return fltTabs;
     }
-    bool getSettings(FilterSettings&) override;
-    void applySettings(const FilterSettings&) override;
+    bool getSettings(FilterSettings &) override;
+    void applySettings(const FilterSettings &) override;
 
-    bool isExtraOptionChecked(const QString& name);
-    void checkExtraOption(const QString& name, bool check);
+    bool isExtraOptionChecked(const QString &name);
+    void checkExtraOption(const QString &name, bool check);
 
 public slots:
-    void    slotAddBtnClicked();
-    void    slotLoadBtnClicked();
-    void    slotOverwriteBtnClicked();
-    void    slotRemoveBtnClicked();
-    void    slotDisable();
-    void    slotRegExpTriggered(QAction * act);
-    void    slotProfileDoubleClicked(QListWidgetItem *);
-    void    refreshProfileListBox();
+    void slotAddBtnClicked();
+    void slotLoadBtnClicked();
+    void slotOverwriteBtnClicked();
+    void slotRemoveBtnClicked();
+    void slotDisable();
+    void slotRegExpTriggered(QAction *act);
+    void slotProfileDoubleClicked(QListWidgetItem *);
+    void refreshProfileListBox();
 
 public:
-    KComboBox* contentEncoding;
-    QCheckBox* searchForCase;
-    QCheckBox* containsTextCase;
-    QCheckBox* containsWholeWord;
-    QCheckBox* useExcludeFolderNames;
-    QCheckBox* searchInDirs;
-    QCheckBox* searchInArchives;
-    QCheckBox* followLinks;
-    QHash<QString, QCheckBox*> extraOptions;
+    KComboBox *contentEncoding;
+    QCheckBox *searchForCase;
+    QCheckBox *containsTextCase;
+    QCheckBox *containsWholeWord;
+    QCheckBox *useExcludeFolderNames;
+    QCheckBox *searchInDirs;
+    QCheckBox *searchInArchives;
+    QCheckBox *followLinks;
+    QHash<QString, QCheckBox *> extraOptions;
 
     KURLListRequester *searchIn;
     KURLListRequester *dontSearchIn;
@@ -75,7 +76,7 @@ public:
     KrHistoryComboBox *searchFor;
     KrHistoryComboBox *containsText;
     KrHistoryComboBox *excludeFolderNames;
-    QToolButton       *containsRegExp;
+    QToolButton *containsRegExp;
 
     KComboBox *ofType;
 

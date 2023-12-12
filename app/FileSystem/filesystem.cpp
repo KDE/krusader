@@ -21,14 +21,18 @@
 #include <KI18n/KLocalizedString>
 #include <KIO/JobUiDelegate>
 
-#include "fileitem.h"
-#include "krpermhandler.h"
-#include "../defaults.h"
-#include "../krglobal.h"
 #include "../JobMan/jobman.h"
 #include "../JobMan/krjob.h"
+#include "../defaults.h"
+#include "../krglobal.h"
+#include "fileitem.h"
+#include "krpermhandler.h"
 
-FileSystem::FileSystem() : DirListerInterface(nullptr), _isRefreshing(false) {}
+FileSystem::FileSystem()
+    : DirListerInterface(nullptr)
+    , _isRefreshing(false)
+{
+}
 
 FileSystem::~FileSystem()
 {
@@ -40,7 +44,7 @@ FileSystem::~FileSystem()
 QList<QUrl> FileSystem::getUrls(const QStringList &names) const
 {
     QList<QUrl> urls;
-    for (const QString& name : names) {
+    for (const QString &name : names) {
         urls.append(getUrl(name));
     }
     return urls;
@@ -74,7 +78,8 @@ QUrl FileSystem::ensureTrailingSlash(const QUrl &url)
     return adjustedUrl;
 }
 
-QUrl FileSystem::preferLocalUrl(const QUrl &url){
+QUrl FileSystem::preferLocalUrl(const QUrl &url)
+{
     if (url.isEmpty() || !url.scheme().isEmpty())
         return url;
 
@@ -85,8 +90,7 @@ QUrl FileSystem::preferLocalUrl(const QUrl &url){
 
 bool FileSystem::scanOrRefresh(const QUrl &directory, bool onlyScan)
 {
-    qDebug() << "from current dir=" << _currentDirectory.toDisplayString()
-             << "; to=" << directory.toDisplayString();
+    qDebug() << "from current dir=" << _currentDirectory.toDisplayString() << "; to=" << directory.toDisplayString();
     if (_isRefreshing) {
         // NOTE: this does not happen (unless async)";
         return false;
@@ -94,15 +98,13 @@ bool FileSystem::scanOrRefresh(const QUrl &directory, bool onlyScan)
 
     // workaround for krarc: find out if transition to local fs is wanted and adjust URL manually
     QUrl url = directory;
-    if (_currentDirectory.scheme() == "krarc" && url.scheme() == "krarc" &&
-        QDir(url.path()).exists()) {
+    if (_currentDirectory.scheme() == "krarc" && url.scheme() == "krarc" && QDir(url.path()).exists()) {
         url.setScheme("file");
     }
 
     const bool dirChange = !url.isEmpty() && cleanUrl(url) != _currentDirectory;
 
-    const QUrl toRefresh =
-            dirChange ? url.adjusted(QUrl::NormalizePathSegments) : _currentDirectory;
+    const QUrl toRefresh = dirChange ? url.adjusted(QUrl::NormalizePathSegments) : _currentDirectory;
     if (!toRefresh.isValid()) {
         emit error(i18n("Malformed URL:\n%1", toRefresh.toDisplayString()));
         return false;
@@ -147,29 +149,37 @@ void FileSystem::deleteFiles(const QList<QUrl> &urls, bool moveToTrash)
         // update destination: the trash bin (in case a panel/tab is showing it)
         connect(krJob, &KrJob::started, this, [=](KIO::Job *job) {
             // Note: the "trash" protocol should always have only one "/" after the "scheme:" part
-            connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(QUrl("trash:/"), false); });
+            connect(job, &KIO::Job::result, this, [=]() {
+                emit fileSystemChanged(QUrl("trash:/"), false);
+            });
         });
     }
 
     krJobMan->manageJob(krJob);
 }
 
-void FileSystem::connectJobToSources(KJob *job, const QList<QUrl>& urls)
+void FileSystem::connectJobToSources(KJob *job, const QList<QUrl> &urls)
 {
     if (!urls.isEmpty()) {
         // TODO we assume that all files were in the same directory and only emit one signal for
         // the directory of the first file URL (all subdirectories of parent are notified)
         const QUrl url = urls.first().adjusted(QUrl::RemoveFilename);
-        connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(url, true); });
+        connect(job, &KIO::Job::result, this, [=]() {
+            emit fileSystemChanged(url, true);
+        });
     }
 }
 
 void FileSystem::connectJobToDestination(KJob *job, const QUrl &destination)
 {
-    connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(destination, false); });
+    connect(job, &KIO::Job::result, this, [=]() {
+        emit fileSystemChanged(destination, false);
+    });
     // (additional) direct refresh if on local fs because watcher is too slow
     const bool refresh = cleanUrl(destination) == _currentDirectory && isLocal();
-    connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, refresh); });
+    connect(job, &KIO::Job::result, this, [=](KJob *job) {
+        slotJobResult(job, refresh);
+    });
 }
 
 bool FileSystem::showHiddenFiles()
@@ -209,8 +219,7 @@ FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &di
 
         if (linkDestination.isNull()) {
             brokenLink = true;
-        }
-        else {
+        } else {
             const QFileInfo linkFile(dir, linkDestination);
             if (!linkFile.exists())
                 brokenLink = true;
@@ -222,11 +231,22 @@ FileItem *FileSystem::createLocalFileItem(const QString &name, const QString &di
     // TODO use statx available in glibc >= 2.28 supporting creation time (btime) and more
 
     // create normal file item
-    return new FileItem(fileItemName, fileItemUrl, isDir,
-                        size, stat_p.st_mode,
-                        stat_p.st_mtime, stat_p.st_ctime, stat_p.st_atime, -1,
-                        stat_p.st_uid, stat_p.st_gid, QString(), QString(),
-                        isLink, linkDestination, brokenLink);
+    return new FileItem(fileItemName,
+                        fileItemUrl,
+                        isDir,
+                        size,
+                        stat_p.st_mode,
+                        stat_p.st_mtime,
+                        stat_p.st_ctime,
+                        stat_p.st_atime,
+                        -1,
+                        stat_p.st_uid,
+                        stat_p.st_gid,
+                        QString(),
+                        QString(),
+                        isLink,
+                        linkDestination,
+                        brokenLink);
 }
 
 QString FileSystem::readLinkSafely(const char *path)
@@ -262,8 +282,7 @@ QString FileSystem::readLinkSafely(const char *path)
         // bufferSize < maxBufferSize is implied from previous checks
         if (bufferSize <= maxBufferSize / 2) {
             bufferSize *= 2;
-        }
-        else {
+        } else {
             bufferSize = maxBufferSize;
         }
     }
@@ -288,19 +307,31 @@ FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QU
     const time_t atime = kfi.time(KFileItem::AccessTime).toTime_t();
     const mode_t mode = kfi.mode() | kfi.permissions();
     const QDateTime creationTime = kfi.time(KFileItem::CreationTime);
-    const time_t btime = creationTime.isValid() ? creationTime.toTime_t() : (time_t) -1;
+    const time_t btime = creationTime.isValid() ? creationTime.toTime_t() : (time_t)-1;
 
     // NOTE: we could get the mimetype (and file icon) from the kfileitem here but this is very
     // slow. Instead, the file item class has it's own (faster) way to determine the file type.
 
     // NOTE: "broken link" flag is always false, checking link destination existence is
     // considered to be too expensive
-    return new FileItem(fname, url, kfi.isDir(),
-                     kfi.size(), mode,
-                     mtime, -1, atime, btime,
-                     (uid_t) -1, (gid_t) -1, kfi.user(), kfi.group(),
-                     kfi.isLink(), kfi.linkDest(), false,
-                     kfi.ACL().asString(), kfi.defaultACL().asString());
+    return new FileItem(fname,
+                        url,
+                        kfi.isDir(),
+                        kfi.size(),
+                        mode,
+                        mtime,
+                        -1,
+                        atime,
+                        btime,
+                        (uid_t)-1,
+                        (gid_t)-1,
+                        kfi.user(),
+                        kfi.group(),
+                        kfi.isLink(),
+                        kfi.linkDest(),
+                        false,
+                        kfi.ACL().asString(),
+                        kfi.defaultACL().asString());
 }
 
 void FileSystem::slotJobResult(KJob *job, bool refresh)

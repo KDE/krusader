@@ -15,11 +15,11 @@
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "useractionpage.h"
-#include "../krusader.h"
 #include "../UserAction/useraction.h"
+#include "../krusader.h"
+#include "useractionpage.h"
 
-ActionMan::ActionMan(QWidget * parent)
+ActionMan::ActionMan(QWidget *parent)
     : QDialog(parent)
 {
     setWindowModality(Qt::WindowModal);
@@ -31,7 +31,7 @@ ActionMan::ActionMan(QWidget * parent)
     userActionPage = new UserActionPage(this);
     mainLayout->addWidget(userActionPage);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close|QDialogButtonBox::Apply);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close | QDialogButtonBox::Apply);
     mainLayout->addWidget(buttonBox);
 
     applyButton = buttonBox->button(QDialogButtonBox::Apply);
@@ -47,8 +47,7 @@ ActionMan::ActionMan(QWidget * parent)
     krApp->updateUserActions();
 }
 
-ActionMan::~ActionMan()
-= default;
+ActionMan::~ActionMan() = default;
 
 void ActionMan::slotClose()
 {
@@ -70,4 +69,3 @@ void ActionMan::slotDisableApplyButton()
 {
     applyButton->setEnabled(false);
 }
-

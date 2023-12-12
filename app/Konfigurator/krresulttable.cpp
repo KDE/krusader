@@ -21,24 +21,22 @@
 #include <KI18n/KLocalizedString>
 #include <kio_version.h>
 
-#include "../krservices.h"
 #include "../Archive/krarchandler.h"
+#include "../krservices.h"
 
 using namespace std;
 
 #define PS(x) (_supported.contains(x))
 
-KrResultTable::KrResultTable(QWidget* parent)
-        : QWidget(parent),
-        _numRows(1)
+KrResultTable::KrResultTable(QWidget *parent)
+    : QWidget(parent)
+    , _numRows(1)
 {
 }
 
-KrResultTable::~KrResultTable()
-= default;
+KrResultTable::~KrResultTable() = default;
 
-
-QGridLayout* KrResultTable::initTable()
+QGridLayout *KrResultTable::initTable()
 {
     _grid = new QGridLayout(this);
     _grid->setColumnStretch(_numColumns - 1, 1); // stretch last column
@@ -47,7 +45,7 @@ QGridLayout* KrResultTable::initTable()
 
     // +++ Build and add table header +++
     int column = 0;
-    for (auto & _tableHeader : _tableHeaders) {
+    for (auto &_tableHeader : _tableHeaders) {
         _label = new QLabel(_tableHeader, this);
         _label->setContentsMargins(5, 5, 5, 5);
         _grid->addWidget(_label, 0, column);
@@ -64,8 +62,7 @@ QGridLayout* KrResultTable::initTable()
     return _grid;
 }
 
-
-void KrResultTable::adjustRow(QGridLayout* grid)
+void KrResultTable::adjustRow(QGridLayout *grid)
 {
     int i = 0;
     QLayoutItem *child;
@@ -92,27 +89,27 @@ void KrResultTable::adjustRow(QGridLayout* grid)
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
-        : KrResultTable(parent)
+KrArchiverResultTable::KrArchiverResultTable(QWidget *parent)
+    : KrResultTable(parent)
 {
     _supported = KrArcHandler::supportedPackers(); // get list of available packers
 
-    Archiver* tar   = new Archiver("tar",   "https://www.gnu.org/",      PS("tar"),   true,  true);
-    Archiver* gzip  = new Archiver("gzip",  "https://www.gnu.org/",      PS("gzip"),  true,  true);
-    Archiver* bzip2 = new Archiver("bzip2", "https://www.gnu.org/",      PS("bzip2"), true,  true);
-    Archiver* lzma  = new Archiver("lzma",  "https://tukaani.org/lzma/", PS("lzma"),  true,  true);
-    Archiver* xz    = new Archiver("xz",    "https://tukaani.org/xz/",   PS("xz"),    true,  true);
-    Archiver* lha   = new Archiver("lha",   "https://www.gnu.org/",      PS("lha"),   true,  true);
-    Archiver* zip   = new Archiver("zip",   "http://www.info-zip.org",   PS("zip"),   true,  false);
-    Archiver* unzip = new Archiver("unzip", "http://www.info-zip.org",   PS("unzip"), false, true);
-    Archiver* arj   = new Archiver("arj",   "http://www.arjsoftware.com",  PS("arj"),   true,  true);
-    Archiver* unarj = new Archiver("unarj", "http://www.arjsoftware.com",  PS("unarj"), false, true);
-    Archiver* unace = new Archiver("unace", "https://web.archive.org/web/20170714193504/http://winace.com/",     PS("unace"), false, true);
-    Archiver* rar   = new Archiver("rar",   "https://www.rarlab.com/",   PS("rar"),   true,  true);
-    Archiver* unrar = new Archiver("unrar", "https://www.rarlab.com/",   PS("unrar"), false, true);
-    Archiver* rpm   = new Archiver("rpm",   "https://www.gnu.org/",      PS("rpm"),   false, true);
-    Archiver* dpkg  = new Archiver("dpkg",  "https://www.dpkg.org/",     PS("dpkg"),  false, true);
-    Archiver* _7z   = new Archiver("7z",    "https://www.7-zip.org/",    PS("7z"),  true, true);
+    Archiver *tar = new Archiver("tar", "https://www.gnu.org/", PS("tar"), true, true);
+    Archiver *gzip = new Archiver("gzip", "https://www.gnu.org/", PS("gzip"), true, true);
+    Archiver *bzip2 = new Archiver("bzip2", "https://www.gnu.org/", PS("bzip2"), true, true);
+    Archiver *lzma = new Archiver("lzma", "https://tukaani.org/lzma/", PS("lzma"), true, true);
+    Archiver *xz = new Archiver("xz", "https://tukaani.org/xz/", PS("xz"), true, true);
+    Archiver *lha = new Archiver("lha", "https://www.gnu.org/", PS("lha"), true, true);
+    Archiver *zip = new Archiver("zip", "http://www.info-zip.org", PS("zip"), true, false);
+    Archiver *unzip = new Archiver("unzip", "http://www.info-zip.org", PS("unzip"), false, true);
+    Archiver *arj = new Archiver("arj", "http://www.arjsoftware.com", PS("arj"), true, true);
+    Archiver *unarj = new Archiver("unarj", "http://www.arjsoftware.com", PS("unarj"), false, true);
+    Archiver *unace = new Archiver("unace", "https://web.archive.org/web/20170714193504/http://winace.com/", PS("unace"), false, true);
+    Archiver *rar = new Archiver("rar", "https://www.rarlab.com/", PS("rar"), true, true);
+    Archiver *unrar = new Archiver("unrar", "https://www.rarlab.com/", PS("unrar"), false, true);
+    Archiver *rpm = new Archiver("rpm", "https://www.gnu.org/", PS("rpm"), false, true);
+    Archiver *dpkg = new Archiver("dpkg", "https://www.dpkg.org/", PS("dpkg"), false, true);
+    Archiver *_7z = new Archiver("7z", "https://www.7-zip.org/", PS("7z"), true, true);
 
     // Special case: arj can unpack, but unarj is preferred
     if (PS("arj") && PS("unarj"))
@@ -170,21 +167,20 @@ KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
     delete _7z;
 }
 
-KrArchiverResultTable::~KrArchiverResultTable()
-= default;
+KrArchiverResultTable::~KrArchiverResultTable() = default;
 
-
-bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
+bool KrArchiverResultTable::addRow(SearchObject *search, QGridLayout *grid)
 {
-    auto* arch = dynamic_cast<Archiver*>(search);
+    auto *arch = dynamic_cast<Archiver *>(search);
 
     // Name column
     KUrlLabel *urlLabel = new KUrlLabel(arch->getWebsite(), arch->getSearchName(), this);
     urlLabel->setContentsMargins(5, 5, 5, 5);
     urlLabel->setAlignment(Qt::AlignTop);
     grid->addWidget(urlLabel, _numRows, 0);
-    connect(urlLabel, QOverload<>::of(&KUrlLabel::leftClickedUrl),
-            this, [this, urlLabel]() { KrArchiverResultTable::website(urlLabel->url()); } );
+    connect(urlLabel, QOverload<>::of(&KUrlLabel::leftClickedUrl), this, [this, urlLabel]() {
+        KrArchiverResultTable::website(urlLabel->url());
+    });
     _label = urlLabel;
 
     // Found column
@@ -232,7 +228,7 @@ bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
     _label = new QLabel(arch->getNote(), this);
     _label->setContentsMargins(5, 5, 5, 5);
     _label->setAlignment(Qt::AlignTop);
-    _label->setWordWrap(true);   // wrap words
+    _label->setWordWrap(true); // wrap words
     grid->addWidget(_label, _numRows, 4);
 
     // Apply shared design elements
@@ -245,28 +241,27 @@ bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
     return true;
 }
 
-
-void KrArchiverResultTable::website(const QString& url)
+void KrArchiverResultTable::website(const QString &url)
 {
-    (void) new KRun(QUrl(url), this);
+    (void)new KRun(QUrl(url), this);
 }
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-KrToolResultTable::KrToolResultTable(QWidget* parent)
-        : KrResultTable(parent)
+KrToolResultTable::KrToolResultTable(QWidget *parent)
+    : KrResultTable(parent)
 {
     _supported = KrServices::supportedTools(); // get list of available tools
 
-    QList<Application*> vecDiff, vecMail, vecRename, vecChecksum;
-    Application* kdiff3         = new Application("kdiff3",        "https://www.kde.org/applications/development/kdiff3/", KrServices::cmdExist("kdiff3"));
-    Application* kompare        = new Application("kompare",       "https://www.kde.org/applications/development/kompare/", KrServices::cmdExist("kompare"));
-    Application* xxdiff         = new Application("xxdiff",        "http://furius.ca/xxdiff/", KrServices::cmdExist("xxdiff"));
-    Application* thunderbird    = new Application("thunderbird",   "https://www.thunderbird.net/", KrServices::cmdExist("thunderbird"));
-    Application* kmail          = new Application("kmail",         "https://kontact.kde.org/components/kmail.html", KrServices::cmdExist("kmail"));
-    Application* krename        = new Application("krename",       "https://www.kde.org/applications/utilities/krename/", KrServices::cmdExist("krename"));
-    Application* md5sum         = new Application("md5sum",        "https://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
+    QList<Application *> vecDiff, vecMail, vecRename, vecChecksum;
+    Application *kdiff3 = new Application("kdiff3", "https://www.kde.org/applications/development/kdiff3/", KrServices::cmdExist("kdiff3"));
+    Application *kompare = new Application("kompare", "https://www.kde.org/applications/development/kompare/", KrServices::cmdExist("kompare"));
+    Application *xxdiff = new Application("xxdiff", "http://furius.ca/xxdiff/", KrServices::cmdExist("xxdiff"));
+    Application *thunderbird = new Application("thunderbird", "https://www.thunderbird.net/", KrServices::cmdExist("thunderbird"));
+    Application *kmail = new Application("kmail", "https://kontact.kde.org/components/kmail.html", KrServices::cmdExist("kmail"));
+    Application *krename = new Application("krename", "https://www.kde.org/applications/utilities/krename/", KrServices::cmdExist("krename"));
+    Application *md5sum = new Application("md5sum", "https://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
 
     vecDiff.push_back(kdiff3);
     vecDiff.push_back(kompare);
@@ -276,10 +271,10 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     vecRename.push_back(krename);
     vecChecksum.push_back(md5sum);
 
-    ApplicationGroup* diff     = new ApplicationGroup(i18n("diff utility"),     PS("DIFF"),   vecDiff);
-    ApplicationGroup* mail     = new ApplicationGroup(i18n("email client"),     PS("MAIL"),   vecMail);
-    ApplicationGroup* rename   = new ApplicationGroup(i18n("batch renamer"),    PS("RENAME"), vecRename);
-    ApplicationGroup* checksum = new ApplicationGroup(i18n("checksum utility"), PS("MD5"),    vecChecksum);
+    ApplicationGroup *diff = new ApplicationGroup(i18n("diff utility"), PS("DIFF"), vecDiff);
+    ApplicationGroup *mail = new ApplicationGroup(i18n("email client"), PS("MAIL"), vecMail);
+    ApplicationGroup *rename = new ApplicationGroup(i18n("batch renamer"), PS("RENAME"), vecRename);
+    ApplicationGroup *checksum = new ApplicationGroup(i18n("checksum utility"), PS("MD5"), vecChecksum);
 
     _tableHeaders.append(i18n("Group"));
     _tableHeaders.append(i18n("Tool"));
@@ -308,14 +303,12 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
     delete checksum;
 }
 
-KrToolResultTable::~KrToolResultTable()
-= default;
+KrToolResultTable::~KrToolResultTable() = default;
 
-
-bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
+bool KrToolResultTable::addRow(SearchObject *search, QGridLayout *grid)
 {
-    auto* appGroup = dynamic_cast<ApplicationGroup*>(search);
-    QList<Application*> _apps = appGroup->getAppVec();
+    auto *appGroup = dynamic_cast<ApplicationGroup *>(search);
+    QList<Application *> _apps = appGroup->getAppVec();
 
     // Name column
     _label = new QLabel(appGroup->getSearchName(), this);
@@ -324,25 +317,26 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
     grid->addWidget(_label, _numRows, 0);
 
     // Tool column
-    QWidget* toolBoxWidget = new QWidget(this);
-    auto * toolBox = new QVBoxLayout(toolBoxWidget);
+    QWidget *toolBoxWidget = new QWidget(this);
+    auto *toolBox = new QVBoxLayout(toolBoxWidget);
 
-    for (auto & _app : _apps) {
-        auto* l = new KUrlLabel(_app->getWebsite(), _app->getAppName(), toolBoxWidget);
+    for (auto &_app : _apps) {
+        auto *l = new KUrlLabel(_app->getWebsite(), _app->getAppName(), toolBoxWidget);
         toolBox->addWidget(l);
 
         l->setAlignment(Qt::AlignLeft | Qt::AlignTop);
         l->setContentsMargins(5, 5, 5, 5);
-        connect(l, QOverload<>::of(&KUrlLabel::leftClickedUrl),
-                this, [this, l]() { KrToolResultTable::website(l->url()); } );
+        connect(l, QOverload<>::of(&KUrlLabel::leftClickedUrl), this, [this, l]() {
+            KrToolResultTable::website(l->url());
+        });
     }
     grid->addWidget(toolBoxWidget, _numRows, 1);
 
     // Found column
-    QWidget* vboxWidget = new QWidget(this);
-    auto * vbox = new QVBoxLayout(vboxWidget);
+    QWidget *vboxWidget = new QWidget(this);
+    auto *vbox = new QVBoxLayout(vboxWidget);
 
-    for (auto & _app : _apps) {
+    for (auto &_app : _apps) {
         _label = new QLabel(_app->getPath(), vboxWidget);
         _label->setContentsMargins(5, 5, 5, 5);
         _label->setAlignment(Qt::AlignTop);
@@ -377,7 +371,7 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
     return true;
 }
 
-void KrToolResultTable::website(const QString& url)
+void KrToolResultTable::website(const QString &url)
 {
-    (void) new KRun(QUrl(url), this);
+    (void)new KRun(QUrl(url), this);
 }

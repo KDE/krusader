@@ -7,26 +7,27 @@
 
 #include "kurllistrequester.h"
 #include "../FileSystem/filesystem.h"
-#include "../icon.h"
 #include "../compat.h"
+#include "../icon.h"
 
 // QtGui
-#include <QPixmap>
 #include <QCursor>
 #include <QKeyEvent>
+#include <QPixmap>
 // QtWidgets
 #include <QFileDialog>
-#include <QLayout>
 #include <QGridLayout>
+#include <QLayout>
 #include <QMenu>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 
-#define DELETE_ITEM_ID    100
+#define DELETE_ITEM_ID 100
 
 KURLListRequester::KURLListRequester(Mode requestMode, QWidget *parent)
-    : QWidget(parent), mode(requestMode)
+    : QWidget(parent)
+    , mode(requestMode)
 {
     // Creating the widget
 
@@ -86,12 +87,12 @@ void KURLListRequester::slotBrowse()
 {
     QUrl url;
     switch (mode) {
-        case RequestFiles:
-            url = QFileDialog::getOpenFileUrl(this);
-            break;
-        case RequestDirs:
-            url = QFileDialog::getExistingDirectoryUrl(this);
-            break;
+    case RequestFiles:
+        url = QFileDialog::getOpenFileUrl(this);
+        break;
+    case RequestDirs:
+        url = QFileDialog::getExistingDirectoryUrl(this);
+        break;
     }
     if (!url.isEmpty())
         urlLineEdit->setText(url.toDisplayString(QUrl::PreferLocalFile));
@@ -124,7 +125,7 @@ void KURLListRequester::slotRightClicked(QListWidgetItem *item, const QPoint &po
         return;
 
     QMenu popupMenu(this);
-    QAction * menuAction = popupMenu.addAction(i18n("Delete"));
+    QAction *menuAction = popupMenu.addAction(i18n("Delete"));
 
     if (menuAction == popupMenu.exec(pos)) {
         if (item->isSelected())
@@ -166,10 +167,9 @@ void KURLListRequester::setUrlList(const QList<QUrl> &urlList)
     urlLineEdit->clear();
     urlListBox->clear();
 
-    for (const QUrl& url : urlList) {
+    for (const QUrl &url : urlList) {
         urlListBox->addItem(url.toDisplayString(QUrl::PreferLocalFile));
     }
 
     emit changed();
 }
-

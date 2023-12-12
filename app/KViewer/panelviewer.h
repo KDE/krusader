@@ -14,41 +14,45 @@
 #include <QString>
 #include <QUrl>
 // QtWidgets
-#include <QStackedWidget>
 #include <QLabel>
+#include <QStackedWidget>
 
-# include <KParts/Part>
+#include <KParts/Part>
 
 #include "krviewer.h"
 
-
-class PanelViewerBase: public QStackedWidget
+class PanelViewerBase : public QStackedWidget
 {
     Q_OBJECT
 
 public:
     explicit PanelViewerBase(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
     ~PanelViewerBase() override;
-    inline QUrl url() const {
+    inline QUrl url() const
+    {
         return curl;
     }
-    inline KParts::ReadOnlyPart* part() const {
+    inline KParts::ReadOnlyPart *part() const
+    {
         return cpart;
     }
-    virtual bool isModified() {
+    virtual bool isModified()
+    {
         return false;
     }
     virtual bool isEditor() = 0;
 
 public slots:
-    virtual bool closeUrl() {
+    virtual bool closeUrl()
+    {
         return false;
     }
-    virtual bool queryClose() {
+    virtual bool queryClose()
+    {
         return true;
     }
 
-    void openUrl(const QUrl& url);
+    void openUrl(const QUrl &url);
 
 signals:
     void openUrlRequest(const QUrl &url);
@@ -57,18 +61,18 @@ signals:
     void openUrlFinished(PanelViewerBase *viewWidget, bool success);
 
 protected slots:
-    void slotCPartDestroyed() {
+    void slotCPartDestroyed()
+    {
         emit partDestroyed(this);
     }
-    void slotStatResult(KJob* job);
+    void slotStatResult(KJob *job);
 
 protected:
     virtual void openFile(KFileItem fi) = 0;
-    virtual KParts::ReadOnlyPart* createPart(QString mimetype) = 0;
-    KParts::ReadOnlyPart* getPart(const QString& mimetype);
+    virtual KParts::ReadOnlyPart *createPart(QString mimetype) = 0;
+    KParts::ReadOnlyPart *getPart(const QString &mimetype);
 
-
-    QHash<QString, QPointer<KParts::ReadOnlyPart> > *mimes;
+    QHash<QString, QPointer<KParts::ReadOnlyPart>> *mimes;
     QPointer<KParts::ReadOnlyPart> cpart;
 
     QUrl curl;
@@ -76,7 +80,7 @@ protected:
     KrViewer::Mode mode;
 };
 
-class PanelViewer: public PanelViewerBase
+class PanelViewer : public PanelViewerBase
 {
     Q_OBJECT
 public slots:
@@ -86,25 +90,27 @@ public:
     explicit PanelViewer(QWidget *parent, KrViewer::Mode mode = KrViewer::Default);
     ~PanelViewer() override;
 
-    bool isEditor() override {
+    bool isEditor() override
+    {
         return false;
     }
 
 protected:
     void openFile(KFileItem fi) override;
-    KParts::ReadOnlyPart* createPart(QString mimetype) override;
-    KParts::ReadOnlyPart* getDefaultPart(const KFileItem& fi);
-    KParts::ReadOnlyPart* getHexPart();
-    KParts::ReadOnlyPart* getListerPart(bool hexMode = false);
-    KParts::ReadOnlyPart* getTextPart();
+    KParts::ReadOnlyPart *createPart(QString mimetype) override;
+    KParts::ReadOnlyPart *getDefaultPart(const KFileItem &fi);
+    KParts::ReadOnlyPart *getHexPart();
+    KParts::ReadOnlyPart *getListerPart(bool hexMode = false);
+    KParts::ReadOnlyPart *getTextPart();
 };
 
-class PanelEditor: public PanelViewerBase
+class PanelEditor : public PanelViewerBase
 {
     Q_OBJECT
 public:
     bool isModified() override;
-    bool isEditor() override {
+    bool isEditor() override
+    {
         return true;
     }
 
@@ -120,7 +126,7 @@ public:
 
 protected:
     void openFile(KFileItem fi) override;
-    KParts::ReadOnlyPart* createPart(QString mimetype) override;
+    KParts::ReadOnlyPart *createPart(QString mimetype) override;
     static QString missingKPartMsg();
 };
 

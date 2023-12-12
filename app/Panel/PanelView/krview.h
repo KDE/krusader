@@ -43,31 +43,92 @@ public:
     KrViewOperator(KrView *view, QWidget *widget);
     ~KrViewOperator() override;
 
-    KrView *view() const { return _view; }
-    QWidget *widget() const { return _widget; }
+    KrView *view() const
+    {
+        return _view;
+    }
+    QWidget *widget() const
+    {
+        return _widget;
+    }
     void startDrag();
 
-    void emitGotDrop(QDropEvent *e) { emit gotDrop(e); }
-    void emitLetsDrag(QStringList items, const QPixmap& icon) { emit letsDrag(std::move(items), icon); }
-    void emitItemDescription(const QString &desc) { emit itemDescription(desc); }
-    void emitContextMenu(const QPoint &point) { emit contextMenu(point); }
-    void emitEmptyContextMenu(const QPoint &point) { emit emptyContextMenu(point); }
-    void emitRenameItem(const QString &oldName, const QString &newName) {
+    void emitGotDrop(QDropEvent *e)
+    {
+        emit gotDrop(e);
+    }
+    void emitLetsDrag(QStringList items, const QPixmap &icon)
+    {
+        emit letsDrag(std::move(items), icon);
+    }
+    void emitItemDescription(const QString &desc)
+    {
+        emit itemDescription(desc);
+    }
+    void emitContextMenu(const QPoint &point)
+    {
+        emit contextMenu(point);
+    }
+    void emitEmptyContextMenu(const QPoint &point)
+    {
+        emit emptyContextMenu(point);
+    }
+    void emitRenameItem(const QString &oldName, const QString &newName)
+    {
         emit renameItem(oldName, newName);
     }
-    void emitExecuted(const QString &name) { emit executed(name); }
-    void emitGoInside(const QString &name) { emit goInside(name); }
-    void emitNeedFocus() { emit needFocus(); }
-    void emitMiddleButtonClicked(KrViewItem *item) { emit middleButtonClicked(item); }
-    void emitCurrentChanged(KrViewItem *item) { emit currentChanged(item); }
-    void emitPreviewJobStarted(KJob *job) { emit previewJobStarted(job); }
-    void emitGoHome() { emit goHome(); }
-    void emitDirUp() { emit dirUp(); }
-    void emitQuickCalcSpace(KrViewItem *item) { emit quickCalcSpace(item); }
-    void emitDefaultDeleteFiles() { emit defaultDeleteFiles(); }
-    void emitRefreshActions() { emit refreshActions(); }
-    void emitGoBack() { emit goBack(); }
-    void emitGoForward() { emit goForward(); }
+    void emitExecuted(const QString &name)
+    {
+        emit executed(name);
+    }
+    void emitGoInside(const QString &name)
+    {
+        emit goInside(name);
+    }
+    void emitNeedFocus()
+    {
+        emit needFocus();
+    }
+    void emitMiddleButtonClicked(KrViewItem *item)
+    {
+        emit middleButtonClicked(item);
+    }
+    void emitCurrentChanged(KrViewItem *item)
+    {
+        emit currentChanged(item);
+    }
+    void emitPreviewJobStarted(KJob *job)
+    {
+        emit previewJobStarted(job);
+    }
+    void emitGoHome()
+    {
+        emit goHome();
+    }
+    void emitDirUp()
+    {
+        emit dirUp();
+    }
+    void emitQuickCalcSpace(KrViewItem *item)
+    {
+        emit quickCalcSpace(item);
+    }
+    void emitDefaultDeleteFiles()
+    {
+        emit defaultDeleteFiles();
+    }
+    void emitRefreshActions()
+    {
+        emit refreshActions();
+    }
+    void emitGoBack()
+    {
+        emit goBack();
+    }
+    void emitGoForward()
+    {
+        emit goForward();
+    }
 
     /**
      * Search for an item by file name beginning at the current cursor position and set the
@@ -84,11 +145,15 @@ public:
      */
     bool filterSearch(const QString &, bool);
     void setMassSelectionUpdate(bool upd);
-    bool isMassSelectionUpdate() { return _massSelectionUpdate; }
+    bool isMassSelectionUpdate()
+    {
+        return _massSelectionUpdate;
+    }
     void settingsChanged(KrViewProperties::PropertyType properties);
 
 public slots:
-    void emitSelectionChanged() {
+    void emitSelectionChanged()
+    {
         if (!_massSelectionUpdate)
             emit selectionChanged();
     }
@@ -163,8 +228,11 @@ class KrView
 public:
     class IconSizes : public QVector<int>
     {
-      public:
-        IconSizes() { *this << 12 << 16 << 22 << 32 << 48 << 64 << 128 << 256; }
+    public:
+        IconSizes()
+        {
+            *this << 12 << 16 << 22 << 32 << 48 << 64 << 128 << 256;
+        }
     };
 
     // instantiating a new view
@@ -173,12 +241,18 @@ public:
     // notes: constructor does as little as possible, setup() does the rest. esp, note that
     // if you need something from operator or properties, move it into setup()
     void init(bool enableUpdateDefaultSettings = true);
-    KrViewInstance *instance() { return &_instance; }
+    KrViewInstance *instance()
+    {
+        return &_instance;
+    }
     static const IconSizes iconSizes;
 
 protected:
     void initProperties();
-    KrViewOperator *createOperator() { return new KrViewOperator(this, _widget); }
+    KrViewOperator *createOperator()
+    {
+        return new KrViewOperator(this, _widget);
+    }
     virtual void setup() = 0;
 
     ///////////////////////////////////////////////////////
@@ -203,8 +277,7 @@ public:
     virtual KrViewItem *findItemByName(const QString &name) = 0;
     virtual KrViewItem *findItemByUrl(const QUrl &url) = 0;
     virtual QString getCurrentItem() const = 0;
-    virtual void setCurrentItem(const QString &name, bool scrollToCurrent = true,
-                                const QModelIndex &fallbackToIndex = QModelIndex()) = 0;
+    virtual void setCurrentItem(const QString &name, bool scrollToCurrent = true, const QModelIndex &fallbackToIndex = QModelIndex()) = 0;
     virtual void setCurrentKrViewItem(KrViewItem *item, bool scrollToCurrent = true) = 0;
     virtual void makeItemVisible(const KrViewItem *item) = 0;
     virtual bool isItemVisible(const KrViewItem *item) = 0;
@@ -227,7 +300,6 @@ protected:
     virtual void intSetSelected(const FileItem *fileitem, bool select) = 0;
     virtual void clear();
 
-
     void addItem(FileItem *fileItem, bool onUpdate = false);
     void deleteItem(const QString &name, bool onUpdate = false);
     void updateItem(FileItem *newFileItem);
@@ -237,25 +309,61 @@ public:
     // the following functions are already implemented, //
     // and normally - should NOT be re-implemented.     //
     //////////////////////////////////////////////////////
-    uint numFiles() const { return _count - _numDirs; }
-    uint numDirs() const { return _numDirs; }
-    uint count() const { return _count; }
+    uint numFiles() const
+    {
+        return _count - _numDirs;
+    }
+    uint numDirs() const
+    {
+        return _numDirs;
+    }
+    uint count() const
+    {
+        return _count;
+    }
     void getSelectedItems(QStringList *names, bool fallbackToFocused = true);
-    void getItemsByMask(const QString& mask, QStringList *names, bool dirs = true, bool files = true);
+    void getItemsByMask(const QString &mask, QStringList *names, bool dirs = true, bool files = true);
     KrViewItemList getSelectedKrViewItems();
-    void selectAllIncludingDirs() { changeSelection(KrQuery("*"), true, true); }
-    void select(const KrQuery &filter = KrQuery("*")) { changeSelection(filter, true); }
-    void unselect(const KrQuery &filter = KrQuery("*")) { changeSelection(filter, false); }
-    void unselectAll() { changeSelection(KrQuery("*"), false, true); }
+    void selectAllIncludingDirs()
+    {
+        changeSelection(KrQuery("*"), true, true);
+    }
+    void select(const KrQuery &filter = KrQuery("*"))
+    {
+        changeSelection(filter, true);
+    }
+    void unselect(const KrQuery &filter = KrQuery("*"))
+    {
+        changeSelection(filter, false);
+    }
+    void unselectAll()
+    {
+        changeSelection(KrQuery("*"), false, true);
+    }
     void invertSelection();
-    QString nameToMakeCurrent() const { return _nameToMakeCurrent; }
-    void setNameToMakeCurrent(const QString& name) { _nameToMakeCurrent = name; }
+    QString nameToMakeCurrent() const
+    {
+        return _nameToMakeCurrent;
+    }
+    void setNameToMakeCurrent(const QString &name)
+    {
+        _nameToMakeCurrent = name;
+    }
     QString firstUnmarkedBelowCurrent(const bool skipCurrent);
     QString statistics();
-    const KrViewProperties *properties() const { return _properties; }
-    KrViewOperator *op() const { return _operator; }
+    const KrViewProperties *properties() const
+    {
+        return _properties;
+    }
+    KrViewOperator *op() const
+    {
+        return _operator;
+    }
     void showPreviews(bool show);
-    bool previewsShown() { return _previews != nullptr; }
+    bool previewsShown()
+    {
+        return _previews != nullptr;
+    }
     void applySettingsToOthers();
 
     void setFiles(DirListerInterface *files);
@@ -268,8 +376,7 @@ public:
     void refresh();
 
     bool changeSelection(const KrQuery &filter, bool select);
-    bool changeSelection(const KrQuery &filter, bool select, bool includeDirs,
-                         bool makeVisible = false);
+    bool changeSelection(const KrQuery &filter, bool select, bool includeDirs, bool makeVisible = false);
     bool isFiltered(FileItem *fileitem);
     void setSelected(const FileItem *fileitem, bool select);
 
@@ -277,45 +384,66 @@ public:
     // the following functions have a default and minimalistic //
     // implementation, and may be re-implemented if needed     //
     /////////////////////////////////////////////////////////////
-    virtual void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) {
+    virtual void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending)
+    {
         sortModeUpdated(sortColumn, descending);
     }
-    const KrQuery &filterMask() const { return _properties->filterMask; }
-    KrViewProperties::FilterSpec filter() const { return _properties->filter; }
+    const KrQuery &filterMask() const
+    {
+        return _properties->filterMask;
+    }
+    KrViewProperties::FilterSpec filter() const
+    {
+        return _properties->filter;
+    }
     void setFilter(KrViewProperties::FilterSpec filter);
-    void setFilter(KrViewProperties::FilterSpec filter, const FilterSettings& customFilter,
-                   bool applyToDirs);
+    void setFilter(KrViewProperties::FilterSpec filter, const FilterSettings &customFilter, bool applyToDirs);
     void customSelection(bool select);
     int defaultFileIconSize();
     virtual void setFileIconSize(int size);
-    void setDefaultFileIconSize() { setFileIconSize(defaultFileIconSize()); }
+    void setDefaultFileIconSize()
+    {
+        setFileIconSize(defaultFileIconSize());
+    }
     void zoomIn();
     void zoomOut();
 
     // save this view's settings to be restored after restart
-    virtual void
-    saveSettings(KConfigGroup grp,
-                 KrViewProperties::PropertyType properties = KrViewProperties::AllProperties);
+    virtual void saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties = KrViewProperties::AllProperties);
 
-    inline QWidget *widget() { return _widget; }
-    inline int fileIconSize() const { return _fileIconSize; }
-    inline bool isFocused() const { return _focused; }
+    inline QWidget *widget()
+    {
+        return _widget;
+    }
+    inline int fileIconSize() const
+    {
+        return _fileIconSize;
+    }
+    inline bool isFocused() const
+    {
+        return _focused;
+    }
 
     QPixmap getIcon(FileItem *fileitem);
 
-    void setMainWindow(QWidget *mainWindow) { _mainWindow = mainWindow; }
+    void setMainWindow(QWidget *mainWindow)
+    {
+        _mainWindow = mainWindow;
+    }
 
     // save this view's settings as default for new views of this type
-    void saveDefaultSettings(
-        KrViewProperties::PropertyType properties = KrViewProperties::AllProperties);
+    void saveDefaultSettings(KrViewProperties::PropertyType properties = KrViewProperties::AllProperties);
     // restore the default settings for this view type
     void restoreDefaultSettings();
     // call this to restore this view's settings after restart
-    void restoreSettings(const KConfigGroup& grp);
+    void restoreSettings(const KConfigGroup &grp);
 
     void saveSelection();
     void restoreSelection();
-    bool canRestoreSelection() { return !_savedSelection.isEmpty(); }
+    bool canRestoreSelection()
+    {
+        return !_savedSelection.isEmpty();
+    }
     void clearSavedSelection();
 
     void markSameBaseName();
@@ -325,8 +453,7 @@ public:
     virtual ~KrView();
 
     static QPixmap getIcon(FileItem *fileitem, bool active, int size = 0);
-    static QPixmap processIcon(const QPixmap &icon, bool dim, const QColor &dimColor, int dimFactor,
-                               bool symlink);
+    static QPixmap processIcon(const QPixmap &icon, bool dim, const QColor &dimColor, int dimFactor, bool symlink);
 
     // Get GUI strings for file item properties
     static QString krPermissionText(const FileItem *fileitem);
@@ -341,7 +468,10 @@ protected:
     virtual KIO::filesize_t calcSize() = 0;
     virtual KIO::filesize_t calcSelectedSize() = 0;
     void sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending);
-    inline void setWidget(QWidget *w) { _widget = w; }
+    inline void setWidget(QWidget *w)
+    {
+        _widget = w;
+    }
     bool drawCurrent() const;
 
     KConfig *_config;

@@ -20,14 +20,15 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 
-#include "../krglobal.h"
-#include "../icon.h"
-#include "../FileSystem/filesystem.h"
 #include "../Dialogs/krdialogs.h"
+#include "../FileSystem/filesystem.h"
 #include "../compat.h"
+#include "../icon.h"
+#include "../krglobal.h"
 
 DiskUsageGUI::DiskUsageGUI(const QUrl &openDir)
-        : QDialog(nullptr), exitAtFailure(true)
+    : QDialog(nullptr)
+    , exitAtFailure(true)
 {
     setWindowTitle(i18n("Krusader::Disk Usage"));
     setAttribute(Qt::WA_DeleteOnClose);
@@ -86,7 +87,7 @@ DiskUsageGUI::DiskUsageGUI(const QUrl &openDir)
     QWidget *spacerWidget = new QWidget(duTools);
     duHBox->addWidget(spacerWidget);
     auto *hboxlayout = new QHBoxLayout(spacerWidget);
-    auto* spacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    auto *spacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed);
     hboxlayout->addItem(spacer);
 
     duGrid->addWidget(duTools, 0, 0);
@@ -116,17 +117,17 @@ DiskUsageGUI::DiskUsageGUI(const QUrl &openDir)
 
     KConfigGroup group(krConfig, "DiskUsage");
 
-    int view = group.readEntry("View",  VIEW_LINES);
+    int view = group.readEntry("View", VIEW_LINES);
     if (view < VIEW_LINES || view > VIEW_FILELIGHT)
         view = VIEW_LINES;
 
     diskUsage->setView(view);
 
-    sizeX = group.readEntry("Window Width",  QFontMetrics(font()).horizontalAdvance("W") * 70);
+    sizeX = group.readEntry("Window Width", QFontMetrics(font()).horizontalAdvance("W") * 70);
     sizeY = group.readEntry("Window Height", QFontMetrics(font()).height() * 25);
     resize(sizeX, sizeY);
 
-    if (group.readEntry("Window Maximized",  false)) {
+    if (group.readEntry("Window Maximized", false)) {
         setWindowState(windowState() | Qt::WindowMaximized);
     }
 }
@@ -182,7 +183,7 @@ void DiskUsageGUI::slotLoadUsageInfo()
     diskUsage->load(baseDirectory);
 }
 
-void DiskUsageGUI::slotStatus(const QString& stat)
+void DiskUsageGUI::slotStatus(const QString &stat)
 {
     status->setText(stat);
 }
@@ -217,8 +218,7 @@ void DiskUsageGUI::slotViewChanged(int view)
 bool DiskUsageGUI::askDir()
 {
     // ask the user for the copy destX
-    const QUrl newDir =
-        KChooseDir::getDir(i18n("Viewing the usage of folder:"), baseDirectory, baseDirectory);
+    const QUrl newDir = KChooseDir::getDir(i18n("Viewing the usage of folder:"), baseDirectory, baseDirectory);
 
     if (newDir.isEmpty())
         return false;

@@ -6,17 +6,16 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef KRSPECIALWIDGETS_H
 #define KRSPECIALWIDGETS_H
 
 // QtCore
 #include <QEvent>
 // QtGui
-#include <QPainter>
+#include <QColor>
 #include <QKeyEvent>
 #include <QPaintEvent>
-#include <QColor>
+#include <QPainter>
 // QtWidgets
 #include <QWidget>
 
@@ -39,7 +38,7 @@ protected:
 private:
     QList<KrPieSlice> slices;
     KIO::filesize_t totalSize, sizeLeft;
-    static QColor colors[ 12 ];
+    static QColor colors[12];
 };
 
 class KrFSDisplay : public QWidget
@@ -47,31 +46,37 @@ class KrFSDisplay : public QWidget
     Q_OBJECT
 public:
     // this constructor is used for a mounted filesystem
-    KrFSDisplay(QWidget *parent, QString _alias, QString _realName,
-                KIO::filesize_t _total, KIO::filesize_t _free);
+    KrFSDisplay(QWidget *parent, QString _alias, QString _realName, KIO::filesize_t _total, KIO::filesize_t _free);
     // this one is for an unmounted/supermount file system
     KrFSDisplay(QWidget *parent, QString _alias, QString _realName, bool sm = false);
     // the last one is used inside MountMan(R), when no filesystem is selected
     explicit KrFSDisplay(QWidget *parent);
-    inline void setTotalSpace(KIO::filesize_t t) {
+    inline void setTotalSpace(KIO::filesize_t t)
+    {
         totalSpace = t;
     }
-    inline void setFreeSpace(KIO::filesize_t t) {
+    inline void setFreeSpace(KIO::filesize_t t)
+    {
         freeSpace = t;
     }
-    inline void setAlias(QString a) {
+    inline void setAlias(QString a)
+    {
         alias = std::move(a);
     }
-    inline void setRealName(QString r) {
+    inline void setRealName(QString r)
+    {
         realName = std::move(r);
     }
-    inline void setMounted(bool m) {
+    inline void setMounted(bool m)
+    {
         mounted = m;
     }
-    inline void setEmpty(bool e) {
+    inline void setEmpty(bool e)
+    {
         empty = e;
     }
-    inline void setSupermount(bool s) {
+    inline void setSupermount(bool s)
+    {
         supermount = s;
     }
 
@@ -87,21 +92,30 @@ private:
 class KrPieSlice
 {
 public:
-    KrPieSlice(long double _perct, QColor _color, QString _label) :
-            perct(_perct), color(std::move(_color)), label(std::move(_label)) {}
-    inline QColor getColor() {
+    KrPieSlice(long double _perct, QColor _color, QString _label)
+        : perct(_perct)
+        , color(std::move(_color))
+        , label(std::move(_label))
+    {
+    }
+    inline QColor getColor()
+    {
         return color;
     }
-    inline long double getPerct() {
+    inline long double getPerct()
+    {
         return perct;
     }
-    inline QString getLabel() {
+    inline QString getLabel()
+    {
         return label;
     }
-    inline void setPerct(float _perct) {
+    inline void setPerct(float _perct)
+    {
         perct = _perct;
     }
-    inline void setLabel(QString _label) {
+    inline void setLabel(QString _label)
+    {
         label = std::move(_label);
     }
 

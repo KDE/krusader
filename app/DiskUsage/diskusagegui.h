@@ -39,11 +39,20 @@ protected:
 private slots:
     bool askDir();
     void slotLoadUsageInfo();
-    void slotStatus(const QString&);
+    void slotStatus(const QString &);
 
-    void slotSelectLinesView() { diskUsage->setView(VIEW_LINES); }
-    void slotSelectListView() { diskUsage->setView(VIEW_DETAILED); }
-    void slotSelectFilelightView() { diskUsage->setView(VIEW_FILELIGHT); }
+    void slotSelectLinesView()
+    {
+        diskUsage->setView(VIEW_LINES);
+    }
+    void slotSelectListView()
+    {
+        diskUsage->setView(VIEW_DETAILED);
+    }
+    void slotSelectFilelightView()
+    {
+        diskUsage->setView(VIEW_FILELIGHT);
+    }
 
     void slotViewChanged(int view);
     void slotLoadFinished(bool);
@@ -71,4 +80,3 @@ private:
 };
 
 #endif /* __DISK_USAGE_GUI_H__ */
-

@@ -13,32 +13,34 @@
 #include <QStringList>
 #include <QUrl>
 // QtGui
-#include <QKeyEvent>
-#include <QIcon>
 #include <QFontDatabase>
 #include <QFontMetrics>
+#include <QIcon>
 #include <QImage>
+#include <QKeyEvent>
 // QtWidgets
-#include <QSizePolicy>
-#include <QGridLayout>
 #include <QFrame>
+#include <QGridLayout>
 #include <QLabel>
+#include <QSizePolicy>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <utility>
 
-#include "../krglobal.h"
-#include "../icon.h"
-#include "../krslots.h"
-#include "../defaults.h"
-#include "../krusaderview.h"
-#include "../krservices.h"
 #include "../ActionMan/addplaceholderpopup.h"
-#include "kcmdmodebutton.h"
 #include "../compat.h"
+#include "../defaults.h"
+#include "../icon.h"
+#include "../krglobal.h"
+#include "../krservices.h"
+#include "../krslots.h"
+#include "../krusaderview.h"
+#include "kcmdmodebutton.h"
 
-CmdLineCombo::CmdLineCombo(QWidget *parent) : KrHistoryComboBox(parent), _handlingLineEditResize(false)
+CmdLineCombo::CmdLineCombo(QWidget *parent)
+    : KrHistoryComboBox(parent)
+    , _handlingLineEditResize(false)
 {
     lineEdit()->installEventFilter(this);
     _pathLabel = new QLabel(this);
@@ -48,8 +50,8 @@ CmdLineCombo::CmdLineCombo(QWidget *parent) : KrHistoryComboBox(parent), _handli
 
 bool CmdLineCombo::eventFilter(QObject *watched, QEvent *e)
 {
-    if(watched == lineEdit() && (e->type() == QEvent::Move || e->type() == QEvent::Resize)) {
-        if(!_handlingLineEditResize) { // avoid infinite recursion
+    if (watched == lineEdit() && (e->type() == QEvent::Move || e->type() == QEvent::Resize)) {
+        if (!_handlingLineEditResize) { // avoid infinite recursion
             _handlingLineEditResize = true;
             updateLineEditGeometry();
             _handlingLineEditResize = false;
@@ -90,8 +92,7 @@ void CmdLineCombo::doLayout()
 
     QStyleOptionComboBox opt;
     initStyleOption(&opt);
-    QRect labelRect = style()->subControlRect(QStyle::CC_ComboBox, &opt,
-                                            QStyle::SC_ComboBoxEditField, this);
+    QRect labelRect = style()->subControlRect(QStyle::CC_ComboBox, &opt, QStyle::SC_ComboBoxEditField, this);
     labelRect.adjust(2, 0, 0, 0);
     labelRect.setWidth(_pathLabel->width());
     _pathLabel->setGeometry(labelRect);
@@ -111,13 +112,13 @@ void CmdLineCombo::keyPressEvent(QKeyEvent *e)
     case Qt::Key_Enter:
     case Qt::Key_Return:
         if (e->modifiers() & Qt::ControlModifier) {
-            SLOTS->insertFileName((e->modifiers()&Qt::ShiftModifier)!=0);
+            SLOTS->insertFileName((e->modifiers() & Qt::ShiftModifier) != 0);
             break;
         }
         KrHistoryComboBox::keyPressEvent(e);
         break;
     case Qt::Key_Down:
-        if (e->modifiers()  == (Qt::ControlModifier | Qt::ShiftModifier)) {
+        if (e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier)) {
             MAIN_VIEW->focusTerminalEmulator();
             return;
         } else
@@ -142,20 +143,20 @@ void CmdLineCombo::keyPressEvent(QKeyEvent *e)
     }
 }
 
-
-KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
+KCMDLine::KCMDLine(QWidget *parent)
+    : QWidget(parent)
 {
-    auto * layout = new QGridLayout(this);
+    auto *layout = new QGridLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
     int height = QFontMetrics(QFontDatabase::systemFont(QFontDatabase::GeneralFont)).height();
-    height =  height + 5 * (height > 14) + 6;
+    height = height + 5 * (height > 14) + 6;
 
     // and editable command line
     completion.setMode(KUrlCompletion::FileCompletion);
     cmdLine = new CmdLineCombo(this);
-    cmdLine->setMaxCount(100);  // remember 100 commands
+    cmdLine->setMaxCount(100); // remember 100 commands
     cmdLine->setMinimumContentsLength(10);
     cmdLine->setDuplicatesEnabled(false);
     cmdLine->setMaximumHeight(height);
@@ -170,7 +171,9 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
     connect(cmdLine, QOverload<const QString &>::of(&CmdLineCombo::returnPressed), cmdLine->lineEdit(), &QLineEdit::clear);
     connect(cmdLine, &CmdLineCombo::returnToPanel, this, &KCMDLine::slotReturnFocus);
 
-    cmdLine->setWhatsThis(i18n("<qt><p>Well, it is actually quite simple: you type your command here and Krusader obeys.</p><p><b>Tip</b>: move within command line history with &lt;Up&gt; and &lt;Down&gt; arrows.</p></qt>"));
+    cmdLine->setWhatsThis(
+        i18n("<qt><p>Well, it is actually quite simple: you type your command here and Krusader obeys.</p><p><b>Tip</b>: move within command line history with "
+             "&lt;Up&gt; and &lt;Down&gt; arrows.</p></qt>"));
     layout->addWidget(cmdLine, 0, 1);
 
     buttonAddPlaceholder = new QToolButton(this);
@@ -193,7 +196,7 @@ KCMDLine::~KCMDLine()
 {
     KConfigGroup grpSvr(krConfig, "Private");
     QStringList list = cmdLine->historyItems();
-    //qWarning() << list[0];
+    // qWarning() << list[0];
     grpSvr.writeEntry("cmdline history", list);
     krConfig->sync();
 }
@@ -201,9 +204,7 @@ KCMDLine::~KCMDLine()
 void KCMDLine::addPlaceholder()
 {
     AddPlaceholderPopup popup(this);
-    QString exp = popup.getPlaceholder(
-                      buttonAddPlaceholder->mapToGlobal(QPoint(0, 0))
-                  );
+    QString exp = popup.getPlaceholder(buttonAddPlaceholder->mapToGlobal(QPoint(0, 0)));
     this->addText(exp);
 }
 
@@ -227,19 +228,18 @@ void KCMDLine::slotRun()
     // bugfix by aardvark: current editline is destroyed by addToHistory() in some cases
     cmdLine->setEditText(command1);
 
-    if (command1.simplified().left(3) == "cd ") {     // cd command effect the active panel
+    if (command1.simplified().left(3) == "cd ") { // cd command effect the active panel
         QString dir = command1.right(command1.length() - command1.indexOf(" ")).trimmed();
         if (dir == "~")
             dir = QDir::homePath();
         else if (dir.left(1) != "/" && !dir.contains(":/"))
             dir = cmdLine->path() + (cmdLine->path() == "/" ? "" : "/") + dir;
-        SLOTS->refresh(QUrl::fromUserInput(dir,QDir::currentPath(),QUrl::AssumeLocalFile));
+        SLOTS->refresh(QUrl::fromUserInput(dir, QDir::currentPath(), QUrl::AssumeLocalFile));
     } else {
         exec();
         cmdLine->clearEditText();
     }
 }
-
 
 void KCMDLine::slotReturnFocus()
 {
@@ -269,7 +269,7 @@ KrActionBase::ExecType KCMDLine::execType() const
 QString KCMDLine::startpath() const
 {
     return cmdLine->path();
-//     return path->text().left(path->text().length() - 1);
+    //     return path->text().left(path->text().length() - 1);
 }
 
 QString KCMDLine::user() const
@@ -297,7 +297,7 @@ bool KCMDLine::doSubstitution() const
     return true;
 }
 
-void KCMDLine::setText(const QString& text)
+void KCMDLine::setText(const QString &text)
 {
     cmdLine->lineEdit()->setText(text);
 }

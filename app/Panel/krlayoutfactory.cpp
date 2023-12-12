@@ -7,15 +7,15 @@
 
 #include "krlayoutfactory.h"
 
-#include "listpanelframe.h"
-#include "listpanel.h"
-#include "../krglobal.h"
 #include "../compat.h"
+#include "../krglobal.h"
+#include "listpanel.h"
+#include "listpanelframe.h"
 
 // QtCore
 #include <QDebug>
-#include <QMetaEnum>
 #include <QFile>
+#include <QMetaEnum>
 #include <QResource>
 #include <QStandardPaths>
 // QtWidgets
@@ -33,19 +33,17 @@
 #define EXTRA_FILE_MASK "layouts/*.xml"
 #define DEFAULT_LAYOUT "krusader:default"
 
-
 bool KrLayoutFactory::_parsed = false;
 QDomDocument KrLayoutFactory::_mainDoc;
 QList<QDomDocument> KrLayoutFactory::_extraDocs;
 
-
-QString KrLayoutFactory::layoutDescription(const QString& layoutName)
+QString KrLayoutFactory::layoutDescription(const QString &layoutName)
 {
-    if(layoutName == DEFAULT_LAYOUT)
+    if (layoutName == DEFAULT_LAYOUT)
         return i18nc("Default layout", "Default");
-    else if(layoutName == "krusader:compact")
+    else if (layoutName == "krusader:compact")
         return i18n("Compact");
-    else if(layoutName == "krusader:classic")
+    else if (layoutName == "krusader:classic")
         return i18n("Classic");
     else
         return i18n("Custom layout: \"%1\"", layoutName);
@@ -63,7 +61,7 @@ bool KrLayoutFactory::parseFiles()
 
     QStringList extraFilePaths = QStandardPaths::locateAll(QStandardPaths::DataLocation, EXTRA_FILE_MASK);
 
-    foreach(const QString &path, extraFilePaths) {
+    foreach (const QString &path, extraFilePaths) {
         qWarning() << "extra file: " << path;
         QDomDocument doc;
         if (parseFile(path, doc))
@@ -73,7 +71,7 @@ bool KrLayoutFactory::parseFiles()
     return true;
 }
 
-bool KrLayoutFactory::parseFile(const QString& path, QDomDocument &doc)
+bool KrLayoutFactory::parseFile(const QString &path, QDomDocument &doc)
 {
     bool success = false;
 
@@ -87,7 +85,7 @@ bool KrLayoutFactory::parseFile(const QString& path, QDomDocument &doc)
     return success;
 }
 
-bool KrLayoutFactory::parseResource(const QString& path, QDomDocument &doc)
+bool KrLayoutFactory::parseResource(const QString &path, QDomDocument &doc)
 {
     QResource res(path);
     if (res.isValid()) {
@@ -103,7 +101,7 @@ bool KrLayoutFactory::parseResource(const QString& path, QDomDocument &doc)
     }
 }
 
-bool KrLayoutFactory::parseContent(const QByteArray& content, const QString& fileName, QDomDocument &doc)
+bool KrLayoutFactory::parseContent(const QByteArray &content, const QString &fileName, QDomDocument &doc)
 {
     bool success = false;
 
@@ -112,7 +110,7 @@ bool KrLayoutFactory::parseContent(const QByteArray& content, const QString& fil
         QDomElement root = doc.documentElement();
         if (root.tagName() == "KrusaderLayout") {
             QString version = root.attribute("version");
-            if(version == XMLFILE_VERSION)
+            if (version == XMLFILE_VERSION)
                 success = true;
             else
                 qWarning() << fileName << "has wrong version" << version << "- required is" << XMLFILE_VERSION;
@@ -124,11 +122,11 @@ bool KrLayoutFactory::parseContent(const QByteArray& content, const QString& fil
     return success;
 }
 
-void KrLayoutFactory::getLayoutNames(const QDomDocument& doc, QStringList &names)
+void KrLayoutFactory::getLayoutNames(const QDomDocument &doc, QStringList &names)
 {
     QDomElement root = doc.documentElement();
 
-    for(QDomElement e = root.firstChildElement(); ! e.isNull(); e = e.nextSiblingElement()) {
+    for (QDomElement e = root.firstChildElement(); !e.isNull(); e = e.nextSiblingElement()) {
         if (e.tagName() == "layout") {
             QString name(e.attribute("name"));
             if (!name.isEmpty() && (name != DEFAULT_LAYOUT))
@@ -145,18 +143,18 @@ QStringList KrLayoutFactory::layoutNames()
     if (parseFiles()) {
         getLayoutNames(_mainDoc, names);
 
-        foreach(const QDomDocument &doc, _extraDocs)
+        foreach (const QDomDocument &doc, _extraDocs)
             getLayoutNames(doc, names);
     }
 
     return names;
 }
 
-QDomElement KrLayoutFactory::findLayout(const QDomDocument& doc, const QString& layoutName)
+QDomElement KrLayoutFactory::findLayout(const QDomDocument &doc, const QString &layoutName)
 {
     QDomElement root = doc.documentElement();
 
-    for(QDomElement e = root.firstChildElement(); ! e.isNull(); e = e.nextSiblingElement()) {
+    for (QDomElement e = root.firstChildElement(); !e.isNull(); e = e.nextSiblingElement()) {
         if (e.tagName() == "layout" && e.attribute("name") == layoutName)
             return e;
     }
@@ -166,7 +164,7 @@ QDomElement KrLayoutFactory::findLayout(const QDomDocument& doc, const QString& 
 
 QLayout *KrLayoutFactory::createLayout(QString layoutName)
 {
-    if(layoutName.isEmpty()) {
+    if (layoutName.isEmpty()) {
         KConfigGroup cg(krConfig, "PanelLayout");
         layoutName = cg.readEntry("Layout", DEFAULT_LAYOUT);
     }
@@ -177,43 +175,41 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
 
         layoutRoot = findLayout(_mainDoc, layoutName);
         if (layoutRoot.isNull()) {
-            foreach(const QDomDocument &doc, _extraDocs) {
+            foreach (const QDomDocument &doc, _extraDocs) {
                 layoutRoot = findLayout(doc, layoutName);
-                if(!layoutRoot.isNull())
+                if (!layoutRoot.isNull())
                     break;
             }
         }
         if (layoutRoot.isNull()) {
             qWarning() << "no layout with name" << layoutName << "found";
-            if(layoutName != DEFAULT_LAYOUT)
+            if (layoutName != DEFAULT_LAYOUT)
                 return createLayout(DEFAULT_LAYOUT);
         } else {
             layout = createLayout(layoutRoot, panel);
         }
     }
 
-    if(layout) {
+    if (layout) {
         for (auto it = widgets.constBegin(), end = widgets.constEnd(); it != end; ++it) {
             qWarning() << "widget" << it.key() << "was not added to the layout";
             it.value()->hide();
         }
     } else
-         qWarning() << "couldn't load layout" << layoutName;
-
+        qWarning() << "couldn't load layout" << layoutName;
 
     return layout;
 }
 
-QBoxLayout *KrLayoutFactory::createLayout(const QDomElement& e, QWidget *parent)
+QBoxLayout *KrLayoutFactory::createLayout(const QDomElement &e, QWidget *parent)
 {
     QBoxLayout *l = nullptr;
     bool horizontal = false;
 
-    if(e.attribute("type") == "horizontal") {
+    if (e.attribute("type") == "horizontal") {
         horizontal = true;
         l = new QHBoxLayout();
-    }
-    else if(e.attribute("type") == "vertical")
+    } else if (e.attribute("type") == "vertical")
         l = new QVBoxLayout();
     else {
         qWarning() << "unknown layout type:" << e.attribute("type");
@@ -223,25 +219,25 @@ QBoxLayout *KrLayoutFactory::createLayout(const QDomElement& e, QWidget *parent)
     l->setSpacing(0);
     l->setContentsMargins(0, 0, 0, 0);
 
-    for(QDomElement child = e.firstChildElement(); ! child.isNull(); child = child.nextSiblingElement()) {
+    for (QDomElement child = e.firstChildElement(); !child.isNull(); child = child.nextSiblingElement()) {
         if (child.tagName() == "layout") {
-            if(QLayout *childLayout = createLayout(child, parent))
+            if (QLayout *childLayout = createLayout(child, parent))
                 l->addLayout(childLayout);
-        } else if(child.tagName() == "frame") {
+        } else if (child.tagName() == "frame") {
             QWidget *frame = createFrame(child, parent);
             l->addWidget(frame);
-        } else if(child.tagName() == "widget") {
-            if(QWidget *w = widgets.take(child.attribute("name")))
+        } else if (child.tagName() == "widget") {
+            if (QWidget *w = widgets.take(child.attribute("name")))
                 l->addWidget(w);
             else
                 qWarning() << "layout: no such widget:" << child.attribute("name");
-        } else if(child.tagName() == "hide_widget") {
-            if(QWidget *w = widgets.take(child.attribute("name")))
+        } else if (child.tagName() == "hide_widget") {
+            if (QWidget *w = widgets.take(child.attribute("name")))
                 w->hide();
             else
                 qWarning() << "layout: no such widget:" << child.attribute("name");
-        } else if(child.tagName() == "spacer") {
-            if(horizontal)
+        } else if (child.tagName() == "spacer") {
+            if (horizontal)
                 l->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed));
             else
                 l->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
@@ -251,43 +247,45 @@ QBoxLayout *KrLayoutFactory::createLayout(const QDomElement& e, QWidget *parent)
     return l;
 }
 
-QWidget *KrLayoutFactory::createFrame(const QDomElement& e, QWidget *parent)
+QWidget *KrLayoutFactory::createFrame(const QDomElement &e, QWidget *parent)
 {
     KConfigGroup cg(krConfig, "PanelLayout");
 
     QString color = cg.readEntry("FrameColor", "default");
-    if(color == "default")
+    if (color == "default")
         color = e.attribute("color");
-    else if(color == "none")
+    else if (color == "none")
         color.clear();
 
     int shadow = -1, shape = -1;
 
     QMetaEnum shadowEnum = QFrame::staticMetaObject.enumerator(QFrame::staticMetaObject.indexOfEnumerator("Shadow"));
     QString cfgShadow = cg.readEntry("FrameShadow", "default");
-    if(cfgShadow != "default")
+    if (cfgShadow != "default")
         shadow = shadowEnum.keyToValue(cfgShadow.toLatin1().data());
-    if(shadow < 0)
+    if (shadow < 0)
         shadow = shadowEnum.keyToValue(e.attribute("shadow").toLatin1().data());
 
     QMetaEnum shapeEnum = QFrame::staticMetaObject.enumerator(QFrame::staticMetaObject.indexOfEnumerator("Shape"));
     QString cfgShape = cg.readEntry("FrameShape", "default");
-    if(cfgShape!= "default")
+    if (cfgShape != "default")
         shape = shapeEnum.keyToValue(cfgShape.toLatin1().data());
-    if(shape < 0)
+    if (shape < 0)
         shape = shapeEnum.keyToValue(e.attribute("shape").toLatin1().data());
 
     ListPanelFrame *frame = new ListPanelFrame(parent, color);
     frame->setFrameStyle(shape | shadow);
     frame->setAcceptDrops(true);
 
-    if(QLayout *l = createLayout(e, frame)) {
+    if (QLayout *l = createLayout(e, frame)) {
         l->setContentsMargins(frame->frameWidth(), frame->frameWidth(), frame->frameWidth(), frame->frameWidth());
         frame->setLayout(l);
     }
 
-    QObject::connect(frame, &ListPanelFrame::dropped, panel, [=](QDropEvent *event) { qobject_cast<ListPanel*>(panel)->handleDrop(event); });
-    if(!color.isEmpty())
+    QObject::connect(frame, &ListPanelFrame::dropped, panel, [=](QDropEvent *event) {
+        qobject_cast<ListPanel *>(panel)->handleDrop(event);
+    });
+    if (!color.isEmpty())
         QObject::connect(panel, &ListPanel::signalRefreshColors, frame, &ListPanelFrame::refreshColors);
 
     return frame;

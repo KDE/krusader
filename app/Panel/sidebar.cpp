@@ -8,20 +8,20 @@
 
 #include "sidebar.h"
 
-#include "krfiletreeview.h"
-#include "krpanel.h"
-#include "panelfunc.h"
-#include "viewactions.h"
-#include "../defaults.h"
-#include "../icon.h"
-#include "../compat.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 #include "../FileSystem/fileitem.h"
 #include "../FileSystem/filesystem.h"
 #include "../KViewer/diskusageviewer.h"
 #include "../KViewer/panelviewer.h"
+#include "../compat.h"
+#include "../defaults.h"
+#include "../icon.h"
 #include "PanelView/krview.h"
 #include "PanelView/krviewitem.h"
+#include "krfiletreeview.h"
+#include "krpanel.h"
+#include "panelfunc.h"
+#include "viewactions.h"
 
 // QtCore
 #include <QMimeDatabase>
@@ -33,10 +33,13 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 
-
-Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(nullptr), imageFilePreview(nullptr), pjob(nullptr)
+Sidebar::Sidebar(QWidget *parent)
+    : QWidget(parent)
+    , stack(nullptr)
+    , imageFilePreview(nullptr)
+    , pjob(nullptr)
 {
-    auto * layout = new QGridLayout(this);
+    auto *layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 
     // create the label+buttons setup
@@ -129,7 +132,7 @@ Sidebar::Sidebar(QWidget *parent) : QWidget(parent), stack(nullptr), imageFilePr
 
 Sidebar::~Sidebar() = default;
 
-void Sidebar::saveSettings(const KConfigGroup& cfg) const
+void Sidebar::saveSettings(const KConfigGroup &cfg) const
 {
     tree->saveSettings(cfg);
 }
@@ -141,7 +144,7 @@ void Sidebar::restoreSettings(const KConfigGroup &cfg)
 
 void Sidebar::setCurrentPage(int id)
 {
-    QAbstractButton * curr = btns->button(id);
+    QAbstractButton *curr = btns->button(id);
     if (curr) {
         curr->click();
     }
@@ -156,11 +159,13 @@ void Sidebar::show()
 void Sidebar::hide()
 {
     QWidget::hide();
-    if (currentPage() == View) fileViewer->closeUrl();
-    if (currentPage() == DskUsage) diskusage->closeUrl();
+    if (currentPage() == View)
+        fileViewer->closeUrl();
+    if (currentPage() == DskUsage)
+        diskusage->closeUrl();
 }
 
-void Sidebar::focusInEvent(QFocusEvent*)
+void Sidebar::focusInEvent(QFocusEvent *)
 {
     switch (currentPage()) {
     case Preview:
@@ -186,7 +191,8 @@ void Sidebar::handleOpenUrlRequest(const QUrl &url)
 {
     QMimeDatabase db;
     QMimeType mime = db.mimeTypeForUrl(url);
-    if (mime.isValid() && mime.name() == "inode/directory") ACTIVE_PANEL->func->openUrl(url);
+    if (mime.isValid() && mime.name() == "inode/directory")
+        ACTIVE_PANEL->func->openUrl(url);
 }
 
 void Sidebar::tabSelected(int id)
@@ -195,7 +201,7 @@ void Sidebar::tabSelected(int id)
     const FileItem *fileitem = nullptr;
     if (ACTIVE_PANEL && ACTIVE_PANEL->view)
         fileitem = ACTIVE_PANEL->func->files()->getFileItem(ACTIVE_PANEL->view->getCurrentItem());
-    if(fileitem)
+    if (fileitem)
         url = fileitem->getUrl();
 
     // if tab is tree, set something logical in the data line
@@ -228,7 +234,8 @@ void Sidebar::tabSelected(int id)
             diskusage->getWidget()->currentWidget()->setFocus();
         break;
     }
-    if (id != View) fileViewer->closeUrl();
+    if (id != View)
+        fileViewer->closeUrl();
 }
 
 // decide which part to update, if at all
@@ -238,8 +245,8 @@ void Sidebar::update(const FileItem *fileitem)
         return;
 
     QUrl url;
-    if(fileitem)
-       url = fileitem->getUrl();
+    if (fileitem)
+        url = fileitem->getUrl();
 
     switch (currentPage()) {
     case Preview:
@@ -247,20 +254,19 @@ void Sidebar::update(const FileItem *fileitem)
         dataLine->setText(i18n("Preview: %1", url.fileName()));
         break;
     case View:
-        if(fileitem && !fileitem->isDir() && fileitem->isReadable())
+        if (fileitem && !fileitem->isDir() && fileitem->isReadable())
             fileViewer->openUrl(fileitem->getUrl());
         else
             fileViewer->closeUrl();
         dataLine->setText(i18n("View: %1", url.fileName()));
         break;
     case DskUsage: {
-        if(fileitem && !fileitem->isDir())
+        if (fileitem && !fileitem->isDir())
             url = KIO::upUrl(url);
         dataLine->setText(i18n("Disk Usage: %1", url.fileName()));
         diskusage->openUrl(url);
-    }
-    break;
-    case Tree:  // nothing to do
+    } break;
+    case Tree: // nothing to do
         break;
     }
 }

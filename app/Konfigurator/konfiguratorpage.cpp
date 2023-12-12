@@ -8,19 +8,20 @@
 #include "konfiguratorpage.h"
 
 // QtWidgets
-#include <QLayout>
-#include <QHBoxLayout>
 #include <QGridLayout>
-#include <QScrollArea>
+#include <QHBoxLayout>
 #include <QLabel>
+#include <QLayout>
+#include <QScrollArea>
 
 #include <KConfigCore/KConfig>
 #include <utility>
 
 #include "../krglobal.h"
 
-KonfiguratorPage::KonfiguratorPage(bool firstTime, QWidget* parent) :
-        QScrollArea(parent), firstCall(firstTime)
+KonfiguratorPage::KonfiguratorPage(bool firstTime, QWidget *parent)
+    : QScrollArea(parent)
+    , firstCall(firstTime)
 {
     setFrameStyle(QFrame::NoFrame);
 }
@@ -29,7 +30,7 @@ bool KonfiguratorPage::apply()
 {
     bool restartNeeded = false;
 
-    for (auto & item : itemList)
+    for (auto &item : itemList)
         restartNeeded = item->apply() || restartNeeded;
 
     krConfig->sync();
@@ -40,7 +41,7 @@ void KonfiguratorPage::setDefaults()
 {
     int activePage = activeSubPage();
 
-    for (auto & item : itemList) {
+    for (auto &item : itemList) {
         if (item->subPage() == activePage)
             item->setDefaults();
     }
@@ -48,7 +49,7 @@ void KonfiguratorPage::setDefaults()
 
 void KonfiguratorPage::loadInitialValues()
 {
-    for (auto & item : itemList)
+    for (auto &item : itemList)
         item->loadInitialValue();
 }
 
@@ -56,17 +57,22 @@ bool KonfiguratorPage::isChanged()
 {
     bool isChanged = false;
 
-    for (auto & item : itemList)
+    for (auto &item : itemList)
         isChanged = isChanged || item->isChanged();
 
     return isChanged;
 }
 
-KonfiguratorCheckBox* KonfiguratorPage::createCheckBox(QString configGroup, QString name,
-        bool defaultValue, QString text, QWidget *parent, bool restart, const QString &toolTip, int page)
+KonfiguratorCheckBox *KonfiguratorPage::createCheckBox(QString configGroup,
+                                                       QString name,
+                                                       bool defaultValue,
+                                                       QString text,
+                                                       QWidget *parent,
+                                                       bool restart,
+                                                       const QString &toolTip,
+                                                       int page)
 {
-    KonfiguratorCheckBox *checkBox = new KonfiguratorCheckBox(std::move(configGroup), std::move(name), defaultValue, std::move(text),
-            parent, restart, page);
+    KonfiguratorCheckBox *checkBox = new KonfiguratorCheckBox(std::move(configGroup), std::move(name), defaultValue, std::move(text), parent, restart, page);
     if (!toolTip.isEmpty()) {
         checkBox->setWhatsThis(toolTip);
         checkBox->setToolTip(toolTip);
@@ -76,11 +82,18 @@ KonfiguratorCheckBox* KonfiguratorPage::createCheckBox(QString configGroup, QStr
     return checkBox;
 }
 
-KonfiguratorSpinBox* KonfiguratorPage::createSpinBox(QString configGroup, QString configName,
-        int defaultValue, int min, int max, QLabel *label, QWidget *parent, bool restart, const QString &toolTip, int page)
+KonfiguratorSpinBox *KonfiguratorPage::createSpinBox(QString configGroup,
+                                                     QString configName,
+                                                     int defaultValue,
+                                                     int min,
+                                                     int max,
+                                                     QLabel *label,
+                                                     QWidget *parent,
+                                                     bool restart,
+                                                     const QString &toolTip,
+                                                     int page)
 {
-    KonfiguratorSpinBox *spinBox = new KonfiguratorSpinBox(std::move(configGroup), std::move(configName), defaultValue,
-                                                           min, max, parent, restart, page);
+    KonfiguratorSpinBox *spinBox = new KonfiguratorSpinBox(std::move(configGroup), std::move(configName), defaultValue, min, max, parent, restart, page);
     if (!toolTip.isEmpty()) {
         label->setWhatsThis(toolTip);
         label->setToolTip(toolTip);
@@ -92,12 +105,16 @@ KonfiguratorSpinBox* KonfiguratorPage::createSpinBox(QString configGroup, QStrin
     return spinBox;
 }
 
-KonfiguratorEditBox* KonfiguratorPage::createEditBox(QString configGroup, QString name,
-        QString defaultValue, QLabel *label, QWidget *parent, bool restart,
-        const QString &toolTip, int page)
+KonfiguratorEditBox *KonfiguratorPage::createEditBox(QString configGroup,
+                                                     QString name,
+                                                     QString defaultValue,
+                                                     QLabel *label,
+                                                     QWidget *parent,
+                                                     bool restart,
+                                                     const QString &toolTip,
+                                                     int page)
 {
-    KonfiguratorEditBox *editBox = new KonfiguratorEditBox(std::move(configGroup), std::move(name), std::move(defaultValue), parent,
-            restart, page);
+    KonfiguratorEditBox *editBox = new KonfiguratorEditBox(std::move(configGroup), std::move(name), std::move(defaultValue), parent, restart, page);
     if (!toolTip.isEmpty()) {
         label->setWhatsThis(toolTip);
         label->setToolTip(toolTip);
@@ -109,11 +126,10 @@ KonfiguratorEditBox* KonfiguratorPage::createEditBox(QString configGroup, QStrin
     return editBox;
 }
 
-KonfiguratorListBox* KonfiguratorPage::createListBox(QString configGroup, QString name,
-        QStringList defaultValue, QWidget *parent, bool restart, const QString &toolTip, int page)
+KonfiguratorListBox *
+KonfiguratorPage::createListBox(QString configGroup, QString name, QStringList defaultValue, QWidget *parent, bool restart, const QString &toolTip, int page)
 {
-    KonfiguratorListBox *listBox = new KonfiguratorListBox(std::move(configGroup), std::move(name), std::move(defaultValue), parent,
-            restart, page);
+    KonfiguratorListBox *listBox = new KonfiguratorListBox(std::move(configGroup), std::move(name), std::move(defaultValue), parent, restart, page);
     if (!toolTip.isEmpty()) {
         listBox->setWhatsThis(toolTip);
         listBox->setToolTip(toolTip);
@@ -123,12 +139,18 @@ KonfiguratorListBox* KonfiguratorPage::createListBox(QString configGroup, QStrin
     return listBox;
 }
 
-KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(QString configGroup, QString name,
-        QString defaultValue, QLabel *label, QWidget *parent, bool restart,
-        const QString &toolTip, int page, bool expansion)
+KonfiguratorURLRequester *KonfiguratorPage::createURLRequester(QString configGroup,
+                                                               QString name,
+                                                               QString defaultValue,
+                                                               QLabel *label,
+                                                               QWidget *parent,
+                                                               bool restart,
+                                                               const QString &toolTip,
+                                                               int page,
+                                                               bool expansion)
 {
-    KonfiguratorURLRequester *urlRequester = new KonfiguratorURLRequester(std::move(configGroup), std::move(name), std::move(defaultValue),
-            parent, restart, page, expansion);
+    KonfiguratorURLRequester *urlRequester =
+        new KonfiguratorURLRequester(std::move(configGroup), std::move(name), std::move(defaultValue), parent, restart, page, expansion);
     if (!toolTip.isEmpty()) {
         label->setWhatsThis(toolTip);
         label->setToolTip(toolTip);
@@ -140,7 +162,7 @@ KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(QString configGro
     return urlRequester;
 }
 
-QGroupBox* KonfiguratorPage::createFrame(const QString& text, QWidget *parent)
+QGroupBox *KonfiguratorPage::createFrame(const QString &text, QWidget *parent)
 {
     auto *groupBox = new QGroupBox(parent);
     if (!text.isNull())
@@ -148,7 +170,7 @@ QGroupBox* KonfiguratorPage::createFrame(const QString& text, QWidget *parent)
     return groupBox;
 }
 
-QGridLayout* KonfiguratorPage::createGridLayout(QWidget *parent)
+QGridLayout *KonfiguratorPage::createGridLayout(QWidget *parent)
 {
     auto *gridLayout = new QGridLayout(parent);
     gridLayout->setAlignment(Qt::AlignTop);
@@ -157,26 +179,24 @@ QGridLayout* KonfiguratorPage::createGridLayout(QWidget *parent)
     return gridLayout;
 }
 
-QLabel* KonfiguratorPage::addLabel(QGridLayout *layout, int x, int y, const QString& label,
-                                   QWidget *parent)
+QLabel *KonfiguratorPage::addLabel(QGridLayout *layout, int x, int y, const QString &label, QWidget *parent)
 {
     QLabel *lbl = new QLabel(label, parent);
     layout->addWidget(lbl, x, y);
     return lbl;
 }
 
-QWidget* KonfiguratorPage::createSpacer(QWidget *parent)
+QWidget *KonfiguratorPage::createSpacer(QWidget *parent)
 {
     QWidget *widget = new QWidget(parent);
     auto *hboxlayout = new QHBoxLayout(widget);
-    auto* spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    auto *spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     hboxlayout->addItem(spacer);
     return widget;
 }
 
-KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup(int sizex, int sizey,
-        KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum, QWidget *parent,
-        int page)
+KonfiguratorCheckBoxGroup *
+KonfiguratorPage::createCheckBoxGroup(int sizex, int sizey, KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum, QWidget *parent, int page)
 {
     auto *groupWidget = new KonfiguratorCheckBoxGroup(parent);
     auto *layout = new QGridLayout(groupWidget);
@@ -187,8 +207,13 @@ KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup(int sizex, int 
 
     for (int i = 0; i != paramNum; i++) {
         KonfiguratorCheckBox *checkBox = createCheckBox(params[i].configClass,
-                                         params[i].configName, params[i].defaultValue, params[i].text, groupWidget,
-                                         params[i].restart, params[i].toolTip, page);
+                                                        params[i].configName,
+                                                        params[i].defaultValue,
+                                                        params[i].text,
+                                                        groupWidget,
+                                                        params[i].restart,
+                                                        params[i].toolTip,
+                                                        page);
 
         groupWidget->add(checkBox);
         layout->addWidget(checkBox, y, x);
@@ -205,11 +230,19 @@ KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup(int sizex, int 
     return groupWidget;
 }
 
-KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup(QString configGroup,
-        QString name, QString defaultValue, int sizex, int sizey, KONFIGURATOR_NAME_VALUE_TIP *params,
-        int paramNum, QWidget *parent, bool restart, int page)
+KonfiguratorRadioButtons *KonfiguratorPage::createRadioButtonGroup(QString configGroup,
+                                                                   QString name,
+                                                                   QString defaultValue,
+                                                                   int sizex,
+                                                                   int sizey,
+                                                                   KONFIGURATOR_NAME_VALUE_TIP *params,
+                                                                   int paramNum,
+                                                                   QWidget *parent,
+                                                                   bool restart,
+                                                                   int page)
 {
-    KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons(std::move(configGroup), std::move(name), std::move(defaultValue), parent, restart, page);
+    KonfiguratorRadioButtons *radioWidget =
+        new KonfiguratorRadioButtons(std::move(configGroup), std::move(name), std::move(defaultValue), parent, restart, page);
 
     auto *layout = new QGridLayout(radioWidget);
     layout->setAlignment(Qt::AlignTop);
@@ -244,12 +277,16 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup(QString confi
     return radioWidget;
 }
 
-KonfiguratorFontChooser *KonfiguratorPage::createFontChooser(QString configGroup, QString name,
-        const QFont &defaultValue, QLabel *label, QWidget *parent, bool restart,
-        const QString &toolTip, int page)
+KonfiguratorFontChooser *KonfiguratorPage::createFontChooser(QString configGroup,
+                                                             QString name,
+                                                             const QFont &defaultValue,
+                                                             QLabel *label,
+                                                             QWidget *parent,
+                                                             bool restart,
+                                                             const QString &toolTip,
+                                                             int page)
 {
-    KonfiguratorFontChooser *fontChooser = new KonfiguratorFontChooser(std::move(configGroup), std::move(name), defaultValue, parent,
-            restart, page);
+    KonfiguratorFontChooser *fontChooser = new KonfiguratorFontChooser(std::move(configGroup), std::move(name), defaultValue, parent, restart, page);
     if (!toolTip.isEmpty()) {
         label->setWhatsThis(toolTip);
         label->setToolTip(toolTip);
@@ -261,12 +298,20 @@ KonfiguratorFontChooser *KonfiguratorPage::createFontChooser(QString configGroup
     return fontChooser;
 }
 
-KonfiguratorComboBox *KonfiguratorPage::createComboBox(QString configGroup, QString name, QString defaultValue,
-        KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QLabel *label, QWidget *parent,
-        bool restart, bool editable, const QString &toolTip, int page)
+KonfiguratorComboBox *KonfiguratorPage::createComboBox(QString configGroup,
+                                                       QString name,
+                                                       QString defaultValue,
+                                                       KONFIGURATOR_NAME_VALUE_PAIR *params,
+                                                       int paramNum,
+                                                       QLabel *label,
+                                                       QWidget *parent,
+                                                       bool restart,
+                                                       bool editable,
+                                                       const QString &toolTip,
+                                                       int page)
 {
-    KonfiguratorComboBox *comboBox = new KonfiguratorComboBox(std::move(configGroup), std::move(name), std::move(defaultValue), params,
-            paramNum, parent, restart, editable, page);
+    KonfiguratorComboBox *comboBox =
+        new KonfiguratorComboBox(std::move(configGroup), std::move(name), std::move(defaultValue), params, paramNum, parent, restart, editable, page);
     if (!toolTip.isEmpty()) {
         label->setWhatsThis(toolTip);
         label->setToolTip(toolTip);
@@ -278,7 +323,7 @@ KonfiguratorComboBox *KonfiguratorPage::createComboBox(QString configGroup, QStr
     return comboBox;
 }
 
-QFrame* KonfiguratorPage::createLine(QWidget *parent, bool vertical)
+QFrame *KonfiguratorPage::createLine(QWidget *parent, bool vertical)
 {
     QFrame *line = new QFrame(parent);
     line->setFrameStyle((vertical ? QFrame::VLine : QFrame::HLine) | QFrame::Sunken);
@@ -301,14 +346,18 @@ void KonfiguratorPage::removeObject(KonfiguratorExtension *item)
     }
 }
 
-KonfiguratorColorChooser *KonfiguratorPage::createColorChooser(QString configGroup, QString name, QColor defaultValue,
-        QWidget *parent, bool restart,
-        ADDITIONAL_COLOR *addColPtr, int addColNum, int page)
+KonfiguratorColorChooser *KonfiguratorPage::createColorChooser(QString configGroup,
+                                                               QString name,
+                                                               QColor defaultValue,
+                                                               QWidget *parent,
+                                                               bool restart,
+                                                               ADDITIONAL_COLOR *addColPtr,
+                                                               int addColNum,
+                                                               int page)
 {
-    KonfiguratorColorChooser *colorChooser = new KonfiguratorColorChooser(std::move(configGroup), std::move(name), std::move(defaultValue),  parent,
-            restart, addColPtr, addColNum, page);
+    KonfiguratorColorChooser *colorChooser =
+        new KonfiguratorColorChooser(std::move(configGroup), std::move(name), std::move(defaultValue), parent, restart, addColPtr, addColNum, page);
 
     registerObject(colorChooser->extension());
     return colorChooser;
 }
-

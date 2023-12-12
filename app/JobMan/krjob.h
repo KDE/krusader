@@ -6,9 +6,9 @@
 #ifndef KRJOB_H
 #define KRJOB_H
 
-#include <KIO/Job>
 #include <KIO/CopyJob>
 #include <KIO/DropJob>
+#include <KIO/Job>
 
 /**
  * Wrapper for KIO::Job cause it has limitations.
@@ -29,8 +29,7 @@ public:
     enum Type { Copy, Move, Link, Trash, Delete };
 
     /** Create a new copy, move, or link job. */
-    static KrJob *createCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src,
-                         const QUrl &destination, KIO::JobFlags flags);
+    static KrJob *createCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src, const QUrl &destination, KIO::JobFlags flags);
     /** Create a new trash or delete job. */
     static KrJob *createDeleteJob(const QList<QUrl> &urls, bool moveToTrash);
     /** Create a drop job - the copy job is already started.*/
@@ -44,16 +43,28 @@ public:
     void pause();
 
     /** Return true if job was started and is not suspended(). */
-    bool isRunning() const { return m_job && !m_job->isSuspended(); }
+    bool isRunning() const
+    {
+        return m_job && !m_job->isSuspended();
+    }
     /** Return true if job was started and then paused by user. */
-    bool isPaused() const { return m_job && m_job->isSuspended(); }
+    bool isPaused() const
+    {
+        return m_job && m_job->isSuspended();
+    }
     /** Return percent progress of job. */
-    int percent() const { return m_job ? static_cast<int>(m_job->percent()) : 0; }
+    int percent() const
+    {
+        return m_job ? static_cast<int>(m_job->percent()) : 0;
+    }
 
     /** Return (initial) job description.
      * The KIO::Job emits a more detailed description after start.
      */
-    QString description() const { return m_description; }
+    QString description() const
+    {
+        return m_description;
+    }
 
 signals:
     /** Emitted if job was started. Parameter is the KIO::Job that was created. */
@@ -62,12 +73,19 @@ signals:
     void terminated(KrJob *krJob);
 
 private:
-    KrJob(Type type, const QList<QUrl> &urls, const QUrl &dest, KIO::JobFlags flags,
-          const QString &description, KIO::CopyJob *copyJob = nullptr,
+    KrJob(Type type,
+          const QList<QUrl> &urls,
+          const QUrl &dest,
+          KIO::JobFlags flags,
+          const QString &description,
+          KIO::CopyJob *copyJob = nullptr,
           KIO::DropJob *dropJob = nullptr);
-    static KrJob *createKrCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src,
-                              const QUrl &destination, KIO::JobFlags flags,
-                              KIO::CopyJob *job = nullptr, KIO::DropJob *dropJob = nullptr);
+    static KrJob *createKrCopyJob(KIO::CopyJob::CopyMode mode,
+                                  const QList<QUrl> &src,
+                                  const QUrl &destination,
+                                  KIO::JobFlags flags,
+                                  KIO::CopyJob *job = nullptr,
+                                  KIO::DropJob *dropJob = nullptr);
     void connectStartedJob();
 
     const Type m_type;

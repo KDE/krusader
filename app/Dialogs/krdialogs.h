@@ -13,19 +13,19 @@
 #include <QDateTime>
 #include <QUrl>
 // QtWidgets
-#include <QLineEdit>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDialog>
 #include <QLabel>
 #include <QLayout>
+#include <QLineEdit>
 #include <QPushButton>
 // QtGui
 #include <QPixmap>
 
-#include <KWidgetsAddons/KAnimatedButton>
 #include <KIOWidgets/KFile>
 #include <KIOWidgets/KUrlRequesterDialog>
+#include <KWidgetsAddons/KAnimatedButton>
 #include <KWidgetsAddons/KDatePicker>
 
 /** \class KChooseDir
@@ -58,8 +58,7 @@ public:
     static QUrl getDir(const QString &text, const QUrl &url, const QUrl &cwd);
     static ChooseResult getCopyDir(const QString &text, const QUrl &url, const QUrl &cwd);
 
-
-  private:
+private:
     static QUrl get(const QString &text, const QUrl &url, const QUrl &cwd, KFile::Modes mode);
 };
 
@@ -67,11 +66,13 @@ class KUrlRequesterDlgForCopy : public QDialog
 {
     Q_OBJECT
 public:
-    KUrlRequesterDlgForCopy(const QUrl& url, const QString& text, QWidget *parent,
-                            bool modal = true);
+    KUrlRequesterDlgForCopy(const QUrl &url, const QString &text, QWidget *parent, bool modal = true);
 
     QUrl selectedURL() const;
-    bool isQueued() { return queueStart; }
+    bool isQueued()
+    {
+        return queueStart;
+    }
 
     KUrlRequester *urlRequester();
 

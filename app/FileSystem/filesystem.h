@@ -14,8 +14,8 @@
 // QtCore
 #include <QHash>
 #include <QList>
-#include <QString>
 #include <QPointer>
+#include <QString>
 // QtGui
 #include <QDropEvent>
 // QtWidgets
@@ -42,7 +42,6 @@ class FileSystem : public DirListerInterface
 {
     Q_OBJECT
 public:
-
     enum FS_TYPE {
         /// Virtual filesystem. Krusaders custom virt:/ protocol
         FS_VIRTUAL,
@@ -54,16 +53,24 @@ public:
     ~FileSystem() override;
 
     // DirListerInterface implementation
-    inline QList<FileItem *> fileItems() const override { return _fileItems.values(); }
-    inline unsigned long numFileItems() const override { return _fileItems.count(); }
-    inline bool isRoot() const override {
+    inline QList<FileItem *> fileItems() const override
+    {
+        return _fileItems.values();
+    }
+    inline unsigned long numFileItems() const override
+    {
+        return _fileItems.count();
+    }
+    inline bool isRoot() const override
+    {
         const QString path = _currentDirectory.path();
         return path.isEmpty() || path == "/";
     }
 
     /// Copy (copy, move or link) files in this filesystem.
     /// Destination is absolute URL. May implemented async.
-    virtual void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
+    virtual void copyFiles(const QList<QUrl> &urls,
+                           const QUrl &destination,
                            KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                            bool showProgressInfo = true,
                            JobMan::StartMode startMode = JobMan::Default) = 0;
@@ -72,8 +79,7 @@ public:
 
     /// Copy (copy, move or link) files to the current filesystem directory or to "dir", the
     /// directory name relative to the current dir. May implemented async.
-    virtual void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
-                          const QString &dir = "") = 0;
+    virtual void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, const QString &dir = "") = 0;
     /// Create a new directory in the current directory. May implemented async.
     virtual void mkDir(const QString &name) = 0;
     /// Rename file/directory in the current directory. May implemented async.
@@ -88,12 +94,20 @@ public:
     virtual bool canMoveToTrash(const QStringList &fileNames) const = 0;
 
     /// Return the filesystem mount point of the current directory. Empty string by default.
-    virtual QString mountPoint() const { return QString(); }
+    virtual QString mountPoint() const
+    {
+        return QString();
+    }
     /// Returns true if this filesystem implementation does not need to be notified about changes in the
     /// current directory. Else false.
-    virtual bool hasAutoUpdate() const { return false; }
+    virtual bool hasAutoUpdate() const
+    {
+        return false;
+    }
     /// Notify this filesystem that the filesystem info of the current directory may have changed.
-    virtual void updateFilesystemInfo() {}
+    virtual void updateFilesystemInfo()
+    {
+    }
 
     /**
      * Scan all files and directories in a directory and create the file items for them. Blocking.
@@ -103,31 +117,49 @@ public:
      * @return true if scan was successful, else (not implemented, scan failed or refresh job
      * was killed) false.
      */
-    bool scanDir(const QUrl &directory = QUrl()) { return scanOrRefresh(directory, false); }
+    bool scanDir(const QUrl &directory = QUrl())
+    {
+        return scanOrRefresh(directory, false);
+    }
 
     /// Change or refresh the current directory and scan it. Blocking.
     /// Returns true if directory was scanned. Returns false if failed or scan job was killed.
-    bool refresh(const QUrl &directory = QUrl()) { return scanOrRefresh(directory, false); }
+    bool refresh(const QUrl &directory = QUrl())
+    {
+        return scanOrRefresh(directory, false);
+    }
 
     /// Returns the current directory path of this filesystem.
-    inline QUrl currentDirectory() const { return _currentDirectory; }
+    inline QUrl currentDirectory() const
+    {
+        return _currentDirectory;
+    }
     /// Return the file item for a file name in the current directory. Or 0 if not found.
     FileItem *getFileItem(const QString &name) const;
     /// The total size of all files in the current directory (only valid after scan).
     // TODO unused
     KIO::filesize_t totalSize() const;
     /// Return the filesystem type.
-    inline FS_TYPE type() const { return _type; }
+    inline FS_TYPE type() const
+    {
+        return _type;
+    }
     /// Return true if the current directory is local (without recognizing mount points).
-    inline bool isLocal() const { return _currentDirectory.isLocalFile(); }
+    inline bool isLocal() const
+    {
+        return _currentDirectory.isLocalFile();
+    }
     /// Return true if the current directory is a remote (network) location.
-    inline bool isRemote() const {
+    inline bool isRemote() const
+    {
         const QString sc = _currentDirectory.scheme();
-        return (sc == "fish" || sc == "ftp" || sc == "sftp" || sc == "nfs" || sc == "smb"
-                || sc == "webdav");
+        return (sc == "fish" || sc == "ftp" || sc == "sftp" || sc == "nfs" || sc == "smb" || sc == "webdav");
     }
     /// Returns true if this filesystem is currently refreshing the current directory.
-    inline bool isRefreshing() const { return _isRefreshing; }
+    inline bool isRefreshing() const
+    {
+        return _isRefreshing;
+    }
 
     /// Delete or trash arbitrary files. Implemented async. Universal refresh not fully implemented.
     void deleteFiles(const QList<QUrl> &urls, bool moveToTrash);
@@ -135,24 +167,26 @@ public:
     /// Return the input URL with a trailing slash if absent.
     static QUrl ensureTrailingSlash(const QUrl &url);
     /// Return the input URL without trailing slash.
-    static QUrl cleanUrl(const QUrl &url) {
+    static QUrl cleanUrl(const QUrl &url)
+    {
         return url.adjusted(QUrl::StripTrailingSlash);
     }
     /// Add 'file' scheme to non-empty URL without scheme
     static QUrl preferLocalUrl(const QUrl &url);
 
     /// Return a file item for a local file inside a directory
-    static FileItem *createLocalFileItem(const QString &name, const QString &directory,
-                                   bool virt = false);
+    static FileItem *createLocalFileItem(const QString &name, const QString &directory, bool virt = false);
     /// Return a file item for a KIO result. Returns 0 if entry is not needed
-    static FileItem *createFileItemFromKIO(const KIO::UDSEntry &entry, const QUrl &directory,
-                                     bool virt = false);
+    static FileItem *createFileItemFromKIO(const KIO::UDSEntry &entry, const QUrl &directory, bool virt = false);
 
     /// Read a symlink with an extra precaution
     static QString readLinkSafely(const char *path);
 
     /// Set the parent window to be used for dialogs
-    void setParentWindow(QWidget *widget) { parentWindow = widget; }
+    void setParentWindow(QWidget *widget)
+    {
+        parentWindow = widget;
+    }
 
 signals:
     /// Emitted when this filesystem is currently refreshing the filesystem directory.
@@ -166,8 +200,7 @@ signals:
     /// * 'metaInfo': a displayable string about the fs, empty by default, OR
     /// * 'fsType', 'total' and 'free': filesystem type, size and free space,
     ///   empty string or 0 by default
-    void fileSystemInfoChanged(const QString &metaInfo,  const QString &fsType,
-                               KIO::filesize_t total, KIO::filesize_t free);
+    void fileSystemInfoChanged(const QString &metaInfo, const QString &fsType, KIO::filesize_t total, KIO::filesize_t free);
     /// Emitted before a directory path is opened for reading. Used for automounting.
     void aboutToOpenDir(const QString &path);
 
@@ -176,7 +209,7 @@ protected:
     virtual bool refreshInternal(const QUrl &origin, bool stayInDir) = 0;
 
     /// Connect the result signal of a file operation job - source URLs.
-    void connectJobToSources(KJob *job, const QList<QUrl>& urls);
+    void connectJobToSources(KJob *job, const QList<QUrl> &urls);
     /// Connect the result signal of a file operation job - destination URL.
     void connectJobToDestination(KJob *job, const QUrl &destination);
     /// Returns true if showing hidden files is set in config.
@@ -184,9 +217,9 @@ protected:
     /// Add a new file item to the internal dictionary (while refreshing).
     void addFileItem(FileItem *item);
 
-    FS_TYPE _type;          // the filesystem type.
+    FS_TYPE _type; // the filesystem type.
     QUrl _currentDirectory; // the path or file the filesystem originates from.
-    bool _isRefreshing;     // true if filesystem is busy with refreshing
+    bool _isRefreshing; // true if filesystem is busy with refreshing
     QPointer<QWidget> parentWindow;
 
 protected slots:
@@ -202,7 +235,7 @@ private:
     /// Delete and clear file items.
     void clear(FileItemDict &fileItems);
 
-    FileItemDict _fileItems;  // the list of files in the current dictionary
+    FileItemDict _fileItems; // the list of files in the current dictionary
 };
 
 #endif

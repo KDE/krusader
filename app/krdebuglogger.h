@@ -10,20 +10,20 @@
 #define KRDEBUGLOGGER_H
 
 // QtCore
-#include <QFile>
 #include <QDebug>
 #include <QDir>
+#include <QFile>
 #include <QTextStream>
 
-#include <unistd.h>
 #include "compat.h"
+#include <unistd.h>
 
 //! A class to manage some aspects of the writing of messages into the Krusader debug log file
 class KrDebugLogger
 {
 private:
     QString function; //! The name of a function which is going to be written about
-    static int indentation;  //! The indentation that is presently used, it represents how many spaces are going to be used
+    static int indentation; //! The indentation that is presently used, it represents how many spaces are going to be used
     const static int indentationIncrease; //! The quantity of spaces that are going be added to the indentation when increasing it
     static const QString logFile; //! The name of the log file
 
@@ -38,20 +38,19 @@ public:
 #ifdef QT_DEBUG
 
 //! Writes a function name, etc. in the Krusader debug log when entering the function and automatically before exiting from it
-#define KRFUNC \
-        KrDebugLogger functionLogger(__FUNCTION__, __LINE__);
+#define KRFUNC KrDebugLogger functionLogger(__FUNCTION__, __LINE__);
 
-#define KRDEBUG(...) do{   \
-        QFile file;     \
-        QTextStream stream;     \
-        KrDebugLogger::prepareWriting(file, stream);       \
-        stream << __FUNCTION__ << "(" <<__LINE__<< "): "; \
-        stream << __VA_ARGS__ << QT_ENDL; /* Like on https://gcc.gnu.org/onlinedocs/cpp/Variadic-Macros.html */ \
-    } while(0);
+#define KRDEBUG(...)                                                                                                                                           \
+    do {                                                                                                                                                       \
+        QFile file;                                                                                                                                            \
+        QTextStream stream;                                                                                                                                    \
+        KrDebugLogger::prepareWriting(file, stream);                                                                                                           \
+        stream << __FUNCTION__ << "(" << __LINE__ << "): ";                                                                                                    \
+        stream << __VA_ARGS__ << QT_ENDL; /* Like on https://gcc.gnu.org/onlinedocs/cpp/Variadic-Macros.html */                                                \
+    } while (0);
 #else
 #define KRFUNC
 #define KRDEBUG(...) qDebug() << __VA_ARGS__;
 #endif
 
 #endif // KRDEBUGLOGGER_H
-

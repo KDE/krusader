@@ -10,21 +10,23 @@
 // QtCore
 #include <QList>
 // QtGui
-#include <QPainter>
 #include <QCursor>
+#include <QPainter>
 // QtWidgets
 #include <QApplication>
-#include <QLabel>
 #include <QFrame>
+#include <QLabel>
 #include <QToolTip>
 
-PercentalSplitter::PercentalSplitter(QWidget * parent) : QSplitter(parent), label(nullptr), opaqueOldPos(-1)
+PercentalSplitter::PercentalSplitter(QWidget *parent)
+    : QSplitter(parent)
+    , label(nullptr)
+    , opaqueOldPos(-1)
 {
     connect(this, &PercentalSplitter::splitterMoved, this, &PercentalSplitter::slotSplitterMoved);
 }
 
-PercentalSplitter::~PercentalSplitter()
-= default;
+PercentalSplitter::~PercentalSplitter() = default;
 
 QString PercentalSplitter::toolTipString(int p)
 {
@@ -47,23 +49,22 @@ QString PercentalSplitter::toolTipString(int p)
 
 void PercentalSplitter::slotSplitterMoved(int p, int index)
 {
-    handle(index) -> setToolTip(toolTipString(p));
+    handle(index)->setToolTip(toolTipString(p));
 
-    QToolTip::showText(QCursor::pos(), toolTipString(p) , this);
+    QToolTip::showText(QCursor::pos(), toolTipString(p), this);
 }
 
-void PercentalSplitter::showEvent(QShowEvent * event)
+void PercentalSplitter::showEvent(QShowEvent *event)
 {
     QList<int> values = sizes();
 
     for (int i = 0; i != count(); i++) {
         int p = 0;
         for (int j = 0; j < i; j++)
-            p += values[ j ];
+            p += values[j];
 
-        handle(i) -> setToolTip(toolTipString(p));
+        handle(i)->setToolTip(toolTipString(p));
     }
 
     QSplitter::showEvent(event);
 }
-

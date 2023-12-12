@@ -9,8 +9,8 @@
 #ifndef KR7ZENCRYPTIONCHECKER_H
 #define KR7ZENCRYPTIONCHECKER_H
 
-#include <unistd.h> // for setsid, see Kr7zEncryptionChecker::setupChildProcess
 #include <signal.h> // for kill
+#include <unistd.h> // for setsid, see Kr7zEncryptionChecker::setupChildProcess
 
 #include <KCoreAddons/KProcess>
 

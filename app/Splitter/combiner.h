@@ -23,14 +23,14 @@ class Combiner : public QProgressDialog
     Q_OBJECT
 
 public:
-    Combiner(QWidget* parent,  QUrl baseURLIn, QUrl destinationURLIn, bool unixNamingIn = false);
+    Combiner(QWidget *parent, QUrl baseURLIn, QUrl destinationURLIn, bool unixNamingIn = false);
     ~Combiner() override;
 
     void combine();
 
 private slots:
     void statDest();
-    void statDestResult(KJob* job);
+    void statDestResult(KJob *job);
     void combineSplitFileDataReceived(KIO::Job *, const QByteArray &byteArray);
     void combineSplitFileFinished(KJob *job);
     void combineDataReceived(KIO::Job *, const QByteArray &);
@@ -43,34 +43,33 @@ private:
     void openNextFile();
     void combineAbortJobs();
 
+    QUrl splURL;
+    QUrl readURL;
+    QUrl writeURL;
 
-    QUrl            splURL;
-    QUrl            readURL;
-    QUrl            writeURL;
+    QUrl baseURL;
+    QUrl destinationURL;
+    CRC32 *crcContext;
+    QByteArray transferArray;
 
-    QUrl            baseURL;
-    QUrl            destinationURL;
-    CRC32          *crcContext;
-    QByteArray      transferArray;
+    QString splitFile;
+    QString error;
 
-    QString         splitFile;
-    QString         error;
-
-    bool            hasValidSplitFile;
-    QString         expectedFileName;
+    bool hasValidSplitFile;
+    QString expectedFileName;
     KIO::filesize_t expectedSize;
-    QString         expectedCrcSum;
+    QString expectedCrcSum;
 
-    int             fileCounter;
-    bool            firstFileIs000;
-    int             permissions;
+    int fileCounter;
+    bool firstFileIs000;
+    int permissions;
     KIO::filesize_t receivedSize;
 
-    KIO::Job         *statJob;
+    KIO::Job *statJob;
     KIO::TransferJob *combineReadJob;
     KIO::TransferJob *combineWriteJob;
 
-    bool            unixNaming;
+    bool unixNaming;
 };
 
 #endif /* __COMBINER_H__ */

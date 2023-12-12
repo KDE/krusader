@@ -10,8 +10,7 @@
 #include <KIO/DeleteJob>
 #include <KIO/FileUndoManager>
 
-KrJob *KrJob::createCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src,
-                            const QUrl &destination, KIO::JobFlags flags)
+KrJob *KrJob::createCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src, const QUrl &destination, KIO::JobFlags flags)
 {
     return createKrCopyJob(mode, src, destination, flags);
 }
@@ -20,11 +19,9 @@ KrJob *KrJob::createDeleteJob(const QList<QUrl> &urls, bool moveToTrash)
 {
     const Type type = moveToTrash ? Trash : Delete;
     const bool oneFile = urls.length() == 1;
-    const QString description =
-        moveToTrash ? (oneFile ? i18n("Move %1 to trash", urls.first().toDisplayString()) :
-                                 i18np("Move %1 file to trash", "Move %1 files to trash", urls.length())) :
-                      (oneFile ? i18n("Delete %1", urls.first().toDisplayString()) :
-                                 i18np("Delete %1 file", "Delete %1 files", urls.length()));
+    const QString description = moveToTrash
+        ? (oneFile ? i18n("Move %1 to trash", urls.first().toDisplayString()) : i18np("Move %1 file to trash", "Move %1 files to trash", urls.length()))
+        : (oneFile ? i18n("Delete %1", urls.first().toDisplayString()) : i18np("Delete %1 file", "Delete %1 files", urls.length()));
 
     return new KrJob(type, urls, QUrl(), KIO::DefaultFlags /*dummy*/, description);
 }
@@ -32,13 +29,15 @@ KrJob *KrJob::createDeleteJob(const QList<QUrl> &urls, bool moveToTrash)
 KrJob *KrJob::createDropJob(KIO::DropJob *dropJob, KIO::CopyJob *job)
 {
     // NOTE: DrobJobs are internally recorded
-    //KIO::FileUndoManager::self()->recordCopyJob(job);
-    return createKrCopyJob(job->operationMode(), job->srcUrls(), job->destUrl(),
-                           KIO::DefaultFlags /*dummy*/, job, dropJob);
+    // KIO::FileUndoManager::self()->recordCopyJob(job);
+    return createKrCopyJob(job->operationMode(), job->srcUrls(), job->destUrl(), KIO::DefaultFlags /*dummy*/, job, dropJob);
 }
 
-KrJob *KrJob::createKrCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src,
-                              const QUrl &destination, KIO::JobFlags flags, KIO::CopyJob *job,
+KrJob *KrJob::createKrCopyJob(KIO::CopyJob::CopyMode mode,
+                              const QList<QUrl> &src,
+                              const QUrl &destination,
+                              KIO::JobFlags flags,
+                              KIO::CopyJob *job,
                               KIO::DropJob *dropJob)
 {
     Type type(Copy);
@@ -61,10 +60,20 @@ KrJob *KrJob::createKrCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &sr
     return new KrJob(type, src, destination, flags, description, job, dropJob);
 }
 
-KrJob::KrJob(Type type, const QList<QUrl> &urls, const QUrl &dest, KIO::JobFlags flags,
-             const QString &description, KIO::CopyJob *copyJob, KIO::DropJob *dropJob)
-    : m_type(type), m_urls(urls), m_dest(dest), m_flags(flags), m_description(description),
-      m_job(copyJob), m_dropJob(dropJob)
+KrJob::KrJob(Type type,
+             const QList<QUrl> &urls,
+             const QUrl &dest,
+             KIO::JobFlags flags,
+             const QString &description,
+             KIO::CopyJob *copyJob,
+             KIO::DropJob *dropJob)
+    : m_type(type)
+    , m_urls(urls)
+    , m_dest(dest)
+    , m_flags(flags)
+    , m_description(description)
+    , m_job(copyJob)
+    , m_dropJob(dropJob)
 {
     if (m_job) {
         connectStartedJob();
@@ -100,8 +109,7 @@ void KrJob::start()
     }
     case Trash: {
         m_job = KIO::trash(m_urls);
-        KIO::FileUndoManager::self()->recordJob(KIO::FileUndoManager::Trash, m_urls, QUrl("trash:/"),
-                                                m_job);
+        KIO::FileUndoManager::self()->recordJob(KIO::FileUndoManager::Trash, m_urls, QUrl("trash:/"), m_job);
         break;
     }
     case Delete:
@@ -112,7 +120,6 @@ void KrJob::start()
 
     emit started(m_job);
 }
-
 
 void KrJob::connectStartedJob()
 {

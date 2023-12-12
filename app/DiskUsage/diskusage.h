@@ -9,29 +9,29 @@
 #define DISKUSAGE_H
 
 // QtCore
-#include <QHash>
 #include <QEvent>
-#include <QTimer>
+#include <QHash>
 #include <QStack>
+#include <QTimer>
 #include <QUrl>
 // QtGui
-#include <QResizeEvent>
 #include <QKeyEvent>
 #include <QPixmap>
+#include <QResizeEvent>
 // QtWidgets
 #include <QDialog>
 #include <QLabel>
-#include <QStackedWidget>
 #include <QScrollArea>
+#include <QStackedWidget>
 
 #include <KWidgetsAddons/KSqueezedTextLabel>
 
 #include "filelightParts/fileTree.h"
 
-#define VIEW_LINES      0
-#define VIEW_DETAILED   1
-#define VIEW_FILELIGHT  2
-#define VIEW_LOADER     3
+#define VIEW_LINES 0
+#define VIEW_DETAILED 1
+#define VIEW_FILELIGHT 2
+#define VIEW_LOADER 3
 
 typedef QHash<QString, void *> Properties;
 
@@ -51,102 +51,106 @@ public:
     explicit DiskUsage(QString confGroup, QWidget *parent = nullptr);
     ~DiskUsage();
 
-    void       load(const QUrl &dirName);
-    void       close();
-    void       stopLoad();
-    bool       isLoading()     {
+    void load(const QUrl &dirName);
+    void close();
+    void stopLoad();
+    bool isLoading()
+    {
         return loading;
     }
 
-    void       setView(int view);
-    int        getActiveView() {
+    void setView(int view);
+    int getActiveView()
+    {
         return activeView;
     }
 
-    Directory* getDirectory(QString path);
-    File *     getFile(const QString& path);
+    Directory *getDirectory(QString path);
+    File *getFile(const QString &path);
 
-    QString    getConfigGroup() {
+    QString getConfigGroup()
+    {
         return configGroup;
     }
 
-    void *     getProperty(File *, const QString&);
-    void       addProperty(File *, const QString&, void *);
-    void       removeProperty(File *, const QString&);
+    void *getProperty(File *, const QString &);
+    void addProperty(File *, const QString &, void *);
+    void removeProperty(File *, const QString &);
 
-    int        exclude(File *file, bool calcPercents = true, int depth = 0);
-    void       includeAll();
+    int exclude(File *file, bool calcPercents = true, int depth = 0);
+    void includeAll();
 
-    int        del(File *file, bool calcPercents = true, int depth = 0);
+    int del(File *file, bool calcPercents = true, int depth = 0);
 
-    QString    getToolTip(File *);
+    QString getToolTip(File *);
 
-    void       rightClickMenu(const QPoint &, File *, QMenu * = nullptr, const QString& = QString());
+    void rightClickMenu(const QPoint &, File *, QMenu * = nullptr, const QString & = QString());
 
-    void       changeDirectory(Directory *dir);
+    void changeDirectory(Directory *dir);
 
-    Directory* getCurrentDir();
-    File*      getCurrentFile();
+    Directory *getCurrentDir();
+    File *getCurrentFile();
 
-    QPixmap    getIcon(const QString& mime);
+    QPixmap getIcon(const QString &mime);
 
-    QUrl       getBaseURL() {
+    QUrl getBaseURL()
+    {
         return baseURL;
     }
 
 public slots:
-    void       dirUp();
-    void       clear();
+    void dirUp();
+    void clear();
 
 signals:
-    void       enteringDirectory(Directory *);
-    void       clearing();
-    void       changed(File *);
-    void       changeFinished();
-    void       deleted(File *);
-    void       deleteFinished();
-    void       status(QString);
-    void       viewChanged(int);
-    void       loadFinished(bool);
-    void       newSearch();
+    void enteringDirectory(Directory *);
+    void clearing();
+    void changed(File *);
+    void changeFinished();
+    void deleted(File *);
+    void deleteFinished();
+    void status(QString);
+    void viewChanged(int);
+    void loadFinished(bool);
+    void newSearch();
 
 protected slots:
-    void       slotLoadDirectory();
+    void slotLoadDirectory();
 
 protected:
-    QHash< QString, Directory * > contentMap;
-    QHash< File *, Properties *> propertyMap;
+    QHash<QString, Directory *> contentMap;
+    QHash<File *, Properties *> propertyMap;
 
-    Directory* currentDirectory;
+    Directory *currentDirectory;
     KIO::filesize_t currentSize;
 
     virtual void keyPressEvent(QKeyEvent *) override;
     virtual bool event(QEvent *) override;
 
-    int        calculateSizes(Directory *dir = nullptr, bool emitSig = false, int depth = 0);
-    int        calculatePercents(bool emitSig = false, Directory *dir = nullptr, int depth = 0);
-    int        include(Directory *dir, int depth = 0);
-    void       createStatus();
-    void       executeAction(int, File * = nullptr);
+    int calculateSizes(Directory *dir = nullptr, bool emitSig = false, int depth = 0);
+    int calculatePercents(bool emitSig = false, Directory *dir = nullptr, int depth = 0);
+    int include(Directory *dir, int depth = 0);
+    void createStatus();
+    void executeAction(int, File * = nullptr);
 
-    QUrl       baseURL;             //< the base URL of loading
+    QUrl baseURL; //< the base URL of loading
 
-    DUListView                *listView;
-    DULines                   *lineView;
-    DUFilelight               *filelightView;
-    LoaderWidget              *loaderView;
+    DUListView *listView;
+    DULines *lineView;
+    DUFilelight *filelightView;
+    LoaderWidget *loaderView;
 
     Directory *root;
 
-    int        activeView;
+    int activeView;
 
-    QString    configGroup;
+    QString configGroup;
 
-    bool       first;
-    bool       loading;
-    bool       abortLoading;
-    bool       clearAfterAbort;
-    bool       deleting;
+    bool first;
+    bool loading;
+    bool abortLoading;
+    bool clearAfterAbort;
+    bool deleting;
 
     QStack<QString> directoryStack;
     QStack<Directory *> parentStack;
@@ -157,13 +161,12 @@ protected:
     Directory *currentParent;
     QString dirToCheck;
 
-    int   fileNum;
-    int   dirNum;
-    int   viewBeforeLoad;
+    int fileNum;
+    int dirNum;
+    int viewBeforeLoad;
 
     QTimer loadingTimer;
 };
-
 
 class LoaderWidget : public QScrollArea
 {
@@ -175,7 +178,8 @@ public:
     void init();
     void setCurrentURL(const QUrl &url);
     void setValues(int fileNum, int dirNum, KIO::filesize_t total);
-    bool wasCancelled()  {
+    bool wasCancelled()
+    {
         return cancelled;
     }
 
@@ -190,7 +194,7 @@ protected:
     KSqueezedTextLabel *searchedDirectory;
     QWidget *widget;
 
-    bool   cancelled;
+    bool cancelled;
 };
 
 #endif /* __DISK_USAGE_GUI_H__ */

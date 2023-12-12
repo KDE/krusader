@@ -17,12 +17,15 @@
 
 #include <KI18n/KLocalizedString>
 
-#define SCHEME_POPUP_ID    6730
+#define SCHEME_POPUP_ID 6730
 
 DUFilelight::DUFilelight(DiskUsage *usage)
-        : RadialMap::Widget(usage), diskUsage(usage), currentDir(nullptr), refreshNeeded(true)
+    : RadialMap::Widget(usage)
+    , diskUsage(usage)
+    , currentDir(nullptr)
+    , refreshNeeded(true)
 {
-//     setFocusPolicy(Qt::StrongFocus);
+    //     setFocusPolicy(Qt::StrongFocus);
 
     connect(diskUsage, &DiskUsage::enteringDirectory, this, &DUFilelight::slotDirChanged);
     connect(diskUsage, &DiskUsage::clearing, this, &DUFilelight::clear);
@@ -53,9 +56,9 @@ void DUFilelight::clear()
     currentDir = nullptr;
 }
 
-File * DUFilelight::getCurrentFile()
+File *DUFilelight::getCurrentFile()
 {
-    const RadialMap::Segment * focus = focusSegment();
+    const RadialMap::Segment *focus = focusSegment();
 
     if (!focus || focus->isFake() || focus->file() == currentDir)
         return nullptr;
@@ -66,21 +69,21 @@ File * DUFilelight::getCurrentFile()
 void DUFilelight::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::RightButton) {
-        File * file = nullptr;
+        File *file = nullptr;
 
-        const RadialMap::Segment * focus = focusSegment();
+        const RadialMap::Segment *focus = focusSegment();
 
         if (focus && !focus->isFake() && focus->file() != currentDir)
             file = const_cast<File *>(focus->file());
 
         QMenu filelightPopup;
-        filelightPopup.addAction(i18n("Zoom In"),  this, SLOT(zoomIn()), Qt::Key_Plus);
+        filelightPopup.addAction(i18n("Zoom In"), this, SLOT(zoomIn()), Qt::Key_Plus);
         filelightPopup.addAction(i18n("Zoom Out"), this, SLOT(zoomOut()), Qt::Key_Minus);
 
         QMenu schemePopup;
-        schemePopup.addAction(i18n("Rainbow"),       this, SLOT(schemeRainbow()));
+        schemePopup.addAction(i18n("Rainbow"), this, SLOT(schemeRainbow()));
         schemePopup.addAction(i18n("High Contrast"), this, SLOT(schemeHighContrast()));
-        schemePopup.addAction(i18n("KDE"),           this, SLOT(schemeKDE()));
+        schemePopup.addAction(i18n("KDE"), this, SLOT(schemeKDE()));
 
         filelightPopup.addMenu(&schemePopup);
         schemePopup.setTitle(i18n("Scheme"));
@@ -88,7 +91,7 @@ void DUFilelight::mousePressEvent(QMouseEvent *event)
         filelightPopup.addAction(i18n("Increase contrast"), this, SLOT(increaseContrast()));
         filelightPopup.addAction(i18n("Decrease contrast"), this, SLOT(decreaseContrast()));
 
-        QAction * act = filelightPopup.addAction(i18n("Use anti-aliasing"), this, SLOT(changeAntiAlias()));
+        QAction *act = filelightPopup.addAction(i18n("Use anti-aliasing"), this, SLOT(changeAntiAlias()));
         act->setCheckable(true);
         act->setChecked(Filelight::Config::antiAliasFactor > 1);
 
@@ -105,7 +108,7 @@ void DUFilelight::mousePressEvent(QMouseEvent *event)
         diskUsage->rightClickMenu(event->globalPos(), file, &filelightPopup, i18n("Filelight"));
         return;
     } else if (event->button() == Qt::LeftButton) {
-        const RadialMap::Segment * focus = focusSegment();
+        const RadialMap::Segment *focus = focusSegment();
 
         if (focus && !focus->isFake() && focus->file() == currentDir) {
             diskUsage->dirUp();
@@ -170,8 +173,7 @@ void DUFilelight::minFontSize()
 {
     bool ok = false;
 
-    int result = QInputDialog::getInt(this, i18n("Krusader::Filelight"), i18n("Minimum font size"),
-                                      (int)Filelight::Config::minFontPitch, 1, 100, 1, &ok);
+    int result = QInputDialog::getInt(this, i18n("Krusader::Filelight"), i18n("Minimum font size"), (int)Filelight::Config::minFontPitch, 1, 100, 1, &ok);
 
     if (ok) {
         Filelight::Config::minFontPitch = (uint)result;
@@ -210,4 +212,3 @@ void DUFilelight::slotChanged(File *)
     if (!refreshNeeded)
         refreshNeeded = true;
 }
-

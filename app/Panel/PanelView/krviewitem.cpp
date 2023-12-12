@@ -8,10 +8,10 @@
 
 #include "krviewitem.h"
 
-#include "krinterview.h"
-#include "listmodel.h"
 #include "../FileSystem/fileitem.h"
 #include "../FileSystem/krpermhandler.h"
+#include "krinterview.h"
+#include "listmodel.h"
 
 // QtCore
 #include <QLocale>
@@ -22,19 +22,23 @@
 
 #include <KI18n/KLocalizedString>
 
-KrViewItem::KrViewItem(FileItem *fileitem, KrInterView *parentView):
-        _fileitem(fileitem), _view(parentView), _viewProperties(parentView->properties()), _hasExtension(false),
-        _hidden(false), _extension("")
+KrViewItem::KrViewItem(FileItem *fileitem, KrInterView *parentView)
+    : _fileitem(fileitem)
+    , _view(parentView)
+    , _viewProperties(parentView->properties())
+    , _hasExtension(false)
+    , _hidden(false)
+    , _extension("")
 {
     dummyFileItem = parentView->_model->dummyFileItem() == fileitem;
 
     if (fileitem) {
         // check if the file has an extension
-        const QString& fileitemName = fileitem->getName();
+        const QString &fileitemName = fileitem->getName();
         int loc = fileitemName.lastIndexOf('.');
         if (loc > 0) { // avoid mishandling of .bashrc and friend
             // check if it has one of the predefined 'atomic extensions'
-            for (const auto & atomicExtension : _viewProperties->atomicExtensions) {
+            for (const auto &atomicExtension : _viewProperties->atomicExtensions) {
                 if (fileitemName.endsWith(atomicExtension)) {
                     loc = fileitemName.length() - atomicExtension.length();
                     break;
@@ -50,10 +54,12 @@ KrViewItem::KrViewItem(FileItem *fileitem, KrInterView *parentView):
     }
 }
 
-const QString& KrViewItem::name(bool withExtension) const
+const QString &KrViewItem::name(bool withExtension) const
 {
-    if (!withExtension && _hasExtension) return _name;
-    else return _fileitem->getName();
+    if (!withExtension && _hasExtension)
+        return _name;
+    else
+        return _fileitem->getName();
 }
 
 QString KrViewItem::description() const
@@ -96,26 +102,31 @@ QPixmap KrViewItem::icon()
 {
     if (dummyFileItem || !_viewProperties->displayIcons)
         return QPixmap();
-    else return KrView::getIcon(_fileitem, true);
+    else
+        return KrView::getIcon(_fileitem, true);
 }
 
-bool KrViewItem::isSelected() const {
+bool KrViewItem::isSelected() const
+{
     return _view->isSelected(_fileitem);
 }
 
-void KrViewItem::setSelected(bool s) {
+void KrViewItem::setSelected(bool s)
+{
     _view->setSelected(_fileitem, s);
-    if(!_view->op()->isMassSelectionUpdate()) {
+    if (!_view->op()->isMassSelectionUpdate()) {
         redraw();
         _view->op()->emitSelectionChanged();
     }
 }
 
-QRect KrViewItem::itemRect() const {
+QRect KrViewItem::itemRect() const
+{
     return _view->itemRect(_fileitem);
 }
 
-void KrViewItem::redraw() {
+void KrViewItem::redraw()
+{
     _view->_itemView->viewport()->update(itemRect());
 }
 

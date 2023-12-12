@@ -53,5 +53,4 @@ protected:
     QAction *actMoveTabToLeft, *actMoveTabToRight;
 };
 
-
 #endif // TABACTIONS_H

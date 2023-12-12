@@ -14,29 +14,32 @@
 #include <QList>
 // QtWidgets
 #include <QDialogButtonBox>
-#include <QPushButton>
 #include <QGridLayout>
 #include <QHeaderView>
-#include <QLayout>
 #include <QLabel>
+#include <QLayout>
+#include <QPushButton>
 #include <QToolButton>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
 #include <KItemViews/KTreeWidgetSearchLine>
+#include <KWidgetsAddons/KMessageBox>
 
-#include "../krglobal.h"
-#include "../icon.h"
-#include "../krslots.h"
 #include "../GUI/krtreewidget.h"
+#include "../icon.h"
+#include "../krglobal.h"
+#include "../krslots.h"
 
 #define STARTING_RANK 20
-#define INCREASE   2
-#define DECREASE   1
+#define INCREASE 2
+#define DECREASE 1
 
-PopularUrls::PopularUrls(QObject *parent) : QObject(parent),
-        head(nullptr), tail(nullptr), count(0)
+PopularUrls::PopularUrls(QObject *parent)
+    : QObject(parent)
+    , head(nullptr)
+    , tail(nullptr)
+    , count(0)
 {
     dlg = new PopularUrlsDlg();
 }
@@ -100,7 +103,6 @@ void PopularUrls::load()
     }
 }
 
-
 // returns a url list with the 'max' top popular urls
 QList<QUrl> PopularUrls::getMostPopularUrls(int max)
 {
@@ -108,7 +110,8 @@ QList<QUrl> PopularUrls::getMostPopularUrls(int max)
     QList<QUrl> list;
     UrlNodeP p = head;
     int tmp = 0;
-    if (maxUrls < max) max = maxUrls; // don't give more than maxUrls
+    if (maxUrls < max)
+        max = maxUrls; // don't give more than maxUrls
     while (p && tmp < max) {
         list << p->url;
         p = p->next;
@@ -120,7 +123,7 @@ QList<QUrl> PopularUrls::getMostPopularUrls(int max)
 
 // adds a url to the list, or increase rank of an existing url, making
 // sure to bump it up the list if needed
-void PopularUrls::addUrl(const QUrl& url)
+void PopularUrls::addUrl(const QUrl &url)
 {
     QUrl tmpurl = url;
     tmpurl.setPassword(QString()); // make sure no passwords are permanently stored
@@ -136,14 +139,14 @@ void PopularUrls::addUrl(const QUrl& url)
         appendNode(pnode);
         ranks.insert(tmpurl.url(), head);
     } else {
-        if (ranks.find(tmpurl.url()) == ranks.end()) {  // is the added url new? if so, append it
+        if (ranks.find(tmpurl.url()) == ranks.end()) { // is the added url new? if so, append it
             pnode = new UrlNode;
             pnode->rank = STARTING_RANK;
             pnode->url = tmpurl;
             appendNode(pnode);
             ranks.insert(tmpurl.url(), pnode);
         } else {
-            pnode = ranks[ tmpurl.url()];
+            pnode = ranks[tmpurl.url()];
             pnode->rank += INCREASE;
         }
     }
@@ -152,9 +155,10 @@ void PopularUrls::addUrl(const QUrl& url)
     relocateIfNeeded(pnode);
 
     // too many urls?
-    if (count > maxUrls) removeNode(tail);
+    if (count > maxUrls)
+        removeNode(tail);
 
-    //dumpList();
+    // dumpList();
 }
 
 // checks if 'node' needs to be bumped-up the ranking list and does it if needed
@@ -166,7 +170,8 @@ void PopularUrls::relocateIfNeeded(UrlNodeP node)
         while (tmp) {
             if (tmp->rank >= node->rank)
                 break; // found it!
-            else tmp = tmp->prev;
+            else
+                tmp = tmp->prev;
         }
         // now, if tmp isn't null, we need to move node to tmp->next
         // else move it to become head
@@ -174,7 +179,6 @@ void PopularUrls::relocateIfNeeded(UrlNodeP node)
         insertNode(node, tmp);
     }
 }
-
 
 // iterate over the list, decreasing each url's rank
 // this is very naive, but a 1..30 for loop is acceptable (i hope)
@@ -185,7 +189,8 @@ void PopularUrls::decreaseRanks()
         while (p) {
             if (p->rank - DECREASE >= 0)
                 p->rank -= DECREASE;
-            else p->rank = 0;
+            else
+                p->rank = 0;
             p = p->next;
         }
     }
@@ -196,11 +201,13 @@ void PopularUrls::decreaseRanks()
 void PopularUrls::removeNode(UrlNodeP node)
 {
     if (node->prev) {
-        if (tail == node) tail = node->prev;
+        if (tail == node)
+            tail = node->prev;
         node->prev->next = node->next;
     }
     if (node->next) {
-        if (head == node) head = node->next;
+        if (head == node)
+            head = node->next;
         node->next->prev = node->prev;
     }
     --count;
@@ -214,7 +221,8 @@ void PopularUrls::insertNode(UrlNodeP node, UrlNodeP after)
         head->prev = node;
         head = node;
     } else {
-        if (tail == after) tail = node;
+        if (tail == after)
+            tail = node;
         node->prev = after;
         node->next = after->next;
         if (node->next) {
@@ -255,14 +263,15 @@ void PopularUrls::showDialog()
 {
     QList<QUrl> list = getMostPopularUrls(maxUrls);
     dlg->run(list);
-    if (dlg->result() == -1) return;
+    if (dlg->result() == -1)
+        return;
     SLOTS->refresh(list[dlg->result()]);
-    //printf("running %s\n", list[dlg->result()].url().toLatin1());fflush(stdout);
+    // printf("running %s\n", list[dlg->result()].url().toLatin1());fflush(stdout);
 }
 
 // ===================================== PopularUrlsDlg ======================================
-PopularUrlsDlg::PopularUrlsDlg():
-        QDialog(krMainWindow)
+PopularUrlsDlg::PopularUrlsDlg()
+    : QDialog(krMainWindow)
 {
     setWindowTitle(i18n("Popular URLs"));
     setWindowModality(Qt::WindowModal);
@@ -301,7 +310,7 @@ PopularUrlsDlg::PopularUrlsDlg():
     connect(search, &KTreeWidgetSearchLine::hiddenChanged, this, &PopularUrlsDlg::slotVisibilityChanged);
 }
 
-void PopularUrlsDlg::slotItemSelected(const QModelIndex & ndx)
+void PopularUrlsDlg::slotItemSelected(const QModelIndex &ndx)
 {
     selection = ndx.row();
     accept();
@@ -340,7 +349,7 @@ void PopularUrlsDlg::run(QList<QUrl> list)
     urls->clear();
     QList<QUrl>::Iterator it;
 
-    QTreeWidgetItem * lastItem = nullptr;
+    QTreeWidgetItem *lastItem = nullptr;
 
     for (it = list.begin(); it != list.end(); ++it) {
         auto *item = new QTreeWidgetItem(urls, lastItem);
@@ -357,4 +366,3 @@ void PopularUrlsDlg::run(QList<QUrl> list)
     slotVisibilityChanged();
     exec();
 }
-

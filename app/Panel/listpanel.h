@@ -6,33 +6,32 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef LISTPANEL_H
 #define LISTPANEL_H
 
 // QtCore
-#include <QString>
 #include <QDir>
-#include <QList>
 #include <QEvent>
+#include <QList>
 #include <QPointer>
+#include <QString>
 #include <QUrl>
 // QtGui
+#include <QDropEvent>
+#include <QHideEvent>
+#include <QIcon>
+#include <QKeyEvent>
 #include <QPixmap>
 #include <QPixmapCache>
-#include <QIcon>
-#include <QDropEvent>
-#include <QKeyEvent>
 #include <QShowEvent>
-#include <QHideEvent>
 // QtWidgets
-#include <QProgressBar>
-#include <QWidget>
+#include <QGridLayout>
 #include <QLabel>
 #include <QLayout>
+#include <QProgressBar>
 #include <QSplitter>
 #include <QToolButton>
-#include <QGridLayout>
+#include <QWidget>
 
 #include <KCompletion/KLineEdit>
 #include <KConfigCore/KConfigGroup>
@@ -43,9 +42,9 @@
 #include "krpanel.h"
 #include "panelcontextmenu.h"
 
-#define PROP_SYNC_BUTTON_ON               1
-#define PROP_LOCKED                       2
-#define PROP_PINNED                       4
+#define PROP_SYNC_BUTTON_ON 1
+#define PROP_LOCKED 2
+#define PROP_PINNED 4
 
 class DirHistoryButton;
 class KrBookmarkButton;
@@ -65,7 +64,6 @@ class ListPanel : public QWidget, public KrPanel
     friend class ListPanelFunc;
     Q_OBJECT
 public:
-
     enum TabState {
         DEFAULT,
         LOCKED,
@@ -74,7 +72,7 @@ public:
     };
 
     // constructor create the panel, but DOESN'T fill it with data, use start()
-    ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConfigGroup& cfg = KConfigGroup());
+    ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConfigGroup &cfg = KConfigGroup());
     ~ListPanel() override;
 
     void otherPanelChanged() override;
@@ -83,21 +81,26 @@ public:
 
     void reparent(QWidget *parent, AbstractPanelManager *manager);
 
-    int getType() {
+    int getType()
+    {
         return panelType;
     }
     void changeType(int);
-    bool isLocked() {
+    bool isLocked()
+    {
         return _tabState == TabState::LOCKED;
     }
-    bool isPinned() {
+    bool isPinned()
+    {
         return _tabState == TabState::PINNED;
     }
-    void setTabState(TabState tabState) {
+    void setTabState(TabState tabState)
+    {
         _tabState = tabState;
     }
 
-    ListPanelActions *actions() {
+    ListPanelActions *actions()
+    {
         return _actions;
     }
     QString lastLocalPath() const;
@@ -106,21 +109,27 @@ public:
     void setButtons();
     void setJumpBack(QUrl url);
 
-    int  getProperties();
+    int getProperties();
     void setProperties(int);
 
-    void getFocusCandidates(QVector<QWidget*> &widgets);
+    void getFocusCandidates(QVector<QWidget *> &widgets);
 
     void saveSettings(KConfigGroup cfg, bool saveHistory);
     void restoreSettings(KConfigGroup cfg);
 
-    void setPinnedUrl(QUrl &pinnedUrl) { _pinnedUrl = pinnedUrl; };
-    QUrl pinnedUrl() const { return _pinnedUrl; };
+    void setPinnedUrl(QUrl &pinnedUrl)
+    {
+        _pinnedUrl = pinnedUrl;
+    };
+    QUrl pinnedUrl() const
+    {
+        return _pinnedUrl;
+    };
 
 public slots:
     void handleDrop(QDropEvent *event, bool onView = false); // handle drops on frame or view
     void handleDrop(const QUrl &destination, QDropEvent *event); // handle drops with destination
-    void popRightClickMenu(const QPoint&);
+    void popRightClickMenu(const QPoint &);
     void popEmptyRightClickMenu(const QPoint &);
     void compareDirs(bool otherPanelToo = true);
     void slotFocusOnMe(bool focus = true);
@@ -144,21 +153,23 @@ public slots:
     void showSearchBarSelection();
     void showSearchBarFilter();
     void jumpBack();
-    void setJumpBack() {
+    void setJumpBack()
+    {
         setJumpBack(virtualPath());
     }
 
     ///////////////////////// service functions - called internally ////////////////////////
-    void prepareToDelete();                   // internal use only
+    void prepareToDelete(); // internal use only
 
 protected:
     void keyPressEvent(QKeyEvent *e) override;
-    void mousePressEvent(QMouseEvent*) override {
+    void mousePressEvent(QMouseEvent *) override
+    {
         slotFocusOnMe();
     }
     void showEvent(QShowEvent *) override;
     void hideEvent(QHideEvent *) override;
-    bool eventFilter(QObject * watched, QEvent * e) override;
+    bool eventFilter(QObject *watched, QEvent *e) override;
 
     void showButtonMenu(QToolButton *b);
     void createView();
@@ -169,23 +180,22 @@ protected:
 
 protected slots:
     void slotCurrentChanged(KrViewItem *item);
-    void startDragging(const QStringList&, const QPixmap&);
+    void startDragging(const QStringList &, const QPixmap &);
     void slotPreviewJobStarted(KJob *job);
     void slotPreviewJobPercent(KJob *job, unsigned long percent);
     void slotPreviewJobResult(KJob *job);
     // those handle the in-panel refresh notifications
-    void slotRefreshJobStarted(KIO::Job* job);
-    void inlineRefreshInfoMessage(KJob* job, const QString &msg);
-    void inlineRefreshListResult(KJob* job);
-    void inlineRefreshPercent(KJob*, unsigned long);
-    void slotFilesystemError(const QString& msg);
+    void slotRefreshJobStarted(KIO::Job *job);
+    void inlineRefreshInfoMessage(KJob *job, const QString &msg);
+    void inlineRefreshListResult(KJob *job);
+    void inlineRefreshPercent(KJob *, unsigned long);
+    void slotFilesystemError(const QString &msg);
     void duplicateTab(KrViewItem *item);
     void duplicateTab(const QUrl &url, bool nextToThis = false);
     void slotNavigatorUrlChanged(const QUrl &url);
     void resetNavigatorMode(); // set navigator mode after focus was lost
     // update filesystem meta info, disk-free and mount status
-    void updateFilesystemStats(const QString &metaInfo,  const QString &fsType,
-                               KIO::filesize_t total, KIO::filesize_t free);
+    void updateFilesystemStats(const QString &metaInfo, const QString &fsType, KIO::filesize_t total, KIO::filesize_t free);
 
 signals:
     void signalStatus(QString msg); // emitted when we need to update the status bar
@@ -200,7 +210,7 @@ protected:
     QUrl _jumpBackURL;
     int colorMask;
     bool compareMode;
-    //FilterSpec    filter;
+    // FilterSpec    filter;
     KJob *previewJob;
     KIO::Job *inlineRefreshJob;
     ListPanelActions *_actions;
@@ -208,8 +218,8 @@ protected:
     QPixmap currDragPix;
     QWidget *clientArea;
     QSplitter *sidebarSplitter;
-    KUrlNavigator* urlNavigator;
-    KrSearchBar* searchBar;
+    KUrlNavigator *urlNavigator;
+    KrSearchBar *searchBar;
     QToolButton *backButton, *forwardButton;
     QToolButton *cdRootButton;
     QToolButton *cdHomeButton;
@@ -224,7 +234,7 @@ protected:
     QProgressBar *quickSizeCalcProgress;
     QToolButton *cancelQuickSizeCalcButton;
     QProgressBar *previewProgress;
-    DirHistoryButton* historyButton;
+    DirHistoryButton *historyButton;
     MediaButton *mediaButton;
     QToolButton *syncBrowseButton;
     QToolButton *cancelProgressButton; // for thumbnail previews and filesystem refresh

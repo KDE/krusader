@@ -22,25 +22,24 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-#include <KI18n/KLocalizedString>
-#include <KIOWidgets/KUrlCompletion>
 #include <KCompletion/KLineEdit>
-#include <KIOWidgets/KUrlRequester>
+#include <KI18n/KLocalizedString>
 #include <KIOCore/KRecentDocument>
+#include <KIOWidgets/KUrlCompletion>
+#include <KIOWidgets/KUrlRequester>
 #include <KWidgetsAddons/KGuiItem>
 
-#include "../krglobal.h"
 #include "../FileSystem/filesystem.h"
-#include "../defaults.h"
 #include "../JobMan/jobman.h"
+#include "../defaults.h"
+#include "../krglobal.h"
 
-
-QUrl KChooseDir::getFile(const QString &text, const QUrl& url, const QUrl& cwd)
+QUrl KChooseDir::getFile(const QString &text, const QUrl &url, const QUrl &cwd)
 {
     return get(text, url, cwd, KFile::File);
 }
 
-QUrl KChooseDir::getDir(const QString &text, const QUrl& url, const QUrl& cwd)
+QUrl KChooseDir::getDir(const QString &text, const QUrl &url, const QUrl &cwd)
 {
     return get(text, url, cwd, KFile::Directory);
 }
@@ -60,8 +59,7 @@ QUrl KChooseDir::get(const QString &text, const QUrl &url, const QUrl &cwd, KFil
     return u;
 }
 
-KChooseDir::ChooseResult KChooseDir::getCopyDir(const QString &text, const QUrl &url,
-                                                const QUrl &cwd)
+KChooseDir::ChooseResult KChooseDir::getCopyDir(const QString &text, const QUrl &url, const QUrl &cwd)
 {
     QScopedPointer<KUrlRequesterDlgForCopy> dlg(new KUrlRequesterDlgForCopy(url, text, krMainWindow, true));
 
@@ -81,8 +79,7 @@ KChooseDir::ChooseResult KChooseDir::getCopyDir(const QString &text, const QUrl 
     return result;
 }
 
-KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QString &_text,
-                                                 QWidget *parent, bool modal)
+KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QString &_text, QWidget *parent, bool modal)
     : QDialog(parent)
 {
     setWindowModality(modal ? Qt::WindowModal : Qt::NonModal);
@@ -99,17 +96,15 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy(const QUrl &urlName, const QStr
     urlRequester_->setMinimumWidth(urlRequester_->sizeHint().width() * 3);
     mainLayout->addWidget(urlRequester_);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
     okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
 
-    QPushButton *queueButton = new QPushButton(
-        krJobMan->isQueueModeEnabled() ? i18n("F2 Delay Job Start") : i18n("F2 Queue"), this);
-    queueButton->setToolTip(krJobMan->isQueueModeEnabled() ?
-            i18n("Do not start the job now.") :
-            i18n("Enqueue the job if another job is running. Otherwise start immediately."));
+    QPushButton *queueButton = new QPushButton(krJobMan->isQueueModeEnabled() ? i18n("F2 Delay Job Start") : i18n("F2 Queue"), this);
+    queueButton->setToolTip(krJobMan->isQueueModeEnabled() ? i18n("Do not start the job now.")
+                                                           : i18n("Enqueue the job if another job is running. Otherwise start immediately."));
     buttonBox->addButton(queueButton, QDialogButtonBox::ActionRole);
 
     connect(buttonBox, &QDialogButtonBox::accepted, this, &KUrlRequesterDlgForCopy::accept);
@@ -139,7 +134,7 @@ void KUrlRequesterDlgForCopy::slotQueueButtonClicked()
     accept();
 }
 
-void KUrlRequesterDlgForCopy::slotTextChanged(const QString & text)
+void KUrlRequesterDlgForCopy::slotTextChanged(const QString &text)
 {
     bool state = !text.trimmed().isEmpty();
     okButton->setEnabled(state);
@@ -157,12 +152,13 @@ QUrl KUrlRequesterDlgForCopy::selectedURL() const
         return QUrl();
 }
 
-KUrlRequester * KUrlRequesterDlgForCopy::urlRequester()
+KUrlRequester *KUrlRequesterDlgForCopy::urlRequester()
 {
     return urlRequester_;
 }
 
-KrGetDate::KrGetDate(QDate date, QWidget *parent) : QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
+KrGetDate::KrGetDate(QDate date, QWidget *parent)
+    : QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
 {
     setWindowModality(Qt::WindowModal);
     dateWidget = new KDatePicker(this);
@@ -175,12 +171,13 @@ KrGetDate::KrGetDate(QDate date, QWidget *parent) : QDialog(parent, Qt::MSWindow
     connect(dateWidget, &KDatePicker::dateEntered, this, &KrGetDate::setDate);
 
     // keep the original date - incase ESC is pressed
-    originalDate  = date;
+    originalDate = date;
 }
 
 QDate KrGetDate::getDate()
 {
-    if (exec() == QDialog::Rejected) chosenDate = QDate();
+    if (exec() == QDialog::Rejected)
+        chosenDate = QDate();
     hide();
     return chosenDate;
 }
@@ -190,4 +187,3 @@ void KrGetDate::setDate(QDate date)
     chosenDate = date;
     accept();
 }
-

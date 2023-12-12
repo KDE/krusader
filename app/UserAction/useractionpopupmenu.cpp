@@ -13,11 +13,11 @@
 #include <KI18n/KLocalizedString>
 
 #include "../krglobal.h"
-#include "useraction.h"
 #include "kraction.h"
+#include "useraction.h"
 
 UserActionPopupMenu::UserActionPopupMenu(const QUrl &currentURL, QWidget *parent)
-        : KActionMenu(i18n("User Actions"), parent)
+    : KActionMenu(i18n("User Actions"), parent)
 {
     krUserAction->populateMenu(this, &currentURL);
 }

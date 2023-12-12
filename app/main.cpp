@@ -20,14 +20,14 @@
 // QtGui
 #include <QPixmap>
 // QtDBus
-#include <QDBusInterface>
 #include <QDBusConnectionInterface>
+#include <QDBusInterface>
 // QtWidgets
 #include <QApplication>
 #include <QSplashScreen>
 
-#include <KCoreAddons/KAboutData>
 #include <KConfigCore/KSharedConfig>
+#include <KCoreAddons/KAboutData>
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KActionMenu>
 #include <KWindowSystem/KStartupInfo>
@@ -35,10 +35,10 @@
 #include "../Archive/krarchandler.h"
 
 #include "defaults.h"
+#include "icon.h"
 #include "krservices.h"
 #include "krslots.h"
 #include "krusader.h"
-#include "icon.h"
 #include "krusaderversion.h"
 #include "krusaderview.h"
 #include "panelmanager.h"
@@ -52,20 +52,22 @@ static void sigterm_handler(int i)
     QAbstractEventDispatcher *instance = QAbstractEventDispatcher::instance();
     if (instance)
         instance->wakeUp();
-    QApplication::exit(- 15);
+    QApplication::exit(-15);
 }
 
-void openTabsRemote(QStringList tabs, bool left, const QString& appName)
+void openTabsRemote(QStringList tabs, bool left, const QString &appName)
 {
     // make sure left or right are not relative paths
     for (int i = 0; i != tabs.count(); i++) {
-        tabs[ i ] = tabs[ i ].trimmed();
-        if (!tabs[ i ].startsWith('/') && tabs[ i ].indexOf(":/") < 0)
-            tabs[ i ] = QDir::currentPath() + '/' + tabs[ i ];
+        tabs[i] = tabs[i].trimmed();
+        if (!tabs[i].startsWith('/') && tabs[i].indexOf(":/") < 0)
+            tabs[i] = QDir::currentPath() + '/' + tabs[i];
     }
 
-    QDBusInterface remoteApp("org.krusader", "/Instances/" + appName + (left ? "/left_manager" : "/right_manager"),
-                             "org.krusader.PanelManager", QDBusConnection::sessionBus());
+    QDBusInterface remoteApp("org.krusader",
+                             "/Instances/" + appName + (left ? "/left_manager" : "/right_manager"),
+                             "org.krusader.PanelManager",
+                             QDBusConnection::sessionBus());
     QDBusReply<void> reply;
     if (remoteApp.isValid())
         reply = remoteApp.call("newTabs", tabs);
@@ -108,11 +110,13 @@ int main(int argc, char *argv[])
 #endif
 
     KAboutData aboutData(QStringLiteral("krusader"),
-        (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")), versionName,
-        i18n(description), KAboutLicense::GPL_V2,
-        i18n("© 2000-2003 Shie Erlich, Rafi Yanai\n© 2004-2022 Krusader Krew"),
-        i18n("Feedback:\nhttps://forum.kde.org/viewforum.php?f=225"),
-        QStringLiteral("https://krusader.org"));
+                         (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")),
+                         versionName,
+                         i18n(description),
+                         KAboutLicense::GPL_V2,
+                         i18n("© 2000-2003 Shie Erlich, Rafi Yanai\n© 2004-2022 Krusader Krew"),
+                         i18n("Feedback:\nhttps://forum.kde.org/viewforum.php?f=225"),
+                         QStringLiteral("https://krusader.org"));
 
     aboutData.setOrganizationDomain(QByteArray("kde.org"));
     aboutData.setDesktopFileName(QStringLiteral("org.kde.krusader"));
@@ -133,7 +137,10 @@ int main(int argc, char *argv[])
     aboutData.addAuthor(i18n("Alexander Bikadorov"), i18n("Developer (retired)"), QStringLiteral("alex.bikadorov@kdemail.net"), nullptr);
     aboutData.addAuthor(i18n("Martin Kostolný"), i18n("Developer (retired)"), QStringLiteral("clearmartin@gmail.com"), nullptr);
     aboutData.addAuthor(i18n("Dirk Eschler"), i18n("Webmaster (retired)"), QStringLiteral("deschler@users.sourceforge.net"), nullptr);
-    aboutData.addAuthor(i18n("Frank Schoolmeesters"), i18n("Documentation and marketing coordinator (retired)"), QStringLiteral("frank_schoolmeesters@yahoo.com"), nullptr);
+    aboutData.addAuthor(i18n("Frank Schoolmeesters"),
+                        i18n("Documentation and marketing coordinator (retired)"),
+                        QStringLiteral("frank_schoolmeesters@yahoo.com"),
+                        nullptr);
     aboutData.addAuthor(i18n("Richard Holt"), i18n("Documentation & Proofing (retired)"), QStringLiteral("richard.holt@gmail.com"), nullptr);
     aboutData.addAuthor(i18n("Matej Urbancic"), i18n("Marketing & Product Research (retired)"), QStringLiteral("matej.urban@gmail.com"), nullptr);
     aboutData.addCredit(i18n("kde.org"), i18n("Everyone involved in KDE"), nullptr, nullptr);
@@ -217,7 +224,7 @@ int main(int argc, char *argv[])
     bool singleInstanceMode = cfg.readEntry("Single Instance Mode", _SingleInstanceMode);
 
     QString url;
-    if(!parser.positionalArguments().isEmpty()) {
+    if (!parser.positionalArguments().isEmpty()) {
         url = parser.positionalArguments().first();
     }
 
@@ -226,20 +233,19 @@ int main(int argc, char *argv[])
         appName += QString("%1").arg(getpid());
 
     if (!QDBusConnection::sessionBus().isConnected()) {
-        fprintf(stderr, "Cannot connect to the D-BUS session bus.\n"
+        fprintf(stderr,
+                "Cannot connect to the D-BUS session bus.\n"
                 "To start it, run:\n"
                 "\teval `dbus-launch --auto-syntax`\n");
     }
 
     if (singleInstanceMode) {
-        QDBusInterface remoteApp("org.krusader", "/Instances/" + appName,
-                                "org.krusader.Instance", QDBusConnection::sessionBus());
+        QDBusInterface remoteApp("org.krusader", "/Instances/" + appName, "org.krusader.Instance", QDBusConnection::sessionBus());
         QDBusReply<bool> reply;
         if (remoteApp.isValid())
             reply = remoteApp.call("isRunning");
 
-        if (!reply.isValid() && reply.error().type() != QDBusError::ServiceUnknown &&
-                reply.error().type() != QDBusError::UnknownObject)
+        if (!reply.isValid() && reply.error().type() != QDBusError::ServiceUnknown && reply.error().type() != QDBusError::UnknownObject)
             fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
 
         if (reply.isValid() && (bool)reply) {
@@ -248,7 +254,7 @@ int main(int argc, char *argv[])
                 openTabsRemote(parser.value("left").split(','), true, appName);
             if (parser.isSet("right"))
                 openTabsRemote(parser.value("right").split(','), false, appName);
-            if(!url.isEmpty()) {
+            if (!url.isEmpty()) {
                 reply = remoteApp.call("openUrl", url);
                 if (!reply.isValid())
                     fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
@@ -274,7 +280,7 @@ int main(int argc, char *argv[])
     Krusader::AppName = appName;
     auto *krusader = new Krusader(parser);
 
-    if(!url.isEmpty())
+    if (!url.isEmpty())
         krusader->openUrl(url);
 
     QDBusConnection dbus = QDBusConnection::sessionBus();

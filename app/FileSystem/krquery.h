@@ -10,9 +10,9 @@
 
 // QtCore
 #include <QDateTime>
+#include <QElapsedTimer>
 #include <QStringList>
 #include <QUrl>
-#include <QElapsedTimer>
 
 #include <KConfigCore/KConfigGroup>
 #include <KIO/Job>
@@ -43,7 +43,7 @@ public:
     ~KrQuery() override;
 
     // load parameters from config
-    void load(const KConfigGroup& cfg);
+    void load(const KConfigGroup &cfg);
     // save parameters to config
     void save(KConfigGroup cfg);
 
@@ -57,17 +57,28 @@ public:
     // sets the text for name filtering
     void setNameFilter(const QString &text, bool cs = true);
     // returns the current filter mask
-    const QString &nameFilter() const { return origFilter; }
+    const QString &nameFilter() const
+    {
+        return origFilter;
+    }
     // returns whether the filter is case sensitive
-    bool isCaseSensitive() { return matchesCaseSensitive; }
+    bool isCaseSensitive()
+    {
+        return matchesCaseSensitive;
+    }
 
     // returns if the filter is null (was cancelled)
-    bool isNull() { return bNull; }
+    bool isNull()
+    {
+        return bNull;
+    }
 
     // sets the content part of the query
-    void setContent(const QString &content, bool cs = true, bool wholeWord = false,
-                    const QString& encoding = QString(), bool regExp = false);
-    const QString content() { return contain; }
+    void setContent(const QString &content, bool cs = true, bool wholeWord = false, const QString &encoding = QString(), bool regExp = false);
+    const QString content()
+    {
+        return contain;
+    }
 
     // sets the minimum file size limit
     void setMinimumFileSize(KIO::filesize_t);
@@ -95,42 +106,84 @@ public:
     //    in the member QStringList customType
     void setMimeType(const QString &typeIn, QStringList customList = QStringList());
     // true if setMimeType was called
-    bool hasMimeType() { return type.isEmpty(); }
+    bool hasMimeType()
+    {
+        return type.isEmpty();
+    }
 
     // sets the search in archive flag
-    void setSearchInArchives(bool flag) { inArchive = flag; }
+    void setSearchInArchives(bool flag)
+    {
+        inArchive = flag;
+    }
     // gets the search in archive flag
-    bool searchInArchives() { return inArchive; }
+    bool searchInArchives()
+    {
+        return inArchive;
+    }
     // sets the recursive flag
-    void setRecursive(bool flag) { recurse = flag; }
+    void setRecursive(bool flag)
+    {
+        recurse = flag;
+    }
     // gets the recursive flag
-    bool isRecursive() { return recurse; }
+    bool isRecursive()
+    {
+        return recurse;
+    }
     // sets whether to follow symbolic links
-    void setFollowLinks(bool flag) { followLinksP = flag; }
+    void setFollowLinks(bool flag)
+    {
+        followLinksP = flag;
+    }
     // gets whether to follow symbolic links
-    bool followLinks() { return followLinksP; }
+    bool followLinks()
+    {
+        return followLinksP;
+    }
 
     // sets the folder names which the searcher will exclude from traversing
     void setExcludeFolderNames(const QStringList &urls);
     // gets the folder names which the searcher excludes
-    const QStringList excludeFolderNames() { return excludedFolderNames; }
+    const QStringList excludeFolderNames()
+    {
+        return excludedFolderNames;
+    }
     // sets the folders where the searcher will search
     void setSearchInDirs(const QList<QUrl> &urls);
     // gets the folders where the searcher searches
-    const QList<QUrl> &searchInDirs() { return whereToSearch; }
+    const QList<QUrl> &searchInDirs()
+    {
+        return whereToSearch;
+    }
     // sets the folders where search is not permitted
     void setDontSearchInDirs(const QList<QUrl> &urls);
     // gets the folders where search is not permitted
-    const QList<QUrl> &dontSearchInDirs() { return whereNotToSearch; }
+    const QList<QUrl> &dontSearchInDirs()
+    {
+        return whereNotToSearch;
+    }
     // checks if a URL is excluded
     bool isExcluded(const QUrl &url);
     // gives whether we search for content
-    bool isContentSearched() const { return !contain.isEmpty(); }
+    bool isContentSearched() const
+    {
+        return !contain.isEmpty();
+    }
 
     bool checkLine(const QString &line, bool backwards = false) const;
-    const QString &foundText() const { return lastSuccessfulGrep; }
-    int matchIndex() const { return lastSuccessfulGrepMatchIndex; }
-    int matchLength() const { return lastSuccessfulGrepMatchLength; }
+    const QString &foundText() const
+    {
+        return lastSuccessfulGrep;
+    }
+    int matchIndex() const
+    {
+        return lastSuccessfulGrepMatchIndex;
+    }
+    int matchLength() const
+    {
+        return lastSuccessfulGrepMatchLength;
+    }
 
 protected:
     // important to know whether the event processor is connected
@@ -139,8 +192,8 @@ protected:
     void disconnectNotify(const QMetaMethod &signal) override;
 
 protected:
-    QStringList matches;      // what to search
-    QStringList excludes;     // what to exclude
+    QStringList matches; // what to search
+    QStringList excludes; // what to exclude
     QStringList includedDirs; // what dirs to include
     QStringList excludedDirs; // what dirs to exclude
     bool matchesCaseSensitive;
@@ -166,11 +219,11 @@ protected:
     QStringList customType;
 
     bool inArchive; // if true- search in archive.
-    bool recurse;   // if true recurse ob sub-dirs...
+    bool recurse; // if true recurse ob sub-dirs...
     bool followLinksP;
 
-    QStringList excludedFolderNames;      // substrings of paths where not to search
-    QList<QUrl> whereToSearch;    // directories to search
+    QStringList excludedFolderNames; // substrings of paths where not to search
+    QList<QUrl> whereToSearch; // directories to search
     QList<QUrl> whereNotToSearch; // directories NOT to search
 
 signals:
@@ -180,9 +233,9 @@ signals:
 private:
     bool matchCommon(const QString &, const QStringList &, const QStringList &) const;
     bool checkPerm(QString perm) const;
-    bool checkType(const QString& mime) const;
-    bool containsContent(const QString& file) const;
-    bool containsContent(const QUrl& url) const;
+    bool checkType(const QString &mime) const;
+    bool containsContent(const QString &file) const;
+    bool containsContent(const QUrl &url) const;
     bool checkBuffer(const char *data, int len) const;
     bool checkTimer() const;
     QStringList split(QString);

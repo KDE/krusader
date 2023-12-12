@@ -11,20 +11,20 @@
 // QtCore
 #include <QList>
 // QtWidgets
-#include <QStackedWidget>
 #include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QStackedWidget>
 
-#include "konfiguratorpage.h"
 #include "../GUI/krtreewidget.h"
+#include "konfiguratorpage.h"
 
 class KgColors : public KonfiguratorPage
 {
     Q_OBJECT
 
 public:
-    explicit KgColors(bool first, QWidget* parent = nullptr);
+    explicit KgColors(bool first, QWidget *parent = nullptr);
 
     bool apply() override;
 
@@ -48,54 +48,58 @@ protected slots:
 private:
     class PreviewItem;
 
-    int                        addColorSelector(const QString& cfgName, QString name, QColor defaultValue, const QString& dfltName = QString(),
-            ADDITIONAL_COLOR *addColor = nullptr, int addColNum = 0);
-    KonfiguratorColorChooser  *getColorSelector(const QString& name);
-    QLabel                    *getSelectorLabel(const QString& name);
-    void                       serialize(class QDataStream &);
-    void                       deserialize(class QDataStream &);
-    void                       serializeItem(class QDataStream &, const char * name);
-    void                       setColorWithDimming(PreviewItem * item, QColor foreground, QColor background, bool dimmed);
+    int addColorSelector(const QString &cfgName,
+                         QString name,
+                         QColor defaultValue,
+                         const QString &dfltName = QString(),
+                         ADDITIONAL_COLOR *addColor = nullptr,
+                         int addColNum = 0);
+    KonfiguratorColorChooser *getColorSelector(const QString &name);
+    QLabel *getSelectorLabel(const QString &name);
+    void serialize(class QDataStream &);
+    void deserialize(class QDataStream &);
+    void serializeItem(class QDataStream &, const char *name);
+    void setColorWithDimming(PreviewItem *item, QColor foreground, QColor background, bool dimmed);
 
 private:
-    QWidget                            *colorsGrp;
-    QGridLayout                        *colorsGrid;
-    int                                 offset;
-    int                                 endOfActiveColors;
-    int                                 endOfPanelColors;
-    int                                 activeTabIdx, inactiveTabIdx;
+    QWidget *colorsGrp;
+    QGridLayout *colorsGrid;
+    int offset;
+    int endOfActiveColors;
+    int endOfPanelColors;
+    int activeTabIdx, inactiveTabIdx;
 #ifdef SYNCHRONIZER_ENABLED
-    int                                 synchronizerTabIdx;
+    int synchronizerTabIdx;
 #endif
-    int                                 otherTabIdx;
+    int otherTabIdx;
 
-    QGroupBox                          *previewGrp;
-    QGridLayout                        *previewGrid;
-    QTabWidget                         *colorTabWidget;
+    QGroupBox *previewGrp;
+    QGridLayout *previewGrid;
+    QTabWidget *colorTabWidget;
 
-    QStackedWidget                     *inactiveColorStack;
-    QWidget                            *normalInactiveWidget;
-    QWidget                            *dimmedInactiveWidget;
-    KonfiguratorSpinBox                *dimFactor;
+    QStackedWidget *inactiveColorStack;
+    QWidget *normalInactiveWidget;
+    QWidget *dimmedInactiveWidget;
+    KonfiguratorSpinBox *dimFactor;
 
-    KonfiguratorCheckBoxGroup          *generals;
+    KonfiguratorCheckBoxGroup *generals;
 
-    QList<QLabel *>                     labelList;
-    QList<KonfiguratorColorChooser *>   itemList;
-    QList<QString>                      itemNames;
+    QList<QLabel *> labelList;
+    QList<KonfiguratorColorChooser *> itemList;
+    QList<QString> itemNames;
 
-    KrTreeWidget                       *preview;
+    KrTreeWidget *preview;
     QPushButton *importBtn, *exportBtn;
 
     class PreviewItem : public QTreeWidgetItem
     {
     private:
-        QColor  defaultBackground;
-        QColor  defaultForeground;
+        QColor defaultBackground;
+        QColor defaultForeground;
         QString label;
 
     public:
-        PreviewItem(QTreeWidget * parent, const QString& name)
+        PreviewItem(QTreeWidget *parent, const QString &name)
         {
             setText(0, name);
             defaultBackground = QColor(255, 255, 255);
@@ -104,10 +108,10 @@ private:
             parent->insertTopLevelItem(0, this);
         }
 
-        void setColor(const QColor& foregnd, const QColor& backgnd) {
+        void setColor(const QColor &foregnd, const QColor &backgnd)
+        {
             defaultForeground = foregnd;
             defaultBackground = backgnd;
-
 
             QBrush textColor(foregnd);
             QBrush baseColor(backgnd);
@@ -120,7 +124,8 @@ private:
             }
         }
 
-        QString text() {
+        QString text()
+        {
             return label;
         }
     };

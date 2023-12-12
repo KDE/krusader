@@ -22,7 +22,8 @@
  *
  * This is a singleton.
  */
-class FileSystemProvider : public QObject {
+class FileSystemProvider : public QObject
+{
     Q_OBJECT
 
 public:
@@ -39,7 +40,8 @@ public:
      * Start a copy job for copying, moving or linking files to a destination directory.
      * Operation may be implemented async depending on destination filesystem.
      */
-    void startCopyFiles(const QList<QUrl> &urls, const QUrl &destination,
+    void startCopyFiles(const QList<QUrl> &urls,
+                        const QUrl &destination,
                         KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                         bool showProgressInfo = true,
                         JobMan::StartMode startMode = JobMan::Default);
@@ -86,8 +88,7 @@ private:
 
     QList<QPointer<FileSystem>> _fileSystems;
 
-    static QString getACL(const QString & path, int type);
+    static QString getACL(const QString &path, int type);
 };
 
 #endif
-

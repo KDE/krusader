@@ -19,17 +19,16 @@ class KrTrashWatcher;
 class KrTrashHandler
 {
 public:
-    static bool    isTrashEmpty();
+    static bool isTrashEmpty();
     static QString trashIconName();
-    static void    emptyTrash();
-    static void    restoreTrashedFiles(const QList<QUrl> &url);
-    static void    startWatcher();
-    static void    stopWatcher();
+    static void emptyTrash();
+    static void restoreTrashedFiles(const QList<QUrl> &url);
+    static void startWatcher();
+    static void stopWatcher();
 
 private:
-    static KrTrashWatcher * _trashWatcher;
+    static KrTrashWatcher *_trashWatcher;
 };
-
 
 /** Watches the trashrc config file for changes and updates the trash icon. */
 class KrTrashWatcher : public QObject
@@ -44,7 +43,7 @@ public slots:
     void slotTrashChanged();
 
 private:
-    KDirWatch * _watcher;
+    KDirWatch *_watcher;
 };
 
 #endif /* __KR_TRASH_HANDLER__ */

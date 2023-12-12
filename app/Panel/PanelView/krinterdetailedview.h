@@ -32,10 +32,11 @@ public:
 
     void updateView() override;
 
-    bool ensureVisibilityAfterSelect() override {
+    bool ensureVisibilityAfterSelect() override
+    {
         return false;
     }
-    int  itemsPerPage() override;
+    int itemsPerPage() override;
     void setSortMode(KrViewProperties::ColumnType sortColumn, bool descending) override;
     void setFileIconSize(int size) override;
     void doRestoreSettings(KConfigGroup grp) override;
@@ -44,7 +45,7 @@ protected slots:
     void renameCurrentItem() override;
     void sectionResized(int, int, int);
     void sectionMoved(int, int, int);
-    void currentChanged(const QModelIndex & current, const QModelIndex & previous) override;
+    void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;
 
 protected:
     void setup() override;
@@ -52,8 +53,12 @@ protected:
     void saveSettings(KConfigGroup grp, KrViewProperties::PropertyType properties) override;
 
     // Don't do anything, selections are handled by the mouse handler
-    void setSelection(const QRect &, QItemSelectionModel::SelectionFlags) override {}
-    void selectAll() override {}
+    void setSelection(const QRect &, QItemSelectionModel::SelectionFlags) override
+    {
+    }
+    void selectAll() override
+    {
+    }
 
     void keyPressEvent(QKeyEvent *e) override;
     void mousePressEvent(QMouseEvent *) override;
@@ -61,19 +66,18 @@ protected:
     void mouseDoubleClickEvent(QMouseEvent *ev) override;
     void mouseMoveEvent(QMouseEvent *) override;
     void wheelEvent(QWheelEvent *) override;
-    bool event(QEvent * e) override;
+    bool event(QEvent *e) override;
     void dragEnterEvent(QDragEnterEvent *e) override;
     void dragMoveEvent(QDragMoveEvent *e) override;
     void dragLeaveEvent(QDragLeaveEvent *e) override;
     void dropEvent(QDropEvent *) override;
     bool eventFilter(QObject *object, QEvent *event) override;
-    bool viewportEvent(QEvent * event) override;
-    void drawRow(QPainter *painter, const QStyleOptionViewItem &options,
-                 const QModelIndex &index) const override;
+    bool viewportEvent(QEvent *event) override;
+    void drawRow(QPainter *painter, const QStyleOptionViewItem &options, const QModelIndex &index) const override;
 
     QRect itemRect(const FileItem *fileitem) override;
 
-    void showContextMenu(const QPoint & p) override;
+    void showContextMenu(const QPoint &p) override;
     void recalculateColumnSizes();
 
 private:

@@ -8,9 +8,6 @@
 
 #include "krview.h"
 
-#include "krselectionmode.h"
-#include "krviewfactory.h"
-#include "krviewitem.h"
 #include "../FileSystem/dirlisterinterface.h"
 #include "../FileSystem/fileitem.h"
 #include "../FileSystem/krpermhandler.h"
@@ -21,15 +18,18 @@
 #include "../krglobal.h"
 #include "../krpreviews.h"
 #include "../viewactions.h"
+#include "krselectionmode.h"
+#include "krviewfactory.h"
+#include "krviewitem.h"
 
 // QtCore
 #include <QDebug>
 #include <QDir>
 // QtGui
-#include <QPixmapCache>
 #include <QBitmap>
 #include <QPainter>
 #include <QPixmap>
+#include <QPixmapCache>
 // QtWidgets
 #include <QAction>
 #include <QInputDialog>
@@ -40,16 +40,16 @@
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 
-
 #define FILEITEM getFileItem()
 
 KrView *KrViewOperator::_changedView = nullptr;
 KrViewProperties::PropertyType KrViewOperator::_changedProperties = KrViewProperties::NoProperty;
 
-
 // ----------------------------- operator
-KrViewOperator::KrViewOperator(KrView *view, QWidget *widget) :
-        _view(view), _widget(widget), _massSelectionUpdate(false)
+KrViewOperator::KrViewOperator(KrView *view, QWidget *widget)
+    : _view(view)
+    , _widget(widget)
+    , _massSelectionUpdate(false)
 {
     _saveDefaultSettingsTimer.setSingleShot(true);
     connect(&_saveDefaultSettingsTimer, &QTimer::timeout, this, &KrViewOperator::saveDefaultSettings);
@@ -57,7 +57,7 @@ KrViewOperator::KrViewOperator(KrView *view, QWidget *widget) :
 
 KrViewOperator::~KrViewOperator()
 {
-    if(_changedView == _view)
+    if (_changedView == _view)
         saveDefaultSettings();
 }
 
@@ -86,10 +86,10 @@ void KrViewOperator::startDrag()
     QStringList items;
     _view->getSelectedItems(&items);
     if (items.empty())
-        return ; // don't drag an empty thing
+        return; // don't drag an empty thing
     QPixmap px;
     if (items.count() > 1 || _view->getCurrentKrViewItem() == nullptr)
-        px = FileListIcon("document-multiple").pixmap();  // we are dragging multiple items
+        px = FileListIcon("document-multiple").pixmap(); // we are dragging multiple items
     else
         px = _view->getCurrentKrViewItem()->icon();
     emit letsDrag(items, px);
@@ -97,19 +97,18 @@ void KrViewOperator::startDrag()
 
 bool KrViewOperator::searchItem(const QString &text, bool caseSensitive, int direction)
 {
-    KrViewItem * item = _view->getCurrentKrViewItem();
+    KrViewItem *item = _view->getCurrentKrViewItem();
     if (!item) {
         return false;
     }
-    const QRegExp regeEx(text, caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive,
-                         QRegExp::Wildcard);
+    const QRegExp regeEx(text, caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard);
     if (!direction) {
         if (regeEx.indexIn(item->name()) == 0) {
             return true;
         }
         direction = 1;
     }
-    KrViewItem * startItem = item;
+    KrViewItem *startItem = item;
     while (true) {
         item = (direction > 0) ? _view->getNext(item) : _view->getPrev(item);
         if (!item)
@@ -127,9 +126,7 @@ bool KrViewOperator::searchItem(const QString &text, bool caseSensitive, int dir
 
 bool KrViewOperator::filterSearch(const QString &text, bool caseSensitive)
 {
-    _view->_quickFilterMask = QRegExp(text,
-                                      caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive,
-                                      QRegExp::Wildcard);
+    _view->_quickFilterMask = QRegExp(text, caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard);
     _view->refresh();
     return _view->_count || !_view->_files->numFileItems();
 }
@@ -145,10 +142,10 @@ void KrViewOperator::setMassSelectionUpdate(bool upd)
 
 void KrViewOperator::settingsChanged(KrViewProperties::PropertyType properties)
 {
-    if(!_view->_updateDefaultSettings || _view->_ignoreSettingsChange)
+    if (!_view->_updateDefaultSettings || _view->_ignoreSettingsChange)
         return;
 
-    if(_changedView != _view)
+    if (_changedView != _view)
         saveDefaultSettings();
     _changedView = _view;
     _changedProperties = static_cast<KrViewProperties::PropertyType>(_changedProperties | properties);
@@ -158,7 +155,7 @@ void KrViewOperator::settingsChanged(KrViewProperties::PropertyType properties)
 void KrViewOperator::saveDefaultSettings()
 {
     _saveDefaultSettingsTimer.stop();
-    if(_changedView)
+    if (_changedView)
         _changedView->saveDefaultSettings(_changedProperties);
     _changedProperties = KrViewProperties::NoProperty;
     _changedView = nullptr;
@@ -169,10 +166,21 @@ void KrViewOperator::saveDefaultSettings()
 const KrView::IconSizes KrView::iconSizes;
 
 KrView::KrView(KrViewInstance &instance, KConfig *cfg)
-    : _config(cfg), _properties(nullptr), _focused(false), _fileIconSize(0),
-      _instance(instance), _files(nullptr), _mainWindow(nullptr), _widget(nullptr), _nameToMakeCurrent(QString()),
-      _previews(nullptr), _updateDefaultSettings(false), _ignoreSettingsChange(false), _count(0),
-      _numDirs(0), _dummyFileItem(nullptr)
+    : _config(cfg)
+    , _properties(nullptr)
+    , _focused(false)
+    , _fileIconSize(0)
+    , _instance(instance)
+    , _files(nullptr)
+    , _mainWindow(nullptr)
+    , _widget(nullptr)
+    , _nameToMakeCurrent(QString())
+    , _previews(nullptr)
+    , _updateDefaultSettings(false)
+    , _ignoreSettingsChange(false)
+    , _count(0)
+    , _numDirs(0)
+    , _dummyFileItem(nullptr)
 {
 }
 
@@ -200,8 +208,7 @@ void KrView::init(bool enableUpdateDefaultSettings)
     setup();
     restoreDefaultSettings();
 
-    _updateDefaultSettings = enableUpdateDefaultSettings &&
-        KConfigGroup(_config, "Startup").readEntry("Update Default Panel Settings", _RememberPos);
+    _updateDefaultSettings = enableUpdateDefaultSettings && KConfigGroup(_config, "Startup").readEntry("Update Default Panel Settings", _RememberPos);
 
     _instance.m_objects.append(this);
 }
@@ -217,16 +224,15 @@ void KrView::initProperties()
     int sortOps = 0;
     if (grpSvr.readEntry("Show Directories First", true))
         sortOps |= KrViewProperties::DirsFirst;
-    if(grpSvr.readEntry("Always sort dirs by name", false))
-        sortOps |=  KrViewProperties::AlwaysSortDirsByName;
+    if (grpSvr.readEntry("Always sort dirs by name", false))
+        sortOps |= KrViewProperties::AlwaysSortDirsByName;
     if (!grpSvr.readEntry("Case Sensative Sort", _CaseSensativeSort))
         sortOps |= KrViewProperties::IgnoreCase;
     if (grpSvr.readEntry("Locale Aware Sort", true))
         sortOps |= KrViewProperties::LocaleAwareSort;
     auto sortOptions = static_cast<KrViewProperties::SortOptions>(sortOps);
 
-    KrViewProperties::SortMethod sortMethod = static_cast<KrViewProperties::SortMethod>(
-        grpSvr.readEntry("Sort method", (int)_DefaultSortMethod));
+    KrViewProperties::SortMethod sortMethod = static_cast<KrViewProperties::SortMethod>(grpSvr.readEntry("Sort method", (int)_DefaultSortMethod));
     const bool humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
 
     // see KDE bug #40131
@@ -240,7 +246,7 @@ void KrView::initProperties()
     defaultAtomicExtensions += ".moc.cpp";
     QStringList atomicExtensions = grpSvr.readEntry("Atomic Extensions", defaultAtomicExtensions);
     for (QStringList::iterator i = atomicExtensions.begin(); i != atomicExtensions.end();) {
-        QString & ext = *i;
+        QString &ext = *i;
         ext = ext.trimmed();
         if (!ext.length()) {
             i = atomicExtensions.erase(i);
@@ -251,15 +257,14 @@ void KrView::initProperties()
         ++i;
     }
 
-    _properties = new KrViewProperties(displayIcons, numericPermissions, sortOptions, sortMethod,
-                                       humanReadableSize, localeAwareCompareIsCaseSensitive,
-                                       atomicExtensions);
+    _properties =
+        new KrViewProperties(displayIcons, numericPermissions, sortOptions, sortMethod, humanReadableSize, localeAwareCompareIsCaseSensitive, atomicExtensions);
 }
 
 void KrView::showPreviews(bool show)
 {
-    if(show) {
-        if(!_previews) {
+    if (show) {
+        if (!_previews) {
             _previews = new KrPreviews(this);
             _previews->update();
         }
@@ -268,17 +273,17 @@ void KrView::showPreviews(bool show)
         _previews = nullptr;
     }
     redraw();
-//     op()->settingsChanged(KrViewProperties::PropShowPreviews);
+    //     op()->settingsChanged(KrViewProperties::PropShowPreviews);
     op()->emitRefreshActions();
 }
 
 void KrView::updatePreviews()
 {
-    if(_previews)
+    if (_previews)
         _previews->update();
 }
 
-QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor & dimColor, int dimFactor, bool symlink)
+QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor &dimColor, int dimFactor, bool symlink)
 {
     QPixmap pixmap = icon;
 
@@ -287,7 +292,7 @@ QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor & dimCol
         Icon::applyOverlays(&pixmap, overlays);
     }
 
-    if(!dim)
+    if (!dim)
         return pixmap;
 
     QImage dimmed = pixmap.toImage();
@@ -299,11 +304,10 @@ QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor & dimCol
     p.setOpacity((qreal)dimFactor / (qreal)100);
     p.drawPixmap(0, 0, pixmap);
 
-    return QPixmap::fromImage(dimmed, Qt::ColorOnly | Qt::ThresholdDither |
-                                Qt::ThresholdAlphaDither | Qt::NoOpaqueDetection );
+    return QPixmap::fromImage(dimmed, Qt::ColorOnly | Qt::ThresholdDither | Qt::ThresholdAlphaDither | Qt::NoOpaqueDetection);
 }
 
-QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size/*, KRListItem::cmpColor color*/)
+QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size /*, KRListItem::cmpColor color*/)
 {
     // KConfigGroup ag( krConfig, "Advanced");
     //////////////////////////////
@@ -311,7 +315,7 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size/*, KRListItem:
     QString iconName = fileitem->getIcon();
     QString cacheName;
 
-    if(!size)
+    if (!size)
         size = _FilelistIconSize.toInt();
 
     QColor dimColor;
@@ -322,18 +326,17 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size/*, KRListItem:
         iconName = "";
 
     cacheName.append(QString::number(size));
-    if(fileitem->isSymLink())
+    if (fileitem->isSymLink())
         cacheName.append("LINK_");
-    if(dim)
+    if (dim)
         cacheName.append("DIM_");
     cacheName.append(iconName);
 
-    //QPixmapCache::setCacheLimit( ag.readEntry("Icon Cache Size",_IconCacheSize) );
+    // QPixmapCache::setCacheLimit( ag.readEntry("Icon Cache Size",_IconCacheSize) );
 
     // first try the cache
     if (!QPixmapCache::find(cacheName, &icon)) {
-        icon = processIcon(Icon(iconName, Icon("unknown")).pixmap(size),
-                           dim, dimColor, dimFactor, fileitem->isSymLink());
+        icon = processIcon(Icon(iconName, Icon("unknown")).pixmap(size), dim, dimColor, dimFactor, fileitem->isSymLink());
         // insert it into the cache
         QPixmapCache::insert(cacheName, icon);
     }
@@ -343,9 +346,9 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size/*, KRListItem:
 
 QPixmap KrView::getIcon(FileItem *fileitem)
 {
-    if(_previews) {
+    if (_previews) {
         QPixmap icon;
-        if(_previews->getPreview(fileitem, icon, _focused))
+        if (_previews->getPreview(fileitem, icon, _focused))
             return icon;
     }
     return getIcon(fileitem, _focused, _fileIconSize);
@@ -355,13 +358,16 @@ QPixmap KrView::getIcon(FileItem *fileitem)
  * this function ADDs a list of selected item names into 'names'.
  * it assumes the list is ready and doesn't initialize it, or clears it
  */
-void KrView::getItemsByMask(const QString& mask, QStringList* names, bool dirs, bool files)
+void KrView::getItemsByMask(const QString &mask, QStringList *names, bool dirs, bool files)
 {
-    for (KrViewItem * it = getFirst(); it != nullptr; it = getNext(it)) {
-        if ((it->name() == "..") || !QDir::match(mask, it->name())) continue;
+    for (KrViewItem *it = getFirst(); it != nullptr; it = getNext(it)) {
+        if ((it->name() == "..") || !QDir::match(mask, it->name()))
+            continue;
         // if we got here, than the item fits the mask
-        if (it->getFileItem()->isDir() && !dirs) continue;   // do we need to skip folders?
-        if (!it->getFileItem()->isDir() && !files) continue;   // do we need to skip files
+        if (it->getFileItem()->isDir() && !dirs)
+            continue; // do we need to skip folders?
+        if (!it->getFileItem()->isDir() && !files)
+            continue; // do we need to skip files
         names->append(it->name());
     }
 }
@@ -388,7 +394,7 @@ void KrView::getSelectedItems(QStringList *names, bool fallbackToFocused)
 KrViewItemList KrView::getSelectedKrViewItems()
 {
     KrViewItemList items;
-    for (KrViewItem * it = getFirst(); it != nullptr; it = getNext(it)) {
+    for (KrViewItem *it = getFirst(); it != nullptr; it = getNext(it)) {
         if (it->isSelected() && (it->name() != "..")) {
             items.append(it);
         }
@@ -411,21 +417,27 @@ QString KrView::statistics()
     KIO::filesize_t selectedSize = calcSelectedSize();
     QString tmp;
     KConfigGroup grp(_config, "Look&Feel");
-    if(grp.readEntry("Show Size In Bytes", false)) {
-        tmp = i18nc("%1=number of selected items,%2=total number of items, \
+    if (grp.readEntry("Show Size In Bytes", false)) {
+        tmp = i18nc(
+            "%1=number of selected items,%2=total number of items, \
                     %3=filesize of selected items,%4=filesize in Bytes, \
                     %5=filesize of all items in folder,%6=filesize in Bytes",
-                    "%1 out of %2, %3 (%4) out of %5 (%6)",
-                    numSelected(), _count, KIO::convertSize(selectedSize),
-                    KrPermHandler::parseSize(selectedSize),
-                    KIO::convertSize(size),
-                    KrPermHandler::parseSize(size));
+            "%1 out of %2, %3 (%4) out of %5 (%6)",
+            numSelected(),
+            _count,
+            KIO::convertSize(selectedSize),
+            KrPermHandler::parseSize(selectedSize),
+            KIO::convertSize(size),
+            KrPermHandler::parseSize(size));
     } else {
-        tmp = i18nc("%1=number of selected items,%2=total number of items, \
+        tmp = i18nc(
+            "%1=number of selected items,%2=total number of items, \
                     %3=filesize of selected items,%4=filesize of all items in folder",
-                    "%1 out of %2, %3 out of %4",
-                    numSelected(), _count, KIO::convertSize(selectedSize),
-                    KIO::convertSize(size));
+            "%1 out of %2, %3 out of %4",
+            numSelected(),
+            _count,
+            KIO::convertSize(selectedSize),
+            KIO::convertSize(size));
     }
 
     // notify if we're running a filtered view
@@ -434,35 +446,38 @@ QString KrView::statistics()
     return tmp;
 }
 
-bool KrView::changeSelection(const KrQuery& filter, bool select)
+bool KrView::changeSelection(const KrQuery &filter, bool select)
 {
     KConfigGroup grpSvr(_config, "Look&Feel");
     return changeSelection(filter, select, grpSvr.readEntry("Mark Dirs", _MarkDirs), true);
 }
 
-bool KrView::changeSelection(const KrQuery& filter, bool select, bool includeDirs, bool makeVisible)
+bool KrView::changeSelection(const KrQuery &filter, bool select, bool includeDirs, bool makeVisible)
 {
-    if (op()) op()->setMassSelectionUpdate(true);
+    if (op())
+        op()->setMassSelectionUpdate(true);
 
     KrViewItem *temp = getCurrentKrViewItem();
     KrViewItem *firstMatch = nullptr;
-    for (KrViewItem * it = getFirst(); it != nullptr; it = getNext(it)) {
+    for (KrViewItem *it = getFirst(); it != nullptr; it = getNext(it)) {
         if (it->name() == "..")
             continue;
         if (it->getFileItem()->isDir() && !includeDirs)
             continue;
 
-        FileItem * file = it->getMutableFileItem(); // filter::match calls getMimetype which isn't const
+        FileItem *file = it->getMutableFileItem(); // filter::match calls getMimetype which isn't const
         if (file == nullptr)
             continue;
 
         if (filter.match(file)) {
             it->setSelected(select);
-            if (!firstMatch) firstMatch = it;
+            if (!firstMatch)
+                firstMatch = it;
         }
     }
 
-    if (op()) op()->setMassSelectionUpdate(false);
+    if (op())
+        op()->setMassSelectionUpdate(false);
     updateView();
     if (ensureVisibilityAfterSelect() && temp != nullptr) {
         makeItemVisible(temp);
@@ -488,19 +503,21 @@ bool KrView::changeSelection(const KrQuery& filter, bool select, bool includeDir
 
 void KrView::invertSelection()
 {
-    if (op()) op()->setMassSelectionUpdate(true);
+    if (op())
+        op()->setMassSelectionUpdate(true);
     KConfigGroup grpSvr(_config, "Look&Feel");
     bool markDirs = grpSvr.readEntry("Mark Dirs", _MarkDirs);
 
     KrViewItem *temp = getCurrentKrViewItem();
-    for (KrViewItem * it = getFirst(); it != nullptr; it = getNext(it)) {
+    for (KrViewItem *it = getFirst(); it != nullptr; it = getNext(it)) {
         if (it->name() == "..")
             continue;
         if (it->getFileItem()->isDir() && !markDirs && !it->isSelected())
             continue;
         it->setSelected(!it->isSelected());
     }
-    if (op()) op()->setMassSelectionUpdate(false);
+    if (op())
+        op()->setMassSelectionUpdate(false);
     updateView();
     if (ensureVisibilityAfterSelect() && temp != nullptr)
         makeItemVisible(temp);
@@ -521,7 +538,8 @@ QString KrView::firstUnmarkedBelowCurrent(const bool skipCurrent)
         while (iterator && iterator->isSelected())
             iterator = getPrev(iterator);
     }
-    if (!iterator) return QString();
+    if (!iterator)
+        return QString();
     return iterator->name();
 }
 
@@ -597,7 +615,7 @@ void KrView::updateItem(FileItem *newFileItem)
 
 void KrView::clear()
 {
-    if(_previews)
+    if (_previews)
         _previews->clear();
     _count = _numDirs = 0;
     delete _dummyFileItem;
@@ -609,13 +627,13 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
 {
     qDebug() << "key event=" << e;
     switch (e->key()) {
-    case Qt::Key_Enter :
-    case Qt::Key_Return : {
+    case Qt::Key_Enter:
+    case Qt::Key_Return: {
         if (e->modifiers() & Qt::ControlModifier)
             // let the panel handle it
             e->ignore();
         else {
-            KrViewItem * i = getCurrentKrViewItem();
+            KrViewItem *i = getCurrentKrViewItem();
             if (i == nullptr)
                 return true;
             QString tmp = i->name();
@@ -623,7 +641,7 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         }
         return true;
     }
-    case Qt::Key_QuoteLeft :
+    case Qt::Key_QuoteLeft:
         // Terminal Emulator bugfix
         if (e->modifiers() == Qt::ControlModifier) {
             // let the panel handle it
@@ -634,7 +652,7 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
             op()->emitGoHome();
         }
         return true;
-    case Qt::Key_Delete :
+    case Qt::Key_Delete:
         // delete/trash the file (delete with alternative mode is a panel action)
         // allow only no modifier or KeypadModifier (i.e. Del on a Numeric Keypad)
         if ((e->modifiers() & ~Qt::KeypadModifier) == Qt::NoModifier) {
@@ -642,12 +660,12 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         }
         return true;
     case Qt::Key_Insert: {
-        KrViewItem * i = getCurrentKrViewItem();
+        KrViewItem *i = getCurrentKrViewItem();
         if (!i)
             return true;
         i->setSelected(!i->isSelected());
         if (KrSelectionMode::getSelectionHandler()->insertMovesDown()) {
-            KrViewItem * next = getNext(i);
+            KrViewItem *next = getNext(i);
             if (next) {
                 setCurrentKrViewItem(next);
                 makeItemVisible(next);
@@ -657,16 +675,15 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         return true;
     }
     case Qt::Key_Space: {
-        KrViewItem * viewItem = getCurrentKrViewItem();
+        KrViewItem *viewItem = getCurrentKrViewItem();
         if (viewItem != nullptr) {
             viewItem->setSelected(!viewItem->isSelected());
 
-            if (viewItem->getFileItem()->isDir() &&
-                KrSelectionMode::getSelectionHandler()->spaceCalculatesDiskSpace()) {
+            if (viewItem->getFileItem()->isDir() && KrSelectionMode::getSelectionHandler()->spaceCalculatesDiskSpace()) {
                 op()->emitQuickCalcSpace(viewItem);
             }
             if (KrSelectionMode::getSelectionHandler()->spaceMovesDown()) {
-                KrViewItem * next = getNext(viewItem);
+                KrViewItem *next = getNext(viewItem);
                 if (next) {
                     setCurrentKrViewItem(next);
                     makeItemVisible(next);
@@ -676,11 +693,10 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         }
         return true;
     }
-    case Qt::Key_Backspace :
-            // Terminal Emulator bugfix
-    case Qt::Key_Left :
-        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier ||
-                e->modifiers() == Qt::AltModifier) {
+    case Qt::Key_Backspace:
+        // Terminal Emulator bugfix
+    case Qt::Key_Left:
+        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier || e->modifiers() == Qt::AltModifier) {
             // let the panel handle it
             e->ignore();
         } else {
@@ -689,9 +705,8 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
             op()->emitDirUp();
         }
         return true; // safety
-    case Qt::Key_Right :
-        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier ||
-                e->modifiers() == Qt::AltModifier) {
+    case Qt::Key_Right:
+        if (e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier || e->modifiers() == Qt::AltModifier) {
             // let the panel handle it
             e->ignore();
         } else {
@@ -701,7 +716,7 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
                 op()->emitGoInside(i->name());
         }
         return true;
-    case Qt::Key_Up :
+    case Qt::Key_Up:
         if (e->modifiers() == Qt::ControlModifier) {
             // let the panel handle it - jump to the Location Bar
             e->ignore();
@@ -720,7 +735,7 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
             }
         }
         return true;
-    case Qt::Key_Down :
+    case Qt::Key_Down:
         if (e->modifiers() == Qt::ControlModifier || e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier)) {
             // let the panel handle it - jump to command line
             e->ignore();
@@ -755,13 +770,13 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
             }
             op()->setMassSelectionUpdate(false);
         }
-        KrViewItem * first = getFirst();
+        KrViewItem *first = getFirst();
         if (first) {
             setCurrentKrViewItem(first);
             makeItemVisible(first);
         }
     }
-    return true;
+        return true;
     case Qt::Key_End:
         if (e->modifiers() & Qt::ShiftModifier) {
             bool select = false;
@@ -786,10 +801,10 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         }
         return true;
     case Qt::Key_PageDown: {
-        KrViewItem * current = getCurrentKrViewItem();
+        KrViewItem *current = getCurrentKrViewItem();
         int downStep = itemsPerPage();
         while (downStep != 0 && current) {
-            KrViewItem * newCurrent = getNext(current);
+            KrViewItem *newCurrent = getNext(current);
             if (newCurrent == nullptr)
                 break;
             current = newCurrent;
@@ -802,10 +817,10 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         return true;
     }
     case Qt::Key_PageUp: {
-        KrViewItem * current = getCurrentKrViewItem();
+        KrViewItem *current = getCurrentKrViewItem();
         int upStep = itemsPerPage();
         while (upStep != 0 && current) {
-            KrViewItem * newCurrent = getPrev(current);
+            KrViewItem *newCurrent = getPrev(current);
             if (newCurrent == nullptr)
                 break;
             current = newCurrent;
@@ -821,9 +836,9 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
         e->ignore();
         return true; // otherwise the selection gets lost??!??
                      // also it is needed by the panel
-    case Qt::Key_A : // mark all
+    case Qt::Key_A: // mark all
         if (e->modifiers() == Qt::ControlModifier) {
-            //FIXME: shouldn't there also be a shortcut for unselecting everything ?
+            // FIXME: shouldn't there also be a shortcut for unselecting everything ?
             selectAllIncludingDirs();
             return true;
         }
@@ -839,23 +854,23 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
 void KrView::zoomIn()
 {
     int idx = iconSizes.indexOf(_fileIconSize);
-    if(idx >= 0 && (idx+1) < iconSizes.count())
-        setFileIconSize(iconSizes[idx+1]);
+    if (idx >= 0 && (idx + 1) < iconSizes.count())
+        setFileIconSize(iconSizes[idx + 1]);
 }
 
 void KrView::zoomOut()
 {
     int idx = iconSizes.indexOf(_fileIconSize);
-    if(idx > 0)
-        setFileIconSize(iconSizes[idx-1]);
+    if (idx > 0)
+        setFileIconSize(iconSizes[idx - 1]);
 }
 
 void KrView::setFileIconSize(int size)
 {
-    if(iconSizes.indexOf(size) < 0)
+    if (iconSizes.indexOf(size) < 0)
         return;
     _fileIconSize = size;
-    if(_previews) {
+    if (_previews) {
         _previews->clear();
         _previews->update();
     }
@@ -882,21 +897,21 @@ void KrView::restoreDefaultSettings()
 
 void KrView::saveSettings(KConfigGroup group, KrViewProperties::PropertyType properties)
 {
-    if(properties & KrViewProperties::PropIconSize)
+    if (properties & KrViewProperties::PropIconSize)
         group.writeEntry("IconSize", fileIconSize());
-    if(properties & KrViewProperties::PropShowPreviews)
+    if (properties & KrViewProperties::PropShowPreviews)
         group.writeEntry("ShowPreviews", previewsShown());
-    if(properties & KrViewProperties::PropSortMode)
+    if (properties & KrViewProperties::PropSortMode)
         saveSortMode(group);
-    if(properties & KrViewProperties::PropFilter) {
+    if (properties & KrViewProperties::PropFilter) {
         group.writeEntry("Filter", static_cast<int>(_properties->filter));
         group.writeEntry("FilterApplysToDirs", _properties->filterApplysToDirs);
-        if(_properties->filterSettings.isValid())
+        if (_properties->filterSettings.isValid())
             _properties->filterSettings.save(KConfigGroup(&group, "FilterSettings"));
     }
 }
 
-void KrView::restoreSettings(const KConfigGroup& group)
+void KrView::restoreSettings(const KConfigGroup &group)
 {
     _ignoreSettingsChange = true;
     doRestoreSettings(group);
@@ -909,8 +924,7 @@ void KrView::doRestoreSettings(KConfigGroup group)
     restoreSortMode(group);
     setFileIconSize(group.readEntry("IconSize", defaultFileIconSize()));
     showPreviews(group.readEntry("ShowPreviews", false));
-    _properties->filter = static_cast<KrViewProperties::FilterSpec>(group.readEntry("Filter",
-                                                    static_cast<int>(KrViewProperties::All)));
+    _properties->filter = static_cast<KrViewProperties::FilterSpec>(group.readEntry("Filter", static_cast<int>(KrViewProperties::All)));
     _properties->filterApplysToDirs = group.readEntry("FilterApplysToDirs", false);
     _properties->filterSettings.load(KConfigGroup(&group, "FilterSettings"));
     _properties->filterMask = _properties->filterSettings.toQuery();
@@ -918,8 +932,8 @@ void KrView::doRestoreSettings(KConfigGroup group)
 
 void KrView::applySettingsToOthers()
 {
-    for(auto view : _instance.m_objects) {
-        if(this != view) {
+    for (auto view : _instance.m_objects) {
+        if (this != view) {
             view->_ignoreSettingsChange = true;
             view->copySettingsFrom(this);
             view->_ignoreSettingsChange = false;
@@ -929,11 +943,11 @@ void KrView::applySettingsToOthers()
 
 void KrView::sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending)
 {
-    if(sortColumn == _properties->sortColumn && descending == (bool) (_properties->sortOptions & KrViewProperties::Descending))
+    if (sortColumn == _properties->sortColumn && descending == (bool)(_properties->sortOptions & KrViewProperties::Descending))
         return;
 
     int options = _properties->sortOptions;
-    if(descending)
+    if (descending)
         options |= KrViewProperties::Descending;
     else
         options &= ~KrViewProperties::Descending;
@@ -943,9 +957,7 @@ void KrView::sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool desce
 
 bool KrView::drawCurrent() const
 {
-    return isFocused() ||
-           KConfigGroup(_config, "Look&Feel")
-               .readEntry("Always Show Current Item", _AlwaysShowCurrentItem);
+    return isFocused() || KConfigGroup(_config, "Look&Feel").readEntry("Always Show Current Item", _AlwaysShowCurrentItem);
 }
 
 void KrView::saveSortMode(KConfigGroup &group)
@@ -961,33 +973,49 @@ void KrView::restoreSortMode(KConfigGroup &group)
     setSortMode(static_cast<KrViewProperties::ColumnType>(column), isDescending);
 }
 
-QString KrView::krPermissionText(const FileItem * fileitem)
+QString KrView::krPermissionText(const FileItem *fileitem)
 {
     QString tmp;
     switch (fileitem->isReadable()) {
-    case ALLOWED_PERM: tmp+='r'; break;
-    case UNKNOWN_PERM: tmp+='?'; break;
-    case NO_PERM:      tmp+='-'; break;
+    case ALLOWED_PERM:
+        tmp += 'r';
+        break;
+    case UNKNOWN_PERM:
+        tmp += '?';
+        break;
+    case NO_PERM:
+        tmp += '-';
+        break;
     }
     switch (fileitem->isWriteable()) {
-    case ALLOWED_PERM: tmp+='w'; break;
-    case UNKNOWN_PERM: tmp+='?'; break;
-    case NO_PERM:      tmp+='-'; break;
+    case ALLOWED_PERM:
+        tmp += 'w';
+        break;
+    case UNKNOWN_PERM:
+        tmp += '?';
+        break;
+    case NO_PERM:
+        tmp += '-';
+        break;
     }
     switch (fileitem->isExecutable()) {
-    case ALLOWED_PERM: tmp+='x'; break;
-    case UNKNOWN_PERM: tmp+='?'; break;
-    case NO_PERM:      tmp+='-'; break;
+    case ALLOWED_PERM:
+        tmp += 'x';
+        break;
+    case UNKNOWN_PERM:
+        tmp += '?';
+        break;
+    case NO_PERM:
+        tmp += '-';
+        break;
     }
     return tmp;
 }
 
 QString KrView::permissionsText(const KrViewProperties *properties, const FileItem *fileItem)
 {
-    return properties->numericPermissions ?
-               QString().asprintf("%.4o", fileItem->getMode() & (S_ISUID | S_ISGID | S_ISVTX |
-                                                                 S_IRWXU | S_IRWXG | S_IRWXO)) :
-               fileItem->getPerm();
+    return properties->numericPermissions ? QString().asprintf("%.4o", fileItem->getMode() & (S_ISUID | S_ISGID | S_ISVTX | S_IRWXU | S_IRWXG | S_IRWXO))
+                                          : fileItem->getPerm();
 }
 
 QString KrView::sizeText(const KrViewProperties *properties, KIO::filesize_t size)
@@ -1010,9 +1038,9 @@ bool KrView::isFiltered(FileItem *fileitem)
     bool isDir = fileitem->isDir();
     if (!isDir || (isDir && properties()->filterApplysToDirs)) {
         switch (properties()->filter) {
-        case KrViewProperties::All :
+        case KrViewProperties::All:
             break;
-        case KrViewProperties::Custom :
+        case KrViewProperties::Custom:
             if (!properties()->filterMask.match(fileitem))
                 filteredOut = true;
             break;
@@ -1033,14 +1061,14 @@ bool KrView::isFiltered(FileItem *fileitem)
 
 void KrView::setFiles(DirListerInterface *files)
 {
-    if(files != _files) {
+    if (files != _files) {
         clear();
-        if(_files)
+        if (_files)
             QObject::disconnect(_files, nullptr, op(), nullptr);
         _files = files;
     }
 
-    if(!_files)
+    if (!_files)
         return;
 
     QObject::disconnect(_files, nullptr, op(), nullptr);
@@ -1050,7 +1078,7 @@ void KrView::setFiles(DirListerInterface *files)
     QObject::connect(_files, &DirListerInterface::updatedFileItem, op(), &KrViewOperator::fileUpdated);
 }
 
-void KrView::setFilter(KrViewProperties::FilterSpec filter, const FilterSettings& customFilter, bool applyToDirs)
+void KrView::setFilter(KrViewProperties::FilterSpec filter, const FilterSettings &customFilter, bool applyToDirs)
 {
     _properties->filter = filter;
     _properties->filterSettings = customFilter;
@@ -1061,33 +1089,30 @@ void KrView::setFilter(KrViewProperties::FilterSpec filter, const FilterSettings
 
 void KrView::setFilter(KrViewProperties::FilterSpec filter)
 {
-
     KConfigGroup cfg(_config, "Look&Feel");
     bool rememberSettings = cfg.readEntry("FilterDialogRemembersSettings", _FilterDialogRemembersSettings);
     bool applyToDirs = rememberSettings ? _properties->filterApplysToDirs : false;
     switch (filter) {
-    case KrViewProperties::All :
+    case KrViewProperties::All:
         break;
-    case KrViewProperties::Custom :
-        {
-            QString applyFilterToFolders = i18n("Apply filter to folder&s");
-            // Note: It has the same shortcut as "Apply &selection to folders" has
-            // in a very similar dialog (which is aimed to select files/folders).
-            // The "Alt+A" and "Alt+F" shortcuts were already taken
+    case KrViewProperties::Custom: {
+        QString applyFilterToFolders = i18n("Apply filter to folder&s");
+        // Note: It has the same shortcut as "Apply &selection to folders" has
+        // in a very similar dialog (which is aimed to select files/folders).
+        // The "Alt+A" and "Alt+F" shortcuts were already taken
 
-            FilterDialog dialog(_widget, i18n("Filter Files"), QStringList(applyFilterToFolders), false);
-            dialog.checkExtraOption(applyFilterToFolders, applyToDirs);
-            if (rememberSettings)
-                dialog.applySettings(_properties->filterSettings);
-            dialog.exec();
-            FilterSettings s(dialog.getSettings());
-            if (!s.isValid()) // if the user canceled -> quit
-                return;
-            _properties->filterSettings = s;
-            _properties->filterMask = s.toQuery();
-            applyToDirs = dialog.isExtraOptionChecked(applyFilterToFolders);
-        }
-        break;
+        FilterDialog dialog(_widget, i18n("Filter Files"), QStringList(applyFilterToFolders), false);
+        dialog.checkExtraOption(applyFilterToFolders, applyToDirs);
+        if (rememberSettings)
+            dialog.applySettings(_properties->filterSettings);
+        dialog.exec();
+        FilterSettings s(dialog.getSettings());
+        if (!s.isValid()) // if the user canceled -> quit
+            return;
+        _properties->filterSettings = s;
+        _properties->filterMask = s.toQuery();
+        applyToDirs = dialog.isExtraOptionChecked(applyFilterToFolders);
+    } break;
     default:
         return;
     }
@@ -1117,8 +1142,8 @@ void KrView::customSelection(bool select)
 void KrView::refresh()
 {
     const QString currentItem = !nameToMakeCurrent().isEmpty() ? //
-                                    nameToMakeCurrent() :
-                                    getCurrentItem();
+        nameToMakeCurrent()
+                                                               : getCurrentItem();
     bool scrollToCurrent = !nameToMakeCurrent().isEmpty() || isItemVisible(getCurrentKrViewItem());
     setNameToMakeCurrent(QString());
 
@@ -1127,21 +1152,21 @@ void KrView::refresh()
 
     clear();
 
-    if(!_files)
+    if (!_files)
         return;
 
-    QList<FileItem*> fileItems;
+    QList<FileItem *> fileItems;
 
     // if we are not at the root add the ".." entry
-    if(!_files->isRoot()) {
+    if (!_files->isRoot()) {
         _dummyFileItem = FileItem::createDummy();
         fileItems << _dummyFileItem;
     }
 
-    foreach(FileItem *fileitem, _files->fileItems()) {
-        if(!fileitem || isFiltered(fileitem))
+    foreach (FileItem *fileitem, _files->fileItems()) {
+        if (!fileitem || isFiltered(fileitem))
             continue;
-        if(fileitem->isDir())
+        if (fileitem->isDir())
             _numDirs++;
         _count++;
         fileItems << fileitem;
@@ -1149,7 +1174,7 @@ void KrView::refresh()
 
     populate(fileItems, _dummyFileItem);
 
-    if(!selection.isEmpty())
+    if (!selection.isEmpty())
         setSelectionUrls(selection);
 
     if (!currentItem.isEmpty()) {
@@ -1171,7 +1196,7 @@ void KrView::refresh()
     op()->emitSelectionChanged();
 }
 
-void KrView::setSelected(const FileItem* fileitem, bool select)
+void KrView::setSelected(const FileItem *fileitem, bool select)
 {
     if (fileitem == _dummyFileItem)
         return;
@@ -1189,18 +1214,19 @@ void KrView::saveSelection()
 
 void KrView::restoreSelection()
 {
-    if(canRestoreSelection())
+    if (canRestoreSelection())
         setSelectionUrls(_savedSelection);
 }
 
-void KrView::clearSavedSelection() {
+void KrView::clearSavedSelection()
+{
     _savedSelection.clear();
     op()->emitRefreshActions();
 }
 
 void KrView::markSameBaseName()
 {
-    KrViewItem* item = getCurrentKrViewItem();
+    KrViewItem *item = getCurrentKrViewItem();
     if (!item)
         return;
     KrQuery query(QString("%1.*").arg(item->name(false)));
@@ -1209,7 +1235,7 @@ void KrView::markSameBaseName()
 
 void KrView::markSameExtension()
 {
-    KrViewItem* item = getCurrentKrViewItem();
+    KrViewItem *item = getCurrentKrViewItem();
     if (!item)
         return;
     KrQuery query(QString("*.%1").arg(item->extension()));

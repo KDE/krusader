@@ -24,10 +24,10 @@
 #include <KIOCore/KFileItem>
 #include <KWidgetsAddons/KMessageBox>
 
-#include "fileitem.h"
 #include "../defaults.h"
 #include "../krglobal.h"
 #include "../krservices.h"
+#include "fileitem.h"
 
 #define VIRTUALFILESYSTEM_DB "virtualfilesystem.db"
 
@@ -43,15 +43,18 @@ VirtualFileSystem::VirtualFileSystem()
     _type = FS_VIRTUAL;
 }
 
-void VirtualFileSystem::copyFiles(const QList<QUrl> &urls, const QUrl &destination,
-                         KIO::CopyJob::CopyMode /*mode*/, bool /*showProgressInfo*/,
-                         JobMan::StartMode /*startMode*/)
+void VirtualFileSystem::copyFiles(const QList<QUrl> &urls,
+                                  const QUrl &destination,
+                                  KIO::CopyJob::CopyMode /*mode*/,
+                                  bool /*showProgressInfo*/,
+                                  JobMan::StartMode /*startMode*/)
 {
     const QString dir = QDir(destination.path()).absolutePath().remove('/');
 
     if (dir.isEmpty()) {
-        showError(i18n("You cannot copy files directly to the 'virt:/' folder.\n"
-                       "You can create a sub folder and copy your files into it."));
+        showError(
+            i18n("You cannot copy files directly to the 'virt:/' folder.\n"
+                 "You can create a sub folder and copy your files into it."));
         return;
     }
 
@@ -76,8 +79,7 @@ void VirtualFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
     copyFiles(urls, destination);
 }
 
-void VirtualFileSystem::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mode*/,
-                                 const QString &dir)
+void VirtualFileSystem::addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode /*mode*/, const QString &dir)
 {
     QUrl destination(_currentDirectory);
     if (!dir.isEmpty()) {
@@ -98,7 +100,7 @@ void VirtualFileSystem::remove(const QStringList &fileNames)
         }
     } else {
         // remove the URLs from the collection
-        for (const QString& name : fileNames) {
+        for (const QString &name : fileNames) {
             if (_virtFilesystemDict.find(parentDir) != _virtFilesystemDict.end()) {
                 QList<QUrl> *urlList = _virtFilesystemDict[parentDir];
                 urlList->removeAll(getUrl(name));
@@ -156,8 +158,12 @@ void VirtualFileSystem::rename(const QString &fileName, const QString &newName)
     _virtFilesystemDict[currentDir()]->append(dest);
 
     KIO::Job *job = KIO::moveAs(item->getUrl(), dest, KIO::HideProgressInfo);
-    connect(job, &KIO::Job::result, this, [=](KJob* job) { slotJobResult(job, false); });
-    connect(job, &KIO::Job::result, this, [=]() { emit fileSystemChanged(currentDirectory(), false); });
+    connect(job, &KIO::Job::result, this, [=](KJob *job) {
+        slotJobResult(job, false);
+    });
+    connect(job, &KIO::Job::result, this, [=]() {
+        emit fileSystemChanged(currentDirectory(), false);
+    });
 }
 
 bool VirtualFileSystem::canMoveToTrash(const QStringList &fileNames) const
@@ -165,7 +171,7 @@ bool VirtualFileSystem::canMoveToTrash(const QStringList &fileNames) const
     if (isRoot())
         return false;
 
-    for (const QString& fileName : fileNames) {
+    for (const QString &fileName : fileNames) {
         if (!getUrl(fileName).isLocalFile()) {
             return false;
         }
@@ -205,8 +211,7 @@ bool VirtualFileSystem::refreshInternal(const QUrl &directory, bool onlyScan)
 
     if (!onlyScan) {
         const QString metaInfo = _metaInfoDict[currentDir()];
-        emit fileSystemInfoChanged(metaInfo.isEmpty() ? i18n("Virtual filesystem") : metaInfo,
-                                   "", 0, 0);
+        emit fileSystemInfoChanged(metaInfo.isEmpty() ? i18n("Virtual filesystem") : metaInfo, "", 0, 0);
     }
 
     QMutableListIterator<QUrl> it(*urlList);
@@ -325,7 +330,7 @@ FileItem *VirtualFileSystem::createFileItem(const QUrl &url)
 
 KConfig &VirtualFileSystem::getVirtDB()
 {
-    //virtualfilesystem_db = new KConfig("data",VIRTUALFILESYSTEM_DB,KConfig::NoGlobals);
+    // virtualfilesystem_db = new KConfig("data",VIRTUALFILESYSTEM_DB,KConfig::NoGlobals);
     static KConfig db(VIRTUALFILESYSTEM_DB, KConfig::CascadeConfig, QStandardPaths::AppDataLocation);
     return db;
 }

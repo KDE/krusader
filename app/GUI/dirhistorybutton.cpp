@@ -7,8 +7,8 @@
 */
 
 #include "dirhistorybutton.h"
-#include "../icon.h"
 #include "../Panel/dirhistoryqueue.h"
+#include "../icon.h"
 
 #include "../FileSystem/filesystem.h"
 
@@ -22,7 +22,8 @@
 
 #include <KI18n/KLocalizedString>
 
-DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent) : QToolButton(parent)
+DirHistoryButton::DirHistoryButton(DirHistoryQueue *hQ, QWidget *parent)
+    : QToolButton(parent)
 {
     setAutoRaise(true);
     setIcon(Icon("chronometer"));
@@ -46,38 +47,37 @@ DirHistoryButton::~DirHistoryButton() = default;
 
 void DirHistoryButton::showMenu()
 {
-    QMenu * pP = menu();
+    QMenu *pP = menu();
     if (pP) {
-        menu() ->exec(mapToGlobal(QPoint(0, height())));
+        menu()->exec(mapToGlobal(QPoint(0, height())));
     }
 }
 /** No descriptions */
 void DirHistoryButton::slotPopup()
 {
-//    qDebug() << "History slot";
+    //    qDebug() << "History slot";
 }
 /** No descriptions */
 void DirHistoryButton::slotAboutToShow()
 {
     emit aboutToShow();
-//    qDebug() << "about to show";
+    //    qDebug() << "about to show";
     popupMenu->clear();
 
     for (int i = 0; i < historyQueue->count(); i++) {
         QAction *act = popupMenu->addAction(historyQueue->get(i).toDisplayString());
         act->setData(QVariant(i));
-        if(historyQueue->currentPos() == i) {
+        if (historyQueue->currentPos() == i) {
             act->setCheckable(true);
             act->setChecked(true);
         }
     }
 }
 /** No descriptions */
-void DirHistoryButton::slotPopupActivated(QAction * action)
+void DirHistoryButton::slotPopupActivated(QAction *action)
 {
     if (action && action->data().canConvert<int>()) {
         int id = action->data().toInt();
         emit gotoPos(id);
     }
 }
-

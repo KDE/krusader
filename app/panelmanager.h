@@ -12,10 +12,10 @@
 #include "abstractpanelmanager.h"
 
 // QtWidgets
-#include <QWidget>
-#include <QLayout>
 #include <QGridLayout>
 #include <QHBoxLayout>
+#include <QLayout>
+#include <QWidget>
 
 #include <KConfigCore/KConfigGroup>
 
@@ -30,7 +30,7 @@ class TabActions;
 /**
  * Implements tabbed-browsing by managing a list of tabs and corresponding panels.
  */
-class PanelManager: public QWidget, public AbstractPanelManager
+class PanelManager : public QWidget, public AbstractPanelManager
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.krusader.PanelManager")
@@ -41,12 +41,13 @@ public:
      * (self, other, active), which enables it to manage pointers held by the panels transparently.
      * It also receives a bool (left) which is true if the manager is the left one, or false otherwise.
      */
-    PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left);
+    PanelManager(QWidget *parent, KrMainWindow *mainWindow, bool left);
 
     void saveSettings(KConfigGroup config, bool saveHistory);
     void loadSettings(KConfigGroup config);
     int findTab(QUrl url);
-    int tabCount() {
+    int tabCount()
+    {
         return _tabbar->count();
     }
     int activeTab();
@@ -57,21 +58,31 @@ public:
     /** Refresh all tabs after config changes. */
     void reloadConfig();
     void layoutTabs();
-    void setLeft(bool left) {
+    void setLeft(bool left)
+    {
         _left = left;
     }
-    void setOtherManager(PanelManager *other) {
+    void setOtherManager(PanelManager *other)
+    {
         _otherManager = other;
     }
 
     // AbstractPanelManager implementation
-    bool isLeft() const override { return _left; }
-    AbstractPanelManager *otherManager() const override { return _otherManager; }
+    bool isLeft() const override
+    {
+        return _left;
+    }
+    AbstractPanelManager *otherManager() const override
+    {
+        return _otherManager;
+    }
     KrPanel *currentPanel() const override;
-    void newTab(const QUrl &url, int insertIndex) override {
+    void newTab(const QUrl &url, int insertIndex) override
+    {
         slotNewTab(url, true, insertIndex);
     }
-    void duplicateTab(const QUrl &url, KrPanel *nextTo) override {
+    void duplicateTab(const QUrl &url, KrPanel *nextTo) override
+    {
         slotDuplicateTab(url, nextTo);
     }
     /**
@@ -89,8 +100,8 @@ public:
     void delClosedTab(QAction *action);
 
 signals:
-    void draggingTab(PanelManager *from, QMouseEvent*);
-    void draggingTabFinished(PanelManager *from, QMouseEvent*);
+    void draggingTab(PanelManager *from, QMouseEvent *);
+    void draggingTabFinished(PanelManager *from, QMouseEvent *);
     void setActiveManager(PanelManager *manager);
     void pathChanged(ListPanel *panel);
 
@@ -100,10 +111,11 @@ public slots:
      * action, from the context-menu.
      */
 
-    Q_SCRIPTABLE void newTab(const QString& url) {
+    Q_SCRIPTABLE void newTab(const QString &url)
+    {
         slotNewTab(QUrl::fromUserInput(url, QString(), QUrl::AssumeLocalFile));
     }
-    Q_SCRIPTABLE void newTabs(const QStringList& urls);
+    Q_SCRIPTABLE void newTabs(const QStringList &urls);
 
     void slotNewTab(const QUrl &url, bool setCurrent = true, int insertIndex = -1);
     void slotNewTabButton();
@@ -124,10 +136,12 @@ public slots:
 protected slots:
     void slotCurrentTabChanged(int index);
     void activate();
-    void slotDraggingTab(QMouseEvent *e) {
+    void slotDraggingTab(QMouseEvent *e)
+    {
         emit draggingTab(this, e);
     }
-    void slotDraggingTabFinished(QMouseEvent* e) {
+    void slotDraggingTabFinished(QMouseEvent *e)
+    {
         emit draggingTabFinished(this, e);
     }
 
@@ -137,7 +151,7 @@ private:
     void tabsCountChanged();
     ListPanel *addPanel(bool setCurrent = true, const KConfigGroup &cfg = KConfigGroup(), int insertIndex = -1);
     ListPanel *duplicatePanel(const KConfigGroup &cfg, KrPanel *nextTo, int insertIndex = -1);
-    ListPanel* createPanel(const KConfigGroup& cfg);
+    ListPanel *createPanel(const KConfigGroup &cfg);
     void connectPanel(ListPanel *p);
     void disconnectPanel(ListPanel *p);
 
@@ -151,6 +165,5 @@ private:
     QToolButton *_newTab;
     ListPanel *_currentPanel;
 };
-
 
 #endif // _PANEL_MANAGER_H

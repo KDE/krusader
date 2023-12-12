@@ -14,24 +14,25 @@
 // QtWidgets
 #include <QMenu>
 
-#include <KXmlGui/KActionCollection>
 #include <KCodecs/KCharsets>
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
 #include <KI18n/KLocalizedString>
 #include <KIO/Scheduler>
 #include <KIOCore/KProtocolManager>
+#include <KXmlGui/KActionCollection>
 
-#include "../krglobal.h"
-#include "../compat.h"
-#include "../icon.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
+#include "../compat.h"
+#include "../icon.h"
+#include "../krglobal.h"
 
-#define DATA_KEY    QString::fromLatin1("Charset")
+#define DATA_KEY QString::fromLatin1("Charset")
 
-KrRemoteEncodingMenu::KrRemoteEncodingMenu(const QString &text, const QString &iconName, KActionCollection *parent) :
-        KActionMenu(Icon(iconName), text, parent), settingsLoaded(false)
+KrRemoteEncodingMenu::KrRemoteEncodingMenu(const QString &text, const QString &iconName, KActionCollection *parent)
+    : KActionMenu(Icon(iconName), text, parent)
+    , settingsLoaded(false)
 {
     connect(menu(), &QMenu::aboutToShow, this, &KrRemoteEncodingMenu::slotAboutToShow);
 
@@ -45,8 +46,8 @@ void KrRemoteEncodingMenu::slotAboutToShow()
 
     // uncheck everything
     QList<QAction *> acts = menu()->actions();
-    foreach(QAction *act, acts)
-    act->setChecked(false);
+    foreach (QAction *act, acts)
+        act->setChecked(false);
 
     QString charset = currentCharacterSet();
     if (!charset.isEmpty()) {
@@ -58,8 +59,8 @@ void KrRemoteEncodingMenu::slotAboutToShow()
 
         bool found = false;
 
-        foreach(QAction *act, acts) {
-            if (act->data().canConvert<int> ()) {
+        foreach (QAction *act, acts) {
+            if (act->data().canConvert<int>()) {
                 int idr = act->data().toInt();
 
                 if (idr == id) {
@@ -72,8 +73,8 @@ void KrRemoteEncodingMenu::slotAboutToShow()
         if (!found)
             qWarning() << Q_FUNC_INFO << "could not find entry for charset=" << charset;
     } else {
-        foreach(QAction *act, acts) {
-            if (act->data().canConvert<int> ()) {
+        foreach (QAction *act, acts) {
+            if (act->data().canConvert<int>()) {
                 int idr = act->data().toInt();
 
                 if (idr == -2) {
@@ -121,9 +122,9 @@ void KrRemoteEncodingMenu::loadSettings()
     act->setData(QVariant(-2));
 }
 
-void KrRemoteEncodingMenu::slotTriggered(QAction * act)
+void KrRemoteEncodingMenu::slotTriggered(QAction *act)
 {
-    if (!act || !act->data().canConvert<int> ())
+    if (!act || !act->data().canConvert<int>())
         return;
 
     int id = act->data().toInt();
@@ -190,19 +191,18 @@ void KrRemoteEncodingMenu::chooseDefault()
             partList.erase(partList.begin());
         }
 
-        for (auto & domain : domains) {
-            //qDebug() << "Domain to remove: " << *it;
+        for (auto &domain : domains) {
+            // qDebug() << "Domain to remove: " << *it;
             if (config.hasGroup(domain))
                 config.deleteGroup(domain);
             else if (config.group("").hasKey(domain))
-                config.group("").deleteEntry(domain);       //don't know what group name is supposed to be XXX
+                config.group("").deleteEntry(domain); // don't know what group name is supposed to be XXX
         }
     }
     config.sync();
 
     updateKIOSlaves();
 }
-
 
 void KrRemoteEncodingMenu::updateKIOSlaves()
 {
@@ -211,4 +211,3 @@ void KrRemoteEncodingMenu::updateKIOSlaves()
     // Reload the page with the new charset
     QTimer::singleShot(500, ACTIVE_FUNC, SLOT(refresh()));
 }
-

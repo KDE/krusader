@@ -14,19 +14,25 @@
 
 #include <KCoreAddons/KStringHandler>
 
+#include "../compat.h"
 #include "Config.h"
 #include "fileTree.h"
 #include "radialMap.h"
-#include <cmath>
 #include "widget.h"
-#include "../compat.h"
+#include <cmath>
 
 namespace RadialMap
 {
 struct Label {
-    Label(const RadialMap::Segment *s, int l) : segment(s), lvl(l), a(segment->start() + (segment->length() / 2)) { }
+    Label(const RadialMap::Segment *s, int l)
+        : segment(s)
+        , lvl(l)
+        , a(segment->start() + (segment->length() / 2))
+    {
+    }
 
-    bool tooClose(const int &aa) const {
+    bool tooClose(const int &aa) const
+    {
         return (a > aa - LABEL_ANGLE_MARGIN && a < aa + LABEL_ANGLE_MARGIN);
     }
 
@@ -42,21 +48,22 @@ struct Label {
 
 class LabelList : public QList<Label *>
 {
-
 public:
-    ~LabelList() {
+    ~LabelList()
+    {
         QListIterator<Label *> it(*this);
         while (it.hasNext())
             delete it.next();
     }
 
-    void inSort(Label * label1) {
+    void inSort(Label *label1)
+    {
         for (QList<Label *>::iterator it(begin()); it != end(); ++it) {
-            Label * label2 = *it;
+            Label *label2 = *it;
             bool ins = false;
 
-            //you add 1440 to work round the fact that later you want the circle split vertically
-            //and as it is you start at 3 o' clock. It's to do with rightPrevY, stops annoying bug
+            // you add 1440 to work round the fact that later you want the circle split vertically
+            // and as it is you start at 3 o' clock. It's to do with rightPrevY, stops annoying bug
 
             int a1 = label1->a + 1440;
             int a2 = label2->a + 1440;
@@ -64,8 +71,10 @@ public:
             if (a1 == a2)
                 ins = true;
 
-            if (a1 > 5760) a1 -= 5760;
-            if (a2 > 5760) a2 -= 5760;
+            if (a1 > 5760)
+                a1 -= 5760;
+            if (a2 > 5760)
+                a2 -= 5760;
 
             if (a1 < a2)
                 ins = true;
@@ -81,37 +90,33 @@ public:
 };
 }
 
-
-void
-RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
+void RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 {
-    //we are a friend of RadialMap::Map
+    // we are a friend of RadialMap::Map
 
     LabelList list;
     unsigned int startLevel = 0;
 
-
     // 1. Create list of labels  sorted in the order they will be rendered
 
-    if (m_focus != nullptr && m_focus->file() != m_tree) { //separate behavior for selected vs unselected segments
-        //don't bother with files
-        if (m_focus->file() == nullptr || !m_focus->file()->isDir()) return;
+    if (m_focus != nullptr && m_focus->file() != m_tree) { // separate behavior for selected vs unselected segments
+        // don't bother with files
+        if (m_focus->file() == nullptr || !m_focus->file()->isDir())
+            return;
 
-        //find the range of levels we will be potentially drawing labels for
-        for (const auto *p = dynamic_cast<const Directory *>(m_focus->file());
-                p != m_tree;
-                ++startLevel) { //startLevel is the level above whatever m_focus is in
+        // find the range of levels we will be potentially drawing labels for
+        for (const auto *p = dynamic_cast<const Directory *>(m_focus->file()); p != m_tree;
+             ++startLevel) { // startLevel is the level above whatever m_focus is in
             p = p->parent();
         }
 
-        //range=2 means 2 levels to draw labels for
+        // range=2 means 2 levels to draw labels for
 
         unsigned int a1, a2, minAngle;
 
         a1 = m_focus->start();
-        a2 = m_focus->end();  // boundary angles
+        a2 = m_focus->end(); // boundary angles
         minAngle = int(m_focus->length() * LABEL_MIN_ANGLE_FACTOR);
-
 
 #define segment (*it)
 #define ring (m_map.m_signature + i)
@@ -130,7 +135,6 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 #undef segment
 
     } else {
-
 #define ring m_map.m_signature
 
         for (Iterator<Segment> it = ring->iterator(); it != ring->end(); ++it)
@@ -138,7 +142,6 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
                 list.inSort(new Label((*it), 0));
 
 #undef ring
-
     }
 
     // 2. Check to see if any adjacent labels are too close together
@@ -148,16 +151,16 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
     int jtn = 1;
 
     while (jtn < list.count()) {
-        //this method is fairly efficient
+        // this method is fairly efficient
 
-        if (list[ itn ]->tooClose(list[ jtn ]->a)) {
-            if (list[ itn ]->lvl > list[ jtn ]->lvl) {
-                delete list[ itn ];
+        if (list[itn]->tooClose(list[jtn]->a)) {
+            if (list[itn]->lvl > list[jtn]->lvl) {
+                delete list[itn];
                 list.removeAt(itn);
                 jtn--;
                 itn = jtn;
             } else {
-                delete list[ jtn ];
+                delete list[jtn];
                 list.removeAt(jtn);
             }
         } else
@@ -169,16 +172,16 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
     LabelList::iterator it = list.begin();
 
-    //used in next two steps
+    // used in next two steps
     bool varySizes;
     //**** should perhaps use doubles
-    auto  *sizes = new int [ m_map.m_visibleDepth + 1 ]; //**** make sizes an array of floats I think instead (or doubles)
+    auto *sizes = new int[m_map.m_visibleDepth + 1]; //**** make sizes an array of floats I think instead (or doubles)
 
     do {
         // 3. Calculate font sizes
 
         {
-            //determine current range of levels to draw for
+            // determine current range of levels to draw for
             unsigned int range = 0;
 
             for (it = list.begin(); it != list.end(); ++it) {
@@ -189,22 +192,21 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
                 //**** better way would just be to assign if nothing is range
             }
 
-            range -= startLevel; //range 0 means 1 level of labels
+            range -= startLevel; // range 0 means 1 level of labels
 
             varySizes = Config::varyLabelFontSizes && (range != 0);
 
             if (varySizes) {
-                //create an array of font sizes for various levels
-                //will exceed normal font pitch automatically if necessary, but not minPitch
+                // create an array of font sizes for various levels
+                // will exceed normal font pitch automatically if necessary, but not minPitch
                 //**** this needs to be checked lots
 
                 //**** what if this is negative (min size gtr than default size)
                 unsigned int step = (paint.font().pointSize() - Config::minFontPitch) / range;
-                if (step == 0) step = 1;
+                if (step == 0)
+                    step = 1;
 
-                for (unsigned int x = range + startLevel, y = Config::minFontPitch;
-                        x >= startLevel;
-                        y += step, --x) {
+                for (unsigned int x = range + startLevel, y = Config::minFontPitch; x >= startLevel; y += step, --x) {
                     sizes[x] = y;
                 }
             }
@@ -212,16 +214,16 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
         // 4. determine label co-ordinates
 
-        int x1, y1, x2, y2, x3, tx, ty; //coords
-        double sinra, cosra, ra;  //angles
+        int x1, y1, x2, y2, x3, tx, ty; // coords
+        double sinra, cosra, ra; // angles
 
-        int cx = m_map.width()  / 2 + m_offset.x();  //centre relative to canvas
+        int cx = m_map.width() / 2 + m_offset.x(); // centre relative to canvas
         int cy = m_map.height() / 2 + m_offset.y();
 
         int spacer, preSpacer = int(m_map.m_ringBreadth * 0.5) + m_map.m_innerRadius;
-        int fullStrutLength = (m_map.width() - m_map.MAP_2MARGIN) / 2 + LABEL_MAP_SPACER;   //full length of a strut from map center
+        int fullStrutLength = (m_map.width() - m_map.MAP_2MARGIN) / 2 + LABEL_MAP_SPACER; // full length of a strut from map center
 
-        int prevLeftY  = 0;
+        int prevLeftY = 0;
         int prevRightY = height();
 
         bool rightSide;
@@ -230,17 +232,19 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
         for (it = list.begin(); it != list.end(); ++it) {
             //** bear in mind that text is drawn with QPoint param as BOTTOM left corner of text box
-            if (varySizes) font.setPointSize(sizes[(*it)->lvl]);
+            if (varySizes)
+                font.setPointSize(sizes[(*it)->lvl]);
             QFontMetrics fm(font);
-            int fmh  = fm.height(); //used to ensure label texts don't overlap
+            int fmh = fm.height(); // used to ensure label texts don't overlap
             int fmhD4 = fmh / 4;
 
             fmh += LABEL_TEXT_VMARGIN;
 
             rightSide = ((*it)->a < 1440 || (*it)->a > 4320);
 
-            ra = M_PI / 2880 * (*it)->a; //convert to radians
-            sinra = sin(ra); cosra = cos(ra);
+            ra = M_PI / 2880 * (*it)->a; // convert to radians
+            sinra = sin(ra);
+            cosra = cos(ra);
 
             spacer = preSpacer + m_map.m_ringBreadth * (*it)->lvl;
 
@@ -248,14 +252,14 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
             y1 = cy - (int)(sinra * spacer);
             y2 = y1 - (int)(sinra * (fullStrutLength - spacer));
 
-            if (rightSide) {  //righthand side, going upwards
+            if (rightSide) { // righthand side, going upwards
 
-                if (y2 > prevRightY /*- fmh*/)  //then it is too low, needs to be drawn higher
+                if (y2 > prevRightY /*- fmh*/) // then it is too low, needs to be drawn higher
                     y2 = prevRightY /*- fmh*/;
 
-            } else { //lefthand side, going downwards
+            } else { // lefthand side, going downwards
 
-                if (y2 < prevLeftY/* + fmh*/)  //then we're too high, need to be drawn lower
+                if (y2 < prevLeftY /* + fmh*/) // then we're too high, need to be drawn lower
                     y2 = prevLeftY /*+ fmh*/;
             }
 
@@ -264,33 +268,31 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
             QString qs;
             if (rightSide) {
-
                 if (x2 > width() || ty < fmh || x2 < x1) {
-                    //skip this strut
+                    // skip this strut
                     //**** don't duplicate this code
                     delete *it;
-                    it = list.erase(it);   //will delete the label and set it to list.current() which _should_ be the next ptr
+                    it = list.erase(it); // will delete the label and set it to list.current() which _should_ be the next ptr
                     break;
                 }
 
-                prevRightY = ty - fmh - fmhD4; //must be after above's "continue"
+                prevRightY = ty - fmh - fmhD4; // must be after above's "continue"
 
                 qs = fm.elidedText((*it)->segment->file()->name(), Qt::ElideMiddle, width() - x2);
 
-                x3 = width() - fm.horizontalAdvance(qs)
-                     - LABEL_HMARGIN //outer margin
-                     - LABEL_TEXT_HMARGIN //margin between strut and text
-                     //- ((*it)->lvl - startLevel) * LABEL_HMARGIN //indentation
-                     ;
-                if (x3 < x2) x3 = x2;
+                x3 = width() - fm.horizontalAdvance(qs) - LABEL_HMARGIN // outer margin
+                    - LABEL_TEXT_HMARGIN // margin between strut and text
+                    //- ((*it)->lvl - startLevel) * LABEL_HMARGIN //indentation
+                    ;
+                if (x3 < x2)
+                    x3 = x2;
                 tx = x3 + LABEL_TEXT_HMARGIN;
 
             } else {
-
                 if (x2 < 0 || ty > height() || x2 > x1) {
-                    //skip this strut
+                    // skip this strut
                     delete *it;
-                    it = list.erase(it);   //will delete the label and set it to list.current() which _should_ be the next ptr
+                    it = list.erase(it); // will delete the label and set it to list.current() which _should_ be the next ptr
                     break;
                 }
 
@@ -300,10 +302,10 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
                 //**** needs a little tweaking:
 
-                tx = fm.horizontalAdvance(qs) + LABEL_HMARGIN/* + ((*it)->lvl - startLevel) * LABEL_HMARGIN*/;
-                if (tx > x2) {  //text is too long
-                    tx = LABEL_HMARGIN + x2 - tx; //some text will be lost from sight
-                    x3 = x2; //no text margin (right side of text here)
+                tx = fm.horizontalAdvance(qs) + LABEL_HMARGIN /* + ((*it)->lvl - startLevel) * LABEL_HMARGIN*/;
+                if (tx > x2) { // text is too long
+                    tx = LABEL_HMARGIN + x2 - tx; // some text will be lost from sight
+                    x3 = x2; // no text margin (right side of text here)
                 } else {
                     x3 = tx + LABEL_TEXT_HMARGIN;
                     tx = LABEL_HMARGIN /* + ((*it)->lvl - startLevel) * LABEL_HMARGIN*/;
@@ -320,13 +322,12 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
             (*it)->qs = qs;
         }
 
-        //if an element is deleted at this stage, we need to do this whole
-        //iteration again, thus the following loop
+        // if an element is deleted at this stage, we need to do this whole
+        // iteration again, thus the following loop
         //**** in rare case that deleted label was last label in top level
-        //     and last in labelList too, this will not work as expected (not critical)
+        //      and last in labelList too, this will not work as expected (not critical)
 
     } while (it != list.end());
-
 
     // 5. Render labels
 
@@ -341,11 +342,11 @@ RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
             paint.setFont(font);
         }
 
-        paint.drawEllipse((*it)->x1 - 3, (*it)->y1 - 3, 7, 7);   //**** CPU intensive! better to use a pixmap
+        paint.drawEllipse((*it)->x1 - 3, (*it)->y1 - 3, 7, 7); //**** CPU intensive! better to use a pixmap
         paint.drawLine((*it)->x1, (*it)->y1, (*it)->x2, (*it)->y2);
         paint.drawLine((*it)->x2, (*it)->y2, (*it)->x3, (*it)->y2);
         paint.drawText((*it)->tx, (*it)->ty, (*it)->qs);
     }
 
-    delete [] sizes;
+    delete[] sizes;
 }

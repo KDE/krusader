@@ -20,18 +20,18 @@ class UserActionListView : public KrTreeWidget
     Q_OBJECT
 
 public:
-    explicit UserActionListView(QWidget* parent = nullptr);
+    explicit UserActionListView(QWidget *parent = nullptr);
     ~UserActionListView() override;
     QSize sizeHint() const override;
 
     void update();
-    void update(KrAction* action);
-    UserActionListViewItem* insertAction(KrAction* action);
+    void update(KrAction *action);
+    UserActionListViewItem *insertAction(KrAction *action);
 
-    KrAction* currentAction() const;
-    void setCurrentAction(const KrAction*);
+    KrAction *currentAction() const;
+    void setCurrentAction(const KrAction *);
 
-    QDomDocument dumpSelectedActions(QDomDocument* mergeDoc = nullptr) const;
+    QDomDocument dumpSelectedActions(QDomDocument *mergeDoc = nullptr) const;
 
     void removeSelectedActions();
 
@@ -44,22 +44,22 @@ public:
      * makes @e item current and ensures its visibility
      */
 protected slots:
-    void slotCurrentItemChanged(QTreeWidgetItem*);
+    void slotCurrentItemChanged(QTreeWidgetItem *);
 
 protected:
-    QTreeWidgetItem* findCategoryItem(const QString& category);
-    UserActionListViewItem* findActionItem(const KrAction* action);
+    QTreeWidgetItem *findCategoryItem(const QString &category);
+    UserActionListViewItem *findActionItem(const KrAction *action);
 };
 
 class UserActionListViewItem : public QTreeWidgetItem
 {
 public:
-    UserActionListViewItem(QTreeWidget* view, KrAction* action);
-    UserActionListViewItem(QTreeWidgetItem* item, KrAction* action);
+    UserActionListViewItem(QTreeWidget *view, KrAction *action);
+    UserActionListViewItem(QTreeWidgetItem *item, KrAction *action);
     ~UserActionListViewItem() override;
 
-    void setAction(KrAction* action);
-    KrAction* action() const;
+    void setAction(KrAction *action);
+    KrAction *action() const;
     void update();
 
     /**
@@ -68,7 +68,7 @@ public:
     bool operator<(const QTreeWidgetItem &other) const override;
 
 private:
-    KrAction* _action;
+    KrAction *_action;
 };
 
 #endif

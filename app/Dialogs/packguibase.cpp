@@ -13,35 +13,35 @@
 // QtGui
 #include <QGuiApplication>
 #include <QImage>
-#include <QPixmap>
 #include <QKeyEvent>
+#include <QPixmap>
 // QtWidgets
-#include <QSlider>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QFrame>
+#include <QGridLayout>
+#include <QHBoxLayout>
 #include <QLabel>
+#include <QLayout>
 #include <QLineEdit>
 #include <QPushButton>
-#include <QToolButton>
-#include <QLayout>
+#include <QSlider>
 #include <QSpinBox>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QFrame>
+#include <QToolButton>
 #include <QVBoxLayout>
 
+#include <KCompletion/KComboBox>
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
-#include <KCompletion/KComboBox>
-#include <KWidgetsAddons/KMessageBox>
 #include <KIO/Global>
+#include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KStandardGuiItem>
 
-#include "../defaults.h"
-#include "../krglobal.h"
-#include "../icon.h"
-#include "../compat.h"
 #include "../GUI/krhistorycombobox.h"
+#include "../compat.h"
+#include "../defaults.h"
+#include "../icon.h"
+#include "../krglobal.h"
 
 /*
  *  Constructs a PackGUIBase which is a child of 'parent', with the
@@ -50,8 +50,9 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-PackGUIBase::PackGUIBase(QWidget* parent)
-        : QDialog(parent), expanded(false)
+PackGUIBase::PackGUIBase(QWidget *parent)
+    : QDialog(parent)
+    , expanded(false)
 {
     KConfigGroup group(krConfig, "Archives");
 
@@ -75,8 +76,8 @@ PackGUIBase::PackGUIBase(QWidget* parent)
 
     typeData = new QComboBox(this);
     typeData->setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
-    connect(typeData, QOverload<const QString &>::of(&QComboBox::QCOMBOBOX_ACTIVATED), this,  &PackGUIBase::checkConsistency);
-    connect(typeData, QOverload<const QString &>::of(&QComboBox::QCOMBOBOX_HIGHLIGHTED), this,  &PackGUIBase::checkConsistency);
+    connect(typeData, QOverload<const QString &>::of(&QComboBox::QCOMBOBOX_ACTIVATED), this, &PackGUIBase::checkConsistency);
+    connect(typeData, QOverload<const QString &>::of(&QComboBox::QCOMBOBOX_HIGHLIGHTED), this, &PackGUIBase::checkConsistency);
     hbox->addWidget(typeData);
 
     grid->addLayout(hbox, 1, 0);
@@ -95,7 +96,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     browseButton = new QToolButton(this);
     browseButton->setIcon(Icon("document-open"));
     hbox_2->addWidget(browseButton);
-    auto* spacer = new QSpacerItem(48, 20, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    auto *spacer = new QSpacerItem(48, 20, QSizePolicy::Fixed, QSizePolicy::Fixed);
     hbox_2->addItem(spacer);
 
     grid->addLayout(hbox_2, 2, 0);
@@ -116,12 +117,11 @@ PackGUIBase::PackGUIBase(QWidget* parent)
 
     grid->addLayout(hbox_3, 0, 0);
 
-
     hbox_4 = new QHBoxLayout;
     hbox_4->setSpacing(6);
     hbox_4->setContentsMargins(0, 0, 0, 0);
 
-    auto* spacer_3 = new QSpacerItem(20, 26, QSizePolicy::Fixed, QSizePolicy::Expanding);
+    auto *spacer_3 = new QSpacerItem(20, 26, QSizePolicy::Fixed, QSizePolicy::Expanding);
     hbox_4->addItem(spacer_3);
     grid->addLayout(hbox_4, 3, 0);
 
@@ -131,7 +131,6 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_5->setSpacing(6);
     hbox_5->setContentsMargins(0, 0, 0, 0);
 
-
     auto *compressLayout = new QVBoxLayout;
     compressLayout->setSpacing(6);
     compressLayout->setContentsMargins(0, 0, 0, 0);
@@ -140,9 +139,9 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     connect(multipleVolume, &QCheckBox::toggled, this, &PackGUIBase::checkConsistency);
     compressLayout->addWidget(multipleVolume, 0, Qt::Alignment());
 
-    auto * volumeHbox = new QHBoxLayout;
+    auto *volumeHbox = new QHBoxLayout;
 
-    auto* spacer_5 = new QSpacerItem(20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    auto *spacer_5 = new QSpacerItem(20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed);
     volumeHbox->addItem(spacer_5);
 
     TextLabel7 = new QLabel(i18n("Size:"), advancedWidget);
@@ -170,12 +169,12 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     connect(setCompressionLevel, &QCheckBox::toggled, this, &PackGUIBase::checkConsistency);
     compressLayout->addWidget(setCompressionLevel, 0, Qt::Alignment());
 
-    auto * sliderHbox = new QHBoxLayout;
+    auto *sliderHbox = new QHBoxLayout;
 
-    auto* spacer_6 = new QSpacerItem(20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    auto *spacer_6 = new QSpacerItem(20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed);
     sliderHbox->addItem(spacer_6);
 
-    QWidget * sliderVBoxWidget = new QWidget(advancedWidget);
+    QWidget *sliderVBoxWidget = new QWidget(advancedWidget);
     auto *sliderVBox = new QVBoxLayout(sliderVBoxWidget);
 
     compressionSlider = new QSlider(Qt::Horizontal, sliderVBoxWidget);
@@ -186,10 +185,10 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     compressionSlider->setTickPosition(QSlider::TicksBelow);
     sliderVBox->addWidget(compressionSlider);
 
-    QWidget * minmaxWidget = new QWidget(sliderVBoxWidget);
+    QWidget *minmaxWidget = new QWidget(sliderVBoxWidget);
     sliderVBox->addWidget(minmaxWidget);
 
-    auto * minmaxHbox = new QHBoxLayout(minmaxWidget);
+    auto *minmaxHbox = new QHBoxLayout(minmaxWidget);
 
     minLabel = new QLabel(i18n("MIN"), minmaxWidget);
     maxLabel = new QLabel(i18n("MAX"), minmaxWidget);
@@ -210,8 +209,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     vline->setMinimumWidth(20);
     hbox_5->addWidget(vline, 0, 1);
 
-
-    auto * passwordGrid = new QGridLayout;
+    auto *passwordGrid = new QGridLayout;
     passwordGrid->setSpacing(6);
     passwordGrid->setContentsMargins(0, 0, 0, 0);
 
@@ -237,7 +235,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
 
     auto *consistencyHbox = new QHBoxLayout;
 
-    auto* spacer_cons = new QSpacerItem(48, 20, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    auto *spacer_cons = new QSpacerItem(48, 20, QSizePolicy::Expanding, QSizePolicy::Fixed);
     consistencyHbox->addItem(spacer_cons);
 
     passwordConsistencyLabel = new QLabel(advancedWidget);
@@ -247,7 +245,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     encryptHeaders = new QCheckBox(i18n("Encrypt headers"), advancedWidget);
     passwordGrid->addWidget(encryptHeaders, 3, 0, 1, 2);
 
-    auto* spacer_psw = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Expanding);
+    auto *spacer_psw = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Expanding);
     passwordGrid->addItem(spacer_psw, 4, 0);
 
     hbox_5->addLayout(passwordGrid, 0, 2);
@@ -261,7 +259,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_7->addWidget(TextLabel8);
 
     commandLineSwitches = new KrHistoryComboBox(advancedWidget);
-    commandLineSwitches->setMaxCount(25);  // remember 25 items
+    commandLineSwitches->setMaxCount(25); // remember 25 items
     commandLineSwitches->setDuplicatesEnabled(false);
     commandLineSwitches->setMinimumContentsLength(10);
 
@@ -271,7 +269,6 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     hbox_7->addWidget(commandLineSwitches);
 
     hbox_5->addLayout(hbox_7, 1, 0, 1, 3);
-
 
     advancedWidget->hide();
     checkConsistency();
@@ -286,7 +283,7 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     advancedButton->setText(i18n("&Advanced >>"));
     hbox_6->addWidget(advancedButton);
 
-    auto* spacer_2 = new QSpacerItem(140, 20, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    auto *spacer_2 = new QSpacerItem(140, 20, QSizePolicy::Expanding, QSizePolicy::Fixed);
     hbox_6->addItem(spacer_2);
 
     okButton = new QPushButton(this);
@@ -374,15 +371,14 @@ void PackGUIBase::checkConsistency()
     TextLabel7->setEnabled(volumeEnabled);
 
     /* TODO */
-    setCompressionLevel->setEnabled(packer == "rar" || packer == "arj" || packer == "zip" ||
-                                    packer == "7z");
+    setCompressionLevel->setEnabled(packer == "rar" || packer == "arj" || packer == "zip" || packer == "7z");
     bool sliderEnabled = setCompressionLevel->isEnabled() && setCompressionLevel->isChecked();
     compressionSlider->setEnabled(sliderEnabled);
     minLabel->setEnabled(sliderEnabled);
     maxLabel->setEnabled(sliderEnabled);
 }
 
-bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
+bool PackGUIBase::extraProperties(QMap<QString, QString> &inMap)
 {
     inMap.clear();
 
@@ -395,10 +391,10 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
         }
 
         if (!password->text().isEmpty()) {
-            inMap[ "Password" ] = password->text();
+            inMap["Password"] = password->text();
 
             if (encryptHeaders->isEnabled() && encryptHeaders->isChecked())
-                inMap[ "EncryptHeaders" ] = '1';
+                inMap["EncryptHeaders"] = '1';
         }
     }
 
@@ -425,11 +421,11 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
         QString sbuffer;
         sbuffer.asprintf("%llu", size);
 
-        inMap[ "VolumeSize" ] = sbuffer;
+        inMap["VolumeSize"] = sbuffer;
     }
 
     if (setCompressionLevel->isEnabled() && setCompressionLevel->isChecked()) {
-        inMap[ "CompressionLevel" ] = QString("%1").arg(compressionSlider->value());
+        inMap["CompressionLevel"] = QString("%1").arg(compressionSlider->value());
         int level = compressionSlider->value();
         group.writeEntry("Compression level", level);
     }
@@ -440,7 +436,7 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
         QChar quote = QChar::Null;
 
         for (int i = 0; i < cmdArgs.length(); i++) {
-            QChar ch(cmdArgs[ i ]);
+            QChar ch(cmdArgs[i]);
             if (ch.isSpace())
                 continue;
 
@@ -476,7 +472,7 @@ bool PackGUIBase::extraProperties(QMap<QString, QString> & inMap)
 
         commandLineSwitches->addToHistory(cmdArgs);
 
-        inMap[ "CommandLineSwitches" ] = cmdArgs;
+        inMap["CommandLineSwitches"] = cmdArgs;
     }
 
     return true;

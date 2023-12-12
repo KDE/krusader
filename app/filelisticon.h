@@ -13,11 +13,13 @@
 // QtGui
 #include <QPixmap>
 
-
 class FileListIcon : public Icon
 {
 public:
-    explicit FileListIcon(QString name) : Icon(name) {}
+    explicit FileListIcon(QString name)
+        : Icon(name)
+    {
+    }
 
     /// Load pixmap of standard file list icon size
     QPixmap pixmap() const;

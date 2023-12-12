@@ -8,20 +8,25 @@
 
 #include "listmodel.h"
 
-#include "krinterview.h"
-#include "krviewproperties.h"
 #include "../FileSystem/fileitem.h"
 #include "../defaults.h"
 #include "../krcolorcache.h"
 #include "../krglobal.h"
 #include "../krpanel.h"
+#include "krinterview.h"
+#include "krviewproperties.h"
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 
 ListModel::ListModel(KrInterView *view)
-    : QAbstractListModel(nullptr), _extensionEnabled(true), _view(view), _dummyFileItem(nullptr), _ready(false),
-      _justForSizeHint(false), _alternatingTable(false)
+    : QAbstractListModel(nullptr)
+    , _extensionEnabled(true)
+    , _view(view)
+    , _dummyFileItem(nullptr)
+    , _ready(false)
+    , _justForSizeHint(false)
+    , _alternatingTable(false)
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
     _defaultFont = grpSvr.readEntry("Filelist Font", _FilelistFont);
@@ -33,23 +38,22 @@ void ListModel::populate(const QList<FileItem *> &files, FileItem *dummy)
     _dummyFileItem = dummy;
     _ready = true;
 
-    if(lastSortOrder() != KrViewProperties::NoColumn)
+    if (lastSortOrder() != KrViewProperties::NoColumn)
         sort();
     else {
         emit layoutAboutToBeChanged();
-        for(int i = 0; i < _fileItems.count(); i++) {
+        for (int i = 0; i < _fileItems.count(); i++) {
             updateIndices(_fileItems[i], i);
         }
         emit layoutChanged();
     }
 }
 
-ListModel::~ListModel()
-= default;
+ListModel::~ListModel() = default;
 
 void ListModel::clear(bool emitLayoutChanged)
 {
-    if(!_fileItems.count())
+    if (!_fileItems.count())
         return;
 
     emit layoutAboutToBeChanged();
@@ -57,7 +61,7 @@ void ListModel::clear(bool emitLayoutChanged)
     QModelIndexList oldPersistentList = persistentIndexList();
     QModelIndexList newPersistentList;
     newPersistentList.reserve(oldPersistentList.size());
-    for (int i=0; i< oldPersistentList.size(); ++i)
+    for (int i = 0; i < oldPersistentList.size(); ++i)
         newPersistentList.append(QModelIndex());
     changePersistentIndexList(oldPersistentList, newPersistentList);
 
@@ -71,18 +75,17 @@ void ListModel::clear(bool emitLayoutChanged)
         emit layoutChanged();
 }
 
-int ListModel::rowCount(const QModelIndex& /*parent*/) const
+int ListModel::rowCount(const QModelIndex & /*parent*/) const
 {
     return _fileItems.count();
 }
 
-
-int ListModel::columnCount(const QModelIndex& /*parent*/) const
+int ListModel::columnCount(const QModelIndex & /*parent*/) const
 {
     return KrViewProperties::MAX_COLUMNS;
 }
 
-QVariant ListModel::data(const QModelIndex& index, int role) const
+QVariant ListModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || index.row() >= rowCount())
         return QVariant();
@@ -120,14 +123,13 @@ QVariant ListModel::data(const QModelIndex& index, int role) const
         }
         case KrViewProperties::Ext: {
             QString nameOnly = nameWithoutExtension(fileitem);
-            const QString& fileitemName = fileitem->getName();
+            const QString &fileitemName = fileitem->getName();
             return fileitemName.mid(nameOnly.length() + 1);
         }
         case KrViewProperties::Size: {
             if (fileitem->getUISize() == (KIO::filesize_t)-1) {
-                //HACK add <> brackets AFTER translating - otherwise KUIT thinks it's a tag
-                static QString label = QString("<") +
-                    i18nc("Show the string 'DIR' instead of file size in detailed view (for folders)", "DIR") + '>';
+                // HACK add <> brackets AFTER translating - otherwise KUIT thinks it's a tag
+                static QString label = QString("<") + i18nc("Show the string 'DIR' instead of file size in detailed view (for folders)", "DIR") + '>';
                 return label;
             } else
                 return KrView::sizeText(properties(), fileitem->getUISize());
@@ -167,7 +169,8 @@ QVariant ListModel::data(const QModelIndex& index, int role) const
                 return QVariant();
             return fileitem->getGroup();
         }
-        default: return QString();
+        default:
+            return QString();
         }
         return QVariant();
     }
@@ -241,7 +244,7 @@ QVariant ListModel::data(const QModelIndex& index, int role) const
     }
 }
 
-bool ListModel::setData(const QModelIndex & index, const QVariant & value, int role)
+bool ListModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (role == Qt::EditRole && index.isValid()) {
         if (index.row() < rowCount() && index.row() >= 0) {
@@ -261,7 +264,7 @@ void ListModel::sort(int column, Qt::SortOrder order)
 {
     _view->sortModeUpdated(column, order);
 
-    if(lastSortOrder() == KrViewProperties::NoColumn)
+    if (lastSortOrder() == KrViewProperties::NoColumn)
         return;
 
     emit layoutAboutToBeChanged();
@@ -281,15 +284,15 @@ void ListModel::sort(int column, Qt::SortOrder order)
     for (int i = 0; i < sorter.items().count(); ++i) {
         const KrSort::SortProps *props = sorter.items()[i];
         _fileItems.append(props->fileitem());
-        changeMap[ props->originalIndex() ] = i;
+        changeMap[props->originalIndex()] = i;
         if (i != props->originalIndex())
             sortOrderChanged = true;
         updateIndices(props->fileitem(), i);
     }
 
     QModelIndexList newPersistentList;
-    foreach(const QModelIndex &mndx, oldPersistentList)
-        newPersistentList << index(changeMap[ mndx.row()], mndx.column());
+    foreach (const QModelIndex &mndx, oldPersistentList)
+        newPersistentList << index(changeMap[mndx.row()], mndx.column());
 
     changePersistentIndexList(oldPersistentList, newPersistentList);
 
@@ -368,17 +371,28 @@ QVariant ListModel::headerData(int section, Qt::Orientation orientation, int rol
         return QVariant();
 
     switch (section) {
-    case KrViewProperties::Name: return i18nc("File property", "Name");
-    case KrViewProperties::Ext: return i18nc("File property", "Ext");
-    case KrViewProperties::Size: return i18nc("File property", "Size");
-    case KrViewProperties::Type: return i18nc("File property", "Type");
-    case KrViewProperties::Modified: return i18nc("File property", "Modified");
-    case KrViewProperties::Changed: return i18nc("File property", "Changed");
-    case KrViewProperties::Accessed: return i18nc("File property", "Accessed");
-    case KrViewProperties::Permissions: return i18nc("File property", "Perms");
-    case KrViewProperties::KrPermissions: return i18nc("File property", "rwx");
-    case KrViewProperties::Owner: return i18nc("File property", "Owner");
-    case KrViewProperties::Group: return i18nc("File property", "Group");
+    case KrViewProperties::Name:
+        return i18nc("File property", "Name");
+    case KrViewProperties::Ext:
+        return i18nc("File property", "Ext");
+    case KrViewProperties::Size:
+        return i18nc("File property", "Size");
+    case KrViewProperties::Type:
+        return i18nc("File property", "Type");
+    case KrViewProperties::Modified:
+        return i18nc("File property", "Modified");
+    case KrViewProperties::Changed:
+        return i18nc("File property", "Changed");
+    case KrViewProperties::Accessed:
+        return i18nc("File property", "Accessed");
+    case KrViewProperties::Permissions:
+        return i18nc("File property", "Perms");
+    case KrViewProperties::KrPermissions:
+        return i18nc("File property", "rwx");
+    case KrViewProperties::Owner:
+        return i18nc("File property", "Owner");
+    case KrViewProperties::Group:
+        return i18nc("File property", "Group");
     }
     return QString();
 }
@@ -392,20 +406,20 @@ FileItem *ListModel::fileItemAt(const QModelIndex &index)
 {
     if (!index.isValid() || index.row() < 0 || index.row() >= _fileItems.count())
         return nullptr;
-    return _fileItems[ index.row()];
+    return _fileItems[index.row()];
 }
 
-const QModelIndex & ListModel::fileItemIndex(const FileItem *fileitem)
+const QModelIndex &ListModel::fileItemIndex(const FileItem *fileitem)
 {
-    return _fileItemNdx[ const_cast<FileItem *>(fileitem) ];
+    return _fileItemNdx[const_cast<FileItem *>(fileitem)];
 }
 
-const QModelIndex & ListModel::nameIndex(const QString & st)
+const QModelIndex &ListModel::nameIndex(const QString &st)
 {
-    return _nameNdx[ st ];
+    return _nameNdx[st];
 }
 
-Qt::ItemFlags ListModel::flags(const QModelIndex & index) const
+Qt::ItemFlags ListModel::flags(const QModelIndex &index) const
 {
     Qt::ItemFlags flags = QAbstractListModel::flags(index);
 
@@ -424,8 +438,7 @@ Qt::ItemFlags ListModel::flags(const QModelIndex & index) const
 
 Qt::SortOrder ListModel::lastSortDir() const
 {
-    return (properties()->sortOptions & KrViewProperties::Descending) ?
-                Qt::DescendingOrder : Qt::AscendingOrder;
+    return (properties()->sortOptions & KrViewProperties::Descending) ? Qt::DescendingOrder : Qt::AscendingOrder;
 }
 
 int ListModel::lastSortOrder() const
@@ -438,13 +451,13 @@ QString ListModel::nameWithoutExtension(const FileItem *fileItem, bool checkEnab
     if ((checkEnabled && !_extensionEnabled) || fileItem->isDir())
         return fileItem->getName();
     // check if the file has an extension
-    const QString& fileItemName = fileItem->getName();
+    const QString &fileItemName = fileItem->getName();
     int loc = fileItemName.lastIndexOf('.');
     // avoid mishandling of .bashrc and friend
     // and virtfs / search result names like "/dir/.file" which would become "/dir/"
     if (loc > 0 && fileItemName.lastIndexOf('/') < loc) {
         // check if it has one of the predefined 'atomic extensions'
-        for (const auto & atomicExtension : properties()->atomicExtensions) {
+        for (const auto &atomicExtension : properties()->atomicExtensions) {
             if (fileItemName.endsWith(atomicExtension) && fileItemName != atomicExtension) {
                 loc = fileItemName.length() - atomicExtension.length();
                 break;
@@ -463,7 +476,7 @@ const QModelIndex &ListModel::indexFromUrl(const QUrl &url)
 KrSort::Sorter ListModel::createSorter()
 {
     KrSort::Sorter sorter(_fileItems.count(), properties(), lessThanFunc(), greaterThanFunc());
-    for(int i = 0; i < _fileItems.count(); i++)
+    for (int i = 0; i < _fileItems.count(); i++)
         sorter.addItem(_fileItems[i], _fileItems[i] == _dummyFileItem, i, customSortData(_fileItems[i]));
     return sorter;
 }
@@ -487,8 +500,7 @@ QString ListModel::toolTipText(FileItem *fileItem) const
     text += "<br>" + i18nc("File property", "Modified: %1", dateText(fileItem->getModificationTime()));
     text += "<br>" + i18nc("File property", "Changed: %1", dateText(fileItem->getChangeTime()));
     text += "<br>" + i18nc("File property", "Last Access: %1", dateText(fileItem->getAccessTime()));
-    text += "<br>" + i18nc("File property", "Permissions: %1",
-            KrView::permissionsText(properties(), fileItem));
+    text += "<br>" + i18nc("File property", "Permissions: %1", KrView::permissionsText(properties(), fileItem));
     text += "<br>" + i18nc("File property", "Owner: %1", fileItem->getOwner());
     text += "<br>" + i18nc("File property", "Group: %1", fileItem->getGroup());
     if (fileItem->isSymLink()) {
@@ -508,9 +520,8 @@ QString ListModel::dateText(time_t time)
         // unknown time
         return QString();
     }
-    struct tm* t = localtime((time_t *) & time);
+    struct tm *t = localtime((time_t *)&time);
 
-    const QDateTime dateTime(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday),
-                             QTime(t->tm_hour, t->tm_min));
+    const QDateTime dateTime(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
     return QLocale().toString(dateTime, QLocale::ShortFormat);
 }

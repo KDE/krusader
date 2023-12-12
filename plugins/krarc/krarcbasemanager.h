@@ -40,7 +40,7 @@ protected:
     KConfigGroup dependGrp;
 
     //! Search for the full path to a program
-    QString fullPathName(const QString& name);
+    QString fullPathName(const QString &name);
     //! Find the path to a 7z (or 7za) executable
     QString find7zExecutable();
 
@@ -48,11 +48,12 @@ protected:
 
 public:
     KrArcBaseManager();
-    QString detectArchive(bool &, const QString&, bool = true, bool = false);
+    QString detectArchive(bool &, const QString &, bool = true, bool = false);
     virtual void checkIf7zIsEncrypted(bool &, QString) = 0;
     static QString getShortTypeFromMime(const QString &);
-    virtual ~KrArcBaseManager() {}
+    virtual ~KrArcBaseManager()
+    {
+    }
 };
 
 #endif // KRARCBASEMANAGER_H
-

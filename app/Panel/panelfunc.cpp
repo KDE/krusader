@@ -9,10 +9,10 @@
 #include "panelfunc.h"
 
 // QtCore
+#include <QDir>
 #include <QEventLoop>
 #include <QList>
 #include <QMimeData>
-#include <QDir>
 #include <QTemporaryFile>
 #include <QUrl>
 // QtGui
@@ -44,48 +44,53 @@
 #include <KIOWidgets/KPropertiesDialog>
 #include <KIOWidgets/KRun>
 
-#include <kservice_version.h>
 #include <KService/KApplicationTrader>
+#include <kservice_version.h>
 
 #include <KWidgetsAddons/KCursor>
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KToggleAction>
 
+#include "../Archive/krarchandler.h"
+#include "../Archive/packjob.h"
+#include "../Dialogs/checksumdlg.h"
+#include "../Dialogs/krdialogs.h"
+#include "../Dialogs/krpleasewait.h"
+#include "../Dialogs/krspwidgets.h"
+#include "../Dialogs/packgui.h"
+#include "../FileSystem/fileitem.h"
+#include "../FileSystem/filesystemprovider.h"
+#include "../FileSystem/krpermhandler.h"
+#include "../FileSystem/sizecalculator.h"
+#include "../FileSystem/virtualfilesystem.h"
+#include "../KViewer/krviewer.h"
+#include "../MountMan/kmountman.h"
+#include "../abstractpanelmanager.h"
+#include "../compat.h"
+#include "../defaults.h"
+#include "../kractions.h"
+#include "../krglobal.h"
+#include "../krservices.h"
+#include "../krslots.h"
+#include "PanelView/krview.h"
+#include "PanelView/krviewitem.h"
 #include "dirhistoryqueue.h"
 #include "krcalcspacedialog.h"
 #include "krerrordisplay.h"
 #include "krsearchbar.h"
 #include "listpanel.h"
 #include "listpanelactions.h"
-#include "PanelView/krview.h"
-#include "PanelView/krviewitem.h"
-#include "../krglobal.h"
-#include "../krslots.h"
-#include "../kractions.h"
-#include "../defaults.h"
-#include "../abstractpanelmanager.h"
-#include "../krservices.h"
-#include "../Archive/krarchandler.h"
-#include "../Archive/packjob.h"
-#include "../FileSystem/fileitem.h"
-#include "../FileSystem/virtualfilesystem.h"
-#include "../FileSystem/krpermhandler.h"
-#include "../FileSystem/filesystemprovider.h"
-#include "../FileSystem/sizecalculator.h"
-#include "../Dialogs/packgui.h"
-#include "../Dialogs/krdialogs.h"
-#include "../Dialogs/krpleasewait.h"
-#include "../Dialogs/krspwidgets.h"
-#include "../Dialogs/checksumdlg.h"
-#include "../KViewer/krviewer.h"
-#include "../MountMan/kmountman.h"
-#include "../compat.h"
 
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
-ListPanelFunc::ListPanelFunc(ListPanel *parent) : QObject(parent),
-        panel(parent), fileSystemP(nullptr), urlManuallyEntered(false),
-        _isPaused(true), _refreshAfterPaused(true), _quickSizeCalculator(nullptr)
+ListPanelFunc::ListPanelFunc(ListPanel *parent)
+    : QObject(parent)
+    , panel(parent)
+    , fileSystemP(nullptr)
+    , urlManuallyEntered(false)
+    , _isPaused(true)
+    , _refreshAfterPaused(true)
+    , _quickSizeCalculator(nullptr)
 {
     history = new DirHistoryQueue(panel);
     delayTimer.setSingleShot(true);
@@ -104,10 +109,8 @@ ListPanelFunc::~ListPanelFunc()
 
 bool ListPanelFunc::isSyncing(const QUrl &url)
 {
-    if(otherFunc()->otherFunc() == this &&
-       panel->otherPanel()->gui->syncBrowseButton->isChecked() &&
-       !otherFunc()->syncURL.isEmpty() &&
-       otherFunc()->syncURL == url)
+    if (otherFunc()->otherFunc() == this && panel->otherPanel()->gui->syncBrowseButton->isChecked() && !otherFunc()->syncURL.isEmpty()
+        && otherFunc()->syncURL == url)
         return true;
 
     return false;
@@ -137,7 +140,7 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
     QUrl arcPath = browsableArchivePath(name);
     if (!arcPath.isEmpty()) {
         bool browseAsDirectory = !externallyExecutable
-                || (KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories)
+            || (KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories)
                 && (KrArcHandler::arcSupported(mime) || KrServices::isoSupported(mime)));
         if (browseAsDirectory) {
             openUrl(arcPath);
@@ -162,7 +165,7 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
         }
 
         KService::Ptr service = KApplicationTrader::preferredService(mime);
-        if(service) {
+        if (service) {
             runService(*service, QList<QUrl>() << url);
             return;
         }
@@ -188,13 +191,12 @@ QUrl ListPanelFunc::cleanPath(const QUrl &urlIn)
     return url;
 }
 
-void ListPanelFunc::openUrl(const QUrl &url, const QString& nameToMakeCurrent,
-                            bool manuallyEntered)
+void ListPanelFunc::openUrl(const QUrl &url, const QString &nameToMakeCurrent, bool manuallyEntered)
 {
     qDebug() << "URL=" << url.toDisplayString() << "; name to current=" << nameToMakeCurrent;
     if (panel->syncBrowseButton->isChecked()) {
-        //do sync-browse stuff....
-        if(syncURL.isEmpty())
+        // do sync-browse stuff....
+        if (syncURL.isEmpty())
             syncURL = panel->otherPanel()->virtualPath();
 
         QString relative = QDir(panel->virtualPath().path() + '/').relativeFilePath(url.path());
@@ -210,13 +212,11 @@ void ListPanelFunc::immediateOpenUrl(const QUrl &url)
     openUrlInternal(url, QString(), true, false);
 }
 
-void ListPanelFunc::openUrlInternal(const QUrl &url, const QString& nameToMakeCurrent,
-                                    bool immediately, bool manuallyEntered)
+void ListPanelFunc::openUrlInternal(const QUrl &url, const QString &nameToMakeCurrent, bool immediately, bool manuallyEntered)
 {
     const QUrl cleanUrl = cleanPath(url);
 
-    if (panel->isLocked() &&
-            !files()->currentDirectory().matches(cleanUrl, QUrl::StripTrailingSlash)) {
+    if (panel->isLocked() && !files()->currentDirectory().matches(cleanUrl, QUrl::StripTrailingSlash)) {
         panel->_manager->newTab(url);
         urlManuallyEntered = false;
         return;
@@ -224,14 +224,12 @@ void ListPanelFunc::openUrlInternal(const QUrl &url, const QString& nameToMakeCu
 
     urlManuallyEntered = manuallyEntered;
 
-    const QString currentItem = history->currentUrl().path() == cleanUrl.path()
-                                ? history->currentItem()
-                                : nameToMakeCurrent;
+    const QString currentItem = history->currentUrl().path() == cleanUrl.path() ? history->currentItem() : nameToMakeCurrent;
 
     panel->view->setNameToMakeCurrent(nameToMakeCurrent);
     history->add(cleanUrl, currentItem);
 
-    if(immediately)
+    if (immediately)
         doRefresh();
     else
         refresh();
@@ -258,8 +256,8 @@ void ListPanelFunc::doRefresh()
 
     const QUrl url = history->currentUrl();
 
-    if(!url.isValid()) {
-        panel->slotStartUpdate(true);  // refresh the panel
+    if (!url.isValid()) {
+        panel->slotStartUpdate(true); // refresh the panel
         urlManuallyEntered = false;
         return;
     }
@@ -337,16 +335,16 @@ void ListPanelFunc::doRefresh()
     // see if the open url operation failed, and if so,
     // put the attempted url in the navigator bar and let the user change it
     if (!scanned) {
-        if(isSyncing(url))
+        if (isSyncing(url))
             panel->otherPanel()->gui->syncBrowseButton->setChecked(false);
-        else if(urlManuallyEntered) {
+        else if (urlManuallyEntered) {
             panel->setNavigatorUrl(url);
-            if(panel == ACTIVE_PANEL)
+            if (panel == ACTIVE_PANEL)
                 panel->editLocation();
         }
     }
 
-    if(otherFunc()->otherFunc() == this)  // not true if our tab is not active
+    if (otherFunc()->otherFunc() == this) // not true if our tab is not active
         otherFunc()->syncURL = QUrl();
 
     urlManuallyEntered = false;
@@ -354,7 +352,8 @@ void ListPanelFunc::doRefresh()
     refreshActions();
 }
 
-void ListPanelFunc::setPaused(bool paused) {
+void ListPanelFunc::setPaused(bool paused)
+{
     if (paused == _isPaused)
         return;
     _isPaused = paused;
@@ -398,7 +397,7 @@ void ListPanelFunc::redirectLink()
     }
     // try to create a new symlink
     if (symlink(newLink.toLocal8Bit(), file.toLocal8Bit()) == -1) {
-        KMessageBox:: /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */error(krMainWindow, i18n("Failed to create a new link: %1", file));
+        KMessageBox::/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */ error(krMainWindow, i18n("Failed to create a new link: %1", file));
         return;
     }
 }
@@ -414,9 +413,7 @@ void ListPanelFunc::krlink(bool sym)
 
     // ask the new link name..
     bool ok = false;
-    QString linkName =
-        QInputDialog::getText(krMainWindow, i18n("New Link"),
-                              i18n("Create a new link to: %1", name), QLineEdit::Normal, name, &ok);
+    QString linkName = QInputDialog::getText(krMainWindow, i18n("New Link"), i18n("Create a new link to: %1", name), QLineEdit::Normal, name, &ok);
 
     // if the user canceled - quit
     if (!ok || linkName == name)
@@ -435,12 +432,10 @@ void ListPanelFunc::krlink(bool sym)
 
     if (sym) {
         if (symlink(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
-            KMessageBox::error(krMainWindow,
-                               i18n("Failed to create a new symlink '%1' to: '%2'", linkName, name));
+            KMessageBox::error(krMainWindow, i18n("Failed to create a new symlink '%1' to: '%2'", linkName, name));
     } else {
         if (link(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
-            KMessageBox::error(krMainWindow,
-                               i18n("Failed to create a new link '%1' to '%2'", linkName, name));
+            KMessageBox::error(krMainWindow, i18n("Failed to create a new link '%1' to '%2'", linkName, name));
     }
 }
 
@@ -470,9 +465,9 @@ void ListPanelFunc::viewDlg()
     // ask the user for a url to view
     QUrl dest = KChooseDir::getFile(i18n("Enter a URL to view:"), QUrl(panel->getCurrentName()), panel->virtualPath());
     if (dest.isEmpty())
-        return ;   // the user canceled
+        return; // the user canceled
 
-    KrViewer::view(dest);   // view the file
+    KrViewer::view(dest); // view the file
 }
 
 void ListPanelFunc::terminal()
@@ -509,7 +504,7 @@ void ListPanelFunc::editFile(const QUrl &filePath)
 
         KrViewer::edit(editPath);
     } else {
-        KIO::StatJob* statJob = KIO::stat(editPath, KIO::HideProgressInfo);
+        KIO::StatJob *statJob = KIO::stat(editPath, KIO::HideProgressInfo);
         connect(statJob, &KIO::StatJob::result, this, &ListPanelFunc::slotStatEdit);
     }
 }
@@ -517,10 +512,9 @@ void ListPanelFunc::editFile(const QUrl &filePath)
 void ListPanelFunc::askEditFile()
 {
     // ask the user for the filename to edit
-    const QUrl filePath = KChooseDir::getFile(i18n("Enter the filename to edit:"),
-                                       QUrl(panel->getCurrentName()), panel->virtualPath());
+    const QUrl filePath = KChooseDir::getFile(i18n("Enter the filename to edit:"), QUrl(panel->getCurrentName()), panel->virtualPath());
     if (filePath.isEmpty()) {
-        return;   // the user canceled
+        return; // the user canceled
     }
 
     if (filePath.isLocalFile()) {
@@ -542,12 +536,12 @@ void ListPanelFunc::askEditFile()
             return;
         }
     } else {
-        KIO::StatJob* statJob = KIO::stat(filePath, KIO::HideProgressInfo);
+        KIO::StatJob *statJob = KIO::stat(filePath, KIO::HideProgressInfo);
         connect(statJob, &KIO::StatJob::result, this, &ListPanelFunc::slotStatEdit);
     }
 }
 
-void ListPanelFunc::slotStatEdit(KJob* job)
+void ListPanelFunc::slotStatEdit(KJob *job)
 {
     if (!job)
         return;
@@ -565,7 +559,9 @@ void ListPanelFunc::slotStatEdit(KJob* job)
             KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), url);
             job->setUiDelegate(nullptr);
             job->setDefaultPermissions(true);
-            connect(job, &KIO::CopyJob::result, this, [=](KJob *job) { slotFileCreated(job, url); });
+            connect(job, &KIO::CopyJob::result, this, [=](KJob *job) {
+                slotFileCreated(job, url);
+            });
             connect(job, &KIO::CopyJob::result, tempFile, &QTemporaryFile::deleteLater);
             return;
         } else {
@@ -604,7 +600,7 @@ void ListPanelFunc::copyFiles(bool enqueue, bool move)
 
     const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
-        return ;  // safety
+        return; // safety
 
     QUrl destination = panel->otherPanel()->virtualPath();
 
@@ -622,34 +618,28 @@ void ListPanelFunc::copyFiles(bool enqueue, bool move)
     }
 
     const KConfigGroup group(krConfig, "Advanced");
-    const bool showDialog = move ? group.readEntry("Confirm Move", _ConfirmMove) :
-                                   group.readEntry("Confirm Copy", _ConfirmCopy);
+    const bool showDialog = move ? group.readEntry("Confirm Move", _ConfirmMove) : group.readEntry("Confirm Copy", _ConfirmCopy);
 
     if (showDialog) {
         QString operationText;
         if (move) {
-            operationText = fileNames.count() == 1
-                                ? i18n("Move %1 to:", fileNames.first())
-                                : i18np("Move %1 file to:", "Move %1 files to:", fileNames.count());
+            operationText = fileNames.count() == 1 ? i18n("Move %1 to:", fileNames.first()) : i18np("Move %1 file to:", "Move %1 files to:", fileNames.count());
         } else {
-            operationText = fileNames.count() == 1
-                                ? i18n("Copy %1 to:", fileNames.first())
-                                : i18np("Copy %1 file to:", "Copy %1 files to:", fileNames.count());
+            operationText = fileNames.count() == 1 ? i18n("Copy %1 to:", fileNames.first()) : i18np("Copy %1 file to:", "Copy %1 files to:", fileNames.count());
         }
 
         // ask the user for the copy/move dest
-        const KChooseDir::ChooseResult result =
-            KChooseDir::getCopyDir(operationText, destination, panel->virtualPath());
+        const KChooseDir::ChooseResult result = KChooseDir::getCopyDir(operationText, destination, panel->virtualPath());
         destination = result.url;
         if (destination.isEmpty())
-            return ; // the user canceled
+            return; // the user canceled
 
         enqueue = result.enqueue;
     }
 
-    const JobMan::StartMode startMode =
-        enqueue && krJobMan->isQueueModeEnabled() ? JobMan::Delay :
-        !enqueue && !krJobMan->isQueueModeEnabled() ? JobMan::Start : JobMan::Enqueue;
+    const JobMan::StartMode startMode = enqueue && krJobMan->isQueueModeEnabled() ? JobMan::Delay
+        : !enqueue && !krJobMan->isQueueModeEnabled()                             ? JobMan::Start
+                                                                                  : JobMan::Enqueue;
 
     const QList<QUrl> fileUrls = files()->getUrls(fileNames);
 
@@ -666,7 +656,7 @@ void ListPanelFunc::copyFiles(bool enqueue, bool move)
     const KIO::CopyJob::CopyMode mode = move ? KIO::CopyJob::Move : KIO::CopyJob::Copy;
     FileSystemProvider::instance().startCopyFiles(fileUrls, destination, mode, true, startMode);
 
-    if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
+    if (KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         panel->view->saveSelection();
         panel->view->unselectAll();
     }
@@ -683,7 +673,7 @@ void ListPanelFunc::rename()
 void ListPanelFunc::rename(const QString &oldname, const QString &newname)
 {
     if (oldname == newname)
-        return ; // do nothing
+        return; // do nothing
 
     // set current after rename
     panel->view->setNameToMakeCurrent(newname);
@@ -709,7 +699,7 @@ void ListPanelFunc::mkdir()
     comboBox.setMinimumContentsLength(30); // Ensure that the window title is fully seen
     layout.addWidget(&comboBox);
 
-    QDialogButtonBox buttonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel, &dialog);
+    QDialogButtonBox buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, &dialog);
     layout.addWidget(&buttonBox);
 
     layout.setSizeConstraint(QLayout::SetFixedSize);
@@ -717,8 +707,7 @@ void ListPanelFunc::mkdir()
     connect(&buttonBox, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
     connect(&buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
 
-    connect(&comboBox, QOverload<const QString &>::of(&KrHistoryComboBox::QCOMBOBOX_ACTIVATED),
-            &comboBox, &KrHistoryComboBox::addToHistory);
+    connect(&comboBox, QOverload<const QString &>::of(&KrHistoryComboBox::QCOMBOBOX_ACTIVATED), &comboBox, &KrHistoryComboBox::addToHistory);
 
     // ------------------------------------------------------------------------
     // load the history and completion list after creating the KrHistoryComboBox
@@ -816,8 +805,7 @@ void ListPanelFunc::deleteFiles(bool moveToTrash)
 
     // now ask the user if he/she is sure:
 
-    const QList<QUrl> confirmedUrls = confirmDeletion(
-        files()->getUrls(fileNames), moveToTrash, isVFS, false);
+    const QList<QUrl> confirmedUrls = confirmDeletion(files()->getUrls(fileNames), moveToTrash, isVFS, false);
 
     if (confirmedUrls.isEmpty())
         return; // nothing to delete
@@ -830,11 +818,10 @@ void ListPanelFunc::deleteFiles(bool moveToTrash)
     files()->deleteFiles(confirmedUrls, moveToTrash);
 }
 
-QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToTrash,
-                                           bool virtualFS, bool showPath)
+QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToTrash, bool virtualFS, bool showPath)
 {
     QStringList files;
-    for (const QUrl& fileUrl : urls) {
+    for (const QUrl &fileUrl : urls) {
         files.append(showPath ? fileUrl.toDisplayString(QUrl::PreferLocalFile) : fileUrl.fileName());
     }
 
@@ -844,26 +831,24 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
         KGuiItem b; // continue button
 
         if (moveToTrash) {
-            s = i18np("Do you really want to move this item to the trash?",
-                      "Do you really want to move these %1 items to the trash?", files.count());
+            s = i18np("Do you really want to move this item to the trash?", "Do you really want to move these %1 items to the trash?", files.count());
             b = KGuiItem(i18n("&Trash"));
         } else if (virtualFS) {
-            s = i18np("<qt>Do you really want to delete this item <b>physically</b> (not just "
-                      "removing it from the virtual items)?</qt>",
-                      "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
-                      "removing them from the virtual items)?</qt>",
-                      files.count());
+            s = i18np(
+                "<qt>Do you really want to delete this item <b>physically</b> (not just "
+                "removing it from the virtual items)?</qt>",
+                "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
+                "removing them from the virtual items)?</qt>",
+                files.count());
             b = KStandardGuiItem::del();
         } else {
-            s = i18np("Do you really want to delete this item?",
-                      "Do you really want to delete these %1 items?", files.count());
+            s = i18np("Do you really want to delete this item?", "Do you really want to delete these %1 items?", files.count());
             b = KStandardGuiItem::del();
         }
 
         // show message
         // note: i'm using continue and not yes/no because the yes/no has cancel as default button
-        if (KMessageBox::warningContinueCancelList(krMainWindow, s, files, i18n("Warning"),
-                                                   b) != KMessageBox::Continue) {
+        if (KMessageBox::warningContinueCancelList(krMainWindow, s, files, i18n("Warning"), b) != KMessageBox::Continue) {
             return QList<QUrl>();
         }
     }
@@ -887,9 +872,7 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
             if (fileInfo.isDir() && !fileInfo.isSymLink()) {
                 // read local dir
                 const QDir dir(filePath);
-                if (!dir.entryList(QDir::AllEntries | QDir::System | QDir::Hidden |
-                                   QDir::NoDotAndDotDot).isEmpty()) {
-
+                if (!dir.entryList(QDir::AllEntries | QDir::System | QDir::Hidden | QDir::NoDotAndDotDot).isEmpty()) {
                     // if the dir is not empty, show a confirmation dialog with buttons:
                     // * Skip (-> KMessageBox::Yes)
                     // * Delete All (-> KMessageBox::No)
@@ -897,10 +880,10 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
                     const QString fileString = showPath ? filePath : url.fileName();
                     const KMessageBox::ButtonCode result = KMessageBox::warningYesNoCancel(
                         krMainWindow,
-                        i18n("<qt><p>Folder <b>%1</b> is not empty.</p>", fileString) +
-                            (moveToTrash ? i18n("<p>Skip this one or trash all?</p></qt>") :
-                                           i18n("<p>Skip this one or delete all?</p></qt>")),
-                        QString(), KGuiItem(i18n("&Skip")),
+                        i18n("<qt><p>Folder <b>%1</b> is not empty.</p>", fileString)
+                            + (moveToTrash ? i18n("<p>Skip this one or trash all?</p></qt>") : i18n("<p>Skip this one or delete all?</p></qt>")),
+                        QString(),
+                        KGuiItem(i18n("&Skip")),
                         KGuiItem(moveToTrash ? i18n("&Trash All") : i18n("&Delete All")));
 
                     // process user response
@@ -938,29 +921,26 @@ void ListPanelFunc::removeVirtualFiles()
     if (fileNames.isEmpty())
         return;
 
-    const QString text =
-        i18np("Do you really want to delete this virtual item (physical files stay untouched)?",
-              "Do you really want to delete these %1 virtual items (physical files stay "
-              "untouched)?",
-              fileNames.count());
-    if (KMessageBox::warningContinueCancelList(krMainWindow, text, fileNames, i18n("Warning"),
-                                               KStandardGuiItem::remove()) != KMessageBox::Continue)
+    const QString text = i18np("Do you really want to delete this virtual item (physical files stay untouched)?",
+                               "Do you really want to delete these %1 virtual items (physical files stay "
+                               "untouched)?",
+                               fileNames.count());
+    if (KMessageBox::warningContinueCancelList(krMainWindow, text, fileNames, i18n("Warning"), KStandardGuiItem::remove()) != KMessageBox::Continue)
         return;
 
-    auto *fileSystem = dynamic_cast<VirtualFileSystem*>(files());
+    auto *fileSystem = dynamic_cast<VirtualFileSystem *>(files());
     fileSystem->remove(fileNames);
 }
 
-void ListPanelFunc::goInside(const QString& name)
+void ListPanelFunc::goInside(const QString &name)
 {
     openFileNameInternal(name, false);
 }
 
-void ListPanelFunc::runCommand(const QString& cmd)
+void ListPanelFunc::runCommand(const QString &cmd)
 {
     qDebug() << "command=" << cmd;
-    const QString workdir = panel->virtualPath().isLocalFile() ?
-            panel->virtualPath().path() : QDir::homePath();
+    const QString workdir = panel->virtualPath().isLocalFile() ? panel->virtualPath().path() : QDir::homePath();
 
 #if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
     /* A note from kjob.h (KIO::CommandLauncherJob is a KJob):
@@ -976,12 +956,12 @@ void ListPanelFunc::runCommand(const QString& cmd)
     job->setWorkingDirectory(workdir);
     job->start();
 #else
-    if(!KRun::runCommand(cmd, krMainWindow, workdir))
+    if (!KRun::runCommand(cmd, krMainWindow, workdir))
         KMessageBox::error(nullptr, i18n("Could not start %1", cmd));
 #endif
 }
 
-void ListPanelFunc::runService(const KService &service, const QList<QUrl>& urls)
+void ListPanelFunc::runService(const KService &service, const QList<QUrl> &urls)
 {
     qDebug() << "service name=" << service.name();
     KIO::DesktopExecParser parser(service, urls);
@@ -992,7 +972,7 @@ void ListPanelFunc::runService(const KService &service, const QList<QUrl>& urls)
         KMessageBox::error(nullptr, i18n("%1 cannot open %2", service.name(), KrServices::toStringList(urls).join(", ")));
 }
 
-void ListPanelFunc::displayOpenWithDialog(const QList<QUrl>& urls)
+void ListPanelFunc::displayOpenWithDialog(const QList<QUrl> &urls)
 {
     // NOTE: we are not using KRun::displayOpenWithDialog() because we want the commands working
     // directory to be the panel directory
@@ -1000,7 +980,7 @@ void ListPanelFunc::displayOpenWithDialog(const QList<QUrl>& urls)
     dialog.hideRunInTerminal();
     if (dialog.exec()) {
         KService::Ptr service = dialog.service();
-        if(!service)
+        if (!service)
             service = KService::Ptr(new KService(dialog.text(), dialog.text(), QString()));
         runService(*service, urls);
     }
@@ -1012,9 +992,9 @@ QUrl ListPanelFunc::browsableArchivePath(const QString &filename)
     QUrl url = files()->getUrl(filename);
     QString mime = fileitem->getMime();
 
-    if(url.isLocalFile()) {
+    if (url.isLocalFile()) {
         QString protocol = krArcMan.registeredProtocol(mime);
-        if(!protocol.isEmpty()) {
+        if (!protocol.isEmpty()) {
             url.setScheme(protocol);
             return url;
         }
@@ -1023,7 +1003,7 @@ QUrl ListPanelFunc::browsableArchivePath(const QString &filename)
 }
 
 // this is done when you double click on a file
-void ListPanelFunc::execute(const QString& name)
+void ListPanelFunc::execute(const QString &name)
 {
     openFileNameInternal(name, true);
 }
@@ -1032,10 +1012,10 @@ void ListPanelFunc::pack()
 {
     const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
-        return ;  // safety
+        return; // safety
 
     if (fileNames.count() == 0)
-        return ; // nothing to pack
+        return; // nothing to pack
 
     // choose the default name
     QString defaultName = panel->virtualPath().fileName();
@@ -1044,10 +1024,12 @@ void ListPanelFunc::pack()
     if (fileNames.count() == 1)
         defaultName = fileNames.first();
     // ask the user for archive name and packer
-    new PackGUI(defaultName, panel->otherPanel()->virtualPath().toDisplayString(QUrl::PreferLocalFile | QUrl::StripTrailingSlash),
-                fileNames.count(), fileNames.first());
+    new PackGUI(defaultName,
+                panel->otherPanel()->virtualPath().toDisplayString(QUrl::PreferLocalFile | QUrl::StripTrailingSlash),
+                fileNames.count(),
+                fileNames.first());
     if (PackGUI::type.isEmpty()) {
-        return ; // the user canceled
+        return; // the user canceled
     }
 
     // check for partial URLs
@@ -1063,35 +1045,40 @@ void ListPanelFunc::pack()
 
     QUrl destURL = QUrl::fromUserInput(destDir + PackGUI::filename + '.' + PackGUI::type, QString(), QUrl::AssumeLocalFile);
     if (destURL.isLocalFile() && QFile::exists(destURL.path())) {
-        QString msg = i18n("<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>All data in the previous archive will be lost.</p></qt>", PackGUI::filename, PackGUI::type);
+        QString msg =
+            i18n("<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>All data in the previous archive will be lost.</p></qt>",
+                 PackGUI::filename,
+                 PackGUI::type);
         if (PackGUI::type == "zip") {
-            msg = i18n("<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>Zip will replace identically named entries in the zip archive or add entries for new names.</p></qt>", PackGUI::filename, PackGUI::type);
+            msg = i18n(
+                "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>Zip will replace identically named entries in the zip "
+                "archive or add entries for new names.</p></qt>",
+                PackGUI::filename,
+                PackGUI::type);
         }
-        if (KMessageBox::warningContinueCancel(krMainWindow, msg, QString(), KStandardGuiItem::overwrite())
-                == KMessageBox::Cancel)
-            return ; // stop operation
+        if (KMessageBox::warningContinueCancel(krMainWindow, msg, QString(), KStandardGuiItem::overwrite()) == KMessageBox::Cancel)
+            return; // stop operation
     } else if (destURL.scheme() == QStringLiteral("virt")) {
         KMessageBox::error(krMainWindow, i18n("Cannot pack files onto a virtual destination."));
         return;
     }
 
-    PackJob * job = PackJob::createPacker(files()->currentDirectory(), destURL, fileNames, PackGUI::type, PackGUI::extraProps);
+    PackJob *job = PackJob::createPacker(files()->currentDirectory(), destURL, fileNames, PackGUI::type, PackGUI::extraProps);
     job->setUiDelegate(new KIO::JobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
 
     if (packToOtherPanel)
         connect(job, &PackJob::result, panel->otherPanel()->func, &ListPanelFunc::refresh);
-
 }
 
 void ListPanelFunc::testArchive()
 {
     const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
-        return ;  // safety
+        return; // safety
 
-    TestArchiveJob * job = TestArchiveJob::testArchives(files()->currentDirectory(), fileNames);
+    TestArchiveJob *job = TestArchiveJob::testArchives(files()->currentDirectory(), fileNames);
     job->setUiDelegate(new KIO::JobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
@@ -1101,7 +1088,7 @@ void ListPanelFunc::unpack()
 {
     const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
-        return ;  // safety
+        return; // safety
 
     QString s;
     if (fileNames.count() == 1)
@@ -1111,18 +1098,18 @@ void ListPanelFunc::unpack()
 
     // ask the user for the copy dest
     QUrl dest = KChooseDir::getDir(s, panel->otherPanel()->virtualPath(), panel->virtualPath());
-    if (dest.isEmpty()) return ;   // the user canceled
+    if (dest.isEmpty())
+        return; // the user canceled
 
     bool packToOtherPanel = (dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash));
 
-    UnpackJob * job = UnpackJob::createUnpacker(files()->currentDirectory(), dest, fileNames);
+    UnpackJob *job = UnpackJob::createUnpacker(files()->currentDirectory(), dest, fileNames);
     job->setUiDelegate(new KIO::JobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
 
     if (packToOtherPanel)
         connect(job, &UnpackJob::result, panel->otherPanel()->func, &ListPanelFunc::refresh);
-
 }
 
 void ListPanelFunc::createChecksum()
@@ -1187,7 +1174,6 @@ void ListPanelFunc::quickCalcSpace()
     _quickSizeCalculator->add(files()->getUrl(currentName));
 }
 
-
 SizeCalculator *ListPanelFunc::createAndConnectSizeCalculator(const QList<QUrl> &urls)
 {
     auto *sizeCalculator = new SizeCalculator(urls);
@@ -1235,12 +1221,12 @@ void ListPanelFunc::properties()
 {
     const QStringList names = panel->getSelectedNames();
     if (names.isEmpty()) {
-        return ;  // no names...
+        return; // no names...
     }
 
     KFileItemList fileItems;
 
-    for (const QString& name : names) {
+    for (const QString &name : names) {
         FileItem *fileitem = files()->getFileItem(name);
         if (!fileitem) {
             continue;
@@ -1262,13 +1248,13 @@ void ListPanelFunc::refreshActions()
 {
     panel->updateButtons();
 
-    if(ACTIVE_PANEL != panel)
+    if (ACTIVE_PANEL != panel)
         return;
 
     QString protocol = files()->currentDirectory().scheme();
     krRemoteEncoding->setEnabled(protocol == "ftp" || protocol == "sftp" || protocol == "fish" || protocol == "krarc");
-    //krMultiRename->setEnabled( fileSystemType == FileSystem::FS_NORMAL );  // batch rename
-    //krProperties ->setEnabled( fileSystemType == FileSystem::FS_NORMAL || fileSystemType == FileSystem::FS_FTP ); // file properties
+    // krMultiRename->setEnabled( fileSystemType == FileSystem::FS_NORMAL );  // batch rename
+    // krProperties ->setEnabled( fileSystemType == FileSystem::FS_NORMAL || fileSystemType == FileSystem::FS_FTP ); // file properties
 
     /*
       krUnpack->setEnabled(true);                            // unpack archive
@@ -1290,15 +1276,14 @@ void ListPanelFunc::refreshActions()
     panel->_actions->actFTPDisconnect->setEnabled(files()->isRemote()); // allow disconnecting a network session
     panel->_actions->actCreateChecksum->setEnabled(files()->isLocal());
     panel->_actions->actDirUp->setEnabled(!files()->isRoot());
-    panel->_actions->actRoot->setEnabled(!panel->virtualPath().matches(QUrl::fromLocalFile(ROOT_DIR),
-                                                                       QUrl::StripTrailingSlash));
+    panel->_actions->actRoot->setEnabled(!panel->virtualPath().matches(QUrl::fromLocalFile(ROOT_DIR), QUrl::StripTrailingSlash));
     panel->_actions->actHome->setEnabled(!atHome());
     panel->_actions->actHistoryBackward->setEnabled(history->canGoBack());
     panel->_actions->actHistoryForward->setEnabled(history->canGoForward());
     panel->view->op()->emitRefreshActions();
 }
 
-FileSystem* ListPanelFunc::files()
+FileSystem *ListPanelFunc::files()
 {
     if (!fileSystemP)
         fileSystemP = FileSystemProvider::instance().getFilesystem(QUrl::fromLocalFile(ROOT_DIR));
@@ -1332,7 +1317,7 @@ void ListPanelFunc::copyToClipboard(bool move)
 {
     const QStringList fileNames = panel->getSelectedNames();
     if (fileNames.isEmpty())
-        return ;  // safety
+        return; // safety
 
     QList<QUrl> fileUrls = files()->getUrls(fileNames);
     auto *mimeData = new QMimeData;
@@ -1350,7 +1335,7 @@ void ListPanelFunc::copyToClipboard(bool move)
 
 void ListPanelFunc::pasteFromClipboard()
 {
-    QClipboard * cb = QApplication::clipboard();
+    QClipboard *cb = QApplication::clipboard();
 
     ListPanelFunc *origin = nullptr;
 
@@ -1372,9 +1357,9 @@ void ListPanelFunc::pasteFromClipboard()
     if (urls.isEmpty())
         return;
 
-    if(origin && KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
+    if (origin && KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         origin->panel->view->saveSelection();
-        for(KrViewItem *item = origin->panel->view->getFirst(); item != nullptr; item = origin->panel->view->getNext(item)) {
+        for (KrViewItem *item = origin->panel->view->getFirst(); item != nullptr; item = origin->panel->view->getNext(item)) {
             if (urls.contains(item->getFileItem()->getUrl()))
                 item->setSelected(false);
         }
@@ -1383,26 +1368,26 @@ void ListPanelFunc::pasteFromClipboard()
     files()->addFiles(urls, move ? KIO::CopyJob::Move : KIO::CopyJob::Copy);
 }
 
-ListPanelFunc* ListPanelFunc::otherFunc()
+ListPanelFunc *ListPanelFunc::otherFunc()
 {
     return panel->otherPanel()->func;
 }
 
 void ListPanelFunc::historyGotoPos(int pos)
 {
-    if(history->gotoPos(pos))
+    if (history->gotoPos(pos))
         refresh();
 }
 
 void ListPanelFunc::historyBackward()
 {
-    if(history->goBack())
+    if (history->goBack())
         refresh();
 }
 
 void ListPanelFunc::historyForward()
 {
-    if(history->goForward())
+    if (history->goForward())
         refresh();
 }
 

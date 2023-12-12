@@ -14,7 +14,7 @@
 
 #include <KWidgetsAddons/KActionMenu>
 
-class KrBookmarkButton: public QToolButton
+class KrBookmarkButton : public QToolButton
 {
     Q_OBJECT
 public:

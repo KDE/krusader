@@ -9,8 +9,8 @@
 #define KRLAYOUTFACTORY_H
 
 // QtCore
-#include <QString>
 #include <QHash>
+#include <QString>
 // QtWidgets
 #include <QBoxLayout>
 #include <QLayout>
@@ -20,32 +20,33 @@
 
 class ListPanel;
 
-
 class KrLayoutFactory
 {
 public:
     KrLayoutFactory(ListPanel *panel, QHash<QString, QWidget *> &widgets)
-        : panel(panel), widgets(widgets)
-    {}
+        : panel(panel)
+        , widgets(widgets)
+    {
+    }
     // creates the layout and adds the widgets to it
     QLayout *createLayout(QString layoutName = QString());
 
     static QStringList layoutNames();
-    static QString layoutDescription(const QString& layoutName);
+    static QString layoutDescription(const QString &layoutName);
 
 private:
-    QBoxLayout *createLayout(const QDomElement& e, QWidget *parent);
-    QWidget *createFrame(const QDomElement& e, QWidget *parent);
+    QBoxLayout *createLayout(const QDomElement &e, QWidget *parent);
+    QWidget *createFrame(const QDomElement &e, QWidget *parent);
 
     static bool parseFiles();
-    static bool parseFile(const QString& path, QDomDocument &doc);
-    static bool parseResource(const QString& path, QDomDocument &doc);
-    static bool parseContent(const QByteArray& content, const QString& fileName, QDomDocument &doc);
-    static void getLayoutNames(const QDomDocument& doc, QStringList &names);
-    static QDomElement findLayout(const QDomDocument& doc, const QString& layoutName);
+    static bool parseFile(const QString &path, QDomDocument &doc);
+    static bool parseResource(const QString &path, QDomDocument &doc);
+    static bool parseContent(const QByteArray &content, const QString &fileName, QDomDocument &doc);
+    static void getLayoutNames(const QDomDocument &doc, QStringList &names);
+    static QDomElement findLayout(const QDomDocument &doc, const QString &layoutName);
 
     ListPanel *panel;
-    QHash<QString, QWidget*> &widgets;
+    QHash<QString, QWidget *> &widgets;
 
     static bool _parsed;
     static QDomDocument _mainDoc;

@@ -16,13 +16,14 @@ class KrPanel;
 class AbstractPanelManager
 {
 public:
-    virtual ~AbstractPanelManager() {}
+    virtual ~AbstractPanelManager()
+    {
+    }
     virtual bool isLeft() const = 0;
     virtual AbstractPanelManager *otherManager() const = 0;
     virtual KrPanel *currentPanel() const = 0;
     virtual void newTab(const QUrl &, int insertIndex = -1) = 0;
     virtual void duplicateTab(const QUrl &, KrPanel *nextTo = nullptr) = 0;
 };
-
 
 #endif // ABSTRACTPANELMANAGER_H

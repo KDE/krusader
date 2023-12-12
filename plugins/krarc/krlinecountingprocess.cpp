@@ -12,7 +12,9 @@ KrLinecountingProcess::KrLinecountingProcess()
 {
     setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
     connect(this, &KrLinecountingProcess::readyReadStandardError, this, &KrLinecountingProcess::receivedError);
-    connect(this, &KrLinecountingProcess::readyReadStandardOutput, [=]() { receivedOutput(); });
+    connect(this, &KrLinecountingProcess::readyReadStandardOutput, [=]() {
+        receivedOutput();
+    });
     mergedOutput = true;
 }
 
@@ -50,4 +52,3 @@ void KrLinecountingProcess::receivedOutput(QByteArray newData)
     if (outputData.length() > 500)
         outputData = outputData.right(500);
 }
-

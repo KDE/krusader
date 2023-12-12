@@ -6,7 +6,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef KONFIGURATOR_H
 #define KONFIGURATOR_H
 
@@ -52,14 +51,13 @@ protected slots:
     void slotShowHelp();
 
 private:
-    QList<KPageWidgetItem*>     kgPages;
-    bool                        firstTime;
-    KPageWidgetItem            *lastPage;
-    bool                        internalCall;
-    QTimer                      restoreTimer;
-    int                         sizeX;
-    int                         sizeY;
+    QList<KPageWidgetItem *> kgPages;
+    bool firstTime;
+    KPageWidgetItem *lastPage;
+    bool internalCall;
+    QTimer restoreTimer;
+    int sizeX;
+    int sizeY;
 };
 
 #endif
-

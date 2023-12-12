@@ -5,11 +5,10 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "krpanel.h"
 
-#include "panelfunc.h"
 #include "../abstractpanelmanager.h"
+#include "panelfunc.h"
 
 QUrl KrPanel::virtualPath() const
 {

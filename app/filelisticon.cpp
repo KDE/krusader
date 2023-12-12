@@ -7,11 +7,10 @@
 
 #include "filelisticon.h"
 
-#include "krglobal.h"
 #include "defaults.h"
+#include "krglobal.h"
 
 #include <KConfigCore/KSharedConfig>
-
 
 QSize FileListIcon::size() const
 {

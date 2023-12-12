@@ -6,14 +6,13 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef KMOUNTMANGUI_H
 #define KMOUNTMANGUI_H
 
 // QtCore
-#include <QTimer>
-#include <QList>
 #include <QDateTime>
+#include <QList>
+#include <QTimer>
 // QtWidgets
 #include <QDialog>
 #include <QFrame>
@@ -26,7 +25,7 @@
 
 #include <math.h>
 
-#define  WATCHER_DELAY    500
+#define WATCHER_DELAY 500
 
 class QCheckBox;
 class KrFSDisplay;
@@ -38,9 +37,7 @@ class KMountManGUI : public QDialog
 {
     Q_OBJECT
 
-    enum Pages {
-        Filesystems = 0
-    };
+    enum Pages { Filesystems = 0 };
 
 public:
     explicit KMountManGUI(KMountMan *mntMan);
@@ -58,13 +55,13 @@ protected slots:
     void changeActive(QTreeWidgetItem *);
     void checkMountChange(); // check whether the mount table was changed
 
-    void updateList();     // fill-up the filesystems list
+    void updateList(); // fill-up the filesystems list
     void getSpaceData();
 
 protected:
     QLayout *createMainPage(); // creator of the main page - filesystems
     void addItemToMountList(KrTreeWidget *lst, fsData &fs);
-    fsData* getFsData(QTreeWidgetItem *item);
+    fsData *getFsData(QTreeWidgetItem *item);
     QString getMntPoint(QTreeWidgetItem *item);
     void addNonMounted();
 
@@ -91,75 +88,98 @@ private:
 class fsData
 {
 public:
-    fsData() : Name(), Type(), MntPoint(), TotalBlks(0),
-            FreeBlks(0), Mounted(false) {}
+    fsData()
+        : Name()
+        , Type()
+        , MntPoint()
+        , TotalBlks(0)
+        , FreeBlks(0)
+        , Mounted(false)
+    {
+    }
 
     // get information
-    inline QString name() {
+    inline QString name()
+    {
         return Name;
     }
-    inline QString shortName() {
+    inline QString shortName()
+    {
         return Name.right(Name.length() - Name.indexOf("/", 1) - 1);
     }
-    inline QString type() {
+    inline QString type()
+    {
         return Type;
     }
-    inline QString mntPoint() {
+    inline QString mntPoint()
+    {
         return MntPoint;
     }
-    inline unsigned long totalBlks() {
+    inline unsigned long totalBlks()
+    {
         return TotalBlks;
     }
-    inline unsigned long freeBlks() {
+    inline unsigned long freeBlks()
+    {
         return FreeBlks;
     }
-    inline KIO::filesize_t totalBytes() {
+    inline KIO::filesize_t totalBytes()
+    {
         return TotalBlks * 1024;
     }
-    inline KIO::filesize_t freeBytes() {
+    inline KIO::filesize_t freeBytes()
+    {
         return FreeBlks * 1024;
     }
-    int usedPerct() {
+    int usedPerct()
+    {
         if (TotalBlks == 0)
             return 0;
 
         return static_cast<int>(roundl((static_cast<long double>(TotalBlks - FreeBlks) * 100) / TotalBlks));
     }
-    inline bool mounted() {
+    inline bool mounted()
+    {
         return Mounted;
     }
 
     // set information
-    inline void setName(QString n_) {
+    inline void setName(QString n_)
+    {
         Name = std::move(n_);
     }
-    inline void setType(QString t_) {
+    inline void setType(QString t_)
+    {
         Type = std::move(t_);
     }
-    inline void setMntPoint(QString m_) {
+    inline void setMntPoint(QString m_)
+    {
         MntPoint = std::move(m_);
     }
-    inline void setTotalBlks(unsigned long t_) {
+    inline void setTotalBlks(unsigned long t_)
+    {
         TotalBlks = t_;
     }
-    inline void setFreeBlks(unsigned long f_) {
+    inline void setFreeBlks(unsigned long f_)
+    {
         FreeBlks = f_;
     }
-    inline void setMounted(bool m_) {
+    inline void setMounted(bool m_)
+    {
         Mounted = m_;
     }
 
 private:
-    QString Name;       // i.e: /dev/cdrom
-    QString Type;       // i.e: iso9600
-    QString MntPoint;   // i.e: /mnt/cdrom
-    unsigned long TotalBlks;  // measured in 1024 bytes per block
+    QString Name; // i.e: /dev/cdrom
+    QString Type; // i.e: iso9600
+    QString MntPoint; // i.e: /mnt/cdrom
+    unsigned long TotalBlks; // measured in 1024 bytes per block
     unsigned long FreeBlks;
-    bool Mounted;    // true if filesystem is mounted
+    bool Mounted; // true if filesystem is mounted
 
     // additional attributes of a filesystem, parsed from fstab
 public:
-    QString options;    // additional fstab options
+    QString options; // additional fstab options
 };
 
 class KrMountDetector
@@ -170,10 +190,8 @@ class KrMountDetector
 #endif
 public:
     KrMountDetector();
-    static KrMountDetector * getInstance();
+    static KrMountDetector *getInstance();
     bool hasMountsChanged();
 };
-
-
 
 #endif

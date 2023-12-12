@@ -9,8 +9,8 @@
 #ifndef KRADDBOOKMARKDLG_H
 #define KRADDBOOKMARKDLG_H
 
-#include "krbookmark.h"
 #include "../GUI/krtreewidget.h"
+#include "krbookmark.h"
 
 // QtCore
 #include <QMap>
@@ -21,15 +21,17 @@
 
 #include <KCompletion/KLineEdit>
 
-class KrAddBookmarkDlg: public QDialog
+class KrAddBookmarkDlg : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KrAddBookmarkDlg(QWidget *parent, const QUrl& url = QUrl());
-    QUrl url() const {
+    explicit KrAddBookmarkDlg(QWidget *parent, const QUrl &url = QUrl());
+    QUrl url() const
+    {
         return QUrl::fromUserInput(_url->text(), QString(), QUrl::AssumeLocalFile);
     }
-    QString name() const {
+    QString name() const
+    {
         return _name->text();
     }
     KrBookmark *folder() const;
@@ -48,7 +50,7 @@ private:
     KLineEdit *_url;
     KLineEdit *_folder;
     KrTreeWidget *_createIn;
-    QMap<QTreeWidgetItem*, KrBookmark*> _xr;
+    QMap<QTreeWidgetItem *, KrBookmark *> _xr;
     QToolButton *_createInBtn;
     QPushButton *newFolderButton;
     QWidget *detailsWidget;

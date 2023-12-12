@@ -15,21 +15,20 @@
 
 class QTabWidget;
 
-
 class KgDependencies : public KonfiguratorPage
 {
     Q_OBJECT
 
 public:
-    explicit KgDependencies(bool first, QWidget* parent = nullptr);
+    explicit KgDependencies(bool first, QWidget *parent = nullptr);
 
     int activeSubPage() override;
 
 private:
-    void addApplication(const QString& name, QGridLayout *grid, int row, QWidget *parent, int page, const QString& additionalList = QString());
+    void addApplication(const QString &name, QGridLayout *grid, int row, QWidget *parent, int page, const QString &additionalList = QString());
 
 public slots:
-    void slotApply(QObject *obj, const QString& configGroup, const QString& name);
+    void slotApply(QObject *obj, const QString &configGroup, const QString &name);
 
 private:
     QTabWidget *tabWidget;

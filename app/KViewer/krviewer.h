@@ -15,16 +15,16 @@
 #include <QPointer>
 #include <QUrl>
 // QtGui
-#include <QKeyEvent>
 #include <QFocusEvent>
+#include <QKeyEvent>
 // QtWidgets
 #include <QAction>
 #include <QMenu>
 #include <QTabWidget>
 
+#include <KParts/BrowserExtension>
 #include <KParts/MainWindow>
 #include <KParts/PartManager>
-#include <KParts/BrowserExtension>
 
 #include "../krglobal.h"
 #include "viewertabbar.h"
@@ -37,18 +37,18 @@ class KrViewer : public KParts::MainWindow
 public:
     virtual ~KrViewer();
 
-    enum Mode {Generic, Text, Hex, Lister, Default};
+    enum Mode { Generic, Text, Hex, Lister, Default };
 
-    static void view(QUrl url, QWidget * parent = krMainWindow);
-    static void view(QUrl url, Mode mode, bool new_window, QWidget * parent = krMainWindow);
-    static void edit(QUrl url, QWidget * parent);
-    static void edit(const QUrl& url, Mode mode = Text, int new_window = -1, QWidget * parent = krMainWindow);
+    static void view(QUrl url, QWidget *parent = krMainWindow);
+    static void view(QUrl url, Mode mode, bool new_window, QWidget *parent = krMainWindow);
+    static void edit(QUrl url, QWidget *parent);
+    static void edit(const QUrl &url, Mode mode = Text, int new_window = -1, QWidget *parent = krMainWindow);
     static void configureDeps();
 
-    virtual bool eventFilter(QObject * watched, QEvent * e) override;
+    virtual bool eventFilter(QObject *watched, QEvent *e) override;
 
 public slots:
-    void createGUI(KParts::Part*);
+    void createGUI(KParts::Part *);
     void configureShortcuts();
 
     void viewGeneric();
@@ -61,7 +61,7 @@ public slots:
     void copy();
 
     void tabChanged(int index);
-    void tabURLChanged(PanelViewerBase * pvb, const QUrl &url);
+    void tabURLChanged(PanelViewerBase *pvb, const QUrl &url);
     void tabCloseRequest(int index, bool force = false);
     void tabCloseRequest();
 
@@ -75,32 +75,33 @@ protected:
     virtual bool queryClose() override;
     virtual void changeEvent(QEvent *e) override;
     virtual void resizeEvent(QResizeEvent *e) override;
-    virtual void focusInEvent(QFocusEvent *) override {
-        if (viewers.removeAll(this)) viewers.prepend(this);
+    virtual void focusInEvent(QFocusEvent *) override
+    {
+        if (viewers.removeAll(this))
+            viewers.prepend(this);
     } // move to first
-
 
 private slots:
     void openUrlFinished(PanelViewerBase *pvb, bool success);
 
 private:
     explicit KrViewer(QWidget *parent = nullptr);
-    void addTab(PanelViewerBase* pvb);
+    void addTab(PanelViewerBase *pvb);
     void updateActions();
-    void refreshTab(PanelViewerBase* pvb);
-    void viewInternal(QUrl url, Mode mode, QWidget * parent = krMainWindow);
-    void editInternal(QUrl url, Mode mode, QWidget * parent = krMainWindow);
+    void refreshTab(PanelViewerBase *pvb);
+    void viewInternal(QUrl url, Mode mode, QWidget *parent = krMainWindow);
+    void editInternal(QUrl url, Mode mode, QWidget *parent = krMainWindow);
     void addPart(KParts::ReadOnlyPart *part);
     void removePart(KParts::ReadOnlyPart *part);
-    bool isPartAdded(KParts::Part* part);
+    bool isPartAdded(KParts::Part *part);
 
-    static KrViewer* getViewer(bool new_window);
+    static KrViewer *getViewer(bool new_window);
     static QString makeTabText(PanelViewerBase *pvb);
     static QString makeTabToolTip(PanelViewerBase *pvb);
     static QIcon makeTabIcon(PanelViewerBase *pvb);
 
     KParts::PartManager manager;
-    QMenu* viewerMenu;
+    QMenu *viewerMenu;
     ViewerTabWidget tabWidget;
     QPointer<QWidget> returnFocusTo;
 
@@ -115,7 +116,7 @@ private:
     QAction *tabPrevAction;
 
     static QList<KrViewer *> viewers; // the first viewer is the active one
-    QList<int>    reservedKeys;   // the reserved key sequences
+    QList<int> reservedKeys; // the reserved key sequences
     QList<QAction *> reservedKeyActions; // the IDs of the reserved keys
 
     int sizeX;
@@ -127,11 +128,13 @@ class Invoker : public QObject
     Q_OBJECT
 
 public:
-    Invoker(QObject *recv, const char * slot) {
+    Invoker(QObject *recv, const char *slot)
+    {
         connect(this, SIGNAL(invokeSignal()), recv, slot);
     }
 
-    void invoke() {
+    void invoke()
+    {
         emit invokeSignal();
     }
 

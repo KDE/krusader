@@ -31,11 +31,11 @@
 
 #include <kio_version.h>
 
-#include <errno.h>
 #include "../../app/compat.h"
+#include <errno.h>
 
-#define MAX_IPC_SIZE           (1024*32)
-#define TRIES_WITH_PASSWORDS   3
+#define MAX_IPC_SIZE (1024 * 32)
+#define TRIES_WITH_PASSWORDS 3
 
 // Pseudo plugin class to embed meta data
 class KIOPluginForMetaData : public QObject
@@ -46,142 +46,160 @@ class KIOPluginForMetaData : public QObject
 #else
     Q_PLUGIN_METADATA(IID "org.kde.kio.slave.krarc" FILE "krarc.json")
 #endif
-
 };
 
 using namespace KIO;
-extern "C"
-{
+extern "C" {
 
 #ifdef KRARC_ENABLED
-    /* This codec is for being able to handle files which encoding differs from the current locale.
-     *
-     * Unfortunately QProcess requires QString parameters for arguments which are encoded to Local8Bit
-     * If we want to use unzip with ISO-8852-2 when the current locale is UTF-8, it will cause problems.
-     *
-     * Workaround:
-     *  1. encode the QString to QByteArray ( according to the selected remote encoding, ISO-8852-2 )
-     *  2. encode QByteArray to QString again
-     *     unicode 0xE000-0xF7FF is for private use
-     *     the byte array is mapped to 0xE000-0xE0FF unicodes
-     *  3. KrArcCodec maps 0xE000-0xE0FF to 0x0000-0x00FF, while calls the default encoding routine
-     *     for other unicodes.
-     */
+/* This codec is for being able to handle files which encoding differs from the current locale.
+ *
+ * Unfortunately QProcess requires QString parameters for arguments which are encoded to Local8Bit
+ * If we want to use unzip with ISO-8852-2 when the current locale is UTF-8, it will cause problems.
+ *
+ * Workaround:
+ *  1. encode the QString to QByteArray ( according to the selected remote encoding, ISO-8852-2 )
+ *  2. encode QByteArray to QString again
+ *     unicode 0xE000-0xF7FF is for private use
+ *     the byte array is mapped to 0xE000-0xE0FF unicodes
+ *  3. KrArcCodec maps 0xE000-0xE0FF to 0x0000-0x00FF, while calls the default encoding routine
+ *     for other unicodes.
+ */
 
-    class KrArcCodec : public QTextCodec
+class KrArcCodec : public QTextCodec
+{
+public:
+    KrArcCodec(QTextCodec *codec)
+        : originalCodec(codec)
     {
-    public:
-        KrArcCodec(QTextCodec * codec) : originalCodec(codec) {}
-        ~KrArcCodec() override = default;
+    }
+    ~KrArcCodec() override = default;
 
-        QByteArray name() const override {
-            return  originalCodec->name();
-        }
-        QList<QByteArray> aliases() const override {
-            return originalCodec->aliases();
-        }
-        int mibEnum() const override {
-            return  originalCodec->mibEnum();
-        }
+    QByteArray name() const override
+    {
+        return originalCodec->name();
+    }
+    QList<QByteArray> aliases() const override
+    {
+        return originalCodec->aliases();
+    }
+    int mibEnum() const override
+    {
+        return originalCodec->mibEnum();
+    }
 
-    protected:
-        QString convertToUnicode(const char *in, int length, ConverterState *state) const override {
-            return originalCodec->toUnicode(in, length, state);
+protected:
+    QString convertToUnicode(const char *in, int length, ConverterState *state) const override
+    {
+        return originalCodec->toUnicode(in, length, state);
+    }
+    QByteArray convertFromUnicode(const QChar *in, int length, ConverterState *state) const override
+    {
+        // the QByteArray is embedded into the unicode charset (QProcess hell)
+        QByteArray result;
+        for (int i = 0; i != length; i++) {
+            if (((in[i].unicode()) & 0xFF00) == 0xE000) // map 0xE000-0xE0FF to 0x0000-0x00FF
+                result.append((char)(in[i].unicode() & 0xFF));
+            else
+                result.append(originalCodec->fromUnicode(in + i, 1, state));
         }
-        QByteArray convertFromUnicode(const QChar *in, int length, ConverterState *state) const override {
-            // the QByteArray is embedded into the unicode charset (QProcess hell)
-            QByteArray result;
-            for (int i = 0; i != length; i++) {
-                if (((in[ i ].unicode()) & 0xFF00) == 0xE000)    // map 0xE000-0xE0FF to 0x0000-0x00FF
-                    result.append((char)(in[ i ].unicode() & 0xFF));
-                else
-                    result.append(originalCodec->fromUnicode(in + i, 1, state));
-            }
-            return result;
-        }
+        return result;
+    }
 
-    private:
-        QTextCodec * originalCodec;
-    } *krArcCodec;
+private:
+    QTextCodec *originalCodec;
+} *krArcCodec;
 
-#define SET_KRCODEC    QTextCodec *origCodec = QTextCodec::codecForLocale(); \
-    QTextCodec::setCodecForLocale( krArcCodec );
-#define RESET_KRCODEC  QTextCodec::setCodecForLocale( origCodec );
+#define SET_KRCODEC                                                                                                                                            \
+    QTextCodec *origCodec = QTextCodec::codecForLocale();                                                                                                      \
+    QTextCodec::setCodecForLocale(krArcCodec);
+#define RESET_KRCODEC QTextCodec::setCodecForLocale(origCodec);
 
 #endif // KRARC_ENABLED
 
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
-    class DummyWorker : public KIO::WorkerBase
+class DummyWorker : public KIO::WorkerBase
 #else
-    class DummySlave : public KIO::SlaveBase
+class DummySlave : public KIO::SlaveBase
 #endif
-    {
-    public:
+{
+public:
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
-        DummyWorker(const QByteArray &pool_socket, const QByteArray &app_socket) :
-                WorkerBase("kio_krarc", pool_socket, app_socket) {
+    DummyWorker(const QByteArray &pool_socket, const QByteArray &app_socket)
+        : WorkerBase("kio_krarc", pool_socket, app_socket){
 #else
-        DummySlave(const QByteArray &pool_socket, const QByteArray &app_socket) :
-                SlaveBase("kio_krarc", pool_socket, app_socket) {
-            error((int)ERR_SLAVE_DEFINED, QString("krarc is disabled."));
+    DummySlave(const QByteArray &pool_socket, const QByteArray &app_socket)
+        : SlaveBase("kio_krarc", pool_socket, app_socket)
+    {
+        error((int)ERR_SLAVE_DEFINED, QString("krarc is disabled."));
 #endif
 
         }
-    };
+};
 
-    int Q_DECL_EXPORT kdemain(int argc, char **argv) {
-        if (argc != 4) {
-            qWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << QT_ENDL;
-            exit(-1);
-        }
+int Q_DECL_EXPORT kdemain(int argc, char **argv)
+{
+    if (argc != 4) {
+        qWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << QT_ENDL;
+        exit(-1);
+    }
 
-        // At least, that fixes the empty name in the warning that says:  Please fix the "" KIO slave
-        // There is more information in https://bugs.kde.org/show_bug.cgi?id=384653
-        QCoreApplication app(argc, argv);
-        app.setApplicationName(QStringLiteral("kio_krarc"));
+    // At least, that fixes the empty name in the warning that says:  Please fix the "" KIO slave
+    // There is more information in https://bugs.kde.org/show_bug.cgi?id=384653
+    QCoreApplication app(argc, argv);
+    app.setApplicationName(QStringLiteral("kio_krarc"));
 
 #ifdef KRARC_ENABLED
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
-        kio_krarcProtocol worker(argv[2], argv[3]);
+    kio_krarcProtocol worker(argv[2], argv[3]);
 #else
-        kio_krarcProtocol slave(argv[2], argv[3]);
+    kio_krarcProtocol slave(argv[2], argv[3]);
 #endif
 
 #else
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
-        DummyWorker worker(argv[2], argv[3]);
+    DummyWorker worker(argv[2], argv[3]);
 #else
-        DummySlave slave(argv[2], argv[3]);
+    DummySlave slave(argv[2], argv[3]);
 #endif
 
 #endif
 
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
-        worker.dispatchLoop();
+    worker.dispatchLoop();
 #else
-        slave.dispatchLoop();
+    slave.dispatchLoop();
 #endif
 
-        return 0;
-    }
+    return 0;
+}
 
 } // extern "C"
 
 #ifdef KRARC_ENABLED
 kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
-        : WorkerBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(nullptr), extArcReady(false),
+    : WorkerBase("kio_krarc", pool_socket, app_socket)
+    , archiveChanged(true)
+    , arcFile(nullptr)
+    , extArcReady(false)
+    ,
 #else
-        : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(nullptr), extArcReady(false),
+    : SlaveBase("kio_krarc", pool_socket, app_socket)
+    , archiveChanged(true)
+    , arcFile(nullptr)
+    , extArcReady(false)
+    ,
 #endif
-        password(QString()), codec(nullptr)
+    password(QString())
+    , codec(nullptr)
 {
     KRFUNC;
     KConfigGroup group(&krConf, "General");
     QString tmpDirPath = group.readEntry("Temp Directory", _TempDirectory);
     QDir tmpDir(tmpDirPath);
-    if(!tmpDir.exists()) {
-        for (int i = 1 ; i != -1 ; i = tmpDirPath.indexOf('/', i + 1))
+    if (!tmpDir.exists()) {
+        for (int i = 1; i != -1; i = tmpDirPath.indexOf('/', i + 1))
             QDir().mkdir(tmpDirPath.left(i));
         QDir().mkdir(tmpDirPath);
     }
@@ -238,7 +256,7 @@ bool kio_krarcProtocol::checkWriteSupport()
 void kio_krarcProtocol::receivedData(KProcess *, QByteArray &d)
 {
     KRFUNC;
-    const QByteArray& buf(d);
+    const QByteArray &buf(d);
     data(buf);
     processedSize(d.length());
     decompressedLen += d.length();
@@ -263,9 +281,9 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
         return;
 #endif
 
-    // In case of KIO::mkpath call there is a mkdir call for every path element.
-    // Therefore the path all the way up to our archive needs to be checked for existence
-    // and reported as success.
+        // In case of KIO::mkpath call there is a mkdir call for every path element.
+        // Therefore the path all the way up to our archive needs to be checked for existence
+        // and reported as success.
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
     if (QDir().exists(path)) {
         return WorkerResult::pass();
@@ -281,8 +299,7 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
     }
 
     if (putCmd.isEmpty()) {
-        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION,
-                                  i18n("Creating folders is not supported with %1 archives", arcType));
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Creating folders is not supported with %1 archives", arcType));
     }
 #else
     if (QDir().exists(path)) {
@@ -301,8 +318,7 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
     }
 
     if (putCmd.isEmpty()) {
-        error(ERR_UNSUPPORTED_ACTION,
-              i18n("Creating folders is not supported with %1 archives", arcType));
+        error(ERR_UNSUPPORTED_ACTION, i18n("Creating folders is not supported with %1 archives", arcType));
         return;
     }
 #endif
@@ -311,7 +327,8 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 
     if (arcType == "arj" || arcType == "lha") {
         QString arcDir = path.mid(arcFilePath.length());
-        if (arcDir.right(1) != DIR_SEPARATOR) arcDir = arcDir + DIR_SEPARATOR;
+        if (arcDir.right(1) != DIR_SEPARATOR)
+            arcDir = arcDir + DIR_SEPARATOR;
 
         if (dirDict.find(arcDir) == dirDict.end())
             addNewDir(arcDir);
@@ -323,14 +340,16 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 #endif
     }
 
-    QString arcDir  = findArcDirectory(url);
+    QString arcDir = findArcDirectory(url);
     QString tempDir = arcDir.mid(1) + path.mid(path.lastIndexOf(DIR_SEPARATOR) + 1);
-    if (tempDir.right(1) != DIR_SEPARATOR) tempDir = tempDir + DIR_SEPARATOR;
+    if (tempDir.right(1) != DIR_SEPARATOR)
+        tempDir = tempDir + DIR_SEPARATOR;
 
-    if (permissions == -1) permissions = 0777;  //set default permissions
+    if (permissions == -1)
+        permissions = 0777; // set default permissions
 
     QByteArray arcTempDirEnc = arcTempDir.toLocal8Bit();
-    for (int i = 0;i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
+    for (int i = 0; i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
         QByteArray newDirs = encodeString(tempDir.left(i));
         newDirs.prepend(arcTempDirEnc);
         QT_MKDIR(newDirs, permissions);
@@ -354,7 +373,7 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
     // delete the temp directory
     QDir().rmdir(arcTempDir);
 
-    if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
+    if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode())) {
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
         return WorkerResult::fail(ERR_CANNOT_WRITE, path + "\n\n" + proc.getErrorMsg());
 #else
@@ -370,7 +389,6 @@ void kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 #else
     finished();
 #endif
-
 }
 
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
@@ -420,8 +438,7 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
     }
 
     if (putCmd.isEmpty()) {
-        error(ERR_UNSUPPORTED_ACTION,
-              i18n("Writing to %1 archives is not supported", arcType));
+        error(ERR_UNSUPPORTED_ACTION, i18n("Writing to %1 archives is not supported", arcType));
         return;
     }
     if (!overwrite && findFileEntry(url)) {
@@ -430,18 +447,20 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
     }
 #endif
 
-    QString arcDir  = findArcDirectory(url);
+    QString arcDir = findArcDirectory(url);
     if (arcDir.isEmpty())
         KRDEBUG("arcDir is empty.");
 
     QString tempFile = arcDir.mid(1) + getPath(url).mid(getPath(url).lastIndexOf(DIR_SEPARATOR) + 1);
-    QString tempDir  = arcDir.mid(1);
-    if (tempDir.right(1) != DIR_SEPARATOR) tempDir = tempDir + DIR_SEPARATOR;
+    QString tempDir = arcDir.mid(1);
+    if (tempDir.right(1) != DIR_SEPARATOR)
+        tempDir = tempDir + DIR_SEPARATOR;
 
-    if (permissions == -1) permissions = 0777;  //set default permissions
+    if (permissions == -1)
+        permissions = 0777; // set default permissions
 
     QByteArray arcTempDirEnc = arcTempDir.toLocal8Bit();
-    for (int i = 0;i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
+    for (int i = 0; i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
         QByteArray newDirs = encodeString(tempDir.left(i));
         newDirs.prepend(arcTempDirEnc);
         QT_MKDIR(newDirs, 0755);
@@ -451,7 +470,7 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
     if (resume) {
         QByteArray ba = encodeString(tempFile);
         ba.prepend(arcTempDirEnc);
-        fd = QT_OPEN(ba, O_RDWR);    // append if resuming
+        fd = QT_OPEN(ba, O_RDWR); // append if resuming
         QT_LSEEK(fd, 0, SEEK_END); // Seek to end
     } else {
         // WABA: Make sure that we keep writing permissions ourselves,
@@ -488,7 +507,6 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
         error(ERR_CANNOT_WRITE, getPath(url));
         return;
 #endif
-
     }
 
     // pack the file
@@ -506,7 +524,7 @@ void kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::JobFlags flag
     // remove the files
     QDir().rmdir(arcTempDir);
 
-    if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
+    if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode())) {
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
         return WorkerResult::fail(ERR_CANNOT_WRITE, getPath(url) + "\n\n" + proc.getErrorMsg());
 #else
@@ -556,10 +574,9 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
     }
 
     if (getCmd.isEmpty()) {
-        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION,
-              i18n("Retrieving data from %1 archives is not supported", arcType));
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Retrieving data from %1 archives is not supported", arcType));
     }
-    UDSEntry* entry = findFileEntry(url);
+    UDSEntry *entry = findFileEntry(url);
     if (!entry) {
         return WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, getPath(url));
     }
@@ -577,11 +594,10 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
     }
 
     if (getCmd.isEmpty()) {
-        error(ERR_UNSUPPORTED_ACTION,
-              i18n("Retrieving data from %1 archives is not supported", arcType));
+        error(ERR_UNSUPPORTED_ACTION, i18n("Retrieving data from %1 archives is not supported", arcType));
         return;
     }
-    UDSEntry* entry = findFileEntry(url);
+    UDSEntry *entry = findFileEntry(url);
     if (!entry) {
         error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
         return;
@@ -639,7 +655,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
         proc << getCmd << arcTempDir + "contents.cpio" << '*' + localeEncodedString(file);
     } else if (arcType == "arj" || arcType == "ace" || arcType == "7z") {
         proc << getCmd << getPath(arcFile->url(), QUrl::StripTrailingSlash) << localeEncodedString(file);
-        if (arcType == "ace" && QFile("/dev/ptmx").exists())    // Don't remove, unace crashes if missing!!!
+        if (arcType == "ace" && QFile("/dev/ptmx").exists()) // Don't remove, unace crashes if missing!!!
             proc.setStandardInputFile("/dev/ptmx");
         file = url.fileName();
         decompressToFile = true;
@@ -653,10 +669,11 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
             mimeType(mt.name());
 
         QString escapedFilename = file;
-        if(arcType == "zip") // left bracket needs to be escaped
+        if (arcType == "zip") // left bracket needs to be escaped
             escapedFilename.replace('[', "[[]");
         proc << getCmd << getPath(arcFile->url());
-        if (arcType != "gzip" && arcType != "bzip2" && arcType != "lzma" && arcType != "xz") proc << localeEncodedString(escapedFilename);
+        if (arcType != "gzip" && arcType != "bzip2" && arcType != "lzma" && arcType != "xz")
+            proc << localeEncodedString(escapedFilename);
         connect(&proc, &KrLinecountingProcess::newOutputData, this, &kio_krarcProtocol::receivedData);
         proc.setMerge(false);
     }
@@ -678,14 +695,18 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
                                        cmd,
                                        proc.errorString()));
 #else
-        error(KIO::ERR_SLAVE_DEFINED, i18n("An error has happened, related to the external program '%1'. "
-                                           "The error message is: '%2'.", cmd, proc.errorString()));
+        error(KIO::ERR_SLAVE_DEFINED,
+              i18n("An error has happened, related to the external program '%1'. "
+                   "The error message is: '%2'.",
+                   cmd,
+                   proc.errorString()));
         return;
 #endif
     }
 
     if (!extArcReady && !decompressToFile) {
-        if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()) || (arcType != "bzip2" && arcType != "lzma" && arcType != "xz" && expectedSize != decompressedLen)) {
+        if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode())
+            || (arcType != "bzip2" && arcType != "lzma" && arcType != "xz" && expectedSize != decompressedLen)) {
             if (encrypted && tries) {
                 invalidatePassword();
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
@@ -781,7 +802,7 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
 
         totalSize(buff.st_size);
 
-        char buffer[ MAX_IPC_SIZE ];
+        char buffer[MAX_IPC_SIZE];
         while (1) {
             int n = int(::read(fd, buffer, MAX_IPC_SIZE));
             if (n == -1) {
@@ -833,9 +854,9 @@ void kio_krarcProtocol::get(const QUrl &url, int tries)
 }
 
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
-KIO::WorkerResult kio_krarcProtocol::del(QUrl const & url, bool isFile)
+KIO::WorkerResult kio_krarcProtocol::del(QUrl const &url, bool isFile)
 #else
-void kio_krarcProtocol::del(QUrl const & url, bool isFile)
+void kio_krarcProtocol::del(QUrl const &url, bool isFile)
 #endif
 {
     KRFUNC;
@@ -855,8 +876,7 @@ void kio_krarcProtocol::del(QUrl const & url, bool isFile)
     }
 
     if (delCmd.isEmpty()) {
-        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION,
-                                  i18n("Deleting files from %1 archives is not supported", arcType));
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Deleting files from %1 archives is not supported", arcType));
     }
     if (!findFileEntry(url)) {
         if ((arcType != "arj" && arcType != "lha") || isFile) {
@@ -877,8 +897,7 @@ void kio_krarcProtocol::del(QUrl const & url, bool isFile)
     }
 
     if (delCmd.isEmpty()) {
-        error(ERR_UNSUPPORTED_ACTION,
-              i18n("Deleting files from %1 archives is not supported", arcType));
+        error(ERR_UNSUPPORTED_ACTION, i18n("Deleting files from %1 archives is not supported", arcType));
         return;
     }
     if (!findFileEntry(url)) {
@@ -891,7 +910,8 @@ void kio_krarcProtocol::del(QUrl const & url, bool isFile)
 
     QString file = getPath(url).mid(getPath(arcFile->url()).length() + 1);
     if (!isFile && file.right(1) != DIR_SEPARATOR) {
-        if (arcType == "zip") file = file + DIR_SEPARATOR;
+        if (arcType == "zip")
+            file = file + DIR_SEPARATOR;
     }
     KrLinecountingProcess proc;
     proc << delCmd << getPath(arcFile->url()) << localeEncodedString(file);
@@ -902,14 +922,13 @@ void kio_krarcProtocol::del(QUrl const & url, bool isFile)
     RESET_KRCODEC
 
     proc.waitForFinished();
-    if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
+    if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode())) {
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
         return WorkerResult::fail(ERR_CANNOT_WRITE, getPath(url) + "\n\n" + proc.getErrorMsg());
 #else
         error(ERR_CANNOT_WRITE, getPath(url) + "\n\n" + proc.getErrorMsg());
         return;
 #endif
-
     }
     //  force a refresh of archive information
     initDirDict(url, true);
@@ -918,7 +937,6 @@ void kio_krarcProtocol::del(QUrl const & url, bool isFile)
 #else
     finished();
 #endif
-
 }
 
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
@@ -939,8 +957,7 @@ void kio_krarcProtocol::stat(const QUrl &url)
     }
 
     if (listCmd.isEmpty()) {
-        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION,
-                                  i18n("Accessing files is not supported with %1 archives", arcType));
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Accessing files is not supported with %1 archives", arcType));
     }
 #else
     if (!setArcFile(url)) {
@@ -953,8 +970,7 @@ void kio_krarcProtocol::stat(const QUrl &url)
     }
 
     if (listCmd.isEmpty()) {
-        error(ERR_UNSUPPORTED_ACTION,
-              i18n("Accessing files is not supported with %1 archives", arcType));
+        error(ERR_UNSUPPORTED_ACTION, i18n("Accessing files is not supported with %1 archives", arcType));
         return;
     }
 #endif
@@ -983,9 +999,8 @@ void kio_krarcProtocol::stat(const QUrl &url)
         finished();
         return;
 #endif
-
     }
-    UDSEntry* entry = findFileEntry(newUrl);
+    UDSEntry *entry = findFileEntry(newUrl);
     if (entry) {
         statEntry(*entry);
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
@@ -994,7 +1009,8 @@ void kio_krarcProtocol::stat(const QUrl &url)
     return WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, path);
 #else
         finished();
-    } else error(KIO::ERR_DOES_NOT_EXIST, path);
+    } else
+        error(KIO::ERR_DOES_NOT_EXIST, path);
 #endif
 }
 
@@ -1027,7 +1043,7 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
             if (QTextCodec::codecForLocale()->name() != codec->name())
                 break;
 
-            //the file exists and we don't want to overwrite
+            // the file exists and we don't want to overwrite
             if ((!overwrite) && (QFile(getPath(dest)).exists())) {
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
                 return WorkerResult::fail((int)ERR_FILE_ALREADY_EXIST, QString(QFile::encodeName(getPath(dest))));
@@ -1055,7 +1071,7 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
             }
 #endif
 
-            UDSEntry* entry = findFileEntry(url);
+            UDSEntry *entry = findFileEntry(url);
             if (copyCmd.isEmpty() || !entry)
                 break;
 
@@ -1071,21 +1087,21 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
             QDir::setCurrent(destDir);
 
             QString escapedFilename = file;
-            if(arcType == "zip") {
+            if (arcType == "zip") {
                 // left bracket needs to be escaped
                 escapedFilename.replace('[', "[[]");
             }
 
             KrLinecountingProcess proc;
             proc << copyCmd << getPath(arcFile->url(), QUrl::StripTrailingSlash) << escapedFilename;
-            if (arcType == "ace" && QFile("/dev/ptmx").exists())    // Don't remove, unace crashes if missing!!!
+            if (arcType == "ace" && QFile("/dev/ptmx").exists()) // Don't remove, unace crashes if missing!!!
                 proc.setStandardInputFile("/dev/ptmx");
             proc.setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect
 
             infoMessage(i18n("Unpacking %1...", url.fileName()));
             proc.start();
             proc.waitForFinished();
-            if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
+            if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode())) {
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
                 return WorkerResult::fail(KIO::ERR_CANNOT_WRITE, getPath(dest, QUrl::StripTrailingSlash) + "\n\n" + proc.getErrorMsg());
 #else
@@ -1104,11 +1120,11 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
 
             processedSize(KFileItem(*entry, url).size());
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
-            QDir::setCurrent(QDir::rootPath());   /* for being able to umount devices after copying*/
+            QDir::setCurrent(QDir::rootPath()); /* for being able to umount devices after copying*/
             return WorkerResult::pass();
 #else
             finished();
-            QDir::setCurrent(QDir::rootPath());   /* for being able to umount devices after copying*/
+            QDir::setCurrent(QDir::rootPath()); /* for being able to umount devices after copying*/
             return;
 #endif
 
@@ -1119,7 +1135,7 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
     if (!dest.isLocalFile())
         KRDEBUG("ERROR: " << url.path() << " is not a local file.");
 
-    // CMD_COPY is no more in KF5 - replaced with 74 value (as stated in https://invent.kde.org/frameworks/kio/-/blob/master/src/core/commands_p.h)
+        // CMD_COPY is no more in KF5 - replaced with 74 value (as stated in https://invent.kde.org/frameworks/kio/-/blob/master/src/core/commands_p.h)
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
     return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString("kio_krarc", 74));
 #else
@@ -1128,9 +1144,9 @@ void kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int, KIO::JobFla
 }
 
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
-KIO::WorkerResult kio_krarcProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags)
+KIO::WorkerResult kio_krarcProtocol::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags)
 #else
-void kio_krarcProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags)
+void kio_krarcProtocol::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags)
 #endif
 {
     Q_UNUSED(flags);
@@ -1170,7 +1186,7 @@ void kio_krarcProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags 
     proc.start();
     proc.waitForFinished();
 
-    if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))  {
+    if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode())) {
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
         return WorkerResult::fail(KIO::ERR_CANNOT_RENAME, src.fileName());
     }
@@ -1198,22 +1214,20 @@ void kio_krarcProtocol::listDir(const QUrl &url)
         return setArcFileResult;
     }
     if (listCmd.isEmpty()) {
-        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION,
-                                  i18n("Listing folders is not supported for %1 archives", arcType));
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Listing folders is not supported for %1 archives", arcType));
 #else
     if (!setArcFile(url)) {
         error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
         return;
     }
     if (listCmd.isEmpty()) {
-        error(ERR_UNSUPPORTED_ACTION,
-              i18n("Listing folders is not supported for %1 archives", arcType));
+        error(ERR_UNSUPPORTED_ACTION, i18n("Listing folders is not supported for %1 archives", arcType));
         return;
 #endif
-
     }
     QString path = getPath(url);
-    if (path.right(1) != DIR_SEPARATOR) path = path + DIR_SEPARATOR;
+    if (path.right(1) != DIR_SEPARATOR)
+        path = path + DIR_SEPARATOR;
 
     // it might be a real dir !
     if (QFileInfo::exists(path)) {
@@ -1245,7 +1259,8 @@ void kio_krarcProtocol::listDir(const QUrl &url)
 
     QString arcDir = path.mid(getPath(arcFile->url()).length());
     arcDir.truncate(arcDir.lastIndexOf(DIR_SEPARATOR));
-    if (arcDir.right(1) != DIR_SEPARATOR) arcDir = arcDir + DIR_SEPARATOR;
+    if (arcDir.right(1) != DIR_SEPARATOR)
+        arcDir = arcDir + DIR_SEPARATOR;
 
     if (dirDict.find(arcDir) == dirDict.end()) {
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
@@ -1254,9 +1269,8 @@ void kio_krarcProtocol::listDir(const QUrl &url)
         error(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
         return;
 #endif
-
     }
-    UDSEntryList* dirList = dirDict[ arcDir ];
+    UDSEntryList *dirList = dirDict[arcDir];
     totalSize(dirList->size());
     listEntries(*dirList);
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
@@ -1282,7 +1296,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
     if (arcFile && getPath(arcFile->url(), QUrl::StripTrailingSlash) == path.left(getPath(arcFile->url(), QUrl::StripTrailingSlash).length())) {
         newArchiveURL = false;
         // Has it changed ?
-        KFileItem* newArcFile = new KFileItem(arcFile->url(), QString(), arcFile->mode());
+        KFileItem *newArcFile = new KFileItem(arcFile->url(), QString(), arcFile->mode());
         if (metaData("Charset") != currentCharset || !newArcFile->cmp(*arcFile)) {
             currentCharset = metaData("Charset");
 
@@ -1316,7 +1330,8 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
             arcFile = nullptr;
         }
         QString newPath = path;
-        if (newPath.right(1) != DIR_SEPARATOR) newPath = newPath + DIR_SEPARATOR;
+        if (newPath.right(1) != DIR_SEPARATOR)
+            newPath = newPath + DIR_SEPARATOR;
         for (int pos = 0; pos >= 0; pos = newPath.indexOf(DIR_SEPARATOR, pos + 1)) {
             QFileInfo qfi(newPath.left(pos));
             if (qfi.exists() && !qfi.isDir()) {
@@ -1334,7 +1349,6 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
             error(ERR_DOES_NOT_EXIST, path);
             return false; // file not found
 #endif
-
         }
         currentCharset = metaData("Charset");
 
@@ -1381,9 +1395,9 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
     KRFUNC;
     KRDEBUG(getPath(url));
     // set the archive location
-    //if( !setArcFile(getPath(url)) ) return false;
+    // if( !setArcFile(getPath(url)) ) return false;
     // no need to rescan the archive if it's not changed
-        // KRDEBUG("achiveChanged: " << archiveChanged << " forced: " << forced);
+    // KRDEBUG("achiveChanged: " << archiveChanged << " forced: " << forced);
     if (!archiveChanged && !forced) {
         // KRDEBUG("doing nothing.");
         return true;
@@ -1398,7 +1412,7 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
     }
 #else
     if (!setArcFile(url))
-        return false;   /* if the archive was changed refresh the file information */
+        return false; /* if the archive was changed refresh the file information */
 #endif
 
     // write the temp file
@@ -1421,30 +1435,31 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
             proc << listCmd << getPath(arcFile->url(), QUrl::StripTrailingSlash);
             proc.setStandardOutputFile(temp.fileName());
         }
-        if (arcType == "ace" && QFile("/dev/ptmx").exists())    // Don't remove, unace crashes if missing!!!
+        if (arcType == "ace" && QFile("/dev/ptmx").exists()) // Don't remove, unace crashes if missing!!!
             proc.setStandardInputFile("/dev/ptmx");
 
         proc.setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect
         proc.start();
         proc.waitForFinished();
-        if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode())) return false;
+        if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))
+            return false;
     }
     // clear the dir dictionary
 
-    QHashIterator< QString, KIO::UDSEntryList *> lit(dirDict);
+    QHashIterator<QString, KIO::UDSEntryList *> lit(dirDict);
     while (lit.hasNext())
         delete lit.next().value();
     dirDict.clear();
 
     // add the "/" directory
-    auto* root = new UDSEntryList();
+    auto *root = new UDSEntryList();
     dirDict.insert(DIR_SEPARATOR, root);
     // and the "/" UDSEntry
     UDSEntry entry;
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
     mode_t mode = parsePermString("drwxr-xr-x");
-    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT);   // keep file type only
-    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, mode & 07777);   // keep permissions only
+    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT); // keep file type only
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, mode & 07777); // keep permissions only
 
     root->append(entry);
 
@@ -1460,7 +1475,8 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
     if (arcType == "rar" || arcType == "arj" || arcType == "lha" || arcType == "7z") {
         while (temp.readLine(buf, 1000) != -1) {
             line = decodeString(buf);
-            if (line.startsWith(QLatin1String("----------"))) break;
+            if (line.startsWith(QLatin1String("----------")))
+                break;
         }
     }
     while (temp.readLine(buf, 1000) != -1) {
@@ -1480,7 +1496,8 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
         }
         if (arcType == "ace") {
             // the ace list begins with a number.
-            if (!line[0].isDigit()) continue;
+            if (!line[0].isDigit())
+                continue;
         }
         if (arcType == "arj") {
             // the arj list is ended with a ------ line.
@@ -1501,7 +1518,8 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
         }
         if (arcType == "lha" || arcType == "7z") {
             // the arj list is ended with a ------ line.
-            if (line.startsWith(QLatin1String("----------"))) break;
+            if (line.startsWith(QLatin1String("----------")))
+                break;
         }
         parseLine(lineNo++, line.trimmed());
     }
@@ -1519,41 +1537,45 @@ QString kio_krarcProtocol::findArcDirectory(const QUrl &url)
     KRDEBUG(url.fileName());
 
     QString path = getPath(url);
-    if (path.right(1) == DIR_SEPARATOR) path.truncate(path.length() - 1);
+    if (path.right(1) == DIR_SEPARATOR)
+        path.truncate(path.length() - 1);
 
     if (!initDirDict(url)) {
         return QString();
     }
     QString arcDir = path.mid(getPath(arcFile->url()).length());
     arcDir.truncate(arcDir.lastIndexOf(DIR_SEPARATOR));
-    if (arcDir.right(1) != DIR_SEPARATOR) arcDir = arcDir + DIR_SEPARATOR;
+    if (arcDir.right(1) != DIR_SEPARATOR)
+        arcDir = arcDir + DIR_SEPARATOR;
 
     return arcDir;
 }
 
-UDSEntry* kio_krarcProtocol::findFileEntry(const QUrl &url)
+UDSEntry *kio_krarcProtocol::findFileEntry(const QUrl &url)
 {
     KRFUNC;
     QString arcDir = findArcDirectory(url);
-    if (arcDir.isEmpty()) return nullptr;
+    if (arcDir.isEmpty())
+        return nullptr;
 
     QHash<QString, KIO::UDSEntryList *>::iterator itef = dirDict.find(arcDir);
     if (itef == dirDict.end())
         return nullptr;
-    UDSEntryList* dirList = itef.value();
+    UDSEntryList *dirList = itef.value();
 
     QString name = getPath(url);
-    if (getPath(arcFile->url(), QUrl::StripTrailingSlash) == getPath(url, QUrl::StripTrailingSlash)) name = '.'; // the '/' case
+    if (getPath(arcFile->url(), QUrl::StripTrailingSlash) == getPath(url, QUrl::StripTrailingSlash))
+        name = '.'; // the '/' case
     else {
-        if (name.right(1) == DIR_SEPARATOR) name.truncate(name.length() - 1);
+        if (name.right(1) == DIR_SEPARATOR)
+            name.truncate(name.length() - 1);
         name = name.mid(name.lastIndexOf(DIR_SEPARATOR) + 1);
     }
 
     UDSEntryList::iterator entry;
 
     for (entry = dirList->begin(); entry != dirList->end(); ++entry) {
-        if ((entry->contains(KIO::UDSEntry::UDS_NAME)) &&
-                (entry->stringValue(KIO::UDSEntry::UDS_NAME) == name))
+        if ((entry->contains(KIO::UDSEntry::UDS_NAME)) && (entry->stringValue(KIO::UDSEntry::UDS_NAME) == name))
             return &(*entry);
     }
     return nullptr;
@@ -1574,32 +1596,44 @@ mode_t kio_krarcProtocol::parsePermString(QString perm)
     KRFUNC;
     mode_t mode = 0;
     // file type
-    if (perm[0] == 'd') mode |= S_IFDIR;
+    if (perm[0] == 'd')
+        mode |= S_IFDIR;
 #ifndef Q_OS_WIN
-    if (perm[0] == 'l') mode |= S_IFLNK;
+    if (perm[0] == 'l')
+        mode |= S_IFLNK;
 #endif
-    if (perm[0] == '-') mode |= S_IFREG;
+    if (perm[0] == '-')
+        mode |= S_IFREG;
     // owner permissions
-    if (perm[1] != '-') mode |= S_IRUSR;
-    if (perm[2] != '-') mode |= S_IWUSR;
-    if (perm[3] != '-') mode |= S_IXUSR;
+    if (perm[1] != '-')
+        mode |= S_IRUSR;
+    if (perm[2] != '-')
+        mode |= S_IWUSR;
+    if (perm[3] != '-')
+        mode |= S_IXUSR;
 #ifndef Q_OS_WIN
     // group permissions
-    if (perm[4] != '-') mode |= S_IRGRP;
-    if (perm[5] != '-') mode |= S_IWGRP;
-    if (perm[6] != '-') mode |= S_IXGRP;
+    if (perm[4] != '-')
+        mode |= S_IRGRP;
+    if (perm[5] != '-')
+        mode |= S_IWGRP;
+    if (perm[6] != '-')
+        mode |= S_IXGRP;
     // other permissions
-    if (perm[7] != '-') mode |= S_IROTH;
-    if (perm[8] != '-') mode |= S_IWOTH;
-    if (perm[9] != '-') mode |= S_IXOTH;
+    if (perm[7] != '-')
+        mode |= S_IROTH;
+    if (perm[8] != '-')
+        mode |= S_IWOTH;
+    if (perm[9] != '-')
+        mode |= S_IXOTH;
 #endif
     return mode;
 }
 
-UDSEntryList* kio_krarcProtocol::addNewDir(const QString& path)
+UDSEntryList *kio_krarcProtocol::addNewDir(const QString &path)
 {
     KRFUNC;
-    UDSEntryList* dir;
+    UDSEntryList *dir;
 
     // check if the current dir exists
     QHash<QString, KIO::UDSEntryList *>::iterator itef = dirDict.find(path);
@@ -1628,8 +1662,8 @@ UDSEntryList* kio_krarcProtocol::addNewDir(const QString& path)
     UDSEntry entry;
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
     mode_t mode = parsePermString("drwxr-xr-x");
-    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT);   // keep file type only
-    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, mode & 07777);   // keep permissions only
+    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT); // keep file type only
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, mode & 07777); // keep permissions only
     entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
     entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, arcFile->time(KFileItem::ModificationTime).toTime_t());
 
@@ -1645,27 +1679,29 @@ UDSEntryList* kio_krarcProtocol::addNewDir(const QString& path)
 void kio_krarcProtocol::parseLine(int lineNo, QString line)
 {
     KRFUNC;
-    UDSEntryList* dir;
+    UDSEntryList *dir;
     UDSEntry entry;
 
     QString owner;
     QString group;
     QString symlinkDest;
     QString perm;
-    mode_t mode          = 0666;
-    size_t size          = 0;
-    time_t time          = ::time(nullptr);
+    mode_t mode = 0666;
+    size_t size = 0;
+    time_t time = ::time(nullptr);
     QString fullName;
 
     if (arcType == "zip") {
         // permissions
         perm = nextWord(line);
         // ignore the next 2 fields
-        nextWord(line); nextWord(line);
+        nextWord(line);
+        nextWord(line);
         // size
         size = nextWord(line).toLong();
         // ignore the next 2 fields
-        nextWord(line);nextWord(line);
+        nextWord(line);
+        nextWord(line);
         // date & time
         QString d = nextWord(line);
         QDate qdate(d.mid(0, 4).toInt(), d.mid(4, 2).toInt(), d.mid(6, 2).toInt());
@@ -1675,7 +1711,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         fullName = nextWord(line, '\n');
 
         if (perm.length() != 10)
-            perm = (perm.at(0) == 'd' || fullName.endsWith(DIR_SEPARATOR)) ? "drwxr-xr-x" : "-rw-r--r--" ;
+            perm = (perm.at(0) == 'd' || fullName.endsWith(DIR_SEPARATOR)) ? "drwxr-xr-x" : "-rw-r--r--";
         mode = parsePermString(perm);
     }
     if (arcType == "rar") {
@@ -1684,7 +1720,8 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         // size
         size = nextWord(line).toLong();
         // ignore the next 2 fields : packed size and compression ration
-        nextWord(line); nextWord(line);
+        nextWord(line);
+        nextWord(line);
         // date & time
         QString d = nextWord(line);
         QDate qdate(d.left(4).toInt(), d.mid(5, 2).toInt(), d.mid(8, 2).toInt());
@@ -1697,16 +1734,17 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         fullName = nextWord(line, '\n');
 
         if (perm.length() == 7) { // windows rar permission format
-            bool isDir  = (perm.at(1).toLower() == 'd');
+            bool isDir = (perm.at(1).toLower() == 'd');
             bool isReadOnly = (perm.at(2).toLower() == 'r');
 
             perm = isDir ? "drwxr-xr-x" : "-rw-r--r--";
 
             if (isReadOnly)
-                perm[ 2 ] = '-';
+                perm[2] = '-';
         }
 
-        if (perm.length() != 10) perm = (perm.at(0) == 'd') ? "drwxr-xr-x" : "-rw-r--r--" ;
+        if (perm.length() != 10)
+            perm = (perm.at(0) == 'd') ? "drwxr-xr-x" : "-rw-r--r--";
         mode = parsePermString(perm);
     }
     if (arcType == "arj") {
@@ -1714,22 +1752,26 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         // full name
         fullName = nextWord(line, '\n');
         // ignore the next 2 fields
-        nextWord(line); nextWord(line);
+        nextWord(line);
+        nextWord(line);
         // size
         size = nextWord(line).toLong();
         // ignore the next 2 fields
-        nextWord(line); nextWord(line);
+        nextWord(line);
+        nextWord(line);
         // date & time
         QString d = nextWord(line);
         int year = 1900 + d.mid(0, 2).toInt();
-        if (year < 1930) year += 100;
+        if (year < 1930)
+            year += 100;
         QDate qdate(year, d.mid(3, 2).toInt(), d.mid(6, 2).toInt());
         QString t = nextWord(line);
         QTime qtime(t.mid(0, 2).toInt(), t.mid(3, 2).toInt(), 0);
         time = QDateTime(qdate, qtime).toTime_t();
         // permissions
         perm = nextWord(line);
-        if (perm.length() != 10) perm = (perm.at(0) == 'd') ? "drwxr-xr-x" : "-rw-r--r--" ;
+        if (perm.length() != 10)
+            perm = (perm.at(0) == 'd') ? "drwxr-xr-x" : "-rw-r--r--";
         mode = parsePermString(perm);
     }
     if (arcType == "rpm") {
@@ -1750,13 +1792,16 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
 #ifndef Q_OS_WIN
         if (S_ISLNK(mode)) {
             // ignore the next 3 fields
-            nextWord(line); nextWord(line); nextWord(line);
+            nextWord(line);
+            nextWord(line);
+            nextWord(line);
             symlinkDest = nextWord(line);
         }
 #endif
     }
     if (arcType == "gzip") {
-        if (!lineNo) return;  //ignore the first line
+        if (!lineNo)
+            return; // ignore the first line
         // first field is uncompressed size - ignore it
         nextWord(line);
         // size
@@ -1796,7 +1841,8 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
     if (arcType == "lha") {
         // permissions
         perm = nextWord(line);
-        if (perm.length() != 10) perm = (perm.at(0) == 'd') ? "drwxr-xr-x" : "-rw-r--r--" ;
+        if (perm.length() != 10)
+            perm = (perm.at(0) == 'd') ? "drwxr-xr-x" : "-rw-r--r--";
         mode = parsePermString(perm);
         // ignore the next field
         nextWord(line);
@@ -1826,7 +1872,8 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         // date & time
         QString d = nextWord(line);
         int year = 1900 + d.mid(6, 2).toInt();
-        if (year < 1930) year += 100;
+        if (year < 1930)
+            year += 100;
         QDate qdate(year, d.mid(3, 2).toInt(), d.mid(0, 2).toInt());
         QString t = nextWord(line);
         QTime qtime(t.mid(0, 2).toInt(), t.mid(3, 2).toInt(), 0);
@@ -1839,7 +1886,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         nextWord(line);
         // full name
         fullName = nextWord(line, '\n');
-        if (fullName[ 0 ] == '*')  // encrypted archives starts with '*'
+        if (fullName[0] == '*') // encrypted archives starts with '*'
             fullName = fullName.mid(1);
     }
     if (arcType == "deb") {
@@ -1859,7 +1906,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         time = QDateTime(qdate, qtime).toTime_t();
         // full name
         fullName = nextWord(line, '\n').mid(1);
-        //if ( fullName.right( 1 ) == "/" ) return;
+        // if ( fullName.right( 1 ) == "/" ) return;
         if (fullName.contains("->")) {
             symlinkDest = fullName.mid(fullName.indexOf("->") + 2);
             fullName = fullName.left(fullName.indexOf("->") - 1);
@@ -1875,11 +1922,11 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
 
         // permissions
         perm = nextWord(line);
-        bool isDir  = (perm.at(0).toLower() == 'd');
+        bool isDir = (perm.at(0).toLower() == 'd');
         bool isReadOnly = (perm.at(1).toLower() == 'r');
         perm = isDir ? "drwxr-xr-x" : "-rw-r--r--";
         if (isReadOnly)
-            perm[ 2 ] = '-';
+            perm[2] = '-';
 
         mode = parsePermString(perm);
 
@@ -1893,8 +1940,10 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         fullName = nextWord(line, '\n');
     }
 
-    if (fullName.right(1) == DIR_SEPARATOR) fullName = fullName.left(fullName.length() - 1);
-    if (!fullName.startsWith(DIR_SEPARATOR)) fullName = DIR_SEPARATOR + fullName;
+    if (fullName.right(1) == DIR_SEPARATOR)
+        fullName = fullName.left(fullName.length() - 1);
+    if (!fullName.startsWith(DIR_SEPARATOR))
+        fullName = DIR_SEPARATOR + fullName;
     QString path = fullName.left(fullName.lastIndexOf(DIR_SEPARATOR) + 1);
     // set/create the directory UDSEntryList
     QHash<QString, KIO::UDSEntryList *>::iterator itef = dirDict.find(path);
@@ -1907,9 +1956,9 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
     // file name
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
     // file type
-    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT);   // keep file type only
+    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT); // keep file type only
     // file permissions
-    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, mode & 07777);   // keep permissions only
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, mode & 07777); // keep permissions only
     // file size
     entry.fastInsert(KIO::UDSEntry::UDS_SIZE, size);
     // modification time
@@ -1927,8 +1976,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
             UDSEntryList::iterator entryIt;
 
             for (entryIt = dir->begin(); entryIt != dir->end(); ++entryIt) {
-                if (entryIt->contains(KIO::UDSEntry::UDS_NAME) &&
-                        entryIt->stringValue(KIO::UDSEntry::UDS_NAME) == name) {
+                if (entryIt->contains(KIO::UDSEntry::UDS_NAME) && entryIt->stringValue(KIO::UDSEntry::UDS_NAME) == name) {
                     entryIt->fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, time);
                     entryIt->fastInsert(KIO::UDSEntry::UDS_ACCESS, mode);
                     return;
@@ -1942,8 +1990,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
     UDSEntryList::iterator dirEntryIt;
 
     for (dirEntryIt = dir->begin(); dirEntryIt != dir->end(); ++dirEntryIt)
-        if (dirEntryIt->contains(KIO::UDSEntry::UDS_NAME) &&
-                dirEntryIt->stringValue(KIO::UDSEntry::UDS_NAME) == name)
+        if (dirEntryIt->contains(KIO::UDSEntry::UDS_NAME) && dirEntryIt->stringValue(KIO::UDSEntry::UDS_NAME) == name)
             return;
 
     dir->append(entry);
@@ -1962,56 +2009,71 @@ bool kio_krarcProtocol::initArcParameters()
 
     cmd.clear();
     listCmd = QStringList();
-    getCmd  = QStringList();
+    getCmd = QStringList();
     copyCmd = QStringList();
-    delCmd  = QStringList();
-    putCmd  = QStringList();
-    renCmd  = QStringList();
+    delCmd = QStringList();
+    putCmd = QStringList();
+    renCmd = QStringList();
 
     if (arcType == "zip") {
         noencoding = true;
-        cmd     = fullPathName("unzip");
+        cmd = fullPathName("unzip");
         listCmd << fullPathName("unzip") << "-ZTs-z-t-h";
-        getCmd  << fullPathName("unzip") << "-p";
+        getCmd << fullPathName("unzip") << "-p";
         copyCmd << fullPathName("unzip") << "-jo";
 
         if (QStandardPaths::findExecutable(QStringLiteral("zip")).isEmpty()) {
-            delCmd  = QStringList();
-            putCmd  = QStringList();
+            delCmd = QStringList();
+            putCmd = QStringList();
         } else {
-            delCmd  << fullPathName("zip") << "-d";
-            putCmd  << fullPathName("zip") << "-ry";
+            delCmd << fullPathName("zip") << "-d";
+            putCmd << fullPathName("zip") << "-ry";
         }
 
         QString a7zExecutable = find7zExecutable();
         if (!a7zExecutable.isEmpty()) {
-            renCmd  << a7zExecutable << "rn";
+            renCmd << a7zExecutable << "rn";
         }
 
         if (!getPassword().isEmpty()) {
-            getCmd  << "-P" << password;
+            getCmd << "-P" << password;
             copyCmd << "-P" << password;
-            putCmd  << "-P" << password;
+            putCmd << "-P" << password;
         }
     } else if (arcType == "rar") {
         noencoding = true;
         if (QStandardPaths::findExecutable(QStringLiteral("rar")).isEmpty()) {
-            cmd     = fullPathName("unrar");
-            listCmd << fullPathName("unrar") << "-c-" << "-v" << "v";
-            getCmd  << fullPathName("unrar") << "p" << "-ierr" << "-idp" << "-c-" << "-y";
-            copyCmd << fullPathName("unrar") << "e" << "-y";
-            delCmd  = QStringList();
-            putCmd  = QStringList();
+            cmd = fullPathName("unrar");
+            listCmd << fullPathName("unrar") << "-c-"
+                    << "-v"
+                    << "v";
+            getCmd << fullPathName("unrar") << "p"
+                   << "-ierr"
+                   << "-idp"
+                   << "-c-"
+                   << "-y";
+            copyCmd << fullPathName("unrar") << "e"
+                    << "-y";
+            delCmd = QStringList();
+            putCmd = QStringList();
         } else {
-            cmd     = fullPathName("rar");
-            listCmd << fullPathName("rar") << "-c-" << "-v" << "v";
-            getCmd  << fullPathName("rar") << "p" << "-ierr" << "-idp" << "-c-" << "-y";
-            copyCmd << fullPathName("rar") << "e" << "-y";
-            delCmd  << fullPathName("rar") << "d";
-            putCmd  << fullPathName("rar") << "-r" << "a";
+            cmd = fullPathName("rar");
+            listCmd << fullPathName("rar") << "-c-"
+                    << "-v"
+                    << "v";
+            getCmd << fullPathName("rar") << "p"
+                   << "-ierr"
+                   << "-idp"
+                   << "-c-"
+                   << "-y";
+            copyCmd << fullPathName("rar") << "e"
+                    << "-y";
+            delCmd << fullPathName("rar") << "d";
+            putCmd << fullPathName("rar") << "-r"
+                   << "a";
         }
         if (!getPassword().isEmpty()) {
-            getCmd  << QString("-p%1").arg(password);
+            getCmd << QString("-p%1").arg(password);
             listCmd << QString("-p%1").arg(password);
             copyCmd << QString("-p%1").arg(password);
             if (!putCmd.isEmpty()) {
@@ -2020,77 +2082,89 @@ bool kio_krarcProtocol::initArcParameters()
             }
         }
     } else if (arcType == "rpm") {
-        cmd     = fullPathName("rpm");
-        listCmd << fullPathName("rpm") << "--dump" << "-lpq";
-        getCmd  << fullPathName("cpio") << "--force-local" << "--no-absolute-filenames" << "-iuvdF";
-        delCmd  = QStringList();
-        putCmd  = QStringList();
+        cmd = fullPathName("rpm");
+        listCmd << fullPathName("rpm") << "--dump"
+                << "-lpq";
+        getCmd << fullPathName("cpio") << "--force-local"
+               << "--no-absolute-filenames"
+               << "-iuvdF";
+        delCmd = QStringList();
+        putCmd = QStringList();
         copyCmd = QStringList();
     } else if (arcType == "gzip") {
-        cmd     = fullPathName("gzip");
+        cmd = fullPathName("gzip");
         listCmd << fullPathName("gzip") << "-l";
-        getCmd  << fullPathName("gzip") << "-dc";
+        getCmd << fullPathName("gzip") << "-dc";
         copyCmd = QStringList();
-        delCmd  = QStringList();
-        putCmd  = QStringList();
+        delCmd = QStringList();
+        putCmd = QStringList();
     } else if (arcType == "bzip2") {
-        cmd     = fullPathName("bzip2");
+        cmd = fullPathName("bzip2");
         listCmd << fullPathName("bzip2");
-        getCmd  << fullPathName("bzip2") << "-dc";
+        getCmd << fullPathName("bzip2") << "-dc";
         copyCmd = QStringList();
-        delCmd  = QStringList();
-        putCmd  = QStringList();
+        delCmd = QStringList();
+        putCmd = QStringList();
     } else if (arcType == "lzma") {
-        cmd     = fullPathName("lzma");
+        cmd = fullPathName("lzma");
         listCmd << fullPathName("lzma");
-        getCmd  << fullPathName("lzma") << "-dc";
+        getCmd << fullPathName("lzma") << "-dc";
         copyCmd = QStringList();
-        delCmd  = QStringList();
-        putCmd  = QStringList();
+        delCmd = QStringList();
+        putCmd = QStringList();
     } else if (arcType == "xz") {
-        cmd     = fullPathName("xz");
+        cmd = fullPathName("xz");
         listCmd << fullPathName("xz");
-        getCmd  << fullPathName("xz") << "-dc";
+        getCmd << fullPathName("xz") << "-dc";
         copyCmd = QStringList();
-        delCmd  = QStringList();
-        putCmd  = QStringList();
+        delCmd = QStringList();
+        putCmd = QStringList();
     } else if (arcType == "arj") {
-        cmd     = fullPathName("arj");
-        listCmd << fullPathName("arj") << "v" << "-y" << "-v";
-        getCmd  << fullPathName("arj") << "-jyov" << "-v" << "e";
-        copyCmd << fullPathName("arj") << "-jyov" << "-v" << "e";
-        delCmd  << fullPathName("arj") << "d";
-        putCmd  << fullPathName("arj") << "-r" << "a";
+        cmd = fullPathName("arj");
+        listCmd << fullPathName("arj") << "v"
+                << "-y"
+                << "-v";
+        getCmd << fullPathName("arj") << "-jyov"
+               << "-v"
+               << "e";
+        copyCmd << fullPathName("arj") << "-jyov"
+                << "-v"
+                << "e";
+        delCmd << fullPathName("arj") << "d";
+        putCmd << fullPathName("arj") << "-r"
+               << "a";
         if (!getPassword().isEmpty()) {
-            getCmd  << QString("-g%1").arg(password);
+            getCmd << QString("-g%1").arg(password);
             copyCmd << QString("-g%1").arg(password);
-            putCmd  << QString("-g%1").arg(password);
+            putCmd << QString("-g%1").arg(password);
         }
     } else if (arcType == "lha") {
-        cmd     = fullPathName("lha");
+        cmd = fullPathName("lha");
         listCmd << fullPathName("lha") << "l";
-        getCmd  << fullPathName("lha") << "pq";
+        getCmd << fullPathName("lha") << "pq";
         copyCmd << fullPathName("lha") << "eif";
-        delCmd  << fullPathName("lha") << "d";
-        putCmd  << fullPathName("lha") << "a";
+        delCmd << fullPathName("lha") << "d";
+        putCmd << fullPathName("lha") << "a";
     } else if (arcType == "ace") {
-        cmd     = fullPathName("unace");
+        cmd = fullPathName("unace");
         listCmd << fullPathName("unace") << "v";
-        getCmd  << fullPathName("unace") << "e" << "-o";
-        copyCmd << fullPathName("unace") << "e" << "-o";
-        delCmd  = QStringList();
-        putCmd  = QStringList();
+        getCmd << fullPathName("unace") << "e"
+               << "-o";
+        copyCmd << fullPathName("unace") << "e"
+                << "-o";
+        delCmd = QStringList();
+        putCmd = QStringList();
         if (!getPassword().isEmpty()) {
-            getCmd  << QString("-p%1").arg(password);
+            getCmd << QString("-p%1").arg(password);
             copyCmd << QString("-p%1").arg(password);
         }
     } else if (arcType == "deb") {
         cmd = fullPathName("dpkg");
         listCmd << fullPathName("dpkg") << "-c";
-        getCmd  << fullPathName("tar") << "xvf";
+        getCmd << fullPathName("tar") << "xvf";
         copyCmd = QStringList();
-        delCmd  = QStringList();
-        putCmd  = QStringList();
+        delCmd = QStringList();
+        putCmd = QStringList();
     } else if (arcType == "7z") {
         noencoding = true;
         cmd = find7zExecutable();
@@ -2102,14 +2176,19 @@ bool kio_krarcProtocol::initArcParameters()
 #endif
         }
 
-        listCmd << cmd << "l" << "-y";
-        getCmd  << cmd << "e" << "-y";
-        copyCmd << cmd << "e" << "-y";
-        delCmd  << cmd << "d" << "-y";
-        putCmd  << cmd << "a" << "-y";
-        renCmd  << cmd << "rn";
+        listCmd << cmd << "l"
+                << "-y";
+        getCmd << cmd << "e"
+               << "-y";
+        copyCmd << cmd << "e"
+                << "-y";
+        delCmd << cmd << "d"
+               << "-y";
+        putCmd << cmd << "a"
+               << "-y";
+        renCmd << cmd << "rn";
         if (!getPassword().isEmpty()) {
-            getCmd  << QString("-p%1").arg(password);
+            getCmd << QString("-p%1").arg(password);
             listCmd << QString("-p%1").arg(password);
             copyCmd << QString("-p%1").arg(password);
             if (!putCmd.isEmpty()) {
@@ -2120,7 +2199,7 @@ bool kio_krarcProtocol::initArcParameters()
     }
     // checking if it's an absolute path
 #ifdef Q_OS_WIN
-    if (cmd.length() > 2 && cmd[ 0 ].isLetter() && cmd[ 1 ] == ':')
+    if (cmd.length() > 2 && cmd[0].isLetter() && cmd[1] == ':')
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
         return WorkerResult::pass();
 #else
@@ -2139,21 +2218,16 @@ bool kio_krarcProtocol::initArcParameters()
     if (QStandardPaths::findExecutable(cmd).isEmpty()) {
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
         KRDEBUG("Failed to find cmd: " << cmd);
-        return WorkerResult::fail(
-            KIO::ERR_CANNOT_LAUNCH_PROCESS,
-            cmd + i18n("\nMake sure that the %1 binary is installed properly on your system.", cmd));
+        return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, cmd + i18n("\nMake sure that the %1 binary is installed properly on your system.", cmd));
     }
     return WorkerResult::pass();
 #else
-        error(KIO::ERR_CANNOT_LAUNCH_PROCESS,
-              cmd +
-              i18n("\nMake sure that the %1 binary is installed properly on your system.", cmd));
+        error(KIO::ERR_CANNOT_LAUNCH_PROCESS, cmd + i18n("\nMake sure that the %1 binary is installed properly on your system.", cmd));
         KRDEBUG("Failed to find cmd: " << cmd);
         return false;
     }
     return true;
 #endif
-
 }
 
 bool kio_krarcProtocol::checkStatus(int exitCode)
@@ -2171,7 +2245,7 @@ void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
     KRFUNC;
     if (encryptedArchPath == fileName)
         encrypted = true;
-    else {  // we try to find whether the 7z archive is encrypted
+    else { // we try to find whether the 7z archive is encrypted
         // this is hard as the headers are also compressed
         QString a7zExecutable = find7zExecutable();
         if (a7zExecutable.isEmpty()) {
@@ -2183,7 +2257,8 @@ void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
         KrLinecountingProcess proc;
         // Note: That command uses information given in a comment from
         // https://stackoverflow.com/questions/5248572/how-do-i-know-if-7zip-used-aes256
-        proc << a7zExecutable << "l" << "-slt" << fileName;
+        proc << a7zExecutable << "l"
+             << "-slt" << fileName;
         connect(&proc, &KrLinecountingProcess::newOutputData, this, &kio_krarcProtocol::check7zOutputForPassword);
         proc.start();
         proc.waitForFinished();
@@ -2194,28 +2269,27 @@ void kio_krarcProtocol::checkIf7zIsEncrypted(bool &encrypted, QString fileName)
     }
 }
 
-void kio_krarcProtocol::check7zOutputForPassword(KProcess * proc, QByteArray & buf)
+void kio_krarcProtocol::check7zOutputForPassword(KProcess *proc, QByteArray &buf)
 {
     // Reminder: If that function is modified, it's important to research if the
     // changes must also be applied to `Kr7zEncryptionChecker::receivedOutput()`
 
     KRFUNC;
-    QString data =  QString(buf);
+    QString data = QString(buf);
 
     QString checkable = lastData + data;
 
     QStringList lines = checkable.split('\n');
-    lastData = lines[ lines.count() - 1 ];
+    lastData = lines[lines.count() - 1];
     for (int i = 0; i != lines.count(); i++) {
-        QString line = lines[ i ].trimmed().toLower();
+        QString line = lines[i].trimmed().toLower();
         int ndx = line.indexOf("listing"); // Reminder: Lower-case letters are used
         if (ndx >= 0)
             line.truncate(ndx);
         if (line.isEmpty())
             continue;
 
-        if ((line.contains("password") && line.contains("enter"))  ||
-             line == QStringLiteral("encrypted = +")) {
+        if ((line.contains("password") && line.contains("enter")) || line == QStringLiteral("encrypted = +")) {
             KRDEBUG("Encrypted 7z archive found!");
             encrypted = true;
             proc->kill();
@@ -2321,13 +2395,13 @@ QString kio_krarcProtocol::localeEncodedString(QString str)
 
     const char *data = array.data();
     for (int i = 0; i != size; i++) {
-        unsigned int ch = (((int)data[ i ]) & 0xFF) + 0xE000;   // user defined character
+        unsigned int ch = (((int)data[i]) & 0xFF) + 0xE000; // user defined character
         result.append(QChar(ch));
     }
     return result;
 }
 
-QByteArray kio_krarcProtocol::encodeString(const QString& str)
+QByteArray kio_krarcProtocol::encodeString(const QString &str)
 {
     // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     if (noencoding)
@@ -2335,7 +2409,7 @@ QByteArray kio_krarcProtocol::encodeString(const QString& str)
     return codec->fromUnicode(str);
 }
 
-QString kio_krarcProtocol::decodeString(char * buf)
+QString kio_krarcProtocol::decodeString(char *buf)
 {
     // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     if (noencoding)
@@ -2352,10 +2426,10 @@ QString kio_krarcProtocol::getPath(const QUrl &url, QUrl::FormattingOptions opti
 #ifdef Q_OS_WIN
     if (path.startsWith(DIR_SEPARATOR)) {
         int p = 1;
-        while (p < path.length() && path[ p ] == DIR_SEPARATOR_CHAR)
+        while (p < path.length() && path[p] == DIR_SEPARATOR_CHAR)
             p++;
         /* /C:/Folder */
-        if (p + 2 <= path.length() && path[ p ].isLetter() && path[ p + 1 ] == ':') {
+        if (p + 2 <= path.length() && path[p].isLetter() && path[p + 1] == ':') {
             path = path.mid(p);
         }
     }

@@ -6,26 +6,25 @@
 */
 
 #include "kgprotocols.h"
-#include "../krglobal.h"
-#include "../icon.h"
-#include "../krservices.h"
 #include "../Archive/krarchandler.h"
+#include "../icon.h"
+#include "../krglobal.h"
+#include "../krservices.h"
 
 // QtCore
 #include <QMimeDatabase>
 #include <QMimeType>
 // QtWidgets
-#include <QHeaderView>
 #include <QGridLayout>
+#include <QHeaderView>
 #include <QVBoxLayout>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
 #include <KIOCore/KProtocolManager>
 
-
-KgProtocols::KgProtocols(bool first, QWidget* parent) :
-        KonfiguratorPage(first, parent)
+KgProtocols::KgProtocols(bool first, QWidget *parent)
+    : KonfiguratorPage(first, parent)
 {
     auto *KgProtocolsLayout = new QGridLayout(this);
     KgProtocolsLayout->setSpacing(6);
@@ -62,7 +61,7 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
     vbox1->addWidget(btnRemoveProtocol);
     addSpacer(vbox1);
 
-    KgProtocolsLayout->addWidget(vbox1Widget, 0 , 1);
+    KgProtocolsLayout->addWidget(vbox1Widget, 0, 1);
 
     QWidget *vbox2Widget = new QWidget(this);
     auto *vbox2 = new QVBoxLayout(vbox2Widget);
@@ -79,7 +78,7 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
     vbox2->addWidget(btnRemoveMime);
     addSpacer(vbox2);
 
-    KgProtocolsLayout->addWidget(vbox2Widget, 1 , 1);
+    KgProtocolsLayout->addWidget(vbox2Widget, 1, 1);
 
     //  -------------------------- PROTOCOLS LISTBOX ----------------------------------
 
@@ -90,7 +89,7 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
     loadProtocols();
     protocolGrid->addWidget(protocolList, 0, 0);
 
-    KgProtocolsLayout->addWidget(protocolGrp, 0 , 2);
+    KgProtocolsLayout->addWidget(protocolGrp, 0, 2);
 
     //  -------------------------- MIMES LISTBOX ----------------------------------
 
@@ -101,18 +100,18 @@ KgProtocols::KgProtocols(bool first, QWidget* parent) :
     loadMimes();
     mimeGrid->addWidget(mimeList, 0, 0);
 
-    KgProtocolsLayout->addWidget(mimeGrp, 1 , 2);
+    KgProtocolsLayout->addWidget(mimeGrp, 1, 2);
 
     //  -------------------------- CONNECT TABLE ----------------------------------
 
-    connect(protocolList,      &KrListWidget::itemSelectionChanged, this, &KgProtocols::slotDisableButtons);
-    connect(linkList,          &KrTreeWidget::itemSelectionChanged, this, &KgProtocols::slotDisableButtons);
-    connect(mimeList,          &KrListWidget::itemSelectionChanged, this, &KgProtocols::slotDisableButtons);
-    connect(linkList,          &KrTreeWidget::currentItemChanged  , this, &KgProtocols::slotDisableButtons);
-    connect(btnAddProtocol,    &QPushButton::clicked              , this, &KgProtocols::slotAddProtocol);
-    connect(btnRemoveProtocol, &QPushButton::clicked              , this, &KgProtocols::slotRemoveProtocol);
-    connect(btnAddMime,        &QPushButton::clicked              , this, &KgProtocols::slotAddMime);
-    connect(btnRemoveMime,     &QPushButton::clicked              , this, &KgProtocols::slotRemoveMime);
+    connect(protocolList, &KrListWidget::itemSelectionChanged, this, &KgProtocols::slotDisableButtons);
+    connect(linkList, &KrTreeWidget::itemSelectionChanged, this, &KgProtocols::slotDisableButtons);
+    connect(mimeList, &KrListWidget::itemSelectionChanged, this, &KgProtocols::slotDisableButtons);
+    connect(linkList, &KrTreeWidget::currentItemChanged, this, &KgProtocols::slotDisableButtons);
+    connect(btnAddProtocol, &QPushButton::clicked, this, &KgProtocols::slotAddProtocol);
+    connect(btnRemoveProtocol, &QPushButton::clicked, this, &KgProtocols::slotRemoveProtocol);
+    connect(btnAddMime, &QPushButton::clicked, this, &KgProtocols::slotAddMime);
+    connect(btnRemoveMime, &QPushButton::clicked, this, &KgProtocols::slotRemoveMime);
 
     loadInitialValues();
     slotDisableButtons();
@@ -128,10 +127,10 @@ void KgProtocols::loadProtocols()
     QStringList protocols = KProtocolInfo::protocols();
     protocols.sort();
 
-    foreach(const QString &protocol, protocols) {
+    foreach (const QString &protocol, protocols) {
         QUrl u;
         u.setScheme(protocol);
-        if(KProtocolManager::inputType(u) == KProtocolInfo::T_FILESYSTEM) {
+        if (KProtocolManager::inputType(u) == KProtocolInfo::T_FILESYSTEM) {
             protocolList->addItem(protocol);
         }
     }
@@ -170,17 +169,17 @@ void KgProtocols::slotAddProtocol()
     QList<QListWidgetItem *> list = protocolList->selectedItems();
 
     if (list.count() > 0) {
-        addProtocol(list[ 0 ]->text(), true);
+        addProtocol(list[0]->text(), true);
         slotDisableButtons();
         emit sigChanged();
     }
 }
 
-void KgProtocols::addProtocol(const QString& name, bool changeCurrent)
+void KgProtocols::addProtocol(const QString &name, bool changeCurrent)
 {
     QList<QListWidgetItem *> list = protocolList->findItems(name, Qt::MatchExactly);
     if (list.count() > 0) {
-        delete list[ 0 ];
+        delete list[0];
         auto *listViewItem = new QTreeWidgetItem(linkList);
         listViewItem->setText(0, name);
         QString iconName = KProtocolInfo::icon(name);
@@ -203,12 +202,12 @@ void KgProtocols::slotRemoveProtocol()
     }
 }
 
-void KgProtocols::removeProtocol(const QString& name)
+void KgProtocols::removeProtocol(const QString &name)
 {
     QList<QTreeWidgetItem *> itemList = linkList->findItems(name, Qt::MatchExactly, 0);
 
     if (itemList.count()) {
-        QTreeWidgetItem *item = itemList[ 0 ];
+        QTreeWidgetItem *item = itemList[0];
 
         while (item->childCount() != 0)
             removeMime(item->child(0)->text(0));
@@ -227,13 +226,13 @@ void KgProtocols::slotAddMime()
         if (itemToAdd->parent())
             itemToAdd = itemToAdd->parent();
 
-        addMime(list[ 0 ]->text(), itemToAdd->text(0));
+        addMime(list[0]->text(), itemToAdd->text(0));
         slotDisableButtons();
         emit sigChanged();
     }
 }
 
-void KgProtocols::addMime(QString name, const QString& protocol)
+void KgProtocols::addMime(QString name, const QString &protocol)
 {
     QList<QListWidgetItem *> list = mimeList->findItems(name, Qt::MatchExactly);
 
@@ -241,14 +240,14 @@ void KgProtocols::addMime(QString name, const QString& protocol)
 
     QTreeWidgetItem *currentListItem = nullptr;
     if (itemList.count() != 0)
-        currentListItem = itemList[ 0 ];
+        currentListItem = itemList[0];
 
     if (list.count() > 0 && currentListItem && currentListItem->parent() == nullptr) {
-        delete list[ 0 ];
+        delete list[0];
         auto *listViewItem = new QTreeWidgetItem(currentListItem);
         listViewItem->setText(0, name);
         listViewItem->setIcon(0, Icon(name.replace(QLatin1Char('/'), QLatin1Char('-')), Icon("unknown")));
-        linkList->expandItem( currentListItem );
+        linkList->expandItem(currentListItem);
     }
 }
 
@@ -262,13 +261,13 @@ void KgProtocols::slotRemoveMime()
     }
 }
 
-void KgProtocols::removeMime(const QString& name)
+void KgProtocols::removeMime(const QString &name)
 {
     QList<QTreeWidgetItem *> itemList = linkList->findItems(name, Qt::MatchExactly | Qt::MatchRecursive, 0);
 
     QTreeWidgetItem *currentMimeItem = nullptr;
     if (itemList.count() != 0)
-        currentMimeItem = itemList[ 0 ];
+        currentMimeItem = itemList[0];
 
     if (currentMimeItem && currentMimeItem->parent() != nullptr) {
         mimeList->addItem(currentMimeItem->text(0));
@@ -286,12 +285,12 @@ void KgProtocols::loadInitialValues()
     KConfigGroup group(krConfig, "Protocols");
     QStringList protList = group.readEntry("Handled Protocols", QStringList());
 
-    for (auto & it : protList) {
+    for (auto &it : protList) {
         addProtocol(it);
 
         QStringList mimes = group.readEntry(QString("Mimes For %1").arg(it), QStringList());
 
-        for (auto & mime : mimes)
+        for (auto &mime : mimes)
             addMime(mime, it);
     }
 

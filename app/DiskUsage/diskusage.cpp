@@ -15,62 +15,64 @@
 #include <QMimeType>
 #include <QPointer>
 // QtGui
+#include <QCursor>
 #include <QKeyEvent>
 #include <QPixmap>
-#include <QResizeEvent>
-#include <QCursor>
 #include <QPixmapCache>
+#include <QResizeEvent>
 // QtWidgets
-#include <QLayout>
-#include <QLabel>
-#include <QGridLayout>
-#include <QFrame>
-#include <QPushButton>
 #include <QApplication>
+#include <QFrame>
+#include <QGridLayout>
 #include <QGroupBox>
+#include <QLabel>
+#include <QLayout>
 #include <QMenu>
+#include <QPushButton>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
+#include <KIO/DeleteJob>
+#include <KIO/Job>
 #include <KWidgetsAddons/KMessageBox>
 #include <KWidgetsAddons/KStandardGuiItem>
-#include <KIO/Job>
-#include <KIO/DeleteJob>
 #include <utility>
 
-#include "dufilelight.h"
-#include "dulines.h"
-#include "dulistview.h"
-#include "filelightParts/Config.h"
 #include "../FileSystem/fileitem.h"
 #include "../FileSystem/filesystemprovider.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
-#include "../defaults.h"
-#include "../krglobal.h"
-#include "../filelisticon.h"
 #include "../compat.h"
+#include "../defaults.h"
+#include "../filelisticon.h"
+#include "../krglobal.h"
+#include "dufilelight.h"
+#include "dulines.h"
+#include "dulistview.h"
+#include "filelightParts/Config.h"
 
 // these are the values that will exist in the menu
-#define DELETE_ID            90
-#define EXCLUDE_ID           91
-#define PARENT_DIR_ID        92
-#define NEW_SEARCH_ID        93
-#define REFRESH_ID           94
-#define STEP_INTO_ID         95
-#define INCLUDE_ALL_ID       96
-#define VIEW_POPUP_ID        97
-#define LINES_VIEW_ID        98
-#define DETAILED_VIEW_ID     99
-#define FILELIGHT_VIEW_ID   100
-#define NEXT_VIEW_ID        101
-#define PREVIOUS_VIEW_ID    102
+#define DELETE_ID 90
+#define EXCLUDE_ID 91
+#define PARENT_DIR_ID 92
+#define NEW_SEARCH_ID 93
+#define REFRESH_ID 94
+#define STEP_INTO_ID 95
+#define INCLUDE_ALL_ID 96
+#define VIEW_POPUP_ID 97
+#define LINES_VIEW_ID 98
+#define DETAILED_VIEW_ID 99
+#define FILELIGHT_VIEW_ID 100
+#define NEXT_VIEW_ID 101
+#define PREVIOUS_VIEW_ID 102
 #define ADDITIONAL_POPUP_ID 103
 
-#define MAX_FILENUM         100
+#define MAX_FILENUM 100
 
-LoaderWidget::LoaderWidget(QWidget *parent) : QScrollArea(parent), cancelled(false)
+LoaderWidget::LoaderWidget(QWidget *parent)
+    : QScrollArea(parent)
+    , cancelled(false)
 {
     QPalette palette = viewport()->palette();
     palette.setColor(viewport()->backgroundRole(), Qt::white);
@@ -143,9 +145,9 @@ LoaderWidget::LoaderWidget(QWidget *parent) : QScrollArea(parent), cancelled(fal
     synchGrid->addWidget(line, 5, 0, 1, 2);
 
     QWidget *hboxWidget = new QWidget(loaderBox);
-    auto * hbox = new QHBoxLayout(hboxWidget);
+    auto *hbox = new QHBoxLayout(hboxWidget);
 
-    auto* spacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    auto *spacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
     hbox->addItem(spacer);
     auto *cancelButton = new QPushButton(hboxWidget);
     KStandardGuiItem::assign(cancelButton, KStandardGuiItem::Cancel);
@@ -183,9 +185,16 @@ void LoaderWidget::slotCancelled()
     cancelled = true;
 }
 
-DiskUsage::DiskUsage(QString confGroup, QWidget *parent) : QStackedWidget(parent),
-        currentDirectory(nullptr), root(nullptr), configGroup(std::move(confGroup)), loading(false),
-        abortLoading(false), clearAfterAbort(false), deleting(false), searchFileSystem(nullptr)
+DiskUsage::DiskUsage(QString confGroup, QWidget *parent)
+    : QStackedWidget(parent)
+    , currentDirectory(nullptr)
+    , root(nullptr)
+    , configGroup(std::move(confGroup))
+    , loading(false)
+    , abortLoading(false)
+    , clearAfterAbort(false)
+    , deleting(false)
+    , searchFileSystem(nullptr)
 {
     listView = new DUListView(this);
     lineView = new DULines(this);
@@ -206,7 +215,7 @@ DiskUsage::DiskUsage(QString confGroup, QWidget *parent) : QStackedWidget(parent
 
 DiskUsage::~DiskUsage()
 {
-    if (listView)          // don't remove these lines. The module will crash at exit if removed
+    if (listView) // don't remove these lines. The module will crash at exit if removed
         delete listView;
     if (lineView)
         delete lineView;
@@ -216,14 +225,13 @@ DiskUsage::~DiskUsage()
     if (root)
         delete root;
 
-    QHashIterator< File *, Properties * > lit(propertyMap);
+    QHashIterator<File *, Properties *> lit(propertyMap);
     while (lit.hasNext())
         delete lit.next().value();
 }
 
 void DiskUsage::load(const QUrl &baseDir)
 {
-
     fileNum = dirNum = 0;
     currentSize = 0;
 
@@ -292,7 +300,7 @@ void DiskUsage::slotLoadDirectory()
 
         loading = abortLoading = clearAfterAbort = false;
     } else if (loading) {
-        for (int counter = 0; counter != MAX_FILENUM; counter ++) {
+        for (int counter = 0; counter != MAX_FILENUM; counter++) {
             if (currentFileItem == nullptr) {
                 if (directoryStack.isEmpty())
                     break;
@@ -333,16 +341,30 @@ void DiskUsage::slotLoadDirectory()
                 QString mime = currentFileItem->getMime(); // fast == not using mimetype magic
 
                 if (currentFileItem->isDir() && !currentFileItem->isSymLink()) {
-                    newItem = new Directory(currentParent, currentFileItem->getName(), dirToCheck, currentFileItem->getSize(),
-                                            currentFileItem->getMode(), currentFileItem->getOwner(), currentFileItem->getGroup(),
-                                            currentFileItem->getPerm(), currentFileItem->getModificationTime(), currentFileItem->isSymLink(),
+                    newItem = new Directory(currentParent,
+                                            currentFileItem->getName(),
+                                            dirToCheck,
+                                            currentFileItem->getSize(),
+                                            currentFileItem->getMode(),
+                                            currentFileItem->getOwner(),
+                                            currentFileItem->getGroup(),
+                                            currentFileItem->getPerm(),
+                                            currentFileItem->getModificationTime(),
+                                            currentFileItem->isSymLink(),
                                             mime);
                     directoryStack.push((dirToCheck.isEmpty() ? "" : dirToCheck + '/') + currentFileItem->getName());
                     parentStack.push(dynamic_cast<Directory *>(newItem));
                 } else {
-                    newItem = new File(currentParent, currentFileItem->getName(), dirToCheck, currentFileItem->getSize(),
-                                       currentFileItem->getMode(), currentFileItem->getOwner(), currentFileItem->getGroup(),
-                                       currentFileItem->getPerm(), currentFileItem->getModificationTime(), currentFileItem->isSymLink(),
+                    newItem = new File(currentParent,
+                                       currentFileItem->getName(),
+                                       dirToCheck,
+                                       currentFileItem->getSize(),
+                                       currentFileItem->getMode(),
+                                       currentFileItem->getOwner(),
+                                       currentFileItem->getGroup(),
+                                       currentFileItem->getPerm(),
+                                       currentFileItem->getModificationTime(),
+                                       currentFileItem->isSymLink(),
                                        mime);
                     currentSize += currentFileItem->getSize();
                 }
@@ -379,20 +401,22 @@ void DiskUsage::dirUp()
         else {
             QUrl up = KIO::upUrl(baseURL);
 
-            if (KMessageBox::questionYesNo(this, i18n("Stepping into the parent folder requires "
-                                           "loading the content of the \"%1\" URL. Do you wish "
-                                           "to continue?", up.toDisplayString(QUrl::PreferLocalFile)),
+            if (KMessageBox::questionYesNo(this,
+                                           i18n("Stepping into the parent folder requires "
+                                                "loading the content of the \"%1\" URL. Do you wish "
+                                                "to continue?",
+                                                up.toDisplayString(QUrl::PreferLocalFile)),
                                            i18n("Krusader::DiskUsage"),
                                            KStandardGuiItem::cont(),
                                            KStandardGuiItem::cancel(),
-                                           "DiskUsageLoadParentDir"
-                                          ) == KMessageBox::Yes)
+                                           "DiskUsageLoadParentDir")
+                == KMessageBox::Yes)
                 load(up);
         }
     }
 }
 
-Directory * DiskUsage::getDirectory(QString dir)
+Directory *DiskUsage::getDirectory(QString dir)
 {
     while (dir.endsWith('/'))
         dir.truncate(dir.length() - 1);
@@ -402,10 +426,10 @@ Directory * DiskUsage::getDirectory(QString dir)
 
     if (contentMap.find(dir) == contentMap.end())
         return nullptr;
-    return contentMap[ dir ];
+    return contentMap[dir];
 }
 
-File * DiskUsage::getFile(const QString& path)
+File *DiskUsage::getFile(const QString &path)
 {
     if (path.isEmpty())
         return root;
@@ -436,7 +460,7 @@ void DiskUsage::clear()
     baseURL = QUrl();
     emit clearing();
 
-    QHashIterator< File *, Properties * > lit(propertyMap);
+    QHashIterator<File *, Properties *> lit(propertyMap);
     while (lit.hasNext())
         delete lit.next().value();
 
@@ -457,7 +481,7 @@ int DiskUsage::calculateSizes(Directory *dirEntry, bool emitSig, int depth)
     KIO::filesize_t own = 0, total = 0;
 
     for (Iterator<File> it = dirEntry->iterator(); it != dirEntry->end(); ++it) {
-        File * item = *it;
+        File *item = *it;
 
         if (!item->isExcluded()) {
             if (item->isDir())
@@ -594,7 +618,7 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
             deleteNr += del(*it, false, depth + 1);
 
         QString path;
-        for (const Directory *d = dynamic_cast<Directory*>(file); d != root && d && d->parent() != nullptr; d = d->parent()) {
+        for (const Directory *d = dynamic_cast<Directory *>(file); d != root && d && d->parent() != nullptr; d = d->parent()) {
             if (!path.isEmpty())
                 path = '/' + path;
 
@@ -615,8 +639,8 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
         job = KIO::del(QUrl::fromLocalFile(file->fullPath()), KIO::HideProgressInfo);
     }
 
-    deleting = true;    // during qApp->processEvent strange things can occur
-    grabMouse();        // that's why we disable the mouse and keyboard events
+    deleting = true; // during qApp->processEvent strange things can occur
+    grabMouse(); // that's why we disable the mouse and keyboard events
     grabKeyboard();
 
     job->exec();
@@ -645,9 +669,9 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
     return deleteNr;
 }
 
-void * DiskUsage::getProperty(File *item, const QString& key)
+void *DiskUsage::getProperty(File *item, const QString &key)
 {
-    QHash< File *, Properties *>::iterator itr = propertyMap.find(item);
+    QHash<File *, Properties *>::iterator itr = propertyMap.find(item);
     if (itr == propertyMap.end())
         return nullptr;
 
@@ -658,10 +682,10 @@ void * DiskUsage::getProperty(File *item, const QString& key)
     return it.value();
 }
 
-void DiskUsage::addProperty(File *item, const QString& key, void * prop)
+void DiskUsage::addProperty(File *item, const QString &key, void *prop)
 {
     Properties *props;
-    QHash< File *, Properties *>::iterator itr = propertyMap.find(item);
+    QHash<File *, Properties *>::iterator itr = propertyMap.find(item);
     if (itr == propertyMap.end()) {
         props = new Properties();
         propertyMap.insert(item, props);
@@ -671,9 +695,9 @@ void DiskUsage::addProperty(File *item, const QString& key, void * prop)
     props->insert(key, prop);
 }
 
-void DiskUsage::removeProperty(File *item, const QString& key)
+void DiskUsage::removeProperty(File *item, const QString &key)
 {
-    QHash< File *, Properties *>::iterator itr = propertyMap.find(item);
+    QHash<File *, Properties *>::iterator itr = propertyMap.find(item);
     if (itr == propertyMap.end())
         return;
     (*itr)->remove(key);
@@ -711,12 +735,12 @@ void DiskUsage::changeDirectory(Directory *dir)
     emit enteringDirectory(dir);
 }
 
-Directory* DiskUsage::getCurrentDir()
+Directory *DiskUsage::getCurrentDir()
 {
     return currentDirectory;
 }
 
-void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, QMenu *addPopup, const QString& addPopupName)
+void DiskUsage::rightClickMenu(const QPoint &pos, File *fileItem, QMenu *addPopup, const QString &addPopupName)
 {
     QMenu popup(this);
 
@@ -725,77 +749,76 @@ void DiskUsage::rightClickMenu(const QPoint & pos, File *fileItem, QMenu *addPop
     QHash<void *, int> actionHash;
 
     if (fileItem != nullptr) {
-        QAction * actDelete = popup.addAction(i18n("Delete"));
-        actionHash[ actDelete ] = DELETE_ID;
+        QAction *actDelete = popup.addAction(i18n("Delete"));
+        actionHash[actDelete] = DELETE_ID;
         actDelete->setShortcut(Qt::Key_Delete);
-        QAction * actExclude = popup.addAction(i18n("Exclude"));
-        actionHash[ actExclude ] = EXCLUDE_ID;
+        QAction *actExclude = popup.addAction(i18n("Exclude"));
+        actionHash[actExclude] = EXCLUDE_ID;
         actExclude->setShortcut(Qt::CTRL + Qt::Key_E);
         popup.addSeparator();
     }
 
-    QAction * myAct = popup.addAction(i18n("Up one folder"));
-    actionHash[ myAct ] = PARENT_DIR_ID;
+    QAction *myAct = popup.addAction(i18n("Up one folder"));
+    actionHash[myAct] = PARENT_DIR_ID;
     myAct->setShortcut(Qt::SHIFT + Qt::Key_Up);
 
     myAct = popup.addAction(i18n("New search"));
-    actionHash[ myAct ] = NEW_SEARCH_ID;
+    actionHash[myAct] = NEW_SEARCH_ID;
     myAct->setShortcut(Qt::CTRL + Qt::Key_N);
 
     myAct = popup.addAction(i18n("Refresh"));
-    actionHash[ myAct ] = REFRESH_ID;
+    actionHash[myAct] = REFRESH_ID;
     myAct->setShortcut(Qt::CTRL + Qt::Key_R);
 
     myAct = popup.addAction(i18n("Include all"));
-    actionHash[ myAct ] = INCLUDE_ALL_ID;
+    actionHash[myAct] = INCLUDE_ALL_ID;
     myAct->setShortcut(Qt::CTRL + Qt::Key_I);
 
     myAct = popup.addAction(i18n("Step into"));
-    actionHash[ myAct ] = STEP_INTO_ID;
+    actionHash[myAct] = STEP_INTO_ID;
     myAct->setShortcut(Qt::SHIFT + Qt::Key_Down);
 
     popup.addSeparator();
 
-
     if (addPopup != nullptr) {
-        QAction * menu = popup.addMenu(addPopup);
+        QAction *menu = popup.addMenu(addPopup);
         menu->setText(addPopupName);
     }
 
     QMenu viewPopup;
 
     myAct = viewPopup.addAction(i18n("Lines"));
-    actionHash[ myAct ] = LINES_VIEW_ID;
+    actionHash[myAct] = LINES_VIEW_ID;
     myAct->setShortcut(Qt::CTRL + Qt::Key_L);
 
     myAct = viewPopup.addAction(i18n("Detailed"));
-    actionHash[ myAct ] = DETAILED_VIEW_ID;
+    actionHash[myAct] = DETAILED_VIEW_ID;
     myAct->setShortcut(Qt::CTRL + Qt::Key_D);
 
     myAct = viewPopup.addAction(i18n("Filelight"));
-    actionHash[ myAct ] = FILELIGHT_VIEW_ID;
+    actionHash[myAct] = FILELIGHT_VIEW_ID;
     myAct->setShortcut(Qt::CTRL + Qt::Key_F);
 
     viewPopup.addSeparator();
 
     myAct = viewPopup.addAction(i18n("Next"));
-    actionHash[ myAct ] = NEXT_VIEW_ID;
+    actionHash[myAct] = NEXT_VIEW_ID;
     myAct->setShortcut(Qt::SHIFT + Qt::Key_Right);
 
     myAct = viewPopup.addAction(i18n("Previous"));
-    actionHash[ myAct ] = PREVIOUS_VIEW_ID;
+    actionHash[myAct] = PREVIOUS_VIEW_ID;
     myAct->setShortcut(Qt::SHIFT + Qt::Key_Left);
 
-    QAction * menu = popup.addMenu(&viewPopup);
+    QAction *menu = popup.addMenu(&viewPopup);
     menu->setText(i18n("View"));
 
-    QAction * res = popup.exec(pos);
+    QAction *res = popup.exec(pos);
 
     if (actionHash.contains(res))
-        executeAction(actionHash[ res ], fileItem);
+        executeAction(actionHash[res], fileItem);
 }
 
-void DiskUsage::executeAction(int action, File * fileItem)
+void DiskUsage::executeAction(int action, File *fileItem)
 {
     // check out the user's option
     switch (action) {
@@ -826,8 +849,7 @@ void DiskUsage::executeAction(int action, File * fileItem)
         else
             uri = currentDirectory->fullPath();
         ACTIVE_FUNC->openUrl(QUrl::fromLocalFile(uri));
-    }
-    break;
+    } break;
     case LINES_VIEW_ID:
         setView(VIEW_LINES);
         break;
@@ -844,7 +866,7 @@ void DiskUsage::executeAction(int action, File * fileItem)
         setView((activeView + 2) % 3);
         break;
     }
-//     currentWidget()->setFocus();
+    //     currentWidget()->setFocus();
 }
 
 void DiskUsage::keyPressEvent(QKeyEvent *e)
@@ -940,7 +962,7 @@ void DiskUsage::keyPressEvent(QKeyEvent *e)
     QStackedWidget::keyPressEvent(e);
 }
 
-QPixmap DiskUsage::getIcon(const QString& mime)
+QPixmap DiskUsage::getIcon(const QString &mime)
 {
     QPixmap icon;
 
@@ -1010,21 +1032,18 @@ QString DiskUsage::getToolTip(File *item)
         mime = mt.comment();
 
     time_t tma = item->time();
-    struct tm* t = localtime((time_t *) & tma);
+    struct tm *t = localtime((time_t *)&tma);
     QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
     QString date = QLocale().toString(tmp, QLocale::ShortFormat);
 
-    QString str = "<qt><h5><table><tr><td>" + i18n("Name:") +  "</td><td>" + item->name() + "</td></tr>" +
-                  "<tr><td>" + i18n("Type:") +  "</td><td>" + mime + "</td></tr>" +
-                  "<tr><td>" + i18n("Size:") +  "</td><td>" + KrPermHandler::parseSize(item->size()) + "</td></tr>";
+    QString str = "<qt><h5><table><tr><td>" + i18n("Name:") + "</td><td>" + item->name() + "</td></tr>" + "<tr><td>" + i18n("Type:") + "</td><td>" + mime
+        + "</td></tr>" + "<tr><td>" + i18n("Size:") + "</td><td>" + KrPermHandler::parseSize(item->size()) + "</td></tr>";
 
     if (item->isDir())
-        str +=      "<tr><td>" + i18n("Own size:") +  "</td><td>" + KrPermHandler::parseSize(item->ownSize()) + "</td></tr>";
+        str += "<tr><td>" + i18n("Own size:") + "</td><td>" + KrPermHandler::parseSize(item->ownSize()) + "</td></tr>";
 
-    str +=        "<tr><td>" + i18n("Last modified:") +  "</td><td>" + date + "</td></tr>" +
-                  "<tr><td>" + i18n("Permissions:") +  "</td><td>" + item->perm() + "</td></tr>" +
-                  "<tr><td>" + i18n("Owner:") +  "</td><td>" + item->owner() + " - " + item->group() + "</td></tr>" +
-                  "</table></h5></qt>";
+    str += "<tr><td>" + i18n("Last modified:") + "</td><td>" + date + "</td></tr>" + "<tr><td>" + i18n("Permissions:") + "</td><td>" + item->perm()
+        + "</td></tr>" + "<tr><td>" + i18n("Owner:") + "</td><td>" + item->owner() + " - " + item->group() + "</td></tr>" + "</table></h5></qt>";
     str.replace(' ', "&nbsp;");
     return str;
 }
@@ -1046,13 +1065,13 @@ void DiskUsage::setView(int view)
         break;
     }
 
-//     currentWidget()->setFocus();
+    //     currentWidget()->setFocus();
     emit viewChanged(activeView = view);
 }
 
-File * DiskUsage::getCurrentFile()
+File *DiskUsage::getCurrentFile()
 {
-    File * file = nullptr;
+    File *file = nullptr;
 
     switch (activeView) {
     case VIEW_LINES:
@@ -1069,10 +1088,10 @@ File * DiskUsage::getCurrentFile()
     return file;
 }
 
-bool DiskUsage::event(QEvent * e)
+bool DiskUsage::event(QEvent *e)
 {
-    if (deleting) {                        // if we are deleting, disable the mouse and
-        switch (e->type()) {                 // keyboard events
+    if (deleting) { // if we are deleting, disable the mouse and
+        switch (e->type()) { // keyboard events
         case QEvent::MouseButtonPress:
         case QEvent::MouseButtonRelease:
         case QEvent::MouseButtonDblClick:
@@ -1086,7 +1105,7 @@ bool DiskUsage::event(QEvent * e)
     }
 
     if (e->type() == QEvent::ShortcutOverride) {
-        auto* ke = dynamic_cast<QKeyEvent*>( e);
+        auto *ke = dynamic_cast<QKeyEvent *>(e);
 
         if (ke->modifiers() == Qt::NoModifier || ke->modifiers() == Qt::KeypadModifier) {
             switch (ke->key()) {
@@ -1121,4 +1140,3 @@ bool DiskUsage::event(QEvent * e)
     }
     return QStackedWidget::event(e);
 }
-

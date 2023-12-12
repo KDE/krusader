@@ -15,11 +15,11 @@
 // QtWidgets
 #include <QAction>
 
-# include <KWidgetsAddons/KActionMenu>
+#include <KWidgetsAddons/KActionMenu>
 
 class KActionCollection;
 
-class KrRemoteEncodingMenu: public KActionMenu
+class KrRemoteEncodingMenu : public KActionMenu
 {
     Q_OBJECT
 public:
@@ -39,12 +39,11 @@ protected:
     virtual QString currentCharacterSet();
 
 private:
-
     void loadSettings();
     void updateKIOSlaves();
 
     QStringList encodingNames;
-    bool        settingsLoaded;
+    bool settingsLoaded;
 };
 
 #endif /* REMOTEENCODING_MENU_H */

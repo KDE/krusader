@@ -52,7 +52,6 @@ struct RR_PN {
     char dev_low[8];
 };
 
-
 struct SL_component {
     unsigned char flags;
     unsigned char len;
@@ -83,7 +82,7 @@ struct stamp {
 
 struct RR_TF {
     char flags;
-    struct stamp times[1];  /* Variable number of these beasts */
+    struct stamp times[1]; /* Variable number of these beasts */
 };
 
 /* Linux-specific extension for transparent decompression */
@@ -123,13 +122,13 @@ struct rock_ridge {
     } u;
 };
 
-#define RR_PX 1   /* POSIX attributes */
-#define RR_PN 2   /* POSIX devices */
-#define RR_SL 4   /* Symbolic link */
-#define RR_NM 8   /* Alternate Name */
-#define RR_CL 16  /* Child link */
-#define RR_PL 32  /* Parent link */
-#define RR_RE 64  /* Relocation directory */
+#define RR_PX 1 /* POSIX attributes */
+#define RR_PN 2 /* POSIX devices */
+#define RR_SL 4 /* Symbolic link */
+#define RR_NM 8 /* Alternate Name */
+#define RR_CL 16 /* Child link */
+#define RR_PL 32 /* Parent link */
+#define RR_RE 64 /* Relocation directory */
 #define RR_TF 128 /* Timestamps */
 
 #endif /* ROCK_H */

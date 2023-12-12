@@ -20,7 +20,7 @@ class QFileHack : public QFile
 {
 public:
     QFileHack();
-    explicit QFileHack(const QString & name);
+    explicit QFileHack(const QString &name);
     ~QFileHack();
     virtual bool open(QFile::OpenMode m) override;
 };

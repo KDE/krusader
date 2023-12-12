@@ -9,25 +9,25 @@
 #include "listpanel.h"
 
 // QtCore
-#include <QStringList>
-#include <QList>
 #include <QEvent>
+#include <QList>
 #include <QMimeData>
-#include <QTimer>
 #include <QRegExp>
+#include <QStringList>
+#include <QTimer>
 #include <QUrl>
 // QtGui
 #include <QBitmap>
-#include <QKeyEvent>
-#include <QPixmap>
+#include <QDrag>
 #include <QDropEvent>
 #include <QHideEvent>
-#include <QShowEvent>
-#include <QDrag>
 #include <QImage>
+#include <QKeyEvent>
+#include <QPixmap>
+#include <QShowEvent>
 // QtWidgets
-#include <QHBoxLayout>
 #include <QFrame>
+#include <QHBoxLayout>
 #include <QMenu>
 #include <QSplitter>
 #include <QTabBar>
@@ -35,10 +35,10 @@
 #include <KCoreAddons/KUrlMimeData>
 #include <KI18n/KLocalizedString>
 #include <KIO/DropJob>
-#include <KWidgetsAddons/KCursor>
-#include <KWidgetsAddons/KMessageBox>
 #include <KIOFileWidgets/KFilePlacesModel>
 #include <KIOWidgets/KUrlComboBox>
+#include <KWidgetsAddons/KCursor>
+#include <KWidgetsAddons/KMessageBox>
 #include <utility>
 
 #include "dirhistoryqueue.h"
@@ -65,15 +65,15 @@
 
 #include "../Archive/krarchandler.h"
 #include "../BookMan/krbookmarkbutton.h"
-#include "../FileSystem/fileitem.h"
-#include "../FileSystem/filesystem.h"
-#include "../FileSystem/krpermhandler.h"
-#include "../FileSystem/sizecalculator.h"
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krspwidgets.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 #include "../Dialogs/percentalsplitter.h"
 #include "../Dialogs/popularurls.h"
+#include "../FileSystem/fileitem.h"
+#include "../FileSystem/filesystem.h"
+#include "../FileSystem/krpermhandler.h"
+#include "../FileSystem/sizecalculator.h"
 #include "../GUI/dirhistorybutton.h"
 #include "../GUI/kcmdline.h"
 #include "../GUI/mediabutton.h"
@@ -84,17 +84,21 @@
 class ActionButton : public QToolButton
 {
 public:
-    ActionButton(QWidget *parent, ListPanel *panel, QAction *action, const QString& text = QString()) :
-            QToolButton(parent),  panel(panel), action(action) {
+    ActionButton(QWidget *parent, ListPanel *panel, QAction *action, const QString &text = QString())
+        : QToolButton(parent)
+        , panel(panel)
+        , action(action)
+    {
         setText(text);
         setAutoRaise(true);
-        if(KConfigGroup(krConfig, "ListPanelButtons").readEntry("Icons", false) || text.isEmpty())
+        if (KConfigGroup(krConfig, "ListPanelButtons").readEntry("Icons", false) || text.isEmpty())
             setIcon(action->icon());
         setToolTip(action->toolTip());
     }
 
 protected:
-    void mousePressEvent(QMouseEvent *) override {
+    void mousePressEvent(QMouseEvent *) override
+    {
         panel->slotFocusOnMe();
         action->trigger();
     }
@@ -103,17 +107,26 @@ protected:
     QAction *action;
 };
 
-
 /////////////////////////////////////////////////////
 //      The list panel constructor       //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConfigGroup &cfg)
-    : QWidget(parent), KrPanel(manager, this, new ListPanelFunc(this)), panelType(-1),
-      colorMask(255), compareMode(false), previewJob(nullptr), inlineRefreshJob(nullptr),
-      searchBar(nullptr), cdRootButton(nullptr), cdUpButton(nullptr), sidebarButton(nullptr),
-      sidebar(nullptr), fileSystemError(nullptr), _tabState(TabState::DEFAULT)
+    : QWidget(parent)
+    , KrPanel(manager, this, new ListPanelFunc(this))
+    , panelType(-1)
+    , colorMask(255)
+    , compareMode(false)
+    , previewJob(nullptr)
+    , inlineRefreshJob(nullptr)
+    , searchBar(nullptr)
+    , cdRootButton(nullptr)
+    , cdUpButton(nullptr)
+    , sidebarButton(nullptr)
+    , sidebar(nullptr)
+    , fileSystemError(nullptr)
+    , _tabState(TabState::DEFAULT)
 {
-    if(cfg.isValid())
+    if (cfg.isValid())
         panelType = cfg.readEntry("Type", -1);
     if (panelType == -1)
         panelType = defaultPanelType();
@@ -122,15 +135,21 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
 
     setAcceptDrops(true);
 
-    QHash<QString, QWidget*> widgets;
+    QHash<QString, QWidget *> widgets;
 
 #define ADD_WIDGET(widget) widgets.insert(#widget, widget);
 
     // media button
     mediaButton = new MediaButton(this);
-    connect(mediaButton, &MediaButton::aboutToShow, this, [=]() { slotFocusOnMe(); });
-    connect(mediaButton, &MediaButton::openUrl, [=](const QUrl & _t1) { func->openUrl(_t1); });
-    connect(mediaButton, &MediaButton::newTab, this, [=](const QUrl &url) { duplicateTab(url); });
+    connect(mediaButton, &MediaButton::aboutToShow, this, [=]() {
+        slotFocusOnMe();
+    });
+    connect(mediaButton, &MediaButton::openUrl, [=](const QUrl &_t1) {
+        func->openUrl(_t1);
+    });
+    connect(mediaButton, &MediaButton::newTab, this, [=](const QUrl &url) {
+        duplicateTab(url);
+    });
     ADD_WIDGET(mediaButton);
 
     // status bar
@@ -138,10 +157,11 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     KConfigGroup group(krConfig, "Look&Feel");
     status->setFont(group.readEntry("Filelist Font", _FilelistFont));
     status->setAutoFillBackground(false);
-    status->setText("");          // needed for initialization code!
-    status->setWhatsThis(i18n("The statusbar displays information about the filesystem "
-                              "which holds your current folder: total size, free space, "
-                              "type of filesystem, etc."));
+    status->setText(""); // needed for initialization code!
+    status->setWhatsThis(
+        i18n("The statusbar displays information about the filesystem "
+             "which holds your current folder: total size, free space, "
+             "type of filesystem, etc."));
     ADD_WIDGET(status);
 
     // back button
@@ -152,41 +172,52 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     forwardButton = new ActionButton(this, this, _actions->actHistoryForward);
     ADD_WIDGET(forwardButton);
 
-
     // ... create the history button
     historyButton = new DirHistoryButton(func->history, this);
-    connect(historyButton, &DirHistoryButton::aboutToShow, this, [=]() { slotFocusOnMe(); });
+    connect(historyButton, &DirHistoryButton::aboutToShow, this, [=]() {
+        slotFocusOnMe();
+    });
     connect(historyButton, &DirHistoryButton::gotoPos, func, &ListPanelFunc::historyGotoPos);
     ADD_WIDGET(historyButton);
 
     // bookmarks button
     bookmarksButton = new KrBookmarkButton(this);
-    connect(bookmarksButton, &KrBookmarkButton::aboutToShow, this, [=]() { slotFocusOnMe(); });
-    connect(bookmarksButton, &KrBookmarkButton::openUrl, this, [this](const QUrl & _t1) { func->openUrl(_t1); });
-    bookmarksButton->setWhatsThis(i18n("Open menu with bookmarks. You can also add "
-                                       "current location to the list, edit bookmarks "
-                                       "or add subfolder to the list."));
+    connect(bookmarksButton, &KrBookmarkButton::aboutToShow, this, [=]() {
+        slotFocusOnMe();
+    });
+    connect(bookmarksButton, &KrBookmarkButton::openUrl, this, [this](const QUrl &_t1) {
+        func->openUrl(_t1);
+    });
+    bookmarksButton->setWhatsThis(
+        i18n("Open menu with bookmarks. You can also add "
+             "current location to the list, edit bookmarks "
+             "or add subfolder to the list."));
     ADD_WIDGET(bookmarksButton);
 
     // url input field
     urlNavigator = new KUrlNavigator(new KFilePlacesModel(this), QUrl(), this);
-    urlNavigator->setWhatsThis(i18n("Name of folder where you are. You can also "
-                                    "enter name of desired location to move there. "
-                                    "Use of Net protocols like ftp or fish is possible."));
+    urlNavigator->setWhatsThis(
+        i18n("Name of folder where you are. You can also "
+             "enter name of desired location to move there. "
+             "Use of Net protocols like ftp or fish is possible."));
     // handle certain key events here in event filter
     urlNavigator->editor()->installEventFilter(this);
     urlNavigator->setUrlEditable(isNavigatorEditModeSet());
     urlNavigator->setShowFullPath(group.readEntry("Navigator Full Path", false));
-    connect(urlNavigator, &KUrlNavigator::returnPressed, this, [=]() { slotFocusOnMe(); });
+    connect(urlNavigator, &KUrlNavigator::returnPressed, this, [=]() {
+        slotFocusOnMe();
+    });
     connect(urlNavigator, &KUrlNavigator::urlChanged, this, &ListPanel::slotNavigatorUrlChanged);
     connect(urlNavigator->editor()->lineEdit(), &QLineEdit::editingFinished, this, &ListPanel::resetNavigatorMode);
-    connect(urlNavigator, &KUrlNavigator::tabRequested, this, [=](const QUrl &url) { ListPanel::duplicateTab(url); });
+    connect(urlNavigator, &KUrlNavigator::tabRequested, this, [=](const QUrl &url) {
+        ListPanel::duplicateTab(url);
+    });
     connect(urlNavigator, &KUrlNavigator::urlsDropped, this, QOverload<const QUrl &, QDropEvent *>::of(&ListPanel::handleDrop));
     ADD_WIDGET(urlNavigator);
 
     // toolbar
-    QWidget * toolbar = new QWidget(this);
-    auto * toolbarLayout = new QHBoxLayout(toolbar);
+    QWidget *toolbar = new QWidget(this);
+    auto *toolbarLayout = new QHBoxLayout(toolbar);
     toolbarLayout->setContentsMargins(0, 0, 0, 0);
     toolbarLayout->setSpacing(0);
     ADD_WIDGET(toolbar);
@@ -207,8 +238,9 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     totals = new KrSqueezedTextLabel(this);
     totals->setFont(group.readEntry("Filelist Font", _FilelistFont));
     totals->setAutoFillBackground(false);
-    totals->setWhatsThis(i18n("The totals bar shows how many files exist, "
-                              "how many selected and the bytes math"));
+    totals->setWhatsThis(
+        i18n("The totals bar shows how many files exist, "
+             "how many selected and the bytes math"));
     ADD_WIDGET(totals);
 
     // free space label
@@ -254,7 +286,8 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     sidebarPositionButton->setToolTip(i18n("Move Sidebar clockwise"));
     connect(sidebarPositionButton, &QToolButton::clicked, this, [this]() {
         // moving position clockwise
-        setSidebarPosition((sidebarPosition() + 1) % 4); });
+        setSidebarPosition((sidebarPosition() + 1) % 4);
+    });
     ADD_WIDGET(sidebarPositionButton);
 
     // a quick button to open the sidebar
@@ -285,14 +318,14 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     syncBrowseButton->setIcon(Icon("kr_syncbrowse_off"));
     syncBrowseButton->setCheckable(true);
 
-    const QString syncBrowseText = i18n("This button toggles the sync-browse mode.\n"
-                                        "When active, each folder change is performed in the\n"
-                                        "active and inactive panel - if possible.");
+    const QString syncBrowseText = i18n(
+        "This button toggles the sync-browse mode.\n"
+        "When active, each folder change is performed in the\n"
+        "active and inactive panel - if possible.");
     syncBrowseButton->setText(syncBrowseText);
     syncBrowseButton->setToolTip(syncBrowseText);
     connect(syncBrowseButton, &QToolButton::toggled, syncBrowseButton, [this](bool checked) {
-        syncBrowseButton->setIcon(
-            Icon(checked ? "kr_syncbrowse_on" : "kr_syncbrowse_off"));
+        syncBrowseButton->setIcon(Icon(checked ? "kr_syncbrowse_on" : "kr_syncbrowse_off"));
     });
     syncBrowseButton->setAutoRaise(true);
     toolbarLayout->addWidget(syncBrowseButton);
@@ -322,7 +355,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     KrLayoutFactory fact(this, widgets);
     QLayout *layout = fact.createLayout();
 
-    if(!layout) { // fallback: create a layout by ourself
+    if (!layout) { // fallback: create a layout by ourself
         auto *v = new QVBoxLayout;
         v->setContentsMargins(0, 0, 0, 0);
         v->setSpacing(0);
@@ -387,7 +420,7 @@ ListPanel::~ListPanel()
     delete cdUpButton;
     delete cdOtherButton;
     delete syncBrowseButton;
-//     delete layout;
+    //     delete layout;
 }
 
 void ListPanel::reparent(QWidget *parent, AbstractPanelManager *manager)
@@ -417,7 +450,7 @@ void ListPanel::createView()
     // KrViewFactory may create a different view type than requested
     panelType = view->instance()->id();
 
-    if(this == ACTIVE_PANEL)
+    if (this == ACTIVE_PANEL)
         view->prepareForActive();
     else
         view->prepareForPassive();
@@ -431,18 +464,22 @@ void ListPanel::createView()
     connect(view->op(), &KrViewOperator::goHome, func, &ListPanelFunc::home);
     connect(view->op(), &KrViewOperator::dirUp, func, &ListPanelFunc::dirUp);
     connect(view->op(), &KrViewOperator::defaultDeleteFiles, func, &ListPanelFunc::defaultDeleteFiles);
-    connect(view->op(), &KrViewOperator::middleButtonClicked, this,  QOverload<KrViewItem *>::of(&ListPanel::duplicateTab));
+    connect(view->op(), &KrViewOperator::middleButtonClicked, this, QOverload<KrViewItem *>::of(&ListPanel::duplicateTab));
     connect(view->op(), &KrViewOperator::currentChanged, this, &ListPanel::slotCurrentChanged);
     connect(view->op(), &KrViewOperator::renameItem, func, QOverload<const QString &, const QString &>::of(&ListPanelFunc::rename));
     connect(view->op(), &KrViewOperator::executed, func, &ListPanelFunc::execute);
     connect(view->op(), &KrViewOperator::goInside, func, &ListPanelFunc::goInside);
-    connect(view->op(), &KrViewOperator::needFocus, this, [=]() { slotFocusOnMe(); });
+    connect(view->op(), &KrViewOperator::needFocus, this, [=]() {
+        slotFocusOnMe();
+    });
     connect(view->op(), &KrViewOperator::selectionChanged, this, &ListPanel::slotUpdateTotals);
     connect(view->op(), &KrViewOperator::itemDescription, krApp, &Krusader::statusBarUpdate);
     connect(view->op(), &KrViewOperator::contextMenu, this, &ListPanel::popRightClickMenu);
     connect(view->op(), &KrViewOperator::emptyContextMenu, this, &ListPanel::popEmptyRightClickMenu);
     connect(view->op(), &KrViewOperator::letsDrag, this, &ListPanel::startDragging);
-    connect(view->op(), &KrViewOperator::gotDrop, this, [this](QDropEvent *event) {handleDrop(event, true); });
+    connect(view->op(), &KrViewOperator::gotDrop, this, [this](QDropEvent *event) {
+        handleDrop(event, true);
+    });
     connect(view->op(), &KrViewOperator::previewJobStarted, this, &ListPanel::slotPreviewJobStarted);
     connect(view->op(), &KrViewOperator::refreshActions, krApp->viewActions(), &ViewActions::refreshActions);
     connect(view->op(), &KrViewOperator::currentChanged, func->history, &DirHistoryQueue::saveCurrentItem);
@@ -503,17 +540,17 @@ void ListPanel::setProperties(int prop)
     }
 }
 
-bool ListPanel::eventFilter(QObject * watched, QEvent * e)
+bool ListPanel::eventFilter(QObject *watched, QEvent *e)
 {
-    if(view && watched == view->widget()) {
-        if(e->type() == QEvent::FocusIn && this != ACTIVE_PANEL && !isHidden())
+    if (view && watched == view->widget()) {
+        if (e->type() == QEvent::FocusIn && this != ACTIVE_PANEL && !isHidden())
             slotFocusOnMe();
-        else if(e->type() == QEvent::ShortcutOverride) {
-            auto *ke = dynamic_cast<QKeyEvent*>(e);
-            if(ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier) {
+        else if (e->type() == QEvent::ShortcutOverride) {
+            auto *ke = dynamic_cast<QKeyEvent *>(e);
+            if (ke->key() == Qt::Key_Escape && ke->modifiers() == Qt::NoModifier) {
                 // if the cancel refresh action has no shortcut assigned,
                 // we need this event ourselves to cancel refresh
-                if(_actions->actCancelRefresh->shortcut().isEmpty()) {
+                if (_actions->actCancelRefresh->shortcut().isEmpty()) {
                     e->accept();
                     return true;
                 }
@@ -521,15 +558,15 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
         }
     }
     // handle URL navigator key events
-    else if(urlNavigator && watched == urlNavigator->editor()) {
+    else if (urlNavigator && watched == urlNavigator->editor()) {
         // override default shortcut for panel focus
-        if(e->type() == QEvent::ShortcutOverride) {
+        if (e->type() == QEvent::ShortcutOverride) {
             auto *ke = dynamic_cast<QKeyEvent *>(e);
             if ((ke->key() == Qt::Key_Escape) && (ke->modifiers() == Qt::NoModifier)) {
                 e->accept(); // we will get the key press event now
                 return true;
             }
-        } else if(e->type() == QEvent::KeyPress) {
+        } else if (e->type() == QEvent::KeyPress) {
             auto *ke = dynamic_cast<QKeyEvent *>(e);
             if ((ke->key() == Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
                 slotFocusOnMe();
@@ -547,7 +584,7 @@ bool ListPanel::eventFilter(QObject * watched, QEvent * e)
 
 void ListPanel::toggleSidebar()
 {
-    if(!sidebar) {
+    if (!sidebar) {
         sidebar = new Sidebar(sidebarSplitter);
         // fix vertical grow of splitter (and entire window) if its content
         // demands more space
@@ -629,8 +666,7 @@ void ListPanel::compareDirs(bool otherPanelToo)
     if (otherPanelToo == true) {
         // If both panels are showing the same directory
         if (_manager->currentPanel()->virtualPath() == otherPanel()->virtualPath()) {
-            if (KMessageBox::warningContinueCancel(this,
-                i18n("Warning: The left and the right side are showing the same folder.")) != KMessageBox::Continue) {
+            if (KMessageBox::warningContinueCancel(this, i18n("Warning: The left and the right side are showing the same folder.")) != KMessageBox::Continue) {
                 return;
             }
         }
@@ -648,7 +684,8 @@ void ListPanel::compareDirs(bool otherPanelToo)
             continue;
 
         for (otherItem = otherPanel()->view->getFirst(); otherItem != nullptr && otherItem->name() != item->name();
-                otherItem = otherPanel()->view->getNext(otherItem));
+             otherItem = otherPanel()->view->getNext(otherItem))
+            ;
 
         bool isSingle = (otherItem == nullptr), isDifferent = false, isNewer = false;
 
@@ -703,7 +740,7 @@ void ListPanel::slotFocusOnMe(bool focus)
 
     krApp->setUpdatesEnabled(false);
 
-    if(focus) {
+    if (focus) {
         emit activate();
         _actions->activePanelChanged();
         func->refreshActions();
@@ -734,7 +771,6 @@ void ListPanel::start(const QUrl &url)
 
     _lastLocalPath = startUrl.isLocalFile() ? startUrl.path() : ROOT_DIR;
 
-
     func->openUrl(startUrl);
 
     setJumpBack(startUrl);
@@ -749,7 +785,6 @@ void ListPanel::slotStartUpdate(bool directoryChange)
 
     const QUrl currentUrl = virtualPath();
     if (directoryChange) {
-
         if (this == ACTIVE_PANEL && !MAIN_VIEW->terminalDock()->hasFocus()) {
             slotFocusOnMe();
         }
@@ -775,8 +810,7 @@ void ListPanel::slotStartUpdate(bool directoryChange)
     slotUpdateTotals();
 }
 
-void ListPanel::updateFilesystemStats(const QString &metaInfo, const QString &fsType,
-                                      KIO::filesize_t total, KIO::filesize_t free)
+void ListPanel::updateFilesystemStats(const QString &metaInfo, const QString &fsType, KIO::filesize_t total, KIO::filesize_t free)
 {
     QString statusText, mountPoint, freeSpaceText;
 
@@ -786,10 +820,15 @@ void ListPanel::updateFilesystemStats(const QString &metaInfo, const QString &fs
     } else {
         const int perc = total == 0 ? 0 : (int)(((float)free / (float)total) * 100.0);
         mountPoint = func->files()->mountPoint();
-        statusText = i18nc("%1=free space,%2=total space,%3=percentage of usage, "
-                           "%4=mountpoint,%5=filesystem type",
-                           "%1 free out of %2 (%3%) on %4 [(%5)]", KIO::convertSize(free),
-                           KIO::convertSize(total), perc, mountPoint, fsType);
+        statusText = i18nc(
+            "%1=free space,%2=total space,%3=percentage of usage, "
+            "%4=mountpoint,%5=filesystem type",
+            "%1 free out of %2 (%3%) on %4 [(%5)]",
+            KIO::convertSize(free),
+            KIO::convertSize(total),
+            perc,
+            mountPoint,
+            fsType);
 
         freeSpaceText = "    " + i18n("%1 free", KIO::convertSize(free));
     }
@@ -830,8 +869,7 @@ void ListPanel::handleDrop(QDropEvent *event, bool onView)
 
     func->files()->dropFiles(destination, event);
 
-    if(KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation",
-                                                     _UnselectBeforeOperation)) {
+    if (KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         KrPanel *p = dragFromThisPanel ? this : otherPanel();
         p->view->saveSelection();
         p->view->unselectAll();
@@ -843,9 +881,9 @@ void ListPanel::handleDrop(const QUrl &destination, QDropEvent *event)
     func->files()->dropFiles(destination, event);
 }
 
-void ListPanel::startDragging(const QStringList& names, const QPixmap& px)
+void ListPanel::startDragging(const QStringList &names, const QPixmap &px)
 {
-    if (names.isEmpty()) {  // avoid dragging empty urls
+    if (names.isEmpty()) { // avoid dragging empty urls
         return;
     }
 
@@ -897,23 +935,22 @@ void ListPanel::prepareToDelete()
 void ListPanel::keyPressEvent(QKeyEvent *e)
 {
     switch (e->key()) {
-    case Qt::Key_Enter :
-    case Qt::Key_Return :
+    case Qt::Key_Enter:
+    case Qt::Key_Return:
         if (e->modifiers() & Qt::ControlModifier) {
             if (e->modifiers() & Qt::AltModifier) {
-                FileItem *fileitem =
-                    func->files()->getFileItem(view->getCurrentKrViewItem()->name());
+                FileItem *fileitem = func->files()->getFileItem(view->getCurrentKrViewItem()->name());
                 if (fileitem && fileitem->isDir())
                     duplicateTab(fileitem->getUrl(), true);
             } else {
-                SLOTS->insertFileName((e->modifiers()&Qt::ShiftModifier)!=0);
+                SLOTS->insertFileName((e->modifiers() & Qt::ShiftModifier) != 0);
             }
         } else {
             e->ignore();
         }
         break;
-    case Qt::Key_Right :
-    case Qt::Key_Left :
+    case Qt::Key_Right:
+    case Qt::Key_Left:
         if (e->modifiers() == Qt::ControlModifier) {
             // user pressed CTRL+Right/Left - refresh other panel to the selected path if it's a
             // directory otherwise as this one
@@ -929,7 +966,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
                             newPath = v->getUrl();
                         } else {
                             // If it's a supported compressed file
-                            if (v && KrArcHandler::arcSupported(v->getMime()))   {
+                            if (v && KrArcHandler::arcSupported(v->getMime())) {
                                 newPath = func->browsableArchivePath(v->getUrl().fileName());
                             } else {
                                 newPath = virtualPath();
@@ -945,21 +982,21 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
         } else
             e->ignore();
         break;
-    case Qt::Key_Down :
-        if (e->modifiers() == Qt::ControlModifier) {   // give the keyboard focus to the command line
+    case Qt::Key_Down:
+        if (e->modifiers() == Qt::ControlModifier) { // give the keyboard focus to the command line
             if (MAIN_VIEW->cmdLine()->isVisible())
                 MAIN_VIEW->cmdLineFocus();
             else
                 MAIN_VIEW->focusTerminalEmulator();
             return;
-        } else if (e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier)) {     // give the keyboard focus to TE
+        } else if (e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier)) { // give the keyboard focus to TE
             MAIN_VIEW->focusTerminalEmulator();
         } else
             e->ignore();
         break;
 
-    case Qt::Key_Up :
-        if (e->modifiers() == Qt::ControlModifier) {   // give the keyboard focus to the url navigator
+    case Qt::Key_Up:
+        if (e->modifiers() == Qt::ControlModifier) { // give the keyboard focus to the url navigator
             editLocation();
             return;
         } else
@@ -976,7 +1013,7 @@ void ListPanel::keyPressEvent(QKeyEvent *e)
         if (e->modifiers() == Qt::NoModifier)
             MAIN_VIEW->cmdLine()->addText(e->text());
 
-        //e->ignore();
+        // e->ignore();
     }
 }
 
@@ -1005,7 +1042,7 @@ void ListPanel::panelHidden()
 void ListPanel::slotPreviewJobStarted(KJob *job)
 {
     previewJob = job;
-    connect(job, SIGNAL(percent(KJob*,ulong)), SLOT(slotPreviewJobPercent(KJob*,ulong)));
+    connect(job, SIGNAL(percent(KJob *, ulong)), SLOT(slotPreviewJobPercent(KJob *, ulong)));
     connect(job, &KJob::result, this, &ListPanel::slotPreviewJobResult);
     cancelProgressButton->setMaximumHeight(sidebarButton->height());
     cancelProgressButton->show();
@@ -1015,20 +1052,20 @@ void ListPanel::slotPreviewJobStarted(KJob *job)
     previewProgress->show();
 }
 
-void ListPanel::slotPreviewJobPercent(KJob* /*job*/, unsigned long percent)
+void ListPanel::slotPreviewJobPercent(KJob * /*job*/, unsigned long percent)
 {
     previewProgress->setValue(static_cast<int>(percent));
 }
 
-void ListPanel::slotPreviewJobResult(KJob* /*job*/)
+void ListPanel::slotPreviewJobResult(KJob * /*job*/)
 {
     previewJob = nullptr;
     previewProgress->hide();
-    if(!inlineRefreshJob)
+    if (!inlineRefreshJob)
         cancelProgressButton->hide();
 }
 
-void ListPanel::slotRefreshJobStarted(KIO::Job* job)
+void ListPanel::slotRefreshJobStarted(KIO::Job *job)
 {
     // disable the parts of the panel we don't want touched
     status->setEnabled(false);
@@ -1038,7 +1075,7 @@ void ListPanel::slotRefreshJobStarted(KIO::Job* job)
     cdUpButton->setEnabled(false);
     cdOtherButton->setEnabled(false);
     sidebarButton->setEnabled(false);
-    if(sidebar)
+    if (sidebar)
         sidebar->setEnabled(false);
     bookmarksButton->setEnabled(false);
     historyButton->setEnabled(false);
@@ -1046,8 +1083,7 @@ void ListPanel::slotRefreshJobStarted(KIO::Job* job)
 
     // connect to the job interface to provide in-panel refresh notification
     connect(job, &KIO::Job::infoMessage, this, &ListPanel::inlineRefreshInfoMessage);
-    connect(job, SIGNAL(percent(KJob*,ulong)),
-            SLOT(inlineRefreshPercent(KJob*,ulong)));
+    connect(job, SIGNAL(percent(KJob *, ulong)), SLOT(inlineRefreshPercent(KJob *, ulong)));
     connect(job, &KIO::Job::result, this, &ListPanel::inlineRefreshListResult);
 
     inlineRefreshJob = job;
@@ -1063,7 +1099,7 @@ void ListPanel::cancelProgress()
         inlineRefreshJob->kill(KJob::EmitResult);
         inlineRefreshListResult(nullptr);
     }
-    if(previewJob) {
+    if (previewJob) {
         disconnect(previewJob, nullptr, this, nullptr);
         previewJob->kill(KJob::EmitResult);
         slotPreviewJobResult(nullptr);
@@ -1073,23 +1109,23 @@ void ListPanel::cancelProgress()
 void ListPanel::setNavigatorUrl(const QUrl &url)
 {
     _navigatorUrl = url;
-   urlNavigator->setLocationUrl(url);
+    urlNavigator->setLocationUrl(url);
 }
 
-void ListPanel::inlineRefreshPercent(KJob*, unsigned long perc)
+void ListPanel::inlineRefreshPercent(KJob *, unsigned long perc)
 {
     QString msg = i18n(">> Reading: %1 % complete...", perc);
     totals->setText(msg);
 }
 
-void ListPanel::inlineRefreshInfoMessage(KJob*, const QString &msg)
+void ListPanel::inlineRefreshInfoMessage(KJob *, const QString &msg)
 {
     totals->setText(i18n(">> Reading: %1", msg));
 }
 
-void ListPanel::inlineRefreshListResult(KJob*)
+void ListPanel::inlineRefreshListResult(KJob *)
 {
-    if(inlineRefreshJob)
+    if (inlineRefreshJob)
         disconnect(inlineRefreshJob, nullptr, this, nullptr);
     inlineRefreshJob = nullptr;
     // reenable everything
@@ -1100,13 +1136,13 @@ void ListPanel::inlineRefreshListResult(KJob*)
     cdUpButton->setEnabled(true);
     cdOtherButton->setEnabled(true);
     sidebarButton->setEnabled(true);
-    if(sidebar)
+    if (sidebar)
         sidebar->setEnabled(true);
     bookmarksButton->setEnabled(true);
     historyButton->setEnabled(true);
     syncBrowseButton->setEnabled(true);
 
-    if(!previewJob)
+    if (!previewJob)
         cancelProgressButton->hide();
 }
 
@@ -1120,7 +1156,7 @@ void ListPanel::setJumpBack(QUrl url)
     _jumpBackURL = std::move(url);
 }
 
-void ListPanel::slotFilesystemError(const QString& msg)
+void ListPanel::slotFilesystemError(const QString &msg)
 {
     slotRefreshColors();
     fileSystemError->setText(i18n("Error: %1", msg));
@@ -1129,10 +1165,10 @@ void ListPanel::slotFilesystemError(const QString& msg)
 
 void ListPanel::showButtonMenu(QToolButton *b)
 {
-    if(this != ACTIVE_PANEL)
+    if (this != ACTIVE_PANEL)
         slotFocusOnMe();
 
-    if(b->isHidden())
+    if (b->isHidden())
         b->menu()->exec(mapToGlobal(clientArea->pos()));
     else
         b->click();
@@ -1194,7 +1230,7 @@ void ListPanel::saveSettings(KConfigGroup cfg, bool saveHistory)
     cfg.writeEntry("Type", getType());
     cfg.writeEntry("Properties", getProperties());
     cfg.writeEntry("PinnedUrl", pinnedUrl().toString());
-    if(saveHistory)
+    if (saveHistory)
         func->history->save(KConfigGroup(&cfg, "History"));
     view->saveSettings(KConfigGroup(&cfg, "View"));
 
@@ -1222,7 +1258,7 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
     setProperties(0);
 
     _lastLocalPath = ROOT_DIR;
-    if(func->history->restore(KConfigGroup(&cfg, "History"))) {
+    if (func->history->restore(KConfigGroup(&cfg, "History"))) {
         func->refresh();
     } else {
         QUrl url(cfg.readEntry("Url", "invalid"));
@@ -1263,7 +1299,7 @@ void ListPanel::slotCurrentChanged(KrViewItem *item)
     Sidebar *p;
     if (sidebar && !sidebar->isHidden()) {
         p = sidebar;
-    } else if(otherPanel()->gui->sidebar && !otherPanel()->gui->sidebar->isHidden()) {
+    } else if (otherPanel()->gui->sidebar && !otherPanel()->gui->sidebar->isHidden()) {
         p = otherPanel()->gui->sidebar;
     } else {
         return;
@@ -1277,13 +1313,13 @@ void ListPanel::otherPanelChanged()
     func->syncURL = QUrl();
 }
 
-void ListPanel::getFocusCandidates(QVector<QWidget*> &widgets)
+void ListPanel::getFocusCandidates(QVector<QWidget *> &widgets)
 {
-    if(urlNavigator->editor()->isVisible())
+    if (urlNavigator->editor()->isVisible())
         widgets << urlNavigator->editor();
-    if(view->widget()->isVisible())
+    if (view->widget()->isVisible())
         widgets << view->widget();
-    if(sidebar && sidebar->isVisible())
+    if (sidebar && sidebar->isVisible())
         widgets << sidebar;
 }
 
@@ -1292,8 +1328,7 @@ void ListPanel::updateButtons()
     backButton->setEnabled(func->history->canGoBack());
     forwardButton->setEnabled(func->history->canGoForward());
     historyButton->setEnabled(func->history->count() > 1);
-    cdRootButton->setEnabled(!virtualPath().matches(QUrl::fromLocalFile(ROOT_DIR),
-                                                    QUrl::StripTrailingSlash));
+    cdRootButton->setEnabled(!virtualPath().matches(QUrl::fromLocalFile(ROOT_DIR), QUrl::StripTrailingSlash));
     cdUpButton->setEnabled(!func->files()->isRoot());
     cdHomeButton->setEnabled(!func->atHome());
 }
@@ -1345,13 +1380,13 @@ void ListPanel::resetNavigatorMode()
 int ListPanel::sidebarPosition() const
 {
     int pos = sidebarSplitter->orientation() == Qt::Vertical ? 1 : 0;
-    return pos + (qobject_cast<Sidebar*>(sidebarSplitter->widget(0)) == NULL ? 2 : 0);
+    return pos + (qobject_cast<Sidebar *>(sidebarSplitter->widget(0)) == NULL ? 2 : 0);
 }
 
 void ListPanel::setSidebarPosition(int pos)
 {
     sidebarSplitter->setOrientation(pos % 2 == 0 ? Qt::Horizontal : Qt::Vertical);
-    if ((pos < 2) != (qobject_cast<Sidebar*>(sidebarSplitter->widget(0)) != NULL)) {
+    if ((pos < 2) != (qobject_cast<Sidebar *>(sidebarSplitter->widget(0)) != NULL)) {
         sidebarSplitter->insertWidget(0, sidebarSplitter->widget(1)); // swapping widgets in splitter
     }
 }

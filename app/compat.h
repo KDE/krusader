@@ -10,15 +10,15 @@
 #include <kio_version.h>
 
 #if __has_include(<KCompletion/kcompletion_version.h>)
-#  include <KCompletion/kcompletion_version.h>
+#include <KCompletion/kcompletion_version.h>
 #else // Pre KF-5.91 header layout
-#  include <kcompletion_version.h>
+#include <kcompletion_version.h>
 #endif
 
 #if __has_include(<KArchive/karchive_version.h>)
-#  include <KArchive/karchive_version.h>
+#include <KArchive/karchive_version.h>
 #else // Pre KF-5.91 header layout
-#  include <karchive_version.h>
+#include <karchive_version.h>
 #endif
 
 /**
@@ -28,9 +28,9 @@
  * This can be removed when the frameworks minimum version required will be >= 5.77
  */
 #if KIO_VERSION >= QT_VERSION_CHECK(5, 77, 0)
-    #define KACTIONMENU_SETDELAYED setPopupMode(QToolButton::InstantPopup)
+#define KACTIONMENU_SETDELAYED setPopupMode(QToolButton::InstantPopup)
 #else
-    #define KACTIONMENU_SETDELAYED setDelayed(false)
+#define KACTIONMENU_SETDELAYED setDelayed(false)
 #endif
 
 /**
@@ -40,9 +40,9 @@
  * This can be removed when the frameworks minimum version required will be >= 5.81
  */
 #if KCOMPLETION_VERSION >= QT_VERSION_CHECK(5, 81, 0)
-    #define KLINEEDIT_RETURNKEYPRESSED returnKeyPressed
+#define KLINEEDIT_RETURNKEYPRESSED returnKeyPressed
 #else
-    #define KLINEEDIT_RETURNKEYPRESSED returnPressed
+#define KLINEEDIT_RETURNKEYPRESSED returnPressed
 #endif
 
 /**
@@ -52,9 +52,9 @@
  * This can be removed when the frameworks minimum version required will be >= 5.85
  */
 #if KARCHIVE_VERSION >= QT_VERSION_CHECK(5, 85, 0)
-    #define COMPRESSIONTYPEFORMIMETYPE KCompressionDevice::compressionTypeForMimeType
+#define COMPRESSIONTYPEFORMIMETYPE KCompressionDevice::compressionTypeForMimeType
 #else
-    #define COMPRESSIONTYPEFORMIMETYPE KFilterDev::compressionTypeForMimeType
+#define COMPRESSIONTYPEFORMIMETYPE KFilterDev::compressionTypeForMimeType
 #endif
 
 /**
@@ -66,9 +66,9 @@
  * This can be removed when the qt minimum version required will be >= 5.15
  */
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    #define QBUTTONGROUP_BUTTONCLICKED idClicked
+#define QBUTTONGROUP_BUTTONCLICKED idClicked
 #else
-    #define QBUTTONGROUP_BUTTONCLICKED buttonClicked
+#define QBUTTONGROUP_BUTTONCLICKED buttonClicked
 #endif
 
 /**
@@ -80,9 +80,9 @@
  * This can be removed when the qt minimum version required will be >= 5.15
  */
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    #define QRESOURCE_ISCOMPRESSED(A) ((A).compressionAlgorithm() != QResource::NoCompression)
+#define QRESOURCE_ISCOMPRESSED(A) ((A).compressionAlgorithm() != QResource::NoCompression)
 #else
-    #define QRESOURCE_ISCOMPRESSED(A) (A).isCompressed()
+#define QRESOURCE_ISCOMPRESSED(A) (A).isCompressed()
 #endif
 
 /**
@@ -94,9 +94,9 @@
  * This can be removed when the qt minimum version required will be >= 5.15
  */
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    #define SKIP_EMPTY_PARTS Qt::SkipEmptyParts
+#define SKIP_EMPTY_PARTS Qt::SkipEmptyParts
 #else
-    #define SKIP_EMPTY_PARTS QString::SkipEmptyParts
+#define SKIP_EMPTY_PARTS QString::SkipEmptyParts
 #endif
 
 /**
@@ -108,9 +108,9 @@
  * This can be removed when the qt minimum version required will be >= 5.15
  */
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    #define QT_ENDL Qt::endl
+#define QT_ENDL Qt::endl
 #else
-    #define QT_ENDL endl
+#define QT_ENDL endl
 #endif
 
 /**
@@ -122,9 +122,9 @@
  * This can be removed when the qt minimum version required will be >= 5.15
  */
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    #define QCOMBOBOX_ACTIVATED textActivated
+#define QCOMBOBOX_ACTIVATED textActivated
 #else
-    #define QCOMBOBOX_ACTIVATED activated
+#define QCOMBOBOX_ACTIVATED activated
 #endif
 
 /**
@@ -136,9 +136,9 @@
  * This can be removed when the qt minimum version required will be >= 5.15
  */
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    #define QCOMBOBOX_HIGHLIGHTED textHighlighted
+#define QCOMBOBOX_HIGHLIGHTED textHighlighted
 #else
-    #define QCOMBOBOX_HIGHLIGHTED highlighted
+#define QCOMBOBOX_HIGHLIGHTED highlighted
 #endif
 
 #endif

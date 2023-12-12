@@ -13,7 +13,8 @@ int KrDebugLogger::indentation = 1;
 const int KrDebugLogger::indentationIncrease = 3;
 const QString KrDebugLogger::logFile = QDir::tempPath() + "/krdebug";
 
-KrDebugLogger::KrDebugLogger(const QString &argFunction, int line) : function(argFunction)
+KrDebugLogger::KrDebugLogger(const QString &argFunction, int line)
+    : function(argFunction)
 {
     QFile file;
     QTextStream stream;

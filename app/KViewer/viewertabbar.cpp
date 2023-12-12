@@ -14,7 +14,8 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 
-ViewerTabWidget::ViewerTabWidget(QWidget *parent) : QTabWidget(parent)
+ViewerTabWidget::ViewerTabWidget(QWidget *parent)
+    : QTabWidget(parent)
 {
     setTabBar(new ViewerTabBar(this));
 }
@@ -31,7 +32,6 @@ void ViewerTabWidget::adjustViewerTabBarVisibility()
     }
     return;
 }
-
 
 ViewerTabBar *ViewerTabWidget::tabBar() const
 {

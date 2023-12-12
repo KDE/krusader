@@ -33,32 +33,39 @@ class KrTreeWidget;
  */
 class Checksum
 {
-  public:
+public:
     static void startCreationWizard(const QString &path, const QStringList &fileNames);
     static void startVerifyWizard(const QString &path, const QString &checksumFile = QString());
 };
 
-namespace  CHECKSUM_ { // private namespace
+namespace CHECKSUM_
+{ // private namespace
 
 /** Wrapper for KProcess to handle errors and output. */
 class ChecksumProcess : public KProcess
 {
-Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     ChecksumProcess(QObject *parent, const QString &path);
     ~ChecksumProcess() override;
 
-    QStringList stdOutput() const { return m_outputLines; }
-    QStringList errOutput() const { return m_errorLines; }
+    QStringList stdOutput() const
+    {
+        return m_outputLines;
+    }
+    QStringList errOutput() const
+    {
+        return m_errorLines;
+    }
 
-  signals:
+signals:
     void resultReady();
 
-  private slots:
+private slots:
     void slotError(QProcess::ProcessError error);
     void slotFinished(int, QProcess::ExitStatus exitStatus);
 
-  private:
+private:
     QStringList m_outputLines;
     QStringList m_errorLines;
     QTemporaryFile m_tmpOutFile;
@@ -86,7 +93,7 @@ protected:
 
     QWizardPage *createProgressPage(const QString &title);
 
-    bool checkExists(const QString& type);
+    bool checkExists(const QString &type);
     void runProcess(const QString &type, const QStringList &args);
     void addChecksumLine(KrTreeWidget *tree, const QString &line);
 
@@ -100,7 +107,7 @@ protected:
 
 class CreateWizard : public ChecksumWizard
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     CreateWizard(const QString &path, const QStringList &_files);
 
@@ -136,9 +143,9 @@ private:
 
 class VerifyWizard : public ChecksumWizard
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-  VerifyWizard(const QString &path, const QString &inputFile);
+    VerifyWizard(const QString &path, const QString &inputFile);
 
 private slots:
     void slotChecksumPathChanged(const QString &path);

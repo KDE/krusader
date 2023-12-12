@@ -15,15 +15,15 @@ class KgStartup : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    explicit KgStartup(bool first, QWidget* parent = nullptr);
+    explicit KgStartup(bool first, QWidget *parent = nullptr);
 
 public slots:
     void slotDisable();
 
 protected:
-    KonfiguratorRadioButtons  *saveRadio;
+    KonfiguratorRadioButtons *saveRadio;
     KonfiguratorCheckBoxGroup *uiCbGroup;
-    KonfiguratorComboBox      *profileCombo;
+    KonfiguratorComboBox *profileCombo;
 };
 
 #endif /* __KGSTARTUP_H__ */

@@ -7,23 +7,22 @@
 */
 
 #include "kraddbookmarkdlg.h"
-#include "../krglobal.h"
 #include "../icon.h"
+#include "../krglobal.h"
 #include "krbookmarkhandler.h"
 
 // QtWidgets
 #include <QDialogButtonBox>
-#include <QHeaderView>
 #include <QGridLayout>
+#include <QHeaderView>
 #include <QInputDialog>
 #include <QLabel>
 #include <QPushButton>
 
 #include <KI18n/KLocalizedString>
 
-
-KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, const QUrl& url):
-        QDialog(parent)
+KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, const QUrl &url)
+    : QDialog(parent)
 {
     setWindowModality(Qt::WindowModal);
     setWindowTitle(i18n("Add Bookmark"));
@@ -65,7 +64,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, const QUrl& url):
     detailsWidget->setVisible(false);
     mainLayout->addWidget(detailsWidget);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
 
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
@@ -73,7 +72,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, const QUrl& url):
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     newFolderButton = new QPushButton(i18n("New Folder"));
     buttonBox->addButton(newFolderButton, QDialogButtonBox::ActionRole);
-    newFolderButton->setVisible(false);// hide it until _createIn is shown
+    newFolderButton->setVisible(false); // hide it until _createIn is shown
     connect(newFolderButton, &QPushButton::clicked, this, &KrAddBookmarkDlg::newFolder);
 
     connect(buttonBox, &QDialogButtonBox::accepted, this, &KrAddBookmarkDlg::accept);
@@ -97,7 +96,7 @@ QWidget *KrAddBookmarkDlg::createInWidget()
     _createIn->setHeaderLabel(i18n("Folders"));
     _createIn->header()->hide();
     _createIn->setRootIsDecorated(true);
-    _createIn->setAlternatingRowColors(false);   // disable alternate coloring
+    _createIn->setAlternatingRowColors(false); // disable alternate coloring
 
     auto *item = new QTreeWidgetItem(_createIn);
     item->setText(0, i18n("Bookmarks"));
@@ -118,7 +117,7 @@ void KrAddBookmarkDlg::slotSelectionChanged()
     QList<QTreeWidgetItem *> items = _createIn->selectedItems();
 
     if (items.count() > 0) {
-        _folder->setText(_xr[ items[ 0 ] ]->text());
+        _folder->setText(_xr[items[0]]->text());
     }
 }
 
@@ -152,9 +151,9 @@ void KrAddBookmarkDlg::newFolder()
     // add to the list in bookman
     KrBookmark *bm = new KrBookmark(newFolder);
 
-    krBookMan->addBookmark(bm, _xr[ items[ 0 ]]);
+    krBookMan->addBookmark(bm, _xr[items[0]]);
     // fix the gui
-    auto *item = new QTreeWidgetItem(items[ 0 ]);
+    auto *item = new QTreeWidgetItem(items[0]);
     item->setText(0, bm->text());
     _xr[item] = bm;
 
@@ -162,12 +161,11 @@ void KrAddBookmarkDlg::newFolder()
     item->setSelected(true);
 }
 
-KrBookmark * KrAddBookmarkDlg::folder() const
+KrBookmark *KrAddBookmarkDlg::folder() const
 {
     QList<QTreeWidgetItem *> items = _createIn->selectedItems();
     if (items.count() == 0)
         return nullptr;
 
-    return _xr[ items[ 0 ] ];
+    return _xr[items[0]];
 }
-

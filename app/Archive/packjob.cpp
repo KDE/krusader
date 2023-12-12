@@ -6,8 +6,8 @@
 */
 
 #include "packjob.h"
-#include "krarchandler.h"
 #include "../krglobal.h"
+#include "krarchandler.h"
 
 // QtCore
 #include <QDir>
@@ -17,23 +17,25 @@
 
 #include <KI18n/KLocalizedString>
 
-PackJob::PackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps)
+PackJob::PackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList &fileNames, const QString &type, const QMap<QString, QString> &packProps)
 {
     startAbstractJobThread(new PackThread(srcUrl, destUrl, fileNames, type, packProps));
 }
 
-PackJob * PackJob::createPacker(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps)
+PackJob *
+PackJob::createPacker(const QUrl &srcUrl, const QUrl &destUrl, const QStringList &fileNames, const QString &type, const QMap<QString, QString> &packProps)
 {
     return new PackJob(srcUrl, destUrl, fileNames, type, packProps);
 }
 
-PackThread::PackThread(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames,
-                       const QString &type, const QMap<QString, QString> &packProps) :
-        _sourceUrl(srcUrl), _destUrl(destUrl), _fileNames(fileNames),
-        _type(type), _packProperties(packProps)
+PackThread::PackThread(const QUrl &srcUrl, const QUrl &destUrl, const QStringList &fileNames, const QString &type, const QMap<QString, QString> &packProps)
+    : _sourceUrl(srcUrl)
+    , _destUrl(destUrl)
+    , _fileNames(fileNames)
+    , _type(type)
+    , _packProperties(packProps)
 {
 }
-
 
 void PackThread::slotStart()
 {
@@ -68,18 +70,19 @@ void PackThread::slotStart()
     sendSuccess();
 }
 
-TestArchiveJob::TestArchiveJob(const QUrl &srcUrl, const QStringList & fileNames)
+TestArchiveJob::TestArchiveJob(const QUrl &srcUrl, const QStringList &fileNames)
 {
     startAbstractJobThread(new TestArchiveThread(srcUrl, fileNames));
 }
 
-TestArchiveJob * TestArchiveJob::testArchives(const QUrl &srcUrl, const QStringList & fileNames)
+TestArchiveJob *TestArchiveJob::testArchives(const QUrl &srcUrl, const QStringList &fileNames)
 {
     return new TestArchiveJob(srcUrl, fileNames);
 }
 
-TestArchiveThread::TestArchiveThread(const QUrl &srcUrl, const QStringList & fileNames) :
-        _sourceUrl(srcUrl), _fileNames(fileNames)
+TestArchiveThread::TestArchiveThread(const QUrl &srcUrl, const QStringList &fileNames)
+    : _sourceUrl(srcUrl)
+    , _fileNames(fileNames)
 {
 }
 
@@ -106,19 +109,20 @@ void TestArchiveThread::slotStart()
     sendSuccess();
 }
 
-
-UnpackJob::UnpackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames)
+UnpackJob::UnpackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList &fileNames)
 {
     startAbstractJobThread(new UnpackThread(srcUrl, destUrl, fileNames));
 }
 
-UnpackJob * UnpackJob::createUnpacker(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames)
+UnpackJob *UnpackJob::createUnpacker(const QUrl &srcUrl, const QUrl &destUrl, const QStringList &fileNames)
 {
     return new UnpackJob(srcUrl, destUrl, fileNames);
 }
 
-UnpackThread::UnpackThread(const QUrl &srcUrl, const QUrl &destUrl, const QStringList & fileNames) :
-        _sourceUrl(srcUrl), _destUrl(destUrl), _fileNames(fileNames)
+UnpackThread::UnpackThread(const QUrl &srcUrl, const QUrl &destUrl, const QStringList &fileNames)
+    : _sourceUrl(srcUrl)
+    , _destUrl(destUrl)
+    , _fileNames(fileNames)
 {
 }
 

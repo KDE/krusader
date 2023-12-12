@@ -16,51 +16,55 @@
 #include <QString>
 #include <QUrl>
 // QtGui
-#include <QKeyEvent>
 #include <QClipboard>
+#include <QKeyEvent>
 // QtWidgets
-#include <QHBoxLayout>
 #include <QApplication>
+#include <QHBoxLayout>
 #include <QWidget>
 
-#include <kde_terminal_interface.h>
-#include <KCoreAddons/KPluginLoader>
-#include <KCoreAddons/KPluginFactory>
-#include <KI18n/KLocalizedString>
-#include <KService/KService>
-#include <KWidgetsAddons/KToggleAction>
-#include <KWidgetsAddons/KMessageBox>
 #include <KConfigCore/KConfig>
 #include <KConfigCore/KConfigGroup>
+#include <KCoreAddons/KPluginFactory>
+#include <KCoreAddons/KPluginLoader>
+#include <KI18n/KLocalizedString>
+#include <KService/KService>
+#include <KWidgetsAddons/KMessageBox>
+#include <KWidgetsAddons/KToggleAction>
+#include <kde_terminal_interface.h>
 
-#include "kcmdline.h"
+#include "../FileSystem/filesystem.h"
+#include "../Panel/PanelView/krview.h"
+#include "../Panel/listpanel.h"
+#include "../Panel/listpanelactions.h"
+#include "../Panel/panelfunc.h"
 #include "../defaults.h"
 #include "../kractions.h"
 #include "../krmainwindow.h"
 #include "../krservices.h"
 #include "../krslots.h"
 #include "../krusaderview.h"
-#include "../FileSystem/filesystem.h"
-#include "../Panel/PanelView/krview.h"
-#include "../Panel/listpanel.h"
-#include "../Panel/listpanelactions.h"
-#include "../Panel/panelfunc.h"
+#include "kcmdline.h"
 
 /**
  * A widget containing the konsolepart for the Embedded terminal emulator
  */
-TerminalDock::TerminalDock(QWidget* parent, KrMainWindow *mainWindow) : QWidget(parent),
-    _mainWindow(mainWindow), konsole_part(nullptr), t(nullptr), initialised(false), firstInput(true)
+TerminalDock::TerminalDock(QWidget *parent, KrMainWindow *mainWindow)
+    : QWidget(parent)
+    , _mainWindow(mainWindow)
+    , konsole_part(nullptr)
+    , t(nullptr)
+    , initialised(false)
+    , firstInput(true)
 {
     terminal_hbox = new QHBoxLayout(this);
 }
 
-TerminalDock::~TerminalDock()
-= default;
+TerminalDock::~TerminalDock() = default;
 
 bool TerminalDock::initialise()
 {
-    if (! initialised) { // konsole part is not yet loaded or it has already failed
+    if (!initialised) { // konsole part is not yet loaded or it has already failed
         KService::Ptr service = KService::serviceByDesktopName("konsolepart");
 
         if (service) {
@@ -69,16 +73,15 @@ bool TerminalDock::initialise()
             QString error;
             konsole_part = service->createInstance<KParts::ReadOnlyPart>(this, this, QVariantList(), &error);
 
-            if (konsole_part) { //loaded successfully
+            if (konsole_part) { // loaded successfully
                 terminal_hbox->addWidget(konsole_part->widget());
                 setFocusProxy(konsole_part->widget());
-                connect(konsole_part, &KParts::ReadOnlyPart::destroyed, this,
-                        &TerminalDock::killTerminalEmulator);
+                connect(konsole_part, &KParts::ReadOnlyPart::destroyed, this, &TerminalDock::killTerminalEmulator);
                 // must filter app events, because some of them are processed
                 // by child widgets of konsole_part->widget()
                 // and would not be received on konsole_part->widget()
                 qApp->installEventFilter(this);
-                t = qobject_cast<TerminalInterface*>(konsole_part);
+                t = qobject_cast<TerminalInterface *>(konsole_part);
                 if (t) {
                     lastPath = QDir::currentPath();
                     t->showShellInDir(lastPath);
@@ -86,8 +89,10 @@ bool TerminalDock::initialise()
                 initialised = true;
                 firstInput = true;
             } else
-                KMessageBox::error(nullptr, i18n("<b>Cannot create embedded terminal.</b><br/>"
-                                           "The reported error was: %1", error));
+                KMessageBox::error(nullptr,
+                                   i18n("<b>Cannot create embedded terminal.</b><br/>"
+                                        "The reported error was: %1",
+                                        error));
             // the Terminal Emulator may be hidden (if we are creating it only
             // to send command there and see the results later)
             if (focusW) {
@@ -96,12 +101,13 @@ bool TerminalDock::initialise()
                 ACTIVE_PANEL->gui->slotFocusOnMe();
             }
         } else
-            KMessageBox::error(nullptr, i18nc("missing program - arg1 is a URL",
-                                        "<b>Cannot create embedded terminal.</b><br>"
-                                        "You can fix this by installing Konsole:<br/>%1",
-                                        QString("<a href='%1'>%1</a>").arg(
-                                            "https://www.kde.org/applications/system/konsole")),
-                               nullptr, KMessageBox::AllowLink);
+            KMessageBox::error(nullptr,
+                               i18nc("missing program - arg1 is a URL",
+                                     "<b>Cannot create embedded terminal.</b><br>"
+                                     "You can fix this by installing Konsole:<br/>%1",
+                                     QString("<a href='%1'>%1</a>").arg("https://www.kde.org/applications/system/konsole")),
+                               nullptr,
+                               KMessageBox::AllowLink);
     }
     return isInitialised();
 }
@@ -117,7 +123,7 @@ void TerminalDock::killTerminalEmulator()
     MAIN_VIEW->setTerminalEmulator(false);
 }
 
-void TerminalDock::sendInput(const QString& input, bool clearCommand)
+void TerminalDock::sendInput(const QString &input, bool clearCommand)
 {
     if (!t)
         return;
@@ -144,7 +150,7 @@ void TerminalDock::sendInput(const QString& input, bool clearCommand)
     bash and have set `HISTCONTROL=ignorespace` or `HISTCONTROL=ignoreboth` (which is the default in a lot of Linux
     distributions so in that case the user hasn't got to do anything), or the user has to use an equivalent method.
 */
-void TerminalDock::sendCd(const QString& path)
+void TerminalDock::sendCd(const QString &path)
 {
     if (path.compare(lastPath) != 0) {
         // A space exists in front of the `cd` so as to avoid that Krusader's embedded terminal adds a lot of `cd`
@@ -154,7 +160,7 @@ void TerminalDock::sendCd(const QString& path)
     }
 }
 
-bool TerminalDock::applyShortcuts(QKeyEvent * ke)
+bool TerminalDock::applyShortcuts(QKeyEvent *ke)
 {
     int pressedKey = (ke->key() | ke->modifiers());
 
@@ -171,29 +177,26 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
 
     if (_mainWindow->listPanelActions()->actPaste->shortcuts().contains(pressedKey)) {
         QString text = QApplication::clipboard()->text();
-        if (! text.isEmpty()) {
+        if (!text.isEmpty()) {
             text.replace('\n', '\r');
             sendInput(text, false);
         }
         return true;
     }
 
-    //insert current to the terminal
-    if ((ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return) &&
-        (ke->modifiers() & Qt::ControlModifier)) {
-        SLOTS->insertFileName((ke->modifiers()&Qt::ShiftModifier)!=0);
+    // insert current to the terminal
+    if ((ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return) && (ke->modifiers() & Qt::ControlModifier)) {
+        SLOTS->insertFileName((ke->modifiers() & Qt::ShiftModifier) != 0);
         return true;
     }
 
-    //navigation
-    if ((ke->key() ==  Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
+    // navigation
+    if ((ke->key() == Qt::Key_Down) && (ke->modifiers() == Qt::ControlModifier)) {
         if (MAIN_VIEW->cmdLine()->isVisible()) {
             MAIN_VIEW->cmdLine()->setFocus();
         }
         return true;
-    } else if ((ke->key() ==  Qt::Key_Up)
-               && ((ke->modifiers()  == Qt::ControlModifier)
-                   || (ke->modifiers()  == (Qt::ControlModifier | Qt::ShiftModifier)))) {
+    } else if ((ke->key() == Qt::Key_Up) && ((ke->modifiers() == Qt::ControlModifier) || (ke->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier)))) {
         ACTIVE_PANEL->gui->slotFocusOnMe();
         return true;
     }
@@ -201,7 +204,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
     return false;
 }
 
-bool TerminalDock::eventFilter(QObject * watched, QEvent * e)
+bool TerminalDock::eventFilter(QObject *watched, QEvent *e)
 {
     if (konsole_part == nullptr || konsole_part->widget() == nullptr)
         return false;
@@ -214,19 +217,18 @@ bool TerminalDock::eventFilter(QObject * watched, QEvent * e)
     for (w = watched; w != nullptr; w = w->parent())
         if (w == konsole_part->widget())
             break;
-    if (w == nullptr)    // is not a child of konsole_part
+    if (w == nullptr) // is not a child of konsole_part
         return false;
 
     switch (e->type()) {
     case QEvent::ShortcutOverride: {
         auto *ke = dynamic_cast<QKeyEvent *>(e);
         // If not present, some keys would be considered a shortcut, for example "a"
-        if ((ke->key() ==  Qt::Key_Insert) && (ke->modifiers()  == Qt::ShiftModifier)) {
+        if ((ke->key() == Qt::Key_Insert) && (ke->modifiers() == Qt::ShiftModifier)) {
             ke->accept();
             return true;
         }
-        if ((ke->modifiers() == Qt::NoModifier || ke->modifiers() == Qt::ShiftModifier) &&
-                (ke->key() >= 32) && (ke->key() <= 127)) {
+        if ((ke->modifiers() == Qt::NoModifier || ke->modifiers() == Qt::ShiftModifier) && (ke->key() >= 32) && (ke->key() <= 127)) {
             ke->accept();
             return true;
         }
@@ -253,8 +255,7 @@ bool TerminalDock::eventFilter(QObject * watched, QEvent * e)
 
 bool TerminalDock::isTerminalVisible() const
 {
-    return isVisible() && konsole_part != nullptr && konsole_part->widget() != nullptr
-           && konsole_part->widget()->isVisible();
+    return isVisible() && konsole_part != nullptr && konsole_part->widget() != nullptr && konsole_part->widget()->isVisible();
 }
 
 bool TerminalDock::isInitialised() const
@@ -298,8 +299,7 @@ void TerminalDock::onTerminalFocusChanged(bool focused)
         return;
     }
 
-    connect(konsole_part, SIGNAL(currentDirectoryChanged(QString)),
-            this, SLOT(currentDirChanged(QString)));
+    connect(konsole_part, SIGNAL(currentDirectoryChanged(QString)), this, SLOT(currentDirChanged(QString)));
 }
 
 void TerminalDock::currentDirChanged(const QString &terminalPath)

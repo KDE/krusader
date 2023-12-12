@@ -13,13 +13,11 @@
 
 #include <KI18n/KLocalizedString>
 
-KrusaderStatus::KrusaderStatus(QWidget *parent):
-    QStatusBar(parent)
+KrusaderStatus::KrusaderStatus(QWidget *parent)
+    : QStatusBar(parent)
 {
     showMessage(i18n("Ready."), 5000);
     setMaximumHeight(QFontMetrics(font()).height() + 2);
 }
 
-KrusaderStatus::~KrusaderStatus()
-= default;
-
+KrusaderStatus::~KrusaderStatus() = default;

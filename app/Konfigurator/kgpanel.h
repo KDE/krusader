@@ -18,7 +18,7 @@ class KgPanel : public KonfiguratorPage
     Q_OBJECT
 
 public:
-    explicit KgPanel(bool first, QWidget* parent = nullptr);
+    explicit KgPanel(bool first, QWidget *parent = nullptr);
 
     int activeSubPage() override;
     bool apply() override;
@@ -26,9 +26,9 @@ public:
 protected:
     KonfiguratorCheckBoxGroup *panelToolbarButtonsCheckboxes;
     KonfiguratorCheckBoxGroup *buttonsCheckboxes;
-    KonfiguratorRadioButtons  *mouseRadio;
+    KonfiguratorRadioButtons *mouseRadio;
     KonfiguratorCheckBoxGroup *mouseCheckboxes;
-    KrTreeWidget* mousePreview;
+    KrTreeWidget *mousePreview;
 
 protected slots:
     void slotEnablePanelToolbar();

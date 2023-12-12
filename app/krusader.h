@@ -61,32 +61,40 @@ public:
     void setTray(bool forceCreation = false);
 
     // KrMainWindow implementation
-    QWidget *widget() override {
+    QWidget *widget() override
+    {
         return this;
     }
     KrView *activeView() override;
-    ViewActions *viewActions() override {
+    ViewActions *viewActions() override
+    {
         return _viewActions;
     }
-    KActionCollection *actions() override {
+    KActionCollection *actions() override
+    {
         return actionCollection();
     }
     AbstractPanelManager *activeManager() override;
     AbstractPanelManager *leftManager() override;
     AbstractPanelManager *rightManager() override;
-    PopularUrls *popularUrls() override {
+    PopularUrls *popularUrls() override
+    {
         return _popularUrls;
     }
-    KrActions *krActions() override {
+    KrActions *krActions() override
+    {
         return _krActions;
     }
-    ListPanelActions *listPanelActions() override {
+    ListPanelActions *listPanelActions() override
+    {
         return _listPanelActions;
     }
-    TabActions *tabActions() override {
+    TabActions *tabActions() override
+    {
         return _tabActions;
     }
-    void plugActionList(const char *name, QList<QAction*> &list) override {
+    void plugActionList(const char *name, QList<QAction *> &list) override
+    {
         KParts::MainWindow::plugActionList(name, list);
     }
 
@@ -95,12 +103,12 @@ public:
      *
      * @return icon name
      */
-    static const char* appIconName();
+    static const char *appIconName();
 
 public slots:
     void quit();
     void moveToTop();
-    void statusBarUpdate(const QString& mess);
+    void statusBarUpdate(const QString &mess);
     // in use by Krusader only
     void saveSettings();
     void savePosition();
@@ -116,7 +124,7 @@ protected:
     void showEvent(QShowEvent *event) override;
     bool queryClose() override;
     void setupActions();
-    bool versionControl();  // handle version differences in krusaderrc
+    bool versionControl(); // handle version differences in krusaderrc
     bool event(QEvent *) override;
 
 public Q_SLOTS:
@@ -125,13 +133,13 @@ public Q_SLOTS:
     Q_SCRIPTABLE bool openUrl(QString url);
 
 public:
-    static Krusader *App;       // a kApp style pointer
-    static QString   AppName;   // the name of the application
+    static Krusader *App; // a kApp style pointer
+    static QString AppName; // the name of the application
     PopularUrls *_popularUrls; // holds a sorted list of the most popular urls visited
 
     // the internal progress bar variales + functions
-    KrPleaseWaitHandler* plzWait;
-    void startWaiting(QString msg = "Please Wait", int count = 0 , bool cancel = false);
+    KrPleaseWaitHandler *plzWait;
+    void startWaiting(QString msg = "Please Wait", int count = 0, bool cancel = false);
     void stopWait();
     bool wasWaitingCancelled() const;
 
@@ -149,14 +157,13 @@ private:
     ListPanelActions *_listPanelActions;
     TabActions *_tabActions;
     QPointer<KStatusNotifierItem> sysTray;
-    bool         isStarting;
-    QTimer      _openUrlTimer;
-    QString     _urlToOpen;
-    bool        _quit;
+    bool isStarting;
+    QTimer _openUrlTimer;
+    QString _urlToOpen;
+    bool _quit;
 };
 
-
 // main modules
-#define krApp        Krusader::App
+#define krApp Krusader::App
 
 #endif

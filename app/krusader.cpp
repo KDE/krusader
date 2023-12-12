@@ -9,26 +9,23 @@
 #include "krusader.h"
 
 // QtCore
-#include <QDir>
 #include <QDateTime>
-#include <QStringList>
+#include <QDir>
 #include <QStandardPaths>
+#include <QStringList>
 // QtGui
 #include <QMoveEvent>
 #include <QResizeEvent>
 // QtWidgets
 #include <QApplication>
-#include <QMenuBar>
 #include <QDesktopWidget>
+#include <QMenuBar>
 // QtDBus
 #include <QDBusInterface>
 
 #include <KConfigCore/KSharedConfig>
 #include <KConfigGui/KWindowConfig>
 #include <KI18n/KLocalizedString>
-#include <KXmlGui/KActionCollection>
-#include <KXmlGui/KXMLGUIFactory>
-#include <KXmlGui/KToolBar>
 #include <KWidgetsAddons/KAcceleratorManager>
 #include <KWidgetsAddons/KCursor>
 #include <KWidgetsAddons/KMessageBox>
@@ -36,6 +33,9 @@
 #include <KWidgetsAddons/KToolBarPopupAction>
 #include <KWindowSystem/KStartupInfo>
 #include <KWindowSystem/KWindowSystem>
+#include <KXmlGui/KActionCollection>
+#include <KXmlGui/KToolBar>
+#include <KXmlGui/KXMLGUIFactory>
 #include <utility>
 
 #include "defaults.h"
@@ -78,18 +78,20 @@
 
 // define the static members
 Krusader *Krusader::App = nullptr;
-QString   Krusader::AppName;
+QString Krusader::AppName;
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
-Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullptr,
-                Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint),
-        _listPanelActions(nullptr), isStarting(true), _quit(false)
+Krusader::Krusader(const QCommandLineParser &parser)
+    : KParts::MainWindow(nullptr, Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint)
+    , _listPanelActions(nullptr)
+    , isStarting(true)
+    , _quit(false)
 {
     // create the "krusader"
     App = this;
     krMainWindow = this;
     SLOTS = new KrSlots(this);
-    setXMLFile("krusaderui.rc");   // kpart-related xml file
+    setXMLFile("krusaderui.rc"); // kpart-related xml file
 
     plzWait = new KrPleaseWaitHandler(this);
 
@@ -97,13 +99,13 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
 
     QString message;
     switch (krConfig->accessMode()) {
-    case KConfigBase::NoAccess :
+    case KConfigBase::NoAccess:
         message = "Krusader's configuration file can't be found. Default values will be used.";
         break;
-    case KConfigBase::ReadOnly :
+    case KConfigBase::ReadOnly:
         message = "Krusader's configuration file is in READ ONLY mode (why is that!?) Changed values will not be saved";
         break;
-    case KConfigBase::ReadWrite :
+    case KConfigBase::ReadWrite:
         message = "";
         break;
     }
@@ -140,8 +142,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
     KgProtocols::init();
 
     const KConfigGroup lookFeelGroup(krConfig, "Look&Feel");
-    FileItem::loadUserDefinedFolderIcons(lookFeelGroup.readEntry("Load User Defined Folder Icons",
-                                                                 _UserDefinedFolderIcons));
+    FileItem::loadUserDefinedFolderIcons(lookFeelGroup.readEntry("Load User Defined Folder Icons", _UserDefinedFolderIcons));
 
     const KConfigGroup startupGroup(krConfig, "Startup");
     QString startProfile = startupGroup.readEntry("Starter Profile Name", QString());
@@ -171,8 +172,9 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
     // create a status bar
     auto *status = new KrusaderStatus(this);
     setStatusBar(status);
-    status->setWhatsThis(i18n("Statusbar will show basic information "
-                              "about file below mouse pointer."));
+    status->setWhatsThis(
+        i18n("Statusbar will show basic information "
+             "about file below mouse pointer."));
 
     // create tray icon (if needed)
     const bool startToTray = startupGroup.readEntry("Start To Tray", _StartToTray);
@@ -181,11 +183,11 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
     setCentralWidget(MAIN_VIEW);
 
     // manage our keyboard short-cuts
-    //KAcceleratorManager::manage(this,true);
+    // KAcceleratorManager::manage(this,true);
 
     setCursor(Qt::ArrowCursor);
 
-    if (! startProfile.isEmpty())
+    if (!startProfile.isEmpty())
         MAIN_VIEW->profiles(startProfile);
 
     // restore gui settings
@@ -199,7 +201,7 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
         _listPanelActions->guiUpdated();
 
         // not using this. See savePosition()
-        //applyMainWindowSettings();
+        // applyMainWindowSettings();
 
         const KConfigGroup cfgToolbar(krConfig, "Main Toolbar");
         toolBar()->applySettings(cfgToolbar);
@@ -244,22 +246,20 @@ Krusader::Krusader(const QCommandLineParser &parser) : KParts::MainWindow(nullpt
     KrTrashHandler::startWatcher();
     isStarting = false;
 
-    //HACK - used by [ListerTextArea|KrSearchDialog|LocateDlg]:keyPressEvent()
+    // HACK - used by [ListerTextArea|KrSearchDialog|LocateDlg]:keyPressEvent()
     KrGlobal::copyShortcut = _listPanelActions->actCopy->shortcut();
 
-    //HACK: make sure the active view becomes focused
-    // for some reason sometimes the active view cannot be focused immediately at this point,
-    // so queue it for the main loop
+    // HACK: make sure the active view becomes focused
+    //  for some reason sometimes the active view cannot be focused immediately at this point,
+    //  so queue it for the main loop
     QTimer::singleShot(0, ACTIVE_PANEL->view->widget(), QOverload<>::of(&QWidget::setFocus));
 
     _openUrlTimer.setSingleShot(true);
     connect(&_openUrlTimer, &QTimer::timeout, this, &Krusader::doOpenUrl);
 
     auto *startupInfo = new KStartupInfo(0, this);
-    connect(startupInfo, &KStartupInfo::gotNewStartup,
-            this, &Krusader::slotGotNewStartup);
-    connect(startupInfo, &KStartupInfo::gotRemoveStartup,
-            this, &Krusader::slotGotRemoveStartup);
+    connect(startupInfo, &KStartupInfo::gotNewStartup, this, &Krusader::slotGotNewStartup);
+    connect(startupInfo, &KStartupInfo::gotRemoveStartup, this, &Krusader::slotGotRemoveStartup);
 }
 
 Krusader::~Krusader()
@@ -273,8 +273,7 @@ Krusader::~Krusader()
 
 void Krusader::setTray(bool forceCreation)
 {
-    const bool trayIsNeeded = forceCreation || KConfigGroup(krConfig, "Look&Feel")
-                                               .readEntry("Minimize To Tray", _ShowTrayIcon);
+    const bool trayIsNeeded = forceCreation || KConfigGroup(krConfig, "Look&Feel").readEntry("Minimize To Tray", _ShowTrayIcon);
     if (!sysTray && trayIsNeeded) {
         sysTray = new KStatusNotifierItem(this);
         sysTray->setIconByName(appIconName());
@@ -300,37 +299,38 @@ bool Krusader::versionControl()
 
     // first installation of krusader
     if (firstRun) {
-        KMessageBox::information(
-            krApp, i18n("<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
-                        "will now be checked for external applications. Then the Konfigurator will "
-                        "be launched where you can customize Krusader to your needs.</p></qt>"));
+        KMessageBox::information(krApp,
+                                 i18n("<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
+                                      "will now be checked for external applications. Then the Konfigurator will "
+                                      "be launched where you can customize Krusader to your needs.</p></qt>"));
     }
     nogroup.writeEntry("Version", VERSION);
     nogroup.writeEntry("First Time", false);
     krConfig->sync();
 
-    QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) +
-                  QStringLiteral("/krusader/"));
+    QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/krusader/"));
 
     return firstRun;
 }
 
-void Krusader::statusBarUpdate(const QString& mess)
+void Krusader::statusBarUpdate(const QString &mess)
 {
     // change the message on the statusbar for 5 seconds
     if (statusBar()->isVisible())
         statusBar()->showMessage(mess, 5000);
 }
 
-bool Krusader::event(QEvent *e) {
-    if(e->type() == QEvent::ApplicationPaletteChange) {
+bool Krusader::event(QEvent *e)
+{
+    if (e->type() == QEvent::ApplicationPaletteChange) {
         KrColorCache::getColorCache().refreshColors();
     }
     return KParts::MainWindow::event(e);
 }
 
 // <patch> Moving from Pixmap actions to generic filenames - thanks to Carsten Pfeiffer
-void Krusader::setupActions() {
+void Krusader::setupActions()
+{
     QAction *bringToTopAct = new QAction(i18n("Bring Main Window to Top"), this);
     actionCollection()->addAction("bring_main_window_to_top", bringToTopAct);
     connect(bringToTopAct, &QAction::triggered, this, &Krusader::moveToTop);
@@ -346,7 +346,8 @@ void Krusader::setupActions() {
 //////////////////// implementation of slots //////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 
-void Krusader::savePosition() {
+void Krusader::savePosition()
+{
     KConfigGroup cfg(krConfig, "Private");
     cfg.writeEntry("Start Position", pos());
     cfg.writeEntry("Start Size", size());
@@ -360,14 +361,15 @@ void Krusader::savePosition() {
     // - window size save/restore does sometimes not work (multi-monitor setup)
     // - saving the statusbar visibility should be independent from window position and restoring it
     //   does not work properly.
-    //KConfigGroup cfg = KConfigGroup(&cfg, "MainWindowSettings");
-    //saveMainWindowSettings(cfg);
-    //statusBar()->setVisible(cfg.readEntry("StatusBar", "Enabled") != "Disabled");
+    // KConfigGroup cfg = KConfigGroup(&cfg, "MainWindowSettings");
+    // saveMainWindowSettings(cfg);
+    // statusBar()->setVisible(cfg.readEntry("StatusBar", "Enabled") != "Disabled");
 
     krConfig->sync();
 }
 
-void Krusader::saveSettings() {
+void Krusader::saveSettings()
+{
     // avoid that information about closed tabs gets saved
     ACTIVE_MNG->delAllClosedTabs();
 
@@ -435,7 +437,8 @@ void Krusader::showEvent(QShowEvent *event)
     KParts::MainWindow::showEvent(event);
 }
 
-bool Krusader::queryClose() {
+bool Krusader::queryClose()
+{
     if (isStarting)
         return false;
 
@@ -462,11 +465,7 @@ bool Krusader::queryClose() {
         QWidget *activeModal = QApplication::activeModalWidget();
         QWidget *w = list.at(0);
 
-        if (activeModal &&
-                activeModal != this &&
-                activeModal != menuBar() &&
-                list.contains(activeModal) &&
-                !activeModal->isHidden()) {
+        if (activeModal && activeModal != this && activeModal != menuBar() && list.contains(activeModal) && !activeModal->isHidden()) {
             w = activeModal;
         } else {
             int i = 1;
@@ -480,7 +479,8 @@ bool Krusader::queryClose() {
                 w = nullptr;
         }
 
-        if (!w) break;
+        if (!w)
+            break;
 
         if (!w->close()) {
             if (w->inherits("QDialog")) {
@@ -494,7 +494,8 @@ bool Krusader::queryClose() {
     return true;
 }
 
-void Krusader::acceptClose() {
+void Krusader::acceptClose()
+{
     saveSettings();
 
     emit shutdown();
@@ -508,20 +509,24 @@ void Krusader::acceptClose() {
 }
 
 // the please wait dialog functions
-void Krusader::startWaiting(QString msg, int count , bool cancel) {
-    plzWait->startWaiting(std::move(msg) , count, cancel);
+void Krusader::startWaiting(QString msg, int count, bool cancel)
+{
+    plzWait->startWaiting(std::move(msg), count, cancel);
 }
 
-bool Krusader::wasWaitingCancelled() const {
+bool Krusader::wasWaitingCancelled() const
+{
     return plzWait->wasCancelled();
 }
 
-void Krusader::stopWait() {
+void Krusader::stopWait()
+{
     plzWait->stopWait();
 }
 
-void Krusader::updateUserActions() {
-    auto *userActionMenu = qobject_cast<KActionMenu *>( KrActions::actUserMenu);
+void Krusader::updateUserActions()
+{
+    auto *userActionMenu = qobject_cast<KActionMenu *>(KrActions::actUserMenu);
     if (userActionMenu) {
         userActionMenu->menu()->clear();
 
@@ -531,7 +536,8 @@ void Krusader::updateUserActions() {
     }
 }
 
-const char* Krusader::appIconName() {
+const char *Krusader::appIconName()
+{
     if (geteuid())
         return "krusader_user";
     else
@@ -544,19 +550,22 @@ void Krusader::quit()
     close(); // continues with closeEvent()...
 }
 
-void Krusader::moveToTop() {
+void Krusader::moveToTop()
+{
     if (isHidden())
         show();
 
     KWindowSystem::forceActiveWindow(winId());
 }
 
-bool Krusader::isRunning() {
-    moveToTop(); //FIXME - doesn't belong here
+bool Krusader::isRunning()
+{
+    moveToTop(); // FIXME - doesn't belong here
     return true;
 }
 
-bool Krusader::isLeftActive()  {
+bool Krusader::isLeftActive()
+{
     return MAIN_VIEW->isLeftActive();
 }
 
@@ -572,9 +581,9 @@ void Krusader::doOpenUrl()
     QUrl url = QUrl::fromUserInput(_urlToOpen, QDir::currentPath(), QUrl::AssumeLocalFile);
     _urlToOpen.clear();
     int tab = ACTIVE_MNG->findTab(url);
-    if(tab >= 0)
+    if (tab >= 0)
         ACTIVE_MNG->setActiveTab(tab);
-    else if((tab = OTHER_MNG->findTab(url)) >= 0) {
+    else if ((tab = OTHER_MNG->findTab(url)) >= 0) {
         OTHER_MNG->setActiveTab(tab);
         OTHER_MNG->currentPanel()->view->widget()->setFocus();
     } else
@@ -615,4 +624,3 @@ AbstractPanelManager *Krusader::rightManager()
 {
     return MAIN_VIEW->rightManager();
 }
-

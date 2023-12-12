@@ -8,8 +8,8 @@
 #ifndef FILTERDIALOG_H
 #define FILTERDIALOG_H
 
-#include "filtersettings.h"
 #include "../FileSystem/krquery.h"
+#include "filtersettings.h"
 
 // QtWidgets
 #include <QDialog>
@@ -22,10 +22,10 @@ class FilterDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit FilterDialog(QWidget *parent = nullptr, const QString& caption = QString(),
-                 QStringList extraOptions = QStringList(), bool modal = true);
+    explicit FilterDialog(QWidget *parent = nullptr, const QString &caption = QString(), QStringList extraOptions = QStringList(), bool modal = true);
     KrQuery getQuery();
-    const FilterSettings& getSettings() {
+    const FilterSettings &getSettings()
+    {
         return settings;
     }
     void applySettings(const FilterSettings &s);
@@ -38,8 +38,8 @@ public slots:
     void slotOk();
 
 private:
-    FilterTabs * filterTabs;
-    GeneralFilter * generalFilter;
+    FilterTabs *filterTabs;
+    GeneralFilter *generalFilter;
     FilterSettings settings;
 };
 

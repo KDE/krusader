@@ -44,7 +44,6 @@ class KActionMenu;
 class UserAction
 {
 public:
-
     typedef QList<KrAction *> KrActionList;
 
     enum ReadMode { renameDoublicated, ignoreDoublicated };
@@ -58,7 +57,8 @@ public:
     /**
      * adds an action to the collection.
      */
-    void addKrAction(KrAction* action) {
+    void addKrAction(KrAction *action)
+    {
         _actions.append(action);
     };
 
@@ -67,14 +67,16 @@ public:
      * currently only used to fill the usermenu with all available actions. This should change...
      * @return A reference to the internal KrActionList
      */
-    const KrActionList &actionList() {
+    const KrActionList &actionList()
+    {
         return _actions;
     };
 
     /**
      * @return how many useractions exist
      */
-    int count() const {
+    int count() const
+    {
         return _actions.count();
     };
 
@@ -82,7 +84,7 @@ public:
      * removes a KrAction from the internal list but does not delete it.
      * @param action the KrAction which should be removed
      */
-    void removeKrAction(KrAction* action);
+    void removeKrAction(KrAction *action);
 
     /**
      * check for each KrAction if it is available for the current location / file and disables it if not
@@ -99,7 +101,7 @@ public:
      * @param menu popupmenu to populate
      * @param currentURL the current URL
      */
-    void populateMenu(KActionMenu* menu, const QUrl *currentURL);
+    void populateMenu(KActionMenu *menu, const QUrl *currentURL);
 
     QStringList allCategories();
     QStringList allNames();
@@ -118,14 +120,14 @@ public:
      * @param mode the read mode
      * @param list If provided, all new actions will also be added to this list
      */
-    void readFromFile(const QString& filename, ReadMode mode = renameDoublicated, KrActionList* list = nullptr);
+    void readFromFile(const QString &filename, ReadMode mode = renameDoublicated, KrActionList *list = nullptr);
     /**
      * Reads UserActions from a XML-Element.
      * @param element a container with action-elements
      * @param mode the read mode
      * @param list If provided, all new actions will also be added to this list
      */
-    void readFromElement(const QDomElement& element, ReadMode mode = renameDoublicated, KrActionList* list = nullptr);
+    void readFromElement(const QDomElement &element, ReadMode mode = renameDoublicated, KrActionList *list = nullptr);
 
     /**
      * creates an empty QDomDocument for the UserActions
@@ -138,18 +140,18 @@ public:
      * @return true on success, false otherwise
      * @warning any existing file will get overwritten!
      */
-    static bool writeToFile(const QDomDocument& doc, const QString& filename);
+    static bool writeToFile(const QDomDocument &doc, const QString &filename);
 
 private:
     KrActionList _actions;
-    QSet<QString>  _defaultActions;
-    QSet<QString>  _deletedActions;
+    QSet<QString> _defaultActions;
+    QSet<QString> _deletedActions;
 };
 
-#define ACTION_XML    "krusader/useractions.xml"
+#define ACTION_XML "krusader/useractions.xml"
 #define ACTION_XML_EXAMPLES "krusader/useraction_examples.xml"
 
-#define ACTION_DOCTYPE  "KrusaderUserActions"
+#define ACTION_DOCTYPE "KrusaderUserActions"
 // in well formed XML the root-element has to have the same name then the doctype:
 #define ACTION_ROOT ACTION_DOCTYPE
 #define ACTION_PROCESSINSTR "version=\"1.0\" encoding=\"UTF-8\" "

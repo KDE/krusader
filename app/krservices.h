@@ -10,9 +10,9 @@
 #define KRSERVICES_H
 
 // QtCore
+#include <QMap>
 #include <QString>
 #include <QStringList>
-#include <QMap>
 #include <QUrl>
 
 class QTextStream;
@@ -24,21 +24,21 @@ class QFile;
 class KrServices
 {
 public:
-    static bool         cmdExist(const QString& cmdName);
-    static QString      chooseFullPathName(QStringList names, const QString& confName);
-    static QString      fullPathName(const QString& name, QString confName = QString());
-    static bool         isExecutable(const QString &path);
-    static bool         isoSupported(const QString& mimetype);
-    static QString      urlToLocalPath(const QUrl &url);
-    static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines = false);
-    static bool         fileToStringList(QFile *file, QStringList& target, bool keepEmptyLines = false);
-    static QString      quote(const QString& name);
-    static QStringList  quote(const QStringList& names);
-    static QList<QUrl>  toUrlList(const QStringList &list);
-    static QStringList  toStringList(const QList<QUrl> &list);
-    static QStringList  supportedTools(); // find supported tools
-    static QString      escapeFileUrl(QString urlString);
-    static QUrl         escapeFileUrl(const QUrl &url);
+    static bool cmdExist(const QString &cmdName);
+    static QString chooseFullPathName(QStringList names, const QString &confName);
+    static QString fullPathName(const QString &name, QString confName = QString());
+    static bool isExecutable(const QString &path);
+    static bool isoSupported(const QString &mimetype);
+    static QString urlToLocalPath(const QUrl &url);
+    static bool fileToStringList(QTextStream *stream, QStringList &target, bool keepEmptyLines = false);
+    static bool fileToStringList(QFile *file, QStringList &target, bool keepEmptyLines = false);
+    static QString quote(const QString &name);
+    static QStringList quote(const QStringList &names);
+    static QList<QUrl> toUrlList(const QStringList &list);
+    static QStringList toStringList(const QList<QUrl> &list);
+    static QStringList supportedTools(); // find supported tools
+    static QString escapeFileUrl(QString urlString);
+    static QUrl escapeFileUrl(const QUrl &url);
     /**
      * Sets the global logging message handler for qDebug(), qWarning()... messages to a custom one
      * with the ability to filter debug messages.
@@ -47,11 +47,15 @@ public:
     static QString GLOBAL_MESSAGE_PATTERN;
 
 protected:
-    static QString    escape(QString name);
+    static QString escape(QString name);
 
 private:
-    KrServices() {}
-    ~KrServices() {}
+    KrServices()
+    {
+    }
+    ~KrServices()
+    {
+    }
     static void krMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 };
 

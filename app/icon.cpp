@@ -11,22 +11,20 @@
 
 // QtCore
 #include <QCache>
-#include <QPair>
-#include <QDir>
 #include <QDebug>
+#include <QDir>
+#include <QPair>
 // QtGui
 #include <QPainter>
-#include <QPixmap>
 #include <QPalette>
+#include <QPixmap>
 
 #include <KConfigCore/KSharedConfig>
 #include <KIconThemes/KIconLoader>
 #include <utility>
 
-
 static const int cacheSize = 500;
 static const char *missingIconPath = ":/icons/icon-missing.svgz";
-
 
 static inline QStringList getThemeFallbackList()
 {
@@ -49,12 +47,13 @@ static inline QStringList getThemeFallbackList()
     return themes;
 }
 
-
 class IconEngine : public QIconEngine
 {
 public:
-    IconEngine(QString iconName, QIcon fallbackIcon, QStringList overlays = QStringList()) :
-        _iconName(std::move(iconName)), _fallbackIcon(std::move(fallbackIcon)), _overlays(std::move(overlays))
+    IconEngine(QString iconName, QIcon fallbackIcon, QStringList overlays = QStringList())
+        : _iconName(std::move(iconName))
+        , _fallbackIcon(std::move(fallbackIcon))
+        , _overlays(std::move(overlays))
     {
         _themeFallbackList = getThemeFallbackList();
     }
@@ -78,28 +77,30 @@ Icon::Icon()
 {
 }
 
-Icon::Icon(QString name, QStringList overlays) :
-    QIcon(new IconEngine(std::move(name), QIcon(missingIconPath), std::move(overlays)))
+Icon::Icon(QString name, QStringList overlays)
+    : QIcon(new IconEngine(std::move(name), QIcon(missingIconPath), std::move(overlays)))
 {
 }
 
-Icon::Icon(QString name, QIcon fallbackIcon, QStringList overlays) :
-    QIcon(new IconEngine(std::move(name), std::move(fallbackIcon), std::move(overlays)))
+Icon::Icon(QString name, QIcon fallbackIcon, QStringList overlays)
+    : QIcon(new IconEngine(std::move(name), std::move(fallbackIcon), std::move(overlays)))
 {
 }
 
-struct IconSearchResult
-{
+struct IconSearchResult {
     QIcon icon; ///< icon returned by search; null icon if not found
     QString originalThemeName; ///< original theme name if theme is modified by search
 
-    IconSearchResult(QIcon icon, QString originalThemeName) :
-        icon(std::move(icon)), originalThemeName(std::move(originalThemeName)) {}
+    IconSearchResult(QIcon icon, QString originalThemeName)
+        : icon(std::move(icon))
+        , originalThemeName(std::move(originalThemeName))
+    {
+    }
 };
 
 // Search icon in the configured themes.
 // If this call modifies active theme, the original theme name will be specified in the result.
-static inline IconSearchResult searchIcon(const QString& iconName, QStringList themeFallbackList)
+static inline IconSearchResult searchIcon(const QString &iconName, QStringList themeFallbackList)
 {
     if (QDir::isAbsolutePath(iconName)) {
         // a path is used - directly load the icon
@@ -113,7 +114,7 @@ static inline IconSearchResult searchIcon(const QString& iconName, QStringList t
     } else {
         // search the icon in fallback themes
         auto currentTheme = QIcon::themeName();
-        for (const auto& fallbackThemeName : themeFallbackList) {
+        for (const auto &fallbackThemeName : themeFallbackList) {
             QIcon::setThemeName(fallbackThemeName);
             if (QIcon::hasThemeIcon(iconName)) {
                 return IconSearchResult(QIcon::fromTheme(iconName), currentTheme);
@@ -126,7 +127,7 @@ static inline IconSearchResult searchIcon(const QString& iconName, QStringList t
     }
 }
 
-bool Icon::exists(const QString& iconName)
+bool Icon::exists(const QString &iconName)
 {
     static QCache<QString, bool> cache(cacheSize);
     static QString cachedTheme;
@@ -166,7 +167,7 @@ void Icon::applyOverlays(QPixmap *pixmap, QStringList overlays)
     // per freedesktop icon name specification:
     // https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html
     QStringList fixedOverlays;
-    for (const auto& overlay : overlays) {
+    for (const auto &overlay : overlays) {
         if (overlay.isEmpty() || iconLoader->hasIcon(overlay)) {
             fixedOverlays << overlay;
         } else {
@@ -183,25 +184,23 @@ bool Icon::isLightWindowThemeActive()
     return (textColor.red() + textColor.green() + textColor.blue()) / 3 < 128;
 }
 
-
 class IconCacheKey
 {
 public:
-    IconCacheKey(const QString &name, const QStringList& overlays,
-                 const QSize &size, QIcon::Mode mode, QIcon::State state) :
-        name(name), overlays(overlays), size(size), mode(mode), state(state)
+    IconCacheKey(const QString &name, const QStringList &overlays, const QSize &size, QIcon::Mode mode, QIcon::State state)
+        : name(name)
+        , overlays(overlays)
+        , size(size)
+        , mode(mode)
+        , state(state)
     {
-
-        auto repr = QString("%1 [%2] %3x%4 %5 %6").arg(name).arg(overlays.join(';'))
-                                                  .arg(size.width()).arg(size.height())
-                                                  .arg((int)mode).arg((int)state);
+        auto repr = QString("%1 [%2] %3x%4 %5 %6").arg(name).arg(overlays.join(';')).arg(size.width()).arg(size.height()).arg((int)mode).arg((int)state);
         _hash = qHash(repr);
     }
 
-    bool operator ==(const IconCacheKey &x) const
+    bool operator==(const IconCacheKey &x) const
     {
-        return name == x.name && overlays == x.overlays
-            && size == x.size && mode == x.mode && state == x.state;
+        return name == x.name && overlays == x.overlays && size == x.size && mode == x.mode && state == x.state;
     }
 
     uint hash() const

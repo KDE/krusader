@@ -10,10 +10,10 @@
 #define KFNKEYS_H
 
 // QtWidgets
-#include <QWidget>
+#include <QGridLayout>
 #include <QLayout>
 #include <QPushButton>
-#include <QGridLayout>
+#include <QWidget>
 
 class KrMainWindow;
 

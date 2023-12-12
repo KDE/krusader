@@ -8,8 +8,8 @@
 #include "krstyleproxy.h"
 
 // QtGui
-#include <QPen>
 #include <QPainter>
+#include <QPen>
 // QtWidgets
 #include <QStyleOptionViewItem>
 
@@ -17,8 +17,7 @@
 
 #include "../krglobal.h"
 
-void KrStyleProxy::drawPrimitive(PrimitiveElement element, const QStyleOption *option,
-                                 QPainter *painter, const QWidget *widget) const
+void KrStyleProxy::drawPrimitive(PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const
 {
     if (element == QStyle::PE_FrameFocusRect) {
         if (const auto *fropt = qstyleoption_cast<const QStyleOptionFocusRect *>(option)) {
@@ -39,15 +38,14 @@ void KrStyleProxy::drawPrimitive(PrimitiveElement element, const QStyleOption *o
             newPen.setStyle(Qt::DotLine);
             painter->setPen(newPen);
             QRect focusRect = option->rect /*.adjusted(1, 1, -1, -1) */;
-            painter->drawRect(focusRect.adjusted(0, 0, -1, -1)); //draw pen inclusive
+            painter->drawRect(focusRect.adjusted(0, 0, -1, -1)); // draw pen inclusive
             painter->setPen(oldPen);
         }
     } else
         QProxyStyle::drawPrimitive(element, option, painter, widget);
 }
 
-int KrStyleProxy::styleHint(QStyle::StyleHint hint, const QStyleOption *option,
-                            const QWidget *widget, QStyleHintReturn *returnData) const
+int KrStyleProxy::styleHint(QStyle::StyleHint hint, const QStyleOption *option, const QWidget *widget, QStyleHintReturn *returnData) const
 {
     if (hint == QStyle::SH_ToolTip_WakeUpDelay) {
         KConfigGroup group(krConfig, "Look&Feel");

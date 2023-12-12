@@ -11,7 +11,8 @@
 // QtGui
 #include <QContextMenuEvent>
 
-KrListWidget::KrListWidget(QWidget *parent) : QListWidget(parent)
+KrListWidget::KrListWidget(QWidget *parent)
+    : QListWidget(parent)
 {
     auto *style = new KrStyleProxy();
     style->setParent(this);

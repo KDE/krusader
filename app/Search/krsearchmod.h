@@ -11,11 +11,11 @@
 
 // QtCore
 #include <QDateTime>
+#include <QElapsedTimer>
 #include <QObject>
 #include <QStack>
 #include <QStringList>
 #include <QUrl>
-#include <QElapsedTimer>
 
 #include <KIO/Global>
 

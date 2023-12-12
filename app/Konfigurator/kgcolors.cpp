@@ -6,9 +6,9 @@
 */
 
 #include "kgcolors.h"
-#include "../defaults.h"
 #include "../Panel/krcolorcache.h"
 #include "../Synchronizer/synchronizercolors.h"
+#include "../defaults.h"
 
 // QtCore
 #include <QList>
@@ -17,22 +17,26 @@
 #include <QGuiApplication>
 // QtWidgets
 #include <QFileDialog>
-#include <QTabWidget>
+#include <QGridLayout>
 #include <QHeaderView>
 #include <QLabel>
-#include <QGridLayout>
+#include <QTabWidget>
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KMessageBox>
 #include <utility>
 
-KgColors::KgColors(bool first, QWidget* parent) :
-        KonfiguratorPage(first, parent), offset(0),
-        activeTabIdx(-1), inactiveTabIdx(-1),
+KgColors::KgColors(bool first, QWidget *parent)
+    : KonfiguratorPage(first, parent)
+    , offset(0)
+    , activeTabIdx(-1)
+    , inactiveTabIdx(-1)
+    ,
 #ifdef SYNCHRONIZER_ENABLED
-        synchronizerTabIdx(-1),
+    synchronizerTabIdx(-1)
+    ,
 #endif
-        otherTabIdx(-1)
+    otherTabIdx(-1)
 {
     QWidget *innerWidget = new QFrame(this);
     setWidget(innerWidget);
@@ -49,12 +53,34 @@ KgColors::KgColors(bool first, QWidget* parent) :
     generalGrid->setContentsMargins(5, 5, 5, 5);
 
     KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
-        //  cfg_class  cfg_name                     default                 text                                              restart tooltip
-    {{"Colors", "KDE Default",                 _KDEDefaultColors,      i18n("Use the default KDE colors"),             false,  "<p><img src='toolbar|kcontrol'></p>" + i18n("<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> Application Appearance  -> Colors</i></p>") },
-        {"Colors", "Enable Alternate Background", _AlternateBackground,   i18n("Use alternate background color"),         false, i18n("<p>The <b>background color</b> and the <b>alternate background</b> color alternates line by line.</p><p>When you don't use the <i>KDE default colors</i>, you can configure the alternate colors in the <i>colors</i> box.</p>") },
-        {"Colors", "Show Current Item Always",    _ShowCurrentItemAlways, i18n("Show current item even if not focused"),  false, i18n("<p>Shows the last cursor position in the non active list panel.</p><p>This option is only available when you don't use the <i>KDE default colors</i>.</p>") },
-        {"Colors", "Dim Inactive Colors",         _DimInactiveColors,     i18n("Dim the colors of the inactive panel"),   false, i18n("<p>The colors of the inactive panel are calculated by a dim color and a dim factor.</p>") }
-    };
+        //  cfg_class   cfg_name    default     text    restart    tooltip
+        {{"Colors",
+          "KDE Default",
+          _KDEDefaultColors,
+          i18n("Use the default KDE colors"),
+          false,
+          "<p><img src='toolbar|kcontrol'></p>"
+              + i18n("<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> Application Appearance  -> Colors</i></p>")},
+         {"Colors",
+          "Enable Alternate Background",
+          _AlternateBackground,
+          i18n("Use alternate background color"),
+          false,
+          i18n("<p>The <b>background color</b> and the <b>alternate background</b> color alternates line by line.</p><p>When you don't use the <i>KDE default "
+               "colors</i>, you can configure the alternate colors in the <i>colors</i> box.</p>")},
+         {"Colors",
+          "Show Current Item Always",
+          _ShowCurrentItemAlways,
+          i18n("Show current item even if not focused"),
+          false,
+          i18n("<p>Shows the last cursor position in the non active list panel.</p><p>This option is only available when you don't use the <i>KDE default "
+               "colors</i>.</p>")},
+         {"Colors",
+          "Dim Inactive Colors",
+          _DimInactiveColors,
+          i18n("Dim the colors of the inactive panel"),
+          false,
+          i18n("<p>The colors of the inactive panel are calculated by a dim color and a dim factor.</p>")}};
 
     generals = createCheckBoxGroup(0, 2, generalSettings, sizeof(generalSettings) / sizeof(generalSettings[0]), generalGrp);
     generalGrid->addWidget(generals, 1, 0);
@@ -65,7 +91,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
     connect(generals->find("Show Current Item Always"), &KonfiguratorCheckBox::stateChanged, this, &KgColors::slotDisable);
     connect(generals->find("Dim Inactive Colors"), &KonfiguratorCheckBox::stateChanged, this, &KgColors::slotDisable);
 
-    kgColorsLayout->addWidget(generalGrp, 0 , 0, 1, 3);
+    kgColorsLayout->addWidget(generalGrp, 0, 0, 1, 3);
     QWidget *hboxWidget = new QWidget(innerWidget);
     auto *hbox = new QHBoxLayout(hboxWidget);
 
@@ -85,28 +111,33 @@ KgColors::KgColors(bool first, QWidget* parent) :
     colorsGrid->setSpacing(0);
     colorsGrid->setContentsMargins(2, 2, 2, 2);
 
-    ADDITIONAL_COLOR transparent  = { i18n("Transparent"),       Qt::white, "transparent" };
+    ADDITIONAL_COLOR transparent = {i18n("Transparent"), Qt::white, "transparent"};
 
     QPalette p = QGuiApplication::palette();
 
-    addColorSelector("Foreground",                 i18n("Foreground:"),                  p.color(QPalette::Active, QPalette::Text));
-    addColorSelector("Directory Foreground",       i18n("Folder foreground:"),           getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
-    addColorSelector("Executable Foreground",      i18n("Executable foreground:"),       getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
-    addColorSelector("Symlink Foreground",         i18n("Symbolic link foreground:"),    getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
-    addColorSelector("Invalid Symlink Foreground", i18n("Invalid symlink foreground:"),  getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
-    addColorSelector("Background",                 i18n("Background:"),                  p.color(QPalette::Active, QPalette::Base));
-    ADDITIONAL_COLOR sameAsBckgnd = { i18n("Same as background"), getColorSelector("Background")->getColor(), "Background" };
-    addColorSelector("Alternate Background",       i18n("Alternate background:"),        p.color(QPalette::Active, QPalette::AlternateBase), "", &sameAsBckgnd, 1);
-    addColorSelector("Marked Foreground",          i18n("Selected foreground:"),         p.color(QPalette::Active, QPalette::HighlightedText), "", &transparent, 1);
-    addColorSelector("Marked Background",          i18n("Selected background:"),         p.color(QPalette::Active, QPalette::Highlight), "", &sameAsBckgnd, 1);
-    ADDITIONAL_COLOR sameAsAltern = { i18n("Same as alt. background"), getColorSelector("Alternate Background")->getColor(), "Alternate Background" };
-    addColorSelector("Alternate Marked Background", i18n("Alternate selected background:"), getColorSelector("Marked Background")->getColor(), i18n("Same as selected background"), &sameAsAltern, 1);
-    addColorSelector("Current Foreground",         i18n("Current foreground:"),          Qt::white,                                    i18n("Not used"));
-    ADDITIONAL_COLOR sameAsMarkedForegnd = { i18n("Same as selected foreground"), getColorSelector("Marked Foreground")->getColor(), "Marked Foreground" };
-    addColorSelector("Marked Current Foreground",         i18n("Selected current foreground:"),          Qt::white,                                    i18n("Not used"), &sameAsMarkedForegnd, 1);
-    addColorSelector("Current Background",         i18n("Current background:"),          Qt::white, i18n("Not used"), &sameAsBckgnd, 1);
-    addColorSelector("Rename Foreground",         i18n("Rename foreground:"),          getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
-    addColorSelector("Rename Background",         i18n("Rename background:"),          getColorSelector("Background")->getColor(), i18n("Same as background"));
+    addColorSelector("Foreground", i18n("Foreground:"), p.color(QPalette::Active, QPalette::Text));
+    addColorSelector("Directory Foreground", i18n("Folder foreground:"), getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
+    addColorSelector("Executable Foreground", i18n("Executable foreground:"), getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
+    addColorSelector("Symlink Foreground", i18n("Symbolic link foreground:"), getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
+    addColorSelector("Invalid Symlink Foreground", i18n("Invalid symlink foreground:"), getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
+    addColorSelector("Background", i18n("Background:"), p.color(QPalette::Active, QPalette::Base));
+    ADDITIONAL_COLOR sameAsBckgnd = {i18n("Same as background"), getColorSelector("Background")->getColor(), "Background"};
+    addColorSelector("Alternate Background", i18n("Alternate background:"), p.color(QPalette::Active, QPalette::AlternateBase), "", &sameAsBckgnd, 1);
+    addColorSelector("Marked Foreground", i18n("Selected foreground:"), p.color(QPalette::Active, QPalette::HighlightedText), "", &transparent, 1);
+    addColorSelector("Marked Background", i18n("Selected background:"), p.color(QPalette::Active, QPalette::Highlight), "", &sameAsBckgnd, 1);
+    ADDITIONAL_COLOR sameAsAltern = {i18n("Same as alt. background"), getColorSelector("Alternate Background")->getColor(), "Alternate Background"};
+    addColorSelector("Alternate Marked Background",
+                     i18n("Alternate selected background:"),
+                     getColorSelector("Marked Background")->getColor(),
+                     i18n("Same as selected background"),
+                     &sameAsAltern,
+                     1);
+    addColorSelector("Current Foreground", i18n("Current foreground:"), Qt::white, i18n("Not used"));
+    ADDITIONAL_COLOR sameAsMarkedForegnd = {i18n("Same as selected foreground"), getColorSelector("Marked Foreground")->getColor(), "Marked Foreground"};
+    addColorSelector("Marked Current Foreground", i18n("Selected current foreground:"), Qt::white, i18n("Not used"), &sameAsMarkedForegnd, 1);
+    addColorSelector("Current Background", i18n("Current background:"), Qt::white, i18n("Not used"), &sameAsBckgnd, 1);
+    addColorSelector("Rename Foreground", i18n("Rename foreground:"), getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
+    addColorSelector("Rename Background", i18n("Rename background:"), getColorSelector("Background")->getColor(), i18n("Same as background"));
 
     colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
 
@@ -126,25 +157,77 @@ KgColors::KgColors(bool first, QWidget* parent) :
 
     offset = endOfActiveColors = itemList.count();
 
-    addColorSelector("Inactive Foreground",                  i18n("Foreground:"),                  getColorSelector("Foreground")->getColor(), i18n("Same as active"));
-    ADDITIONAL_COLOR sameAsInactForegnd = { i18n("Same as foreground"), getColorSelector("Inactive Foreground")->getColor(), "Inactive Foreground" };
-    addColorSelector("Inactive Directory Foreground",        i18n("Folder foreground:"),           getColorSelector("Directory Foreground")->getColor(), i18n("Same as active"), &sameAsInactForegnd, 1);
-    addColorSelector("Inactive Executable Foreground",       i18n("Executable foreground:"),       getColorSelector("Executable Foreground")->getColor(), i18n("Same as active"), &sameAsInactForegnd, 1);
-    addColorSelector("Inactive Symlink Foreground",          i18n("Symbolic link foreground:"),    getColorSelector("Symlink Foreground")->getColor(), i18n("Same as active"), &sameAsInactForegnd, 1);
-    addColorSelector("Inactive Invalid Symlink Foreground",  i18n("Invalid symlink foreground:"),  getColorSelector("Invalid Symlink Foreground")->getColor(), i18n("Same as active"), &sameAsInactForegnd, 1);
-    addColorSelector("Inactive Background",                  i18n("Background:"),                  getColorSelector("Background")->getColor(), i18n("Same as active"));
-    ADDITIONAL_COLOR sameAsInactBckgnd = { i18n("Same as background"), getColorSelector("Inactive Background")->getColor(), "Inactive Background" };
-    addColorSelector("Inactive Alternate Background",        i18n("Alternate background:"),        getColorSelector("Alternate Background")->getColor(), i18n("Same as active"), &sameAsInactBckgnd, 1);
-    addColorSelector("Inactive Marked Foreground",           i18n("Selected foreground:"),           getColorSelector("Marked Foreground")->getColor(), i18n("Same as active"), &transparent, 1);
-    addColorSelector("Inactive Marked Background",           i18n("Selected background:"),           getColorSelector("Marked Background")->getColor(), i18n("Same as active"), &sameAsInactBckgnd, 1);
-    ADDITIONAL_COLOR sameAsInactAltern[] = {{ i18n("Same as alt. background"), getColorSelector("Inactive Alternate Background")->getColor(), "Inactive Alternate Background" },
-        { i18n("Same as selected background"), getColorSelector("Inactive Marked Background")->getColor(), "Inactive Marked Background" }
-    };
-    addColorSelector("Inactive Alternate Marked Background", i18n("Alternate selected background:"), getColorSelector("Alternate Marked Background")->getColor(), i18n("Same as active"), sameAsInactAltern, 2);
-    addColorSelector("Inactive Current Foreground",          i18n("Current foreground:"),          getColorSelector("Current Foreground")->getColor(), i18n("Same as active"));
-    ADDITIONAL_COLOR sameAsInactMarkedForegnd = { i18n("Same as selected foreground"), getColorSelector("Inactive Marked Foreground")->getColor(), "Inactive Marked Foreground" };
-    addColorSelector("Inactive Marked Current Foreground",          i18n("Selected current foreground:"),          getColorSelector("Marked Current Foreground")->getColor(), i18n("Same as active"), &sameAsInactMarkedForegnd, 1);
-    addColorSelector("Inactive Current Background",          i18n("Current background:"),          getColorSelector("Current Background")->getColor(), i18n("Same as active"), &sameAsInactBckgnd, 1);
+    addColorSelector("Inactive Foreground", i18n("Foreground:"), getColorSelector("Foreground")->getColor(), i18n("Same as active"));
+    ADDITIONAL_COLOR sameAsInactForegnd = {i18n("Same as foreground"), getColorSelector("Inactive Foreground")->getColor(), "Inactive Foreground"};
+    addColorSelector("Inactive Directory Foreground",
+                     i18n("Folder foreground:"),
+                     getColorSelector("Directory Foreground")->getColor(),
+                     i18n("Same as active"),
+                     &sameAsInactForegnd,
+                     1);
+    addColorSelector("Inactive Executable Foreground",
+                     i18n("Executable foreground:"),
+                     getColorSelector("Executable Foreground")->getColor(),
+                     i18n("Same as active"),
+                     &sameAsInactForegnd,
+                     1);
+    addColorSelector("Inactive Symlink Foreground",
+                     i18n("Symbolic link foreground:"),
+                     getColorSelector("Symlink Foreground")->getColor(),
+                     i18n("Same as active"),
+                     &sameAsInactForegnd,
+                     1);
+    addColorSelector("Inactive Invalid Symlink Foreground",
+                     i18n("Invalid symlink foreground:"),
+                     getColorSelector("Invalid Symlink Foreground")->getColor(),
+                     i18n("Same as active"),
+                     &sameAsInactForegnd,
+                     1);
+    addColorSelector("Inactive Background", i18n("Background:"), getColorSelector("Background")->getColor(), i18n("Same as active"));
+    ADDITIONAL_COLOR sameAsInactBckgnd = {i18n("Same as background"), getColorSelector("Inactive Background")->getColor(), "Inactive Background"};
+    addColorSelector("Inactive Alternate Background",
+                     i18n("Alternate background:"),
+                     getColorSelector("Alternate Background")->getColor(),
+                     i18n("Same as active"),
+                     &sameAsInactBckgnd,
+                     1);
+    addColorSelector("Inactive Marked Foreground",
+                     i18n("Selected foreground:"),
+                     getColorSelector("Marked Foreground")->getColor(),
+                     i18n("Same as active"),
+                     &transparent,
+                     1);
+    addColorSelector("Inactive Marked Background",
+                     i18n("Selected background:"),
+                     getColorSelector("Marked Background")->getColor(),
+                     i18n("Same as active"),
+                     &sameAsInactBckgnd,
+                     1);
+    ADDITIONAL_COLOR sameAsInactAltern[] = {
+        {i18n("Same as alt. background"), getColorSelector("Inactive Alternate Background")->getColor(), "Inactive Alternate Background"},
+        {i18n("Same as selected background"), getColorSelector("Inactive Marked Background")->getColor(), "Inactive Marked Background"}};
+    addColorSelector("Inactive Alternate Marked Background",
+                     i18n("Alternate selected background:"),
+                     getColorSelector("Alternate Marked Background")->getColor(),
+                     i18n("Same as active"),
+                     sameAsInactAltern,
+                     2);
+    addColorSelector("Inactive Current Foreground", i18n("Current foreground:"), getColorSelector("Current Foreground")->getColor(), i18n("Same as active"));
+    ADDITIONAL_COLOR sameAsInactMarkedForegnd = {i18n("Same as selected foreground"),
+                                                 getColorSelector("Inactive Marked Foreground")->getColor(),
+                                                 "Inactive Marked Foreground"};
+    addColorSelector("Inactive Marked Current Foreground",
+                     i18n("Selected current foreground:"),
+                     getColorSelector("Marked Current Foreground")->getColor(),
+                     i18n("Same as active"),
+                     &sameAsInactMarkedForegnd,
+                     1);
+    addColorSelector("Inactive Current Background",
+                     i18n("Current background:"),
+                     getColorSelector("Current Background")->getColor(),
+                     i18n("Same as active"),
+                     &sameAsInactBckgnd,
+                     1);
 
     colorsGrid->addWidget(createSpacer(normalInactiveWidget), itemList.count() - offset, 1);
 
@@ -178,8 +261,8 @@ KgColors::KgColors(bool first, QWidget* parent) :
 
     inactiveColorStack->setCurrentWidget(normalInactiveWidget);
 
-    ADDITIONAL_COLOR KDEDefaultBase = { i18n("KDE default"), p.color(QPalette::Active, QPalette::Base), "KDE default" };
-    ADDITIONAL_COLOR KDEDefaultFore = { i18n("KDE default"), p.color(QPalette::Active, QPalette::Text), "KDE default" };
+    ADDITIONAL_COLOR KDEDefaultBase = {i18n("KDE default"), p.color(QPalette::Active, QPalette::Base), "KDE default"};
+    ADDITIONAL_COLOR KDEDefaultFore = {i18n("KDE default"), p.color(QPalette::Active, QPalette::Text), "KDE default"};
 
 #ifdef SYNCHRONIZER_ENABLED
     colorsGrp = new QWidget(colorTabWidget);
@@ -200,8 +283,18 @@ KgColors::KgColors(bool first, QWidget* parent) :
     addColorSelector("Synchronizer Differs Background", i18n("Differing background:"), SYNCHRONIZER_BACKGROUND_DEFAULTS[1], QString(), &KDEDefaultBase, 1);
     addColorSelector("Synchronizer LeftCopy Foreground", i18n("Copy to left foreground:"), SYNCHRONIZER_FOREGROUND_DEFAULTS[2], QString(), &KDEDefaultFore, 1);
     addColorSelector("Synchronizer LeftCopy Background", i18n("Copy to left background:"), SYNCHRONIZER_BACKGROUND_DEFAULTS[2], QString(), &KDEDefaultBase, 1);
-    addColorSelector("Synchronizer RightCopy Foreground", i18n("Copy to right foreground:"), SYNCHRONIZER_FOREGROUND_DEFAULTS[3], QString(), &KDEDefaultFore, 1);
-    addColorSelector("Synchronizer RightCopy Background", i18n("Copy to right background:"), SYNCHRONIZER_BACKGROUND_DEFAULTS[3], QString(), &KDEDefaultBase, 1);
+    addColorSelector("Synchronizer RightCopy Foreground",
+                     i18n("Copy to right foreground:"),
+                     SYNCHRONIZER_FOREGROUND_DEFAULTS[3],
+                     QString(),
+                     &KDEDefaultFore,
+                     1);
+    addColorSelector("Synchronizer RightCopy Background",
+                     i18n("Copy to right background:"),
+                     SYNCHRONIZER_BACKGROUND_DEFAULTS[3],
+                     QString(),
+                     &KDEDefaultBase,
+                     1);
     addColorSelector("Synchronizer Delete Foreground", i18n("Delete foreground:"), SYNCHRONIZER_FOREGROUND_DEFAULTS[4], QString(), &KDEDefaultFore, 1);
     addColorSelector("Synchronizer Delete Background", i18n("Delete background:"), SYNCHRONIZER_BACKGROUND_DEFAULTS[4], QString(), &KDEDefaultBase, 1);
 
@@ -221,12 +314,32 @@ KgColors::KgColors(bool first, QWidget* parent) :
     addColorSelector("Quicksearch Match Background", i18n("Quicksearch, match background:"), QColor(192, 255, 192), QString(), &KDEDefaultBase, 1);
     addColorSelector("Quicksearch Non-match Foreground", i18n("Quicksearch, non-match foreground:"), Qt::black, QString(), &KDEDefaultFore, 1);
     addColorSelector("Quicksearch Non-match Background", i18n("Quicksearch, non-match background:"), QColor(255, 192, 192), QString(), &KDEDefaultBase, 1);
-    ADDITIONAL_COLOR KDEDefaultWindowFore = { i18n("KDE default"), p.color(QPalette::Active, QPalette::WindowText), "KDE default" };
-    ADDITIONAL_COLOR KDEDefaultWindowBack = { i18n("KDE default"), p.color(QPalette::Active, QPalette::Window), "KDE default" };
-    addColorSelector("Statusbar Foreground Active", i18n("Statusbar, active foreground:"), p.color(QPalette::Active, QPalette::HighlightedText), QString(), &KDEDefaultWindowFore, 1);
-    addColorSelector("Statusbar Background Active", i18n("Statusbar, active background:"), p.color(QPalette::Active, QPalette::Highlight), QString(), &KDEDefaultWindowBack, 1);
-    addColorSelector("Statusbar Foreground Inactive", i18n("Statusbar, inactive foreground:"), p.color(QPalette::Inactive, QPalette::Text), QString(), &KDEDefaultWindowFore, 1);
-    addColorSelector("Statusbar Background Inactive", i18n("Statusbar, inactive background:"), p.color(QPalette::Inactive, QPalette::Base), QString(), &KDEDefaultWindowBack, 1);
+    ADDITIONAL_COLOR KDEDefaultWindowFore = {i18n("KDE default"), p.color(QPalette::Active, QPalette::WindowText), "KDE default"};
+    ADDITIONAL_COLOR KDEDefaultWindowBack = {i18n("KDE default"), p.color(QPalette::Active, QPalette::Window), "KDE default"};
+    addColorSelector("Statusbar Foreground Active",
+                     i18n("Statusbar, active foreground:"),
+                     p.color(QPalette::Active, QPalette::HighlightedText),
+                     QString(),
+                     &KDEDefaultWindowFore,
+                     1);
+    addColorSelector("Statusbar Background Active",
+                     i18n("Statusbar, active background:"),
+                     p.color(QPalette::Active, QPalette::Highlight),
+                     QString(),
+                     &KDEDefaultWindowBack,
+                     1);
+    addColorSelector("Statusbar Foreground Inactive",
+                     i18n("Statusbar, inactive foreground:"),
+                     p.color(QPalette::Inactive, QPalette::Text),
+                     QString(),
+                     &KDEDefaultWindowFore,
+                     1);
+    addColorSelector("Statusbar Background Inactive",
+                     i18n("Statusbar, inactive background:"),
+                     p.color(QPalette::Inactive, QPalette::Base),
+                     QString(),
+                     &KDEDefaultWindowBack,
+                     1);
 
     colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
 
@@ -250,14 +363,14 @@ KgColors::KgColors(bool first, QWidget* parent) :
     preview->setSortingEnabled(false);
     preview->setEnabled(false);
 
-    previewGrid->addWidget(preview, 0 , 0);
+    previewGrid->addWidget(preview, 0, 0);
     hbox->addWidget(previewGrp);
 
     connect(generals->find("Enable Alternate Background"), &KonfiguratorCheckBox::stateChanged, this, &KgColors::generatePreview);
     connect(colorTabWidget, &QTabWidget::currentChanged, this, &KgColors::generatePreview);
     connect(dimFactor, QOverload<int>::of(&KonfiguratorSpinBox::valueChanged), this, &KgColors::generatePreview);
 
-    kgColorsLayout->addWidget(hboxWidget, 1 , 0, 1,  3);
+    kgColorsLayout->addWidget(hboxWidget, 1, 0, 1, 3);
 
     importBtn = new QPushButton(i18n("Import color-scheme"), innerWidget);
     kgColorsLayout->addWidget(importBtn, 2, 0);
@@ -270,8 +383,7 @@ KgColors::KgColors(bool first, QWidget* parent) :
     slotDisable();
 }
 
-int KgColors::addColorSelector(const QString& cfgName, QString name, QColor defaultValue, const QString& dfltName,
-                               ADDITIONAL_COLOR *addColor, int addColNum)
+int KgColors::addColorSelector(const QString &cfgName, QString name, QColor defaultValue, const QString &dfltName, ADDITIONAL_COLOR *addColor, int addColNum)
 {
     int index = itemList.count() - offset;
 
@@ -294,7 +406,7 @@ int KgColors::addColorSelector(const QString& cfgName, QString name, QColor defa
     return index;
 }
 
-KonfiguratorColorChooser *KgColors::getColorSelector(const QString& name)
+KonfiguratorColorChooser *KgColors::getColorSelector(const QString &name)
 {
     QList<QString>::iterator it;
     int position = 0;
@@ -306,7 +418,7 @@ KonfiguratorColorChooser *KgColors::getColorSelector(const QString& name)
     return nullptr;
 }
 
-QLabel *KgColors::getSelectorLabel(const QString& name)
+QLabel *KgColors::getSelectorLabel(const QString &name)
 {
     QList<QString>::iterator it;
     int position = 0;
@@ -325,10 +437,10 @@ void KgColors::slotDisable()
     importBtn->setEnabled(!enabled);
     exportBtn->setEnabled(!enabled);
 
-    for (int i = 0; i < labelList.count() && i < endOfPanelColors ; i++)
+    for (int i = 0; i < labelList.count() && i < endOfPanelColors; i++)
         labelList.at(i)->setEnabled(!enabled);
 
-    for (int j = 0; j < itemList.count() && j < endOfPanelColors ; j++)
+    for (int j = 0; j < itemList.count() && j < endOfPanelColors; j++)
         itemList.at(j)->setEnabled(!enabled);
 
     generals->find("Enable Alternate Background")->setEnabled(enabled);
@@ -417,7 +529,7 @@ void KgColors::slotInactiveMarkedBackgroundChanged()
     getColorSelector("Inactive Alternate Marked Background")->changeAdditionalColor(1, color);
 }
 
-void KgColors::setColorWithDimming(PreviewItem * item, QColor foreground, QColor background, bool dimmed)
+void KgColors::setColorWithDimming(PreviewItem *item, QColor foreground, QColor background, bool dimmed)
 {
     if (dimmed && dimFactor->value() < 100) {
         int dim = dimFactor->value();
@@ -441,14 +553,14 @@ void KgColors::generatePreview()
 
     if (currentPage == activeTabIdx || currentPage == inactiveTabIdx) {
         PreviewItem *pwMarkCur = new PreviewItem(preview, i18n("Selected + Current"));
-        PreviewItem *pwMark2   = new PreviewItem(preview, i18n("Selected 2"));
-        PreviewItem *pwMark1   = new PreviewItem(preview, i18n("Selected 1"));
+        PreviewItem *pwMark2 = new PreviewItem(preview, i18n("Selected 2"));
+        PreviewItem *pwMark1 = new PreviewItem(preview, i18n("Selected 1"));
         PreviewItem *pwCurrent = new PreviewItem(preview, i18n("Current"));
         PreviewItem *pwInvLink = new PreviewItem(preview, i18n("Invalid symlink"));
         PreviewItem *pwSymLink = new PreviewItem(preview, i18n("Symbolic link"));
-        PreviewItem *pwApp     = new PreviewItem(preview, i18n("Application"));
-        PreviewItem *pwFile    = new PreviewItem(preview, i18n("File"));
-        PreviewItem *pwDir     = new PreviewItem(preview, i18n("Folder"));
+        PreviewItem *pwApp = new PreviewItem(preview, i18n("Application"));
+        PreviewItem *pwFile = new PreviewItem(preview, i18n("File"));
+        PreviewItem *pwDir = new PreviewItem(preview, i18n("Folder"));
 
         bool isActive = currentPage == 0;
 
@@ -460,8 +572,8 @@ void KgColors::generatePreview()
 
         // copy over local settings to color settings instance, which does not affect the persisted krConfig settings
         QList<QString> names = KrColorSettings::getColorNames();
-        for (auto & name : names) {
-            KonfiguratorColorChooser * chooser = getColorSelector(name);
+        for (auto &name : names) {
+            KonfiguratorColorChooser *chooser = getColorSelector(name);
             if (!chooser)
                 continue;
             colorSettings.setColorTextValue(name, chooser->getValue());
@@ -510,35 +622,30 @@ void KgColors::generatePreview()
     }
 #ifdef SYNCHRONIZER_ENABLED
     else if (currentPage == synchronizerTabIdx) {
-        PreviewItem *pwDelete    = new PreviewItem(preview, i18n("Delete"));
+        PreviewItem *pwDelete = new PreviewItem(preview, i18n("Delete"));
         PreviewItem *pwRightCopy = new PreviewItem(preview, i18n("Copy to right"));
-        PreviewItem *pwLeftCopy  = new PreviewItem(preview, i18n("Copy to left"));
-        PreviewItem *pwDiffers   = new PreviewItem(preview, i18n("Differing"));
-        PreviewItem *pwEquals    = new PreviewItem(preview, i18n("Equals"));
+        PreviewItem *pwLeftCopy = new PreviewItem(preview, i18n("Copy to left"));
+        PreviewItem *pwDiffers = new PreviewItem(preview, i18n("Differing"));
+        PreviewItem *pwEquals = new PreviewItem(preview, i18n("Equals"));
 
-        pwEquals->setColor(getColorSelector("Synchronizer Equals Foreground")->getColor(),
-                           getColorSelector("Synchronizer Equals Background")->getColor());
-        pwDiffers->setColor(getColorSelector("Synchronizer Differs Foreground")->getColor(),
-                            getColorSelector("Synchronizer Differs Background")->getColor());
+        pwEquals->setColor(getColorSelector("Synchronizer Equals Foreground")->getColor(), getColorSelector("Synchronizer Equals Background")->getColor());
+        pwDiffers->setColor(getColorSelector("Synchronizer Differs Foreground")->getColor(), getColorSelector("Synchronizer Differs Background")->getColor());
         pwLeftCopy->setColor(getColorSelector("Synchronizer LeftCopy Foreground")->getColor(),
                              getColorSelector("Synchronizer LeftCopy Background")->getColor());
         pwRightCopy->setColor(getColorSelector("Synchronizer RightCopy Foreground")->getColor(),
                               getColorSelector("Synchronizer RightCopy Background")->getColor());
-        pwDelete->setColor(getColorSelector("Synchronizer Delete Foreground")->getColor(),
-                           getColorSelector("Synchronizer Delete Background")->getColor());
+        pwDelete->setColor(getColorSelector("Synchronizer Delete Foreground")->getColor(), getColorSelector("Synchronizer Delete Background")->getColor());
     }
 #endif
     else if (currentPage == otherTabIdx) {
         PreviewItem *pwNonMatch = new PreviewItem(preview, i18n("Quicksearch non-match"));
-        PreviewItem *pwMatch    = new PreviewItem(preview, i18n("Quicksearch match"));
-        pwMatch->setColor(getColorSelector("Quicksearch Match Foreground")->getColor(),
-                          getColorSelector("Quicksearch Match Background")->getColor());
+        PreviewItem *pwMatch = new PreviewItem(preview, i18n("Quicksearch match"));
+        pwMatch->setColor(getColorSelector("Quicksearch Match Foreground")->getColor(), getColorSelector("Quicksearch Match Background")->getColor());
         pwNonMatch->setColor(getColorSelector("Quicksearch Non-match Foreground")->getColor(),
                              getColorSelector("Quicksearch Non-match Background")->getColor());
         PreviewItem *pwStatusActive = new PreviewItem(preview, i18n("Statusbar active"));
         PreviewItem *pwStatusInactive = new PreviewItem(preview, i18n("Statusbar inactive"));
-        pwStatusActive->setColor(getColorSelector("Statusbar Foreground Active")->getColor(),
-                                 getColorSelector("Statusbar Background Active")->getColor());
+        pwStatusActive->setColor(getColorSelector("Statusbar Foreground Active")->getColor(), getColorSelector("Statusbar Background Active")->getColor());
         pwStatusInactive->setColor(getColorSelector("Statusbar Foreground Inactive")->getColor(),
                                    getColorSelector("Statusbar Background Inactive")->getColor());
     }
@@ -554,7 +661,7 @@ bool KgColors::apply()
 void KgColors::slotImportColors()
 {
     // find $KDEDIR/share/apps/krusader
-    QString basedir= QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("total_commander.keymap"));
+    QString basedir = QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("total_commander.keymap"));
     basedir = QFileInfo(basedir).absolutePath();
     // let the user select a file to load
     QString file = QFileDialog::getOpenFileName(nullptr, i18n("Select a color-scheme file"), basedir, QStringLiteral("*.color"));
@@ -579,9 +686,13 @@ void KgColors::slotExportColors()
         return;
     }
     QFile f(file);
-    if (f.exists() && KMessageBox::warningContinueCancel(this,
-            i18n("File %1 already exists. Are you sure you want to overwrite it?", file),
-            i18n("Warning"), KStandardGuiItem::overwrite()) != KMessageBox::Continue) return;
+    if (f.exists()
+        && KMessageBox::warningContinueCancel(this,
+                                              i18n("File %1 already exists. Are you sure you want to overwrite it?", file),
+                                              i18n("Warning"),
+                                              KStandardGuiItem::overwrite())
+            != KMessageBox::Continue)
+        return;
     if (!f.open(QIODevice::WriteOnly)) {
         KMessageBox::error(this, i18n("Error: unable to write to file"), i18n("Error"));
         return;
@@ -590,7 +701,7 @@ void KgColors::slotExportColors()
     serialize(stream);
 }
 
-void KgColors::serialize(QDataStream & stream)
+void KgColors::serialize(QDataStream &stream)
 {
     serializeItem(stream, "Alternate Background");
     serializeItem(stream, "Alternate Marked Background");
@@ -647,7 +758,7 @@ void KgColors::serialize(QDataStream & stream)
     stream << QString("") << QString("");
 }
 
-void KgColors::deserialize(QDataStream & stream)
+void KgColors::deserialize(QDataStream &stream)
 {
     for (;;) {
         QString name;
@@ -656,8 +767,7 @@ void KgColors::deserialize(QDataStream & stream)
         if (name.isEmpty())
             break;
 
-        if (name == "KDE Default" || name == "Enable Alternate Background" ||
-                name == "Show Current Item Always" || name == "Dim Inactive Colors") {
+        if (name == "KDE Default" || name == "Enable Alternate Background" || name == "Show Current Item Always" || name == "Dim Inactive Colors") {
             bool bValue = false;
             value = value.toLower();
             if (value == "true" || value == "yes" || value == "on" || value == "1")
@@ -679,11 +789,11 @@ void KgColors::deserialize(QDataStream & stream)
     }
 }
 
-void KgColors::serializeItem(class QDataStream & stream, const char * name)
+void KgColors::serializeItem(class QDataStream &stream, const char *name)
 {
     stream << QString(name);
-    if (strcmp(name, "KDE Default") == 0 || strcmp(name, "Enable Alternate Background") == 0 ||
-            strcmp(name, "Show Current Item Always") == 0 || strcmp(name, "Dim Inactive Colors") == 0) {
+    if (strcmp(name, "KDE Default") == 0 || strcmp(name, "Enable Alternate Background") == 0 || strcmp(name, "Show Current Item Always") == 0
+        || strcmp(name, "Dim Inactive Colors") == 0) {
         bool bValue = generals->find(name)->isChecked();
         stream << QString(bValue ? "true" : "false");
     } else if (strcmp(name, "Dim Factor") == 0)
@@ -693,4 +803,3 @@ void KgColors::serializeItem(class QDataStream & stream, const char * name)
         stream << selector->getValue();
     }
 }
-

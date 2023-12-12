@@ -6,7 +6,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef KRPERMHANDLER_H
 #define KRPERMHANDLER_H
 
@@ -17,12 +16,12 @@
 
 #include <KIO/Global>
 
-#include <time.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <sys/types.h>
+#include <time.h>
+#include <unistd.h>
 
-#define NO_PERM      0
+#define NO_PERM 0
 #define UNKNOWN_PERM 1
 #define ALLOWED_PERM 2
 
@@ -38,7 +37,7 @@ public:
     static char readable(const QString &perm, gid_t gid, uid_t uid);
     static char executable(const QString &perm, gid_t gid, uid_t uid);
 
-    static char ftpWriteable(const QString &fileOwner, const QString & userName, const QString &perm);
+    static char ftpWriteable(const QString &fileOwner, const QString &userName, const QString &perm);
     static char ftpReadable(const QString &fileOwner, const QString &userName, const QString &perm);
     static char ftpExecutable(const QString &fileOwner, const QString &userName, const QString &perm);
 
@@ -46,11 +45,11 @@ public:
     static QString parseSize(KIO::filesize_t val);
 
 private:
-    KrPermHandler() {}
-    static char getLocalPermission(const QString &perm, gid_t gid, uid_t uid, int permOffset,
-                                   bool ignoreRoot = false);
-    static char getFtpPermission(const QString &fileOwner, const QString &userName,
-                                 const QString &perm, int permOffset);
+    KrPermHandler()
+    {
+    }
+    static char getLocalPermission(const QString &perm, gid_t gid, uid_t uid, int permOffset, bool ignoreRoot = false);
+    static char getFtpPermission(const QString &fileOwner, const QString &userName, const QString &perm, int permOffset);
 
     static QSet<int> currentGroups;
     static QHash<int, QString> uidCache;

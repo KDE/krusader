@@ -7,14 +7,14 @@
 
 #include "viewactions.h"
 
-#include "PanelView/krview.h"
 #include "../krmainwindow.h"
+#include "PanelView/krview.h"
 
 #include <KI18n/KLocalizedString>
 #include <KWidgetsAddons/KToggleAction>
 
-ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
-    ActionsBase(parent, mainWindow)
+ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow)
+    : ActionsBase(parent, mainWindow)
 {
     // zoom
     actZoomIn = action(i18n("Zoom In"), "zoom-in", 0, SLOT(zoomIn()), "zoom_in");
@@ -23,8 +23,8 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow) :
 
     // filter
     action(i18n("&All Files"), nullptr, Qt::SHIFT + Qt::Key_F10, SLOT(allFilter()), "all files");
-    //actExecFilter = new QAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
-    //                             SLOTS, SLOT(execFilter()), actionCollection(), "exec files" );
+    // actExecFilter = new QAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
+    //                              SLOTS, SLOT(execFilter()), actionCollection(), "exec files" );
     action(i18n("&Custom"), nullptr, Qt::SHIFT + Qt::Key_F12, SLOT(customFilter()), "custom files");
 
     // selection

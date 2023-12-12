@@ -8,9 +8,9 @@
 #define VIEWERTABBAR_H
 
 // QtWidgets
-#include <QWidget>
 #include <QTabBar>
 #include <QTabWidget>
+#include <QWidget>
 
 class ViewerTabBar;
 
@@ -36,7 +36,8 @@ class ViewerTabBar : public QTabBar
 {
     Q_OBJECT
 public:
-    explicit ViewerTabBar(QWidget *parent) : QTabBar(parent) {};
+    explicit ViewerTabBar(QWidget *parent)
+        : QTabBar(parent){};
 
 protected:
     void mousePressEvent(QMouseEvent *) override;

@@ -6,7 +6,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #ifndef PANELFUNC_H
 #define PANELFUNC_H
 
@@ -33,10 +32,9 @@ class ListPanelFunc : public QObject
     friend class ListPanel;
     Q_OBJECT
 public slots:
-    void execute(const QString&);
-    void goInside(const QString&);
-    void openUrl(const QUrl &path, const QString& nameToMakeCurrent = QString(),
-                 bool manuallyEntered = false);
+    void execute(const QString &);
+    void goInside(const QString &);
+    void openUrl(const QUrl &path, const QString &nameToMakeCurrent = QString(), bool manuallyEntered = false);
     void rename(const QString &oldname, const QString &newname);
 
     // actions
@@ -55,9 +53,18 @@ public slots:
     void editFile(const QUrl &filePath = QUrl());
     /** Ask for a filename; if it doesn't exist, create it; edit it */
     void askEditFile();
-    void moveFilesDelayed() { moveFiles(true); }
-    void copyFilesDelayed() { copyFiles(true); }
-    void moveFiles(bool enqueue = false) { copyFiles(enqueue, true); }
+    void moveFilesDelayed()
+    {
+        moveFiles(true);
+    }
+    void copyFilesDelayed()
+    {
+        copyFiles(true);
+    }
+    void moveFiles(bool enqueue = false)
+    {
+        copyFiles(enqueue, true);
+    }
     void copyFiles(bool enqueue = false, bool move = false);
 
     /*!
@@ -65,9 +72,15 @@ public slots:
      */
     void mkdir();
     /** Delete or move selected files to trash - depending on user setting. */
-    void defaultDeleteFiles() { defaultOrAlternativeDeleteFiles(false); }
+    void defaultDeleteFiles()
+    {
+        defaultOrAlternativeDeleteFiles(false);
+    }
     /** Delete or move selected files to trash - inverting the user setting. */
-    void alternativeDeleteFiles() { defaultOrAlternativeDeleteFiles(true); }
+    void alternativeDeleteFiles()
+    {
+        defaultOrAlternativeDeleteFiles(true);
+    }
     /** Delete virtual files or directories in virtual filesystem. */
     void removeVirtualFiles();
     void rename();
@@ -82,7 +95,8 @@ public slots:
     /** Calculate the occupied space of the current item without dialog. */
     void quickCalcSpace();
     void properties();
-    void cut() {
+    void cut()
+    {
         copyToClipboard(true);
     }
     void copyToClipboard(bool move = false);
@@ -95,25 +109,24 @@ public:
     explicit ListPanelFunc(ListPanel *parent);
     ~ListPanelFunc() override;
 
-    FileSystem* files();  // return a pointer to the filesystem
+    FileSystem *files(); // return a pointer to the filesystem
     QUrl virtualDirectory(); // return the current URL (simulated when panel is paused)
 
-    FileItem* getFileItem(KrViewItem *item);
-    FileItem* getFileItem(const QString& name);
+    FileItem *getFileItem(KrViewItem *item);
+    FileItem *getFileItem(const QString &name);
 
     void refreshActions();
     void redirectLink();
-    void runService(const KService &service, const QList<QUrl>& urls);
-    void displayOpenWithDialog(const QList<QUrl>& urls);
+    void runService(const KService &service, const QList<QUrl> &urls);
+    void displayOpenWithDialog(const QList<QUrl> &urls);
     QUrl browsableArchivePath(const QString &);
     void deleteFiles(bool moveToTrash);
 
-    ListPanelFunc* otherFunc();
+    ListPanelFunc *otherFunc();
     bool atHome();
 
     /** Ask user for confirmation before deleting files. Returns only confirmed files.*/
-    static QList<QUrl> confirmDeletion(const QList<QUrl> &urls, bool moveToTrash,
-                                       bool virtualFS, bool showPath);
+    static QList<QUrl> confirmDeletion(const QList<QUrl> &urls, bool moveToTrash, bool virtualFS, bool showPath);
 
 protected slots:
     // Load the current url from history and refresh filesystem and panel to it
@@ -125,7 +138,7 @@ protected slots:
     void slotSizeCalculated(const QUrl &url, KIO::filesize_t size);
     // Get some information about a file that is going to be edited
     // and perform some steps before the edition
-    void slotStatEdit(KJob* job);
+    void slotStatEdit(KJob *job);
 
 protected:
     QUrl cleanPath(const QUrl &url);
@@ -133,22 +146,21 @@ protected:
     // when externallyExecutable == true, the file can be executed or opened with other software
     void openFileNameInternal(const QString &name, bool externallyExecutable);
     void immediateOpenUrl(const QUrl &url);
-    void openUrlInternal(const QUrl &url, const QString& makeCurrent,
-                         bool immediately, bool manuallyEntered);
-    void runCommand(const QString& cmd);
+    void openUrlInternal(const QUrl &url, const QString &makeCurrent, bool immediately, bool manuallyEntered);
+    void runCommand(const QString &cmd);
 
-    ListPanel*               panel;     // our ListPanel
-    DirHistoryQueue*         history;
-    FileSystem*              fileSystemP;      // pointer to fileSystem.
-    QTimer                   delayTimer;
-    QUrl                     syncURL;
-    bool                     urlManuallyEntered;
+    ListPanel *panel; // our ListPanel
+    DirHistoryQueue *history;
+    FileSystem *fileSystemP; // pointer to fileSystem.
+    QTimer delayTimer;
+    QUrl syncURL;
+    bool urlManuallyEntered;
 
     static QPointer<ListPanelFunc> copyToClipboardOrigin;
 
 private:
     void defaultOrAlternativeDeleteFiles(bool invert);
-    bool getSelectedFiles(QStringList& args);
+    bool getSelectedFiles(QStringList &args);
     SizeCalculator *createAndConnectSizeCalculator(const QList<QUrl> &urls);
     bool _isPaused; // do not refresh while panel is not visible
     bool _refreshAfterPaused; // refresh after not paused anymore

@@ -7,12 +7,12 @@
 
 #include "crc32.h"
 
-#define MASK1       0x00FFFFFF
-#define MASK2       0xFFFFFFFF
-#define POLYNOMIAL  0xEDB88320
+#define MASK1 0x00FFFFFF
+#define MASK2 0xFFFFFFFF
+#define POLYNOMIAL 0xEDB88320
 
-bool            CRC32::crc_initialized = false;
-unsigned long   CRC32::crc_table[ 256 ];
+bool CRC32::crc_initialized = false;
+unsigned long CRC32::crc_table[256];
 
 CRC32::CRC32(unsigned long initialValue)
 {
@@ -22,10 +22,10 @@ CRC32::CRC32(unsigned long initialValue)
         for (int byte = 0; byte != 256; byte++) {
             unsigned long data = byte;
 
-            for (int i = 8; i > 0 ; --i)
+            for (int i = 8; i > 0; --i)
                 data = data & 1 ? (data >> 1) ^ POLYNOMIAL : data >> 1;
 
-            crc_table[ byte ] = data;
+            crc_table[byte] = data;
         }
 
         crc_initialized = true;
@@ -35,7 +35,7 @@ CRC32::CRC32(unsigned long initialValue)
 void CRC32::update(unsigned char *buffer, int bufferLen)
 {
     while (bufferLen-- > 0)
-        crc_accum = ((crc_accum >> 8) & MASK1) ^ crc_table[(crc_accum & 0xff) ^ *buffer++ ];
+        crc_accum = ((crc_accum >> 8) & MASK1) ^ crc_table[(crc_accum & 0xff) ^ *buffer++];
 }
 
 unsigned long CRC32::result()

@@ -16,8 +16,14 @@
 #include "virtualfilesystem.h"
 
 SizeCalculator::SizeCalculator(const QList<QUrl> &urls)
-    : QObject(nullptr), m_urls(urls), m_nextUrls(urls), m_totalSize(0), m_totalFiles(0),
-      m_totalDirs(0), m_canceled(false), m_directorySizeJob(nullptr)
+    : QObject(nullptr)
+    , m_urls(urls)
+    , m_nextUrls(urls)
+    , m_totalSize(0)
+    , m_totalFiles(0)
+    , m_totalDirs(0)
+    , m_canceled(false)
+    , m_directorySizeJob(nullptr)
 {
     QTimer::singleShot(0, this, &SizeCalculator::start);
 }
@@ -128,7 +134,7 @@ void SizeCalculator::slotStatResult(KJob *job)
     }
 
     const KIO::StatJob *statJob = dynamic_cast<KIO::StatJob *>(job);
-    const QUrl& url = statJob->url();
+    const QUrl &url = statJob->url();
 
     const KFileItem kfi(statJob->statResult(), url, true);
     if (kfi.isFile() || kfi.isLink()) {
@@ -151,8 +157,7 @@ void SizeCalculator::slotDirectorySizeResult(KJob *)
     if (!m_directorySizeJob->error()) {
         m_totalSize += m_directorySizeJob->totalSize();
         // do not count filesystem size of empty directories for this current directory
-        m_currentUrlSize +=
-            m_directorySizeJob->totalFiles() == 0 ? 0 : m_directorySizeJob->totalSize();
+        m_currentUrlSize += m_directorySizeJob->totalFiles() == 0 ? 0 : m_directorySizeJob->totalSize();
         m_totalFiles += m_directorySizeJob->totalFiles();
         m_totalDirs += m_directorySizeJob->totalSubdirs();
     }

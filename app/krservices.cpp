@@ -18,12 +18,12 @@
 #include <KIOCore/KProtocolManager>
 #include <utility>
 
-#include "krglobal.h"
 #include "defaults.h"
+#include "krglobal.h"
 
 QString KrServices::GLOBAL_MESSAGE_PATTERN = "%{time hh:mm:ss.zzz}-%{type} %{category} %{function}@%{line} # %{message}";
 
-bool KrServices::cmdExist(const QString& cmdName)
+bool KrServices::cmdExist(const QString &cmdName)
 {
     // Reminder: If that function is modified, it's important to research if the
     // changes must also be applied to `KrServices::fullPathName()`
@@ -35,7 +35,7 @@ bool KrServices::cmdExist(const QString& cmdName)
         return true;
 
     if ((supposedName = QStandardPaths::findExecutable(cmdName)).isEmpty())
-         return false;
+        return false;
 
     // Because an executable file has been found, its path is remembered
     // in order to avoid some future searches
@@ -44,7 +44,7 @@ bool KrServices::cmdExist(const QString& cmdName)
     return true;
 }
 
-QString KrServices::fullPathName(const QString& name, QString confName)
+QString KrServices::fullPathName(const QString &name, QString confName)
 {
     // Reminder: If that function is modified, it's important to research if the
     // changes must also be applied to `kio_krarcProtocol::fullPathName()`
@@ -68,11 +68,11 @@ QString KrServices::fullPathName(const QString& name, QString confName)
     return supposedName;
 }
 
-QString KrServices::chooseFullPathName(QStringList names, const QString& confName)
+QString KrServices::chooseFullPathName(QStringList names, const QString &confName)
 {
-    foreach(const QString &name, names) {
+    foreach (const QString &name, names) {
         QString foundTool = KrServices::fullPathName(name, confName);
-        if (! foundTool.isEmpty()) {
+        if (!foundTool.isEmpty()) {
             return foundTool;
         }
     }
@@ -86,7 +86,7 @@ bool KrServices::isExecutable(const QString &path)
     return info.isFile() && info.isExecutable();
 }
 
-bool KrServices::isoSupported(const QString& mimetype)
+bool KrServices::isoSupported(const QString &mimetype)
 {
 #ifdef KRARC_QUERY_ENABLED
     return KProtocolInfo::archiveMimetypes("iso").contains(mimetype);
@@ -95,24 +95,26 @@ bool KrServices::isoSupported(const QString& mimetype)
 #endif
 }
 
-bool KrServices::fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines)
+bool KrServices::fileToStringList(QTextStream *stream, QStringList &target, bool keepEmptyLines)
 {
-    if (!stream) return false;
+    if (!stream)
+        return false;
     QString line;
     while (!stream->atEnd()) {
         line = stream->readLine().trimmed();
-        if (keepEmptyLines || !line.isEmpty()) target.append(line);
+        if (keepEmptyLines || !line.isEmpty())
+            target.append(line);
     }
     return true;
 }
 
-bool KrServices::fileToStringList(QFile *file, QStringList& target, bool keepEmptyLines)
+bool KrServices::fileToStringList(QFile *file, QStringList &target, bool keepEmptyLines)
 {
     QTextStream stream(file);
     return fileToStringList(&stream, target, keepEmptyLines);
 }
 
-QString KrServices::quote(const QString& name)
+QString KrServices::quote(const QString &name)
 {
     if (!name.contains('\''))
         return '\'' + name + '\'';
@@ -121,7 +123,7 @@ QString KrServices::quote(const QString& name)
     return escape(name);
 }
 
-QStringList KrServices::quote(const QStringList& names)
+QStringList KrServices::quote(const QStringList &names)
 {
     QStringList result;
     for (int i = 0; i < names.size(); ++i)
@@ -141,17 +143,17 @@ QList<QUrl> KrServices::toUrlList(const QStringList &list)
 QStringList KrServices::toStringList(const QList<QUrl> &list)
 {
     QStringList result;
-    for(QList<QUrl>::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it) {
+    for (QList<QUrl>::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it) {
         result.append(it->toString());
     }
     return result;
 }
 
 // Adds one tool to the list in the supportedTools method
-void supportedTool(QStringList &tools, const QString& toolType,
-                   QStringList names, QString confName) {
+void supportedTool(QStringList &tools, const QString &toolType, QStringList names, QString confName)
+{
     QString foundTool = KrServices::chooseFullPathName(std::move(names), std::move(confName));
-    if (! foundTool.isEmpty()) {
+    if (!foundTool.isEmpty()) {
         tools.append(toolType);
         tools.append(foundTool);
     }
@@ -165,36 +167,37 @@ void supportedTool(QStringList &tools, const QString& toolType,
 // to use it: QStringList lst = supportedTools();
 //            int i = lst.indexOf("DIFF");
 //            if (i!=-1) pathToDiff=lst[i+1];
-QStringList KrServices::supportedTools() {
+QStringList KrServices::supportedTools()
+{
     QStringList tools;
 
     // first, a diff program: kdiff
-    supportedTool(tools, "DIFF",
-                  QStringList() << "kdiff3" << "kompare" << "xxdiff",
+    supportedTool(tools,
+                  "DIFF",
+                  QStringList() << "kdiff3"
+                                << "kompare"
+                                << "xxdiff",
                   "diff utility");
 
     // a mailer: kmail or thunderbird
-    supportedTool(tools, "MAIL",
-                  QStringList() << "thunderbird" << "kmail",
+    supportedTool(tools,
+                  "MAIL",
+                  QStringList() << "thunderbird"
+                                << "kmail",
                   "mailer");
 
     // rename tool: krename
-    supportedTool(tools, "RENAME",
-                  QStringList() << "krename",
-                  "krename");
+    supportedTool(tools, "RENAME", QStringList() << "krename", "krename");
 
     // checksum utility
-    supportedTool(tools, "MD5",
-                  QStringList() << "md5sum",
-                  "checksum utility");
+    supportedTool(tools, "MD5", QStringList() << "md5sum", "checksum utility");
 
     return tools;
 }
 
-
 QString KrServices::escape(QString name)
 {
-    const QString evilstuff = "\\\"'`()[]{}!?;$&<>| \t\r\n";  // stuff that should get escaped
+    const QString evilstuff = "\\\"'`()[]{}!?;$&<>| \t\r\n"; // stuff that should get escaped
 
     for (auto i : evilstuff)
         name.replace(i, ('\\' + i));
@@ -225,10 +228,10 @@ QString KrServices::urlToLocalPath(const QUrl &url)
 #ifdef Q_OS_WIN
     if (path.startsWith(DIR_SEPARATOR)) {
         int p = 1;
-        while (p < path.length() && path[ p ] == DIR_SEPARATOR_CHAR)
+        while (p < path.length() && path[p] == DIR_SEPARATOR_CHAR)
             p++;
         /* /C:/Folder */
-        if (p + 2 <= path.length() && path[ p ].isLetter() && path[ p + 1 ] == ':') {
+        if (p + 2 <= path.length() && path[p].isLetter() && path[p + 1] == ':') {
             path = path.mid(p);
         }
     }

@@ -20,21 +20,19 @@ class TabActions;
 /**
  * A menu to perform operations with a list of recently closed tabs
  */
-class RecentlyClosedTabsMenu: public KActionMenu
+class RecentlyClosedTabsMenu : public KActionMenu
 {
     Q_OBJECT
     friend class PanelManager;
 
 public:
-    explicit RecentlyClosedTabsMenu(const QString &text, const QString &iconName,
-                                    KActionCollection *parent = nullptr);
+    explicit RecentlyClosedTabsMenu(const QString &text, const QString &iconName, KActionCollection *parent = nullptr);
 
 protected slots:
     void slotTriggered(QAction *action);
 
 private:
-    QAction *updateAfterClosingATab(const QUrl &urlClosedTab, const QByteArray &backedUpData,
-                                    TabActions *argTabActions);
+    QAction *updateAfterClosingATab(const QUrl &urlClosedTab, const QByteArray &backedUpData, TabActions *argTabActions);
     QAction *actClearTheList;
     TabActions *tabActions = nullptr;
 

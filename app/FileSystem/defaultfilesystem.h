@@ -15,7 +15,6 @@
 
 #include <KCoreAddons/KDirWatch>
 
-
 /**
  * @brief Default filesystem implementation supporting all KIO protocols
  *
@@ -29,27 +28,37 @@
  * (~500ms delay between operation finished and watcher emits signals).
  *
  */
-class DefaultFileSystem : public FileSystem {
+class DefaultFileSystem : public FileSystem
+{
     Q_OBJECT
 public:
     DefaultFileSystem();
 
-    void copyFiles(const QList<QUrl> &urls, const QUrl &destination,
-                           KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
-                           bool showProgressInfo = true,
-                           JobMan::StartMode startMode = JobMan::Default) override;
+    void copyFiles(const QList<QUrl> &urls,
+                   const QUrl &destination,
+                   KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
+                   bool showProgressInfo = true,
+                   JobMan::StartMode startMode = JobMan::Default) override;
     void dropFiles(const QUrl &destination, QDropEvent *event) override;
 
-    void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode,
-                  const QString &dir = "") override;
+    void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, const QString &dir = "") override;
     void mkDir(const QString &name) override;
     void rename(const QString &fileName, const QString &newName) override;
     /// Return URL for file name - even if file does not exist.
     QUrl getUrl(const QString &name) const override;
-    bool canMoveToTrash(const QStringList &) const override { return isLocal(); }
+    bool canMoveToTrash(const QStringList &) const override
+    {
+        return isLocal();
+    }
 
-    QString mountPoint() const override { return _mountPoint; }
-    bool hasAutoUpdate() const override { return !_watcher.isNull(); }
+    QString mountPoint() const override
+    {
+        return _mountPoint;
+    }
+    bool hasAutoUpdate() const override
+    {
+        return !_watcher.isNull();
+    }
     void updateFilesystemInfo() override;
 
 protected:
@@ -84,8 +93,8 @@ private:
     static QUrl resolveRelativePath(const QUrl &url);
 
     QPointer<KDirWatch> _watcher; // dir watcher used to detect changes in the current dir
-    bool _listError;              // for async operation, return list job result
-    QString _mountPoint;          // the mount point of the current dir
+    bool _listError; // for async operation, return list job result
+    QString _mountPoint; // the mount point of the current dir
 };
 
 #endif

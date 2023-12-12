@@ -10,11 +10,11 @@
 
 // QtCore
 #include <QDebug>
-#include <QList>
 #include <QEvent>
+#include <QList>
 // QtGui
-#include <QKeyEvent>
 #include <QClipboard>
+#include <QKeyEvent>
 // QtWidgets
 #include <QApplication>
 #include <QGridLayout>
@@ -22,31 +22,31 @@
 #include <QStatusBar>
 
 #include <KI18n/KLocalizedString>
-#include <KXmlGui/KToolBar>
 #include <KWidgetsAddons/KToggleAction>
+#include <KXmlGui/KToolBar>
 
-#include "krusader.h"
-#include "icon.h"
-#include "kractions.h"
-#include "krslots.h"
-#include "defaults.h"
-#include "Panel/listpanel.h"
-#include "Panel/panelfunc.h"
+#include "Dialogs/percentalsplitter.h"
 #include "GUI/kcmdline.h"
 #include "GUI/kfnkeys.h"
-#include "GUI/terminaldock.h"
-#include "panelmanager.h"
 #include "GUI/profilemanager.h"
-#include "Dialogs/percentalsplitter.h"
+#include "GUI/terminaldock.h"
+#include "Panel/listpanel.h"
+#include "Panel/panelfunc.h"
+#include "defaults.h"
+#include "icon.h"
+#include "kractions.h"
 #include "krservices.h"
+#include "krslots.h"
+#include "krusader.h"
+#include "panelmanager.h"
 
-KrusaderView::KrusaderView(QWidget *parent) : QWidget(parent),
-    activeMng(nullptr)
+KrusaderView::KrusaderView(QWidget *parent)
+    : QWidget(parent)
+    , activeMng(nullptr)
 {
 }
 
-void KrusaderView::start(const KConfigGroup &cfg, bool restoreSettings,
-                         const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs)
+void KrusaderView::start(const KConfigGroup &cfg, bool restoreSettings, const QList<QUrl> &leftTabs, const QList<QUrl> &rightTabs)
 {
     ////////////////////////////////
     // make a 1x1 mainLayout, it will auto-expand:
@@ -54,17 +54,17 @@ void KrusaderView::start(const KConfigGroup &cfg, bool restoreSettings,
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
     // vertical splitter
-    vert_splitter = new QSplitter(this);   // splits between panels and terminal/cmdline
+    vert_splitter = new QSplitter(this); // splits between panels and terminal/cmdline
     vert_splitter->setOrientation(Qt::Vertical);
     // horizontal splitter
     horiz_splitter = new PercentalSplitter(vert_splitter);
-    (_terminalDock = new TerminalDock(vert_splitter, krApp))->hide();     // create it hidden
+    (_terminalDock = new TerminalDock(vert_splitter, krApp))->hide(); // create it hidden
 
     // create a command line thing
     _cmdLine = new KCMDLine(this);
 
     // add a panel manager for each side of the splitter
-    leftMng  = createManager(true);
+    leftMng = createManager(true);
     rightMng = createManager(false);
     leftMng->setOtherManager(rightMng);
     rightMng->setOtherManager(leftMng);
@@ -75,11 +75,12 @@ void KrusaderView::start(const KConfigGroup &cfg, bool restoreSettings,
     // create the function keys widget
     _fnKeys = new KFnKeys(this, krApp);
     _fnKeys->hide();
-    _fnKeys->setWhatsThis(i18n("Function keys allow performing fast "
-                              "operations on files."));
+    _fnKeys->setWhatsThis(
+        i18n("Function keys allow performing fast "
+             "operations on files."));
 
     // and insert the whole thing into the main layout... at last
-    mainLayout->addWidget(vert_splitter, 0, 0);    //<>
+    mainLayout->addWidget(vert_splitter, 0, 0); //<>
     mainLayout->addWidget(_cmdLine, 1, 0);
     mainLayout->addWidget(_fnKeys, 2, 0);
     mainLayout->activate();
@@ -92,15 +93,14 @@ void KrusaderView::start(const KConfigGroup &cfg, bool restoreSettings,
         lst.push_back(100);
         lst.push_back(100);
     } else if (lst[0] < 1 && lst[1] < 1) {
-        lst[ 0 ] = 100;
-        lst[ 1 ] = 100;
+        lst[0] = 100;
+        lst[1] = 100;
     }
 
     horiz_splitter->setSizes(lst);
 
-    verticalSplitterSizes = cfg.readEntry("Terminal Emulator Splitter Sizes", QList<int> ());
-    if (verticalSplitterSizes.count() != 2 ||
-        (verticalSplitterSizes[0] < 1 && verticalSplitterSizes[1] < 1)) {
+    verticalSplitterSizes = cfg.readEntry("Terminal Emulator Splitter Sizes", QList<int>());
+    if (verticalSplitterSizes.count() != 2 || (verticalSplitterSizes[0] < 1 && verticalSplitterSizes[1] < 1)) {
         verticalSplitterSizes.clear();
         verticalSplitterSizes << 100 << 100;
     }
@@ -108,7 +108,7 @@ void KrusaderView::start(const KConfigGroup &cfg, bool restoreSettings,
     leftPanel()->start(leftTabs.isEmpty() ? QUrl::fromLocalFile(QDir::homePath()) : leftTabs.at(0));
     rightPanel()->start(rightTabs.isEmpty() ? QUrl::fromLocalFile(QDir::homePath()) : rightTabs.at(0));
 
-    activePanel()->gui->slotFocusOnMe();  // left starts out active
+    activePanel()->gui->slotFocusOnMe(); // left starts out active
 
     for (int i = 1; i < leftTabs.count(); i++)
         leftMng->slotNewTab(leftTabs.at(i), false);
@@ -120,10 +120,10 @@ void KrusaderView::start(const KConfigGroup &cfg, bool restoreSettings,
     leftMng->layoutTabs();
     rightMng->layoutTabs();
 
-    if(restoreSettings) {
-        if(leftTabs.isEmpty())
+    if (restoreSettings) {
+        if (leftTabs.isEmpty())
             leftMng->loadSettings(KConfigGroup(&cfg, "Left Tab Bar"));
-        if(rightTabs.isEmpty())
+        if (rightTabs.isEmpty())
             rightMng->loadSettings(KConfigGroup(&cfg, "Right Tab Bar"));
         if (cfg.readEntry("Left Side Is Active", false))
             leftPanel()->slotFocusOnMe();
@@ -155,7 +155,7 @@ void KrusaderView::updateGUI(const KConfigGroup &cfg)
         toggleVerticalMode();
     }
     if (cfg.readEntry("Show Terminal Emulator", _ShowTerminalEmulator)) {
-        setTerminalEmulator(true);   // create konsole_part
+        setTerminalEmulator(true); // create konsole_part
     };
 }
 
@@ -203,9 +203,15 @@ KrPanel *KrusaderView::activePanel() const
     return activeMng ? activeMng->currentPanel() : nullptr;
 }
 
-ListPanel *KrusaderView::leftPanel() const { return leftMng->currentPanel()->gui; }
+ListPanel *KrusaderView::leftPanel() const
+{
+    return leftMng->currentPanel()->gui;
+}
 
-ListPanel *KrusaderView::rightPanel() const { return rightMng->currentPanel()->gui; }
+ListPanel *KrusaderView::rightPanel() const
+{
+    return rightMng->currentPanel()->gui;
+}
 
 // updates the command line whenever current panel or its path changes
 void KrusaderView::slotPathChanged(ListPanel *listPanel)
@@ -215,16 +221,16 @@ void KrusaderView::slotPathChanged(ListPanel *listPanel)
     }
 }
 
-int KrusaderView::getFocusCandidates(QVector<QWidget*> &widgets)
+int KrusaderView::getFocusCandidates(QVector<QWidget *> &widgets)
 {
     activePanel()->gui->getFocusCandidates(widgets);
-    if(_terminalDock->isTerminalVisible())
+    if (_terminalDock->isTerminalVisible())
         widgets << _terminalDock;
-    if(_cmdLine->isVisible())
+    if (_cmdLine->isVisible())
         widgets << _cmdLine;
 
-    for(int i = 0; i < widgets.count(); i++) {
-        if(widgets[i] == focusWidget() || widgets[i]->focusWidget() == focusWidget())
+    for (int i = 0; i < widgets.count(); i++) {
+        if (widgets[i] == focusWidget() || widgets[i]->focusWidget() == focusWidget())
             return i;
     }
     return -1;
@@ -233,37 +239,37 @@ int KrusaderView::getFocusCandidates(QVector<QWidget*> &widgets)
 void KrusaderView::focusUp()
 {
     qDebug() << "focus UP";
-    QVector<QWidget*> widgets;
+    QVector<QWidget *> widgets;
     int currentFocus = getFocusCandidates(widgets);
 
-    if(currentFocus < 0)
+    if (currentFocus < 0)
         return;
     currentFocus--;
 
-    if(currentFocus >= 0 && currentFocus < widgets.count())
+    if (currentFocus >= 0 && currentFocus < widgets.count())
         widgets[currentFocus]->setFocus();
 }
 
 void KrusaderView::focusDown()
 {
     qDebug() << "focus DOWN";
-    QVector<QWidget*> widgets;
+    QVector<QWidget *> widgets;
     int currentFocus = getFocusCandidates(widgets);
 
-    if(currentFocus < 0)
+    if (currentFocus < 0)
         return;
     currentFocus++;
 
-    if(currentFocus < widgets.count())
+    if (currentFocus < widgets.count())
         widgets[currentFocus]->setFocus();
 }
 
-void KrusaderView::cmdLineFocus()    // command line receives keyboard focus
+void KrusaderView::cmdLineFocus() // command line receives keyboard focus
 {
     _cmdLine->setFocus();
 }
 
-void KrusaderView::cmdLineUnFocus()   // return focus to the active panel
+void KrusaderView::cmdLineUnFocus() // return focus to the active panel
 {
     activePanel()->gui->slotFocusOnMe();
 }
@@ -286,9 +292,9 @@ void KrusaderView::swapSides()
 
     horiz_splitter->addWidget(leftMng);
 
-    int old = lst[ 0 ];
-    lst[ 0 ] = lst [ 1 ];
-    lst[ 1 ] = old;
+    int old = lst[0];
+    lst[0] = lst[1];
+    lst[1] = old;
 
     horiz_splitter->setSizes(lst);
 
@@ -329,7 +335,7 @@ void KrusaderView::setTerminalEmulator(bool show, bool fullscreen)
             terminalEmulatorShown = _terminalDock->isTerminalVisible();
         }
 
-        if(!_terminalDock->isTerminalVisible()) {
+        if (!_terminalDock->isTerminalVisible()) {
             // show terminal
             const bool isInitialized = _terminalDock->initialise();
             if (!isInitialized) {
@@ -381,13 +387,20 @@ void KrusaderView::setTerminalEmulator(bool show, bool fullscreen)
             // restore: unhide everything that was hidden before
             leftMng->show();
             rightMng->show();
-            if (fnKeysShown) _fnKeys->show();
-            if (cmdLineShown) _cmdLine->show();
-            if (statusBarShown) krApp->statusBar()->show();
-            if (mainToolBarShown) krApp->toolBar()->show();
-            if (jobToolBarShown) krApp->toolBar("jobToolBar")->show();
-            if (actionToolBarShown) krApp->toolBar("actionToolBar")->show();
-            if (menuBarShown) krApp->menuBar()->show();
+            if (fnKeysShown)
+                _fnKeys->show();
+            if (cmdLineShown)
+                _cmdLine->show();
+            if (statusBarShown)
+                krApp->statusBar()->show();
+            if (mainToolBarShown)
+                krApp->toolBar()->show();
+            if (jobToolBarShown)
+                krApp->toolBar("jobToolBar")->show();
+            if (actionToolBarShown)
+                krApp->toolBar("actionToolBar")->show();
+            if (menuBarShown)
+                krApp->menuBar()->show();
         }
     }
 }
@@ -403,11 +416,12 @@ void KrusaderView::toggleFullScreenTerminalEmulator()
     setTerminalEmulator(!isTerminalEmulatorFullscreen(), true);
 }
 
-bool KrusaderView::isTerminalEmulatorFullscreen() {
+bool KrusaderView::isTerminalEmulatorFullscreen()
+{
     return leftMng->isHidden() && rightMng->isHidden();
 }
 
-void KrusaderView::profiles(const QString& profileName)
+void KrusaderView::profiles(const QString &profileName)
 {
     ProfileManager profileManager("Panel", this);
     profileManager.hide();
@@ -419,7 +433,7 @@ void KrusaderView::profiles(const QString& profileName)
         profileManager.loadProfile(profileName);
 }
 
-void KrusaderView::loadPanelProfiles(const QString& group)
+void KrusaderView::loadPanelProfiles(const QString &group)
 {
     KConfigGroup ldg(krConfig, group);
     leftMng->loadSettings(KConfigGroup(&ldg, "Left Tabs"));
@@ -430,7 +444,7 @@ void KrusaderView::loadPanelProfiles(const QString& group)
         rightPanel()->slotFocusOnMe();
 }
 
-void KrusaderView::savePanelProfiles(const QString& group)
+void KrusaderView::savePanelProfiles(const QString &group)
 {
     KConfigGroup svr(krConfig, group);
 
@@ -457,10 +471,12 @@ void KrusaderView::saveSettings(KConfigGroup &cfg)
 {
     QList<int> lst = horiz_splitter->sizes();
     cfg.writeEntry("Splitter Sizes", lst);
-    QList<int> vertSplitterSizes = _terminalDock->isVisible() && !isTerminalEmulatorFullscreen()
-                                   // fix sizes() not returning correct values on fullscreen+shutdown
-                                   && vert_splitter->sizes().first() != 0 ?
-                                       vert_splitter->sizes() : verticalSplitterSizes;
+    QList<int> vertSplitterSizes = _terminalDock->isVisible()
+            && !isTerminalEmulatorFullscreen()
+            // fix sizes() not returning correct values on fullscreen+shutdown
+            && vert_splitter->sizes().first() != 0
+        ? vert_splitter->sizes()
+        : verticalSplitterSizes;
     cfg.writeEntry("Terminal Emulator Splitter Sizes", vertSplitterSizes);
     cfg.writeEntry("Vertical Mode", isVertical());
     cfg.writeEntry("Left Side Is Active", activePanel()->gui->isLeft());
@@ -475,13 +491,13 @@ bool KrusaderView::cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos
 
     if (horiz_splitter->orientation() == Qt::Horizontal) {
         pos = globalPos.x();
-        if(of == leftMng)
+        if (of == leftMng)
             border = leftMng->mapToGlobal(QPoint(leftMng->width(), 0)).x();
         else
             border = rightMng->mapToGlobal(QPoint(0, 0)).x();
     } else {
         pos = globalPos.y();
-        if(of == leftMng)
+        if (of == leftMng)
             border = leftMng->mapToGlobal(QPoint(0, leftMng->height())).y();
         else
             border = rightMng->mapToGlobal(QPoint(0, 0)).y();
@@ -501,7 +517,7 @@ void KrusaderView::draggingTab(PanelManager *from, QMouseEvent *e)
     QCursor cursor(Icon(icon).pixmap(22));
 
     if (cursorIsOnOtherSide(from, e->globalPos())) {
-        if(!qApp->overrideCursor())
+        if (!qApp->overrideCursor())
             qApp->setOverrideCursor(cursor);
     } else
         qApp->restoreOverrideCursor();
@@ -514,4 +530,3 @@ void KrusaderView::draggingTabFinished(PanelManager *from, QMouseEvent *e)
     if (cursorIsOnOtherSide(from, e->globalPos()))
         from->moveTabToOtherSide();
 }
-

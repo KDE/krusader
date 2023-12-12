@@ -15,9 +15,9 @@
 #include <QTimer>
 #include <QUrl>
 // QtWidgets
-#include <QWidget>
-#include <QToolButton>
 #include <QMenu>
+#include <QToolButton>
+#include <QWidget>
 
 #include <Solid/Device>
 #include <Solid/SolidNamespace>
@@ -36,15 +36,15 @@ public slots:
     void slotAboutToHide();
     void slotPopupActivated(QAction *);
     void slotAccessibilityChanged(bool, const QString &);
-    void slotDeviceAdded(const QString&);
-    void slotDeviceRemoved(const QString&);
+    void slotDeviceAdded(const QString &);
+    void slotDeviceRemoved(const QString &);
     void showMenu();
     void slotCheckMounts();
     void updateIcon(const QString &mountPoint);
 
 signals:
-    void openUrl(const QUrl&);
-    void newTab(const QUrl&);
+    void openUrl(const QUrl &);
+    void newTab(const QUrl &);
     void aboutToShow();
 
 protected:
@@ -53,27 +53,27 @@ protected:
 
 private:
     void createMediaList();
-    void toggleMount(const QString& udi);
-    void getStatus(const QString& udi, bool &mounted, QString *mountPointOut = nullptr, bool *ejectableOut = nullptr);
-    void mount(const QString&, bool open = false, bool newtab = false);
-    void umount(const QString&);
+    void toggleMount(const QString &udi);
+    void getStatus(const QString &udi, bool &mounted, QString *mountPointOut = nullptr, bool *ejectableOut = nullptr);
+    void mount(const QString &, bool open = false, bool newtab = false);
+    void umount(const QString &);
     void eject(QString);
-    void rightClickMenu(const QString& udi, QPoint pos);
+    void rightClickMenu(const QString &udi, QPoint pos);
 
     QList<Solid::Device> storageDevices;
 
 private slots:
-    void slotSetupDone(Solid::ErrorType error, const QVariant& errorData, const QString &udi);
+    void slotSetupDone(Solid::ErrorType error, const QVariant &errorData, const QString &udi);
 
 private:
     static QString remotePrefix;
 
-    QMenu  *popupMenu;
-    QMenu  *rightMenu;
+    QMenu *popupMenu;
+    QMenu *rightMenu;
     QString udiToOpen;
-    bool    openInNewTab;
+    bool openInNewTab;
     QMap<QString, QString> udiNameMap;
-    QTimer      mountCheckerTimer;
+    QTimer mountCheckerTimer;
     QString currentMountPoint; // for performance optimization
 };
 

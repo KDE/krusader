@@ -18,55 +18,59 @@
 class KActionCollection;
 class ListPanelActions;
 
-
-class KrBookmark: public QAction
+class KrBookmark : public QAction
 {
     Q_OBJECT
 public:
-    KrBookmark(const QString& name, QUrl url, KActionCollection *parent, const QString& iconName = "", const QString& actionName = QString());
-    explicit KrBookmark(const QString& name, const QString& iconName = ""); // creates a folder
+    KrBookmark(const QString &name, QUrl url, KActionCollection *parent, const QString &iconName = "", const QString &actionName = QString());
+    explicit KrBookmark(const QString &name, const QString &iconName = ""); // creates a folder
     ~KrBookmark() override;
 
     // text() and setText() to change the name of the bookmark
     // icon() and setIcon() to change icons
 
-    void setIconName(const QString& iconName);
+    void setIconName(const QString &iconName);
 
-    inline const QString& iconName() const {
+    inline const QString &iconName() const
+    {
         return _iconName;
     }
 
-    inline const QUrl &url() const {
+    inline const QUrl &url() const
+    {
         return _url;
     }
-    inline void setURL(const QUrl &url) {
+    inline void setURL(const QUrl &url)
+    {
         _url = url;
     }
-    inline bool isFolder() const {
+    inline bool isFolder() const
+    {
         return _folder;
     }
-    inline bool isSeparator() const {
+    inline bool isSeparator() const
+    {
         return _separator;
     }
-    QList<KrBookmark *>& children() {
+    QList<KrBookmark *> &children()
+    {
         return _children;
     }
 
-    static KrBookmark * getExistingBookmark(const QString& actionName, KActionCollection *collection);
+    static KrBookmark *getExistingBookmark(const QString &actionName, KActionCollection *collection);
 
     // ----- special bookmarks
-    static KrBookmark * trash(KActionCollection *collection);
-    static KrBookmark * virt(KActionCollection *collection);
-    static KrBookmark * lan(KActionCollection *collection);
-    static QAction * jumpBackAction(KActionCollection *collection, bool isSetter = false, ListPanelActions *sourceActions = nullptr);
-    static KrBookmark * separator();
+    static KrBookmark *trash(KActionCollection *collection);
+    static KrBookmark *virt(KActionCollection *collection);
+    static KrBookmark *lan(KActionCollection *collection);
+    static QAction *jumpBackAction(KActionCollection *collection, bool isSetter = false, ListPanelActions *sourceActions = nullptr);
+    static KrBookmark *separator();
 
 signals:
     void activated(const QUrl &url);
 
 protected slots:
     void activatedProxy();
-
 
 private:
     QUrl _url;

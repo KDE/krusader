@@ -11,15 +11,15 @@
 class CRC32
 {
 private:
-    unsigned long           crc_accum;
-    static unsigned long    crc_table[ 256 ];
-    static bool             crc_initialized;
+    unsigned long crc_accum;
+    static unsigned long crc_table[256];
+    static bool crc_initialized;
 
 public:
-    explicit CRC32(unsigned long initialValue = (unsigned long) - 1);
+    explicit CRC32(unsigned long initialValue = (unsigned long)-1);
 
-    void            update(unsigned char *buffer, int bufferLen);
-    unsigned long   result();
+    void update(unsigned char *buffer, int bufferLen);
+    unsigned long result();
 };
 
 #endif /* __CRC32_H__ */

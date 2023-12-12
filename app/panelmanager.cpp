@@ -8,38 +8,37 @@
 
 #include "panelmanager.h"
 
-#include "defaults.h"
-#include "icon.h"
-#include "tabactions.h"
-#include "kractions.h"
-#include "krusaderview.h"
-#include "krmainwindow.h"
-#include "Panel/listpanel.h"
-#include "Panel/panelfunc.h"
 #include "Panel/PanelView/krview.h"
 #include "Panel/PanelView/krviewfactory.h"
+#include "Panel/listpanel.h"
+#include "Panel/panelfunc.h"
+#include "defaults.h"
+#include "icon.h"
+#include "kractions.h"
+#include "krmainwindow.h"
+#include "krusaderview.h"
+#include "tabactions.h"
 
 #include <assert.h>
 
 // QtGui
 #include <QImage>
 // QtWidgets
+#include <QGridLayout>
 #include <QMenu>
 #include <QStackedWidget>
 #include <QToolButton>
-#include <QGridLayout>
 
 #include <KConfigCore/KConfig>
 #include <KI18n/KLocalizedString>
 
-
-PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left) :
-        QWidget(parent),
-        _otherManager(nullptr),
-        _actions(mainWindow->tabActions()),
-        _layout(nullptr),
-        _left(left),
-        _currentPanel(nullptr)
+PanelManager::PanelManager(QWidget *parent, KrMainWindow *mainWindow, bool left)
+    : QWidget(parent)
+    , _otherManager(nullptr)
+    , _actions(mainWindow->tabActions())
+    , _layout(nullptr)
+    , _left(left)
+    , _currentPanel(nullptr)
 {
     _layout = new QGridLayout(this);
     _layout->setContentsMargins(0, 0, 0, 0);
@@ -61,7 +60,9 @@ PanelManager::PanelManager(QWidget *parent, KrMainWindow* mainWindow, bool left)
     connect(_tabbar, &PanelTabBar::tabCloseRequested, this, QOverload<int>::of(&PanelManager::slotCloseTab));
     connect(_tabbar, &PanelTabBar::closeCurrentTab, this, QOverload<>::of(&PanelManager::slotCloseTab));
     connect(_tabbar, &PanelTabBar::duplicateCurrentTab, this, &PanelManager::slotDuplicateTabLMB, Qt::QueuedConnection);
-    connect(_tabbar, &PanelTabBar::newTab, this, [=] (const QUrl &url) { slotNewTab(url); });
+    connect(_tabbar, &PanelTabBar::newTab, this, [=](const QUrl &url) {
+        slotNewTab(url);
+    });
     connect(_tabbar, &PanelTabBar::draggingTab, this, &PanelManager::slotDraggingTab);
     connect(_tabbar, &PanelTabBar::draggingTabFinished, this, &PanelManager::slotDraggingTabFinished);
 
@@ -136,9 +137,9 @@ void PanelManager::slotCurrentTabChanged(int index)
     }
 }
 
-ListPanel* PanelManager::createPanel(const KConfigGroup& cfg)
+ListPanel *PanelManager::createPanel(const KConfigGroup &cfg)
 {
-    ListPanel * p = new ListPanel(_stack, this, cfg);
+    ListPanel *p = new ListPanel(_stack, this, cfg);
     connectPanel(p);
     return p;
 }
@@ -146,8 +147,12 @@ ListPanel* PanelManager::createPanel(const KConfigGroup& cfg)
 void PanelManager::connectPanel(ListPanel *p)
 {
     connect(p, &ListPanel::activate, this, &PanelManager::activate);
-    connect(p, &ListPanel::pathChanged, this, [=]() { emit pathChanged(p); });
-    connect(p, &ListPanel::pathChanged, this, [=]() { _tabbar->updateTab(p); });
+    connect(p, &ListPanel::pathChanged, this, [=]() {
+        emit pathChanged(p);
+    });
+    connect(p, &ListPanel::pathChanged, this, [=]() {
+        _tabbar->updateTab(p);
+    });
 }
 
 void PanelManager::disconnectPanel(ListPanel *p)
@@ -159,7 +164,7 @@ void PanelManager::disconnectPanel(ListPanel *p)
 ListPanel *PanelManager::addPanel(bool setCurrent, const KConfigGroup &cfg, int insertIndex)
 {
     // create the panel and add it into the widgetstack
-    ListPanel * p = createPanel(cfg);
+    ListPanel *p = createPanel(cfg);
     _stack->addWidget(p);
 
     // now, create the corresponding tab
@@ -193,10 +198,10 @@ void PanelManager::saveSettings(KConfigGroup config, bool saveHistory)
     config.writeEntry("ActiveTab", activeTab());
 
     KConfigGroup grpTabs(&config, "Tabs");
-    foreach(const QString &grpTab, grpTabs.groupList())
+    foreach (const QString &grpTab, grpTabs.groupList())
         grpTabs.deleteGroup(grpTab);
 
-    for(int i = 0; i < _tabbar->count(); i++) {
+    for (int i = 0; i < _tabbar->count(); i++) {
         ListPanel *panel = _tabbar->getPanel(i);
         KConfigGroup grpTab(&grpTabs, "Tab" + QString::number(i));
         panel->saveSettings(grpTab, saveHistory);
@@ -209,7 +214,7 @@ void PanelManager::loadSettings(KConfigGroup config)
     int numTabsOld = _tabbar->count();
     int numTabsNew = grpTabs.groupList().count();
 
-    for(int i = 0;  i < numTabsNew; i++) {
+    for (int i = 0; i < numTabsNew; i++) {
         KConfigGroup grpTab(&grpTabs, "Tab" + QString::number(i));
         // TODO workaround for bug 371453. Remove this when bug is fixed
         if (grpTab.keyList().isEmpty())
@@ -220,7 +225,7 @@ void PanelManager::loadSettings(KConfigGroup config)
         _tabbar->updateTab(panel);
     }
 
-    for(int i = numTabsOld - 1; i >= numTabsNew && i > 0; i--)
+    for (int i = numTabsOld - 1; i >= numTabsNew && i > 0; i--)
         slotCloseTab(i);
 
     setActiveTab(config.readEntry("ActiveTab", 0));
@@ -236,7 +241,8 @@ void PanelManager::layoutTabs()
     QTimer::singleShot(0, _tabbar, &PanelTabBar::layoutTabs);
 }
 
-KrPanel *PanelManager::currentPanel() const {
+KrPanel *PanelManager::currentPanel() const
+{
     return _currentPanel;
 }
 
@@ -288,9 +294,7 @@ void PanelManager::slotNewTab(const QUrl &url, bool setCurrent, int insertIndex)
 void PanelManager::slotNewTabButton()
 {
     KConfigGroup group(krConfig, "Look&Feel");
-    int insertIndex = group.readEntry("Insert Tabs After Current", false)
-                      ? _tabbar->currentIndex() + 1
-                      : _tabbar->count();
+    int insertIndex = group.readEntry("Insert Tabs After Current", false) ? _tabbar->currentIndex() + 1 : _tabbar->count();
 
     if (group.readEntry("New Tab Button Duplicates", false)) {
         slotDuplicateTab(currentPanel()->virtualPath(), currentPanel(), insertIndex);
@@ -338,7 +342,7 @@ void PanelManager::slotCloseTab()
 
 void PanelManager::slotCloseTab(int index)
 {
-    if (_tabbar->count() <= 1)    /* if this is the last tab don't close it */
+    if (_tabbar->count() <= 1) /* if this is the last tab don't close it */
         return;
 
     // Back up some data that will be useful if the user wants to
@@ -377,8 +381,7 @@ void PanelManager::slotUndoCloseTab()
     const int fixedMenuEntries = KrActions::actClosedTabsMenu->quantFixedMenuEntries;
     Q_ASSERT(KrActions::actClosedTabsMenu->menu()->actions().size() > fixedMenuEntries);
     // Performs the same action as when clicking on that menu item
-    KrActions::actClosedTabsMenu->slotTriggered(
-               KrActions::actClosedTabsMenu->menu()->actions().at(fixedMenuEntries));
+    KrActions::actClosedTabsMenu->slotTriggered(KrActions::actClosedTabsMenu->menu()->actions().at(fixedMenuEntries));
 }
 
 void PanelManager::undoCloseTab(const QAction *action)
@@ -399,7 +402,7 @@ void PanelManager::undoCloseTab(const QAction *action)
     tabStream >> selectedUrls;
 
     // This variable points to the PanelManager where the closed tab is going to be restored
-    PanelManager *whereToUndo = closedInTheLeftPan? LEFT_MNG : RIGHT_MNG;
+    PanelManager *whereToUndo = closedInTheLeftPan ? LEFT_MNG : RIGHT_MNG;
 
     MAIN_VIEW->slotSetActiveManager(whereToUndo);
     // Open a new tab where to apply the planned changes
@@ -451,7 +454,7 @@ void PanelManager::delClosedTab(QAction *action)
 void PanelManager::updateTabbarPos()
 {
     KConfigGroup group(krConfig, "Look&Feel");
-    if(group.readEntry("Tab Bar Position", "bottom") == "top") {
+    if (group.readEntry("Tab Bar Position", "bottom") == "top") {
         _layout->addWidget(_stack, 2, 0);
         _tabbar->setShape(QTabBar::RoundedNorth);
     } else {
@@ -531,7 +534,7 @@ void PanelManager::reloadConfig()
     }
 }
 
-void PanelManager::deletePanel(ListPanel * p)
+void PanelManager::deletePanel(ListPanel *p)
 {
     disconnect(p);
     delete p;
@@ -552,10 +555,10 @@ void PanelManager::slotCloseDuplicatedTabs()
 {
     int i = 0;
     while (i < _tabbar->count() - 1) {
-        ListPanel * panel1 = _tabbar->getPanel(i);
+        ListPanel *panel1 = _tabbar->getPanel(i);
         if (panel1 != nullptr) {
             for (int j = i + 1; j < _tabbar->count(); j++) {
-                ListPanel * panel2 = _tabbar->getPanel(j);
+                ListPanel *panel2 = _tabbar->getPanel(j);
                 if (panel2 != nullptr && panel1->virtualPath().matches(panel2->virtualPath(), QUrl::StripTrailingSlash)) {
                     if (j == activeTab()) {
                         slotCloseTab(i);
@@ -575,11 +578,11 @@ void PanelManager::slotCloseDuplicatedTabs()
 int PanelManager::findTab(QUrl url)
 {
     url.setPath(QDir::cleanPath(url.path()));
-    for(int i = 0; i < _tabbar->count(); i++) {
-        if(_tabbar->getPanel(i)) {
+    for (int i = 0; i < _tabbar->count(); i++) {
+        if (_tabbar->getPanel(i)) {
             QUrl panelUrl = _tabbar->getPanel(i)->virtualPath();
             panelUrl.setPath(QDir::cleanPath(panelUrl.path()));
-            if(panelUrl.matches(url, QUrl::StripTrailingSlash))
+            if (panelUrl.matches(url, QUrl::StripTrailingSlash))
                 return i;
         }
     }
@@ -606,7 +609,8 @@ void PanelManager::slotPinTab()
     _tabbar->updateTab(panel);
 }
 
-void PanelManager::newTabs(const QStringList& urls) {
-    for(int i = 0; i < urls.count(); i++)
+void PanelManager::newTabs(const QStringList &urls)
+{
+    for (int i = 0; i < urls.count(); i++)
         slotNewTab(QUrl::fromUserInput(urls[i], QString(), QUrl::AssumeLocalFile));
 }

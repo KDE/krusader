@@ -13,16 +13,16 @@
 // QtGui
 #include <QColor>
 // QtWidgets
-#include <QWidget>
 #include <QLabel>
+#include <QWidget>
 
-class KrErrorDisplay: public QLabel
+class KrErrorDisplay : public QLabel
 {
     Q_OBJECT
 public:
     explicit KrErrorDisplay(QWidget *parent);
 
-    void setText(const QString& text);
+    void setText(const QString &text);
 
 private slots:
     void slotTimeout();

@@ -16,25 +16,30 @@
 class KrResultTableDialog : public QDialog
 {
 public:
+    enum DialogType { Archiver = 1, Tool = 2 };
 
-    enum DialogType {
-        Archiver = 1,
-        Tool = 2
-    };
-
-    KrResultTableDialog(QWidget *parent, DialogType type, const QString& caption, const QString& heading, const QString& headerIcon = QString(), const QString& hint = QString());
+    KrResultTableDialog(QWidget *parent,
+                        DialogType type,
+                        const QString &caption,
+                        const QString &heading,
+                        const QString &headerIcon = QString(),
+                        const QString &hint = QString());
     virtual ~KrResultTableDialog();
 
-    const QString& getHeading() const {
+    const QString &getHeading() const
+    {
         return _heading;
     }
-    const QString& getHint() const {
+    const QString &getHint() const
+    {
         return _hint;
     }
-    void setHeading(const QString& s) {
+    void setHeading(const QString &s)
+    {
         _heading = s;
     }
-    void setHint(const QString& s) {
+    void setHint(const QString &s)
+    {
         _hint = s;
     }
 
@@ -46,7 +51,7 @@ protected:
     QString _hint;
     QString helpAnchor;
 
-    KrResultTable* _resultTable;
+    KrResultTable *_resultTable;
 };
 
 #endif

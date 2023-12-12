@@ -25,7 +25,8 @@ public:
     /**
      * @return the currently displayed action
      */
-    KrAction* action() {
+    KrAction *action()
+    {
         return _action;
     };
 
@@ -58,7 +59,8 @@ public:
     /**
      * @return true if any property got changed
      */
-    bool isModified() {
+    bool isModified()
+    {
         return _modified;
     };
 
@@ -138,7 +140,7 @@ private slots:
      * This updates the ShortcutButton
      * @internal
      */
-    void changedShortcut(const QKeySequence& shortcut);
+    void changedShortcut(const QKeySequence &shortcut);
 };
 
 #endif

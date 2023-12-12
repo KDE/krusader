@@ -22,16 +22,16 @@ class KrMaskChoice : public QDialog
     Q_OBJECT
 
 public:
-    explicit KrMaskChoice(QWidget* parent = nullptr);
+    explicit KrMaskChoice(QWidget *parent = nullptr);
     ~KrMaskChoice() override;
 
-    KComboBox* selection;
-    QLabel* PixmapLabel1;
-    QLabel* label;
-    KrListWidget* preSelections;
-    QPushButton* PushButton7;
-    QPushButton* PushButton7_2;
-    QPushButton* PushButton7_3;
+    KComboBox *selection;
+    QLabel *PixmapLabel1;
+    QLabel *label;
+    KrListWidget *preSelections;
+    QPushButton *PushButton7;
+    QPushButton *PushButton7_2;
+    QPushButton *PushButton7_3;
 
 public slots:
     virtual void addSelection();

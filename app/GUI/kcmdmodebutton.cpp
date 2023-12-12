@@ -7,8 +7,8 @@
 
 #include "kcmdmodebutton.h"
 
-#include "../kractions.h"
 #include "../icon.h"
+#include "../kractions.h"
 
 // QtWidgets
 #include <QMenu>
@@ -20,7 +20,8 @@
  * KCMDModeButton class, which represents a button with popup menu to switch
  * the mode of the krusader built-in command-line
  */
-KCMDModeButton::KCMDModeButton(QWidget *parent) : QToolButton(parent)
+KCMDModeButton::KCMDModeButton(QWidget *parent)
+    : QToolButton(parent)
 {
     /* // from the old terminal-button:
       setText( i18n( "If pressed, Krusader executes command line in a terminal." ) );
@@ -53,9 +54,8 @@ KCMDModeButton::~KCMDModeButton()
 /** called when clicked to the button */
 void KCMDModeButton::showMenu()
 {
-    QMenu * pP = menu();
+    QMenu *pP = menu();
     if (pP) {
-        menu() ->exec(mapToGlobal(QPoint(0, 0)));
+        menu()->exec(mapToGlobal(QPoint(0, 0)));
     }
 }
-

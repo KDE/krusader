@@ -31,14 +31,14 @@
 #include <Solid/StorageVolume>
 #include <utility>
 
-#include "../krglobal.h"
+#include "../Dialogs/krdialogs.h"
+#include "../FileSystem/krpermhandler.h"
+#include "../defaults.h"
 #include "../icon.h"
 #include "../kractions.h"
-#include "../defaults.h"
-#include "../Dialogs/krdialogs.h"
+#include "../krglobal.h"
 #include "../krservices.h"
 #include "kmountmangui.h"
-#include "../FileSystem/krpermhandler.h"
 
 #ifdef _OS_SOLARIS_
 #define FSTAB "/etc/filesystemtab"
@@ -46,7 +46,11 @@
 #define FSTAB "/etc/fstab"
 #endif
 
-KMountMan::KMountMan(QWidget *parent) : _operational(false), waiting(false), mountManGui(nullptr), parentWindow(parent)
+KMountMan::KMountMan(QWidget *parent)
+    : _operational(false)
+    , waiting(false)
+    , mountManGui(nullptr)
+    , parentWindow(parent)
 {
     _action = new KToolBarPopupAction(Icon("kr_mountman"), i18n("&MountMan..."), this);
     connect(_action, &QAction::triggered, this, &KMountMan::mainWindow);
@@ -58,10 +62,20 @@ KMountMan::KMountMan(QWidget *parent) : _operational(false), waiting(false), mou
     // added as a precaution, although we use kde services now
     _operational = KrServices::cmdExist("mount");
 
-    network_fs << "nfs" << "smbfs" << "fuse.fusesmb" << "fuse.sshfs"; //TODO: is this list complete ?
+    network_fs << "nfs"
+               << "smbfs"
+               << "fuse.fusesmb"
+               << "fuse.sshfs"; // TODO: is this list complete ?
 
     // list of FS that we don't manage at all
-    invalid_fs << "swap" << "/dev/pts" << "tmpfs" << "devpts" << "sysfs" << "rpc_pipefs" << "usbfs" << "binfmt_misc";
+    invalid_fs << "swap"
+               << "/dev/pts"
+               << "tmpfs"
+               << "devpts"
+               << "sysfs"
+               << "rpc_pipefs"
+               << "usbfs"
+               << "binfmt_misc";
 #ifdef BSD
     invalid_fs << "procfs";
 #else
@@ -75,7 +89,7 @@ KMountMan::KMountMan(QWidget *parent) : _operational(false), waiting(false), mou
         QStringList nonmount = group.readEntry("Nonmount Points", _NonMountPoints).split(',');
         nonmount_fs_mntpoint += nonmount;
         // simplify the white space
-        for (auto & it : nonmount_fs_mntpoint) {
+        for (auto &it : nonmount_fs_mntpoint) {
             it = it.simplified();
         }
     }
@@ -86,8 +100,7 @@ KMountMan::KMountMan(QWidget *parent) : _operational(false), waiting(false), mou
         if (device.isValid()) {
             QPointer<Solid::StorageAccess> access = device.as<Solid::StorageAccess>();
             if (access) {
-                connect(access, &Solid::StorageAccess::teardownRequested,
-                        this, &KMountMan::slotTeardownRequested, Qt::UniqueConnection);
+                connect(access, &Solid::StorageAccess::teardownRequested, this, &KMountMan::slotTeardownRequested, Qt::UniqueConnection);
             }
         }
     }
@@ -95,18 +108,18 @@ KMountMan::KMountMan(QWidget *parent) : _operational(false), waiting(false), mou
 
 KMountMan::~KMountMan() = default;
 
-bool KMountMan::invalidFilesystem(const QString& type)
+bool KMountMan::invalidFilesystem(const QString &type)
 {
     return (invalid_fs.contains(type));
 }
 
 // this is an ugly hack, but type can actually be a mountpoint. oh well...
-bool KMountMan::nonmountFilesystem(const QString& type, const QString& mntPoint)
+bool KMountMan::nonmountFilesystem(const QString &type, const QString &mntPoint)
 {
     return (nonmount_fs.contains(type) || nonmount_fs_mntpoint.contains(mntPoint));
 }
 
-bool KMountMan::networkFilesystem(const QString& type)
+bool KMountMan::networkFilesystem(const QString &type)
 {
     return (network_fs.contains(type));
 }
@@ -120,7 +133,7 @@ void KMountMan::mainWindow()
     }
 
     mountManGui = new KMountManGUI(this);
-    delete mountManGui;   /* as KMountManGUI is modal, we can now delete it */
+    delete mountManGui; /* as KMountManGUI is modal, we can now delete it */
     mountManGui = nullptr; /* for sanity */
 }
 
@@ -130,7 +143,7 @@ QExplicitlySharedDataPointer<KMountPoint> KMountMan::findInListByMntPoint(KMount
         value = value.left(value.length() - 1);
 
     QExplicitlySharedDataPointer<KMountPoint> m;
-    for (auto & it : lst) {
+    for (auto &it : lst) {
         m = it.data();
         QString mntPnt = m->mountPoint();
         if (mntPnt.length() > 1 && mntPnt.endsWith('/'))
@@ -149,7 +162,7 @@ void KMountMan::jobResult(KJob *job)
         job->uiDelegate()->showErrorMessage();
 }
 
-void KMountMan::mount(const QString& mntPoint, bool blocking)
+void KMountMan::mount(const QString &mntPoint, bool blocking)
 {
     QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::StorageAccess);
     if (!udi.isNull()) {
@@ -164,7 +177,8 @@ void KMountMan::mount(const QString& mntPoint, bool blocking)
     } else {
         KMountPoint::List possible = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions);
         QExplicitlySharedDataPointer<KMountPoint> m = findInListByMntPoint(possible, mntPoint);
-        if (!((bool)m)) return;
+        if (!((bool)m))
+            return;
         if (blocking)
             waiting = true; // prepare to block
 
@@ -192,9 +206,9 @@ void KMountMan::mount(const QString& mntPoint, bool blocking)
     }
 }
 
-void KMountMan::unmount(const QString& mntPoint, bool blocking)
+void KMountMan::unmount(const QString &mntPoint, bool blocking)
 {
-    //if working dir is below mountpoint cd to ~ first
+    // if working dir is below mountpoint cd to ~ first
     if (QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
         QDir::setCurrent(QDir::homePath());
 
@@ -237,28 +251,27 @@ void KMountMan::unmount(const QString& mntPoint, bool blocking)
     }
 }
 
-KMountMan::mntStatus KMountMan::getStatus(const QString& mntPoint)
+KMountMan::mntStatus KMountMan::getStatus(const QString &mntPoint)
 {
     QExplicitlySharedDataPointer<KMountPoint> mountPoint;
 
     // 1: is it already mounted
     KMountPoint::List current = KMountPoint::currentMountPoints();
     mountPoint = findInListByMntPoint(current, mntPoint);
-    if ((bool) mountPoint)
+    if ((bool)mountPoint)
         return MOUNTED;
 
     // 2: is it a mount point but not mounted?
     KMountPoint::List possible = KMountPoint::possibleMountPoints();
     mountPoint = findInListByMntPoint(possible, mntPoint);
-    if ((bool) mountPoint)
+    if ((bool)mountPoint)
         return NOT_MOUNTED;
 
     // 3: unknown
     return DOESNT_EXIST;
 }
 
-
-void KMountMan::toggleMount(const QString& mntPoint)
+void KMountMan::toggleMount(const QString &mntPoint)
 {
     mntStatus status = getStatus(mntPoint);
     switch (status) {
@@ -274,7 +287,7 @@ void KMountMan::toggleMount(const QString& mntPoint)
     }
 }
 
-void KMountMan::autoMount(const QString& path)
+void KMountMan::autoMount(const QString &path)
 {
     KConfigGroup group(krConfig, "Advanced");
     if (!group.readEntry("AutoMount", _AutoMount))
@@ -284,7 +297,7 @@ void KMountMan::autoMount(const QString& path)
         mount(path);
 }
 
-void KMountMan::eject(const QString& mntPoint)
+void KMountMan::eject(const QString &mntPoint)
 {
     QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::OpticalDrive);
     if (udi.isNull())
@@ -295,10 +308,9 @@ void KMountMan::eject(const QString& mntPoint)
     if (drive == nullptr)
         return;
 
-    //if working dir is below mountpoint cd to ~ first
-    if(QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
+    // if working dir is below mountpoint cd to ~ first
+    if (QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
         QDir::setCurrent(QDir::homePath());
-
 
     connect(drive, &Solid::OpticalDrive::ejectDone, this, &KMountMan::slotTeardownDone);
 
@@ -327,15 +339,14 @@ bool KMountMan::removable(QString path)
 
 bool KMountMan::removable(Solid::Device d)
 {
-    if(!d.isValid())
+    if (!d.isValid())
         return false;
     auto *drive = d.as<Solid::StorageDrive>();
-    if(drive)
+    if (drive)
         return drive->isRemovable();
     else
-        return(removable(d.parent()));
+        return (removable(d.parent()));
 }
-
 
 // populate the pop-up menu of the mountman tool-button with actions
 void KMountMan::quickList()
@@ -359,8 +370,7 @@ void KMountMan::quickList()
     // create a menu, displaying mountpoints with possible actions
     for (QExplicitlySharedDataPointer<KMountPoint> possibleMountPoint : KMountPoint::possibleMountPoints()) {
         // skip nonmountable file systems
-        if (nonmountFilesystem(possibleMountPoint->mountType(), possibleMountPoint->mountPoint())
-            || invalidFilesystem(possibleMountPoint->mountType())) {
+        if (nonmountFilesystem(possibleMountPoint->mountType(), possibleMountPoint->mountPoint()) || invalidFilesystem(possibleMountPoint->mountType())) {
             continue;
         }
         // does the mountpoint exist in current list?
@@ -374,22 +384,18 @@ void KMountMan::quickList()
             }
         }
         // add the item to the menu
-        const QString text = QString("%1 %2 (%3)").arg(needUmount ? i18n("Unmount") : i18n("Mount"),
-                                                 possibleMountPoint->mountPoint(), possibleMountPoint->mountedFrom());
+        const QString text =
+            QString("%1 %2 (%3)").arg(needUmount ? i18n("Unmount") : i18n("Mount"), possibleMountPoint->mountPoint(), possibleMountPoint->mountedFrom());
 
         QAction *act = _action->menu()->addAction(text);
-        act->setData(QList<QVariant>({
-            QVariant(needUmount ? KMountMan::ActionType::Unmount : KMountMan::ActionType::Mount),
-            QVariant(possibleMountPoint->mountPoint())
-        }));
+        act->setData(QList<QVariant>(
+            {QVariant(needUmount ? KMountMan::ActionType::Unmount : KMountMan::ActionType::Mount), QVariant(possibleMountPoint->mountPoint())}));
     }
     connect(_action->menu(), &QMenu::triggered, this, &KMountMan::delayedPerformAction);
-
 }
 
 void KMountMan::delayedPerformAction(const QAction *action)
 {
-
     if (!action || !action->data().canConvert<QList<QVariant>>()) {
         return;
     }
@@ -401,7 +407,6 @@ void KMountMan::delayedPerformAction(const QAction *action)
     const QString mountPoint = actData[1].toString();
 
     QTimer::singleShot(0, this, [=] {
-
         if (actionType == KMountMan::ActionType::Mount) {
             mount(mountPoint);
         } else {
@@ -410,7 +415,7 @@ void KMountMan::delayedPerformAction(const QAction *action)
     });
 }
 
-QString KMountMan::findUdiForPath(const QString& path, const Solid::DeviceInterface::Type &expType)
+QString KMountMan::findUdiForPath(const QString &path, const Solid::DeviceInterface::Type &expType)
 {
     KMountPoint::List current = KMountPoint::currentMountPoints();
     KMountPoint::List possible = KMountPoint::possibleMountPoints();
@@ -423,11 +428,11 @@ QString KMountMan::findUdiForPath(const QString& path, const Solid::DeviceInterf
     QString dev = QDir(mp->mountedFrom()).canonicalPath();
     QList<Solid::Device> storageDevices = Solid::Device::listFromType(Solid::DeviceInterface::Block);
 
-    for (int p = storageDevices.count() - 1 ; p >= 0; p--) {
-        Solid::Device device = storageDevices[ p ];
-        QString udi     = device.udi();
+    for (int p = storageDevices.count() - 1; p >= 0; p--) {
+        Solid::Device device = storageDevices[p];
+        QString udi = device.udi();
 
-        auto * sb = device.as<Solid::Block>();
+        auto *sb = device.as<Solid::Block>();
         if (sb) {
             QString devb = QDir(sb->device()).canonicalPath();
             if (expType != Solid::DeviceInterface::Unknown && !device.isDeviceInterface(expType))
@@ -440,17 +445,17 @@ QString KMountMan::findUdiForPath(const QString& path, const Solid::DeviceInterf
     return QString();
 }
 
-QString KMountMan::pathForUdi(const QString& udi)
+QString KMountMan::pathForUdi(const QString &udi)
 {
     Solid::Device device(udi);
     auto *access = device.as<Solid::StorageAccess>();
-    if(access)
+    if (access)
         return access->filePath();
     else
         return QString();
 }
 
-void KMountMan::slotTeardownDone(Solid::ErrorType error, const QVariant& errorData, const QString& /*udi*/)
+void KMountMan::slotTeardownDone(Solid::ErrorType error, const QVariant &errorData, const QString & /*udi*/)
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
@@ -458,7 +463,7 @@ void KMountMan::slotTeardownDone(Solid::ErrorType error, const QVariant& errorDa
     }
 }
 
-void KMountMan::slotSetupDone(Solid::ErrorType error, const QVariant& errorData, const QString& /*udi*/)
+void KMountMan::slotSetupDone(Solid::ErrorType error, const QVariant &errorData, const QString & /*udi*/)
 {
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
@@ -466,21 +471,20 @@ void KMountMan::slotSetupDone(Solid::ErrorType error, const QVariant& errorData,
     }
 }
 
-void KMountMan::slotTeardownRequested(const QString& udi)
+void KMountMan::slotTeardownRequested(const QString &udi)
 {
     const QString mntPoint = KMountMan::pathForUdi(udi);
     KMountMan::unmount(mntPoint, false);
 }
 
-void KMountMan::deviceAdded (const QString & udi)
+void KMountMan::deviceAdded(const QString &udi)
 {
     Solid::Device device(udi);
 
     if (device.isValid()) {
         QPointer<Solid::StorageAccess> access = device.as<Solid::StorageAccess>();
         if (access) {
-            connect(access, &Solid::StorageAccess::teardownRequested,
-                    this, &KMountMan::slotTeardownRequested, Qt::UniqueConnection);
+            connect(access, &Solid::StorageAccess::teardownRequested, this, &KMountMan::slotTeardownRequested, Qt::UniqueConnection);
         }
     }
 }

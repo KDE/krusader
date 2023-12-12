@@ -7,11 +7,11 @@
 
 #include "krviewitemdelegate.h"
 
-#include "krviewproperties.h"
+#include "../../compat.h"
+#include "../krcolorcache.h"
 #include "../krglobal.h"
 #include "../listpanel.h"
-#include "../krcolorcache.h"
-#include "../../compat.h"
+#include "krviewproperties.h"
 
 // QtCore
 #include <QDebug>
@@ -19,14 +19,19 @@
 #include <QKeyEvent>
 #include <QPainter>
 // QtWidgets
-#include <QDialog>
 #include <QApplication>
+#include <QDialog>
 #include <QLineEdit>
 
 #include <KConfigCore/KSharedConfig>
 
-KrViewItemDelegate::KrViewItemDelegate(QObject *parent) :
-    QItemDelegate(parent), _currentlyEdited(-1), _dontDraw(false), _editor(nullptr) {}
+KrViewItemDelegate::KrViewItemDelegate(QObject *parent)
+    : QItemDelegate(parent)
+    , _currentlyEdited(-1)
+    , _dontDraw(false)
+    , _editor(nullptr)
+{
+}
 
 void KrViewItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
@@ -36,13 +41,13 @@ void KrViewItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     QItemDelegate::paint(painter, opt, index);
 }
 
-void KrViewItemDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const
+void KrViewItemDelegate::drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QString &text) const
 {
     if (!_dontDraw)
         QItemDelegate::drawDisplay(painter, option, rect, text);
 }
 
-QWidget * KrViewItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &sovi, const QModelIndex &index) const
+QWidget *KrViewItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &sovi, const QModelIndex &index) const
 {
     _currentlyEdited = index.row();
     _editor = QItemDelegate::createEditor(parent, sovi, index);
@@ -52,7 +57,7 @@ QWidget * KrViewItemDelegate::createEditor(QWidget *parent, const QStyleOptionVi
 void KrViewItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     QItemDelegate::setEditorData(editor, index);
-    auto *lineEdit = qobject_cast<QLineEdit *> (editor);
+    auto *lineEdit = qobject_cast<QLineEdit *>(editor);
     if (lineEdit) {
         KConfigGroup gl(krConfig, "Look&Feel");
         QFont font = index.data(Qt::FontRole).value<QFont>();
@@ -81,7 +86,7 @@ void KrViewItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index
     }
 }
 
-QSize KrViewItemDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const
+QSize KrViewItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QSize size = QItemDelegate::sizeHint(option, index);
     if (size.isEmpty()) {
@@ -93,7 +98,7 @@ QSize KrViewItemDelegate::sizeHint(const QStyleOptionViewItem & option, const QM
 
 bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
 {
-    QWidget *editor = qobject_cast<QWidget*>(object);
+    QWidget *editor = qobject_cast<QWidget *>(object);
     if (!editor)
         return false;
     if (event->type() == QEvent::KeyPress) {
@@ -105,7 +110,7 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
             return true;
         case Qt::Key_Enter:
         case Qt::Key_Return:
-            if (auto *e = qobject_cast<QLineEdit*>(editor)) {
+            if (auto *e = qobject_cast<QLineEdit *>(editor)) {
                 if (!e->hasAcceptableInput())
                     return true;
                 event->accept();
@@ -138,9 +143,8 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
             }
             // Opening a modal dialog will start a new eventloop
             // that will process the deleteLater event.
-            if (QApplication::activeModalWidget()
-                    && !QApplication::activeModalWidget()->isAncestorOf(editor)
-                    && qobject_cast<QDialog*>(QApplication::activeModalWidget()))
+            if (QApplication::activeModalWidget() && !QApplication::activeModalWidget()->isAncestorOf(editor)
+                && qobject_cast<QDialog *>(QApplication::activeModalWidget()))
                 return false;
             onEditorClose();
             // manually set focus back to panel after rename canceled by focusing another window
@@ -149,8 +153,7 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
         }
     } else if (event->type() == QEvent::ShortcutOverride) {
         const QKeyEvent *ke = dynamic_cast<QKeyEvent *>(event);
-        if (ke->key() == Qt::Key_Escape ||
-            (ke->key() == Qt::Key_Backspace && ke->modifiers() == Qt::ControlModifier)) {
+        if (ke->key() == Qt::Key_Escape || (ke->key() == Qt::Key_Backspace && ke->modifiers() == Qt::ControlModifier)) {
             event->accept();
             return true;
         }
@@ -162,10 +165,19 @@ bool KrViewItemDelegate::eventFilter(QObject *object, QEvent *event)
 class EditorSelection : public QPair<int, int>
 {
 public:
-    EditorSelection(int start, int length) : QPair<int, int>(start, length) {}
+    EditorSelection(int start, int length)
+        : QPair<int, int>(start, length)
+    {
+    }
 
-    int start() const { return first; }
-    int length() const { return second; }
+    int start() const
+    {
+        return first;
+    }
+    int length() const
+    {
+        return second;
+    }
 };
 
 //! Generate helpful file name selections: full name (always present), name candidates, extension candidates

@@ -10,6 +10,7 @@
 // QtCore
 #include <QVariant>
 // QtWidgets
+#include <QDialogButtonBox>
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -17,7 +18,6 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <QDialogButtonBox>
 
 #include <KCompletion/KComboBox>
 #include <KI18n/KLocalizedString>
@@ -32,16 +32,16 @@
  * The dialog will by default be modeless, unless you set 'modal' to
  * TRUE to construct a modal dialog.
  */
-KrMaskChoice::KrMaskChoice(QWidget* parent)
-        : QDialog(parent)
+KrMaskChoice::KrMaskChoice(QWidget *parent)
+    : QDialog(parent)
 {
     setModal(true);
     resize(401, 314);
     setWindowTitle(i18n("Choose Files"));
 
-    auto* MainLayout = new QVBoxLayout(this);
+    auto *MainLayout = new QVBoxLayout(this);
 
-    auto* HeaderLayout = new QHBoxLayout();
+    auto *HeaderLayout = new QHBoxLayout();
     MainLayout->addLayout(HeaderLayout);
 
     PixmapLabel1 = new QLabel(this);
@@ -59,18 +59,21 @@ KrMaskChoice::KrMaskChoice(QWidget* parent)
     selection->setAutoCompletion(true);
     MainLayout->addWidget(selection);
 
-    auto* GroupBox1 = new QGroupBox(this);
+    auto *GroupBox1 = new QGroupBox(this);
     GroupBox1->setTitle(i18n("Predefined Selections"));
     MainLayout->addWidget(GroupBox1);
 
-    auto* gbLayout = new QHBoxLayout(GroupBox1);
+    auto *gbLayout = new QHBoxLayout(GroupBox1);
 
     preSelections = new KrListWidget(GroupBox1);
     preSelections->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-    preSelections->setWhatsThis(i18n("A predefined selection is a file-mask which you often use.\nSome examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\nYou can add these masks to the list by typing them and pressing the Add button.\nDelete removes a predefined selection and Clear removes all of them.\nNotice that the line in which you edit the mask has its own history, you can scroll it, if needed."));
+    preSelections->setWhatsThis(
+        i18n("A predefined selection is a file-mask which you often use.\nSome examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\nYou can add these masks to the "
+             "list by typing them and pressing the Add button.\nDelete removes a predefined selection and Clear removes all of them.\nNotice that the line in "
+             "which you edit the mask has its own history, you can scroll it, if needed."));
     gbLayout->addWidget(preSelections);
 
-    auto* vbox = new QVBoxLayout();
+    auto *vbox = new QVBoxLayout();
     gbLayout->addLayout(vbox);
 
     PushButton7 = new QPushButton(GroupBox1);
@@ -89,7 +92,7 @@ KrMaskChoice::KrMaskChoice(QWidget* parent)
     vbox->addWidget(PushButton7_3);
     vbox->addItem(new QSpacerItem(5, 5, QSizePolicy::Fixed, QSizePolicy::Expanding));
 
-    QDialogButtonBox* ButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    QDialogButtonBox *ButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     MainLayout->addWidget(ButtonBox);
 
     // signals and slots connections
@@ -136,4 +139,3 @@ void KrMaskChoice::currentItemChanged(QListWidgetItem *)
 {
     qWarning("KrMaskChoice::currentItemChanged(QListWidgetItem *): Not implemented yet!");
 }
-

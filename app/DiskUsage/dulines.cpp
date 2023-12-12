@@ -7,25 +7,25 @@
 
 #include "dulines.h"
 
+#include "../FileSystem/krpermhandler.h"
 #include "../icon.h"
 #include "../krglobal.h"
-#include "../FileSystem/krpermhandler.h"
 
 // QtCore
 #include <QTimer>
 // QtGui
-#include <QMouseEvent>
-#include <QPixmap>
-#include <QKeyEvent>
-#include <QPen>
-#include <QPainter>
 #include <QFontMetrics>
+#include <QKeyEvent>
+#include <QMouseEvent>
+#include <QPainter>
+#include <QPen>
+#include <QPixmap>
 // QtWidgets
-#include <QToolTip>
 #include <QApplication>
 #include <QHeaderView>
 #include <QItemDelegate>
 #include <QMenu>
+#include <QToolTip>
 
 #include <KConfigCore/KSharedConfig>
 #include <KI18n/KLocalizedString>
@@ -35,10 +35,13 @@
 class DULinesItemDelegate : public QItemDelegate
 {
 public:
+    explicit DULinesItemDelegate(QObject *parent = nullptr)
+        : QItemDelegate(parent)
+    {
+    }
 
-    explicit DULinesItemDelegate(QObject *parent = nullptr) : QItemDelegate(parent) {}
-
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override {
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
+    {
         QItemDelegate::paint(painter, option, index);
 
         QVariant value = index.data(Qt::UserRole);
@@ -58,8 +61,7 @@ public:
             painter->save();
             painter->setClipRect(option.rect);
 
-            QPalette::ColorGroup cg = option.state & QStyle::State_Enabled
-                                      ? QPalette::Normal : QPalette::Disabled;
+            QPalette::ColorGroup cg = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
             if (cg == QPalette::Normal && !(option.state & QStyle::State_Active))
                 cg = QPalette::Inactive;
             if (option.state & QStyle::State_Selected) {
@@ -112,17 +114,20 @@ public:
 class DULinesItem : public QTreeWidgetItem
 {
 public:
-    DULinesItem(File *fileItem, QTreeWidget * parent, const QString& label1,
-                const QString& label2, const QString& label3) : QTreeWidgetItem(parent),
-            file(fileItem) {
+    DULinesItem(File *fileItem, QTreeWidget *parent, const QString &label1, const QString &label2, const QString &label3)
+        : QTreeWidgetItem(parent)
+        , file(fileItem)
+    {
         setText(0, label1);
         setText(1, label2);
         setText(2, label3);
 
         setTextAlignment(1, Qt::AlignRight);
     }
-    DULinesItem(File *fileItem, QTreeWidget * parent, QTreeWidgetItem * after,
-                const QString& label1, const QString& label2, const QString& label3) : QTreeWidgetItem(parent, after), file(fileItem) {
+    DULinesItem(File *fileItem, QTreeWidget *parent, QTreeWidgetItem *after, const QString &label1, const QString &label2, const QString &label3)
+        : QTreeWidgetItem(parent, after)
+        , file(fileItem)
+    {
         setText(0, label1);
         setText(1, label2);
         setText(2, label3);
@@ -130,13 +135,14 @@ public:
         setTextAlignment(1, Qt::AlignRight);
     }
 
-    bool operator<(const QTreeWidgetItem &other) const override {
+    bool operator<(const QTreeWidgetItem &other) const override
+    {
         int column = treeWidget() ? treeWidget()->sortColumn() : 0;
 
         if (text(0) == "..")
             return true;
 
-        const auto *compWith = dynamic_cast< const DULinesItem * >(&other);
+        const auto *compWith = dynamic_cast<const DULinesItem *>(&other);
         if (compWith == nullptr)
             return false;
 
@@ -149,7 +155,8 @@ public:
         }
     }
 
-    inline File * getFile() {
+    inline File *getFile()
+    {
         return file;
     }
 
@@ -158,7 +165,10 @@ private:
 };
 
 DULines::DULines(DiskUsage *usage)
-        : KrTreeWidget(usage), diskUsage(usage), refreshNeeded(false), started(false)
+    : KrTreeWidget(usage)
+    , diskUsage(usage)
+    , refreshNeeded(false)
+    , started(false)
 {
     setItemDelegate(itemDelegate = new DULinesItemDelegate());
 
@@ -214,16 +224,16 @@ DULines::~DULines()
     delete itemDelegate;
 }
 
-bool DULines::event(QEvent * event)
+bool DULines::event(QEvent *event)
 {
     switch (event->type()) {
     case QEvent::ToolTip: {
-        auto *he = dynamic_cast<QHelpEvent*>(event);
+        auto *he = dynamic_cast<QHelpEvent *>(event);
 
         if (viewport()) {
             QPoint pos = viewport()->mapFromGlobal(he->globalPos());
 
-            QTreeWidgetItem * item = itemAt(pos);
+            QTreeWidgetItem *item = itemAt(pos);
 
             int column = columnAt(pos.x());
 
@@ -233,8 +243,7 @@ bool DULines::event(QEvent * event)
                 return true;
             }
         }
-    }
-    break;
+    } break;
     default:
         break;
     }
@@ -245,7 +254,7 @@ void DULines::slotDirChanged(Directory *dirEntry)
 {
     clear();
 
-    QTreeWidgetItem * lastItem = nullptr;
+    QTreeWidgetItem *lastItem = nullptr;
 
     if (!(dirEntry->parent() == nullptr)) {
         lastItem = new QTreeWidgetItem(this);
@@ -338,7 +347,7 @@ QPixmap DULines::createPixmap(int percent, int maxPercent, int maxWidth)
     return pixmap;
 }
 
-void DULines::resizeEvent(QResizeEvent * re)
+void DULines::resizeEvent(QResizeEvent *re)
 {
     KrTreeWidget::resizeEvent(re);
 
@@ -351,7 +360,7 @@ void DULines::sectionResized(int column)
     if (topLevelItemCount() == 0 || column != 0)
         return;
 
-    Directory * currentDir = diskUsage->getCurrentDir();
+    Directory *currentDir = diskUsage->getCurrentDir();
     if (currentDir == nullptr)
         return;
 
@@ -367,7 +376,7 @@ void DULines::sectionResized(int column)
     while (*it2) {
         QTreeWidgetItem *lvitem = *it2;
         if (lvitem->text(0) != "..") {
-            auto *duItem = dynamic_cast< DULinesItem *>(lvitem);
+            auto *duItem = dynamic_cast<DULinesItem *>(lvitem);
             if (duItem) {
                 int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
                 duItem->setData(0, Qt::DecorationRole, createPixmap(duItem->getFile()->intPercent(), maxPercent, header()->sectionSize(0) - 2 * textMargin));
@@ -380,7 +389,7 @@ void DULines::sectionResized(int column)
     }
 }
 
-bool DULines::doubleClicked(QTreeWidgetItem * item)
+bool DULines::doubleClicked(QTreeWidgetItem *item)
 {
     if (item) {
         if (item->text(0) != "..") {
@@ -399,38 +408,36 @@ bool DULines::doubleClicked(QTreeWidgetItem * item)
     return false;
 }
 
-void DULines::mouseDoubleClickEvent(QMouseEvent * e)
+void DULines::mouseDoubleClickEvent(QMouseEvent *e)
 {
     if (e || e->button() == Qt::LeftButton) {
         QPoint vp = viewport()->mapFromGlobal(e->globalPos());
-        QTreeWidgetItem * item = itemAt(vp);
+        QTreeWidgetItem *item = itemAt(vp);
 
         if (doubleClicked(item))
             return;
-
     }
     KrTreeWidget::mouseDoubleClickEvent(e);
 }
 
-
 void DULines::keyPressEvent(QKeyEvent *e)
 {
     switch (e->key()) {
-    case Qt::Key_Return :
-    case Qt::Key_Enter :
+    case Qt::Key_Return:
+    case Qt::Key_Enter:
         if (doubleClicked(currentItem()))
             return;
         break;
-    case Qt::Key_Left :
-    case Qt::Key_Right :
-    case Qt::Key_Up :
-    case Qt::Key_Down :
+    case Qt::Key_Left:
+    case Qt::Key_Right:
+    case Qt::Key_Up:
+    case Qt::Key_Down:
         if (e->modifiers() == Qt::ShiftModifier) {
             e->ignore();
             return;
         }
         break;
-    case Qt::Key_Delete :
+    case Qt::Key_Delete:
         e->ignore();
         return;
     }
@@ -439,7 +446,7 @@ void DULines::keyPressEvent(QKeyEvent *e)
 
 void DULines::slotRightClicked(QTreeWidgetItem *item, const QPoint &pos)
 {
-    File * file = nullptr;
+    File *file = nullptr;
 
     if (item && item->text(0) != "..")
         file = (dynamic_cast<DULinesItem *>(item))->getFile();
@@ -457,7 +464,7 @@ void DULines::slotShowFileSizes()
     slotDirChanged(diskUsage->getCurrentDir());
 }
 
-File * DULines::getCurrentFile()
+File *DULines::getCurrentFile()
 {
     QTreeWidgetItem *item = currentItem();
 
@@ -467,7 +474,7 @@ File * DULines::getCurrentFile()
     return (dynamic_cast<DULinesItem *>(item))->getFile();
 }
 
-void DULines::slotChanged(File * item)
+void DULines::slotChanged(File *item)
 {
     QTreeWidgetItemIterator it(this);
     while (*it) {
@@ -490,7 +497,7 @@ void DULines::slotChanged(File * item)
     }
 }
 
-void DULines::slotDeleted(File * item)
+void DULines::slotDeleted(File *item)
 {
     QTreeWidgetItemIterator it(this);
     while (*it) {
@@ -515,4 +522,3 @@ void DULines::slotRefresh()
         sortItems(1, Qt::AscendingOrder);
     }
 }
-

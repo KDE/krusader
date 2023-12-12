@@ -9,27 +9,27 @@
 #define PERCENTALSPLITTER_H
 
 // QtWidgets
-#include <QSplitter>
 #include <QLabel>
+#include <QSplitter>
 
 class PercentalSplitter : public QSplitter
 {
     Q_OBJECT
 
 public:
-    explicit PercentalSplitter(QWidget * parent = nullptr);
+    explicit PercentalSplitter(QWidget *parent = nullptr);
     ~PercentalSplitter() override;
 
     QString toolTipString(int p);
 
 protected:
-    void showEvent(QShowEvent * event) override;
+    void showEvent(QShowEvent *event) override;
 
 protected slots:
     void slotSplitterMoved(int pos, int index);
 
 private:
-    QLabel * label;
+    QLabel *label;
     int opaqueOldPos;
     QPoint labelLocation;
 };

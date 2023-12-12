@@ -11,8 +11,8 @@
 // QtGui
 #include <QKeyEvent>
 // QtWidgets
-#include <QWidget>
 #include <QToolButton>
+#include <QWidget>
 
 #include <KCompletion/KLineEdit>
 #include <KIOWidgets/KUrlCompletion>
@@ -34,10 +34,19 @@ public:
     QList<QUrl> urlList();
     void setUrlList(const QList<QUrl> &);
 
-    KLineEdit *lineEdit() { return urlLineEdit; }
-    KrListWidget *listBox() { return urlListBox; }
+    KLineEdit *lineEdit()
+    {
+        return urlLineEdit;
+    }
+    KrListWidget *listBox()
+    {
+        return urlListBox;
+    }
 
-    void setCompletionDir(const QUrl &dir) { completion.setDir(dir); }
+    void setCompletionDir(const QUrl &dir)
+    {
+        completion.setDir(dir);
+    }
 
 signals:
     void checkValidity(QString &text, QString &error);

@@ -12,23 +12,23 @@
 #include <QDragEnterEvent>
 #include <QPainter>
 // QtWidgets
-#include <QToolTip>
 #include <QLabel>
+#include <QToolTip>
 
-#include <KCoreAddons/KUrlMimeData>
 #include <KCoreAddons/KStringHandler>
+#include <KCoreAddons/KUrlMimeData>
 
 #include "../compat.h"
 
-KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent):
-        KSqueezedTextLabel(parent), _index(-1), _length(-1)
+KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent)
+    : KSqueezedTextLabel(parent)
+    , _index(-1)
+    , _length(-1)
 {
     setAutoFillBackground(true);
 }
 
-
-KrSqueezedTextLabel::~KrSqueezedTextLabel()
-= default;
+KrSqueezedTextLabel::~KrSqueezedTextLabel() = default;
 
 void KrSqueezedTextLabel::mousePressEvent(QMouseEvent *e)
 {
@@ -83,9 +83,7 @@ void KrSqueezedTextLabel::setText(const QString &text, int index, int length)
     squeezeTextToLabel(_index, _length);
 }
 
-void KrSqueezedTextLabel::paintEvent(QPaintEvent * e)
+void KrSqueezedTextLabel::paintEvent(QPaintEvent *e)
 {
     KSqueezedTextLabel::paintEvent(e);
 }
-
-

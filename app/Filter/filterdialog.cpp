@@ -17,8 +17,8 @@
 #include <KI18n/KLocalizedString>
 #include <utility>
 
-FilterDialog::FilterDialog(QWidget *parent, const QString& caption, QStringList extraOptions, bool modal)
-        : QDialog(parent)
+FilterDialog::FilterDialog(QWidget *parent, const QString &caption, QStringList extraOptions, bool modal)
+    : QDialog(parent)
 {
     setWindowTitle(caption.isNull() ? i18n("Krusader::Choose Files") : caption);
     setModal(modal);
@@ -29,11 +29,11 @@ FilterDialog::FilterDialog(QWidget *parent, const QString& caption, QStringList 
     auto *filterWidget = new QTabWidget;
 
     filterTabs = FilterTabs::addTo(filterWidget, FilterTabs::HasProfileHandler, std::move(extraOptions));
-    generalFilter = dynamic_cast<GeneralFilter*> (filterTabs->get("GeneralFilter"));
+    generalFilter = dynamic_cast<GeneralFilter *>(filterTabs->get("GeneralFilter"));
 
     mainLayout->addWidget(filterWidget);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel|QDialogButtonBox::Reset);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Reset);
     mainLayout->addWidget(buttonBox);
 
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
@@ -46,7 +46,7 @@ FilterDialog::FilterDialog(QWidget *parent, const QString& caption, QStringList 
 
     generalFilter->searchFor->setFocus();
 
-    if(modal)
+    if (modal)
         exec();
 }
 
@@ -88,7 +88,6 @@ void FilterDialog::slotReset()
 void FilterDialog::slotOk()
 {
     settings = filterTabs->getSettings();
-    if(settings.isValid())
+    if (settings.isValid())
         accept();
 }
-

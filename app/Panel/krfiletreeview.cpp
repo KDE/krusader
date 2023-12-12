@@ -8,11 +8,11 @@
 
 #include "panelfunc.h"
 
-#include "../defaults.h"
-#include "../krglobal.h"
-#include "../icon.h"
 #include "../FileSystem/filesystemprovider.h"
 #include "../compat.h"
+#include "../defaults.h"
+#include "../icon.h"
+#include "../krglobal.h"
 
 #include <QAction>
 #include <QApplication>
@@ -37,11 +37,13 @@
 #include <KIOWidgets/KFileItemDelegate>
 #include <KIOWidgets/KPropertiesDialog>
 
-
 class KrDirModel : public KDirModel
 {
 public:
-    KrDirModel(QWidget *parent) : KDirModel(parent) {}
+    KrDirModel(QWidget *parent)
+        : KDirModel(parent)
+    {
+    }
 
 protected:
     Qt::ItemFlags flags(const QModelIndex &index) const override
@@ -56,10 +58,12 @@ protected:
 class TreeStyle : public QProxyStyle
 {
 public:
-    explicit TreeStyle(QStyle *style) : QProxyStyle(style) {}
+    explicit TreeStyle(QStyle *style)
+        : QProxyStyle(style)
+    {
+    }
 
-    int styleHint(StyleHint hint, const QStyleOption *option, const QWidget *widget,
-                  QStyleHintReturn *returnData) const override
+    int styleHint(StyleHint hint, const QStyleOption *option, const QWidget *widget, QStyleHintReturn *returnData) const override
     {
         if (hint == QStyle::SH_ItemView_ActivateItemOnSingleClick) {
             return true;
@@ -70,7 +74,9 @@ public:
 };
 
 KrFileTreeView::KrFileTreeView(QWidget *parent)
-    : QTreeView(parent), mStartTreeFromCurrent(false), mStartTreeFromPlace(true)
+    : QTreeView(parent)
+    , mStartTreeFromCurrent(false)
+    , mStartTreeFromPlace(true)
 {
     mSourceModel = new KrDirModel(this);
     mSourceModel->dirLister()->setDirOnlyMode(true);
@@ -99,14 +105,12 @@ KrFileTreeView::KrFileTreeView(QWidget *parent)
     header()->resizeSection(KDirModel::Name, fontMetrics.horizontalAdvance("WWWWWWWWWWWWWWW"));
 
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), &QHeaderView::customContextMenuRequested, this,
-            &KrFileTreeView::showHeaderContextMenu);
+    connect(header(), &QHeaderView::customContextMenuRequested, this, &KrFileTreeView::showHeaderContextMenu);
 
     setBriefMode(true);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, &KrFileTreeView::customContextMenuRequested, this,
-            &KrFileTreeView::slotCustomContextMenuRequested);
+    connect(this, &KrFileTreeView::customContextMenuRequested, this, &KrFileTreeView::slotCustomContextMenuRequested);
 
     setTree(mStartTreeFromCurrent, mStartTreeFromPlace);
 }
@@ -119,8 +123,7 @@ void KrFileTreeView::setCurrentUrl(const QUrl &url)
     } else {
         if (mStartTreeFromPlace) {
             const QModelIndex index = mFilePlacesModel->closestItem(url); // magic here
-            const QUrl rootBase = index.isValid() ? mFilePlacesModel->url(index) :
-                                                    QUrl::fromLocalFile(QDir::root().path());
+            const QUrl rootBase = index.isValid() ? mFilePlacesModel->url(index) : QUrl::fromLocalFile(QDir::root().path());
             setTreeRoot(rootBase);
         }
         if (isVisible(url)) {
@@ -200,8 +203,7 @@ void KrFileTreeView::showHeaderContextMenu()
     QAction *startFromPlaceAction = popup.addAction(i18n("Start From Place"));
     startFromPlaceAction->setCheckable(true);
     startFromPlaceAction->setChecked(mStartTreeFromPlace);
-    startFromPlaceAction->setToolTip(
-        i18n("Set root of the tree to closest folder listed in 'Places'"));
+    startFromPlaceAction->setToolTip(i18n("Set root of the tree to closest folder listed in 'Places'"));
     startFromPlaceAction->setActionGroup(rootActionGroup);
 
     QAction *triggeredAction = popup.exec(QCursor::pos());
@@ -225,24 +227,28 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
     const KFileItem fileItem = mSourceModel->itemForIndex(mProxyModel->mapToSource(index));
     const KFileItemListProperties capabilities(KFileItemList() << fileItem);
 
-    auto* popup = new QMenu(this);
+    auto *popup = new QMenu(this);
 
     // TODO nice to have: "open with"
 
     // cut/copy/paste
-    QAction* cutAction = new QAction(Icon(QStringLiteral("edit-cut")), i18nc("@action:inmenu", "Cut"), this);
+    QAction *cutAction = new QAction(Icon(QStringLiteral("edit-cut")), i18nc("@action:inmenu", "Cut"), this);
     cutAction->setEnabled(capabilities.supportsMoving());
-    connect(cutAction, &QAction::triggered, this, [=]() { copyToClipBoard(fileItem, true); });
+    connect(cutAction, &QAction::triggered, this, [=]() {
+        copyToClipBoard(fileItem, true);
+    });
     popup->addAction(cutAction);
 
-    QAction* copyAction = new QAction(Icon(QStringLiteral("edit-copy")), i18nc("@action:inmenu", "Copy"), this);
-    connect(copyAction, &QAction::triggered, this, [=]() { copyToClipBoard(fileItem, false); });
+    QAction *copyAction = new QAction(Icon(QStringLiteral("edit-copy")), i18nc("@action:inmenu", "Copy"), this);
+    connect(copyAction, &QAction::triggered, this, [=]() {
+        copyToClipBoard(fileItem, false);
+    });
     popup->addAction(copyAction);
 
     const QMimeData *mimeData = QApplication::clipboard()->mimeData();
     bool canPaste;
     const QString text = KIO::pasteActionText(mimeData, &canPaste, fileItem);
-    QAction* pasteAction = new QAction(Icon(QStringLiteral("edit-paste")), text, this);
+    QAction *pasteAction = new QAction(Icon(QStringLiteral("edit-paste")), text, this);
     connect(pasteAction, &QAction::triggered, this, [=]() {
         KIO::PasteJob *job = KIO::paste(QApplication::clipboard()->mimeData(), fileItem.url());
         KJobWidgets::setWindow(job, this);
@@ -256,8 +262,7 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
 
     // trash
     if (KConfigGroup(krConfig, "General").readEntry("Move To Trash", _MoveToTrash)) {
-        QAction* moveToTrashAction = new QAction(Icon(QStringLiteral("user-trash")),
-                                                i18nc("@action:inmenu", "Move to Trash"), this);
+        QAction *moveToTrashAction = new QAction(Icon(QStringLiteral("user-trash")), i18nc("@action:inmenu", "Move to Trash"), this);
         const bool enableMoveToTrash = capabilities.isLocal() && capabilities.supportsMoving();
         moveToTrashAction->setEnabled(enableMoveToTrash);
         connect(moveToTrashAction, &QAction::triggered, this, [=]() {
@@ -267,8 +272,7 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
     }
 
     // delete
-    QAction *deleteAction = new QAction(Icon(QStringLiteral("edit-delete")),
-                                        i18nc("@action:inmenu", "Delete"), this);
+    QAction *deleteAction = new QAction(Icon(QStringLiteral("edit-delete")), i18nc("@action:inmenu", "Delete"), this);
     deleteAction->setEnabled(capabilities.supportsDeleting());
     connect(deleteAction, &QAction::triggered, this, [=]() {
         deleteFile(fileItem, false);
@@ -279,10 +283,10 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
 
     // properties
     if (!fileItem.isNull()) {
-        QAction* propertiesAction = new QAction(i18nc("@action:inmenu", "Properties"), this);
+        QAction *propertiesAction = new QAction(i18nc("@action:inmenu", "Properties"), this);
         propertiesAction->setIcon(Icon(QStringLiteral("document-properties")));
         connect(propertiesAction, &QAction::triggered, this, [=]() {
-            KPropertiesDialog* dialog = new KPropertiesDialog(fileItem.url(), this);
+            KPropertiesDialog *dialog = new KPropertiesDialog(fileItem.url(), this);
             dialog->setAttribute(Qt::WA_DeleteOnClose);
             dialog->show();
         });
@@ -298,7 +302,7 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
 
 void KrFileTreeView::copyToClipBoard(const KFileItem &fileItem, bool cut) const
 {
-    auto* mimeData = new QMimeData();
+    auto *mimeData = new QMimeData();
 
     QList<QUrl> kdeUrls;
     kdeUrls.append(fileItem.url());
@@ -314,8 +318,7 @@ void KrFileTreeView::copyToClipBoard(const KFileItem &fileItem, bool cut) const
 
 void KrFileTreeView::deleteFile(const KFileItem &fileItem, bool moveToTrash) const
 {
-    const QList<QUrl> confirmedFiles =
-        ListPanelFunc::confirmDeletion(QList<QUrl>() << fileItem.url(), moveToTrash, false, true);
+    const QList<QUrl> confirmedFiles = ListPanelFunc::confirmDeletion(QList<QUrl>() << fileItem.url(), moveToTrash, false, true);
     if (confirmedFiles.isEmpty())
         return;
 
@@ -329,7 +332,7 @@ bool KrFileTreeView::briefMode() const
 
 void KrFileTreeView::setBriefMode(bool brief)
 {
-    for (int i=1; i < mProxyModel->columnCount(); i++) { // show only first column
+    for (int i = 1; i < mProxyModel->columnCount(); i++) { // show only first column
         setColumnHidden(i, brief);
     }
 }
@@ -368,8 +371,7 @@ void KrFileTreeView::restoreSettings(const KConfigGroup &cfg)
     const KConfigGroup group = KConfigGroup(&cfg, "TreeView");
     setBriefMode(group.readEntry("BriefMode", true));
     mSourceModel->dirLister()->setShowingDotFiles(group.readEntry("ShowHiddenFolders", false));
-    setTree(group.readEntry("StartFromCurrent", false),
-                group.readEntry("StartFromPlace", false));
+    setTree(group.readEntry("StartFromCurrent", false), group.readEntry("StartFromPlace", false));
 }
 
 bool KrFileTreeView::isVisible(const QUrl &url)

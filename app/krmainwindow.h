@@ -28,7 +28,9 @@ class ViewActions;
 class KrMainWindow
 {
 public:
-    virtual ~KrMainWindow() {}
+    virtual ~KrMainWindow()
+    {
+    }
     virtual QWidget *widget() = 0;
     virtual KrView *activeView() = 0;
     virtual ViewActions *viewActions() = 0;
@@ -40,15 +42,18 @@ public:
     virtual KrActions *krActions() = 0;
     virtual ListPanelActions *listPanelActions() = 0;
     virtual TabActions *tabActions() = 0;
-    virtual void plugActionList(const char *name, QList<QAction*> &list) = 0;
+    virtual void plugActionList(const char *name, QList<QAction *> &list) = 0;
 
-    KrPanel *activePanel() {
+    KrPanel *activePanel()
+    {
         return activeManager()->currentPanel();
     }
-    KrPanel *leftPanel() {
+    KrPanel *leftPanel()
+    {
         return leftManager()->currentPanel();
     }
-    KrPanel *rightPanel() {
+    KrPanel *rightPanel()
+    {
         return rightManager()->currentPanel();
     }
 };

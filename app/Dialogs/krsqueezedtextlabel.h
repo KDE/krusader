@@ -10,8 +10,8 @@
 #define KRSQUEEZEDTEXTLABEL_H
 
 // QtGui
-#include <QMouseEvent>
 #include <QDragEnterEvent>
+#include <QMouseEvent>
 #include <QResizeEvent>
 
 #include <KWidgetsAddons/KSqueezedTextLabel>
@@ -41,11 +41,12 @@ signals:
     void clicked(QMouseEvent *); /**< emitted when someone clicks on the label */
 
 protected:
-    void resizeEvent(QResizeEvent *) override {
+    void resizeEvent(QResizeEvent *) override
+    {
         squeezeTextToLabel(_index, _length);
     }
     void mousePressEvent(QMouseEvent *e) override;
-    void paintEvent(QPaintEvent * e) override;
+    void paintEvent(QPaintEvent *e) override;
     void squeezeTextToLabel(int index = -1, int length = -1);
 
     QString fullText;
