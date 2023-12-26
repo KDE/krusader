@@ -4,30 +4,31 @@
 # Franklin Weng <franklin@goodhorse.idv.tw>, 2010, 2011.
 # Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2009.
 # pan93412 <pan93412@gmail.com>, 2019.
+# SPDX-FileCopyrightText: 2023 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:41+0000\n"
-"PO-Revision-Date: 2019-05-14 22:35+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
-"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"PO-Revision-Date: 2023-12-25 18:52+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 19.04.1\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Frank Weng (a.k.a. Franklin)"
+msgstr "Frank Weng (a.k.a. Franklin), Kisaragi Hiu"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "franklin@goodhorse.idv.tw"
+msgstr "franklin@goodhorse.idv.tw, mail@kisaragi-hiu.com"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -37,29 +38,27 @@ msgstr ""
 #: app/ActionMan/actionproperty.cpp:317
 #, kde-format
 msgid "New protocol"
-msgstr ""
+msgstr "新協定"
 
 #: app/ActionMan/actionproperty.cpp:317
 #, kde-format
 msgid "Set a protocol:"
-msgstr ""
+msgstr "設定協定："
 
 #: app/ActionMan/actionproperty.cpp:334
-#, fuzzy, kde-format
-#| msgid "Protocol"
+#, kde-format
 msgid "Edit Protocol"
-msgstr "協定"
+msgstr "編輯協定"
 
 #: app/ActionMan/actionproperty.cpp:334
 #, kde-format
 msgid "Set another protocol:"
-msgstr ""
+msgstr "設定另一個協定："
 
 #: app/ActionMan/actionproperty.cpp:368
-#, fuzzy, kde-format
-#| msgid "Path"
+#, kde-format
 msgid "Edit Path"
-msgstr "路徑"
+msgstr "編輯路徑"
 
 #: app/ActionMan/actionproperty.cpp:368
 #, kde-format
@@ -79,7 +78,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.cpp:409
 #, kde-format
 msgid "Edit MIME Type"
-msgstr ""
+msgstr "編輯 MIME 類型"
 
 #: app/ActionMan/actionproperty.cpp:409
 #, kde-format
@@ -99,9 +98,9 @@ msgid "Set a file name:"
 msgstr "檔案名稱"
 
 #: app/ActionMan/actionproperty.cpp:450
-#, fuzzy, kde-format
+#, kde-format
 msgid "Edit File Name"
-msgstr "編輯檔案(&F)"
+msgstr "編輯檔案名稱"
 
 #: app/ActionMan/actionproperty.cpp:450
 #, kde-format
@@ -178,10 +177,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioLocal)
 #: app/ActionMan/actionproperty.ui:86
-#, fuzzy, kde-format
-#| msgid "Local files only (no URLs)"
+#, kde-format
 msgid "&Local files only (no URLs)"
-msgstr "只允許本地檔案（不能輸入網址）"
+msgstr "只允許本地檔案（不能輸入網址）(&L)"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioUrl)
 #: app/ActionMan/actionproperty.ui:96
@@ -390,10 +388,9 @@ msgstr "分離標準錯誤（stderr）"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioNormal)
 #: app/ActionMan/actionproperty.ui:443
-#, fuzzy, kde-format
-#| msgid "Normal"
+#, kde-format
 msgid "&Normal"
-msgstr "正常"
+msgstr "正常(&N)"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioTerminal)
 #: app/ActionMan/actionproperty.ui:453
@@ -575,7 +572,7 @@ msgstr ""
 #: app/ActionMan/addplaceholderpopup.cpp:57
 #, kde-format
 msgid "Choose executable..."
-msgstr ""
+msgstr "選擇執行檔..."
 
 #: app/ActionMan/addplaceholderpopup.cpp:143
 #, kde-format
@@ -928,7 +925,7 @@ msgstr "開啟"
 #: app/BookMan/krbookmarkhandler.cpp:837 app/GUI/mediabutton.cpp:330
 #, kde-format
 msgid "Open in a new tab"
-msgstr ""
+msgstr "在新分頁開啟"
 
 #: app/BookMan/krbookmarkhandler.cpp:841 app/Dialogs/krmaskchoice.cpp:82
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:728
@@ -1318,10 +1315,9 @@ msgid "&Advanced >>"
 msgstr "進階(&A) >>"
 
 #: app/Dialogs/packguibase.cpp:327
-#, fuzzy, kde-format
-#| msgid "&Advanced"
+#, kde-format
 msgid "&Advanced <<"
-msgstr "進階(&A)"
+msgstr "進階(&A) <<"
 
 #: app/Dialogs/packguibase.cpp:346
 #, kde-format
@@ -1376,10 +1372,9 @@ msgid "The saved 'Popular URLs' are invalid. The list will be cleared."
 msgstr ""
 
 #: app/Dialogs/popularurls.cpp:284
-#, fuzzy, kde-format
-#| msgid "Search:"
+#, kde-format
 msgid "&Search:"
-msgstr "搜尋："
+msgstr "搜尋(&S)："
 
 #: app/DiskUsage/diskusage.cpp:96
 #, kde-format
@@ -1758,18 +1753,17 @@ msgstr "<qt><i>%1</i> 將會<b>永久</b>刪除。</qt>"
 #: app/FileSystem/defaultfilesystem.cpp:142
 #, kde-format
 msgid "Space information disabled"
-msgstr ""
+msgstr "空間資訊已停用"
 
 #: app/FileSystem/defaultfilesystem.cpp:149
 #, kde-format
 msgid "No space information on non-local filesystems"
-msgstr ""
+msgstr "非本地檔案系統沒有空間資訊"
 
 #: app/FileSystem/defaultfilesystem.cpp:157
-#, fuzzy, kde-format
-#| msgid "Show space information"
+#, kde-format
 msgid "Space information unavailable"
-msgstr "顯示空間資訊"
+msgstr "空間資訊不可用"
 
 #: app/FileSystem/defaultfilesystem.cpp:174
 #, kde-format
@@ -1777,6 +1771,8 @@ msgid ""
 "Protocol not supported by Krusader:\n"
 "%1"
 msgstr ""
+"協定不被 Krusader 支援：\n"
+"%1"
 
 #: app/FileSystem/defaultfilesystem.cpp:315
 #, fuzzy, kde-format
@@ -1968,7 +1964,7 @@ msgstr ""
 #: app/Filter/advancedfilter.cpp:240
 #, kde-format
 msgid "Belongs to gr&oup"
-msgstr ""
+msgstr "屬於群組(&O)"
 
 #: app/Filter/advancedfilter.cpp:251
 #, kde-format
@@ -2192,9 +2188,9 @@ msgid ""
 msgstr ""
 
 #: app/Filter/generalfilter.cpp:142
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Of type:"
-msgstr "型態為 <i>%1</i>"
+msgstr "型態為(&O)："
 
 #: app/Filter/generalfilter.cpp:152 app/Filter/generalfilter.cpp:579
 #, kde-format
@@ -2218,8 +2214,7 @@ msgid "Searc&h in"
 msgstr "搜尋於(&S)："
 
 #: app/Filter/generalfilter.cpp:224
-#, fuzzy, kde-format
-#| msgid "&Don't search in"
+#, kde-format
 msgid "&Do not search in"
 msgstr "不要搜尋於(&D)"
 
@@ -2442,7 +2437,7 @@ msgstr ""
 #: app/GUI/mediabutton.cpp:198
 #, kde-format
 msgid "Audio CD/DVD-ROM"
-msgstr ""
+msgstr "音效 CD/DVD-ROM"
 
 #: app/GUI/mediabutton.cpp:200
 #, kde-format
@@ -2516,7 +2511,7 @@ msgstr ""
 #: app/GUI/terminaldock.cpp:89
 #, kde-format
 msgid "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
-msgstr ""
+msgstr "<b>無法建立內嵌終端機。</b><br/>回報的錯誤是：%1"
 
 #: app/GUI/terminaldock.cpp:100
 #, kde-format
@@ -2525,6 +2520,7 @@ msgid ""
 "<b>Cannot create embedded terminal.</b><br>You can fix this by installing "
 "Konsole:<br/>%1"
 msgstr ""
+"<b>無法建立內嵌終端機。</b><br>您可以安裝 Konsole 來解決這個問題：<br/>%1"
 
 #: app/JobMan/jobman.cpp:54
 #, fuzzy, kde-format
@@ -2784,10 +2780,9 @@ msgid "Archives handling"
 msgstr "封存"
 
 #: app/Konfigurator/kgarchives.cpp:65
-#, fuzzy, kde-format
-#| msgid "Archives"
+#, kde-format
 msgid "Browse Archives As Folders"
-msgstr "封存"
+msgstr "將封存檔作為資料夾瀏覽"
 
 #: app/Konfigurator/kgarchives.cpp:65
 #, kde-format
@@ -2884,7 +2879,7 @@ msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:74 app/Konfigurator/kgcolors.cpp:246
 #: app/Konfigurator/konfigurator.cpp:118
-#, fuzzy, kde-format
+#, kde-format
 msgid "Colors"
 msgstr "顏色"
 
@@ -3286,7 +3281,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:64
 #, kde-format
 msgid "Viewer/Editor"
-msgstr ""
+msgstr "檢視器/編輯器"
 
 #: app/Konfigurator/kggeneral.cpp:70
 #, kde-format
@@ -3392,9 +3387,9 @@ msgid "Editor"
 msgstr "編輯器"
 
 #: app/Konfigurator/kggeneral.cpp:134
-#, fuzzy, kde-format
+#, kde-format
 msgid "Editor:"
-msgstr "編輯器"
+msgstr "編輯器："
 
 #: app/Konfigurator/kggeneral.cpp:140
 #, kde-format
@@ -3549,7 +3544,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
 msgid "Edit Mode by default"
-msgstr ""
+msgstr "預設使用編輯模式"
 
 #: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
@@ -3572,9 +3567,9 @@ msgid "Operation"
 msgstr "操作"
 
 #: app/Konfigurator/kgpanel.cpp:100
-#, fuzzy, kde-format
+#, kde-format
 msgid "Autoselect folders"
-msgstr "選擇檔案..."
+msgstr "自動選擇資料夾"
 
 #: app/Konfigurator/kgpanel.cpp:100
 #, kde-format
@@ -3620,14 +3615,14 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:113
-#, fuzzy, kde-format
+#, kde-format
 msgid "Tabs"
 msgstr "分頁"
 
 #: app/Konfigurator/kgpanel.cpp:118
 #, kde-format
 msgid "Use full path tab names"
-msgstr ""
+msgstr "分頁名稱使用完整路徑"
 
 #: app/Konfigurator/kgpanel.cpp:118
 #, kde-format
@@ -3637,14 +3632,14 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, fuzzy, kde-format
+#, kde-format
 msgid "Show close tab buttons"
-msgstr "顯示工具列"
+msgstr "顯示關閉分頁按鍵"
 
 #: app/Konfigurator/kgpanel.cpp:119
-#, fuzzy, kde-format
+#, kde-format
 msgid "Show close tab buttons."
-msgstr "顯示工具列"
+msgstr "顯示關閉分頁按鍵。"
 
 #: app/Konfigurator/kgpanel.cpp:120
 #, kde-format
@@ -3659,12 +3654,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:121
 #, kde-format
 msgid "Show new tab button"
-msgstr ""
+msgstr "顯示新分頁按鈕"
 
 #: app/Konfigurator/kgpanel.cpp:121
 #, kde-format
 msgid "Show new tab button."
-msgstr ""
+msgstr "顯示新分頁按鈕。"
 
 #: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
@@ -3684,7 +3679,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:123
 #, kde-format
 msgid "Show the tab bar with only one tab."
-msgstr ""
+msgstr "只有一個分頁時也還是顯示分頁列。"
 
 #: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
@@ -3735,8 +3730,7 @@ msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:154
-#, fuzzy, kde-format
-#| msgid "Text position:"
+#, kde-format
 msgid "Tab Bar position:"
 msgstr "分頁列位置："
 
@@ -3767,7 +3761,7 @@ msgid "Open search bar and start searching by typing in panel."
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:179 app/KViewer/lister.cpp:1291
-#, fuzzy, kde-format
+#, kde-format
 msgid "Case sensitive"
 msgstr "區分大小寫"
 
@@ -3834,10 +3828,9 @@ msgid "Set the default mode on first usage"
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:221
-#, fuzzy, kde-format
-#| msgid "Bookmarks"
+#, kde-format
 msgid "Bookmark Search"
-msgstr "書籤"
+msgstr "書籤搜尋"
 
 #: app/Konfigurator/kgpanel.cpp:226
 #, kde-format
@@ -4104,7 +4097,7 @@ msgstr "離開 Krusader"
 #: app/Konfigurator/kgpanel.cpp:462
 #, kde-format
 msgid "Case sensitive sorting"
-msgstr ""
+msgstr "排序區分大小寫"
 
 #: app/Konfigurator/kgpanel.cpp:463
 #, kde-format
@@ -4539,7 +4532,7 @@ msgstr "總共大小："
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Always"
-msgstr ""
+msgstr "總是"
 
 #: app/Konfigurator/kgpanel.cpp:730
 #, kde-format
@@ -4576,27 +4569,27 @@ msgstr "連結"
 #: app/Konfigurator/kgprotocols.cpp:39
 #, kde-format
 msgid "Defined Links"
-msgstr ""
+msgstr "已定義的連結"
 
 #: app/Konfigurator/kgprotocols.cpp:56
 #, kde-format
 msgid "Add protocol to the link list."
-msgstr ""
+msgstr "新增協定到連結列表。"
 
 #: app/Konfigurator/kgprotocols.cpp:61
 #, kde-format
 msgid "Remove protocol from the link list."
-msgstr ""
+msgstr "從連結列表移除協定。"
 
 #: app/Konfigurator/kgprotocols.cpp:73
 #, kde-format
 msgid "Add MIME to the selected protocol on the link list."
-msgstr ""
+msgstr "新增 MIME 到連結列表中選取的協定。"
 
 #: app/Konfigurator/kgprotocols.cpp:78
 #, kde-format
 msgid "Remove MIME from the link list."
-msgstr ""
+msgstr "從連結列表中移除 MIME。"
 
 #: app/Konfigurator/kgprotocols.cpp:86 app/Konfigurator/konfigurator.cpp:133
 #, kde-format
@@ -4606,7 +4599,7 @@ msgstr "即時通訊協定"
 #: app/Konfigurator/kgprotocols.cpp:97
 #, kde-format
 msgid "MIMEs"
-msgstr ""
+msgstr "MIME"
 
 #: app/Konfigurator/kgstartup.cpp:33
 #, kde-format
@@ -4866,7 +4859,7 @@ msgstr ""
 #: app/Konfigurator/konfigurator.cpp:133
 #, kde-format
 msgid "Link MIMEs to protocols"
-msgstr ""
+msgstr "連結 MIME 到協定"
 
 #: app/Konfigurator/konfigurator.cpp:171
 #, kde-format
@@ -4910,7 +4903,7 @@ msgid "Magenta"
 msgstr "品紅色"
 
 #: app/Konfigurator/konfiguratoritems.cpp:574
-#, fuzzy, kde-format
+#, kde-format
 msgid "Yellow"
 msgstr "黃"
 
@@ -4965,7 +4958,7 @@ msgid "Dark Gray"
 msgstr "暗灰色"
 
 #: app/Konfigurator/konfiguratoritems.cpp:585
-#, fuzzy, kde-format
+#, kde-format
 msgid "Black"
 msgstr "黑"
 
@@ -5003,9 +4996,9 @@ msgstr "備註"
 #: app/Konfigurator/krresulttable.cpp:200
 #: app/Konfigurator/krresulttable.cpp:218
 #: app/Konfigurator/krresulttable.cpp:358
-#, fuzzy, kde-format
+#, kde-format
 msgid "enabled"
-msgstr "開啟"
+msgstr "已啟用"
 
 #: app/Konfigurator/krresulttable.cpp:205
 #: app/Konfigurator/krresulttable.cpp:223
@@ -5020,9 +5013,9 @@ msgid "diff utility"
 msgstr ""
 
 #: app/Konfigurator/krresulttable.cpp:280
-#, fuzzy, kde-format
+#, kde-format
 msgid "email client"
-msgstr "電子郵件用戶端程式"
+msgstr "電子郵件用戶端"
 
 #: app/Konfigurator/krresulttable.cpp:281
 #, kde-format
@@ -5035,7 +5028,7 @@ msgid "checksum utility"
 msgstr ""
 
 #: app/Konfigurator/krresulttable.cpp:285
-#, fuzzy, kde-format
+#, kde-format
 msgid "Tool"
 msgstr "工具"
 
@@ -5249,7 +5242,7 @@ msgstr "選擇遠端字元集"
 #: app/kractions.cpp:274
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr ""
+msgstr "最近關閉的分頁"
 
 #: app/kractions.cpp:278
 #, kde-format
@@ -5554,7 +5547,7 @@ msgstr ""
 #: app/KViewer/krviewer.cpp:86
 #, kde-format
 msgid "&Generic Viewer"
-msgstr ""
+msgstr "通用檢視器(&G)"
 
 #: app/KViewer/krviewer.cpp:87
 #, kde-format
@@ -5564,7 +5557,7 @@ msgstr ""
 #: app/KViewer/krviewer.cpp:88
 #, kde-format
 msgid "&Hex Viewer"
-msgstr ""
+msgstr "十六進位碼檢視器(&H)"
 
 #: app/KViewer/krviewer.cpp:89
 #, kde-format
@@ -5572,10 +5565,9 @@ msgid "&Lister"
 msgstr ""
 
 #: app/KViewer/krviewer.cpp:92
-#, fuzzy, kde-format
-#| msgid "Text position:"
+#, kde-format
 msgid "Text &Editor"
-msgstr "文字編輯器"
+msgstr "文字編輯器(&E)"
 
 #: app/KViewer/krviewer.cpp:116
 #, kde-format
@@ -5583,19 +5575,19 @@ msgid "&Detach Tab"
 msgstr "分離分頁(&D)"
 
 #: app/KViewer/krviewer.cpp:128
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Close Current Tab"
-msgstr "關閉目前的分頁(&L)"
+msgstr "關閉目前的分頁(&C)"
 
 #: app/KViewer/krviewer.cpp:134
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Next Tab"
-msgstr "下一個分頁"
+msgstr "下一個分頁(&N)"
 
 #: app/KViewer/krviewer.cpp:140
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Previous Tab"
-msgstr "前一個分頁"
+msgstr "上一個分頁(&P)"
 
 #: app/KViewer/krviewer.cpp:218
 #, kde-format
@@ -5616,23 +5608,22 @@ msgid "Can not open \"%1\""
 msgstr ""
 
 #: app/KViewer/krviewer.cpp:634
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
-msgstr "編輯"
+msgstr "%1 (編輯中)"
 
 #: app/KViewer/krviewer.cpp:635
-#, fuzzy, kde-format
-#| msgid "%1 (Link)"
+#, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
-msgstr "%1 (連結)"
+msgstr "%1 (檢視中)"
 
 #: app/KViewer/krviewer.cpp:642
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
-msgstr "編輯"
+msgstr "編輯中：%1"
 
 #: app/KViewer/krviewer.cpp:643
 #, fuzzy, kde-format
@@ -5877,7 +5868,7 @@ msgstr ""
 #: app/Locate/locate.cpp:388
 #, kde-format
 msgid "Edit (F4)"
-msgstr ""
+msgstr "編輯 (F4)"
 
 #: app/Locate/locate.cpp:389
 #, kde-format
@@ -5960,6 +5951,8 @@ msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
+"© 2000-2003 Shie Erlich, Rafi Yanai\n"
+"© 2004-2022 Krusader Krew"
 
 #: app/main.cpp:114
 #, kde-format
@@ -5974,7 +5967,7 @@ msgid "Davide Gianforte"
 msgstr ""
 
 #: app/main.cpp:120 app/main.cpp:121 app/main.cpp:122
-#, fuzzy, kde-format
+#, kde-format
 msgid "Developer"
 msgstr "開發者"
 
@@ -6006,7 +5999,7 @@ msgstr ""
 #: app/main.cpp:124 app/main.cpp:125
 #, kde-format
 msgid "Author (retired)"
-msgstr ""
+msgstr "作者（已退休）"
 
 #: app/main.cpp:125
 #, kde-format
@@ -6021,9 +6014,9 @@ msgstr ""
 #: app/main.cpp:126 app/main.cpp:127 app/main.cpp:128 app/main.cpp:129
 #: app/main.cpp:130 app/main.cpp:131 app/main.cpp:132 app/main.cpp:133
 #: app/main.cpp:134
-#, fuzzy, kde-format
+#, kde-format
 msgid "Developer (retired)"
-msgstr "開發者"
+msgstr "開發者（已退休）"
 
 #: app/main.cpp:127
 #, kde-format
@@ -6244,7 +6237,7 @@ msgstr "Cristi Dumitrescu"
 #: app/main.cpp:153
 #, kde-format
 msgid "Aurelien Gateau"
-msgstr ""
+msgstr "Aurelien Gateau"
 
 #: app/main.cpp:153
 #, kde-format
@@ -6730,7 +6723,7 @@ msgstr "格式"
 #: app/Panel/krcalcspacedialog.cpp:29
 #, kde-format
 msgid "Calculate Occupied Space"
-msgstr ""
+msgstr "計算使用空間"
 
 #: app/Panel/krcalcspacedialog.cpp:107
 #, kde-format
@@ -6845,11 +6838,10 @@ msgid "Delete"
 msgstr "刪除"
 
 #: app/Panel/krfiletreeview.cpp:282
-#, fuzzy, kde-format
-#| msgid "&Properties..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Properties"
-msgstr "屬性(&P)..."
+msgstr "屬性"
 
 #: app/Panel/krlayoutfactory.cpp:45
 #, kde-format
@@ -6858,15 +6850,14 @@ msgid "Default"
 msgstr "預設"
 
 #: app/Panel/krlayoutfactory.cpp:47
-#, fuzzy, kde-format
-#| msgid "Compare"
+#, kde-format
 msgid "Compact"
 msgstr "簡潔模式"
 
 #: app/Panel/krlayoutfactory.cpp:49
-#, fuzzy, kde-format
+#, kde-format
 msgid "Classic"
-msgstr "傳統"
+msgstr "經典"
 
 #: app/Panel/krlayoutfactory.cpp:51
 #, kde-format
@@ -6939,7 +6930,7 @@ msgstr ""
 #: app/Panel/listpanel.cpp:229
 #, kde-format
 msgid "Cancel folder space calculation"
-msgstr ""
+msgstr "取消資料夾空間計算"
 
 #: app/Panel/listpanel.cpp:249
 #, kde-format
@@ -6988,19 +6979,19 @@ msgid "loading previews: %p%"
 msgstr "載入 %1 個預覽"
 
 #: app/Panel/listpanel.cpp:1050
-#, fuzzy, kde-format
+#, kde-format
 msgid ">> Reading..."
-msgstr "Reading"
+msgstr ">> 讀取中..."
 
 #: app/Panel/listpanel.cpp:1076
-#, fuzzy, kde-format
+#, kde-format
 msgid ">> Reading: %1 % complete..."
-msgstr "Reading"
+msgstr ">> 讀取中：%1 % 已完成..."
 
 #: app/Panel/listpanel.cpp:1082
-#, fuzzy, kde-format
+#, kde-format
 msgid ">> Reading: %1"
-msgstr "Reading"
+msgstr ">> 讀取中：%1"
 
 #: app/Panel/listpanel.cpp:1121
 #, fuzzy, kde-format
@@ -7028,14 +7019,14 @@ msgid "View File"
 msgstr "檢視檔案"
 
 #: app/Panel/listpanelactions.cpp:65 app/Search/krsearchdialog.cpp:194
-#, fuzzy, kde-format
+#, kde-format
 msgid "Edit File"
-msgstr "編輯檔案(&F)"
+msgstr "編輯檔案"
 
 #: app/Panel/listpanelactions.cpp:66
 #, kde-format
 msgid "&New Text File..."
-msgstr ""
+msgstr "新增文字檔案(&)..."
 
 #: app/Panel/listpanelactions.cpp:67
 #, kde-format
@@ -7084,15 +7075,14 @@ msgid "&Properties..."
 msgstr "屬性(&P)..."
 
 #: app/Panel/listpanelactions.cpp:79
-#, fuzzy, kde-format
-#| msgid "&Compare Files"
+#, kde-format
 msgid "&Compare Folders"
-msgstr "比較檔案(&C)"
+msgstr "比較資料夾(&C)"
 
 #: app/Panel/listpanelactions.cpp:80
 #, kde-format
 msgid "Calculate &Occupied Space"
-msgstr ""
+msgstr "計算使用空間(&O)"
 
 #: app/Panel/listpanelactions.cpp:81
 #, kde-format
@@ -7305,20 +7295,19 @@ msgid "Run"
 msgstr "執行"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, fuzzy, kde-format
+#, kde-format
 msgid "Open in New Tabs"
 msgstr "在新分頁開啟"
 
 #: app/Panel/panelcontextmenu.cpp:136
-#, fuzzy, kde-format
+#, kde-format
 msgid "Open in New Tab"
 msgstr "在新分頁開啟"
 
 #: app/Panel/panelcontextmenu.cpp:148
-#, fuzzy, kde-format
-#| msgid "Archives"
+#, kde-format
 msgid "Browse Archive"
-msgstr "封存"
+msgstr "瀏覽封存"
 
 #: app/Panel/panelcontextmenu.cpp:198
 #, kde-format
@@ -7373,7 +7362,7 @@ msgstr "新增"
 #: app/Panel/panelfunc.cpp:371
 #, kde-format
 msgid "You can edit links only on local file systems"
-msgstr ""
+msgstr "您只能在本地檔案系統上編輯連結"
 
 #: app/Panel/panelfunc.cpp:382
 #, kde-format
@@ -7403,7 +7392,7 @@ msgstr ""
 #: app/Panel/panelfunc.cpp:409
 #, kde-format
 msgid "You can create links only on local file systems"
-msgstr ""
+msgstr "您只能在本地檔案系統上建立連結"
 
 #: app/Panel/panelfunc.cpp:418
 #, kde-format
@@ -7443,7 +7432,7 @@ msgstr ""
 #: app/Panel/panelfunc.cpp:501 app/Panel/panelfunc.cpp:578
 #, kde-format
 msgid "You cannot edit a folder"
-msgstr ""
+msgstr "您不能編輯資料夾"
 
 #: app/Panel/panelfunc.cpp:506
 #, kde-format
@@ -7453,7 +7442,7 @@ msgstr ""
 #: app/Panel/panelfunc.cpp:520
 #, kde-format
 msgid "Enter the filename to edit:"
-msgstr ""
+msgstr "輸入要編輯的檔案名稱："
 
 #: app/Panel/panelfunc.cpp:632
 #, fuzzy, kde-format
@@ -7521,7 +7510,7 @@ msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr ""
 
 #: app/Panel/panelfunc.cpp:903
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Skip"
 msgstr "略過(&S)"
 
@@ -7532,9 +7521,9 @@ msgid "&Trash All"
 msgstr "丟到垃圾桶(&T)"
 
 #: app/Panel/panelfunc.cpp:904
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Delete All"
-msgstr "全部刪除"
+msgstr "全部刪除(&D)"
 
 #: app/Panel/panelfunc.cpp:942
 #, kde-format
@@ -7552,10 +7541,9 @@ msgid "Could not start %1"
 msgstr ""
 
 #: app/Panel/panelfunc.cpp:992
-#, fuzzy, kde-format
-#| msgid "Cannot open %1!"
+#, kde-format
 msgid "%1 cannot open %2"
-msgstr "無法開啟 %1。"
+msgstr "%1 無法開啟 %2"
 
 #: app/Panel/panelfunc.cpp:1066
 #, fuzzy, kde-format
@@ -7593,7 +7581,7 @@ msgstr[0] ""
 
 #: app/Panel/PanelView/krinterbriefview.cpp:238
 #: app/Panel/PanelView/krinterdetailedview.cpp:289
-#, fuzzy, kde-format
+#, kde-format
 msgid "Columns"
 msgstr "欄位"
 
@@ -7620,10 +7608,9 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr ""
 
 #: app/Panel/PanelView/krview.cpp:1073
-#, fuzzy, kde-format
-#| msgid "Selection Mode"
+#, kde-format
 msgid "Apply filter to folder&s"
-msgstr "選擇模式"
+msgstr "套用過濾器到資料夾(&S)"
 
 #: app/Panel/PanelView/krview.cpp:1078
 #, kde-format
@@ -7631,10 +7618,9 @@ msgid "Filter Files"
 msgstr "過濾檔案"
 
 #: app/Panel/PanelView/krview.cpp:1104
-#, fuzzy, kde-format
-#| msgid "Selection Mode"
+#, kde-format
 msgid "Apply &selection to folders"
-msgstr "選擇模式"
+msgstr "套用選取到資料夾(&S)"
 
 #: app/Panel/PanelView/krview.cpp:1105
 #, fuzzy, kde-format
@@ -7642,14 +7628,14 @@ msgid "Select Files"
 msgstr "選擇檔案..."
 
 #: app/Panel/PanelView/krviewfactory.cpp:54
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Detailed View"
-msgstr "詳細檢視"
+msgstr "詳細檢視(&D)"
 
 #: app/Panel/PanelView/krviewfactory.cpp:57
 #, kde-format
 msgid "&Brief View"
-msgstr ""
+msgstr "簡要檢視(&B)"
 
 #: app/Panel/PanelView/krviewitem.cpp:62
 #, kde-format
@@ -7794,11 +7780,10 @@ msgid "Owner: %1"
 msgstr "擁有者："
 
 #: app/Panel/PanelView/listmodel.cpp:493
-#, fuzzy, kde-format
-#| msgid "Group"
+#, kde-format
 msgctxt "File property"
 msgid "Group: %1"
-msgstr "群組"
+msgstr "群組：%1"
 
 #: app/Panel/PanelView/listmodel.cpp:497
 #, kde-format
@@ -7874,31 +7859,31 @@ msgid "Default Zoom"
 msgstr "預設縮放(&D)"
 
 #: app/Panel/viewactions.cpp:25
-#, fuzzy, kde-format
+#, kde-format
 msgid "&All Files"
-msgstr "所有檔案"
+msgstr "所有檔案(&A)"
 
 #. i18n( "&Executables" ), SHIFT + Qt::Key_F11,
 #. SLOTS, SLOT(execFilter()), actionCollection(), "exec files" );
 #: app/Panel/viewactions.cpp:28
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Custom"
-msgstr "自訂"
+msgstr "自訂(&C)"
 
 #: app/Panel/viewactions.cpp:31
 #, kde-format
 msgid "Select &Group..."
-msgstr ""
+msgstr "選取群組(&G)..."
 
 #: app/Panel/viewactions.cpp:32
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Select All"
 msgstr "全部選取(&S)"
 
 #: app/Panel/viewactions.cpp:33
 #, kde-format
 msgid "&Unselect Group..."
-msgstr ""
+msgstr "取消選取群組(&U)..."
 
 #: app/Panel/viewactions.cpp:34
 #, fuzzy, kde-format
@@ -7939,7 +7924,7 @@ msgstr ""
 #: app/Panel/viewactions.cpp:43
 #, kde-format
 msgid "Apply settings to other tabs"
-msgstr ""
+msgstr "套用設定到其他分頁"
 
 #: app/Panel/viewactions.cpp:44
 #, kde-format
@@ -7952,9 +7937,9 @@ msgid "Save settings as default"
 msgstr ""
 
 #: app/Panel/viewactions.cpp:48
-#, fuzzy, kde-format
+#, kde-format
 msgid "Select group"
-msgstr "選擇字元集"
+msgstr "選取群組"
 
 #: app/Panel/viewactions.cpp:49
 #, kde-format
@@ -7972,9 +7957,9 @@ msgid "Save settings as default for new instances of this view type"
 msgstr ""
 
 #: app/panelmanager.cpp:52 app/panelmanager.cpp:53
-#, fuzzy, kde-format
+#, kde-format
 msgid "Open a new tab"
-msgstr "在新分頁開啟"
+msgstr "開啟新分頁"
 
 #: app/paneltabbar.cpp:173
 #, kde-format
@@ -8165,44 +8150,44 @@ msgid "Error writing file %1: %2"
 msgstr "寫入檔案 %1 時發生錯誤。"
 
 #: app/Splitter/splittergui.cpp:52
-#, fuzzy, kde-format
+#, kde-format
 msgid "1.44 MB (3.5\")"
-msgstr "%1 MB"
+msgstr "1.44 MB (3.5 英吋)"
 
 #: app/Splitter/splittergui.cpp:53
-#, fuzzy, kde-format
+#, kde-format
 msgid "1.2 MB (5.25\")"
-msgstr "%1 MB"
+msgstr "1.2 MB (5.25 英吋)"
 
 #: app/Splitter/splittergui.cpp:54
-#, fuzzy, kde-format
+#, kde-format
 msgid "720 kB (3.5\")"
-msgstr "%1 KB"
+msgstr "720 kB (3.5 英吋)"
 
 #: app/Splitter/splittergui.cpp:55
-#, fuzzy, kde-format
+#, kde-format
 msgid "360 kB (5.25\")"
-msgstr "%1 KB"
+msgstr "360 kB (5.25 英吋)"
 
 #: app/Splitter/splittergui.cpp:56
 #, kde-format
 msgid "100 MB (ZIP)"
-msgstr ""
+msgstr "100 MB (ZIP)"
 
 #: app/Splitter/splittergui.cpp:57
 #, kde-format
 msgid "250 MB (ZIP)"
-msgstr ""
+msgstr "250 MB (ZIP)"
 
 #: app/Splitter/splittergui.cpp:58
 #, kde-format
 msgid "650 MB (CD-R)"
-msgstr ""
+msgstr "650 MB (CD-R)"
 
 #: app/Splitter/splittergui.cpp:59
 #, kde-format
 msgid "700 MB (CD-R)"
-msgstr ""
+msgstr "700 MB (CD-R)"
 
 #: app/Splitter/splittergui.cpp:76
 #, kde-format
@@ -8240,9 +8225,9 @@ msgid "Overwrite files without confirmation"
 msgstr ""
 
 #: app/Splitter/splittergui.cpp:130
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Split"
-msgstr "分割"
+msgstr "分割(&S)"
 
 #: app/Splitter/splittergui.cpp:134
 #, kde-format
@@ -8702,16 +8687,14 @@ msgid "Sou&rce folder:"
 msgstr "來源目錄(&R)："
 
 #: app/Synchronizer/synchronizergui.cpp:617
-#, fuzzy, kde-format
-#| msgid "&Left directory:"
+#, kde-format
 msgid "&Left folder:"
-msgstr "左側目錄(&L)："
+msgstr "左側資料夾(&L)："
 
 #: app/Synchronizer/synchronizergui.cpp:618
-#, fuzzy, kde-format
-#| msgid "&Right directory:"
+#, kde-format
 msgid "&Right folder:"
-msgstr "右側目錄(&R)："
+msgstr "右側資料夾(&R)："
 
 #: app/Synchronizer/synchronizergui.cpp:651
 #, kde-format
@@ -8782,7 +8765,7 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:745
 #, kde-format
 msgid "&Select items"
-msgstr ""
+msgstr "選取項目(&S)"
 
 #: app/Synchronizer/synchronizergui.cpp:747
 #, kde-format
@@ -8843,14 +8826,14 @@ msgid "Comparing file %1 (%2)..."
 msgstr "比較檔案 %1 (%2) 中..."
 
 #: app/tabactions.cpp:23
-#, fuzzy, kde-format
+#, kde-format
 msgid "New Tab"
 msgstr "新增分頁"
 
 #: app/tabactions.cpp:24
-#, fuzzy, kde-format
+#, kde-format
 msgid "Duplicate Current Tab"
-msgstr "複製目前分頁(&D)"
+msgstr "複製目前的分頁"
 
 #: app/tabactions.cpp:25
 #, kde-format
@@ -8868,14 +8851,14 @@ msgid "Move Current Tab to the Right"
 msgstr "關閉目前的分頁"
 
 #: app/tabactions.cpp:28
-#, fuzzy, kde-format
+#, kde-format
 msgid "Close Current Tab"
 msgstr "關閉目前的分頁"
 
 #: app/tabactions.cpp:29
 #, kde-format
 msgid "Undo Close Tab"
-msgstr ""
+msgstr "還原關閉分頁"
 
 #: app/tabactions.cpp:31
 #, kde-format
@@ -8903,20 +8886,19 @@ msgid "Lock Tab"
 msgstr ""
 
 #: app/tabactions.cpp:36 app/tabactions.cpp:61
-#, fuzzy, kde-format
-#| msgid "Previous Tab"
+#, kde-format
 msgid "Pin Tab"
-msgstr "前一個分頁"
+msgstr "釘選分頁"
 
 #: app/tabactions.cpp:59
 #, kde-format
 msgid "Unlock Tab"
-msgstr ""
+msgstr "解鎖分頁"
 
 #: app/tabactions.cpp:61
 #, kde-format
 msgid "Unpin Tab"
-msgstr ""
+msgstr "取消釘選分頁"
 
 #: app/UserAction/expander.cpp:62
 #, kde-format
@@ -9031,12 +9013,12 @@ msgstr ""
 #: app/UserAction/expander.cpp:474
 #, kde-format
 msgid "Choose a path:"
-msgstr ""
+msgstr "選擇路徑："
 
 #: app/UserAction/expander.cpp:475
 #, kde-format
 msgid "Open location in a new tab"
-msgstr ""
+msgstr "在新分頁開啟位置"
 
 #: app/UserAction/expander.cpp:486
 #, kde-format
@@ -9422,20 +9404,19 @@ msgid "Samples"
 msgstr ""
 
 #: app/useraction_examples.xml:13
-#, fuzzy, kde-format
-#| msgid "Path"
+#, kde-format
 msgid "Edit as root"
-msgstr "路徑"
+msgstr "以 root 身份編輯"
 
 #: app/useraction_examples.xml:14
-#, fuzzy, kde-format
+#, kde-format
 msgid "Edit a file as root"
-msgstr "編輯檔案(&F)"
+msgstr "以 root 身份編輯檔案"
 
 #: app/useraction_examples.xml:17
 #, kde-format
 msgid "Edit a file with root permissions"
-msgstr ""
+msgstr "利用 root 權限編輯檔案"
 
 #: app/useraction_examples.xml:23
 #, kde-format
