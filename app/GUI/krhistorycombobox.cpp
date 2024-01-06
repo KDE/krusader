@@ -37,17 +37,22 @@ protected:
 
 bool KHBoxEventFilter::eventFilter(QObject *obj, QEvent *event)
 {
+    // Reminder: If this function is modified, it's important to investigate if the
+    // changes must also be applied to `KHBoxListEventFilter::eventFilter(QObject *obj, QEvent *event)`
+
     if (event->type() == QEvent::KeyPress) {
         auto keyEvent = static_cast<QKeyEvent *>(event);
-        if (keyEvent->modifiers() == Qt::ShiftModifier && keyEvent->key() == Qt::Key::Key_Delete) {
-            auto comboBox = qobject_cast<KHistoryComboBox *>(obj);
-            if (comboBox != nullptr) {
-                QString entryToDelete = comboBox->currentText();
-                // Delete the current item
-                comboBox->removeItem(comboBox->currentIndex());
-                // The item has to be deleted also from the completion list
-                comboBox->completionObject()->removeItem(entryToDelete);
-                return true;
+        if ((keyEvent->modifiers() == Qt::ShiftModifier ||
+             keyEvent->modifiers() == (Qt::ShiftModifier | Qt::KeypadModifier)) &&
+             keyEvent->key() == Qt::Key::Key_Delete) {
+                auto comboBox = qobject_cast<KHistoryComboBox *>(obj);
+                if (comboBox != nullptr) {
+                    QString entryToDelete = comboBox->currentText();
+                    // Delete the current item
+                    comboBox->removeItem(comboBox->currentIndex());
+                    // The item has to be deleted also from the completion list
+                    comboBox->completionObject()->removeItem(entryToDelete);
+                    return true;
             }
         }
     }
@@ -75,23 +80,28 @@ protected:
 
 bool KHBoxListEventFilter::eventFilter(QObject *obj, QEvent *event)
 {
+    // Reminder: If this function is modified, it's important to investigate if the
+    // changes must also be applied to `KHBoxEventFilter::eventFilter(QObject *obj, QEvent *event)`
+
     if (event->type() == QEvent::KeyPress) {
         auto keyEvent = static_cast<QKeyEvent *>(event);
-        if (keyEvent->modifiers() == Qt::ShiftModifier && keyEvent->key() == Qt::Key::Key_Delete) {
-            auto itemView = qobject_cast<QAbstractItemView *>(obj);
-            if (itemView->model() != nullptr) {
-                QString entryToDelete = itemView->currentIndex().data().toString();
-                // Delete the current item from the popup list
-                itemView->model()->removeRow(itemView->currentIndex().row());
-                // The item has to be deleted also from the completion list of the KHistoryComboBox
-                if (itemView->parent() != nullptr) {
-                    auto comboBox = qobject_cast<KHistoryComboBox *>(itemView->parent()->parent());
-                    if (comboBox != nullptr) {
-                        comboBox->completionObject()->removeItem(entryToDelete);
-                        return true;
+        if ((keyEvent->modifiers() == Qt::ShiftModifier ||
+             keyEvent->modifiers() == (Qt::ShiftModifier | Qt::KeypadModifier)) &&
+             keyEvent->key() == Qt::Key::Key_Delete) {
+                auto itemView = qobject_cast<QAbstractItemView *>(obj);
+                if (itemView->model() != nullptr) {
+                    QString entryToDelete = itemView->currentIndex().data().toString();
+                    // Delete the current item from the popup list
+                    itemView->model()->removeRow(itemView->currentIndex().row());
+                    // The item has to be deleted also from the completion list of the KHistoryComboBox
+                    if (itemView->parent() != nullptr) {
+                        auto comboBox = qobject_cast<KHistoryComboBox *>(itemView->parent()->parent());
+                        if (comboBox != nullptr) {
+                            comboBox->completionObject()->removeItem(entryToDelete);
+                            return true;
+                        }
                     }
                 }
-            }
         }
     }
     // Perform the usual event processing
