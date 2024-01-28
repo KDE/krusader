@@ -131,7 +131,7 @@
       <para
 ><guimenuitem
 >Per a importar una Acció d'usuari</guimenuitem
->: si importeu algunes accions, s'afegiran automàticament a la vostra llista. Si hi ha conflictes de noms (els noms han de ser únics perquè són l'ID per al sistema d'accions del &plasma;), se us demanarà que els resoleu. Per això, la llista de l'esquerra només mostrarà les accions on hi ha conflictes. Ara podreu donar-li-les noms nous o eliminar-les.</para>
+>: si importeu algunes accions, s'afegiran automàticament a la vostra llista. Si hi ha conflictes de noms (els noms han de ser únics perquè són l'ID per al sistema d'accions del &plasma;), se us demanarà que els resolgueu. Per això, la llista de l'esquerra només mostrarà les accions on hi ha conflictes. Ara podreu donar-li-les noms nous o eliminar-les.</para>
     </listitem>
     <listitem>
       <para
@@ -317,7 +317,7 @@
 >ls -l</quote
 >). Teniu la possibilitat d'obtenir una cadena de caràcters del &krusader;, la qual representa l'estat actual del plafó. Això es fa utilitzant marcadors de posició. Un marcador de posició comença amb un signe de percentatge («%») i és seguit per un indicador del plafó («a» per a l'actiu, «o» per a l'altre, «l» per al plafó esquerre i «r» per al plafó dret. Si el marcador de posició no necessita un plafó per a operar, haureu d'indicar-ho amb un guió baix («_»)). Després ve el nom del marcador de posició (vegeu la llista a continuació), en el qual podreu incloure alguns paràmetres entre cometes. Finalment, de nou el signe de percentatge.</para>
   <para
->Això sona molt complicat, de manera que donarem un exemple: «%aList("Selected")%» se substituirà per una llista de tots els elements seleccionats en el plafó actiu. Llavors, una ordre com «xmms --enqueue %aList("All", " ", "", "*.mp3")%» executarà l'xmms amb una llista de tots els .mp3 que hi hagi en el plafó actual, separats per un sol espai en blanc.</para>
+>Això sona molt complicat, de manera que donarem un exemple: «%aList("Selected")%» se substituirà per una llista de tots els elements seleccionats en el plafó actiu. Llavors, una ordre com «xmms --enqueue %aList("All", " ", "", "*.mp3")%» executarà el xmms amb una llista de tots els .mp3 que hi hagi en el plafó actual, separats per un sol espai en blanc.</para>
   <para
 >Actualment, s'implementen aquests marcadors de posició:</para
 > 
