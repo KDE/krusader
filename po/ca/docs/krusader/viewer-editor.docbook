@@ -1421,7 +1421,7 @@ Move / merge the following into kdelibs/doc/sonnet/index.docbook and replace it 
 <listitem
 ><para
 ><action
->Inicia el programa de correcció ortogràfica -un programa dissenyat per a ajudar a l'usuari a corregir qualsevol error ortogràfic-.</action
+>Inicia el programa de correcció ortogràfica -un programa dissenyat per a ajudar l'usuari a corregir qualsevol error ortogràfic-.</action
 > Fent clic en aquesta entrada s'iniciarà el corrector i apareixerà un diàleg a través del qual podreu controlar el procés. Hi ha quatre opcions de configuració alineades verticalment en el centre del diàleg amb les seves corresponents etiquetes a l'esquerra. Començant per dalt són:</para>
 
 <variablelist>
@@ -1793,7 +1793,7 @@ Move / merge the following into kdelibs/doc/sonnet/index.docbook and replace it 
 ></term>
 <listitem
 ><para
->Aplica l'ajust de línia estàtic en tot el document. Això vol dir que s'iniciarà automàticament una nova línia de text quan la línia excedeixi de la longitud especificada per l'opció <guilabel
+>Aplica l'ajust de línia estàtic en tot el document. Això vol dir que s'iniciarà automàticament una línia de text nova quan la línia excedeixi de la longitud especificada per l'opció <guilabel
 >Ajusta les paraules a:</guilabel
 > a la pestanya Edició a <menuchoice
 > <guimenu
@@ -2423,7 +2423,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem
 ><para
->L'ajust de línia és una característica que causarà que l'editor iniciï automàticament una nova línia de text i desplaci (ajusti) el cursor al començament de la nova línia. El &kappname; iniciarà automàticament una nova línia de text quan la línia actual abasti la longitud especificada per l'opció <link linkend="katepart-pref-wrap-words-at"
+>L'ajust de línia és una característica que causarà que l'editor iniciï automàticament una línia de text nova i desplaci (ajusti) el cursor al començament de la línia nova. El &kappname; iniciarà automàticament una línia de text nova quan la línia actual abasti la longitud especificada per l'opció <link linkend="katepart-pref-wrap-words-at"
 >Ajusta les paraules a:</link
 >.</para>
 <variablelist>
@@ -2462,7 +2462,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 <para
 >Si l'opció <link linkend="katepart-pref-word-wrap"
 >Activa l'ajust estàtic de paraules</link
-> està seleccionada, aquesta entrada determina la longitud (en caràcters) després de la qual l'editor iniciarà una nova línia automàticament.</para>
+> està seleccionada, aquesta entrada determina la longitud (en caràcters) després de la qual l'editor iniciarà una línia nova automàticament.</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -2581,7 +2581,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->Aquesta opció canvia el comportament del cursor quan l'usuari prem la tecla &PgUp; o &PgDn;. Si no està seleccionada, el cursor mantindrà la seva posició relativa en el text visible a la &kappname; com el text nou es fa visible com a resultat de l'operació. Així, si el cursor està en el centre del text visible quan l'operació ocorre romandrà allí (excepte quan s'arriba al començament o al final). Amb aquesta opció seleccionada, prémer en primer lloc la tecla causarà que el cursor es mogui a la part superior o inferior del text visible mostrant una nova pàgina de text.</para>
+>Aquesta opció canvia el comportament del cursor quan l'usuari prem la tecla &PgUp; o &PgDn;. Si no està seleccionada, el cursor mantindrà la seva posició relativa en el text visible a la &kappname; com el text nou es fa visible com a resultat de l'operació. Així, si el cursor està en el centre del text visible quan l'operació ocorre romandrà allí (excepte quan s'arriba al començament o al final). Amb aquesta opció seleccionada, prémer en primer lloc la tecla causarà que el cursor es mogui a la part superior o inferior del text visible mostrant una pàgina nova de text.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -3052,7 +3052,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->La marca d'ordre de bytes és una seqüència especial al començament dels documents codificats amb unicode. Ajuda als editors a obrir documents de text amb la codificació unicode correcta. Per a obtenir més informació, vegeu <ulink url="https://en.wikipedia.org/wiki/Byte_order_mark"
+>La marca d'ordre de bytes és una seqüència especial al començament dels documents codificats amb unicode. Ajuda els editors a obrir documents de text amb la codificació unicode correcta. Per a obtenir més informació, vegeu <ulink url="https://en.wikipedia.org/wiki/Byte_order_mark"
 >Marca d'ordre de bytes</ulink
 >.</para>
 </listitem>
@@ -3210,7 +3210,7 @@ Line Length Limit missing
 ></term>
 <listitem
 ><para
->S'utilitza per a crear un nou tipus de fitxer. Després que feu clic en aquest botó, els camps inferiors es buidaran i podreu omplir les propietats que vulgueu per al nou tipus de fitxer.</para
+>S'utilitza per a crear un tipus de fitxer nou. Després que feu clic en aquest botó, els camps inferiors es buidaran i podreu omplir les propietats que vulgueu per al tipus de fitxer nou.</para
 ></listitem>
 </varlistentry>
 <varlistentry>
@@ -3297,7 +3297,7 @@ Line Length Limit missing
 ></term>
 <listitem
 ><para
->Si creeu un nou tipus de fitxer, aquesta llista desplegable permet seleccionar un tipus de fitxer a ressaltar.</para
+>Si creeu un tipus de fitxer nou, aquesta llista desplegable permet seleccionar un tipus de fitxer a ressaltar.</para
 ></listitem>
 </varlistentry>
 
@@ -3354,7 +3354,7 @@ Line Length Limit missing
 ></term>
 <listitem>
 <para
->Fer clic en aquest botó per a baixar noves descripcions de ressaltat de la sintaxi o per a actualitzar les existents des del lloc web de la &kappname;. </para>
+>Fer clic en aquest botó per a baixar descripcions noves de ressaltat de la sintaxi o per a actualitzar les existents des del lloc web de la &kappname;. </para>
 </listitem>
 </varlistentry>
 
