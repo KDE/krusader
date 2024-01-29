@@ -182,7 +182,7 @@ void KgPanel::setupGeneralTab()
 
     KONFIGURATOR_NAME_VALUE_PAIR positions[] = {{i18n("Top"), "top"}, {i18n("Bottom"), "bottom"}};
 
-    cmb = createComboBox("Look&Feel", "Tab Bar Position", "bottom", positions, 2, labelTabBar, groupBox, true, false, QString(), PAGE_GENERAL);
+    cmb = createComboBox("Look&Feel", "Tab Bar Position", _TabBarPosition, positions, 2, labelTabBar, groupBox, true, false, QString(), PAGE_GENERAL);
 
     hbox->addWidget(cmb);
     gridLayout->addLayout(hbox, 2, 0, Qt::AlignLeft);

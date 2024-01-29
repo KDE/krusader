@@ -454,7 +454,7 @@ void PanelManager::delClosedTab(QAction *action)
 void PanelManager::updateTabbarPos()
 {
     KConfigGroup group(krConfig, "Look&Feel");
-    if (group.readEntry("Tab Bar Position", "bottom") == "top") {
+    if (group.readEntry("Tab Bar Position", _TabBarPosition) == "top") {
         _layout->addWidget(_stack, 2, 0);
         _tabbar->setShape(QTabBar::RoundedNorth);
     } else {

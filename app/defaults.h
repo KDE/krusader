@@ -31,6 +31,8 @@
 #define _RememberPos true
 // Start to tray
 #define _StartToTray false
+// The position of the tab bar
+#define _TabBarPosition "top"
 // Left Tab Bar
 // Right Tab Bar
 // Size where lister is the default viewer
