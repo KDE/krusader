@@ -51,8 +51,8 @@
         <answer>
           <para
 ><emphasis
->No, &krusader; does not need the &plasma; window manager</emphasis
-> to run on your computer but &krusader;'s natural environment is &plasma;, because it relies on services provided by the &kf5-full; base libraries. Only some shared libraries are needed &eg; &kf5; libraries, &Qt; libraries, &etc; This means that &krusader; runs on <ulink url="https://www.gnome.org"
+>Nee, &krusader; heeft de &plasma; windowmanager niet nodig</emphasis
+> om op uw computer te werken maar de natuurlijke omgeving van &krusader; is &plasma;, omdat het diensten gebruikt die door de &kf5-full; basisbibliotheken worden geleverd. Alleen enkele gedeelde bibliotheken zijn nodig &eg; &kde-frameworks; libraries, &Qt; libraries, &etc; Dit houd in dat &krusader; werkt onder <ulink url="https://www.gnome.org"
 ><application
 >GNOME</application
 ></ulink
@@ -64,7 +64,7 @@
 ><application
 >XFce</application
 ></ulink
-> and other window managers provided the appropriate libraries are installed on your computer. All this is not a problem since the apt-get world can resolve these dependencies instantly.</para>
+> en andere windowmanagers aangenomen dat de benodigde bibliotheken op uw computer zijn geïnstalleerd. Dit is niet echt een probleem omdat de apt-get world deze afhankelijkheden onmiddellijk kan oplossen.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -88,7 +88,7 @@
 ></para>
           <!-- Empty line to make it more readable -->
           <para
->A lot depends on what you want to do with &krusader;. You should know that &krusader; uses the &kf5; KIO Slaves to access remote file systems, and support for only a limited number of file system types are shipped with &kf5; libraries, most of the KIO Slave are bundled with &kf5-full; (including fish, sftp and tar).</para>
+>Veel is afhankelijk van wat u met &krusader; wilt doen. U moet weten dat &krusader; de &kde-frameworks; KIO Slaves gebruikt voor toegang tot externe bestandssystemen, en alleen ondersteuning voor een beperkt aantal soorten bestandssystemen komen standaard mee met de &kde-frameworks;-bibliotheken, de meeste van de KIO Slave's komen mee met &kf5-full; basis (waaronder fish, sftp en tar).</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -206,13 +206,13 @@
         </question>
         <answer>
           <para
->When &krusader; is &eg; browsing an &NFS; share and the &NFS; server goes down, &krusader; will freeze. This &krusader; (and all other open internal viewers/editors) freeze is fatal, and can only be corrected with the <command
+>Als &krusader; is &eg; een &NFS; share doorzoekt en de &NFS; server stopt met werken, dan zal&krusader; bevriezen. Dit bevriezen van &krusader; (en alle andere open interne viewers/editors) is fataal, en kunt u alleen corrigeren met <command
 >kill -9</command
->. We have no solution for this. This is an issue not confined to file managers, or even the &Linux; OS! The problem is that you <quote
->hang</quote
-> on the first access to the dead share - so there is no way around it, no check to avoid it, even <command
+>. We hebben geen oplossing hiervoor. Dit is een probleem dat niet beperkt blijft tot bestandsbeheerders, of zelfs het &Linux; OS! Het probleem is dat u <quote
+>hangt</quote
+> aan de eerste toegang tot de dode share - er is daarom geen weg eromheen, geen controle om het te vermijden, zelfs <command
 >ls</command
-> will freeze. Just trying to read something - anything - is enough to get you stuck. The one and only way around this architectural problem is using a multi-threaded design - this way if we get stuck, we do not hang the entire application event loop, but we do not think that the time is right for adding threads, we are not sure that *all* the &kf5; systems out there are using &Qt;-mt (the multi threaded version of the &Qt; library), and the &krusader; Krew may not be the right people to address this major issue in any case; so currently this is just a bug we have to learn to live with.</para>
+> zal bevriezen. Alleen maar het bekijken van iets - wat dan ook - is genoeg om u vast te zetten. De enige manier om rond dit architectural probleem te gaan is een multi-threaded design te gebruiken - op deze manier zal als we vast komen te zitten, we niet de hele programma lus ophangen, maar we denken niet dat het nu het juiste moment is voor toevoegen van threads, we weten niet of *alle* &kde-frameworks; systemen daarbuiten &Qt;-mt (de multi threaded versie van de &Qt; library) gebruiken, en de &krusader; Krew zijn wellicht niet de juiste mensen om dit probleem aan te snijden; op dit moment moeten we daarom maar leven met deze bug.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -728,7 +728,7 @@
 >Bedankt voor uw medewerking!</para>
           <note>
             <para
->If possible, try to do the same operation with &konqueror; or another &kde; application. If you encounter the same problem then it is possibly a KIO Slaves or &kf5-full; bug, and not a &krusader; bug. &krusader; uses the &kf5; libraries and the KIO Slave for many operations. In some cases you can encounter problems if your distribution is incorrectly configured, please test it first as explained above.</para>
+>Indien mogelijk, probeer dezelfde bewerking ook uit met &konqueror; of ander &kde; programma. Als u hetzelfde probleem daar ook tegenkomt dan is het mogelijk een KIO Slaves of &kf5-full; bug, en niet een &krusader; bug. &krusader; gebruikt de &kde-frameworks;-bibliotheken en de KIO Slave voor veel bewerkingen. In sommige gevallen kunt u problemen tegenkomen als uw distributie niet correct is ingesteld, test het eerst zoals hierboven uitgelegd.</para>
           </note>
           <para
 ></para>
