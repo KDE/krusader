@@ -42,6 +42,11 @@
   <command>%_Clipboard(&quot;%aCurrent%&quot;)%</command>
   <defaultshortcut>Alt+Ctrl+C</defaultshortcut>
  </action>
+ <action name="filepath_to_clipboard">
+  <title>Copy file path of current item</title>
+  <category>Samples</category>
+  <command>%_Clipboard(&quot;%aCurrent(, &quot;No&quot;)%&quot;)%</command>
+ </action>
  <action name="filepaths_to_clipboard">
   <title>Copy file path(s) of selected item(s)</title>
   <category>Samples</category>
