@@ -19,7 +19,9 @@
 // QtWidgets
 #include <QMenuBar>
 #include <QStatusBar>
+#include <QGuiApplication>
 
+#include <KWindowSystem>
 #include <KConfigCore/KSharedConfig>
 #include <KConfigWidgets/KStandardAction>
 #include <KCoreAddons/KProcess>
@@ -267,6 +269,39 @@ bool KrViewer::eventFilter(QObject * /* watched */, QEvent *e)
     return false;
 }
 
+void KrViewer::activateWindow(QWidget *window)
+{
+    auto focusWindow = qGuiApp->focusWindow();
+    if (focusWindow && KrGlobal::isWaylandPlatform) {
+        // Wayland(and KWin) doesn't allow for a window to come to foreground and
+        // take focus away. The proper way to do this is for the window that has
+        // focus to request a new activation token and pass it to the window that
+        // will come to foreground(eg Viewer). The window to be brought to fore
+        // will then call KWindowSystem::setCurrentXdgActivationToken which will
+        // enable  KWindowSystem::activateWindow() to work. Without the call to
+        // setCurrentXdgActivationToken, the call to
+        // KWindowSystem::activateWindow() will just cause the window to blink in
+        // the task bar requesting attention, but never get focus or come to the
+        // foreground.
+        const int launchedSerial = KWindowSystem::lastInputSerial(focusWindow);
+        auto conn = std::make_shared<QMetaObject::Connection>();
+        *conn = connect(KWindowSystem::self(),
+                        &KWindowSystem::xdgActivationTokenArrived,
+                        window,
+                        [window, launchedSerial, conn](int tokenSerial, const QString &token) {
+                            if (tokenSerial == launchedSerial) {
+                                disconnect(*conn);
+                                KWindowSystem::setCurrentXdgActivationToken(token);
+                                // activateWindow will only work if a new token from the focused window has been set otherwise it will only request attn
+                                KWindowSystem::activateWindow(window->windowHandle());
+                            }
+                        });
+        KWindowSystem::requestXdgActivationToken(focusWindow, launchedSerial, {});
+    }
+    if (KrGlobal::isX11Platform) {
+        KWindowSystem::forceActiveWindow(window->winId());
+    }
+}
 KrViewer *KrViewer::getViewer(bool new_window)
 {
     if (!new_window) {
@@ -278,7 +313,7 @@ KrViewer *KrViewer::getViewer(bool new_window)
                 viewers.first()->show();
             }
             viewers.first()->raise();
-            viewers.first()->activateWindow();
+            activateWindow(viewers.first());
         }
         return viewers.first();
     } else {
@@ -425,10 +460,11 @@ void KrViewer::tabCloseRequest(int index, bool force)
     if (tabWidget.count() <= 0) {
         if (returnFocusToThisWidget) {
             returnFocusToThisWidget->raise();
-            returnFocusToThisWidget->activateWindow();
+            activateWindow(returnFocusToThisWidget);
+
         } else {
             krMainWindow->raise();
-            krMainWindow->activateWindow();
+            activateWindow(krMainWindow);
         }
 
         QTimer::singleShot(0, this, &KrViewer::close);

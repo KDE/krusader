@@ -15,6 +15,7 @@ target_link_libraries(KViewer
     KF5::IconThemes
     KF5::KIOCore
     KF5::KIOFileWidgets
+    KF5::WindowSystem
     KF5::Parts
     KF5::WidgetsAddons
     KF5::XmlGui

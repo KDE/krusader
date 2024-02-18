@@ -87,6 +87,8 @@ Krusader::Krusader(const QCommandLineParser &parser)
     , isStarting(true)
     , _quit(false)
 {
+    KrGlobal::isX11Platform = KWindowSystem::isPlatformX11();
+    KrGlobal::isWaylandPlatform = KWindowSystem::isPlatformWayland();
     // create the "krusader"
     App = this;
     krMainWindow = this;

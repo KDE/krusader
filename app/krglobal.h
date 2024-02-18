@@ -47,6 +47,9 @@ public:
     /** Version of saved configuration. Use this to detect configuration updates. */
     static const int sConfigVersion = 1;
     static int sCurrentConfigVersion;
+
+    static bool isX11Platform; // running on X11
+    static bool isWaylandPlatform; // running on Wayland
 };
 
 #define krConfig KrGlobal::config
