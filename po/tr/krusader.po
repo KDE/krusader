@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-14 02:00+0000\n"
-"PO-Revision-Date: 2024-02-09 19:03+0300\n"
+"PO-Revision-Date: 2024-03-01 15:10+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.01.95\n"
+"X-Generator: Lokalize 24.02.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1501,7 +1501,7 @@ msgstr "Disk Kullanımı"
 #: app/DiskUsage/diskusage.cpp:755
 #, kde-format
 msgid "Exclude"
-msgstr "Hariç tut"
+msgstr "Dışla"
 
 #: app/DiskUsage/diskusage.cpp:761
 #, kde-format
@@ -2239,21 +2239,20 @@ msgid ""
 msgstr ""
 "<p>Dosya adı süzme ölçütleri burada tanımlanır.</p><p>Maskeleme karakterleri "
 "kullanabilirsiniz. Birden çok kalıp boşluklarla ayrılır (mantıksal OR "
-"anlamına gelir) ve dizgi aramadan veriyolu sembolüyle dışarıda tutulur. </"
-"p><p>Dizgi bir yatık çizgi ile bitiyorsa (<code>*kalıp*/</code>) dizginin "
-"klasörleri yinelemeli olarak aramayla ilgili olduğu anlaşılır."
-"<ul><li><code>dizgi</code> - adı <code>dizgi</code> olan dosyaların/"
-"klasörlerin aranması anlamına gelir, yinelemeli arama <code>dizginin</code> "
-"değerinden bağımsız olarak tüm alt klasörler üzerinde çalışır.</"
-"li><li><code>dizgi</code> - tüm dosyaları/klasörleri arama anlamına gelir "
-"ama yinelemeli arama adı <code>dizgi</code> olan klasörlerin üstünden geçer/"
-"hariç tutar.</li></ul></p><p>Boşluk içeren adlar için tırnak imi "
-"kullanılabilir. <code>\"Program&nbsp;Files\"</code> süzgeci adı <code>"
-"\"Program&nbsp;Files\"</code> olan dosyaları/klasörleri arar.</p><p>Örnekler:"
-"</p><ul><li><code>*.o</code></li><li><code>*.h *.c??</code></li><li><code>*."
-"cpp *.h | *.moc.cpp</code></li><li><code>* | .svn/ .git/</code></li></"
-"ul><p><b>Not</b>: arama ifadesi '<code>text</code>' '<code>*text*</code>' "
-"ile eşittir.</p>"
+"anlamına gelir) ve dizgi aramadan veriyolu sembolüyle dışlanır. </p><p>Dizgi "
+"bir yatık çizgi ile bitiyorsa (<code>*kalıp*/</code>) dizginin klasörleri "
+"özyineli olarak aramayla ilgili olduğu anlaşılır.<ul><li><code>dizgi</code> "
+"- adı <code>dizgi</code> olan dosyaların/klasörlerin aranması anlamına "
+"gelir, özyineli arama <code>dizginin</code> değerinden bağımsız olarak tüm "
+"alt klasörler üzerinde çalışır.</li><li><code>dizgi</code> - tüm dosyaları/"
+"klasörleri arama anlamına gelir; ancak özyineli arama adı <code>dizgi</code> "
+"olan klasörlerin üstünden geçer/dışlar.</li></ul></p><p>Boşluk içeren adlar "
+"için tırnak imi kullanılabilir. <code>\"Program&nbsp;Files\"</code> süzgeci "
+"adı <code>\"Program&nbsp;Files\"</code> olan dosyaları/klasörleri arar.</"
+"p><p>Örnekler:</p><ul><li><code>*.o</code></li><li><code>*.h *.c??</code></"
+"li><li><code>*.cpp *.h | *.moc.cpp</code></li><li><code>* | .svn/ .git/</"
+"code></li></ul><p><b>Not</b>: arama ifadesi '<code>text</code>' "
+"'<code>*text*</code>' ile eşittir.</p>"
 
 #: app/Filter/generalfilter.cpp:149
 #, kde-format
@@ -2339,7 +2338,7 @@ msgstr "&Bağları izle"
 #: app/Filter/generalfilter.cpp:472
 #, kde-format
 msgid "Exclude Folder Names"
-msgstr "Klasör Adlarını Dışarıda Tut"
+msgstr "Klasör Adlarını Dışla"
 
 #: app/Filter/generalfilter.cpp:473
 #, kde-format
@@ -8713,7 +8712,7 @@ msgstr "Özdeş kabul edilen dosyaları göster."
 #: app/Synchronizer/synchronizergui.cpp:303
 #, kde-format
 msgid "Show excluded files."
-msgstr "Hariç tutulan dosyaları göster."
+msgstr "Dışlanan dosyaları gösterin."
 
 #: app/Synchronizer/synchronizergui.cpp:308
 #, kde-format
@@ -8915,7 +8914,7 @@ msgstr "Klasörleri Eşzamanla"
 #: app/Synchronizer/synchronizergui.cpp:720
 #, kde-format
 msgid "E&xclude"
-msgstr "Dışarıda &tut"
+msgstr "Dışl&a"
 
 #: app/Synchronizer/synchronizergui.cpp:722
 #, kde-format
