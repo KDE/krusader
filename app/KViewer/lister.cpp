@@ -1959,7 +1959,8 @@ void Lister::setCharacterSet(const QString &set)
     if (_characterSet.isEmpty()) {
         _codec = QTextCodec::codecForLocale();
     } else {
-        _codec = KCharsets::charsets()->codecForName(_characterSet);
+        // Should move from this with KF6 migration
+        _codec = QTextCodec::codecForName(_characterSet.toUtf8());
     }
     _textArea->redrawTextArea(true);
 }
