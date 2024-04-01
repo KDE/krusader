@@ -65,14 +65,12 @@ TerminalDock::~TerminalDock() = default;
 bool TerminalDock::initialise()
 {
     if (!initialised) { // konsole part is not yet loaded or it has already failed
-        KService::Ptr service = KService::serviceByDesktopName("konsolepart");
+        KPluginFactory *pluginFactory = KPluginFactory::loadFactory(QStringLiteral("konsolepart")).plugin;
 
-        if (service) {
+        if (pluginFactory) {
             QWidget *focusW = qApp->focusWidget();
             // Create the part
-            QString error;
-            konsole_part = service->createInstance<KParts::ReadOnlyPart>(this, this, QVariantList(), &error);
-
+            konsole_part = pluginFactory->create<KParts::ReadOnlyPart>(this);
             if (konsole_part) { // loaded successfully
                 terminal_hbox->addWidget(konsole_part->widget());
                 setFocusProxy(konsole_part->widget());
@@ -90,9 +88,7 @@ bool TerminalDock::initialise()
                 firstInput = true;
             } else
                 KMessageBox::error(nullptr,
-                                   i18n("<b>Cannot create embedded terminal.</b><br/>"
-                                        "The reported error was: %1",
-                                        error));
+                                   i18n("<b>Cannot create embedded terminal.</b><br/>"));
             // the Terminal Emulator may be hidden (if we are creating it only
             // to send command there and see the results later)
             if (focusW) {
