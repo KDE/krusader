@@ -67,7 +67,7 @@ typedef struct {
 static const unsigned char zisofs_magic[8] = {0x37, 0xE4, 0x53, 0x96, 0xC9, 0xDB, 0xD6, 0x07};
 
 kio_isoProtocol::kio_isoProtocol(const QByteArray &pool, const QByteArray &app)
-    : SlaveBase("iso", pool, app)
+    : WorkerBase("iso", pool, app)
 {
     // qDebug() << "kio_isoProtocol::kio_isoProtocol" << endl;
     m_isoFile = nullptr;
@@ -201,7 +201,7 @@ void kio_isoProtocol::createUDSEntry(const KArchiveEntry *isoEntry, UDSEntry &en
     entry.fastInsert(UDSEntry::UDS_LINK_DEST, isoEntry->symLinkTarget());
 }
 
-void kio_isoProtocol::listDir(const QUrl &url)
+WorkerResult kio_isoProtocol::listDir(const QUrl &url)
 {
     // qDebug() << "kio_isoProtocol::listDir " << url.url() << endl;
 
@@ -211,8 +211,7 @@ void kio_isoProtocol::listDir(const QUrl &url)
         // qDebug()  << "Checking (stat) on " << _path << endl;
         QT_STATBUF buff;
         if (QT_STAT(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
-            error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
-            return;
+            return WorkerResult::fail(ERR_DOES_NOT_EXIST, getPath(url));
         }
         // It's a real dir -> redirect
         QUrl redir;
@@ -222,11 +221,10 @@ void kio_isoProtocol::listDir(const QUrl &url)
         // qDebug()  << "Ok, redirection to " << redir.url() << endl;
         redir.setScheme("file");
         redirection(redir);
-        finished();
         // And let go of the iso file - for people who want to unmount a cdrom after that
         delete m_isoFile;
         m_isoFile = nullptr;
-        return;
+        return WorkerResult::pass();
     }
 
     if (path.isEmpty()) {
@@ -238,8 +236,7 @@ void kio_isoProtocol::listDir(const QUrl &url)
         // qDebug() << "kio_isoProtocol::listDir: redirection " << redir.url() << endl;
         redir.setScheme("file");
         redirection(redir);
-        finished();
-        return;
+        return WorkerResult::pass();
     }
 
     // qDebug()  << "checkNewFile done" << endl;
@@ -249,12 +246,10 @@ void kio_isoProtocol::listDir(const QUrl &url)
         // qDebug()   << QString("Looking for entry %1").arg(path) << endl;
         const KArchiveEntry *e = root->entry(path);
         if (!e) {
-            error(KIO::ERR_DOES_NOT_EXIST, path);
-            return;
+            return WorkerResult::fail(ERR_DOES_NOT_EXIST, path);
         }
         if (!e->isDirectory()) {
-            error(KIO::ERR_IS_FILE, path);
-            return;
+            return WorkerResult::fail(ERR_IS_FILE, path);
         }
         dir = dynamic_cast<const KArchiveDirectory *>(e);
     } else {
@@ -275,11 +270,11 @@ void kio_isoProtocol::listDir(const QUrl &url)
         listEntry(entry);
     }
 
-    finished();
+    return WorkerResult::pass();
     // qDebug()  << "kio_isoProtocol::listDir done" << endl;
 }
 
-void kio_isoProtocol::stat(const QUrl &url)
+WorkerResult kio_isoProtocol::stat(const QUrl &url)
 {
     QString path;
     UDSEntry entry;
@@ -293,8 +288,7 @@ void kio_isoProtocol::stat(const QUrl &url)
         QT_STATBUF buff;
         if (QT_STAT(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
             // qDebug() << "isdir=" << S_ISDIR(buff.st_mode) << "  errno=" << strerror(errno) << endl;
-            error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
-            return;
+            return WorkerResult::fail(ERR_DOES_NOT_EXIST, getPath(url));
         }
         // Real directory. Return just enough information for KRun to work
         entry.fastInsert(UDSEntry::UDS_NAME, url.fileName());
@@ -304,12 +298,10 @@ void kio_isoProtocol::stat(const QUrl &url)
 
         statEntry(entry);
 
-        finished();
-
         // And let go of the iso file - for people who want to unmount a cdrom after that
         delete m_isoFile;
         m_isoFile = nullptr;
-        return;
+        return WorkerResult::pass();
     }
 
     const KArchiveDirectory *root = m_isoFile->directory();
@@ -321,15 +313,14 @@ void kio_isoProtocol::stat(const QUrl &url)
         isoEntry = root->entry(path);
     }
     if (!isoEntry) {
-        error(KIO::ERR_DOES_NOT_EXIST, path);
-        return;
+        return WorkerResult::fail(ERR_DOES_NOT_EXIST, path);
     }
     createUDSEntry(isoEntry, entry);
     statEntry(entry);
-    finished();
+    return WorkerResult::pass();
 }
 
-void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
+WorkerResult kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
 {
     unsigned long long size, pos = 0;
     bool mime = false, zlib = false;
@@ -379,16 +370,13 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
                     if (outbuf.size())
                         pptr = pointer_block.data();
                     else {
-                        error(KIO::ERR_CANNOT_READ, path);
-                        return;
+                        return WorkerResult::fail(ERR_CANNOT_READ, path);
                     }
                 } else {
-                    error(KIO::ERR_CANNOT_READ, path);
-                    return;
+                    return WorkerResult::fail(ERR_CANNOT_READ, path);
                 }
             } else {
-                error(KIO::ERR_CANNOT_READ, path);
-                return;
+                return WorkerResult::fail(ERR_CANNOT_READ, path);
             }
         } else {
             zlib = false;
@@ -451,36 +439,32 @@ void kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QString &path)
     }
 
     if (pos != size) {
-        error(KIO::ERR_CANNOT_READ, path);
-        return;
+        return WorkerResult::fail(ERR_CANNOT_READ, path);
     }
 
     fileData.resize(0);
     data(fileData);
     processedSize(pos);
-    finished();
+    return WorkerResult::pass();
 }
 
-void kio_isoProtocol::get(const QUrl &url)
+WorkerResult kio_isoProtocol::get(const QUrl &url)
 {
     // qDebug()  << "kio_isoProtocol::get" << url.url() << endl;
 
     QString path;
     if (!checkNewFile(getPath(url), path, url.hasFragment() ? url.fragment(QUrl::FullyDecoded).toInt() : -1)) {
-        error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
-        return;
+        return WorkerResult::fail(ERR_DOES_NOT_EXIST, getPath(url));
     }
 
     const KArchiveDirectory *root = m_isoFile->directory();
     const KArchiveEntry *isoEntry = root->entry(path);
 
     if (!isoEntry) {
-        error(KIO::ERR_DOES_NOT_EXIST, path);
-        return;
+        return WorkerResult::fail(ERR_DOES_NOT_EXIST, path);
     }
     if (isoEntry->isDirectory()) {
-        error(KIO::ERR_IS_DIRECTORY, path);
-        return;
+        return WorkerResult::fail(ERR_IS_DIRECTORY, path);
     }
 
     const auto *isoFileEntry = dynamic_cast<const KIsoFile *>(isoEntry);
@@ -490,12 +474,12 @@ void kio_isoProtocol::get(const QUrl &url)
         // qDebug() << "realURL= " << realURL.url() << endl;
         realURL.setScheme("file");
         redirection(realURL);
-        finished();
-        return;
+        return WorkerResult::pass();
     }
-    getFile(isoFileEntry, path);
+    auto result = getFile(isoFileEntry, path);
     if (m_isoFile->device()->isOpen())
         m_isoFile->device()->close();
+    return result;
 }
 
 QString kio_isoProtocol::getPath(const QUrl &url)

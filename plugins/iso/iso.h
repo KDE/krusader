@@ -16,24 +16,24 @@
 #include <QByteArray>
 #include <QUrl>
 
-#include <KIO/SlaveBase>
+#include <KIO/WorkerBase>
 
 #include "kisofile.h"
 
 class KIso;
 
-class kio_isoProtocol : public KIO::SlaveBase
+class kio_isoProtocol : public KIO::WorkerBase
 {
 public:
     kio_isoProtocol(const QByteArray &pool, const QByteArray &app);
     virtual ~kio_isoProtocol();
 
-    virtual void listDir(const QUrl &url) override;
-    virtual void stat(const QUrl &url) override;
-    virtual void get(const QUrl &url) override;
+    virtual KIO::WorkerResult listDir(const QUrl &url) override;
+    virtual KIO::WorkerResult stat(const QUrl &url) override;
+    virtual KIO::WorkerResult get(const QUrl &url) override;
 
 protected:
-    void getFile(const KIsoFile *isoFileEntry, const QString &path);
+    KIO::WorkerResult getFile(const KIsoFile *isoFileEntry, const QString &path);
     void createUDSEntry(const KArchiveEntry *isoEntry, KIO::UDSEntry &entry);
     bool checkNewFile(QString fullPath, QString &path, int startsec);
     QString getPath(const QUrl &url);
