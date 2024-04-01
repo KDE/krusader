@@ -479,7 +479,7 @@ QWizardPage *VerifyWizard::createIntroPage()
     QString typesFilter;
     for (const QString &ext : m_checksumTools.keys())
         typesFilter += ("*." + ext + ' ');
-    checksumFileReq->setFilter(typesFilter);
+    checksumFileReq->setNameFilter(typesFilter);
     checksumFileReq->setText(m_checksumFile);
     checksumFileReq->setFocus();
     connect(checksumFileReq, &KUrlRequester::textChanged, this, &VerifyWizard::slotChecksumPathChanged);
