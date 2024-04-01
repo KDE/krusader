@@ -100,8 +100,6 @@ void KrPreviewJob::slotStartJob()
     }
     QStringList allPlugins = KIO::PreviewJob::availablePlugins();
     _job = new KIO::PreviewJob(list, QSize(size, size), &allPlugins);
-    _job->setOverlayIconAlpha(0);
-    _job->setOverlayIconSize(0);
     _job->setScaleType(KIO::PreviewJob::ScaledAndCached);
     connect(_job, &KIO::PreviewJob::gotPreview, this, &KrPreviewJob::slotGotPreview);
     connect(_job, &KIO::PreviewJob::failed, this, &KrPreviewJob::slotFailed);

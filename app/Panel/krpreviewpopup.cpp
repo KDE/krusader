@@ -97,8 +97,6 @@ void KrPreviewPopup::showEvent(QShowEvent *event)
     if (!jobStarted) {
         QStringList allPlugins = KIO::PreviewJob::availablePlugins();
         KIO::PreviewJob *pjob = new KIO::PreviewJob(files, QSize(MAX_SIZE, MAX_SIZE), &allPlugins);
-        pjob->setOverlayIconSize(0);
-        pjob->setOverlayIconAlpha(1);
         pjob->setScaleType(KIO::PreviewJob::ScaledAndCached);
         connect(pjob, &KIO::PreviewJob::gotPreview, this, &KrPreviewPopup::addPreview);
         jobStarted = true;
