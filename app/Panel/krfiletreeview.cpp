@@ -182,7 +182,7 @@ void KrFileTreeView::showHeaderContextMenu()
     detailAction->setToolTip(i18n("Show columns with details"));
     QAction *showHiddenAction = popup.addAction(i18n("Show Hidden Folders"));
     showHiddenAction->setCheckable(true);
-    showHiddenAction->setChecked(mSourceModel->dirLister()->showingDotFiles());
+    showHiddenAction->setChecked(mSourceModel->dirLister()->showHiddenFiles());
     showHiddenAction->setToolTip(i18n("Show folders starting with a dot"));
 
     popup.addSeparator();
@@ -211,7 +211,7 @@ void KrFileTreeView::showHeaderContextMenu()
         setBriefMode(!detailAction->isChecked());
     } else if (triggeredAction == showHiddenAction) {
         KDirLister *dirLister = mSourceModel->dirLister();
-        dirLister->setShowingDotFiles(showHiddenAction->isChecked());
+        dirLister->setShowHiddenFiles(showHiddenAction->isChecked());
         dirLister->emitChanges();
     } else if (triggeredAction && triggeredAction->actionGroup() == rootActionGroup) {
         setTree(startFromCurrentAction->isChecked(), startFromPlaceAction->isChecked());
@@ -361,7 +361,7 @@ void KrFileTreeView::saveSettings(KConfigGroup cfg) const
 {
     KConfigGroup group = KConfigGroup(&cfg, "TreeView");
     group.writeEntry("BriefMode", briefMode());
-    group.writeEntry("ShowHiddenFolders", mSourceModel->dirLister()->showingDotFiles());
+    group.writeEntry("ShowHiddenFolders", mSourceModel->dirLister()->showHiddenFiles());
     group.writeEntry("StartFromCurrent", mStartTreeFromCurrent);
     group.writeEntry("StartFromPlace", mStartTreeFromPlace);
 }
@@ -370,7 +370,7 @@ void KrFileTreeView::restoreSettings(const KConfigGroup &cfg)
 {
     const KConfigGroup group = KConfigGroup(&cfg, "TreeView");
     setBriefMode(group.readEntry("BriefMode", true));
-    mSourceModel->dirLister()->setShowingDotFiles(group.readEntry("ShowHiddenFolders", false));
+    mSourceModel->dirLister()->setShowHiddenFiles(group.readEntry("ShowHiddenFolders", false));
     setTree(group.readEntry("StartFromCurrent", false), group.readEntry("StartFromPlace", false));
 }
 
