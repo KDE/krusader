@@ -156,10 +156,11 @@ KParts::ReadOnlyPart *PanelViewer::getHexPart()
             // Okteta >= 0.26 provides a desktop file, prefer that as the binary changes name
             KService::Ptr service = KService::serviceByDesktopName("oktetapart");
             if (service) {
-                factory = KPluginLoader(*service.data()).factory();
+                KPluginName name = *service.data();
+                factory = KPluginFactory::loadFactory(name.name()).plugin;
             } else {
                 // fallback to search for desktopfile-less old variant
-                factory = KPluginLoader("oktetapart").factory();
+                factory = KPluginFactory::loadFactory(QStringLiteral("oktetapart")).plugin;
             }
             if (factory) {
                 if ((part = factory->create<KParts::ReadOnlyPart>(this, this)))
@@ -313,8 +314,8 @@ static T *createKPartForMimeType(QString mimetype, QWidget *parentWidget)
     if (metaDataList.isEmpty())
         return nullptr;
 
-    KPluginLoader pluginLoader(metaDataList.first().fileName());
-    KPluginFactory *pluginFactory = pluginLoader.factory();
+    KPluginFactory *pluginFactory = KPluginFactory::loadFactory(metaDataList.first()).plugin;
+
     if (!pluginFactory)
         return nullptr;
 
