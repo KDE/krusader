@@ -60,12 +60,14 @@ void PanelContextMenu::addCompressAndExtractPluginActions()
 {
     KFileItemListProperties props(_items);
 
-    QVector<KPluginMetaData> jsonPlugins = KPluginLoader::findPlugins("kf5/kfileitemaction", [=](const KPluginMetaData &metaData) {
+    QVector<KPluginMetaData> jsonPlugins = KPluginMetaData::findPlugins("kf5/kfileitemaction", [=](const KPluginMetaData &metaData) {
         return metaData.pluginId() == "compressfileitemaction" || metaData.pluginId() == "extractfileitemaction";
     });
 
     foreach (const KPluginMetaData &jsonMetadata, jsonPlugins) {
-        auto *abstractPlugin = KPluginLoader(jsonMetadata.fileName()).factory()->create<KAbstractFileItemActionPlugin>();
+        KPluginFactory *pluginFactory = KPluginFactory::loadFactory(jsonMetadata.fileName()).plugin;
+
+        auto *abstractPlugin = pluginFactory->create<KAbstractFileItemActionPlugin>();
         if (abstractPlugin) {
             abstractPlugin->setParent(this);
             addActions(abstractPlugin->actions(props, this));
