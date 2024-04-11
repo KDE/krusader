@@ -28,7 +28,6 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KPluginFactory>
-#include <KPluginLoader>
 #include <KService>
 #include <KToggleAction>
 #include <kde_terminal_interface.h>
@@ -65,7 +64,7 @@ TerminalDock::~TerminalDock() = default;
 bool TerminalDock::initialise()
 {
     if (!initialised) { // konsole part is not yet loaded or it has already failed
-        KPluginFactory *pluginFactory = KPluginFactory::loadFactory(QStringLiteral("konsolepart")).plugin;
+        KPluginFactory *pluginFactory = KPluginFactory::loadFactory(KPluginMetaData(QStringLiteral("kf6/parts/konsolepart"))).plugin;
 
         if (pluginFactory) {
             QWidget *focusW = qApp->focusWidget();
