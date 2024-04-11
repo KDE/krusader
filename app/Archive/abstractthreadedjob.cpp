@@ -327,7 +327,7 @@ void AbstractJobThread::abort()
 QList<QUrl> AbstractJobThread::remoteUrls(const QUrl &baseUrl, const QStringList &files)
 {
     QList<QUrl> urlList;
-    foreach (const QString &name, files) {
+    for (const QString &name : files) {
         QUrl url = baseUrl;
         url = url.adjusted(QUrl::StripTrailingSlash);
         url.setPath(url.path() + '/' + (name));
@@ -546,7 +546,7 @@ bool AbstractJobThread::uploadTempFiles()
             QList<QUrl> urlList;
             QDir tempDir(_tempDirName);
             QStringList list = tempDir.entryList();
-            foreach (const QString &name, list) {
+            for (const QString &name : qAsConst(list)) {
                 if (name == "." || name == "..")
                     continue;
                 QUrl url = QUrl::fromLocalFile(_tempDirName).adjusted(QUrl::StripTrailingSlash);

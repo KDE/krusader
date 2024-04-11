@@ -85,7 +85,7 @@ public:
     void clear()
     {
         emit cleared();
-        foreach (FileItem *fileitem, _fileItems)
+        for (FileItem *fileitem : qAsConst(_fileItems))
             delete fileitem;
         _fileItems.clear();
         _foundText.clear();
@@ -628,7 +628,8 @@ void KrSearchDialog::feedToListBox()
     }
 
     QList<QUrl> urlList;
-    foreach (FileItem *fileitem, result->fileItems())
+    const auto fileItems = result->fileItems();
+    for (FileItem *fileitem : fileItems)
         urlList.push_back(fileitem->getUrl());
 
     mainSearchBtn->setEnabled(false);

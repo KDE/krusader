@@ -493,8 +493,8 @@ void MediaButton::eject(QString udi)
 
 void MediaButton::slotAccessibilityChanged(bool /*accessible*/, const QString &udi)
 {
-    QList<QAction *> actionList = popupMenu->actions();
-    foreach (QAction *act, actionList) {
+    const QList<QAction *> actionList = popupMenu->actions();
+    for (QAction *act : actionList) {
         if (act && act->data().canConvert<QString>() && act->data().toString() == udi) {
             Solid::Device device(udi);
 
@@ -536,8 +536,8 @@ void MediaButton::slotDeviceRemoved(const QString &udi)
     if (popupMenu->isHidden())
         return;
 
-    QList<QAction *> actionList = popupMenu->actions();
-    foreach (QAction *act, actionList) {
+    const QList<QAction *> actionList = popupMenu->actions();
+    for (QAction *act : actionList) {
         if (act && act->data().canConvert<QString>() && act->data().toString() == udi) {
             popupMenu->removeAction(act);
             delete act;
@@ -553,9 +553,9 @@ void MediaButton::slotCheckMounts()
 
     KMountPoint::List possibleMountList = KMountPoint::possibleMountPoints();
     KMountPoint::List currentMountList = KMountPoint::currentMountPoints();
-    QList<QAction *> actionList = popupMenu->actions();
+    const QList<QAction *> actionList = popupMenu->actions();
 
-    foreach (QAction *act, actionList) {
+    for (QAction *act : actionList) {
         if (act && act->data().canConvert<QString>() && act->data().toString().startsWith(remotePrefix)) {
             QString mountPoint = act->data().toString().mid(remotePrefix.length());
             bool available = false;
@@ -581,7 +581,7 @@ void MediaButton::slotCheckMounts()
             QString udi = remotePrefix + path;
 
             QAction *correspondingAct = nullptr;
-            foreach (QAction *act, actionList) {
+            for (QAction *act : actionList) {
                 if (act && act->data().canConvert<QString>() && act->data().toString() == udi) {
                     correspondingAct = act;
                     break;

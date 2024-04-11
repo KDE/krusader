@@ -348,7 +348,8 @@ void KrInterView::sortModeUpdated(int column, Qt::SortOrder order)
 KIO::filesize_t KrInterView::calcSize()
 {
     KIO::filesize_t size = 0;
-    foreach (FileItem *fileitem, _model->fileItems()) {
+    const auto fileItems = _model->fileItems();
+    for (FileItem *fileitem : fileItems) {
         size += fileitem->getSize();
     }
     return size;
@@ -357,7 +358,7 @@ KIO::filesize_t KrInterView::calcSize()
 KIO::filesize_t KrInterView::calcSelectedSize()
 {
     KIO::filesize_t size = 0;
-    foreach (const FileItem *fileitem, _selection) {
+    for (const FileItem *fileitem : qAsConst(_selection)) {
         size += fileitem->getSize();
     }
     return size;
@@ -366,7 +367,7 @@ KIO::filesize_t KrInterView::calcSelectedSize()
 QList<QUrl> KrInterView::selectedUrls()
 {
     QList<QUrl> list;
-    foreach (const FileItem *fileitem, _selection) {
+    for (const FileItem *fileitem : qAsConst(_selection)) {
         list << fileitem->getUrl();
     }
     return list;
@@ -378,7 +379,7 @@ void KrInterView::setSelectionUrls(const QList<QUrl> urls)
 
     _selection.clear();
 
-    foreach (const QUrl &url, urls) {
+    for (const QUrl &url : urls) {
         const QModelIndex idx = _model->indexFromUrl(url);
         if (idx.isValid())
             setSelected(_model->fileItemAt(idx), true);

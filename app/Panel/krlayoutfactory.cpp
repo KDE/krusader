@@ -59,9 +59,9 @@ bool KrLayoutFactory::parseFiles()
         return false;
     }
 
-    QStringList extraFilePaths = QStandardPaths::locateAll(QStandardPaths::DataLocation, EXTRA_FILE_MASK);
+    const QStringList extraFilePaths = QStandardPaths::locateAll(QStandardPaths::DataLocation, EXTRA_FILE_MASK);
 
-    foreach (const QString &path, extraFilePaths) {
+    for (const QString &path : extraFilePaths) {
         qWarning() << "extra file: " << path;
         QDomDocument doc;
         if (parseFile(path, doc))
@@ -143,7 +143,7 @@ QStringList KrLayoutFactory::layoutNames()
     if (parseFiles()) {
         getLayoutNames(_mainDoc, names);
 
-        foreach (const QDomDocument &doc, _extraDocs)
+        for (const QDomDocument &doc : qAsConst(_extraDocs))
             getLayoutNames(doc, names);
     }
 
@@ -175,7 +175,7 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
 
         layoutRoot = findLayout(_mainDoc, layoutName);
         if (layoutRoot.isNull()) {
-            foreach (const QDomDocument &doc, _extraDocs) {
+            for (const QDomDocument &doc : qAsConst(_extraDocs)) {
                 layoutRoot = findLayout(doc, layoutName);
                 if (!layoutRoot.isNull())
                     break;

@@ -403,7 +403,7 @@ void KrInterBriefView::paintEvent(QPaintEvent *e)
     area.adjust(horizontalOffset(), verticalOffset(), horizontalOffset(), verticalOffset());
     intersectionSet(area, intersectVector);
 
-    foreach (const QModelIndex &mndx, intersectVector) {
+    for (const QModelIndex &mndx : qAsConst(intersectVector)) {
         option.rect = visualRect(mndx);
         painter.save();
 

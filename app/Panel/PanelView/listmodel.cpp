@@ -291,7 +291,7 @@ void ListModel::sort(int column, Qt::SortOrder order)
     }
 
     QModelIndexList newPersistentList;
-    foreach (const QModelIndex &mndx, oldPersistentList)
+    for (const QModelIndex &mndx : qAsConst(oldPersistentList))
         newPersistentList << index(changeMap[mndx.row()], mndx.column());
 
     changePersistentIndexList(oldPersistentList, newPersistentList);
@@ -329,7 +329,7 @@ QModelIndex ListModel::addItem(FileItem *fileitem)
     }
 
     QModelIndexList newPersistentList;
-    foreach (const QModelIndex &mndx, oldPersistentList) {
+    for (const QModelIndex &mndx : qAsConst(oldPersistentList)) {
         int newRow = mndx.row();
         if (newRow >= insertIndex)
             newRow++;

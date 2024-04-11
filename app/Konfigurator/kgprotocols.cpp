@@ -127,7 +127,7 @@ void KgProtocols::loadProtocols()
     QStringList protocols = KProtocolInfo::protocols();
     protocols.sort();
 
-    foreach (const QString &protocol, protocols) {
+    for (const QString &protocol : qAsConst(protocols)) {
         QUrl u;
         u.setScheme(protocol);
         if (KProtocolManager::inputType(u) == KProtocolInfo::T_FILESYSTEM) {

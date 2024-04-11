@@ -101,9 +101,9 @@ KrViewer::KrViewer(QWidget *parent)
     addCustomMenuAction("textEditor", i18n("Text &Editor"), SLOT(editText()), Qt::CTRL + Qt::SHIFT + Qt::Key_E);
     viewerMenu->addSeparator();
 
-    QList<QAction *> actList = menuBar()->actions();
+    const QList<QAction *> actList = menuBar()->actions();
     bool hasPrint = false, hasCopy = false;
-    foreach (QAction *a, actList) {
+    for (QAction *a : actList) {
         if (a->shortcut().matches(printAction->shortcut()) != QKeySequence::NoMatch)
             hasPrint = true;
         if (a->shortcut().matches(copyAction->shortcut()) != QKeySequence::NoMatch)
@@ -212,8 +212,8 @@ void KrViewer::createGUI(KParts::Part *part)
     // getting the key sequences of the viewer menu
     for (int w = 0; w != list.count(); w++) {
         QAction *act = list[w];
-        QList<QKeySequence> sequences = act->shortcuts();
-        foreach (QKeySequence keySeq, sequences) {
+        const QList<QKeySequence> sequences = act->shortcuts();
+        for (QKeySequence keySeq : sequences) {
             for (int i = 0; i < keySeq.count(); ++i) {
                 reservedKeys.push_back(keySeq[i]);
                 reservedKeyActions.push_back(act); // the same action many times in case of multiple shortcuts
@@ -638,9 +638,9 @@ void KrViewer::copy()
 
 void KrViewer::updateActions()
 {
-    QList<QAction *> actList = toolBar()->actions();
+    const QList<QAction *> actList = toolBar()->actions();
     bool hasPrint = false, hasCopy = false;
-    foreach (QAction *a, actList) {
+    for (QAction *a : actList) {
         if (a->text() == printAction->text())
             hasPrint = true;
         if (a->text() == copyAction->text())

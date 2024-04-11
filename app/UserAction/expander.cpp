@@ -87,10 +87,10 @@ QStringList exp_placeholder::fileList(const KrPanel *const panel,
     }
     if (!omitPath) { // add the current path
         // translate to urls using filesystem
-        QList<QUrl> list = panel->func->files()->getUrls(items);
+        const QList<QUrl> list = panel->func->files()->getUrls(items);
         items.clear();
         // parse everything to a single qstring
-        foreach (const QUrl &url, list) {
+        for (const QUrl &url : list) {
             items.push_back(useUrl ? url.url() : url.path());
         }
     }

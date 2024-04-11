@@ -538,9 +538,9 @@ void GeneralFilter::slotDisable()
     bool global = ofType->currentText() != i18n("Folders");
     bool remoteOnly = false;
     if (properties & FilterTabs::HasSearchIn) {
-        QList<QUrl> urlList = searchIn->urlList();
+        const QList<QUrl> urlList = searchIn->urlList();
         remoteOnly = urlList.count() != 0;
-        foreach (const QUrl &url, urlList)
+        for (const QUrl &url : urlList)
             if (url.scheme() == "file")
                 remoteOnly = false;
     }

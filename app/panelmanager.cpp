@@ -198,7 +198,8 @@ void PanelManager::saveSettings(KConfigGroup config, bool saveHistory)
     config.writeEntry("ActiveTab", activeTab());
 
     KConfigGroup grpTabs(&config, "Tabs");
-    foreach (const QString &grpTab, grpTabs.groupList())
+    const auto tabGroups = grpTabs.groupList();
+    for (const QString &grpTab : tabGroups)
         grpTabs.deleteGroup(grpTab);
 
     for (int i = 0; i < _tabbar->count(); i++) {

@@ -86,12 +86,12 @@ void KrViewFactory::registerView(KrViewInstance *inst)
 
 KrViewInstance *KrViewFactory::viewInstance(int id)
 {
-    foreach (KrViewInstance *inst, m_registeredViews) {
+    for (KrViewInstance *inst : qAsConst(m_registeredViews)) {
         if (inst->id() == id)
             return inst;
     }
 
-    foreach (KrViewInstance *inst_dflt, m_registeredViews) {
+    for (KrViewInstance *inst_dflt : qAsConst(m_registeredViews)) {
         if (inst_dflt->id() == m_defaultViewId)
             return inst_dflt;
     }

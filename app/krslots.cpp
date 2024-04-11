@@ -101,7 +101,7 @@ void KrSlots::sendFileByEmail(const QList<QUrl> &urls)
     }
 
     QString subject, separator;
-    foreach (const QUrl &url, urls) {
+    for (const QUrl &url : urls) {
         subject += separator + url.fileName();
         separator = ',';
     }
@@ -112,12 +112,12 @@ void KrSlots::sendFileByEmail(const QList<QUrl> &urls)
     QString executable = QUrl::fromLocalFile(mailProg).fileName();
     if (executable == QStringLiteral("kmail")) {
         proc << mailProg << "--subject" << subject;
-        foreach (const QUrl &url2, urls)
+        for (const QUrl &url2 : urls)
             proc << "--attach" << url2.toDisplayString();
     } else if (executable == QStringLiteral("thunderbird")) {
         QString param = "attachment=\'";
         separator = "";
-        foreach (const QUrl &url2, urls) {
+        for (const QUrl &url2 : urls) {
             param += separator + url2.toDisplayString();
             separator = ',';
         }
@@ -126,7 +126,7 @@ void KrSlots::sendFileByEmail(const QList<QUrl> &urls)
     } else if (executable == QStringLiteral("evolution")) {
         QString param = "mailto:?cc=&subject=" + subject + "&attach=";
         separator = "";
-        foreach (const QUrl &url2, urls) {
+        for (const QUrl &url2 : urls) {
             param += separator + url2.toDisplayString();
             separator = "&attach=";
         }

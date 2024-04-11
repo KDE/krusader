@@ -73,7 +73,7 @@ void UserAction::populateMenu(KActionMenu *menu, const QUrl *currentURL)
     QMap<QString, KActionMenu *> categoryMap;
     QList<KrAction *> uncategorised;
 
-    foreach (KrAction *action, _actions) {
+    for (KrAction *action : qAsConst(_actions)) {
         const QString category = action->category();
         if (!action->isEnabled())
             continue;
@@ -98,7 +98,7 @@ void UserAction::populateMenu(KActionMenu *menu, const QUrl *currentURL)
         menu->addAction(mapIter.value());
     }
 
-    foreach (KrAction *action, uncategorised) {
+    for (KrAction *action : qAsConst(uncategorised)) {
         menu->addAction(action);
     };
 }
@@ -249,7 +249,7 @@ bool UserAction::writeActionFile()
     QDomDocument doc = createEmptyDoc();
     QDomElement root = doc.documentElement();
 
-    foreach (const QString &name, _deletedActions) {
+    for (const QString &name : qAsConst(_deletedActions)) {
         QDomElement element = doc.createElement("deletedAction");
         element.setAttribute("name", name);
         root.appendChild(element);

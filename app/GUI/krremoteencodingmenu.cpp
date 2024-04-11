@@ -45,8 +45,8 @@ void KrRemoteEncodingMenu::slotAboutToShow()
         loadSettings();
 
     // uncheck everything
-    QList<QAction *> acts = menu()->actions();
-    foreach (QAction *act, acts)
+    const QList<QAction *> acts = menu()->actions();
+    for (QAction *act : acts)
         act->setChecked(false);
 
     QString charset = currentCharacterSet();
@@ -59,7 +59,7 @@ void KrRemoteEncodingMenu::slotAboutToShow()
 
         bool found = false;
 
-        foreach (QAction *act, acts) {
+        for (QAction *act : acts) {
             if (act->data().canConvert<int>()) {
                 int idr = act->data().toInt();
 
@@ -73,7 +73,7 @@ void KrRemoteEncodingMenu::slotAboutToShow()
         if (!found)
             qWarning() << Q_FUNC_INFO << "could not find entry for charset=" << charset;
     } else {
-        foreach (QAction *act, acts) {
+        for (QAction *act : acts) {
             if (act->data().canConvert<int>()) {
                 int idr = act->data().toInt();
 

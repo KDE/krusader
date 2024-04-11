@@ -262,7 +262,7 @@ void ListerTextArea::getScreenPosition(const int position, int &x, int &y)
 {
     x = position;
     y = 0;
-    foreach (const QString &row, _rowContent) {
+    for (const QString &row : qAsConst(_rowContent)) {
         const int rowLen = row.length() + 1;
         if (x < rowLen) {
             return;
@@ -2061,7 +2061,7 @@ void Lister::print()
 
         painter.setFont(fixedFont);
         int yOffset = normalFontHeight + 1;
-        foreach (const QString &row, rows) {
+        for (const QString &row : qAsConst(rows)) {
             painter.drawText(0, yOffset + fixedFontHeight, row);
             yOffset += fixedFontHeight;
         }

@@ -1163,7 +1163,8 @@ void KrView::refresh()
         fileItems << _dummyFileItem;
     }
 
-    foreach (FileItem *fileitem, _files->fileItems()) {
+    const auto items = _files->fileItems();
+    for (FileItem *fileitem : items) {
         if (!fileitem || isFiltered(fileitem))
             continue;
         if (fileitem->isDir())
