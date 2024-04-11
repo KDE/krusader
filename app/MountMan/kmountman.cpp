@@ -58,9 +58,9 @@ KMountMan::KMountMan(QWidget *parent)
     _action = new KToolBarPopupAction(Icon("kr_mountman"), i18n("&MountMan..."), this);
     connect(_action, &QAction::triggered, this, &KMountMan::mainWindow);
     connect(_action->menu(), &QMenu::aboutToShow, this, &KMountMan::quickList);
-    _manageAction = _action->menu()->addAction(i18n("Open &MountMan"));
+    _manageAction = _action->popupMenu()->addAction(i18n("Open &MountMan"));
     connect(_manageAction, &QAction::triggered, this, &KMountMan::mainWindow);
-    _action->menu()->addSeparator();
+    _action->popupMenu()->addSeparator();
 
     // added as a precaution, although we use kde services now
     _operational = KrServices::cmdExist("mount");
