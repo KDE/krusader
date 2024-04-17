@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-31 02:00+0000\n"
-"PO-Revision-Date: 2024-04-06 00:20+0900\n"
+"PO-Revision-Date: 2024-04-17 06:54+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -156,6 +156,8 @@ msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
 "<i>Konfigurator</i> and via <code>Shift+F1</code>."
 msgstr ""
+"<b>使用者動作</b>的詳細說明。它會顯示在<i>設定工具</i>，或是透過 <code>Shift"
+"+F1</code> 來顯示。"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelDescription)
 #: app/ActionMan/actionproperty.ui:61
@@ -214,6 +216,9 @@ msgid ""
 "<i>Konfigurator</i> and does not appear in any other menu.<p><b>Note</b>: "
 "the <i>Title</i> shown in the <b>Usermenu</b> can be set below."
 msgstr ""
+"<b>使用者動作</b>的名稱，必須是獨特的。這個名稱僅用於<i>設定工具</i>內，不會"
+"在其他選單內使用。<p><b>註</b>：可以在下方設定<b>使用者選單</b>中會顯示的<i>"
+"標題</i>。"
 
 #. i18n: ectx: property (whatsThis), widget (KComboBox, cbCategory)
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelCategory)
@@ -240,6 +245,9 @@ msgid ""
 "<i>Konfigurator</i> and does not appear in any other menu.</p><p><b>Note</"
 "b>: The <i>Title</i> shown in the <b>Usermenu</b> can be set below.</p>"
 msgstr ""
+"<p><b>使用者動作</b>的名稱，必須是獨特的。這個名稱僅用於<i>設定工具</i>內，不"
+"會在其他選單內使用。</p><p><b>註</b>：可以在下方設定<b>使用者選單</b>中會顯示"
+"的<i>標題</i>。</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelDistinctName)
 #: app/ActionMan/actionproperty.ui:194
@@ -604,12 +612,12 @@ msgstr ""
 #: app/ActionMan/useractionpage.cpp:59
 #, kde-format
 msgid "Import useractions"
-msgstr ""
+msgstr "匯入使用者動作"
 
 #: app/ActionMan/useractionpage.cpp:64
 #, kde-format
 msgid "Export useractions"
-msgstr ""
+msgstr "匯出使用者動作"
 
 #: app/ActionMan/useractionpage.cpp:69
 #, kde-format
@@ -675,6 +683,8 @@ msgid ""
 "Cannot open %1 for writing.\n"
 "Nothing exported."
 msgstr ""
+"無法開啟檔案 %1 供寫入。\n"
+"沒有匯出任何資料。"
 
 #: app/ActionMan/useractionpage.cpp:283
 #, kde-format
@@ -721,7 +731,7 @@ msgstr ""
 #: app/Archive/krarchandler.cpp:278 app/Archive/krarchandler.cpp:419
 #, kde-format
 msgid "Failed to unpack %1."
-msgstr ""
+msgstr "解開 %1 失敗。"
 
 #: app/Archive/krarchandler.cpp:345
 #, kde-format
@@ -736,7 +746,7 @@ msgstr ""
 #: app/Archive/krarchandler.cpp:395
 #, kde-format
 msgid "Unpacking File(s)"
-msgstr ""
+msgstr "正在解開檔案"
 
 #: app/Archive/krarchandler.cpp:419 app/Archive/krarchandler.cpp:641
 #, fuzzy, kde-format
@@ -787,7 +797,7 @@ msgstr ""
 #: app/Archive/packjob.cpp:150
 #, kde-format
 msgid "Error while unpacking"
-msgstr ""
+msgstr "解壓時發生錯誤"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:28 app/kractions.cpp:295
 #, kde-format
@@ -949,7 +959,7 @@ msgstr ""
 #: app/Dialogs/checksumdlg.cpp:184
 #, kde-format
 msgid "Please wait..."
-msgstr ""
+msgstr "請稍候 ..."
 
 #: app/Dialogs/checksumdlg.cpp:202
 #, kde-format
@@ -1238,10 +1248,9 @@ msgid_plural "Pack %1 files"
 msgstr[0] ""
 
 #: app/Dialogs/packgui.cpp:100
-#, fuzzy, kde-format
-#| msgid "Already Exists as Folder"
+#, kde-format
 msgid "Please select a folder"
-msgstr "已存在以此為名的資料夾"
+msgstr "請選擇一個資料夾"
 
 #: app/Dialogs/packguibase.cpp:61 app/Dialogs/packguibase.cpp:115
 #, kde-format
@@ -1254,10 +1263,9 @@ msgid "To archive"
 msgstr "前往封存"
 
 #: app/Dialogs/packguibase.cpp:90
-#, fuzzy, kde-format
-#| msgid "New Folder"
+#, kde-format
 msgid "In folder"
-msgstr "新資料夾"
+msgstr "在資料夾中"
 
 #: app/Dialogs/packguibase.cpp:138
 #, kde-format
@@ -1330,10 +1338,9 @@ msgid "The passwords are different"
 msgstr "密碼不同"
 
 #: app/Dialogs/packguibase.cpp:389
-#, fuzzy, kde-format
-#| msgid "The passwords are different"
+#, kde-format
 msgid "Cannot pack, the passwords are different."
-msgstr "密碼不同"
+msgstr "無法封存，密碼不同。"
 
 #: app/Dialogs/packguibase.cpp:417
 #, kde-format
@@ -1382,10 +1389,9 @@ msgid "Files:"
 msgstr "檔案："
 
 #: app/DiskUsage/diskusage.cpp:107
-#, fuzzy, kde-format
-#| msgid "Folders"
+#, kde-format
 msgid "Folders:"
-msgstr "資料夾"
+msgstr "資料夾："
 
 #: app/DiskUsage/diskusage.cpp:112
 #, kde-format
@@ -1454,10 +1460,9 @@ msgid "Exclude"
 msgstr "排除"
 
 #: app/DiskUsage/diskusage.cpp:761
-#, fuzzy, kde-format
-#| msgid "Up one directory"
+#, kde-format
 msgid "Up one folder"
-msgstr "往上一層目錄"
+msgstr "往上一層資料夾"
 
 #: app/DiskUsage/diskusage.cpp:765
 #, kde-format
@@ -1546,10 +1551,9 @@ msgid "Start new disk usage search"
 msgstr ""
 
 #: app/DiskUsage/diskusagegui.cpp:63
-#, fuzzy, kde-format
-#| msgid "New Folder"
+#, kde-format
 msgid "Parent folder"
-msgstr "新資料夾"
+msgstr "上層資料夾"
 
 #: app/DiskUsage/diskusagegui.cpp:73
 #, kde-format
@@ -1705,16 +1709,14 @@ msgid "Files: %1"
 msgstr "檔案：%1"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:167
-#, fuzzy, kde-format
-#| msgid "Open &Konqueror Here"
+#, kde-format
 msgid "Open File Manager Here"
-msgstr "在此開啟 Konqueror(&K)"
+msgstr "在此開啟檔案管理員"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:169
-#, fuzzy, kde-format
-#| msgid "Open &Konsole Here"
+#, kde-format
 msgid "Open Terminal Here"
-msgstr "在此開啟 Konsole(&K)"
+msgstr "在此開啟終端機"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:173
 #, kde-format
@@ -2288,6 +2290,8 @@ msgid ""
 "You can insert names with escaped spaces or quoted.\n"
 "Example: .git \"target build\" build\\ krusader"
 msgstr ""
+"名稱中的空格可以以跳脫字元來跳脫，也可以使用引號。\n"
+"例如：.git \"target build\" build\\ krusader"
 
 #: app/Filter/generalfilter.cpp:576
 #, fuzzy, kde-format
@@ -2557,7 +2561,7 @@ msgstr "工作進度條"
 #: app/JobMan/jobman.cpp:198
 #, kde-format
 msgid "Job Queue Mode"
-msgstr ""
+msgstr "工作清單模式"
 
 #: app/JobMan/jobman.cpp:199
 #, kde-format
@@ -3136,14 +3140,14 @@ msgid "Preview"
 msgstr "預覽"
 
 #: app/Konfigurator/kgcolors.cpp:375
-#, fuzzy, kde-format
+#, kde-format
 msgid "Import color-scheme"
-msgstr "匯入配色"
+msgstr "匯入配色方案"
 
 #: app/Konfigurator/kgcolors.cpp:377
 #, kde-format
 msgid "Export color-scheme"
-msgstr ""
+msgstr "匯出配色方案"
 
 #: app/Konfigurator/kgcolors.cpp:555
 #, kde-format
@@ -3181,8 +3185,7 @@ msgid "Application"
 msgstr "應用程式"
 
 #: app/Konfigurator/kgcolors.cpp:563
-#, fuzzy, kde-format
-#| msgid "Folders"
+#, kde-format
 msgid "Folder"
 msgstr "資料夾"
 
@@ -3515,9 +3518,9 @@ msgid "Add new atomic extension"
 msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:325
-#, fuzzy, kde-format
+#, kde-format
 msgid "Extension:"
-msgstr "副檔名:"
+msgstr "副檔名："
 
 #: app/Konfigurator/kggeneral.cpp:329
 #, kde-format
@@ -3552,7 +3555,7 @@ msgid "Always show full path in Navigator bar by default."
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:88
-#, fuzzy, kde-format
+#, kde-format
 msgid "Operation"
 msgstr "操作"
 
@@ -3699,10 +3702,9 @@ msgid "Duplicate active tab by click:"
 msgstr "點擊來建立作用中分頁的複本："
 
 #: app/Konfigurator/kgpanel.cpp:159
-#, fuzzy, kde-format
-#| msgid "disabled"
+#, kde-format
 msgid "Disabled"
-msgstr "已關閉"
+msgstr "已停用"
 
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
@@ -3725,25 +3727,24 @@ msgid "Tab Bar position:"
 msgstr "分頁列位置："
 
 #: app/Konfigurator/kgpanel.cpp:183
-#, fuzzy, kde-format
+#, kde-format
 msgid "Top"
 msgstr "頂端"
 
 #: app/Konfigurator/kgpanel.cpp:183
-#, fuzzy, kde-format
+#, kde-format
 msgid "Bottom"
 msgstr "底端"
 
 #: app/Konfigurator/kgpanel.cpp:195
-#, fuzzy, kde-format
+#, kde-format
 msgid "Search bar"
-msgstr "尋找："
+msgstr "搜尋列"
 
 #: app/Konfigurator/kgpanel.cpp:203
-#, fuzzy, kde-format
-#| msgid "Start of Line"
+#, kde-format
 msgid "Start by typing"
-msgstr "行開頭"
+msgstr "開始打字"
 
 #: app/Konfigurator/kgpanel.cpp:205
 #, kde-format
@@ -3784,16 +3785,14 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:227
-#, fuzzy, kde-format
-#| msgid "Text position:"
+#, kde-format
 msgid "Position:"
 msgstr "位置："
 
 #: app/Konfigurator/kgpanel.cpp:237
-#, fuzzy, kde-format
-#| msgid "Default shortcut:"
+#, kde-format
 msgid "Default mode:"
-msgstr "預設捷徑："
+msgstr "預設模式："
 
 #: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1211
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
@@ -3802,15 +3801,14 @@ msgid "Search"
 msgstr "搜尋"
 
 #: app/Konfigurator/kgpanel.cpp:240 app/Panel/krsearchbar.cpp:42
-#, fuzzy, kde-format
+#, kde-format
 msgid "Select"
-msgstr "全部選取(&S)"
+msgstr "選取"
 
 #: app/Konfigurator/kgpanel.cpp:241 app/Panel/krsearchbar.cpp:42
-#, fuzzy, kde-format
-#| msgid "Title:"
+#, kde-format
 msgid "Filter"
-msgstr "過濾器："
+msgstr "過濾器"
 
 #: app/Konfigurator/kgpanel.cpp:251
 #, kde-format
@@ -3866,15 +3864,14 @@ msgid "Show free/total space on the device"
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:304
-#, fuzzy, kde-format
+#, kde-format
 msgid "Layout"
 msgstr "佈局"
 
 #: app/Konfigurator/kgpanel.cpp:313
-#, fuzzy, kde-format
-#| msgid "Count:"
+#, kde-format
 msgid "Layout:"
-msgstr "佈局"
+msgstr "佈局："
 
 #: app/Konfigurator/kgpanel.cpp:325
 #, fuzzy, kde-format
@@ -3958,10 +3955,9 @@ msgid "Sunken"
 msgstr "下凹式"
 
 #: app/Konfigurator/kgpanel.cpp:366
-#, fuzzy, kde-format
-#| msgid "Default shortcut:"
+#, kde-format
 msgid "Default icon size:"
-msgstr "預設捷徑："
+msgstr "預設圖示大小："
 
 #: app/Konfigurator/kgpanel.cpp:395
 #, kde-format
@@ -4078,11 +4074,10 @@ msgid "Character code and numbers"
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:503
-#, fuzzy, kde-format
-#| msgid "Quit Krusader."
+#, kde-format
 msgctxt "Krusader sort"
 msgid "Krusader"
-msgstr "離開 Krusader"
+msgstr "Krusader"
 
 #: app/Konfigurator/kgpanel.cpp:518
 #, kde-format
@@ -4097,10 +4092,9 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:521
-#, fuzzy, kde-format
-#| msgid "Show directories first"
+#, kde-format
 msgid "Show folders first"
-msgstr "先顯示目錄"
+msgstr "先顯示資料夾"
 
 #: app/Konfigurator/kgpanel.cpp:525
 #, kde-format
@@ -4125,15 +4119,14 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:545
-#, fuzzy, kde-format
+#, kde-format
 msgid "View modes"
 msgstr "檢視模式"
 
 #: app/Konfigurator/kgpanel.cpp:552
-#, fuzzy, kde-format
-#| msgid "Default shortcut:"
+#, kde-format
 msgid "Default view mode:"
-msgstr "預設捷徑："
+msgstr "預設檢視模式："
 
 #: app/Konfigurator/kgpanel.cpp:599
 #, kde-format
@@ -4319,7 +4312,7 @@ msgid "Design your own selection mode."
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:698
-#, fuzzy, kde-format
+#, kde-format
 msgid "Details"
 msgstr "詳細資料"
 
@@ -4783,7 +4776,7 @@ msgstr "預設使用等寬字型"
 #: app/Konfigurator/konfigurator.cpp:45
 #, kde-format
 msgid "Konfigurator - Creating Your Own Krusader"
-msgstr ""
+msgstr "設定工具 - 個人化您的 Krusader 體驗"
 
 #: app/Konfigurator/konfigurator.cpp:116
 #, kde-format
@@ -4839,7 +4832,7 @@ msgstr "使用者動作"
 #: app/Konfigurator/konfigurator.cpp:130
 #, kde-format
 msgid "Configure your personal actions"
-msgstr ""
+msgstr "設定您的個人動作"
 
 #: app/Konfigurator/konfigurator.cpp:132
 #, kde-format
@@ -4852,9 +4845,9 @@ msgid "The current page has been changed. Do you want to apply changes?"
 msgstr ""
 
 #: app/Konfigurator/konfiguratoritems.cpp:587
-#, fuzzy, kde-format
+#, kde-format
 msgid "Custom color"
-msgstr "自訂顏色(&C)"
+msgstr "自訂顏色"
 
 #: app/Konfigurator/konfiguratoritems.cpp:588
 #, kde-format
@@ -4950,12 +4943,12 @@ msgstr "黑"
 #: app/Konfigurator/krresulttable.cpp:118
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
+msgstr "沒有找到 unarj，但有找到 arj，將使用後者進行解壓"
 
 #: app/Konfigurator/krresulttable.cpp:124
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr ""
+msgstr "有找到 rpm，但是沒有找到解壓所需要的 cpio"
 
 #: app/Konfigurator/krresulttable.cpp:127
 #: app/Konfigurator/krresulttable.cpp:281
@@ -4966,12 +4959,12 @@ msgstr ""
 #: app/Konfigurator/krresulttable.cpp:128
 #, kde-format
 msgid "Packing"
-msgstr "Packing"
+msgstr "正在封存"
 
 #: app/Konfigurator/krresulttable.cpp:129
 #, kde-format
 msgid "Unpacking"
-msgstr ""
+msgstr "解壓中"
 
 #: app/Konfigurator/krresulttable.cpp:130
 #, fuzzy, kde-format
@@ -5205,12 +5198,12 @@ msgstr ""
 #: app/kractions.cpp:297 app/krusaderview.cpp:461
 #, kde-format
 msgid "Vertical Mode"
-msgstr ""
+msgstr "垂直模式"
 
 #: app/kractions.cpp:303
 #, kde-format
 msgid "User&actions"
-msgstr ""
+msgstr "使用者動作(&A)"
 
 #: app/kractions.cpp:305
 #, kde-format
@@ -5320,6 +5313,8 @@ msgid ""
 "Cannot find the 'locate' command. Please install the findutils-locate "
 "package of GNU, or set its dependencies in Konfigurator"
 msgstr ""
+"找不到 'locate' 命令。請安裝 GNU 的 findutils-locate 軟體包，或是在設定工具中"
+"設定它的依賴關係"
 
 #: app/krslots.cpp:406 app/UserAction/kraction.cpp:282
 #, kde-format
@@ -5423,6 +5418,9 @@ msgid ""
 "will now be checked for external applications. Then the Konfigurator will be "
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr ""
+"<qt><b>歡迎來到 Krusader。</b><p>由於這是您初次使用，我們將會檢查您的裝置是否"
+"有可用的外部應用程式。檢查後將會開啟設定工具，讓您依需要調整 Krusader。</p></"
+"qt>"
 
 #: app/krusader.cpp:336
 #, kde-format
@@ -5486,10 +5484,9 @@ msgstr "工具列(&T)"
 
 #. i18n: ectx: Menu (command_execution_mode)
 #: app/krusaderui.rc:131
-#, fuzzy, kde-format
-#| msgid "Execution Mode"
+#, kde-format
 msgid "Command Execution &Mode Setup"
-msgstr "執行模式"
+msgstr "指令執行模式設定(&M)"
 
 #. i18n: ectx: Menu (window)
 #: app/krusaderui.rc:145
@@ -5529,7 +5526,7 @@ msgstr ""
 #: app/krusaderview.cpp:465
 #, kde-format
 msgid "Horizontal Mode"
-msgstr ""
+msgstr "水平模式"
 
 #: app/KViewer/krviewer.cpp:95
 #, kde-format
@@ -5825,7 +5822,7 @@ msgstr "更新資料庫"
 #: app/Locate/locate.cpp:278
 #, kde-format
 msgid "Cannot start 'locate'. Check the 'Dependencies' page in konfigurator."
-msgstr ""
+msgstr "無法啟動 'locate'。請檢查設定工具中的「相依性」頁面"
 
 #: app/Locate/locate.cpp:317
 #, kde-format
@@ -5924,12 +5921,12 @@ msgstr "Krusader::ProfileManager"
 #: app/main.cpp:113
 #, kde-format
 msgid "Krusader"
-msgstr ""
+msgstr "Krusader"
 
 #: app/main.cpp:113
 #, kde-format
 msgid "Krusader - ROOT PRIVILEGES"
-msgstr ""
+msgstr "Krusader - ROOT 權限"
 
 #: app/main.cpp:117
 #, kde-format
@@ -5946,11 +5943,13 @@ msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
+"回饋：\n"
+"https://forum.kde.org/viewforum.php?f=225"
 
 #: app/main.cpp:124
 #, kde-format
 msgid "Davide Gianforte"
-msgstr ""
+msgstr "Davide Gianforte"
 
 #: app/main.cpp:124 app/main.cpp:125 app/main.cpp:126
 #, kde-format
@@ -5960,17 +5959,17 @@ msgstr "開發者"
 #: app/main.cpp:125
 #, kde-format
 msgid "Toni Asensi Esteve"
-msgstr ""
+msgstr "Toni Asensi Esteve"
 
 #: app/main.cpp:126
 #, kde-format
 msgid "Nikita Melnichenko"
-msgstr ""
+msgstr "Nikita Melnichenko"
 
 #: app/main.cpp:127
 #, kde-format
 msgid "Yuri Chornoivan"
-msgstr ""
+msgstr "Yuri Chornoivan"
 
 #: app/main.cpp:127
 #, fuzzy, kde-format
@@ -5980,7 +5979,7 @@ msgstr "目的地"
 #: app/main.cpp:128
 #, kde-format
 msgid "Rafi Yanai"
-msgstr ""
+msgstr "Rafi Yanai"
 
 #: app/main.cpp:128 app/main.cpp:129
 #, kde-format
@@ -5990,12 +5989,12 @@ msgstr "作者（已退休）"
 #: app/main.cpp:129
 #, kde-format
 msgid "Shie Erlich"
-msgstr ""
+msgstr "Shie Erlich"
 
 #: app/main.cpp:130
 #, kde-format
 msgid "Csaba Karai"
-msgstr ""
+msgstr "Csaba Karai"
 
 #: app/main.cpp:130 app/main.cpp:131 app/main.cpp:132 app/main.cpp:133
 #: app/main.cpp:134 app/main.cpp:135 app/main.cpp:136 app/main.cpp:137
@@ -6012,42 +6011,42 @@ msgstr "Heiner Eichmann"
 #: app/main.cpp:132
 #, kde-format
 msgid "Jonas Bähr"
-msgstr ""
+msgstr "Jonas Bähr"
 
 #: app/main.cpp:133
 #, kde-format
 msgid "Václav Jůza"
-msgstr ""
+msgstr "Václav Jůza"
 
 #: app/main.cpp:134
 #, kde-format
 msgid "Jan Lepper"
-msgstr ""
+msgstr "Jan Lepper"
 
 #: app/main.cpp:135
 #, kde-format
 msgid "Andrey Matveyakin"
-msgstr ""
+msgstr "Andrey Matveyakin"
 
 #: app/main.cpp:136
 #, kde-format
 msgid "Simon Persson"
-msgstr ""
+msgstr "Simon Persson"
 
 #: app/main.cpp:137
 #, kde-format
 msgid "Alexander Bikadorov"
-msgstr ""
+msgstr "Alexander Bikadorov"
 
 #: app/main.cpp:138
 #, kde-format
 msgid "Martin Kostolný"
-msgstr ""
+msgstr "Martin Kostolný"
 
 #: app/main.cpp:139 app/main.cpp:176
 #, kde-format
 msgid "Dirk Eschler"
-msgstr ""
+msgstr "Dirk Eschler"
 
 #: app/main.cpp:139
 #, kde-format
@@ -6057,32 +6056,32 @@ msgstr "網頁負責人（已退休）"
 #: app/main.cpp:140 app/main.cpp:172
 #, kde-format
 msgid "Frank Schoolmeesters"
-msgstr ""
+msgstr "Frank Schoolmeesters"
 
 #: app/main.cpp:141
 #, kde-format
 msgid "Documentation and marketing coordinator (retired)"
-msgstr ""
+msgstr "說明文件與宣傳協調者（已退休）"
 
 #: app/main.cpp:144
 #, kde-format
 msgid "Richard Holt"
-msgstr ""
+msgstr "Richard Holt"
 
 #: app/main.cpp:144
 #, kde-format
 msgid "Documentation & Proofing (retired)"
-msgstr ""
+msgstr "說明文件與校對（已退休）"
 
 #: app/main.cpp:145 app/main.cpp:192
 #, kde-format
 msgid "Matej Urbancic"
-msgstr ""
+msgstr "Matej Urbancic"
 
 #: app/main.cpp:145
 #, kde-format
 msgid "Marketing & Product Research (retired)"
-msgstr ""
+msgstr "宣傳與產品研究（已退休）"
 
 #: app/main.cpp:146
 #, kde-format
@@ -6092,58 +6091,57 @@ msgstr "kde.org"
 #: app/main.cpp:146
 #, kde-format
 msgid "Everyone involved in KDE"
-msgstr ""
+msgstr "所有參與 KDE 的人們"
 
 #: app/main.cpp:147
 #, kde-format
 msgid "l10n.kde.org"
-msgstr ""
+msgstr "l10n.kde.org"
 
 #: app/main.cpp:147
 #, kde-format
 msgid "KDE Translation Teams"
-msgstr ""
+msgstr "KDE 翻譯團隊們"
 
 #: app/main.cpp:148
 #, kde-format
 msgid "Jiří Paleček"
-msgstr ""
+msgstr "Jiří Paleček"
 
 #: app/main.cpp:148 app/main.cpp:159
 #, kde-format
 msgid "QA, bug-hunting, patches and general help"
-msgstr ""
+msgstr "品質保證、臭蟲捕獵、一些補丁和一些幫忙"
 
 #: app/main.cpp:149
 #, kde-format
 msgid "Jiří Klement"
-msgstr ""
+msgstr "Jiří Klement"
 
 #: app/main.cpp:149
 #, kde-format
 msgid "Important help in KDE 4 porting"
-msgstr ""
+msgstr "KDE 4 移植時的重要幫助"
 
 #: app/main.cpp:150
 #, kde-format
 msgid "Andrew Neupokoev"
-msgstr ""
+msgstr "Andrew Neupokoev"
 
 #: app/main.cpp:150
 #, kde-format
 msgid "Killer Logo and Icons for Krusader (contest winner)"
-msgstr ""
+msgstr "超酷的 Krusader 圖標和圖示（比賽贏家）"
 
 #: app/main.cpp:151
 #, kde-format
 msgid "The UsefulArts Organization"
-msgstr ""
+msgstr "UsefulArts 組織"
 
 #: app/main.cpp:151
-#, fuzzy, kde-format
-#| msgid "Configure &Krusader..."
+#, kde-format
 msgid "Icon for Krusader"
-msgstr "設定 Krusader(&K)..."
+msgstr "Krusader 的圖示"
 
 #: app/main.cpp:152
 #, kde-format
@@ -6158,27 +6156,27 @@ msgstr ""
 #: app/main.cpp:153
 #, kde-format
 msgid "Mark Eatough"
-msgstr ""
+msgstr "Mark Eatough"
 
 #: app/main.cpp:153
 #, kde-format
 msgid "Handbook Proof-Reader"
-msgstr ""
+msgstr "手冊校對者"
 
 #: app/main.cpp:154
 #, kde-format
 msgid "Jan Halasa"
-msgstr ""
+msgstr "Jan Halasa"
 
 #: app/main.cpp:154
 #, kde-format
 msgid "The old Bookmark Module"
-msgstr ""
+msgstr "舊的書籤模組"
 
 #: app/main.cpp:155
 #, kde-format
 msgid "Hans Löffler"
-msgstr ""
+msgstr "Hans Löffler"
 
 #: app/main.cpp:155
 #, kde-format
@@ -6621,7 +6619,7 @@ msgid "Enable debug output"
 msgstr ""
 
 #: app/main.cpp:214
-#, fuzzy, kde-format
+#, kde-format
 msgid "URL to open"
 msgstr "要開啟的網址"
 
@@ -6638,7 +6636,7 @@ msgstr "開啟掛載管理(&M)"
 #: app/MountMan/kmountman.cpp:131
 #, kde-format
 msgid "Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."
-msgstr "無法啟動 'mount'。請檢查 konfigurator 中的「相依性」頁面"
+msgstr "無法啟動 'mount'。請檢查設定工具中的「相依性」頁面"
 
 #: app/MountMan/kmountman.cpp:355
 #, kde-format
@@ -6676,9 +6674,9 @@ msgid "Free Size"
 msgstr "剩餘大小"
 
 #: app/MountMan/kmountmangui.cpp:150
-#, fuzzy, kde-format
+#, kde-format
 msgid "Free %"
-msgstr "剩餘 %1"
+msgstr "剩餘 %"
 
 #: app/MountMan/kmountmangui.cpp:179
 #, kde-format
@@ -6701,7 +6699,7 @@ msgid "MountMan"
 msgstr "掛載管理"
 
 #: app/MountMan/kmountmangui.cpp:414
-#, fuzzy, kde-format
+#, kde-format
 msgid "Format"
 msgstr "格式"
 
@@ -6858,7 +6856,7 @@ msgstr ""
 #: app/Panel/krsearchbar.cpp:43
 #, kde-format
 msgid "Change the search mode"
-msgstr ""
+msgstr "變更搜尋模式"
 
 #: app/Panel/krsearchbar.cpp:51
 #, kde-format
@@ -7030,10 +7028,9 @@ msgid "Move delayed..."
 msgstr "移動"
 
 #: app/Panel/listpanelactions.cpp:72
-#, fuzzy, kde-format
-#| msgid "New Folder"
+#, kde-format
 msgid "New Folder..."
-msgstr "新資料夾"
+msgstr "新增資料夾..."
 
 #: app/Panel/listpanelactions.cpp:74
 #, kde-format
@@ -7068,12 +7065,12 @@ msgstr "計算使用空間(&O)"
 #: app/Panel/listpanelactions.cpp:82
 #, kde-format
 msgid "Pac&k..."
-msgstr ""
+msgstr "封存(&K)..."
 
 #: app/Panel/listpanelactions.cpp:83
 #, kde-format
 msgid "&Unpack..."
-msgstr ""
+msgstr "解開(&U)..."
 
 #: app/Panel/listpanelactions.cpp:84
 #, kde-format
@@ -7237,6 +7234,8 @@ msgid ""
 "<qt><p>Edit file.</p><p>The editor can be defined in Konfigurator, default "
 "is <b>internal editor</b>.</p></qt>"
 msgstr ""
+"<qt><p>編輯檔案。</p><p>編輯器可以在設定工具中定義，預設為<b>內部編輯器</b>。"
+"</p></qt>"
 
 #: app/Panel/listpanelactions.cpp:129
 #, kde-format
@@ -7264,6 +7263,8 @@ msgid ""
 "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
 "Konfigurator, default is <b>konsole</b>.</p></qt>"
 msgstr ""
+"<qt><p>在目前資料夾開啟終端機。</p><p>要使用的終端機可以在設定工具中定義，預"
+"設是 <b>Konsole</b>。</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:121
 #, kde-format
@@ -7547,18 +7548,18 @@ msgstr ""
 #: app/Panel/panelfunc.cpp:1062
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
-msgstr ""
+msgstr "無法將檔案封存到虛擬的目的地。"
 
 #: app/Panel/panelfunc.cpp:1095
 #, kde-format
 msgid "Unpack %1 to:"
-msgstr ""
+msgstr "解開 %1 到："
 
 #: app/Panel/panelfunc.cpp:1097
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
-msgstr[0] ""
+msgstr[0] "解開 %1 個檔案到："
 
 #: app/Panel/PanelView/krinterbriefview.cpp:241
 #: app/Panel/PanelView/krinterdetailedview.cpp:289
@@ -8895,7 +8896,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:753
 #, kde-format
 msgid "Automatically escape spaces"
-msgstr ""
+msgstr "自動跳脫空格"
 
 #: app/UserAction/expander.cpp:297
 #, kde-format
@@ -9206,14 +9207,14 @@ msgstr ""
 #: app/UserAction/expander.cpp:886
 #, kde-format
 msgid "Choose a view mode:"
-msgstr ""
+msgstr "選擇檢視模式："
 
 #. i18n("Choose a window-mode"), "__choose:tab;window;panel", false ) );
 #. TODO: window-mode 'panel' should open the file in the third-hand viewer
 #: app/UserAction/expander.cpp:889
 #, kde-format
 msgid "Choose a window mode:"
-msgstr ""
+msgstr "選擇視窗模式："
 
 #: app/UserAction/expander.cpp:894
 #, kde-format
@@ -9266,9 +9267,9 @@ msgid "Use font with fixed width"
 msgstr "使用寬度固定的字型"
 
 #: app/UserAction/kraction.cpp:120
-#, fuzzy, kde-format
+#, kde-format
 msgid "Kill"
-msgstr "結束"
+msgstr "強制停止"
 
 #: app/UserAction/kraction.cpp:121
 #, kde-format
@@ -9300,10 +9301,9 @@ msgid "Append"
 msgstr "附加"
 
 #: app/UserAction/kraction.cpp:185
-#, fuzzy, kde-format
-#| msgid "Export failed!"
+#, kde-format
 msgid "Export failed"
-msgstr "匯出失敗。"
+msgstr "匯出失敗"
 
 #: app/UserAction/kraction.cpp:240
 #, kde-format
@@ -9356,6 +9356,8 @@ msgid ""
 "Action without name detected. This action will not be imported.\n"
 "This is an error in the file, you may want to correct it."
 msgstr ""
+"已偵測到沒有名稱的動作。它將不會被匯入。\n"
+"這是該檔案內的錯誤，您可能會希望修正它。"
 
 #: app/UserAction/useraction.cpp:201
 #, kde-format
@@ -9365,19 +9367,19 @@ msgstr ""
 #: app/useraction_examples.xml:5
 #, kde-format
 msgid "Equal panel-size"
-msgstr ""
+msgstr "設定相同面板大小"
 
 #: app/useraction_examples.xml:6
 #, kde-format
 msgid "Sets the ratio between the two panels to 50/50"
-msgstr ""
+msgstr "將兩個面板大小比例設為 1:1"
 
 #: app/useraction_examples.xml:8 app/useraction_examples.xml:16
 #: app/useraction_examples.xml:25 app/useraction_examples.xml:41
 #: app/useraction_examples.xml:47
 #, kde-format
 msgid "Samples"
-msgstr ""
+msgstr "範例"
 
 #: app/useraction_examples.xml:13
 #, kde-format
@@ -9402,12 +9404,12 @@ msgstr "掛載新的檔案系統"
 #: app/useraction_examples.xml:30
 #, kde-format
 msgid "Enqueue in Amarok"
-msgstr ""
+msgstr "加入 Amarok 待播清單"
 
 #: app/useraction_examples.xml:31
 #, kde-format
 msgid "Append selected item(s) to Amarok playlist"
-msgstr ""
+msgstr "將選取的項目加入 Amarok 播放清單中"
 
 #: app/useraction_examples.xml:33
 #, fuzzy, kde-format
@@ -9418,7 +9420,7 @@ msgstr "媒體"
 #: app/useraction_examples.xml:39
 #, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr ""
+msgstr "複製目前項目的檔案路徑（跳脫空格）"
 
 #: app/useraction_examples.xml:46
 #, kde-format
@@ -9493,6 +9495,8 @@ msgid ""
 "krarc: write support is disabled.\n"
 "You can enable it on the 'Archives' page in Konfigurator."
 msgstr ""
+"krarc：已停用寫入支援。\n"
+"您可以在設定工具中的「封存」頁面中啟用它 。"
 
 #: plugins/krarc/krarc.cpp:302 plugins/krarc/krarc.cpp:321
 #, kde-format
@@ -9500,9 +9504,9 @@ msgid "Creating folders is not supported with %1 archives"
 msgstr ""
 
 #: plugins/krarc/krarc.cpp:364
-#, fuzzy, kde-format
+#, kde-format
 msgid "Creating %1..."
-msgstr "正在建立"
+msgstr "正在建立 %1..."
 
 #: plugins/krarc/krarc.cpp:425 plugins/krarc/krarc.cpp:441
 #, kde-format
@@ -9510,9 +9514,9 @@ msgid "Writing to %1 archives is not supported"
 msgstr ""
 
 #: plugins/krarc/krarc.cpp:515
-#, fuzzy, kde-format
+#, kde-format
 msgid "Packing %1..."
-msgstr "Packing"
+msgstr "正在封存 %1..."
 
 #: plugins/krarc/krarc.cpp:577 plugins/krarc/krarc.cpp:597
 #, kde-format
@@ -9520,9 +9524,9 @@ msgid "Retrieving data from %1 archives is not supported"
 msgstr ""
 
 #: plugins/krarc/krarc.cpp:680 plugins/krarc/krarc.cpp:1101
-#, fuzzy, kde-format
+#, kde-format
 msgid "Unpacking %1..."
-msgstr "Packing"
+msgstr "正在解開 %1..."
 
 #: plugins/krarc/krarc.cpp:693 plugins/krarc/krarc.cpp:699
 #, kde-format
