@@ -18,7 +18,7 @@
 // QtGui
 #include <QKeyEvent>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 #include "../FileSystem/sizecalculator.h"
 #include "../krglobal.h"

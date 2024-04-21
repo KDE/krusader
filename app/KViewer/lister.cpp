@@ -36,16 +36,16 @@
 #include <QPrintDialog>
 #include <QPrinter>
 
-#include <KCodecs/KCharsets>
-#include <KConfigCore/KSharedConfig>
-#include <KCoreAddons/KJobTrackerInterface>
-#include <KI18n/KLocalizedString>
+#include <KActionCollection>
+#include <KCharsets>
 #include <KIO/CopyJob>
 #include <KIO/JobUiDelegate>
 #include <KIO/TransferJob>
+#include <KJobTrackerInterface>
+#include <KLocalizedString>
+#include <KMessageBox>
 #include <KParts/GUIActivateEvent>
-#include <KWidgetsAddons/KMessageBox>
-#include <KXmlGui/KActionCollection>
+#include <KSharedConfig>
 
 #include "../GUI/krremoteencodingmenu.h"
 #include "../compat.h"

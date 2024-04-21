@@ -23,11 +23,11 @@
 #include <QTextCodec>
 #include <qplatformdefs.h>
 
-#include <KArchive/KTar>
-#include <KCoreAddons/KProcess>
-#include <KI18n/KLocalizedString>
+#include <KFileItem>
 #include <KIO/Job>
-#include <KIOCore/KFileItem>
+#include <KLocalizedString>
+#include <KProcess>
+#include <KTar>
 
 #include <kio_version.h>
 

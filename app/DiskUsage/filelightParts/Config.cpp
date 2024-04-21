@@ -10,9 +10,9 @@
 // QtGui
 #include <QFont>
 
-#include <KConfigCore/KConfig>
-#include <KConfigCore/KConfigGroup>
-#include <KConfigCore/KSharedConfig>
+#include <KConfig>
+#include <KConfigGroup>
+#include <KSharedConfig>
 
 bool Config::varyLabelFontSizes = true;
 bool Config::showSmallFiles = false;

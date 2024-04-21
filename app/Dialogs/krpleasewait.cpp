@@ -19,8 +19,8 @@
 #include <QProgressBar>
 #include <QPushButton>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KCursor>
+#include <KCursor>
+#include <KLocalizedString>
 
 #include "../krglobal.h"
 

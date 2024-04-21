@@ -21,9 +21,9 @@
 #include <QFontDialog>
 #include <QLabel>
 
-#include <KCompletion/KLineEdit>
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLineEdit>
+#include <KLocalizedString>
+#include <KSharedConfig>
 #include <utility>
 
 KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgGroup, QString cfgName, bool restartNeeded, int page)

@@ -7,7 +7,7 @@
 #ifndef SYNCHRONIZERCOLORS_H
 #define SYNCHRONIZERCOLORS_H
 
-#include <KGuiAddons/KColorUtils>
+#include <KColorUtils>
 
 #define DECLARE_SYNCHRONIZER_BACKGROUND_DEFAULTS                                                                                                               \
     QColor SYNCHRONIZER_BACKGROUND_DEFAULTS[] = {QGuiApplication::palette().color(QPalette::Active, QPalette::Base),                                           \

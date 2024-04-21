@@ -27,8 +27,8 @@
 #include <QMenu>
 #include <QToolTip>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 #include "../compat.h"
 

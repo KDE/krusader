@@ -13,7 +13,7 @@
 
 #include <QFileSystemWatcher>
 
-#include <KCoreAddons/KDirWatch>
+#include <KDirWatch>
 
 /**
  * @brief Default filesystem implementation supporting all KIO protocols

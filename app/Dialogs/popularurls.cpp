@@ -21,10 +21,10 @@
 #include <QPushButton>
 #include <QToolButton>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KItemViews/KTreeWidgetSearchLine>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
+#include <KTreeWidgetSearchLine>
 
 #include "../GUI/krtreewidget.h"
 #include "../icon.h"

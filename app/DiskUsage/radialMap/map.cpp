@@ -14,9 +14,9 @@
 // QtWidgets
 #include <QApplication> //make()
 
-#include <KConfigWidgets/KColorScheme>
-#include <KIconThemes/KIconEffect> //desaturate()
-#include <KWidgetsAddons/KCursor> //make()
+#include <KColorScheme>
+#include <KCursor> //make()
+#include <KIconEffect> //desaturate()
 
 #include "Config.h"
 #include "builder.h"

@@ -23,14 +23,14 @@
 #include <QHBoxLayout>
 #include <QWidget>
 
-#include <KConfigCore/KConfig>
-#include <KConfigCore/KConfigGroup>
-#include <KCoreAddons/KPluginFactory>
-#include <KCoreAddons/KPluginLoader>
-#include <KI18n/KLocalizedString>
-#include <KService/KService>
-#include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/KToggleAction>
+#include <KConfig>
+#include <KConfigGroup>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KPluginFactory>
+#include <KPluginLoader>
+#include <KService>
+#include <KToggleAction>
 #include <kde_terminal_interface.h>
 
 #include "../FileSystem/filesystem.h"

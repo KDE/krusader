@@ -32,12 +32,12 @@
 // QtXml
 #include <QDomElement>
 
-#include <KConfigCore/KSharedConfig>
-#include <KCoreAddons/KShell>
-#include <KI18n/KLocalizedString>
+#include <KActionCollection>
+#include <KLocalizedString>
+#include <KMessageBox>
 #include <KParts/ReadOnlyPart>
-#include <KWidgetsAddons/KMessageBox>
-#include <KXmlGui/KActionCollection>
+#include <KSharedConfig>
+#include <KShell>
 
 #include "../GUI/terminaldock.h"
 #include "../defaults.h"

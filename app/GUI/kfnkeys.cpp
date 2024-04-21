@@ -11,7 +11,7 @@
 // QtWidgets
 #include <QGridLayout>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 #include "../Panel/listpanelactions.h"
 #include "../defaults.h"

@@ -23,9 +23,9 @@
 #include <QMenu>
 #include <QScrollBar>
 
-#include <KConfigCore/KConfig>
-#include <KI18n/KLocalizedString>
-#include <KIOWidgets/KDirLister>
+#include <KConfig>
+#include <KDirLister>
+#include <KLocalizedString>
 
 #include "../FileSystem/krpermhandler.h"
 #include "../GUI/krstyleproxy.h"

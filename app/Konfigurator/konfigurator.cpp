@@ -15,10 +15,10 @@
 #include <QPixmap>
 #include <QResizeEvent>
 
-#include <KConfigCore/KSharedConfig>
-#include <KConfigWidgets/KHelpClient>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KHelpClient>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
 
 #include "../GUI/kfnkeys.h"
 #include "../defaults.h"

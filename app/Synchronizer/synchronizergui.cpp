@@ -47,11 +47,11 @@
 #include <QMenu>
 #include <QSpinBox>
 
-#include <KConfigCore/KSharedConfig>
-#include <KGuiAddons/KColorUtils>
-#include <KI18n/KLocalizedString>
-#include <KIOWidgets/KUrlRequester>
-#include <KWidgetsAddons/KMessageBox>
+#include <KColorUtils>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
+#include <KUrlRequester>
 #include <utility>
 
 class SynchronizerListView : public KrTreeWidget

@@ -20,10 +20,10 @@
 // QtWidgets
 #include <QApplication>
 
-#include <KI18n/KLocalizedString>
+#include <KFileItem>
 #include <KIO/JobUiDelegate>
-#include <KIOCore/KFileItem>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
 
 #include "../FileSystem/filesystem.h"
 #include "../FileSystem/krpermhandler.h"

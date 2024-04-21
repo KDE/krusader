@@ -9,8 +9,8 @@
 #ifndef KRARCBASEMANAGER_H
 #define KRARCBASEMANAGER_H
 
-#include <KConfigCore/KConfig>
-#include <KConfigCore/KConfigGroup>
+#include <KConfig>
+#include <KConfigGroup>
 
 // QtCore
 #include <QFile>

@@ -14,7 +14,7 @@
 
 #include <QDebug>
 
-#include <KCodecs/KCharsets>
+#include <KCharsets>
 
 FilterSettings::FileSize::FileSize(const FileSize &other) = default;
 

@@ -20,10 +20,10 @@
 // QtWidgets
 #include <QMenu>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KActionMenu>
-#include <KWidgetsAddons/KMessageBox>
-#include <KXmlGui/KActionCollection>
+#include <KActionCollection>
+#include <KActionMenu>
+#include <KLocalizedString>
+#include <KMessageBox>
 
 #include "../FileSystem/filesystem.h"
 #include "../Panel/PanelView/krview.h"

@@ -14,10 +14,10 @@
 #include <QUrl>
 #include <QWidget>
 
-#include <KConfigCore/KSharedConfig>
-#include <KIOFileWidgets/KDirSortFilterProxyModel>
-#include <KIOFileWidgets/KFilePlacesModel>
-#include <KIOWidgets/KDirModel>
+#include <KDirModel>
+#include <KDirSortFilterProxyModel>
+#include <KFilePlacesModel>
+#include <KSharedConfig>
 
 /**
  * Show folders in a tree view.

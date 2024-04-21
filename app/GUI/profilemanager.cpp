@@ -13,8 +13,8 @@
 #include <QInputDialog>
 #include <QMenu>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 #include "../icon.h"
 #include "../krglobal.h"

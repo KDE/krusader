@@ -21,11 +21,11 @@
 // QtWidgets
 #include <QApplication>
 
-#include <KConfigCore/KSharedConfig>
-#include <KCoreAddons/KShell>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/KToggleAction>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
+#include <KShell>
+#include <KToggleAction>
 #include <utility>
 
 #include "defaults.h"

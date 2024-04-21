@@ -29,8 +29,8 @@
 #include <QStackedWidget>
 #include <QToolButton>
 
-#include <KConfigCore/KConfig>
-#include <KI18n/KLocalizedString>
+#include <KConfig>
+#include <KLocalizedString>
 
 PanelManager::PanelManager(QWidget *parent, KrMainWindow *mainWindow, bool left)
     : QWidget(parent)

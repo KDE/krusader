@@ -13,8 +13,8 @@
 // QtWidgets
 #include <QMenu>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KActionMenu>
+#include <KActionMenu>
+#include <KLocalizedString>
 
 /**
  * KCMDModeButton class, which represents a button with popup menu to switch

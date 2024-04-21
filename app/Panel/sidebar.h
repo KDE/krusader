@@ -17,9 +17,9 @@
 #include <QToolButton>
 #include <QWidget>
 
-#include <KConfigCore/KConfigGroup>
+#include <KConfigGroup>
 #include <KIO/PreviewJob>
-#include <KIOFileWidgets/KImageFilePreview>
+#include <KImageFilePreview>
 
 class KrSqueezedTextLabel;
 class PanelViewer;

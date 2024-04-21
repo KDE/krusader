@@ -14,7 +14,7 @@
 // QtGui
 #include <QPaintEvent>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 #include <utility>
 
 /////////////////////////////////////////////////////////////////////////////

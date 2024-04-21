@@ -4,6 +4,7 @@ set(Locate_SRCS
 add_library(Locate STATIC ${Locate_SRCS})
 
 target_link_libraries(Locate
+    KF5::Archive
     KF5::ConfigCore
     KF5::CoreAddons
     KF5::Completion

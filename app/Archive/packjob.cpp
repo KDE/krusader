@@ -15,7 +15,7 @@
 #include <QMimeType>
 #include <QTimer>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 PackJob::PackJob(const QUrl &srcUrl, const QUrl &destUrl, const QStringList &fileNames, const QString &type, const QMap<QString, QString> &packProps)
 {

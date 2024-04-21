@@ -16,7 +16,7 @@
 // QtWidgets
 #include <QAction>
 
-#include <KWidgetsAddons/KToggleAction>
+#include <KToggleAction>
 
 class Krusader;
 

@@ -21,11 +21,11 @@
 #include <QApplication> //QApplication::setOverrideCursor()
 #include <QMenu>
 
-#include <KI18n/KLocalizedString>
 #include <KIO/DeleteJob>
 #include <KIO/JobUiDelegate>
-#include <KIOWidgets/KRun>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KRun>
 #include <kio_version.h>
 #include <kservice_version.h>
 

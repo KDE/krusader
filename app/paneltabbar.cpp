@@ -29,9 +29,9 @@
 #include <QAction>
 #include <QMenu>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KActionMenu>
+#include <KActionMenu>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 static const int sDragEnterDelay = 500; // msec
 

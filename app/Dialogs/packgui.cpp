@@ -20,8 +20,8 @@
 #include <QLineEdit>
 #include <QPushButton>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 #include "../GUI/krhistorycombobox.h"
 

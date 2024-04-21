@@ -18,8 +18,8 @@
 // QtWidgets
 #include <QActionGroup>
 
-#include <KI18n/KLocalizedString>
-#include <KXmlGui/KActionCollection>
+#include <KActionCollection>
+#include <KLocalizedString>
 
 ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow)
     : ActionsBase(parent, mainWindow)

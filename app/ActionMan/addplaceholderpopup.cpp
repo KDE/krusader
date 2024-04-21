@@ -26,11 +26,11 @@
 #include <QToolButton>
 #include <QVBoxLayout>
 
-#include <KCompletion/KComboBox>
-#include <KCompletion/KLineEdit>
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KIOWidgets/KUrlCompletion>
+#include <KComboBox>
+#include <KLineEdit>
+#include <KLocalizedString>
+#include <KSharedConfig>
+#include <KUrlCompletion>
 
 #define ACTIVE_MASK 0x0100
 #define OTHER_MASK 0x0200

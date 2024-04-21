@@ -22,8 +22,8 @@
 #include <QToolButton>
 #include <QToolTip>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 KrSearchBar::KrSearchBar(KrView *view, QWidget *parent)
     : QWidget(parent)

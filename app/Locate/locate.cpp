@@ -46,14 +46,14 @@
 #include <QMenu>
 #include <QTreeWidget>
 
-#include <KConfigCore/KConfig>
-#include <KCoreAddons/KProcess>
-#include <KCoreAddons/KShell>
-#include <KI18n/KLocalizedString>
-#include <KIOCore/KFileItem>
-#include <KTextWidgets/KFind>
-#include <KTextWidgets/KFindDialog>
-#include <KWidgetsAddons/KMessageBox>
+#include <KConfig>
+#include <KFileItem>
+#include <KFind>
+#include <KFindDialog>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KProcess>
+#include <KShell>
 
 // these are the values that will exist in the menu
 #define VIEW_ID 90

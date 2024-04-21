@@ -12,7 +12,7 @@
 #include <QToolButton>
 #include <QWidget>
 
-#include <KCompletion/KComboBox>
+#include <KComboBox>
 
 class KrView;
 

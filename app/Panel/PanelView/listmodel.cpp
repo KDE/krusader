@@ -16,8 +16,8 @@
 #include "krinterview.h"
 #include "krviewproperties.h"
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 ListModel::ListModel(KrInterView *view)
     : QAbstractListModel(nullptr)

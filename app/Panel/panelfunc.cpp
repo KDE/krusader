@@ -22,15 +22,15 @@
 #include <QApplication>
 #include <QInputDialog>
 
-#include <KArchive/KTar>
-#include <KConfigCore/KDesktopFile>
-#include <KCoreAddons/KJobTrackerInterface>
-#include <KCoreAddons/KProcess>
-#include <KCoreAddons/KShell>
-#include <KCoreAddons/KUrlMimeData>
-#include <KI18n/KLocalizedString>
+#include <KDesktopFile>
 #include <KIO/DesktopExecParser>
 #include <KIO/JobUiDelegate>
+#include <KJobTrackerInterface>
+#include <KLocalizedString>
+#include <KProcess>
+#include <KShell>
+#include <KTar>
+#include <KUrlMimeData>
 
 #include <kio_version.h>
 #if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
@@ -38,18 +38,18 @@
 #include <KIO/OpenUrlJob>
 #endif
 
-#include <KIOCore/KProtocolInfo>
-#include <KIOWidgets/KDesktopFileActions>
-#include <KIOWidgets/KOpenWithDialog>
-#include <KIOWidgets/KPropertiesDialog>
-#include <KIOWidgets/KRun>
+#include <KDesktopFileActions>
+#include <KOpenWithDialog>
+#include <KPropertiesDialog>
+#include <KProtocolInfo>
+#include <KRun>
 
-#include <KService/KApplicationTrader>
+#include <KApplicationTrader>
 #include <kservice_version.h>
 
-#include <KWidgetsAddons/KCursor>
-#include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/KToggleAction>
+#include <KCursor>
+#include <KMessageBox>
+#include <KToggleAction>
 
 #include "../Archive/krarchandler.h"
 #include "../Archive/packjob.h"

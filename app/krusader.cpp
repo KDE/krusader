@@ -23,19 +23,19 @@
 // QtDBus
 #include <QDBusInterface>
 
-#include <KConfigCore/KSharedConfig>
-#include <KConfigGui/KWindowConfig>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KAcceleratorManager>
-#include <KWidgetsAddons/KCursor>
-#include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/KToggleAction>
-#include <KWidgetsAddons/KToolBarPopupAction>
-#include <KWindowSystem/KStartupInfo>
-#include <KWindowSystem/KWindowSystem>
-#include <KXmlGui/KActionCollection>
-#include <KXmlGui/KToolBar>
-#include <KXmlGui/KXMLGUIFactory>
+#include <KAcceleratorManager>
+#include <KActionCollection>
+#include <KCursor>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
+#include <KStartupInfo>
+#include <KToggleAction>
+#include <KToolBar>
+#include <KToolBarPopupAction>
+#include <KWindowConfig>
+#include <KWindowSystem>
+#include <KXMLGUIFactory>
 #include <utility>
 
 #include "defaults.h"

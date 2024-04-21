@@ -16,7 +16,7 @@
 #include <QLayout>
 #include <QWidget>
 
-#include <KCompletion/KComboBox>
+#include <KComboBox>
 #include <KShellCompletion>
 
 #include "../Dialogs/kurllistrequester.h"

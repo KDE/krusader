@@ -16,7 +16,7 @@
 #include <QDesktopWidget>
 #include <QToolTip> //for its palette
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 #include "../compat.h"
 #include "fileTree.h"

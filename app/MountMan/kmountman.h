@@ -20,7 +20,7 @@
 
 #include <KIO/Global>
 #include <KIO/Job>
-#include <KIOCore/KMountPoint>
+#include <KMountPoint>
 
 #include <Solid/Device>
 #include <Solid/SolidNamespace>

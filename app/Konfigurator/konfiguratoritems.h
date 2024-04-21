@@ -26,7 +26,7 @@
 #include <QSpinBox>
 #include <QToolButton>
 
-#include <KIOWidgets/KUrlRequester>
+#include <KUrlRequester>
 
 #include "../GUI/krlistwidget.h"
 

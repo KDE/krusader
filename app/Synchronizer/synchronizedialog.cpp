@@ -16,8 +16,8 @@
 #include <QLayout>
 #include <QVBoxLayout>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 SynchronizeDialog::SynchronizeDialog(QWidget *parent,
                                      Synchronizer *sync,

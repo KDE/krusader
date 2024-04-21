@@ -17,7 +17,7 @@
 #include <QLayout>
 #include <QToolButton>
 
-#include <KWidgetsAddons/KSqueezedTextLabel>
+#include <KSqueezedTextLabel>
 
 #include "diskusage.h"
 

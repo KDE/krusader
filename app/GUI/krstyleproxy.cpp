@@ -13,7 +13,7 @@
 // QtWidgets
 #include <QStyleOptionViewItem>
 
-#include <KConfigCore/KSharedConfig>
+#include <KSharedConfig>
 
 #include "../krglobal.h"
 

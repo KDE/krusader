@@ -18,9 +18,9 @@
 #include <QFileDialog>
 #include <QInputDialog>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
-#include <KXmlGui/KActionCollection>
+#include <KActionCollection>
+#include <KLocalizedString>
+#include <KMessageBox>
 
 ActionProperty::ActionProperty(QWidget *parent, KrAction *action)
     : QWidget(parent)

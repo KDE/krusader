@@ -18,8 +18,8 @@
 #include <QApplication>
 #include <QStyle>
 
-#include <KConfigCore/KSharedConfig>
-#include <KCoreAddons/KUrlMimeData>
+#include <KSharedConfig>
+#include <KUrlMimeData>
 
 #define CANCEL_TWO_CLICK_RENAME                                                                                                                                \
     {                                                                                                                                                          \

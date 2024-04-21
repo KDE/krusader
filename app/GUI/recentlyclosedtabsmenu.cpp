@@ -21,10 +21,10 @@
 #include "../panelmanager.h"
 #include "../tabactions.h"
 
-#include <KConfigCore/KConfig>
-#include <KI18n/KLocalizedString>
+#include <KActionCollection>
+#include <KConfig>
 #include <KIO/Global>
-#include <KXmlGui/KActionCollection>
+#include <KLocalizedString>
 
 // QtWidgets
 #include <QMenu>

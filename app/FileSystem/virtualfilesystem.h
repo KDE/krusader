@@ -12,7 +12,7 @@
 // QtCore
 #include <QHash>
 
-#include <KConfigCore/KConfig>
+#include <KConfig>
 
 #include "filesystem.h"
 

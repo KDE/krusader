@@ -24,8 +24,8 @@
 #include <QLayout>
 #include <QSpinBox>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
 
 #include "../Dialogs/krdialogs.h"
 #include "../icon.h"

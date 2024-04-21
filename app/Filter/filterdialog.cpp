@@ -14,7 +14,7 @@
 #include <QGridLayout>
 #include <QPushButton>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 #include <utility>
 
 FilterDialog::FilterDialog(QWidget *parent, const QString &caption, QStringList extraOptions, bool modal)

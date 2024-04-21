@@ -19,10 +19,10 @@
 #include <QMimeType>
 #include <qplatformdefs.h>
 
-#include <KArchive/KFilterBase>
-#include <KArchive/KFilterDev>
-#include <KConfigCore/KConfig>
-#include <KConfigCore/KConfigGroup>
+#include <KConfig>
+#include <KConfigGroup>
+#include <KFilterBase>
+#include <KFilterDev>
 
 #include "libisofs/isofs.h"
 #include "qfilehack.h"

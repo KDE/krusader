@@ -17,7 +17,7 @@
 #include <QLayout>
 #include <QWidget>
 
-#include <KConfigCore/KConfigGroup>
+#include <KConfigGroup>
 
 #include "paneltabbar.h"
 

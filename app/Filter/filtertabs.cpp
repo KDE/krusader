@@ -14,9 +14,9 @@
 // QtWidgets
 #include <QTabWidget>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
 #include <utility>
 
 FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget, QObject *parent, QStringList extraOptions)

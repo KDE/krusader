@@ -17,9 +17,9 @@
 #include <QVBoxLayout>
 #include <QWidgetAction>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KIOWidgets/KIO/FileUndoManager>
+#include <KIO/FileUndoManager>
+#include <KLocalizedString>
+#include <KSharedConfig>
 #include <kio_version.h>
 
 #include "../icon.h"

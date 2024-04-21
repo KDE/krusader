@@ -20,8 +20,8 @@
 #include <QLayout>
 #include <QMenu>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
 
 #define DELETE_ITEM_ID 100
 

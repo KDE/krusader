@@ -9,17 +9,8 @@
 
 #include <kio_version.h>
 
-#if __has_include(<KCompletion/kcompletion_version.h>)
-#include <KCompletion/kcompletion_version.h>
-#else // Pre KF-5.91 header layout
-#include <kcompletion_version.h>
-#endif
-
-#if __has_include(<KArchive/karchive_version.h>)
-#include <KArchive/karchive_version.h>
-#else // Pre KF-5.91 header layout
 #include <karchive_version.h>
-#endif
+#include <kcompletion_version.h>
 
 /**
  * KActionMenu::setDelayed(bool) was made deprecated since 5.77 in

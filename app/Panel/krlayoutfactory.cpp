@@ -24,8 +24,8 @@
 // QtXml
 #include <QDomDocument>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 #define XMLFILE_VERSION "1.0"
 #define MAIN_FILE "layout.xml"

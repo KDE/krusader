@@ -29,11 +29,11 @@
 // QtWidgets
 #include <QAction>
 
-#include <KConfigCore/KConfig>
-#include <KConfigCore/KConfigGroup>
-#include <KConfigWidgets/KStandardAction>
-#include <KNotifications/KStatusNotifierItem>
+#include <KConfig>
+#include <KConfigGroup>
 #include <KParts/MainWindow>
+#include <KStandardAction>
+#include <KStatusNotifierItem>
 
 class KStartupInfoData;
 class KStartupInfoId;

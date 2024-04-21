@@ -11,11 +11,11 @@
 // QtCore
 #include <QFileInfo>
 
-#include <KI18n/KLocalizedString>
+#include <KFileItem>
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
-#include <KIOCore/KFileItem>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
 #include <kio_version.h>
 #include <utility>
 

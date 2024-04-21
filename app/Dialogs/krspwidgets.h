@@ -13,7 +13,7 @@
 // QtGui
 #include <QMouseEvent>
 
-#include <KCompletion/KLineEdit>
+#include <KLineEdit>
 
 #include "../FileSystem/krquery.h"
 #include "krmaskchoice.h"

@@ -14,7 +14,7 @@
 // QtCore
 #include <QTimer>
 
-#include <KWidgetsAddons/KPageDialog>
+#include <KPageDialog>
 
 class QString;
 class QResizeEvent;

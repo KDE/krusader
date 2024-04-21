@@ -18,7 +18,7 @@
 #include <QAction>
 #include <QMenu>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 KrBookmarkButton::KrBookmarkButton(QWidget *parent)
     : QToolButton(parent)

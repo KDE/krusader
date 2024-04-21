@@ -14,13 +14,13 @@
 // QtWidgets
 #include <QMenu>
 
-#include <KCodecs/KCharsets>
-#include <KConfigCore/KConfig>
-#include <KConfigCore/KConfigGroup>
-#include <KI18n/KLocalizedString>
+#include <KActionCollection>
+#include <KCharsets>
+#include <KConfig>
+#include <KConfigGroup>
 #include <KIO/Scheduler>
-#include <KIOCore/KProtocolManager>
-#include <KXmlGui/KActionCollection>
+#include <KLocalizedString>
+#include <KProtocolManager>
 
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"

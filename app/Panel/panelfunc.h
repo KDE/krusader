@@ -16,9 +16,9 @@
 // QtGui
 #include <QClipboard>
 
-#include <KCoreAddons/KJob>
 #include <KIO/Global>
-#include <KService/KService>
+#include <KJob>
+#include <KService>
 
 class DirHistoryQueue;
 class FileItem;

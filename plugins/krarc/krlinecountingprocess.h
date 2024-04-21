@@ -9,7 +9,7 @@
 #ifndef KRLINECOUNTINGPROCESS_H
 #define KRLINECOUNTINGPROCESS_H
 
-#include <KCoreAddons/KProcess>
+#include <KProcess>
 
 /**
  * A KProcess which emits how many lines it is writing to stdout or stderr.

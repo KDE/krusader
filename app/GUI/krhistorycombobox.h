@@ -9,7 +9,7 @@
 #ifndef KRHISTORYCOMBOBOX_H
 #define KRHISTORYCOMBOBOX_H
 
-#include <KCompletion/KHistoryComboBox>
+#include <KHistoryComboBox>
 
 /**
  * A specialized version of a KHistoryComboBox, e.g. it deletes the current

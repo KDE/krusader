@@ -30,12 +30,12 @@
 #include <QMenu>
 #include <QPushButton>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
 #include <KIO/DeleteJob>
 #include <KIO/Job>
-#include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/KStandardGuiItem>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
+#include <KStandardGuiItem>
 #include <utility>
 
 #include "../FileSystem/fileitem.h"

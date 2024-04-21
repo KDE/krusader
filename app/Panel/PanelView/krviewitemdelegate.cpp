@@ -23,7 +23,7 @@
 #include <QDialog>
 #include <QLineEdit>
 
-#include <KConfigCore/KSharedConfig>
+#include <KSharedConfig>
 
 KrViewItemDelegate::KrViewItemDelegate(QObject *parent)
     : QItemDelegate(parent)

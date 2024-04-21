@@ -11,7 +11,7 @@
 #include "krusader.h"
 #include "krusaderview.h"
 
-#include <KXmlGui/KActionCollection>
+#include <KActionCollection>
 
 KConfig *KrGlobal::config = nullptr;
 KMountMan *KrGlobal::mountMan = nullptr;

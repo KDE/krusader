@@ -9,7 +9,7 @@
 // QtGui
 #include <QMouseEvent>
 
-#include <KConfigCore/KSharedConfig>
+#include <KSharedConfig>
 
 #include "../defaults.h"
 #include "../krglobal.h"

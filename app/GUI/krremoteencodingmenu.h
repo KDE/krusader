@@ -15,7 +15,7 @@
 // QtWidgets
 #include <QAction>
 
-#include <KWidgetsAddons/KActionMenu>
+#include <KActionMenu>
 
 class KActionCollection;
 

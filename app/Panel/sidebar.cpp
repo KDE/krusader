@@ -30,8 +30,8 @@
 #include <QAbstractItemView>
 #include <QGridLayout>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 Sidebar::Sidebar(QWidget *parent)
     : QWidget(parent)

@@ -37,8 +37,8 @@
 #include <QMimeType>
 #include <qnamespace.h>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 #define FILEITEM getFileItem()
 

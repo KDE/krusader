@@ -15,7 +15,7 @@
 #include <QInputDialog>
 #include <QMenu>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 #define SCHEME_POPUP_ID 6730
 

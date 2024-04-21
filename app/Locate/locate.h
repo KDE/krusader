@@ -14,7 +14,7 @@
 #include <QCheckBox>
 #include <QDialog>
 
-#include <KCompletion/KComboBox>
+#include <KComboBox>
 
 #include "../GUI/krhistorycombobox.h"
 

@@ -17,9 +17,9 @@
 #include <QScrollArea>
 #include <QTabWidget>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
 
 #define PAGE_GENERAL 0
 #define PAGE_PACKERS 1

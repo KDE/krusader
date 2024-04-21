@@ -19,8 +19,8 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-#include <KCompletion/KComboBox>
-#include <KI18n/KLocalizedString>
+#include <KComboBox>
+#include <KLocalizedString>
 
 #include "../GUI/krlistwidget.h"
 #include "../compat.h"

@@ -20,7 +20,7 @@
 // QtWidgets
 #include <QMenu>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 DirHistoryButton::DirHistoryButton(DirHistoryQueue *hQ, QWidget *parent)
     : QToolButton(parent)

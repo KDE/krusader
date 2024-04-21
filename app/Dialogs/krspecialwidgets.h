@@ -19,8 +19,8 @@
 // QtWidgets
 #include <QWidget>
 
-#include <KCompletion/KLineEdit>
 #include <KIO/Global>
+#include <KLineEdit>
 #include <utility>
 
 class KrPieSlice;

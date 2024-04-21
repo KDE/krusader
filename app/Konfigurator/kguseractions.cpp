@@ -14,7 +14,7 @@
 #include <QLabel>
 #include <QPushButton>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 KgUserActions::KgUserActions(bool first, QWidget *parent)
     : KonfiguratorPage(first, parent)

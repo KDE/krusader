@@ -28,14 +28,14 @@
 #include <KJobWidgets>
 #include <KUrlMimeData>
 
-#include <KI18n/KLocalizedString>
+#include <KDirLister>
+#include <KFileItem>
+#include <KFileItemDelegate>
 #include <KIO/DropJob>
 #include <KIO/Paste>
 #include <KIO/PasteJob>
-#include <KIOCore/KFileItem>
-#include <KIOWidgets/KDirLister>
-#include <KIOWidgets/KFileItemDelegate>
-#include <KIOWidgets/KPropertiesDialog>
+#include <KLocalizedString>
+#include <KPropertiesDialog>
 
 class KrDirModel : public KDirModel
 {

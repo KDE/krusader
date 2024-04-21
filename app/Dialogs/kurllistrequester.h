@@ -14,8 +14,8 @@
 #include <QToolButton>
 #include <QWidget>
 
-#include <KCompletion/KLineEdit>
-#include <KIOWidgets/KUrlCompletion>
+#include <KLineEdit>
+#include <KUrlCompletion>
 
 #include "../GUI/krlistwidget.h"
 

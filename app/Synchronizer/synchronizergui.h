@@ -20,7 +20,7 @@
 #include <QLabel>
 #include <QTabWidget>
 
-#include <KCompletion/KComboBox>
+#include <KComboBox>
 #include <utility>
 
 #include "../Filter/filtertabs.h"

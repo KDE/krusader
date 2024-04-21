@@ -18,8 +18,8 @@
 #include <QProxyStyle>
 #include <QStyleOptionMenuItem>
 
-#include <KI18n/KLocalizedString>
 #include <KIO/PreviewJob>
+#include <KLocalizedString>
 
 #include "../KViewer/krviewer.h"
 

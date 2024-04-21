@@ -19,7 +19,7 @@
 #include <QLabel>
 #include <QPushButton>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, const QUrl &url)
     : QDialog(parent)

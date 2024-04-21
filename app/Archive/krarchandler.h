@@ -14,7 +14,7 @@
 #include <QStringList>
 #include <QUrl>
 
-#include <KCoreAddons/KProcess>
+#include <KProcess>
 
 #include "../../plugins/krarc/krarcbasemanager.h"
 

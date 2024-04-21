@@ -14,8 +14,8 @@
 #include <QTextStream>
 #include <QtGlobal>
 
-#include <KConfigCore/KSharedConfig>
-#include <KIOCore/KProtocolManager>
+#include <KProtocolManager>
+#include <KSharedConfig>
 #include <utility>
 
 #include "defaults.h"

@@ -12,7 +12,7 @@
 // QtWidgets
 #include <QToolButton>
 
-#include <KWidgetsAddons/KActionMenu>
+#include <KActionMenu>
 
 class KrBookmarkButton : public QToolButton
 {

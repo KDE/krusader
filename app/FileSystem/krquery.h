@@ -14,7 +14,7 @@
 #include <QStringList>
 #include <QUrl>
 
-#include <KConfigCore/KConfigGroup>
+#include <KConfigGroup>
 #include <KIO/Job>
 
 class QTextCodec;

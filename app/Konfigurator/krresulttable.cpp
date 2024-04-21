@@ -18,7 +18,7 @@
 #include <QGridLayout>
 #include <QLabel>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 #include <kio_version.h>
 
 #include "../Archive/krarchandler.h"

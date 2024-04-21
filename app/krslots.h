@@ -14,7 +14,7 @@
 #include <QObject>
 #include <QUrl>
 
-#include <KCoreAddons/KProcess>
+#include <KProcess>
 #include <utility>
 
 class KrMainWindow;

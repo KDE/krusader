@@ -16,7 +16,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-#include <KConfigWidgets/KHelpClient>
+#include <KHelpClient>
 
 #include "../compat.h"
 #include "../icon.h"

@@ -19,10 +19,10 @@
 #include <QShortcut>
 #include <QWidget>
 
-#include <KCompletion/KLineEdit>
+#include <KLineEdit>
 #include <KParts/BrowserExtension>
 #include <KParts/Part>
-#include <KTextWidgets/KTextEdit>
+#include <KTextEdit>
 
 #include "../FileSystem/krquery.h"
 

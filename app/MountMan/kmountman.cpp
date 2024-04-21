@@ -14,13 +14,13 @@
 #include <QApplication>
 #include <QMenu>
 
-#include <KConfigCore/KSharedConfig>
-#include <KCoreAddons/KJobTrackerInterface>
-#include <KCoreAddons/KProcess>
-#include <KI18n/KLocalizedString>
 #include <KIO/JobUiDelegate>
-#include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/KToolBarPopupAction>
+#include <KJobTrackerInterface>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KProcess>
+#include <KSharedConfig>
+#include <KToolBarPopupAction>
 
 #include <Solid/Block>
 #include <Solid/Device>

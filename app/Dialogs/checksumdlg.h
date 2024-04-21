@@ -19,8 +19,8 @@
 #include <QLabel>
 #include <QWizard>
 
-#include <KCompletion/KComboBox>
-#include <KCoreAddons/KProcess>
+#include <KComboBox>
+#include <KProcess>
 
 class KrListWidget;
 class KrTreeWidget;

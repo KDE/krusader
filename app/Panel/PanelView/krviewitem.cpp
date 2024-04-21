@@ -20,7 +20,7 @@
 // QtGui
 #include <QPixmap>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 KrViewItem::KrViewItem(FileItem *fileitem, KrInterView *parentView)
     : _fileitem(fileitem)

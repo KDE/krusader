@@ -10,8 +10,8 @@
 #include "../krmainwindow.h"
 #include "PanelView/krview.h"
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KToggleAction>
+#include <KLocalizedString>
+#include <KToggleAction>
 
 ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow)
     : ActionsBase(parent, mainWindow)

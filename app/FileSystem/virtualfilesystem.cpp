@@ -15,14 +15,14 @@
 // QtWidgets
 #include <QApplication>
 
-#include <KCoreAddons/KUrlMimeData>
-#include <KI18n/KLocalizedString>
+#include <KFileItem>
 #include <KIO/CopyJob>
 #include <KIO/DeleteJob>
 #include <KIO/DirectorySizeJob>
 #include <KIO/StatJob>
-#include <KIOCore/KFileItem>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KUrlMimeData>
 
 #include "../defaults.h"
 #include "../krglobal.h"

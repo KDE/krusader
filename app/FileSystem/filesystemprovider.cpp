@@ -19,7 +19,7 @@
 #include <QDebug>
 #include <QDir>
 
-#include <KIOCore/KMountPoint>
+#include <KMountPoint>
 
 #include "../JobMan/jobman.h"
 #include "../krservices.h"

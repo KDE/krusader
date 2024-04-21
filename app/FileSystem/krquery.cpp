@@ -14,11 +14,11 @@
 #include <QRegExp>
 #include <QTextCodec>
 
-#include <KCoreAddons/KFormat>
-#include <KI18n/KLocalizedString>
+#include <KFileItem>
+#include <KFormat>
 #include <KIO/Job>
-#include <KIOCore/KFileItem>
-#include <KIOWidgets/KUrlCompletion>
+#include <KLocalizedString>
+#include <KUrlCompletion>
 #include <utility>
 
 #include "../Archive/krarchandler.h"

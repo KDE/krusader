@@ -19,7 +19,7 @@
 // QtWidgets
 #include <QApplication>
 
-#include <KConfigCore/KSharedConfig>
+#include <KSharedConfig>
 
 // Macro: set target = col, if col is valid
 #define SETCOLOR(target, col)                                                                                                                                  \

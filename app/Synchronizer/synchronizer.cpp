@@ -32,13 +32,13 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-#include <KCoreAddons/KProcess>
-#include <KI18n/KLocalizedString>
 #include <KIO/DeleteJob>
 #include <KIO/JobUiDelegate>
 #include <KIO/SkipDialog>
-#include <KIOWidgets/KUrlCompletion>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KProcess>
+#include <KUrlCompletion>
 
 #ifdef HAVE_POSIX_ACL
 #include <sys/acl.h>

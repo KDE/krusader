@@ -24,10 +24,10 @@
 #include <QSpinBox>
 #include <qnamespace.h> // missing ?
 
-#include <KCompletion/KComboBox>
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KCursor>
+#include <KComboBox>
+#include <KCursor>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 ///////////////////// initiation of the static members ////////////////////////
 QStringList KrSpWidgets::maskList;

@@ -13,7 +13,7 @@
 // QtWidgets
 #include <QFrame>
 
-#include <KConfigCore/KConfigGroup>
+#include <KConfigGroup>
 
 class QDragEnterEvent;
 

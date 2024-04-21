@@ -12,8 +12,8 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
 
 #include "../UserAction/useraction.h"
 #include "../krusader.h"

@@ -18,6 +18,7 @@ add_definitions(-DTRANSLATION_DOMAIN="krusader")
 
 target_link_libraries(kio_iso
     KF5::Archive
+    KF5::Completion
     KF5::ConfigCore
     KF5::KIOCore
     ${ZLIB_LIBRARY}

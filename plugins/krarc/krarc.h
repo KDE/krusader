@@ -23,7 +23,7 @@
 #include <KIO/SlaveBase>
 #endif
 
-#include <KCoreAddons/KProcess>
+#include <KProcess>
 
 #include "../../app/krdebuglogger.h"
 #include "krarcbasemanager.h"

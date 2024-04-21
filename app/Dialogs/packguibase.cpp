@@ -30,12 +30,12 @@
 #include <QToolButton>
 #include <QVBoxLayout>
 
-#include <KCompletion/KComboBox>
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KComboBox>
 #include <KIO/Global>
-#include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/KStandardGuiItem>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
+#include <KStandardGuiItem>
 
 #include "../GUI/krhistorycombobox.h"
 #include "../compat.h"

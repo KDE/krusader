@@ -9,7 +9,7 @@
 #include "krarcbasemanager.h"
 #include "../../app/krdebuglogger.h"
 
-#include <KArchive/KTar>
+#include <KTar>
 
 #include <QtCore/QStandardPaths>
 

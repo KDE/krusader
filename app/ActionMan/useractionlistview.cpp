@@ -12,7 +12,7 @@
 // QtXml
 #include <QDomEntity>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 #include "../UserAction/kraction.h"
 #include "../UserAction/useraction.h"

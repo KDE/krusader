@@ -19,8 +19,8 @@
 #include <QPalette>
 #include <QPixmap>
 
-#include <KConfigCore/KSharedConfig>
-#include <KIconThemes/KIconLoader>
+#include <KIconLoader>
+#include <KSharedConfig>
 #include <utility>
 
 static const int cacheSize = 500;

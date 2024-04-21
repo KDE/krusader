@@ -12,8 +12,8 @@
 #include <QFile>
 #include <QTimer>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
 
 #include "../FileSystem/filesystem.h"
 #include "synchronizer.h"

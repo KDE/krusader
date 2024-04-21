@@ -17,8 +17,8 @@
 #include <QToolButton>
 #include <QWidget>
 
-#include <KCompletion/KLineEdit>
-#include <KIOWidgets/KShellCompletion>
+#include <KLineEdit>
+#include <KShellCompletion>
 
 #include "../GUI/krhistorycombobox.h"
 #include "../UserAction/kractionbase.h"

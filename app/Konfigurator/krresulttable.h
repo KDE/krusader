@@ -17,9 +17,9 @@
 #include <QLabel>
 #include <QLayout>
 
-#include <KIOWidgets/KRun>
-#include <KWidgetsAddons/KSeparator>
-#include <KWidgetsAddons/KUrlLabel>
+#include <KRun>
+#include <KSeparator>
+#include <KUrlLabel>
 
 #include "searchobject.h"
 

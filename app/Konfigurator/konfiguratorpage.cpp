@@ -14,7 +14,7 @@
 #include <QLayout>
 #include <QScrollArea>
 
-#include <KConfigCore/KConfig>
+#include <KConfig>
 #include <utility>
 
 #include "../krglobal.h"

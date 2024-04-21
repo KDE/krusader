@@ -11,7 +11,7 @@
 #include <QGridLayout>
 #include <QLabel>
 
-#include <KConfigCore/KSharedConfig>
+#include <KSharedConfig>
 #include <utility>
 
 #include "../FileSystem/filesystem.h"

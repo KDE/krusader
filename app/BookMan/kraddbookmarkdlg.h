@@ -19,7 +19,7 @@
 #include <QDialog>
 #include <QToolButton>
 
-#include <KCompletion/KLineEdit>
+#include <KLineEdit>
 
 class KrAddBookmarkDlg : public QDialog
 {

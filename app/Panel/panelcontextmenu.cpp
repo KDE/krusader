@@ -11,16 +11,16 @@
 // QtGui
 #include <QPixmap>
 
-#include <KCoreAddons/KPluginMetaData>
-#include <KCoreAddons/KProcess>
-#include <KI18n/KLocalizedString>
-#include <KIOCore/KFileItem>
-#include <KIOCore/KFileItemListProperties>
-#include <KIOWidgets/KAbstractFileItemActionPlugin>
-#include <KIOWidgets/KRun>
-#include <KService/KApplicationTrader>
-#include <KWidgetsAddons/KMessageBox>
-#include <KXmlGui/KActionCollection>
+#include <KAbstractFileItemActionPlugin>
+#include <KActionCollection>
+#include <KApplicationTrader>
+#include <KFileItem>
+#include <KFileItemListProperties>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KPluginMetaData>
+#include <KProcess>
+#include <KRun>
 #include <kio_version.h>
 #include <kservice_version.h>
 

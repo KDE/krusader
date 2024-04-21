@@ -11,7 +11,7 @@
 // QtGui
 #include <QFontMetrics>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 KrusaderStatus::KrusaderStatus(QWidget *parent)
     : QStatusBar(parent)

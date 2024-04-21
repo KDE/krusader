@@ -22,8 +22,8 @@
 #include <QLabel>
 #include <QTabWidget>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
 #include <utility>
 
 KgColors::KgColors(bool first, QWidget *parent)

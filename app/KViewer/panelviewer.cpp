@@ -22,19 +22,19 @@
 #define CREATE_KPART_5_82 0
 #endif
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 #include <KParts/BrowserExtension>
 #include <KParts/ReadWritePart>
+#include <KSharedConfig>
 
 #if CREATE_KPART_5_82
 #include <KParts/PartLoader>
 #endif
 
-#include <KIOCore/KFileItem>
-#include <KService/KMimeTypeTrader>
-#include <KService/KServiceTypeProfile>
-#include <KWidgetsAddons/KMessageBox>
+#include <KFileItem>
+#include <KMessageBox>
+#include <KMimeTypeTrader>
+#include <KServiceTypeProfile>
 
 #include "../defaults.h"
 #include "lister.h"

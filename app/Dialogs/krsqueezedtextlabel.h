@@ -14,7 +14,7 @@
 #include <QMouseEvent>
 #include <QResizeEvent>
 
-#include <KWidgetsAddons/KSqueezedTextLabel>
+#include <KSqueezedTextLabel>
 
 class QMouseEvent;
 class QDragEnterEvent;

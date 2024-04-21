@@ -21,9 +21,9 @@
 #include <QMenuBar>
 #include <QStatusBar>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KToggleAction>
-#include <KXmlGui/KToolBar>
+#include <KLocalizedString>
+#include <KToggleAction>
+#include <KToolBar>
 
 #include "Dialogs/percentalsplitter.h"
 #include "GUI/kcmdline.h"

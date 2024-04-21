@@ -13,8 +13,8 @@
 // QtWidgets
 #include <QAction>
 
-#include <KWidgetsAddons/KToggleAction>
-#include <KXmlGui/KActionCollection>
+#include <KActionCollection>
+#include <KToggleAction>
 #include <utility>
 
 void ActionsBase::ActionGroup::reconnect(QObject *recv)

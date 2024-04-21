@@ -12,12 +12,12 @@
 #include <QAction>
 #include <QMenu>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KToggleAction>
-#include <KWidgetsAddons/KToolBarPopupAction>
-#include <KXmlGui/KActionCollection>
-#include <KXmlGui/KToggleToolBarAction>
-#include <KXmlGui/KXMLGUIFactory>
+#include <KActionCollection>
+#include <KLocalizedString>
+#include <KToggleAction>
+#include <KToggleToolBarAction>
+#include <KToolBarPopupAction>
+#include <KXMLGUIFactory>
 
 #include "Dialogs/popularurls.h"
 #include "GUI/krremoteencodingmenu.h"

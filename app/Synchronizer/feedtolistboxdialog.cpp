@@ -22,9 +22,9 @@
 #include <QLineEdit>
 #include <QVBoxLayout>
 
-#include <KConfigCore/KConfig>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KConfig>
+#include <KLocalizedString>
+#include <KMessageBox>
 
 #define S_LEFT 0
 #define S_RIGHT 1

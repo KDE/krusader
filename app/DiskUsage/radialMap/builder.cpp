@@ -12,7 +12,7 @@
 // QtCore
 #include <QLocale>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 //**** REMOVE NEED FOR the +1 with MAX_RING_DEPTH uses
 //**** add some angle bounds checking (possibly in Segment ctor? can I delete in a ctor?)

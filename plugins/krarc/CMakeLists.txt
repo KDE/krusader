@@ -14,6 +14,7 @@ add_definitions(-DTRANSLATION_DOMAIN="krusader")
 target_link_libraries(kio_krarc
     Qt5::Gui
     KF5::Archive
+    KF5::Completion
     KF5::ConfigCore
     KF5::CoreAddons
     KF5::I18n

@@ -21,18 +21,18 @@
 #include <QStatusBar>
 #include <QGuiApplication>
 
-#include <KWindowSystem>
-#include <KConfigCore/KSharedConfig>
-#include <KConfigWidgets/KStandardAction>
-#include <KCoreAddons/KProcess>
-#include <KCoreAddons/KShell>
-#include <KI18n/KLocalizedString>
-#include <KIOCore/KFileItem>
+#include <KActionCollection>
+#include <KFileItem>
+#include <KLocalizedString>
+#include <KMessageBox>
 #include <KParts/Part>
-#include <KWidgetsAddons/KMessageBox>
-#include <KXmlGui/KActionCollection>
-#include <KXmlGui/KShortcutsDialog>
-#include <KXmlGui/KToolBar>
+#include <KProcess>
+#include <KSharedConfig>
+#include <KShell>
+#include <KShortcutsDialog>
+#include <KStandardAction>
+#include <KToolBar>
+#include <KWindowSystem>
 #include <kxmlgui_version.h>
 #include <utility>
 

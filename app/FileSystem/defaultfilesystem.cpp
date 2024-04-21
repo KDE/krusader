@@ -12,18 +12,18 @@
 #include <QDir>
 #include <QEventLoop>
 
-#include <KConfigCore/KSharedConfig>
-#include <KCoreAddons/KUrlMimeData>
-#include <KI18n/KLocalizedString>
+#include <KDiskFreeSpaceInfo>
+#include <KFileItem>
 #include <KIO/DropJob>
 #include <KIO/FileUndoManager>
 #include <KIO/JobUiDelegate>
 #include <KIO/ListJob>
 #include <KIO/MkpathJob>
-#include <KIOCore/KDiskFreeSpaceInfo>
-#include <KIOCore/KFileItem>
-#include <KIOCore/KMountPoint>
-#include <KIOCore/KProtocolManager>
+#include <KLocalizedString>
+#include <KMountPoint>
+#include <KProtocolManager>
+#include <KSharedConfig>
+#include <KUrlMimeData>
 #include <kio_version.h>
 
 #include "../JobMan/krjob.h"

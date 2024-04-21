@@ -15,8 +15,8 @@
 #include <QLabel>
 #include <QToolTip>
 
-#include <KCoreAddons/KStringHandler>
-#include <KCoreAddons/KUrlMimeData>
+#include <KStringHandler>
+#include <KUrlMimeData>
 
 #include "../compat.h"
 

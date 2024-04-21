@@ -17,6 +17,7 @@ set(GUI_SRCS
 add_library(GUI STATIC ${GUI_SRCS})
 
 target_link_libraries(GUI
+    KF5::Archive
     KF5::ConfigCore
     KF5::CoreAddons
     KF5::I18n
@@ -25,4 +26,5 @@ target_link_libraries(GUI
     KF5::Service
     KF5::Solid
     KF5::WidgetsAddons
+    KF5::KIOFileWidgets
 )

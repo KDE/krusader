@@ -14,7 +14,7 @@
 #include <QDialog>
 
 #include <KIO/Global>
-#include <KIOWidgets/KUrlRequester>
+#include <KUrlRequester>
 
 class QComboBox;
 class QCheckBox;

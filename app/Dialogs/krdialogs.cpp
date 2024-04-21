@@ -22,12 +22,12 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-#include <KCompletion/KLineEdit>
-#include <KI18n/KLocalizedString>
-#include <KIOCore/KRecentDocument>
-#include <KIOWidgets/KUrlCompletion>
-#include <KIOWidgets/KUrlRequester>
-#include <KWidgetsAddons/KGuiItem>
+#include <KGuiItem>
+#include <KLineEdit>
+#include <KLocalizedString>
+#include <KRecentDocument>
+#include <KUrlCompletion>
+#include <KUrlRequester>
 
 #include "../FileSystem/filesystem.h"
 #include "../JobMan/jobman.h"

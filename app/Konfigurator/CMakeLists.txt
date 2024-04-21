@@ -18,6 +18,7 @@ set(Konfigurator_SRCS
 add_library(Konfigurator STATIC ${Konfigurator_SRCS})
 
 target_link_libraries(Konfigurator
+    KF5::Archive
     KF5::I18n
     KF5::IconThemes
     KF5::KIOCore

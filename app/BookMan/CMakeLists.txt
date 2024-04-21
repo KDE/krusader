@@ -7,6 +7,7 @@ set(BookMan_SRCS
 add_library(BookMan STATIC ${BookMan_SRCS})
 
 target_link_libraries(BookMan
+    KF5::Archive
     KF5::Bookmarks
     KF5::Completion
     KF5::ConfigCore

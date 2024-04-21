@@ -12,7 +12,7 @@
 // QtGui
 #include <QKeySequence>
 
-#include <KConfigCore/KConfigGroup>
+#include <KConfigGroup>
 
 class KConfig;
 class KMountMan;

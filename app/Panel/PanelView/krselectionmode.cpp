@@ -10,7 +10,7 @@
 #include "../defaults.h"
 #include "../krglobal.h"
 
-#include <KConfigCore/KSharedConfig>
+#include <KSharedConfig>
 
 static KrSelectionMode *__currentSelectionMode = nullptr; // uninitiated, at first
 

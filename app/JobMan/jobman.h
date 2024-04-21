@@ -15,8 +15,8 @@
 #include <QProgressBar>
 #include <QPushButton>
 
-#include <KCoreAddons/KJob>
-#include <KWidgetsAddons/KToolBarPopupAction>
+#include <KJob>
+#include <KToolBarPopupAction>
 
 class KrJob;
 

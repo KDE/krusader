@@ -26,11 +26,11 @@
 #include <QApplication>
 #include <QSplashScreen>
 
-#include <KConfigCore/KSharedConfig>
-#include <KCoreAddons/KAboutData>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KActionMenu>
-#include <KWindowSystem/KStartupInfo>
+#include <KAboutData>
+#include <KActionMenu>
+#include <KLocalizedString>
+#include <KSharedConfig>
+#include <KStartupInfo>
 
 #include "../Archive/krarchandler.h"
 

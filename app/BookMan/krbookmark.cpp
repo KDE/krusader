@@ -13,8 +13,8 @@
 #include "../icon.h"
 #include "../krglobal.h"
 
-#include <KI18n/KLocalizedString>
-#include <KXmlGui/KActionCollection>
+#include <KActionCollection>
+#include <KLocalizedString>
 #include <utility>
 
 #define BM_NAME(X) (QString("Bookmark:") + X)

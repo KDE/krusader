@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 KrViewInstance::KrViewInstance(int id, const QString &name, const QString &desc, const QString &iconName, const QKeySequence &shortcut)
     : m_id(id)

@@ -31,13 +31,13 @@
 #include <QMenu>
 #include <QPushButton>
 
-#include <KCodecs/KCodecs>
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KIOCore/KDiskFreeSpaceInfo>
-#include <KIOCore/KMountPoint>
-#include <KWidgetsAddons/KGuiItem>
-#include <KWidgetsAddons/KMessageBox>
+#include <KCodecs>
+#include <KDiskFreeSpaceInfo>
+#include <KGuiItem>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KMountPoint>
+#include <KSharedConfig>
 
 #include <Solid/StorageVolume>
 

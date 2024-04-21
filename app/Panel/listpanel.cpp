@@ -32,13 +32,13 @@
 #include <QSplitter>
 #include <QTabBar>
 
-#include <KCoreAddons/KUrlMimeData>
-#include <KI18n/KLocalizedString>
+#include <KCursor>
+#include <KFilePlacesModel>
 #include <KIO/DropJob>
-#include <KIOFileWidgets/KFilePlacesModel>
-#include <KIOWidgets/KUrlComboBox>
-#include <KWidgetsAddons/KCursor>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KUrlComboBox>
+#include <KUrlMimeData>
 #include <utility>
 
 #include "dirhistoryqueue.h"

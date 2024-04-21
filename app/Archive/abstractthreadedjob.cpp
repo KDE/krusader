@@ -17,9 +17,9 @@
 // QtWidgets
 #include <QApplication>
 
-#include <KI18n/KLocalizedString>
 #include <KIO/JobUiDelegate>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
 
 #include "../FileSystem/filesystemprovider.h"
 #include "../krglobal.h"

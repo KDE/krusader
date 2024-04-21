@@ -8,7 +8,7 @@
 #ifndef USERACTIONPOPUPMENU_H
 #define USERACTIONPOPUPMENU_H
 
-#include <KWidgetsAddons/KActionMenu>
+#include <KActionMenu>
 
 class QUrl;
 

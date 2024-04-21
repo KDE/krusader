@@ -13,7 +13,7 @@
 #include <QMimeDatabase>
 #include <QMimeType>
 
-#include <KConfigCore/KDesktopFile>
+#include <KDesktopFile>
 
 #include "../compat.h"
 #include "filesystemprovider.h"

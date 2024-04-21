@@ -19,8 +19,8 @@
 #include <QAction>
 #include <QDialog>
 
-#include <KCoreAddons/KProcess>
-#include <KTextWidgets/KTextEdit>
+#include <KProcess>
+#include <KTextEdit>
 
 #include "kractionbase.h"
 

@@ -15,8 +15,8 @@
 // QtGui
 #include <QPixmap>
 
+#include <KFileItem>
 #include <KIO/PreviewJob>
-#include <KIOCore/KFileItem>
 
 class KrViewItem;
 class KrPreviews;

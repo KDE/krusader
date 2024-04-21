@@ -12,8 +12,8 @@
 #include <QGridLayout>
 #include <QLabel>
 
-#include <KI18n/KLocalizedString>
-#include <KIOCore/KProtocolInfo>
+#include <KLocalizedString>
+#include <KProtocolInfo>
 
 KgAdvanced::KgAdvanced(bool first, QWidget *parent)
     : KonfiguratorPage(first, parent)

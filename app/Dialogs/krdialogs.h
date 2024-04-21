@@ -23,10 +23,10 @@
 // QtGui
 #include <QPixmap>
 
-#include <KIOWidgets/KFile>
-#include <KIOWidgets/KUrlRequesterDialog>
-#include <KWidgetsAddons/KAnimatedButton>
-#include <KWidgetsAddons/KDatePicker>
+#include <KAnimatedButton>
+#include <KDatePicker>
+#include <KFile>
+#include <KUrlRequesterDialog>
 
 /** \class KChooseDir
  * Used for asking the user for a folder.

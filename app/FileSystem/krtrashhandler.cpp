@@ -11,13 +11,13 @@
 #include <QDir>
 #include <QStandardPaths>
 
-#include <KConfigCore/KConfig>
-#include <KConfigCore/KConfigGroup>
+#include <KConfig>
+#include <KConfigGroup>
 #include <KIO/EmptyTrashJob>
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
 #include <KIO/RestoreJob>
-#include <KJobWidgets/KJobWidgets>
+#include <KJobWidgets>
 
 #include "../icon.h"
 #include "../kractions.h"

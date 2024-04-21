@@ -14,6 +14,7 @@ set(FileSystem_SRCS
 add_library(FileSystem STATIC ${FileSystem_SRCS})
 
 target_link_libraries(FileSystem
+    KF5::Archive
     KF5::I18n
     KF5::KIOCore
     KF5::KIOWidgets

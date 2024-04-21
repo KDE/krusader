@@ -20,10 +20,10 @@
 // QtXml
 #include <QDomDocumentType>
 
-#include <KCompletion/KLineEdit>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/KStandardGuiItem>
+#include <KLineEdit>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KStandardGuiItem>
 
 #include "../UserAction/kraction.h"
 #include "../UserAction/useraction.h"

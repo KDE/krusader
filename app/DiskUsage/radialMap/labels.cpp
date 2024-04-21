@@ -12,7 +12,7 @@
 #include <QFontMetrics>
 #include <QPainter>
 
-#include <KCoreAddons/KStringHandler>
+#include <KStringHandler>
 
 #include "../compat.h"
 #include "Config.h"

@@ -18,8 +18,8 @@
 #include <QToolButton>
 #include <QWidget>
 
-#include <KCompletion/KComboBox>
-#include <KCompletion/KLineEdit>
+#include <KComboBox>
+#include <KLineEdit>
 
 class QSpinBox;
 

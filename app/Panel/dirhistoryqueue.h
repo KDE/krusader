@@ -15,7 +15,7 @@
 #include <QStringList>
 #include <QUrl>
 
-#include <KConfigCore/KConfigGroup>
+#include <KConfigGroup>
 
 class KrPanel;
 

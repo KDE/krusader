@@ -17,6 +17,7 @@ set(Dialogs_SRCS
 add_library(Dialogs STATIC ${Dialogs_SRCS})
 
 target_link_libraries(Dialogs
+    KF5::Archive
     KF5::Completion
     KF5::ConfigWidgets
     KF5::CoreAddons

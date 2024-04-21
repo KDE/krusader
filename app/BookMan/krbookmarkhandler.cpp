@@ -30,11 +30,11 @@
 #include <QCursor>
 #include <QMouseEvent>
 
-#include <KBookmarks/KBookmarkManager>
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
-#include <KXmlGui/KActionCollection>
+#include <KActionCollection>
+#include <KBookmarkManager>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
 #include <utility>
 
 #define SPECIAL_BOOKMARKS true

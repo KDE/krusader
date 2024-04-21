@@ -12,7 +12,7 @@
 #include <signal.h> // for kill
 #include <unistd.h> // for setsid, see Kr7zEncryptionChecker::setupChildProcess
 
-#include <KCoreAddons/KProcess>
+#include <KProcess>
 
 /**
  * Used by ArcHandler.

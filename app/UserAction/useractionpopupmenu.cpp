@@ -10,7 +10,7 @@
 // QtCore
 #include <QUrl>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 #include "../krglobal.h"
 #include "kraction.h"

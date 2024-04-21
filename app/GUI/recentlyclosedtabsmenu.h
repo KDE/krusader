@@ -12,7 +12,7 @@
 #ifndef RECENTLYCLOSEDTABSMENU_H
 #define RECENTLYCLOSEDTABSMENU_H
 
-#include <KWidgetsAddons/KActionMenu>
+#include <KActionMenu>
 
 class KActionCollection;
 class TabActions;

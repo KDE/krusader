@@ -16,7 +16,7 @@
 // QtWidgets
 #include <QMenu>
 
-#include <KIOCore/KFileItem>
+#include <KFileItem>
 
 class KrPreviewPopup : public QMenu
 {

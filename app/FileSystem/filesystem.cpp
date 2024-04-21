@@ -17,9 +17,9 @@
 // QtWidgets
 #include <qplatformdefs.h>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
 #include <KIO/JobUiDelegate>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 #include "../JobMan/jobman.h"
 #include "../JobMan/krjob.h"

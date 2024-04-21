@@ -26,10 +26,10 @@
 #include <QLayout>
 #include <QLineEdit>
 
-#include <KConfigCore/KConfigGroup>
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KConfigGroup>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
 #include <utility>
 
 struct SplitterGUI::PredefinedDevice {

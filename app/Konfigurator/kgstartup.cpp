@@ -13,8 +13,8 @@
 #include <QGridLayout>
 #include <QLabel>
 
-#include <KCompletion/KLineEdit>
-#include <KI18n/KLocalizedString>
+#include <KLineEdit>
+#include <KLocalizedString>
 
 KgStartup::KgStartup(bool first, QWidget *parent)
     : KonfiguratorPage(first, parent)

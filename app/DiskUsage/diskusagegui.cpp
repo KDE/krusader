@@ -17,8 +17,8 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 #include "../Dialogs/krdialogs.h"
 #include "../FileSystem/filesystem.h"

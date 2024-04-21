@@ -16,5 +16,6 @@ target_link_libraries(UserAction
     KF5::Parts
     KF5::WidgetsAddons
     KF5::XmlGui
+    KF5::KIOFileWidgets
     Qt5::Xml
 )

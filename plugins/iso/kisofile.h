@@ -11,7 +11,7 @@
 // QtCore
 #include <QString>
 
-#include <KArchive/KArchive>
+#include <KArchive>
 
 class KIsoFile : public KArchiveFile
 {

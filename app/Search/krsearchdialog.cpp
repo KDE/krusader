@@ -25,10 +25,10 @@
 #include <QInputDialog>
 #include <QMenu>
 
-#include <KConfigCore/KConfig>
-#include <KConfigWidgets/KStandardAction>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KConfig>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KStandardAction>
 
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krspecialwidgets.h"

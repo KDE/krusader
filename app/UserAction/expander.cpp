@@ -36,8 +36,8 @@
 #include <QApplication>
 #include <QInputDialog>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
 
 #include <algorithm>
 #include <functional>

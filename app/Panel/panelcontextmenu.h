@@ -12,8 +12,8 @@
 // QtWidgets
 #include <QMenu>
 
-#include <KIOWidgets/KFileItemActions>
-#include <KService/KService>
+#include <KFileItemActions>
+#include <KService>
 
 class KrPanel;
 

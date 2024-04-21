@@ -21,11 +21,11 @@
 #include <QMenu>
 #include <QPushButton>
 
-#include <KCodecs/KCharsets>
-#include <KConfigCore/KSharedConfig>
-#include <KCoreAddons/KShell>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KCharsets>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
+#include <KShell>
 
 typedef struct {
     const char *description;

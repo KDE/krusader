@@ -17,12 +17,12 @@
 #include <QCursor>
 #include <QMouseEvent>
 
-#include <KConfigCore/KConfigGroup>
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KConfigGroup>
 #include <KIO/Global>
-#include <KIOCore/KMountPoint>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KMountPoint>
+#include <KSharedConfig>
 
 #include <Solid/DeviceInterface>
 #include <Solid/DeviceNotifier>

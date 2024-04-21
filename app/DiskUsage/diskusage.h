@@ -24,7 +24,7 @@
 #include <QScrollArea>
 #include <QStackedWidget>
 
-#include <KWidgetsAddons/KSqueezedTextLabel>
+#include <KSqueezedTextLabel>
 
 #include "filelightParts/fileTree.h"
 

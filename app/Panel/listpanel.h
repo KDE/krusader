@@ -33,11 +33,11 @@
 #include <QToolButton>
 #include <QWidget>
 
-#include <KCompletion/KLineEdit>
-#include <KConfigCore/KConfigGroup>
+#include <KConfigGroup>
+#include <KFileItem>
 #include <KIO/Job>
-#include <KIOCore/KFileItem>
-#include <KIOFileWidgets/KUrlNavigator>
+#include <KLineEdit>
+#include <KUrlNavigator>
 
 #include "krpanel.h"
 #include "panelcontextmenu.h"

@@ -16,7 +16,7 @@
 // QtWidgets
 #include <QAction>
 
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
 
 TabActions::TabActions(QObject *parent, KrMainWindow *mainWindow)
     : ActionsBase(parent, mainWindow)

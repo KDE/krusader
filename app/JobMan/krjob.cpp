@@ -6,9 +6,9 @@
 
 #include "krjob.h"
 
-#include <KI18n/KLocalizedString>
 #include <KIO/DeleteJob>
 #include <KIO/FileUndoManager>
+#include <KLocalizedString>
 
 KrJob *KrJob::createCopyJob(KIO::CopyJob::CopyMode mode, const QList<QUrl> &src, const QUrl &destination, KIO::JobFlags flags)
 {

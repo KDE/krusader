@@ -15,8 +15,8 @@
 #include <QLabel>
 #include <QSpinBox>
 
-#include <KCompletion/KComboBox>
-#include <KCompletion/KLineEdit>
+#include <KComboBox>
+#include <KLineEdit>
 
 #include "../GUI/krhistorycombobox.h"
 

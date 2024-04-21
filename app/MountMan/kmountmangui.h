@@ -17,7 +17,7 @@
 #include <QDialog>
 #include <QFrame>
 
-#include <KIOCore/KMountPoint>
+#include <KMountPoint>
 #include <utility>
 
 #include "../GUI/krtreewidget.h"

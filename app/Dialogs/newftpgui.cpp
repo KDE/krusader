@@ -21,10 +21,10 @@
 #include <QPushButton>
 #include <QSizePolicy>
 
-#include <KConfigCore/KConfigGroup>
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KIOCore/KProtocolInfo>
+#include <KConfigGroup>
+#include <KLocalizedString>
+#include <KProtocolInfo>
+#include <KSharedConfig>
 
 #include "../compat.h"
 #include "../icon.h"

@@ -12,7 +12,7 @@
 #include <QString>
 #include <QUrl>
 
-#include <KCoreAddons/KDirWatch>
+#include <KDirWatch>
 
 class KrTrashWatcher;
 

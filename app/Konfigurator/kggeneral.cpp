@@ -18,9 +18,9 @@
 #include <QInputDialog>
 #include <QLabel>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KSharedConfig>
 
 #include "../defaults.h"
 #include "../icon.h"

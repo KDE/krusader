@@ -24,8 +24,8 @@
 #include <QLabel>
 #include <QSizePolicy>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
+#include <KLocalizedString>
+#include <KSharedConfig>
 #include <utility>
 
 #include "../ActionMan/addplaceholderpopup.h"

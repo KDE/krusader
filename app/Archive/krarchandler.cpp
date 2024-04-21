@@ -15,13 +15,13 @@
 // QtWidgets
 #include <QApplication>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
 #include <KIO/Global>
-#include <KIOCore/KProtocolManager>
-#include <KWallet/KWallet>
-#include <KWidgetsAddons/KMessageBox>
-#include <KWidgetsAddons/KPasswordDialog>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KPasswordDialog>
+#include <KProtocolManager>
+#include <KSharedConfig>
+#include <KWallet>
 #include <utility>
 
 #include "../../plugins/krarc/krlinecountingprocess.h"

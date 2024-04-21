@@ -11,8 +11,8 @@
 // QtWidgets
 #include <QInputDialog>
 
-#include <KI18n/KLocalizedString>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
 
 #include "../krglobal.h"
 #include "kraction.h"

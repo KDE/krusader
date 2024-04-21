@@ -10,7 +10,7 @@
 
 #include "../FileSystem/krquery.h"
 
-#include <KConfigCore/KConfigGroup>
+#include <KConfigGroup>
 
 class FilterSettings
 {

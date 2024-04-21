@@ -32,9 +32,9 @@
 
 #include <QtConcurrent/QtConcurrentRun> // krazy:exclude=includes
 
-#include <KI18n/KLocalizedString>
-#include <KIOWidgets/KUrlRequester>
-#include <KWidgetsAddons/KMessageBox>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KUrlRequester>
 
 void Checksum::startCreationWizard(const QString &path, const QStringList &files)
 {

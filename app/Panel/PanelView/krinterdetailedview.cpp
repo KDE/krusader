@@ -19,9 +19,9 @@
 #include <QMenu>
 #include <QToolTip>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KIOWidgets/KDirLister>
+#include <KDirLister>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 #include "../FileSystem/krpermhandler.h"
 #include "../GUI/krstyleproxy.h"

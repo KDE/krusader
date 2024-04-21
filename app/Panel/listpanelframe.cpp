@@ -16,8 +16,8 @@
 #include <QDragEnterEvent>
 #include <QGuiApplication>
 
-#include <KConfigCore/KSharedConfig>
-#include <KCoreAddons/KUrlMimeData>
+#include <KSharedConfig>
+#include <KUrlMimeData>
 
 ListPanelFrame::ListPanelFrame(QWidget *parent, const QString &color)
     : QFrame(parent)

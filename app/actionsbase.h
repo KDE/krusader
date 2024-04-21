@@ -16,7 +16,7 @@
 // QtWidgets
 #include <QAction>
 
-#include <KConfigWidgets/KStandardAction>
+#include <KStandardAction>
 
 class KrMainWindow;
 

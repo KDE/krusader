@@ -19,9 +19,9 @@
 #include <QHeaderView>
 #include <QVBoxLayout>
 
-#include <KConfigCore/KSharedConfig>
-#include <KI18n/KLocalizedString>
-#include <KIOCore/KProtocolManager>
+#include <KLocalizedString>
+#include <KProtocolManager>
+#include <KSharedConfig>
 
 KgProtocols::KgProtocols(bool first, QWidget *parent)
     : KonfiguratorPage(first, parent)
