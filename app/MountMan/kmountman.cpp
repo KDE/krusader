@@ -15,6 +15,7 @@
 #include <QMenu>
 
 #include <KIO/JobUiDelegate>
+#include <KIO/JobUiDelegateFactory>
 #include <KJobTrackerInterface>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -196,7 +197,7 @@ void KMountMan::mount(const QString &mntPoint, bool blocking)
         }
 
         KIO::SimpleJob *job = KIO::mount(false, m->mountType().toLocal8Bit(), m->mountedFrom(), m->mountPoint(), KIO::DefaultFlags);
-        job->setUiDelegate(new KIO::JobUiDelegate());
+        job->setUiDelegate(KIO::createDefaultJobUiDelegate());
         KIO::getJobTracker()->registerJob(job);
         connect(job, &KIO::SimpleJob::result, this, &KMountMan::jobResult);
     }
@@ -241,7 +242,7 @@ void KMountMan::unmount(const QString &mntPoint, bool blocking)
         }
 
         KIO::SimpleJob *job = KIO::unmount(mntPoint, KIO::DefaultFlags);
-        job->setUiDelegate(new KIO::JobUiDelegate());
+        job->setUiDelegate(KIO::createDefaultJobUiDelegate());
         KIO::getJobTracker()->registerJob(job);
         connect(job, &KIO::SimpleJob::result, this, &KMountMan::jobResult);
     }

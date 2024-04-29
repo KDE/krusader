@@ -40,6 +40,7 @@
 #include <KCharsets>
 #include <KIO/CopyJob>
 #include <KIO/JobUiDelegate>
+#include <KIO/JobUiDelegateFactory>
 #include <KIO/TransferJob>
 #include <KJobTrackerInterface>
 #include <KLocalizedString>
@@ -1897,7 +1898,7 @@ void Lister::saveAs()
     urlList << sourceUrl;
 
     KIO::Job *job = KIO::copy(urlList, url);
-    job->setUiDelegate(new KIO::JobUiDelegate());
+    job->setUiDelegate(KIO::createDefaultJobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
 }
@@ -1927,7 +1928,7 @@ void Lister::saveSelected()
     connect(saveJob, &KIO::TransferJob::dataReq, this, &Lister::slotDataSend);
     connect(saveJob, &KIO::TransferJob::result, this, &Lister::slotSendFinished);
 
-    saveJob->setUiDelegate(new KIO::JobUiDelegate());
+    saveJob->setUiDelegate(KIO::createDefaultJobUiDelegate());
     KIO::getJobTracker()->registerJob(saveJob);
     saveJob->uiDelegate()->setAutoErrorHandlingEnabled(true);
 

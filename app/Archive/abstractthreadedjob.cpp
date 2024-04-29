@@ -18,6 +18,7 @@
 #include <QApplication>
 
 #include <KIO/JobUiDelegate>
+#include <KIO/JobUiDelegateFactory>
 #include <KLocalizedString>
 #include <KMessageBox>
 
@@ -105,7 +106,7 @@ bool AbstractThreadedJob::event(QEvent *e)
             QUrl dest = event->args()[1].value<QUrl>();
             KIO::Job *job = KIO::copy(sources, dest, KIO::HideProgressInfo);
             addSubjob(job);
-            job->setUiDelegate(new KIO::JobUiDelegate());
+            job->setUiDelegate(KIO::createDefaultJobUiDelegate());
 
             connect(job, &KIO::Job::result, this, &AbstractThreadedJob::slotDownloadResult);
             connect(job, SIGNAL(processedAmount(KJob *, KJob::Unit, qulonglong)), this, SLOT(slotProcessedAmount(KJob *, KJob::Unit, qulonglong)));

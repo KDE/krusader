@@ -36,6 +36,7 @@
 #if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
 #include <KIO/CommandLauncherJob>
 #include <KIO/OpenUrlJob>
+#include <KIO/JobUiDelegateFactory>
 #endif
 
 #include <KDesktopFileActions>
@@ -1064,7 +1065,7 @@ void ListPanelFunc::pack()
     }
 
     PackJob *job = PackJob::createPacker(files()->currentDirectory(), destURL, fileNames, PackGUI::type, PackGUI::extraProps);
-    job->setUiDelegate(new KIO::JobUiDelegate());
+    job->setUiDelegate(KIO::createDefaultJobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
 
@@ -1079,7 +1080,7 @@ void ListPanelFunc::testArchive()
         return; // safety
 
     TestArchiveJob *job = TestArchiveJob::testArchives(files()->currentDirectory(), fileNames);
-    job->setUiDelegate(new KIO::JobUiDelegate());
+    job->setUiDelegate(KIO::createDefaultJobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
 }
@@ -1104,7 +1105,7 @@ void ListPanelFunc::unpack()
     bool packToOtherPanel = (dest.matches(panel->otherPanel()->virtualPath(), QUrl::StripTrailingSlash));
 
     UnpackJob *job = UnpackJob::createUnpacker(files()->currentDirectory(), dest, fileNames);
-    job->setUiDelegate(new KIO::JobUiDelegate());
+    job->setUiDelegate(KIO::createDefaultJobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
     job->uiDelegate()->setAutoErrorHandlingEnabled(true);
 

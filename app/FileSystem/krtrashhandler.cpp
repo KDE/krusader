@@ -16,6 +16,7 @@
 #include <KIO/EmptyTrashJob>
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
+#include <KIO/JobUiDelegateFactory>
 #include <KIO/RestoreJob>
 #include <KJobWidgets>
 
@@ -40,9 +41,10 @@ QString KrTrashHandler::trashIconName()
 
 void KrTrashHandler::emptyTrash()
 {
-    KIO::JobUiDelegate uiDelegate;
-    uiDelegate.setWindow(krMainWindow);
-    if (!uiDelegate.askDeleteConfirmation(QList<QUrl>(), KIO::JobUiDelegate::EmptyTrash, KIO::JobUiDelegate::DefaultConfirmation))
+    KIO::JobUiDelegate* uiDelegate = qobject_cast<KIO::JobUiDelegate *>(KIO::createDefaultJobUiDelegate());
+    Q_ASSERT(uiDelegate);
+    uiDelegate->setWindow(krMainWindow);
+    if (!uiDelegate->askDeleteConfirmation(QList<QUrl>(), KIO::JobUiDelegate::EmptyTrash, KIO::JobUiDelegate::DefaultConfirmation))
         return;
 
     KIO::Job *job = KIO::emptyTrash();
