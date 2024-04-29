@@ -19,6 +19,7 @@
 #include <KIO/JobUiDelegate>
 #include <KIO/ListJob>
 #include <KIO/MkpathJob>
+#include <KIO/FileSystemFreeSpaceJob>
 #include <KLocalizedString>
 #include <KMountPoint>
 #include <KProtocolManager>
@@ -156,18 +157,31 @@ void DefaultFileSystem::updateFilesystemInfo()
     }
 
     const QString path = _currentDirectory.path();
-    const KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo(path);
-    if (!info.isValid()) {
+    KIO::FileSystemFreeSpaceJob *job = KIO::fileSystemFreeSpace(QUrl::fromLocalFile(path));
+
+    connect(job, &KIO::FileSystemFreeSpaceJob::result, this, &DefaultFileSystem::freeSpaceResult);
+}
+
+void DefaultFileSystem::freeSpaceResult(KJob *job, KIO::filesize_t size, KIO::filesize_t available)
+{
+    if (!job->error()) {
+        KIO::FileSystemFreeSpaceJob *freeSpaceJob = qobject_cast<KIO::FileSystemFreeSpaceJob *>(job);
+        Q_ASSERT(freeSpaceJob);
+        QString path = freeSpaceJob->url().toLocalFile();
+        const KMountPoint::Ptr mountPoint = KMountPoint::currentMountPoints().findByPath(path);
+        QString fsType;
+        if (mountPoint != nullptr) {
+            fsType = mountPoint->mountType();
+            _mountPoint = mountPoint->mountPoint();
+        } else {
+            fsType = "";
+            _mountPoint = "";
+        }
+        emit fileSystemInfoChanged("", fsType, size, available);
+    } else {
         _mountPoint = "";
         emit fileSystemInfoChanged(i18n("Space information unavailable"), "", 0, 0);
-        return;
     }
-    _mountPoint = info.mountPoint();
-
-    const KMountPoint::Ptr mountPoint = KMountPoint::currentMountPoints().findByPath(path);
-    const QString fsType = mountPoint ? mountPoint->mountType() : "";
-
-    emit fileSystemInfoChanged("", fsType, info.size(), info.available());
 }
 
 // ==== protected ====
