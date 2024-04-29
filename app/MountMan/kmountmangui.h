@@ -66,6 +66,9 @@ protected:
     void addNonMounted();
 
 private:
+    void freeSpaceResult(KJob *job, KIO::filesize_t size, KIO::filesize_t available, fsData data);
+
+
     KMountMan *mountMan;
     KrFSDisplay *info;
     KrTreeWidget *mountList;

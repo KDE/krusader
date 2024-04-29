@@ -18,6 +18,7 @@
 #include <QCryptographicHash>
 #include <QFileInfo>
 #include <QList>
+#include <QEventLoop>
 // QtGui
 #include <QBitmap>
 #include <QCursor>
@@ -38,6 +39,7 @@
 #include <KMessageBox>
 #include <KMountPoint>
 #include <KSharedConfig>
+#include <KIO/FileSystemFreeSpaceJob>
 
 #include <Solid/StorageVolume>
 
@@ -207,26 +209,60 @@ void KMountManGUI::getSpaceData()
         return;
     }
 
+    // Potentially long running
+    this->setCursor(Qt::WaitCursor);
     for (auto &it : mounted) {
         // don't bother with invalid file systems
         if (mountMan->invalidFilesystem(it->mountType())) {
             continue;
         }
-        KDiskFreeSpaceInfo info = KDiskFreeSpaceInfo::freeSpaceInfo(it->mountPoint());
-        if (!info.isValid()) {
-            continue;
-        }
+        QTimer timer;
+        timer.setSingleShot(true);
+        QEventLoop loop;
         fsData data;
+
         data.setMntPoint(it->mountPoint());
         data.setMounted(true);
-        data.setTotalBlks(info.size() / 1024);
-        data.setFreeBlks(info.available() / 1024);
         data.setName(it->mountedFrom());
         data.setType(it->mountType());
-        fileSystems.append(data);
+        KIO::FileSystemFreeSpaceJob *job = KIO::fileSystemFreeSpace(QUrl::fromLocalFile(it->mountPoint()));
+        connect(job, &KIO::FileSystemFreeSpaceJob::result, this,
+                [this, data](KJob *job, KIO::filesize_t size, KIO::filesize_t available){ this->freeSpaceResult(job, size, available, data); });
+        // Add a timeout and also wait for each info job to complete, this way they are added in sequence
+        connect(job, &KIO::FileSystemFreeSpaceJob::result, &loop, &QEventLoop::quit);
+        connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+        timer.start(100); // 100ms Maybe this should be configurable
+        loop.exec();
+
+        // Timed out, delete the job and add a dummy entry
+        if (!timer.isActive()) {
+            delete job;
+            data.setTotalBlks(0);
+            data.setFreeBlks(0);
+            fileSystems.append(data);
+        }
     }
+    this->setCursor(Qt::ArrowCursor);
     addNonMounted();
     updateList();
+}
+
+void KMountManGUI::freeSpaceResult(KJob *job, KIO::filesize_t size, KIO::filesize_t available, fsData data)
+{
+    if (!job->error()) {
+        KIO::FileSystemFreeSpaceJob *freeSpaceJob = qobject_cast<KIO::FileSystemFreeSpaceJob *>(job);
+        Q_ASSERT(freeSpaceJob);
+        // Set the missing information, with the assumption the caller already set the rest
+        data.setTotalBlks(size / 1024);
+        data.setFreeBlks(available / 1024);
+
+        fileSystems.append(data);
+    } else {
+        // How can we signal the error
+        data.setTotalBlks(0);
+        data.setFreeBlks(0);
+        fileSystems.append(data);
+    }
 }
 
 void KMountManGUI::addNonMounted()
