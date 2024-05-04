@@ -11,7 +11,7 @@
 # Joëlle Cornavin <jcorn@free.fr>, 2009, 2010, 2011, 2012, 2013.
 # Vincent PINON <vpinon@kde.org>, 2014.
 # Simon Depiets <sdepiets@gmail.com>, 2019.
-# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023 Xavier Besnard <xavier.besnard@kde.org>
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024 Xavier Besnard <xavier.besnard@kde.org>
 # Copyright (C) 2004-2009, Krusader Krew
 #
 #
@@ -20,15 +20,15 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-31 02:00+0000\n"
-"PO-Revision-Date: 2023-12-01 13:54+0100\n"
+"PO-Revision-Date: 2024-05-02 15:41+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
-"Language-Team: French <kde-francophone@kde.org>\n"
+"Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.08.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
@@ -5663,10 +5663,10 @@ msgid ""
 "<p>Furthermore, running UI applications as root is insecure and can allow "
 "attackers to gain root access."
 msgstr ""
-"Des actions incorrectes en mode superutilisateur peuvent endommager votre "
+"Des actions incorrectes en mode administrateur peuvent endommager votre "
 "système d'exploitation. <p> De plus, l'exécution d'applications avec "
-"interface graphique en mode superutilisateur est peu sûre et peut offrir un "
-"moyen à des attaquants d'obtenir des privilèges du superutilisateur."
+"interface graphique en mode administrateur est peu sûre et peut offrir un "
+"moyen à des attaquants d'obtenir des privilèges du compte administrateur."
 
 #: app/krslots.cpp:477
 #, kde-format
@@ -5674,7 +5674,7 @@ msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
 "verify that kde-cli-tools are installed."
 msgstr ""
-"Impossible de démarrer Krusader en mode superutilisateur, %1 est introuvable "
+"Impossible de démarrer Krusader en mode administrateur, %1 est introuvable "
 "ou non executable. Veuillez vérifier que les outils « kde-cli-tools » sont "
 "bien installés."
 
@@ -9800,17 +9800,17 @@ msgstr "Exemples"
 #: app/useraction_examples.xml:13
 #, kde-format
 msgid "Edit as root"
-msgstr "Modifier comme superutilisateur"
+msgstr "Modifier avec les privilèges du compte administrateur"
 
 #: app/useraction_examples.xml:14
 #, kde-format
 msgid "Edit a file as root"
-msgstr "Modifier un fichier en mode superutilisateur"
+msgstr "Modifier un fichier en mode administrateur"
 
 #: app/useraction_examples.xml:17
 #, kde-format
 msgid "Edit a file with root permissions"
-msgstr "Modifier un fichier avec les droits de superutilisateur"
+msgstr "Modifier un fichier avec les privilèges du compte administrateur"
 
 #: app/useraction_examples.xml:23
 #, kde-format
