@@ -129,14 +129,14 @@ bool UserActionPage::continueInSpiteOfChanges()
     if (!actionProperties->isModified())
         return true;
 
-    int answer = KMessageBox::questionYesNoCancel(this, i18n("The current action has been modified. Do you want to apply these changes?"));
+    int answer = KMessageBox::questionTwoActionsCancel(this, i18n("The current action has been modified. Do you want to apply these changes?"), "", KStandardGuiItem::apply(), KStandardGuiItem::discard());
     if (answer == KMessageBox::Cancel) {
         disconnect(actionTree, &UserActionListView::currentItemChanged, this, &UserActionPage::slotChangeCurrent);
         actionTree->setCurrentAction(actionProperties->action());
         connect(actionTree, &UserActionListView::currentItemChanged, this, &UserActionPage::slotChangeCurrent);
         return false;
     }
-    if (answer == KMessageBox::Yes) {
+    if (answer == KMessageBox::PrimaryAction) {
         if (!actionProperties->validProperties()) {
             disconnect(actionTree, &UserActionListView::currentItemChanged, this, &UserActionPage::slotChangeCurrent);
             actionTree->setCurrentAction(actionProperties->action());
@@ -254,7 +254,7 @@ void UserActionPage::slotExport()
     int answer = 0;
     if (file.open(QIODevice::ReadOnly)) { // getting here, means the file already exists an can be read
         if (doc.setContent(&file)) // getting here means the file exists and already contains an UserAction-XML-tree
-            answer = KMessageBox::warningYesNoCancel(
+            answer = KMessageBox::warningTwoActionsCancel(
                 this, // parent
                 i18n("This file already contains some useractions.\nDo you want to overwrite it or should it be merged with the selected actions?"), // text
                 i18n("Overwrite or Merge?"), // caption
@@ -263,19 +263,19 @@ void UserActionPage::slotExport()
             );
         file.close();
     }
-    if (answer == 0 && file.exists())
-        answer = KMessageBox::warningContinueCancel(this, // parent
-                                                    i18n("This file already exists. Do you want to overwrite it?"), // text
-                                                    i18n("Overwrite Existing File?"), // caption
-                                                    KStandardGuiItem::overwrite() // label for Continue-Button
-        );
-
+    if (answer == 0 && file.exists()) {
+            answer = KMessageBox::warningContinueCancel(this, // parent
+                i18n("This file already exists. Do you want to overwrite it?"), // text
+                i18n("Overwrite Existing File?"), // caption
+                KStandardGuiItem::overwrite() // label for Continue-Button
+            );
+    }
     if (answer == KMessageBox::Cancel)
         return;
 
-    if (answer == KMessageBox::No) // that means the merge-button
+    if (answer == KMessageBox::SecondaryAction) // that means the merge-button
         doc = actionTree->dumpSelectedActions(&doc); // merge
-    else // Yes or Continue means overwrite
+    else // Yes or Continue(both Primary action) means overwrite
         doc = actionTree->dumpSelectedActions();
 
     bool success = UserAction::writeToFile(doc, filename);

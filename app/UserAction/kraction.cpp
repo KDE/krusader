@@ -165,18 +165,18 @@ void KrActionProcDlg::slotSaveAs()
     if (filename.isEmpty())
         return;
     QFile file(filename);
-    int answer = KMessageBox::Yes;
+    int answer = KMessageBox::PrimaryAction;
     if (file.exists())
-        answer = KMessageBox::warningYesNoCancel(this, // parent
+        answer = KMessageBox::questionTwoActionsCancel(this, // parent
                                                  i18n("This file already exists.\nDo you want to overwrite it or append the output?"), // text
                                                  i18n("Overwrite or append?"), // caption
-                                                 KStandardGuiItem::overwrite(), // label for Yes-Button
-                                                 KGuiItem(i18n("Append")) // label for No-Button
+                                                 KStandardGuiItem::overwrite(), // label for primaryAction-Button
+                                                 KGuiItem(i18n("Append")) // label for secondaryAction-Button
         );
     if (answer == KMessageBox::Cancel)
         return;
     bool open;
-    if (answer == KMessageBox::No) // this means to append
+    if (answer == KMessageBox::SecondaryAction) // this means to append
         open = file.open(QIODevice::WriteOnly | QIODevice::Append);
     else
         open = file.open(QIODevice::WriteOnly);

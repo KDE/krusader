@@ -1330,14 +1330,14 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
         } else {
             e->accept();
             if (syncList->topLevelItemCount() != 0) {
-                int result = KMessageBox::warningYesNo(
+                int result = KMessageBox::warningTwoActions(
                     this,
                     i18n("The synchronizer window contains data from a previous compare. If you exit, this data will be lost. Do you really want to exit?"),
                     i18n("Krusader::Synchronize Folders"),
-                    KStandardGuiItem::yes(),
-                    KStandardGuiItem::no(),
+                    KGuiItem(QApplication::translate("KStandardGuiItem", "&Yes"), QStringLiteral("dialog-ok")),
+                    KGuiItem(QApplication::translate("KStandardGuiItem", "&No"), QStringLiteral("dialog-cancel")),
                     "syncGUIexit");
-                if (result != KMessageBox::Yes)
+                if (result != KMessageBox::PrimaryAction)
                     return;
             }
             QDialog::reject();

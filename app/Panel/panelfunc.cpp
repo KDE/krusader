@@ -875,11 +875,11 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
                 const QDir dir(filePath);
                 if (!dir.entryList(QDir::AllEntries | QDir::System | QDir::Hidden | QDir::NoDotAndDotDot).isEmpty()) {
                     // if the dir is not empty, show a confirmation dialog with buttons:
-                    // * Skip (-> KMessageBox::Yes)
-                    // * Delete All (-> KMessageBox::No)
+                    // * Skip (-> KMessageBox::PrimaryAction)
+                    // * Delete All (-> KMessageBox::SecondaryAction)
                     // * Cancel (-> KMessageBox::Cancel)
                     const QString fileString = showPath ? filePath : url.fileName();
-                    const KMessageBox::ButtonCode result = KMessageBox::warningYesNoCancel(
+                    const KMessageBox::ButtonCode result = KMessageBox::warningTwoActionsCancel(
                         krMainWindow,
                         i18n("<qt><p>Folder <b>%1</b> is not empty.</p>", fileString)
                             + (moveToTrash ? i18n("<p>Skip this one or trash all?</p></qt>") : i18n("<p>Skip this one or delete all?</p></qt>")),
@@ -888,10 +888,10 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
                         KGuiItem(moveToTrash ? i18n("&Trash All") : i18n("&Delete All")));
 
                     // process user response
-                    if (result == KMessageBox::Yes) {
+                    if (result == KMessageBox::PrimaryAction) {
                         // skip this dir
                         markForDeletion = false;
-                    } else if (result == KMessageBox::No) {
+                    } else if (result == KMessageBox::SecondaryAction) {
                         // delete all
                         deleteAllIsChosen = true;
                     } else {

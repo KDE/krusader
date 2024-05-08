@@ -400,8 +400,7 @@ void DiskUsage::dirUp()
             changeDirectory(const_cast<Directory *>(currentDirectory->parent()));
         else {
             QUrl up = KIO::upUrl(baseURL);
-
-            if (KMessageBox::questionYesNo(this,
+            if (KMessageBox::questionTwoActions(this,
                                            i18n("Stepping into the parent folder requires "
                                                 "loading the content of the \"%1\" URL. Do you wish "
                                                 "to continue?",
@@ -410,7 +409,7 @@ void DiskUsage::dirUp()
                                            KStandardGuiItem::cont(),
                                            KStandardGuiItem::cancel(),
                                            "DiskUsageLoadParentDir")
-                == KMessageBox::Yes)
+                == KMessageBox::PrimaryAction)
                 load(up);
         }
     }

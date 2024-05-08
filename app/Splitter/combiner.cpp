@@ -67,7 +67,7 @@ void Combiner::combine()
     file.refresh();
 
     if (!file.isReadable()) {
-        int ret = KMessageBox::questionYesNo(nullptr,
+        int ret = KMessageBox::questionTwoActions(nullptr,
                                              i18n("The CRC information file (%1) is missing.\n"
                                                   "Validity checking is impossible without it. Continue combining?",
                                                   splURL.toDisplayString(QUrl::PreferLocalFile)),
@@ -75,7 +75,7 @@ void Combiner::combine()
                                              KStandardGuiItem::cont(),
                                              KStandardGuiItem::cancel());
 
-        if (ret == KMessageBox::No) {
+        if (ret == KMessageBox::SecondaryAction) {
             reject();
             return;
         }
@@ -139,12 +139,12 @@ void Combiner::combineSplitFileFinished(KJob *job)
     }
 
     if (!error.isEmpty()) {
-        int ret = KMessageBox::questionYesNo(nullptr,
+        int ret = KMessageBox::questionTwoActions(nullptr,
                                              error + i18n("\nValidity checking is impossible without a good CRC file. Continue combining?"),
                                              {},
                                              KStandardGuiItem::cont(),
                                              KStandardGuiItem::cancel());
-        if (ret == KMessageBox::No) {
+        if (ret == KMessageBox::SecondaryAction) {
             reject();
             return;
         }
