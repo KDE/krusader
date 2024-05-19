@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-31 02:00+0000\n"
+"POT-Creation-Date: 2024-05-19 01:48+0000\n"
 "PO-Revision-Date: 2023-12-19 14:29+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -732,27 +732,27 @@ msgstr ""
 msgid "Export Failed"
 msgstr "Exporteren is mislukt"
 
-#: app/Archive/abstractthreadedjob.cpp:197
+#: app/Archive/abstractthreadedjob.cpp:198
 #, kde-format
 msgid "Internal error, undefined <job> in result signal"
 msgstr "Interne fout, ongedefinieerde <job> in resultaatsignaal"
 
-#: app/Archive/abstractthreadedjob.cpp:343
+#: app/Archive/abstractthreadedjob.cpp:344
 #, kde-format
 msgid "Downloading remote files"
 msgstr "Downloaden van bestanden op afstand"
 
-#: app/Archive/abstractthreadedjob.cpp:489
+#: app/Archive/abstractthreadedjob.cpp:490
 #, kde-format
 msgid "Counting files"
 msgstr "Bestanden worden geteld"
 
-#: app/Archive/abstractthreadedjob.cpp:518
+#: app/Archive/abstractthreadedjob.cpp:519
 #, kde-format
 msgid "Uploading to remote destination"
 msgstr "Uploaden naar bestemming op afstand"
 
-#: app/Archive/abstractthreadedjob.cpp:639
+#: app/Archive/abstractthreadedjob.cpp:640
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
@@ -860,7 +860,7 @@ msgid "Create in:"
 msgstr "Aanmaken in:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:689
+#: app/Panel/panelfunc.cpp:690
 #, kde-format
 msgid "New Folder"
 msgstr "Nieuwe map"
@@ -963,7 +963,7 @@ msgid "Jump back"
 msgstr "Terugspringen"
 
 #: app/BookMan/krbookmarkhandler.cpp:838 app/GUI/mediabutton.cpp:327
-#: app/Panel/panelcontextmenu.cpp:123
+#: app/Panel/panelcontextmenu.cpp:125
 #, kde-format
 msgid "Open"
 msgstr "Openen"
@@ -976,7 +976,7 @@ msgstr "In een nieuwe tab openen"
 #: app/BookMan/krbookmarkhandler.cpp:844 app/Dialogs/krmaskchoice.cpp:85
 #: app/Dialogs/kurllistrequester.cpp:128 app/DiskUsage/diskusage.cpp:752
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
-#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:239
+#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:241
 #, kde-format
 msgid "Delete"
 msgstr "Verwijderen"
@@ -1484,7 +1484,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Bent u er zeker van dat u dit item wilt verwijderen?"
 
-#: app/DiskUsage/diskusage.cpp:593 app/Panel/panelfunc.cpp:835
+#: app/DiskUsage/diskusage.cpp:593 app/Panel/panelfunc.cpp:836
 #, kde-format
 msgid "&Trash"
 msgstr "&Prullenbak"
@@ -1496,8 +1496,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Bent U er zeker van dat u dit item wilt verwijderen?"
 
 #: app/DiskUsage/diskusage.cpp:603 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:851
-#: app/Panel/panelfunc.cpp:928
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:852
+#: app/Panel/panelfunc.cpp:929
 #, kde-format
 msgid "Warning"
 msgstr "Waarschuwing"
@@ -1562,12 +1562,12 @@ msgstr "Gedetailleerd"
 msgid "Filelight"
 msgstr "Filelight"
 
-#: app/DiskUsage/diskusage.cpp:804 app/KViewer/lister.cpp:1281
+#: app/DiskUsage/diskusage.cpp:804 app/KViewer/lister.cpp:1282
 #, kde-format
 msgid "Next"
 msgstr "Volgende"
 
-#: app/DiskUsage/diskusage.cpp:808 app/KViewer/lister.cpp:1285
+#: app/DiskUsage/diskusage.cpp:808 app/KViewer/lister.cpp:1286
 #, kde-format
 msgid "Previous"
 msgstr "Vorige"
@@ -1714,7 +1714,7 @@ msgid "Percent"
 msgstr "Procent"
 
 #: app/DiskUsage/dulines.cpp:185 app/DiskUsage/dulistview.cpp:40
-#: app/Konfigurator/krresulttable.cpp:126 app/MountMan/kmountmangui.cpp:145
+#: app/Konfigurator/krresulttable.cpp:126 app/MountMan/kmountmangui.cpp:147
 #, kde-format
 msgid "Name"
 msgstr "Naam"
@@ -1734,7 +1734,7 @@ msgstr "Totale grootte"
 msgid "Own size"
 msgstr "Eigen grootte"
 
-#: app/DiskUsage/dulistview.cpp:44 app/MountMan/kmountmangui.cpp:146
+#: app/DiskUsage/dulistview.cpp:44 app/MountMan/kmountmangui.cpp:148
 #, kde-format
 msgid "Type"
 msgstr "Type"
@@ -1810,22 +1810,22 @@ msgstr ""
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
 msgstr "<qt><i>'%1'</i> zal <b>permanent</b> worden verwijderd.</qt>"
 
-#: app/FileSystem/defaultfilesystem.cpp:147
+#: app/FileSystem/defaultfilesystem.cpp:148
 #, kde-format
 msgid "Space information disabled"
 msgstr "Geen ruimte-informatie"
 
-#: app/FileSystem/defaultfilesystem.cpp:154
+#: app/FileSystem/defaultfilesystem.cpp:155
 #, kde-format
 msgid "No space information on non-local filesystems"
 msgstr "Geen ruimte informatie in niet locale bestandsytemen"
 
-#: app/FileSystem/defaultfilesystem.cpp:162
+#: app/FileSystem/defaultfilesystem.cpp:183
 #, kde-format
 msgid "Space information unavailable"
 msgstr "Geen ruimte-informatie beschikbaar"
 
-#: app/FileSystem/defaultfilesystem.cpp:179
+#: app/FileSystem/defaultfilesystem.cpp:193
 #, kde-format
 msgid ""
 "Protocol not supported by Krusader:\n"
@@ -1834,18 +1834,18 @@ msgstr ""
 "Protocol niet ondersteund door Krusader:\n"
 "%1"
 
-#: app/FileSystem/defaultfilesystem.cpp:321
+#: app/FileSystem/defaultfilesystem.cpp:335
 #, kde-format
 msgid "The folder %1 does not exist."
 msgstr "De map %1 bestaat niet."
 
-#: app/FileSystem/defaultfilesystem.cpp:337
+#: app/FileSystem/defaultfilesystem.cpp:351
 #: app/Synchronizer/synchronizerdirlist.cpp:116
 #, kde-format
 msgid "Cannot open the folder %1."
 msgstr "Kan de map %1 niet openen."
 
-#: app/FileSystem/defaultfilesystem.cpp:344
+#: app/FileSystem/defaultfilesystem.cpp:358
 #, kde-format
 msgctxt "%1=folder path"
 msgid "Access to %1 denied"
@@ -2315,7 +2315,7 @@ msgstr "Bevat tekst"
 msgid "&Text:"
 msgstr "&Tekst:"
 
-#: app/Filter/generalfilter.cpp:294 app/KViewer/lister.cpp:1299
+#: app/Filter/generalfilter.cpp:294 app/KViewer/lister.cpp:1300
 #, kde-format
 msgid "RegExp"
 msgstr "RegExp"
@@ -2534,21 +2534,21 @@ msgstr "Audio CD/DVD-ROM"
 msgid "Recordable CD/DVD-ROM"
 msgstr "Herschrijfbare CD/DVD-ROM"
 
-#: app/GUI/mediabutton.cpp:334 app/MountMan/kmountman.cpp:388
-#: app/MountMan/kmountmangui.cpp:400 app/Panel/panelcontextmenu.cpp:271
+#: app/GUI/mediabutton.cpp:334 app/MountMan/kmountman.cpp:389
+#: app/MountMan/kmountmangui.cpp:436 app/Panel/panelcontextmenu.cpp:273
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
 msgstr "Aankoppelen (mount)"
 
-#: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:388
-#: app/MountMan/kmountmangui.cpp:405 app/Panel/panelcontextmenu.cpp:269
+#: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:389
+#: app/MountMan/kmountmangui.cpp:441 app/Panel/panelcontextmenu.cpp:271
 #, kde-format
 msgid "Unmount"
 msgstr "Afkoppelen (unmount)"
 
-#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:412
-#: app/Panel/panelcontextmenu.cpp:273
+#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:448
+#: app/Panel/panelcontextmenu.cpp:275
 #, kde-format
 msgid "Eject"
 msgstr "Uitwerpen"
@@ -2600,14 +2600,16 @@ msgstr "Profielnaam invoeren:"
 msgid "Empty Recently Closed Tabs"
 msgstr "Recent gesloten tabbladen leegmaken"
 
-#: app/GUI/terminaldock.cpp:93
-#, kde-format
-msgid "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
+#: app/GUI/terminaldock.cpp:91
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
+msgid "<b>Cannot create embedded terminal.</b><br/>"
 msgstr ""
 "<b>Kan de ingebedde terminal niet aanmaken.</b><br/>De gerapporteerde fout "
 "was: %1"
 
-#: app/GUI/terminaldock.cpp:106
+#: app/GUI/terminaldock.cpp:102
 #, kde-format
 msgctxt "missing program - arg1 is a URL"
 msgid ""
@@ -3252,7 +3254,7 @@ msgid "Statusbar, inactive background:"
 msgstr "Statusbalk, inactieve achtergrond:"
 
 #: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:808
-#: app/Panel/panelcontextmenu.cpp:157
+#: app/Panel/panelcontextmenu.cpp:159
 #, kde-format
 msgid "Preview"
 msgstr "Voorbeeld"
@@ -3445,7 +3447,7 @@ msgstr "Algemene modus"
 msgid "Use the system's default viewer"
 msgstr "Standaard viewer van het systeem gebruiken"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2266
+#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2268
 #, kde-format
 msgid "Text mode"
 msgstr "Tekst modus"
@@ -3455,8 +3457,8 @@ msgstr "Tekst modus"
 msgid "View the file in text-only mode"
 msgstr "Het bestand in alleen-tekst modus bekijken."
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1231
-#: app/KViewer/lister.cpp:2269
+#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1232
+#: app/KViewer/lister.cpp:2271
 #, kde-format
 msgid "Hex mode"
 msgstr "Hex modus"
@@ -3594,7 +3596,7 @@ msgstr "Mappen wissen"
 msgid "Files will be permanently deleted."
 msgstr "Bestanden zullen permanent verwijderd worden."
 
-#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:185
+#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:187
 #, kde-format
 msgid "Terminal"
 msgstr "Terminal"
@@ -3904,7 +3906,7 @@ msgstr "Start door typen"
 msgid "Open search bar and start searching by typing in panel."
 msgstr "Zoekbalk openen en starten met zoeken door te typen in het paneel."
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1295
+#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1296
 #, kde-format
 msgid "Case sensitive"
 msgstr "Hoofdlettergevoelig"
@@ -3949,7 +3951,7 @@ msgstr "Positie:"
 msgid "Default mode:"
 msgstr "Standaard modus:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1211
+#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1212
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
 #, kde-format
 msgid "Search"
@@ -5059,7 +5061,7 @@ msgstr "Afhankelijkheden"
 msgid "Set the full path of the external applications"
 msgstr "Het volledige pad instellen van externe toepassingen."
 
-#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:197
+#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:199
 #: app/UserAction/useractionpopupmenu.cpp:20
 #, kde-format
 msgid "User Actions"
@@ -5299,7 +5301,7 @@ msgstr "&Verborgen Bestanden Tonen"
 msgid "S&wap Panels"
 msgstr "Panelen V&erwisselen"
 
-#: app/kractions.cpp:213 app/Panel/panelcontextmenu.cpp:284
+#: app/kractions.cpp:213 app/Panel/panelcontextmenu.cpp:286
 #, kde-format
 msgid "Empty Trash"
 msgstr "Prullenbak legen"
@@ -5678,8 +5680,8 @@ msgid "Bring Main Window to Top"
 msgstr "Hoofdvenster naar voren brengen"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1887
-#: app/KViewer/lister.cpp:1922
+#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1888
+#: app/KViewer/lister.cpp:1923
 #, kde-format
 msgid "Lister"
 msgstr "Lijstmaker"
@@ -5867,129 +5869,129 @@ msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Bekijken: %1"
 
-#: app/KViewer/lister.cpp:1198 app/KViewer/lister.cpp:1911
+#: app/KViewer/lister.cpp:1199 app/KViewer/lister.cpp:1912
 #, kde-format
 msgid "Save selection..."
 msgstr "Selectie opslaan..."
 
-#: app/KViewer/lister.cpp:1202
+#: app/KViewer/lister.cpp:1203
 #, kde-format
 msgid "Save as..."
 msgstr "Opslaan als..."
 
-#: app/KViewer/lister.cpp:1206
+#: app/KViewer/lister.cpp:1207
 #, kde-format
 msgid "Print..."
 msgstr "Afdrukken..."
 
-#: app/KViewer/lister.cpp:1216
+#: app/KViewer/lister.cpp:1217
 #, kde-format
 msgid "Search next"
 msgstr "Volgende zoeken"
 
-#: app/KViewer/lister.cpp:1221
+#: app/KViewer/lister.cpp:1222
 #, kde-format
 msgid "Search previous"
 msgstr "Voorgaande zoeken"
 
-#: app/KViewer/lister.cpp:1226 app/KViewer/lister.cpp:1850
-#: app/KViewer/lister.cpp:1861 app/KViewer/lister.cpp:1869
-#: app/KViewer/lister.cpp:1876
+#: app/KViewer/lister.cpp:1227 app/KViewer/lister.cpp:1851
+#: app/KViewer/lister.cpp:1862 app/KViewer/lister.cpp:1870
+#: app/KViewer/lister.cpp:1877
 #, kde-format
 msgid "Jump to position"
 msgstr "Naar een bestemming springen"
 
-#: app/KViewer/lister.cpp:1236
+#: app/KViewer/lister.cpp:1237
 #, kde-format
 msgid "Select charset"
 msgstr "Tekenset selecteren"
 
-#: app/KViewer/lister.cpp:1255 app/KViewer/lister.cpp:1482
+#: app/KViewer/lister.cpp:1256 app/KViewer/lister.cpp:1483
 #, kde-format
 msgid "Lister:"
 msgstr "Lijstmaker:"
 
-#: app/KViewer/lister.cpp:1266
+#: app/KViewer/lister.cpp:1267
 #, kde-format
 msgid "Stop search"
 msgstr "Stop zoeken"
 
-#: app/KViewer/lister.cpp:1282
+#: app/KViewer/lister.cpp:1283
 #, kde-format
 msgid "Jump to next match"
 msgstr "Ga naar volgende overeenkomst"
 
-#: app/KViewer/lister.cpp:1286
+#: app/KViewer/lister.cpp:1287
 #, kde-format
 msgid "Jump to previous match"
 msgstr "Ga naar vorige overeenkomst"
 
-#: app/KViewer/lister.cpp:1289
+#: app/KViewer/lister.cpp:1290
 #, kde-format
 msgid "Options"
 msgstr "Opties"
 
-#: app/KViewer/lister.cpp:1290
+#: app/KViewer/lister.cpp:1291
 #, kde-format
 msgid "Modify search behavior"
 msgstr "Zoekgedrag aanpassen"
 
-#: app/KViewer/lister.cpp:1292
+#: app/KViewer/lister.cpp:1293
 #, kde-format
 msgid "From cursor"
 msgstr "Vanaf cursor"
 
-#: app/KViewer/lister.cpp:1297
+#: app/KViewer/lister.cpp:1298
 #, kde-format
 msgid "Match whole words only"
 msgstr "Alleen hele woorden"
 
-#: app/KViewer/lister.cpp:1301
+#: app/KViewer/lister.cpp:1302
 #, kde-format
 msgid "Hexadecimal"
 msgstr "Hexadecimaal"
 
-#: app/KViewer/lister.cpp:1356
+#: app/KViewer/lister.cpp:1357
 #, kde-format
 msgid "Error reading file %1."
 msgstr "Fout bij het lezen van bestand %1."
 
-#: app/KViewer/lister.cpp:1453
+#: app/KViewer/lister.cpp:1454
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "Kolom: %1, Positie: %2 (%3, %4%)"
 
-#: app/KViewer/lister.cpp:1468 app/KViewer/lister.cpp:1819
+#: app/KViewer/lister.cpp:1469 app/KViewer/lister.cpp:1820
 #, kde-format
 msgid "Search:"
 msgstr "Zoeken:"
 
-#: app/KViewer/lister.cpp:1835
+#: app/KViewer/lister.cpp:1836
 #, kde-format
 msgid "Search position:"
 msgstr "Positie zoeken:"
 
-#: app/KViewer/lister.cpp:1850
+#: app/KViewer/lister.cpp:1851
 #, kde-format
 msgid "Text position:"
 msgstr "Tekstpositie:"
 
-#: app/KViewer/lister.cpp:1861 app/KViewer/lister.cpp:1869
+#: app/KViewer/lister.cpp:1862 app/KViewer/lister.cpp:1870
 #, kde-format
 msgid "Invalid number."
 msgstr "Ongeldig nummer."
 
-#: app/KViewer/lister.cpp:1876
+#: app/KViewer/lister.cpp:1877
 #, kde-format
 msgid "Number out of range."
 msgstr "Nummer buiten de reeks."
 
-#: app/KViewer/lister.cpp:1911
+#: app/KViewer/lister.cpp:1912
 #, kde-format
 msgid "Nothing is selected."
 msgstr "Niets geselecteerd."
 
-#: app/KViewer/lister.cpp:1988
+#: app/KViewer/lister.cpp:1990
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
@@ -6008,12 +6010,12 @@ msgstr ""
 msgid "Error at opening %1."
 msgstr "Fout bij het openen van %1."
 
-#: app/KViewer/panelviewer.cpp:378
+#: app/KViewer/panelviewer.cpp:379
 #, kde-format
 msgid "Missing Plugin"
 msgstr "Ontbrekende plug-in "
 
-#: app/KViewer/panelviewer.cpp:384
+#: app/KViewer/panelviewer.cpp:385
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -6024,12 +6026,12 @@ msgstr ""
 "zal zonder dit niet werken.<br/>U kunt dit verhelpen door Kate te "
 "installeren:<br/>%1"
 
-#: app/KViewer/panelviewer.cpp:403
+#: app/KViewer/panelviewer.cpp:404
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr "%1 is groter dan %2 MB"
 
-#: app/KViewer/panelviewer.cpp:429
+#: app/KViewer/panelviewer.cpp:430
 #, kde-format
 msgid "Cannot edit %1"
 msgstr "Kan %1 niet bewerken"
@@ -6884,84 +6886,84 @@ msgstr "Debug-uitvoer inschakelen"
 msgid "URL to open"
 msgstr "URL-adres om te openen"
 
-#: app/MountMan/kmountman.cpp:55
+#: app/MountMan/kmountman.cpp:56
 #, kde-format
 msgid "&MountMan..."
 msgstr "&MountMan..."
 
-#: app/MountMan/kmountman.cpp:58
+#: app/MountMan/kmountman.cpp:59
 #, kde-format
 msgid "Open &MountMan"
 msgstr "&MountMan openen"
 
-#: app/MountMan/kmountman.cpp:131
+#: app/MountMan/kmountman.cpp:132
 #, kde-format
 msgid "Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Kan 'mount' niet starten! Controleer de pagina 'Afhankelijkheden' in "
 "Konfigurator."
 
-#: app/MountMan/kmountman.cpp:355
+#: app/MountMan/kmountman.cpp:356
 #, kde-format
 msgid "MountMan is not operational. Sorry"
 msgstr "MountMan is niet operationeel. Sorry"
 
-#: app/MountMan/kmountmangui.cpp:58
+#: app/MountMan/kmountmangui.cpp:60
 #, kde-format
 msgid "MountMan - Your Mount-Manager"
 msgstr "MountMan - Uw Mount Manager"
 
-#: app/MountMan/kmountmangui.cpp:72
+#: app/MountMan/kmountmangui.cpp:74
 #, kde-format
 msgid "&Eject"
 msgstr "Uitw&erpen"
 
-#: app/MountMan/kmountmangui.cpp:77 app/MountMan/kmountmangui.cpp:375
+#: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:411
 #, kde-format
 msgid "&Unmount"
 msgstr "A&fkoppelen"
 
-#: app/MountMan/kmountmangui.cpp:147
+#: app/MountMan/kmountmangui.cpp:149
 #, kde-format
 msgid "Mnt.Point"
 msgstr "Mountpunt"
 
-#: app/MountMan/kmountmangui.cpp:148
+#: app/MountMan/kmountmangui.cpp:150
 #, kde-format
 msgid "Total Size"
 msgstr "Totale grootte"
 
-#: app/MountMan/kmountmangui.cpp:149
+#: app/MountMan/kmountmangui.cpp:151
 #, kde-format
 msgid "Free Size"
 msgstr "Vrije ruimte"
 
-#: app/MountMan/kmountmangui.cpp:150
+#: app/MountMan/kmountmangui.cpp:152
 #, kde-format
 msgid "Free %"
 msgstr "Vrij %"
 
-#: app/MountMan/kmountmangui.cpp:179
+#: app/MountMan/kmountmangui.cpp:181
 #, kde-format
 msgid "MountMan.Info"
 msgstr "MountMan.Info"
 
-#: app/MountMan/kmountmangui.cpp:186
+#: app/MountMan/kmountmangui.cpp:188
 #, kde-format
 msgid "Show only removable devices"
 msgstr "Alleen verwijderbare apparaten tonen"
 
-#: app/MountMan/kmountmangui.cpp:377
+#: app/MountMan/kmountmangui.cpp:413
 #, kde-format
 msgid "&Mount"
 msgstr "Aan&koppelen"
 
-#: app/MountMan/kmountmangui.cpp:398
+#: app/MountMan/kmountmangui.cpp:434
 #, kde-format
 msgid "MountMan"
 msgstr "MountMan"
 
-#: app/MountMan/kmountmangui.cpp:414
+#: app/MountMan/kmountmangui.cpp:450
 #, kde-format
 msgid "Format"
 msgstr "Formatteren"
@@ -7356,7 +7358,7 @@ msgstr "Controlesom aanmaken..."
 msgid "Verify Checksum..."
 msgstr "Controlesom nazien..."
 
-#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:250
+#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:252
 #, kde-format
 msgid "New Symlink..."
 msgstr "Nieuwe symbolische koppeling..."
@@ -7539,204 +7541,204 @@ msgstr ""
 "<qt><p>Terminal openen in huidige map.</p><p>U kan een terminal instellen in "
 "Konfigurator, de standaard terminal is <b>konsole</b>.</p></qt>"
 
-#: app/Panel/panelcontextmenu.cpp:121
+#: app/Panel/panelcontextmenu.cpp:123
 #, kde-format
 msgid "Open/Run Files"
 msgstr "Bestanden openen/uitvoeren"
 
-#: app/Panel/panelcontextmenu.cpp:123
+#: app/Panel/panelcontextmenu.cpp:125
 #, kde-format
 msgid "Run"
 msgstr "Uitvoeren"
 
-#: app/Panel/panelcontextmenu.cpp:132
+#: app/Panel/panelcontextmenu.cpp:134
 #, kde-format
 msgid "Open in New Tabs"
 msgstr "In nieuwe tabbladen openen"
 
-#: app/Panel/panelcontextmenu.cpp:132
+#: app/Panel/panelcontextmenu.cpp:134
 #, kde-format
 msgid "Open in New Tab"
 msgstr "In een nieuwe tab openen"
 
-#: app/Panel/panelcontextmenu.cpp:145
+#: app/Panel/panelcontextmenu.cpp:147
 #, kde-format
 msgid "Browse Archive"
 msgstr "Door archief bladeren"
 
-#: app/Panel/panelcontextmenu.cpp:187
+#: app/Panel/panelcontextmenu.cpp:189
 #, kde-format
 msgid "Other..."
 msgstr "Andere..."
 
-#: app/Panel/panelcontextmenu.cpp:189
+#: app/Panel/panelcontextmenu.cpp:191
 #, kde-format
 msgid "Open With"
 msgstr "Openen met"
 
-#: app/Panel/panelcontextmenu.cpp:236
+#: app/Panel/panelcontextmenu.cpp:238
 #, kde-format
 msgid "Move to Trash"
 msgstr "Naar prullenbak verplaatsen"
 
-#: app/Panel/panelcontextmenu.cpp:251
+#: app/Panel/panelcontextmenu.cpp:253
 #, kde-format
 msgid "New Hardlink..."
 msgstr "Nieuwe harde koppeling..."
 
-#: app/Panel/panelcontextmenu.cpp:253
+#: app/Panel/panelcontextmenu.cpp:255
 #, kde-format
 msgid "Redirect Link..."
 msgstr "Koppeling omleiden..."
 
-#: app/Panel/panelcontextmenu.cpp:256
+#: app/Panel/panelcontextmenu.cpp:258
 #, kde-format
 msgid "Link Handling"
 msgstr "Koppeling beheer"
 
-#: app/Panel/panelcontextmenu.cpp:278
+#: app/Panel/panelcontextmenu.cpp:280
 #, kde-format
 msgid "Send by Email"
 msgstr "Met e-mail verzenden"
 
-#: app/Panel/panelcontextmenu.cpp:283
+#: app/Panel/panelcontextmenu.cpp:285
 #, kde-format
 msgid "Restore"
 msgstr "Herladen"
 
-#: app/Panel/panelcontextmenu.cpp:290
+#: app/Panel/panelcontextmenu.cpp:292
 #, kde-format
 msgid "Synchronize Selected Files..."
 msgstr "Geselecteerde bestanden synchroniseren..."
 
-#: app/Panel/panelcontextmenu.cpp:317
+#: app/Panel/panelcontextmenu.cpp:319
 #, kde-format
 msgid "Create New"
 msgstr "Nieuw aanmaken"
 
-#: app/Panel/panelfunc.cpp:370
+#: app/Panel/panelfunc.cpp:371
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Je kan enkel links bewerken op lokale bestandsystemen"
 
-#: app/Panel/panelfunc.cpp:381
+#: app/Panel/panelfunc.cpp:382
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr ""
 "Het huidig bestand is geen koppeling, zodat het niet kan worden omgeleid."
 
-#: app/Panel/panelfunc.cpp:388
+#: app/Panel/panelfunc.cpp:389
 #, kde-format
 msgid "Link Redirection"
 msgstr "Koppeling Omleiding"
 
-#: app/Panel/panelfunc.cpp:388
+#: app/Panel/panelfunc.cpp:389
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Voer a.u.b. de nieuwe koppeling bestemming in:"
 
-#: app/Panel/panelfunc.cpp:395
+#: app/Panel/panelfunc.cpp:396
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "Kan de oude koppeling niet verwijderen: %1"
 
-#: app/Panel/panelfunc.cpp:400
+#: app/Panel/panelfunc.cpp:401
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "Nieuwe koppeling aanmaken is mislukt: %1"
 
-#: app/Panel/panelfunc.cpp:408
+#: app/Panel/panelfunc.cpp:409
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Je kan enkel koppelingen aanmaken op lokale bestandsystemen"
 
-#: app/Panel/panelfunc.cpp:416
+#: app/Panel/panelfunc.cpp:417
 #, kde-format
 msgid "New Link"
 msgstr "Nieuwe koppeling"
 
-#: app/Panel/panelfunc.cpp:416
+#: app/Panel/panelfunc.cpp:417
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "Een nieuwe koppeling maken naar: %1"
 
-#: app/Panel/panelfunc.cpp:424 app/Panel/panelfunc.cpp:770
+#: app/Panel/panelfunc.cpp:425 app/Panel/panelfunc.cpp:771
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Een map of bestand met deze naam bestaat reeds."
 
-#: app/Panel/panelfunc.cpp:435
+#: app/Panel/panelfunc.cpp:436
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Een nieuwe symbolische koppeling '%1' naar '%2' aanmaken is mislukt"
 
-#: app/Panel/panelfunc.cpp:438
+#: app/Panel/panelfunc.cpp:439
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Een nieuwe koppeling '%1' naar '%2' aanmaken is mislukt"
 
-#: app/Panel/panelfunc.cpp:455
+#: app/Panel/panelfunc.cpp:456
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Geen toegangsrechten om dit bestand te bekijken."
 
-#: app/Panel/panelfunc.cpp:466
+#: app/Panel/panelfunc.cpp:467
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "URL invoeren om te tonen:"
 
-#: app/Panel/panelfunc.cpp:496 app/Panel/panelfunc.cpp:574
+#: app/Panel/panelfunc.cpp:497 app/Panel/panelfunc.cpp:575
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "U kunt geen map bewerken"
 
-#: app/Panel/panelfunc.cpp:501
+#: app/Panel/panelfunc.cpp:502
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Geen toegangsrechten om dit bestand te bewerken."
 
-#: app/Panel/panelfunc.cpp:515
+#: app/Panel/panelfunc.cpp:516
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Bestandsnaam invoeren om te bewerken:"
 
-#: app/Panel/panelfunc.cpp:626
+#: app/Panel/panelfunc.cpp:627
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Verplaats %1 naar:"
 
-#: app/Panel/panelfunc.cpp:626
+#: app/Panel/panelfunc.cpp:627
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "_n: Verplaats %1 bestand naar:"
 msgstr[1] "%1 bestanden verplaatsen naar:"
 
-#: app/Panel/panelfunc.cpp:628
+#: app/Panel/panelfunc.cpp:629
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Kopieer %1 naar:"
 
-#: app/Panel/panelfunc.cpp:628
+#: app/Panel/panelfunc.cpp:629
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "_n: Kopieër %1 bestand naar:"
 msgstr[1] "%1 bestanden kopiëren naar:"
 
-#: app/Panel/panelfunc.cpp:694
+#: app/Panel/panelfunc.cpp:695
 #, kde-format
 msgid "Folder's name:"
 msgstr "Mapnaam:"
 
-#: app/Panel/panelfunc.cpp:834
+#: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Wilt u dit item naar de prullenbak verplaatsen?"
 msgstr[1] "Wilt u deze %1 items naar de prullenbak verplaatsen?"
 
-#: app/Panel/panelfunc.cpp:838
+#: app/Panel/panelfunc.cpp:839
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7751,44 +7753,44 @@ msgstr[1] ""
 "<qt>Wilt u deze %1 items <b>fysiek</b> verwijderen (dus niet alleen uit de "
 "virtuele items verwijderen)?</qt>"
 
-#: app/Panel/panelfunc.cpp:845
+#: app/Panel/panelfunc.cpp:846
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "_n: Bent u er zeker van dat u dit item wilt verwijderen?"
 msgstr[1] "Bent u er zeker van dat u deze %1 items wilt verwijderen?"
 
-#: app/Panel/panelfunc.cpp:883
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Map <b>%1</b> is niet leeg.</p>"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:885
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Deze overslaan of alles in de prullenbak?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:885
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Deze overslaan of alles verwijderen?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:886
+#: app/Panel/panelfunc.cpp:887
 #, kde-format
 msgid "&Skip"
 msgstr "&Overslaan"
 
-#: app/Panel/panelfunc.cpp:887
+#: app/Panel/panelfunc.cpp:888
 #, kde-format
 msgid "&Trash All"
 msgstr "Alles in de &prullenbak"
 
-#: app/Panel/panelfunc.cpp:887
+#: app/Panel/panelfunc.cpp:888
 #, kde-format
 msgid "&Delete All"
 msgstr "Alles &Verwijderen"
 
-#: app/Panel/panelfunc.cpp:924
+#: app/Panel/panelfunc.cpp:925
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7803,17 +7805,17 @@ msgstr[1] ""
 "Wilt u deze %1 virtuele items verwijderen (de fysieke bestanden blijven "
 "onveranderd)?"
 
-#: app/Panel/panelfunc.cpp:960
+#: app/Panel/panelfunc.cpp:961
 #, kde-format
 msgid "Could not start %1"
 msgstr "Kon %1 niet starten"
 
-#: app/Panel/panelfunc.cpp:972
+#: app/Panel/panelfunc.cpp:973
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 kan %2 niet openen"
 
-#: app/Panel/panelfunc.cpp:1049
+#: app/Panel/panelfunc.cpp:1050
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7822,7 +7824,7 @@ msgstr ""
 "<qt><p>Het archief <b>%1.%2</b> bestaat reeds. Wilt u het overschrijven?</"
 "p><p>Alle gegevens van het voorgaande archief zullen verloren gaan.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1054
+#: app/Panel/panelfunc.cpp:1055
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7835,17 +7837,17 @@ msgstr ""
 "een identieke naam vervangen in het zip archief of nieuwe ingangen toevoegen "
 "voor nieuwe namen)"
 
-#: app/Panel/panelfunc.cpp:1062
+#: app/Panel/panelfunc.cpp:1063
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Kan geen bestanden inpakken in een virtuele bestemming."
 
-#: app/Panel/panelfunc.cpp:1095
+#: app/Panel/panelfunc.cpp:1096
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "%1 uitpakken naar:"
 
-#: app/Panel/panelfunc.cpp:1097
+#: app/Panel/panelfunc.cpp:1098
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
