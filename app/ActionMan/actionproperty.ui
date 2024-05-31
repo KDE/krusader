@@ -991,7 +991,7 @@ Please consult the handbook to learn more about the syntax.</string>
   <customwidget>
    <class>KIconButton</class>
    <extends>QPushButton</extends>
-   <header>kiconbutton.h</header>
+   <header>KIconButton</header>
   </customwidget>
   <customwidget>
    <class>KComboBox</class>
@@ -1045,11 +1045,11 @@ Please consult the handbook to learn more about the syntax.</string>
   <include location="local">klineedit.h</include>
   <include location="local">kcombobox.h</include>
   <include location="local">klineedit.h</include>
-  <include location="local">kicondialog.h</include>
+  <include >KIconDialog</include>
   <include location="local">klineedit.h</include>
   <include location="local">klineedit.h</include>
   <include location="local">klineedit.h</include>
-  <include location="local">ktextedit.h</include>
+  <include location="local">KTextEdit</include>
   <include location="local">kkeysequencewidget.h</include>
   <include location="local">../GUI/krlistwidget.h</include>
   <include location="local">../GUI/krlistwidget.h</include>
