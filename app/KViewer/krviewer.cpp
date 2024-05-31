@@ -92,13 +92,13 @@ KrViewer::KrViewer(QWidget *parent)
     ac->setDefaultShortcut(tempAction, shortcut);                                                                                                              \
     viewerMenu->addAction(tempAction);
 
-    addCustomMenuAction("genericViewer", i18n("&Generic Viewer"), SLOT(viewGeneric()), Qt::CTRL + Qt::SHIFT + Qt::Key_G);
-    addCustomMenuAction("textViewer", i18n("&Text Viewer"), SLOT(viewText()), Qt::CTRL + Qt::SHIFT + Qt::Key_T);
-    addCustomMenuAction("hexViewer", i18n("&Hex Viewer"), SLOT(viewHex()), Qt::CTRL + Qt::SHIFT + Qt::Key_H);
-    addCustomMenuAction("lister", i18n("&Lister"), SLOT(viewLister()), Qt::CTRL + Qt::SHIFT + Qt::Key_L);
+    addCustomMenuAction("genericViewer", i18n("&Generic Viewer"), SLOT(viewGeneric()), Qt::CTRL | Qt::SHIFT | Qt::Key_G);
+    addCustomMenuAction("textViewer", i18n("&Text Viewer"), SLOT(viewText()), Qt::CTRL | Qt::SHIFT | Qt::Key_T);
+    addCustomMenuAction("hexViewer", i18n("&Hex Viewer"), SLOT(viewHex()), Qt::CTRL | Qt::SHIFT | Qt::Key_H);
+    addCustomMenuAction("lister", i18n("&Lister"), SLOT(viewLister()), Qt::CTRL | Qt::SHIFT | Qt::Key_L);
     viewerMenu->addSeparator();
 
-    addCustomMenuAction("textEditor", i18n("Text &Editor"), SLOT(editText()), Qt::CTRL + Qt::SHIFT + Qt::Key_E);
+    addCustomMenuAction("textEditor", i18n("Text &Editor"), SLOT(editText()), Qt::CTRL | Qt::SHIFT | Qt::Key_E);
     viewerMenu->addSeparator();
 
     const QList<QAction *> actList = menuBar()->actions();
@@ -148,7 +148,7 @@ KrViewer::KrViewer(QWidget *parent)
     tabPrevAction = ac->addAction("prevTab", this, SLOT(prevTab()));
     tabPrevAction->setText(i18n("&Previous Tab"));
     shortcuts = KStandardShortcut::tabPrev();
-    shortcuts.append(Qt::CTRL + Qt::SHIFT + Qt::Key_Tab); // reenforce QTabWidget shortcut
+    shortcuts.append(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab); // reenforce QTabWidget shortcut
     ac->setDefaultShortcuts(tabPrevAction, shortcuts);
 
     tabWidget.setTabsClosable(true);

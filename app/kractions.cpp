@@ -10,6 +10,7 @@
 
 // QtWidgets
 #include <QAction>
+#include <QActionGroup>
 #include <QMenu>
 
 #include <KActionCollection>
@@ -195,7 +196,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KTOGGLEACTION(actToggleTerminal,
                       i18n("Show &Embedded Terminal"),
                       nullptr,
-                      Qt::CTRL + Qt::ALT + Qt::Key_E,
+                      Qt::CTRL | Qt::ALT | Qt::Key_E,
                       SLOTS,
                       SLOT(toggleTerminal()),
                       "toggle terminal emulator");
@@ -203,26 +204,26 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KTOGGLEACTION(actToggleHidden,
                       i18n("Show &Hidden Files"),
                       nullptr,
-                      Qt::ALT + Qt::Key_Period,
+                      Qt::ALT | Qt::Key_Period,
                       SLOTS,
                       SLOT(showHiddenFiles(bool)),
                       "toggle hidden files");
 
-    NEW_KACTION(actSwapPanels, i18n("S&wap Panels"), nullptr, Qt::CTRL + Qt::Key_U, SLOTS, SLOT(swapPanels()), "swap panels");
+    NEW_KACTION(actSwapPanels, i18n("S&wap Panels"), nullptr, Qt::CTRL | Qt::Key_U, SLOTS, SLOT(swapPanels()), "swap panels");
 
     NEW_KACTION(actEmptyTrash, i18n("Empty Trash"), "trash-empty", 0, SLOTS, SLOT(emptyTrash()), "emptytrash");
 
     NEW_KACTION(actTrashBin, i18n("Trash Popup Menu"), KrTrashHandler::trashIconName(), 0, SLOTS, SLOT(trashPopupMenu()), "trashbin");
 
-    NEW_KACTION(actSwapSides, i18n("Sw&ap Sides"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_U, SLOTS, SLOT(toggleSwapSides()), "toggle swap sides");
+    NEW_KACTION(actSwapSides, i18n("Sw&ap Sides"), nullptr, Qt::CTRL | Qt::SHIFT | Qt::Key_U, SLOTS, SLOT(toggleSwapSides()), "toggle swap sides");
     actToggleHidden->setChecked(KConfigGroup(krConfig, "Look&Feel").readEntry("Show Hidden", _ShowHidden));
 
     // and then the DONE actions
-    NEW_KACTION(actCmdlinePopup, i18n("popup cmdline"), nullptr, Qt::CTRL + Qt::Key_Slash, SLOTS, SLOT(cmdlinePopup()), "cmdline popup");
+    NEW_KACTION(actCmdlinePopup, i18n("popup cmdline"), nullptr, Qt::CTRL | Qt::Key_Slash, SLOTS, SLOT(cmdlinePopup()), "cmdline popup");
 
-    NEW_KACTION(tmp, i18n("Start &Root Mode Krusader"), "krusader_root", Qt::ALT + Qt::SHIFT + Qt::Key_K, SLOTS, SLOT(rootKrusader()), "root krusader");
-    NEW_KACTION(actProfiles, i18n("Pro&files"), "user-identity", Qt::ALT + Qt::SHIFT + Qt::Key_L, MAIN_VIEW, SLOT(profiles()), "profile");
-    NEW_KACTION(actSplit, i18n("Sp&lit File..."), "split", Qt::CTRL + Qt::Key_P, SLOTS, SLOT(slotSplit()), "split");
+    NEW_KACTION(tmp, i18n("Start &Root Mode Krusader"), "krusader_root", Qt::ALT | Qt::SHIFT | Qt::Key_K, SLOTS, SLOT(rootKrusader()), "root krusader");
+    NEW_KACTION(actProfiles, i18n("Pro&files"), "user-identity", Qt::ALT | Qt::SHIFT | Qt::Key_L, MAIN_VIEW, SLOT(profiles()), "profile");
+    NEW_KACTION(actSplit, i18n("Sp&lit File..."), "split", Qt::CTRL | Qt::Key_P, SLOTS, SLOT(slotSplit()), "split");
     NEW_KACTION(actCombine, i18n("Com&bine Files..."), "kr_combine", 0, SLOTS, SLOT(slotCombine()), "combine");
     NEW_KACTION(actSelectNewerAndSingle, i18n("&Select Newer and Single"), nullptr, 0, SLOTS, SLOT(compareSetup()), "select_newer_and_single");
     NEW_KACTION(actSelectNewer, i18n("Select &Newer"), nullptr, 0, SLOTS, SLOT(compareSetup()), "select_newer");
@@ -273,14 +274,14 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     actMountMan = krMtMan.action();
     krusaderApp->actionCollection()->addAction("mountman", actMountMan);
-    krusaderApp->actionCollection()->setDefaultShortcut(actMountMan, Qt::ALT + Qt::Key_Slash);
+    krusaderApp->actionCollection()->setDefaultShortcut(actMountMan, Qt::ALT | Qt::Key_Slash);
 
-    NEW_KACTION(actFind, i18n("&Search..."), "system-search", Qt::CTRL + Qt::Key_S, SLOTS, SLOT(search()), "find");
-    NEW_KACTION(actLocate, i18n("&Locate..."), "edit-find", Qt::SHIFT + Qt::CTRL + Qt::Key_L, SLOTS, SLOT(locate()), "locate");
+    NEW_KACTION(actFind, i18n("&Search..."), "system-search", Qt::CTRL | Qt::Key_S, SLOTS, SLOT(search()), "find");
+    NEW_KACTION(actLocate, i18n("&Locate..."), "edit-find", Qt::SHIFT | Qt::CTRL | Qt::Key_L, SLOTS, SLOT(locate()), "locate");
 #ifdef SYNCHRONIZER_ENABLED
-    NEW_KACTION(actSyncDirs, i18n("Synchronize Fol&ders..."), "folder-sync", Qt::CTRL + Qt::Key_Y, SLOTS, SLOT(slotSynchronizeDirs()), "sync dirs");
+    NEW_KACTION(actSyncDirs, i18n("Synchronize Fol&ders..."), "folder-sync", Qt::CTRL | Qt::Key_Y, SLOTS, SLOT(slotSynchronizeDirs()), "sync dirs");
 #endif
-    NEW_KACTION(actDiskUsage, i18n("D&isk Usage..."), "kr_diskusage", Qt::ALT + Qt::SHIFT + Qt::Key_S, SLOTS, SLOT(slotDiskUsage()), "disk usage");
+    NEW_KACTION(actDiskUsage, i18n("D&isk Usage..."), "kr_diskusage", Qt::ALT | Qt::SHIFT | Qt::Key_S, SLOTS, SLOT(slotDiskUsage()), "disk usage");
     NEW_KACTION(actKonfigurator,
                 i18n("Configure &Krusader..."),
                 "configure",
@@ -290,13 +291,13 @@ void KrActions::setupActions(Krusader *krusaderApp)
                 "konfigurator");
     NEW_KACTION(actSavePosition, i18n("Save &Position"), nullptr, 0, krusaderApp, SLOT(savePosition()), "save position");
     NEW_KACTION(actCompare, i18n("Compare b&y Content..."), "kr_comparedirs", 0, SLOTS, SLOT(compareContent()), "compare");
-    NEW_KACTION(actMultiRename, i18n("Multi &Rename..."), "edit-rename", Qt::SHIFT + Qt::Key_F2, SLOTS, SLOT(multiRename()), "multirename");
+    NEW_KACTION(actMultiRename, i18n("Multi &Rename..."), "edit-rename", Qt::SHIFT | Qt::Key_F2, SLOTS, SLOT(multiRename()), "multirename");
 
     NEW_KACTION(actAddBookmark, i18n("Add Bookmark"), "bookmark-new", KStandardShortcut::addBookmark(), SLOTS, SLOT(addBookmark()), "add bookmark");
     NEW_KACTION(actVerticalMode,
                 i18n("Vertical Mode"),
                 "view-split-top-bottom",
-                Qt::ALT + Qt::CTRL + Qt::Key_R,
+                Qt::ALT | Qt::CTRL | Qt::Key_R,
                 MAIN_VIEW,
                 SLOT(toggleVerticalMode()),
                 "toggle vertical mode");
@@ -312,29 +313,29 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actF10Quit, i18n("Quit"), nullptr, Qt::Key_F10, krusaderApp, SLOT(quit()), "F10_Quit");
     actF10Quit->setToolTip(i18n("Quit Krusader."));
 
-    NEW_KACTION(actPopularUrls, i18n("Popular URLs..."), nullptr, Qt::CTRL + Qt::Key_Z, krusaderApp->popularUrls(), SLOT(showDialog()), "Popular_Urls");
+    NEW_KACTION(actPopularUrls, i18n("Popular URLs..."), nullptr, Qt::CTRL | Qt::Key_Z, krusaderApp->popularUrls(), SLOT(showDialog()), "Popular_Urls");
     NEW_KACTION(actSwitchFullScreenTE,
                 i18n("Toggle Fullscreen Embedded Terminal"),
                 nullptr,
-                Qt::CTRL + Qt::ALT + Qt::Key_F,
+                Qt::CTRL | Qt::ALT | Qt::Key_F,
                 MAIN_VIEW,
                 SLOT(toggleFullScreenTerminalEmulator()),
                 "switch_fullscreen_te");
 
-    NEW_KACTION(tmp, i18n("Move Focus Up"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_Up, MAIN_VIEW, SLOT(focusUp()), "move_focus_up");
-    NEW_KACTION(tmp, i18n("Move Focus Down"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_Down, MAIN_VIEW, SLOT(focusDown()), "move_focus_down");
+    NEW_KACTION(tmp, i18n("Move Focus Up"), nullptr, Qt::CTRL | Qt::SHIFT | Qt::Key_Up, MAIN_VIEW, SLOT(focusUp()), "move_focus_up");
+    NEW_KACTION(tmp, i18n("Move Focus Down"), nullptr, Qt::CTRL | Qt::SHIFT | Qt::Key_Down, MAIN_VIEW, SLOT(focusDown()), "move_focus_down");
 
     // job manager actions
     actJobControl = krJobMan->controlAction();
     krusaderApp->actionCollection()->addAction("job control", actJobControl);
-    krusaderApp->actionCollection()->setDefaultShortcut(actJobControl, Qt::CTRL + Qt::ALT + Qt::Key_P);
+    krusaderApp->actionCollection()->setDefaultShortcut(actJobControl, Qt::CTRL | Qt::ALT | Qt::Key_P);
     actJobProgress = krJobMan->progressAction();
     krusaderApp->actionCollection()->addAction("job progress", actJobProgress);
     actJobMode = krJobMan->modeAction();
     krusaderApp->actionCollection()->addAction("job mode", actJobMode);
     actJobUndo = krJobMan->undoAction();
     krusaderApp->actionCollection()->addAction("job undo", actJobUndo);
-    krusaderApp->actionCollection()->setDefaultShortcut(actJobUndo, Qt::CTRL + Qt::ALT + Qt::Key_Z);
+    krusaderApp->actionCollection()->setDefaultShortcut(actJobUndo, Qt::CTRL | Qt::ALT | Qt::Key_Z);
 
     // and at last we can set the tool-tips
     actKonfigurator->setToolTip(i18n("Setup Krusader the way you like it"));

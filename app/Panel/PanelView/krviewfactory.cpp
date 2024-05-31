@@ -59,9 +59,9 @@ KrViewFactory &KrViewFactory::self()
 void KrViewFactory::init()
 {
     registerView(
-        new KrViewInstanceImpl<KrInterDetailedView>(0, "KrInterDetailedView", i18n("&Detailed View"), "view-list-details", Qt::ALT + Qt::SHIFT + Qt::Key_D));
+        new KrViewInstanceImpl<KrInterDetailedView>(0, "KrInterDetailedView", i18n("&Detailed View"), "view-list-details", Qt::ALT | Qt::SHIFT | Qt::Key_D));
 
-    registerView(new KrViewInstanceImpl<KrInterBriefView>(1, "KrInterBriefView", i18n("&Brief View"), "view-list-icons", Qt::ALT + Qt::SHIFT + Qt::Key_B));
+    registerView(new KrViewInstanceImpl<KrInterBriefView>(1, "KrInterBriefView", i18n("&Brief View"), "view-list-icons", Qt::ALT | Qt::SHIFT | Qt::Key_B));
 }
 
 KrView *KrViewFactory::createView(int id, QWidget *widget, KConfig *cfg)

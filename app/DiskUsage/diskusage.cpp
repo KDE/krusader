@@ -753,29 +753,29 @@ void DiskUsage::rightClickMenu(const QPoint &pos, File *fileItem, QMenu *addPopu
         actDelete->setShortcut(Qt::Key_Delete);
         QAction *actExclude = popup.addAction(i18n("Exclude"));
         actionHash[actExclude] = EXCLUDE_ID;
-        actExclude->setShortcut(Qt::CTRL + Qt::Key_E);
+        actExclude->setShortcut(Qt::CTRL | Qt::Key_E);
         popup.addSeparator();
     }
 
     QAction *myAct = popup.addAction(i18n("Up one folder"));
     actionHash[myAct] = PARENT_DIR_ID;
-    myAct->setShortcut(Qt::SHIFT + Qt::Key_Up);
+    myAct->setShortcut(Qt::SHIFT | Qt::Key_Up);
 
     myAct = popup.addAction(i18n("New search"));
     actionHash[myAct] = NEW_SEARCH_ID;
-    myAct->setShortcut(Qt::CTRL + Qt::Key_N);
+    myAct->setShortcut(Qt::CTRL | Qt::Key_N);
 
     myAct = popup.addAction(i18n("Refresh"));
     actionHash[myAct] = REFRESH_ID;
-    myAct->setShortcut(Qt::CTRL + Qt::Key_R);
+    myAct->setShortcut(Qt::CTRL | Qt::Key_R);
 
     myAct = popup.addAction(i18n("Include all"));
     actionHash[myAct] = INCLUDE_ALL_ID;
-    myAct->setShortcut(Qt::CTRL + Qt::Key_I);
+    myAct->setShortcut(Qt::CTRL | Qt::Key_I);
 
     myAct = popup.addAction(i18n("Step into"));
     actionHash[myAct] = STEP_INTO_ID;
-    myAct->setShortcut(Qt::SHIFT + Qt::Key_Down);
+    myAct->setShortcut(Qt::SHIFT | Qt::Key_Down);
 
     popup.addSeparator();
 
@@ -788,25 +788,25 @@ void DiskUsage::rightClickMenu(const QPoint &pos, File *fileItem, QMenu *addPopu
 
     myAct = viewPopup.addAction(i18n("Lines"));
     actionHash[myAct] = LINES_VIEW_ID;
-    myAct->setShortcut(Qt::CTRL + Qt::Key_L);
+    myAct->setShortcut(Qt::CTRL | Qt::Key_L);
 
     myAct = viewPopup.addAction(i18n("Detailed"));
     actionHash[myAct] = DETAILED_VIEW_ID;
-    myAct->setShortcut(Qt::CTRL + Qt::Key_D);
+    myAct->setShortcut(Qt::CTRL | Qt::Key_D);
 
     myAct = viewPopup.addAction(i18n("Filelight"));
     actionHash[myAct] = FILELIGHT_VIEW_ID;
-    myAct->setShortcut(Qt::CTRL + Qt::Key_F);
+    myAct->setShortcut(Qt::CTRL | Qt::Key_F);
 
     viewPopup.addSeparator();
 
     myAct = viewPopup.addAction(i18n("Next"));
     actionHash[myAct] = NEXT_VIEW_ID;
-    myAct->setShortcut(Qt::SHIFT + Qt::Key_Right);
+    myAct->setShortcut(Qt::SHIFT | Qt::Key_Right);
 
     myAct = viewPopup.addAction(i18n("Previous"));
     actionHash[myAct] = PREVIOUS_VIEW_ID;
-    myAct->setShortcut(Qt::SHIFT + Qt::Key_Left);
+    myAct->setShortcut(Qt::SHIFT | Qt::Key_Left);
 
     QAction *menu = popup.addMenu(&viewPopup);
     menu->setText(i18n("View"));
