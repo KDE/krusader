@@ -59,7 +59,7 @@ bool KrLayoutFactory::parseFiles()
         return false;
     }
 
-    const QStringList extraFilePaths = QStandardPaths::locateAll(QStandardPaths::DataLocation, EXTRA_FILE_MASK);
+    const QStringList extraFilePaths = QStandardPaths::locateAll(QStandardPaths::AppDataLocation, EXTRA_FILE_MASK);
 
     for (const QString &path : extraFilePaths) {
         qWarning() << "extra file: " << path;
