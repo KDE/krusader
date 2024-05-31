@@ -22,7 +22,7 @@
 #include <KConfig>
 #include <KConfigGroup>
 #include <KFilterBase>
-#include <KFilterDev>
+#include <KCompressionDevice>
 
 #include "libisofs/isofs.h"
 #include "qfilehack.h"
@@ -161,11 +161,7 @@ void KIso::prepareDevice(const QString &filename, const QString &mimetype, bool 
             forced = true;
 
         KCompressionDevice *device;
-        if (mimetype.isEmpty()) {
-            device = new KFilterDev(filename);
-        } else {
-            device = new KCompressionDevice(filename, COMPRESSIONTYPEFORMIMETYPE(mimetype));
-        }
+        device = new KCompressionDevice(filename, COMPRESSIONTYPEFORMIMETYPE(mimetype));
         if (device->compressionType() == KCompressionDevice::None && forced) {
             delete device;
         } else {
@@ -410,14 +406,14 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
     /* We'll use the permission and user/group of the 'host' file except
      * in Rock Ridge, where the permissions are stored on the file system
      */
-    if (QT_STAT(m_filename.toLocal8Bit(), &buf) < 0) {
+    if (QT_STAT(m_filename.toLocal8Bit().data(), &buf) < 0) {
         /* defaults, if stat fails */
         memset(&buf, 0, sizeof(struct stat));
         buf.st_mode = 0777;
     } else {
         /* If it's a block device, try to query the track layout (for multisession) */
         if (m_startsec == -1 && S_ISBLK(buf.st_mode))
-            trackno = getTracks(m_filename.toLatin1(), (int *)&tracks);
+            trackno = getTracks(m_filename.toLatin1().data(), (int *)&tracks);
     }
     uid.setNum(buf.st_uid);
     gid.setNum(buf.st_gid);
