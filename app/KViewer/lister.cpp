@@ -1144,7 +1144,7 @@ bool ListerPane::handleCloseEvent(QEvent *e)
 }
 
 ListerBrowserExtension::ListerBrowserExtension(Lister *lister)
-    : KParts::BrowserExtension(lister)
+    : KParts::NavigationExtension(lister)
 {
     _lister = lister;
 

@@ -23,7 +23,7 @@
 #endif
 
 #include <KLocalizedString>
-#include <KParts/BrowserExtension>
+#include <KParts/NavigationExtension>
 #include <KParts/ReadWritePart>
 #include <KSharedConfig>
 
@@ -344,10 +344,10 @@ KParts::ReadOnlyPart *PanelViewer::createPart(QString mimetype)
 #endif
 
     if (part) {
-        KParts::BrowserExtension *ext = KParts::BrowserExtension::childObject(part);
+        KParts::NavigationExtension *ext = KParts::NavigationExtension::childObject(part);
         if (ext) {
-            connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed, this, &PanelViewer::openUrl);
-            connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed, this, &PanelViewer::openUrlRequest);
+            connect(ext, &KParts::NavigationExtension::openUrlRequestDelayed, this, &PanelViewer::openUrl);
+            connect(ext, &KParts::NavigationExtension::openUrlRequestDelayed, this, &PanelViewer::openUrlRequest);
         }
     }
     return part;
@@ -472,10 +472,10 @@ KParts::ReadOnlyPart *PanelEditor::createPart(QString mimetype)
 #endif
 
     if (part) {
-        KParts::BrowserExtension *ext = KParts::BrowserExtension::childObject(part);
+        KParts::NavigationExtension *ext = KParts::NavigationExtension::childObject(part);
         if (ext) {
-            connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed, this, &PanelEditor::openUrl);
-            connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed, this, &PanelEditor::openUrlRequest);
+            connect(ext, &KParts::NavigationExtension::openUrlRequestDelayed, this, &PanelEditor::openUrl);
+            connect(ext, &KParts::NavigationExtension::openUrlRequestDelayed, this, &PanelEditor::openUrlRequest);
         }
     }
     return part;

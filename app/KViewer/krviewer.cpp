@@ -28,6 +28,7 @@
 #include <KFileItem>
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KFileItem>
 #include <KParts/Part>
 #include <KProcess>
 #include <KSharedConfig>
@@ -37,6 +38,7 @@
 #include <KToolBar>
 #include <kxmlgui_version.h>
 #include <utility>
+#include <KParts/NavigationExtension>
 
 #include "../defaults.h"
 #include "../icon.h"
@@ -622,7 +624,7 @@ void KrViewer::print()
     if (!pvb || !pvb->part() || !isPartAdded(pvb->part()))
         return;
 
-    KParts::BrowserExtension *ext = KParts::BrowserExtension::childObject(pvb->part());
+    KParts::NavigationExtension *ext = KParts::NavigationExtension::childObject(pvb->part());
     if (ext && ext->isActionEnabled("print"))
         Invoker(ext, SLOT(print())).invoke();
 }
@@ -633,7 +635,7 @@ void KrViewer::copy()
     if (!pvb || !pvb->part() || !isPartAdded(pvb->part()))
         return;
 
-    KParts::BrowserExtension *ext = KParts::BrowserExtension::childObject(pvb->part());
+    KParts::NavigationExtension *ext = KParts::NavigationExtension::childObject(pvb->part());
     if (ext && ext->isActionEnabled("copy"))
         Invoker(ext, SLOT(copy())).invoke();
 }
