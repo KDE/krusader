@@ -183,9 +183,9 @@ QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
 
     QString text;
     if (!showLongNames) {
-        const QString scheme = url.scheme().isEmpty() || url.isLocalFile() ? "" : (url.scheme() + ':');
-        const QString host = url.host().isEmpty() ? "" : (url.host() + ':');
-        const QString name = url.isLocalFile() && url.fileName().isEmpty() ? "/" : url.fileName();
+        const QString scheme = url.scheme().isEmpty() || url.isLocalFile() ? QString("") : (url.scheme() + ':');
+        const QString host = url.host().isEmpty() ? QString("") : (url.host() + ':');
+        const QString name = url.isLocalFile() && url.fileName().isEmpty() ? QString("/") : url.fileName();
         text = scheme + host + name;
     } else {
         text = longText;

@@ -352,7 +352,7 @@ void DiskUsage::slotLoadDirectory()
                                             currentFileItem->getModificationTime(),
                                             currentFileItem->isSymLink(),
                                             mime);
-                    directoryStack.push((dirToCheck.isEmpty() ? "" : dirToCheck + '/') + currentFileItem->getName());
+                    directoryStack.push((dirToCheck.isEmpty() ? QString("") : dirToCheck + '/') + currentFileItem->getName());
                     parentStack.push(dynamic_cast<Directory *>(newItem));
                 } else {
                     newItem = new File(currentParent,

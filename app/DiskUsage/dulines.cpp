@@ -289,7 +289,7 @@ void DULines::slotDirChanged(Directory *dirEntry)
         lastItem->setData(0, Qt::DecorationRole, createPixmap(item->intPercent(), maxPercent, header()->sectionSize(0) - 2 * textMargin));
 
         if (showFileSize)
-            lastItem->setData(2, Qt::UserRole, "  [" + KIO::convertSize(item->size()) + ']');
+            lastItem->setData(2, Qt::UserRole, QVariant(QString("  [") + KIO::convertSize(item->size()) + QString("]")).toString());
 
         QSize size = lastItem->sizeHint(0);
         size.setWidth(16);

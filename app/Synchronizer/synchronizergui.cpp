@@ -89,11 +89,11 @@ public:
             SynchronizerFileItem *item = viewItem->synchronizerItemRef();
             if (item) {
                 if (isLeft && item->existsInLeft()) {
-                    QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
+                    QString leftDirName = item->leftDirectory().isEmpty() ? QString("") : item->leftDirectory() + '/';
                     QUrl leftURL = Synchronizer::fsUrl(synchronizer->leftBaseDirectory() + leftDirName + item->leftName());
                     urls.push_back(leftURL);
                 } else if (!isLeft && item->existsInRight()) {
-                    QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
+                    QString rightDirName = item->rightDirectory().isEmpty() ? QString("") : item->rightDirectory() + '/';
                     QUrl rightURL = Synchronizer::fsUrl(synchronizer->rightBaseDirectory() + rightDirName + item->rightName());
                     urls.push_back(rightURL);
                 }
@@ -668,8 +668,8 @@ void SynchronizerGUI::doubleClicked(QTreeWidgetItem *itemIn)
     auto *syncItem = dynamic_cast<SyncViewItem *>(itemIn);
     SynchronizerFileItem *item = syncItem->synchronizerItemRef();
     if (item && item->existsInLeft() && item->existsInRight() && !item->isDir()) {
-        QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-        QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
+        QString leftDirName = item->leftDirectory().isEmpty() ? QString("") : item->leftDirectory() + '/';
+        QString rightDirName = item->rightDirectory().isEmpty() ? QString("") : item->rightDirectory() + '/';
         QUrl leftURL = Synchronizer::fsUrl(synchronizer.leftBaseDirectory() + leftDirName + item->leftName());
         QUrl rightURL = Synchronizer::fsUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
 
@@ -782,8 +782,8 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
 void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
 {
     // check out the user's option
-    QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-    QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
+    QString leftDirName = item->leftDirectory().isEmpty() ? QString("") : item->leftDirectory() + '/';
+    QString rightDirName = item->rightDirectory().isEmpty() ? QString("") : item->rightDirectory() + '/';
 
     QUrl leftURL = Synchronizer::fsUrl(synchronizer.leftBaseDirectory() + leftDirName + item->leftName());
     QUrl rightURL = Synchronizer::fsUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
@@ -1295,8 +1295,8 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
         bool isedit = e->key() == Qt::Key_F4;
 
         SynchronizerFileItem *item = (dynamic_cast<SyncViewItem *>(listItem))->synchronizerItemRef();
-        QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-        QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
+        QString leftDirName = item->leftDirectory().isEmpty() ? QString("") : item->leftDirectory() + '/';
+        QString rightDirName = item->rightDirectory().isEmpty() ? QString("") : item->rightDirectory() + '/';
 
         if (item->isDir())
             return;
@@ -1589,11 +1589,11 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
         SynchronizerFileItem *item = viewItem->synchronizerItemRef();
         if (item) {
             if (isLeft && item->existsInLeft()) {
-                QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
+                QString leftDirName = item->leftDirectory().isEmpty() ? QString("") : item->leftDirectory() + '/';
                 QUrl leftURL = Synchronizer::fsUrl(synchronizer.leftBaseDirectory() + leftDirName + item->leftName());
                 urls.push_back(leftURL);
             } else if (!isLeft && item->existsInRight()) {
-                QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
+                QString rightDirName = item->rightDirectory().isEmpty() ? QString("") : item->rightDirectory() + '/';
                 QUrl rightURL = Synchronizer::fsUrl(synchronizer.rightBaseDirectory() + rightDirName + item->rightName());
                 urls.push_back(rightURL);
             }

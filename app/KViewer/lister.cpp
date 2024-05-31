@@ -498,7 +498,7 @@ QStringList ListerTextArea::readLines(qint64 filePos, qint64 &endPos, const int 
             continue;
         }
 
-        if ((chr[0] < 32) && (chr[0] != '\n') && (chr[0] != '\t')) {
+        if ((chr[0] < QChar(32)) && (chr[0] != '\n') && (chr[0] != '\t')) {
             chr = QChar(CONTROL_CHAR);
         }
 

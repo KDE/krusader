@@ -693,8 +693,8 @@ SynchronizerFileItem *Synchronizer::addDuplicateItem(SynchronizerFileItem *paren
                                          isTemp);
 
     if (uncertain == TT_UNKNOWN) {
-        QUrl leftURL = Synchronizer::fsUrl(leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + '/' + leftName);
-        QUrl rightURL = Synchronizer::fsUrl(rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + '/' + rightName);
+        QUrl leftURL = Synchronizer::fsUrl(leftDir.isEmpty() ? (QString) (leftBaseDir + leftName): leftBaseDir + leftDir + QString('/') + leftName);
+        QUrl rightURL = Synchronizer::fsUrl(rightDir.isEmpty() ? (QString) (rightBaseDir + rightName) : rightBaseDir + rightDir + '/' + rightName);
         stack.append(new CompareContentTask(this, item, leftURL, rightURL, leftSize));
     }
 
@@ -1222,8 +1222,8 @@ void Synchronizer::slotTaskFinished(KJob *job)
     if (disableNewTasks && item == lastTask)
         disableNewTasks = false; // the blocker task finished
 
-    QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-    QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
+    QString leftDirName = item->leftDirectory().isEmpty() ? QString("") : item->leftDirectory() + '/';
+    QString rightDirName = item->rightDirectory().isEmpty() ? QString("") : item->rightDirectory() + '/';
     QUrl leftURL = Synchronizer::fsUrl(leftBaseDir + leftDirName + item->leftName());
     QUrl rightURL = Synchronizer::fsUrl(rightBaseDir + rightDirName + item->rightName());
 
@@ -1557,8 +1557,8 @@ void Synchronizer::synchronizeWithKGet()
             QUrl downloadURL;
             QUrl destURL;
             QString destDir;
-            QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-            QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
+            QString leftDirName = item->leftDirectory().isEmpty() ? QString("") : item->leftDirectory() + '/';
+            QString rightDirName = item->rightDirectory().isEmpty() ? QString("") : item->rightDirectory() + '/';
 
             if (progDlg == nullptr) {
                 progDlg = new KgetProgressDialog(krMainWindow, i18n("Krusader::Synchronizer"), i18n("Feeding the URLs to KGet"), true);
