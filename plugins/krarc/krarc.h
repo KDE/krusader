@@ -16,12 +16,7 @@
 #include <QUrl>
 
 #include <KIO/Global>
-#include <kservice_version.h>
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
 #include <KIO/WorkerBase>
-#else
-#include <KIO/SlaveBase>
-#endif
 
 #include <KProcess>
 
@@ -33,17 +28,12 @@ class KFileItem;
 class QByteArray;
 class QTextCodec;
 
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
 class kio_krarcProtocol : public QObject, public KIO::WorkerBase, public KrArcBaseManager
-#else
-class kio_krarcProtocol : public QObject, public KIO::SlaveBase, public KrArcBaseManager
-#endif
 {
     Q_OBJECT
 public:
     kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
     ~kio_krarcProtocol() override;
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
     KIO::WorkerResult stat(const QUrl &url) override;
     KIO::WorkerResult get(const QUrl &url) override;
     KIO::WorkerResult put(const QUrl &url, int permissions, KIO::JobFlags flags) override;
@@ -52,36 +42,16 @@ public:
     KIO::WorkerResult del(QUrl const &url, bool isFile) override;
     KIO::WorkerResult copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
     KIO::WorkerResult rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags) override;
-#else
-    void stat(const QUrl &url) override;
-    void get(const QUrl &url) override;
-    void put(const QUrl &url, int permissions, KIO::JobFlags flags) override;
-    void mkdir(const QUrl &url, int permissions) override;
-    void listDir(const QUrl &url) override;
-    void del(QUrl const &url, bool isFile) override;
-    void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
-    void rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags) override;
-#endif
 public slots:
     void receivedData(KProcess *, QByteArray &);
     void check7zOutputForPassword(KProcess *, QByteArray &);
 
 protected:
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
     Q_REQUIRED_RESULT virtual bool initDirDict(const QUrl &url, bool forced = false);
     Q_REQUIRED_RESULT virtual KIO::WorkerResult initArcParameters();
-#else
-    virtual bool initDirDict(const QUrl &url, bool forced = false);
-    virtual bool initArcParameters();
-#endif
     void checkIf7zIsEncrypted(bool &, QString) override;
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
     Q_REQUIRED_RESULT virtual KIO::WorkerResult setArcFile(const QUrl &url);
     Q_REQUIRED_RESULT virtual QString getPassword();
-#else
-    virtual bool setArcFile(const QUrl &url);
-    virtual QString getPassword();
-#endif
     virtual void invalidatePassword();
     QString getPath(const QUrl &url, QUrl::FormattingOptions options = nullptr);
     /** parses a text line from the listing of an archive. */
@@ -101,11 +71,7 @@ protected:
     QStringList renCmd; ///< rename file command.
 
 private:
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
     KIO::WorkerResult get(const QUrl &url, int tries);
-#else
-    void get(const QUrl &url, int tries);
-#endif
     /** checks if a returned status ("exit code") of an archiving-related process is OK. */
     bool checkStatus(int exitCode);
     /** service function for parseLine. */
@@ -118,11 +84,7 @@ private:
     KIO::UDSEntry *findFileEntry(const QUrl &url);
     /** add a new directory (file list container). */
     KIO::UDSEntryList *addNewDir(const QString &path);
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 96, 0)
     Q_REQUIRED_RESULT KIO::WorkerResult checkWriteSupport();
-#else
-    bool checkWriteSupport();
-#endif
 
     QHash<QString, KIO::UDSEntryList *> dirDict; //< the directories data structure.
     bool encrypted; //< tells whether the archive is encrypted
