@@ -22,6 +22,7 @@
 
 #include <KLineEdit>
 #include <KLocalizedString>
+#include <KLazyLocalizedString>
 #include <KMessageBox>
 #include <KStandardGuiItem>
 
@@ -34,7 +35,7 @@
 #include "useractionlistview.h"
 
 // This is the filter in the QFileDialog of Import/Export:
-static const char *FILE_FILTER = I18N_NOOP("*.xml|XML files\n*|All files");
+static const KLazyLocalizedString FILE_FILTER = kli18n("*.xml|XML files\n*|All files");
 
 UserActionPage::UserActionPage(QWidget *parent)
     : QWidget(parent)
@@ -224,7 +225,7 @@ void UserActionPage::slotRemoveAction()
 
 void UserActionPage::slotImport()
 {
-    QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), i18n(FILE_FILTER));
+    QString filename = QFileDialog::getOpenFileName(this, QString(), QString(),  KLocalizedString(FILE_FILTER).toString());
     if (filename.isEmpty())
         return;
 
@@ -245,7 +246,7 @@ void UserActionPage::slotExport()
     if (!dynamic_cast<UserActionListViewItem *>(actionTree->currentItem()))
         return;
 
-    QString filename = QFileDialog::getSaveFileName(this, QString(), QString(), i18n(FILE_FILTER));
+    QString filename = QFileDialog::getSaveFileName(this, QString(), QString(),  KLocalizedString(FILE_FILTER).toString());
     if (filename.isEmpty())
         return;
 

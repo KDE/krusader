@@ -15,13 +15,14 @@
 
 #include <KActionCollection>
 #include <KLocalizedString>
+#include <KLazyLocalizedString>
 #include <utility>
 
 #define BM_NAME(X) (QString("Bookmark:") + X)
 
-static const char *NAME_TRASH = I18N_NOOP("Trash bin");
-static const char *NAME_VIRTUAL = I18N_NOOP("Virtual Filesystem");
-static const char *NAME_LAN = I18N_NOOP("Local Network");
+static const KLazyLocalizedString NAME_TRASH = kli18n("Trash bin");
+static const KLazyLocalizedString NAME_VIRTUAL = kli18n("Virtual Filesystem");
+static const KLazyLocalizedString NAME_LAN = kli18n("Local Network");
 
 KrBookmark::KrBookmark(const QString &name, QUrl url, KActionCollection *parent, const QString &iconName, const QString &actionName)
     : QAction(parent)
@@ -79,9 +80,9 @@ KrBookmark *KrBookmark::getExistingBookmark(const QString &actionName, KActionCo
 
 KrBookmark *KrBookmark::trash(KActionCollection *collection)
 {
-    KrBookmark *bm = getExistingBookmark(i18n(NAME_TRASH), collection);
+    KrBookmark *bm =  getExistingBookmark(KLocalizedString(NAME_TRASH).toString(), collection);
     if (!bm)
-        bm = new KrBookmark(i18n(NAME_TRASH), QUrl("trash:/"), collection);
+        bm = new KrBookmark(KLocalizedString(NAME_TRASH).toString(), QUrl("trash:/"), collection);
 
     bm->setIcon(Icon(KrTrashHandler::trashIconName()));
     return bm;
@@ -89,9 +90,9 @@ KrBookmark *KrBookmark::trash(KActionCollection *collection)
 
 KrBookmark *KrBookmark::virt(KActionCollection *collection)
 {
-    KrBookmark *bm = getExistingBookmark(i18n(NAME_VIRTUAL), collection);
+    KrBookmark *bm = getExistingBookmark(KLocalizedString(NAME_VIRTUAL).toString(), collection);
     if (!bm) {
-        bm = new KrBookmark(i18n(NAME_VIRTUAL), QUrl("virt:/"), collection);
+        bm = new KrBookmark(KLocalizedString(NAME_VIRTUAL).toString(), QUrl("virt:/"), collection);
         bm->setIcon(Icon("document-open-remote"));
     }
     return bm;
@@ -99,9 +100,9 @@ KrBookmark *KrBookmark::virt(KActionCollection *collection)
 
 KrBookmark *KrBookmark::lan(KActionCollection *collection)
 {
-    KrBookmark *bm = getExistingBookmark(i18n(NAME_LAN), collection);
+    KrBookmark *bm = getExistingBookmark(KLocalizedString(NAME_LAN).toString(), collection);
     if (!bm) {
-        bm = new KrBookmark(i18n(NAME_LAN), QUrl("remote:/"), collection);
+        bm = new KrBookmark(KLocalizedString(NAME_LAN).toString(), QUrl("remote:/"), collection);
         bm->setIcon(Icon("network-workgroup"));
     }
     return bm;
