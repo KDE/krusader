@@ -211,7 +211,7 @@
 
 /////////////////////// [Private]
 // Start Position /////
-#define _StartPosition QPoint(QApplication::desktop()->width() / 2 - MAIN_VIEW->sizeHint().width() / 2, QApplication::desktop()->height() / 2 - 250)
+#define _StartPosition QPoint(QApplication::primaryScreen()->geometry().width() / 2 - MAIN_VIEW->sizeHint().width() / 2, QApplication::primaryScreen()->geometry().height() / 2 - 250)
 // Start Size /////////
 #define _StartSize QSize(MAIN_VIEW->sizeHint().width(), 500)
 // Panel Size /////////
