@@ -21,6 +21,9 @@
 #include <QStatusBar>
 #include <QGuiApplication>
 
+#include <KWindowSystem>
+#include <kwaylandextras.h>
+#include <kx11extras.h>
 #include <KActionCollection>
 #include <KFileItem>
 #include <KLocalizedString>
@@ -32,7 +35,6 @@
 #include <KShortcutsDialog>
 #include <KStandardAction>
 #include <KToolBar>
-#include <KWindowSystem>
 #include <kxmlgui_version.h>
 #include <utility>
 
@@ -283,10 +285,10 @@ void KrViewer::activateWindow(QWidget *window)
         // KWindowSystem::activateWindow() will just cause the window to blink in
         // the task bar requesting attention, but never get focus or come to the
         // foreground.
-        const int launchedSerial = KWindowSystem::lastInputSerial(focusWindow);
+        const int launchedSerial = KWaylandExtras::lastInputSerial(focusWindow);
         auto conn = std::make_shared<QMetaObject::Connection>();
-        *conn = connect(KWindowSystem::self(),
-                        &KWindowSystem::xdgActivationTokenArrived,
+        *conn = connect(KWaylandExtras::self(),
+                        &KWaylandExtras::xdgActivationTokenArrived,
                         window,
                         [window, launchedSerial, conn](int tokenSerial, const QString &token) {
                             if (tokenSerial == launchedSerial) {
@@ -296,10 +298,10 @@ void KrViewer::activateWindow(QWidget *window)
                                 KWindowSystem::activateWindow(window->windowHandle());
                             }
                         });
-        KWindowSystem::requestXdgActivationToken(focusWindow, launchedSerial, {});
+        KWaylandExtras::requestXdgActivationToken(focusWindow, launchedSerial, {});
     }
     if (KrGlobal::isX11Platform) {
-        KWindowSystem::forceActiveWindow(window->winId());
+        KX11Extras::forceActiveWindow(window->winId());
     }
 }
 KrViewer *KrViewer::getViewer(bool new_window)

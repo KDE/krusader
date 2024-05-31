@@ -18,7 +18,6 @@
 #include <QResizeEvent>
 // QtWidgets
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QMenuBar>
 // QtDBus
 #include <QDBusInterface>
@@ -37,6 +36,7 @@
 #include <KWindowSystem>
 #include <KXMLGUIFactory>
 #include <utility>
+#include <kx11extras.h>
 
 #include "defaults.h"
 #include "kractions.h"
@@ -557,7 +557,7 @@ void Krusader::moveToTop()
     if (isHidden())
         show();
 
-    KWindowSystem::forceActiveWindow(winId());
+    KX11Extras::forceActiveWindow(winId());
 }
 
 bool Krusader::isRunning()
