@@ -43,7 +43,7 @@ set(krusader_SRCS
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-krusader_user.png")
 ecm_add_app_icon(krusader_SRCS ICONS ${ICONS_SRCS})
 
-qt5_add_resources(krusader_RC_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc" )
+qt6_add_resources(krusader_RC_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc" )
 
 add_executable(krusader ${krusader_SRCS} ${krusader_RC_SRCS})
 
@@ -69,11 +69,11 @@ target_link_libraries(krusader
                       GUI
                       Archive
                       JobMan
-                      KF5::Notifications
-                      KF5::Parts
-                      KF5::WindowSystem
-                      Qt5::PrintSupport
-                      Qt5::Concurrent
+                      KF6::Notifications
+                      KF6::Parts
+                      KF6::WindowSystem
+                      Qt6::PrintSupport
+                      Qt6::Concurrent
 )
 
 if(SYNCHRONIZER_ENABLED)
@@ -86,7 +86,7 @@ install(PROGRAMS org.kde.krusader.desktop
 install(FILES krusaderui.rc
               krusaderlisterui.rc
               krviewer.rc
-        DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/krusader)
+        DESTINATION ${KDE_INSTALL_KXMLGUIDIR}/krusader)
 install(FILES midnight_commander.color
               total_commander.color
               total_commander.keymap

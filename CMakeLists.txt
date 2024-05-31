@@ -5,15 +5,15 @@ project(krusader)
 set(VERSION "2.9.0-dev")
 set(RELEASE_NAME "Bleeding Edge")
 
-set(MIN_QT_VERSION 5.12)
-set(MIN_KF_VERSION 5.108)
+set(MIN_QT_VERSION "6.4.0")
+set(KF6_MIN_VERSION "5.240.0")
 
 
 # ===== Packages =====
 
-find_package(ECM ${MIN_KF_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${KF6_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-set(KDE_COMPILERSETTINGS_LEVEL "5.68")
+set(KDE_COMPILERSETTINGS_LEVEL "5.200")
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
@@ -23,11 +23,12 @@ include(KDEGitCommitHooks)
 
 include(ECMInstallIcons)
 include(ECMAddAppIcon)
+include(ECMQtDeclareLoggingCategory)
 
 include(FeatureSummary)
 include(CheckIncludeFiles)
 
-find_package(Qt5 ${MIN_QT_VERSION} CONFIG REQUIRED
+find_package(Qt6 ${MIN_QT_VERSION} CONFIG REQUIRED COMPONENTS
   Concurrent
   Core
   Gui
@@ -35,9 +36,10 @@ find_package(Qt5 ${MIN_QT_VERSION} CONFIG REQUIRED
   Widgets
   PrintSupport
   Xml
+  Core5Compat
 )
 
-find_package(KF5 ${MIN_KF_VERSION} REQUIRED COMPONENTS
+find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS
   Archive
   Bookmarks
   Codecs
@@ -58,6 +60,7 @@ find_package(KF5 ${MIN_KF_VERSION} REQUIRED COMPONENTS
   WindowSystem
   XmlGui
   GuiAddons
+  StatusNotifierItem
 )
 
 
@@ -145,6 +148,7 @@ if (CMAKE_COMPILER_IS_GNUCXX)
                          -Wnon-virtual-dtor -Wctor-dtor-privacy -Wzero-as-null-pointer-constant" CACHE STRING "" FORCE)
 endif()
 
+remove_definitions(-DQT_NO_KEYWORDS  -DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII)
 
 # ===== Subdirectories =====
 
@@ -157,7 +161,7 @@ add_subdirectory(plugins/krarc)
 # ===== Translations =====
 
 ki18n_install(po)
-kdoctools_install(po)
+# kdoctools_install(po)
 
 # ==== clang-format target and commit hook ====
 

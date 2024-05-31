@@ -27,15 +27,16 @@ target_link_libraries(Panel
     Dialogs
     GUI
     KViewer
-    KF5::Archive
-    KF5::ConfigCore
-    KF5::CoreAddons
-    KF5::I18n
-    KF5::IconThemes
-    KF5::KIOFileWidgets
-    KF5::KIOWidgets
-    KF5::Service
-    KF5::WidgetsAddons
-    KF5::XmlGui
-    Qt5::Xml
+    KF6::Archive
+    KF6::ConfigCore
+    KF6::CoreAddons
+    KF6::I18n
+    KF6::IconThemes
+    KF6::KIOFileWidgets
+    KF6::KIOWidgets
+    KF6::Service
+    KF6::WidgetsAddons
+    KF6::XmlGui
+    Qt6::Xml
+    Qt6::Core5Compat
 )
