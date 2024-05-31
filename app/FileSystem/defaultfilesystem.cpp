@@ -347,7 +347,7 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan)
     // Note: we are using low-level Qt functions here.
     // It's around twice as fast as using the QDir class.
 
-    QT_DIR *dir = QT_OPENDIR(path.toLocal8Bit());
+    QT_DIR *dir = QT_OPENDIR(path.toLocal8Bit().data());
     if (!dir) {
         emit error(i18n("Cannot open the folder %1.", path));
         return false;

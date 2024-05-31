@@ -386,12 +386,12 @@ void ListPanelFunc::redirectLink()
     if (!ok || newLink == currentLink)
         return;
     // delete the current link
-    if (unlink(file.toLocal8Bit()) == -1) {
+    if (unlink(file.toLocal8Bit().data()) == -1) {
         KMessageBox::error(krMainWindow, i18n("Cannot remove old link: %1", file));
         return;
     }
     // try to create a new symlink
-    if (symlink(newLink.toLocal8Bit(), file.toLocal8Bit()) == -1) {
+    if (symlink(newLink.toLocal8Bit().data(), file.toLocal8Bit().data()) == -1) {
         KMessageBox::/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */ error(krMainWindow, i18n("Failed to create a new link: %1", file));
         return;
     }
@@ -426,10 +426,10 @@ void ListPanelFunc::krlink(bool sym)
     name = files()->getUrl(name).path();
 
     if (sym) {
-        if (symlink(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
+        if (symlink(name.toLocal8Bit().data(), linkName.toLocal8Bit().data()) == -1)
             KMessageBox::error(krMainWindow, i18n("Failed to create a new symlink '%1' to: '%2'", linkName, name));
     } else {
-        if (link(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
+        if (link(name.toLocal8Bit().data(), linkName.toLocal8Bit().data()) == -1)
             KMessageBox::error(krMainWindow, i18n("Failed to create a new link '%1' to '%2'", linkName, name));
     }
 }

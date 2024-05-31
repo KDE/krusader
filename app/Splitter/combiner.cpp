@@ -124,7 +124,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
                 hasFileName = true;
             } else if (token == "size") {
                 // FIXME - don't use c functions !!!
-                sscanf(value.trimmed().toLocal8Bit(), "%llu", &expectedSize);
+                sscanf(value.trimmed().toLocal8Bit().data(), "%llu", &expectedSize);
                 hasSize = true;
             }
             if (token == "crc32") {

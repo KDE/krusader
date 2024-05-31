@@ -265,7 +265,7 @@ KIO::WorkerResult kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
     for (int i = 0; i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
         QByteArray newDirs = encodeString(tempDir.left(i));
         newDirs.prepend(arcTempDirEnc);
-        QT_MKDIR(newDirs, permissions);
+        QT_MKDIR(newDirs.constData(), permissions);
     }
 
     if (tempDir.endsWith(DIR_SEPARATOR))
@@ -338,14 +338,14 @@ KIO::WorkerResult kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::
     for (int i = 0; i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
         QByteArray newDirs = encodeString(tempDir.left(i));
         newDirs.prepend(arcTempDirEnc);
-        QT_MKDIR(newDirs, 0755);
+        QT_MKDIR(newDirs.constData(), 0755);
     }
 
     int fd;
     if (resume) {
         QByteArray ba = encodeString(tempFile);
         ba.prepend(arcTempDirEnc);
-        fd = QT_OPEN(ba, O_RDWR); // append if resuming
+        fd = QT_OPEN(ba.constData(), O_RDWR); // append if resuming
         QT_LSEEK(fd, 0, SEEK_END); // Seek to end
     } else {
         // WABA: Make sure that we keep writing permissions ourselves,
@@ -358,7 +358,7 @@ KIO::WorkerResult kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::
 
         QByteArray ba = encodeString(tempFile);
         ba.prepend(arcTempDirEnc);
-        fd = QT_OPEN(ba, O_CREAT | O_TRUNC | O_WRONLY, initialMode);
+        fd = QT_OPEN(ba.constData(), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
     }
 
     QByteArray buffer;
@@ -367,7 +367,7 @@ KIO::WorkerResult kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::
     do {
         dataReq();
         readResult = readData(buffer);
-        auto bytesWritten = ::write(fd, buffer.data(), buffer.size());
+        auto bytesWritten = ::write(fd, buffer.constData(), buffer.size());
         if (bytesWritten < buffer.size()) {
             isIncomplete = true;
             break;
@@ -533,7 +533,7 @@ KIO::WorkerResult kio_krarcProtocol::get(const QUrl &url, int tries)
         // $Id: krarc.cpp,v 1.43 2007/01/13 13:39:51 ckarai Exp $
         QByteArray _path(QFile::encodeName(arcTempDir + file));
         QT_STATBUF buff;
-        if (QT_LSTAT(_path.data(), &buff) == -1) {
+        if (QT_LSTAT(_path.constData(), &buff) == -1) {
             if (errno == EACCES)
                 return WorkerResult::fail(KIO::ERR_ACCESS_DENIED, getPath(url));
             return WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, getPath(url));
@@ -544,7 +544,7 @@ KIO::WorkerResult kio_krarcProtocol::get(const QUrl &url, int tries)
         if (!S_ISREG(buff.st_mode)) {
             return WorkerResult::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, getPath(url));
         }
-        int fd = QT_OPEN(_path.data(), O_RDONLY);
+        int fd = QT_OPEN(_path.constData(), O_RDONLY);
         if (fd < 0) {
             return WorkerResult::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, getPath(url));
         }
@@ -680,7 +680,7 @@ KIO::WorkerResult kio_krarcProtocol::stat(const QUrl &url)
     // we might be stating a real file
     if (QFileInfo::exists(path)) {
         QT_STATBUF buff;
-        QT_STAT(path.toLocal8Bit(), &buff);
+        QT_STAT(path.toLocal8Bit().constData(), &buff);
         QString mime;
         QMimeDatabase db;
         QMimeType result = db.mimeTypeForFile(path);
@@ -970,7 +970,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
             QFileInfo qfi(newPath.left(pos));
             if (qfi.exists() && !qfi.isDir()) {
                 QT_STATBUF stat_p;
-                QT_LSTAT(newPath.left(pos).toLocal8Bit(), &stat_p);
+                QT_LSTAT(newPath.left(pos).toLocal8Bit().constData(), &stat_p);
                 arcFile = new KFileItem(QUrl::fromLocalFile(newPath.left(pos)), QString(), stat_p.st_mode);
                 break;
             }
@@ -2027,7 +2027,7 @@ QString kio_krarcProtocol::localeEncodedString(QString str)
     int size = array.size();
     QString result;
 
-    const char *data = array.data();
+    const char *data = array.constData();
     for (int i = 0; i != size; i++) {
         unsigned int ch = (((int)data[i]) & 0xFF) + 0xE000; // user defined character
         result.append(QChar(ch));

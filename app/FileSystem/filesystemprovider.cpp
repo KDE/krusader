@@ -172,7 +172,7 @@ QString FileSystemProvider::getACL(const QString &path, int type)
 #ifdef HAVE_POSIX_ACL
     acl_t acl = nullptr;
     // do we have an acl for the file, and/or a default acl for the dir, if it is one?
-    if ((acl = acl_get_file(path.toLocal8Bit(), type)) != nullptr) {
+    if ((acl = acl_get_file(path.toLocal8Bit().constData(), type)) != nullptr) {
         bool aclExtended = false;
 
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
