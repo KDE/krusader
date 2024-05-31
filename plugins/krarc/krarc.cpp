@@ -1000,7 +1000,7 @@ bool kio_krarcProtocol::setArcFile(const QUrl &url)
        during that period. */
     if (archiveChanging)
         archiveChanged = true;
-    archiveChanging = (currTime == (time_t)arcFile->time(KFileItem::ModificationTime).toTime_t());
+    archiveChanging = (currTime == (time_t)arcFile->time(KFileItem::ModificationTime).toSecsSinceEpoch());
 
     arcPath = getPath(arcFile->url(), QUrl::StripTrailingSlash);
     arcType = detectArchive(encrypted, arcPath);
@@ -1299,7 +1299,7 @@ UDSEntryList *kio_krarcProtocol::addNewDir(const QString &path)
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT); // keep file type only
     entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, mode & 07777); // keep permissions only
     entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
-    entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, arcFile->time(KFileItem::ModificationTime).toTime_t());
+    entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, arcFile->time(KFileItem::ModificationTime).toSecsSinceEpoch());
 
     dir->append(entry);
 
@@ -1340,7 +1340,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         QString d = nextWord(line);
         QDate qdate(d.mid(0, 4).toInt(), d.mid(4, 2).toInt(), d.mid(6, 2).toInt());
         QTime qtime(d.mid(9, 2).toInt(), d.mid(11, 2).toInt(), d.mid(13, 2).toInt());
-        time = QDateTime(qdate, qtime).toTime_t();
+        time = QDateTime(qdate, qtime).toSecsSinceEpoch();
         // full name
         fullName = nextWord(line, '\n');
 
@@ -1361,7 +1361,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         QDate qdate(d.left(4).toInt(), d.mid(5, 2).toInt(), d.mid(8, 2).toInt());
         QString t = nextWord(line);
         QTime qtime(t.mid(0, 2).toInt(), t.mid(3, 2).toInt(), 0);
-        time = QDateTime(qdate, qtime).toTime_t();
+        time = QDateTime(qdate, qtime).toSecsSinceEpoch();
         // checksum : ignored
         nextWord(line);
         // full name
@@ -1401,7 +1401,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         QDate qdate(year, d.mid(3, 2).toInt(), d.mid(6, 2).toInt());
         QString t = nextWord(line);
         QTime qtime(t.mid(0, 2).toInt(), t.mid(3, 2).toInt(), 0);
-        time = QDateTime(qdate, qtime).toTime_t();
+        time = QDateTime(qdate, qtime).toSecsSinceEpoch();
         // permissions
         perm = nextWord(line);
         if (perm.length() != 10)
@@ -1498,7 +1498,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
 
         QDate qdate(year, month, day);
 
-        time = QDateTime(qdate, qtime).toTime_t();
+        time = QDateTime(qdate, qtime).toSecsSinceEpoch();
         // full name
         fullName = nextWord(line, '\n');
     }
@@ -1511,7 +1511,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         QDate qdate(year, d.mid(3, 2).toInt(), d.mid(0, 2).toInt());
         QString t = nextWord(line);
         QTime qtime(t.mid(0, 2).toInt(), t.mid(3, 2).toInt(), 0);
-        time = QDateTime(qdate, qtime).toTime_t();
+        time = QDateTime(qdate, qtime).toSecsSinceEpoch();
         // ignore the next field
         nextWord(line);
         // size
@@ -1537,7 +1537,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         QDate qdate(d.mid(0, 4).toInt(), d.mid(5, 2).toInt(), d.mid(8, 2).toInt());
         QString t = nextWord(line);
         QTime qtime(t.mid(0, 2).toInt(), t.mid(3, 2).toInt(), 0);
-        time = QDateTime(qdate, qtime).toTime_t();
+        time = QDateTime(qdate, qtime).toSecsSinceEpoch();
         // full name
         fullName = nextWord(line, '\n').mid(1);
         // if ( fullName.right( 1 ) == "/" ) return;
@@ -1552,7 +1552,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         QDate qdate(d.mid(0, 4).toInt(), d.mid(5, 2).toInt(), d.mid(8, 2).toInt());
         QString t = nextWord(line);
         QTime qtime(t.mid(0, 2).toInt(), t.mid(3, 2).toInt(), t.mid(6, 2).toInt());
-        time = QDateTime(qdate, qtime).toTime_t();
+        time = QDateTime(qdate, qtime).toSecsSinceEpoch();
 
         // permissions
         perm = nextWord(line);

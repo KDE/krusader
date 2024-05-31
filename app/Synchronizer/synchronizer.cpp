@@ -1335,8 +1335,8 @@ void Synchronizer::slotTaskFinished(KJob *job)
                                                item->leftSize(),
                                                QDateTime(),
                                                QDateTime(),
-                                               QDateTime::fromTime_t(static_cast<uint>(item->rightDate())),
-                                               QDateTime::fromTime_t(static_cast<uint>(item->leftDate())));
+                                               QDateTime::fromSecsSinceEpoch(static_cast<uint>(item->rightDate())),
+                                               QDateTime::fromSecsSinceEpoch(static_cast<uint>(item->leftDate())));
                 } else {
                     result = ui->askFileRename(job,
                                                i18n("File Already Exists"),
@@ -1348,8 +1348,8 @@ void Synchronizer::slotTaskFinished(KJob *job)
                                                item->rightSize(),
                                                QDateTime(),
                                                QDateTime(),
-                                               QDateTime::fromTime_t(static_cast<uint>(item->leftDate())),
-                                               QDateTime::fromTime_t(static_cast<uint>(item->rightDate())));
+                                               QDateTime::fromSecsSinceEpoch(static_cast<uint>(item->leftDate())),
+                                               QDateTime::fromSecsSinceEpoch(static_cast<uint>(item->rightDate())));
                 }
 
                 switch (result) {
