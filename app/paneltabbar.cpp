@@ -311,7 +311,7 @@ void PanelTabBar::mousePressEvent(QMouseEvent *e)
             else
                 return;
         }
-    } else if (e->button() == Qt::MidButton) {
+    } else if (e->button() == Qt::MiddleButton) {
         if (!isActiveTab)
             setCurrentIndex(clickedTabIndex);
 

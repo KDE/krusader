@@ -237,7 +237,7 @@ bool KrMouseHandler::mouseReleaseEvent(QMouseEvent *e)
 
     CANCEL_TWO_CLICK_RENAME;
 
-    if (e->button() == Qt::MidButton && item != nullptr) {
+    if (e->button() == Qt::MiddleButton && item != nullptr) {
         e->accept();
         if (item == nullptr)
             return true;

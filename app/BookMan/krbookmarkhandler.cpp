@@ -729,7 +729,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         case Qt::LeftButton:
             _middleClick = false;
             break;
-        case Qt::MidButton:
+        case Qt::MiddleButton:
             _middleClick = true;
             break;
         default:

@@ -49,7 +49,7 @@ void ViewerTabBar::mousePressEvent(QMouseEvent *e)
 
     setCurrentIndex(clickedTab);
 
-    if (e->button() == Qt::MidButton) {
+    if (e->button() == Qt::MiddleButton) {
         // close the current tab
         emit closeTabSignal(clickedTab);
     }
