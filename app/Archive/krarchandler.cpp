@@ -655,10 +655,11 @@ bool KrArcHandler::openWallet()
     if (!wallet) {
         // find a suitable parent window
         QWidget *actWindow = QApplication::activeWindow();
-        if (!actWindow)
-            actWindow = (QWidget *)QApplication::desktop();
+        WId w = 0;
+        if (actWindow)
+            w = actWindow->effectiveWinId();
+        wallet = KWallet::Wallet::openWallet(KWallet::Wallet::NetworkWallet(), w);
 
-        wallet = KWallet::Wallet::openWallet(KWallet::Wallet::NetworkWallet(), actWindow->effectiveWinId());
     }
     return (wallet != nullptr);
 }
