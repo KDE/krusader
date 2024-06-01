@@ -1998,7 +1998,7 @@ void Lister::print()
     QPainter painter;
     painter.begin(&printer);
 
-    const QString dateString = QDate::currentDate().toString(Qt::SystemLocaleShortDate);
+    const QString dateString = QLocale().toString(QDate::currentDate(), QLocale::ShortFormat);
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     const QRect pageRect = printer.pageLayout().paintRectPixels(printer.resolution());
