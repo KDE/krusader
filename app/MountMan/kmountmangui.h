@@ -66,7 +66,7 @@ protected:
     void addNonMounted();
 
 private:
-    void freeSpaceResult(KJob *job, KIO::filesize_t size, KIO::filesize_t available, fsData data);
+    void freeSpaceResult(KJob *job, fsData data);
 
 
     KMountMan *mountMan;

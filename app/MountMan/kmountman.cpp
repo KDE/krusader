@@ -16,6 +16,8 @@
 
 #include <KIO/JobUiDelegate>
 #include <KIO/JobUiDelegateFactory>
+#include <KIO/SimpleJob>
+#include <KIO/JobTracker>
 #include <KJobTrackerInterface>
 #include <KLocalizedString>
 #include <KMessageBox>

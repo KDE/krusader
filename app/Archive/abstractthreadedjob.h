@@ -22,6 +22,7 @@
 #include <QWaitCondition>
 
 #include <KIO/Job>
+#include <KIO/Global>
 
 class AbstractJobThread;
 class QTemporaryDir;

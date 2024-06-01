@@ -19,6 +19,8 @@
 #include <QLabel>
 
 #include <KLocalizedString>
+#include <KIO/JobUiDelegate>
+#include <KIO/OpenUrlJob>
 #include <kio_version.h>
 
 #include "../Archive/krarchandler.h"
@@ -243,7 +245,8 @@ bool KrArchiverResultTable::addRow(SearchObject *search, QGridLayout *grid)
 
 void KrArchiverResultTable::website(const QString &url)
 {
-    (void)new KRun(QUrl(url), this);
+    auto *job = new KIO::OpenUrlJob(QUrl(url), this);
+    job->start();
 }
 
 // -----------------------------------------------------------------------------
@@ -373,5 +376,6 @@ bool KrToolResultTable::addRow(SearchObject *search, QGridLayout *grid)
 
 void KrToolResultTable::website(const QString &url)
 {
-    (void)new KRun(QUrl(url), this);
+    auto *job = new KIO::OpenUrlJob(QUrl(url), this);
+    job->start();
 }

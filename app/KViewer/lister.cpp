@@ -42,6 +42,7 @@
 #include <KIO/JobUiDelegate>
 #include <KIO/JobUiDelegateFactory>
 #include <KIO/TransferJob>
+#include <KIO/JobTracker>
 #include <KJobTrackerInterface>
 #include <KLocalizedString>
 #include <KMessageBox>

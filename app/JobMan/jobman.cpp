@@ -145,7 +145,7 @@ private slots:
         connect(job, &KJob::suspended, this, &JobMenuAction::updatePauseResumeButton);
         connect(job, &KJob::resumed, this, &JobMenuAction::updatePauseResumeButton);
         connect(job, &KJob::result, this, &JobMenuAction::slotResult);
-        connect(job, &KJob::warning, this, [](KJob *, const QString &plain, const QString &) {
+        connect(job, &KJob::warning, this, [](KJob *, const QString &plain) {
             qWarning() << "unexpected job warning: " << plain;
         });
 

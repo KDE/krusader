@@ -88,7 +88,7 @@ protected slots:
 private:
     bool refreshLocal(const QUrl &directory, bool onlyScan); // NOTE: this is very fast
     FileItem *createLocalFileItem(const QString &name);
-    void freeSpaceResult(KJob *job, KIO::filesize_t size, KIO::filesize_t available);
+    void freeSpaceResult(KJob *job);
 
     /// Returns the current path with symbolic links resolved
     QString realPath();

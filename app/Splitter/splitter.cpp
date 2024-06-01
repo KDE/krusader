@@ -16,6 +16,7 @@
 #include <KFileItem>
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
+#include <KIO/StatJob>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <kio_version.h>
@@ -152,11 +153,7 @@ void Splitter::nextOutputFile()
     if (overwrite)
         openOutputFile();
     else {
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 69, 0)
-        statJob = KIO::statDetails(writeURL, KIO::StatJob::DestinationSide, KIO::StatNoDetails, KIO::HideProgressInfo);
-#else
-        statJob = KIO::stat(writeURL, KIO::StatJob::DestinationSide, 0, KIO::HideProgressInfo);
-#endif
+        statJob = KIO::stat(writeURL, KIO::StatJob::DestinationSide, KIO::StatNoDetails, KIO::HideProgressInfo);
         connect(statJob, &KIO::Job::result, this, &Splitter::statOutputFileResult);
     }
 }
@@ -177,7 +174,7 @@ void Splitter::statOutputFileResult(KJob *job)
                               i18n("File Already Exists"),
                               QUrl(),
                               writeURL,
-                              static_cast<KIO::RenameDialog_Options>(KIO::M_MULTI | KIO::M_OVERWRITE | KIO::M_NORENAME));
+                              static_cast<KIO::RenameDialog_Options>(KIO::RenameDialog_MultipleItems  | KIO::RenameDialog_Overwrite | KIO::RenameDialog_NoRename));
         switch (dlg.exec()) {
         case KIO::Result_Overwrite:
             openOutputFile();

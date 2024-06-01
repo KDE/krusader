@@ -30,6 +30,8 @@
 #if CREATE_KPART_5_82
 #include <KParts/PartLoader>
 #endif
+#include <KIO/StatJob>
+#include <KService>
 
 #include <KFileItem>
 #include <KMessageBox>

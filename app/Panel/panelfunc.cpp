@@ -6,8 +6,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include "panelfunc.h"
-
 // QtCore
 #include <QDir>
 #include <QEventLoop>
@@ -25,6 +23,7 @@
 #include <KDesktopFile>
 #include <KIO/DesktopExecParser>
 #include <KIO/JobUiDelegate>
+#include <KIO/JobTracker>
 #include <KJobTrackerInterface>
 #include <KLocalizedString>
 #include <KProcess>
@@ -33,17 +32,14 @@
 #include <KUrlMimeData>
 
 #include <kio_version.h>
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
 #include <KIO/CommandLauncherJob>
 #include <KIO/OpenUrlJob>
 #include <KIO/JobUiDelegateFactory>
-#endif
+#include <KIO/StatJob>
 
-#include <KDesktopFileActions>
 #include <KOpenWithDialog>
 #include <KPropertiesDialog>
 #include <KProtocolInfo>
-#include <KRun>
 
 #include <KApplicationTrader>
 #include <kservice_version.h>
@@ -81,6 +77,8 @@
 #include "krsearchbar.h"
 #include "listpanel.h"
 #include "listpanelactions.h"
+#include "panelfunc.h"
+
 
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
@@ -151,16 +149,12 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
 
     if (externallyExecutable) {
         if (mime == QLatin1String("application/x-desktop")) {
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
             // KJob jobs will delete themselves when they finish (see kjob.h for more info)
             auto *job = new KIO::OpenUrlJob(url, this);
             job->start();
-#else
-            KDesktopFileActions::runWithStartup(url, url.isLocalFile(), QByteArray());
-#endif
             return;
         }
-        if (KRun::isExecutableFile(url, mime)) {
+        if (KIO::OpenUrlJob::isExecutableFile(url, mime)) {
             runCommand(KShell::quoteArg(url.path()));
             return;
         }

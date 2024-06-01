@@ -22,6 +22,7 @@
 
 #include <KFileItem>
 #include <KIO/JobUiDelegate>
+#include <KIO/ListJob>
 #include <KLocalizedString>
 #include <KMessageBox>
 
@@ -137,7 +138,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
         emit finished(result = true);
         return true;
     } else {
-        KIO::ListJob *job = KIO::listDir(KrServices::escapeFileUrl(url), KIO::HideProgressInfo, true);
+        KIO::ListJob *job = KIO::listDir(KrServices::escapeFileUrl(url), KIO::HideProgressInfo, KIO::ListJob::ListFlag::IncludeHidden);
         connect(job, &KIO::ListJob::entries, this, &SynchronizerDirList::slotEntries);
         connect(job, &KIO::ListJob::result, this, &SynchronizerDirList::slotListResult);
         busy = true;

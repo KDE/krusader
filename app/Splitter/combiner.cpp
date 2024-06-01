@@ -13,6 +13,7 @@
 
 #include <KFileItem>
 #include <KIO/Job>
+#include <KIO/StatJob>
 #include <KIO/JobUiDelegate>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -165,11 +166,7 @@ void Combiner::statDest()
             writeURL.setPath(writeURL.path() + baseURL.fileName());
     }
 
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 69, 0)
-    statJob = KIO::statDetails(writeURL, KIO::StatJob::DestinationSide, KIO::StatNoDetails, KIO::HideProgressInfo);
-#else
-    statJob = KIO::stat(writeURL, KIO::StatJob::DestinationSide, 0, KIO::HideProgressInfo);
-#endif
+    statJob = KIO::stat(writeURL, KIO::StatJob::DestinationSide, KIO::StatNoDetails, KIO::HideProgressInfo);
     connect(statJob, &KIO::StatJob::result, this, &Combiner::statDestResult);
 }
 
@@ -185,7 +182,7 @@ void Combiner::statDestResult(KJob *job)
             reject();
         }
     } else { // destination already exists
-        KIO::RenameDialog_Options mode = dynamic_cast<KIO::StatJob *>(job)->statResult().isDir() ? KIO::RenameDialog_IsDirectory : KIO::RenameDialog_Overwrite;
+        KIO::RenameDialog_Options mode = dynamic_cast<KIO::StatJob *>(job)->statResult().isDir() ? KIO::RenameDialog_DestIsDirectory : KIO::RenameDialog_Overwrite;
         KIO::RenameDialog dlg(this, i18n("File Already Exists"), QUrl(), writeURL, mode);
         switch (dlg.exec()) {
         case KIO::Result_Overwrite:

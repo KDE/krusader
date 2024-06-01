@@ -32,8 +32,6 @@
 #include <QMenu>
 #include <QPushButton>
 
-#include <KCodecs>
-#include <KDiskFreeSpaceInfo>
 #include <KGuiItem>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -226,8 +224,8 @@ void KMountManGUI::getSpaceData()
         data.setName(it->mountedFrom());
         data.setType(it->mountType());
         KIO::FileSystemFreeSpaceJob *job = KIO::fileSystemFreeSpace(QUrl::fromLocalFile(it->mountPoint()));
-        connect(job, &KIO::FileSystemFreeSpaceJob::result, this,
-                [this, data](KJob *job, KIO::filesize_t size, KIO::filesize_t available){ this->freeSpaceResult(job, size, available, data); });
+        connect(job, &KIO::FileSystemFreeSpaceJob::finished, this,
+                [this, data](KJob *job){ this->freeSpaceResult(job, data); });
         // Add a timeout and also wait for each info job to complete, this way they are added in sequence
         connect(job, &KIO::FileSystemFreeSpaceJob::result, &loop, &QEventLoop::quit);
         connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
@@ -247,14 +245,14 @@ void KMountManGUI::getSpaceData()
     updateList();
 }
 
-void KMountManGUI::freeSpaceResult(KJob *job, KIO::filesize_t size, KIO::filesize_t available, fsData data)
+void KMountManGUI::freeSpaceResult(KJob *job, fsData data)
 {
     if (!job->error()) {
         KIO::FileSystemFreeSpaceJob *freeSpaceJob = qobject_cast<KIO::FileSystemFreeSpaceJob *>(job);
         Q_ASSERT(freeSpaceJob);
         // Set the missing information, with the assumption the caller already set the rest
-        data.setTotalBlks(size / 1024);
-        data.setFreeBlks(available / 1024);
+        data.setTotalBlks(freeSpaceJob->size() / 1024);
+        data.setFreeBlks(freeSpaceJob->availableSize() / 1024);
 
         fileSystems.append(data);
     } else {
