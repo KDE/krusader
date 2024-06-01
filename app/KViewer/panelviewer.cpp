@@ -16,27 +16,16 @@
 
 #include <kservice_version.h>
 
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 82, 0)
-#define CREATE_KPART_5_82 1
-#else
-#define CREATE_KPART_5_82 0
-#endif
-
 #include <KLocalizedString>
 #include <KParts/NavigationExtension>
 #include <KParts/ReadWritePart>
 #include <KSharedConfig>
-
-#if CREATE_KPART_5_82
 #include <KParts/PartLoader>
-#endif
 #include <KIO/StatJob>
 #include <KService>
 
 #include <KFileItem>
 #include <KMessageBox>
-#include <KMimeTypeTrader>
-#include <KServiceTypeProfile>
 
 #include "../defaults.h"
 #include "lister.h"
@@ -158,8 +147,7 @@ KParts::ReadOnlyPart *PanelViewer::getHexPart()
             // Okteta >= 0.26 provides a desktop file, prefer that as the binary changes name
             KService::Ptr service = KService::serviceByDesktopName("oktetapart");
             if (service) {
-                KPluginName name = *service.data();
-                factory = KPluginFactory::loadFactory(name.name()).plugin;
+                factory = KPluginFactory::loadFactory(service.data()->name()).plugin;
             } else {
                 // fallback to search for desktopfile-less old variant
                 factory = KPluginFactory::loadFactory(QStringLiteral("oktetapart")).plugin;
@@ -281,11 +269,7 @@ void PanelViewer::openFile(KFileItem fi)
             qDebug() << "openFile completed: '" << curl << "'";
         };
         connect(cpart.data(), QOverload<>::of(&KParts::ReadOnlyPart::completed), this, cPartCompleted);
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 81, 0)
         connect(cpart.data(), &KParts::ReadOnlyPart::completedWithPendingAction, this, cPartCompleted);
-#else
-        connect(cpart.data(), QOverload<bool>::of(&KParts::ReadOnlyPart::completed), this, cPartCompleted);
-#endif
 
         // Note: Don't rely on return value of openUrl as the call is async in general
         cpart->openUrl(curl);
@@ -307,8 +291,6 @@ bool PanelViewer::closeUrl()
     return false;
 }
 
-#if CREATE_KPART_5_82
-
 template<typename T>
 static T *createKPartForMimeType(QString mimetype, QWidget *parentWidget)
 {
@@ -324,27 +306,11 @@ static T *createKPartForMimeType(QString mimetype, QWidget *parentWidget)
     return pluginFactory->create<T>(parentWidget, parentWidget);
 }
 
-#endif // CREATE_KPART_5_82
-
 KParts::ReadOnlyPart *PanelViewer::createPart(QString mimetype)
 {
     KParts::ReadOnlyPart *part = nullptr;
 
-#if CREATE_KPART_5_82
     part = createKPartForMimeType<KParts::ReadOnlyPart>(mimetype, this);
-#else
-    KService::Ptr ptr = KMimeTypeTrader::self()->preferredService(mimetype, "KParts/ReadOnlyPart");
-    if (ptr) {
-        QVariantList args;
-        QVariant argsProp = ptr->property("X-KDE-BrowserView-Args");
-        if (argsProp.isValid())
-            args << argsProp;
-        QVariant prop = ptr->property("X-KDE-BrowserView-AllowAsDefault");
-        if (!prop.isValid() || prop.toBool()) // defaults to true
-            part = ptr->createInstance<KParts::ReadOnlyPart>(this, this, args);
-    }
-#endif
-
     if (part) {
         KParts::NavigationExtension *ext = KParts::NavigationExtension::childObject(part);
         if (ext) {
@@ -368,14 +334,7 @@ void PanelEditor::configureDeps()
 {
     bool foundPlugin = false;
 
-#if CREATE_KPART_5_82
     foundPlugin = !KParts::PartLoader::partsForMimeType("text/plain").isEmpty();
-#else
-    KService::Ptr ptr = KMimeTypeTrader::self()->preferredService("text/plain", "KParts/ReadWritePart");
-    if (!ptr)
-        ptr = KMimeTypeTrader::self()->preferredService("all/allfiles", "KParts/ReadWritePart");
-    foundPlugin = (ptr != nullptr);
-#endif
 
     if (!foundPlugin)
         KMessageBox::error(nullptr, missingKPartMsg(), i18n("Missing Plugin"), KMessageBox::AllowLink);
@@ -458,21 +417,7 @@ KParts::ReadOnlyPart *PanelEditor::createPart(QString mimetype)
 {
     KParts::ReadWritePart *part = nullptr;
 
-#if CREATE_KPART_5_82
     part = createKPartForMimeType<KParts::ReadWritePart>(mimetype, this);
-#else
-    KService::Ptr ptr = KMimeTypeTrader::self()->preferredService(mimetype, "KParts/ReadWritePart");
-    if (ptr) {
-        QVariantList args;
-        QVariant argsProp = ptr->property("X-KDE-BrowserView-Args");
-        if (argsProp.isValid())
-            args << argsProp;
-        QVariant prop = ptr->property("X-KDE-BrowserView-AllowAsDefault");
-        if (!prop.isValid() || prop.toBool()) // defaults to true
-            part = ptr->createInstance<KParts::ReadWritePart>(this, this, args);
-    }
-#endif
-
     if (part) {
         KParts::NavigationExtension *ext = KParts::NavigationExtension::childObject(part);
         if (ext) {
