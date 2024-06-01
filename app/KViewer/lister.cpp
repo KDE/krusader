@@ -2096,7 +2096,7 @@ QStringList Lister::readLines(qint64 &filePos, const qint64 endPos, const int co
         }
 
         // replace unreadable characters
-        if ((chr[0] < 32) && (chr[0] != '\n') && (chr[0] != '\t')) {
+        if ((chr[0] < QChar(32)) && (chr[0] != '\n') && (chr[0] != '\t')) {
             chr = QChar(' ');
         }
 

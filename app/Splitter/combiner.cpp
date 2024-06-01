@@ -210,7 +210,7 @@ void Combiner::openNextFile()
             QChar ch;
 
             do {
-                ch = name.at(pos).toLatin1() + 1;
+                ch = QChar(name.at(pos).toLatin1() + 1);
                 if (ch == QChar('Z' + 1))
                     ch = 'A';
                 if (ch == QChar('z' + 1))

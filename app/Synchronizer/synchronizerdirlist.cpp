@@ -112,7 +112,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     if (url.isLocalFile()) {
         const QString dir = FileSystem::ensureTrailingSlash(url).path();
 
-        QT_DIR *qdir = QT_OPENDIR(dir.toLocal8Bit());
+        QT_DIR *qdir = QT_OPENDIR(dir.toLocal8Bit().data());
         if (!qdir) {
             KMessageBox::error(parentWidget, i18n("Cannot open the folder %1.", dir), i18n("Error"));
             emit finished(result = false);
