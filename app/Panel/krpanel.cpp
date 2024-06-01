@@ -5,6 +5,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
+#include "../FileSystem/sizecalculator.h"
 #include "krpanel.h"
 
 #include "../abstractpanelmanager.h"

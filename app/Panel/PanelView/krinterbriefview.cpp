@@ -19,7 +19,7 @@
 #include <QRegion>
 // QtWidgets
 #include <QApplication>
-#include <QDirModel>
+#include <QFileSystemModel>
 #include <QMenu>
 #include <QScrollBar>
 

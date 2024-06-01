@@ -14,7 +14,7 @@
 #include <QHashIterator>
 // QtWidgets
 #include <QApplication>
-#include <QDirModel>
+#include <QFileSystemModel>
 #include <QHeaderView>
 #include <QMenu>
 #include <QToolTip>

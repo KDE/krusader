@@ -19,8 +19,8 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KPluginMetaData>
+#include <KPluginFactory>
 #include <KProcess>
-#include <KRun>
 #include <kio_version.h>
 #include <kservice_version.h>
 
