@@ -390,7 +390,8 @@ bool KrInterBriefView::isIndexHidden(const QModelIndex &ndx) const
 
 void KrInterBriefView::paintEvent(QPaintEvent *e)
 {
-    QStyleOptionViewItem option = viewOptions();
+    QStyleOptionViewItem option;
+    initViewItemOption(&option);
     option.widget = this;
     option.decorationSize = QSize(_fileIconSize, _fileIconSize);
     option.decorationPosition = QStyleOptionViewItem::Left;

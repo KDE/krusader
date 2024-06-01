@@ -167,7 +167,8 @@ bool KrTreeWidget::event(QEvent *event)
 
                 QIcon icon = item->icon(column);
                 if (!icon.isNull()) {
-                    QStyleOptionViewItem opts = viewOptions();
+                    QStyleOptionViewItem opts;
+                    initViewItemOption(&opts);
                     QSize iconSize = icon.actualSize(opts.decorationSize);
                     requiredWidth += iconSize.width();
 
