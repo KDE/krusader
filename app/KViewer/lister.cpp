@@ -1980,7 +1980,7 @@ void Lister::print()
     QScopedPointer<QPrintDialog> printDialog(new QPrintDialog(&printer, _textArea));
 
     if (hasSelection) {
-        printDialog->addEnabledOption(QAbstractPrintDialog::PrintSelection);
+        printDialog->setOption(QAbstractPrintDialog::PrintSelection);
     }
 
     if (!printDialog->exec()) {
