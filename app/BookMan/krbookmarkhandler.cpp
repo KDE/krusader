@@ -69,7 +69,7 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow)
 
     // create bookmark manager
     QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
-    manager = KBookmarkManager::managerForFile(filename, QStringLiteral("krusader"));
+    manager = new KBookmarkManager(filename);
     connect(manager, &KBookmarkManager::changed, this, &KrBookmarkHandler::bookmarksChanged);
 
     // create the quick search bar and action
@@ -393,7 +393,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
         newMenu->setTitle(bm->text());
         QAction *menuAction = menu->addMenu(newMenu);
         QVariant v;
-        v.setValue<KrBookmark *>(bm);
+        v.setValue(bm);
         menuAction->setData(v);
 
         buildMenu(bm, newMenu, depth + 1);
@@ -557,7 +557,7 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root, bool removeBookmarks)
     }
 }
 
-void KrBookmarkHandler::bookmarksChanged(const QString &, const QString &)
+void KrBookmarkHandler::bookmarksChanged(const QString &)
 {
     importFromFile();
 }
