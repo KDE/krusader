@@ -278,8 +278,8 @@ bool UserAction::writeToFile(const QDomDocument &doc, const QString &filename)
        }
     */
 
+    //By default, UTF-8 is used for reading and writing
     QTextStream ts(&file);
-    ts.setCodec("UTF-8");
     ts << doc.toString();
 
     file.close();

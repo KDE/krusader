@@ -213,7 +213,7 @@ void KrBookmarkHandler::exportToFile()
     QFile file(filename);
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream stream(&file);
-        stream.setCodec("UTF-8");
+         // By default, UTF-8 is used for reading and writing in QTextStream
         stream << doc.toString();
         file.close();
     } else {

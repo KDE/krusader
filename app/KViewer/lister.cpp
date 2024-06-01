@@ -13,6 +13,7 @@
 #include <QRect>
 #include <QTemporaryFile>
 #include <QTextStream>
+#include <QStringConverter>
 // QtGui
 #include <QClipboard>
 #include <QFontDatabase>
@@ -196,8 +197,9 @@ qint64 ListerTextArea::textToFilePositionOnScreen(const int x, const int y, bool
     const int maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
     QByteArray chunk = _lister->cacheChunk(rowStart, maxBytes);
 
-    QTextStream stream(&chunk);
-    stream.setCodec(_lister->codec());
+    QString s = _lister->codec()->toUnicode(chunk);
+    QTextStream stream(&s);
+
     stream.read(x);
     return rowStart + stream.pos();
 }
@@ -236,9 +238,10 @@ void ListerTextArea::fileToTextPositionOnScreen(const qint64 p, const bool isfir
             const qint64 previousRow = _rowStarts[y - 1];
             const QByteArray chunk = _lister->cacheChunk(previousRow, maxBytes);
             QByteArray cachedBuffer = chunk.left(static_cast<int>(p - previousRow));
+            QTextCodec *codec = _lister->codec();
+            QString decoded = codec->toUnicode(cachedBuffer);
+            QTextStream stream(&decoded);
 
-            QTextStream stream(&cachedBuffer);
-            stream.setCodec(_lister->codec());
             stream.read(_rowContent[y - 1].length());
             if (previousRow + stream.pos() == p) {
                 y--;
@@ -429,12 +432,12 @@ QString ListerTextArea::readSection(const qint64 p1, const qint64 p2)
         return section;
     }
 
-    qint64 pos = sel1;
+    qsizetype pos = sel1;
 
     QScopedPointer<QTextDecoder> decoder(_lister->codec()->makeDecoder());
 
     do {
-        const int maxBytes = std::min(_sizeX * _sizeY * MAX_CHAR_LENGTH, (int)(sel2 - pos));
+        const qsizetype maxBytes = std::min(_sizeX * _sizeY * MAX_CHAR_LENGTH, sel2 - pos);
         const QByteArray chunk = _lister->cacheChunk(pos, maxBytes);
         if (chunk.isEmpty())
             break;
@@ -1185,8 +1188,7 @@ protected:
 
     void chooseEncoding(QString encodingName) override
     {
-        QString charset = KCharsets::charsets()->encodingForName(encodingName);
-        _lister->setCharacterSet(charset);
+        _lister->setCharacterSet(encodingName);
     }
 
     Lister *_lister;
@@ -1667,9 +1669,8 @@ void Lister::slotSearchMore()
 
                 if (_searchQuery.checkLine(row, !_searchIsForward)) {
                     QByteArray cachedBuffer = chunk.mid(static_cast<int>(rowStart), static_cast<int>(chunkSize - rowStart));
-
-                    QTextStream stream(&cachedBuffer);
-                    stream.setCodec(_codec);
+                    QString decoded = _codec->toUnicode(cachedBuffer);
+                    QTextStream stream(&decoded);
 
                     stream.read(_searchQuery.matchIndex());
                     foundAnchor = searchPos + rowStart + stream.pos();
@@ -1962,6 +1963,7 @@ void Lister::setCharacterSet(const QString &set)
     } else {
         // Should move from this with KF6 migration
         _codec = QTextCodec::codecForName(_characterSet.toUtf8());
+        Q_ASSERT(_codec != nullptr);
     }
     _textArea->redrawTextArea(true);
 }
