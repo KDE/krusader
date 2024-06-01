@@ -416,7 +416,7 @@ void KrInterBriefView::paintEvent(QPaintEvent *e)
             QStyleOptionFocusRect o;
             o.QStyleOption::operator=(option);
             QPalette::ColorGroup cg = QPalette::Normal;
-            o.backgroundColor = option.palette.color(cg, QPalette::Background);
+            o.backgroundColor = option.palette.color(cg, QPalette::Window);
 
             style()->drawPrimitive(QStyle::PE_FrameFocusRect, &o, &painter);
         }
