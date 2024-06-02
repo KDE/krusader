@@ -1083,7 +1083,7 @@ void ListPanel::slotRefreshJobStarted(KIO::Job *job)
 
     // connect to the job interface to provide in-panel refresh notification
     connect(job, &KIO::Job::infoMessage, this, &ListPanel::inlineRefreshInfoMessage);
-    connect(job, SIGNAL(percent(KJob *, ulong)), SLOT(inlineRefreshPercent(KJob *, ulong)));
+    connect(job, SIGNAL(percentChanged(KJob *, ulong)), SLOT(inlineRefreshPercent(KJob *, ulong)));
     connect(job, &KIO::Job::result, this, &ListPanel::inlineRefreshListResult);
 
     inlineRefreshJob = job;
