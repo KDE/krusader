@@ -9,6 +9,7 @@ add_library(BookMan STATIC ${BookMan_SRCS})
 target_link_libraries(BookMan
     KF6::Archive
     KF6::Bookmarks
+    KF6::BookmarksWidgets
     KF6::Completion
     KF6::ConfigCore
     KF6::ConfigWidgets

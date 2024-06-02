@@ -32,6 +32,7 @@
 
 #include <KActionCollection>
 #include <KBookmarkManager>
+#include <KBookmarkMenu>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
@@ -70,6 +71,7 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow)
     // create bookmark manager
     QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
     manager = new KBookmarkManager(filename);
+
     connect(manager, &KBookmarkManager::changed, this, &KrBookmarkHandler::bookmarksChanged);
 
     // create the quick search bar and action
@@ -82,8 +84,11 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow)
 
     // fill a dummy menu to properly init actions (allows toolbar bookmark buttons to work properly)
     auto menu = new QMenu(mainWindow->widget());
+    bookmarksMenu = new KBookmarkMenu(manager, nullptr, menu);
+
     populate(menu);
     menu->deleteLater();
+
 }
 
 KrBookmarkHandler::~KrBookmarkHandler()
@@ -527,7 +532,9 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
             menu->addAction(KrActions::actAddBookmark);
             _specialBookmarks.append(KrActions::actAddBookmark);
         }
-        QAction *bmAct = menu->addAction(Icon("bookmarks"), i18n("Manage Bookmarks"), manager, SLOT(slotEditBookmarks()));
+
+        QAction *bmAct = bookmarksMenu->editBookmarksAction();
+        menu->addAction(bmAct);
         _specialBookmarks.append(bmAct);
 
         // make sure the menu is connected to us
