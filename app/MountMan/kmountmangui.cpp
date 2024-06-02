@@ -209,14 +209,12 @@ void KMountManGUI::getSpaceData()
 
     // Potentially long running
     this->setCursor(Qt::WaitCursor);
+    int started = 0;
     for (auto &it : mounted) {
         // don't bother with invalid file systems
         if (mountMan->invalidFilesystem(it->mountType())) {
             continue;
         }
-        QTimer timer;
-        timer.setSingleShot(true);
-        QEventLoop loop;
         fsData data;
 
         data.setMntPoint(it->mountPoint());
@@ -224,32 +222,33 @@ void KMountManGUI::getSpaceData()
         data.setName(it->mountedFrom());
         data.setType(it->mountType());
         KIO::FileSystemFreeSpaceJob *job = KIO::fileSystemFreeSpace(QUrl::fromLocalFile(it->mountPoint()));
+        Q_ASSERT(job != nullptr);
+
         connect(job, &KIO::FileSystemFreeSpaceJob::finished, this,
                 [this, data](KJob *job){ this->freeSpaceResult(job, data); });
-        // Add a timeout and also wait for each info job to complete, this way they are added in sequence
-        connect(job, &KIO::FileSystemFreeSpaceJob::result, &loop, &QEventLoop::quit);
-        connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+        started++;
+    }
+    QTimer timer;
+    timer.setSingleShot(true);
+    QEventLoop loop;
+    connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+
+    //TODO: How better to wait for all to finish?
+    while (started != fileSystems.size()) {
         timer.start(100); // 100ms Maybe this should be configurable
         loop.exec();
-
-        // Timed out, delete the job and add a dummy entry
-        if (!timer.isActive()) {
-            delete job;
-            data.setTotalBlks(0);
-            data.setFreeBlks(0);
-            fileSystems.append(data);
-        }
     }
+    updateList();
+
     this->setCursor(Qt::ArrowCursor);
     addNonMounted();
-    updateList();
 }
 
 void KMountManGUI::freeSpaceResult(KJob *job, fsData data)
 {
     if (!job->error()) {
         KIO::FileSystemFreeSpaceJob *freeSpaceJob = qobject_cast<KIO::FileSystemFreeSpaceJob *>(job);
-        Q_ASSERT(freeSpaceJob);
+        Q_ASSERT(job != nullptr);
         // Set the missing information, with the assumption the caller already set the rest
         data.setTotalBlks(freeSpaceJob->size() / 1024);
         data.setFreeBlks(freeSpaceJob->availableSize() / 1024);
