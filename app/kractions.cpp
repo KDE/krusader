@@ -186,7 +186,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     actShowStatusBar = KStandardAction::showStatusbar(SLOTS, SLOT(updateStatusbarVisibility()), krusaderApp->actionCollection());
     KStandardAction::quit(krusaderApp, SLOT(quit()), krusaderApp->actionCollection());
     KStandardAction::configureToolbars(krusaderApp, SLOT(configureToolbars()), krusaderApp->actionCollection());
-    KStandardAction::keyBindings(krusaderApp->guiFactory(), SLOT(configureShortcuts()), krusaderApp->actionCollection());
+    KStandardAction::keyBindings(krusaderApp->guiFactory(), SLOT(showConfigureShortcutsDialog()), krusaderApp->actionCollection());
 
     // the toggle actions
     NEW_KTOGGLEACTION(actToggleFnkeys, i18n("Show &FN Keys Bar"), nullptr, 0, SLOTS, SLOT(toggleFnkeys()), "toggle fn bar");
