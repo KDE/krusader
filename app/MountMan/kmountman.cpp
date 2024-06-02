@@ -57,7 +57,7 @@ KMountMan::KMountMan(QWidget *parent)
 {
     _action = new KToolBarPopupAction(Icon("kr_mountman"), i18n("&MountMan..."), this);
     connect(_action, &QAction::triggered, this, &KMountMan::mainWindow);
-    connect(_action->menu(), &QMenu::aboutToShow, this, &KMountMan::quickList);
+    connect(_action->popupMenu(), &QMenu::aboutToShow, this, &KMountMan::quickList);
     _manageAction = _action->popupMenu()->addAction(i18n("Open &MountMan"));
     connect(_manageAction, &QAction::triggered, this, &KMountMan::mainWindow);
     _action->popupMenu()->addSeparator();
@@ -360,11 +360,11 @@ void KMountMan::quickList()
     }
 
     // clear mount / unmount actions
-    for (QAction *action : _action->menu()->actions()) {
+    for (QAction *action : _action->popupMenu()->actions()) {
         if (action == _manageAction || action->isSeparator()) {
             continue;
         }
-        _action->menu()->removeAction(action);
+        _action->popupMenu()->removeAction(action);
     }
 
     // create lists of current and possible mount points
@@ -390,11 +390,11 @@ void KMountMan::quickList()
         const QString text =
             QString("%1 %2 (%3)").arg(needUmount ? i18n("Unmount") : i18n("Mount"), possibleMountPoint->mountPoint(), possibleMountPoint->mountedFrom());
 
-        QAction *act = _action->menu()->addAction(text);
+        QAction *act = _action->popupMenu()->addAction(text);
         act->setData(QList<QVariant>(
             {QVariant(needUmount ? KMountMan::ActionType::Unmount : KMountMan::ActionType::Mount), QVariant(possibleMountPoint->mountPoint())}));
     }
-    connect(_action->menu(), &QMenu::triggered, this, &KMountMan::delayedPerformAction);
+    connect(_action->popupMenu(), &QMenu::triggered, this, &KMountMan::delayedPerformAction);
 }
 
 void KMountMan::delayedPerformAction(const QAction *action)
@@ -403,7 +403,7 @@ void KMountMan::delayedPerformAction(const QAction *action)
         return;
     }
 
-    disconnect(_action->menu(), &QMenu::triggered, nullptr, nullptr);
+    disconnect(_action->popupMenu(), &QMenu::triggered, nullptr, nullptr);
 
     const QList<QVariant> actData = action->data().toList();
     const int actionType = actData[0].toInt();
