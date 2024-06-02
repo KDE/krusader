@@ -41,7 +41,7 @@ private:
     static bool parseFiles();
     static bool parseFile(const QString &path, QDomDocument &doc);
     static bool parseResource(const QString &path, QDomDocument &doc);
-    static bool parseContent(const QByteArray &content, const QString &fileName, QDomDocument &doc);
+    static bool parseContent(const QString &content, const QString &fileName, QDomDocument &doc);
     static void getLayoutNames(const QDomDocument &doc, QStringList &names);
     static QDomElement findLayout(const QDomDocument &doc, const QString &layoutName);
 

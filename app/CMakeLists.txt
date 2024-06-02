@@ -43,7 +43,7 @@ set(krusader_SRCS
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-krusader_user.png")
 ecm_add_app_icon(krusader_SRCS ICONS ${ICONS_SRCS})
 
-qt6_add_resources(krusader_RC_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc" )
+qt_add_resources(krusader_RC_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc" )
 
 add_executable(krusader ${krusader_SRCS} ${krusader_RC_SRCS})
 

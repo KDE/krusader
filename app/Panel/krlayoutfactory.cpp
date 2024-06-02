@@ -87,13 +87,12 @@ bool KrLayoutFactory::parseFile(const QString &path, QDomDocument &doc)
 
 bool KrLayoutFactory::parseResource(const QString &path, QDomDocument &doc)
 {
-    QResource res(path);
-    if (res.isValid()) {
-        QByteArray data;
-        if (QRESOURCE_ISCOMPRESSED(res))
-            data = qUncompress(res.data(), static_cast<int>(res.size()));
-        else
-            data = QByteArray(reinterpret_cast<const char *>(res.data()), static_cast<int>(res.size()));
+    QFile f(path);
+
+    if (f.open( QIODevice::ReadOnly)) {
+        QTextStream t( &f );
+        t.setEncoding(QStringConverter::Utf8);
+        QString data = t.readAll();
         return parseContent(data, path, doc);
     } else {
         qWarning() << "resource does not exist:" << path;
@@ -101,7 +100,7 @@ bool KrLayoutFactory::parseResource(const QString &path, QDomDocument &doc)
     }
 }
 
-bool KrLayoutFactory::parseContent(const QByteArray &content, const QString &fileName, QDomDocument &doc)
+bool KrLayoutFactory::parseContent(const QString &content, const QString &fileName, QDomDocument &doc)
 {
     bool success = false;
 
