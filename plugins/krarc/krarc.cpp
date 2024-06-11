@@ -18,7 +18,7 @@
 #include <QFileInfo>
 #include <QMimeDatabase>
 #include <QMimeType>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QTemporaryFile>
 #include <QTextCodec>
 #include <qplatformdefs.h>
@@ -170,7 +170,7 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
 
     arcTempDir = tmpDirPath + DIR_SEPARATOR;
     QString dirName = "krArc" + QDateTime::currentDateTime().toString(Qt::ISODate);
-    dirName.replace(QRegExp(":"), "_");
+    dirName.replace(QRegularExpression(":"), "_");
     tmpDir.mkdir(dirName);
     arcTempDir = arcTempDir + dirName + DIR_SEPARATOR;
 
