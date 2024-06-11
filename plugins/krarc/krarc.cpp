@@ -504,7 +504,7 @@ KIO::WorkerResult kio_krarcProtocol::get(const QUrl &url, int tries)
 
     // Wait until the external unpacker has finished
     if (!proc.waitForFinished(-1)) {
-        return WorkerResult::fail(KIO::ERR_SLAVE_DEFINED,
+        return WorkerResult::fail(KIO::ERR_WORKER_DEFINED,
                                   i18n("An error has happened, related to the external program '%1'. "
                                        "The error message is: '%2'.",
                                        cmd,
