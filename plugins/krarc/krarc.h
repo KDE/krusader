@@ -53,7 +53,7 @@ protected:
     Q_REQUIRED_RESULT virtual KIO::WorkerResult setArcFile(const QUrl &url);
     Q_REQUIRED_RESULT virtual QString getPassword();
     virtual void invalidatePassword();
-    QString getPath(const QUrl &url, QUrl::FormattingOptions options = nullptr);
+    QString getPath(const QUrl &url, QUrl::FormattingOptions options = QUrl::None);
     /** parses a text line from the listing of an archive. */
     virtual void parseLine(int lineNo, QString line);
 
