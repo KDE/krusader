@@ -71,7 +71,7 @@
       system.</para>
     </glossdef>
   </glossentry>
-    <glossentry id="glos-dbus">
+  <glossentry id="glos-dbus">
     <glossterm>
       &DBus;
     </glossterm>
@@ -79,15 +79,15 @@
       <para>
       <ulink url="https://freedesktop.org/wiki/Software/dbus">&DBus;</ulink> is an inter-service messaging system.
       Developed by &RedHat;, it was heavily influenced by &kde; 3
-      <link linkend="glos-dcop">&DCOP;</link>, which it supersedes.
+      <link linkend="glos-dcop">DCOP</link>, which it supersedes.
       &krusader; can use &DBus; to communicate with other applications.
       On the other hand, you can use &DBus; to control &krusader; from
-	other applications. Just use <application>qdbusviewer</application> to examine the possibilities.</para>
+      other applications. Just use <application>qdbusviewer</application> to examine the possibilities.</para>
     </glossdef>
   </glossentry>
   <glossentry id="glos-dcop">
     <glossterm>
-      &DCOP;
+      DCOP
     </glossterm>
     <glossdef>
       <para>
