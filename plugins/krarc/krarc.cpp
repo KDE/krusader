@@ -25,6 +25,7 @@
 
 #include <KFileItem>
 #include <KIO/Job>
+#include <KIO/AuthInfo>
 #include <KLocalizedString>
 #include <KProcess>
 #include <KTar>
