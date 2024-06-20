@@ -160,7 +160,7 @@ void KrFileTreeView::dropEvent(QDropEvent *event)
         return;
     }
 
-    FileSystemProvider::instance().startDropFiles(event, destination);
+    FileSystemProvider::instance().startDropFiles(event, destination, this);
 }
 
 void KrFileTreeView::slotExpanded(const QModelIndex &baseIndex)

@@ -49,10 +49,10 @@ void FileSystemProvider::startCopyFiles(const QList<QUrl> &urls,
     fs->copyFiles(urls, destination, mode, showProgressInfo, startMode);
 }
 
-void FileSystemProvider::startDropFiles(QDropEvent *event, const QUrl &destination)
+void FileSystemProvider::startDropFiles(QDropEvent *event, const QUrl &destination, QWidget *targetWidget)
 {
     FileSystem *fs = getFilesystemInstance(destination);
-    fs->dropFiles(destination, event);
+    fs->dropFiles(destination, event, targetWidget);
 }
 
 void FileSystemProvider::startDeleteFiles(const QList<QUrl> &urls, bool moveToTrash)

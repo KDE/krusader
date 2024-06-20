@@ -39,7 +39,7 @@ public:
                    KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy,
                    bool showProgressInfo = true,
                    JobMan::StartMode startMode = JobMan::Default) override;
-    void dropFiles(const QUrl &destination, QDropEvent *event) override;
+    void dropFiles(const QUrl &destination, QDropEvent *event, QWidget *targetWidget) override;
 
     void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode, const QString &dir = "") override;
     void mkDir(const QString &name) override;

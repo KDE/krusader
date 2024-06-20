@@ -72,7 +72,7 @@ void VirtualFileSystem::copyFiles(const QList<QUrl> &urls,
     emit fileSystemChanged(QUrl("virt:///" + dir), false); // may call refresh()
 }
 
-void VirtualFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
+void VirtualFileSystem::dropFiles(const QUrl &destination, QDropEvent *event, QWidget *targetWidget)
 {
     const QList<QUrl> &urls = KUrlMimeData::urlsFromMimeData(event->mimeData());
     // dropping on virtual filesystem is always copy operation

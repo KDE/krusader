@@ -42,7 +42,7 @@ public:
                    bool showProgressInfo = false,
                    JobMan::StartMode startMode = JobMan::Start) override;
     /// Handle file dropping in this filesystem: Always creates virtual files.
-    void dropFiles(const QUrl &destination, QDropEvent *event) override;
+    void dropFiles(const QUrl &destination, QDropEvent *event, QWidget *targetWidget) override;
 
     /// Add virtual files to the current directory.
     void addFiles(const QList<QUrl> &fileUrls, KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy, const QString &dir = "") override;

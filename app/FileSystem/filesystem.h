@@ -75,7 +75,7 @@ public:
                            bool showProgressInfo = true,
                            JobMan::StartMode startMode = JobMan::Default) = 0;
     /// Handle file dropping in this filesystem. Destination is absolute URL. May implemented async.
-    virtual void dropFiles(const QUrl &destination, QDropEvent *event) = 0;
+    virtual void dropFiles(const QUrl &destination, QDropEvent *event, QWidget *targetWidget) = 0;
 
     /// Copy (copy, move or link) files to the current filesystem directory or to "dir", the
     /// directory name relative to the current dir. May implemented async.

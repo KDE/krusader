@@ -867,7 +867,7 @@ void ListPanel::handleDrop(QDropEvent *event, bool onView)
     QUrl destination = QUrl(virtualPath());
     destination.setPath(destination.path() + '/' + destinationDir);
 
-    func->files()->dropFiles(destination, event);
+    func->files()->dropFiles(destination, event, view->widget());
 
     if (KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
         KrPanel *p = dragFromThisPanel ? this : otherPanel();
@@ -878,7 +878,7 @@ void ListPanel::handleDrop(QDropEvent *event, bool onView)
 
 void ListPanel::handleDrop(const QUrl &destination, QDropEvent *event)
 {
-    func->files()->dropFiles(destination, event);
+    func->files()->dropFiles(destination, event, view->widget());
 }
 
 void ListPanel::startDragging(const QStringList &names, const QPixmap &px)

@@ -20,7 +20,7 @@
 #include <KIO/ListJob>
 #include <KIO/MkdirJob>
 #include <KIO/MkpathJob>
-#include <KIO/FileSystemFreeSpaceJob>
+#include <KJobWidgets>
 #include <KLocalizedString>
 #include <KMountPoint>
 #include <KProtocolManager>
@@ -65,7 +65,7 @@ void DefaultFileSystem::copyFiles(const QList<QUrl> &urls,
     krJobMan->manageJob(krJob, startMode);
 }
 
-void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
+void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event, QWidget *targetWidget)
 {
     qDebug() << "destination=" << destination;
 
@@ -73,6 +73,7 @@ void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
     const QUrl dest = resolveRelativePath(destination);
 
     KIO::DropJob *job = KIO::drop(event, dest);
+    KJobWidgets::setWindow(job, targetWidget);
 
     // NOTE: a DropJob "starts" with showing a menu. If the operation is chosen (copy/move/link)
     // the actual CopyJob starts automatically - we cannot manage the start of the CopyJob (see
