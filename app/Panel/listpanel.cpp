@@ -1042,7 +1042,7 @@ void ListPanel::panelHidden()
 void ListPanel::slotPreviewJobStarted(KJob *job)
 {
     previewJob = job;
-    connect(job, SIGNAL(percent(KJob *, ulong)), SLOT(slotPreviewJobPercent(KJob *, ulong)));
+    connect(job, &KJob::percentChanged, this, &ListPanel::slotPreviewJobPercent);
     connect(job, &KJob::result, this, &ListPanel::slotPreviewJobResult);
     cancelProgressButton->setMaximumHeight(sidebarButton->height());
     cancelProgressButton->show();
@@ -1083,7 +1083,7 @@ void ListPanel::slotRefreshJobStarted(KIO::Job *job)
 
     // connect to the job interface to provide in-panel refresh notification
     connect(job, &KIO::Job::infoMessage, this, &ListPanel::inlineRefreshInfoMessage);
-    connect(job, SIGNAL(percentChanged(KJob *, ulong)), SLOT(inlineRefreshPercent(KJob *, ulong)));
+    connect(job, &KIO::Job::percentChanged, this, &ListPanel::inlineRefreshPercent);
     connect(job, &KIO::Job::result, this, &ListPanel::inlineRefreshListResult);
 
     inlineRefreshJob = job;

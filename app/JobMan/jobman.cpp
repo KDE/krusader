@@ -141,7 +141,7 @@ private slots:
     void slotStarted(KJob *job)
     {
         connect(job, &KJob::description, this, &JobMenuAction::slotDescription);
-        connect(job, SIGNAL(percent(KJob *, ulong)), this, SLOT(slotPercent(KJob *, ulong)));
+        connect(job, &KJob::percentChanged, this, &JobMenuAction::slotPercent);
         connect(job, &KJob::suspended, this, &JobMenuAction::updatePauseResumeButton);
         connect(job, &KJob::resumed, this, &JobMenuAction::updatePauseResumeButton);
         connect(job, &KJob::result, this, &JobMenuAction::slotResult);
@@ -277,8 +277,7 @@ void JobMan::manageStartedJob(KrJob *krJob, KJob *kJob)
 
 void JobMan::slotKJobStarted(KJob *job)
 {
-    // KJob has two percent() functions
-    connect(job, SIGNAL(percent(KJob *, ulong)), this, SLOT(slotPercent(KJob *, ulong)));
+    connect(job, &KJob::percentChanged, this, &JobMan::slotPercent);
     connect(job, &KJob::description, this, &JobMan::slotDescription);
     connect(job, &KJob::suspended, this, &JobMan::updateUI);
     connect(job, &KJob::resumed, this, &JobMan::updateUI);

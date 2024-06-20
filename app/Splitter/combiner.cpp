@@ -234,7 +234,7 @@ void Combiner::openNextFile()
     connect(combineReadJob, &KIO::TransferJob::data, this, &Combiner::combineDataReceived);
     connect(combineReadJob, &KIO::TransferJob::result, this, &Combiner::combineReceiveFinished);
     if (hasValidSplitFile)
-        connect(combineReadJob, SIGNAL(percent(KJob *, ulong)), this, SLOT(combineWritePercent(KJob *, ulong)));
+        connect(combineReadJob, &KJob::percentChanged, this, &Combiner::combineWritePercent);
 }
 
 void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)

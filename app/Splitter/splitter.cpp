@@ -82,7 +82,7 @@ void Splitter::split(KIO::filesize_t splitSizeIn)
 
     connect(splitReadJob, &KIO::TransferJob::data, this, &Splitter::splitDataReceived);
     connect(splitReadJob, &KIO::TransferJob::result, this, &Splitter::splitReceiveFinished);
-    connect(splitReadJob, SIGNAL(percent(KJob *, ulong)), this, SLOT(splitReceivePercent(KJob *, ulong)));
+    connect(splitReadJob, &KJob::percentChanged, this, &Splitter::splitReceivePercent);
 
     exec();
 }
