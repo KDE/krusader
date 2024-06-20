@@ -245,6 +245,11 @@ Krusader::Krusader(const QCommandLineParser &parser)
         show();
     }
 
+    if (sysTray) {
+        // (re)set main window for system tray, Qt loses the window handle after showing the window
+        sysTray->setAssociatedWindow(this->windowHandle());
+    }
+
     KrTrashHandler::startWatcher();
     isStarting = false;
 
