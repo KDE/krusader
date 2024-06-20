@@ -35,7 +35,7 @@
 #include "useractionlistview.h"
 
 // This is the filter in the QFileDialog of Import/Export:
-static const KLazyLocalizedString FILE_FILTER = kli18n("*.xml|XML files\n*|All files");
+static constexpr KLazyLocalizedString FILE_FILTER = kli18n("XML files (*.xml);;All files (*)");
 
 UserActionPage::UserActionPage(QWidget *parent)
     : QWidget(parent)
