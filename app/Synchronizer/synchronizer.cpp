@@ -1318,69 +1318,64 @@ void Synchronizer::slotTaskFinished(KJob *job)
             }
         } else {
             if (job->error() == KIO::ERR_FILE_ALREADY_EXIST && item->task() != TT_DELETE) {
-
-                if (autoSkip)
+                if (autoSkip) {
                     break;
-
-                if (auto *askUserActionInterface = dynamic_cast<KIO::AskUserActionInterface *>(job->uiDelegate())) {
-                    auto renameSignal = &KIO::AskUserActionInterface::askUserRenameResult;
-                    QEventLoop loop;
-                    QObject::connect(askUserActionInterface, renameSignal, job, [=, this]( KIO::RenameDialog_Result result, const QUrl & newUrl, KJob *parentJob) {
-                        Q_ASSERT(parentJob == job);
-
-                        switch (result) {
-                        case KIO::Result_Rename:
-                            item->setDestination(newUrl.toString());
-                            executeTask(item);
-                            inTaskFinished--;
-                            return;
-                        case KIO::Result_Overwrite:
-                            item->setOverWrite();
-                            executeTask(item);
-                            inTaskFinished--;
-                            return;
-                        case KIO::Result_OverwriteAll:
-                            overWrite = true;
-                            executeTask(item);
-                            inTaskFinished--;
-                            return;
-                        case KIO::Result_AutoSkip:
-                            autoSkip = true;
-                        case KIO::Result_Skip:
-                        default:
-                            break;
-                        }
-                    });
-                    connect(askUserActionInterface, renameSignal, &loop, &QEventLoop::quit );
-                    //TODO: What is the correct call here?
-                    if (item->task() == TT_COPY_TO_LEFT) {
-                        askUserActionInterface->askUserRename(job,
-                                                i18n("File Already Exists"),
-                                                rightURL,
-                                                leftURL,
-                                                KIO::RenameDialog_Overwrite | KIO::RenameDialog_Skip | KIO::RenameDialog_MultipleItems,
-                                                item->rightSize(),
-                                                item->leftSize(),
-                                                QDateTime(),
-                                                QDateTime(),
-                                                QDateTime::fromSecsSinceEpoch(static_cast<uint>(item->rightDate())),
-                                                QDateTime::fromSecsSinceEpoch(static_cast<uint>(item->leftDate())));
-                    } else {
-                        askUserActionInterface->askUserRename(job,
-                                                i18n("File Already Exists"),
-                                                leftURL,
-                                                rightURL,
-                                                KIO::RenameDialog_Overwrite | KIO::RenameDialog_Skip | KIO::RenameDialog_MultipleItems,
-                                                item->leftSize(),
-                                                item->rightSize(),
-                                                QDateTime(),
-                                                QDateTime(),
-                                                QDateTime::fromSecsSinceEpoch(static_cast<uint>(item->leftDate())),
-                                                QDateTime::fromSecsSinceEpoch(static_cast<uint>(item->rightDate())));
-                    }
-                    // Wait till the quit the quit signal is emmited above, is this enough??
-                    loop.exec();
                 }
+
+                QUrl srcUrl, destUrl;
+                KIO::filesize_t srcSize, destSize;
+                time_t srcTime, destTime;
+                if (item->task() == TT_COPY_TO_LEFT) {
+                    srcUrl = rightURL;
+                    destUrl = leftURL;
+                    srcSize = item->rightSize();
+                    destSize = item->leftSize();
+                    srcTime = item->rightDate();
+                    destTime = item->leftDate();
+                } else {
+                    srcUrl = leftURL;
+                    destUrl = rightURL;
+                    srcSize = item->leftSize();
+                    destSize = item->rightSize();
+                    srcTime = item->leftDate();
+                    destTime = item->rightDate();
+                }
+
+                KIO::RenameDialog dialog(syncDlgWidget,
+                                         i18n("File Already Exists"),
+                                         srcUrl,
+                                         destUrl,
+                                         KIO::RenameDialog_Overwrite | KIO::RenameDialog_Skip | KIO::RenameDialog_MultipleItems,
+                                         srcSize,
+                                         destSize,
+                                         QDateTime(),
+                                         QDateTime(),
+                                         QDateTime::fromSecsSinceEpoch(static_cast<uint>(srcTime)),
+                                         QDateTime::fromSecsSinceEpoch(static_cast<uint>(destTime)));
+
+                switch (dialog.exec()) {
+                case KIO::Result_Rename:
+                    item->setDestination(dialog.newDestUrl().toString());
+                    executeTask(item);
+                    inTaskFinished--;
+                    return;
+                case KIO::Result_Overwrite:
+                    item->setOverWrite();
+                    executeTask(item);
+                    inTaskFinished--;
+                    return;
+                case KIO::Result_OverwriteAll:
+                    overWrite = true;
+                    executeTask(item);
+                    inTaskFinished--;
+                    return;
+                case KIO::Result_AutoSkip:
+                    autoSkip = true;
+                case KIO::Result_Skip:
+                default:
+                    break;
+                }
+
                 break;
             }
 
