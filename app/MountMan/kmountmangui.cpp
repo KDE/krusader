@@ -238,10 +238,10 @@ void KMountManGUI::getSpaceData()
         timer.start(100); // 100ms Maybe this should be configurable
         loop.exec();
     }
-    updateList();
 
     this->setCursor(Qt::ArrowCursor);
     addNonMounted();
+    updateList();
 }
 
 void KMountManGUI::freeSpaceResult(KJob *job, fsData data)
