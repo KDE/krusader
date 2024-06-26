@@ -1403,27 +1403,17 @@ void Synchronizer::slotTaskFinished(KJob *job)
                     break;
                 }
 
-                if (auto *askUserActionInterface = dynamic_cast<KIO::AskUserActionInterface *>(job->uiDelegate())) {
-                    auto skipSignal = &KIO::AskUserActionInterface::askUserSkipResult;
-                    QEventLoop loop;
-                    QObject::connect(askUserActionInterface, skipSignal, job, [=, this](KIO::SkipDialog_Result result, KJob *parentJob) {
-                        Q_ASSERT(parentJob == job);
+                KIO::SkipDialog dialog(syncDlgWidget, KIO::SkipDialog_MultipleItems, error);
 
-                        switch (result) {
-                        case KIO::Result_Cancel:
-                            executeTask(item); /* simply retry */
-                            inTaskFinished--;
-                            return;
-                        case KIO::Result_AutoSkip:
-                            autoSkip = true;
-                        default:
-                            break;
-                        }
-                    });
-                    connect(askUserActionInterface, skipSignal, &loop, &QEventLoop::quit );
-                    askUserActionInterface->askUserSkip(job, KIO::SkipDialog_MultipleItems, error);
-                    // Wait till the quit the quit signal is emmited above, is this enough??
-                    loop.exec();
+                switch (dialog.exec()) {
+                case KIO::Result_Cancel:
+                    executeTask(item); /* simply retry */
+                    inTaskFinished--;
+                    return;
+                case KIO::Result_AutoSkip:
+                    autoSkip = true;
+                default:
+                    break;
                 }
             }
         }
