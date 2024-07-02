@@ -21,7 +21,6 @@
 #include <KLocalizedString>
 #include <KProtocolManager>
 
-#include "../FileSystem/sizecalculator.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../compat.h"

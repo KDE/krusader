@@ -20,12 +20,13 @@
 #include <KJob>
 #include <KService>
 
+#include "../FileSystem/sizecalculator.h"
+
 class DirHistoryQueue;
 class FileItem;
 class FileSystem;
 class KrViewItem;
 class ListPanel;
-class SizeCalculator;
 
 class ListPanelFunc : public QObject
 {
