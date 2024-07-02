@@ -145,7 +145,7 @@ void ListPanelActions::activePanelChanged()
 void ListPanelActions::guiUpdated()
 {
     QList<QAction *> actions;
-    for (QAction *action : qAsConst(setViewActions))
+    for (QAction *action : std::as_const(setViewActions))
         actions << action;
     static_cast<KrMainWindow *>(_mainWindow)->plugActionList("view_actionlist", actions);
 }

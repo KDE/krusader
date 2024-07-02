@@ -35,7 +35,7 @@ KFnKeys::KFnKeys(QWidget *parent, KrMainWindow *mainWindow)
     layout->setSpacing(0);
 
     int pos = 0;
-    for (QPair<QPushButton *, QPair<QAction *, const QString &>> entry : qAsConst(buttonList)) {
+    for (QPair<QPushButton *, QPair<QAction *, const QString &>> entry : std::as_const(buttonList)) {
         layout->addWidget(entry.first, 0, pos++);
     }
     layout->activate();

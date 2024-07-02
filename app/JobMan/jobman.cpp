@@ -232,7 +232,7 @@ bool JobMan::waitForJobs(bool waitForUserInput)
     m_messageBox->addButton(QMessageBox::Abort);
     m_messageBox->addButton(QMessageBox::Cancel);
     m_messageBox->setDefaultButton(QMessageBox::Cancel);
-    for (KrJob *job : qAsConst(m_jobs))
+    for (KrJob *job : std::as_const(m_jobs))
         connect(job, &KrJob::terminated, this, &JobMan::slotUpdateMessageBox);
     slotUpdateMessageBox();
 
@@ -242,7 +242,7 @@ bool JobMan::waitForJobs(bool waitForUserInput)
 
     // accepted -> cancel all jobs
     if (result == QMessageBox::Abort) {
-        for (KrJob *job : qAsConst(m_jobs)) {
+        for (KrJob *job : std::as_const(m_jobs)) {
             job->cancel();
         }
         return true;
@@ -295,7 +295,7 @@ void JobMan::slotControlActionTriggered()
     if (!anyRunning && m_queueMode) {
         m_jobs.first()->start();
     } else {
-        for (KrJob *job : qAsConst(m_jobs)) {
+        for (KrJob *job : std::as_const(m_jobs)) {
             if (anyRunning)
                 job->pause();
             else
@@ -327,7 +327,7 @@ void JobMan::slotTerminated(KrJob *krJob)
     // NOTE: ignoring queue mode here. We assume that if queue mode is turned off, the user created
     // jobs which were not already started with a "queue" option and still wants queue behaviour.
     if (!m_jobs.isEmpty() && !jobsAreRunning()) {
-        for (KrJob *job : qAsConst(m_jobs)) {
+        for (KrJob *job : std::as_const(m_jobs)) {
             if (!job->isPaused()) {
                 // start next job
                 job->start();
@@ -409,7 +409,7 @@ void JobMan::cleanupMenu()
 void JobMan::updateUI()
 {
     int totalPercent = 0;
-    for (KrJob *job : qAsConst(m_jobs)) {
+    for (KrJob *job : std::as_const(m_jobs)) {
         totalPercent += job->percent();
     }
     const bool hasJobs = !m_jobs.isEmpty();

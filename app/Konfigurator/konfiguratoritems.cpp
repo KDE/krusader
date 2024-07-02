@@ -128,7 +128,7 @@ void KonfiguratorCheckBox::addDep(KonfiguratorCheckBox *dep)
 
 void KonfiguratorCheckBox::updateDeps()
 {
-    for (KonfiguratorCheckBox *dep : qAsConst(deps))
+    for (KonfiguratorCheckBox *dep : std::as_const(deps))
         dep->setEnabled(isChecked());
 }
 

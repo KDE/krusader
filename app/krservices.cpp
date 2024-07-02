@@ -70,7 +70,7 @@ QString KrServices::fullPathName(const QString &name, QString confName)
 
 QString KrServices::chooseFullPathName(QStringList names, const QString &confName)
 {
-    for (const QString &name : qAsConst(names)) {
+    for (const QString &name : std::as_const(names)) {
         QString foundTool = KrServices::fullPathName(name, confName);
         if (!foundTool.isEmpty()) {
             return foundTool;

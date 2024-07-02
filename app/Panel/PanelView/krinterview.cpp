@@ -358,7 +358,7 @@ KIO::filesize_t KrInterView::calcSize()
 KIO::filesize_t KrInterView::calcSelectedSize()
 {
     KIO::filesize_t size = 0;
-    for (const FileItem *fileitem : qAsConst(_selection)) {
+    for (const FileItem *fileitem : std::as_const(_selection)) {
         size += fileitem->getSize();
     }
     return size;
@@ -367,7 +367,7 @@ KIO::filesize_t KrInterView::calcSelectedSize()
 QList<QUrl> KrInterView::selectedUrls()
 {
     QList<QUrl> list;
-    for (const FileItem *fileitem : qAsConst(_selection)) {
+    for (const FileItem *fileitem : std::as_const(_selection)) {
         list << fileitem->getUrl();
     }
     return list;

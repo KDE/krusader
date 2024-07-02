@@ -64,7 +64,7 @@ void PanelContextMenu::addCompressAndExtractPluginActions()
         return metaData.pluginId() == "compressfileitemaction" || metaData.pluginId() == "extractfileitemaction";
     });
 
-    for (const KPluginMetaData &jsonMetadata : qAsConst(jsonPlugins)) {
+    for (const KPluginMetaData &jsonMetadata : std::as_const(jsonPlugins)) {
         KPluginFactory *pluginFactory = KPluginFactory::loadFactory(jsonMetadata.fileName()).plugin;
 
         auto *abstractPlugin = pluginFactory->create<KAbstractFileItemActionPlugin>();

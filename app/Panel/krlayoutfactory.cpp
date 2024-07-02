@@ -142,7 +142,7 @@ QStringList KrLayoutFactory::layoutNames()
     if (parseFiles()) {
         getLayoutNames(_mainDoc, names);
 
-        for (const QDomDocument &doc : qAsConst(_extraDocs))
+        for (const QDomDocument &doc : std::as_const(_extraDocs))
             getLayoutNames(doc, names);
     }
 
@@ -174,7 +174,7 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
 
         layoutRoot = findLayout(_mainDoc, layoutName);
         if (layoutRoot.isNull()) {
-            for (const QDomDocument &doc : qAsConst(_extraDocs)) {
+            for (const QDomDocument &doc : std::as_const(_extraDocs)) {
                 layoutRoot = findLayout(doc, layoutName);
                 if (!layoutRoot.isNull())
                     break;
