@@ -5,6 +5,8 @@ project(krusader)
 set(VERSION "2.9.0-dev")
 set(RELEASE_NAME "Bleeding Edge")
 
+set(CMAKE_CXX_STANDARD 17)
+
 set(MIN_QT_VERSION "6.4.0")
 set(KF6_MIN_VERSION "5.240.0")
 
