@@ -565,7 +565,10 @@ void Krusader::moveToTop()
     if (isHidden())
         show();
 
-    KX11Extras::forceActiveWindow(winId());
+    KWindowSystem::activateWindow(windowHandle());
+    if (KWindowSystem::isPlatformX11()) {
+        KX11Extras::forceActiveWindow(winId());
+    }
 }
 
 bool Krusader::isRunning()
