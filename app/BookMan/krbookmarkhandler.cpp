@@ -70,7 +70,7 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow)
 
     // create bookmark manager
     QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
-    manager = new KBookmarkManager(filename);
+    manager = new KBookmarkManager(filename, this);
 
     connect(manager, &KBookmarkManager::changed, this, &KrBookmarkHandler::bookmarksChanged);
 
