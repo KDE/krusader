@@ -69,6 +69,7 @@ target_link_libraries(krusader
                       GUI
                       Archive
                       JobMan
+                      KF6::GlobalAccel
                       KF6::Notifications
                       KF6::Parts
                       KF6::WindowSystem

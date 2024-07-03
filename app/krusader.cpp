@@ -25,6 +25,7 @@
 #include <KAcceleratorManager>
 #include <KActionCollection>
 #include <KCursor>
+#include <KGlobalAccel>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
@@ -35,8 +36,8 @@
 #include <KWindowConfig>
 #include <KWindowSystem>
 #include <KXMLGUIFactory>
-#include <utility>
 #include <kx11extras.h>
+#include <utility>
 
 #include "defaults.h"
 #include "kractions.h"
@@ -341,6 +342,8 @@ void Krusader::setupActions()
     QAction *bringToTopAct = new QAction(i18n("Bring Main Window to Top"), this);
     actionCollection()->addAction("bring_main_window_to_top", bringToTopAct);
     connect(bringToTopAct, &QAction::triggered, this, &Krusader::moveToTop);
+
+    KGlobalAccel::setGlobalShortcut(bringToTopAct, QKeySequence(Qt::META | Qt::Key_K));
 
     KrActions::setupActions(this);
     _krActions = new KrActions(this);
