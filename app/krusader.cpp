@@ -565,7 +565,12 @@ void Krusader::moveToTop()
     if (isHidden())
         show();
 
-    KWindowSystem::activateWindow(windowHandle());
+    QWindow *window = windowHandle();
+    KWindowSystem::activateWindow(window);
+    if (!window->isActive() && KrGlobal::isWaylandPlatform) {
+        window->hide();
+        window->show();
+    }
     if (KWindowSystem::isPlatformX11()) {
         KX11Extras::forceActiveWindow(winId());
     }
