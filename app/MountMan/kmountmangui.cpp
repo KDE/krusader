@@ -289,18 +289,21 @@ void KMountManGUI::addNonMounted()
     }
 }
 
-void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
+void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs, const QList<Solid::Device> &blockDevices) const
 {
-    Solid::Device device(mountMan->findUdiForPath(fs.mntPoint(), Solid::DeviceInterface::StorageAccess));
+    const std::function deviceGetter = [blockDevices]() {
+        return blockDevices;
+    };
+    const auto udi = KMountMan::findUdiForPath(fs.mntPoint(), Solid::DeviceInterface::StorageAccess, deviceGetter);
+    Solid::Device device(udi);
 
     if (cbShowOnlyRemovable->isChecked() && !mountMan->removable(device))
         return;
+    const bool mtd = fs.mounted();
 
-    bool mtd = fs.mounted();
-
-    QString tSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.totalBlks()));
-    QString fSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.freeBlks()));
-    QString sPrct = QString("%1%").arg(100 - (fs.usedPerct()));
+    const QString tSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.totalBlks()));
+    const QString fSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.freeBlks()));
+    const QString sPrct = QString("%1%").arg(100 - (fs.usedPerct()));
     auto *item = new QTreeWidgetItem(lst);
     item->setText(0, fs.name());
     item->setText(1, fs.type());
@@ -308,14 +311,14 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     item->setText(3, (mtd ? tSize : QString("N/A")));
     item->setText(4, (mtd ? fSize : QString("N/A")));
     item->setText(5, (mtd ? sPrct : QString("N/A")));
+    const auto *vol = device.as<Solid::StorageVolume>();
 
-    auto *vol = device.as<Solid::StorageVolume>();
     QString iconName;
-
     if (device.isValid())
         iconName = device.icon();
     else if (mountMan->networkFilesystem(fs.type()))
         iconName = "folder-remote";
+
     QStringList overlays;
     if (mtd) {
         overlays << "emblem-mounted";
@@ -341,8 +344,11 @@ void KMountManGUI::updateList()
     mountList->clearSelection();
     mountList->clear();
 
-    for (auto &fileSystem : fileSystems)
-        addItemToMountList(mountList, fileSystem);
+    // getting the list of devices is slow: do it one time for all items
+    const QList<Solid::Device> blockDevices = Solid::Device::listFromType(Solid::DeviceInterface::Block);
+    for (auto &fileSystem : fileSystems) {
+        addItemToMountList(mountList, fileSystem, blockDevices);
+    }
 
     currentItem = mountList->topLevelItem(currentIdx);
     for (int i = 0; i < mountList->topLevelItemCount(); i++) {

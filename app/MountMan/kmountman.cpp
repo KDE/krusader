@@ -420,32 +420,45 @@ void KMountMan::delayedPerformAction(const QAction *action)
 
 QString KMountMan::findUdiForPath(const QString &path, const Solid::DeviceInterface::Type &expType)
 {
-    KMountPoint::List current = KMountPoint::currentMountPoints();
-    KMountPoint::List possible = KMountPoint::possibleMountPoints();
-    QExplicitlySharedDataPointer<KMountPoint> mp = findInListByMntPoint(current, path);
-    if (!(bool)mp) {
-        mp = findInListByMntPoint(possible, path);
-        if (!(bool)mp)
-            return QString();
-    }
-    QString dev = QDir(mp->mountedFrom()).canonicalPath();
-    QList<Solid::Device> storageDevices = Solid::Device::listFromType(Solid::DeviceInterface::Block);
+    const std::function deviceGetter = []() {
+        return Solid::Device::listFromType(Solid::DeviceInterface::Block);
+    };
+    return findUdiForPath(path, expType, deviceGetter);
+}
 
-    for (int p = storageDevices.count() - 1; p >= 0; p--) {
+QString KMountMan::findUdiForPath(const QString &path, const Solid::DeviceInterface::Type &expType, const std::function<QList<Solid::Device>()> &devicesGetter)
+{
+    KMountPoint::List current = KMountPoint::currentMountPoints();
+    QExplicitlySharedDataPointer<KMountPoint> mountPoint = findInListByMntPoint(current, path);
+
+    if (!static_cast<bool>(mountPoint)) {
+        KMountPoint::List possible = KMountPoint::possibleMountPoints();
+        mountPoint = findInListByMntPoint(possible, path);
+        if (!static_cast<bool>(mountPoint))
+            return {}; // cannot not find mount point for path
+    }
+    const QString mountPath = QDir(mountPoint->mountedFrom()).canonicalPath();
+    if (mountPath.isEmpty()) {
+        return {}; // mount point does not have a device (e.g. for virtual kernel filesystems)
+    }
+
+    QList<Solid::Device> storageDevices = devicesGetter();
+
+    for (qsizetype p = storageDevices.count() - 1; p >= 0; p--) {
         Solid::Device device = storageDevices[p];
         QString udi = device.udi();
 
         auto *sb = device.as<Solid::Block>();
         if (sb) {
-            QString devb = QDir(sb->device()).canonicalPath();
+            QString devicePath = QDir(sb->device()).canonicalPath();
             if (expType != Solid::DeviceInterface::Unknown && !device.isDeviceInterface(expType))
                 continue;
-            if (devb == dev)
+            if (devicePath == mountPath)
                 return udi;
         }
     }
 
-    return QString();
+    return {}; // device not found
 }
 
 QString KMountMan::pathForUdi(const QString &udi)

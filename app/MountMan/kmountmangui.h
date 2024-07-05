@@ -60,7 +60,7 @@ protected slots:
 
 protected:
     QLayout *createMainPage(); // creator of the main page - filesystems
-    void addItemToMountList(KrTreeWidget *lst, fsData &fs);
+    void addItemToMountList(KrTreeWidget *lst, fsData &fs, const QList<Solid::Device> &blockDevices) const;
     fsData *getFsData(QTreeWidgetItem *item);
     QString getMntPoint(QTreeWidgetItem *item);
     void addNonMounted();
