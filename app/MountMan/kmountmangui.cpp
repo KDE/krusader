@@ -45,6 +45,8 @@
 #define MTAB "/etc/mtab"
 #endif
 
+constexpr int fileSystemsFreeSpaceTimeout = 5'000; // msec
+
 KMountManGUI::KMountManGUI(KMountMan *mntMan)
     : QDialog(mntMan->parentWindow)
     , mountMan(mntMan)
@@ -209,7 +211,8 @@ void KMountManGUI::getSpaceData()
 
     // Potentially long running
     this->setCursor(Qt::WaitCursor);
-    int started = 0;
+    auto *signalsToWaitFor = new QAtomicInteger(0);
+    auto *eventLoop = new QEventLoop(this);
     for (auto &it : mounted) {
         // don't bother with invalid file systems
         if (mountMan->invalidFilesystem(it->mountType())) {
@@ -224,20 +227,22 @@ void KMountManGUI::getSpaceData()
         KIO::FileSystemFreeSpaceJob *job = KIO::fileSystemFreeSpace(QUrl::fromLocalFile(it->mountPoint()));
         Q_ASSERT(job != nullptr);
 
-        connect(job, &KIO::FileSystemFreeSpaceJob::finished, this,
-                [this, data](KJob *job){ this->freeSpaceResult(job, data); });
-        started++;
+        signalsToWaitFor->operator++();
+        connect(job, &KIO::FileSystemFreeSpaceJob::finished, this, [this, data, eventLoop, signalsToWaitFor](KJob *job) {
+            this->freeSpaceResult(job, data);
+
+            if (!signalsToWaitFor->deref()) {
+                eventLoop->quit(); // all done
+            }
+        });
     }
+
     QTimer timer;
     timer.setSingleShot(true);
-    QEventLoop loop;
-    connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+    connect(&timer, &QTimer::timeout, eventLoop, &QEventLoop::quit);
+    timer.start(fileSystemsFreeSpaceTimeout);
 
-    //TODO: How better to wait for all to finish?
-    while (started != fileSystems.size()) {
-        timer.start(100); // 100ms Maybe this should be configurable
-        loop.exec();
-    }
+    eventLoop->exec(); // wait for signals until quit()
 
     this->setCursor(Qt::ArrowCursor);
     addNonMounted();
@@ -248,7 +253,7 @@ void KMountManGUI::freeSpaceResult(KJob *job, fsData data)
 {
     if (!job->error()) {
         KIO::FileSystemFreeSpaceJob *freeSpaceJob = qobject_cast<KIO::FileSystemFreeSpaceJob *>(job);
-        Q_ASSERT(job != nullptr);
+        Q_ASSERT(freeSpaceJob != nullptr);
         // Set the missing information, with the assumption the caller already set the rest
         data.setTotalBlks(freeSpaceJob->size() / 1024);
         data.setFreeBlks(freeSpaceJob->availableSize() / 1024);
