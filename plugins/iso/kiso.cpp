@@ -19,10 +19,10 @@
 #include <QMimeType>
 #include <qplatformdefs.h>
 
+#include <KCompressionDevice>
 #include <KConfig>
 #include <KConfigGroup>
 #include <KFilterBase>
-#include <KCompressionDevice>
 
 #include "libisofs/isofs.h"
 #include "qfilehack.h"
@@ -161,7 +161,11 @@ void KIso::prepareDevice(const QString &filename, const QString &mimetype, bool 
             forced = true;
 
         KCompressionDevice *device;
-        device = new KCompressionDevice(filename, COMPRESSIONTYPEFORMIMETYPE(mimetype));
+        if (mimetype.isEmpty()) {
+            device = new KCompressionDevice(filename);
+        } else {
+            device = new KCompressionDevice(filename, COMPRESSIONTYPEFORMIMETYPE(mimetype));
+        }
         if (device->compressionType() == KCompressionDevice::None && forced) {
             delete device;
         } else {
