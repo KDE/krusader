@@ -94,7 +94,6 @@ Krusader::Krusader(const QCommandLineParser &parser)
     App = this;
     krMainWindow = this;
     SLOTS = new KrSlots(this);
-    setXMLFile("krusaderui.rc"); // kpart-related xml file
 
     plzWait = new KrPleaseWaitHandler(this);
 
@@ -195,30 +194,17 @@ Krusader::Krusader(const QCommandLineParser &parser)
 
     // restore gui settings
     {
-        // now, check if we need to create a konsole_part
         // call the XML GUI function to draw the UI
-        createGUI(MAIN_VIEW->terminalDock()->part());
+        setupGUI(Default, "krusaderui.rc"); // kpart-related xml file
 
-        // this needs to be called AFTER createGUI() !!!
         updateUserActions();
         _listPanelActions->guiUpdated();
 
         // not using this. See savePosition()
         // applyMainWindowSettings();
 
-        const KConfigGroup cfgToolbar(krConfig, "Main Toolbar");
-        toolBar()->applySettings(cfgToolbar);
-
-        const KConfigGroup cfgJobBar(krConfig, "Job Toolbar");
-        toolBar("jobToolBar")->applySettings(cfgJobBar);
-
-        const KConfigGroup cfgActionsBar(krConfig, "Actions Toolbar");
-        toolBar("actionsToolBar")->applySettings(cfgActionsBar);
-
         // restore toolbars position and visibility
         restoreState(startupGroup.readEntry("State", QByteArray()));
-
-        statusBar()->setVisible(startupGroup.readEntry("Show status bar", _ShowStatusBar));
 
         MAIN_VIEW->updateGUI(startupGroup);
 
@@ -391,20 +377,11 @@ void Krusader::saveSettings()
     KConfigGroup noGroup(krConfig, QString());
     noGroup.writeEntry("Config Version", KrGlobal::sConfigVersion);
 
-    // save toolbar settings
     KConfigGroup cfg(krConfig, "Main Toolbar");
-    toolBar()->saveSettings(cfg);
-
-    cfg = krConfig->group("Job Toolbar");
-    toolBar("jobToolBar")->saveSettings(cfg);
-
-    cfg = krConfig->group("Actions Toolbar");
-    toolBar("actionsToolBar")->saveSettings(cfg);
 
     cfg = krConfig->group("Startup");
     // save toolbar visibility and position
     cfg.writeEntry("State", saveState());
-    cfg.writeEntry("Show status bar", statusBar()->isVisible());
 
     // save panel and window settings
     if (cfg.readEntry("Remember Position", _RememberPos))

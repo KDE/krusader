@@ -174,19 +174,9 @@ void KrActions::setupActions(Krusader *krusaderApp)
 
     NEW_KACTION(tmp, i18n("Tab-Switch panel"), nullptr, Qt::Key_Tab, MAIN_VIEW, SLOT(panelSwitch()), "tab");
 
-    KToggleToolBarAction *actShowToolBar = new KToggleToolBarAction(krusaderApp->toolBar(), i18n("Show Main Toolbar"), krusaderApp);
-    krusaderApp->actionCollection()->addAction(KStandardAction::name(KStandardAction::ShowToolbar), actShowToolBar);
-
-    KToggleToolBarAction *actShowJobToolBar = new KToggleToolBarAction(krusaderApp->toolBar("jobToolBar"), i18n("Show Job Toolbar"), krusaderApp);
-    krusaderApp->actionCollection()->addAction("toggle show jobbar", actShowJobToolBar);
-
-    KToggleToolBarAction *actShowActionsToolBar = new KToggleToolBarAction(krusaderApp->toolBar("actionsToolBar"), i18n("Show Actions Toolbar"), krusaderApp);
-    krusaderApp->actionCollection()->addAction("toggle actions toolbar", actShowActionsToolBar);
-
     actShowStatusBar = KStandardAction::showStatusbar(SLOTS, SLOT(updateStatusbarVisibility()), krusaderApp->actionCollection());
     KStandardAction::quit(krusaderApp, SLOT(quit()), krusaderApp->actionCollection());
     KStandardAction::configureToolbars(krusaderApp, SLOT(configureToolbars()), krusaderApp->actionCollection());
-    KStandardAction::keyBindings(krusaderApp->guiFactory(), SLOT(showConfigureShortcutsDialog()), krusaderApp->actionCollection());
 
     // the toggle actions
     NEW_KTOGGLEACTION(actToggleFnkeys, i18n("Show &FN Keys Bar"), nullptr, 0, SLOTS, SLOT(toggleFnkeys()), "toggle fn bar");
