@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-19 01:48+0000\n"
+"POT-Creation-Date: 2024-07-12 01:44+0000\n"
 "PO-Revision-Date: 2024-06-18 16:04+0200\n"
 "Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -829,7 +829,7 @@ msgstr "Chyba při rozbalování"
 msgid "Add Bookmark"
 msgstr "Přidat záložku"
 
-#: app/BookMan/kraddbookmarkdlg.cpp:35 app/DiskUsage/diskusage.cpp:1039
+#: app/BookMan/kraddbookmarkdlg.cpp:35 app/DiskUsage/diskusage.cpp:1038
 #, kde-format
 msgid "Name:"
 msgstr "Název:"
@@ -867,17 +867,17 @@ msgstr "Záložky"
 msgid "Folder name:"
 msgstr "Název složky:"
 
-#: app/BookMan/krbookmark.cpp:22 app/BookMan/krbookmarkhandler.cpp:774
+#: app/BookMan/krbookmark.cpp:22 app/BookMan/krbookmarkhandler.cpp:777
 #, kde-format
 msgid "Trash bin"
 msgstr "Odpadkový koš"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:782
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:785
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "Virtuální souborový systém"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:778
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:781
 #, kde-format
 msgid "Local Network"
 msgstr "Místní síť"
@@ -892,7 +892,7 @@ msgstr "Záložky (oblíbené)"
 msgid "Type to search..."
 msgstr "Text k vyhledání..."
 
-#: app/BookMan/krbookmarkhandler.cpp:218 app/BookMan/krbookmarkhandler.cpp:324
+#: app/BookMan/krbookmarkhandler.cpp:220 app/BookMan/krbookmarkhandler.cpp:326
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
 #: app/Konfigurator/kggeneral.cpp:329
 #: app/Synchronizer/synchronizerdirlist.cpp:116
@@ -900,66 +900,66 @@ msgstr "Text k vyhledání..."
 msgid "Error"
 msgstr "Chyba"
 
-#: app/BookMan/krbookmarkhandler.cpp:218
+#: app/BookMan/krbookmarkhandler.cpp:220
 #, kde-format
 msgid "Unable to write to %1"
 msgstr "Nelze psát do %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:227
+#: app/BookMan/krbookmarkhandler.cpp:229
 #, kde-format
 msgid "%1 instead of %2"
 msgstr "%1 namísto %2"
 
-#: app/BookMan/krbookmarkhandler.cpp:232 app/BookMan/krbookmarkhandler.cpp:239
-#: app/BookMan/krbookmarkhandler.cpp:276
+#: app/BookMan/krbookmarkhandler.cpp:234 app/BookMan/krbookmarkhandler.cpp:241
+#: app/BookMan/krbookmarkhandler.cpp:278
 #, kde-format
 msgid "missing tag %1"
 msgstr "chybějící značka %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:316
+#: app/BookMan/krbookmarkhandler.cpp:318
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "%1 nevypadá jako platný soubor záložek"
 
-#: app/BookMan/krbookmarkhandler.cpp:324
+#: app/BookMan/krbookmarkhandler.cpp:326
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr "Chyba při čtení souboru záložek: %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:436 app/BookMan/krbookmarkhandler.cpp:770
+#: app/BookMan/krbookmarkhandler.cpp:438 app/BookMan/krbookmarkhandler.cpp:773
 #: app/Dialogs/popularurls.cpp:276
 #, kde-format
 msgid "Popular URLs"
 msgstr "Oblíbená URL"
 
-#: app/BookMan/krbookmarkhandler.cpp:528
+#: app/BookMan/krbookmarkhandler.cpp:530
 #, kde-format
 msgid "Manage Bookmarks"
 msgstr "Upravit záložky"
 
-#: app/BookMan/krbookmarkhandler.cpp:766
+#: app/BookMan/krbookmarkhandler.cpp:769
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "Povolit speciální záložky"
 
-#: app/BookMan/krbookmarkhandler.cpp:786
+#: app/BookMan/krbookmarkhandler.cpp:789
 #, kde-format
 msgid "Jump back"
 msgstr "Přejít zpět"
 
-#: app/BookMan/krbookmarkhandler.cpp:838 app/GUI/mediabutton.cpp:327
+#: app/BookMan/krbookmarkhandler.cpp:841 app/GUI/mediabutton.cpp:327
 #: app/Panel/panelcontextmenu.cpp:125
 #, kde-format
 msgid "Open"
 msgstr "Otevřít"
 
-#: app/BookMan/krbookmarkhandler.cpp:840 app/GUI/mediabutton.cpp:329
+#: app/BookMan/krbookmarkhandler.cpp:843 app/GUI/mediabutton.cpp:329
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Otevřít v nové kartě"
 
-#: app/BookMan/krbookmarkhandler.cpp:844 app/Dialogs/krmaskchoice.cpp:85
-#: app/Dialogs/kurllistrequester.cpp:128 app/DiskUsage/diskusage.cpp:752
+#: app/BookMan/krbookmarkhandler.cpp:847 app/Dialogs/krmaskchoice.cpp:85
+#: app/Dialogs/kurllistrequester.cpp:128 app/DiskUsage/diskusage.cpp:751
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
 #: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:241
 #, kde-format
@@ -1303,7 +1303,7 @@ msgstr "Ve složce"
 msgid "Multiple volume archive"
 msgstr "Vícedílný archiv"
 
-#: app/Dialogs/packguibase.cpp:147 app/DiskUsage/diskusage.cpp:1040
+#: app/Dialogs/packguibase.cpp:147 app/DiskUsage/diskusage.cpp:1039
 #, kde-format
 msgid "Size:"
 msgstr "Velikost:"
@@ -1440,7 +1440,7 @@ msgstr "Celková velikost:"
 msgid "Loading the disk usage information..."
 msgstr "Načítání informace o zaplněnosti disku..."
 
-#: app/DiskUsage/diskusage.cpp:405
+#: app/DiskUsage/diskusage.cpp:404
 #, kde-format
 msgid ""
 "Stepping into the parent folder requires loading the content of the \"%1\" "
@@ -1449,29 +1449,29 @@ msgstr ""
 "Abyste vkročili do rodičovské složky, je třeba načíst obsah URL \"%1\". "
 "Přejete si pokračovat?"
 
-#: app/DiskUsage/diskusage.cpp:409
+#: app/DiskUsage/diskusage.cpp:408
 #, kde-format
 msgid "Krusader::DiskUsage"
 msgstr "Krusader::Zaplnění Disku"
 
-#: app/DiskUsage/diskusage.cpp:592
+#: app/DiskUsage/diskusage.cpp:591
 #, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Opravdu si přejete tuto položku vyhodit do koše?"
 
-#: app/DiskUsage/diskusage.cpp:593 app/Panel/panelfunc.cpp:836
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:836
 #, kde-format
 msgid "&Trash"
 msgstr "Vyhodit do &koše"
 
-#: app/DiskUsage/diskusage.cpp:595
+#: app/DiskUsage/diskusage.cpp:594
 #, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to delete this item?"
 msgstr "Opravdu si přejete smazat tuto položku?"
 
-#: app/DiskUsage/diskusage.cpp:603 app/JobMan/jobman.cpp:229
+#: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
 #: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:852
 #: app/Panel/panelfunc.cpp:929
 #, kde-format
@@ -1482,103 +1482,103 @@ msgstr "Varování"
 # msgstr "Opravdu si přejete tuto položku přesunout do koše?"
 # msgid "Do you really want to delete this item?"
 # msgstr "Opravdu si přejete smazat tuto položku?"
-#: app/DiskUsage/diskusage.cpp:607 plugins/krarc/krarc.cpp:918
+#: app/DiskUsage/diskusage.cpp:606 plugins/krarc/krarc.cpp:918
 #, kde-format
 msgid "Deleting %1..."
 msgstr "Mažu %1 ..."
 
-#: app/DiskUsage/diskusage.cpp:721
+#: app/DiskUsage/diskusage.cpp:720
 #, kde-format
 msgid "Current folder:%1,  Total size:%2,  Own size:%3"
 msgstr "Aktuální složka: %1,  Celková velikost:%2,  Vlastní velikost:%3"
 
-#: app/DiskUsage/diskusage.cpp:747
+#: app/DiskUsage/diskusage.cpp:746
 #, kde-format
 msgid "Disk Usage"
 msgstr "Zaplnění Disku"
 
-#: app/DiskUsage/diskusage.cpp:755
+#: app/DiskUsage/diskusage.cpp:754
 #, kde-format
 msgid "Exclude"
 msgstr "Vyřadit"
 
-#: app/DiskUsage/diskusage.cpp:761
+#: app/DiskUsage/diskusage.cpp:760
 #, kde-format
 msgid "Up one folder"
 msgstr "O složku výše"
 
-#: app/DiskUsage/diskusage.cpp:765
+#: app/DiskUsage/diskusage.cpp:764
 #, kde-format
 msgid "New search"
 msgstr "Nové hledání"
 
-#: app/DiskUsage/diskusage.cpp:769 app/DiskUsage/diskusagegui.cpp:58
+#: app/DiskUsage/diskusage.cpp:768 app/DiskUsage/diskusagegui.cpp:58
 #, kde-format
 msgid "Refresh"
 msgstr "Obnovit"
 
-#: app/DiskUsage/diskusage.cpp:773
+#: app/DiskUsage/diskusage.cpp:772
 #, kde-format
 msgid "Include all"
 msgstr "Zahrnout vše"
 
-#: app/DiskUsage/diskusage.cpp:777
+#: app/DiskUsage/diskusage.cpp:776
 #, kde-format
 msgid "Step into"
 msgstr "Přejít dovnitř"
 
-#: app/DiskUsage/diskusage.cpp:790 app/DiskUsage/dulines.cpp:458
+#: app/DiskUsage/diskusage.cpp:789 app/DiskUsage/dulines.cpp:458
 #, kde-format
 msgid "Lines"
 msgstr "Řádky"
 
-#: app/DiskUsage/diskusage.cpp:794
+#: app/DiskUsage/diskusage.cpp:793
 #, kde-format
 msgid "Detailed"
 msgstr "Podrobný"
 
-#: app/DiskUsage/diskusage.cpp:798 app/DiskUsage/dufilelight.cpp:108
+#: app/DiskUsage/diskusage.cpp:797 app/DiskUsage/dufilelight.cpp:108
 #, kde-format
 msgid "Filelight"
 msgstr "Filelight"
 
-#: app/DiskUsage/diskusage.cpp:804 app/KViewer/lister.cpp:1282
+#: app/DiskUsage/diskusage.cpp:803 app/KViewer/lister.cpp:1282
 #, kde-format
 msgid "Next"
 msgstr "Následující"
 
-#: app/DiskUsage/diskusage.cpp:808 app/KViewer/lister.cpp:1286
+#: app/DiskUsage/diskusage.cpp:807 app/KViewer/lister.cpp:1286
 #, kde-format
 msgid "Previous"
 msgstr "Předešlý"
 
-#: app/DiskUsage/diskusage.cpp:813 app/GUI/kfnkeys.cpp:25
+#: app/DiskUsage/diskusage.cpp:812 app/GUI/kfnkeys.cpp:25
 #: app/Konfigurator/kgpanel.cpp:414
 #, kde-format
 msgid "View"
 msgstr "Pohled"
 
-#: app/DiskUsage/diskusage.cpp:1039
+#: app/DiskUsage/diskusage.cpp:1038
 #, kde-format
 msgid "Type:"
 msgstr "Typ:"
 
-#: app/DiskUsage/diskusage.cpp:1043
+#: app/DiskUsage/diskusage.cpp:1042
 #, kde-format
 msgid "Own size:"
 msgstr "Vlastní velikost:"
 
-#: app/DiskUsage/diskusage.cpp:1045
+#: app/DiskUsage/diskusage.cpp:1044
 #, kde-format
 msgid "Last modified:"
 msgstr "Naposledy změněno:"
 
-#: app/DiskUsage/diskusage.cpp:1045
+#: app/DiskUsage/diskusage.cpp:1044
 #, kde-format
 msgid "Permissions:"
 msgstr "Práva:"
 
-#: app/DiskUsage/diskusage.cpp:1046
+#: app/DiskUsage/diskusage.cpp:1045
 #, kde-format
 msgid "Owner:"
 msgstr "Vlastník:"
@@ -7137,7 +7137,7 @@ msgstr ""
 msgid "Close the Sidebar"
 msgstr "Zavřít postranní panel"
 
-#: app/Panel/listpanel.cpp:669 app/Synchronizer/synchronizergui.cpp:975
+#: app/Panel/listpanel.cpp:669 app/Synchronizer/synchronizergui.cpp:977
 #, kde-format
 msgid "Warning: The left and the right side are showing the same folder."
 msgstr "Varování: Levá i pravá strana zobrazují stejnou složku."
@@ -7868,7 +7868,7 @@ msgid "%1 (Link)"
 msgstr "%1 (Odkaz)"
 
 #: app/Panel/PanelView/listmodel.cpp:132
-#: app/Synchronizer/synchronizergui.cpp:1614
+#: app/Synchronizer/synchronizergui.cpp:1616
 #, kde-format
 msgctxt ""
 "Show the string 'DIR' instead of file size in detailed view (for folders)"
@@ -8606,7 +8606,7 @@ msgid "Feeding the URLs to KGet"
 msgstr "Předávání adres URL programu KGet"
 
 #: app/Synchronizer/synchronizergui.cpp:141
-#: app/Synchronizer/synchronizergui.cpp:1334
+#: app/Synchronizer/synchronizergui.cpp:1336
 #, kde-format
 msgid "Krusader::Synchronize Folders"
 msgstr "Krusader::Synchronizovat složky"
@@ -8854,13 +8854,13 @@ msgid "Compare"
 msgstr "Porovnat"
 
 #: app/Synchronizer/synchronizergui.cpp:482
-#: app/Synchronizer/synchronizergui.cpp:1510
+#: app/Synchronizer/synchronizergui.cpp:1512
 #, kde-format
 msgid "Quiet"
 msgstr "Potichu"
 
 #: app/Synchronizer/synchronizergui.cpp:484
-#: app/Synchronizer/synchronizergui.cpp:1512
+#: app/Synchronizer/synchronizergui.cpp:1514
 #, kde-format
 msgid "Scroll Results"
 msgstr "Rolovat výsledky"
@@ -9005,22 +9005,22 @@ msgstr "Označit položky"
 msgid "Deselect items"
 msgstr "Odznačit položky"
 
-#: app/Synchronizer/synchronizergui.cpp:964
+#: app/Synchronizer/synchronizergui.cpp:966
 #, kde-format
 msgid "The target folder must not be empty."
 msgstr "Cílová složka nesmí být prázdná."
 
-#: app/Synchronizer/synchronizergui.cpp:969
+#: app/Synchronizer/synchronizergui.cpp:971
 #, kde-format
 msgid "The source folder must not be empty."
 msgstr "Zdrojová složka nesmí být prázdná."
 
-#: app/Synchronizer/synchronizergui.cpp:1237
+#: app/Synchronizer/synchronizergui.cpp:1239
 #, kde-format
 msgid "Synchronizer has nothing to do."
 msgstr "Není nic k synchronizaci."
 
-#: app/Synchronizer/synchronizergui.cpp:1333
+#: app/Synchronizer/synchronizergui.cpp:1335
 #, kde-format
 msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "
