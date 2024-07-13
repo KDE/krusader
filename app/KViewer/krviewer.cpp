@@ -66,7 +66,6 @@ KrViewer::KrViewer(QWidget *parent)
     , sizeY(-1)
 {
     // setWFlags(Qt::WType_TopLevel | WDestructiveClose);
-    setXMLFile("krviewer.rc"); // kpart-related xml file
     setHelpMenuEnabled(false);
 
     connect(&manager, &KParts::PartManager::activePartChanged, this, &KrViewer::createGUI);
@@ -174,6 +173,8 @@ KrViewer::KrViewer(QWidget *parent)
 
     // filtering out the key events
     menuBar()->installEventFilter(this);
+
+    setupGUI(ToolBar | StatusBar | Save | Create, "krviewer.rc");
 }
 
 KrViewer::~KrViewer()
@@ -201,9 +202,6 @@ void KrViewer::createGUI(KParts::Part *part)
     KParts::MainWindow::createGUI(part);
 
     updateActions();
-
-    toolBar()->show();
-    statusBar()->show();
 
     // the KParts part may override the viewer shortcuts. We prevent it
     // by installing an event filter on the menuBar() and the part
