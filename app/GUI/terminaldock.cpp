@@ -52,19 +52,26 @@ TerminalDock::TerminalDock(QWidget *parent, KrMainWindow *mainWindow)
     : QWidget(parent)
     , _mainWindow(mainWindow)
     , konsole_part(nullptr)
-    , t(nullptr)
+    , terminal(nullptr)
     , initialised(false)
     , firstInput(true)
 {
     terminal_hbox = new QHBoxLayout(this);
 }
 
-TerminalDock::~TerminalDock() = default;
+TerminalDock::~TerminalDock()
+{
+    if (konsole_part) {
+        disconnect(konsole_part, &KParts::ReadOnlyPart::destroyed, this, &TerminalDock::killTerminalEmulator);
+    }
+};
 
 bool TerminalDock::initialise()
 {
     if (!initialised) { // konsole part is not yet loaded or it has already failed
-        KPluginFactory *pluginFactory = KPluginFactory::loadFactory(KPluginMetaData(QStringLiteral("kf6/parts/konsolepart"))).plugin;
+
+        const KPluginMetaData pluginMetaData(QStringLiteral("kf6/parts/konsolepart"));
+        KPluginFactory *pluginFactory = KPluginFactory::loadFactory(pluginMetaData).plugin;
 
         if (pluginFactory) {
             QWidget *focusW = qApp->focusWidget();
@@ -78,10 +85,10 @@ bool TerminalDock::initialise()
                 // by child widgets of konsole_part->widget()
                 // and would not be received on konsole_part->widget()
                 qApp->installEventFilter(this);
-                t = qobject_cast<TerminalInterface *>(konsole_part);
-                if (t) {
+                terminal = qobject_cast<TerminalInterface *>(konsole_part);
+                if (terminal) {
                     lastPath = QDir::currentPath();
-                    t->showShellInDir(lastPath);
+                    terminal->showShellInDir(lastPath);
                 }
                 initialised = true;
                 firstInput = true;
@@ -113,21 +120,21 @@ void TerminalDock::killTerminalEmulator()
 
     initialised = false;
     konsole_part = nullptr;
-    t = nullptr;
+    terminal = nullptr;
     qApp->removeEventFilter(this);
     MAIN_VIEW->setTerminalEmulator(false);
 }
 
 void TerminalDock::sendInput(const QString &input, bool clearCommand)
 {
-    if (!t)
+    if (!terminal)
         return;
 
     if (clearCommand) {
         // send SIGINT before input command to avoid unwanted behaviour when current line is not empty
         // and command is appended to current input (e.g. "rm -rf x " concatenated with 'cd /usr');
         // code "borrowed" from Dolphin
-        const int processId = t->terminalProcessId();
+        const int processId = terminal->terminalProcessId();
         // workaround (firstInput): kill is sent to terminal if shell is not initialized yet
         if (processId > 0 && !firstInput) {
             kill(processId, SIGINT);
@@ -135,7 +142,7 @@ void TerminalDock::sendInput(const QString &input, bool clearCommand)
     }
     firstInput = false;
 
-    t->sendInput(input);
+    terminal->sendInput(input);
 }
 
 /*! Sends a `cd` command to the embedded terminal emulator so as to synchronize the directory of the actual panel and
