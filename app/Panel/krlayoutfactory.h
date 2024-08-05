@@ -45,7 +45,7 @@ private:
     static void getLayoutNames(const QDomDocument &doc, QStringList &names);
     static QDomElement findLayout(const QDomDocument &doc, const QString &layoutName);
 
-    ListPanel *panel;
+    ListPanel *const panel;
     QHash<QString, QWidget *> &widgets;
 
     static bool _parsed;
