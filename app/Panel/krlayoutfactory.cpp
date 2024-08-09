@@ -284,7 +284,7 @@ QWidget *KrLayoutFactory::createFrame(const QDomElement &e, QWidget *parent)
     const QPointer<ListPanel> panelPointer(panel); // 'this' is not a QObject, need to declare field as local variable for lambda
     QObject::connect(frame, &ListPanelFrame::dropped, panel, [=](QDropEvent *event) {
         // handle drop on inner widgets without own drop handling (e.g. status bar) as drop to current directory
-        panelPointer->handleDrop(event);
+        panelPointer->handleDrop(event, frame);
     });
     if (!color.isEmpty())
         QObject::connect(panel, &ListPanel::signalRefreshColors, frame, &ListPanelFrame::refreshColors);

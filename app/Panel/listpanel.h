@@ -127,7 +127,7 @@ public:
     };
 
 public slots:
-    void handleDrop(QDropEvent *event, bool onView = false); // handle drops on frame or view
+    void handleDrop(QDropEvent *event, QWidget *targetFrame = nullptr); // handle drops on frame or view
     void handleDrop(const QUrl &destination, QDropEvent *event); // handle drops with destination
     void popRightClickMenu(const QPoint &);
     void popEmptyRightClickMenu(const QPoint &);
