@@ -278,6 +278,11 @@
                 <para>Those files considered to be different will
                 be copied to left. Use this feature with
                 care!</para>
+                <itemizedlist>
+                  <listitem>
+                      <para>Note that there is a measure to avoid data losses: if dates are taken into account (because <guilabel>Ignore Date</guilabel> is disabled), then the default action is <emphasis>not to overwrite a file by an old version of it</emphasis>. The user is still able to overwrite (by right-clicking and selecting <guilabel>Copy from right to left</guilabel>).</para>
+                  </listitem>
+                </itemizedlist>
               </listitem>
             </itemizedlist>This function is useful if the date
             information is unusable, or to synchronize the left
