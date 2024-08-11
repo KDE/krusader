@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-12 01:44+0000\n"
+"POT-Creation-Date: 2024-08-11 01:51+0000\n"
 "PO-Revision-Date: 2021-04-25 12:43-0700\n"
 "Last-Translator: A S Alam <aalam@satluj.org>\n"
 "Language-Team: Punjabi <punjabi-users@lists.sf.net>\n"
@@ -4620,9 +4620,9 @@ msgid ""
 "will be used if any of these are present."
 msgstr ""
 
-#: app/Konfigurator/kgstartup.cpp:83 app/useraction_examples.xml:54
-#: app/useraction_examples.xml:63 app/useraction_examples.xml:72
-#: app/useraction_examples.xml:81
+#: app/Konfigurator/kgstartup.cpp:83 app/useraction_examples.xml:59
+#: app/useraction_examples.xml:68 app/useraction_examples.xml:77
+#: app/useraction_examples.xml:86
 #, fuzzy, kde-format
 msgid "User Interface"
 msgstr "ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ"
@@ -5266,7 +5266,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:416
-#: app/krslots.cpp:489 app/Synchronizer/synchronizer.cpp:1610
+#: app/krslots.cpp:489 app/Synchronizer/synchronizer.cpp:1609
 #, fuzzy, kde-format
 #| msgid "Error saving file %1"
 msgid "Error executing %1."
@@ -8089,8 +8089,8 @@ msgid ""
 msgstr ""
 
 #: app/Splitter/combiner.cpp:189 app/Splitter/splitter.cpp:177
-#: app/Synchronizer/synchronizer.cpp:1330
-#: app/Synchronizer/synchronizer.cpp:1343
+#: app/Synchronizer/synchronizer.cpp:1329
+#: app/Synchronizer/synchronizer.cpp:1342
 #, fuzzy, kde-format
 msgid "File Already Exists"
 msgstr "ਫਾਇਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ"
@@ -8340,19 +8340,19 @@ msgid "&Close"
 msgstr "ਬੰਦ ਕਰੋ(&C)"
 
 #: app/Synchronizer/synchronizedialog.cpp:208
-#: app/Synchronizer/synchronizer.cpp:1518
-#: app/Synchronizer/synchronizer.cpp:1531
+#: app/Synchronizer/synchronizer.cpp:1517
+#: app/Synchronizer/synchronizer.cpp:1530
 #, fuzzy, kde-format
 msgid "Pause"
 msgstr "ਵਿਰਾਮ"
 
 #: app/Synchronizer/synchronizedialog.cpp:216
-#: app/Synchronizer/synchronizer.cpp:1533
+#: app/Synchronizer/synchronizer.cpp:1532
 #, fuzzy, kde-format
 msgid "Resume"
 msgstr "ਮੁਡ਼ ਸ਼ੁਰੂ ਕਰੋ"
 
-#: app/Synchronizer/synchronizer.cpp:171 app/Synchronizer/synchronizer.cpp:859
+#: app/Synchronizer/synchronizer.cpp:171 app/Synchronizer/synchronizer.cpp:858
 #, fuzzy, kde-format
 msgid "Number of files: %1"
 msgstr "ਫਾਇਲਾਂ ਦੀ ਗਿਣਤੀ:"
@@ -8362,24 +8362,24 @@ msgstr "ਫਾਇਲਾਂ ਦੀ ਗਿਣਤੀ:"
 msgid "Number of compared folders: %1"
 msgstr "ਫਾਇਲਾਂ ਦੀ ਗਿਣਤੀ:"
 
-#: app/Synchronizer/synchronizer.cpp:1389
-#: app/Synchronizer/synchronizer.cpp:1394
+#: app/Synchronizer/synchronizer.cpp:1388
+#: app/Synchronizer/synchronizer.cpp:1393
 #, fuzzy, kde-format
 msgid "Error at copying file %1 to %2."
 msgstr "ਫਾਇਲ ਲਿਖਣ ਲਈ ਗਲਤੀ"
 
-#: app/Synchronizer/synchronizer.cpp:1399
+#: app/Synchronizer/synchronizer.cpp:1398
 #, fuzzy, kde-format
 #| msgid "Error saving file %1"
 msgid "Error at deleting file %1."
 msgstr "%1 ਫਾਇਲ ਸੰਭਾਲਣ ਦੌਰਾਨ ਗਲਤੀ"
 
-#: app/Synchronizer/synchronizer.cpp:1565
+#: app/Synchronizer/synchronizer.cpp:1564
 #, kde-format
 msgid "Krusader::Synchronizer"
 msgstr ""
 
-#: app/Synchronizer/synchronizer.cpp:1565
+#: app/Synchronizer/synchronizer.cpp:1564
 #, kde-format
 msgid "Feeding the URLs to KGet"
 msgstr ""
@@ -9398,7 +9398,7 @@ msgstr ""
 
 #: app/useraction_examples.xml:8 app/useraction_examples.xml:16
 #: app/useraction_examples.xml:25 app/useraction_examples.xml:41
-#: app/useraction_examples.xml:47
+#: app/useraction_examples.xml:47 app/useraction_examples.xml:52
 #, kde-format
 msgid "Samples"
 msgstr ""
@@ -9447,66 +9447,71 @@ msgstr ""
 
 #: app/useraction_examples.xml:46
 #, kde-format
+msgid "Copy file path of current item"
+msgstr ""
+
+#: app/useraction_examples.xml:51
+#, kde-format
 msgid "Copy file path(s) of selected item(s)"
 msgstr ""
 
-#: app/useraction_examples.xml:51 app/useraction_examples.xml:52
+#: app/useraction_examples.xml:56 app/useraction_examples.xml:57
 #, kde-format
 msgid "Sort by Name"
 msgstr ""
 
-#: app/useraction_examples.xml:55
+#: app/useraction_examples.xml:60
 #, kde-format
 msgid "Sorts the active panel by Name"
 msgstr ""
 
-#: app/useraction_examples.xml:60 app/useraction_examples.xml:61
+#: app/useraction_examples.xml:65 app/useraction_examples.xml:66
 #, fuzzy, kde-format
 #| msgid "Extension:"
 msgid "Sort by Extension"
 msgstr "ਇਕਸਟੈਨਸ਼ਨ:"
 
-#: app/useraction_examples.xml:64
+#: app/useraction_examples.xml:69
 #, kde-format
 msgid "Sorts the active panel by Extension"
 msgstr ""
 
-#: app/useraction_examples.xml:69 app/useraction_examples.xml:70
+#: app/useraction_examples.xml:74 app/useraction_examples.xml:75
 #, fuzzy, kde-format
 msgid "Sort by Size"
 msgstr "ਕੁੱਲ ਸਾਈਜ਼:"
 
-#: app/useraction_examples.xml:73
+#: app/useraction_examples.xml:78
 #, kde-format
 msgid "Sorts the active panel by Size"
 msgstr ""
 
-#: app/useraction_examples.xml:78 app/useraction_examples.xml:79
+#: app/useraction_examples.xml:83 app/useraction_examples.xml:84
 #, fuzzy, kde-format
 msgid "Sort by Modified"
 msgstr "ਸੋਧਿਆ"
 
-#: app/useraction_examples.xml:82
+#: app/useraction_examples.xml:87
 #, kde-format
 msgid "Sorts the active panel by Modified"
 msgstr ""
 
-#: app/useraction_examples.xml:87
+#: app/useraction_examples.xml:92
 #, kde-format
 msgid "Backup current"
 msgstr ""
 
-#: app/useraction_examples.xml:88
+#: app/useraction_examples.xml:93
 #, kde-format
 msgid "Backup current file in current folder"
 msgstr ""
 
-#: app/useraction_examples.xml:90
+#: app/useraction_examples.xml:95
 #, kde-format
 msgid "System"
 msgstr ""
 
-#: app/useraction_examples.xml:91
+#: app/useraction_examples.xml:96
 #, kde-format
 msgid ""
 "Backs current file up in current folder and asks the user for a new "

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-12 01:44+0000\n"
+"POT-Creation-Date: 2024-08-11 01:51+0000\n"
 "PO-Revision-Date: 2022-11-28 15:16+0000\n"
 "Last-Translator: Bruno Queiros <brunomiguelqueiros@sapo.pt>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
@@ -4909,9 +4909,9 @@ msgstr ""
 "usado este tema como alternativa. Se o tema de contingência não tiver o "
 "ícone, será usado o Brisa ou o Oxygen, caso algum destes esteja presente."
 
-#: app/Konfigurator/kgstartup.cpp:83 app/useraction_examples.xml:54
-#: app/useraction_examples.xml:63 app/useraction_examples.xml:72
-#: app/useraction_examples.xml:81
+#: app/Konfigurator/kgstartup.cpp:83 app/useraction_examples.xml:59
+#: app/useraction_examples.xml:68 app/useraction_examples.xml:77
+#: app/useraction_examples.xml:86
 #, kde-format
 msgid "User Interface"
 msgstr "Interface do Utilizador"
@@ -5570,7 +5570,7 @@ msgstr[0] "A enviar o ficheiro: %2"
 msgstr[1] "A enviar os ficheiros: %2"
 
 #: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:416
-#: app/krslots.cpp:489 app/Synchronizer/synchronizer.cpp:1610
+#: app/krslots.cpp:489 app/Synchronizer/synchronizer.cpp:1609
 #, kde-format
 msgid "Error executing %1."
 msgstr "Erro ao executar o %1."
@@ -8430,8 +8430,8 @@ msgstr ""
 "continuar a reunião?"
 
 #: app/Splitter/combiner.cpp:189 app/Splitter/splitter.cpp:177
-#: app/Synchronizer/synchronizer.cpp:1330
-#: app/Synchronizer/synchronizer.cpp:1343
+#: app/Synchronizer/synchronizer.cpp:1329
+#: app/Synchronizer/synchronizer.cpp:1342
 #, kde-format
 msgid "File Already Exists"
 msgstr "O Ficheiro Já Existe"
@@ -8680,19 +8680,19 @@ msgid "&Close"
 msgstr "Fe&char"
 
 #: app/Synchronizer/synchronizedialog.cpp:208
-#: app/Synchronizer/synchronizer.cpp:1518
-#: app/Synchronizer/synchronizer.cpp:1531
+#: app/Synchronizer/synchronizer.cpp:1517
+#: app/Synchronizer/synchronizer.cpp:1530
 #, kde-format
 msgid "Pause"
 msgstr "Pausa"
 
 #: app/Synchronizer/synchronizedialog.cpp:216
-#: app/Synchronizer/synchronizer.cpp:1533
+#: app/Synchronizer/synchronizer.cpp:1532
 #, kde-format
 msgid "Resume"
 msgstr "Continuar"
 
-#: app/Synchronizer/synchronizer.cpp:171 app/Synchronizer/synchronizer.cpp:859
+#: app/Synchronizer/synchronizer.cpp:171 app/Synchronizer/synchronizer.cpp:858
 #, kde-format
 msgid "Number of files: %1"
 msgstr "Número de ficheiros: %1"
@@ -8702,23 +8702,23 @@ msgstr "Número de ficheiros: %1"
 msgid "Number of compared folders: %1"
 msgstr "Número de pastas comparadas: %1"
 
-#: app/Synchronizer/synchronizer.cpp:1389
-#: app/Synchronizer/synchronizer.cpp:1394
+#: app/Synchronizer/synchronizer.cpp:1388
+#: app/Synchronizer/synchronizer.cpp:1393
 #, kde-format
 msgid "Error at copying file %1 to %2."
 msgstr "Erro ao copiar o ficheiro %1 para %2."
 
-#: app/Synchronizer/synchronizer.cpp:1399
+#: app/Synchronizer/synchronizer.cpp:1398
 #, kde-format
 msgid "Error at deleting file %1."
 msgstr "Erro ao apagar o ficheiro %1."
 
-#: app/Synchronizer/synchronizer.cpp:1565
+#: app/Synchronizer/synchronizer.cpp:1564
 #, kde-format
 msgid "Krusader::Synchronizer"
 msgstr "Krusader::Sincronizador"
 
-#: app/Synchronizer/synchronizer.cpp:1565
+#: app/Synchronizer/synchronizer.cpp:1564
 #, kde-format
 msgid "Feeding the URLs to KGet"
 msgstr "A passar os URL's ao KGet"
@@ -9757,7 +9757,7 @@ msgstr "Define a proporção entre os dois painéis como sendo 50/50"
 
 #: app/useraction_examples.xml:8 app/useraction_examples.xml:16
 #: app/useraction_examples.xml:25 app/useraction_examples.xml:41
-#: app/useraction_examples.xml:47
+#: app/useraction_examples.xml:47 app/useraction_examples.xml:52
 #, kde-format
 msgid "Samples"
 msgstr "Amostras"
@@ -9803,66 +9803,72 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Copiar a localização do ficheiro do item actual (escapando os espaços)"
 
 #: app/useraction_examples.xml:46
+#, fuzzy, kde-format
+#| msgid "Copy file path of current item (escaping spaces)"
+msgid "Copy file path of current item"
+msgstr "Copiar a localização do ficheiro do item actual (escapando os espaços)"
+
+#: app/useraction_examples.xml:51
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
 msgstr "Copiar as localizações dos ficheiros dos itens seleccionados"
 
-#: app/useraction_examples.xml:51 app/useraction_examples.xml:52
+#: app/useraction_examples.xml:56 app/useraction_examples.xml:57
 #, kde-format
 msgid "Sort by Name"
 msgstr "Ordenar pelo Nome"
 
-#: app/useraction_examples.xml:55
+#: app/useraction_examples.xml:60
 #, kde-format
 msgid "Sorts the active panel by Name"
 msgstr "Ordena o painel activo pelo Nome"
 
-#: app/useraction_examples.xml:60 app/useraction_examples.xml:61
+#: app/useraction_examples.xml:65 app/useraction_examples.xml:66
 #, kde-format
 msgid "Sort by Extension"
 msgstr "Ordenar pela Extensão"
 
-#: app/useraction_examples.xml:64
+#: app/useraction_examples.xml:69
 #, kde-format
 msgid "Sorts the active panel by Extension"
 msgstr "Ordena o painel activo pela Extensão"
 
-#: app/useraction_examples.xml:69 app/useraction_examples.xml:70
+#: app/useraction_examples.xml:74 app/useraction_examples.xml:75
 #, kde-format
 msgid "Sort by Size"
 msgstr "Ordenar pelo Tamanho"
 
-#: app/useraction_examples.xml:73
+#: app/useraction_examples.xml:78
 #, kde-format
 msgid "Sorts the active panel by Size"
 msgstr "Ordena o painel activo pelo Tamanho"
 
-#: app/useraction_examples.xml:78 app/useraction_examples.xml:79
+#: app/useraction_examples.xml:83 app/useraction_examples.xml:84
 #, kde-format
 msgid "Sort by Modified"
 msgstr "Ordenar pela Modificação"
 
-#: app/useraction_examples.xml:82
+#: app/useraction_examples.xml:87
 #, kde-format
 msgid "Sorts the active panel by Modified"
 msgstr "Ordena o painel activo pela data de Modificação"
 
-#: app/useraction_examples.xml:87
+#: app/useraction_examples.xml:92
 #, kde-format
 msgid "Backup current"
 msgstr "Gravar uma cópia de segurança actual"
 
-#: app/useraction_examples.xml:88
+#: app/useraction_examples.xml:93
 #, kde-format
 msgid "Backup current file in current folder"
 msgstr "Criar uma cópia de segurança na pasta actual"
 
-#: app/useraction_examples.xml:90
+#: app/useraction_examples.xml:95
 #, kde-format
 msgid "System"
 msgstr "Sistema"
 
-#: app/useraction_examples.xml:91
+#: app/useraction_examples.xml:96
 #, kde-format
 msgid ""
 "Backs current file up in current folder and asks the user for a new "

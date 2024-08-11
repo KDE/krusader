@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-12 01:44+0000\n"
+"POT-Creation-Date: 2024-08-11 01:51+0000\n"
 "PO-Revision-Date: 2024-06-18 16:04+0200\n"
 "Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -4800,9 +4800,9 @@ msgid ""
 "will be used if any of these are present."
 msgstr ""
 
-#: app/Konfigurator/kgstartup.cpp:83 app/useraction_examples.xml:54
-#: app/useraction_examples.xml:63 app/useraction_examples.xml:72
-#: app/useraction_examples.xml:81
+#: app/Konfigurator/kgstartup.cpp:83 app/useraction_examples.xml:59
+#: app/useraction_examples.xml:68 app/useraction_examples.xml:77
+#: app/useraction_examples.xml:86
 #, kde-format
 msgid "User Interface"
 msgstr "Uživatelské rozhraní"
@@ -5460,7 +5460,7 @@ msgstr[1] "Posílám soubory: %2"
 msgstr[2] "Posílám soubory: %2"
 
 #: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:416
-#: app/krslots.cpp:489 app/Synchronizer/synchronizer.cpp:1610
+#: app/krslots.cpp:489 app/Synchronizer/synchronizer.cpp:1609
 #, kde-format
 msgid "Error executing %1."
 msgstr "Chyba při spouštění %1."
@@ -8308,8 +8308,8 @@ msgstr ""
 "Pokračovat ve slučování?"
 
 #: app/Splitter/combiner.cpp:189 app/Splitter/splitter.cpp:177
-#: app/Synchronizer/synchronizer.cpp:1330
-#: app/Synchronizer/synchronizer.cpp:1343
+#: app/Synchronizer/synchronizer.cpp:1329
+#: app/Synchronizer/synchronizer.cpp:1342
 #, kde-format
 msgid "File Already Exists"
 msgstr "Soubor již existuje"
@@ -8562,19 +8562,19 @@ msgid "&Close"
 msgstr "&Zavřít"
 
 #: app/Synchronizer/synchronizedialog.cpp:208
-#: app/Synchronizer/synchronizer.cpp:1518
-#: app/Synchronizer/synchronizer.cpp:1531
+#: app/Synchronizer/synchronizer.cpp:1517
+#: app/Synchronizer/synchronizer.cpp:1530
 #, kde-format
 msgid "Pause"
 msgstr "Pozastavit"
 
 #: app/Synchronizer/synchronizedialog.cpp:216
-#: app/Synchronizer/synchronizer.cpp:1533
+#: app/Synchronizer/synchronizer.cpp:1532
 #, kde-format
 msgid "Resume"
 msgstr "Pokračovat"
 
-#: app/Synchronizer/synchronizer.cpp:171 app/Synchronizer/synchronizer.cpp:859
+#: app/Synchronizer/synchronizer.cpp:171 app/Synchronizer/synchronizer.cpp:858
 #, kde-format
 msgid "Number of files: %1"
 msgstr "Počet souborů: %1"
@@ -8584,23 +8584,23 @@ msgstr "Počet souborů: %1"
 msgid "Number of compared folders: %1"
 msgstr "Počet porovnaných složek: %1"
 
-#: app/Synchronizer/synchronizer.cpp:1389
-#: app/Synchronizer/synchronizer.cpp:1394
+#: app/Synchronizer/synchronizer.cpp:1388
+#: app/Synchronizer/synchronizer.cpp:1393
 #, kde-format
 msgid "Error at copying file %1 to %2."
 msgstr "Chyba při kopírování souboru %1 do %2."
 
-#: app/Synchronizer/synchronizer.cpp:1399
+#: app/Synchronizer/synchronizer.cpp:1398
 #, kde-format
 msgid "Error at deleting file %1."
 msgstr "Chyba při mazání souboru %1."
 
-#: app/Synchronizer/synchronizer.cpp:1565
+#: app/Synchronizer/synchronizer.cpp:1564
 #, kde-format
 msgid "Krusader::Synchronizer"
 msgstr "Krusader::Synchronizer"
 
-#: app/Synchronizer/synchronizer.cpp:1565
+#: app/Synchronizer/synchronizer.cpp:1564
 #, kde-format
 msgid "Feeding the URLs to KGet"
 msgstr "Předávání adres URL programu KGet"
@@ -9621,7 +9621,7 @@ msgstr "Nastaví poměr velikosti panelů 50/50"
 
 #: app/useraction_examples.xml:8 app/useraction_examples.xml:16
 #: app/useraction_examples.xml:25 app/useraction_examples.xml:41
-#: app/useraction_examples.xml:47
+#: app/useraction_examples.xml:47 app/useraction_examples.xml:52
 #, kde-format
 msgid "Samples"
 msgstr "Ukázky"
@@ -9668,66 +9668,72 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr ""
 
 #: app/useraction_examples.xml:46
+#, fuzzy, kde-format
+#| msgid "Always show current item"
+msgid "Copy file path of current item"
+msgstr "Vždy zobrazit aktuální položku"
+
+#: app/useraction_examples.xml:51
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
 msgstr ""
 
-#: app/useraction_examples.xml:51 app/useraction_examples.xml:52
+#: app/useraction_examples.xml:56 app/useraction_examples.xml:57
 #, kde-format
 msgid "Sort by Name"
 msgstr "Seřadit podle názvu"
 
-#: app/useraction_examples.xml:55
+#: app/useraction_examples.xml:60
 #, kde-format
 msgid "Sorts the active panel by Name"
 msgstr "Seřadí položky aktivního panelu podle názvu"
 
-#: app/useraction_examples.xml:60 app/useraction_examples.xml:61
+#: app/useraction_examples.xml:65 app/useraction_examples.xml:66
 #, kde-format
 msgid "Sort by Extension"
 msgstr "Seřadí položky aktivního panelu podle přípony"
 
-#: app/useraction_examples.xml:64
+#: app/useraction_examples.xml:69
 #, kde-format
 msgid "Sorts the active panel by Extension"
 msgstr "Seřadí aktivní panel podle přípony"
 
-#: app/useraction_examples.xml:69 app/useraction_examples.xml:70
+#: app/useraction_examples.xml:74 app/useraction_examples.xml:75
 #, kde-format
 msgid "Sort by Size"
 msgstr "Seřadit podle velikosti"
 
-#: app/useraction_examples.xml:73
+#: app/useraction_examples.xml:78
 #, kde-format
 msgid "Sorts the active panel by Size"
 msgstr "Seřadí aktivní panel podle velikosti"
 
-#: app/useraction_examples.xml:78 app/useraction_examples.xml:79
+#: app/useraction_examples.xml:83 app/useraction_examples.xml:84
 #, kde-format
 msgid "Sort by Modified"
 msgstr "Seřadit podle poslední změny"
 
-#: app/useraction_examples.xml:82
+#: app/useraction_examples.xml:87
 #, kde-format
 msgid "Sorts the active panel by Modified"
 msgstr "Seřadí aktivní panel podle poslední změny"
 
-#: app/useraction_examples.xml:87
+#: app/useraction_examples.xml:92
 #, kde-format
 msgid "Backup current"
 msgstr "Zálohovat aktuální soubor"
 
-#: app/useraction_examples.xml:88
+#: app/useraction_examples.xml:93
 #, kde-format
 msgid "Backup current file in current folder"
 msgstr "Vybrat všechny soubory v aktuálním složku"
 
-#: app/useraction_examples.xml:90
+#: app/useraction_examples.xml:95
 #, kde-format
 msgid "System"
 msgstr "Systém"
 
-#: app/useraction_examples.xml:91
+#: app/useraction_examples.xml:96
 #, kde-format
 msgid ""
 "Backs current file up in current folder and asks the user for a new "

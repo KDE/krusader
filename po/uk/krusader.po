@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-12 01:44+0000\n"
+"POT-Creation-Date: 2024-08-11 01:51+0000\n"
 "PO-Revision-Date: 2024-05-19 09:29+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
@@ -4846,9 +4846,9 @@ msgstr ""
 "темі, буде використано піктограму з Breeze або Oxygen, якщо якусь із цих тем "
 "встановлено."
 
-#: app/Konfigurator/kgstartup.cpp:83 app/useraction_examples.xml:54
-#: app/useraction_examples.xml:63 app/useraction_examples.xml:72
-#: app/useraction_examples.xml:81
+#: app/Konfigurator/kgstartup.cpp:83 app/useraction_examples.xml:59
+#: app/useraction_examples.xml:68 app/useraction_examples.xml:77
+#: app/useraction_examples.xml:86
 #, kde-format
 msgid "User Interface"
 msgstr "Інтерфейс користувача"
@@ -5507,7 +5507,7 @@ msgstr[2] "Надсилання файлів: %2"
 msgstr[3] "Надсилання файла: %2"
 
 #: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:416
-#: app/krslots.cpp:489 app/Synchronizer/synchronizer.cpp:1610
+#: app/krslots.cpp:489 app/Synchronizer/synchronizer.cpp:1609
 #, kde-format
 msgid "Error executing %1."
 msgstr "Помилка під час виконання %1."
@@ -8385,8 +8385,8 @@ msgstr ""
 "Без чинного файла CRC перевірка неможлива. Продовжити об'єднання?"
 
 #: app/Splitter/combiner.cpp:189 app/Splitter/splitter.cpp:177
-#: app/Synchronizer/synchronizer.cpp:1330
-#: app/Synchronizer/synchronizer.cpp:1343
+#: app/Synchronizer/synchronizer.cpp:1329
+#: app/Synchronizer/synchronizer.cpp:1342
 #, kde-format
 msgid "File Already Exists"
 msgstr "Файл вже існує"
@@ -8644,19 +8644,19 @@ msgid "&Close"
 msgstr "&Закрити"
 
 #: app/Synchronizer/synchronizedialog.cpp:208
-#: app/Synchronizer/synchronizer.cpp:1518
-#: app/Synchronizer/synchronizer.cpp:1531
+#: app/Synchronizer/synchronizer.cpp:1517
+#: app/Synchronizer/synchronizer.cpp:1530
 #, kde-format
 msgid "Pause"
 msgstr "Пауза"
 
 #: app/Synchronizer/synchronizedialog.cpp:216
-#: app/Synchronizer/synchronizer.cpp:1533
+#: app/Synchronizer/synchronizer.cpp:1532
 #, kde-format
 msgid "Resume"
 msgstr "Продовжити"
 
-#: app/Synchronizer/synchronizer.cpp:171 app/Synchronizer/synchronizer.cpp:859
+#: app/Synchronizer/synchronizer.cpp:171 app/Synchronizer/synchronizer.cpp:858
 #, kde-format
 msgid "Number of files: %1"
 msgstr "Кількість файлів: %1"
@@ -8666,23 +8666,23 @@ msgstr "Кількість файлів: %1"
 msgid "Number of compared folders: %1"
 msgstr "Кількість порівняних тек: %1"
 
-#: app/Synchronizer/synchronizer.cpp:1389
-#: app/Synchronizer/synchronizer.cpp:1394
+#: app/Synchronizer/synchronizer.cpp:1388
+#: app/Synchronizer/synchronizer.cpp:1393
 #, kde-format
 msgid "Error at copying file %1 to %2."
 msgstr "Помилка під час копіювання файла %1 до %2."
 
-#: app/Synchronizer/synchronizer.cpp:1399
+#: app/Synchronizer/synchronizer.cpp:1398
 #, kde-format
 msgid "Error at deleting file %1."
 msgstr "Помилка під час вилучення файла %1."
 
-#: app/Synchronizer/synchronizer.cpp:1565
+#: app/Synchronizer/synchronizer.cpp:1564
 #, kde-format
 msgid "Krusader::Synchronizer"
 msgstr "Krusader::Синхронізатор"
 
-#: app/Synchronizer/synchronizer.cpp:1565
+#: app/Synchronizer/synchronizer.cpp:1564
 #, kde-format
 msgid "Feeding the URLs to KGet"
 msgstr "Передавання адрес до Kget"
@@ -9715,7 +9715,7 @@ msgstr "Вказати відношення розмірів панелей у �
 
 #: app/useraction_examples.xml:8 app/useraction_examples.xml:16
 #: app/useraction_examples.xml:25 app/useraction_examples.xml:41
-#: app/useraction_examples.xml:47
+#: app/useraction_examples.xml:47 app/useraction_examples.xml:52
 #, kde-format
 msgid "Samples"
 msgstr "Зразки"
@@ -9761,66 +9761,72 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Копіювати шлях до файла поточного запису (з екрануванням пробілів)"
 
 #: app/useraction_examples.xml:46
+#, fuzzy, kde-format
+#| msgid "Copy file path of current item (escaping spaces)"
+msgid "Copy file path of current item"
+msgstr "Копіювати шлях до файла поточного запису (з екрануванням пробілів)"
+
+#: app/useraction_examples.xml:51
 #, kde-format
 msgid "Copy file path(s) of selected item(s)"
 msgstr "Копіювати шляхи позначених пунктів"
 
-#: app/useraction_examples.xml:51 app/useraction_examples.xml:52
+#: app/useraction_examples.xml:56 app/useraction_examples.xml:57
 #, kde-format
 msgid "Sort by Name"
 msgstr "Упорядкувати за назвою"
 
-#: app/useraction_examples.xml:55
+#: app/useraction_examples.xml:60
 #, kde-format
 msgid "Sorts the active panel by Name"
 msgstr "Упорядкувати активну панель за назвою"
 
-#: app/useraction_examples.xml:60 app/useraction_examples.xml:61
+#: app/useraction_examples.xml:65 app/useraction_examples.xml:66
 #, kde-format
 msgid "Sort by Extension"
 msgstr "Упорядкувати за суфіксом"
 
-#: app/useraction_examples.xml:64
+#: app/useraction_examples.xml:69
 #, kde-format
 msgid "Sorts the active panel by Extension"
 msgstr "Упорядкувати активну панель за суфіксом назви"
 
-#: app/useraction_examples.xml:69 app/useraction_examples.xml:70
+#: app/useraction_examples.xml:74 app/useraction_examples.xml:75
 #, kde-format
 msgid "Sort by Size"
 msgstr "Упорядкувати за розміром"
 
-#: app/useraction_examples.xml:73
+#: app/useraction_examples.xml:78
 #, kde-format
 msgid "Sorts the active panel by Size"
 msgstr "Упорядкувати активну панель за розміром"
 
-#: app/useraction_examples.xml:78 app/useraction_examples.xml:79
+#: app/useraction_examples.xml:83 app/useraction_examples.xml:84
 #, kde-format
 msgid "Sort by Modified"
 msgstr "Упорядкувати за часом зміни"
 
-#: app/useraction_examples.xml:82
+#: app/useraction_examples.xml:87
 #, kde-format
 msgid "Sorts the active panel by Modified"
 msgstr "Упорядкувати активну панель за часом зміни"
 
-#: app/useraction_examples.xml:87
+#: app/useraction_examples.xml:92
 #, kde-format
 msgid "Backup current"
 msgstr "Створити резервну копію"
 
-#: app/useraction_examples.xml:88
+#: app/useraction_examples.xml:93
 #, kde-format
 msgid "Backup current file in current folder"
 msgstr "Створити резервну копію поточного файла у поточній теці"
 
-#: app/useraction_examples.xml:90
+#: app/useraction_examples.xml:95
 #, kde-format
 msgid "System"
 msgstr "Система"
 
-#: app/useraction_examples.xml:91
+#: app/useraction_examples.xml:96
 #, kde-format
 msgid ""
 "Backs current file up in current folder and asks the user for a new "
