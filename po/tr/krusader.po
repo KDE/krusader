@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-11 01:51+0000\n"
-"PO-Revision-Date: 2024-05-19 23:41+0300\n"
+"PO-Revision-Date: 2024-08-11 23:07+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.07.70\n"
+"X-Generator: Lokalize 24.11.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2243,17 +2243,17 @@ msgstr ""
 "anlamına gelir) ve dizgi aramadan veriyolu sembolüyle dışlanır. </p><p>Dizgi "
 "bir yatık çizgi ile bitiyorsa (<code>*kalıp*/</code>) dizginin klasörleri "
 "özyineli olarak aramayla ilgili olduğu anlaşılır.<ul><li><code>dizgi</code> "
-"- adı <code>dizgi</code> olan dosyaların/klasörlerin aranması anlamına "
+"— adı <code>dizgi</code> olan dosyaların/klasörlerin aranması anlamına "
 "gelir, özyineli arama <code>dizginin</code> değerinden bağımsız olarak tüm "
-"alt klasörler üzerinde çalışır.</li><li><code>dizgi</code> - tüm dosyaları/"
+"alt klasörler üzerinde çalışır.</li><li><code>dizgi</code> — tüm dosyaları/"
 "klasörleri arama anlamına gelir; ancak özyineli arama adı <code>dizgi</code> "
 "olan klasörlerin üstünden geçer/dışlar.</li></ul></p><p>Boşluk içeren adlar "
 "için tırnak imi kullanılabilir. <code>\"Program&nbsp;Files\"</code> süzgeci "
 "adı <code>\"Program&nbsp;Files\"</code> olan dosyaları/klasörleri arar.</"
 "p><p>Örnekler:</p><ul><li><code>*.o</code></li><li><code>*.h *.c??</code></"
 "li><li><code>*.cpp *.h | *.moc.cpp</code></li><li><code>* | .svn/ .git/</"
-"code></li></ul><p><b>Not</b>: Arama ifadesi '<code>text</code>,' "
-"'<code>*text*</code>' ile eşittir.</p>"
+"code></li></ul><p><b>Not</b>: Arama ifadesi “<code>text</code>,” "
+"“<code>*text*</code>” ile eşittir.</p>"
 
 #: app/Filter/generalfilter.cpp:149
 #, kde-format
@@ -9664,10 +9664,9 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Geçerli Öge Dosya Yolunu Kopyala (Boşlukları Kaçırarak)"
 
 #: app/useraction_examples.xml:46
-#, fuzzy, kde-format
-#| msgid "Copy file path of current item (escaping spaces)"
+#, kde-format
 msgid "Copy file path of current item"
-msgstr "Geçerli Öge Dosya Yolunu Kopyala (Boşlukları Kaçırarak)"
+msgstr "Geçerli Ögenin Dosya Yolunu Kopyala"
 
 #: app/useraction_examples.xml:51
 #, kde-format
