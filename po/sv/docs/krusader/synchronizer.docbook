@@ -313,11 +313,21 @@
 > <listitem
 > <para
 >De filer som anses vara olika kommer att kopieras till vänster. Använd funktionen med försiktighet!</para
+> <itemizedlist
+> <listitem
+> <para
+>Observera att det finns en funktion för att undvika dataförluster: om datum tas hänsyn till (eftersom <guilabel
+>Ignorera datum</guilabel
+> är inaktiverat), då är den normala åtgärden att <emphasis
+>inte skriva över en fil med en äldre version av den</emphasis
+>. Användaren kan fortfarande skriva över genom att högerklicka och välja <guilabel
+>Kopiera från höger till vänster</guilabel
+>).</para
 > </listitem
 > </itemizedlist
->Funktionen är användbar om datuminformationen inte är pålitlig, eller för att synkronisera den vänstra katalogen med innehållet i en filserver (som en nerladdning).Alternativt, är den användbar för att göra en säkerhetskopia från den högra katalogen till den vänstra. Observera: Använd <emphasis
->inte</emphasis
-> alternativet för att synkronisera en skrivbordsdator med en bärbar dator (t.ex. kommer filer som bara finns på vänster sida att tas bort).</para>
+> </listitem
+> </itemizedlist
+>Funktionen är användbar om datuminformationen inte är pålitlig, eller för att synkronisera den vänstra katalogen med innehållet i en filserver (som en nerladdning). Alternativt, är den användbar för att göra en säkerhetskopia från den högra katalogen till den vänstra. Observera: Använd INTE alternativet för att synkronisera en skrivbordsdator med en bärbar dator (t.ex. kommer filer som bara finns på vänster sida att tas bort).</para>
           </listitem>
           <listitem>
             <para
