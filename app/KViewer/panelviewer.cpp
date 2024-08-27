@@ -143,15 +143,8 @@ KParts::ReadOnlyPart *PanelViewer::getHexPart()
 
     if (KConfigGroup(krConfig, "General").readEntry("UseOktetaViewer", _UseOktetaViewer)) {
         if (mimes->find("oktetapart") == mimes->end()) {
-            KPluginFactory *factory = nullptr;
-            // Okteta >= 0.26 provides a desktop file, prefer that as the binary changes name
-            KService::Ptr service = KService::serviceByDesktopName("oktetapart");
-            if (service) {
-                factory = KPluginFactory::loadFactory(service.data()->name()).plugin;
-            } else {
-                // fallback to search for desktopfile-less old variant
-                factory = KPluginFactory::loadFactory(QStringLiteral("oktetapart")).plugin;
-            }
+            const KPluginMetaData metaData(QStringLiteral("kf6/parts/oktetapart"));
+            KPluginFactory *factory = KPluginFactory::loadFactory(metaData).plugin;
             if (factory) {
                 if ((part = factory->create<KParts::ReadOnlyPart>(this, this)))
                     mimes->insert("oktetapart", part);
