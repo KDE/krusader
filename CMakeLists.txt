@@ -94,8 +94,6 @@ endif()
 add_definitions(-DKDESU_PATH="${KDESU_PATH}")
 message(STATUS "kdesu path has been hard-coded: ${KDESU_PATH}")
 
-add_definitions(${QT_DEFINITIONS} ${KF5_DEFINITIONS})
-
 add_definitions(-DKRARC_ENABLED)
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 
