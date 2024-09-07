@@ -53,28 +53,6 @@ PanelContextMenu *PanelContextMenu::run(const QPoint &pos, KrPanel *panel)
     return menu;
 }
 
-/**
- * Copied from dolphin/src/dolphincontextmenu.cpp and modified to add only compress and extract submenus.
- */
-void PanelContextMenu::addCompressAndExtractPluginActions()
-{
-    KFileItemListProperties props(_items);
-
-    QVector<KPluginMetaData> jsonPlugins = KPluginMetaData::findPlugins("kf5/kfileitemaction", [=](const KPluginMetaData &metaData) {
-        return metaData.pluginId() == "compressfileitemaction" || metaData.pluginId() == "extractfileitemaction";
-    });
-
-    for (const KPluginMetaData &jsonMetadata : std::as_const(jsonPlugins)) {
-        KPluginFactory *pluginFactory = KPluginFactory::loadFactory(jsonMetadata.fileName()).plugin;
-
-        auto *abstractPlugin = pluginFactory->create<KAbstractFileItemActionPlugin>();
-        if (abstractPlugin) {
-            abstractPlugin->setParent(this);
-            addActions(abstractPlugin->actions(props, this));
-        }
-    }
-}
-
 PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     : QMenu(parent)
     , panel(krPanel)
@@ -199,24 +177,21 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     userAction->setText(i18n("User Actions"));
     addAction(userAction);
 
-    // --------------- compress/extract actions
-    // workaround for Bug 372999: application freezes very long time if many files are selected
-    if (_items.length() < 1000)
-        // add compress and extract plugins (if available)
-        addCompressAndExtractPluginActions();
-
     // --------------- KDE file item actions
-    // NOTE: design and usability problem here. Services disabled in kservicemenurc settings won't
-    // be added to the menu. But Krusader does not provide a way do change these settings (only
-    // Dolphin does).
-    auto *fileItemActions = new KFileItemActions(this);
-    fileItemActions->setItemListProperties(KFileItemListProperties(_items));
-    fileItemActions->setParentWidget(MAIN_VIEW);
+    // workaround for Bug 372999: application freezes very long time if many files are selected
+    if (_items.length() < 1000) {
+        // NOTE: design and usability problem here. Services disabled in kservicemenurc settings won't
+        // be added to the menu. But Krusader does not provide a way do change these settings (only
+        // Dolphin does).
+        auto *fileItemActions = new KFileItemActions(this);
+        fileItemActions->setItemListProperties(KFileItemListProperties(_items));
+        fileItemActions->setParentWidget(MAIN_VIEW);
 #if KIO_VERSION >= QT_VERSION_CHECK(5, 79, 0)
-    fileItemActions->addActionsTo(this);
+        fileItemActions->addActionsTo(this);
 #else
-    fileItemActions->addServiceActionsTo(this);
+        fileItemActions->addServiceActionsTo(this);
 #endif
+    }
 
     addSeparator();
 
