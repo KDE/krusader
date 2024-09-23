@@ -74,16 +74,16 @@ AddPlaceholderPopup::AddPlaceholderPopup(QWidget *parent)
             QAction *action;
 
             if (expander.placeholder(i)->needPanel()) {
-                action = _activeSub->addAction(i18n(expander.placeholder(i)->description().toUtf8()));
+                action = _activeSub->addAction(i18n(expander.placeholder(i)->description().toUtf8().data()));
                 action->setData(QVariant(i | ACTIVE_MASK));
-                action = _otherSub->addAction(i18n(expander.placeholder(i)->description().toUtf8()));
+                action = _otherSub->addAction(i18n(expander.placeholder(i)->description().toUtf8().data()));
                 action->setData(QVariant(i | OTHER_MASK));
-                action = _leftSub->addAction(i18n(expander.placeholder(i)->description().toUtf8()));
+                action = _leftSub->addAction(i18n(expander.placeholder(i)->description().toUtf8().data()));
                 action->setData(QVariant(i | LEFT_MASK));
-                action = _rightSub->addAction(i18n(expander.placeholder(i)->description().toUtf8()));
+                action = _rightSub->addAction(i18n(expander.placeholder(i)->description().toUtf8().data()));
                 action->setData(QVariant(i | RIGHT_MASK));
             } else {
-                action = _independentSub->addAction(i18n(expander.placeholder(i)->description().toUtf8()));
+                action = _independentSub->addAction(i18n(expander.placeholder(i)->description().toUtf8().data()));
                 action->setData(QVariant(i | INDEPENDENT_MASK));
             }
         }
@@ -252,7 +252,7 @@ ParameterText::ParameterText(const exp_parameter &parameter, QWidget *parent)
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
+    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8().data()), this));
     layout->addWidget(_lineEdit = new KLineEdit(parameter.preset(), this));
     _preset = parameter.preset();
 }
@@ -285,7 +285,7 @@ ParameterPlaceholder::ParameterPlaceholder(const exp_parameter &parameter, QWidg
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
+    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8().data()), this));
     QWidget *hboxWidget = new QWidget(this);
     layout->addWidget(hboxWidget);
     auto *hbox = new QHBoxLayout(hboxWidget);
@@ -335,7 +335,7 @@ ParameterYes::ParameterYes(const exp_parameter &parameter, QWidget *parent)
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    layout->addWidget(_checkBox = new QCheckBox(i18n(parameter.description().toUtf8()), this));
+    layout->addWidget(_checkBox = new QCheckBox(i18n(parameter.description().toUtf8().data()), this));
     _checkBox->setChecked(true);
 }
 
@@ -367,7 +367,7 @@ ParameterNo::ParameterNo(const exp_parameter &parameter, QWidget *parent)
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    layout->addWidget(_checkBox = new QCheckBox(i18n(parameter.description().toUtf8()), this));
+    layout->addWidget(_checkBox = new QCheckBox(i18n(parameter.description().toUtf8().data()), this));
     _checkBox->setChecked(false);
 }
 
@@ -399,7 +399,7 @@ ParameterFile::ParameterFile(const exp_parameter &parameter, QWidget *parent)
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
+    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8().data()), this));
 
     QWidget *hboxWidget = new QWidget(this);
     layout->addWidget(hboxWidget);
@@ -448,7 +448,7 @@ ParameterChoose::ParameterChoose(const exp_parameter &parameter, QWidget *parent
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
+    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8().data()), this));
     layout->addWidget(_combobox = new KComboBox(this));
     _combobox->addItems(parameter.preset().section(':', 1).split(';'));
 }
@@ -478,7 +478,7 @@ ParameterSelect::ParameterSelect(const exp_parameter &parameter, QWidget *parent
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
+    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8().data()), this));
     layout->addWidget(_combobox = new KComboBox(this));
     _combobox->setEditable(true);
 
@@ -515,7 +515,7 @@ ParameterGoto::ParameterGoto(const exp_parameter &parameter, QWidget *parent)
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
+    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8().data()), this));
 
     QWidget *hboxWidget = new QWidget(this);
     auto *hbox = new QHBoxLayout(hboxWidget);
@@ -578,7 +578,7 @@ ParameterSyncprofile::ParameterSyncprofile(const exp_parameter &parameter, QWidg
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
+    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8().data()), this));
     layout->addWidget(_combobox = new KComboBox(this));
 
     _combobox->addItems(ProfileManager::availableProfiles("SynchronizerProfile"));
@@ -609,7 +609,7 @@ ParameterSearch::ParameterSearch(const exp_parameter &parameter, QWidget *parent
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
+    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8().data()), this));
     layout->addWidget(_combobox = new KComboBox(this));
 
     _combobox->addItems(ProfileManager::availableProfiles("SearcherProfile"));
@@ -640,7 +640,7 @@ ParameterPanelprofile::ParameterPanelprofile(const exp_parameter &parameter, QWi
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
+    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8().data()), this));
     layout->addWidget(_combobox = new KComboBox(this));
 
     _combobox->addItems(ProfileManager::availableProfiles("Panel"));
@@ -671,7 +671,7 @@ ParameterInt::ParameterInt(const exp_parameter &parameter, QWidget *parent)
     layout->setSpacing(6);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8()), this));
+    layout->addWidget(new QLabel(i18n(parameter.description().toUtf8().data()), this));
     layout->addWidget(_spinbox = new QSpinBox(this));
     QStringList para = parameter.preset().section(':', 1).split(';');
 

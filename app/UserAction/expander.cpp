@@ -5,7 +5,6 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-
 #include "expander.h"
 
 #include "../FileSystem/filesystemprovider.h"
@@ -629,7 +628,7 @@ TagString exp_Copy::expFunc(const KrPanel *, const TagStringList &parameter, con
     // or transform(...) ?
     const QUrl dest = QUrl::fromUserInput(parameter[1].string(), QString(), QUrl::AssumeLocalFile);
 
-    if (!dest.isValid() || find_if(sourceURLs.constBegin(), sourceURLs.constEnd(), not1(mem_fun_ref(&QUrl::isValid))) != sourceURLs.constEnd()) {
+    if (!dest.isValid() || find_if(sourceURLs.constBegin(), sourceURLs.constEnd(), std::not_fn(std::bind(std::mem_fn(&QUrl::isValid), std::placeholders::_1))) != sourceURLs.constEnd()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: invalid URLs in %_Copy(\"src\", \"dest\")%")));
         return QString();
     }
@@ -668,7 +667,7 @@ TagString exp_Move::expFunc(const KrPanel *, const TagStringList &parameter, con
     // or transform(...) ?
     QUrl dest = QUrl::fromUserInput(parameter[1].string(), QString(), QUrl::AssumeLocalFile);
 
-    if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), not1(mem_fun_ref(&QUrl::isValid))) != src.constEnd()) {
+    if (!dest.isValid() || find_if(src.constBegin(), src.constEnd(), std::not_fn(std::bind(std::mem_fn(&QUrl::isValid), std::placeholders::_1))) != src.constEnd()) {
         setError(exp, Error(Error::exp_S_FATAL, Error::exp_C_ARGUMENT, i18n("Expander: invalid URLs in %_Move(\"src\", \"dest\")%")));
         return QString();
     }

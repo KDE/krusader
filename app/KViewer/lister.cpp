@@ -13,6 +13,7 @@
 #include <QRect>
 #include <QTemporaryFile>
 #include <QTextStream>
+#include <QStringConverter>
 // QtGui
 #include <QClipboard>
 #include <QFontDatabase>
@@ -42,6 +43,7 @@
 #include <KIO/JobUiDelegate>
 #include <KIO/JobUiDelegateFactory>
 #include <KIO/TransferJob>
+#include <KIO/JobTracker>
 #include <KJobTrackerInterface>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -195,8 +197,9 @@ qint64 ListerTextArea::textToFilePositionOnScreen(const int x, const int y, bool
     const int maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
     QByteArray chunk = _lister->cacheChunk(rowStart, maxBytes);
 
-    QTextStream stream(&chunk);
-    stream.setCodec(_lister->codec());
+    QString s = _lister->codec()->toUnicode(chunk);
+    QTextStream stream(&s);
+
     stream.read(x);
     return rowStart + stream.pos();
 }
@@ -235,9 +238,10 @@ void ListerTextArea::fileToTextPositionOnScreen(const qint64 p, const bool isfir
             const qint64 previousRow = _rowStarts[y - 1];
             const QByteArray chunk = _lister->cacheChunk(previousRow, maxBytes);
             QByteArray cachedBuffer = chunk.left(static_cast<int>(p - previousRow));
+            QTextCodec *codec = _lister->codec();
+            QString decoded = codec->toUnicode(cachedBuffer);
+            QTextStream stream(&decoded);
 
-            QTextStream stream(&cachedBuffer);
-            stream.setCodec(_lister->codec());
             stream.read(_rowContent[y - 1].length());
             if (previousRow + stream.pos() == p) {
                 y--;
@@ -262,7 +266,7 @@ void ListerTextArea::getScreenPosition(const int position, int &x, int &y)
 {
     x = position;
     y = 0;
-    for (const QString &row : qAsConst(_rowContent)) {
+    for (const QString &row : std::as_const(_rowContent)) {
         const int rowLen = row.length() + 1;
         if (x < rowLen) {
             return;
@@ -428,12 +432,12 @@ QString ListerTextArea::readSection(const qint64 p1, const qint64 p2)
         return section;
     }
 
-    qint64 pos = sel1;
+    qsizetype pos = sel1;
 
     QScopedPointer<QTextDecoder> decoder(_lister->codec()->makeDecoder());
 
     do {
-        const int maxBytes = std::min(_sizeX * _sizeY * MAX_CHAR_LENGTH, (int)(sel2 - pos));
+        const qsizetype maxBytes = std::min(_sizeX * _sizeY * MAX_CHAR_LENGTH, sel2 - pos);
         const QByteArray chunk = _lister->cacheChunk(pos, maxBytes);
         if (chunk.isEmpty())
             break;
@@ -498,7 +502,7 @@ QStringList ListerTextArea::readLines(qint64 filePos, qint64 &endPos, const int 
             continue;
         }
 
-        if ((chr[0] < 32) && (chr[0] != '\n') && (chr[0] != '\t')) {
+        if ((chr[0] < QChar(32)) && (chr[0] != '\n') && (chr[0] != '\t')) {
             chr = QChar(CONTROL_CHAR);
         }
 
@@ -1144,7 +1148,7 @@ bool ListerPane::handleCloseEvent(QEvent *e)
 }
 
 ListerBrowserExtension::ListerBrowserExtension(Lister *lister)
-    : KParts::BrowserExtension(lister)
+    : KParts::NavigationExtension(lister)
 {
     _lister = lister;
 
@@ -1184,8 +1188,7 @@ protected:
 
     void chooseEncoding(QString encodingName) override
     {
-        QString charset = KCharsets::charsets()->encodingForName(encodingName);
-        _lister->setCharacterSet(charset);
+        _lister->setCharacterSet(encodingName);
     }
 
     Lister *_lister;
@@ -1666,9 +1669,8 @@ void Lister::slotSearchMore()
 
                 if (_searchQuery.checkLine(row, !_searchIsForward)) {
                     QByteArray cachedBuffer = chunk.mid(static_cast<int>(rowStart), static_cast<int>(chunkSize - rowStart));
-
-                    QTextStream stream(&cachedBuffer);
-                    stream.setCodec(_codec);
+                    QString decoded = _codec->toUnicode(cachedBuffer);
+                    QTextStream stream(&decoded);
 
                     stream.read(_searchQuery.matchIndex());
                     foundAnchor = searchPos + rowStart + stream.pos();
@@ -1961,6 +1963,7 @@ void Lister::setCharacterSet(const QString &set)
     } else {
         // Should move from this with KF6 migration
         _codec = QTextCodec::codecForName(_characterSet.toUtf8());
+        Q_ASSERT(_codec != nullptr);
     }
     _textArea->redrawTextArea(true);
 }
@@ -1979,7 +1982,7 @@ void Lister::print()
     QScopedPointer<QPrintDialog> printDialog(new QPrintDialog(&printer, _textArea));
 
     if (hasSelection) {
-        printDialog->addEnabledOption(QAbstractPrintDialog::PrintSelection);
+        printDialog->setOption(QAbstractPrintDialog::PrintSelection);
     }
 
     if (!printDialog->exec()) {
@@ -1997,7 +2000,7 @@ void Lister::print()
     QPainter painter;
     painter.begin(&printer);
 
-    const QString dateString = QDate::currentDate().toString(Qt::SystemLocaleShortDate);
+    const QString dateString = QLocale().toString(QDate::currentDate(), QLocale::ShortFormat);
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     const QRect pageRect = printer.pageLayout().paintRectPixels(printer.resolution());
@@ -2061,7 +2064,7 @@ void Lister::print()
 
         painter.setFont(fixedFont);
         int yOffset = normalFontHeight + 1;
-        for (const QString &row : qAsConst(rows)) {
+        for (const QString &row : std::as_const(rows)) {
             painter.drawText(0, yOffset + fixedFontHeight, row);
             yOffset += fixedFontHeight;
         }
@@ -2095,7 +2098,7 @@ QStringList Lister::readLines(qint64 &filePos, const qint64 endPos, const int co
         }
 
         // replace unreadable characters
-        if ((chr[0] < 32) && (chr[0] != '\n') && (chr[0] != '\t')) {
+        if ((chr[0] < QChar(32)) && (chr[0] != '\n') && (chr[0] != '\t')) {
             chr = QChar(' ');
         }
 

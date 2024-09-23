@@ -16,7 +16,7 @@
 // QtWidgets
 #include <QLabel>
 #include <QStackedWidget>
-
+#include <KFileItem>
 #include <KParts/Part>
 
 #include "krviewer.h"

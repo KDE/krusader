@@ -85,7 +85,7 @@ public:
     void clear()
     {
         emit cleared();
-        for (FileItem *fileitem : qAsConst(_fileItems))
+        for (FileItem *fileitem : std::as_const(_fileItems))
             delete fileitem;
         _fileItems.clear();
         _foundText.clear();

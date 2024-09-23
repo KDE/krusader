@@ -8,16 +8,21 @@ set(KViewer_SRCS
 add_library(KViewer STATIC ${KViewer_SRCS})
 
 target_link_libraries(KViewer
-    Qt5::PrintSupport
-    KF5::Archive
-    KF5::ConfigCore
-    KF5::ConfigWidgets
-    KF5::CoreAddons
-    KF5::IconThemes
-    KF5::KIOCore
-    KF5::KIOFileWidgets
-    KF5::WindowSystem
-    KF5::Parts
-    KF5::WidgetsAddons
-    KF5::XmlGui
+    Qt6::PrintSupport
+    Qt6::Core5Compat
+    KF6::Archive
+    KF6::Codecs
+    KF6::ConfigCore
+    KF6::ConfigWidgets
+    KF6::CoreAddons
+    KF6::IconThemes
+    KF6::KIOWidgets
+    KF6::KIOCore
+    KF6::KIOFileWidgets
+    KF6::TextWidgets
+    KF6::Service
+    KF6::WindowSystem
+    KF6::Parts
+    KF6::WidgetsAddons
+    KF6::XmlGui
 )

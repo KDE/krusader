@@ -119,8 +119,8 @@ bool compareTextsAlphabetical(QString &aS1, QString &aS2, const KrViewProperties
             if (j != 0)
                 return j < 0;
         } else if (lUseLocaleAware
-                   && ((lchar1 >= 128 && ((lchar2 >= 'A' && lchar2 <= 'Z') || (lchar2 >= 'a' && lchar2 <= 'z') || lchar2 >= 128))
-                       || (lchar2 >= 128 && ((lchar1 >= 'A' && lchar1 <= 'Z') || (lchar1 >= 'a' && lchar1 <= 'z') || lchar1 >= 128)))) {
+                   && ((lchar1 >= QChar(128) && ((lchar2 >= 'A' && lchar2 <= 'Z') || (lchar2 >= 'a' && lchar2 <= 'z') || lchar2 >= QChar(128)))
+                       || (lchar2 >= QChar(128) && ((lchar1 >= 'A' && lchar1 <= 'Z') || (lchar1 >= 'a' && lchar1 <= 'z') || lchar1 >= QChar(128))))) {
             // use localeAwareCompare when a unicode character is encountered
             j = QString::localeAwareCompare(lchar1, lchar2);
             if (j != 0)

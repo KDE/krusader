@@ -601,7 +601,7 @@ bool LocateDlg::find()
         QString item = findCurrentItem->text(0);
 
         if (findOptions & KFind::RegularExpression) {
-            if (item.contains(QRegExp(findPattern, ((findOptions & KFind::CaseSensitive) != 0) ? Qt::CaseSensitive : Qt::CaseInsensitive)))
+            if (QRegExp(findPattern, ((findOptions & KFind::CaseSensitive) != 0) ? Qt::CaseSensitive : Qt::CaseInsensitive).indexIn(item) >= 0)
                 return true;
         } else {
             if (item.contains(findPattern, ((findOptions & KFind::CaseSensitive) != 0) ? Qt::CaseSensitive : Qt::CaseInsensitive))

@@ -43,7 +43,10 @@ struct SplitterGUI::PredefinedDevice {
         , capacity(other.capacity)
     {
     }
-    PredefinedDevice &operator=(const PredefinedDevice &other);
+    PredefinedDevice &operator=(const PredefinedDevice &other)
+    {
+        return *this;
+    }
 
     QString name;
     KIO::filesize_t capacity;

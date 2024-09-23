@@ -35,6 +35,9 @@
 #include <KIO/DeleteJob>
 #include <KIO/JobUiDelegate>
 #include <KIO/SkipDialog>
+#include <KIO/MkdirJob>
+#include <KIO/FileCopyJob>
+#include <KIO/WidgetsAskUserActionHandler>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KProcess>
@@ -693,8 +696,8 @@ SynchronizerFileItem *Synchronizer::addDuplicateItem(SynchronizerFileItem *paren
                                          isTemp);
 
     if (uncertain == TT_UNKNOWN) {
-        QUrl leftURL = Synchronizer::fsUrl(leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + '/' + leftName);
-        QUrl rightURL = Synchronizer::fsUrl(rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + '/' + rightName);
+        QUrl leftURL = Synchronizer::fsUrl(leftDir.isEmpty() ? (QString) (leftBaseDir + leftName): leftBaseDir + leftDir + QString('/') + leftName);
+        QUrl rightURL = Synchronizer::fsUrl(rightDir.isEmpty() ? (QString) (rightBaseDir + rightName) : rightBaseDir + rightDir + '/' + rightName);
         stack.append(new CompareContentTask(this, item, leftURL, rightURL, leftSize));
     }
 
@@ -1222,8 +1225,8 @@ void Synchronizer::slotTaskFinished(KJob *job)
     if (disableNewTasks && item == lastTask)
         disableNewTasks = false; // the blocker task finished
 
-    QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-    QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
+    QString leftDirName = item->leftDirectory().isEmpty() ? QString("") : item->leftDirectory() + '/';
+    QString rightDirName = item->rightDirectory().isEmpty() ? QString("") : item->rightDirectory() + '/';
     QUrl leftURL = Synchronizer::fsUrl(leftBaseDir + leftDirName + item->leftName());
     QUrl rightURL = Synchronizer::fsUrl(rightBaseDir + rightDirName + item->rightName());
 
@@ -1237,33 +1240,33 @@ void Synchronizer::slotTaskFinished(KJob *job)
                     timestamp.actime = time(nullptr);
                     timestamp.modtime = item->rightDate() - timeOffset;
 
-                    utime((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), &timestamp);
+                    utime((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), &timestamp);
 
                     auto newOwnerID = (uid_t)-1; // chown(2) : -1 means no change
                     if (!item->rightOwner().isEmpty()) {
-                        struct passwd *pw = getpwnam(QFile::encodeName(item->rightOwner()));
+                        struct passwd *pw = getpwnam(QFile::encodeName(item->rightOwner()).data());
                         if (pw != nullptr)
                             newOwnerID = pw->pw_uid;
                     }
                     auto newGroupID = (gid_t)-1; // chown(2) : -1 means no change
                     if (!item->rightGroup().isEmpty()) {
-                        struct group *g = getgrnam(QFile::encodeName(item->rightGroup()));
+                        struct group *g = getgrnam(QFile::encodeName(item->rightGroup()).data());
                         if (g != nullptr)
                             newGroupID = g->gr_gid;
                     }
-                    int status1 = chown((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), newOwnerID, (gid_t)-1);
-                    int status2 = chown((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), (uid_t)-1, newGroupID);
+                    int status1 = chown((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), newOwnerID, (gid_t)-1);
+                    int status2 = chown((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), (uid_t)-1, newGroupID);
                     if (status1 < 0 || status2 < 0) {
                         // synchronizer currently ignores chown errors
                     }
 
-                    chmod((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), item->rightMode() & 07777);
+                    chmod((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), item->rightMode() & 07777);
 
 #ifdef HAVE_POSIX_ACL
                     if (!item->rightACL().isNull()) {
-                        acl_t acl = acl_from_text(item->rightACL().toLatin1());
+                        acl_t acl = acl_from_text(item->rightACL().toLatin1().data());
                         if (acl && !acl_valid(acl))
-                            acl_set_file(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit(), ACL_TYPE_ACCESS, acl);
+                            acl_set_file(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data(), ACL_TYPE_ACCESS, acl);
                         if (acl)
                             acl_free(acl);
                     }
@@ -1277,33 +1280,33 @@ void Synchronizer::slotTaskFinished(KJob *job)
                     timestamp.actime = time(nullptr);
                     timestamp.modtime = item->leftDate() + timeOffset;
 
-                    utime((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), &timestamp);
+                    utime((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), &timestamp);
 
                     auto newOwnerID = (uid_t)-1; // chown(2) : -1 means no change
                     if (!item->leftOwner().isEmpty()) {
-                        struct passwd *pw = getpwnam(QFile::encodeName(item->leftOwner()));
+                        struct passwd *pw = getpwnam(QFile::encodeName(item->leftOwner()).data());
                         if (pw != nullptr)
                             newOwnerID = pw->pw_uid;
                     }
                     auto newGroupID = (gid_t)-1; // chown(2) : -1 means no change
                     if (!item->leftGroup().isEmpty()) {
-                        struct group *g = getgrnam(QFile::encodeName(item->leftGroup()));
+                        struct group *g = getgrnam(QFile::encodeName(item->leftGroup()).data());
                         if (g != nullptr)
                             newGroupID = g->gr_gid;
                     }
-                    int status1 = chown((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), newOwnerID, (uid_t)-1);
-                    int status2 = chown((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), (uid_t)-1, newGroupID);
+                    int status1 = chown((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), newOwnerID, (uid_t)-1);
+                    int status2 = chown((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), (uid_t)-1, newGroupID);
                     if (status1 < 0 || status2 < 0) {
                         // synchronizer currently ignores chown errors
                     }
 
-                    chmod((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit()), item->leftMode() & 07777);
+                    chmod((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), item->leftMode() & 07777);
 
 #ifdef HAVE_POSIX_ACL
                     if (!item->leftACL().isNull()) {
-                        acl_t acl = acl_from_text(item->leftACL().toLatin1());
+                        acl_t acl = acl_from_text(item->leftACL().toLatin1().data());
                         if (acl && !acl_valid(acl))
-                            acl_set_file(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit(), ACL_TYPE_ACCESS, acl);
+                            acl_set_file(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data(), ACL_TYPE_ACCESS, acl);
                         if (acl)
                             acl_free(acl);
                     }
@@ -1315,46 +1318,44 @@ void Synchronizer::slotTaskFinished(KJob *job)
             }
         } else {
             if (job->error() == KIO::ERR_FILE_ALREADY_EXIST && item->task() != TT_DELETE) {
-                KIO::RenameDialog_Result result;
-                QString newDest;
-
-                if (autoSkip)
+                if (autoSkip) {
                     break;
-
-                auto *ui = dynamic_cast<KIO::JobUiDelegate *>(job->uiDelegate());
-                ui->setWindow(syncDlgWidget);
-
-                if (item->task() == TT_COPY_TO_LEFT) {
-                    result = ui->askFileRename(job,
-                                               i18n("File Already Exists"),
-                                               rightURL,
-                                               leftURL,
-                                               KIO::RenameDialog_Overwrite | KIO::RenameDialog_Skip | KIO::RenameDialog_MultipleItems,
-                                               newDest,
-                                               item->rightSize(),
-                                               item->leftSize(),
-                                               QDateTime(),
-                                               QDateTime(),
-                                               QDateTime::fromTime_t(static_cast<uint>(item->rightDate())),
-                                               QDateTime::fromTime_t(static_cast<uint>(item->leftDate())));
-                } else {
-                    result = ui->askFileRename(job,
-                                               i18n("File Already Exists"),
-                                               leftURL,
-                                               rightURL,
-                                               KIO::RenameDialog_Overwrite | KIO::RenameDialog_Skip | KIO::RenameDialog_MultipleItems,
-                                               newDest,
-                                               item->leftSize(),
-                                               item->rightSize(),
-                                               QDateTime(),
-                                               QDateTime(),
-                                               QDateTime::fromTime_t(static_cast<uint>(item->leftDate())),
-                                               QDateTime::fromTime_t(static_cast<uint>(item->rightDate())));
                 }
 
-                switch (result) {
+                QUrl srcUrl, destUrl;
+                KIO::filesize_t srcSize, destSize;
+                time_t srcTime, destTime;
+                if (item->task() == TT_COPY_TO_LEFT) {
+                    srcUrl = rightURL;
+                    destUrl = leftURL;
+                    srcSize = item->rightSize();
+                    destSize = item->leftSize();
+                    srcTime = item->rightDate();
+                    destTime = item->leftDate();
+                } else {
+                    srcUrl = leftURL;
+                    destUrl = rightURL;
+                    srcSize = item->leftSize();
+                    destSize = item->rightSize();
+                    srcTime = item->leftDate();
+                    destTime = item->rightDate();
+                }
+
+                KIO::RenameDialog dialog(syncDlgWidget,
+                                         i18n("File Already Exists"),
+                                         srcUrl,
+                                         destUrl,
+                                         KIO::RenameDialog_Overwrite | KIO::RenameDialog_Skip | KIO::RenameDialog_MultipleItems,
+                                         srcSize,
+                                         destSize,
+                                         QDateTime(),
+                                         QDateTime(),
+                                         QDateTime::fromSecsSinceEpoch(static_cast<uint>(srcTime)),
+                                         QDateTime::fromSecsSinceEpoch(static_cast<uint>(destTime)));
+
+                switch (dialog.exec()) {
                 case KIO::Result_Rename:
-                    item->setDestination(newDest);
+                    item->setDestination(dialog.newDestUrl().toString());
                     executeTask(item);
                     inTaskFinished--;
                     return;
@@ -1374,6 +1375,7 @@ void Synchronizer::slotTaskFinished(KJob *job)
                 default:
                     break;
                 }
+
                 break;
             }
 
@@ -1401,12 +1403,9 @@ void Synchronizer::slotTaskFinished(KJob *job)
                     break;
                 }
 
-                auto *ui = dynamic_cast<KIO::JobUiDelegate *>(job->uiDelegate());
-                ui->setWindow(syncDlgWidget);
+                KIO::SkipDialog dialog(syncDlgWidget, KIO::SkipDialog_MultipleItems, error);
 
-                KIO::SkipDialog_Result result = ui->askSkip(job, KIO::SkipDialog_MultipleItems, error);
-
-                switch (result) {
+                switch (dialog.exec()) {
                 case KIO::Result_Cancel:
                     executeTask(item); /* simply retry */
                     inTaskFinished--;
@@ -1557,8 +1556,8 @@ void Synchronizer::synchronizeWithKGet()
             QUrl downloadURL;
             QUrl destURL;
             QString destDir;
-            QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
-            QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
+            QString leftDirName = item->leftDirectory().isEmpty() ? QString("") : item->leftDirectory() + '/';
+            QString rightDirName = item->rightDirectory().isEmpty() ? QString("") : item->rightDirectory() + '/';
 
             if (progDlg == nullptr) {
                 progDlg = new KgetProgressDialog(krMainWindow, i18n("Krusader::Synchronizer"), i18n("Feeding the URLs to KGet"), true);

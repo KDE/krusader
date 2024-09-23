@@ -17,6 +17,7 @@
 #include <KFileItem>
 #include <KFormat>
 #include <KIO/Job>
+#include <KIO/TransferJob>
 #include <KLocalizedString>
 #include <KUrlCompletion>
 #include <utility>
@@ -165,8 +166,8 @@ void KrQuery::load(const KConfigGroup &cfg)
     LOAD("ContainRegExp", containRegExp);
     LOAD("MinSize", minSize);
     LOAD("MaxSize", maxSize);
-    newerThen = QDateTime::fromString(cfg.readEntry("NewerThan", QDateTime::fromTime_t(static_cast<uint>(newerThen)).toString())).toTime_t();
-    olderThen = QDateTime::fromString(cfg.readEntry("OlderThan", QDateTime::fromTime_t(static_cast<uint>(olderThen)).toString())).toTime_t();
+    newerThen = QDateTime::fromString(cfg.readEntry("NewerThan", QDateTime::fromSecsSinceEpoch(static_cast<uint>(newerThen)).toString())).toSecsSinceEpoch();
+    olderThen = QDateTime::fromString(cfg.readEntry("OlderThan", QDateTime::fromSecsSinceEpoch(static_cast<uint>(olderThen)).toString())).toSecsSinceEpoch();
     LOAD("Owner", owner);
     LOAD("Group", group);
     LOAD("Perm", perm);
@@ -210,8 +211,8 @@ void KrQuery::save(KConfigGroup cfg)
     cfg.writeEntry("ContainRegExp", containRegExp);
     cfg.writeEntry("MinSize", minSize);
     cfg.writeEntry("MaxSize", maxSize);
-    cfg.writeEntry("NewerThan", QDateTime::fromTime_t(static_cast<uint>(newerThen)).toString());
-    cfg.writeEntry("OlderThan", QDateTime::fromTime_t(static_cast<uint>(olderThen)).toString());
+    cfg.writeEntry("NewerThan", QDateTime::fromSecsSinceEpoch(static_cast<uint>(newerThen)).toString());
+    cfg.writeEntry("OlderThan", QDateTime::fromSecsSinceEpoch(static_cast<uint>(olderThen)).toString());
     cfg.writeEntry("Owner", owner);
     cfg.writeEntry("Group", group);
     cfg.writeEntry("Perm", perm);

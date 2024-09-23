@@ -15,6 +15,8 @@
 #include <QProgressDialog>
 
 #include <KIO/Job>
+#include <KIO/TransferJob>
+#include <KIO/Global>
 
 #include "crc32.h"
 

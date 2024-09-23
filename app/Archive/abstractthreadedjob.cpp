@@ -546,7 +546,7 @@ bool AbstractJobThread::uploadTempFiles()
             QList<QUrl> urlList;
             QDir tempDir(_tempDirName);
             QStringList list = tempDir.entryList();
-            for (const QString &name : qAsConst(list)) {
+            for (const QString &name : std::as_const(list)) {
                 if (name == "." || name == "..")
                     continue;
                 QUrl url = QUrl::fromLocalFile(_tempDirName).adjusted(QUrl::StripTrailingSlash);

@@ -24,9 +24,6 @@ class Kr7zEncryptionChecker : public KProcess
 public:
     Kr7zEncryptionChecker();
 
-protected:
-    void setupChildProcess() override;
-
 public slots:
     void receivedOutput();
     bool isEncrypted();

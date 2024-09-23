@@ -32,6 +32,7 @@
 
 #include <KActionCollection>
 #include <KBookmarkManager>
+#include <KBookmarkMenu>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
@@ -69,7 +70,8 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow)
 
     // create bookmark manager
     QString filename = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + BOOKMARKS_FILE;
-    manager = KBookmarkManager::managerForFile(filename, QStringLiteral("krusader"));
+    manager = new KBookmarkManager(filename, this);
+
     connect(manager, &KBookmarkManager::changed, this, &KrBookmarkHandler::bookmarksChanged);
 
     // create the quick search bar and action
@@ -82,8 +84,11 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow)
 
     // fill a dummy menu to properly init actions (allows toolbar bookmark buttons to work properly)
     auto menu = new QMenu(mainWindow->widget());
+    bookmarksMenu = new KBookmarkMenu(manager, nullptr, menu);
+
     populate(menu);
     menu->deleteLater();
+
 }
 
 KrBookmarkHandler::~KrBookmarkHandler()
@@ -213,7 +218,7 @@ void KrBookmarkHandler::exportToFile()
     QFile file(filename);
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream stream(&file);
-        stream.setCodec("UTF-8");
+         // By default, UTF-8 is used for reading and writing in QTextStream
         stream << doc.toString();
         file.close();
     } else {
@@ -393,7 +398,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
         newMenu->setTitle(bm->text());
         QAction *menuAction = menu->addMenu(newMenu);
         QVariant v;
-        v.setValue<KrBookmark *>(bm);
+        v.setValue(bm);
         menuAction->setData(v);
 
         buildMenu(bm, newMenu, depth + 1);
@@ -527,7 +532,9 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
             menu->addAction(KrActions::actAddBookmark);
             _specialBookmarks.append(KrActions::actAddBookmark);
         }
-        QAction *bmAct = menu->addAction(Icon("bookmarks"), i18n("Manage Bookmarks"), manager, SLOT(slotEditBookmarks()));
+
+        QAction *bmAct = bookmarksMenu->editBookmarksAction();
+        menu->addAction(bmAct);
         _specialBookmarks.append(bmAct);
 
         // make sure the menu is connected to us
@@ -557,7 +564,7 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root, bool removeBookmarks)
     }
 }
 
-void KrBookmarkHandler::bookmarksChanged(const QString &, const QString &)
+void KrBookmarkHandler::bookmarksChanged(const QString &)
 {
     importFromFile();
 }
@@ -729,7 +736,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         case Qt::LeftButton:
             _middleClick = false;
             break;
-        case Qt::MidButton:
+        case Qt::MiddleButton:
             _middleClick = true;
             break;
         default:

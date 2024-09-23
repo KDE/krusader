@@ -18,7 +18,7 @@ KIsoFile::KIsoFile(KArchive *archive,
                    const QString &symlink,
                    long long pos,
                    long long size)
-    : KArchiveFile(archive, name, access, QDateTime::fromTime_t(static_cast<uint>(date)), user, group, symlink, pos, size)
+    : KArchiveFile(archive, name, access, QDateTime::fromSecsSinceEpoch(static_cast<uint>(date)), user, group, symlink, pos, size)
 {
     m_adate = adate;
     m_cdate = cdate;

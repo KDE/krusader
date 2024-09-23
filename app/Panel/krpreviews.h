@@ -9,6 +9,7 @@
 #define KRPREVIEWS_H
 
 // QtCore
+#include <QObject>
 #include <QHash>
 #include <QList>
 // QtGui

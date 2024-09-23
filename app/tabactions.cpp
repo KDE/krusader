@@ -21,16 +21,16 @@
 TabActions::TabActions(QObject *parent, KrMainWindow *mainWindow)
     : ActionsBase(parent, mainWindow)
 {
-    actNewTab = action(i18n("New Tab"), "tab-new", Qt::ALT + Qt::CTRL + Qt::SHIFT + Qt::Key_N, SLOT(newTab()), "new_tab");
+    actNewTab = action(i18n("New Tab"), "tab-new", Qt::ALT | Qt::CTRL | Qt::SHIFT | Qt::Key_N, SLOT(newTab()), "new_tab");
     actDupTab =
         action(i18n("Duplicate Current Tab"), "tab-duplicate", QKeySequence::keyBindings(QKeySequence::AddTab), this, SLOT(duplicateTab()), "duplicate tab");
     actMoveTabToOtherSide =
-        action(i18n("Move Current Tab to Other Side"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_O, SLOT(moveTabToOtherSide()), "move_tab_to_other_side");
-    actMoveTabToLeft = action(i18n("Move Current Tab to the Left"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_PageUp, SLOT(moveTabToLeft()), "move_tab_to_left");
+        action(i18n("Move Current Tab to Other Side"), nullptr, Qt::CTRL | Qt::SHIFT | Qt::Key_O, SLOT(moveTabToOtherSide()), "move_tab_to_other_side");
+    actMoveTabToLeft = action(i18n("Move Current Tab to the Left"), nullptr, Qt::CTRL | Qt::SHIFT | Qt::Key_PageUp, SLOT(moveTabToLeft()), "move_tab_to_left");
     actMoveTabToRight =
-        action(i18n("Move Current Tab to the Right"), nullptr, Qt::CTRL + Qt::SHIFT + Qt::Key_PageDown, SLOT(moveTabToRight()), "move_tab_to_right");
+        action(i18n("Move Current Tab to the Right"), nullptr, Qt::CTRL | Qt::SHIFT | Qt::Key_PageDown, SLOT(moveTabToRight()), "move_tab_to_right");
     actCloseTab = action(i18n("Close Current Tab"), "tab-close", KStandardShortcut::close(), this, SLOT(closeTab()), "close tab");
-    actUndoCloseTab = action(i18n("Undo Close Tab"), "edit-undo", Qt::CTRL + Qt::SHIFT + Qt::Key_T, this, SLOT(undoCloseTab()), "undo_close_tab");
+    actUndoCloseTab = action(i18n("Undo Close Tab"), "edit-undo", Qt::CTRL | Qt::SHIFT | Qt::Key_T, this, SLOT(undoCloseTab()), "undo_close_tab");
     actUndoCloseTab->setEnabled(false);
     actNextTab = action(i18n("Next Tab"), QString(), KStandardShortcut::tabNext(), this, SLOT(nextTab()), "next tab");
     actPreviousTab = action(i18n("Previous Tab"), QString(), KStandardShortcut::tabPrev(), this, SLOT(previousTab()), "previous tab");

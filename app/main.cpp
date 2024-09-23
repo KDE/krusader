@@ -29,6 +29,7 @@
 #include <KAboutData>
 #include <KActionMenu>
 #include <KLocalizedString>
+#include <KLazyLocalizedString>
 #include <KSharedConfig>
 #include <KStartupInfo>
 
@@ -43,7 +44,7 @@
 #include "krusaderview.h"
 #include "panelmanager.h"
 
-static const char *description = I18N_NOOP("Krusader\nTwin-Panel File Manager by KDE");
+static const KLazyLocalizedString description = kli18n("Krusader\nTwin-Panel File Manager by KDE");
 
 static void sigterm_handler(int i)
 {
@@ -112,7 +113,7 @@ int main(int argc, char *argv[])
     KAboutData aboutData(QStringLiteral("krusader"),
                          (geteuid() ? i18n("Krusader") : i18n("Krusader - ROOT PRIVILEGES")),
                          versionName,
-                         i18n(description),
+                         KLocalizedString(description).toString(),
                          KAboutLicense::GPL_V2,
                          i18n("© 2000-2003 Shie Erlich, Rafi Yanai\n© 2004-2022 Krusader Krew"),
                          i18n("Feedback:\nhttps://forum.kde.org/viewforum.php?f=225"),
@@ -268,7 +269,7 @@ int main(int argc, char *argv[])
     { // don't remove bracket
         KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("Look&Feel"));
         if (cfg.readEntry("Show splashscreen", _ShowSplashScreen)) {
-            QString splashFilename = QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("splash.png"));
+            QString splashFilename = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("splash.png"));
             QPixmap pixmap(splashFilename);
             if (!pixmap.isNull()) {
                 splash = new QSplashScreen(pixmap);

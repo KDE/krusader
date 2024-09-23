@@ -25,7 +25,6 @@
 #include <KIO/JobUiDelegate>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KRun>
 #include <kio_version.h>
 #include <kservice_version.h>
 
@@ -183,14 +182,9 @@ void RadialMap::Widget::mousePressEvent(QMouseEvent *e)
                 result = (QAction *)-1; // sanity
 
             if (result == actKonq) {
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
                 // KJob jobs will delete themselves when they finish (see kjob.h for more info)
                 auto *job = new KIO::OpenUrlJob(url, this);
                 job->start();
-#else
-                // KRun::runCommand will show an error message if there was trouble
-                KRun::runCommand(QString("kfmclient openURL '%1'").arg(url.url()), this);
-#endif
             } else if (result == actKonsole) {
 #if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 83, 0)
                 auto *job = new KTerminalLauncherJob(QString());
@@ -230,8 +224,9 @@ void RadialMap::Widget::mousePressEvent(QMouseEvent *e)
 
             m_tip.hide(); // user expects this
 
-            if (!isDir || e->button() == Qt::MidButton) {
-                new KRun(url, this, true); // FIXME see above
+            if (!isDir || e->button() == Qt::MiddleButton) {
+                auto *job = new KIO::OpenUrlJob(url, this);
+                job->start();
             } else if (m_focus->file() != m_tree) { // is left mouse button
                 emit activated(url); // activate first, this will cause UI to prepare itself
                 if (m_focus)

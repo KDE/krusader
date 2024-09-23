@@ -59,8 +59,9 @@ public:
     explicit KMountMan(QWidget *parent);
     ~KMountMan();
 
-    // NOTE: this function needs some time (~50msec)
-    QString findUdiForPath(const QString &path, const Solid::DeviceInterface::Type &expType = Solid::DeviceInterface::Unknown);
+    // NOTE: this function may needs some time (~200msec)
+    static QString findUdiForPath(const QString &path, const Solid::DeviceInterface::Type &expType = Solid::DeviceInterface::Unknown);
+    static QString findUdiForPath(const QString &path, const Solid::DeviceInterface::Type &expType, const std::function<QList<Solid::Device>()> &devicesGetter);
     QString pathForUdi(const QString &udi);
 
 public slots:

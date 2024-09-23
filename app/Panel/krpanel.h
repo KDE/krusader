@@ -40,7 +40,7 @@ public:
 
     ListPanel *const gui;
     ListPanelFunc *const func;
-    KrView *view;
+    KrView *view; // the view of file items in this panel
 
 protected:
     AbstractPanelManager *_manager;

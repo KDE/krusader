@@ -18,7 +18,6 @@
 #include <KCharsets>
 #include <KConfig>
 #include <KConfigGroup>
-#include <KIO/Scheduler>
 #include <KLocalizedString>
 #include <KProtocolManager>
 
@@ -206,8 +205,6 @@ void KrRemoteEncodingMenu::chooseDefault()
 
 void KrRemoteEncodingMenu::updateKIOSlaves()
 {
-    KIO::Scheduler::emitReparseSlaveConfiguration();
-
     // Reload the page with the new charset
     QTimer::singleShot(500, ACTIVE_FUNC, SLOT(refresh()));
 }

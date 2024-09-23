@@ -26,6 +26,7 @@
 
 class KActionCollection;
 class KBookmarkManager;
+class KBookmarkMenu;
 class KrMainWindow;
 
 class KrBookmarkHandler : public QObject
@@ -59,7 +60,7 @@ protected:
     void removeReferences(KrBookmark *root, KrBookmark *bmToRemove);
 
 protected slots:
-    void bookmarksChanged(const QString &, const QString &);
+    void bookmarksChanged(const QString &);
     void slotActivated(const QUrl &url);
 
 private:
@@ -68,6 +69,7 @@ private:
     KrBookmark *_root;
     // the whole KBookmarkManager is an ugly hack. use it until we have our own
     KBookmarkManager *manager;
+    KBookmarkMenu *bookmarksMenu;
     bool _middleClick; // if true, the user clicked the middle button to open the bookmark
 
     QPointer<QMenu> _mainBookmarkPopup; // main bookmark popup menu

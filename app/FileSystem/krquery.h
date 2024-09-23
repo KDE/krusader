@@ -15,6 +15,7 @@
 #include <QUrl>
 
 #include <KConfigGroup>
+#include <KIO/Global>
 #include <KIO/Job>
 
 class QTextCodec;

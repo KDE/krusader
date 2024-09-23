@@ -169,13 +169,13 @@ void FeedToListBoxDialog::slotOk()
             continue;
 
         if ((side == S_BOTH || side == S_LEFT) && syncItem->existsInLeft()) {
-            QString leftDirName = syncItem->leftDirectory().isEmpty() ? "" : syncItem->leftDirectory() + '/';
+            QString leftDirName = syncItem->leftDirectory().isEmpty() ? QString("") : syncItem->leftDirectory() + '/';
             QUrl leftURL = Synchronizer::fsUrl(synchronizer->leftBaseDirectory() + leftDirName + syncItem->leftName());
             urlList.push_back(leftURL);
         }
 
         if ((side == S_BOTH || side == S_RIGHT) && syncItem->existsInRight()) {
-            QString rightDirName = syncItem->rightDirectory().isEmpty() ? "" : syncItem->rightDirectory() + '/';
+            QString rightDirName = syncItem->rightDirectory().isEmpty() ? QString("") : syncItem->rightDirectory() + '/';
             QUrl leftURL = Synchronizer::fsUrl(synchronizer->rightBaseDirectory() + rightDirName + syncItem->rightName());
             urlList.push_back(leftURL);
         }

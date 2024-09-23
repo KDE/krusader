@@ -18,7 +18,6 @@
 #include <QResizeEvent>
 // QtWidgets
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QMenuBar>
 // QtDBus
 #include <QDBusInterface>
@@ -26,6 +25,7 @@
 #include <KAcceleratorManager>
 #include <KActionCollection>
 #include <KCursor>
+#include <KGlobalAccel>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
@@ -36,6 +36,7 @@
 #include <KWindowConfig>
 #include <KWindowSystem>
 #include <KXMLGUIFactory>
+#include <kx11extras.h>
 #include <utility>
 
 #include "defaults.h"
@@ -93,7 +94,6 @@ Krusader::Krusader(const QCommandLineParser &parser)
     App = this;
     krMainWindow = this;
     SLOTS = new KrSlots(this);
-    setXMLFile("krusaderui.rc"); // kpart-related xml file
 
     plzWait = new KrPleaseWaitHandler(this);
 
@@ -194,30 +194,17 @@ Krusader::Krusader(const QCommandLineParser &parser)
 
     // restore gui settings
     {
-        // now, check if we need to create a konsole_part
         // call the XML GUI function to draw the UI
-        createGUI(MAIN_VIEW->terminalDock()->part());
+        setupGUI(Default, "krusaderui.rc"); // kpart-related xml file
 
-        // this needs to be called AFTER createGUI() !!!
         updateUserActions();
         _listPanelActions->guiUpdated();
 
         // not using this. See savePosition()
         // applyMainWindowSettings();
 
-        const KConfigGroup cfgToolbar(krConfig, "Main Toolbar");
-        toolBar()->applySettings(cfgToolbar);
-
-        const KConfigGroup cfgJobBar(krConfig, "Job Toolbar");
-        toolBar("jobToolBar")->applySettings(cfgJobBar);
-
-        const KConfigGroup cfgActionsBar(krConfig, "Actions Toolbar");
-        toolBar("actionsToolBar")->applySettings(cfgActionsBar);
-
         // restore toolbars position and visibility
         restoreState(startupGroup.readEntry("State", QByteArray()));
-
-        statusBar()->setVisible(startupGroup.readEntry("Show status bar", _ShowStatusBar));
 
         MAIN_VIEW->updateGUI(startupGroup);
 
@@ -243,6 +230,11 @@ Krusader::Krusader(const QCommandLineParser &parser)
     // view initialized; show window or only tray
     if (!startToTray) {
         show();
+    }
+
+    if (sysTray) {
+        // (re)set main window for system tray, Qt loses the window handle after showing the window
+        sysTray->setAssociatedWindow(this->windowHandle());
     }
 
     KrTrashHandler::startWatcher();
@@ -337,6 +329,8 @@ void Krusader::setupActions()
     actionCollection()->addAction("bring_main_window_to_top", bringToTopAct);
     connect(bringToTopAct, &QAction::triggered, this, &Krusader::moveToTop);
 
+    KGlobalAccel::setGlobalShortcut(bringToTopAct, QKeySequence(Qt::META | Qt::Key_K));
+
     KrActions::setupActions(this);
     _krActions = new KrActions(this);
     _viewActions = new ViewActions(this, this);
@@ -383,20 +377,11 @@ void Krusader::saveSettings()
     KConfigGroup noGroup(krConfig, QString());
     noGroup.writeEntry("Config Version", KrGlobal::sConfigVersion);
 
-    // save toolbar settings
     KConfigGroup cfg(krConfig, "Main Toolbar");
-    toolBar()->saveSettings(cfg);
-
-    cfg = krConfig->group("Job Toolbar");
-    toolBar("jobToolBar")->saveSettings(cfg);
-
-    cfg = krConfig->group("Actions Toolbar");
-    toolBar("actionsToolBar")->saveSettings(cfg);
 
     cfg = krConfig->group("Startup");
     // save toolbar visibility and position
     cfg.writeEntry("State", saveState());
-    cfg.writeEntry("Show status bar", statusBar()->isVisible());
 
     // save panel and window settings
     if (cfg.readEntry("Remember Position", _RememberPos))
@@ -557,7 +542,15 @@ void Krusader::moveToTop()
     if (isHidden())
         show();
 
-    KWindowSystem::forceActiveWindow(winId());
+    QWindow *window = windowHandle();
+    KWindowSystem::activateWindow(window);
+    if (!window->isActive() && KrGlobal::isWaylandPlatform) {
+        window->hide();
+        window->show();
+    }
+    if (KWindowSystem::isPlatformX11()) {
+        KX11Extras::forceActiveWindow(winId());
+    }
 }
 
 bool Krusader::isRunning()

@@ -4,14 +4,16 @@ set(Locate_SRCS
 add_library(Locate STATIC ${Locate_SRCS})
 
 target_link_libraries(Locate
-    KF5::Archive
-    KF5::ConfigCore
-    KF5::CoreAddons
-    KF5::Completion
-    KF5::KIOCore
-    KF5::I18n
-    KF5::IconThemes
-    KF5::Parts
-    KF5::TextWidgets
-    KF5::WidgetsAddons
+    KF6::Archive
+    KF6::ConfigCore
+    KF6::CoreAddons
+    KF6::Completion
+    KF6::KIOCore
+    KF6::I18n
+    KF6::IconThemes
+    KF6::Parts
+    KF6::TextWidgets
+    KF6::WidgetsAddons
+    KF6::Service
+    Qt6::Core5Compat
 )

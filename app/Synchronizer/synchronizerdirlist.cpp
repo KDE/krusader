@@ -22,6 +22,7 @@
 
 #include <KFileItem>
 #include <KIO/JobUiDelegate>
+#include <KIO/ListJob>
 #include <KLocalizedString>
 #include <KMessageBox>
 
@@ -111,7 +112,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
     if (url.isLocalFile()) {
         const QString dir = FileSystem::ensureTrailingSlash(url).path();
 
-        QT_DIR *qdir = QT_OPENDIR(dir.toLocal8Bit());
+        QT_DIR *qdir = QT_OPENDIR(dir.toLocal8Bit().data());
         if (!qdir) {
             KMessageBox::error(parentWidget, i18n("Cannot open the folder %1.", dir), i18n("Error"));
             emit finished(result = false);
@@ -137,7 +138,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
         emit finished(result = true);
         return true;
     } else {
-        KIO::ListJob *job = KIO::listDir(KrServices::escapeFileUrl(url), KIO::HideProgressInfo, true);
+        KIO::ListJob *job = KIO::listDir(KrServices::escapeFileUrl(url), KIO::HideProgressInfo, KIO::ListJob::ListFlag::IncludeHidden);
         connect(job, &KIO::ListJob::entries, this, &SynchronizerDirList::slotEntries);
         connect(job, &KIO::ListJob::result, this, &SynchronizerDirList::slotListResult);
         busy = true;

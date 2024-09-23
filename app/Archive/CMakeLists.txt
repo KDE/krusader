@@ -10,9 +10,9 @@ set(Archive_SRCS
 add_library(Archive STATIC ${Archive_SRCS})
 
 target_link_libraries(Archive
-    KF5::Archive
-    KF5::I18n
-    KF5::KIOCore
-    KF5::KIOWidgets
-    KF5::Wallet
+    KF6::Archive
+    KF6::I18n
+    KF6::KIOCore
+    KF6::KIOWidgets
+    KF6::Wallet
 )

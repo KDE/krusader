@@ -19,7 +19,7 @@
 #include <QRegion>
 // QtWidgets
 #include <QApplication>
-#include <QDirModel>
+#include <QFileSystemModel>
 #include <QMenu>
 #include <QScrollBar>
 
@@ -390,7 +390,8 @@ bool KrInterBriefView::isIndexHidden(const QModelIndex &ndx) const
 
 void KrInterBriefView::paintEvent(QPaintEvent *e)
 {
-    QStyleOptionViewItem option = viewOptions();
+    QStyleOptionViewItem option;
+    initViewItemOption(&option);
     option.widget = this;
     option.decorationSize = QSize(_fileIconSize, _fileIconSize);
     option.decorationPosition = QStyleOptionViewItem::Left;
@@ -403,7 +404,7 @@ void KrInterBriefView::paintEvent(QPaintEvent *e)
     area.adjust(horizontalOffset(), verticalOffset(), horizontalOffset(), verticalOffset());
     intersectionSet(area, intersectVector);
 
-    for (const QModelIndex &mndx : qAsConst(intersectVector)) {
+    for (const QModelIndex &mndx : std::as_const(intersectVector)) {
         option.rect = visualRect(mndx);
         painter.save();
 
@@ -415,7 +416,7 @@ void KrInterBriefView::paintEvent(QPaintEvent *e)
             QStyleOptionFocusRect o;
             o.QStyleOption::operator=(option);
             QPalette::ColorGroup cg = QPalette::Normal;
-            o.backgroundColor = option.palette.color(cg, QPalette::Background);
+            o.backgroundColor = option.palette.color(cg, QPalette::Window);
 
             style()->drawPrimitive(QStyle::PE_FrameFocusRect, &o, &painter);
         }

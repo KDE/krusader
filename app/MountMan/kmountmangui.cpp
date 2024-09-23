@@ -32,8 +32,6 @@
 #include <QMenu>
 #include <QPushButton>
 
-#include <KCodecs>
-#include <KDiskFreeSpaceInfo>
 #include <KGuiItem>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -46,6 +44,8 @@
 #ifndef BSD
 #define MTAB "/etc/mtab"
 #endif
+
+constexpr int fileSystemsFreeSpaceTimeout = 5'000; // msec
 
 KMountManGUI::KMountManGUI(KMountMan *mntMan)
     : QDialog(mntMan->parentWindow)
@@ -211,14 +211,13 @@ void KMountManGUI::getSpaceData()
 
     // Potentially long running
     this->setCursor(Qt::WaitCursor);
+    auto *signalsToWaitFor = new QAtomicInteger(0);
+    auto *eventLoop = new QEventLoop(this);
     for (auto &it : mounted) {
         // don't bother with invalid file systems
         if (mountMan->invalidFilesystem(it->mountType())) {
             continue;
         }
-        QTimer timer;
-        timer.setSingleShot(true);
-        QEventLoop loop;
         fsData data;
 
         data.setMntPoint(it->mountPoint());
@@ -226,35 +225,38 @@ void KMountManGUI::getSpaceData()
         data.setName(it->mountedFrom());
         data.setType(it->mountType());
         KIO::FileSystemFreeSpaceJob *job = KIO::fileSystemFreeSpace(QUrl::fromLocalFile(it->mountPoint()));
-        connect(job, &KIO::FileSystemFreeSpaceJob::result, this,
-                [this, data](KJob *job, KIO::filesize_t size, KIO::filesize_t available){ this->freeSpaceResult(job, size, available, data); });
-        // Add a timeout and also wait for each info job to complete, this way they are added in sequence
-        connect(job, &KIO::FileSystemFreeSpaceJob::result, &loop, &QEventLoop::quit);
-        connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
-        timer.start(100); // 100ms Maybe this should be configurable
-        loop.exec();
+        Q_ASSERT(job != nullptr);
 
-        // Timed out, delete the job and add a dummy entry
-        if (!timer.isActive()) {
-            delete job;
-            data.setTotalBlks(0);
-            data.setFreeBlks(0);
-            fileSystems.append(data);
-        }
+        signalsToWaitFor->operator++();
+        connect(job, &KIO::FileSystemFreeSpaceJob::finished, this, [this, data, eventLoop, signalsToWaitFor](KJob *job) {
+            this->freeSpaceResult(job, data);
+
+            if (!signalsToWaitFor->deref()) {
+                eventLoop->quit(); // all done
+            }
+        });
     }
+
+    QTimer timer;
+    timer.setSingleShot(true);
+    connect(&timer, &QTimer::timeout, eventLoop, &QEventLoop::quit);
+    timer.start(fileSystemsFreeSpaceTimeout);
+
+    eventLoop->exec(); // wait for signals until quit()
+
     this->setCursor(Qt::ArrowCursor);
     addNonMounted();
     updateList();
 }
 
-void KMountManGUI::freeSpaceResult(KJob *job, KIO::filesize_t size, KIO::filesize_t available, fsData data)
+void KMountManGUI::freeSpaceResult(KJob *job, fsData data)
 {
     if (!job->error()) {
         KIO::FileSystemFreeSpaceJob *freeSpaceJob = qobject_cast<KIO::FileSystemFreeSpaceJob *>(job);
-        Q_ASSERT(freeSpaceJob);
+        Q_ASSERT(freeSpaceJob != nullptr);
         // Set the missing information, with the assumption the caller already set the rest
-        data.setTotalBlks(size / 1024);
-        data.setFreeBlks(available / 1024);
+        data.setTotalBlks(freeSpaceJob->size() / 1024);
+        data.setFreeBlks(freeSpaceJob->availableSize() / 1024);
 
         fileSystems.append(data);
     } else {
@@ -287,18 +289,21 @@ void KMountManGUI::addNonMounted()
     }
 }
 
-void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
+void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs, const QList<Solid::Device> &blockDevices) const
 {
-    Solid::Device device(mountMan->findUdiForPath(fs.mntPoint(), Solid::DeviceInterface::StorageAccess));
+    const std::function deviceGetter = [blockDevices]() {
+        return blockDevices;
+    };
+    const auto udi = KMountMan::findUdiForPath(fs.mntPoint(), Solid::DeviceInterface::StorageAccess, deviceGetter);
+    Solid::Device device(udi);
 
     if (cbShowOnlyRemovable->isChecked() && !mountMan->removable(device))
         return;
+    const bool mtd = fs.mounted();
 
-    bool mtd = fs.mounted();
-
-    QString tSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.totalBlks()));
-    QString fSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.freeBlks()));
-    QString sPrct = QString("%1%").arg(100 - (fs.usedPerct()));
+    const QString tSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.totalBlks()));
+    const QString fSize = QString("%1").arg(KIO::convertSizeFromKiB(fs.freeBlks()));
+    const QString sPrct = QString("%1%").arg(100 - (fs.usedPerct()));
     auto *item = new QTreeWidgetItem(lst);
     item->setText(0, fs.name());
     item->setText(1, fs.type());
@@ -306,14 +311,14 @@ void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs)
     item->setText(3, (mtd ? tSize : QString("N/A")));
     item->setText(4, (mtd ? fSize : QString("N/A")));
     item->setText(5, (mtd ? sPrct : QString("N/A")));
+    const auto *vol = device.as<Solid::StorageVolume>();
 
-    auto *vol = device.as<Solid::StorageVolume>();
     QString iconName;
-
     if (device.isValid())
         iconName = device.icon();
     else if (mountMan->networkFilesystem(fs.type()))
         iconName = "folder-remote";
+
     QStringList overlays;
     if (mtd) {
         overlays << "emblem-mounted";
@@ -339,8 +344,11 @@ void KMountManGUI::updateList()
     mountList->clearSelection();
     mountList->clear();
 
-    for (auto &fileSystem : fileSystems)
-        addItemToMountList(mountList, fileSystem);
+    // getting the list of devices is slow: do it one time for all items
+    const QList<Solid::Device> blockDevices = Solid::Device::listFromType(Solid::DeviceInterface::Block);
+    for (auto &fileSystem : fileSystems) {
+        addItemToMountList(mountList, fileSystem, blockDevices);
+    }
 
     currentItem = mountList->topLevelItem(currentIdx);
     for (int i = 0; i < mountList->topLevelItemCount(); i++) {

@@ -43,10 +43,6 @@ public:
     void hideEvent(QHideEvent *e) override;
     void showEvent(QShowEvent *e) override;
     void onTerminalFocusChanged(bool focused);
-    inline KParts::Part *part()
-    {
-        return konsole_part;
-    }
 
 private slots:
     void killTerminalEmulator();
@@ -57,7 +53,7 @@ private:
     QString lastPath; // path of the last sendCd
     QHBoxLayout *terminal_hbox; // hbox for terminal_dock
     KParts::ReadOnlyPart *konsole_part; // the actual part pointer
-    TerminalInterface *t; // TerminalInterface of the konsole part
+    TerminalInterface *terminal; // TerminalInterface of the konsole part (same object)
     bool initialised;
     bool firstInput;
     bool applyShortcuts(QKeyEvent *ke);

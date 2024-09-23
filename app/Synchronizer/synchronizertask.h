@@ -12,6 +12,7 @@
 #include <QObject>
 
 #include <KIO/Job>
+#include <KIO/TransferJob>
 
 class Synchronizer;
 class SynchronizerDirList;

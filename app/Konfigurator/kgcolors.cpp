@@ -661,7 +661,7 @@ bool KgColors::apply()
 void KgColors::slotImportColors()
 {
     // find $KDEDIR/share/apps/krusader
-    QString basedir = QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("total_commander.keymap"));
+    QString basedir = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("total_commander.keymap"));
     basedir = QFileInfo(basedir).absolutePath();
     // let the user select a file to load
     QString file = QFileDialog::getOpenFileName(nullptr, i18n("Select a color-scheme file"), basedir, QStringLiteral("*.color"));

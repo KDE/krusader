@@ -21,6 +21,7 @@
 // QtWidgets
 #include <QApplication>
 
+#include <KIO/FileCopyJob>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>

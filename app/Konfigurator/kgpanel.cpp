@@ -381,7 +381,7 @@ void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
                                                QString(),
                                                PAGE_VIEW);
     delete[] iconSizes;
-    cmb->lineEdit()->setValidator(new QRegExpValidator(QRegExp("[1-9]\\d{0,1}"), cmb));
+    cmb->lineEdit()->setValidator(new QRegularExpressionValidator(QRegularExpression("[1-9]\\d{0,1}"), cmb));
     hbox->addWidget(cmb);
 
     hbox->addWidget(createSpacer(parent));

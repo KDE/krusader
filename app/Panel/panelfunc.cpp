@@ -6,8 +6,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include "panelfunc.h"
-
 // QtCore
 #include <QDir>
 #include <QEventLoop>
@@ -25,6 +23,7 @@
 #include <KDesktopFile>
 #include <KIO/DesktopExecParser>
 #include <KIO/JobUiDelegate>
+#include <KIO/JobTracker>
 #include <KJobTrackerInterface>
 #include <KLocalizedString>
 #include <KProcess>
@@ -33,17 +32,14 @@
 #include <KUrlMimeData>
 
 #include <kio_version.h>
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
 #include <KIO/CommandLauncherJob>
 #include <KIO/OpenUrlJob>
 #include <KIO/JobUiDelegateFactory>
-#endif
+#include <KIO/StatJob>
 
-#include <KDesktopFileActions>
 #include <KOpenWithDialog>
 #include <KPropertiesDialog>
 #include <KProtocolInfo>
-#include <KRun>
 
 #include <KApplicationTrader>
 #include <kservice_version.h>
@@ -81,6 +77,8 @@
 #include "krsearchbar.h"
 #include "listpanel.h"
 #include "listpanelactions.h"
+#include "panelfunc.h"
+
 
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
@@ -151,16 +149,12 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
 
     if (externallyExecutable) {
         if (mime == QLatin1String("application/x-desktop")) {
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
             // KJob jobs will delete themselves when they finish (see kjob.h for more info)
             auto *job = new KIO::OpenUrlJob(url, this);
             job->start();
-#else
-            KDesktopFileActions::runWithStartup(url, url.isLocalFile(), QByteArray());
-#endif
             return;
         }
-        if (KRun::isExecutableFile(url, mime)) {
+        if (KIO::OpenUrlJob::isExecutableFile(url, mime)) {
             runCommand(KShell::quoteArg(url.path()));
             return;
         }
@@ -392,12 +386,12 @@ void ListPanelFunc::redirectLink()
     if (!ok || newLink == currentLink)
         return;
     // delete the current link
-    if (unlink(file.toLocal8Bit()) == -1) {
+    if (unlink(file.toLocal8Bit().data()) == -1) {
         KMessageBox::error(krMainWindow, i18n("Cannot remove old link: %1", file));
         return;
     }
     // try to create a new symlink
-    if (symlink(newLink.toLocal8Bit(), file.toLocal8Bit()) == -1) {
+    if (symlink(newLink.toLocal8Bit().data(), file.toLocal8Bit().data()) == -1) {
         KMessageBox::/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */ error(krMainWindow, i18n("Failed to create a new link: %1", file));
         return;
     }
@@ -432,10 +426,10 @@ void ListPanelFunc::krlink(bool sym)
     name = files()->getUrl(name).path();
 
     if (sym) {
-        if (symlink(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
+        if (symlink(name.toLocal8Bit().data(), linkName.toLocal8Bit().data()) == -1)
             KMessageBox::error(krMainWindow, i18n("Failed to create a new symlink '%1' to: '%2'", linkName, name));
     } else {
-        if (link(name.toLocal8Bit(), linkName.toLocal8Bit()) == -1)
+        if (link(name.toLocal8Bit().data(), linkName.toLocal8Bit().data()) == -1)
             KMessageBox::error(krMainWindow, i18n("Failed to create a new link '%1' to '%2'", linkName, name));
     }
 }

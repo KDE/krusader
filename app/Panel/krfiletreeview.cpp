@@ -6,16 +6,19 @@
 */
 #include "krfiletreeview.h"
 
-#include "panelfunc.h"
 
+#include "../FileSystem/sizecalculator.h"
 #include "../FileSystem/filesystemprovider.h"
 #include "../compat.h"
 #include "../defaults.h"
 #include "../icon.h"
 #include "../krglobal.h"
 
+#include "panelfunc.h"
+
 #include <QAction>
 #include <QApplication>
+#include <QActionGroup>
 #include <QCursor>
 #include <QDir>
 #include <QDropEvent>
@@ -157,7 +160,7 @@ void KrFileTreeView::dropEvent(QDropEvent *event)
         return;
     }
 
-    FileSystemProvider::instance().startDropFiles(event, destination);
+    FileSystemProvider::instance().startDropFiles(event, destination, this);
 }
 
 void KrFileTreeView::slotExpanded(const QModelIndex &baseIndex)

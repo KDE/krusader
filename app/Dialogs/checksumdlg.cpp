@@ -340,7 +340,7 @@ void CreateWizard::createChecksums()
     runProcess(type, allFiles);
 
     // set suggested filename
-    m_suggestedFilePath = QDir(m_path).filePath((m_fileNames.count() > 1 ? "checksum." : (m_fileNames[0] + '.')) + type);
+    m_suggestedFilePath = QDir(m_path).filePath((m_fileNames.count() > 1 ? QString("checksum.") : (m_fileNames[0] + '.')) + type);
 }
 
 void CreateWizard::onResultPage()

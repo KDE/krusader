@@ -59,7 +59,7 @@ bool KrLayoutFactory::parseFiles()
         return false;
     }
 
-    const QStringList extraFilePaths = QStandardPaths::locateAll(QStandardPaths::DataLocation, EXTRA_FILE_MASK);
+    const QStringList extraFilePaths = QStandardPaths::locateAll(QStandardPaths::AppDataLocation, EXTRA_FILE_MASK);
 
     for (const QString &path : extraFilePaths) {
         qWarning() << "extra file: " << path;
@@ -87,13 +87,12 @@ bool KrLayoutFactory::parseFile(const QString &path, QDomDocument &doc)
 
 bool KrLayoutFactory::parseResource(const QString &path, QDomDocument &doc)
 {
-    QResource res(path);
-    if (res.isValid()) {
-        QByteArray data;
-        if (QRESOURCE_ISCOMPRESSED(res))
-            data = qUncompress(res.data(), static_cast<int>(res.size()));
-        else
-            data = QByteArray(reinterpret_cast<const char *>(res.data()), static_cast<int>(res.size()));
+    QFile f(path);
+
+    if (f.open( QIODevice::ReadOnly)) {
+        QTextStream t( &f );
+        t.setEncoding(QStringConverter::Utf8);
+        QString data = t.readAll();
         return parseContent(data, path, doc);
     } else {
         qWarning() << "resource does not exist:" << path;
@@ -101,7 +100,7 @@ bool KrLayoutFactory::parseResource(const QString &path, QDomDocument &doc)
     }
 }
 
-bool KrLayoutFactory::parseContent(const QByteArray &content, const QString &fileName, QDomDocument &doc)
+bool KrLayoutFactory::parseContent(const QString &content, const QString &fileName, QDomDocument &doc)
 {
     bool success = false;
 
@@ -143,7 +142,7 @@ QStringList KrLayoutFactory::layoutNames()
     if (parseFiles()) {
         getLayoutNames(_mainDoc, names);
 
-        for (const QDomDocument &doc : qAsConst(_extraDocs))
+        for (const QDomDocument &doc : std::as_const(_extraDocs))
             getLayoutNames(doc, names);
     }
 
@@ -175,7 +174,7 @@ QLayout *KrLayoutFactory::createLayout(QString layoutName)
 
         layoutRoot = findLayout(_mainDoc, layoutName);
         if (layoutRoot.isNull()) {
-            for (const QDomDocument &doc : qAsConst(_extraDocs)) {
+            for (const QDomDocument &doc : std::as_const(_extraDocs)) {
                 layoutRoot = findLayout(doc, layoutName);
                 if (!layoutRoot.isNull())
                     break;

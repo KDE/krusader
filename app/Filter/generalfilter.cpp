@@ -23,30 +23,31 @@
 
 #include <KCharsets>
 #include <KLocalizedString>
+#include <KLazyLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
 #include <KShell>
 
 typedef struct {
-    const char *description;
+    KLazyLocalizedString description;
     const char *regExp;
     int cursorAdjustment;
 } term;
 
 static const term items[] = {
-    {I18N_NOOP("Any Character"), ".", 0},
-    {I18N_NOOP("Start of Line"), "^", 0},
-    {I18N_NOOP("End of Line"), "$", 0},
-    {I18N_NOOP("Set of Characters"), "[]", -1},
-    {I18N_NOOP("Repeats, Zero or More Times"), "*", 0},
-    {I18N_NOOP("Repeats, One or More Times"), "+", 0},
-    {I18N_NOOP("Optional"), "?", 0},
-    {I18N_NOOP("Escape"), "\\", 0},
-    {I18N_NOOP("TAB"), "\\t", 0},
-    {I18N_NOOP("Newline"), "\\n", 0},
-    {I18N_NOOP("Carriage Return"), "\\r", 0},
-    {I18N_NOOP("White Space"), "\\s", 0},
-    {I18N_NOOP("Digit"), "\\d", 0},
+    {kli18n("Any Character"), ".", 0},
+    {kli18n("Start of Line"), "^", 0},
+    {kli18n("End of Line"), "$", 0},
+    {kli18n("Set of Characters"), "[]", -1},
+    {kli18n("Repeats, Zero or More Times"), "*", 0},
+    {kli18n("Repeats, One or More Times"), "+", 0},
+    {kli18n("Optional"), "?", 0},
+    {kli18n("Escape"), "\\", 0},
+    {kli18n("TAB"), "\\t", 0},
+    {kli18n("Newline"), "\\n", 0},
+    {kli18n("Carriage Return"), "\\r", 0},
+    {kli18n("White Space"), "\\s", 0},
+    {kli18n("Digit"), "\\d", 0},
 };
 
 class RegExpAction : public QAction
@@ -295,7 +296,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent, 
     // Populate the popup menu.
     auto *patterns = new QMenu(containsRegExp);
     for (int i = 0; (unsigned)i < sizeof(items) / sizeof(items[0]); i++) {
-        patterns->addAction(new RegExpAction(patterns, i18n(items[i].description), items[i].regExp, items[i].cursorAdjustment));
+        patterns->addAction(new RegExpAction(patterns, KLocalizedString(items[i].description).toString(), items[i].regExp, items[i].cursorAdjustment));
     }
     connect(containsRegExp, &QToolButton::toggled, this, &GeneralFilter::slotDisable);
     connect(containsRegExp, &QToolButton::triggered, this, &GeneralFilter::slotRegExpTriggered);

@@ -17,7 +17,7 @@
 #include <QLabel>
 #include <QLayout>
 
-#include <KRun>
+#include <KJob>
 #include <KSeparator>
 #include <KUrlLabel>
 

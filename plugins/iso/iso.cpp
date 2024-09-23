@@ -87,7 +87,7 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString &path, int startsec
     if (m_isoFile && startsec == m_isoFile->startSec() && m_isoFile->fileName() == fullPath.left(m_isoFile->fileName().length())) {
         // Has it changed ?
         QT_STATBUF statbuf;
-        if (QT_STAT(QFile::encodeName(m_isoFile->fileName()), &statbuf) == 0) {
+        if (QT_STAT(QFile::encodeName(m_isoFile->fileName()).data(), &statbuf) == 0) {
             if (m_mtime == statbuf.st_mtime) {
                 path = fullPath.mid(m_isoFile->fileName().length());
                 // qDebug()   << "kio_isoProtocol::checkNewFile returning " << path << endl;
@@ -125,12 +125,12 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString &path, int startsec
         // qDebug()   << fullPath << "  trying " << tryPath << endl;
 
         QT_STATBUF statbuf;
-        if (QT_LSTAT(QFile::encodeName(tryPath), &statbuf) == 0 && !S_ISDIR(statbuf.st_mode)) {
+        if (QT_LSTAT(QFile::encodeName(tryPath).data(), &statbuf) == 0 && !S_ISDIR(statbuf.st_mode)) {
             bool isFile = true;
             if (S_ISLNK(statbuf.st_mode)) {
                 char symDest[256];
                 memset(symDest, 0, 256);
-                ssize_t endOfName = readlink(QFile::encodeName(tryPath), symDest, 256);
+                ssize_t endOfName = readlink(QFile::encodeName(tryPath).data(), symDest, 256);
                 if (endOfName != -1) {
                     if (QDir(QString::fromLocal8Bit(symDest)).exists())
                         isFile = false;
@@ -191,7 +191,7 @@ void kio_isoProtocol::createUDSEntry(const KArchiveEntry *isoEntry, UDSEntry &en
 
     entry.fastInsert(UDSEntry::UDS_USER, isoEntry->user());
     entry.fastInsert(UDSEntry::UDS_GROUP, isoEntry->group());
-    entry.fastInsert((uint)UDSEntry::UDS_MODIFICATION_TIME, isoEntry->date().toTime_t());
+    entry.fastInsert((uint)UDSEntry::UDS_MODIFICATION_TIME, isoEntry->date().toSecsSinceEpoch());
     entry.fastInsert(UDSEntry::UDS_ACCESS_TIME,
                      isoEntry->isFile() ? (dynamic_cast<const KIsoFile *>(isoEntry))->adate() : (dynamic_cast<const KIsoDirectory *>(isoEntry))->adate());
 

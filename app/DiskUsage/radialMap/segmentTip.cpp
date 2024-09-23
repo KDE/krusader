@@ -13,7 +13,7 @@
 #include <QPainter>
 // QtWidgets
 #include <QApplication> //installing eventFilters
-#include <QDesktopWidget>
+#include <QScreen>
 #include <QToolTip> //for its palette
 
 #include <KLocalizedString>
@@ -40,7 +40,7 @@ void SegmentTip::moveto(QPoint p, QWidget &canvas, bool placeAbove)
     p.rx() -= rect().center().x();
     p.ry() -= (placeAbove ? 8 + height() : m_cursorHeight - 8);
 
-    const QRect screen = QApplication::desktop()->screenGeometry(parentWidget());
+    const QRect screen = QApplication::primaryScreen()->geometry();
 
     const int x = p.x();
     const int y = p.y();

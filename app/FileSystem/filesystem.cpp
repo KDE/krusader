@@ -303,11 +303,11 @@ FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QU
     const QString fname = virt ? url.toDisplayString() : name;
 
     // get file statistics...
-    const time_t mtime = kfi.time(KFileItem::ModificationTime).toTime_t();
-    const time_t atime = kfi.time(KFileItem::AccessTime).toTime_t();
+    const time_t mtime = kfi.time(KFileItem::ModificationTime).toSecsSinceEpoch();
+    const time_t atime = kfi.time(KFileItem::AccessTime).toSecsSinceEpoch();
     const mode_t mode = kfi.mode() | kfi.permissions();
     const QDateTime creationTime = kfi.time(KFileItem::CreationTime);
-    const time_t btime = creationTime.isValid() ? creationTime.toTime_t() : (time_t)-1;
+    const time_t btime = creationTime.isValid() ? creationTime.toSecsSinceEpoch() : (time_t)-1;
 
     // NOTE: we could get the mimetype (and file icon) from the kfileitem here but this is very
     // slow. Instead, the file item class has it's own (faster) way to determine the file type.

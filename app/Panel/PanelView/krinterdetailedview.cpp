@@ -14,7 +14,7 @@
 #include <QHashIterator>
 // QtWidgets
 #include <QApplication>
-#include <QDirModel>
+#include <QFileSystemModel>
 #include <QHeaderView>
 #include <QMenu>
 #include <QToolTip>
@@ -408,7 +408,7 @@ void KrInterDetailedView::drawRow(QPainter *painter, const QStyleOptionViewItem 
     // QTreeView::drawRow() only when panel is focused, we have to repeat it here.
     if (index == currentIndex() && drawCurrent()) {
         QStyleOptionFocusRect o;
-        o.backgroundColor = options.palette.color(QPalette::Normal, QPalette::Background);
+        o.backgroundColor = options.palette.color(QPalette::Normal, QPalette::Window);
 
         const QRect focusRect(0, options.rect.y(), header()->length(), options.rect.height());
         o.rect = style()->visualRect(layoutDirection(), viewport()->rect(), focusRect);

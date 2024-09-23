@@ -12,14 +12,15 @@
 #include <QDir>
 #include <QEventLoop>
 
-#include <KDiskFreeSpaceInfo>
 #include <KFileItem>
 #include <KIO/DropJob>
+#include <KIO/FileSystemFreeSpaceJob>
 #include <KIO/FileUndoManager>
 #include <KIO/JobUiDelegate>
 #include <KIO/ListJob>
+#include <KIO/MkdirJob>
 #include <KIO/MkpathJob>
-#include <KIO/FileSystemFreeSpaceJob>
+#include <KJobWidgets>
 #include <KLocalizedString>
 #include <KMountPoint>
 #include <KProtocolManager>
@@ -64,7 +65,7 @@ void DefaultFileSystem::copyFiles(const QList<QUrl> &urls,
     krJobMan->manageJob(krJob, startMode);
 }
 
-void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
+void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event, QWidget *targetWidget)
 {
     qDebug() << "destination=" << destination;
 
@@ -72,6 +73,7 @@ void DefaultFileSystem::dropFiles(const QUrl &destination, QDropEvent *event)
     const QUrl dest = resolveRelativePath(destination);
 
     KIO::DropJob *job = KIO::drop(event, dest);
+    KJobWidgets::setWindow(job, targetWidget);
 
     // NOTE: a DropJob "starts" with showing a menu. If the operation is chosen (copy/move/link)
     // the actual CopyJob starts automatically - we cannot manage the start of the CopyJob (see
@@ -159,10 +161,10 @@ void DefaultFileSystem::updateFilesystemInfo()
     const QString path = _currentDirectory.path();
     KIO::FileSystemFreeSpaceJob *job = KIO::fileSystemFreeSpace(QUrl::fromLocalFile(path));
 
-    connect(job, &KIO::FileSystemFreeSpaceJob::result, this, &DefaultFileSystem::freeSpaceResult);
+    connect(job, &KIO::FileSystemFreeSpaceJob::finished, this, &DefaultFileSystem::freeSpaceResult);
 }
 
-void DefaultFileSystem::freeSpaceResult(KJob *job, KIO::filesize_t size, KIO::filesize_t available)
+void DefaultFileSystem::freeSpaceResult(KJob *job)
 {
     if (!job->error()) {
         KIO::FileSystemFreeSpaceJob *freeSpaceJob = qobject_cast<KIO::FileSystemFreeSpaceJob *>(job);
@@ -177,7 +179,7 @@ void DefaultFileSystem::freeSpaceResult(KJob *job, KIO::filesize_t size, KIO::fi
             fsType = "";
             _mountPoint = "";
         }
-        emit fileSystemInfoChanged("", fsType, size, available);
+        emit fileSystemInfoChanged("", fsType, freeSpaceJob->size(), freeSpaceJob->availableSize());
     } else {
         _mountPoint = "";
         emit fileSystemInfoChanged(i18n("Space information unavailable"), "", 0, 0);
@@ -205,7 +207,7 @@ bool DefaultFileSystem::refreshInternal(const QUrl &directory, bool onlyScan)
     _currentDirectory = cleanUrl(directory);
 
     // start the listing job
-    KIO::ListJob *job = KIO::listDir(_currentDirectory, KIO::HideProgressInfo, showHiddenFiles());
+    KIO::ListJob *job = KIO::listDir(_currentDirectory, KIO::HideProgressInfo, KIO::ListJob::ListFlags(showHiddenFiles() ? 1 : 0));
     connect(job, &KIO::ListJob::entries, this, &DefaultFileSystem::slotAddFiles);
     connect(job, &KIO::ListJob::redirection, this, &DefaultFileSystem::slotRedirection);
     connect(job, &KIO::ListJob::permanentRedirection, this, &DefaultFileSystem::slotRedirection);
@@ -346,7 +348,7 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan)
     // Note: we are using low-level Qt functions here.
     // It's around twice as fast as using the QDir class.
 
-    QT_DIR *dir = QT_OPENDIR(path.toLocal8Bit());
+    QT_DIR *dir = QT_OPENDIR(path.toLocal8Bit().data());
     if (!dir) {
         emit error(i18n("Cannot open the folder %1.", path));
         return false;

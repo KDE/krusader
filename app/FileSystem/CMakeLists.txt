@@ -14,10 +14,11 @@ set(FileSystem_SRCS
 add_library(FileSystem STATIC ${FileSystem_SRCS})
 
 target_link_libraries(FileSystem
-    KF5::Archive
-    KF5::I18n
-    KF5::KIOCore
-    KF5::KIOWidgets
+    KF6::Archive
+    KF6::I18n
+    KF6::KIOCore
+    KF6::KIOWidgets
+    Qt6::Core5Compat # For QRegExp
 )
 
 if(ACL_FOUND)

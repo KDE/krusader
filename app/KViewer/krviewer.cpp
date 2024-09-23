@@ -21,10 +21,14 @@
 #include <QStatusBar>
 #include <QGuiApplication>
 
+#include <KWindowSystem>
+#include <kwaylandextras.h>
+#include <kx11extras.h>
 #include <KActionCollection>
 #include <KFileItem>
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KFileItem>
 #include <KParts/Part>
 #include <KProcess>
 #include <KSharedConfig>
@@ -32,9 +36,9 @@
 #include <KShortcutsDialog>
 #include <KStandardAction>
 #include <KToolBar>
-#include <KWindowSystem>
 #include <kxmlgui_version.h>
 #include <utility>
+#include <KParts/NavigationExtension>
 
 #include "../defaults.h"
 #include "../icon.h"
@@ -62,7 +66,6 @@ KrViewer::KrViewer(QWidget *parent)
     , sizeY(-1)
 {
     // setWFlags(Qt::WType_TopLevel | WDestructiveClose);
-    setXMLFile("krviewer.rc"); // kpart-related xml file
     setHelpMenuEnabled(false);
 
     connect(&manager, &KParts::PartManager::activePartChanged, this, &KrViewer::createGUI);
@@ -92,13 +95,13 @@ KrViewer::KrViewer(QWidget *parent)
     ac->setDefaultShortcut(tempAction, shortcut);                                                                                                              \
     viewerMenu->addAction(tempAction);
 
-    addCustomMenuAction("genericViewer", i18n("&Generic Viewer"), SLOT(viewGeneric()), Qt::CTRL + Qt::SHIFT + Qt::Key_G);
-    addCustomMenuAction("textViewer", i18n("&Text Viewer"), SLOT(viewText()), Qt::CTRL + Qt::SHIFT + Qt::Key_T);
-    addCustomMenuAction("hexViewer", i18n("&Hex Viewer"), SLOT(viewHex()), Qt::CTRL + Qt::SHIFT + Qt::Key_H);
-    addCustomMenuAction("lister", i18n("&Lister"), SLOT(viewLister()), Qt::CTRL + Qt::SHIFT + Qt::Key_L);
+    addCustomMenuAction("genericViewer", i18n("&Generic Viewer"), SLOT(viewGeneric()), Qt::CTRL | Qt::SHIFT | Qt::Key_G);
+    addCustomMenuAction("textViewer", i18n("&Text Viewer"), SLOT(viewText()), Qt::CTRL | Qt::SHIFT | Qt::Key_T);
+    addCustomMenuAction("hexViewer", i18n("&Hex Viewer"), SLOT(viewHex()), Qt::CTRL | Qt::SHIFT | Qt::Key_H);
+    addCustomMenuAction("lister", i18n("&Lister"), SLOT(viewLister()), Qt::CTRL | Qt::SHIFT | Qt::Key_L);
     viewerMenu->addSeparator();
 
-    addCustomMenuAction("textEditor", i18n("Text &Editor"), SLOT(editText()), Qt::CTRL + Qt::SHIFT + Qt::Key_E);
+    addCustomMenuAction("textEditor", i18n("Text &Editor"), SLOT(editText()), Qt::CTRL | Qt::SHIFT | Qt::Key_E);
     viewerMenu->addSeparator();
 
     const QList<QAction *> actList = menuBar()->actions();
@@ -148,7 +151,7 @@ KrViewer::KrViewer(QWidget *parent)
     tabPrevAction = ac->addAction("prevTab", this, SLOT(prevTab()));
     tabPrevAction->setText(i18n("&Previous Tab"));
     shortcuts = KStandardShortcut::tabPrev();
-    shortcuts.append(Qt::CTRL + Qt::SHIFT + Qt::Key_Tab); // reenforce QTabWidget shortcut
+    shortcuts.append(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab); // reenforce QTabWidget shortcut
     ac->setDefaultShortcuts(tabPrevAction, shortcuts);
 
     tabWidget.setTabsClosable(true);
@@ -170,6 +173,8 @@ KrViewer::KrViewer(QWidget *parent)
 
     // filtering out the key events
     menuBar()->installEventFilter(this);
+
+    setupGUI(ToolBar | StatusBar | Save | Create, "krviewer.rc");
 }
 
 KrViewer::~KrViewer()
@@ -197,9 +202,6 @@ void KrViewer::createGUI(KParts::Part *part)
     KParts::MainWindow::createGUI(part);
 
     updateActions();
-
-    toolBar()->show();
-    statusBar()->show();
 
     // the KParts part may override the viewer shortcuts. We prevent it
     // by installing an event filter on the menuBar() and the part
@@ -283,10 +285,10 @@ void KrViewer::activateWindow(QWidget *window)
         // KWindowSystem::activateWindow() will just cause the window to blink in
         // the task bar requesting attention, but never get focus or come to the
         // foreground.
-        const int launchedSerial = KWindowSystem::lastInputSerial(focusWindow);
+        const int launchedSerial = KWaylandExtras::lastInputSerial(focusWindow);
         auto conn = std::make_shared<QMetaObject::Connection>();
-        *conn = connect(KWindowSystem::self(),
-                        &KWindowSystem::xdgActivationTokenArrived,
+        *conn = connect(KWaylandExtras::self(),
+                        &KWaylandExtras::xdgActivationTokenArrived,
                         window,
                         [window, launchedSerial, conn](int tokenSerial, const QString &token) {
                             if (tokenSerial == launchedSerial) {
@@ -296,10 +298,10 @@ void KrViewer::activateWindow(QWidget *window)
                                 KWindowSystem::activateWindow(window->windowHandle());
                             }
                         });
-        KWindowSystem::requestXdgActivationToken(focusWindow, launchedSerial, {});
+        KWaylandExtras::requestXdgActivationToken(focusWindow, launchedSerial, {});
     }
     if (KrGlobal::isX11Platform) {
-        KWindowSystem::forceActiveWindow(window->winId());
+        KX11Extras::forceActiveWindow(window->winId());
     }
 }
 KrViewer *KrViewer::getViewer(bool new_window)
@@ -620,7 +622,7 @@ void KrViewer::print()
     if (!pvb || !pvb->part() || !isPartAdded(pvb->part()))
         return;
 
-    KParts::BrowserExtension *ext = KParts::BrowserExtension::childObject(pvb->part());
+    KParts::NavigationExtension *ext = KParts::NavigationExtension::childObject(pvb->part());
     if (ext && ext->isActionEnabled("print"))
         Invoker(ext, SLOT(print())).invoke();
 }
@@ -631,7 +633,7 @@ void KrViewer::copy()
     if (!pvb || !pvb->part() || !isPartAdded(pvb->part()))
         return;
 
-    KParts::BrowserExtension *ext = KParts::BrowserExtension::childObject(pvb->part());
+    KParts::NavigationExtension *ext = KParts::NavigationExtension::childObject(pvb->part());
     if (ext && ext->isActionEnabled("copy"))
         Invoker(ext, SLOT(copy())).invoke();
 }

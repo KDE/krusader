@@ -15,7 +15,6 @@
 
 class QDomDocument;
 class QDomElement;
-class QStringList;
 class KrAction;
 class QUrl;
 class KActionMenu;

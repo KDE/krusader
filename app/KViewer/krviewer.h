@@ -22,7 +22,7 @@
 #include <QMenu>
 #include <QTabWidget>
 
-#include <KParts/BrowserExtension>
+#include <KParts/ReadOnlyPart>
 #include <KParts/MainWindow>
 #include <KParts/PartManager>
 

@@ -2,7 +2,7 @@
 <!-- NOTE: Always update the version in the gui tag below if you make changes to the menu bar and its actions!
            This will trigger an update of the ~/.local/share/kxmlgui5/krusader/krusaderui.rc file next time
            user opens the application: the menu bar will be replaced with the new version, toolbars updated.  -->
-<gui version="28" name="krusader" >
+<gui version="29" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -116,13 +116,7 @@
   </Menu>
   <Menu name="settings" noMerge="1">
    <text>&amp;Settings</text>
-   <Action name="options_show_menubar" />
-   <Menu name="show_toolbars" >
-     <text>&amp;Toolbars</text>
-     <Action name="options_show_toolbar" />
-     <Action name="toggle show jobbar" />
-     <Action name="toggle actions toolbar"/>
-   </Menu>
+   <Merge/>
    <Action name="options_show_statusbar" />
    <Action name="toggle fn bar" />
    <Action name="toggle terminal emulator" />

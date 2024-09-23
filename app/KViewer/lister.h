@@ -20,7 +20,7 @@
 #include <QWidget>
 
 #include <KLineEdit>
-#include <KParts/BrowserExtension>
+#include <KParts/NavigationExtension>
 #include <KParts/Part>
 #include <KTextEdit>
 
@@ -114,8 +114,8 @@ protected:
 
     qint64 _lastPageStartPos = 0;
 
-    int _sizeX = -1;
-    int _sizeY = -1;
+    qsizetype _sizeX = -1;
+    qsizetype _sizeY = -1;
     int _pageSize = 0;
 
     int _tabWidth = 4;
@@ -141,7 +141,7 @@ protected:
     QTimer _blinkTimer;
 };
 
-class ListerBrowserExtension : public KParts::BrowserExtension
+class ListerBrowserExtension : public KParts::NavigationExtension
 {
     Q_OBJECT
 
