@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
+"POT-Creation-Date: 2024-09-24 00:41+0000\n"
 "PO-Revision-Date: 2024-05-30 22:41+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -524,7 +524,7 @@ msgid "&New..."
 msgstr "&Nova..."
 
 #. i18n: ectx: attribute (title), widget (QWidget, TabFile)
-#: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:96
+#: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:97
 #, kde-format
 msgid "File Name"
 msgstr "Dosiernomo"
@@ -617,62 +617,63 @@ msgstr "Ĉi tiu lokokupilo permesas iun parametron:"
 msgid "Title"
 msgstr "Titolo"
 
-#: app/ActionMan/useractionpage.cpp:37
-#, kde-format
-msgid ""
-"*.xml|XML files\n"
-"*|All files"
+#: app/ActionMan/useractionpage.cpp:38
+#, fuzzy
+#| msgid ""
+#| "*.xml|XML files\n"
+#| "*|All files"
+msgid "XML files (*.xml);;All files (*)"
 msgstr ""
 "*.xml|XML-dosieroj\n"
 "*|Ĉiuj dosieroj"
 
-#: app/ActionMan/useractionpage.cpp:54
+#: app/ActionMan/useractionpage.cpp:55
 #, kde-format
 msgid "Create new useraction"
 msgstr "Krei novan uzantagon"
 
-#: app/ActionMan/useractionpage.cpp:59
+#: app/ActionMan/useractionpage.cpp:60
 #, kde-format
 msgid "Import useractions"
 msgstr "Importi uzantagojn"
 
-#: app/ActionMan/useractionpage.cpp:64
+#: app/ActionMan/useractionpage.cpp:65
 #, kde-format
 msgid "Export useractions"
 msgstr "Eksporti uzantagojn"
 
-#: app/ActionMan/useractionpage.cpp:69
+#: app/ActionMan/useractionpage.cpp:70
 #, kde-format
 msgid "Copy useractions to clipboard"
 msgstr "Kopii uzantagojn al tondujo"
 
-#: app/ActionMan/useractionpage.cpp:74
+#: app/ActionMan/useractionpage.cpp:75
 #, kde-format
 msgid "Paste useractions from clipboard"
 msgstr "Alglui uzantagojn el tondujo"
 
-#: app/ActionMan/useractionpage.cpp:79
+#: app/ActionMan/useractionpage.cpp:80
 #, kde-format
 msgid "Delete selected useractions"
 msgstr "Forigi elektitajn uzantagojn"
 
-#: app/ActionMan/useractionpage.cpp:132
+#: app/ActionMan/useractionpage.cpp:133
 #, kde-format
 msgid ""
 "The current action has been modified. Do you want to apply these changes?"
 msgstr "La nuna ago estis modifita. Ĉu vi volas apliki ĉi tiujn ŝanĝojn?"
 
-#: app/ActionMan/useractionpage.cpp:207
+#: app/ActionMan/useractionpage.cpp:208
 #, kde-format
 msgid "Are you sure that you want to remove all selected actions?"
 msgstr "Ĉu vi certas, ke vi volas forigi ĉiujn elektitajn agojn?"
 
-#: app/ActionMan/useractionpage.cpp:208
+#: app/ActionMan/useractionpage.cpp:209
 #, kde-format
 msgid "Remove Selected Actions?"
 msgstr "Ĉu forigi Elektitajn Agojn?"
 
-#: app/ActionMan/useractionpage.cpp:259
+#: app/ActionMan/useractionpage.cpp:260
 #, kde-format
 msgid ""
 "This file already contains some useractions.\n"
@@ -681,27 +682,27 @@ msgstr ""
 "Ĉi tiu dosiero jam enhavas kelkajn uzantagojn.\n"
 "Ĉu vi volas anstataŭigi ĝin aŭ ĉu ĝi estu kunfandita kun la elektitaj agoj?"
 
-#: app/ActionMan/useractionpage.cpp:260
+#: app/ActionMan/useractionpage.cpp:261
 #, kde-format
 msgid "Overwrite or Merge?"
 msgstr "Ĉu anstataŭigi aŭ kunfandi?"
 
-#: app/ActionMan/useractionpage.cpp:262
+#: app/ActionMan/useractionpage.cpp:263
 #, kde-format
 msgid "Merge"
 msgstr "Kunfandi"
 
-#: app/ActionMan/useractionpage.cpp:268
+#: app/ActionMan/useractionpage.cpp:269
 #, kde-format
 msgid "This file already exists. Do you want to overwrite it?"
 msgstr "Ĉi tiu dosiero jam ekzistas. Ĉu vi volas anstataŭigi ĝin?"
 
-#: app/ActionMan/useractionpage.cpp:269
+#: app/ActionMan/useractionpage.cpp:270
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Ĉu anstataŭigi Ekzistantan Dosieron?"
 
-#: app/ActionMan/useractionpage.cpp:283 app/UserAction/kraction.cpp:185
+#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:185
 #, kde-format
 msgid ""
 "Cannot open %1 for writing.\n"
@@ -710,7 +711,7 @@ msgstr ""
 "Ne povas malfermi %1 por skribado.\n"
 "Nenio eksportita."
 
-#: app/ActionMan/useractionpage.cpp:283
+#: app/ActionMan/useractionpage.cpp:284
 #, kde-format
 msgid "Export Failed"
 msgstr "Eksporto Malsukcesis"
@@ -791,7 +792,7 @@ msgstr "Pakado(j) dosiero(j)"
 msgid "Failed to pack %1."
 msgstr "Malsukcesis paki %1."
 
-#: app/Archive/krarchandler.cpp:691
+#: app/Archive/krarchandler.cpp:692
 #, kde-format
 msgid "This archive is encrypted, please supply the password:"
 msgstr "Ĉi tiu arkivo estas ĉifrita, bonvolu provizi la pasvorton:"
@@ -822,7 +823,7 @@ msgstr "Arkivaj testoj pasis."
 msgid "Error while unpacking"
 msgstr "Eraro dum malpakado"
 
-#: app/BookMan/kraddbookmarkdlg.cpp:28 app/kractions.cpp:295
+#: app/BookMan/kraddbookmarkdlg.cpp:28 app/kractions.cpp:286
 #, kde-format
 msgid "Add Bookmark"
 msgstr "Aldoni legosignon"
@@ -843,19 +844,19 @@ msgid "Create in:"
 msgstr "Krei en:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:690
+#: app/Panel/panelfunc.cpp:684
 #, kde-format
 msgid "New Folder"
 msgstr "Nova dosierujo"
 
-#: app/BookMan/kraddbookmarkdlg.cpp:96 app/FileSystem/krquery.cpp:260
-#: app/Filter/generalfilter.cpp:161 app/Filter/generalfilter.cpp:538
+#: app/BookMan/kraddbookmarkdlg.cpp:96 app/FileSystem/krquery.cpp:261
+#: app/Filter/generalfilter.cpp:162 app/Filter/generalfilter.cpp:539
 #, kde-format
 msgid "Folders"
 msgstr "Dosierujoj"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:102 app/BookMan/krbookmarkbutton.cpp:33
-#: app/BookMan/krbookmarkhandler.cpp:64 app/Panel/listpanelactions.cpp:105
+#: app/BookMan/krbookmarkhandler.cpp:65 app/Panel/listpanelactions.cpp:105
 #, kde-format
 msgid "Bookmarks"
 msgstr "Legosignoj"
@@ -865,17 +866,17 @@ msgstr "Legosignoj"
 msgid "Folder name:"
 msgstr "Dosieruja nomo:"
 
-#: app/BookMan/krbookmark.cpp:22 app/BookMan/krbookmarkhandler.cpp:777
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:784
 #, kde-format
 msgid "Trash bin"
 msgstr "Rubujo"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:785
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:792
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "Virtuala Dosiersistemo"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:781
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:788
 #, kde-format
 msgid "Local Network"
 msgstr "Loka reto"
@@ -885,81 +886,76 @@ msgstr "Loka reto"
 msgid "BookMan II"
 msgstr "BookMan II"
 
-#: app/BookMan/krbookmarkhandler.cpp:78
+#: app/BookMan/krbookmarkhandler.cpp:80
 #, kde-format
 msgid "Type to search..."
 msgstr "Tajpu por serĉi..."
 
-#: app/BookMan/krbookmarkhandler.cpp:220 app/BookMan/krbookmarkhandler.cpp:326
+#: app/BookMan/krbookmarkhandler.cpp:225 app/BookMan/krbookmarkhandler.cpp:331
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
 #: app/Konfigurator/kggeneral.cpp:329
-#: app/Synchronizer/synchronizerdirlist.cpp:116
+#: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Error"
 msgstr "Eraro"
 
-#: app/BookMan/krbookmarkhandler.cpp:220
+#: app/BookMan/krbookmarkhandler.cpp:225
 #, kde-format
 msgid "Unable to write to %1"
 msgstr "Ne eblas skribi al %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:229
+#: app/BookMan/krbookmarkhandler.cpp:234
 #, kde-format
 msgid "%1 instead of %2"
 msgstr "%1 anstataŭ %2"
 
-#: app/BookMan/krbookmarkhandler.cpp:234 app/BookMan/krbookmarkhandler.cpp:241
-#: app/BookMan/krbookmarkhandler.cpp:278
+#: app/BookMan/krbookmarkhandler.cpp:239 app/BookMan/krbookmarkhandler.cpp:246
+#: app/BookMan/krbookmarkhandler.cpp:283
 #, kde-format
 msgid "missing tag %1"
 msgstr "mankas etikedo %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:318
+#: app/BookMan/krbookmarkhandler.cpp:323
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "%1 ŝajnas ne esti valida dosiero de legosignoj"
 
-#: app/BookMan/krbookmarkhandler.cpp:326
+#: app/BookMan/krbookmarkhandler.cpp:331
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr "Eraro legante legosigndosieron: %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:438 app/BookMan/krbookmarkhandler.cpp:773
+#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:780
 #: app/Dialogs/popularurls.cpp:276
 #, kde-format
 msgid "Popular URLs"
 msgstr "Popularaj URL-oj"
 
-#: app/BookMan/krbookmarkhandler.cpp:530
-#, kde-format
-msgid "Manage Bookmarks"
-msgstr "Administri Legosignojn"
-
-#: app/BookMan/krbookmarkhandler.cpp:769
+#: app/BookMan/krbookmarkhandler.cpp:776
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "Ebligi specialajn legosignojn"
 
-#: app/BookMan/krbookmarkhandler.cpp:789
+#: app/BookMan/krbookmarkhandler.cpp:796
 #, kde-format
 msgid "Jump back"
 msgstr "Salti reen"
 
-#: app/BookMan/krbookmarkhandler.cpp:841 app/GUI/mediabutton.cpp:327
-#: app/Panel/panelcontextmenu.cpp:125
+#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:327
+#: app/Panel/panelcontextmenu.cpp:103
 #, kde-format
 msgid "Open"
 msgstr "Malfermi"
 
-#: app/BookMan/krbookmarkhandler.cpp:843 app/GUI/mediabutton.cpp:329
+#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:329
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Malfermi en nova langeto"
 
-#: app/BookMan/krbookmarkhandler.cpp:847 app/Dialogs/krmaskchoice.cpp:85
+#: app/BookMan/krbookmarkhandler.cpp:854 app/Dialogs/krmaskchoice.cpp:85
 #: app/Dialogs/kurllistrequester.cpp:128 app/DiskUsage/diskusage.cpp:751
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
-#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:241
+#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:216
 #, kde-format
 msgid "Delete"
 msgstr "Forigi"
@@ -1459,7 +1455,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Ĉu vi vere volas movi ĉi tiun objekton al la rubujo?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:836
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:830
 #, kde-format
 msgid "&Trash"
 msgstr "&Rubo"
@@ -1471,13 +1467,13 @@ msgid "Do you really want to delete this item?"
 msgstr "Ĉu vi vere volas forigi ĉi tiun eron?"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:852
-#: app/Panel/panelfunc.cpp:929
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:846
+#: app/Panel/panelfunc.cpp:923
 #, kde-format
 msgid "Warning"
 msgstr "Averto"
 
-#: app/DiskUsage/diskusage.cpp:606 plugins/krarc/krarc.cpp:918
+#: app/DiskUsage/diskusage.cpp:606 plugins/krarc/krarc.cpp:641
 #, kde-format
 msgid "Deleting %1..."
 msgstr "Forigante %1..."
@@ -1537,12 +1533,12 @@ msgstr "Detala"
 msgid "Filelight"
 msgstr "Filelight"
 
-#: app/DiskUsage/diskusage.cpp:803 app/KViewer/lister.cpp:1282
+#: app/DiskUsage/diskusage.cpp:803 app/KViewer/lister.cpp:1285
 #, kde-format
 msgid "Next"
 msgstr "Sekva"
 
-#: app/DiskUsage/diskusage.cpp:807 app/KViewer/lister.cpp:1286
+#: app/DiskUsage/diskusage.cpp:807 app/KViewer/lister.cpp:1289
 #, kde-format
 msgid "Previous"
 msgstr "Antaŭa"
@@ -1689,7 +1685,7 @@ msgid "Percent"
 msgstr "Elcento"
 
 #: app/DiskUsage/dulines.cpp:185 app/DiskUsage/dulistview.cpp:40
-#: app/Konfigurator/krresulttable.cpp:126 app/MountMan/kmountmangui.cpp:147
+#: app/Konfigurator/krresulttable.cpp:128 app/MountMan/kmountmangui.cpp:147
 #, kde-format
 msgid "Name"
 msgstr "Nomo"
@@ -1729,7 +1725,7 @@ msgstr "Permesoj"
 msgid "Owner"
 msgstr "Posedanto"
 
-#: app/DiskUsage/dulistview.cpp:48 app/Konfigurator/krresulttable.cpp:279
+#: app/DiskUsage/dulistview.cpp:48 app/Konfigurator/krresulttable.cpp:282
 #, kde-format
 msgid "Group"
 msgstr "Grupo"
@@ -1746,32 +1742,32 @@ msgstr[1] "%1 dosieroj: ~ %2"
 msgid "Files: %1"
 msgstr "Dosieroj: %1"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:167
+#: app/DiskUsage/radialMap/widgetEvents.cpp:166
 #, kde-format
 msgid "Open File Manager Here"
 msgstr "Malfermi Dosiermastrumilon ĉi tie"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:169
+#: app/DiskUsage/radialMap/widgetEvents.cpp:168
 #, kde-format
 msgid "Open Terminal Here"
 msgstr "Malfermi Terminalon Ĉi tie"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:173
+#: app/DiskUsage/radialMap/widgetEvents.cpp:172
 #, kde-format
 msgid "&Center Map Here"
 msgstr "&Centra Mapo Ĉi tie"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:176
+#: app/DiskUsage/radialMap/widgetEvents.cpp:175
 #, kde-format
 msgid "&Open"
 msgstr "&Malfermi"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:179
+#: app/DiskUsage/radialMap/widgetEvents.cpp:178
 #, kde-format
 msgid "&Delete"
 msgstr "&Forigi"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:210
+#: app/DiskUsage/radialMap/widgetEvents.cpp:204
 #, kde-format
 msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
@@ -1780,27 +1776,27 @@ msgstr ""
 "<qt>La dosierujo ĉe <i>'%1'</i> estos <b>rekurse</b> kaj <b>konstante</b> "
 "forigita.</qt>"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:211
+#: app/DiskUsage/radialMap/widgetEvents.cpp:205
 #, kde-format
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
 msgstr "<qt><i>'%1'</i> estos <b>konstante</b> forigita.</qt>"
 
-#: app/FileSystem/defaultfilesystem.cpp:148
+#: app/FileSystem/defaultfilesystem.cpp:150
 #, kde-format
 msgid "Space information disabled"
 msgstr "Spaca informo malŝaltita"
 
-#: app/FileSystem/defaultfilesystem.cpp:155
+#: app/FileSystem/defaultfilesystem.cpp:157
 #, kde-format
 msgid "No space information on non-local filesystems"
 msgstr "Neniuj spacaj informoj pri ne-lokaj dosiersistemoj"
 
-#: app/FileSystem/defaultfilesystem.cpp:183
+#: app/FileSystem/defaultfilesystem.cpp:185
 #, kde-format
 msgid "Space information unavailable"
 msgstr "Spaca informo nedisponebla"
 
-#: app/FileSystem/defaultfilesystem.cpp:193
+#: app/FileSystem/defaultfilesystem.cpp:195
 #, kde-format
 msgid ""
 "Protocol not supported by Krusader:\n"
@@ -1809,18 +1805,18 @@ msgstr ""
 "Protokolo ne subtenata de Krusader:\n"
 "%1"
 
-#: app/FileSystem/defaultfilesystem.cpp:335
+#: app/FileSystem/defaultfilesystem.cpp:337
 #, kde-format
 msgid "The folder %1 does not exist."
 msgstr "La dosierujo %1 ne ekzistas."
 
-#: app/FileSystem/defaultfilesystem.cpp:351
-#: app/Synchronizer/synchronizerdirlist.cpp:116
+#: app/FileSystem/defaultfilesystem.cpp:353
+#: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Cannot open the folder %1."
 msgstr "Ne povas malfermi la dosierujon %1."
 
-#: app/FileSystem/defaultfilesystem.cpp:358
+#: app/FileSystem/defaultfilesystem.cpp:360
 #, kde-format
 msgctxt "%1=folder path"
 msgid "Access to %1 denied"
@@ -1835,44 +1831,44 @@ msgstr ""
 "Misformita URL:\n"
 "%1"
 
-#: app/FileSystem/krquery.cpp:258 app/Filter/generalfilter.cpp:160
+#: app/FileSystem/krquery.cpp:259 app/Filter/generalfilter.cpp:161
 #: app/Konfigurator/konfigurator.cpp:126
 #, kde-format
 msgid "Archives"
 msgstr "Arkivoj"
 
-#: app/FileSystem/krquery.cpp:262 app/Filter/generalfilter.cpp:162
+#: app/FileSystem/krquery.cpp:263 app/Filter/generalfilter.cpp:163
 #, kde-format
 msgid "Image Files"
 msgstr "Bildaj dosieroj"
 
-#: app/FileSystem/krquery.cpp:264 app/Filter/generalfilter.cpp:163
+#: app/FileSystem/krquery.cpp:265 app/Filter/generalfilter.cpp:164
 #, kde-format
 msgid "Text Files"
 msgstr "Tekstaj dosieroj"
 
-#: app/FileSystem/krquery.cpp:266 app/Filter/generalfilter.cpp:164
+#: app/FileSystem/krquery.cpp:267 app/Filter/generalfilter.cpp:165
 #, kde-format
 msgid "Video Files"
 msgstr "Viddosieroj"
 
-#: app/FileSystem/krquery.cpp:268 app/Filter/generalfilter.cpp:165
+#: app/FileSystem/krquery.cpp:269 app/Filter/generalfilter.cpp:166
 #, kde-format
 msgid "Audio Files"
 msgstr "Sondosieroj"
 
-#: app/FileSystem/krquery.cpp:270
+#: app/FileSystem/krquery.cpp:271
 #, kde-format
 msgid "Custom"
 msgstr "Propra"
 
-#: app/FileSystem/krquery.cpp:565
+#: app/FileSystem/krquery.cpp:566
 #, kde-format
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
 msgstr "Serĉante enhavon de '%1' (%2)"
 
-#: app/FileSystem/krquery.cpp:570
+#: app/FileSystem/krquery.cpp:571
 #, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
@@ -1909,7 +1905,7 @@ msgstr "Almenaŭ"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:69 app/Filter/advancedfilter.cpp:91
-#: app/Splitter/splittergui.cpp:117
+#: app/Splitter/splittergui.cpp:120
 #, kde-format
 msgid "Byte"
 msgstr "Bitoko"
@@ -2136,82 +2132,69 @@ msgstr "&Plie"
 msgid "Could not load profile."
 msgstr "Ne eblis ŝargi profilon."
 
-#: app/Filter/generalfilter.cpp:37
-#, kde-format
+#: app/Filter/generalfilter.cpp:38
 msgid "Any Character"
 msgstr "Ia signo"
 
-#: app/Filter/generalfilter.cpp:38
-#, kde-format
+#: app/Filter/generalfilter.cpp:39
 msgid "Start of Line"
 msgstr "Linia komenco"
 
-#: app/Filter/generalfilter.cpp:39
-#, kde-format
+#: app/Filter/generalfilter.cpp:40
 msgid "End of Line"
 msgstr "Linia fino"
 
-#: app/Filter/generalfilter.cpp:40
-#, kde-format
+#: app/Filter/generalfilter.cpp:41
 msgid "Set of Characters"
 msgstr "Signaro"
 
-#: app/Filter/generalfilter.cpp:41
-#, kde-format
+#: app/Filter/generalfilter.cpp:42
 msgid "Repeats, Zero or More Times"
 msgstr "Ripetas, nulan aŭ plurajn fojojn"
 
-#: app/Filter/generalfilter.cpp:42
-#, kde-format
+#: app/Filter/generalfilter.cpp:43
 msgid "Repeats, One or More Times"
 msgstr "Ripetas, unu aŭ plurajn fojojn"
 
-#: app/Filter/generalfilter.cpp:43
-#, kde-format
+#: app/Filter/generalfilter.cpp:44
 msgid "Optional"
 msgstr "Nedeviga"
 
-#: app/Filter/generalfilter.cpp:44
-#, kde-format
+#: app/Filter/generalfilter.cpp:45
 msgid "Escape"
 msgstr "Eskapo"
 
-#: app/Filter/generalfilter.cpp:45
-#, kde-format
+#: app/Filter/generalfilter.cpp:46
 msgid "TAB"
 msgstr "Tabo"
 
-#: app/Filter/generalfilter.cpp:46
-#, kde-format
+#: app/Filter/generalfilter.cpp:47
 msgid "Newline"
 msgstr "Linifinilo"
 
-#: app/Filter/generalfilter.cpp:47
-#, kde-format
+#: app/Filter/generalfilter.cpp:48
 msgid "Carriage Return"
 msgstr "Ĉaretreveno"
 
-#: app/Filter/generalfilter.cpp:48
-#, kde-format
+#: app/Filter/generalfilter.cpp:49
 msgid "White Space"
 msgstr "Blanka spaco"
 
-#: app/Filter/generalfilter.cpp:49
-#, kde-format
+#: app/Filter/generalfilter.cpp:50
 msgid "Digit"
 msgstr "Cifero"
 
-#: app/Filter/generalfilter.cpp:103
+#: app/Filter/generalfilter.cpp:104
 #, kde-format
 msgid "&Case sensitive"
 msgstr "&Usklecodistinga"
 
-#: app/Filter/generalfilter.cpp:108
+#: app/Filter/generalfilter.cpp:109
 #, kde-format
 msgid "Search &for:"
 msgstr "Serĉi &por:"
 
-#: app/Filter/generalfilter.cpp:123 app/Synchronizer/synchronizergui.cpp:208
+#: app/Filter/generalfilter.cpp:124 app/Synchronizer/synchronizergui.cpp:208
 #, kde-format
 msgid ""
 "<p>The filename filtering criteria is defined here.</p><p>You can make use "
@@ -2249,103 +2232,103 @@ msgstr ""
 "code></li></ul><p><b>Noto</b>: la serĉtermino '<code>teksto</code>' "
 "samvaloras al '<code>*teksto*</code>'.</p>"
 
-#: app/Filter/generalfilter.cpp:149
+#: app/Filter/generalfilter.cpp:150
 #, kde-format
 msgid "&Of type:"
 msgstr "&De tipo:"
 
-#: app/Filter/generalfilter.cpp:159 app/Filter/generalfilter.cpp:584
+#: app/Filter/generalfilter.cpp:160 app/Filter/generalfilter.cpp:585
 #, kde-format
 msgid "All Files"
 msgstr "Ĉiuj dosieroj"
 
-#: app/Filter/generalfilter.cpp:179
+#: app/Filter/generalfilter.cpp:180
 #, kde-format
 msgid "&Profile handler"
 msgstr "&Profilo-traktilo"
 
-#: app/Filter/generalfilter.cpp:192
+#: app/Filter/generalfilter.cpp:193
 #, kde-format
 msgid "&Load"
 msgstr "Ŝar&gi"
 
-#: app/Filter/generalfilter.cpp:216
+#: app/Filter/generalfilter.cpp:217
 #, kde-format
 msgid "Searc&h in"
 msgstr "S&erĉi en"
 
-#: app/Filter/generalfilter.cpp:231
+#: app/Filter/generalfilter.cpp:232
 #, kde-format
 msgid "&Do not search in"
 msgstr "&Ne serĉi en"
 
-#: app/Filter/generalfilter.cpp:264
+#: app/Filter/generalfilter.cpp:265
 #, kde-format
 msgid "Containing text"
 msgstr "Enhavanta tekston"
 
-#: app/Filter/generalfilter.cpp:278
+#: app/Filter/generalfilter.cpp:279
 #, kde-format
 msgid "&Text:"
 msgstr "&Teksto:"
 
-#: app/Filter/generalfilter.cpp:294 app/KViewer/lister.cpp:1300
+#: app/Filter/generalfilter.cpp:295 app/KViewer/lister.cpp:1303
 #, kde-format
 msgid "RegExp"
 msgstr "RegExp"
 
-#: app/Filter/generalfilter.cpp:313
+#: app/Filter/generalfilter.cpp:314
 #, kde-format
 msgid "Encoding:"
 msgstr "Kodigo:"
 
-#: app/Filter/generalfilter.cpp:317 app/GUI/krremoteencodingmenu.cpp:120
+#: app/Filter/generalfilter.cpp:318 app/GUI/krremoteencodingmenu.cpp:119
 #, kde-format
 msgctxt "Default encoding"
 msgid "Default"
 msgstr "Defaŭlta"
 
-#: app/Filter/generalfilter.cpp:328
+#: app/Filter/generalfilter.cpp:329
 #, kde-format
 msgid "&Match whole word only"
 msgstr "&Kongrui nur tutan vorton"
 
-#: app/Filter/generalfilter.cpp:336
+#: app/Filter/generalfilter.cpp:337
 #, kde-format
 msgid "Cas&e sensitive"
 msgstr "Uskl&ecodistinga"
 
-#: app/Filter/generalfilter.cpp:353
+#: app/Filter/generalfilter.cpp:354
 #, kde-format
 msgid "Search in s&ub folders"
 msgstr "Serĉi en s&ub-dosierujoj"
 
-#: app/Filter/generalfilter.cpp:358
+#: app/Filter/generalfilter.cpp:359
 #, kde-format
 msgid "Search in arch&ives"
 msgstr "Serĉi en ark&ivoj"
 
-#: app/Filter/generalfilter.cpp:362
+#: app/Filter/generalfilter.cpp:363
 #, kde-format
 msgid "Follow &links"
 msgstr "Sekvi &ligilojn"
 
-#: app/Filter/generalfilter.cpp:472
+#: app/Filter/generalfilter.cpp:473
 #, kde-format
 msgid "Exclude Folder Names"
 msgstr "Ekskludi Dosierujo-Nomojn"
 
-#: app/Filter/generalfilter.cpp:473
+#: app/Filter/generalfilter.cpp:474
 #, kde-format
 msgid "Filters out specified folder names from the results."
 msgstr "Filtras specifitajn dosierujojn el la rezultoj."
 
-#: app/Filter/generalfilter.cpp:488
+#: app/Filter/generalfilter.cpp:489
 #, kde-format
 msgid "Enter space-separated folder names"
 msgstr "Enigu nomojn de dosierujoj de spaco-separataj"
 
-#: app/Filter/generalfilter.cpp:490
+#: app/Filter/generalfilter.cpp:491
 #, kde-format
 msgid ""
 "You can insert names with escaped spaces or quoted.\n"
@@ -2354,12 +2337,12 @@ msgstr ""
 "Vi povas enmeti nomojn kun ellasitaj spacoj aŭ cititaj.\n"
 "Ekzemplo: .git \"cela konstruo\" konstruo\\ krusader"
 
-#: app/Filter/generalfilter.cpp:576
+#: app/Filter/generalfilter.cpp:577
 #, kde-format
 msgid "No search criteria entered."
 msgstr "Neniuj serĉkriterioj eniris."
 
-#: app/Filter/generalfilter.cpp:606
+#: app/Filter/generalfilter.cpp:607
 #, kde-format
 msgid "Please specify a location to search in."
 msgstr "Bonvolu specifi lokon por serĉi."
@@ -2420,12 +2403,12 @@ msgstr "Mkdir"
 msgid "Term"
 msgstr "Term"
 
-#: app/GUI/kfnkeys.cpp:29 app/kractions.cpp:312
+#: app/GUI/kfnkeys.cpp:29 app/kractions.cpp:303
 #, kde-format
 msgid "Quit"
 msgstr "Forlasi"
 
-#: app/GUI/krremoteencodingmenu.cpp:116
+#: app/GUI/krremoteencodingmenu.cpp:115
 #, kde-format
 msgid "Reload"
 msgstr "Reŝargi"
@@ -2508,21 +2491,21 @@ msgstr "Aŭd-KD/DVD-ROM"
 msgid "Recordable CD/DVD-ROM"
 msgstr "Registrebla KD/DVD-ROM"
 
-#: app/GUI/mediabutton.cpp:334 app/MountMan/kmountman.cpp:389
-#: app/MountMan/kmountmangui.cpp:436 app/Panel/panelcontextmenu.cpp:273
+#: app/GUI/mediabutton.cpp:334 app/MountMan/kmountman.cpp:391
+#: app/MountMan/kmountmangui.cpp:444 app/Panel/panelcontextmenu.cpp:248
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
 msgstr "Kroĉi"
 
-#: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:389
-#: app/MountMan/kmountmangui.cpp:441 app/Panel/panelcontextmenu.cpp:271
+#: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:391
+#: app/MountMan/kmountmangui.cpp:449 app/Panel/panelcontextmenu.cpp:246
 #, kde-format
 msgid "Unmount"
 msgstr "Malkroĉi"
 
-#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:448
-#: app/Panel/panelcontextmenu.cpp:275
+#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:456
+#: app/Panel/panelcontextmenu.cpp:250
 #, kde-format
 msgid "Eject"
 msgstr "Elĵeti"
@@ -2572,12 +2555,12 @@ msgstr "Enigu la profilon nomon:"
 msgid "Empty Recently Closed Tabs"
 msgstr "Malplenaj Lastatempe Fermitaj Langetoj"
 
-#: app/GUI/terminaldock.cpp:91
+#: app/GUI/terminaldock.cpp:97
 #, kde-format
 msgid "<b>Cannot create embedded terminal.</b><br/>"
 msgstr "<b>Ne povas krei enigitan terminalon.</b><br/>"
 
-#: app/GUI/terminaldock.cpp:102
+#: app/GUI/terminaldock.cpp:108
 #, kde-format
 msgctxt "missing program - arg1 is a URL"
 msgid ""
@@ -2632,7 +2615,7 @@ msgstr "Laborvica Reĝimo"
 msgid "Run only one job in parallel"
 msgstr "Ruligi nur unu taskon paralele"
 
-#: app/JobMan/jobman.cpp:211 app/JobMan/jobman.cpp:357
+#: app/JobMan/jobman.cpp:211 app/JobMan/jobman.cpp:356
 #, kde-format
 msgid "Undo Last Job"
 msgstr "Malfari Lastan Taskon"
@@ -2642,36 +2625,36 @@ msgstr "Malfari Lastan Taskon"
 msgid "Are you sure you want to quit?"
 msgstr "Ĉu vi certas, ke vi volas ĉesi?"
 
-#: app/JobMan/jobman.cpp:376
+#: app/JobMan/jobman.cpp:375
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
 msgstr[0] "Estas unu taskoperacio restanta."
 msgstr[1] "Estas %1 taskoperacioj restantaj."
 
-#: app/JobMan/jobman.cpp:424
+#: app/JobMan/jobman.cpp:423
 #, kde-format
 msgid "No Jobs"
 msgstr "Neniuj Taskoj"
 
-#: app/JobMan/jobman.cpp:426
+#: app/JobMan/jobman.cpp:425
 #, kde-format
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
 msgstr[0] "%1 Tasko"
 msgstr[1] "%1 Taskoj"
 
-#: app/JobMan/jobman.cpp:430
+#: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Clear Job List"
 msgstr "Malplenigi Laborliston"
 
-#: app/JobMan/jobman.cpp:430
+#: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Pause All Jobs"
 msgstr "Paŭzi Ĉiujn Taskojn"
 
-#: app/JobMan/jobman.cpp:430
+#: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Resume Job List"
 msgstr "Rekomenci Taskoliston"
@@ -3219,7 +3202,7 @@ msgid "Statusbar, inactive background:"
 msgstr "Statusbreto, neaktiva fono:"
 
 #: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:808
-#: app/Panel/panelcontextmenu.cpp:159
+#: app/Panel/panelcontextmenu.cpp:137
 #, kde-format
 msgid "Preview"
 msgstr "Antaŭrigardo"
@@ -3411,7 +3394,7 @@ msgstr "Ĝenerala reĝimo"
 msgid "Use the system's default viewer"
 msgstr "Uzi la defaŭltan vidilon de la sistemo"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2268
+#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2271
 #, kde-format
 msgid "Text mode"
 msgstr "Teksta reĝimo"
@@ -3421,8 +3404,8 @@ msgstr "Teksta reĝimo"
 msgid "View the file in text-only mode"
 msgstr "Rigardi la dosieron en nur-teksta reĝimo"
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1232
-#: app/KViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1235
+#: app/KViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
 msgstr "Deksesum-reĝimo"
@@ -3557,7 +3540,7 @@ msgstr "Forigi dosierojn"
 msgid "Files will be permanently deleted."
 msgstr "Dosieroj estos konstante forigitaj."
 
-#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:187
+#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:165
 #, kde-format
 msgid "Terminal"
 msgstr "Terminalo"
@@ -3866,7 +3849,7 @@ msgstr "Komenci per tajpado"
 msgid "Open search bar and start searching by typing in panel."
 msgstr "Malfermi serĉbreton kaj komenci serĉon tajpante en panelo."
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1296
+#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "Usklecodistinga"
@@ -3913,7 +3896,7 @@ msgstr "Pozicio:"
 msgid "Default mode:"
 msgstr "Defaŭlta reĝimo:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1212
+#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
 #, kde-format
 msgid "Search"
@@ -5014,7 +4997,7 @@ msgstr "Dependecoj"
 msgid "Set the full path of the external applications"
 msgstr "Meti la plenan vojon de la eksteraj aplikoj"
 
-#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:199
+#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:177
 #: app/UserAction/useractionpopupmenu.cpp:20
 #, kde-format
 msgid "User Actions"
@@ -5131,327 +5114,312 @@ msgstr "Malhelgrizo"
 msgid "Black"
 msgstr "Nigra"
 
-#: app/Konfigurator/krresulttable.cpp:118
+#: app/Konfigurator/krresulttable.cpp:120
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
 msgstr "unarj ne trovita, sed arj trovita, kiu estos uzata por malpaki"
 
-#: app/Konfigurator/krresulttable.cpp:124
+#: app/Konfigurator/krresulttable.cpp:126
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr "rpm trovita, sed cpio ne trovita kiu estas bezonata por malpakigi"
 
-#: app/Konfigurator/krresulttable.cpp:127
-#: app/Konfigurator/krresulttable.cpp:281
+#: app/Konfigurator/krresulttable.cpp:129
+#: app/Konfigurator/krresulttable.cpp:284
 #, kde-format
 msgid "Found"
 msgstr "Trovita"
 
-#: app/Konfigurator/krresulttable.cpp:128
+#: app/Konfigurator/krresulttable.cpp:130
 #, kde-format
 msgid "Packing"
 msgstr "Pakado"
 
-#: app/Konfigurator/krresulttable.cpp:129
+#: app/Konfigurator/krresulttable.cpp:131
 #, kde-format
 msgid "Unpacking"
 msgstr "Malpakado"
 
-#: app/Konfigurator/krresulttable.cpp:130
+#: app/Konfigurator/krresulttable.cpp:132
 #, kde-format
 msgid "Note"
 msgstr "Noto"
 
-#: app/Konfigurator/krresulttable.cpp:196
-#: app/Konfigurator/krresulttable.cpp:214
-#: app/Konfigurator/krresulttable.cpp:352
+#: app/Konfigurator/krresulttable.cpp:198
+#: app/Konfigurator/krresulttable.cpp:216
+#: app/Konfigurator/krresulttable.cpp:355
 #, kde-format
 msgid "enabled"
 msgstr "enŝaltita"
 
-#: app/Konfigurator/krresulttable.cpp:201
-#: app/Konfigurator/krresulttable.cpp:219
-#: app/Konfigurator/krresulttable.cpp:357
+#: app/Konfigurator/krresulttable.cpp:203
+#: app/Konfigurator/krresulttable.cpp:221
+#: app/Konfigurator/krresulttable.cpp:360
 #, kde-format
 msgid "disabled"
 msgstr "malŝaltita"
 
-#: app/Konfigurator/krresulttable.cpp:274
+#: app/Konfigurator/krresulttable.cpp:277
 #, kde-format
 msgid "diff utility"
 msgstr "diff utileco"
 
-#: app/Konfigurator/krresulttable.cpp:275
+#: app/Konfigurator/krresulttable.cpp:278
 #, kde-format
 msgid "email client"
 msgstr "retpoŝta kliento"
 
-#: app/Konfigurator/krresulttable.cpp:276
+#: app/Konfigurator/krresulttable.cpp:279
 #, kde-format
 msgid "batch renamer"
 msgstr "bata renomo"
 
-#: app/Konfigurator/krresulttable.cpp:277
+#: app/Konfigurator/krresulttable.cpp:280
 #, kde-format
 msgid "checksum utility"
 msgstr "checksum utileco"
 
-#: app/Konfigurator/krresulttable.cpp:280
+#: app/Konfigurator/krresulttable.cpp:283
 #, kde-format
 msgid "Tool"
 msgstr "Ilo"
 
-#: app/Konfigurator/krresulttable.cpp:282
+#: app/Konfigurator/krresulttable.cpp:285
 #, kde-format
 msgid "Status"
 msgstr "Stato"
 
-#: app/kractions.cpp:174
+#: app/kractions.cpp:175
 #, kde-format
 msgid "Tab-Switch panel"
 msgstr "Tab-Ŝaltilo panelo"
 
-#: app/kractions.cpp:176
-#, kde-format
-msgid "Show Main Toolbar"
-msgstr "Montri Ĉefan Ilobreton"
-
-#: app/kractions.cpp:179
-#, kde-format
-msgid "Show Job Toolbar"
-msgstr "Montri Ilobreton pri Tasko"
-
 #: app/kractions.cpp:182
-#, kde-format
-msgid "Show Actions Toolbar"
-msgstr "Montri Agoj Ilobreto"
-
-#: app/kractions.cpp:191
 #, kde-format
 msgid "Show &FN Keys Bar"
 msgstr "Montri &FN-klavobreton"
 
-#: app/kractions.cpp:193
+#: app/kractions.cpp:184
 #, kde-format
 msgid "Show &Command Line"
 msgstr "Montri &Komandlinion"
 
-#: app/kractions.cpp:196
+#: app/kractions.cpp:187
 #, kde-format
 msgid "Show &Embedded Terminal"
 msgstr "Montri &Enigitan Terminalon"
 
-#: app/kractions.cpp:204
+#: app/kractions.cpp:195
 #, kde-format
 msgid "Show &Hidden Files"
 msgstr "Montri Kaŝita&jn dosierojn"
 
-#: app/kractions.cpp:211
+#: app/kractions.cpp:202
 #, kde-format
 msgid "S&wap Panels"
 msgstr "Interŝ&anĝi Panelojn"
 
-#: app/kractions.cpp:213 app/Panel/panelcontextmenu.cpp:286
+#: app/kractions.cpp:204 app/Panel/panelcontextmenu.cpp:261
 #, kde-format
 msgid "Empty Trash"
 msgstr "Malplenigi la rubujon"
 
-#: app/kractions.cpp:215
+#: app/kractions.cpp:206
 #, kde-format
 msgid "Trash Popup Menu"
 msgstr "Rubuja Ŝprucmenuo"
 
-#: app/kractions.cpp:217
+#: app/kractions.cpp:208
 #, kde-format
 msgid "Sw&ap Sides"
 msgstr "Interŝ&anĝi Flankojn"
 
-#: app/kractions.cpp:221
+#: app/kractions.cpp:212
 #, kde-format
 msgid "popup cmdline"
 msgstr "ŝpruca komandlinio"
 
-#: app/kractions.cpp:223
+#: app/kractions.cpp:214
 #, kde-format
 msgid "Start &Root Mode Krusader"
 msgstr "Komenci &Radik-reĝiman Krusader"
 
-#: app/kractions.cpp:224
+#: app/kractions.cpp:215
 #, kde-format
 msgid "Pro&files"
 msgstr "Pro&filoj"
 
-#: app/kractions.cpp:225
+#: app/kractions.cpp:216
 #, kde-format
 msgid "Sp&lit File..."
 msgstr "Di&vidita Dosiero..."
 
-#: app/kractions.cpp:226
+#: app/kractions.cpp:217
 #, kde-format
 msgid "Com&bine Files..."
 msgstr "Kom&bini Dosierojn..."
 
-#: app/kractions.cpp:227
+#: app/kractions.cpp:218
 #, kde-format
 msgid "&Select Newer and Single"
 msgstr "&Elekti Pli Novan kaj Solan"
 
-#: app/kractions.cpp:228
+#: app/kractions.cpp:219
 #, kde-format
 msgid "Select &Newer"
 msgstr "Elekti Pli &Novan"
 
-#: app/kractions.cpp:229
+#: app/kractions.cpp:220
 #, kde-format
 msgid "Select &Single"
 msgstr "Elekti &Solan"
 
-#: app/kractions.cpp:230
+#: app/kractions.cpp:221
 #, kde-format
 msgid "Select Different &and Single"
 msgstr "Elekti Malsaman k&aj Solan"
 
-#: app/kractions.cpp:231
+#: app/kractions.cpp:222
 #, kde-format
 msgid "Select &Different"
 msgstr "Elekti &Diversan"
 
-#: app/kractions.cpp:246
+#: app/kractions.cpp:237
 #, kde-format
 msgid "Start and &Forget"
 msgstr "Komenci kaj &Forgesi"
 
-#: app/kractions.cpp:248
+#: app/kractions.cpp:239
 #, kde-format
 msgid "Display &Separated Standard and Error Output"
 msgstr "Montri &Apartitan Norman kaj Eraran Eligon"
 
-#: app/kractions.cpp:254
+#: app/kractions.cpp:245
 #, kde-format
 msgid "Display &Mixed Standard and Error Output"
 msgstr "Montri &Miksitan Norman kaj Eraran Eligon"
 
-#: app/kractions.cpp:255
+#: app/kractions.cpp:246
 #, kde-format
 msgid "Start in &New Terminal"
 msgstr "Komenci en &Nova Terminalo"
 
-#: app/kractions.cpp:256
+#: app/kractions.cpp:247
 #, kde-format
 msgid "Send to &Embedded Terminal Emulator"
 msgstr "Sendi al &Enigita Terminal-Imitilo"
 
-#: app/kractions.cpp:272
+#: app/kractions.cpp:263
 #, kde-format
 msgid "Start &Terminal"
 msgstr "Komenci &Terminalon"
 
-#: app/kractions.cpp:278
+#: app/kractions.cpp:269
 #, kde-format
 msgid "&Search..."
 msgstr "&Serĉi..."
 
-#: app/kractions.cpp:279
+#: app/kractions.cpp:270
 #, kde-format
 msgid "&Locate..."
 msgstr "&Lokigi..."
 
-#: app/kractions.cpp:281
+#: app/kractions.cpp:272
 #, kde-format
 msgid "Synchronize Fol&ders..."
 msgstr "Sinkronigi &Dosierujojn..."
 
-#: app/kractions.cpp:283
+#: app/kractions.cpp:274
 #, kde-format
 msgid "D&isk Usage..."
 msgstr "D&isk-Uzado..."
 
-#: app/kractions.cpp:285
+#: app/kractions.cpp:276
 #, kde-format
 msgid "Configure &Krusader..."
 msgstr "Agordi &Krusader..."
 
-#: app/kractions.cpp:291
+#: app/kractions.cpp:282
 #, kde-format
 msgid "Save &Position"
 msgstr "Konservi &Pozicion"
 
-#: app/kractions.cpp:292
+#: app/kractions.cpp:283
 #, kde-format
 msgid "Compare b&y Content..."
 msgstr "Kompar&i laŭ Enhavo..."
 
-#: app/kractions.cpp:293
+#: app/kractions.cpp:284
 #, kde-format
 msgid "Multi &Rename..."
 msgstr "Plu&ra Alinomado..."
 
-#: app/kractions.cpp:297 app/krusaderview.cpp:461
+#: app/kractions.cpp:288 app/krusaderview.cpp:461
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Vertikala Reĝimo"
 
-#: app/kractions.cpp:303
+#: app/kractions.cpp:294
 #, kde-format
 msgid "User&actions"
 msgstr "Uzanto&agoj"
 
-#: app/kractions.cpp:305
+#: app/kractions.cpp:296
 #, kde-format
 msgid "Manage User Actions..."
 msgstr "Administri Uzantajn Agojn..."
 
-#: app/kractions.cpp:307
+#: app/kractions.cpp:298
 #, kde-format
 msgid "Select Remote Charset"
 msgstr "Elekti foran signaran kodon"
 
-#: app/kractions.cpp:309
+#: app/kractions.cpp:300
 #, kde-format
 msgid "Recently Closed Tabs"
 msgstr "Lastatempe Fermita Langetoj"
 
-#: app/kractions.cpp:313
+#: app/kractions.cpp:304
 #, kde-format
 msgid "Quit Krusader."
 msgstr "Forlasi Krusader."
 
-#: app/kractions.cpp:315
+#: app/kractions.cpp:306
 #, kde-format
 msgid "Popular URLs..."
 msgstr "Popularaj URL-oj..."
 
-#: app/kractions.cpp:317
+#: app/kractions.cpp:308
 #, kde-format
 msgid "Toggle Fullscreen Embedded Terminal"
 msgstr "Baskuligi Plenekranan Enigitan Terminalon"
 
-#: app/kractions.cpp:324
+#: app/kractions.cpp:315
 #, kde-format
 msgid "Move Focus Up"
 msgstr "Movi Fokuson Supren"
 
-#: app/kractions.cpp:325
+#: app/kractions.cpp:316
 #, kde-format
 msgid "Move Focus Down"
 msgstr "Movi Fokuson Malsupren"
 
-#: app/kractions.cpp:340
+#: app/kractions.cpp:331
 #, kde-format
 msgid "Setup Krusader the way you like it"
 msgstr "Agordi Krusader kiel vi ŝatas ĝin"
 
-#: app/kractions.cpp:341
+#: app/kractions.cpp:332
 #, kde-format
 msgid "Search for files"
 msgstr "Serĉi dosierojn"
 
-#: app/krslots.cpp:90
+#: app/krslots.cpp:91
 #, kde-format
 msgid "No selected files to send."
 msgstr "Neniuj elektitaj dosieroj por sendi."
 
-#: app/krslots.cpp:99
+#: app/krslots.cpp:100
 #, kde-format
 msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
@@ -5460,25 +5428,25 @@ msgstr ""
 "Krusader ne povas trovi subtenan poŝtklienton. Bonvolu instali unu al via "
 "vojo. Konsilo: Krusader subtenas KMail."
 
-#: app/krslots.cpp:108
+#: app/krslots.cpp:109
 #, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
 msgstr[0] "Sendante dosieron: %2"
 msgstr[1] "Sendante dosierojn: %2"
 
-#: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:416
-#: app/krslots.cpp:489 app/Synchronizer/synchronizer.cpp:1609
+#: app/krslots.cpp:138 app/krslots.cpp:233 app/krslots.cpp:417
+#: app/krslots.cpp:490 app/Synchronizer/synchronizer.cpp:1608
 #, kde-format
 msgid "Error executing %1."
 msgstr "Eraro dum la rulo de %1."
 
-#: app/krslots.cpp:162
+#: app/krslots.cpp:163
 #, kde-format
 msgid "Do not know which files to compare."
 msgstr "Ne scias kiujn dosierojn kompari."
 
-#: app/krslots.cpp:163
+#: app/krslots.cpp:164
 #, kde-format
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
@@ -5492,12 +5460,12 @@ msgstr ""
 "la alia panelo, kun la sama nomo kiel la nuna dosiero en la aktiva panelo.</"
 "li></ul>"
 
-#: app/krslots.cpp:184
+#: app/krslots.cpp:185
 #, kde-format
 msgid "Krusader is unable to download %1"
 msgstr "Krusader ne povas elŝuti %1"
 
-#: app/krslots.cpp:200
+#: app/krslots.cpp:201
 #, kde-format
 msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
@@ -5507,7 +5475,7 @@ msgstr ""
 "instali unu al via vojo. Sugesto: Krusader subtenas Kompare, KDiff3 kaj "
 "Xxdiff."
 
-#: app/krslots.cpp:383
+#: app/krslots.cpp:384
 #, kde-format
 msgid ""
 "Cannot find the 'locate' command. Please install the findutils-locate "
@@ -5516,7 +5484,7 @@ msgstr ""
 "Ne povas trovi la komandon 'locate'. Bonvolu instali la findutils-locate "
 "pakaĵon de GNU, aŭ agordi ĝiajn dependecojn en Konfigurator"
 
-#: app/krslots.cpp:406 app/UserAction/kraction.cpp:282
+#: app/krslots.cpp:407 app/UserAction/kraction.cpp:282
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5526,7 +5494,7 @@ msgstr ""
 "Malbona citaĵo en fina komando:\n"
 "%1"
 
-#: app/krslots.cpp:431
+#: app/krslots.cpp:432
 #, kde-format
 msgid ""
 "Cannot find a batch rename tool.\n"
@@ -5535,12 +5503,12 @@ msgstr ""
 "Ne povas trovi grupan alinomi ilon.\n"
 "Vi povas akiri KRename ĉe %1"
 
-#: app/krslots.cpp:458
+#: app/krslots.cpp:459
 #, kde-format
 msgid "Error executing '%1'."
 msgstr "Eraro dum la rulo de '%1'."
 
-#: app/krslots.cpp:464
+#: app/krslots.cpp:465
 #, kde-format
 msgid ""
 "Improper operations in root mode can damage your operating system. "
@@ -5551,7 +5519,7 @@ msgstr ""
 "<p>Krome, ruli UI-aplikaĵojn kiel radiko estas nesekura kaj povas permesi al "
 "atakantoj akiri radikan aliron."
 
-#: app/krslots.cpp:477
+#: app/krslots.cpp:478
 #, kde-format
 msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
@@ -5560,47 +5528,47 @@ msgstr ""
 "Ne povas komenci la radikan reĝimon Krusader, %1 ne trovita aŭ ne "
 "efektivigebla. Bonvolu kontroli, ke kde-cli-tools estas instalita."
 
-#: app/krslots.cpp:503
+#: app/krslots.cpp:504
 #, kde-format
 msgid "Do not know which file to split."
 msgstr "Ne scias kiun dosieron dividi."
 
-#: app/krslots.cpp:512
+#: app/krslots.cpp:513
 #, kde-format
 msgid "You cannot split a folder."
 msgstr "Vi ne povas dividi dosierujon."
 
-#: app/krslots.cpp:535
+#: app/krslots.cpp:536
 #, kde-format
 msgid "Do not know which files to combine."
 msgstr "Ne scias kiujn dosierojn kombini."
 
-#: app/krslots.cpp:552
+#: app/krslots.cpp:553
 #, kde-format
 msgid "You cannot combine a folder."
 msgstr "Vi ne povas kombini dosierujon."
 
-#: app/krslots.cpp:569 app/krslots.cpp:620
+#: app/krslots.cpp:570 app/krslots.cpp:621
 #, kde-format
 msgid "Not a split file: %1."
 msgstr "Ne estas dividita dosiero: %1."
 
-#: app/krslots.cpp:580
+#: app/krslots.cpp:581
 #, kde-format
 msgid "Select only one split file."
 msgstr "Elektu nur unu dividitan dosieron."
 
-#: app/krslots.cpp:627
+#: app/krslots.cpp:628
 #, kde-format
 msgid "Combining %1.* to folder:"
 msgstr "Kombinante %1.* al dosierujo:"
 
-#: app/krslots.cpp:711
+#: app/krslots.cpp:712
 #, kde-format
 msgid "Open trash bin"
 msgstr "Malfermi rubujon"
 
-#: app/krslots.cpp:713
+#: app/krslots.cpp:714
 #, kde-format
 msgid "Empty trash bin"
 msgstr "Malplena rubujo"
@@ -5610,7 +5578,7 @@ msgstr "Malplena rubujo"
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "Statusbreto montros bazajn informojn pri dosiero sub musmontrilo."
 
-#: app/krusader.cpp:305
+#: app/krusader.cpp:297
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5621,14 +5589,14 @@ msgstr ""
 "maŝino nun estos kontrolita por eksteraj aplikaĵoj. Tiam la Konfiguratoro "
 "estos lanĉita kie vi povas agordi Krusader laŭ viaj bezonoj.</p></qt>"
 
-#: app/krusader.cpp:336
+#: app/krusader.cpp:328
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr "Alporti Ĉefan Fenestron al la Supro"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1888
-#: app/KViewer/lister.cpp:1923
+#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1890
+#: app/KViewer/lister.cpp:1925
 #, kde-format
 msgid "Lister"
 msgstr "Lister"
@@ -5675,44 +5643,38 @@ msgstr "&Iloj"
 msgid "&Settings"
 msgstr "A&gordo"
 
-#. i18n: ectx: Menu (show_toolbars)
-#: app/krusaderui.rc:121
-#, kde-format
-msgid "&Toolbars"
-msgstr "&Ilbretoj"
-
 #. i18n: ectx: Menu (command_execution_mode)
-#: app/krusaderui.rc:131
+#: app/krusaderui.rc:125
 #, kde-format
 msgid "Command Execution &Mode Setup"
 msgstr "Komando-Rula Reĝi&m-Agordo"
 
 #. i18n: ectx: Menu (window)
-#: app/krusaderui.rc:145
+#: app/krusaderui.rc:139
 #, kde-format
 msgid "&Window"
 msgstr "Fe&nestro"
 
 #. i18n: ectx: Menu (help)
-#: app/krusaderui.rc:166
+#: app/krusaderui.rc:160
 #, kde-format
 msgid "&Help"
 msgstr "&Helpo"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: app/krusaderui.rc:170
+#: app/krusaderui.rc:164
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Ĉefa Ilobreto"
 
 #. i18n: ectx: ToolBar (actionsToolBar)
-#: app/krusaderui.rc:197
+#: app/krusaderui.rc:191
 #, kde-format
 msgid "Actions Toolbar"
 msgstr "Agoj-ilbreto"
 
 #. i18n: ectx: ToolBar (jobToolBar)
-#: app/krusaderui.rc:200
+#: app/krusaderui.rc:194
 #, kde-format
 msgid "Job Toolbar"
 msgstr "Task-Ilbreto"
@@ -5727,57 +5689,57 @@ msgstr "Funkciaj klavoj permesas fari rapidajn operaciojn sur dosieroj."
 msgid "Horizontal Mode"
 msgstr "Horizontala Reĝimo"
 
-#: app/KViewer/krviewer.cpp:95
+#: app/KViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&Ĝenerala Vidilo"
 
-#: app/KViewer/krviewer.cpp:96
+#: app/KViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&Teksto-Vidilo"
 
-#: app/KViewer/krviewer.cpp:97
+#: app/KViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Heksa Vidilo"
 
-#: app/KViewer/krviewer.cpp:98
+#: app/KViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Lister"
 msgstr "&Listilo"
 
-#: app/KViewer/krviewer.cpp:101
+#: app/KViewer/krviewer.cpp:104
 #, kde-format
 msgid "Text &Editor"
 msgstr "Tekst-R&edaktilo"
 
-#: app/KViewer/krviewer.cpp:125
+#: app/KViewer/krviewer.cpp:128
 #, kde-format
 msgid "&Detach Tab"
 msgstr "Malligi lang&eton"
 
-#: app/KViewer/krviewer.cpp:137
+#: app/KViewer/krviewer.cpp:140
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "&Fermi la nunan langeton"
 
-#: app/KViewer/krviewer.cpp:143
+#: app/KViewer/krviewer.cpp:146
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Sekva langeto"
 
-#: app/KViewer/krviewer.cpp:149
+#: app/KViewer/krviewer.cpp:152
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&Antaŭa langeto"
 
-#: app/KViewer/krviewer.cpp:225
+#: app/KViewer/krviewer.cpp:227
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: app/KViewer/krviewer.cpp:358
+#: app/KViewer/krviewer.cpp:360
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5787,179 +5749,179 @@ msgstr ""
 "Malbona citaĵo en redaktila komando:\n"
 "%1"
 
-#: app/KViewer/krviewer.cpp:365
+#: app/KViewer/krviewer.cpp:367
 #, kde-format
 msgid "Can not open \"%1\""
 msgstr "Ne povas malfermi \"%1\""
 
-#: app/KViewer/krviewer.cpp:676
+#: app/KViewer/krviewer.cpp:678
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (Redaktado)"
 
-#: app/KViewer/krviewer.cpp:676
+#: app/KViewer/krviewer.cpp:678
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (Vidante)"
 
-#: app/KViewer/krviewer.cpp:682
+#: app/KViewer/krviewer.cpp:684
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Redaktado: %1"
 
-#: app/KViewer/krviewer.cpp:682
+#: app/KViewer/krviewer.cpp:684
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Vidante: %1"
 
-#: app/KViewer/lister.cpp:1199 app/KViewer/lister.cpp:1912
+#: app/KViewer/lister.cpp:1202 app/KViewer/lister.cpp:1914
 #, kde-format
 msgid "Save selection..."
 msgstr "Konservi elekton..."
 
-#: app/KViewer/lister.cpp:1203
+#: app/KViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
 msgstr "Konservi kiel..."
 
-#: app/KViewer/lister.cpp:1207
+#: app/KViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
 msgstr "Presi..."
 
-#: app/KViewer/lister.cpp:1217
+#: app/KViewer/lister.cpp:1220
 #, kde-format
 msgid "Search next"
 msgstr "Serĉi sekvan"
 
-#: app/KViewer/lister.cpp:1222
+#: app/KViewer/lister.cpp:1225
 #, kde-format
 msgid "Search previous"
 msgstr "Serĉi antaŭan"
 
-#: app/KViewer/lister.cpp:1227 app/KViewer/lister.cpp:1851
-#: app/KViewer/lister.cpp:1862 app/KViewer/lister.cpp:1870
-#: app/KViewer/lister.cpp:1877
+#: app/KViewer/lister.cpp:1230 app/KViewer/lister.cpp:1853
+#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
+#: app/KViewer/lister.cpp:1879
 #, kde-format
 msgid "Jump to position"
 msgstr "Salti al pozicio"
 
-#: app/KViewer/lister.cpp:1237
+#: app/KViewer/lister.cpp:1240
 #, kde-format
 msgid "Select charset"
 msgstr "Elekti signaron"
 
-#: app/KViewer/lister.cpp:1256 app/KViewer/lister.cpp:1483
+#: app/KViewer/lister.cpp:1259 app/KViewer/lister.cpp:1486
 #, kde-format
 msgid "Lister:"
 msgstr "Listilo:"
 
-#: app/KViewer/lister.cpp:1267
+#: app/KViewer/lister.cpp:1270
 #, kde-format
 msgid "Stop search"
 msgstr "Ĉesi serĉon"
 
-#: app/KViewer/lister.cpp:1283
+#: app/KViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
 msgstr "Iri al la sekva rezulto"
 
-#: app/KViewer/lister.cpp:1287
+#: app/KViewer/lister.cpp:1290
 #, kde-format
 msgid "Jump to previous match"
 msgstr "Salti al la antaŭa kongruo"
 
-#: app/KViewer/lister.cpp:1290
+#: app/KViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
 msgstr "Opcioj"
 
-#: app/KViewer/lister.cpp:1291
+#: app/KViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
 msgstr "Modifi la serĉan konduton"
 
-#: app/KViewer/lister.cpp:1293
+#: app/KViewer/lister.cpp:1296
 #, kde-format
 msgid "From cursor"
 msgstr "Ekde kursilo"
 
-#: app/KViewer/lister.cpp:1298
+#: app/KViewer/lister.cpp:1301
 #, kde-format
 msgid "Match whole words only"
 msgstr "Kongrui nur tutajn vortojn"
 
-#: app/KViewer/lister.cpp:1302
+#: app/KViewer/lister.cpp:1305
 #, kde-format
 msgid "Hexadecimal"
 msgstr "Deksesuma"
 
-#: app/KViewer/lister.cpp:1357
+#: app/KViewer/lister.cpp:1360
 #, kde-format
 msgid "Error reading file %1."
 msgstr "Eraro legante dosieron %1."
 
-#: app/KViewer/lister.cpp:1454
+#: app/KViewer/lister.cpp:1457
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "Kolumno: %1, Pozicio: %2 (%3, %4%)"
 
-#: app/KViewer/lister.cpp:1469 app/KViewer/lister.cpp:1820
+#: app/KViewer/lister.cpp:1472 app/KViewer/lister.cpp:1822
 #, kde-format
 msgid "Search:"
 msgstr "Serĉi:"
 
-#: app/KViewer/lister.cpp:1836
+#: app/KViewer/lister.cpp:1838
 #, kde-format
 msgid "Search position:"
 msgstr "Serĉa pozicio:"
 
-#: app/KViewer/lister.cpp:1851
+#: app/KViewer/lister.cpp:1853
 #, kde-format
 msgid "Text position:"
 msgstr "Teksta pozicio:"
 
-#: app/KViewer/lister.cpp:1862 app/KViewer/lister.cpp:1870
+#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
 #, kde-format
 msgid "Invalid number."
 msgstr "Nevalida nombro."
 
-#: app/KViewer/lister.cpp:1877
+#: app/KViewer/lister.cpp:1879
 #, kde-format
 msgid "Number out of range."
 msgstr "Nombro ekster intervalo."
 
-#: app/KViewer/lister.cpp:1912
+#: app/KViewer/lister.cpp:1914
 #, kde-format
 msgid "Nothing is selected."
 msgstr "Nenio estas elektita."
 
-#: app/KViewer/lister.cpp:1990
+#: app/KViewer/lister.cpp:1993
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr "Inversa presado ne estas subtenata. Ĉu daŭrigi kun normala presado?"
 
-#: app/KViewer/panelviewer.cpp:56
+#: app/KViewer/panelviewer.cpp:47
 #, kde-format
 msgid "No file selected or selected file cannot be displayed."
 msgstr "Neniu dosiero elektita aŭ elektita dosiero ne povas esti montrata."
 
-#: app/KViewer/panelviewer.cpp:111 app/Synchronizer/synchronizertask.cpp:144
+#: app/KViewer/panelviewer.cpp:102 app/Synchronizer/synchronizertask.cpp:144
 #: app/Synchronizer/synchronizertask.cpp:151
 #, kde-format
 msgid "Error at opening %1."
 msgstr "Eraro ĉe malfermo de %1."
 
-#: app/KViewer/panelviewer.cpp:379
+#: app/KViewer/panelviewer.cpp:340
 #, kde-format
 msgid "Missing Plugin"
 msgstr "Mankas Kromaĵo"
 
-#: app/KViewer/panelviewer.cpp:385
+#: app/KViewer/panelviewer.cpp:346
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -5969,12 +5931,12 @@ msgstr ""
 "<b>Neniu tekstredaktila kromaĵo disponebla.</b><br/>Interna redaktilo ne "
 "funkcios sen tio.<br/>Vi povas ripari ĉi tion instalante Kate:<br/>%1"
 
-#: app/KViewer/panelviewer.cpp:404
+#: app/KViewer/panelviewer.cpp:365
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr "%1 estas pli granda ol %2 MB"
 
-#: app/KViewer/panelviewer.cpp:430
+#: app/KViewer/panelviewer.cpp:391
 #, kde-format
 msgid "Cannot edit %1"
 msgstr "Ne povas redakti %1"
@@ -6113,8 +6075,7 @@ msgstr "Halti"
 msgid "Feed to listbox"
 msgstr "Fluigi al listkesto"
 
-#: app/main.cpp:46
-#, kde-format
+#: app/main.cpp:47
 msgid ""
 "Krusader\n"
 "Twin-Panel File Manager by KDE"
@@ -6122,17 +6083,17 @@ msgstr ""
 "Krusader\n"
 "Ĝemel-Panela Dosiermastrumilo de KDE"
 
-#: app/main.cpp:113
+#: app/main.cpp:114
 #, kde-format
 msgid "Krusader"
 msgstr "Krusader"
 
-#: app/main.cpp:113
+#: app/main.cpp:114
 #, kde-format
 msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - RADIKPRIVILEGIOJ"
 
-#: app/main.cpp:117
+#: app/main.cpp:118
 #, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
@@ -6141,7 +6102,7 @@ msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 
-#: app/main.cpp:118
+#: app/main.cpp:119
 #, kde-format
 msgid ""
 "Feedback:\n"
@@ -6150,700 +6111,700 @@ msgstr ""
 "Reago:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 
-#: app/main.cpp:124
+#: app/main.cpp:125
 #, kde-format
 msgid "Davide Gianforte"
 msgstr "Davide Gianforte"
 
-#: app/main.cpp:124 app/main.cpp:125 app/main.cpp:126
+#: app/main.cpp:125 app/main.cpp:126 app/main.cpp:127
 #, kde-format
 msgid "Developer"
 msgstr "Kreinto"
 
-#: app/main.cpp:125
+#: app/main.cpp:126
 #, kde-format
 msgid "Toni Asensi Esteve"
 msgstr "Toni Asensi Esteve"
 
-#: app/main.cpp:126
+#: app/main.cpp:127
 #, kde-format
 msgid "Nikita Melnichenko"
 msgstr "Nikita Melnichenko"
 
-#: app/main.cpp:127
+#: app/main.cpp:128
 #, kde-format
 msgid "Yuri Chornoivan"
 msgstr "Jurij Chornoivan"
 
-#: app/main.cpp:127
+#: app/main.cpp:128
 #, kde-format
 msgid "Documentation"
 msgstr "Dokumentado"
 
-#: app/main.cpp:128
+#: app/main.cpp:129
 #, kde-format
 msgid "Rafi Yanai"
 msgstr "Rafi Yanai"
 
-#: app/main.cpp:128 app/main.cpp:129
+#: app/main.cpp:129 app/main.cpp:130
 #, kde-format
 msgid "Author (retired)"
 msgstr "Aŭtoro (emerita)"
 
-#: app/main.cpp:129
+#: app/main.cpp:130
 #, kde-format
 msgid "Shie Erlich"
 msgstr "Shie Erlich"
 
-#: app/main.cpp:130
+#: app/main.cpp:131
 #, kde-format
 msgid "Csaba Karai"
 msgstr "Csaba Karai"
 
-#: app/main.cpp:130 app/main.cpp:131 app/main.cpp:132 app/main.cpp:133
-#: app/main.cpp:134 app/main.cpp:135 app/main.cpp:136 app/main.cpp:137
-#: app/main.cpp:138
+#: app/main.cpp:131 app/main.cpp:132 app/main.cpp:133 app/main.cpp:134
+#: app/main.cpp:135 app/main.cpp:136 app/main.cpp:137 app/main.cpp:138
+#: app/main.cpp:139
 #, kde-format
 msgid "Developer (retired)"
 msgstr "Programisto (emerita)"
 
-#: app/main.cpp:131
+#: app/main.cpp:132
 #, kde-format
 msgid "Heiner Eichmann"
 msgstr "Heiner Eichmann"
 
-#: app/main.cpp:132
+#: app/main.cpp:133
 #, kde-format
 msgid "Jonas Bähr"
 msgstr "Jonas Bähr"
 
-#: app/main.cpp:133
+#: app/main.cpp:134
 #, kde-format
 msgid "Václav Jůza"
 msgstr "Václav Jůza"
 
-#: app/main.cpp:134
+#: app/main.cpp:135
 #, kde-format
 msgid "Jan Lepper"
 msgstr "Jan Lepper"
 
-#: app/main.cpp:135
+#: app/main.cpp:136
 #, kde-format
 msgid "Andrey Matveyakin"
 msgstr "Andrej Matvejakin"
 
-#: app/main.cpp:136
+#: app/main.cpp:137
 #, kde-format
 msgid "Simon Persson"
 msgstr "Simon Persson"
 
-#: app/main.cpp:137
+#: app/main.cpp:138
 #, kde-format
 msgid "Alexander Bikadorov"
 msgstr "Aleksandro Bikadorov"
 
-#: app/main.cpp:138
+#: app/main.cpp:139
 #, kde-format
 msgid "Martin Kostolný"
 msgstr "Martin Kostolný"
 
-#: app/main.cpp:139 app/main.cpp:176
+#: app/main.cpp:140 app/main.cpp:177
 #, kde-format
 msgid "Dirk Eschler"
 msgstr "Dirk Eschler"
 
-#: app/main.cpp:139
+#: app/main.cpp:140
 #, kde-format
 msgid "Webmaster (retired)"
 msgstr "Retejestro (emerita)"
 
-#: app/main.cpp:140 app/main.cpp:172
+#: app/main.cpp:141 app/main.cpp:173
 #, kde-format
 msgid "Frank Schoolmeesters"
 msgstr "Frank Schoolmeesters"
 
-#: app/main.cpp:141
+#: app/main.cpp:142
 #, kde-format
 msgid "Documentation and marketing coordinator (retired)"
 msgstr "Kunordiganto pri dokumentado kaj merkatado (emerita)"
 
-#: app/main.cpp:144
+#: app/main.cpp:145
 #, kde-format
 msgid "Richard Holt"
 msgstr "Richard Holt"
 
-#: app/main.cpp:144
+#: app/main.cpp:145
 #, kde-format
 msgid "Documentation & Proofing (retired)"
 msgstr "Dokumentado kaj Provlegado (emerita)"
 
-#: app/main.cpp:145 app/main.cpp:192
+#: app/main.cpp:146 app/main.cpp:193
 #, kde-format
 msgid "Matej Urbancic"
 msgstr "Matej Urbancic"
 
-#: app/main.cpp:145
+#: app/main.cpp:146
 #, kde-format
 msgid "Marketing & Product Research (retired)"
 msgstr "Merkatado kaj Produkta Esploro (emerita)"
 
-#: app/main.cpp:146
+#: app/main.cpp:147
 #, kde-format
 msgid "kde.org"
 msgstr "kde.org"
 
-#: app/main.cpp:146
+#: app/main.cpp:147
 #, kde-format
 msgid "Everyone involved in KDE"
 msgstr "Ĉiuj implikitaj en KDE"
 
-#: app/main.cpp:147
+#: app/main.cpp:148
 #, kde-format
 msgid "l10n.kde.org"
 msgstr "l10n.kde.org"
 
-#: app/main.cpp:147
+#: app/main.cpp:148
 #, kde-format
 msgid "KDE Translation Teams"
 msgstr "Tradukaj Teamoj de KDE"
 
-#: app/main.cpp:148
+#: app/main.cpp:149
 #, kde-format
 msgid "Jiří Paleček"
 msgstr "Jiří Paleček"
 
-#: app/main.cpp:148 app/main.cpp:159
+#: app/main.cpp:149 app/main.cpp:160
 #, kde-format
 msgid "QA, bug-hunting, patches and general help"
 msgstr "QA, cim-ĉasado, flikoj kaj ĝenerala helpo"
 
-#: app/main.cpp:149
+#: app/main.cpp:150
 #, kde-format
 msgid "Jiří Klement"
 msgstr "Jiří Klement"
 
-#: app/main.cpp:149
+#: app/main.cpp:150
 #, kde-format
 msgid "Important help in KDE 4 porting"
 msgstr "Grava helpo en KDE 4-portado"
 
-#: app/main.cpp:150
+#: app/main.cpp:151
 #, kde-format
 msgid "Andrew Neupokoev"
 msgstr "Andrew Neupokoev"
 
-#: app/main.cpp:150
+#: app/main.cpp:151
 #, kde-format
 msgid "Killer Logo and Icons for Krusader (contest winner)"
 msgstr "Killer-Emblemo kaj Piktogramoj por Krusader (konkursgajninto)"
 
-#: app/main.cpp:151
+#: app/main.cpp:152
 #, kde-format
 msgid "The UsefulArts Organization"
 msgstr "La UsefulArts-Organizo"
 
-#: app/main.cpp:151
+#: app/main.cpp:152
 #, kde-format
 msgid "Icon for Krusader"
 msgstr "Piktogramo por Krusader"
 
-#: app/main.cpp:152
+#: app/main.cpp:153
 #, kde-format
 msgid "Gábor Lehel"
 msgstr "Gábor Lehel"
 
-#: app/main.cpp:152
+#: app/main.cpp:153
 #, kde-format
 msgid "Viewer module for 3rd Hand"
 msgstr "Vidila modulo por 3a Mano"
 
-#: app/main.cpp:153
+#: app/main.cpp:154
 #, kde-format
 msgid "Mark Eatough"
 msgstr "Mark Eatough"
 
-#: app/main.cpp:153
+#: app/main.cpp:154
 #, kde-format
 msgid "Handbook Proof-Reader"
 msgstr "Provleganto de Manlibro"
 
-#: app/main.cpp:154
+#: app/main.cpp:155
 #, kde-format
 msgid "Jan Halasa"
 msgstr "Jan Halasa"
 
-#: app/main.cpp:154
+#: app/main.cpp:155
 #, kde-format
 msgid "The old Bookmark Module"
 msgstr "La malnova Legosigna Modulo"
 
-#: app/main.cpp:155
+#: app/main.cpp:156
 #, kde-format
 msgid "Hans Löffler"
 msgstr "Hans Löffler"
 
-#: app/main.cpp:155
+#: app/main.cpp:156
 #, kde-format
 msgid "Dir history button"
 msgstr "Dir-historia butono"
 
-#: app/main.cpp:156
+#: app/main.cpp:157
 #, kde-format
 msgid "Szombathelyi György"
 msgstr "Szombathelyi György"
 
-#: app/main.cpp:156
+#: app/main.cpp:157
 #, kde-format
 msgid "ISO KIO slave"
 msgstr "ISO KIO-sklavo"
 
-#: app/main.cpp:157
+#: app/main.cpp:158
 #, kde-format
 msgid "Jan Willem van de Meent (Adios)"
 msgstr "Jan Willem van de Meent (Adios)"
 
-#: app/main.cpp:157
+#: app/main.cpp:158
 #, kde-format
 msgid "Icons for Krusader"
 msgstr "Piktogramoj por Krusader"
 
-#: app/main.cpp:158
+#: app/main.cpp:159
 #, kde-format
 msgid "Mikolaj Machowski"
 msgstr "Mikolaj Machowski"
 
-#: app/main.cpp:158
+#: app/main.cpp:159
 #, kde-format
 msgid "Usability and QA"
 msgstr "Uzebleco kaj QA"
 
-#: app/main.cpp:159
+#: app/main.cpp:160
 #, kde-format
 msgid "Cristi Dumitrescu"
 msgstr "Cristi Dumitrescu"
 
-#: app/main.cpp:160
+#: app/main.cpp:161
 #, kde-format
 msgid "Aurelien Gateau"
 msgstr "Aurelien Gateau"
 
-#: app/main.cpp:160
+#: app/main.cpp:161
 #, kde-format
 msgid "patch for KViewer"
 msgstr "flikaĵo por KViewer"
 
-#: app/main.cpp:161
+#: app/main.cpp:162
 #, kde-format
 msgid "Milan Brabec"
 msgstr "Milan Brabec"
 
-#: app/main.cpp:161
+#: app/main.cpp:162
 #, kde-format
 msgid "the first patch ever!"
 msgstr "la unua fliko iam ajn!"
 
-#: app/main.cpp:162
+#: app/main.cpp:163
 #, kde-format
 msgid "Asim Husanovic"
 msgstr "Asim Husanovic"
 
-#: app/main.cpp:162
+#: app/main.cpp:163
 #, kde-format
 msgid "Bosnian translation"
 msgstr "Bosnia traduko"
 
-#: app/main.cpp:163
+#: app/main.cpp:164
 #, kde-format
 msgid "Doutor Zero"
 msgstr "Doutor Zero"
 
-#: app/main.cpp:163
+#: app/main.cpp:164
 #, kde-format
 msgid "Brazilian Portuguese translation"
 msgstr "Brazil-portugala traduko"
 
-#: app/main.cpp:164
+#: app/main.cpp:165
 #, kde-format
 msgid "Milen Ivanov"
 msgstr "Milen Ivanov"
 
-#: app/main.cpp:164
+#: app/main.cpp:165
 #, kde-format
 msgid "Bulgarian translation"
 msgstr "Bulgara traduko"
 
-#: app/main.cpp:165
+#: app/main.cpp:166
 #, kde-format
 msgid "Quim Perez"
 msgstr "Quim Perez"
 
-#: app/main.cpp:165
+#: app/main.cpp:166
 #, kde-format
 msgid "Catalan translation"
 msgstr "Kataluna traduko"
 
-#: app/main.cpp:166
+#: app/main.cpp:167
 #, kde-format
 msgid "Jinghua Luo"
 msgstr "Jinghua Luo"
 
-#: app/main.cpp:166
+#: app/main.cpp:167
 #, kde-format
 msgid "Chinese Simplified translation"
 msgstr "Ĉina simpligita traduko"
 
-#: app/main.cpp:167
+#: app/main.cpp:168
 #, kde-format
 msgid "Mitek"
 msgstr "Mitek"
 
-#: app/main.cpp:167 app/main.cpp:168
+#: app/main.cpp:168 app/main.cpp:169
 #, kde-format
 msgid "Old Czech translation"
 msgstr "Malnova ĉeĥa traduko"
 
-#: app/main.cpp:168
+#: app/main.cpp:169
 #, kde-format
 msgid "Martin Sixta"
 msgstr "Martin Sixta"
 
-#: app/main.cpp:169
+#: app/main.cpp:170
 #, kde-format
 msgid "Vaclav Jůza"
 msgstr "Vaclav Jůza"
 
-#: app/main.cpp:169
+#: app/main.cpp:170
 #, kde-format
 msgid "Czech translation"
 msgstr "Ĉeĥa traduko"
 
-#: app/main.cpp:170
+#: app/main.cpp:171
 #, kde-format
 msgid "Anders Bruun Olsen"
 msgstr "Anders Bruun Olsen"
 
-#: app/main.cpp:170
+#: app/main.cpp:171
 #, kde-format
 msgid "Old Danish translation"
 msgstr "Malnova dana traduko"
 
-#: app/main.cpp:171
+#: app/main.cpp:172
 #, kde-format
 msgid "Peter H. Sorensen"
 msgstr "Peter H. Sorensen"
 
-#: app/main.cpp:171
+#: app/main.cpp:172
 #, kde-format
 msgid "Danish translation"
 msgstr "Dana traduko"
 
-#: app/main.cpp:172
+#: app/main.cpp:173
 #, kde-format
 msgid "Dutch translation"
 msgstr "Nederlanda traduko"
 
-#: app/main.cpp:173
+#: app/main.cpp:174
 #, kde-format
 msgid "Rene-Pierre Lehmann"
 msgstr "Rene-Pierre Lehmann"
 
-#: app/main.cpp:173
+#: app/main.cpp:174
 #, kde-format
 msgid "Old French translation"
 msgstr "Malnovfranca traduko"
 
-#: app/main.cpp:174
+#: app/main.cpp:175
 #, kde-format
 msgid "David Guillerm"
 msgstr "David Guillerm"
 
-#: app/main.cpp:174
+#: app/main.cpp:175
 #, kde-format
 msgid "French translation"
 msgstr "Franca traduko"
 
-#: app/main.cpp:175
+#: app/main.cpp:176
 #, kde-format
 msgid "Christoph Thielecke"
 msgstr "Christoph Thielecke"
 
-#: app/main.cpp:175
+#: app/main.cpp:176
 #, kde-format
 msgid "Old German translation"
 msgstr "Malnovgermana traduko"
 
-#: app/main.cpp:176
+#: app/main.cpp:177
 #, kde-format
 msgid "German translation"
 msgstr "Germana traduko"
 
-#: app/main.cpp:177
+#: app/main.cpp:178
 #, kde-format
 msgid "Spiros Georgaras"
 msgstr "Spiros Georgaras"
 
-#: app/main.cpp:177
+#: app/main.cpp:178
 #, kde-format
 msgid "Greek translation"
 msgstr "Greka traduko"
 
-#: app/main.cpp:178
+#: app/main.cpp:179
 #, kde-format
 msgid "Kukk Zoltan"
 msgstr "Kukk Zoltan"
 
-#: app/main.cpp:178
+#: app/main.cpp:179
 #, kde-format
 msgid "Old Hungarian translation"
 msgstr "Malnova hungara traduko"
 
-#: app/main.cpp:179
+#: app/main.cpp:180
 #, kde-format
 msgid "Arpad Biro"
 msgstr "Arpad Biro"
 
-#: app/main.cpp:179
+#: app/main.cpp:180
 #, kde-format
 msgid "Hungarian translation"
 msgstr "Hungara traduko"
 
-#: app/main.cpp:180
+#: app/main.cpp:181
 #, kde-format
 msgid "Giuseppe Bordoni"
 msgstr "Giuseppe Bordoni"
 
-#: app/main.cpp:180
+#: app/main.cpp:181
 #, kde-format
 msgid "Italian translation"
 msgstr "Itala traduko"
 
-#: app/main.cpp:181
+#: app/main.cpp:182
 #, kde-format
 msgid "Hideki Kimura"
 msgstr "Hideki Kimura"
 
-#: app/main.cpp:181
+#: app/main.cpp:182
 #, kde-format
 msgid "Japanese translation"
 msgstr "Japana traduko"
 
-#: app/main.cpp:182
+#: app/main.cpp:183
 #, kde-format
 msgid "UTUMI Hirosi"
 msgstr "UTUMI Hirosi"
 
-#: app/main.cpp:182
+#: app/main.cpp:183
 #, kde-format
 msgid "Old Japanese translation"
 msgstr "Malnova japana traduko"
 
-#: app/main.cpp:183
+#: app/main.cpp:184
 #, kde-format
 msgid "Dovydas Sankauskas"
 msgstr "Dovydas Sankauskas"
 
-#: app/main.cpp:183
+#: app/main.cpp:184
 #, kde-format
 msgid "Lithuanian translation"
 msgstr "Litova traduko"
 
-#: app/main.cpp:184
+#: app/main.cpp:185
 #, kde-format
 msgid "Bruno Queiros"
 msgstr "Bruno Queiros"
 
-#: app/main.cpp:184
+#: app/main.cpp:185
 #, kde-format
 msgid "Portuguese translation"
 msgstr "Portugala traduko"
 
-#: app/main.cpp:185
+#: app/main.cpp:186
 #, kde-format
 msgid "Lukasz Janyst"
 msgstr "Lukasz Janyst"
 
-#: app/main.cpp:185
+#: app/main.cpp:186
 #, kde-format
 msgid "Old Polish translation"
 msgstr "Malnova pola traduko"
 
-#: app/main.cpp:186
+#: app/main.cpp:187
 #, kde-format
 msgid "Pawel Salawa"
 msgstr "Pawel Salawa"
 
-#: app/main.cpp:186 app/main.cpp:187
+#: app/main.cpp:187 app/main.cpp:188
 #, kde-format
 msgid "Polish translation"
 msgstr "Pola traduko"
 
-#: app/main.cpp:187
+#: app/main.cpp:188
 #, kde-format
 msgid "Tomek Grzejszczyk"
 msgstr "Tomek Grzejszczyk"
 
-#: app/main.cpp:188
+#: app/main.cpp:189
 #, kde-format
 msgid "Dmitry A. Bugay"
 msgstr "Dmitry A. Bugay"
 
-#: app/main.cpp:188
+#: app/main.cpp:189
 #, kde-format
 msgid "Russian translation"
 msgstr "Rusa traduko"
 
-#: app/main.cpp:189
+#: app/main.cpp:190
 #, kde-format
 msgid "Dmitry Chernyak"
 msgstr "Dmitry Chernyak"
 
-#: app/main.cpp:189
+#: app/main.cpp:190
 #, kde-format
 msgid "Old Russian translation"
 msgstr "Malnova rusa traduko"
 
-#: app/main.cpp:190
+#: app/main.cpp:191
 #, kde-format
 msgid "Sasa Tomic"
 msgstr "Sasa Tomic"
 
-#: app/main.cpp:190
+#: app/main.cpp:191
 #, kde-format
 msgid "Serbian translation"
 msgstr "Serba traduko"
 
-#: app/main.cpp:191
+#: app/main.cpp:192
 #, kde-format
 msgid "Zdenko Podobný and Ondrej Pačay (Yogi)"
 msgstr "Zdenko Podobný kaj Ondrej Pačay (jogulo)"
 
-#: app/main.cpp:191
+#: app/main.cpp:192
 #, kde-format
 msgid "Slovak translation"
 msgstr "Slovaka traduko"
 
-#: app/main.cpp:192
+#: app/main.cpp:193
 #, kde-format
 msgid "Slovenian translation"
 msgstr "Slovena traduko"
 
-#: app/main.cpp:193
+#: app/main.cpp:194
 #, kde-format
 msgid "Rafael Munoz"
 msgstr "Rafael Munoz"
 
-#: app/main.cpp:193
+#: app/main.cpp:194
 #, kde-format
 msgid "Old Spanish translation"
 msgstr "Malnova hispana traduko"
 
-#: app/main.cpp:194
+#: app/main.cpp:195
 #, kde-format
 msgid "Alejandro Araiza Alvarado"
 msgstr "Alejandro Araiza Alvarado"
 
-#: app/main.cpp:194
+#: app/main.cpp:195
 #, kde-format
 msgid "Spanish translation"
 msgstr "Hispana traduko"
 
-#: app/main.cpp:195
+#: app/main.cpp:196
 #, kde-format
 msgid "Erik Johanssen"
 msgstr "Erik Johanssen"
 
-#: app/main.cpp:195 app/main.cpp:196
+#: app/main.cpp:196 app/main.cpp:197
 #, kde-format
 msgid "Old Swedish translation"
 msgstr "Malnova sveda traduko"
 
-#: app/main.cpp:196
+#: app/main.cpp:197
 #, kde-format
 msgid "Anders Linden"
 msgstr "Anders Linden"
 
-#: app/main.cpp:197
+#: app/main.cpp:198
 #, kde-format
 msgid "Peter Landgren"
 msgstr "Peter Landgren"
 
-#: app/main.cpp:197
+#: app/main.cpp:198
 #, kde-format
 msgid "Swedish translation"
 msgstr "Sveda traduko"
 
-#: app/main.cpp:198
+#: app/main.cpp:199
 #, kde-format
 msgid "Bekir Sonat"
 msgstr "Bekir Sonat"
 
-#: app/main.cpp:198
+#: app/main.cpp:199
 #, kde-format
 msgid "Turkish translation"
 msgstr "Turka traduko"
 
-#: app/main.cpp:199
+#: app/main.cpp:200
 #, kde-format
 msgid "Ivan Petrouchtchak"
 msgstr "Ivan Petrouchtchak"
 
-#: app/main.cpp:199
+#: app/main.cpp:200
 #, kde-format
 msgid "Ukrainian translation"
 msgstr "ukraina traduko"
 
-#: app/main.cpp:200
+#: app/main.cpp:201
 #, kde-format
 msgid "Seongnam Jee"
 msgstr "Seongnam Jee"
 
-#: app/main.cpp:200
+#: app/main.cpp:201
 #, kde-format
 msgid "Korean translation"
 msgstr "Korea traduko"
 
-#: app/main.cpp:210
+#: app/main.cpp:211
 #, kde-format
 msgid "Start left panel at <path>"
 msgstr "Komenci maldekstran panelon ĉe <vojo>"
 
-#: app/main.cpp:211
+#: app/main.cpp:212
 #, kde-format
 msgid "Start right panel at <path>"
 msgstr "Komenci dekstran panelon ĉe <vojo>"
 
-#: app/main.cpp:212
+#: app/main.cpp:213
 #, kde-format
 msgid "Load this profile on startup"
 msgstr "Ŝargi ĉi profilon dum ekfunkciigo"
 
-#: app/main.cpp:213
+#: app/main.cpp:214
 #, kde-format
 msgid "Enable debug output"
 msgstr "Ebligi sencimigan eligon"
 
-#: app/main.cpp:214
+#: app/main.cpp:215
 #, kde-format
 msgid "URL to open"
 msgstr "URL por malfermi"
 
-#: app/MountMan/kmountman.cpp:56
+#: app/MountMan/kmountman.cpp:58
 #, kde-format
 msgid "&MountMan..."
 msgstr "&MountMan..."
 
-#: app/MountMan/kmountman.cpp:59
+#: app/MountMan/kmountman.cpp:61
 #, kde-format
 msgid "Open &MountMan"
 msgstr "Malfermi &MountMan"
 
-#: app/MountMan/kmountman.cpp:132
+#: app/MountMan/kmountman.cpp:134
 #, kde-format
 msgid "Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Ne eblas lanĉi 'mount'. Kontrolu la paĝon 'Dependecoj' en konfigurator."
 
-#: app/MountMan/kmountman.cpp:356
+#: app/MountMan/kmountman.cpp:358
 #, kde-format
 msgid "MountMan is not operational. Sorry"
 msgstr "MountMan ne funkcias. Pardonu"
@@ -6858,7 +6819,7 @@ msgstr "MountMan - Via Kroĉ-Mastrumilo"
 msgid "&Eject"
 msgstr "&Elĵeti"
 
-#: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:411
+#: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:419
 #, kde-format
 msgid "&Unmount"
 msgstr "&Malkroĉi"
@@ -6893,17 +6854,17 @@ msgstr "MountMan.Info"
 msgid "Show only removable devices"
 msgstr "Montri nur forpreneblajn aparatojn"
 
-#: app/MountMan/kmountmangui.cpp:413
+#: app/MountMan/kmountmangui.cpp:421
 #, kde-format
 msgid "&Mount"
 msgstr "&Kroĉi"
 
-#: app/MountMan/kmountmangui.cpp:434
+#: app/MountMan/kmountmangui.cpp:442
 #, kde-format
 msgid "MountMan"
 msgstr "MountMan"
 
-#: app/MountMan/kmountmangui.cpp:450
+#: app/MountMan/kmountmangui.cpp:458
 #, kde-format
 msgid "Format"
 msgstr "Formato"
@@ -6944,82 +6905,82 @@ msgid_plural "and %1 files"
 msgstr[0] "kaj %1 dosiero"
 msgstr[1] "kaj %1 dosieroj"
 
-#: app/Panel/krfiletreeview.cpp:179
+#: app/Panel/krfiletreeview.cpp:182
 #, kde-format
 msgid "Show Details"
 msgstr "Montri Detalojn"
 
-#: app/Panel/krfiletreeview.cpp:182
+#: app/Panel/krfiletreeview.cpp:185
 #, kde-format
 msgid "Show columns with details"
 msgstr "Montri kolumnojn kun detaloj"
 
-#: app/Panel/krfiletreeview.cpp:183
+#: app/Panel/krfiletreeview.cpp:186
 #, kde-format
 msgid "Show Hidden Folders"
 msgstr "Montri Kaŝitajn Dosierujojn"
 
-#: app/Panel/krfiletreeview.cpp:186
+#: app/Panel/krfiletreeview.cpp:189
 #, kde-format
 msgid "Show folders starting with a dot"
 msgstr "Montri dosierujojn komencantajn per punkto"
 
-#: app/Panel/krfiletreeview.cpp:191
+#: app/Panel/krfiletreeview.cpp:194
 #, kde-format
 msgid "Start From Root"
 msgstr "Komenci De Radiko"
 
-#: app/Panel/krfiletreeview.cpp:194
+#: app/Panel/krfiletreeview.cpp:197
 #, kde-format
 msgid "Set root of the tree to root of filesystem"
 msgstr "Meti radikon de la arbo al radiko de dosiersistemo"
 
-#: app/Panel/krfiletreeview.cpp:197
+#: app/Panel/krfiletreeview.cpp:200
 #, kde-format
 msgid "Start From Current"
 msgstr "Komenci De Nuna"
 
-#: app/Panel/krfiletreeview.cpp:200
+#: app/Panel/krfiletreeview.cpp:203
 #, kde-format
 msgid "Set root of the tree to the current folder"
 msgstr "Meti la radikon de la arbo al la nuna dosierujo"
 
-#: app/Panel/krfiletreeview.cpp:203
+#: app/Panel/krfiletreeview.cpp:206
 #, kde-format
 msgid "Start From Place"
 msgstr "Komenci De Loko"
 
-#: app/Panel/krfiletreeview.cpp:206
+#: app/Panel/krfiletreeview.cpp:209
 #, kde-format
 msgid "Set root of the tree to closest folder listed in 'Places'"
 msgstr ""
 "Meti radikon de la arbo al plej proksima dosierujo listigita en 'Lokoj'"
 
-#: app/Panel/krfiletreeview.cpp:235
+#: app/Panel/krfiletreeview.cpp:238
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Cut"
 msgstr "Tondi"
 
-#: app/Panel/krfiletreeview.cpp:242
+#: app/Panel/krfiletreeview.cpp:245
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy"
 msgstr "Kopii"
 
-#: app/Panel/krfiletreeview.cpp:265
+#: app/Panel/krfiletreeview.cpp:268
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Move to Trash"
 msgstr "Movi al la rubujo"
 
-#: app/Panel/krfiletreeview.cpp:275
+#: app/Panel/krfiletreeview.cpp:278
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete"
 msgstr "Forigi"
 
-#: app/Panel/krfiletreeview.cpp:286
+#: app/Panel/krfiletreeview.cpp:289
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Properties"
@@ -7297,7 +7258,7 @@ msgstr "Krei Kontrolsumon..."
 msgid "Verify Checksum..."
 msgstr "Testi Kontrolsumon..."
 
-#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:252
+#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:227
 #, kde-format
 msgid "New Symlink..."
 msgstr "Nova Simbolligilo..."
@@ -7480,203 +7441,203 @@ msgstr ""
 "<qt><p>Malfermu terminalon en nuna dosierujo.</p><p>La terminalo povas esti "
 "difinita en Konfigurator, defaŭlte estas <b>konsole</b>.</p></qt>"
 
-#: app/Panel/panelcontextmenu.cpp:123
+#: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open/Run Files"
 msgstr "Malfermi/Ruli dosierojn"
 
-#: app/Panel/panelcontextmenu.cpp:125
+#: app/Panel/panelcontextmenu.cpp:103
 #, kde-format
 msgid "Run"
 msgstr "Lanĉi"
 
-#: app/Panel/panelcontextmenu.cpp:134
+#: app/Panel/panelcontextmenu.cpp:112
 #, kde-format
 msgid "Open in New Tabs"
 msgstr "Malfermi en Novaj Langetoj"
 
-#: app/Panel/panelcontextmenu.cpp:134
+#: app/Panel/panelcontextmenu.cpp:112
 #, kde-format
 msgid "Open in New Tab"
 msgstr "Malfermi en nova langeto"
 
-#: app/Panel/panelcontextmenu.cpp:147
+#: app/Panel/panelcontextmenu.cpp:125
 #, kde-format
 msgid "Browse Archive"
 msgstr "Foliumi Arkivon"
 
-#: app/Panel/panelcontextmenu.cpp:189
+#: app/Panel/panelcontextmenu.cpp:167
 #, kde-format
 msgid "Other..."
 msgstr "Alia..."
 
-#: app/Panel/panelcontextmenu.cpp:191
+#: app/Panel/panelcontextmenu.cpp:169
 #, kde-format
 msgid "Open With"
 msgstr "Malfermi per"
 
-#: app/Panel/panelcontextmenu.cpp:238
+#: app/Panel/panelcontextmenu.cpp:213
 #, kde-format
 msgid "Move to Trash"
 msgstr "Movi al la rubujo"
 
-#: app/Panel/panelcontextmenu.cpp:253
+#: app/Panel/panelcontextmenu.cpp:228
 #, kde-format
 msgid "New Hardlink..."
 msgstr "Nova Senpera ligilo..."
 
-#: app/Panel/panelcontextmenu.cpp:255
+#: app/Panel/panelcontextmenu.cpp:230
 #, kde-format
 msgid "Redirect Link..."
 msgstr "Redirekti ligilon..."
 
-#: app/Panel/panelcontextmenu.cpp:258
+#: app/Panel/panelcontextmenu.cpp:233
 #, kde-format
 msgid "Link Handling"
 msgstr "Ligil-Traktado"
 
-#: app/Panel/panelcontextmenu.cpp:280
+#: app/Panel/panelcontextmenu.cpp:255
 #, kde-format
 msgid "Send by Email"
 msgstr "Sendi per Retpoŝto"
 
-#: app/Panel/panelcontextmenu.cpp:285
+#: app/Panel/panelcontextmenu.cpp:260
 #, kde-format
 msgid "Restore"
 msgstr "Restarigi"
 
-#: app/Panel/panelcontextmenu.cpp:292
+#: app/Panel/panelcontextmenu.cpp:267
 #, kde-format
 msgid "Synchronize Selected Files..."
 msgstr "Sinkronigi elektitajn dosierojn..."
 
-#: app/Panel/panelcontextmenu.cpp:319
+#: app/Panel/panelcontextmenu.cpp:294
 #, kde-format
 msgid "Create New"
 msgstr "Krei novan"
 
-#: app/Panel/panelfunc.cpp:371
+#: app/Panel/panelfunc.cpp:365
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Vi povas redakti ligilojn nur en lokaj dosiersistemoj"
 
-#: app/Panel/panelfunc.cpp:382
+#: app/Panel/panelfunc.cpp:376
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "La nuna dosiero ne estas ligilo, do ĝi ne povas esti alidirektita."
 
-#: app/Panel/panelfunc.cpp:389
+#: app/Panel/panelfunc.cpp:383
 #, kde-format
 msgid "Link Redirection"
 msgstr "Ligo Redirekto"
 
-#: app/Panel/panelfunc.cpp:389
+#: app/Panel/panelfunc.cpp:383
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Bonvolu enigi la novan ligilon:"
 
-#: app/Panel/panelfunc.cpp:396
+#: app/Panel/panelfunc.cpp:390
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "Ne povas forigi malnovan ligilon: %1"
 
-#: app/Panel/panelfunc.cpp:401
+#: app/Panel/panelfunc.cpp:395
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "Malsukcesis krei novan ligilon: %1"
 
-#: app/Panel/panelfunc.cpp:409
+#: app/Panel/panelfunc.cpp:403
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Vi povas krei ligilojn nur sur lokaj dosiersistemoj"
 
-#: app/Panel/panelfunc.cpp:417
+#: app/Panel/panelfunc.cpp:411
 #, kde-format
 msgid "New Link"
 msgstr "Nova Ligo"
 
-#: app/Panel/panelfunc.cpp:417
+#: app/Panel/panelfunc.cpp:411
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "Krei novan ligilon al: %1"
 
-#: app/Panel/panelfunc.cpp:425 app/Panel/panelfunc.cpp:771
+#: app/Panel/panelfunc.cpp:419 app/Panel/panelfunc.cpp:765
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Dosierujo aŭ dosiero kun ĉi tiu nomo jam ekzistas."
 
-#: app/Panel/panelfunc.cpp:436
+#: app/Panel/panelfunc.cpp:430
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Malsukcesis krei novan simbolligon '%1' al: '%2'"
 
-#: app/Panel/panelfunc.cpp:439
+#: app/Panel/panelfunc.cpp:433
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Malsukcesis krei novan ligilon '%1' al '%2'"
 
-#: app/Panel/panelfunc.cpp:456
+#: app/Panel/panelfunc.cpp:450
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Neniuj permesoj por vidi ĉi tiun dosieron."
 
-#: app/Panel/panelfunc.cpp:467
+#: app/Panel/panelfunc.cpp:461
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Enigu URL por vidi:"
 
-#: app/Panel/panelfunc.cpp:497 app/Panel/panelfunc.cpp:575
+#: app/Panel/panelfunc.cpp:491 app/Panel/panelfunc.cpp:569
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "Vi ne povas redakti dosierujon"
 
-#: app/Panel/panelfunc.cpp:502
+#: app/Panel/panelfunc.cpp:496
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Neniuj permesoj redakti ĉi tiun dosieron."
 
-#: app/Panel/panelfunc.cpp:516
+#: app/Panel/panelfunc.cpp:510
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Enigu la dosiernomon por redakti:"
 
-#: app/Panel/panelfunc.cpp:627
+#: app/Panel/panelfunc.cpp:621
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Movi %1 al:"
 
-#: app/Panel/panelfunc.cpp:627
+#: app/Panel/panelfunc.cpp:621
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "Movi %1 dosieron al:"
 msgstr[1] "Movi %1 dosierojn al:"
 
-#: app/Panel/panelfunc.cpp:629
+#: app/Panel/panelfunc.cpp:623
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Kopii %1 al:"
 
-#: app/Panel/panelfunc.cpp:629
+#: app/Panel/panelfunc.cpp:623
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "Kopii %1 dosieron al:"
 msgstr[1] "Kopii %1 dosierojn al:"
 
-#: app/Panel/panelfunc.cpp:695
+#: app/Panel/panelfunc.cpp:689
 #, kde-format
 msgid "Folder's name:"
 msgstr "Nomo de dosierujo:"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:829
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Ĉu vi vere volas movi tiun eron al rubujo?"
 msgstr[1] "Ĉu vi vere volas movi tiujn %1 erojn al rubujo?"
 
-#: app/Panel/panelfunc.cpp:839
+#: app/Panel/panelfunc.cpp:833
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7691,44 +7652,44 @@ msgstr[1] ""
 "<qt>Ĉu vi vere volas forigi tiujn %1 erojn <b>fizike</b> (ne nur forigante "
 "ilin de la virtualaj eroj)?</qt>"
 
-#: app/Panel/panelfunc.cpp:846
+#: app/Panel/panelfunc.cpp:840
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Ĉu vi vere volas forigi tiun eron?"
 msgstr[1] "Ĉu vi vere volas forigi tiujn %1 erojn?"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:878
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Dosierujo <b>%1</b> ne estas malplena.</p>"
 
-#: app/Panel/panelfunc.cpp:885
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Presi ĉi tiun aŭ forĵeti ĉiujn?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:885
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Presi ĉi tiun aŭ forigi ĉiujn?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:887
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "&Skip"
 msgstr "Preterla&si"
 
-#: app/Panel/panelfunc.cpp:888
+#: app/Panel/panelfunc.cpp:882
 #, kde-format
 msgid "&Trash All"
 msgstr "En&rubujigi Ĉion"
 
-#: app/Panel/panelfunc.cpp:888
+#: app/Panel/panelfunc.cpp:882
 #, kde-format
 msgid "&Delete All"
 msgstr "&Forigi Ĉion"
 
-#: app/Panel/panelfunc.cpp:925
+#: app/Panel/panelfunc.cpp:919
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7743,17 +7704,17 @@ msgstr[1] ""
 "Ĉu vi vere volas forigi tiujn %1 virtualajn erjon (fizikaj dosieroj restas "
 "netuŝitaj)?"
 
-#: app/Panel/panelfunc.cpp:961
+#: app/Panel/panelfunc.cpp:955
 #, kde-format
 msgid "Could not start %1"
 msgstr "Ne eblis komenci %1"
 
-#: app/Panel/panelfunc.cpp:973
+#: app/Panel/panelfunc.cpp:967
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 ne povas malfermi %2"
 
-#: app/Panel/panelfunc.cpp:1050
+#: app/Panel/panelfunc.cpp:1044
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7762,7 +7723,7 @@ msgstr ""
 "<qt><p>La arkivo <b>%1.%2</b> jam ekzistas. Ĉu vi volas anstataŭigi ĝin?</"
 "p><p>Ĉiuj datumoj en la antaŭa arkivo estos perditaj.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1055
+#: app/Panel/panelfunc.cpp:1049
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7773,17 +7734,17 @@ msgstr ""
 "p><p>Zip anstataŭigos idente nomitajn enskribojn en la zip-arkivo aŭ aldonos "
 "enskribojn por novaj nomoj.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1063
+#: app/Panel/panelfunc.cpp:1057
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Ne povas paki dosierojn sur virtuala celo."
 
-#: app/Panel/panelfunc.cpp:1096
+#: app/Panel/panelfunc.cpp:1090
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Malpaki %1 al:"
 
-#: app/Panel/panelfunc.cpp:1098
+#: app/Panel/panelfunc.cpp:1092
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
@@ -8267,17 +8228,17 @@ msgstr "Ĉi tie vi povas nomi la dosierkolekton"
 msgid "Query name"
 msgstr "Demanda nomo"
 
-#: app/Splitter/combiner.cpp:59
+#: app/Splitter/combiner.cpp:60
 #, kde-format
 msgid "Krusader::Combining..."
 msgstr "Krusader::Kombinante..."
 
-#: app/Splitter/combiner.cpp:60
+#: app/Splitter/combiner.cpp:61
 #, kde-format
 msgid "Combining the file %1..."
 msgstr "Kombinante la dosieron %1..."
 
-#: app/Splitter/combiner.cpp:71
+#: app/Splitter/combiner.cpp:72
 #, kde-format
 msgid ""
 "The CRC information file (%1) is missing.\n"
@@ -8286,17 +8247,17 @@ msgstr ""
 "La CRC-informdosiero (%1) mankas.\n"
 "Valideca kontrolo estas neebla sen ĝi. Ĉu daŭre kombini?"
 
-#: app/Splitter/combiner.cpp:107
+#: app/Splitter/combiner.cpp:108
 #, kde-format
 msgid "Error at reading the CRC file (%1)."
 msgstr "Eraro ĉe legado de la CRC-dosiero (%1)."
 
-#: app/Splitter/combiner.cpp:136
+#: app/Splitter/combiner.cpp:137
 #, kde-format
 msgid "Not a valid CRC file."
 msgstr "Ne valida CRC-dosiero."
 
-#: app/Splitter/combiner.cpp:143
+#: app/Splitter/combiner.cpp:144
 #, kde-format
 msgid ""
 "\n"
@@ -8305,139 +8266,138 @@ msgstr ""
 "\n"
 "Valideca kontrolo estas neebla sen bona CRC-dosiero. Ĉu daŭre kombini?"
 
-#: app/Splitter/combiner.cpp:189 app/Splitter/splitter.cpp:177
-#: app/Synchronizer/synchronizer.cpp:1329
-#: app/Synchronizer/synchronizer.cpp:1342
+#: app/Splitter/combiner.cpp:186 app/Splitter/splitter.cpp:174
+#: app/Synchronizer/synchronizer.cpp:1345
 #, kde-format
 msgid "File Already Exists"
 msgstr "Dosiero jam ekzistas"
 
-#: app/Splitter/combiner.cpp:275
+#: app/Splitter/combiner.cpp:272
 #, kde-format
 msgid "Cannot open the first split file of %1."
 msgstr "Ne povas malfermi la unuan dividitan dosieron de %1."
 
-#: app/Splitter/combiner.cpp:285
+#: app/Splitter/combiner.cpp:282
 #, kde-format
 msgid "Incorrect filesize, the file might have been corrupted."
 msgstr "Neĝusta dosiergrandeco, la dosiero eble estis koruptita."
 
-#: app/Splitter/combiner.cpp:287
+#: app/Splitter/combiner.cpp:284
 #, kde-format
 msgid "Incorrect CRC checksum, the file might have been corrupted."
 msgstr "Malĝusta CRC-kontrolsumo, la dosiero eble estis koruptita."
 
-#: app/Splitter/splitter.cpp:72
+#: app/Splitter/splitter.cpp:73
 #, kde-format
 msgid "Krusader::Splitting..."
 msgstr "Krusader::Disigante..."
 
-#: app/Splitter/splitter.cpp:73
+#: app/Splitter/splitter.cpp:74
 #, kde-format
 msgid "Splitting the file %1..."
 msgstr "Disigante la dosieron %1..."
 
-#: app/Splitter/splitter.cpp:76
+#: app/Splitter/splitter.cpp:77
 #, kde-format
 msgid "Cannot split a folder."
 msgstr "Ne povas dividi dosierujon."
 
-#: app/Splitter/splitter.cpp:120
+#: app/Splitter/splitter.cpp:121
 #, kde-format
 msgid "Error reading file %1: %2"
 msgstr "Eraro legante dosieron %1: %2"
 
-#: app/Splitter/splitter.cpp:233 app/Splitter/splitter.cpp:276
+#: app/Splitter/splitter.cpp:230 app/Splitter/splitter.cpp:273
 #, kde-format
 msgid "Error writing file %1: %2"
 msgstr "Eraro dum la skribado de dosiero %1: %2"
 
-#: app/Splitter/splittergui.cpp:56
+#: app/Splitter/splittergui.cpp:59
 #, kde-format
 msgid "1.44 MB (3.5\")"
 msgstr "1.44 MB (3.5\")"
 
-#: app/Splitter/splittergui.cpp:57
+#: app/Splitter/splittergui.cpp:60
 #, kde-format
 msgid "1.2 MB (5.25\")"
 msgstr "1.2 MB (5.25\")"
 
-#: app/Splitter/splittergui.cpp:58
+#: app/Splitter/splittergui.cpp:61
 #, kde-format
 msgid "720 kB (3.5\")"
 msgstr "720 kB (3,5\")"
 
-#: app/Splitter/splittergui.cpp:59
+#: app/Splitter/splittergui.cpp:62
 #, kde-format
 msgid "360 kB (5.25\")"
 msgstr "360 kB (5,25\")"
 
-#: app/Splitter/splittergui.cpp:60
+#: app/Splitter/splittergui.cpp:63
 #, kde-format
 msgid "100 MB (ZIP)"
 msgstr "100 MB (Zip)"
 
-#: app/Splitter/splittergui.cpp:61
+#: app/Splitter/splittergui.cpp:64
 #, kde-format
 msgid "250 MB (ZIP)"
 msgstr "250 MB (Zip)"
 
-#: app/Splitter/splittergui.cpp:62
+#: app/Splitter/splittergui.cpp:65
 #, kde-format
 msgid "650 MB (CD-R)"
 msgstr "650 MB (KD-R)"
 
-#: app/Splitter/splittergui.cpp:63
+#: app/Splitter/splittergui.cpp:66
 #, kde-format
 msgid "700 MB (CD-R)"
 msgstr "700 MB (KD-R)"
 
-#: app/Splitter/splittergui.cpp:81
+#: app/Splitter/splittergui.cpp:84
 #, kde-format
 msgid "Split the file %1 to folder:"
 msgstr "Dividi la dosieron %1 al dosierujo:"
 
-#: app/Splitter/splittergui.cpp:98
+#: app/Splitter/splittergui.cpp:101
 #, kde-format
 msgid "User Defined"
 msgstr "Uzanto-difinita"
 
-#: app/Splitter/splittergui.cpp:107
+#: app/Splitter/splittergui.cpp:110
 #, kde-format
 msgid "Max file size:"
 msgstr "Maksimuma dosiergrandeco:"
 
-#: app/Splitter/splittergui.cpp:118
+#: app/Splitter/splittergui.cpp:121
 #, kde-format
 msgid "kByte"
 msgstr "kBajt"
 
-#: app/Splitter/splittergui.cpp:119
+#: app/Splitter/splittergui.cpp:122
 #, kde-format
 msgid "MByte"
 msgstr "MBajt"
 
-#: app/Splitter/splittergui.cpp:120
+#: app/Splitter/splittergui.cpp:123
 #, kde-format
 msgid "GByte"
 msgstr "GBajt"
 
-#: app/Splitter/splittergui.cpp:125
+#: app/Splitter/splittergui.cpp:128
 #, kde-format
 msgid "Overwrite files without confirmation"
 msgstr "Anstataŭigu dosierojn sen konfirmo"
 
-#: app/Splitter/splittergui.cpp:135
+#: app/Splitter/splittergui.cpp:138
 #, kde-format
 msgid "&Split"
 msgstr "Di&sigi"
 
-#: app/Splitter/splittergui.cpp:139
+#: app/Splitter/splittergui.cpp:142
 #, kde-format
 msgid "Krusader::Splitter"
 msgstr "Krusader::Splitter"
 
-#: app/Splitter/splittergui.cpp:239
+#: app/Splitter/splittergui.cpp:242
 #, kde-format
 msgid "The folder path URL is malformed."
 msgstr "La dosierujvoja URL estas misformita."
@@ -8555,45 +8515,45 @@ msgid "&Close"
 msgstr "F&ermi"
 
 #: app/Synchronizer/synchronizedialog.cpp:208
-#: app/Synchronizer/synchronizer.cpp:1517
-#: app/Synchronizer/synchronizer.cpp:1530
+#: app/Synchronizer/synchronizer.cpp:1516
+#: app/Synchronizer/synchronizer.cpp:1529
 #, kde-format
 msgid "Pause"
 msgstr "Paŭzi"
 
 #: app/Synchronizer/synchronizedialog.cpp:216
-#: app/Synchronizer/synchronizer.cpp:1532
+#: app/Synchronizer/synchronizer.cpp:1531
 #, kde-format
 msgid "Resume"
 msgstr "Daŭrigi"
 
-#: app/Synchronizer/synchronizer.cpp:171 app/Synchronizer/synchronizer.cpp:858
+#: app/Synchronizer/synchronizer.cpp:174 app/Synchronizer/synchronizer.cpp:861
 #, kde-format
 msgid "Number of files: %1"
 msgstr "Nombro da dosieroj: %1"
 
-#: app/Synchronizer/synchronizer.cpp:201
+#: app/Synchronizer/synchronizer.cpp:204
 #, kde-format
 msgid "Number of compared folders: %1"
 msgstr "Nombro de komparitaj dosierujoj: %1"
 
-#: app/Synchronizer/synchronizer.cpp:1388
-#: app/Synchronizer/synchronizer.cpp:1393
+#: app/Synchronizer/synchronizer.cpp:1390
+#: app/Synchronizer/synchronizer.cpp:1395
 #, kde-format
 msgid "Error at copying file %1 to %2."
 msgstr "Eraro ĉe kopiado de dosiero %1 al %2."
 
-#: app/Synchronizer/synchronizer.cpp:1398
+#: app/Synchronizer/synchronizer.cpp:1400
 #, kde-format
 msgid "Error at deleting file %1."
 msgstr "Eraro ĉe forigo de dosiero %1."
 
-#: app/Synchronizer/synchronizer.cpp:1564
+#: app/Synchronizer/synchronizer.cpp:1563
 #, kde-format
 msgid "Krusader::Synchronizer"
 msgstr "Krusader::Sinkronigilo"
 
-#: app/Synchronizer/synchronizer.cpp:1564
+#: app/Synchronizer/synchronizer.cpp:1563
 #, kde-format
 msgid "Feeding the URLs to KGet"
 msgstr "Nutrante la URL-ojn al KGet"
@@ -9107,318 +9067,318 @@ msgstr "Malŝlosi Langeton"
 msgid "Unpin Tab"
 msgstr "Malpingli Langeton"
 
-#: app/UserAction/expander.cpp:64
+#: app/UserAction/expander.cpp:63
 #, kde-format
 msgid "Needed panel specification missing in expander %1"
 msgstr "Bezonata panelspecifo mankas en ekspansiilo %1"
 
-#: app/UserAction/expander.cpp:85
+#: app/UserAction/expander.cpp:84
 #, kde-format
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
 msgstr "Ekspandilo: Malbona argumento al %1: %2 ne estas valida specifilo"
 
-#: app/UserAction/expander.cpp:272
+#: app/UserAction/expander.cpp:271
 #, kde-format
 msgid "Panel's Path..."
 msgstr "La Vojo de Panelo..."
 
-#: app/UserAction/expander.cpp:275 app/UserAction/expander.cpp:343
-#: app/UserAction/expander.cpp:377 app/UserAction/expander.cpp:413
-#: app/UserAction/expander.cpp:753
+#: app/UserAction/expander.cpp:274 app/UserAction/expander.cpp:342
+#: app/UserAction/expander.cpp:376 app/UserAction/expander.cpp:412
+#: app/UserAction/expander.cpp:752
 #, kde-format
 msgid "Automatically escape spaces"
 msgstr "Aŭtomate eskapi spacojn"
 
-#: app/UserAction/expander.cpp:297
+#: app/UserAction/expander.cpp:296
 #, kde-format
 msgid "Number of..."
 msgstr "Nombro de..."
 
-#: app/UserAction/expander.cpp:300
+#: app/UserAction/expander.cpp:299
 #, kde-format
 msgid "Count:"
 msgstr "Nombro:"
 
-#: app/UserAction/expander.cpp:316
+#: app/UserAction/expander.cpp:315
 #, kde-format
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
 msgstr "Ekspandilo: Malbona argumento por Nombri: %1 ne estas valida specifilo"
 
-#: app/UserAction/expander.cpp:326
+#: app/UserAction/expander.cpp:325
 #, kde-format
 msgid "Filter Mask (*.h, *.cpp, etc.)"
 msgstr "Filtrila Masko (*.h, *.cpp, ktp.)"
 
-#: app/UserAction/expander.cpp:339
+#: app/UserAction/expander.cpp:338
 #, kde-format
 msgid "Current File (!= Selected File)..."
 msgstr "Nuna Dosiero (!= Elektita Dosiero)..."
 
-#: app/UserAction/expander.cpp:342 app/UserAction/expander.cpp:375
-#: app/UserAction/expander.cpp:411 app/UserAction/expander.cpp:751
+#: app/UserAction/expander.cpp:341 app/UserAction/expander.cpp:374
+#: app/UserAction/expander.cpp:410 app/UserAction/expander.cpp:750
 #, kde-format
 msgid "Omit the current path (optional)"
 msgstr "Forlasi la nunan vojon (laŭvola)"
 
-#: app/UserAction/expander.cpp:370
+#: app/UserAction/expander.cpp:369
 #, kde-format
 msgid "Item List of..."
 msgstr "Listo de eroj de..."
 
-#: app/UserAction/expander.cpp:373 app/UserAction/expander.cpp:409
-#: app/UserAction/expander.cpp:750
+#: app/UserAction/expander.cpp:372 app/UserAction/expander.cpp:408
+#: app/UserAction/expander.cpp:749
 #, kde-format
 msgid "Which items:"
 msgstr "Kiuj eroj:"
 
-#: app/UserAction/expander.cpp:374
+#: app/UserAction/expander.cpp:373
 #, kde-format
 msgid "Separator between the items (optional):"
 msgstr "Apartigilo inter la eroj (laŭvola):"
 
-#: app/UserAction/expander.cpp:376 app/UserAction/expander.cpp:412
-#: app/UserAction/expander.cpp:752
+#: app/UserAction/expander.cpp:375 app/UserAction/expander.cpp:411
+#: app/UserAction/expander.cpp:751
 #, kde-format
 msgid "Mask (optional, all but 'Selected'):"
 msgstr "Masko (laŭvola, ĉiuj krom 'Elektita'):"
 
-#: app/UserAction/expander.cpp:406
+#: app/UserAction/expander.cpp:405
 #, kde-format
 msgid "Filename of an Item List..."
 msgstr "Dosiernomo de Item-Listo..."
 
-#: app/UserAction/expander.cpp:410
+#: app/UserAction/expander.cpp:409
 #, kde-format
 msgid "Separator between the items (optional)"
 msgstr "Apartigilo inter la eroj (laŭvola)"
 
-#: app/UserAction/expander.cpp:431
+#: app/UserAction/expander.cpp:430
 #, kde-format
 msgid "Expander: temporary file could not be opened (%1)"
 msgstr "Ekspandilo: provizora dosiero ne povus esti malfermita (%1)"
 
-#: app/UserAction/expander.cpp:454
+#: app/UserAction/expander.cpp:453
 #, kde-format
 msgid "Manipulate the Selection..."
 msgstr "Manipuli la Elekton..."
 
-#: app/UserAction/expander.cpp:457
+#: app/UserAction/expander.cpp:456
 #, kde-format
 msgid "Selection mask:"
 msgstr "Elekta masko:"
 
-#: app/UserAction/expander.cpp:458
+#: app/UserAction/expander.cpp:457
 #, kde-format
 msgid "Manipulate in which way:"
 msgstr "Manipuli laŭ kiu maniero:"
 
-#: app/UserAction/expander.cpp:485
+#: app/UserAction/expander.cpp:484
 #, kde-format
 msgid "Jump to a Location..."
 msgstr "Salti al Loko..."
 
-#: app/UserAction/expander.cpp:488
+#: app/UserAction/expander.cpp:487
 #, kde-format
 msgid "Choose a path:"
 msgstr "Elektu vojon:"
 
-#: app/UserAction/expander.cpp:489
+#: app/UserAction/expander.cpp:488
 #, kde-format
 msgid "Open location in a new tab"
 msgstr "Malfermi lokon en nova langeto"
 
-#: app/UserAction/expander.cpp:500
+#: app/UserAction/expander.cpp:499
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Goto."
 msgstr "Ekspandilo: almenaŭ 1 parametro estas bezonata por Goto."
 
-#: app/UserAction/expander.cpp:533
+#: app/UserAction/expander.cpp:532
 #, kde-format
 msgid "Ask Parameter from User..."
 msgstr "Demandi Parametron de Uzanto..."
 
-#: app/UserAction/expander.cpp:536
+#: app/UserAction/expander.cpp:535
 #, kde-format
 msgid "Question:"
 msgstr "Demando:"
 
-#: app/UserAction/expander.cpp:537
+#: app/UserAction/expander.cpp:536
 #, kde-format
 msgid "Preset (optional):"
 msgstr "Antaŭdifinita (laŭvola):"
 
-#: app/UserAction/expander.cpp:538
+#: app/UserAction/expander.cpp:537
 #, kde-format
 msgid "Caption (optional):"
 msgstr "Titolo (laŭvola):"
 
-#: app/UserAction/expander.cpp:545
+#: app/UserAction/expander.cpp:544
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Ask."
 msgstr "Ekspandilo: almenaŭ 1 parametro estas bezonata por Demandi."
 
-#: app/UserAction/expander.cpp:550
+#: app/UserAction/expander.cpp:549
 #, kde-format
 msgid "User Action"
 msgstr "Uzanto Ago"
 
-#: app/UserAction/expander.cpp:573
+#: app/UserAction/expander.cpp:572
 #, kde-format
 msgid "Copy to Clipboard..."
 msgstr "Kopii al tondujo..."
 
-#: app/UserAction/expander.cpp:576 app/UserAction/expander.cpp:606
+#: app/UserAction/expander.cpp:575 app/UserAction/expander.cpp:605
 #, kde-format
 msgid "What to copy:"
 msgstr "Kion kopii:"
 
-#: app/UserAction/expander.cpp:577
+#: app/UserAction/expander.cpp:576
 #, kde-format
 msgid "Append to current clipboard content with this separator (optional):"
 msgstr "Aldoni al aktuala tondujo enhavon kun ĉi tiu apartigilo (laŭvola):"
 
-#: app/UserAction/expander.cpp:583
+#: app/UserAction/expander.cpp:582
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Clipboard."
 msgstr "Ekspandilo: almenaŭ 1 parametro estas postulata por Clipboard."
 
-#: app/UserAction/expander.cpp:589
+#: app/UserAction/expander.cpp:588
 #, kde-format
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
 msgstr "Ekspandilo: %Each% ne estu en la dua argumento de %Clipboard%"
 
-#: app/UserAction/expander.cpp:603
+#: app/UserAction/expander.cpp:602
 #, kde-format
 msgid "Copy a File/Folder..."
 msgstr "Kopii dosieron/dosierujon..."
 
-#: app/UserAction/expander.cpp:607
+#: app/UserAction/expander.cpp:606
 #, kde-format
 msgid "Where to copy:"
 msgstr "Kien kopii:"
 
-#: app/UserAction/expander.cpp:612
+#: app/UserAction/expander.cpp:611
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Copy."
 msgstr "Ekspandilo: almenaŭ 2 parametroj estas bezonataj por Kopii."
 
-#: app/UserAction/expander.cpp:625
+#: app/UserAction/expander.cpp:624
 #, kde-format
 msgid "Expander: %Each% may not be in the second argument of %Copy%"
 msgstr "Ekspandilo: %Each% ne estu en la dua argumento de %Copy%"
 
-#: app/UserAction/expander.cpp:633
+#: app/UserAction/expander.cpp:632
 #, kde-format
 msgid "Expander: invalid URLs in %_Copy(\"src\", \"dest\")%"
 msgstr "Ekspandilo: nevalidaj URL-oj en %_Copy(\"src\", \"dest\")%"
 
-#: app/UserAction/expander.cpp:645
+#: app/UserAction/expander.cpp:644
 #, kde-format
 msgid "Move/Rename a File/Folder..."
 msgstr "Movi/Alinomi dosieron/dosierujon..."
 
-#: app/UserAction/expander.cpp:648
+#: app/UserAction/expander.cpp:647
 #, kde-format
 msgid "What to move/rename:"
 msgstr "Kion movi/alinomigi:"
 
-#: app/UserAction/expander.cpp:649
+#: app/UserAction/expander.cpp:648
 #, kde-format
 msgid "New target/name:"
 msgstr "Nova celo/nomo:"
 
-#: app/UserAction/expander.cpp:654
+#: app/UserAction/expander.cpp:653
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Move."
 msgstr "Ekspandilo: almenaŭ 2 parametroj necesas por Movo."
 
-#: app/UserAction/expander.cpp:662
+#: app/UserAction/expander.cpp:661
 #, kde-format
 msgid "%Each% may not be in the second argument of %Move%"
 msgstr "%Each% eble ne estas en la dua argumento de %Move%"
 
-#: app/UserAction/expander.cpp:672
+#: app/UserAction/expander.cpp:671
 #, kde-format
 msgid "Expander: invalid URLs in %_Move(\"src\", \"dest\")%"
 msgstr "Ekspandilo: nevalidaj URL-oj en %_Move(\"src\", \"dest\")%"
 
-#: app/UserAction/expander.cpp:685
+#: app/UserAction/expander.cpp:684
 #, kde-format
 msgid "Load a Synchronizer Profile..."
 msgstr "Ŝargi Sinkronigan Profilon..."
 
-#: app/UserAction/expander.cpp:688 app/UserAction/expander.cpp:710
-#: app/UserAction/expander.cpp:730
+#: app/UserAction/expander.cpp:687 app/UserAction/expander.cpp:709
+#: app/UserAction/expander.cpp:729
 #, kde-format
 msgid "Choose a profile:"
 msgstr "Elekti profilon:"
 
-#: app/UserAction/expander.cpp:693
+#: app/UserAction/expander.cpp:692
 #, kde-format
 msgid "Expander: no profile specified for %_Sync(profile)%"
 msgstr "Ekspandilo: neniu profilo specifita por %_Sync(profile)%"
 
-#: app/UserAction/expander.cpp:707
+#: app/UserAction/expander.cpp:706
 #, kde-format
 msgid "Load a Searchmodule Profile..."
 msgstr "Ŝargi Profilon de Serĉmodulo..."
 
-#: app/UserAction/expander.cpp:715
+#: app/UserAction/expander.cpp:714
 #, kde-format
 msgid "Expander: no profile specified for %_NewSearch(profile)%"
 msgstr "Ekspandilo: neniu profilo specifita por %_NewSearch(profile)%"
 
-#: app/UserAction/expander.cpp:727
+#: app/UserAction/expander.cpp:726
 #, kde-format
 msgid "Load a Panel Profile..."
 msgstr "Ŝargi Panelan Profilon..."
 
-#: app/UserAction/expander.cpp:735
+#: app/UserAction/expander.cpp:734
 #, kde-format
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
 msgstr "Ekspandilo: neniu profilo specifita por %_Profile(profile)%; ĉesi..."
 
-#: app/UserAction/expander.cpp:747
+#: app/UserAction/expander.cpp:746
 #, kde-format
 msgid "Separate Program Call for Each..."
 msgstr "Aparta Programvoko por Ĉiu..."
 
-#: app/UserAction/expander.cpp:784
+#: app/UserAction/expander.cpp:783
 #, kde-format
 msgid "Set Sorting for This Panel..."
 msgstr "Agordi Ordigon por Ĉi tiu Panelo..."
 
-#: app/UserAction/expander.cpp:787
+#: app/UserAction/expander.cpp:786
 #, kde-format
 msgid "Choose a column:"
 msgstr "Elekti kolumnon:"
 
-#: app/UserAction/expander.cpp:788
+#: app/UserAction/expander.cpp:787
 #, kde-format
 msgid "Choose a sort sequence:"
 msgstr "Elekti ordigan sekvencon:"
 
-#: app/UserAction/expander.cpp:795
+#: app/UserAction/expander.cpp:794
 #, kde-format
 msgid "Expander: no column specified for %_ColSort(column)%"
 msgstr "Ekspandilo: neniu kolumno specifita por %_ColSort(column)%"
 
-#: app/UserAction/expander.cpp:825
+#: app/UserAction/expander.cpp:824
 #, kde-format
 msgid "Expander: unknown column specified for %_ColSort(%1)%"
 msgstr "Ekspandilo: nekonata kolumno specifita por %_ColSort(%1)%"
 
-#: app/UserAction/expander.cpp:851
+#: app/UserAction/expander.cpp:850
 #, kde-format
 msgid "Set Relation Between the Panels..."
 msgstr "Meti Rilaton Inter la Paneloj..."
 
-#: app/UserAction/expander.cpp:854
+#: app/UserAction/expander.cpp:853
 #, kde-format
 msgid "Set the new size in percent:"
 msgstr "Meti la novan grandecon en procentoj:"
 
-#: app/UserAction/expander.cpp:870
+#: app/UserAction/expander.cpp:869
 #, kde-format
 msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
@@ -9427,54 +9387,54 @@ msgstr ""
 "Ekspandilo: Valoro %1 ekster intervalo por %_PanelSize(procent)%. La unua "
 "parametro devas esti >0 kaj <100"
 
-#: app/UserAction/expander.cpp:882
+#: app/UserAction/expander.cpp:881
 #, kde-format
 msgid "View File with Krusader's Internal Viewer..."
 msgstr "Vidi dosieron per la Interna Vidilo de Krusader..."
 
-#: app/UserAction/expander.cpp:885
+#: app/UserAction/expander.cpp:884
 #, kde-format
 msgid "Which file to view (normally '%aCurrent%'):"
 msgstr "Kiun dosieron vidi (normale '%aNuna%'):"
 
-#: app/UserAction/expander.cpp:886
+#: app/UserAction/expander.cpp:885
 #, kde-format
 msgid "Choose a view mode:"
 msgstr "Elekti vidoreĝimon:"
 
 #. i18n("Choose a window-mode"), "__choose:tab;window;panel", false ) );
 #. TODO: window-mode 'panel' should open the file in the third-hand viewer
-#: app/UserAction/expander.cpp:889
+#: app/UserAction/expander.cpp:888
 #, kde-format
 msgid "Choose a window mode:"
 msgstr "Elekti fenestroreĝimon:"
 
-#: app/UserAction/expander.cpp:894
+#: app/UserAction/expander.cpp:893
 #, kde-format
 msgid "Expander: no file to view in %_View(filename)%"
 msgstr "Ekspandilo: neniu dosiero por vidi en %_View(dosiernomo)%"
 
-#: app/UserAction/expander.cpp:934
+#: app/UserAction/expander.cpp:933
 #, kde-format
 msgid "%Each% is not allowed in parameter to %1"
 msgstr "%Each% ne estas permesita en parametro al %1"
 
-#: app/UserAction/expander.cpp:957
+#: app/UserAction/expander.cpp:956
 #, kde-format
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
 msgstr "Ekspandilo: Malbona panela specifilo %1 en lokokupilo %2"
 
-#: app/UserAction/expander.cpp:990
+#: app/UserAction/expander.cpp:989
 #, no-c-format, kde-format
 msgid "Error: unterminated % in Expander"
 msgstr "Eraro: nefinita % en Ekspandilo"
 
-#: app/UserAction/expander.cpp:1019
+#: app/UserAction/expander.cpp:1018
 #, kde-format
 msgid "Error: unrecognized %%%1%2%% in Expander"
 msgstr "Eraro: nerekonita %%%1%2%% en Ekspandilo"
 
-#: app/UserAction/expander.cpp:1059
+#: app/UserAction/expander.cpp:1058
 #, kde-format
 msgid "Error: missing ')' in Expander"
 msgstr "Eraro: mankas ')' en Ekspandilo"
@@ -9735,7 +9695,7 @@ msgstr ""
 "Subtenas nunan dosieron en nuna dosierujo kaj petas la uzanton pri nova "
 "dosiernomo. Defaŭlte \".old\" estas almetita al la originala dosiernomo."
 
-#: plugins/krarc/krarc.cpp:242 plugins/krarc/krarc.cpp:249
+#: plugins/krarc/krarc.cpp:202
 #, kde-format
 msgid ""
 "krarc: write support is disabled.\n"
@@ -9744,37 +9704,37 @@ msgstr ""
 "krarc: skriba subteno estas malŝaltita.\n"
 "Vi povas ebligi ĝin sur la paĝo 'Arkivoj' en Konfigurator."
 
-#: plugins/krarc/krarc.cpp:302 plugins/krarc/krarc.cpp:321
+#: plugins/krarc/krarc.cpp:242
 #, kde-format
 msgid "Creating folders is not supported with %1 archives"
 msgstr "Kreado de dosierujoj ne estas subtenata kun %1 arkivoj"
 
-#: plugins/krarc/krarc.cpp:364
+#: plugins/krarc/krarc.cpp:278
 #, kde-format
 msgid "Creating %1..."
 msgstr "Kreante %1..."
 
-#: plugins/krarc/krarc.cpp:425 plugins/krarc/krarc.cpp:441
+#: plugins/krarc/krarc.cpp:320
 #, kde-format
 msgid "Writing to %1 archives is not supported"
 msgstr "Skribado al %1 arkivoj ne estas subtenata"
 
-#: plugins/krarc/krarc.cpp:515
+#: plugins/krarc/krarc.cpp:386
 #, kde-format
 msgid "Packing %1..."
 msgstr "Pakado de %1..."
 
-#: plugins/krarc/krarc.cpp:577 plugins/krarc/krarc.cpp:597
+#: plugins/krarc/krarc.cpp:427
 #, kde-format
 msgid "Retrieving data from %1 archives is not supported"
 msgstr "Repreni datumojn de %1 arkivoj ne estas subtenata"
 
-#: plugins/krarc/krarc.cpp:680 plugins/krarc/krarc.cpp:1101
+#: plugins/krarc/krarc.cpp:496 plugins/krarc/krarc.cpp:761
 #, kde-format
 msgid "Unpacking %1..."
 msgstr "Malpakante %1..."
 
-#: plugins/krarc/krarc.cpp:693 plugins/krarc/krarc.cpp:699
+#: plugins/krarc/krarc.cpp:508
 #, kde-format
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
@@ -9782,22 +9742,22 @@ msgid ""
 msgstr ""
 "Okazis eraro, rilata al la ekstera programo '%1'. La erarmesaĝo estas: '%2'."
 
-#: plugins/krarc/krarc.cpp:879 plugins/krarc/krarc.cpp:900
+#: plugins/krarc/krarc.cpp:626
 #, kde-format
 msgid "Deleting files from %1 archives is not supported"
 msgstr "Forigo de dosieroj el %1 arkivoj ne estas subtenata"
 
-#: plugins/krarc/krarc.cpp:960 plugins/krarc/krarc.cpp:973
+#: plugins/krarc/krarc.cpp:670
 #, kde-format
 msgid "Accessing files is not supported with %1 archives"
 msgstr "Aliro al dosieroj ne estas subtenata kun %1 arkivoj"
 
-#: plugins/krarc/krarc.cpp:1217 plugins/krarc/krarc.cpp:1224
+#: plugins/krarc/krarc.cpp:825
 #, kde-format
 msgid "Listing folders is not supported for %1 archives"
 msgstr "Listo de dosierujoj ne estas subtenata por %1 arkivoj"
 
-#: plugins/krarc/krarc.cpp:2221 plugins/krarc/krarc.cpp:2225
+#: plugins/krarc/krarc.cpp:1755
 #, kde-format
 msgid ""
 "\n"
@@ -9806,13 +9766,27 @@ msgstr ""
 "\n"
 "Certigu, ke la binarprogramo %1 estas ĝuste instalita en via sistemo."
 
-#: plugins/krarc/krarc.cpp:2310 plugins/krarc/krarc.cpp:2336
+#: plugins/krarc/krarc.cpp:1837 plugins/krarc/krarc.cpp:1863
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "Krarc Pasvorta Dialogo"
 
-#: plugins/krarc/krarc.cpp:2354 plugins/krarc/krarc.cpp:2364
-#: plugins/krarc/krarc.cpp:2367
+#: plugins/krarc/krarc.cpp:1880
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Aliri la dosieron postulas pasvorton."
+
+#~ msgid "Manage Bookmarks"
+#~ msgstr "Administri Legosignojn"
+
+#~ msgid "Show Main Toolbar"
+#~ msgstr "Montri Ĉefan Ilobreton"
+
+#~ msgid "Show Job Toolbar"
+#~ msgstr "Montri Ilobreton pri Tasko"
+
+#~ msgid "Show Actions Toolbar"
+#~ msgstr "Montri Agoj Ilobreto"
+
+#~ msgid "&Toolbars"
+#~ msgstr "&Ilbretoj"

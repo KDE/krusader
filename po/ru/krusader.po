@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
+"POT-Creation-Date: 2024-09-24 00:41+0000\n"
 "PO-Revision-Date: 2023-05-31 09:50+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -549,7 +549,7 @@ msgid "&New..."
 msgstr "&Добавить..."
 
 #. i18n: ectx: attribute (title), widget (QWidget, TabFile)
-#: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:96
+#: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:97
 #, kde-format
 msgid "File Name"
 msgstr "Имя файла"
@@ -642,62 +642,63 @@ msgstr "Данный заполнитель допускает некоторы�
 msgid "Title"
 msgstr "Заголовок"
 
-#: app/ActionMan/useractionpage.cpp:37
-#, kde-format
-msgid ""
-"*.xml|XML files\n"
-"*|All files"
+#: app/ActionMan/useractionpage.cpp:38
+#, fuzzy
+#| msgid ""
+#| "*.xml|XML files\n"
+#| "*|All files"
+msgid "XML files (*.xml);;All files (*)"
 msgstr ""
 "*.xml|XML-файлы\n"
 "*|Все файлы"
 
-#: app/ActionMan/useractionpage.cpp:54
+#: app/ActionMan/useractionpage.cpp:55
 #, kde-format
 msgid "Create new useraction"
 msgstr "Создать новое действие"
 
-#: app/ActionMan/useractionpage.cpp:59
+#: app/ActionMan/useractionpage.cpp:60
 #, kde-format
 msgid "Import useractions"
 msgstr "Импорт действий"
 
-#: app/ActionMan/useractionpage.cpp:64
+#: app/ActionMan/useractionpage.cpp:65
 #, kde-format
 msgid "Export useractions"
 msgstr "Экспорт действий"
 
-#: app/ActionMan/useractionpage.cpp:69
+#: app/ActionMan/useractionpage.cpp:70
 #, kde-format
 msgid "Copy useractions to clipboard"
 msgstr "Копировать действия в буфер обмена"
 
-#: app/ActionMan/useractionpage.cpp:74
+#: app/ActionMan/useractionpage.cpp:75
 #, kde-format
 msgid "Paste useractions from clipboard"
 msgstr "Вставить действия из буфера обмена"
 
-#: app/ActionMan/useractionpage.cpp:79
+#: app/ActionMan/useractionpage.cpp:80
 #, kde-format
 msgid "Delete selected useractions"
 msgstr "Удалить выбранные действия"
 
-#: app/ActionMan/useractionpage.cpp:132
+#: app/ActionMan/useractionpage.cpp:133
 #, kde-format
 msgid ""
 "The current action has been modified. Do you want to apply these changes?"
 msgstr "Текущее действие было изменено. Применить изменения?"
 
-#: app/ActionMan/useractionpage.cpp:207
+#: app/ActionMan/useractionpage.cpp:208
 #, kde-format
 msgid "Are you sure that you want to remove all selected actions?"
 msgstr "Удалить выбранные действия?"
 
-#: app/ActionMan/useractionpage.cpp:208
+#: app/ActionMan/useractionpage.cpp:209
 #, kde-format
 msgid "Remove Selected Actions?"
 msgstr "Удалить выбранные действия?"
 
-#: app/ActionMan/useractionpage.cpp:259
+#: app/ActionMan/useractionpage.cpp:260
 #, kde-format
 msgid ""
 "This file already contains some useractions.\n"
@@ -706,27 +707,27 @@ msgstr ""
 "Файл уже содержит некоторые действия.\n"
 "Заменить его или объединить с выбранными действиями?"
 
-#: app/ActionMan/useractionpage.cpp:260
+#: app/ActionMan/useractionpage.cpp:261
 #, kde-format
 msgid "Overwrite or Merge?"
 msgstr "Заменить или объединить?"
 
-#: app/ActionMan/useractionpage.cpp:262
+#: app/ActionMan/useractionpage.cpp:263
 #, kde-format
 msgid "Merge"
 msgstr "Объединить"
 
-#: app/ActionMan/useractionpage.cpp:268
+#: app/ActionMan/useractionpage.cpp:269
 #, kde-format
 msgid "This file already exists. Do you want to overwrite it?"
 msgstr "Файл уже существует. Заменить его?"
 
-#: app/ActionMan/useractionpage.cpp:269
+#: app/ActionMan/useractionpage.cpp:270
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Заменить существующий файл?"
 
-#: app/ActionMan/useractionpage.cpp:283 app/UserAction/kraction.cpp:185
+#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:185
 #, kde-format
 msgid ""
 "Cannot open %1 for writing.\n"
@@ -735,7 +736,7 @@ msgstr ""
 "Не удалось открыть %1 для записи.\n"
 "Экспорт прерван."
 
-#: app/ActionMan/useractionpage.cpp:283
+#: app/ActionMan/useractionpage.cpp:284
 #, kde-format
 msgid "Export Failed"
 msgstr "Экспорт не удался"
@@ -817,7 +818,7 @@ msgstr "Упаковка файла(ов)"
 msgid "Failed to pack %1."
 msgstr "Ошибка упаковки %1."
 
-#: app/Archive/krarchandler.cpp:691
+#: app/Archive/krarchandler.cpp:692
 #, kde-format
 msgid "This archive is encrypted, please supply the password:"
 msgstr "Архив зашифрован, введите пароль:"
@@ -848,7 +849,7 @@ msgstr "Проверка архива завершена."
 msgid "Error while unpacking"
 msgstr "Ошибка при распаковке"
 
-#: app/BookMan/kraddbookmarkdlg.cpp:28 app/kractions.cpp:295
+#: app/BookMan/kraddbookmarkdlg.cpp:28 app/kractions.cpp:286
 #, kde-format
 msgid "Add Bookmark"
 msgstr "Добавить закладку"
@@ -869,19 +870,19 @@ msgid "Create in:"
 msgstr "Создать в:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:690
+#: app/Panel/panelfunc.cpp:684
 #, kde-format
 msgid "New Folder"
 msgstr "Новая папка"
 
-#: app/BookMan/kraddbookmarkdlg.cpp:96 app/FileSystem/krquery.cpp:260
-#: app/Filter/generalfilter.cpp:161 app/Filter/generalfilter.cpp:538
+#: app/BookMan/kraddbookmarkdlg.cpp:96 app/FileSystem/krquery.cpp:261
+#: app/Filter/generalfilter.cpp:162 app/Filter/generalfilter.cpp:539
 #, kde-format
 msgid "Folders"
 msgstr "Папки"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:102 app/BookMan/krbookmarkbutton.cpp:33
-#: app/BookMan/krbookmarkhandler.cpp:64 app/Panel/listpanelactions.cpp:105
+#: app/BookMan/krbookmarkhandler.cpp:65 app/Panel/listpanelactions.cpp:105
 #, kde-format
 msgid "Bookmarks"
 msgstr "Закладки"
@@ -891,17 +892,17 @@ msgstr "Закладки"
 msgid "Folder name:"
 msgstr "Имя папки:"
 
-#: app/BookMan/krbookmark.cpp:22 app/BookMan/krbookmarkhandler.cpp:777
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:784
 #, kde-format
 msgid "Trash bin"
 msgstr "Корзина"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:785
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:792
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "Виртуальная файловая система"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:781
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:788
 #, kde-format
 msgid "Local Network"
 msgstr "Локальная сеть"
@@ -911,81 +912,76 @@ msgstr "Локальная сеть"
 msgid "BookMan II"
 msgstr "Управление закладками"
 
-#: app/BookMan/krbookmarkhandler.cpp:78
+#: app/BookMan/krbookmarkhandler.cpp:80
 #, kde-format
 msgid "Type to search..."
 msgstr "Введите текст для поиска..."
 
-#: app/BookMan/krbookmarkhandler.cpp:220 app/BookMan/krbookmarkhandler.cpp:326
+#: app/BookMan/krbookmarkhandler.cpp:225 app/BookMan/krbookmarkhandler.cpp:331
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
 #: app/Konfigurator/kggeneral.cpp:329
-#: app/Synchronizer/synchronizerdirlist.cpp:116
+#: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Error"
 msgstr "Ошибка"
 
-#: app/BookMan/krbookmarkhandler.cpp:220
+#: app/BookMan/krbookmarkhandler.cpp:225
 #, kde-format
 msgid "Unable to write to %1"
 msgstr "Не удалось записать в %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:229
+#: app/BookMan/krbookmarkhandler.cpp:234
 #, kde-format
 msgid "%1 instead of %2"
 msgstr "%1 вместо %2"
 
-#: app/BookMan/krbookmarkhandler.cpp:234 app/BookMan/krbookmarkhandler.cpp:241
-#: app/BookMan/krbookmarkhandler.cpp:278
+#: app/BookMan/krbookmarkhandler.cpp:239 app/BookMan/krbookmarkhandler.cpp:246
+#: app/BookMan/krbookmarkhandler.cpp:283
 #, kde-format
 msgid "missing tag %1"
 msgstr "отсутствует метка %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:318
+#: app/BookMan/krbookmarkhandler.cpp:323
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "%1 не является допустимым файлом закладок"
 
-#: app/BookMan/krbookmarkhandler.cpp:326
+#: app/BookMan/krbookmarkhandler.cpp:331
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr "Ошибка чтения файла закладок: %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:438 app/BookMan/krbookmarkhandler.cpp:773
+#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:780
 #: app/Dialogs/popularurls.cpp:276
 #, kde-format
 msgid "Popular URLs"
 msgstr "Часто посещаемые адреса"
 
-#: app/BookMan/krbookmarkhandler.cpp:530
-#, kde-format
-msgid "Manage Bookmarks"
-msgstr "Управление закладками"
-
-#: app/BookMan/krbookmarkhandler.cpp:769
+#: app/BookMan/krbookmarkhandler.cpp:776
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "Включить специальные закладки"
 
-#: app/BookMan/krbookmarkhandler.cpp:789
+#: app/BookMan/krbookmarkhandler.cpp:796
 #, kde-format
 msgid "Jump back"
 msgstr "Вернуться"
 
-#: app/BookMan/krbookmarkhandler.cpp:841 app/GUI/mediabutton.cpp:327
-#: app/Panel/panelcontextmenu.cpp:125
+#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:327
+#: app/Panel/panelcontextmenu.cpp:103
 #, kde-format
 msgid "Open"
 msgstr "Открыть"
 
-#: app/BookMan/krbookmarkhandler.cpp:843 app/GUI/mediabutton.cpp:329
+#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:329
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Открыть в новой вкладке"
 
-#: app/BookMan/krbookmarkhandler.cpp:847 app/Dialogs/krmaskchoice.cpp:85
+#: app/BookMan/krbookmarkhandler.cpp:854 app/Dialogs/krmaskchoice.cpp:85
 #: app/Dialogs/kurllistrequester.cpp:128 app/DiskUsage/diskusage.cpp:751
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
-#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:241
+#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:216
 #, kde-format
 msgid "Delete"
 msgstr "Удалить"
@@ -1490,7 +1486,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Переместить элемент в корзину?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:836
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:830
 #, kde-format
 msgid "&Trash"
 msgstr "&Корзина"
@@ -1502,13 +1498,13 @@ msgid "Do you really want to delete this item?"
 msgstr "Удалить этот элемент?"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:852
-#: app/Panel/panelfunc.cpp:929
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:846
+#: app/Panel/panelfunc.cpp:923
 #, kde-format
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: app/DiskUsage/diskusage.cpp:606 plugins/krarc/krarc.cpp:918
+#: app/DiskUsage/diskusage.cpp:606 plugins/krarc/krarc.cpp:641
 #, kde-format
 msgid "Deleting %1..."
 msgstr "Удаление %1..."
@@ -1568,12 +1564,12 @@ msgstr "Детальный"
 msgid "Filelight"
 msgstr "Круговой"
 
-#: app/DiskUsage/diskusage.cpp:803 app/KViewer/lister.cpp:1282
+#: app/DiskUsage/diskusage.cpp:803 app/KViewer/lister.cpp:1285
 #, kde-format
 msgid "Next"
 msgstr "Следующий"
 
-#: app/DiskUsage/diskusage.cpp:807 app/KViewer/lister.cpp:1286
+#: app/DiskUsage/diskusage.cpp:807 app/KViewer/lister.cpp:1289
 #, kde-format
 msgid "Previous"
 msgstr "Предыдущий"
@@ -1720,7 +1716,7 @@ msgid "Percent"
 msgstr "Процент"
 
 #: app/DiskUsage/dulines.cpp:185 app/DiskUsage/dulistview.cpp:40
-#: app/Konfigurator/krresulttable.cpp:126 app/MountMan/kmountmangui.cpp:147
+#: app/Konfigurator/krresulttable.cpp:128 app/MountMan/kmountmangui.cpp:147
 #, kde-format
 msgid "Name"
 msgstr "Имя"
@@ -1760,7 +1756,7 @@ msgstr "Права доступа"
 msgid "Owner"
 msgstr "Владелец"
 
-#: app/DiskUsage/dulistview.cpp:48 app/Konfigurator/krresulttable.cpp:279
+#: app/DiskUsage/dulistview.cpp:48 app/Konfigurator/krresulttable.cpp:282
 #, kde-format
 msgid "Group"
 msgstr "Группа"
@@ -1779,32 +1775,32 @@ msgstr[3] "%1 файл: ~ %2"
 msgid "Files: %1"
 msgstr "Файлы: %1"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:167
+#: app/DiskUsage/radialMap/widgetEvents.cpp:166
 #, kde-format
 msgid "Open File Manager Here"
 msgstr "Открыть диспетчер файлов в этой папке"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:169
+#: app/DiskUsage/radialMap/widgetEvents.cpp:168
 #, kde-format
 msgid "Open Terminal Here"
 msgstr "Запустить терминал в этой папке"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:173
+#: app/DiskUsage/radialMap/widgetEvents.cpp:172
 #, kde-format
 msgid "&Center Map Here"
 msgstr "&Перейти в выбранную папку"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:176
+#: app/DiskUsage/radialMap/widgetEvents.cpp:175
 #, kde-format
 msgid "&Open"
 msgstr "&Открыть"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:179
+#: app/DiskUsage/radialMap/widgetEvents.cpp:178
 #, kde-format
 msgid "&Delete"
 msgstr "&Удалить"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:210
+#: app/DiskUsage/radialMap/widgetEvents.cpp:204
 #, kde-format
 msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
@@ -1813,27 +1809,27 @@ msgstr ""
 "<qt>Папка по адресу <i>«%1»</i> будет <b>рекурсивно</b> и <b>навсегда</b> "
 "удалена.</qt>"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:211
+#: app/DiskUsage/radialMap/widgetEvents.cpp:205
 #, kde-format
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
 msgstr "<qt><i>«%1»</i> будет <b>навсегда</b> удалён.</qt>"
 
-#: app/FileSystem/defaultfilesystem.cpp:148
+#: app/FileSystem/defaultfilesystem.cpp:150
 #, kde-format
 msgid "Space information disabled"
 msgstr "Отображение информации о свободном месте отключено"
 
-#: app/FileSystem/defaultfilesystem.cpp:155
+#: app/FileSystem/defaultfilesystem.cpp:157
 #, kde-format
 msgid "No space information on non-local filesystems"
 msgstr "Нет информации о нелокальных файловых системах"
 
-#: app/FileSystem/defaultfilesystem.cpp:183
+#: app/FileSystem/defaultfilesystem.cpp:185
 #, kde-format
 msgid "Space information unavailable"
 msgstr "Информация о свободном месте недоступна"
 
-#: app/FileSystem/defaultfilesystem.cpp:193
+#: app/FileSystem/defaultfilesystem.cpp:195
 #, kde-format
 msgid ""
 "Protocol not supported by Krusader:\n"
@@ -1842,18 +1838,18 @@ msgstr ""
 "Krusader не поддерживает протокол:\n"
 "%1"
 
-#: app/FileSystem/defaultfilesystem.cpp:335
+#: app/FileSystem/defaultfilesystem.cpp:337
 #, kde-format
 msgid "The folder %1 does not exist."
 msgstr "Папка %1 не существует."
 
-#: app/FileSystem/defaultfilesystem.cpp:351
-#: app/Synchronizer/synchronizerdirlist.cpp:116
+#: app/FileSystem/defaultfilesystem.cpp:353
+#: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Cannot open the folder %1."
 msgstr "Не удалось открыть папку %1."
 
-#: app/FileSystem/defaultfilesystem.cpp:358
+#: app/FileSystem/defaultfilesystem.cpp:360
 #, kde-format
 msgctxt "%1=folder path"
 msgid "Access to %1 denied"
@@ -1868,44 +1864,44 @@ msgstr ""
 "Недопустимый URL:\n"
 "%1"
 
-#: app/FileSystem/krquery.cpp:258 app/Filter/generalfilter.cpp:160
+#: app/FileSystem/krquery.cpp:259 app/Filter/generalfilter.cpp:161
 #: app/Konfigurator/konfigurator.cpp:126
 #, kde-format
 msgid "Archives"
 msgstr "Архивы"
 
-#: app/FileSystem/krquery.cpp:262 app/Filter/generalfilter.cpp:162
+#: app/FileSystem/krquery.cpp:263 app/Filter/generalfilter.cpp:163
 #, kde-format
 msgid "Image Files"
 msgstr "Графические файлы"
 
-#: app/FileSystem/krquery.cpp:264 app/Filter/generalfilter.cpp:163
+#: app/FileSystem/krquery.cpp:265 app/Filter/generalfilter.cpp:164
 #, kde-format
 msgid "Text Files"
 msgstr "Текстовые файлы"
 
-#: app/FileSystem/krquery.cpp:266 app/Filter/generalfilter.cpp:164
+#: app/FileSystem/krquery.cpp:267 app/Filter/generalfilter.cpp:165
 #, kde-format
 msgid "Video Files"
 msgstr "Видеофайлы"
 
-#: app/FileSystem/krquery.cpp:268 app/Filter/generalfilter.cpp:165
+#: app/FileSystem/krquery.cpp:269 app/Filter/generalfilter.cpp:166
 #, kde-format
 msgid "Audio Files"
 msgstr "Звуковые файлы"
 
-#: app/FileSystem/krquery.cpp:270
+#: app/FileSystem/krquery.cpp:271
 #, kde-format
 msgid "Custom"
 msgstr "Настраиваемый"
 
-#: app/FileSystem/krquery.cpp:565
+#: app/FileSystem/krquery.cpp:566
 #, kde-format
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
 msgstr "Поиск содержимого «%1» (%2)"
 
-#: app/FileSystem/krquery.cpp:570
+#: app/FileSystem/krquery.cpp:571
 #, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
@@ -1942,7 +1938,7 @@ msgstr "Не меньше"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:69 app/Filter/advancedfilter.cpp:91
-#: app/Splitter/splittergui.cpp:117
+#: app/Splitter/splittergui.cpp:120
 #, kde-format
 msgid "Byte"
 msgstr "байт"
@@ -2166,82 +2162,69 @@ msgstr "&Дополнительные"
 msgid "Could not load profile."
 msgstr "Не удалось загрузить профиль."
 
-#: app/Filter/generalfilter.cpp:37
-#, kde-format
+#: app/Filter/generalfilter.cpp:38
 msgid "Any Character"
 msgstr "Любой символ"
 
-#: app/Filter/generalfilter.cpp:38
-#, kde-format
+#: app/Filter/generalfilter.cpp:39
 msgid "Start of Line"
 msgstr "Начало строки"
 
-#: app/Filter/generalfilter.cpp:39
-#, kde-format
+#: app/Filter/generalfilter.cpp:40
 msgid "End of Line"
 msgstr "Конец строки"
 
-#: app/Filter/generalfilter.cpp:40
-#, kde-format
+#: app/Filter/generalfilter.cpp:41
 msgid "Set of Characters"
 msgstr "Набор символов"
 
-#: app/Filter/generalfilter.cpp:41
-#, kde-format
+#: app/Filter/generalfilter.cpp:42
 msgid "Repeats, Zero or More Times"
 msgstr "Повторы, ноль или более раз"
 
-#: app/Filter/generalfilter.cpp:42
-#, kde-format
+#: app/Filter/generalfilter.cpp:43
 msgid "Repeats, One or More Times"
 msgstr "Повторы, один или более раз"
 
-#: app/Filter/generalfilter.cpp:43
-#, kde-format
+#: app/Filter/generalfilter.cpp:44
 msgid "Optional"
 msgstr "Дополнительно"
 
-#: app/Filter/generalfilter.cpp:44
-#, kde-format
+#: app/Filter/generalfilter.cpp:45
 msgid "Escape"
 msgstr "Esc"
 
-#: app/Filter/generalfilter.cpp:45
-#, kde-format
+#: app/Filter/generalfilter.cpp:46
 msgid "TAB"
 msgstr "Табуляция"
 
-#: app/Filter/generalfilter.cpp:46
-#, kde-format
+#: app/Filter/generalfilter.cpp:47
 msgid "Newline"
 msgstr "Перевод строки"
 
-#: app/Filter/generalfilter.cpp:47
-#, kde-format
+#: app/Filter/generalfilter.cpp:48
 msgid "Carriage Return"
 msgstr "Возврат каретки"
 
-#: app/Filter/generalfilter.cpp:48
-#, kde-format
+#: app/Filter/generalfilter.cpp:49
 msgid "White Space"
 msgstr "Символ пробела"
 
-#: app/Filter/generalfilter.cpp:49
-#, kde-format
+#: app/Filter/generalfilter.cpp:50
 msgid "Digit"
 msgstr "Цифра"
 
-#: app/Filter/generalfilter.cpp:103
+#: app/Filter/generalfilter.cpp:104
 #, kde-format
 msgid "&Case sensitive"
 msgstr "С &учётом регистра"
 
-#: app/Filter/generalfilter.cpp:108
+#: app/Filter/generalfilter.cpp:109
 #, kde-format
 msgid "Search &for:"
 msgstr "&Искать:"
 
-#: app/Filter/generalfilter.cpp:123 app/Synchronizer/synchronizergui.cpp:208
+#: app/Filter/generalfilter.cpp:124 app/Synchronizer/synchronizergui.cpp:208
 #, kde-format
 msgid ""
 "<p>The filename filtering criteria is defined here.</p><p>You can make use "
@@ -2280,103 +2263,103 @@ msgstr ""
 "ul><p><b>Примечание</b>: шаблоны поиска «<code>текст</code>» и "
 "«<code>*текст*</code>» равнозначны.</p>"
 
-#: app/Filter/generalfilter.cpp:149
+#: app/Filter/generalfilter.cpp:150
 #, kde-format
 msgid "&Of type:"
 msgstr "&Типы:"
 
-#: app/Filter/generalfilter.cpp:159 app/Filter/generalfilter.cpp:584
+#: app/Filter/generalfilter.cpp:160 app/Filter/generalfilter.cpp:585
 #, kde-format
 msgid "All Files"
 msgstr "Все файлы"
 
-#: app/Filter/generalfilter.cpp:179
+#: app/Filter/generalfilter.cpp:180
 #, kde-format
 msgid "&Profile handler"
 msgstr "&Профили"
 
-#: app/Filter/generalfilter.cpp:192
+#: app/Filter/generalfilter.cpp:193
 #, kde-format
 msgid "&Load"
 msgstr "&Загрузить"
 
-#: app/Filter/generalfilter.cpp:216
+#: app/Filter/generalfilter.cpp:217
 #, kde-format
 msgid "Searc&h in"
 msgstr "&Искать в"
 
-#: app/Filter/generalfilter.cpp:231
+#: app/Filter/generalfilter.cpp:232
 #, kde-format
 msgid "&Do not search in"
 msgstr "&Не искать в"
 
-#: app/Filter/generalfilter.cpp:264
+#: app/Filter/generalfilter.cpp:265
 #, kde-format
 msgid "Containing text"
 msgstr "Содержащие текст"
 
-#: app/Filter/generalfilter.cpp:278
+#: app/Filter/generalfilter.cpp:279
 #, kde-format
 msgid "&Text:"
 msgstr "&Текст:"
 
-#: app/Filter/generalfilter.cpp:294 app/KViewer/lister.cpp:1300
+#: app/Filter/generalfilter.cpp:295 app/KViewer/lister.cpp:1303
 #, kde-format
 msgid "RegExp"
 msgstr "Регулярное выражение"
 
-#: app/Filter/generalfilter.cpp:313
+#: app/Filter/generalfilter.cpp:314
 #, kde-format
 msgid "Encoding:"
 msgstr "Кодировка:"
 
-#: app/Filter/generalfilter.cpp:317 app/GUI/krremoteencodingmenu.cpp:120
+#: app/Filter/generalfilter.cpp:318 app/GUI/krremoteencodingmenu.cpp:119
 #, kde-format
 msgctxt "Default encoding"
 msgid "Default"
 msgstr "По умолчанию"
 
-#: app/Filter/generalfilter.cpp:328
+#: app/Filter/generalfilter.cpp:329
 #, kde-format
 msgid "&Match whole word only"
 msgstr "&Только полные слова"
 
-#: app/Filter/generalfilter.cpp:336
+#: app/Filter/generalfilter.cpp:337
 #, kde-format
 msgid "Cas&e sensitive"
 msgstr "С &учётом регистра"
 
-#: app/Filter/generalfilter.cpp:353
+#: app/Filter/generalfilter.cpp:354
 #, kde-format
 msgid "Search in s&ub folders"
 msgstr "И&скать во вложенных папках"
 
-#: app/Filter/generalfilter.cpp:358
+#: app/Filter/generalfilter.cpp:359
 #, kde-format
 msgid "Search in arch&ives"
 msgstr "Искать в а&рхивах"
 
-#: app/Filter/generalfilter.cpp:362
+#: app/Filter/generalfilter.cpp:363
 #, kde-format
 msgid "Follow &links"
 msgstr "Переходить по &ссылкам"
 
-#: app/Filter/generalfilter.cpp:472
+#: app/Filter/generalfilter.cpp:473
 #, kde-format
 msgid "Exclude Folder Names"
 msgstr "Исключить имена папок"
 
-#: app/Filter/generalfilter.cpp:473
+#: app/Filter/generalfilter.cpp:474
 #, kde-format
 msgid "Filters out specified folder names from the results."
 msgstr "Исключает указанные имена папок из результатов."
 
-#: app/Filter/generalfilter.cpp:488
+#: app/Filter/generalfilter.cpp:489
 #, kde-format
 msgid "Enter space-separated folder names"
 msgstr "Введите имена папок, разделенные пробелами"
 
-#: app/Filter/generalfilter.cpp:490
+#: app/Filter/generalfilter.cpp:491
 #, kde-format
 msgid ""
 "You can insert names with escaped spaces or quoted.\n"
@@ -2385,12 +2368,12 @@ msgstr ""
 "Можно вставлять имена с пробелами или в кавычках.\n"
 "Пример: .git «целевая сборка» build\\ krusader"
 
-#: app/Filter/generalfilter.cpp:576
+#: app/Filter/generalfilter.cpp:577
 #, kde-format
 msgid "No search criteria entered."
 msgstr "Не заданы критерии поиска."
 
-#: app/Filter/generalfilter.cpp:606
+#: app/Filter/generalfilter.cpp:607
 #, kde-format
 msgid "Please specify a location to search in."
 msgstr "Укажите расположение для поиска."
@@ -2451,12 +2434,12 @@ msgstr "Новая папка"
 msgid "Term"
 msgstr "Терминал"
 
-#: app/GUI/kfnkeys.cpp:29 app/kractions.cpp:312
+#: app/GUI/kfnkeys.cpp:29 app/kractions.cpp:303
 #, kde-format
 msgid "Quit"
 msgstr "Выход"
 
-#: app/GUI/krremoteencodingmenu.cpp:116
+#: app/GUI/krremoteencodingmenu.cpp:115
 #, kde-format
 msgid "Reload"
 msgstr "Перезапустить"
@@ -2539,21 +2522,21 @@ msgstr "Диск CD/DVD с аудио"
 msgid "Recordable CD/DVD-ROM"
 msgstr "Записываемый диск CD/DVD"
 
-#: app/GUI/mediabutton.cpp:334 app/MountMan/kmountman.cpp:389
-#: app/MountMan/kmountmangui.cpp:436 app/Panel/panelcontextmenu.cpp:273
+#: app/GUI/mediabutton.cpp:334 app/MountMan/kmountman.cpp:391
+#: app/MountMan/kmountmangui.cpp:444 app/Panel/panelcontextmenu.cpp:248
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
 msgstr "Монтировать"
 
-#: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:389
-#: app/MountMan/kmountmangui.cpp:441 app/Panel/panelcontextmenu.cpp:271
+#: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:391
+#: app/MountMan/kmountmangui.cpp:449 app/Panel/panelcontextmenu.cpp:246
 #, kde-format
 msgid "Unmount"
 msgstr "Размонтировать"
 
-#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:448
-#: app/Panel/panelcontextmenu.cpp:275
+#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:456
+#: app/Panel/panelcontextmenu.cpp:250
 #, kde-format
 msgid "Eject"
 msgstr "Извлечь"
@@ -2603,7 +2586,7 @@ msgstr "Введите имя профиля:"
 msgid "Empty Recently Closed Tabs"
 msgstr "Очистить список недавно закрытых вкладок"
 
-#: app/GUI/terminaldock.cpp:91
+#: app/GUI/terminaldock.cpp:97
 #, fuzzy, kde-format
 #| msgid ""
 #| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
@@ -2611,7 +2594,7 @@ msgid "<b>Cannot create embedded terminal.</b><br/>"
 msgstr ""
 "<b>Невозможно открыть встроенный терминал.</b><br/>Возникшая ошибка: %1"
 
-#: app/GUI/terminaldock.cpp:102
+#: app/GUI/terminaldock.cpp:108
 #, kde-format
 msgctxt "missing program - arg1 is a URL"
 msgid ""
@@ -2666,7 +2649,7 @@ msgstr "Режим очереди заданий"
 msgid "Run only one job in parallel"
 msgstr "Параллельно выполнять только одно задание"
 
-#: app/JobMan/jobman.cpp:211 app/JobMan/jobman.cpp:357
+#: app/JobMan/jobman.cpp:211 app/JobMan/jobman.cpp:356
 #, kde-format
 msgid "Undo Last Job"
 msgstr "Отменить последнее задание"
@@ -2676,7 +2659,7 @@ msgstr "Отменить последнее задание"
 msgid "Are you sure you want to quit?"
 msgstr "Выйти?"
 
-#: app/JobMan/jobman.cpp:376
+#: app/JobMan/jobman.cpp:375
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
@@ -2685,12 +2668,12 @@ msgstr[1] "Осталось %1 операции."
 msgstr[2] "Осталось %1 операций."
 msgstr[3] "Осталась %1 операция."
 
-#: app/JobMan/jobman.cpp:424
+#: app/JobMan/jobman.cpp:423
 #, kde-format
 msgid "No Jobs"
 msgstr "Нет заданий"
 
-#: app/JobMan/jobman.cpp:426
+#: app/JobMan/jobman.cpp:425
 #, kde-format
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
@@ -2699,17 +2682,17 @@ msgstr[1] "%1 задания"
 msgstr[2] "%1 заданий"
 msgstr[3] "%1 задание"
 
-#: app/JobMan/jobman.cpp:430
+#: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Clear Job List"
 msgstr "Очистить список заданий"
 
-#: app/JobMan/jobman.cpp:430
+#: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Pause All Jobs"
 msgstr "Приостановить все задания"
 
-#: app/JobMan/jobman.cpp:430
+#: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Resume Job List"
 msgstr "Продолжить выполнение списка заданий"
@@ -3264,7 +3247,7 @@ msgid "Statusbar, inactive background:"
 msgstr "Строка состояния, неактивный фон:"
 
 #: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:808
-#: app/Panel/panelcontextmenu.cpp:159
+#: app/Panel/panelcontextmenu.cpp:137
 #, kde-format
 msgid "Preview"
 msgstr "Предпросмотр"
@@ -3457,7 +3440,7 @@ msgstr "Основной режим"
 msgid "Use the system's default viewer"
 msgstr "Использовать стандартную системную программу просмотра"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2268
+#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2271
 #, kde-format
 msgid "Text mode"
 msgstr "Текстовый режим"
@@ -3467,8 +3450,8 @@ msgstr "Текстовый режим"
 msgid "View the file in text-only mode"
 msgstr "Просмотр файла только в текстовом режиме"
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1232
-#: app/KViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1235
+#: app/KViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
 msgstr "Режим Hex"
@@ -3604,7 +3587,7 @@ msgstr "Удалить файлы"
 msgid "Files will be permanently deleted."
 msgstr "Файлы будут удалены окончательно."
 
-#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:187
+#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:165
 #, kde-format
 msgid "Terminal"
 msgstr "Терминал"
@@ -3914,7 +3897,7 @@ msgstr "Введите текст для поиска"
 msgid "Open search bar and start searching by typing in panel."
 msgstr "Открыть панель поиска и ввести на ней текст для поиска."
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1296
+#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "С учётом регистра"
@@ -3961,7 +3944,7 @@ msgstr "Положение:"
 msgid "Default mode:"
 msgstr "Стандартный режим:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1212
+#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
 #, kde-format
 msgid "Search"
@@ -5072,7 +5055,7 @@ msgstr "Зависимости"
 msgid "Set the full path of the external applications"
 msgstr "Укажите полный путь к внешним приложениям"
 
-#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:199
+#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:177
 #: app/UserAction/useractionpopupmenu.cpp:20
 #, kde-format
 msgid "User Actions"
@@ -5189,328 +5172,313 @@ msgstr "Тёмно-серый"
 msgid "Black"
 msgstr "Чёрный"
 
-#: app/Konfigurator/krresulttable.cpp:118
+#: app/Konfigurator/krresulttable.cpp:120
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
 msgstr ""
 "unarj не найден, но найден arj, который будет использован для распаковки"
 
-#: app/Konfigurator/krresulttable.cpp:124
+#: app/Konfigurator/krresulttable.cpp:126
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr "rpm найден, но не найден cpio, который требуется для распаковки"
 
-#: app/Konfigurator/krresulttable.cpp:127
-#: app/Konfigurator/krresulttable.cpp:281
+#: app/Konfigurator/krresulttable.cpp:129
+#: app/Konfigurator/krresulttable.cpp:284
 #, kde-format
 msgid "Found"
 msgstr "Обнаружено"
 
-#: app/Konfigurator/krresulttable.cpp:128
+#: app/Konfigurator/krresulttable.cpp:130
 #, kde-format
 msgid "Packing"
 msgstr "Упаковка"
 
-#: app/Konfigurator/krresulttable.cpp:129
+#: app/Konfigurator/krresulttable.cpp:131
 #, kde-format
 msgid "Unpacking"
 msgstr "Распаковка"
 
-#: app/Konfigurator/krresulttable.cpp:130
+#: app/Konfigurator/krresulttable.cpp:132
 #, kde-format
 msgid "Note"
 msgstr "Примечание"
 
-#: app/Konfigurator/krresulttable.cpp:196
-#: app/Konfigurator/krresulttable.cpp:214
-#: app/Konfigurator/krresulttable.cpp:352
+#: app/Konfigurator/krresulttable.cpp:198
+#: app/Konfigurator/krresulttable.cpp:216
+#: app/Konfigurator/krresulttable.cpp:355
 #, kde-format
 msgid "enabled"
 msgstr "включено"
 
-#: app/Konfigurator/krresulttable.cpp:201
-#: app/Konfigurator/krresulttable.cpp:219
-#: app/Konfigurator/krresulttable.cpp:357
+#: app/Konfigurator/krresulttable.cpp:203
+#: app/Konfigurator/krresulttable.cpp:221
+#: app/Konfigurator/krresulttable.cpp:360
 #, kde-format
 msgid "disabled"
 msgstr "выключено"
 
-#: app/Konfigurator/krresulttable.cpp:274
+#: app/Konfigurator/krresulttable.cpp:277
 #, kde-format
 msgid "diff utility"
 msgstr "утилита diff"
 
-#: app/Konfigurator/krresulttable.cpp:275
+#: app/Konfigurator/krresulttable.cpp:278
 #, kde-format
 msgid "email client"
 msgstr "почтовый клиент"
 
-#: app/Konfigurator/krresulttable.cpp:276
+#: app/Konfigurator/krresulttable.cpp:279
 #, kde-format
 msgid "batch renamer"
 msgstr "групповое переименование"
 
-#: app/Konfigurator/krresulttable.cpp:277
+#: app/Konfigurator/krresulttable.cpp:280
 #, kde-format
 msgid "checksum utility"
 msgstr "утилита для подсчёта контрольной суммы"
 
-#: app/Konfigurator/krresulttable.cpp:280
+#: app/Konfigurator/krresulttable.cpp:283
 #, kde-format
 msgid "Tool"
 msgstr "Инструмент"
 
-#: app/Konfigurator/krresulttable.cpp:282
+#: app/Konfigurator/krresulttable.cpp:285
 #, kde-format
 msgid "Status"
 msgstr "Состояние"
 
-#: app/kractions.cpp:174
+#: app/kractions.cpp:175
 #, kde-format
 msgid "Tab-Switch panel"
 msgstr "Панель вкладок"
 
-#: app/kractions.cpp:176
-#, kde-format
-msgid "Show Main Toolbar"
-msgstr "Показывать основную панель инструментов"
-
-#: app/kractions.cpp:179
-#, kde-format
-msgid "Show Job Toolbar"
-msgstr "Показывать панель заданий"
-
 #: app/kractions.cpp:182
-#, kde-format
-msgid "Show Actions Toolbar"
-msgstr "Показывать панель действий"
-
-#: app/kractions.cpp:191
 #, kde-format
 msgid "Show &FN Keys Bar"
 msgstr "Показывать панель &функциональных клавиш"
 
-#: app/kractions.cpp:193
+#: app/kractions.cpp:184
 #, kde-format
 msgid "Show &Command Line"
 msgstr "Показывать &командную строку"
 
-#: app/kractions.cpp:196
+#: app/kractions.cpp:187
 #, kde-format
 msgid "Show &Embedded Terminal"
 msgstr "Показывать &встроенный терминал"
 
-#: app/kractions.cpp:204
+#: app/kractions.cpp:195
 #, kde-format
 msgid "Show &Hidden Files"
 msgstr "Показывать &скрытые файлы"
 
-#: app/kractions.cpp:211
+#: app/kractions.cpp:202
 #, kde-format
 msgid "S&wap Panels"
 msgstr "По&менять панели местами"
 
-#: app/kractions.cpp:213 app/Panel/panelcontextmenu.cpp:286
+#: app/kractions.cpp:204 app/Panel/panelcontextmenu.cpp:261
 #, kde-format
 msgid "Empty Trash"
 msgstr "Очистить корзину"
 
-#: app/kractions.cpp:215
+#: app/kractions.cpp:206
 #, kde-format
 msgid "Trash Popup Menu"
 msgstr "Выпадающее меню корзины"
 
-#: app/kractions.cpp:217
+#: app/kractions.cpp:208
 #, kde-format
 msgid "Sw&ap Sides"
 msgstr "Пом&енять местами стороны"
 
-#: app/kractions.cpp:221
+#: app/kractions.cpp:212
 #, kde-format
 msgid "popup cmdline"
 msgstr "Показать командную строку"
 
-#: app/kractions.cpp:223
+#: app/kractions.cpp:214
 #, kde-format
 msgid "Start &Root Mode Krusader"
 msgstr "Запустить Krusader с п&равами root"
 
-#: app/kractions.cpp:224
+#: app/kractions.cpp:215
 #, kde-format
 msgid "Pro&files"
 msgstr "Про&фили"
 
-#: app/kractions.cpp:225
+#: app/kractions.cpp:216
 #, kde-format
 msgid "Sp&lit File..."
 msgstr "Раз&делить файл..."
 
-#: app/kractions.cpp:226
+#: app/kractions.cpp:217
 #, kde-format
 msgid "Com&bine Files..."
 msgstr "Объ&единить файлы..."
 
-#: app/kractions.cpp:227
+#: app/kractions.cpp:218
 #, kde-format
 msgid "&Select Newer and Single"
 msgstr "&Выделить более новые и одиночные"
 
-#: app/kractions.cpp:228
+#: app/kractions.cpp:219
 #, kde-format
 msgid "Select &Newer"
 msgstr "Выделить более &новые"
 
-#: app/kractions.cpp:229
+#: app/kractions.cpp:220
 #, kde-format
 msgid "Select &Single"
 msgstr "Выделить &одиночные"
 
-#: app/kractions.cpp:230
+#: app/kractions.cpp:221
 #, kde-format
 msgid "Select Different &and Single"
 msgstr "Выделить р&азличающиеся и одиночные"
 
-#: app/kractions.cpp:231
+#: app/kractions.cpp:222
 #, kde-format
 msgid "Select &Different"
 msgstr "Выделить &различающиеся"
 
-#: app/kractions.cpp:246
+#: app/kractions.cpp:237
 #, kde-format
 msgid "Start and &Forget"
 msgstr "Запустить и &скрыть"
 
-#: app/kractions.cpp:248
+#: app/kractions.cpp:239
 #, kde-format
 msgid "Display &Separated Standard and Error Output"
 msgstr "Показывать &раздельно поток вывода и поток ошибок"
 
-#: app/kractions.cpp:254
+#: app/kractions.cpp:245
 #, kde-format
 msgid "Display &Mixed Standard and Error Output"
 msgstr "Показывать потоки вывода и ошибок в&месте"
 
-#: app/kractions.cpp:255
+#: app/kractions.cpp:246
 #, kde-format
 msgid "Start in &New Terminal"
 msgstr "Запустить в &новом терминале"
 
-#: app/kractions.cpp:256
+#: app/kractions.cpp:247
 #, kde-format
 msgid "Send to &Embedded Terminal Emulator"
 msgstr "Отправить в эмулятор &встроенного терминала"
 
-#: app/kractions.cpp:272
+#: app/kractions.cpp:263
 #, kde-format
 msgid "Start &Terminal"
 msgstr "Запустить &терминал"
 
-#: app/kractions.cpp:278
+#: app/kractions.cpp:269
 #, kde-format
 msgid "&Search..."
 msgstr "&Поиск..."
 
-#: app/kractions.cpp:279
+#: app/kractions.cpp:270
 #, kde-format
 msgid "&Locate..."
 msgstr "П&оиск с использованием Locate..."
 
-#: app/kractions.cpp:281
+#: app/kractions.cpp:272
 #, kde-format
 msgid "Synchronize Fol&ders..."
 msgstr "Синхронизация &папок..."
 
-#: app/kractions.cpp:283
+#: app/kractions.cpp:274
 #, kde-format
 msgid "D&isk Usage..."
 msgstr "Статистика использования ди&ска..."
 
-#: app/kractions.cpp:285
+#: app/kractions.cpp:276
 #, kde-format
 msgid "Configure &Krusader..."
 msgstr "Настроить &Krusader..."
 
-#: app/kractions.cpp:291
+#: app/kractions.cpp:282
 #, kde-format
 msgid "Save &Position"
 msgstr "Сохранить &позицию"
 
-#: app/kractions.cpp:292
+#: app/kractions.cpp:283
 #, kde-format
 msgid "Compare b&y Content..."
 msgstr "Сравнить по &содержимому..."
 
-#: app/kractions.cpp:293
+#: app/kractions.cpp:284
 #, kde-format
 msgid "Multi &Rename..."
 msgstr "Групповое &переименование..."
 
-#: app/kractions.cpp:297 app/krusaderview.cpp:461
+#: app/kractions.cpp:288 app/krusaderview.cpp:461
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Вертикальный режим"
 
-#: app/kractions.cpp:303
+#: app/kractions.cpp:294
 #, kde-format
 msgid "User&actions"
 msgstr "Дей&ствия"
 
-#: app/kractions.cpp:305
+#: app/kractions.cpp:296
 #, kde-format
 msgid "Manage User Actions..."
 msgstr "Управление действиями..."
 
-#: app/kractions.cpp:307
+#: app/kractions.cpp:298
 #, kde-format
 msgid "Select Remote Charset"
 msgstr "Выбрать кодировку"
 
-#: app/kractions.cpp:309
+#: app/kractions.cpp:300
 #, kde-format
 msgid "Recently Closed Tabs"
 msgstr "Недавно закрытые вкладки"
 
-#: app/kractions.cpp:313
+#: app/kractions.cpp:304
 #, kde-format
 msgid "Quit Krusader."
 msgstr "Выйти из Krusader."
 
-#: app/kractions.cpp:315
+#: app/kractions.cpp:306
 #, kde-format
 msgid "Popular URLs..."
 msgstr "Часто посещаемые адреса..."
 
-#: app/kractions.cpp:317
+#: app/kractions.cpp:308
 #, kde-format
 msgid "Toggle Fullscreen Embedded Terminal"
 msgstr "Полноэкранный режим встроенного терминала"
 
-#: app/kractions.cpp:324
+#: app/kractions.cpp:315
 #, kde-format
 msgid "Move Focus Up"
 msgstr "Сдвинуть фокус вверх"
 
-#: app/kractions.cpp:325
+#: app/kractions.cpp:316
 #, kde-format
 msgid "Move Focus Down"
 msgstr "Сдвинуть фокус вниз"
 
-#: app/kractions.cpp:340
+#: app/kractions.cpp:331
 #, kde-format
 msgid "Setup Krusader the way you like it"
 msgstr "Настроить Krusader"
 
-#: app/kractions.cpp:341
+#: app/kractions.cpp:332
 #, kde-format
 msgid "Search for files"
 msgstr "Поиск файлов"
 
-#: app/krslots.cpp:90
+#: app/krslots.cpp:91
 #, kde-format
 msgid "No selected files to send."
 msgstr "Не выбраны файлы для отправки."
 
-#: app/krslots.cpp:99
+#: app/krslots.cpp:100
 #, kde-format
 msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
@@ -5519,7 +5487,7 @@ msgstr ""
 "Не найдены поддерживаемые клиенты электронной почты. Установите один из них "
 "в систему. Подсказка: Krusader поддерживает KMail."
 
-#: app/krslots.cpp:108
+#: app/krslots.cpp:109
 #, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
@@ -5528,18 +5496,18 @@ msgstr[1] "Отправка файлов: %2"
 msgstr[2] "Отправка файлов: %2"
 msgstr[3] "Отправка файлов: %2"
 
-#: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:416
-#: app/krslots.cpp:489 app/Synchronizer/synchronizer.cpp:1609
+#: app/krslots.cpp:138 app/krslots.cpp:233 app/krslots.cpp:417
+#: app/krslots.cpp:490 app/Synchronizer/synchronizer.cpp:1608
 #, kde-format
 msgid "Error executing %1."
 msgstr "Ошибка выполнения %1."
 
-#: app/krslots.cpp:162
+#: app/krslots.cpp:163
 #, kde-format
 msgid "Do not know which files to compare."
 msgstr "Не указаны файлы, которые требуется сравнить."
 
-#: app/krslots.cpp:163
+#: app/krslots.cpp:164
 #, kde-format
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
@@ -5553,12 +5521,12 @@ msgstr ""
 "панели есть файл с точно таким же именем, что и текущий файл в активной "
 "панели.</li></ul>"
 
-#: app/krslots.cpp:184
+#: app/krslots.cpp:185
 #, kde-format
 msgid "Krusader is unable to download %1"
 msgstr "Krusader не может загрузить %1"
 
-#: app/krslots.cpp:200
+#: app/krslots.cpp:201
 #, kde-format
 msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
@@ -5567,7 +5535,7 @@ msgstr ""
 "Krusader не нашёл ни одного поддерживаемого интерфейса diff. Установите один "
 "из них в систему. Подсказка: Krusader поддерживает Kompare, KDiff3 и Xxdiff."
 
-#: app/krslots.cpp:383
+#: app/krslots.cpp:384
 #, kde-format
 msgid ""
 "Cannot find the 'locate' command. Please install the findutils-locate "
@@ -5576,7 +5544,7 @@ msgstr ""
 "Не найдена утилита «locate». Установите «locate» из пакета GNU findutils или "
 "проверьте зависимости в диалоговом окне настройки."
 
-#: app/krslots.cpp:406 app/UserAction/kraction.cpp:282
+#: app/krslots.cpp:407 app/UserAction/kraction.cpp:282
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5586,7 +5554,7 @@ msgstr ""
 "Неверное использование кавычек в команде терминала:\n"
 "%1"
 
-#: app/krslots.cpp:431
+#: app/krslots.cpp:432
 #, kde-format
 msgid ""
 "Cannot find a batch rename tool.\n"
@@ -5595,12 +5563,12 @@ msgstr ""
 "Не удаётся найти инструмент группового переименования.\n"
 "Возможно найти KRename на %1"
 
-#: app/krslots.cpp:458
+#: app/krslots.cpp:459
 #, kde-format
 msgid "Error executing '%1'."
 msgstr "Ошибка выполнения «%1»."
 
-#: app/krslots.cpp:464
+#: app/krslots.cpp:465
 #, kde-format
 msgid ""
 "Improper operations in root mode can damage your operating system. "
@@ -5612,7 +5580,7 @@ msgstr ""
 "интерфейса в режиме root небезопасен и может позволить злоумышленникам "
 "получить доступ к root."
 
-#: app/krslots.cpp:477
+#: app/krslots.cpp:478
 #, kde-format
 msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
@@ -5621,47 +5589,47 @@ msgstr ""
 "Невозможно запустить Krusader в режиме root, файл %1 не найден или не "
 "является исполняемым. Убедитесь, что в системе установлены kde-cli-tools."
 
-#: app/krslots.cpp:503
+#: app/krslots.cpp:504
 #, kde-format
 msgid "Do not know which file to split."
 msgstr "Не указан файл, который требуется разделить."
 
-#: app/krslots.cpp:512
+#: app/krslots.cpp:513
 #, kde-format
 msgid "You cannot split a folder."
 msgstr "Нельзя разделять папки."
 
-#: app/krslots.cpp:535
+#: app/krslots.cpp:536
 #, kde-format
 msgid "Do not know which files to combine."
 msgstr "Укажите файлы, которые требуется объединить."
 
-#: app/krslots.cpp:552
+#: app/krslots.cpp:553
 #, kde-format
 msgid "You cannot combine a folder."
 msgstr "Нельзя объединять папки."
 
-#: app/krslots.cpp:569 app/krslots.cpp:620
+#: app/krslots.cpp:570 app/krslots.cpp:621
 #, kde-format
 msgid "Not a split file: %1."
 msgstr "Файл %1 не разделён."
 
-#: app/krslots.cpp:580
+#: app/krslots.cpp:581
 #, kde-format
 msgid "Select only one split file."
 msgstr "Выберите только один разделённый файл."
 
-#: app/krslots.cpp:627
+#: app/krslots.cpp:628
 #, kde-format
 msgid "Combining %1.* to folder:"
 msgstr "Объединение %1.* в папку:"
 
-#: app/krslots.cpp:711
+#: app/krslots.cpp:712
 #, kde-format
 msgid "Open trash bin"
 msgstr "Открыть корзину"
 
-#: app/krslots.cpp:713
+#: app/krslots.cpp:714
 #, kde-format
 msgid "Empty trash bin"
 msgstr "Очистить корзину"
@@ -5673,7 +5641,7 @@ msgstr ""
 "Строка состояния будет отображать основную информацию о файле, находящемся "
 "под курсором мыши."
 
-#: app/krusader.cpp:305
+#: app/krusader.cpp:297
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5685,14 +5653,14 @@ msgstr ""
 "для Krusader. Затем будет открыто диалоговое окно настройки Krusader.</p></"
 "qt>"
 
-#: app/krusader.cpp:336
+#: app/krusader.cpp:328
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr "Держать главное окно поверх остальных"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1888
-#: app/KViewer/lister.cpp:1923
+#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1890
+#: app/KViewer/lister.cpp:1925
 #, kde-format
 msgid "Lister"
 msgstr "Lister"
@@ -5739,44 +5707,38 @@ msgstr "С&ервис"
 msgid "&Settings"
 msgstr "&Настройка"
 
-#. i18n: ectx: Menu (show_toolbars)
-#: app/krusaderui.rc:121
-#, kde-format
-msgid "&Toolbars"
-msgstr "Панели и&нструментов"
-
 #. i18n: ectx: Menu (command_execution_mode)
-#: app/krusaderui.rc:131
+#: app/krusaderui.rc:125
 #, kde-format
 msgid "Command Execution &Mode Setup"
 msgstr "Настройка р&ежима выполнения команд"
 
 #. i18n: ectx: Menu (window)
-#: app/krusaderui.rc:145
+#: app/krusaderui.rc:139
 #, kde-format
 msgid "&Window"
 msgstr "&Окно"
 
 #. i18n: ectx: Menu (help)
-#: app/krusaderui.rc:166
+#: app/krusaderui.rc:160
 #, kde-format
 msgid "&Help"
 msgstr "&Справка"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: app/krusaderui.rc:170
+#: app/krusaderui.rc:164
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Основная панель инструментов"
 
 #. i18n: ectx: ToolBar (actionsToolBar)
-#: app/krusaderui.rc:197
+#: app/krusaderui.rc:191
 #, kde-format
 msgid "Actions Toolbar"
 msgstr "Панель действий"
 
 #. i18n: ectx: ToolBar (jobToolBar)
-#: app/krusaderui.rc:200
+#: app/krusaderui.rc:194
 #, kde-format
 msgid "Job Toolbar"
 msgstr "Панель заданий"
@@ -5792,57 +5754,57 @@ msgstr ""
 msgid "Horizontal Mode"
 msgstr "Горизонтальный режим"
 
-#: app/KViewer/krviewer.cpp:95
+#: app/KViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&Основная программа просмотра"
 
-#: app/KViewer/krviewer.cpp:96
+#: app/KViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Text Viewer"
 msgstr "Программа просмотра &текста"
 
-#: app/KViewer/krviewer.cpp:97
+#: app/KViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "Программа просмотра &Hex-файлов"
 
-#: app/KViewer/krviewer.cpp:98
+#: app/KViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Lister"
 msgstr "&Lister"
 
-#: app/KViewer/krviewer.cpp:101
+#: app/KViewer/krviewer.cpp:104
 #, kde-format
 msgid "Text &Editor"
 msgstr "Текстовый &редактор"
 
-#: app/KViewer/krviewer.cpp:125
+#: app/KViewer/krviewer.cpp:128
 #, kde-format
 msgid "&Detach Tab"
 msgstr "&Отделить вкладку"
 
-#: app/KViewer/krviewer.cpp:137
+#: app/KViewer/krviewer.cpp:140
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "Зак&рыть текущую вкладку"
 
-#: app/KViewer/krviewer.cpp:143
+#: app/KViewer/krviewer.cpp:146
 #, kde-format
 msgid "&Next Tab"
 msgstr "Следующая &вкладка"
 
-#: app/KViewer/krviewer.cpp:149
+#: app/KViewer/krviewer.cpp:152
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&Предыдущая вкладка"
 
-#: app/KViewer/krviewer.cpp:225
+#: app/KViewer/krviewer.cpp:227
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: app/KViewer/krviewer.cpp:358
+#: app/KViewer/krviewer.cpp:360
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5852,182 +5814,182 @@ msgstr ""
 "Неверное использование кавычек в команде редактора:\n"
 "%1"
 
-#: app/KViewer/krviewer.cpp:365
+#: app/KViewer/krviewer.cpp:367
 #, kde-format
 msgid "Can not open \"%1\""
 msgstr "Не удалось открыть «%1»"
 
-#: app/KViewer/krviewer.cpp:676
+#: app/KViewer/krviewer.cpp:678
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (Редактирование)"
 
-#: app/KViewer/krviewer.cpp:676
+#: app/KViewer/krviewer.cpp:678
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (Просмотр)"
 
-#: app/KViewer/krviewer.cpp:682
+#: app/KViewer/krviewer.cpp:684
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Редактирование: %1"
 
-#: app/KViewer/krviewer.cpp:682
+#: app/KViewer/krviewer.cpp:684
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Просмотр: %1"
 
-#: app/KViewer/lister.cpp:1199 app/KViewer/lister.cpp:1912
+#: app/KViewer/lister.cpp:1202 app/KViewer/lister.cpp:1914
 #, kde-format
 msgid "Save selection..."
 msgstr "Сохранить выделенное..."
 
-#: app/KViewer/lister.cpp:1203
+#: app/KViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
 msgstr "Сохранить как..."
 
-#: app/KViewer/lister.cpp:1207
+#: app/KViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
 msgstr "Печать..."
 
-#: app/KViewer/lister.cpp:1217
+#: app/KViewer/lister.cpp:1220
 #, kde-format
 msgid "Search next"
 msgstr "Искать следующее"
 
-#: app/KViewer/lister.cpp:1222
+#: app/KViewer/lister.cpp:1225
 #, kde-format
 msgid "Search previous"
 msgstr "Искать предыдущее"
 
-#: app/KViewer/lister.cpp:1227 app/KViewer/lister.cpp:1851
-#: app/KViewer/lister.cpp:1862 app/KViewer/lister.cpp:1870
-#: app/KViewer/lister.cpp:1877
+#: app/KViewer/lister.cpp:1230 app/KViewer/lister.cpp:1853
+#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
+#: app/KViewer/lister.cpp:1879
 #, kde-format
 msgid "Jump to position"
 msgstr "Перейти к позиции"
 
-#: app/KViewer/lister.cpp:1237
+#: app/KViewer/lister.cpp:1240
 #, kde-format
 msgid "Select charset"
 msgstr "Выбрать кодировку"
 
-#: app/KViewer/lister.cpp:1256 app/KViewer/lister.cpp:1483
+#: app/KViewer/lister.cpp:1259 app/KViewer/lister.cpp:1486
 #, kde-format
 msgid "Lister:"
 msgstr "Lister:"
 
-#: app/KViewer/lister.cpp:1267
+#: app/KViewer/lister.cpp:1270
 #, kde-format
 msgid "Stop search"
 msgstr "Остановить поиск"
 
-#: app/KViewer/lister.cpp:1283
+#: app/KViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
 msgstr "Перейти к следующему соответствию"
 
-#: app/KViewer/lister.cpp:1287
+#: app/KViewer/lister.cpp:1290
 #, kde-format
 msgid "Jump to previous match"
 msgstr "Перейти к предыдущему соответствию"
 
-#: app/KViewer/lister.cpp:1290
+#: app/KViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
 msgstr "Параметры"
 
-#: app/KViewer/lister.cpp:1291
+#: app/KViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
 msgstr "Изменить параметры поиска"
 
-#: app/KViewer/lister.cpp:1293
+#: app/KViewer/lister.cpp:1296
 #, kde-format
 msgid "From cursor"
 msgstr "От курсора"
 
-#: app/KViewer/lister.cpp:1298
+#: app/KViewer/lister.cpp:1301
 #, kde-format
 msgid "Match whole words only"
 msgstr "Только целые слова"
 
-#: app/KViewer/lister.cpp:1302
+#: app/KViewer/lister.cpp:1305
 #, kde-format
 msgid "Hexadecimal"
 msgstr "Шестнадцатеричный"
 
-#: app/KViewer/lister.cpp:1357
+#: app/KViewer/lister.cpp:1360
 #, kde-format
 msgid "Error reading file %1."
 msgstr "Ошибка чтения файла %1."
 
-#: app/KViewer/lister.cpp:1454
+#: app/KViewer/lister.cpp:1457
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "Столбец: %1, позиция: %2 (%3, %4%)"
 
-#: app/KViewer/lister.cpp:1469 app/KViewer/lister.cpp:1820
+#: app/KViewer/lister.cpp:1472 app/KViewer/lister.cpp:1822
 #, kde-format
 msgid "Search:"
 msgstr "Поиск:"
 
-#: app/KViewer/lister.cpp:1836
+#: app/KViewer/lister.cpp:1838
 #, kde-format
 msgid "Search position:"
 msgstr "Положение поиска:"
 
-#: app/KViewer/lister.cpp:1851
+#: app/KViewer/lister.cpp:1853
 #, kde-format
 msgid "Text position:"
 msgstr "Положение текста:"
 
-#: app/KViewer/lister.cpp:1862 app/KViewer/lister.cpp:1870
+#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
 #, kde-format
 msgid "Invalid number."
 msgstr "Неправильный номер."
 
-#: app/KViewer/lister.cpp:1877
+#: app/KViewer/lister.cpp:1879
 #, kde-format
 msgid "Number out of range."
 msgstr "Номер вне допустимых пределов."
 
-#: app/KViewer/lister.cpp:1912
+#: app/KViewer/lister.cpp:1914
 #, kde-format
 msgid "Nothing is selected."
 msgstr "Ничего не выбрано."
 
-#: app/KViewer/lister.cpp:1990
+#: app/KViewer/lister.cpp:1993
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
 "Печать в обратном порядке не поддерживается. Продолжить в нормальном режиме "
 "печати?"
 
-#: app/KViewer/panelviewer.cpp:56
+#: app/KViewer/panelviewer.cpp:47
 #, kde-format
 msgid "No file selected or selected file cannot be displayed."
 msgstr ""
 "Не выделено ни одного файла или выделенные файлы не могут быть показаны."
 
-#: app/KViewer/panelviewer.cpp:111 app/Synchronizer/synchronizertask.cpp:144
+#: app/KViewer/panelviewer.cpp:102 app/Synchronizer/synchronizertask.cpp:144
 #: app/Synchronizer/synchronizertask.cpp:151
 #, kde-format
 msgid "Error at opening %1."
 msgstr "Ошибка при открытии %1."
 
-#: app/KViewer/panelviewer.cpp:379
+#: app/KViewer/panelviewer.cpp:340
 #, kde-format
 msgid "Missing Plugin"
 msgstr "Нет подходящего модуля"
 
-#: app/KViewer/panelviewer.cpp:385
+#: app/KViewer/panelviewer.cpp:346
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -6038,12 +6000,12 @@ msgstr ""
 ">Встроенный редактор Krusader не сможет продолжить работу.<br/>Для "
 "устранения проблемы установите Kate:<br/>%1"
 
-#: app/KViewer/panelviewer.cpp:404
+#: app/KViewer/panelviewer.cpp:365
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr "%1 больше чем %2 МБ"
 
-#: app/KViewer/panelviewer.cpp:430
+#: app/KViewer/panelviewer.cpp:391
 #, kde-format
 msgid "Cannot edit %1"
 msgstr "Невозможно редактировать «%1»"
@@ -6184,8 +6146,7 @@ msgstr "Стоп"
 msgid "Feed to listbox"
 msgstr "Добавить в список"
 
-#: app/main.cpp:46
-#, kde-format
+#: app/main.cpp:47
 msgid ""
 "Krusader\n"
 "Twin-Panel File Manager by KDE"
@@ -6193,17 +6154,17 @@ msgstr ""
 "Krusader\n"
 "Двухпанельный файловый менеджер для оболочки KDE"
 
-#: app/main.cpp:113
+#: app/main.cpp:114
 #, kde-format
 msgid "Krusader"
 msgstr "Krusader"
 
-#: app/main.cpp:113
+#: app/main.cpp:114
 #, kde-format
 msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader — ПРИВИЛЕГИИ ROOT"
 
-#: app/main.cpp:117
+#: app/main.cpp:118
 #, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
@@ -6212,7 +6173,7 @@ msgstr ""
 "© Shie Erlich, Rafi Yanai, 2000-2003\n"
 "© Krusader Krew, 2004-2022"
 
-#: app/main.cpp:118
+#: app/main.cpp:119
 #, kde-format
 msgid ""
 "Feedback:\n"
@@ -6221,702 +6182,702 @@ msgstr ""
 "Обратная связь:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 
-#: app/main.cpp:124
+#: app/main.cpp:125
 #, kde-format
 msgid "Davide Gianforte"
 msgstr "Davide Gianforte"
 
-#: app/main.cpp:124 app/main.cpp:125 app/main.cpp:126
+#: app/main.cpp:125 app/main.cpp:126 app/main.cpp:127
 #, kde-format
 msgid "Developer"
 msgstr "Разработчик"
 
-#: app/main.cpp:125
+#: app/main.cpp:126
 #, kde-format
 msgid "Toni Asensi Esteve"
 msgstr "Toni Asensi Esteve"
 
-#: app/main.cpp:126
+#: app/main.cpp:127
 #, kde-format
 msgid "Nikita Melnichenko"
 msgstr "Nikita Melnichenko"
 
-#: app/main.cpp:127
+#: app/main.cpp:128
 #, kde-format
 msgid "Yuri Chornoivan"
 msgstr "Yuri Chornoivan"
 
-#: app/main.cpp:127
+#: app/main.cpp:128
 #, kde-format
 msgid "Documentation"
 msgstr "Документация"
 
-#: app/main.cpp:128
+#: app/main.cpp:129
 #, kde-format
 msgid "Rafi Yanai"
 msgstr "Rafi Yanai"
 
-#: app/main.cpp:128 app/main.cpp:129
+#: app/main.cpp:129 app/main.cpp:130
 #, kde-format
 msgid "Author (retired)"
 msgstr "Автор (больше не занимается проектом)"
 
-#: app/main.cpp:129
+#: app/main.cpp:130
 #, kde-format
 msgid "Shie Erlich"
 msgstr "Shie Erlich"
 
-#: app/main.cpp:130
+#: app/main.cpp:131
 #, kde-format
 msgid "Csaba Karai"
 msgstr "Csaba Karai"
 
-#: app/main.cpp:130 app/main.cpp:131 app/main.cpp:132 app/main.cpp:133
-#: app/main.cpp:134 app/main.cpp:135 app/main.cpp:136 app/main.cpp:137
-#: app/main.cpp:138
+#: app/main.cpp:131 app/main.cpp:132 app/main.cpp:133 app/main.cpp:134
+#: app/main.cpp:135 app/main.cpp:136 app/main.cpp:137 app/main.cpp:138
+#: app/main.cpp:139
 #, kde-format
 msgid "Developer (retired)"
 msgstr "Разработчик (больше не занимается проектом)"
 
-#: app/main.cpp:131
+#: app/main.cpp:132
 #, kde-format
 msgid "Heiner Eichmann"
 msgstr "Heiner Eichmann"
 
-#: app/main.cpp:132
+#: app/main.cpp:133
 #, kde-format
 msgid "Jonas Bähr"
 msgstr "Jonas Bähr"
 
-#: app/main.cpp:133
+#: app/main.cpp:134
 #, kde-format
 msgid "Václav Jůza"
 msgstr "Václav Jůza"
 
-#: app/main.cpp:134
+#: app/main.cpp:135
 #, kde-format
 msgid "Jan Lepper"
 msgstr "Jan Lepper"
 
-#: app/main.cpp:135
+#: app/main.cpp:136
 #, kde-format
 msgid "Andrey Matveyakin"
 msgstr "Andrey Matveyakin"
 
-#: app/main.cpp:136
+#: app/main.cpp:137
 #, kde-format
 msgid "Simon Persson"
 msgstr "Simon Persson"
 
-#: app/main.cpp:137
+#: app/main.cpp:138
 #, kde-format
 msgid "Alexander Bikadorov"
 msgstr "Alexander Bikadorov"
 
-#: app/main.cpp:138
+#: app/main.cpp:139
 #, kde-format
 msgid "Martin Kostolný"
 msgstr "Martin Kostolný"
 
-#: app/main.cpp:139 app/main.cpp:176
+#: app/main.cpp:140 app/main.cpp:177
 #, kde-format
 msgid "Dirk Eschler"
 msgstr "Dirk Eschler"
 
-#: app/main.cpp:139
+#: app/main.cpp:140
 #, kde-format
 msgid "Webmaster (retired)"
 msgstr "Веб-мастер (больше не занимается проектом)"
 
-#: app/main.cpp:140 app/main.cpp:172
+#: app/main.cpp:141 app/main.cpp:173
 #, kde-format
 msgid "Frank Schoolmeesters"
 msgstr "Frank Schoolmeesters"
 
-#: app/main.cpp:141
+#: app/main.cpp:142
 #, kde-format
 msgid "Documentation and marketing coordinator (retired)"
 msgstr "Координатор документации и маркетинга (больше не занимается проектом)"
 
-#: app/main.cpp:144
+#: app/main.cpp:145
 #, kde-format
 msgid "Richard Holt"
 msgstr "Richard Holt"
 
-#: app/main.cpp:144
+#: app/main.cpp:145
 #, kde-format
 msgid "Documentation & Proofing (retired)"
 msgstr "Документация и проверка правописания (больше не занимается проектом)"
 
-#: app/main.cpp:145 app/main.cpp:192
+#: app/main.cpp:146 app/main.cpp:193
 #, kde-format
 msgid "Matej Urbancic"
 msgstr "Matej Urbancic"
 
-#: app/main.cpp:145
+#: app/main.cpp:146
 #, kde-format
 msgid "Marketing & Product Research (retired)"
 msgstr "Маркетинг и исследование продукта (больше не занимается проектом)"
 
-#: app/main.cpp:146
+#: app/main.cpp:147
 #, kde-format
 msgid "kde.org"
 msgstr "kde.org"
 
-#: app/main.cpp:146
+#: app/main.cpp:147
 #, kde-format
 msgid "Everyone involved in KDE"
 msgstr "Все, кто связан с KDE"
 
-#: app/main.cpp:147
+#: app/main.cpp:148
 #, kde-format
 msgid "l10n.kde.org"
 msgstr "l10n.kde.org"
 
-#: app/main.cpp:147
+#: app/main.cpp:148
 #, kde-format
 msgid "KDE Translation Teams"
 msgstr "Команда переводчиков KDE"
 
-#: app/main.cpp:148
+#: app/main.cpp:149
 #, kde-format
 msgid "Jiří Paleček"
 msgstr "Jiří Paleček"
 
-#: app/main.cpp:148 app/main.cpp:159
+#: app/main.cpp:149 app/main.cpp:160
 #, kde-format
 msgid "QA, bug-hunting, patches and general help"
 msgstr "Контроль качества, поиск ошибок, исправления и общая помощь"
 
-#: app/main.cpp:149
+#: app/main.cpp:150
 #, kde-format
 msgid "Jiří Klement"
 msgstr "Jiří Klement"
 
-#: app/main.cpp:149
+#: app/main.cpp:150
 #, kde-format
 msgid "Important help in KDE 4 porting"
 msgstr "Особая помощь в переносе на KDE4"
 
-#: app/main.cpp:150
+#: app/main.cpp:151
 #, kde-format
 msgid "Andrew Neupokoev"
 msgstr "Andrew Neupokoev"
 
-#: app/main.cpp:150
+#: app/main.cpp:151
 #, kde-format
 msgid "Killer Logo and Icons for Krusader (contest winner)"
 msgstr "Логотип Killer и значки для Krusader (победитель конкурса)"
 
-#: app/main.cpp:151
+#: app/main.cpp:152
 #, kde-format
 msgid "The UsefulArts Organization"
 msgstr "Организация The UsefulArts"
 
 # "значки" or "значок"?
-#: app/main.cpp:151
+#: app/main.cpp:152
 #, kde-format
 msgid "Icon for Krusader"
 msgstr "Значки для Krusader"
 
-#: app/main.cpp:152
+#: app/main.cpp:153
 #, kde-format
 msgid "Gábor Lehel"
 msgstr "Gábor Lehel"
 
-#: app/main.cpp:152
+#: app/main.cpp:153
 #, kde-format
 msgid "Viewer module for 3rd Hand"
 msgstr "Модуль просмотра для дополнительной панели"
 
-#: app/main.cpp:153
+#: app/main.cpp:154
 #, kde-format
 msgid "Mark Eatough"
 msgstr "Mark Eatough"
 
-#: app/main.cpp:153
+#: app/main.cpp:154
 #, kde-format
 msgid "Handbook Proof-Reader"
 msgstr "Корректура руководства"
 
-#: app/main.cpp:154
+#: app/main.cpp:155
 #, kde-format
 msgid "Jan Halasa"
 msgstr "Jan Halasa"
 
-#: app/main.cpp:154
+#: app/main.cpp:155
 #, kde-format
 msgid "The old Bookmark Module"
 msgstr "Старый модуль закладок"
 
-#: app/main.cpp:155
+#: app/main.cpp:156
 #, kde-format
 msgid "Hans Löffler"
 msgstr "Hans Löffler"
 
-#: app/main.cpp:155
+#: app/main.cpp:156
 #, kde-format
 msgid "Dir history button"
 msgstr "Кнопка истории папок"
 
-#: app/main.cpp:156
+#: app/main.cpp:157
 #, kde-format
 msgid "Szombathelyi György"
 msgstr "Szombathelyi György"
 
-#: app/main.cpp:156
+#: app/main.cpp:157
 #, kde-format
 msgid "ISO KIO slave"
 msgstr "Протокол ISO в KIO"
 
-#: app/main.cpp:157
+#: app/main.cpp:158
 #, kde-format
 msgid "Jan Willem van de Meent (Adios)"
 msgstr "Jan Willem van de Meent (Adios)"
 
-#: app/main.cpp:157
+#: app/main.cpp:158
 #, kde-format
 msgid "Icons for Krusader"
 msgstr "Значки для Krusader"
 
-#: app/main.cpp:158
+#: app/main.cpp:159
 #, kde-format
 msgid "Mikolaj Machowski"
 msgstr "Mikolaj Machowski"
 
-#: app/main.cpp:158
+#: app/main.cpp:159
 #, kde-format
 msgid "Usability and QA"
 msgstr "Эргономика и контроль качества"
 
-#: app/main.cpp:159
+#: app/main.cpp:160
 #, kde-format
 msgid "Cristi Dumitrescu"
 msgstr "Cristi Dumitrescu"
 
-#: app/main.cpp:160
+#: app/main.cpp:161
 #, kde-format
 msgid "Aurelien Gateau"
 msgstr "Aurelien Gateau"
 
-#: app/main.cpp:160
+#: app/main.cpp:161
 #, kde-format
 msgid "patch for KViewer"
 msgstr "Исправления для KViewer"
 
-#: app/main.cpp:161
+#: app/main.cpp:162
 #, kde-format
 msgid "Milan Brabec"
 msgstr "Milan Brabec"
 
-#: app/main.cpp:161
+#: app/main.cpp:162
 #, kde-format
 msgid "the first patch ever!"
 msgstr "Самое первое исправление!"
 
-#: app/main.cpp:162
+#: app/main.cpp:163
 #, kde-format
 msgid "Asim Husanovic"
 msgstr "Asim Husanovic"
 
-#: app/main.cpp:162
+#: app/main.cpp:163
 #, kde-format
 msgid "Bosnian translation"
 msgstr "Перевод на боснийский"
 
-#: app/main.cpp:163
+#: app/main.cpp:164
 #, kde-format
 msgid "Doutor Zero"
 msgstr "Doutor Zero"
 
-#: app/main.cpp:163
+#: app/main.cpp:164
 #, kde-format
 msgid "Brazilian Portuguese translation"
 msgstr "Перевод на португальский (Бразилия)"
 
-#: app/main.cpp:164
+#: app/main.cpp:165
 #, kde-format
 msgid "Milen Ivanov"
 msgstr "Milen Ivanov"
 
-#: app/main.cpp:164
+#: app/main.cpp:165
 #, kde-format
 msgid "Bulgarian translation"
 msgstr "Перевод на болгарский"
 
-#: app/main.cpp:165
+#: app/main.cpp:166
 #, kde-format
 msgid "Quim Perez"
 msgstr "Quim Perez"
 
-#: app/main.cpp:165
+#: app/main.cpp:166
 #, kde-format
 msgid "Catalan translation"
 msgstr "Перевод на каталонский"
 
-#: app/main.cpp:166
+#: app/main.cpp:167
 #, kde-format
 msgid "Jinghua Luo"
 msgstr "Jinghua Luo"
 
-#: app/main.cpp:166
+#: app/main.cpp:167
 #, kde-format
 msgid "Chinese Simplified translation"
 msgstr "Перевод на упрощённый китайский"
 
-#: app/main.cpp:167
+#: app/main.cpp:168
 #, kde-format
 msgid "Mitek"
 msgstr "Mitek"
 
-#: app/main.cpp:167 app/main.cpp:168
+#: app/main.cpp:168 app/main.cpp:169
 #, kde-format
 msgid "Old Czech translation"
 msgstr "Старый перевод на чешский"
 
-#: app/main.cpp:168
+#: app/main.cpp:169
 #, kde-format
 msgid "Martin Sixta"
 msgstr "Martin Sixta"
 
-#: app/main.cpp:169
+#: app/main.cpp:170
 #, kde-format
 msgid "Vaclav Jůza"
 msgstr "Vaclav Jůza"
 
-#: app/main.cpp:169
+#: app/main.cpp:170
 #, kde-format
 msgid "Czech translation"
 msgstr "Перевод на чешский"
 
-#: app/main.cpp:170
+#: app/main.cpp:171
 #, kde-format
 msgid "Anders Bruun Olsen"
 msgstr "Anders Bruun Olsen"
 
-#: app/main.cpp:170
+#: app/main.cpp:171
 #, kde-format
 msgid "Old Danish translation"
 msgstr "Старый перевод на датский"
 
-#: app/main.cpp:171
+#: app/main.cpp:172
 #, kde-format
 msgid "Peter H. Sorensen"
 msgstr "Peter H. Sorensen"
 
-#: app/main.cpp:171
+#: app/main.cpp:172
 #, kde-format
 msgid "Danish translation"
 msgstr "Перевод на датский"
 
-#: app/main.cpp:172
+#: app/main.cpp:173
 #, kde-format
 msgid "Dutch translation"
 msgstr "Перевод на голландский"
 
-#: app/main.cpp:173
+#: app/main.cpp:174
 #, kde-format
 msgid "Rene-Pierre Lehmann"
 msgstr "Rene-Pierre Lehmann"
 
-#: app/main.cpp:173
+#: app/main.cpp:174
 #, kde-format
 msgid "Old French translation"
 msgstr "Старый перевод на французский"
 
-#: app/main.cpp:174
+#: app/main.cpp:175
 #, kde-format
 msgid "David Guillerm"
 msgstr "David Guillerm"
 
-#: app/main.cpp:174
+#: app/main.cpp:175
 #, kde-format
 msgid "French translation"
 msgstr "Перевод на французский"
 
-#: app/main.cpp:175
+#: app/main.cpp:176
 #, kde-format
 msgid "Christoph Thielecke"
 msgstr "Christoph Thielecke"
 
-#: app/main.cpp:175
+#: app/main.cpp:176
 #, kde-format
 msgid "Old German translation"
 msgstr "Старый перевод на немецкий"
 
-#: app/main.cpp:176
+#: app/main.cpp:177
 #, kde-format
 msgid "German translation"
 msgstr "Перевод на немецкий"
 
-#: app/main.cpp:177
+#: app/main.cpp:178
 #, kde-format
 msgid "Spiros Georgaras"
 msgstr "Spiros Georgaras"
 
-#: app/main.cpp:177
+#: app/main.cpp:178
 #, kde-format
 msgid "Greek translation"
 msgstr "Перевод на греческий"
 
-#: app/main.cpp:178
+#: app/main.cpp:179
 #, kde-format
 msgid "Kukk Zoltan"
 msgstr "Kukk Zoltan"
 
-#: app/main.cpp:178
+#: app/main.cpp:179
 #, kde-format
 msgid "Old Hungarian translation"
 msgstr "Старый перевод на венгерский"
 
-#: app/main.cpp:179
+#: app/main.cpp:180
 #, kde-format
 msgid "Arpad Biro"
 msgstr "Arpad Biro"
 
-#: app/main.cpp:179
+#: app/main.cpp:180
 #, kde-format
 msgid "Hungarian translation"
 msgstr "Перевод на венгерский"
 
-#: app/main.cpp:180
+#: app/main.cpp:181
 #, kde-format
 msgid "Giuseppe Bordoni"
 msgstr "Giuseppe Bordoni"
 
-#: app/main.cpp:180
+#: app/main.cpp:181
 #, kde-format
 msgid "Italian translation"
 msgstr "Перевод на итальянский"
 
-#: app/main.cpp:181
+#: app/main.cpp:182
 #, kde-format
 msgid "Hideki Kimura"
 msgstr "Hideki Kimura"
 
-#: app/main.cpp:181
+#: app/main.cpp:182
 #, kde-format
 msgid "Japanese translation"
 msgstr "Перевод на японский"
 
-#: app/main.cpp:182
+#: app/main.cpp:183
 #, kde-format
 msgid "UTUMI Hirosi"
 msgstr "UTUMI Hirosi"
 
-#: app/main.cpp:182
+#: app/main.cpp:183
 #, kde-format
 msgid "Old Japanese translation"
 msgstr "Старый перевод на японский"
 
-#: app/main.cpp:183
+#: app/main.cpp:184
 #, kde-format
 msgid "Dovydas Sankauskas"
 msgstr "Dovydas Sankauskas"
 
-#: app/main.cpp:183
+#: app/main.cpp:184
 #, kde-format
 msgid "Lithuanian translation"
 msgstr "Перевод на литовский"
 
-#: app/main.cpp:184
+#: app/main.cpp:185
 #, kde-format
 msgid "Bruno Queiros"
 msgstr "Bruno Queiros"
 
-#: app/main.cpp:184
+#: app/main.cpp:185
 #, kde-format
 msgid "Portuguese translation"
 msgstr "Перевод на португальский"
 
-#: app/main.cpp:185
+#: app/main.cpp:186
 #, kde-format
 msgid "Lukasz Janyst"
 msgstr "Lukasz Janyst"
 
-#: app/main.cpp:185
+#: app/main.cpp:186
 #, kde-format
 msgid "Old Polish translation"
 msgstr "Старый перевод на польский"
 
-#: app/main.cpp:186
+#: app/main.cpp:187
 #, kde-format
 msgid "Pawel Salawa"
 msgstr "Pawel Salawa"
 
-#: app/main.cpp:186 app/main.cpp:187
+#: app/main.cpp:187 app/main.cpp:188
 #, kde-format
 msgid "Polish translation"
 msgstr "Перевод на польский"
 
-#: app/main.cpp:187
+#: app/main.cpp:188
 #, kde-format
 msgid "Tomek Grzejszczyk"
 msgstr "Tomek Grzejszczyk"
 
-#: app/main.cpp:188
+#: app/main.cpp:189
 #, kde-format
 msgid "Dmitry A. Bugay"
 msgstr "Dmitry A. Bugay"
 
-#: app/main.cpp:188
+#: app/main.cpp:189
 #, kde-format
 msgid "Russian translation"
 msgstr "Перевод на русский"
 
-#: app/main.cpp:189
+#: app/main.cpp:190
 #, kde-format
 msgid "Dmitry Chernyak"
 msgstr "Dmitry Chernyak"
 
-#: app/main.cpp:189
+#: app/main.cpp:190
 #, kde-format
 msgid "Old Russian translation"
 msgstr "Старый перевод на русский"
 
-#: app/main.cpp:190
+#: app/main.cpp:191
 #, kde-format
 msgid "Sasa Tomic"
 msgstr "Sasa Tomic"
 
-#: app/main.cpp:190
+#: app/main.cpp:191
 #, kde-format
 msgid "Serbian translation"
 msgstr "Перевод на сербский"
 
-#: app/main.cpp:191
+#: app/main.cpp:192
 #, kde-format
 msgid "Zdenko Podobný and Ondrej Pačay (Yogi)"
 msgstr "Zdenko Podobný и Ondrej Pačay (Yogi)"
 
-#: app/main.cpp:191
+#: app/main.cpp:192
 #, kde-format
 msgid "Slovak translation"
 msgstr "Перевод на словацкий"
 
-#: app/main.cpp:192
+#: app/main.cpp:193
 #, kde-format
 msgid "Slovenian translation"
 msgstr "Перевод на словенский"
 
-#: app/main.cpp:193
+#: app/main.cpp:194
 #, kde-format
 msgid "Rafael Munoz"
 msgstr "Rafael Munoz"
 
-#: app/main.cpp:193
+#: app/main.cpp:194
 #, kde-format
 msgid "Old Spanish translation"
 msgstr "Старый перевод на испанский"
 
-#: app/main.cpp:194
+#: app/main.cpp:195
 #, kde-format
 msgid "Alejandro Araiza Alvarado"
 msgstr "Alejandro Araiza Alvarado"
 
-#: app/main.cpp:194
+#: app/main.cpp:195
 #, kde-format
 msgid "Spanish translation"
 msgstr "Перевод на испанский"
 
-#: app/main.cpp:195
+#: app/main.cpp:196
 #, kde-format
 msgid "Erik Johanssen"
 msgstr "Erik Johanssen"
 
-#: app/main.cpp:195 app/main.cpp:196
+#: app/main.cpp:196 app/main.cpp:197
 #, kde-format
 msgid "Old Swedish translation"
 msgstr "Старый перевод на шведский"
 
-#: app/main.cpp:196
+#: app/main.cpp:197
 #, kde-format
 msgid "Anders Linden"
 msgstr "Anders Linden"
 
-#: app/main.cpp:197
+#: app/main.cpp:198
 #, kde-format
 msgid "Peter Landgren"
 msgstr "Peter Landgren"
 
-#: app/main.cpp:197
+#: app/main.cpp:198
 #, kde-format
 msgid "Swedish translation"
 msgstr "Перевод на шведский"
 
-#: app/main.cpp:198
+#: app/main.cpp:199
 #, kde-format
 msgid "Bekir Sonat"
 msgstr "Bekir Sonat"
 
-#: app/main.cpp:198
+#: app/main.cpp:199
 #, kde-format
 msgid "Turkish translation"
 msgstr "Перевод на турецкий"
 
-#: app/main.cpp:199
+#: app/main.cpp:200
 #, kde-format
 msgid "Ivan Petrouchtchak"
 msgstr "Ivan Petrouchtchak"
 
-#: app/main.cpp:199
+#: app/main.cpp:200
 #, kde-format
 msgid "Ukrainian translation"
 msgstr "Перевод на украинский"
 
-#: app/main.cpp:200
+#: app/main.cpp:201
 #, kde-format
 msgid "Seongnam Jee"
 msgstr "Seongnam Jee"
 
-#: app/main.cpp:200
+#: app/main.cpp:201
 #, kde-format
 msgid "Korean translation"
 msgstr "Перевод на корейский"
 
-#: app/main.cpp:210
+#: app/main.cpp:211
 #, kde-format
 msgid "Start left panel at <path>"
 msgstr "Левую панель установить на <path>"
 
-#: app/main.cpp:211
+#: app/main.cpp:212
 #, kde-format
 msgid "Start right panel at <path>"
 msgstr "Правую панель установить на <path>"
 
-#: app/main.cpp:212
+#: app/main.cpp:213
 #, kde-format
 msgid "Load this profile on startup"
 msgstr "Загружать данный профиль при старте"
 
-#: app/main.cpp:213
+#: app/main.cpp:214
 #, kde-format
 msgid "Enable debug output"
 msgstr "Включить отладочный вывод"
 
-#: app/main.cpp:214
+#: app/main.cpp:215
 #, kde-format
 msgid "URL to open"
 msgstr "Открываемый URL"
 
-#: app/MountMan/kmountman.cpp:56
+#: app/MountMan/kmountman.cpp:58
 #, kde-format
 msgid "&MountMan..."
 msgstr "&Менеджер монтирования..."
 
-#: app/MountMan/kmountman.cpp:59
+#: app/MountMan/kmountman.cpp:61
 #, kde-format
 msgid "Open &MountMan"
 msgstr "Открыть менеджер &монтирования"
 
-#: app/MountMan/kmountman.cpp:132
+#: app/MountMan/kmountman.cpp:134
 #, kde-format
 msgid "Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Не удалось запустить утилиту «mount». Проверьте параметры на вкладке "
 "«Зависимости» в диалоговом окне настройки."
 
-#: app/MountMan/kmountman.cpp:356
+#: app/MountMan/kmountman.cpp:358
 #, kde-format
 msgid "MountMan is not operational. Sorry"
 msgstr "Менеджер монтирования не работает"
@@ -6931,7 +6892,7 @@ msgstr "MountMan — Монтирование устройств"
 msgid "&Eject"
 msgstr "&Извлечь"
 
-#: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:411
+#: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:419
 #, kde-format
 msgid "&Unmount"
 msgstr "&Размонтировать"
@@ -6966,17 +6927,17 @@ msgstr "Менеджер монтирования. Сведения"
 msgid "Show only removable devices"
 msgstr "Показывать только съёмные устройства"
 
-#: app/MountMan/kmountmangui.cpp:413
+#: app/MountMan/kmountmangui.cpp:421
 #, kde-format
 msgid "&Mount"
 msgstr "&Монтировать"
 
-#: app/MountMan/kmountmangui.cpp:434
+#: app/MountMan/kmountmangui.cpp:442
 #, kde-format
 msgid "MountMan"
 msgstr "Менеджер монтирования"
 
-#: app/MountMan/kmountmangui.cpp:450
+#: app/MountMan/kmountmangui.cpp:458
 #, kde-format
 msgid "Format"
 msgstr "Форматировать"
@@ -7023,83 +6984,83 @@ msgstr[1] "и %1 файла"
 msgstr[2] "и %1 файлов"
 msgstr[3] "и %1 файл"
 
-#: app/Panel/krfiletreeview.cpp:179
+#: app/Panel/krfiletreeview.cpp:182
 #, kde-format
 msgid "Show Details"
 msgstr "Показать подробности"
 
-#: app/Panel/krfiletreeview.cpp:182
+#: app/Panel/krfiletreeview.cpp:185
 #, kde-format
 msgid "Show columns with details"
 msgstr "Показать столбцы с подробными сведениями"
 
-#: app/Panel/krfiletreeview.cpp:183
+#: app/Panel/krfiletreeview.cpp:186
 #, kde-format
 msgid "Show Hidden Folders"
 msgstr "Показать &скрытые папки"
 
-#: app/Panel/krfiletreeview.cpp:186
+#: app/Panel/krfiletreeview.cpp:189
 #, kde-format
 msgid "Show folders starting with a dot"
 msgstr "Показать папки, начинающиеся с точки"
 
-#: app/Panel/krfiletreeview.cpp:191
+#: app/Panel/krfiletreeview.cpp:194
 #, kde-format
 msgid "Start From Root"
 msgstr "Начать с корневого каталога"
 
-#: app/Panel/krfiletreeview.cpp:194
+#: app/Panel/krfiletreeview.cpp:197
 #, kde-format
 msgid "Set root of the tree to root of filesystem"
 msgstr "Установить корневой каталог файловой системы в вершине дерева"
 
-#: app/Panel/krfiletreeview.cpp:197
+#: app/Panel/krfiletreeview.cpp:200
 #, kde-format
 msgid "Start From Current"
 msgstr "Начать с текущего каталога"
 
-#: app/Panel/krfiletreeview.cpp:200
+#: app/Panel/krfiletreeview.cpp:203
 #, kde-format
 msgid "Set root of the tree to the current folder"
 msgstr "Установить текущий каталог в вершине дерева"
 
-#: app/Panel/krfiletreeview.cpp:203
+#: app/Panel/krfiletreeview.cpp:206
 #, kde-format
 msgid "Start From Place"
 msgstr "Начать с часто посещаемого адреса"
 
-#: app/Panel/krfiletreeview.cpp:206
+#: app/Panel/krfiletreeview.cpp:209
 #, kde-format
 msgid "Set root of the tree to closest folder listed in 'Places'"
 msgstr ""
 "Установить в вершине дерева каталог, ближайший к перечисленным в списке "
 "«Часто посещаемые адреса»"
 
-#: app/Panel/krfiletreeview.cpp:235
+#: app/Panel/krfiletreeview.cpp:238
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Cut"
 msgstr "Вырезать"
 
-#: app/Panel/krfiletreeview.cpp:242
+#: app/Panel/krfiletreeview.cpp:245
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy"
 msgstr "Копировать"
 
-#: app/Panel/krfiletreeview.cpp:265
+#: app/Panel/krfiletreeview.cpp:268
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Move to Trash"
 msgstr "Переместить в корзину"
 
-#: app/Panel/krfiletreeview.cpp:275
+#: app/Panel/krfiletreeview.cpp:278
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete"
 msgstr "Удалить"
 
-#: app/Panel/krfiletreeview.cpp:286
+#: app/Panel/krfiletreeview.cpp:289
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Properties"
@@ -7379,7 +7340,7 @@ msgstr "Создать контрольную сумму..."
 msgid "Verify Checksum..."
 msgstr "Проверить контрольную сумму..."
 
-#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:252
+#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:227
 #, kde-format
 msgid "New Symlink..."
 msgstr "Создать символическую ссылку..."
@@ -7562,172 +7523,172 @@ msgstr ""
 "<qt><p>Открыть терминал в текущей папке.</p><p>Терминал может быть задан в "
 "диалоговом окне настройки, по умолчанию это <b>konsole</b>.</p></qt>"
 
-#: app/Panel/panelcontextmenu.cpp:123
+#: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open/Run Files"
 msgstr "Открыть/запустить"
 
-#: app/Panel/panelcontextmenu.cpp:125
+#: app/Panel/panelcontextmenu.cpp:103
 #, kde-format
 msgid "Run"
 msgstr "Запустить"
 
-#: app/Panel/panelcontextmenu.cpp:134
+#: app/Panel/panelcontextmenu.cpp:112
 #, kde-format
 msgid "Open in New Tabs"
 msgstr "Открыть в новых вкладках"
 
-#: app/Panel/panelcontextmenu.cpp:134
+#: app/Panel/panelcontextmenu.cpp:112
 #, kde-format
 msgid "Open in New Tab"
 msgstr "Открыть в новой вкладке"
 
-#: app/Panel/panelcontextmenu.cpp:147
+#: app/Panel/panelcontextmenu.cpp:125
 #, kde-format
 msgid "Browse Archive"
 msgstr "Просмотр архива"
 
-#: app/Panel/panelcontextmenu.cpp:189
+#: app/Panel/panelcontextmenu.cpp:167
 #, kde-format
 msgid "Other..."
 msgstr "Другое..."
 
-#: app/Panel/panelcontextmenu.cpp:191
+#: app/Panel/panelcontextmenu.cpp:169
 #, kde-format
 msgid "Open With"
 msgstr "Открыть с помощью"
 
-#: app/Panel/panelcontextmenu.cpp:238
+#: app/Panel/panelcontextmenu.cpp:213
 #, kde-format
 msgid "Move to Trash"
 msgstr "Переместить в корзину"
 
-#: app/Panel/panelcontextmenu.cpp:253
+#: app/Panel/panelcontextmenu.cpp:228
 #, kde-format
 msgid "New Hardlink..."
 msgstr "Создать жёсткую ссылку..."
 
-#: app/Panel/panelcontextmenu.cpp:255
+#: app/Panel/panelcontextmenu.cpp:230
 #, kde-format
 msgid "Redirect Link..."
 msgstr "Перенаправить ссылку..."
 
-#: app/Panel/panelcontextmenu.cpp:258
+#: app/Panel/panelcontextmenu.cpp:233
 #, kde-format
 msgid "Link Handling"
 msgstr "Обработка ссылок"
 
-#: app/Panel/panelcontextmenu.cpp:280
+#: app/Panel/panelcontextmenu.cpp:255
 #, kde-format
 msgid "Send by Email"
 msgstr "Отправить по почте"
 
-#: app/Panel/panelcontextmenu.cpp:285
+#: app/Panel/panelcontextmenu.cpp:260
 #, kde-format
 msgid "Restore"
 msgstr "Восстановить"
 
-#: app/Panel/panelcontextmenu.cpp:292
+#: app/Panel/panelcontextmenu.cpp:267
 #, kde-format
 msgid "Synchronize Selected Files..."
 msgstr "Синхронизировать выделенные файлы..."
 
-#: app/Panel/panelcontextmenu.cpp:319
+#: app/Panel/panelcontextmenu.cpp:294
 #, kde-format
 msgid "Create New"
 msgstr "Создать"
 
-#: app/Panel/panelfunc.cpp:371
+#: app/Panel/panelfunc.cpp:365
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Можно редактировать ссылки только на локальных файловых системах"
 
-#: app/Panel/panelfunc.cpp:382
+#: app/Panel/panelfunc.cpp:376
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "Текущий файл не является ссылкой, его невозможно перенаправить."
 
-#: app/Panel/panelfunc.cpp:389
+#: app/Panel/panelfunc.cpp:383
 #, kde-format
 msgid "Link Redirection"
 msgstr "Перенаправление ссылки"
 
-#: app/Panel/panelfunc.cpp:389
+#: app/Panel/panelfunc.cpp:383
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Введите новую цель для ссылки:"
 
-#: app/Panel/panelfunc.cpp:396
+#: app/Panel/panelfunc.cpp:390
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "Не удалось удалить старую ссылку: %1"
 
-#: app/Panel/panelfunc.cpp:401
+#: app/Panel/panelfunc.cpp:395
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "Не удалось создать новую ссылку: %1"
 
-#: app/Panel/panelfunc.cpp:409
+#: app/Panel/panelfunc.cpp:403
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Можно создавать ссылки только на локальных файловых системах"
 
-#: app/Panel/panelfunc.cpp:417
+#: app/Panel/panelfunc.cpp:411
 #, kde-format
 msgid "New Link"
 msgstr "Новая ссылка"
 
-#: app/Panel/panelfunc.cpp:417
+#: app/Panel/panelfunc.cpp:411
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "Создать новую ссылку на: %1"
 
-#: app/Panel/panelfunc.cpp:425 app/Panel/panelfunc.cpp:771
+#: app/Panel/panelfunc.cpp:419 app/Panel/panelfunc.cpp:765
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Папка или файл с таким именем уже существует."
 
-#: app/Panel/panelfunc.cpp:436
+#: app/Panel/panelfunc.cpp:430
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Не удалось создать новую символическую ссылку «%1» для «%2»"
 
-#: app/Panel/panelfunc.cpp:439
+#: app/Panel/panelfunc.cpp:433
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Не удалось создать новую ссылку «%1» для «%2»"
 
-#: app/Panel/panelfunc.cpp:456
+#: app/Panel/panelfunc.cpp:450
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Нет прав для просмотра файла."
 
-#: app/Panel/panelfunc.cpp:467
+#: app/Panel/panelfunc.cpp:461
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Введите URL для просмотра:"
 
-#: app/Panel/panelfunc.cpp:497 app/Panel/panelfunc.cpp:575
+#: app/Panel/panelfunc.cpp:491 app/Panel/panelfunc.cpp:569
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "Нельзя изменить папку"
 
-#: app/Panel/panelfunc.cpp:502
+#: app/Panel/panelfunc.cpp:496
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Нет прав на редактирование файла."
 
-#: app/Panel/panelfunc.cpp:516
+#: app/Panel/panelfunc.cpp:510
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Введите имя файла для редактирования:"
 
-#: app/Panel/panelfunc.cpp:627
+#: app/Panel/panelfunc.cpp:621
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Переместить %1 в:"
 
-#: app/Panel/panelfunc.cpp:627
+#: app/Panel/panelfunc.cpp:621
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
@@ -7736,12 +7697,12 @@ msgstr[1] "Переместить %1 файла в:"
 msgstr[2] "Переместить %1 файлов в:"
 msgstr[3] "Переместить %1 файл в:"
 
-#: app/Panel/panelfunc.cpp:629
+#: app/Panel/panelfunc.cpp:623
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Копировать %1 в:"
 
-#: app/Panel/panelfunc.cpp:629
+#: app/Panel/panelfunc.cpp:623
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
@@ -7750,12 +7711,12 @@ msgstr[1] "Копировать %1 файла в:"
 msgstr[2] "Копировать %1 файлов в:"
 msgstr[3] "Копировать %1 файл в:"
 
-#: app/Panel/panelfunc.cpp:695
+#: app/Panel/panelfunc.cpp:689
 #, kde-format
 msgid "Folder's name:"
 msgstr "Имя папки:"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:829
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -7764,7 +7725,7 @@ msgstr[1] "Переместить %1 объекта в корзину?"
 msgstr[2] "Переместить %1 объектов в корзину?"
 msgstr[3] "Переместить %1 объект в корзину?"
 
-#: app/Panel/panelfunc.cpp:839
+#: app/Panel/panelfunc.cpp:833
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7785,7 +7746,7 @@ msgstr[3] ""
 "<qt>Удалить %1 элемент <b>физически</b> (удаляются также из числа "
 "виртуальных элементов)?</qt>"
 
-#: app/Panel/panelfunc.cpp:846
+#: app/Panel/panelfunc.cpp:840
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
@@ -7794,37 +7755,37 @@ msgstr[1] "Удалить %1 элемента?"
 msgstr[2] "Удалить %1 элементов?"
 msgstr[3] "Удалить %1 элемент?"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:878
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Папка <b>%1</b> не пустая.</p>"
 
-#: app/Panel/panelfunc.cpp:885
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Пропустить или переместить всё в корзину?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:885
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Пропустить или удалить всё?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:887
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "&Skip"
 msgstr "&Пропустить"
 
-#: app/Panel/panelfunc.cpp:888
+#: app/Panel/panelfunc.cpp:882
 #, kde-format
 msgid "&Trash All"
 msgstr "&Переместить всё в корзину"
 
-#: app/Panel/panelfunc.cpp:888
+#: app/Panel/panelfunc.cpp:882
 #, kde-format
 msgid "&Delete All"
 msgstr "&Удалить всё"
 
-#: app/Panel/panelfunc.cpp:925
+#: app/Panel/panelfunc.cpp:919
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7841,17 +7802,17 @@ msgstr[2] ""
 msgstr[3] ""
 "Удалить %1 виртуальный элемент (физические файлы останутся нетронутыми)?"
 
-#: app/Panel/panelfunc.cpp:961
+#: app/Panel/panelfunc.cpp:955
 #, kde-format
 msgid "Could not start %1"
 msgstr "Не удалось запустить %1"
 
-#: app/Panel/panelfunc.cpp:973
+#: app/Panel/panelfunc.cpp:967
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "Невозможно открыть %2 с помощью %1"
 
-#: app/Panel/panelfunc.cpp:1050
+#: app/Panel/panelfunc.cpp:1044
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7860,7 +7821,7 @@ msgstr ""
 "<qt><p>Архив <b>%1.%2</b> уже существует. Заменить его?</p><p>Все данные "
 "будут потеряны.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1055
+#: app/Panel/panelfunc.cpp:1049
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7871,17 +7832,17 @@ msgstr ""
 "будут заменены другими с идентичными именами, новые файлы будут добавлены.</"
 "p></qt>"
 
-#: app/Panel/panelfunc.cpp:1063
+#: app/Panel/panelfunc.cpp:1057
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Невозможно упаковать файлы в виртуальное место назначения."
 
-#: app/Panel/panelfunc.cpp:1096
+#: app/Panel/panelfunc.cpp:1090
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Распаковать %1 в:"
 
-#: app/Panel/panelfunc.cpp:1098
+#: app/Panel/panelfunc.cpp:1092
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
@@ -8371,17 +8332,17 @@ msgstr "Вы можете ввести имя для коллекции файл
 msgid "Query name"
 msgstr "Имя для запроса"
 
-#: app/Splitter/combiner.cpp:59
+#: app/Splitter/combiner.cpp:60
 #, kde-format
 msgid "Krusader::Combining..."
 msgstr "Krusader::Объединение..."
 
-#: app/Splitter/combiner.cpp:60
+#: app/Splitter/combiner.cpp:61
 #, kde-format
 msgid "Combining the file %1..."
 msgstr "Объединение файла %1..."
 
-#: app/Splitter/combiner.cpp:71
+#: app/Splitter/combiner.cpp:72
 #, kde-format
 msgid ""
 "The CRC information file (%1) is missing.\n"
@@ -8390,17 +8351,17 @@ msgstr ""
 "Отсутствует файл контрольной суммы (%1).\n"
 "Без него невозможна проверка правильности. Продолжить объединение?"
 
-#: app/Splitter/combiner.cpp:107
+#: app/Splitter/combiner.cpp:108
 #, kde-format
 msgid "Error at reading the CRC file (%1)."
 msgstr "Ошибка чтения файла контрольной суммы (%1)."
 
-#: app/Splitter/combiner.cpp:136
+#: app/Splitter/combiner.cpp:137
 #, kde-format
 msgid "Not a valid CRC file."
 msgstr "Неправильный файл контрольной суммы."
 
-#: app/Splitter/combiner.cpp:143
+#: app/Splitter/combiner.cpp:144
 #, kde-format
 msgid ""
 "\n"
@@ -8410,139 +8371,138 @@ msgstr ""
 "Проверка невозможна без правильного файла контрольной суммы. Продолжить "
 "объединение?"
 
-#: app/Splitter/combiner.cpp:189 app/Splitter/splitter.cpp:177
-#: app/Synchronizer/synchronizer.cpp:1329
-#: app/Synchronizer/synchronizer.cpp:1342
+#: app/Splitter/combiner.cpp:186 app/Splitter/splitter.cpp:174
+#: app/Synchronizer/synchronizer.cpp:1345
 #, kde-format
 msgid "File Already Exists"
 msgstr "Файл уже существует"
 
-#: app/Splitter/combiner.cpp:275
+#: app/Splitter/combiner.cpp:272
 #, kde-format
 msgid "Cannot open the first split file of %1."
 msgstr "Не удалось открыть первый разделенный файл из %1."
 
-#: app/Splitter/combiner.cpp:285
+#: app/Splitter/combiner.cpp:282
 #, kde-format
 msgid "Incorrect filesize, the file might have been corrupted."
 msgstr "Неправильный размер файла. Возможно, файл повреждён."
 
-#: app/Splitter/combiner.cpp:287
+#: app/Splitter/combiner.cpp:284
 #, kde-format
 msgid "Incorrect CRC checksum, the file might have been corrupted."
 msgstr "Неправильная контрольная сумма. Возможно, файл повреждён."
 
-#: app/Splitter/splitter.cpp:72
+#: app/Splitter/splitter.cpp:73
 #, kde-format
 msgid "Krusader::Splitting..."
 msgstr "Krusader::Разделение..."
 
-#: app/Splitter/splitter.cpp:73
+#: app/Splitter/splitter.cpp:74
 #, kde-format
 msgid "Splitting the file %1..."
 msgstr "Разделение файла %1..."
 
-#: app/Splitter/splitter.cpp:76
+#: app/Splitter/splitter.cpp:77
 #, kde-format
 msgid "Cannot split a folder."
 msgstr "Невозможно разделить папку."
 
-#: app/Splitter/splitter.cpp:120
+#: app/Splitter/splitter.cpp:121
 #, kde-format
 msgid "Error reading file %1: %2"
 msgstr "Ошибка чтения файла %1: %2"
 
-#: app/Splitter/splitter.cpp:233 app/Splitter/splitter.cpp:276
+#: app/Splitter/splitter.cpp:230 app/Splitter/splitter.cpp:273
 #, kde-format
 msgid "Error writing file %1: %2"
 msgstr "Ошибка записи файла %1: %2"
 
-#: app/Splitter/splittergui.cpp:56
+#: app/Splitter/splittergui.cpp:59
 #, kde-format
 msgid "1.44 MB (3.5\")"
 msgstr "1.44 МБ (3.5\")"
 
-#: app/Splitter/splittergui.cpp:57
+#: app/Splitter/splittergui.cpp:60
 #, kde-format
 msgid "1.2 MB (5.25\")"
 msgstr "1.2 МБ (5.25\")"
 
-#: app/Splitter/splittergui.cpp:58
+#: app/Splitter/splittergui.cpp:61
 #, kde-format
 msgid "720 kB (3.5\")"
 msgstr "720 КБ (3.5\")"
 
-#: app/Splitter/splittergui.cpp:59
+#: app/Splitter/splittergui.cpp:62
 #, kde-format
 msgid "360 kB (5.25\")"
 msgstr "360 КБ (5.25\")"
 
-#: app/Splitter/splittergui.cpp:60
+#: app/Splitter/splittergui.cpp:63
 #, kde-format
 msgid "100 MB (ZIP)"
 msgstr "100 МБ (ZIP)"
 
-#: app/Splitter/splittergui.cpp:61
+#: app/Splitter/splittergui.cpp:64
 #, kde-format
 msgid "250 MB (ZIP)"
 msgstr "250 МБ (ZIP)"
 
-#: app/Splitter/splittergui.cpp:62
+#: app/Splitter/splittergui.cpp:65
 #, kde-format
 msgid "650 MB (CD-R)"
 msgstr "650 МБ (CD-R)"
 
-#: app/Splitter/splittergui.cpp:63
+#: app/Splitter/splittergui.cpp:66
 #, kde-format
 msgid "700 MB (CD-R)"
 msgstr "700 МБ (CD-R)"
 
-#: app/Splitter/splittergui.cpp:81
+#: app/Splitter/splittergui.cpp:84
 #, kde-format
 msgid "Split the file %1 to folder:"
 msgstr "Разделить файл %1 в папку:"
 
-#: app/Splitter/splittergui.cpp:98
+#: app/Splitter/splittergui.cpp:101
 #, kde-format
 msgid "User Defined"
 msgstr "Определяется пользователем"
 
-#: app/Splitter/splittergui.cpp:107
+#: app/Splitter/splittergui.cpp:110
 #, kde-format
 msgid "Max file size:"
 msgstr "Максимальный размер файла:"
 
-#: app/Splitter/splittergui.cpp:118
+#: app/Splitter/splittergui.cpp:121
 #, kde-format
 msgid "kByte"
 msgstr "килобайт"
 
-#: app/Splitter/splittergui.cpp:119
+#: app/Splitter/splittergui.cpp:122
 #, kde-format
 msgid "MByte"
 msgstr "мегабайт"
 
-#: app/Splitter/splittergui.cpp:120
+#: app/Splitter/splittergui.cpp:123
 #, kde-format
 msgid "GByte"
 msgstr "гигабайт"
 
-#: app/Splitter/splittergui.cpp:125
+#: app/Splitter/splittergui.cpp:128
 #, kde-format
 msgid "Overwrite files without confirmation"
 msgstr "Перезаписывать файлы без подтверждения"
 
-#: app/Splitter/splittergui.cpp:135
+#: app/Splitter/splittergui.cpp:138
 #, kde-format
 msgid "&Split"
 msgstr "&Разделить"
 
-#: app/Splitter/splittergui.cpp:139
+#: app/Splitter/splittergui.cpp:142
 #, kde-format
 msgid "Krusader::Splitter"
 msgstr "Krusader::Разделитель"
 
-#: app/Splitter/splittergui.cpp:239
+#: app/Splitter/splittergui.cpp:242
 #, kde-format
 msgid "The folder path URL is malformed."
 msgstr "Недопустимый путь к папке."
@@ -8670,45 +8630,45 @@ msgid "&Close"
 msgstr "&Закрыть"
 
 #: app/Synchronizer/synchronizedialog.cpp:208
-#: app/Synchronizer/synchronizer.cpp:1517
-#: app/Synchronizer/synchronizer.cpp:1530
+#: app/Synchronizer/synchronizer.cpp:1516
+#: app/Synchronizer/synchronizer.cpp:1529
 #, kde-format
 msgid "Pause"
 msgstr "Приостановить"
 
 #: app/Synchronizer/synchronizedialog.cpp:216
-#: app/Synchronizer/synchronizer.cpp:1532
+#: app/Synchronizer/synchronizer.cpp:1531
 #, kde-format
 msgid "Resume"
 msgstr "Продолжить"
 
-#: app/Synchronizer/synchronizer.cpp:171 app/Synchronizer/synchronizer.cpp:858
+#: app/Synchronizer/synchronizer.cpp:174 app/Synchronizer/synchronizer.cpp:861
 #, kde-format
 msgid "Number of files: %1"
 msgstr "Количество файлов: %1"
 
-#: app/Synchronizer/synchronizer.cpp:201
+#: app/Synchronizer/synchronizer.cpp:204
 #, kde-format
 msgid "Number of compared folders: %1"
 msgstr "Количество сравниваемых папок: %1"
 
-#: app/Synchronizer/synchronizer.cpp:1388
-#: app/Synchronizer/synchronizer.cpp:1393
+#: app/Synchronizer/synchronizer.cpp:1390
+#: app/Synchronizer/synchronizer.cpp:1395
 #, kde-format
 msgid "Error at copying file %1 to %2."
 msgstr "Ошибка при копировании файла %1 в %2."
 
-#: app/Synchronizer/synchronizer.cpp:1398
+#: app/Synchronizer/synchronizer.cpp:1400
 #, kde-format
 msgid "Error at deleting file %1."
 msgstr "Ошибка при удалении файла %1."
 
-#: app/Synchronizer/synchronizer.cpp:1564
+#: app/Synchronizer/synchronizer.cpp:1563
 #, kde-format
 msgid "Krusader::Synchronizer"
 msgstr "Krusader::Синхронизатор"
 
-#: app/Synchronizer/synchronizer.cpp:1564
+#: app/Synchronizer/synchronizer.cpp:1563
 #, kde-format
 msgid "Feeding the URLs to KGet"
 msgstr "Добавить адреса в KGet"
@@ -9222,324 +9182,324 @@ msgstr "Разблокировать вкладку"
 msgid "Unpin Tab"
 msgstr "Открепить вкладку"
 
-#: app/UserAction/expander.cpp:64
+#: app/UserAction/expander.cpp:63
 #, kde-format
 msgid "Needed panel specification missing in expander %1"
 msgstr "Необходимые сведения для панели отсутствуют в строке %1"
 
-#: app/UserAction/expander.cpp:85
+#: app/UserAction/expander.cpp:84
 #, kde-format
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
 msgstr ""
 "Экспандер: неверный параметр для %1: %2 не является корректным "
 "спецификатором элемента"
 
-#: app/UserAction/expander.cpp:272
+#: app/UserAction/expander.cpp:271
 #, kde-format
 msgid "Panel's Path..."
 msgstr "Путь панели..."
 
-#: app/UserAction/expander.cpp:275 app/UserAction/expander.cpp:343
-#: app/UserAction/expander.cpp:377 app/UserAction/expander.cpp:413
-#: app/UserAction/expander.cpp:753
+#: app/UserAction/expander.cpp:274 app/UserAction/expander.cpp:342
+#: app/UserAction/expander.cpp:376 app/UserAction/expander.cpp:412
+#: app/UserAction/expander.cpp:752
 #, kde-format
 msgid "Automatically escape spaces"
 msgstr "Автоматически пропускать пробелы"
 
-#: app/UserAction/expander.cpp:297
+#: app/UserAction/expander.cpp:296
 #, kde-format
 msgid "Number of..."
 msgstr "Количество..."
 
-#: app/UserAction/expander.cpp:300
+#: app/UserAction/expander.cpp:299
 #, kde-format
 msgid "Count:"
 msgstr "Счётчик:"
 
-#: app/UserAction/expander.cpp:316
+#: app/UserAction/expander.cpp:315
 #, kde-format
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
 msgstr ""
 "Экспандер: неверный параметр для Count: %1 не является корректным "
 "спецификатором элемента"
 
-#: app/UserAction/expander.cpp:326
+#: app/UserAction/expander.cpp:325
 #, kde-format
 msgid "Filter Mask (*.h, *.cpp, etc.)"
 msgstr "Маска фильтра (*.h, *.cpp и так далее)"
 
-#: app/UserAction/expander.cpp:339
+#: app/UserAction/expander.cpp:338
 #, kde-format
 msgid "Current File (!= Selected File)..."
 msgstr "Текущий файл (не обязательно выделенный)..."
 
-#: app/UserAction/expander.cpp:342 app/UserAction/expander.cpp:375
-#: app/UserAction/expander.cpp:411 app/UserAction/expander.cpp:751
+#: app/UserAction/expander.cpp:341 app/UserAction/expander.cpp:374
+#: app/UserAction/expander.cpp:410 app/UserAction/expander.cpp:750
 #, kde-format
 msgid "Omit the current path (optional)"
 msgstr "Не включать текущий путь (необязательно)"
 
-#: app/UserAction/expander.cpp:370
+#: app/UserAction/expander.cpp:369
 #, kde-format
 msgid "Item List of..."
 msgstr "Список элементов..."
 
-#: app/UserAction/expander.cpp:373 app/UserAction/expander.cpp:409
-#: app/UserAction/expander.cpp:750
+#: app/UserAction/expander.cpp:372 app/UserAction/expander.cpp:408
+#: app/UserAction/expander.cpp:749
 #, kde-format
 msgid "Which items:"
 msgstr "Какие элементы:"
 
-#: app/UserAction/expander.cpp:374
+#: app/UserAction/expander.cpp:373
 #, kde-format
 msgid "Separator between the items (optional):"
 msgstr "Разделитель между элементами (необязательно):"
 
-#: app/UserAction/expander.cpp:376 app/UserAction/expander.cpp:412
-#: app/UserAction/expander.cpp:752
+#: app/UserAction/expander.cpp:375 app/UserAction/expander.cpp:411
+#: app/UserAction/expander.cpp:751
 #, kde-format
 msgid "Mask (optional, all but 'Selected'):"
 msgstr "Маска (необязательно, все кроме «выделенных»):"
 
-#: app/UserAction/expander.cpp:406
+#: app/UserAction/expander.cpp:405
 #, kde-format
 msgid "Filename of an Item List..."
 msgstr "Имя файла в списке элементов..."
 
-#: app/UserAction/expander.cpp:410
+#: app/UserAction/expander.cpp:409
 #, kde-format
 msgid "Separator between the items (optional)"
 msgstr "Разделитель между элементами (необязательно)"
 
-#: app/UserAction/expander.cpp:431
+#: app/UserAction/expander.cpp:430
 #, kde-format
 msgid "Expander: temporary file could not be opened (%1)"
 msgstr "Экспандер: не удалось открыть временный файл (%1)"
 
-#: app/UserAction/expander.cpp:454
+#: app/UserAction/expander.cpp:453
 #, kde-format
 msgid "Manipulate the Selection..."
 msgstr "Управление выделением..."
 
-#: app/UserAction/expander.cpp:457
+#: app/UserAction/expander.cpp:456
 #, kde-format
 msgid "Selection mask:"
 msgstr "Маска выделения:"
 
-#: app/UserAction/expander.cpp:458
+#: app/UserAction/expander.cpp:457
 #, kde-format
 msgid "Manipulate in which way:"
 msgstr "Обрабатывать следующим образом:"
 
-#: app/UserAction/expander.cpp:485
+#: app/UserAction/expander.cpp:484
 #, kde-format
 msgid "Jump to a Location..."
 msgstr "Перейти к местоположению..."
 
-#: app/UserAction/expander.cpp:488
+#: app/UserAction/expander.cpp:487
 #, kde-format
 msgid "Choose a path:"
 msgstr "Выберите путь:"
 
-#: app/UserAction/expander.cpp:489
+#: app/UserAction/expander.cpp:488
 #, kde-format
 msgid "Open location in a new tab"
 msgstr "Открыть адрес в новой вкладке"
 
-#: app/UserAction/expander.cpp:500
+#: app/UserAction/expander.cpp:499
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Goto."
 msgstr "Экспандер: Goto необходим как минимум один параметр."
 
-#: app/UserAction/expander.cpp:533
+#: app/UserAction/expander.cpp:532
 #, kde-format
 msgid "Ask Parameter from User..."
 msgstr "Запрашивать параметр у пользователя..."
 
-#: app/UserAction/expander.cpp:536
+#: app/UserAction/expander.cpp:535
 #, kde-format
 msgid "Question:"
 msgstr "Вопрос:"
 
-#: app/UserAction/expander.cpp:537
+#: app/UserAction/expander.cpp:536
 #, kde-format
 msgid "Preset (optional):"
 msgstr "Предустановка (необязательно):"
 
-#: app/UserAction/expander.cpp:538
+#: app/UserAction/expander.cpp:537
 #, kde-format
 msgid "Caption (optional):"
 msgstr "Заголовок (необязательно):"
 
-#: app/UserAction/expander.cpp:545
+#: app/UserAction/expander.cpp:544
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Ask."
 msgstr "Экспандер: Ask необходим как минимум один параметр."
 
-#: app/UserAction/expander.cpp:550
+#: app/UserAction/expander.cpp:549
 #, kde-format
 msgid "User Action"
 msgstr "Пользовательское действие"
 
-#: app/UserAction/expander.cpp:573
+#: app/UserAction/expander.cpp:572
 #, kde-format
 msgid "Copy to Clipboard..."
 msgstr "Копировать в буфер обмена..."
 
-#: app/UserAction/expander.cpp:576 app/UserAction/expander.cpp:606
+#: app/UserAction/expander.cpp:575 app/UserAction/expander.cpp:605
 #, kde-format
 msgid "What to copy:"
 msgstr "Что копировать:"
 
-#: app/UserAction/expander.cpp:577
+#: app/UserAction/expander.cpp:576
 #, kde-format
 msgid "Append to current clipboard content with this separator (optional):"
 msgstr ""
 "Добавить к текущему содержимому буфера обмена через разделитель "
 "(необязательно):"
 
-#: app/UserAction/expander.cpp:583
+#: app/UserAction/expander.cpp:582
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Clipboard."
 msgstr "Экспандер: Clipboard необходим как минимум один параметр."
 
-#: app/UserAction/expander.cpp:589
+#: app/UserAction/expander.cpp:588
 #, kde-format
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
 msgstr "Экспандер: %Each% не может быть вторым параметром для %Clipboard%"
 
-#: app/UserAction/expander.cpp:603
+#: app/UserAction/expander.cpp:602
 #, kde-format
 msgid "Copy a File/Folder..."
 msgstr "Копировать файл/папку..."
 
-#: app/UserAction/expander.cpp:607
+#: app/UserAction/expander.cpp:606
 #, kde-format
 msgid "Where to copy:"
 msgstr "Куда копировать:"
 
-#: app/UserAction/expander.cpp:612
+#: app/UserAction/expander.cpp:611
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Copy."
 msgstr "Экспандер: Copy необходимы как минимум два параметра."
 
-#: app/UserAction/expander.cpp:625
+#: app/UserAction/expander.cpp:624
 #, kde-format
 msgid "Expander: %Each% may not be in the second argument of %Copy%"
 msgstr "Экспандер: %Each% не может быть вторым параметром для %Copy%"
 
-#: app/UserAction/expander.cpp:633
+#: app/UserAction/expander.cpp:632
 #, kde-format
 msgid "Expander: invalid URLs in %_Copy(\"src\", \"dest\")%"
 msgstr "Экспандер: неправильный адрес в %_Copy(\"src\", \"dest\")%"
 
-#: app/UserAction/expander.cpp:645
+#: app/UserAction/expander.cpp:644
 #, kde-format
 msgid "Move/Rename a File/Folder..."
 msgstr "Переместить/переименовать файл/папку..."
 
-#: app/UserAction/expander.cpp:648
+#: app/UserAction/expander.cpp:647
 #, kde-format
 msgid "What to move/rename:"
 msgstr "Что переместить/переименовать:"
 
-#: app/UserAction/expander.cpp:649
+#: app/UserAction/expander.cpp:648
 #, kde-format
 msgid "New target/name:"
 msgstr "Новая цель/имя:"
 
-#: app/UserAction/expander.cpp:654
+#: app/UserAction/expander.cpp:653
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Move."
 msgstr "Экспандер: Move необходимы как минимум два параметра."
 
-#: app/UserAction/expander.cpp:662
+#: app/UserAction/expander.cpp:661
 #, kde-format
 msgid "%Each% may not be in the second argument of %Move%"
 msgstr "%Each% не может быть вторым аргументом для %Move%"
 
-#: app/UserAction/expander.cpp:672
+#: app/UserAction/expander.cpp:671
 #, kde-format
 msgid "Expander: invalid URLs in %_Move(\"src\", \"dest\")%"
 msgstr "Экспандер: некорректный URL в %_Move(\"src\", \"dest\")%"
 
-#: app/UserAction/expander.cpp:685
+#: app/UserAction/expander.cpp:684
 #, kde-format
 msgid "Load a Synchronizer Profile..."
 msgstr "Загрузить профиль синхронизатора..."
 
-#: app/UserAction/expander.cpp:688 app/UserAction/expander.cpp:710
-#: app/UserAction/expander.cpp:730
+#: app/UserAction/expander.cpp:687 app/UserAction/expander.cpp:709
+#: app/UserAction/expander.cpp:729
 #, kde-format
 msgid "Choose a profile:"
 msgstr "Выберите профиль:"
 
-#: app/UserAction/expander.cpp:693
+#: app/UserAction/expander.cpp:692
 #, kde-format
 msgid "Expander: no profile specified for %_Sync(profile)%"
 msgstr "Экспандер: не указан профиль для %_Sync(profile)%"
 
-#: app/UserAction/expander.cpp:707
+#: app/UserAction/expander.cpp:706
 #, kde-format
 msgid "Load a Searchmodule Profile..."
 msgstr "Загрузить профиль модуля поиска..."
 
-#: app/UserAction/expander.cpp:715
+#: app/UserAction/expander.cpp:714
 #, kde-format
 msgid "Expander: no profile specified for %_NewSearch(profile)%"
 msgstr "Экспандер: не указан профиль для %_NewSearch(profile)%"
 
-#: app/UserAction/expander.cpp:727
+#: app/UserAction/expander.cpp:726
 #, kde-format
 msgid "Load a Panel Profile..."
 msgstr "Загрузить профиль панели..."
 
-#: app/UserAction/expander.cpp:735
+#: app/UserAction/expander.cpp:734
 #, kde-format
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
 msgstr "Экспандер: не указан профиль для %_Profile(profile)%; завершение..."
 
-#: app/UserAction/expander.cpp:747
+#: app/UserAction/expander.cpp:746
 #, kde-format
 msgid "Separate Program Call for Each..."
 msgstr "Отдельный вызов программы для..."
 
-#: app/UserAction/expander.cpp:784
+#: app/UserAction/expander.cpp:783
 #, kde-format
 msgid "Set Sorting for This Panel..."
 msgstr "Задать режим сортировки для данной панели..."
 
-#: app/UserAction/expander.cpp:787
+#: app/UserAction/expander.cpp:786
 #, kde-format
 msgid "Choose a column:"
 msgstr "Выберите столбец:"
 
-#: app/UserAction/expander.cpp:788
+#: app/UserAction/expander.cpp:787
 #, kde-format
 msgid "Choose a sort sequence:"
 msgstr "Выберите последовательность сортировки:"
 
-#: app/UserAction/expander.cpp:795
+#: app/UserAction/expander.cpp:794
 #, kde-format
 msgid "Expander: no column specified for %_ColSort(column)%"
 msgstr "Экспандер: не указан столбец для %_ColSort(column)%"
 
-#: app/UserAction/expander.cpp:825
+#: app/UserAction/expander.cpp:824
 #, kde-format
 msgid "Expander: unknown column specified for %_ColSort(%1)%"
 msgstr "Экспандер: неизвестный столбец указан для %_ColSort(%1)%"
 
-#: app/UserAction/expander.cpp:851
+#: app/UserAction/expander.cpp:850
 #, kde-format
 msgid "Set Relation Between the Panels..."
 msgstr "Задать соотношение между панелями..."
 
-#: app/UserAction/expander.cpp:854
+#: app/UserAction/expander.cpp:853
 #, kde-format
 msgid "Set the new size in percent:"
 msgstr "Задать новый размер в процентах:"
 
-#: app/UserAction/expander.cpp:870
+#: app/UserAction/expander.cpp:869
 #, kde-format
 msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
@@ -9548,54 +9508,54 @@ msgstr ""
 "Экспандер: значение %1 вне допустимых пределов для %_PanelSize(percent)%. "
 "Первый параметр должен быть от 0 и до 100"
 
-#: app/UserAction/expander.cpp:882
+#: app/UserAction/expander.cpp:881
 #, kde-format
 msgid "View File with Krusader's Internal Viewer..."
 msgstr "Просмотреть файл через встроенную программу просмотра..."
 
-#: app/UserAction/expander.cpp:885
+#: app/UserAction/expander.cpp:884
 #, kde-format
 msgid "Which file to view (normally '%aCurrent%'):"
 msgstr "Файл для просмотра (обычно «%aCurrent%»):"
 
-#: app/UserAction/expander.cpp:886
+#: app/UserAction/expander.cpp:885
 #, kde-format
 msgid "Choose a view mode:"
 msgstr "Выберите режим просмотра:"
 
 #. i18n("Choose a window-mode"), "__choose:tab;window;panel", false ) );
 #. TODO: window-mode 'panel' should open the file in the third-hand viewer
-#: app/UserAction/expander.cpp:889
+#: app/UserAction/expander.cpp:888
 #, kde-format
 msgid "Choose a window mode:"
 msgstr "Выберите режим окна:"
 
-#: app/UserAction/expander.cpp:894
+#: app/UserAction/expander.cpp:893
 #, kde-format
 msgid "Expander: no file to view in %_View(filename)%"
 msgstr "Экспандер: не указан файл для просмотра в %_View(filename)%"
 
-#: app/UserAction/expander.cpp:934
+#: app/UserAction/expander.cpp:933
 #, kde-format
 msgid "%Each% is not allowed in parameter to %1"
 msgstr "%Each% недопустим как параметр для %1"
 
-#: app/UserAction/expander.cpp:957
+#: app/UserAction/expander.cpp:956
 #, kde-format
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
 msgstr "Экспандер: неверный указатель панели %1 в заполнителе %2"
 
-#: app/UserAction/expander.cpp:990
+#: app/UserAction/expander.cpp:989
 #, no-c-format, kde-format
 msgid "Error: unterminated % in Expander"
 msgstr "Ошибка: нет завершающего % в Экспандере"
 
-#: app/UserAction/expander.cpp:1019
+#: app/UserAction/expander.cpp:1018
 #, kde-format
 msgid "Error: unrecognized %%%1%2%% in Expander"
 msgstr "Ошибка: неопознанный %%%1%2%% в Экспандере"
 
-#: app/UserAction/expander.cpp:1059
+#: app/UserAction/expander.cpp:1058
 #, kde-format
 msgid "Error: missing ')' in Expander"
 msgstr "Ошибка: отсутствует «)» в Экспандере"
@@ -9860,7 +9820,7 @@ msgstr ""
 "пользователя нового имени файла. По умолчанию к исходному имени файла "
 "добавляется «.old»."
 
-#: plugins/krarc/krarc.cpp:242 plugins/krarc/krarc.cpp:249
+#: plugins/krarc/krarc.cpp:202
 #, kde-format
 msgid ""
 "krarc: write support is disabled.\n"
@@ -9869,59 +9829,59 @@ msgstr ""
 "krarc: поддержка записи отключена.\n"
 "Её можно включить на вкладке «Архивы» в диалоге настройки."
 
-#: plugins/krarc/krarc.cpp:302 plugins/krarc/krarc.cpp:321
+#: plugins/krarc/krarc.cpp:242
 #, kde-format
 msgid "Creating folders is not supported with %1 archives"
 msgstr "Создание папок для архивов %1 не поддерживается"
 
-#: plugins/krarc/krarc.cpp:364
+#: plugins/krarc/krarc.cpp:278
 #, kde-format
 msgid "Creating %1..."
 msgstr "Создание %1..."
 
-#: plugins/krarc/krarc.cpp:425 plugins/krarc/krarc.cpp:441
+#: plugins/krarc/krarc.cpp:320
 #, kde-format
 msgid "Writing to %1 archives is not supported"
 msgstr "Запись в архивы %1 не поддерживается"
 
-#: plugins/krarc/krarc.cpp:515
+#: plugins/krarc/krarc.cpp:386
 #, kde-format
 msgid "Packing %1..."
 msgstr "Упаковка %1..."
 
-#: plugins/krarc/krarc.cpp:577 plugins/krarc/krarc.cpp:597
+#: plugins/krarc/krarc.cpp:427
 #, kde-format
 msgid "Retrieving data from %1 archives is not supported"
 msgstr "Получение данных из архивов %1 не поддерживается"
 
-#: plugins/krarc/krarc.cpp:680 plugins/krarc/krarc.cpp:1101
+#: plugins/krarc/krarc.cpp:496 plugins/krarc/krarc.cpp:761
 #, kde-format
 msgid "Unpacking %1..."
 msgstr "Распаковка %1..."
 
-#: plugins/krarc/krarc.cpp:693 plugins/krarc/krarc.cpp:699
+#: plugins/krarc/krarc.cpp:508
 #, kde-format
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr "Произошла ошибка внешнего приложения «%1». Текст ошибки: «%2»."
 
-#: plugins/krarc/krarc.cpp:879 plugins/krarc/krarc.cpp:900
+#: plugins/krarc/krarc.cpp:626
 #, kde-format
 msgid "Deleting files from %1 archives is not supported"
 msgstr "Удаление файлов из архивов %1 не поддерживается"
 
-#: plugins/krarc/krarc.cpp:960 plugins/krarc/krarc.cpp:973
+#: plugins/krarc/krarc.cpp:670
 #, kde-format
 msgid "Accessing files is not supported with %1 archives"
 msgstr "Доступ к файлам для архивов %1 не поддерживается"
 
-#: plugins/krarc/krarc.cpp:1217 plugins/krarc/krarc.cpp:1224
+#: plugins/krarc/krarc.cpp:825
 #, kde-format
 msgid "Listing folders is not supported for %1 archives"
 msgstr "Вывод списка папок для архивов %1 не поддерживается"
 
-#: plugins/krarc/krarc.cpp:2221 plugins/krarc/krarc.cpp:2225
+#: plugins/krarc/krarc.cpp:1755
 #, kde-format
 msgid ""
 "\n"
@@ -9930,16 +9890,30 @@ msgstr ""
 "\n"
 "Убедитесь, что исполняемый файл %1 правильно установлен в системе."
 
-#: plugins/krarc/krarc.cpp:2310 plugins/krarc/krarc.cpp:2336
+#: plugins/krarc/krarc.cpp:1837 plugins/krarc/krarc.cpp:1863
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "Диалог ввода пароля Krarc"
 
-#: plugins/krarc/krarc.cpp:2354 plugins/krarc/krarc.cpp:2364
-#: plugins/krarc/krarc.cpp:2367
+#: plugins/krarc/krarc.cpp:1880
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Для доступа к файлу необходим пароль."
+
+#~ msgid "Manage Bookmarks"
+#~ msgstr "Управление закладками"
+
+#~ msgid "Show Main Toolbar"
+#~ msgstr "Показывать основную панель инструментов"
+
+#~ msgid "Show Job Toolbar"
+#~ msgstr "Показывать панель заданий"
+
+#~ msgid "Show Actions Toolbar"
+#~ msgstr "Показывать панель действий"
+
+#~ msgid "&Toolbars"
+#~ msgstr "Панели и&нструментов"
 
 #~ msgid "Copy current item to clipboard"
 #~ msgstr "Копировать текущий элемент в буфер обмена"

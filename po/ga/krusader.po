@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
+"POT-Creation-Date: 2024-09-24 00:41+0000\n"
 "PO-Revision-Date: 2009-12-24 06:59-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -493,7 +493,7 @@ msgid "&New..."
 msgstr "&Nua..."
 
 #. i18n: ectx: attribute (title), widget (QWidget, TabFile)
-#: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:96
+#: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:97
 #, kde-format
 msgid "File Name"
 msgstr "Ainm Comhaid"
@@ -583,94 +583,91 @@ msgstr ""
 msgid "Title"
 msgstr "Teideal"
 
-#: app/ActionMan/useractionpage.cpp:37
-#, kde-format
-msgid ""
-"*.xml|XML files\n"
-"*|All files"
+#: app/ActionMan/useractionpage.cpp:38
+msgid "XML files (*.xml);;All files (*)"
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:54
+#: app/ActionMan/useractionpage.cpp:55
 #, kde-format
 msgid "Create new useraction"
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:59
+#: app/ActionMan/useractionpage.cpp:60
 #, kde-format
 msgid "Import useractions"
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:64
+#: app/ActionMan/useractionpage.cpp:65
 #, kde-format
 msgid "Export useractions"
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:69
+#: app/ActionMan/useractionpage.cpp:70
 #, kde-format
 msgid "Copy useractions to clipboard"
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:74
+#: app/ActionMan/useractionpage.cpp:75
 #, kde-format
 msgid "Paste useractions from clipboard"
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:79
+#: app/ActionMan/useractionpage.cpp:80
 #, kde-format
 msgid "Delete selected useractions"
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:132
+#: app/ActionMan/useractionpage.cpp:133
 #, kde-format
 msgid ""
 "The current action has been modified. Do you want to apply these changes?"
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:207
+#: app/ActionMan/useractionpage.cpp:208
 #, kde-format
 msgid "Are you sure that you want to remove all selected actions?"
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:208
+#: app/ActionMan/useractionpage.cpp:209
 #, kde-format
 msgid "Remove Selected Actions?"
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:259
+#: app/ActionMan/useractionpage.cpp:260
 #, kde-format
 msgid ""
 "This file already contains some useractions.\n"
 "Do you want to overwrite it or should it be merged with the selected actions?"
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:260
+#: app/ActionMan/useractionpage.cpp:261
 #, kde-format
 msgid "Overwrite or Merge?"
 msgstr "Forscríobh nó Cumaisc?"
 
-#: app/ActionMan/useractionpage.cpp:262
+#: app/ActionMan/useractionpage.cpp:263
 #, kde-format
 msgid "Merge"
 msgstr "Cumaisc"
 
-#: app/ActionMan/useractionpage.cpp:268
+#: app/ActionMan/useractionpage.cpp:269
 #, kde-format
 msgid "This file already exists. Do you want to overwrite it?"
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:269
+#: app/ActionMan/useractionpage.cpp:270
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Forscríobh an comhad atá ann?"
 
-#: app/ActionMan/useractionpage.cpp:283 app/UserAction/kraction.cpp:185
+#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:185
 #, kde-format
 msgid ""
 "Cannot open %1 for writing.\n"
 "Nothing exported."
 msgstr ""
 
-#: app/ActionMan/useractionpage.cpp:283
+#: app/ActionMan/useractionpage.cpp:284
 #, kde-format
 msgid "Export Failed"
 msgstr ""
@@ -752,7 +749,7 @@ msgstr ""
 msgid "Failed to pack %1."
 msgstr ""
 
-#: app/Archive/krarchandler.cpp:691
+#: app/Archive/krarchandler.cpp:692
 #, kde-format
 msgid "This archive is encrypted, please supply the password:"
 msgstr ""
@@ -783,7 +780,7 @@ msgstr ""
 msgid "Error while unpacking"
 msgstr ""
 
-#: app/BookMan/kraddbookmarkdlg.cpp:28 app/kractions.cpp:295
+#: app/BookMan/kraddbookmarkdlg.cpp:28 app/kractions.cpp:286
 #, kde-format
 msgid "Add Bookmark"
 msgstr "Cuir Leabharmharc Leis"
@@ -804,19 +801,19 @@ msgid "Create in:"
 msgstr ""
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:690
+#: app/Panel/panelfunc.cpp:684
 #, kde-format
 msgid "New Folder"
 msgstr "Fillteán Nua"
 
-#: app/BookMan/kraddbookmarkdlg.cpp:96 app/FileSystem/krquery.cpp:260
-#: app/Filter/generalfilter.cpp:161 app/Filter/generalfilter.cpp:538
+#: app/BookMan/kraddbookmarkdlg.cpp:96 app/FileSystem/krquery.cpp:261
+#: app/Filter/generalfilter.cpp:162 app/Filter/generalfilter.cpp:539
 #, kde-format
 msgid "Folders"
 msgstr "Fillteáin"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:102 app/BookMan/krbookmarkbutton.cpp:33
-#: app/BookMan/krbookmarkhandler.cpp:64 app/Panel/listpanelactions.cpp:105
+#: app/BookMan/krbookmarkhandler.cpp:65 app/Panel/listpanelactions.cpp:105
 #, kde-format
 msgid "Bookmarks"
 msgstr "Leabharmharcanna"
@@ -826,17 +823,17 @@ msgstr "Leabharmharcanna"
 msgid "Folder name:"
 msgstr "Ainm an fhillteáin:"
 
-#: app/BookMan/krbookmark.cpp:22 app/BookMan/krbookmarkhandler.cpp:777
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:784
 #, kde-format
 msgid "Trash bin"
 msgstr ""
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:785
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:792
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr ""
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:781
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:788
 #, kde-format
 msgid "Local Network"
 msgstr ""
@@ -846,81 +843,76 @@ msgstr ""
 msgid "BookMan II"
 msgstr ""
 
-#: app/BookMan/krbookmarkhandler.cpp:78
+#: app/BookMan/krbookmarkhandler.cpp:80
 #, kde-format
 msgid "Type to search..."
 msgstr ""
 
-#: app/BookMan/krbookmarkhandler.cpp:220 app/BookMan/krbookmarkhandler.cpp:326
+#: app/BookMan/krbookmarkhandler.cpp:225 app/BookMan/krbookmarkhandler.cpp:331
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
 #: app/Konfigurator/kggeneral.cpp:329
-#: app/Synchronizer/synchronizerdirlist.cpp:116
+#: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Error"
 msgstr "Earráid"
 
-#: app/BookMan/krbookmarkhandler.cpp:220
+#: app/BookMan/krbookmarkhandler.cpp:225
 #, kde-format
 msgid "Unable to write to %1"
 msgstr "Ní féidir %1 a scríobh"
 
-#: app/BookMan/krbookmarkhandler.cpp:229
+#: app/BookMan/krbookmarkhandler.cpp:234
 #, kde-format
 msgid "%1 instead of %2"
 msgstr ""
 
-#: app/BookMan/krbookmarkhandler.cpp:234 app/BookMan/krbookmarkhandler.cpp:241
-#: app/BookMan/krbookmarkhandler.cpp:278
+#: app/BookMan/krbookmarkhandler.cpp:239 app/BookMan/krbookmarkhandler.cpp:246
+#: app/BookMan/krbookmarkhandler.cpp:283
 #, kde-format
 msgid "missing tag %1"
 msgstr ""
 
-#: app/BookMan/krbookmarkhandler.cpp:318
+#: app/BookMan/krbookmarkhandler.cpp:323
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr ""
 
-#: app/BookMan/krbookmarkhandler.cpp:326
+#: app/BookMan/krbookmarkhandler.cpp:331
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr ""
 
-#: app/BookMan/krbookmarkhandler.cpp:438 app/BookMan/krbookmarkhandler.cpp:773
+#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:780
 #: app/Dialogs/popularurls.cpp:276
 #, kde-format
 msgid "Popular URLs"
 msgstr ""
 
-#: app/BookMan/krbookmarkhandler.cpp:530
-#, kde-format
-msgid "Manage Bookmarks"
-msgstr "Bainistigh Leabharmharcanna"
-
-#: app/BookMan/krbookmarkhandler.cpp:769
+#: app/BookMan/krbookmarkhandler.cpp:776
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr ""
 
-#: app/BookMan/krbookmarkhandler.cpp:789
+#: app/BookMan/krbookmarkhandler.cpp:796
 #, kde-format
 msgid "Jump back"
 msgstr ""
 
-#: app/BookMan/krbookmarkhandler.cpp:841 app/GUI/mediabutton.cpp:327
-#: app/Panel/panelcontextmenu.cpp:125
+#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:327
+#: app/Panel/panelcontextmenu.cpp:103
 #, kde-format
 msgid "Open"
 msgstr "Oscail"
 
-#: app/BookMan/krbookmarkhandler.cpp:843 app/GUI/mediabutton.cpp:329
+#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:329
 #, kde-format
 msgid "Open in a new tab"
 msgstr ""
 
-#: app/BookMan/krbookmarkhandler.cpp:847 app/Dialogs/krmaskchoice.cpp:85
+#: app/BookMan/krbookmarkhandler.cpp:854 app/Dialogs/krmaskchoice.cpp:85
 #: app/Dialogs/kurllistrequester.cpp:128 app/DiskUsage/diskusage.cpp:751
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
-#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:241
+#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:216
 #, kde-format
 msgid "Delete"
 msgstr "Scrios"
@@ -1408,7 +1400,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr ""
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:836
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:830
 #, kde-format
 msgid "&Trash"
 msgstr ""
@@ -1420,13 +1412,13 @@ msgid "Do you really want to delete this item?"
 msgstr ""
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:852
-#: app/Panel/panelfunc.cpp:929
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:846
+#: app/Panel/panelfunc.cpp:923
 #, kde-format
 msgid "Warning"
 msgstr "Rabhadh"
 
-#: app/DiskUsage/diskusage.cpp:606 plugins/krarc/krarc.cpp:918
+#: app/DiskUsage/diskusage.cpp:606 plugins/krarc/krarc.cpp:641
 #, kde-format
 msgid "Deleting %1..."
 msgstr ""
@@ -1487,12 +1479,12 @@ msgstr ""
 msgid "Filelight"
 msgstr "Filelight"
 
-#: app/DiskUsage/diskusage.cpp:803 app/KViewer/lister.cpp:1282
+#: app/DiskUsage/diskusage.cpp:803 app/KViewer/lister.cpp:1285
 #, kde-format
 msgid "Next"
 msgstr "Ar Aghaidh"
 
-#: app/DiskUsage/diskusage.cpp:807 app/KViewer/lister.cpp:1286
+#: app/DiskUsage/diskusage.cpp:807 app/KViewer/lister.cpp:1289
 #, kde-format
 msgid "Previous"
 msgstr "Siar"
@@ -1640,7 +1632,7 @@ msgid "Percent"
 msgstr "Céatadán"
 
 #: app/DiskUsage/dulines.cpp:185 app/DiskUsage/dulistview.cpp:40
-#: app/Konfigurator/krresulttable.cpp:126 app/MountMan/kmountmangui.cpp:147
+#: app/Konfigurator/krresulttable.cpp:128 app/MountMan/kmountmangui.cpp:147
 #, kde-format
 msgid "Name"
 msgstr "Ainm"
@@ -1680,7 +1672,7 @@ msgstr "Ceadanna"
 msgid "Owner"
 msgstr "Úinéir"
 
-#: app/DiskUsage/dulistview.cpp:48 app/Konfigurator/krresulttable.cpp:279
+#: app/DiskUsage/dulistview.cpp:48 app/Konfigurator/krresulttable.cpp:282
 #, kde-format
 msgid "Group"
 msgstr "Grúpa"
@@ -1700,80 +1692,80 @@ msgstr[4] "%1 comhad: ~ %2"
 msgid "Files: %1"
 msgstr "Comhaid: %1"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:167
+#: app/DiskUsage/radialMap/widgetEvents.cpp:166
 #, fuzzy, kde-format
 #| msgid "Open &Konqueror Here"
 msgid "Open File Manager Here"
 msgstr "Oscail &Konqueror Anseo"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:169
+#: app/DiskUsage/radialMap/widgetEvents.cpp:168
 #, fuzzy, kde-format
 #| msgid "Open &Konsole Here"
 msgid "Open Terminal Here"
 msgstr "Oscail &Konsole Anseo"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:173
+#: app/DiskUsage/radialMap/widgetEvents.cpp:172
 #, kde-format
 msgid "&Center Map Here"
 msgstr ""
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:176
+#: app/DiskUsage/radialMap/widgetEvents.cpp:175
 #, kde-format
 msgid "&Open"
 msgstr "&Oscail"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:179
+#: app/DiskUsage/radialMap/widgetEvents.cpp:178
 #, kde-format
 msgid "&Delete"
 msgstr "&Scrios"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:210
+#: app/DiskUsage/radialMap/widgetEvents.cpp:204
 #, kde-format
 msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
 "b> deleted.</qt>"
 msgstr ""
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:211
+#: app/DiskUsage/radialMap/widgetEvents.cpp:205
 #, kde-format
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
 msgstr ""
 
-#: app/FileSystem/defaultfilesystem.cpp:148
+#: app/FileSystem/defaultfilesystem.cpp:150
 #, kde-format
 msgid "Space information disabled"
 msgstr ""
 
-#: app/FileSystem/defaultfilesystem.cpp:155
+#: app/FileSystem/defaultfilesystem.cpp:157
 #, kde-format
 msgid "No space information on non-local filesystems"
 msgstr ""
 
-#: app/FileSystem/defaultfilesystem.cpp:183
+#: app/FileSystem/defaultfilesystem.cpp:185
 #, fuzzy, kde-format
 #| msgid "Preview not available"
 msgid "Space information unavailable"
 msgstr "Níl réamhamharc ar fáil"
 
-#: app/FileSystem/defaultfilesystem.cpp:193
+#: app/FileSystem/defaultfilesystem.cpp:195
 #, kde-format
 msgid ""
 "Protocol not supported by Krusader:\n"
 "%1"
 msgstr ""
 
-#: app/FileSystem/defaultfilesystem.cpp:335
+#: app/FileSystem/defaultfilesystem.cpp:337
 #, kde-format
 msgid "The folder %1 does not exist."
 msgstr ""
 
-#: app/FileSystem/defaultfilesystem.cpp:351
-#: app/Synchronizer/synchronizerdirlist.cpp:116
+#: app/FileSystem/defaultfilesystem.cpp:353
+#: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Cannot open the folder %1."
 msgstr ""
 
-#: app/FileSystem/defaultfilesystem.cpp:358
+#: app/FileSystem/defaultfilesystem.cpp:360
 #, kde-format
 msgctxt "%1=folder path"
 msgid "Access to %1 denied"
@@ -1788,44 +1780,44 @@ msgstr ""
 "URL Míchumtha:\n"
 "%1"
 
-#: app/FileSystem/krquery.cpp:258 app/Filter/generalfilter.cpp:160
+#: app/FileSystem/krquery.cpp:259 app/Filter/generalfilter.cpp:161
 #: app/Konfigurator/konfigurator.cpp:126
 #, kde-format
 msgid "Archives"
 msgstr "Cartlanna"
 
-#: app/FileSystem/krquery.cpp:262 app/Filter/generalfilter.cpp:162
+#: app/FileSystem/krquery.cpp:263 app/Filter/generalfilter.cpp:163
 #, kde-format
 msgid "Image Files"
 msgstr "Comhaid Íomhá"
 
-#: app/FileSystem/krquery.cpp:264 app/Filter/generalfilter.cpp:163
+#: app/FileSystem/krquery.cpp:265 app/Filter/generalfilter.cpp:164
 #, kde-format
 msgid "Text Files"
 msgstr "Comhaid Théacs"
 
-#: app/FileSystem/krquery.cpp:266 app/Filter/generalfilter.cpp:164
+#: app/FileSystem/krquery.cpp:267 app/Filter/generalfilter.cpp:165
 #, kde-format
 msgid "Video Files"
 msgstr "Comhaid Fhíse"
 
-#: app/FileSystem/krquery.cpp:268 app/Filter/generalfilter.cpp:165
+#: app/FileSystem/krquery.cpp:269 app/Filter/generalfilter.cpp:166
 #, kde-format
 msgid "Audio Files"
 msgstr "Comhaid Fhuaime"
 
-#: app/FileSystem/krquery.cpp:270
+#: app/FileSystem/krquery.cpp:271
 #, kde-format
 msgid "Custom"
 msgstr "Saincheaptha"
 
-#: app/FileSystem/krquery.cpp:565
+#: app/FileSystem/krquery.cpp:566
 #, kde-format
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
 msgstr ""
 
-#: app/FileSystem/krquery.cpp:570
+#: app/FileSystem/krquery.cpp:571
 #, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
@@ -1860,7 +1852,7 @@ msgstr "Ar a Laghad"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:69 app/Filter/advancedfilter.cpp:91
-#: app/Splitter/splittergui.cpp:117
+#: app/Splitter/splittergui.cpp:120
 #, kde-format
 msgid "Byte"
 msgstr "Beart"
@@ -2078,82 +2070,69 @@ msgstr "&Casta"
 msgid "Could not load profile."
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:37
-#, kde-format
+#: app/Filter/generalfilter.cpp:38
 msgid "Any Character"
 msgstr "Carachtar ar Bith"
 
-#: app/Filter/generalfilter.cpp:38
-#, kde-format
+#: app/Filter/generalfilter.cpp:39
 msgid "Start of Line"
 msgstr "Tús na Líne"
 
-#: app/Filter/generalfilter.cpp:39
-#, kde-format
+#: app/Filter/generalfilter.cpp:40
 msgid "End of Line"
 msgstr "Deireadh na Líne"
 
-#: app/Filter/generalfilter.cpp:40
-#, kde-format
+#: app/Filter/generalfilter.cpp:41
 msgid "Set of Characters"
 msgstr "Tacar Carachtar"
 
-#: app/Filter/generalfilter.cpp:41
-#, kde-format
+#: app/Filter/generalfilter.cpp:42
 msgid "Repeats, Zero or More Times"
 msgstr "Athdhéanta, 0 nó níos mó uaireanta"
 
-#: app/Filter/generalfilter.cpp:42
-#, kde-format
+#: app/Filter/generalfilter.cpp:43
 msgid "Repeats, One or More Times"
 msgstr "Athdhéanta, ceann amháin nó níos mó uaireanta"
 
-#: app/Filter/generalfilter.cpp:43
-#, kde-format
+#: app/Filter/generalfilter.cpp:44
 msgid "Optional"
 msgstr "Roghnach"
 
-#: app/Filter/generalfilter.cpp:44
-#, kde-format
+#: app/Filter/generalfilter.cpp:45
 msgid "Escape"
 msgstr "Éalúchán"
 
-#: app/Filter/generalfilter.cpp:45
-#, kde-format
+#: app/Filter/generalfilter.cpp:46
 msgid "TAB"
 msgstr "Táb"
 
-#: app/Filter/generalfilter.cpp:46
-#, kde-format
+#: app/Filter/generalfilter.cpp:47
 msgid "Newline"
 msgstr "Líne Nua"
 
-#: app/Filter/generalfilter.cpp:47
-#, kde-format
+#: app/Filter/generalfilter.cpp:48
 msgid "Carriage Return"
 msgstr "Aisfhilleadh Carráiste"
 
-#: app/Filter/generalfilter.cpp:48
-#, kde-format
+#: app/Filter/generalfilter.cpp:49
 msgid "White Space"
 msgstr "Spás Bán"
 
-#: app/Filter/generalfilter.cpp:49
-#, kde-format
+#: app/Filter/generalfilter.cpp:50
 msgid "Digit"
 msgstr "Digit"
 
-#: app/Filter/generalfilter.cpp:103
+#: app/Filter/generalfilter.cpp:104
 #, kde-format
 msgid "&Case sensitive"
 msgstr "&Cásíogair"
 
-#: app/Filter/generalfilter.cpp:108
+#: app/Filter/generalfilter.cpp:109
 #, kde-format
 msgid "Search &for:"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:123 app/Synchronizer/synchronizergui.cpp:208
+#: app/Filter/generalfilter.cpp:124 app/Synchronizer/synchronizergui.cpp:208
 #, kde-format
 msgid ""
 "<p>The filename filtering criteria is defined here.</p><p>You can make use "
@@ -2174,118 +2153,118 @@ msgid ""
 "code>' is equivalent to '<code>*text*</code>'.</p>"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:149
+#: app/Filter/generalfilter.cpp:150
 #, kde-format
 msgid "&Of type:"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:159 app/Filter/generalfilter.cpp:584
+#: app/Filter/generalfilter.cpp:160 app/Filter/generalfilter.cpp:585
 #, kde-format
 msgid "All Files"
 msgstr "Gach Comhad"
 
-#: app/Filter/generalfilter.cpp:179
+#: app/Filter/generalfilter.cpp:180
 #, kde-format
 msgid "&Profile handler"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:192
+#: app/Filter/generalfilter.cpp:193
 #, kde-format
 msgid "&Load"
 msgstr "&Luchtaigh"
 
-#: app/Filter/generalfilter.cpp:216
+#: app/Filter/generalfilter.cpp:217
 #, fuzzy, kde-format
 #| msgid "Search"
 msgid "Searc&h in"
 msgstr "Cuardaigh"
 
-#: app/Filter/generalfilter.cpp:231
+#: app/Filter/generalfilter.cpp:232
 #, kde-format
 msgid "&Do not search in"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:264
+#: app/Filter/generalfilter.cpp:265
 #, kde-format
 msgid "Containing text"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:278
+#: app/Filter/generalfilter.cpp:279
 #, kde-format
 msgid "&Text:"
 msgstr "&Téacs:"
 
-#: app/Filter/generalfilter.cpp:294 app/KViewer/lister.cpp:1300
+#: app/Filter/generalfilter.cpp:295 app/KViewer/lister.cpp:1303
 #, kde-format
 msgid "RegExp"
 msgstr "Slonn Ionadaíochta"
 
-#: app/Filter/generalfilter.cpp:313
+#: app/Filter/generalfilter.cpp:314
 #, kde-format
 msgid "Encoding:"
 msgstr "Ionchódú:"
 
-#: app/Filter/generalfilter.cpp:317 app/GUI/krremoteencodingmenu.cpp:120
+#: app/Filter/generalfilter.cpp:318 app/GUI/krremoteencodingmenu.cpp:119
 #, kde-format
 msgctxt "Default encoding"
 msgid "Default"
 msgstr "Réamhshocrú"
 
-#: app/Filter/generalfilter.cpp:328
+#: app/Filter/generalfilter.cpp:329
 #, kde-format
 msgid "&Match whole word only"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:336
+#: app/Filter/generalfilter.cpp:337
 #, kde-format
 msgid "Cas&e sensitive"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:353
+#: app/Filter/generalfilter.cpp:354
 #, fuzzy, kde-format
 #| msgid "Search results"
 msgid "Search in s&ub folders"
 msgstr "Torthaí cuardaigh"
 
-#: app/Filter/generalfilter.cpp:358
+#: app/Filter/generalfilter.cpp:359
 #, kde-format
 msgid "Search in arch&ives"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:362
+#: app/Filter/generalfilter.cpp:363
 #, kde-format
 msgid "Follow &links"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:472
+#: app/Filter/generalfilter.cpp:473
 #, fuzzy, kde-format
 #| msgid "Edit File Name"
 msgid "Exclude Folder Names"
 msgstr "Cuir Ainm Comhaid in Eagar"
 
-#: app/Filter/generalfilter.cpp:473
+#: app/Filter/generalfilter.cpp:474
 #, kde-format
 msgid "Filters out specified folder names from the results."
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:488
+#: app/Filter/generalfilter.cpp:489
 #, kde-format
 msgid "Enter space-separated folder names"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:490
+#: app/Filter/generalfilter.cpp:491
 #, kde-format
 msgid ""
 "You can insert names with escaped spaces or quoted.\n"
 "Example: .git \"target build\" build\\ krusader"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:576
+#: app/Filter/generalfilter.cpp:577
 #, kde-format
 msgid "No search criteria entered."
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:606
+#: app/Filter/generalfilter.cpp:607
 #, kde-format
 msgid "Please specify a location to search in."
 msgstr ""
@@ -2343,12 +2322,12 @@ msgstr "Mkdir"
 msgid "Term"
 msgstr "Téarma"
 
-#: app/GUI/kfnkeys.cpp:29 app/kractions.cpp:312
+#: app/GUI/kfnkeys.cpp:29 app/kractions.cpp:303
 #, kde-format
 msgid "Quit"
 msgstr "Scoir"
 
-#: app/GUI/krremoteencodingmenu.cpp:116
+#: app/GUI/krremoteencodingmenu.cpp:115
 #, kde-format
 msgid "Reload"
 msgstr "Athluchtaigh"
@@ -2431,21 +2410,21 @@ msgstr ""
 msgid "Recordable CD/DVD-ROM"
 msgstr ""
 
-#: app/GUI/mediabutton.cpp:334 app/MountMan/kmountman.cpp:389
-#: app/MountMan/kmountmangui.cpp:436 app/Panel/panelcontextmenu.cpp:273
+#: app/GUI/mediabutton.cpp:334 app/MountMan/kmountman.cpp:391
+#: app/MountMan/kmountmangui.cpp:444 app/Panel/panelcontextmenu.cpp:248
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
 msgstr "Feistigh"
 
-#: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:389
-#: app/MountMan/kmountmangui.cpp:441 app/Panel/panelcontextmenu.cpp:271
+#: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:391
+#: app/MountMan/kmountmangui.cpp:449 app/Panel/panelcontextmenu.cpp:246
 #, kde-format
 msgid "Unmount"
 msgstr "Dífheistigh"
 
-#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:448
-#: app/Panel/panelcontextmenu.cpp:275
+#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:456
+#: app/Panel/panelcontextmenu.cpp:250
 #, kde-format
 msgid "Eject"
 msgstr "Díchuir"
@@ -2495,12 +2474,12 @@ msgstr ""
 msgid "Empty Recently Closed Tabs"
 msgstr ""
 
-#: app/GUI/terminaldock.cpp:91
+#: app/GUI/terminaldock.cpp:97
 #, kde-format
 msgid "<b>Cannot create embedded terminal.</b><br/>"
 msgstr ""
 
-#: app/GUI/terminaldock.cpp:102
+#: app/GUI/terminaldock.cpp:108
 #, kde-format
 msgctxt "missing program - arg1 is a URL"
 msgid ""
@@ -2557,7 +2536,7 @@ msgstr ""
 msgid "Run only one job in parallel"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:211 app/JobMan/jobman.cpp:357
+#: app/JobMan/jobman.cpp:211 app/JobMan/jobman.cpp:356
 #, kde-format
 msgid "Undo Last Job"
 msgstr ""
@@ -2567,7 +2546,7 @@ msgstr ""
 msgid "Are you sure you want to quit?"
 msgstr "An bhfuil tú cinnte gur mian leat scor?"
 
-#: app/JobMan/jobman.cpp:376
+#: app/JobMan/jobman.cpp:375
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
@@ -2577,12 +2556,12 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
-#: app/JobMan/jobman.cpp:424
+#: app/JobMan/jobman.cpp:423
 #, kde-format
 msgid "No Jobs"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:426
+#: app/JobMan/jobman.cpp:425
 #, kde-format
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
@@ -2592,17 +2571,17 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
-#: app/JobMan/jobman.cpp:430
+#: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Clear Job List"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:430
+#: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Pause All Jobs"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:430
+#: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Resume Job List"
 msgstr ""
@@ -3144,7 +3123,7 @@ msgid "Statusbar, inactive background:"
 msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:808
-#: app/Panel/panelcontextmenu.cpp:159
+#: app/Panel/panelcontextmenu.cpp:137
 #, kde-format
 msgid "Preview"
 msgstr "Réamhamharc"
@@ -3332,7 +3311,7 @@ msgstr ""
 msgid "Use the system's default viewer"
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2268
+#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2271
 #, kde-format
 msgid "Text mode"
 msgstr ""
@@ -3342,8 +3321,8 @@ msgstr ""
 msgid "View the file in text-only mode"
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1232
-#: app/KViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1235
+#: app/KViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
 msgstr ""
@@ -3473,7 +3452,7 @@ msgstr "Scrios comhaid"
 msgid "Files will be permanently deleted."
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:187
+#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:165
 #, kde-format
 msgid "Terminal"
 msgstr "Teirminéal"
@@ -3768,7 +3747,7 @@ msgstr "Tús na Líne"
 msgid "Open search bar and start searching by typing in panel."
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1296
+#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "Cásíogair"
@@ -3812,7 +3791,7 @@ msgstr "Ionad:"
 msgid "Default mode:"
 msgstr "Súmáil Réamhshocraithe"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1212
+#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
 #, kde-format
 msgid "Search"
@@ -4847,7 +4826,7 @@ msgstr ""
 msgid "Set the full path of the external applications"
 msgstr ""
 
-#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:199
+#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:177
 #: app/UserAction/useractionpopupmenu.cpp:20
 #, kde-format
 msgid "User Actions"
@@ -4964,354 +4943,338 @@ msgstr "Dúliath"
 msgid "Black"
 msgstr "Dubh"
 
-#: app/Konfigurator/krresulttable.cpp:118
+#: app/Konfigurator/krresulttable.cpp:120
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
 msgstr ""
 
-#: app/Konfigurator/krresulttable.cpp:124
+#: app/Konfigurator/krresulttable.cpp:126
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr ""
 
-#: app/Konfigurator/krresulttable.cpp:127
-#: app/Konfigurator/krresulttable.cpp:281
+#: app/Konfigurator/krresulttable.cpp:129
+#: app/Konfigurator/krresulttable.cpp:284
 #, kde-format
 msgid "Found"
 msgstr "Aimsithe"
 
-#: app/Konfigurator/krresulttable.cpp:128
+#: app/Konfigurator/krresulttable.cpp:130
 #, kde-format
 msgid "Packing"
 msgstr "Pacáil"
 
-#: app/Konfigurator/krresulttable.cpp:129
+#: app/Konfigurator/krresulttable.cpp:131
 #, kde-format
 msgid "Unpacking"
 msgstr ""
 
-#: app/Konfigurator/krresulttable.cpp:130
+#: app/Konfigurator/krresulttable.cpp:132
 #, kde-format
 msgid "Note"
 msgstr "Nóta"
 
-#: app/Konfigurator/krresulttable.cpp:196
-#: app/Konfigurator/krresulttable.cpp:214
-#: app/Konfigurator/krresulttable.cpp:352
+#: app/Konfigurator/krresulttable.cpp:198
+#: app/Konfigurator/krresulttable.cpp:216
+#: app/Konfigurator/krresulttable.cpp:355
 #, kde-format
 msgid "enabled"
 msgstr "cumasaithe"
 
-#: app/Konfigurator/krresulttable.cpp:201
-#: app/Konfigurator/krresulttable.cpp:219
-#: app/Konfigurator/krresulttable.cpp:357
+#: app/Konfigurator/krresulttable.cpp:203
+#: app/Konfigurator/krresulttable.cpp:221
+#: app/Konfigurator/krresulttable.cpp:360
 #, kde-format
 msgid "disabled"
 msgstr "díchumasaithe"
 
-#: app/Konfigurator/krresulttable.cpp:274
+#: app/Konfigurator/krresulttable.cpp:277
 #, kde-format
 msgid "diff utility"
 msgstr ""
 
-#: app/Konfigurator/krresulttable.cpp:275
+#: app/Konfigurator/krresulttable.cpp:278
 #, kde-format
 msgid "email client"
 msgstr ""
 
-#: app/Konfigurator/krresulttable.cpp:276
+#: app/Konfigurator/krresulttable.cpp:279
 #, kde-format
 msgid "batch renamer"
 msgstr ""
 
-#: app/Konfigurator/krresulttable.cpp:277
+#: app/Konfigurator/krresulttable.cpp:280
 #, kde-format
 msgid "checksum utility"
 msgstr ""
 
-#: app/Konfigurator/krresulttable.cpp:280
+#: app/Konfigurator/krresulttable.cpp:283
 #, kde-format
 msgid "Tool"
 msgstr "Uirlis"
 
-#: app/Konfigurator/krresulttable.cpp:282
+#: app/Konfigurator/krresulttable.cpp:285
 #, kde-format
 msgid "Status"
 msgstr "Stádas"
 
-#: app/kractions.cpp:174
+#: app/kractions.cpp:175
 #, kde-format
 msgid "Tab-Switch panel"
 msgstr ""
 
-#: app/kractions.cpp:176
-#, kde-format
-msgid "Show Main Toolbar"
-msgstr "Taispeáin an Príomhbharra Uirlisí"
-
-#: app/kractions.cpp:179
-#, fuzzy, kde-format
-#| msgid "Show Main Toolbar"
-msgid "Show Job Toolbar"
-msgstr "Taispeáin an Príomhbharra Uirlisí"
-
 #: app/kractions.cpp:182
-#, kde-format
-msgid "Show Actions Toolbar"
-msgstr ""
-
-#: app/kractions.cpp:191
 #, kde-format
 msgid "Show &FN Keys Bar"
 msgstr ""
 
-#: app/kractions.cpp:193
+#: app/kractions.cpp:184
 #, kde-format
 msgid "Show &Command Line"
 msgstr ""
 
-#: app/kractions.cpp:196
+#: app/kractions.cpp:187
 #, kde-format
 msgid "Show &Embedded Terminal"
 msgstr ""
 
-#: app/kractions.cpp:204
+#: app/kractions.cpp:195
 #, kde-format
 msgid "Show &Hidden Files"
 msgstr "&Taispeáin comhaid fholaithe"
 
-#: app/kractions.cpp:211
+#: app/kractions.cpp:202
 #, kde-format
 msgid "S&wap Panels"
 msgstr ""
 
-#: app/kractions.cpp:213 app/Panel/panelcontextmenu.cpp:286
+#: app/kractions.cpp:204 app/Panel/panelcontextmenu.cpp:261
 #, kde-format
 msgid "Empty Trash"
 msgstr ""
 
-#: app/kractions.cpp:215
+#: app/kractions.cpp:206
 #, kde-format
 msgid "Trash Popup Menu"
 msgstr ""
 
-#: app/kractions.cpp:217
+#: app/kractions.cpp:208
 #, kde-format
 msgid "Sw&ap Sides"
 msgstr ""
 
-#: app/kractions.cpp:221
+#: app/kractions.cpp:212
 #, kde-format
 msgid "popup cmdline"
 msgstr ""
 
-#: app/kractions.cpp:223
+#: app/kractions.cpp:214
 #, kde-format
 msgid "Start &Root Mode Krusader"
 msgstr ""
 
-#: app/kractions.cpp:224
+#: app/kractions.cpp:215
 #, kde-format
 msgid "Pro&files"
 msgstr ""
 
-#: app/kractions.cpp:225
+#: app/kractions.cpp:216
 #, kde-format
 msgid "Sp&lit File..."
 msgstr ""
 
-#: app/kractions.cpp:226
+#: app/kractions.cpp:217
 #, kde-format
 msgid "Com&bine Files..."
 msgstr ""
 
-#: app/kractions.cpp:227
+#: app/kractions.cpp:218
 #, kde-format
 msgid "&Select Newer and Single"
 msgstr ""
 
-#: app/kractions.cpp:228
+#: app/kractions.cpp:219
 #, kde-format
 msgid "Select &Newer"
 msgstr ""
 
-#: app/kractions.cpp:229
+#: app/kractions.cpp:220
 #, kde-format
 msgid "Select &Single"
 msgstr ""
 
-#: app/kractions.cpp:230
+#: app/kractions.cpp:221
 #, kde-format
 msgid "Select Different &and Single"
 msgstr ""
 
-#: app/kractions.cpp:231
+#: app/kractions.cpp:222
 #, kde-format
 msgid "Select &Different"
 msgstr ""
 
-#: app/kractions.cpp:246
+#: app/kractions.cpp:237
 #, kde-format
 msgid "Start and &Forget"
 msgstr ""
 
-#: app/kractions.cpp:248
+#: app/kractions.cpp:239
 #, kde-format
 msgid "Display &Separated Standard and Error Output"
 msgstr ""
 
-#: app/kractions.cpp:254
+#: app/kractions.cpp:245
 #, kde-format
 msgid "Display &Mixed Standard and Error Output"
 msgstr ""
 
-#: app/kractions.cpp:255
+#: app/kractions.cpp:246
 #, kde-format
 msgid "Start in &New Terminal"
 msgstr ""
 
-#: app/kractions.cpp:256
+#: app/kractions.cpp:247
 #, kde-format
 msgid "Send to &Embedded Terminal Emulator"
 msgstr ""
 
-#: app/kractions.cpp:272
+#: app/kractions.cpp:263
 #, kde-format
 msgid "Start &Terminal"
 msgstr ""
 
-#: app/kractions.cpp:278
+#: app/kractions.cpp:269
 #, kde-format
 msgid "&Search..."
 msgstr "&Cuardach..."
 
-#: app/kractions.cpp:279
+#: app/kractions.cpp:270
 #, kde-format
 msgid "&Locate..."
 msgstr ""
 
-#: app/kractions.cpp:281
+#: app/kractions.cpp:272
 #, fuzzy, kde-format
 #| msgid "Synchronize"
 msgid "Synchronize Fol&ders..."
 msgstr "Sioncrónaigh"
 
-#: app/kractions.cpp:283
+#: app/kractions.cpp:274
 #, kde-format
 msgid "D&isk Usage..."
 msgstr ""
 
-#: app/kractions.cpp:285
+#: app/kractions.cpp:276
 #, kde-format
 msgid "Configure &Krusader..."
 msgstr ""
 
-#: app/kractions.cpp:291
+#: app/kractions.cpp:282
 #, kde-format
 msgid "Save &Position"
 msgstr ""
 
-#: app/kractions.cpp:292
+#: app/kractions.cpp:283
 #, kde-format
 msgid "Compare b&y Content..."
 msgstr ""
 
-#: app/kractions.cpp:293
+#: app/kractions.cpp:284
 #, kde-format
 msgid "Multi &Rename..."
 msgstr ""
 
-#: app/kractions.cpp:297 app/krusaderview.cpp:461
+#: app/kractions.cpp:288 app/krusaderview.cpp:461
 #, kde-format
 msgid "Vertical Mode"
 msgstr ""
 
-#: app/kractions.cpp:303
+#: app/kractions.cpp:294
 #, kde-format
 msgid "User&actions"
 msgstr ""
 
-#: app/kractions.cpp:305
+#: app/kractions.cpp:296
 #, kde-format
 msgid "Manage User Actions..."
 msgstr ""
 
-#: app/kractions.cpp:307
+#: app/kractions.cpp:298
 #, kde-format
 msgid "Select Remote Charset"
 msgstr "Roghnaigh Tacar Carachtar i gCéin"
 
-#: app/kractions.cpp:309
+#: app/kractions.cpp:300
 #, kde-format
 msgid "Recently Closed Tabs"
 msgstr ""
 
-#: app/kractions.cpp:313
+#: app/kractions.cpp:304
 #, kde-format
 msgid "Quit Krusader."
 msgstr ""
 
-#: app/kractions.cpp:315
+#: app/kractions.cpp:306
 #, kde-format
 msgid "Popular URLs..."
 msgstr ""
 
-#: app/kractions.cpp:317
+#: app/kractions.cpp:308
 #, kde-format
 msgid "Toggle Fullscreen Embedded Terminal"
 msgstr ""
 
-#: app/kractions.cpp:324
+#: app/kractions.cpp:315
 #, kde-format
 msgid "Move Focus Up"
 msgstr ""
 
-#: app/kractions.cpp:325
+#: app/kractions.cpp:316
 #, kde-format
 msgid "Move Focus Down"
 msgstr ""
 
-#: app/kractions.cpp:340
+#: app/kractions.cpp:331
 #, kde-format
 msgid "Setup Krusader the way you like it"
 msgstr ""
 
-#: app/kractions.cpp:341
+#: app/kractions.cpp:332
 #, kde-format
 msgid "Search for files"
 msgstr ""
 
-#: app/krslots.cpp:90
+#: app/krslots.cpp:91
 #, kde-format
 msgid "No selected files to send."
 msgstr ""
 
-#: app/krslots.cpp:99
+#: app/krslots.cpp:100
 #, kde-format
 msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
 "path. Hint: Krusader supports KMail."
 msgstr ""
 
-#: app/krslots.cpp:108
+#: app/krslots.cpp:109
 #, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:416
-#: app/krslots.cpp:489 app/Synchronizer/synchronizer.cpp:1609
+#: app/krslots.cpp:138 app/krslots.cpp:233 app/krslots.cpp:417
+#: app/krslots.cpp:490 app/Synchronizer/synchronizer.cpp:1608
 #, kde-format
 msgid "Error executing %1."
 msgstr ""
 
-#: app/krslots.cpp:162
+#: app/krslots.cpp:163
 #, kde-format
 msgid "Do not know which files to compare."
 msgstr ""
 
-#: app/krslots.cpp:163
+#: app/krslots.cpp:164
 #, kde-format
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
@@ -5320,26 +5283,26 @@ msgid ""
 "with the same name as the current file in the active panel.</li></ul>"
 msgstr ""
 
-#: app/krslots.cpp:184
+#: app/krslots.cpp:185
 #, kde-format
 msgid "Krusader is unable to download %1"
 msgstr ""
 
-#: app/krslots.cpp:200
+#: app/krslots.cpp:201
 #, kde-format
 msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports Kompare, KDiff3 and Xxdiff."
 msgstr ""
 
-#: app/krslots.cpp:383
+#: app/krslots.cpp:384
 #, kde-format
 msgid ""
 "Cannot find the 'locate' command. Please install the findutils-locate "
 "package of GNU, or set its dependencies in Konfigurator"
 msgstr ""
 
-#: app/krslots.cpp:406 app/UserAction/kraction.cpp:282
+#: app/krslots.cpp:407 app/UserAction/kraction.cpp:282
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5347,20 +5310,20 @@ msgid ""
 "%1"
 msgstr ""
 
-#: app/krslots.cpp:431
+#: app/krslots.cpp:432
 #, kde-format
 msgid ""
 "Cannot find a batch rename tool.\n"
 "You can get KRename at %1"
 msgstr ""
 
-#: app/krslots.cpp:458
+#: app/krslots.cpp:459
 #, fuzzy, kde-format
 #| msgid "Error at deleting file %1."
 msgid "Error executing '%1'."
 msgstr "Earráid agus comhad %1 á scriosadh."
 
-#: app/krslots.cpp:464
+#: app/krslots.cpp:465
 #, kde-format
 msgid ""
 "Improper operations in root mode can damage your operating system. "
@@ -5368,54 +5331,54 @@ msgid ""
 "attackers to gain root access."
 msgstr ""
 
-#: app/krslots.cpp:477
+#: app/krslots.cpp:478
 #, kde-format
 msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
 "verify that kde-cli-tools are installed."
 msgstr ""
 
-#: app/krslots.cpp:503
+#: app/krslots.cpp:504
 #, kde-format
 msgid "Do not know which file to split."
 msgstr ""
 
-#: app/krslots.cpp:512
+#: app/krslots.cpp:513
 #, kde-format
 msgid "You cannot split a folder."
 msgstr ""
 
-#: app/krslots.cpp:535
+#: app/krslots.cpp:536
 #, kde-format
 msgid "Do not know which files to combine."
 msgstr ""
 
-#: app/krslots.cpp:552
+#: app/krslots.cpp:553
 #, kde-format
 msgid "You cannot combine a folder."
 msgstr ""
 
-#: app/krslots.cpp:569 app/krslots.cpp:620
+#: app/krslots.cpp:570 app/krslots.cpp:621
 #, kde-format
 msgid "Not a split file: %1."
 msgstr ""
 
-#: app/krslots.cpp:580
+#: app/krslots.cpp:581
 #, kde-format
 msgid "Select only one split file."
 msgstr ""
 
-#: app/krslots.cpp:627
+#: app/krslots.cpp:628
 #, kde-format
 msgid "Combining %1.* to folder:"
 msgstr ""
 
-#: app/krslots.cpp:711
+#: app/krslots.cpp:712
 #, kde-format
 msgid "Open trash bin"
 msgstr ""
 
-#: app/krslots.cpp:713
+#: app/krslots.cpp:714
 #, kde-format
 msgid "Empty trash bin"
 msgstr ""
@@ -5425,7 +5388,7 @@ msgstr ""
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr ""
 
-#: app/krusader.cpp:305
+#: app/krusader.cpp:297
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5433,14 +5396,14 @@ msgid ""
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr ""
 
-#: app/krusader.cpp:336
+#: app/krusader.cpp:328
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr ""
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1888
-#: app/KViewer/lister.cpp:1923
+#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1890
+#: app/KViewer/lister.cpp:1925
 #, kde-format
 msgid "Lister"
 msgstr ""
@@ -5487,45 +5450,38 @@ msgstr "&Uirlisí"
 msgid "&Settings"
 msgstr "&Socruithe"
 
-#. i18n: ectx: Menu (show_toolbars)
-#: app/krusaderui.rc:121
-#, fuzzy, kde-format
-#| msgid "&Tools"
-msgid "&Toolbars"
-msgstr "&Uirlisí"
-
 #. i18n: ectx: Menu (command_execution_mode)
-#: app/krusaderui.rc:131
+#: app/krusaderui.rc:125
 #, kde-format
 msgid "Command Execution &Mode Setup"
 msgstr ""
 
 #. i18n: ectx: Menu (window)
-#: app/krusaderui.rc:145
+#: app/krusaderui.rc:139
 #, kde-format
 msgid "&Window"
 msgstr "&Fuinneog"
 
 #. i18n: ectx: Menu (help)
-#: app/krusaderui.rc:166
+#: app/krusaderui.rc:160
 #, kde-format
 msgid "&Help"
 msgstr "&Cabhair"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: app/krusaderui.rc:170
+#: app/krusaderui.rc:164
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Príomhbharra Uirlisí"
 
 #. i18n: ectx: ToolBar (actionsToolBar)
-#: app/krusaderui.rc:197
+#: app/krusaderui.rc:191
 #, kde-format
 msgid "Actions Toolbar"
 msgstr "Barra Uirlisí Gníomhartha"
 
 #. i18n: ectx: ToolBar (jobToolBar)
-#: app/krusaderui.rc:200
+#: app/krusaderui.rc:194
 #, fuzzy, kde-format
 #| msgid "Main Toolbar"
 msgid "Job Toolbar"
@@ -5541,57 +5497,57 @@ msgstr ""
 msgid "Horizontal Mode"
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:95
+#: app/KViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Generic Viewer"
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:96
+#: app/KViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Text Viewer"
 msgstr "Amharcán &Téacs"
 
-#: app/KViewer/krviewer.cpp:97
+#: app/KViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "Amharcán &Heics"
 
-#: app/KViewer/krviewer.cpp:98
+#: app/KViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Lister"
 msgstr "&Liostálaí"
 
-#: app/KViewer/krviewer.cpp:101
+#: app/KViewer/krviewer.cpp:104
 #, kde-format
 msgid "Text &Editor"
 msgstr "&Eagarthóir Téacs"
 
-#: app/KViewer/krviewer.cpp:125
+#: app/KViewer/krviewer.cpp:128
 #, kde-format
 msgid "&Detach Tab"
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:137
+#: app/KViewer/krviewer.cpp:140
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "Dún an &Cluaisín Reatha"
 
-#: app/KViewer/krviewer.cpp:143
+#: app/KViewer/krviewer.cpp:146
 #, kde-format
 msgid "&Next Tab"
 msgstr "An Chéad Chluaisí&n Eile"
 
-#: app/KViewer/krviewer.cpp:149
+#: app/KViewer/krviewer.cpp:152
 #, kde-format
 msgid "&Previous Tab"
 msgstr "An Cluaisín &Roimhe Seo"
 
-#: app/KViewer/krviewer.cpp:225
+#: app/KViewer/krviewer.cpp:227
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: app/KViewer/krviewer.cpp:358
+#: app/KViewer/krviewer.cpp:360
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5599,179 +5555,179 @@ msgid ""
 "%1"
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:365
+#: app/KViewer/krviewer.cpp:367
 #, kde-format
 msgid "Can not open \"%1\""
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:676
+#: app/KViewer/krviewer.cpp:678
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (Eagarthóireacht)"
 
-#: app/KViewer/krviewer.cpp:676
+#: app/KViewer/krviewer.cpp:678
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:682
+#: app/KViewer/krviewer.cpp:684
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Eagarthóireacht: %1"
 
-#: app/KViewer/krviewer.cpp:682
+#: app/KViewer/krviewer.cpp:684
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Amharc: %1"
 
-#: app/KViewer/lister.cpp:1199 app/KViewer/lister.cpp:1912
+#: app/KViewer/lister.cpp:1202 app/KViewer/lister.cpp:1914
 #, kde-format
 msgid "Save selection..."
 msgstr ""
 
-#: app/KViewer/lister.cpp:1203
+#: app/KViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
 msgstr "Sábháil mar..."
 
-#: app/KViewer/lister.cpp:1207
+#: app/KViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
 msgstr "Priontáil..."
 
-#: app/KViewer/lister.cpp:1217
+#: app/KViewer/lister.cpp:1220
 #, kde-format
 msgid "Search next"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1222
+#: app/KViewer/lister.cpp:1225
 #, kde-format
 msgid "Search previous"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1227 app/KViewer/lister.cpp:1851
-#: app/KViewer/lister.cpp:1862 app/KViewer/lister.cpp:1870
-#: app/KViewer/lister.cpp:1877
+#: app/KViewer/lister.cpp:1230 app/KViewer/lister.cpp:1853
+#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
+#: app/KViewer/lister.cpp:1879
 #, kde-format
 msgid "Jump to position"
 msgstr "Léim go"
 
-#: app/KViewer/lister.cpp:1237
+#: app/KViewer/lister.cpp:1240
 #, kde-format
 msgid "Select charset"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1256 app/KViewer/lister.cpp:1483
+#: app/KViewer/lister.cpp:1259 app/KViewer/lister.cpp:1486
 #, kde-format
 msgid "Lister:"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1267
+#: app/KViewer/lister.cpp:1270
 #, kde-format
 msgid "Stop search"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1283
+#: app/KViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
 msgstr "Léim go dtí an chéad toradh eile"
 
-#: app/KViewer/lister.cpp:1287
+#: app/KViewer/lister.cpp:1290
 #, kde-format
 msgid "Jump to previous match"
 msgstr "Léim go dtí an ceann roimhe seo"
 
-#: app/KViewer/lister.cpp:1290
+#: app/KViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
 msgstr "Roghanna"
 
-#: app/KViewer/lister.cpp:1291
+#: app/KViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
 msgstr "Athraigh oibriú an chuardaigh"
 
-#: app/KViewer/lister.cpp:1293
+#: app/KViewer/lister.cpp:1296
 #, kde-format
 msgid "From cursor"
 msgstr "Ón chúrsóir"
 
-#: app/KViewer/lister.cpp:1298
+#: app/KViewer/lister.cpp:1301
 #, kde-format
 msgid "Match whole words only"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1302
+#: app/KViewer/lister.cpp:1305
 #, kde-format
 msgid "Hexadecimal"
 msgstr "Heicsidheachúlach"
 
-#: app/KViewer/lister.cpp:1357
+#: app/KViewer/lister.cpp:1360
 #, kde-format
 msgid "Error reading file %1."
 msgstr ""
 
-#: app/KViewer/lister.cpp:1454
+#: app/KViewer/lister.cpp:1457
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1469 app/KViewer/lister.cpp:1820
+#: app/KViewer/lister.cpp:1472 app/KViewer/lister.cpp:1822
 #, kde-format
 msgid "Search:"
 msgstr "Cuardaigh:"
 
-#: app/KViewer/lister.cpp:1836
+#: app/KViewer/lister.cpp:1838
 #, kde-format
 msgid "Search position:"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1851
+#: app/KViewer/lister.cpp:1853
 #, kde-format
 msgid "Text position:"
 msgstr "Ionad an téacs:"
 
-#: app/KViewer/lister.cpp:1862 app/KViewer/lister.cpp:1870
+#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
 #, kde-format
 msgid "Invalid number."
 msgstr ""
 
-#: app/KViewer/lister.cpp:1877
+#: app/KViewer/lister.cpp:1879
 #, kde-format
 msgid "Number out of range."
 msgstr ""
 
-#: app/KViewer/lister.cpp:1912
+#: app/KViewer/lister.cpp:1914
 #, kde-format
 msgid "Nothing is selected."
 msgstr ""
 
-#: app/KViewer/lister.cpp:1990
+#: app/KViewer/lister.cpp:1993
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:56
+#: app/KViewer/panelviewer.cpp:47
 #, kde-format
 msgid "No file selected or selected file cannot be displayed."
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:111 app/Synchronizer/synchronizertask.cpp:144
+#: app/KViewer/panelviewer.cpp:102 app/Synchronizer/synchronizertask.cpp:144
 #: app/Synchronizer/synchronizertask.cpp:151
 #, kde-format
 msgid "Error at opening %1."
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:379
+#: app/KViewer/panelviewer.cpp:340
 #, kde-format
 msgid "Missing Plugin"
 msgstr "Breiseán ar iarraidh"
 
-#: app/KViewer/panelviewer.cpp:385
+#: app/KViewer/panelviewer.cpp:346
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -5779,12 +5735,12 @@ msgid ""
 "without this.<br/>You can fix this by installing Kate:<br/>%1"
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:404
+#: app/KViewer/panelviewer.cpp:365
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:430
+#: app/KViewer/panelviewer.cpp:391
 #, kde-format
 msgid "Cannot edit %1"
 msgstr ""
@@ -5920,734 +5876,733 @@ msgstr "Stad"
 msgid "Feed to listbox"
 msgstr ""
 
-#: app/main.cpp:46
-#, kde-format
+#: app/main.cpp:47
 msgid ""
 "Krusader\n"
 "Twin-Panel File Manager by KDE"
 msgstr ""
 
-#: app/main.cpp:113
+#: app/main.cpp:114
 #, kde-format
 msgid "Krusader"
 msgstr ""
 
-#: app/main.cpp:113
+#: app/main.cpp:114
 #, kde-format
 msgid "Krusader - ROOT PRIVILEGES"
 msgstr ""
 
-#: app/main.cpp:117
+#: app/main.cpp:118
 #, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 msgstr ""
 
-#: app/main.cpp:118
+#: app/main.cpp:119
 #, kde-format
 msgid ""
 "Feedback:\n"
 "https://forum.kde.org/viewforum.php?f=225"
 msgstr ""
 
-#: app/main.cpp:124
+#: app/main.cpp:125
 #, kde-format
 msgid "Davide Gianforte"
 msgstr ""
 
-#: app/main.cpp:124 app/main.cpp:125 app/main.cpp:126
+#: app/main.cpp:125 app/main.cpp:126 app/main.cpp:127
 #, kde-format
 msgid "Developer"
 msgstr "Forbróir"
 
-#: app/main.cpp:125
+#: app/main.cpp:126
 #, kde-format
 msgid "Toni Asensi Esteve"
 msgstr ""
 
-#: app/main.cpp:126
+#: app/main.cpp:127
 #, kde-format
 msgid "Nikita Melnichenko"
 msgstr ""
 
-#: app/main.cpp:127
+#: app/main.cpp:128
 #, kde-format
 msgid "Yuri Chornoivan"
 msgstr ""
 
-#: app/main.cpp:127
+#: app/main.cpp:128
 #, fuzzy, kde-format
 #| msgid "Destination"
 msgid "Documentation"
 msgstr "Sprioc"
 
-#: app/main.cpp:128
+#: app/main.cpp:129
 #, kde-format
 msgid "Rafi Yanai"
 msgstr ""
 
-#: app/main.cpp:128 app/main.cpp:129
+#: app/main.cpp:129 app/main.cpp:130
 #, kde-format
 msgid "Author (retired)"
 msgstr ""
 
-#: app/main.cpp:129
+#: app/main.cpp:130
 #, kde-format
 msgid "Shie Erlich"
 msgstr ""
 
-#: app/main.cpp:130
+#: app/main.cpp:131
 #, kde-format
 msgid "Csaba Karai"
 msgstr ""
 
-#: app/main.cpp:130 app/main.cpp:131 app/main.cpp:132 app/main.cpp:133
-#: app/main.cpp:134 app/main.cpp:135 app/main.cpp:136 app/main.cpp:137
-#: app/main.cpp:138
+#: app/main.cpp:131 app/main.cpp:132 app/main.cpp:133 app/main.cpp:134
+#: app/main.cpp:135 app/main.cpp:136 app/main.cpp:137 app/main.cpp:138
+#: app/main.cpp:139
 #, fuzzy, kde-format
 #| msgid "Developer"
 msgid "Developer (retired)"
 msgstr "Forbróir"
 
-#: app/main.cpp:131
+#: app/main.cpp:132
 #, kde-format
 msgid "Heiner Eichmann"
 msgstr "Heiner Eichmann"
 
-#: app/main.cpp:132
+#: app/main.cpp:133
 #, kde-format
 msgid "Jonas Bähr"
 msgstr ""
 
-#: app/main.cpp:133
+#: app/main.cpp:134
 #, kde-format
 msgid "Václav Jůza"
 msgstr ""
 
-#: app/main.cpp:134
+#: app/main.cpp:135
 #, kde-format
 msgid "Jan Lepper"
 msgstr ""
 
-#: app/main.cpp:135
+#: app/main.cpp:136
 #, kde-format
 msgid "Andrey Matveyakin"
 msgstr ""
 
-#: app/main.cpp:136
+#: app/main.cpp:137
 #, kde-format
 msgid "Simon Persson"
 msgstr ""
 
-#: app/main.cpp:137
+#: app/main.cpp:138
 #, kde-format
 msgid "Alexander Bikadorov"
 msgstr ""
 
-#: app/main.cpp:138
+#: app/main.cpp:139
 #, kde-format
 msgid "Martin Kostolný"
 msgstr ""
 
-#: app/main.cpp:139 app/main.cpp:176
+#: app/main.cpp:140 app/main.cpp:177
 #, kde-format
 msgid "Dirk Eschler"
 msgstr ""
 
-#: app/main.cpp:139
+#: app/main.cpp:140
 #, fuzzy, kde-format
 #| msgid "Developer"
 msgid "Webmaster (retired)"
 msgstr "Forbróir"
 
-#: app/main.cpp:140 app/main.cpp:172
+#: app/main.cpp:141 app/main.cpp:173
 #, kde-format
 msgid "Frank Schoolmeesters"
 msgstr ""
 
-#: app/main.cpp:141
+#: app/main.cpp:142
 #, kde-format
 msgid "Documentation and marketing coordinator (retired)"
 msgstr ""
 
-#: app/main.cpp:144
+#: app/main.cpp:145
 #, kde-format
 msgid "Richard Holt"
 msgstr ""
 
-#: app/main.cpp:144
+#: app/main.cpp:145
 #, kde-format
 msgid "Documentation & Proofing (retired)"
 msgstr ""
 
-#: app/main.cpp:145 app/main.cpp:192
+#: app/main.cpp:146 app/main.cpp:193
 #, kde-format
 msgid "Matej Urbancic"
 msgstr ""
 
-#: app/main.cpp:145
+#: app/main.cpp:146
 #, kde-format
 msgid "Marketing & Product Research (retired)"
 msgstr ""
 
-#: app/main.cpp:146
+#: app/main.cpp:147
 #, kde-format
 msgid "kde.org"
 msgstr ""
 
-#: app/main.cpp:146
+#: app/main.cpp:147
 #, kde-format
 msgid "Everyone involved in KDE"
 msgstr ""
 
-#: app/main.cpp:147
+#: app/main.cpp:148
 #, kde-format
 msgid "l10n.kde.org"
 msgstr ""
 
-#: app/main.cpp:147
+#: app/main.cpp:148
 #, kde-format
 msgid "KDE Translation Teams"
 msgstr ""
 
-#: app/main.cpp:148
+#: app/main.cpp:149
 #, kde-format
 msgid "Jiří Paleček"
 msgstr ""
 
-#: app/main.cpp:148 app/main.cpp:159
+#: app/main.cpp:149 app/main.cpp:160
 #, kde-format
 msgid "QA, bug-hunting, patches and general help"
 msgstr ""
 
-#: app/main.cpp:149
+#: app/main.cpp:150
 #, kde-format
 msgid "Jiří Klement"
 msgstr ""
 
-#: app/main.cpp:149
+#: app/main.cpp:150
 #, kde-format
 msgid "Important help in KDE 4 porting"
 msgstr ""
 
-#: app/main.cpp:150
+#: app/main.cpp:151
 #, kde-format
 msgid "Andrew Neupokoev"
 msgstr ""
 
-#: app/main.cpp:150
+#: app/main.cpp:151
 #, kde-format
 msgid "Killer Logo and Icons for Krusader (contest winner)"
 msgstr ""
 
-#: app/main.cpp:151
+#: app/main.cpp:152
 #, kde-format
 msgid "The UsefulArts Organization"
 msgstr ""
 
-#: app/main.cpp:151
+#: app/main.cpp:152
 #, kde-format
 msgid "Icon for Krusader"
 msgstr ""
 
-#: app/main.cpp:152
+#: app/main.cpp:153
 #, kde-format
 msgid "Gábor Lehel"
 msgstr "Gábor Lehel"
 
-#: app/main.cpp:152
+#: app/main.cpp:153
 #, kde-format
 msgid "Viewer module for 3rd Hand"
 msgstr ""
 
-#: app/main.cpp:153
+#: app/main.cpp:154
 #, kde-format
 msgid "Mark Eatough"
 msgstr ""
 
-#: app/main.cpp:153
+#: app/main.cpp:154
 #, kde-format
 msgid "Handbook Proof-Reader"
 msgstr ""
 
-#: app/main.cpp:154
+#: app/main.cpp:155
 #, kde-format
 msgid "Jan Halasa"
 msgstr ""
 
-#: app/main.cpp:154
+#: app/main.cpp:155
 #, kde-format
 msgid "The old Bookmark Module"
 msgstr ""
 
-#: app/main.cpp:155
+#: app/main.cpp:156
 #, kde-format
 msgid "Hans Löffler"
 msgstr ""
 
-#: app/main.cpp:155
+#: app/main.cpp:156
 #, kde-format
 msgid "Dir history button"
 msgstr ""
 
-#: app/main.cpp:156
+#: app/main.cpp:157
 #, kde-format
 msgid "Szombathelyi György"
 msgstr "Szombathelyi György"
 
-#: app/main.cpp:156
+#: app/main.cpp:157
 #, kde-format
 msgid "ISO KIO slave"
 msgstr ""
 
-#: app/main.cpp:157
+#: app/main.cpp:158
 #, kde-format
 msgid "Jan Willem van de Meent (Adios)"
 msgstr ""
 
-#: app/main.cpp:157
+#: app/main.cpp:158
 #, kde-format
 msgid "Icons for Krusader"
 msgstr ""
 
-#: app/main.cpp:158
+#: app/main.cpp:159
 #, kde-format
 msgid "Mikolaj Machowski"
 msgstr "Mikolaj Machowski"
 
-#: app/main.cpp:158
+#: app/main.cpp:159
 #, kde-format
 msgid "Usability and QA"
 msgstr ""
 
-#: app/main.cpp:159
+#: app/main.cpp:160
 #, kde-format
 msgid "Cristi Dumitrescu"
 msgstr "Cristi Dumitrescu"
 
-#: app/main.cpp:160
+#: app/main.cpp:161
 #, kde-format
 msgid "Aurelien Gateau"
 msgstr "Aurelien Gateau"
 
-#: app/main.cpp:160
+#: app/main.cpp:161
 #, kde-format
 msgid "patch for KViewer"
 msgstr ""
 
-#: app/main.cpp:161
+#: app/main.cpp:162
 #, kde-format
 msgid "Milan Brabec"
 msgstr ""
 
-#: app/main.cpp:161
+#: app/main.cpp:162
 #, kde-format
 msgid "the first patch ever!"
 msgstr ""
 
-#: app/main.cpp:162
+#: app/main.cpp:163
 #, kde-format
 msgid "Asim Husanovic"
 msgstr ""
 
-#: app/main.cpp:162
+#: app/main.cpp:163
 #, kde-format
 msgid "Bosnian translation"
 msgstr ""
 
-#: app/main.cpp:163
+#: app/main.cpp:164
 #, kde-format
 msgid "Doutor Zero"
 msgstr ""
 
-#: app/main.cpp:163
+#: app/main.cpp:164
 #, kde-format
 msgid "Brazilian Portuguese translation"
 msgstr "Aistriúchán Portaingéilise na Brasaíle"
 
-#: app/main.cpp:164
+#: app/main.cpp:165
 #, kde-format
 msgid "Milen Ivanov"
 msgstr ""
 
-#: app/main.cpp:164
+#: app/main.cpp:165
 #, kde-format
 msgid "Bulgarian translation"
 msgstr "Aistriúchán Bulgáirise"
 
-#: app/main.cpp:165
+#: app/main.cpp:166
 #, kde-format
 msgid "Quim Perez"
 msgstr ""
 
-#: app/main.cpp:165
+#: app/main.cpp:166
 #, kde-format
 msgid "Catalan translation"
 msgstr ""
 
-#: app/main.cpp:166
+#: app/main.cpp:167
 #, kde-format
 msgid "Jinghua Luo"
 msgstr ""
 
-#: app/main.cpp:166
+#: app/main.cpp:167
 #, kde-format
 msgid "Chinese Simplified translation"
 msgstr ""
 
-#: app/main.cpp:167
+#: app/main.cpp:168
 #, kde-format
 msgid "Mitek"
 msgstr ""
 
-#: app/main.cpp:167 app/main.cpp:168
+#: app/main.cpp:168 app/main.cpp:169
 #, kde-format
 msgid "Old Czech translation"
 msgstr ""
 
-#: app/main.cpp:168
+#: app/main.cpp:169
 #, kde-format
 msgid "Martin Sixta"
 msgstr ""
 
-#: app/main.cpp:169
+#: app/main.cpp:170
 #, kde-format
 msgid "Vaclav Jůza"
 msgstr ""
 
-#: app/main.cpp:169
+#: app/main.cpp:170
 #, kde-format
 msgid "Czech translation"
 msgstr "Aistriúchán Seicise"
 
-#: app/main.cpp:170
+#: app/main.cpp:171
 #, kde-format
 msgid "Anders Bruun Olsen"
 msgstr ""
 
-#: app/main.cpp:170
+#: app/main.cpp:171
 #, kde-format
 msgid "Old Danish translation"
 msgstr ""
 
-#: app/main.cpp:171
+#: app/main.cpp:172
 #, kde-format
 msgid "Peter H. Sorensen"
 msgstr ""
 
-#: app/main.cpp:171
+#: app/main.cpp:172
 #, kde-format
 msgid "Danish translation"
 msgstr "Aistriúchán Danmhairgise"
 
-#: app/main.cpp:172
+#: app/main.cpp:173
 #, kde-format
 msgid "Dutch translation"
 msgstr "Aistriúchán Ollainnise"
 
-#: app/main.cpp:173
+#: app/main.cpp:174
 #, kde-format
 msgid "Rene-Pierre Lehmann"
 msgstr ""
 
-#: app/main.cpp:173
+#: app/main.cpp:174
 #, kde-format
 msgid "Old French translation"
 msgstr ""
 
-#: app/main.cpp:174
+#: app/main.cpp:175
 #, kde-format
 msgid "David Guillerm"
 msgstr ""
 
-#: app/main.cpp:174
+#: app/main.cpp:175
 #, kde-format
 msgid "French translation"
 msgstr "Aistriúchán Fraincise"
 
-#: app/main.cpp:175
+#: app/main.cpp:176
 #, kde-format
 msgid "Christoph Thielecke"
 msgstr "Christoph Thielecke"
 
-#: app/main.cpp:175
+#: app/main.cpp:176
 #, kde-format
 msgid "Old German translation"
 msgstr ""
 
-#: app/main.cpp:176
+#: app/main.cpp:177
 #, kde-format
 msgid "German translation"
 msgstr "Aistriúchán Gearmáinise"
 
-#: app/main.cpp:177
+#: app/main.cpp:178
 #, kde-format
 msgid "Spiros Georgaras"
 msgstr ""
 
-#: app/main.cpp:177
+#: app/main.cpp:178
 #, kde-format
 msgid "Greek translation"
 msgstr ""
 
-#: app/main.cpp:178
+#: app/main.cpp:179
 #, kde-format
 msgid "Kukk Zoltan"
 msgstr ""
 
-#: app/main.cpp:178
+#: app/main.cpp:179
 #, kde-format
 msgid "Old Hungarian translation"
 msgstr ""
 
-#: app/main.cpp:179
+#: app/main.cpp:180
 #, kde-format
 msgid "Arpad Biro"
 msgstr ""
 
-#: app/main.cpp:179
+#: app/main.cpp:180
 #, kde-format
 msgid "Hungarian translation"
 msgstr "Aistriúchán Ungáirise"
 
-#: app/main.cpp:180
+#: app/main.cpp:181
 #, kde-format
 msgid "Giuseppe Bordoni"
 msgstr ""
 
-#: app/main.cpp:180
+#: app/main.cpp:181
 #, kde-format
 msgid "Italian translation"
 msgstr "Aistriúcháin Iodáilise"
 
-#: app/main.cpp:181
+#: app/main.cpp:182
 #, kde-format
 msgid "Hideki Kimura"
 msgstr ""
 
-#: app/main.cpp:181
+#: app/main.cpp:182
 #, kde-format
 msgid "Japanese translation"
 msgstr ""
 
-#: app/main.cpp:182
+#: app/main.cpp:183
 #, kde-format
 msgid "UTUMI Hirosi"
 msgstr ""
 
-#: app/main.cpp:182
+#: app/main.cpp:183
 #, kde-format
 msgid "Old Japanese translation"
 msgstr ""
 
-#: app/main.cpp:183
+#: app/main.cpp:184
 #, kde-format
 msgid "Dovydas Sankauskas"
 msgstr ""
 
-#: app/main.cpp:183
+#: app/main.cpp:184
 #, kde-format
 msgid "Lithuanian translation"
 msgstr ""
 
-#: app/main.cpp:184
+#: app/main.cpp:185
 #, kde-format
 msgid "Bruno Queiros"
 msgstr ""
 
-#: app/main.cpp:184
+#: app/main.cpp:185
 #, kde-format
 msgid "Portuguese translation"
 msgstr ""
 
-#: app/main.cpp:185
+#: app/main.cpp:186
 #, kde-format
 msgid "Lukasz Janyst"
 msgstr ""
 
-#: app/main.cpp:185
+#: app/main.cpp:186
 #, kde-format
 msgid "Old Polish translation"
 msgstr ""
 
-#: app/main.cpp:186
+#: app/main.cpp:187
 #, kde-format
 msgid "Pawel Salawa"
 msgstr ""
 
-#: app/main.cpp:186 app/main.cpp:187
+#: app/main.cpp:187 app/main.cpp:188
 #, kde-format
 msgid "Polish translation"
 msgstr ""
 
-#: app/main.cpp:187
+#: app/main.cpp:188
 #, kde-format
 msgid "Tomek Grzejszczyk"
 msgstr ""
 
-#: app/main.cpp:188
+#: app/main.cpp:189
 #, kde-format
 msgid "Dmitry A. Bugay"
 msgstr ""
 
-#: app/main.cpp:188
+#: app/main.cpp:189
 #, kde-format
 msgid "Russian translation"
 msgstr "Aistriúchán Rúisise"
 
-#: app/main.cpp:189
+#: app/main.cpp:190
 #, kde-format
 msgid "Dmitry Chernyak"
 msgstr ""
 
-#: app/main.cpp:189
+#: app/main.cpp:190
 #, kde-format
 msgid "Old Russian translation"
 msgstr ""
 
-#: app/main.cpp:190
+#: app/main.cpp:191
 #, kde-format
 msgid "Sasa Tomic"
 msgstr ""
 
-#: app/main.cpp:190
+#: app/main.cpp:191
 #, kde-format
 msgid "Serbian translation"
 msgstr ""
 
-#: app/main.cpp:191
+#: app/main.cpp:192
 #, kde-format
 msgid "Zdenko Podobný and Ondrej Pačay (Yogi)"
 msgstr ""
 
-#: app/main.cpp:191
+#: app/main.cpp:192
 #, kde-format
 msgid "Slovak translation"
 msgstr ""
 
-#: app/main.cpp:192
+#: app/main.cpp:193
 #, kde-format
 msgid "Slovenian translation"
 msgstr ""
 
-#: app/main.cpp:193
+#: app/main.cpp:194
 #, kde-format
 msgid "Rafael Munoz"
 msgstr ""
 
-#: app/main.cpp:193
+#: app/main.cpp:194
 #, kde-format
 msgid "Old Spanish translation"
 msgstr ""
 
-#: app/main.cpp:194
+#: app/main.cpp:195
 #, kde-format
 msgid "Alejandro Araiza Alvarado"
 msgstr ""
 
-#: app/main.cpp:194
+#: app/main.cpp:195
 #, kde-format
 msgid "Spanish translation"
 msgstr "Aistriúchán Spáinnise"
 
-#: app/main.cpp:195
+#: app/main.cpp:196
 #, kde-format
 msgid "Erik Johanssen"
 msgstr ""
 
-#: app/main.cpp:195 app/main.cpp:196
+#: app/main.cpp:196 app/main.cpp:197
 #, kde-format
 msgid "Old Swedish translation"
 msgstr ""
 
-#: app/main.cpp:196
+#: app/main.cpp:197
 #, kde-format
 msgid "Anders Linden"
 msgstr ""
 
-#: app/main.cpp:197
+#: app/main.cpp:198
 #, kde-format
 msgid "Peter Landgren"
 msgstr ""
 
-#: app/main.cpp:197
+#: app/main.cpp:198
 #, kde-format
 msgid "Swedish translation"
 msgstr ""
 
-#: app/main.cpp:198
+#: app/main.cpp:199
 #, kde-format
 msgid "Bekir Sonat"
 msgstr ""
 
-#: app/main.cpp:198
+#: app/main.cpp:199
 #, kde-format
 msgid "Turkish translation"
 msgstr ""
 
-#: app/main.cpp:199
+#: app/main.cpp:200
 #, kde-format
 msgid "Ivan Petrouchtchak"
 msgstr ""
 
-#: app/main.cpp:199
+#: app/main.cpp:200
 #, kde-format
 msgid "Ukrainian translation"
 msgstr ""
 
-#: app/main.cpp:200
+#: app/main.cpp:201
 #, kde-format
 msgid "Seongnam Jee"
 msgstr ""
 
-#: app/main.cpp:200
+#: app/main.cpp:201
 #, kde-format
 msgid "Korean translation"
 msgstr ""
 
-#: app/main.cpp:210
+#: app/main.cpp:211
 #, kde-format
 msgid "Start left panel at <path>"
 msgstr ""
 
-#: app/main.cpp:211
+#: app/main.cpp:212
 #, kde-format
 msgid "Start right panel at <path>"
 msgstr ""
 
-#: app/main.cpp:212
+#: app/main.cpp:213
 #, kde-format
 msgid "Load this profile on startup"
 msgstr ""
 
-#: app/main.cpp:213
+#: app/main.cpp:214
 #, kde-format
 msgid "Enable debug output"
 msgstr ""
 
-#: app/main.cpp:214
+#: app/main.cpp:215
 #, kde-format
 msgid "URL to open"
 msgstr "URL le hoscailt"
 
-#: app/MountMan/kmountman.cpp:56
+#: app/MountMan/kmountman.cpp:58
 #, kde-format
 msgid "&MountMan..."
 msgstr ""
 
-#: app/MountMan/kmountman.cpp:59
+#: app/MountMan/kmountman.cpp:61
 #, fuzzy, kde-format
 #| msgid "&Mount"
 msgid "Open &MountMan"
 msgstr "&Feistigh"
 
-#: app/MountMan/kmountman.cpp:132
+#: app/MountMan/kmountman.cpp:134
 #, kde-format
 msgid "Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."
 msgstr ""
 
-#: app/MountMan/kmountman.cpp:356
+#: app/MountMan/kmountman.cpp:358
 #, kde-format
 msgid "MountMan is not operational. Sorry"
 msgstr ""
@@ -6662,7 +6617,7 @@ msgstr ""
 msgid "&Eject"
 msgstr "&Díchuir"
 
-#: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:411
+#: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:419
 #, kde-format
 msgid "&Unmount"
 msgstr "&Dífheistigh"
@@ -6697,17 +6652,17 @@ msgstr ""
 msgid "Show only removable devices"
 msgstr ""
 
-#: app/MountMan/kmountmangui.cpp:413
+#: app/MountMan/kmountmangui.cpp:421
 #, kde-format
 msgid "&Mount"
 msgstr "&Feistigh"
 
-#: app/MountMan/kmountmangui.cpp:434
+#: app/MountMan/kmountmangui.cpp:442
 #, kde-format
 msgid "MountMan"
 msgstr ""
 
-#: app/MountMan/kmountmangui.cpp:450
+#: app/MountMan/kmountmangui.cpp:458
 #, kde-format
 msgid "Format"
 msgstr "Formáid"
@@ -6761,91 +6716,91 @@ msgstr[2] "agus %1 chomhad"
 msgstr[3] "agus %1 gcomhad"
 msgstr[4] "agus %1 comhad"
 
-#: app/Panel/krfiletreeview.cpp:179
+#: app/Panel/krfiletreeview.cpp:182
 #, fuzzy, kde-format
 #| msgid "Details"
 msgid "Show Details"
 msgstr "Mionsonraí"
 
-#: app/Panel/krfiletreeview.cpp:182
+#: app/Panel/krfiletreeview.cpp:185
 #, fuzzy, kde-format
 #| msgid "Show hidden files"
 msgid "Show columns with details"
 msgstr "Taispeáin comhaid fholaithe"
 
-#: app/Panel/krfiletreeview.cpp:183
+#: app/Panel/krfiletreeview.cpp:186
 #, fuzzy, kde-format
 #| msgid "Show &Hidden Files"
 msgid "Show Hidden Folders"
 msgstr "&Taispeáin comhaid fholaithe"
 
-#: app/Panel/krfiletreeview.cpp:186
+#: app/Panel/krfiletreeview.cpp:189
 #, fuzzy, kde-format
 #| msgid "Show directories first"
 msgid "Show folders starting with a dot"
 msgstr "Taispeáin comhadlanna ar dtús"
 
-#: app/Panel/krfiletreeview.cpp:191
+#: app/Panel/krfiletreeview.cpp:194
 #, fuzzy, kde-format
 #| msgid "Start of Line"
 msgid "Start From Root"
 msgstr "Tús na Líne"
 
-#: app/Panel/krfiletreeview.cpp:194
+#: app/Panel/krfiletreeview.cpp:197
 #, kde-format
 msgid "Set root of the tree to root of filesystem"
 msgstr ""
 
-#: app/Panel/krfiletreeview.cpp:197
+#: app/Panel/krfiletreeview.cpp:200
 #, kde-format
 msgid "Start From Current"
 msgstr ""
 
-#: app/Panel/krfiletreeview.cpp:200
+#: app/Panel/krfiletreeview.cpp:203
 #, kde-format
 msgid "Set root of the tree to the current folder"
 msgstr ""
 
-#: app/Panel/krfiletreeview.cpp:203
+#: app/Panel/krfiletreeview.cpp:206
 #, fuzzy, kde-format
 #| msgid "Start of Line"
 msgid "Start From Place"
 msgstr "Tús na Líne"
 
-#: app/Panel/krfiletreeview.cpp:206
+#: app/Panel/krfiletreeview.cpp:209
 #, kde-format
 msgid "Set root of the tree to closest folder listed in 'Places'"
 msgstr ""
 
-#: app/Panel/krfiletreeview.cpp:235
+#: app/Panel/krfiletreeview.cpp:238
 #, fuzzy, kde-format
 #| msgid "Custom"
 msgctxt "@action:inmenu"
 msgid "Cut"
 msgstr "Saincheaptha"
 
-#: app/Panel/krfiletreeview.cpp:242
+#: app/Panel/krfiletreeview.cpp:245
 #, fuzzy, kde-format
 #| msgid "Copy"
 msgctxt "@action:inmenu"
 msgid "Copy"
 msgstr "Cóipeáil"
 
-#: app/Panel/krfiletreeview.cpp:265
+#: app/Panel/krfiletreeview.cpp:268
 #, fuzzy, kde-format
 #| msgid "Move to Trash"
 msgctxt "@action:inmenu"
 msgid "Move to Trash"
 msgstr "Cuir sa Bhruscar"
 
-#: app/Panel/krfiletreeview.cpp:275
+#: app/Panel/krfiletreeview.cpp:278
 #, fuzzy, kde-format
 #| msgid "Delete"
 msgctxt "@action:inmenu"
 msgid "Delete"
 msgstr "Scrios"
 
-#: app/Panel/krfiletreeview.cpp:286
+#: app/Panel/krfiletreeview.cpp:289
 #, fuzzy, kde-format
 #| msgid "Advanced Properties"
 msgctxt "@action:inmenu"
@@ -7118,7 +7073,7 @@ msgstr ""
 msgid "Verify Checksum..."
 msgstr ""
 
-#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:252
+#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:227
 #, kde-format
 msgid "New Symlink..."
 msgstr ""
@@ -7300,206 +7255,206 @@ msgid ""
 "Konfigurator, default is <b>konsole</b>.</p></qt>"
 msgstr ""
 
-#: app/Panel/panelcontextmenu.cpp:123
+#: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open/Run Files"
 msgstr ""
 
-#: app/Panel/panelcontextmenu.cpp:125
+#: app/Panel/panelcontextmenu.cpp:103
 #, kde-format
 msgid "Run"
 msgstr "Rith"
 
-#: app/Panel/panelcontextmenu.cpp:134
+#: app/Panel/panelcontextmenu.cpp:112
 #, fuzzy, kde-format
 #| msgid "Open in New Tab"
 msgid "Open in New Tabs"
 msgstr "Oscail i gCluaisín Nua"
 
-#: app/Panel/panelcontextmenu.cpp:134
+#: app/Panel/panelcontextmenu.cpp:112
 #, kde-format
 msgid "Open in New Tab"
 msgstr "Oscail i gCluaisín Nua"
 
-#: app/Panel/panelcontextmenu.cpp:147
+#: app/Panel/panelcontextmenu.cpp:125
 #, fuzzy, kde-format
 #| msgid "Archives"
 msgid "Browse Archive"
 msgstr "Cartlanna"
 
-#: app/Panel/panelcontextmenu.cpp:189
+#: app/Panel/panelcontextmenu.cpp:167
 #, kde-format
 msgid "Other..."
 msgstr "Eile..."
 
-#: app/Panel/panelcontextmenu.cpp:191
+#: app/Panel/panelcontextmenu.cpp:169
 #, kde-format
 msgid "Open With"
 msgstr "Oscail Le"
 
-#: app/Panel/panelcontextmenu.cpp:238
+#: app/Panel/panelcontextmenu.cpp:213
 #, kde-format
 msgid "Move to Trash"
 msgstr "Cuir sa Bhruscar"
 
-#: app/Panel/panelcontextmenu.cpp:253
+#: app/Panel/panelcontextmenu.cpp:228
 #, kde-format
 msgid "New Hardlink..."
 msgstr ""
 
-#: app/Panel/panelcontextmenu.cpp:255
+#: app/Panel/panelcontextmenu.cpp:230
 #, kde-format
 msgid "Redirect Link..."
 msgstr ""
 
-#: app/Panel/panelcontextmenu.cpp:258
+#: app/Panel/panelcontextmenu.cpp:233
 #, kde-format
 msgid "Link Handling"
 msgstr ""
 
-#: app/Panel/panelcontextmenu.cpp:280
+#: app/Panel/panelcontextmenu.cpp:255
 #, kde-format
 msgid "Send by Email"
 msgstr ""
 
-#: app/Panel/panelcontextmenu.cpp:285
+#: app/Panel/panelcontextmenu.cpp:260
 #, kde-format
 msgid "Restore"
 msgstr "Athchóirigh"
 
-#: app/Panel/panelcontextmenu.cpp:292
+#: app/Panel/panelcontextmenu.cpp:267
 #, kde-format
 msgid "Synchronize Selected Files..."
 msgstr ""
 
-#: app/Panel/panelcontextmenu.cpp:319
+#: app/Panel/panelcontextmenu.cpp:294
 #, kde-format
 msgid "Create New"
 msgstr "Cruthaigh Nua"
 
-#: app/Panel/panelfunc.cpp:371
+#: app/Panel/panelfunc.cpp:365
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:382
+#: app/Panel/panelfunc.cpp:376
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:389
+#: app/Panel/panelfunc.cpp:383
 #, kde-format
 msgid "Link Redirection"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:389
+#: app/Panel/panelfunc.cpp:383
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:396
+#: app/Panel/panelfunc.cpp:390
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:401
+#: app/Panel/panelfunc.cpp:395
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:409
+#: app/Panel/panelfunc.cpp:403
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:417
+#: app/Panel/panelfunc.cpp:411
 #, kde-format
 msgid "New Link"
 msgstr "Nasc Nua"
 
-#: app/Panel/panelfunc.cpp:417
+#: app/Panel/panelfunc.cpp:411
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:425 app/Panel/panelfunc.cpp:771
+#: app/Panel/panelfunc.cpp:419 app/Panel/panelfunc.cpp:765
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:436
+#: app/Panel/panelfunc.cpp:430
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:439
+#: app/Panel/panelfunc.cpp:433
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:456
+#: app/Panel/panelfunc.cpp:450
 #, kde-format
 msgid "No permissions to view this file."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:467
+#: app/Panel/panelfunc.cpp:461
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:497 app/Panel/panelfunc.cpp:575
+#: app/Panel/panelfunc.cpp:491 app/Panel/panelfunc.cpp:569
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:502
+#: app/Panel/panelfunc.cpp:496
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:516
+#: app/Panel/panelfunc.cpp:510
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:627
+#: app/Panel/panelfunc.cpp:621
 #, kde-format
 msgid "Move %1 to:"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:627
+#: app/Panel/panelfunc.cpp:621
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Panel/panelfunc.cpp:629
+#: app/Panel/panelfunc.cpp:623
 #, kde-format
 msgid "Copy %1 to:"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:629
+#: app/Panel/panelfunc.cpp:623
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Panel/panelfunc.cpp:695
+#: app/Panel/panelfunc.cpp:689
 #, fuzzy, kde-format
 #| msgid "Folder name:"
 msgid "Folder's name:"
 msgstr "Ainm an fhillteáin:"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:829
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Panel/panelfunc.cpp:839
+#: app/Panel/panelfunc.cpp:833
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7510,44 +7465,44 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Panel/panelfunc.cpp:846
+#: app/Panel/panelfunc.cpp:840
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:878
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:885
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:885
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:887
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "&Skip"
 msgstr "&Ná bac leis"
 
-#: app/Panel/panelfunc.cpp:888
+#: app/Panel/panelfunc.cpp:882
 #, kde-format
 msgid "&Trash All"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:888
+#: app/Panel/panelfunc.cpp:882
 #, kde-format
 msgid "&Delete All"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:925
+#: app/Panel/panelfunc.cpp:919
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7558,24 +7513,24 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Panel/panelfunc.cpp:961
+#: app/Panel/panelfunc.cpp:955
 #, kde-format
 msgid "Could not start %1"
 msgstr "Níorbh fhéidir %1 a thosú"
 
-#: app/Panel/panelfunc.cpp:973
+#: app/Panel/panelfunc.cpp:967
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:1050
+#: app/Panel/panelfunc.cpp:1044
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost.</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:1055
+#: app/Panel/panelfunc.cpp:1049
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7583,17 +7538,17 @@ msgid ""
 "entries for new names.</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:1063
+#: app/Panel/panelfunc.cpp:1057
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:1096
+#: app/Panel/panelfunc.cpp:1090
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:1098
+#: app/Panel/panelfunc.cpp:1092
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
@@ -8094,173 +8049,172 @@ msgstr ""
 msgid "Query name"
 msgstr ""
 
-#: app/Splitter/combiner.cpp:59
+#: app/Splitter/combiner.cpp:60
 #, kde-format
 msgid "Krusader::Combining..."
 msgstr ""
 
-#: app/Splitter/combiner.cpp:60
+#: app/Splitter/combiner.cpp:61
 #, kde-format
 msgid "Combining the file %1..."
 msgstr ""
 
-#: app/Splitter/combiner.cpp:71
+#: app/Splitter/combiner.cpp:72
 #, kde-format
 msgid ""
 "The CRC information file (%1) is missing.\n"
 "Validity checking is impossible without it. Continue combining?"
 msgstr ""
 
-#: app/Splitter/combiner.cpp:107
+#: app/Splitter/combiner.cpp:108
 #, kde-format
 msgid "Error at reading the CRC file (%1)."
 msgstr ""
 
-#: app/Splitter/combiner.cpp:136
+#: app/Splitter/combiner.cpp:137
 #, kde-format
 msgid "Not a valid CRC file."
 msgstr ""
 
-#: app/Splitter/combiner.cpp:143
+#: app/Splitter/combiner.cpp:144
 #, kde-format
 msgid ""
 "\n"
 "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 
-#: app/Splitter/combiner.cpp:189 app/Splitter/splitter.cpp:177
-#: app/Synchronizer/synchronizer.cpp:1329
-#: app/Synchronizer/synchronizer.cpp:1342
+#: app/Splitter/combiner.cpp:186 app/Splitter/splitter.cpp:174
+#: app/Synchronizer/synchronizer.cpp:1345
 #, kde-format
 msgid "File Already Exists"
 msgstr "Tá an comhad ann cheana"
 
-#: app/Splitter/combiner.cpp:275
+#: app/Splitter/combiner.cpp:272
 #, kde-format
 msgid "Cannot open the first split file of %1."
 msgstr ""
 
-#: app/Splitter/combiner.cpp:285
+#: app/Splitter/combiner.cpp:282
 #, kde-format
 msgid "Incorrect filesize, the file might have been corrupted."
 msgstr ""
 
-#: app/Splitter/combiner.cpp:287
+#: app/Splitter/combiner.cpp:284
 #, kde-format
 msgid "Incorrect CRC checksum, the file might have been corrupted."
 msgstr ""
 
-#: app/Splitter/splitter.cpp:72
+#: app/Splitter/splitter.cpp:73
 #, kde-format
 msgid "Krusader::Splitting..."
 msgstr ""
 
-#: app/Splitter/splitter.cpp:73
+#: app/Splitter/splitter.cpp:74
 #, kde-format
 msgid "Splitting the file %1..."
 msgstr ""
 
-#: app/Splitter/splitter.cpp:76
+#: app/Splitter/splitter.cpp:77
 #, kde-format
 msgid "Cannot split a folder."
 msgstr ""
 
-#: app/Splitter/splitter.cpp:120
+#: app/Splitter/splitter.cpp:121
 #, kde-format
 msgid "Error reading file %1: %2"
 msgstr ""
 
-#: app/Splitter/splitter.cpp:233 app/Splitter/splitter.cpp:276
+#: app/Splitter/splitter.cpp:230 app/Splitter/splitter.cpp:273
 #, kde-format
 msgid "Error writing file %1: %2"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:56
+#: app/Splitter/splittergui.cpp:59
 #, kde-format
 msgid "1.44 MB (3.5\")"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:57
+#: app/Splitter/splittergui.cpp:60
 #, kde-format
 msgid "1.2 MB (5.25\")"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:58
+#: app/Splitter/splittergui.cpp:61
 #, kde-format
 msgid "720 kB (3.5\")"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:59
+#: app/Splitter/splittergui.cpp:62
 #, kde-format
 msgid "360 kB (5.25\")"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:60
+#: app/Splitter/splittergui.cpp:63
 #, kde-format
 msgid "100 MB (ZIP)"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:61
+#: app/Splitter/splittergui.cpp:64
 #, kde-format
 msgid "250 MB (ZIP)"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:62
+#: app/Splitter/splittergui.cpp:65
 #, kde-format
 msgid "650 MB (CD-R)"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:63
+#: app/Splitter/splittergui.cpp:66
 #, kde-format
 msgid "700 MB (CD-R)"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:81
+#: app/Splitter/splittergui.cpp:84
 #, kde-format
 msgid "Split the file %1 to folder:"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:98
+#: app/Splitter/splittergui.cpp:101
 #, kde-format
 msgid "User Defined"
 msgstr "Sainithe ag an Úsáideoir"
 
-#: app/Splitter/splittergui.cpp:107
+#: app/Splitter/splittergui.cpp:110
 #, kde-format
 msgid "Max file size:"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:118
+#: app/Splitter/splittergui.cpp:121
 #, kde-format
 msgid "kByte"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:119
+#: app/Splitter/splittergui.cpp:122
 #, kde-format
 msgid "MByte"
 msgstr "MB"
 
-#: app/Splitter/splittergui.cpp:120
+#: app/Splitter/splittergui.cpp:123
 #, kde-format
 msgid "GByte"
 msgstr "GB"
 
-#: app/Splitter/splittergui.cpp:125
+#: app/Splitter/splittergui.cpp:128
 #, kde-format
 msgid "Overwrite files without confirmation"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:135
+#: app/Splitter/splittergui.cpp:138
 #, kde-format
 msgid "&Split"
 msgstr "&Roinn"
 
-#: app/Splitter/splittergui.cpp:139
+#: app/Splitter/splittergui.cpp:142
 #, kde-format
 msgid "Krusader::Splitter"
 msgstr ""
 
-#: app/Splitter/splittergui.cpp:239
+#: app/Splitter/splittergui.cpp:242
 #, kde-format
 msgid "The folder path URL is malformed."
 msgstr ""
@@ -8378,45 +8332,45 @@ msgid "&Close"
 msgstr "&Dún"
 
 #: app/Synchronizer/synchronizedialog.cpp:208
-#: app/Synchronizer/synchronizer.cpp:1517
-#: app/Synchronizer/synchronizer.cpp:1530
+#: app/Synchronizer/synchronizer.cpp:1516
+#: app/Synchronizer/synchronizer.cpp:1529
 #, kde-format
 msgid "Pause"
 msgstr "Sos"
 
 #: app/Synchronizer/synchronizedialog.cpp:216
-#: app/Synchronizer/synchronizer.cpp:1532
+#: app/Synchronizer/synchronizer.cpp:1531
 #, kde-format
 msgid "Resume"
 msgstr "Lean"
 
-#: app/Synchronizer/synchronizer.cpp:171 app/Synchronizer/synchronizer.cpp:858
+#: app/Synchronizer/synchronizer.cpp:174 app/Synchronizer/synchronizer.cpp:861
 #, kde-format
 msgid "Number of files: %1"
 msgstr ""
 
-#: app/Synchronizer/synchronizer.cpp:201
+#: app/Synchronizer/synchronizer.cpp:204
 #, kde-format
 msgid "Number of compared folders: %1"
 msgstr ""
 
-#: app/Synchronizer/synchronizer.cpp:1388
-#: app/Synchronizer/synchronizer.cpp:1393
+#: app/Synchronizer/synchronizer.cpp:1390
+#: app/Synchronizer/synchronizer.cpp:1395
 #, kde-format
 msgid "Error at copying file %1 to %2."
 msgstr ""
 
-#: app/Synchronizer/synchronizer.cpp:1398
+#: app/Synchronizer/synchronizer.cpp:1400
 #, kde-format
 msgid "Error at deleting file %1."
 msgstr "Earráid agus comhad %1 á scriosadh."
 
-#: app/Synchronizer/synchronizer.cpp:1564
+#: app/Synchronizer/synchronizer.cpp:1563
 #, kde-format
 msgid "Krusader::Synchronizer"
 msgstr ""
 
-#: app/Synchronizer/synchronizer.cpp:1564
+#: app/Synchronizer/synchronizer.cpp:1563
 #, kde-format
 msgid "Feeding the URLs to KGet"
 msgstr ""
@@ -8925,373 +8879,373 @@ msgstr ""
 msgid "Unpin Tab"
 msgstr ""
 
-#: app/UserAction/expander.cpp:64
+#: app/UserAction/expander.cpp:63
 #, kde-format
 msgid "Needed panel specification missing in expander %1"
 msgstr ""
 
-#: app/UserAction/expander.cpp:85
+#: app/UserAction/expander.cpp:84
 #, kde-format
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
 msgstr ""
 
-#: app/UserAction/expander.cpp:272
+#: app/UserAction/expander.cpp:271
 #, kde-format
 msgid "Panel's Path..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:275 app/UserAction/expander.cpp:343
-#: app/UserAction/expander.cpp:377 app/UserAction/expander.cpp:413
-#: app/UserAction/expander.cpp:753
+#: app/UserAction/expander.cpp:274 app/UserAction/expander.cpp:342
+#: app/UserAction/expander.cpp:376 app/UserAction/expander.cpp:412
+#: app/UserAction/expander.cpp:752
 #, kde-format
 msgid "Automatically escape spaces"
 msgstr ""
 
-#: app/UserAction/expander.cpp:297
+#: app/UserAction/expander.cpp:296
 #, kde-format
 msgid "Number of..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:300
+#: app/UserAction/expander.cpp:299
 #, kde-format
 msgid "Count:"
 msgstr "Líon:"
 
-#: app/UserAction/expander.cpp:316
+#: app/UserAction/expander.cpp:315
 #, kde-format
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
 msgstr ""
 
-#: app/UserAction/expander.cpp:326
+#: app/UserAction/expander.cpp:325
 #, kde-format
 msgid "Filter Mask (*.h, *.cpp, etc.)"
 msgstr ""
 
-#: app/UserAction/expander.cpp:339
+#: app/UserAction/expander.cpp:338
 #, kde-format
 msgid "Current File (!= Selected File)..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:342 app/UserAction/expander.cpp:375
-#: app/UserAction/expander.cpp:411 app/UserAction/expander.cpp:751
+#: app/UserAction/expander.cpp:341 app/UserAction/expander.cpp:374
+#: app/UserAction/expander.cpp:410 app/UserAction/expander.cpp:750
 #, kde-format
 msgid "Omit the current path (optional)"
 msgstr ""
 
-#: app/UserAction/expander.cpp:370
+#: app/UserAction/expander.cpp:369
 #, kde-format
 msgid "Item List of..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:373 app/UserAction/expander.cpp:409
-#: app/UserAction/expander.cpp:750
+#: app/UserAction/expander.cpp:372 app/UserAction/expander.cpp:408
+#: app/UserAction/expander.cpp:749
 #, kde-format
 msgid "Which items:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:374
+#: app/UserAction/expander.cpp:373
 #, kde-format
 msgid "Separator between the items (optional):"
 msgstr ""
 
-#: app/UserAction/expander.cpp:376 app/UserAction/expander.cpp:412
-#: app/UserAction/expander.cpp:752
+#: app/UserAction/expander.cpp:375 app/UserAction/expander.cpp:411
+#: app/UserAction/expander.cpp:751
 #, kde-format
 msgid "Mask (optional, all but 'Selected'):"
 msgstr ""
 
-#: app/UserAction/expander.cpp:406
+#: app/UserAction/expander.cpp:405
 #, kde-format
 msgid "Filename of an Item List..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:410
+#: app/UserAction/expander.cpp:409
 #, kde-format
 msgid "Separator between the items (optional)"
 msgstr ""
 
-#: app/UserAction/expander.cpp:431
+#: app/UserAction/expander.cpp:430
 #, kde-format
 msgid "Expander: temporary file could not be opened (%1)"
 msgstr ""
 
-#: app/UserAction/expander.cpp:454
+#: app/UserAction/expander.cpp:453
 #, kde-format
 msgid "Manipulate the Selection..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:457
+#: app/UserAction/expander.cpp:456
 #, kde-format
 msgid "Selection mask:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:458
+#: app/UserAction/expander.cpp:457
 #, kde-format
 msgid "Manipulate in which way:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:485
+#: app/UserAction/expander.cpp:484
 #, kde-format
 msgid "Jump to a Location..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:488
+#: app/UserAction/expander.cpp:487
 #, kde-format
 msgid "Choose a path:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:489
+#: app/UserAction/expander.cpp:488
 #, kde-format
 msgid "Open location in a new tab"
 msgstr ""
 
-#: app/UserAction/expander.cpp:500
+#: app/UserAction/expander.cpp:499
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Goto."
 msgstr ""
 
-#: app/UserAction/expander.cpp:533
+#: app/UserAction/expander.cpp:532
 #, kde-format
 msgid "Ask Parameter from User..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:536
+#: app/UserAction/expander.cpp:535
 #, kde-format
 msgid "Question:"
 msgstr "Ceist:"
 
-#: app/UserAction/expander.cpp:537
+#: app/UserAction/expander.cpp:536
 #, kde-format
 msgid "Preset (optional):"
 msgstr ""
 
-#: app/UserAction/expander.cpp:538
+#: app/UserAction/expander.cpp:537
 #, kde-format
 msgid "Caption (optional):"
 msgstr ""
 
-#: app/UserAction/expander.cpp:545
+#: app/UserAction/expander.cpp:544
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Ask."
 msgstr ""
 
-#: app/UserAction/expander.cpp:550
+#: app/UserAction/expander.cpp:549
 #, kde-format
 msgid "User Action"
 msgstr ""
 
-#: app/UserAction/expander.cpp:573
+#: app/UserAction/expander.cpp:572
 #, kde-format
 msgid "Copy to Clipboard..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:576 app/UserAction/expander.cpp:606
+#: app/UserAction/expander.cpp:575 app/UserAction/expander.cpp:605
 #, kde-format
 msgid "What to copy:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:577
+#: app/UserAction/expander.cpp:576
 #, kde-format
 msgid "Append to current clipboard content with this separator (optional):"
 msgstr ""
 
-#: app/UserAction/expander.cpp:583
+#: app/UserAction/expander.cpp:582
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Clipboard."
 msgstr ""
 
-#: app/UserAction/expander.cpp:589
+#: app/UserAction/expander.cpp:588
 #, kde-format
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
 msgstr ""
 
-#: app/UserAction/expander.cpp:603
+#: app/UserAction/expander.cpp:602
 #, fuzzy, kde-format
 #| msgid "Folder..."
 msgid "Copy a File/Folder..."
 msgstr "Fillteán..."
 
-#: app/UserAction/expander.cpp:607
+#: app/UserAction/expander.cpp:606
 #, kde-format
 msgid "Where to copy:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:612
+#: app/UserAction/expander.cpp:611
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Copy."
 msgstr ""
 
-#: app/UserAction/expander.cpp:625
+#: app/UserAction/expander.cpp:624
 #, kde-format
 msgid "Expander: %Each% may not be in the second argument of %Copy%"
 msgstr ""
 
-#: app/UserAction/expander.cpp:633
+#: app/UserAction/expander.cpp:632
 #, kde-format
 msgid "Expander: invalid URLs in %_Copy(\"src\", \"dest\")%"
 msgstr ""
 
-#: app/UserAction/expander.cpp:645
+#: app/UserAction/expander.cpp:644
 #, kde-format
 msgid "Move/Rename a File/Folder..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:648
+#: app/UserAction/expander.cpp:647
 #, kde-format
 msgid "What to move/rename:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:649
+#: app/UserAction/expander.cpp:648
 #, kde-format
 msgid "New target/name:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:654
+#: app/UserAction/expander.cpp:653
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Move."
 msgstr ""
 
-#: app/UserAction/expander.cpp:662
+#: app/UserAction/expander.cpp:661
 #, kde-format
 msgid "%Each% may not be in the second argument of %Move%"
 msgstr ""
 
-#: app/UserAction/expander.cpp:672
+#: app/UserAction/expander.cpp:671
 #, kde-format
 msgid "Expander: invalid URLs in %_Move(\"src\", \"dest\")%"
 msgstr ""
 
-#: app/UserAction/expander.cpp:685
+#: app/UserAction/expander.cpp:684
 #, kde-format
 msgid "Load a Synchronizer Profile..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:688 app/UserAction/expander.cpp:710
-#: app/UserAction/expander.cpp:730
+#: app/UserAction/expander.cpp:687 app/UserAction/expander.cpp:709
+#: app/UserAction/expander.cpp:729
 #, kde-format
 msgid "Choose a profile:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:693
+#: app/UserAction/expander.cpp:692
 #, kde-format
 msgid "Expander: no profile specified for %_Sync(profile)%"
 msgstr ""
 
-#: app/UserAction/expander.cpp:707
+#: app/UserAction/expander.cpp:706
 #, kde-format
 msgid "Load a Searchmodule Profile..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:715
+#: app/UserAction/expander.cpp:714
 #, kde-format
 msgid "Expander: no profile specified for %_NewSearch(profile)%"
 msgstr ""
 
-#: app/UserAction/expander.cpp:727
+#: app/UserAction/expander.cpp:726
 #, kde-format
 msgid "Load a Panel Profile..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:735
+#: app/UserAction/expander.cpp:734
 #, kde-format
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:747
+#: app/UserAction/expander.cpp:746
 #, kde-format
 msgid "Separate Program Call for Each..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:784
+#: app/UserAction/expander.cpp:783
 #, kde-format
 msgid "Set Sorting for This Panel..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:787
+#: app/UserAction/expander.cpp:786
 #, kde-format
 msgid "Choose a column:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:788
+#: app/UserAction/expander.cpp:787
 #, kde-format
 msgid "Choose a sort sequence:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:795
+#: app/UserAction/expander.cpp:794
 #, kde-format
 msgid "Expander: no column specified for %_ColSort(column)%"
 msgstr ""
 
-#: app/UserAction/expander.cpp:825
+#: app/UserAction/expander.cpp:824
 #, kde-format
 msgid "Expander: unknown column specified for %_ColSort(%1)%"
 msgstr ""
 
-#: app/UserAction/expander.cpp:851
+#: app/UserAction/expander.cpp:850
 #, kde-format
 msgid "Set Relation Between the Panels..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:854
+#: app/UserAction/expander.cpp:853
 #, kde-format
 msgid "Set the new size in percent:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:870
+#: app/UserAction/expander.cpp:869
 #, kde-format
 msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
 "parameter has to be >0 and <100"
 msgstr ""
 
-#: app/UserAction/expander.cpp:882
+#: app/UserAction/expander.cpp:881
 #, kde-format
 msgid "View File with Krusader's Internal Viewer..."
 msgstr ""
 
-#: app/UserAction/expander.cpp:885
+#: app/UserAction/expander.cpp:884
 #, kde-format
 msgid "Which file to view (normally '%aCurrent%'):"
 msgstr ""
 
-#: app/UserAction/expander.cpp:886
+#: app/UserAction/expander.cpp:885
 #, kde-format
 msgid "Choose a view mode:"
 msgstr ""
 
 #. i18n("Choose a window-mode"), "__choose:tab;window;panel", false ) );
 #. TODO: window-mode 'panel' should open the file in the third-hand viewer
-#: app/UserAction/expander.cpp:889
+#: app/UserAction/expander.cpp:888
 #, kde-format
 msgid "Choose a window mode:"
 msgstr ""
 
-#: app/UserAction/expander.cpp:894
+#: app/UserAction/expander.cpp:893
 #, kde-format
 msgid "Expander: no file to view in %_View(filename)%"
 msgstr ""
 
-#: app/UserAction/expander.cpp:934
+#: app/UserAction/expander.cpp:933
 #, kde-format
 msgid "%Each% is not allowed in parameter to %1"
 msgstr ""
 
-#: app/UserAction/expander.cpp:957
+#: app/UserAction/expander.cpp:956
 #, kde-format
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
 msgstr ""
 
-#: app/UserAction/expander.cpp:990
+#: app/UserAction/expander.cpp:989
 #, no-c-format, kde-format
 msgid "Error: unterminated % in Expander"
 msgstr ""
 
-#: app/UserAction/expander.cpp:1019
+#: app/UserAction/expander.cpp:1018
 #, kde-format
 msgid "Error: unrecognized %%%1%2%% in Expander"
 msgstr ""
 
-#: app/UserAction/expander.cpp:1059
+#: app/UserAction/expander.cpp:1058
 #, kde-format
 msgid "Error: missing ')' in Expander"
 msgstr ""
@@ -9546,82 +9500,97 @@ msgid ""
 "filename. By default \".old\" is appended to the original filename."
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:242 plugins/krarc/krarc.cpp:249
+#: plugins/krarc/krarc.cpp:202
 #, kde-format
 msgid ""
 "krarc: write support is disabled.\n"
 "You can enable it on the 'Archives' page in Konfigurator."
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:302 plugins/krarc/krarc.cpp:321
+#: plugins/krarc/krarc.cpp:242
 #, kde-format
 msgid "Creating folders is not supported with %1 archives"
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:364
+#: plugins/krarc/krarc.cpp:278
 #, kde-format
 msgid "Creating %1..."
 msgstr "%1 á chruthú..."
 
-#: plugins/krarc/krarc.cpp:425 plugins/krarc/krarc.cpp:441
+#: plugins/krarc/krarc.cpp:320
 #, kde-format
 msgid "Writing to %1 archives is not supported"
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:515
+#: plugins/krarc/krarc.cpp:386
 #, kde-format
 msgid "Packing %1..."
 msgstr "%1 á Phacáil..."
 
-#: plugins/krarc/krarc.cpp:577 plugins/krarc/krarc.cpp:597
+#: plugins/krarc/krarc.cpp:427
 #, kde-format
 msgid "Retrieving data from %1 archives is not supported"
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:680 plugins/krarc/krarc.cpp:1101
+#: plugins/krarc/krarc.cpp:496 plugins/krarc/krarc.cpp:761
 #, kde-format
 msgid "Unpacking %1..."
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:693 plugins/krarc/krarc.cpp:699
+#: plugins/krarc/krarc.cpp:508
 #, kde-format
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:879 plugins/krarc/krarc.cpp:900
+#: plugins/krarc/krarc.cpp:626
 #, kde-format
 msgid "Deleting files from %1 archives is not supported"
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:960 plugins/krarc/krarc.cpp:973
+#: plugins/krarc/krarc.cpp:670
 #, kde-format
 msgid "Accessing files is not supported with %1 archives"
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:1217 plugins/krarc/krarc.cpp:1224
+#: plugins/krarc/krarc.cpp:825
 #, kde-format
 msgid "Listing folders is not supported for %1 archives"
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:2221 plugins/krarc/krarc.cpp:2225
+#: plugins/krarc/krarc.cpp:1755
 #, kde-format
 msgid ""
 "\n"
 "Make sure that the %1 binary is installed properly on your system."
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:2310 plugins/krarc/krarc.cpp:2336
+#: plugins/krarc/krarc.cpp:1837 plugins/krarc/krarc.cpp:1863
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:2354 plugins/krarc/krarc.cpp:2364
-#: plugins/krarc/krarc.cpp:2367
+#: plugins/krarc/krarc.cpp:1880
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr ""
+
+#~ msgid "Manage Bookmarks"
+#~ msgstr "Bainistigh Leabharmharcanna"
+
+#~ msgid "Show Main Toolbar"
+#~ msgstr "Taispeáin an Príomhbharra Uirlisí"
+
+#, fuzzy
+#~| msgid "Show Main Toolbar"
+#~ msgid "Show Job Toolbar"
+#~ msgstr "Taispeáin an Príomhbharra Uirlisí"
+
+#, fuzzy
+#~| msgid "&Tools"
+#~ msgid "&Toolbars"
+#~ msgstr "&Uirlisí"
 
 #, fuzzy
 #~| msgid "Copy to Clipboard"
