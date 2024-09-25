@@ -25,9 +25,7 @@
 >exemples</link
 > a la documentació. Les Accions d'usuari es poden editar/afegir/importar/exportar utilitzant el Gestor d'accions. Les Accions d'usuari predeterminades s'emmagatzemen a <filename
 >/usr/share/krusader/useraction-examples.xml</filename
->. Les Accions d'usuari poden aparèixer gairebé a tot arreu on es poden col·locar les KActions <quote
->normals</quote
->. Les accions fins i tot es poden posar a la barra de menús, però per a això s'haurà d'editar el fitxer <filename
+>. Les Accions d'usuari poden aparèixer gairebé a tot arreu on es poden col·locar les KActions «normals». Les accions fins i tot es poden posar a la barra de menús, però per a això s'haurà d'editar el fitxer <filename
 >krusaderui.rc</filename
 >. Alguns exemples:</para
 > 
@@ -248,9 +246,7 @@
           <para
 ><guimenuitem
 >Separa l'error estàndard</guimenuitem
->: quan s'utilitza <quote
->Recupera la sortida</quote
->, les sortides estàndard i d'error es recolliran per separat.</para>
+>: quan s'utilitza «Recupera la sortida», les sortides estàndard i d'error es recolliran per separat.</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -311,11 +307,7 @@
 >Sintaxi de la línia d'ordres</emphasis>
   </para>
   <para
->Bàsicament, s'executarà tot el que escriviu a la línia d'ordres (si escriviu <quote
->ls -l</quote
->, s'executarà <quote
->ls -l</quote
->). Teniu la possibilitat d'obtenir una cadena de caràcters del &krusader;, la qual representa l'estat actual del plafó. Això es fa utilitzant marcadors de posició. Un marcador de posició comença amb un signe de percentatge («%») i és seguit per un indicador del plafó («a» per a l'actiu, «o» per a l'altre, «l» per al plafó esquerre i «r» per al plafó dret. Si el marcador de posició no necessita un plafó per a operar, haureu d'indicar-ho amb un guió baix («_»)). Després ve el nom del marcador de posició (vegeu la llista a continuació), en el qual podreu incloure alguns paràmetres entre cometes. Finalment, de nou el signe de percentatge.</para>
+>Bàsicament, s'executarà tot el que escriviu a la línia d'ordres (si escriviu «ls -l», s'executarà «ls -l»). Teniu la possibilitat d'obtenir una cadena de caràcters del &krusader;, la qual representa l'estat actual del plafó. Això es fa utilitzant marcadors de posició. Un marcador de posició comença amb un signe de percentatge («%») i és seguit per un indicador del plafó («a» per a l'actiu, «o» per a l'altre, «l» per al plafó esquerre i «r» per al plafó dret. Si el marcador de posició no necessita un plafó per a operar, haureu d'indicar-ho amb un guió baix («_»)). Després ve el nom del marcador de posició (vegeu la llista a continuació), en el qual podreu incloure alguns paràmetres entre cometes. Finalment, de nou el signe de percentatge.</para>
   <para
 >Això sona molt complicat, de manera que donarem un exemple: «%aList("Selected")%» se substituirà per una llista de tots els elements seleccionats en el plafó actiu. Llavors, una ordre com «xmms --enqueue %aList("All", " ", "", "*.mp3")%» executarà el xmms amb una llista de tots els .mp3 que hi hagi en el plafó actual, separats per un sol espai en blanc.</para>
   <para
@@ -342,15 +334,7 @@
       <orderedlist>
         <listitem>
           <para
->Paràmetre: quins elements, ja sigui <quote
->All</quote
-> (Tots), <quote
->Selected</quote
-> (Seleccionats), <quote
->Files</quote
-> (Fitxers) o <quote
->Dirs</quote
-></para>
+>Paràmetre: quins elements, ja sigui «All» (Tots), «Selected» (Seleccionats), «Files» (Fitxers) o «Dirs»</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -384,21 +368,11 @@
       <orderedlist>
         <listitem>
           <para
->Paràmetre: quins elements, ja sigui <quote
->All</quote
-> (Tots), <quote
->Selected</quote
-> (Seleccionats), <quote
->Files</quote
-> (Fitxers) o <quote
->Dirs</quote
-></para>
+>Paràmetre: quins elements, ja sigui «All» (Tots), «Selected» (Seleccionats), «Files» (Fitxers) o «Dirs»</para>
         </listitem>
         <listitem>
           <para
->Paràmetre (opcional): separador entre els elements. Predeterminat: <quote
->&nbsp;</quote
-></para>
+>Paràmetre (opcional): separador entre els elements. Predeterminat: «&nbsp;»</para>
         </listitem>
         <listitem>
           <para
@@ -406,9 +380,7 @@
         </listitem>
         <listitem>
           <para
->Paràmetre (opcional): màscara de filtratge (per a tots menys els <quote
->Seleccionats</quote
->). Predeterminat: *</para>
+>Paràmetre (opcional): màscara de filtratge (per a tots menys els «Seleccionats»). Predeterminat: *</para>
         </listitem>
         <listitem>
           <para
@@ -428,15 +400,7 @@
         </listitem>
         <listitem>
           <para
->Paràmetre (opcional): manipula de quina manera, ja sigui <quote
->Set</quote
-> (Establir), <quote
->Add</quote
-> (Afegir) o <quote
->Remove</quote
-> (Eliminar). Predeterminat: <quote
->Set</quote
-></para>
+>Paràmetre (opcional): manipula de quina manera, ja sigui «Set» (Establir), «Add» (Afegir) o «Remove» (Eliminar). Predeterminat: «Set»</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -484,9 +448,7 @@
       <orderedlist>
         <listitem>
           <para
->Paràmetre: el text que haurà d'anar al porta-retalls (aquí podeu emprar <quote
->%aCurrent%</quote
->)</para>
+>Paràmetre: el text que haurà d'anar al porta-retalls (aquí podeu emprar «%aCurrent%»)</para>
         </listitem>
         <listitem>
           <para
@@ -618,35 +580,11 @@
       <orderedlist>
         <listitem>
           <para
->Paràmetre: Columna: <quote
->Nom</quote
->, <quote
->Ext</quote
->, <quote
->Tipus</quote
->, <quote
->Mida</quote
->, <quote
->Modificat</quote
->, <quote
->Permisos</quote
->, <quote
->rwx</quote
->, <quote
->Propietari</quote
-> i <quote
->Grup</quote
-></para>
+>Paràmetre: Columna: «Nom», «Ext», «Tipus», «Mida», «Modificat», «Permisos», «rwx», «Propietari» i «Grup»</para>
         </listitem>
         <listitem>
           <para
->Paràmetre: seqüència de l'ordenació: <quote
->Toggle</quote
->, <quote
->Asc</quote
->, <quote
->Desc</quote
-></para>
+>Paràmetre: seqüència de l'ordenació: «Toggle», «Asc», «Desc»</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -658,21 +596,11 @@
       <orderedlist>
         <listitem>
           <para
->Paràmetre: mode de la vista: <quote
->generic</quote
->, <quote
->text</quote
->, <quote
->hex</quote
-></para>
+>Paràmetre: mode de la vista: «generic», «text», «hex»</para>
         </listitem>
         <listitem>
           <para
->Paràmetre: mode de la finestra: <quote
->tab</quote
-> (amb pestanyes), <quote
->window</quote
-> (finestra)</para>
+>Paràmetre: mode de la finestra: «tab» (amb pestanyes), «window» (finestra)</para>
         </listitem>
       </orderedlist>
     </listitem>

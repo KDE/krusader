@@ -59,9 +59,7 @@
     <para
 >Tenim la intenció d'expandir el Gestor del muntatge en la propera evolució del &krusader;. Podreu formatar les particions, editar el <filename
 >/etc/fstab</filename
->, crear nous sistemes de fitxers i més... Per cert, hem començat a treballar-hi, consulteu <quote
->Mode ràpid per al Gestor del muntatge</quote
->.</para>
+>, crear nous sistemes de fitxers i més... Per cert, hem començat a treballar-hi, consulteu «Mode ràpid per al Gestor del muntatge».</para>
   </note>
   <para>
     <emphasis role="bold"
@@ -72,7 +70,5 @@
 >Barra d'eines principal</link
 >.</para>
   <para
->Idea general: mostra una llista de tots els punts de muntatge possibles. Cada vegada que es mostra el menú, aquest determina si el muntatge s'ha realitzat o no, i associa l'acció correcta (muntatge o desmuntatge). Això oferirà una interfície ràpida per al Gestor del muntatge. S'hi està treballant, i actualment utilitza «KMountMan::mount» i «unmount». Utilitza els nous serveis del &kf5-full; per a la lectura del fstab i això ens permetrà eliminar un gran nombre del codi <quote
->antic</quote
-> del Gestor del muntatge.</para>
+>Idea general: mostra una llista de tots els punts de muntatge possibles. Cada vegada que es mostra el menú, aquest determina si el muntatge s'ha realitzat o no, i associa l'acció correcta (muntatge o desmuntatge). Això oferirà una interfície ràpida per al Gestor del muntatge. S'hi està treballant, i actualment utilitza «KMountMan::mount» i «unmount». Utilitza els nous serveis del &kf5-full; per a la lectura del fstab i això ens permetrà eliminar un gran nombre del codi «antic» del Gestor del muntatge.</para>
 </sect1>

@@ -81,7 +81,7 @@
 ><application
 >XFce</application
 ></ulink
-> o un altre gestor de finestres. No obstant això, la configuració dels tipus de lletra del &krusader; i algun comportament es fa executant <command
+> o un altre gestor de finestres. No obstant això, la configuració de la lletra del &krusader; i algun comportament es fa executant <command
 >systemsettings</command
 >.</para>
           <para
@@ -208,9 +208,7 @@
           <para
 >Quan el &krusader; està, &pex;, explorant una compartició &NFS; i el servidor &NFS; deixa de funcionar, el &krusader; es congelarà. Aquesta congelació del &krusader; (i tots els altres visualitzadors/editors interns oberts) és fatal, i només pot corregir-se amb l'ordre <command
 >kill -9</command
->. No tenim solució per a això. Aquest és un problema que no es limita als gestors de fitxers, o fins i tot al sistema operatiu &Linux;! El problema és que es <quote
->penja</quote
-> durant el primer accés a la compartició morta, de manera que no hi ha forma d'evitar-ho, ni cap forma de verificar, fins i tot es congelarà l'ordre <command
+>. No tenim solució per a això. Aquest és un problema que no es limita als gestors de fitxers, o fins i tot al sistema operatiu &Linux;! El problema és que es «penja» durant el primer accés a la compartició morta, de manera que no hi ha forma d'evitar-ho, ni cap forma de verificar, fins i tot es congelarà l'ordre <command
 >ls</command
 >. Només en mirar de llegir qualsevulla cosa, serà suficient per a embussar. L'única manera d'evitar aquest problema d'arquitectura és emprant un disseny de múltiples fils. D'aquesta manera, si s'encalla, no es penjarà tot el cicle d'esdeveniments de l'aplicació, però no creiem que sigui el moment adequat per a afegir els fils, no estic segur que *tots* els sistemes &kde-frameworks; utilitzin &Qt;-mt (la versió multi fil de les biblioteques &Qt;), i en qualsevol cas, en Krew del &krusader; podria no ser la persona adequada per a abordar aquest important problema. De manera que actualment això és només un error amb el qual haurem d'aprendre a conviure.</para>
           <para
@@ -603,9 +601,7 @@
         </question>
         <answer>
           <para
->La fortalesa més gran d'un projecte de codi obert deriva de rebre els comentaris dels usuaris. Per això ens encanta escoltar el que heu de dir. Les vostres <quote
->queixes</quote
-> són les nostres instruccions. Després d'aproximadament 6 mesos, els programadors ja no poden veure els seus propis errors. És natural. Volem idees, crítiques i comentaris perquè tots volem fer del &krusader; el millor i més útil gestor de fitxers disponible a qualsevol lloc.</para>
+>La fortalesa més gran d'un projecte de codi obert deriva de rebre els comentaris dels usuaris. Per això ens encanta escoltar el que heu de dir. Les vostres «queixes» són les nostres instruccions. Després d'aproximadament 6 mesos, els programadors ja no poden veure els seus propis errors. És natural. Volem idees, crítiques i comentaris perquè tots volem fer del &krusader; el millor i més útil gestor de fitxers disponible a qualsevol lloc.</para>
           <para
 >La manera més oportuna de contactar és emprar la <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
 >llista de correu</ulink
@@ -640,9 +636,7 @@
 >llista de correu</ulink
 > krusader-devel o a la <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
 >pàgina GitLab per al &krusader;</ulink
->. Malauradament, no podrem aplicar un pedaç si aquest entra en conflicte amb el <quote
->disseny general</quote
-> del codi del &krusader; (llegiu en aquestes &PMF; per a obtenir més instruccions). Envieu només una sol·licitud de canvi per correu, de manera que el debat sigui més fàcil de seguir. Les modificacions s'hauran de cometre al servidor de git pas a pas, verificant cada línia. </para>
+>. Malauradament, no podrem aplicar un pedaç si aquest entra en conflicte amb el «disseny general» del codi del &krusader; (llegiu en aquestes &PMF; per a obtenir més instruccions). Envieu només una sol·licitud de canvi per correu, de manera que el debat sigui més fàcil de seguir. Les modificacions s'hauran de cometre al servidor de git pas a pas, verificant cada línia. </para>
             </listitem>
             <listitem>
              <para
@@ -1043,9 +1037,7 @@
       <qandaentry>
         <question id="faqg_mcstyle">
           <para
->Per què el &konqueror; a l'<quote
->estil del Midnight Commander</quote
-> no és un <link linkend="gloss-ofm"
+>Per què el &konqueror; a l'«estil del Midnight Commander» no és un <link linkend="gloss-ofm"
 >OFM</link
 >?</para>
         </question>
