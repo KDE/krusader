@@ -230,8 +230,8 @@ void CompareContentTask::localFileCompareCycle()
 void CompareContentTask::slotDataReceived(KIO::Job *job, const QByteArray &data)
 {
     int jobowner = (job == leftReadJob) ? 1 : 0;
-    int bufferLen = compareArray.size();
-    int dataLen = data.size();
+    qsizetype bufferLen = compareArray.size();
+    qsizetype dataLen = data.size();
 
     if (job == leftReadJob)
         received += dataLen;
@@ -248,7 +248,7 @@ void CompareContentTask::slotDataReceived(KIO::Job *job, const QByteArray &data)
             break;
         }
 
-        int minSize = (dataLen < bufferLen) ? dataLen : bufferLen;
+        qsizetype minSize = (dataLen < bufferLen) ? dataLen : bufferLen;
 
         for (int i = 0; i != minSize; i++)
             if (data[i] != compareArray[i]) {

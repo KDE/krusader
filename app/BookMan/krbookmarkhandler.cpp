@@ -134,7 +134,7 @@ void KrBookmarkHandler::deleteBookmark(KrBookmark *bm)
 
 void KrBookmarkHandler::removeReferences(KrBookmark *root, KrBookmark *bmToRemove)
 {
-    int index = root->children().indexOf(bmToRemove);
+    qsizetype index = root->children().indexOf(bmToRemove);
     if (index >= 0)
         root->children().removeAt(index);
 

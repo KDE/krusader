@@ -415,7 +415,7 @@ void JobMan::updateUI()
     const bool hasJobs = !m_jobs.isEmpty();
     m_progressBar->setEnabled(hasJobs);
     if (hasJobs) {
-        m_progressBar->setValue(totalPercent / m_jobs.length());
+        m_progressBar->setValue(static_cast<int>(totalPercent / m_jobs.length()));
     } else {
         m_progressBar->reset();
     }

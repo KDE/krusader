@@ -267,7 +267,7 @@ public:
         _jobThread->sendError(KIO::ERR_NO_CONTENT, error + '\n' + details);
     }
 
-    void incrementProgress(int c) override
+    void incrementProgress(qsizetype c) override
     {
         _jobThread->sendAddProgress(c, _jobThread->_progressTitle);
     }

@@ -435,7 +435,7 @@ File *DiskUsage::getFile(const QString &path)
 
     QString dir = path;
 
-    int ndx = path.lastIndexOf('/');
+    qsizetype ndx = path.lastIndexOf('/');
     QString file = path.mid(ndx + 1);
 
     if (ndx == -1)

@@ -116,7 +116,7 @@ void RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
         a1 = m_focus->start();
         a2 = m_focus->end(); // boundary angles
-        minAngle = int(m_focus->length() * LABEL_MIN_ANGLE_FACTOR);
+        minAngle = static_cast<int>(m_focus->length() * LABEL_MIN_ANGLE_FACTOR);
 
 #define segment (*it)
 #define ring (m_map.m_signature + i)
@@ -220,7 +220,7 @@ void RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
         int cx = m_map.width() / 2 + m_offset.x(); // centre relative to canvas
         int cy = m_map.height() / 2 + m_offset.y();
 
-        int spacer, preSpacer = int(m_map.m_ringBreadth * 0.5) + m_map.m_innerRadius;
+        int spacer, preSpacer = static_cast<int>(m_map.m_ringBreadth * 0.5) + m_map.m_innerRadius;
         int fullStrutLength = (m_map.width() - m_map.MAP_2MARGIN) / 2 + LABEL_MAP_SPACER; // full length of a strut from map center
 
         int prevLeftY = 0;
@@ -263,7 +263,7 @@ void RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
                     y2 = prevLeftY /*+ fmh*/;
             }
 
-            x2 = x1 - int(double(y2 - y1) / tan(ra));
+            x2 = x1 - static_cast<int>(double(y2 - y1) / tan(ra));
             ty = y2 + fmhD4;
 
             QString qs;

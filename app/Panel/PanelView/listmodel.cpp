@@ -77,7 +77,7 @@ void ListModel::clear(bool emitLayoutChanged)
 
 int ListModel::rowCount(const QModelIndex & /*parent*/) const
 {
-    return _fileItems.count();
+    return static_cast<int>(_fileItems.count());
 }
 
 int ListModel::columnCount(const QModelIndex & /*parent*/) const
@@ -306,7 +306,7 @@ QModelIndex ListModel::addItem(FileItem *fileitem)
     emit layoutAboutToBeChanged();
 
     if (lastSortOrder() == KrViewProperties::NoColumn) {
-        int idx = _fileItems.count();
+        int idx = static_cast<int>(_fileItems.count());
         _fileItems.append(fileitem);
         updateIndices(fileitem, idx);
         emit layoutChanged();
@@ -344,7 +344,7 @@ QModelIndex ListModel::addItem(FileItem *fileitem)
 
 void ListModel::removeItem(FileItem *fileItem)
 {
-    const int rowToRemove = _fileItems.indexOf(fileItem);
+    const int rowToRemove = static_cast<int>(_fileItems.indexOf(fileItem));
     if (rowToRemove < 0)
         return;
 
@@ -452,7 +452,7 @@ QString ListModel::nameWithoutExtension(const FileItem *fileItem, bool checkEnab
         return fileItem->getName();
     // check if the file has an extension
     const QString &fileItemName = fileItem->getName();
-    int loc = fileItemName.lastIndexOf('.');
+    qsizetype loc = fileItemName.lastIndexOf('.');
     // avoid mishandling of .bashrc and friend
     // and virtfs / search result names like "/dir/.file" which would become "/dir/"
     if (loc > 0 && fileItemName.lastIndexOf('/') < loc) {

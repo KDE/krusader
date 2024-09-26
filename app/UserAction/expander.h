@@ -85,7 +85,7 @@ public:
     { ///< adds parameter to the placeholder
         _parameter.append(parameter);
     }
-    inline int parameterCount() const
+    inline qsizetype parameterCount() const
     { ///< returns the number of placeholders
         return _parameter.count();
     }
@@ -217,11 +217,11 @@ private:
 class Expander
 {
 public:
-    inline static int placeholderCount()
+    inline static qsizetype placeholderCount()
     { ///< returns the number of placeholders
         return _placeholder().count();
     }
-    inline static const exp_placeholder *placeholder(int id)
+    inline static const exp_placeholder *placeholder(qsizetype id)
     {
         return _placeholder()[id];
     }
@@ -298,7 +298,7 @@ protected:
      * This finds the end of a placeholder, taking care of the parameter
      * @return the position where the placeholder ends
      */
-    int findEnd(const QString &str, int start);
+    qsizetype findEnd(const QString &str, qsizetype start);
 
     void setError(const Error &e)
     {

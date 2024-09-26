@@ -35,7 +35,7 @@ public:
     ~KrSqueezedTextLabel() override;
 
 public slots:
-    void setText(const QString &text, int index = -1, int length = -1);
+    void setText(const QString &text, qsizetype index = -1, qsizetype length = -1);
 
 signals:
     void clicked(QMouseEvent *); /**< emitted when someone clicks on the label */
@@ -47,12 +47,12 @@ protected:
     }
     void mousePressEvent(QMouseEvent *e) override;
     void paintEvent(QPaintEvent *e) override;
-    void squeezeTextToLabel(int index = -1, int length = -1);
+    void squeezeTextToLabel(qsizetype index = -1, qsizetype length = -1);
 
     QString fullText;
 
 private:
-    int _index, _length;
+    qsizetype _index, _length;
 };
 
 #endif

@@ -36,7 +36,7 @@ void KrSqueezedTextLabel::mousePressEvent(QMouseEvent *e)
     emit clicked(e);
 }
 
-void KrSqueezedTextLabel::squeezeTextToLabel(int index, int length)
+void KrSqueezedTextLabel::squeezeTextToLabel(qsizetype index, qsizetype length)
 {
     if (index == -1 || length == -1)
         KSqueezedTextLabel::squeezeTextToLabel();
@@ -46,9 +46,9 @@ void KrSqueezedTextLabel::squeezeTextToLabel(int index, int length)
         int labelWidth = size().width();
         int textWidth = fm.horizontalAdvance(sqtext);
         if (textWidth > labelWidth) {
-            int avgCharSize = textWidth / sqtext.length();
-            int numOfExtraChars = (textWidth - labelWidth) / avgCharSize;
-            int delta;
+            qsizetype avgCharSize = textWidth / sqtext.length();
+            qsizetype numOfExtraChars = (textWidth - labelWidth) / avgCharSize;
+            qsizetype delta;
 
             // remove as much as possible from the left, and then from the right
             if (index > 3) {
@@ -74,7 +74,7 @@ void KrSqueezedTextLabel::squeezeTextToLabel(int index, int length)
     }
 }
 
-void KrSqueezedTextLabel::setText(const QString &text, int index, int length)
+void KrSqueezedTextLabel::setText(const QString &text, qsizetype index, qsizetype length)
 {
     _index = index;
     _length = length;

@@ -425,7 +425,7 @@ void KrSlots::homeTerminal()
 void KrSlots::multiRename()
 {
     QStringList lst = KrServices::supportedTools();
-    int i = lst.indexOf("RENAME");
+    qsizetype i = lst.indexOf("RENAME");
     if (i == -1) {
         KMessageBox::error(
             krApp,
@@ -541,7 +541,7 @@ void KrSlots::slotCombine()
     bool unixStyle = false;
     bool windowsStyle = false;
     QString commonName;
-    int commonLength = 0;
+    qsizetype commonLength = 0;
 
     /* checking splitter names */
     for (const auto &it : list) {
@@ -556,7 +556,7 @@ void KrSlots::slotCombine()
 
         if (!unixStyle) {
             QString name = url.fileName();
-            int extPos = name.lastIndexOf('.');
+            qsizetype extPos = name.lastIndexOf('.');
             QString ext = name.mid(extPos + 1);
             name.truncate(extPos);
             url = url.adjusted(QUrl::RemoveFilename);

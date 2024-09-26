@@ -157,7 +157,7 @@ void ViewActions::togglePreviews(bool show)
 void ViewActions::refreshActions()
 {
     actDefaultZoom->setEnabled(view()->defaultFileIconSize() != view()->fileIconSize());
-    int idx = KrView::iconSizes.indexOf(view()->fileIconSize());
+    qsizetype idx = KrView::iconSizes.indexOf(view()->fileIconSize());
     actZoomOut->setEnabled(idx > 0);
     actZoomIn->setEnabled(idx < (KrView::iconSizes.count() - 1));
     actRestoreSelection->setEnabled(view()->canRestoreSelection());

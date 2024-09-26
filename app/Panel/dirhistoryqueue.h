@@ -31,7 +31,7 @@ public:
     {
         return _currentPos;
     }
-    int count()
+    qsizetype count()
     {
         return _urlQueue.count();
     }

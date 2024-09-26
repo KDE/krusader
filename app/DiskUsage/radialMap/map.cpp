@@ -191,18 +191,18 @@ void RadialMap::Map::colorise()
             case Filelight::HighContrast:
 
                 cp.setHsv(0, 0, 0); // values of h, s and v are irrelevant
-                cb.setHsv(180, 0, int(255.0 * contrast));
+                cb.setHsv(180, 0, static_cast<int>(255.0 * contrast));
                 (*it)->setPalette(cp, cb);
                 continue;
 
             default:
-                h = int((*it)->start() / 16);
+                h = static_cast<int>((*it)->start() / 16);
                 s1 = 160;
                 v1 = (int)(255.0 / darkness); //****doing this more often than once seems daft!
             }
 
-            v2 = v1 - int(contrast * v1);
-            s2 = s1 + int(contrast * (255 - s1));
+            v2 = v1 - static_cast<int>(contrast * v1);
+            s2 = s1 + static_cast<int>(contrast * (255 - s1));
 
             if (s1 < 80)
                 s1 = 80; // can fall too low and makes contrast between the files hard to discern
@@ -279,7 +279,7 @@ void RadialMap::Map::paint(unsigned int scaleFactor)
     for (int x = m_visibleDepth; x >= 0; --x) {
         int width = rect.width() / 2;
         // clever geometric trick to find largest angle that will give biggest arrow head
-        auto a_max = int(acos((double)width / double((width + 5) * scaleFactor)) * (180 * 16 / M_PI));
+        auto a_max = static_cast<int>(acos((double)width / double((width + 5) * scaleFactor)) * (180 * 16 / M_PI));
 
         for (ConstIterator<Segment> it = m_signature[x].constIterator(); it != m_signature[x].end(); ++it) {
             // draw the pie segments, most of this code is concerned with drawing the little

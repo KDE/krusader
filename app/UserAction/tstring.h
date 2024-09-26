@@ -19,7 +19,7 @@ template<class T>
 class TagString_t
 {
     QString str;
-    typedef QList<std::pair<uint, T>> taglist; // may change
+    typedef QList<std::pair<qsizetype, T>> taglist; // may change
     taglist tags;
 
 public:
@@ -38,7 +38,7 @@ public:
     {
         return str;
     }
-    unsigned length() const
+    qsizetype length() const
     {
         return str.length();
     }
@@ -118,7 +118,7 @@ template<class T>
 void TagString_t<T>::insert(uint idx, const QString &s)
 {
     str.insert(idx, s);
-    const unsigned disp = s.length();
+    const qsizetype disp = s.length();
     for (typename taglist::iterator it = tags.begin(), end = tags.end(); it != end; ++it) {
         if ((*it).first >= idx)
             (*it).first += disp;
@@ -129,7 +129,7 @@ template<class T>
 TagString_t<T> &TagString_t<T>::operator+=(const TagString_t &s)
 {
     str += s.str;
-    const unsigned disp = length();
+    const qsizetype disp = length();
     for (typename taglist::const_iterator it = s.tags.begin(), end = s.tags.end(); it != end; ++it) {
         tags.push_back(std::make_pair((*it).first + disp, (*it).second));
     }

@@ -853,14 +853,14 @@ bool KrView::handleKeyEvent(QKeyEvent *e)
 
 void KrView::zoomIn()
 {
-    int idx = iconSizes.indexOf(_fileIconSize);
+    qsizetype idx = iconSizes.indexOf(_fileIconSize);
     if (idx >= 0 && (idx + 1) < iconSizes.count())
         setFileIconSize(iconSizes[idx + 1]);
 }
 
 void KrView::zoomOut()
 {
-    int idx = iconSizes.indexOf(_fileIconSize);
+    qsizetype idx = iconSizes.indexOf(_fileIconSize);
     if (idx > 0)
         setFileIconSize(iconSizes[idx - 1]);
 }

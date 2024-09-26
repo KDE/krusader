@@ -977,10 +977,10 @@ TagString Expander::expandCurrent(const QString &stringToExpand, bool useUrl)
     TagString result;
     QString exp;
     TagString tmpResult;
-    int begin, end, i;
+    qsizetype begin, end, i;
     //    int brackets = 0;
     //    bool inQuotes = false;
-    int idx = 0;
+    qsizetype idx = 0;
     while (idx < stringToExpand.length()) {
         if ((begin = stringToExpand.indexOf('%', idx)) == -1)
             break;
@@ -1052,7 +1052,7 @@ TagStringList Expander::separateParameter(QString *const exp, bool useUrl)
     TagStringList parameter;
     QStringList parameter1;
     QString result;
-    int begin, end;
+    qsizetype begin, end;
     if ((begin = exp->indexOf('(')) != -1) {
         if ((end = exp->lastIndexOf(')')) == -1) {
             setError(Error(Error::exp_S_FATAL, Error::exp_C_SYNTAX, i18n("Error: missing ')' in Expander")));
@@ -1094,16 +1094,16 @@ TagStringList Expander::separateParameter(QString *const exp, bool useUrl)
     return parameter;
 }
 
-int Expander::findEnd(const QString &str, int start)
+qsizetype Expander::findEnd(const QString &str, qsizetype start)
 {
-    int end = str.indexOf('%', start + 1);
+    qsizetype end = str.indexOf('%', start + 1);
     if (end == -1)
         return end;
-    int bracket = str.indexOf('(', start + 1);
+    qsizetype bracket = str.indexOf('(', start + 1);
     if (end < bracket || bracket == -1)
         return end;
 
-    int idx = bracket + 1;
+    qsizetype idx = bracket + 1;
     bool inQuotes = false;
     int depth = 1;
     while (idx < str.length()) {

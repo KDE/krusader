@@ -43,7 +43,7 @@ public:
 protected:
     QStringList _supported;
     QStringList _tableHeaders;
-    int _numColumns;
+    qsizetype _numColumns;
     int _numRows;
 
     QGridLayout *_grid;

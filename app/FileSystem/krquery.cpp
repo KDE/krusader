@@ -289,7 +289,7 @@ bool KrQuery::matchCommon(const QString &nameIn, const QStringList &matchList, c
         return true;
 
     QString name(nameIn);
-    int ndx = nameIn.lastIndexOf('/'); // virtual filenames may contain '/'
+    qsizetype ndx = nameIn.lastIndexOf('/'); // virtual filenames may contain '/'
     if (ndx != -1) // but the end of the filename is OK
         name = nameIn.mid(ndx + 1);
 
@@ -367,7 +367,7 @@ bool KrQuery::match(FileItem *item) const
 
 // takes the string and adds BOLD to it, so that when it is displayed,
 // the grepped text will be bold
-void fixFoundTextForDisplay(QString &haystack, int start, int length)
+void fixFoundTextForDisplay(QString &haystack, qsizetype start, qsizetype length)
 {
     QString before = haystack.left(start);
     QString text = haystack.mid(start, length);
@@ -388,7 +388,7 @@ void fixFoundTextForDisplay(QString &haystack, int start, int length)
     haystack = ("<qt>" + before + "<b>" + text + "</b>" + after + "</qt>");
 }
 
-bool KrQuery::checkBuffer(const char *data, int len) const
+bool KrQuery::checkBuffer(const char *data, qsizetype len) const
 {
     bool result = false;
 
@@ -398,13 +398,13 @@ bool KrQuery::checkBuffer(const char *data, int len) const
     if (len)
         memcpy(mergedBuffer + receivedBufferLen, data, len);
 
-    int maxLen = len + receivedBufferLen;
-    int maxBuffer = maxLen - encodedEnterLen;
-    int lastLinePosition = 0;
+    qsizetype maxLen = len + receivedBufferLen;
+    qsizetype maxBuffer = maxLen - encodedEnterLen;
+    qsizetype lastLinePosition = 0;
 
-    for (int enterIndex = 0; enterIndex < maxBuffer; enterIndex++) {
+    for (qsizetype enterIndex = 0; enterIndex < maxBuffer; enterIndex++) {
         if (memcmp(mergedBuffer + enterIndex, encodedEnter, encodedEnterLen) == 0) {
-            QString str = codec->toUnicode(mergedBuffer + lastLinePosition, enterIndex + encodedEnterLen - lastLinePosition);
+            QString str = codec->toUnicode(mergedBuffer + lastLinePosition, static_cast<int>(enterIndex + encodedEnterLen - lastLinePosition));
             if (str.endsWith('\n')) {
                 str.chop(1);
                 result = result || checkLine(str);
@@ -416,7 +416,7 @@ bool KrQuery::checkBuffer(const char *data, int len) const
     }
 
     if (maxLen - lastLinePosition > MAX_LINE_LEN || len == 0) {
-        QString str = codec->toUnicode(mergedBuffer + lastLinePosition, maxLen - lastLinePosition);
+        QString str = codec->toUnicode(mergedBuffer + lastLinePosition, static_cast<int>(maxLen - lastLinePosition));
         result = result || checkLine(str);
         lastLinePosition = maxLen;
     }
@@ -445,7 +445,7 @@ bool KrQuery::checkLine(const QString &line, bool backwards) const
         return result;
     }
 
-    int ndx = backwards ? -1 : 0;
+    qsizetype ndx = backwards ? -1 : 0;
 
     if (line.isNull())
         return false;

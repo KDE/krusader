@@ -177,11 +177,11 @@ public:
     {
         return lastSuccessfulGrep;
     }
-    int matchIndex() const
+    qsizetype matchIndex() const
     {
         return lastSuccessfulGrepMatchIndex;
     }
-    int matchLength() const
+    qsizetype matchLength() const
     {
         return lastSuccessfulGrepMatchLength;
     }
@@ -237,7 +237,7 @@ private:
     bool checkType(const QString &mime) const;
     bool containsContent(const QString &file) const;
     bool containsContent(const QUrl &url) const;
-    bool checkBuffer(const char *data, int len) const;
+    bool checkBuffer(const char *data, qsizetype len) const;
     bool checkTimer() const;
     QStringList split(QString);
 
@@ -250,10 +250,10 @@ private:
     mutable bool busy;
     mutable bool containsContentResult;
     mutable char *receivedBuffer;
-    mutable int receivedBufferLen;
+    mutable qsizetype receivedBufferLen;
     mutable QString lastSuccessfulGrep;
-    mutable int lastSuccessfulGrepMatchIndex;
-    mutable int lastSuccessfulGrepMatchLength;
+    mutable qsizetype lastSuccessfulGrepMatchIndex;
+    mutable qsizetype lastSuccessfulGrepMatchLength;
     mutable QString fileName;
     mutable KIO::filesize_t receivedBytes;
     mutable KIO::filesize_t totalBytes;
@@ -263,7 +263,7 @@ private:
     QTextCodec *codec;
 
     const char *encodedEnter;
-    int encodedEnterLen;
+    qsizetype encodedEnterLen;
     QByteArray encodedEnterArray;
 };
 

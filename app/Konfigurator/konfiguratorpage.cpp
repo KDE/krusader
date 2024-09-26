@@ -338,7 +338,7 @@ void KonfiguratorPage::registerObject(KonfiguratorExtension *item)
 
 void KonfiguratorPage::removeObject(KonfiguratorExtension *item)
 {
-    int ndx = itemList.indexOf(item);
+    qsizetype ndx = itemList.indexOf(item);
     if (ndx != -1) {
         QList<KonfiguratorExtension *>::iterator it = itemList.begin() + ndx;
         delete *it;

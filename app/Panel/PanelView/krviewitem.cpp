@@ -35,7 +35,7 @@ KrViewItem::KrViewItem(FileItem *fileitem, KrInterView *parentView)
     if (fileitem) {
         // check if the file has an extension
         const QString &fileitemName = fileitem->getName();
-        int loc = fileitemName.lastIndexOf('.');
+        qsizetype loc = fileitemName.lastIndexOf('.');
         if (loc > 0) { // avoid mishandling of .bashrc and friend
             // check if it has one of the predefined 'atomic extensions'
             for (const auto &atomicExtension : _viewProperties->atomicExtensions) {

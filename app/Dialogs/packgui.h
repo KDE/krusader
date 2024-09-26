@@ -15,7 +15,7 @@ class PackGUI : public PackGUIBase
 {
     Q_OBJECT
 public:
-    PackGUI(const QString &defaultName, const QString &defaultPath, int noOfFiles, const QString &filename = "");
+    PackGUI(const QString &defaultName, const QString &defaultPath, qsizetype noOfFiles, const QString &filename = "");
 
 public slots:
     void browse() override;

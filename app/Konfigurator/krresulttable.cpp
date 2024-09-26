@@ -41,7 +41,7 @@ KrResultTable::~KrResultTable() = default;
 QGridLayout *KrResultTable::initTable()
 {
     _grid = new QGridLayout(this);
-    _grid->setColumnStretch(_numColumns - 1, 1); // stretch last column
+    _grid->setColumnStretch(static_cast<int>(_numColumns - 1), 1); // stretch last column
     _grid->setContentsMargins(0, 0, 0, 0);
     _grid->setSpacing(0);
 

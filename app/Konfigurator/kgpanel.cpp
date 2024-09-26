@@ -306,7 +306,7 @@ void KgPanel::setupLayoutTab()
     QGridLayout *grid = createGridLayout(tab);
 
     QStringList layoutNames = KrLayoutFactory::layoutNames();
-    int numLayouts = layoutNames.count();
+    int numLayouts = static_cast<int>(layoutNames.count());
 
     grid->addWidget(createSpacer(tab), 0, 2);
 
@@ -373,7 +373,7 @@ void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
                                                "IconSize",
                                                _FilelistIconSize,
                                                iconSizes,
-                                               KrView::iconSizes.count(),
+                                               static_cast<int>(KrView::iconSizes.count()),
                                                labelIconSize,
                                                parent,
                                                true,
@@ -553,7 +553,7 @@ void KgPanel::setupPanelTab()
     hbox->addWidget(labelViewMode);
 
     QList<KrViewInstance *> views = KrViewFactory::registeredViews();
-    const int viewsSize = views.size();
+    const int viewsSize = static_cast<int>(views.size());
     auto *panelTypes = new KONFIGURATOR_NAME_VALUE_PAIR[viewsSize];
 
     QString defType = QString('0');

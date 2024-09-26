@@ -208,7 +208,7 @@ QString ParameterDialog::getParameter()
     if (exec() == -1)
         return QString();
 
-    int lastParameter = _parameterCount;
+    qsizetype lastParameter = _parameterCount;
     while (--lastParameter > -1) {
         if (_parameter[lastParameter]->text() != _parameter[lastParameter]->preset() || _parameter[lastParameter]->necessary())
             break;

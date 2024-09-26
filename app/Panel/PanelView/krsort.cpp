@@ -37,7 +37,7 @@ void SortProps::init(FileItem *fileitem, int col, const KrViewProperties *props,
         } else {
             // check if the file has an extension
             const QString &fileitemName = fileitem->getName();
-            int loc = fileitemName.lastIndexOf('.');
+            qsizetype loc = fileitemName.lastIndexOf('.');
             if (loc > 0) { // avoid mishandling of .bashrc and friend
                 // check if it has one of the predefined 'atomic extensions'
                 for (const auto &atomicExtension : props->atomicExtensions) {
@@ -289,7 +289,7 @@ bool itemGreaterThan(SortProps *sp, SortProps *sp2)
     return !itemLessThan(sp, sp2);
 }
 
-Sorter::Sorter(int reserveItems, const KrViewProperties *viewProperties, LessThanFunc lessThanFunc, LessThanFunc greaterThanFunc)
+Sorter::Sorter(qsizetype reserveItems, const KrViewProperties *viewProperties, LessThanFunc lessThanFunc, LessThanFunc greaterThanFunc)
     : _viewProperties(viewProperties)
     , _lessThanFunc(lessThanFunc)
     , _greaterThanFunc(greaterThanFunc)
@@ -315,9 +315,9 @@ int Sorter::insertIndex(FileItem *fileitem, bool isDummy, QVariant customData)
     const QVector<SortProps *>::iterator it = std::lower_bound(_items.begin(), _items.end(), &props, descending() ? _greaterThanFunc : _lessThanFunc);
 
     if (it != _items.end())
-        return _items.indexOf((*it));
+        return static_cast<int>(_items.indexOf((*it)));
     else
-        return _items.count();
+        return static_cast<int>(_items.count());
 }
 
 bool Sorter::descending() const

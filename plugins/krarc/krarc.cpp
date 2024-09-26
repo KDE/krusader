@@ -164,7 +164,7 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
     QString tmpDirPath = group.readEntry("Temp Directory", _TempDirectory);
     QDir tmpDir(tmpDirPath);
     if (!tmpDir.exists()) {
-        for (int i = 1; i != -1; i = tmpDirPath.indexOf('/', i + 1))
+        for (qsizetype i = 1; i != -1; i = tmpDirPath.indexOf('/', i + 1))
             QDir().mkdir(tmpDirPath.left(i));
         QDir().mkdir(tmpDirPath);
     }
@@ -263,7 +263,7 @@ KIO::WorkerResult kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
         permissions = 0777; // set default permissions
 
     QByteArray arcTempDirEnc = arcTempDir.toLocal8Bit();
-    for (int i = 0; i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
+    for (qsizetype i = 0; i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
         QByteArray newDirs = encodeString(tempDir.left(i));
         newDirs.prepend(arcTempDirEnc);
         QT_MKDIR(newDirs.constData(), permissions);
@@ -336,7 +336,7 @@ KIO::WorkerResult kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::
         permissions = 0777; // set default permissions
 
     QByteArray arcTempDirEnc = arcTempDir.toLocal8Bit();
-    for (int i = 0; i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
+    for (qsizetype i = 0; i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
         QByteArray newDirs = encodeString(tempDir.left(i));
         newDirs.prepend(arcTempDirEnc);
         QT_MKDIR(newDirs.constData(), 0755);
@@ -574,7 +574,7 @@ KIO::WorkerResult kio_krarcProtocol::get(const QUrl &url, int tries)
 
         char buffer[MAX_IPC_SIZE];
         while (1) {
-            int n = int(::read(fd, buffer, MAX_IPC_SIZE));
+            int n = static_cast<int>(::read(fd, buffer, MAX_IPC_SIZE));
             if (n == -1) {
                 if (errno == EINTR)
                     continue;
@@ -739,7 +739,7 @@ KIO::WorkerResult kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int
 
             QString destDir = getPath(dest, QUrl::StripTrailingSlash);
             if (!QDir(destDir).exists()) {
-                int ndx = destDir.lastIndexOf(DIR_SEPARATOR_CHAR);
+                qsizetype ndx = destDir.lastIndexOf(DIR_SEPARATOR_CHAR);
                 if (ndx != -1)
                     destDir.truncate(ndx + 1);
             }
@@ -901,7 +901,7 @@ KIO::WorkerResult kio_krarcProtocol::setArcFile(const QUrl &url)
         QString newPath = path;
         if (newPath.right(1) != DIR_SEPARATOR)
             newPath = newPath + DIR_SEPARATOR;
-        for (int pos = 0; pos >= 0; pos = newPath.indexOf(DIR_SEPARATOR, pos + 1)) {
+        for (qsizetype pos = 0; pos >= 0; pos = newPath.indexOf(DIR_SEPARATOR, pos + 1)) {
             QFileInfo qfi(newPath.left(pos));
             if (qfi.exists() && !qfi.isDir()) {
                 QT_STATBUF stat_p;
@@ -1141,7 +1141,7 @@ QString kio_krarcProtocol::nextWord(QString &s, char d)
 {
     // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     s = s.trimmed();
-    int j = s.indexOf(d, 0);
+    qsizetype j = s.indexOf(d, 0);
     QString temp = s.left(j); // find the leftmost word.
     s.remove(0, j);
     return temp;
@@ -1402,7 +1402,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         // ignore the next field
         nextWord(line);
         // date & time
-        int month = (QString("Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec").split(',')).indexOf(nextWord(line)) + 1;
+        int month = static_cast<int>((QString("Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec").split(',')).indexOf(nextWord(line))) + 1;
         int day = nextWord(line).toInt();
         int year = QDate::currentDate().year();
         QString third = nextWord(line);
@@ -1810,7 +1810,7 @@ void kio_krarcProtocol::check7zOutputForPassword(KProcess *proc, QByteArray &buf
     lastData = lines[lines.count() - 1];
     for (int i = 0; i != lines.count(); i++) {
         QString line = lines[i].trimmed().toLower();
-        int ndx = line.indexOf("listing"); // Reminder: Lower-case letters are used
+        qsizetype ndx = line.indexOf("listing"); // Reminder: Lower-case letters are used
         if (ndx >= 0)
             line.truncate(ndx);
         if (line.isEmpty())
@@ -1899,7 +1899,7 @@ QString kio_krarcProtocol::localeEncodedString(QString str)
 
     // encoding the byte array to QString, mapping 0x0000-0x00FF to 0xE000-0xE0FF
     // see KrArcCodec for more explanation
-    int size = array.size();
+    qsizetype size = array.size();
     QString result;
 
     const char *data = array.constData();

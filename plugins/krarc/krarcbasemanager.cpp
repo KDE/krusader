@@ -106,7 +106,7 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, const QString &fileName
             QByteArray detectionString = autoDetectParams[i].detectionString;
             int location = autoDetectParams[i].location;
 
-            int endPtr = detectionString.length() + location;
+            qsizetype endPtr = detectionString.length() + location;
             if (endPtr > sizeMax)
                 continue;
 
@@ -259,11 +259,11 @@ QString KrArcBaseManager::getShortTypeFromMime(const QString &mime)
     // The short type that will be returned
     QString sType = mime;
 
-    int lastHyphen = sType.lastIndexOf('-');
+    qsizetype lastHyphen = sType.lastIndexOf('-');
     if (lastHyphen != -1)
         sType = sType.mid(lastHyphen + 1);
     else {
-        int lastSlash = sType.lastIndexOf('/');
+        qsizetype lastSlash = sType.lastIndexOf('/');
         if (lastSlash != -1)
             sType = sType.mid(lastSlash + 1);
     }

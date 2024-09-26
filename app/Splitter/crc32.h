@@ -8,6 +8,8 @@
 #ifndef CRC32_H
 #define CRC32_H
 
+#include <QtGlobal>
+
 class CRC32
 {
 private:
@@ -18,7 +20,7 @@ private:
 public:
     explicit CRC32(unsigned long initialValue = (unsigned long)-1);
 
-    void update(unsigned char *buffer, int bufferLen);
+    void update(unsigned char *buffer, qsizetype bufferLen);
     unsigned long result();
 };
 

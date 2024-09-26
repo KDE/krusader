@@ -37,7 +37,7 @@ public:
     virtual void detailedError(const QString &error, const QString &details) = 0;
 
 public slots:
-    virtual void incrementProgress(int) = 0;
+    virtual void incrementProgress(qsizetype) = 0;
 };
 
 class KrArcHandler : public QObject, public KrArcBaseManager

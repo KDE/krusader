@@ -196,7 +196,7 @@ void KrPie::paintEvent(QPaintEvent *)
 
 void KrPie::addSlice(KIO::filesize_t size, QString label)
 {
-    int i = (slices.count() % 12);
+    qsizetype i = (slices.count() % 12);
     slices.removeLast();
     slices.push_back(KrPieSlice(size * 100 / totalSize, colors[i], std::move(label)));
     sizeLeft -= size;

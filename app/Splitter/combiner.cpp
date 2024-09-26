@@ -113,7 +113,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
         bool hasFileName = false, hasSize = false, hasCrc = false;
 
         for (int i = 0; i != splitFileContent.count(); i++) {
-            int ndx = splitFileContent[i].indexOf('=');
+            qsizetype ndx = splitFileContent[i].indexOf('=');
             if (ndx == -1)
                 continue;
             QString token = splitFileContent[i].left(ndx).trimmed();
@@ -206,7 +206,7 @@ void Combiner::openNextFile()
             readURL = baseURL;
         else {
             QString name = readURL.fileName();
-            int pos = name.length() - 1;
+            qsizetype pos = name.length() - 1;
             QChar ch;
 
             do {

@@ -114,8 +114,8 @@ protected:
 
     qint64 _lastPageStartPos = 0;
 
-    qsizetype _sizeX = -1;
-    qsizetype _sizeY = -1;
+    int _sizeX = -1;
+    int _sizeY = -1;
     int _pageSize = 0;
 
     int _tabWidth = 4;

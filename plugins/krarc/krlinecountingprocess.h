@@ -27,8 +27,8 @@ public slots:
     void receivedOutput(QByteArray = QByteArray());
 
 signals:
-    void newOutputLines(int);
-    void newErrorLines(int);
+    void newOutputLines(qsizetype);
+    void newErrorLines(qsizetype);
     void newOutputData(KProcess *, QByteArray &);
 
 private:

@@ -194,7 +194,7 @@ qint64 ListerTextArea::textToFilePositionOnScreen(const int x, const int y, bool
     }
 
     // we can't use fromUnicode because of the invalid encoded chars
-    const int maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
+    const qsizetype maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
     QByteArray chunk = _lister->cacheChunk(rowStart, maxBytes);
 
     QString s = _lister->codec()->toUnicode(chunk);
@@ -231,7 +231,7 @@ void ListerTextArea::fileToTextPositionOnScreen(const qint64 p, const bool isfir
     }
 
     // find column
-    const int maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
+    const qsizetype maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
     x = 0;
     if (rowStart >= p) {
         if ((rowStart == p) && !isfirst && y > 0) {
@@ -245,7 +245,7 @@ void ListerTextArea::fileToTextPositionOnScreen(const qint64 p, const bool isfir
             stream.read(_rowContent[y - 1].length());
             if (previousRow + stream.pos() == p) {
                 y--;
-                x = _rowContent[y].length();
+                x = static_cast<int>(_rowContent[y].length());
             }
         }
         return;
@@ -254,7 +254,7 @@ void ListerTextArea::fileToTextPositionOnScreen(const qint64 p, const bool isfir
     const QByteArray chunk = _lister->cacheChunk(rowStart, maxBytes);
     const QByteArray cachedBuffer = chunk.left(static_cast<int>(p - rowStart));
 
-    x = _lister->codec()->toUnicode(cachedBuffer).length();
+    x = static_cast<int>(_lister->codec()->toUnicode(cachedBuffer).length());
 }
 
 void ListerTextArea::getCursorPosition(int &x, int &y)
@@ -267,7 +267,7 @@ void ListerTextArea::getScreenPosition(const int position, int &x, int &y)
     x = position;
     y = 0;
     for (const QString &row : std::as_const(_rowContent)) {
-        const int rowLen = row.length() + 1;
+        const int rowLen = static_cast<int>(row.length()) + 1;
         if (x < rowLen) {
             return;
         }
@@ -290,12 +290,12 @@ void ListerTextArea::setCursorPositionOnScreen(const int x, const int y, const i
 
         if (finalY == -2) {
             finalY = _sizeY;
-            finalX = (_rowContent.count() > _sizeY) ? _rowContent[_sizeY].length() : 0;
+            finalX = (_rowContent.count() > _sizeY) ? static_cast<int>(_rowContent[_sizeY].length()) : 0;
         } else
             finalX = finalY = 0;
     }
 
-    const int realSizeY = std::min(_sizeY + 1, _rowContent.count());
+    const int realSizeY = std::min(_sizeY + 1, static_cast<int>(_rowContent.count()));
 
     const auto setUpCursor = [&](const int cursorX, const int cursorY, const QTextCursor::MoveMode mode) -> bool {
         if (cursorY > realSizeY) {
@@ -309,7 +309,7 @@ void ListerTextArea::setCursorPositionOnScreen(const int x, const int y, const i
             moveCursor(QTextCursor::Down, mode);
         }
 
-        int finalCursorX = cursorX;
+        qsizetype finalCursorX = cursorX;
         if (_rowContent.count() > cursorY && finalCursorX > _rowContent[cursorY].length()) {
             finalCursorX = _rowContent[cursorY].length();
         }
@@ -380,7 +380,7 @@ void ListerTextArea::setCursorPositionInDocument(const qint64 p, const bool isfi
                 anchorX = 0;
             }
             if (anchorBelow && _rowContent.count() > 0) {
-                anchorX = _rowContent[0].length();
+                anchorX = static_cast<int>(_rowContent[0].length());
             }
         }
 
@@ -432,12 +432,12 @@ QString ListerTextArea::readSection(const qint64 p1, const qint64 p2)
         return section;
     }
 
-    qsizetype pos = sel1;
+    qint64 pos = sel1;
 
     QScopedPointer<QTextDecoder> decoder(_lister->codec()->makeDecoder());
 
     do {
-        const qsizetype maxBytes = std::min(_sizeX * _sizeY * MAX_CHAR_LENGTH, sel2 - pos);
+        const qint64 maxBytes = std::min(qint64(_sizeX) * _sizeY * MAX_CHAR_LENGTH, sel2 - pos);
         const QByteArray chunk = _lister->cacheChunk(pos, maxBytes);
         if (chunk.isEmpty())
             break;
@@ -472,7 +472,7 @@ QStringList ListerTextArea::readLines(qint64 filePos, qint64 &endPos, const int 
     }
 
     endPos = filePos;
-    const int maxBytes = _sizeX * _sizeY * MAX_CHAR_LENGTH;
+    const qsizetype maxBytes = _sizeX * _sizeY * MAX_CHAR_LENGTH;
     const QByteArray chunk = _lister->cacheChunk(filePos, maxBytes);
     if (chunk.isEmpty())
         return list;
@@ -555,7 +555,7 @@ void ListerTextArea::setUpScrollBar()
         if (list.count() <= _sizeY) {
             _lastPageStartPos = 0;
         } else {
-            readLines(pageStartPos, _lastPageStartPos, list.count() - _sizeY);
+            readLines(pageStartPos, _lastPageStartPos, static_cast<int>(list.count()) - _sizeY);
         }
 
         const qint64 maximum = (_lastPageStartPos > SLIDER_MAX) ? SLIDER_MAX : _lastPageStartPos;
@@ -636,9 +636,9 @@ void ListerTextArea::keyPressEvent(QKeyEvent *ke)
             slotActionTriggered(QAbstractSlider::SliderPageStepAdd);
             y += _sizeY - _skippedLines;
             if (y > _rowContent.count()) {
-                y = _rowContent.count() - 1;
+                y = static_cast<int>(_rowContent.count()) - 1;
                 if (y > 0)
-                    x = _rowContent[y - 1].length();
+                    x = static_cast<int>(_rowContent[y - 1].length());
                 else
                     x = 0;
             }
@@ -812,7 +812,7 @@ void ListerTextArea::slotActionTriggered(int action)
 
         const QByteArray chunk = _lister->cacheChunk(readPos, maxSize);
 
-        int from = chunk.size();
+        qsizetype from = chunk.size();
         while (from > 0) {
             from--;
             from = chunk.lastIndexOf(encodedEnter, from);
@@ -820,8 +820,8 @@ void ListerTextArea::slotActionTriggered(int action)
                 from = 0;
                 break;
             }
-            const int backRef = std::max(from - 20, 0);
-            const int size = from - backRef + encodedEnter.size();
+            const qsizetype backRef = std::max(from - 20, qsizetype(0));
+            const qsizetype size = from - backRef + encodedEnter.size();
             const QString decoded = _lister->codec()->toUnicode(chunk.mid(backRef, size));
             if (decoded.endsWith(QLatin1String("\n"))) {
                 if (from < (chunk.size() - encodedEnter.size())) {
@@ -861,7 +861,7 @@ void ListerTextArea::slotActionTriggered(int action)
         }
 
         if (_hexMode) {
-            const int bytesPerRow = _lister->hexBytesPerLine(_sizeX);
+            const qsizetype bytesPerRow = _lister->hexBytesPerLine(_sizeX);
             _screenStartPos = (_screenStartPos / bytesPerRow) * bytesPerRow;
             _screenStartPos -= _sizeY * bytesPerRow;
             if (_screenStartPos < 0) {
@@ -882,8 +882,8 @@ void ListerTextArea::slotActionTriggered(int action)
         const QByteArray chunk = _lister->cacheChunk(readPos, maxSize);
         maxSize = chunk.size();
 
-        int sizeY = _sizeY + 1;
-        int origSizeY = sizeY;
+        qsizetype sizeY = _sizeY + 1;
+        qsizetype origSizeY = sizeY;
         qint64 from = maxSize;
         qint64 lastEnter = maxSize;
 
@@ -960,7 +960,7 @@ void ListerTextArea::slotActionTriggered(int action)
                 const int bytesPerRow = _lister->hexBytesPerLine(_sizeX);
                 pos = (pos / bytesPerRow) * bytesPerRow;
             } else {
-                const int maxSize = _sizeX * _sizeY * MAX_CHAR_LENGTH;
+                const qsizetype maxSize = _sizeX * _sizeY * MAX_CHAR_LENGTH;
                 qint64 readPos = pos - maxSize;
                 if (readPos < 0)
                     readPos = 0;
@@ -1008,13 +1008,13 @@ void ListerTextArea::ensureVisibleCursor()
         return;
     }
 
-    int delta = _sizeY / 2;
+    qsizetype delta = _sizeY / 2;
     if (delta == 0)
         delta++;
 
     qint64 newScreenStart = _cursorPos;
     while (delta) {
-        const int maxSize = _sizeX * MAX_CHAR_LENGTH;
+        const qsizetype maxSize = _sizeX * MAX_CHAR_LENGTH;
         qint64 readPos = newScreenStart - maxSize;
         if (readPos < 0)
             readPos = 0;
@@ -1627,7 +1627,7 @@ void Lister::slotSearchMore()
     qint64 byteCounter = 0;
 
     if (_searchHexadecimal) {
-        const int ndx = _searchIsForward ? chunk.indexOf(_searchHexQuery) : chunk.lastIndexOf(_searchHexQuery);
+        const qsizetype ndx = _searchIsForward ? chunk.indexOf(_searchHexQuery) : chunk.lastIndexOf(_searchHexQuery);
         if (chunkSize > _searchHexQuery.length()) {
             if (_searchIsForward) {
                 _searchPosition = searchPos + chunkSize;
@@ -2116,7 +2116,7 @@ QStringList Lister::readLines(qint64 &filePos, const qint64 endPos, const int co
 
         // handle tab
         if (chr == "\t") {
-            const int tabLength = _textArea->tabWidth() - (row.length() % _textArea->tabWidth());
+            const qsizetype tabLength = _textArea->tabWidth() - (row.length() % _textArea->tabWidth());
             if (row.length() + tabLength > columns) {
                 list << row;
                 row = "";

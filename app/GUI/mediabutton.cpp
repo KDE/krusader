@@ -110,7 +110,7 @@ void MediaButton::createMediaList()
     // devices detected by solid
     storageDevices = Solid::Device::listFromType(Solid::DeviceInterface::StorageAccess);
 
-    for (int p = storageDevices.count() - 1; p >= 0; p--) {
+    for (qsizetype p = storageDevices.count() - 1; p >= 0; p--) {
         Solid::Device device = storageDevices[p];
         QString udi = device.udi();
 

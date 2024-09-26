@@ -208,7 +208,7 @@ QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
     QString squeezedText = "...";
     int squeezedWidth = fm.horizontalAdvance(squeezedText);
 
-    int letters = text.length() * (labelWidth - squeezedWidth) / textWidth / 2;
+    qsizetype letters = text.length() * (labelWidth - squeezedWidth) / textWidth / 2;
     if (labelWidth < squeezedWidth)
         letters = 1;
     squeezedText = text.left(letters) + "..." + text.right(letters);

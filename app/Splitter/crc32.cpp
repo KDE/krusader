@@ -32,7 +32,7 @@ CRC32::CRC32(unsigned long initialValue)
     }
 }
 
-void CRC32::update(unsigned char *buffer, int bufferLen)
+void CRC32::update(unsigned char *buffer, qsizetype bufferLen)
 {
     while (bufferLen-- > 0)
         crc_accum = ((crc_accum >> 8) & MASK1) ^ crc_table[(crc_accum & 0xff) ^ *buffer++];

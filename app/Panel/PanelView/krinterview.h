@@ -38,9 +38,9 @@ public:
         return _itemView->currentIndex();
     }
     bool isSelected(const QModelIndex &ndx) override;
-    uint numSelected() const override
+    int numSelected() const override
     {
-        return _selection.count();
+        return static_cast<int>(_selection.count());
     }
     QList<QUrl> selectedUrls() override;
     void setSelectionUrls(const QList<QUrl> urls) override;

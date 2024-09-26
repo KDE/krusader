@@ -139,7 +139,7 @@ KgColors::KgColors(bool first, QWidget *parent)
     addColorSelector("Rename Foreground", i18n("Rename foreground:"), getColorSelector("Foreground")->getColor(), i18n("Same as foreground"));
     addColorSelector("Rename Background", i18n("Rename background:"), getColorSelector("Background")->getColor(), i18n("Same as background"));
 
-    colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
+    colorsGrid->addWidget(createSpacer(colorsGrp), static_cast<int>(itemList.count()) - offset, 1);
 
     connect(getColorSelector("Foreground"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotForegroundChanged);
     connect(getColorSelector("Background"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotBackgroundChanged);
@@ -155,7 +155,7 @@ KgColors::KgColors(bool first, QWidget *parent)
     colorsGrid->setSpacing(0);
     colorsGrid->setContentsMargins(2, 2, 2, 2);
 
-    offset = endOfActiveColors = itemList.count();
+    offset = endOfActiveColors = static_cast<int>(itemList.count());
 
     addColorSelector("Inactive Foreground", i18n("Foreground:"), getColorSelector("Foreground")->getColor(), i18n("Same as active"));
     ADDITIONAL_COLOR sameAsInactForegnd = {i18n("Same as foreground"), getColorSelector("Inactive Foreground")->getColor(), "Inactive Foreground"};
@@ -229,14 +229,14 @@ KgColors::KgColors(bool first, QWidget *parent)
                      &sameAsInactBckgnd,
                      1);
 
-    colorsGrid->addWidget(createSpacer(normalInactiveWidget), itemList.count() - offset, 1);
+    colorsGrid->addWidget(createSpacer(normalInactiveWidget), static_cast<int>(itemList.count()) - offset, 1);
 
     connect(getColorSelector("Inactive Foreground"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotInactiveForegroundChanged);
     connect(getColorSelector("Inactive Background"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotInactiveBackgroundChanged);
     connect(getColorSelector("Inactive Alternate Background"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotInactiveAltBackgroundChanged);
     connect(getColorSelector("Inactive Marked Background"), &KonfiguratorColorChooser::colorChanged, this, &KgColors::slotInactiveMarkedBackgroundChanged);
 
-    offset = endOfPanelColors = itemList.count();
+    offset = endOfPanelColors = static_cast<int>(itemList.count());
 
     inactiveColorStack->addWidget(normalInactiveWidget);
 
@@ -248,14 +248,14 @@ KgColors::KgColors(bool first, QWidget *parent)
 
     addColorSelector("Dim Target Color", i18n("Dim target color:"), Qt::black);
 
-    int index = itemList.count() - offset;
+    int index = static_cast<int>(itemList.count()) - offset;
     QLabel *spinBoxLabel = addLabel(colorsGrid, index, 0, i18n("Dim factor:"), colorsGrp);
     labelList.append(spinBoxLabel);
     dimFactor = createSpinBox("Colors", "Dim Factor", 80, 0, 100, spinBoxLabel, colorsGrp);
     dimFactor->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     colorsGrid->addWidget(dimFactor, index++, 1);
 
-    colorsGrid->addWidget(createSpacer(dimmedInactiveWidget), itemList.count() + 1 - offset, 1);
+    colorsGrid->addWidget(createSpacer(dimmedInactiveWidget), static_cast<int>(itemList.count()) + 1 - offset, 1);
 
     inactiveColorStack->addWidget(dimmedInactiveWidget);
 
@@ -272,7 +272,7 @@ KgColors::KgColors(bool first, QWidget *parent)
     colorsGrid->setSpacing(0);
     colorsGrid->setContentsMargins(2, 2, 2, 2);
 
-    offset = endOfPanelColors = itemList.count();
+    offset = endOfPanelColors = static_cast<int>(itemList.count());
 
     DECLARE_SYNCHRONIZER_BACKGROUND_DEFAULTS;
     DECLARE_SYNCHRONIZER_FOREGROUND_DEFAULTS;
@@ -298,7 +298,7 @@ KgColors::KgColors(bool first, QWidget *parent)
     addColorSelector("Synchronizer Delete Foreground", i18n("Delete foreground:"), SYNCHRONIZER_FOREGROUND_DEFAULTS[4], QString(), &KDEDefaultFore, 1);
     addColorSelector("Synchronizer Delete Background", i18n("Delete background:"), SYNCHRONIZER_BACKGROUND_DEFAULTS[4], QString(), &KDEDefaultBase, 1);
 
-    colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
+    colorsGrid->addWidget(createSpacer(colorsGrp), static_cast<int>(itemList.count()) - offset, 1);
 #endif
 
     colorsGrp = new QWidget(colorTabWidget);
@@ -308,7 +308,7 @@ KgColors::KgColors(bool first, QWidget *parent)
     colorsGrid->setSpacing(0);
     colorsGrid->setContentsMargins(2, 2, 2, 2);
 
-    offset = endOfPanelColors = itemList.count();
+    offset = endOfPanelColors = static_cast<int>(itemList.count());
 
     addColorSelector("Quicksearch Match Foreground", i18n("Quicksearch, match foreground:"), Qt::black, QString(), &KDEDefaultFore, 1);
     addColorSelector("Quicksearch Match Background", i18n("Quicksearch, match background:"), QColor(192, 255, 192), QString(), &KDEDefaultBase, 1);
@@ -341,7 +341,7 @@ KgColors::KgColors(bool first, QWidget *parent)
                      &KDEDefaultWindowBack,
                      1);
 
-    colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
+    colorsGrid->addWidget(createSpacer(colorsGrp), static_cast<int>(itemList.count()) - offset, 1);
 
     colorsFrameGrid->addWidget(colorTabWidget, 0, 0);
     hbox->addWidget(colorsFrameGrp);
@@ -385,7 +385,7 @@ KgColors::KgColors(bool first, QWidget *parent)
 
 int KgColors::addColorSelector(const QString &cfgName, QString name, QColor defaultValue, const QString &dfltName, ADDITIONAL_COLOR *addColor, int addColNum)
 {
-    int index = itemList.count() - offset;
+    int index = static_cast<int>(itemList.count()) - offset;
 
     labelList.append(addLabel(colorsGrid, index, 0, std::move(name), colorsGrp));
     KonfiguratorColorChooser *chooser = createColorChooser("Colors", cfgName, std::move(defaultValue), colorsGrp, false, addColor, addColNum);

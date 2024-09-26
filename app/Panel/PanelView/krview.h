@@ -265,7 +265,7 @@ public:
     virtual bool ensureVisibilityAfterSelect() = 0;
     virtual void selectRegion(KrViewItem *, KrViewItem *, bool) = 0;
 
-    virtual uint numSelected() const = 0;
+    virtual int numSelected() const = 0;
     virtual QList<QUrl> selectedUrls() = 0;
     virtual void setSelectionUrls(const QList<QUrl> urls) = 0;
     virtual KrViewItem *getFirst() = 0;

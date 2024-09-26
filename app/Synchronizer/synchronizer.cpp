@@ -1584,7 +1584,7 @@ void Synchronizer::synchronizeWithKGet()
             }
 
             // creating the directory system
-            for (int i = 0; i >= 0; i = destDir.indexOf('/', i + 1))
+            for (qsizetype i = 0; i >= 0; i = destDir.indexOf('/', i + 1))
                 if (!QDir(destDir.left(i)).exists())
                     QDir().mkdir(destDir.left(i));
 
@@ -1594,7 +1594,7 @@ void Synchronizer::synchronizeWithKGet()
 
                 QString source = downloadURL.toDisplayString();
                 if (source.indexOf('@') >= 2) { /* is this an ftp proxy URL? */
-                    int lastAt = source.lastIndexOf('@');
+                    qsizetype lastAt = source.lastIndexOf('@');
                     QString startString = source.left(lastAt);
                     QString endString = source.mid(lastAt);
                     startString.replace('@', "%40");

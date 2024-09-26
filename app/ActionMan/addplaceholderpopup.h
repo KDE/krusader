@@ -338,7 +338,7 @@ public:
 private:
     typedef QList<ParameterBase *> ParameterList;
     ParameterList _parameter;
-    int _parameterCount;
+    qsizetype _parameterCount;
 private slots:
     void reset();
     void slotOk();

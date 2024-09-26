@@ -258,7 +258,7 @@ QRadioButton *KonfiguratorRadioButtons::find(int index)
 
 QRadioButton *KonfiguratorRadioButtons::find(const QString &name)
 {
-    int index = radioNames.indexOf(name);
+    qsizetype index = radioNames.indexOf(name);
     if (index == -1)
         return nullptr;
 
@@ -713,9 +713,9 @@ void KonfiguratorColorChooser::setValue(const QString &value)
             colGroup.deleteEntry("TmpColor");
 
             setCurrentIndex(0);
-            for (int i = 2 + additionalColors.size(); i != palette.size(); i++)
+            for (qsizetype i = 2 + additionalColors.size(); i != palette.size(); i++)
                 if (palette[i] == color) {
-                    setCurrentIndex(i);
+                    setCurrentIndex(static_cast<int>(i));
                     break;
                 }
         }

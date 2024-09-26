@@ -74,7 +74,7 @@ public:
     /**
      * @return how many useractions exist
      */
-    int count() const
+    qsizetype count() const
     {
         return _actions.count();
     };

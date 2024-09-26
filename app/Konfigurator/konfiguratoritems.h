@@ -185,10 +185,10 @@ public:
     }
 
     void add(KonfiguratorCheckBox *);
-    int count()
+    qsizetype count()
     {
         return checkBoxList.count();
-    };
+    }
     KonfiguratorCheckBox *find(int index);
     KonfiguratorCheckBox *find(const QString &name);
 
@@ -216,7 +216,7 @@ public:
 
     void selectButton(const QString &value);
 
-    int count()
+    qsizetype count()
     {
         return radioButtons.count();
     }

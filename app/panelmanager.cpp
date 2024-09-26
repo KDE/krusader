@@ -213,7 +213,7 @@ void PanelManager::loadSettings(KConfigGroup config)
 {
     KConfigGroup grpTabs(&config, "Tabs");
     int numTabsOld = _tabbar->count();
-    int numTabsNew = grpTabs.groupList().count();
+    qsizetype numTabsNew = grpTabs.groupList().count();
 
     for (int i = 0; i < numTabsNew; i++) {
         KConfigGroup grpTab(&grpTabs, "Tab" + QString::number(i));
@@ -431,10 +431,10 @@ void PanelManager::delAllClosedTabs()
     const int quantFixedMenuEntries = KrActions::actClosedTabsMenu->quantFixedMenuEntries;
     RecentlyClosedTabsMenu *closedTabsMenu = KrActions::actClosedTabsMenu;
     if (closedTabsMenu) {
-        const int quantActions = closedTabsMenu->menu()->actions().size();
+        const qsizetype quantActions = closedTabsMenu->menu()->actions().size();
         // Remove the actions (and related information) that follow the
         // fixed menu entries
-        for (int x = quantActions - 1; x >= quantFixedMenuEntries; x--) {
+        for (qsizetype x = quantActions - 1; x >= quantFixedMenuEntries; x--) {
             QAction *action = closedTabsMenu->menu()->actions().at(x);
             delClosedTab(action);
         }

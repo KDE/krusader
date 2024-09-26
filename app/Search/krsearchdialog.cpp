@@ -503,7 +503,7 @@ void KrSearchDialog::executed(const QString &name)
     QString fileName;
     if (!name.endsWith('/')) {
         // not a directory, split filename and path
-        int idx = name.lastIndexOf("/");
+        qsizetype idx = name.lastIndexOf("/");
         fileName = name.mid(idx + 1);
         path = name.left(idx);
     }
@@ -523,8 +523,8 @@ void KrSearchDialog::currentChanged(KrViewItem *item)
     if (!text.isEmpty()) {
         // ugly hack: find the <b> and </b> in the text, then
         // use it to set the are which we don't want squeezed
-        int idx = text.indexOf("<b>") - 4; // take "<qt>" into account
-        int length = text.indexOf("</b>") - idx + 4;
+        qsizetype idx = text.indexOf("<b>") - 4; // take "<qt>" into account
+        qsizetype length = text.indexOf("</b>") - idx + 4;
         foundTextLabel->setText(text, idx, length);
     }
 }

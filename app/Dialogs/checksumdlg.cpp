@@ -222,7 +222,7 @@ void ChecksumWizard::runProcess(const QString &type, const QStringList &args)
 void ChecksumWizard::addChecksumLine(KrTreeWidget *tree, const QString &line)
 {
     auto *item = new QTreeWidgetItem(tree);
-    const int hashLength = line.indexOf(' '); // delimiter is either "  " or " *"
+    const qsizetype hashLength = line.indexOf(' '); // delimiter is either "  " or " *"
     item->setText(0, line.left(hashLength));
     QString fileName = line.mid(hashLength + 2);
     if (fileName.endsWith('\n'))

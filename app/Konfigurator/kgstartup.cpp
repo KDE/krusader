@@ -40,7 +40,7 @@ KgStartup::KgStartup(bool first, QWidget *parent)
     QStringList profileList = ProfileManager::availableProfiles("Panel");
     profileList.push_front(i18n("<Last session>"));
 
-    const int profileListSize = profileList.size();
+    const int profileListSize = static_cast<int>(profileList.size());
     auto *comboItems = new KONFIGURATOR_NAME_VALUE_PAIR[profileListSize];
     for (int i = 0; i != profileListSize; i++)
         comboItems[i].text = comboItems[i].value = profileList[i];

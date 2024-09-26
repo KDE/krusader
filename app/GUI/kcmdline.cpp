@@ -79,7 +79,7 @@ void CmdLineCombo::doLayout()
     QFontMetrics fm(_pathLabel->fontMetrics());
     int textWidth = fm.horizontalAdvance(_path);
     int maxWidth = (width() + _pathLabel->width()) * 2 / 5;
-    int letters = _path.length() / 2;
+    qsizetype letters = _path.length() / 2;
 
     while (letters && textWidth > maxWidth) {
         pathNameLabel = _path.left(letters) + "..." + _path.right(letters);
