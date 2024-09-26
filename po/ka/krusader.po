@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-24 00:41+0000\n"
-"PO-Revision-Date: 2024-09-24 15:27+0200\n"
+"PO-Revision-Date: 2024-09-25 22:22+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -125,6 +125,9 @@ msgid ""
 "If you do not have such a useraction the name is used by Krusader for an "
 "internal action."
 msgstr ""
+"ქმედება ამ სახელით უკვე არსებობს.\n"
+"თუ ასეთი ქმედება არ გაქვთ, ესე იგი ამ სახელს ქმედების სახელს Krusader თვითონ "
+"იყენებს."
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, ActionProperty)
 #: app/ActionMan/actionproperty.ui:14
@@ -152,6 +155,8 @@ msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
 "<i>Konfigurator</i> and via <code>Shift+F1</code>."
 msgstr ""
+"დეტალური აღწერა <b>ქმედებისთვის</b>. ის, მხოლოდ, <i>Konfigurator-ში</i> და "
+"<code>Shift+F1</code> ღილაკებით გამოჩნდება."
 
 #. i18n: ectx: property (text), widget (QLabel, LabelDescription)
 #: app/ActionMan/actionproperty.ui:61
@@ -169,7 +174,7 @@ msgstr "ბრძანება იღებს"
 #: app/ActionMan/actionproperty.ui:83
 #, kde-format
 msgid "Substitute the <b>Placeholders</b> with local filenames."
-msgstr ""
+msgstr "<b>ადგილმჭერების</b> ჩანაცვლება ლოკალური ფაილის სახელებით."
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioLocal)
 #: app/ActionMan/actionproperty.ui:86
@@ -181,7 +186,7 @@ msgstr "&მხოლდ, ლოკალურ ფაილებს (URL-ე�
 #: app/ActionMan/actionproperty.ui:96
 #, kde-format
 msgid "Substitute the <b>Placeholders</b> with valid URLs."
-msgstr ""
+msgstr "<b>ადგილმჭერების</b> ჩანაცვლება სწორი URL-ებით."
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioUrl)
 #: app/ActionMan/actionproperty.ui:99
@@ -194,7 +199,7 @@ msgstr "URL-ებს (&დაშორებული და ლოკალუ
 #: app/ActionMan/actionproperty.ui:109 app/ActionMan/actionproperty.ui:122
 #, kde-format
 msgid "The title displayed in the <b>Usermenu</b>."
-msgstr ""
+msgstr "<b>მომხმარებლის მენიუში</b> ნაჩვენები სათაური."
 
 #. i18n: ectx: property (text), widget (QLabel, LabelTitle)
 #: app/ActionMan/actionproperty.ui:125
@@ -210,6 +215,10 @@ msgid ""
 "<i>Konfigurator</i> and does not appear in any other menu.<p><b>Note</b>: "
 "the <i>Title</i> shown in the <b>Usermenu</b> can be set below."
 msgstr ""
+"<b>ქმედების</b> უნიკალური სახელი. ის, მხოლოდ, <i>Konfigurator</i>-ში "
+"გამოიყენება და სხვა მენიუში არასდროს გამოჩნდება.<p><b>შენიშვნა</b>: "
+"<i>სათაური</i>, რომელიც <b>მომხმარებლის მენიუში გამოჩნდება</b>, ქვემოთ "
+"შეგიძლიათ, დააყენოთ."
 
 #. i18n: ectx: property (whatsThis), widget (KComboBox, cbCategory)
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelCategory)
@@ -344,7 +353,7 @@ msgstr "არაფერი"
 #: app/ActionMan/actionproperty.ui:398
 #, kde-format
 msgid "If checked, the action is shown in the Useractions menus."
-msgstr ""
+msgstr "თუ ჩართულია, ქმედება ასევე გამოჩნდება მომხმარებლის ქმედების მენიუებში."
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkEnabled)
 #: app/ActionMan/actionproperty.ui:401
@@ -362,7 +371,7 @@ msgstr "შესრულების რეჟიმი"
 #: app/ActionMan/actionproperty.ui:420
 #, kde-format
 msgid "Collect the output of the executed program."
-msgstr ""
+msgstr "შესრულებული პროგრამის გამოტანილი ინფორმაციის შეგროვება."
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioCollectOutput)
 #: app/ActionMan/actionproperty.ui:423
@@ -374,7 +383,7 @@ msgstr "გამოტანის შეგროვება"
 #: app/ActionMan/actionproperty.ui:433
 #, kde-format
 msgid "Separate standard out and standard error in the output collection."
-msgstr ""
+msgstr "სტანდარტული გამოტანისა და შეცდომის განცალკევება მათი შეგროვებისას."
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkSeparateStdError)
 #: app/ActionMan/actionproperty.ui:436
@@ -523,7 +532,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:928
 #, kde-format
 msgid "Confirm each program call separately"
-msgstr ""
+msgstr "თითოეული პროგრამის გამოძახების სათითაოდ დადასტურება"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, chkDifferentUser)
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leDifferentUser)
@@ -643,7 +652,7 @@ msgstr ""
 #: app/ActionMan/useractionpage.cpp:261
 #, kde-format
 msgid "Overwrite or Merge?"
-msgstr ""
+msgstr "გადაწერა თუ შერწყმა?"
 
 #: app/ActionMan/useractionpage.cpp:263
 #, kde-format
@@ -653,7 +662,7 @@ msgstr "შერწყმა"
 #: app/ActionMan/useractionpage.cpp:269
 #, kde-format
 msgid "This file already exists. Do you want to overwrite it?"
-msgstr ""
+msgstr "ფაილი უკვე არსებობს. გნებავთ მასზე გადაწერა?"
 
 #: app/ActionMan/useractionpage.cpp:270
 #, kde-format
@@ -666,6 +675,8 @@ msgid ""
 "Cannot open %1 for writing.\n"
 "Nothing exported."
 msgstr ""
+"%1-ის ჩასაწერად გახსნა შეუძლებელია.\n"
+"არაფერი გატანა არ მომხდარა."
 
 #: app/ActionMan/useractionpage.cpp:284
 #, kde-format
@@ -721,7 +732,7 @@ msgstr "ჩავარდა rpm-ის (%1) გადაყვანა cpio-�
 #: app/Archive/krarchandler.cpp:362
 #, kde-format
 msgid "Failed to convert deb (%1) to tar."
-msgstr ""
+msgstr "ჩავარდა deb-ის (%1) tar-ში გადაყვანა."
 
 #: app/Archive/krarchandler.cpp:395
 #, kde-format
@@ -874,12 +885,12 @@ msgstr "აკლია ჭდე %1"
 #: app/BookMan/krbookmarkhandler.cpp:323
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
-msgstr ""
+msgstr "%1 სწორ სანიშნეების ფაილს არ წააგავს"
 
 #: app/BookMan/krbookmarkhandler.cpp:331
 #, kde-format
 msgid "Error reading bookmarks file: %1"
-msgstr ""
+msgstr "კითხვის შეცდომა სანიშნეების ფაილისთვის: %1"
 
 #: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:780
 #: app/Dialogs/popularurls.cpp:276
@@ -890,7 +901,7 @@ msgstr "პოპულარული URL-ები"
 #: app/BookMan/krbookmarkhandler.cpp:776
 #, kde-format
 msgid "Enable special bookmarks"
-msgstr ""
+msgstr "სპეციალური სანიშნეების ჩართვა"
 
 #: app/BookMan/krbookmarkhandler.cpp:796
 #, kde-format
@@ -919,12 +930,12 @@ msgstr "წაშლა"
 #: app/Dialogs/checksumdlg.cpp:112
 #, kde-format
 msgid "<qt>Could not start <b>%1</b>.</qt>"
-msgstr ""
+msgstr "<qt><b>%1</b> ვერ გაეშვა.</qt>"
 
 #: app/Dialogs/checksumdlg.cpp:119
 #, kde-format
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
-msgstr ""
+msgstr "<qt>შეცდომა <b>%1</b>-ის შესრულებისას.</qt>"
 
 #: app/Dialogs/checksumdlg.cpp:125
 #, kde-format
@@ -987,7 +998,7 @@ msgstr "მიღებული შეცდომები:"
 #: app/Dialogs/checksumdlg.cpp:302
 #, kde-format
 msgid "Save one checksum file for each source file"
-msgstr ""
+msgstr "ერთი საკონტროლო ფაილი თითოეული წყარო ფაილისთვის"
 
 #: app/Dialogs/checksumdlg.cpp:335
 #, kde-format
@@ -997,17 +1008,17 @@ msgstr "ფაილები ვერ მოიძებნა"
 #: app/Dialogs/checksumdlg.cpp:356
 #, kde-format
 msgid "Errors were detected while creating the checksums"
-msgstr ""
+msgstr "საკონტროლო ჯამების შექმნისას აღმოჩენილია შეცდომები"
 
 #: app/Dialogs/checksumdlg.cpp:356
 #, kde-format
 msgid "Checksums were created successfully"
-msgstr ""
+msgstr "საკონტროლო ჯამები წარმატებით შეიქმნა"
 
 #: app/Dialogs/checksumdlg.cpp:380
 #, kde-format
 msgid "Saving checksum files..."
-msgstr ""
+msgstr "საკონტროლო ჯამის ფაილების შენახვა..."
 
 #: app/Dialogs/checksumdlg.cpp:384
 #, kde-format
@@ -1022,17 +1033,17 @@ msgstr "%1 ფაილის შენახვის შეცდომა"
 #: app/Dialogs/checksumdlg.cpp:434
 #, kde-format
 msgid "Verifying Checksums"
-msgstr ""
+msgstr "საკონტროლო ჯამების გადამოწმება"
 
 #: app/Dialogs/checksumdlg.cpp:466
 #, kde-format
 msgid "Verify Checksum File"
-msgstr ""
+msgstr "საკონტროლო ჯამის ფაილის გადამოწმება"
 
 #: app/Dialogs/checksumdlg.cpp:468
 #, kde-format
 msgid "About to verify the following checksum file"
-msgstr ""
+msgstr "მოხდება შემდეგი საკონტროლო ჯამის ფაილის გადამოწმება"
 
 #: app/Dialogs/checksumdlg.cpp:475
 #, kde-format
@@ -1047,22 +1058,22 @@ msgstr "შედეგის გადამოწმება"
 #: app/Dialogs/checksumdlg.cpp:508
 #, kde-format
 msgid "Result output:"
-msgstr ""
+msgstr "შედეგის გამოტანა:"
 
 #: app/Dialogs/checksumdlg.cpp:544
 #, kde-format
 msgid "Errors were detected while verifying the checksums"
-msgstr ""
+msgstr "საკონტროლო ჯამების შემოწმებისას აღმოჩენილია შეცდომები"
 
 #: app/Dialogs/checksumdlg.cpp:544
 #, kde-format
 msgid "Checksums were verified successfully"
-msgstr ""
+msgstr "საკონტროლო ჯამების გადამოწმება წარმატებულია"
 
 #: app/Dialogs/krdialogs.cpp:105
 #, kde-format
 msgid "F2 Delay Job Start"
-msgstr ""
+msgstr "F2 დავალების დაწყების დაყოვნება"
 
 #: app/Dialogs/krdialogs.cpp:105
 #, kde-format
@@ -1072,7 +1083,7 @@ msgstr "F2 რიგი"
 #: app/Dialogs/krdialogs.cpp:106
 #, kde-format
 msgid "Do not start the job now."
-msgstr ""
+msgstr "არ გაუშვა დავალება ახლა."
 
 #: app/Dialogs/krdialogs.cpp:107
 #, kde-format
@@ -1087,12 +1098,12 @@ msgstr "აირჩიეთ ფაილები"
 #: app/Dialogs/krmaskchoice.cpp:53
 #, kde-format
 msgid "Select the following files:"
-msgstr ""
+msgstr "აირჩიეთ შემდეგი ფაილები:"
 
 #: app/Dialogs/krmaskchoice.cpp:63
 #, kde-format
 msgid "Predefined Selections"
-msgstr ""
+msgstr "წინასწარ განსაზღვრული არჩევანი"
 
 #: app/Dialogs/krmaskchoice.cpp:71
 #, kde-format
@@ -1129,7 +1140,7 @@ msgstr "გასუფთავება"
 #: app/Dialogs/krmaskchoice.cpp:91
 #, kde-format
 msgid "Clears the entire list of selections"
-msgstr ""
+msgstr "სრულად გაასუფთავებს მონიშნულების სიას"
 
 #: app/Dialogs/krpleasewait.cpp:34
 #, kde-format
@@ -1169,12 +1180,12 @@ msgstr "შეიყვანეთ არჩევანი:"
 #: app/Dialogs/newftpgui.cpp:48
 #, kde-format
 msgid "New Network Connection"
-msgstr ""
+msgstr "ახალი ქსელური კავშირი"
 
 #: app/Dialogs/newftpgui.cpp:62
 #, kde-format
 msgid "About to connect to..."
-msgstr ""
+msgstr "ვაპირებ მივუერთდე..."
 
 #: app/Dialogs/newftpgui.cpp:67
 #, kde-format
@@ -1311,12 +1322,12 @@ msgstr "პაროლები განსხვავდება"
 #: app/Dialogs/packguibase.cpp:389
 #, kde-format
 msgid "Cannot pack, the passwords are different."
-msgstr ""
+msgstr "შეფუთვა შეუძლებელია, რადგან პაროლები განხვავდება."
 
 #: app/Dialogs/packguibase.cpp:417
 #, kde-format
 msgid "Invalid volume size."
-msgstr ""
+msgstr "არასწორი ტომის ზომა."
 
 #: app/Dialogs/packguibase.cpp:449
 #, kde-format
@@ -1352,7 +1363,7 @@ msgstr "&ძებნა:"
 #: app/DiskUsage/diskusage.cpp:98
 #, kde-format
 msgid "Loading Usage Information"
-msgstr ""
+msgstr "გამოყენების ინფორმაციის ჩატვირთვა"
 
 #: app/DiskUsage/diskusage.cpp:102
 #, kde-format
@@ -1372,7 +1383,7 @@ msgstr "ჯამური ზომა:"
 #: app/DiskUsage/diskusage.cpp:238
 #, kde-format
 msgid "Loading the disk usage information..."
-msgstr ""
+msgstr "მიმდინარეობს დისკის გამოყენების ინფორმაციის ჩატვირთვა..."
 
 #: app/DiskUsage/diskusage.cpp:404
 #, kde-format
@@ -1384,7 +1395,7 @@ msgstr ""
 #: app/DiskUsage/diskusage.cpp:408
 #, kde-format
 msgid "Krusader::DiskUsage"
-msgstr ""
+msgstr "Krusader::დისკის გამოყენება"
 
 #: app/DiskUsage/diskusage.cpp:591
 #, kde-format
@@ -1418,7 +1429,7 @@ msgstr "%1-ის წაშლა..."
 #: app/DiskUsage/diskusage.cpp:720
 #, kde-format
 msgid "Current folder:%1,  Total size:%2,  Own size:%3"
-msgstr ""
+msgstr "მიმდინარე საქაღალდე:%1,  ზომა ჯამში:%2,  საკუთარი ზომა:%3"
 
 #: app/DiskUsage/diskusage.cpp:746
 #, kde-format
@@ -1514,12 +1525,12 @@ msgstr "მეპატრონე:"
 #: app/DiskUsage/diskusagegui.cpp:33
 #, kde-format
 msgid "Krusader::Disk Usage"
-msgstr ""
+msgstr "Krusader::დისკის გამოყენება"
 
 #: app/DiskUsage/diskusagegui.cpp:53
 #, kde-format
 msgid "Start new disk usage search"
-msgstr ""
+msgstr "ახალი დისკის გამოყენების ძებნის დაწყება"
 
 #: app/DiskUsage/diskusagegui.cpp:63
 #, kde-format
@@ -1539,12 +1550,12 @@ msgstr "დეტალური ხედი"
 #: app/DiskUsage/diskusagegui.cpp:85
 #, kde-format
 msgid "Filelight view"
-msgstr ""
+msgstr "მრგვალი ხედი"
 
 #: app/DiskUsage/diskusagegui.cpp:221
 #, kde-format
 msgid "Viewing the usage of folder:"
-msgstr ""
+msgstr "საქაღალდის გამოყენების ნახვა:"
 
 #: app/DiskUsage/dufilelight.cpp:80 app/Panel/viewactions.cpp:20
 #, kde-format
@@ -1579,12 +1590,12 @@ msgstr "სქემა"
 #: app/DiskUsage/dufilelight.cpp:91
 #, kde-format
 msgid "Increase contrast"
-msgstr ""
+msgstr "კონტრასტის გაზრდა"
 
 #: app/DiskUsage/dufilelight.cpp:92
 #, kde-format
 msgid "Decrease contrast"
-msgstr ""
+msgstr "კონტრასტის შემცირება"
 
 #: app/DiskUsage/dufilelight.cpp:94
 #, kde-format
@@ -1599,7 +1610,7 @@ msgstr "პატარა ფაილების ჩვენება"
 #: app/DiskUsage/dufilelight.cpp:102
 #, kde-format
 msgid "Vary label font sizes"
-msgstr ""
+msgstr "ჭდის ფონტის ზომების ცვლა"
 
 #: app/DiskUsage/dufilelight.cpp:106 app/DiskUsage/dufilelight.cpp:176
 #, kde-format
@@ -1609,7 +1620,7 @@ msgstr "ფონტის მინიმალური ზომა"
 #: app/DiskUsage/dufilelight.cpp:176
 #, kde-format
 msgid "Krusader::Filelight"
-msgstr ""
+msgstr "Krusader::წრიული ხედი"
 
 #: app/DiskUsage/dulines.cpp:183
 #, kde-format
@@ -1726,12 +1737,12 @@ msgstr "ადგილის შესახებ ინფორმაცი�
 #: app/FileSystem/defaultfilesystem.cpp:157
 #, kde-format
 msgid "No space information on non-local filesystems"
-msgstr ""
+msgstr "ადგილის ინფორმაცია ხელმიუწვდომელია არალოკალური ფაილური სისტემებისთვის"
 
 #: app/FileSystem/defaultfilesystem.cpp:185
 #, kde-format
 msgid "Space information unavailable"
-msgstr ""
+msgstr "ადგილის შესახებ ინფორმაცია ხელმიუწვდომელია"
 
 #: app/FileSystem/defaultfilesystem.cpp:195
 #, kde-format
@@ -1739,6 +1750,8 @@ msgid ""
 "Protocol not supported by Krusader:\n"
 "%1"
 msgstr ""
+"პროტოკოლი არ არის მხარდაჭერილი Krusader-ის მიერ:\n"
+"%1"
 
 #: app/FileSystem/defaultfilesystem.cpp:337
 #, kde-format
@@ -1749,13 +1762,13 @@ msgstr "საქაღალდე %1 არ არსებობს."
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Cannot open the folder %1."
-msgstr ""
+msgstr "საქაღალდის %1 გახსნა შეუძლებელია."
 
 #: app/FileSystem/defaultfilesystem.cpp:360
 #, kde-format
 msgctxt "%1=folder path"
 msgid "Access to %1 denied"
-msgstr ""
+msgstr "%1-თან წვდომა აკრძალულია"
 
 #: app/FileSystem/filesystem.cpp:109
 #, kde-format
@@ -1801,7 +1814,7 @@ msgstr "ხელით მითითებული"
 #, kde-format
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr ""
+msgstr "ძებნა '%1'-ის შემცველობაში (%2)"
 
 #: app/FileSystem/krquery.cpp:571
 #, kde-format
@@ -1874,7 +1887,7 @@ msgstr "ნებისმიერი თარიღი"
 #: app/Filter/advancedfilter.cpp:122
 #, kde-format
 msgid "&Modified between"
-msgstr ""
+msgstr "&ცვლილების შუალედი"
 
 #: app/Filter/advancedfilter.cpp:135
 #, kde-format
@@ -1884,12 +1897,12 @@ msgstr "&და"
 #: app/Filter/advancedfilter.cpp:148
 #, kde-format
 msgid "&Not modified after"
-msgstr ""
+msgstr "&არ შეცვლილა შემდეგ"
 
 #: app/Filter/advancedfilter.cpp:161
 #, kde-format
 msgid "Mod&ified in the last"
-msgstr ""
+msgstr "&შეიცვალა ბოლო"
 
 #: app/Filter/advancedfilter.cpp:169 app/Filter/advancedfilter.cpp:184
 #, kde-format
@@ -1914,7 +1927,7 @@ msgstr "წელი"
 #: app/Filter/advancedfilter.cpp:180
 #, kde-format
 msgid "No&t modified in the last"
-msgstr ""
+msgstr "&არ შეცვლილა ბოლო"
 
 #: app/Filter/advancedfilter.cpp:222
 #, kde-format
@@ -1924,12 +1937,12 @@ msgstr "მფლობელობა"
 #: app/Filter/advancedfilter.cpp:233
 #, kde-format
 msgid "Belongs to &user"
-msgstr ""
+msgstr "ეკ&უთვნის მომხმარებელს"
 
 #: app/Filter/advancedfilter.cpp:242
 #, kde-format
 msgid "Belongs to gr&oup"
-msgstr ""
+msgstr "ეკუთვნის &ჯგუფს"
 
 #: app/Filter/advancedfilter.cpp:253
 #, kde-format
@@ -1990,12 +2003,12 @@ msgstr "ყვე&ლა"
 #: app/Filter/advancedfilter.cpp:342
 #, kde-format
 msgid "Note: a '?' is a wildcard"
-msgstr ""
+msgstr "შენიშვნა: '?' ვაილდკარდია"
 
 #: app/Filter/advancedfilter.cpp:468
 #, kde-format
 msgid "Invalid date entered."
-msgstr ""
+msgstr "შეყვანილია არასწორი თარიღი."
 
 #: app/Filter/advancedfilter.cpp:469
 #, kde-format
@@ -2007,7 +2020,7 @@ msgstr ""
 #: app/Filter/advancedfilter.cpp:485
 #, kde-format
 msgid "Specified sizes are inconsistent."
-msgstr ""
+msgstr "მითითებული ზომები არათანმიმდევრულია."
 
 #: app/Filter/advancedfilter.cpp:486
 #, kde-format
@@ -2019,7 +2032,7 @@ msgstr ""
 #: app/Filter/advancedfilter.cpp:506 app/Filter/advancedfilter.cpp:532
 #, kde-format
 msgid "Dates are inconsistent."
-msgstr ""
+msgstr "თარიღები არათანმიმდევრულია."
 
 #: app/Filter/advancedfilter.cpp:507
 #, kde-format
@@ -2039,7 +2052,7 @@ msgstr ""
 #: app/Filter/filterdialog.cpp:23
 #, kde-format
 msgid "Krusader::Choose Files"
-msgstr ""
+msgstr "Krusader::ფაილების არჩევა"
 
 #: app/Filter/filtertabs.cpp:28
 #, kde-format
@@ -2054,7 +2067,7 @@ msgstr "&დამატებითი"
 #: app/Filter/filtertabs.cpp:101
 #, kde-format
 msgid "Could not load profile."
-msgstr ""
+msgstr "პროფილი ვერ ჩაიტვირთა."
 
 #: app/Filter/generalfilter.cpp:38
 msgid "Any Character"
@@ -2116,7 +2129,7 @@ msgstr "&დიდი თუ პატარა სიმბოლოები"
 #: app/Filter/generalfilter.cpp:109
 #, kde-format
 msgid "Search &for:"
-msgstr ""
+msgstr "რა მოვძებნ&ო:"
 
 #: app/Filter/generalfilter.cpp:124 app/Synchronizer/synchronizergui.cpp:208
 #, kde-format
@@ -2223,7 +2236,7 @@ msgstr "&ბმულებზე მიყოლა"
 #: app/Filter/generalfilter.cpp:473
 #, kde-format
 msgid "Exclude Folder Names"
-msgstr ""
+msgstr "საქაღალდის სახელების გამორიცხვა"
 
 #: app/Filter/generalfilter.cpp:474
 #, kde-format
@@ -2233,7 +2246,7 @@ msgstr ""
 #: app/Filter/generalfilter.cpp:489
 #, kde-format
 msgid "Enter space-separated folder names"
-msgstr ""
+msgstr "შეიყვანეთ ჰარეთი გამოყოფილი საქაღალდის სახელები"
 
 #: app/Filter/generalfilter.cpp:491
 #, kde-format
@@ -2245,22 +2258,22 @@ msgstr ""
 #: app/Filter/generalfilter.cpp:577
 #, kde-format
 msgid "No search criteria entered."
-msgstr ""
+msgstr "ძებნის პირობები შეყვანილი არაა."
 
 #: app/Filter/generalfilter.cpp:607
 #, kde-format
 msgid "Please specify a location to search in."
-msgstr ""
+msgstr "გთხოვთ, მიუთითოთ ძებნის ადგილი."
 
 #: app/GUI/dirhistorybutton.cpp:30 app/GUI/dirhistorybutton.cpp:31
 #, kde-format
 msgid "Open the folder history list"
-msgstr ""
+msgstr "საქაღალდის ისტორიის სიის გახსნა"
 
 #: app/GUI/kcmdline.cpp:47
 #, kde-format
 msgid "Name of folder where command will be processed."
-msgstr ""
+msgstr "საქაღალდის სახელი, სადაც ბრძანების დამუშავება მოხდება."
 
 #: app/GUI/kcmdline.cpp:175
 #, kde-format
@@ -2323,13 +2336,13 @@ msgstr "მზადაა."
 #: app/GUI/mediabutton.cpp:45 app/GUI/mediabutton.cpp:46
 #, kde-format
 msgid "Open the available media list"
-msgstr ""
+msgstr "ხელმისაწვდომი მედიის სიის გახსნა"
 
 #: app/GUI/mediabutton.cpp:143 app/GUI/mediabutton.cpp:597
 #, kde-format
 msgctxt "%1 is the mount point of the remote share"
 msgid "Remote Share [%1]"
-msgstr ""
+msgstr "დაშორებული გაზიარებული [%1]"
 
 #: app/GUI/mediabutton.cpp:163
 #, kde-format
@@ -2460,7 +2473,7 @@ msgstr "ახლახანს დახურული ჩანართე�
 #: app/GUI/terminaldock.cpp:97
 #, kde-format
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr ""
+msgstr "<b>ჩაშენებული ტერმინალის შექმნა შეუძლებელია.</b><br/>"
 
 #: app/GUI/terminaldock.cpp:108
 #, kde-format
@@ -2639,7 +2652,7 @@ msgstr ""
 #: app/Konfigurator/kgadvanced.cpp:64
 #, kde-format
 msgid "Deleting non-empty folders"
-msgstr ""
+msgstr "არაცარიელი საქაღალდეების წაშლა"
 
 #: app/Konfigurator/kgadvanced.cpp:65
 #, kde-format
@@ -2676,7 +2689,7 @@ msgstr ""
 #: app/Konfigurator/kgadvanced.cpp:84 app/Konfigurator/kgarchives.cpp:78
 #, kde-format
 msgid "Fine-Tuning"
-msgstr ""
+msgstr "დაწვრილებით მორგება"
 
 #: app/Konfigurator/kgadvanced.cpp:89
 #, kde-format
@@ -2688,7 +2701,7 @@ msgstr ""
 #: app/Konfigurator/kgadvanced.cpp:90
 #, kde-format
 msgid "Icon cache size (KB):"
-msgstr ""
+msgstr "ხატულების კეშის ზომა (KB):"
 
 #: app/Konfigurator/kgadvanced.cpp:96
 #, kde-format
@@ -2763,7 +2776,7 @@ msgstr "ძებნს შედეგები"
 #: app/Konfigurator/kgarchives.cpp:107
 #, kde-format
 msgid "Searching for packers..."
-msgstr ""
+msgstr "შემფუთველების ძებნა..."
 
 #: app/Konfigurator/kgarchives.cpp:109
 #, kde-format
@@ -2774,7 +2787,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:60
 #, kde-format
 msgid "Use the default KDE colors"
-msgstr ""
+msgstr "KDE-ის ნაგულისხმევი ფერების გამოყენება"
 
 #: app/Konfigurator/kgcolors.cpp:63
 #, kde-format
@@ -2786,7 +2799,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:67
 #, kde-format
 msgid "Use alternate background color"
-msgstr ""
+msgstr "ალტერნატიული ფონის ფერის გამოყენება"
 
 #: app/Konfigurator/kgcolors.cpp:69
 #, kde-format
@@ -2799,7 +2812,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:74
 #, kde-format
 msgid "Show current item even if not focused"
-msgstr ""
+msgstr "მიმდინარე ელემენტის ჩვენება მაშინაც, როცა ფოკუსი არ აქვს"
 
 #: app/Konfigurator/kgcolors.cpp:76
 #, kde-format
@@ -2812,7 +2825,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:81
 #, kde-format
 msgid "Dim the colors of the inactive panel"
-msgstr ""
+msgstr "არააქტიური პანელის ფერების მინავლება"
 
 #: app/Konfigurator/kgcolors.cpp:83
 #, kde-format
@@ -2934,7 +2947,7 @@ msgstr "არჩეული მიმდინარე წინა პლა
 #: app/Konfigurator/kgcolors.cpp:138 app/Konfigurator/kgcolors.cpp:226
 #, kde-format
 msgid "Current background:"
-msgstr "მიმდინარე ფონი"
+msgstr "მიმდინარე ფონი:"
 
 #: app/Konfigurator/kgcolors.cpp:139
 #, kde-format
@@ -2965,12 +2978,12 @@ msgstr "იგივე, რაც აქტიური"
 #: app/Konfigurator/kgcolors.cpp:249
 #, kde-format
 msgid "Dim target color:"
-msgstr ""
+msgstr "მინავლება ფერამდე:"
 
 #: app/Konfigurator/kgcolors.cpp:252
 #, kde-format
 msgid "Dim factor:"
-msgstr ""
+msgstr "მინავლების ფაქტორი:"
 
 #: app/Konfigurator/kgcolors.cpp:264 app/Konfigurator/kgcolors.cpp:265
 #: app/Konfigurator/kgcolors.cpp:317 app/Konfigurator/kgcolors.cpp:318
@@ -3212,17 +3225,17 @@ msgstr "საკონტროლო ჯამის ხელსაწყო�
 #: app/Konfigurator/kgdependencies.cpp:144
 #, kde-format
 msgid "The %1 path is incorrect, no valid path found."
-msgstr ""
+msgstr "ბილიკი %1 არასწორია. სწორი ბილიკი არმოჩენილი არაა."
 
 #: app/Konfigurator/kgdependencies.cpp:146
 #, kde-format
 msgid "The %1 path is incorrect, %2 used instead."
-msgstr ""
+msgstr "ბილიკი %1 არასწორია. გამოიყენება %2."
 
 #: app/Konfigurator/kggeneral.cpp:64
 #, kde-format
 msgid "Viewer/Editor"
-msgstr ""
+msgstr "ნახვა/რედაქტორი"
 
 #: app/Konfigurator/kggeneral.cpp:72
 #, kde-format
@@ -3254,7 +3267,7 @@ msgstr "მაყურებელი"
 #: app/Konfigurator/kggeneral.cpp:100
 #, kde-format
 msgid "Default viewer mode:"
-msgstr ""
+msgstr "ნახვის ნაგულისხმევი რეჟიმი:"
 
 #: app/Konfigurator/kggeneral.cpp:105
 #, kde-format
@@ -3264,7 +3277,7 @@ msgstr "ზოგადი რეჟიმი"
 #: app/Konfigurator/kggeneral.cpp:105
 #, kde-format
 msgid "Use the system's default viewer"
-msgstr ""
+msgstr "სისტემის ნაგულისხმევი გამხსნელის გამოყენება"
 
 #: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2271
 #, kde-format
@@ -3274,7 +3287,7 @@ msgstr "ტექსტური რეჟიმი"
 #: app/Konfigurator/kggeneral.cpp:106
 #, kde-format
 msgid "View the file in text-only mode"
-msgstr ""
+msgstr "ამ ფაილის ნახვა მხოლოდ ტექსტურ რეჟმში"
 
 #: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1235
 #: app/KViewer/lister.cpp:2274
@@ -3285,7 +3298,7 @@ msgstr "თექვსმ. რეჟიმი"
 #: app/Konfigurator/kggeneral.cpp:107
 #, kde-format
 msgid "View the file in hex-mode (better for binary files)"
-msgstr ""
+msgstr "ამ ფალის ნახვა თექვსმეტობით რეჟიმში (უკეთესია ბინარული ფაილებისთვის)"
 
 #: app/Konfigurator/kggeneral.cpp:108
 #, kde-format
@@ -3295,12 +3308,12 @@ msgstr "სიის რეჟიმი"
 #: app/Konfigurator/kggeneral.cpp:108
 #, kde-format
 msgid "View the file with lister (for huge text files)"
-msgstr ""
+msgstr "ან ფაილის ნახვა ჩამომთვლელით (დიდი ტექსტური ფაილებისთვის)"
 
 #: app/Konfigurator/kggeneral.cpp:116
 #, kde-format
 msgid "Use Okteta as Hex viewer"
-msgstr ""
+msgstr "Okteta-ის გამოყენება თექვსმეტობითში სახანავად"
 
 #: app/Konfigurator/kggeneral.cpp:119
 #, kde-format
@@ -3357,12 +3370,12 @@ msgstr "გაფრთხილება გასვლისას"
 #: app/Konfigurator/kggeneral.cpp:225
 #, kde-format
 msgid "Display a warning when trying to close the main window."
-msgstr ""
+msgstr "გაფრთხილების ჩვენება მთავარი ფანჯრის დახურვის მცდელობისას."
 
 #: app/Konfigurator/kggeneral.cpp:229
 #, kde-format
 msgid "Show and close to tray"
-msgstr ""
+msgstr "ჩვენება და დახურვა საათთან"
 
 #: app/Konfigurator/kggeneral.cpp:231
 #, kde-format
@@ -3374,12 +3387,12 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:240
 #, kde-format
 msgid "Temp Folder:"
-msgstr ""
+msgstr "დროებითი საქაღალდე:"
 
 #: app/Konfigurator/kggeneral.cpp:248
 #, kde-format
 msgid "Note: you must have full permissions for the temporary folder."
-msgstr ""
+msgstr "შენიშვნა: დროებით საქაღალდეზე სრული უფლებები უნდა გქონდეთ."
 
 #: app/Konfigurator/kggeneral.cpp:255
 #, kde-format
@@ -3394,7 +3407,7 @@ msgstr "ნაგავში მოთავსება"
 #: app/Konfigurator/kggeneral.cpp:260
 #, kde-format
 msgid "Files will be moved to trash when deleted."
-msgstr ""
+msgstr "წაშლისას ფაილები ნაგვის ყუთში იქნება გადატანილი."
 
 #: app/Konfigurator/kggeneral.cpp:261
 #, kde-format
@@ -3404,7 +3417,7 @@ msgstr "ფაილების წაშლა"
 #: app/Konfigurator/kggeneral.cpp:261
 #, kde-format
 msgid "Files will be permanently deleted."
-msgstr ""
+msgstr "ფაილები სამუდამოდ წაიშლება."
 
 #: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:165
 #, kde-format
@@ -3419,7 +3432,7 @@ msgstr "გარე ტერმინალი:"
 #: app/Konfigurator/kggeneral.cpp:277
 #, kde-format
 msgid "%d will be replaced by the workdir."
-msgstr ""
+msgstr "%d ჩანაცვლდება სამუშაო საქაღალდით."
 
 #: app/Konfigurator/kggeneral.cpp:285
 #, kde-format
@@ -3449,7 +3462,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:315
 #, kde-format
 msgid "Searching for tools..."
-msgstr ""
+msgstr "ხელსაწყოების ძებნა..."
 
 #: app/Konfigurator/kggeneral.cpp:317
 #, kde-format
@@ -3492,12 +3505,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:78
 #, kde-format
 msgid "Show full path by default"
-msgstr ""
+msgstr "სრული ბილიკის ნაგულისხმევად ჩვენება"
 
 #: app/Konfigurator/kgpanel.cpp:78
 #, kde-format
 msgid "Always show full path in Navigator bar by default."
-msgstr ""
+msgstr "ნავიგატორის ზოლში სრული ბილიკის ნაგულისხმევად ჩვენება."
 
 #: app/Konfigurator/kgpanel.cpp:88
 #, kde-format
@@ -3507,7 +3520,7 @@ msgstr "ოპერაცია"
 #: app/Konfigurator/kgpanel.cpp:96
 #, kde-format
 msgid "Autoselect folders"
-msgstr ""
+msgstr "საქაღალდეების ავტომატური არჩევა"
 
 #: app/Konfigurator/kgpanel.cpp:98
 #, kde-format
@@ -3519,7 +3532,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:102
 #, kde-format
 msgid "Rename selects extension"
-msgstr ""
+msgstr "სახელის გადარქმევა ირჩევს გაფართოებას"
 
 #: app/Konfigurator/kgpanel.cpp:104
 #, kde-format
@@ -3543,7 +3556,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:115
 #, kde-format
 msgid "Filter dialog remembers settings"
-msgstr ""
+msgstr "ფილტრის დიალოგი იმახსოვრებს პარამეტრებს"
 
 #: app/Konfigurator/kgpanel.cpp:117
 #, kde-format
@@ -3560,7 +3573,7 @@ msgstr "დაფები"
 #: app/Konfigurator/kgpanel.cpp:135
 #, kde-format
 msgid "Use full path tab names"
-msgstr ""
+msgstr "სრული ბილიკის ჩანართის სახელების გამოყენება"
 
 #: app/Konfigurator/kgpanel.cpp:137
 #, kde-format
@@ -3577,17 +3590,17 @@ msgstr "ჩანართებზე დახურვის ღილაკ�
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Show close tab buttons."
-msgstr ""
+msgstr "ჩანართებზე დახურვის ღილაკის ჩვენება."
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Expanding tabs"
-msgstr ""
+msgstr "გაფართოებადი ჩანართები"
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Expanding tabs."
-msgstr ""
+msgstr "გაფართოებადი ჩანართები."
 
 #: app/Konfigurator/kgpanel.cpp:140
 #, kde-format
@@ -3597,42 +3610,42 @@ msgstr "ახალი ჩანართის ღილაკის ჩვე
 #: app/Konfigurator/kgpanel.cpp:140
 #, kde-format
 msgid "Show new tab button."
-msgstr ""
+msgstr "ახალი ჩანართის ღილაკის ჩვენება."
 
 #: app/Konfigurator/kgpanel.cpp:141
 #, kde-format
 msgid "Insert tabs after current"
-msgstr ""
+msgstr "ჩანართების ჩასმა მიმდინარეს შემდეგ"
 
 #: app/Konfigurator/kgpanel.cpp:141
 #, kde-format
 msgid "Insert new tabs to the right of the current one."
-msgstr ""
+msgstr "ახალი ჩანართების ჩასმა მიმდინარეს მარჯვენა მხარეს."
 
 #: app/Konfigurator/kgpanel.cpp:142
 #, kde-format
 msgid "Show Tab Bar on single tab"
-msgstr ""
+msgstr "ჩანართების ზოლის ჩვენება ერთი ჩანართის არსებობისას"
 
 #: app/Konfigurator/kgpanel.cpp:142
 #, kde-format
 msgid "Show the tab bar with only one tab."
-msgstr ""
+msgstr "ჩანართების ზოლის ჩვენება, როცა არსებობს, მხოლოდ, ერთი ჩანართი."
 
 #: app/Konfigurator/kgpanel.cpp:143
 #, kde-format
 msgid "Close tab by double click"
-msgstr ""
+msgstr "ჩანართის დახურვა ორმაგი წკაპით"
 
 #: app/Konfigurator/kgpanel.cpp:143
 #, kde-format
 msgid "Close tab by double click."
-msgstr ""
+msgstr "ჩანართის დახურვა ორმაგი წკაპით."
 
 #: app/Konfigurator/kgpanel.cpp:147
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr ""
+msgstr "ახალი ჩანართის ღილაკი ადუბლირებს ჩანართს"
 
 #: app/Konfigurator/kgpanel.cpp:149
 #, kde-format
@@ -3644,7 +3657,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:156
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr ""
+msgstr "აქტიური ჩანართის გამეორება დაწკაპუნებით:"
 
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
@@ -3669,7 +3682,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:180
 #, kde-format
 msgid "Tab Bar position:"
-msgstr ""
+msgstr "ჩანართები პანელის მდებარეობა:"
 
 #: app/Konfigurator/kgpanel.cpp:183
 #, kde-format
@@ -3704,12 +3717,12 @@ msgstr "დიდი და პატარა ასოების გან�
 #: app/Konfigurator/kgpanel.cpp:206
 #, kde-format
 msgid "Search must match case."
-msgstr ""
+msgstr "ძებნა რეგისტრს უნდა ემთხვეოდეს."
 
 #: app/Konfigurator/kgpanel.cpp:210
 #, kde-format
 msgid "Up/Down cancels search"
-msgstr ""
+msgstr "ზემოთ/ქვემოთ ღილაკები ძებნას აუქმებს"
 
 #: app/Konfigurator/kgpanel.cpp:212
 #, kde-format
@@ -3737,7 +3750,7 @@ msgstr "მდებარეობა:"
 #: app/Konfigurator/kgpanel.cpp:237
 #, kde-format
 msgid "Default mode:"
-msgstr ""
+msgstr "ნაგულისხმევი რეჟიმი:"
 
 #: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
@@ -3758,7 +3771,7 @@ msgstr "ფილტრი"
 #: app/Konfigurator/kgpanel.cpp:251
 #, kde-format
 msgid "Set the default mode on first usage"
-msgstr ""
+msgstr "ნაგულისხმევი რეჟიმის დაყენება პირველი გამოყენებისას"
 
 #: app/Konfigurator/kgpanel.cpp:262
 #, kde-format
@@ -3790,12 +3803,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:281
 #, kde-format
 msgid "Status/Totalsbar"
-msgstr ""
+msgstr "სტატუსის/შეჯამებების ზოლი"
 
 #: app/Konfigurator/kgpanel.cpp:285
 #, kde-format
 msgid "Show size in bytes too"
-msgstr ""
+msgstr "ზომის ჩვენება ბაიტებშიც"
 
 #: app/Konfigurator/kgpanel.cpp:286
 #, kde-format
@@ -3805,7 +3818,7 @@ msgstr "ადგილის ინფორმაციის ჩვენე�
 #: app/Konfigurator/kgpanel.cpp:286
 #, kde-format
 msgid "Show free/total space on the device"
-msgstr ""
+msgstr "მოწყობილობაზე თავისუფალი/მთლიანი ადგილის ჩვენება"
 
 #: app/Konfigurator/kgpanel.cpp:304
 #, kde-format
@@ -3938,12 +3951,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:443
 #, kde-format
 msgid "Tooltip delay (msec):"
-msgstr ""
+msgstr "მინიშნების დაყოვნება (მწმ):"
 
 #: app/Konfigurator/kgpanel.cpp:461
 #, kde-format
 msgid "Use human-readable file size"
-msgstr ""
+msgstr "ადამიანის მიერ წაკითხვადი ფაილის ზომის გამოყენება"
 
 #: app/Konfigurator/kgpanel.cpp:463
 #, kde-format
@@ -3958,12 +3971,12 @@ msgstr "დამალული ფაილების ჩვენება"
 #: app/Konfigurator/kgpanel.cpp:464
 #, kde-format
 msgid "Display files beginning with a dot."
-msgstr ""
+msgstr "წერტილით დაწყებული ფაილების ჩვენება."
 
 #: app/Konfigurator/kgpanel.cpp:468
 #, kde-format
 msgid "Numeric Permissions"
-msgstr ""
+msgstr "რიცხვითი წვდომები"
 
 #: app/Konfigurator/kgpanel.cpp:470
 #, kde-format
@@ -3985,7 +3998,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:480
 #, kde-format
 msgid "Always show current item"
-msgstr ""
+msgstr "მიმდინარე ელემენტის ყოველთვის ჩვენება"
 
 #: app/Konfigurator/kgpanel.cpp:482
 #, kde-format
@@ -4005,17 +4018,17 @@ msgstr "ანბანით დალაგებული"
 #: app/Konfigurator/kgpanel.cpp:500
 #, kde-format
 msgid "Alphabetical and numbers"
-msgstr ""
+msgstr "ანბანური და რიცხვები"
 
 #: app/Konfigurator/kgpanel.cpp:501
 #, kde-format
 msgid "Character code"
-msgstr ""
+msgstr "სიმბოლოს კოდი"
 
 #: app/Konfigurator/kgpanel.cpp:502
 #, kde-format
 msgid "Character code and numbers"
-msgstr ""
+msgstr "სიმბოლოების კოდი და რიცხვები"
 
 #: app/Konfigurator/kgpanel.cpp:503
 #, kde-format
@@ -4026,7 +4039,7 @@ msgstr "Krusader"
 #: app/Konfigurator/kgpanel.cpp:518
 #, kde-format
 msgid "Case sensitive sorting"
-msgstr ""
+msgstr "დალაგებისას რეგისტრის გათვალისწინება"
 
 #: app/Konfigurator/kgpanel.cpp:520
 #, kde-format
@@ -4043,7 +4056,7 @@ msgstr "ჯერ საქაღალდეების ჩვენება"
 #: app/Konfigurator/kgpanel.cpp:525
 #, kde-format
 msgid "Always sort dirs by name"
-msgstr ""
+msgstr "საქაღალდეების, ყოველთვის, სახელით დალაგება"
 
 #: app/Konfigurator/kgpanel.cpp:527
 #, kde-format
@@ -4053,7 +4066,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:531
 #, kde-format
 msgid "Locale aware sorting"
-msgstr ""
+msgstr "ლოკალის გათვალისწინება დალაგებისას"
 
 #: app/Konfigurator/kgpanel.cpp:533
 #, kde-format
@@ -4080,7 +4093,7 @@ msgstr "ღილაკები"
 #: app/Konfigurator/kgpanel.cpp:608
 #, kde-format
 msgid "Toolbar buttons have icons"
-msgstr ""
+msgstr "ხელსაწყოს პანელის ღილაკებს აქვთ ხატულები"
 
 #: app/Konfigurator/kgpanel.cpp:609
 #, kde-format
@@ -4135,7 +4148,7 @@ msgstr "ხილული იქნება პანელის ხელს
 #: app/Konfigurator/kgpanel.cpp:620
 #, kde-format
 msgid "Visible Panel Toolbar buttons"
-msgstr ""
+msgstr "ხილული პანელის ხელსაწყოს პანელის ღილაკები"
 
 #: app/Konfigurator/kgpanel.cpp:624
 #, kde-format
@@ -4145,7 +4158,7 @@ msgstr "ტოლობის ღილაკი (=)"
 #: app/Konfigurator/kgpanel.cpp:624
 #, kde-format
 msgid "Changes the panel folder to the other panel folder."
-msgstr ""
+msgstr "შეცვლის პანელის საქაღალდეს სხვა პანელის საქაღალდეზე."
 
 #: app/Konfigurator/kgpanel.cpp:625
 #, kde-format
@@ -4155,7 +4168,7 @@ msgstr "ზემოთ ასვლის ღილაკი (..)"
 #: app/Konfigurator/kgpanel.cpp:625
 #, kde-format
 msgid "Changes the panel folder to the parent folder."
-msgstr ""
+msgstr "შეცვლის პანელის საქაღალდეს მშობელ საქაღალდეზე."
 
 #: app/Konfigurator/kgpanel.cpp:626
 #, kde-format
@@ -4165,7 +4178,7 @@ msgstr "საწყისზე დაბრუნების ღილაკ�
 #: app/Konfigurator/kgpanel.cpp:626
 #, kde-format
 msgid "Changes the panel folder to the home folder."
-msgstr ""
+msgstr "შეცვლის პანელის საქაღალდეს საწყის საქაღალდეზე."
 
 #: app/Konfigurator/kgpanel.cpp:627
 #, kde-format
@@ -4175,12 +4188,12 @@ msgstr "ძირითადზე გადასვლის ღილაკ�
 #: app/Konfigurator/kgpanel.cpp:627
 #, kde-format
 msgid "Changes the panel folder to the root folder."
-msgstr ""
+msgstr "შეცვლის პანელის საქაღალდეს ძირითად საქაღალდეზე."
 
 #: app/Konfigurator/kgpanel.cpp:631
 #, kde-format
 msgid "Toggle-button for sync-browsing"
-msgstr ""
+msgstr "გადასართველი ღილაკი სინქრონიზებული ბრაუზინგისთვის"
 
 #: app/Konfigurator/kgpanel.cpp:633
 #, kde-format
@@ -4275,7 +4288,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:708
 #, kde-format
 msgid "Obey global selection policy"
-msgstr ""
+msgstr "გლობალური მონიშვნის პოლიტიკის გათვალისწინება"
 
 #: app/Konfigurator/kgpanel.cpp:708
 #, kde-format
@@ -4287,7 +4300,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:721
 #, kde-format
 msgid "Based on KDE's selection mode"
-msgstr ""
+msgstr "KDE-ის მონიშვნის რეჟიმის საფუძველზე"
 
 #: app/Konfigurator/kgpanel.cpp:723
 #, kde-format
@@ -4297,7 +4310,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:727
 #, kde-format
 msgid "Left mouse button selects"
-msgstr ""
+msgstr "თაგუნას მარცხენა ღილაკი მონიშვნავს"
 
 #: app/Konfigurator/kgpanel.cpp:729
 #, kde-format
@@ -4331,7 +4344,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:745
 #, kde-format
 msgid "Right mouse button selects"
-msgstr ""
+msgstr "თაგუნას მარჯვენა ღილაკი მონიშნავს"
 
 #: app/Konfigurator/kgpanel.cpp:747
 #, kde-format
@@ -4341,7 +4354,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:751
 #, kde-format
 msgid "Right mouse button preserves selection"
-msgstr ""
+msgstr "თაგუნას მარჯვენა ღილაკი შეინარჩუნებს მონიშნულს"
 
 #: app/Konfigurator/kgpanel.cpp:753
 #, kde-format
@@ -4365,7 +4378,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:763
 #, kde-format
 msgid "Spacebar moves down"
-msgstr ""
+msgstr "ჰარეს ღილაკი ჩამოიტანს ქვემოთ"
 
 #: app/Konfigurator/kgpanel.cpp:765
 #, kde-format
@@ -4391,7 +4404,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:777
 #, kde-format
 msgid "Insert moves down"
-msgstr ""
+msgstr "Insert ჩამოიტანს ქვემოთ"
 
 #: app/Konfigurator/kgpanel.cpp:779
 #, kde-format
@@ -4430,22 +4443,22 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:828
 #, kde-format
 msgid "Media Menu"
-msgstr ""
+msgstr "მედიის მენიუ"
 
 #: app/Konfigurator/kgpanel.cpp:836
 #, kde-format
 msgid "Show Mount Path"
-msgstr ""
+msgstr "მიმაგრების ბილიკის ჩვენება"
 
 #: app/Konfigurator/kgpanel.cpp:837
 #, kde-format
 msgid "Show File System Type"
-msgstr ""
+msgstr "ფაილური სისტემის ტიპის ჩვენება"
 
 #: app/Konfigurator/kgpanel.cpp:838
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr ""
+msgstr "SquashFS ჩანაწერების დამალვა"
 
 #: app/Konfigurator/kgpanel.cpp:845
 #, kde-format
@@ -4462,7 +4475,7 @@ msgstr "ყოველთვის"
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "When Device has no Label"
-msgstr ""
+msgstr "როდესაც მოწყობილობას არ აქვს ჭდე"
 
 #: app/Konfigurator/kgpanel.cpp:850
 #, kde-format
@@ -4473,12 +4486,12 @@ msgstr "არასდროს"
 #: app/Konfigurator/kgpanel.cpp:882
 #, kde-format
 msgid "Hide following mountpoints:"
-msgstr ""
+msgstr "დაიმალება შემდეგი მიმაგრების წერტილები:"
 
 #: app/Konfigurator/kgpanel.cpp:911
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr ""
+msgstr "ახალი დამალული მიმაგრების წერტილის დამატება"
 
 #: app/Konfigurator/kgpanel.cpp:911
 #, kde-format
@@ -4493,17 +4506,17 @@ msgstr "ბმულები"
 #: app/Konfigurator/kgprotocols.cpp:38
 #, kde-format
 msgid "Defined Links"
-msgstr ""
+msgstr "განსაზღვრული ბმულები"
 
 #: app/Konfigurator/kgprotocols.cpp:55
 #, kde-format
 msgid "Add protocol to the link list."
-msgstr ""
+msgstr "პროტოკოლის დამატება ბმულების სიაში."
 
 #: app/Konfigurator/kgprotocols.cpp:60
 #, kde-format
 msgid "Remove protocol from the link list."
-msgstr ""
+msgstr "პროტოკოლების წაშლა ბმულების სიიდან."
 
 #: app/Konfigurator/kgprotocols.cpp:72
 #, kde-format
@@ -4542,12 +4555,12 @@ msgstr "გაშვების პროფილი:"
 #: app/Konfigurator/kgstartup.cpp:41
 #, kde-format
 msgid "<Last session>"
-msgstr ""
+msgstr "<ბოლო სესია>"
 
 #: app/Konfigurator/kgstartup.cpp:60
 #, kde-format
 msgid "Show splashscreen"
-msgstr ""
+msgstr "გაშვების ეკრანის ჩვენება"
 
 #: app/Konfigurator/kgstartup.cpp:60
 #, kde-format
@@ -4557,7 +4570,7 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:61
 #, kde-format
 msgid "Single instance mode"
-msgstr ""
+msgstr "მხოლოდ ერთი ასლის გაშვების დაშვება"
 
 #: app/Konfigurator/kgstartup.cpp:61
 #, kde-format
@@ -4602,7 +4615,7 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:100
 #, kde-format
 msgid "Update default panel settings"
-msgstr ""
+msgstr "პანელის ნაგულისხმევი პარამეტრების განახლება"
 
 #: app/Konfigurator/kgstartup.cpp:102
 #, kde-format
@@ -4624,7 +4637,7 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:114
 #, kde-format
 msgid "Save component settings on exit"
-msgstr ""
+msgstr "კომპონენტის პარამეტრების შენახვა გასვლისას"
 
 #: app/Konfigurator/kgstartup.cpp:116
 #, kde-format
@@ -4636,17 +4649,17 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:117
 #, kde-format
 msgid "Show function keys"
-msgstr ""
+msgstr "ფუნქციის ღილაკების ჩვენება"
 
 #: app/Konfigurator/kgstartup.cpp:117
 #, kde-format
 msgid "Function keys will be visible after startup."
-msgstr ""
+msgstr "ფუნქციის ღილაკები ხილული იქნება გაშვების შემდეგ."
 
 #: app/Konfigurator/kgstartup.cpp:118
 #, kde-format
 msgid "Show command line"
-msgstr ""
+msgstr "ბრძანების სტრიქონის ჩვენება"
 
 #: app/Konfigurator/kgstartup.cpp:118
 #, kde-format
@@ -4656,12 +4669,12 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:122
 #, kde-format
 msgid "Show embedded terminal"
-msgstr ""
+msgstr "ჩაშენებული ტერმინალის ჩენება"
 
 #: app/Konfigurator/kgstartup.cpp:124
 #, kde-format
 msgid "Embedded terminal will be visible after startup."
-msgstr ""
+msgstr "ჩაშენებული ტერმინალი გამოჩნდება გაშვების შემდეგ."
 
 #: app/Konfigurator/kguseractions.cpp:28
 #, kde-format
@@ -4683,7 +4696,7 @@ msgstr ""
 #: app/Konfigurator/kguseractions.cpp:43
 #, kde-format
 msgid "Terminal execution"
-msgstr ""
+msgstr "ტერმინალის შესრულება"
 
 #: app/Konfigurator/kguseractions.cpp:47
 #, kde-format
@@ -4700,7 +4713,7 @@ msgstr ""
 #: app/Konfigurator/kguseractions.cpp:58
 #, kde-format
 msgid "Output collection"
-msgstr ""
+msgstr "გამოტანის შეგროვება"
 
 #: app/Konfigurator/kguseractions.cpp:63
 #, kde-format
@@ -4710,7 +4723,7 @@ msgstr "ნორმალური ფონტი:"
 #: app/Konfigurator/kguseractions.cpp:76
 #, kde-format
 msgid "Font with fixed width:"
-msgstr ""
+msgstr "უცვლელი სიგანის მქონე ფონტი:"
 
 #: app/Konfigurator/kguseractions.cpp:88
 #, kde-format
@@ -4740,7 +4753,7 @@ msgstr "ზოლი"
 #: app/Konfigurator/konfigurator.cpp:122
 #, kde-format
 msgid "Basic Operations"
-msgstr ""
+msgstr "ძირითადი ოპერაციები"
 
 #: app/Konfigurator/konfigurator.cpp:124
 #, kde-format
@@ -4903,12 +4916,12 @@ msgstr "ნაპოვნი"
 #: app/Konfigurator/krresulttable.cpp:130
 #, kde-format
 msgid "Packing"
-msgstr ""
+msgstr "შეფუთვა"
 
 #: app/Konfigurator/krresulttable.cpp:131
 #, kde-format
 msgid "Unpacking"
-msgstr ""
+msgstr "გაშლა"
 
 #: app/Konfigurator/krresulttable.cpp:132
 #, kde-format
@@ -4932,7 +4945,7 @@ msgstr "გამორთულია"
 #: app/Konfigurator/krresulttable.cpp:277
 #, kde-format
 msgid "diff utility"
-msgstr ""
+msgstr "პროგრამა diff"
 
 #: app/Konfigurator/krresulttable.cpp:278
 #, kde-format
