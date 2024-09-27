@@ -252,7 +252,7 @@ void KrInterDetailedView::renameCurrentItem()
 
     // cycle through various text selections if we are in the editing mode already
     if (state() == QAbstractItemView::EditingState) {
-        auto delegate = dynamic_cast<KrViewItemDelegate *>(itemDelegate(nameIndex));
+        auto delegate = dynamic_cast<KrViewItemDelegate *>(itemDelegateForIndex(nameIndex));
         if (!delegate) {
             qWarning() << "KrInterView item delegate is not KrViewItemDelegate, selection is not updated";
             return;
