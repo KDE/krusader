@@ -128,7 +128,7 @@ KrViewer::KrViewer(QWidget *parent)
     detachAction->setText(i18n("&Detach Tab"));
     // no point in detaching only one tab..
     detachAction->setEnabled(false);
-    ac->setDefaultShortcut(detachAction, Qt::META + Qt::Key_D);
+    ac->setDefaultShortcut(detachAction, Qt::META | Qt::Key_D);
     viewerMenu->addAction(detachAction);
 
     quitAction = ac->addAction(KStandardAction::Quit, this, SLOT(close()));
@@ -145,7 +145,7 @@ KrViewer::KrViewer(QWidget *parent)
     tabNextAction = ac->addAction("nextTab", this, SLOT(nextTab()));
     tabNextAction->setText(i18n("&Next Tab"));
     shortcuts = KStandardShortcut::tabNext();
-    shortcuts.append(Qt::CTRL + Qt::Key_Tab); // reenforce QTabWidget shortcut
+    shortcuts.append(Qt::CTRL | Qt::Key_Tab); // reenforce QTabWidget shortcut
     ac->setDefaultShortcuts(tabNextAction, shortcuts);
 
     tabPrevAction = ac->addAction("prevTab", this, SLOT(prevTab()));

@@ -22,17 +22,17 @@ ViewActions::ViewActions(QObject *parent, KrMainWindow *mainWindow)
     actDefaultZoom = action(i18n("Default Zoom"), "zoom-original", 0, SLOT(defaultZoom()), "default_zoom");
 
     // filter
-    action(i18n("&All Files"), nullptr, Qt::SHIFT + Qt::Key_F10, SLOT(allFilter()), "all files");
-    // actExecFilter = new QAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
+    action(i18n("&All Files"), nullptr, Qt::SHIFT | Qt::Key_F10, SLOT(allFilter()), "all files");
+    // actExecFilter = new QAction( i18n( "&Executables" ), SHIFT | Qt::Key_F11,
     //                              SLOTS, SLOT(execFilter()), actionCollection(), "exec files" );
-    action(i18n("&Custom"), nullptr, Qt::SHIFT + Qt::Key_F12, SLOT(customFilter()), "custom files");
+    action(i18n("&Custom"), nullptr, Qt::SHIFT | Qt::Key_F12, SLOT(customFilter()), "custom files");
 
     // selection
-    actSelect = action(i18n("Select &Group..."), "edit-select", Qt::CTRL + Qt::Key_Plus, SLOT(markGroup()), "select group");
-    actSelectAll = action(i18n("&Select All"), "edit-select-all", Qt::ALT + Qt::Key_Plus, SLOT(markAll()), "select all");
-    actUnselect = action(i18n("&Unselect Group..."), "kr_unselect", Qt::CTRL + Qt::Key_Minus, SLOT(unmarkGroup()), "unselect group");
-    actUnselectAll = action(i18n("U&nselect All"), "edit-select-none", Qt::ALT + Qt::Key_Minus, SLOT(unmarkAll()), "unselect all");
-    actInvert = action(i18n("&Invert Selection"), "edit-select-invert", Qt::ALT + Qt::Key_Asterisk, SLOT(invertSelection()), "invert");
+    actSelect = action(i18n("Select &Group..."), "edit-select", Qt::CTRL | Qt::Key_Plus, SLOT(markGroup()), "select group");
+    actSelectAll = action(i18n("&Select All"), "edit-select-all", Qt::ALT | Qt::Key_Plus, SLOT(markAll()), "select all");
+    actUnselect = action(i18n("&Unselect Group..."), "kr_unselect", Qt::CTRL | Qt::Key_Minus, SLOT(unmarkGroup()), "unselect group");
+    actUnselectAll = action(i18n("U&nselect All"), "edit-select-none", Qt::ALT | Qt::Key_Minus, SLOT(unmarkAll()), "unselect all");
+    actInvert = action(i18n("&Invert Selection"), "edit-select-invert", Qt::ALT | Qt::Key_Asterisk, SLOT(invertSelection()), "invert");
     actRestoreSelection = action(i18n("Restore Selection"), nullptr, 0, SLOT(restoreSelection()), "restore_selection");
     actMarkSameBaseName = action(i18n("Select Files with the Same Name"), nullptr, 0, SLOT(markSameBaseName()), "select_same_base_name");
     actMarkSameExtension = action(i18n("Select Files with the Same Extension"), nullptr, 0, SLOT(markSameExtension()), "select_same_extension");

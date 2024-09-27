@@ -85,7 +85,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow)
     actMatchChecksum = action(i18n("Verify Checksum..."), "document-edit-decrypt-verify", 0, _func, SLOT(matchChecksum()), "match checksum");
     action(i18n("New Symlink..."), nullptr, Qt::CTRL | Qt::ALT | Qt::Key_S, _func, SLOT(krlink()), "new symlink");
     actTest = action(i18n("T&est Archive"), "archive-extract", Qt::ALT | Qt::SHIFT | Qt::Key_E, _func, SLOT(testArchive()), "test archives");
-    action(i18n("Alternative Delete"), "edit-delete", Qt::Key_Delete + Qt::CTRL, _func, SLOT(alternativeDeleteFiles()), "alternative delete");
+    action(i18n("Alternative Delete"), "edit-delete", Qt::Key_Delete | Qt::CTRL, _func, SLOT(alternativeDeleteFiles()), "alternative delete");
 
     // navigation
     actRoot = action(i18n("Root"), "folder-red", Qt::CTRL | Qt::Key_Backspace, _func, SLOT(root()), "root");

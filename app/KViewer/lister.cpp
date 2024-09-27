@@ -1210,12 +1210,12 @@ Lister::Lister(QWidget *parent)
     _actionPrint = new QAction(Icon("document-print"), i18n("Print..."), this);
     connect(_actionPrint, &QAction::triggered, this, &Lister::print);
     actionCollection()->addAction("print", _actionPrint);
-    actionCollection()->setDefaultShortcut(_actionPrint, Qt::CTRL + Qt::Key_P);
+    actionCollection()->setDefaultShortcut(_actionPrint, Qt::CTRL | Qt::Key_P);
 
     _actionSearch = new QAction(Icon("system-search"), i18n("Search"), this);
     connect(_actionSearch, &QAction::triggered, this, &Lister::searchAction);
     actionCollection()->addAction("search", _actionSearch);
-    actionCollection()->setDefaultShortcut(_actionSearch, Qt::CTRL + Qt::Key_F);
+    actionCollection()->setDefaultShortcut(_actionSearch, Qt::CTRL | Qt::Key_F);
 
     _actionSearchNext = new QAction(Icon("go-down"), i18n("Search next"), this);
     connect(_actionSearchNext, &QAction::triggered, this, &Lister::searchNext);
@@ -1225,17 +1225,17 @@ Lister::Lister(QWidget *parent)
     _actionSearchPrev = new QAction(Icon("go-up"), i18n("Search previous"), this);
     connect(_actionSearchPrev, &QAction::triggered, this, &Lister::searchPrev);
     actionCollection()->addAction("search_prev", _actionSearchPrev);
-    actionCollection()->setDefaultShortcut(_actionSearchPrev, Qt::SHIFT + Qt::Key_F3);
+    actionCollection()->setDefaultShortcut(_actionSearchPrev, Qt::SHIFT | Qt::Key_F3);
 
     _actionJumpToPosition = new QAction(Icon("go-jump"), i18n("Jump to position"), this);
     connect(_actionJumpToPosition, &QAction::triggered, this, &Lister::jumpToPosition);
     actionCollection()->addAction("jump_to_position", _actionJumpToPosition);
-    actionCollection()->setDefaultShortcut(_actionJumpToPosition, Qt::CTRL + Qt::Key_G);
+    actionCollection()->setDefaultShortcut(_actionJumpToPosition, Qt::CTRL | Qt::Key_G);
 
     _actionHexMode = new QAction(Icon("document-preview"), i18n("Hex mode"), this);
     connect(_actionHexMode, &QAction::triggered, this, &Lister::toggleHexMode);
     actionCollection()->addAction("hex_mode", _actionHexMode);
-    actionCollection()->setDefaultShortcut(_actionHexMode, Qt::CTRL + Qt::Key_H);
+    actionCollection()->setDefaultShortcut(_actionHexMode, Qt::CTRL | Qt::Key_H);
 
     new ListerEncodingMenu(this, i18n("Select charset"), "character-set", actionCollection());
 
