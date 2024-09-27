@@ -286,7 +286,7 @@ void PanelTabBar::mousePressEvent(QMouseEvent *e)
             setCurrentIndex(clickedTabIndex);
 
         // show the popup menu
-        _panelActionMenu->menu()->popup(e->globalPos());
+        _panelActionMenu->menu()->popup(e->globalPosition().toPoint());
     } else if (e->button() == Qt::LeftButton && !_tabDoubleClicked) {
         bool isDuplicationEvent = false;
 
@@ -360,7 +360,7 @@ void PanelTabBar::mouseReleaseEvent(QMouseEvent *e)
 void PanelTabBar::dragEnterEvent(QDragEnterEvent *e)
 {
     e->accept();
-    handleDragEvent(tabAt(e->pos()));
+    handleDragEvent(tabAt(e->position().toPoint()));
     QTabBar::dragEnterEvent(e);
 }
 
@@ -372,7 +372,7 @@ void PanelTabBar::dragLeaveEvent(QDragLeaveEvent *)
 void PanelTabBar::dragMoveEvent(QDragMoveEvent *e)
 {
     e->ignore();
-    handleDragEvent(tabAt(e->pos()));
+    handleDragEvent(tabAt(e->position().toPoint()));
     QTabBar::dragMoveEvent(e);
 }
 

@@ -105,7 +105,7 @@ void DUFilelight::mousePressEvent(QMouseEvent *event)
 
         filelightPopup.addAction(i18n("Minimum font size"), this, SLOT(minFontSize()));
 
-        diskUsage->rightClickMenu(event->globalPos(), file, &filelightPopup, i18n("Filelight"));
+        diskUsage->rightClickMenu(event->globalPosition().toPoint(), file, &filelightPopup, i18n("Filelight"));
         return;
     } else if (event->button() == Qt::LeftButton) {
         const RadialMap::Segment *focus = focusSegment();

@@ -137,7 +137,7 @@ void RadialMap::Widget::mouseMoveEvent(QMouseEvent *e)
         }
 
         // updates tooltip pseudo-transparent background
-        m_tip.moveto(e->globalPos(), *this, (p.y() < 0));
+        m_tip.moveto(e->globalPosition().toPoint(), *this, (p.y() < 0));
     } else if (oldFocus && oldFocus->file() != m_tree) {
         unsetCursor();
         m_tip.hide();
@@ -177,7 +177,7 @@ void RadialMap::Widget::mousePressEvent(QMouseEvent *e)
             popup.addSeparator();
             actEditDel = popup.addAction(Icon("edit-delete"), i18n("&Delete"));
 
-            QAction *result = popup.exec(e->globalPos());
+            QAction *result = popup.exec(e->globalPosition().toPoint());
             if (result == nullptr)
                 result = (QAction *)-1; // sanity
 
@@ -220,7 +220,8 @@ void RadialMap::Widget::mousePressEvent(QMouseEvent *e)
         } else {
         sectionTwo:
 
-            const QRect rect(e->x() - 20, e->y() - 20, 40, 40);
+            const QPoint pos = e->position().toPoint();
+            const QRect rect(pos.x() - 20, pos.y() - 20, 40, 40);
 
             m_tip.hide(); // user expects this
 
