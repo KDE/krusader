@@ -117,7 +117,7 @@ private:
     QAction *tabPrevAction;
 
     static QList<KrViewer *> viewers; // the first viewer is the active one
-    QList<int> reservedKeys; // the reserved key sequences
+    QList<QKeyCombination> reservedKeys; // the reserved key sequences
     QList<QAction *> reservedKeyActions; // the IDs of the reserved keys
 
     int sizeX;

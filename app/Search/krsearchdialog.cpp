@@ -549,7 +549,7 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
         return;
     }
     if (resultView->widget()->hasFocus()) {
-        if ((e->key() | e->modifiers()) == (Qt::CTRL | Qt::Key_I)) {
+        if (e->keyCombination() == QKeyCombination(Qt::CTRL, Qt::Key_I)) {
             searchBar->showBar(KrSearchBar::MODE_FILTER);
         }
         if (e->key() == Qt::Key_Menu) {
