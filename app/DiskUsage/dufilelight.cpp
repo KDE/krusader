@@ -77,8 +77,8 @@ void DUFilelight::mousePressEvent(QMouseEvent *event)
             file = const_cast<File *>(focus->file());
 
         QMenu filelightPopup;
-        filelightPopup.addAction(i18n("Zoom In"), this, SLOT(zoomIn()), Qt::Key_Plus);
-        filelightPopup.addAction(i18n("Zoom Out"), this, SLOT(zoomOut()), Qt::Key_Minus);
+        filelightPopup.addAction(i18n("Zoom In"), Qt::Key_Plus, this, SLOT(zoomIn()));
+        filelightPopup.addAction(i18n("Zoom Out"), Qt::Key_Minus, this, SLOT(zoomOut()));
 
         QMenu schemePopup;
         schemePopup.addAction(i18n("Rainbow"), this, SLOT(schemeRainbow()));
