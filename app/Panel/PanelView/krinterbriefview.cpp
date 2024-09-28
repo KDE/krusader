@@ -504,7 +504,7 @@ int KrInterBriefView::elementWidth(const QModelIndex &index)
     textWidth += 2 * textMargin;
 
     QVariant decor = index.data(Qt::DecorationRole);
-    if (decor.isValid() && decor.type() == QVariant::Pixmap) {
+    if (decor.isValid() && decor.typeId() == QMetaType::QPixmap) {
         QPixmap p = decor.value<QPixmap>();
         textWidth += p.width() + 2 * textMargin;
     }
