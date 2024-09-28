@@ -203,7 +203,7 @@ public:
         return name == x.name && overlays == x.overlays && size == x.size && mode == x.mode && state == x.state;
     }
 
-    uint hash() const
+    size_t hash() const
     {
         return _hash;
     }
@@ -215,10 +215,10 @@ public:
     QIcon::State state;
 
 private:
-    uint _hash;
+    size_t _hash;
 };
 
-uint qHash(const IconCacheKey &key) noexcept
+size_t qHash(const IconCacheKey &key) noexcept
 {
     return key.hash();
 }
