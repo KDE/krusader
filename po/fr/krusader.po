@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
 "PO-Revision-Date: 2024-09-01 17:26+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -2626,9 +2626,13 @@ msgid "Empty Recently Closed Tabs"
 msgstr "Vider les onglets récemment fermés"
 
 #: app/GUI/terminaldock.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr "<b>Impossible de créer un terminal intégré.</b><br/>"
+msgstr ""
+"<b>Impossible de créer un terminal intégré.</b><br/>L'erreur signalée "
+"était : %1"
 
 #: app/GUI/terminaldock.cpp:102
 #, kde-format
@@ -9838,9 +9842,12 @@ msgstr ""
 "espaces par un caractère d'échappement)"
 
 #: app/useraction_examples.xml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy file path of current item (escaping spaces)"
 msgid "Copy file path of current item"
-msgstr "Copier l'emplacement du fichier de l'élément actuel"
+msgstr ""
+"Copier l'emplacement du fichier de l'élément actuel (en préfixant les "
+"espaces par un caractère d'échappement)"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9999,17 +10006,14 @@ msgstr "Boîte de dialogue de mot de passe pour krarc"
 msgid "Accessing the file requires a password."
 msgstr "L'accès au fichier requiert un mot de passe."
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Copier l'élément courant dans le presse-papiers"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Ouvrir un nouvel onglet dans le dossier personnel"
+#~ msgid "Directories:"
+#~ msgstr "Dossiers :"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Affiche les boutons d'ouverture / fermeture d'onglets."
 
 #~ msgid "JavaScript Console..."
-#~ msgstr "Console Javascript..."
+#~ msgstr "Console JavaScript..."
 
 #~ msgid ""
 #~ "In %1:\n"
@@ -10017,7 +10021,7 @@ msgstr "L'accès au fichier requiert un mot de passe."
 #~ "%3"
 #~ msgstr ""
 #~ "Dans %1 : \n"
-#~ "Exception Javascript « %2 » non rattrapée\n"
+#~ "Exception JavaScript « %2 » non rattrapée\n"
 #~ "%3"
 
 #~ msgid ""
@@ -10030,10 +10034,34 @@ msgstr "L'accès au fichier requiert un mot de passe."
 #~ "%4"
 
 #~ msgid "JavaScript Error"
-#~ msgstr "Erreur Javascript"
+#~ msgstr "Erreur JavaScript"
+
+#~ msgid "%1 ZB"
+#~ msgstr "%1 Zo"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 To"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 Go"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 Mo"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 Ko"
+
+#~ msgid "Browse"
+#~ msgstr "Naviguer"
+
+#~ msgid "New folder"
+#~ msgstr "Nouveau dossier"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Ouvrir un nouvel onglet dans le dossier personnel"
 
 #~ msgid "Execute a JavaScript Extension..."
-#~ msgstr "Exécuter une extension Javascript..."
+#~ msgstr "Exécuter une extension JavaScript..."
 
 #~ msgid "Location of the script"
 #~ msgstr "Emplacement du script"
@@ -10050,14 +10078,8 @@ msgstr "L'accès au fichier requiert un mot de passe."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Extenseur : pas de script spécifié pour %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Nouveau dossier"
-
-#~ msgid "Directories:"
-#~ msgstr "Dossiers :"
-
-#~ msgid "Browse"
-#~ msgstr "Naviguer"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Copier l'élément courant dans le presse-papiers"
 
 #~ msgid "Folder..."
 #~ msgstr "Dossier..."
@@ -10070,21 +10092,6 @@ msgstr "L'accès au fichier requiert un mot de passe."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Modifier un fichier (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 Zo"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 To"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 Go"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 Mo"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 Ko"
 
 #, fuzzy
 #~| msgid "Start Terminal Here"

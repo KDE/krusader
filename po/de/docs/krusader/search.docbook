@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="krusearcher">
   <title
 >KruSearcher: Finden was Sie suchen</title>
@@ -15,6 +27,26 @@
 >Willkommen zu &krusader;s leistungsfähigen Suchmodul mit dem Spitznamen KruSearcher. Es ist das leistungsfähigste uns bekannte Dienstprogramm für &Linux;, da es so viele verschiedene Möglichkeiten bietet, schnell eine gesuchte Datei zu finden. Die Suchfunktion ist auch für entfernte Dateisysteme verfügbar. Es gibt zwei Suchmethoden, allgemein und erweitert. Im folgenden wird zuerst die Karteikarte <guilabel
 >Allgemein</guilabel
 > vorgestellt.</para>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>Krusearcher General</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="search_general.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="search_general.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>Krusearcher General</phrase
+></textobject>
+  <caption
+><para
+>Krusearcher General.</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
   <figure id="screenshot-search-general" float="1">
     <title
 >Allgemeine Suche</title>
@@ -56,21 +88,9 @@
 >'*text*'</literal
 >. Sie können auch Dateien von der Suche mit '|' wie &eg; <literal role="extension"
 >'*.cpp *.h | *.moc.cpp'</literal
-> ausschließen. Verwenden Sie Anführungszeichen für Namen mit Leerzeichen darin. Mit <quote
->Program Files</quote
-> filtern Sie alle Dateien und Ordner, die den Namen <filename
+> ausschließen. Verwenden Sie Anführungszeichen für Namen mit Leerzeichen darin. Mit "Program Files" filtern Sie alle Dateien und Ordner, die den Namen <filename
 >Program Files</filename
-> haben. Im Auswahlfeld, das Sie durch Klicken auf den Pfeil abwärts öffnen, können Sie vorher eingegebene Kriterien auswählen.</para>
-      <note>
-          <para
->Sie können die Liste der Vorschläge für das Feld <guilabel
->Suche nach</guilabel
-> bearbeiten. Um Einträge zu löschen, wählen Sie sie aus und drücken die Taste <keycombo action="simul"
->&Shift;<keycap
->Entf</keycap
-></keycombo
->. Benutzen Sie die Pfeiltasten, um den Verlauf der Einträge anzuzeigen und Einträge zu löschen, die Sie nicht mehr benötigen. </para>
-      </note>
+> haben.</para>
     </listitem>
     <listitem>
       <para
@@ -88,11 +108,7 @@
       <para
 ><guilabel
 >Vom Typ</guilabel
->: Mit diesem Auswahlfeld können Sie nach einer Datei nicht nur nach dem Namen, sondern auch nach dem &MIME;-Typ suchen. Sie können zum Beispiel nach allen Audio-Dateien suchen, deren Name mit <quote
->B</quote
-> anfängt. Als Standard ist hier <quote
->Alle Dateien</quote
-> eingestellt, aber Sie können auch nach Archiven, Ordnern, Bildern, Textdateien, Videos und Audiodateien suchen.</para>
+>: Mit diesem Auswahlfeld können Sie nach einer Datei nicht nur nach dem Namen, sondern auch nach dem MIME-Typ suchen. Sie können zum Beispiel nach allen Audio-Dateien suchen, deren Name mit „B“ anfängt. Als Standard ist hier „Alle Dateien“ eingestellt, aber Sie können auch nach Archiven, Ordnern, Bildern, Textdateien, Videos und Audiodateien suchen.</para>
     </listitem>
   </itemizedlist>
   <itemizedlist>
@@ -244,9 +260,29 @@
 >Schließen</guibutton
 > ist während der Suche deaktiviert. Daher müssen Sie zuerst die Suche anhalten und können dann den Suchdialog schließen. Wird ein Ergebnis gefunden, können Sie durch doppelklicken den Ordner mit der gefundenen Datei im aktiven Dateifenster anzeigen. Der Suchfenster wird jedoch nicht geschlossen, so dass Sie auf ein anderes Ergebnis klicken können.</para>
   <para
->Manchmal möchten Sie die Suche noch mehr eingrenzen. Mit KruSearcher ist das möglich, dazu können Sie die Einstellungen auf der Karteikarte <guilabel
+>Manchmal möchten Sie die Suche noch mehr eingrenzen. Mit Krusearcher ist das möglich, dazu können Sie die Einstellungen auf der Karteikarte <guilabel
 >Erweitert</guilabel
 > benutzen.</para>
+  <!-- OLD
+<screenshot>
+  <screeninfo
+>Krusearcher Advanced</screeninfo>
+  <mediaobject>
+  <imageobject
+><imagedata fileref="search_advanced.png" format="PNG"/></imageobject>
+  <imageobject
+><imagedata fileref="search_advanced.png" format="EPS"/></imageobject>
+  <textobject
+><phrase
+>Krusearcher Advanced</phrase
+></textobject>
+  <caption
+><para
+>Krusearcher Advanced.</para
+></caption>
+  </mediaobject>
+</screenshot>
+-->
   <figure id="screenshot-search-advanced" float="1">
     <title
 >Erweiterte Suche</title>

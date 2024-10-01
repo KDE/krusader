@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
-"PO-Revision-Date: 2020-10-11 02:04+0200\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
+"PO-Revision-Date: 2020-10-11 02:02+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
 "Language: et\n"
@@ -3386,16 +3386,16 @@ msgstr ""
 "näitaja kaartidega üksikrežiimis"
 
 #: app/Konfigurator/kggeneral.cpp:81
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "Hide the tab bar when only one tab is opened"
-msgstr "Kaardiriba peidetakse, kui avatud on ainult üks kaart"
+msgstr "Kaardiriba näitamine ainult ühel kaardil."
 
 #: app/Konfigurator/kggeneral.cpp:84
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show the tab bar with only one tab."
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr ""
-"Märkimise korral peidetakse Näitaja kaardiriba, kui avatud on ainult üks "
-"kaart."
+msgstr "Kaardiriba näitamine ainult ühel kaardil."
 
 #: app/Konfigurator/kggeneral.cpp:89
 #, kde-format
@@ -9682,10 +9682,9 @@ msgid "Multimedia"
 msgstr "Multimeedia"
 
 #: app/useraction_examples.xml:39
-#, fuzzy, kde-format
-#| msgid "Always show current item"
+#, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Alati näidatakse aktiivset elementi"
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, fuzzy, kde-format
@@ -9843,14 +9842,33 @@ msgstr "Krarci paroolidialoog"
 msgid "Accessing the file requires a password."
 msgstr "Juurdepääs failile nõuab parooli."
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Aktiivse elemendi kopeerimine lõikepuhvrisse"
+#~ msgid "Creating directories is not supported with %1 archives"
+#~ msgstr "%1 arhiivide puhul ei ole kataloogide loomine toetatud"
 
-#~ msgid "Open a new tab in home"
-#~ msgstr "Ava uus kaart kodukataloogis"
+#~ msgid "Listing directories is not supported for %1 archives"
+#~ msgstr "%1 arhiivide puhul ei ole kataloogide loend toetatud"
+
+#~ msgid "About to calculate checksum for the following files or directories:"
+#~ msgstr "Hakatakse arvutama järgmiste failide ja kataloogide kontrollsummat:"
+
+#~ msgid "Directories:"
+#~ msgstr "Kataloogid:"
+
+#~ msgid "Filters out specified directory names from the results."
+#~ msgstr "Konkreetsete katalooginimede väljafiltreerimine tulemustest."
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Uue/sulge kaardi nuppude näitamine."
+
+#~ msgid "Directory navigation with Right Arrow"
+#~ msgstr "Kataloogides liikumine noolega paremale"
+
+#~ msgid ""
+#~ "Pressing the Right button enters directory if no search text editing "
+#~ "intention is captured."
+#~ msgstr ""
+#~ "Noolt paremale vajutades sisenetakse kataloogi, kui ühtegi otsinguteksti "
+#~ "vastet ei suudetud leida."
 
 #~ msgid "JavaScript Console..."
 #~ msgstr "JavaScripti konsool..."
@@ -9876,6 +9894,56 @@ msgstr "Juurdepääs failile nõuab parooli."
 #~ msgid "JavaScript Error"
 #~ msgstr "JavaScripti viga"
 
+#~ msgid ""
+#~ "Cannot find a batch rename tool.\n"
+#~ "You can get KRename at http://www.krename.net"
+#~ msgstr ""
+#~ "Ei leitud hulgi-nimemuutmise tööriista.\n"
+#~ "KRename'i leiab aadressilt http://www.krename.net"
+
+#~ msgid ""
+#~ "© 2000-2003 Shie Erlich, Rafi Yanai\n"
+#~ "© 2004-2019 Krusader Krew"
+#~ msgstr ""
+#~ "© 2000-2003: Shie Erlich, Rafi Yanai\n"
+#~ "© 2004-2019: Krusaderi meeskond"
+
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Cancel directory space calculation"
+#~ msgstr "Kataloogi mahu arvutamisest loobumine"
+
+#~ msgid "Open/Run"
+#~ msgstr "Ava/käivita"
+
+#~ msgid "Browse"
+#~ msgstr "Sirvi"
+
+#~ msgid "New folder"
+#~ msgstr "Uus kataloog"
+
+#~ msgid "Apply filter to folders"
+#~ msgstr "Filtri rakendamine kataloogidele"
+
+#~ msgid "Apply selection to folders"
+#~ msgstr "Valiku rakendamine kataloogidele"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Ava uus kaart kodukataloogis"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Käivita JavaScripti laiend..."
 
@@ -9893,11 +9961,8 @@ msgstr "Juurdepääs failile nõuab parooli."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Ekspander: %_Script(script)% pole skripti määratud"
 
-#~ msgid "New folder"
-#~ msgstr "Uus kataloog"
-
-#~ msgid "Directories:"
-#~ msgstr "Kataloogid:"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Aktiivse elemendi kopeerimine lõikepuhvrisse"
 
 #~ msgid "Folder..."
 #~ msgstr "Kataloog..."
@@ -9910,21 +9975,6 @@ msgstr "Juurdepääs failile nõuab parooli."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Muuda faili (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
 
 #, fuzzy
 #~| msgid "Start Terminal Here"

@@ -1,23 +1,23 @@
 # Translation of krusader.po to Ukrainian
-# Copyright (C) 2004-2021 This_file_is_part_of_KDE
+# Copyright (C) 2004-2020 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Ivan Petrouchtchak <iip@telus.net>, 2004, 2005.
-# Yuri Chornoivan <yurchor@ukr.net>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2024.
+# Yuri Chornoivan <yurchor@ukr.net>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
-"PO-Revision-Date: 2024-08-11 09:25+0300\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
+"PO-Revision-Date: 2022-10-24 14:00+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
-"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.04.3\n"
+"X-Generator: Lokalize 20.12.0\n"
 "10<=4 && (n%100<10 || n%100>=20) ? 1: 2);\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
@@ -649,7 +649,7 @@ msgstr "Експортувати дії користувача"
 #: app/ActionMan/useractionpage.cpp:69
 #, kde-format
 msgid "Copy useractions to clipboard"
-msgstr "Скопіювати дії користувача до буфера"
+msgstr "Скопіювати дії користувача в кишеню"
 
 #: app/ActionMan/useractionpage.cpp:74
 #, kde-format
@@ -2581,9 +2581,13 @@ msgid "Empty Recently Closed Tabs"
 msgstr "Спорожнити список нещодавно закритих вкладок"
 
 #: app/GUI/terminaldock.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr "<b>Не вдалося створити панель вбудованого термінала.</b><br/>"
+msgstr ""
+"<b>Не вдалося створити панель вбудованого термінала.</b><br/>Повідомлення "
+"про помилку: %1"
 
 #: app/GUI/terminaldock.cpp:102
 #, kde-format
@@ -6125,7 +6129,7 @@ msgstr "Знайти попереднє (Ctrl+P)"
 #: app/Locate/locate.cpp:401
 #, kde-format
 msgid "Copy selected to clipboard"
-msgstr "Скопіювати позначене до буфера"
+msgstr "Скопіювати позначене в кишеню"
 
 #: app/Locate/locate.cpp:541 app/Locate/locate.cpp:560
 #, kde-format
@@ -7247,12 +7251,12 @@ msgstr "Помилка: %1"
 #: app/Panel/listpanelactions.cpp:53
 #, kde-format
 msgid "Cut to Clipboard"
-msgstr "Вирізати до буфера"
+msgstr "Вирізати до кишені"
 
 #: app/Panel/listpanelactions.cpp:59 app/Search/krsearchdialog.cpp:215
 #, kde-format
 msgid "Copy to Clipboard"
-msgstr "Скопіювати до буфера"
+msgstr "Скопіювати до кишені"
 
 #: app/Panel/listpanelactions.cpp:61
 #, kde-format
@@ -9363,7 +9367,7 @@ msgstr "Дія користувача"
 #: app/UserAction/expander.cpp:573
 #, kde-format
 msgid "Copy to Clipboard..."
-msgstr "Скопіювати до буфера…"
+msgstr "Скопіювати до кишені…"
 
 #: app/UserAction/expander.cpp:576 app/UserAction/expander.cpp:606
 #, kde-format
@@ -9374,7 +9378,7 @@ msgstr "Що копіювати:"
 #, kde-format
 msgid "Append to current clipboard content with this separator (optional):"
 msgstr ""
-"Дописати до поточного вмісту буфера з цим роздільником (не обов'язково):"
+"Дописати до поточного вмісту кишені з цим роздільником (не обов'язково)"
 
 #: app/UserAction/expander.cpp:583
 #, kde-format
@@ -9761,9 +9765,10 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Копіювати шлях до файла поточного запису (з екрануванням пробілів)"
 
 #: app/useraction_examples.xml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy file path of current item (escaping spaces)"
 msgid "Copy file path of current item"
-msgstr "Копіювати шлях до файла поточного запису"
+msgstr "Копіювати шлях до файла поточного запису (з екрануванням пробілів)"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9920,11 +9925,8 @@ msgstr "Діалогове вікно пароля Krarc"
 msgid "Accessing the file requires a password."
 msgstr "Для доступу до файла потрібен пароль."
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Копіювати поточний запис до буфера обміну"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Відкрити нову вкладку в домівці"
+#~ msgid "Directories:"
+#~ msgstr "Каталоги:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Показувати кнопки створення/закриття вкладок."
@@ -9953,6 +9955,30 @@ msgstr "Для доступу до файла потрібен пароль."
 #~ msgid "JavaScript Error"
 #~ msgstr "Помилка JavaScript"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZБ"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 ТБ"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 ГБ"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 МБ"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 КБ"
+
+#~ msgid "Browse"
+#~ msgstr "Навігація"
+
+#~ msgid "New folder"
+#~ msgstr "Нова тека"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Відкрити нову вкладку в домівці"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Виконати додаток JavaScript…"
 
@@ -9970,3 +9996,878 @@ msgstr "Для доступу до файла потрібен пароль."
 
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Розширювач: не задано скрипту для %_Script(script)%"
+
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Копіювати поточний запис до буфера обміну"
+
+#~ msgid "Folder..."
+#~ msgstr "Тека…"
+
+#~ msgid "Text File..."
+#~ msgstr "Текстовий файл…"
+
+#~ msgid "View File (F3)"
+#~ msgstr "Огляд файла (F3)"
+
+#~ msgid "Edit File (F4)"
+#~ msgstr "Змінити файл (F4)"
+
+#~ msgid "Open search filter"
+#~ msgstr "Відкрити вікно фільтрування"
+
+#~ msgid "Karai Csaba"
+#~ msgstr "Karai Csaba"
+
+#~ msgid "Open the popup panel"
+#~ msgstr "Відкрити контекстну панель"
+
+#~ msgid "Close the popup panel"
+#~ msgstr "Закрити контекстну панель"
+
+#~ msgid "Toggle Popup Panel"
+#~ msgstr "Увімкнути/Вимкнути контекстну панель"
+
+#~ msgid " Quit"
+#~ msgstr " Вийти"
+
+#~ msgid "Copy..."
+#~ msgstr "Копіювати…"
+
+#~ msgid "Move..."
+#~ msgstr "Пересунути…"
+
+#~ msgid ""
+#~ "A configuration of 1.51 or older was detected. Krusader has to reset your "
+#~ "configuration to default values.\n"
+#~ "Note: your bookmarks and keybindings will remain intact.\n"
+#~ "Krusader will now run Konfigurator."
+#~ msgstr ""
+#~ "Було виявлено налаштування з версії 1.51 або давнішої. Krusader "
+#~ "доведеться змінити ваші параметри на типові значення.\n"
+#~ "Зауваження: ваші закладки та прив'язки клавіш залишаться без змін.\n"
+#~ "Krusader зараз запустить Конфігуратор."
+
+#~ msgid "ftp://"
+#~ msgstr "ftp://"
+
+#~ msgid "smb://"
+#~ msgstr "smb://"
+
+#~ msgid "fish://"
+#~ msgstr "fish://"
+
+#~ msgid "sftp://"
+#~ msgstr "sftp://"
+
+#~ msgid "Keep virtual folder structure"
+#~ msgstr "Зберігати структуру віртуальної теки"
+
+#~ msgid "Base URL:"
+#~ msgstr "Базовий URL:"
+
+#~ msgid "Minimize to tray"
+#~ msgstr "Мінімізувати до лотка"
+
+#~ msgid ""
+#~ "The icon will appear in the system tray instead of the taskbar, when "
+#~ "Krusader is minimized."
+#~ msgstr ""
+#~ "Після мінімізації Krusader його піктограма з'явиться в системному лотку, "
+#~ "а не в панелі задач."
+
+#~ msgid ""
+#~ "<qt>Cannot calculate checksum since no supported tool was found. Please "
+#~ "check the <b>Dependencies</b> page in Krusader's settings.</qt>"
+#~ msgstr ""
+#~ "<qt>Неможливо обчислити контрольну суму, оскільки не знайдено "
+#~ "відповідного інструмента. Будь ласка, зверніться до сторінки "
+#~ "<b>Залежності</b> у налаштуваннях Krusader.</qt>"
+
+#~ msgid ""
+#~ "<qt><b>Note</b>: you have selected folders, and probably have no "
+#~ "recursive checksum tool installed. Krusader currently supports "
+#~ "<i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>"
+#~ msgstr ""
+#~ "<qt><b>Зауваження</b>: Ви вибрали каталоги і по всьому не маєте "
+#~ "встановленого рекурсивного інструмента обчислення контрольної суми. "
+#~ "Поточна версія Krusader підтримує <i>md5deep, sha1deep, sha256deep, "
+#~ "tigerdeep та cfv</i></qt>"
+
+#~ msgid "About to calculate checksum for the following files:"
+#~ msgstr "Майже обчислено контрольну суму для таких файлів:"
+
+#~ msgid "Calculating checksums..."
+#~ msgstr "Обчислюється контрольна сума…"
+
+#~ msgid ""
+#~ "<qt>Cannot verify checksum since no supported tool was found. Please "
+#~ "check the <b>Dependencies</b> page in Krusader's settings.</qt>"
+#~ msgstr ""
+#~ "<qt>Контрольну суму неможливо перевірити оскільки не знайдено "
+#~ "відповідного інструмента. Будь ласка, зверніться до сторінки "
+#~ "<b>Залежності</b> у налаштуваннях Krusader.</qt>"
+
+#~ msgid "About to verify checksum for the following files and folders:"
+#~ msgstr "Перевіряється контрольна сума для таких файлів і тек:"
+
+#~ msgid ""
+#~ "<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid "
+#~ "checksum file.</qt>"
+#~ msgstr ""
+#~ "<qt>Помилка читання файла контрольної суми <i>%1</i>.<br />Будь ласка, "
+#~ "вкажіть коректний файл контрольної суми.</qt>"
+
+#~ msgid "Verifying checksums..."
+#~ msgstr "Перевірка контрольних сум…"
+
+#~ msgid "The following files have failed:"
+#~ msgstr "Помилка у таких файлах:"
+
+#~ msgid "Here are the calculated checksums:"
+#~ msgstr "Значення обчислених контрольних сум:"
+
+#~ msgid "File and hash"
+#~ msgstr "Файл та хеш"
+
+#~ msgid "Save checksum to file:"
+#~ msgstr "Зберегти контрольну суму до файла:"
+
+#~ msgid ""
+#~ "File %1 already exists.\n"
+#~ "Are you sure you want to overwrite it?"
+#~ msgstr ""
+#~ "Файл %1 вже існує.\n"
+#~ "Ви справді бажаєте його перезаписати?"
+
+#~ msgid "Select a file to save to"
+#~ msgstr "Виберіть файл для збереження"
+
+#~ msgid "graphical sudo"
+#~ msgstr "графічна оболонка sudo"
+
+#~ msgid ""
+#~ "Cannot start root mode Krusader, because Krusader or kdesu is missing "
+#~ "from the path. Please configure the dependencies in Konfigurator."
+#~ msgstr ""
+#~ "Неможливо запустити Krusader в режимі адміністратора, бо Krusader або "
+#~ "kdesu немає в шляху. Будь ласка, налаштуйте залежності у Конфігураторі!"
+
+#~ msgid "Calculating space"
+#~ msgstr "Обчислення місця"
+
+#~ msgid "Start &Paused"
+#~ msgstr "Розпочати &призупинене"
+
+#~ msgid "F2 Run Immediately"
+#~ msgstr "F2 Виконати негайно"
+
+#~ msgid "Immediately start job even if there are running jobs in queue."
+#~ msgstr ""
+#~ "Негайно розпочати виконання завдання, навіть якщо у черзі завдань є інші "
+#~ "завдання, які вже виконуються."
+
+#~ msgid "User Menu"
+#~ msgstr "Меню користувача"
+
+#~ msgid "Cannot find \"KsysCtrl\". Please install KDE admin package"
+#~ msgstr ""
+#~ "Не вдається знайти «KsysCtrl». Будь ласка, встановіть пакунок kde-admin"
+
+#~ msgid ""
+#~ "Could not create a temporary folder. Handling of Archives will not be "
+#~ "possible until this is fixed."
+#~ msgstr ""
+#~ "Не вдалося створити тимчасову теку. До виправлення причини цієї помилки "
+#~ "обробка архівів буде неможливою."
+
+#~ msgid "Manage user actions"
+#~ msgstr "Керування діями користувача"
+
+#~ msgid "Rename %1 to:"
+#~ msgstr "Перейменувати %1 на:"
+
+#~ msgid "Cancel"
+#~ msgstr "Скасувати"
+
+#~ msgid "Quick Navigation"
+#~ msgstr "Швидка навігація"
+
+#~ msgid "Already at <i>%1</i>"
+#~ msgstr "Вже у <i>%1</i>"
+
+#~ msgid "Click to go to <i>%1</i>"
+#~ msgstr "Клацніть, щоб перейти до <i>%1</i>"
+
+#~ msgid "Fullscreen embedded terminal (mc-style)"
+#~ msgstr "Повноекранний вбудований термінал (у стилі mc)"
+
+#~ msgid "Terminal is shown instead of the Krusader window (full screen)."
+#~ msgstr "Замість вікна Krusader буде видно термінал (на весь екран)."
+
+#~ msgid "Show terminal emulator"
+#~ msgstr "Показати емулятор термінала"
+
+#~ msgid "Show Terminal &Emulator"
+#~ msgstr "Показувати &емулятор термінала"
+
+#~ msgctxt "Unknown file system type"
+#~ msgid "unknown"
+#~ msgstr "невідомий"
+
+#~ msgid "No space information on [dev]"
+#~ msgstr "Немає інформації про місце в [dev]"
+
+#~ msgid "No space information on [procfs]"
+#~ msgstr "Немає інформації про місце в [procfs]"
+
+#~ msgid "No space information on [proc]"
+#~ msgstr "Немає інформації про місце в [proc]"
+
+#~ msgid "Overwrite"
+#~ msgstr "Перезаписати"
+
+#~ msgid "&Overwrite"
+#~ msgstr "&Перезаписати"
+
+#~ msgid "&Remove"
+#~ msgstr "&Вилучити"
+
+#~ msgid "Use MIME type magic"
+#~ msgstr "Використовувати визначення MIME"
+
+#~ msgid ""
+#~ "MIME type magic allows better distinction of file types, but is slower."
+#~ msgstr ""
+#~ "Контрольна послідовність типу MIME надає змогу краще розрізняти типи "
+#~ "файлів, але працює повільніше."
+
+#~ msgid "&Queue Manager..."
+#~ msgstr "Керування &чергою…"
+
+#~ msgid "You cannot move files to this file system"
+#~ msgstr "Не можна пересувати файли в цю файлову систему"
+
+#~ msgid "You cannot copy files to this file system"
+#~ msgstr "Не можна копіювати файли в цю файлову систему"
+
+#~ msgid "You do not have write permission to this folder"
+#~ msgstr "Ви не маєте дозволу на запис до цієї теки"
+
+#~ msgid "An error occurred during processing the queue.\n"
+#~ msgstr "Під час обробки черги сталася помилка.\n"
+
+#~ msgid "The last processed element in the queue was aborted.\n"
+#~ msgstr "Останній пункт обробки у черзі було аварійно завершено.\n"
+
+#~ msgid ""
+#~ "Do you wish to continue with the next element, delete the queue or "
+#~ "suspend the queue?"
+#~ msgstr ""
+#~ "Бажаєте продовжити виконання завдань з черги, вилучити цю чергу або "
+#~ "призупинити виконання черги?"
+
+#~ msgid "Krusader::Queue"
+#~ msgstr "Krusader::Черга"
+
+#~ msgid "Suspend"
+#~ msgstr "Призупинити"
+
+#~ msgid "default"
+#~ msgstr "типове"
+
+#~ msgid "Krusader::Queue Manager"
+#~ msgstr "Krusader::Керування чергою"
+
+#~ msgid "Please enter the time to start processing the queue:"
+#~ msgstr "Будь ласка, введіть час початку обробки черги:"
+
+#~ msgid "Create a new queue"
+#~ msgstr "Створити нову чергу"
+
+#~ msgid "Remove the current queue"
+#~ msgstr "Вилучити поточну чергу"
+
+#~ msgid "unused"
+#~ msgstr "не використовується"
+
+#~ msgid "Schedule queue starting (Ctrl+S)"
+#~ msgstr "Запланувати початок обробки черги (Ctrl+S)"
+
+#~ msgid "Start processing the queue (Ctrl+P)"
+#~ msgstr "Почати обробку черги (Ctrl+P)"
+
+#~ msgid "The queue is paused."
+#~ msgstr "Обробку черги призупинено."
+
+#~ msgid "Scheduled to start at %1."
+#~ msgstr "Початок заплановано на %1."
+
+#~ msgid "The queue is running."
+#~ msgstr "Обробка черги."
+
+#~ msgid "Pause processing the queue (Ctrl+P)"
+#~ msgstr "Призупинити обробку черги (Ctrl+P)"
+
+#~ msgid "Please enter the name of the new queue"
+#~ msgstr "Введіть, будь ласка, назву нової черги дій"
+
+#~ msgid "A queue already exists with this name."
+#~ msgstr "Черга завдань з такою назвою вже існує!"
+
+#~ msgid ""
+#~ "Deleting the queue requires aborting all pending jobs. Do you wish to "
+#~ "continue?"
+#~ msgstr ""
+#~ "Вилучення черги призведе до аварійного припинення всіх запланованих "
+#~ "завдань. Бажаєте вилучити чергу?"
+
+#~ msgid "Queue Manager"
+#~ msgstr "Керування чергою"
+
+#~ msgid ""
+#~ "Deleting this job will abort the pending job. Do you wish to continue?"
+#~ msgstr ""
+#~ "Вилучення цього завдання призведе до вилучення запланованого завдання. "
+#~ "Бажаєте виконати вилучення?"
+
+#~ msgid ""
+#~ "Krusader does not support FTP access via HTTP.\n"
+#~ "If it is not the case, please check and change the proxy settings in the "
+#~ "System Settings."
+#~ msgstr ""
+#~ "Krusader не підтримує доступу до FTP через HTTP.\n"
+#~ "Якщо це не та ситуація, будь ласка, перевірте та змініть налаштування "
+#~ "проксі у «Системних параметрах»."
+
+#~ msgctxt "Job type"
+#~ msgid "Status"
+#~ msgstr "Стан"
+
+#~ msgctxt "Job type"
+#~ msgid "Folder Size"
+#~ msgstr "Розмір теки"
+
+#~ msgctxt "Job type"
+#~ msgid "Copy"
+#~ msgstr "Копіювання"
+
+#~ msgctxt "Job type"
+#~ msgid "Move"
+#~ msgstr "Пересування"
+
+#~ msgctxt "Job type"
+#~ msgid "Pack"
+#~ msgstr "Пакування"
+
+#~ msgctxt "Job type"
+#~ msgid "Unpack"
+#~ msgstr "Розпакування"
+
+#~ msgctxt "Job type"
+#~ msgid "Unknown"
+#~ msgstr "Невідомий"
+
+#~ msgid "Target"
+#~ msgstr "Ціль"
+
+#~ msgid "Source"
+#~ msgstr "Джерело"
+
+#~ msgid "Cannot create a folder. Check your permissions."
+#~ msgstr "Не вдалося створити теку. Перевірте ваші права доступу."
+
+#~ msgctxt "@title job"
+#~ msgid "Copying"
+#~ msgstr "Копіювання"
+
+#~ msgctxt "@title job"
+#~ msgid "Moving"
+#~ msgstr "Пересування"
+
+#~ msgid "OK"
+#~ msgstr "Гаразд"
+
+#~ msgid "Show statusbar"
+#~ msgstr "Показати рядок стану"
+
+#~ msgid "Statusbar will be visible after startup."
+#~ msgstr "Рядок стану буде видимий після запуску."
+
+#~ msgid "Show toolbar"
+#~ msgstr "Показати пенал"
+
+#~ msgid "Toolbar will be visible after startup."
+#~ msgstr "Пенал буде видимий після запуску."
+
+#~ msgid "Show actions toolbar"
+#~ msgstr "Показати панель дій"
+
+#~ msgid "Actions toolbar will be visible after startup."
+#~ msgstr "Панель дій буде показано після запуску."
+
+#~ msgid "Webmaster"
+#~ msgstr "Вебмайстер"
+
+#~ msgid "Remote co&ntent search"
+#~ msgstr "Пошук серед вмісту на &віддаленому носії"
+
+#~ msgid "Cannot drop here, no write permissions."
+#~ msgstr "Не вдається вкинути сюди, бо немає прав запису."
+
+#~ msgid "Copy Here"
+#~ msgstr "Скопіювати сюди"
+
+#~ msgid "Move Here"
+#~ msgstr "Пересунути сюди"
+
+#~ msgid "Link Here"
+#~ msgstr "Створити посилання"
+
+#~ msgid "Quicksearch/Quickfilter"
+#~ msgstr "Швидкий пошук/фільтрування"
+
+#~ msgid "New style Quicksearch"
+#~ msgstr "Швидкий пошук у новому стилі"
+
+#~ msgid "Opens a quick search dialog box."
+#~ msgstr "Відкриває вікно швидкого пошуку."
+
+#~ msgid "Case sensitive Quicksearch/QuickFilter"
+#~ msgstr "Швидкий пошук/фільтрування з урахуванням регістру"
+
+#~ msgid "Quick Panel: quick way to perform actions"
+#~ msgstr "Швидка панель: швидкий спосіб виконання дій"
+
+#~ msgid "Quick Select"
+#~ msgstr "Швидкий вибір"
+
+#~ msgid "Apply the selection"
+#~ msgstr "Застосувати вибір"
+
+#~ msgid "Quick Select:"
+#~ msgstr "Швидкий вибір:"
+
+#~ msgid "QuickFilter"
+#~ msgstr "Швидке фільтрування"
+
+#~ msgid "Flat Origin Bar"
+#~ msgstr "Плоска панель"
+
+#~ msgid "Open button"
+#~ msgstr "Кнопка відкривання"
+
+#~ msgid "Use superb KDE file dialog to choose location."
+#~ msgstr "Скористайтеся вікном файлів KDE для вибору адреси."
+
+#~ msgid "In directory"
+#~ msgstr "В каталозі"
+
+#~ msgid "Directories"
+#~ msgstr "Каталоги"
+
+#~ msgid "Directory foreground:"
+#~ msgstr "Текст каталогів:"
+
+#~ msgid "Directory"
+#~ msgstr "Каталог"
+
+#~ msgid "Temp Directory:"
+#~ msgstr "Тимчасовий каталог:"
+
+#~ msgid "in %1 directory"
+#~ msgid_plural "in %1 directories"
+#~ msgstr[0] "у %1 каталозі"
+#~ msgstr[1] "у %1 каталозі"
+#~ msgstr[2] "у %1 каталогах"
+#~ msgstr[3] "у %1 каталозі"
+
+#~ msgid "New Directory..."
+#~ msgstr "Новий каталог…"
+
+#~ msgid "&Compare Directories"
+#~ msgstr "&Порівняти каталоги"
+
+#~ msgid "New directory"
+#~ msgstr "Новий каталог"
+
+#~ msgid "Directory's name:"
+#~ msgstr "Назва каталогу:"
+
+#~ msgid "Cannot open the %1 directory."
+#~ msgstr "Не вдалося відкрити каталог %1."
+
+#~ msgid "Krusader::Synchronize Directories"
+#~ msgstr "Krusader::Синхронізувати каталоги"
+
+#~ msgid "Synchronize Directories"
+#~ msgstr "Синхронізувати каталоги"
+
+#~ msgctxt "Job type"
+#~ msgid "Directory Size"
+#~ msgstr "Розмір каталогу"
+
+#~ msgid "Select files using a filter"
+#~ msgstr "Вибрати файли за допомогою фільтра"
+
+#~ msgid "Unselect all selected files"
+#~ msgstr "Скасувати вибір всіх вибраних файлів"
+
+#~ msgid ""
+#~ "In the target directory the synchronizer does not directly support "
+#~ "protocols like FISH, SFTP, SMB, etc."
+#~ msgstr ""
+#~ "У каталозі призначення засіб синхронізації не передбачає безпосередньої "
+#~ "підтримки протоколів обміну даними, зокрема FISH, SFTP, SMB тощо."
+
+#~ msgid ""
+#~ "In the source directory the synchronizer does not directly support "
+#~ "protocols like FISH, SFTP, SMB, etc."
+#~ msgstr ""
+#~ "У каталозі джерела засіб синхронізації не передбачає безпосередньої "
+#~ "підтримки протоколів обміну даними, зокрема FISH, SFTP, SMB тощо."
+
+#~ msgid "Open &Konsole Here"
+#~ msgstr "Відкрити &Konsole тут"
+
+#~ msgid ""
+#~ "*.keymap|Krusader keymaps\n"
+#~ "*|All files"
+#~ msgstr ""
+#~ "*.keymap|карти клавіш Krusader\n"
+#~ "*|всі файли"
+
+#~ msgid "Import Shortcuts"
+#~ msgstr "Імпортувати скорочення"
+
+#~ msgid "Load a keybinding profile, e.g., total_commander.keymap"
+#~ msgstr "Завантажити профіль прив'язки клавіш, напр., total_commander.keymap"
+
+#~ msgid "Export Shortcuts"
+#~ msgstr "Експортувати скорочення"
+
+#~ msgid "Save current keybindings in a keymap file."
+#~ msgstr "Зберегти поточні прив'язки клавіш у файл карти клавіш."
+
+#~ msgid "Select a keymap file"
+#~ msgstr "Виберіть файл карти клавіш"
+
+#~ msgid ""
+#~ "This file does not seem to be a valid keymap.\n"
+#~ "It may be a keymap using a legacy format. The import cannot be undone."
+#~ msgstr ""
+#~ "Цей файл, здається, не містить коректної карти клавіш.\n"
+#~ "У ньому може зберігатися карта клавіш у застарілому форматі. Імпортування "
+#~ "не можна буде скасувати!"
+
+#~ msgid "Try to Import Legacy Format?"
+#~ msgstr "Спробувати імпортувати застарілий формат?"
+
+#~ msgid "Import Anyway"
+#~ msgstr "Все одно імпортувати "
+
+#~ msgid ""
+#~ "The following information was attached to the keymap. Do you really want "
+#~ "to import this keymap?"
+#~ msgstr ""
+#~ "Нижчеподана інформація була долучена до карти клавіш. Ви дійсно хочете "
+#~ "імпортувати цю карту клавіш?"
+
+#~ msgid "Please restart this dialog in order to see the changes"
+#~ msgstr "Будь ласка, перезавантажте діалогове вікно, щоб побачити зміни"
+
+#~ msgid "Legacy Import Completed"
+#~ msgstr "Імпорт застарілого завершено"
+
+#~ msgid ""
+#~ "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</"
+#~ "qt>"
+#~ msgstr ""
+#~ "<qt>Файл <b>%1</b> вже існує. Ви дійсно хочете перезаписати його?</qt>"
+
+#~ msgid "<qt>Cannot open <b>%1</b> for writing.</qt>"
+#~ msgstr "<qt>Не вдалося відкрити <b>%1</b> для запису.</qt>"
+
+#~ msgid "Source:"
+#~ msgstr "Джерело:"
+
+#~ msgid "Destination:"
+#~ msgstr "Призначення:"
+
+#~ msgid "Krusader Progress"
+#~ msgstr "Поступ Krusader"
+
+#~ msgid "%1 directory"
+#~ msgid_plural "%1 directories"
+#~ msgstr[0] "%1 тека"
+#~ msgstr[1] "%1 теки"
+#~ msgstr[2] "%1 тек"
+#~ msgstr[3] "%1 тека"
+
+#~ msgid "%1 file"
+#~ msgid_plural "%1 files"
+#~ msgstr[0] "%1 файл"
+#~ msgstr[1] "%1 файла"
+#~ msgstr[2] "%1 файлів"
+#~ msgstr[3] "%1 файл"
+
+#~ msgid "%1 of %2 complete"
+#~ msgstr "%1 з %2 закінчено"
+
+#~ msgid "%2 / %1 directory"
+#~ msgid_plural "%2 / %1 directories"
+#~ msgstr[0] "%2 з %1 теки"
+#~ msgstr[1] "%2 з %1 тек"
+#~ msgstr[2] "%2 з %1 тек"
+#~ msgstr[3] "%2 з однієї теки"
+
+#~ msgid "%2 / %1 file"
+#~ msgid_plural "%2 / %1 files"
+#~ msgstr[0] "%2 / %1 файл"
+#~ msgstr[1] "%2 / %1 файла"
+#~ msgstr[2] "%2 / %1 файлів"
+#~ msgstr[3] "%2 / %1 файл"
+
+#~ msgid "Working"
+#~ msgstr "Працює"
+
+#~ msgid "%1/s (%2 remaining)"
+#~ msgstr "%1/с (лишилось %2)"
+
+#~ msgid "Krusader transparently handles the following types of archives:"
+#~ msgstr "Krusader працює з наступними типами архівів:"
+
+#~ msgid "Tar"
+#~ msgstr "Tar"
+
+#~ msgid "GZip"
+#~ msgstr "GZip"
+
+#~ msgid "LZMA"
+#~ msgstr "LZMA"
+
+#~ msgid "XZ"
+#~ msgstr "XZ"
+
+#~ msgid "BZip2"
+#~ msgstr "BZip2"
+
+#~ msgid "Zip"
+#~ msgstr "Zip"
+
+#~ msgid "Rar"
+#~ msgstr "Rar"
+
+#~ msgid "Arj"
+#~ msgstr "Arj"
+
+#~ msgid "Rpm"
+#~ msgstr "Rpm"
+
+#~ msgid "Ace"
+#~ msgstr "Ace"
+
+#~ msgid "Lha"
+#~ msgstr "Lha"
+
+#~ msgid "Deb"
+#~ msgstr "Deb"
+
+#~ msgid "7zip"
+#~ msgstr "7zip"
+
+#~ msgid ""
+#~ "The archives that are \"grayed out\" were unavailable on your\n"
+#~ "system last time Krusader checked. If you wish Krusader to\n"
+#~ "search again, click the 'Auto Configure' button."
+#~ msgstr ""
+#~ "Архіви, які «затінено», не були доступні у вашій системі,\n"
+#~ "коли Krusader востаннє сканував її. Якщо хочете, щоб Krusader\n"
+#~ "знову пошукав, натисніть кнопку «Автоматичне налаштування»."
+
+#~ msgid "Auto Configure"
+#~ msgstr "Автоматичне налаштування"
+
+#~ msgid "Konfigurator"
+#~ msgstr "Konfigurator"
+
+#~ msgid "&Quit"
+#~ msgstr "&Вийти"
+
+#~ msgctxt "@title:window"
+#~ msgid "Locate"
+#~ msgstr "Пошук розташування"
+
+#~ msgid "Mount.Man"
+#~ msgstr "Mount.Man"
+
+#~ msgid "Critical Error"
+#~ msgstr "Критична помилка"
+
+#~ msgid ""
+#~ "Internal error in MountMan.\n"
+#~ "Please email the developers."
+#~ msgstr ""
+#~ "Внутрішня помилка у засобі монтування.\n"
+#~ "Будь ласка, повідомте про неї розробникам."
+
+#~ msgid "Mt.Man: working..."
+#~ msgstr "Монтування: обробляємо дані…"
+
+#~ msgid "Cannot cut a virtual URL collection to the clipboard."
+#~ msgstr "Неможливо вирізати віртуальну збірку адрес до буфера обміну даними!"
+
+#~ msgid "Cannot copy a virtual URL collection onto the clipboard."
+#~ msgstr ""
+#~ "Неможливо скопіювати віртуальну збірку адрес до буфера обміну даними!"
+
+#~ msgid "Save as"
+#~ msgstr "Зберегти як"
+
+#~ msgid "This protocol does not support resuming"
+#~ msgstr "Поновлення не підтримується цим протоколом"
+
+#~ msgid "Writing to %1 is not supported"
+#~ msgstr "Запис на %1 не підтримується"
+
+#~ msgid "Author"
+#~ msgstr "Автор"
+
+#~ msgid "Webmaster and i18n coordinator"
+#~ msgstr "Вебмайстер і координатор i18n"
+
+#~ msgid "krarc"
+#~ msgstr "krarc"
+
+#~ msgctxt "filename (filestate)"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid "Sorry, can not find internal editor"
+#~ msgstr "Вибачте, не вдається знайти вбудований редактор"
+
+#~ msgid "KrViewer is unable to download: %1"
+#~ msgstr "KrViewer не може отримати: %1"
+
+#~ msgid "<b>Moving archives into themselves will delete them.</b>"
+#~ msgstr ""
+#~ "<b>Пересування архівів до самих себе призведе до вилучення даних.</b>"
+
+#~ msgid "Moving into archive is disabled"
+#~ msgstr "Пересування в архів вимкнене"
+
+#~ msgid "%1 is not a split file."
+#~ msgstr "%1 не є розділеним файлом."
+
+#~ msgid "Error at writing file %1: %2"
+#~ msgstr "Помилка під час спроби запису файла %1: %2"
+
+#~ msgid "Failed to unpack \"%1\"."
+#~ msgstr "Спроба розпаковування «%1» зазнала невдачі."
+
+#~ msgid "Deleting %1 ..."
+#~ msgstr "Вилучення %1..."
+
+#~ msgid "New mime-type"
+#~ msgstr "Новий тип mime"
+
+#~ msgid "Edit mime-type"
+#~ msgstr "Редагувати тип MIME"
+
+#~ msgid "Mime-type"
+#~ msgstr "Тип MIME"
+
+#~ msgid "Filename"
+#~ msgstr "Назва файла"
+
+#~ msgid "Mimes"
+#~ msgstr "Типи MIME"
+
+#~ msgid "Icon for krusader"
+#~ msgstr "Піктограма для krusader"
+
+#~ msgid ""
+#~ "Can't open %1 for writing!\n"
+#~ "Nothing exported."
+#~ msgstr ""
+#~ "Неможливо відкрити %1 на запис!\n"
+#~ "Нічого не експортовано."
+
+#~ msgid "list-add"
+#~ msgstr "додавання до списку"
+
+#~ msgid "Failed to pack: %1!"
+#~ msgstr "Пакування %1 зазнало невдачі!"
+
+#~ msgid "Ok"
+#~ msgstr "Гаразд"
+
+#~ msgid "Popular Urls"
+#~ msgstr "Популярні URL"
+
+#~ msgid " &Search: "
+#~ msgstr " &Пошук: "
+
+#~ msgid "Reading"
+#~ msgstr "Читання"
+
+#~ msgid "Disk Usage: "
+#~ msgstr "Використання диска: "
+
+#~ msgid "\tReady: %1/%2 files, %3/%4"
+#~ msgstr "\tГотово: файлів — %1/%2, %3/%4"
+
+#~ msgid "Failed to pack: "
+#~ msgstr "Пакування зазнало невдачі: "
+
+#~ msgid " (bytes)"
+#~ msgstr " (у байтах)"
+
+#~ msgid "="
+#~ msgstr "="
+
+#~ msgid "Equal"
+#~ msgstr "Дорівнює"
+
+#~ msgid "Quicksearch position:"
+#~ msgstr "Розташування поля швидкого пошуку:"
+
+#~ msgid "Defaults"
+#~ msgstr "Стандартні значення"
+
+#~ msgid "Preserve attributes (only for local targets)"
+#~ msgstr "Зберігати атрибути (тільки для локальних цілей)"
+
+#~ msgid "Preserve attributes for local copy/move (slower)"
+#~ msgstr ""
+#~ "Зберігати атрибути під час локального переміщення або копіювання "
+#~ "(сповільнення)"
+
+#~ msgid ""
+#~ "Krusader will try to preserve all attributes (time, owner, group) of the "
+#~ "local files according to the source depending on your permissions:"
+#~ "<ul><li>User preserving if you are root</li><li>Group preserving if you "
+#~ "are root or member of the group</li><li>Preserving the timestamp</li></"
+#~ "ul><b>Note</b>: This can slow down the copy process."
+#~ msgstr ""
+#~ "Krusader спробує зберегти всі атрибути (час, власника, групу) для "
+#~ "локальних файлів у відповідності до джерела та ваших дозволів:"
+#~ "<ul><li>Збереження користувача, якщо ви — привілейований користувач</"
+#~ "li><li>Збереження групи, якщо ви — привілейований користувач або член "
+#~ "групи</li><li>Збереження часової мітки</li></ul><b>Зауваження</b>: Це "
+#~ "може сповільнити процес копіювання."
+
+#~ msgctxt "@title job"
+#~ msgid "Creating directory"
+#~ msgstr "Створення теки"
+
+#~ msgid "Directory Already Exists"
+#~ msgstr "Каталог вже існує"
+
+#~ msgid "Already Exists as Directory"
+#~ msgstr "Вже існує як каталог"
+
+#~ msgid "Already Exists as Folder"
+#~ msgstr "Вже існує як тека"
+
+#~ msgid "Close current tab"
+#~ msgstr "Закрити поточну вкладку"

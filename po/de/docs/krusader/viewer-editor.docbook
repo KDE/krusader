@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="krviewer">
   <title
 >KrViewer: &krusader;s interner Betrachter und Editor</title>
@@ -25,7 +37,7 @@
     <para
 >Um eine Datei so schnell wie möglich entsprechend dem Typ anzuzeigen, aktivieren Sie sie und drücken die Taste <keycap
 >F3</keycap
->. &krusader;s interner Betrachter ist ein Teil von &konqueror; und kann grundsätzlich jede Datei wie in &konqueror; anzeigen, &eg; Bilder, Musik wiedergeben und den Inhalt von Archiven anzeigen. Dies ist der Generische Betrachter, für den &MIME;-Typen eingestellt werden müssen.</para>
+>. &krusader;s interner Betrachter ist ein Teil von &konqueror; und kann grundsätzlich jede Datei wie in &konqueror; anzeigen, &eg; Bilder, Musik wiedergeben und den Inhalt von Archiven anzeigen. Dies ist der Generische Betrachter, für den MIME-Typen eingestellt werden müssen.</para>
     <para
 >Der Betrachter funktioniert folgendermaßen: <itemizedlist
 > <listitem
@@ -36,7 +48,7 @@
 > </listitem
 > <listitem
 > <para
->Wenn die Art der Datei (&MIME;-Typ) nicht bestimmt oder wenn eine Datei  (&eg; ein ausführbares Programm) keine zugewiesene Aktion hat, wird der generische Betrachter deaktiviert. Die Datei wird als Textdatei mit dem <emphasis
+>Wenn die Art der Datei (MIME-Typ) nicht bestimmt oder wenn eine Datei  (&eg; ein ausführbares Programm) keine zugewiesene Aktion hat, wird der generische Betrachter deaktiviert. Die Datei wird als Textdatei mit dem <emphasis
 >Text-Betrachter</emphasis
 > gezeigt.</para
 > </listitem
@@ -284,7 +296,7 @@
 ><guimenu
 >Datei</guimenu
 > <guimenuitem
->Als &HTML; exportieren ...</guimenuitem
+>Als HTML exportieren ...</guimenuitem
 > </menuchoice>
 </term>
 <listitem>
@@ -415,7 +427,7 @@
 ><guimenu
 >Bearbeiten</guimenu
 ><guimenuitem
->Als &HTML; kopieren</guimenuitem
+>Als HTML kopieren</guimenuitem
 ></menuchoice
 ></term>
 <listitem>
@@ -498,7 +510,9 @@
 ><anchor id="katepart-menu-vi-input-mode"/><menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Meta;&Ctrl;<keycap
+><keysym
+>Meta</keysym
+>&Ctrl;<keycap
 >V</keycap
 ></keycombo
 > </shortcut
@@ -522,7 +536,9 @@
 ><anchor id="katepart-menu-overwrite-mode"/><menuchoice
 ><shortcut
 ><keycombo action="simul"
->&Ins;</keycombo
+><keycap
+>Einfg</keycap
+></keycombo
 ></shortcut
 > <guimenu
 >Bearbeiten</guimenu
@@ -1145,7 +1161,9 @@
 ><menuchoice
 ><shortcut
 ><keycombo action="simul"
->&Alt; &PgUp;</keycombo
+>&Alt; <keycap
+>Bild auf</keycap
+></keycombo
 ></shortcut
 > <guimenu
 >Lesezeichen</guimenu
@@ -1342,7 +1360,9 @@ Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at
 ><menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Ctrl;&Space;</keycombo
+>&Ctrl;<keycap
+>Leertaste</keycap
+></keycombo
 > </shortcut
 > <guimenu
 >Extras</guimenu
@@ -2567,7 +2587,11 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->Wenn dieses Feld angekreuzt ist, dann springt der Cursor beim Bewegen mit den Tasten &Left; oder &Right; an das Ende der vorigen oder den Anfang der nächsten Zeile, wenn der Zeilenanfang oder das Zeilenende erreicht wird. Dies ist bei den meisten Editoren so.</para
+>Wenn dieses Feld angekreuzt ist, dann springt der Cursor beim Bewegen mit den Tasten <emphasis role="bold"
+>nach links</emphasis
+> oder <emphasis role="bold"
+>nach rechts</emphasis
+> an das Ende der vorigen oder den Anfang der nächsten Zeile, wenn der Zeilenanfang oder das Zeilenende erreicht wird. Dies ist bei den meisten Editoren so.</para
 ><para
 >Wenn dieses Feld nicht angekreuzt ist, dann kann der Cursor beim Erreichen des Zeilenanfangs nicht weiter bewegt werden. Beim Erreichen des Zeilenendes wird der Cursor einfach in der Zeile weiter nach rechts bewegt.</para>
 </listitem>
@@ -2579,7 +2603,11 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->Diese Option ändert das Verhalten des Cursors, wenn der Benutzer die Tasten &PgUp; oder &PgDn; drückt. Wenn diese Option ausgeschaltet ist, dann bleibt der Cursor an der gleichen Stelle innerhalb des sichtbaren Bildes, es wird also der Text unter dem Cursor verschoben. Bei Erreichen des Textendes oder Textanfangs kann dies aber nicht immer funktionieren. Bei eingeschalteter Option wird der Cursor beim ersten Drücken der Taste an den Bildanfang oder das Bildende bewegt. Erst beim nächsten Betätigen wird dann der Text bewegt.</para>
+>Diese Option ändert das Verhalten des Cursors, wenn der Benutzer die Tasten <keycap
+>Bild auf</keycap
+> oder <keycap
+>Bild ab</keycap
+> drückt. Wenn diese Option ausgeschaltet ist, dann bleibt der Cursor an der gleichen Stelle innerhalb des sichtbaren Bildes, es wird also der Text unter dem Cursor verschoben. Bei Erreichen des Textendes oder Textanfangs kann dies aber nicht immer funktionieren. Bei eingeschalteter Option wird der Cursor beim ersten Drücken der Taste an den Bildanfang oder das Bildende bewegt. Erst beim nächsten Betätigen wird dann der Text bewegt.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -3192,7 +3220,7 @@ Line Length Limit missing
 <title
 >Modi &amp; Dateitypen</title>
 <para
->Diese Seite dient zur Einstellung von abweichenden Einstellungen für Dokumente bestimmter &MIME;-Typen. Wenn ein Dokument in den Editor geladen wird, dann versucht dieser einen schon festgelegten Datentyp zu finden, auf den die Merkmale eines &MIME;-Typs passen und verwendet dann die Variablen, die für diesen Datentyp festgelegt wurden. Wenn mehrere Datentypen passend sind, dann wird der Typ verwendet, der die höchste Priorität besitzt. </para>
+>Diese Seite dient zur Einstellung von abweichenden Einstellungen für Dokumente bestimmter MIME-Typen. Wenn ein Dokument in den Editor geladen wird, dann versucht dieser einen schon festgelegten Datentyp zu finden, auf den die Merkmale eines MIME-Typs passen und verwendet dann die Variablen, die für diesen Datentyp festgelegt wurden. Wenn mehrere Datentypen passend sind, dann wird der Typ verwendet, der die höchste Priorität besitzt. </para>
 <variablelist>
 <varlistentry>
 <term
@@ -3279,7 +3307,7 @@ Line Length Limit missing
 ></term>
 <listitem
 ><para
->Dieser Eintrag erlaubt das Einstellen von &kappname;s Optionen für die Dateien dieses &MIME;-Typs unter Benutzung der Variablen von &kappname;. Sie können so fast alle Einstellungen wie zum Beispiel Hervorhebungen, Einrückung &etc;</para>
+>Dieser Eintrag erlaubt das Einstellen von &kappname;s Optionen für die Dateien dieses Dateityps unter Benutzung der Variablen von &kappname;. Sie können so fast alle Einstellungen wie zum Beispiel Hervorhebungen, Einrückung &etc;</para>
 <para
 >Drücken Sie auf das Symbol rechts neben dem Eingabefeld. dann wird eine Liste aller vorhandenen Variablen und deren Beschreibung angezeigt. Klicken Sie auf das Ankreuzfeld links, um eine bestimmte Variable zu aktivieren und stellen Sie dann rechts den Wert der Variablen ein. Für einige Variablen gibt es Auswahlfelder mit zulässigen Werten, für andere Variablen müssen Sie die Werte direkt eingeben.</para>
 <para
@@ -3325,11 +3353,11 @@ Line Length Limit missing
 <varlistentry>
 <term
 ><guilabel
->&MIME;-Typen:</guilabel
+>MIME-Typen:</guilabel
 ></term>
 <listitem
 ><para
->Zeigt ein Dialogfeld an, in dem Sie einfach und schnell &MIME;-Typen auswählen können.</para
+>Zeigt ein Dialogfeld an, in dem Sie einfach und schnell MIME-Typen auswählen können.</para
 ></listitem>
 </varlistentry>
 <varlistentry>
@@ -3408,11 +3436,7 @@ or descriptions using different style.</para
 ></listitem>
 </varlistentry>
 <!--http://jakob.petsovits.at/topic/kate-->
-<!--Right, it's the automatic insertion of a closing brace (<quote
->}</quote
->) after you ended a line with an opening one (<quote
->{</quote
->). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
+<!--Right, it's the automatic insertion of a closing brace ("}") after you ended a line with an opening one ("{"). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
 You, the developer, are writing a line of code, and want to open a new block delimited by braces. Looks like this:
 If you press Enter and AutoBrace is enabled, it will insert your favorite new brace where it belongs. Looks like this:
 -->
@@ -3437,15 +3461,15 @@ If you press Enter and AutoBrace is enabled, it will insert your favorite new br
 ><guimenu
 >Datei</guimenu
 ><guimenuitem
->Als &HTML; exportieren</guimenuitem
+>Als HTML exportieren</guimenuitem
 ></menuchoice
-> in eine &HTML;-Datei exportieren. Außerdem kann mit <menuchoice
+> in eine HTML-Datei exportieren. Außerdem kann mit <menuchoice
 ><guimenu
 >Bearbeiten</guimenu
 > <guimenuitem
->Als &HTML; kopieren</guimenuitem
+>Als HTML kopieren</guimenuitem
 ></menuchoice
-> der aktuell gewählte Text im &HTML;-Format in die Zwischenablage kopiert werden.</para
+> der aktuell gewählte Text im HTML-Format in die Zwischenablage kopiert werden.</para
 ></listitem>
 </varlistentry>
 <!-- not in 4.7
@@ -3475,7 +3499,7 @@ If you press Enter and AutoBrace is enabled, it will insert your favorite new br
 <varlistentry>
 <term
 ><guilabel
->Irrsinnige &HTML;-Kodierung (nicht ZEN, Basisversion)</guilabel
+>Irrsinnige HTML-Kodierung (nicht ZEN, Basisversion)</guilabel
 ></term>
 <listitem
 ><para

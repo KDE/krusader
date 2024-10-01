@@ -1,15 +1,14 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-#
 # Franklin Weng <franklin@goodhorse.idv.tw>, 2010, 2011.
+#
 # Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2009.
-# pan93412 <pan93412@gmail.com>, 2019.
 # SPDX-FileCopyrightText: 2023, 2024 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
 "PO-Revision-Date: 2024-04-22 17:37+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -1802,7 +1801,7 @@ msgstr ""
 #: app/Konfigurator/konfigurator.cpp:126
 #, kde-format
 msgid "Archives"
-msgstr "封存"
+msgstr "歸檔"
 
 #: app/FileSystem/krquery.cpp:262 app/Filter/generalfilter.cpp:162
 #, kde-format
@@ -2773,14 +2772,16 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgarchives.cpp:58
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Archives"
 msgid "Archives handling"
-msgstr "封存處理"
+msgstr "歸檔"
 
 #: app/Konfigurator/kgarchives.cpp:66
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Archives"
 msgid "Browse Archives As Folders"
-msgstr "將封存檔作為資料夾瀏覽"
+msgstr "歸檔"
 
 #: app/Konfigurator/kgarchives.cpp:68
 #, kde-format
@@ -7010,9 +7011,9 @@ msgid "&New Text File..."
 msgstr "新增文字檔案(&N)..."
 
 #: app/Panel/listpanelactions.cpp:68
-#, kde-format
+#, fuzzy, kde-format
 msgid "Copy to other panel"
-msgstr "複製到另一個面板"
+msgstr "移到垃圾桶"
 
 #: app/Panel/listpanelactions.cpp:69
 #, fuzzy, kde-format
@@ -7289,9 +7290,10 @@ msgid "Open in New Tab"
 msgstr "在新分頁開啟"
 
 #: app/Panel/panelcontextmenu.cpp:147
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Archives"
 msgid "Browse Archive"
-msgstr "瀏覽封存"
+msgstr "歸檔"
 
 #: app/Panel/panelcontextmenu.cpp:189
 #, kde-format
@@ -9576,19 +9578,34 @@ msgstr ""
 msgid "Accessing the file requires a password."
 msgstr ""
 
-#, fuzzy
-#~| msgid "Copy to Clipboard"
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "複製到剪貼簿"
+#~ msgid "Directories:"
+#~ msgstr "目錄："
 
 #, fuzzy
 #~ msgid "JavaScript Error"
 #~ msgstr "JavaScript 錯誤"
+
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
 
 #, fuzzy
 #~| msgid "New Folder"
 #~ msgid "New folder"
 #~ msgstr "新資料夾"
 
-#~ msgid "Directories:"
-#~ msgstr "目錄："
+#, fuzzy
+#~| msgid "Copy to Clipboard"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "複製到剪貼簿"

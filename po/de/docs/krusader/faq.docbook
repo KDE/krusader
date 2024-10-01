@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <chapter id="faq">
   <title
 >Häufig gestellte Fragen (Frequently Asked Questions &FAQ;)</title>
@@ -12,9 +24,9 @@
 >FAQ</primary>
   </indexterm>
   <para
->Bei Problemen mit &krusader; überprüfen Sie bitte die <ulink url="https://krusader.org/get-involved/index.html"
->Installationsprozedur</ulink
->. Ihr Problem wird möglicherweise durch eine fehlerhafte Installation verursacht.</para>
+>Bei Problemen mit &krusader; überprüfen Sie bitte die <link linkend="installation"
+>Installationsprozedur</link
+>. Ih Problem wird möglicherweise durch eine fehlerhafte Installation verursacht.</para>
   <para
 >Diese &FAQ; besteht aus drei Abschnitten: <itemizedlist
 > <listitem
@@ -100,19 +112,288 @@
         </answer>
       </qandaentry>
       <qandaentry>
+        <question id="faqi_libs">
+          <para
+>Welche Bibliotheken braucht &krusader; bei der Ausführung?</para>
+        </question>
+        <answer>
+          <para
+>Wenn Sie &eg; &krusader; aus einem binären RPM-Paket installiert haben, brauchen Sie weniger Bibliotheken als wenn Sie &krusader; aus dem Quelltext kompilieren. Der C-Compiler &gcc; wird &eg; dazu gebraucht, um &krusader; aus dem Quelltext zu kompilieren. Siehe auch die nächste Frage.</para>
+          <para
+>Lesen Sie bitte den Abschnitt <link linkend="compilation"
+>&krusader;-Abhängigkeiten</link
+> in unserem Kapitel Installation.</para>
+          <para
+>Brauchen Sie weitere Details, lesen Sie bitte die <ulink url="https://packages.ubuntu.com/cosmic/krusader"
+>&krusader;-Anforderungen</ulink
+> für Ubuntu. Die mit „depends/hängt ab von“ gekennzeichneten Pakete sind zwingend nötig, die mit „suggests/empfiehlt“ gekennzeichneten Pakete verbessern die Leistungsfähigkeit von &krusader;.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_missing_libs">
+          <para
+>Ich habe alle Anweisungen befolgt, aber <command
+>make</command
+> beschwert sich immer noch über fehlende Bibliotheken oder Header. Was muss ich tun?</para>
+        </question>
+        <answer>
+          <para
+>Installieren Sie die fehlenden Pakete.</para>
+          <para
+>Lesen Sie bitte den Abschnitt <link linkend="compilation"
+>Anforderungen für die Kompilierung</link
+> in unserem Kapitel Installation.</para>
+          <para
+>Die meisten RPM-basierten Distributionen trennen die Header-Dateien von den Bibliotheken. Die Header sind nötig, um &krusader; zu kompilieren. Suchen Sie nach Paketen mit dem Namensschema foo-devel-*.rpm (&eg; <filename
+>kdelibs-devel-foo.i586.rpm</filename
+>) oder foo-dev-*.deb für <trademark class="registered"
+>Debian</trademark
+>-basierte Distributionen. Diese Pakete werden normalerweise von allen Distributionen bereitgestellt. <tip
+> <para
+>Können Sie die gesuchten Pakete nicht finden, benutzen Sie <ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=krusader&amp;submit=Search+..."
+>rpmfind</ulink
+>. Alternativ benutzen Sie <command
+>apt-cache search <replaceable
+>foo</replaceable
+></command
+>, um die zugehörigen Pakete für <trademark class="registered"
+>Debian</trademark
+>-basierte Distributionen zu finden.</para>
+          </tip
+></para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_64bit">
+          <para
+>Wie kompiliere ich &krusader; auf einem System mit einem 64-Bit-Prozessor?</para>
+        </question>
+        <answer>
+          <para
+>Soweit bekannt, gibt es dabei keine Probleme. &krusader; ist auch für <ulink url="https://packages.debian.org/unstable/utils/krusader"
+>viele andere Architekturen</ulink
+> verfügbar. </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_rpm-source">
+          <para
+>Ich habe das Source-RPM-Paket <filename
+>krusader-x.xx.dist.src.rpm</filename
+> heruntergeladen, was muss ich jetzt tun?</para>
+        </question>
+        <answer>
+          <para>
+            <orderedlist>
+              <listitem>
+                <para
+>Überprüfen Sie Eigentümer und die Berechtigungen für <filename class="directory"
+> /usr/src/RPM/</filename
+> und alle rekursiven Unterordner, ob Ihr normaler Benutzer in diesen Ordnern Lesen/Schreiben/Ausführen kann.</para>
+              </listitem>
+              <listitem>
+                <para
+>Um ein binäres RPM-Paket für Ihren Rechner zu erstellen, führen Sie folgende Schritte aus: <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>rpm</command
+> <option
+>--rebuild</option
+> <replaceable
+>&lt;/path/to/rpmfile/&gt; krusader-x.xx.dist.src.rpm</replaceable
+></userinput
+></screen>
+                </para>
+              </listitem>
+              <listitem>
+                <para
+>Wenn alle <link linkend="faqi_missing_libs"
+>Abhängigkeiten</link
+> erfüllt sind, wird ein binäres RPM-Paket <filename
+>krusader-x.xx.dist.rpm</filename
+> in <filename class="directory"
+> /usr/src/RPM/RPMS/i586</filename
+> erstellt. Ersetzen Sie dabei i586 mit der Architektur Ihres Rechners.</para>
+              </listitem>
+              <listitem>
+                <para
+>Überprüfen Sie vor der Installation das binäre RPM-Paket auf Fehler:  <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>rpm</command
+> <option
+>-i --test</option
+> <replaceable
+>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable
+></userinput
+></screen
+> Wenn die Eingabeaufforderung ohne Meldung angezeigt wird, ist das Paket in Ordnung,</para>
+              </listitem>
+              <listitem>
+                <para
+>Installieren Sie das binäre RPM-Paket und geben Sie ein: <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>su -c 'rpm</command
+> <option
+>-Uvh</option
+> <replaceable
+>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable
+>'</userinput
+></screen
+> Dann werden Sie nach dem Passwort des Systemverwalters gefragt.</para>
+              </listitem>
+              <listitem>
+                <para
+>Jetzt können Sie &krusader; <link linkend="starting-krusader"
+>starten</link
+></para>
+              </listitem>
+            </orderedlist>
+          </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <tip>
+            <para
+>Weitere Informationen über RPM finden Sie auf der Seite <ulink url="http://www.rpm.org/"
+>rpm.org</ulink
+>. Lesen Sie auch die <ulink url="https://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/index.html"
+>Anleitung zu RPM</ulink
+> von Eric Foster-Johnson.</para>
+          </tip>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_rpm-fails">
+          <para
+>Ich versuche ein Binärpaket im RPM- oder DEB-Format zu installieren, aber dabei treten Fehler auf. Wo liegt die Ursache?</para>
+        </question>
+        <answer>
+          <para
+>Da wir nur Quelltext vorbereiten und benutzen, können wir das nicht wissen. Haben Sie das Binär-RPM vor dem Installieren geprüft? <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>rpm</command
+> <option
+>-i --test</option
+> <replaceable
+>&lt;/pfad/zur/rpmdatei&gt; krusader-x.xx.dist.rpm</replaceable
+></userinput
+></screen
+> Wird keine Fehlermeldung ausgegeben, dass ist die Datei in Ordnung. Von unserer Webseite heruntergeladene RPM-Dateien werden normalerweise von &krusader;-Benutzern zu Verfügung gestellt. Suchen Sie auf der Webseite Ihrer Distribution nach aktualisierten RPM-Paketen.</para>
+          <para
+>Ist das RPM-Paket nicht in Ordnung, versuchen Sie ein anderes Paket in &Linux;-Softwarearchiven wie <ulink url="http://freshmeat.net/projects/krusader/"
+>freshmeat.net</ulink
+> oder <ulink url="https://www.linux-apps.com/content/show.php?content=10214"
+>linux-apps.com</ulink
+>. Finden Sie dort immer noch kein Paket für Ihre &Linux;-Distribution, sollten Sie auf <ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=krusader&amp;submit=Search+..."
+>rpmfind</ulink
+> oder <ulink url="http://rpm.pbone.net/index.php3/stat/3/search/krusader"
+>rpmpbone</ulink
+> suchen.</para>
+          <para
+>Im allgemeinen kann auch ein Paket für eine ältere Version Ihrer Distribution oder sogar von einer anderen Distribution auf Ihrem Rechner funktionieren. &eg;FC-RPMs funktionieren oft auf Mdk und RH, und umgekehrt. Es ist natürlich am besten, wenn Sie nur RPMs installieren, die auch für Ihre Distribution passen. Finden Sie kein passendes Paket für die Version Ihrer Distribution, Architektur oder Distribution, dann verwenden Sie ein Quelltext-RPM. Damit kann der Quelltext von Krusader auf Ihrem Rechner erstellt werden und erzeugt ein passendes RPM-Paket für Ihre bestimmte Distribution und Architektur. Außerdem ergibt dies ein Paket mit maximaler Geschwindigkeit, des es genau auf Ihren Rechner zugeschnitten ist.. Bitte lesen Sie die vorherige Frage, da wird erklärt, wie ein Quelltext-RPM installiert wird. Die beste Lösung wird in der nächsten Frage genannt.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
         <question id="faqi_rpm-notfound">
           <para
->Ich finde kein Paket für &krusader;, was kann ich tun?</para>
+>Ich finde kein RPM- oder DEB-Paket für &krusader;, was kann ich tun?</para>
         </question>
         <answer>
           <para
 >Überprüfen Sie, ob &krusader; in Ihrer Distribution enthalten ist. Wenn nicht, bitten Sie den Ersteller der Distribution, &krusader; aufzunehmen.</para>
           <para
->Haben Sie die Seite <ulink url="https://krusader.org/get-involved/index.html"
->Installationsprozedur</ulink
-> gelesen? Sie können &krusader; auch aus den Quelltexten kompilieren. Bei Problemen fragen Sie nach <link linkend="faqi_help_request"
->Hilfe</link
+>Haben Sie die &URL;s im Abschnitt <link linkend="installation"
+>Installations-Prozedur</link
+> gelesen? Haben Sie dort nicht passendes gefunden, können Sie &krusader; immer noch aus dem Quelltext kompilieren. Es gibt dazu eine sehr ausführliche Anleitung, mit der auch Neulinge &krusader; aus dem Quelltext kompilieren könne. Treten dabei Probleme auf, schicken Sie eine <link linkend="faqi_help_request"
+>Hilfe-Anfrage</link
 >.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_missing_menus">
+          <para
+>Einige Menüeinträge fehlen nach der Aktualisierung von &krusader;. Was ist passiert?</para>
+        </question>
+        <answer>
+          <para
+>Die Datei <filename
+>krusaderui.rc</filename
+> wird im Ordner <filename
+> /usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+> gespeichert. Wenn Sie die <guilabel
+>Werkzeugleisten</guilabel
+> ändern, wird eine Kopie dieser Datei in den persönlichen Ordner unter <filename
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> kopiert. War &krusader; bereits auf Ihrem Rechner installiert und Sie installieren eine neuere Version von &krusader;, dann muss die <filename
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> durch die neue Version ersetzt werden. Beachten Sie, dass dies alle Änderungen an Werkzeugleisten und Kurzbefehlen zurücksetzt.</para>
+          <para
+>Die erste Zeile der Datei <filename
+>krusaderui.rc</filename
+> enthält eine Versionsnummer. Nach der Installation einer neueren &krusader;-Version wird die alte Datei <filename
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> automatisch durch die neue Version ersetzt, wenn die neue &krusader;-Version zum ersten mal gestartet wird. &plasma; erkennt die neuere Version an der ersten Zeile.</para>
+          <para
+>Wenn Sie eine Entwickler- oder Beta-Version installieren und &krusader; bereits auf Ihrem System vorhanden ist, sollten Sie die Datei <filename
+>krusaderui.rc</filename
+> aus Ihrem persönlichen Ordner löschen, damit die neuen Menüeinträge aktiviert werden: <prompt
+>$</prompt
+> <userinput
+> <command
+>rm</command
+> <option
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</option
+> </userinput
+></para>
+          <para
+>Wenn die Datei <filename
+> ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> älter ist, dann werden die neuen Menüelemente nicht angezeigt. Lesen Sie in der Antwort zur vorherigen Frage, wie die Datei <filename
+>krusaderui.rc</filename
+> aktualisiert werden kann. Fehlt die Datei <filename
+>krusaderui.rc</filename
+> oder ist sie im falschen Ordner, dann erscheint nur das Menü <guimenu
+>Hilfe</guimenu
+>, bitte lesen Sie die vorherige Frage.</para>
+      <note>
+          <para
+>Der Standardordner der lokalen Einrichtungsdatei ist <filename
+>kxmlgui5/krusaderui.rc</filename
+> ist im Ordner <filename class="directory"
+>~/.local/share</filename
+>. Ermitteln Sie den Ordner auf Ihrem System mit dem Befehl <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> im Terminal. </para>
+      </note>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -126,8 +407,8 @@
         </question>
         <answer>
           <para
->Bitte lesen Sie unsere ausführliche <ulink url="https://krusader.org/get-involved/index.html"
->Installationsanleitung</ulink
+>Bitte lesen Sie unsere ausführliche <link linkend="compilation"
+>Installationsanleitung</link
 > und die <link linkend="faq"
 >FAQ</link
 >. Finden Sie dort keine Lösung für Ihr Problem, <emphasis role="bold"
@@ -179,6 +460,105 @@
         </answer>
       </qandaentry>
       <qandaentry>
+        <question id="faqi_rpm-build">
+          <para
+>Wie kann ich ein RPM-Paket für &krusader; erstellen?</para>
+        </question>
+        <answer>
+          <para
+>Haben Sie Erfahrung mit dem Kompilieren aus Quelltexten, sollten Sie auch in der Lage sein, ein RPM-Paket für &krusader; zu erstellen. Informationen über RPM finden Sie auf der Seite <ulink url="http://www.rpm.org/"
+>rpm.org</ulink
+> und im <ulink url="https://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/index.html"
+>RPM Guide</ulink
+> von Eric Foster-Johnson. Im folgenden eine kurze Anleitung, wie ein RPM-Paket erstellt wird.</para>
+          <warning>
+            <para
+>Erstellen Sie niemals RPM-Pakete, wenn Sie als Systemverwalter angemeldet sind. Fehler bei der Erstellung von Paketen wie &eg; eine fehlerhafte Datei <filename
+>krusader.spec</filename
+> können Ihr System erheblich beschädigen, wenn Sie als Systemverwalter angemeldet sind.</para>
+          </warning>
+          <para>
+            <orderedlist>
+              <listitem>
+                <para
+>Kompilieren Sie &krusader; aus den Quelltexten, um zu prüfen, ob das fehlerfrei funktioniert.</para>
+              </listitem>
+              <listitem>
+                <para
+>Überprüfen Sie Eigentümer und die Berechtigungen für <filename class="directory"
+> /usr/src/RPM/</filename
+> und alle rekursiven Unterordner, ob Ihr normaler Benutzer in diesen Ordnern Lesen/Schreiben/Ausführen kann.</para>
+              </listitem>
+              <listitem>
+                <para
+>Kopieren Sie <filename
+>krusader-1.xx.tar.gz</filename
+> in den Ordner <filename class="directory"
+> /usr/scr/RPM/SOURCE</filename
+></para>
+              </listitem>
+              <listitem>
+                <para
+>Kopieren Sie <filename
+>krusader.spec</filename
+> in den Ordner <filename class="directory"
+> /usr/scr/RPM/SPECS</filename
+></para>
+              </listitem>
+              <listitem>
+                <para
+>Bearbeiten Sie die Datei <filename
+>krusader.spec</filename
+> und fügen Ihren Namen, E-Mail-Adresse, den RPM-Namen usw. ein. Wenn beim Ausführen des Befehls <command
+>rpmbuild</command
+> Fehler auftreten, sind noch weitere Änderungen nötig.</para>
+              </listitem>
+              <listitem>
+                <para
+>Erstellen Sie das Binär- und das Quell-RPM mit: <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>rpmbuild</command
+> <option
+>-ba</option
+> <replaceable
+>/usr/scr/RPM/SPECS/krusader.spec</replaceable
+></userinput
+></screen
+> Sind keine Fehler aufgetreten, dann haben Sie ein Binär-RPM in <filename class="directory"
+> /usr/src/RPM/RPMS/i586</filename
+> (abhängig von Ihrer Rechner-Architektur) und ein Quell-RPM in <filename class="directory"
+> /usr/src/RPM/SRPMS/</filename
+> &eg; <filename
+> krusader-1.70-beta1.suse10.i586.rpm</filename
+> and <filename
+> krusader-1.70-beta1.suse10.src.rpm</filename
+></para>
+              </listitem>
+              <listitem>
+                <para
+>Funktioniert das Erstellen nicht, erhalten Sie eine Fehlermeldung während der Ausführung von <command
+>rpmbuild</command
+>. Versuchen Sie diesen Fehler zu beheben und führen Sie <command
+>rpmbuild</command
+> erneut aus.</para>
+              </listitem>
+              <listitem>
+                <para
+>Zum Schluß <link linkend="faqi_rpm-source"
+>testen</link
+> Sie das RPM-Paket, ehe Sie es einsenden.</para>
+              </listitem>
+            </orderedlist>
+          </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
         <question id="faqi_git_version">
           <para
 >Warum zeigt &krusader; eine alte Versionsnummer im Dialog „Über &krusader;“ ?</para>
@@ -186,6 +566,37 @@
         <answer>
           <para
 >Die Versionsnummer wird immer nur kurz vor einer neuen Veröffentlichung geändert. &krusader; kompiliert aus dem Git-Archiv hat noch eine alte Versionsnummer, daher ignorieren Sie sie und überprüfen Sie das Datum des Herunterladens. Es ist noch nicht entschieden, welche Nummer die neue Version erhalten wird.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_mac_dbus">
+          <para
+>Warum startet &krusader; nicht unter &MacOS;?</para>
+        </question>
+        <answer>
+          <para
+>Bitte lesen Sie die Installationsanweisungen auf <ulink url="https://www.macports.org/"
+>macports.org</ulink
+>. Vergessen Sie nicht, <application
+>dbus</application
+> zu starten. <screen
+>##########################################################
+# Do not forget that dbus needs to be started as the local
+# user (not with sudo) before any KDE programs will launch
+# To start it run the following command:                 
+# launchctl load /Library/LaunchAgents/org.freedesktop.dbus-session.plist
+##########################################################
+
+######################################################
+#  Programs will not start until you run the command
+#  'sudo chown -R $USER ~/Library/Preferences/KDE' 
+#  replacing $USER with your username.             
+###################################################### 
+          </screen
+></para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -204,9 +615,9 @@
         </question>
         <answer>
           <para
->Wenn &krusader; &eg; eine &NFS;-Freigabe durchsieht und der &NFS;-Server herunter fährt, friert &krusader; ein. Dies ist ein fataler Fehler und kann nur mit dem Befehl <command
+>Wenn &krusader; &eg; eine NFS-Freigabe durchsieht und der NFS-Server herunter fährt, friert &krusader; ein. Dies ist ein fataler Fehler und kann nur mit dem Befehl <command
 >kill -9</command
-> korrigiert werden. Wir haben keine Lösung für dieses Problem, es hat nichts mit einer Dateiverwaltung oder auch nicht mit dem Betriebssystem &Linux; zu tun. Beim ersten Zugriff auf die nicht mehr aktive Freigabe tritt dieses Problem auf. Das könnte nur durch Multithreading vermieden werden, das ist aber nicht allein in &krusader; möglich. Daher werden Sie mit dem Problem leben müssen.</para>
+> korrigiert werden. Wir haben keine Lösung für dieses Problem, es hat nichts mit einer Dateiverwaltung oder auch nicht mit dem Betriebssystem &Linux; zu tun. Beim ersten Zugriff auf die nicht mehr aktive Freigabe tritt diese Problem auf. Das könnte nur durch Multithreading vermieden werden, das ist aber nicht allein in &krusader; möglich. Daher werden Sie mit dem Problem leben müssen.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -239,11 +650,15 @@
       <qandaentry>
         <question id="faqu_samba_codepage">
           <para
->&Samba; ISO 8859-x Codepage (Zeichensatztabelle) /  Was kann Ich tun, wenn &krusader; freigegebene Ordner mit internationalen Sonderzeichen nicht korrekt liest?</para>
+><application
+>Samba</application
+> ISO 8859-x Codepage (Zeichensatztabelle) /  Was kann Ich tun, wenn &krusader; freigegebene Ordner mit internationalen Sonderzeichen nicht korrekt liest?</para>
         </question>
         <answer>
           <para
->&krusader; verarbeitet zurzeit noch keine &Samba; ISO 8859-x Zeichensatztabellen. Verwenden Sie eine andere Zeichensatztabelle als 8859-1, dann müssen Sie eine manuelle Konfiguration durchführen. Erstellen oder Bearbeiten Sie die Datei:<filename
+>&krusader; verarbeitet zurzeit noch keine <application
+>Samba</application
+> ISO 8859-x Zeichensatztabellen. Verwenden Sie eine andere Zeichensatztabelle als 8859-1, dann müssen Sie eine manuelle Konfiguration durchführen. Erstellen oder Bearbeiten Sie die Datei:<filename
 >~/.smb/smb.conf</filename
 > <programlisting
 >[global] 
@@ -261,9 +676,7 @@
       <qandaentry>
         <question id="faqu_krarc_protocol">
           <para
->&krusader; berichtet den Fehler <quote
->krarc:... protocol not supported</quote
-> beim Öffnen einer Archivdatei, was kann ich tun?</para>
+>&krusader; berichtet den Fehler „krarc:... protocol not supported“ beim Öffnen einer Archivdatei, was kann ich tun?</para>
         </question>
         <answer>
           <para
@@ -292,9 +705,7 @@
       <qandaentry>
         <question id="faqu_krarc_support">
           <para
->Ich erhalte die Fehlermeldung <quote
->Protokoll wird von Krusader nicht unterstützt: krarc:/pfad/zu/archivname</quote
->, wenn ich versuche, dieses Archiv zu öffnen. Was kann ich tun?</para>
+>Ich erhalte die Fehlermeldung „Protokoll wird von Krusader nicht unterstützt: krarc:/pfad/zu/archivname“, wenn ich versuche, dieses Archiv zu öffnen. Was kann ich tun?</para>
         </question>
         <answer>
           <para
@@ -407,7 +818,7 @@
 > </menuchoice
 >. Schalten Sie <guilabel
 >Passiven Modus (PASV) aktivieren</guilabel
-> ein oder aus, je nach der jetzigen Einstellen. Versuchen Sie jetzt erneut Ihre &FTP;-Sitzung und überprüfen sie, ob es funktioniert. Achten Sie auch darauf, keine andere &FTP;-Sitzung geöffnet zu haben, zum Beispiel durch Webbrowser &etc;. Weitere Informationen finden Sie in <ulink url="https://slacksite.com/other/ftp.html"
+> ein oder aus, je nach der jetzigen Einstellen. Versuchen Sie jetzt erneut Ihre &FTP;-Sitzung und überprüfen sie, ob es funktioniert. Achten Sie auch darauf, keine andere &FTP;-Sitzung geöffnet zu haben, zum Beispiel durch Webbrowser &etc;. Weitere Informationen finden Sie in <ulink url="http://slacksite.com/other/ftp.html"
 >Active &FTP; vs. Passive &FTP;, a Definitive Explanation</ulink
 >.</para>
           <para
@@ -420,7 +831,7 @@
         <question id="faqu_ftp_http_proxy">
           <para
 >Ich erhalte die Fehlermeldung <errorcode
->&FTP;-Protokoll wird von &krusader; nicht unterstützt</errorcode
+>FTP-Protokoll wird von &krusader; nicht unterstützt</errorcode
 >, wenn ich versuche, einen &FTP;Ordner auf einem entfernten Rechner zu öffnen. Was kann ich tun?</para>
         </question>
         <answer>
@@ -532,7 +943,7 @@
       <qandaentry>
         <question id="faqu_mimetypemagic_archives">
           <para
->Warum funktioniert die &MIME;-Typ-Erkennung manchmal nicht innerhalb von Archiven?</para>
+>Warum funktioniert die MIME-Typ-Erkennung manchmal nicht innerhalb von Archiven?</para>
         </question>
         <answer>
           <para
@@ -661,10 +1072,10 @@
             </listitem>
             <listitem>
              <para
->Schicken Sie Ihre Fehlerkorrektur an <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
->GitLab</ulink
->, so dass alle Vorschläge für Korrekturen nicht verloren gehen. Benutzen Sie tar.gz-Archive und diff-Dateien. Kopieren Sie die Änderungen nicht in eine E-Mail. Die meisten E-Mailprogramme verändern die Leerzeichen, so dass der Diff nicht fehlerfrei angewendet werden kann. Inder Vergangenheit gingen viele E-Mails mit Korrekturen verloren oder waren Korrekturen in vielem E-Mails verstreut, bitte nutzen Sie daher <ulink url="https://community.kde.org/Infrastructure/GitLab"
->GitLab</ulink
+>Schicken Sie Ihre Fehlerkorrektur an die &krusader;-Gruppe auf <ulink url="https://phabricator.kde.org/"
+>Phabricator</ulink
+>, so dass alle Vorschläge für Korrekturen nicht verloren gehen. Benutzen Sie tar.gz-Archive und diff-Dateien. Kopieren Sie die Änderungen nicht in eine E-Mail. Die meisten E-Mailprogramme verändern die Leerzeichen, so dass der Diff nicht fehlerfrei angewendet werden kann. Inder Vergangenheit gingen viele E-Mails mit Korrekturen verloren oder waren Korrekturen in vielem E-Mails verstreut, bitte nutzen Sie daher <ulink url="https://community.kde.org/Infrastructure/Phabricator"
+>Phabricator</ulink
 >, danke. </para
 > 
             </listitem>
@@ -687,7 +1098,7 @@
 > </listitem
 > <listitem
 > <para
->&kde; 3.3- &kde; 3.5 und sogar unter GNOME mit den kdelibs-Bibliotheken (für  &krusader;-2.x) .</para
+>&kde; 3.3- &kde; 3.5 und sogar unter GNOME mit den &kde;-Bibliotheken (für  &krusader;-2.x) .</para
 > </listitem
 > <listitem
 > <para
@@ -769,7 +1180,7 @@
 >-DCMAKE_BUILD_TYPE=debugfull</option
 ></userinput
 ></screen
-> Installieren Sie <ulink url="https://valgrind.org"
+> Installieren Sie <ulink url="http://valgrind.org"
 >valgrind</ulink
 >, eine Gruppe von Dienstprogrammen für die Fehlersuche und das Profiling von &Linux;-Programmen. Führen Sie Valgrind/&krusader; aus <screen
 ><prompt
@@ -847,8 +1258,8 @@
         </question>
         <answer>
           <para
->Ja, wir haben zurzeit mehrere <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
->Mailinglisten</ulink
+>Ja, wir haben zurzeit 5 <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>Mailinlisten</ulink
 >. Kein Spam, keine Langeweile, nur &krusader;. Bitte abonnieren Sie unsere Mailinglisten.</para>
           <para
 >Sie können unsere Mailinglisten online oder mit einem Newsreader lesen, daher müssen Sie sie nicht abonnieren, um immer auf dem neuesten Stand zu sein. <itemizedlist>
@@ -863,12 +1274,6 @@
 ><ulink url="https://groups.google.com/group/krusader-users"
 >&krusader;-users</ulink
 > ist die Mailingliste für &krusader;-Benutzer. Hier können Sie Fragen stellen und mit &krusader;-Benutzern und Entwicklern sprechen.</para>
-            </listitem>
-            <listitem>
-              <para
-><ulink url="http://groups.google.com/group/krusader-news"
->&krusader;-news</ulink
-> ist eine Liste mit wenigen Nachrichten für Ankündigungen von neuen Versionen oder wichtigen Fehlerkorrekturen.</para>
             </listitem>
           </itemizedlist
 ></para>
@@ -888,9 +1293,26 @@
 >krusader-devel feed</ulink
 >, <ulink url="https://groups.google.com/group/krusader-users/feeds"
 >krusader-users feed</ulink
-> and <ulink url="https://groups.google.com/group/krusader-news/feeds"
->krusader-news feed</ulink
 >.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_irc">
+          <para
+>Gibt es einen IRC-Kanal für &krusader;?</para>
+        </question>
+        <answer>
+          <para
+>Ja, mit der &krusader;-Krew und Benutzern können Sie über die <ulink url="http://freenode.net"
+>freenode.org</ulink
+>-Server Kontakt aufnehmen. Der Server ist <emphasis
+>irc.freenode.org</emphasis
+>, der Kanal <emphasis
+>#krusader</emphasis
+>. Jeder ist willkommen.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -1054,11 +1476,63 @@
         </answer>
       </qandaentry>
       <qandaentry>
+        <question id="faqg_mac">
+          <para
+>Gibt es eine Portierung für &MacOS; X?</para>
+        </question>
+        <answer>
+         <para
+>Es gibt eine Portierung auf <link linkend="kde4_mac_install"
+>&MacOS;-X</link
+> mit der Unterstützung durch <ulink url="https://www.macports.org/"
+>macports.org</ulink
+>. Diese Portierung wird durch <ulink url="https://krusader.org/developers.php"
+>Jonas B&auml;hr</ulink
+> betreut, Rückmeldungen sind erwünscht. Eine empfehlenswerte Dateiverwaltung for &MacOS; ist <ulink url="http://www.likemac.ru/english/"
+><trademark class="copyright"
+>Disk Order</trademark
+></ulink
+> (Shareware).</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_win">
+          <para
+>Gibt es eine Portierung für &Windows;?</para>
+        </question>
+	<answer>
+	  <!-- the port is unavailable now
+           <para
+>Yes, there is a <link linkend="kde4_win_install"
+>&Windows; port</link
+> since 18 June 2008.
+	    Before &krusader; can be used several &Qt;4-libraries and &kde;4-libraries need to be installed.-->
+	  <para
+>Nein, es gab eine Portierung, aber sie wird nicht mehr betreut und ist nicht mehr verfügbar. Eine empfehlenswerte Dateiverwaltung for &Windows; ist <ulink url="https://www.ghisler.com/"
+><trademark class="copyright"
+>Total Commander</trademark
+></ulink
+> (Shareware).</para>
+	  <para
+>Möchten Sie bei der Portierung helfen, machen Sie bei der <ulink url="http://windows.kde.org/"
+>The KDE on Windows Initiative</ulink
+> mit. Einige nützliche Tipps zur Portierung finden Sie in der Datei <ulink url="https://commits.kde.org/krusader?path=INSTALL"
+><filename
+>INSTALL</filename
+></ulink
+> im Quelltextarchiv von &krusader;. Darin sind die aktuellsten Anleitungen zur Kompilierung enthalten.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
         <question id="faqg_mcstyle">
           <para
->Warum ist &konqueror; im <quote
->Midnight Commander</quote
->-Profil nicht wirklich eine <link linkend="gloss-ofm"
+>Warum ist &konqueror; im „Midnight Commander“-Profil nicht wirklich eine <link linkend="gloss-ofm"
 >Dateiverwaltung mit zwei Dateifenstern(OFM)</link
 >?</para>
         </question>
@@ -1085,7 +1559,7 @@
           <para
 >Eine <ulink url="http://www.softpanorama.org/OFM/index.shtml"
 >Dateiverwaltung mit zwei Dateifenstern</ulink
-> ist viel schneller als eine Dateiverwaltung mit nur einem Dateifenster und auch schneller als eine Befehlszeile. Möchten Sie wissen, wie man mit <ulink url="http://www.softpedia.com/reviews/linux/Krusader-18193.shtml"
+> ist viel schneller als eine Dateiverwaltung mit nur einem Dateifenster und auch schneller als eine Befehlszeile. Möchten Sie wissen, wie man mit <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
 >&krusader; arbeiten</ulink
 > kann, gibt es nur einen Weg, das festzustellen: Installieren Sie &krusader; auf Ihrem Rechner und benutzen Sie das Programm eine Zeit lang. Möchten Sie Ihre Zeit verschwenden und weiter unproduktiv arbeiten, verwenden Sie weiterhin eine Dateiverwaltung mit nur einem Dateifenster, die vom &Windows;-Explorer abgeleitet sind. Matej Urban&ccaron;i&ccaron; hat einen <ulink url="http://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html"
 >Blogeintrag</ulink

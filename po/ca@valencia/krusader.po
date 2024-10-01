@@ -6,20 +6,20 @@
 # Rafael Munoz Rodriguez <rafaluco@netscape.net>, 2003.
 # Quim Perez Noguer <noguer@osona.com>, 2004, 2005, 2009.
 # Joaquim Perez Noguer <noguer@gmail.com>, 2008, 2009.
-# SPDX-FileCopyrightText: 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Josep M. Ferrer <txemaq@gmail.com>
+# Josep M. Ferrer <txemaq@gmail.com>, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
-"PO-Revision-Date: 2024-08-11 09:59+0200\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
+"PO-Revision-Date: 2024-01-29 19:57+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 22.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -2228,7 +2228,7 @@ msgstr "Distingix entre majús&cules/minúscules"
 #: app/Filter/generalfilter.cpp:108
 #, kde-format
 msgid "Search &for:"
-msgstr "Busca &per:"
+msgstr "Bu&sca:"
 
 #: app/Filter/generalfilter.cpp:123 app/Synchronizer/synchronizergui.cpp:208
 #, kde-format
@@ -2308,7 +2308,6 @@ msgstr "Amb el text"
 msgid "&Text:"
 msgstr "&Text:"
 
-# skip-rule: punctuation-period-no
 #: app/Filter/generalfilter.cpp:294 app/KViewer/lister.cpp:1300
 #, kde-format
 msgid "RegExp"
@@ -2593,9 +2592,13 @@ msgid "Empty Recently Closed Tabs"
 msgstr "Buida les pestanyes tancades recentment"
 
 #: app/GUI/terminaldock.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr "<b>No s'ha pogut crear un terminal incrustat.</b><br/>"
+msgstr ""
+"<b>No s'ha pogut crear un terminal incrustat.</b><br/>S'ha informat de "
+"l'error: %1"
 
 #: app/GUI/terminaldock.cpp:102
 #, kde-format
@@ -3059,7 +3062,6 @@ msgstr "Color de la lletra de la selecció:"
 msgid "Selected background:"
 msgstr "Fons seleccionat:"
 
-# skip-rule: punctuation-period-no
 #: app/Konfigurator/kgcolors.cpp:128 app/Konfigurator/kgcolors.cpp:207
 #, kde-format
 msgid "Same as alt. background"
@@ -9753,9 +9755,10 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Copia el camí del fitxer de l'element actual (escapant els espais)"
 
 #: app/useraction_examples.xml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy file path of current item (escaping spaces)"
 msgid "Copy file path of current item"
-msgstr "Copia el camí del fitxer de l'element actual"
+msgstr "Copia el camí del fitxer de l'element actual (escapant els espais)"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9878,7 +9881,7 @@ msgstr ""
 #: plugins/krarc/krarc.cpp:879 plugins/krarc/krarc.cpp:900
 #, kde-format
 msgid "Deleting files from %1 archives is not supported"
-msgstr "No s'admet suprimir fitxers des d'arxius %1"
+msgstr "Suprimir fitxers des d'arxius %1 no està admés"
 
 #: plugins/krarc/krarc.cpp:960 plugins/krarc/krarc.cpp:973
 #, kde-format

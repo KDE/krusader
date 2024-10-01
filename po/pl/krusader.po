@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
-"PO-Revision-Date: 2024-08-17 09:42+0200\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
+"PO-Revision-Date: 2022-12-10 11:41+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -2602,9 +2602,12 @@ msgid "Empty Recently Closed Tabs"
 msgstr "Zapomnij ostatnio zamknięte karty"
 
 #: app/GUI/terminaldock.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr "<b>Nie można utworzyć osadzonego terminalu.</b><br/>"
+msgstr ""
+"<b>Nie można utworzyć osadzonego terminalu.</b><br/> Zgłoszony błąd to: %1"
 
 #: app/GUI/terminaldock.cpp:102
 #, kde-format
@@ -9757,9 +9760,10 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Skopiuj ścieżkę obecnie zaznaczonego pliku (przerób odstępy)"
 
 #: app/useraction_examples.xml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy file path of current item (escaping spaces)"
 msgid "Copy file path of current item"
-msgstr "Skopiuj ścieżkę pliku bieżącej rzeczy"
+msgstr "Skopiuj ścieżkę obecnie zaznaczonego pliku (przerób odstępy)"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9913,11 +9917,8 @@ msgstr "Okno dialogowe hasła Krarc"
 msgid "Accessing the file requires a password."
 msgstr "Dostęp do pliku wymaga hasła."
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Skopiuj bieżący element do schowka"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Otwórz nową kartę w katalogu domowym"
+#~ msgid "Directories:"
+#~ msgstr "Katalogi:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Pokaż przyciski nowa/zamknij kartę."
@@ -9946,6 +9947,30 @@ msgstr "Dostęp do pliku wymaga hasła."
 #~ msgid "JavaScript Error"
 #~ msgstr "Błąd JavaScript"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Przeglądaj"
+
+#~ msgid "New folder"
+#~ msgstr "Nowy katalog"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Otwórz nową kartę w katalogu domowym"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Wykonaj skrypt JavaScript..."
 
@@ -9963,14 +9988,8 @@ msgstr "Dostęp do pliku wymaga hasła."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Kreator działania: nie wybrano skryptu dla %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Nowy katalog"
-
-#~ msgid "Directories:"
-#~ msgstr "Katalogi:"
-
-#~ msgid "Browse"
-#~ msgstr "Przeglądaj"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Skopiuj bieżący element do schowka"
 
 #~ msgid "Folder..."
 #~ msgstr "Katalog..."
@@ -9983,21 +10002,6 @@ msgstr "Dostęp do pliku wymaga hasła."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Edytuj plik (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
 
 #~ msgid "Open search filter"
 #~ msgstr "Otwórz filtr wyszukiwania"

@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
-"PO-Revision-Date: 2024-08-11 20:20+0200\n"
-"Last-Translator: Valter Mura <valtermura@gmail.com>\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
+"PO-Revision-Date: 2022-12-04 17:26+0100\n"
+"Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -2587,9 +2587,13 @@ msgid "Empty Recently Closed Tabs"
 msgstr "Svuota le schede chiuse di recente"
 
 #: app/GUI/terminaldock.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr "<b>Impossibile creare il terminale incorporato.</b><br/>"
+msgstr ""
+"<b>Impossibile creare il terminale incorporato.</b><br/>L'errore riportato "
+"è: %1"
 
 #: app/GUI/terminaldock.cpp:102
 #, kde-format
@@ -9735,9 +9739,10 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Copia il percorso file dell'elemento attuale (spazi di escape)"
 
 #: app/useraction_examples.xml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy file path of current item (escaping spaces)"
 msgid "Copy file path of current item"
-msgstr "Copia il percorso file dell'elemento attuale"
+msgstr "Copia il percorso file dell'elemento attuale (spazi di escape)"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9892,11 +9897,8 @@ msgstr "Finestra di dialogo per la password Krarc"
 msgid "Accessing the file requires a password."
 msgstr "L'accesso al file richiede una password."
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Copia l'elemento attuale negli appunti"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Apri una nuova scheda nella cartella home"
+#~ msgid "Directories:"
+#~ msgstr "Cartelle:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Mostra i pulsanti nuova/chiudi scheda."
@@ -9925,6 +9927,30 @@ msgstr "L'accesso al file richiede una password."
 #~ msgid "JavaScript Error"
 #~ msgstr "Errore JavaScript"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Sfoglia"
+
+#~ msgid "New folder"
+#~ msgstr "Nuova cartella"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Apri una nuova scheda nella cartella home"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Esegui un'estensione JavaScript..."
 
@@ -9943,14 +9969,8 @@ msgstr "L'accesso al file richiede una password."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Estensore - Nessuno script specificato per %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Nuova cartella"
-
-#~ msgid "Directories:"
-#~ msgstr "Cartelle:"
-
-#~ msgid "Browse"
-#~ msgstr "Sfoglia"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Copia l'elemento attuale negli appunti"
 
 #~ msgid "Folder..."
 #~ msgstr "Cartella..."
@@ -9963,21 +9983,6 @@ msgstr "L'accesso al file richiede una password."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Modifica file (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
 
 #~ msgid "Open search filter"
 #~ msgstr "Apri il filtro di ricerca"

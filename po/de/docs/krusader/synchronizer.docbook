@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="synchronizer">
   <title
 >Abgleichen</title>
@@ -211,13 +223,11 @@
           </listitem>
           <listitem>
             <para
->„muster/“ - sucht diese Dateien und Ordner, auf die das Muster zutrifft, die rekursive Suche wird in Ordnern nur ausgeführt bzw. diese Ordner werden ausgeschlossen, wenn die auf das Muster passen.</para>
+>„muster/“ - sucht diese Dateien und Ordner, auf die das Muster zutrifft, die rekursive Suche wird in Ordnern nur ausgeführt bzw, diese Ordner werden ausgeschlossen, wenn die auf das Muster passen.</para>
           </listitem>
           <listitem>
             <para
->Verwenden Sie Anführungszeichen für Namen mit Leerzeichen darin. Mit <quote
->Program Files</quote
-> filtern Sie alle Dateien und Ordner, die den Namen <filename
+>Verwenden Sie Anführungszeichen für Namen mit Leerzeichen darin. Mit "Program Files" filtern Sie alle Dateien und Ordner, die den Namen <filename
 >Program Files</filename
 > haben.</para>
           </listitem>
@@ -345,9 +355,7 @@
         <para
 >Die <guilabel
 >Dateiliste</guilabel
-> enthält folgende Spalten: <quote
->Linker Name | Linke Größe | Linke Zeit | Aufgabe | Rechte Zeit | Rechte Größe | Rechter Name</quote
->. Hier können Sie die Ergebnisse des Vergleichs überprüfen und die Aktionen für den Abgleich ändern, falls gewünscht. Die Textfarbe zeigt die vorgegebene Kopierrichtung, die beim Vergleichen bestimmt wurde. <itemizedlist
+> enthält folgende Spalten: "Linker Name | Linke Größe | Linke Zeit | Aufgabe | Rechte Zeit | Rechte Größe | Rechter Name". Hier können Sie die Ergebnisse des Vergleichs überprüfen und die Aktionen für den Abgleich ändern, falls gewünscht. Die Textfarbe zeigt die vorgegebene Kopierrichtung, die beim Vergleichen bestimmt wurde. <itemizedlist
 > <listitem
 > <para
 >Grün: Kopieren von links nach rechts.</para

@@ -115,33 +115,59 @@
 >página de Pasta</link
 >.</para>
     <para
->Navegação nos favoritos: <orderedlist>
-      <listitem>
-        <para
->Comece a escrever letras</para>
-      </listitem>
-      <listitem>
-        <para
->&eg;, quando escrever <literal
->'h'</literal
-> e só existir um favorito que começa por <literal
->'h'</literal
->, este é executado imediatamente - sem qualquer introdução de dados</para>
-      </listitem>
-      <listitem>
-        <para
->Se mais que um favorito começar com <literal
->'h'</literal
->, terá de continuar a adicionar letras, até que tenha indicado as suficientes, de modo que o favorito possa então ser executado.</para>
-      </listitem>
-    </orderedlist
-></para>
+>Existe uma barra de pesquisa rápida no topo do menu do <guibutton
+>BookMan II</guibutton
+>.</para>
     <note>
       <para
 >A barra de pesquisa será sempre visível no menu de favoritos, caso assinale o item correspondente na <link linkend="konfig-panel-general"
 >página do Configurador do Painel</link
 >. </para>
     </note>
+    <para
+>Em baixo encontram-se as regras para lidar com os favoritos:</para>
+    <itemizedlist>
+        <listitem>
+            <para
+>Basta escrever letras para pesquisa: é feita a correspondência aos favoritos pelo prefixo do nome</para>
+        </listitem>
+        <listitem>
+            <para
+>Se corresponderem vários favoritos ao prefixo, os mesmos ficam realçados e é seleccionado o primeiro - carregue em &Enter; para activar o favorito</para>
+        </listitem>
+        <listitem>
+            <para
+>Assim que corresponder um único favorito, o mesmo é activado automaticamente. Isso é, quando escrever <literal
+>'h'</literal
+> e só existir um favorito que começa por <literal
+>'h'</literal
+>, este é executado imediatamente - sem necessitar de usar o &Enter;</para>
+        </listitem>
+        <listitem>
+            <para
+>Os aceleradores de teclado só funcionam se a tecla for a primeira</para>
+        </listitem>
+        <listitem>
+            <para
+>O &Backspace; é suportado</para>
+        </listitem>
+        <listitem>
+            <para
+>A pesquisa não faz distinção entre maiúsculas e minúsculas, a menos que escreva uma letra maiúscula. Isto é, o <literal
+>HamBurguer</literal
+> só irá corresponder a <literal
+>HamBurguer</literal
+> mas não a <literal
+>hamburguer</literal
+> ou <literal
+>Hamburguer</literal
+>.</para>
+        </listitem>
+        <listitem>
+            <para
+>A barra de pesquisa é um campo apenas para leitura de propósito</para>
+        </listitem>
+    </itemizedlist>
   </sect2>
   <sect2 id="password_handling">
     <title
@@ -220,7 +246,7 @@
 >virt:/</filename
 > não é uma pasta virtual, mas sim um contentor para os &URL;'s dos diferentes sistemas de ficheiros. É usado &eg; para a funcionalidade <guilabel
 >Alimentar à Lista</guilabel
-> do módulo de pesquisa e de sincronização (desactivada por omissão na altura da compilação). A barra de localização irá mostrar p.ex., o <filename
+> do módulo de pesquisa e de sincronização. A barra de localização irá mostrar &eg; o <filename
 >virt:/Resultados da pesquisa 1</filename
 > ou o <filename
 >virt:/Resultados da sincronização 1</filename

@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="bookman">
   <title
 >BookMan: Organisieren Sie Ihre Lesezeichen</title>
@@ -13,7 +25,7 @@
   </indexterm>
   <para
 >BookMan ist &krusader;s Werkzeug zur Verwaltung von Lesezeichen für lokale Adressen und <link linkend="remote-connections"
->&URL;s (Adressen) auf anderen Rechnern</link
+>Adressen auf anderen Rechnern</link
 >. Zu diesen Lesezeichen können Sie später durch Klicken auf einen Knopf wechseln. Das Menü Bookman besteht aus vier Abschnitten: <itemizedlist>
     <listitem>
       <para
@@ -78,7 +90,7 @@
 >foo</keycap
 ></keycombo
 > aufrufen können. Wenn Sie keinen Namen für ein Lesezeichen eingeben, wird wird die Adresse als Name verwendet. Die <guilabel
->&URL;</guilabel
+>URL</guilabel
 > ist die Adresse, <guilabel
 >Erstellen in</guilabel
 > erstellt Lesezeichenordner zur Organisation Ihrer Lesezeichen.</para>
@@ -170,23 +182,23 @@
   </sect2>
   <sect2 id="popular-urls">
     <title
->Beliebte Adressen (&URL;s)</title>
+>Beliebte Adressen</title>
     <indexterm>
       <primary
->Beliebte Adressen (&URL;s)</primary>
+>Beliebte Adressen</primary>
     </indexterm>
     <para
 >Das Untermenü <guilabel
->Beliebte Adressen (&URL;s)</guilabel
+>Beliebte Adressen</guilabel
 > enthält dauerhaft die am meisten geöffneten lokalen oder entfernten &URL;s. Dies Untermenü zeigt die 15 am häufigsten geöffneten &URL;s, sortiert nach Häufigkeit, so dass als erstes die am häufigsten geöffnete &URL; angezeigt wird. Diese Funktion sollten Sie verwenden, wenn Sie einzelne &URL;s häufiger öffnen möchten, ohne dafür <link linkend="bookman"
 >Lesezeichen</link
 > anzulegen. Dies ist eine temporäre Lesezeichenliste der am häufigsten geöffneten Verknüpfungen. Die Schnellsuche in <guilabel
->Beliebte Adressen (&URL;s)</guilabel
+>Beliebte Adressen</guilabel
 > gibt Ihnen die Möglichkeit, diese &URL;s schnell durchzusehen oder auszuwählen. <itemizedlist>
       <listitem>
         <para
 >Öffnen Sie <guilabel
->Beliebte Adressen (&URL;s)</guilabel
+>Beliebte Adressen</guilabel
 > oder benutzen Sie den Kurzbefehl <keycombo action="simul"
 >&Ctrl; <keycap
 >Z</keycap

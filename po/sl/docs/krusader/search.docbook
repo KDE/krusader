@@ -1,0 +1,350 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="krusearcher">
+  <title
+>KruSearcher: poiščite, kar iščete</title>
+  <indexterm>
+    <primary
+>Iskanje</primary>
+  </indexterm>
+  <para
+>Dobrodošli v zmogljivem iskalnem modulu &krusader; z vzdevkom KruSearcher. Je najzmogljivejše orodje (kar jih poznamo) za &Linux;, saj omogoča toliko različnih načinov za hitro iskanje datoteke, ki jo iščete. Funkcija iskanja je na voljo tudi v oddaljenih datotečnih sistemih. Razdeljen je na dve ravni, splošno in napredno. Oglejmo si splošno stran.</para>
+  <figure id="screenshot-search-general" float="1">
+    <title
+>Splošno iskanje</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_general.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Splošno iskanje</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Stran je razdeljena na štiri dele: zgornji (iskanje) del, spodnji del z naslovom <guilabel
+>Vsebuje besedilo</guilabel
+>, levi del z naslovom <guilabel
+>Išči v</guilabel
+> in desni del z imenom <guilabel 
+>Ne išči v</guilabel
+>. Očitno vsak del obravnava različne vidike iskanja. Oglejmo si jih natančno.</para>
+  <itemizedlist>
+    <title
+>Zgornji del:</title>
+    <listitem>
+      <para
+><guilabel
+>Išči</guilabel
+>: tukaj vnesete glavne iskalne kriterije. Vnesete lahko ime datoteke, nadomestni znak ( <literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> &etc;) ali oboje – ločeno s presledkom. Če vnesete <literal
+>'text'</literal
+>, so rezultati enaki kot <literal
+>'*text*'</literal
+>. Datoteke lahko izključite iz iskanja z '|' (&eg; <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>). Za imena, ki vsebujejo presledke, lahko uporabite narekovaje. Filter <quote
+>Programske datoteke</quote
+> išče tiste datoteke/mape, katerih ime je <filename
+>Programske datoteke</filename
+>. Spustni seznam, ki se prikaže po kliku puščice navzdol na desni, vam omogoča, da izberete nekaj svojih predhodno vnesenih kriterijev.</para>
+      <note>
+          <para
+>Možno je urediti seznam predlogov za polje <guilabel
+>Išči</guilabel
+>. Če vam nekateri predmeti niso všeč, jih preprosto izberite in pritisnite <keycombo action="simul"
+>&Shift;<keycap
+>Del</keycap
+></keycombo
+> in ta neuporaben predlog bo izbrisan. Uporabite lahko tudi puščične tipke, da si ogledate vso zgodovino v polju <guilabel
+>Išči</guilabel
+> in izbrišete vnose, ki niso potrebni. </para>
+      </note>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Razlikuje med velikimi in malimi črkami</guilabel
+>: če počistite polje, boste omogočili iskanje z malimi in velikimi črkami (&ie;: <literal role="extension"
+>*.c</literal
+> razlaga kot <literal role="extension"
+>*. c</literal
+> IN <literal role="extension"
+>*.C</literal
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Vrsta</guilabel
+>: to polje vam omogoča iskanje datoteke ne samo po imenu, temveč tudi po &MIME; vrsta. Iščete lahko na primer po vseh zvočnih datotekah, katerih ime se začne z B. Običajno je ta možnost privzeto nastavljena na 'vse datoteke', vendar lahko izberete iskanje po arhivih, mapah, slikah, besedilnih datotekah, videoposnetkih in zvočnih datotekah.</para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Levi in desni del:</title>
+    <listitem>
+      <para
+><guilabel
+>Išči v</guilabel
+> in <guilabel
+>Ne išči v</guilabel
+>: Z uporabo teh dveh delov lahko določite iskanje natanko tako, kot želite. Na primer, morda želite iskati datoteko v celotnem datotečnem sistemu (začenši z <filename
+>/</filename
+>), vendar ne želite iskati znotraj <filename
+>/mnt</filename
+>. Vse kar morate storiti je, da napišete <filename
+>/</filename
+> v polje <guilabel
+>Išči v</guilabel
+> in vpišete <filename
+>/mnt</filename
+> v polje <guilabel
+>Ne išči v</guilabel
+>. Če želite v eno od seznamskih polj vnesti več kot eno mapo, samo vnesite ime in pritisnite &Enter;. Ime mape bo kopirano v večje seznamsko polje in lahko boste vnesli drugo ime. <note
+> <para
+>Vnosna vrstica ima funkcijo samodokončanja, ki ustreza &plasma; globalne nastavitve. Če želite, lahko kliknete <guiicon
+>ikono mape</guiicon
+> in poiščete mapo, ki jo želite dodati.</para>
+      </note>
+      <note>
+          <para
+>Z vnosnim poljem <guilabel
+>Izključi imena map</guilabel
+> na dnu polja <guilabel
+>Ne išči v</guilabel
+> lahko določite datoteke in mape, ki bodo izločene iz rezultatov iskanja.</para>
+          <para
+>Elementi na seznamu za filtriranje morajo biti ločeni s presledki.</para>
+          <para
+>Presledke v elementih seznama za filtriranje je mogoče ubežati ali narekovati. Primer: <userinput
+>.git "target build" build\ krusader</userinput
+></para>
+      </note
+></para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Spodnji del:</title>
+    <listitem>
+      <para
+><guilabel
+>Besedilo</guilabel
+>: če tukaj vnesete besedilo, &krusader; poiščite ga znotraj datotek ( <command
+>grep</command
+>). Na ta način lahko iščete vse datoteke glave ( <literal role="extension"
+>*.h</literal
+>), ki vključujejo besedo <literal
+>'testiranje 123'</literal
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>RegExp</guilabel
+> stikalo: preklopi način regularnih izrazov. Spustni seznam, ki se prikaže po kliku puščice navzdol na desni, vam omogoča vnos posebnih simbolov regularnih izrazov. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Kodiranje</guilabel
+>: omogoča izbiro kodiranja besedila. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Ujemi samo celotno besedo</guilabel
+>: omogoča vam, da določite, da je treba najti popolno ujemanje (črke in dolžina). </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Razlikuj med velikimi in malimi črkami</guilabel
+>: nanaša se na vaše besedilo, ki ga iščete z velikimi in malimi črkami ali točno besedo, ki ste jo vnesli.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Iskanje v podmapah</guilabel
+>: izvedite rekurzivno iskanje in se potopite v vsako mapo na poti.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Iskanje v arhivih</guilabel
+>: &krusader; bo poiskal vaše datoteke znotraj vsakega podprtega arhiva. To pa traja dlje časa. <note
+> <para
+>Če označite to potrditveno polje, boste opazili, da ne morete več <command
+>grep</command
+> znotraj datotek. To je storjeno, saj pogled v arhivirane datoteke prisili &krusader; jih izluščiti, kar ima za posledico izjemno zamudno iskanje.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Sledi povezavam</guilabel
+>: če je označeno, &krusader; bo med iskanjem sledil mehkim povezavam.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Profili</guilabel
+>: če morate redno izvajati isto operacijo iskanja, lahko shranite nastavitve iskanja &eg; vključi datoteke, izključi datoteke &etc;.... Pritisnite gumb 'profil' in lahko dodate/naložite/shranite/odstranite iskalne profile.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Poizvedba v odložišče</guilabel
+>: če je označeno, &krusader; bo iskalno besedilo postavil v odložišče, ko se odpre najdena datoteka.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Zgornji posnetek zaslona prikazuje iskanje vseh datotek, ki se končajo z <literal role="extension"
+>c, cpp</literal
+> ali <literal role="extension"
+>h</literal
+> in vključujejo niz <literal
+> 'testiranje 123'</literal
+>. &krusader; bo iskal v <filename class="directory"
+>/root, /opt, /bin</filename
+> in <filename class="directory"
+>/usr</filename
+>, ne pa v <filename class="directory"
+> /usr/lib</filename
+> in <filename class="directory"
+>/usr/share</filename
+>.</para>
+  <para
+>S klikom na gumb <guibutton
+>Išči</guibutton
+> se začne iskanje in prikaže stran z rezultati. Med iskanjem lahko pritisnete gumb <guibutton
+>Ustavi</guibutton
+>, da ustavite iskanje. Gumb <guibutton
+>Zapri</guibutton
+> med iskanjem ne deluje, zato morate najprej ustaviti iskanje in nato <guibutton
+>Zapreti</guibutton
+> okno. Ko je rezultat najden, bo dvojni klik nanj usmeril aktivno ploščo &krusader; do najdenih datotek - vendar ne bo zaprl iskalnega okna, tako da boste lahko kliknili drug rezultat.</para>
+  <para
+>Včasih morate iskanje še bolj zožiti. KruSearcher omogoča veliko natančnejše iskanje in za to poglejmo <guilabel
+>Napredno stran</guilabel
+>...</para>
+  <figure id="screenshot-search-advanced" float="1">
+    <title
+>Napredno iskanje</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_advanced.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Napredno iskanje</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Ta posnetek zaslona prikazuje iskanje datotek, katerih velikost je med 10KiB in 150KiB, ki so bile spremenjene med 10. oktobrom in 1. novembrom, ki pripadajo kateremu koli uporabniku v skupini 'nihče' in jih lahko bere in piše kdorkoli v skupini 'nihče'. skupino, vendar berljivo le preostalemu svetu.</para>
+  <para
+>Napredna stran je razdeljena na tri dele: velikost, datum in lastništvo.</para>
+  <para>
+    <emphasis role="bold"
+>Velikost</emphasis>
+  </para>
+  <para
+>Omogoča vam izbiro obsega velikosti datoteke, ki jo iščete. Če označite potrditvena polja, lahko poiščete datoteko, ki je večja od XXX bajtov (ali KB, MB), manjša od XXX bajtov ali, če označite oboje, poiščete datoteko, ki je večja od XXX, vendar manjša od YYY.</para>
+  <para>
+    <emphasis role="bold"
+>Datum</emphasis>
+  </para>
+  <para
+>Ta del ponuja tri različne načine definiranja merila datuma: <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Spremenjeno med</guilabel
+>: omogoča vnos dveh datumov. &krusader; bo iskal datoteke z datumom spremembe med prvim in drugim datumom. <note
+> <para
+>Lahko kliknete ikono datuma (v bližini vnosnih polj), da odprete standardno okno z datumom - ki vam omogoča preprosto brskanje po koledarju in iskanje želenega datuma. S klikom na datum se okno zapre in datum se prikaže v vnosnem polju.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Ni spremenjeno po</guilabel
+>: če izberete to možnost, bo &krusader; iskanje datotek, ki NISO bile spremenjene po določenem datumu, kar je enako iskanju datotek, starejših od tega datuma.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Zadnje spremenjeno/nezadnje spremenjeno</guilabel
+>: v ta vnosna polja ne vnašate datuma, temveč številko. Ta številka predstavlja dneve/tedne/mesece (kot je izbrano v bližnjem spustnem polju). Če vnesete številko 5 v zgornje vnosno polje, bo &krusader; poiščite datoteke, ki so bile spremenjene v zadnjih 5 dneh. Če v spodnje polje za vnos vnesete številko 2, bo &krusader; poiščite datoteke, ki se NISO spremenile v zadnjih 2 dneh. Kombinacija obeh povzroči iskanje datotek, ki so bile spremenjene v zadnjih 5 dneh, vendar NE v zadnjih 2 dneh.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para>
+    <emphasis role="bold"
+>Lastništvo</emphasis>
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Pripada uporabniku/skupini</guilabel
+>: če označite vsako od ustreznih potrditvenih polj, lahko iščete datoteke, ki pripadajo določenemu uporabniku in/ali skupini. V spustnem polju so navedena vsa uporabniška imena in imena skupin v sistemu, samo izberite enega in nadaljujte.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Dovoljenja</guilabel
+>: razdeljena na lastnika, skupino in vse - omogoča vam izbiro določenih dovoljenj za datoteko. Izberete lahko dovoljenja za lastnika, skupino, vse ali katero koli kombinacijo. Vprašaj (?) je nadomestni znak - kar pomeni, da je vsako dovoljenje veljavno.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Za pojasnitev, zgornji posnetek zaslona (del o lastništvu) opisuje iskanje datotek, ki pripadajo kateremu koli uporabniku v skupini 'uporabniki', so berljive, zapisljive, vendar niso izvedljive za nobenega uporabnika v skupini, so berljive, vendar ne zapisljive ali izvedljive za preostali svet in imajo neznana dovoljenja za svojega lastnika.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Rezultati</emphasis>
+  </para>
+  <para
+>Kliknite na gumb <guibutton
+>Išči</guibutton
+>, da začnete iskanje in odprete okno z rezultati. Tukaj si lahko ogledate napredek in rezultate iskalne akcije. Če želite, lahko ustavite trenutno iskalno dejanje z gumbom <guibutton
+>Ustavi</guibutton
+>. Na seznamu rezultatov izberite datoteko in uporabite <keycap
+>F3</keycap
+>/ <keycap
+>F4</keycap
+> za ogled/urejanje ali uporabite meni z desnim klikom. Ko kliknete na najden element, se bo mapa aktivne plošče spremenila, če izbrani element ni v trenutni mapi plošče. Okno z rezultati podpira vlečenje elementov v druga okna in kopiranje v odložišče (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). Ko zaprete okno KruSearcher, je izbrani element izbran na aktivni plošči.</para>
+  <para>
+    <emphasis role="bold"
+>Prenesi v seznamsko polje</emphasis>
+  </para>
+  <para
+>Ko po prikazu rezultatov kliknete gumb <guibutton
+>Prenesi v seznam</guibutton
+>, &krusader; prosite za ime poizvedbe, bo to ime uporabljeno na zavihku Rezultati na plošči seznama, ki vsebuje rezultate iskanja. Z datotekami v novem zavihku lahko počnete, kar želite. Orodna vrstica lokacije bo prikazala &eg; <filename
+>virt:/Rezultati iskanja 1</filename
+>.</para>
+  <warning>
+    <para
+>Datoteke na zavihku z rezultati so pravzaprav izvirne datoteke. če izbrišete datoteko - je odstranjena!</para>
+  </warning>
+</sect1>

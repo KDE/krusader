@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
 "PO-Revision-Date: 2024-08-20 15:08+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -2577,9 +2577,12 @@ msgid "Empty Recently Closed Tabs"
 msgstr "Vyprázdnit naposledy zavřené karty"
 
 #: app/GUI/terminaldock.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr "<b>Nelze vytvořit zabudovaný terminál.</b><br/>"
+msgstr ""
+"<b>Nelze vytvořit zabudovaný terminál.</b><br/>Byla nahlášena chyba: %1"
 
 #: app/GUI/terminaldock.cpp:102
 #, kde-format
@@ -9668,9 +9671,10 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr ""
 
 #: app/useraction_examples.xml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Always show current item"
 msgid "Copy file path of current item"
-msgstr "Kopírovat cestu k souboru současné položky"
+msgstr "Vždy zobrazit aktuální položku"
 
 #: app/useraction_examples.xml:51
 #, kde-format

@@ -8,15 +8,14 @@
 # Proofread and fixes by Monkey 9 <monkey9@iae.nl>, 2005.
 # Frank Schoolmeesters <frank_schoolmeesters@yahoo.com>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010.
 # Kristof Bal <kristof.bal@gmail.com>, 2009.
-# SPDX-FileCopyrightText: 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Freek de Kruijf <freekdekruijf@kde.nl>
+# SPDX-FileCopyrightText: 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2022, 2023, 2024 Freek de Kruijf <freekdekruijf@kde.nl>
 # Ronald Stroethoff <stroet43@zonnet.nl>, 2015.
-# Lo Fernchu <lofernchu@zonnet.nl>, 2018, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
-"PO-Revision-Date: 2024-09-04 13:34+0200\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
+"PO-Revision-Date: 2024-09-04 13:35+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -30,14 +29,14 @@ msgstr ""
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
-"Monkey 9,Frank Schoolmeesters,Ronald Stroethoff,Freek de Kruijf - t/m 2024"
+"Monkey 9,Frank Schoolmeesters,Freek de Kruijf - t/m 2019,Ronald Stroethoff"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
-"monkey9@iae.nl,frank_schoolmeesters@yahoo.com,stroet43@zonnet.nl,"
-"freekdekruijf@kde.nl"
+"monkey9@iae.nl,frank_schoolmeesters@yahoo.com,freekdekruijf@kde.nl,"
+"stroet43@zonnet.nl"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -2601,9 +2600,13 @@ msgid "Empty Recently Closed Tabs"
 msgstr "Recent gesloten tabbladen leegmaken"
 
 #: app/GUI/terminaldock.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr "<b>Kan de ingebedde terminal niet aanmaken.</b><br/>"
+msgstr ""
+"<b>Kan de ingebedde terminal niet aanmaken.</b><br/>De gerapporteerde fout "
+"was: %1"
 
 #: app/GUI/terminaldock.cpp:102
 #, kde-format
@@ -4749,7 +4752,7 @@ msgstr "Nieuw verborgen aankoppelpunt toevoegen"
 #: app/Konfigurator/kgpanel.cpp:911
 #, kde-format
 msgid "Mount point:"
-msgstr "Aankoppelpunt:"
+msgstr "Aankoppelpunt (mount point):"
 
 #: app/Konfigurator/kgprotocols.cpp:34
 #, kde-format
@@ -9746,9 +9749,10 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Bestandspad van huidig item kopiëren (spaties escapen)"
 
 #: app/useraction_examples.xml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy file path of current item (escaping spaces)"
 msgid "Copy file path of current item"
-msgstr "Bestandspad van huidig item kopiëren"
+msgstr "Bestandspad van huidig item kopiëren (spaties escapen)"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9904,11 +9908,8 @@ msgstr "Krarc Paswoord Dialoog"
 msgid "Accessing the file requires a password."
 msgstr "Voor toegang tot dit bestand is een paswoord noodzakelijk."
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Huidig item naar het klembord kopiëren"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Een nieuwe tab openen in de persoonlijke map"
+#~ msgid "Directories:"
+#~ msgstr "Mappen:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "De nieuw/sluiten tab knoppen tonen."
@@ -9937,6 +9938,30 @@ msgstr "Voor toegang tot dit bestand is een paswoord noodzakelijk."
 #~ msgid "JavaScript Error"
 #~ msgstr "JavaScript-fout"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 Mb"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 Kb"
+
+#~ msgid "Browse"
+#~ msgstr "Bladeren"
+
+#~ msgid "New folder"
+#~ msgstr "Nieuwe map"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Een nieuwe tab openen in de persoonlijke map"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Een JavaScript-extensie uitvoeren..."
 
@@ -9954,14 +9979,8 @@ msgstr "Voor toegang tot dit bestand is een paswoord noodzakelijk."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Uitbredingsmenu: geen script gespecifieerd voor %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Nieuwe map"
-
-#~ msgid "Directories:"
-#~ msgstr "Mappen:"
-
-#~ msgid "Browse"
-#~ msgstr "Bladeren"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Huidig item naar het klembord kopiëren"
 
 #~ msgid "Folder..."
 #~ msgstr "Map..."
@@ -9974,21 +9993,6 @@ msgstr "Voor toegang tot dit bestand is een paswoord noodzakelijk."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Bestand bewerken (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 Mb"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 Kb"
 
 #~ msgid "Open search filter"
 #~ msgstr "Zoekfilter openen"

@@ -1,0 +1,992 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="user-interface">
+  <title
+>Uporabniški vmesnik</title>
+  <indexterm>
+    <primary
+>Uporabniški vmesnik</primary>
+  </indexterm>
+  <sect1 id="ofm-userinterface">
+    <title
+>Uporabniški vmesnik OFM</title>
+    <para
+>Koncept upravitelja datotek OFM vsebuje <link linkend="features"
+>številne funkcije</link
+>, zaradi katerih so dovolj zmogljivi, da sodijo med najboljše upravitelje datotek danes. Vmesnik je preprost: leva plošča, desna plošča in ukazna vrstica spodaj. Zaradi interakcije med temi tremi elementi bo upravljanje datotek postalo učinkovitejše.</para>
+    <para
+>Če bi radi izvedeli <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+> kako &krusader; deluje</ulink
+> lahko poskusite sami, samo namestite ga na svoj računalnik. Če želi uporabnik sprejeti <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Orthodox File Manager (OFM)</ulink
+>, kot je &krusader;, se mora navaditi na <emphasis
+>novo ideje</emphasis
+>, ki so dejansko stare že 20 let. Če raje izgubljate čas in izgubite veliko produktivnosti, lahko vedno nadaljujete z uporabo upraviteljev datotek na eni plošči, ki temeljijo na &Windows; Raziskovalec.</para>
+  </sect1>
+  <sect1 id="mainwindow">
+    <title
+>&krusader; Glavno okno</title>
+    <figure id="screenshot-mainwindow" float="1">
+      <title
+>&krusader; Glavno okno</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="mainwindow.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>&krusader; Glavno okno</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Uporabniški vmesnik temelji na paradigmi <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Orthodox File Manager (OFM)</ulink
+>, 20 let starem principu, ki je dokazal svojo kosti. Znan je kot preprost, enostaven in močan. V naslednjih razdelkih bomo obravnavali osnovne funkcije vsakega dela z izjemo:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="menu-commands"
+>Menijska vrstica</link
+>, ki ima svoje poglavje.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="bookman"
+>Zaznamki</link
+>, ki ima svoje poglavje.</para>
+      </listitem>
+      <listitem>
+        <para
+><emphasis role="bold"
+>Statusna vrstica</emphasis
+> prikazuje lastnosti trenutne datoteke (ki je) v fokusu. </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  <sect1 id="toolbars">
+    <title
+>Orodne vrstice</title>
+    <para
+>&krusader; prihaja z več orodnimi vrsticami.</para>
+    <sect2 id="main_toolbar">
+      <title
+>Glavna orodna vrstica</title>
+      <indexterm>
+        <primary
+>Orodna vrstica</primary>
+        <secondary
+>Glavna orodna vrstica</secondary>
+      </indexterm>
+      <figure id="screenshot-maintoolbar" float="1">
+        <title
+>Glavna orodna vrstica</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="toolbar.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Glavna orodna vrstica</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>&krusader; Glavna orodna vrstica je standardni &kde; orodno vrstico, ki jo lahko vlečete po aplikaciji (najprej jo odklenite tako, da počistite polje <guimenuitem
+>Zakleni položaje orodne vrstice</guimenuitem
+> v meniju z desnim klikom) ali konfigurirate prek menija <keycap
+>Desni klik</keycap
+>. Odločite se lahko, ali ga želite prikazati vsakič, ko zaženete &krusader; na <link linkend="konfigurator"
+>strani za zagon Konfiguratorja</link
+>, njegovo uporabo v trenutni seji pa lahko preklopite v <link linkend="settings-menu"
+>meniju z nastavitvami</link
+>. Vsebino glavne orodne vrstice je mogoče konfigurirati v <guimenuitem
+>Konfiguriraj orodne vrstice...</guimenuitem
+> v <link linkend="settings-menu"
+>meniju Nastavitve</link
+>. Ker različni ukazi in možnosti v &krusader; so odvisni od konteksta, nekateri ukazi niso vedno na voljo. Ikona neustreznega ali neaktivnega dejanja bo deaktivirana (zasivljena), kar onemogoči njeno uporabo. <link linkend="bookman"
+>Zaznamke</link
+> lahko postavite v glavno orodno vrstico in orodno vrstico z dejanji z miško s <quote
+>povleci in spusti</quote
+>.</para>
+    </sect2>
+    <sect2 id="job_toolbar">
+      <title
+>Orodna vrstica za delo</title>
+      <indexterm>
+        <primary
+>Orodna vrstica</primary>
+        <secondary
+>Orodna vrstica za delo</secondary>
+      </indexterm>
+      <para
+>Privzeto je &krusader; Orodna vrstica Job (<link linkend="queue"
+>Upravitelj čakalne vrste</link
+> ali preprosto JobMan) se nahaja na desnem delu glavne orodne vrstice. Ta orodna vrstica vam omogoča ogled poteka opravila, zaustavitev in nadaljevanje izvajanja seznama opravil ter razveljavitev zadnjega izvedenega opravila.</para>
+    </sect2>
+    <sect2 id="actions_toolbar">
+      <title
+>Orodna vrstica za dejanja</title>
+      <indexterm>
+        <primary
+>Orodna vrstica</primary>
+        <secondary
+>Orodna vrstica za dejanja</secondary>
+      </indexterm>
+      <para
+><link linkend="useractions"
+>Uporabniška dejanja</link
+> in <link linkend="bookman"
+>Zaznamke</link
+> lahko <quote
+>priklopite</quote
+> v <guilabel
+>Orodno vrstico z dejanji</guilabel
+>. Če ga želite prikazati, uporabite <menuchoice
+> <guimenu
+>Nastavitve</guimenu
+> <guimenuitem
+>Pokaži orodno vrstico z dejanji</guimenuitem
+> </menuchoice
+> . Če želite dodati uporabniška dejanja, uporabite <menuchoice
+> <guimenu
+>Nastavitve</guimenu
+> <guimenuitem
+>Konfiguriraj orodne vrstice ...</guimenuitem
+> </menuchoice
+> in izberite Orodna vrstica dejanj. Z miško lahko na primer povlečete orodno vrstico za dejanja na desno stran.</para>
+    </sect2>
+    <sect2 id="location_toolbar">
+      <title
+>Orodna vrstica lokacije</title>
+      <indexterm>
+        <primary
+>Orodna vrstica</primary>
+        <secondary
+>Orodna vrstica lokacije</secondary>
+      </indexterm>
+      <para
+>Pod <guibutton
+>Glavno orodno vrstico</guibutton
+> je <guibutton
+>Lokacijska orodna vrstica</guibutton
+> za vsako ploščo. Prikazuje pot, na katero trenutno kaže plošča. Pri vnosu arhivov bo pot prikazana v naslednji obliki: <quote
+>vrsta arhiva:/mapa/ime_arhivske_datoteke/mapa znotraj arhiva</quote
+>. Zaradi te oblike so poti enotne in enostavne za branje. <guibutton
+>Lokacijska orodna vrstica</guibutton
+> podpira tudi podrejene KIO, vendar ne vseh, nekatere je mogoče uporabljati le s <link linkend="krviewer"
+>pregledovalnikom</link
+>, nekaterih pa ne. Uporabnik lahko vnese želeno pot s klikom nanjo.</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <userinput>
+              <replaceable
+>/mnt/cdrom/</replaceable>
+            </userinput>
+          </para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>nastavitve:/</command
+> </userinput
+>bo prebrskal in odprl vnose v &systemsettings;.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>smetnjak:/</command
+> </userinput
+>odpre mapo s smetnjaki.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>mtp:/</command
+> </userinput
+>uporablja kio_mtp za dostop, nalaganje in organiziranje večpredstavnosti, shranjene v napravah, ki uporabljajo <trademark
+>Android</trademark
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+>In nenazadnje <link linkend="remote-connections"
+>Oddaljene povezave</link
+>.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Lahko kopirate in prilepite &URL; v <guibutton
+>lokacijski orodni vrstici</guibutton
+> ali uporabite srednji klik. Z menijem z desnim klikom lahko konfigurirate funkcijo samodokončanja. Na voljo je tudi izbirni gumb <guilabel
+>Počisti orodno vrstico lokacije</guilabel
+>.</para>
+      <para
+>Hitra navigacija: &Ctrl; z miško pokažite na sredino &URL; <guibutton
+>lokacijske orodne vrstice</guibutton
+>. Pojavno okno prikaže naslednji &URL; lokacijo. S pritiskom &Ctrl; + &LMB; prikazuje lokacijo, kamor je kazala miška. Ta funkcija omogoča hitrejšo navigacijo v velikem drevesu map.</para>
+    </sect2>
+    <sect2 id="panel_toolbar">
+      <title
+>Orodna vrstica plošče</title>
+      <indexterm>
+        <primary
+>Orodna vrstica</primary>
+        <secondary
+>Orodna vrstica plošče</secondary>
+      </indexterm>
+      <para
+>Vsaka plošča ima <link linkend="konfig-panel-buttons"
+>nastavljivo orodno vrstico plošče</link
+>. Celotno orodno vrstico plošče ali določene gumbe lahko naredite vidne ali skrite.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>Gumb OpenDir</guibutton
+>: odpre brskalnik map.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Gumb Equals (=)</guibutton
+>: spremeni mapo plošče v mapo druge plošče.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Gumb gor (..)</guibutton
+>: spremeni mapo plošče v nadrejeno mapo.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Gumb Domov (~)</guibutton
+>: spremeni mapo plošče v domačo mapo.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Korenski gumb (/)</guibutton
+>: spremeni mapo plošče v korensko mapo.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Gumb za sinhroniziranje brskanja</guibutton
+>: ko je aktiven, se vsaka sprememba mape na določeni plošči izvede tudi na drugi plošči.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+  <sect1 id="panels">
+    <title
+>Plošče</title>
+    <para
+>&krusader; na ploščah se odvija večina dogajanja. Trenutno obstajata dve vrsti plošč:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="list_panel"
+>Plošča seznama</link
+>: prikazuje datoteke in mape.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="sidebar"
+>Stranska vrstica</link
+>: ima več načinov prikaza: predogled, drevo, hitra izbira, pogled in uporaba diska za datoteko ali mapo, ki je v fokusu. Stransko vrstico lahko po želji pustite odprto ali zaprto.</para>
+      </listitem>
+    </itemizedlist>
+    <para
+>&krusader; je <quote
+>dvojni</quote
+> upravitelj datotek, tako da obstajata dve plošči: <quote
+>leva</quote
+> plošča in <quote
+>desna</quote
+> plošča ali pomembnejša logična razlika, Plošča *Aktivna* in plošča *Neaktivna*. Aktivna plošča je tista, ki sprejme vaš vnos z miško in tipkovnico. Če izberete ukaz v <guilabel
+>Menijski vrstici</guilabel
+> ali <guilabel
+>Orodni vrstici</guilabel
+>, bo ukaz deloval na izbrane datoteke/mape v aktivni plošči. Med ploščami lahko preklapljate z &Tab; ali s klikom na <guilabel
+>oznaki Informacije ali Skupne vrednosti</guilabel
+> ali z izbiro katere koli datoteke na plošči z miško. Kot vedno lahko privzete nastavitve zagona spremenite na <link linkend="konfigurator"
+>strani za zagon Konfiguratorja</link
+>, trenutno sejo pa nadzirate z <link linkend="settings-menu"
+>menijem z nastavitvami</link 
+>.</para>
+    <figure id="screenshot-listpanel" float="1">
+      <title
+>Plošča s seznamom</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="listpanel.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Plošče s seznamom</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <sect2 id="list_panel">
+      <title
+>Plošča s seznamom</title>
+      <indexterm>
+        <primary
+>Plošča</primary>
+        <secondary
+>Plošča seznama</secondary>
+      </indexterm>
+      <para
+>To je privzeta plošča, ki jo boste verjetno uporabljali večino časa. Ta plošča prikazuje vsebino ene mape, ki je lahko lokalna (del vaših nameščenih datotečnih sistemov, izvorna datoteka ali datoteke v arhivu) ali oddaljene datoteke (dostopne prek &FTP;, &NFS; ali Samba). Obstajata dva načina: <link linkend="view-menu"
+>Podroben pogled</link
+>, ki prikazuje imena datotek, velikost datoteke, datum in čas ustvarjanja ter njihove atribute. In <link linkend="view-menu"
+>Kratek pogled</link
+>, ki prikazuje samo imena datotek, število kratkih stolpcev lahko spremenite z desnim klikom na glavo <guilabel
+>Ime</guilabel
+>. Kopiraj/prilepi/izreži datoteko prek odložišča med &konqueror; in &krusader; <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> je podprt. <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>R</keycap
+></keycombo
+> preklaplja <guilabel
+>podokno s seznamom</guilabel
+> med vodoravnim in navpičnim načinom.</para>
+      <para
+>Na voljo so naslednji elementi:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Informacijska oznaka</guilabel
+> </emphasis
+>: prikazuje, koliko prostega prostora je fizično na voljo v datotečnem sistemu, zmogljivost datotečnega sistema in kje je datotečni sistem nameščen. Če informacija ni na voljo (najpogosteje v primeru oddaljenega datotečnega sistema), se namesto informacije izpiše sporočilo z razlogom nedostopnosti.</para>
+          <para id="media_button"
+><guibutton
+>Gumb za medije</guibutton
+> na levi strani <guilabel
+>oznake z informacijami</guilabel
+> prikaže seznam vseh razpoložljivih medijev, kjer lahko izberete želeni medij (particijo trdega diska, &DVD;, &USB; ključ, &etc;). Če pritisnete <keycombo
+>&Ctrl;<keycap
+>Return</keycap
+></keycombo
+>, ko je odprt <guibutton
+>meni Mediji</guibutton
+>, se označeni medij priklopi, ko je odklopljen, in odpne, ko je priklopljen. Kontekstni meni medija ponuja več možnosti, kot so <guilabel
+>Pripni</guilabel
+>, <guilabel
+>Odpri v novem zavihku</guilabel
+> &etc; <guibutton
+>Meni Mediji</guibutton
+> je <link linkend="konfig-panel-mediamenu"
+> nastavljiv</link
+>.</para>
+        </listitem>
+          <listitem>
+          <para
+><emphasis
+> <guilabel
+>Glave stolpcev</guilabel
+> </emphasis
+>: tukaj lahko po želji spremenite vrstni red datotek in map. Privzeti vrstni red razvrščanja je po <guilabel
+>Imenu</guilabel
+>. Vrstni red lahko takoj spremenite s klikom na eno od <guilabel
+>Glave stolpcev</guilabel
+>. Če želite obrniti vrstni red razvrščanja, drugič kliknite glavo stolpca. Na desni strani besedila glave stolpca se prikaže puščica, ki kaže smer razvrščanja (puščica navzgor = razvrščanje od A do Ž, puščica dol = razvrščanje od Ž do A). Privzeta <link linkend="useractions"
+>uporabniška dejanja</link
+> nastavijo vezavo tipk za glave stolpcev. Privzete <guilabel
+>Glave stolpcev</guilabel
+> so: <guilabel
+>Ime</guilabel
+>, <guilabel
+>Razširitev</guilabel
+>, <guilabel
+>Velikost</guilabel
+>, <guilabel
+>Spremenjeno</guilabel
+>, <guilabel
+>rwx</guilabel
+>. Vnaprej določene <link linkend="konfig-general"
+>Atomske razširitve</link
+>, kot je <literal role="extension"
+>.tar.gz</literal
+>, so prikazane kot en del v stolpcu <guilabel
+>Ext</guilabel
+> . Več izbirnih glav stolpcev je na voljo z &RMB;. Širino <guilabel
+>Glave stolpcev</guilabel
+> lahko spremenite z miško z enim klikom in premikanjem ločilne črte na želeno širino (pridržite miškino tipko). Obe <guilabel
+>Plošči s seznami</guilabel
+> si zapomnita vrstni red in širino stolpca. <guilabel
+>Naslove stolpcev</guilabel
+> je mogoče spremeniti in shraniti posamezno v vsako ploščo.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Seznam datotek</guilabel
+> </emphasis
+>: prikaže datoteke in mape v brskani mapi. <link linkend="quicksearch"
+>Iskalna vrstica</link
+> vam omogoča iskanje datotek tako, da vnesete njihova imena ali prvih nekaj znakov imena datoteke. S pritiskom &Enter; ali dvojni klik na datoteko bo odprl/izvedel to datoteko. Datoteke lahko izberete/prekličete izbor z miško, z &Ins; tipko ali <link linkend="edit-menu"
+>meni Uredi</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Oznaka skupnih vrednosti</guilabel
+> </emphasis
+>: izbiranje ali preklic izbire datotek bo spremenilo <emphasis
+> <guilabel
+>Oznaka skupnih vrednosti</guilabel
+> </emphasis
+>: izbiranje ali preklic izbire datotek bo spremenilo <emphasis
+> 
+> <guilabel
+>Oznaka skupnih vrednosti</guilabel
+> </emphasis
+>na dnu plošče, ki prikazuje, koliko datotek ste izbrali (in koliko skupnega prostora na disku uporabljajo) ter skupno uporabo datotek in diska trenutno mapo (v nasprotju z informacijsko oznako, ki prikazuje informacije za celoten datotečni sistem). Če mapa vsebuje veliko podmap, morda ne bo mogoče izpustiti &URL; na ploščo (na kateri so vidne samo mape), vendar &URL; namesto tega lahko spustite na <quote
+>Informacijsko oznako</quote
+> ali <quote
+>Skupno oznako</quote
+>. Ko je nastavljen <link linkend="view-menu"
+>filter po meri</link
+>, bo prikazana nastavitev, na primer: [*.cpp].</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Ko uporabljate <quote
+>&kde; privzete <link linkend="konfig-color"
+>barve</link
+></quote
+>, potem so izbrane datoteke prikazane v modri barvi, trenutna datoteka pa je obdana s pravokotnikom s finimi črtami. Privzeto je prikazana ikona glede na vrsto datoteke. Uporabite <link linkend="konfig-panel"
+>stran s ploščo konfiguratorja</link
+>, da spremenite privzeto konfiguracijo, da ustreza vašim individualnim potrebam.</para>
+      <para
+>Nekaj uporabnih <guilabel
+>podokna s seznamom</guilabel
+> <link linkend="key_bindings"
+>Vezanja tipk</link
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> bo osvežil ploščo.</para>
+        </listitem>
+        <listitem>
+          <para
+>Osredotočite se na datoteko ali mapo na levi plošči, pritisnite <keycombo action="simul"
+>&Ctrl; &Right;</keycombo
+> in desna plošča se spremeni: <itemizedlist>
+            <listitem>
+              <para
+>V datoteki: desna plošča dobi isto pot kot leva plošča.</para>
+            </listitem>
+            <listitem>
+              <para
+>V mapi: desna plošča odpre mapo, ki je osredotočena na levo ploščo.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Za desno ploščo: pritisnite <keycombo action="simul"
+>&Ctrl; &Left;</keycombo
+> in leva plošča se bo spremenila.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="sidebar">
+      <title
+>Stranska vrstica</title>
+      <indexterm>
+        <primary
+>Stranska vrstica</primary>
+        <secondary
+>Stranska vrstica (3. plošča)</secondary>
+      </indexterm>
+      <para
+>To je <quote
+>&krusader; je 3rd Hand</quote
+> ali 3rd Panel, kliknite gumb s puščico navzgor na desni strani <guilabel
+>Oznaka skupnega zneska</guilabel
+> ali <keycombo action="simul"
+>&Alt; &Down;</keycombo
+>, da odprete <guilabel
+>stransko vrstico</guilabel
+>. Ta plošča ima več načinov prikaza, ki jih lahko aktivirate s klikom na ustrezen gumb.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Podokno za predogled</guilabel
+> </emphasis
+>: daje predogled datoteke, ki je v fokusu (trenutno izbrana datoteka).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Drevesna plošča</guilabel
+> </emphasis
+>: uporablja se za hitro brskanje po drevesu lokalnih map. Ta plošča se obnaša kot plošča s seznami, vendar je naenkrat mogoče izbrati samo eno mapo in dvojni klik ali pritisk &Enter; v mapi bo to mapo odprl v aktivni plošči. Plošče v celoti podpirajo dejanja povleci in spusti (kopiraj, premakni, povezava).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Hitra plošča</guilabel
+> </emphasis
+>: uporablja se za hitro izbiro datotek, &eg; vnesite <literal role="extension"
+>*.png</literal
+> in kliknite gumb <guibutton
+>Pojdi</guibutton
+>. Gumb <quote
+>disketa</quote
+> shrani trenutno izbiro. Na voljo je tudi <quote
+>pogovorno okno za izbiro skupine</quote
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Podokno pregledovalnika</guilabel
+> </emphasis
+>: ogled besedilne datoteke, ogled slike &etc; Pogled sličic se ustvari vsakič, ko odprete <guilabel
+>Panel pregledovalnika</guilabel
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Plošča za uporabo diska</guilabel
+> </emphasis
+>: prikaže <link linkend="diskusage"
+>Uporabo diska</link
+> mape.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Postavitev stranske vrstice lahko spremenite z gumbom za vrtenje, ki se nahaja levo od puščičnega gumba navzdol na spodnjem delu okna &krusader; zavihek. Vsak klik na ta gumb premakne stransko vrstico na en položaj v zanki <quote
+>spodaj-levo-zgoraj-desno</quote
+>. </para>
+      <para
+>Po potrebi lahko spremenite velikost okna &eg; za boljši prikaz slike ali ogled vsebine datoteke. Kliknite gumb s puščico navzdol, da zaprete <guilabel
+>3rd Hand Panel</guilabel
+>.</para>
+    </sect2>
+    <sect2 id="folderhistory">
+      <title
+>Zgodovina map</title>
+      <para
+>Obe plošči si zapomnita nedavno obiskane mape. Kliknite gumb <guibutton
+>Zgodovina mape</guibutton
+> (simbol "watch"), da odprete seznam zgodovine map. Tukaj lahko hitro preklopite na predhodno obiskane mape. Trenutno izbrana mapa je označena. Ob vsakem novem zagonu &krusader; se seznam zgodovine napolni z elementi prejšnjega zagona (zgodovina se shrani).</para>
+    </sect2>
+  </sect1>
+  <sect1 id="cmdline_termemu">
+    <title
+>Emulator ukazne vrstice/terminala</title>
+    <para
+>Ta del <link linkend="gloss-gui"
+>&GUI;</link
+> ima lahko štiri načine: ukazna vrstica, terminalski emulator, prikaži oba in ne prikaži nobenega. Način delovanja lahko izberete ob zagonu z <link linkend="konfigurator"
+>strani za zagon konfiguratorja</link
+> ali za trenutno sejo z <link linkend="settings-menu"
+>menijem z nastavitvami</link
+>. </para>
+
+  <sect2 id="cmdline">
+    <title
+>Ukazna vrstica</title>
+
+    <figure id="screenshot-commandline" float="1">
+      <title
+>Ukazna vrstica</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="cmdline.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Ukazna vrstica</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Tradicionalni način ukazne vrstice ponuja eno vrstico vnosa za vnos ukazov, vsebuje pa tudi tri gumbe:</para>
+     <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>zgodovina ukazov</guibutton
+> (puščica navzdol) za hitro odpiranje prejšnjih uporabljenih ukazov </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>Razširjevalnik uporabniških dejanj</guibutton
+> (zeleni gumb plus) za dodajanje enostavnih <link linkend="useractions"
+>oznak mest za uporabniške akcije</link
+> </para>
+        </listitem>
+
+        <listitem>
+          <para
+>Gumb <guibutton
+>zagon v terminalskem načinu</guibutton
+> (ikona konzole) z naslednjimi možnostmi: <itemizedlist>
+          <listitem
+><para
+>Začni in pozabi</para>
+          </listitem>
+
+          <listitem
+><para
+>Prikaz ločenega standardnega izhoda in izhoda napak</para>
+           </listitem>
+
+          <listitem
+><para
+>Prikaz mešanega standardnega izhoda in izhoda napak</para>
+          </listitem>
+
+           <listitem
+><para
+>Začnite v novem terminalu</para>
+          </listitem>
+
+           <listitem
+><para
+>Pošlji v vgrajeni terminalski emulator</para>
+           </listitem>
+
+         </itemizedlist>
+          </para>
+
+        </listitem>
+
+
+     </itemizedlist>
+    <para
+>Ko začnete vnašati svoje ukaze, bo funkcija samodokončanja ukazne vrstice ponudila svoje ponudbe glede na to, kar izberete v &systemsettings;. Če želite spremeniti način delovanja samodokončanja v trenutnem &krusader; seje, <keycap
+>desni klik</keycap
+> na ukazno vrstico in jo spremenite. Na levi strani vnosne vrstice najdete lokalno pot, na katero trenutno kaže aktivna plošča. Na tej poti se bo izvršil vaš ukaz. Če v ukazno vrstico vnesete <userinput
+> <command
+>cd</command
+> <replaceable
+> &lt;mapa&gt;</replaceable
+> </userinput
+>, bo aktivna plošča pokazala na to mapo. Kliknite <link linkend="cmdline_keybindings"
+>tukaj</link
+> za ogled povezav tipk ukazne vrstice.</para>
+</sect2>
+
+  <sect2 id="termemu">
+    <title
+>Emulator terminala</title>
+
+    <figure id="screenshot-terminalemulator" float="1">
+      <title
+>Emulator terminala</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="terminalEmu.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Emulator terminala</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Način terminalskega emulatorja je pravzaprav majhna konzola in deluje kot ena. Aktivno mapo v terminalu lahko spremenite z ukazom <userinput
+> <command
+>cd</command
+> </userinput
+>. Emulator terminala bo sledil mapi aktivne plošče. Datoteko lahko povlečete iz <interface
+>podokna seznama</interface
+> in ime datoteke bo prilepljeno v terminalski emulator. Če povlečete več datotek, bodo imena prilepljena v terminalski emulator. Celozaslonski terminalski emulator je mogoče uporabiti, ko je <link linkend="konfig-general-general"
+>konfiguriran</link
+> ali <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>F</keycap
+></keycombo
+> preklaplja med običajnim in celozaslonskim načinom. Če je ukazna vrstica skrita, pritisnite <keycombo action="simul"
+>&Ctrl; <keycap
+>Puščica navzdol</keycap
+></keycombo
+> za fokusiranje terminalskega emulatorja. <keycombo action="simul"
+>&Ctrl; <keycap
+>Puščica navzgor</keycap
+></keycombo
+> vas vrne navzdol. <keycombo action="simul"
+>&Ctrl;&Enter;</keycombo
+> in <keycombo action="simul"
+>&Ctrl; &Shift; &Enter;</keycombo
+> prilepite ime datoteke. Emulator lahko zaprete tako, da vnesete <userinput
+> <command
+>exit</command
+> </userinput
+>.</para>
+    <para
+>Kliknite <link linkend="termemu_keybindings"
+>tukaj</link
+> za ogled povezav tipk terminalskega emulatorja.</para>
+    </sect2>
+
+  </sect1>
+  <sect1 id="fnkeys">
+    <title
+>Vrstica s funkcijskimi tipkami (FN)</title>
+    <figure id="screenshot-fnkeys" float="1">
+      <title
+>Vrstica s funkcijskimi tipkami (FN)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="fnkeys.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Vrstica s funkcijskimi tipkami (FN)</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Ta vrstica je dobila ime po funkcijskih tipkah (FN), ki jih predstavlja. Za vsak gumb v tej vrstici je ustrezna funkcijska tipka, ki izvaja isto dejanje. Ta vrstica izhaja iz zasnove prvih upraviteljev datotek z dvema ploščama in tipke FN običajno delujejo na enak način z dvema spremembama: tipka <keycap
+>F2</keycap
+> se uporablja za preimenovanje datotek in tipka <keycap
+>F9</keycap
+> bo odprla terminal na zadnji lokalni poti, na katero je kazala aktivna plošča. <guilabel
+>Mkdir</guilabel
+> <keycap
+>F7</keycap
+> (prevedeno ime ukaza <command
+>mkdir</command
+>) lahko sproti ustvarja celotna drevesa map &eg; <literal
+>foo/bar/test</literal
+>. Izberete lahko, ali želite prikazati <link linkend="faqu_resize"
+>ali ne</link
+> <guilabel
+>vrstico s tipkami FN</guilabel
+> ob zagonu &krusader; prek <link linkend="konfigurator"
+>strani za zagon Konfiguratorja</link
+>, njegovo uporabo v trenutni seji pa lahko preklapljate z <link linkend="settings-menu"
+>menijem z nastavitvami</link
+>. Dejanja in <link linkend="key_bindings"
+>Key-Bindings</link
+>, ki jih izvajajo funkcijske tipke, je mogoče konfigurirati od različice 1.51, ostali bodo aktivni z ali brez prikazane <guilabel
+>vrstice s tipkami FN</guilabel
+>.</para>
+  </sect1>
+  <sect1 id="folder-tabs">
+    <title
+>Zavihki mape</title>
+    <figure id="screenshot-tabbedbrowsing" float="1">
+      <title
+>Zavihki mape</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="tabbed_browsing.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Zavihki mape</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Z <guibutton
+>Zavihki mape</guibutton
+> lahko hitro preklopite na več map; vsaka plošča ima svoje <guibutton
+>Zavihke mape</guibutton 
+>. Položaji <guibutton
+>Zavihki mape</guibutton
+> se shranijo, ko zaprete &krusader;. Če želite preklapljati med <guibutton
+>zavihki map</guibutton
+>, jih kliknite z miško. Stisnjeni <guibutton
+>Zavihki mape</guibutton
+> imajo namige za prikaz celotne poti. Na voljo so naslednje operacije <guibutton
+>Zavihki map</guibutton
+>:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>Če želite <action
+>odpreti nov zavihek</action
+> in obdržati trenutni zavihek odprt: <keycap
+>Z desno tipko miške kliknite</keycap
+> na mapo in izberite <guimenuitem
+>Odpri v novem zavihku</guimenuitem
+> ali kliknite na skrajni desni gumb v vrstici z zavihki.</para>
+      </listitem>
+      <listitem>
+        <para
+>Če želite <action
+>zakleniti zavihek</action
+>, <keycap
+>kliknite z desno tipko miške</keycap
+> in izberite <guimenuitem
+>Zakleni zavihek</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Če želite <action
+>pripeti zavihek</action
+>, <keycap
+>kliknite z desno miškino tipko</keycap
+> in izberite <guimenuitem
+>Pripni zavihek</guimenuitem
+>. Pripeti zavihek je zaklenjen zavihek, vendar z začasno spremenljivim naslovom. Ob ponovni aktivaciji zavihka se ponastavi na pripet naslov. Če želite odpeti pripeti zavihek, ga kliknite z desno tipko miške in izberite element <guimenuitem
+>Odpni zavihek</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Če želite <action
+>podvojiti zavihek</action
+>: <keycap
+>Desni klik</keycap
+> na zavihek mape in izberite <guimenuitem
+>Podvoji trenutni zavihek</guimenuitem
+> ali uporabite <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+>. </para>
+      </listitem>
+      <listitem>
+        <para
+>Če želite <action
+>zapreti zavihek</action
+> (razen za zadnji zavihek): <keycap
+>Desni klik</keycap
+> na zavihek in izberite <guimenuitem
+>Zapri trenutni zavihek</guimenuitem
+> ali uporabite &MMB; , ali uporabite gumb <guibutton
+>rdeči križ</guibutton
+> zavihka Mapa ali uporabite <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Če želite <action
+>spremeniti zavihke</action
+>: <keycombo action="simul"
+>&Ctrl; <keycap
+>,</keycap
+></keycombo
+> ali <keycombo action="simul"
+>&Ctrl; <keycap
+>.</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Če želite <action
+>odpreti trenutno mapo v novem zavihku</action
+>: uporabite <keycombo action="simul"
+> &Ctrl;&Alt;&Enter;</keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Če želite <action
+>zapreti vse druge zavihke</action
+>, <keycap
+>kliknite z desno miškino tipko</keycap
+> in izberite <guimenuitem
+>Zapri neaktivne zavihke</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Če želite <action
+>zapreti podvojene zavihke</action
+>, <keycap
+>kliknite z desno miškino tipko</keycap
+> in izberite <guimenuitem
+>Zapri podvojene zavihke</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>Če želite zavihek premakniti na drugi plošči, ga povlecite na območje druge plošče z &LMB; (miškin kazalec bo postal puščica, ki kaže levo ali desno) in ga spustite. Lahko tudi pritisnete <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+>.</para>
+      </listitem>
+</itemizedlist>
+  </sect1>
+  <sect1 id="ui_buttons">
+    <title
+>Gumbi</title>
+    <para
+>Na voljo je več gumbov za hitre operacije: <link linkend="main_toolbar"
+>Glavna orodna vrstica</link
+>, <link linkend="actions_toolbar"
+>Orodna vrstica dejanj</link
+>, <link linkend="panel_toolbar"
+>Orodna vrstica plošče</link
+>, <link linkend="location_toolbar"
+>Orodna vrstica lokacije</link
+>, <link linkend="list_panel"
+>Mediji</link
+>, <link linkend="folderhistory"
+>Zgodovina map</link
+>, <link linkend="bookman"
+>Zaznamki</link
+>, <link linkend="folder-tabs"
+>Zavihek</link
+>, <link linkend="cmdline"
+>Ukazna vrstica</link
+>, <link linkend="fnkeys"
+>Funkcija ključi</link
+>.</para>
+  </sect1>
+</chapter>

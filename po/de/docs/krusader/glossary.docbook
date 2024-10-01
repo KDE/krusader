@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <glossary id="glossary">
   <indexterm>
     <primary
@@ -59,8 +71,12 @@
     <glossdef>
       <para
 >Dies ist ein binäres Dateiformat, das von <ulink url="https://en.wikipedia.org/wiki/Debian"
-> &Debian;</ulink
-> und &Debian;-basierten Distributionen verwendet wird. Es ist auch die Erweiterung einer Installationsdatei, die speziell für diese Distributionen erzeugt wurde, &eg; <filename
+> <trademark class="registered"
+>Debian</trademark
+></ulink
+> and <trademark class="registered"
+>Debian</trademark
+>-basierten Distributionen verwendet wird. Es ist auch die Erweiterung einer Installationsdatei, die speziell für diese Distributionen erzeugt wurde, &eg; <filename
 >krusader_1.70.1-1_amd64.deb</filename
 >. Vereinfacht gesagt handelt es sich um ein spezielles Archiv mit allen Programmdateien und deren vorgesehenen Speicherort im System.</para>
     </glossdef>
@@ -185,7 +201,7 @@
 >Alle Funktionen von &krusader; erreichen Sie in der Menüleiste, Sie können aber auch eine Tastenkombination für Funktionen zuweisen. Das Arbeiten mit der <link linkend="keyboard-commands"
 >Tastatur</link
 > ist erheblich schneller als mit der Menüleiste oder der <link linkend="gloss-gui"
->&GUI;</link
+>GUI</link
 >. Die Benutzung der <link linkend="keyboard-commands"
 >Tastatur</link
 > ist ein wichtiges Merkmal der <link linkend="gloss-ofm"
@@ -206,7 +222,7 @@
 ><application
 >GNOME</application
 ></ulink
->. Beide basieren auf den gleichen Konzepten wie &Microsoft;'s Object Linking and Embedding. Wenn Sie &eg; in &krusader; eine &PDF;-Datei betrachten, wird &okular; im Betrachter von &krusader; benutzt.</para>
+>. Beide basieren auf den gleichen Konzepten wie &Microsoft;'s Object Linking and Embedding. Wenn Sie &eg; in &krusader; eine PDF-Datei betrachten, wird &okular; im Betrachter von &krusader; benutzt.</para>
     </glossdef>
   </glossentry>
   <glossentry id="gloss-kio">
@@ -240,9 +256,7 @@
       <para
 ><ulink url="http://www.softpanorama.org/OFM/index.shtml"
 > Orthodox File Manager</ulink
->, auch unter dem Namen <quote
->Commanders</quote
-> bekannt. Mitglieder dieser Gruppe von Dateiverwaltungsprogrammen benutzen die einfache, aber sehr leistungsfähige Benutzerschnittstelle, die direkt vom <ulink url="https://de.wikipedia.org/wiki/Norton_Commander"
+>, auch unter dem Namen „Commanders“ bekannt. Mitglieder dieser Gruppe von Dateiverwaltungsprogrammen benutzen die einfache, aber sehr leistungsfähige Benutzerschnittstelle, die direkt vom <ulink url="https://de.wikipedia.org/wiki/Norton_Commander"
 > Norton Commander</ulink
 > (NC) abgeleitet ist.</para>
     </glossdef>
@@ -336,8 +350,8 @@
 >Dateiverwaltungsprogrammen mit zweispaltiger Ansicht</link
 > ist das <link linkend="vfs"
 >Virtuelle Dateisystem (VFS)</link
->, eine abstrakte Ebene über allen Arten von archivierten Informationen wie ZIP-Dateien, &FTP;-Servern, TAR-Archiven, &NFS;-Dateisystemen, &Samba;-Freigaben, ISO &CD;/&DVD;-Abbilder, RPM-Pakete, &etc; Benutzer können mit VFS auf alle Informationen in diesen vielen unterschiedlichen Arten von Dateisystemen zugreifen, genauso wie auf normale Unterordner &krusader; unterstützt mehrere <link linkend="vfs"
->virtuelle Dateisysteme (VFS)</link
+>, eine abstrakte Ebene über allen Arten von archivierten Informationen wie ZIP-Dateien, &FTP;-Servern, TAR-Archiven, NFS-Dateisystemen, SAMBA-Freigaben, ISO CD/DVD-Abbilder, RPM-Pakete, &etc; Benutzer können mit VFS auf alle Informationen in diesen vielen unterschiedlichen Arten von Dateisystemen zugreifen, genauso wie auf normale Unterordner &krusader; unterstützt mehrere <link linkend="vfs"
+>virtuelle Dateisysteme</link
 >.</para>
     </glossdef>
   </glossentry>

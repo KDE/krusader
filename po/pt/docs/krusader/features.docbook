@@ -27,9 +27,13 @@
   <para
 >As funcionalidades e melhorias mais importantes são aqui realçadas. Seria demasiado extensa esta lista se fossem incluídas <emphasis
 >todas</emphasis
-> as funcionalidades e melhorias. Irá descobrir ainda mais funcionalidades nesta documentação e no ficheiro <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+> as funcionalidades e melhorias. Irá descobrir ainda mais funcionalidades nesta documentação e nos ficheiros <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
 ><filename
 >ChangeLog</filename
+></ulink
+> e <ulink url="https://commits.kde.org/krusader?path=NEWS"
+><filename
+>NEWS</filename
 ></ulink
 >.</para>
 </note>
@@ -92,7 +96,7 @@
 >Ligações Remotas</link
 >, <link linkend="archives"
 >pacotes</link
->, resultados de pesquisas, sincronização (desactivada na altura da compilação por omissão).</para>
+>, resultados de pesquisas, sincronização.</para>
           </listitem>
           <listitem>
             <para
@@ -135,8 +139,8 @@
           <listitem>
             <para
 ><link linkend="synchronizer"
->Sincronização de Pastas</link
-> (desactivada na altura da compilação por omissão)</para>
+>Sincronizar Pastas</link
+></para>
           </listitem>
           <listitem>
             <para>
@@ -246,7 +250,7 @@
             <para
 ><link linkend="krusearcher"
 >Filtros de selecção</link
-> usados &eg; na Sincronização (desactivada na altura da compilação por omissão) e no KruSearcher.</para>
+> usados &eg; na Sincronização e no KruSearcher.</para>
           </listitem>
           <listitem>
             <para>
@@ -372,13 +376,6 @@
 >Acções do Utilizador</link
 ></para>
         </listitem>
-<!--        <listitem>
-          <para
-><link linkend="javascript_console"
->JavaScript console</link
-></para>
-	</listitem
-> disabled due to KrJS does not compile (cannot find kjsembed from kdelibs-->
         <listitem>
           <para
 ><link linkend="konfig-color"
@@ -394,7 +391,7 @@
       </itemizedlist>
 Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="https://store.kde.org"
 >store.kde.org</ulink
->.</para>
+>. </para>
     </listitem>
   </itemizedlist>
 </para>
@@ -508,7 +505,7 @@ Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="ht
       <para
 >Melhorias na <link linkend="synchronizer"
 >Sincronização</link
-> e tarefas paralelas para os servidores de &FTP; lentos (agora desactivada na altura da compilação por omissão).</para>
+> e tarefas paralelas para os servidores de &FTP; lentos.</para>
     </listitem>
     <listitem>
       <para
@@ -555,7 +552,6 @@ Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="ht
     </listitem>
   </itemizedlist>
 </para>
-
 
 <para>
   <itemizedlist>
@@ -608,18 +604,6 @@ Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="ht
       <para
 >A barra de pesquisa, selecção e filtragem rápidas suporta as expressões regulares para a pesquisa de ficheiros. </para>
     </listitem>
-    <listitem>
-      <para
->Para mais funcionalidades, leia por favor os ficheiros <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
-><filename
->ChangeLog</filename
-></ulink
-> e <ulink url="https://commits.kde.org/krusader?path=SVNNEWS"
-><filename
->SVNNEWS</filename
-></ulink
->.</para>
-    </listitem>
   </itemizedlist>
 </para>
 
@@ -646,6 +630,32 @@ Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="ht
   </itemizedlist>
 </para>
 
+<para>
+  <itemizedlist>
+    <title
+>Novas funcionalidades na versão &krusader;-2.7.0 "Paz de Espírito"</title>
+    <listitem>
+      <para
+>Pesquisa Rápida no menu de Favoritos. </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-general"
+>Páginas fixas</link
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Dicas com informações dos ficheiros quando passar o cursor sobre o nome de um ficheiro. </para>
+    </listitem>
+    <listitem>
+      <para
+>Opções estendidas para o Painel da Árvore na <link linkend="sidebar"
+>Barra Lateral</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
 
 <para
 ><note
@@ -656,13 +666,13 @@ Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="ht
 >Git</link
 >, é possível que as últimas funcionalidades novas não estejam ainda no "Manual do Krusader". Leia por favor o ficheiro <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
 >Changelog</ulink
-> 'online' ou no código-fonte do &krusader;, de modo a descobrir mais sobre as funcionalidades novas. Para uma breve descrição, leia por favor o ficheiro <ulink url="https://commits.kde.org/krusader?path=SVNNEWS"
->SVNNEWS</ulink
+> 'online' ou no código-fonte do &krusader;, de modo a descobrir mais sobre as funcionalidades novas. Para uma breve descrição, leia por favor o ficheiro <ulink url="https://commits.kde.org/krusader?path=NEWS"
+>NEWS</ulink
 > 'online' ou no código do &krusader;. As <link linkend="faqg_wish"
 >reacções dos utilizadores</link
 > e os <link linkend="faqg_bug_report"
 >Relatórios de erros</link
 > são sempre bem-vindos! </para
 ></note
-></para
-></chapter>
+></para>
+</chapter>

@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="archives">
   <title
 >Archiv-Verwaltung</title>
@@ -35,9 +47,13 @@
 >.odw</literal
 >. Mit der &Enter;taste wird das <trademark class="registered"
 >OpenOffice</trademark
->-Dokument geöffnet und mit der Taste &Right; das Archiv. Ein anderes Beispiel ist J2EE, dabei ist die Erweiterung <literal role="extension"
+>-Dokument geöffnet und mit der Taste <keycap
+>Pfeilrechts</keycap
+> das Archiv. Ein anderes Beispiel ist J2EE, dabei ist die Erweiterung <literal role="extension"
 >.jar</literal
-> tatsächlich ein Zip-Archive. Da die unterstützten Archivarten von &krusader; automatisch erkannt werden, können Sie mit der Taste &Right; geöffnet werden, sogar wenn sie einen anderen &MIME;typ haben: Beachten Sie, dass es beim Durchsehen von Archiven einige Einschränkungen gibt: <itemizedlist>
+> tatsächlich ein Zip-Archive. Da die unterstützten Archivarten von &krusader; automatisch erkannt werden, können Sie mit der Taste <keycap
+>Pfeilrechts</keycap
+> geöffnet werden, sogar wenn sie einen anderen &MIME;-Typ haben: Beachten Sie, dass es beim Durchsehen von Archiven einige Einschränkungen gibt: <itemizedlist>
       <listitem>
         <para
 >Es können nicht alle Funktionen in allen Archivtypen ausgeführt werden, &ie; Dateien in „ace“- oder „rar“-Archiven lassen sich nicht löschen.</para>
@@ -56,9 +72,7 @@
       </listitem>
       <listitem>
         <para
->Packen und Entpacken sind <quote
->blockierende</quote
-> Vorgänge, die einen Fortschrittsdialog anzeigen. Das kann sich in Zukunft möglicherweise ändern, da mehr Vorgänge im Hintergrund ausgeführt werden sollen.</para>
+>Packen und Entpacken sind „blockierende“ Vorgänge, die einen Fortschrittsdialog anzeigen. Das kann sich in Zukunft möglicherweise ändern, da mehr Vorgänge im Hintergrund ausgeführt werden sollen.</para>
       </listitem>
     </itemizedlist
 ></para>
@@ -83,9 +97,7 @@
     <para
 >Wenn Sie nur einen Teil eines Archivs entpacken möchten, dann <link linkend="browsing-archives"
 >durchsuchen</link
-> Sie das Archiv und kopieren die Dateien, die Sie entpacken möchten, an den neuen Ort wie bei <quote
->normalen</quote
-> Dateien. Beachten Sie, dass das entpacken eines durchsuchten Archivs mehr Zeit benötigt (Entpacken jeder einzelnen Datei) als das Entpacken des gesamten Archivs mit der ersten Methode. Das Entpacken kann in eine <link linkend="queue"
+> Sie das Archiv und kopieren die Dateien, die Sie entpacken möchten, an den neuen Ort wie bei „normalen“ Dateien. Beachten Sie, dass das entpacken eines durchsuchten Archivs mehr Zeit benötigt (Entpacken jeder einzelnen Datei) als das Entpacken des gesamten Archivs mit der ersten Methode. Das Entpacken kann in eine <link linkend="queue"
 >Warteschlangen</link
 > eingestellt werden.</para>
   </sect2>
@@ -107,9 +119,7 @@
 >mit den unterstützten Dateierweiterungen</link
 >.</para>
     <para
->Um Dateien zu einem vorhandenen Archiv hinzuzufügen, öffnen Sie das Archiv in einem und die zu kopierenden Dateien in dem anderen Dateifenster. Kopieren Sie dann die Dateien in das Archiv genauso wie Sie Dateien in einen <quote
->normalen</quote
-> Ordner kopieren. Das Packen kann in eine <link linkend="queue"
+>Um Dateien zu einem vorhandenen Archiv hinzuzufügen, öffnen Sie das Archiv in einem und die zu kopierenden Dateien in dem anderen Dateifenster. Kopieren Sie dann die Dateien in das Archiv genauso wie Sie Dateien in einen „normalen“ Ordner kopieren. Das Packen kann in eine <link linkend="queue"
 >Warteschlangen</link
 > eingestellt werden.</para>
   </sect2>

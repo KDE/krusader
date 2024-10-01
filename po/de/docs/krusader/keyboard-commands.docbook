@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <chapter id="keyboard-commands">
   <title
 >Tastaturbefehle</title>
@@ -23,20 +35,24 @@
 >Tastatur-Profile</link
 > benutzen können, um in &krusader; schnell zu anderen Belegungen zu wechseln, &eg; von anderen Commandern, oder Sie können einfach Ihre eigenen Kurzbefehle erstellen.</para>
     <para
->Nach dem Start von &krusader; können Sie die Tastaturbefehle verwenden. Benutzen Sie <keycombo action="simul"
+>Nach dem <link linkend="starting-krusader"
+>Start</link
+> von &krusader; können Sie die Tastaturbefehle verwenden. Benutzen Sie <keycombo action="simul"
 >&Ctrl;<keycap
 >L</keycap
 ></keycombo
 > um zur <link linkend="list_panel"
 >Adressleiste</link
 > zu gehen, wo Sie den gewünschte Ordner eingeben können. Mit <keycombo action="simul"
->&Ctrl;&Down;</keycombo
+>&Ctrl;<keycap
+>Pfeil abwärts</keycap
+></keycombo
 > gehen Sie zum <link linkend="termemu"
 >Terminal-Emulator</link
-> und Sie können jeden gewünschten Befehl eingeben, wenn das <link linkend="konfig-startup"
->Terminal angezeigt</link
-> wird. Verwenden Sie <keycombo action="simul"
->&Ctrl;&Up;</keycombo
+> und Sie können jeden gewünschten Befehl eingeben. Verwenden Sie <keycombo action="simul"
+>&Ctrl;<keycap
+>Pfeil aufwärts</keycap
+></keycombo
 >, um zurück zu, aktiven Dateifenster zu gehen. Möchten Sie zu einem Ordner oder einer Datei gehen, die mit <literal
 >f</literal
 > anfängt,  dann drücken Sie einfach das <keycap
@@ -398,7 +414,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; &Left;</keycombo>
+>&Shift; <keycap
+>Pfeil links</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -412,7 +430,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; &Right;</keycombo>
+>&Shift;<keycap
+>Pfeil rechts</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -533,12 +553,14 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Home;</keycombo>
+>&Alt; <keycap
+>Pos1</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
               <para
->Zum persönlichen Ordner</para>
+>Persönlicher Ordner</para>
             </entry>
           </row>
           <row>
@@ -559,7 +581,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Left;</keycombo>
+>&Alt; <keycap
+>Pfeil links</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -573,7 +597,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Right;</keycombo>
+>&Alt; <keycap
+>Pfeil rechts</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -587,7 +613,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Down;</keycombo>
+>&Alt; <keycap
+>Pfeil runter</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -732,9 +760,7 @@
             <entry>
               <para>
                 <link linkend="panel_toolbar"
->Dateifenster abgleichen (<quote
->Gleich (=)</quote
->)</link>
+>Dateifenster abgleichen</link>
               </para>
             </entry>
           </row>
@@ -976,6 +1002,22 @@
 >.</para>
             </entry>
           </row>
+          <!-- TODO: Is this entry gone ????
+<row>
+<entry
+><para
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>the inactive panel gets the same path as the active panel</para
+></entry
+></row>
+-->
           <row>
             <entry>
               <para>
@@ -1168,7 +1210,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Down;</keycombo>
+>&Ctrl; <keycap
+>Pfeil runter</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1182,7 +1226,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Up;</keycombo>
+>&Ctrl;<keycap
+>Pfeil hoch</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1196,7 +1242,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Up;</keycombo>
+>&Ctrl;<keycap
+>Pfeil hoch</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1210,7 +1258,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Home;</keycombo>
+>&Ctrl; <keycap
+>Pos 1</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1222,15 +1272,21 @@
             <entry>
               <para
 ><keycombo action="simul"
->&Ctrl; &Left;</keycombo
-> or <keycombo
-> &Right; </keycombo
+>&Ctrl; <keycap
+>Pfeil links</keycap
+></keycombo
+> oder <keycombo
+> <keycap
+>Pfeil rechts</keycap
+> </keycombo
 ></para>
             </entry>
             <entry>
               <para
 >Aktivieren Sie eine Datei oder einen Ordner im linken linken Dateifenster, drücken Sie <keycombo action="simul"
->&Ctrl; &Left;</keycombo
+>&Ctrl; <keycap
+>Pfeil links</keycap
+></keycombo
 > und das rechte <link linkend="panels"
 >Dateifenster</link
 > ändert sich: <itemizedlist
@@ -1246,7 +1302,9 @@
 > </listitem
 > </itemizedlist
 >Für das rechte Dateifenster: Drücken Sie <keycombo action="simul"
->&Ctrl; &Right;</keycombo
+>&Ctrl; <keycap
+>Pfeil rechts</keycap
+></keycombo
 > und das linke Dateifenster wird geändert.</para>
             </entry>
           </row>
@@ -1266,7 +1324,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &PgUp;</keycombo>
+>&Ctrl; <keycap
+>Bild auf</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1329,6 +1389,22 @@
                 <link linkend="remote-connections"
 >Entfernte Verbindung trennen.</link>
               </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Aktiviert die <link linkend="remote-connections"
+>Suchleiste</link
+>, um Einträge im aktiven Unterfenster zu finden. </para>
             </entry>
           </row>
           <row>
@@ -1415,7 +1491,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; &Left;</keycombo>
+>&Ctrl;&Shift;<keycap
+>Pfeil links</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1429,7 +1507,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; &Right;</keycombo>
+>&Ctrl;&Shift;<keycap
+>Pfeil rechts</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1443,7 +1523,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; &Up;</keycombo>
+>&Ctrl;&Shift;<keycap
+>Pfeil hoch</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1457,7 +1539,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; &Down;</keycombo>
+>&Ctrl;&Shift;<keycap
+>Pfeil runter</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1465,30 +1549,6 @@
 >Schließt den <link linkend="cmdline"
 >Terminal-Emulator</link
 >, unabhängig davon, ob die Befehlszeile angezeigt wird oder nicht.</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul"
->&Ctrl;&Shift; &PgUp;</keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para
->Verschiebt das aktuelle Unterfenster nach links.</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul"
->&Ctrl;&Shift; &PgDn;</keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para
->Verschiebt das aktuelle Unterfenster nach rechts.</para>
             </entry>
           </row>
         </tbody>
@@ -1502,22 +1562,24 @@
     <informaltable>
       <tgroup cols="2">
         <tbody>
-          <row>
+<!--          <row>
             <entry>
               <para>
-                <keycombo action="simul"
->&Ctrl;&Alt; <keycap
->E</keycap
+                <keycombo action="simul">
+                &Ctrl;&Alt;
+                <keycap
+>J</keycap
 ></keycombo>
               </para>
             </entry>
             <entry>
               <para
-><link linkend="cmdline"
->Terminal-Emulator</link
-> anzeigen/ausblenden.</para>
+><link linkend="javascript_console"
+>JavaScript console</link
+></para>
             </entry>
-          </row>
+	  </row
+> disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
           <row>
             <entry>
               <para>
@@ -1582,7 +1644,25 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Alt; &Left;</keycombo>
+>&Ctrl;&Alt; <keycap
+>T</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="cmdline"
+>Terminal-Emulator</link
+> anzeigen/ausblenden.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>Pfeil links</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1596,7 +1676,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Alt; &Right;</keycombo>
+>&Ctrl;&Alt;<keycap
+>Pfeil rechts</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1679,7 +1761,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &PgDn;</keycombo>
+>&Ctrl; <keycap
+>Bild ab</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1802,7 +1886,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
+>&Shift; <keycap
 >Entf</keycap
 ></keycombo>
               </para>
@@ -1810,14 +1894,16 @@
             <entry>
               <para>
                 <link linkend="basic"
->In Papierkorb verschieben</link>
+>Unwiderruflich löschen</link>
               </para>
             </entry>
           </row>
           <row>
             <entry>
-              <para
->&Space; </para>
+              <para>
+                <keycap
+>Leertaste</keycap>
+              </para>
             </entry>
             <entry>
               <para
@@ -1838,12 +1924,16 @@
           </row>
           <row>
             <entry>
-              <para
->&Ins; </para>
+              <para>
+                <keycap
+>Einfg</keycap>
+              </para>
             </entry>
             <entry>
               <para
->Die gleiche Funktion wie die &Space; und <link linkend="selecting-files"
+>Die gleiche Funktion wie die <keycap
+>Leertaste</keycap
+>und <link linkend="selecting-files"
 >geht eine Position nach unten und schaltet die nächste Datei um</link
 >.</para>
             </entry>
@@ -1862,8 +1952,10 @@
           </row>
           <row>
             <entry>
-              <para
->&Home; </para>
+              <para>
+                <keycap
+>Pos1</keycap>
+              </para>
             </entry>
             <entry>
               <para
@@ -1872,8 +1964,10 @@
           </row>
           <row>
             <entry>
-              <para
->&End; </para>
+              <para>
+                <keycap
+>Ende</keycap>
+              </para>
             </entry>
             <entry>
               <para
@@ -1899,7 +1993,11 @@
           <row>
             <entry>
               <para
->&Up; und &Down;</para>
+><keycap
+>Pfeil hoch</keycap
+> und <keycap
+>Pfeil runter</keycap
+></para>
             </entry>
             <entry>
               <para
@@ -1924,7 +2022,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Up;</keycombo>
+>&Ctrl;<keycap
+>Pfeil hoch</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1936,7 +2036,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Down;</keycombo>
+>&Ctrl; <keycap
+>Pfeil runter</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -1968,6 +2070,7 @@
 >Fügt den Namen der aktuellen Datei oder des aktuellen Ordners mit vollständigem Pfad in die Befehlszeile an der aktuellen Position ein.</para>
             </entry>
           </row>
+          <!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
         </tbody>
       </tgroup>
     </informaltable>
@@ -2018,7 +2121,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Up;</keycombo>
+>&Ctrl;<keycap
+>Pfeil hoch</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2030,7 +2135,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; &Down;</keycombo>
+>&Ctrl; <keycap
+>Pfeil runter</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2056,7 +2163,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; &Ins;</keycombo>
+>&Shift; <keycap
+>Einfg</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2064,6 +2173,8 @@
 >Aus der Zwischenablage einfügen</para>
             </entry>
           </row>
+
+          <!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
         </tbody>
       </tgroup>
     </informaltable>
@@ -2098,7 +2209,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Down;</keycombo>
+>&Alt; <keycap
+>Pfeil runter</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2110,7 +2223,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Up;</keycombo>
+>&Alt; <keycap
+>Pfeil hoch</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2122,7 +2237,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Left;</keycombo>
+>&Alt; <keycap
+>Pfeil links</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2134,7 +2251,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; &Right;</keycombo>
+>&Alt; <keycap
+>Pfeil rechts</keycap
+></keycombo>
               </para>
             </entry>
             <entry>
@@ -2232,7 +2351,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Meta; <keycap
+><keycap
+>Meta</keycap
+> <keycap
 >A</keycap
 > </keycombo>
               </para>
@@ -2246,7 +2367,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Meta; <keycap
+><keycap
+>Meta</keycap
+> <keycap
 >1</keycap
 > </keycombo>
               </para>
@@ -2260,7 +2383,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
+><keycap
+>Meta</keycap
+> <keycap
 >2</keycap
 > </keycombo>
               </para>
@@ -2274,7 +2399,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Meta; <keycap
+><keycap
+>Meta</keycap
+> <keycap
 >3</keycap
 > </keycombo>
               </para>
@@ -2288,7 +2415,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Meta; <keycap
+><keycap
+>Meta</keycap
+> <keycap
 >4</keycap
 > </keycombo>
               </para>
@@ -2302,7 +2431,9 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Meta; <keycap
+><keycap
+>Meta</keycap
+> <keycap
 >F5</keycap
 ></keycombo>
               </para>
@@ -2347,13 +2478,11 @@
       </listitem>
       <listitem>
         <para
->Modul <menuchoice
-><guimenu
->Arbeitsbereich</guimenu
-><guisubmenu
->Globale Kurzbefehle</guisubmenu
-></menuchoice
-> der &plasma; &systemsettings;</para>
+>&systemsettings; -&gt; <guilabel
+>Allgemeines Erscheinungsbild und Verhalten</guilabel
+> -&gt; <guilabel
+>Kurzbefehle und Gestensteuerung</guilabel
+></para>
       </listitem>
       <listitem>
         <para

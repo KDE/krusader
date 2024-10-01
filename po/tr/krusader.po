@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
 "PO-Revision-Date: 2024-08-11 23:07+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -2502,12 +2502,12 @@ msgstr "Kamera"
 #: app/GUI/mediabutton.cpp:195
 #, kde-format
 msgid "Video CD/DVD-ROM"
-msgstr "Video CD/DVD’si"
+msgstr "Video CD/DVD'si"
 
 #: app/GUI/mediabutton.cpp:197
 #, kde-format
 msgid "Audio CD/DVD-ROM"
-msgstr "Ses CD’si"
+msgstr "Ses CD'si"
 
 #: app/GUI/mediabutton.cpp:199
 #, kde-format
@@ -2580,9 +2580,11 @@ msgid "Empty Recently Closed Tabs"
 msgstr "Son Kapatılan Sekmeleri Boşalt"
 
 #: app/GUI/terminaldock.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr "<b>Gömülü uçbirim oluşturulamıyor.</b><br/>"
+msgstr "<b>Gömülü uçbirim oluşturulamadı.</b><br/>Hata: %1"
 
 #: app/GUI/terminaldock.cpp:102
 #, kde-format
@@ -2647,7 +2649,7 @@ msgstr "Son İşi Geri Al"
 #: app/JobMan/jobman.cpp:231
 #, kde-format
 msgid "Are you sure you want to quit?"
-msgstr "Çıkmak istediğinizden emin misiniz?"
+msgstr "Çıkmak istediğinize emin misiniz?"
 
 #: app/JobMan/jobman.cpp:376
 #, kde-format
@@ -4426,8 +4428,8 @@ msgid ""
 "mouse button."
 msgstr ""
 "Sol fare düğmesi ile seçim yapmaz, ama seçimini etkilemeksizin bulunulan "
-"dosyaya konumlanır. Sağ fare düğmesi ile birden fazla dosya seçebilir ve sağ "
-"fare düğmesine basılı tutmayı sürdürerek sağ fare menüsünü "
+"dosyaya konumlanır. Sağ fare düğmesi ile birden fazla dosya seçebilir, ve "
+"sağ fare düğmesine basılı tutmayı sürdürerek sağ fare menüsünü "
 "etkinleştirebilirsiniz."
 
 #: app/Konfigurator/kgpanel.cpp:683
@@ -5733,12 +5735,12 @@ msgstr "&Genel Görüntüleyici"
 #: app/KViewer/krviewer.cpp:96
 #, kde-format
 msgid "&Text Viewer"
-msgstr "&Metin Görüntüleyicisi"
+msgstr "&Metin Görüntüleyici"
 
 #: app/KViewer/krviewer.cpp:97
 #, kde-format
 msgid "&Hex Viewer"
-msgstr "&Hex Görüntüleyicisi"
+msgstr "&Hex Görüntüleyici"
 
 #: app/KViewer/krviewer.cpp:98
 #, kde-format
@@ -6355,7 +6357,7 @@ msgstr "Gábor Lehel"
 #: app/main.cpp:152
 #, kde-format
 msgid "Viewer module for 3rd Hand"
-msgstr "3. El için görüntüleyici modülü"
+msgstr "3. El için Görüntüleyici modülü"
 
 #: app/main.cpp:153
 #, kde-format
@@ -6685,7 +6687,7 @@ msgstr "Tomek Grzejszczyk"
 #: app/main.cpp:188
 #, kde-format
 msgid "Dmitry A. Bugay"
-msgstr "Dmitriy A. Bugay"
+msgstr "Dmitry A. Bugay"
 
 #: app/main.cpp:188
 #, kde-format
@@ -6695,7 +6697,7 @@ msgstr "Rusça çeviri"
 #: app/main.cpp:189
 #, kde-format
 msgid "Dmitry Chernyak"
-msgstr "Dmitriy Çernyak"
+msgstr "Dmitry Chernyak"
 
 #: app/main.cpp:189
 #, kde-format
@@ -8597,7 +8599,7 @@ msgstr "Krusader::Eşzamanlayıcı"
 #: app/Synchronizer/synchronizer.cpp:1564
 #, kde-format
 msgid "Feeding the URLs to KGet"
-msgstr "Adresler K İndir’e aktarılıyor"
+msgstr "Adresler KGet'e aktarılıyor"
 
 #: app/Synchronizer/synchronizergui.cpp:141
 #: app/Synchronizer/synchronizergui.cpp:1336
@@ -8987,7 +8989,7 @@ msgstr "&Seçimi Tersine Çevir"
 #: app/Synchronizer/synchronizergui.cpp:768
 #, kde-format
 msgid "Synchronize with &KGet"
-msgstr "&K İndir ile eşzamanla"
+msgstr "&KGet ile eşzamanla"
 
 #: app/Synchronizer/synchronizergui.cpp:842
 #, kde-format
@@ -9528,7 +9530,7 @@ msgid ""
 "Do you want to overwrite it or append the output?"
 msgstr ""
 "Dosya zaten var.\n"
-"Üzerine yazmak veya çıktıyı iliştirmek istediğinizden emin misiniz?"
+"Üzerine yazmak veya çıktıyı iliştirmek istediğinize emin misiniz?"
 
 #: app/UserAction/kraction.cpp:172
 #, kde-format
@@ -9664,9 +9666,10 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Geçerli Öge Dosya Yolunu Kopyala (Boşlukları Kaçırarak)"
 
 #: app/useraction_examples.xml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy file path of current item (escaping spaces)"
 msgid "Copy file path of current item"
-msgstr "Geçerli Ögenin Dosya Yolunu Kopyala"
+msgstr "Geçerli Öge Dosya Yolunu Kopyala (Boşlukları Kaçırarak)"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9817,3 +9820,6 @@ msgstr "Krarc Parola İletişim Kutusu"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Dosyaya erişmek için parola gerekiyor."
+
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Seçili öğeyi panoya kopyala"

@@ -1,0 +1,321 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<appendix id="useraction-xml">
+  <title
+>userakcije.xml</title>
+  <para
+>V tem dodatku je več primerov datotek <filename
+>useractions.xml</filename
+>. S tem lahko začnete odkrivati moč <link linkend="useractions"
+>uporabniških dejanj</link
+> in se učiti, kako jih uporabljati. Ko boste razumeli, kako napisati UserActions, boste ugotovili, da &krusader; je še močnejše, prilagodljivo orodje.</para>
+  <para
+>Prosimo, razmislite o nalaganju svojih uporabniških dejanj na <ulink url="https://store.kde.org"
+>store.kde.org</ulink
+>, saj jih zbiramo. Če izberemo vaše UserAction, bo poslano z &krusader; ob naslednji izdaji.</para>
+
+<itemizedlist>
+    <listitem
+><para
+>Zažene <command
+>uptime</command
+> <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+  &lt;KrusaderUserActions>
+   &lt;action name="uptime" >
+   &lt;title
+>Up time&lt;/title>
+   &lt;tooltip
+>pove, koliko časa je minilo od zagona računalnika&lt;/tooltip>
+   &lt;icon
+>ura&lt;/icon>
+   &lt;category
+>informacije&lt;/category>
+   &lt;description same_as="tooltip" />
+   &lt;command executionmode="collect_output" 
+>uptime&lt;/command>
+   &lt;defaultshortcut
+>Alt+Ctrl+U&lt;/defaultshortcut>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+    <listitem
+><para
+>Zažene <command
+>ls -l</command
+> <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+  &lt;KrusaderUserActions>
+   &lt;action name="ls -l" >
+   &lt;title
+>ls -l v trenutnem imeniku&lt;/title>
+   &lt;description same_as="tooltip" />
+   &lt;command executionmode="collect_output" 
+>ls -l %aPath% %oPath%&lt;/command>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+    <listitem
+><para
+>Oznaka mesta Echo <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+  &lt;KrusaderUserActions>
+   &lt;action name="test_placeholder" >
+   &lt;title
+>Ograja mesta Echo&lt;/title>
+   &lt;tooltip
+>Echo je nadomestne vrednosti&lt;/tooltip>
+   &lt;category
+>Testiranje&lt;/category>
+   &lt;description same_as="tooltip" />
+   &lt;command executionmode="collect_output" onmultiplefiles="call_each" 
+>echo -e &quot;aPath %aPath()% \naCurrent: %aCurrent()%&quot;&lt;/command>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+      <listitem
+><para
+>To uporabniško dejanje kopira trenutno pot in ime datoteke v odložišče: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+  &lt;action name="clipboard current" >
+   &lt;title
+>Kopiraj v odložišče&lt;/title>
+   &lt;tooltip
+>Kopiraj v odložišče&lt;/tooltip>
+   &lt;icon
+>klipper&lt;/icon>
+   &lt;category
+>Sistem&lt;/category>
+   &lt;description
+>Kopiraj trenutno pot in ime datoteke v odložišče&lt;/description>
+   &lt;command
+>%_Clipboard(&quot;%aCurrent%&quot;)%&lt;/command>
+   &lt;defaultshortcut
+>Win+C&lt;/defaultshortcut>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Izbere <literal role="extension"
+>.diff</literal
+> in <literal role="extension"
+>*.h</literal
+> v aktivni plošči: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+  &lt;action name="test_select" >
+   &lt;title
+>Dodaj izbor *.diff in *.h&lt;/title>
+   &lt;category
+>Izbor&lt;/category>
+   &lt;command
+>%aSelect(&quot;*.diff&quot;, &quot;add&quot;)% %aSelect(&quot;*.h&quot;, &quot;add&quot;)%&lt;/command>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Aktivna plošča se spremeni v <filename
+>mnt/floppy</filename
+> (zaznamek): <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+&lt;action name="mnt/floppy bookmark" >
+   &lt;title
+>Skoči na /mnt/floppy&lt;/title>
+   &lt;category
+>Zaznamki&lt;/category>
+   &lt;ukaz
+>%aPojdi(&quot;/mnt/floppy&quot;, &quot;da&quot;)%&lt;/ukaz>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Na neaktivni plošči izberite vsa imena datotek, ki so označena na aktivni plošči: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+  &lt;action name="asdfasdf" >
+   &lt;title
+>Izberite v drugi plošči&lt;/title>
+   &lt;category
+>Izbor&lt;/category>
+   &lt;opis
+>Izberite vsa imena datotek, ki so izbrana v aktivni plošči, tudi v neaktivni plošči&lt;/description>
+   &lt;ukaz
+>%oIzberi(&quot;%aList(&quot;izbrano&quot;, &quot; &quot;, &quot;Da&quot;)%&quot;)%&lt;/ukaz>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Naredite varnostno kopijo trenutne datoteke/mape v <filename
+>foo.bak</filename
+> v trenutno mapo: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+  &lt;action name="backup current" >
+   &lt;title
+>Varnostna kopija v trenutnem imeniku&lt;/title>
+   &lt;tooltip
+>Varnostna kopija v trenutni mapi&lt;/tooltip>
+   &lt;icon
+>document-save-as&lt;/icon>
+   &lt;category
+>Sistem&lt;/category>
+   &lt;description same_as="tooltip" />
+   &lt;ukaz
+>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;novo ime&quot;, &quot;%aCurrent%.bak&quot;)%&quot;)%&lt;/command>
+   &lt;defaultshortcut
+>Shift+F5&lt;/defaultshortcut>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Odpre <link linkend="krusearcher"
+>KruSearcher</link
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+  &lt;action name="iskanje" >
+   &lt;title
+>Preizkus iskanja&lt;/title>
+   &lt;command
+>%_NewSearch(&quot;Iskanje 2&quot;)%&lt;/command>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Nastavi izbrano sliko za ozadje: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+  &lt;action name="nastavi ozadje" >
+   &lt;title
+>Nastavi kot ozadje&lt;/title>
+   &lt;tooltip
+>Nastavi kot ozadje&lt;/tooltip>
+   &lt;icon
+>slika&lt;/icon>
+   &lt;category
+>Storitveni meni&lt;/category>
+   &lt;description
+>Nastavi kot ozadje (pomanjšano)&lt;/description>
+   &lt;command
+>dcop kdesktop KBackgroundIface setWallpaper &quot;%aCurrent%&quot; 6&lt;/ukaz>
+   &lt;defaultshortcut
+>Win+W&lt;/defaultshortcut>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>To uporabniško dejanje ureja datoteko s korenskimi dovoljenji z uporabo <command
+>kdesu</command
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+  &lt;action name="uredi kot root" >
+   &lt;title
+>Uredi kot koren&lt;/title>
+   &lt;tooltip
+>Uredi kot root&lt;/tooltip>
+   &lt;icon
+>kwrite&lt;/icon>
+   &lt;category
+>Sistem&lt;/category>
+   &lt;description
+>Uredite datoteko s korenskimi dovoljenji z uporabo kdesu&lt;/description>
+   &lt;command
+>kdesu kwrite %aCurrent%&lt;/command>
+   &lt;defaultshortcut
+>Win+F4&lt;/defaultshortcut>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>To uporabniško dejanje Dodaj element(e) na seznam predvajanja Amarok: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+  &lt;action name="amarok enqueue" >
+   &lt;title
+>Dodaj v čakalno vrsto v Amaroku&lt;/title>
+   &lt;tooltip
+>Dodaj izbrane elemente seznamu predvajanja Amarok&lt;/tooltip>
+   &lt;icon
+>amarok&lt;/icon>
+   &lt;category
+>Večpredstavnost&lt;/category>
+   &lt;description same_as="tooltip" />
+   &lt;ukaz
+>amarok --dodaj %aList(&quot;Izbrano&quot;)%&lt;/ukaz>
+   &lt;defaultshortcut
+>Win+A&lt;/defaultshortcut>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Odpre <link linkend="synchronizer"
+>Synchronizer</link
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+  &lt;action name="sinhronizator" >
+   &lt;title
+>Sinhronizator&lt;/title>
+   &lt;command
+>%_Sync(&quot;Sync 2&quot;)%&lt;/command>
+  &lt;/dejanje>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+</itemizedlist>
+
+</appendix>

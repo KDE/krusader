@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
-"PO-Revision-Date: 2024-08-20 00:00+0200\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
+"PO-Revision-Date: 2023-07-23 23:59+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -2567,9 +2567,11 @@ msgid "Empty Recently Closed Tabs"
 msgstr "최근에 닫은 탭 비우기"
 
 #: app/GUI/terminaldock.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr "<b>임베드된 터미널을 만들 수 없습니다.</b><br/>"
+msgstr "<b>임베드된 터미널을 만들 수 없습니다.</b><br/>오류: %1"
 
 #: app/GUI/terminaldock.cpp:102
 #, kde-format
@@ -9600,9 +9602,10 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "현재 항목의 파일 경로 복사(공백에 탈출 문자 적용)"
 
 #: app/useraction_examples.xml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy file path of current item (escaping spaces)"
 msgid "Copy file path of current item"
-msgstr "현재 항목의 파일 경로 복사"
+msgstr "현재 항목의 파일 경로 복사(공백에 탈출 문자 적용)"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9755,11 +9758,8 @@ msgstr "Krarc 암호 대화 상자"
 msgid "Accessing the file requires a password."
 msgstr "파일에 접근하려면 암호가 필요합니다."
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "현재 항목을 클립보드에 복사"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "홈에서 새 탭 열기"
+#~ msgid "Directories:"
+#~ msgstr "디렉터리:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "새 탭/탭 닫기 단추를 표시합니다."
@@ -9788,6 +9788,30 @@ msgstr "파일에 접근하려면 암호가 필요합니다."
 #~ msgid "JavaScript Error"
 #~ msgstr "자바스크립트 오류"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "탐색"
+
+#~ msgid "New folder"
+#~ msgstr "새 폴더"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "홈에서 새 탭 열기"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "자바스크립트 확장 기능 실행..."
 
@@ -9805,14 +9829,8 @@ msgstr "파일에 접근하려면 암호가 필요합니다."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "확장기: %_Script(script)%에 스크립트를 지정하지 않음"
 
-#~ msgid "New folder"
-#~ msgstr "새 폴더"
-
-#~ msgid "Directories:"
-#~ msgstr "디렉터리:"
-
-#~ msgid "Browse"
-#~ msgstr "탐색"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "현재 항목을 클립보드에 복사"
 
 #~ msgid "Folder..."
 #~ msgstr "폴더..."

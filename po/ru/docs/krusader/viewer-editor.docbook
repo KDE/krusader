@@ -1,6 +1,12 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="krviewer">
   <title
->KrViewer: собственный редактор &krusader;</title>
+>KrViewer: встроенный редактор и средство просмотра &krusader;</title>
   <indexterm>
     <primary
 >Программа просмотра</primary>
@@ -8,42 +14,44 @@
 >Редактор</seealso>
   </indexterm>
   <para
->Нажатие &Enter; на выбранном файле <emphasis
+>Нажатие клавиши &Enter; при выбранном файле <emphasis
 >открывает этот файл в связанном с ним приложении</emphasis
->. Редактор поддерживает вкладки, его можно настроить на странице <link linkend="konfig-general"
+>. Редактор поддерживает вкладки, его возможно настроить на странице <link linkend="konfig-general"
 >Основные</link
 > в диалоговом окне настройки Krusader.</para>
   <sect2 id="krview">
     <title
 >Программа просмотра</title>
     <para
->Чтобы просмотреть файл как можно быстрее в соответствии с его типом, просто поместите его под курсором и нажмите <keycap
+>Чтобы просмотреть файл как можно быстрее в соответствии с его типом, просто поместите его под курсором и нажмите клавишу <keycap
 >F3</keycap
->. Собственная программа просмотра &krusader; является частью &konqueror;, который может в принципе просматривать любой тип файла, доступный &konqueror; (например, показывать рисунки, проигрывать музыку, просматривать содержимое архива). Это называется «Основной просмотрщик», для которого необходимо настроить типы MIME.</para>
+>. Собственная программа просмотра &krusader; является частью &konqueror;, который может просматривать любой тип файла, доступный &konqueror; (например, показывать рисунки, проигрывать музыку, просматривать содержимое архива). Это называется «Основное средство просмотра», для которого необходимо настроить типы &MIME;.</para>
     <para
 >Программа просмотра работает следующим образом: <itemizedlist
-><listitem
+> <listitem
 > <para
->она пробует просмотреть файл в «<emphasis
->Основном режиме</emphasis
->».</para
-></listitem
+>Она пробует просмотреть файл в <emphasis
+>«Основном режиме».</emphasis
+></para
+> </listitem
 > <listitem
-><para
->Если тип файла (тип MIME) невозможно определить или когда файл (например, бинарный) не имеет связанного с ним действия, тогда «Основной режим» не используется. Данный файл рассматривается как текстовый, для которого используется «<emphasis
->Текстовый режим</emphasis
->».</para
-></listitem
-> <listitem
-><para
->Пользователь может переключаться между «Основной режим» (если есть), «Текстовый режим» и «Шестнадцатеричный режим» в <link linkend="kredit_krviewer_menu"
->меню программы просмотра</link
+> <para
+>Если тип файла (тип (&MIME;) невозможно определить или когда файл (например, исполняемый) не имеет связанного с ним действия, «Основной режим» не используется. Данный файл рассматривается как текстовый, для которого используется <emphasis
+>«Текстовый режим»</emphasis
 >.</para
-></listitem
+> </listitem
+> <listitem
+> <para
+>В <link linkend="kredit_krviewer_menu"
+>меню KrViewer</link
+> пользователь может переключаться между: «Основной режим» (если доступен), «Текстовый режим» и <emphasis
+>«Шестнадцатеричный режим»</emphasis
+>.</para
+> </listitem
 > </itemizedlist
-> Вы можете настроить режим просмотра по умолчанию на странице <link linkend="konfig-general"
+>Возможно настроить режим просмотра по умолчанию на странице <link linkend="konfig-general"
 >Основные</link
-> в диалоговом окне настройки Krusader.</para>
+> в диалоге настройки.</para>
     <para
 ><keycombo action="simul"
 >&Shift; <keycap
@@ -63,10 +71,10 @@
 ><userinput
 > <command
 >man:/</command
-> <replaceable
+><replaceable
 >krusader</replaceable
 > </userinput
->просмотреть страницу руководства UNIX.</para>
+>просмотр страниц руководств &krusader;.</para>
       </listitem>
       <listitem>
         <para
@@ -80,9 +88,9 @@
         <para
 ><userinput
 > <command
->http://</command
-> <replaceable
->krusader.sourceforce.net/</replaceable
+>https://</command
+><replaceable
+>krusader.org</replaceable
 > </userinput
 >просмотреть страницу по адресу в Интернете.</para>
       </listitem>
@@ -94,7 +102,7 @@
 > <replaceable
 >ftp.kde.org/pub/kde/</replaceable
 > </userinput
->просмотреть содержимое каталога на сервере FTP.</para>
+>просмотреть содержимое каталога на сервере &FTP;.</para>
       </listitem>
       <listitem>
         <para
@@ -104,7 +112,7 @@
 > <replaceable
 >sftp.foo/</replaceable
 > </userinput
->просмотреть содержимое каталога на сервере FTP с защищённым соединением.</para>
+>просмотреть содержимое каталога на сервере &FTP; с защищённым соединением.</para>
       </listitem>
       <listitem>
         <para
@@ -114,41 +122,43 @@
 > <replaceable
 >home/frank</replaceable
 > </userinput
->просмотреть домашний каталог пользователя frank.</para>
+>просмотреть домашний каталог пользователя Frank.</para>
       </listitem>
       <listitem>
         <para
 ><userinput
-> <replaceable
->/home/frank/archive.tar.gz</replaceable
+> <command
+>tar:/</command
+><replaceable
+>home/frank/archive.tar.gz/</replaceable
 > </userinput
->просмотреть содержимое архива <literal role="extension"
+>открывает содержимое архива <literal role="extension"
 >tar.gz</literal
 >.</para>
       </listitem>
     </itemizedlist
 ></para>
     <para
->Компонент KrViewer имеет следующие меню: <link linkend="kredit_file_menu"
+>Компонент KrViewer имеет следующие меню: <link linkend="katepart-menu-file"
 >Файл</link
->, <link linkend="kredit_edit_menu"
+>, <link linkend="katepart-menu-edit"
 >Правка</link
->, <link linkend="kredit_view_menu"
+>, <link linkend="katepart-menu-view"
 >Вид</link
->, <link linkend="kredit_settings_menu"
+>, <link linkend="katepart-menu-settings"
 >Настройка</link
 > и <link linkend="kredit_krviewer_menu"
 >Krviewer</link
->, в зависимости от типа просматриваемого файла. Они будут рассмотрены в <link linkend="kredit"
->разделе Редактор</link
->. Встроенная программа просмотра может следовать по ссылкам на страницах HTML. При нажатии <keycombo action="simul"
->&Ctrl; <keycap
+>, в зависимости от типа просматриваемого файла. Они будут рассмотрены в разделе <link linkend="kredit"
+>«Редактор»</link
+>. Встроенная программа просмотра может следовать по ссылкам на страницах &HTML;. При нажатии комбинации клавиш <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
 >E</keycap
 ></keycombo
-> программа просмотра может запустить встроенный редактор &krusader; (которая, в общем-то, одна и та же программа).</para>
+> программа просмотра может запустить встроенный редактор &krusader; (что является одной и той же программой).</para>
     <note>
       <para
->Встроенная программа просмотра не написана нами, она использует &kde; (библиотеки) и технологию KIO Slaves. Мы не можем и не хотим изменять её, использование этих библиотек уменьшает объём написанного кода. Так что нам не приходится изобретать велосипед ;-).</para>
+>Встроенная программа просмотра написана не авторами &krusader;, она использует &kf5; и протоколы KIO Slave. Нет возможности и желания изменять её, использование этих библиотек уменьшает объём написанного кода.</para>
     </note>
   </sect2>
   <sect2 id="kredit">
@@ -159,35 +169,42 @@
 >Редактор</primary>
     </indexterm>
     <para
->Встроенный редактор &krusader; содержит практически всё, что вы ожидаете от редактора. Редактирование похоже на просмотр, но запускается с помощью клавиши <keycap
+>Встроенный редактор &krusader; содержит практически всё, что возможно ожидать от редактора. Редактирование похоже на просмотр, но запускается с помощью клавиши <keycap
 >F4</keycap
->. По умолчанию используется встроенный редактор &krusader;. Если вы предпочитаете использовать внешний редактор, вы можете изменить редактор по умолчанию на странице <link linkend="konfig-general"
+>. По умолчанию используется встроенный редактор &krusader;. Если предпочтительнее использовать внешний редактор, возможно изменить редактор по умолчанию на странице <link linkend="konfig-general"
 >Основные</link
 > в диалоговом окне настройки Krusader.</para>
     <tip>
       <para
->При первом использовании встроенного редактора &krusader; рекомендуется просмотреть все разделы меню <link linkend="kredit_settings_menu"
+>При первом использовании встроенного редактора &krusader; рекомендуется просмотреть все разделы меню <link linkend="katepart-menu-settings"
 >Настройка</link
-> и настроить его так, как вам нужно.</para>
+> и настроить его так, как нужно.</para>
     </tip>
   </sect2>
   <sect2 id="kredit_menus">
     <title
 >Обзор меню</title>
-    <para
->Большая часть меню понятна без объяснений. ;-)</para>
-    <!-- FILE menu -->
-    <variablelist id="kredit_file_menu">
-      <title
->Меню <guimenu
->Файл</guimenu
-></title>
-      <varlistentry>
-        <term>
-          <menuchoice
+
+<!--mostly brought in from kwrite-->
+<para
+>В простом и расширенном режиме представлены разные меню и его пункты. Чтобы включить расширенный режим, установите флажок <link linkend="katepart-appearance"
+> Включить режим опытного пользователя (3 режим в &kde;)</link
+> на вкладке <guilabel
+>Внешний вид</guilabel
+> страницы настройки &kappname;</para>
+
+<sect3 id="katepart-menu-file">
+<title
+>Меню «Файл»</title>
+
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-save">
+<menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Ctrl; <keycap
+>&Ctrl;<keycap
 >S</keycap
 ></keycombo
 > </shortcut
@@ -196,66 +213,57 @@
 > <guimenuitem
 >Сохранить</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Сохранить файл.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>Сохраняет текущий документ. Если он уже был сохранён, то старый файл будет перезаписан без предупреждения. При сохранении этого документа в первый раз будет открыто окно сохранения (описано ниже). </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-save-as">
+<menuchoice
 ><guimenu
 >Файл</guimenu
 > <guimenuitem
->Сохранить как</guimenuitem
+>Сохранить как...</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Сохранить файл под другим именем.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>Позволяет сохранить документ с новым именем. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-reload">
+<menuchoice
 ><shortcut
-> <keycap
+> <keycombo action="simul"
+><keycap
 >F5</keycap
+></keycombo
 > </shortcut
 > <guimenu
 >Файл</guimenu
 > <guimenuitem
 >Обновить</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Обновить файл.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><guimenu
->Файл</guimenu
-> <guimenuitem
->Экспорт в HTML...</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Экспортировать файл в формат <literal role="extension"
->&HTML;</literal
->.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+><action
+>Обновляет текущий файл</action
+>. Эта команда удобна, если файл, открытый в &kate; изменен другой программой. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-print">
+<menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Ctrl; <keycap
+>&Ctrl;<keycap
 >P</keycap
 ></keycombo
 > </shortcut
@@ -264,102 +272,127 @@
 > <guimenuitem
 >Печать...</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Распечатать файл.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <!-- EDIT menu -->
-    <variablelist id="kredit_edit_menu">
-      <title
->Меню <guimenu
->Правка</guimenu
-></title>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>Открывает диалог распечатки текущего документа, позволяющий пользователю указать, что, где, и как печатать. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+> <!-- from plugin Exporter -->
+<term id="katepart-menu-export-as-html">
+<menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Экспорт в &HTML;...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Позволяет экспортировать файл в формате &HTML;, чтобы документ можно было просматривать в качестве веб-страницы. Этот элемент отображается только если загружен модуль <guilabel
+>Exporter</guilabel
+>. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect3>
+
+<sect3 id="katepart-menu-edit"
+> <!-- This is also valid for kates menu edit-->
+<title
+>Меню «Правка»</title>
+
+<variablelist>
+<varlistentry>
+<term id="katepart-menu-undo"
+><menuchoice
 ><shortcut
-> <keycombo action="simul"
->&Ctrl; <keycap
+><keycombo action="simul"
+>&Ctrl;<keycap
 >Z</keycap
 ></keycombo
-> </shortcut
+></shortcut
 > <guimenu
 >Правка</guimenu
 > <guimenuitem
 >Отменить действие</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Отменить последнее действие.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+></menuchoice
+></term>
+<listitem>
+<para
+>Эта функция позволяет отменить последнее действие или операцию пользователя. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-redo"/><menuchoice
 ><shortcut
-> <keycombo action="simul"
-> &Ctrl;&Shift; <keycap
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
 >Z</keycap
 ></keycombo
 > </shortcut
 > <guimenu
 >Правка</guimenu
 > <guimenuitem
->Повторить отменённое действие</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Повторить последнее действие.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+>Повторить действие</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Эта функция позволяет выполнить одно отменённое действие.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-cut"/><menuchoice
 ><shortcut
-> <keycombo action="simul"
->&Ctrl; <keycap
+><keycombo action="simul"
+>&Ctrl;<keycap
 >X</keycap
 ></keycombo
-> </shortcut
+></shortcut
 > <guimenu
 >Правка</guimenu
-> <guimenuitem
+><guimenuitem
 >Вырезать</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Вырезать выделенный текст в буфер обмена.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+></menuchoice
+></term>
+<listitem>
+<para
+>Удаляет текущий выбор и помещает его в буфер обмена. Буфер обмена работает незаметно и позволяет передавать данные между приложениями.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-copy"/><menuchoice
 ><shortcut
-> <keycombo action="simul"
->&Ctrl; <keycap
+><keycombo action="simul"
+>&Ctrl;<keycap
 >C</keycap
 ></keycombo
-> </shortcut
+></shortcut
 > <guimenu
 >Правка</guimenu
-> <guimenuitem
+><guimenuitem
 >Копировать</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Копировать выделенный текст в буфер обмена.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+></menuchoice
+></term>
+<listitem>
+<para
+>Копирует текущий выбранный текст в буфер обмена, чтобы его можно было вставить в другое место. Буфер обмена работает незаметно и позволяет передавать данные между приложениями.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-paste"/><menuchoice
 ><shortcut
 ><keycombo action="simul"
 >&Ctrl;<keycap
@@ -368,38 +401,57 @@
 ></shortcut
 > <guimenu
 >Правка</guimenu
-> <guimenuitem
+><guimenuitem
 >Вставить</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Вставить из буфера обмена.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+></menuchoice
+></term>
+<listitem>
+<para
+>Вставляет содержимое буфера обмена в позиции курсора. Буфер обмена работает незаметно и позволяет передавать данные между приложениями.</para>
+</listitem>
+</varlistentry>
+<varlistentry
+><!-- from plugin Exporter -->
+<term
+><anchor id="katepart-menu-copy-as-html"/><menuchoice
+><guimenu
+>Правка</guimenu
+><guimenuitem
+>Копировать в формате &HTML;</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Копирует выделенный текст в буфер обмена в качестве &HTML;. Этот элемент отображается только если загружен модуль <guilabel
+>Exporter</guilabel
+>. </para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-select-all"/><menuchoice
 ><shortcut
-> <keycombo action="simul"
+><keycombo action="simul"
 >&Ctrl;<keycap
 >A</keycap
 ></keycombo
-> </shortcut
+></shortcut
 > <guimenu
 >Правка</guimenu
-> <guimenuitem
->Выделить всё</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Выделить весь документ.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+><guimenuitem
+>Выделить все</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Выделяет весь текст в документе. Полезно, если требуется скопировать в другое приложение целый файл.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-deselect"/><menuchoice
 ><shortcut
 ><keycombo action="simul"
 >&Ctrl;&Shift;<keycap
@@ -410,54 +462,95 @@
 >Правка</guimenu
 > <guimenuitem
 >Снять выделение</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Снять текущее выделение.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+></menuchoice
+></term>
+<listitem>
+<para
+>Снимает выделение с текста (если есть).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-block-selection-mode"/><menuchoice
 ><shortcut
-> <keycombo action="simul"
-> &Ctrl;&Shift; <keycap
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Shift</keycap
+> <keycap
 >B</keycap
 ></keycombo
-> </shortcut
+></shortcut
 > <guimenu
 >Правка</guimenu
 > <guimenuitem
 >Блочное выделение</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Переключение режима блочного выделения, включает/выключает возможность блочного выделения.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+></menuchoice
+></term>
+<listitem>
+<para
+>Переключает режим выделения. Когда режим выделения установлен на <guilabel
+>BLOCK</guilabel
+>, возможно выделять вертикально, например, выбрать столбцы от 5 до 10 в строках от 9 до 15. Строка состояния показывает текущее состояние режима выделения, <guilabel
+>BLOCK</guilabel
+> или <guilabel
+>LINE</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-vi-input-mode"/><menuchoice
 ><shortcut
-> <keycap
->Insert</keycap
+> <keycombo action="simul"
+>&Meta;&Ctrl;<keycap
+>V</keycap
+></keycombo
 > </shortcut
 > <guimenu
 >Правка</guimenu
-> <guimenuitem
+><guimenuitem
+>Режим ввода VI</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Переключает режим редактирования vi. Этот режим поддерживает наиболее часто используемые команды и движения из обычного и визуального режима vim и имеет дополнительную строку состояния в режиме vi. Строка состояния показывает команды во время их ввода, вывод команд и текущий режим. Поведение этого режима возможно настроить в разделе <link linkend="katepart-pref-edit-vi-input-mode"
+>Режим ввода Vi</link
+> на странице <guilabel
+>Редактирование</guilabel
+>в диалоге настройки &kappname;.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-overwrite-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ins;</keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+><guimenuitem
 >Режим замены</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Переключение между режимами вставки и замены.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+></menuchoice
+></term>
+<listitem>
+<para
+>Включает/отключает режим ввода/замены. Если включён режим <guilabel
+>INS</guilabel
+>, символы будут вставляться туда, где расположен курсор. Если включён режим <guilabel
+>OVR</guilabel
+>, печатаемые символы заменять текущие символы, если курсор будет расположен перед любым символом. Строка состояния отображает текущий режим ввода с помощью символов <guilabel
+>INS</guilabel
+> или <guilabel
+>OVR</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-find"/><menuchoice
 ><shortcut
 ><keycombo action="simul"
 >&Ctrl;<keycap
@@ -466,56 +559,77 @@
 ></shortcut
 > <guimenu
 >Правка</guimenu
-> <guimenuitem
->Найти</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Найти текст.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><shortcut
-> <keycap
->F3</keycap
-> </shortcut
-> <guimenu
->Правка</guimenu
-> <guimenuitem
->Продолжить поиск</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Поиск следующего вхождения.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+><guimenuitem
+>Найти...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Открывает панель поиска в нижней части окна редактора. С левой стороны панели находится кнопка со значком для закрытия панели, за которой следует небольшое текстовое поле для ввода шаблона поиска.</para>
+<para
+>Начните вводить символы в поле ввода, и поиск начнётся незамедлительно. Если в тексте будет хотя бы одно совпадение, цвет поля изменится на зелёный. Если совпадений не будет, цвет изменится на красный, а в правой части панели отобразится <guilabel
+>Не найдено</guilabel
+>.</para>
+<para
+>Чтобы перейти к следующему или предыдущему соответствию в документе, воспользуйтесь кнопками <guilabel
+>Следующий</guilabel
+> или <guilabel
+>Предыдущий</guilabel
+>.</para>
+<para
+>Возможно настроить поиск с учётом регистра. Функция <guilabel
+>Учитывать регистр</guilabel
+> позволит ограничить результаты поиска до записей, которые соответствуют регистру (верхнему или нижнему) каждого символа в поисковом запросе. </para>
+<para
+>Нажмите на кнопку со значком зелёной стрелки в правой части дополнительной панели поиска, чтобы переключиться на расширенную панель поиска и замены. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-find-again"/><menuchoice
 ><shortcut
 ><keycombo action="simul"
->&Shift;<keycap
+><keycap
 >F3</keycap
 ></keycombo
 ></shortcut
 > <guimenu
 >Правка</guimenu
 ><guimenuitem
+>Продолжить поиск</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Повторяет последний поисковый запрос (при наличии), не вызывая дополнительную панель поиска. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-previous">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift;<keycap
+>F3</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
 >Найти предыдущее</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Поиск предыдущего вхождения.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>Повторяет последний поисковый запрос (при наличии), не вызывая дополнительную панель поиска; поиск начинается с текущей позиции курсора в обратную сторону. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-replace"/><menuchoice
 ><shortcut
 ><keycombo action="simul"
 >&Ctrl;<keycap
@@ -524,147 +638,300 @@
 ></shortcut
 > <guimenu
 >Правка</guimenu
-> <guimenuitem
->Заменить</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Замена текста.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+><guimenuitem
+>Заменить...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Открывает панель расширенного поиска и замены. В верхней левой части панели находится кнопка со значком для закрытия панели, за которой следует небольшое текстовое поле для ввода шаблона поиска.</para>
+<para
+>Чтобы настроить режимы поиска, выберите из выпадающего списка одну из следующих опций: <guilabel
+>Обычный текст</guilabel
+>, <guilabel
+>Только полные слова</guilabel
+>, <guilabel
+>Управляющие последовательности</guilabel
+> или <guilabel
+>Регулярные выражения</guilabel
+>. </para>
+<para
+>При выборе варианта <guilabel
+>Управляющие последовательности</guilabel
+> или <guilabel
+>Регулярные выражения</guilabel
+> в нижней части контекстного меню появится кнопка <guibutton
+>Добавить...</guibutton
+>; это позволит добавить управляющие последовательности или регулярные выражения в поле поиска, либо заменить шаблон в уже имеющемся списке.</para>
+<para
+>Чтобы перейти к следующему или предыдущему соответствию в документе, воспользуйтесь кнопками <guilabel
+>Следующий</guilabel
+> или <guilabel
+>Предыдущий</guilabel
+>.</para>
+<para
+>Введите текст в поле ввода <guilabel
+>Заменить на...</guilabel
+> и нажмите кнопку <guibutton
+>Заменить</guibutton
+>, чтобы произвести замену выделенного текста, либо нажмите кнопку <guibutton
+>Заменить отмеченные</guibutton
+>, чтобы заменить все результаты поиска в документе. </para>
+<para
+>Поведение поиска и замены возможно настроить в нижней части панели. Кнопка <guilabel
+>Учитывать регистр</guilabel
+> ограничит результаты поиска теми, которые соответствуют регистру (верхнему или нижнему) для каждого символа в поисковом запросе. <guilabel
+>Только в выделенном</guilabel
+> позволит произвести поиск и замену только в выделенном тексте. Кнопка <guilabel
+>Найти все</guilabel
+> подсвечивает все соответствия в документе и отображает количество найденных элементов в маленьком всплывающем окне. </para>
+<para
+>Нажмите на кнопку со значком зелёной стрелки в правой части панели поиска и замены, чтобы перейти к расширенной панели поиска. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Правка</guimenu
+><guimenuitem
+>Найти выделенное</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Найти следующее вхождение выделенного текста.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected-backwards">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Правка</guimenu
+><guimenuitem
+>Предыдущее вхождение выделенного поиска</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Найти предыдущее вхождение выделенного текста.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-go-to-line">
+<menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Ctrl; <keycap
+>&Ctrl;<keycap
 >G</keycap
 ></keycombo
 > </shortcut
 > <guimenu
 >Правка</guimenu
 > <guimenuitem
->Перейти к строке</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Перейти к строке с заданным номером.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <!-- VIEW menu -->
-    <variablelist id="kredit_view_menu">
-      <title
+>Перейти к строке...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Открывает строку перехода внизу окна и переводит курсор на установленный пользователем номер строки в документе. Номер строки возможно ввести вручную, либо выбрать с помощью стрелок в правой части окна ввода. Маленькая стрелка вверх увеличивает число, маленькая стрелка вниз — уменьшает. Чтобы закрыть панель, нажмите на иконку слева от панели. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-view">
+<!-- This is also valid for kates menu view, but kate does not have the New Window item -->
+<title
+>Меню «Вид»</title>
+
+<para
 >Меню <guimenu
 >Вид</guimenu
-></title>
-      <varlistentry>
-        <term>
-          <menuchoice
+> позволяет управлять параметрами для активного редактора и рамками.</para>
+
+<variablelist>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-new-window"/>
+<menuchoice
+><guimenu
+>Вид</guimenu
+><guimenuitem
+>Новое окно</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Открывает другое окно с текущим документом. Все изменения в документе будут отображаться в обоих окнах.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-command-line"/>
+<menuchoice
 ><shortcut
+><keycombo action="simul"
 ><keycap
 >F7</keycap
+></keycombo
 ></shortcut
 > <guimenu
 >Вид</guimenu
-><guimenuitem
->Переключиться в командную строку</guimenuitem
+> <guimenuitem
+>Командная строка</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Командная строка.</para>
-          <!-- TODO -->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>Отображает командную строку Katepart в нижней части окна. Введите в командной строке слово <userinput
+>help</userinput
+> для получения справки и <userinput
+>help list</userinput
+> для получения списка доступных команд.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
 ><guimenu
 >Вид</guimenu
-> <guimenuitem
->Схема</guimenuitem
+><guimenuitem
+>Консоль Javascript</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Открывает инструмент, позволяющий интерактивно запускать код Javascript. Более подробная информация содержится в разделе <ulink url="help:/katepart/advanced-editing-tools-scripting.html"
+>«Расширение &kate; с помощью сценариев»</ulink
+> </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-schema"/>
+<menuchoice
+><guimenu
+>Вид</guimenu
+><guisubmenu
+>Схема</guisubmenu
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Установить схему, &eg; &krusader; Normal, &krusader; Printing, &kate; Normal, &kwrite; Normal.</para>
-          <!-- TODO -->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>Выбор схемы шрифта.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap"/>
+<menuchoice
 ><shortcut
 ><keycombo action="simul"
 ><keycap
 >F10</keycap
-> </keycombo
+></keycombo
 ></shortcut
 > <guimenu
 >Вид</guimenu
-><guimenuitem
+> <guimenuitem
 >Динамический перенос строк</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Если количество символов в строке превышает ширину окна, продолжать текст на следующей строке, без прокрутки вправо.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>При выходе за пределы экрана, текст будет автоматически перенесён на новую строку.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap-indicators"/>
+<menuchoice
+><guimenu
+>Вид</guimenu
+> <guisubmenu
+>Маркеры динамического переноса строк</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+ <para
+>Позволяет выбрать, когда и как должны показываться маркеры динамического переноса строк. Доступно только если включен <guilabel
+>Динамический перенос строк</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-static-word-wrap"/>
+<menuchoice
 ><guimenu
 >Вид</guimenu
 > <guimenuitem
->Маркеры динамического переноса строк</guimenuitem
+>Маркеры статического переноса строк</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Выключено, За номерам строк, Всегда включено.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>Если этот пункт включён, на столбце, указанном в  <menuchoice
 ><guimenu
->Вид</guimenu
-> <guimenuitem
->Показывать маркеры статического переноса строк</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-          <!-- TODO -->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+>Настройка</guimenu
+><guimenuitem
+>Настроить редактор...</guimenuitem
+> </menuchoice
+> в разделе <guilabel
+>Редактирование</guilabel
+> будет показана вертикальная линия. Обратите внимание, что маркер будет виден только если используется моноширинный шрифт.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-icon-border"/>
+<menuchoice
 ><shortcut
-> <keycap
+><keycombo action="simul"
+><keycap
 >F6</keycap
-> </shortcut
+></keycombo
+></shortcut
 > <guimenu
 >Вид</guimenu
 > <guimenuitem
->Показывать полосу закладок</guimenuitem
+>Показывать границы значков</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Показывать полосу закладок.</para>
-          <!-- TODO -->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>Это элемент переключения. Установка флажка сделает полосу отображения закладок слева активного окна видимой и наоборот. Полоса отображения закладок указывает на отмеченные в редакторе строки.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-line-numbers"/>
+<menuchoice
 ><shortcut
 ><keycombo action="simul"
 ><keycap
@@ -673,88 +940,177 @@
 ></shortcut
 > <guimenu
 >Вид</guimenu
-><guimenuitem
->Показать номера строк</guimenuitem
+> <guimenuitem
+>Показывать номера строк</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Показывать номера строк.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>Позволяет показать или скрыть номера строк слева от текста.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-scrollbar-marks"/>
+<menuchoice
 ><guimenu
 >Вид</guimenu
-> <guimenuitem
->Показывать отметки на полосе прокрутки</guimenuitem
+> <guisubmenu
+>Отметки на полосе прокрутки</guisubmenu
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Если параметр включён, то на вертикальной полосе прокрутки текущего окна будут видны маркеры. Эти маркеры показывают положение закладок в тексте.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>Если этот флажок установлен, то на вертикальной полосе прокрутке текущего окна будут видны маркеры. Эти маркеры аналогичны маркерам <link linkend="katepart-menu-view-show-icon-border"
+>рамки значков</link
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-hide-folding-markers"/>
+<menuchoice
 ><shortcut
-> <keycap
+><keycombo action="simul"
+><keycap
 >F9</keycap
-> </shortcut
+></keycombo
+></shortcut
 > <guimenu
 >Вид</guimenu
 > <guimenuitem
->Показывать полосу сворачивания блоков</guimenuitem
+>Полоса сворачивания блоков</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-          <!-- TODO -->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>Если этот флажок установлен, будут отображаться маркеры сворачивания блоков.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-code-folding"/>
+<menuchoice
 ><guimenu
 >Вид</guimenu
-> <guimenuitem
->Сворачивание блоков кода</guimenuitem
+> <guisubmenu
+>Сворачивание блоков</guisubmenu
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-          <!-- TODO -->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><guimenu
->Вид</guimenu
+</term>
+<listitem>
+<para
+>Включает/отключает отображение панели маркеров сворачивания блоков кода слева от окна редактирования. Более подробно об этом написано в разделе <link linkend="advanced-editing-tools-code-folding"
+>Сворачивание блоков кода</link
+>.</para>
+<variablelist>
+
+<varlistentry id="view-show-folding-markers">
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F9</keycap
+></keycombo
+> </shortcut
 > <guimenuitem
->Кодировка</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Например, ISO8859-1, utf8, utf16, tscii, ...</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <!-- BOOKMARKS menu -->
-    <variablelist id="kredit_bookmarks_menu">
-      <title
->Меню <guimenu
->Закладки</guimenu
-></title>
-      <varlistentry>
-        <term>
-          <!-- TODO -->
-          <menuchoice
+>Полоса сворачивания блоков</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Переключает отображение полосы сворачивания блоков в левой стороне окна.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>Свернуть текущий блок кода</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Сворачивает ближайший к курсору блок.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-unfold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>Развернуть текущий блок кода</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Разворачивает ближайший к курсору блок.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-toplevel-nodes">
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenuitem
+>Свернуть блоки 1-го уровня</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Сворачивает все блоки верхнего уровня в документе. Чтобы раскрыть блоки верхнего уровня, нажмите на правый указывающий треугольник.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenuitem
+>Увеличить размер шрифта</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Увеличивает размер шрифта текста документа.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenuitem
+>Уменьшить размер шрифта</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Уменьшает размер шрифта текста документа.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-go"
+><!-- This is also valid for kates menu bookmarks-->
+<title
+>Меню «Закладки»</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-set-bookmark">
+<menuchoice
 ><shortcut
 > <keycombo action="simul"
 >&Ctrl;<keycap
@@ -766,197 +1122,558 @@
 > <guimenuitem
 >Поставить закладку</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+</term>
+<listitem>
+<para
+>Устанавливает или удаляет закладку для текущей строки активного документа (если закладки не было, она устанавливается, иначе удаляется). </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-clear-bookmarks">
+<menuchoice
 ><guimenu
 >Закладки</guimenu
 > <guimenuitem
 >Убрать все закладки</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-        </listitem>
-      </varlistentry>
-      <!-- These entries are gone on my system with kde3.3.2
-  
-<varlistentry>
-   <term>
-   <menuchoice>
-   <shortcut
-><keycombo action="simul"
->&Alt;<keycap
->PageDown</keycap
-></keycombo
-></shortcut>
-   <guimenu
->Bookmark</guimenu>
-   <guimenuitem
->Next Bookmark</guimenuitem
-></menuchoice
-></term>
-   <listitem>
-   <para
->Go to the next Bookmark.</para>
-   </listitem>
-  </varlistentry>
+</term>
+<listitem>
+<para
+>Убирает все закладки из документа и из списка, который располагается ниже в этом меню. </para>
+</listitem>
+</varlistentry>
 
-  <varlistentry>
-   <term>
-   <menuchoice>
-   <shortcut
+<varlistentry id="katepart-menu-bookmarks-previous">
+<term
+><menuchoice
+><shortcut
 ><keycombo action="simul"
->&Alt;<keycap
->PageUp</keycap
+>&Alt; &PgUp;</keycombo
+></shortcut
+> <guimenu
+>Закладки</guimenu
+><guimenuitem
+>Предыдущая</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>Переносит курсор к ближайшей предыдущей закладке. Пункт меню будет содержать номер строки и начало текста на ней. Этот пункт доступен только если выше курсора есть строка с закладкой.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-next">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt; <keycap
+>Page Down</keycap
 ></keycombo
-></shortcut>
-   <guimenu
->Bookmark</guimenu>
-   <guimenuitem
->Previous Bookmark</guimenuitem
+></shortcut
+> <guimenu
+>Закладки</guimenu
+><guimenuitem
+>Следующая</guimenuitem
 ></menuchoice
 ></term>
-   <listitem>
-   <para
->Go to the previous Bookmark.</para>
-   </listitem>
-  </varlistentry>
--->
-    </variablelist>
-    <!-- TOOLS menu -->
-    <variablelist id="kredit_tools_menu">
-      <title
->Меню <guimenu
->Сервис</guimenu
-></title>
-      <varlistentry>
-        <term>
-          <menuchoice
+<listitem
+><para
+>Переносит курсор к ближайшей следующей закладке. Пункт меню будет содержать номер строки и начало текста на ней. Этот пункт доступен только если ниже курсора есть строка с закладкой.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>В нижней части этого меню появится список закладок, если для этого окна доступны закладки. </para>
+
+</sect3>
+
+<!-- This is also valid for kates menu tools, kate has additional items:
+Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at top-->
+<sect3 id="katepart-menu-tools">
+<title
+>Меню «Сервис»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-read-only"/><menuchoice
 ><guimenu
 >Сервис</guimenu
 > <guimenuitem
 >Режим «Только для чтения»</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+></menuchoice
+></term>
+ <listitem>
+<para
+>Включает режим только для чтения, который блокирует любые добавления текста, а также изменения форматирования документа.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-filetype"/><menuchoice
+><guimenu
+>Сервис</guimenu
+> <guisubmenu
+>Тип документа</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Позволяет выбрать тип файла для текущего документа. Перекрывает глобальный параметр «тип файла», указанный в <menuchoice
+> <guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить редактор...</guimenuitem
+></menuchoice
+> на вкладке «Типы файлов» только для текущего документа.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-highlighting"/><menuchoice
 ><guimenu
 >Сервис</guimenu
 > <guimenuitem
->Режим «Тип файла»</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><guimenu
->Сервис</guimenu
+>Подсветка</guimenuitem
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Позволяет выбрать нестандартную схему подсветки для текущего документа. Перекрывает глобальный режим подсветки, указанный в <menuchoice
+> <guimenu
+>Настройка</guimenu
 > <guimenuitem
->Режим подсветки</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Режим подсветки для сценариев, языков программирования, файлов разметки и так далее: например, <literal role="extension"
->HTML, Bash, C++, XML, Makefile, Diff, ...</literal
+>Настроить редактор...</guimenuitem
+> </menuchoice
 >.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-indentation"/><menuchoice
+><guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Расстановка отступов</guimenuitem
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Позволяет выбрать режим отступов для текущего документа. Перекрывает глобальный режим отступов, указанный в <menuchoice
+> <guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить редактор...</guimenuitem
+></menuchoice
+> для текущего документа.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-encoding"/><menuchoice
+><guimenu
+>Сервис</guimenu
+> <guisubmenu
+>Кодировка</guisubmenu
+></menuchoice
+></term>
+ <listitem>
+<para
+>Позволяет выбрать кодировку для текущего документа, отличную от указанной в <menuchoice
+> <guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить редактор...</guimenuitem
+></menuchoice
+> на вкладке <guilabel
+>Открытие/Сохранение</guilabel
+>. Если файл не изменён, то он будет открыт повторно в указанной кодировке, а если изменён, то будет выполнено преобразование текущего текста в указанную кодировку.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-end-of-line"/><menuchoice
 ><guimenu
 >Сервис</guimenu
 > <guimenuitem
 >Конец строки</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Изменить тип окончания строк: &UNIX;, &Windows;/DOS, <trademark class="registered"
-> Macintosh</trademark
+></menuchoice
+> </term>
+ <listitem>
+<para
+>Позволяет выбрать окончание строки для текущего документа. Перекрывает стандартную настройку в <menuchoice
+> <guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить редактор...</guimenuitem
+> </menuchoice
 >.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-add-byte-mark-order"/><menuchoice
+><guimenu
+>Сервис</guimenu
+> <guisubmenu
+>Добавлять отметку о порядке байтов (BOM)</guisubmenu
+></menuchoice
+></term>
+ <listitem>
+<para
+>Позволяет точно добавлять маркер последовательности байтов в документах, закодированных в формате Юникод. Маркер последовательности байтов — это символ из стандарта Юникод, используемый для обозначения порядка байт в текстовом файле или потоке; более подробную информацию смотрите <ulink url="https://ru.wikipedia.org/wiki/Маркер_последовательности_байтов"
+>Маркер последовательности байтов</ulink
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Ctrl;<keycap
->I</keycap
+>&Ctrl;&Space;</keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Дополнить код</guimenuitem
+> </menuchoice
+> </term>
+<listitem>
+<para
+>Вызывает функцию дополнения кода, обычно посредством комбинации клавиш.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Автодополнение слов</guimenuitem
+> </menuchoice
+> </term>
+<listitem>
+<para
+>Опции <guimenuitem
+>Использовать нижестоящее слово</guimenuitem
+> (<keycombo action="simul"
+>&Ctrl; <keycap
+>9</keycap
+></keycombo
+>) и <guimenuitem
+>Использовать вышестоящее слово</guimenuitem
+> (<keycombo action="simul"
+>&Ctrl; <keycap
+>8</keycap
+></keycombo
+>) автоматически дополняют введённый текст посредством поиска похожих слов выше или ниже позиции курсора. <guimenuitem
+>Автодополнение как в командной оболочке</guimenuitem
+> выводит на экран всплывающее окно автодополнения с совпадающими записями.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>O</keycap
 ></keycombo
 > </shortcut
 > <guimenu
 >Сервис</guimenu
-><guimenuitem
->Вставить отступ</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-          <!-- TODO-->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl;&Shift;<keycap
->I</keycap
-></keycombo
-></shortcut
-> <guimenu
->Сервис</guimenu
 > <guimenuitem
->Снять отступ</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-          <!-- TODO-->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+>Автоматическая проверка орфографии</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>При включённой опции <guimenuitem
+>Автоматическая проверка орфографии</guimenuitem
+> неправильно написанное слово будет подчёркнуто сразу же.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-Spelling..."/><menuchoice
 ><guimenu
 >Сервис</guimenu
 ><guimenuitem
+>Проверка орфографии...</guimenuitem
+></menuchoice>
+</term>
+
+<!--para
+>These options are described in the documentation for the
+<ulink url="help:/sonnet/index.html"
+>Check Spelling Dialog</ulink
+>.</para
+Move / merge the following into kdelibs/doc/sonnet/index.docbook and replace it with the para above
+-->
+
+<listitem
+><para
+><action
+>Запускает программу проверки орфографии, предназначенную для помощи в исправлении орфографических ошибок.</action
+> Эта функция запустит проверку и откроет диалог, в котором можно будет контролировать её процесс. В этом диалоге присутствуют четыре элемента, расположенных друг под другом по центру диалога:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Неизвестное слово:</guilabel
+></term>
+<listitem
+><para
+>Слово, в котором, возможно, содержится ошибка. На самом деле ошибки может и не быть, просто такого слова нет в словаре (с содержимым которого модуль сравнивает каждое проверяемое слово) модуля.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Заменить на:</guilabel
+></term>
+<listitem
+><para
+>Если в словаре есть слова, похожие на ошибочное, здесь отобразится первое из лучших совпадений. Возможно принять исправление, ввести свой вариант или выбрать из списка под этим полем другой вариант.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Язык</guilabel
+></term>
+<listitem
+><para
+>Если установлено несколько словарей, здесь возможно выбрать какой из них использовать.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Справа от диалога расположено шесть кнопок, позволяющие управлять процессом проверки орфографии:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Добавить в словарь</guibutton
+></term>
+<listitem
+><para
+>Нажатие на эту кнопку добавляет <guilabel
+>Неизвестное слово</guilabel
+> в словарь. Это значит, что в будущем при проверке орфографии это слово будет рассматриваться как правильно написанное.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Похожие слова</guilabel
+></term>
+<listitem
+><para
+>Словарь может предложить здесь ряд возможных замен рассматриваемого слова. При нажатии на одно из предложенных слов оно будет введено в поле <guilabel
+>Заменить на</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Заменить</guibutton
+></term>
+<listitem
+><para
+>Эта кнопка позволяет словарю заменить рассматриваемое слово в документе словом, указанным в поле <guilabel
+>Заменить на</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Заменить все</guibutton
+></term>
+<listitem
+><para
+>Эта кнопка позволяет словарю заменить не только текущее <guilabel
+>Неизвестное слово:</guilabel
+>, но и автоматически сделать такую же замену для любых других появлений этого <guilabel
+>Неизвестного слова</guilabel
+> в документе.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Игнорировать</guibutton
+></term>
+<listitem
+><para
+>Продолжает поиск ошибок, не меняя неизвестное слово.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Игнорировать все</guibutton
+></term>
+<listitem
+><para
+>Нажатие этой кнопки указывает программе проверки пропустить текущее <guilabel
+>Неизвестное слово:</guilabel
+> и поступать аналогичным способом со всеми такими же словами в документе.</para
+> <note
+><para
+>Только для текущего сеанса проверки орфографии. При следующем запуске снова будет предложено заменить это слово.</para
+></note
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Ещё три кнопки расположены по горизонтали, внизу диалога проверки орфографии:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Справка</guibutton
+></term>
+<listitem
+><para
+>Вызывает справочную систему &kde; со страницей руководства для этого диалога.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Готово</guibutton
+></term>
+<listitem
+><para
+>Это кнопка завершает процесс проверки орфографии (сохраняя все исправления).</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Отмена</guibutton
+></term>
+<listitem
+><para
+>Это кнопка прерывает проверку орфографии (<emphasis
+>не</emphasis
+> сохраняя исправления).</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-spelling-from-cursor"/><menuchoice
+><guimenu
+>Сервис</guimenu
+><guimenuitem
+>Проверка орфографии от курсора...</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Запускает программу проверки орфографии, но начинает проверку с позиции курсора (а не с начала документа).</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-spellcheck-selection"/><menuchoice
+><guimenu
+>Сервис</guimenu
+><guimenuitem
+>Проверка орфографии в выделенном фрагменте...</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Проверяет орфографию в выделенном фрагменте текста.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-change-dictionary"/><menuchoice
+><guimenu
+>Сервис</guimenu
+><guimenuitem
+>Выбрать словарь</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>Отображает окно с выпадающим списком всех доступных словарей для проверки орфографии. Также позволяет легко переключаться между орфографическими словарями, например, для автоматической проверки орфографии в тексте на разных языках.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-cleanindent"/><menuchoice
+><guimenu
+>Сервис</guimenu
+> <guimenuitem
 >Привести отступы в порядок</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-          <!-- TODO-->
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+></menuchoice
+></term
+>  <listitem>
+<para
+>Убирает все отступы в выделенном фрагменте текста или в строке, на которой строит курсор. Это действие будет осуществлено с учётом выбранного режима расстановки отступов.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-align"/><menuchoice
+><guimenu
+>Сервис</guimenu
+><guimenuitem
+>Выравнивание</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Выравнивает текущую строку или строки в выделенном фрагменте согласно правилам отступа для документа.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><menuchoice
 ><shortcut
 ><keycombo action="simul"
 >&Ctrl;<keycap
@@ -967,16 +1684,18 @@
 >Сервис</guimenu
 > <guimenuitem
 >Закомментировать</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Добавить соответствующие символы комментирования, если доступны.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+> </menuchoice
+> </term>
+<listitem
+><para
+>Позволяет поставить знак комментария, отделённый от начала текста в строке одним пробелом.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><menuchoice
 ><shortcut
 > <keycombo action="simul"
 >&Ctrl;&Shift;<keycap
@@ -987,16 +1706,17 @@
 >Сервис</guimenu
 > <guimenuitem
 >Раскомментировать</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Убрать символы комментирования слева.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+> </menuchoice
+> </term>
+<listitem
+><para
+>Удаляет знак комментария и пробел, которым этот знак отделялся от начала текста в строке.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
 ><shortcut
 > <keycombo action="simul"
 >&Ctrl;<keycap
@@ -1007,16 +1727,17 @@
 >Сервис</guimenu
 > <guimenuitem
 >ВЕРХНИЙ РЕГИСТР</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+> </menuchoice
+></term>
+<listitem
+><para
+>Переводит выделенный текст или букву под курсором в верхний регистр.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
 ><shortcut
 > <keycombo action="simul"
 >&Ctrl;&Shift;<keycap
@@ -1027,36 +1748,38 @@
 >Сервис</guimenu
 > <guimenuitem
 >нижний регистр</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+> </menuchoice
+></term>
+<listitem
+><para
+>Переводит выделенный текст или букву под курсором в нижний регистр.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt;&Ctrl;<keycap
+>&Ctrl;&Alt;<keycap
 >U</keycap
 ></keycombo
 > </shortcut
 > <guimenu
 >Сервис</guimenu
 > <guimenuitem
->Как в предложениях</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+>Перевести в регистр Как в предложениях</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Переводит заглавные буквы выделенного текста в верхний регистр.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
 ><shortcut
 > <keycombo action="simul"
 >&Ctrl;<keycap
@@ -1067,186 +1790,80 @@
 >Сервис</guimenu
 > <guimenuitem
 >Объединить строки</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
+> </menuchoice
+></term>
+<listitem
+><para
+>Объединяет выделенные строки (или текущую строку с нижележащей) в одну, разделяя их пробелом. Пробелы в начале и конце строк удаляются.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
 ><guimenu
 >Сервис</guimenu
 > <guimenuitem
->Перенос слов</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
-></para>
-          <!-- TODO-->
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <!-- SETTINGS -> CONFIGURE EDITOR menu -->
-    <variablelist id="kredit_settings_menu">
-      <title
->Меню <guimenu
->Настройка -&gt; Настроить редактор</guimenu
-></title>
-      <varlistentry>
-        <term>
-          <menuchoice
+>Выполнить перенос строк</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Включает статический перенос строк в документе, то есть если длина строки превышает величину, указанную на вкладке настройки редактора в поле «Переносить после» меню <menuchoice
+> <guimenu
+>Настройка</guimenu
+><guimenuitem
+>Настроить редактор...</guimenuitem
+></menuchoice
+>, будет вставлен символ новой строки.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+<para
+>Если включён <link linkend="katepart-pref-plugins"
+>модуль</link
+> «Вставка файла», здесь появится дополнительный пункт меню <guimenuitem
+>Вставить файл...</guimenuitem
+>. </para>
+<!-- Data Tools and Insane HTML (LE) Expansion Ctrl+. when plugins are enabled-->
+</sect3>
+
+<sect3 id="katepart-menu-settings">
+<!-- This is also valid for kates menu settings,
+only the items Show Toolbar and Show Statusbar are swapped and Configure kate is the last item-->
+<title
+>Меню «Настройка»</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-preferences"/><menuchoice
 ><guimenu
 >Настройка</guimenu
 > <guimenuitem
->Настроить редактор</guimenuitem
-> <guimenuitem
->Цвета</guimenuitem
+>Настроить редактор...</guimenuitem
 > </menuchoice>
-        </term>
-        <listitem>
-          <para
->Настройка цвета для: фона, выделенного теста, текущей строки и подсветки скобок.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><guimenu
->Настройка</guimenu
-> <guimenuitem
->Настроить редактор</guimenuitem
-> <guimenuitem
->Шрифты</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Настройка шрифтов для показа на экране и печати: шрифт, стиль и размер шрифта, с окном предварительного просмотра.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><guimenu
->Настройка</guimenu
-> <guimenuitem
->Настроить редактор</guimenuitem
-> <guimenuitem
->Отступы</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Настройка отступов: автоматический отступ, использование пробелов для отступов, клавиша &Tab; вставляет отступ, клавиша &Backspace; убирает отступ, сохранение профиля отступов, сохранение лишних пробелов.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><guimenu
->Настройка</guimenu
-> <guimenuitem
->Настроить редактор</guimenuitem
-> <guimenuitem
->Выделение</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Настройка выделения: постоянное выделение, замена выделенного текста.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><guimenu
->Настройка</guimenu
-> <guimenuitem
->Настройка редактора</guimenuitem
-> <guimenuitem
->Редактирование</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Настройка редактирования: настройка переноса слов, настройка пробелов, автоматическая вставка скобок, умная реакция на Home, перенос курсора, максимальное число запоминаемых команд для отмены действий.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><guimenu
->Настройка</guimenu
-> <guimenuitem
->Настроить редактор</guimenuitem
-> <guimenuitem
->Комбинации клавиш</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Настройка комбинаций клавиш.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><guimenu
->Настройка</guimenu
-> <guimenuitem
->Настроить редактор</guimenuitem
-> <guimenuitem
->Подсветка</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Настройка подсветки: стили по умолчанию и режим подсветки.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><guimenu
->Настройка</guimenu
-> <guimenuitem
->Настроить редактор</guimenuitem
-> <guimenuitem
->Вид</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Вид: динамический перенос строк, показ номеров строк, показ полосы закладок, показ полосы сворачивания блоков (если доступно), меню сортировки закладок.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><guimenu
->Настройка</guimenu
-> <guimenuitem
->Настроить редактор</guimenuitem
-> <guimenuitem
->Модули</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Настройка модулей: например, модуль kTexteditor поиска по мере набора, модуль kTexteditor вставки файла, модуль kTexteditor по обработке данных...</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <!-- KRVIEWER menu -->
-    <variablelist id="kredit_krviewer_menu">
-      <title
->Меню <guimenu
->KrViewer</guimenu
-></title>
+</term>
+<listitem>
+<para
+>Этот пункт меню открывает диалог, позволяющий настроить несколько различных <link linkend="kredit_config"
+>параметров</link
+>. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect3>
+
+<!--/end kwrite-->
+
+  <!-- KRVIEWER menu -->
+<sect3 id="kredit_krviewer_menu">
+<title
+>Меню KrViewer</title>
+    <variablelist>
       <varlistentry>
         <term>
           <menuchoice
@@ -1259,7 +1876,7 @@
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Основной просмотрщик</guimenuitem
+>Основная программа просмотра</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1279,7 +1896,7 @@
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Просмотрщик текста</guimenuitem
+>Программа просмотра текста</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1299,12 +1916,12 @@
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Шестнадцатеричный просмотрщик</guimenuitem
+>Программа просмотра Hex-файлов</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Просмотр файла в шестнадцатеричном режиме.</para>
+>Просмотр Hex-файлов.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1319,17 +1936,16 @@
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Lister-просмотрщик</guimenuitem
+>Lister</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Быстрый текстовый/шестнадцатеричный просмотрщик для файлов больших размеров, см. <link linkend="konfig-general"
+>Быстрая программа просмотра текстовых/hex-файлов больших размеров, подробнее: <link linkend="konfig-general"
 >Krusader lister</link
 >.</para>
         </listitem>
-      </varlistentry
->      
+      </varlistentry>
       <varlistentry>
         <term>
           <menuchoice
@@ -1347,47 +1963,7 @@
         </term>
         <listitem>
           <para
->Редактировать файл в текстовом режиме.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><shortcut
-> <keycombo action="simul"
->&Alt; <keycap
->Right</keycap
-></keycombo
-> </shortcut
-> <guimenu
->KrViewer</guimenu
-> <guimenuitem
->Следующая вкладка</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Следующая вкладка просмотра.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><shortcut
-> <keycombo action="simul"
->&Alt; <keycap
->Left</keycap
-></keycombo
-> </shortcut
-> <guimenu
->KrViewer</guimenu
-> <guimenuitem
->Предыдущая вкладка</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Предыдущая вкладка просмотра.</para>
+>Позволяет редактировать файл в текстовом режиме.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1407,36 +1983,22 @@
         </term>
         <listitem>
           <para
->Отделить вкладку просмотра и открыть в новом окне.</para>
+>Позволяет отделить вкладку просмотра и открыть в новом окне.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
           <menuchoice
 ><shortcut
->&Esc;</shortcut
-> <guimenu
->KrViewer</guimenu
-> <guimenuitem
->Закрыть текущую вкладку.</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Закрыть текущую вкладку просмотра.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><shortcut
->&Ctrl; <keycap
+> <keycombo action="simul"
+> &Ctrl; <keycap
 >Q</keycap
-></shortcut
+></keycombo
+> </shortcut
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Закрыть</guimenuitem
+>Выход</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1445,5 +2007,1512 @@
         </listitem>
       </varlistentry>
     </variablelist>
+    </sect3>
   </sect2>
+
+<!--taken from kwrite's configuring-part.docbook-->
+<sect2 id="kredit_config">
+<title
+>Настройка компонентов редактора</title>
+<para
+>Эта группа содержит все страницы, относящиеся к редактору &kappname;. Большая часть параметров здесь указана по умолчанию, и их возможно изменить с помощью <link linkend="katepart-pref-open-save-modes-filetypes"
+>определения типа файла</link
+> через <ulink url="help:/katepart/config-variables.html"
+>Переменные документа</ulink
+> или посредством изменения их непосредственно в документе в процессе редактирования.</para>
+<sect3 id="katepart-appearance"
+> <!-- updated to 4.7 + synced with kwrite -->
+<title
+>Внешний вид</title>
+
+<sect4 id="katepart-appearance-general">
+<title
+>Общее</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Динамический перенос строк</guilabel
+></term>
+<listitem>
+<para
+>Если флажок установлен, слова, не помещающиеся в видимую часть экрана, будут автоматически перенесены на новую строку.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Маркер динамического переноса строк (если применимо)</guilabel
+></term>
+<listitem
+><para
+>Позволяет выбрать, когда необходимо отображать маркеры динамически перенесённых слов: <guilabel
+>Выключено</guilabel
+>, <guilabel
+>Переходить по номерам строк</guilabel
+> или <guilabel
+>Всегда включено</guilabel
+>. </para
+></listitem
+></varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Сохранять отступ для перенесённых строк, если он не длиннее: </guilabel
+></term>
+<listitem
+><para
+>Позволяет выравнивать начало динамически перенесённых строк относительно отступа первой строки. Это позволяет улучшить читаемость кода и разметки.</para
+><para
+>Этот параметр также позволяет установить максимальную ширину экрана (в процентах), после превышения которой динамически перенесённые строки не будут выравниваться по отступу. Например, при значении 50%, строки с отступом больше 50% ширины экрана, больше не будут выравниваться по отступу.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Выделение пробельных символов</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Выделять символы табуляции</guilabel
+></term>
+<listitem
+><para
+>Отобразит символы табуляции в тексте.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Выделять подсветкой пробелы в конце строк</guilabel
+></term>
+<listitem
+><para
+>Отобразит точки, указывающие на наличие лишних пробелов в конце строк.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Дополнительно </guilabel
+></term>
+<listitem
+><para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Показать линии отступов </guilabel
+></term>
+<listitem
+><para
+>При включении этого параметра в редакторе будут показываться вертикальные линии для показа отступов.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Выделять пространство между скобками </guilabel
+></term>
+<listitem
+><para
+>Если данный пункт выбран, то пространство между скобками будет выделяться.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-appearance-borders">
+<title
+>Границы</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Границы</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Полоса сворачивания блоков (если доступно) </guilabel
+></term>
+<listitem
+><para
+>Если флажок установлен и сворачивание блоков кода доступно, будут показаны маркеры сворачивания блоков.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Показывать полосу закладок </guilabel
+></term>
+<listitem
+><para
+>Включает показ полосы закладок на левой стороне редактора.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Показывать номера строк </guilabel
+></term>
+<listitem
+><para
+>Если флажок установлен, номера строк будут показаны на левой стороне редактора.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Показывать закладки на полосе прокрутки </guilabel
+></term>
+<listitem
+><para
+>Если параметр включён, то на вертикальной полосе прокрутки текущего окна будут видны маркеры. Эти маркеры показывают положение закладок в тексте.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Меню «Сортировка закладок» </guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>По времени создания </guilabel
+></term>
+<listitem
+><para
+>Каждая новая закладка будет добавлена в конец списка, вне зависимости от того, на какой строке документа она установлена.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>По расположению </guilabel
+></term>
+<listitem
+><para
+>Закладки будут отсортированы по номеру строки, на которой они находятся.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+</sect3>
+
+<sect3 id="katepart-prefcolors"
+><!-- checked for 4.7 + synced with kwrite -->
+<title
+>Шрифты и цвета</title>
+
+<para
+>Этот раздел позволяет настроить все шрифты и цвета в любой имеющейся цветовой схеме, а также создать новые схемы и удалять имеющиеся. Каждая схема определяет цвета и шрифты для обычного, выделенного и подсвеченного текста. </para>
+
+<para
+>&kappname; предварительно выберет активную схему для пользователя. Чтобы создать новую схему, необходимо воспользоваться полем со списком <guilabel
+>Схема</guilabel
+>. С помощью кнопок <guibutton
+>Создать</guibutton
+> и <guibutton
+>Удалить</guibutton
+> возможно создать новую схему или удалить существующие.</para>
+<para
+>В нижней части страницы возможно выбрать вариант <guilabel
+>Стандартная схема для &kappname;</guilabel
+>.</para>
+
+<sect4 id="katepart-prefcolors-colors">
+<title
+>Цвета</title>
+
+<variablelist>
+<varlistentry id="katepart-variable-prefcolors-colors-text-background">
+<term
+><guilabel
+>Текст области фона</guilabel
+></term>
+<listitem>
+
+<variablelist>
+
+<varlistentry id="katepart-variable-pref-colors-normal-text">
+<term
+><guilabel
+>Обычный текст</guilabel
+></term>
+<listitem
+><para
+>Это цвет фона всего окна редактора, он будет подложкой под другими цветами в области редактора.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-selected-text">
+<term
+><guilabel
+>Выделенный текст</guilabel
+></term>
+<listitem
+><para
+>Это фон выделенного текста. По умолчанию используется глобальный цвет выделенной области, установленный в Центре управления &plasma;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-current-line">
+<term
+><guilabel
+>Текущая строка</guilabel
+></term>
+<listitem
+><para
+>Фон текущей строки. Если выбрать цвет, немного отличный от цвета фона обычного текста, то это поможет визуально выделять текущую строке и не будет отвлекать от другого текста. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-marks">
+<term
+><guilabel
+>Закладка</guilabel
+></term>
+<listitem
+><para
+>Это поле со списком позволяет указать цвета для наложения  для различных типов меток. Цвет смешивается с фоновым цветом выделенной линии, так что линия с большим количеством меток или выделенная текущая линия имеют фон, представляющий собой смесь большего количества цветов. Цвета меток также используются при включении отображения меток полосы прокрутки.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-prefcolors-colors-other-elements">
+<term
+><guilabel
+>Дополнительные элементы</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Фон левой границы</guilabel
+></term>
+<listitem
+><para
+>Этот цвет используется для полос закладок, номеров строк и блоков кода, которые показываются у левой границы окна редактирования. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Номера строк</guilabel
+></term>
+<listitem
+><para
+>Этот цвет используется для цифр номеров строк у левой границы окна редактирования.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Подсветка скобок</guilabel
+></term>
+<listitem
+><para
+>Этот цвет используется для фона подсветки парных открывающих и закрывающих скобок. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Маркеры статического переноса строк</guilabel
+></term>
+<listitem
+><para
+>Этот цвет используется для маркера динамически перенесённых строк. Также он используется для маркера статического переноса строк.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Маркеры табуляции и пробелов</guilabel
+></term>
+<listitem
+><para
+>Этот цвет используется для отображения индикаторов пробелов. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Подчёркивание орфографической ошибки</guilabel
+></term>
+<listitem
+><para
+>цвет линии, которой подчёркивается орфографическая ошибка. </para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-prefcolors-fonts">
+<title
+>Шрифты</title>
+<para
+>Здесь возможно выбрать шрифт для схемы. Это может быть любой шрифт, установленный в системе. Возможно также выбрать его размер и стиль. В нижней части окна находится поле, в котором показывается, как будет выглядеть текст, написанный таким шрифтом. </para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-normal-text-styles">
+<title
+>Стили обычного текста</title>
+<para
+>Стили обычного текста наследуются стилями выделенного текста, позволяя редактору отображать текст как единое целое. Например, текст комментария использует один и тот же стиль почти во всех текстовых форматах, которые &kappname; может выделить.</para>
+<para
+>При изменении стиля текста, любые стили синтаксиса, основанные на нём, меняются автоматически. </para>
+<para
+>Каждый стиль позволяет выбирать общие атрибуты, а также цвета переднего плана и фона. Чтобы отключить цвет фона, щёлкните правой кнопкой мыши для открытия контекстного меню.</para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-highlighting-text-styles">
+<title
+>Подсветка синтаксиса</title>
+<para
+>Здесь возможно изменить стили текста, используемые при подсветке синтаксиса. По умолчанию редактор выбирает схему подсветки, используемую текущим документом. Для изменения другой схемы выберите одну из них в выпадающем списке <guilabel
+>Подсветка</guilabel
+>. </para>
+<para
+>При изменении стиля текста, любые стили синтаксиса, основанные на нём, меняются автоматически. </para>
+<para
+>Каждый стиль позволяет выбирать общие атрибуты, а также цвета переднего плана и фона. Чтобы отключить цвет фона, щёлкните правой кнопкой мыши для открытия контекстного меню. Кроме того, возможно увидеть, соответствует ли стиль стилю по умолчанию, используемому для элемента, и установить его, если нет.</para>
+<para
+>Обратите внимание, многие схемы подсветки содержат несколько групп стилей. Например, многие схема подсветки синтаксиса содержат общую группу Doxygen. Изменение стилей в такой общей группе влияет только на текущую схему подсветки синтаксиса. </para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-edit">
+<title
+>Правка</title>
+
+<sect4 id="katepart-pref-edit-general">
+<title
+>Общее</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-pref-word-wrap"
+><guilabel
+>Статический перенос строк</guilabel
+></term>
+<listitem
+><para
+>Перенос слов — это функция, при включении которой редактор автоматически начинает новую строку текста и перемещает (переносит) курсор в начало этой новой строки. &kappname; автоматически начнёт новую строку текста тогда, когда текущая строка достигнет длину, указанную в параметре <link linkend="katepart-pref-wrap-words-at"
+>Перенос слов на:</link
+>.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Включить статический перенос строк</guilabel
+></term>
+<listitem>
+<para
+>Включает/выключает статический перенос строк.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Показывать маркеры статичного переноса строк (если применимо)</guilabel
+></term>
+<listitem>
+<para
+>Если этот пункт включён, на столбце, указанном в  <menuchoice
+><guimenu
+>Настройка</guimenu
+><guimenuitem
+>Настроить редактор...</guimenuitem
+> </menuchoice
+> в разделе <guilabel
+>Редактирование</guilabel
+> будет показана вертикальная линия. Обратите внимание, что маркер будет виден только если используется моноширинный шрифт.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term id="katepart-pref-wrap-words-at"
+><guilabel
+>Переносить после:</guilabel
+></term>
+<listitem>
+<para
+>Если включена опция <link linkend="katepart-pref-word-wrap"
+>Включить статический перенос строк</link
+>, этот пункт позволяет указать длину (в символах), по достижению которой редактор автоматически начнёт новую строку.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Прочее</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Удалять завершающие пробелы при редактировании</guilabel
+></term>
+<listitem
+><para
+>&kappname; автоматически удалит лишние пробелы в конце строк текста.</para
+></listitem
+> </varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Автоматическая вставка парной скобки</guilabel
+></term
+> <listitem
+><para
+>Когда пользователь вводит левую скобку ([, ( или {) &kappname; автоматически добавляет правую скобку (}, ) или ]) справа от курсора.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Вырезать или копировать текущую строку, если ничего не выделено</guilabel
+></term
+> <listitem>
+<para
+>Если эта опция включена, а выделение текста пустое, действия копирования и вырезания выполняются для строки текста в фактической позиции курсора.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Позволять прокручивать документ ниже его конца</guilabel
+></term
+> <listitem>
+<para
+>Этот параметр позволяет прокручивать документ ниже его конца. Эту функцию возможно использовать для вертикального центрирования нижней части документа или размещения его поверх текущего режима просмотра.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-cursor-selection">
+<title
+>Курсор и выделение</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Перемещение курсора</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Интеллектуальная навигация клавишами Home и End</guilabel
+></term>
+<listitem>
+<para
+>Если флажок установлен, при нажатии на клавишу Home курсор будет переходить на начало текста в текущей строке, игнорируя пробелы в начале строки.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Переносить курсор</guilabel
+></term>
+<listitem>
+<para
+>Если этот параметр включён, перемещение курсора с помощью клавиш &Left; и &Right; приведёт к переходу на предыдущую/следующую строку в начале или конце строки, что аналогично большинству редакторов.</para
+><para
+>Когда эта функция выключена, курсор вставки нельзя перемещать влево от начала строки, но его возможно переместить за конец строки, что может быть очень удобно для программистов. Когда эта функция включена, перемещение курсора с помощью клавиш со стрелками от конца строки (вправо) приводит к переходу вниз к началу следующей строки. Точно так же, когда курсор перемещается за начало строки (влево), он перемещается до конца предыдущей строки. Если этот параметр выключен, перемещение курсора сразу за конец строки просто приводит к тому, что он продолжает ввод горизонтально в той же строке, а попытка переместить его влево за начало ничего не даёт.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Клавиши PageUp и PageDown перемещают курсор</guilabel
+></term>
+<listitem>
+<para
+>Эта функция меняет поведение курсора, когда пользователь нажимает клавиши &PgUp; или &PgDn;. Если флажок не установлен, текстовый курсор сохранит своё относительное положение внутри видимого текста в &kappname; по мере того, как новый текст будет становиться видимым в результате операции. Таким образом, если курсор находится в середине видимого текста, когда происходит операция, он останется там (за исключением случаев, когда он достигает начала или конца). или внизу видимого текста, когда отображается новая страница текста.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Оставлять между курсором и краем (строк):</guilabel
+></term>
+<listitem>
+<para
+>Устанавливает число строк, которые должны быть видимы выше и ниже курсора (если возможно).</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Режим выделения текста</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Обычный</guilabel
+></term>
+<listitem>
+<para
+>Выделенная область будет удалена при вводе текста, и выделение будет снято при движении курсора.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Постоянно</guilabel
+></term>
+<listitem>
+<para
+>Выделение не изменяется даже после ввода текста и перемещения курсора.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-indent">
+<title
+>Отступы</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Режим расстановки отступов по умолчанию:</guilabel
+></term>
+<listitem>
+<para
+>Выберите режим автоматического отступа, который будет использоваться по умолчанию. Настоятельно рекомендуется выбрать вариант <userinput
+>Нет</userinput
+> или <userinput
+>Обычный</userinput
+> и использовать параметры типов файлов для настройки режимов отступа текстовых форматов наподобие кода C/C++ или &XML;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Использование отступов</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Символы табуляции</guilabel
+></term>
+<listitem>
+<para
+>Когда эта функция включена, редактор вставит символы табуляции при нажатии клавиши &Tab; или использовании <ulink url="help:/katepart/kate-part-autoindent.html"
+>автоматических отступов</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Пробелы</guilabel
+></term>
+<listitem>
+<para
+>Когда эта функция включена, редактор будет вставлять расчётное количество пробелов в соответствии с позицией в тексте и настройкой <option
+>tab-width</option
+> при нажатии клавиши &Tab; или использовании <ulink url="help:/katepart/kate-part-autoindent.html"
+>автоматического отступа</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Табуляция и пробелы</guilabel
+></term>
+<listitem>
+<para
+>Когда эта функция включена, редактор будет вставлять пробелы, как описано выше, при отступе или нажатии клавиши &Tab; в начале строки, а символы табуляции будут вставляться, когда эта же клавиша будет нажата в середине или конце строки.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ширина табуляции:</guilabel
+></term>
+<listitem>
+<para
+>Эта функция настраивает количество пробелов, отображаемых вместо символа табуляции.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ширина отступов:</guilabel
+></term>
+<listitem>
+<para
+>Ширина отступа — это число пробелов, используемых для отступа в строке. Если отступ настроен с помощью табуляторов, символ табуляции вставляется, если отступ делится на ширину табуляции.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Правила расстановки отступов</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Сохранять лишние пробелы</guilabel
+></term>
+<listitem
+><para
+>Если параметр отключён, изменение отступа выравнивает строку согласно параметру <guilabel
+>Ширина табуляции</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Выполнять расстановку отступов для вставляемого из буфера обмена кода</guilabel
+></term>
+<listitem>
+<para
+>Выполнять расстановку отступов для вставляемого текста в соответствии с контекстом вставки. Расстановку отступов возможно <guimenuitem
+>Отменить</guimenuitem
+> после вставки текста.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Работа с отступами</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Уменьшение отступа клавишей Backspace</guilabel
+></term>
+<listitem>
+<para
+>Если параметр включён, при нажатии клавиши &Backspace; отступ текущей строки будет уменьшен на один шаг, если курсор находится в начале строки.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Действие клавиши Tab (если ничего не выделено)</guilabel
+></term>
+<listitem>
+<para
+>Чтобы при нажатии на клавишу &Tab; текущая строка в текущем блоке кода выравнивалась, как в emacs, сделайте &Tab; горячей клавишей для действия <guimenuitem
+>Выровнять</guimenuitem
+>. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Всегда добавлять табуляцию (либо эквивалентное количество пробелов)</guilabel
+></term>
+<listitem>
+<para
+>Если флажок установлен, при нажатии клавиши &Tab; будет вставлено необходимое количество пробелов или символ табуляции до следующей позиции табуляции. Если включён параметр <guilabel
+>Отступы пробелами вместо символов табуляции</guilabel
+> на вкладке <guilabel
+>Общие</guilabel
+> на странице <guilabel
+>Редактирование</guilabel
+>, будут вставлены пробелы; в противном случае будет вставлен один табулятор.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Всегда увеличивать уровень отступа</guilabel
+></term>
+<listitem>
+<para
+>Если флажок установлен, при нажатии клавиши &Tab; строка всегда будет смещаться на количество позиций символов, указанное в <guilabel
+>Ширина отступа</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Увеличивать уровень отступа если курсор стоит в начале строки</guilabel
+></term>
+<listitem>
+<para
+>Если параметр включён, клавиша &Tab; может или увеличить отступ строки, или перенести текст на следующую позицию табуляции. Если текущая позиция курсора находится на первом непробельном символе строки или перед ним, либо если есть выделенный текст, текущая строка будет увеличена на <guilabel
+>Ширину табуляции</guilabel
+>. Если точка вставки расположена после первого непробельного символа в строке, и нет выделенного текста, пробел будет вставлен до следующей позиции табуляции: если включена функция <guilabel
+>Вставлять пробелы вместо символов табуляции</guilabel
+> на вкладке <guilabel
+>Общие</guilabel
+> на странице <guilabel
+>Редактирование</guilabel
+>, будут вставлены пробелы. В противном случае будет вставлен один символ табуляции.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-autocompletion">
+<title
+>Автодополнение</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Общее</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Включить автодополнение</guilabel
+></term>
+<listitem>
+<para
+>Если эта функция включена, во время ввода автоматически будет появляться окно, показывающее список слов, которыми возможно закончить текст под курсором.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Минимальная длина слова для автодополнения</guilabel
+></term>
+<listitem
+><para
+>При наборе текста автодополнение ищет слова в документе, начиная с уже набранного текста. Этот параметр позволяет настроить минимальное количество символов, необходимое для того, чтобы автодополнение слов было активным, и отображалось всплывающее окно завершения.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-vi-input-mode">
+<title
+>Режим ввода Vi</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Общее</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Использование режима ввода VI</guilabel
+></term>
+<listitem>
+<para
+>Если эта функция включена, при открытии нового режима просмотра будет включён режим ввода vi. Режим ввода vi возможно переключать для определённого режима просмотра в меню <guimenu
+>Редактирование</guimenu
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Использовать комбинации клавиш Vi</guilabel
+></term>
+<listitem>
+<para
+>При включении этого параметра, вместо встроенных команд редактирования &kappname; будут использованы команды Vi. Например: комбинация клавиш <keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> будет назначена на отмену изменения, а не вызовет диалог поиска и замены.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Скрыть строку состояния режима Vi</guilabel
+></term>
+<listitem>
+<para
+>По умолчанию при включённом режиме ввода Vi будет использоваться дополнительная строка состояния. В этой строке состояния отображаются команды во время их ввода, а также сообщения и ошибки, выдаваемые командами Vi.</para>
+<para
+>Этот флажок позволит скрыть дополнительную строку состояния.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Замена действий клавиш</guilabel
+></term>
+<listitem
+><para
+>Здесь возможно изменить значения нажимаемых клавиш. Это позволяет менять клавиши, вызывающие определённые команды, и создавать последовательности команд, выполняемые по нажатию одной комбинации клавиш.</para>
+<para
+>Пример:</para>
+<para
+><keycap
+>F2</keycap
+> -> <keycap
+>I--</keycap
+> &Esc;</para>
+<para
+>Добавит <keycap
+>I--</keycap
+> к строке при нажатии <keycap
+>F2</keycap
+>. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-spellcheck">
+<title
+>Проверка орфографии</title>
+<para
+>Эти параметры конфигурации описаны в документации к модулю «Параметров системы» <ulink url="help:/kcontrol/spellchecking"
+>Проверка орфографии</ulink
+>.</para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-open-save">
+<title
+>Открытие и сохранение</title>
+
+<sect4 id="katepart-pref-open-save-general">
+<title
+>Общее</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Формат файла</guilabel
+></term>
+<listitem>
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Кодировка:</guilabel
+></term>
+<listitem>
+<para
+>Стандартная кодировка, в которой по умолчанию будут открываться и сохраняться файлы. Эту кодировку возможно изменить в диалоге открытия или сохранения файла или путём передачи соответствующего параметра командной строки.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Автоопределение кодировки</guilabel
+></term>
+<listitem>
+<para
+>Выберите элемент из раскрывающегося списка, чтобы отключить автоопределение, либо используйте функцию <guilabel
+>Универсальный</guilabel
+> для включения автоопределения всех кодировок. Но поскольку таким образом, вероятно, можно будет обнаружить только utf-8/utf-16, функция выбора региона будет основываться на пользовательских данных для лучших результатов. Если выбранная в качестве стандартной кодировка, кодировка в диалоге открытия и сохранения и кодировка в командной строке не соответствуют содержимому файла, будет запущено это обнаружение.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Резервная кодировка</guilabel
+></term>
+<listitem>
+<para
+>Определяет кодировку, в которой будут открываться файлы, если ни стандартная кодировка (выше), ни кодировка в диалоге открытия или сохранения файла, ни кодировка, указанная в командной строке, не соответствуют содержимому файла. Перед открытием файла в указанной здесь кодировке будет также проверено наличие отметки о порядке байтов (что укажет на кодировку Unicode) и запущено автоматическое определение кодировки.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Конец строки</guilabel
+></term>
+<listitem>
+<para
+>Выберите предпочитаемый режим конца строки для активного документа. Доступен выбор между &UNIX;, DOS/&Windows; или Macintosh.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Автоматическое определение символов конца строки</guilabel
+></term>
+<listitem>
+<para
+>Установите этот флажок, чтобы редактор автоматически определял тип символов конца строки. Первый найденный символ конца строки будет использован для всего файла.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Включить отметку о порядке байтов</guilabel
+></term>
+<listitem>
+<para
+>Отметка о порядке байтов (BOM) — это специальная последовательность байтов в начале документов в кодировке Unicode. Она позволяет текстовым редакторам сразу открыть документы в правильной кодировке. Более подробная информация содержится на странице <ulink url="https://ru.wikipedia.org/wiki/Маркер_последовательности_байтов"
+>Маркер последовательности байтов</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<!--
+Line Length Limit missing
+ -->
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Автоматическая очистка при загрузке или сохранении</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Удалять завершающие пробелы</guilabel
+></term>
+<listitem>
+<para
+>Редактор автоматически удалит лишние пробелы в конце строк текста при загрузке или сохранении файла.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-advanced">
+<title
+>Дополнительно</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Папка файла конфигурации</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Глубина поиска файла конфигурации:</guilabel
+></term>
+<listitem>
+<para
+>Редактор произведёт поиск файла конфигурации &kappname; на указанном количестве уровней папок и загрузит их него набор параметров. Более подробная информация об этих конфигурационных файлах представлена в <ulink url="help:/katepart/config-variables.html"
+>разделе о переменных документа</ulink
+>. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Создавать резервную копию при сохранении</guilabel
+></term>
+<listitem
+><para
+>Резервное копирование при сохранении означает, что перед сохранением изменений будет записан файл &lt;префикс&gt;&lt;имя_файла&gt;&lt;суффикс&gt;. Суффикс по умолчанию — символ <emphasis role="bold"
+>~</emphasis
+>. а префикса нет. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Локальные файлы</guilabel
+></term>
+<listitem>
+<para
+>Установите флажок, если хотите сохранять резервные копии перед сохранением локальных файлов.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Удалённые файлы</guilabel
+></term>
+<listitem>
+<para
+>Установите флажок, если хотите сохранять резервные копии перед сохранением сетевых файлов.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Префикс</guilabel
+></term>
+<listitem>
+<para
+>Введите префикс, используемый для генерации имени файла резервной копии.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Суффикс</guilabel
+></term>
+<listitem>
+<para
+>Введите суффикс, используемый для генерации имени файла резервной копии.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Выключить синхронизацию файла подкачки</guilabel
+></term>
+<listitem>
+<para
+>&kappname; способен восстановить (большинство) текста, который был написан после последнего сохранения в случае программного сбоя или перебоев с питанием. После первого действия по редактированию документа будет создан файл подкачки (.swp.&lt;имя файла&gt;). Если пользователь не сохранит изменения, и произойдёт сбой в работе &kappname;, файл подкачки останется на диске. При открытии файла &kappname; проверяет наличие соответствующего файла подкачки и при его наличии предложит восстановить утерянные данные. Пользователь может просматривать разницу между оригинальным файлом и восстановленным. Файл подкачки будет удаляться после каждого сохранения и при обычном выходе.</para>
+<para
+>&kappname; синхронизирует файлы подкачки на диске каждые 15 секунд, но только если они изменились после последней синхронизации. Возможно отключить синхронизацию файлов посредством установки флажка <guilabel
+>Отключить синхронизацию файлов подкачки</guilabel
+>, но это может привести к ещё большим потерям данных.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-modes-filetypes">
+<title
+>Типы файлов</title>
+<para
+>Этот раздел позволяет переопределить параметры для документов определённого типа &MIME;. При загрузке документа редактор проверяет, совпадает ли файл с одной из масок файлов или же с одним из типов &MIME;. В случае совпадения, редактор перечисляет в этом разделе совпадающие типы файлов и применяет параметры типа с наивысшим приоритетом. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Тип файла:</guilabel
+></term>
+<listitem
+><para
+>Тип файла с наивысшим приоритетом виден первым в выпадающем списке. Если было найдено несколько типов файлов, они также доступны в списке.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Создать</guilabel
+></term>
+<listitem
+><para
+>Используется для создания нового типа файлов. После нажатия на кнопку поля внизу очищаются, и появляется возможность ввести нужные параметры для нового типа файлов.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Удалить</guilabel
+></term>
+<listitem
+><para
+>Для удаления существующего типа файла, выберите его из выпадающего списка и нажмите кнопку <guibutton
+>Удалить</guibutton
+>.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem
+> </varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Свойства <replaceable
+>текущего типа файла</replaceable
+></guilabel
+></term>
+<listitem
+><para
+>Тип файла с наивысшим приоритетом виден первым в выпадающем списке. Если было найдено несколько типов файлов, они также доступны в списке.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Имя:</guilabel
+></term>
+<listitem
+><para
+>Имена типов файлов будут использованы как текст соответствующих пунктов меню. Они доступны через меню <menuchoice
+><guimenu
+>Сервис</guimenu
+><guimenuitem
+>Тип файла</guimenuitem
+></menuchoice
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Раздел:</guilabel
+></term>
+<listitem
+><para
+>Название раздела используется для организации типов файлов в пунктах меню. Они также используются в <menuchoice
+><guimenu
+>Сервис</guimenu
+><guimenuitem
+>Тип файла</guimenuitem
+></menuchoice
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Переменные:</guilabel
+></term>
+<listitem
+><para
+>Эта строка позволяет настраивать параметры &kappname; для файлов, выбранных этим типом &MIME; с помощью переменных &kappname;. Возможно указать практически любой параметр конфигурации, например, выделение, режим вставки и так далее.</para>
+<para
+>Чтобы отобразить список всех доступных переменных и их описание, нажмите <guibutton
+>Правка</guibutton
+>.  Установите флажок слева, чтобы включить определённую переменную, а затем установите значение этой переменной справа. Некоторые переменные предоставляют раскрывающийся список для выбора возможных значений, а другие требуют ввод действительного значения вручную.</para>
+<para
+>Более подробная информация об этих переменных содержится в разделе <ulink url="help:/katepart/config-variables.html"
+>Настройка с помощью переменных документа</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Подсветка:</guilabel
+></term>
+<listitem
+><para
+>При создании нового типа файла в этом раскрывающемся списке возможно выбрать тип файла для выделения.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Режим расстановки отступов:</guilabel
+></term>
+<listitem
+><para
+>Поле со списком позволяет указать режим отступа для новых документов.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Расширения файлов:</guilabel
+></term>
+<listitem
+><para
+>Поле <guilabel
+>Расширения файлов</guilabel
+> содержит список масок, разделённых точками с запятой. Маски позволяет определить тип файла по его имени. Типичная маска использует звёздочку и расширение файла, например <filename
+>*.txt;*.text</filename
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Типы &MIME;:</guilabel
+></term>
+<listitem
+><para
+>Отображает мастер, помогающий легко выбирать типы &MIME;.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Приоритет:</guilabel
+></term>
+<listitem
+><para
+>Последнее поле устанавливает приоритет для данного типа файла. Если для текущего документа доступно больше одного типа файлов, будет использован тип с наивысшим приоритетом.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem
+> </varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Загрузить файлы подсветки синтаксиса...</guibutton
+></term>
+<listitem>
+<para
+>Нажмите эту кнопку, чтобы загрузить новые или обновлённые описания подсветки синтаксиса из веб-сайта &kappname;. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-plugins">
+<title
+>Расширения</title
+> <!-- updated to 4.7 + synced with kwrite -->
+<para
+>Вкладка <guilabel
+>Модули</guilabel
+> отображает список всех доступных модулей, позволяя подключить необходимые. Нажмите кнопку <guibutton
+>Информация</guibutton
+> для открытия диалога <guilabel
+>Об этом модуле</guilabel
+>.</para>
+<para
+>При установке флажка напротив модуля, который возможно настроить, активируется кнопка <guibutton
+>Настроить</guibutton
+>, позволяющая указать необходимые параметры для выделенного модуля.</para>
+<variablelist>
+<title
+>Модули компонента редактирования</title>
+<!-- not released with 4.7
+<varlistentry>
+<term
+><guilabel
+>Artistic Comment</guilabel
+></term>
+<listitem
+><para
+>Format long source-code comments like license-headers
+or descriptions using different style.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><guilabel
+>AutoBrace</guilabel
+></term>
+<listitem
+><para
+>Модуль autobrace заменяет внутреннюю функцию &kappname; <quote
+>Автоматические скобки</quote
+>. Он автоматически вставляет закрывающую фигурную скобку <keycap
+>}</keycap
+> в начале следующей строки после окончания строки открывающей скобкой <keycap
+>{</keycap
+> и нажатия клавиши &Enter;.</para
+></listitem>
+</varlistentry>
+<!--http://jakob.petsovits.at/topic/kate-->
+<!--Right, it's the automatic insertion of a closing brace (<quote
+>}</quote
+>) after you ended a line with an opening one (<quote
+>{</quote
+>). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
+You, the developer, are writing a line of code, and want to open a new block delimited by braces. Looks like this:
+If you press Enter and AutoBrace is enabled, it will insert your favorite new brace where it belongs. Looks like this:
+-->
+<varlistentry>
+<term
+><guilabel
+>Инструменты данных</guilabel
+></term>
+<listitem
+><para
+>Включает инструменты для работы с данными, такие как тезаурус и проверка орфографии (если они установлены). Инструменты работы с данными доступны только при выделении текста или щелчке правой кнопкой мыши по слову. Если инструменты для работы с данными не предлагаются даже при выделении текста, их необходимо установить. Если этот модуль включён и установлены инструменты обработки данных, в конце контекстного меню появятся дополнительные элементы.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Экспорт</guilabel
+></term>
+<listitem
+><para
+>Эта команда позволяет экспортировать текущий документ со всей выделенной информацией в &HTML;-документ с помощью пункта меню <menuchoice
+><guimenu
+>Файл</guimenu
+><guimenuitem
+>Экспортировать как &HTML;</guimenuitem
+></menuchoice
+>. Более того, возможно использовать пункт меню <menuchoice
+><guimenu
+>Правка</guimenu
+> <guimenuitem
+>Копировать как &HTML;</guimenuitem
+></menuchoice
+> для копирования текущего выделенного текста как  &HTML; в системный буфер обмена.</para
+></listitem>
+</varlistentry>
+<!-- not in 4.7
+<varlistentry>
+<term
+><guilabel
+>Highlight Selection</guilabel
+></term>
+<listitem
+><para
+>Highlights all words that match the currently selected text.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><guilabel
+>IconInserter</guilabel
+></term>
+<listitem
+><para
+>Модуль для вставки значков доступен только для разработчиков &kde;: он добавляет пункт <guimenuitem
+>Вставить код KIcon</guimenuitem
+> в контекстное меню редактора. Если он активен, откроется окно выбора значков &plasma; (отображающее значки приложений, значки действий и так далее). При нажатии на это окно имя файла без расширения будет вставлено как текст. Эта функция полезна только для установки значков через &kf5; через класс KIcon(). </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>&HTML;-кодирование Insane (не ZEN) (облегчённая редакция)</guilabel
+></term>
+<listitem
+><para
+>Модуль для Zen Coding. Более подробная информация содержится здесь: <ulink url="https://ru.wikipedia.org/wiki/Emmet_"
+> Zen Coding</ulink
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Вставить файл</guilabel
+></term>
+<listitem
+><para
+>Этот модуль позволяет вставлять любой читаемый файл в позицию курсора. Если эта функция включена, в меню <guimenu
+>Сервис</guimenu
+> появится дополнительный пункт <guimenuitem
+>Вставить файл</guimenuitem
+>.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect3>
+</sect2>
+<!--/end kwrite-->
+
 </sect1>

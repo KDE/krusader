@@ -1,0 +1,72 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="splitter">
+  <title
+>Razdelilnik datotek</title>
+  <indexterm>
+    <primary
+>Razdelilnik datotek</primary>
+  </indexterm>
+  <para
+>Ta funkcija razdeli eno (veliko) datoteko na več manjših datotek, tako da jih je mogoče namestiti na manjše medije (&eg; pogone ZIP, ...) ali poslati po e-pošti. Več datotek je mogoče znova združiti, da znova ustvarite izvirno datoteko. &krusader; in funkcije delitve/združevanja <trademark class="copyright"
+>Total Commander</trademark
+> sta združljivi. Če želite datoteko razdeliti, izberite <menuchoice
+> <guimenu
+>Datoteka</guimenu
+> <guimenuitem
+>Razdeli</guimenuitem
+> </menuchoice
+> ali <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: odpre se pogovorno okno <guilabel
+>Razdeli</guilabel
+> za potrditev operacije.</para>
+  <para
+>Če je ime izvirne datoteke <filename
+>foo</filename
+>, bo ime manjših datotek <filename
+>foo.000 foo.001 foo.002</filename
+> &etc; Teoretične omejitve števila manjših datotek ni, vendar je priporočljivo omejiti število na največ 1023 datotek. &krusader; ustvari datoteko <filename
+>foo.crc</filename
+>. Ta datoteka vsebuje ime, velikost in kontrolno vsoto crc izvirne datoteke. Datoteko je mogoče združiti brez datoteke <filename
+>foo.crc</filename
+>, vendar v tem primeru &krusader; ne more preveriti, ali je bila izvirna datoteka pravilno ponovno ustvarjena.</para>
+  <para
+>Primer datoteke <filename
+>foo.crc</filename
+>: <programlisting
+>filename=foo size=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>Če želite združiti več izbranih datotek, izberite delno datoteko <filename
+>foo.xxx</filename
+> in izberite <menuchoice
+> <guimenu
+>Datoteka</guimenu
+> <guimenuitem
+>Združi datoteke ...</guimenuitem
+> </menuchoice
+> ali <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+>. Ciljna mapa je neaktivna plošča in jo je mogoče spremeniti. Imena datotek morajo biti oštevilčena v naraščajočem vrstnem redu: <filename
+>foo.001, foo.002, foo.003</filename
+> &etc; ali imajo črke v naraščajočem vrstnem redu: (" <userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+>metoda črk") <filename
+>fileaa, fileab, fileac</filename
+> &etc; Če je datoteka <filename
+>foo.crc</filename
+> najdena v isti mapi kot delne datoteke, &krusader; bo to datoteko uporabil za preverjanje napak v združeni datoteki.</para>
+</sect1>

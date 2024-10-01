@@ -1,0 +1,840 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="synchronizer">
+  <title
+>Sinhronizator</title>
+  <indexterm>
+    <primary
+>Sinhronizator</primary>
+  </indexterm>
+  
+<sect2 id="synchronizer_introduction">
+  <title
+>Uvod</title>
+  <para
+>Ta funkcija primerja dve mapi z vsemi podmapami in prikaže razlike med njima. Ko izberete nekaj možnosti in funkcijo <guilabel
+>Primerjaj</guilabel
+>, lahko sinhronizirate datoteke in mape. Ena plošča je lahko &FTP; strežnik. Ne pozabite na možnost <guilabel
+>Primerjaj po vsebini</guilabel
+>, če velikost datoteke ostane enaka. Izberite <menuchoice
+> <guimenu
+>Orodja</guimenu
+> <guimenuitem
+>Sinhroniziraj mape</guimenuitem
+> </menuchoice
+> ali <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> za zagon te funkcije. <link linkend="konfig-color"
+>Barve</link
+> so nastavljive. Sinhronizator ima lastne <link linkend="synchronizer_keybindings"
+>veze tipk</link
+>. </para>
+  <note>
+    <para
+>Za lokalne datoteke: Sinhronizator spremeni podatke o datumu na izvirne datume.</para>
+  </note>
+  <figure id="screenshot-syncdir" float="1">
+    <title
+>Sinhronizator</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="syncdir.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Sinhronizator</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para>
+  <orderedlist>
+    <title
+>Postopek:</title>
+    <listitem>
+      <para
+>Nastavite <guilabel
+>levo mapo</guilabel
+> in <guilabel
+>desno mapo</guilabel
+>, ki ju želite primerjati.</para>
+    </listitem>
+    <listitem>
+      <para
+>Konfigurirajte izbirni <guilabel
+>Filter datotek</guilabel
+>, <guilabel
+>Splošne filtre</guilabel
+> in <guilabel
+>Napredne filtre</guilabel
+>. <guilabel
+>Splošni filtri</guilabel
+> vključujejo možnost <guilabel
+>Ne išči v</guilabel
+>, ki vam omogoča izključitev map iz primerjave.</para>
+    </listitem>
+    <listitem>
+      <para
+>Nastavite <link linkend="synccomp_checkb_options"
+>možnosti potrditvenega polja</link
+>: <guilabel
+>Ponovne podmape</guilabel
+>, <guilabel
+>Sledi simbolnim povezavam</guilabel
+>, <guilabel
+>Primerjaj po vsebini</guilabel
+>, <guilabel 
+>Prezri datum</guilabel
+>, <guilabel
+>Asimetrično</guilabel
+> in <guilabel
+>Prezri velike in male črke</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Kliknite na gumb <guibutton
+>Primerjaj</guibutton
+>, da primerjate mape.</para>
+    </listitem>
+    <listitem>
+      <para
+>Z uporabo <link linkend="synccomp_show_options"
+>Možnosti prikaza</link
+> lahko vključite/izključite določene vrste datotek. Datoteke, ki niso na seznamu, bodo s sinhronizacijo nedotaknjene.</para>
+    </listitem>
+    <listitem>
+      <para
+>Po potrebi lahko spremenite operacije <guilabel
+>Opravila</guilabel
+>, ki jih določi primerjalnik z <link linkend="synccomp_right-click"
+>menijem z desnim klikom</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Ko se strinjate z rezultati <guibutton
+>Primerjaj</guibutton
+>, kliknite gumb <guibutton
+>Sinhroniziraj</guibutton
+>, da prikažete pogovorno okno za sinhronizacijo.</para>
+    </listitem>
+    <listitem>
+      <para
+>Po izbiri možnosti <link linkend="synchronizer"
+>Sinhronizatorja</link
+> kliknite na gumb <guibutton
+>Začni</guibutton
+>, da začnete postopek sinhronizacije.</para>
+    </listitem>
+  </orderedlist
+>Podrobna razlaga vseh funkcij in gumbov je opisana v naslednjem besedilu.</para>
+
+</sect2>
+
+<sect2 id="synchronizer_comparator">
+  <title
+>Primerjalnik</title
+>  
+
+  <variablelist>
+    <varlistentry>
+      <term
+>Elementi plošče</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Levi imenik</guilabel
+>: Osnovna mapa na levi strani.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Desni imenik</guilabel
+>: desna osnovna mapa.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Filter datotek</guilabel
+>: Filtrira imena datotek pri sinhronizaciji. &eg; <literal role="extension"
+>*.png</literal
+> izbere samo datoteke, katerih imena se končajo z <literal role="extension"
+>.png</literal
+>. Mape so navedene, če se ime mape konča z <literal role="extension"
+>.png</literal
+> ali če mapa vsebuje datoteke, ki se končajo z <literal role="extension"
+>.png</literal
+>. Primer več vključitev/izključitev: <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+> vključuje <literal role="extension"
+>*.cpp *.h</literal
+> in izključuje <literal role="extension"
+>*.moc.cpp</literal
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Splošni filtri</guilabel
+>: Iskanje, ki vsebuje besedilo</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Napredni filtri</guilabel
+>: velikost, datum, lastništvo</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <variablelist>
+    <varlistentry>
+      <term
+>Kriteriji filtriranja imena datoteke</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Uporabite lahko nadomestne znake. Več vzorcev je ločenih s presledkom (pomeni logični ALI), vzorci pa so izključeni iz iskanja z uporabo črte. Če se vzorec konča s poševnico (*vzorec*/), to pomeni, da se vzorec nanaša na rekurzivno iskanje map.</para>
+          </listitem>
+          <listitem>
+            <para
+>vzorec - pomeni iskanje tistih datotek/map, katerih ime je vzorec, rekurzivno iskanje gre skozi vse podmape neodvisno od vrednosti vzorca.</para>
+          </listitem>
+          <listitem>
+            <para
+>vzorec/ - pomeni iskanje po vseh datotekah/mapah, vendar rekurzivno iskanje poteka skozi/izključuje mape, katerih ime je vzorec.</para>
+          </listitem>
+          <listitem>
+            <para
+>Za imena, ki vsebujejo presledke, lahko uporabite narekovaje. Filter <quote
+>Programske datoteke</quote
+> išče tiste datoteke/mape, katerih ime je <filename
+>Programske datoteke</filename
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>Primeri:</para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.o</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.h *.c??</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>* | CVS/ .svn/</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Opomba: iskalni izraz 'besedilo' je enakovreden '*besedilo*'.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_checkb_options">
+      <term
+>Možnosti potrditvenega polja</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Ponovne podmape</guilabel
+>: Sinhronizator se med primerjavo sprehaja skozi podmape.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Sledi simbolnim povezavam</guilabel
+>: Sinhronizator sledi simbolnim povezavam do map (ne datotek!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Primerjaj po vsebini</guilabel
+>: Datoteke, katerih velikosti so enake, bodo primerjane tudi po vsebini.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Prezri datum</guilabel
+>: Prezri informacijo o datumu (uporabno za &FTP;, smb, arhiv, ...) informacija o datumu je pomembna *samo* v lokalnem datotečnem sistemu.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Asimetrično</guilabel
+>: <guilabel
+>Levi imenik</guilabel
+> je ciljna mapa, <guilabel
+>Desni imenik</guilabel
+> je izvorna mapa. Ta funkcija sinhronizira vsebino leve mape z desno mapo. <itemizedlist
+> <listitem
+> <para
+>Datoteke, ki obstajajo samo na levi strani, bodo izbrisane.</para
+> </listitem
+> <listitem
+> <para
+>Datoteke, ki obstajajo samo na desni strani, bodo kopirane na levo. .</para
+> </listitem
+> <listitem
+> <para
+>Datoteke, ki se štejejo za enake, bodo nedotaknjene.</para
+> </listitem
+> <listitem
+> <para
+>Datoteke, ki se štejejo za različne, bodo kopirane na levo . To funkcijo uporabljajte previdno! </para
+><itemizedlist
+> <listitem
+> <para
+>Upoštevajte, da obstaja ukrep za preprečevanje izgube podatkov: če so upoštevani datumi (ker je <guilabel
+>Prezri datum</guilabel
+> onemogočen), je privzeto dejanje <emphasis
+>ne prepisati datoteke s stare različice le te</emphasis
+>. Uporabnik lahko še vedno prepisuje (z desnim klikom in izbiro <guilabel
+>Kopiraj od desne proti levi</guilabel
+>).</para
+> </listitem
+> </itemizedlist
+> </listitem
+> </itemizedlist
+>Ta funkcija je uporabna, če informacije o datumu niso uporabne ali za sinhronizacijo leve mape z vsebino datotečnega strežnika (kot prenos). Druga možnost je, da naredite varnostno kopijo iz desne mape v levo mapo. OPOMBA: NE uporabljajte te možnosti za sinhronizacijo namizja in prenosnika (&eg;. datoteke, ki obstajajo le na levi strani, bodo izbrisane!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Premikanje rezultatov</guilabel
+>: To je za počasen &FTP; strežniki, ... Ko sinhronizator konča s primerjavo datoteke, jo takoj postavi na konec seznama in po potrebi pomakne okno. Pomembno je, če želite vedeti, kaj počne sinhronizator. Če &FTP; strežnik je počasen, lahko primerjava mape traja veliko časa. Če vklopite to možnost, lahko vidite, da je primerjalnik <quote
+>živ</quote
+>, vendar počasen. Za hitre datotečne sisteme lahko nekoliko zmanjša hitrost primerjave.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Prezri velike in male črke</guilabel
+>: Primerjava imen datotek brez upoštevanja velikih in malih črk, to je uporabno pri sinhronizaciji &Windows; datotečni sistemi.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Prezri skrite datoteke</guilabel
+>: Prezre datoteke, ki se začnejo s piko.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <para
+>Ko je vse zgoraj omenjeno opravljeno, kliknite gumb <guibutton
+>Primerjaj</guibutton
+>, da primerjate mape, rezultati so prikazani na <guilabel
+>Seznamu datotek</guilabel
+>.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Seznam datotek</term>
+      <listitem>
+        <para
+><guilabel
+>Seznam datotek</guilabel
+> ima naslednje stolpce: <quote
+>Levo ime | Leva velikost | Preostali čas | Naloga | Pravi čas | Prava velikost | Pravo ime</quote
+>. Tukaj lahko preverite rezultate primerjave in po želji spremenite dejanja sinhronizacije. Barva besedila določa privzeto smer kopiranja, ki jo določi primerjalnik. <itemizedlist
+> <listitem
+> <para
+>Zelena: Kopiraj od leve proti desni.</para
+> </listitem
+> <listitem
+> <para
+>Modra: Kopiraj od desne proti levi ali briši na desni strani v asimetričnem načinu.</para
+> </listitem
+> <listitem
+> <para
+>Rdeča: Datoteke, ki se razlikujejo glede na podana merila (brez smeri kopiranja).</para
+> </listitem
+> <listitem
+> <para
+>Črna: Datoteke, ki so enake (brez smer kopiranja).</para
+> </listitem
+> </itemizedlist
+> Dvojni klik na datoteko prikliče &krusader;-jevo funkcijo <guilabel
+>Primerjava po vsebini</guilabel
+>. Stolpec Opravila (&lt;=&gt;) določa privzeto smer kopiranja, ki jo lahko uporabnik po potrebi spremeni. Okno z rezultati podpira vlečenje elementov v druga okna ( povlecite [levo], &Shift;+povlecite [desno] ) in kopirajte levo/desno izbrane elemente v odložišče (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap 
+></keycombo
+>). </para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><guilabel
+>Seznam datotek</guilabel
+>: stolpec opravil (&lt;=&gt;)</term>
+      <listitem>
+        <para
+>Ta stolpec prikazuje nalogo, ki je načrtovana za sinhronizator, to nalogo je mogoče spremeniti z <link linkend="synccomp_right-click"
+>menijem z desnim klikom</link
+>.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Kopiraj z leve strani na desno. Za mape: <command
+>mkdir</command
+> na desni strani.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: Datoteke so enake, ne storite ničesar.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: datoteka je izključena ali pa sinhronizator ne ve, kaj naj stori.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: kopiraj z desne na levo stran. Za mape: <command
+>mkdir</command
+> na levi strani</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>DEL</guibutton
+>: izbriše datoteke z desne strani.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_show_options">
+      <term
+>Pokaži možnosti</term>
+      <listitem>
+        <para
+>Tukaj lahko vključite/izključite določene vrste datotek. Datoteke, ki jih ni na seznamu, bodo pri sinhronizaciji nedotaknjene.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Omogoči/onemogoči opravilo kopiranja od leve proti desni.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: Omogoči/onemogoči prikaz enakih datotek.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: Omogoči/onemogoči prikazovanje izključenih / <quote
+>ne vem, kaj storiti</quote
+> datotek.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: Omogoči/onemogoči opravilo kopiranja od desne proti levi.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Smetnjak</guibutton
+>: Omogoči/onemogoči brisanje datotek iz opravila na levi strani.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Dvojniki</guibutton
+>: Omogoči/onemogoči tiste datoteke, ki obstajajo na obeh straneh.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Posamezni</guibutton
+>: Omogoči/onemogoči tiste datoteke, ki obstajajo samo na eni strani.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Akcijski gumbi</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Primerjaj</guibutton
+>: Primerja mape, rezultati so prikazani na <guilabel
+>Seznamu datotek</guilabel
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Ustavi</guibutton
+>: Ustavi primerjavo.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Sinhroniziraj</guibutton
+>: Prikaže pogovorno okno za sinhronizacijo.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Zapri</guibutton
+>: Zapre okno sinhronizatorja.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Statusna vrstica lahko vsebuje</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Število pregledanih map med primerjavo.</para>
+          </listitem>
+          <listitem>
+            <para
+>Ime datoteke pri primerjavi po vsebini (za velike datoteke).</para>
+          </listitem>
+          <listitem>
+            <para
+>Število datotek na seznamu.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_right-click">
+      <term
+>Desni klik na meni <guilabel
+>Seznam datotek</guilabel
+></term>
+      <listitem>
+        <para
+>Meni z desnim klikom je razdeljen na tri dele:</para>
+        <para
+>1. spremenite operacije <guilabel
+>Opravila</guilabel
+>, ki jih določi primerjalnik. Izberite eno ali več datotek. Sprememba bo uporabljena na izboru in ne samo na elementu, ki ga kliknete z desnim klikom. Če je izbrani element mapa, bo sprememba uporabljena tudi v njenih datotekah/podmapah.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Sinhroniziraj mape ...</guibutton
+>: Zažene sinhronizacijo.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Izključi</guibutton
+>: Izključi datoteko/imenik iz sinhronizacije (naloga se spremeni v !=).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Obnovi prvotno operacijo</guibutton
+>: Sprememba opravila na prvotni rezultat primerjave.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Obratna smer</guibutton
+>: Sprememba naloge (-&gt; v &lt;- in &lt;- v -&gt;).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Kopiraj od desne proti levi</guibutton
+>: Naloga se spremeni v &lt;-.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Kopiraj od leve proti desni</guibutton
+>: Naloga se spremeni v -&gt;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Izbriši ( levo enojni )</guibutton
+>: Naloga se spremeni v DEL.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>2. spremenite izbire</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Izberi elemente</guibutton
+>: odpre pogovorno okno, ki vam omogoča izbiro elementov. To je pogovorno okno <guimenuitem
+>Izberi skupino</guimenuitem
+> v <link linkend="edit-menu"
+>meniju Uredi</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Prekliči izbor elementov</guibutton
+>: odpre pogovorno okno, ki vam omogoča, da prekličete izbor elementov. To je pogovorno okno <guimenuitem
+>Prekliči izbiro skupine</guimenuitem
+> v <link linkend="edit-menu"
+>meniju Uredi</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Obrni izbor</guibutton
+>: obrne status izbire vseh elementov.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>3. drugi (upoštevajte, da naslednje operacije delujejo na datoteko, ki jo kliknete z desno tipko miške, in ne na izbor).</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Ogled leve datoteke</guibutton
+>: Zažene pregledovalnik na levi datoteki.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Ogled desne datoteke</guibutton
+>: Zažene pregledovalnik na desni datoteki.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Primerjaj datoteke</guibutton
+>: Zažene pripomoček za razlikovanje (&eg; &kompare;) v datotekah.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Drugi gumbi</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Profili</guibutton
+>: Če morate pogosto sinhronizirati iste mape, lahko shranite nastavitve &eg; vključi datoteke, izključi datoteke, ... Pritisnite gumb <guibutton
+>Profil</guibutton
+> in lahko boste dodali / naložili / shranili / odstranili profile sinhronizatorja.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Zamenjaj strani</guibutton
+>: Zamenja <guilabel
+>Seznam datotek</guilabel
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Sinhroniziraj z <application
+>kget</application
+></term>
+      <listitem>
+        <para
+>Če želite sinhronizirati lokalno mapo z nestabilnim &FTP; strežnik, je <application
+>kget</application
+> veliko boljša rešitev kot preprosto kopiranje datotek. Po primerjavi lahko z desno miškino tipko kliknete na seznam rezultatov in izberete <guimenuitem
+>Sinhroniziraj s KGet</guimenuitem
+>, da izvedete sinhronizacijo, nato pa bodo navedene datoteke prenesene z <application
+>kget</application
+> namesto z &krusader;. Seveda mora biti <application
+>kget</application
+> nameščen na vašem računalniku; sicer ne bo na voljo.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+ 
+</sect2
+>  
+<sect2 id="synchronizer_synchronization">
+  <title
+>Sinhronizacija</title
+>  
+
+  <para
+>Ko pritisnete gumb <guibutton
+>Sinhroniziraj</guibutton
+>, se prikaže pogovorno okno za sinhronizacijo.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Potrditvena polja</term>
+      <listitem>
+        <para
+>Tukaj potrdite operacije kopiranja in brisanja sinhronizatorja</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Od desne proti levi</guilabel
+>: kopirajte datoteke X1 ( Y1 bajtov ) omogočite/onemogočite kopiranje od desne proti levi.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Od leve proti desni</guilabel
+>: kopirajte datoteke X2 ( Y2 bajtov ) omogočite/onemogočite kopiranje od leve proti desni.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Levo</guilabel
+>: izbriši datoteke X3 ( Y3 bajtov ) omogoči/onemogoči brisanje na levi strani.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Potrdi prepise</guilabel
+>: Če vklopite to možnost, bo Krusader pred prepisom datoteke prikazal pogovorno okno <guibutton
+>preimenuj, preskoči, prepiši, preskoči vse, prepiši vse</guibutton
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Oznake stanja</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Pripravljeno</guilabel
+>: datoteke A1/A2, B1/B2. Ta vrstica se spremeni pri sinhronizaciji, kar kaže, da je sinhronizator končal z datotekami A1 iz A2 (bajti B1 iz B2).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Vrstica napredka</guilabel
+>: Prikazuje napredek pri sinhronizaciji (na osnovi bajtov).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Akcijski gumbi</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Zaženi</guibutton
+>: Zažene sinhronizacijo.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Premor / Nadaljuj</guibutton
+>: Začasno ustavi/nadaljuje proces sinhronizacije.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Zapri</guibutton
+>: Zapre pogovorno okno za sinhronizacijo (in ustavi sinhronizacijo).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Vzporedna sinhronizacija</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Lahko podamo število 'kvazi' niti.</para>
+          </listitem>
+          <listitem>
+            <para
+>Lahko drastično poveča hitrost pri sinhronizaciji s počasnim &FTP; strežniki.</para>
+          </listitem>
+          <listitem>
+            <para
+>Ne vpliva na hitrost lokalne sinhronizacije.</para>
+          </listitem>
+          <listitem>
+            <para
+>Oddaljena <quote
+>primerjava po vsebini</quote
+> in <quote
+>primerjava map</quote
+> poteka vzporedno.</para>
+          </listitem>
+          <listitem>
+            <para
+>Oddaljena sinhronizacija se izvaja tudi vzporedno, razen opravil <command
+>mkdir</command
+> (<command
+>mkdir</command
+> mora biti pred kopiranjem).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+</sect2>
+</sect1>

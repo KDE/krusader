@@ -1,0 +1,122 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="vfs">
+  <title
+>Navidezni datotečni sistemi (VFS)</title>
+  <indexterm>
+    <primary
+>VFS</primary>
+  </indexterm>
+  <para
+>Osnovna <link linkend="features"
+>funkcija OFM</link
+> je VFS, to je abstrahirana plast nad vsemi vrstami arhiviranih informacij (datoteke ZIP, &FTP; strežniki, arhivi TAR, &NFS; datotečni sistemi, delitve SAMBA, ISO &CD; /&DVD; slike, katalogi RPM &etc;), ki uporabniku omogoča pregleden dostop do vseh informacij v teh različnih vrstah datotečnih sistemov - tako kot bi vstopil v običajno podmapo. &krusader; podpira več virtualnih datotečnih sistemov:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>Oddaljene povezave VFS</link
+>: nudi zmožnost dela z oddaljeno povezovalno sejo (&FTP;, &NFS;, Samba, FISH, SFTP) kot z lokalnimi datotečnimi sistemi. Popoln je za zapletene operacije na daljavo in skoraj tako zmogljiv kot večina samostojnih &GUI; oddaljene stranke.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Arhiv VFS</link
+>: omogoča brskanje po arhivih v VFS, kot je bila mapa (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip in 7 -zip).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Iskanje VFS</link
+>: <guibutton
+>Vir v polje s seznamom</guibutton
+> postavi rezultate iskanja v VFS.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>VFS sinhronizatorja</link
+>: postavi rezultate sinhronizatorja v VFS.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Dejanja, ki jih izvajate na datotekah v VFS, se izvajajo na 'pravih' datotekah. Datotek ne izbrišete samo iz VFS - izbrišete jih s trdega diska. Omejitve: ne morete ustvarjati map znotraj VFS.</para>
+  <para
+>Strukturo mape lahko obdržite pri kopiranju iz navidezne mape v nenavidezno mapo, tako da izberete potrditveno polje <quote
+>Ohrani strukturo navidezne mape</quote
+> v pogovornem oknu za kopiranje. Predstavljajte si naslednjo virtualno mapo: <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir1/myfile1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>datoteka:/home/myhome/mydir1/myfile2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir2/myfile3</userinput
+></screen
+> Nato naredite naslednje korake:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>pojdite v virtualno mapo in izberite datoteke</para>
+    </listitem>
+    <listitem>
+      <para
+>izberite ciljno mapo (ne virtualno!)</para>
+    </listitem>
+    <listitem>
+      <para
+>pritisnite <keycap
+>F5</keycap
+>-&gt; prikaže se pogovorno okno za kopiranje</para>
+    </listitem>
+    <listitem>
+      <para
+>Označite <guilabel
+>Ohrani strukturo navidezne mape</guilabel
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Izberite <filename
+>/dom/mojdom/</filename
+> za osnovni &URL;</para>
+    </listitem>
+    <listitem>
+      <para
+>Zaženite kopiranje s pritiskom na OK</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Rezultat bo: <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir1/myfile1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir1/myfile2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir2/myfile3</userinput
+></screen>
+  </para>
+</sect1>

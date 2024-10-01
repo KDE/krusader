@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
 "PO-Revision-Date: 2023-05-31 09:50+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -9779,16 +9779,15 @@ msgid "Multimedia"
 msgstr "Мультимедиа"
 
 #: app/useraction_examples.xml:39
-#, fuzzy, kde-format
-#| msgid "Always show current item"
+#, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Всегда показывать текущий элемент"
+msgstr "Копировать путь к текущему элементу (без пробелов)"
 
 #: app/useraction_examples.xml:46
 #, fuzzy, kde-format
-#| msgid "Always show current item"
+#| msgid "Copy file path of current item (escaping spaces)"
 msgid "Copy file path of current item"
-msgstr "Всегда показывать текущий элемент"
+msgstr "Копировать путь к текущему элементу (без пробелов)"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9941,11 +9940,8 @@ msgstr "Диалог ввода пароля Krarc"
 msgid "Accessing the file requires a password."
 msgstr "Для доступа к файлу необходим пароль."
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Копировать текущий элемент в буфер обмена"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Открыть новую вкладку в домашней папке"
+#~ msgid "Directories:"
+#~ msgstr "Папки:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Показывать кнопки «Новая вкладка» и «Закрыть вкладку»."
@@ -9974,6 +9970,30 @@ msgstr "Для доступа к файлу необходим пароль."
 #~ msgid "JavaScript Error"
 #~ msgstr "Ошибка JavaScript"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ЗБ"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 ТБ"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 ГБ"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 МБ"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KБ"
+
+#~ msgid "Browse"
+#~ msgstr "Обзор"
+
+#~ msgid "New folder"
+#~ msgstr "Создать папку"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Открыть новую вкладку в домашней папке"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Выполнить расширение JavaScript..."
 
@@ -9992,11 +10012,8 @@ msgstr "Для доступа к файлу необходим пароль."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Экспандер: не указан сценарий для %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Создать папку"
-
-#~ msgid "Directories:"
-#~ msgstr "Папки:"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Копировать текущий элемент в буфер обмена"
 
 #~ msgid "Folder..."
 #~ msgstr "Папку..."
@@ -10009,21 +10026,6 @@ msgstr "Для доступа к файлу необходим пароль."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Изменить файл (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ЗБ"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 ТБ"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 ГБ"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 МБ"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KБ"
 
 #, fuzzy
 #~ msgid "Open search filter"
@@ -11213,6 +11215,3 @@ msgstr "Для доступа к файлу необходим пароль."
 #~ "Попробуйте новый менеджер закладок: откройте новое сетевое соединение, "
 #~ "когда сделаете, откройте менеджер закладок и выберите пункт 'Добавить "
 #~ "закладку', все!"
-
-#~ msgid "Browse"
-#~ msgstr "Обзор"

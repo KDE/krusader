@@ -2,21 +2,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Andrew Coles <andrew_coles@yahoo.co.uk>, 2009.
-# SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2024 Steve Allewell <steve.allewell@gmail.com>
+# Steve Allewell <steve.allewell@gmail.com>, 2014, 2015, 2016, 2017, 2018, 2019, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
-"PO-Revision-Date: 2024-08-24 12:19+0100\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
+"PO-Revision-Date: 2022-11-26 15:03+0000\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
-"Language-Team: British English\n"
+"Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 21.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2571,9 +2571,11 @@ msgid "Empty Recently Closed Tabs"
 msgstr "Empty Recently Closed Tabs"
 
 #: app/GUI/terminaldock.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr "<b>Cannot create embedded terminal.</b><br/>"
+msgstr "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
 
 #: app/GUI/terminaldock.cpp:102
 #, kde-format
@@ -9648,9 +9650,10 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Copy file path of current item (escaping spaces)"
 
 #: app/useraction_examples.xml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy file path of current item (escaping spaces)"
 msgid "Copy file path of current item"
-msgstr "Copy file path of current item"
+msgstr "Copy file path of current item (escaping spaces)"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9804,11 +9807,8 @@ msgstr "Krarc Password Dialogue"
 msgid "Accessing the file requires a password."
 msgstr "Accessing the file requires a password."
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Copy current item to clipboard"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Open a new tab in home"
+#~ msgid "Directories:"
+#~ msgstr "Directories:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Show the new/close tab buttons."
@@ -9837,6 +9837,30 @@ msgstr "Accessing the file requires a password."
 #~ msgid "JavaScript Error"
 #~ msgstr "JavaScript Error"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Browse"
+
+#~ msgid "New folder"
+#~ msgstr "New folder"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Open a new tab in home"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Execute a JavaScript Extension..."
 
@@ -9855,14 +9879,8 @@ msgstr "Accessing the file requires a password."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Expander: no script specified for %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "New folder"
-
-#~ msgid "Directories:"
-#~ msgstr "Directories:"
-
-#~ msgid "Browse"
-#~ msgstr "Browse"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Copy current item to clipboard"
 
 #~ msgid "Folder..."
 #~ msgstr "Folder..."
@@ -9875,21 +9893,6 @@ msgstr "Accessing the file requires a password."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Edit File (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
 
 #~ msgid "Open search filter"
 #~ msgstr "Open search filter"

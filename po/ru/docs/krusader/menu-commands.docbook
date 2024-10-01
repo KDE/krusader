@@ -1,0 +1,2269 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="menu-commands">
+  <title
+>Команды меню</title>
+  <indexterm>
+    <primary
+>Команды</primary>
+    <secondary
+>Меню</secondary>
+  </indexterm>
+  <sect1 id="file-menu">
+    <title
+>Меню «Файл»</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F4</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Создать текстовый файл...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Создаёт новый текстовый файл в текущей папке, если другая папка не указана. После создания открывается новый файл для редактирования.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F7</keycap
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Создать папку</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Создаёт новую папку в текущем каталоге.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Создать символическую ссылку...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Создаёт символическую ссылку на текущий выделенный файл.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F3</keycap
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Показать файл</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает текущий файл для <link linkend="kredit"
+>просмотра</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F4</keycap
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Изменить файл</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает текущий файл для <link linkend="kredit"
+>правки</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F5</keycap
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Копировать на другую панель</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Копирует текущие выделенные файлы или папки на другую панель.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F6</keycap
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Переместить</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает диалог для <link linkend="copying"
+>перемещения</link
+> текущих выделенных файлов или папок в указанное место.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Упаковать...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Создаёт <link linkend="pack-archive"
+>новый архив</link
+>, содержащий все выделенные файлы и папки активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Распаковать...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="unpacking-archives"
+>Распаковывает</link
+> все выделенные файлы активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Проверить архив</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="test-archive"
+>Проверяет архив</link
+> на наличие повреждений.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Сравнить по содержанию...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Сравнивает два текущих файла по содержанию — по одному из каждой панели через внешнюю графическую утилиту сравнения. По умолчанию используется &kompare;, но также возможно использовать, например, <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> или <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+>, их возможно указать на <link linkend="konfig-dependencies"
+>странице зависимостей Konfigurator</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="multi_rename">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F2</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Групповое переименование...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Этот пункт меню запускает <ulink url="https://www.kde.org/applications/utilities/krename/"
+><application
+>Krename</application
+></ulink
+>, очень мощное средство пакетного переименования файлов.</para>
+          <itemizedlist>
+            <title
+>Возможности Krename</title>
+            <listitem>
+              <para
+>Переименование списка файлов на основе набора выражений.</para>
+            </listitem>
+            <listitem>
+              <para
+>Копирует или перемещает список файлов в другую папку.</para>
+            </listitem>
+            <listitem>
+              <para
+>Преобразование имён файлов в верхний/нижний регистр</para>
+            </listitem>
+            <listitem>
+              <para
+>Добавление нумерации к именам файлов</para>
+            </listitem>
+            <listitem>
+              <para
+>Поиск и замена частей имени файла</para>
+            </listitem>
+            <listitem>
+              <para
+>Переименование файлов MP3/OGG на основе их меток ID3</para>
+            </listitem>
+            <listitem>
+              <para
+>Настройка дат доступа и последнего изменения</para>
+            </listitem>
+            <listitem>
+              <para
+>Изменение прав доступа и владельца файла</para>
+            </listitem>
+            <listitem>
+              <para
+>API модуля, который позволяет расширять функции KRename</para>
+            </listitem>
+            <listitem>
+              <para
+>Рекурсивное переименование папок</para>
+            </listitem>
+            <listitem>
+              <para
+>Поддержка KFilePlugins</para>
+            </listitem>
+            <listitem>
+              <para
+>Отмена переименования</para>
+            </listitem>
+            <listitem>
+              <para
+>И многое другое...</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Создать контрольную сумму...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="checksum"
+>Создаёт контрольные суммы</link
+> для файлов и/или каталогов</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Проверить контрольную сумму...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para>
+            <link linkend="checksum"
+>Проверить контрольную сумму</link>
+          </para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Разделить файл...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Функция <link linkend="splitter"
+>Разделить файл</link
+> разделяет файл на несколько более мелких файлов, чтобы их можно было скопировать на носители данных небольшого объёма (наподобие <hardware
+>дискет, zip-дисков и так далее</hardware
+>) или отправить по электронной почте.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Объединить файлы...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Функция <link linkend="splitter"
+>Объединить файлы</link
+> объединяет несколько файлов в один после того, как была использована функция <link linkend="splitter"
+>Разделить файл</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <!--vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Выйти</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Закрывает &krusader; и очищает папку для временных файлов, аналогично нажатию клавиши <keycap
+>F10</keycap
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="edit-menu">
+    <title
+>Меню «Правка»</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Вырезать</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Вырезает</link
+> выделенные файлы и помещает их в буфер обмена, чтобы переместить в другое место.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Копировать</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Копирует</link
+> выделенные файлы и помещает их в буфер обмена, чтобы переместить в другое место.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Вставить</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>Вставляет</link
+> вырезанные или скопированные элементы из буфера обмена в текущую папку.</para>
+        </listitem>
+      </varlistentry>
+<!--
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycap
+>F2</keycap>
+            </shortcut>
+            <guimenu
+>Edit</guimenu>
+            <guimenuitem
+>Rename</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          <link linkend="renaming"
+>Renames</link
+> the currently
+          selected file.</para>
+        </listitem>
+      </varlistentry
+>-->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F8</keycap
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Удалить</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="deleting"
+>Удаляет</link
+> текущие выбранные файлы.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Выделить группу...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает диалог, позволяющий выделять файлы в активной панели. В диалоге <guilabel
+>Искать</guilabel
+> необходимо указать главный критерий поиска. Введите имя файла или подстановочный символ (<literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> &etc;), либо всё вместе, разделённое пробелом. При вводе <literal
+>«текст»</literal
+> результаты будут соответствовать <literal
+>«*текст*»</literal
+>. Возможно исключать файлы из поиска с помощью символа «|» (&eg; <literal role="extension"
+>«*.cpp *.h | *.moc.cpp»</literal
+>). Функция <link linkend="profiles"
+>«Профили»</link
+> позволяет управлять выделенными данными для использования в будущем. Двойной щелчок левой кнопкой мыши по профилю выполняет ту же функцию, что и нажатие на кнопку <guibutton
+>OK</guibutton
+>. Больше функций для диалога <guilabel
+>Выделить группу</guilabel
+> описано в <link linkend="krusearcher"
+>диалоге поиска</link
+>, которые по сути являются одним и тем же диалогом.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Снять выделение с группы...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Функция, обратная функции <guimenuitem
+>Выделить группу</guimenuitem
+>. С файлов, соответствующих шаблону на активной панели, будет снято выделение.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Выделить все</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Выделяет все файлы в активной панели. Также возможно выделить все каталоги с помощью функции <guilabel
+>Автоматическое выделение каталогов</guilabel
+> на <link linkend="konfig-panel"
+>странице настройки</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Снять всё выделение</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Снимает выделение со всех файлов в активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Обратить выделение</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Обращает состояние выделения всех файлов в активной панели (то есть, с выделенных файлов будет снято выделение и наоборот).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Правка</guimenu
+> <guimenuitem
+>Восстановить выделение</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Восстанавливает выделение элементов, с которых было снято выделение в прошлый раз.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Найти в папке...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переключает функцию &krusader; <link linkend="quicksearch"
+>«быстрый поиск»</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Сравнить папки</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переключает функцию &krusader; <link linkend="compare-dir"
+>«Сравнить папки»</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Правка</guimenu
+> <guimenuitem
+>Параметры сравнения</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Позволяет настроить функцию <guimenuitem
+>Сравнить папки</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Выделять более новые и единственные</guimenuitem
+> (по умолчанию)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Выделять единственные</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Выделять более новые</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Выделять различающиеся и единственные</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Выделять различающиеся</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Правка</guimenu
+> <guimenuitem
+>Подсчитать занимаемое место</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="calculate"
+>Рассчитывает занятое пространство</link
+> для файлов, каталогов, архивов и удалённых файловых систем.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Return</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Свойства...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает диалог свойств для выделенного файла (KP означает «Key Pad»).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="go-menu">
+    <title
+>Меню «Переход»</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Up;</keycombo
+> </shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Вверх</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переходит к родительскому каталогу активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Left;</keycombo
+> </shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Назад</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переходит к предыдущему просмотренному каталогу в активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Right;</keycombo
+> </shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Вперёд</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переходит к следующему просмотренному каталогу в активной панели. эта функция становится доступной только если перед этим была использована функция <menuchoice
+><guimenu
+>Переход</guimenu
+> <guimenuitem
+>Назад</guimenuitem
+></menuchoice
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Home;</keycombo
+> </shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Домой</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переходит к домашнему каталогу текущего пользователя.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; &Backspace;</keycombo
+> </shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Корневая папка</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переходит к корневому каталогу системы.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Часто посещаемые адреса...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Отображает список часто просматриваемых каталогов, из которых возможно перейти к одному из них, дважды щёлкнув по нему левой кнопкой мыши.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Установить точку возврата</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Устанавливает текущий каталог в качестве точки возврата. Чтобы быстро перейти в этот каталог, выберите команду <guimenuitem
+>Вернуться</guimenuitem
+> в меню <guimenu
+>Переход</guimenu
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Вернуться</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переходит к точке возврата.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="view-menu">
+    <title
+>Меню «Вид»</title>
+    <para
+>Действие в этом вложенном меню обычно влияет на активный сеанс &krusader;. Чтобы сделать изменения постоянными, воспользуйтесь <link linkend="konfigurator"
+>начальной страницей диалога настройки</link
+>.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Увеличить</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Увеличивает масштаб просмотра.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Уменьшить</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Уменьшает масштаб просмотра.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Масштаб по умолчанию</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Сбрасывает масштаб просмотра.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Вид</guimenu
+> <guimenuitem
+>Подробное представление</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Показывает имя файла, его размер, дату и время создания и их атрибуты.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Вид</guimenu
+> <guimenuitem
+>Компактный вид</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Показывает только имена файла.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Вид</guimenu
+> <guimenuitem
+>Показывать скрытые файлы</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переключает возможность отображать скрытые файлы в панелях &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F10</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Вид</guimenu
+> <guimenuitem
+>Все файлы</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Выключает все фильтры и отображает все файлы.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F12</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Вид</guimenu
+> <guimenuitem
+>Другой</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Позволяет установить пользовательский фильтр на панель &krusader;. Будут отображаться только файлы, соответствующие шаблону фильтра и папкам. Не забудьте отключить пользовательский фильтр после использования, иначе некоторые файлы могут не отображаться.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Показывать миниатюры</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Если флажок установлен, будут отображаться миниатюры для всех файлов и папок на активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Выбрать кодировку</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Выбирает кодировку для <link linkend="remote-connections"
+>удалённых соединений</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Вид</guimenu
+> <guimenuitem
+>Обновить</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Обновляет содержимое активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Сделать параметрами по умолчанию</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Позволяет сохранить параметры просмотра текущей вкладки для новых экземпляров этого типа просмотра.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Применить параметры для других вкладок</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Позволяет применять параметры просмотра текущей вкладки для всех вкладок.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="useractions-menu">
+    <title
+>Меню «Действия»</title>
+    <para
+>Возможно добавить собственные пункты меню с помощью функции <link linkend="useractions"
+>Действия</link
+>. </para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Действия</guimenu
+> <guimenuitem
+>Управление действиями...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает диспетчер <link linkend="useractions"
+>Действий</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>A</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Действия</guimenu
+><guisubmenu
+>Мультимедиа</guisubmenu
+> <guimenuitem
+>Добавить в очередь Amarok</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Добавляет выделенные элементы к списку воспроизведения &amarok;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; </keycombo
+> </shortcut
+> <guimenu
+>Действия</guimenu
+><guisubmenu
+>Шаблоны</guisubmenu
+> <guimenuitem
+>Равный размер панелей</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Устанавливает равное соотношение между двумя панелями.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;<keycap
+>E</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Действия</guimenu
+><guisubmenu
+>Samples</guisubmenu
+> <guimenuitem
+>Изменить с root-правами</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Позволяет редактировать файл с помощью <application
+>kwrite</application
+>, используя права root.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>M</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Действия</guimenu
+><guisubmenu
+>Шаблоны</guisubmenu
+> <guimenuitem
+>Подключить</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Подключает новую файловую систему.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>C</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Действия</guimenu
+><guisubmenu
+>Шаблоны</guisubmenu
+> <guimenuitem
+>Копировать текущий элемент в буфер обмена</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Копирует имя текущего элемента в буфер обмена.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta;<keycap
+>F5</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Действия</guimenu
+><guisubmenu
+>Система</guisubmenu
+> <guimenuitem
+>Резервное копирование текущего файла</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Создаёт резервную копию текущего файла в текущем каталоге и запрашивает у пользователя новое имя файла. По умолчанию к исходному имени файла добавляется <literal role="extension"
+>.old</literal
+></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>1</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Действия</guimenu
+><guisubmenu
+>Интерфейс пользователя</guisubmenu
+> <guimenuitem
+>Сортировать по имени</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Когда это действие включено, основным ключом сортировки в панели &krusader; становится имя файла.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>2</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Действия</guimenu
+><guisubmenu
+>Интерфейс пользователя</guisubmenu
+> <guimenuitem
+>Сортировать по расширению</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Когда это действие включено, основным ключом сортировки в панели &krusader; становится расширение файла (часть имени файла после последнего символа «.»). Это полезно для группировки файлов одного и того же типа.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>3</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Действия</guimenu
+><guisubmenu
+>Интерфейс пользователя</guisubmenu
+> <guimenuitem
+>Сортировать по размеру</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Когда это действие включено, основным ключом сортировки в панели &krusader; становится размер файла. Это полезно при определении самого большого файла в определённом каталоге.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>4</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Действия</guimenu
+><guisubmenu
+>Интерфейс пользователя</guisubmenu
+> <guimenuitem
+>Сортировать по дате изменения</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Когда это действие включено, основным ключом сортировки в панели &krusader; становится дата последнего изменения для каждого файла. Это полезно для поиска файла, над которым недавно производилась работа.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="tools-menu">
+    <title
+>Меню «Сервис»</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Поиск...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает <link linkend="krusearcher"
+>KruSearcher</link
+> — модуль поиска &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Locate...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает графический интерфейс модуля <link linkend="locate"
+>Locate</link
+> для быстрого поиска файла.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Синхронизация папок</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Функция <link linkend="synchronizer"
+>Синхронизация папок</link
+> сравнивает левую и правую панели и показывает различия между ними. После сравнения возможно перемещать файлы и папки так, чтобы их можно было синхронизировать.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Менеджер монтирования...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает вложенное меню с элементами для открытия <link linkend="mount-man"
+>Менеджера монтирования</link
+> или подключения/отключения различных точек монтирования.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Использование диска...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает <link linkend="diskusage"
+>Статистику использования диска</link
+>.</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Новое сетевое соединение</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает диалог <link linkend="remote-connections"
+>Новое сетевое соединение</link
+> для запуска соединения &FTP;, SMB, FISH или SFTP для удалённого хоста. Если имя пользователя и пароль не указаны, произойдёт анонимное подключение. Эти удалённые сеансы возможно добавить в <link linkend="bookman"
+>Закладки</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Отсоединиться от сети</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Отключает <link linkend="remote-connections"
+>удалённое соединение</link
+> в активной панели и возвращается к начальному пути.</para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Запустить терминал</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает окно терминала в папке по умолчанию (обычно в домашнем каталоге). Предпочитаемое приложение для терминала возможно выбрать на <link linkend="konfig-general"
+>главной странице параметров</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="root-mode">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>K</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Запустить Krusader с правами root</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Запускает &krusader; с <link linkend="root-mode"
+>правами Root</link
+> в том же расположении. Режим &krusader; с правами Root по умолчанию требует наличие команды <command
+>kdesu</command
+>. Если она недоступна, либо если предпочтительнее использовать, например, <command
+>gksu</command
+> с <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, это поведение возможно изменить на <link linkend="konfig-dependencies"
+>странице настройки зависимостей</link
+>.</para>
+          <caution>
+            <para
+>Будьте осторожны при использовании &krusader; с привилегиями Root</para>
+          </caution>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Очистить корзину</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Очищает <link linkend="deleting"
+>корзину</link
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="window-menu">
+    <title
+>Меню «Окно»</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Окно</guimenu
+> <guimenuitem
+>Новая вкладка</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает новую вкладку на активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Окно</guimenu
+> <guimenuitem
+>Заблокировать вкладку/Разблокировать вкладку</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Блокирует, а затем снимает блокировку с текущей вкладки на активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Окно</guimenu
+> <guimenuitem
+>Дублировать текущую вкладку</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает новую вкладку, которая дублирует активную вкладку в активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Окно</guimenu
+> <guimenuitem
+>Перенести текущую вкладку на другую сторону</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Перемещает текущую вкладку на другую сторону окна &krusader;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Окно</guimenu
+> <guimenuitem
+>Закрыть текущую вкладку</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Закрывает текущую вкладку на активной панели. Это команда доступна только если открыто несколько вкладок на активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Окно</guimenu
+> <guimenuitem
+>Закрыть неактивные вкладки</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Закрывает все вкладки на активной панели кроме активной.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Окно</guimenu
+> <guimenuitem
+>Закрыть повторяющиеся вкладки</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Закрывает повторяющиеся вкладки на активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Окно</guimenu
+> <guimenuitem
+>Следующая вкладка</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переходит к следующей вкладке на активной панели. Эта команда доступна только если открыто несколько вкладок на активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Окно</guimenu
+> <guimenuitem
+>Предыдущая вкладка</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переходит к предыдущей вкладке на активной панели. Эта команда доступна только если открыто несколько вкладок на активной панели.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="c_panel_profiles">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Окно</guimenu
+> <guimenuitem
+>Профили</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает меню, где возможно сохранить и восстановить <link linkend="panel_profiles"
+>профили панелей</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Окно</guimenu
+> <guimenuitem
+>Поменять панели местами</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Левая панель переместится вправо, и наоборот. Будут перемещены только текущие вкладки.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Окно</guimenu
+> <guimenuitem
+>Поменять местами стороны</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Вся левая панель переместится вправо, и наоборот. Будут перемещены все вкладки.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Окно</guimenu
+> <guimenuitem
+>Вертикальный режим</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переключает <link linkend="list_panel"
+>панель со списком</link
+> между горизонтальным и вертикальным режимами.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Окно</guimenu
+> <guimenuitem
+>Переключить эмулятор терминала в полноэкранный режим</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переключает полноэкранный режим эмулятора терминала. Эта функция доступна только когда включена функция <guilabel
+>Показывать эмулятор терминала</guilabel
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Окно</guimenu
+> <guimenuitem
+>Сохранить позицию</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Сохраняет текущий размер и расположение главного окна &krusader;. Это действие возможно автоматизировать с помощью функции <guilabel
+>Восстанавливать позицию, размер и параметры панелей</guilabel
+> на <link linkend="konfigurator"
+>начальной странице параметров</link
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="settings-menu">
+    <title
+>Меню «Настройка»</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guisubmenu
+>Панели инструментов</guisubmenu
+> <guimenuitem
+>Показывать основную панель инструментов</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Если этот флажок установлен, будет показываться <link linkend="mainwindow"
+>главная панель инструментов</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guisubmenu
+>Панели инструментов</guisubmenu
+> <guimenuitem
+>Показывать панель заданий</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Если этот флажок установлен, будет показываться <link linkend="job_toolbar"
+>панель заданий</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guisubmenu
+>Панели инструментов</guisubmenu
+> <guimenuitem
+>Показывать панель действий</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Если этот флажок установлен, будет показываться <link linkend="actions_toolbar"
+>панель действий</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Показать строку состояния</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Если этот флажок установлен, будет показываться <link linkend="mainwindow"
+>Строка состояния</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Показывать панель функциональных клавиш</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Если этот флажок установлен, будет показываться <link linkend="fnkeys"
+>панель функциональных клавиш</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Эмулятор терминала</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Если этот флажок установлен, будет показываться <link linkend="cmdline"
+>эмулятор терминала</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Показывать командную строку</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Если этот флажок установлен, будет показываться <link linkend="cmdline"
+>командная строка</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настройка режима выполнения команд</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Позволяет выбирать режим выполнения команд. Возможно выбрать один из следующих вариантов:</para>
+	  <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Запустить и убрать</guimenuitem
+>: запуск выполнения без ожидания результатов.</para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Показывать раздельно поток вывода и поток ошибок</guimenuitem
+>: отображение вывода stdout и stderr на отдельных панелях. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Показывать потоки вывода и ошибок вместе</guimenuitem
+>: отображение вывода stdout и stderr на одной панели (по умолчанию). </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Запустить в новом терминале</guimenuitem
+>: выполнение команды в новом окне терминала. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Отправить в эмулятор встроенного терминала</guimenuitem
+>: запустить команду во встроенном терминале. </para>
+            </listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+      <varlistentry id="job-queue-mode">
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Режим очереди заданий</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Переключает режим <link linkend="queue"
+>диспетчера очереди</link
+>. Если этот флажок установлен, нажатие клавиши <keycap
+>F2</keycap
+> или соответствующей кнопки в диалоге копирования/перемещения сразу же начнёт выполнение задания, даже если в очереди уже есть выполняющиеся задания. Если этот флажок снят, задание будет поставлено в очередь, если очередь не пустая. В противном случае, задание начнёт выполняться сразу. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="configure-shortcuts">
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Комбинации клавиш...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <indexterm>
+            <primary
+>Настройка</primary>
+            <secondary
+>Комбинации клавиш</secondary>
+          </indexterm>
+          <para
+>Открывает диалог, позволяющий настроить привязки клавиш &krusader;.</para>
+          <para
+>С помощью кнопок <guibutton
+>Импорт комбинаций клавиш</guibutton
+> и <guibutton
+>Экспорт комбинаций клавиш</guibutton
+> возможно загружать и сохранять профиль привязок клавиш. Это позволяет &krusader; иметь <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+>, foo-commander или пользовательские комбинации клавиш. Единственным ограничением является то, что глобальные привязки клавиш &plasma; и некоторые привязки клавиш &krusader; пока изменить нельзя, как и некоторые возможности foo-commander, которых ещё либо нет, либо они не нужны. Привязки клавиш находятся в <filename
+>/usr/share/krusader</filename
+>, файл <filename
+>foo.keymap.info</filename
+> содержит описание, файл <filename
+>foo.keymap</filename
+> является ini-файлом, который содержит привязки клавиш. До &krusader;-1.70.1 это был исполняемый файл, &krusader; обратно совместим для импорта этого устаревшего формата. Если существует текстовый файл <filename
+>*.keymap.info</filename
+>, &krusader; отобразит его, показывая дополнительную информацию о загруженном файле привязок клавиш. В таком случае есть возможность обойтись без импорта предложенного файла привязки клавиш.</para>
+          <tip>
+            <para
+>Предоставлен файл привязок клавиш <trademark class="copyright"
+>Total Commander</trademark
+>. Возможно <link linkend="help_krusader"
+>загрузить свои схемы привязок клавиш</link
+> и поделиться ими с сообществом &krusader;.</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Панели инструментов...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает диалог, позволяющий настроить <link linkend="mainwindow"
+>главную панель инструментов</link
+> или <link linkend="actions_toolbar"
+>панель действий</link
+>. Возможно добавить кнопки <link linkend="useractions"
+>Действий</link
+> к необходимой панели инструментов.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить &krusader;...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Открывает <link linkend="konfigurator"
+>окно настройки</link
+> &krusader;.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="help-menu">
+    <title
+>Меню «Справка»</title>
+    <para
+>&krusader; содержит стандартные элементы меню <guimenu
+>Справка</guimenu
+> &kde;. Дополнительные сведения доступны в разделе справки «Основы &kde;» (подраздел <ulink url="help:/fundamentals/menus.html#menus-help"
+>Меню «Справка»</ulink
+>). </para>
+  </sect1>
+</chapter>

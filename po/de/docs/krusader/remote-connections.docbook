@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="remote-connections">
   <title
 >Entfernte Verbindungen</title>
@@ -218,7 +230,11 @@
 
  <note>
    <para
->Dies funktioniert auf &Debian;-Systemen und allen Derivaten wie &kubuntu; &etc;, sollte aber auch auf allen anderen Linux-Systemen funktionieren. <link linkend="gloss-ssh"
+>Dies funktioniert auf <trademark class="registered"
+>Debian</trademark
+>-Systemen und allen Derivaten wie <trademark class="registered"
+>Kubuntu</trademark
+> &etc;, sollte aber auch auf allen anderen Linux-Systemen funktionieren. <link linkend="gloss-ssh"
 >SSH</link
 > muss auf allen Rechnern im LAN installiert und eingerichtet sein, die mit denen Sie Verbindungen herstellen möchten. Es gibt viele gute Anleitungen zu <link linkend="gloss-ssh"
 >SSH</link
@@ -268,15 +284,7 @@
 </screen
 > Diese ist eine Kopie der Datei ssh.service. Bearbeiten Sie die Datei <filename
 >fish.service</filename
-> und ersetzen Sie <quote
->Remote Terminal on %h</quote
-> durch <quote
->Fish to %h</quote
-> und <quote
->_ssh._tcp</quote
-> durch <quote
->_fish._tcp</quote
->. So sollte die Datei nach den Änderungen aussehen: <programlisting
+> und ersetzen Sie "Remote Terminal on %h" durch "Fish to %h" und "_ssh._tcp" durch "_fish._tcp". So sollte die Datei nach den Änderungen aussehen: <programlisting
 > 
 &lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--> 
 &lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;

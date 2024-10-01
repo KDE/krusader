@@ -1,9 +1,21 @@
-<!--
-    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2000-2020 Krusader Krew <https://krusader.org>
--->
+<!-- **********************************************************************
+  copyright            : (C) 2000-2019
+                         Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                         & the Krusader Krew
+  e-mail               : krusader-devel@googlegroups.com
+  web site             : https://krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site https://www.gnu.org/licenses/fdl.html or by writing to:        *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <sect1 id="useractions">
   <title
 >Benutzeraktionen</title>
@@ -25,9 +37,7 @@
 >krusader/useraction.xml</filename
 > im Ordner gespeichert, der mit dem Befehl <userinput
 >qtpaths --paths GenericDataLocation</userinput
-> ermittelt wird. Benutzeraktionen können überall da benutzt werden, wo auch normale <quote
->KActions</quote
-> eingesetzt werden können. Die Aktionen können sogar in das Menü aufgenommen werden, aber dafür muss die Datei <filename
+> ermittelt wird. Benutzeraktionen können überall da benutzt werden, wo auch normale „KActions“ eingesetzt werden können. Die Aktionen können sogar in das Menü aufgenommen werden, aber dafür muss die Datei <filename
 >krusaderui.rc</filename
 > bearbeitet werden.</para
 > 
@@ -273,8 +283,8 @@
         <listitem>
           <para
 ><guimenuitem
->Adressen (entfernte und lokale)</guimenuitem
->: Legt fest, dass der Platzhalter Adressen zurückgeben soll.</para>
+>Lokale Dateien (keine Adressen)</guimenuitem
+>: Legt fest, dass der Platzhalter nur lokale Adressen zurückgeben soll.</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -315,11 +325,7 @@
 >Syntax der Befehlszeile</emphasis>
   </para>
   <para
->Im wesentlichen wird alles, was Sie in der Befehlszeile eingeben, ausgeführt. Geben Sie zum Beispiel <quote
->ls -l</quote
-> ein, wird <quote
->ls -l</quote
-> wie in einer Konsole ausgeführt. Sie können eine Zeichenfolge von &krusader; erhalten, der den aktuellen Status des Dateifensters repräsentiert. Die geschieht mit Platzhaltern. Ein Platzhalter beginnt mit einen Prozentzeichen ('%'), gefolgt von einem Indikator für das Dateifenster, 'a' für das aktive, 'o' für das andere, 'l' für das linke und 'r' für das rechte Dateifenster. Benötigt ein Platzhalter kein Dateifenster zur Ausführung, müssen Sie dies durch einen Unterstrich ('_') anzeigen. Dann kommt der Name des Platzhalters wie in der folgenden Liste, an den auch Parameter in Anführungszeichen angehängt werden können. Schließlich kommt zu Abschluß wieder ein Prozentzeichen.</para>
+>Im wesentlichen wird alles, was Sie in der Befehlszeile eingeben, ausgeführt. Geben Sie zum Beispiel "ls -l" ein, wird "ls -l" wie in einer Konsole ausgeführt. Sie können eine Zeichenfolge von &krusader; erhalten, der den aktuellen Status des Dateifensters repräsentiert. Die geschieht mit Platzhaltern. Ein Platzhalter beginnt mit einen Prozentzeichen ('%'), gefolgt von einem Indikator für das Dateifenster, 'a' für das aktive, 'o' für das andere, 'l' für das linke und 'r' für das rechte Dateifenster. Benötigt ein Platzhalter kein Dateifenster zur Ausführung, müssen Sie dies durch einen Unterstrich ('_') anzeigen. Dann kommt der Name des Platzhalters wie in der folgenden Liste, an den auch Parameter in Anführungszeichen angehängt werden können. Schließlich kommt zu Abschluß wieder ein Prozentzeichen.</para>
   <para
 >Dies kling sehr kompliziert, daher ein Beispiel:  '%aList("Selected")%' wird durch eine Liste aller ausgewählten Einträge im aktiven Dateifenster ersetzt. Ein Befehl wie 'xmms --enqueue %aList("All", " ", "", "*.mp3")%' führt xmms mit einer Liste aller .mp3-Dateien im aktuellen Dateifenster aus, getrennt durch ein einzelnes Leerzeichen.</para>
   <para
@@ -346,15 +352,7 @@
       <orderedlist>
         <listitem>
           <para
->Parameter: Welche Einträge, entweder <quote
->All</quote
->, <quote
->Selected</quote
->, <quote
->Files</quote
-> oder <quote
->Dirs</quote
-></para>
+>Parameter: Welche Einträge, entweder "All", "Selected", "Files" oder "Dirs"</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -388,21 +386,11 @@
       <orderedlist>
         <listitem>
           <para
->Parameter: Welche Einträge, entweder <quote
->All</quote
->, <quote
->Selected</quote
->, <quote
->Files</quote
-> oder <quote
->Dirs</quote
-></para>
+>Parameter: Welche Einträge, entweder "All", "Selected", "Files" oder "Dirs"</para>
         </listitem>
         <listitem>
           <para
->Parameter (optional): Trennzeichen zwischen Einträgen. Standard: <quote
->&nbsp;</quote
-></para>
+>Parameter (optional): Trennzeichen zwischen Einträgen. Standard: "&nbsp;"</para>
         </listitem>
         <listitem>
           <para
@@ -410,9 +398,7 @@
         </listitem>
         <listitem>
           <para
->Parameter (optional): Filtermaske (für alle bis auf <quote
->Selected</quote
->). Standard: *</para>
+>Parameter (optional): Filtermaske (für alle bis auf "Selected"). Standard: *</para>
         </listitem>
         <listitem>
           <para
@@ -432,15 +418,7 @@
         </listitem>
         <listitem>
           <para
->Parameter (optional): auf welche Art verändern, entweder <quote
->Set</quote
->, <quote
->Add</quote
-> oder <quote
->Remove</quote
->. Standard: <quote
->Set</quote
-></para>
+>Parameter (optional): auf welche Art verändern, weder "Set", "Add" oder "Remove". Standard: "Set"</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -452,7 +430,7 @@
       <orderedlist>
         <listitem>
           <para
->Parameter: Ein relativer oder absoluter Pfad oder eine &URL;</para>
+>Parameter: Ein relativer oder absoluter Pfad oder eine URL</para>
         </listitem>
         <listitem>
           <para
@@ -488,9 +466,7 @@
       <orderedlist>
         <listitem>
           <para
->Parameter: Der Text, der in die Zwischenablage eingefügt werden soll. Sie können hier <quote
->%aCurrent%</quote
-> verwenden</para>
+>Parameter: Der Text, der in die Zwischenablage eingefügt werden soll. Sie können hier „%aCurrent%“ verwenden</para>
         </listitem>
         <listitem>
           <para
@@ -602,6 +578,56 @@
         </listitem>
       </orderedlist>
     </listitem>
+<!--    <listitem>
+      <para>
+      <userinput
+>Script</userinput
+> - executes an external 
+      <link linkend="javascript_console">
+      Javascript</link
+> file.</para>
+      <para
+>NOTE: This is still experimental and the interface may
+      change, feedback is always welcome.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: path to the
+          external foo.js file, absolute path or relative to 
+          <filename>
+          &lt;kde-app-data&gt;/krusader/js/</filename
+>.
+          &lt;kde-app-data&gt; is 
+          <filename
+>$(kde-config
+          - -localprefix)/share/apps/</filename
+> or 
+          <filename
+>$(kde-config - -prefix)/share/apps/</filename
+>,
+          for those who do not know where to copy the
+          scripts/extensions. If all the needed files (normally 
+          <filename
+>.js</filename
+> and maybe 
+          <filename
+>.ui</filename
+>) are in one of these dirs it is
+          sufficient to give the file name only as &lt;first parameter&gt;.
+          </para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (optional): a list
+          of variables which should be set, like "return=cmd;
+          a=lalala; b='%_Ask(..)'" so that the placeholder is
+          replaced be the content of the variable cmd and the other
+          two have already these values when the script
+          starts.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
     <listitem>
       <para
 ><userinput
@@ -622,35 +648,11 @@
       <orderedlist>
         <listitem>
           <para
->Parameter Spalte: entweder <quote
->Name</quote
->, <quote
->Erw</quote
->, <quote
->Dateityp</quote
->, <quote
->Größe</quote
->, <quote
->Geändert</quote
->, <quote
->Berechtigungen</quote
->, <quote
->rwx</quote
->, <quote
->Eigentümer</quote
-> oder <quote
->Gruppe</quote
-></para>
+>Parameter: Spalte: Entweder "Name", "Ext", "Type", "Size", "Modified", "Perms", "rwx", "Owner" oder "Group"</para>
         </listitem>
         <listitem>
           <para
->Parameter: Sortiersequenz: Entweder <quote
->Toggle</quote
->, <quote
->Asc</quote
->, <quote
->Desc</quote
-></para>
+>Parameter: Sortiersequenz: Entweder "Toggle", "Asc", "Desc"</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -662,33 +664,17 @@
       <orderedlist>
         <listitem>
           <para
->Parameter: Ansichtsmodus: Entweder <quote
->generic</quote
->, <quote
->text</quote
->, <quote
->hex</quote
-></para>
+>Parameter: Ansichtsmodus: Entweder "generic", "text", "hex"</para>
         </listitem>
         <listitem>
           <para
->Parameter: Fenstermodus: Entweder <quote
->tab</quote
->, <quote
->window</quote
-></para>
+>Parameter: Fenstermodus: Entweder "tab", "window"</para>
         </listitem>
       </orderedlist>
     </listitem>
   </itemizedlist>
   <para
->Es gibt eine grafische Hilfe, um Platzhalter einzufügen. Leerzeichen in <quote
->Path</quote
->, <quote
->Current</quote
-> und <quote
->List</quote
-> werden als Standard automatisch maskiert. Etwas wichtiges ist noch zu beachten: Alle Platzhalter für &krusader;s interne Funktionen werden beim Expandieren aufgerufen, d. h. direkt die Platzhalter ersetzt werden. Externe Programme werden zur Ausführungszeit aufgerufen, d. h. nachdem alle Platzhalter ersetzt wurden.</para>
+>Es gibt eine grafische Hilfe, um Platzhalter einzufügen. Leerzeichen in „Path“, „Current“ und „List“ werden als Standard automatisch maskiert. Etwas wichtiges ist noch zu beachten: Alle Platzhalter für &krusader;s interne Funktionen werden beim Expandieren aufgerufen, d. h. direkt die Platzhalter ersetzt werden. Externe Programme werden zur Ausführungszeit aufgerufen, d. h. nachdem alle Platzhalter ersetzt wurden.</para>
   <para>
     <emphasis role="bold"
 >Erweiterte Eigenschaften</emphasis>
@@ -699,7 +685,7 @@
   <itemizedlist>
     <listitem>
       <para
->Legt fest, ob die Aktion für ein Protokoll, Pfad, &MIME;-Typ oder einen Dateinamen gültig ist.</para>
+>Legt fest, ob die Aktion für ein Protokoll, Pfad, MIME-Typ oder einen Dateinamen gültig ist.</para>
     </listitem>
     <listitem>
       <para

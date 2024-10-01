@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
 "PO-Revision-Date: 2020-08-08 16:28+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -2346,9 +2346,10 @@ msgid "Exclude Folder Names"
 msgstr "Undtag mappenavne"
 
 #: app/Filter/generalfilter.cpp:473
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Filters out specified directory names from the results."
 msgid "Filters out specified folder names from the results."
-msgstr ""
+msgstr "Filtrerer angivne mappenavne ud fra resultaterne."
 
 #: app/Filter/generalfilter.cpp:488
 #, kde-format
@@ -3909,16 +3910,22 @@ msgid ""
 msgstr "Tryk på knapperne op/ned lukker søgebjælken (kun i søgetilstand)."
 
 #: app/Konfigurator/kgpanel.cpp:216
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Directory navigation with Right Arrow"
 msgid "Folder navigation with Right Arrow"
-msgstr ""
+msgstr "Mappenavigation med højre pil"
 
 #: app/Konfigurator/kgpanel.cpp:218
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Pressing the Right button enters directory if no search text editing "
+#| "intention is captured."
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
 msgstr ""
+"Tryk på højreknap går ind i mappen, hvis der ikke opfattes intention om at "
+"redigere søgeteksten."
 
 #: app/Konfigurator/kgpanel.cpp:227
 #, kde-format
@@ -7148,9 +7155,10 @@ msgstr ""
 "byte-matematikken"
 
 #: app/Panel/listpanel.cpp:261
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Cancel directory space calculation"
 msgid "Cancel folder space calculation"
-msgstr ""
+msgstr "Annullér beregning mappeplads"
 
 #: app/Panel/listpanel.cpp:286
 #, kde-format
@@ -7521,9 +7529,10 @@ msgid "Run"
 msgstr "Kør"
 
 #: app/Panel/panelcontextmenu.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open in New Tab"
 msgid "Open in New Tabs"
-msgstr "Åbn i nye faneblade"
+msgstr "Åbn i nyt faneblad"
 
 #: app/Panel/panelcontextmenu.cpp:134
 #, kde-format
@@ -8240,7 +8249,7 @@ msgstr "Tekst fundet:"
 #: app/Search/krsearchdialog.cpp:266
 #, kde-format
 msgid "Idle"
-msgstr "Tomgang"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:278
 #, kde-format
@@ -9698,10 +9707,9 @@ msgid "Multimedia"
 msgstr "Multimedie"
 
 #: app/useraction_examples.xml:39
-#, fuzzy, kde-format
-#| msgid "Always show current item"
+#, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Vis altid aktuelt element"
+msgstr ""
 
 #: app/useraction_examples.xml:46
 #, fuzzy, kde-format
@@ -9861,11 +9869,8 @@ msgstr "Adgangskodedialog til Krarc"
 msgid "Accessing the file requires a password."
 msgstr "Tilgang til filen kræver adgangskode."
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Kopiér aktuelt element til udklipsholderen"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Åbn nyt faneblad i hjemmemappen"
+#~ msgid "Directories:"
+#~ msgstr "Mapper:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Vis knapperne til nyt/luk faneblad."
@@ -9894,6 +9899,30 @@ msgstr "Tilgang til filen kræver adgangskode."
 #~ msgid "JavaScript Error"
 #~ msgstr "JavaScript-fejl"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Gennemse"
+
+#~ msgid "New folder"
+#~ msgstr "Ny mappe"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Åbn nyt faneblad i hjemmemappen"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Kør en JavaScript-udvidelse..."
 
@@ -9912,14 +9941,8 @@ msgstr "Tilgang til filen kræver adgangskode."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Udvider: Intet script angivet til %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Ny mappe"
-
-#~ msgid "Directories:"
-#~ msgstr "Mapper:"
-
-#~ msgid "Browse"
-#~ msgstr "Gennemse"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Kopiér aktuelt element til udklipsholderen"
 
 #~ msgid "Folder..."
 #~ msgstr "Mapper..."
@@ -9932,21 +9955,6 @@ msgstr "Tilgang til filen kræver adgangskode."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Redigér fil (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
 
 #, fuzzy
 #~| msgid "Open Terminal Here"

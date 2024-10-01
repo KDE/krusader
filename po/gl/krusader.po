@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-11 01:51+0000\n"
-"PO-Revision-Date: 2024-08-19 15:29+0200\n"
+"POT-Creation-Date: 2024-10-01 03:18+0000\n"
+"PO-Revision-Date: 2023-09-03 13:32+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -2587,9 +2587,12 @@ msgid "Empty Recently Closed Tabs"
 msgstr "Baleirar os separadores pechados recentemente"
 
 #: app/GUI/terminaldock.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr "<b>Non se pode crear o terminal incrustado</b><br/>"
+msgstr ""
+"<b>Non se pode crear o terminal incrustado</b><br/>O erro indicado foi: %1"
 
 #: app/GUI/terminaldock.cpp:102
 #, kde-format
@@ -9724,9 +9727,10 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Copiar a ruta do ficheiro do elemento actual (escapando os espazos)"
 
 #: app/useraction_examples.xml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy file path of current item (escaping spaces)"
 msgid "Copy file path of current item"
-msgstr "Copiar a ruta do ficheiro do elemento actual"
+msgstr "Copiar a ruta do ficheiro do elemento actual (escapando os espazos)"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9881,11 +9885,8 @@ msgstr "Diálogo de contrasinais de Krarc"
 msgid "Accessing the file requires a password."
 msgstr "O acceso ao ficheiro require un contrasinal."
 
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Copiar o elemento actual ao portapapeis"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Abrir un novo separador no cartafol persoal"
+#~ msgid "Directories:"
+#~ msgstr "Directorios:"
 
 #~ msgid "Show the new/close tab buttons."
 #~ msgstr "Mostrar os botóns de crear ou pechar separadores."
@@ -9914,6 +9915,30 @@ msgstr "O acceso ao ficheiro require un contrasinal."
 #~ msgid "JavaScript Error"
 #~ msgstr "Erro de JavaScript"
 
+#~ msgid "%1 ZB"
+#~ msgstr "%1 ZB"
+
+#~ msgid "%1 TB"
+#~ msgstr "%1 TB"
+
+#~ msgid "%1 GB"
+#~ msgstr "%1 GB"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 KB"
+#~ msgstr "%1 KB"
+
+#~ msgid "Browse"
+#~ msgstr "Navegar"
+
+#~ msgid "New folder"
+#~ msgstr "Novo cartafol"
+
+#~ msgid "Open a new tab in home"
+#~ msgstr "Abrir un novo separador no cartafol persoal"
+
 #~ msgid "Execute a JavaScript Extension..."
 #~ msgstr "Executar unha extensión en JavaScript…"
 
@@ -9932,14 +9957,8 @@ msgstr "O acceso ao ficheiro require un contrasinal."
 #~ msgid "Expander: no script specified for %_Script(script)%"
 #~ msgstr "Expansor: non se especificou ningún script para %_Script(script)%"
 
-#~ msgid "New folder"
-#~ msgstr "Novo cartafol"
-
-#~ msgid "Directories:"
-#~ msgstr "Directorios:"
-
-#~ msgid "Browse"
-#~ msgstr "Navegar"
+#~ msgid "Copy current item to clipboard"
+#~ msgstr "Copiar o elemento actual ao portapapeis"
 
 #~ msgid "Folder..."
 #~ msgstr "Cartafol…"
@@ -9952,21 +9971,6 @@ msgstr "O acceso ao ficheiro require un contrasinal."
 
 #~ msgid "Edit File (F4)"
 #~ msgstr "Editar o ficheiro (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
 
 #~ msgid "Open search filter"
 #~ msgstr "Abrir un filtro de busca"

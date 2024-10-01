@@ -1,0 +1,703 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="useractions">
+  <title
+>Uporabniška dejanja</title>
+  <indexterm>
+    <primary
+>Uporabniška dejanja</primary>
+  </indexterm>
+  <!-- Thanks to Jonas Bar -->
+  <para
+>Z ActionMan lahko nastavite, konfigurirate in upravljate UserActions. Nekatere splošne nastavitve se konfigurirajo s <link linkend="konfig-useractions"
+>Konfiguratorjem</link
+>. Z UserActions lahko izvajate dejanja nad datotekami na plošči ali za dostop do &krusader; notranje funkcije s parametri neposredno z ogradami. Dejanja se neopazno integrirajo v &plasma; akcijski sistem, kar pomeni, da bosta standardna pogovorna okna Urejanje orodne vrstice in Urejanje bližnjice prav tako prikazala Uporabniška dejanja. Uporabniška dejanja so shranjena v <filename
+> ~/.local/share/krusader/useractions.xml</filename
+> ali <filename
+>krusader/useractions.xml</filename
+> v mapi, ki jo je mogoče določiti s pomočjo <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> ukaz. V dokumentacijo je vključenih več <link linkend="useraction-xml"
+>primerov</link
+>. Uporabniška dejanja je mogoče urejati/dodati/uvažati/izvažati z uporabo ActionMan. Privzeta uporabniška dejanja so shranjena v <filename
+> /usr/share/krusader/useraction-examples.xml</filename
+>. Uporabniška dejanja se lahko pojavijo skoraj povsod, kjer je mogoče postaviti <quote
+>normalne</quote
+> KAkcije. Dejanja lahko postavite celo v menijsko vrstico, vendar je za to treba urediti datoteko <filename
+>krusaderui.rc</filename
+>. Nekaj primerov:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="useractions-menu"
+>Meni uporabniških dejanj</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="useractions"
+>Uporabniški meni</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="actions_toolbar"
+>Orodna vrstica dejanj</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>meniji z desnim klikom</para>
+    </listitem>
+    <listitem>
+      <para
+>&etc;</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>&krusader;ovo orodje UserActions je zelo zmogljivo in prilagodljivo, če ste seznanjeni s pisanjem UserActions na splošno.</para>
+  <tip>
+    <para
+>Privzeto je na voljo več uporabniških dejanj. Prosimo <link linkend="help_krusader"
+>naložite svoja priljubljena uporabniška dejanja</link
+>, da bodo na voljo za &krusader; skupnosti. Hvala!</para>
+  </tip>
+  <figure id="screenshot-actionman" float="1">
+    <title
+>ActionMan</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="actionman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>ActionMan</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>V bistvu so UserActions metoda za klicanje zunanjih programov s spremenljivimi parametri. Na primer, lahko bi imeli UserAction z naslednjim <command
+>xmms <option
+>--enqueue %aList("Selected")%</option
+></command
+>, da vse izbrane elemente aktivne plošče postavite v čakalno vrsto na trenutni primerek od xmms. Poleg tega je dostop do &krusader; notranje funkcije, ki zahtevajo parametre. Na primer, <command
+>%aPanelSize("80")%</command
+> bo nastavil širino aktivne plošče na 80 % širine &krusader; glavno okno. Ker parameter ograd lahko vsebuje druge ograde, je možnih nekaj skriptov. </para>
+  <para>
+    <emphasis role="bold"
+>Upravljanje uporabniških dejanj</emphasis>
+  </para>
+  <para
+>Odprite Konfigurator in izberite <menuchoice
+><guimenu
+>Uporabniška dejanja</guimenu
+> <guimenuitem
+>Zaženi ActionMan</guimenuitem
+></menuchoice
+>, v katerem lahko dodajate, urejate, odstranjujete, uvažate in izvažate uporabniška dejanja.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Dodaj dejanje</guimenuitem
+>: Če dodate novo dejanje, dobite prazno vnosno masko, kjer lahko vnesete vse želene lastnosti. Dejanje bo dodano takoj, ko pritisnete <guimenuitem
+>Uporabi</guimenuitem
+>. Nato se ime prikaže na seznamu na levi.</para>
+    </listitem>
+    <listitem>
+      <para
+>Če želite urediti UserAction: Izberite UserAction na levi. Nato ga izberite, če želite urediti njegove lastnosti. Spremembe bodo začele veljati šele, ko pritisnete <guimenuitem
+>Uporabi</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Če želite odstraniti UserAction</guimenuitem
+>: Izberite UserAction na levi in kliknite <inlinemediaobject
+> <imageobject
+> <imagedata fileref="Icon-edit-delete.png" format="PNG"/> </imageobject 
+> </inlinemediaobject
+>gumb.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Za uvoz uporabniškega dejanja</guimenuitem
+>: Če uvozite nekaj dejanj, bodo samodejno dodana na vaš seznam. Če pride do navzkrižja imen (imena morajo biti unikatna, ker so to ID za &plasma; akcijski sistem), boste pozvani, da jih razrešite. Za to bodo na seznamu na levi prikazana samo dejanja, kjer obstajajo spori. Zdaj jim lahko daste nova imena ali jih odstranite.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Dejanje izvoza</guimenuitem
+>: Če izvozite dejanje uporabnika, morate dati ime datoteke, v katero ga želite shraniti. Če ne obstaja, bo ustvarjen. Če datoteka že vsebuje UserActions, bo dejanje, ki ga izvažate, dodano tej datoteki.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Vsa dejanja, ki ste jih določili, so zdaj prikazana v uporabniškem meniju in v &plasma; pogovorna okna za spreminjanje bližnjic in upravljanje orodne vrstice. Poleg tega se bodo v meniju z desnim klikom prikazala tudi vsa dejanja, ki so na voljo za trenutni element.</para>
+  <para>
+    <emphasis role="bold"
+>Osnovne lastnosti</emphasis>
+  </para>
+  <para
+><guimenuitem
+>Identifikator</guimenuitem
+>, <guimenuitem
+>Naslov</guimenuitem
+> in <guimenuitem
+>Ukazna vrstica</guimenuitem
+> so vedno potrebni, vse druge lastnosti so neobvezne.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Identifikator</guimenuitem
+>: enolično ime UserAction, ki se uporablja za identifikacijo za &plasma; akcijski sistem.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Gumb ikone</guimenuitem
+>: Ikona za vaše UserAction.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Kategorija</guimenuitem
+>: Kategorije se uporabljajo za boljši pregled. Pojavijo se kot elementi podmenija v meniju <guimenuitem
+>Uporabniške akcije</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Naslov</guimenuitem
+>: naslov, prikazan v menijih ali pogovornih oknih.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Namig orodja</guimenuitem
+>: Namig orodja za vaše UserAction, &eg; prikazano v orodni vrstici ob prehodu miške.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Opis</guimenuitem
+>: Opis, kaj naredi UserAction. To je prikazano tudi kot <guimenuitem
+>Kaj je to</guimenuitem
+>, če <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo
+> kliknite svoje UserAction.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Ukaz</guimenuitem
+>: Ukaz, ki bo izveden. Oznako mesta lahko dodate z &GUI; z gumbom <guibutton
+>dodaj</guibutton
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Delovni imenik</guimenuitem
+>: Delovna mapa za ukaz, ki bo izveden.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Način izvajanja</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Normalno</guimenuitem
+>: Običajen način izvajanja.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Zaženi v terminalu</guimenuitem
+>: Zažene ukaz v terminalu.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Zaženi v vdelanem terminalskem emulatorju</guimenuitem
+>: Zažene ukaz v vdelanem terminalu.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Zberi izhodne podatke</guimenuitem
+>: Zbere izhodne podatke izvedenega programa v &GUI; okno.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Ločena standardna napaka</guimenuitem
+>: Ko je uporabljen <quote
+>Zberi izhod</quote
+>, se stdout in stderr zbirata ločeno.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Ukaz sprejema</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Samo lokalne datoteke (brez &URL;-jev)</guimenuitem
+>: nadomestnemu znaku pove, da mora vrniti lokalne naslove.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>&URL;-ji (oddaljeni in lokalni)</guimenuitem
+>: pove označbi mesta, da mora vrniti &URL;-je.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <!--    Not yet implemented, but will be after 1.50 stable is released
+        <listitem
+><para
+><guimenuitem
+>On multiple selection</guimenuitem
+>:  </para>
+        <itemizedlist>
+   <listitem
+><para
+><guimenuitem
+>Separate call for each file</guimenuitem
+>: executes the command for each selected file.
+             </para
+></listitem>
+         </itemizedlist>
+      </listitem
+> -->
+    <listitem>
+      <para
+><guimenuitem
+>Privzeta bližnjica</guimenuitem
+>: Konfigurira privzeto bližnjico za UserAction.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Omogočeno</guimenuitem
+>: če je označeno, je dejanje uporabnika prikazano v <link linkend="useractions"
+>uporabniškem meniju</link
+>, sicer bo dejanje uporabnika skrito.</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>Sintaksa ukazne vrstice</emphasis>
+  </para>
+  <para
+>V bistvu se izvede vse, kar vnesete v ukazno vrstico (če vnesete <quote
+>ls -l</quote
+>, se izvede <quote
+>ls -l</quote
+>). Imate možnost pridobiti niz znakov iz &krusader; ki predstavlja trenutno stanje plošče. To se naredi z uporabo nadomestnih mest. Oznaka mesta se začne z znakom za odstotek ('%'), sledi pa mu indikator plošče ('a' za aktivno, 'o' za drugo, 'l' za levo in 'r' za desno ploščo. Če nadomestni znak ne potrebuje plošče za delovanje, morate to označiti s podčrtajem ('_')). Nato sledi ime nadomestnega znaka (glejte spodnji seznam), ki lahko dobi nekatere parametre v narekovajih. Na koncu spet znak za odstotek.</para>
+  <para
+>To zveni zelo zapleteno, zato naredimo primer: '%aList("Selected")%' je nadomeščen s seznamom vseh izbranih elementov v aktivni plošči. Torej bo ukaz, kot je 'xmms --enqueue %aList("All", " ", "", "*.mp3")%' izvedel xmms s seznamom vseh .mp3-jev na trenutni plošči, ločenih z enim samim praznim mestom .</para>
+  <para
+>Trenutno so implementirani ti nadomestni znaki:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><userinput
+>Pot</userinput
+> - zamenjana s potjo plošč</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (izbirno): Samodejni prostori za pobeg. Privzeto: da</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Štetje</userinput
+> - zamenjano s številko &lt;prvega parametra&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: kateri predmeti; <quote
+>Vse</quote
+>, <quote
+>Izbrano</quote
+>, <quote
+>Datoteke</quote
+> ali <quote
+>Imeniki</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Filter</userinput
+> - nadomeščen z masko filtra plošče</para>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Trenutno</userinput
+> - zamenjano s trenutnim elementom</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (izbirno): Izpustite trenutno pot. Privzeto: ne</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (izbirno): Samodejni prostori za pobeg. Privzeto: da</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Seznam</userinput
+> - nadomeščen s seznamom vseh &lt;prvih parametrov&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: kateri predmeti; <quote
+>Vse</quote
+>, <quote
+>Izbrano</quote
+>, <quote
+>Datoteke</quote
+> ali <quote
+>Imeniki</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (izbirno): ločilo med postavkami. Privzeto: <quote
+>&nbsp;</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (izbirno): Izpustite trenutno pot. Privzeto: ne</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (izbirno): Filtermask (za vse, razen za <quote
+>Izbrano</quote
+>). Privzeto: *</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (izbirno): Samodejni prostori za pobeg. Privzeto: da</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Izberi</userinput
+> - manipulira z izbiro na plošči</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Filtermask</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (izbirno): manipulirajte na kakšen način; <quote
+>Nastavi</quote
+>, <quote
+>Dodaj</quote
+> ali <quote
+>Odstrani</quote
+>. Privzeto: <quote
+>Nastavi</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Pojdi</userinput
+> - spremeni pot plošč na &lt;prvi parameter&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: relativna ali absolutna pot ali &URL;</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (neobvezno): odpri lokacijo v novem zavihku. Privzeto: ne</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Vprašaj</userinput
+> - od uporabnika zahteva nekaj besedila, ki ga nadomesti odgovor</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: vprašanje</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (izbirno): privzeti odgovor</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (izbirno): napis za polje z vprašanji</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Odložišče</userinput
+> - upravlja z odložiščem</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Besedilo, ki naj gre v odložišče (tukaj boste morda želeli uporabiti <quote
+>%aCurrent%</quote
+>)</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter (neobvezno): pripni besedilo trenutni vsebini odložišča s tem ločilom</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Kopiraj</userinput
+> - kopira datoteko, uporabno za hitre lokalne varnostne kopije</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Kaj naj se kopira</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Kam naj se kopira</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Sync</userinput
+> - odpre sinhronizator z danim profilom</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Profil za sinhronizator</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Novo iskanje</userinput
+> - odpre iskalna okna z danim profilom</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Profil za iskalni modul</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Profil</userinput
+> - naloži dani profil plošče</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Profil plošče</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Vsak</userinput
+> - razdeli ukazno vrstico na seznam. Ti ukazi se izvajajo drug za drugim.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Element seznama (vse, vse datoteke, vsi imeniki, vsi izbrani).</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Premakni</userinput
+> - premakni se od vira do cilja.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: vir</para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Cilj</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Velikost plošče</userinput
+> - spremenite razmerje med obema ploščama.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (neobvezno): celoštevilska vrednost, &eg; 80, omogoči, da aktivna plošča uporabi 80 % širine (višine v navpičnem načinu) &krusader;, izpustitev parametra pomeni 50 %.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Vprašaj</userinput
+> - prekliči izvedbo.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter (izbirno): niz za vprašanje za preklic.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ListFile</userinput
+> - zamenja se z imenom poti/datoteke začasne datoteke, ki vsebuje seznam elementov</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: pot/ime datoteke</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ColSort</userinput
+> - nastavite razvrščanje v stolpcu določene plošče.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Stolpec: <quote
+>Ime</quote
+>, <quote
+>Zunanja</quote
+>, <quote
+>Vrsta</quote
+>, <quote
+>Velikost</quote
+>, <quote
+>Spremenjeno</quote
+>, <quote
+>Dovoljenja</quote
+>, <quote
+>rwx</quote
+>, <quote
+>Lastnik</quote
+> in <quote
+>Skupina</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: Zaporedje razvrščanja: bodisi <quote
+>Toggle</quote
+>, <quote
+>Asc</quote
+>, <quote
+>Desc</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Pogled</userinput
+> - nastavite način pogleda.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parameter: Način pogleda: <quote
+>generično</quote
+>, <quote
+>besedilno</quote
+>, <quote
+>šestnajstiško</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parameter: okenski način: bodisi <quote
+>zavihek</quote
+>, <quote
+>okno</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+  </itemizedlist>
+  <para
+>Na voljo je pomočnik za dodajanje ograd, ki temelji na &GUI;. Presledki v možnostih Pot, Trenutno in Seznam so privzeto samodejno ubežni. Vedeti morate še eno pomembno stvar: vse ogradne oznake, ki sodelujejo z &krusader; notranje funkcije se kličejo v času razširitve (kar pomeni neposredno, ko se zamenjajo ograde). Zunanji programi so priklicani v času izvajanja (kar pomeni, ko so zamenjane vse ograde).</para>
+  <para>
+    <emphasis role="bold"
+>Napredne lastnosti</emphasis>
+  </para>
+  <para
+>Tukaj lahko konfigurirate, kje naj bo vaš ukaz viden (za meni z desnim klikom). Poleg tega je mogoče spremeniti izvedeni ukaz in ga posebej potrditi. Nastavite lahko tudi uporabnika, pod katerim naj se izvede ukaz.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Konfigurira, ali je dejanje veljavno za protokol, pot, &MIME; vrsto ali Ime datoteke.</para>
+    </listitem>
+    <listitem>
+      <para
+>Prilagoditev ukazne vrstice pred izvedbo.</para>
+    </listitem>
+    <listitem>
+      <para
+>Nastavite drugega uporabnika za izvajanje (to nima vpliva na notranje funkcije &krusader;)</para>
+    </listitem>
+  </itemizedlist>
+</sect1>

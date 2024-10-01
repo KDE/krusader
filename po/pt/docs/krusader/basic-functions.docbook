@@ -131,7 +131,9 @@
         <para
 >O &krusader; oferece 4 <link linkend="selection_modes"
 >Modos de Selecção</link
->, sendo que apenas o Modo de Selecção do &krusader; será explicado aqui.</para>
+>; não sendo dito nada sobre a <link linkend="quickselect"
+>barra de Selecção Rápida</link
+>, apenas o Modo de Selecção do &krusader; será explicado aqui.</para>
       </note>
       <para
 >A selecção é uma aptidão que necessita de dominar para tirar o máximo partido do &krusader;. Dado que o Painel em Árvore só lhe permite seleccionar uma pasta de cada vez, este parágrafo explica principalmente como seleccionar os ficheiros na lista do Painel da Lista.</para>
@@ -269,6 +271,34 @@
 ></menuchoice
 >).</para>
     </sect2>
+    <sect2 id="quickselect">
+      <title
+>Selecção rápida</title>
+      <para
+>Esta funcionalidade fará uma filtragem rápida na lista de ficheiros do painel activo.</para>
+      <para
+>Carregue em <keycombo
+>&Ctrl;&Shift;<keycap
+>S</keycap
+></keycombo
+> para abrir a barra de Selecção Rápida. Escreva <keycap
+>xpto</keycap
+> para retirar, do painel activo, todos os ficheiros que não contêm "xpto" nos seus nomes. Poderá usar caracteres especiais para a filtragem. &eg; use "a*b" to para filtrar os ficheiros que contêm "a" e "b" nos seus nomes. A Selecção Rápida segue a <link linkend="konfig-panel-general"
+>configuração da distinção de maiúsculas</link
+> da Pesquisa Rápida.</para>
+      <para
+>Se carregar em &Enter; no modo de Selecção Rápida, coloca o painel em primeiro plano; quando estiver o painel ou a Selecção Rápida em primeiro plano, o &Esc; fecha esta. </para>
+      <para
+>Para mudar os atalhos predefinidos da selecção rápida, use a janela para <link linkend="key_bindings"
+>Configurar os Atalhos</link
+> (<menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Configurar os Atalhos...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
     <sect2 id="context-menu">
       <title
 >Menu de Contexto</title>
@@ -324,9 +354,9 @@
         </listitem>
         <listitem>
           <para
-><link linkend="synchronizer"
+>Lista de Ficheiros em <link linkend="synchronizer"
 >Sincronizar as Pastas</link
-> Lista de ficheiros (desactivado na altura da compilação por omissão)</para>
+></para>
         </listitem>
         <listitem>
           <para
