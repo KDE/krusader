@@ -5,6 +5,7 @@
   <project_license>GPL-2.0-or-later</project_license>
   <name>Krusader</name>
   <name xml:lang="ar">كروسادر</name>
+  <name xml:lang="ast">Krusader</name>
   <name xml:lang="ca">Krusader</name>
   <name xml:lang="ca-valencia">Krusader</name>
   <name xml:lang="cs">Krusader</name>
@@ -90,11 +91,9 @@
     <p xml:lang="ca-valencia">Krusader és un gestor avançat de fitxers, amb quadros bessons (estil de «commander») per a Plasma de KDE i altres escriptoris en el món *nix</p>
     <p xml:lang="cs">Krusader je pokročilý správce souborů se zdvojeným panelem (ve stylu commanderů) pro KDE, a další prostředí ze světa *nixu.</p>
     <p xml:lang="de">Krusader ist ein fortgeschrittenes Dateiverwaltungsprogramm mit einer zweispaltigen Ansicht für KDE-Plasma und andere Arbeitsfläche unter Unix-Systemen</p>
-    <p xml:lang="el">Ο Krusader είναι ένας προηγμένος διαχειριστής αρχείων με δίδυμο πάνελ (σε στιλ commander) για το KDE Plasma και άλλες επιφάνειες εργασίας στον κόσμο των *nix</p>
     <p xml:lang="en-GB">Krusader is an advanced twin panel (commander style) file manager for KDE Plasma and other desktops in the *nix world</p>
     <p xml:lang="eo">Krusader estas altnivela ĝemelpanela (commander-stila) dosiermastrumilo por KDE Plasma kaj aliaj labortabloj en la *nix-mondo</p>
     <p xml:lang="es">Krusader es un gestor de archivos avanzado con paneles gemelos (al estilo de commander) para KDE Plasma y otros escritorios del mundo *nix</p>
-    <p xml:lang="et">Krusader on KDE Plasma ja teiste *nix-maailma töökeskkondade täiustatud kahe paneeliga failihaldur.</p>
     <p xml:lang="eu">Krusader panel bikiko fitxategi kudeatzaile aurreratu bat da, KDE Plasma eta *nix munduko beste mahaigainetan erabil daitekeena.</p>
     <p xml:lang="fi">Krusader on kehittynyt kaksipaneelinen (Commander-tyylinen) tiedostonhallinta KDE Plasmalle ja muille *nix-maailman työpöydille</p>
     <p xml:lang="fr">Krusader est un gestionnaire de fichiers avancé à deux panneaux (Dans le style de commander) pour KDE Plasma et d'autres bureaux du monde *nix</p>
@@ -107,10 +106,9 @@
     <p xml:lang="nl">Krusader is een geavanceerde, twee-paneel (commander-stijl) bestandsbeheerder voor KDE Plasma en andere bureaubladen in de *nix-wereld</p>
     <p xml:lang="nn">Krusader er ein avansert filhandsamar med topanelsutforming for KDE Plasma og skrivebordsmiljø i *nix-verda</p>
     <p xml:lang="pl">Krusader jest zaawansowanym programem (działającym na poleceniach) do zarządzania plikami w KDE Plazma i innych pulpitach ze świat *nix</p>
-    <p xml:lang="pt">O Krusader é um gestor de ficheiros avançado de painéis duplos (do estilo do Commander) para o Plasma do KDE e outros ambientes de trabalho no mundo do *nix</p>
     <p xml:lang="pt-BR">Krusader é um gerenciador de arquivos avançado com painéis duplos (estilo 'commander') para o Plasma e outras áreas de trabalho do mundo *nix</p>
     <p xml:lang="ru">Krusader — диспетчер файлов с двойной панелью (в стиле Commander) для KDE Plasma и других рабочих столов из мира *nix</p>
-    <p xml:lang="sk">Krusader je pokročilý dvojpanelový správca súborov pre KDE Plasma a iné plochy sveta *nix</p>
+    <p xml:lang="sk">Krusader je pokročilý dvojpanelový správca súborov</p>
     <p xml:lang="sl">Krusader je napredni upravitelj datotek dvojnega panela (slog commanderja) za KDE Plazmo in druga namizja v okolju *nix</p>
     <p xml:lang="sv">Krusader är en avancerad filhanterare med två paneler (i stil med commander) för KDE, Plasma och andra skrivbord i Unix-världen</p>
     <p xml:lang="tr">Krusader, KDE Plasma ve *nix dünyasındaki diğer masaüstleri için gelişmiş bir ikiz panel (commander türünde) dosya yöneticisidir</p>
@@ -137,7 +135,7 @@
     <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Caratteristiche:</p>
-    <p xml:lang="ka">ფუნქციები:</p>
+    <p xml:lang="ka">თვისებები:</p>
     <p xml:lang="ko">기능:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
     <p xml:lang="nn">Funksjonar:</p>
@@ -160,8 +158,8 @@
     <ul>
       <li>Extensive archive handling</li>
       <li xml:lang="ar">معالجة موسعة للأرشيفات</li>
-      <li xml:lang="ca">Gestió exhaustiva d'arxius</li>
-      <li xml:lang="ca-valencia">Gestió exhaustiva d'arxius</li>
+      <li xml:lang="ca">Ampli maneig dels arxius</li>
+      <li xml:lang="ca-valencia">Ampli maneig dels arxius</li>
       <li xml:lang="cs">Práce se spoustou archivů</li>
       <li xml:lang="da">Omfattende arkivhåndtering</li>
       <li xml:lang="de">Umfangreiche Archiv-Verwaltung</li>
@@ -557,7 +555,6 @@
       <caption xml:lang="ca-valencia">Gestió de fitxers en Krusader</caption>
       <caption xml:lang="cs">Správa souborů v Krusaderu</caption>
       <caption xml:lang="de">Dateiverwaltung mit Krusader</caption>
-      <caption xml:lang="el">Διαχείριση αρχείων στο Krusader</caption>
       <caption xml:lang="en-GB">File management in Krusader</caption>
       <caption xml:lang="eo">Dosieradministrado en Krusader</caption>
       <caption xml:lang="es">Gestión de archivos en Krusader</caption>
@@ -567,14 +564,13 @@
       <caption xml:lang="fr">Gestion de fichiers avec Krusader</caption>
       <caption xml:lang="gl">Xestión de ficheiros en Krusader</caption>
       <caption xml:lang="hu">Fájlkezelés a Krusaderben</caption>
-      <caption xml:lang="ia">Gestion de file in Krusader</caption>
+      <caption xml:lang="ia">Gerente de file in Krusader</caption>
       <caption xml:lang="id">Pengelolaan file di Krusader</caption>
       <caption xml:lang="it">Gestione dei file in Krusader</caption>
       <caption xml:lang="ko">Krusader로 파일 관리</caption>
       <caption xml:lang="nl">Bestandsbeheer in Krusader</caption>
       <caption xml:lang="nn">Filhandsamar i Krusader</caption>
       <caption xml:lang="pl">Zarządzanie plikami w Krusaderze</caption>
-      <caption xml:lang="pt">Gestão de ficheiros no Krusader</caption>
       <caption xml:lang="pt-BR">Gerenciamento de arquivos no Krusader</caption>
       <caption xml:lang="ru">Работа с файлами в Krusader</caption>
       <caption xml:lang="sk">Správa súborov v Krusader</caption>
