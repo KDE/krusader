@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-24 00:41+0000\n"
-"PO-Revision-Date: 2024-10-04 06:04+0200\n"
+"PO-Revision-Date: 2024-10-05 09:27+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -322,6 +322,12 @@ msgid ""
 "%aList(\"Selected\")%</code></li></ul>\n"
 "Please consult the handbook to learn more about the syntax."
 msgstr ""
+"<i>ბრძანება</i> განსაზღვრავს ბრძანებას, რომელიც შესრულდება<b>, როდესაც "
+"გამოიყენება მომხმარებლის ქმედება</b>. ეს შეიძლება იყოს მარტივი გარსის "
+"ბრძანება ან მრავალი ბრძანების რთული თანმიმდევრობა <b>ადგილმჭერებით</b>.<p>\n"
+"მაგალითები:<ul><li><code>eject /mnt/cdrom</code></li><li><code>amarok --"
+"append <0></0>List(\"Selected\")%</code></li></ul>სინტაქსის შესახებ მეტი "
+"ინფორმაციის მისაღებად გთხოვთ, გაეცნოთ სახელმძღვანელოს."
 
 #. i18n: ectx: property (text), widget (QLabel, LabelCategory)
 #: app/ActionMan/actionproperty.ui:278
@@ -1142,6 +1148,13 @@ msgid ""
 "Notice that the line in which you edit the mask has its own history, you can "
 "scroll it, if needed."
 msgstr ""
+"წინასწარ განსაზღვრული შერჩევა არის ფაილ-ნიღაბი, რომელსაც ხშირად იყენებთ.\n"
+"ზოგიერთი მაგალითია: \"*.c, *.h\", \"*.c, *.o\" და ა.შ.\n"
+"თქვენ შეგიძლიათ დაამატოთ ეს ნიღბები სიაში მათი აკრეფით და დააჭირეთ ღილაკს "
+"დამატება.\n"
+"წაშლა შლის წინასწარ განსაზღვრულ შერჩევას და გასუფთავება შლის ყველა მათგანს.\n"
+"გაითვალისწინეთ, რომ ხაზს, რომელშიც ნიღბის რედაქტირებას ახდენთ, აქვს საკუთარი "
+"ისტორია, საჭიროების შემთხვევაში შეგიძლიათ გადაახვიოთ იგი."
 
 #: app/Dialogs/krmaskchoice.cpp:80
 #, kde-format
@@ -2196,6 +2209,22 @@ msgid ""
 "svn/ .git/</code></li></ul><p><b>Note</b>: the search term '<code>text</"
 "code>' is equivalent to '<code>*text*</code>'.</p>"
 msgstr ""
+"<p>ფაილის სახელის ფილტრაციის კრიტერიუმები განისაზღვრება აქ.</p><p>შეგიძლიათ "
+"გამოიყენოთ wildcards. მრავალი ნიმუში გამოყოფილია სივრცით (ნიშნავს ლოგიკურ "
+"OR) და ნიმუშები გამორიცხულია ძიებისგან მილის სიმბოლოს გამოყენებით.</p><p>თუ "
+"ნიმუში დასრულდა slash (<code>*pattern*/</code>), ეს ნიშნავს, რომ ნიმუში "
+"ეხება საქაღალდეების რეკურსიულ ძიებას.<ul><li><code>pattern</code> - ნიშნავს "
+"იმ ფაილების/საქაღალდეების ძებნას, რომლებიც სახელია <code>pattern</code>, "
+"რეკურსიული ძებნა გადის ყველა ქვესაქაღალდეში დამოუკიდებლად მნიშვნელობისგან "
+"<code>pattern</code></li><li><code>pattern/</code> - ნიშნავს ყველა ფაილის/"
+"საქაღალდის ძებნას, მაგრამ რეკურსიული ძებნა გადის/გამორიცხავს საქაღალდეებს, "
+"რომლებიც სახელია <code>pattern</code></li></ul></p><p>ნებადართულია ციტატების "
+"გამოყენება იმ სახელებისთვის, რომლებიც შეიცავს სივრცეს. ფილტრი <code>"
+"\"Program Files\"</code> ეძებს იმ ფაილებს / საქაღალდეებს, რომლებიც სახელია "
+"<code>Program Files</code>.</p><p>მაგალითები:</p><ul><li><code>*.o</code></"
+"li><li><code>*.h *.c??</code></li><li><code>*.cpp *.h | *.moc.cpp</code></"
+"li><li><code>* | .svn/ .git/</code></li></ul><p><b>შენიშვნა</b>: საძიებო "
+"ტერმინი '<code>text</code>' ეკვივალენტურია '<code>*text*</code>'.</p>"
 
 #: app/Filter/generalfilter.cpp:150
 #, kde-format
@@ -2329,6 +2358,9 @@ msgid ""
 "Krusader obeys.</p><p><b>Tip</b>: move within command line history with &lt;"
 "Up&gt; and &lt;Down&gt; arrows.</p></qt>"
 msgstr ""
+"<qt><p>ისე, ეს მართლაც საკმაოდ მარტივია: აკრიფეთ თქვენი ბრძანება აქ და "
+"Krusader ემორჩილება.</p><p><b>რჩევა</b>: გადაადგილდით ბრძანების ხაზის "
+"ისტორიაში &lt;ზემოთ&gt; და &lt;ქვემოთ&gt; ისრებით.</p></qt>"
 
 #: app/GUI/kcmdmodebutton.cpp:37
 #, kde-format
@@ -4340,6 +4372,9 @@ msgid ""
 "key and click the left mouse button. Right-click menu is invoked using a "
 "short click on the right mouse button."
 msgstr ""
+"მოსანიშნად ორივე ღილაკის გამოყენება შეგიძლიათ. ერთზე მეტი ფაილის მოსანიშნად "
+"გეჭიროთ ღილაკი Ctrl და დააწკაპუნეთ მარცხენა თაგუნას ღილაკზე. მარჯვენა "
+"თაგუნას ღილაკის მოკლე წკაპი კონტექსტურ მენიუს გამოიტანს."
 
 #: app/Konfigurator/kgpanel.cpp:675
 #, kde-format
@@ -4353,6 +4388,9 @@ msgid ""
 "multiple files. Right-click menu is invoked using a short click on the right "
 "mouse button."
 msgstr ""
+"მარცხენა თაგუნას ღილაკის დაჭერა მონიშნავს ფაილებს - შეგიძლიათ, დააწკაპუნოთ "
+"და მონიშნოთ ბევრი ფაილი. თაგუნას მარჯვენა ღილაკის მოკლე დაწკაპუნება "
+"კონტექსტურ მენიუს გახსნის."
 
 #: app/Konfigurator/kgpanel.cpp:679
 #, kde-format
@@ -4367,6 +4405,10 @@ msgid ""
 "files and the right-click menu is invoked by pressing and holding the right "
 "mouse button."
 msgstr ""
+"მარცხენა თაგუნას ღილაკი არ მონიშნავს, მაგრამ დააყენებს მიმდინარე ფაილს "
+"მიმდინარე მონიშნულის შეუცვლელად. მარჯვენა თაგუნას ღილაკი ერთზე მეტ ფაილს "
+"მონიშნავს და კონტექსტური მენიუს გამოძახება თაგუნას მარჯვენა ღილაკის დაჭერით "
+"და შენარჩუნებით შეგიძლიათ."
 
 #: app/Konfigurator/kgpanel.cpp:683
 #, kde-format
@@ -4380,6 +4422,9 @@ msgid ""
 "affecting the current selection. The right mouse button invokes the context-"
 "menu. You can select with Ctrl key and the left button."
 msgstr ""
+"მარცხენა თაგუნას ღილაკი არ მონიშნავს, მაგრამ დააყენებს მიმდინარე ფაილს "
+"მიმდინარე მონიშნულის შეუცვლელად. მარჯვენა თაგუნას ღილაკი კონტექსტურ მენიუს "
+"გამოიძახებს. მონიშვნა Ctrl ღილაკით და მარცხენა ღილაკით შეგიძლიათ."
 
 #: app/Konfigurator/kgpanel.cpp:687
 #, kde-format
@@ -4469,6 +4514,8 @@ msgid ""
 "If checked, Shift/Ctrl left clicking will select items.\n"
 "Note: this is meaningless if 'Left Button Selects' is checked."
 msgstr ""
+"თუ ჩართულია, Shift/Ctrl და მარცხენა წკაპი მონიშნავს ელემენტებს.\n"
+"შენიშვნა: ამას აზრი არ აქვს, თუ ჩართულია 'მარცხენა ღილაკი მონიშნავს'."
 
 #: app/Konfigurator/kgpanel.cpp:745
 #, kde-format
@@ -4505,6 +4552,8 @@ msgid ""
 "If checked, Shift/Ctrl right clicking will select items.\n"
 "Note: this is meaningless if 'Right Button Selects' is checked."
 msgstr ""
+"თუ ჩართულია, Shift/Ctrl და მარჯვენა ღილაკი მონიშნავს ელემენტებს.\n"
+"შენიშვნა: ამას აზრი არ გაქვს, თუ ჩართულია 'მარჯვენა ღილაკი მონიშნავს'."
 
 #: app/Konfigurator/kgpanel.cpp:763
 #, kde-format
@@ -4518,6 +4567,9 @@ msgid ""
 "down.\n"
 "Otherwise, current item is selected, but remains the current item."
 msgstr ""
+"თუ ჩართულია, ჰარეს დაჭერა მონიშნავს ელემენტს და გადავა დაბლა.\n"
+"სხვა შემთხვევაში მიმდინარე ელემენტი მოინიშნება, მაგრამ რჩება მიმდინარე "
+"ელემენტად."
 
 #: app/Konfigurator/kgpanel.cpp:770
 #, kde-format
@@ -4531,6 +4583,9 @@ msgid ""
 "(except from selecting the folder)\n"
 "calculate space occupied of the folder (recursively)."
 msgstr ""
+"თუ ჩართულია, ჰარეს დაჭერა მაშინ, როცა მიმდინარე ელემენტი საქაღალდეა, "
+"(საქაღალდის მონიშვნის გარდა)\n"
+"გამოთვლის ადგილს, რომელიც ამ საქაღალდეს უჭირავს (რეკურსიულად)."
 
 #: app/Konfigurator/kgpanel.cpp:777
 #, kde-format
@@ -4544,6 +4599,9 @@ msgid ""
 "the next item.\n"
 "Otherwise, current item is not changed."
 msgstr ""
+"თუ ჩართულია, ღილაკი insert მონიშნავს მიმდინარე ელემენტს და გადავა დაბლა "
+"შემდეგ ელემენტზე.\n"
+"სხვა შემთხვევაში მიმდინარე ელემენტი არ შეიცვლდება."
 
 #: app/Konfigurator/kgpanel.cpp:783
 #, kde-format
@@ -4557,6 +4615,9 @@ msgid ""
 "context menu.\n"
 "Otherwise, user needs to click and hold the right mouse button for 500ms."
 msgstr ""
+"თუ ჩართულია, მარჯვენა წკაპი კონტექტურ მენიუს დაუყოვნებლის ვაჩვენებთ.\n"
+"სხვა შემთხვევაში მომხმარებელმა უნდა დააწკაპუნოს მარჯვენა ღილაკზე და ეჭიროს "
+"500 მწმ."
 
 #: app/Konfigurator/kgpanel.cpp:790
 #, kde-format
@@ -4570,6 +4631,10 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
+"მოხსენით მონიშვნა თაგუნას წკაპით მოდიფიკატორების გარეშე (ანუ, Shift ან "
+"Ctrl).\n"
+"იმისათვის, რომ ამ პარამეტრმა იმუშაოს, Ctrl/Shift-ით მონიშვნა უნდა იყოს "
+"ჩართული."
 
 #: app/Konfigurator/kgpanel.cpp:828
 #, kde-format
@@ -4677,6 +4742,10 @@ msgid ""
 "li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is "
 "saved automatically when Krusader is closed."
 msgstr ""
+"განსაზღვრავს პანელის პროფილს, რომელიც გამოიყენება გაშვებისას. პანელის "
+"პროფილი შეიცავს:<ul><li>ჩანართების ყველა გზას</li><li>მიმდინარე ჩანართს</"
+"li><li>აქტიურ პანელს</li></ul><b>&lt;ბოლო სესია&gt;</b> სპეციალური პანელის "
+"პროფილია, რომელიც ავტომატურად ინახება Krusader-ის დახურვისას."
 
 #: app/Konfigurator/kgstartup.cpp:37
 #, kde-format
@@ -4745,6 +4814,11 @@ msgid ""
 "is disabled, you can use the menu <i>Window -> Save Position</i> option to "
 "manually set the main window's size and position at startup.</p>"
 msgstr ""
+"<p>გაშვებისას, მთავარი ფანჯარა შეიცვლება იმ ზომაზე, რომელიც იყო ბოლო "
+"გამორთვის დროს. ის ასევე გამოჩნდება ეკრანის იმავე ადგილას, პანელები "
+"დალაგებული და გასწორებული, როგორც ადრე იყო.</p> <p>თუ ეს გამორთულია, "
+"შეგიძლიათ გამოიყენოთ მენიუს პუნქტი <i>ფანჯარა -> მდებარეობის შენახვა</i>, "
+"რომ ხელით დააყენოთ მთავარი ფანჯრის ზომა და პოზიცია გაშვებისას.</p>"
 
 #: app/Konfigurator/kgstartup.cpp:100
 #, kde-format
@@ -4781,6 +4855,8 @@ msgid ""
 "Check the state of the user interface components and restore them to their "
 "condition when last shutdown."
 msgstr ""
+"მომხმარებლის ინტერფეისის კომპონენტების მდგომარეობის შემოწმება და აღდგენა "
+"ბოლო გამორთვის მდგომარეობაში."
 
 #: app/Konfigurator/kgstartup.cpp:117
 #, kde-format
@@ -4823,6 +4899,9 @@ msgid ""
 "Here you can configure settings about useractions.\n"
 "To set up, configure and manage your useractions please use ActionMan."
 msgstr ""
+"აქ შეგიძლიათ მომხმარებლის ქმედებები მოირგოთ.\n"
+"მომხმარებლის ქმედებების მოსარგებად და საართავად გამოიყენეთ ქმედებების "
+"მმართველი."
 
 #: app/Konfigurator/kguseractions.cpp:36
 #, kde-format
@@ -5348,6 +5427,8 @@ msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
 "path. Hint: Krusader supports KMail."
 msgstr ""
+"Krusader-მა მხარდაჭერილი ელფოსტის კლიენტი ვერ იპოვა. დააყენეთ ერთ-ერთი "
+"თქვენს ბილიკში. მინიშნება: Krusader-ს აქვს KMail-ის მხარდაჭერა."
 
 #: app/krslots.cpp:109
 #, kde-format
@@ -5375,6 +5456,10 @@ msgid ""
 "in the active panel.</li><li>Make sure there is a file in the other panel, "
 "with the same name as the current file in the active panel.</li></ul>"
 msgstr ""
+"ორი ფაილის შინაარსის შედარებისთვის, შეგიძლიათ:<ul><li>აირჩიეთ ერთი ფაილი "
+"მარცხენა პანელში, ხოლო ერთი მარჯვენა პანელში.</li><li>აირჩიეთ ზუსტად ორი "
+"ფაილი აქტიურ პანელში.</li><li>დარწმუნდით, რომ სხვა პანელში არის ფაილი, იგივე "
+"სახელით, როგორც მიმდინარე ფაილი აქტიურ პანელში.</li></ul>"
 
 #: app/krslots.cpp:185
 #, kde-format
@@ -5387,6 +5472,9 @@ msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports Kompare, KDiff3 and Xxdiff."
 msgstr ""
+"Krusader-მა diff-ის ვერც ერთი მხარდაჭერილი წინაბოლო ვერ იპოვა. დააყენეთ ერთ-"
+"ერთი თქვენს ბილიკში. მინიშნება: Krusader-ს აქვს მხარდაჭერა პროგრამებისთვის: "
+"Kompare, KDiff3 და Xxdiff."
 
 #: app/krslots.cpp:384
 #, kde-format
@@ -5394,6 +5482,8 @@ msgid ""
 "Cannot find the 'locate' command. Please install the findutils-locate "
 "package of GNU, or set its dependencies in Konfigurator"
 msgstr ""
+"ბრძანება 'locate' ვერ ვიპოვე. დააყენეთ პაკეტი findutils-locate ან დააყენეთ "
+"მისი დამოკიდებულებები Konfigurator-ში"
 
 #: app/krslots.cpp:407 app/UserAction/kraction.cpp:282
 #, kde-format
@@ -5426,6 +5516,9 @@ msgid ""
 "<p>Furthermore, running UI applications as root is insecure and can allow "
 "attackers to gain root access."
 msgstr ""
+"არასწორმა ოპერაციებმა root რეჟიმში, შეიძლება თქვენი ოპერაციული სისტემა "
+"დააზიანოს. <p>გარდა ამისა, UI აპლიკაციების root მომხმარებლით გაშვება "
+"დაუცველია და თავდამსხმელებს root-ის პრივილეგიების მიღების საშუალებას აძლევს."
 
 #: app/krslots.cpp:478
 #, kde-format
@@ -5433,6 +5526,8 @@ msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
 "verify that kde-cli-tools are installed."
 msgstr ""
+"Krusader-ის root რეჟიმში გაშვება შეუძლებელია. %1 ვერ ვიპოვე ან გაშვებადი "
+"არაა. გადაამოწმეთ, დაყენებულია თუ არა პაკეტი kde-cli-tools."
 
 #: app/krslots.cpp:504
 #, kde-format
@@ -5493,6 +5588,9 @@ msgid ""
 "will now be checked for external applications. Then the Konfigurator will be "
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr ""
+"<qt><b>მოგესალმებათ Krusader.</b><p>იმის გამო, რომ მას პირველად უშვებთ, ახლა "
+"თქვენი სისტემაში გარე აპლიკაციების ძებნა მოხდება. შემდეგ გაეშვება "
+"Konfigurator, სადაც Krusader ბოლომდე შეგიძლიათ, მოირგოთ.</p></qt>"
 
 #: app/krusader.cpp:328
 #, kde-format
@@ -5834,6 +5932,9 @@ msgid ""
 "<b>No text editor plugin available.</b><br/>Internal editor will not work "
 "without this.<br/>You can fix this by installing Kate:<br/>%1"
 msgstr ""
+"<b>ტექსტის რედაქტორის მოდული არ არის ხელმისაწვდომი.</b><br/>შიდა რედაქტორი "
+"ამის გარეშე არ იმუშავებს.<br/>ამის გამოსწორება შეგიძლიათ Kate-ის დაყენებით:"
+"<br/>%1"
 
 #: app/KViewer/panelviewer.cpp:365
 #, kde-format
@@ -6974,6 +7075,9 @@ msgid ""
 "Name of folder where you are. You can also enter name of desired location to "
 "move there. Use of Net protocols like ftp or fish is possible."
 msgstr ""
+"საქაღალდის სახელი, სადაც ხართ. თქვენ ასევე შეგიძლიათ შეიყვანოთ სასურველი "
+"ადგილმდებარეობის სახელი იქ გადასასვლელად. ასევე შეგიძლიათ გამოიყენოთ ქსელური "
+"პროტოკოლებიც, როგორიცაა ftp ან fish."
 
 #: app/Panel/listpanel.cpp:242
 #, kde-format
@@ -7344,6 +7448,8 @@ msgid ""
 "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
 "Konfigurator, default is <b>konsole</b>.</p></qt>"
 msgstr ""
+"<qt><p>ტერმინალის გახსნა მიმდინარე საქაღალდეში.</p><p>ტერმინალის განსაზღვრა "
+"შესაძლებელია Konfigurator-ში, ნაგულისხმევია <b>konsole</b>.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
@@ -7550,7 +7656,11 @@ msgid_plural ""
 "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
 msgstr[0] ""
+"<qt>ნამდვილად გსურთ ამ ელემენტის <b>ფიზიკურად</b> წაშლა (არა, მხოლოდ, "
+"ვირტუალური ელემენტებიდან მისი ამოღება)?</qt>"
 msgstr[1] ""
+"<qt>ნამდვილად გსურთ ამ %1 ელემენტის <b>ფიზიკურად</b> წაშლა (არა, მხოლოდ, "
+"ვირტუალური ელემენტებიდან მისი ამოღება)?</qt>"
 
 #: app/Panel/panelfunc.cpp:840
 #, kde-format
@@ -8524,6 +8634,8 @@ msgid ""
 "<p>Ignore date information during the compare process.</p><p><b>Note</b>: "
 "useful if the files are located on network filesystems or in archives.</p>"
 msgstr ""
+"<p>შედარების პროცესში თარიღის ინფორმაციის იგნორირება.</p><p><b>შენიშვნა</b>: "
+"სასარგებლოა, თუ ფაილები მდებარეობს ქსელურ ფაილურ სისტემებში ან არქივში.</p>"
 
 #: app/Synchronizer/synchronizergui.cpp:266
 #, kde-format
@@ -8538,6 +8650,11 @@ msgid ""
 "deleted, the other differing ones will be copied from right to left.</"
 "p><p><b>Note</b>: useful when updating a folder from a file server.</p>"
 msgstr ""
+"<p><b>ასიმეტრიული რეჟიმი</b></p><p>მარცხენა მხარე არის დანიშნულების ადგილი, "
+"მარჯვენა არის წყარო საქაღალდე. წაიშლება, მხოლოდ, მარცხენა საქაღალდეში "
+"არსებული ფაილები. სხვა განსხვავებული ფაილები დაკოპირდება მარჯვნივ მარცხნივ.</"
+"p><p><b>შენიშვნა</b>: სასარგებლოა ფაილის სერვერიდან საქაღალდის განახლებისას."
+"</p>"
 
 #: app/Synchronizer/synchronizergui.cpp:272
 #, kde-format
@@ -8550,6 +8667,9 @@ msgid ""
 "<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when "
 "synchronizing Windows filesystems.</p>"
 msgstr ""
+"<p>ფაილის სახელის შედარება რეგისტრის გათვალისწინების გარეშე.</"
+"p><p><b>შენიშვნა</b>: სასარგებლოა Windows-ს ფაილურ სისტემებთან "
+"სინქრონიზაციისას.</p>"
 
 #: app/Synchronizer/synchronizergui.cpp:282
 #, kde-format
@@ -8874,6 +8994,8 @@ msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "
 "this data will be lost. Do you really want to exit?"
 msgstr ""
+"სინქრონიზატორის ფანჯარა შეიცავს მონაცემებს წინა შედარებისგან. თუ გამოხვალთ, "
+"ეს მონაცემები დაიკარგება. მართლა გნებავთ, გახვიდეთ?"
 
 #: app/Synchronizer/synchronizertask.cpp:307
 #, kde-format
@@ -9455,6 +9577,8 @@ msgid ""
 "Action without name detected. This action will not be imported.\n"
 "This is an error in the file, you may want to correct it."
 msgstr ""
+"აღმოჩენილია ქმედება სახელის გარეშე. ამ ქმედების შემოტანა არ მოხდება.\n"
+"ეს შეცდომაა ფაილში და შეიძლება, მისი გასწორება შეგიძლიათ."
 
 #: app/UserAction/useraction.cpp:201
 #, kde-format
