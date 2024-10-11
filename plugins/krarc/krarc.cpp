@@ -771,14 +771,18 @@ KIO::WorkerResult kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int
             processedSize(KFileItem(*entry, url).size());
             QDir::setCurrent(QDir::rootPath()); /* for being able to umount devices after copying*/
             return WorkerResult::pass();
-        } while (0);
+        } while (false);
 
     if (encrypted)
         KRDEBUG("ERROR: " << url.path() << " is encrypted.");
     if (!dest.isLocalFile())
-        KRDEBUG("ERROR: " << url.path() << " is not a local file.");
+        KRDEBUG("ERROR: " << dest.path() << " is not a local file.");
 
-        // CMD_COPY is no more in KF5 - replaced with 74 value (as stated in https://invent.kde.org/frameworks/kio/-/blob/master/src/core/commands_p.h)
+    // if the destination is an archive, avoid that get/put is tried instead - which will fail
+    if (dest.scheme() == "krarc") {
+        return WorkerResult::fail(ERR_UNKNOWN, i18n("Copying from archive to archive is not supported."));
+    }
+    // CMD_COPY is no more in KF5 - replaced with 74 value (as stated in https://invent.kde.org/frameworks/kio/-/blob/master/src/core/commands_p.h)
     return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString("kio_krarc", 74));
 }
 
