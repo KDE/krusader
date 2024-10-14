@@ -197,17 +197,12 @@ void ListPanelFunc::openUrl(const QUrl &url, const QString &nameToMakeCurrent, b
         QString relative = QDir(panel->virtualPath().path() + '/').relativeFilePath(url.path());
         syncURL.setPath(QDir::cleanPath(syncURL.path() + '/' + relative));
         panel->otherPanel()->gui->setTabState(ListPanel::TabState::DEFAULT);
-        otherFunc()->openUrlInternal(syncURL, nameToMakeCurrent, false, false);
+        otherFunc()->openUrlInternal(syncURL, nameToMakeCurrent, false);
     }
-    openUrlInternal(url, nameToMakeCurrent, false, manuallyEntered);
+    openUrlInternal(url, nameToMakeCurrent, manuallyEntered);
 }
 
-void ListPanelFunc::immediateOpenUrl(const QUrl &url)
-{
-    openUrlInternal(url, QString(), true, false);
-}
-
-void ListPanelFunc::openUrlInternal(const QUrl &url, const QString &nameToMakeCurrent, bool immediately, bool manuallyEntered)
+void ListPanelFunc::openUrlInternal(const QUrl &url, const QString &nameToMakeCurrent, const bool manuallyEntered)
 {
     const QUrl cleanUrl = cleanPath(url);
 
@@ -219,15 +214,11 @@ void ListPanelFunc::openUrlInternal(const QUrl &url, const QString &nameToMakeCu
 
     urlManuallyEntered = manuallyEntered;
 
-    const QString currentItem = history->currentUrl().path() == cleanUrl.path() ? history->currentItem() : nameToMakeCurrent;
-
     panel->view->setNameToMakeCurrent(nameToMakeCurrent);
+    const QString currentItem = history->currentUrl().path() == cleanUrl.path() ? history->currentItem() : nameToMakeCurrent;
     history->add(cleanUrl, currentItem);
 
-    if (immediately)
-        doRefresh();
-    else
-        refresh();
+    refresh();
 }
 
 void ListPanelFunc::refresh()

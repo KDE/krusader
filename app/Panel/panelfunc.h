@@ -146,8 +146,7 @@ protected:
     bool isSyncing(const QUrl &url);
     // when externallyExecutable == true, the file can be executed or opened with other software
     void openFileNameInternal(const QString &name, bool externallyExecutable);
-    void immediateOpenUrl(const QUrl &url);
-    void openUrlInternal(const QUrl &url, const QString &makeCurrent, bool immediately, bool manuallyEntered);
+    void openUrlInternal(const QUrl &url, const QString &nameToMakeCurrent, bool manuallyEntered);
     void runCommand(const QString &cmd);
 
     ListPanel *panel; // our ListPanel
