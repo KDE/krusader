@@ -213,7 +213,6 @@ void ListPanelFunc::openUrlInternal(const QUrl &url, const QString &nameToMakeCu
 
     urlManuallyEntered = manuallyEntered;
 
-    panel->view->setNameToMakeCurrent(nameToMakeCurrent);
     const QString currentItem = history->currentUrl().path() == cleanUrl.path() ? history->currentItem() : nameToMakeCurrent;
     history->add(cleanUrl, currentItem);
 
