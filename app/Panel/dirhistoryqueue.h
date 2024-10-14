@@ -42,9 +42,9 @@ public:
         return _urlQueue[pos];
     }
     void add(QUrl url, const QString &currentItem);
-    bool gotoPos(int pos);
-    bool goBack();
-    bool goForward();
+    QUrl gotoPos(int pos);
+    QUrl goBack();
+    QUrl goForward();
     bool canGoBack()
     {
         return _currentPos < count() - 1;

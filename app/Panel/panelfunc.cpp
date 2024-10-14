@@ -108,11 +108,10 @@ ListPanelFunc::~ListPanelFunc()
 
 bool ListPanelFunc::isSyncing(const QUrl &url)
 {
-    if (otherFunc()->otherFunc() == this && panel->otherPanel()->gui->syncBrowseButton->isChecked() && !otherFunc()->syncURL.isEmpty()
-        && otherFunc()->syncURL == url)
-        return true;
-
-    return false;
+    return otherFunc()->otherFunc() == this //
+        && panel->otherPanel()->gui->syncBrowseButton->isChecked() //
+        && !otherFunc()->syncURL.isEmpty() //
+        && otherFunc()->syncURL == url;
 }
 
 void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExecutable)
@@ -186,9 +185,9 @@ QUrl ListPanelFunc::cleanPath(const QUrl &urlIn)
     return url;
 }
 
-void ListPanelFunc::openUrl(const QUrl &url, const QString &nameToMakeCurrent, bool manuallyEntered)
+void ListPanelFunc::openUrl(const QUrl &url, const QString &nameToMakeCurrent, const bool manuallyEntered)
 {
-    qDebug() << "URL=" << url.toDisplayString() << "; name to current=" << nameToMakeCurrent;
+    qDebug() << "URL=" << url.toDisplayString() << "; nameToMakeCurrent=" << nameToMakeCurrent;
     if (panel->syncBrowseButton->isChecked()) {
         // do sync-browse stuff....
         if (syncURL.isEmpty())
@@ -1361,20 +1360,23 @@ ListPanelFunc *ListPanelFunc::otherFunc()
 
 void ListPanelFunc::historyGotoPos(int pos)
 {
-    if (history->gotoPos(pos))
-        refresh();
+    const QUrl url = history->gotoPos(pos);
+    if (url.isValid())
+        openUrl(url, history->currentItem());
 }
 
 void ListPanelFunc::historyBackward()
 {
-    if (history->goBack())
-        refresh();
+    const QUrl url = history->goBack();
+    if (url.isValid())
+        openUrl(url, history->currentItem());
 }
 
 void ListPanelFunc::historyForward()
 {
-    if (history->goForward())
-        refresh();
+    const QUrl url = history->goForward();
+    if (url.isValid())
+        openUrl(url, history->currentItem());
 }
 
 void ListPanelFunc::dirUp()

@@ -96,22 +96,22 @@ void DirHistoryQueue::add(QUrl url, const QString &currentItem)
     _currentItems.push_front(currentItem);
 }
 
-bool DirHistoryQueue::gotoPos(int pos)
+QUrl DirHistoryQueue::gotoPos(int pos)
 {
     if (pos >= 0 && pos < _urlQueue.count()) {
         saveCurrentItem();
         _currentPos = pos;
-        return true;
+        return currentUrl();
     }
-    return false;
+    return QUrl();
 }
 
-bool DirHistoryQueue::goBack()
+QUrl DirHistoryQueue::goBack()
 {
     return gotoPos(_currentPos + 1);
 }
 
-bool DirHistoryQueue::goForward()
+QUrl DirHistoryQueue::goForward()
 {
     return gotoPos(_currentPos - 1);
 }

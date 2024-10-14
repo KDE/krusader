@@ -35,7 +35,7 @@ class ListPanelFunc : public QObject
 public slots:
     void execute(const QString &);
     void goInside(const QString &);
-    void openUrl(const QUrl &path, const QString &nameToMakeCurrent = QString(), bool manuallyEntered = false);
+    void openUrl(const QUrl &url, const QString &nameToMakeCurrent = QString(), bool manuallyEntered = false);
     void rename(const QString &oldname, const QString &newname);
 
     // actions
