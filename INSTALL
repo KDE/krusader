@@ -204,3 +204,17 @@ $ krusader
 
 # At the beginning of the following command: `sudo` must be added if Kubuntu, Ubuntu, Debian, or similar is being used
 $ su -c "make uninstall"
+
+--- Installing Krusader in Qt6 (Krusader 2.9.0-dev example)
+
+Additionaly to this guide following libraries need to be installed:
+
+- qt6-5compat-dev
+- libkf6iconthemes-dev
+- libkf6textwidgets-dev
+- libkf6statusnotifieritem-dev
+
+It is also sometimes necessary to define the path to Qt6 in cmake command, e.g. in Kubuntu:
+
+-DCMAKE_PREFIX_PATH="/usr/lib/x86_64-linux-gnu/cmake/Qt6/"
+
