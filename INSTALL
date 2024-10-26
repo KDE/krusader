@@ -5,14 +5,14 @@
 
 --- Note
 
-Krusader-2.5.0 versions and higher use libraries like Qt5 and KF5, and will not
-work anymore on KDE Plasma 4 or older.
+Krusader-2.9.0-dev versions and higher use libraries like Qt6 and KF6, and will not
+work anymore on KDE Framework 5 or older.
 
 --- Supported Platforms
 
 * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris™
 
-At the moment, for some libraries like KF5, there are no full ports for Windows
+At the moment, for some libraries like KF6, there are no full ports for Windows
 or Mac® OS X, which means these platforms are not supported.
 
 
@@ -35,20 +35,19 @@ backed up (just in case):
 
 The next packages are needed when running the Krusader binary.
 
-This is a list of the package names that Kubuntu/Ubuntu 20.04 (LTS) use, other
+This is a list of the package names that Debian/Kubuntu/Ubuntu use, other
 Linux distros will probably use similar names:
 
 - plasma-framework      Plasma Runtime components
 - libc6                 GNU C Library: Shared libraries
 - libgcc1               GCC support library
-- libqt5dbus5           Qt 5 D-Bus module
-- libqt5xml5            Qt 5 XML module
-- libqt5core5           Qt 5 core module
-- libqt5gui5            Qt 5 GUI module
-- libqt5printsupport5   Qt 5 print support module
+- libqt6dbus6           Qt 6 D-Bus module
+- libqt6xml6            Qt 6 XML module
+- libqt6core6           Qt 6 core module
+- libqt6gui6            Qt 6 GUI module
+- libqt6printsupport6   Qt 6 print support module
 - libstdc++6            The GNU Standard C++ Library v3
 - zlib1g                compression library - runtime
-
 
 --- Suggested packages
 
@@ -111,15 +110,18 @@ run the Krusader binary you don't need to install these packages.
 - zlib1g-dev             in order to make building easier (https://stackoverflow.com/a/49072832)
 
 The following packages should install (through dependencies) all the packages
-you need to compile KF5 software:
-- libkf5archive-dev      development files for karchive
-- libkf5doctools-dev     development files for kdoctools5
-- libkf5kio-dev          resource and network access abstraction
-- libkf5notifications-dev   framework for desktop notifications
-- libkf5parts-dev        development files for kparts
-- libkf5wallet-dev       development files for kwallet-framework
-- libkf5xmlgui-dev       user configurable main windows
-
+you need to compile KF6 software:
+- libkf6archive-dev      development files for karchive
+- libkf6doctools-dev     development files for kdoctools
+- libkf6kio-dev          resource and network access abstraction
+- libkf6notifications-dev   framework for desktop notifications
+- libkf6parts-dev        development files for kparts
+- libkf6wallet-dev       development files for kwallet-framework
+- libkf6xmlgui-dev       user configurable main windows
+- qt6-5compat-dev
+- libkf6iconthemes-dev
+- libkf6textwidgets-dev
+- libkf6statusnotifieritem-dev
 
 --- Krusader source code download
 
@@ -155,8 +157,8 @@ them all (later there's an example):
 -DCMAKE_CXX_FLAGS="-O2 -fPIC"
   this flag is required if you have a 64 bit system
 
--DQT_PLUGIN_INSTALL_DIR=
-  many system force this path to keep kde4 plugins separated from the kde5 ones
+-DKDE_INSTALL_PLUGINDIR=
+  on some systems the path to QT6 plugins (for installing the KrArc and ISO KIO plugins) must be specified
 
 -DKDESU_PATH=/foo/bar/kdesu
   this needs to be set on distributions that override default kdesu installation
@@ -166,6 +168,13 @@ them all (later there's an example):
   disables building the Synchronizer module. This module caused data loss, now
   it is fixed, but we treat it as the thin ice.
 
+It is maybe necessary to define the path to Qt6, e.g. in Kubuntu:
+-DCMAKE_PREFIX_PATH="/usr/lib/x86_64-linux-gnu/cmake/Qt6/"
+  Note: If Krusader is going to be built under the 22.04 LTS (or older) version of Ubuntu (or Kubuntu, etc.) then
+  installing Qt 6.4 (or newer) is needed (it can be downloaded from https://www.qt.io/offline-installers) and
+  the argument would be (if e.g. Qt was installed inside "/opt")
+      -DCMAKE_PREFIX_PATH="/opt/Qt/6.4/gcc_64/"
+
 Example steps to configure the build:
 $ cd ..
 $ ls krusader/app/main.cpp || echo "Incorrect starting dir"
@@ -174,13 +183,6 @@ $ cd krusader-build
 $ cmake ../krusader -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
 
 Note: An example of an output of cmake can be seen in https://invent.kde.org/utilities/krusader/snippets/1024
-
-Note: If Krusader is going to be built under the 16.04 LTS version of Ubuntu (or Kubuntu, etc.) then
-installing Qt 5.9 (or newer) is needed (it could be downloaded from https://www.qt.io/offline-installers) and
-the aforementioned cmake command would need (at its end) an additional argument like:
-    -DCMAKE_PREFIX_PATH=/opt/Qt/5.9/gcc_64/
-if e.g. Qt 5.9 was installed inside /opt
-
 
 --- Compilation and installation
 
@@ -204,17 +206,3 @@ $ krusader
 
 # At the beginning of the following command: `sudo` must be added if Kubuntu, Ubuntu, Debian, or similar is being used
 $ su -c "make uninstall"
-
---- Installing Krusader in Qt6 (Krusader 2.9.0-dev example)
-
-Additionaly to this guide following libraries need to be installed:
-
-- qt6-5compat-dev
-- libkf6iconthemes-dev
-- libkf6textwidgets-dev
-- libkf6statusnotifieritem-dev
-
-It is also sometimes necessary to define the path to Qt6 in cmake command, e.g. in Kubuntu:
-
--DCMAKE_PREFIX_PATH="/usr/lib/x86_64-linux-gnu/cmake/Qt6/"
-
