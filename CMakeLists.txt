@@ -48,6 +48,7 @@ find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS
   Completion
   CoreAddons
   Config
+  Crash
   DocTools
   GlobalAccel
   I18n

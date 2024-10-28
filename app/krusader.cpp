@@ -619,3 +619,12 @@ AbstractPanelManager *Krusader::rightManager()
 {
     return MAIN_VIEW->rightManager();
 }
+
+void Krusader::emergencySaveSettings()
+{
+    if (App) {
+        fprintf(stderr, "Emergency saving of settings...\n");
+        App->saveSettings();
+        fprintf(stderr, "...settings saved.\n");
+    }
+}

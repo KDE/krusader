@@ -73,6 +73,7 @@ target_link_libraries(krusader
                       KF6::Notifications
                       KF6::Parts
                       KF6::WindowSystem
+                      KF6::Crash
                       Qt6::PrintSupport
                       Qt6::Concurrent
 )

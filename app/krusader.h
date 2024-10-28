@@ -142,6 +142,7 @@ public:
     void startWaiting(QString msg = "Please Wait", int count = 0, bool cancel = false);
     void stopWait();
     bool wasWaitingCancelled() const;
+    static void emergencySaveSettings();
 
 signals:
     void changeMessage(QString);
