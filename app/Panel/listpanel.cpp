@@ -850,7 +850,7 @@ void ListPanel::handleDrop(QDropEvent *event, bool onView)
     // find dropping destination
     QString destinationDir = "";
     const bool dragFromThisPanel = event->source() == this;
-    const KrViewItem *item = onView ? view->getKrViewItemAt(event->pos()) : nullptr;
+    const KrViewItem *item = onView ? view->getKrViewItemAt(event->position().toPoint()) : nullptr;
     if (item) {
         const FileItem *file = item->getFileItem();
         if (file && !file->isDir() && dragFromThisPanel) {

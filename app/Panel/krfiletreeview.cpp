@@ -155,7 +155,7 @@ void KrFileTreeView::slotActivated(const QModelIndex &index)
 
 void KrFileTreeView::dropEvent(QDropEvent *event)
 {
-    QUrl destination = urlForProxyIndex(indexAt(event->pos()));
+    QUrl destination = urlForProxyIndex(indexAt(event->position().toPoint()));
     if (destination.isEmpty()) {
         return;
     }

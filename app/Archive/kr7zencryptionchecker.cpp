@@ -13,7 +13,7 @@ Kr7zEncryptionChecker::Kr7zEncryptionChecker()
     , lastData()
 {
     setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
-    this->setChildProcessModifier([] {
+    this->setChildProcessModifier([]() noexcept {
         // This function is called after the fork but for the exec. We create a process group
         // to work around a broken wrapper script of 7z. Without this only the wrapper is killed.
         setsid(); // make this process leader of a new process group

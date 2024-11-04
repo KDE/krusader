@@ -291,37 +291,37 @@ void SynchronizerGUI::initGUI(const QString &profileName, QUrl leftURL, QUrl rig
 
     checked = group.readEntry("LeftToRight Button", _BtnLeftToRight);
     description = i18n("Show files marked to <i>Copy from left to right</i>.");
-    btnLeftToRight = createButton(showOptions, "arrow-right", checked, Qt::CTRL + Qt::Key_L, description, ">");
+    btnLeftToRight = createButton(showOptions, "arrow-right", checked, Qt::CTRL | Qt::Key_L, description, ">");
     showOptionsLayout->addWidget(btnLeftToRight, 0, 0);
 
     checked = group.readEntry("Equals Button", _BtnEquals);
     description = i18n("Show files considered to be identical.");
-    btnEquals = createButton(showOptions, "equals", checked, Qt::CTRL + Qt::Key_E, description, "=");
+    btnEquals = createButton(showOptions, "equals", checked, Qt::CTRL | Qt::Key_E, description, "=");
     showOptionsLayout->addWidget(btnEquals, 0, 1);
 
     checked = group.readEntry("Differents Button", _BtnDifferents);
     description = i18n("Show excluded files.");
-    btnDifferents = createButton(showOptions, "unequals", checked, Qt::CTRL + Qt::Key_D, description, "!=");
+    btnDifferents = createButton(showOptions, "unequals", checked, Qt::CTRL | Qt::Key_D, description, "!=");
     showOptionsLayout->addWidget(btnDifferents, 0, 2);
 
     checked = group.readEntry("RightToLeft Button", _BtnRightToLeft);
     description = i18n("Show files marked to <i>Copy from right to left</i>.");
-    btnRightToLeft = createButton(showOptions, "arrow-left", checked, Qt::CTRL + Qt::Key_R, description, "<");
+    btnRightToLeft = createButton(showOptions, "arrow-left", checked, Qt::CTRL | Qt::Key_R, description, "<");
     showOptionsLayout->addWidget(btnRightToLeft, 0, 3);
 
     checked = group.readEntry("Deletable Button", _BtnDeletable);
     description = i18n("Show files marked to delete.");
-    btnDeletable = createButton(showOptions, "user-trash", checked, Qt::CTRL + Qt::Key_T, description);
+    btnDeletable = createButton(showOptions, "user-trash", checked, Qt::CTRL | Qt::Key_T, description);
     showOptionsLayout->addWidget(btnDeletable, 0, 4);
 
     checked = group.readEntry("Duplicates Button", _BtnDuplicates);
     description = i18n("Show files that exist on both sides.");
-    btnDuplicates = createButton(showOptions, "arrow-up", checked, Qt::CTRL + Qt::Key_I, description, i18n("Duplicates"), true);
+    btnDuplicates = createButton(showOptions, "arrow-up", checked, Qt::CTRL | Qt::Key_I, description, i18n("Duplicates"), true);
     showOptionsLayout->addWidget(btnDuplicates, 0, 5);
 
     checked = group.readEntry("Singles Button", _BtnSingles);
     description = i18n("Show files that exist on one side only.");
-    btnSingles = createButton(showOptions, "arrow-down", checked, Qt::CTRL + Qt::Key_N, description, i18n("Singles"), true);
+    btnSingles = createButton(showOptions, "arrow-down", checked, Qt::CTRL | Qt::Key_N, description, i18n("Singles"), true);
     showOptionsLayout->addWidget(btnSingles, 0, 6);
 
     grid->addWidget(optionWidget, 2, 0, 1, 3);
@@ -452,13 +452,13 @@ void SynchronizerGUI::initGUI(const QString &profileName, QUrl leftURL, QUrl rig
     buttons->setContentsMargins(0, 0, 0, 0);
 
     profileManager = new ProfileManager("SynchronizerProfile", this);
-    profileManager->setShortcut(Qt::CTRL + Qt::Key_P);
+    profileManager->setShortcut(Qt::CTRL | Qt::Key_P);
     profileManager->setWhatsThis(i18n("Profile manager (Ctrl+P)."));
     buttons->addWidget(profileManager);
 
     btnSwapSides = new QPushButton(this);
     btnSwapSides->setIcon(Icon("document-swap"));
-    btnSwapSides->setShortcut(Qt::CTRL + Qt::Key_S);
+    btnSwapSides->setShortcut(Qt::CTRL | Qt::Key_S);
     btnSwapSides->setWhatsThis(i18n("Swap sides (Ctrl+S)."));
     buttons->addWidget(btnSwapSides);
 

@@ -291,7 +291,7 @@ void KMountManGUI::addNonMounted()
 
 void KMountManGUI::addItemToMountList(KrTreeWidget *lst, fsData &fs, const QList<Solid::Device> &blockDevices) const
 {
-    const std::function deviceGetter = [blockDevices]() {
+    const std::function deviceGetter = [blockDevices]() noexcept {
         return blockDevices;
     };
     const auto udi = KMountMan::findUdiForPath(fs.mntPoint(), Solid::DeviceInterface::StorageAccess, deviceGetter);

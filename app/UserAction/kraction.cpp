@@ -356,9 +356,9 @@ KrAction::KrAction(KActionCollection *parent, const QString &name)
 
 KrAction::~KrAction()
 {
-    const auto widgets = associatedWidgets();
-    for (QWidget *w : widgets)
-        w->removeAction(this);
+    const auto widgets = associatedObjects();
+    for (QObject *w : widgets)
+        qobject_cast<QWidget *>(w)->removeAction(this);
     krUserAction->removeKrAction(this); // Importent! Else Krusader will crash when writing the actions to file
 }
 

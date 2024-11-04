@@ -411,7 +411,7 @@ bool DULines::doubleClicked(QTreeWidgetItem *item)
 void DULines::mouseDoubleClickEvent(QMouseEvent *e)
 {
     if (e || e->button() == Qt::LeftButton) {
-        QPoint vp = viewport()->mapFromGlobal(e->globalPos());
+        QPoint vp = viewport()->mapFromGlobal(e->globalPosition().toPoint());
         QTreeWidgetItem *item = itemAt(vp);
 
         if (doubleClicked(item))

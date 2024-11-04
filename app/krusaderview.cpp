@@ -516,7 +516,7 @@ void KrusaderView::draggingTab(PanelManager *from, QMouseEvent *e)
 
     QCursor cursor(Icon(icon).pixmap(22));
 
-    if (cursorIsOnOtherSide(from, e->globalPos())) {
+    if (cursorIsOnOtherSide(from, e->globalPosition().toPoint())) {
         if (!qApp->overrideCursor())
             qApp->setOverrideCursor(cursor);
     } else
@@ -527,6 +527,6 @@ void KrusaderView::draggingTabFinished(PanelManager *from, QMouseEvent *e)
 {
     qApp->restoreOverrideCursor();
 
-    if (cursorIsOnOtherSide(from, e->globalPos()))
+    if (cursorIsOnOtherSide(from, e->globalPosition().toPoint()))
         from->moveTabToOtherSide();
 }

@@ -77,8 +77,8 @@ void DUFilelight::mousePressEvent(QMouseEvent *event)
             file = const_cast<File *>(focus->file());
 
         QMenu filelightPopup;
-        filelightPopup.addAction(i18n("Zoom In"), this, SLOT(zoomIn()), Qt::Key_Plus);
-        filelightPopup.addAction(i18n("Zoom Out"), this, SLOT(zoomOut()), Qt::Key_Minus);
+        filelightPopup.addAction(i18n("Zoom In"), Qt::Key_Plus, this, SLOT(zoomIn()));
+        filelightPopup.addAction(i18n("Zoom Out"), Qt::Key_Minus, this, SLOT(zoomOut()));
 
         QMenu schemePopup;
         schemePopup.addAction(i18n("Rainbow"), this, SLOT(schemeRainbow()));
@@ -105,7 +105,7 @@ void DUFilelight::mousePressEvent(QMouseEvent *event)
 
         filelightPopup.addAction(i18n("Minimum font size"), this, SLOT(minFontSize()));
 
-        diskUsage->rightClickMenu(event->globalPos(), file, &filelightPopup, i18n("Filelight"));
+        diskUsage->rightClickMenu(event->globalPosition().toPoint(), file, &filelightPopup, i18n("Filelight"));
         return;
     } else if (event->button() == Qt::LeftButton) {
         const RadialMap::Segment *focus = focusSegment();

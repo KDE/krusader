@@ -299,7 +299,7 @@ bool MediaButton::eventFilter(QObject *o, QEvent *e)
                     if (act && act->data().canConvert<QString>()) {
                         QString id = act->data().toString();
                         if (!id.isEmpty())
-                            rightClickMenu(id, m->globalPos());
+                            rightClickMenu(id, m->globalPosition().toPoint());
                     }
                 }
                 m->accept();

@@ -132,7 +132,7 @@ bool KrMouseHandler::mousePressEvent(QMouseEvent *e)
                 }
                 _view->setCurrentKrViewItem(item);
             }
-            handleContextMenu(item, e->globalPos());
+            handleContextMenu(item, e->globalPosition().toPoint());
             e->accept();
             return true;
         } else if (e->modifiers() == Qt::ControlModifier) {

@@ -124,9 +124,9 @@ void KrBookmarkHandler::deleteBookmark(KrBookmark *bm)
         clearBookmarks(bm); // remove the child bookmarks
     removeReferences(_root, bm);
 
-    const auto widgets = bm->associatedWidgets(); 
-    for (QWidget *w : widgets)
-        w->removeAction(bm);
+    const auto widgets = bm->associatedObjects();
+    for (QObject *w : widgets)
+        qobject_cast<QWidget *>(w)->removeAction(bm);
     delete bm;
 
     exportToFile();
@@ -555,9 +555,9 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root, bool removeBookmarks)
         } else if (bm->isSeparator()) {
             delete bm;
         } else if (removeBookmarks) {
-	    const auto widgets = bm->associatedWidgets(); 
-            for (QWidget *w : widgets) {
-                w->removeAction(bm);
+            const auto widgets = bm->associatedObjects();
+            for (QObject *w : widgets) {
+                qobject_cast<QWidget *>(w)->removeAction(bm);
             }
             delete bm;
         }

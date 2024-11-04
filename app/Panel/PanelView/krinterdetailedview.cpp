@@ -252,7 +252,7 @@ void KrInterDetailedView::renameCurrentItem()
 
     // cycle through various text selections if we are in the editing mode already
     if (state() == QAbstractItemView::EditingState) {
-        auto delegate = dynamic_cast<KrViewItemDelegate *>(itemDelegate(nameIndex));
+        auto delegate = dynamic_cast<KrViewItemDelegate *>(itemDelegateForIndex(nameIndex));
         if (!delegate) {
             qWarning() << "KrInterView item delegate is not KrViewItemDelegate, selection is not updated";
             return;
@@ -386,7 +386,7 @@ bool KrInterDetailedView::viewportEvent(QEvent *event)
             textWidth += 2 * textMargin;
 
             QVariant decor = index.data(Qt::DecorationRole);
-            if (decor.isValid() && decor.type() == QVariant::Pixmap) {
+            if (decor.isValid() && decor.typeId() == QMetaType::QPixmap) {
                 QPixmap p = decor.value<QPixmap>();
                 textWidth += p.width() + 2 * textMargin;
             }
