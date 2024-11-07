@@ -307,10 +307,10 @@ int main(int argc, char *argv[])
         fprintf(stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData());
     }
 
-    // catching SIGTERM, SIGHUP, SIGQUIT
-    signal(SIGTERM, handleExitSignal);
-    signal(SIGPIPE, handleExitSignal);
-    signal(SIGHUP, handleExitSignal);
+    // catching SIGTERM, SIGHUP, SIGINT
+    std::signal(SIGTERM, handleExitSignal);
+    std::signal(SIGHUP, handleExitSignal);
+    std::signal(SIGINT, handleExitSignal);
 
     QObject::connect(&app, &QGuiApplication::applicationStateChanged, SLOTS, &KrSlots::applicationStateChanged);
 
