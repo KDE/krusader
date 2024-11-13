@@ -675,7 +675,9 @@ QString KrViewer::makeTabText(PanelViewerBase *pvb)
     if (pvb->isModified())
         fileName.prepend("*");
 
-    return pvb->isEditor() ? i18nc("filename (filestate)", "%1 (Editing)", fileName) : i18nc("filename (filestate)", "%1 (Viewing)", fileName);
+    return pvb->isEditor() ? // clang-format off
+        i18nc("filename (filestate)", "%1 (Editing)", fileName) :
+        i18nc("filename (filestate)", "%1 (Viewing)", fileName); // clang-format on
 }
 
 QString KrViewer::makeTabToolTip(PanelViewerBase *pvb)

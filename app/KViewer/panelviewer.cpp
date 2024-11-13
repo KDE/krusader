@@ -14,8 +14,6 @@
 // QtWidgets
 #include <QApplication>
 
-#include <kservice_version.h>
-
 #include <KLocalizedString>
 #include <KParts/NavigationExtension>
 #include <KParts/ReadWritePart>
@@ -72,8 +70,8 @@ void PanelViewerBase::slotStatResult(KJob *job)
         KMessageBox::error(this, job->errorString());
         emit openUrlFinished(this, false);
     } else {
-        KIO::UDSEntry entry = dynamic_cast<KIO::StatJob *>(job)->statResult();
-        openFile(KFileItem(entry, curl));
+        const auto *statJob = dynamic_cast<KIO::StatJob *>(job);
+        openFile(KFileItem(statJob->statResult(), statJob->url()));
     }
 }
 
@@ -94,7 +92,7 @@ KParts::ReadOnlyPart *PanelViewerBase::getPart(const QString &mimetype)
 void PanelViewerBase::openUrl(const QUrl &url)
 {
     closeUrl();
-    curl = url;
+
     emit urlChanged(this, url);
 
     if (url.isLocalFile()) {
@@ -253,19 +251,19 @@ void PanelViewer::openFile(KFileItem fi)
         cpart->setArguments(args);
 
         connect(cpart.data(), &KParts::ReadOnlyPart::canceled, this, [=]() {
-            qDebug() << "openFile canceled: '" << curl << "'";
+            qDebug() << "openFile canceled: '" << fi.url() << "'";
         });
 
         auto cPartCompleted = [=]() {
             connect(cpart.data(), &KParts::ReadOnlyPart::destroyed, this, &PanelViewer::slotCPartDestroyed);
             emit openUrlFinished(this, true);
-            qDebug() << "openFile completed: '" << curl << "'";
+            qDebug() << "openFile completed: '" << fi.url() << "'";
         };
         connect(cpart.data(), QOverload<>::of(&KParts::ReadOnlyPart::completed), this, cPartCompleted);
         connect(cpart.data(), &KParts::ReadOnlyPart::completedWithPendingAction, this, cPartCompleted);
 
         // Note: Don't rely on return value of openUrl as the call is async in general
-        cpart->openUrl(curl);
+        cpart->openUrl(fi.url());
 
         return;
     }
@@ -342,7 +340,7 @@ QString PanelEditor::missingKPartMsg()
                  QString("<a href='%1'>%1</a>").arg("https://kde.org/applications/utilities/org.kde.kate"));
 }
 
-void PanelEditor::openFile(KFileItem fi)
+void PanelEditor::openFile(const KFileItem fi)
 {
     KIO::filesize_t fileSize = fi.size();
     KConfigGroup group(krConfig, "General");
@@ -354,8 +352,9 @@ void PanelEditor::openFile(KFileItem fi)
 
     if (fileSize > limitMB * 0x100000) {
         if (!cpart || mimetype.startsWith(QLatin1String("text/")) || mimetype.startsWith(QLatin1String("all/"))) {
-            if (KMessageBox::Cancel
-                == KMessageBox::warningContinueCancel(this, i18n("%1 is bigger than %2 MB", curl.toDisplayString(QUrl::PreferLocalFile), limitMB))) {
+            const QString fileLocation = fi.url().toDisplayString(QUrl::PreferLocalFile);
+            KMessageBox::ButtonCode result = KMessageBox::warningContinueCancel(this, i18n("%1 is bigger than %2 MB", fileLocation, limitMB));
+            if (result == KMessageBox::Cancel) {
                 setCurrentWidget(fallback);
                 emit openUrlFinished(this, false);
                 return;
@@ -375,13 +374,15 @@ void PanelEditor::openFile(KFileItem fi)
         KParts::OpenUrlArguments args;
         args.setReload(true);
         cpart->setArguments(args);
-        if (cpart->openUrl(curl)) {
+        if (cpart->openUrl(fi.url())) {
             connect(cpart.data(), &KParts::ReadOnlyPart::destroyed, this, &PanelEditor::slotCPartDestroyed);
             emit openUrlFinished(this, true);
             return;
         } // else: don't show error message - assume this has been done by the editor part
-    } else
-        KMessageBox::error(this, missingKPartMsg(), i18n("Cannot edit %1", curl.toDisplayString(QUrl::PreferLocalFile)), KMessageBox::AllowLink);
+    } else {
+        const QString fileLocation = fi.url().toDisplayString(QUrl::PreferLocalFile);
+        KMessageBox::error(this, missingKPartMsg(), i18n("Cannot edit %1", fileLocation), KMessageBox::AllowLink);
+    }
 
     setCurrentWidget(fallback);
     emit openUrlFinished(this, false);
