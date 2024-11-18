@@ -1,27 +1,13 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <chapter id="more-features">
-<!-- **********************************************************************
-    4                                   more.docbook
-    5                           +++++++++++++++++++++++++++
-    6   copyright            : (C) 2000 - 2010
-    7                           Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-    8                           & the Krusader Krew
-    9   e-mail               : krusader@users.sourceforge.net
-   10   web site             : http://www.krusader.org
-   11   description          : a Krusader Documentation File
-   12 
-   13 ***************************************************************************
-   14 * Permission is granted to copy, distribute and/or modify this            *
-   15 * document under the terms of the GNU Free Documentation License,         *
-   16 * Version 1.1 or any later version published by the Free Software         *
-   17 * Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-   18 * no Back-Cover Texts.  A copy of the license is available on the         *
-   19 * GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
-   20 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-   21 * MA 02111-1307, USA.                                                     *
-   22 *********************************************************************** -->
 <title
->Funciones avanzadas</title>
-&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+>Funciones avanzadas</title
+>&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
 > <title
 >Enviar archivos por correo electrónico</title
 > <para
@@ -39,16 +25,16 @@
   <para
 ><link linkend="gloss-acl"
 >Los permisos de la LCA</link
-> se soportan completamente al utilizar las propiedades, preservar los atributos y el sincronizador (desactivado en tiempo de compilación de manera predeterminada). Para ver/modificar los permisos de la LCA, seleccione un archivo y utilice el <link linkend="context-menu"
+> se soportan completamente al utilizar las propiedades, preservar los atributos y el sincronizador. Para ver/modificar los permisos de la LCA, seleccione un archivo y utilice el <link linkend="context-menu"
 >menú contextual</link
 >: <menuchoice
 > <guimenu
->Propiedades</guimenu
+>Propiedades...</guimenu
 > <guimenuitem
 >Permisos</guimenuitem
 > <guimenuitem
 >Permisos avanzados</guimenuitem
 > </menuchoice
->. Al copiar/mover, también se copian los permisos de la LCA. El sincronizador (desactivado en tiempo de compilación de manera predeterminada) también mantiene los permisos de la LCA. </para>
+>. Al copiar/mover, también se copian los permisos de la LCA. El sincronizador también mantiene los permisos de la LCA. </para>
 </sect1
 ></chapter>

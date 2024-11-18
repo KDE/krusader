@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="archives">
   <title
 >Gestión de archivos comprimidos</title>
@@ -11,13 +17,11 @@
     <para
 >Los <link linkend="vfs"
 >sistemas de archivos virtuales (VFS)</link
-> permiten navegar por los archivos comprimidos como si fueran un directorio. Actualmente &krusader; soporta los siguientes tipos de archivos comprimidos: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip y 7-zip y soporta los siguientes archivos comprimidos protegidos con contraseña: arj, ace, rar y zip. Las contraseñas se pueden almacenar en <application
->Kwallet</application
+> permiten navegar por los archivos comprimidos como si fueran una carpeta. Actualmente &krusader; soporta los siguientes tipos de archivos comprimidos: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip y 7-zip y soporta los siguientes archivos comprimidos protegidos con contraseña: arj, ace, rar y zip. Las contraseñas se pueden almacenar en <application
+>KWallet</application
 >. Por favor, tenga en cuenta que el soporte para los archivos comprimidos primeramente requiere ser correctamente <link linkend="konfig-archives"
 >configurado</link
-> en Konfigurator. Para abrir el archivo, utilice &Enter;, un clic doble o la <keycap
->tecla de dirección derecha</keycap
->. &krusader; también soporta <emphasis role="bold"
+> en Konfigurator. Para abrir el archivo, use la tecla &Enter;, un clic (doble) o la tecla &Right;. &krusader; también permite usar <emphasis role="bold"
 >archivos comprimidos ocultos</emphasis
 >, estos son archivos comprimidos con nombre cambiado a una extensión *errónea*, &eg; <trademark class="registered"
 >OpenOffice</trademark
@@ -29,13 +33,9 @@
 >.odw</literal
 >. &Enter; abrirá el documento <trademark class="registered"
 >OpenOffice</trademark
-> y la <keycap
->tecla de dirección derecha</keycap
-> abrirá el archivo comprimido. Otro ejemplo es el J2EE, donde la extensión <literal role="extension"
+> y la tecla &Right; abrirá el archivo comprimido. Otro ejemplo es el J2EE, donde la extensión <literal role="extension"
 >.jar</literal
-> hace referencia a un archivo zip. Puesto que &krusader; detecta automáticamente los tipos de archivo comprimidos soportados, los abrirá con la <keycap
->tecla de dirección derecha</keycap
-> incluso si tienen otro tipo MIME. Por favor tenga en cuenta que navegar por los archivos comprimidos tiene algunas limitaciones: <itemizedlist>
+> hace referencia a un archivo zip. Puesto que &krusader; detecta automáticamente los tipos de archivo comprimidos permitidos, los abrirá con la tecla &Right; incluso si tienen otro tipo MIME. Por favor tenga en cuenta que navegar por los archivos comprimidos tiene algunas limitaciones: <itemizedlist>
       <listitem>
         <para
 >No todas las funciones están soportadas por todos los tipos de archivo comprimidos. (&ie; no es posible borrar archivos contenidos en archivos comprimidos de tipo ace o rar)</para>
@@ -46,11 +46,11 @@
       </listitem>
       <listitem>
         <para
->La línea de ordenes (si está visible) no nos acompañará hasta el interior del archivo comprimido sino que que apuntará al directorio del archivo comprimido.</para>
+>La línea de ordenes (si está visible) no nos acompañará hasta el interior del archivo comprimido sino que que apuntará a la carpeta del archivo comprimido.</para>
       </listitem>
       <listitem>
         <para
->Antes de que cualquier acción sea realizada sobre los archivos/directorios contenidos en el archivo comprimido, es necesario extraerlos. El archivo comprimido se volverá a empaquetar cuando lo abandone o cuando &krusader; detecte que los archivos extraídos han cambiado.</para>
+>Antes de que cualquier acción sea realizada sobre los archivos/carpetas contenidos en el archivo comprimido, es necesario extraerlos. El archivo comprimido se volverá a empaquetar cuando lo abandone o cuando &krusader; detecte que los archivos extraídos han cambiado.</para>
       </listitem>
       <listitem>
         <para
@@ -75,7 +75,7 @@
 >&Alt;&Shift; <keycap
 >U</keycap
 ></keycombo
->. &krusader; preguntará donde debe colocar los archivos extraídos. La ubicación predeterminada es el directorio del panel inactivo. Si no cancela la operación, &krusader; intentará descomprimir todos los archivos seleccionados en el panel inactivo.</para>
+>. &krusader; preguntará donde debe colocar los archivos extraídos. La ubicación predeterminada es la carpeta del panel inactivo. Si no cancela la operación, &krusader; intentará descomprimir todos los archivos seleccionados en el panel inactivo.</para>
     <para
 >Si solo desea extraer una parte del archivo comprimido, entonces <link linkend="browsing-archives"
 >navegue</link
@@ -91,7 +91,7 @@
 > <guimenu
 >Archivo</guimenu
 > <guimenuitem
->Comprimir</guimenuitem
+>Comprimir...</guimenuitem
 > </menuchoice
 > o <keycombo action="simul"
 >&Alt;&Shift; <keycap
@@ -101,7 +101,7 @@
 >extensiones de nombres de archivo soportadas</link
 >.</para>
     <para
->Para añadir archivos a un(os) archivo(s) comprimido(s) existente(s), abra el archivo comprimido en un panel y los archivos que va a copiar en el otro panel, luego simplemente copie los archivos dentro del archivo comprimido exactamente de la misma forma que copia archivos en un directorio «normal». La operación de compresión puede ponerse en una <link linkend="queue"
+>Para añadir archivos a un(os) archivo(s) comprimido(s) existente(s), abra el archivo comprimido en un panel y los archivos que va a copiar en el otro panel, luego simplemente copie los archivos dentro del archivo comprimido exactamente de la misma forma que copia archivos en una carpeta «normal». La operación de compresión puede ponerse en una <link linkend="queue"
 >cola</link
 >.</para>
   </sect2>
