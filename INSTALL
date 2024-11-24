@@ -8,6 +8,7 @@
 Krusader-2.9.0-dev versions and higher use libraries like Qt6 and KF6, and will not
 work anymore on KDE Framework 5 or older.
 
+
 --- Supported Platforms
 
 * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris™
@@ -48,6 +49,7 @@ Linux distros will probably use similar names:
 - libqt6printsupport6   Qt 6 print support module
 - libstdc++6            The GNU Standard C++ Library v3
 - zlib1g                compression library - runtime
+
 
 --- Suggested packages
 
@@ -112,16 +114,18 @@ run the Krusader binary you don't need to install these packages.
 The following packages should install (through dependencies) all the packages
 you need to compile KF6 software:
 - libkf6archive-dev      development files for karchive
+- libkf6crash-dev        application crash analysis and bug report from apps
 - libkf6doctools-dev     development files for kdoctools
+- libkf6iconthemes-dev   development files for kiconthemes
 - libkf6kio-dev          resource and network access abstraction
 - libkf6notifications-dev   framework for desktop notifications
 - libkf6parts-dev        development files for kparts
+- libkf6statusnotifieritem-dev  Implementation of Status Notifier Items
+- libkf6textwidgets-dev  development files for ktextwidgets
 - libkf6wallet-dev       development files for kwallet-framework
 - libkf6xmlgui-dev       user configurable main windows
-- qt6-5compat-dev
-- libkf6iconthemes-dev
-- libkf6textwidgets-dev
-- libkf6statusnotifieritem-dev
+- qt6-5compat-dev        to use the Qt5 Core APIs that were removed in Qt6
+
 
 --- Krusader source code download
 
@@ -155,10 +159,10 @@ them all (later there's an example):
   the Krusader version installed by your package manager.
 
 -DCMAKE_CXX_FLAGS="-O2 -fPIC"
-  this flag is required if you have a 64 bit system
+  this flag is required if you have a 64 bit system.
 
 -DKDE_INSTALL_PLUGINDIR=
-  on some systems the path to QT6 plugins (for installing the KrArc and ISO KIO plugins) must be specified
+  in some systems, the path to Qt6 plugins (for installing the KrArc and ISO KIO plugins) must be specified.
 
 -DKDESU_PATH=/foo/bar/kdesu
   this needs to be set on distributions that override default kdesu installation
@@ -168,7 +172,7 @@ them all (later there's an example):
   disables building the Synchronizer module. This module caused data loss, now
   it is fixed, but we treat it as the thin ice.
 
-It is maybe necessary to define the path to Qt6, e.g. in Kubuntu:
+It is maybe necessary to define the path to Qt6, e.g. in Kubuntu 24.04 and older versions:
 -DCMAKE_PREFIX_PATH="/usr/lib/x86_64-linux-gnu/cmake/Qt6/"
   Note: If Krusader is going to be built under the 22.04 LTS (or older) version of Ubuntu (or Kubuntu, etc.) then
   installing Qt 6.4 (or newer) is needed (it can be downloaded from https://www.qt.io/offline-installers) and
@@ -183,6 +187,7 @@ $ cd krusader-build
 $ cmake ../krusader -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
 
 Note: An example of an output of cmake can be seen in https://invent.kde.org/utilities/krusader/snippets/1024
+
 
 --- Compilation and installation
 
