@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-05 00:43+0000\n"
+"POT-Creation-Date: 2024-11-28 00:42+0000\n"
 "PO-Revision-Date: 2024-09-24 18:39+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -848,7 +848,7 @@ msgid "Create in:"
 msgstr "Skapa i:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:684
+#: app/Panel/panelfunc.cpp:673
 #, kde-format
 msgid "New Folder"
 msgstr "Ny katalog"
@@ -1458,7 +1458,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Vill du verkligen flytta detta objekt till papperskorgen?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:830
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:819
 #, kde-format
 msgid "&Trash"
 msgstr "&Flytta till papperskorgen"
@@ -1470,8 +1470,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Är du säker på att du vill ta bort detta objekt?"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:846
-#: app/Panel/panelfunc.cpp:923
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:912
 #, kde-format
 msgid "Warning"
 msgstr "Varning"
@@ -5771,25 +5771,25 @@ msgstr ""
 msgid "Can not open \"%1\""
 msgstr "Kan inte öppna \"%1\"."
 
-#: app/KViewer/krviewer.cpp:678
+#: app/KViewer/krviewer.cpp:679
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (redigerar)"
 
-#: app/KViewer/krviewer.cpp:678
+#: app/KViewer/krviewer.cpp:680
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (granskar)"
 
-#: app/KViewer/krviewer.cpp:684
+#: app/KViewer/krviewer.cpp:686
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Redigerar: %1"
 
-#: app/KViewer/krviewer.cpp:684
+#: app/KViewer/krviewer.cpp:686
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
@@ -5922,23 +5922,23 @@ msgstr "Ingenting är markerat."
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr "Omvänd utskrift stöds inte. Fortsätt med normal utskrift?"
 
-#: app/KViewer/panelviewer.cpp:47
+#: app/KViewer/panelviewer.cpp:45
 #, kde-format
 msgid "No file selected or selected file cannot be displayed."
 msgstr "Ingen fil markerad eller markerade filer kan inte visas."
 
-#: app/KViewer/panelviewer.cpp:102 app/Synchronizer/synchronizertask.cpp:144
+#: app/KViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
 #: app/Synchronizer/synchronizertask.cpp:151
 #, kde-format
 msgid "Error at opening %1."
 msgstr "Fel när %1 skulle öppnas."
 
-#: app/KViewer/panelviewer.cpp:333
+#: app/KViewer/panelviewer.cpp:331
 #, kde-format
 msgid "Missing Plugin"
 msgstr "Saknar insticksprogram"
 
-#: app/KViewer/panelviewer.cpp:339
+#: app/KViewer/panelviewer.cpp:337
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -5949,7 +5949,7 @@ msgstr ""
 "interna editorn fungerar inte utan det.<br/>Du kan rätta problemet genom att "
 "installera Kate:<br/>%1"
 
-#: app/KViewer/panelviewer.cpp:358
+#: app/KViewer/panelviewer.cpp:356
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr "%1 är större än %2 MiB"
@@ -6102,17 +6102,17 @@ msgstr ""
 "Krusader\n"
 "Filhanterare med två paneler av KDE"
 
-#: app/main.cpp:110
+#: app/main.cpp:119
 #, kde-format
 msgid "Krusader"
 msgstr "Krusader"
 
-#: app/main.cpp:110
+#: app/main.cpp:119
 #, kde-format
 msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - ROTBEHÖRIGHET"
 
-#: app/main.cpp:114
+#: app/main.cpp:123
 #, kde-format
 msgid ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
@@ -6121,7 +6121,7 @@ msgstr ""
 "© 2000-2003 Shie Erlich, Rafi Yanai\n"
 "© 2004-2022 Krusader Krew"
 
-#: app/main.cpp:115
+#: app/main.cpp:124
 #, kde-format
 msgid ""
 "Feedback:\n"
@@ -6130,679 +6130,679 @@ msgstr ""
 "Återkoppling:\n"
 "ttps://forum.kde.org/viewforum.php?f=225"
 
-#: app/main.cpp:121
+#: app/main.cpp:130
 #, kde-format
 msgid "Davide Gianforte"
 msgstr "Davide Gianforte"
 
-#: app/main.cpp:121 app/main.cpp:122 app/main.cpp:123
+#: app/main.cpp:130 app/main.cpp:131 app/main.cpp:132
 #, kde-format
 msgid "Developer"
 msgstr "Utvecklare"
 
-#: app/main.cpp:122
+#: app/main.cpp:131
 #, kde-format
 msgid "Toni Asensi Esteve"
 msgstr "Toni Asensi Esteve"
 
-#: app/main.cpp:123
+#: app/main.cpp:132
 #, kde-format
 msgid "Nikita Melnichenko"
 msgstr "Nikita Melnichenko"
 
-#: app/main.cpp:124
+#: app/main.cpp:133
 #, kde-format
 msgid "Yuri Chornoivan"
 msgstr "Yuri Chornoivan"
 
-#: app/main.cpp:124
+#: app/main.cpp:133
 #, kde-format
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: app/main.cpp:125
+#: app/main.cpp:134
 #, kde-format
 msgid "Rafi Yanai"
 msgstr "Rafi Yanai"
 
-#: app/main.cpp:125 app/main.cpp:126
+#: app/main.cpp:134 app/main.cpp:135
 #, kde-format
 msgid "Author (retired)"
 msgstr "Upphovsman (avgången)"
 
-#: app/main.cpp:126
+#: app/main.cpp:135
 #, kde-format
 msgid "Shie Erlich"
 msgstr "Shie Erlich"
 
-#: app/main.cpp:127
+#: app/main.cpp:136
 #, kde-format
 msgid "Csaba Karai"
 msgstr "Csaba Karai"
 
-#: app/main.cpp:127 app/main.cpp:128 app/main.cpp:129 app/main.cpp:130
-#: app/main.cpp:131 app/main.cpp:132 app/main.cpp:133 app/main.cpp:134
-#: app/main.cpp:135
+#: app/main.cpp:136 app/main.cpp:137 app/main.cpp:138 app/main.cpp:139
+#: app/main.cpp:140 app/main.cpp:141 app/main.cpp:142 app/main.cpp:143
+#: app/main.cpp:144
 #, kde-format
 msgid "Developer (retired)"
 msgstr "Utvecklare (avgången)"
 
-#: app/main.cpp:128
+#: app/main.cpp:137
 #, kde-format
 msgid "Heiner Eichmann"
 msgstr "Heiner Eichmann"
 
-#: app/main.cpp:129
+#: app/main.cpp:138
 #, kde-format
 msgid "Jonas Bähr"
 msgstr "Jonas Bähr"
 
-#: app/main.cpp:130
+#: app/main.cpp:139
 #, kde-format
 msgid "Václav Jůza"
 msgstr "Václav Jůza"
 
-#: app/main.cpp:131
+#: app/main.cpp:140
 #, kde-format
 msgid "Jan Lepper"
 msgstr "Jan Lepper"
 
-#: app/main.cpp:132
+#: app/main.cpp:141
 #, kde-format
 msgid "Andrey Matveyakin"
 msgstr "Andrey Matveyakin"
 
-#: app/main.cpp:133
+#: app/main.cpp:142
 #, kde-format
 msgid "Simon Persson"
 msgstr "Simon Persson"
 
-#: app/main.cpp:134
+#: app/main.cpp:143
 #, kde-format
 msgid "Alexander Bikadorov"
 msgstr "Alexander Bikadorov"
 
-#: app/main.cpp:135
+#: app/main.cpp:144
 #, kde-format
 msgid "Martin Kostolný"
 msgstr "Martin Kostolný"
 
-#: app/main.cpp:136 app/main.cpp:173
+#: app/main.cpp:145 app/main.cpp:182
 #, kde-format
 msgid "Dirk Eschler"
 msgstr "Dirk Eschler"
 
-#: app/main.cpp:136
+#: app/main.cpp:145
 #, kde-format
 msgid "Webmaster (retired)"
 msgstr "Webbmästare (avgången)"
 
-#: app/main.cpp:137 app/main.cpp:169
+#: app/main.cpp:146 app/main.cpp:178
 #, kde-format
 msgid "Frank Schoolmeesters"
 msgstr "Frank Schoolmeesters"
 
-#: app/main.cpp:138
+#: app/main.cpp:147
 #, kde-format
 msgid "Documentation and marketing coordinator (retired)"
 msgstr "Dokumentation och marknadsföringssamordnare (avgången)"
 
-#: app/main.cpp:141
+#: app/main.cpp:150
 #, kde-format
 msgid "Richard Holt"
 msgstr "Richard Holt"
 
-#: app/main.cpp:141
+#: app/main.cpp:150
 #, kde-format
 msgid "Documentation & Proofing (retired)"
 msgstr "Dokumentation och korrektur (avgången)"
 
-#: app/main.cpp:142 app/main.cpp:189
+#: app/main.cpp:151 app/main.cpp:198
 #, kde-format
 msgid "Matej Urbancic"
 msgstr "Matej Urbancic"
 
-#: app/main.cpp:142
+#: app/main.cpp:151
 #, kde-format
 msgid "Marketing & Product Research (retired)"
 msgstr "Marknadsföring och produktundersökning (avgången)"
 
-#: app/main.cpp:143
+#: app/main.cpp:152
 #, kde-format
 msgid "kde.org"
 msgstr "kde.org"
 
-#: app/main.cpp:143
+#: app/main.cpp:152
 #, kde-format
 msgid "Everyone involved in KDE"
 msgstr "Alla inblandade i KDE"
 
-#: app/main.cpp:144
+#: app/main.cpp:153
 #, kde-format
 msgid "l10n.kde.org"
 msgstr "l10n.kde.org"
 
-#: app/main.cpp:144
+#: app/main.cpp:153
 #, kde-format
 msgid "KDE Translation Teams"
 msgstr "KDE:s översättningsgrupper"
 
-#: app/main.cpp:145
+#: app/main.cpp:154
 #, kde-format
 msgid "Jiří Paleček"
 msgstr "Jiří Paleček"
 
-#: app/main.cpp:145 app/main.cpp:156
+#: app/main.cpp:154 app/main.cpp:165
 #, kde-format
 msgid "QA, bug-hunting, patches and general help"
 msgstr "Kvalitetssäkring, felsökning, programfixar och allmän hjälp"
 
-#: app/main.cpp:146
+#: app/main.cpp:155
 #, kde-format
 msgid "Jiří Klement"
 msgstr "Jiří Klement"
 
-#: app/main.cpp:146
+#: app/main.cpp:155
 #, kde-format
 msgid "Important help in KDE 4 porting"
 msgstr "Viktig hjälp för överföring till KDE 4"
 
-#: app/main.cpp:147
+#: app/main.cpp:156
 #, kde-format
 msgid "Andrew Neupokoev"
 msgstr "Andrew Neupokoev"
 
-#: app/main.cpp:147
+#: app/main.cpp:156
 #, kde-format
 msgid "Killer Logo and Icons for Krusader (contest winner)"
 msgstr "Suverän logotyp och ikoner för Krusader (tävlingsvinnare)"
 
-#: app/main.cpp:148
+#: app/main.cpp:157
 #, kde-format
 msgid "The UsefulArts Organization"
 msgstr "Organisationen UsefulArts"
 
-#: app/main.cpp:148
+#: app/main.cpp:157
 #, kde-format
 msgid "Icon for Krusader"
 msgstr "Ikon för Krusader"
 
-#: app/main.cpp:149
+#: app/main.cpp:158
 #, kde-format
 msgid "Gábor Lehel"
 msgstr "Gábor Lehel"
 
-#: app/main.cpp:149
+#: app/main.cpp:158
 #, kde-format
 msgid "Viewer module for 3rd Hand"
 msgstr "Granskningsmodul för tredjehandspanelen"
 
-#: app/main.cpp:150
+#: app/main.cpp:159
 #, kde-format
 msgid "Mark Eatough"
 msgstr "Mark Eatough"
 
-#: app/main.cpp:150
+#: app/main.cpp:159
 #, kde-format
 msgid "Handbook Proof-Reader"
 msgstr "Korrekturläsning av handbok"
 
-#: app/main.cpp:151
+#: app/main.cpp:160
 #, kde-format
 msgid "Jan Halasa"
 msgstr "Jan Halasa"
 
-#: app/main.cpp:151
+#: app/main.cpp:160
 #, kde-format
 msgid "The old Bookmark Module"
 msgstr "Gammal bokmärkesmodul"
 
-#: app/main.cpp:152
+#: app/main.cpp:161
 #, kde-format
 msgid "Hans Löffler"
 msgstr "Hans Löffler"
 
-#: app/main.cpp:152
+#: app/main.cpp:161
 #, kde-format
 msgid "Dir history button"
 msgstr "Knapp för kataloghistorik"
 
-#: app/main.cpp:153
+#: app/main.cpp:162
 #, kde-format
 msgid "Szombathelyi György"
 msgstr "Szombathelyi György"
 
-#: app/main.cpp:153
+#: app/main.cpp:162
 #, kde-format
 msgid "ISO KIO slave"
 msgstr "ISO I/O-slav"
 
-#: app/main.cpp:154
+#: app/main.cpp:163
 #, kde-format
 msgid "Jan Willem van de Meent (Adios)"
 msgstr "Jan Willem van de Meent (Adios)"
 
-#: app/main.cpp:154
+#: app/main.cpp:163
 #, kde-format
 msgid "Icons for Krusader"
 msgstr "Ikoner för Krusader"
 
-#: app/main.cpp:155
+#: app/main.cpp:164
 #, kde-format
 msgid "Mikolaj Machowski"
 msgstr "Mikolaj Machowski"
 
-#: app/main.cpp:155
+#: app/main.cpp:164
 #, kde-format
 msgid "Usability and QA"
 msgstr "Användbarhet och kvalitetssäkring"
 
-#: app/main.cpp:156
+#: app/main.cpp:165
 #, kde-format
 msgid "Cristi Dumitrescu"
 msgstr "Cristi Dumitrescu"
 
-#: app/main.cpp:157
+#: app/main.cpp:166
 #, kde-format
 msgid "Aurelien Gateau"
 msgstr "Aurelien Gateau"
 
-#: app/main.cpp:157
+#: app/main.cpp:166
 #, kde-format
 msgid "patch for KViewer"
 msgstr "Programfix för Kviewer"
 
-#: app/main.cpp:158
+#: app/main.cpp:167
 #, kde-format
 msgid "Milan Brabec"
 msgstr "Milan Brabec"
 
-#: app/main.cpp:158
+#: app/main.cpp:167
 #, kde-format
 msgid "the first patch ever!"
 msgstr "Den första programfixen någonsin!"
 
-#: app/main.cpp:159
+#: app/main.cpp:168
 #, kde-format
 msgid "Asim Husanovic"
 msgstr "Asim Husanovic"
 
-#: app/main.cpp:159
+#: app/main.cpp:168
 #, kde-format
 msgid "Bosnian translation"
 msgstr "Bosnisk översättning"
 
-#: app/main.cpp:160
+#: app/main.cpp:169
 #, kde-format
 msgid "Doutor Zero"
 msgstr "Doutor Zero"
 
-#: app/main.cpp:160
+#: app/main.cpp:169
 #, kde-format
 msgid "Brazilian Portuguese translation"
 msgstr "Brasiliansk portugisisk översättning"
 
-#: app/main.cpp:161
+#: app/main.cpp:170
 #, kde-format
 msgid "Milen Ivanov"
 msgstr "Milen Ivanov"
 
-#: app/main.cpp:161
+#: app/main.cpp:170
 #, kde-format
 msgid "Bulgarian translation"
 msgstr "Bulgarisk översättning"
 
-#: app/main.cpp:162
+#: app/main.cpp:171
 #, kde-format
 msgid "Quim Perez"
 msgstr "Quim Perez"
 
-#: app/main.cpp:162
+#: app/main.cpp:171
 #, kde-format
 msgid "Catalan translation"
 msgstr "Katalansk översättning"
 
-#: app/main.cpp:163
+#: app/main.cpp:172
 #, kde-format
 msgid "Jinghua Luo"
 msgstr "Jinghua Luo"
 
-#: app/main.cpp:163
+#: app/main.cpp:172
 #, kde-format
 msgid "Chinese Simplified translation"
 msgstr "Förenklad kinesisk översättning"
 
-#: app/main.cpp:164
+#: app/main.cpp:173
 #, kde-format
 msgid "Mitek"
 msgstr "Mitek"
 
-#: app/main.cpp:164 app/main.cpp:165
+#: app/main.cpp:173 app/main.cpp:174
 #, kde-format
 msgid "Old Czech translation"
 msgstr "Gammal tjeckisk översättning"
 
-#: app/main.cpp:165
+#: app/main.cpp:174
 #, kde-format
 msgid "Martin Sixta"
 msgstr "Martin Sixta"
 
-#: app/main.cpp:166
+#: app/main.cpp:175
 #, kde-format
 msgid "Vaclav Jůza"
 msgstr "Vaclav Jůza"
 
-#: app/main.cpp:166
+#: app/main.cpp:175
 #, kde-format
 msgid "Czech translation"
 msgstr "Tjeckisk översättning"
 
-#: app/main.cpp:167
+#: app/main.cpp:176
 #, kde-format
 msgid "Anders Bruun Olsen"
 msgstr "Anders Bruun Olsen"
 
-#: app/main.cpp:167
+#: app/main.cpp:176
 #, kde-format
 msgid "Old Danish translation"
 msgstr "Gammal dansk översättning"
 
-#: app/main.cpp:168
+#: app/main.cpp:177
 #, kde-format
 msgid "Peter H. Sorensen"
 msgstr "Peter H. Sorensen"
 
-#: app/main.cpp:168
+#: app/main.cpp:177
 #, kde-format
 msgid "Danish translation"
 msgstr "Dansk översättning"
 
-#: app/main.cpp:169
+#: app/main.cpp:178
 #, kde-format
 msgid "Dutch translation"
 msgstr "Hollänḋsk översättning"
 
-#: app/main.cpp:170
+#: app/main.cpp:179
 #, kde-format
 msgid "Rene-Pierre Lehmann"
 msgstr "Rene-Pierre Lehmann"
 
-#: app/main.cpp:170
+#: app/main.cpp:179
 #, kde-format
 msgid "Old French translation"
 msgstr "Gammal fransk översättning"
 
-#: app/main.cpp:171
+#: app/main.cpp:180
 #, kde-format
 msgid "David Guillerm"
 msgstr "David Guillerm"
 
-#: app/main.cpp:171
+#: app/main.cpp:180
 #, kde-format
 msgid "French translation"
 msgstr "Fransk översättning"
 
-#: app/main.cpp:172
+#: app/main.cpp:181
 #, kde-format
 msgid "Christoph Thielecke"
 msgstr "Christoph Thielecke"
 
-#: app/main.cpp:172
+#: app/main.cpp:181
 #, kde-format
 msgid "Old German translation"
 msgstr "Gammal tysk översättning"
 
-#: app/main.cpp:173
+#: app/main.cpp:182
 #, kde-format
 msgid "German translation"
 msgstr "Tysk översättning"
 
-#: app/main.cpp:174
+#: app/main.cpp:183
 #, kde-format
 msgid "Spiros Georgaras"
 msgstr "Spiros Georgaras"
 
-#: app/main.cpp:174
+#: app/main.cpp:183
 #, kde-format
 msgid "Greek translation"
 msgstr "Grekisk översättning"
 
-#: app/main.cpp:175
+#: app/main.cpp:184
 #, kde-format
 msgid "Kukk Zoltan"
 msgstr "Kukk Zoltan"
 
-#: app/main.cpp:175
+#: app/main.cpp:184
 #, kde-format
 msgid "Old Hungarian translation"
 msgstr "Gammal ungersk översättning"
 
-#: app/main.cpp:176
+#: app/main.cpp:185
 #, kde-format
 msgid "Arpad Biro"
 msgstr "Arpad Biro"
 
-#: app/main.cpp:176
+#: app/main.cpp:185
 #, kde-format
 msgid "Hungarian translation"
 msgstr "Ungersk översättning"
 
-#: app/main.cpp:177
+#: app/main.cpp:186
 #, kde-format
 msgid "Giuseppe Bordoni"
 msgstr "Giuseppe Bordoni"
 
-#: app/main.cpp:177
+#: app/main.cpp:186
 #, kde-format
 msgid "Italian translation"
 msgstr "Italiensk översättning"
 
-#: app/main.cpp:178
+#: app/main.cpp:187
 #, kde-format
 msgid "Hideki Kimura"
 msgstr "Hideki Kimura"
 
-#: app/main.cpp:178
+#: app/main.cpp:187
 #, kde-format
 msgid "Japanese translation"
 msgstr "Japansk översättning"
 
-#: app/main.cpp:179
+#: app/main.cpp:188
 #, kde-format
 msgid "UTUMI Hirosi"
 msgstr "UTUMI Hirosi"
 
-#: app/main.cpp:179
+#: app/main.cpp:188
 #, kde-format
 msgid "Old Japanese translation"
 msgstr "Gammal japansk översättning"
 
-#: app/main.cpp:180
+#: app/main.cpp:189
 #, kde-format
 msgid "Dovydas Sankauskas"
 msgstr "Dovydas Sankauskas"
 
-#: app/main.cpp:180
+#: app/main.cpp:189
 #, kde-format
 msgid "Lithuanian translation"
 msgstr "Litauisk översättning"
 
-#: app/main.cpp:181
+#: app/main.cpp:190
 #, kde-format
 msgid "Bruno Queiros"
 msgstr "Bruno Queiros"
 
-#: app/main.cpp:181
+#: app/main.cpp:190
 #, kde-format
 msgid "Portuguese translation"
 msgstr "Portugisisk översättning"
 
-#: app/main.cpp:182
+#: app/main.cpp:191
 #, kde-format
 msgid "Lukasz Janyst"
 msgstr "Lukasz Janyst"
 
-#: app/main.cpp:182
+#: app/main.cpp:191
 #, kde-format
 msgid "Old Polish translation"
 msgstr "Gammal polsk översättning"
 
-#: app/main.cpp:183
+#: app/main.cpp:192
 #, kde-format
 msgid "Pawel Salawa"
 msgstr "Pawel Salawa"
 
-#: app/main.cpp:183 app/main.cpp:184
+#: app/main.cpp:192 app/main.cpp:193
 #, kde-format
 msgid "Polish translation"
 msgstr "Polsk översättning"
 
-#: app/main.cpp:184
+#: app/main.cpp:193
 #, kde-format
 msgid "Tomek Grzejszczyk"
 msgstr "Tomek Grzejszczyk"
 
-#: app/main.cpp:185
+#: app/main.cpp:194
 #, kde-format
 msgid "Dmitry A. Bugay"
 msgstr "Dmitry A. Bugay"
 
-#: app/main.cpp:185
+#: app/main.cpp:194
 #, kde-format
 msgid "Russian translation"
 msgstr "Rysk översättning"
 
-#: app/main.cpp:186
+#: app/main.cpp:195
 #, kde-format
 msgid "Dmitry Chernyak"
 msgstr "Dmitry Chernyak"
 
-#: app/main.cpp:186
+#: app/main.cpp:195
 #, kde-format
 msgid "Old Russian translation"
 msgstr "Gammal rysk översättning"
 
-#: app/main.cpp:187
+#: app/main.cpp:196
 #, kde-format
 msgid "Sasa Tomic"
 msgstr "Sasa Tomic"
 
-#: app/main.cpp:187
+#: app/main.cpp:196
 #, kde-format
 msgid "Serbian translation"
 msgstr "Serbisk översättning"
 
-#: app/main.cpp:188
+#: app/main.cpp:197
 #, kde-format
 msgid "Zdenko Podobný and Ondrej Pačay (Yogi)"
 msgstr "Zdenko Podobný och Ondrej Pačay (Yogi)"
 
-#: app/main.cpp:188
+#: app/main.cpp:197
 #, kde-format
 msgid "Slovak translation"
 msgstr "Slovakisk översättning"
 
-#: app/main.cpp:189
+#: app/main.cpp:198
 #, kde-format
 msgid "Slovenian translation"
 msgstr "Slovensk översättning"
 
-#: app/main.cpp:190
+#: app/main.cpp:199
 #, kde-format
 msgid "Rafael Munoz"
 msgstr "Rafael Munoz"
 
-#: app/main.cpp:190
+#: app/main.cpp:199
 #, kde-format
 msgid "Old Spanish translation"
 msgstr "Gammal spansk översättning"
 
-#: app/main.cpp:191
+#: app/main.cpp:200
 #, kde-format
 msgid "Alejandro Araiza Alvarado"
 msgstr "Alejandro Araiza Alvarado"
 
-#: app/main.cpp:191
+#: app/main.cpp:200
 #, kde-format
 msgid "Spanish translation"
 msgstr "Spansk översättning"
 
-#: app/main.cpp:192
+#: app/main.cpp:201
 #, kde-format
 msgid "Erik Johanssen"
 msgstr "Erik Johanssen"
 
-#: app/main.cpp:192 app/main.cpp:193
+#: app/main.cpp:201 app/main.cpp:202
 #, kde-format
 msgid "Old Swedish translation"
 msgstr "Gammal svensk översättning"
 
-#: app/main.cpp:193
+#: app/main.cpp:202
 #, kde-format
 msgid "Anders Linden"
 msgstr "Anders Linden"
 
-#: app/main.cpp:194
+#: app/main.cpp:203
 #, kde-format
 msgid "Peter Landgren"
 msgstr "Peter Landgren"
 
-#: app/main.cpp:194
+#: app/main.cpp:203
 #, kde-format
 msgid "Swedish translation"
 msgstr "Svensk översättning"
 
-#: app/main.cpp:195
+#: app/main.cpp:204
 #, kde-format
 msgid "Bekir Sonat"
 msgstr "Bekir Sonat"
 
-#: app/main.cpp:195
+#: app/main.cpp:204
 #, kde-format
 msgid "Turkish translation"
 msgstr "Turkisk översättning"
 
-#: app/main.cpp:196
+#: app/main.cpp:205
 #, kde-format
 msgid "Ivan Petrouchtchak"
 msgstr "Ivan Petrouchtchak"
 
-#: app/main.cpp:196
+#: app/main.cpp:205
 #, kde-format
 msgid "Ukrainian translation"
 msgstr "Ukrainsk översättning"
 
-#: app/main.cpp:197
+#: app/main.cpp:206
 #, kde-format
 msgid "Seongnam Jee"
 msgstr "Seongnam Jee"
 
-#: app/main.cpp:197
+#: app/main.cpp:206
 #, kde-format
 msgid "Korean translation"
 msgstr "Koreansk översättning"
 
-#: app/main.cpp:207
+#: app/main.cpp:216
 #, kde-format
 msgid "Start left panel at <path>"
 msgstr "Starta vänster panel med <sökväg>"
 
-#: app/main.cpp:208
+#: app/main.cpp:217
 #, kde-format
 msgid "Start right panel at <path>"
 msgstr "Starta höger panel med <sökväg>"
 
-#: app/main.cpp:209
+#: app/main.cpp:218
 #, kde-format
 msgid "Load this profile on startup"
 msgstr "Ladda denna profil vid start"
 
-#: app/main.cpp:210
+#: app/main.cpp:219
 #, kde-format
 msgid "Enable debug output"
 msgstr "Aktivera felsökningsutmatning"
 
-#: app/main.cpp:211
+#: app/main.cpp:220
 #, kde-format
 msgid "URL to open"
 msgstr "Webbadress att öppna"
@@ -7532,128 +7532,128 @@ msgstr "Synkronisera markerade filer..."
 msgid "Create New"
 msgstr "Skapa ny"
 
-#: app/Panel/panelfunc.cpp:365
+#: app/Panel/panelfunc.cpp:354
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Du kan bara ändra länkar på lokala filsystem"
 
-#: app/Panel/panelfunc.cpp:376
+#: app/Panel/panelfunc.cpp:365
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "Aktuell fil är inte en länk, så den kan inte omdirigeras."
 
-#: app/Panel/panelfunc.cpp:383
+#: app/Panel/panelfunc.cpp:372
 #, kde-format
 msgid "Link Redirection"
 msgstr "Omdirigering av länk"
 
-#: app/Panel/panelfunc.cpp:383
+#: app/Panel/panelfunc.cpp:372
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Ange nytt länkmål:"
 
-#: app/Panel/panelfunc.cpp:390
+#: app/Panel/panelfunc.cpp:379
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "Kan inte ta bort gammal länk: %1"
 
-#: app/Panel/panelfunc.cpp:395
+#: app/Panel/panelfunc.cpp:384
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "Kunde inte skapa ny länk: %1"
 
-#: app/Panel/panelfunc.cpp:403
+#: app/Panel/panelfunc.cpp:392
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Du kan bara skapa länkar på lokala filsystem"
 
-#: app/Panel/panelfunc.cpp:411
+#: app/Panel/panelfunc.cpp:400
 #, kde-format
 msgid "New Link"
 msgstr "Ny länk"
 
-#: app/Panel/panelfunc.cpp:411
+#: app/Panel/panelfunc.cpp:400
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "Skapa ny länk till: %1"
 
-#: app/Panel/panelfunc.cpp:419 app/Panel/panelfunc.cpp:765
+#: app/Panel/panelfunc.cpp:408 app/Panel/panelfunc.cpp:754
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "En katalog eller fil med detta namn finns redan."
 
-#: app/Panel/panelfunc.cpp:430
+#: app/Panel/panelfunc.cpp:419
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Kunde inte skapa ny symbolisk länk '%1' till: '%2'"
 
-#: app/Panel/panelfunc.cpp:433
+#: app/Panel/panelfunc.cpp:422
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Kunde inte skapa ny länk '%1' till '%2'"
 
-#: app/Panel/panelfunc.cpp:450
+#: app/Panel/panelfunc.cpp:439
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Ingen behörighet att granska denna fil."
 
-#: app/Panel/panelfunc.cpp:461
+#: app/Panel/panelfunc.cpp:450
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Mata in en webbadress att granska:"
 
-#: app/Panel/panelfunc.cpp:491 app/Panel/panelfunc.cpp:569
+#: app/Panel/panelfunc.cpp:480 app/Panel/panelfunc.cpp:558
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "Du kan inte redigera en katalog"
 
-#: app/Panel/panelfunc.cpp:496
+#: app/Panel/panelfunc.cpp:485
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Ingen behörighet att redigera denna fil."
 
-#: app/Panel/panelfunc.cpp:510
+#: app/Panel/panelfunc.cpp:499
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Mata in filnamn på den fil du vill redigera:"
 
-#: app/Panel/panelfunc.cpp:621
+#: app/Panel/panelfunc.cpp:610
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Flytta %1 till:"
 
-#: app/Panel/panelfunc.cpp:621
+#: app/Panel/panelfunc.cpp:610
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "Flytta %1 fil till:"
 msgstr[1] "Flytta %1 filer till:"
 
-#: app/Panel/panelfunc.cpp:623
+#: app/Panel/panelfunc.cpp:612
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Kopiera %1 till:"
 
-#: app/Panel/panelfunc.cpp:623
+#: app/Panel/panelfunc.cpp:612
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "Kopiera %1 fil till:"
 msgstr[1] "Kopiera %1 filer till:"
 
-#: app/Panel/panelfunc.cpp:689
+#: app/Panel/panelfunc.cpp:678
 #, kde-format
 msgid "Folder's name:"
 msgstr "Katalogens namn:"
 
-#: app/Panel/panelfunc.cpp:829
+#: app/Panel/panelfunc.cpp:818
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Vill du verkligen flytta detta objekt till papperkorgen?"
 msgstr[1] "Vill du verkligen flytta dessa %1 objekt till papperskorgen?"
 
-#: app/Panel/panelfunc.cpp:833
+#: app/Panel/panelfunc.cpp:822
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7668,44 +7668,44 @@ msgstr[1] ""
 "<qt>Vill du verkligen ta bort dessa %1 objekt <b>fysiskt</b> (inte bara "
 "borttagning från virtuella objekt)?</qt>"
 
-#: app/Panel/panelfunc.cpp:840
+#: app/Panel/panelfunc.cpp:829
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Vill du verkligen ta bort detta objekt?"
 msgstr[1] "Vill du verkligen ta bort dessa %1 objekt?"
 
-#: app/Panel/panelfunc.cpp:878
+#: app/Panel/panelfunc.cpp:867
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Katalogen <b>%1</b> är inte tom.</p>"
 
-#: app/Panel/panelfunc.cpp:879
+#: app/Panel/panelfunc.cpp:868
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Hoppa över den eller flytta allt till papperskorgen?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:879
+#: app/Panel/panelfunc.cpp:868
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Hoppa över den eller ta bort allt?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:870
 #, kde-format
 msgid "&Skip"
 msgstr "&Hoppa över"
 
-#: app/Panel/panelfunc.cpp:882
+#: app/Panel/panelfunc.cpp:871
 #, kde-format
 msgid "&Trash All"
 msgstr "Fly&tta allt till papperskorgen"
 
-#: app/Panel/panelfunc.cpp:882
+#: app/Panel/panelfunc.cpp:871
 #, kde-format
 msgid "&Delete All"
 msgstr "&Ta bort allt"
 
-#: app/Panel/panelfunc.cpp:919
+#: app/Panel/panelfunc.cpp:908
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7720,19 +7720,19 @@ msgstr[1] ""
 "Vill du verkligen ta bort dessa %1 virtuella objekt (fysiska filer förblir "
 "orörda)?"
 
-#: app/Panel/panelfunc.cpp:955
+#: app/Panel/panelfunc.cpp:944
 #, kde-format
 msgid "Could not start %1"
 msgstr "Kunde inte starta %1"
 
 # msgid "Are you sure you want to shred "
 # msgstr "� du säker att du vill förstöra "
-#: app/Panel/panelfunc.cpp:967
+#: app/Panel/panelfunc.cpp:956
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 kan inte öppna %2"
 
-#: app/Panel/panelfunc.cpp:1044
+#: app/Panel/panelfunc.cpp:1033
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7741,7 +7741,7 @@ msgstr ""
 "<qt><p>Arkivet <b>%1.%2</b> finns redan. Vill du skriva över det?</p><p>All "
 "data i det föregående arkivet kommer att gå förlorad.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1049
+#: app/Panel/panelfunc.cpp:1038
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7752,17 +7752,17 @@ msgstr ""
 "kommer att byta ut identiska namn i zip-arkivet eller lägga till poster med "
 "nya namn.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1057
+#: app/Panel/panelfunc.cpp:1046
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Kan inte packa filer till ett virtuellt mål."
 
-#: app/Panel/panelfunc.cpp:1090
+#: app/Panel/panelfunc.cpp:1079
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Packa upp %1 till:"
 
-#: app/Panel/panelfunc.cpp:1092
+#: app/Panel/panelfunc.cpp:1081
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
@@ -9784,12 +9784,18 @@ msgstr "Borttagning av filer från %1-arkiv stöds inte"
 msgid "Accessing files is not supported with %1 archives"
 msgstr "Åtkomst av filer stöds inte för %1-arkiv"
 
-#: plugins/krarc/krarc.cpp:825
+#: plugins/krarc/krarc.cpp:783
+#, fuzzy, kde-format
+#| msgid "Writing to %1 archives is not supported"
+msgid "Copying from archive to archive is not supported."
+msgstr "Skrivning till %1-arkiv stöds inte"
+
+#: plugins/krarc/krarc.cpp:829
 #, kde-format
 msgid "Listing folders is not supported for %1 archives"
 msgstr "Listning av kataloger stöds inte för %1-arkiv"
 
-#: plugins/krarc/krarc.cpp:1755
+#: plugins/krarc/krarc.cpp:1759
 #, kde-format
 msgid ""
 "\n"
@@ -9798,12 +9804,12 @@ msgstr ""
 "\n"
 "Försäkra dig om att binärfilen %1 är korrekt installerad på systemet."
 
-#: plugins/krarc/krarc.cpp:1837 plugins/krarc/krarc.cpp:1863
+#: plugins/krarc/krarc.cpp:1841 plugins/krarc/krarc.cpp:1867
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "Krarc lösenordsdialog"
 
-#: plugins/krarc/krarc.cpp:1880
+#: plugins/krarc/krarc.cpp:1884
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Åtkomst av filen kräver ett lösenord."
