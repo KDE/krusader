@@ -1,6 +1,6 @@
 # Copyright © 2012 This_file_is_part_of_KDE
 # This file is distributed under the same license as the krusader package.
-# Tommi Nieminen <translator@legisign.org>, 2012, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
+# SPDX-FileCopyrightText: 2012, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Tommi Nieminen <translator@legisign.org>
 # Lasse Liehu <lasse.liehu@gmail.com>, 2012, 2013, 2014, 2015, 2016.
 # Jiri Grönroos <jiri.gronroos+kde@iki.fi>, 2012.
 #
@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-01 03:18+0000\n"
-"PO-Revision-Date: 2024-01-29 21:48+0200\n"
+"PO-Revision-Date: 2024-10-17 18:03+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -20,8 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-12-01 22:21:50+0000\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2591,11 +2590,9 @@ msgid "Empty Recently Closed Tabs"
 msgstr "Unohda äskettäin suljetut välilehdet"
 
 #: app/GUI/terminaldock.cpp:91
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
+#, kde-format
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr "<b>Upotettua päätettä ei saatu luotua.</b><br/>Virheilmoitus oli: %1"
+msgstr "<b>Ei voida luoda upotettua päätettä.</b><br/>"
 
 #: app/GUI/terminaldock.cpp:102
 #, kde-format
@@ -9737,10 +9734,9 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Kopioi nykyisen kohteen sijainti (lainaten välilyönnit)"
 
 #: app/useraction_examples.xml:46
-#, fuzzy, kde-format
-#| msgid "Copy file path of current item (escaping spaces)"
+#, kde-format
 msgid "Copy file path of current item"
-msgstr "Kopioi nykyisen kohteen sijainti (lainaten välilyönnit)"
+msgstr "Kopioi nykyisen kohteen tiedostosijainti"
 
 #: app/useraction_examples.xml:51
 #, kde-format
