@@ -341,10 +341,6 @@ public:
         changeSelection(KrQuery("*"), false, true);
     }
     void invertSelection();
-    QString nameToMakeCurrent() const
-    {
-        return _nameToMakeCurrent;
-    }
     void setNameToMakeCurrent(const QString &name)
     {
         _nameToMakeCurrent = name;
