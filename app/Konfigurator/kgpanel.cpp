@@ -514,7 +514,7 @@ void KgPanel::setupPanelTab()
         {
             {"Look&Feel",
              "Case Sensative Sort",
-             _CaseSensativeSort,
+             _CaseSensitiveSort,
              i18n("Case sensitive sorting"),
              true,
              i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).")},

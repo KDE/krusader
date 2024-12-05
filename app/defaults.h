@@ -51,8 +51,8 @@
 #define _ShowHidden true
 // Sort By Extension ///
 #define _SortByExt false
-// Case Sensative Sort /
-#define _CaseSensativeSort false
+// Case Sensitive Sort /
+#define _CaseSensitiveSort false
 // Html Min Font Size //
 #define _HtmlMinFontSize 12
 // Filelist Icon Size //

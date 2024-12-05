@@ -226,7 +226,7 @@ void KrView::initProperties()
         sortOps |= KrViewProperties::DirsFirst;
     if (grpSvr.readEntry("Always sort dirs by name", false))
         sortOps |= KrViewProperties::AlwaysSortDirsByName;
-    if (!grpSvr.readEntry("Case Sensative Sort", _CaseSensativeSort))
+    if (!grpSvr.readEntry("Case Sensative Sort", _CaseSensitiveSort))
         sortOps |= KrViewProperties::IgnoreCase;
     if (grpSvr.readEntry("Locale Aware Sort", true))
         sortOps |= KrViewProperties::LocaleAwareSort;
