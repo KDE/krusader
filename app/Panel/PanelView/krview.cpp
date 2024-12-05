@@ -1141,11 +1141,9 @@ void KrView::customSelection(bool select)
 
 void KrView::refresh()
 {
-    const QString currentItem = !nameToMakeCurrent().isEmpty() ? //
-        nameToMakeCurrent()
-                                                               : getCurrentItem();
-    bool scrollToCurrent = !nameToMakeCurrent().isEmpty() || isItemVisible(getCurrentKrViewItem());
-    setNameToMakeCurrent(QString());
+    const QString currentItem = !_nameToMakeCurrent.isEmpty() ? _nameToMakeCurrent : getCurrentItem();
+    const bool scrollToCurrent = !_nameToMakeCurrent.isEmpty() || isItemVisible(getCurrentKrViewItem());
+    _nameToMakeCurrent = QString();
 
     const QModelIndex currentIndex = getCurrentIndex();
     const QList<QUrl> selection = selectedUrls();

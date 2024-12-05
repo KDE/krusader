@@ -216,6 +216,11 @@ void ListPanelFunc::openUrlInternal(const QUrl &url, const QString &nameToMakeCu
     const QString currentItem = history->currentUrl().path() == cleanUrl.path() ? history->currentItem() : nameToMakeCurrent;
     history->add(cleanUrl, currentItem);
 
+    if (!nameToMakeCurrent.isEmpty()) {
+        // set future "current" item now - in case only a new current item should be selected in the same directory
+        panel->view->setNameToMakeCurrent(nameToMakeCurrent);
+    }
+
     refresh();
 }
 
@@ -308,6 +313,7 @@ void ListPanelFunc::doRefresh()
         return;
     }
 
+    // reset "current" item after it has been used during filesystem refresh
     panel->view->setNameToMakeCurrent(QString());
 
     panel->setCursor(Qt::ArrowCursor);
