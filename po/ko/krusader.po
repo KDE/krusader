@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-28 00:42+0000\n"
-"PO-Revision-Date: 2024-08-20 00:00+0200\n"
+"PO-Revision-Date: 2024-12-10 01:02+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -619,14 +619,8 @@ msgid "Title"
 msgstr "제목"
 
 #: app/ActionMan/useractionpage.cpp:38
-#, fuzzy
-#| msgid ""
-#| "*.xml|XML files\n"
-#| "*|All files"
 msgid "XML files (*.xml);;All files (*)"
-msgstr ""
-"*.xml|XML 파일\n"
-"*|모든 파일"
+msgstr "XML 파일 (*.xml);;모든 파일 (*)"
 
 #: app/ActionMan/useractionpage.cpp:55
 #, kde-format
@@ -9691,10 +9685,9 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "%1 형식 압축 파일에 있는 파일에 접근하는 것은 지원하지 않음"
 
 #: plugins/krarc/krarc.cpp:783
-#, fuzzy, kde-format
-#| msgid "Writing to %1 archives is not supported"
+#, kde-format
 msgid "Copying from archive to archive is not supported."
-msgstr "%1 형식 압축 파일에 기록하는 것은 지원하지 않음"
+msgstr "압축 파일에서 다른 압축 파일로 복사하는 것은 지원하지 않습니다."
 
 #: plugins/krarc/krarc.cpp:829
 #, kde-format
