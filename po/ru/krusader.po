@@ -15,21 +15,21 @@
 # Vladimir Lomov <irk.translator@gmail.com>, 2010, 2011.
 # Alexey D. <lq07829icatm@rambler.ru>, 2012.
 # Dmitry Astankov <mornie@basealt.ru>, 2019.
-# Olesya Gerasimenko <translation-team@basealt.ru>, 2022.
+# SPDX-FileCopyrightText: 2022, 2024 Olesya Gerasimenko <translation-team@basealt.ru>
 # Alexander Yavorsky <kekcuha@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-28 00:42+0000\n"
-"PO-Revision-Date: 2023-05-31 09:50+0300\n"
-"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
-"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"PO-Revision-Date: 2024-12-11 15:51+0300\n"
+"Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
+"Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.08.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -41,14 +41,14 @@ msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 "Дмитрий Черняк,Денис Корявов,Дмитрий Бугай,Артём Середа,Владимир Ломов,"
-"Дмитрий Астанков"
+"Дмитрий Астанков,Олеся Герасименко"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 "dvc@mail.ru,dkoryavov@yandex.ru,sam@vhnet.ru,overmind88@gmail.com,irk."
-"translator@gmail.com,mornie@basealt.ru"
+"translator@gmail.com,mornie@basealt.ru,translation-team@basealt.ru"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -643,14 +643,8 @@ msgid "Title"
 msgstr "Заголовок"
 
 #: app/ActionMan/useractionpage.cpp:38
-#, fuzzy
-#| msgid ""
-#| "*.xml|XML files\n"
-#| "*|All files"
 msgid "XML files (*.xml);;All files (*)"
-msgstr ""
-"*.xml|XML-файлы\n"
-"*|Все файлы"
+msgstr "Файлы XML (*.xml);;Все файлы (*)"
 
 #: app/ActionMan/useractionpage.cpp:55
 #, kde-format
@@ -2587,12 +2581,9 @@ msgid "Empty Recently Closed Tabs"
 msgstr "Очистить список недавно закрытых вкладок"
 
 #: app/GUI/terminaldock.cpp:97
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
+#, kde-format
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr ""
-"<b>Невозможно открыть встроенный терминал.</b><br/>Возникшая ошибка: %1"
+msgstr "<b>Невозможно открыть встроенный терминал.</b><br/>"
 
 #: app/GUI/terminaldock.cpp:108
 #, kde-format
@@ -9739,16 +9730,14 @@ msgid "Multimedia"
 msgstr "Мультимедиа"
 
 #: app/useraction_examples.xml:39
-#, fuzzy, kde-format
-#| msgid "Always show current item"
+#, kde-format
 msgid "Copy file path of current item (escaping spaces)"
-msgstr "Всегда показывать текущий элемент"
+msgstr "Копировать путь к текущему элементу (пропуская пробелы)"
 
 #: app/useraction_examples.xml:46
-#, fuzzy, kde-format
-#| msgid "Always show current item"
+#, kde-format
 msgid "Copy file path of current item"
-msgstr "Всегда показывать текущий элемент"
+msgstr "Копировать путь к текущему элементу"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9878,7 +9867,6 @@ msgstr "Доступ к файлам для архивов %1 не поддер�
 
 #: plugins/krarc/krarc.cpp:783
 #, fuzzy, kde-format
-#| msgid "Writing to %1 archives is not supported"
 msgid "Copying from archive to archive is not supported."
 msgstr "Запись в архивы %1 не поддерживается"
 
