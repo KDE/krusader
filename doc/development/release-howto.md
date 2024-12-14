@@ -9,20 +9,29 @@ It implies that you set the developer access up already.
 
 ## Overall release process
 
+Before the release:
 * [Create an issue](#create-an-issue) to claim yourself as a release manager.
-* Based on the discussion in the issue, set an appropriate [feature freeze](#feature-freeze) for the release.
-* Agree on the approximate release date.
+* Based on the discussion in the issue, set an appropriate [feature freeze](#feature-freeze) for the release and agree on the approximate release date.
 * Wait for changes to be reviewed and pushed.
-* Discuss and [pick a release name](#release-name) in case of a major or a minor release.
-* [Create a release branch](#create-a-release-branch) if needed.
-* Update or ask to [update the documentation](#update-the-documentation), including features for a major or a minor release.
-* 3 weeks before the release: propose the release date, [update the docs and AppStream files](#code-review-documentation-and-appstream-files).
-* 2 weeks before the release: [declare a string and doc freeze](#declare-a-string-and-doc-freeze). 
-* [Update change logs and news](#code-review-changelog-and-news-update) in the meantime.
-* Prepare review: [version update](#code-review-version-bump).
-* Prepare review: [website update](#code-review-website-update).
+* In case of a major or a minor release discuss and [pick a release name](#release-name).
+
+At least two weeks before the release:
+* Decide on the release date.
+* If needed, [create a release branch](#create-a-release-branch).
+* Merge changes for the documentation:
+  * Update or ask to [update the documentation](#update-the-documentation), including features for a major or a minor release.
+  * [Update the docs and AppStream files](#code-review-documentation-and-appstream-files).
+* [Declare a string and doc freeze](#declare-a-string-and-doc-freeze).
+
+At least one week before the release:
+* Prepare a merge request with changes for the release 
+  * [Update change logs and news](#code-review-changelog-and-news-update) in the meantime.
+  * [Update the version](#code-review-version-bump).
+* Prepare a [merge request for the website](#code-review-website-update).
 * [Prepare the environment](#environment) and practice if needed.
-* On the release date [follow the steps](#on-the-release-date) to prepare and release the package.
+
+On the release date:
+* [Follow the steps](#on-the-release-date) to prepare and release the package.
 * [Wrap up](#wrap-up): check bugzilla and merge the changes to master.
 
 See also [the KDE community guide for releasing software](https://community.kde.org/ReleasingSoftware).
@@ -69,6 +78,7 @@ Examples:
 ## Create a release branch
 
 In case you're doing a minor or major release (i.e. 2.7 -> 2.8 or 2.8 -> 3.0), `stable` branch needs to be remapped.
+(In case you're doing patch version update (i.e. 2.7.1 -> 2.7.2), no update to stable branch is needed.)
 
 For example, you are going to do 2.7 -> 2.8. Then
 1. First create a branch at the same point as `stable` to mark a past release branch. Name it `2.7`.
@@ -78,8 +88,6 @@ For example, you are going to do 2.7 -> 2.8. Then
 5. Since `stable` is protected from non-fast-forward updates, first delete the remote branch with `git push origin :stable`. Then push `stable` to the remote.
 
 Now you are ready for the release.
-
-In case you're doing patch version update (i.e. 2.7.1 -> 2.7.2), no update to stable branch is needed.
 
 
 ## Update the documentation
