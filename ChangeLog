@@ -1,3 +1,20 @@
+2.9.0 "Sixth Life"
+=====================
+
+    ADDED: Improve debugging kioslaves by using environment variables and also stdout instead of a separate log file.
+    ADDED: Save settings on crash and when signals are received
+    FIXED: [ 462086 ] Segmentation fault when using CTRL+Left/Right on a panel with invalid path
+    FIXED: [ 462307 ] File icons are drawn at wrong position if desktop scaling is active
+    FIXED: [ 474596 ] Krusader always crashes after drag-n-drop several files on info bar
+    FIXED: [ 476194 ] In more cases, the default behavior in Synchronizer should be to overwrite files
+    FIXED: [ 480319 ] "Synchronized browsing mode" between panels ignored when user uses "Back" or "Forward" button
+    FIXED: [ 485225 ] Krusader issue with mime types after P6 update
+    FIXED: [ 485865 ] Sharing from Krusader results in “org.kde.kdeconnect” is not installed error
+    FIXED: [ 486731 ] Krusader is unable to create thumbnails for pdf and other document/book formats and video formats appear as a static image instead of creating a preview for them
+    FIXED: [ 488241 ] Export and compress entry in context menu is missing
+    FIXED: [ 496184 ] Krviewer does not update window caption when file is saved with different name
+    FIXED: Flickering during folder space calculation
+
 2.8.1 "A New Day"
 =====================
 
