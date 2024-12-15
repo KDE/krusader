@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-28 00:42+0000\n"
-"PO-Revision-Date: 2024-11-28 04:45+0100\n"
+"POT-Creation-Date: 2024-12-15 03:16+0000\n"
+"PO-Revision-Date: 2024-10-12 05:47+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1148,13 +1148,6 @@ msgid ""
 "Notice that the line in which you edit the mask has its own history, you can "
 "scroll it, if needed."
 msgstr ""
-"წინასწარ განსაზღვრული შერჩევა არის ფაილ-ნიღაბი, რომელსაც ხშირად იყენებთ.\n"
-"ზოგიერთი მაგალითია: \"*.c, *.h\", \"*.c, *.o\" და ა.შ.\n"
-"თქვენ შეგიძლიათ დაამატოთ ეს ნიღბები სიაში მათი აკრეფით და დააჭირეთ ღილაკს "
-"დამატება.\n"
-"წაშლა შლის წინასწარ განსაზღვრულ შერჩევას და გასუფთავება შლის ყველა მათგანს.\n"
-"გაითვალისწინეთ, რომ ხაზს, რომელშიც ნიღბის რედაქტირებას ახდენთ, აქვს საკუთარი "
-"ისტორია, საჭიროების შემთხვევაში შეგიძლიათ გადაახვიოთ იგი."
 
 #: app/Dialogs/krmaskchoice.cpp:80
 #, kde-format
@@ -2209,22 +2202,6 @@ msgid ""
 "svn/ .git/</code></li></ul><p><b>Note</b>: the search term '<code>text</"
 "code>' is equivalent to '<code>*text*</code>'.</p>"
 msgstr ""
-"<p>ფაილის სახელის ფილტრაციის კრიტერიუმები განისაზღვრება აქ.</p><p>შეგიძლიათ "
-"გამოიყენოთ wildcards. მრავალი ნიმუში გამოყოფილია სივრცით (ნიშნავს ლოგიკურ "
-"OR) და ნიმუშები გამორიცხულია ძიებისგან მილის სიმბოლოს გამოყენებით.</p><p>თუ "
-"ნიმუში დასრულდა slash (<code>*pattern*/</code>), ეს ნიშნავს, რომ ნიმუში "
-"ეხება საქაღალდეების რეკურსიულ ძიებას.<ul><li><code>pattern</code> - ნიშნავს "
-"იმ ფაილების/საქაღალდეების ძებნას, რომლებიც სახელია <code>pattern</code>, "
-"რეკურსიული ძებნა გადის ყველა ქვესაქაღალდეში დამოუკიდებლად მნიშვნელობისგან "
-"<code>pattern</code></li><li><code>pattern/</code> - ნიშნავს ყველა ფაილის/"
-"საქაღალდის ძებნას, მაგრამ რეკურსიული ძებნა გადის/გამორიცხავს საქაღალდეებს, "
-"რომლებიც სახელია <code>pattern</code></li></ul></p><p>ნებადართულია ციტატების "
-"გამოყენება იმ სახელებისთვის, რომლებიც შეიცავს სივრცეს. ფილტრი <code>"
-"\"Program Files\"</code> ეძებს იმ ფაილებს / საქაღალდეებს, რომლებიც სახელია "
-"<code>Program Files</code>.</p><p>მაგალითები:</p><ul><li><code>*.o</code></"
-"li><li><code>*.h *.c??</code></li><li><code>*.cpp *.h | *.moc.cpp</code></"
-"li><li><code>* | .svn/ .git/</code></li></ul><p><b>შენიშვნა</b>: საძიებო "
-"ტერმინი '<code>text</code>' ეკვივალენტურია '<code>*text*</code>'.</p>"
 
 #: app/Filter/generalfilter.cpp:150
 #, kde-format
@@ -5356,7 +5333,7 @@ msgstr "შემ&ცველობის შედარება..."
 msgid "Multi &Rename..."
 msgstr "ე&რთზე მეტის სახელის გადარქმევა..."
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:461
+#: app/kractions.cpp:288 app/krusaderview.cpp:473
 #, kde-format
 msgid "Vertical Mode"
 msgstr "ვერტიკალური რეჟიმი"
@@ -5456,10 +5433,6 @@ msgid ""
 "in the active panel.</li><li>Make sure there is a file in the other panel, "
 "with the same name as the current file in the active panel.</li></ul>"
 msgstr ""
-"ორი ფაილის შინაარსის შედარებისთვის, შეგიძლიათ:<ul><li>აირჩიეთ ერთი ფაილი "
-"მარცხენა პანელში, ხოლო ერთი მარჯვენა პანელში.</li><li>აირჩიეთ ზუსტად ორი "
-"ფაილი აქტიურ პანელში.</li><li>დარწმუნდით, რომ სხვა პანელში არის ფაილი, იგივე "
-"სახელით, როგორც მიმდინარე ფაილი აქტიურ პანელში.</li></ul>"
 
 #: app/krslots.cpp:185
 #, kde-format
@@ -5588,9 +5561,6 @@ msgid ""
 "will now be checked for external applications. Then the Konfigurator will be "
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr ""
-"<qt><b>მოგესალმებათ Krusader.</b><p>იმის გამო, რომ მას პირველად უშვებთ, ახლა "
-"თქვენი სისტემაში გარე აპლიკაციების ძებნა მოხდება. შემდეგ გაეშვება "
-"Konfigurator, სადაც Krusader ბოლომდე შეგიძლიათ, მოირგოთ.</p></qt>"
 
 #: app/krusader.cpp:328
 #, kde-format
@@ -5688,7 +5658,7 @@ msgid "Function keys allow performing fast operations on files."
 msgstr ""
 "ფუნქციური ღილაკები ფაილებზე სწრაფი ოპერაციების ჩატარების საშუალებას გაძლევთ."
 
-#: app/krusaderview.cpp:465
+#: app/krusaderview.cpp:477
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "ჰორიზონტალური რეჟიმი"
@@ -9362,7 +9332,7 @@ msgstr "ექსპანდერი: %_Profile(პროფილი)%-სთ
 #: app/UserAction/expander.cpp:746
 #, kde-format
 msgid "Separate Program Call for Each..."
-msgstr "ცალკე პროგრამის მოწოდება თითოეული..."
+msgstr ""
 
 #: app/UserAction/expander.cpp:783
 #, kde-format
@@ -9776,9 +9746,10 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "%1 არქივებში ფაილებთან წვდომა მხარდაჭერილი არაა"
 
 #: plugins/krarc/krarc.cpp:783
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Writing to %1 archives is not supported"
 msgid "Copying from archive to archive is not supported."
-msgstr "არქივიდან არქივში კოპირება მხარდაჭერილი არაა."
+msgstr "%1 არქივებში ჩაწერა მხარდაჭერილი არაა"
 
 #: plugins/krarc/krarc.cpp:829
 #, kde-format

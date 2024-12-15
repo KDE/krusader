@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-28 00:42+0000\n"
-"PO-Revision-Date: 2024-11-28 15:50+0200\n"
+"POT-Creation-Date: 2024-12-15 03:16+0000\n"
+"PO-Revision-Date: 2024-09-26 19:45+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -5385,7 +5385,7 @@ msgstr "Порівняти з&а вмістом…"
 msgid "Multi &Rename..."
 msgstr "Групове пере&йменування…"
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:461
+#: app/kractions.cpp:288 app/krusaderview.cpp:473
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Вертикальний режим"
@@ -5719,7 +5719,7 @@ msgstr "Панель завдань"
 msgid "Function keys allow performing fast operations on files."
 msgstr "Клавіші функцій прискорюють роботу з файлами."
 
-#: app/krusaderview.cpp:465
+#: app/krusaderview.cpp:477
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "Горизонтальний режим"
@@ -9849,9 +9849,10 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "У архівах %1 доступ до файлів не підтримується"
 
 #: plugins/krarc/krarc.cpp:783
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Writing to %1 archives is not supported"
 msgid "Copying from archive to archive is not supported."
-msgstr "Підтримки копіювання з архіву до архіву не передбачено."
+msgstr "Запис до архівів %1 не підтримується"
 
 #: plugins/krarc/krarc.cpp:829
 #, kde-format

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-28 00:42+0000\n"
-"PO-Revision-Date: 2024-11-28 20:12+0100\n"
+"POT-Creation-Date: 2024-12-15 03:16+0000\n"
+"PO-Revision-Date: 2024-09-25 21:13+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.08.3\n"
+"X-Generator: Lokalize 24.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -5378,7 +5378,7 @@ msgstr "Alderatu edukiaren ara&bera..."
 msgid "Multi &Rename..."
 msgstr "&Berrizendatze anizkoitza..."
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:461
+#: app/kractions.cpp:288 app/krusaderview.cpp:473
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Modu bertikala"
@@ -5712,7 +5712,7 @@ msgstr "Atazen tresna-barra"
 msgid "Function keys allow performing fast operations on files."
 msgstr "Funtzio teklek fitxategiengan eragiketa azkarrak egiten uzten dute."
 
-#: app/krusaderview.cpp:465
+#: app/krusaderview.cpp:477
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "Modu horizontala"
@@ -9799,9 +9799,10 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "Fitxategiak atzitzea ez da onartzen %1 artxiboetan"
 
 #: plugins/krarc/krarc.cpp:783
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Writing to %1 archives is not supported"
 msgid "Copying from archive to archive is not supported."
-msgstr "Artxibotik artxibora kopiatzea ez da onartzen."
+msgstr "%1 artxiboetan idaztea ez da onartzen"
 
 #: plugins/krarc/krarc.cpp:829
 #, kde-format

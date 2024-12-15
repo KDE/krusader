@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-28 00:42+0000\n"
-"PO-Revision-Date: 2024-11-28 16:14+0300\n"
+"POT-Creation-Date: 2024-12-15 03:16+0000\n"
+"PO-Revision-Date: 2024-09-24 10:25+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.03.70\n"
+"X-Generator: Lokalize 24.11.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -5346,7 +5346,7 @@ msgstr "İçeriğe &Göre Karşılaştır…"
 msgid "Multi &Rename..."
 msgstr "Çoklu &Yeniden Adlandır…"
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:461
+#: app/kractions.cpp:288 app/krusaderview.cpp:473
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Dikey Kip"
@@ -5676,7 +5676,7 @@ msgstr "Görev Araç Çubuğu"
 msgid "Function keys allow performing fast operations on files."
 msgstr "İşlev düğmeleri, dosyalar üzerinde hızlı işlemlere izin verir."
 
-#: app/krusaderview.cpp:465
+#: app/krusaderview.cpp:477
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "Yatay Kip"
@@ -9748,9 +9748,10 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "%1 arşivi olan dosyalara erişim desteklenmiyor"
 
 #: plugins/krarc/krarc.cpp:783
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Writing to %1 archives is not supported"
 msgid "Copying from archive to archive is not supported."
-msgstr "Arşivden arşive kopyalama işlemi desteklenmiyor."
+msgstr "%1 arşivine yazma işlemi desteklenmiyor"
 
 #: plugins/krarc/krarc.cpp:829
 #, kde-format
@@ -9775,3 +9776,18 @@ msgstr "Krarc Parola İletişim Kutusu"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Dosyaya erişmek için parola gerekiyor."
+
+#~ msgid "Manage Bookmarks"
+#~ msgstr "Yer İmlerini Yönet"
+
+#~ msgid "Show Main Toolbar"
+#~ msgstr "Ana Araç Çubuğunu Göster"
+
+#~ msgid "Show Job Toolbar"
+#~ msgstr "Görev Araç Çubuğunu Göster"
+
+#~ msgid "Show Actions Toolbar"
+#~ msgstr "Eylemler Araç Çubuğunu Göster"
+
+#~ msgid "&Toolbars"
+#~ msgstr "&Araç Çubukları"

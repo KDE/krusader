@@ -3,23 +3,23 @@
 # This file is distributed under the same license as the Krusader package
 #
 # SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2022, 2023 Antoni Bella Pérez <antonibella5@yahoo.com>
-# SPDX-FileCopyrightText: 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Josep M. Ferrer <txemaq@gmail.com>
 # Rafael Munoz Rodriguez <rafaluco@netscape.net>, 2003.
 # Quim Perez Noguer <noguer@osona.com>, 2004, 2005, 2009.
 # Joaquim Perez Noguer <noguer@gmail.com>, 2008, 2009.
+# SPDX-FileCopyrightText: 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Josep M. Ferrer <txemaq@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-28 00:42+0000\n"
-"PO-Revision-Date: 2024-11-28 10:27+0100\n"
+"POT-Creation-Date: 2024-12-15 03:16+0000\n"
+"PO-Revision-Date: 2024-10-26 19:18+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 24.08.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -5404,7 +5404,7 @@ msgstr "Compara per &contingut..."
 msgid "Multi &Rename..."
 msgstr "&Reanomena de forma massiva..."
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:461
+#: app/kractions.cpp:288 app/krusaderview.cpp:473
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Mode vertical"
@@ -5739,7 +5739,7 @@ msgstr ""
 "Les tecles de funció permeten anar més de pressa en les operacions amb "
 "fitxers."
 
-#: app/krusaderview.cpp:465
+#: app/krusaderview.cpp:477
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "Mode horitzontal"
@@ -9839,9 +9839,10 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "L'accés a fitxers no està admès amb arxius %1"
 
 #: plugins/krarc/krarc.cpp:783
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Writing to %1 archives is not supported"
 msgid "Copying from archive to archive is not supported."
-msgstr "No s'admet la còpia des d'arxiu a arxiu."
+msgstr "L'escriptura en arxius %1 no està admesa"
 
 #: plugins/krarc/krarc.cpp:829
 #, kde-format
@@ -9866,18 +9867,3 @@ msgstr "Diàleg de contrasenyes del Krarc"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "L'accés al fitxer requereix una contrasenya."
-
-#~ msgid "Manage Bookmarks"
-#~ msgstr "Gestiona les adreces d'interès"
-
-#~ msgid "Show Main Toolbar"
-#~ msgstr "Mostra la barra d'eines principal"
-
-#~ msgid "Show Job Toolbar"
-#~ msgstr "Mostra la barra d'eines de treballs"
-
-#~ msgid "Show Actions Toolbar"
-#~ msgstr "Mostra la barra d'eines d'accions"
-
-#~ msgid "&Toolbars"
-#~ msgstr "&Barres d'eines"

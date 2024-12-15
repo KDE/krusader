@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-28 00:42+0000\n"
-"PO-Revision-Date: 2024-11-30 09:20+0100\n"
+"POT-Creation-Date: 2024-12-15 03:16+0000\n"
+"PO-Revision-Date: 2024-10-05 12:21+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -5400,7 +5400,7 @@ msgstr "Porównaj zawar&tość..."
 msgid "Multi &Rename..."
 msgstr "Masowa z&miana nazw..."
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:461
+#: app/kractions.cpp:288 app/krusaderview.cpp:473
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Tryb pionowy"
@@ -5735,7 +5735,7 @@ msgid "Function keys allow performing fast operations on files."
 msgstr ""
 "Klawisze funkcyjne umożliwiają wykonywanie szybkich operacji na plikach."
 
-#: app/krusaderview.cpp:465
+#: app/krusaderview.cpp:477
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "Tryb poziomy"
@@ -9843,9 +9843,10 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "Dostęp do plików w archiwach %1 jest niewspierany"
 
 #: plugins/krarc/krarc.cpp:783
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Writing to %1 archives is not supported"
 msgid "Copying from archive to archive is not supported."
-msgstr "Kopiowanie między archiwami nie jest obsługiwane"
+msgstr "Pisanie do archiwów %1 nie jest wspierane"
 
 #: plugins/krarc/krarc.cpp:829
 #, kde-format
