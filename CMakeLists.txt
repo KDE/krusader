@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(krusader)
 
-set(VERSION "2.9.0-dev")
+set(VERSION "2.10.0-dev")
 set(RELEASE_NAME "Bleeding Edge")
 
 set(CMAKE_CXX_STANDARD 17)
