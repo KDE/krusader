@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-15 03:16+0000\n"
-"PO-Revision-Date: 2024-09-25 21:09+0200\n"
+"PO-Revision-Date: 2024-12-15 23:36+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.3\n"
+"X-Generator: Lokalize 24.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2601,7 +2601,7 @@ msgstr "Iniciar o traballo"
 #: app/JobMan/jobman.cpp:166
 #, kde-format
 msgid "No jobs"
-msgstr "Non hai traballos activos."
+msgstr "Non hai traballos."
 
 #: app/JobMan/jobman.cpp:173
 #, kde-format
@@ -9811,10 +9811,9 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "Non se permite acceder aos ficheiros cos arquivos %1"
 
 #: plugins/krarc/krarc.cpp:783
-#, fuzzy, kde-format
-#| msgid "Writing to %1 archives is not supported"
+#, kde-format
 msgid "Copying from archive to archive is not supported."
-msgstr "Non se permite escribir en arquivos %1"
+msgstr "Non se permite copiar entre arquivos."
 
 #: plugins/krarc/krarc.cpp:829
 #, kde-format
