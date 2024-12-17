@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-15 00:44+0000\n"
+"POT-Creation-Date: 2024-12-17 00:43+0000\n"
 "PO-Revision-Date: 2024-11-28 04:45+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -838,7 +838,7 @@ msgid "Create in:"
 msgstr "შექმნის მდებარეობა:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:673
+#: app/Panel/panelfunc.cpp:679
 #, kde-format
 msgid "New Folder"
 msgstr "ახალი საქაღალდე"
@@ -1450,7 +1450,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "მართლა გნებავთ ეს ჩანაწერი ნაგავში გადაიტანოთ?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:819
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:825
 #, kde-format
 msgid "&Trash"
 msgstr "&ნაგვის ყუთი"
@@ -1462,8 +1462,8 @@ msgid "Do you really want to delete this item?"
 msgstr "მართლა გნებავთ ამ ელემენტის წაშლა?"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:835
-#: app/Panel/panelfunc.cpp:912
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:841
+#: app/Panel/panelfunc.cpp:918
 #, kde-format
 msgid "Warning"
 msgstr "ყურადღება"
@@ -7526,128 +7526,128 @@ msgstr "მონიშნული ფაილების სინქრო�
 msgid "Create New"
 msgstr "ახლის შექმნა"
 
-#: app/Panel/panelfunc.cpp:354
+#: app/Panel/panelfunc.cpp:360
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "ბმულების ჩასწორება, მხოლოდ, ლოკალურ ფაილურ სისტემებზე შეგიძლიათ"
 
-#: app/Panel/panelfunc.cpp:365
+#: app/Panel/panelfunc.cpp:371
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "მიმდინარე ფაილი ბმული არაა, ამიტომ მას ვერ გადაამისამართებთ."
 
-#: app/Panel/panelfunc.cpp:372
+#: app/Panel/panelfunc.cpp:378
 #, kde-format
 msgid "Link Redirection"
 msgstr "ბმულის გადამისამართება"
 
-#: app/Panel/panelfunc.cpp:372
+#: app/Panel/panelfunc.cpp:378
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "გთხოვთ შეიყვანოთ ახალი ბმულის სამიზნე:"
 
-#: app/Panel/panelfunc.cpp:379
+#: app/Panel/panelfunc.cpp:385
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "ვერ წავშალე ძველი ბმული: %1"
 
-#: app/Panel/panelfunc.cpp:384
+#: app/Panel/panelfunc.cpp:390
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "ვერ შევქმენი ახალი ბმული: %1"
 
-#: app/Panel/panelfunc.cpp:392
+#: app/Panel/panelfunc.cpp:398
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "ბმულების შექმნა შეგიძლიათ, მხოლოდ, ლოკალურ ფაილურ სისტემებზე"
 
-#: app/Panel/panelfunc.cpp:400
+#: app/Panel/panelfunc.cpp:406
 #, kde-format
 msgid "New Link"
 msgstr "ახალი ბმული"
 
-#: app/Panel/panelfunc.cpp:400
+#: app/Panel/panelfunc.cpp:406
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "ახალი ბმულის შექმნა სამიზნემდე: %1"
 
-#: app/Panel/panelfunc.cpp:408 app/Panel/panelfunc.cpp:754
+#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:760
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "საქაღალდე ან ფაილი ამ სახელით უკვე არსებობს."
 
-#: app/Panel/panelfunc.cpp:419
+#: app/Panel/panelfunc.cpp:425
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "ჩავარდა ახალი სიმბმულის '%1' შექმნა სამიზნემდე: '%2'"
 
-#: app/Panel/panelfunc.cpp:422
+#: app/Panel/panelfunc.cpp:428
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "ჩავარდა ახალი ბმულის შექმნა '%1'-დან '%2'-მდე"
 
-#: app/Panel/panelfunc.cpp:439
+#: app/Panel/panelfunc.cpp:445
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "ამ ფაილის ნახვის წვდომა არ გაგაჩნიათ."
 
-#: app/Panel/panelfunc.cpp:450
+#: app/Panel/panelfunc.cpp:456
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "შეიყვანეთ URL სანახავად:"
 
-#: app/Panel/panelfunc.cpp:480 app/Panel/panelfunc.cpp:558
+#: app/Panel/panelfunc.cpp:486 app/Panel/panelfunc.cpp:564
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "თქვენ არ შეგიძლიათ, საქაღალდე ჩაასწოროთ"
 
-#: app/Panel/panelfunc.cpp:485
+#: app/Panel/panelfunc.cpp:491
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "ამ ფაილის ჩასწორების წვდომები არ გაქვთ."
 
-#: app/Panel/panelfunc.cpp:499
+#: app/Panel/panelfunc.cpp:505
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "შეიყვანეთ ფაილის სახელი ჩასასწორებლად:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:616
 #, kde-format
 msgid "Move %1 to:"
 msgstr "%1-ის გადატანა:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:616
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "%1 ფაილის გადატანა:"
 msgstr[1] "%1 ფაილის გადატანა:"
 
-#: app/Panel/panelfunc.cpp:612
+#: app/Panel/panelfunc.cpp:618
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "%1-ის გადატანა:"
 
-#: app/Panel/panelfunc.cpp:612
+#: app/Panel/panelfunc.cpp:618
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "%1 ფაილის კოპირება:"
 msgstr[1] "%1 ფაილის კოპირება:"
 
-#: app/Panel/panelfunc.cpp:678
+#: app/Panel/panelfunc.cpp:684
 #, kde-format
 msgid "Folder's name:"
 msgstr "საქაღალდის სახელი:"
 
-#: app/Panel/panelfunc.cpp:818
+#: app/Panel/panelfunc.cpp:824
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "მართლა გნებავთ ეს ჩანაწერი ნაგავში გადაიტანოთ?"
 msgstr[1] "მართლა გნებავთ ამ %1 ჩანაწერის ნაგავში გადატანა?"
 
-#: app/Panel/panelfunc.cpp:822
+#: app/Panel/panelfunc.cpp:828
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7662,44 +7662,44 @@ msgstr[1] ""
 "<qt>ნამდვილად გსურთ ამ %1 ელემენტის <b>ფიზიკურად</b> წაშლა (არა, მხოლოდ, "
 "ვირტუალური ელემენტებიდან მისი ამოღება)?</qt>"
 
-#: app/Panel/panelfunc.cpp:829
+#: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "მართლა გნებავთ ამ ელემენტის წაშლა?"
 msgstr[1] "მართლა გნებავთ %1 ელემენტის წაშლა?"
 
-#: app/Panel/panelfunc.cpp:867
+#: app/Panel/panelfunc.cpp:873
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>საქაღალდე <b>%1</b> ცარიელი არაა.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:868
+#: app/Panel/panelfunc.cpp:874
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>გამოვტოვო ეს თუ ყველა გადავიტანო ნაგვის ყუთში?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:868
+#: app/Panel/panelfunc.cpp:874
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>გამოვტოვო ეს, თუ წავშალო ყველა?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:870
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "&Skip"
 msgstr "გამო&ტოვება"
 
-#: app/Panel/panelfunc.cpp:871
+#: app/Panel/panelfunc.cpp:877
 #, kde-format
 msgid "&Trash All"
 msgstr "&ყველას გადატანა ნაგვის ყუთში"
 
-#: app/Panel/panelfunc.cpp:871
+#: app/Panel/panelfunc.cpp:877
 #, kde-format
 msgid "&Delete All"
 msgstr "ყველას &წაშლა"
 
-#: app/Panel/panelfunc.cpp:908
+#: app/Panel/panelfunc.cpp:914
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7714,17 +7714,17 @@ msgstr[1] ""
 "მართლა გნებავთ, ეს %1 ვირტუალური ელემენტი წაშალოთ (ფიზიკური ფაილები "
 "ხელუხლებელი დარჩება)?"
 
-#: app/Panel/panelfunc.cpp:944
+#: app/Panel/panelfunc.cpp:950
 #, kde-format
 msgid "Could not start %1"
 msgstr "ვერ გავუშვი %1"
 
-#: app/Panel/panelfunc.cpp:956
+#: app/Panel/panelfunc.cpp:962
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1-მა %2 ვერ გახსნა"
 
-#: app/Panel/panelfunc.cpp:1033
+#: app/Panel/panelfunc.cpp:1039
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7733,7 +7733,7 @@ msgstr ""
 "<qt><p>არქივი <b>%1.%2</b> უკვე არსებობს. გსურთ მისი თავზე გადაწერა?</"
 "p><p>წინა არქივში ყველა მონაცემი დაიკარგება.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1038
+#: app/Panel/panelfunc.cpp:1044
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7744,17 +7744,17 @@ msgstr ""
 "p><p>Zip ჩაანაცვლებს იდენტურად დასახელებულ ჩანაწერებს zip არქივში ან "
 "დაამატებს ჩანაწერებს ახალი სახელებისთვის.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1052
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "არ შეუძლია ფაილების შეფუთვა ვირტუალურ დანიშნულების ადგილზე."
 
-#: app/Panel/panelfunc.cpp:1079
+#: app/Panel/panelfunc.cpp:1085
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "%1-ის გაშლა საქაღალდეში:"
 
-#: app/Panel/panelfunc.cpp:1081
+#: app/Panel/panelfunc.cpp:1087
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

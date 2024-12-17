@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-15 00:44+0000\n"
+"POT-Creation-Date: 2024-12-17 00:43+0000\n"
 "PO-Revision-Date: 2024-12-01 11:45+0200\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -836,7 +836,7 @@ msgid "Create in:"
 msgstr "Izveidot:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:673
+#: app/Panel/panelfunc.cpp:679
 #, kde-format
 msgid "New Folder"
 msgstr "Jauna mape"
@@ -1448,7 +1448,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Vai tiešām vēlaties šo vienumu pārvietot uz atkritni?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:819
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:825
 #, kde-format
 msgid "&Trash"
 msgstr "&Atkritne"
@@ -1460,8 +1460,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Vai tiešām vēlaties dzēst šo vienumu?"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:835
-#: app/Panel/panelfunc.cpp:912
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:841
+#: app/Panel/panelfunc.cpp:918
 #, kde-format
 msgid "Warning"
 msgstr "Uzmanību"
@@ -7529,97 +7529,97 @@ msgstr "Sinhronizēt atlasītās datnes..."
 msgid "Create New"
 msgstr "Izveidot jaunu"
 
-#: app/Panel/panelfunc.cpp:354
+#: app/Panel/panelfunc.cpp:360
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Saites varat rediģēt tikai lokālajās datņu sistēmās"
 
-#: app/Panel/panelfunc.cpp:365
+#: app/Panel/panelfunc.cpp:371
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "Pašreizējā datne nav saite, tāpēc to nevar pāradresēt."
 
-#: app/Panel/panelfunc.cpp:372
+#: app/Panel/panelfunc.cpp:378
 #, kde-format
 msgid "Link Redirection"
 msgstr "Saites pāradresēšana"
 
-#: app/Panel/panelfunc.cpp:372
+#: app/Panel/panelfunc.cpp:378
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Ierakstiet jauno saites galamērķi:"
 
-#: app/Panel/panelfunc.cpp:379
+#: app/Panel/panelfunc.cpp:385
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "Nevar noņemt veco saiti: %1"
 
-#: app/Panel/panelfunc.cpp:384
+#: app/Panel/panelfunc.cpp:390
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "Neizdevās izvaidot jaunu saiti: %1"
 
-#: app/Panel/panelfunc.cpp:392
+#: app/Panel/panelfunc.cpp:398
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Saites varat izveidot tikai lokālās datņu sistēmās"
 
-#: app/Panel/panelfunc.cpp:400
+#: app/Panel/panelfunc.cpp:406
 #, kde-format
 msgid "New Link"
 msgstr "Jauna saite"
 
-#: app/Panel/panelfunc.cpp:400
+#: app/Panel/panelfunc.cpp:406
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "Izveidot jaunu saiti uz: %1"
 
-#: app/Panel/panelfunc.cpp:408 app/Panel/panelfunc.cpp:754
+#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:760
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Mape vai datne ar šādu nosaukumu jau pastāv."
 
-#: app/Panel/panelfunc.cpp:419
+#: app/Panel/panelfunc.cpp:425
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Neizdevās izveidot jaunu simbolisko saiti „%1“ uz: „%2“"
 
-#: app/Panel/panelfunc.cpp:422
+#: app/Panel/panelfunc.cpp:428
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Neizdevās izveidot jaunu saiti „%1“ uz „%2“"
 
-#: app/Panel/panelfunc.cpp:439
+#: app/Panel/panelfunc.cpp:445
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Trūkst atļauju šīs datnes apskatei."
 
-#: app/Panel/panelfunc.cpp:450
+#: app/Panel/panelfunc.cpp:456
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Ierakstiet apskatāmo URL:"
 
-#: app/Panel/panelfunc.cpp:480 app/Panel/panelfunc.cpp:558
+#: app/Panel/panelfunc.cpp:486 app/Panel/panelfunc.cpp:564
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "Nevarat rediģēt mapi"
 
-#: app/Panel/panelfunc.cpp:485
+#: app/Panel/panelfunc.cpp:491
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Trūkst atļauju datnes rediģēšanai"
 
-#: app/Panel/panelfunc.cpp:499
+#: app/Panel/panelfunc.cpp:505
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Ierakstiet datnes nosaukumu, ko rediģēt:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:616
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Pārvietot „%1“ uz:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:616
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
@@ -7627,12 +7627,12 @@ msgstr[0] "Pārvietot %1 datni uz:"
 msgstr[1] "Pārvietot %1 datnes uz:"
 msgstr[2] "Pārvietot %1 datņu uz:"
 
-#: app/Panel/panelfunc.cpp:612
+#: app/Panel/panelfunc.cpp:618
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Kopēt „%1“ uz:"
 
-#: app/Panel/panelfunc.cpp:612
+#: app/Panel/panelfunc.cpp:618
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
@@ -7640,12 +7640,12 @@ msgstr[0] "Kopēt %1 datni uz:"
 msgstr[1] "Kopēt %1 datnes uz:"
 msgstr[2] "Kopēt %1 datņu uz:"
 
-#: app/Panel/panelfunc.cpp:678
+#: app/Panel/panelfunc.cpp:684
 #, kde-format
 msgid "Folder's name:"
 msgstr "Mapes nosaukums:"
 
-#: app/Panel/panelfunc.cpp:818
+#: app/Panel/panelfunc.cpp:824
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -7653,7 +7653,7 @@ msgstr[0] "Vai tiešām vēlaties šo %1 vienumu pārvietot uz atkritni?"
 msgstr[1] "Vai tiešām vēlaties šos %1 vienumus pārvietot uz atkritni?"
 msgstr[2] "Vai tiešām vēlaties šos %1 vienumus pārvietot uz atkritni?"
 
-#: app/Panel/panelfunc.cpp:822
+#: app/Panel/panelfunc.cpp:828
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7671,7 +7671,7 @@ msgstr[2] ""
 "<qt>Vai tiešām vēlaties <b>fiziski</b> dzēst šos %1 vienumus (ne tikai tos "
 "noņemt no virtuālajiem vienumiem)?</qt>"
 
-#: app/Panel/panelfunc.cpp:829
+#: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
@@ -7679,37 +7679,37 @@ msgstr[0] "Vai tiešām vēlaties dzēst šo %1 vienumu?"
 msgstr[1] "Vai tiešām vēlaties dzēst šos %1 vienumus?"
 msgstr[2] "Vai tiešām vēlaties dzēst šos %1 vienumus?"
 
-#: app/Panel/panelfunc.cpp:867
+#: app/Panel/panelfunc.cpp:873
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Mape <b>%1</b> nav tukša.</p>"
 
-#: app/Panel/panelfunc.cpp:868
+#: app/Panel/panelfunc.cpp:874
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Izlaist to vai izmest visu atkritnē?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:868
+#: app/Panel/panelfunc.cpp:874
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Izlaist to vai dzēst visu?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:870
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "&Skip"
 msgstr "Izlai&st"
 
-#: app/Panel/panelfunc.cpp:871
+#: app/Panel/panelfunc.cpp:877
 #, kde-format
 msgid "&Trash All"
 msgstr "&Izmest visu atkritnē"
 
-#: app/Panel/panelfunc.cpp:871
+#: app/Panel/panelfunc.cpp:877
 #, kde-format
 msgid "&Delete All"
 msgstr "&Dzēst visu"
 
-#: app/Panel/panelfunc.cpp:908
+#: app/Panel/panelfunc.cpp:914
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7726,17 +7726,17 @@ msgstr[2] ""
 "Vai vēlaties dzēst šos %1 virtuālos vienumus (fiziski datnes paliks "
 "nemanītas)?"
 
-#: app/Panel/panelfunc.cpp:944
+#: app/Panel/panelfunc.cpp:950
 #, kde-format
 msgid "Could not start %1"
 msgstr "Nevarēja palaist „%1“"
 
-#: app/Panel/panelfunc.cpp:956
+#: app/Panel/panelfunc.cpp:962
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "„%1“ nevar atvērt „%2“"
 
-#: app/Panel/panelfunc.cpp:1033
+#: app/Panel/panelfunc.cpp:1039
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7745,7 +7745,7 @@ msgstr ""
 "<qt><p>Arhīvs <b>%1.%2</b> jau pastāv. Vai vēlaties to pārrakstīt?</"
 "p><p>Pārrakstot visi iepriekšējā arhīvā esošie dati būs zaudēti.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1038
+#: app/Panel/panelfunc.cpp:1044
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7756,17 +7756,17 @@ msgstr ""
 "p><p>„Zip“ aizstās vienumus ar identisku nosaukumu „zip“ arhīvā un pievienos "
 "ierakstus ar jauniem nosaukumiem.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1052
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Nevar pakot datnes virtuālā galamērķī"
 
-#: app/Panel/panelfunc.cpp:1079
+#: app/Panel/panelfunc.cpp:1085
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Atpakot „%1“ uz:"
 
-#: app/Panel/panelfunc.cpp:1081
+#: app/Panel/panelfunc.cpp:1087
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-15 00:44+0000\n"
+"POT-Creation-Date: 2024-12-17 00:43+0000\n"
 "PO-Revision-Date: 2023-06-18 23:40+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -853,7 +853,7 @@ msgid "Create in:"
 msgstr "Erstellen in:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:673
+#: app/Panel/panelfunc.cpp:679
 #, kde-format
 msgid "New Folder"
 msgstr "Neuer Ordner"
@@ -1470,7 +1470,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Möchten Sie diesen Eintrag wirklich in den Papierkorb verschieben?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:819
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:825
 #, kde-format
 msgid "&Trash"
 msgstr "In den &Papierkorb verschieben"
@@ -1482,8 +1482,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Möchten Sie diesen Eintrag wirklich löschen?"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:835
-#: app/Panel/panelfunc.cpp:912
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:841
+#: app/Panel/panelfunc.cpp:918
 #, kde-format
 msgid "Warning"
 msgstr "Warnung"
@@ -7584,126 +7584,126 @@ msgstr "Ausgewählte Dateien abgleichen ..."
 msgid "Create New"
 msgstr "Neu erstellen"
 
-#: app/Panel/panelfunc.cpp:354
+#: app/Panel/panelfunc.cpp:360
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Verknüpfungen können nur auf lokalen Dateisystemen geändert werden"
 
-#: app/Panel/panelfunc.cpp:365
+#: app/Panel/panelfunc.cpp:371
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr ""
 "Die aktuelle Datei ist keine Verknüpfung, daher kann sie nicht umgelenkt "
 "werden."
 
-#: app/Panel/panelfunc.cpp:372
+#: app/Panel/panelfunc.cpp:378
 #, kde-format
 msgid "Link Redirection"
 msgstr "Verknüpfungsumleitung"
 
-#: app/Panel/panelfunc.cpp:372
+#: app/Panel/panelfunc.cpp:378
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Das neue Ziel der Verknüpfung eingeben:"
 
-#: app/Panel/panelfunc.cpp:379
+#: app/Panel/panelfunc.cpp:385
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "Alte Verknüpfung kann nicht entfernt werden: %1"
 
-#: app/Panel/panelfunc.cpp:384
+#: app/Panel/panelfunc.cpp:390
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "Erstellen der neuen Verknüpfung fehlgeschlagen: %1"
 
-#: app/Panel/panelfunc.cpp:392
+#: app/Panel/panelfunc.cpp:398
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Verknüpfungen können nur auf lokalen Dateisystemen angelegt werden"
 
-#: app/Panel/panelfunc.cpp:400
+#: app/Panel/panelfunc.cpp:406
 #, kde-format
 msgid "New Link"
 msgstr "Neue Verknüpfung"
 
-#: app/Panel/panelfunc.cpp:400
+#: app/Panel/panelfunc.cpp:406
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "Neue Verknüpfung mit: %1"
 
-#: app/Panel/panelfunc.cpp:408 app/Panel/panelfunc.cpp:754
+#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:760
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Eine Datei oder ein Ordner mit diesem Namen ist bereits vorhanden."
 
-#: app/Panel/panelfunc.cpp:419
+#: app/Panel/panelfunc.cpp:425
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr ""
 "Das Erstellen der symbolischen Verknüpfung „%1“ zu „%2“ ist fehlgeschlagen."
 
-#: app/Panel/panelfunc.cpp:422
+#: app/Panel/panelfunc.cpp:428
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr ""
 "Das Erstellen der neuen Verknüpfung von „%1“ zu „%2“ ist fehlgeschlagen: "
 
-#: app/Panel/panelfunc.cpp:439
+#: app/Panel/panelfunc.cpp:445
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Sie verfügen nicht über die nötigen Rechte, um diese Datei anzuzeigen."
 
-#: app/Panel/panelfunc.cpp:450
+#: app/Panel/panelfunc.cpp:456
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Anzuzeigende Adresse eingeben:"
 
-#: app/Panel/panelfunc.cpp:480 app/Panel/panelfunc.cpp:558
+#: app/Panel/panelfunc.cpp:486 app/Panel/panelfunc.cpp:564
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "Ordner können nicht bearbeitet werden"
 
-#: app/Panel/panelfunc.cpp:485
+#: app/Panel/panelfunc.cpp:491
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr ""
 "Sie verfügen nicht über die nötigen Rechte, um diese Datei zu editieren."
 
-#: app/Panel/panelfunc.cpp:499
+#: app/Panel/panelfunc.cpp:505
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Geben Sie den Namen für die zu bearbeitenden Datei ein:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:616
 #, kde-format
 msgid "Move %1 to:"
 msgstr "%1 verschieben nach:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:616
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "Eine Datei verschieben nach:"
 msgstr[1] "%1 Dateien verschieben nach:"
 
-#: app/Panel/panelfunc.cpp:612
+#: app/Panel/panelfunc.cpp:618
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "%1 kopieren nach:"
 
-#: app/Panel/panelfunc.cpp:612
+#: app/Panel/panelfunc.cpp:618
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "Eine Datei kopieren nach:"
 msgstr[1] "%1 Dateien kopieren nach:"
 
-#: app/Panel/panelfunc.cpp:678
+#: app/Panel/panelfunc.cpp:684
 #, kde-format
 msgid "Folder's name:"
 msgstr "Ordnername:"
 
-#: app/Panel/panelfunc.cpp:818
+#: app/Panel/panelfunc.cpp:824
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -7711,7 +7711,7 @@ msgstr[0] "Möchten Sie diesen Eintrag wirklich in den Papierkorb verschieben?"
 msgstr[1] ""
 "Möchten Sie diese %1 Einträge wirklich in den Papierkorb verschieben?"
 
-#: app/Panel/panelfunc.cpp:822
+#: app/Panel/panelfunc.cpp:828
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7726,44 +7726,44 @@ msgstr[1] ""
 "<qt>Möchten Sie diese %1 Einträge wirklich physikalisch löschen (es werden "
 "nicht nur die virtuellen Einträge entfernt)?</qt>"
 
-#: app/Panel/panelfunc.cpp:829
+#: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Möchten Sie diesen Eintrag wirklich löschen?"
 msgstr[1] "Möchten Sie diese %1 Einträge wirklich löschen?"
 
-#: app/Panel/panelfunc.cpp:867
+#: app/Panel/panelfunc.cpp:873
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Der Ordner <b>%1</b> ist nicht leer.</p>"
 
-#: app/Panel/panelfunc.cpp:868
+#: app/Panel/panelfunc.cpp:874
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Dies überspringen oder alle löschen?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:868
+#: app/Panel/panelfunc.cpp:874
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Möchten Sie dies überspringen oder alle löschen?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:870
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "&Skip"
 msgstr "Ü&berspringen"
 
-#: app/Panel/panelfunc.cpp:871
+#: app/Panel/panelfunc.cpp:877
 #, kde-format
 msgid "&Trash All"
 msgstr "Alle in den &Papierkorb verschieben"
 
-#: app/Panel/panelfunc.cpp:871
+#: app/Panel/panelfunc.cpp:877
 #, kde-format
 msgid "&Delete All"
 msgstr "&Alle löschen"
 
-#: app/Panel/panelfunc.cpp:908
+#: app/Panel/panelfunc.cpp:914
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7778,17 +7778,17 @@ msgstr[1] ""
 "Möchten Sie diese %1 Einträge wirklich löschen (die physischen Dateien "
 "werden beibehalten)?"
 
-#: app/Panel/panelfunc.cpp:944
+#: app/Panel/panelfunc.cpp:950
 #, kde-format
 msgid "Could not start %1"
 msgstr "%1 kann nicht gestartet werden"
 
-#: app/Panel/panelfunc.cpp:956
+#: app/Panel/panelfunc.cpp:962
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 kann %2 nicht öffnen"
 
-#: app/Panel/panelfunc.cpp:1033
+#: app/Panel/panelfunc.cpp:1039
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7798,7 +7798,7 @@ msgstr ""
 "überschreiben?</p><p>Dabei gehen sämtliche Daten im existierenden Archiv "
 "verloren.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1038
+#: app/Panel/panelfunc.cpp:1044
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7809,17 +7809,17 @@ msgstr ""
 "überschreiben?</p><p>Zip ersetzt dabei identische Einträge und fügt neue "
 "Einträge dem Archiv hinzu.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1052
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Auf dem virtuellen Dateisystem kann kein Archiv erstellt werden."
 
-#: app/Panel/panelfunc.cpp:1079
+#: app/Panel/panelfunc.cpp:1085
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "%1 entpacken nach:"
 
-#: app/Panel/panelfunc.cpp:1081
+#: app/Panel/panelfunc.cpp:1087
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

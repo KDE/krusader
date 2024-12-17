@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-15 00:44+0000\n"
+"POT-Creation-Date: 2024-12-17 00:43+0000\n"
 "PO-Revision-Date: 2024-05-30 22:41+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -844,7 +844,7 @@ msgid "Create in:"
 msgstr "Krei en:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:673
+#: app/Panel/panelfunc.cpp:679
 #, kde-format
 msgid "New Folder"
 msgstr "Nova dosierujo"
@@ -1455,7 +1455,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Ĉu vi vere volas movi ĉi tiun objekton al la rubujo?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:819
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:825
 #, kde-format
 msgid "&Trash"
 msgstr "&Rubo"
@@ -1467,8 +1467,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Ĉu vi vere volas forigi ĉi tiun eron?"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:835
-#: app/Panel/panelfunc.cpp:912
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:841
+#: app/Panel/panelfunc.cpp:918
 #, kde-format
 msgid "Warning"
 msgstr "Averto"
@@ -7516,128 +7516,128 @@ msgstr "Sinkronigi elektitajn dosierojn..."
 msgid "Create New"
 msgstr "Krei novan"
 
-#: app/Panel/panelfunc.cpp:354
+#: app/Panel/panelfunc.cpp:360
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Vi povas redakti ligilojn nur en lokaj dosiersistemoj"
 
-#: app/Panel/panelfunc.cpp:365
+#: app/Panel/panelfunc.cpp:371
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "La nuna dosiero ne estas ligilo, do ĝi ne povas esti alidirektita."
 
-#: app/Panel/panelfunc.cpp:372
+#: app/Panel/panelfunc.cpp:378
 #, kde-format
 msgid "Link Redirection"
 msgstr "Ligo Redirekto"
 
-#: app/Panel/panelfunc.cpp:372
+#: app/Panel/panelfunc.cpp:378
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Bonvolu enigi la novan ligilon:"
 
-#: app/Panel/panelfunc.cpp:379
+#: app/Panel/panelfunc.cpp:385
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "Ne povas forigi malnovan ligilon: %1"
 
-#: app/Panel/panelfunc.cpp:384
+#: app/Panel/panelfunc.cpp:390
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "Malsukcesis krei novan ligilon: %1"
 
-#: app/Panel/panelfunc.cpp:392
+#: app/Panel/panelfunc.cpp:398
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Vi povas krei ligilojn nur sur lokaj dosiersistemoj"
 
-#: app/Panel/panelfunc.cpp:400
+#: app/Panel/panelfunc.cpp:406
 #, kde-format
 msgid "New Link"
 msgstr "Nova Ligo"
 
-#: app/Panel/panelfunc.cpp:400
+#: app/Panel/panelfunc.cpp:406
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "Krei novan ligilon al: %1"
 
-#: app/Panel/panelfunc.cpp:408 app/Panel/panelfunc.cpp:754
+#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:760
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Dosierujo aŭ dosiero kun ĉi tiu nomo jam ekzistas."
 
-#: app/Panel/panelfunc.cpp:419
+#: app/Panel/panelfunc.cpp:425
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Malsukcesis krei novan simbolligon '%1' al: '%2'"
 
-#: app/Panel/panelfunc.cpp:422
+#: app/Panel/panelfunc.cpp:428
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Malsukcesis krei novan ligilon '%1' al '%2'"
 
-#: app/Panel/panelfunc.cpp:439
+#: app/Panel/panelfunc.cpp:445
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Neniuj permesoj por vidi ĉi tiun dosieron."
 
-#: app/Panel/panelfunc.cpp:450
+#: app/Panel/panelfunc.cpp:456
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Enigu URL por vidi:"
 
-#: app/Panel/panelfunc.cpp:480 app/Panel/panelfunc.cpp:558
+#: app/Panel/panelfunc.cpp:486 app/Panel/panelfunc.cpp:564
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "Vi ne povas redakti dosierujon"
 
-#: app/Panel/panelfunc.cpp:485
+#: app/Panel/panelfunc.cpp:491
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Neniuj permesoj redakti ĉi tiun dosieron."
 
-#: app/Panel/panelfunc.cpp:499
+#: app/Panel/panelfunc.cpp:505
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Enigu la dosiernomon por redakti:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:616
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Movi %1 al:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:616
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "Movi %1 dosieron al:"
 msgstr[1] "Movi %1 dosierojn al:"
 
-#: app/Panel/panelfunc.cpp:612
+#: app/Panel/panelfunc.cpp:618
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Kopii %1 al:"
 
-#: app/Panel/panelfunc.cpp:612
+#: app/Panel/panelfunc.cpp:618
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "Kopii %1 dosieron al:"
 msgstr[1] "Kopii %1 dosierojn al:"
 
-#: app/Panel/panelfunc.cpp:678
+#: app/Panel/panelfunc.cpp:684
 #, kde-format
 msgid "Folder's name:"
 msgstr "Nomo de dosierujo:"
 
-#: app/Panel/panelfunc.cpp:818
+#: app/Panel/panelfunc.cpp:824
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Ĉu vi vere volas movi tiun eron al rubujo?"
 msgstr[1] "Ĉu vi vere volas movi tiujn %1 erojn al rubujo?"
 
-#: app/Panel/panelfunc.cpp:822
+#: app/Panel/panelfunc.cpp:828
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7652,44 +7652,44 @@ msgstr[1] ""
 "<qt>Ĉu vi vere volas forigi tiujn %1 erojn <b>fizike</b> (ne nur forigante "
 "ilin de la virtualaj eroj)?</qt>"
 
-#: app/Panel/panelfunc.cpp:829
+#: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Ĉu vi vere volas forigi tiun eron?"
 msgstr[1] "Ĉu vi vere volas forigi tiujn %1 erojn?"
 
-#: app/Panel/panelfunc.cpp:867
+#: app/Panel/panelfunc.cpp:873
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Dosierujo <b>%1</b> ne estas malplena.</p>"
 
-#: app/Panel/panelfunc.cpp:868
+#: app/Panel/panelfunc.cpp:874
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Presi ĉi tiun aŭ forĵeti ĉiujn?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:868
+#: app/Panel/panelfunc.cpp:874
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Presi ĉi tiun aŭ forigi ĉiujn?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:870
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "&Skip"
 msgstr "Preterla&si"
 
-#: app/Panel/panelfunc.cpp:871
+#: app/Panel/panelfunc.cpp:877
 #, kde-format
 msgid "&Trash All"
 msgstr "En&rubujigi Ĉion"
 
-#: app/Panel/panelfunc.cpp:871
+#: app/Panel/panelfunc.cpp:877
 #, kde-format
 msgid "&Delete All"
 msgstr "&Forigi Ĉion"
 
-#: app/Panel/panelfunc.cpp:908
+#: app/Panel/panelfunc.cpp:914
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7704,17 +7704,17 @@ msgstr[1] ""
 "Ĉu vi vere volas forigi tiujn %1 virtualajn erjon (fizikaj dosieroj restas "
 "netuŝitaj)?"
 
-#: app/Panel/panelfunc.cpp:944
+#: app/Panel/panelfunc.cpp:950
 #, kde-format
 msgid "Could not start %1"
 msgstr "Ne eblis komenci %1"
 
-#: app/Panel/panelfunc.cpp:956
+#: app/Panel/panelfunc.cpp:962
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 ne povas malfermi %2"
 
-#: app/Panel/panelfunc.cpp:1033
+#: app/Panel/panelfunc.cpp:1039
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7723,7 +7723,7 @@ msgstr ""
 "<qt><p>La arkivo <b>%1.%2</b> jam ekzistas. Ĉu vi volas anstataŭigi ĝin?</"
 "p><p>Ĉiuj datumoj en la antaŭa arkivo estos perditaj.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1038
+#: app/Panel/panelfunc.cpp:1044
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7734,17 +7734,17 @@ msgstr ""
 "p><p>Zip anstataŭigos idente nomitajn enskribojn en la zip-arkivo aŭ aldonos "
 "enskribojn por novaj nomoj.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1052
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Ne povas paki dosierojn sur virtuala celo."
 
-#: app/Panel/panelfunc.cpp:1079
+#: app/Panel/panelfunc.cpp:1085
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Malpaki %1 al:"
 
-#: app/Panel/panelfunc.cpp:1081
+#: app/Panel/panelfunc.cpp:1087
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-15 00:44+0000\n"
+"POT-Creation-Date: 2024-12-17 00:43+0000\n"
 "PO-Revision-Date: 2024-12-14 01:44+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -837,7 +837,7 @@ msgid "Create in:"
 msgstr "इत्यत्र रचयन्तु : १."
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:673
+#: app/Panel/panelfunc.cpp:679
 #, kde-format
 msgid "New Folder"
 msgstr "नवीनं पुटम्"
@@ -1446,7 +1446,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "किं भवन्तः वास्तवमेव एतत् द्रव्यं कचरे स्थानान्तरयितुम् इच्छन्ति?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:819
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:825
 #, kde-format
 msgid "&Trash"
 msgstr "&तुच्छद्रव्य"
@@ -1458,8 +1458,8 @@ msgid "Do you really want to delete this item?"
 msgstr "किं भवान् वास्तवमेव एतत् द्रव्यं विलोपयितुम् इच्छति?"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:835
-#: app/Panel/panelfunc.cpp:912
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:841
+#: app/Panel/panelfunc.cpp:918
 #, kde-format
 msgid "Warning"
 msgstr "चेतवानी"
@@ -7469,128 +7469,128 @@ msgstr "चयनितसञ्चिकानां समन्वयनम�
 msgid "Create New"
 msgstr "New रचयतु"
 
-#: app/Panel/panelfunc.cpp:354
+#: app/Panel/panelfunc.cpp:360
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "केवलं स्थानीयसञ्चिकातन्त्रेषु एव लिङ्क् सम्पादयितुं शक्नुवन्ति"
 
-#: app/Panel/panelfunc.cpp:365
+#: app/Panel/panelfunc.cpp:371
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "वर्तमानसञ्चिका लिङ्क् नास्ति, अतः पुनः निर्दिशितुं न शक्यते ।"
 
-#: app/Panel/panelfunc.cpp:372
+#: app/Panel/panelfunc.cpp:378
 #, kde-format
 msgid "Link Redirection"
 msgstr "लिङ्क पुनर्निर्देशनम्"
 
-#: app/Panel/panelfunc.cpp:372
+#: app/Panel/panelfunc.cpp:378
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "कृपया नूतनं लिङ्कं गन्तव्यस्थानं प्रविशन्तु:"
 
-#: app/Panel/panelfunc.cpp:379
+#: app/Panel/panelfunc.cpp:385
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "पुरातनं लिङ्कं निष्कासयितुं न शक्यते: %1"
 
-#: app/Panel/panelfunc.cpp:384
+#: app/Panel/panelfunc.cpp:390
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "नूतनं लिङ्क् निर्मातुं असफलम्: %1"
 
-#: app/Panel/panelfunc.cpp:392
+#: app/Panel/panelfunc.cpp:398
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "भवान् केवलं स्थानीयसञ्चिकातन्त्रेषु एव लिङ्क् निर्मातुम् अर्हति"
 
-#: app/Panel/panelfunc.cpp:400
+#: app/Panel/panelfunc.cpp:406
 #, kde-format
 msgid "New Link"
 msgstr "New Link"
 
-#: app/Panel/panelfunc.cpp:400
+#: app/Panel/panelfunc.cpp:406
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "नूतनं लिङ्कं रचयन्तु: %1"
 
-#: app/Panel/panelfunc.cpp:408 app/Panel/panelfunc.cpp:754
+#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:760
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "एतत्नाम्ना पुटं वा सञ्चिका वा पूर्वमेव विद्यते ।"
 
-#: app/Panel/panelfunc.cpp:419
+#: app/Panel/panelfunc.cpp:425
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "'%1' इत्यस्य नूतनं प्रतीकसम्बद्धं निर्मातुं असफलम् यत्: '%2' इति ।"
 
-#: app/Panel/panelfunc.cpp:422
+#: app/Panel/panelfunc.cpp:428
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "'%1' तः '%2' पर्यन्तं नूतनं लिङ्कं निर्मातुं असफलम् ।"
 
-#: app/Panel/panelfunc.cpp:439
+#: app/Panel/panelfunc.cpp:445
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "एतां सञ्चिकां द्रष्टुं अनुमतिः नास्ति ।"
 
-#: app/Panel/panelfunc.cpp:450
+#: app/Panel/panelfunc.cpp:456
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "द्रष्टुं URL प्रविष्टं कुर्वन्तु:"
 
-#: app/Panel/panelfunc.cpp:480 app/Panel/panelfunc.cpp:558
+#: app/Panel/panelfunc.cpp:486 app/Panel/panelfunc.cpp:564
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "भवन्तः पुटं सम्पादयितुं न शक्नुवन्ति"
 
-#: app/Panel/panelfunc.cpp:485
+#: app/Panel/panelfunc.cpp:491
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "एतां सञ्चिकां सम्पादयितुं अनुमतिः नास्ति ।"
 
-#: app/Panel/panelfunc.cpp:499
+#: app/Panel/panelfunc.cpp:505
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "सम्पादयितुं सञ्चिकानाम प्रविष्टं कुर्वन्तु:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:616
 #, kde-format
 msgid "Move %1 to:"
 msgstr "%1 इत्यस्य स्थानान्तरणं कुर्वन्तु:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:616
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "%1 सञ्चिकां अत्र स्थानान्तरयन्तु:"
 msgstr[1] "%1 सञ्चिकाः अत्र स्थानान्तरयन्तु:"
 
-#: app/Panel/panelfunc.cpp:612
+#: app/Panel/panelfunc.cpp:618
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "%1 प्रतिलिख्य:"
 
-#: app/Panel/panelfunc.cpp:612
+#: app/Panel/panelfunc.cpp:618
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "%1 सञ्चिकां प्रतिलिख्य:"
 msgstr[1] "%1 सञ्चिकाः प्रतिलिख्यताम् :"
 
-#: app/Panel/panelfunc.cpp:678
+#: app/Panel/panelfunc.cpp:684
 #, kde-format
 msgid "Folder's name:"
 msgstr "पुटस्य नाम : १."
 
-#: app/Panel/panelfunc.cpp:818
+#: app/Panel/panelfunc.cpp:824
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "किं भवन्तः वास्तवमेव एतत् द्रव्यं कचरे स्थानान्तरयितुम् इच्छन्ति?"
 msgstr[1] "किं भवान् वास्तवमेव एतानि %1 वस्तूनि कचरे स्थानान्तरयितुम् इच्छति?"
 
-#: app/Panel/panelfunc.cpp:822
+#: app/Panel/panelfunc.cpp:828
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7605,44 +7605,44 @@ msgstr[1] ""
 "<qt>किं भवान् वास्तवमेव एतानि %1 वस्तूनि <b>भौतिकरूपेण</b> विलोपयितुम् इच्छति (न केवलं "
 "आभासीवस्तूनाम् अपसारयितुं)?</qt>"
 
-#: app/Panel/panelfunc.cpp:829
+#: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "किं भवान् वास्तवमेव एतत् द्रव्यं विलोपयितुम् इच्छति?"
 msgstr[1] "किं भवान् वास्तवमेव एतानि %1 वस्तूनि विलोपयितुम् इच्छति?"
 
-#: app/Panel/panelfunc.cpp:867
+#: app/Panel/panelfunc.cpp:873
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p><b>%1</b> पुटं रिक्तं नास्ति ।</p>"
 
-#: app/Panel/panelfunc.cpp:868
+#: app/Panel/panelfunc.cpp:874
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>एतत् एकं त्यजतु वा सर्वं कचरान् पातयतु वा?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:868
+#: app/Panel/panelfunc.cpp:874
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>एतत् एकं त्यजतु वा सर्वं विलोपयतु वा?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:870
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "&Skip"
 msgstr "&क्षिपते"
 
-#: app/Panel/panelfunc.cpp:871
+#: app/Panel/panelfunc.cpp:877
 #, kde-format
 msgid "&Trash All"
 msgstr "&कचरा सर्वम्"
 
-#: app/Panel/panelfunc.cpp:871
+#: app/Panel/panelfunc.cpp:877
 #, kde-format
 msgid "&Delete All"
 msgstr "&सर्वं विलोपयतु"
 
-#: app/Panel/panelfunc.cpp:908
+#: app/Panel/panelfunc.cpp:914
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7656,17 +7656,17 @@ msgstr[1] ""
 "किं भवान् वास्तवमेव एतानि %1 आभासीवस्तूनि विलोपयितुम् इच्छति (भौतिकसञ्चिकाः अस्पृष्टाः "
 "तिष्ठन्ति)?"
 
-#: app/Panel/panelfunc.cpp:944
+#: app/Panel/panelfunc.cpp:950
 #, kde-format
 msgid "Could not start %1"
 msgstr "%1 आरभ्यतुं न शक्तवान्"
 
-#: app/Panel/panelfunc.cpp:956
+#: app/Panel/panelfunc.cpp:962
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 %2 उद्घाटयितुं न शक्नोति"
 
-#: app/Panel/panelfunc.cpp:1033
+#: app/Panel/panelfunc.cpp:1039
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7675,7 +7675,7 @@ msgstr ""
 "<qt><p><b>%1.%2</b> इति संग्रहः पूर्वमेव अस्ति । किं भवन्तः तस्य अधिलेखनं कर्तुम् इच्छन्ति ?"
 "</p><p> पूर्वसंग्रहे विद्यमानाः सर्वे दत्तांशाः नष्टाः भविष्यन्ति ।</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1038
+#: app/Panel/panelfunc.cpp:1044
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7686,17 +7686,17 @@ msgstr ""
 "</p><p> जिप् जिप् आर्काइव् मध्ये समाननामयुक्तानि प्रविष्टयः प्रतिस्थापयिष्यति अथवा "
 "नूतननामानां कृते प्रविष्टयः योजयिष्यति ।</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1052
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "आभासीगन्तव्यस्थाने सञ्चिकाः पैक् कर्तुं न शक्यते ।"
 
-#: app/Panel/panelfunc.cpp:1079
+#: app/Panel/panelfunc.cpp:1085
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "%1 इत्येतत् अनपैक् कुर्वन्तु:"
 
-#: app/Panel/panelfunc.cpp:1081
+#: app/Panel/panelfunc.cpp:1087
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
