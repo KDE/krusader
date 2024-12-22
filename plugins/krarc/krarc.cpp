@@ -239,7 +239,7 @@ KIO::WorkerResult kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
     }
 
     if (putCmd.isEmpty()) {
-        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Creating folders is not supported with %1 archives", arcType));
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Creating folders is not supported with %1 archives.", arcType));
     }
 
     const QString arcFilePath = getPath(arcFile->url());
@@ -317,7 +317,7 @@ KIO::WorkerResult kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::
     }
 
     if (putCmd.isEmpty()) {
-        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Writing to %1 archives is not supported", arcType));
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Writing to %1 archives is not supported.", arcType));
     }
     if (!overwrite && findFileEntry(url)) {
         return WorkerResult::fail(ERR_FILE_ALREADY_EXIST, getPath(url));
@@ -424,7 +424,7 @@ KIO::WorkerResult kio_krarcProtocol::get(const QUrl &url, int tries)
     }
 
     if (getCmd.isEmpty()) {
-        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Retrieving data from %1 archives is not supported", arcType));
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Retrieving data from %1 archives is not supported.", arcType));
     }
     UDSEntry *entry = findFileEntry(url);
     if (!entry) {
@@ -623,7 +623,7 @@ KIO::WorkerResult kio_krarcProtocol::del(QUrl const &url, bool isFile)
     }
 
     if (delCmd.isEmpty()) {
-        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Deleting files from %1 archives is not supported", arcType));
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Deleting files from %1 archives is not supported.", arcType));
     }
     if (!findFileEntry(url)) {
         if ((arcType != "arj" && arcType != "lha") || isFile) {
@@ -667,7 +667,7 @@ KIO::WorkerResult kio_krarcProtocol::stat(const QUrl &url)
     }
 
     if (listCmd.isEmpty()) {
-        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Accessing files is not supported with %1 archives", arcType));
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Accessing files is not supported with %1 archives.", arcType));
     }
 
     QString path = getPath(url, QUrl::StripTrailingSlash);
@@ -826,7 +826,7 @@ KIO::WorkerResult kio_krarcProtocol::listDir(const QUrl &url)
         return setArcFileResult;
     }
     if (listCmd.isEmpty()) {
-        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Listing folders is not supported for %1 archives", arcType));
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Listing folders is not supported for %1 archives.", arcType));
     }
     QString path = getPath(url);
     if (path.right(1) != DIR_SEPARATOR)
