@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-17 00:43+0000\n"
-"PO-Revision-Date: 2024-12-25 10:26+0200\n"
+"POT-Creation-Date: 2024-12-30 00:45+0000\n"
+"PO-Revision-Date: 2024-12-29 18:46+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
-"n % 10 == 0) ? 2 : 3));\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
+"2 : 3);\n"
 "X-Generator: Lokalize 24.12.0\n"
 
 #, kde-format
@@ -315,7 +315,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:278
 #, kde-format
 msgid "Category:"
-msgstr ""
+msgstr "קטגוריה:"
 
 #. i18n: ectx: property (whatsThis), widget (QToolButton, ButtonAddPlaceholder)
 #: app/ActionMan/actionproperty.ui:300 app/GUI/kcmdline.cpp:183
@@ -333,19 +333,19 @@ msgstr "הוס&פה"
 #: app/ActionMan/actionproperty.ui:329
 #, kde-format
 msgid "Workdir:"
-msgstr ""
+msgstr "תיקיית עבודה:"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelShortcut)
 #: app/ActionMan/actionproperty.ui:357
 #, kde-format
 msgid "Default shortcut:"
-msgstr ""
+msgstr "מקשי קיצור כברירת מחדל:"
 
 #. i18n: ectx: property (whatsThis), widget (KKeySequenceWidget, KeyButtonShortcut)
 #: app/ActionMan/actionproperty.ui:383
 #, kde-format
 msgid "Set a default keyboard shortcut."
-msgstr ""
+msgstr "הגדרת מקשי קיצור כברירת מחדל."
 
 #. i18n: ectx: property (text), widget (KKeySequenceWidget, KeyButtonShortcut)
 #: app/ActionMan/actionproperty.ui:386
@@ -370,19 +370,19 @@ msgstr "פעילה"
 #: app/ActionMan/actionproperty.ui:414
 #, kde-format
 msgid "Execution Mode"
-msgstr ""
+msgstr "מצב הפעלה"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioCollectOutput)
 #: app/ActionMan/actionproperty.ui:420
 #, kde-format
 msgid "Collect the output of the executed program."
-msgstr ""
+msgstr "איסוף פלט התוכנית שהופעלה."
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioCollectOutput)
 #: app/ActionMan/actionproperty.ui:423
 #, kde-format
 msgid "Collect output"
-msgstr ""
+msgstr "איסוף פלט"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, chkSeparateStdError)
 #: app/ActionMan/actionproperty.ui:433
@@ -394,7 +394,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:436
 #, kde-format
 msgid "Separate standard error"
-msgstr ""
+msgstr "הפרדת השגיאה התקנית/stderr"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioNormal)
 #: app/ActionMan/actionproperty.ui:443
@@ -406,7 +406,7 @@ msgstr "&רגיל"
 #: app/ActionMan/actionproperty.ui:453
 #, kde-format
 msgid "Run the command in a terminal."
-msgstr ""
+msgstr "הרצת הפקודה במסוף."
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioTerminal)
 #: app/ActionMan/actionproperty.ui:456
@@ -418,13 +418,13 @@ msgstr "הרצה במסוף"
 #: app/ActionMan/actionproperty.ui:463
 #, kde-format
 msgid "Run the command in the embedded terminal emulator."
-msgstr ""
+msgstr "הרצת הפקודה במדמה המסוף המובנה."
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioTE)
 #: app/ActionMan/actionproperty.ui:466
 #, kde-format
 msgid "Run in the embedded terminal emulator"
-msgstr ""
+msgstr "הרצה במדמה המסוף המובנה"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabAdv)
 #: app/ActionMan/actionproperty.ui:477
@@ -436,7 +436,7 @@ msgstr "מאפיינים מתקדמים"
 #: app/ActionMan/actionproperty.ui:489
 #, kde-format
 msgid "The Useraction is only available for"
-msgstr ""
+msgstr "פעולת המשתמש זמינה רק עבור"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabProt)
 #: app/ActionMan/actionproperty.ui:499
@@ -1572,7 +1572,7 @@ msgstr "התקרבות"
 #: app/DiskUsage/dufilelight.cpp:81 app/Panel/viewactions.cpp:21
 #, kde-format
 msgid "Zoom Out"
-msgstr ""
+msgstr "התרחקות"
 
 #: app/DiskUsage/dufilelight.cpp:84
 #, kde-format
@@ -1582,7 +1582,7 @@ msgstr "קשת בענן"
 #: app/DiskUsage/dufilelight.cpp:85
 #, kde-format
 msgid "High Contrast"
-msgstr ""
+msgstr "ניגודיות"
 
 #: app/DiskUsage/dufilelight.cpp:86
 #, kde-format
@@ -1597,32 +1597,32 @@ msgstr "סכמה"
 #: app/DiskUsage/dufilelight.cpp:91
 #, kde-format
 msgid "Increase contrast"
-msgstr ""
+msgstr "הגברת הניגודיות"
 
 #: app/DiskUsage/dufilelight.cpp:92
 #, kde-format
 msgid "Decrease contrast"
-msgstr ""
+msgstr "החלשת הניגודיות"
 
 #: app/DiskUsage/dufilelight.cpp:94
 #, kde-format
 msgid "Use anti-aliasing"
-msgstr ""
+msgstr "להשתמש בהחלקת קצוות"
 
 #: app/DiskUsage/dufilelight.cpp:98
 #, kde-format
 msgid "Show small files"
-msgstr ""
+msgstr "הצגת קבצים קטנים"
 
 #: app/DiskUsage/dufilelight.cpp:102
 #, kde-format
 msgid "Vary label font sizes"
-msgstr ""
+msgstr "גודלי גופנים תוויות משתנים"
 
 #: app/DiskUsage/dufilelight.cpp:106 app/DiskUsage/dufilelight.cpp:176
 #, kde-format
 msgid "Minimum font size"
-msgstr ""
+msgstr "גודל גופן מזערי"
 
 #: app/DiskUsage/dufilelight.cpp:176
 #, kde-format
@@ -1632,7 +1632,7 @@ msgstr ""
 #: app/DiskUsage/dulines.cpp:183
 #, kde-format
 msgid "Line View"
-msgstr ""
+msgstr "תצוגת שורה"
 
 #: app/DiskUsage/dulines.cpp:184 app/DiskUsage/dulistview.cpp:41
 #, kde-format
@@ -1648,17 +1648,17 @@ msgstr "שם"
 #: app/DiskUsage/dulines.cpp:455
 #, kde-format
 msgid "Show file sizes"
-msgstr ""
+msgstr "הצגת גודלי קבצים"
 
 #: app/DiskUsage/dulistview.cpp:42
 #, kde-format
 msgid "Total size"
-msgstr ""
+msgstr "גודל כולל"
 
 #: app/DiskUsage/dulistview.cpp:43
 #, kde-format
 msgid "Own size"
-msgstr ""
+msgstr "גודל עצמי"
 
 #: app/DiskUsage/dulistview.cpp:44 app/MountMan/kmountmangui.cpp:148
 #, kde-format
@@ -1673,7 +1673,7 @@ msgstr "תאריך"
 #: app/DiskUsage/dulistview.cpp:46
 #, kde-format
 msgid "Permissions"
-msgstr ""
+msgstr "הרשאות"
 
 #: app/DiskUsage/dulistview.cpp:47
 #, kde-format
@@ -1788,38 +1788,38 @@ msgstr ""
 #: app/Konfigurator/konfigurator.cpp:126
 #, kde-format
 msgid "Archives"
-msgstr ""
+msgstr "ארכיונים"
 
 #: app/FileSystem/krquery.cpp:263 app/Filter/generalfilter.cpp:163
 #, kde-format
 msgid "Image Files"
-msgstr ""
+msgstr "קובצי תמונות"
 
 #: app/FileSystem/krquery.cpp:265 app/Filter/generalfilter.cpp:164
 #, kde-format
 msgid "Text Files"
-msgstr ""
+msgstr "קובצי טקסט"
 
 #: app/FileSystem/krquery.cpp:267 app/Filter/generalfilter.cpp:165
 #, kde-format
 msgid "Video Files"
-msgstr ""
+msgstr "קובצי סרטונים"
 
 #: app/FileSystem/krquery.cpp:269 app/Filter/generalfilter.cpp:166
 #, kde-format
 msgid "Audio Files"
-msgstr ""
+msgstr "קובצי שמע"
 
 #: app/FileSystem/krquery.cpp:271
 #, kde-format
 msgid "Custom"
-msgstr ""
+msgstr "מותאם אישית"
 
 #: app/FileSystem/krquery.cpp:566
 #, kde-format
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr ""
+msgstr "מתבצע חיפוש בתוכן של ‚%1’ (%2)"
 
 #: app/FileSystem/krquery.cpp:571
 #, kde-format
@@ -1842,7 +1842,7 @@ msgstr ""
 #: app/FileSystem/virtualfilesystem.cpp:214
 #, kde-format
 msgid "Virtual filesystem"
-msgstr ""
+msgstr "מערכת קבצים וירטואלית"
 
 #: app/Filter/advancedfilter.cpp:51
 #, kde-format
@@ -1852,7 +1852,7 @@ msgstr "גודל"
 #: app/Filter/advancedfilter.cpp:58
 #, kde-format
 msgid "At Least"
-msgstr ""
+msgstr "לפחות"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:69 app/Filter/advancedfilter.cpp:91
@@ -1887,7 +1887,7 @@ msgstr "לכל היותר"
 #: app/Filter/advancedfilter.cpp:117
 #, kde-format
 msgid "Any date"
-msgstr ""
+msgstr "כל תאריך שהוא"
 
 #: app/Filter/advancedfilter.cpp:122
 #, kde-format
@@ -1937,22 +1937,22 @@ msgstr ""
 #: app/Filter/advancedfilter.cpp:222
 #, kde-format
 msgid "Ownership"
-msgstr ""
+msgstr "בעלות"
 
 #: app/Filter/advancedfilter.cpp:233
 #, kde-format
 msgid "Belongs to &user"
-msgstr ""
+msgstr "שייך למ&שתמש"
 
 #: app/Filter/advancedfilter.cpp:242
 #, kde-format
 msgid "Belongs to gr&oup"
-msgstr ""
+msgstr "שייך ל&קבוצה"
 
 #: app/Filter/advancedfilter.cpp:253
 #, kde-format
 msgid "P&ermissions"
-msgstr ""
+msgstr "ה&רשאות"
 
 #: app/Filter/advancedfilter.cpp:258
 #, kde-format
@@ -2013,7 +2013,7 @@ msgstr ""
 #: app/Filter/advancedfilter.cpp:468
 #, kde-format
 msgid "Invalid date entered."
-msgstr ""
+msgstr "התאריך שמולא שגוי."
 
 #: app/Filter/advancedfilter.cpp:469
 #, kde-format
@@ -2025,19 +2025,19 @@ msgstr ""
 #: app/Filter/advancedfilter.cpp:485
 #, kde-format
 msgid "Specified sizes are inconsistent."
-msgstr ""
+msgstr "הגדלים שצוינו אינם עקביים."
 
 #: app/Filter/advancedfilter.cpp:486
 #, kde-format
 msgid ""
 "Please re-enter the values, so that the left side size will be smaller than "
 "(or equal to) the right side size."
-msgstr ""
+msgstr "נא למלא את הערכים מחדש, כך שהצד הימני יהיה קטן (או שווה) לשמאלי."
 
 #: app/Filter/advancedfilter.cpp:506 app/Filter/advancedfilter.cpp:532
 #, kde-format
 msgid "Dates are inconsistent."
-msgstr ""
+msgstr "התאריכים אינם עקביים."
 
 #: app/Filter/advancedfilter.cpp:507
 #, kde-format
@@ -2062,41 +2062,41 @@ msgstr ""
 #: app/Filter/filtertabs.cpp:28
 #, kde-format
 msgid "&General"
-msgstr ""
+msgstr "&כללי"
 
 #: app/Filter/filtertabs.cpp:33
 #, kde-format
 msgid "&Advanced"
-msgstr ""
+msgstr "מת&קדם"
 
 #: app/Filter/filtertabs.cpp:101
 #, kde-format
 msgid "Could not load profile."
-msgstr ""
+msgstr "לא ניתן לטעון פרופיל."
 
 #: app/Filter/generalfilter.cpp:38
 msgid "Any Character"
-msgstr ""
+msgstr "כל תו שהוא"
 
 #: app/Filter/generalfilter.cpp:39
 msgid "Start of Line"
-msgstr ""
+msgstr "תחילת השורה"
 
 #: app/Filter/generalfilter.cpp:40
 msgid "End of Line"
-msgstr ""
+msgstr "סוף השורה"
 
 #: app/Filter/generalfilter.cpp:41
 msgid "Set of Characters"
-msgstr ""
+msgstr "ערכת תווים"
 
 #: app/Filter/generalfilter.cpp:42
 msgid "Repeats, Zero or More Times"
-msgstr ""
+msgstr "חזרה, אפס פעמים או יותר"
 
 #: app/Filter/generalfilter.cpp:43
 msgid "Repeats, One or More Times"
-msgstr ""
+msgstr "חזרה, פעם אחת או יותר"
 
 #: app/Filter/generalfilter.cpp:44
 msgid "Optional"
@@ -2116,11 +2116,11 @@ msgstr "שורה חדשה"
 
 #: app/Filter/generalfilter.cpp:48
 msgid "Carriage Return"
-msgstr ""
+msgstr "חזרת גרר"
 
 #: app/Filter/generalfilter.cpp:49
 msgid "White Space"
-msgstr ""
+msgstr "רווח"
 
 #: app/Filter/generalfilter.cpp:50
 msgid "Digit"
@@ -2129,12 +2129,12 @@ msgstr "ספרה"
 #: app/Filter/generalfilter.cpp:104
 #, kde-format
 msgid "&Case sensitive"
-msgstr ""
+msgstr "&תלוי רישיות"
 
 #: app/Filter/generalfilter.cpp:109
 #, kde-format
 msgid "Search &for:"
-msgstr ""
+msgstr "חיפוש &אחר:"
 
 #: app/Filter/generalfilter.cpp:124 app/Synchronizer/synchronizergui.cpp:208
 #, kde-format
@@ -2160,7 +2160,7 @@ msgstr ""
 #: app/Filter/generalfilter.cpp:150
 #, kde-format
 msgid "&Of type:"
-msgstr ""
+msgstr "מ&סוג:"
 
 #: app/Filter/generalfilter.cpp:160 app/Filter/generalfilter.cpp:585
 #, kde-format
@@ -9438,8 +9438,9 @@ msgstr ""
 "אפשר להפעיל אותה בעמוד ‚ארכיונים’ ב־Konfigurator."
 
 #: plugins/krarc/krarc.cpp:242
-#, kde-format
-msgid "Creating folders is not supported with %1 archives"
+#, fuzzy, kde-format
+#| msgid "Creating folders is not supported with %1 archives"
+msgid "Creating folders is not supported with %1 archives."
 msgstr "אין תמיכה ביצירת תיקיות בארכיוני %1."
 
 #: plugins/krarc/krarc.cpp:278
@@ -9448,8 +9449,9 @@ msgid "Creating %1..."
 msgstr "%1 נוצר…"
 
 #: plugins/krarc/krarc.cpp:320
-#, kde-format
-msgid "Writing to %1 archives is not supported"
+#, fuzzy, kde-format
+#| msgid "Writing to %1 archives is not supported"
+msgid "Writing to %1 archives is not supported."
 msgstr "אין תמיכה בכתיבה לארכיוני %1"
 
 #: plugins/krarc/krarc.cpp:386
@@ -9458,8 +9460,9 @@ msgid "Packing %1..."
 msgstr "%1 נארז…"
 
 #: plugins/krarc/krarc.cpp:427
-#, kde-format
-msgid "Retrieving data from %1 archives is not supported"
+#, fuzzy, kde-format
+#| msgid "Retrieving data from %1 archives is not supported"
+msgid "Retrieving data from %1 archives is not supported."
 msgstr "אין תמיכה בקבל נתונים מארכיוני %1"
 
 #: plugins/krarc/krarc.cpp:496 plugins/krarc/krarc.cpp:761
@@ -9475,13 +9478,15 @@ msgid ""
 msgstr "אירעה שגיאה, היא קשורה לתוכנית החיצונית ‚%1’. הודעת השגיאה היא: ‚%2’."
 
 #: plugins/krarc/krarc.cpp:626
-#, kde-format
-msgid "Deleting files from %1 archives is not supported"
+#, fuzzy, kde-format
+#| msgid "Deleting files from %1 archives is not supported"
+msgid "Deleting files from %1 archives is not supported."
 msgstr "אין תמיכה במחיקת קבצים מארכיוני %1"
 
 #: plugins/krarc/krarc.cpp:670
-#, kde-format
-msgid "Accessing files is not supported with %1 archives"
+#, fuzzy, kde-format
+#| msgid "Accessing files is not supported with %1 archives"
+msgid "Accessing files is not supported with %1 archives."
 msgstr "אין תמיכה בגישה לקבצים בארכיוני %1"
 
 #: plugins/krarc/krarc.cpp:783
@@ -9490,8 +9495,9 @@ msgid "Copying from archive to archive is not supported."
 msgstr "אין תמיכה בהעתקה מארכיון לארכיון."
 
 #: plugins/krarc/krarc.cpp:829
-#, kde-format
-msgid "Listing folders is not supported for %1 archives"
+#, fuzzy, kde-format
+#| msgid "Listing folders is not supported for %1 archives"
+msgid "Listing folders is not supported for %1 archives."
 msgstr "אין תמיכה בהצגת תוכן תיקיות בארכיוני %1"
 
 #: plugins/krarc/krarc.cpp:1759
