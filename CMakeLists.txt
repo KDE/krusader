@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(krusader)
 
-set(VERSION "2.9.0")
+set(VERSION "2.9.1-dev")
 set(RELEASE_NAME "Sixth Life")
 
 set(CMAKE_CXX_STANDARD 17)
