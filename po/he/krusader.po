@@ -7,15 +7,14 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-17 02:48+0000\n"
-"PO-Revision-Date: 2024-12-29 18:46+0200\n"
+"PO-Revision-Date: 2024-12-31 08:22+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
-"n % 10 == 0) ? 2 : 3));\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 24.12.0\n"
 
 #, kde-format
@@ -653,6 +652,8 @@ msgid ""
 "This file already contains some useractions.\n"
 "Do you want to overwrite it or should it be merged with the selected actions?"
 msgstr ""
+"הקובץ כבר מכיל פעולות משתמש.\n"
+"לדרוס אותן או למזג עם הפעולות הנבחרות?"
 
 #: app/ActionMan/useractionpage.cpp:261
 #, kde-format
@@ -691,22 +692,22 @@ msgstr "הייצוא נכשל"
 #: app/Archive/abstractthreadedjob.cpp:198
 #, kde-format
 msgid "Internal error, undefined <job> in result signal"
-msgstr ""
+msgstr "שגיאה פנימית <משימה> לא מוגדרת באות התוצאה"
 
 #: app/Archive/abstractthreadedjob.cpp:344
 #, kde-format
 msgid "Downloading remote files"
-msgstr ""
+msgstr "קבצים מרוחקים יורדים"
 
 #: app/Archive/abstractthreadedjob.cpp:490
 #, kde-format
 msgid "Counting files"
-msgstr ""
+msgstr "הקבצים נספרים"
 
 #: app/Archive/abstractthreadedjob.cpp:519
 #, kde-format
 msgid "Uploading to remote destination"
-msgstr ""
+msgstr "נשלח ליעד מרוחק"
 
 #: app/Archive/abstractthreadedjob.cpp:640
 #, kde-format
@@ -717,32 +718,32 @@ msgstr ""
 #: app/Archive/krarchandler.cpp:238
 #, kde-format
 msgid "Counting files in archive"
-msgstr ""
+msgstr "הקבצים בארכיון נספרים"
 
 #: app/Archive/krarchandler.cpp:260
 #, kde-format
 msgid "Failed to list the content of the archive (%1)."
-msgstr ""
+msgstr "הצגת תוכן הארכיון נכשלה (%1)."
 
 #: app/Archive/krarchandler.cpp:278 app/Archive/krarchandler.cpp:419
 #, kde-format
 msgid "Failed to unpack %1."
-msgstr ""
+msgstr "הפריסה של %1 נכשלה."
 
 #: app/Archive/krarchandler.cpp:345
 #, kde-format
 msgid "Failed to convert rpm (%1) to cpio."
-msgstr ""
+msgstr "המרת rpm ‏(%1) ל־cpio נכשלה."
 
 #: app/Archive/krarchandler.cpp:362
 #, kde-format
 msgid "Failed to convert deb (%1) to tar."
-msgstr ""
+msgstr "המרת deb‏ (%1) ל־tar נכשלה."
 
 #: app/Archive/krarchandler.cpp:395
 #, kde-format
 msgid "Unpacking File(s)"
-msgstr ""
+msgstr "הקבצים נפרסים"
 
 #: app/Archive/krarchandler.cpp:419 app/Archive/krarchandler.cpp:641
 #, kde-format
@@ -2269,7 +2270,7 @@ msgstr ""
 #: app/GUI/dirhistorybutton.cpp:30 app/GUI/dirhistorybutton.cpp:31
 #, kde-format
 msgid "Open the folder history list"
-msgstr ""
+msgstr "פתיחת רשימת היסטוריית התיקיות"
 
 #: app/GUI/kcmdline.cpp:47
 #, kde-format
@@ -2287,7 +2288,7 @@ msgstr ""
 #: app/GUI/kcmdmodebutton.cpp:37
 #, kde-format
 msgid "Execution mode"
-msgstr ""
+msgstr "מצב הפעלה"
 
 #: app/GUI/kfnkeys.cpp:25 app/Panel/listpanelactions.cpp:64
 #, kde-format
@@ -2312,7 +2313,7 @@ msgstr "העברה"
 #: app/GUI/kfnkeys.cpp:27
 #, kde-format
 msgid "Mkdir"
-msgstr ""
+msgstr "יצירת תיקייה"
 
 #: app/GUI/kfnkeys.cpp:28
 #, kde-format
@@ -2337,13 +2338,13 @@ msgstr "בהמתנה."
 #: app/GUI/mediabutton.cpp:45 app/GUI/mediabutton.cpp:46
 #, kde-format
 msgid "Open the available media list"
-msgstr ""
+msgstr "פתיחת רשימת אמצעי האחסון הזמינים"
 
 #: app/GUI/mediabutton.cpp:143 app/GUI/mediabutton.cpp:597
 #, kde-format
 msgctxt "%1 is the mount point of the remote share"
 msgid "Remote Share [%1]"
-msgstr ""
+msgstr "שיתוף מרוחק [%1]"
 
 #: app/GUI/mediabutton.cpp:163
 #, kde-format
@@ -2370,22 +2371,22 @@ msgstr ""
 #: app/GUI/mediabutton.cpp:185
 #, kde-format
 msgid "USB pen drive"
-msgstr ""
+msgstr "כונן USB נשלף"
 
 #: app/GUI/mediabutton.cpp:187
 #, kde-format
 msgid "USB device"
-msgstr ""
+msgstr "התקן USB"
 
 #: app/GUI/mediabutton.cpp:189
 #, kde-format
 msgid "Removable media"
-msgstr ""
+msgstr "אמצעי אחסון נשלף"
 
 #: app/GUI/mediabutton.cpp:191
 #, kde-format
 msgid "Hard Disk"
-msgstr ""
+msgstr "כונן קשיח"
 
 #: app/GUI/mediabutton.cpp:193
 #, kde-format
@@ -2429,32 +2430,32 @@ msgstr "שליפה"
 #: app/GUI/mediabutton.cpp:473
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
-msgstr ""
+msgstr "אירעה שגיאה בגישה אל ‚%1’. תגובת המערכת: %2"
 
 #: app/GUI/mediabutton.cpp:475
 #, kde-format
 msgid "An error occurred while accessing '%1'"
-msgstr ""
+msgstr "אירעה שגיאה בגישה אל ‚%1’"
 
 #: app/GUI/profilemanager.cpp:28 app/GUI/profilemanager.cpp:48
 #, kde-format
 msgid "Profiles"
-msgstr ""
+msgstr "פרופילים"
 
 #: app/GUI/profilemanager.cpp:61
 #, kde-format
 msgid "Remove entry"
-msgstr ""
+msgstr "הסרת רשומה"
 
 #: app/GUI/profilemanager.cpp:62
 #, kde-format
 msgid "Overwrite entry"
-msgstr ""
+msgstr "דריסת רשומה"
 
 #: app/GUI/profilemanager.cpp:65
 #, kde-format
 msgid "Add new entry"
-msgstr ""
+msgstr "הוספת רשומה חדשה"
 
 #: app/GUI/profilemanager.cpp:91
 #, kde-format
@@ -2464,7 +2465,7 @@ msgstr ""
 #: app/GUI/profilemanager.cpp:91
 #, kde-format
 msgid "Enter the profile name:"
-msgstr ""
+msgstr "נא למלא שם לפרופיל:"
 
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
@@ -2474,7 +2475,7 @@ msgstr ""
 #: app/GUI/terminaldock.cpp:97
 #, kde-format
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr ""
+msgstr "<b>לא ניתן ליצור מסוף מובנה.</b><br/>"
 
 #: app/GUI/terminaldock.cpp:108
 #, kde-format
@@ -2483,6 +2484,8 @@ msgid ""
 "<b>Cannot create embedded terminal.</b><br>You can fix this by installing "
 "Konsole:<br/>%1"
 msgstr ""
+"<b>לא ניתן ליצור מסוף מובנה.</b><br>אפשר לפתור את זה על ידי התקנת Konsole:"
+"<br/>%1"
 
 #: app/JobMan/jobman.cpp:54
 #, kde-format
