@@ -224,7 +224,7 @@ git clone git@invent.kde.org:sdk/releaseme.git
 ### Refresh
 ```
 cd krusader-release-env
-cd krusader && git checkout stable && git pull ; cd ..
+cd krusader && git switch stable && git pull ; cd ..
 cd releaseme && git pull ; cd ..
 ```
 
@@ -236,7 +236,7 @@ cd releaseme && git pull ; cd ..
 Starting from version 2.7.1 we release only from the `stable` branch.
 In your dev environment do
 ```
-cd krusader && git checkout stable && git pull
+cd krusader && git switch stable && git pull
 ```
 
 Verify that ChangeLog and NEWS update is pushed or push it.
@@ -400,7 +400,7 @@ Once the website is updated, send a letter to the following mailing lists:
 * krusader-devel@googlegroups.com
 * krusader-users@googlegroups.com
 * krusader-news@googlegroups.com
-* kde-announce-apps@kde.org
+* kde-announce@kde.org
 
 Please get the permission to post ahead of time.
 
@@ -419,10 +419,10 @@ Example letters:
 
 Since `stable` contains changes not present in `master` (ChangeLog and documentation changes at least),
 you need to deliver them to the `master` branch.
-Merge the release tag into the branch
+Merge the release tag commit git into the branch:
 
 ```
-git checkout master
+git switch master
 git pull
 git merge --no-ff --no-commit --no-log v${VERSION}
 ```
@@ -438,7 +438,7 @@ and requires attention.
 ./tools/restore-l10n-files.sh
 ```
 
-Resolve remaining conflicts, keeping the Krusader version that is in `master`, and stage, then
+Resolve remaining conflicts (will be at least in `CMakeLists.txt`) keeping the Krusader version that is in `master` and stage them. Then do
 
 ```
 git commit -m "Merged v${VERSION} updates"
