@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-17 02:48+0000\n"
-"PO-Revision-Date: 2024-05-30 22:41+0200\n"
+"PO-Revision-Date: 2024-12-20 16:53+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -618,14 +618,8 @@ msgid "Title"
 msgstr "Titolo"
 
 #: app/ActionMan/useractionpage.cpp:38
-#, fuzzy
-#| msgid ""
-#| "*.xml|XML files\n"
-#| "*|All files"
 msgid "XML files (*.xml);;All files (*)"
-msgstr ""
-"*.xml|XML-dosieroj\n"
-"*|Ĉiuj dosieroj"
+msgstr "XML-dosieroj (*.xml);;Ĉiuj dosieroj (*)"
 
 #: app/ActionMan/useractionpage.cpp:55
 #, kde-format
@@ -2927,8 +2921,8 @@ msgid ""
 "p>"
 msgstr ""
 "<p>Montras la lastan kursoran pozicion en la neaktiva listpanelo.</p><p>Ĉi "
-"tiu opcio disponeblas nur kiam vi ne uzas la <i>defaŭltajn kolorojn de KDE</"
-"i>.</p>"
+"tiu elekteblo disponeblas nur kiam vi ne uzas la <i>defaŭltajn kolorojn de "
+"KDE</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:81
 #, kde-format
@@ -3662,7 +3656,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:102
 #, kde-format
 msgid "Rename selects extension"
-msgstr "Alinomi elektas etendon"
+msgstr "Alinomi elektas finaĵon"
 
 #: app/Konfigurator/kgpanel.cpp:104
 #, kde-format
@@ -3672,7 +3666,7 @@ msgid ""
 "option."
 msgstr ""
 "Kiam oni renomas dosieron, la tuta teksto estas elektita. Se vi volas Total-"
-"Commander kiel renomadon de nur la nomo, sen etendo, malmarku ĉi tiun opcion."
+"Commander kiel renomadon de nur la nomo, sen finaĵo, malmarku ĉi tiun opcion."
 
 #: app/Konfigurator/kgpanel.cpp:109
 #, kde-format
@@ -4818,8 +4812,8 @@ msgstr ""
 "estis kiam la lasta malŝalto. Ĝi ankaŭ aperos en la sama loko de la ekrano, "
 "havante panelojn ordigitaj kaj vicigitaj kiel antaŭe.</p> <p>Se ĉi tiu opcio "
 "estas malŝaltita, vi povas uzi la menuon <i>Fenestro -> Konservi pozicion</"
-"i> opcio por mane agordi la grandecon kaj pozicion de la ĉefa fenestro ĉe "
-"ekfunkciigo.</p>"
+"i> elekteblo por mane agordi la grandecon kaj pozicion de la ĉefa fenestro "
+"ĉe ekfunkciigo.</p>"
 
 #: app/Konfigurator/kgstartup.cpp:100
 #, kde-format
@@ -5838,7 +5832,7 @@ msgstr "Salti al la antaŭa kongruo"
 #: app/KViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
-msgstr "Opcioj"
+msgstr "Elektebloj"
 
 #: app/KViewer/lister.cpp:1294
 #, kde-format
@@ -5974,7 +5968,7 @@ msgstr "Rezultoj"
 #: app/Locate/locate.cpp:200
 #, kde-format
 msgid "Locate"
-msgstr "Loki"
+msgstr "Lokigi"
 
 #: app/Locate/locate.cpp:205
 #, kde-format
@@ -8077,7 +8071,7 @@ msgstr "Elekti Dosierojn kun la Sama Finaĵo"
 #: app/Panel/viewactions.cpp:41
 #, kde-format
 msgid "Show View Options Menu"
-msgstr "Montri Menuon pri Vidaj Opcioj"
+msgstr "Montri Menuon pri Vidaj Elektebloj"
 
 #: app/Panel/viewactions.cpp:42
 #, kde-format
@@ -8659,7 +8653,7 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:282
 #, kde-format
 msgid "S&how options"
-msgstr "M&ontri opciojn"
+msgstr "M&ontri elekteblojn"
 
 #: app/Synchronizer/synchronizergui.cpp:293
 #, kde-format
@@ -8745,7 +8739,7 @@ msgstr "&Sinkronigilo"
 #: app/Synchronizer/synchronizergui.cpp:393
 #, kde-format
 msgid "&Options"
-msgstr "&Opcioj"
+msgstr "Elektebl&oj"
 
 #: app/Synchronizer/synchronizergui.cpp:400
 #, kde-format
@@ -9621,10 +9615,9 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Kopii dosiervojon de nuna ero (eskapante spacojn)"
 
 #: app/useraction_examples.xml:46
-#, fuzzy, kde-format
-#| msgid "Copy file path of current item (escaping spaces)"
+#, kde-format
 msgid "Copy file path of current item"
-msgstr "Kopii dosiervojon de nuna ero (eskapante spacojn)"
+msgstr "Kopii dosiervojon de nuna ero"
 
 #: app/useraction_examples.xml:51
 #, kde-format
@@ -9753,10 +9746,9 @@ msgid "Accessing files is not supported with %1 archives"
 msgstr "Aliro al dosieroj ne estas subtenata kun %1 arkivoj"
 
 #: plugins/krarc/krarc.cpp:783
-#, fuzzy, kde-format
-#| msgid "Writing to %1 archives is not supported"
+#, kde-format
 msgid "Copying from archive to archive is not supported."
-msgstr "Skribado al %1 arkivoj ne estas subtenata"
+msgstr "Kopiado de arkivo al arkivo ne estas subtenata."
 
 #: plugins/krarc/krarc.cpp:829
 #, kde-format
@@ -9781,18 +9773,3 @@ msgstr "Krarc Pasvorta Dialogo"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Aliri la dosieron postulas pasvorton."
-
-#~ msgid "Manage Bookmarks"
-#~ msgstr "Administri Legosignojn"
-
-#~ msgid "Show Main Toolbar"
-#~ msgstr "Montri Ĉefan Ilobreton"
-
-#~ msgid "Show Job Toolbar"
-#~ msgstr "Montri Ilobreton pri Tasko"
-
-#~ msgid "Show Actions Toolbar"
-#~ msgstr "Montri Agoj Ilobreto"
-
-#~ msgid "&Toolbars"
-#~ msgstr "&Ilbretoj"
