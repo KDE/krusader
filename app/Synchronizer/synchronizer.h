@@ -8,6 +8,8 @@
 #ifndef SYNCHRONIZER_H
 #define SYNCHRONIZER_H
 
+#include <sys/stat.h>
+
 // QtCore
 #include <QList>
 #include <QMap>
