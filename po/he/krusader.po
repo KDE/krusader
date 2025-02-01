@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2025-01-24 09:27+0200\n"
+"PO-Revision-Date: 2025-01-31 13:20+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -9204,7 +9204,7 @@ msgstr "פלט"
 #: app/UserAction/kraction.cpp:104
 #, kde-format
 msgid "Use font with fixed width"
-msgstr ""
+msgstr "להשתמש בגופן ברוחב אחיד"
 
 #: app/UserAction/kraction.cpp:120
 #, kde-format
@@ -9373,52 +9373,52 @@ msgstr ""
 #: app/useraction_examples.xml:56 app/useraction_examples.xml:57
 #, kde-format
 msgid "Sort by Name"
-msgstr ""
+msgstr "סידור לפי שם"
 
 #: app/useraction_examples.xml:60
 #, kde-format
 msgid "Sorts the active panel by Name"
-msgstr ""
+msgstr "סידור הלוח הנוכחי לפי שם"
 
 #: app/useraction_examples.xml:65 app/useraction_examples.xml:66
 #, kde-format
 msgid "Sort by Extension"
-msgstr ""
+msgstr "סידור לפי סיומת"
 
 #: app/useraction_examples.xml:69
 #, kde-format
 msgid "Sorts the active panel by Extension"
-msgstr ""
+msgstr "סידור הלוח הנוכחי לפי סיומת"
 
 #: app/useraction_examples.xml:74 app/useraction_examples.xml:75
 #, kde-format
 msgid "Sort by Size"
-msgstr ""
+msgstr "סידור לפי גודל"
 
 #: app/useraction_examples.xml:78
 #, kde-format
 msgid "Sorts the active panel by Size"
-msgstr ""
+msgstr "סידור הלוח הנוכחי לפי גודל"
 
 #: app/useraction_examples.xml:83 app/useraction_examples.xml:84
 #, kde-format
 msgid "Sort by Modified"
-msgstr ""
+msgstr "סידור לפי מועד עריכה"
 
 #: app/useraction_examples.xml:87
 #, kde-format
 msgid "Sorts the active panel by Modified"
-msgstr ""
+msgstr "סידור הלוח הנוכחי לפי מועד העריכה"
 
 #: app/useraction_examples.xml:92
 #, kde-format
 msgid "Backup current"
-msgstr ""
+msgstr "גיבוי הנוכחי"
 
 #: app/useraction_examples.xml:93
 #, kde-format
 msgid "Backup current file in current folder"
-msgstr ""
+msgstr "גיבוי התיקייה הנוכחית בתיקייה הנוכחית"
 
 #: app/useraction_examples.xml:95
 #, kde-format
@@ -9431,6 +9431,8 @@ msgid ""
 "Backs current file up in current folder and asks the user for a new "
 "filename. By default \".old\" is appended to the original filename."
 msgstr ""
+"גיבוי הקובץ הנוכחי בתיקייה הנוכחית והצגת שאלה למילוי שם קובץ חדש מצד המשתמש. "
+"כברירת מחדל נוסף „‎.old” לסוף שם הקובץ המקורי."
 
 #: plugins/krarc/krarc.cpp:202
 #, kde-format
@@ -9442,8 +9444,7 @@ msgstr ""
 "אפשר להפעיל אותה בעמוד ‚ארכיונים’ ב־Konfigurator."
 
 #: plugins/krarc/krarc.cpp:242
-#, fuzzy, kde-format
-#| msgid "Creating folders is not supported with %1 archives"
+#, kde-format
 msgid "Creating folders is not supported with %1 archives."
 msgstr "אין תמיכה ביצירת תיקיות בארכיוני %1."
 
@@ -9453,10 +9454,9 @@ msgid "Creating %1..."
 msgstr "%1 נוצר…"
 
 #: plugins/krarc/krarc.cpp:320
-#, fuzzy, kde-format
-#| msgid "Writing to %1 archives is not supported"
+#, kde-format
 msgid "Writing to %1 archives is not supported."
-msgstr "אין תמיכה בכתיבה לארכיוני %1"
+msgstr "אין תמיכה בכתיבה לארכיוני %1."
 
 #: plugins/krarc/krarc.cpp:386
 #, kde-format
@@ -9464,10 +9464,9 @@ msgid "Packing %1..."
 msgstr "%1 נארז…"
 
 #: plugins/krarc/krarc.cpp:427
-#, fuzzy, kde-format
-#| msgid "Retrieving data from %1 archives is not supported"
+#, kde-format
 msgid "Retrieving data from %1 archives is not supported."
-msgstr "אין תמיכה בקבל נתונים מארכיוני %1"
+msgstr "אין תמיכה בקבלת נתונים מארכיוני %1."
 
 #: plugins/krarc/krarc.cpp:496 plugins/krarc/krarc.cpp:761
 #, kde-format
@@ -9482,16 +9481,14 @@ msgid ""
 msgstr "אירעה שגיאה, היא קשורה לתוכנית החיצונית ‚%1’. הודעת השגיאה היא: ‚%2’."
 
 #: plugins/krarc/krarc.cpp:626
-#, fuzzy, kde-format
-#| msgid "Deleting files from %1 archives is not supported"
+#, kde-format
 msgid "Deleting files from %1 archives is not supported."
-msgstr "אין תמיכה במחיקת קבצים מארכיוני %1"
+msgstr "אין תמיכה במחיקת קבצים מארכיוני %1."
 
 #: plugins/krarc/krarc.cpp:670
-#, fuzzy, kde-format
-#| msgid "Accessing files is not supported with %1 archives"
+#, kde-format
 msgid "Accessing files is not supported with %1 archives."
-msgstr "אין תמיכה בגישה לקבצים בארכיוני %1"
+msgstr "אין תמיכה בגישה לקבצים בארכיוני %1."
 
 #: plugins/krarc/krarc.cpp:783
 #, kde-format
@@ -9499,10 +9496,9 @@ msgid "Copying from archive to archive is not supported."
 msgstr "אין תמיכה בהעתקה מארכיון לארכיון."
 
 #: plugins/krarc/krarc.cpp:829
-#, fuzzy, kde-format
-#| msgid "Listing folders is not supported for %1 archives"
+#, kde-format
 msgid "Listing folders is not supported for %1 archives."
-msgstr "אין תמיכה בהצגת תוכן תיקיות בארכיוני %1"
+msgstr "אין תמיכה בהצגת תוכן תיקיות בארכיוני %1."
 
 #: plugins/krarc/krarc.cpp:1759
 #, kde-format
