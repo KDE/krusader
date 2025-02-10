@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2025-02-08 07:02+0200\n"
+"PO-Revision-Date: 2025-02-09 21:48+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 24.12.1\n"
+"X-Generator: Poedit 3.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1030,7 +1030,7 @@ msgstr "קובצי סיכומי הביקורת נשמרים…"
 #: app/Dialogs/checksumdlg.cpp:384
 #, kde-format
 msgid "Errors occurred while saving multiple checksums. Stopping"
-msgstr "אירעו שגיאות בזמן שמירת כמה מסיכומי הביקורת. הפעולה נעצרת."
+msgstr "אירעו שגיאות בזמן שמירת כמה מסיכומי הביקורת. הפעולה נעצרת"
 
 #: app/Dialogs/checksumdlg.cpp:412
 #, kde-format
@@ -1177,7 +1177,7 @@ msgstr "פנוי: %1"
 #: app/Dialogs/krspecialwidgets.cpp:143
 #, kde-format
 msgid "Not mounted."
-msgstr "לא מעוגן"
+msgstr "לא מעוגן."
 
 #: app/Dialogs/krspwidgets.cpp:158
 #, kde-format
@@ -7170,22 +7170,22 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:129
 #, kde-format
 msgid "Copy file from one panel to the other."
-msgstr ""
+msgstr "העתקת קבצים מלוח אחד לאחר."
 
 #: app/Panel/listpanelactions.cpp:130
 #, kde-format
 msgid "Move file from one panel to the other."
-msgstr ""
+msgstr "העברת קבצים מלוח אחד לאחר."
 
 #: app/Panel/listpanelactions.cpp:131
 #, kde-format
 msgid "Create folder in current panel."
-msgstr ""
+msgstr "יצירת תיקייה בלוח הנוכחי/"
 
 #: app/Panel/listpanelactions.cpp:132
 #, kde-format
 msgid "Delete file, folder, etc."
-msgstr ""
+msgstr "מחיקת קובץ, תיקייה וכו׳."
 
 #: app/Panel/listpanelactions.cpp:134
 #, kde-format
@@ -7193,11 +7193,13 @@ msgid ""
 "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
 "Konfigurator, default is <b>konsole</b>.</p></qt>"
 msgstr ""
+"<qt><p>פתיחת המסוף בתיקייה המקומית.</p><p>אפשר להגדיר את המסוף דרך "
+"Konfigurator, ברירת המחדל היא <b>konsole</b>.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open/Run Files"
-msgstr ""
+msgstr "פתיחת/הרצת קבצים"
 
 #: app/Panel/panelcontextmenu.cpp:103
 #, kde-format
@@ -7207,52 +7209,52 @@ msgstr "הרצה"
 #: app/Panel/panelcontextmenu.cpp:112
 #, kde-format
 msgid "Open in New Tabs"
-msgstr ""
+msgstr "פתיחה בלשוניות חדשות"
 
 #: app/Panel/panelcontextmenu.cpp:112
 #, kde-format
 msgid "Open in New Tab"
-msgstr ""
+msgstr "פתיחה בלשונית חדשה"
 
 #: app/Panel/panelcontextmenu.cpp:125
 #, kde-format
 msgid "Browse Archive"
-msgstr ""
+msgstr "עיון בארכיון"
 
 #: app/Panel/panelcontextmenu.cpp:167
 #, kde-format
 msgid "Other..."
-msgstr ""
+msgstr "אחר…"
 
 #: app/Panel/panelcontextmenu.cpp:169
 #, kde-format
 msgid "Open With"
-msgstr ""
+msgstr "פתיחה עם"
 
 #: app/Panel/panelcontextmenu.cpp:213
 #, kde-format
 msgid "Move to Trash"
-msgstr ""
+msgstr "העברה לאשפה"
 
 #: app/Panel/panelcontextmenu.cpp:228
 #, kde-format
 msgid "New Hardlink..."
-msgstr ""
+msgstr "קישור קשיח חדש…"
 
 #: app/Panel/panelcontextmenu.cpp:230
 #, kde-format
 msgid "Redirect Link..."
-msgstr ""
+msgstr "קישור הפנייה…"
 
 #: app/Panel/panelcontextmenu.cpp:233
 #, kde-format
 msgid "Link Handling"
-msgstr ""
+msgstr "טיפול בקישורים"
 
 #: app/Panel/panelcontextmenu.cpp:255
 #, kde-format
 msgid "Send by Email"
-msgstr ""
+msgstr "שליחה בדוא״ל"
 
 #: app/Panel/panelcontextmenu.cpp:260
 #, kde-format
@@ -7262,7 +7264,7 @@ msgstr "שחזור"
 #: app/Panel/panelcontextmenu.cpp:267
 #, kde-format
 msgid "Synchronize Selected Files..."
-msgstr ""
+msgstr "סנכרון הקבצים הנבחרים…"
 
 #: app/Panel/panelcontextmenu.cpp:294
 #, kde-format
@@ -7571,17 +7573,17 @@ msgstr ""
 #: app/Panel/PanelView/krviewitem.cpp:81
 #, kde-format
 msgid "(Broken Link)"
-msgstr ""
+msgstr "(קישור פגום)"
 
 #: app/Panel/PanelView/krviewitem.cpp:83
 #, kde-format
 msgid "Symbolic Link"
-msgstr ""
+msgstr "קישור סמלי"
 
 #: app/Panel/PanelView/krviewitem.cpp:85
 #, kde-format
 msgid "%1 (Link)"
-msgstr ""
+msgstr "%1 (קישור)"
 
 #: app/Panel/PanelView/listmodel.cpp:132
 #: app/Synchronizer/synchronizergui.cpp:1616
@@ -7601,7 +7603,7 @@ msgstr "שם"
 #, kde-format
 msgctxt "File property"
 msgid "Ext"
-msgstr ""
+msgstr "סיומת"
 
 #: app/Panel/PanelView/listmodel.cpp:379
 #, kde-format
@@ -7619,7 +7621,7 @@ msgstr "סוג"
 #, kde-format
 msgctxt "File property"
 msgid "Modified"
-msgstr ""
+msgstr "מועד עריכה"
 
 #: app/Panel/PanelView/listmodel.cpp:385
 #, kde-format
@@ -7631,7 +7633,7 @@ msgstr "השתנה"
 #, kde-format
 msgctxt "File property"
 msgid "Accessed"
-msgstr ""
+msgstr "מועד גישה"
 
 #: app/Panel/PanelView/listmodel.cpp:389
 #, kde-format
@@ -7660,61 +7662,61 @@ msgstr "קבוצה"
 #: app/Panel/PanelView/listmodel.cpp:497
 #, kde-format
 msgid "Size: %1"
-msgstr ""
+msgstr "גודל: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:499
 #, kde-format
 msgctxt "File property"
 msgid "Type: %1"
-msgstr ""
+msgstr "סוג: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:500
 #, kde-format
 msgctxt "File property"
 msgid "Modified: %1"
-msgstr ""
+msgstr "מועד עריכה: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:501
 #, kde-format
 msgctxt "File property"
 msgid "Changed: %1"
-msgstr ""
+msgstr "מועד שינוי: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:502
 #, kde-format
 msgctxt "File property"
 msgid "Last Access: %1"
-msgstr ""
+msgstr "גישה אחרונה: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:503
 #, kde-format
 msgctxt "File property"
 msgid "Permissions: %1"
-msgstr ""
+msgstr "הרשאות: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:504
 #, kde-format
 msgctxt "File property"
 msgid "Owner: %1"
-msgstr ""
+msgstr "בעלות: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:505
 #, kde-format
 msgctxt "File property"
 msgid "Group: %1"
-msgstr ""
+msgstr "קבוצה: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:509
 #, kde-format
 msgctxt "File property; broken symbolic link"
 msgid "Link to: %1 - (broken)"
-msgstr ""
+msgstr "קישור אל: %1 - (פגום)"
 
 #: app/Panel/PanelView/listmodel.cpp:511
 #, kde-format
 msgctxt "File property"
 msgid "Link to: %1"
-msgstr ""
+msgstr "קישור אל: %1"
 
 #: app/Panel/sidebar.cpp:59
 #, kde-format
@@ -7876,33 +7878,33 @@ msgstr ""
 #: app/panelmanager.cpp:51 app/panelmanager.cpp:52
 #, kde-format
 msgid "Open a new tab"
-msgstr ""
+msgstr "פתיחת לשונית חדשה"
 
 #: app/paneltabbar.cpp:177
 #, kde-format
 msgid "[invalid]"
-msgstr ""
+msgstr "[שגוי]"
 
 #: app/paneltabbar.cpp:195
 #, kde-format
 msgctxt "invalid URL path"
 msgid "?"
-msgstr ""
+msgstr "?"
 
 #: app/Search/krsearchdialog.cpp:136
 #, kde-format
 msgid "Krusader::Search"
-msgstr ""
+msgstr "Krusader::חיפוש"
 
 #: app/Search/krsearchdialog.cpp:153
 #, kde-format
 msgid "Query to clipboard"
-msgstr ""
+msgstr "תשאול ללוח הגזירים"
 
 #: app/Search/krsearchdialog.cpp:154
 #, kde-format
 msgid "Place search text to clipboard when a found file is opened."
-msgstr ""
+msgstr "להציג את טקסט החיפוש בלוח הגזירים כשקובץ שנמצא נפתח."
 
 #: app/Search/krsearchdialog.cpp:178 app/Synchronizer/synchronizergui.cpp:507
 #, kde-format
@@ -7912,12 +7914,12 @@ msgstr "סגירה"
 #: app/Search/krsearchdialog.cpp:209 app/Synchronizer/synchronizergui.cpp:256
 #, kde-format
 msgid "Compare by content"
-msgstr ""
+msgstr "השוואה לפי תוכן"
 
 #: app/Search/krsearchdialog.cpp:251
 #, kde-format
 msgid "Text found:"
-msgstr ""
+msgstr "טקסט נמצא:"
 
 #: app/Search/krsearchdialog.cpp:266
 #, kde-format
@@ -7927,7 +7929,7 @@ msgstr "בהמתנה"
 #: app/Search/krsearchdialog.cpp:278
 #, kde-format
 msgid "&Results"
-msgstr ""
+msgstr "&תוצאות"
 
 #: app/Search/krsearchdialog.cpp:403
 #, kde-format
@@ -7949,48 +7951,48 @@ msgstr ""
 #: app/Search/krsearchdialog.cpp:447
 #, kde-format
 msgid "Found 0 matches."
-msgstr ""
+msgstr "נמצאו 0 תוצאות."
 
 #: app/Search/krsearchdialog.cpp:481
 #, kde-format
 msgid "Finished searching."
-msgstr ""
+msgstr "החיפוש הסתיים."
 
 #: app/Search/krsearchdialog.cpp:591
 #, kde-format
 msgid "Krusader Search"
-msgstr ""
+msgstr "חיפוש ב־Krusader"
 
 #: app/Search/krsearchdialog.cpp:613
 #, kde-format
 msgid "Search results for \"%1\" in %2"
-msgstr ""
+msgstr "תוצאות החיפוש אחר „%1” תחת %2"
 
 #: app/Search/krsearchdialog.cpp:614
 #, kde-format
 msgid "Search results for \"%1\" containing \"%2\" in %3"
-msgstr ""
+msgstr "תוצאות החיפוש אחר „%1” המכיל „%2” תחת %3"
 
 #: app/Search/krsearchdialog.cpp:625
 #: app/Synchronizer/feedtolistboxdialog.cpp:95
 #, kde-format
 msgid "Here you can name the file collection"
-msgstr ""
+msgstr "כאן אפשר לתת שם לאוסף קבצים"
 
 #: app/Search/krsearchdialog.cpp:625
 #, kde-format
 msgid "Query name"
-msgstr ""
+msgstr "שם השאילתה"
 
 #: app/Splitter/combiner.cpp:60
 #, kde-format
 msgid "Krusader::Combining..."
-msgstr ""
+msgstr "Krusader::שילוב…"
 
 #: app/Splitter/combiner.cpp:61
 #, kde-format
 msgid "Combining the file %1..."
-msgstr ""
+msgstr "הקובץ %1 משולב…"
 
 #: app/Splitter/combiner.cpp:72
 #, kde-format
@@ -8002,12 +8004,12 @@ msgstr ""
 #: app/Splitter/combiner.cpp:108
 #, kde-format
 msgid "Error at reading the CRC file (%1)."
-msgstr ""
+msgstr "שגיאה בקריאת קובץ ה־CRC‏ (%1)."
 
 #: app/Splitter/combiner.cpp:137
 #, kde-format
 msgid "Not a valid CRC file."
-msgstr ""
+msgstr "לא קובץ CRC תקף."
 
 #: app/Splitter/combiner.cpp:144
 #, kde-format
@@ -8020,17 +8022,17 @@ msgstr ""
 #: app/Synchronizer/synchronizer.cpp:1345
 #, kde-format
 msgid "File Already Exists"
-msgstr ""
+msgstr "הקובץ כבר קיים"
 
 #: app/Splitter/combiner.cpp:272
 #, kde-format
 msgid "Cannot open the first split file of %1."
-msgstr ""
+msgstr "לא ניתן לפתוח את קובץ הפיצול הראשון של %1."
 
 #: app/Splitter/combiner.cpp:282
 #, kde-format
 msgid "Incorrect filesize, the file might have been corrupted."
-msgstr ""
+msgstr "גודל הקובץ שגוי, יכול להיות שהקובץ נפגם."
 
 #: app/Splitter/combiner.cpp:284
 #, kde-format
@@ -8040,102 +8042,102 @@ msgstr ""
 #: app/Splitter/splitter.cpp:73
 #, kde-format
 msgid "Krusader::Splitting..."
-msgstr ""
+msgstr "Krusader::מפצל…"
 
 #: app/Splitter/splitter.cpp:74
 #, kde-format
 msgid "Splitting the file %1..."
-msgstr ""
+msgstr "הקובץ %1 מפוצל…"
 
 #: app/Splitter/splitter.cpp:77
 #, kde-format
 msgid "Cannot split a folder."
-msgstr ""
+msgstr "לא ניתן לפצל תיקייה."
 
 #: app/Splitter/splitter.cpp:121
 #, kde-format
 msgid "Error reading file %1: %2"
-msgstr ""
+msgstr "שגיאה בקריאת הקובץ %1: %2"
 
 #: app/Splitter/splitter.cpp:230 app/Splitter/splitter.cpp:273
 #, kde-format
 msgid "Error writing file %1: %2"
-msgstr ""
+msgstr "שגיאה בכתיבת הקובץ %1: %2"
 
 #: app/Splitter/splittergui.cpp:59
 #, kde-format
 msgid "1.44 MB (3.5\")"
-msgstr ""
+msgstr "1.44 מ״ב (‎3.5\"‎)"
 
 #: app/Splitter/splittergui.cpp:60
 #, kde-format
 msgid "1.2 MB (5.25\")"
-msgstr ""
+msgstr "1.2 מ״ב (‎5.25\"‎)"
 
 #: app/Splitter/splittergui.cpp:61
 #, kde-format
 msgid "720 kB (3.5\")"
-msgstr ""
+msgstr "720 ק״ב (‎3.5\"‎)"
 
 #: app/Splitter/splittergui.cpp:62
 #, kde-format
 msgid "360 kB (5.25\")"
-msgstr ""
+msgstr "360 ק״ב (5‎.25\"‎)"
 
 #: app/Splitter/splittergui.cpp:63
 #, kde-format
 msgid "100 MB (ZIP)"
-msgstr ""
+msgstr "100 מ״ב (ZIP)"
 
 #: app/Splitter/splittergui.cpp:64
 #, kde-format
 msgid "250 MB (ZIP)"
-msgstr ""
+msgstr "250 מ״ב (ZIP)"
 
 #: app/Splitter/splittergui.cpp:65
 #, kde-format
 msgid "650 MB (CD-R)"
-msgstr ""
+msgstr "650 מ״ב (תקליטור לצריבה)"
 
 #: app/Splitter/splittergui.cpp:66
 #, kde-format
 msgid "700 MB (CD-R)"
-msgstr ""
+msgstr "700 מ״ב (תקליטור לצריבה)"
 
 #: app/Splitter/splittergui.cpp:84
 #, kde-format
 msgid "Split the file %1 to folder:"
-msgstr ""
+msgstr "לפצל את הקובץ %1 לתיקייה:"
 
 #: app/Splitter/splittergui.cpp:101
 #, kde-format
 msgid "User Defined"
-msgstr ""
+msgstr "בהגדרת המשתמש"
 
 #: app/Splitter/splittergui.cpp:110
 #, kde-format
 msgid "Max file size:"
-msgstr ""
+msgstr "גודל קבצים מרבי:"
 
 #: app/Splitter/splittergui.cpp:121
 #, kde-format
 msgid "kByte"
-msgstr ""
+msgstr "קילו־בתים"
 
 #: app/Splitter/splittergui.cpp:122
 #, kde-format
 msgid "MByte"
-msgstr ""
+msgstr "מגה־בתים"
 
 #: app/Splitter/splittergui.cpp:123
 #, kde-format
 msgid "GByte"
-msgstr ""
+msgstr "גיגה־בתים"
 
 #: app/Splitter/splittergui.cpp:128
 #, kde-format
 msgid "Overwrite files without confirmation"
-msgstr ""
+msgstr "לשכתב קבצים ללא אישור"
 
 #: app/Splitter/splittergui.cpp:138
 #, kde-format
@@ -8145,32 +8147,32 @@ msgstr "&פיצול"
 #: app/Splitter/splittergui.cpp:142
 #, kde-format
 msgid "Krusader::Splitter"
-msgstr ""
+msgstr "Krusader::מפריד"
 
 #: app/Splitter/splittergui.cpp:242
 #, kde-format
 msgid "The folder path URL is malformed."
-msgstr ""
+msgstr "כתובת נתיב התיקייה שגויה."
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:40
 #, kde-format
 msgid "Krusader::Feed to listbox"
-msgstr ""
+msgstr "Krusader::הזנה לתיבת רשימה"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:75
 #, kde-format
 msgid "No elements to feed."
-msgstr ""
+msgstr "אין רכיבים להזנה."
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:89
 #, kde-format
 msgid "Synchronize results"
-msgstr ""
+msgstr "סנכרון התוצאות"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:106
 #, kde-format
 msgid "Side to feed:"
-msgstr ""
+msgstr "צד להזנה:"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:112
 #, kde-format
@@ -8190,26 +8192,26 @@ msgstr "שניהם"
 #: app/Synchronizer/feedtolistboxdialog.cpp:131
 #, kde-format
 msgid "Selected files only"
-msgstr ""
+msgstr "הקבצים הנבחרים בלבד"
 
 #: app/Synchronizer/feedtolistboxdialog.cpp:187
 #, kde-format
 msgid "Cannot open %1."
-msgstr ""
+msgstr "לא ניתן לפתוח את %1."
 
 #: app/Synchronizer/synchronizedialog.cpp:43
 #, kde-format
 msgid "Krusader::Synchronize"
-msgstr ""
+msgstr "Krusader::סנכרון"
 
 #: app/Synchronizer/synchronizedialog.cpp:50
 #, kde-format
 msgid "Right to left: Copy 1 file"
 msgid_plural "Right to left: Copy %1 files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "מימין לשמאל: העתקת קובץ"
+msgstr[1] "מימין לשמאל: העתקת שני קבצים"
+msgstr[2] "מימין לשמאל: העתקת %1 קבצים"
+msgstr[3] "מימין לשמאל: העתקת %1 קבצים"
 
 #: app/Synchronizer/synchronizedialog.cpp:51
 #: app/Synchronizer/synchronizedialog.cpp:63
@@ -8217,10 +8219,10 @@ msgstr[3] ""
 #, kde-format
 msgid "(1 byte)"
 msgid_plural "(%1 bytes)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "(בית)"
+msgstr[1] "(שני בתים)"
+msgstr[2] "(%1 בתים)"
+msgstr[3] "(%1 בתים)"
 
 #: app/Synchronizer/synchronizedialog.cpp:58
 #: app/Synchronizer/synchronizedialog.cpp:70
@@ -8231,33 +8233,33 @@ msgstr[3] ""
 #, kde-format
 msgid "\tReady: %2/1 file, %3/%4"
 msgid_plural "\tReady: %2/%1 files, %3/%4"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "\tמוכן: %2/קובץ, %3/%4"
+msgstr[1] "\tמוכנים: %2/שני קבצים, %3/%4"
+msgstr[2] "\tמוכנים: %2/%1 קבצים, %3/%4"
+msgstr[3] "\tמוכנים: %2/%1 קבצים, %3/%4"
 
 #: app/Synchronizer/synchronizedialog.cpp:62
 #, kde-format
 msgid "Left to right: Copy 1 file"
 msgid_plural "Left to right: Copy %1 files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "משמאל לימין: העתקת קובץ"
+msgstr[1] "משמאל לימין: העתקת שני קבצים"
+msgstr[2] "משמאל לימין: העתקת %1 קבצים"
+msgstr[3] "משמאל לימין: העתקת %1 קבצים"
 
 #: app/Synchronizer/synchronizedialog.cpp:75
 #, kde-format
 msgid "Left: Delete 1 file"
 msgid_plural "Left: Delete %1 files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "שמאל: מחיקת קובץ"
+msgstr[1] "שמאל: מחיקת שני קבצים"
+msgstr[2] "שמאל: מחיקת %1 קבצים"
+msgstr[3] "שמאל: מחיקת %1 קבצים"
 
 #: app/Synchronizer/synchronizedialog.cpp:99
 #, kde-format
 msgid "Confirm overwrites"
-msgstr ""
+msgstr "אישור שכתובים"
 
 #: app/Synchronizer/synchronizedialog.cpp:108
 #, kde-format
@@ -8285,94 +8287,94 @@ msgstr "השהיה"
 #: app/Synchronizer/synchronizer.cpp:1531
 #, kde-format
 msgid "Resume"
-msgstr ""
+msgstr "המשך"
 
 #: app/Synchronizer/synchronizer.cpp:174 app/Synchronizer/synchronizer.cpp:861
 #, kde-format
 msgid "Number of files: %1"
-msgstr ""
+msgstr "מספר הקבצים: %1"
 
 #: app/Synchronizer/synchronizer.cpp:204
 #, kde-format
 msgid "Number of compared folders: %1"
-msgstr ""
+msgstr "מספר התיקיות שהושוו: %1"
 
 #: app/Synchronizer/synchronizer.cpp:1390
 #: app/Synchronizer/synchronizer.cpp:1395
 #, kde-format
 msgid "Error at copying file %1 to %2."
-msgstr ""
+msgstr "שגיאה בהעתקת הקובץ %1 אל %2."
 
 #: app/Synchronizer/synchronizer.cpp:1400
 #, kde-format
 msgid "Error at deleting file %1."
-msgstr ""
+msgstr "שגיאה במחיקת הקובץ %1."
 
 #: app/Synchronizer/synchronizer.cpp:1563
 #, kde-format
 msgid "Krusader::Synchronizer"
-msgstr ""
+msgstr "Krusader::מסנכרן"
 
 #: app/Synchronizer/synchronizer.cpp:1563
 #, kde-format
 msgid "Feeding the URLs to KGet"
-msgstr ""
+msgstr "הזנת הכתובות ל־KGet"
 
 #: app/Synchronizer/synchronizergui.cpp:141
 #: app/Synchronizer/synchronizergui.cpp:1336
 #, kde-format
 msgid "Krusader::Synchronize Folders"
-msgstr ""
+msgstr "Krusader::סנכרון תיקיות"
 
 #: app/Synchronizer/synchronizergui.cpp:157
 #, kde-format
 msgid "Folder Comparison"
-msgstr ""
+msgstr "השוואת  תיקיות"
 
 #: app/Synchronizer/synchronizergui.cpp:168
 #, kde-format
 msgid "File &Filter:"
-msgstr ""
+msgstr "מ&סנן קבצים:"
 
 #: app/Synchronizer/synchronizergui.cpp:190
 #, kde-format
 msgid "The left base folder used during the synchronization process."
-msgstr ""
+msgstr "תיקיית הבסיס השמאלית שמשמשת לתהליך הסנכרון."
 
 #: app/Synchronizer/synchronizergui.cpp:233
 #, kde-format
 msgid "The right base folder used during the synchronization process."
-msgstr ""
+msgstr "תיקיית הבסיס הימנית שמשמשת לתהליך הסנכרון."
 
 #: app/Synchronizer/synchronizergui.cpp:247
 #, kde-format
 msgid "Recurse subfolders"
-msgstr ""
+msgstr "לכלול תיקיות משנה"
 
 #: app/Synchronizer/synchronizergui.cpp:250
 #, kde-format
 msgid "Compare not only the base folders but their subfolders as well."
-msgstr ""
+msgstr "להשוות לא רק את תיקיות הבסיס אבל גם את תיקיות המשנה שלהן."
 
 #: app/Synchronizer/synchronizergui.cpp:251
 #, kde-format
 msgid "Follow symlinks"
-msgstr ""
+msgstr "מעקב אחר קישורים סמליים"
 
 #: app/Synchronizer/synchronizergui.cpp:255
 #, kde-format
 msgid "Follow symbolic links during the compare process."
-msgstr ""
+msgstr "מעקב אחר קישורים סמליים במהלך ההשוואה."
 
 #: app/Synchronizer/synchronizergui.cpp:259
 #, kde-format
 msgid "Compare duplicated files with same size by content."
-msgstr ""
+msgstr "להשוות קבצים כפולים עם אותו הגודל לפי תוכן."
 
 #: app/Synchronizer/synchronizergui.cpp:260
 #, kde-format
 msgid "Ignore Date"
-msgstr ""
+msgstr "התעלמות מתאריך"
 
 #: app/Synchronizer/synchronizergui.cpp:264
 #, kde-format
@@ -8380,11 +8382,13 @@ msgid ""
 "<p>Ignore date information during the compare process.</p><p><b>Note</b>: "
 "useful if the files are located on network filesystems or in archives.</p>"
 msgstr ""
+"<p>התעלמות מפרטי תאריכים במהלך ההשוואה.</p><p><b>לתשומת ליבך</b>: שימושי "
+"למקרים שהקבצים נמצאים במערכות קבצים דרך הרשת או בארכיונים.</p>"
 
 #: app/Synchronizer/synchronizergui.cpp:266
 #, kde-format
 msgid "Asymmetric"
-msgstr ""
+msgstr "אסימטרי"
 
 #: app/Synchronizer/synchronizergui.cpp:270
 #, kde-format
@@ -8394,6 +8398,9 @@ msgid ""
 "deleted, the other differing ones will be copied from right to left.</"
 "p><p><b>Note</b>: useful when updating a folder from a file server.</p>"
 msgstr ""
+"<p><b>מצב אסימטרי</b></p><p>הצד השמאלי הוא היעד, הצד הימני היא תיקיית המקור. "
+"קבצים שקימים רק בתיקייה השמאלית יימחקו, השונים האחרים יועתקו מימין לשמאל.</"
+"p><p><b>לתשומת ליבך</b>: שימושי לעדכון תיקיית משרת קבצים.</p>"
 
 #: app/Synchronizer/synchronizergui.cpp:272
 #, kde-format
@@ -8406,6 +8413,8 @@ msgid ""
 "<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when "
 "synchronizing Windows filesystems.</p>"
 msgstr ""
+"<p>השוואת קבצים ללא תלות ברישיות.</p><p><b>לתשומת ליבך</b>: שימושי לסנכרון "
+"מול מערכות קבצים של Windows.</p>"
 
 #: app/Synchronizer/synchronizergui.cpp:282
 #, kde-format
@@ -8415,7 +8424,7 @@ msgstr "ה&צגת אפשרויות"
 #: app/Synchronizer/synchronizergui.cpp:293
 #, kde-format
 msgid "Show files marked to <i>Copy from left to right</i>."
-msgstr ""
+msgstr "הצגת קבצים שמסומנים <i>להעתקה משמאל לימין</i>."
 
 #: app/Synchronizer/synchronizergui.cpp:298
 #, kde-format
@@ -8430,7 +8439,7 @@ msgstr "הצגת קבצים מוחרגים."
 #: app/Synchronizer/synchronizergui.cpp:308
 #, kde-format
 msgid "Show files marked to <i>Copy from right to left</i>."
-msgstr ""
+msgstr "הצגת קבצים שמסומנים <i>להעתקה מימין לשמאל</i>."
 
 #: app/Synchronizer/synchronizergui.cpp:313
 #, kde-format
@@ -8831,7 +8840,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:271
 #, kde-format
 msgid "Panel's Path..."
-msgstr "נתיב הלוח"
+msgstr "נתיב הלוח…"
 
 #: app/UserAction/expander.cpp:274 app/UserAction/expander.cpp:342
 #: app/UserAction/expander.cpp:376 app/UserAction/expander.cpp:412

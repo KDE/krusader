@@ -9,7 +9,7 @@
 # Tomek Grzejszczyk <tgrzej@onet.eu>, 2006, 2007.
 # Kamil Dziuba <kamil_dziuba@o2.pl>, 2010.
 # Marta Rybczyńska <kde-i18n@rybczynska.net>, 2010, 2013.
-# SPDX-FileCopyrightText: 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2024 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+# SPDX-FileCopyrightText: 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2024, 2025 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
 # Copyright (C) 2004-2009, Krusader Krew
 #
 #
@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2024-11-30 09:20+0100\n"
+"PO-Revision-Date: 2025-02-08 17:27+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 24.08.3\n"
+"X-Generator: Lokalize 24.12.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -9795,10 +9795,9 @@ msgstr ""
 "Możesz ją włączyć na stronie 'Archiwa' w ustawieniach."
 
 #: plugins/krarc/krarc.cpp:242
-#, fuzzy, kde-format
-#| msgid "Creating folders is not supported with %1 archives"
+#, kde-format
 msgid "Creating folders is not supported with %1 archives."
-msgstr "Tworzenie katalogów nie jest obsługiwane w archiwach %1"
+msgstr "Tworzenie katalogów nie jest obsługiwane w archiwach %1."
 
 #: plugins/krarc/krarc.cpp:278
 #, kde-format
@@ -9806,10 +9805,9 @@ msgid "Creating %1..."
 msgstr "Tworzenie %1 ..."
 
 #: plugins/krarc/krarc.cpp:320
-#, fuzzy, kde-format
-#| msgid "Writing to %1 archives is not supported"
+#, kde-format
 msgid "Writing to %1 archives is not supported."
-msgstr "Pisanie do archiwów %1 nie jest wspierane"
+msgstr "Pisanie do archiwów %1 nie jest obsługiwane."
 
 #: plugins/krarc/krarc.cpp:386
 #, kde-format
@@ -9817,10 +9815,9 @@ msgid "Packing %1..."
 msgstr "Pakowanie %1 ..."
 
 #: plugins/krarc/krarc.cpp:427
-#, fuzzy, kde-format
-#| msgid "Retrieving data from %1 archives is not supported"
+#, kde-format
 msgid "Retrieving data from %1 archives is not supported."
-msgstr "Odzyskiwanie danych z archiwów %1 nie jest wspierane"
+msgstr "Pobieranie danych z archiwów %1 nie jest obsługiwane."
 
 #: plugins/krarc/krarc.cpp:496 plugins/krarc/krarc.cpp:761
 #, kde-format
@@ -9836,16 +9833,14 @@ msgstr ""
 "Wystąpił błąd związany z programem zewnętrznym '%1'. Opis błędu to: '%2'."
 
 #: plugins/krarc/krarc.cpp:626
-#, fuzzy, kde-format
-#| msgid "Deleting files from %1 archives is not supported"
+#, kde-format
 msgid "Deleting files from %1 archives is not supported."
-msgstr "Usuwanie danych z archiwów %1 nie jest wspierane"
+msgstr "Usuwanie danych z archiwów %1 nie jest obsługiwane."
 
 #: plugins/krarc/krarc.cpp:670
-#, fuzzy, kde-format
-#| msgid "Accessing files is not supported with %1 archives"
+#, kde-format
 msgid "Accessing files is not supported with %1 archives."
-msgstr "Dostęp do plików w archiwach %1 jest niewspierany"
+msgstr "Dostęp do plików w archiwach %1 jest obsługiwany."
 
 #: plugins/krarc/krarc.cpp:783
 #, kde-format
@@ -9853,10 +9848,9 @@ msgid "Copying from archive to archive is not supported."
 msgstr "Kopiowanie między archiwami nie jest obsługiwane"
 
 #: plugins/krarc/krarc.cpp:829
-#, fuzzy, kde-format
-#| msgid "Listing folders is not supported for %1 archives"
+#, kde-format
 msgid "Listing folders is not supported for %1 archives."
-msgstr "Wyświetlenie listy katalogów z archiwów %1 nie jest obsługiwane"
+msgstr "Wyświetlenie listy katalogów z archiwów %1 nie jest obsługiwane."
 
 #: plugins/krarc/krarc.cpp:1759
 #, kde-format
