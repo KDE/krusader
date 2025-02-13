@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2025-02-11 23:05+0200\n"
+"PO-Revision-Date: 2025-02-12 19:10+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -31,7 +31,7 @@ msgstr "kde-l10n-he@kde.org"
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
 msgid "ActionMan - Manage Your Useractions"
-msgstr ""
+msgstr "מנהל הפעולות - ניהול פעולות המתשמש שלך"
 
 #: app/ActionMan/actionproperty.cpp:328
 #, kde-format
@@ -321,7 +321,7 @@ msgstr "קטגוריה:"
 #: app/ActionMan/actionproperty.ui:300 app/GUI/kcmdline.cpp:183
 #, kde-format
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
-msgstr ""
+msgstr "להוסיף <b>ממלאי מקום</b> לקבצים הנבחרים בלוח."
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonAddPlaceholder)
 #: app/ActionMan/actionproperty.ui:303
@@ -358,7 +358,7 @@ msgstr "אין"
 #: app/ActionMan/actionproperty.ui:398
 #, kde-format
 msgid "If checked, the action is shown in the Useractions menus."
-msgstr ""
+msgstr "אם האפשרות מסומנת, הפעולות תופענה בתפריט פעולות המשתמש."
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkEnabled)
 #: app/ActionMan/actionproperty.ui:401
@@ -537,7 +537,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:928
 #, kde-format
 msgid "Confirm each program call separately"
-msgstr ""
+msgstr "לאשר כל קריאה לתוכנית בנפרד"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, chkDifferentUser)
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leDifferentUser)
@@ -585,12 +585,12 @@ msgstr "בחירת קובץ הפעלה…"
 #: app/ActionMan/addplaceholderpopup.cpp:142
 #, kde-format
 msgid "User Action Parameter Dialog"
-msgstr ""
+msgstr "חלונית משתנים לפעולות משתמש"
 
 #: app/ActionMan/addplaceholderpopup.cpp:155
 #, kde-format
 msgid "This placeholder allows some parameter:"
-msgstr ""
+msgstr "ממלא המקום הזה מרשה כמה משתנים:"
 
 #: app/ActionMan/useractionlistview.cpp:29
 #, kde-format
@@ -1233,10 +1233,10 @@ msgstr "אריזת %1"
 #, kde-format
 msgid "Pack %1 file"
 msgid_plural "Pack %1 files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "אריזת קובץ"
+msgstr[1] "אריזת שני קבצים"
+msgstr[2] "אריזת %1 קבצים"
+msgstr[3] "אריזת %1 קבצים"
 
 #: app/Dialogs/packgui.cpp:100
 #, kde-format
@@ -1392,7 +1392,7 @@ msgstr "גודל כולל:"
 #: app/DiskUsage/diskusage.cpp:238
 #, kde-format
 msgid "Loading the disk usage information..."
-msgstr ""
+msgstr "פרטי ניצולת הכונן נטענים…"
 
 #: app/DiskUsage/diskusage.cpp:404
 #, kde-format
@@ -1559,12 +1559,12 @@ msgstr "תצוגה מפורטת"
 #: app/DiskUsage/diskusagegui.cpp:85
 #, kde-format
 msgid "Filelight view"
-msgstr ""
+msgstr "תצוגת Filelight"
 
 #: app/DiskUsage/diskusagegui.cpp:221
 #, kde-format
 msgid "Viewing the usage of folder:"
-msgstr ""
+msgstr "הצגת ניצולת של תיקייה:"
 
 #: app/DiskUsage/dufilelight.cpp:80 app/Panel/viewactions.cpp:20
 #, kde-format
@@ -1691,10 +1691,10 @@ msgstr "קבוצה"
 #, kde-format
 msgid "%1 file: ~ %2"
 msgid_plural "%1 files: ~ %2"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "קובץ: ~ %2"
+msgstr[1] "שני קבצים: ~ %2"
+msgstr[2] "%1 קבצים: ~ %2"
+msgstr[3] "%1 קבצים: ~ %2"
 
 #: app/DiskUsage/radialMap/segmentTip.cpp:121
 #, kde-format
@@ -1731,12 +1731,12 @@ msgstr "מ&חיקה"
 msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
 "b> deleted.</qt>"
-msgstr ""
+msgstr "<qt>התיקייה ב־<i>‚%1’</i> תימחק <b>רקורסיבית</b> ו<b>לצמיתות</b>.</qt>"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:205
 #, kde-format
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
-msgstr ""
+msgstr "<qt><i>‚%1’</i> תימחק <b>לצמיתות</b>.</qt>"
 
 #: app/FileSystem/defaultfilesystem.cpp:150
 #, kde-format
@@ -3764,7 +3764,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:227
 #, kde-format
 msgid "Position:"
-msgstr ""
+msgstr "מקום:"
 
 #: app/Konfigurator/kgpanel.cpp:237
 #, kde-format
@@ -3795,12 +3795,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:262
 #, kde-format
 msgid "Bookmark Search"
-msgstr ""
+msgstr "חיפוש סימניות"
 
 #: app/Konfigurator/kgpanel.cpp:266
 #, kde-format
 msgid "Always show search bar"
-msgstr ""
+msgstr "תמיד להציג את סרגל החיפוש"
 
 #: app/Konfigurator/kgpanel.cpp:266
 #, kde-format
@@ -3827,7 +3827,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:285
 #, kde-format
 msgid "Show size in bytes too"
-msgstr ""
+msgstr "להציג את הגודל גם בבתים"
 
 #: app/Konfigurator/kgpanel.cpp:286
 #, kde-format
@@ -3837,7 +3837,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:286
 #, kde-format
 msgid "Show free/total space on the device"
-msgstr ""
+msgstr "להציג נפח פנוי/כולל בהתקן"
 
 #: app/Konfigurator/kgpanel.cpp:304
 #, kde-format
@@ -3852,13 +3852,13 @@ msgstr "פריסה:"
 #: app/Konfigurator/kgpanel.cpp:325
 #, kde-format
 msgid "Frame Color:"
-msgstr ""
+msgstr "צבע מסגרת:"
 
 #: app/Konfigurator/kgpanel.cpp:328
 #, kde-format
 msgctxt "Frame color"
 msgid "Defined by Layout"
-msgstr ""
+msgstr "מוגדר לפי פריסה"
 
 #: app/Konfigurator/kgpanel.cpp:329
 #, kde-format
@@ -3870,18 +3870,18 @@ msgstr "אין"
 #, kde-format
 msgctxt "Frame color"
 msgid "Statusbar"
-msgstr ""
+msgstr "שורת מצב"
 
 #: app/Konfigurator/kgpanel.cpp:334
 #, kde-format
 msgid "Frame Shape:"
-msgstr ""
+msgstr "צורת מסגרת:"
 
 #: app/Konfigurator/kgpanel.cpp:338
 #, kde-format
 msgctxt "Frame shape"
 msgid "Defined by Layout"
-msgstr ""
+msgstr "מוגדר לפי פריסה"
 
 #: app/Konfigurator/kgpanel.cpp:339
 #, kde-format
@@ -3904,13 +3904,13 @@ msgstr "לוח"
 #: app/Konfigurator/kgpanel.cpp:346
 #, kde-format
 msgid "Frame Shadow:"
-msgstr ""
+msgstr "צללית מסגרת:"
 
 #: app/Konfigurator/kgpanel.cpp:350
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Defined by Layout"
-msgstr ""
+msgstr "מוגדר לפי פריסה"
 
 #: app/Konfigurator/kgpanel.cpp:351
 #, kde-format
@@ -3985,17 +3985,17 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:464
 #, kde-format
 msgid "Show hidden files"
-msgstr ""
+msgstr "הצגת קבצים מוסתרים"
 
 #: app/Konfigurator/kgpanel.cpp:464
 #, kde-format
 msgid "Display files beginning with a dot."
-msgstr ""
+msgstr "להציג קבצים שמתחילים בנקודה."
 
 #: app/Konfigurator/kgpanel.cpp:468
 #, kde-format
 msgid "Numeric Permissions"
-msgstr ""
+msgstr "הרשאות מספריות"
 
 #: app/Konfigurator/kgpanel.cpp:470
 #, kde-format
@@ -4003,57 +4003,59 @@ msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
 "the permission column."
 msgstr ""
+"להציג מספרים בבסיס אוקטלי/שמונה (0755) במקום ההרשאות הרגילות (rwxr-xr-x) "
+"בעמודת ההרשאות."
 
 #: app/Konfigurator/kgpanel.cpp:474
 #, kde-format
 msgid "Load the user defined folder icons"
-msgstr ""
+msgstr "לטעון את סמלי התיקיות בהגדרת המשתמש"
 
 #: app/Konfigurator/kgpanel.cpp:476
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
-msgstr ""
+msgstr "לטעון את סמלי התיקיות בהגדרת המשתמש (עלול לפגוע בביצועים)."
 
 #: app/Konfigurator/kgpanel.cpp:480
 #, kde-format
 msgid "Always show current item"
-msgstr ""
+msgstr "תמיד להציג את הפריט הנוכחי"
 
 #: app/Konfigurator/kgpanel.cpp:482
 #, kde-format
 msgid "Show current item border decoration in inactive panel."
-msgstr ""
+msgstr "להציג את מסגרת מעוצבת לפריט הנוכחי בלוח שאינו פעיל."
 
 #: app/Konfigurator/kgpanel.cpp:496
 #, kde-format
 msgid "Sort method:"
-msgstr ""
+msgstr "שיטת סידור:"
 
 #: app/Konfigurator/kgpanel.cpp:499
 #, kde-format
 msgid "Alphabetical"
-msgstr ""
+msgstr "אלפבתית"
 
 #: app/Konfigurator/kgpanel.cpp:500
 #, kde-format
 msgid "Alphabetical and numbers"
-msgstr ""
+msgstr "אלפבתית ומספרים"
 
 #: app/Konfigurator/kgpanel.cpp:501
 #, kde-format
 msgid "Character code"
-msgstr ""
+msgstr "קוד תווים"
 
 #: app/Konfigurator/kgpanel.cpp:502
 #, kde-format
 msgid "Character code and numbers"
-msgstr ""
+msgstr "קוד תווים ומספרים"
 
 #: app/Konfigurator/kgpanel.cpp:503
 #, kde-format
 msgctxt "Krusader sort"
 msgid "Krusader"
-msgstr ""
+msgstr "Krusader"
 
 #: app/Konfigurator/kgpanel.cpp:518
 #, kde-format
@@ -4864,32 +4866,32 @@ msgstr "צהוב"
 #: app/Konfigurator/konfiguratoritems.cpp:601
 #, kde-format
 msgid "Dark Red"
-msgstr ""
+msgstr "אדום כהה"
 
 #: app/Konfigurator/konfiguratoritems.cpp:602
 #, kde-format
 msgid "Dark Green"
-msgstr ""
+msgstr "ירוק כהה"
 
 #: app/Konfigurator/konfiguratoritems.cpp:603
 #, kde-format
 msgid "Dark Blue"
-msgstr ""
+msgstr "כחול כהה"
 
 #: app/Konfigurator/konfiguratoritems.cpp:604
 #, kde-format
 msgid "Dark Cyan"
-msgstr ""
+msgstr "ציאן כהה"
 
 #: app/Konfigurator/konfiguratoritems.cpp:605
 #, kde-format
 msgid "Dark Magenta"
-msgstr ""
+msgstr "ארגמן כהה"
 
 #: app/Konfigurator/konfiguratoritems.cpp:606
 #, kde-format
 msgid "Dark Yellow"
-msgstr ""
+msgstr "צהוב כהה"
 
 #: app/Konfigurator/konfiguratoritems.cpp:607
 #, kde-format
@@ -4899,7 +4901,7 @@ msgstr "לבן"
 #: app/Konfigurator/konfiguratoritems.cpp:608
 #, kde-format
 msgid "Light Gray"
-msgstr ""
+msgstr "אפור בהיר"
 
 #: app/Konfigurator/konfiguratoritems.cpp:609
 #, kde-format
@@ -4909,7 +4911,7 @@ msgstr "אפור"
 #: app/Konfigurator/konfiguratoritems.cpp:610
 #, kde-format
 msgid "Dark Gray"
-msgstr ""
+msgstr "אפור כהה"
 
 #: app/Konfigurator/konfiguratoritems.cpp:611
 #, kde-format
@@ -5159,7 +5161,7 @@ msgstr ""
 #: app/kractions.cpp:288 app/krusaderview.cpp:473
 #, kde-format
 msgid "Vertical Mode"
-msgstr ""
+msgstr "מצב אנכי"
 
 #: app/kractions.cpp:294
 #, kde-format
@@ -5169,27 +5171,27 @@ msgstr ""
 #: app/kractions.cpp:296
 #, kde-format
 msgid "Manage User Actions..."
-msgstr ""
+msgstr "ניהול פעולות משתמש…"
 
 #: app/kractions.cpp:298
 #, kde-format
 msgid "Select Remote Charset"
-msgstr ""
+msgstr "בחירת ערכת תווים מרוחקת"
 
 #: app/kractions.cpp:300
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr ""
+msgstr "לשוניות שנסגרו לאחרונה"
 
 #: app/kractions.cpp:304
 #, kde-format
 msgid "Quit Krusader."
-msgstr ""
+msgstr "יציאה מ־Krusader."
 
 #: app/kractions.cpp:306
 #, kde-format
 msgid "Popular URLs..."
-msgstr ""
+msgstr "כתובות נפוצות…"
 
 #: app/kractions.cpp:308
 #, kde-format
@@ -5762,7 +5764,7 @@ msgstr "עדכון מסד הנתונים"
 #: app/Locate/locate.cpp:278
 #, kde-format
 msgid "Cannot start 'locate'. Check the 'Dependencies' page in konfigurator."
-msgstr "לא ניתן להפעיל את ‚locate”. נא לגשת לעמוד ‚תלויות’ ב־konfigurator."
+msgstr "לא ניתן להפעיל את ‚locate’. נא לגשת לעמוד ‚תלויות’ ב־konfigurator."
 
 #: app/Locate/locate.cpp:317
 #, kde-format
@@ -5927,94 +5929,94 @@ msgstr "רפי ינאי"
 #: app/main.cpp:134 app/main.cpp:135
 #, kde-format
 msgid "Author (retired)"
-msgstr ""
+msgstr "יוצר (פרש)"
 
 #: app/main.cpp:135
 #, kde-format
 msgid "Shie Erlich"
-msgstr ""
+msgstr "שִׁי ארליך"
 
 #: app/main.cpp:136
 #, kde-format
 msgid "Csaba Karai"
-msgstr ""
+msgstr "קסאבה קראי"
 
 #: app/main.cpp:136 app/main.cpp:137 app/main.cpp:138 app/main.cpp:139
 #: app/main.cpp:140 app/main.cpp:141 app/main.cpp:142 app/main.cpp:143
 #: app/main.cpp:144
 #, kde-format
 msgid "Developer (retired)"
-msgstr ""
+msgstr "מפתח (פרש)"
 
 #: app/main.cpp:137
 #, kde-format
 msgid "Heiner Eichmann"
-msgstr ""
+msgstr "היינר אייכמן"
 
 #: app/main.cpp:138
 #, kde-format
 msgid "Jonas Bähr"
-msgstr ""
+msgstr "יונאס באהר"
 
 #: app/main.cpp:139
 #, kde-format
 msgid "Václav Jůza"
-msgstr ""
+msgstr "וצלאב ג׳יזה"
 
 #: app/main.cpp:140
 #, kde-format
 msgid "Jan Lepper"
-msgstr ""
+msgstr "יאן לפר"
 
 #: app/main.cpp:141
 #, kde-format
 msgid "Andrey Matveyakin"
-msgstr ""
+msgstr "אנדריי מטוויאקין"
 
 #: app/main.cpp:142
 #, kde-format
 msgid "Simon Persson"
-msgstr ""
+msgstr "סיימון פרסון"
 
 #: app/main.cpp:143
 #, kde-format
 msgid "Alexander Bikadorov"
-msgstr ""
+msgstr "אלכסנדר ביקדורוב"
 
 #: app/main.cpp:144
 #, kde-format
 msgid "Martin Kostolný"
-msgstr ""
+msgstr "מרטין קוסטולני"
 
 #: app/main.cpp:145 app/main.cpp:182
 #, kde-format
 msgid "Dirk Eschler"
-msgstr ""
+msgstr "דירק אשלר"
 
 #: app/main.cpp:145
 #, kde-format
 msgid "Webmaster (retired)"
-msgstr ""
+msgstr "מנהל האתר (פרש)"
 
 #: app/main.cpp:146 app/main.cpp:178
 #, kde-format
 msgid "Frank Schoolmeesters"
-msgstr ""
+msgstr "פראק שולמסטרס"
 
 #: app/main.cpp:147
 #, kde-format
 msgid "Documentation and marketing coordinator (retired)"
-msgstr ""
+msgstr "תיעוד ותיאום שיווק (פרש)"
 
 #: app/main.cpp:150
 #, kde-format
 msgid "Richard Holt"
-msgstr ""
+msgstr "ריצ׳ארד הולט"
 
 #: app/main.cpp:150
 #, kde-format
 msgid "Documentation & Proofing (retired)"
-msgstr ""
+msgstr "תיעוד והגהה (פרש)"
 
 #: app/main.cpp:151 app/main.cpp:198
 #, kde-format
@@ -6054,7 +6056,7 @@ msgstr ""
 #: app/main.cpp:154 app/main.cpp:165
 #, kde-format
 msgid "QA, bug-hunting, patches and general help"
-msgstr ""
+msgstr "אבטחת איכות, מצוד אחר תקלות ועזרה כללית"
 
 #: app/main.cpp:155
 #, kde-format
@@ -6089,12 +6091,12 @@ msgstr "סמלים ל־Krusader"
 #: app/main.cpp:158
 #, kde-format
 msgid "Gábor Lehel"
-msgstr ""
+msgstr "גאבור להל"
 
 #: app/main.cpp:158
 #, kde-format
 msgid "Viewer module for 3rd Hand"
-msgstr ""
+msgstr "מודול מציג לצד שלישי"
 
 #: app/main.cpp:159
 #, kde-format
@@ -6114,12 +6116,12 @@ msgstr ""
 #: app/main.cpp:160
 #, kde-format
 msgid "The old Bookmark Module"
-msgstr ""
+msgstr "מודול הסימניות הישן"
 
 #: app/main.cpp:161
 #, kde-format
 msgid "Hans Löffler"
-msgstr ""
+msgstr "האנס לפלר"
 
 #: app/main.cpp:161
 #, kde-format
@@ -6174,7 +6176,7 @@ msgstr "טלאי ל־KViewer"
 #: app/main.cpp:167
 #, kde-format
 msgid "Milan Brabec"
-msgstr ""
+msgstr "מילאן בראבץ׳"
 
 #: app/main.cpp:167
 #, kde-format
@@ -6454,7 +6456,7 @@ msgstr "תרגום לסרבית"
 #: app/main.cpp:197
 #, kde-format
 msgid "Zdenko Podobný and Ondrej Pačay (Yogi)"
-msgstr ""
+msgstr "זדנקו פודובני ואונדריי פאצ׳אי (יוגי)"
 
 #: app/main.cpp:197
 #, kde-format
@@ -6554,7 +6556,7 @@ msgstr ""
 #: app/main.cpp:218
 #, kde-format
 msgid "Load this profile on startup"
-msgstr ""
+msgstr "לטעון את הפרופיל הזה בהתחלה"
 
 #: app/main.cpp:219
 #, kde-format
@@ -6579,17 +6581,17 @@ msgstr ""
 #: app/MountMan/kmountman.cpp:134
 #, kde-format
 msgid "Cannot start 'mount'. Check the 'Dependencies' page in konfigurator."
-msgstr ""
+msgstr "לא ניתן להפעיל את mount’. נא לגשת לעמוד ‚תלויות’ ב־konfigurator."
 
 #: app/MountMan/kmountman.cpp:358
 #, kde-format
 msgid "MountMan is not operational. Sorry"
-msgstr ""
+msgstr "מנהל העיגון לא מתפקד. סליחה"
 
 #: app/MountMan/kmountmangui.cpp:60
 #, kde-format
 msgid "MountMan - Your Mount-Manager"
-msgstr ""
+msgstr "מנהל העיגון - מנהל את עיגוני מערכות הקבצים שלך"
 
 #: app/MountMan/kmountmangui.cpp:74
 #, kde-format
@@ -6599,27 +6601,27 @@ msgstr "&שליפה"
 #: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:419
 #, kde-format
 msgid "&Unmount"
-msgstr ""
+msgstr "&ניתוק"
 
 #: app/MountMan/kmountmangui.cpp:149
 #, kde-format
 msgid "Mnt.Point"
-msgstr ""
+msgstr "נק׳עגינה"
 
 #: app/MountMan/kmountmangui.cpp:150
 #, kde-format
 msgid "Total Size"
-msgstr ""
+msgstr "גודל כולל"
 
 #: app/MountMan/kmountmangui.cpp:151
 #, kde-format
 msgid "Free Size"
-msgstr ""
+msgstr "גודל פנוי"
 
 #: app/MountMan/kmountmangui.cpp:152
 #, kde-format
 msgid "Free %"
-msgstr ""
+msgstr "% פנוי"
 
 #: app/MountMan/kmountmangui.cpp:181
 #, kde-format
@@ -6629,7 +6631,7 @@ msgstr ""
 #: app/MountMan/kmountmangui.cpp:188
 #, kde-format
 msgid "Show only removable devices"
-msgstr ""
+msgstr "להציג התקנים נתיקים בלבד"
 
 #: app/MountMan/kmountmangui.cpp:421
 #, kde-format
@@ -6639,104 +6641,104 @@ msgstr "&עיגון"
 #: app/MountMan/kmountmangui.cpp:442
 #, kde-format
 msgid "MountMan"
-msgstr ""
+msgstr "מנהל העיגון"
 
 #: app/MountMan/kmountmangui.cpp:458
 #, kde-format
 msgid "Format"
-msgstr ""
+msgstr "פרמוט"
 
 #: app/Panel/krcalcspacedialog.cpp:30
 #, kde-format
 msgid "Calculate Occupied Space"
-msgstr ""
+msgstr "חישוב הנפח התפוס"
 
 #: app/Panel/krcalcspacedialog.cpp:107
 #, kde-format
 msgid "Name: %1\n"
-msgstr ""
+msgstr "שם: %1\n"
 
 #: app/Panel/krcalcspacedialog.cpp:109
 #, kde-format
 msgid "Total occupied space: %1"
-msgstr ""
+msgstr "הנפח התפוס הכולל: %1"
 
 #: app/Panel/krcalcspacedialog.cpp:111
 #, kde-format
 msgid " (%2 byte)"
 msgid_plural " (%2 bytes)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] " (בית)"
+msgstr[1] " (שני בתים)"
+msgstr[2] " (%2 בתים)"
+msgstr[3] " (%2 בתים)"
 
 #: app/Panel/krcalcspacedialog.cpp:113
 #, kde-format
 msgid "in %1 folder"
 msgid_plural "in %1 folders"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "בתיקייה"
+msgstr[1] "בשתי תיקיות"
+msgstr[2] "ב־%1 תיקיות"
+msgstr[3] "ב־%1 תיקיות"
 
 #: app/Panel/krcalcspacedialog.cpp:115
 #, kde-format
 msgid "and %1 file"
 msgid_plural "and %1 files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "וקובץ"
+msgstr[1] "ושני קבצים"
+msgstr[2] "ו־%1 קבצים"
+msgstr[3] "ו־%1 קבצים"
 
 #: app/Panel/krfiletreeview.cpp:182
 #, kde-format
 msgid "Show Details"
-msgstr ""
+msgstr "הצגת פרטים"
 
 #: app/Panel/krfiletreeview.cpp:185
 #, kde-format
 msgid "Show columns with details"
-msgstr ""
+msgstr "הצגת עמודות עם פרטים"
 
 #: app/Panel/krfiletreeview.cpp:186
 #, kde-format
 msgid "Show Hidden Folders"
-msgstr ""
+msgstr "הצגת תיקיות מוסתרות"
 
 #: app/Panel/krfiletreeview.cpp:189
 #, kde-format
 msgid "Show folders starting with a dot"
-msgstr ""
+msgstr "הצגת תיקיות שמתחילות בנקודה"
 
 #: app/Panel/krfiletreeview.cpp:194
 #, kde-format
 msgid "Start From Root"
-msgstr ""
+msgstr "התחלה מתיקיית העל"
 
 #: app/Panel/krfiletreeview.cpp:197
 #, kde-format
 msgid "Set root of the tree to root of filesystem"
-msgstr ""
+msgstr "הגדרת שורש העץ לתיקיית העל במערכת הקבצים"
 
 #: app/Panel/krfiletreeview.cpp:200
 #, kde-format
 msgid "Start From Current"
-msgstr ""
+msgstr "התחלה מהנוכחי"
 
 #: app/Panel/krfiletreeview.cpp:203
 #, kde-format
 msgid "Set root of the tree to the current folder"
-msgstr ""
+msgstr "הגדרת שורש העץ לתיקייה הנוכחית"
 
 #: app/Panel/krfiletreeview.cpp:206
 #, kde-format
 msgid "Start From Place"
-msgstr ""
+msgstr "התחלה ממקום"
 
 #: app/Panel/krfiletreeview.cpp:209
 #, kde-format
 msgid "Set root of the tree to closest folder listed in 'Places'"
-msgstr ""
+msgstr "הגדרת שורש העץ לתיקייה הקרובה ביותר שמופיעה תחת ‚מקומות’"
 
 #: app/Panel/krfiletreeview.cpp:238
 #, kde-format
@@ -6754,7 +6756,7 @@ msgstr "העתקה"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Move to Trash"
-msgstr ""
+msgstr "העברה לאשפה"
 
 #: app/Panel/krfiletreeview.cpp:278
 #, kde-format
@@ -6839,6 +6841,8 @@ msgid ""
 "Open menu with bookmarks. You can also add current location to the list, "
 "edit bookmarks or add subfolder to the list."
 msgstr ""
+"פתיחת תפריט עם סימניות. אפשר גם להוסיף את המקום הנוכחי לרשימה, לערוך סימניות "
+"או להוסיף תת־תיקייה לרשימה."
 
 #: app/Panel/listpanel.cpp:200
 #, kde-format
@@ -6846,28 +6850,30 @@ msgid ""
 "Name of folder where you are. You can also enter name of desired location to "
 "move there. Use of Net protocols like ftp or fish is possible."
 msgstr ""
+"שם התיקייה במקום הנוכחי. אפשר גם למלא שם של מקום נחוץ כדי לעבור אליו. אפשר "
+"גם להשתמש בפרוטוקולי רשת כגון ftp או fish."
 
 #: app/Panel/listpanel.cpp:242
 #, kde-format
 msgid ""
 "The totals bar shows how many files exist, how many selected and the bytes "
 "math"
-msgstr ""
+msgstr "פס הסיכומים מציג כמה קבצים קיימים, כמה נבחרו ואת חישוב הבתים"
 
 #: app/Panel/listpanel.cpp:261
 #, kde-format
 msgid "Cancel folder space calculation"
-msgstr ""
+msgstr "ביטול חישוב נפח תיקייה"
 
 #: app/Panel/listpanel.cpp:286
 #, kde-format
 msgid "Move Sidebar clockwise"
-msgstr ""
+msgstr "העברת לוח הצד עם כיוון השעון"
 
 #: app/Panel/listpanel.cpp:298 app/Panel/listpanel.cpp:617
 #, kde-format
 msgid "Open the Sidebar"
-msgstr ""
+msgstr "פתיחת לוח הצד"
 
 #: app/Panel/listpanel.cpp:322
 #, kde-format
@@ -6880,12 +6886,12 @@ msgstr ""
 #: app/Panel/listpanel.cpp:610
 #, kde-format
 msgid "Close the Sidebar"
-msgstr ""
+msgstr "סגירת לוח הצד"
 
 #: app/Panel/listpanel.cpp:669 app/Synchronizer/synchronizergui.cpp:977
 #, kde-format
 msgid "Warning: The left and the right side are showing the same folder."
-msgstr ""
+msgstr "אזהרה: הצד השמאלי והצד הימני מציגים את אותה התיקייה."
 
 #: app/Panel/listpanel.cpp:826
 #, kde-format
@@ -6893,17 +6899,17 @@ msgctxt ""
 "%1=free space,%2=total space,%3=percentage of usage, %4=mountpoint,"
 "%5=filesystem type"
 msgid "%1 free out of %2 (%3%) on %4 [(%5)]"
-msgstr ""
+msgstr "%1 פנויים מתוך %2 (%3%) ב־%4 [(%5)]"
 
 #: app/Panel/listpanel.cpp:833
 #, kde-format
 msgid "%1 free"
-msgstr ""
+msgstr "%1 פנויים"
 
 #: app/Panel/listpanel.cpp:1052
 #, kde-format
 msgid "loading previews: %p%"
-msgstr ""
+msgstr "התצוגות המקדימות נטענות: %p%"
 
 #: app/Panel/listpanel.cpp:1093
 #, kde-format
@@ -7284,134 +7290,134 @@ msgstr "סנכרון הקבצים הנבחרים…"
 #: app/Panel/panelcontextmenu.cpp:294
 #, kde-format
 msgid "Create New"
-msgstr ""
+msgstr "יצירת חדש"
 
 #: app/Panel/panelfunc.cpp:360
 #, kde-format
 msgid "You can edit links only on local file systems"
-msgstr ""
+msgstr "אפשר לערוך קישורים רק במערכות קבצים מקומיות"
 
 #: app/Panel/panelfunc.cpp:371
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
-msgstr ""
+msgstr "הקובץ הנוכחי אינו קישור, לכן לא ניתן להפנות אותו."
 
 #: app/Panel/panelfunc.cpp:378
 #, kde-format
 msgid "Link Redirection"
-msgstr ""
+msgstr "הפניית קישור"
 
 #: app/Panel/panelfunc.cpp:378
 #, kde-format
 msgid "Please enter the new link destination:"
-msgstr ""
+msgstr "נא למלא יעד חדש לקישור:"
 
 #: app/Panel/panelfunc.cpp:385
 #, kde-format
 msgid "Cannot remove old link: %1"
-msgstr ""
+msgstr "לא ניתן להסיר את הקישור הישן: %1"
 
 #: app/Panel/panelfunc.cpp:390
 #, kde-format
 msgid "Failed to create a new link: %1"
-msgstr ""
+msgstr "יצירת הקישור החדש נכשלה: %1"
 
 #: app/Panel/panelfunc.cpp:398
 #, kde-format
 msgid "You can create links only on local file systems"
-msgstr ""
+msgstr "אפשר ליצור קישורים רק במערכות קבצים מקומיות"
 
 #: app/Panel/panelfunc.cpp:406
 #, kde-format
 msgid "New Link"
-msgstr ""
+msgstr "קישור חדש"
 
 #: app/Panel/panelfunc.cpp:406
 #, kde-format
 msgid "Create a new link to: %1"
-msgstr ""
+msgstr "יצירת קישור חדש אל: %1"
 
 #: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:760
 #, kde-format
 msgid "A folder or a file with this name already exists."
-msgstr ""
+msgstr "כבר קיימת תיקייה בשם הזה."
 
 #: app/Panel/panelfunc.cpp:425
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
-msgstr ""
+msgstr "יצירת קישור סמלי חדש מ־‚%1’ אל ‚%2’ נכשלה"
 
 #: app/Panel/panelfunc.cpp:428
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
-msgstr ""
+msgstr "יצירת קישור חדש מ־‚%1’ אל ‚%2’ נכשלה"
 
 #: app/Panel/panelfunc.cpp:445
 #, kde-format
 msgid "No permissions to view this file."
-msgstr ""
+msgstr "אין הרשאות לצפות בקובץ הזה."
 
 #: app/Panel/panelfunc.cpp:456
 #, kde-format
 msgid "Enter a URL to view:"
-msgstr ""
+msgstr "נא למלא כתובת לתצוגה:"
 
 #: app/Panel/panelfunc.cpp:486 app/Panel/panelfunc.cpp:564
 #, kde-format
 msgid "You cannot edit a folder"
-msgstr ""
+msgstr "לא ניתן לערוך תיקייה"
 
 #: app/Panel/panelfunc.cpp:491
 #, kde-format
 msgid "No permissions to edit this file."
-msgstr ""
+msgstr "אין הרשאות לערוך את הקובץ הזה."
 
 #: app/Panel/panelfunc.cpp:505
 #, kde-format
 msgid "Enter the filename to edit:"
-msgstr ""
+msgstr "נא למלא שם קובץ לעריכה:"
 
 #: app/Panel/panelfunc.cpp:616
 #, kde-format
 msgid "Move %1 to:"
-msgstr ""
+msgstr "העברת %1 אל:"
 
 #: app/Panel/panelfunc.cpp:616
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "העברת קובץ אל:"
+msgstr[1] "העברת שני קבצים אל:"
+msgstr[2] "העברת %1 קבצים אל:"
+msgstr[3] "העברת %1 קבצים אל:"
 
 #: app/Panel/panelfunc.cpp:618
 #, kde-format
 msgid "Copy %1 to:"
-msgstr ""
+msgstr "העתקת %1 אל:"
 
 #: app/Panel/panelfunc.cpp:618
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "העתקת קובץ אל:"
+msgstr[1] "העתקת שני קבצים אל:"
+msgstr[2] "העתקת %1 קבצים אל:"
+msgstr[3] "העתקת %1 קבצים אל:"
 
 #: app/Panel/panelfunc.cpp:684
 #, kde-format
 msgid "Folder's name:"
-msgstr ""
+msgstr "שם התיקייה:"
 
 #: app/Panel/panelfunc.cpp:824
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "להעביר את הקובץ הזה לאשפה?"
+msgstr[1] "להעביר את שני הקבצים האלה לאשפה?"
+msgstr[2] "להעביר את %1 הקבצים האלה לאשפה?"
+msgstr[3] "להעביר את %1 הקבצים האלה לאשפה?"
 
 #: app/Panel/panelfunc.cpp:828
 #, kde-format
@@ -7422,33 +7428,41 @@ msgid_plural ""
 "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
 msgstr[0] ""
+"<qt>למחוק את הפריט הזה <b>פיזית</b> (לא להסתפק בהסרתו מהפריטים הווירטואליים)?"
+"</qt>"
 msgstr[1] ""
+"<qt>למחוק את שני הפריטים האלה <b>פיזית</b> (לא להסתפק בהסרתם מהפריטים "
+"הווירטואליים)?</qt>"
 msgstr[2] ""
+"<qt>למחוק את %1 הפריטים האלה <b>פיזית</b> (לא להסתפק בהסרתם מהפריטים "
+"הווירטואליים)?</qt>"
 msgstr[3] ""
+"<qt>למחוק את %1 הפריטים האלה <b>פיזית</b> (לא להסתפק בהסרתם מהפריטים "
+"הווירטואליים)?</qt>"
 
 #: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "למחוק את הפריט הזה?"
+msgstr[1] "למחוק את שני הפריטים האלה?"
+msgstr[2] "למחוק את %1 הפריטים האלה?"
+msgstr[3] "למחוק את %1 הפריטים האלה?"
 
 #: app/Panel/panelfunc.cpp:873
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
-msgstr ""
+msgstr "<qt><p>התיקייה <b>%1</b> אינה ריקה.</p>"
 
 #: app/Panel/panelfunc.cpp:874
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
-msgstr ""
+msgstr "<p>לדלג על זה או להעביר את כולם לאשפה?</p></qt>"
 
 #: app/Panel/panelfunc.cpp:874
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
-msgstr ""
+msgstr "<p>לדלג על זה או למחוק את כולם?</p></qt>"
 
 #: app/Panel/panelfunc.cpp:876
 #, kde-format
@@ -7458,12 +7472,12 @@ msgstr "&דילוג"
 #: app/Panel/panelfunc.cpp:877
 #, kde-format
 msgid "&Trash All"
-msgstr ""
+msgstr "הכול ל&אשפה"
 
 #: app/Panel/panelfunc.cpp:877
 #, kde-format
 msgid "&Delete All"
-msgstr ""
+msgstr "למ&חוק הכול"
 
 #: app/Panel/panelfunc.cpp:914
 #, kde-format
@@ -7473,20 +7487,23 @@ msgid ""
 msgid_plural ""
 "Do you really want to delete these %1 virtual items (physical files stay "
 "untouched)?"
-msgstr[0] ""
+msgstr[0] "למחוק את הפריט הווירטואלי הזה (הקבצים הפיזיים יישארו כמו שהם)?"
 msgstr[1] ""
+"למחוק את שני הפריטים הווירטואליים האלה (הקבצים הפיזיים יישארו כמו שהם)?"
 msgstr[2] ""
+"למחוק את %1 הפריטים הווירטואליים האלה (הקבצים הפיזיים יישארו כמו שהם)?"
 msgstr[3] ""
+"למחוק את %1 הפריטים הווירטואליים האלה (הקבצים הפיזיים יישארו כמו שהם)?"
 
 #: app/Panel/panelfunc.cpp:950
 #, kde-format
 msgid "Could not start %1"
-msgstr ""
+msgstr "לא ניתן להפעיל את %1"
 
 #: app/Panel/panelfunc.cpp:962
 #, kde-format
 msgid "%1 cannot open %2"
-msgstr ""
+msgstr "%1 לא יכול לפתוח את %2"
 
 #: app/Panel/panelfunc.cpp:1039
 #, kde-format
@@ -7494,6 +7511,8 @@ msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost.</p></qt>"
 msgstr ""
+"<qt><p>הארכיון <b>%1.%2</b> כבר קיים. לשכתב אותו?</p><p>כל הנתונים בארכיון "
+"הקודם יאבדו.</p></qt>"
 
 #: app/Panel/panelfunc.cpp:1044
 #, kde-format
@@ -7502,25 +7521,27 @@ msgid ""
 "</p><p>Zip will replace identically named entries in the zip archive or add "
 "entries for new names.</p></qt>"
 msgstr ""
+"<qt><p>הארכיון <b>%1.%2</b> כבר קיים. לשכתב אותו?</p><p>Zip יחליף רשומות "
+"בשמות זהים בארכיון ה־zip או יוסיף רשומות לשמות חדשים.</p></qt>"
 
 #: app/Panel/panelfunc.cpp:1052
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
-msgstr ""
+msgstr "לא ניתן לארוז קבצים ליעד וירטואלי."
 
 #: app/Panel/panelfunc.cpp:1085
 #, kde-format
 msgid "Unpack %1 to:"
-msgstr ""
+msgstr "חילוץ %1 אל:"
 
 #: app/Panel/panelfunc.cpp:1087
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "חילוץ קובץ אל:"
+msgstr[1] "חילוץ שני קבצים אל:"
+msgstr[2] "חילוץ %1 קבצים אל:"
+msgstr[3] "חילוץ %1 קבצים אל:"
 
 #: app/Panel/PanelView/krinterbriefview.cpp:241
 #: app/Panel/PanelView/krinterdetailedview.cpp:289
@@ -7531,7 +7552,7 @@ msgstr "עמודות"
 #: app/Panel/PanelView/krinterdetailedview.cpp:303
 #, kde-format
 msgid "Automatically Resize Columns"
-msgstr ""
+msgstr "שינוי גודל העמודות אוטומטית"
 
 #: app/Panel/PanelView/krview.cpp:425
 #, kde-format
@@ -7540,7 +7561,7 @@ msgctxt ""
 "%3=filesize of selected items,%4=filesize in Bytes,                     "
 "%5=filesize of all items in folder,%6=filesize in Bytes"
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
-msgstr ""
+msgstr "%1 מתוך %2, %3 (%4) מתוך %5 (%6)"
 
 #: app/Panel/PanelView/krview.cpp:436
 #, kde-format
@@ -7548,42 +7569,42 @@ msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
 "%3=filesize of selected items,%4=filesize of all items in folder"
 msgid "%1 out of %2, %3 out of %4"
-msgstr ""
+msgstr "%1 מתוך %2, %3 מתוך %4"
 
 #: app/Panel/PanelView/krview.cpp:1099
 #, kde-format
 msgid "Apply filter to folder&s"
-msgstr ""
+msgstr "החלת מסנן על &תיקיות"
 
 #: app/Panel/PanelView/krview.cpp:1104
 #, kde-format
 msgid "Filter Files"
-msgstr ""
+msgstr "סינון קבצים"
 
 #: app/Panel/PanelView/krview.cpp:1129
 #, kde-format
 msgid "Apply &selection to folders"
-msgstr ""
+msgstr "ה&חלת בחירה על תיקיות"
 
 #: app/Panel/PanelView/krview.cpp:1130
 #, kde-format
 msgid "Select Files"
-msgstr ""
+msgstr "בחירת קבצים"
 
 #: app/Panel/PanelView/krviewfactory.cpp:62
 #, kde-format
 msgid "&Detailed View"
-msgstr ""
+msgstr "תצוגה מ&פורטת"
 
 #: app/Panel/PanelView/krviewfactory.cpp:64
 #, kde-format
 msgid "&Brief View"
-msgstr ""
+msgstr "תצוגה מ&קוצרת"
 
 #: app/Panel/PanelView/krviewitem.cpp:68
 #, kde-format
 msgid "Climb up the folder tree"
-msgstr ""
+msgstr "טיפוס במעלה עץ התיקיות"
 
 #: app/Panel/PanelView/krviewitem.cpp:81
 #, kde-format
@@ -7736,27 +7757,27 @@ msgstr "קישור אל: %1"
 #: app/Panel/sidebar.cpp:59
 #, kde-format
 msgid "Tree Panel: a tree view of the local file system"
-msgstr ""
+msgstr "לוח עץ: תצוגת עץ של מערכת הקבצים הנוכחית"
 
 #: app/Panel/sidebar.cpp:66
 #, kde-format
 msgid "Preview Panel: display a preview of the current file"
-msgstr ""
+msgstr "לוח תצוגה מקדימה: הצגת תצוגה מקדימה של הקובץ הנוכחי"
 
 #: app/Panel/sidebar.cpp:73
 #, kde-format
 msgid "View Panel: view the current file"
-msgstr ""
+msgstr "לוח תצוגה: הצגת הקובץ הנוכחי"
 
 #: app/Panel/sidebar.cpp:80
 #, kde-format
 msgid "Disk Usage Panel: view the usage of a folder"
-msgstr ""
+msgstr "לוח ניצולת כונן: הצגת התפוסה של תיקייה"
 
 #: app/Panel/sidebar.cpp:121 app/Panel/sidebar.cpp:231
 #, kde-format
 msgid "Disk Usage:"
-msgstr ""
+msgstr "ניצולת כונן:"
 
 #: app/Panel/sidebar.cpp:211
 #, kde-format
@@ -7766,7 +7787,7 @@ msgstr "עץ:"
 #: app/Panel/sidebar.cpp:219
 #, kde-format
 msgid "Preview:"
-msgstr ""
+msgstr "תצוגה מקדימה:"
 
 #: app/Panel/sidebar.cpp:224
 #, kde-format
@@ -7776,27 +7797,27 @@ msgstr "תצוגה:"
 #: app/Panel/sidebar.cpp:254
 #, kde-format
 msgid "Preview: %1"
-msgstr ""
+msgstr "תצוגה מקדימה: %1"
 
 #: app/Panel/sidebar.cpp:261
 #, kde-format
 msgid "View: %1"
-msgstr ""
+msgstr "תצוגה: %1"
 
 #: app/Panel/sidebar.cpp:266
 #, kde-format
 msgid "Disk Usage: %1"
-msgstr ""
+msgstr "ניצולת כונן: %1"
 
 #: app/Panel/viewactions.cpp:22
 #, kde-format
 msgid "Default Zoom"
-msgstr ""
+msgstr "תקריב ברירת מחדל"
 
 #: app/Panel/viewactions.cpp:25
 #, kde-format
 msgid "&All Files"
-msgstr ""
+msgstr "&כל הקבצים"
 
 #. i18n( "&Executables" ), SHIFT | Qt::Key_F11,
 #. SLOTS, SLOT(execFilter()), actionCollection(), "exec files" );
@@ -7828,57 +7849,57 @@ msgstr ""
 #: app/Panel/viewactions.cpp:35
 #, kde-format
 msgid "&Invert Selection"
-msgstr ""
+msgstr "הי&פוך הבחירה"
 
 #: app/Panel/viewactions.cpp:36
 #, kde-format
 msgid "Restore Selection"
-msgstr ""
+msgstr "שחזור הבחירה"
 
 #: app/Panel/viewactions.cpp:37
 #, kde-format
 msgid "Select Files with the Same Name"
-msgstr ""
+msgstr "לבחור קבצים באותו השם"
 
 #: app/Panel/viewactions.cpp:38
 #, kde-format
 msgid "Select Files with the Same Extension"
-msgstr ""
+msgstr "לבחור קבצים עם אותה הסיומת"
 
 #: app/Panel/viewactions.cpp:41
 #, kde-format
 msgid "Show View Options Menu"
-msgstr ""
+msgstr "הצגת תפריט אפשרויות תצוגה"
 
 #: app/Panel/viewactions.cpp:42
 #, kde-format
 msgid "Set Focus to the Panel"
-msgstr ""
+msgstr "הגדרת המיקוד ללוח"
 
 #: app/Panel/viewactions.cpp:43
 #, kde-format
 msgid "Apply settings to other tabs"
-msgstr ""
+msgstr "להחיל את ההגדרות על לשוניות אחרות"
 
 #: app/Panel/viewactions.cpp:44
 #, kde-format
 msgid "Show Previews"
-msgstr ""
+msgstr "הצגת תצוגות מקדימות"
 
 #: app/Panel/viewactions.cpp:45
 #, kde-format
 msgid "Save settings as default"
-msgstr ""
+msgstr "שמירת ההגדרות כברירת מחדל"
 
 #: app/Panel/viewactions.cpp:48
 #, kde-format
 msgid "Select group"
-msgstr ""
+msgstr "בחירת קבוצה"
 
 #: app/Panel/viewactions.cpp:49
 #, kde-format
 msgid "Select all files in the current folder"
-msgstr ""
+msgstr "לבחור את כל הקבצים בתיקייה הנוכחית"
 
 #: app/Panel/viewactions.cpp:50
 #, kde-format
@@ -8887,13 +8908,13 @@ msgstr ""
 #: app/UserAction/expander.cpp:338
 #, kde-format
 msgid "Current File (!= Selected File)..."
-msgstr ""
+msgstr "הקובץ הנוכחי (!= הקובץ הנבחר)…"
 
 #: app/UserAction/expander.cpp:341 app/UserAction/expander.cpp:374
 #: app/UserAction/expander.cpp:410 app/UserAction/expander.cpp:750
 #, kde-format
 msgid "Omit the current path (optional)"
-msgstr ""
+msgstr "השמטת הנתיב הנוכחי (רשות)"
 
 #: app/UserAction/expander.cpp:369
 #, kde-format
@@ -8904,7 +8925,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:749
 #, kde-format
 msgid "Which items:"
-msgstr ""
+msgstr "אילו פריטים:"
 
 #: app/UserAction/expander.cpp:373
 #, kde-format
@@ -8935,32 +8956,32 @@ msgstr ""
 #: app/UserAction/expander.cpp:453
 #, kde-format
 msgid "Manipulate the Selection..."
-msgstr ""
+msgstr "תפעול הבחירה…"
 
 #: app/UserAction/expander.cpp:456
 #, kde-format
 msgid "Selection mask:"
-msgstr ""
+msgstr "מסכת בחירה:"
 
 #: app/UserAction/expander.cpp:457
 #, kde-format
 msgid "Manipulate in which way:"
-msgstr ""
+msgstr "באיזה אופן לתפעל את הבחירה:"
 
 #: app/UserAction/expander.cpp:484
 #, kde-format
 msgid "Jump to a Location..."
-msgstr ""
+msgstr "קפיצה למקום…"
 
 #: app/UserAction/expander.cpp:487
 #, kde-format
 msgid "Choose a path:"
-msgstr ""
+msgstr "בחירת נתיב:"
 
 #: app/UserAction/expander.cpp:488
 #, kde-format
 msgid "Open location in a new tab"
-msgstr ""
+msgstr "פתיחת המקום בלשונית חדשה"
 
 #: app/UserAction/expander.cpp:499
 #, kde-format
@@ -8970,7 +8991,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:532
 #, kde-format
 msgid "Ask Parameter from User..."
-msgstr ""
+msgstr "לבקש משתנה מהמשתמש…"
 
 #: app/UserAction/expander.cpp:535
 #, kde-format
@@ -8980,12 +9001,12 @@ msgstr "שאלה:"
 #: app/UserAction/expander.cpp:536
 #, kde-format
 msgid "Preset (optional):"
-msgstr ""
+msgstr "ערכה (רשות):"
 
 #: app/UserAction/expander.cpp:537
 #, kde-format
 msgid "Caption (optional):"
-msgstr ""
+msgstr "כותרת (רשות):"
 
 #: app/UserAction/expander.cpp:544
 #, kde-format
@@ -9025,7 +9046,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:602
 #, kde-format
 msgid "Copy a File/Folder..."
-msgstr ""
+msgstr "העתקת קובץ/תיקייה…"
 
 #: app/UserAction/expander.cpp:606
 #, kde-format
@@ -9307,7 +9328,7 @@ msgstr ""
 #: app/UserAction/useraction.cpp:184
 #, kde-format
 msgid "UserActions - cannot read from file"
-msgstr ""
+msgstr "פעולות משתמש - לא ניתן לקרוא מקובץ"
 
 #: app/UserAction/useraction.cpp:173
 #, kde-format
@@ -9329,7 +9350,7 @@ msgstr ""
 #: app/UserAction/useraction.cpp:201
 #, kde-format
 msgid "UserActions - invalid action"
-msgstr ""
+msgstr "פעולת משתמש - פעולה שגויה"
 
 #: app/useraction_examples.xml:5
 #, kde-format
