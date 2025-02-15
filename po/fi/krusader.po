@@ -1,6 +1,6 @@
 # Copyright © 2012 This_file_is_part_of_KDE
 # This file is distributed under the same license as the krusader package.
-# SPDX-FileCopyrightText: 2012, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Tommi Nieminen <translator@legisign.org>
+# SPDX-FileCopyrightText: 2012, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Tommi Nieminen <translator@legisign.org>
 # Lasse Liehu <lasse.liehu@gmail.com>, 2012, 2013, 2014, 2015, 2016.
 # Jiri Grönroos <jiri.gronroos+kde@iki.fi>, 2012.
 #
@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2024-12-01 14:47+0200\n"
+"PO-Revision-Date: 2025-01-12 17:22+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -9771,10 +9771,9 @@ msgstr ""
 "Voit ottaa sen käyttöön asetusten Arkistot-sivulta."
 
 #: plugins/krarc/krarc.cpp:242
-#, fuzzy, kde-format
-#| msgid "Creating folders is not supported with %1 archives"
+#, kde-format
 msgid "Creating folders is not supported with %1 archives."
-msgstr "Kansioiden luomista %1-arkistoihin ei tueta"
+msgstr "%1-arkistoille ei kansioiden luontia tueta."
 
 #: plugins/krarc/krarc.cpp:278
 #, kde-format
@@ -9782,10 +9781,9 @@ msgid "Creating %1..."
 msgstr "Luodaan %1…"
 
 #: plugins/krarc/krarc.cpp:320
-#, fuzzy, kde-format
-#| msgid "Writing to %1 archives is not supported"
+#, kde-format
 msgid "Writing to %1 archives is not supported."
-msgstr "Kirjoittamista %1-arkistoihin ei tueta"
+msgstr "%1-arkistoihin kirjoittamista ei tueta."
 
 #: plugins/krarc/krarc.cpp:386
 #, kde-format
@@ -9793,10 +9791,9 @@ msgid "Packing %1..."
 msgstr "Pakataan %1…"
 
 #: plugins/krarc/krarc.cpp:427
-#, fuzzy, kde-format
-#| msgid "Retrieving data from %1 archives is not supported"
+#, kde-format
 msgid "Retrieving data from %1 archives is not supported."
-msgstr "Tietojen purkua %1-arkistoista ei tueta"
+msgstr "Tietojen purkua %1-arkistoista ei tueta."
 
 #: plugins/krarc/krarc.cpp:496 plugins/krarc/krarc.cpp:761
 #, kde-format
@@ -9812,16 +9809,14 @@ msgstr ""
 "Ulkoiseen ohjelmaan ”%1” liittyen tapahtui virhe. Virheilmoitus oli: ”%2”."
 
 #: plugins/krarc/krarc.cpp:626
-#, fuzzy, kde-format
-#| msgid "Deleting files from %1 archives is not supported"
+#, kde-format
 msgid "Deleting files from %1 archives is not supported."
-msgstr "Tiedostojen poistamista %1-arkistoista ei tueta"
+msgstr "Tiedostojen poistamista ei %1-arkistoilla tueta."
 
 #: plugins/krarc/krarc.cpp:670
-#, fuzzy, kde-format
-#| msgid "Accessing files is not supported with %1 archives"
+#, kde-format
 msgid "Accessing files is not supported with %1 archives."
-msgstr "%1-arkistojen tiedostoihin pääsyä ei tueta"
+msgstr "%1-arkistojen tiedostoihin pääsyä ei tueta."
 
 #: plugins/krarc/krarc.cpp:783
 #, kde-format
@@ -9829,10 +9824,9 @@ msgid "Copying from archive to archive is not supported."
 msgstr "Kopiointia arkistosta toiseen ei tueta."
 
 #: plugins/krarc/krarc.cpp:829
-#, fuzzy, kde-format
-#| msgid "Listing folders is not supported for %1 archives"
+#, kde-format
 msgid "Listing folders is not supported for %1 archives."
-msgstr "%1-arkistojen kansioiden luettelemista ei tueta"
+msgstr "%1-arkistoille ei kansioiden luettelemista tueta."
 
 #: plugins/krarc/krarc.cpp:1759
 #, kde-format
