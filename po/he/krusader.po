@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2025-03-09 21:00+0200\n"
+"PO-Revision-Date: 2025-03-11 08:44+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -1344,6 +1344,8 @@ msgid ""
 "Invalid command line switch.\n"
 "A switch must start with '-'."
 msgstr ""
+"מתג שגוי בשורת הפקודות.\n"
+"מתג חייב להיפתח ב־‚-’."
 
 #: app/Dialogs/packguibase.cpp:461
 #, kde-format
@@ -1351,6 +1353,8 @@ msgid ""
 "Invalid command line switch.\n"
 "Backslashes cannot be the last character."
 msgstr ""
+"מתג שגוי בשורת הפקודות.\n"
+"השורה לא יכולה להסתיים בלוכסנים הפוכים."
 
 #: app/Dialogs/packguibase.cpp:469
 #, kde-format
@@ -1358,6 +1362,8 @@ msgid ""
 "Invalid command line switch.\n"
 "Unclosed quotation mark."
 msgstr ""
+"מתג שגוי בשורת הפקודות.\n"
+"מירכאות לא מאוזנות."
 
 #: app/Dialogs/popularurls.cpp:89
 #, kde-format
@@ -1841,7 +1847,7 @@ msgstr ""
 #: app/FileSystem/virtualfilesystem.cpp:127
 #, kde-format
 msgid "Creating new folders is allowed only in the 'virt:/' folder."
-msgstr ""
+msgstr "מותר ליצור תיקיות חדשות רק בתיקיית ‚virt:/‎’."
 
 #: app/FileSystem/virtualfilesystem.cpp:214
 #, kde-format
@@ -1896,7 +1902,7 @@ msgstr "כל תאריך שהוא"
 #: app/Filter/advancedfilter.cpp:122
 #, kde-format
 msgid "&Modified between"
-msgstr ""
+msgstr "השתנה &בין"
 
 #: app/Filter/advancedfilter.cpp:135
 #, kde-format
@@ -1906,12 +1912,12 @@ msgstr "ו&גם"
 #: app/Filter/advancedfilter.cpp:148
 #, kde-format
 msgid "&Not modified after"
-msgstr ""
+msgstr "לא השתנה ל&אחר"
 
 #: app/Filter/advancedfilter.cpp:161
 #, kde-format
 msgid "Mod&ified in the last"
-msgstr ""
+msgstr "השתנה במ&הלך"
 
 #: app/Filter/advancedfilter.cpp:169 app/Filter/advancedfilter.cpp:184
 #, kde-format
@@ -1936,7 +1942,7 @@ msgstr "שנים"
 #: app/Filter/advancedfilter.cpp:180
 #, kde-format
 msgid "No&t modified in the last"
-msgstr ""
+msgstr "&לא השתנה במהלך"
 
 #: app/Filter/advancedfilter.cpp:222
 #, kde-format
@@ -1970,13 +1976,13 @@ msgstr "ב&עלות"
 #: app/Filter/advancedfilter.cpp:329
 #, kde-format
 msgid "?"
-msgstr ""
+msgstr "?"
 
 #: app/Filter/advancedfilter.cpp:262 app/Filter/advancedfilter.cpp:289
 #: app/Filter/advancedfilter.cpp:316
 #, kde-format
 msgid "r"
-msgstr ""
+msgstr "ק"
 
 #: app/Filter/advancedfilter.cpp:263 app/Filter/advancedfilter.cpp:270
 #: app/Filter/advancedfilter.cpp:277 app/Filter/advancedfilter.cpp:290
@@ -1985,19 +1991,19 @@ msgstr ""
 #: app/Filter/advancedfilter.cpp:331
 #, kde-format
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: app/Filter/advancedfilter.cpp:269 app/Filter/advancedfilter.cpp:296
 #: app/Filter/advancedfilter.cpp:323
 #, kde-format
 msgid "w"
-msgstr ""
+msgstr "כ"
 
 #: app/Filter/advancedfilter.cpp:276 app/Filter/advancedfilter.cpp:303
 #: app/Filter/advancedfilter.cpp:330
 #, kde-format
 msgid "x"
-msgstr ""
+msgstr "ה"
 
 #: app/Filter/advancedfilter.cpp:285
 #, kde-format
@@ -2012,7 +2018,7 @@ msgstr "ה&כול"
 #: app/Filter/advancedfilter.cpp:342
 #, kde-format
 msgid "Note: a '?' is a wildcard"
-msgstr ""
+msgstr "הערה: ‚?’ הוא תו כוללני"
 
 #: app/Filter/advancedfilter.cpp:468
 #, kde-format
@@ -2025,6 +2031,8 @@ msgid ""
 "The date %1 is not valid according to your locale. Please re-enter a valid "
 "date (use the date button for easy access)."
 msgstr ""
+"התאריך %1 לא תקף ביחס להגדרות האזוריות שלך. נא למלא מחדש תאריך תקף(אפשר "
+"להשתמש בכפתור התאריך לגישה בקלות)."
 
 #: app/Filter/advancedfilter.cpp:485
 #, kde-format
@@ -2050,6 +2058,8 @@ msgid ""
 "the dates, so that the left side date will be earlier than the right side "
 "date."
 msgstr ""
+"התאריך משמאל מאוחר ביחס לתאריך מימין. נא למלא את התאריכים מחדש, כך שהתאריך "
+"בצד השמאלי יקדים את התאריך בצד הימני."
 
 #: app/Filter/advancedfilter.cpp:533
 #, kde-format
@@ -2057,6 +2067,8 @@ msgid ""
 "The date on top is later than the date on the bottom. Please re-enter the "
 "dates, so that the top date will be earlier than the bottom date."
 msgstr ""
+"התאריך למעלה מאוחר ביחס לתאריך למטה. נא למלא את התאריכים מחדש, כך שהתאריך "
+"בחלק העליון יקדים את התאריך בחלק התחתון."
 
 #: app/Filter/filterdialog.cpp:23
 #, kde-format
@@ -2184,7 +2196,7 @@ msgstr "&טעינה"
 #: app/Filter/generalfilter.cpp:217
 #, kde-format
 msgid "Searc&h in"
-msgstr ""
+msgstr "&חיפוש ב־"
 
 #: app/Filter/generalfilter.cpp:232
 #, kde-format
@@ -2720,27 +2732,27 @@ msgstr ""
 #: app/Konfigurator/kgadvanced.cpp:90
 #, kde-format
 msgid "Icon cache size (KB):"
-msgstr ""
+msgstr "גודל מטמון סמלים (ק״ב):"
 
 #: app/Konfigurator/kgadvanced.cpp:96
 #, kde-format
 msgid "Arguments of updatedb:"
-msgstr ""
+msgstr "ארגומנטים של updatedb:"
 
 #: app/Konfigurator/kgarchives.cpp:37
 #, kde-format
 msgid "krarc ioslave"
-msgstr ""
+msgstr "krarc ioslave"
 
 #: app/Konfigurator/kgarchives.cpp:42
 #, kde-format
 msgid "Enable Write Support"
-msgstr ""
+msgstr "הפעלת תמיכה בכתיבה"
 
 #: app/Konfigurator/kgarchives.cpp:42
 #, kde-format
 msgid "Enable writing to archives using the krarc ioslave."
-msgstr ""
+msgstr "הפעלת כתיבה לארכיונים בעזרת ה־ioslave בשם krarc."
 
 #: app/Konfigurator/kgarchives.cpp:47
 #, kde-format
@@ -3288,7 +3300,7 @@ msgstr "מציג"
 #: app/Konfigurator/kggeneral.cpp:100
 #, kde-format
 msgid "Default viewer mode:"
-msgstr ""
+msgstr "מצב מציג כברירת מחדל:"
 
 #: app/Konfigurator/kggeneral.cpp:105
 #, kde-format
@@ -3334,12 +3346,12 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:116
 #, kde-format
 msgid "Use Okteta as Hex viewer"
-msgstr ""
+msgstr "להשתמש ב־Okteta כמציג הקסדצימלי"
 
 #: app/Konfigurator/kggeneral.cpp:119
 #, kde-format
 msgid "If available, use Okteta as Hex viewer instead of the internal viewer"
-msgstr ""
+msgstr "אם היא זמינה, להשתמש ב־Okteta כמציג הקסדצימלי במקום במציג הפנימי"
 
 #: app/Konfigurator/kggeneral.cpp:125
 #, kde-format
