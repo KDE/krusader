@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-17 02:48+0000\n"
-"PO-Revision-Date: 2025-03-11 08:44+0200\n"
+"PO-Revision-Date: 2025-03-14 16:23+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -268,6 +268,11 @@ msgid ""
 "%aList(\"Selected\")%</code></li></ul>\n"
 "<p>Please consult the handbook to learn more about the syntax.</p>"
 msgstr ""
+"<p>ה<i>פקודה</i> את הפקודה שתרוץ בעת שימוש ב־<b>פעולת משתמש</b>. זאת יכולה "
+"להיות פקודת מעטפת פשוטה או רצף מורכב עם מספר פקודות ו<b>ממלאי מקום</b>.</"
+"p><p>דוגמאות:</p><ul><li><code>eject /mnt/cdrom</code></li><li><code>amarok "
+"--append %aList(\"Selected\")%</code></li></ul>\n"
+"<p>נא לפנות למדריך למשתמש כדי ללמוד עוד על התחביר.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelCommandline)
 #: app/ActionMan/actionproperty.ui:214
@@ -478,7 +483,7 @@ msgstr "מ&חיקה"
 #: app/ActionMan/actionproperty.ui:715
 #, kde-format
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr ""
+msgstr "הצגת <b>פעולת המשתמש</b> רק לערכים שמוגדרים כאן."
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabPath)
 #: app/ActionMan/actionproperty.ui:604
@@ -531,7 +536,7 @@ msgstr "&חדש…"
 #: app/ActionMan/actionproperty.ui:925
 #, kde-format
 msgid "Allows one to tweak the <i>Command</i> before it is executed."
-msgstr ""
+msgstr "מאפשר לשפר את ה<i>הפקודה</i> טרם הרצתה."
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkConfirmExecution)
 #: app/ActionMan/actionproperty.ui:928
@@ -544,7 +549,7 @@ msgstr "לאשר כל קריאה לתוכנית בנפרד"
 #: app/ActionMan/actionproperty.ui:935 app/ActionMan/actionproperty.ui:948
 #, kde-format
 msgid "Execute the <i>Command</i> under a different user ID."
-msgstr ""
+msgstr "הרצת ה<i>פקודה</i> תחת מזהה משתמש שונה."
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkDifferentUser)
 #: app/ActionMan/actionproperty.ui:938
@@ -960,6 +965,8 @@ msgid ""
 "<qt>Krusader cannot find a checksum tool that handles %1 on your system. "
 "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr ""
+"<qt>Krusader לא מצליח למצוא את כלי סיכום הביקורת %1 במערכת שלך. נא לבדוק את "
+"עמוד ה<b>תלויות</b> בהגדרות של Krusader.</qt>"
 
 #: app/Dialogs/checksumdlg.cpp:240
 #, kde-format
@@ -1368,7 +1375,7 @@ msgstr ""
 #: app/Dialogs/popularurls.cpp:89
 #, kde-format
 msgid "The saved 'Popular URLs' are invalid. The list will be cleared."
-msgstr ""
+msgstr "ה‚כתובות הנפוצות’ שגויות. הרשימה תתרוקן."
 
 #: app/Dialogs/popularurls.cpp:293
 #, kde-format
@@ -1843,6 +1850,8 @@ msgid ""
 "You cannot copy files directly to the 'virt:/' folder.\n"
 "You can create a sub folder and copy your files into it."
 msgstr ""
+"לא ניתן להעתיק קבצים ישירות לתיקיית ‚virt:/‎’.\n"
+"אפשר ליצור תת־תיקייה ולהעתיק את הקבצים שלך אליה."
 
 #: app/FileSystem/virtualfilesystem.cpp:127
 #, kde-format
@@ -1875,19 +1884,19 @@ msgstr "בית"
 #: app/Filter/advancedfilter.cpp:71 app/Filter/advancedfilter.cpp:93
 #, kde-format
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:73 app/Filter/advancedfilter.cpp:95
 #, kde-format
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:75 app/Filter/advancedfilter.cpp:97
 #, kde-format
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #: app/Filter/advancedfilter.cpp:80
 #, kde-format
@@ -2275,6 +2284,8 @@ msgid ""
 "You can insert names with escaped spaces or quoted.\n"
 "Example: .git \"target build\" build\\ krusader"
 msgstr ""
+"אפשר להוסיף שמות עם תווי מילוט או מצוטטים.\n"
+"למשל: ‎.git \"target build\" build\\ krusader"
 
 #: app/Filter/generalfilter.cpp:577
 #, kde-format
@@ -2303,6 +2314,9 @@ msgid ""
 "Krusader obeys.</p><p><b>Tip</b>: move within command line history with &lt;"
 "Up&gt; and &lt;Down&gt; arrows.</p></qt>"
 msgstr ""
+"<qt><p>ובכן, זה למעשה די פשוט: כאן מקלידים את הפקודה שלך ו־Krusader מציית.</"
+"p><p><b>עצה</b>: אפשר לעבור בין הפקודות בהיסטוריה עם החיצים &lt;למעלה&gt; "
+"ו&lt;למטה&gt;.</p></qt>"
 
 #: app/GUI/kcmdmodebutton.cpp:37
 #, kde-format
@@ -2479,7 +2493,7 @@ msgstr "הוספת רשומה חדשה"
 #: app/GUI/profilemanager.cpp:91
 #, kde-format
 msgid "Krusader::ProfileManager"
-msgstr ""
+msgstr "Krusader::מנהל פרופילים"
 
 #: app/GUI/profilemanager.cpp:91
 #, kde-format
@@ -2579,25 +2593,25 @@ msgstr "אין משימות"
 #, kde-format
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "משימה"
+msgstr[1] "שתי משימות"
+msgstr[2] "%1 משימות"
+msgstr[3] "%1 משימות"
 
 #: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Clear Job List"
-msgstr ""
+msgstr "פינוי רשימת המשימות"
 
 #: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Pause All Jobs"
-msgstr ""
+msgstr "השהיית כל המשימות"
 
 #: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Resume Job List"
-msgstr ""
+msgstr "המשך רשימת המשימות"
 
 #: app/JobMan/krjob.cpp:23
 #, kde-format
@@ -2765,38 +2779,38 @@ msgstr ""
 #: app/Konfigurator/kgarchives.cpp:58
 #, kde-format
 msgid "Archives handling"
-msgstr ""
+msgstr "טיפול בארכיונים"
 
 #: app/Konfigurator/kgarchives.cpp:66
 #, kde-format
 msgid "Browse Archives As Folders"
-msgstr ""
+msgstr "עיון בארכיונים כאילו היו תיקיות"
 
 #: app/Konfigurator/kgarchives.cpp:68
 #, kde-format
 msgid "Krusader will browse archives as folders."
-msgstr ""
+msgstr "Krusader יעיין בארכיונים כאילו הם תיקיות."
 
 #: app/Konfigurator/kgarchives.cpp:83
 #, kde-format
 msgid "Test archive after packing"
-msgstr ""
+msgstr "בדיקת הארכיון לאחר האריזה"
 
 #: app/Konfigurator/kgarchives.cpp:83
 #, kde-format
 msgid "Check the archive's integrity after packing it."
-msgstr ""
+msgstr "לבדוק את רציפות הארכיון לאחר אריזתו."
 
 #: app/Konfigurator/kgarchives.cpp:87
 #, kde-format
 msgid "Test archive before unpacking"
-msgstr ""
+msgstr "בדיקת ארכיון בטרם פריקתו"
 
 #: app/Konfigurator/kgarchives.cpp:89
 #, kde-format
 msgid ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr ""
+msgstr "חלק מהארכיונים הפגומים עלולים לגרום לקריסה, לכן, מומלץ לבדוק."
 
 #: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:314
 #: app/Search/krsearchdialog.cpp:618
@@ -3699,67 +3713,67 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
 msgid "Disabled"
-msgstr ""
+msgstr "מושבת"
 
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
 msgid "Alt+Click"
-msgstr ""
+msgstr "Alt+לחיצה"
 
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
 msgid "Ctrl+Click"
-msgstr ""
+msgstr "Ctrl+לחיצה"
 
 #: app/Konfigurator/kgpanel.cpp:170
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
-msgstr ""
+msgstr "אפשר לשכפל את הלשונית הפעילה בלחיצה על Ctrl/Alt+לחצן שמאלי בעכבר"
 
 #: app/Konfigurator/kgpanel.cpp:180
 #, kde-format
 msgid "Tab Bar position:"
-msgstr ""
+msgstr "מקום סרגל לשוניות:"
 
 #: app/Konfigurator/kgpanel.cpp:183
 #, kde-format
 msgid "Top"
-msgstr ""
+msgstr "למעלה"
 
 #: app/Konfigurator/kgpanel.cpp:183
 #, kde-format
 msgid "Bottom"
-msgstr ""
+msgstr "למטה"
 
 #: app/Konfigurator/kgpanel.cpp:195
 #, kde-format
 msgid "Search bar"
-msgstr ""
+msgstr "סרגל חיפוש"
 
 #: app/Konfigurator/kgpanel.cpp:203
 #, kde-format
 msgid "Start by typing"
-msgstr ""
+msgstr "ההקלדה תתחיל"
 
 #: app/Konfigurator/kgpanel.cpp:205
 #, kde-format
 msgid "Open search bar and start searching by typing in panel."
-msgstr ""
+msgstr "אפשר לפתוח את סרגל החיפוש והתחלת החיפוש על ידי הקלדה בלוח."
 
 #: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
-msgstr ""
+msgstr "תלוי רישיות"
 
 #: app/Konfigurator/kgpanel.cpp:206
 #, kde-format
 msgid "Search must match case."
-msgstr ""
+msgstr "החיפוש חייב להיות תואם רישיות."
 
 #: app/Konfigurator/kgpanel.cpp:210
 #, kde-format
 msgid "Up/Down cancels search"
-msgstr ""
+msgstr "למעלה/למטה מבטלים את החיפוש"
 
 #: app/Konfigurator/kgpanel.cpp:212
 #, kde-format
@@ -3770,7 +3784,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:216
 #, kde-format
 msgid "Folder navigation with Right Arrow"
-msgstr ""
+msgstr "ניווט בתיקייה עם החץ ימינה"
 
 #: app/Konfigurator/kgpanel.cpp:218
 #, kde-format
@@ -3778,6 +3792,7 @@ msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
 "is captured."
 msgstr ""
+"לחיצה על הכפתור הימני תיכנס לתיקייה אם לא התגלתה כוונה לעריכת טקסט חיפוש."
 
 #: app/Konfigurator/kgpanel.cpp:227
 #, kde-format
@@ -3787,7 +3802,7 @@ msgstr "מקום:"
 #: app/Konfigurator/kgpanel.cpp:237
 #, kde-format
 msgid "Default mode:"
-msgstr ""
+msgstr "מצב ברירת מחדל:"
 
 #: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
@@ -3808,7 +3823,7 @@ msgstr "מסנן"
 #: app/Konfigurator/kgpanel.cpp:251
 #, kde-format
 msgid "Set the default mode on first usage"
-msgstr ""
+msgstr "הגדרת מצב ברירת המחדל בשימוש הראשון"
 
 #: app/Konfigurator/kgpanel.cpp:262
 #, kde-format
@@ -3828,7 +3843,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:270
 #, kde-format
 msgid "Search in special items"
-msgstr ""
+msgstr "חיפוש בפריטים מיוחדים"
 
 #: app/Konfigurator/kgpanel.cpp:272
 #, kde-format
@@ -3840,7 +3855,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:281
 #, kde-format
 msgid "Status/Totalsbar"
-msgstr ""
+msgstr "מצב/סרגל סיכומים"
 
 #: app/Konfigurator/kgpanel.cpp:285
 #, kde-format
@@ -3850,7 +3865,7 @@ msgstr "להציג את הגודל גם בבתים"
 #: app/Konfigurator/kgpanel.cpp:286
 #, kde-format
 msgid "Show space information"
-msgstr ""
+msgstr "הצגת פרטי נפח"
 
 #: app/Konfigurator/kgpanel.cpp:286
 #, kde-format
@@ -3951,32 +3966,32 @@ msgstr "שקוע"
 #: app/Konfigurator/kgpanel.cpp:366
 #, kde-format
 msgid "Default icon size:"
-msgstr ""
+msgstr "גודל סמל כברירת מחדל:"
 
 #: app/Konfigurator/kgpanel.cpp:395
 #, kde-format
 msgid "Use icons in the filenames"
-msgstr ""
+msgstr "להשתמש בסמלים בשמות הקבצים"
 
 #: app/Konfigurator/kgpanel.cpp:395
 #, kde-format
 msgid "Show the icons for filenames and folders."
-msgstr ""
+msgstr "הצגת הסמלים לשמות קבצים ותיקיות."
 
 #: app/Konfigurator/kgpanel.cpp:396
 #, kde-format
 msgid "Show previews by default"
-msgstr ""
+msgstr "הצגת תצוגות מקדימות כברירת מחדל"
 
 #: app/Konfigurator/kgpanel.cpp:396
 #, kde-format
 msgid "Show previews of files and folders."
-msgstr ""
+msgstr "הצגת תצוגות מקדימות של קבצים ותיקיות."
 
 #: app/Konfigurator/kgpanel.cpp:431
 #, kde-format
 msgid "View font:"
-msgstr ""
+msgstr "גופן תצוגה:"
 
 #: app/Konfigurator/kgpanel.cpp:441
 #, kde-format
@@ -3988,17 +4003,17 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:443
 #, kde-format
 msgid "Tooltip delay (msec):"
-msgstr ""
+msgstr "השהיית חלוניות צצות (מילישניות):"
 
 #: app/Konfigurator/kgpanel.cpp:461
 #, kde-format
 msgid "Use human-readable file size"
-msgstr ""
+msgstr "להשתמש בגודל קבצים קריא"
 
 #: app/Konfigurator/kgpanel.cpp:463
 #, kde-format
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr ""
+msgstr "גודלי הקבצים מוצגים בתור ב׳, ק״ב, מ״ב וג״ב, לא רק בבתים."
 
 #: app/Konfigurator/kgpanel.cpp:464
 #, kde-format
@@ -4078,7 +4093,7 @@ msgstr "Krusader"
 #: app/Konfigurator/kgpanel.cpp:518
 #, kde-format
 msgid "Case sensitive sorting"
-msgstr ""
+msgstr "מיון תלוי רישיות"
 
 #: app/Konfigurator/kgpanel.cpp:520
 #, kde-format
@@ -4086,26 +4101,28 @@ msgid ""
 "All files beginning with capital letters appear before files beginning with "
 "non-capital letters (UNIX default)."
 msgstr ""
+"כל הקבצים שמתחילים באותיות גדולות מופיעים לפני קבצים שמתחילים באותיות שאינן "
+"גדולות (ברירת המחדל ביוניקס)."
 
 #: app/Konfigurator/kgpanel.cpp:521
 #, kde-format
 msgid "Show folders first"
-msgstr ""
+msgstr "להציג תיקיות בהתחלה"
 
 #: app/Konfigurator/kgpanel.cpp:525
 #, kde-format
 msgid "Always sort dirs by name"
-msgstr ""
+msgstr "תמיד לסדר תיקיות לפי שם"
 
 #: app/Konfigurator/kgpanel.cpp:527
 #, kde-format
 msgid "Folders are sorted by name, regardless of the sort column."
-msgstr ""
+msgstr "תיקיות מסודרות לפני שם, ללא תלות בעמודת המיון."
 
 #: app/Konfigurator/kgpanel.cpp:531
 #, kde-format
 msgid "Locale aware sorting"
-msgstr ""
+msgstr "מיון מודע להגדרות שפה"
 
 #: app/Konfigurator/kgpanel.cpp:533
 #, kde-format
@@ -4117,12 +4134,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:545
 #, kde-format
 msgid "View modes"
-msgstr ""
+msgstr "מצבי תצוגה"
 
 #: app/Konfigurator/kgpanel.cpp:552
 #, kde-format
 msgid "Default view mode:"
-msgstr ""
+msgstr "מצב תגובה כברירת מחדל:"
 
 #: app/Konfigurator/kgpanel.cpp:599
 #, kde-format
@@ -4132,67 +4149,67 @@ msgstr "כפתורים"
 #: app/Konfigurator/kgpanel.cpp:608
 #, kde-format
 msgid "Toolbar buttons have icons"
-msgstr ""
+msgstr "לכפתורי סרגל הכלים יש סמלים"
 
 #: app/Konfigurator/kgpanel.cpp:609
 #, kde-format
 msgid "Show Media Button"
-msgstr ""
+msgstr "הצגת כפתור מדיה"
 
 #: app/Konfigurator/kgpanel.cpp:609
 #, kde-format
 msgid "The media button will be visible."
-msgstr ""
+msgstr "כפתור המדיה יהיה זמין."
 
 #: app/Konfigurator/kgpanel.cpp:610
 #, kde-format
 msgid "Show Back Button"
-msgstr ""
+msgstr "הצגת כפתור אחורה"
 
 #: app/Konfigurator/kgpanel.cpp:611
 #, kde-format
 msgid "Show Forward Button"
-msgstr ""
+msgstr "הצגת כפתור קדימה"
 
 #: app/Konfigurator/kgpanel.cpp:612
 #, kde-format
 msgid "Show History Button"
-msgstr ""
+msgstr "הצגת כפתור היסטוריה"
 
 #: app/Konfigurator/kgpanel.cpp:612
 #, kde-format
 msgid "The history button will be visible."
-msgstr ""
+msgstr "כפתור ההיסטוריה יהיה גלוי."
 
 #: app/Konfigurator/kgpanel.cpp:613
 #, kde-format
 msgid "Show Bookmarks Button"
-msgstr ""
+msgstr "הצגת כפתור סימניות"
 
 #: app/Konfigurator/kgpanel.cpp:613
 #, kde-format
 msgid "The bookmarks button will be visible."
-msgstr ""
+msgstr "כפתור הסימניות יהיה גלוי."
 
 #: app/Konfigurator/kgpanel.cpp:614
 #, kde-format
 msgid "Show Panel Toolbar"
-msgstr ""
+msgstr "הצגת סרגל כלי לוחות"
 
 #: app/Konfigurator/kgpanel.cpp:614
 #, kde-format
 msgid "The panel toolbar will be visible."
-msgstr ""
+msgstr "סרגל כלי לוחות יהיה זמין."
 
 #: app/Konfigurator/kgpanel.cpp:620
 #, kde-format
 msgid "Visible Panel Toolbar buttons"
-msgstr ""
+msgstr "כפתורי סרגל כלי לוחות גלויים"
 
 #: app/Konfigurator/kgpanel.cpp:624
 #, kde-format
 msgid "Equal button (=)"
-msgstr ""
+msgstr "כפתור שווה (=)"
 
 #: app/Konfigurator/kgpanel.cpp:624
 #, kde-format
@@ -4419,7 +4436,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:763
 #, kde-format
 msgid "Spacebar moves down"
-msgstr ""
+msgstr "רווח מוריד למטה"
 
 #: app/Konfigurator/kgpanel.cpp:765
 #, kde-format
@@ -4428,11 +4445,13 @@ msgid ""
 "down.\n"
 "Otherwise, current item is selected, but remains the current item."
 msgstr ""
+"אם האפשרות מסומנת הרווח יבחר את הפריט הנוכחי ויוריד אותו למטה.\n"
+"אם לא, הפריט הנוכחי ייבחר אבל יישאר הפריט הנוכחי."
 
 #: app/Konfigurator/kgpanel.cpp:770
 #, kde-format
 msgid "Spacebar calculates disk space"
-msgstr ""
+msgstr "רווח מחשב נפח בכונן"
 
 #: app/Konfigurator/kgpanel.cpp:772
 #, kde-format
@@ -4441,11 +4460,14 @@ msgid ""
 "(except from selecting the folder)\n"
 "calculate space occupied of the folder (recursively)."
 msgstr ""
+"אם האפשרות מסומנת, לחיצה על רווח כשהפריט הנוכחי הוא תיקייה, יחשב (למעט בחירת "
+"התיקייה)\n"
+"את הנפח שהתיקייה תופסת (כולל התוכן שבה)."
 
 #: app/Konfigurator/kgpanel.cpp:777
 #, kde-format
 msgid "Insert moves down"
-msgstr ""
+msgstr "Insert מוריד למטה"
 
 #: app/Konfigurator/kgpanel.cpp:779
 #, kde-format
@@ -4454,11 +4476,13 @@ msgid ""
 "the next item.\n"
 "Otherwise, current item is not changed."
 msgstr ""
+"אם האפשרות מסומנת, לחיצה על Insert תבחר את הפריט הנוכחי ותרד מטה לפריט הבא.\n"
+"אם לא, הפריט הנוכחי לא ישתנה."
 
 #: app/Konfigurator/kgpanel.cpp:783
 #, kde-format
 msgid "Right clicking pops context menu immediately"
-msgstr ""
+msgstr "לחיצה ימנית מקפיצה תפריט הקשר מיידית"
 
 #: app/Konfigurator/kgpanel.cpp:785
 #, kde-format
@@ -4467,11 +4491,13 @@ msgid ""
 "context menu.\n"
 "Otherwise, user needs to click and hold the right mouse button for 500ms."
 msgstr ""
+"אם האפשרות מסומנת, לחיצה ימנית תגרום להצגה מיידית של תפריט הקשר.\n"
+"אם לא, על המשתמש יהיה ללחוץ ולהחזיק את סמן העכבר הימני למשך 500 מ״ש."
 
 #: app/Konfigurator/kgpanel.cpp:790
 #, kde-format
 msgid "A plain mouse button resets selection"
-msgstr ""
+msgstr "לחיצה פשוטה עם כפתור עכבר מאפסת את הבחירה"
 
 #: app/Konfigurator/kgpanel.cpp:792
 #, kde-format
@@ -4480,6 +4506,8 @@ msgid ""
 "Selection with Shift/Ctrl for the mouse button have to be enabled for this "
 "setting to work."
 msgstr ""
+"איפוס הבחירה בלחיצה עם העכבר ללא מקשי החלפה (כלומר shift או Ctrl).\n"
+"בחירה עם Shift/Ctrl לסמן העכבר חייבת להיות פעילה כדי שההגדרה הזאת תפעל."
 
 #: app/Konfigurator/kgpanel.cpp:828
 #, kde-format
@@ -4562,7 +4590,7 @@ msgstr "הסרת פרוטוקול מרשימת הקישורים."
 #: app/Konfigurator/kgprotocols.cpp:72
 #, kde-format
 msgid "Add MIME to the selected protocol on the link list."
-msgstr ""
+msgstr "הוספת סוג תוכן/MIME לפרוטוקול הנבחר ברשימת הקישורים."
 
 #: app/Konfigurator/kgprotocols.cpp:77
 #, kde-format
@@ -4577,7 +4605,7 @@ msgstr "פרוטוקולים"
 #: app/Konfigurator/kgprotocols.cpp:96
 #, kde-format
 msgid "MIMEs"
-msgstr ""
+msgstr "סוגי תוכן/MIME"
 
 #: app/Konfigurator/kgstartup.cpp:35
 #, kde-format
@@ -4606,7 +4634,7 @@ msgstr "הצגת מסך פתיחה"
 #: app/Konfigurator/kgstartup.cpp:60
 #, kde-format
 msgid "Display a splashscreen when starting Krusader."
-msgstr ""
+msgstr "להציג מסך פתיחה בעליית Krusader."
 
 #: app/Konfigurator/kgstartup.cpp:61
 #, kde-format
@@ -4616,12 +4644,12 @@ msgstr "מצב עותק יחיד"
 #: app/Konfigurator/kgstartup.cpp:61
 #, kde-format
 msgid "Only one Krusader instance is allowed to run."
-msgstr ""
+msgstr "רק למופע אחד של Krusader יכול לרוץ בכל עת."
 
 #: app/Konfigurator/kgstartup.cpp:67
 #, kde-format
 msgid "Fallback Icon Theme:"
-msgstr ""
+msgstr "ערכת סמלים לנסיגה:"
 
 #: app/Konfigurator/kgstartup.cpp:69
 #, kde-format
@@ -4630,6 +4658,8 @@ msgid ""
 "a fallback. If fallback theme doesn't contain the icon, Breeze or Oxygen "
 "will be used if any of these are present."
 msgstr ""
+"בכל פעם שסמל לא נמצא בערכת הסמלים של המערכת, ייעשה שימוש בערכה הזאת במקום. "
+"אם ערכת הנסיגה לא מכילה את הסמל, ייעשה שימוש בבריזה או בחמצן אם הם קיימים."
 
 #: app/Konfigurator/kgstartup.cpp:83 app/useraction_examples.xml:59
 #: app/useraction_examples.xml:68 app/useraction_examples.xml:77
@@ -4656,7 +4686,7 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:100
 #, kde-format
 msgid "Update default panel settings"
-msgstr ""
+msgstr "עדכון הגדרות הלוח כברירת מחדל"
 
 #: app/Konfigurator/kgstartup.cpp:102
 #, kde-format
@@ -4668,12 +4698,12 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
 msgid "Start to tray"
-msgstr ""
+msgstr "התחלה בשורת המערכת"
 
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
 msgid "Krusader starts to tray, without showing the main window"
-msgstr ""
+msgstr "Krusader יתחיל ממוזער לשורת המערכת, מבלי להציג את החלון הראשי"
 
 #: app/Konfigurator/kgstartup.cpp:114
 #, kde-format
@@ -4690,22 +4720,22 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:117
 #, kde-format
 msgid "Show function keys"
-msgstr ""
+msgstr "הצגת מקשי פונקציות"
 
 #: app/Konfigurator/kgstartup.cpp:117
 #, kde-format
 msgid "Function keys will be visible after startup."
-msgstr ""
+msgstr "מקשי הפונקציות יהיו גלויים לאחר ההפעלה."
 
 #: app/Konfigurator/kgstartup.cpp:118
 #, kde-format
 msgid "Show command line"
-msgstr ""
+msgstr "הצגת שורת פקודות"
 
 #: app/Konfigurator/kgstartup.cpp:118
 #, kde-format
 msgid "Command line will be visible after startup."
-msgstr ""
+msgstr "שורת הפקודות תהיה גלויה לאחר ההפעלה."
 
 #: app/Konfigurator/kgstartup.cpp:122
 #, kde-format
@@ -4776,7 +4806,7 @@ msgstr "להשתמש בגופן ברוחב קבוע כברירת מחדל"
 #: app/Konfigurator/konfigurator.cpp:45
 #, kde-format
 msgid "Konfigurator - Creating Your Own Krusader"
-msgstr ""
+msgstr "Konfigurator - יצירת Krusader משלך"
 
 #: app/Konfigurator/konfigurator.cpp:116
 #, kde-format
@@ -4811,7 +4841,7 @@ msgstr "נא לוודא שברור לך מה השלכות מעשיך."
 #: app/Konfigurator/konfigurator.cpp:126
 #, kde-format
 msgid "Customize the way Krusader deals with archives"
-msgstr ""
+msgstr "התאמת הדרך שבה Krusader מטפל בארכיונים"
 
 #: app/Konfigurator/konfigurator.cpp:128
 #, kde-format
@@ -4943,12 +4973,12 @@ msgstr "שחור"
 #: app/Konfigurator/krresulttable.cpp:120
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
+msgstr "unarj לא נמצא, אבל arj נמצאה, ואפשר להשתמש בו לחילוץ"
 
 #: app/Konfigurator/krresulttable.cpp:126
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr ""
+msgstr "rpm נמצאה, אבל cpio לא נמצא והוא נחוץ לטובת חילוץ מהארכיון"
 
 #: app/Konfigurator/krresulttable.cpp:129
 #: app/Konfigurator/krresulttable.cpp:284
@@ -5023,32 +5053,32 @@ msgstr ""
 #: app/kractions.cpp:182
 #, kde-format
 msgid "Show &FN Keys Bar"
-msgstr ""
+msgstr "הצגת שורת מקשי &פונקציות"
 
 #: app/kractions.cpp:184
 #, kde-format
 msgid "Show &Command Line"
-msgstr ""
+msgstr "הצגת שורת פ&קודות"
 
 #: app/kractions.cpp:187
 #, kde-format
 msgid "Show &Embedded Terminal"
-msgstr ""
+msgstr "הצגת מסוף מו&בנה"
 
 #: app/kractions.cpp:195
 #, kde-format
 msgid "Show &Hidden Files"
-msgstr ""
+msgstr "הצגת קבצים מו&סתרים"
 
 #: app/kractions.cpp:202
 #, kde-format
 msgid "S&wap Panels"
-msgstr ""
+msgstr "ה&חלפה בין הלוחות"
 
 #: app/kractions.cpp:204 app/Panel/panelcontextmenu.cpp:261
 #, kde-format
 msgid "Empty Trash"
-msgstr ""
+msgstr "פינוי האשפה"
 
 #: app/kractions.cpp:206
 #, kde-format
@@ -5078,7 +5108,7 @@ msgstr "פ&רופילים"
 #: app/kractions.cpp:216
 #, kde-format
 msgid "Sp&lit File..."
-msgstr ""
+msgstr "&פיצול קובץ…"
 
 #: app/kractions.cpp:217
 #, kde-format
@@ -6164,7 +6194,7 @@ msgstr ""
 #: app/main.cpp:162
 #, kde-format
 msgid "ISO KIO slave"
-msgstr ""
+msgstr "KIO slave לעיבוד ISO"
 
 #: app/main.cpp:163
 #, kde-format
@@ -6942,17 +6972,17 @@ msgstr "התצוגות המקדימות נטענות: %p%"
 #: app/Panel/listpanel.cpp:1093
 #, kde-format
 msgid ">> Reading..."
-msgstr ""
+msgstr ">> מתבצעת קריאה…"
 
 #: app/Panel/listpanel.cpp:1119
 #, kde-format
 msgid ">> Reading: %1 % complete..."
-msgstr ""
+msgstr ">> נקרא: %1 % הושלמו…"
 
 #: app/Panel/listpanel.cpp:1125
 #, kde-format
 msgid ">> Reading: %1"
-msgstr ""
+msgstr ">> נקרא: %1"
 
 #: app/Panel/listpanel.cpp:1164
 #, kde-format
@@ -7709,7 +7739,7 @@ msgstr "הרשאות"
 #, kde-format
 msgctxt "File property"
 msgid "rwx"
-msgstr ""
+msgstr "קכה"
 
 #: app/Panel/PanelView/listmodel.cpp:393
 #, kde-format
@@ -7862,17 +7892,17 @@ msgstr "בחירת &קבוצה…"
 #: app/Panel/viewactions.cpp:32
 #, kde-format
 msgid "&Select All"
-msgstr ""
+msgstr "בחירה בה&כול"
 
 #: app/Panel/viewactions.cpp:33
 #, kde-format
 msgid "&Unselect Group..."
-msgstr ""
+msgstr "&ביטול בחירת קבוצה…"
 
 #: app/Panel/viewactions.cpp:34
 #, kde-format
 msgid "U&nselect All"
-msgstr ""
+msgstr "בי&טול בחירה"
 
 #: app/Panel/viewactions.cpp:35
 #, kde-format
@@ -7932,12 +7962,12 @@ msgstr "לבחור את כל הקבצים בתיקייה הנוכחית"
 #: app/Panel/viewactions.cpp:50
 #, kde-format
 msgid "Unselect all"
-msgstr ""
+msgstr "ביטול בחירה"
 
 #: app/Panel/viewactions.cpp:51
 #, kde-format
 msgid "Save settings as default for new instances of this view type"
-msgstr ""
+msgstr "לשמור את ההגדרות כברירת מחדל למופעים חדשים של סוג התצוגה הזה"
 
 #: app/panelmanager.cpp:51 app/panelmanager.cpp:52
 #, kde-format
@@ -7999,10 +8029,10 @@ msgstr "&תוצאות"
 #, kde-format
 msgid "Found %1 match."
 msgid_plural "Found %1 matches."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "נמצאה תוצאה."
+msgstr[1] "נמצאו שתי תוצאות."
+msgstr[2] "נמצאו %1 תוצאות."
+msgstr[3] "נמצאו %1 תוצאות."
 
 #: app/Search/krsearchdialog.cpp:431
 #, kde-format
