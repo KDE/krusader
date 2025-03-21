@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2025-03-17 09:18+0200\n"
+"PO-Revision-Date: 2025-03-20 20:48+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -393,7 +393,7 @@ msgstr "איסוף פלט"
 #: app/ActionMan/actionproperty.ui:433
 #, kde-format
 msgid "Separate standard out and standard error in the output collection."
-msgstr ""
+msgstr "להפריד בין פלט שגרתי (stdout) ופלט שגיאות (stderr) באוסף הפלטים."
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkSeparateStdError)
 #: app/ActionMan/actionproperty.ui:436
@@ -1412,7 +1412,7 @@ msgstr "פרטי ניצולת הכונן נטענים…"
 msgid ""
 "Stepping into the parent folder requires loading the content of the \"%1\" "
 "URL. Do you wish to continue?"
-msgstr ""
+msgstr "מעבר לתיקיית ההורה דורשת את טעינת התוכן של הכתובת „%1”. להמשיך?"
 
 #: app/DiskUsage/diskusage.cpp:408
 #, kde-format
@@ -2503,7 +2503,7 @@ msgstr "נא למלא שם לפרופיל:"
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr ""
+msgstr "פינוי רשימת הלשוניות שנסגרו אחרונות"
 
 #: app/GUI/terminaldock.cpp:97
 #, kde-format
@@ -2734,7 +2734,7 @@ msgstr "הסרת פעולת משתמש"
 #: app/Konfigurator/kgadvanced.cpp:84 app/Konfigurator/kgarchives.cpp:78
 #, kde-format
 msgid "Fine-Tuning"
-msgstr ""
+msgstr "כוונון"
 
 #: app/Konfigurator/kgadvanced.cpp:89
 #, kde-format
@@ -2742,6 +2742,8 @@ msgid ""
 "The icon cache size influences how fast the contents of a panel can be "
 "displayed. However, too large a cache might consume your memory."
 msgstr ""
+"גודל מטמון הסמלים משפיע על מהירות הצגת לוח התוכן. עם זאת, מטמון גדול מדי "
+"עלול להכביד על הזיכרון."
 
 #: app/Konfigurator/kgadvanced.cpp:90
 #, kde-format
@@ -2842,6 +2844,8 @@ msgid ""
 "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
 "Application Appearance  -> Colors</i></p>"
 msgstr ""
+"<p>להשתמש בהגדרות הצבע הכלליות של KDE.</p><p><i>הגדרות מערכת KDE -> מראה "
+"יישומים  -> צבעים</i></p>"
 
 #: app/Konfigurator/kgcolors.cpp:67
 #, kde-format
@@ -4402,17 +4406,17 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:745
 #, kde-format
 msgid "Right mouse button selects"
-msgstr ""
+msgstr "לחיצה עם כפתור העכבר הימני בוחרת"
 
 #: app/Konfigurator/kgpanel.cpp:747
 #, kde-format
 msgid "If checked, right clicking an item will select it."
-msgstr ""
+msgstr "אם האפשרות מסומנת, לחיצה ימנית על פריט תבחר אותו."
 
 #: app/Konfigurator/kgpanel.cpp:751
 #, kde-format
 msgid "Right mouse button preserves selection"
-msgstr ""
+msgstr "לחיצה על כפתור העכבר הימני משמרת את הבחירה"
 
 #: app/Konfigurator/kgpanel.cpp:753
 #, kde-format
@@ -4420,6 +4424,8 @@ msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr ""
+"אם האפשרות מסומנת, לחיצה ימנית על פריט תבחר אותו, אבל לא תבטל בחירה של "
+"פריטים אחרים שכבר נבחרו קודם לכן."
 
 #: app/Konfigurator/kgpanel.cpp:757
 #, kde-format
@@ -4708,7 +4714,7 @@ msgstr "Krusader יתחיל ממוזער לשורת המערכת, מבלי לה�
 #: app/Konfigurator/kgstartup.cpp:114
 #, kde-format
 msgid "Save component settings on exit"
-msgstr ""
+msgstr "שמירת הגדרות הרכיב עם היציאה"
 
 #: app/Konfigurator/kgstartup.cpp:116
 #, kde-format
@@ -5088,7 +5094,7 @@ msgstr ""
 #: app/kractions.cpp:208
 #, kde-format
 msgid "Sw&ap Sides"
-msgstr ""
+msgstr "החלפת &צדדים"
 
 #: app/kractions.cpp:212
 #, kde-format
@@ -5098,7 +5104,7 @@ msgstr ""
 #: app/kractions.cpp:214
 #, kde-format
 msgid "Start &Root Mode Krusader"
-msgstr ""
+msgstr "התחלת Krusader במצב &על (root)"
 
 #: app/kractions.cpp:215
 #, kde-format
@@ -5118,32 +5124,32 @@ msgstr "&שילוב קבצים…"
 #: app/kractions.cpp:218
 #, kde-format
 msgid "&Select Newer and Single"
-msgstr ""
+msgstr "&בחירת החדשים והבודדים"
 
 #: app/kractions.cpp:219
 #, kde-format
 msgid "Select &Newer"
-msgstr ""
+msgstr "בחירת ה&חדשים יותר"
 
 #: app/kractions.cpp:220
 #, kde-format
 msgid "Select &Single"
-msgstr ""
+msgstr "בחירת ה&בודדים"
 
 #: app/kractions.cpp:221
 #, kde-format
 msgid "Select Different &and Single"
-msgstr ""
+msgstr "בחירת ה&שונים והבודדים"
 
 #: app/kractions.cpp:222
 #, kde-format
 msgid "Select &Different"
-msgstr ""
+msgstr "בחירת השו&נים"
 
 #: app/kractions.cpp:237
 #, kde-format
 msgid "Start and &Forget"
-msgstr ""
+msgstr "להפעיל ול&שכוח"
 
 #: app/kractions.cpp:239
 #, kde-format
@@ -5208,7 +5214,7 @@ msgstr "השוואה לפי &תוכן…"
 #: app/kractions.cpp:284
 #, kde-format
 msgid "Multi &Rename..."
-msgstr ""
+msgstr "שינוי שם במרו&כז…"
 
 #: app/kractions.cpp:288 app/krusaderview.cpp:473
 #, kde-format
@@ -5248,7 +5254,7 @@ msgstr "כתובות נפוצות…"
 #: app/kractions.cpp:308
 #, kde-format
 msgid "Toggle Fullscreen Embedded Terminal"
-msgstr ""
+msgstr "החלפת מצב מסך מלא למסוף המשובץ"
 
 #: app/kractions.cpp:315
 #, kde-format
@@ -5281,6 +5287,8 @@ msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
 "path. Hint: Krusader supports KMail."
 msgstr ""
+"Krusader לא הצליח למצוא לקוח דוא״ל נתמך. נא להתקין אחד ב־PATH שלך. עצה: ב־"
+"Krusader יש תמיכה ב־KMail."
 
 #: app/krslots.cpp:109
 #, kde-format
@@ -5322,6 +5330,8 @@ msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports Kompare, KDiff3 and Xxdiff."
 msgstr ""
+"Krusader לא יכול למצוא אף אחד ממשקי ההבדלים (diff) הנתמכים. נא להתקין אחד "
+"כחלק מה־PATH שלך. עצה: Krusader תומך ב־Kompare,‏ KDiff3 ו־Xxdiff."
 
 #: app/krslots.cpp:384
 #, kde-format
@@ -6950,6 +6960,9 @@ msgid ""
 "When active, each folder change is performed in the\n"
 "active and inactive panel - if possible."
 msgstr ""
+"הכפתור הזה מחליף את מצב הסנכרון-עיון.\n"
+"כשהוא פעיל, כל שינוי בתיקייה מבוצע הן בלוח\n"
+"הפעיל והן בלוח שאינו פעיל - אם ניתן."
 
 #: app/Panel/listpanel.cpp:610
 #, kde-format
@@ -7255,6 +7268,8 @@ msgid ""
 "<qt><p>Edit file.</p><p>The editor can be defined in Konfigurator, default "
 "is <b>internal editor</b>.</p></qt>"
 msgstr ""
+"<qt><p>עריכת קובץ.</p><p>אפשר להגדיר את העורך דרך Konfigurator, ברירת המחדל "
+"היא <b>העורך הפנימי</b>.</p></qt>"
 
 #: app/Panel/listpanelactions.cpp:129
 #, kde-format
@@ -8051,6 +8066,8 @@ msgid ""
 "You cannot search for text (grep) while doing a search that includes "
 "archives."
 msgstr ""
+"מכיוון שבחרת לחפש גם בארכיונים, כדאי להכיר את המגבלות הבאות:\n"
+"אי אפשר לחפש טקסט (grep) במהלך חיפוש שכולל ארכיונים."
 
 #: app/Search/krsearchdialog.cpp:447
 #, kde-format
@@ -8938,12 +8955,12 @@ msgstr "שחרור נעיצת לשונית"
 #: app/UserAction/expander.cpp:63
 #, kde-format
 msgid "Needed panel specification missing in expander %1"
-msgstr ""
+msgstr "הכרזת הלוח הנחוצה חסרה במרחיב %1"
 
 #: app/UserAction/expander.cpp:84
 #, kde-format
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
-msgstr ""
+msgstr "מרחיב: ארגומנט שגוי ל־%1: %2 הוא לא מצביע פריטים תקף"
 
 #: app/UserAction/expander.cpp:271
 #, kde-format
@@ -8970,7 +8987,7 @@ msgstr "כמות:"
 #: app/UserAction/expander.cpp:315
 #, kde-format
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
-msgstr ""
+msgstr "מרחיב: ארגומנט שגוי ל־Count:‏ %1 הוא לא מצביע פריטים תקף"
 
 #: app/UserAction/expander.cpp:325
 #, kde-format
@@ -9058,7 +9075,7 @@ msgstr "פתיחת המקום בלשונית חדשה"
 #: app/UserAction/expander.cpp:499
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Goto."
-msgstr ""
+msgstr "מרחיב: נדרש לפחות משתנה אחד ל־Goto."
 
 #: app/UserAction/expander.cpp:532
 #, kde-format
@@ -9083,7 +9100,7 @@ msgstr "כותרת (רשות):"
 #: app/UserAction/expander.cpp:544
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Ask."
-msgstr ""
+msgstr "מרחיב: נדרש לפחות משתנה אחד ל־Ask."
 
 #: app/UserAction/expander.cpp:549
 #, kde-format
@@ -9103,17 +9120,17 @@ msgstr "מה להעתיק:"
 #: app/UserAction/expander.cpp:576
 #, kde-format
 msgid "Append to current clipboard content with this separator (optional):"
-msgstr ""
+msgstr "הוספת תוכן לוח הגזירים הנוכחי עם המפריד הזה לסוף (רשות):"
 
 #: app/UserAction/expander.cpp:582
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Clipboard."
-msgstr ""
+msgstr "מרחיב: נדרש לפחות משתנה אחד ל־Clipboard."
 
 #: app/UserAction/expander.cpp:588
 #, kde-format
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
-msgstr ""
+msgstr "מרחיב: %Each% לא יכול להיות בארגומנט השני של %Clipboard%"
 
 #: app/UserAction/expander.cpp:602
 #, kde-format
@@ -9128,17 +9145,17 @@ msgstr "להיכן להעתיק:"
 #: app/UserAction/expander.cpp:611
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Copy."
-msgstr ""
+msgstr "מרחיב: נדרשים 2 משתנים לפחות ל־Copy."
 
 #: app/UserAction/expander.cpp:624
 #, kde-format
 msgid "Expander: %Each% may not be in the second argument of %Copy%"
-msgstr ""
+msgstr "מרחיב: %Each% לא יכול להיות בארגומנט השני של %Copy%"
 
 #: app/UserAction/expander.cpp:632
 #, kde-format
 msgid "Expander: invalid URLs in %_Copy(\"src\", \"dest\")%"
-msgstr ""
+msgstr "מרחיב: כתובות שגויות תחת ‎%_Copy(\"src\", \"dest\")%‎"
 
 #: app/UserAction/expander.cpp:644
 #, kde-format
@@ -9158,7 +9175,7 @@ msgstr "יעד/שם חדש:"
 #: app/UserAction/expander.cpp:653
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Move."
-msgstr ""
+msgstr "מרחיב: נדרשים 2 משתנים לפחות ל־Move."
 
 #: app/UserAction/expander.cpp:661
 #, kde-format
@@ -9290,7 +9307,7 @@ msgstr "%Each% אינו מורשה בפרמטר אל %1"
 #: app/UserAction/expander.cpp:956
 #, kde-format
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
-msgstr ""
+msgstr "מרחיב: מצביע לוח שגוי %1 בממלא המקום %2"
 
 #: app/UserAction/expander.cpp:989
 #, no-c-format, kde-format
