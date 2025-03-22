@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-17 02:48+0000\n"
-"PO-Revision-Date: 2025-03-20 20:48+0200\n"
+"PO-Revision-Date: 2025-03-21 11:44+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -524,6 +524,8 @@ msgid ""
 "Show the <b>Useraction</b> only for the file names defined here. The "
 "wildcards '<code>?</code>' and '<code>*</code>' can be used."
 msgstr ""
+"הצגת <b>פעולת המשתמש</b> רק לשמות הקבצים שמוגדרים כאן. אפשר להשתמש בתווי "
+"ההכללה ‚<code>?</code>’ ו־‚<code>*</code>’."
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonNewFile)
 #: app/ActionMan/actionproperty.ui:845
@@ -2579,10 +2581,10 @@ msgstr "לצאת?"
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "נותרה פעולת משימה אחת."
+msgstr[1] "נותרו שתי פעולות משימות."
+msgstr[2] "נותרו %1 פעולות משימות."
+msgstr[3] "נותרו %1 פעולות משימות."
 
 #: app/JobMan/jobman.cpp:423
 #, kde-format
@@ -2676,6 +2678,8 @@ msgid ""
 "When stepping into a folder which is defined as a mount point in the "
 "<b>fstab</b>, try mounting it with the defined parameters."
 msgstr ""
+"כשצועדים לתיקייה שמוגדרת כנקודת עגינה ב־<b>fstab</b>, לנסות לעגן אותה עם "
+"המשתנים המוגדרים."
 
 #: app/Konfigurator/kgadvanced.cpp:45
 #, kde-format
@@ -2693,6 +2697,8 @@ msgid ""
 "\n"
 "Request user confirmation for the following operations:\n"
 msgstr ""
+"\n"
+"לבקש את אישור המשתמש לפעולות הבאות:\n"
 
 #: app/Konfigurator/kgadvanced.cpp:64
 #, kde-format
@@ -2777,6 +2783,8 @@ msgid ""
 "might result in data loss.</b><br/><b>Moving archives into themselves will "
 "delete them.</b>"
 msgstr ""
+"<b>אזהרה בעת העברה לארכיונים:</b><br/><b>כשל בתהליך עלול לגרום לאובדן נתונים."
+"</b><br/><b>העברת ארכיונים לתוך עצמם תמחק אותם.</b>"
 
 #: app/Konfigurator/kgarchives.cpp:58
 #, kde-format
@@ -2884,6 +2892,7 @@ msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
 "factor.</p>"
 msgstr ""
+"<p>הצבעים של הלוח שאינו פעילות מחושבים על ידי צבע עמעום ומקדם עמעום.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:100 app/Konfigurator/kgcolors.cpp:359
 #: app/Konfigurator/konfigurator.cpp:120
@@ -3105,22 +3114,22 @@ msgstr "אחר"
 #: app/Konfigurator/kgcolors.cpp:313
 #, kde-format
 msgid "Quicksearch, match foreground:"
-msgstr ""
+msgstr "חיפוש מהיר, חזית תוצאה:"
 
 #: app/Konfigurator/kgcolors.cpp:314
 #, kde-format
 msgid "Quicksearch, match background:"
-msgstr ""
+msgstr "חיפוש מהיר, רקע תוצאה:"
 
 #: app/Konfigurator/kgcolors.cpp:315
 #, kde-format
 msgid "Quicksearch, non-match foreground:"
-msgstr ""
+msgstr "חיפוש מהיר, חזית של ‚לא תוצאה’:"
 
 #: app/Konfigurator/kgcolors.cpp:316
 #, kde-format
 msgid "Quicksearch, non-match background:"
-msgstr ""
+msgstr "חיפוש מהיר, רקע של ‚לא תוצאה’:"
 
 #: app/Konfigurator/kgcolors.cpp:320
 #, kde-format
@@ -3299,16 +3308,18 @@ msgid ""
 "If checked, each file will open in a separate window, otherwise, the viewer "
 "will work in a single, tabbed mode"
 msgstr ""
+"אם האפשרות מסומנת, כל קובץ ייפתח בחלון נפרד, אחרת, המציג יעבוד במצב אחוד עם "
+"לשוניות"
 
 #: app/Konfigurator/kggeneral.cpp:81
 #, kde-format
 msgid "Hide the tab bar when only one tab is opened"
-msgstr ""
+msgstr "להסתיר את הלשונית כאשר רק לשונית אחת פתוחה"
 
 #: app/Konfigurator/kggeneral.cpp:84
 #, kde-format
 msgid "If checked, the Viewer tab bar will hide if only one tab is open"
-msgstr ""
+msgstr "אם האפשרות מסומנת, סרגל הלשוניות של המציג יוסתר אם רק לשונית אחת פתוחה"
 
 #: app/Konfigurator/kggeneral.cpp:89
 #, kde-format
@@ -3323,12 +3334,12 @@ msgstr "מצב מציג כברירת מחדל:"
 #: app/Konfigurator/kggeneral.cpp:105
 #, kde-format
 msgid "Generic mode"
-msgstr ""
+msgstr "מצב כללי"
 
 #: app/Konfigurator/kggeneral.cpp:105
 #, kde-format
 msgid "Use the system's default viewer"
-msgstr ""
+msgstr "להשתמש במציג ברירת המחדל של המערכת"
 
 #: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2271
 #, kde-format
@@ -3338,7 +3349,7 @@ msgstr "מצב טקסט"
 #: app/Konfigurator/kggeneral.cpp:106
 #, kde-format
 msgid "View the file in text-only mode"
-msgstr ""
+msgstr "להציג את הקובץ במצב טקסט בלבד"
 
 #: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1235
 #: app/KViewer/lister.cpp:2274
@@ -3349,17 +3360,17 @@ msgstr "מצב הקסדצימלי"
 #: app/Konfigurator/kggeneral.cpp:107
 #, kde-format
 msgid "View the file in hex-mode (better for binary files)"
-msgstr ""
+msgstr "להציג את הקובץ במצב הקסדצימלי (עדיף לקבצים בינריים)"
 
 #: app/Konfigurator/kggeneral.cpp:108
 #, kde-format
 msgid "Lister mode"
-msgstr ""
+msgstr "מצב מציגון"
 
 #: app/Konfigurator/kggeneral.cpp:108
 #, kde-format
 msgid "View the file with lister (for huge text files)"
-msgstr ""
+msgstr "הצגת הקובץ עם המציגון (לקובצי טקסט ענקיים)"
 
 #: app/Konfigurator/kggeneral.cpp:116
 #, kde-format
@@ -3374,12 +3385,12 @@ msgstr "אם היא זמינה, להשתמש ב־Okteta כמציג הקסדצי�
 #: app/Konfigurator/kggeneral.cpp:125
 #, kde-format
 msgid "If a text file is bigger than this size then lister will be used."
-msgstr ""
+msgstr "אם קובץ טקסט עולה על הגודל הזה ייעשה שימוש במציגון."
 
 #: app/Konfigurator/kggeneral.cpp:126
 #, kde-format
 msgid "Use lister if the text file is bigger than:"
-msgstr ""
+msgstr "להשתמש במציגון אם קובץ טקסט גדול מאשר:"
 
 #: app/Konfigurator/kggeneral.cpp:131
 #, kde-format
@@ -3401,7 +3412,7 @@ msgstr "עורך:"
 msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
-msgstr ""
+msgstr "עצה: להשתמש ב‚עורך הפנימי’ כדי להשתמש בעורך הפנימי המהיר של Krusader"
 
 #: app/Konfigurator/kggeneral.cpp:159
 #, kde-format
@@ -3496,6 +3507,8 @@ msgid ""
 "When checked, whenever the panel is changed (for example, by pressing Tab), "
 "Krusader changes the current folder in the embedded terminal."
 msgstr ""
+"כשהאפשרות מסומנת, החלפה של לוח (למשל, לחיצה על Tab), תגרום ל־Krusader להחליף "
+"את התיקייה הנוכחית במסוף המשובץ."
 
 #: app/Konfigurator/kggeneral.cpp:291
 #, kde-format
@@ -3555,7 +3568,7 @@ msgstr "מצב עריכה כברירת מחדל"
 #: app/Konfigurator/kgpanel.cpp:77
 #, kde-format
 msgid "Show editable path in Navigator bar by default"
-msgstr ""
+msgstr "הצגת נתיב שניתן לערוך בסרגל הניווט כברירת מחדל"
 
 #: app/Konfigurator/kgpanel.cpp:78
 #, kde-format
@@ -3565,17 +3578,17 @@ msgstr "הצגת נתיב מלא כברירת מחדל"
 #: app/Konfigurator/kgpanel.cpp:78
 #, kde-format
 msgid "Always show full path in Navigator bar by default."
-msgstr ""
+msgstr "תמיד להציג נתיב מלא בסרגל הניווט כברירת מחדל."
 
 #: app/Konfigurator/kgpanel.cpp:88
 #, kde-format
 msgid "Operation"
-msgstr ""
+msgstr "פעולה"
 
 #: app/Konfigurator/kgpanel.cpp:96
 #, kde-format
 msgid "Autoselect folders"
-msgstr ""
+msgstr "בחירת תיקיות אוטומטית"
 
 #: app/Konfigurator/kgpanel.cpp:98
 #, kde-format
