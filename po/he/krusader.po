@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2025-03-21 11:44+0200\n"
+"PO-Revision-Date: 2025-03-23 07:53+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -288,6 +288,8 @@ msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
 msgstr ""
+"<i>חלונית עצה</i> מופיע כאשר סמן העכבר נשאר מעל רשומה של <b>סרגל כלי פעולות "
+"המשתמש</b>."
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leStartpath)
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelStartpath)
@@ -296,7 +298,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which folder the <i>Command</i> will be "
 "executed."
-msgstr ""
+msgstr "<i>תיקיית עבודה</i> מגדיר באיזו תיקייה תרוץ ה<i>פקודה</i>"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelTooltip)
 #: app/ActionMan/actionproperty.ui:247
@@ -1644,7 +1646,7 @@ msgstr "גודל גופן מזערי"
 #: app/DiskUsage/dufilelight.cpp:176
 #, kde-format
 msgid "Krusader::Filelight"
-msgstr ""
+msgstr "Krusader::Filelight"
 
 #: app/DiskUsage/dulines.cpp:183
 #, kde-format
@@ -3595,12 +3597,12 @@ msgstr "בחירת תיקיות אוטומטית"
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "folders."
-msgstr ""
+msgstr "כשהן עומדות בתנאי החיפוש, לא ייבחרו קבצים בלבד, אלא גם תיקיות."
 
 #: app/Konfigurator/kgpanel.cpp:102
 #, kde-format
 msgid "Rename selects extension"
-msgstr ""
+msgstr "שינוי שם בוחר את הסיומת"
 
 #: app/Konfigurator/kgpanel.cpp:104
 #, kde-format
@@ -3609,29 +3611,31 @@ msgid ""
 "Commander like renaming of just the name, without extension, uncheck this "
 "option."
 msgstr ""
+"בעת שינוי שם קובץ, כל הטקסט נבחר. כדי ששינוי יהיה כמו ב־Total-Commander, "
+"כלומר שם בלבד, בלי סיומת, יש לבטל את סימון האפשרות הזאת."
 
 #: app/Konfigurator/kgpanel.cpp:109
 #, kde-format
 msgid "Unselect files before copy/move"
-msgstr ""
+msgstr "ביטול בחירת קבצים לפני העתקה/העברה"
 
 #: app/Konfigurator/kgpanel.cpp:111
 #, kde-format
 msgid ""
 "Unselect files, which are to be copied/moved, before the operation starts."
-msgstr ""
+msgstr "ביטול בחירת קבצים, שמיועדים להעתקה/העברה, לפני תחילת הפעולה."
 
 #: app/Konfigurator/kgpanel.cpp:115
 #, kde-format
 msgid "Filter dialog remembers settings"
-msgstr ""
+msgstr "חלונית הסינון זוכרת את ההגדרות"
 
 #: app/Konfigurator/kgpanel.cpp:117
 #, kde-format
 msgid ""
 "The filter dialog is opened with the last filter settings that where applied "
 "to the panel."
-msgstr ""
+msgstr "חלונית הסינון נפתחת עם הגדרות הסינון האחרונות שהוחלו בלוח."
 
 #: app/Konfigurator/kgpanel.cpp:127
 #, kde-format
@@ -3641,7 +3645,7 @@ msgstr "לשוניות"
 #: app/Konfigurator/kgpanel.cpp:135
 #, kde-format
 msgid "Use full path tab names"
-msgstr ""
+msgstr "להשתמש בנתיבים מלאים לשמות הכרטיסיות"
 
 #: app/Konfigurator/kgpanel.cpp:137
 #, kde-format
@@ -3649,6 +3653,7 @@ msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
 "the path is displayed."
 msgstr ""
+"הצגת הנתיב המלא בלשוניות התיקיות. כברירת מחדל רק החלק האחרון של הנתיב מוצג."
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
@@ -3725,7 +3730,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:156
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr ""
+msgstr "שכפול הלשונית הפעילה בלחיצה:"
 
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
@@ -5470,7 +5475,7 @@ msgstr "קידום החלון הראשי לחזית"
 #: app/KViewer/lister.cpp:1925
 #, kde-format
 msgid "Lister"
-msgstr ""
+msgstr "מציגון"
 
 #. i18n: ectx: Menu (file)
 #: app/krusaderui.rc:8
@@ -5578,7 +5583,7 @@ msgstr "מציג ה&קסדצימלי"
 #: app/KViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Lister"
-msgstr ""
+msgstr "מ&ציגון"
 
 #: app/KViewer/krviewer.cpp:104
 #, kde-format
@@ -5689,7 +5694,7 @@ msgstr "בחירת ערכת תווים"
 #: app/KViewer/lister.cpp:1259 app/KViewer/lister.cpp:1486
 #, kde-format
 msgid "Lister:"
-msgstr ""
+msgstr "מציגון:"
 
 #: app/KViewer/lister.cpp:1270
 #, kde-format
