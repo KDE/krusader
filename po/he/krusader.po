@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2025-03-23 07:53+0200\n"
+"PO-Revision-Date: 2025-03-25 08:14+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -4380,27 +4380,27 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:721
 #, kde-format
 msgid "Based on KDE's selection mode"
-msgstr ""
+msgstr "מבוסס על מצב הבחירה של KDE"
 
 #: app/Konfigurator/kgpanel.cpp:723
 #, kde-format
 msgid "If checked, use a mode based on KDE's style."
-msgstr ""
+msgstr "אם האפשרות מסומנת, להשתמש במצב שמבוסס על הסגנון של KDE."
 
 #: app/Konfigurator/kgpanel.cpp:727
 #, kde-format
 msgid "Left mouse button selects"
-msgstr ""
+msgstr "כפתור העכבר השמאלי בוחר"
 
 #: app/Konfigurator/kgpanel.cpp:729
 #, kde-format
 msgid "If checked, left clicking an item will select it."
-msgstr ""
+msgstr "אם האפשרות מסומנת, לחיצה שמאלית על פריט תבחר אותו."
 
 #: app/Konfigurator/kgpanel.cpp:733
 #, kde-format
 msgid "Left mouse button preserves selection"
-msgstr ""
+msgstr "לחיצה על כפתור העכבר השמאלי משמרת את הבחירה"
 
 #: app/Konfigurator/kgpanel.cpp:735
 #, kde-format
@@ -4408,11 +4408,13 @@ msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr ""
+"אם האפשרות מסומנת, לחיצה שמאלית על פריט תבחר אותו, אבל לא תבטל בחירה של "
+"פריטים אחרים שכבר נבחרו קודם לכן."
 
 #: app/Konfigurator/kgpanel.cpp:739
 #, kde-format
 msgid "Shift/Ctrl-Left mouse button selects"
-msgstr ""
+msgstr "Shift/Ctrl-כפתור שמאלי בעכבר לבחירה"
 
 #: app/Konfigurator/kgpanel.cpp:741
 #, kde-format
@@ -4420,6 +4422,8 @@ msgid ""
 "If checked, Shift/Ctrl left clicking will select items.\n"
 "Note: this is meaningless if 'Left Button Selects' is checked."
 msgstr ""
+"אם האפשרות מסומנת, Shift/Ctrl ולחיצה שמאלית יבחרו פריטים.\n"
+"לתשומת ליבך: אין לזה משמעות אם האפשרות ‚לחיצה שמאלית בוחרת’ מסומנת."
 
 #: app/Konfigurator/kgpanel.cpp:745
 #, kde-format
@@ -4448,7 +4452,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:757
 #, kde-format
 msgid "Shift/Ctrl-Right mouse button selects"
-msgstr ""
+msgstr "Shift/Ctrl-כפתור ימני בעכבר לבחירה"
 
 #: app/Konfigurator/kgpanel.cpp:759
 #, kde-format
@@ -4456,6 +4460,8 @@ msgid ""
 "If checked, Shift/Ctrl right clicking will select items.\n"
 "Note: this is meaningless if 'Right Button Selects' is checked."
 msgstr ""
+"אם האפשרות מסומנת, Shift/Ctrl ולחיצה ימנית יבחרו פריטים.\n"
+"לתשומת ליבך: אין לזה משמעות אם האפשרות ‚לחיצה ימנית בוחרת’ מסומנת."
 
 #: app/Konfigurator/kgpanel.cpp:763
 #, kde-format
@@ -4639,6 +4645,9 @@ msgid ""
 "li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is "
 "saved automatically when Krusader is closed."
 msgstr ""
+"מגדיר את פרופיל הלוח לשימוש בהתחלה. פרופיל לוח מכיל:<ul><li>כל נתיבי "
+"הלשוניות</li><li>הלשונית הנוכחית</li><li>הלוח הפעיל</li></ul><b>&lt;ההפעלה "
+"אחרונה&gt;</b> הוא פרופיל לוח מיוחד שנשמר אוטומטית כש־Krusader נסגר."
 
 #: app/Konfigurator/kgstartup.cpp:37
 #, kde-format
@@ -4718,6 +4727,7 @@ msgid ""
 "When settings of a panel are changed, save them as the default for new "
 "panels of the same type."
 msgstr ""
+"כשהגדרות של לוח משתנות, יש לשמור אותן כברירת המחדל ללוחות חדשים מאותו הסוג."
 
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
@@ -4740,6 +4750,7 @@ msgid ""
 "Check the state of the user interface components and restore them to their "
 "condition when last shutdown."
 msgstr ""
+"לבדוק את מצב רכיבי ממשק המשתמש ולשחזר אותם למצב שבו היו לפני הכיבוי האחרון."
 
 #: app/Konfigurator/kgstartup.cpp:117
 #, kde-format
@@ -4806,6 +4817,8 @@ msgid ""
 "%t will be replaced by the title of the action,\n"
 "%d with the workdir."
 msgstr ""
+"%t יוחלף בכותרת הפעולה,\n"
+"%d בתיקיית העבודה."
 
 #: app/Konfigurator/kguseractions.cpp:58
 #, kde-format
@@ -5072,7 +5085,7 @@ msgstr "מצב"
 #: app/kractions.cpp:175
 #, kde-format
 msgid "Tab-Switch panel"
-msgstr ""
+msgstr "לוח החלפת לשוניות"
 
 #: app/kractions.cpp:182
 #, kde-format
@@ -5107,7 +5120,7 @@ msgstr "פינוי האשפה"
 #: app/kractions.cpp:206
 #, kde-format
 msgid "Trash Popup Menu"
-msgstr ""
+msgstr "תפריט אשפה צץ"
 
 #: app/kractions.cpp:208
 #, kde-format
@@ -5117,7 +5130,7 @@ msgstr "החלפת &צדדים"
 #: app/kractions.cpp:212
 #, kde-format
 msgid "popup cmdline"
-msgstr ""
+msgstr "שורת פקודות צצה"
 
 #: app/kractions.cpp:214
 #, kde-format
