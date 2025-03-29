@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-17 02:48+0000\n"
-"PO-Revision-Date: 2025-03-25 08:14+0200\n"
+"PO-Revision-Date: 2025-03-28 22:46+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -3726,6 +3726,8 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
+"אם האפשרות מסומנת, כפתור לשונית חדשה משכפל לשונית, אחרת הוא פותח לשונית "
+"בתיקיית הבית."
 
 #: app/Konfigurator/kgpanel.cpp:156
 #, kde-format
@@ -3801,7 +3803,7 @@ msgstr "למעלה/למטה מבטלים את החיפוש"
 #, kde-format
 msgid ""
 "Pressing the Up/Down buttons closes the search bar (only in search mode)."
-msgstr ""
+msgstr "לחיצה על הכפתורים למעלה/למטה סוגרת את סרגל החיפוש (רק במצב חיפוש)."
 
 #: app/Konfigurator/kgpanel.cpp:216
 #, kde-format
@@ -3860,7 +3862,7 @@ msgstr "תמיד להציג את סרגל החיפוש"
 #: app/Konfigurator/kgpanel.cpp:266
 #, kde-format
 msgid "Make bookmark search bar always visible"
-msgstr ""
+msgstr "להפוך את חיפוש הסימניות לגלוי תמיד"
 
 #: app/Konfigurator/kgpanel.cpp:270
 #, kde-format
@@ -3873,6 +3875,8 @@ msgid ""
 "Bookmark search is also applied to special items in bookmark menu like "
 "Trash, Popular URLs, Jump Back, etc."
 msgstr ""
+"חיפוש סימניות חל גם על פריטים מיוחדים בתפריט הסימניות כמו אשפה, כתובות "
+"נפוצות, חזרה אחורה וכו׳."
 
 #: app/Konfigurator/kgpanel.cpp:281
 #, kde-format
@@ -4021,6 +4025,8 @@ msgid ""
 "The duration after a tooltip is shown for a file item, in milliseconds. Set "
 "a negative value to disable tooltips."
 msgstr ""
+"המשך שלאחריו מופיעה חלונית צצה לפריט קובץ, במילישניות. יש להגדיר לערך שלילי "
+"כדי להשבית חלוניות צצות."
 
 #: app/Konfigurator/kgpanel.cpp:443
 #, kde-format
@@ -4152,6 +4158,7 @@ msgid ""
 "The sorting is performed in a locale- and also platform-dependent manner. "
 "Can be slow."
 msgstr ""
+"הסידור מתבצע באופן שאינו תלוי הגדרות מקומיות או מערכת הפעלה. עלול להיות איטי."
 
 #: app/Konfigurator/kgpanel.cpp:545
 #, kde-format
@@ -4236,7 +4243,7 @@ msgstr "כפתור שווה (=)"
 #: app/Konfigurator/kgpanel.cpp:624
 #, kde-format
 msgid "Changes the panel folder to the other panel folder."
-msgstr ""
+msgstr "החלפת תיקיית הלוח לתיקיית הלוח השני."
 
 #: app/Konfigurator/kgpanel.cpp:625
 #, kde-format
@@ -4276,7 +4283,7 @@ msgstr "כפתור ברירה לעיון מסונכרן"
 #: app/Konfigurator/kgpanel.cpp:633
 #, kde-format
 msgid "Each folder change in the panel is also performed in the other panel."
-msgstr ""
+msgstr "כל החלפת תיקייה בלוח מבוצעת גם בלוח השני."
 
 #: app/Konfigurator/kgpanel.cpp:658
 #, kde-format
@@ -4295,6 +4302,9 @@ msgid ""
 "key and click the left mouse button. Right-click menu is invoked using a "
 "short click on the right mouse button."
 msgstr ""
+"שני המקשים מאפשרים לבחור קבצים. כדי לבחור יותר מקובץ אחר, יש להחזיק את המקש "
+"Ctrl וללחוץ עם הכפתור השמאלי בעכבר. תפריט הלחיצה הימנית מופעל בלחיצה קצרה על "
+"הכפתור הימני בעכבר."
 
 #: app/Konfigurator/kgpanel.cpp:675
 #, kde-format
@@ -4308,6 +4318,8 @@ msgid ""
 "multiple files. Right-click menu is invoked using a short click on the right "
 "mouse button."
 msgstr ""
+"לחיצה על הכפתור השמאלי בעכבר בוחרת קבצים - אפשר ללחוץ ולבחור מגוון קבצים. "
+"תפריט לחיצה ימנית מופיע באמצעות לחיצה קצרה על הכפתור הימני בעכבר."
 
 #: app/Konfigurator/kgpanel.cpp:679
 #, kde-format
@@ -4322,6 +4334,9 @@ msgid ""
 "files and the right-click menu is invoked by pressing and holding the right "
 "mouse button."
 msgstr ""
+"הכפתור השמאלי בעכבר לא בוחר, אלא מגדיר את הקובץ הנוכחי בלי להשפיע על הבחירה "
+"הנוכחית. הכפתור הימני בוחר מגוון קבצים ותפריט הלחיצה הימנית מופעל בלחיצה "
+"והחזקה על הכפתור הימני בעכבר."
 
 #: app/Konfigurator/kgpanel.cpp:683
 #, kde-format
@@ -4335,6 +4350,9 @@ msgid ""
 "affecting the current selection. The right mouse button invokes the context-"
 "menu. You can select with Ctrl key and the left button."
 msgstr ""
+"הכפתור השמאלי בעכבר לא בוחר, אלא מגדיר את הקובץ הנוכחי מבלי להשפיע על הבחירה "
+"הנוכחיץ כפתור העכבר הימני מפעיל את תפריט ההקשר. אפשר לבחור עם מקש Ctrl "
+"וכפתור העכבר השמאלי."
 
 #: app/Konfigurator/kgpanel.cpp:687
 #, kde-format
