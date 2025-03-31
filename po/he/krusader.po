@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2025-03-28 22:46+0300\n"
+"PO-Revision-Date: 2025-03-30 08:40+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -317,6 +317,12 @@ msgid ""
 "%aList(\"Selected\")%</code></li></ul>\n"
 "Please consult the handbook to learn more about the syntax."
 msgstr ""
+"ה<i>פקודה</i> מגדירה את הפקודה שתרוץ בעת שימוש ב־<b>פעולת משתמש</b>. זאת "
+"יכולה להיות פקודת מעטפת פשוטה או רצף מורכב עם מספר פקודות ו<b>ממלאי מקום</"
+"b>.\n"
+"<p>דוגמאות:<ul><li><code>eject /mnt/cdrom</code></li><li><code>amarok --"
+"append %aList(\"Selected\")%</code></li></ul>\n"
+"נא לפנות למדריך למשתמש כדי ללמוד עוד על התחביר."
 
 #. i18n: ectx: property (text), widget (QLabel, LabelCategory)
 #: app/ActionMan/actionproperty.ui:278
@@ -2869,6 +2875,9 @@ msgid ""
 "alternates line by line.</p><p>When you don't use the <i>KDE default colors</"
 "i>, you can configure the alternate colors in the <i>colors</i> box.</p>"
 msgstr ""
+"<p><b>צבע הרקע</b> וצבע <b>הרקע החלופי</b> מתחלף מדי שורה.</p><p>כשלא "
+"משתמשים ב<i>צבעי ברירת המחדל של KDE</i>, אפשר להגדיר את הצבעים המתחלפים "
+"בתיבת ה<i>צבעים</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:74
 #, kde-format
@@ -2882,6 +2891,8 @@ msgid ""
 "option is only available when you don't use the <i>KDE default colors</i>.</"
 "p>"
 msgstr ""
+"<p>להציג את המקום האחרון של הסמן שלוח הרשימה שאינו פעיל.</p><p>האפשרות זאת "
+"זמינה רק שלא משתמשים ב<i>צבעי ברירת המחדל של KDE</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:81
 #, kde-format
@@ -4386,7 +4397,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:708
 #, kde-format
 msgid "Obey global selection policy"
-msgstr ""
+msgstr "לציית למדיניות הבחירה הכללית"
 
 #: app/Konfigurator/kgpanel.cpp:708
 #, kde-format
@@ -4394,6 +4405,8 @@ msgid ""
 "<p>Use global setting:</p><p><i>Plasma System Settings -> Input Devices -> "
 "Mouse</i></p>"
 msgstr ""
+"<p>להשתמש בהגדרה הכללית:</p><p><i>הגדרות מערכת של פלזמה -> התקני קלט -> "
+"עכבר</i></p>"
 
 #: app/Konfigurator/kgpanel.cpp:721
 #, kde-format
@@ -4733,6 +4746,10 @@ msgid ""
 "is disabled, you can use the menu <i>Window -> Save Position</i> option to "
 "manually set the main window's size and position at startup.</p>"
 msgstr ""
+"<p>בהתחלה, החלון הראשי ישנה את גודלו לגודל שבו היה לפני הכיבוי האחרון. הוא "
+"גם יופיע באותו מקום במסך, הלוחות יהיו מסודרים כמו שהיו לפני כן.</p> <p>אם "
+"האפשרות הזאת מושבתת, אפשר להשתמש באפשרות התפריט <i>חלון  -> שמירת מקום</i> "
+"כדי להגדיר את גודל החלון ומקומו עם העלייה.</p>"
 
 #: app/Konfigurator/kgstartup.cpp:100
 #, kde-format
@@ -5203,12 +5220,12 @@ msgstr "להפעיל ול&שכוח"
 #: app/kractions.cpp:239
 #, kde-format
 msgid "Display &Separated Standard and Error Output"
-msgstr ""
+msgstr "הצגת פלט רגיל ושגיאות מו&פרדים"
 
 #: app/kractions.cpp:245
 #, kde-format
 msgid "Display &Mixed Standard and Error Output"
-msgstr ""
+msgstr "הצגת פלט רגיל ושגיאות מ&עורבבים"
 
 #: app/kractions.cpp:246
 #, kde-format
@@ -5367,6 +5384,9 @@ msgid ""
 "in the active panel.</li><li>Make sure there is a file in the other panel, "
 "with the same name as the current file in the active panel.</li></ul>"
 msgstr ""
+"כדי להשוות שני קבצים לפי תוכן, אפשר:<ul><li>לבחור קובץ אחד בלוח השמאלי, "
+"ובאחר בלוח הימני.</li><li>לבחור שני קבצים בדיוק בלוח הפעיל.</li><li>לוודא "
+"שיש קובץ בלוח השני, באותו השם של הקובץ הנוכחי בלוח הפעיל.</li></ul>"
 
 #: app/krslots.cpp:185
 #, kde-format
