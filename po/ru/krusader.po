@@ -15,14 +15,14 @@
 # Vladimir Lomov <irk.translator@gmail.com>, 2010, 2011.
 # Alexey D. <lq07829icatm@rambler.ru>, 2012.
 # Dmitry Astankov <mornie@basealt.ru>, 2019.
-# SPDX-FileCopyrightText: 2022, 2024 Olesya Gerasimenko <translation-team@basealt.ru>
+# SPDX-FileCopyrightText: 2022, 2024, 2025 Olesya Gerasimenko <translation-team@basealt.ru>
 # Alexander Yavorsky <kekcuha@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2024-12-11 15:51+0300\n"
+"PO-Revision-Date: 2025-04-04 12:14+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
@@ -9820,7 +9820,6 @@ msgstr ""
 
 #: plugins/krarc/krarc.cpp:242
 #, fuzzy, kde-format
-#| msgid "Creating folders is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives."
 msgstr "Создание папок для архивов %1 не поддерживается"
 
@@ -9831,7 +9830,6 @@ msgstr "Создание %1..."
 
 #: plugins/krarc/krarc.cpp:320
 #, fuzzy, kde-format
-#| msgid "Writing to %1 archives is not supported"
 msgid "Writing to %1 archives is not supported."
 msgstr "Запись в архивы %1 не поддерживается"
 
@@ -9842,7 +9840,6 @@ msgstr "Упаковка %1..."
 
 #: plugins/krarc/krarc.cpp:427
 #, fuzzy, kde-format
-#| msgid "Retrieving data from %1 archives is not supported"
 msgid "Retrieving data from %1 archives is not supported."
 msgstr "Получение данных из архивов %1 не поддерживается"
 
@@ -9860,24 +9857,21 @@ msgstr "Произошла ошибка внешнего приложения «
 
 #: plugins/krarc/krarc.cpp:626
 #, fuzzy, kde-format
-#| msgid "Deleting files from %1 archives is not supported"
 msgid "Deleting files from %1 archives is not supported."
 msgstr "Удаление файлов из архивов %1 не поддерживается"
 
 #: plugins/krarc/krarc.cpp:670
 #, fuzzy, kde-format
-#| msgid "Accessing files is not supported with %1 archives"
 msgid "Accessing files is not supported with %1 archives."
 msgstr "Доступ к файлам для архивов %1 не поддерживается"
 
 #: plugins/krarc/krarc.cpp:783
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copying from archive to archive is not supported."
-msgstr "Запись в архивы %1 не поддерживается"
+msgstr "Копирование из одного архива в другой не поддерживается."
 
 #: plugins/krarc/krarc.cpp:829
 #, fuzzy, kde-format
-#| msgid "Listing folders is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives."
 msgstr "Вывод списка папок для архивов %1 не поддерживается"
 
