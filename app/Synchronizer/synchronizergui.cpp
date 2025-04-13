@@ -138,7 +138,7 @@ void SynchronizerGUI::initGUI(const QString &profileName, QUrl leftURL, QUrl rig
     if (rightURL.isEmpty())
         rightURL = QUrl::fromLocalFile(ROOT_DIR);
 
-    setWindowTitle(i18n("Krusader::Synchronize Folders"));
+    setWindowTitle(i18n("Krusader::Synchronize Dirs"));
     auto *synchGrid = new QGridLayout(this);
     synchGrid->setSpacing(6);
     synchGrid->setContentsMargins(11, 11, 11, 11);
@@ -715,7 +715,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
     QAction *myact;
     QHash<QAction *, int> actHash;
 
-    popup.setTitle(i18n("Synchronize Folders"));
+    popup.setTitle(i18n("Synchronize Dirs"));
 
     myact = popup.addAction(i18n("E&xclude"));
     actHash[myact] = EXCLUDE_ID;
@@ -1333,7 +1333,7 @@ void SynchronizerGUI::keyPressEvent(QKeyEvent *e)
                 int result = KMessageBox::warningTwoActions(
                     this,
                     i18n("The synchronizer window contains data from a previous compare. If you exit, this data will be lost. Do you really want to exit?"),
-                    i18n("Krusader::Synchronize Folders"),
+                    i18n("Krusader::Synchronize Dirs"),
                     KGuiItem(QApplication::translate("KStandardGuiItem", "&Yes"), QStringLiteral("dialog-ok")),
                     KGuiItem(QApplication::translate("KStandardGuiItem", "&No"), QStringLiteral("dialog-cancel")),
                     "syncGUIexit");
