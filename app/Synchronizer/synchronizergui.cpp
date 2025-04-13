@@ -195,8 +195,8 @@ void SynchronizerGUI::initGUI(const QString &profileName, QUrl leftURL, QUrl rig
     fileFilter = new KrHistoryComboBox(false, compareDirs);
     fileFilter->setMaxCount(25); // remember 25 items
     fileFilter->setDuplicatesEnabled(false);
-    fileFilter->setMinimumWidth(100);
-    fileFilter->setMaximumWidth(100);
+    fileFilter->setMinimumWidth(250);
+    fileFilter->setMaximumWidth(250);
     fileFilter->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     list = group.readEntry("File Filter", QStringList());
     fileFilter->setHistoryItems(list);
