@@ -370,8 +370,8 @@ void SynchronizerGUI::initGUI(const QString &profileName, QUrl leftURL, QUrl rig
     syncList->setSelectionMode(QAbstractItemView::ExtendedSelection);
     syncList->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     syncList->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    header->setSortIndicatorShown(false);
-    syncList->setSortingEnabled(false);
+    header->setSortIndicatorShown(true);
+    syncList->setSortingEnabled(true);
     syncList->setRootIsDecorated(true);
     syncList->setIndentation(10);
     syncList->setDragEnabled(true);
