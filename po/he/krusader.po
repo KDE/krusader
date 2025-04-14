@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2025-04-11 11:34+0300\n"
+"PO-Revision-Date: 2025-04-13 20:44+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -2196,6 +2196,20 @@ msgid ""
 "svn/ .git/</code></li></ul><p><b>Note</b>: the search term '<code>text</"
 "code>' is equivalent to '<code>*text*</code>'.</p>"
 msgstr ""
+"<p>כאן מוגדרים תנאי סינון שמות קבצים.</p><p>אפשר להשתמש בתווי הכללה.אפשר "
+"להפריד בין התבניות השונות ברווח (כלומר שער „או” לוגי) ואפשר להחריג תבניות "
+"מהחיפוש בעזרת תו הקו האנכי.</p><p>אם התבנית נסגרת בלוכסן (<code>*תבנית*/</"
+"code>), המשמעות היא שיש התייחסות לחיפוש נסוג/רקורסיבי של תיקיות."
+"<ul><li><code>תבנית</code> - הכוונה היא לחפש אחר קבצים/תיקיות שהשם שלהן הוא "
+"<code>תבנית</code>, חיפוש נסוג/רקורסיבי עובר על כל תת־התיקיות בנפרד מהערך "
+"<code>תבנית</code></li><li><code>תבנית/</code> - הכוונה היא לחפש בכל "
+"הקבצים/התיקיות, אבל החיפוש הנסוג עובר על/מחריג את התיקיות שהשם שלהן הוא "
+"<code>תבנית</code></li></ul></p><p>מותר להשתמש במירכאות לשמות שמכילים רווח. "
+"המסנן <code>\"Program&nbsp;Files\"</code> מחפש אחר הקבצים/התיקיות האלה "
+"שנקראים <code>Program&nbsp;Files</code>.</p><p>למשל:</p><ul><li><code>‎*.o</"
+"code></li><li><code>‎*.h *.c??</code></li><li><code>‎*.cpp *.h | *.moc.cpp</"
+"code></li><li><code>‎* | .svn/ .git/</code></li></ul><p><b>הערה</b>: ביטוי "
+"החיפוש ’<code>text</code>’ זהה לביטוי ‚<code>*text*</code>’.</p>"
 
 #: app/Filter/generalfilter.cpp:150
 #, kde-format
@@ -2210,7 +2224,7 @@ msgstr "כל הקבצים"
 #: app/Filter/generalfilter.cpp:180
 #, kde-format
 msgid "&Profile handler"
-msgstr ""
+msgstr "מ&טפל בפרופילים"
 
 #: app/Filter/generalfilter.cpp:193
 #, kde-format
@@ -2736,7 +2750,7 @@ msgstr "קבצים מועברים"
 #: app/Konfigurator/kgadvanced.cpp:71
 #, kde-format
 msgid "Confirm feed to listbox"
-msgstr ""
+msgstr "אישור הזנה לתיבת הרשימה"
 
 #: app/Konfigurator/kgadvanced.cpp:73
 #, kde-format
@@ -2744,6 +2758,8 @@ msgid ""
 "Ask for a result name when feeding items to the listbox. By default the "
 "standard value is used."
 msgstr ""
+"לבקש שם תוצאה בעת הזנת פריטים לתיבת הרשימה. כברירת מחדל ייעשה שימוש בערך "
+"הרגיל."
 
 #: app/Konfigurator/kgadvanced.cpp:74
 #, kde-format
