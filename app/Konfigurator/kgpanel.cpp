@@ -836,6 +836,7 @@ void KgPanel::setupMediaMenuTab()
         {"MediaMenu", "ShowPath", true, i18n("Show Mount Path"), false, nullptr},
         {"MediaMenu", "ShowFSType", true, i18n("Show File System Type"), false, nullptr},
         {"MediaMenu", "HideSquashFS", false, i18n("Hide SquashFS entries"), false, nullptr},
+        {"MediaMenu", "HideUnknownFS", false, i18n("Hide unknown File System entries"), false, nullptr},
     };
     KonfiguratorCheckBoxGroup *mediaMenuCheckBoxes =
         createCheckBoxGroup(1, 0, mediaMenuParams, sizeof(mediaMenuParams) / sizeof(*mediaMenuParams), tab, PAGE_MEDIA_MENU);

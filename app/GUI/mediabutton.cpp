@@ -204,6 +204,10 @@ bool MediaButton::getNameAndIcon(Solid::Device &device, QString &name, QIcon &ic
         return false;
     }
 
+    if (fstype.isEmpty() && cfg.readEntry("HideUnknownFS", false)) {
+        return false;
+    }
+
     if (cfg.readEntry("Hidden Mountpoints", QStringList()).contains(path)) {
         return false;
     }
