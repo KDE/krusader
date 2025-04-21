@@ -1,4 +1,4 @@
-# Translation of krusader.pot to Spanish
+# Spanish translations for krusader.po package.
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2009, Krusader Krew
@@ -8,7 +8,7 @@
 # SPDX-FileCopyrightText: 2003, 2004 Rafael Munoz Rodriguez <rafaluco@netscape.net>
 # SPDX-FileCopyrightText: 2005, 2006 Alejandro Araiza Alvarado <mebrelith@gmail.com>
 # SPDX-FileCopyrightText: 2005 Alex Araiza <mebrelith@gmail.com>
-# SPDX-FileCopyrightText: 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2024, 2025 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 # SPDX-FileCopyrightText: 2010, 2011 Israel Garcia Garcia <israelgarcia86@gmail.com>
 # SPDX-FileCopyrightText: 2012, 2013 Ricardo Varas Santana <ricardoivaras@gmail.com>
 # SPDX-FileCopyrightText: 2013, 2014 Raul Gonzalez <raulgf83@gmail.com>
@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-30 00:45+0000\n"
-"PO-Revision-Date: 2025-01-02 12:31+0100\n"
-"Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
+"PO-Revision-Date: 2025-04-20 12:34+0100\n"
+"Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -159,7 +159,7 @@ msgstr "Propiedades básicas"
 #: app/ActionMan/actionproperty.ui:45
 #, kde-format
 msgid "..."
-msgstr "..."
+msgstr "…"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelDescription)
 #. i18n: ectx: property (whatsThis), widget (KTextEdit, textDescription)
@@ -485,7 +485,7 @@ msgstr "Protocolo"
 #, kde-format
 msgctxt "New protocol"
 msgid "&New..."
-msgstr "&Nuevo..."
+msgstr "&Nuevo…"
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonEditProtocol)
 #. i18n: ectx: property (text), widget (QToolButton, ButtonEditPath)
@@ -495,7 +495,7 @@ msgstr "&Nuevo..."
 #: app/ActionMan/actionproperty.ui:765 app/ActionMan/actionproperty.ui:870
 #, kde-format
 msgid "Chan&ge..."
-msgstr "Cam&biar..."
+msgstr "Cam&biar…"
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonRemoveProtocol)
 #. i18n: ectx: property (text), widget (QToolButton, ButtonRemovePath)
@@ -527,7 +527,7 @@ msgstr "Ruta"
 #, kde-format
 msgctxt "New path"
 msgid "&New..."
-msgstr "&Nueva..."
+msgstr "&Nueva…"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabMime)
 #: app/ActionMan/actionproperty.ui:709
@@ -540,7 +540,7 @@ msgstr "Tipo MIME"
 #, kde-format
 msgctxt "New MIME"
 msgid "&New..."
-msgstr "&Nuevo..."
+msgstr "&Nuevo…"
 
 #. i18n: ectx: attribute (title), widget (QWidget, TabFile)
 #: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:97
@@ -563,7 +563,7 @@ msgstr ""
 #, kde-format
 msgctxt "New file"
 msgid "&New..."
-msgstr "&Nuevo..."
+msgstr "&Nuevo…"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, chkConfirmExecution)
 #: app/ActionMan/actionproperty.ui:925
@@ -618,7 +618,7 @@ msgstr "Panel independiente"
 #: app/ActionMan/addplaceholderpopup.cpp:57
 #, kde-format
 msgid "Choose executable..."
-msgstr "Elegir ejecutable..."
+msgstr "Elegir ejecutable…"
 
 #: app/ActionMan/addplaceholderpopup.cpp:142
 #, kde-format
@@ -902,7 +902,7 @@ msgstr "Gestor de marcadores II"
 #: app/BookMan/krbookmarkhandler.cpp:80
 #, kde-format
 msgid "Type to search..."
-msgstr "Escriba para buscar..."
+msgstr "Escriba para buscar…"
 
 #: app/BookMan/krbookmarkhandler.cpp:225 app/BookMan/krbookmarkhandler.cpp:331
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
@@ -991,7 +991,7 @@ msgstr "Ha ocurrido un error al leer stdout o stderr"
 #: app/Dialogs/checksumdlg.cpp:184
 #, kde-format
 msgid "Please wait..."
-msgstr "Espere, por favor..."
+msgstr "Espere, por favor…"
 
 #: app/Dialogs/checksumdlg.cpp:202
 #, kde-format
@@ -1069,7 +1069,7 @@ msgstr "Las sumas de verificación se han creado con éxito"
 #: app/Dialogs/checksumdlg.cpp:380
 #, kde-format
 msgid "Saving checksum files..."
-msgstr "Guardando archivos de suma de verificación..."
+msgstr "Guardando archivos de suma de verificación…"
 
 #: app/Dialogs/checksumdlg.cpp:384
 #, kde-format
@@ -1246,7 +1246,7 @@ msgstr "Nueva conexión de red"
 #: app/Dialogs/newftpgui.cpp:62
 #, kde-format
 msgid "About to connect to..."
-msgstr "Se va a conectar a..."
+msgstr "Se va a conectar a…"
 
 #: app/Dialogs/newftpgui.cpp:67
 #, kde-format
@@ -1450,7 +1450,7 @@ msgstr "Tamaño total:"
 #: app/DiskUsage/diskusage.cpp:238
 #, kde-format
 msgid "Loading the disk usage information..."
-msgstr "Cargando la información de uso del disco..."
+msgstr "Cargando la información de uso del disco…"
 
 #: app/DiskUsage/diskusage.cpp:404
 #, kde-format
@@ -1493,7 +1493,7 @@ msgstr "Advertencia"
 #: app/DiskUsage/diskusage.cpp:606 plugins/krarc/krarc.cpp:641
 #, kde-format
 msgid "Deleting %1..."
-msgstr "Borrando %1..."
+msgstr "Borrando %1…"
 
 #: app/DiskUsage/diskusage.cpp:720
 #, kde-format
@@ -2897,7 +2897,7 @@ msgstr "Resultado de la búsqueda"
 #: app/Konfigurator/kgarchives.cpp:107
 #, kde-format
 msgid "Searching for packers..."
-msgstr "Buscar compresores..."
+msgstr "Buscar compresores…"
 
 #: app/Konfigurator/kgarchives.cpp:109
 #, kde-format
@@ -3612,7 +3612,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:315
 #, kde-format
 msgid "Searching for tools..."
-msgstr "Buscando herramientas..."
+msgstr "Buscando herramientas…"
 
 #: app/Konfigurator/kggeneral.cpp:317
 #, kde-format
@@ -5302,12 +5302,12 @@ msgstr "Per&files"
 #: app/kractions.cpp:216
 #, kde-format
 msgid "Sp&lit File..."
-msgstr "Partir e&l archivo..."
+msgstr "Partir e&l archivo…"
 
 #: app/kractions.cpp:217
 #, kde-format
 msgid "Com&bine Files..."
-msgstr "Com&binar archivos..."
+msgstr "Com&binar archivos…"
 
 #: app/kractions.cpp:218
 #, kde-format
@@ -5367,27 +5367,27 @@ msgstr "Iniciar &terminal"
 #: app/kractions.cpp:269
 #, kde-format
 msgid "&Search..."
-msgstr "Bu&scar..."
+msgstr "Bu&scar…"
 
 #: app/kractions.cpp:270
 #, kde-format
 msgid "&Locate..."
-msgstr "&Localizar..."
+msgstr "&Localizar…"
 
 #: app/kractions.cpp:272
 #, kde-format
 msgid "Synchronize Fol&ders..."
-msgstr "Sincroni&zar carpetas..."
+msgstr "Sincroni&zar carpetas…"
 
 #: app/kractions.cpp:274
 #, kde-format
 msgid "D&isk Usage..."
-msgstr "Uso de d&isco..."
+msgstr "Uso de d&isco…"
 
 #: app/kractions.cpp:276
 #, kde-format
 msgid "Configure &Krusader..."
-msgstr "Configurar &Krusader..."
+msgstr "Configurar &Krusader…"
 
 #: app/kractions.cpp:282
 #, kde-format
@@ -5397,12 +5397,12 @@ msgstr "Guardar &posición"
 #: app/kractions.cpp:283
 #, kde-format
 msgid "Compare b&y Content..."
-msgstr "Com&parar por contenido..."
+msgstr "Com&parar por contenido…"
 
 #: app/kractions.cpp:284
 #, kde-format
 msgid "Multi &Rename..."
-msgstr "Cambio de nomb&re múltiple..."
+msgstr "Cambio de nomb&re múltiple…"
 
 #: app/kractions.cpp:288 app/krusaderview.cpp:473
 #, kde-format
@@ -5417,7 +5417,7 @@ msgstr "&Acciones de usuario"
 #: app/kractions.cpp:296
 #, kde-format
 msgid "Manage User Actions..."
-msgstr "Gestionar acciones de usuario..."
+msgstr "Gestionar acciones de usuario…"
 
 #: app/kractions.cpp:298
 #, kde-format
@@ -5437,7 +5437,7 @@ msgstr "Salir de Krusader."
 #: app/kractions.cpp:306
 #, kde-format
 msgid "Popular URLs..."
-msgstr "URL populares..."
+msgstr "URL populares…"
 
 #: app/kractions.cpp:308
 #, kde-format
@@ -5835,17 +5835,17 @@ msgstr "Viendo: %1"
 #: app/KViewer/lister.cpp:1202 app/KViewer/lister.cpp:1914
 #, kde-format
 msgid "Save selection..."
-msgstr "Guardar selección..."
+msgstr "Guardar selección…"
 
 #: app/KViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
-msgstr "Guardar como..."
+msgstr "Guardar como…"
 
 #: app/KViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
-msgstr "Imprimir..."
+msgstr "Imprimir…"
 
 #: app/KViewer/lister.cpp:1220
 #, kde-format
@@ -6851,7 +6851,7 @@ msgstr "URL a abrir"
 #: app/MountMan/kmountman.cpp:58
 #, kde-format
 msgid "&MountMan..."
-msgstr "Gestor de &montaje..."
+msgstr "Gestor de &montaje…"
 
 #: app/MountMan/kmountman.cpp:61
 #, kde-format
@@ -7198,12 +7198,12 @@ msgstr "cargando vistas previas: %p%"
 #: app/Panel/listpanel.cpp:1093
 #, kde-format
 msgid ">> Reading..."
-msgstr ">> Leyendo..."
+msgstr ">> Leyendo…"
 
 #: app/Panel/listpanel.cpp:1119
 #, kde-format
 msgid ">> Reading: %1 % complete..."
-msgstr ">> Leyendo: %1% completo..."
+msgstr ">> Leyendo: %1% completo…"
 
 #: app/Panel/listpanel.cpp:1125
 #, kde-format
@@ -7243,7 +7243,7 @@ msgstr "Editar archivo"
 #: app/Panel/listpanelactions.cpp:67
 #, kde-format
 msgid "&New Text File..."
-msgstr "&Nuevo archivo de texto..."
+msgstr "&Nuevo archivo de texto…"
 
 #: app/Panel/listpanelactions.cpp:68
 #, kde-format
@@ -7258,17 +7258,17 @@ msgstr "Mover a otro panel"
 #: app/Panel/listpanelactions.cpp:70
 #, kde-format
 msgid "Copy delayed..."
-msgstr "Copia demorada..."
+msgstr "Copia demorada…"
 
 #: app/Panel/listpanelactions.cpp:71
 #, kde-format
 msgid "Move delayed..."
-msgstr "Movimiento demorado..."
+msgstr "Movimiento demorado…"
 
 #: app/Panel/listpanelactions.cpp:72
 #, kde-format
 msgid "New Folder..."
-msgstr "Nueva carpeta..."
+msgstr "Nueva carpeta…"
 
 #: app/Panel/listpanelactions.cpp:74
 #, kde-format
@@ -7288,7 +7288,7 @@ msgstr "Menú del botón derecho del ratón"
 #: app/Panel/listpanelactions.cpp:79
 #, kde-format
 msgid "&Properties..."
-msgstr "&Propiedades..."
+msgstr "&Propiedades…"
 
 #: app/Panel/listpanelactions.cpp:80
 #, kde-format
@@ -7303,27 +7303,27 @@ msgstr "Calcular espacio &ocupado"
 #: app/Panel/listpanelactions.cpp:82
 #, kde-format
 msgid "Pac&k..."
-msgstr "&Comprimir..."
+msgstr "&Comprimir…"
 
 #: app/Panel/listpanelactions.cpp:83
 #, kde-format
 msgid "&Unpack..."
-msgstr "&Descomprimir..."
+msgstr "&Descomprimir…"
 
 #: app/Panel/listpanelactions.cpp:84
 #, kde-format
 msgid "Create Checksum..."
-msgstr "Crear suma de verificación..."
+msgstr "Crear suma de verificación…"
 
 #: app/Panel/listpanelactions.cpp:85
 #, kde-format
 msgid "Verify Checksum..."
-msgstr "Comprobar suma de verificación..."
+msgstr "Comprobar suma de verificación…"
 
 #: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:227
 #, kde-format
 msgid "New Symlink..."
-msgstr "Nuevo enlace simbólico..."
+msgstr "Nuevo enlace simbólico…"
 
 #: app/Panel/listpanelactions.cpp:87
 #, kde-format
@@ -7358,7 +7358,7 @@ msgstr "Cancelar el refresco de la vista"
 #: app/Panel/listpanelactions.cpp:95
 #, kde-format
 msgid "New Net &Connection..."
-msgstr "Nueva &conexión de red..."
+msgstr "Nueva &conexión de red…"
 
 #: app/Panel/listpanelactions.cpp:97
 #, kde-format
@@ -7438,17 +7438,17 @@ msgstr "Medio de la derecha"
 #: app/Panel/listpanelactions.cpp:116
 #, kde-format
 msgid "Find in folder..."
-msgstr "Buscar en carpeta..."
+msgstr "Buscar en carpeta…"
 
 #: app/Panel/listpanelactions.cpp:117
 #, kde-format
 msgid "Select in folder..."
-msgstr "Seleccionar en carpeta..."
+msgstr "Seleccionar en carpeta…"
 
 #: app/Panel/listpanelactions.cpp:118
 #, kde-format
 msgid "Filter in folder..."
-msgstr "Filtrar en carpeta..."
+msgstr "Filtrar en carpeta…"
 
 #: app/Panel/listpanelactions.cpp:121
 #, kde-format
@@ -7531,7 +7531,7 @@ msgstr "Explorar archivo comprimido"
 #: app/Panel/panelcontextmenu.cpp:167
 #, kde-format
 msgid "Other..."
-msgstr "Otro..."
+msgstr "Otro…"
 
 #: app/Panel/panelcontextmenu.cpp:169
 #, kde-format
@@ -7546,12 +7546,12 @@ msgstr "Mover a la papelera"
 #: app/Panel/panelcontextmenu.cpp:228
 #, kde-format
 msgid "New Hardlink..."
-msgstr "Nuevo enlace duro..."
+msgstr "Nuevo enlace duro…"
 
 #: app/Panel/panelcontextmenu.cpp:230
 #, kde-format
 msgid "Redirect Link..."
-msgstr "Redireccionar enlace..."
+msgstr "Redireccionar enlace…"
 
 #: app/Panel/panelcontextmenu.cpp:233
 #, kde-format
@@ -7571,7 +7571,7 @@ msgstr "Restaurar"
 #: app/Panel/panelcontextmenu.cpp:267
 #, kde-format
 msgid "Synchronize Selected Files..."
-msgstr "Sincronizar archivos seleccionados..."
+msgstr "Sincronizar archivos seleccionados…"
 
 #: app/Panel/panelcontextmenu.cpp:294
 #, kde-format
@@ -8100,7 +8100,7 @@ msgstr "&Personalizar"
 #: app/Panel/viewactions.cpp:31
 #, kde-format
 msgid "Select &Group..."
-msgstr "Seleccionar &grupo..."
+msgstr "Seleccionar &grupo…"
 
 #: app/Panel/viewactions.cpp:32
 #, kde-format
@@ -8110,7 +8110,7 @@ msgstr "&Seleccionar todo"
 #: app/Panel/viewactions.cpp:33
 #, kde-format
 msgid "&Unselect Group..."
-msgstr "&Deseleccionar grupo..."
+msgstr "&Deseleccionar grupo…"
 
 #: app/Panel/viewactions.cpp:34
 #, kde-format
@@ -8300,12 +8300,12 @@ msgstr "Nombre de la consulta"
 #: app/Splitter/combiner.cpp:60
 #, kde-format
 msgid "Krusader::Combining..."
-msgstr "Krusader::Combinando..."
+msgstr "Krusader::Combinando…"
 
 #: app/Splitter/combiner.cpp:61
 #, kde-format
 msgid "Combining the file %1..."
-msgstr "Combinando el archivo %1..."
+msgstr "Combinando el archivo %1…"
 
 #: app/Splitter/combiner.cpp:72
 #, kde-format
@@ -8362,12 +8362,12 @@ msgstr ""
 #: app/Splitter/splitter.cpp:73
 #, kde-format
 msgid "Krusader::Splitting..."
-msgstr "Krusader::Dividiendo..."
+msgstr "Krusader::Dividiendo…"
 
 #: app/Splitter/splitter.cpp:74
 #, kde-format
 msgid "Splitting the file %1..."
-msgstr "Dividiendo el archivo %1..."
+msgstr "Dividiendo el archivo %1…"
 
 #: app/Splitter/splitter.cpp:77
 #, kde-format
@@ -9068,7 +9068,7 @@ msgstr "Ha ocurrido un error de E/S al comparar el archivo %1 con %2."
 #: app/Synchronizer/synchronizertask.cpp:343
 #, kde-format
 msgid "Comparing file %1 (%2)..."
-msgstr "Comparando el archivo %1 (%2)..."
+msgstr "Comparando el archivo %1 (%2)…"
 
 #: app/tabactions.cpp:24
 #, kde-format
@@ -9160,7 +9160,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:271
 #, kde-format
 msgid "Panel's Path..."
-msgstr "Ruta del panel..."
+msgstr "Ruta del panel…"
 
 #: app/UserAction/expander.cpp:274 app/UserAction/expander.cpp:342
 #: app/UserAction/expander.cpp:376 app/UserAction/expander.cpp:412
@@ -9172,7 +9172,7 @@ msgstr "Codificar los espacios automáticamente"
 #: app/UserAction/expander.cpp:296
 #, kde-format
 msgid "Number of..."
-msgstr "Número de..."
+msgstr "Número de…"
 
 #: app/UserAction/expander.cpp:299
 #, kde-format
@@ -9194,7 +9194,7 @@ msgstr "Máscara de filtro: (*.h, *.cpp, etc.)"
 #: app/UserAction/expander.cpp:338
 #, kde-format
 msgid "Current File (!= Selected File)..."
-msgstr "Archivo actual (!= archivo seleccionado)..."
+msgstr "Archivo actual (!= archivo seleccionado)…"
 
 #: app/UserAction/expander.cpp:341 app/UserAction/expander.cpp:374
 #: app/UserAction/expander.cpp:410 app/UserAction/expander.cpp:750
@@ -9205,7 +9205,7 @@ msgstr "Omitir la ruta actual (opcional)"
 #: app/UserAction/expander.cpp:369
 #, kde-format
 msgid "Item List of..."
-msgstr "Lista de elementos de..."
+msgstr "Lista de elementos de…"
 
 #: app/UserAction/expander.cpp:372 app/UserAction/expander.cpp:408
 #: app/UserAction/expander.cpp:749
@@ -9227,7 +9227,7 @@ msgstr "Máscara (opcional, todas excepto «Seleccionado»):"
 #: app/UserAction/expander.cpp:405
 #, kde-format
 msgid "Filename of an Item List..."
-msgstr "Nombre de archivo de una lista de elementos..."
+msgstr "Nombre de archivo de una lista de elementos…"
 
 #: app/UserAction/expander.cpp:409
 #, kde-format
@@ -9242,7 +9242,7 @@ msgstr "Expansor: no se ha podido abrir el archivo temporal (%1)"
 #: app/UserAction/expander.cpp:453
 #, kde-format
 msgid "Manipulate the Selection..."
-msgstr "Manejar la selección..."
+msgstr "Manejar la selección…"
 
 #: app/UserAction/expander.cpp:456
 #, kde-format
@@ -9257,7 +9257,7 @@ msgstr "Modo de manejo:"
 #: app/UserAction/expander.cpp:484
 #, kde-format
 msgid "Jump to a Location..."
-msgstr "Ir a una localización..."
+msgstr "Ir a una localización…"
 
 #: app/UserAction/expander.cpp:487
 #, kde-format
@@ -9277,7 +9277,7 @@ msgstr "Expansor: se necesita al menos 1 parámetro para Goto."
 #: app/UserAction/expander.cpp:532
 #, kde-format
 msgid "Ask Parameter from User..."
-msgstr "Solicitar el parámetro al usuario..."
+msgstr "Solicitar el parámetro al usuario…"
 
 #: app/UserAction/expander.cpp:535
 #, kde-format
@@ -9307,7 +9307,7 @@ msgstr "Acción del usuario"
 #: app/UserAction/expander.cpp:572
 #, kde-format
 msgid "Copy to Clipboard..."
-msgstr "Copiar en el portapapeles..."
+msgstr "Copiar en el portapapeles…"
 
 #: app/UserAction/expander.cpp:575 app/UserAction/expander.cpp:605
 #, kde-format
@@ -9333,7 +9333,7 @@ msgstr "Expansor: %Each% no puede estar en el segundo argumento de %Clipboard%"
 #: app/UserAction/expander.cpp:602
 #, kde-format
 msgid "Copy a File/Folder..."
-msgstr "Copiar un archivo o carpeta..."
+msgstr "Copiar un archivo o carpeta…"
 
 #: app/UserAction/expander.cpp:606
 #, kde-format
@@ -9358,7 +9358,7 @@ msgstr "Expansor: URL no válida en %_Copy(\"src\",\"dest\")%"
 #: app/UserAction/expander.cpp:644
 #, kde-format
 msgid "Move/Rename a File/Folder..."
-msgstr "Mover o cambiar el nombre de un archivo o carpeta..."
+msgstr "Mover o cambiar el nombre de un archivo o carpeta…"
 
 #: app/UserAction/expander.cpp:647
 #, kde-format
@@ -9388,7 +9388,7 @@ msgstr "Expansor: URL no válida en %_Move(\"src\",\"dest\")%"
 #: app/UserAction/expander.cpp:684
 #, kde-format
 msgid "Load a Synchronizer Profile..."
-msgstr "Abrir un perfil del sincronizador..."
+msgstr "Abrir un perfil del sincronizador…"
 
 #: app/UserAction/expander.cpp:687 app/UserAction/expander.cpp:709
 #: app/UserAction/expander.cpp:729
@@ -9404,7 +9404,7 @@ msgstr "Expansor: no se ha indicado ningún perfil para %_Sync(profile)%"
 #: app/UserAction/expander.cpp:706
 #, kde-format
 msgid "Load a Searchmodule Profile..."
-msgstr "Cargar un perfil del modulo de búsqueda..."
+msgstr "Cargar un perfil del modulo de búsqueda…"
 
 #: app/UserAction/expander.cpp:714
 #, kde-format
@@ -9414,24 +9414,24 @@ msgstr "Expansor: no se ha indicado ningún perfil para %_NewSearch(profile)%"
 #: app/UserAction/expander.cpp:726
 #, kde-format
 msgid "Load a Panel Profile..."
-msgstr "Cargar un perfil de panel..."
+msgstr "Cargar un perfil de panel…"
 
 #: app/UserAction/expander.cpp:734
 #, kde-format
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
 msgstr ""
 "Expansor: no se ha indicado ningún perfil para %_Profile(profile)%. "
-"Interrumpir..."
+"Interrumpir…"
 
 #: app/UserAction/expander.cpp:746
 #, kde-format
 msgid "Separate Program Call for Each..."
-msgstr "Separar la llamada de programa para cada..."
+msgstr "Separar la llamada de programa para cada…"
 
 #: app/UserAction/expander.cpp:783
 #, kde-format
 msgid "Set Sorting for This Panel..."
-msgstr "Definir el orden de este panel..."
+msgstr "Definir el orden de este panel…"
 
 #: app/UserAction/expander.cpp:786
 #, kde-format
@@ -9456,7 +9456,7 @@ msgstr "Expansor: no se conoce la columna indicada para %_ColSort(%1)%"
 #: app/UserAction/expander.cpp:850
 #, kde-format
 msgid "Set Relation Between the Panels..."
-msgstr "Definir la relación entre los paneles..."
+msgstr "Definir la relación entre los paneles…"
 
 #: app/UserAction/expander.cpp:853
 #, kde-format
@@ -9475,7 +9475,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:881
 #, kde-format
 msgid "View File with Krusader's Internal Viewer..."
-msgstr "Ver archivo con el visor interno de Krusader..."
+msgstr "Ver archivo con el visor interno de Krusader…"
 
 #: app/UserAction/expander.cpp:884
 #, kde-format
@@ -9801,7 +9801,7 @@ msgstr "No se permite crear carpetas en los archivos comprimidos %1."
 #: plugins/krarc/krarc.cpp:278
 #, kde-format
 msgid "Creating %1..."
-msgstr "Creando %1..."
+msgstr "Creando %1…"
 
 #: plugins/krarc/krarc.cpp:320
 #, kde-format
@@ -9811,7 +9811,7 @@ msgstr "No está permitido escribir en archivos comprimidos %1."
 #: plugins/krarc/krarc.cpp:386
 #, kde-format
 msgid "Packing %1..."
-msgstr "Comprimiendo %1..."
+msgstr "Comprimiendo %1…"
 
 #: plugins/krarc/krarc.cpp:427
 #, kde-format
@@ -9821,7 +9821,7 @@ msgstr "No está permitida la recuperación de datos de archivos comprimidos %1.
 #: plugins/krarc/krarc.cpp:496 plugins/krarc/krarc.cpp:761
 #, kde-format
 msgid "Unpacking %1..."
-msgstr "Descomprimiendo %1..."
+msgstr "Descomprimiendo %1…"
 
 #: plugins/krarc/krarc.cpp:508
 #, kde-format
@@ -9870,1333 +9870,3 @@ msgstr "Diálogo de contraseña de Krarc"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Necesita una contraseña para acceder al archivo."
-
-#~ msgid "Manage Bookmarks"
-#~ msgstr "Gestionar marcadores"
-
-#~ msgid "Show Main Toolbar"
-#~ msgstr "Mostrar la barra de herramientas principal"
-
-#~ msgid "Show Job Toolbar"
-#~ msgstr "Mostrar la barra de herramientas de tareas"
-
-#~ msgid "Show Actions Toolbar"
-#~ msgstr "Mostrar la barra de herramientas de acciones"
-
-#~ msgid "&Toolbars"
-#~ msgstr "Barras de herramien&tas"
-
-#~ msgid "Copy current item to clipboard"
-#~ msgstr "Copiar el elemento actual en el portapapeles"
-
-#~ msgid "Open a new tab in home"
-#~ msgstr "Abrir una nueva pestaña en la carpeta de inicio"
-
-#~ msgid "Show the new/close tab buttons."
-#~ msgstr "Mostrar los botones de nueva pestaña  y de cerrar pestaña."
-
-#~ msgid "JavaScript Console..."
-#~ msgstr "Consola JavaScript..."
-
-#~ msgid ""
-#~ "In %1:\n"
-#~ "Uncaught JavaScript exception '%2'\n"
-#~ "%3"
-#~ msgstr ""
-#~ "En %1:\n"
-#~ "Excepción JavaScript no contemplada «%2»\n"
-#~ "%3"
-
-#~ msgid ""
-#~ "In %1:\n"
-#~ "Uncaught JavaScript exception '%2' at line %3\n"
-#~ "%4"
-#~ msgstr ""
-#~ "En %1:\n"
-#~ "Excepción JavaScript no contemplada «%2» en la línea %3\n"
-#~ "%4"
-
-#~ msgid "JavaScript Error"
-#~ msgstr "Error de JavaScript"
-
-#~ msgid "Execute a JavaScript Extension..."
-#~ msgstr "Ejecutar una extensión JavaScript..."
-
-#~ msgid "Location of the script"
-#~ msgstr "Localización del guion"
-
-#~ msgid ""
-#~ "Set some variables for the execution (optional).\n"
-#~ "i.e. \"return=return_var;foo=bar\", consult the handbook for more "
-#~ "information"
-#~ msgstr ""
-#~ "Defina algunas variables para la ejecución (opcional).\n"
-#~ "Ejemplo: «return=cmd;foo=bar», consulte el manual para más información"
-
-#~ msgid "Expander: no script specified for %_Script(script)%"
-#~ msgstr "Expansor: no se ha indicado ningún guion para %_Script(script)%"
-
-#~ msgid "New folder"
-#~ msgstr "Nueva carpeta"
-
-#~ msgid "Directories:"
-#~ msgstr "Directorios:"
-
-#~ msgid "Browse"
-#~ msgstr "Explorar"
-
-#~ msgid "Folder..."
-#~ msgstr "Carpeta..."
-
-#~ msgid "Text File..."
-#~ msgstr "Archivo de texto..."
-
-#~ msgid "View File (F3)"
-#~ msgstr "Ver archivo (F3)"
-
-#~ msgid "Edit File (F4)"
-#~ msgstr "Editar archivo (F4)"
-
-#~ msgid "%1 ZB"
-#~ msgstr "%1 ZB"
-
-#~ msgid "%1 TB"
-#~ msgstr "%1 TB"
-
-#~ msgid "%1 GB"
-#~ msgstr "%1 GB"
-
-#~ msgid "%1 MB"
-#~ msgstr "%1 MB"
-
-#~ msgid "%1 KB"
-#~ msgstr "%1 KB"
-
-#~ msgid "Open search filter"
-#~ msgstr "Abrir filtro de búsqueda"
-
-#~ msgid "Karai Csaba"
-#~ msgstr "Karai Csaba"
-
-#~ msgid "Open the popup panel"
-#~ msgstr "Abrir el panel emergente"
-
-#~ msgid "Close the popup panel"
-#~ msgstr "Cerrar el panel emergente"
-
-#~ msgid "Toggle Popup Panel"
-#~ msgstr "Conmutar panel emergente"
-
-#~ msgid " Quit"
-#~ msgstr " Salir"
-
-#~ msgid "Copy..."
-#~ msgstr "Copiar..."
-
-#~ msgid "Move..."
-#~ msgstr "Mover..."
-
-#~ msgid ""
-#~ "A configuration of 1.51 or older was detected. Krusader has to reset your "
-#~ "configuration to default values.\n"
-#~ "Note: your bookmarks and keybindings will remain intact.\n"
-#~ "Krusader will now run Konfigurator."
-#~ msgstr ""
-#~ "Se ha detectado una configuración de la versión 1.51 o anterior. Krusader "
-#~ "debe reiniciar su configuración con los valores predeterminados.\n"
-#~ "Nota: Sus marcadores y asignaciones de teclas permanecerán intactos.\n"
-#~ "Krusader ejecutará ahora Konfigurator."
-
-#~ msgid "ftp://"
-#~ msgstr "ftp://"
-
-#~ msgid "smb://"
-#~ msgstr "smb://"
-
-#~ msgid "fish://"
-#~ msgstr "fish://"
-
-#~ msgid "sftp://"
-#~ msgstr "sftp://"
-
-#~ msgid "Keep virtual folder structure"
-#~ msgstr "Mantener la estructura de la carpeta virtual"
-
-#~ msgid "Base URL:"
-#~ msgstr "URL base:"
-
-#~ msgid "Minimize to tray"
-#~ msgstr "Minimizar en bandeja"
-
-#~ msgid ""
-#~ "The icon will appear in the system tray instead of the taskbar, when "
-#~ "Krusader is minimized."
-#~ msgstr ""
-#~ "Cuando Krusader es minimizado, el icono aparecerá en la Bandeja del "
-#~ "sistema en lugar de en la Barra de tareas."
-
-#~ msgid ""
-#~ "<qt>Cannot calculate checksum since no supported tool was found. Please "
-#~ "check the <b>Dependencies</b> page in Krusader's settings.</qt>"
-#~ msgstr ""
-#~ "<qt>No se puede calcular la suma de verificación debido a que no se ha "
-#~ "encontrado una herramienta permitida. Por favor, compruebe la página de "
-#~ "<b>Dependencias</b> en las preferencias de Krusader.</qt>"
-
-#~ msgid ""
-#~ "<qt><b>Note</b>: you have selected folders, and probably have no "
-#~ "recursive checksum tool installed. Krusader currently supports "
-#~ "<i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>"
-#~ msgstr ""
-#~ "<qt><b>Nota</b>: ha seleccionado carpetas y es posible que no tenga "
-#~ "instalada una herramienta de suma de verificación recursiva. Krusader "
-#~ "permite usar <i>md5deep, sha1deep, sha256deep, tigerdeep y cfv</i>.</qt>"
-
-#~ msgid "About to calculate checksum for the following files:"
-#~ msgstr ""
-#~ "Se va a calcular la suma de verificación de los siguientes archivos:"
-
-#~ msgid "Calculating checksums..."
-#~ msgstr "Calculando sumas de verificación..."
-
-#~ msgid ""
-#~ "<qt>Cannot verify checksum since no supported tool was found. Please "
-#~ "check the <b>Dependencies</b> page in Krusader's settings.</qt>"
-#~ msgstr ""
-#~ "<qt>No se ha podido comprobar la suma de verificación porque no se ha "
-#~ "encontrado ninguna herramienta permitida. Por favor, compruebe la página "
-#~ "de <b>Dependencias</b> en las preferencias de Krusader.</qt>"
-
-#~ msgid "About to verify checksum for the following files and folders:"
-#~ msgstr ""
-#~ "Se va a comprobar la suma de verificación de los siguientes archivos y "
-#~ "carpetas:"
-
-#~ msgid ""
-#~ "<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid "
-#~ "checksum file.</qt>"
-#~ msgstr ""
-#~ "<qt>Ha ocurrido un error al leer el archivo de suma de verificación <i>"
-#~ "%1</i>.<br/>Por favor, indique un archivo de suma de verificación válido."
-#~ "</qt>"
-
-#~ msgid "Verifying checksums..."
-#~ msgstr "Comprobando sumas de verificación..."
-
-#~ msgid "The following files have failed:"
-#~ msgstr "Los siguientes archivos han fallado:"
-
-#~ msgid "Here are the calculated checksums:"
-#~ msgstr "Estas son las sumas de verificación calculadas:"
-
-#~ msgid "File and hash"
-#~ msgstr "Archivo y código"
-
-#~ msgid "Save checksum to file:"
-#~ msgstr "Guardar la suma de verificación en el archivo:"
-
-#~ msgid ""
-#~ "File %1 already exists.\n"
-#~ "Are you sure you want to overwrite it?"
-#~ msgstr ""
-#~ "Ya existe el archivo %1.\n"
-#~ "¿Seguro que desea sobrescribirlo?"
-
-#~ msgid "Select a file to save to"
-#~ msgstr "Seleccione un archivo donde guardar"
-
-#~ msgid ""
-#~ "Cannot start root mode Krusader, because Krusader or kdesu is missing "
-#~ "from the path. Please configure the dependencies in Konfigurator."
-#~ msgstr ""
-#~ "No se puede iniciar Krusader en modo administrador porque Krusader o "
-#~ "«kdesu» no se encuentran en la ruta. Por favor, configure las "
-#~ "dependencias en Konfigurator."
-
-#~ msgid "Calculating space"
-#~ msgstr "Calculando espacio"
-
-#~ msgid "Start &Paused"
-#~ msgstr "Iniciar en &pausa"
-
-#~ msgid "F2 Run Immediately"
-#~ msgstr "F2 Ejecutar inmediatamente"
-
-#~ msgid "Immediately start job even if there are running jobs in queue."
-#~ msgstr ""
-#~ "Iniciar una tarea inmediatamente, incluso si hay tareas en ejecución en "
-#~ "cola."
-
-#~ msgid "User Menu"
-#~ msgstr "Menú de usuario"
-
-#~ msgid "Cannot find \"KsysCtrl\". Please install KDE admin package"
-#~ msgstr ""
-#~ "No se puede encontrar «KsysCtrl». Por favor, instale el paquete «KDE "
-#~ "admin»."
-
-#~ msgid ""
-#~ "Could not create a temporary folder. Handling of Archives will not be "
-#~ "possible until this is fixed."
-#~ msgstr ""
-#~ "No se puede crear una carpeta temporal. El manejo de archivos comprimidos "
-#~ "no será posible hasta corrija esto."
-
-#~ msgid "Manage user actions"
-#~ msgstr "Gestionar las acciones del usuario"
-
-#~ msgid "Rename %1 to:"
-#~ msgstr "Cambiar nombre de %1 a:"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
-
-#~ msgid "Quick Navigation"
-#~ msgstr "Navegación rápida"
-
-#~ msgid "Already at <i>%1</i>"
-#~ msgstr "Ya se encuentra en <i>%1</i>"
-
-#~ msgid "Click to go to <i>%1</i>"
-#~ msgstr "Haga clic para ir a <i>%1</i>"
-
-#, fuzzy
-#~| msgid "Fullscreen terminal (mc-style)"
-#~ msgid "Fullscreen embedded terminal (mc-style)"
-#~ msgstr "Terminal a pantalla completa (al estilo de «mc»)"
-
-#~ msgid "Terminal is shown instead of the Krusader window (full screen)."
-#~ msgstr ""
-#~ "Se muestra el emulador de terminal en lugar de la ventana de Krusader (a "
-#~ "pantalla completa)."
-
-#~ msgid "Show terminal emulator"
-#~ msgstr "Mostrar emulador de terminal"
-
-#~ msgid "Show Terminal &Emulator"
-#~ msgstr "Mostrar el &emulador de terminal"
-
-#~ msgctxt "Unknown file system type"
-#~ msgid "unknown"
-#~ msgstr "desconocido"
-
-#~ msgid "No space information on [dev]"
-#~ msgstr "No hay información sobre el espacio en [dev]"
-
-#~ msgid "No space information on [procfs]"
-#~ msgstr "No hay información sobre el espacio en [procfs]"
-
-#~ msgid "No space information on [proc]"
-#~ msgstr "No hay información sobre el espacio en [proc]"
-
-#~ msgid "Overwrite"
-#~ msgstr "Sobrescribir"
-
-#~ msgid "&Overwrite"
-#~ msgstr "S&obrescribir"
-
-#~ msgid "&Remove"
-#~ msgstr "E&liminar"
-
-#~ msgid "Use MIME type magic"
-#~ msgstr "Usar tipo MIME de «magic»"
-
-#~ msgid ""
-#~ "MIME type magic allows better distinction of file types, but is slower."
-#~ msgstr ""
-#~ "El tipo MIME de «magic» permite una mejor distinción de los tipos de "
-#~ "archivo, pero es más lento."
-
-#~ msgid "&Queue Manager..."
-#~ msgstr "&Gestor de colas..."
-
-#~ msgid "You cannot move files to this file system"
-#~ msgstr "No puede mover archivos a este sistema de archivos"
-
-#~ msgid "You cannot copy files to this file system"
-#~ msgstr "No puede copiar archivos en este sistema de archivos"
-
-#~ msgid "You do not have write permission to this folder"
-#~ msgstr "No tiene permiso de escritura en esta carpeta"
-
-#~ msgid "An error occurred during processing the queue.\n"
-#~ msgstr "Ha ocurrido un error durante el proceso de la cola.\n"
-
-#~ msgid "The last processed element in the queue was aborted.\n"
-#~ msgstr "El último elemento procesado de la cola fue interrumpido.\n"
-
-#~ msgid ""
-#~ "Do you wish to continue with the next element, delete the queue or "
-#~ "suspend the queue?"
-#~ msgstr ""
-#~ "¿Desea continuar con el siguiente elemento, borrar la cola o suspender la "
-#~ "cola?"
-
-#~ msgid "Krusader::Queue"
-#~ msgstr "Krusader::Cola"
-
-#~ msgid "Suspend"
-#~ msgstr "Suspender"
-
-#~ msgid "default"
-#~ msgstr "por omisión"
-
-#~ msgid "Krusader::Queue Manager"
-#~ msgstr "Krusader::Gestor de cola"
-
-#~ msgid "Please enter the time to start processing the queue:"
-#~ msgstr "Por favor, introduzca la hora para empezar a procesar la cola:"
-
-#~ msgid "Create a new queue"
-#~ msgstr "Crear una nueva cola"
-
-#~ msgid "Remove the current queue"
-#~ msgstr "Eliminar la cola actual"
-
-#~ msgid "unused"
-#~ msgstr "no usado"
-
-#~ msgid "Schedule queue starting (Ctrl+S)"
-#~ msgstr "Programar el inicio de la cola (Ctrl+S)"
-
-#~ msgid "Start processing the queue (Ctrl+P)"
-#~ msgstr "Empezar el procesamiento de la cola (Ctrl+P)"
-
-#~ msgid "The queue is paused."
-#~ msgstr "La cola está en pausa."
-
-#~ msgid "Scheduled to start at %1."
-#~ msgstr "Programada para empezar a las %1."
-
-#~ msgid "The queue is running."
-#~ msgstr "La cola está en ejecución."
-
-#~ msgid "Pause processing the queue (Ctrl+P)"
-#~ msgstr "Pausar el procesamiento de la cola (Ctrl+P)"
-
-#~ msgid "Please enter the name of the new queue"
-#~ msgstr "Por favor, introduzca el nombre de la nueva cola"
-
-#~ msgid "A queue already exists with this name."
-#~ msgstr "Ya existe una cola con ese nombre."
-
-#~ msgid ""
-#~ "Deleting the queue requires aborting all pending jobs. Do you wish to "
-#~ "continue?"
-#~ msgstr ""
-#~ "Para borrar la cola necesita interrumpir todos los trabajos pendientes. "
-#~ "¿Desea continuar?"
-
-#~ msgid "Queue Manager"
-#~ msgstr "Gestor de colas"
-
-#~ msgid ""
-#~ "Deleting this job will abort the pending job. Do you wish to continue?"
-#~ msgstr ""
-#~ "Si borra esta tarea se interrumpirá el trabajo pendiente. ¿Desea "
-#~ "continuar?"
-
-#~ msgid ""
-#~ "Krusader does not support FTP access via HTTP.\n"
-#~ "If it is not the case, please check and change the proxy settings in the "
-#~ "System Settings."
-#~ msgstr ""
-#~ "Krusader no permite acceso FTP usando HTTP.\n"
-#~ "Si este no es el caso, por favor, compruebe y modifique los ajustes del "
-#~ "proxy en las preferencias del sistema."
-
-#~ msgctxt "Job type"
-#~ msgid "Status"
-#~ msgstr "Estado"
-
-#~ msgctxt "Job type"
-#~ msgid "Folder Size"
-#~ msgstr "Tamaño de la carpeta"
-
-#~ msgctxt "Job type"
-#~ msgid "Copy"
-#~ msgstr "Copiar"
-
-#~ msgctxt "Job type"
-#~ msgid "Move"
-#~ msgstr "Mover"
-
-#~ msgctxt "Job type"
-#~ msgid "Pack"
-#~ msgstr "Comprimir"
-
-#~ msgctxt "Job type"
-#~ msgid "Unpack"
-#~ msgstr "Descomprimir"
-
-#~ msgctxt "Job type"
-#~ msgid "Unknown"
-#~ msgstr "Desconocido"
-
-#~ msgid "Target"
-#~ msgstr "Destino"
-
-#~ msgid "Source"
-#~ msgstr "Origen"
-
-#~ msgid "Cannot create a folder. Check your permissions."
-#~ msgstr "No se puede crear una carpeta. Compruebe sus permisos."
-
-#~ msgctxt "@title job"
-#~ msgid "Copying"
-#~ msgstr "Copiando"
-
-#~ msgctxt "@title job"
-#~ msgid "Moving"
-#~ msgstr "Moviendo"
-
-#~ msgid "OK"
-#~ msgstr "Aceptar"
-
-#~ msgid "Show statusbar"
-#~ msgstr "Mostrar la barra de estado"
-
-#~ msgid "Statusbar will be visible after startup."
-#~ msgstr "La barra de estado será visible tras el arranque."
-
-#~ msgid "Show toolbar"
-#~ msgstr "Mostrar la barra de herramientas"
-
-#~ msgid "Toolbar will be visible after startup."
-#~ msgstr "La barra de herramientas será visible tras el arranque."
-
-#~ msgid "Show actions toolbar"
-#~ msgstr "Mostrar la barra de herramientas de acciones"
-
-#~ msgid "Actions toolbar will be visible after startup."
-#~ msgstr "La barra de herramientas de acciones será visible tras arrancar."
-
-#~ msgid "Webmaster"
-#~ msgstr "Webmaster"
-
-#~ msgid "Remote co&ntent search"
-#~ msgstr "Búsqueda de co&ntenido remoto"
-
-#~ msgid "Cannot drop here, no write permissions."
-#~ msgstr "No se puede soltar aquí: no tiene permiso de escritura."
-
-#~ msgid "Copy Here"
-#~ msgstr "Copiar aquí"
-
-#~ msgid "Move Here"
-#~ msgstr "Mover aquí"
-
-#~ msgid "Link Here"
-#~ msgstr "Enlazar aquí"
-
-#~ msgid "Quicksearch/Quickfilter"
-#~ msgstr "Búsqueda rápida/filtro rápido"
-
-#~ msgid "New style Quicksearch"
-#~ msgstr "Nuevo estilo de búsqueda rápida"
-
-#~ msgid "Opens a quick search dialog box."
-#~ msgstr "Abre un diálogo de búsqueda rápida."
-
-#~ msgid "Case sensitive Quicksearch/QuickFilter"
-#~ msgstr "Búsqueda rápida/filtro rápido sensible a mayúsculas"
-
-#~ msgid "Quick Panel: quick way to perform actions"
-#~ msgstr "Panel rápido: un modo rápido de ejecutar acciones"
-
-#~ msgid "Quick Select"
-#~ msgstr "Selección rápida"
-
-#~ msgid "Apply the selection"
-#~ msgstr "Aplicar la selección"
-
-#~ msgid "Quick Select:"
-#~ msgstr "Selección rápida:"
-
-#~ msgid "QuickFilter"
-#~ msgstr "Filtro rápido"
-
-#~ msgid "Flat Origin Bar"
-#~ msgstr "Barra de origen plana"
-
-#~ msgid "Open button"
-#~ msgstr "Botón «Abrir»"
-
-#~ msgid "Use superb KDE file dialog to choose location."
-#~ msgstr "Usar el magnífico diálogo de archivos de KDE para elegir la ruta."
-
-#~ msgid "In directory"
-#~ msgstr "En el directorio"
-
-#~ msgid "Up one directory"
-#~ msgstr "Subir un directorio"
-
-#~ msgid "Parent directory"
-#~ msgstr "Directorio superior"
-
-#~ msgid "Directories"
-#~ msgstr "Directorios"
-
-#~ msgid "Directory foreground:"
-#~ msgstr "Directorios en primer plano:"
-
-#~ msgid "Directory"
-#~ msgstr "Directorio"
-
-#~ msgid "Temp Directory:"
-#~ msgstr "Directorio temporal:"
-
-#~ msgid "in %1 directory"
-#~ msgid_plural "in %1 directories"
-#~ msgstr[0] "en %1 directorio"
-#~ msgstr[1] "en %1 directorios"
-
-#~ msgid "New Directory..."
-#~ msgstr "Nuevo directorio..."
-
-#~ msgid "&Compare Directories"
-#~ msgstr "&Comparar directorios"
-
-#~ msgid "New directory"
-#~ msgstr "Nuevo directorio"
-
-#~ msgid "Directory's name:"
-#~ msgstr "Nombre del directorio:"
-
-#~ msgid "Cannot open the %1 directory."
-#~ msgstr "No se puede abrir el directorio %1."
-
-#~ msgid "Krusader::Synchronize Directories"
-#~ msgstr "Krusader::Sincronizar Directorios"
-
-#~ msgid "Synchronize Directories"
-#~ msgstr "Sincronizar directorios"
-
-#~ msgctxt "Job type"
-#~ msgid "Directory Size"
-#~ msgstr "Tamaño de carpeta"
-
-#~ msgid "Select files using a filter"
-#~ msgstr "Seleccionar archivos usando un filtro"
-
-#~ msgid "Unselect all selected files"
-#~ msgstr "De-seleccionar todos los archivos seleccionados"
-
-#~ msgid ""
-#~ "In the target directory the synchronizer does not directly support "
-#~ "protocols like FISH, SFTP, SMB, etc."
-#~ msgstr ""
-#~ "En el directorio de destino, el sincronizador no puede usar directamente "
-#~ "protocolos como FISH, SFTP, SMB, etc."
-
-#~ msgid ""
-#~ "In the source directory the synchronizer does not directly support "
-#~ "protocols like FISH, SFTP, SMB, etc."
-#~ msgstr ""
-#~ "En el directorio de origen, el sincronizador no puede usar directamente "
-#~ "protocolos como FISH, SFTP, SMB, etc."
-
-#~ msgid "Open &Konsole Here"
-#~ msgstr "Abrir &Konsola aquí"
-
-#~ msgid ""
-#~ "*.keymap|Krusader keymaps\n"
-#~ "*|All files"
-#~ msgstr ""
-#~ "*.keymap|Mapas de teclas de Krusader\n"
-#~ "*|todos los archivos"
-
-#~ msgid "Import Shortcuts"
-#~ msgstr "Importar atajos de teclado"
-
-#~ msgid "Load a keybinding profile, e.g., total_commander.keymap"
-#~ msgstr "Cargar un perfil de teclas, p.ej., total_commander.keymap"
-
-#~ msgid "Export Shortcuts"
-#~ msgstr "Exportar atajos de teclado"
-
-#~ msgid "Save current keybindings in a keymap file."
-#~ msgstr "Guardar las asignaciones de teclas en un archivo keymap."
-
-#~ msgid "Select a keymap file"
-#~ msgstr "Seleccione un archivo de mapa de caracteres"
-
-#~ msgid ""
-#~ "This file does not seem to be a valid keymap.\n"
-#~ "It may be a keymap using a legacy format. The import cannot be undone."
-#~ msgstr ""
-#~ "Este archivo no parece ser un mapa de teclas válido.\n"
-#~ "Puede que sea un mapa de teclas contenido en un formato antiguo. La "
-#~ "importación no puede revertirse."
-
-#~ msgid "Try to Import Legacy Format?"
-#~ msgstr "¿Intentar importar formato antiguo?"
-
-#~ msgid "Import Anyway"
-#~ msgstr "Importar de todas maneras"
-
-#~ msgid ""
-#~ "The following information was attached to the keymap. Do you really want "
-#~ "to import this keymap?"
-#~ msgstr ""
-#~ "La siguiente información fue agregada al archivo de teclas. ¿Está seguro "
-#~ "que desea importar estas asociaciones de teclas?"
-
-#~ msgid "Please restart this dialog in order to see the changes"
-#~ msgstr "Por favor reinicie este dialogo para ver los cambios"
-
-#~ msgid "Legacy Import Completed"
-#~ msgstr "Importación de formato completada"
-
-#~ msgid ""
-#~ "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</"
-#~ "qt>"
-#~ msgstr ""
-#~ "<qt>El archivo <b>%1</b> ya existe. ¿Está seguro que desea sobrescribirlo?"
-#~ "</qt>"
-
-#~ msgid "<qt>Cannot open <b>%1</b> for writing.</qt>"
-#~ msgstr "<qt>No se puede abrir <b>%1</b> para escritura.</qt>"
-
-#~ msgid "Source:"
-#~ msgstr "Fuente:"
-
-#~ msgid "Destination:"
-#~ msgstr "Destino:"
-
-#~ msgid "Krusader Progress"
-#~ msgstr "Progreso de Krusader"
-
-#~ msgid "%1 directory"
-#~ msgid_plural "%1 directories"
-#~ msgstr[0] "%1 directorio"
-#~ msgstr[1] "%1 directorios"
-
-#~ msgid "%1 file"
-#~ msgid_plural "%1 files"
-#~ msgstr[0] "%1 archivo"
-#~ msgstr[1] "%1 archivos"
-
-#~ msgid "%1 of %2 complete"
-#~ msgstr "%1 de %2 completo"
-
-#~ msgid "%2 / %1 directory"
-#~ msgid_plural "%2 / %1 directories"
-#~ msgstr[0] "%2 / %1 directorio"
-#~ msgstr[1] "%2 / %1 directorios"
-
-#~ msgid "%2 / %1 file"
-#~ msgid_plural "%2 / %1 files"
-#~ msgstr[0] "%2 / %1 archivo"
-#~ msgstr[1] "%2 / %1 archivos"
-
-#~ msgid "Working"
-#~ msgstr "Trabajando"
-
-#~ msgid "%1/s (%2 remaining)"
-#~ msgstr "%1/s (%2 restantes)"
-
-#~ msgid "Krusader transparently handles the following types of archives:"
-#~ msgstr ""
-#~ "Krusader manipula de forma transparente los siguientes tipos de archivos "
-#~ "comprimidos:"
-
-#~ msgid "Tar"
-#~ msgstr "Tar"
-
-#~ msgid "GZip"
-#~ msgstr "GZip"
-
-#~ msgid "LZMA"
-#~ msgstr "LZMA"
-
-#~ msgid "XZ"
-#~ msgstr "XZ"
-
-#~ msgid "BZip2"
-#~ msgstr "BZip2"
-
-#~ msgid "Zip"
-#~ msgstr "Zip"
-
-#~ msgid "Rar"
-#~ msgstr "Rar"
-
-#~ msgid "Arj"
-#~ msgstr "Arj"
-
-#~ msgid "Rpm"
-#~ msgstr "Rpm"
-
-#~ msgid "Ace"
-#~ msgstr "Ace"
-
-#~ msgid "Lha"
-#~ msgstr "Lha"
-
-#~ msgid "Deb"
-#~ msgstr "Deb"
-
-#~ msgid "7zip"
-#~ msgstr "7zip"
-
-#~ msgid ""
-#~ "The archives that are \"grayed out\" were unavailable on your\n"
-#~ "system last time Krusader checked. If you wish Krusader to\n"
-#~ "search again, click the 'Auto Configure' button."
-#~ msgstr ""
-#~ "Los archivos comprimidos que están «grises» no estaban disponibles en su\n"
-#~ "sistema la última vez que Krusader lo comprobó. Si desea que Krusader\n"
-#~ "busque de nuevo, pulse el botón «Configuración automática»."
-
-#~ msgid "Auto Configure"
-#~ msgstr "Configuración automática"
-
-#~ msgid "Konfigurator"
-#~ msgstr "Konfigurador"
-
-#~ msgid "&Quit"
-#~ msgstr "&Salir"
-
-#~ msgctxt "@title:window"
-#~ msgid "Locate"
-#~ msgstr "Localizar"
-
-#~ msgid "Mount.Man"
-#~ msgstr "Mount.Man"
-
-#~ msgid "Critical Error"
-#~ msgstr "Error critico"
-
-#~ msgid ""
-#~ "Internal error in MountMan.\n"
-#~ "Please email the developers."
-#~ msgstr ""
-#~ "Error interno en MountMan.\n"
-#~ "Por favor mande un correo a los desarrolladores."
-
-#~ msgid "Mt.Man: working..."
-#~ msgstr "Mt.Man: trabajando..."
-
-#~ msgid "Cannot cut a virtual URL collection to the clipboard."
-#~ msgstr "No se puede cortar una URL virtual al portapapeles."
-
-#~ msgid "Cannot copy a virtual URL collection onto the clipboard."
-#~ msgstr "No se puede copiar una URL virtual al portapapeles."
-
-#~ msgid "Save as"
-#~ msgstr "Guardar como"
-
-#~ msgid "This protocol does not support resuming"
-#~ msgstr "Este protocol no admite la continuación después de una parada"
-
-#~ msgid "Writing to %1 is not supported"
-#~ msgstr "La escritura en %1 no está implementada"
-
-#~ msgid "Author"
-#~ msgstr "Autor"
-
-#~ msgid "Webmaster and i18n coordinator"
-#~ msgstr "Webmaster y coordinador i18n"
-
-#~ msgctxt "filename (filestate)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgid "Sorry, can not find internal editor"
-#~ msgstr "Lo siento, no se encuentra el editor interno"
-
-#~ msgid "KrViewer is unable to download: %1"
-#~ msgstr "KrViewer es incapaz de descargar: %1"
-
-#~ msgid "Moving into archive is disabled"
-#~ msgstr "No es posible mover dentro de archivos comprimidos"
-
-#, fuzzy
-#~| msgid "%1 is no split file!"
-#~ msgid "%1 is not a split file."
-#~ msgstr "¡No es un archivo dividido %1!"
-
-#, fuzzy
-#~| msgid "Error at writing file %1!"
-#~ msgid "Error at writing file %1: %2"
-#~ msgstr "¡Error escribiendo el archivo %1!"
-
-#, fuzzy
-#~| msgid "Failed to unpack \"%1\"!"
-#~ msgid "Failed to unpack \"%1\"."
-#~ msgstr "¡Error al descomprimir «%1»!"
-
-#~ msgid "Deleting %1 ..."
-#~ msgstr "Eliminando %1..."
-
-#~ msgid "New mime-type"
-#~ msgstr "Nuevo tipo-mime"
-
-#~ msgid "Edit mime-type"
-#~ msgstr "Editar un tipo-mime"
-
-#~ msgid "Mime-type"
-#~ msgstr "Tipo-mime"
-
-#~ msgid "Filename"
-#~ msgstr "Nombre de archivo"
-
-#~ msgid "Mimes"
-#~ msgstr "Mimes"
-
-#~ msgid "Icon for krusader"
-#~ msgstr "Icono para Krusader"
-
-#~ msgid ""
-#~ "Can't open %1 for writing!\n"
-#~ "Nothing exported."
-#~ msgstr ""
-#~ "¡No se puede abrir %1 para escritura!\n"
-#~ "No se exportó nada."
-
-#~ msgid "list-add"
-#~ msgstr "añadir a lista"
-
-#, fuzzy
-#~| msgid "Failed to pack %1!"
-#~ msgid "Failed to pack: %1!"
-#~ msgstr "¡Error al comprimir %1!"
-
-#~ msgid "Ok"
-#~ msgstr "Aceptar"
-
-#~ msgid "Popular Urls"
-#~ msgstr "URL populares"
-
-#~ msgid " &Search: "
-#~ msgstr " Bu&scar: "
-
-#~ msgid "Reading"
-#~ msgstr "Leyendo"
-
-#~ msgid "Disk Usage: "
-#~ msgstr "Uso de disco: "
-
-#~ msgid "\tReady: %1/%2 files, %3/%4"
-#~ msgstr "\tListo: %1/%2 archivos, %3/%4"
-
-#~ msgid "Failed to pack: "
-#~ msgstr "Error al comprimir: "
-
-#~ msgid " (bytes)"
-#~ msgstr " (bytes)"
-
-#~ msgid "="
-#~ msgstr "="
-
-#~ msgid "Equal"
-#~ msgstr "Igual"
-
-#~ msgid "Quicksearch position:"
-#~ msgstr "Posición de busqueda rápida:"
-
-#~ msgid "Defaults"
-#~ msgstr "Predeterminado"
-
-#~ msgid "Preserve attributes (only for local targets)"
-#~ msgstr "Mantener atributos (solo para objetivos locales)"
-
-#~ msgid "Preserve attributes for local copy/move (slower)"
-#~ msgstr "Preservar atributos al copiar/mover (más lento)"
-
-#~ msgid ""
-#~ "Krusader will try to preserve all attributes (time, owner, group) of the "
-#~ "local files according to the source depending on your permissions:"
-#~ "<ul><li>User preserving if you are root</li><li>Group preserving if you "
-#~ "are root or member of the group</li><li>Preserving the timestamp</li></"
-#~ "ul><b>Note</b>: This can slow down the copy process."
-#~ msgstr ""
-#~ "Krusader intentará mantener todos los atributos (hora, propietario, "
-#~ "grupo) de los archivos locales de acuerdo con la fuente conforme a los "
-#~ "permisos: <ul><li>Preserva usuario si es administrador</li><li>Preserva "
-#~ "el grupo si es administrador o miembro del grupo</li><li>Preserva la "
-#~ "marca de tiempo</li></ul><b>Nota</b>: esto puede hacer lento el proceso "
-#~ "de copiado."
-
-#~ msgctxt "@title job"
-#~ msgid "Creating directory"
-#~ msgstr "Creando carpeta"
-
-#~ msgid "Directory Already Exists"
-#~ msgstr "La carpeta ya existe"
-
-#~ msgid "Already Exists as Directory"
-#~ msgstr "La carpeta ya existe"
-
-#~ msgid "Already Exists as Folder"
-#~ msgstr "El archivo ya existe"
-
-#~ msgid "Close current tab"
-#~ msgstr "Cerrar pestaña actual"
-
-#~ msgid "&Bigger than"
-#~ msgstr "Mas gran&de que"
-
-#~ msgid "Bytes"
-#~ msgstr "Bytes"
-
-#~ msgid "&Smaller than"
-#~ msgstr "Meno&s de"
-
-#~ msgid ".."
-#~ msgstr ".."
-
-#~ msgid "Up"
-#~ msgstr "Arriba"
-
-#~ msgid "~"
-#~ msgstr "~"
-
-#~ msgid "Home"
-#~ msgstr "Inicio"
-
-#~ msgid "/"
-#~ msgstr "/"
-
-#~ msgid "Show Statusbar"
-#~ msgstr "Mostrar barra de estado"
-
-#~ msgid "Show Totalsbar"
-#~ msgstr "Mostrar barra de evolución"
-
-#~ msgid "Draw frame"
-#~ msgstr "Dibujar marco"
-
-#~ msgid "Draw a Frame around the Status/Totalsbar"
-#~ msgstr "Dibujar un marco alrededor de la barra de estado"
-
-#~ msgid "Fill background"
-#~ msgstr "Llenar fondo"
-
-#~ msgid "Fill Background of Status/Totalsbar"
-#~ msgstr "Llenar fondo de barra de estado"
-
-#~ msgid "Location"
-#~ msgstr "Localización"
-
-#~ msgid "F2 Term  "
-#~ msgstr "F2 Terminal  "
-
-#~ msgid "F3 View  "
-#~ msgstr "F3 Ver  "
-
-#~ msgid "F4 Edit  "
-#~ msgstr "F4 Editar  "
-
-#~ msgid "F5 Copy  "
-#~ msgstr "F5 Copiar  "
-
-#~ msgid "F6 Move"
-#~ msgstr "F6 Mover"
-
-#~ msgid "F7 Mkdir "
-#~ msgstr "F7 CrearDir "
-
-#~ msgid "F8 Delete"
-#~ msgstr "F8 Eliminar"
-
-#~ msgid "F9 Rename"
-#~ msgstr "F9 Renombrar"
-
-#~ msgid "F10 Quit "
-#~ msgstr "F10 Salir "
-
-#~ msgid " View"
-#~ msgstr " Vista"
-
-#~ msgid " Edit"
-#~ msgstr " Editar"
-
-#~ msgid " Copy"
-#~ msgstr " Copiar"
-
-#~ msgid " Move"
-#~ msgstr " Mover"
-
-#~ msgid " Delete"
-#~ msgstr " Eliminar"
-
-#~ msgid " Rename"
-#~ msgstr " Renombrar"
-
-#~ msgid "Back"
-#~ msgstr "Retroceder"
-
-#~ msgid "Back to the place you came from"
-#~ msgstr "Volver al lugar de que viene"
-
-#~ msgid " Unselect Files "
-#~ msgstr " Deseleccionar archivos "
-
-#~ msgid " (Reading)"
-#~ msgstr " (Leyendo)"
-
-#~ msgid " and directories:"
-#~ msgstr " y directorios:"
-
-#~ msgid "Not a splitted file %1!"
-#~ msgstr "¡No es un archivo dividido %1!"
-
-#~ msgid " to:"
-#~ msgstr " a:"
-
-#~ msgid " To: "
-#~ msgstr " A: "
-
-#~ msgid "Failed to unpack"
-#~ msgstr "Error al descomprimir"
-
-#~ msgid "&Next tab"
-#~ msgstr "Siguie&nte pestaña"
-
-#~ msgid "&Previous tab"
-#~ msgstr "&Pestaña previa"
-
-#~ msgid "&Close current tab"
-#~ msgstr "&Cerrar pestaña actual"
-
-#, fuzzy
-#~| msgid "Mimes"
-#~ msgid "Misc"
-#~ msgstr "Mimes"
-
-#~ msgid "Look & Feel"
-#~ msgstr "Apariencia"
-
-#~ msgid "Look && Feel"
-#~ msgstr "Apariencia"
-
-#~ msgid "Default panel type:"
-#~ msgstr "Tipo de panel predeterminado:"
-
-#~ msgid "Panel layout"
-#~ msgstr "Capa de panel"
-
-#~ msgid ""
-#~ "Command \"%1\" cannot be executed.\n"
-#~ "Cannot change working directory to %2."
-#~ msgstr ""
-#~ "Orden «%1» no puede ser ejecutada.\n"
-#~ "No se puede cambiar la carpeta de trabajo a %2."
-
-#~ msgid ""
-#~ "Support for more than one command doesn't work in a terminal. Only the "
-#~ "first is executed in the terminal."
-#~ msgstr ""
-#~ "Reconocimiento de una o más órdenes no funciona en un terminal. Solo la "
-#~ "primera es ejecutada en el terminal."
-
-#~ msgid "Application already running!\n"
-#~ msgstr "¡La aplicación ya se esta ejecutando!\n"
-
-#~ msgid "16"
-#~ msgstr "16"
-
-#~ msgid "22"
-#~ msgstr "22"
-
-#~ msgid "32"
-#~ msgstr "32"
-
-#~ msgid "48"
-#~ msgstr "48"
-
-#~ msgid ""
-#~ "Internal error in MountMan\n"
-#~ "Call the developers"
-#~ msgstr ""
-#~ "Error interno en el administrador de montaje\n"
-#~ " Llame a los desarrolladores"
-
-#~ msgid ""
-#~ "MountMan has an internal error. Please notify the developers. Thank you."
-#~ msgstr ""
-#~ "MountMan tiene un error interno. Notifíquelo a los desarrolladores. "
-#~ "Gracias."
-
-#, fuzzy
-#~ msgid "Folder Already Exists"
-#~ msgstr "El archivo ya existe"
-
-#, fuzzy
-#~ msgid "Old Detailed View (obsolete)"
-#~ msgstr "Vista detallada"
-
-#~ msgid "Konqueror Menu"
-#~ msgstr "Menú Konqueror"
-
-#, fuzzy
-#~ msgid "&Experimental View"
-#~ msgstr "Vista detallada"
-
-#~ msgid "Counting files to pack"
-#~ msgstr "Contando archivos a comprimir"
-
-#~ msgid "Krusader is unable to download: "
-#~ msgstr "Krusader no puede descargar: "
-
-#~ msgid "%1, unknown archive type"
-#~ msgstr "%1, tipo de archivo desconocido"
-
-#~ msgid "Devices"
-#~ msgstr "Dispositivos"
-
-#, fuzzy
-#~ msgid ""
-#~ "<qt>Error ejecting device!\n"
-#~ " You have to configure the path to the 'eject' tool. Please check the "
-#~ "<b>Dependencies</b> page in Krusader's settings.</qt>"
-#~ msgstr ""
-#~ "<qt>Krusader no pudo encontrar la herramienta de verificación de "
-#~ "integridad que maneja %1 en su sistema. Por favor revise la página de "
-#~ "<b>Dependencias</b> en la configuración de Krusader."
-
-#~ msgid "Icon"
-#~ msgstr "Icono"
-
-#~ msgid ""
-#~ "Don't use KDE's media protocol for media button (if it's buggy or missing)"
-#~ msgstr ""
-#~ "No usar el protocolo media de KDE para el botón media ( si esta fallando "
-#~ "o no se encuentra presente)"
-
-#~ msgid ""
-#~ "Select if your media protocol is buggy (in some older KDE versions), or "
-#~ "not present (no kdebase package installed)."
-#~ msgstr ""
-#~ "Seleccione si se protocolo media presenta falles (como en algunas "
-#~ "versiones anteriores de KDE), o si no se encuentra presente (si no se "
-#~ "instaló kdebase)."
-
-#~ msgid "Clear location bar button"
-#~ msgstr "Botón de limpiar la barra de locación"
-
-#~ msgid "Clears the location bar"
-#~ msgstr "Limpia la barra de locación"
-
-#~ msgid "CD Recorder"
-#~ msgstr "Quemador"
-
-#~ msgid "DVD Recorder"
-#~ msgstr "Quemador DVD"
-
-#~ msgid "DVD"
-#~ msgstr "DVD"
-
-#~ msgid "Zip Disk"
-#~ msgstr "Disco Zip"
-
-#~ msgid "add"
-#~ msgstr "agregar"
-
-#~ msgid "<qt>Can't read <b>%1</b>. Archive might be corrupted!</qt>"
-#~ msgstr "<qt>No se pudo leer<b>%1</b>. ¡El archivo quizá esté dañado !</qt>"
-
-#~ msgid "Deleting Files..."
-#~ msgstr "Eliminando archivos..."
-
-#~ msgid "Unpacking Files"
-#~ msgstr "Descomprimiendo archivos"
-
-#~ msgid ""
-#~ "In %1:\n"
-#~ "There is an error in the JavaScript"
-#~ msgstr ""
-#~ "En %1:\n"
-#~ "Hay un error JavaScript"
-
-#~ msgid "Shred"
-#~ msgstr "Triturar"
-
-#~ msgid ""
-#~ "<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone "
-#~ "forever!</qt>"
-#~ msgstr ""
-#~ "<qt>¿Esta seguro que desea destruir <b>%1</b>? - Una vez destruído, !el "
-#~ "archivo no se puede recuperar!</qt>"
-
-#~ msgid "Error ejecting device! You need to have 'eject' in your path."
-#~ msgstr "¡ Error expulsando unidad ! Necesita tener 'eject' en su ruta."
-
-#~ msgid "Filesystems"
-#~ msgstr "Sistemas de archivos"
-
-#~ msgid "compare mode"
-#~ msgstr "Modo de comparación"
-
-#~ msgid "Remove"
-#~ msgstr "Remover"
-
-#~ msgid "New group"
-#~ msgstr "Nuevo grupo"
-
-#~ msgid "New session"
-#~ msgstr "Nueva sesión"
-
-#~ msgid "Sessions"
-#~ msgstr "Sesiones"
-
-#~ msgid "RemoteMan"
-#~ msgstr "RemoteMan"
-
-#~ msgid "Are you sure you want to delete this item ???"
-#~ msgstr "¿Esta seguro de que desea eliminar este elemento?"
-
-#~ msgid "RemoteMan: Connection Manager"
-#~ msgstr "RemoteMan: Gestor de conexión"
-
-#~ msgid "&More"
-#~ msgstr "&Más"
-
-#~ msgid "User name:"
-#~ msgstr "Nombre de usuario:"
-
-#~ msgid "Anonymous"
-#~ msgstr "Anónimo"
-
-#~ msgid "Remote directory:"
-#~ msgstr "Directorio remoto:"
-
-#~ msgid "Co&nnect"
-#~ msgstr "Co&nectar"
-
-#~ msgid "New &Group"
-#~ msgstr "Nuevo &grupo"
-
-#~ msgid "New Connec&tion"
-#~ msgstr "Nueva conexión"
-
-#~ msgid "Port:   "
-#~ msgstr "Puerto:   "
-
-#~ msgid "* Warning: Storing your password is not secure !!!"
-#~ msgstr "* Advertencia: Guardar las contraseñas no es seguro"
-
-#~ msgid "File "
-#~ msgstr "&Archivo "
-
-#~ msgid " already exists. Are you sure you want to overwrite it?"
-#~ msgstr " ya existe. ¿Desea sobreescribirlo?"
-
-#~ msgid ""
-#~ "Important: RemoteMan has been replaced by our new bookmark manager. The "
-#~ "new manager handles local files and remote URLs the same way. RemoteMan "
-#~ "is being left around to allow an easier transition and give you a chance "
-#~ "to move your bookmarks. IT WILL BE REMOVED SOON!\n"
-#~ "Try the new bookmark-manager: open a new remote connection, once done, "
-#~ "press the bookmark button, select 'Add bookmark' and that's it!"
-#~ msgstr ""
-#~ "Importante: RemoteMan ha sido reemplazado por nuestro nuevo gestor de "
-#~ "marcadores. El nuevo gestor maneja archivos locales y url remotas de la "
-#~ "misma forma. RemoteMan todavía esta disponible para permitirle una fácil "
-#~ "transición y darle la oportunidad de mover sus marcadores. ¡SERÁ "
-#~ "ELIMINADO PRONTO!\n"
-#~ "Pruebe el nuevo gestor de marcadores: abra una nueva conexión remota. Una "
-#~ "vez hecho, pulse el botón de marcadores, seleccione añadir marcadores ya "
-#~ "esta."
