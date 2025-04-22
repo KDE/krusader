@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-30 00:45+0000\n"
+"POT-Creation-Date: 2025-04-22 00:44+0000\n"
 "PO-Revision-Date: 2022-04-30 10:48+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -986,13 +986,13 @@ msgstr "Activare semne de carte speciale"
 msgid "Jump back"
 msgstr "Sari înapoi"
 
-#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:327
+#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:103
 #, kde-format
 msgid "Open"
 msgstr "Deschide"
 
-#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:329
+#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Deschide în filă nouă"
@@ -2555,7 +2555,7 @@ msgstr "Gata."
 msgid "Open the available media list"
 msgstr "Deschide lista suporturilor disponibile"
 
-#: app/GUI/mediabutton.cpp:143 app/GUI/mediabutton.cpp:597
+#: app/GUI/mediabutton.cpp:143 app/GUI/mediabutton.cpp:601
 #, fuzzy, kde-format
 #| msgid "Remote Share"
 msgctxt "%1 is the mount point of the remote share"
@@ -2626,31 +2626,31 @@ msgstr "CD/DVD-ROM Audio"
 msgid "Recordable CD/DVD-ROM"
 msgstr "CD/DVD-ROM inscriptibil"
 
-#: app/GUI/mediabutton.cpp:334 app/MountMan/kmountman.cpp:391
+#: app/GUI/mediabutton.cpp:338 app/MountMan/kmountman.cpp:391
 #: app/MountMan/kmountmangui.cpp:444 app/Panel/panelcontextmenu.cpp:248
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
 msgstr "Montează"
 
-#: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:391
+#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountman.cpp:391
 #: app/MountMan/kmountmangui.cpp:449 app/Panel/panelcontextmenu.cpp:246
 #, kde-format
 msgid "Unmount"
 msgstr "Demontează"
 
-#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:456
+#: app/GUI/mediabutton.cpp:345 app/MountMan/kmountmangui.cpp:456
 #: app/Panel/panelcontextmenu.cpp:250
 #, kde-format
 msgid "Eject"
 msgstr "Scoate suportul"
 
-#: app/GUI/mediabutton.cpp:473
+#: app/GUI/mediabutton.cpp:477
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
 msgstr "A apărut o eroare la accesarea „%1”, sistemul a răspuns: %2"
 
-#: app/GUI/mediabutton.cpp:475
+#: app/GUI/mediabutton.cpp:479
 #, kde-format
 msgid "An error occurred while accessing '%1'"
 msgstr "A apărut o eroare la accesarea „%1”"
@@ -4902,42 +4902,48 @@ msgstr "Afișează dimensiunile fișierelor"
 msgid "Hide SquashFS entries"
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:845
+#: app/Konfigurator/kgpanel.cpp:839
+#, fuzzy, kde-format
+#| msgid "Show file sizes"
+msgid "Hide unknown File System entries"
+msgstr "Afișează dimensiunile fișierelor"
+
+#: app/Konfigurator/kgpanel.cpp:846
 #, fuzzy, kde-format
 #| msgid "Total Size:"
 msgid "Show Size:"
 msgstr "Dimensiune totală:"
 
-#: app/Konfigurator/kgpanel.cpp:848
+#: app/Konfigurator/kgpanel.cpp:849
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Always"
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:849
+#: app/Konfigurator/kgpanel.cpp:850
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "When Device has no Label"
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:850
+#: app/Konfigurator/kgpanel.cpp:851
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Never"
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:882
+#: app/Konfigurator/kgpanel.cpp:883
 #, fuzzy, kde-format
 #| msgid "MountMan won't (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
 msgstr "MountMan nu va (de)monta următoarele puncte de montare:"
 
-#: app/Konfigurator/kgpanel.cpp:911
+#: app/Konfigurator/kgpanel.cpp:912
 #, kde-format
 msgid "Add new hidden mount point"
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:911
+#: app/Konfigurator/kgpanel.cpp:912
 #, fuzzy, kde-format
 #| msgid "Mnt.Point"
 msgid "Mount point:"

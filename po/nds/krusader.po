@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-30 00:45+0000\n"
+"POT-Creation-Date: 2025-04-22 00:44+0000\n"
 "PO-Revision-Date: 2014-04-24 18:43+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -967,13 +967,13 @@ msgstr "Besünner Leestekens bruken"
 msgid "Jump back"
 msgstr "Torüchjumpen"
 
-#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:327
+#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:103
 #, kde-format
 msgid "Open"
 msgstr "Opmaken"
 
-#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:329
+#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Binnen nieg Paneel opmaken"
@@ -2509,7 +2509,7 @@ msgstr "Praat."
 msgid "Open the available media list"
 msgstr "De List mit verföögbor Reedschappen opmaken"
 
-#: app/GUI/mediabutton.cpp:143 app/GUI/mediabutton.cpp:597
+#: app/GUI/mediabutton.cpp:143 app/GUI/mediabutton.cpp:601
 #, kde-format
 msgctxt "%1 is the mount point of the remote share"
 msgid "Remote Share [%1]"
@@ -2577,31 +2577,31 @@ msgstr "Klang-CD/DVD-ROM"
 msgid "Recordable CD/DVD-ROM"
 msgstr "Schriefbor CD/DVD-ROM"
 
-#: app/GUI/mediabutton.cpp:334 app/MountMan/kmountman.cpp:391
+#: app/GUI/mediabutton.cpp:338 app/MountMan/kmountman.cpp:391
 #: app/MountMan/kmountmangui.cpp:444 app/Panel/panelcontextmenu.cpp:248
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
 msgstr "Inhangen"
 
-#: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:391
+#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountman.cpp:391
 #: app/MountMan/kmountmangui.cpp:449 app/Panel/panelcontextmenu.cpp:246
 #, kde-format
 msgid "Unmount"
 msgstr "Afhangen"
 
-#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:456
+#: app/GUI/mediabutton.cpp:345 app/MountMan/kmountmangui.cpp:456
 #: app/Panel/panelcontextmenu.cpp:250
 #, kde-format
 msgid "Eject"
 msgstr "Rutfohren"
 
-#: app/GUI/mediabutton.cpp:473
+#: app/GUI/mediabutton.cpp:477
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
 msgstr "Dat geev en Fehler bi't Togriepen op \"%1\". Dat Systeem anter: %2"
 
-#: app/GUI/mediabutton.cpp:475
+#: app/GUI/mediabutton.cpp:479
 #, kde-format
 msgid "An error occurred while accessing '%1'"
 msgstr "Dat geev en Fehler bi't Togriepen op \"%1\""
@@ -4815,41 +4815,47 @@ msgstr "Dateisysteemtyp wiesen"
 msgid "Hide SquashFS entries"
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:845
+#: app/Konfigurator/kgpanel.cpp:839
+#, fuzzy, kde-format
+#| msgid "Show File System Type"
+msgid "Hide unknown File System entries"
+msgstr "Dateisysteemtyp wiesen"
+
+#: app/Konfigurator/kgpanel.cpp:846
 #, kde-format
 msgid "Show Size:"
 msgstr "Grött wiesen:"
 
-#: app/Konfigurator/kgpanel.cpp:848
+#: app/Konfigurator/kgpanel.cpp:849
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Always"
 msgstr "Jümmers"
 
-#: app/Konfigurator/kgpanel.cpp:849
+#: app/Konfigurator/kgpanel.cpp:850
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "When Device has no Label"
 msgstr "Wenn Reedschap keen Beteker hett"
 
-#: app/Konfigurator/kgpanel.cpp:850
+#: app/Konfigurator/kgpanel.cpp:851
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Never"
 msgstr "Nienich"
 
-#: app/Konfigurator/kgpanel.cpp:882
+#: app/Konfigurator/kgpanel.cpp:883
 #, fuzzy, kde-format
 #| msgid "MountMan will not (un)mount the following mount-points:"
 msgid "Hide following mountpoints:"
 msgstr "De Inhangpleger röhrt disse Inhangsteden nich an:"
 
-#: app/Konfigurator/kgpanel.cpp:911
+#: app/Konfigurator/kgpanel.cpp:912
 #, kde-format
 msgid "Add new hidden mount point"
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:911
+#: app/Konfigurator/kgpanel.cpp:912
 #, fuzzy, kde-format
 #| msgid "Mnt.Point"
 msgid "Mount point:"

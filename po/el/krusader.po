@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-30 00:45+0000\n"
+"POT-Creation-Date: 2025-04-22 00:44+0000\n"
 "PO-Revision-Date: 2021-10-19 08:32+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -960,13 +960,13 @@ msgstr "Ενεργοποίηση ειδικών σελιδοδεικτών"
 msgid "Jump back"
 msgstr "Μετάβαση πίσω"
 
-#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:327
+#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:103
 #, kde-format
 msgid "Open"
 msgstr "Άνοιγμα"
 
-#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:329
+#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Άνοιγμα σε νέα καρτέλα"
@@ -2459,7 +2459,7 @@ msgstr "Έτοιμο."
 msgid "Open the available media list"
 msgstr "Άνοιγμα της λίστας διαθέσιμων μέσων"
 
-#: app/GUI/mediabutton.cpp:143 app/GUI/mediabutton.cpp:597
+#: app/GUI/mediabutton.cpp:143 app/GUI/mediabutton.cpp:601
 #, kde-format
 msgctxt "%1 is the mount point of the remote share"
 msgid "Remote Share [%1]"
@@ -2527,33 +2527,33 @@ msgstr "Ηχητικό CD/DVD-ROM"
 msgid "Recordable CD/DVD-ROM"
 msgstr "Εγγράψιμο CD/DVD-ROM"
 
-#: app/GUI/mediabutton.cpp:334 app/MountMan/kmountman.cpp:391
+#: app/GUI/mediabutton.cpp:338 app/MountMan/kmountman.cpp:391
 #: app/MountMan/kmountmangui.cpp:444 app/Panel/panelcontextmenu.cpp:248
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
 msgstr "Προσάρτηση"
 
-#: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:391
+#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountman.cpp:391
 #: app/MountMan/kmountmangui.cpp:449 app/Panel/panelcontextmenu.cpp:246
 #, kde-format
 msgid "Unmount"
 msgstr "Απόσπαση"
 
-#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:456
+#: app/GUI/mediabutton.cpp:345 app/MountMan/kmountmangui.cpp:456
 #: app/Panel/panelcontextmenu.cpp:250
 #, kde-format
 msgid "Eject"
 msgstr "Εξαγωγή"
 
-#: app/GUI/mediabutton.cpp:473
+#: app/GUI/mediabutton.cpp:477
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
 msgstr ""
 "Ένα σφάλμα παρουσιάστηκε κατά την πρόσβαση στο '%1', το σύστημα "
 "ανταποκρίθηκε: %2"
 
-#: app/GUI/mediabutton.cpp:475
+#: app/GUI/mediabutton.cpp:479
 #, kde-format
 msgid "An error occurred while accessing '%1'"
 msgstr "Ένα σφάλμα παρουσιάστηκε κατά την πρόσβαση στο '%1'"
@@ -4736,40 +4736,46 @@ msgstr "Εμφάνιση τύπου του συστήματος αρχείων"
 msgid "Hide SquashFS entries"
 msgstr "Απόκρυψη SquashFS εγγραφών"
 
-#: app/Konfigurator/kgpanel.cpp:845
+#: app/Konfigurator/kgpanel.cpp:839
+#, fuzzy, kde-format
+#| msgid "Show File System Type"
+msgid "Hide unknown File System entries"
+msgstr "Εμφάνιση τύπου του συστήματος αρχείων"
+
+#: app/Konfigurator/kgpanel.cpp:846
 #, kde-format
 msgid "Show Size:"
 msgstr "εμφάνιση μεγέθους:"
 
-#: app/Konfigurator/kgpanel.cpp:848
+#: app/Konfigurator/kgpanel.cpp:849
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Always"
 msgstr "Πάντα"
 
-#: app/Konfigurator/kgpanel.cpp:849
+#: app/Konfigurator/kgpanel.cpp:850
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "When Device has no Label"
 msgstr "Όταν η συσκευή δεν έχει ετικέτα"
 
-#: app/Konfigurator/kgpanel.cpp:850
+#: app/Konfigurator/kgpanel.cpp:851
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Never"
 msgstr "Ποτέ"
 
-#: app/Konfigurator/kgpanel.cpp:882
+#: app/Konfigurator/kgpanel.cpp:883
 #, kde-format
 msgid "Hide following mountpoints:"
 msgstr "Απόκρυψη των ακόλουθων σημείων προσάρτησης:"
 
-#: app/Konfigurator/kgpanel.cpp:911
+#: app/Konfigurator/kgpanel.cpp:912
 #, kde-format
 msgid "Add new hidden mount point"
 msgstr "Προσθήκη νέου κρυφού σημείου προσάρτησης"
 
-#: app/Konfigurator/kgpanel.cpp:911
+#: app/Konfigurator/kgpanel.cpp:912
 #, kde-format
 msgid "Mount point:"
 msgstr "Σημείο προσάρτησης:"

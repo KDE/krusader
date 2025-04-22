@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-30 00:45+0000\n"
+"POT-Creation-Date: 2025-04-22 00:44+0000\n"
 "PO-Revision-Date: 2024-12-25 19:45+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -934,13 +934,13 @@ msgstr "विशेषपुस्तकचिह्नानि सक्ष�
 msgid "Jump back"
 msgstr "पृष्ठतः कूदतु"
 
-#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:327
+#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:103
 #, kde-format
 msgid "Open"
 msgstr "उद्घाटित"
 
-#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:329
+#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "नूतने ट्याब् मध्ये उद्घाटयन्तु"
@@ -2412,7 +2412,7 @@ msgstr "आत्त।"
 msgid "Open the available media list"
 msgstr "उपलब्धं माध्यमसूचीं उद्घाटयन्तु"
 
-#: app/GUI/mediabutton.cpp:143 app/GUI/mediabutton.cpp:597
+#: app/GUI/mediabutton.cpp:143 app/GUI/mediabutton.cpp:601
 #, kde-format
 msgctxt "%1 is the mount point of the remote share"
 msgid "Remote Share [%1]"
@@ -2480,31 +2480,31 @@ msgstr "श्रव्य सीडी/डीवीडी-रोम"
 msgid "Recordable CD/DVD-ROM"
 msgstr "रिकार्ड् कर्तुं शक्यते CD/DVD-ROM"
 
-#: app/GUI/mediabutton.cpp:334 app/MountMan/kmountman.cpp:391
+#: app/GUI/mediabutton.cpp:338 app/MountMan/kmountman.cpp:391
 #: app/MountMan/kmountmangui.cpp:444 app/Panel/panelcontextmenu.cpp:248
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
 msgstr "माउण्ट्"
 
-#: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:391
+#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountman.cpp:391
 #: app/MountMan/kmountmangui.cpp:449 app/Panel/panelcontextmenu.cpp:246
 #, kde-format
 msgid "Unmount"
 msgstr "अनमाउंट"
 
-#: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:456
+#: app/GUI/mediabutton.cpp:345 app/MountMan/kmountmangui.cpp:456
 #: app/Panel/panelcontextmenu.cpp:250
 #, kde-format
 msgid "Eject"
 msgstr "निष्कासनम्"
 
-#: app/GUI/mediabutton.cpp:473
+#: app/GUI/mediabutton.cpp:477
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
 msgstr "'%1' इत्यत्र प्रवेशं कुर्वन् त्रुटिः अभवत्, प्रणाली प्रतिक्रियाम् अददात्: %2"
 
-#: app/GUI/mediabutton.cpp:475
+#: app/GUI/mediabutton.cpp:479
 #, kde-format
 msgid "An error occurred while accessing '%1'"
 msgstr "'%1' इत्यस्य अभिगमने त्रुटिः अभवत् ।"
@@ -4619,40 +4619,46 @@ msgstr "सञ्चिकातन्त्रप्रकारं दर्�
 msgid "Hide SquashFS entries"
 msgstr "SquashFS प्रविष्टयः गोपयन्तु"
 
-#: app/Konfigurator/kgpanel.cpp:845
+#: app/Konfigurator/kgpanel.cpp:839
+#, fuzzy, kde-format
+#| msgid "Show File System Type"
+msgid "Hide unknown File System entries"
+msgstr "सञ्चिकातन्त्रप्रकारं दर्शयतु"
+
+#: app/Konfigurator/kgpanel.cpp:846
 #, kde-format
 msgid "Show Size:"
 msgstr "आकारं दर्शयतु :"
 
-#: app/Konfigurator/kgpanel.cpp:848
+#: app/Konfigurator/kgpanel.cpp:849
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Always"
 msgstr "सर्वदा"
 
-#: app/Konfigurator/kgpanel.cpp:849
+#: app/Konfigurator/kgpanel.cpp:850
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "When Device has no Label"
 msgstr "यदा Device इत्यस्य Label नास्ति"
 
-#: app/Konfigurator/kgpanel.cpp:850
+#: app/Konfigurator/kgpanel.cpp:851
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Never"
 msgstr "कदापि न"
 
-#: app/Konfigurator/kgpanel.cpp:882
+#: app/Konfigurator/kgpanel.cpp:883
 #, kde-format
 msgid "Hide following mountpoints:"
 msgstr "निम्नलिखित माउण्ट्पॉइण्ट् गोपयन्तु :"
 
-#: app/Konfigurator/kgpanel.cpp:911
+#: app/Konfigurator/kgpanel.cpp:912
 #, kde-format
 msgid "Add new hidden mount point"
 msgstr "नूतनं गुप्तं माउण्ट्-बिन्दुं योजयन्तु"
 
-#: app/Konfigurator/kgpanel.cpp:911
+#: app/Konfigurator/kgpanel.cpp:912
 #, kde-format
 msgid "Mount point:"
 msgstr "माउण्ट् बिन्दुः :"
