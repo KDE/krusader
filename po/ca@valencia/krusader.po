@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-04-22 00:44+0000\n"
-"PO-Revision-Date: 2025-01-30 16:38+0100\n"
+"PO-Revision-Date: 2025-04-22 09:09+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -161,7 +161,7 @@ msgid ""
 "<i>Konfigurator</i> and via <code>Shift+F1</code>."
 msgstr ""
 "Una descripció detallada de l'<b>acció d'usuari</b>. Només es mostra en el "
-"<i>Konfigurador</i> i via <code>Maj+F1</code>."
+"<i>Konfigurador</i> i via <code>Majús+F1</code>."
 
 #. i18n: ectx: property (text), widget (QLabel, LabelDescription)
 #: app/ActionMan/actionproperty.ui:61
@@ -1297,7 +1297,7 @@ msgstr "Empaqueta"
 #: app/Dialogs/packguibase.cpp:71
 #, kde-format
 msgid "To archive"
-msgstr "A l'arxiu"
+msgstr "En l'arxiu"
 
 #: app/Dialogs/packguibase.cpp:90
 #, kde-format
@@ -4540,7 +4540,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:739
 #, kde-format
 msgid "Shift/Ctrl-Left mouse button selects"
-msgstr "Se selecciona amb «Maj»/«Ctrl+botó esquerre» del ratolí"
+msgstr "Se selecciona amb «Majús»/«Ctrl+botó esquerre» del ratolí"
 
 # skip-rule: k-Ctrl-1,k-Shift-1
 #: app/Konfigurator/kgpanel.cpp:741
@@ -4583,7 +4583,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:757
 #, kde-format
 msgid "Shift/Ctrl-Right mouse button selects"
-msgstr "Se selecciona amb «Maj»/«Ctrl+botó dret» del ratolí"
+msgstr "Se selecciona amb «Majús»/«Ctrl+botó dret» del ratolí"
 
 # skip-rule: k-Ctrl-1,k-Shift-1
 #: app/Konfigurator/kgpanel.cpp:759
@@ -4675,8 +4675,8 @@ msgid ""
 "setting to work."
 msgstr ""
 "Es reinicia la selecció amb un clic de ratolí sense modificadors (p. ex., "
-"«Maj» o «Ctrl»).\n"
-"Cal habilitar la selecció amb «Maj»/«Ctrl» amb el botó del ratolí perquè "
+"«Majús» o «Ctrl»).\n"
+"Cal habilitar la selecció amb «Majús»/«Ctrl» amb el botó del ratolí perquè "
 "funcione esta opció."
 
 #: app/Konfigurator/kgpanel.cpp:828
@@ -4700,10 +4700,9 @@ msgid "Hide SquashFS entries"
 msgstr "Oculta les entrades SquashFS"
 
 #: app/Konfigurator/kgpanel.cpp:839
-#, fuzzy, kde-format
-#| msgid "Show File System Type"
+#, kde-format
 msgid "Hide unknown File System entries"
-msgstr "Mostra el tipus del sistema de fitxers"
+msgstr "Oculta les entrades desconegudes del sistema de fitxers"
 
 #: app/Konfigurator/kgpanel.cpp:846
 #, kde-format
