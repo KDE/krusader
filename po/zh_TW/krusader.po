@@ -4,13 +4,13 @@
 # Franklin Weng <franklin@goodhorse.idv.tw>, 2010, 2011.
 # Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2009.
 # pan93412 <pan93412@gmail.com>, 2019.
-# SPDX-FileCopyrightText: 2023, 2024 Kisaragi Hiu <mail@kisaragi-hiu.com>
+# SPDX-FileCopyrightText: 2023, 2024, 2025 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-04-22 00:44+0000\n"
-"PO-Revision-Date: 2024-04-22 17:37+0900\n"
+"PO-Revision-Date: 2025-05-01 18:22+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 24.04.70\n"
+"X-Generator: Lokalize 25.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -108,7 +108,7 @@ msgstr "設定另一個檔案名稱："
 #: app/ActionMan/actionproperty.cpp:473
 #, kde-format
 msgid "Please set a unique name for the useraction"
-msgstr ""
+msgstr "請為使用者動作設定獨特的名稱"
 
 #: app/ActionMan/actionproperty.cpp:478
 #, kde-format
@@ -228,6 +228,8 @@ msgid ""
 "<b>Useractions</b> can be grouped in categories for better distinction. "
 "Choose a existing <i>Category</i> or create a new one by entering a name."
 msgstr ""
+"<b>使用者動作</b>可以進行分類來更容易區分。選擇現有的<i>分類</i>或是輸入名稱"
+"來建立一個新的。"
 
 #. i18n: ectx: property (whatsThis), widget (KIconButton, ButtonIcon)
 #: app/ActionMan/actionproperty.ui:176
@@ -236,6 +238,8 @@ msgid ""
 "Each <b>Useraction</b> can have its own icon. It will appear in front of the "
 "title in the <b>Usermenu</b>."
 msgstr ""
+"每個<b>使用者動作</b>都能有自己的圖示。圖示會在<b>使用者選單</b>當中顯示在標"
+"題前面。"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelDistinctName)
 #: app/ActionMan/actionproperty.ui:191
@@ -266,6 +270,11 @@ msgid ""
 "%aList(\"Selected\")%</code></li></ul>\n"
 "<p>Please consult the handbook to learn more about the syntax.</p>"
 msgstr ""
+"<p><i>指令</i> 定義使用此<b>使用者動作</b>時會執行的指令。它可以是簡單的 "
+"shell 指令，或是一串指令，也能包含<b>佔位符</b>。</p><p>範例：</"
+"p><ul><li><code>eject /mnt/cdrom</code></li><li><code>amarok --append "
+"%aList(\"Selected\")%</code></li></ul>\n"
+"<p>請查看手冊來了解關於這個語法的更多資訊。</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelCommandline)
 #: app/ActionMan/actionproperty.ui:214
@@ -289,7 +298,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which folder the <i>Command</i> will be "
 "executed."
-msgstr ""
+msgstr "<i>工作目錄</i> 定義 <i>指令</i> 會在哪個資料夾執行。"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelTooltip)
 #: app/ActionMan/actionproperty.ui:247
@@ -313,7 +322,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:278
 #, kde-format
 msgid "Category:"
-msgstr "類別："
+msgstr "分類："
 
 #. i18n: ectx: property (whatsThis), widget (QToolButton, ButtonAddPlaceholder)
 #: app/ActionMan/actionproperty.ui:300 app/GUI/kcmdline.cpp:183
@@ -583,7 +592,7 @@ msgstr "選擇執行檔..."
 #: app/ActionMan/addplaceholderpopup.cpp:142
 #, kde-format
 msgid "User Action Parameter Dialog"
-msgstr ""
+msgstr "使用者動作參數對話框"
 
 #: app/ActionMan/addplaceholderpopup.cpp:155
 #, kde-format
@@ -596,19 +605,13 @@ msgid "Title"
 msgstr "標題"
 
 #: app/ActionMan/useractionpage.cpp:38
-#, fuzzy
-#| msgid ""
-#| "*.xml|XML files\n"
-#| "*|All files"
 msgid "XML files (*.xml);;All files (*)"
-msgstr ""
-"*.xml|XML 檔案\n"
-"*|所有檔案"
+msgstr "XML 檔案 (*.xml);;所有檔案 (*)"
 
 #: app/ActionMan/useractionpage.cpp:55
 #, kde-format
 msgid "Create new useraction"
-msgstr ""
+msgstr "建立新的使用者動作"
 
 #: app/ActionMan/useractionpage.cpp:60
 #, kde-format
@@ -628,23 +631,23 @@ msgstr "複製使用者動作到剪貼簿"
 #: app/ActionMan/useractionpage.cpp:75
 #, kde-format
 msgid "Paste useractions from clipboard"
-msgstr ""
+msgstr "從剪貼簿貼上使用者動作"
 
 #: app/ActionMan/useractionpage.cpp:80
 #, kde-format
 msgid "Delete selected useractions"
-msgstr ""
+msgstr "刪除所選的使用者動作"
 
 #: app/ActionMan/useractionpage.cpp:133
 #, kde-format
 msgid ""
 "The current action has been modified. Do you want to apply these changes?"
-msgstr ""
+msgstr "目前的動作已變更。您要套用這些變更嗎？"
 
 #: app/ActionMan/useractionpage.cpp:208
 #, kde-format
 msgid "Are you sure that you want to remove all selected actions?"
-msgstr ""
+msgstr "您確定要移除所有已選的動作嗎？"
 
 #: app/ActionMan/useractionpage.cpp:209
 #, kde-format
@@ -657,6 +660,8 @@ msgid ""
 "This file already contains some useractions.\n"
 "Do you want to overwrite it or should it be merged with the selected actions?"
 msgstr ""
+"這個檔案已經包含一些使用者動作。\n"
+"您要覆寫它，還是讓它與所選動作合併？"
 
 #: app/ActionMan/useractionpage.cpp:261
 #, kde-format
@@ -671,12 +676,12 @@ msgstr "合併"
 #: app/ActionMan/useractionpage.cpp:269
 #, kde-format
 msgid "This file already exists. Do you want to overwrite it?"
-msgstr ""
+msgstr "這個檔案已存在。您要覆寫它嗎？"
 
 #: app/ActionMan/useractionpage.cpp:270
 #, kde-format
 msgid "Overwrite Existing File?"
-msgstr "要覆寫檔案嗎？"
+msgstr "要覆寫現有檔案嗎？"
 
 #: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:185
 #, kde-format
@@ -695,39 +700,38 @@ msgstr "匯出失敗"
 #: app/Archive/abstractthreadedjob.cpp:198
 #, kde-format
 msgid "Internal error, undefined <job> in result signal"
-msgstr ""
+msgstr "內部錯誤，結果訊號中有未定義的 <job>"
 
 #: app/Archive/abstractthreadedjob.cpp:344
 #, kde-format
 msgid "Downloading remote files"
-msgstr ""
+msgstr "正在下載遠端檔案"
 
 #: app/Archive/abstractthreadedjob.cpp:490
-#, fuzzy, kde-format
-#| msgid "Copying files"
+#, kde-format
 msgid "Counting files"
-msgstr "複製檔案中"
+msgstr "正在計算檔案數量"
 
 #: app/Archive/abstractthreadedjob.cpp:519
 #, kde-format
 msgid "Uploading to remote destination"
-msgstr ""
+msgstr "正在上傳到遠端目的地"
 
 #: app/Archive/abstractthreadedjob.cpp:640
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
-msgstr ""
+msgstr "%1，不支援的封存檔類型。"
 
 #: app/Archive/krarchandler.cpp:238
-#, fuzzy, kde-format
+#, kde-format
 msgid "Counting files in archive"
-msgstr "計算檔案數中..."
+msgstr "正在計算封存檔內的檔案數量"
 
 #: app/Archive/krarchandler.cpp:260
 #, kde-format
 msgid "Failed to list the content of the archive (%1)."
-msgstr ""
+msgstr "列出封存檔 (%1) 內容時失敗。"
 
 #: app/Archive/krarchandler.cpp:278 app/Archive/krarchandler.cpp:419
 #, kde-format
@@ -737,12 +741,12 @@ msgstr "解開 %1 失敗。"
 #: app/Archive/krarchandler.cpp:345
 #, kde-format
 msgid "Failed to convert rpm (%1) to cpio."
-msgstr ""
+msgstr "將 rpm (%1) 轉換為 cpio 時失敗。"
 
 #: app/Archive/krarchandler.cpp:362
 #, kde-format
 msgid "Failed to convert deb (%1) to tar."
-msgstr ""
+msgstr "將 deb (%1) 轉換為 tar 時失敗。"
 
 #: app/Archive/krarchandler.cpp:395
 #, kde-format
@@ -750,29 +754,29 @@ msgid "Unpacking File(s)"
 msgstr "正在解開檔案"
 
 #: app/Archive/krarchandler.cpp:419 app/Archive/krarchandler.cpp:641
-#, fuzzy, kde-format
+#, kde-format
 msgid "User cancelled."
-msgstr "使用者取消"
+msgstr "使用者已取消。"
 
 #: app/Archive/krarchandler.cpp:489
 #, kde-format
 msgid "Testing Archive"
-msgstr ""
+msgstr "正在測試封存檔"
 
 #: app/Archive/krarchandler.cpp:623
 #, kde-format
 msgid "Packing File(s)"
-msgstr ""
+msgstr "正在封存檔案"
 
 #: app/Archive/krarchandler.cpp:641 app/Archive/krarchandler.cpp:647
 #, kde-format
 msgid "Failed to pack %1."
-msgstr ""
+msgstr "封存 %1 失敗。"
 
 #: app/Archive/krarchandler.cpp:692
 #, kde-format
 msgid "This archive is encrypted, please supply the password:"
-msgstr ""
+msgstr "此封存檔已加密，請提供密碼："
 
 #: app/Archive/packjob.cpp:53 app/Archive/packjob.cpp:143
 #, kde-format
@@ -782,18 +786,18 @@ msgstr ""
 #: app/Archive/packjob.cpp:63
 #, kde-format
 msgid "Error while packing"
-msgstr ""
+msgstr "封存時發生錯誤"
 
 #: app/Archive/packjob.cpp:103
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, test failed."
-msgstr ""
+msgstr "%1，測試失敗。"
 
 #: app/Archive/packjob.cpp:108
 #, kde-format
 msgid "Archive tests passed."
-msgstr ""
+msgstr "封存檔測試通過。"
 
 #: app/Archive/packjob.cpp:150
 #, kde-format
@@ -818,7 +822,7 @@ msgstr "網址："
 #: app/BookMan/kraddbookmarkdlg.cpp:49
 #, kde-format
 msgid "Create in:"
-msgstr ""
+msgstr "建立於："
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
 #: app/Panel/panelfunc.cpp:679
@@ -846,7 +850,7 @@ msgstr "資料夾名稱："
 #: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:784
 #, kde-format
 msgid "Trash bin"
-msgstr ""
+msgstr "垃圾桶"
 
 #: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:792
 #, kde-format
@@ -856,17 +860,17 @@ msgstr "虛擬檔案系統"
 #: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:788
 #, kde-format
 msgid "Local Network"
-msgstr ""
+msgstr "本地網路"
 
 #: app/BookMan/krbookmarkbutton.cpp:28 app/BookMan/krbookmarkbutton.cpp:29
 #, kde-format
 msgid "BookMan II"
-msgstr ""
+msgstr "BookMan II"
 
 #: app/BookMan/krbookmarkhandler.cpp:80
-#, fuzzy, kde-format
+#, kde-format
 msgid "Type to search..."
-msgstr "停止搜尋(&O)"
+msgstr "輸入以搜尋..."
 
 #: app/BookMan/krbookmarkhandler.cpp:225 app/BookMan/krbookmarkhandler.cpp:331
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
@@ -879,44 +883,44 @@ msgstr "錯誤"
 #: app/BookMan/krbookmarkhandler.cpp:225
 #, kde-format
 msgid "Unable to write to %1"
-msgstr ""
+msgstr "無法寫入 %1"
 
 #: app/BookMan/krbookmarkhandler.cpp:234
 #, kde-format
 msgid "%1 instead of %2"
-msgstr ""
+msgstr "%1 而非 %2"
 
 #: app/BookMan/krbookmarkhandler.cpp:239 app/BookMan/krbookmarkhandler.cpp:246
 #: app/BookMan/krbookmarkhandler.cpp:283
 #, kde-format
 msgid "missing tag %1"
-msgstr ""
+msgstr "缺乏標籤 %1"
 
 #: app/BookMan/krbookmarkhandler.cpp:323
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
-msgstr ""
+msgstr "%1 看來不是有效的書籤檔"
 
 #: app/BookMan/krbookmarkhandler.cpp:331
 #, kde-format
 msgid "Error reading bookmarks file: %1"
-msgstr ""
+msgstr "讀取書籤檔發生錯誤：%1"
 
 #: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:780
 #: app/Dialogs/popularurls.cpp:276
 #, kde-format
 msgid "Popular URLs"
-msgstr ""
+msgstr "受歡迎的 URL"
 
 #: app/BookMan/krbookmarkhandler.cpp:776
 #, kde-format
 msgid "Enable special bookmarks"
-msgstr ""
+msgstr "啟用特殊書籤"
 
 #: app/BookMan/krbookmarkhandler.cpp:796
 #, kde-format
 msgid "Jump back"
-msgstr ""
+msgstr "往回跳"
 
 #: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:103
@@ -3459,7 +3463,7 @@ msgstr "外部終端機："
 #: app/Konfigurator/kggeneral.cpp:277
 #, kde-format
 msgid "%d will be replaced by the workdir."
-msgstr ""
+msgstr "%d 會替換為工作目錄。"
 
 #: app/Konfigurator/kggeneral.cpp:285
 #, kde-format
@@ -3831,12 +3835,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:281
 #, kde-format
 msgid "Status/Totalsbar"
-msgstr ""
+msgstr "狀態/總計列"
 
 #: app/Konfigurator/kgpanel.cpp:285
 #, kde-format
 msgid "Show size in bytes too"
-msgstr ""
+msgstr "也顯示大小的位元數"
 
 #: app/Konfigurator/kgpanel.cpp:286
 #, kde-format
@@ -3846,7 +3850,7 @@ msgstr "顯示空間資訊"
 #: app/Konfigurator/kgpanel.cpp:286
 #, kde-format
 msgid "Show free/total space on the device"
-msgstr ""
+msgstr "顯示裝置的可用/總計空間"
 
 #: app/Konfigurator/kgpanel.cpp:304
 #, kde-format
@@ -3859,7 +3863,7 @@ msgid "Layout:"
 msgstr "佈局："
 
 #: app/Konfigurator/kgpanel.cpp:325
-#, fuzzy, kde-format
+#, kde-format
 msgid "Frame Color:"
 msgstr "框架顏色："
 
@@ -3867,7 +3871,7 @@ msgstr "框架顏色："
 #, kde-format
 msgctxt "Frame color"
 msgid "Defined by Layout"
-msgstr ""
+msgstr "依佈局定義"
 
 #: app/Konfigurator/kgpanel.cpp:329
 #, kde-format
@@ -3882,15 +3886,15 @@ msgid "Statusbar"
 msgstr "狀態列"
 
 #: app/Konfigurator/kgpanel.cpp:334
-#, fuzzy, kde-format
+#, kde-format
 msgid "Frame Shape:"
-msgstr "框架元件"
+msgstr "框架形狀："
 
 #: app/Konfigurator/kgpanel.cpp:338
 #, kde-format
 msgctxt "Frame shape"
 msgid "Defined by Layout"
-msgstr ""
+msgstr "依佈局定義"
 
 #: app/Konfigurator/kgpanel.cpp:339
 #, kde-format
@@ -3899,10 +3903,10 @@ msgid "None"
 msgstr "無"
 
 #: app/Konfigurator/kgpanel.cpp:340
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Frame shape"
 msgid "Box"
-msgstr "Box"
+msgstr "盒式"
 
 #: app/Konfigurator/kgpanel.cpp:341
 #, kde-format
@@ -3911,15 +3915,15 @@ msgid "Panel"
 msgstr "面板"
 
 #: app/Konfigurator/kgpanel.cpp:346
-#, fuzzy, kde-format
+#, kde-format
 msgid "Frame Shadow:"
-msgstr "框架陰影"
+msgstr "框架陰影："
 
 #: app/Konfigurator/kgpanel.cpp:350
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Defined by Layout"
-msgstr ""
+msgstr "依佈局定義"
 
 #: app/Konfigurator/kgpanel.cpp:351
 #, kde-format
@@ -3937,7 +3941,7 @@ msgstr "抬升"
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Sunken"
-msgstr "下凹式"
+msgstr "下凹"
 
 #: app/Konfigurator/kgpanel.cpp:366
 #, kde-format
@@ -3947,22 +3951,22 @@ msgstr "預設圖示大小："
 #: app/Konfigurator/kgpanel.cpp:395
 #, kde-format
 msgid "Use icons in the filenames"
-msgstr ""
+msgstr "為檔案名稱使用圖示"
 
 #: app/Konfigurator/kgpanel.cpp:395
 #, kde-format
 msgid "Show the icons for filenames and folders."
-msgstr ""
+msgstr "為檔案名稱與資料夾顯示圖示。"
 
 #: app/Konfigurator/kgpanel.cpp:396
 #, kde-format
 msgid "Show previews by default"
-msgstr ""
+msgstr "預設顯示預覽"
 
 #: app/Konfigurator/kgpanel.cpp:396
 #, kde-format
 msgid "Show previews of files and folders."
-msgstr ""
+msgstr "顯示檔案與資料夾的預覽。"
 
 #: app/Konfigurator/kgpanel.cpp:431
 #, kde-format
@@ -3975,6 +3979,7 @@ msgid ""
 "The duration after a tooltip is shown for a file item, in milliseconds. Set "
 "a negative value to disable tooltips."
 msgstr ""
+"超過多久之後再為檔案項目顯示工具提示，單位為毫秒。設為負數來停用工具提示。"
 
 #: app/Konfigurator/kgpanel.cpp:443
 #, kde-format
@@ -3984,12 +3989,12 @@ msgstr "工具提示延遲（毫秒）："
 #: app/Konfigurator/kgpanel.cpp:461
 #, kde-format
 msgid "Use human-readable file size"
-msgstr ""
+msgstr "使用人類易讀的檔案大小"
 
 #: app/Konfigurator/kgpanel.cpp:463
 #, kde-format
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr ""
+msgstr "用 B、KB、MB、GB 顯示檔案大小而不是只用位元數。"
 
 #: app/Konfigurator/kgpanel.cpp:464
 #, kde-format
@@ -3999,44 +4004,44 @@ msgstr "顯示隱藏檔案"
 #: app/Konfigurator/kgpanel.cpp:464
 #, kde-format
 msgid "Display files beginning with a dot."
-msgstr ""
+msgstr "顯示名稱以點開頭的檔案。"
 
 #: app/Konfigurator/kgpanel.cpp:468
 #, kde-format
 msgid "Numeric Permissions"
-msgstr ""
+msgstr "數字權限"
 
 #: app/Konfigurator/kgpanel.cpp:470
 #, kde-format
 msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
 "the permission column."
-msgstr ""
+msgstr "在權限欄位顯示八進制數字權限 (0755) 而非標準權限格式 (rwxr-xr-x)。"
 
 #: app/Konfigurator/kgpanel.cpp:474
 #, kde-format
 msgid "Load the user defined folder icons"
-msgstr ""
+msgstr "載入使用者定義的資料夾圖示"
 
 #: app/Konfigurator/kgpanel.cpp:476
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
-msgstr ""
+msgstr "載入使用者定義的資料夾圖示（可能會造成效能降低）。"
 
 #: app/Konfigurator/kgpanel.cpp:480
 #, kde-format
 msgid "Always show current item"
-msgstr ""
+msgstr "總是顯示目前項目"
 
 #: app/Konfigurator/kgpanel.cpp:482
 #, kde-format
 msgid "Show current item border decoration in inactive panel."
-msgstr ""
+msgstr "在非作用中的面板也顯示目前項目的邊框裝飾。"
 
 #: app/Konfigurator/kgpanel.cpp:496
 #, kde-format
 msgid "Sort method:"
-msgstr ""
+msgstr "排序方法："
 
 #: app/Konfigurator/kgpanel.cpp:499
 #, kde-format
@@ -4046,23 +4051,23 @@ msgstr "依字母"
 #: app/Konfigurator/kgpanel.cpp:500
 #, kde-format
 msgid "Alphabetical and numbers"
-msgstr ""
+msgstr "依字母與數字"
 
 #: app/Konfigurator/kgpanel.cpp:501
 #, kde-format
 msgid "Character code"
-msgstr "字元碼"
+msgstr "依字元碼"
 
 #: app/Konfigurator/kgpanel.cpp:502
 #, kde-format
 msgid "Character code and numbers"
-msgstr ""
+msgstr "依字元碼與數字"
 
 #: app/Konfigurator/kgpanel.cpp:503
 #, kde-format
 msgctxt "Krusader sort"
 msgid "Krusader"
-msgstr "Krusader"
+msgstr "依 Krusader 獨自排序"
 
 #: app/Konfigurator/kgpanel.cpp:518
 #, kde-format
@@ -4074,7 +4079,7 @@ msgstr "排序區分大小寫"
 msgid ""
 "All files beginning with capital letters appear before files beginning with "
 "non-capital letters (UNIX default)."
-msgstr ""
+msgstr "所有大寫字母開頭的檔案都會排在非大寫開頭的檔案前面（UNIX 預設）。"
 
 #: app/Konfigurator/kgpanel.cpp:521
 #, kde-format
@@ -4084,24 +4089,24 @@ msgstr "先顯示資料夾"
 #: app/Konfigurator/kgpanel.cpp:525
 #, kde-format
 msgid "Always sort dirs by name"
-msgstr ""
+msgstr "總是依名稱排序資料夾"
 
 #: app/Konfigurator/kgpanel.cpp:527
 #, kde-format
 msgid "Folders are sorted by name, regardless of the sort column."
-msgstr ""
+msgstr "資料夾總是依名稱排序，不管排序欄位設定。"
 
 #: app/Konfigurator/kgpanel.cpp:531
 #, kde-format
 msgid "Locale aware sorting"
-msgstr ""
+msgstr "排序時考量地域"
 
 #: app/Konfigurator/kgpanel.cpp:533
 #, kde-format
 msgid ""
 "The sorting is performed in a locale- and also platform-dependent manner. "
 "Can be slow."
-msgstr ""
+msgstr "排序依據地域與平台設定。可能會比較慢。"
 
 #: app/Konfigurator/kgpanel.cpp:545
 #, kde-format
@@ -4126,12 +4131,12 @@ msgstr "工具列按鈕包含圖示"
 #: app/Konfigurator/kgpanel.cpp:609
 #, kde-format
 msgid "Show Media Button"
-msgstr ""
+msgstr "顯示媒體按鈕"
 
 #: app/Konfigurator/kgpanel.cpp:609
 #, kde-format
 msgid "The media button will be visible."
-msgstr ""
+msgstr "會顯示媒體按鈕。"
 
 #: app/Konfigurator/kgpanel.cpp:610
 #, kde-format
@@ -4151,7 +4156,7 @@ msgstr "顯示歷史按鈕"
 #: app/Konfigurator/kgpanel.cpp:612
 #, kde-format
 msgid "The history button will be visible."
-msgstr ""
+msgstr "會顯示歷史按鈕。"
 
 #: app/Konfigurator/kgpanel.cpp:613
 #, kde-format
@@ -4161,7 +4166,7 @@ msgstr "顯示書籤按鈕"
 #: app/Konfigurator/kgpanel.cpp:613
 #, kde-format
 msgid "The bookmarks button will be visible."
-msgstr ""
+msgstr "會顯示書籤按鈕。"
 
 #: app/Konfigurator/kgpanel.cpp:614
 #, kde-format
@@ -4171,7 +4176,7 @@ msgstr "顯示面板工具列"
 #: app/Konfigurator/kgpanel.cpp:614
 #, kde-format
 msgid "The panel toolbar will be visible."
-msgstr ""
+msgstr "會顯示面板工具列。"
 
 #: app/Konfigurator/kgpanel.cpp:620
 #, kde-format
@@ -4181,52 +4186,52 @@ msgstr "可見面板工具列按鈕"
 #: app/Konfigurator/kgpanel.cpp:624
 #, kde-format
 msgid "Equal button (=)"
-msgstr ""
+msgstr "等於按鈕 (=)"
 
 #: app/Konfigurator/kgpanel.cpp:624
 #, kde-format
 msgid "Changes the panel folder to the other panel folder."
-msgstr ""
+msgstr "將面板資料夾設為另一個面板的資料夾。"
 
 #: app/Konfigurator/kgpanel.cpp:625
 #, kde-format
 msgid "Up button (..)"
-msgstr ""
+msgstr "向上按鈕 (..)"
 
 #: app/Konfigurator/kgpanel.cpp:625
 #, kde-format
 msgid "Changes the panel folder to the parent folder."
-msgstr ""
+msgstr "將面板資料夾設為上層資料夾。"
 
 #: app/Konfigurator/kgpanel.cpp:626
 #, kde-format
 msgid "Home button (~)"
-msgstr ""
+msgstr "家屋按鈕 (~)"
 
 #: app/Konfigurator/kgpanel.cpp:626
 #, kde-format
 msgid "Changes the panel folder to the home folder."
-msgstr ""
+msgstr "將面板資料夾設為家資料夾。"
 
 #: app/Konfigurator/kgpanel.cpp:627
 #, kde-format
 msgid "Root button (/)"
-msgstr ""
+msgstr "根目錄按鈕 (/)"
 
 #: app/Konfigurator/kgpanel.cpp:627
 #, kde-format
 msgid "Changes the panel folder to the root folder."
-msgstr ""
+msgstr "將面板資料夾設為根目錄。"
 
 #: app/Konfigurator/kgpanel.cpp:631
 #, kde-format
 msgid "Toggle-button for sync-browsing"
-msgstr ""
+msgstr "同步瀏覽的切換按鈕"
 
 #: app/Konfigurator/kgpanel.cpp:633
 #, kde-format
 msgid "Each folder change in the panel is also performed in the other panel."
-msgstr ""
+msgstr "同步兩個面板的資料夾變更。"
 
 #: app/Konfigurator/kgpanel.cpp:658
 #, kde-format
@@ -4236,7 +4241,7 @@ msgstr "選擇模式"
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
 msgid "Krusader Mode"
-msgstr ""
+msgstr "Krusader 模式"
 
 #: app/Konfigurator/kgpanel.cpp:673
 #, kde-format
@@ -4245,11 +4250,13 @@ msgid ""
 "key and click the left mouse button. Right-click menu is invoked using a "
 "short click on the right mouse button."
 msgstr ""
+"左右鍵都能選擇檔案。要選擇多個檔案，按住 Ctrl 並點擊左鍵。右鍵選單可以藉由短"
+"暫點擊右鍵來開啟。"
 
 #: app/Konfigurator/kgpanel.cpp:675
 #, kde-format
 msgid "Konqueror Mode"
-msgstr ""
+msgstr "Konqueror 模式"
 
 #: app/Konfigurator/kgpanel.cpp:677
 #, kde-format
@@ -4258,11 +4265,13 @@ msgid ""
 "multiple files. Right-click menu is invoked using a short click on the right "
 "mouse button."
 msgstr ""
+"用左鍵都能選擇檔案 — 點擊可以選擇多個檔案。右鍵選單可以藉由短暫點擊右鍵來開"
+"啟。"
 
 #: app/Konfigurator/kgpanel.cpp:679
 #, kde-format
 msgid "Total-Commander Mode"
-msgstr ""
+msgstr "Total-Commander 模式"
 
 #: app/Konfigurator/kgpanel.cpp:681
 #, kde-format
@@ -4272,6 +4281,8 @@ msgid ""
 "files and the right-click menu is invoked by pressing and holding the right "
 "mouse button."
 msgstr ""
+"左鍵不會選擇，但會設定目前檔案（不影響目前選擇）。右鍵選擇多個檔案。右鍵選單"
+"藉由長按右鍵開啟。"
 
 #: app/Konfigurator/kgpanel.cpp:683
 #, kde-format
@@ -4289,12 +4300,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:687
 #, kde-format
 msgid "Custom Selection Mode"
-msgstr ""
+msgstr "自訂選取模式"
 
 #: app/Konfigurator/kgpanel.cpp:687
 #, kde-format
 msgid "Design your own selection mode."
-msgstr ""
+msgstr "設計您自己的選取模式。"
 
 #: app/Konfigurator/kgpanel.cpp:698
 #, kde-format
@@ -4304,7 +4315,7 @@ msgstr "詳細資料"
 #: app/Konfigurator/kgpanel.cpp:705
 #, kde-format
 msgid "Double-click selects (classic)"
-msgstr ""
+msgstr "點兩下選擇（經典）"
 
 #: app/Konfigurator/kgpanel.cpp:707
 #, kde-format
@@ -4316,7 +4327,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:708
 #, kde-format
 msgid "Obey global selection policy"
-msgstr ""
+msgstr "遵守全域選擇策略"
 
 #: app/Konfigurator/kgpanel.cpp:708
 #, kde-format
@@ -4721,6 +4732,8 @@ msgid ""
 "Here you can configure settings about useractions.\n"
 "To set up, configure and manage your useractions please use ActionMan."
 msgstr ""
+"這裡您可以調整使用者動作的設定值。\n"
+"要初始設定、調整或管理您的使用者動作請使用動作管理。"
 
 #: app/Konfigurator/kguseractions.cpp:36
 #, kde-format
@@ -4743,6 +4756,8 @@ msgid ""
 "%t will be replaced by the title of the action,\n"
 "%d with the workdir."
 msgstr ""
+"%t 會替換為動作的標題，\n"
+"%d 會替換為工作目錄。"
 
 #: app/Konfigurator/kguseractions.cpp:58
 #, kde-format
@@ -5613,9 +5628,9 @@ msgstr ""
 #: app/KViewer/lister.cpp:1230 app/KViewer/lister.cpp:1853
 #: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
 #: app/KViewer/lister.cpp:1879
-#, fuzzy, kde-format
+#, kde-format
 msgid "Jump to position"
-msgstr "跳到特定位置"
+msgstr "跳到位置"
 
 #: app/KViewer/lister.cpp:1240
 #, fuzzy, kde-format
@@ -5633,14 +5648,14 @@ msgid "Stop search"
 msgstr "停止搜尋(&O)"
 
 #: app/KViewer/lister.cpp:1286
-#, fuzzy, kde-format
+#, kde-format
 msgid "Jump to next match"
-msgstr "移至下一個符合"
+msgstr "跳到下一個符合"
 
 #: app/KViewer/lister.cpp:1290
-#, fuzzy, kde-format
+#, kde-format
 msgid "Jump to previous match"
-msgstr "移至上一個符合。"
+msgstr "跳到上一個符合"
 
 #: app/KViewer/lister.cpp:1293
 #, kde-format
@@ -7105,12 +7120,12 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:99
 #, kde-format
 msgid "Jump Back"
-msgstr ""
+msgstr "往回跳"
 
 #: app/Panel/listpanelactions.cpp:100
 #, kde-format
 msgid "Set Jump Back Point"
-msgstr ""
+msgstr "設定跳回點"
 
 #: app/Panel/listpanelactions.cpp:102
 #, kde-format
@@ -8953,7 +8968,7 @@ msgstr ""
 #: app/UserAction/expander.cpp:484
 #, kde-format
 msgid "Jump to a Location..."
-msgstr ""
+msgstr "跳到位置…"
 
 #: app/UserAction/expander.cpp:487
 #, kde-format
