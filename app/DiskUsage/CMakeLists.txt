@@ -20,4 +20,5 @@ target_link_libraries(DiskUsage
     KF6::KIOCore
     KF6::KIOWidgets
     KF6::WidgetsAddons
+    KF6::ColorScheme
 )
