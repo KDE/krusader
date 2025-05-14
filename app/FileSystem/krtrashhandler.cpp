@@ -13,7 +13,7 @@
 
 #include <KConfig>
 #include <KConfigGroup>
-#include <KIO/EmptyTrashJob>
+#include <KIO/DeleteOrTrashJob>
 #include <KIO/Job>
 #include <KIO/JobUiDelegate>
 #include <KIO/JobUiDelegateFactory>
@@ -41,19 +41,18 @@ QString KrTrashHandler::trashIconName()
 
 void KrTrashHandler::emptyTrash()
 {
-    KIO::JobUiDelegate* uiDelegate = qobject_cast<KIO::JobUiDelegate *>(KIO::createDefaultJobUiDelegate());
-    Q_ASSERT(uiDelegate);
-    uiDelegate->setWindow(krMainWindow);
-    if (!uiDelegate->askDeleteConfirmation(QList<QUrl>(), KIO::JobUiDelegate::EmptyTrash, KIO::JobUiDelegate::DefaultConfirmation))
-        return;
+    using IFace = KIO::AskUserActionInterface;
+    auto deleteJob = new KIO::DeleteOrTrashJob({}, IFace::EmptyTrash, IFace::DefaultConfirmation, krMainWindow);
+    deleteJob->setUiDelegate(KIO::createDefaultJobUiDelegate(KJobUiDelegate::Flags{}, krMainWindow));
+    deleteJob->uiDelegate()->setAutoErrorHandlingEnabled(true);
 
-    KIO::Job *job = KIO::emptyTrash();
-    KJobWidgets::setWindow(job, krMainWindow);
-    job->uiDelegate()->setAutoErrorHandlingEnabled(true);
-    const QUrl url = QUrl("trash:/");
-    QObject::connect(job, &KIO::Job::result, [=]() {
-        FileSystemProvider::instance().refreshFilesystems(url, false);
+    QObject::connect(deleteJob, &KIO::Job::result, deleteJob, [](KJob *job) {
+        if (job->error() != KJob::NoError) {
+            return;
+        }
+        FileSystemProvider::instance().refreshFilesystems(QUrl("trash:/"), false);
     });
+    deleteJob->start();
 }
 
 void KrTrashHandler::restoreTrashedFiles(const QList<QUrl> &urls)
