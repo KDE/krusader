@@ -161,7 +161,7 @@ msgid ""
 "<i>Konfigurator</i> and via <code>Shift+F1</code>."
 msgstr ""
 "Una descripció detallada de l'<b>acció d'usuari</b>. Només es mostra en el "
-"<i>Konfigurador</i> i via <code>Maj+F1</code>."
+"<i>Konfigurador</i> i via <code>Majús+F1</code>."
 
 #. i18n: ectx: property (text), widget (QLabel, LabelDescription)
 #: app/ActionMan/actionproperty.ui:61
@@ -234,8 +234,8 @@ msgid ""
 "Choose a existing <i>Category</i> or create a new one by entering a name."
 msgstr ""
 "Les <b>accions d'usuari</b> es poden agrupar en categories per a distingir-"
-"les millor. Escolliu una <i>Categoria</i> que ja existisca o bé creeu-ne una "
-"de nova escrivint-ne el nom."
+"les millor. Trieu una <i>Categoria</i> que ja existisca o bé creeu-ne una de "
+"nova escrivint-ne el nom."
 
 #. i18n: ectx: property (whatsThis), widget (KIconButton, ButtonIcon)
 #: app/ActionMan/actionproperty.ui:176
@@ -608,7 +608,7 @@ msgstr "Quadro independent"
 #: app/ActionMan/addplaceholderpopup.cpp:57
 #, kde-format
 msgid "Choose executable..."
-msgstr "Trieu l'executable…"
+msgstr "Tria l'executable…"
 
 #: app/ActionMan/addplaceholderpopup.cpp:142
 #, kde-format
@@ -1307,7 +1307,7 @@ msgstr "Empaqueta"
 #: app/Dialogs/packguibase.cpp:71
 #, kde-format
 msgid "To archive"
-msgstr "A l'arxiu"
+msgstr "En l'arxiu"
 
 #: app/Dialogs/packguibase.cpp:90
 #, kde-format
@@ -3340,7 +3340,7 @@ msgstr "Barra d'estat inactiva"
 #: app/Konfigurator/kgcolors.cpp:667
 #, kde-format
 msgid "Select a color-scheme file"
-msgstr "Escolliu un fitxer d'esquema de color"
+msgstr "Trieu un fitxer d'esquema de color"
 
 #: app/Konfigurator/kgcolors.cpp:673
 #, kde-format
@@ -3350,7 +3350,7 @@ msgstr "S'ha produït un error: no s'ha pogut llegir el fitxer"
 #: app/Konfigurator/kgcolors.cpp:684
 #, kde-format
 msgid "Select a color scheme file"
-msgstr "Escolliu un fitxer d'esquema de color"
+msgstr "Trieu un fitxer d'esquema de color"
 
 #: app/Konfigurator/kgcolors.cpp:691
 #, kde-format
@@ -3845,7 +3845,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:156
 #, kde-format
 msgid "Duplicate active tab by click:"
-msgstr "Duplica la pestanya activa fent clic en:"
+msgstr "Duplica la pestanya activa clicant en:"
 
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
@@ -3855,18 +3855,18 @@ msgstr "Desactivat"
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
 msgid "Alt+Click"
-msgstr "Alt+Clic"
+msgstr "Alt+clic"
 
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
 msgid "Ctrl+Click"
-msgstr "Ctrl+Clic"
+msgstr "Ctrl+clic"
 
 #: app/Konfigurator/kgpanel.cpp:170
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
 msgstr ""
-"Duplica la pestanya activa fent clic en «Ctrl»/«Alt+botó esquerre» del ratolí"
+"Duplica la pestanya activa prement «Ctrl»/«Alt+botó esquerre» del ratolí"
 
 #: app/Konfigurator/kgpanel.cpp:180
 #, kde-format
@@ -4561,7 +4561,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:739
 #, kde-format
 msgid "Shift/Ctrl-Left mouse button selects"
-msgstr "Se selecciona amb «Maj»/«Ctrl+botó esquerre» del ratolí"
+msgstr "Se selecciona amb «Majús»/«Ctrl+botó esquerre» del ratolí"
 
 # skip-rule: k-Ctrl-1,k-Shift-1
 #: app/Konfigurator/kgpanel.cpp:741
@@ -4604,7 +4604,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:757
 #, kde-format
 msgid "Shift/Ctrl-Right mouse button selects"
-msgstr "Se selecciona amb «Maj»/«Ctrl+botó dret» del ratolí"
+msgstr "Se selecciona amb «Majús»/«Ctrl+botó dret» del ratolí"
 
 # skip-rule: k-Ctrl-1,k-Shift-1
 #: app/Konfigurator/kgpanel.cpp:759
@@ -4680,8 +4680,8 @@ msgid ""
 msgstr ""
 "Si està marcada, amb el clic dret es mostrarà immediatament el menú "
 "contextual.\n"
-"D'altra manera, l'usuari necessitarà fer clic i mantindre premut el botó "
-"dret del ratolí durant uns 500 ms."
+"D'altra manera, l'usuari necessitarà clicar i mantindre premut el botó dret "
+"del ratolí durant uns 500 ms."
 
 #: app/Konfigurator/kgpanel.cpp:790
 #, kde-format
@@ -4696,8 +4696,8 @@ msgid ""
 "setting to work."
 msgstr ""
 "Es reinicia la selecció amb un clic de ratolí sense modificadors (p. ex., "
-"«Maj» o «Ctrl»).\n"
-"Cal habilitar la selecció amb «Maj»/«Ctrl» amb el botó del ratolí perquè "
+"«Majús» o «Ctrl»).\n"
+"Cal habilitar la selecció amb «Majús»/«Ctrl» amb el botó del ratolí perquè "
 "funcione esta opció."
 
 #: app/Konfigurator/kgpanel.cpp:828
@@ -8294,7 +8294,7 @@ msgid ""
 "You cannot search for text (grep) while doing a search that includes "
 "archives."
 msgstr ""
-"Quan escolliu buscar també dins d'arxius, cal tindre en compte les següents "
+"Quan trieu buscar també dins d'arxius, cal tindre en compte les següents "
 "limitacions:\n"
 "No es podrà buscar per text (grep) mentre s'incloguen els arxius."
 
@@ -9302,7 +9302,7 @@ msgstr "Salta fins a la ubicació…"
 #: app/UserAction/expander.cpp:488
 #, kde-format
 msgid "Choose a path:"
-msgstr "Trieu una ubicació:"
+msgstr "Tria una ubicació:"
 
 #: app/UserAction/expander.cpp:489
 #, kde-format
@@ -9527,14 +9527,14 @@ msgstr "Nom del fitxer que s'ha de visualitzar (normalment «%aCurrent%»):"
 #: app/UserAction/expander.cpp:886
 #, kde-format
 msgid "Choose a view mode:"
-msgstr "Escolliu un mode de visualització:"
+msgstr "Trieu un mode de visualització:"
 
 #. i18n("Choose a window-mode"), "__choose:tab;window;panel", false ) );
 #. TODO: window-mode 'panel' should open the file in the third-hand viewer
 #: app/UserAction/expander.cpp:889
 #, kde-format
 msgid "Choose a window mode:"
-msgstr "Escolliu un mode de finestra:"
+msgstr "Trieu un mode de finestra:"
 
 #: app/UserAction/expander.cpp:894
 #, kde-format
