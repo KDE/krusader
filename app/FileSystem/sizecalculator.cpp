@@ -173,5 +173,8 @@ void SizeCalculator::done()
 
 void SizeCalculator::emitProgress()
 {
-    emit progressChanged(static_cast<int>(((m_urls.length() - m_nextUrls.length()) * 100) / m_urls.length()));
+    qsizetype muLength = m_urls.length();
+    if (muLength > 0) {
+        emit progressChanged(static_cast<int>(((muLength - m_nextUrls.length()) * 100) / muLength));
+    }
 }
