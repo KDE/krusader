@@ -38,7 +38,7 @@
 #include "../FileSystem/virtualfilesystem.h"
 #include "../Filter/filtertabs.h"
 #include "../Filter/generalfilter.h"
-#include "../KViewer/krviewer.h"
+#include "../KrViewer/krviewer.h"
 #include "../Panel/PanelView/krview.h"
 #include "../Panel/PanelView/krviewfactory.h"
 #include "../Panel/PanelView/krviewitem.h"

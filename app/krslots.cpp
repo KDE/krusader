@@ -54,7 +54,7 @@
 #include "GUI/krusaderstatus.h"
 #include "GUI/mediabutton.h"
 #include "GUI/terminaldock.h"
-#include "KViewer/krviewer.h"
+#include "KrViewer/krviewer.h"
 #include "Konfigurator/konfigurator.h"
 #include "Locate/locate.h"
 #include "MountMan/kmountman.h"

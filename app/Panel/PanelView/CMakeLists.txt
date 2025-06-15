@@ -18,7 +18,7 @@ add_library(PanelView STATIC ${PanelView_SRCS})
 target_link_libraries(PanelView
     Dialogs
     GUI
-    KViewer
+    KrViewer
     KF6::Archive
     KF6::ConfigCore
     KF6::CoreAddons

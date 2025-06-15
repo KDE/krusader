@@ -1,13 +1,13 @@
-set(KViewer_SRCS
+set(KrViewer_SRCS
     krviewer.cpp
     panelviewer.cpp
     diskusageviewer.cpp
     lister.cpp
     viewertabbar.cpp)
 
-add_library(KViewer STATIC ${KViewer_SRCS})
+add_library(KrViewer STATIC ${KrViewer_SRCS})
 
-target_link_libraries(KViewer
+target_link_libraries(KrViewer
     Qt6::PrintSupport
     Qt6::Core5Compat
     KF6::Archive

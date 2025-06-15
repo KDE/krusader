@@ -63,7 +63,7 @@
 #include "GUI/krusaderstatus.h"
 #include "GUI/terminaldock.h"
 #include "JobMan/jobman.h"
-#include "KViewer/krviewer.h"
+#include "KrViewer/krviewer.h"
 #include "Konfigurator/kgprotocols.h"
 #include "MountMan/kmountman.h"
 #include "Panel/PanelView/krview.h"

@@ -21,7 +21,7 @@
 #include <KIO/PreviewJob>
 #include <KLocalizedString>
 
-#include "../KViewer/krviewer.h"
+#include "../KrViewer/krviewer.h"
 
 class KrPreviewPopup::ProxyStyle : public QProxyStyle
 {

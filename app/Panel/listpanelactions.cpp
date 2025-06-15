@@ -8,7 +8,7 @@
 #include "listpanelactions.h"
 
 #include "../Dialogs/krdialogs.h"
-#include "../KViewer/krviewer.h"
+#include "../KrViewer/krviewer.h"
 #include "../icon.h"
 #include "../krmainwindow.h"
 #include "PanelView/krviewfactory.h"

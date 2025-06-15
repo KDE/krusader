@@ -9,7 +9,7 @@ add_subdirectory(FileSystem)
 add_subdirectory(Filter)
 add_subdirectory(GUI)
 add_subdirectory(Konfigurator)
-add_subdirectory(KViewer)
+add_subdirectory(KrViewer)
 add_subdirectory(JobMan)
 add_subdirectory(Locate)
 add_subdirectory(MountMan)
@@ -55,7 +55,7 @@ target_link_libraries(krusader
                       DiskUsage
                       GUI
                       Konfigurator
-                      KViewer
+                      KrViewer
                       MountMan
                       FileSystem
                       Search
@@ -63,7 +63,7 @@ target_link_libraries(krusader
                       Locate
                       UserAction
                       ActionMan
-                      KViewer
+                      KrViewer
                       Filter
                       Dialogs
                       GUI

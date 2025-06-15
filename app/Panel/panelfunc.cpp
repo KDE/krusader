@@ -60,7 +60,7 @@
 #include "../FileSystem/krpermhandler.h"
 #include "../FileSystem/sizecalculator.h"
 #include "../FileSystem/virtualfilesystem.h"
-#include "../KViewer/krviewer.h"
+#include "../KrViewer/krviewer.h"
 #include "../MountMan/kmountman.h"
 #include "../abstractpanelmanager.h"
 #include "../compat.h"
@@ -445,7 +445,7 @@ void ListPanelFunc::view()
         KMessageBox::error(nullptr, i18n("No permissions to view this file."));
         return;
     }
-    // call KViewer.
+    // call KrViewer
     KrViewer::view(files()->getUrl(fileName));
     // nothing more to it!
 }

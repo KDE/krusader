@@ -9,7 +9,7 @@
 
 #include "../FileSystem/filesystemprovider.h"
 #include "../GUI/profilemanager.h"
-#include "../KViewer/krviewer.h"
+#include "../KrViewer/krviewer.h"
 #include "../Panel/PanelView/krview.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
