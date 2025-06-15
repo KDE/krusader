@@ -693,6 +693,8 @@ QString KrArcHandler::getPassword(const QString &path)
     passDlg->setPassword(password);
     if (passDlg->exec() == KPasswordDialog::Accepted) {
         password = passDlg->password();
+        // Note: A static analyzer may warn about the next line because its condition is always true,
+        // although that's because nowadays the password is always kept. This may change in the future
         if (keep) {
             if (!KWallet::Wallet::isOpen(KWallet::Wallet::NetworkWallet()) && wallet != nullptr) {
                 delete wallet;
