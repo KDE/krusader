@@ -9,7 +9,7 @@
 #include "../Dialogs/krspwidgets.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../FileSystem/krquery.h"
-#include "../KViewer/krviewer.h"
+#include "../KrViewer/krviewer.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../defaults.h"

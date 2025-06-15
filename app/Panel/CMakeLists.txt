@@ -26,7 +26,7 @@ add_library(Panel STATIC ${Panel_SRCS})
 target_link_libraries(Panel
     Dialogs
     GUI
-    KViewer
+    KrViewer
     KF6::Archive
     KF6::ConfigCore
     KF6::CoreAddons

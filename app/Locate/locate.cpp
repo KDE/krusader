@@ -9,7 +9,7 @@
 #include "../FileSystem/filesystem.h"
 #include "../FileSystem/virtualfilesystem.h"
 #include "../GUI/krtreewidget.h"
-#include "../KViewer/krviewer.h"
+#include "../KrViewer/krviewer.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../compat.h"
