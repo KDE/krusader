@@ -223,7 +223,9 @@ Krusader::Krusader(const QCommandLineParser &parser)
 
     if (!runKonfig) {
         KConfigGroup cfg(krConfig, "Private");
-        move(cfg.readEntry("Start Position", _StartPosition));
+        const auto position = cfg.readEntry("Start Position", _StartPosition);
+        windowHandle()->setX(position.x());
+        windowHandle()->setY(position.y());
         resize(cfg.readEntry("Start Size", _StartSize));
     }
 
@@ -345,7 +347,7 @@ void Krusader::setupActions()
 void Krusader::savePosition()
 {
     KConfigGroup cfg(krConfig, "Private");
-    cfg.writeEntry("Start Position", pos());
+    cfg.writeEntry("Start Position", QPoint(windowHandle()->x(), windowHandle()->y()));
     cfg.writeEntry("Start Size", size());
 
     cfg = krConfig->group("Startup");
