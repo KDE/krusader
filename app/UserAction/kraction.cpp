@@ -133,17 +133,17 @@ KrActionProcDlg::KrActionProcDlg(const QString &caption, bool enableStderr, QWid
 void KrActionProcDlg::addStderr(const QString &str)
 {
     if (_stderr)
-        _stderr->append(str);
+        _stderr->insertPlainText(str);
     else {
         _stdout->setFontItalic(true);
-        _stdout->append(str);
+        _stdout->insertPlainText(str);
         _stdout->setFontItalic(false);
     }
 }
 
 void KrActionProcDlg::addStdout(const QString &str)
 {
-    _stdout->append(str);
+    _stdout->insertPlainText(str);
 }
 
 void KrActionProcDlg::toggleFixedFont(bool state)
