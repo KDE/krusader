@@ -197,7 +197,7 @@ startas. Den är uppdelad i två huvuddelar.</para>
 >, <guilabel
 >Markeringsläge</guilabel
 >, <guilabel
->Mediameny</guilabel
+>Mediemeny</guilabel
 > och <guilabel
 >Layout</guilabel
 >:</para>
@@ -946,10 +946,10 @@ startas. Den är uppdelad i två huvuddelar.</para>
     </sect2>
     <sect2 id="konfig-panel-mediamenu">
       <title
->Mediameny</title>
+>Mediemeny</title>
       <para
 >Genom att använda den här fliken kan du använda menyinnehållet från <link linkend="media_button"
->Mediaknappen</link
+>Medieknappen</link
 >: <itemizedlist>
         <listitem>
           <para
@@ -972,7 +972,7 @@ startas. Den är uppdelad i två huvuddelar.</para>
 > skapar många partitioner monterade med <ulink url="https://en.wikipedia.org/wiki/SquashFS"
 >SquashFS</ulink
 >, vilka är nästan oanvändbara i <link linkend="list_panel"
->mediamenyn</link
+>mediemenyn</link
 >, eftersom <application
 >snap</application
 > hanterar dem. Det är möjligt att dölja SquashFS-monteringar genom att markera alternativet.</para>
@@ -982,7 +982,7 @@ startas. Den är uppdelad i två huvuddelar.</para>
 ><guilabel
 >Dölj följande monteringsplatser</guilabel
 >: Listan gör det möjligt att undanta oönskade alternativ från <link linkend="list_panel"
->mediamenyn</link
+>mediemenyn</link
 >. Klicka på knappen <guibutton
 >+</guibutton
 > ovanför listan för att lägga till en monteringsplats som ska ignoreras. Om du bestämmer dig för att ta bort den tillagda monteringsplatsen från listan, klicka bara på den och klicka sedan på knappen <guibutton
@@ -993,13 +993,13 @@ startas. Den är uppdelad i två huvuddelar.</para>
           <para
 ><guilabel
 >Visa storlek:</guilabel
-> tillåter val av storleksrepresentation i mediamenyn. Kan vara <guimenuitem
+> tillåter val av storleksrepresentation i mediemenyn. Kan vara <guimenuitem
 >Alltid</guimenuitem
 > (normalvärde, visa alltid partitionens storlek), <guimenuitem
 >När enheten saknar etikett</guimenuitem
 > (visa bara storlek för partitioner utan etikett) eller <guimenuitem
 >Aldrig</guimenuitem
-> (visa aldrig storleken i mediamenyn).</para>
+> (visa aldrig storleken i mediemenyn).</para>
         </listitem>
       </itemizedlist
 ></para>
@@ -1483,12 +1483,12 @@ startas. Den är uppdelad i två huvuddelar.</para>
 	<listitem>
          <para
 ><guilabel
->Använd Okteta för hexadecimal granskning</guilabel
->: Om markerad (normalfallet), använd &plasma;s hexeditor <ulink url="https://docs.kde.org/stable/sv/kdesdk/okteta/index.html"
+>Use Okteta as Hex viewer</guilabel
+>: if checked (default option), use &plasma; hex editor <ulink url="https://docs.kde.org/index.php?application=okteta"
 >Okteta</ulink
-> för att visa rådata. För att använda alternativet måste du installera paketet <application
+> to view raw data. To use this option you should install <application
 >Okteta</application
-> först.</para>
+> package first.</para>
 	</listitem>
 	</itemizedlist>
       </para>
@@ -1522,8 +1522,8 @@ startas. Den är uppdelad i två huvuddelar.</para>
     <title
 >Avancerat</title>
     <para
->Den här sidan hanterar mer avancerade saker, så du bör dubbelkolla alla åtgärder här. Att ändra inställningar här <remark
->gör &krusader; till ett kraftfullare och farligare verktyg.</remark
+>This page handles more advanced issues, so you should double-check your actions here: modifying settings here <remark
+>makes &krusader; a more powerful and dangerous tool.</remark
 ></para>
 
     <para
