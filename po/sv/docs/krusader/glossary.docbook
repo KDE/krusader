@@ -72,16 +72,16 @@
       <para
 ><ulink url="https://freedesktop.org/wiki/Software/dbus"
 >&DBus;</ulink
-> är ett meddelandesystem mellan tjänster. Det utvecklades av &RedHat;, och influerades starkt av <link linkend="glos-dcop"
->DCOP;</link
-> från &kde; 3, som det ersätter. &krusader; kan använda &DBus; för att kommunicera med andra program. Å andra sidan kan du använda &DBus; för att styra &krusader; från andra program. Använd bara <application
+> is an inter-service messaging system. Developed by &RedHat;, it was heavily influenced by &kde; 3 <link linkend="glos-dcop"
+>&DCOP;</link
+>, which it supersedes. &krusader; can use &DBus; to communicate with other applications. On the other hand, you can use &DBus; to control &krusader; from other applications. Just use <application
 >qdbusviewer</application
-> för att undersöka möjligheterna.</para>
+> to examine the possibilities.</para>
     </glossdef>
   </glossentry>
   <glossentry id="glos-dcop">
     <glossterm
->DCOP; </glossterm>
+>&DCOP; </glossterm>
     <glossdef>
       <para
 ><ulink url="https://en.wikipedia.org/wiki/Dcop"
