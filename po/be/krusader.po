@@ -16,8 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
+"%100>=11 && n%100<=14 ? 2 : 3);\n"
 "X-Generator: Poedit 3.4.2\n"
 
 #, kde-format
@@ -1275,6 +1276,7 @@ msgid_plural "Pack %1 files"
 msgstr[0] "Спакаваць %1 файл"
 msgstr[1] "Спакаваць %1 файлы"
 msgstr[2] "Спакаваць %1 файлаў"
+msgstr[3] "Спакаваць %1 файл"
 
 #: app/Dialogs/packgui.cpp:100
 #, kde-format
@@ -1736,6 +1738,7 @@ msgid_plural "%1 files: ~ %2"
 msgstr[0] "%1 файл: ~ %2"
 msgstr[1] "%1 файлы: ~ %2"
 msgstr[2] "%1 файлаў: ~ %2"
+msgstr[3] "%1 файл: ~ %2"
 
 #: app/DiskUsage/radialMap/segmentTip.cpp:121
 #, kde-format
@@ -2628,9 +2631,10 @@ msgstr "Вы жадаеце выйсці?"
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
-msgstr[0] "Засталося %1 заданне што працуе."
-msgstr[1] "Засталіся %1 заданні што працуюць."
-msgstr[2] "Засталіся %1 заданняў што працуюць."
+msgstr[0] "Засталося %1 заданне, што працуе."
+msgstr[1] "Засталіся %1 заданні, што працуюць."
+msgstr[2] "Засталіся %1 заданняў, што працуюць."
+msgstr[3] "Засталося адно заданне, што працуе."
 
 #: app/JobMan/jobman.cpp:423
 #, kde-format
@@ -2644,6 +2648,7 @@ msgid_plural "%1 Jobs"
 msgstr[0] "%1 заданне"
 msgstr[1] "%1 заданні"
 msgstr[2] "%1 заданняў"
+msgstr[3] "%1 заданне"
 
 #: app/JobMan/jobman.cpp:429
 #, kde-format
@@ -2672,6 +2677,7 @@ msgid_plural "Move %1 files to trash"
 msgstr[0] "Перамясціць %1 файл у сметніцу"
 msgstr[1] "Перамясціць %1 файлы ў сметніцу"
 msgstr[2] "Перамясціць %1 файлаў у сметніцу"
+msgstr[3] "Перамясціць %1 файл у сметніцу"
 
 #: app/JobMan/krjob.cpp:24
 #, kde-format
@@ -2685,6 +2691,7 @@ msgid_plural "Delete %1 files"
 msgstr[0] "Выдаліць %1 файл"
 msgstr[1] "Выдаліць %1 файлы"
 msgstr[2] "Выдаліць %1 файлаў"
+msgstr[3] "Выдаліць %1 файл"
 
 #: app/JobMan/krjob.cpp:48
 #, kde-format
@@ -5423,9 +5430,10 @@ msgstr ""
 #, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
-msgstr[0] "Адпраўка файла: %2"
+msgstr[0] "Адпраўка файлаў: %2"
 msgstr[1] "Адпраўка файлаў: %2"
 msgstr[2] "Адпраўка файлаў: %2"
+msgstr[3] "Адпраўка файла: %2"
 
 #: app/krslots.cpp:138 app/krslots.cpp:233 app/krslots.cpp:417
 #: app/krslots.cpp:490 app/Synchronizer/synchronizer.cpp:1608
@@ -6887,6 +6895,7 @@ msgid_plural " (%2 bytes)"
 msgstr[0] " (%2 байт)"
 msgstr[1] " (%2 байты)"
 msgstr[2] " (%2 байт)"
+msgstr[3] " (%2 байт)"
 
 #: app/Panel/krcalcspacedialog.cpp:113
 #, kde-format
@@ -6895,6 +6904,7 @@ msgid_plural "in %1 folders"
 msgstr[0] "у %1 папцы"
 msgstr[1] "у %1 папках"
 msgstr[2] "у %1 папках"
+msgstr[3] "у %1 папцы"
 
 #: app/Panel/krcalcspacedialog.cpp:115
 #, kde-format
@@ -6903,6 +6913,7 @@ msgid_plural "and %1 files"
 msgstr[0] "і %1 файл"
 msgstr[1] "і %1 файлы"
 msgstr[2] "і %1 файлаў"
+msgstr[3] "і %1 файл"
 
 #: app/Panel/krfiletreeview.cpp:182
 #, kde-format
@@ -7610,6 +7621,7 @@ msgid_plural "Move %1 files to:"
 msgstr[0] "Перамясціць %1 файл у:"
 msgstr[1] "Перамясціць %1 файлы ў:"
 msgstr[2] "Перамясціць %1 файлаў у:"
+msgstr[3] "Перамясціць %1 файл у:"
 
 #: app/Panel/panelfunc.cpp:618
 #, kde-format
@@ -7623,6 +7635,7 @@ msgid_plural "Copy %1 files to:"
 msgstr[0] "Капіяваць %1 файл у:"
 msgstr[1] "Капіяваць %1 файлы ў:"
 msgstr[2] "Капіяваць %1 файлаў у:"
+msgstr[3] "Капіяваць %1 файл у:"
 
 #: app/Panel/panelfunc.cpp:684
 #, kde-format
@@ -7636,6 +7649,7 @@ msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Вы сапраўды хочаце перамясціць гэтыя %1 элемент ў сметніцу?"
 msgstr[1] "Вы сапраўды хочаце перамясціць гэтыя %1 элементы ў сметніцу?"
 msgstr[2] "Вы сапраўды хочаце перамясціць гэтыя %1 элементаў ў сметніцу?"
+msgstr[3] "Вы сапраўды хочаце перамясціць гэтыя %1 элемент ў сметніцу?"
 
 #: app/Panel/panelfunc.cpp:828
 #, kde-format
@@ -7654,6 +7668,9 @@ msgstr[1] ""
 msgstr[2] ""
 "<qt>Вы сапраўды хочаце выдаліць гэтыя %1 элементаў <b>фізічна</b> (а не "
 "проста выдаліць з віртуальных элементаў)?</qt>"
+msgstr[3] ""
+"<qt>Вы сапраўды хочаце выдаліць гэты %1 элемент <b>фізічна</b> (а не проста "
+"выдаліць з віртуальных элементаў)?</qt>"
 
 #: app/Panel/panelfunc.cpp:835
 #, kde-format
@@ -7662,6 +7679,7 @@ msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Вы сапраўды хочаце выдаліць гэты %1 элемент?"
 msgstr[1] "Вы сапраўды хочаце выдаліць гэтыя %1 элементы?"
 msgstr[2] "Вы сапраўды хочаце выдаліць гэтыя %1 элементаў?"
+msgstr[3] "Вы сапраўды хочаце выдаліць гэты %1 элемент?"
 
 #: app/Panel/panelfunc.cpp:873
 #, kde-format
@@ -7709,6 +7727,9 @@ msgstr[1] ""
 "застануцца некранутымі)?"
 msgstr[2] ""
 "Вы сапраўды хочаце выдаліць гэтыя %1 віртуальных элементаў (фізічныя файлы "
+"застануцца некранутымі)?"
+msgstr[3] ""
+"Вы сапраўды хочаце выдаліць гэты %1 віртуальны элемент (фізічныя файлы "
 "застануцца некранутымі)?"
 
 #: app/Panel/panelfunc.cpp:950
@@ -7758,6 +7779,7 @@ msgid_plural "Unpack %1 files to:"
 msgstr[0] "Распакаваць %1 файл у:"
 msgstr[1] "Распакаваць %1 файлы ў:"
 msgstr[2] "Распакаваць %1 файлаў у:"
+msgstr[3] "Распакаваць %1 файл у:"
 
 #: app/Panel/PanelView/krinterbriefview.cpp:241
 #: app/Panel/PanelView/krinterdetailedview.cpp:289
@@ -8191,6 +8213,7 @@ msgid_plural "Found %1 matches."
 msgstr[0] "Знойдзена %1 супадзенне."
 msgstr[1] "Знойдзена %1 супадзенні."
 msgstr[2] "Знойдзена %1 супадзенняў."
+msgstr[3] "Знойдзена %1 супадзенне."
 
 #: app/Search/krsearchdialog.cpp:431
 #, kde-format
@@ -8471,6 +8494,7 @@ msgid_plural "Right to left: Copy %1 files"
 msgstr[0] "З правага ў левы: капіяваць %1 файл"
 msgstr[1] "З правага ў левы: капіяваць %1 файлы"
 msgstr[2] "З правага ў левы: капіяваць %1 файлаў"
+msgstr[3] "З правага ў левы: капіяваць %1 файл"
 
 #: app/Synchronizer/synchronizedialog.cpp:51
 #: app/Synchronizer/synchronizedialog.cpp:63
@@ -8481,6 +8505,7 @@ msgid_plural "(%1 bytes)"
 msgstr[0] "(%1 байт)"
 msgstr[1] "(%1 байты)"
 msgstr[2] "(%1 байтаў)"
+msgstr[3] "(%1 байт)"
 
 #: app/Synchronizer/synchronizedialog.cpp:58
 #: app/Synchronizer/synchronizedialog.cpp:70
@@ -8494,6 +8519,7 @@ msgid_plural "\tReady: %2/%1 files, %3/%4"
 msgstr[0] "\tГатова: %2 з %1 файла, %3 з %4"
 msgstr[1] "\tГатова: %2 з %1 файлаў, %3 з %4"
 msgstr[2] "\tГатова: %2 з %1 файлаў, %3 з %4"
+msgstr[3] "\tГатова: %2 з %1 файла, %3 з %4"
 
 #: app/Synchronizer/synchronizedialog.cpp:62
 #, kde-format
@@ -8502,6 +8528,7 @@ msgid_plural "Left to right: Copy %1 files"
 msgstr[0] "З левага ў правы: капіяваць %1 файл"
 msgstr[1] "З левага ў правы: капіяваць %1 файлы"
 msgstr[2] "З левага ў правы: капіяваць %1 файлаў"
+msgstr[3] "З левага ў правы: капіяваць %1 файл"
 
 #: app/Synchronizer/synchronizedialog.cpp:75
 #, kde-format
@@ -8510,6 +8537,7 @@ msgid_plural "Left: Delete %1 files"
 msgstr[0] "Злева: выдаліць %1 файл"
 msgstr[1] "Злева: выдаліць %1 файлы"
 msgstr[2] "Злева: выдаліць %1 файлаў"
+msgstr[3] "Злева: выдаліць %1 файл"
 
 #: app/Synchronizer/synchronizedialog.cpp:99
 #, kde-format
