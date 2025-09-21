@@ -11,7 +11,7 @@ This reference will help you to get started with Krusader development.
 * [System & Utilities forum on kde.org](https://forum.kde.org/viewforum.php?f=225) — user questions rarely appear here, answered by forum community
 * [Bugzilla](https://bugs.kde.org/buglist.cgi?product=krusader) — all bugs and wishes are tracked here
 * [Krusader extensions](https://store.kde.org/browse/cat/370/ord/top/) — user-contributed styles and user actions
-* [Krusader app page on kde.org](https://kde.org/applications/en/utilities/org.kde.krusader)
+* [Krusader app page on kde.org](https://apps.kde.org/krusader)
 
 
 ## Krusader resources for developers

@@ -258,12 +258,12 @@ KrToolResultTable::KrToolResultTable(QWidget *parent)
     _supported = KrServices::supportedTools(); // get list of available tools
 
     QList<Application *> vecDiff, vecMail, vecRename, vecChecksum;
-    Application *kdiff3 = new Application("kdiff3", "https://www.kde.org/applications/development/kdiff3/", KrServices::cmdExist("kdiff3"));
-    Application *kompare = new Application("kompare", "https://www.kde.org/applications/development/kompare/", KrServices::cmdExist("kompare"));
+    Application *kdiff3 = new Application("kdiff3", "https://apps.kde.org/kdiff3", KrServices::cmdExist("kdiff3"));
+    Application *kompare = new Application("kompare", "https://apps.kde.org/kompare", KrServices::cmdExist("kompare"));
     Application *xxdiff = new Application("xxdiff", "http://furius.ca/xxdiff/", KrServices::cmdExist("xxdiff"));
     Application *thunderbird = new Application("thunderbird", "https://www.thunderbird.net/", KrServices::cmdExist("thunderbird"));
     Application *kmail = new Application("kmail", "https://kontact.kde.org/components/kmail.html", KrServices::cmdExist("kmail"));
-    Application *krename = new Application("krename", "https://www.kde.org/applications/utilities/krename/", KrServices::cmdExist("krename"));
+    Application *krename = new Application("krename", "https://apps.kde.org/krename", KrServices::cmdExist("krename"));
     Application *md5sum = new Application("md5sum", "https://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
 
     vecDiff.push_back(kdiff3);
