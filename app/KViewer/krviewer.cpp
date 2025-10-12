@@ -145,13 +145,13 @@ KrViewer::KrViewer(QWidget *parent)
     tabNextAction = ac->addAction("nextTab", this, SLOT(nextTab()));
     tabNextAction->setText(i18n("&Next Tab"));
     shortcuts = KStandardShortcut::tabNext();
-    shortcuts.append(Qt::CTRL | Qt::Key_Tab); // reenforce QTabWidget shortcut
+    shortcuts.append(Qt::CTRL | Qt::Key_Tab); // reinforce QTabWidget shortcut
     ac->setDefaultShortcuts(tabNextAction, shortcuts);
 
     tabPrevAction = ac->addAction("prevTab", this, SLOT(prevTab()));
     tabPrevAction->setText(i18n("&Previous Tab"));
     shortcuts = KStandardShortcut::tabPrev();
-    shortcuts.append(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab); // reenforce QTabWidget shortcut
+    shortcuts.append(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab); // reinforce QTabWidget shortcut
     ac->setDefaultShortcuts(tabPrevAction, shortcuts);
 
     tabWidget.setTabsClosable(true);

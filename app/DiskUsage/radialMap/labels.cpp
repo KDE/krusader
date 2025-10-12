@@ -212,7 +212,7 @@ void RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
             }
         }
 
-        // 4. determine label co-ordinates
+        // 4. determine label coordinates
 
         int x1, y1, x2, y2, x3, tx, ty; // coords
         double sinra, cosra, ra; // angles

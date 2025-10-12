@@ -251,7 +251,7 @@ void KrActionProc::start(QStringList cmdLineList)
     for (QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
         if (!cmd.isEmpty())
             cmd += " ; "; // TODO make this separator configurable (users may want && or ||)
-        // TODO: read header fom config or action-properties and place it on top of each command
+        // TODO: read header from config or action-properties and place it on top of each command
         if (cmdLineList.count() > 1)
             cmd += "echo --------------------------------------- ; ";
         cmd += *it;
@@ -359,7 +359,7 @@ KrAction::~KrAction()
     const auto widgets = associatedObjects();
     for (QObject *w : widgets)
         qobject_cast<QWidget *>(w)->removeAction(this);
-    krUserAction->removeKrAction(this); // Importent! Else Krusader will crash when writing the actions to file
+    krUserAction->removeKrAction(this); // Important! Else Krusader will crash when writing the actions to file
 }
 
 bool KrAction::isAvailable(const QUrl &currentURL)

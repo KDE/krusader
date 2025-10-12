@@ -79,7 +79,7 @@ protected slots:
     void slotAddFiles(KIO::Job *job, const KIO::UDSEntryList &entries);
     /// URL redirection signal from dir lister
     void slotRedirection(KIO::Job *job, const QUrl &url);
-    // React to filesystem changes nofified by watcher
+    // React to filesystem changes notified by watcher
     // NOTE: the path parameter can be the directory itself or files in this directory
     void slotWatcherCreated(const QString &path);
     void slotWatcherDirty(const QString &path);

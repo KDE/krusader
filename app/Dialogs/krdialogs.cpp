@@ -170,7 +170,7 @@ KrGetDate::KrGetDate(QDate date, QWidget *parent)
     connect(dateWidget, &KDatePicker::dateSelected, this, &KrGetDate::setDate);
     connect(dateWidget, &KDatePicker::dateEntered, this, &KrGetDate::setDate);
 
-    // keep the original date - incase ESC is pressed
+    // keep the original date - in case ESC is pressed
     originalDate = date;
 }
 

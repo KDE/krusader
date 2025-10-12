@@ -173,7 +173,7 @@ private:
  * (children are the parameter in the right order):
  * - Placeholders for Krusaders panel-data (panel-indicator has to be 'a', 'o', 'r' or 'l')
  *    - @em Path is replaced by the panel's path
- *    - @em Count is replaced by a nomber of
+ *    - @em Count is replaced by a number of
  *       -# Either "All", "Files", "Dirs", "Selected"
  *       .
  *    - @em Filter is preplaced by the panels filter-mask (ex: "*.cpp *.h")
@@ -270,7 +270,7 @@ protected:
      *
      * @param stringToExpand the commandline with the placeholder
      * @param useUrl true if the path's should be expanded to an URL instead of an local path
-     * @return the expanded commanline for the current item
+     * @return the expanded commandline for the current item
      */
     TagString expandCurrent(const QString &stringToExpand, bool useUrl);
     /**

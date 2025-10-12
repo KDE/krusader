@@ -347,7 +347,7 @@ const KrColorItemType &KrColorItemType::operator=(const KrColorItemType &src)
 }
 
 /*
-KrColorCache implementation. Contains the KrColorSettings used for teh calculation and the cache for the results.
+KrColorCache implementation. Contains the KrColorSettings used for the calculation and the cache for the results.
 getColors is the only method to call. All other are taken from the previous versions.
 */
 class KrColorCacheImpl

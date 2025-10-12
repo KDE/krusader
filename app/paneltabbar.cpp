@@ -97,7 +97,7 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent, int insertIndex)
     panel->setPinnedUrl(virtualPath);
     const QString text = squeeze(virtualPath);
     // In the help about `insertTab()` it's written that it inserts a new tab at
-    // position `index`. If `index` is out of range, the new tab is appened. Returns
+    // position `index`. If `index` is out of range, the new tab is appended. Returns
     // the new tab's index
     insertIndex = insertTab(insertIndex, text);
 

@@ -15,7 +15,7 @@
 
 typedef enum {
     TT_EQUALS = 0, // the files are equals     -> do nothing
-    TT_DIFFERS = 1, // the files are differents -> don't know what to do
+    TT_DIFFERS = 1, // the files are different -> don't know what to do
     TT_COPY_TO_LEFT = 2, // the right file is newer  -> copy from right to left
     TT_COPY_TO_RIGHT = 3, // the left file is newer   -> copy from left to right
     TT_DELETE = 4, // the left file is single  -> delete it

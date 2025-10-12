@@ -137,7 +137,7 @@ public:
     static QString AppName; // the name of the application
     PopularUrls *_popularUrls; // holds a sorted list of the most popular urls visited
 
-    // the internal progress bar variales + functions
+    // the internal progress bar variables + functions
     KrPleaseWaitHandler *plzWait;
     void startWaiting(QString msg = "Please Wait", int count = 0, bool cancel = false);
     void stopWait();

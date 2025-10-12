@@ -99,7 +99,7 @@ void KrFSDisplay::paintEvent(QPaintEvent *)
         paint.setFont(font);
         paint.drawText(margins.left() + 10, margins.top() + 37, '(' + realName + ')');
 
-        if (mounted) { // incase the filesystem is already mounted
+        if (mounted) { // in case the filesystem is already mounted
             // second, the capacity
             paint.drawText(margins.left() + 10, margins.top() + 70, i18n("Capacity: %1", KIO::convertSizeFromKiB(totalSpace)));
             // third, the 2 boxes (used, free)

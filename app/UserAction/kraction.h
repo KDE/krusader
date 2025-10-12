@@ -41,7 +41,7 @@ public:
     ~KrAction() override;
 
     /**
-     * This chekcs if the KrAction is for a specific file / location available
+     * This checks if the KrAction is for a specific file / location available
      * @param currentURL Check for this file
      * @return true if the KrAction if available
      */
