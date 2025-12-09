@@ -1,24 +1,10 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <appendix id="config_files">
-  <!-- **********************************************************************
-                               configuration-files.docbook
-                            +++++++++++++++++++++++++++++++++
-  copyright            : (C) 2000 - 2010
-                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                          & the Krusader Krew
-  e-mail               : krusader@users.sourceforge.net
-  web site             : http://www.krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
   <title
 >Arquivos de configuração</title>
   <indexterm>
@@ -32,14 +18,16 @@
 >krusaderui.rc</emphasis>
   </para>
   <para
->Este arquivo guarda a configuração da barra de ferramentas dos usuários e a estrutura do menu. Sugestão: leia também a <link linkend="faqi_missing_menus"
->&FAQ; do krusaderui.rc</link
->.</para>
+>Este arquivo guarda a configuração da barra de ferramentas dos usuários e a estrutura do menu.</para>
   <para
 >Localização: <filename
->$KDEDIR/share/kxmlgui5/krusader/krusaderui.rc</filename
-> ou <filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+>, ou <filename
 > ~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+>, ou <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> na pasta que pode ser determinada usando o comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
 ></para>
   <para>
     <emphasis role="bold"
@@ -84,7 +72,7 @@
     </listitem>
     <listitem>
       <para
->Configuração do HTML</para>
+>Configurações do &HTML;</para>
     </listitem>
     <listitem>
       <para
@@ -162,6 +150,10 @@
   <para
 >Localização: <filename
 > ~/.local/share/krusader/krbookmarks.xml</filename
+> ou <filename
+>krusader/krbookmarks.xml</filename
+> na pasta que pode ser determinada usando o comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
 ></para>
   <para>
     <emphasis role="bold"
@@ -170,17 +162,21 @@
   <para
 >Este arquivo guarda a configuração das <link linkend="useractions"
 >Ações do Usuário</link
->. A estrutura do arquivo está documentada nos cabeçalhos de Doxygen do UserActionXML.</para>
+>.</para>
   <para
 >Localização: <filename
 > ~/.local/share/krusader/useractions.xml</filename
+> ou <filename
+>krusader/useractions.xml</filename
+> na pasta que pode ser determinada usando o comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
 ></para>
   <para>
     <emphasis role="bold"
 >useraction-examples.xml</emphasis>
   </para>
   <para
->Estas são as Ações do Usuários predefinidas por nós. A estrutura do arquivo está documentada nos cabeçalhos do Doxygen do UserActionXML.</para>
+>Estas são as Ações do Usuários predefinidas pelos desenvolvedores.</para>
   <para
 >Localização: <filename
 > $KDEDIR/share/krusader/useraction-examples.xml</filename
@@ -197,7 +193,7 @@
 >. Até ao &krusader;-1.70.0, este era um arquivo binário. O &krusader; é compatível de modo a importar este formato binário antigo.</para>
   <para
 >Localização: <filename
-> $KDEDIR/share/krusader/nome.keymap</filename
+> /usr/share/krusader/foo.keymap</filename
 ></para>
   <para>
     <emphasis role="bold"
@@ -205,10 +201,10 @@
   </para>
   <para
 >Este é um arquivo binário que guarda o <link linkend="konfig-color"
->Esquema de Cores</link
+>Esquema de cores</link
 >.</para>
   <para
 >Localização: <filename
->$KDEDIR/share/krusader/nome.color</filename
+>/usr/share/krusader/foo.color</filename
 ></para>
 </appendix>

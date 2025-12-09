@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="profiles">
   <title
 >Perfis</title>
@@ -19,18 +25,22 @@
 >Janela</guimenu
 >. O <link linkend="konfig-startup"
 >perfil de inicialização padrão</link
-> será usado ao iniciar o &krusader;, mas você poderá substituí-lo com uma <link linkend="starting-krusader"
->opção da linha de comando</link
->.</para>
+> será usado ao iniciar o &krusader;, mas você poderá substituí-lo com uma opção da linha de comando.</para>
+    <para
+>Se você quiser fazer alterações em um perfil de painel: você pode carregar esse perfil, alterar algumas configurações, ir para <menuchoice
+><guimenu
+>Janela</guimenu
+><guimenuitem
+>Perfis</guimenuitem
+></menuchoice
+> e sobrescrever esse perfil.</para>
   </sect2>
   <sect2 id="color_profiles">
     <title
 >Perfis de Cores</title>
     <para
->Os mapas de cores poderão ser salvos e restaurados com os <link linkend="konfig-color"
->Perfis de Cores</link
->. Os mapas de cores do &krusader; estão disponíveis no <ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663"
->kde-files.org</ulink
+>Os mapas de cores podem ser salvos e restaurados com <link linkend="konfig-color"
+>Perfis de cores</link
 >.</para>
   </sect2>
   <sect2 id="key_profiles">
@@ -39,8 +49,6 @@
     <para
 >Você poderá salvar e restaurar os mapas de combinações de teclas com os <link linkend="configure-shortcuts"
 >Perfis de Combinações de Teclas</link
->. Os mapas de teclado do &krusader; estão disponíveis no <ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663"
->kde-files.org</ulink
 >.</para>
   </sect2>
   <sect2 id="search_profiles">
@@ -57,6 +65,6 @@
     <para
 >Se você efetua regularmente a mesma operação de sincronização, poderá salvá-la num <link linkend="synchronizer"
 >Perfil de Sincronização</link
->. Por padrão, a Sincronização é desativada em tempo de compilação.</para>
+>.</para>
   </sect2>
 </sect1>

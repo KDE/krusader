@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2024 Krusader Krew <https://krusader.org>
+-->
 <chapter id="features">
 <title
 >Funcionalidades</title>
@@ -9,9 +15,13 @@
   <para
 >As funcionalidades e melhorias mais importantes são aqui destacadas. Esta lista seria muito extensa se fossem incluídas <emphasis
 >todas</emphasis
-> as funcionalidades e melhorias. Você irá descobrir ainda mais funcionalidades nesta documentação e no arquivo <ulink url="https://quickgit.kde.org/?p=krusader.git&amp;a=blob&amp;f=ChangeLog&amp;o=plain"
+> as funcionalidades e melhorias. Você irá descobrir ainda mais funcionalidades nesta documentação e nos arquivos <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
 ><filename
 >ChangeLog</filename
+></ulink
+> e <ulink url="https://commits.kde.org/krusader?path=NEWS"
+><filename
+>NEWS</filename
 ></ulink
 >.</para>
 </note>
@@ -74,7 +84,7 @@
 >Conexões Remotas</link
 >, <link linkend="archives"
 >pacotes</link
->, resultados de pesquisas, sincronização (por padrão é desativado em tempo de compilação).</para>
+>, resultados de pesquisas, sincronizador.</para>
           </listitem>
           <listitem>
             <para
@@ -90,8 +100,8 @@
           </listitem>
           <listitem>
             <para
->Diversos modos de visualização do painel, através do <link linkend="popup_panel"
->Painel Instantâneo</link
+>Diversos modos de visualização do painel, através da <link linkend="sidebar"
+>Barra lateral</link
 >.</para>
           </listitem>
         </itemizedlist>
@@ -117,8 +127,8 @@
           <listitem>
             <para
 ><link linkend="synchronizer"
->Sincronizar diretórios</link
-> (por padrão é desativado em tempo de compilação)</para>
+>Sincronizando pastas</link
+></para>
           </listitem>
           <listitem>
             <para>
@@ -176,7 +186,7 @@
             <para
 ><link linkend="compare-content"
 >Comparação de arquivos pelo conteúdo</link
-> com programas de diferenças externos, como o &kompare;, o <ulink url="http://kdiff3.sourceforge.net"
+> com programas de diferenças externos, como o &kompare;, o <ulink url="https://www.kde.org/applications/development/kdiff3/"
 ><application
 >KDiff3</application
 ></ulink
@@ -190,7 +200,7 @@
             <para
 ><link linkend="multi_rename"
 >Renomear</link
-> arquivos e pastas através do <ulink url="http://www.krename.net"
+> arquivos e pastas através do <ulink url="https://www.kde.org/applications/utilities/krename/"
 ><application
 >KRename</application
 ></ulink
@@ -211,9 +221,9 @@
           <listitem>
             <para
 >O <keycap
->F2</keycap
+>F9</keycap
 > abre uma <link linkend="tools-menu"
->Janela de Terminal</link
+>Janela de terminal</link
 > na pasta atual.</para>
           </listitem>
           <listitem>
@@ -228,7 +238,7 @@
             <para
 ><link linkend="krusearcher"
 >Filtros de seleção</link
-> usados, &eg;, na Sincronização (por padrão é desativado em tempo de compilação) e no KruSearcher.</para>
+> usados, &eg;, na Sincronização e no KruSearcher.</para>
           </listitem>
           <listitem>
             <para>
@@ -239,7 +249,7 @@
           <listitem>
             <para
 ><link linkend="konfig-general"
-> Ciente dos tipos MIME</link
+> Ciente dos tipos &MIME;</link
 >.</para>
           </listitem>
           <listitem>
@@ -253,7 +263,7 @@
           <listitem>
             <para
 ><link linkend="quicksearch"
->Pesquisa rápida</link
+>Pesquisa, seleção e filtro rápidos</link
 ></para>
           </listitem>
           <listitem>
@@ -263,10 +273,8 @@
             </para>
           </listitem>
           <listitem>
-            <para>
-              <link linkend="mouse_gestures"
->Gestos do Mouse</link>
-            </para>
+            <para
+>Gestos do Mouse </para>
           </listitem>
           <listitem>
             <para
@@ -356,13 +364,6 @@
 >Ações do Usuário</link
 ></para>
         </listitem>
-<!--        <listitem>
-          <para
-><link linkend="javascript_console"
->JavaScript console</link
-></para>
-	</listitem
-> disabled due to KrJS does not compile (cannot find kjsembed from kdelibs-->
         <listitem>
           <para
 ><link linkend="konfig-color"
@@ -375,17 +376,19 @@
 >Perfis de Combinações de Teclas</link
 ></para>
         </listitem>
-      </itemizedlist>
-Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663"
->kde-files.org</ulink
->.</para>
+      </itemizedlist
+>Obtenha e envie as suas extensões favoritas do &krusader; na <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+>. </para>
     </listitem>
   </itemizedlist>
 </para>
 <para>
   <itemizedlist>
     <title
->Novas funcionalidades na versão &krusader;-1.80.0 "3ª Pedra Final"</title>
+>Novas funcionalidades na versão &krusader;-1.80.0 <quote
+>3ª Pedra Final</quote
+></title>
     <listitem>
       <para
 >Melhorias no gerenciamento de pacotes <itemizedlist>
@@ -411,7 +414,9 @@ Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="ht
           <para
 ><link linkend="archives"
 >Suporte para detecção automática</link
->, permitindo-lhe abrir "pacotes ocultos" (&eg; documentos do <trademark class="registered"
+>, permitindo-lhe abrir <quote
+>pacotes ocultos</quote
+> (&eg; documentos do <trademark class="registered"
 >OpenOffice</trademark
 >).</para>
         </listitem>
@@ -431,7 +436,7 @@ Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="ht
     <listitem>
       <para
 >Muitas melhorias no sistema de <link linkend="useractions"
->Ações do Usuário</link
+>Ações do usuário</link
 >.</para>
     </listitem>
     <listitem>
@@ -492,7 +497,7 @@ Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="ht
       <para
 >Melhorias na <link linkend="synchronizer"
 >Sincronização</link
-> e tarefas paralelas para os servidores &FTP; lentos (por padrão é desativado em tempo de compilação).</para>
+> e tarefas paralelas para os servidores &FTP; lentos.</para>
     </listitem>
     <listitem>
       <para
@@ -532,21 +537,22 @@ Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="ht
 <para>
   <itemizedlist>
     <title
->Novas funcionalidades na versão &krusader;-1.90.0 "Pedra Potente"</title>
+>Novas funcionalidades na versão &krusader;-1.90.0 <quote
+>Pedra poderosa</quote
+></title>
     <listitem>
       <para
->Última versão para o &kde; 3.x, com uma <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=2061"
-> enorme coleção de Ações do Usuário</ulink
->. </para>
+>Última versão para o &kde; 3.x, com uma enorme coleção de ações do usuário. </para>
     </listitem>
   </itemizedlist>
 </para>
 
-
 <para>
   <itemizedlist>
     <title
->Novas funcionalidades na versão &krusader;-2.0.0 "Explorador de Marte"</title>
+>Novas funcionalidades na versão &krusader;-2.0.0 <quote
+>Explorador de Marte</quote
+></title>
     <listitem>
       <para
 >A primeira versão para a série do &kde; 4.x </para>
@@ -573,7 +579,9 @@ Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="ht
 <para>
   <itemizedlist>
     <title
->Novas funcionalidades na versão &krusader;-2.1.0-beta1 "Rusty Clutch"</title>
+>Novas funcionalidades na versão &krusader;-2.1.0-beta1 <quote
+>Embreagem enferrujada</quote
+></title>
     <listitem>
       <para
 >Um visualizador de texto/hexadecimal rápido para tamanhos de arquivo enormes. </para>
@@ -592,41 +600,149 @@ Obtenha e envie as suas extensões favoritas do &krusader; para o <ulink url="ht
     </listitem>
     <listitem>
       <para
->A Pesquisa Rápida suporta as expressões regulares para a pesquisa de arquivos. </para>
-    </listitem>
-    <listitem>
-      <para
->Para mais funcionalidades, leia o <ulink url="https://quickgit.kde.org/?p=krusader.git&amp;a=blob&amp;f=ChangeLog&amp;o=plain"
-><filename
->ChangeLog</filename
-></ulink
-> e <ulink url="https://quickgit.kde.org/?p=krusader.git&amp;a=blob&amp;f=SVNNEWS&amp;o=plain"
-><filename
->SVNNEWS</filename
-></ulink
->.</para>
+>A barra de pesquisa, seleção e filtro rápido suporta as expressões regulares para a correspondência de arquivos. </para>
     </listitem>
   </itemizedlist>
 </para>
 
+<para>
+  <itemizedlist>
+    <title
+>Novas funcionalidades na versão &krusader;-2.5.0 <quote
+>Céus limpos</quote
+></title>
+    <listitem>
+      <para
+>Migrado para &kf5-full;. </para>
+    </listitem>
+    <listitem>
+        <para
+>A nova barra <link linkend="quickfilter"
+>Filtro rápido</link
+> com três modos de operação diferentes: selecionar, pesquisar e filtrar. </para>
+    </listitem>
+    <listitem>
+        <para
+>Gerenciador de filas reformulado (JobMan) e a nova <link linkend="job_toolbar"
+>Barra de ferramentas de tarefas</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
 
+<para>
+  <itemizedlist>
+    <title
+>Novas funcionalidades na versão &krusader;-2.7.0 <quote
+>Paz de espírito</quote
+></title>
+    <listitem>
+      <para
+>Pesquisa rápida no menu de favoritos. </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="folder-tabs"
+>Abas fixadas</link
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Dica de ferramenta com informações do arquivo exibida ao passar o cursor sobre o nome do arquivo. </para>
+    </listitem>
+    <listitem>
+      <para
+>Opções avançadas para o painel de árvore na <link linkend="sidebar"
+>Barra lateral</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Novas funcionalidades na versão &krusader;-2.8.0 <quote
+>Um novo dia</quote
+></title>
+    <listitem>
+      <para
+>Duplicar abas com um clique duplo. </para>
+    </listitem>
+    <listitem>
+      <para
+>Fechar abas com &Ctrl;+&LMB; ou &Alt;+&LMB; (configurável). </para>
+    </listitem>
+    <listitem>
+      <para
+>Desfazer a abertura de abas enquanto o aplicativo está em execução. </para>
+    </listitem>
+    <listitem>
+      <para
+>Abas dimensionadas dinamicamente. </para>
+    </listitem>
+    <listitem>
+      <para
+>Opções de configuração para a posição da nova aba, visibilidade do botão da aba e comportamento do botão Nova Aba. </para>
+    </listitem>
+    <listitem>
+      <para
+>Histórico e sugestões na caixa de diálogo Nova Pasta. </para>
+    </listitem>
+    <listitem>
+      <para
+>Alternar entre as opções de nome completo, nome do arquivo e extensão com o atalho Renomear. (<keycap
+>F2</keycap
+> por padrão). </para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo
+>&Shift;<keycap
+>Del</keycap
+></keycombo
+> remove entradas indesejadas do histórico em várias caixas de diálogo. </para>
+    </listitem>
+    <listitem>
+      <para
+>Sincronização aprimorada entre o painel e o terminal integrado. </para>
+    </listitem>
+    <listitem>
+      <para
+>Melhoria na configuração de cor. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Novas funcionalidades na versão &krusader;-2.9.0 <quote
+>Sexta vida</quote
+></title>
+    <listitem>
+      <para
+>Migrado para &kf6-full;. </para>
+      <para
+>As configurações são salvas em caso de falha. </para>
+    </listitem>
+  </itemizedlist>
+</para>
 
 <para
 ><note
 ><para
->Se você estiver usando uma versão de <link linkend="krusader_devel"
->desenvolvimento</link
-> ou do <link linkend="krusader_git"
->Git</link
->, é possível que as últimas funcionalidades ainda não estejam no "Manual do &krusader;". Leia online o arquivo <ulink url="https://quickgit.kde.org/?p=krusader.git&amp;a=blob&amp;f=ChangeLog&amp;o=plain"
+>Se você estiver usando uma versão do &git;, é possível que as últimas funcionalidades ainda não estejam no <quote
+>Manual do &krusader;</quote
+>.  Leia online o arquivo <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
 >Changelog</ulink
-> ou no código-fonte do &krusader;, de modo a descobrir mais sobre as novas funcionalidades. Para uma breve descrição, leia online o arquivo <ulink url="https://quickgit.kde.org/?p=krusader.git&amp;a=blob&amp;f=SVNNEWS&amp;o=plain"
->SVNNEWS</ulink
+> ou no código-fonte do &krusader;, de modo a descobrir mais sobre as novas funcionalidades. Para uma breve descrição, leia online o arquivo <ulink url="https://commits.kde.org/krusader?path=NEWS"
+>NEWS</ulink
 > ou no código do &krusader;. As <link linkend="faqg_wish"
 >sugestões dos usuários</link
 > e os <link linkend="faqg_bug_report"
 >relatórios de erros</link
 > serão sempre bem-vindos! </para
 ></note
-></para
-></chapter>
+></para>
+</chapter>

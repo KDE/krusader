@@ -1,38 +1,22 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <appendix id="useraction-xml">
-  <!-- **********************************************************************
-                               installation.docbook
-                            ++++++++++++++++++++++++++
-  copyright            : (C) 2000 - 2010
-                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                          & the Krusader Krew
-  e-mail               : krusader@users.sourceforge.net
-  web site             : http://www.krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
   <title
->useraction.xml</title>
+>useractions.xml</title>
   <para
 >Este apêndice fornece diversos exemplos de arquivos <filename
->useraction.xml</filename
+>useractions.xml</filename
 >. Com isto, você poderá começar a descobrir o poder das <link linkend="useractions"
 >Ações do Usuário</link
 > e começar a aprender como usá-las. Assim que compreender como criar Ações do Usuário, irá descobrir que o &krusader; é uma ferramenta ainda mais poderosa e configurável.</para>
   <para
->Considere, por favor, enviar as suas ações do usuário para o <ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663"
->kde-files.org</ulink
->, já que estamos colecionando-as. Se a sua ação do usuário for selecionada por nós, será incluída na próxima versão do &krusader;. Oferecemos também um <ulink url="http://www.krusader.org/phpBB/viewforum.php?f=11"
->Fórum de Ações do Usuário</ulink
->.</para>
+>Considere, por favor, enviar as suas ações do usuário para o <ulink url="https://store.kde.org"
+>store.kde.org</ulink
+>, pois estamos colecionando-as. Se a sua ação do usuário for selecionada por nós, será incluída na próxima versão do &krusader;.</para>
 
 <itemizedlist>
     <listitem
@@ -315,8 +299,8 @@
 
       <listitem
 ><para
->Abre a <link linkend="synchronizer"
->Sincronização (por padrão é desativado em tempo de compilação)</link
+>Abre o <link linkend="synchronizer"
+>Sincronizador</link
 >: <programlisting
 >&lt;!DOCTYPE KrusaderUserActions>
 &lt;KrusaderUserActions>

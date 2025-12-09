@@ -1,24 +1,10 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <chapter id="keyboard-commands">
-  <!-- **********************************************************************
-                            keyboard.docbook
-                          +++++++++++++++++++++
-  copyright            : (C) 2000 - 2010
-                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                          & the Krusader Krew
-  e-mail               : krusader@users.sourceforge.net
-  web site             : http://www.krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
   <title
 >Comandos do teclado</title>
   <indexterm>
@@ -37,41 +23,37 @@
 >Perfis de Combinações de Teclas</link
 > para mudar facilmente para outras configurações de teclado, &eg;, de outros utilitários do gênero, ou ainda poderá criar as suas próprias combinações de teclas.</para>
     <para
->Depois de <link linkend="starting-krusader"
->iniciar</link
-> o &krusader;, a ação do teclado poderá começar. Use o <keycombo action="simul"
+>Depois de iniciar o &krusader;, a ação do teclado poderá começar. Use o <keycombo action="simul"
 >&Ctrl;<keycap
 >L</keycap
 ></keycombo
 > para saltar para a <link linkend="list_panel"
->Barra de Localização</link
+>Barra de localização</link
 >, na qual poderá digitar a pasta desejada. Depois do <keycombo action="simul"
->&Ctrl;<keycap
->Baixo</keycap
-></keycombo
+>&Ctrl;&Down;</keycombo
 >, irá estar no <link linkend="termemu"
->Emulador de Terminal</link
->, onde poderá digitar qualquer comando que desejar. Use o <keycombo action="simul"
->&Ctrl;<keycap
->Cima</keycap
-></keycombo
+>Emulador de terminal</link
+>, onde poderá digitar qualquer comando que desejar, desde que o <link linkend="konfig-startup"
+>terminal esteja visível</link
+>. Use o <keycombo action="simul"
+>&Ctrl;&Up;</keycombo
 > para voltar de novo ao painel ativo. Se quiser saltar para um arquivo ou pasta que comece por <literal
 >f</literal
 >, então digite simplesmente <literal
 >f</literal
 > no teclado para usar a <link linkend="quicksearch"
->Pesquisa rápida</link
->. Use a tecla &Enter; para executar o arquivo ou abrir uma pasta que esteja em primeiro plano. Certifique-se de aprender as Teclas de Funções - <keycap
+>barra de pesquisa</link
+>. Use a tecla &Enter; para executar o arquivo ou abrir uma pasta que esteja em primeiro plano. Certifique-se de lembrar das teclas de dunções - <keycap
 >F3</keycap
-> para Exibir, <keycap
+> para exibir, <keycap
 >F4</keycap
-> para Editar, <keycap
+> para editar, <keycap
 >F5</keycap
-> para Copiar, <keycombo action="simul"
+> para copiar, <keycombo action="simul"
 >&Alt;&Shift;<keycap
 >U</keycap
 ></keycombo
-> para Descomprimir, &etc;</para>
+> para descomprimir, &etc;</para>
     <para
 >Você também poderá efetuar diversas operações com as <link linkend="folder-tabs"
 >páginas de pastas</link
@@ -99,9 +81,9 @@
 > <guimenu
 >Configurações</guimenu
 > <guimenuitem
->Configurar os Atalhos</guimenuitem
+>Configurar atalhos de teclado...</guimenuitem
 > </menuchoice
->, caso queira usar outras combinações que não as predefinidas. Você até poderá associar mais ações a combinações de teclas (para o caso das ações que não tenham combinações de teclas definidas por padrão). Lembre-se que algumas dessas combinações não são específicas do &krusader; (&eg;, os atalhos globais do &kde;). As combinações de teclas que o &krusader; usa por padrão são apresentadas abaixo.</para>
+>, caso queira usar outras combinações que não as predefinidas. Você até poderá associar mais ações a combinações de teclas (para o caso das ações que não tenham combinações de teclas definidas por padrão). Lembre-se que algumas dessas combinações não são específicas do &krusader; (&eg;, os atalhos globais do &plasma;). As combinações de teclas que o &krusader; usa por padrão são apresentadas abaixo.</para>
 
     <!-- FN keys -->
     <para>
@@ -136,8 +118,8 @@
             </entry>
             <entry>
               <para>
-                <link linkend="tools-menu"
->Terminal.</link>
+                <link linkend="basic"
+>Renomear os arquivos.</link>
               </para>
             </entry>
           </row>
@@ -234,8 +216,8 @@
             </entry>
             <entry>
               <para>
-                <link linkend="basic"
->Renomear os arquivos.</link>
+                <link linkend="tools-menu"
+>Terminal.</link>
               </para>
             </entry>
           </row>
@@ -275,6 +257,24 @@
               <para>
                 <link linkend="help-menu"
 >O que é isto?</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F2</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="multi_rename"
+>Mudança múltipla de nomes dos arquivos (<application
+>Krename</application
+>).</link>
               </para>
             </entry>
           </row>
@@ -342,24 +342,6 @@
               </para>
             </entry>
           </row>
-           <row>
-            <entry>
-              <para>
-                <keycombo action="simul"
->&Shift; <keycap
->F9</keycap
-></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <link linkend="multi_rename"
->Mudança múltipla de nomes dos arquivos (<application
->Krename</application
->).</link>
-              </para>
-            </entry>
-          </row>
           <row>
             <entry>
               <para>
@@ -392,7 +374,7 @@
               </para>
             </entry>
           </row>
-          <!-- This keybinding is disabled in the "krusader.cpp" source file
+          <!-- This keybinding is disabled in the "viewactions.cpp" source file
 <row>
 <entry
 ><para
@@ -414,9 +396,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; <keycap
->Esquerda</keycap
-></keycombo>
+>&Shift; &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -430,9 +410,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; <keycap
->Direita</keycap
-></keycombo>
+>&Shift; &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -560,7 +538,7 @@
             </entry>
             <entry>
               <para
->Home</para>
+>Página inicial.</para>
             </entry>
           </row>
           <row>
@@ -581,9 +559,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Esquerda</keycap
-></keycombo>
+>&Alt; &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -597,9 +573,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Direita</keycap
-></keycombo>
+>&Alt; &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -613,15 +587,13 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Baixo</keycap
-></keycombo>
+>&Alt; &Down;</keycombo>
               </para>
             </entry>
             <entry>
               <para
-><link linkend="popup_panel"
->Painel Instantâneo</link
+><link linkend="sidebar"
+>Barra lateral</link
 >.</para>
             </entry>
           </row>
@@ -636,7 +608,7 @@
             </entry>
             <entry>
               <para
->Combinações de teclas padrão (do &kde;).</para>
+>Combinações de teclas padrão (do &plasma;).</para>
             </entry>
           </row>
         </tbody>
@@ -679,7 +651,7 @@
             <entry>
               <para
 ><link linkend="compare-dir"
->Comparar as Pastas</link
+>Comparar as pastas</link
 ></para>
             </entry>
           </row
@@ -760,7 +732,9 @@
             <entry>
               <para>
                 <link linkend="panel_toolbar"
->Sincronizar os painéis (também conhecido como "Botão de Igualdade (=)").</link>
+>Sincronizar os painéis (também conhecido como <quote
+>Botão de igualdade (=)</quote
+>).</link>
               </para>
             </entry>
           </row>
@@ -897,9 +871,9 @@
             </entry>
             <entry>
               <para
->Comuta entre um <link linkend="termemu"
->Emulador de Terminal</link
-> normal e de tela inteira.</para>
+>Abre a <link linkend="quicksearch"
+>barra de pesquisa rápida</link
+>.</para>
             </entry>
           </row>
           <row>
@@ -929,7 +903,9 @@
             </entry>
             <entry>
               <para
->Abrir a barra de pesquisa rápida.</para>
+>Abre a <link linkend="quickfilter"
+>barra de filtro rápido</link
+>.</para>
             </entry>
           </row>
           <row>
@@ -1000,22 +976,6 @@
 >.</para>
             </entry>
           </row>
-          <!-- TODO: Is this entry gone ????
-<row>
-<entry
-><para
-><keycombo action="simul"
->&Ctrl;<keycap
->O</keycap
-></keycombo
-></para
-></entry>
-<entry
-><para
->the inactive panel gets the same path as the active panel</para
-></entry
-></row>
--->
           <row>
             <entry>
               <para>
@@ -1136,8 +1096,8 @@
             <entry>
               <para
 ><link linkend="synchronizer"
->Sincronizar diretórios</link
-> (por padrão, esta funcionalidade é desativada em tempo de compilação).</para>
+>Sincronizar pastas</link
+>.</para>
             </entry>
           </row>
           <row>
@@ -1152,7 +1112,7 @@
             <entry>
               <para>
                 <link linkend="bookman"
->URLs populares.</link>
+>&URL;s populares.</link>
               </para>
             </entry>
           </row>
@@ -1208,9 +1168,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
->Baixo</keycap
-></keycombo>
+>&Ctrl; &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1224,9 +1182,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
->Cima</keycap
-></keycombo>
+>&Ctrl; &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1240,9 +1196,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
->Cima</keycap
-></keycombo>
+>&Ctrl; &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1270,21 +1224,15 @@
             <entry>
               <para
 ><keycombo action="simul"
->&Ctrl; <keycap
->Esquerda</keycap
-></keycombo
+>&Ctrl; &Left;</keycombo
 > ou <keycombo
-> <keycap
->Direita</keycap
-> </keycombo
+> &Right; </keycombo
 ></para>
             </entry>
             <entry>
               <para
 >Selecione um arquivo ou pasta no painel da esquerda, pressione <keycombo action="simul"
->&Ctrl; <keycap
->Esquerda</keycap
-></keycombo
+>&Ctrl; &Left;</keycombo
 > para que o <link linkend="panels"
 >painel</link
 > da direita mude: <itemizedlist
@@ -1300,9 +1248,7 @@
 > </listitem
 > </itemizedlist
 >Para o painel da direita: pressione <keycombo action="simul"
->&Ctrl; <keycap
->Direita</keycap
-></keycombo
+>&Ctrl; &Right;</keycombo
 > para que o painel da esquerda mude.</para>
             </entry>
           </row>
@@ -1322,9 +1268,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
->PageUp</keycap
-></keycombo>
+>&Ctrl; &PgUp;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1377,8 +1321,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift;<keycap
->F</keycap
+>&Ctrl;&Shift; <keycap
+>D</keycap
 ></keycombo>
               </para>
             </entry>
@@ -1442,6 +1386,22 @@
               <para>
                 <keycombo action="simul"
 >&Ctrl;&Shift; <keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Abre a <link linkend="quickselect"
+>barra de seleção rápida</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
 >U</keycap
 ></keycombo>
               </para>
@@ -1457,9 +1417,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Esquerda</keycap
-></keycombo>
+>&Ctrl;&Shift; &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1473,9 +1431,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Direita</keycap
-></keycombo>
+>&Ctrl;&Shift; &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1489,9 +1445,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Cima</keycap
-></keycombo>
+>&Ctrl;&Shift; &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1505,9 +1459,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->Baixo</keycap
-></keycombo>
+>&Ctrl;&Shift; &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1515,6 +1467,30 @@
 >Fecha o <link linkend="cmdline"
 >emulador de terminal</link
 >, independentemente, quer a linha de comando esteja visível ou não.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &PgUp;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Move a aba atual para a esquerda.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &PgDn;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Move a aba atual para a direita.</para>
             </entry>
           </row>
         </tbody>
@@ -1528,24 +1504,22 @@
     <informaltable>
       <tgroup cols="2">
         <tbody>
-<!--          <row>
+          <row>
             <entry>
               <para>
-                <keycombo action="simul">
-                &Ctrl;&Alt;
-                <keycap
->J</keycap
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>E</keycap
 ></keycombo>
               </para>
             </entry>
             <entry>
               <para
-><link linkend="javascript_console"
->JavaScript console</link
-></para>
+>Mostrar/ocultar o <link linkend="cmdline"
+>terminal embutido</link
+>.</para>
             </entry>
-	  </row
-> disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
+          </row>
           <row>
             <entry>
               <para>
@@ -1610,25 +1584,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Alt; <keycap
->T</keycap
-></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para
->Mostrar/ocultar o <link linkend="cmdline"
->emulador de terminal</link
->.</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul"
->&Ctrl;&Alt; <keycap
->Esquerda</keycap
-></keycombo>
+>&Ctrl;&Alt; &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1642,9 +1598,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl;&Alt; <keycap
->Direita</keycap
-></keycombo>
+>&Ctrl;&Alt; &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1727,9 +1681,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
->PageDown</keycap
-></keycombo>
+>&Ctrl; &PgDn;</keycombo>
               </para>
             </entry>
             <entry>
@@ -1748,7 +1700,7 @@
             </entry>
             <entry>
               <para
->Combinações de teclas padrão (do &kde;).</para>
+>Combinações de teclas padrão (do &plasma;).</para>
             </entry>
           </row>
           <row>
@@ -1762,7 +1714,7 @@
             </entry>
             <entry>
               <para
->Combinações de teclas padrão (do &kde;).</para>
+>Combinações de teclas padrão (do &plasma;).</para>
             </entry>
           </row>
         </tbody>
@@ -1787,7 +1739,11 @@
               <para
 ><link linkend="quicksearch"
 >Pesquisa rápida</link
-></para>
+>, seleção rápida ou <link linkend="quickfilter"
+>filtro rápido</link
+>. Consulte <link linkend="konfig-panel-general"
+>esta página de configuração</link
+> para saber como configurar o modo padrão.</para>
             </entry>
           </row>
           <row>
@@ -1848,7 +1804,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; <keycap
+>&Ctrl; <keycap
 >Delete</keycap
 ></keycombo>
               </para>
@@ -1856,26 +1812,20 @@
             <entry>
               <para>
                 <link linkend="basic"
->Apagar de forma permanente</link>
+>Alternar o excluir.</link>
               </para>
             </entry>
           </row>
           <row>
             <entry>
-              <para>
-                <keycap
->Espaço</keycap>
-              </para>
+              <para
+>&Space; </para>
             </entry>
             <entry>
               <para
 ><link linkend="selecting-files"
 >Sobre um arquivo:</link
 > ativar/desativar a seleção do arquivo abaixo, sem afetar a seleção dos outros arquivos/pastas.</para>
-              <para
-><link linkend="calculate"
->Sobre uma pasta:</link
-> calcular o tamanho, sem afetar a seleção dos outros arquivos/pastas.</para>
             </entry>
           </row>
           <row>
@@ -1890,16 +1840,12 @@
           </row>
           <row>
             <entry>
-              <para>
-                <keycap
->Insert</keycap>
-              </para>
+              <para
+>&Ins; </para>
             </entry>
             <entry>
               <para
->Faz o mesmo que a tecla de <keycap
->Space</keycap
-> e <link linkend="selecting-files"
+>Faz o mesmo que a tecla de &Space; e <link linkend="selecting-files"
 >desce uma posição para comutar o arquivo seguinte.</link
 ></para>
             </entry>
@@ -1918,10 +1864,10 @@
           </row>
           <row>
             <entry>
-              <para>
-                <keycap
->Home</keycap>
-              </para>
+              <para
+><keycap
+>Home</keycap
+> </para>
             </entry>
             <entry>
               <para
@@ -1930,10 +1876,10 @@
           </row>
           <row>
             <entry>
-              <para>
-                <keycap
->End</keycap>
-              </para>
+              <para
+><keycap
+>End</keycap
+> </para>
             </entry>
             <entry>
               <para
@@ -1959,11 +1905,7 @@
           <row>
             <entry>
               <para
-><keycap
->Cima</keycap
-> e <keycap
->Baixo</keycap
-></para>
+>Seta &Up; e seta &Down;</para>
             </entry>
             <entry>
               <para
@@ -1988,9 +1930,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
->Cima</keycap
-></keycombo>
+>&Ctrl; &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2002,9 +1942,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
->Baixo</keycap
-></keycombo>
+>&Ctrl; &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2036,7 +1974,6 @@
 >Inserir o nome do arquivo / pasta atual, com a localização completa, na posição atual da linha de comando.</para>
             </entry>
           </row>
-          <!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
         </tbody>
       </tgroup>
     </informaltable>
@@ -2066,7 +2003,7 @@
               <para
 >Comuta entre um <link linkend="termemu"
 >Emulador de Terminal</link
-> normal e de tela inteira.</para>
+> normal e de tela cheia.</para>
             </entry>
           </row>
             <row>
@@ -2087,9 +2024,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
->Cima</keycap
-></keycombo>
+>&Ctrl; &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2101,9 +2036,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Ctrl; <keycap
->Baixo</keycap
-></keycombo>
+>&Ctrl; &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2129,9 +2062,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Shift; <keycap
->Insert</keycap
-></keycombo>
+>&Shift; &Ins;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2139,8 +2070,6 @@
 >Inserir a partir da área de transferência.</para>
             </entry>
           </row>
-
-          <!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
         </tbody>
       </tgroup>
     </informaltable>
@@ -2150,12 +2079,6 @@
       <emphasis role="bold"
 >Sincronizar</emphasis>
     </para>
-    <note>
-      <para
->Por padrão, esta funcionalidade é desativada em tempo de compilação. Veja o <link linkend="synchronizer"
->capítulo correspondente deste manual</link
-> para ver as instruções de ativação. </para>
-    </note>
     <para
 >Combinações de teclas da <link linkend="synchronizer"
 >Sincronização</link
@@ -2181,9 +2104,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Baixo</keycap
-></keycombo>
+>&Alt; &Down;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2195,9 +2116,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Cima</keycap
-></keycombo>
+>&Alt; &Up;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2209,9 +2128,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Esquerda</keycap
-></keycombo>
+>&Alt; &Left;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2223,9 +2140,7 @@
             <entry>
               <para>
                 <keycombo action="simul"
->&Alt; <keycap
->Direita</keycap
-></keycombo>
+>&Alt; &Right;</keycombo>
               </para>
             </entry>
             <entry>
@@ -2323,8 +2238,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
-><keycap
->Meta</keycap
+><keysym
+>Meta</keysym
 > <keycap
 >A</keycap
 > </keycombo>
@@ -2339,8 +2254,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
-><keycap
->Meta</keycap
+><keysym
+>Meta</keysym
 > <keycap
 >1</keycap
 > </keycombo>
@@ -2355,8 +2270,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
-><keycap
->Meta</keycap
+><keysym
+>Meta</keysym
 > <keycap
 >2</keycap
 > </keycombo>
@@ -2371,8 +2286,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
-><keycap
->Meta</keycap
+><keysym
+>Meta</keysym
 > <keycap
 >3</keycap
 > </keycombo>
@@ -2387,8 +2302,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
-><keycap
->Meta</keycap
+><keysym
+>Meta</keysym
 > <keycap
 >4</keycap
 > </keycombo>
@@ -2403,8 +2318,8 @@
             <entry>
               <para>
                 <keycombo action="simul"
-><keycap
->Meta</keycap
+><keysym
+>Meta</keysym
 > <keycap
 >F5</keycap
 ></keycombo>
@@ -2415,6 +2330,35 @@
                 <link linkend="useractions-menu"
 >Criar uma cópia de segurança do arquivo atual (Ação do Usuário Padrão).</link>
               </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- GLOBAL SHORTCUTS -->
+    <para>
+      <emphasis role="bold"
+>Atalhos globais padrão</emphasis>
+    </para>
+    <para
+>Atalhos globais são registrados no KDE Plasma e podem ser ativados mesmo quando o Krusader não é o aplicativo atualmente em execução.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+><keysym
+>Meta</keysym
+> <keycap
+>K</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Traz a janela principal para o topo.</para>
             </entry>
           </row>
         </tbody>
@@ -2450,11 +2394,13 @@
       </listitem>
       <listitem>
         <para
->&systemsettings; -&gt; <guilabel
->Aparência e comportamento comuns</guilabel
-> -&gt; <guilabel
->Atalhos e gestos</guilabel
-></para>
+>Módulo <menuchoice
+><guimenu
+>Aparência e comportamento comuns</guimenu
+><guisubmenu
+>Atalhos e gestos</guisubmenu
+></menuchoice
+> no &systemsettings; do &plasma;.</para>
       </listitem>
       <listitem>
         <para

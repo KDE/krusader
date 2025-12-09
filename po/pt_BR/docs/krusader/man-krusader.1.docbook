@@ -1,5 +1,13 @@
 <?xml version="1.0" ?>
 <!DOCTYPE refentry PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+
 <!ENTITY % Brazilian-Portuguese "INCLUDE">
 ]>
 
@@ -18,9 +26,9 @@
 >krusader-devel@googlegroups.com</email
 ></author>
 <date
->22/02/2011</date>
+>06/05/2017</date>
 <productname
->KDE</productname>
+>Krusader</productname>
 </refentryinfo>
 
 <refmeta>
@@ -45,13 +53,9 @@
 ><command
 >krusader</command
 > <arg choice="opt"
->Opções Genéricas do KDE</arg
-> <arg choice="opt"
->Opções Genéricas do Qt</arg
-> <arg choice="opt"
 >Opções</arg
 > <arg choice="plain"
->URL</arg
+>url</arg
 > </cmdsynopsis>
 </refsynopsisdiv>
 
@@ -59,7 +63,7 @@
 <title
 >Descrição</title>
 <para
->O Krusader é um gerenciador de arquivos avançado de painel duplo (semelhante ao Commander) para o KDE e outros ambientes do mundo *nix, semelhante ao Midnight ou ao Total Commander. Oferece todas as funcionalidades de gerenciamento de arquivos que possa desejar. Além disso, tratamento completo de pacotes, suporte para sistemas de arquivos montados, &FTP;, módulos de pesquisa avançados, visualizador/editor, sincronização de pastas (desativado, por padrão) comparação dos conteúdos dos arquivos, mudança de nomes de arquivos em lote, e muito mais. Suporta os seguintes formatos de pacotes: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip e 7-zip, e é capaz de lidar com outros KIOSlaves, como o smb:// ou o fish://. É totalmente configurável (quase), muito amigável, rápido e encaixa-se bem no seu ambiente de trabalho! :-) Experimente-o.</para>
+>O Krusader é um gerenciador de arquivos avançado de painel duplo (semelhante ao Commander) para o Plasma e outros ambientes do mundo *nix, semelhante ao Midnight ou ao Total Commander. Oferece todas as funcionalidades de gerenciamento de arquivos que possa desejar. Além disso, tratamento completo de pacotes, suporte para sistemas de arquivos montados, &FTP;, módulos de pesquisa avançados, visualizador/editor, sincronização de pastas (desativado, por padrão) comparação dos conteúdos dos arquivos, mudança de nomes de arquivos em lote, e muito mais. Suporta os seguintes formatos de pacotes: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip e 7-zip, e é capaz de lidar com outros KIOSlaves, como o smb:// ou o fish://. É totalmente configurável (quase), muito amigável, rápido e encaixa-se bem no seu ambiente de trabalho! :-) Experimente-o.</para>
 </refsect1>
 
 <refsect1
@@ -67,72 +71,27 @@
 >Opções</title>
 <variablelist>
   <varlistentry>
-  <term
+      <term
 ><option
->--left</option
-> <parameter
-><replaceable
->&lt;localização&gt;</replaceable
-></parameter
-></term>
-  <listitem>
-<para
->iniciar o painel esquerdo na <replaceable
->&lt;localização&gt;</replaceable
-></para>
-  </listitem>
-  </varlistentry>
-  <varlistentry>
-  <term
-><option
->--right</option
-> <parameter
-><replaceable
->&lt;localização&gt;</replaceable
-></parameter
-></term>
-  <listitem>
-<para
->iniciar o painel direito na <replaceable
->&lt;localização&gt;</replaceable
-></para>
-  </listitem>
-  </varlistentry>
-  <varlistentry>
-  <term
-><option
->--profile </option
-><parameter
-><replaceable
->&lt;perfil-painel&gt;</replaceable
-></parameter
-></term>
-  <listitem>
-<para
->Carregar o <replaceable
->&lt;perfil-painel&gt;</replaceable
-> na inicialização</para
-> 
-  </listitem>
-  </varlistentry>
-  <varlistentry>
-  <term
-><option
+>-h</option
+> <option
 >--help</option
 ></term>
   <listitem>
 <para
->mostrar as opções gerais</para>
+>isto lista as opções disponíveis na linha de comando</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term
+      <term
 ><option
->--help-all</option
+>-v</option
+> <option
+>--version</option
 ></term>
   <listitem>
 <para
->mostrar todas as opções</para>
+>lista informações de versão para o &krusader;</para>
   </listitem>
   </varlistentry>
   <varlistentry>
@@ -148,21 +107,72 @@
   <varlistentry>
   <term
 ><option
->-v, --version</option
-></term>
-  <listitem>
-<para
->mostrar a versão</para>
-  </listitem>
-  </varlistentry>
-  <varlistentry>
-  <term
-><option
 >--license</option
 ></term>
   <listitem>
 <para
 >mostrar a licença</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--left</option
+> <parameter
+><replaceable
+>&lt;localização&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>inicia o painel esquerdo na <replaceable
+>&lt;localização&gt;</replaceable
+></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--right</option
+> <parameter
+><replaceable
+>&lt;localização&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>inicia o painel direito na <replaceable
+>&lt;localização&gt;</replaceable
+></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--profile </option
+><parameter
+><replaceable
+>&lt;perfil-painel&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>carrega o <replaceable
+>&lt;perfil-painel&gt;</replaceable
+> na inicialização</para
+> 
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-d</option
+> <option
+>--debug</option
+></term>
+  <listitem>
+<para
+>ativa a saída de depuração</para>
   </listitem>
   </varlistentry>
   <varlistentry>
@@ -180,20 +190,6 @@
 
 <refsect1
 ><title
->Opções do Qt</title>
-<para
->O "$ krusader --help-qt" mostra todas as opções do Qt</para>
-</refsect1>
-
-<refsect1
-><title
->Opções do KDE</title>
-<para
->O "$ krusader --help-kde" mostra todas as opções do KDE</para>
-</refsect1>
-
-<refsect1
-><title
 >Exemplos</title>
 
 <itemizedlist>
@@ -207,7 +203,7 @@
 ></listitem>
   <listitem
 ><para
->$ krusader --profile=gerenciamento_ftp</para
+>$ krusader --profile=ftp_management</para
 ></listitem>
 
 </itemizedlist>
@@ -227,16 +223,33 @@
 <para
 ><filename
 >~/.local/share/krusader/krbookmarks.xml</filename
+> ou <filename
+>krusader/krbookmarks.xml</filename
+> na pasta que pode ser determinada usando o comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
 ></para>
 
 <para
 ><filename
->$KDEDIR/share/kxmlgui5/krusader/krusaderui.rc</filename
-> ou</para>
+>~/.local/share/krusader/useractions.xml</filename
+> ou <filename
+>krusader/useractions.xml</filename
+> na pasta que pode ser determinado usando o comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+></para>
 
 <para
 ><filename
 >~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> ou <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> na pasta que pode ser determinada usando o comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
 ></para>
 
 </refsect1>
@@ -284,10 +297,20 @@
 ></para>
 
 <para
->Krusader 2.xx.x: KDE 4</para>
+>Krusader 2.0-2.4: KDE 4</para>
 
 <para
->A última versão do Krusader pode ser encontrada na página Web do Krusader.</para>
+><emphasis
+>KDE Frameworks 5</emphasis
+></para>
+
+<para
+>Krusader 2.5 e posterior</para>
+
+<para
+>A última versão do Krusader pode ser encontrada no <ulink url="https://krusader.org/"
+>site do Krusader</ulink
+>.</para>
 
 </refsect1>
 
@@ -329,16 +352,16 @@
 >Gerenciador de Montagens, Localização, suporte para o KRename.</para>
 
 <para
->Modo de Administrador, painéis por páginas, painel instantâneo. Modos de seleção do mouse.</para>
+>Modo de administrador, Painéis por abas, Barra lateral. Modos de seleção do mouse.</para>
 
 <para
 >Perfis para painéis, combinações de teclas, cores.</para
 > 
 
 <para
->Para mais funcionalidades, leia o documento em <ulink url="http://docs.kde.org/development/en/extragear-utils/krusader/features.html"
->http://docs.kde.org/development/en/extragear-utils/krusader/features.html</ulink
-></para>
+>Para mais funcionalidades, leia a <ulink url="https://docs.kde.org/?application= krusader&amp;branch=stable5&amp;path=features.html"
+>Página de funcionalidades</ulink
+>.</para>
 
 </refsect1>
 
@@ -365,12 +388,12 @@
 >O Krusader está traduzido para várias línguas.</para>
 
 <para
-><ulink url="http://l10n.kde.org/stats/gui/trunk-kde4/po/krusader.po/"
->http://l10n.kde.org/stats/gui/trunk-kde4/po/krusader.po/</ulink
+><ulink url="https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/"
+>https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/</ulink
 ></para>
 
 <para
->Leia o <ulink url="http://l10n.kde.org/docs/translation-howto/"
+>Leia o <ulink url="https://l10n.kde.org/docs/translation-howto/"
 >manual de traduções do KDE</ulink
 >, caso queira traduzir o Krusader para a sua língua nativa.</para>
 </refsect1>
@@ -379,24 +402,24 @@
 ><title
 >FAQ</title>
 <para
->A última versão da FAQ do KRUSADER FAQ poderá ser encontrada <ulink url="http://docs.kde.org/development/en/extragear-utils/krusader/faq.html"
->aqui</ulink
+>A última versão da FAQ do KRUSADER FAQ poderá ser encontrada no <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;path=faq.html"
+>Site de documentação do KDE</ulink
 >.</para>
 </refsect1>
 
 <refsect1
 ><title
 >Veja também</title>
-<para
->O Manual do Krusader, no seu menu de ajuda.</para>
+<simplelist>
+<member
+>O Manual do Krusader, no seu menu de ajuda.</member>
 
-<para
->A página do Krusader na World Wide Web:</para>
+<member
+>kf5options(7)</member>
 
-<para
-><ulink url='http://krusader.org'
->http://krusader.org</ulink
-></para>
+<member
+>qt5options(7)</member>
+</simplelist>
 </refsect1>
 
 <refsect1 id='authors'
@@ -412,7 +435,7 @@
 >Rafi Yanai, autor [yanai {*} users {.} sourceforge {.} net] (desvinculado)</para>
 
 <para
->Dirk Eschler, perito Web [deschler {*} users {.} sourceforge {.} net]</para>
+>Dirk Eschler, perito Web [deschler {*} users {.} sourceforge {.} net] (aposentado)</para>
 
 <para
 >Csaba Karai, Programador [ckarai {*} users {.} sourceforge {.} net] (desvinculado)</para>
@@ -427,10 +450,25 @@
 >Vaclav Juza, Programador [vaclavjuza {*} seznam {.} cz] (desvinculado)</para>
 
 <para
->Jan Lepper, Programador [jan_lepper {*} gmx {.} de]</para>
+>Jan Lepper, Programador [jan_lepper {*} gmx {.} de] (aposentado)</para>
 
 <para
->Andrey Matveyakin, Desenvolvedor [a.matveyakin {*} gmail {.} com]</para>
+>Andrey Matveyakin, Desenvolvedor [a.matveyakin {*} gmail {.} com] (aposentado)</para>
+
+<para
+>Davide Gianforte, Desenvolvedor [davide {*} gengisdave {.} org]</para>
+
+<para
+>Alexander Bikadorov, Desenvolvedor [alex.bikadorov {*} kdemail {.} net]</para>
+
+<para
+>Martin Kostolny, Desenvolvedor [clearmartin {*} zoho {.} com]</para>
+
+<para
+>Toni Asensi Esteve, Desenvolvedor [toni.asensi {*} kdemail {.} net]</para>
+
+<para
+>Nikita Melnichenko, Desenvolvedor [nikita+kde {*} melnichenko {.} name]</para>
 
 <para
 >Frank Schoolmeesters, Coordenador da Documentação e Marketing [frank_schoolmeesters {*} yahoo {.} com] (desvinculado)</para>

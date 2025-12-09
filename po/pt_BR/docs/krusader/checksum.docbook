@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="checksum">
   <title
 >Criação e verificação de códigos de validação (checksum)</title>
@@ -10,7 +16,7 @@
 > <guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Criar um código de validação</guimenuitem
+>Criar um código de validação...</guimenuitem
 > </menuchoice
 >: o &krusader; verifica as ferramentas que tem e, se estas ferramentas permitirem um funcionamento recursivo (no caso de ter selecionado pastas), poderá gerar um código de validação, escolhendo o tipo de código na lista (<guilabel
 >md5</guilabel
@@ -26,7 +32,7 @@
 > <guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Verificar o código de validação</guimenuitem
+>Verificar o código de validação...</guimenuitem
 > </menuchoice
 >: o &krusader; verifica se tem alguma ferramenta que suporte o tipo de código de validação que necessita (a partir do arquivo de códigos indicado por você) e mostra os arquivos que falharam esses testes de validação (se existirem).</para>
   <para

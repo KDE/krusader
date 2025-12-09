@@ -1,26 +1,12 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <chapter id="konfigurator">
-  <!-- **********************************************************************
-                            konfigurator.docbook
-                          ++++++++++++++++++++++++
-  copyright            : (C) 2000 - 2010
-                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                          & the Krusader Krew
-  e-mail               : krusader@users.sourceforge.net
-  web site             : http://www.krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
   <title
->Konfigurador: Centro de Configuração do &krusader;</title>
+>Konfigurator: Centro de Configuração do &krusader;</title>
   <indexterm>
     <primary
 >Configurar</primary>
@@ -40,7 +26,9 @@
 >Fechar</guibutton
 > irá encerrar o Konfigurador; finalmente, pressionar <guibutton
 >Padrões</guibutton
->, voltará a aplicar a configuração "de fábrica" do &krusader;'s. O Konfigurador está dividido em páginas, contendo cada uma os itens relacionados com essa página. Para algumas alterações na &GUI;, você terá que fechar e reiniciar o &krusader;.</para>
+>, voltará a aplicar a configuração <quote
+>de fábrica</quote
+> do &krusader;'s. O Konfigurador está dividido em páginas, contendo cada uma os itens relacionados com essa página. Para algumas alterações na &GUI;, você terá que fechar e reiniciar o &krusader;.</para>
 
 <note>
  <para
@@ -106,6 +94,12 @@
 >Modo de Instância Única</guilabel
 >: Permite a execução apenas de uma única instância do &krusader;.</para>
             </listitem>
+            <listitem>
+              <para
+><guilabel
+>Tema de ícones alternativo</guilabel
+>: Permite configurar um tema de ícones alternativo para o &krusader;. Sempre que um ícone não for encontrado no tema de ícones do sistema, este tema será usado como alternativo. Se o tema alternativo não contiver o ícone, Breeze ou Oxygen serão usados, caso estejam presentes.</para>
+            </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
@@ -117,66 +111,6 @@
         <listitem>
           <para
 >Determina as partes da interface do usuário que estão visíveis após a inicialização. <itemizedlist>
-            <listitem>
-              <para
-><guilabel
->Salvar a configuração ao sair</guilabel
->: Se estiver assinalado, restaura os componentes da interface para a condição em que estavam no último encerramento.</para>
-            </listitem>
-            <listitem>
-              <para
-><guilabel
->Mostrar a barra de estado</guilabel
->: Se estiver assinalado, a <link linkend="mainwindow"
->Barra de Estado</link
-> ficará visível após a inicialização.</para>
-            </listitem>
-	    <listitem>
-              <para
-><guilabel
->Mostrar a barra de ações</guilabel
->: Se estiver assinalada, a <link linkend="actions_toolbar"
->Barra de ações</link
-> ficará visível após a inicialização.</para>
-            </listitem>
-	    <listitem>
-              <para
-><guilabel
->Mostrar a barra de ferramentas</guilabel
->: Se estiver assinalada, a <link linkend="mainwindow"
->Barra Principal</link
-> ficará visível após a inicialização.</para>
-            </listitem>
-            <listitem>
-              <para
-><guilabel
->Mostrar as teclas de funções</guilabel
->: Se estiver assinalado, a <link linkend="fnkeys"
->Barra de Teclas FN</link
-> fica visível após a inicialização.</para>
-            </listitem>
-            <listitem>
-              <para
-><guilabel
->Mostrar a linha de comando</guilabel
->: Se estiver assinalado, a <link linkend="cmdline"
->Linha de Comando</link
-> ficará visível após a inicialização.</para>
-            </listitem>
-            <listitem>
-              <para
-><guilabel
->Atualizar as configurações padrão do painel</guilabel
->: Se estiver assinalado, as configurações do painel serão atualizadas após a inicialização.</para>
-            </listitem>
-            <listitem>
-              <para
-><guilabel
->Mostrar o emulador de terminal</guilabel
->: Se estiver assinalado, o <link linkend="termemu"
->Emulador de Terminal</link
-> ficará visível após a inicialização.</para>
-            </listitem>
             <listitem>
               <para
 ><guilabel
@@ -192,8 +126,58 @@
             <listitem>
               <para
 ><guilabel
+>Atualizar as configurações padrão do painel</guilabel
+>: Se estiver assinalado, as configurações do painel serão atualizadas após a inicialização.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
 >Iniciar na área de notificação</guilabel
 >: se estiver assinalado, o &krusader; é iniciado na área de notificação (se a minimização para a mesma estiver ativa), sem mostrar a janela principal.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Salvar configurações do componente ao sair</guilabel
+>: Se estiver assinalado, restaura os componentes da interface para a condição em que estavam no último encerramento.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostrar as teclas de funções</guilabel
+>: Se estiver assinalado, a <link linkend="fnkeys"
+>Barra de Teclas FN</link
+> fica visível após a inicialização.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostrar a barra de estado</guilabel
+>: Se estiver assinalado, a <link linkend="mainwindow"
+>Barra de Estado</link
+> ficará visível após a inicialização. Disponível somente se o item <guilabel
+>Salvar configurações do componente ao sair</guilabel
+> estiver desmarcado.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostrar a linha de comando</guilabel
+>: Se estiver assinalado, a <link linkend="cmdline"
+>Linha de Comando</link
+> ficará visível após a inicialização. Disponível somente se o item <guilabel
+>Salvar configurações do componente ao sair</guilabel
+> estiver desmarcado.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Mostrar terminal embutido</guilabel
+>: Se estiver assinalado, o <link linkend="termemu"
+>Emulador de Terminal</link
+> ficará visível após a inicialização. Disponível somente se o item <guilabel
+>Salvar configurações do componente ao sair</guilabel
+> estiver desmarcado.</para>
             </listitem>
           </itemizedlist
 ></para>
@@ -216,16 +200,30 @@
 >, <guilabel
 >Menu Multimídia</guilabel
 > e <guilabel
->Disposição</guilabel
+>Layout</guilabel
 >:</para>
 
     <sect2 id="konfig-panel-general">
       <title
 >Geral</title>
-      <para
+      <itemizedlist>
+        <title>
+          <guilabel
+>Barra de navegação</guilabel>
+        </title>
+        <listitem>
+          <para
 ><guilabel
->Barra de Origem Plana</guilabel
->: Se estiver assinalada, o &krusader; mostra o endereço da pasta atual numa barra plana (sem campo de edição).</para>
+>Modo de edição por padrão</guilabel
+>: Se selecionado, exibe o caminho editável na barra de navegação por padrão.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Exibir caminho completo por padrão</guilabel
+>: Se selecionado, sempre exibirá o caminho completo na barra de navegação por padrão.</para>
+        </listitem>
+      </itemizedlist>
       <itemizedlist>
         <title>
           <guilabel
@@ -234,7 +232,7 @@
         <listitem>
           <para
 ><guilabel
->Selecionar Automaticamente as Pastas</guilabel
+>Selecionar automaticamente as pastas</guilabel
 >: Quando <link linkend="edit-menu"
 >selecionar um grupo de arquivos</link
 > (quer usando a opção para <guilabel
@@ -249,7 +247,9 @@
 >A mudança de nome seleciona a extensão</guilabel
 >: Quando <link linkend="renaming"
 >você renomear um arquivo</link
->, o texto inteiro ficará selecionado. Se quiser uma mudança de nomes apenas do nome sem extensão, como no Commander, desligue este item.</para>
+>, o texto inteiro ficará selecionado. Se quiser uma mudança de nomes apenas do nome sem extensão, como no <trademark class="copyright"
+>Total Commander</trademark
+>, desmarque este item.</para>
         </listitem>
         <listitem>
           <para
@@ -282,10 +282,38 @@
         <listitem>
           <para
 ><guilabel
->Mostrar os botões para abrir/fechar páginas</guilabel
->: Se estiver assinalada, o &krusader; mostra os botões de criação e fecho das <link linkend="folder-tabs"
->páginas de pastas</link
+>Aba expansível</guilabel
+>: Se marcado, &krusader; expande as <link linkend="folder-tabs"
+>abas de pasta</link
+> para preencher toda a barra.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Fechar aba com clique duplo</guilabel
+>: Se selecionado, o &krusader; permite fechar as <link linkend="folder-tabs"
+>abas de pasta</link
+> com um clique duplo nelas.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Inserir abas após a atual</guilabel
+>: Se selecionado,o  &krusader; insere novas abas à direita da atual em vez de colocá-las no final da <link linkend="folder-tabs"
+>Barra de abas</link
 >.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Duplicar aba ativa com um clique</guilabel
+>: Permite selecionar o modo de duplicação da aba ativa (<guimenuitem
+>Desativado</guimenuitem
+> (sem associação de clique), <guimenuitem
+>Alt+Clique</guimenuitem
+> ou <guimenuitem
+>Ctrl+Clique</guimenuitem
+>).</para>
         </listitem>
         <listitem>
           <para
@@ -299,55 +327,129 @@
 >Topo</guimenuitem
 >).</para>
         </listitem>
-      </itemizedlist>
-      <itemizedlist>
-        <title>
-          <guilabel
->Pesquisa Rápida/Filtro Rápido</guilabel>
-        </title>
         <listitem>
           <para
 ><guilabel
->Pesquisa rápida com novo estilo</guilabel
->: É usada a nova funcionalidade de <link linkend="quicksearch"
->Pesquisa Rápida</link
+>Mostrar o botão para fechar abas</guilabel
+>: Se selecionada, o &krusader; mostra o botão de fechamento das <link linkend="folder-tabs"
+>abas</link
 >.</para>
         </listitem>
         <listitem>
           <para
 ><guilabel
->Pesquisa Rápida/Filtro Rápido com distinção de maiúsculas</guilabel
->: Quando usar a <link linkend="quicksearch"
->Pesquisa Rápida</link
-> ou o <link linkend="quickfilter"
->Filtro Rápido</link
+>Mostrar o botão para nova aba</guilabel
+>: Se selecionada, o &krusader; mostra o botão de nova aba na <link linkend="folder-tabs"
+>barra de abas</link
+>.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Mostrar barra de abas em uma única aba</guilabel
+>: Se selecionado, o &krusader; exibe a barra de abas mesmo que haja apenas uma <link linkend="folder-tabs"
+>aba</link
+> no painel.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>O botão de nova aba duplica uma aba</guilabel
+>: Se selecionado, o botão de nova aba duplica uma <link linkend="folder-tabs"
+>aba</link
+>, caso contrário, abre uma aba na pasta inicial.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Barra de pesquisa</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Comece digitando</guilabel
+>: permite selecionar se o recurso <link linkend="quicksearch"
+>busca rápida</link
+> está sendo usado. Quando selecionado, você pode abrir a barra de pesquisa e começar a pesquisar digitando algo enquanto visualiza o conteúdo da pasta no painel ativo.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Distinção de maiúsculas e minúsculas</guilabel
+>: Quando usar a funcionalidade de <link linkend="quicksearch"
+>pesquisa</link
+> ou <link linkend="quickfilter"
+>filtro</link
 >: Se estiver assinalada (como acontece por padrão no &UNIX;), todos os arquivos cujo início sejam letras maiúsculas aparecerão antes dos em minúsculas; caso contrário, todos os arquivos que começarem por uma determinada letra (maiúscula ou minúscula) serão apresentados em conjunto.</para>
         </listitem>
         <listitem>
           <para
 ><guilabel
->O Cima/Baixo cancela a Pesquisa Rápida</guilabel
->: Pressionar os cursores <keycap
->Cima</keycap
-> ou <keycap
->Baixo</keycap
->, cancela a janela de <link linkend="quicksearch"
->Pesquisa Rápida</link
+>Seta para cima/para baixo cancela a pesquisa</guilabel
+>: Pressionar as teclas &Up; ou &Down; cancela a <link linkend="quicksearch"
+>barra de pesquisa</link
 >.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Navegação entre pastas com a seta para a direita</guilabel
+>: Se selecionada, pressionar a tecla &Right; entra na pasta se nenhuma intenção de edição de texto de pesquisa for capturada. </para>
         </listitem>
         <listitem>
           <para
 ><guilabel
 >Posição </guilabel
 >: Permite-lhe escolher a posição da barra de <link linkend="quicksearch"
->Pesquisa Rápida</link
-> e <link linkend="quickfilter"
->Filtro Rápido</link
+>pesquisa</link
+> e de <link linkend="quickfilter"
+>filtro</link
 > (<guimenuitem
 >Fundo</guimenuitem
 > ou <guimenuitem
 >Topo</guimenuitem
 >).</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Modo padrão</guilabel
+>: Permite escolher o modo padrão da barra de pesquisa entre <link linkend="quicksearch"
+>Pesquisar</link
+>, <guilabel
+>Selecionar</guilabel
+> e <link linkend="quickfilter"
+>Filtrar</link
+>. Você pode alterar o modo posteriormente usando a própria barra de pesquisa.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Pesquisa de favoritos</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Sempre mostrar a barra de pesquisa</guilabel
+>: Se selecionada, torna a <link linkend="bookman"
+>barra de pesquisa de favoritos</link
+> sempre visível.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Pesquisar em itens especiais</guilabel
+>: Se selecionado, <link linkend="bookman"
+>Pesquisa de favoritos</link
+> também se aplica a itens especiais no menu de favoritos, como <guimenuitem
+>Lixeira</guimenuitem
+>, <guimenuitem
+>&URL;s populares</guimenuitem
+>, <guimenuitem
+>Voltar</guimenuitem
+>, &etc;</para>
         </listitem>
       </itemizedlist>
       <itemizedlist>
@@ -386,6 +488,12 @@
         <listitem>
           <para
 ><guilabel
+>Atraso da dica de ferramenta (ms)</guilabel
+>: Permite configurar o atraso em milissegundos entre o momento em que você para o ponteiro do mouse sobre um item em uma lista de arquivos e o momento em que a dica de ferramenta será exibida.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
 >Usar tamanho do arquivo legível</guilabel
 >: Se estiver assinalada, o tamanho do arquivo aparece em kB, MB &etc;, e não em 'bytes' como acontece por padrão).</para>
         </listitem>
@@ -393,23 +501,33 @@
           <para
 ><guilabel
 >Permissões numéricas</guilabel
->: A coluna das permissões (página <guilabel
->Painel</guilabel
-> <guilabel
->Ver</guilabel
->) mostra os números octais '0755' em vez de 'rwxr-xr-x'.</para>
+>: A coluna de <guilabel
+>Permissão</guilabel
+> mostra os números octais '<literal
+>0755</literal
+>' em vez de '<literal
+>rwxr-xr-x</literal
+>'.</para>
         </listitem>
         <listitem>
           <para
 ><guilabel
 >Mostrar os arquivos ocultos</guilabel
->: Se estiver assinalada, o &krusader; mostra os arquivos com "ponto inicial", que costumam ficar ocultos caso contrário.</para>
+>: Se estiver assinalada, o &krusader; mostra os arquivos com <quote
+>ponto inicial</quote
+>, que costumam ficar ocultos caso contrário.</para>
         </listitem>
         <listitem>
           <para
 ><guilabel
 >Carregar os ícones de pastas definidos pelo usuário</guilabel
 >: Se estiver assinalado, o &krusader; irá carregar os ícones de pastas que o usuário tiver definido.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Sempre mostrar o item atual</guilabel
+>: Se marcado, &krusader; mostra a decoração da borda do item atual no painel inativo.</para>
         </listitem>
         <listitem>
           <para>
@@ -493,7 +611,7 @@
           <para
 ><guilabel
 >Tamanho de ícone padrão</guilabel
->: Permite-lhe alterar o tamanho dos ícones nas listas de arquivos. Os tamanhos disponíveis são 16x16, 22x22, 32x32 e 48x48 pixels.</para>
+>: Permite-lhe alterar o tamanho dos ícones nas listas de arquivos. Os tamanhos disponíveis são 12x12, 16x16, 22x22, 32x32, 48x48, 64x64, 128x128 e 256x256 pixels.</para>
         </listitem>
         <listitem>
           <para
@@ -534,7 +652,7 @@
               <para
 ><guilabel
 >Tipo</guilabel
->: Mostra o campo do tipo MIME.</para>
+>: Mostra o campo do tipo &MIME;.</para>
             </listitem>
             <listitem>
               <para
@@ -552,19 +670,23 @@
               <para
 ><guilabel
 >Permissões</guilabel
->: Mostra as permissões completas &eg; "rwxr-xr-x" ou como números octais '0755', ao desativar/ativar as <guilabel
->Permissões Numéricas</guilabel
+>: Mostra as permissões completas &eg; '<literal
+>rwxr-xr-x</literal
+>' ou como números octais '<literal
+>0755</literal
+>', ao desativar/ativar as <guilabel
+>Permissões numéricas</guilabel
 > na aba <guilabel
->Painel</guilabel
-> <guilabel
->Exibir</guilabel
+>Exibição do painel</guilabel
 >.</para>
             </listitem>
             <listitem>
               <para
 ><guilabel
 >rwx</guilabel
->: Mostra apenas as permissões do usuário atual &eg; "-rw".</para>
+>: Mostra apenas as permissões do usuário atual &eg; <quote
+>-rw</quote
+>.</para>
             </listitem>
             <listitem>
               <para
@@ -639,12 +761,6 @@
         <listitem>
           <para>
           <guilabel
->Botão abrir</guilabel
-></para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel
 >Botão igual (=)</guilabel
 ></para>
         </listitem>
@@ -695,7 +811,7 @@
         <listitem>
           <para
 ><guilabel
->Modo do Konqueror</guilabel
+>Modo do &konqueror;</guilabel
 >: Pressionar o &LMB; seleciona os arquivos -- você poderá clicar e selecionar vários arquivos. O menu do botão direito irá aparecer quando clicar com o &RMB;.</para>
         </listitem>
         <listitem>
@@ -704,7 +820,7 @@
 >Modo do Total Commander</guilabel
 >: Pressionar o &RMB; seleciona vários arquivos, enquanto que o menu do botão direito só irá aparecer quando <guilabel
 >pressionar e manter pressionado</guilabel
-> o &RMB;. O botão esquerdo do mouse não seleciona, mas define o arquivo atual sem afetar a seleção presente.</para>
+> o &RMB;. O &LMB; não seleciona, mas define o arquivo atual sem afetar a seleção presente.</para>
         </listitem>
 	<listitem>
           <para
@@ -734,7 +850,13 @@
           <para
 ><guilabel
 >Obedecer à política de seleção global do KDE</guilabel
->: Clicar com o &LMB;, irá selecionar os arquivos -- Para usar a configuração global do &kde;:Configurações do sistema do &kde; -&gt; Dispositivos de entrada -&gt; Mouse.</para>
+>: Clicar com o &LMB;, irá selecionar os arquivos -- Para usar a configuração global: módulo <menuchoice
+><guimenu
+>Dispositivos de entrada</guimenu
+> <guimenuitem
+>Mouse </guimenuitem
+></menuchoice
+>nas &systemsettings; do &plasma;.</para>
         </listitem>
         <listitem>
           <para
@@ -742,55 +864,49 @@
             <listitem>
               <para>
                 <guilabel
->Baseado no modo de seleção do &kde;</guilabel>
+>Baseado no modo de seleção do &plasma;</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
                 <guilabel
->O botão esquerdo do mouse seleciona</guilabel>
+>O &LMB; seleciona</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
                 <guilabel
->O botão esquerdo do mouse preserva seleção</guilabel>
+>O &LMB; preserva seleção</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>O &Shift;/&Ctrl; + clique esquerdo seleciona</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
                 <guilabel
->O &Shift;/&Ctrl; + botão esquerdo do mouse seleciona</guilabel>
+>O &RMB; seleciona</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
                 <guilabel
->O botão direito do mouse seleciona</guilabel>
+>O &RMB; preserva a seleção</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>O &Shift;/&Ctrl; + clique direito seleciona</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
                 <guilabel
->O botão direito do mouse preserva a seleção</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel
->O &Shift;/&Ctrl; + botão direito do mouse seleciona</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel
->A barra de espaço desce</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel
->A barra de espaço calcula o espaço em disco</guilabel>
+>Barra de espaço move para baixo</guilabel>
               </para>
             </listitem>
             <listitem>
@@ -804,6 +920,12 @@
                 <guilabel
 >O botão direito do mouse mostra o menu de contexto imediatamente</guilabel>
               </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Um botão simples do mouse redefine a seleção</guilabel
+> - redefine a seleção com um clique do mouse sem modificadores (&ie;, &Shift; ou &Ctrl;). A seleção com &Shift;/&Ctrl; para o botão do mouse precisa estar habilitada para que essa configuração funcione. </para>
             </listitem>
           </itemizedlist
 ></para>
@@ -833,6 +955,40 @@
         <listitem>
           <para
 ><guilabel
+>Ocultar entradas SquashFS</guilabel
+>: O <ulink url="https://snapcraft.io/"
+>Snap</ulink
+> cria muitas <ulink url="https://en.wikipedia.org/wiki/SquashFS"
+>partições montadas com SquashFS</ulink
+>, que são quase inúteis no <link linkend="list_panel"
+>Menu de Mídia</link
+>, porque o <application
+>snap</application
+> as gerencia. É possível ocultar as montagens SquashFS marcando esta opção.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ocultar entradas desconhecidas do sistema de arquivos</guilabel
+>: Várias entradas desconhecidas do sistema de arquivos podem aparecer no <link linkend="list_panel"
+>Menu de Mídia</link
+>, sendo praticamente inúteis nesse menu. É possível ocultar entradas desconhecidas do sistema de arquivos marcando esta opção.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Ocultar os seguintes pontos de montagem</guilabel
+>: esta lista permite excluir itens indesejados do <link linkend="list_panel"
+>Menu de Mídia</link
+>. Pressione o botão <guibutton
+>+</guibutton
+> acima da lista para adicionar um ponto de montagem que você deseja ignorar. Caso decida remover o ponto de montagem adicionado da lista, basta clicar nele e pressionar o botão <guibutton
+>-</guibutton
+>. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
 >Mostrar tamanho:</guilabel
 > Permite a seleção da representação do tamanho no menu multimídia. Pode ser <guimenuitem
 >Sempre</guimenuitem
@@ -847,14 +1003,14 @@
     </sect2>
     <sect2 id="konfig-panel-layout">
       <title
->Leiaute</title>
+>Layout</title>
       <para
->Você poderá escolher a configuração da disposição e da moldura: <itemizedlist>
+>Você poderá escolher a configuração do layout e moldura: <itemizedlist>
         <listitem>
           <para
 ><guilabel
->Disposição</guilabel
-> permite definir a disposição. As opções padrão são <guimenuitem
+>Layout</guilabel
+> permite definir o layout. As opções padrão são <guimenuitem
 >Padrão</guimenuitem
 >, <guimenuitem
 >Compacta</guimenuitem
@@ -867,35 +1023,39 @@
 ><guilabel
 >Cor da Moldura:</guilabel
 > define a cor desta. Poderá ser <guimenuitem
->Definida pela Disposição</guimenuitem
+>Definido pelo layout</guimenuitem
 >, <guimenuitem
 >Nenhuma</guimenuitem
 > ou <guimenuitem
->Barra de Estado</guimenuitem
+>Barra de status</guimenuitem
 >.</para>
         </listitem>
         <listitem>
           <para
 ><guilabel
->Forma da Moldura:</guilabel
+>Forma da moldura:</guilabel
 > define o aspecto da moldura. Poderá ser <guimenuitem
->Definida pela Disposição</guimenuitem
+>Definido pelo layout</guimenuitem
 >, <guimenuitem
->Nenhuma</guimenuitem
+>Nenhum</guimenuitem
+>, <guimenuitem
+>Caixa</guimenuitem
 > ou <guimenuitem
->Barra de Estado</guimenuitem
+>Painel</guimenuitem
 >.</para>
         </listitem>
         <listitem>
           <para
 ><guilabel
->Sombra da Moldura:</guilabel
+>Sombra da moldura:</guilabel
 > define a cor da moldura. Poderá ser <guimenuitem
->Definida pela Disposição</guimenuitem
+>Definida pelo layout</guimenuitem
 >, <guimenuitem
 >Nenhuma</guimenuitem
+>, <guimenuitem
+>Elevada</guimenuitem
 > ou <guimenuitem
->Barra de Estado</guimenuitem
+>Rebaixada</guimenuitem
 >.</para>
         </listitem>
       </itemizedlist
@@ -910,8 +1070,8 @@
 >Painel da Lista</link
 > e da <link linkend="synchronizer"
 >Sincronização</link
-> (por padrão é desativado em tempo de compilação). A configuração de cores predefinida é a <guilabel
->cores padrão do KDE</guilabel
+>. A configuração de cores predefinida é a <guilabel
+>cores padrão do &kde;</guilabel
 >.</para>
 
     <variablelist>
@@ -925,8 +1085,8 @@
             <listitem>
               <para
 ><guilabel
->Usar as cores padrão do KDE</guilabel
->: este é o valor padrão; usa a configuração de cores do &kde;, definidas no &systemsettings;.</para>
+>Usar as cores padrão do &kde;</guilabel
+>: este é o valor padrão; usa a configuração de cores do &plasma;, definidas no &systemsettings;.</para>
             </listitem>
             <listitem>
               <para
@@ -936,7 +1096,7 @@
 >Fundo</guilabel
 > e do <guilabel
 >Fundo alternado</guilabel
-> serão usadas alternadamente, linha-a-linha. Quando não usar as cores predefinidas do &kde;, você poderá configurar as cores alternadas na área de <guilabel
+> serão usadas alternadamente, linha-a-linha. Quando não usar as cores predefinidas do &plasma;, você poderá configurar as cores alternadas na área de <guilabel
 >Cores</guilabel
 >.</para>
             </listitem>
@@ -944,7 +1104,7 @@
               <para
 ><guilabel
 >Mostrar o item atual, mesmo que não esteja em primeiro plano</guilabel
->: Se estiver assinalado, mostra a última posição do cursor no painel de lista não ativo. Esta opção só está disponível quando não usar as cores predefinidas do &kde;.</para>
+>: Se estiver assinalado, mostra a última posição do cursor no painel de lista não ativo. Esta opção só está disponível quando não usar as cores predefinidas do &plasma;.</para>
             </listitem>
             <listitem>
               <para
@@ -954,7 +1114,7 @@
 >Inativo</guilabel
 > da área de <guilabel
 >Cores</guilabel
->. Esta opção só está disponível quando não usar as cores predefinidas do &kde;.</para>
+>. Esta opção só está disponível quando não usar as cores predefinidas do &plasma;.</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -979,7 +1139,7 @@
             <listitem>
               <para>
                 <guilabel
->Principal das pastas</guilabel>
+>Principal da pasta</guilabel>
               </para>
             </listitem>
             <listitem>
@@ -1048,11 +1208,23 @@
 >Fundo do atual</guilabel>
               </para>
             </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Principal da renomeação</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Fundo da renomeação</guilabel>
+              </para>
+            </listitem>
           </itemizedlist>
           <para
 >Você poderá configurar os seguintes itens da <link linkend="synchronizer"
 >Sincronização</link
-> (por padrão é desativado em tempo de compilação):</para>
+>:</para>
           <itemizedlist>
             <listitem>
               <para>
@@ -1143,7 +1315,7 @@
 >, <application
 >Midnight Commander</application
 >, outro-commander ou outro perfil qualquer. Os Esquemas de Cores são armazenados em <filename
->$KDEDIR/share/krusader</filename
+>/usr/share/krusader</filename
 >, sendo o <filename
 >nome.color</filename
 > um arquivo binário que guarda o esquema de cores.</para>
@@ -1187,27 +1359,29 @@
 	<listitem>
 	  <para
 ><guilabel
->Minimizar para a área de notificação</guilabel
->: Se assinalado, o ícone do &krusader; aparece na área de notificação. Quando você minimizar o &krusader;, ele não aparecerá na barra de tarefas. Ele também não sairá se você fechar a janela principal. Em vez disso, você pode sair do &krusader; selecionando <guimenuitem
->Sair</guimenuitem
-> no menu <guimenu
+>Mostrar e minimizar para a área de notificação</guilabel
+>: Se assinalado, o ícone do &krusader; aparece na área de notificação. Quando você minimizar o &krusader;, ele não aparecerá na barra de tarefas. Ele também não sairá se você fechar a janela principal. Em vez disso, você pode sair do &krusader; selecionando o menu <menuchoice
+><guimenu
 >Arquivo</guimenu
-> ou nome de contexto do ícone da área de notificação. </para>
+> <guimenuitem
+>Sair</guimenuitem
+></menuchoice
+> ou o menu de contexto do ícone da área de notificação. </para>
 	</listitem>
 	<listitem>
 	  <para
 ><guilabel
->Usar o 'magic' do tipo MIME</guilabel
+>Usar o 'magic' do tipo &MIME;</guilabel
 >: este é um mecanismo que permite ao &krusader; inspecionar os arquivos nos painéis e determinar o seu tipo, mesmo que o arquivo não tenha uma extensão identificativa. Por exemplo, se você tiver um arquivo de imagem - o <filename
 >imagem1.jpg</filename
 > - e mudar o seu nome para <filename
 >imagem1</filename
->, o &krusader; irá continuar sabendo que é um arquivo de imagem, lidando com ele da forma correta. Contudo, este modo de operação é mais lento (enquanto atualiza o painel ou muda de pastas), por isso experimente o &krusader; com e sem o 'magic' do tipo MIME para decidir qual é o melhor para você.</para>
+>, o &krusader; irá continuar sabendo que é um arquivo de imagem, lidando com ele da forma correta. Contudo, este modo de operação é mais lento (enquanto atualiza o painel ou muda de pastas), por isso experimente o &krusader; com e sem o 'magic' do tipo &MIME; para decidir qual é o melhor para você.</para>
 	 </listitem>
 	 <listitem>
 	   <para
 ><guilabel
->Pasta Temporária</guilabel
+>Pasta temporária</guilabel
 >: esta opção seleciona a pasta base dos arquivos temporários do &krusader;. Os arquivos atuais serão criados em pastas separadas sob a 'Pasta temporária', assim cada usuário que executar o &krusader; irá ter as suas próprias subpastas temporárias sob esta pasta escolhida. <note
 > <para
 >Você terá que escolher uma pasta temporária, para a qual todos os usuários que executarem o &krusader; tenham permissões completas!</para>
@@ -1222,31 +1396,35 @@
 >Excluir os arquivos/Enviar para o lixo</guilabel
 >): quando o &krusader; excluir os arquivos, ele poderá <emphasis
 >realmente</emphasis
-> excluir ou enviar para a pasta de lixo, tornando-os assim disponíveis através da lixeira do &kde;. </para>
+> excluir ou enviar para a pasta de lixo, tornando-os assim disponíveis através da lixeira do &plasma;. </para>
       <para
 ><guilabel
->Terminal</guilabel
+>Terminal externo</guilabel
 >: escolha o emulador de terminal que será usado quando o &krusader; abrir uma janela de console (com o <keycap
->F2</keycap
+>F9</keycap
 > ou a opção do menu <menuchoice
 ><guimenu
 >Ferramentas</guimenu
 > <guimenuitem
->Iniciar um Terminal</guimenuitem
+>Iniciar um terminal</guimenuitem
 ></menuchoice
 >). </para>
       <para
 ><guilabel
->O Emulador de Terminal enviar um Chdir com uma mudança de painel</guilabel
+>O terminal embutido envia um Chdir com uma mudança de painel</guilabel
 >: se estiver desligado, não será enviado nenhum comando <command
 >cd</command
 > para o Emulador de Terminal, caso a pasta do painel mude.</para>
       <para
 ><guilabel
->Terminal em tela inteira (estilo 'mc')</guilabel
->: se ativado, o &krusader; mostra um terminal em tela inteira no estilo do <application
+>O painel ativo segue a pasta de trabalho do terminal embutido</guilabel
+>: se desmarcado, o painel ativo permanece inalterado enquanto o usuário navega no terminal incorporado (usando cd, popd, etc). </para>
+      <para
+><guilabel
+>Alternar terminal embutido em tela cheia</guilabel
+>: se marcado,o &krusader; mostra o terminal em tela cheia no estilo do aplicativo <application
 >Midnight Commander</application
-> (aparecerá o terminal, em vez da janela do &krusader;). </para>
+>(o Terminal é mostrado em vez da janela do &krusader;). </para>
     </sect2>
     <sect2 id="konfig-general-viewer">
        <title
@@ -1258,7 +1436,13 @@
 	<para
 ><guilabel
 >O editor interno e o visualizador abrem cada arquivo numa janela separada</guilabel
->: marque este item se deseja que cada arquivo seja aberto em uma janela separada. </para>
+>: marque este item se deseja que cada arquivo seja aberto em uma janela separada. Se desmarcada, cada arquivo será aberto em uma aba na mesma janela do Visualizador/Editor. Cada aba em tal janela pode ser fechada, entre outros métodos comuns, clicando na aba com o &MMB;. </para>
+      </listitem>
+      <listitem>
+	<para
+><guilabel
+>Ocultar a barra de abas quando apenas uma aba estiver aberta</guilabel
+>: marque esta opção se desejar que a barra de abas do Visualizador/Editor seja ocultada quando apenas uma aba estiver aberta. </para>
       </listitem>
       <listitem>
         <para
@@ -1293,15 +1477,15 @@
          <para
 ><guilabel
 >Usar a lista se o tamanho do arquivo for maior que: 10 MB (valor padrão) </guilabel
->: verifica se um arquivo de texto tem mais de 10 MB (configurável) de tamanho e, nesse caso, será usada a Lista do &krusader; em vez do visualizador padrão do &kde;.</para>
+>: verifica se um arquivo de texto tem mais de 10 MB (configurável) de tamanho e, nesse caso, será usada a Lista do &krusader; em vez do visualizador padrão do &plasma;.</para>
 	</listitem>
 	<listitem>
          <para
 ><guilabel
 >Usar o Okteta como visualizador hexadecimal</guilabel
->: Se estiver assinalada (opção padrão), será usado o editor de dados em hexadecimal do &kde; <ulink url="http://docs.kde.org/stable/en/kdesdk/okteta/index.html"
+>: Se estiver assinalada, será usado o editor de dados em hexadecimal do &plasma;, o <ulink url="https://docs.kde.org/index.php?application=okteta"
 >Okteta</ulink
-> para ver os dados brutos. Para usar essa opção, você deve primeiro instalar o pacote do <application
+>, para ver os dados brutos. Para usar essa opção, você deve primeiro instalar o pacote do <application
 >Okteta</application
 >.</para>
 	</listitem>
@@ -1314,7 +1498,7 @@
 >Editor</guilabel
 >: escolha o editor que será usado ao editar um arquivo (com o <keycap
 >F4</keycap
->). Por padrão, é usado o visualizador interno, que será o padrão do &kde;.</para>
+>). Por padrão, é usado o visualizador interno, que será o padrão do &plasma;.</para>
       </listitem>
     </itemizedlist>
     </sect2>
@@ -1337,8 +1521,8 @@
     <title
 >Avançado</title>
     <para
->Esta página lida com as questões mais avançadas, assim você deverá pensar duas vezes ao modificar qualquer coisa: modificar configurações aqui <remark
->torna o &krusader; uma ferramenta mais poderosa e perigosa.</remark
+>Esta página lida com as questões mais avançadas, assim você deverá pensar duas vezes ao modificar qualquer coisa: modificar as configurações aqui <emphasis
+>torna o &krusader; uma ferramenta mais poderosa e perigosa.</emphasis
 ></para>
 
     <para
@@ -1375,7 +1559,7 @@
 > /mnt/cdrom</filename
 > constar no <filename class="directory"
 >/etc/fstab</filename
-> como ponto de montagem), o &krusader; irá verificar se está montado. Caso não esteja, irá tentar montá-lo para você e depois entrar, para que possa ver o conteúdo do seu CD-ROM. Lembre-se, contudo, que o &krusader; NÃO irá tentar desmontar ao sair do <filename class="directory"
+> como ponto de montagem), o &krusader; irá verificar se está montado. Caso não esteja, irá tentar montá-lo para você e depois entrar, para que possa ver o conteúdo do seu &CD-ROM;. Lembre-se, contudo, que o &krusader; NÃO irá tentar desmontar ao sair do <filename class="directory"
 > /mnt/cdrom</filename
 >.</para>
             </listitem>
@@ -1419,19 +1603,19 @@
           <itemizedlist>
             <listitem>
               <para
->apagar pastas não-vazias</para>
+>Exclusão de pastas não vazias</para>
             </listitem>
             <listitem>
               <para
->apagar arquivos</para>
+>Exclusão de arquivos</para>
             </listitem>
             <listitem>
               <para
->copiar arquivos</para>
+>Cópia de arquivos</para>
             </listitem>
             <listitem>
               <para
->mover arquivos</para>
+>Movendo arquivos</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -1446,7 +1630,7 @@
             <listitem>
               <para
 ><guilabel
->Tamanho da 'Cache' de Ícones</guilabel
+>Tamanho da 'cache' de ícones (KB)</guilabel
 >: o &krusader; usa uma 'cache' de ícones, assim você não terá que recarregar os ícones que foram usados anteriormente. Obviamente, à medida que a 'cache' vai crescendo, ele poderá guardar mais ícones e acelerar mais as operações, mas nesse caso a ocupação de memória do &krusader; ficará maior.</para>
             </listitem>
             <listitem>
@@ -1519,9 +1703,9 @@
             LOST. They were actually moved into a subfolder in
             &krusader;'s
             <link linkend="konfig-general"
->temp directory</link
+>temp folder</link
 >.
-            You can search the directory and recover your
+            You can search the folder and recover your
             files.</para>
           </note
 ></para>
@@ -1725,11 +1909,11 @@
     </informaltable>
     <tip>
       <para
->Por padrão, é usado o &kompare; (parte do pacote 'kdesdk') como utilitário de visualização de diferenças externo, mas você poderá usar o seu utilitário favorito de diferenças, &eg; o <ulink url="http://furius.ca/xxdiff/"
+>Por padrão, é usado o &kompare; como utilitário de visualização de diferenças externo, mas você poderá usar o seu utilitário favorito de diferenças, &eg; o <ulink url="http://furius.ca/xxdiff/"
 ><application
 >xxdiff</application
 ></ulink
-> ou o <ulink url="http://kdiff3.sourceforge.net"
+> ou o <ulink url="https://www.kde.org/applications/development/kdiff3/"
 ><application
 >KDiff3</application
 ></ulink
@@ -2297,7 +2481,11 @@
     <title
 >Protocolos</title>
     <para
->Esta página associa os tipos MIME aos protocolos. &eg;, o protocolo "tar" está associado ao tipo MIME "application/x-tar".</para>
+>Esta página associa os tipos &MIME; aos protocolos. &eg;, o protocolo <quote
+>tar</quote
+> está associado ao tipo &MIME; <quote
+>application/x-tar</quote
+>.</para>
 
     <para
 >Nas <guilabel

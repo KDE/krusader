@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="vfs">
   <title
 >Sistemas de arquivos virtuais (VFS)</title>
@@ -8,13 +14,13 @@
   <para
 >Uma <link linkend="features"
 >funcionalidade básica de OFM</link
-> é o VFS, que é uma camada abstrata sobre todos os tipos de informação arquivada (arquivos ZIP, servidores &FTP;, pacotes TAR, sistemas de arquivos NFS, compartilhamentos SAMBA, imagens ISO de CD/DVD, catálogos de RPM, &etc;), que permite ao usuário acessar a toda a informação nestes tipos divergentes de sistemas de arquivos, de forma transparente - como se estivesse entrando numa subpasta normal. O &krusader; suporta diversos sistemas de arquivos virtuais:</para>
+> é o VFS, que é uma camada abstrata sobre todos os tipos de informação arquivada (arquivos ZIP, servidores &FTP;, pacotes TAR, sistemas de arquivos &NFS;, compartilhamentos SAMBA, imagens ISO de &CD;/&DVD;, catálogos de RPM, &etc;), que permite ao usuário acessar a toda a informação nestes tipos divergentes de sistemas de arquivos, de forma transparente - como se estivesse entrando numa subpasta normal. O &krusader; suporta diversos sistemas de arquivos virtuais:</para>
   <itemizedlist>
     <listitem>
       <para
 ><link linkend="remote-connections"
 >VFS de conexões remotas</link
->: oferece a capacidade de lidar com uma sessão de conexões remotas (&FTP;, NFS, Samba, FISH, SFTP), como acontece nos sistemas de arquivos locais. É perfeito para as operações remotas complexas e é quase tão poderoso quanto os clientes remotos autônomos.</para>
+>: oferece a capacidade de lidar com uma sessão de conexões remotas (&FTP;, &NFS;, Samba, FISH, SFTP), como acontece nos sistemas de arquivos locais. É perfeito para as operações remotas complexas e é quase tão poderoso quanto os clientes &GUI; remotos autônomos.</para>
     </listitem>
     <listitem>
       <para
@@ -34,13 +40,15 @@
       <para
 ><link linkend="synchronizer"
 >VFS de Sincronização</link
->: coloca os resultados da sincronização no VFS (por padrão é desativado em tempo de compilação).</para>
+>: coloca os resultados da sincronização no VFS.</para>
     </listitem>
   </itemizedlist>
   <para
 >As ações que efetuar sobre os arquivos no VFS são aplicadas nos arquivos 'reais'. Você não irá apagar os arquivos no VFS - irá apagá-los também do seu disco rígido. Limitações: você não poderá criar pastas dentro de um VFS.</para>
   <para
->É possível manter a estrutura de pastas ao fazer uma cópia de uma pasta virtual para uma pasta não-virtual, selecionando a opção "Manter a estrutura de pastas virtuais" na janela de cópia. Imagine a seguinte pasta virtual: <screen
+>É possível manter a estrutura de pastas ao fazer uma cópia de uma pasta virtual para uma pasta não-virtual, selecionando a opção <quote
+>Manter a estrutura de pastas virtuais</quote
+> na janela de cópia. Imagine a seguinte pasta virtual: <screen
 ><prompt
 >$</prompt
 > <userinput

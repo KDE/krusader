@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="locate">
   <title
 >Interface &GUI; do Locate</title>
@@ -8,13 +14,13 @@
   <para
 >O &krusader; possui uma interface &GUI; para o comando <command
 >locate</command
-> (do pacote 'findutils'). O Locate é usado para a pesquisa rápida de arquivos, não usando uma pasta mas sim uma base de dados. O pacote contém entre outros arquivos, o <command
+> (do pacote 'findutils'). O Locate é usado para a pesquisa rápida de arquivos, não usando uma pasta mas sim um banco de dados. O pacote contém entre outros arquivos, o <command
 >locate</command
 > e o <command
 >updatedb</command
 >. O <command
 >updatedb</command
-> percorre o sistema de arquivos local e guarda os itens dos arquivos na base de dados. O <command
+> percorre o sistema de arquivos local e guarda os itens dos arquivos no banco de dados. O <command
 >cron</command
 > invoca frequentemente o <command
 >updatedb</command
@@ -24,7 +30,7 @@
 > <guimenu
 >Ferramentas</guimenu
 > <guimenuitem
->Locate</guimenuitem
+>Locate...</guimenuitem
 > </menuchoice
 > ou o <keycombo action="simul"
 >&Ctrl;&Shift; <keycap
@@ -41,7 +47,7 @@
       <para
 ><guilabel
 >Mostrar apenas os arquivos existentes</guilabel
->: se a base de dados tiver itens que já não existam mais (apagados, movidos desde o último <command
+>: se o banco de dados tiver itens que já não existam mais (apagados, movidos desde o último <command
 >updatedb</command
 >), o <command
 >locate</command
@@ -79,7 +85,7 @@
 >UpdateDB</guibutton
 >: inicia o <command
 >updatedb</command
-> para atualizar a base de dados do 'locate', após inserir a senha do 'root'.</para>
+> para atualizar o banco de dados do 'locate', após inserir a senha do 'root'.</para>
     </listitem>
     <listitem>
       <para

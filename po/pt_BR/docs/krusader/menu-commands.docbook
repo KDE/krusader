@@ -1,24 +1,10 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <chapter id="menu-commands">
-  <!-- **********************************************************************
-                            commands.docbook
-                          ++++++++++++++++++++
-  copyright            : (C) 2000 - 2010
-                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                          & the Krusader Krew
-  e-mail               : krusader@users.sourceforge.net
-  web site             : http://www.krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
   <title
 >Comandos do menu</title>
   <indexterm>
@@ -43,7 +29,7 @@
 > <guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Novo Arquivo de Texto</guimenuitem
+>Novo arquivo de texto...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -61,7 +47,7 @@
 > <guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Nova Pasta</guimenuitem
+>Nova pasta</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -81,7 +67,7 @@
 > <guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Nova Ligação Simbólica</guimenuitem
+>Nova ligação simbólica...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -179,7 +165,7 @@
 > <guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Comprimir</guimenuitem
+>Comprimir...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -201,7 +187,7 @@
 > <guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Descomprimir</guimenuitem
+>Descomprimir...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -239,7 +225,7 @@
 ><guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Comparar pelo conteúdo</guimenuitem
+>Comparar pelo conteúdo...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -248,7 +234,7 @@
 ><application
 >xxdiff</application
 ></ulink
-> ou o <ulink url="http://kdiff3.sourceforge.net"
+> ou o <ulink url="https://apps.kde.org/kdiff3"
 ><application
 >KDiff3</application
 ></ulink
@@ -269,16 +255,16 @@
 > <guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Mudança de Nomes em Lote</guimenuitem
+>Renomear em lote...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Esta opção do menu inicia o <ulink url="http://www.krename.net"
+>Esta opção do menu inicia o <ulink url="hhttps://apps.kde.org/krename"
 ><application
 >Krename</application
 ></ulink
->, um utilitário de mudança de nomes de arquivos em lote para o &kde; 3.x. ou superior.</para>
+>, um utilitário de mudança de nomes de arquivos em lote.</para>
           <itemizedlist>
             <title
 >Funcionalidades do Krename</title>
@@ -343,7 +329,7 @@
 ><guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Criar um Código de Validação</guimenuitem
+>Criar código de validação...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -359,7 +345,7 @@
 ><guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Verificar o Código de Validação</guimenuitem
+>Verificar código de validação...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -382,7 +368,7 @@
 > <guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Dividir o Arquivo</guimenuitem
+>Dividir arquivo...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -406,7 +392,7 @@
 > <guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Combinar os Arquivos</guimenuitem
+>Combinar arquivos...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -513,26 +499,29 @@
 > os itens previamente cortados ou copiados da área de transferência para a pasta atual.</para>
         </listitem>
       </varlistentry>
+<!--
       <varlistentry>
         <term>
-          <menuchoice
-><shortcut
-> <keycap
->F9</keycap
-> </shortcut
-> <guimenu
->Editar</guimenu
-> <guimenuitem
->Renomear</guimenuitem
-> </menuchoice>
+          <menuchoice>
+            <shortcut>
+              <keycap
+>F2</keycap>
+            </shortcut>
+            <guimenu
+>Edit</guimenu>
+            <guimenuitem
+>Rename</guimenuitem>
+          </menuchoice>
         </term>
         <listitem>
-          <para
-><link linkend="renaming"
->Renomeia</link
-> o arquivo selecionado no momento.</para>
+          <para>
+          <link linkend="renaming"
+>Renames</link
+> the currently
+          selected file.</para>
         </listitem>
-      </varlistentry>
+      </varlistentry
+>-->
       <varlistentry>
         <term>
           <menuchoice
@@ -565,7 +554,7 @@
 > <guimenu
 >Editar</guimenu
 > <guimenuitem
->Selecionar o Grupo</guimenuitem
+>Selecionar grupo...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -605,7 +594,7 @@
 > <guimenu
 >Editar</guimenu
 > <guimenuitem
->Desmarcar grupo</guimenuitem
+>Desmarcar grupo...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -698,6 +687,28 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Procurar na pasta...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Ativa ou desativa a função do &krusader; para <link linkend="quicksearch"
+>pesquisa rápida</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
 >&Alt;&Shift; <keycap
 >C</keycap
 ></keycombo
@@ -705,13 +716,13 @@
 > <guimenu
 >Editar</guimenu
 > <guimenuitem
->Comparar as Pastas</guimenuitem
+>Comparar pastas</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
 >Ativa ou desativa a função do &krusader; para <link linkend="compare-dir"
->Comparar as Pastas</link
+>Comparar pastas</link
 >.</para>
         </listitem>
       </varlistentry>
@@ -727,7 +738,7 @@
         <listitem>
           <para
 >Configura a opção para <guimenuitem
->Comparar as Pastas</guimenuitem
+>Comparar pastas</guimenuitem
 >.</para>
           <itemizedlist>
             <listitem>
@@ -791,7 +802,7 @@
 > <guimenu
 >Editar</guimenu
 > <guimenuitem
->Propriedades</guimenuitem
+>Propriedades...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -810,9 +821,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt; <keysym
->Acima</keysym
-></keycombo
+>&Alt; &Up;</keycombo
 > </shortcut
 > <guimenu
 >Ir</guimenu
@@ -830,9 +839,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt; <keysym
->Esquerda</keysym
-></keycombo
+>&Alt; &Left;</keycombo
 > </shortcut
 > <guimenu
 >Ir</guimenu
@@ -850,9 +857,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Alt;<keysym
->Direita</keysym
-></keycombo
+>&Alt;&Right;</keycombo
 > </shortcut
 ><guimenu
 >Ir</guimenu
@@ -921,7 +926,7 @@
 > <guimenu
 >Ir</guimenu
 > <guimenuitem
->URLs populares</guimenuitem
+>&URL;s populares...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -946,7 +951,9 @@
         </term>
         <listitem>
           <para
->Configura a pasta atual como um ponto "de regresso". Para ir rapidamente para esta pasta, escolha o comando <guimenuitem
+>Configura a pasta atual como um ponto <quote
+>de regresso</quote
+>. Para ir rapidamente para esta pasta, escolha o comando <guimenuitem
 >Regressar</guimenuitem
 > do menu <guimenu
 >Ir</guimenu
@@ -970,7 +977,9 @@
         </term>
         <listitem>
           <para
->Volta para um "ponto de regresso" anterior.</para>
+>Volta para um <quote
+>ponto de regresso</quote
+> anterior.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -1070,7 +1079,7 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Ctrl; <keycap
+>&Alt; <keycap
 >.</keycap
 ></keycombo
 > </shortcut
@@ -1208,6 +1217,10 @@
   <sect1 id="useractions-menu">
     <title
 >Menu de Ações do Usuário</title>
+    <para
+>Você pode adicionar suas próprias entradas de menu aqui definindo suas <link linkend="useractions"
+>Ações do Usuário</link
+>. </para>
     <variablelist>
       <varlistentry>
         <term>
@@ -1334,7 +1347,7 @@
         </term>
         <listitem>
           <para
->Copia os itens selecionados para a área de transferência.</para>
+>Copia o nome do item atual para a área de transferência.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1459,20 +1472,6 @@
 >Quando esta opção estiver ativa, a chave de ordenação no painel do &krusader; será a data de modificação do arquivo. Isto é útil para determinar os arquivos com que trabalhou recentemente.</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><guimenu
->Ações do Usuário</guimenu
-> <guimenuitem
->As Suas Ações do Usuário</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Abre as ações do usuário criadas pelo usuário.</para>
-        </listitem>
-      </varlistentry>
     </variablelist>
   </sect1>
   <sect1 id="tools-menu">
@@ -1491,7 +1490,7 @@
 > <guimenu
 >Ferramentas</guimenu
 > <guimenuitem
->Procurar</guimenuitem
+>Procurar...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1513,7 +1512,7 @@
 > <guimenu
 >Ferramentas</guimenu
 > <guimenuitem
->Locate</guimenuitem
+>Locate,,,</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1535,14 +1534,14 @@
 > <guimenu
 >Ferramentas</guimenu
 > <guimenuitem
->Sincronizar as Pastas</guimenuitem
+>Sincronizar pastas</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
 >A função para <link linkend="synchronizer"
 >Sincronizar as Pastas</link
-> compara os painéis esquerdo e direito, mostrando as diferenças entre eles. Depois da função de comparação, você poderá mover os arquivos/pastas para serem sincronizados. Por padrão, esta funcionalidade é desativada em tempo de compilação. Veja o link acima para obter instruções de ativação.</para>
+> compara os painéis esquerdo e direito, mostrando as diferenças entre eles. Depois da função de comparação, você poderá mover os arquivos/pastas para serem sincronizados.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1557,14 +1556,14 @@
 > <guimenu
 >Ferramentas</guimenu
 > <guimenuitem
->MountMan</guimenuitem
+>MountMan...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Abre o <link linkend="mount-man"
+>Abre um submenu com itens para abrir o <link linkend="mount-man"
 >MountMan</link
-> - o Gerenciador de Montagens.</para>
+> ou montar/desmontar vários pontos de montagem.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1579,7 +1578,7 @@
 > <guimenu
 >Ferramentas</guimenu
 > <guimenuitem
->Utilização do disco</guimenuitem
+>Utilização do disco...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1589,29 +1588,7 @@
 >.</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><shortcut
-> <keycombo action="simul"
->&Alt;&Shift; <keycap
->Q</keycap
-></keycombo
-> </shortcut
-> <guimenu
->Ferramentas</guimenu
-> <guimenuitem
->Gerenciador de fila</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Abre o <link linkend="queue"
->Gerenciador de fila</link
->.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
+       <varlistentry>
         <term>
           <menuchoice
 ><shortcut
@@ -1640,14 +1617,14 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Shift;&Ctrl; <keycap
->F</keycap
+> &Ctrl;&Shift; <keycap
+>D</keycap
 ></keycombo
 > </shortcut
 > <guimenu
 >Ferramentas</guimenu
 > <guimenuitem
->Desconectar da Rede</guimenuitem
+>Desconectar da rede</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1674,29 +1651,6 @@
 >.</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice
-><shortcut
-> <keycombo action="simul"
-> <keycap
->F2</keycap
-> </keycombo
-> </shortcut
-> <guimenu
->Ferramentas</guimenu
-> <guimenuitem
->Iniciar o Terminal Aqui</guimenuitem
-> </menuchoice>
-        </term>
-        <listitem>
-          <para
->Abre uma janela de terminal na pasta escolhida no momento no painel ativo. Você poderá escolher a sua aplicação de terminal favorita na <link linkend="konfig-general"
->página Geral do Konfigurador</link
->.</para>
-        </listitem>
-      </varlistentry>
-      <!-- vertical bar -->
       <varlistentry id="root-mode">
         <term>
           <menuchoice
@@ -1722,7 +1676,7 @@
 >kdesu</command
 > não estiver disponível, ou se preferir &eg; o <command
 >gksu</command
-> ao usar o <ulink url="http://www.gnome.org"
+> ao usar o <ulink url="https://www.gnome.org"
 ><application
 >GNOME</application
 ></ulink
@@ -1736,33 +1690,6 @@
         </listitem>
       </varlistentry>
       <!-- vertical bar -->
-      <!-- disabled due to KrJS does not compile (cannot find kjsembed from kdelibs
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">
-              &Alt;&Ctrl;
-              <keycap
->J</keycap
-></keycombo>
-            </shortcut>
-            <guimenu
->Tools</guimenu>
-            <guimenuitem
->Javascript Console</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para
->Opens the 
-          <link linkend="javascript_console"
->Javascript
-          Console</link
->.</para>
-        </listitem>
-      </varlistentry>
-      -->
       <varlistentry>
         <term>
           <menuchoice
@@ -1790,14 +1717,14 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
-> &Ctrl;&Alt; <keycap
+> &Ctrl;&Shift; <keycap
 >N</keycap
 ></keycombo
 > </shortcut
 > <guimenu
 >Janela</guimenu
 > <guimenuitem
->Nova Página</guimenuitem
+>Nova aba</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1912,14 +1839,14 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Shift; <keycap
->Direita</keycap
+>&Ctrl; <keycap
+>.</keycap
 ></keycombo
 > </shortcut
 > <guimenu
 >Janela</guimenu
 > <guimenuitem
->Página Seguinte</guimenuitem
+>Próxima aba</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1932,14 +1859,14 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Shift; <keycap
->Esquerda</keycap
+>&Ctrl; <keycap
+>,</keycap
 ></keycombo
 > </shortcut
 > <guimenu
 >Janela</guimenu
 > <guimenuitem
->Página Anterior</guimenuitem
+>Aba anterior</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2036,19 +1963,19 @@
           <menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Ctrl; <keycap
+>&Ctrl;&Alt; <keycap
 >F</keycap
 ></keycombo
 > </shortcut
 > <guimenu
 >Janela</guimenu
 > <guimenuitem
->Comutar o Modo de Tela Inteira do Emulador de Terminal</guimenuitem
+>Comutar modo de tela cheia do emulador de terminal</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->Comuta o modo de tela inteira do emulador de terminal. Esta opção só fica disponível quando a opção <guilabel
+>Comuta o modo de tela cheia do emulador de terminal. Esta opção só fica disponível quando a opção <guilabel
 >Mostrar o Emulador de Terminal</guilabel
 > estiver ativa.</para>
         </listitem>
@@ -2065,7 +1992,7 @@
         <listitem>
           <para
 >Salva a posição e o tamanho atuais da janela principal do &krusader;. Esta ação poderá ser automatizada com o <guilabel
->Salvar a configuração ao sair</guilabel
+>Salvar última posição, tamanho e configurações do painel</guilabel
 > da <link linkend="konfigurator"
 >página de Inicialização do Konfigurador</link
 ></para>
@@ -2082,6 +2009,8 @@
           <menuchoice
 ><guimenu
 >Configurações</guimenu
+> <guisubmenu
+>Barras de ferramentas</guisubmenu
 > <guimenuitem
 >Exibir barra de ferramentas principal</guimenuitem
 > </menuchoice>
@@ -2098,8 +2027,28 @@
           <menuchoice
 ><guimenu
 >Configurações</guimenu
+> <guisubmenu
+>Barras de ferramentas</guisubmenu
 > <guimenuitem
->Mostrar a Barra de Ações</guimenuitem
+>Exibir barra de ferramentas de tarefa</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Mostra a <link linkend="actions_toolbar"
+>Barra de tarefas</link
+> se estiver assinalada.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Configurações</guimenu
+> <guisubmenu
+>Barras de ferramentas</guisubmenu
+> <guimenuitem
+>Exibir barra de ferramentas de ações</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2225,13 +2174,31 @@
 	  </itemizedlist>
 	</listitem>
       </varlistentry>
+      <varlistentry id="job-queue-mode">
+        <term>
+          <menuchoice
+><guimenu
+>Configurações</guimenu
+> <guimenuitem
+>Modo de fila de tarefas</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Alterna o modo <link linkend="queue"
+>Gerenciador de filas</link
+>. Se marcado, pressionar <keycap
+>F2</keycap
+> ou o botão correspondente na caixa de diálogo copiar/mover inicia imediatamente a tarefa, mesmo que haja tarefas em execução na fila. Se desmarcado, a tarefa será colocada na fila se a fila não estiver vazia. Caso contrário, a tarefa será iniciada imediatamente. </para>
+        </listitem>
+      </varlistentry>
       <varlistentry id="configure-shortcuts">
         <term>
           <menuchoice
 ><guimenu
 >Configurações</guimenu
 > <guimenuitem
->Configurar atalhos</guimenuitem
+>Configurar atalhos...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2252,8 +2219,8 @@
 >Total Commander</trademark
 >, <application
 >Midnight Commander</application
->, outro-commander, ou quaisquer outras que desejar. A única limitação é que os atalhos globais do &kde; e alguns específicos do &krusader; não podem ainda ser alterados, assim como algumas funcionalidades dos outros utilitários que possam não ser necessárias ou existentes. As combinações de teclas são armazenadas em <filename
->$KDEDIR/share/krusader</filename
+>, outro-commander, ou quaisquer outras que desejar. A única limitação é que os atalhos globais do &plasma; e alguns específicos do &krusader; não podem ainda ser alterados, assim como algumas funcionalidades dos outros utilitários que possam não ser necessárias ou existentes. As combinações de teclas são armazenadas em <filename
+>/usr/share/krusader</filename
 >, onde o <filename
 >nome.keymap.info</filename
 > contém uma descrição e o <filename
@@ -2277,7 +2244,7 @@
 ><guimenu
 >Configurações</guimenu
 > <guimenuitem
->Configurar barras de ferramentas</guimenuitem
+>Configurar barras de ferramentas...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2297,7 +2264,7 @@
 ><guimenu
 >Configurações</guimenu
 > <guimenuitem
->Configurar o &krusader;</guimenuitem
+>Configurar o &krusader;...</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -2312,5 +2279,11 @@
   <sect1 id="help-menu">
     <title
 >Menu Ajuda</title>
-&help.menu.documentation; </sect1>
+    <para
+>Além disso, o &krusader;  possui os itens comuns do menu <guimenu
+>Ajuda</guimenu
+> do &kde;. Para mais informações, leia as seções sobre o <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menu de Ajuda</ulink
+> dos Fundamentos do &kde;. </para>
+  </sect1>
 </chapter>

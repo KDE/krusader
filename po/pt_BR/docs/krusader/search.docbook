@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="krusearcher">
   <title
 >KruSearcher: descubra o que você procura</title>
@@ -7,26 +13,6 @@
   </indexterm>
   <para
 >Bem-vindo ao poderoso módulo de pesquisa do &krusader; - chamado de KruSearcher. É a ferramenta mais apta (que se conhece) para o &Linux;, uma vez que ele permite diversas formas diferentes de procurar o arquivo que deseja. A função de pesquisa também está disponível para os sistemas de arquivos remotos. Está dividida em dois níveis, o geral e o avançado. Vejamos a página geral.</para>
-  <!-- OLD
-<screenshot>
-  <screeninfo
->Krusearcher General</screeninfo>
-  <mediaobject>
-  <imageobject
-><imagedata fileref="search_general.png" format="PNG"/></imageobject>
-  <imageobject
-><imagedata fileref="search_general.png" format="EPS"/></imageobject>
-  <textobject
-><phrase
->Krusearcher General</phrase
-></textobject>
-  <caption
-><para
->Krusearcher General.</para
-></caption>
-  </mediaobject>
-</screenshot>
--->
   <figure id="screenshot-search-general" float="1">
     <title
 >Pesquisa Geral</title>
@@ -66,9 +52,23 @@
 >'*text*'</literal
 >. Você poderá excluir arquivos da pesquisa com o '|' (&eg; <literal role="extension"
 >'*.cpp *.h | *.moc.cpp'</literal
->). Poderá usar aspas para os nomes que contenham espaços. O filtro "Meus Documentos" procura nos arquivos e pastas cujo nome seja <filename
+>). Poderá usar aspas para os nomes que contenham espaços. O filtro <quote
+>Meus Documentos</quote
+> procura nos arquivos e pastas cujo nome seja <filename
 >Meus Documentos</filename
->.</para>
+>. Uma lista suspensa que é exibida após clicar na seta para baixo à direita permite que você selecione alguns dos seus critérios inseridos anteriormente.</para>
+      <note>
+          <para
+>É possível editar a lista de sugestões para o campo <guilabel
+>Pesquisar por</guilabel
+>. Se você não gostar de algum item, basta selecioná-lo e pressionar <keycombo action="simul"
+>&Shift;<keycap
+>Del</keycap
+></keycombo
+> para excluir a sugestão desnecessária. Você também pode usar as teclas de seta para visualizar todo o histórico do campo <guilabel
+>Pesquisar por</guilabel
+> e excluir as entradas que não lhe interessam. </para>
+      </note>
     </listitem>
     <listitem>
       <para
@@ -86,7 +86,7 @@
       <para
 ><guilabel
 >Do tipo</guilabel
->: esta opção permite-lhe procurar por um arquivo não só pelo seu nome, mas também pelo seu tipo MIME. Por exemplo, você poderá procurar por todos os arquivos de áudio cujo nome comece por B. Normalmente, esta opção corresponde a 'todos os arquivos', mas poderá optar por pesquisar em pacotes, pastas, imagens, arquivos de texto, vídeos e arquivos de áudio.</para>
+>: esta opção permite-lhe procurar por um arquivo não só pelo seu nome, mas também pelo seu tipo &MIME;. Por exemplo, você poderá procurar por todos os arquivos de áudio cujo nome comece por B. Normalmente, esta opção corresponde a 'todos os arquivos', mas poderá optar por pesquisar em pacotes, pastas, imagens, arquivos de texto, vídeos e arquivos de áudio.</para>
     </listitem>
   </itemizedlist>
   <itemizedlist>
@@ -112,9 +112,23 @@
 >Não pesquisar em</guilabel
 >. Se quiser inserir mais de uma pasta num dos campos, basta escrever o primeiro nome e pressionar &Enter;. O nome da pasta será copiado para o campo maior, podendo então inserir outro nome. <note
 > <para
->O campo de texto tem uma funcionalidades de completamento automático, correspondendo à configuração global do &kde;. Se desejar, poderá clicar no <guiicon
+>O campo de texto tem uma funcionalidades de completamento automático, correspondendo à configuração global do &plasma;. Se desejar, poderá clicar no <guiicon
 >ícone de pastas</guiicon
 > e escolher a pasta que deseja adicionar.</para>
+      </note>
+      <note>
+          <para
+>É possível definir arquivos e pastas que serão filtrados dos resultados da pesquisa usando o campo de entrada <guilabel
+>Excluir nomes de pastas</guilabel
+> na parte inferior da caixa <guilabel
+>Não pesquisar em</guilabel
+>.</para>
+          <para
+>Os itens da lista de filtragem devem ser separados por espaços.</para>
+          <para
+>Os espaços nos itens da lista de filtragem podem ser escapados ou colocados entre aspas. Exemplo: <userinput
+>.git "target build" build\ krusader</userinput
+></para>
       </note
 ></para>
     </listitem>
@@ -135,10 +149,22 @@
 >.</para>
     </listitem>
     <listitem>
-      <para>
-        <guilabel
->Corresponder apenas a palavra inteira</guilabel>
-      </para>
+      <para
+><guilabel
+>RegExp</guilabel
+> opção: alterna o modo de expressões regulares. Uma lista suspensa que aparece ao clicar na seta para baixo à direita permite inserir símbolos especiais de expressões regulares. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Codificação</guilabel
+>: permite que você escolha a codificação do texto. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Correspondência apenas da palavra inteira</guilabel
+>: permite especificar que uma correspondência completa (letras e comprimento) deve ser encontrada. </para>
     </listitem>
     <listitem>
       <para
@@ -176,6 +202,12 @@
 >Perfis</guilabel
 >: se você tiver que efetuar várias vezes a mesma operação de pesquisa, poderá salvar a configuração da mesma, &eg; os arquivos a incluir ou a excluir, &etc;... Clique no botão do 'perfil', para que possa adicionar/carregar/salvar/remover os perfis de pesquisa.</para>
     </listitem>
+    <listitem>
+      <para
+><guilabel
+>Consulta para a área de transferência</guilabel
+>: se marcada, &krusader; irá colocar texto de pesquisa na área de transferência quando um arquivo encontrado for aberto.</para>
+    </listitem>
   </itemizedlist>
   <para
 >A imagem acima mostra uma pesquisa em todos os arquivos que acabem em <literal role="extension"
@@ -207,26 +239,6 @@
 >Algumas vezes, você poderá querer estreitar a sua pesquisa ainda mais. O KruSearcher permite uma pesquisa muito mais detalhada e, para isso, existe então a <guilabel
 >página Avançado</guilabel
 >...</para>
-  <!-- OLD
-<screenshot>
-  <screeninfo
->Krusearcher Advanced</screeninfo>
-  <mediaobject>
-  <imageobject
-><imagedata fileref="search_advanced.png" format="PNG"/></imageobject>
-  <imageobject
-><imagedata fileref="search_advanced.png" format="EPS"/></imageobject>
-  <textobject
-><phrase
->Krusearcher Advanced</phrase
-></textobject>
-  <caption
-><para
->Krusearcher Advanced.</para
-></caption>
-  </mediaobject>
-</screenshot>
--->
   <figure id="screenshot-search-advanced" float="1">
     <title
 >Pesquisa Avançada</title>

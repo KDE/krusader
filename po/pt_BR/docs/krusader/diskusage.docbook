@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="diskusage">
   <title
 >Utilização do Disco</title>
@@ -6,9 +12,7 @@
 >Utilização do Disco</primary>
   </indexterm>
   <para
->A Utilização do Disco baseia-se no código do <application
->Filelight</application
->. A Utilização do Disco mostra como o seu espaço em disco está sendo usado, com base numa representação gráfica do seu sistema de arquivos. São possíveis as seguintes apresentações:</para
+>A Utilização do Disco baseia-se no código do &filelight;. A Utilização do Disco mostra como o seu espaço em disco está sendo usado, com base numa representação gráfica do seu sistema de arquivos. São possíveis as seguintes apresentações:</para
 > 
   <itemizedlist>
     <listitem>
@@ -31,14 +35,14 @@
 > <guimenu
 >Ferramentas</guimenu
 > <guimenuitem
->Utilização do Disco</guimenuitem
+>Utilização do Disco...</guimenuitem
 > </menuchoice
 > ou <keycombo action="simul"
 >&Alt;&Shift; <keycap
 >S</keycap
 ></keycombo
-> para iniciar esta funcionalidade numa janela separada, ou abra-a dentro do <link linkend="popup_panel"
->Painel Instantâneo</link
+> para iniciar esta funcionalidade numa janela separada, ou abra-a dentro da <link linkend="sidebar"
+>Barra lateral</link
 >.</para>
   <para
 >Combinações de teclas da Utilização do disco; menu do botão direito.</para>
@@ -144,38 +148,4 @@
 ></para>
     </listitem>
   </itemizedlist>
-  <!-- OLD
-<screenshot>
-  <screeninfo
->Disk Usage</screeninfo>
-  <mediaobject>
-  <imageobject
-><imagedata fileref="diskusage.png" format="PNG"/></imageobject>
-  <imageobject
-><imagedata fileref="diskusage.png" format="EPS"/></imageobject>
-  <textobject
-><phrase
->Konfigurator Look &amp; Feel page</phrase
-></textobject>
-  <caption
-><para
->Disk Usage</para
-></caption>
-  </mediaobject>
-</screenshot>
--->
-  <!--HTML_PARSING
-<figure id="screenshot-diskusage" float="1">
-<title
->Disk Usage</title>
-<mediaobject>
-<imageobject
-><imagedata fileref="diskusage.png"/></imageobject>
-<textobject
-><phrase
->Disk Usage</phrase
-></textobject>
-</mediaobject>
-</figure>
-HTML_PARSING-->
 </sect1>
