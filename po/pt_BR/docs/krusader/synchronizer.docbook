@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="synchronizer">
   <title
 >Sincronização</title>
@@ -33,26 +39,6 @@
     <para
 >Para os arquivos locais: A sincronização muda a informação das datas para as datas originais.</para>
   </note>
-  <!-- OLD
-<screenshot>
-  <screeninfo
->Synchronizer</screeninfo>
-  <mediaobject>
-  <imageobject
-><imagedata fileref="syncdir.png" format="PNG"/></imageobject>
-  <imageobject
-><imagedata fileref="syncdir.png" format="EPS"/></imageobject>
-  <textobject
-><phrase
->Synchronizer: Synchronize files and directories.</phrase
-></textobject>
-  <caption
-><para
->Synchronizer: Synchronize files and directories.</para
-></caption>
-  </mediaobject>
-</screenshot>
--->
   <figure id="screenshot-syncdir" float="1">
     <title
 >Sincronização</title>
@@ -147,8 +133,8 @@
 >Iniciar</guibutton
 > para começar o processo de sincronização.</para>
     </listitem>
-  </orderedlist>
-Está descrita uma explicação detalhada de todas as funções e botões no seguinte texto.</para>
+  </orderedlist
+>Está descrita uma explicação detalhada de todas as funções e botões no seguinte texto.</para>
 
 </sect2>
 
@@ -166,13 +152,13 @@ Está descrita uma explicação detalhada de todas as funções e botões no seg
           <listitem>
             <para
 ><guilabel
->Pasta da Esquerda</guilabel
+>Pasta da esquerda</guilabel
 >: A pasta de base do lado esquerdo.</para>
           </listitem>
           <listitem>
             <para
 ><guilabel
->Pasta da Direita</guilabel
+>Pasta da direita</guilabel
 >: A pasta de base do lado direito.</para>
           </listitem>
           <listitem>
@@ -231,7 +217,9 @@ Está descrita uma explicação detalhada de todas as funções e botões no seg
           </listitem>
           <listitem>
             <para
->Você poderá usar as aspas para os nomes que contenham espaço. O filtro "Meus Documentos" procura pelos arquivos/pastas cujo nome seja <filename
+>Você poderá usar as aspas para os nomes que contenham espaço. O filtro <quote
+>Meus Documentos</quote
+> procura pelos arquivos/pastas cujo nome seja <filename
 >Meus Documentos</filename
 >.</para>
           </listitem>
@@ -304,9 +292,9 @@ Está descrita uma explicação detalhada de todas as funções e botões no seg
 ><guilabel
 >Assimétrico</guilabel
 >: A <guilabel
->Pasta da Esquerda</guilabel
+>Pasta da esquerda</guilabel
 > é a pasta de destino, enquanto a <guilabel
->Pasta da Direita</guilabel
+>Pasta da direita</guilabel
 > é a pasta de origem. Esta função sincroniza o conteúdo da pasta da esquerda com a da direita. <itemizedlist
 > <listitem
 > <para
@@ -323,6 +311,18 @@ Está descrita uma explicação detalhada de todas as funções e botões no seg
 > <listitem
 > <para
 >Os arquivos que sejam considerados diferentes serão copiados para a esquerda. Use esta funcionalidade com cuidado!</para
+> <itemizedlist
+> <listitem
+> <para
+>Observe que existe uma medida para evitar a perda de dados: se as datas forem levadas em consideração (porque <guilabel
+>Ignorar data</guilabel
+> está desativado), então a ação padrão é <emphasis
+>não sobrescrever um arquivo com uma versão antiga dele</emphasis
+>. O usuário ainda poderá sobrescrever (clicando com o botão direito e selecionando <guilabel
+>Copiar da direita para a esquerda</guilabel
+>).</para
+> </listitem
+> </itemizedlist
 > </listitem
 > </itemizedlist
 >Esta função é útil se a informação da data for inútil, ou para sincronizar a pasta da esquerda com o conteúdo de um servidor de arquivos (como uma transferência). Em alternativa, é útil fazer uma cópia de segurança da pasta da direita para a esquerda. NOTA: NÃO use esta opção para sincronizar um computador e um portátil (&eg;, os arquivos que existirem apenas no lado esquerdo serão excluídos!).</para>
@@ -331,7 +331,9 @@ Está descrita uma explicação detalhada de todas as funções e botões no seg
             <para
 ><guilabel
 >Resultados da Rolagem</guilabel
->: Isto é usado para os servidores de &FTP; lentos, ... Quando a Sincronização tiver acabado de comparar um arquivo, coloca-o no fim da lista de vez e desloca a janela, caso seja necessário. É importante, caso queira saber o que a Sincronização está fazendo. Se o servidor de &FTP; for lento, a comparação de uma pasta poderá levar bastante tempo. Ao ativar esta opção, você poderá ver se a comparação está "viva", mas lenta. Para os sistemas de arquivos locais, poderá reduzir ligeiramente a velocidade da comparação.</para>
+>: Isto é usado para os servidores de &FTP; lentos, ... Quando a Sincronização tiver acabado de comparar um arquivo, coloca-o no fim da lista de vez e desloca a janela, caso seja necessário. É importante, caso queira saber o que a Sincronização está fazendo. Se o servidor de &FTP; for lento, a comparação de uma pasta poderá levar bastante tempo. Ao ativar esta opção, você poderá ver se a comparação está <quote
+>viva</quote
+>, mas lenta. Para os sistemas de arquivos locais, poderá reduzir ligeiramente a velocidade da comparação.</para>
           </listitem>
           <listitem>
             <para
@@ -363,7 +365,9 @@ Está descrita uma explicação detalhada de todas as funções e botões no seg
         <para
 >A <guilabel
 >Lista de Arquivos</guilabel
-> terá as seguintes colunas: "Nome da esquerda | Tamanho da esquerda | Hora da esquerda | Tarefa | Hora da direita | Tamanho da direita | Nome da direita". Aqui você poderá verificar os resultados da comparação e modificar as ações de sincronização, caso seja necessário. A cor do texto define a direção padrão da cópia, de acordo com o comparador. <itemizedlist
+> terá as seguintes colunas: <quote
+>Nome da esquerda | Tamanho da esquerda | Hora da esquerda | Tarefa | Hora da direita | Tamanho da direita | Nome da direita</quote
+>. Aqui você poderá verificar os resultados da comparação e modificar as ações de sincronização, caso seja necessário. A cor do texto define a direção padrão da cópia, de acordo com o comparador. <itemizedlist
 > <listitem
 > <para
 >Verde: Copiar da esquerda para a direita.</para
@@ -461,7 +465,9 @@ Está descrita uma explicação detalhada de todas as funções e botões no seg
             <para
 ><guibutton
 >!=</guibutton
->: Ativar/desativar a listagem dos arquivos excluídos / "ação indeterminada".</para>
+>: Ativar/desativar a listagem dos arquivos excluídos / <quote
+>ação indeterminada</quote
+>.</para>
           </listitem>
           <listitem>
             <para
@@ -560,7 +566,7 @@ Está descrita uma explicação detalhada de todas as funções e botões no seg
           <listitem>
             <para
 ><guibutton
->Sincronizar as Pastas</guibutton
+>Sincronizar pastas</guibutton
 >: Inicia o processo de sincronização.</para>
           </listitem>
           <listitem>
@@ -811,11 +817,17 @@ Está descrita uma explicação detalhada de todas as funções e botões no seg
           </listitem>
           <listitem>
             <para
->A "comparação pelo conteúdo" e a "comparação de pastas" remotas são feitas em paralelo.</para>
+>A <quote
+>comparação pelo conteúdo</quote
+> e a <quote
+>comparação de pastas</quote
+> remotas são feitas em paralelo.</para>
           </listitem>
           <listitem>
             <para
->A sincronização remota também é feita em paralelo, excetuando as tarefas 'mkdir' (esta operação deverá ser feita antes da cópia).</para>
+>A sincronização remota também é feita em paralelo, excetuando as tarefas <command
+>mkdir</command
+> (esta operação deverá ser feita antes da cópia).</para>
           </listitem>
         </itemizedlist>
       </listitem>

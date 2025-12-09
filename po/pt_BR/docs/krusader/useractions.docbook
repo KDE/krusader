@@ -1,24 +1,10 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="useractions">
-  <!-- **********************************************************************
-                            useractions.docbook
-                          ++++++++++++++++++++++++++
- (C)opyright            : (C) 2000 - 2010
-  All Rights Reserved     Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                          & the Krusader Krew
-  e-mail                : krusader@users.sourceforge.net
-  web site              : http://www.krusader.org
-  description           : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
   <title
 >Ações do usuário</title>
   <indexterm>
@@ -29,13 +15,19 @@
   <para
 >Com o ActionMan, você poderá configurar e gerenciar as Ações do Usuário. Algumas das opções gerais são definidas no <link linkend="konfig-useractions"
 >Konfigurador</link
->. Com as Ações do Usuário, você poderá efetuar algumas ações sobre os arquivos do painel ou acessar às funções internas do &krusader; com os parâmetros usando diretamente itens de substituição. As ações integram-se de forma transparente com o sistema de ações do &kde;, o que significa que as janelas normais para Editar as Barras de Ferramentas e Editar os Atalhos irão também mostrar as Ações do Usuário. Elas são guardadas em <filename
-> ~/.local/share/krusader/useraction.xml</filename
-> (a estrutura do arquivo está documentada nos cabeçalhos do Doxygen do UserActionXML). Estão incluídos diversos <link linkend="useraction-xml"
+>. Com as Ações do Usuário, você poderá efetuar algumas ações sobre os arquivos do painel ou acessar às funções internas do &krusader; com os parâmetros usando diretamente itens de substituição. As ações integram-se de forma transparente com o sistema de ações do &plasma;, o que significa que as janelas normais para editar as barras de ferramentas e editar os atalhos irão também mostrar as ações do usuário. Elas são guardadas em <filename
+> ~/.local/share/krusader/useractions.xml</filename
+> ou <filename
+>krusader/useractions.xml</filename
+> na pasta que pode ser determinada usando o comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. Estão incluídos diversos <link linkend="useraction-xml"
 >exemplos</link
 > na documentação. Você poderá editar / adicionar / importar / exportar as ações do usuário graças ao ActionMan. As Ações do Usuário padrão são salvas em <filename
 > /usr/share/krusader/useraction-examples.xml</filename
->. As mesmas poderão aparecer em praticamente todos locais onde iriam aparecer KAction's normais. As ações até poderão ser colocadas na barra do menu, mas para isso o arquivo <filename
+>. As mesmas poderão aparecer em praticamente todos locais onde iriam aparecer KActions <quote
+>normais</quote
+>. As ações até poderão ser colocadas na barra do menu, mas para isso o arquivo <filename
 >krusaderui.rc</filename
 > deverá poder ser editado. Alguns exemplos:</para
 > 
@@ -73,9 +65,7 @@
     <para
 >São fornecidas diversas Ações do Usuário padrão. Por favor, <link linkend="help_krusader"
 >envie as suas Ações de Usuário favoritas</link
-> para que se tornem disponíveis para a comunidade do &krusader;. Obrigado! Nós oferecemos também um <ulink url="http://www.krusader.org/phpBB/viewforum.php?f=11"
->Fórum de Ações do Usuário</ulink
->.</para>
+> para que se tornem disponíveis para a comunidade do &krusader;. Obrigado!</para>
   </tip>
   <figure id="screenshot-actionman" float="1">
     <title
@@ -141,7 +131,7 @@
       <para
 ><guimenuitem
 >Para importar uma Ação do Usuário</guimenuitem
->: Se importar algumas ações, elas serão adicionadas automaticamente à sua lista. Se existirem conflitos de nomes (os nomes terão que ser únicos, porque são os IDs do sistema de ações do &kde;), será pedido para resolvê-los. Para isso, a lista à esquerda só irá mostrar as ações onde existem conflitos. Você poderá então atribuir a eles nomes novos ou removê-los.</para>
+>: Se importar algumas ações, elas serão adicionadas automaticamente à sua lista. Se existirem conflitos de nomes (os nomes terão que ser únicos, porque são os IDs do sistema de ações do &plasma;), será pedido para resolvê-los. Para isso, a lista à esquerda só irá mostrar as ações onde existem conflitos. Você poderá então atribuir a eles nomes novos ou removê-los.</para>
     </listitem>
     <listitem>
       <para
@@ -151,7 +141,7 @@
     </listitem>
   </itemizedlist>
   <para
->Todas as ações que definiu serão então apresentadas no menu do usuário e nas janelas do &kde; para a modificação dos atalhos e da barra de ferramentas. Além disso, todas as ações disponíveis para o item atual irão também aparecer no menu do botão direito do mouse.</para>
+>Todas as ações que definiu serão então apresentadas no menu do usuário e nas janelas do &plasma; para a modificação dos atalhos e da barra de ferramentas. Além disso, todas as ações disponíveis para o item atual irão também aparecer no menu do botão direito do mouse.</para>
   <para>
     <emphasis role="bold"
 >Propriedades básicas</emphasis>
@@ -170,7 +160,7 @@
       <para
 ><guimenuitem
 >Identificador</guimenuitem
->: Um nome único para a ação do usuário, usado para identificá-la no sistema de ações do &kde;.</para>
+>: Um nome único para a ação do usuário, usado para identificá-la no sistema de ações do &plasma;.</para>
     </listitem>
     <listitem>
       <para
@@ -214,7 +204,7 @@
       <para
 ><guimenuitem
 >Comando</guimenuitem
->: O comando que será executado. Você poderá adicionar itens de substituição, usando uma interface gráfica, com o botão para <guibutton
+>: O comando que será executado. Você poderá adicionar itens de substituição, usando uma &GUI;, com o botão para <guibutton
 >Adicionar</guibutton
 >.</para>
     </listitem>
@@ -258,7 +248,9 @@
           <para
 ><guimenuitem
 >Saída de erros separada</guimenuitem
->: Quando é usada a opção "Recolher a saída", o 'stdout' e o 'stderr' são recolhidos em separado.</para>
+>: Quando é usada a opção <quote
+>Recolher a saída</quote
+>, o 'stdout' e o 'stderr' são recolhidos em separado.</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -271,13 +263,13 @@
         <listitem>
           <para
 ><guimenuitem
->Arquivos locais (sem URLs)</guimenuitem
+>Arquivos locais (sem &URL;s)</guimenuitem
 >: Indica ao item de substituição que deverá devolver endereços locais.</para>
         </listitem>
         <listitem>
           <para
 ><guimenuitem
->URLs (locais e remotas)</guimenuitem
+>&URL;s (locais e remotas)</guimenuitem
 >: Diz ao item de substituição que deverá devolver &URL;s.</para>
         </listitem>
       </itemizedlist>
@@ -319,7 +311,11 @@
 >Sintaxe da linha de comando</emphasis>
   </para>
   <para
->Basicamente, tudo o que digitar na linha de comando será executado (se escrever "ls -l", "ls -l" será então executado). Você tem a possibilidade de obter uma sequência de caracteres do &krusader; que represente o estado atual do painel. Isto é feito através dos itens de substituição. Um item de substituição começa com uma percentagem ('%') e é seguido de um indicador de painel ('a' para o ativo, 'o' para o outro, 'l' (left) para o da esquerda e 'r' (right) para o da direita. Se o item de substituição não necessitar de nenhum painel para funcionar, terá que indicar isso com um sublinhado ('_')). Em seguida, vem o nome do item de substituição (veja a lista abaixo), o qual poderá obter alguns parâmetros delimitados por aspas. Finalmente, vem mais uma vez o símbolo de percentagem.</para>
+>Basicamente, tudo o que digitar na linha de comando será executado (se escrever <quote
+>ls -l</quote
+>, <quote
+>ls -l</quote
+> será então executado). Você tem a possibilidade de obter uma sequência de caracteres do &krusader; que represente o estado atual do painel. Isto é feito através dos itens de substituição. Um item de substituição começa com uma porcentagem ('%') e é seguido de um indicador de painel ('a' para o ativo, 'o' para o outro, 'l' (left) para o da esquerda e 'r' (right) para o da direita. Se o item de substituição não necessitar de nenhum painel para funcionar, terá que indicar isso com um sublinhado ('_')). Em seguida, vem o nome do item de substituição (veja a lista abaixo), o qual poderá obter alguns parâmetros delimitados por aspas. Finalmente, vem mais uma vez o símbolo de porcentagem.</para>
   <para
 >Isto parece muito complicado, assim será melhor dar um exemplo: o '%aList("Selected")%' é substituído por uma lista com todos os itens selecionados no painel ativo. Assim, um comando do tipo 'xmms --enqueue %aList("All", " ", "", "*.mp3")%' irá executar o 'xmms' com uma lista de todos os '.mp3's do painel ativo, separados por um único espaço em branco.</para>
   <para
@@ -346,7 +342,15 @@
       <orderedlist>
         <listitem>
           <para
->Parâmetro: Quais os itens: "All" (todos), "Selected" (selecionados), "Files" (arquivos) ou "Dirs" (pastas)</para>
+>Parâmetro: Quais os itens: <quote
+>All</quote
+> (todos), <quote
+>Selected</quote
+> (selecionados), <quote
+>Files</quote
+> (arquivos) ou <quote
+>Dirs</quote
+> (pastas)</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -380,11 +384,21 @@
       <orderedlist>
         <listitem>
           <para
->Parâmetro: Quais os itens: "All" (todos), "Selected" (selecionados), "Files" (arquivos) ou "Dirs" (pastas)</para>
+>Parâmetro: Quais os itens: <quote
+>All</quote
+> (todos), <quote
+>Selected</quote
+> (selecionados), <quote
+>Files</quote
+> (arquivos) ou <quote
+>Dirs</quote
+> (pastas)</para>
         </listitem>
         <listitem>
           <para
->Parâmetro (opcional): Separador entre os itens. Padrão: "&nbsp;"</para>
+>Parâmetro (opcional): Separador entre os itens. Padrão: <quote
+>&nbsp;</quote
+></para>
         </listitem>
         <listitem>
           <para
@@ -392,7 +406,9 @@
         </listitem>
         <listitem>
           <para
->Parâmetro (opcional): Máscara do filtro (para todos exceto o "Selected"). Padrão: *</para>
+>Parâmetro (opcional): Máscara do filtro (para todos exceto o <quote
+>Selected</quote
+>). Padrão: *</para>
         </listitem>
         <listitem>
           <para
@@ -412,7 +428,15 @@
         </listitem>
         <listitem>
           <para
->Parâmetro (opcional): manipula de diferentes formas: "Set" (configurar), "Add" (adicionar) ou "Remove" (remover). Padrão: "Set"</para>
+>Parâmetro (opcional): manipula de diferentes formas: <quote
+>Set</quote
+> (configurar), <quote
+>Add</quote
+> (adicionar) ou <quote
+>Remove</quote
+> (remover). Padrão: <quote
+>Set</quote
+></para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -424,7 +448,7 @@
       <orderedlist>
         <listitem>
           <para
->Parâmetro: Uma localização relativa, absoluta ou um URL</para>
+>Parâmetro: Uma localização relativa, absoluta ou um &URL;</para>
         </listitem>
         <listitem>
           <para
@@ -460,7 +484,9 @@
       <orderedlist>
         <listitem>
           <para
->Parâmetro: O texto que deverá ir para a área de transferência (você poderá querer usar o "%aCurrent%" aqui)</para>
+>Parâmetro: O texto que deverá ir para a área de transferência (você poderá querer usar o <quote
+>%aCurrent%</quote
+> aqui)</para>
         </listitem>
         <listitem>
           <para
@@ -572,56 +598,6 @@
         </listitem>
       </orderedlist>
     </listitem>
-<!--    <listitem>
-      <para>
-      <userinput
->Script</userinput
-> - executes an external 
-      <link linkend="javascript_console">
-      Javascript</link
-> file.</para>
-      <para
->NOTE: This is still experimental and the interface may
-      change, feedback is always welcome.</para>
-      <orderedlist>
-        <listitem>
-          <para
->Parameter: path to the
-          external foo.js file, absolute path or relative to 
-          <filename>
-          &lt;kde-app-data&gt;/krusader/js/</filename
->.
-          &lt;kde-app-data&gt; is 
-          <filename
->$(kde-config
-          - -localprefix)/share/apps/</filename
-> or 
-          <filename
->$(kde-config - -prefix)/share/apps/</filename
->,
-          for those who do not know where to copy the
-          scripts/extensions. If all the needed files (normally 
-          <filename
->.js</filename
-> and maybe 
-          <filename
->.ui</filename
->) are in one of these dirs it is
-          sufficient to give the file name only as &lt;first parameter&gt;.
-          </para>
-        </listitem>
-        <listitem>
-          <para
->Parameter (optional): a list
-          of variables which should be set, like "return=cmd;
-          a=lalala; b='%_Ask(..)'" so that the placeholder is
-          replaced be the content of the variable cmd and the other
-          two have already these values when the script
-          starts.</para>
-        </listitem>
-      </orderedlist>
-    </listitem>
-    disabled due to KrJS does not compile (cannot find kjsembed from kdelibs -->
     <listitem>
       <para
 ><userinput
@@ -642,11 +618,35 @@
       <orderedlist>
         <listitem>
           <para
->Parâmetro: Coluna: Tanto poderá ser "Name", "Ext", "Type", "Size", "Modified", "Perms", "rwx", "Owner" ou "Group"</para>
+>Parâmetro: Coluna: Poderá ser <quote
+>Name</quote
+> (nome), <quote
+>Ext</quote
+> (extensão), <quote
+>Type</quote
+> (tipo), <quote
+>Size</quote
+> (tamanho), <quote
+>Modified</quote
+> (modificado), <quote
+>Perms</quote
+> (permissões), <quote
+>rwx</quote
+>, <quote
+>Owner</quote
+> (Dono) e <quote
+>Group</quote
+> (grupo)</para>
         </listitem>
         <listitem>
           <para
->Parâmetro: Sequência de ordenação: Tanto poderá ser "Toggle" (comutar), "Asc" (ascendente), "Desc" (descendente)</para>
+>Parâmetro: Sequência de ordenação: Tanto poderá ser <quote
+>Toggle</quote
+> (comutar), <quote
+>Asc</quote
+> (ascendente), <quote
+>Desc</quote
+> (descendente)</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -658,11 +658,21 @@
       <orderedlist>
         <listitem>
           <para
->Parâmetro: Modo de visualização: Tanto poderá ser "generic" (genérico), "text" (texto), "hex" (hexadecimal)</para>
+>Parâmetro: Modo de visualização: Tanto poderá ser <quote
+>generic</quote
+> (genérico), <quote
+>text</quote
+> (texto), <quote
+>hex</quote
+> (hexadecimal)</para>
         </listitem>
         <listitem>
           <para
->Parâmetro: Modo da janela: Tanto poderá ser "tab" (página), "window" (janela)</para>
+>Parâmetro: Modo da janela: Tanto poderá ser <quote
+>tab</quote
+> (página), <quote
+>window</quote
+> (janela)</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -679,7 +689,7 @@
   <itemizedlist>
     <listitem>
       <para
->Configura se a ação é válida para um Protocolo, Localização, Tipo MIME ou Nome de Arquivo.</para>
+>Configura se a ação é válida para um Protocolo, Localização, Tipo &MIME; ou Nome de Arquivo.</para>
     </listitem>
     <listitem>
       <para

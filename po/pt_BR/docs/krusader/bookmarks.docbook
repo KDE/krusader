@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="bookman">
   <title
 >BookMan: Organize os seus Favoritos</title>
@@ -7,7 +13,7 @@
   </indexterm>
   <para
 >O BookMan é a ferramenta de Favoritos do &krusader; para marcar as pastas, <link linkend="remote-connections"
->URLs remotas</link
+>&URL;s remotas</link
 > e locais, bem como para voltar a eles com uma simples seleção de um botão. O menu do BookMan está dividido em quatro seções: <itemizedlist>
     <listitem>
       <para
@@ -31,26 +37,6 @@
     <para
 >Você poderá marcar favoritos dentro de um sistema de arquivos remoto (&FTP; ou SAMBA) e usar o favorito mais tarde, de modo a conectar-se rapidamente à máquina remota; contudo, não poderá marcar um favorito dentro de um pacote.</para>
   </note>
-  <!-- OLD
-<screenshot>
-  <screeninfo
->Bookmark menu</screeninfo>
-  <mediaobject>
-  <imageobject
-><imagedata fileref="bookmanadd.png" format="PNG"/></imageobject>
-  <imageobject
-><imagedata fileref="bookmanadd.png" format="EPS"/></imageobject>
-  <textobject
-><phrase
->BookMan: the Bookmark menu</phrase
-></textobject>
-  <caption
-><para
->Bookmark menu</para
-></caption>
-  </mediaobject>
-</screenshot>
--->
   <figure id="screenshot-bookmanadd" float="1">
     <title
 >Menu de Favoritos</title>
@@ -71,12 +57,12 @@
     <para
 >Normalmente, você irá clicar no botão <guibutton
 >BookMan II</guibutton
-> quando estiver na pasta de destino. Por exemplo, para marcar o favorito <filename class="directory"
+> (o botão mais à direita da barra de endereço na parte superior do painel ativo) quando estiver na pasta de destino. Por exemplo, para marcar o favorito <filename class="directory"
 >/usr/tmp</filename
 >, vá com o &krusader; até lá, clique no botão <guibutton
 >BookMan II</guibutton
 > e selecione <guimenuitem
->Marcar o Atual como Favorito</guimenuitem
+>Marcar o atual como favorito</guimenuitem
 >. Quando a janela respectiva aparecer, a linha da &URL; irá indicar <filename class="directory"
 >/usr/tmp</filename
 >. O <guilabel
@@ -90,7 +76,7 @@
 >tecla</keycap
 ></keycombo
 >. Se adicionar o favorito sem inserir um nome, ele será igual ao seu destino. A <guilabel
->URL</guilabel
+>&URL;</guilabel
 > é para onde aponta o favorito. A opção <guilabel
 >Criar em</guilabel
 > cria pastas para organizar os seus favoritos.</para>
@@ -115,27 +101,59 @@
 >aba de Pasta</link
 >.</para>
     <para
->Navegação nos favoritos: <orderedlist>
-      <listitem>
-        <para
->Comece digitando letras</para>
-      </listitem>
-      <listitem>
-        <para
->&eg;, quando digitar <literal
+>Existe uma barra de pesquisa rápida na parte superior do menu <guibutton
+>BookMan II</guibutton
+>.</para>
+    <note>
+      <para
+>A barra de pesquisa estará sempre visível no menu de favoritos se você marcar o item correspondente na <link linkend="konfig-panel-general"
+>página do painel do Konfigurator</link
+>. </para>
+    </note>
+    <para
+>Abaixo estão as regras para gerenciar favoritos:</para>
+    <itemizedlist>
+        <listitem>
+            <para
+>Basta digitar letras para pesquisar: os favoritos são encontrados pelo prefixo do nome.</para>
+        </listitem>
+        <listitem>
+            <para
+>Se vários marcadores corresponderem ao prefixo, eles serão destacados e o primeiro será selecionado - pressione &Enter; para ativar o marcador.</para>
+        </listitem>
+        <listitem>
+            <para
+>Assim que um marcador é encontrado, ele é acionado imediatamente. Ou seja, quando você digita <literal
 >'h'</literal
-> e só existir um favorito que começa por <literal
+> e apenas um marcador começa com <literal
 >'h'</literal
->, ele é executado imediatamente - sem qualquer inserção de dados</para>
-      </listitem>
-      <listitem>
-        <para
->Se mais de um favorito começar com <literal
->'h'</literal
->, você terá que continuar adicionando letras, até que tenha indicado as suficientes, de modo que o favorito possa então ser executado.</para>
-      </listitem>
-    </orderedlist
-></para>
+>, ele é executado imediatamente - sem necessidade de pressionar &Enter;</para>
+        </listitem>
+        <listitem>
+            <para
+>Os atalhos só funcionam se a tecla pressionada for a primeira</para>
+        </listitem>
+        <listitem>
+            <para
+>O &Backspace; é suportado</para>
+        </listitem>
+        <listitem>
+            <para
+>A pesquisa não diferencia maiúsculas de minúsculas, a menos que você digite uma letra maiúscula. Ou seja, digitar <literal
+>HamBurglar</literal
+> só encontrará <literal
+>HamBurglar</literal
+> mas não <literal
+>hamburglar</literal
+> ou <literal
+>Hamburglar</literal
+>.</para>
+        </listitem>
+        <listitem>
+            <para
+>A barra de pesquisa é intencionalmente um campo somente leitura</para>
+        </listitem>
+    </itemizedlist>
   </sect2>
   <sect2 id="password_handling">
     <title
@@ -143,29 +161,29 @@
     <para
 >Uma das vantagens do <link linkend="bookman"
 >gerenciador de favoritos</link
-> é que as senhas são guardadas com os serviços do &kde; - onde, por exemplo, as suas senhas do &konqueror;/&kmail; são gravadas. Se você tiver uma carteira, o &kde; irá salvar as senhas nela. Ao clicar nos favoritos, irá abrir uma janela pedindo o seu usuário e senha. Insira-os e clique em <guibutton
+> é que as senhas são guardadas com os serviços do &plasma; - onde, &eg;, as suas senhas do &konqueror;/&kmail; são gravadas. Se você tiver uma carteira, o &plasma; irá salvar as senhas nela. Ao clicar nos favoritos, irá abrir uma janela pedindo o seu usuário e senha. Insira-os e clique em <guibutton
 >Salvar a senha</guibutton
->. As senhas e os usuários serão gravados em segurança pela carteira do &kde; (certifique-se de que ela está ativa pela sua distribuição). A desvantagem é que, se você reinstalar o sistema e não guardar as suas senhas da carteira, assim como o arquivo de favoritos do &krusader;, ela será perdida.</para>
+>. As senhas e os usuários serão gravados em segurança pela carteira do &plasma; (certifique-se de que ela está ativa pela sua distribuição). A desvantagem é que, se você reinstalar o sistema e não guardar as suas senhas da carteira, assim como o arquivo de favoritos do &krusader;, ela será perdida.</para>
   </sect2>
   <sect2 id="popular-urls">
     <title
->URLs populares</title>
+>&URL;s populares</title>
     <indexterm>
       <primary
->URLs populares</primary>
+>&URL;s populares</primary>
     </indexterm>
     <para
 >O submenu <guilabel
->URLs populares</guilabel
+>&URL;s populares</guilabel
 > mantém persistentes as &URL;s mais visitadas (locais ou remotas). Este submenu mostra as 15 &URL;s mais populares, ordenadas pela sua classificação, de modo que a &URL; do topo será a mais popular. Isto é simples quando precisar visitar as &URL;s com frequência, mas quando não quer criar <link linkend="bookman"
 >Favoritos</link
 >; serve como uma lista de favoritos temporários para as ligações mais visitadas. A pesquisa rápida nas <guilabel
->URLs populares</guilabel
+>&URL;s populares</guilabel
 > é uma forma rápida de navegar/selecionar as &URL;s populares: <itemizedlist>
       <listitem>
         <para
 >Abra as <guilabel
->URLs populares</guilabel
+>&URL;s populares</guilabel
 > ou use a combinação de teclas <keycombo action="simul"
 >&Ctrl; <keycap
 >Z</keycap
@@ -196,7 +214,7 @@
 >Lixeira</guilabel
 > usa o protocolo <filename
 >trash:/</filename
-> do &kde;.</para>
+> do &plasma;.</para>
       </listitem>
       <listitem>
         <para
@@ -204,7 +222,7 @@
 >Rede local</guilabel
 > usa o protocolo <filename
 >remote:/</filename
-> do &kde;.</para>
+> do &plasma;.</para>
       </listitem>
       <listitem>
         <para
@@ -216,7 +234,7 @@
 >virt:/</filename
 > não é uma pasta virtual, mas sim um contentor para as &URL;s dos diferentes sistemas de arquivos. É usado, &eg;, para a funcionalidade <guilabel
 >Alimentar à Lista</guilabel
-> do módulo de pesquisa e de sincronização (por padrão é desativado em tempo de compilação). A barra de localização irá mostrar, &eg;, o <filename
+> do módulo de pesquisa e de sincronização. A barra de localização irá mostrar, &eg;, o <filename
 >virt:/Resultados da pesquisa 1</filename
 > ou o <filename
 >virt:/Resultados da sincronização 1</filename
@@ -253,25 +271,37 @@
 >KeditBookmarks</application
 >. Aqui é onde poderá editar/remover e reorganizar os favoritos. O <application
 >KeditBookmarks</application
-> (parte do pacote kde-baseapps) é um editor de favoritos para o &konqueror;, o &krusader; e outros aplicativos, usando a <ulink url="http://grail.sourceforge.net/info/xbel.html"
+> é um editor de favoritos para o &konqueror;, o &krusader; e outros aplicativos, usando a <ulink url="http://grail.sourceforge.net/info/xbel.html"
 >norma XBEL</ulink
 > para o formato dos favoritos. Eles são armazenados em <filename
 > ~/.local/share/krusader/krbookmarks.xml</filename
 >.</para>
+    <note>
+        <para
+>A pasta padrão para o arquivo de favoritos <filename
+>krusader/krbookmarks.xml</filename
+> é <filename class="directory"
+>~/.local/share</filename
+>. Você pode determinar a pasta necessária em seu sistema usando o comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> no terminal. </para>
+        <para
+>Este arquivo local existe apenas se você tiver editado os favoritos do &krusader;. Ele será criado após a primeira execução do <application
+>KeditBookmarks</application
+> do &krusader;. </para>
+        <para
+>Os favoritos padrão do sistema são armazenados no arquivo <filename
+>kfileplaces/bookmarks.xml</filename
+> na pasta que pode ser determinada usando o comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. </para>
+    </note>
     <para
->Você poderá importar favoritos do <application
->IE</application
->, <application
->Opera</application
->, <application
->Galeon</application
->, &kde;, <application
->Mozilla</application
-> e &Netscape;. O <application
+><application
 >KeditBookmarks</application
-> é simples de usar; contudo, se precisar de mais informações, leia por favor o manual do <application
->KeditBookmarks</application
-> ou do &konqueror;.</para>
+> é fácil de usar, no entanto, se você precisar de mais informações, leia o <ulink url="help:/keditbookmarks/index.html"
+>manual do KeditBookmarks</ulink
+>.</para>
     <figure id="screenshot-bookmanedit" float="1">
       <title
 >Gerenciador de Favoritos <application
@@ -325,7 +355,7 @@
 > ou na <link linkend="actions_toolbar"
 >Barra de Ações</link
 > com a janela <guilabel
->Configurar barras de ferramentas</guilabel
+>Configurar barras de ferramentas...</guilabel
 > (<menuchoice
 ><guimenu
 >Configurações</guimenu

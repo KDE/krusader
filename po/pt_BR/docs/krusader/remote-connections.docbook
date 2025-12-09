@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="remote-connections">
   <title
 >Conexões remotas</title>
@@ -190,11 +196,11 @@
   </itemizedlist>
   <note>
     <para
->O &krusader; é um gerenciador de arquivos que suporta conexões remotas através dos KIO Slaves, mas se estiver à procura de conexões remotas ainda mais avançadas, como &eg;, um cliente &FTP; avançado, recomenda-se que use &eg; o <ulink url="http://kasablanca.berlios.de/"
->Kasablanca</ulink
-> ou o <ulink url="http://kftpgrabber.sourceforge.net/"
+>O &krusader; é um gerenciador de arquivos que suporta conexões remotas através dos KIO Slaves, mas se estiver à procura de conexões remotas ainda mais avançadas, como &eg;, um cliente &FTP; avançado, recomenda-se que use &eg; o <ulink url="https://lftp.yar.ru/"
+>LFTP</ulink
+> ou <ulink url="https://filezilla-project.org/"
 ><application
->Kftpgrabber</application
+>FileZilla</application
 ></ulink
 >.</para>
   </note>
@@ -208,17 +214,11 @@
   </indexterm>
 
 <para
->Esta seção tem a contribuição de <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1912"
->Andrew Svet (z-vet)</ulink
->; agradecemos os comentários sobre este capítulo. Muito obrigado!</para>
+>Esta seção tem a contribuição de Andrew Svet (z-vet), agradecemos os comentários sobre este capítulo. Muito obrigado!</para>
 
  <note>
    <para
->Isto funciona num sistema <trademark class="registered"
->Debian</trademark
->, por isso irá funcionar no <trademark class="registered"
->Debian</trademark
-> e derivados (<trademark class="registered"
+>Isto funciona num sistema &Debian;, por isso irá funcionar no &Debian; e derivados (<trademark class="registered"
 >Kubuntu</trademark
 > &etc;), ainda que deva também funcionar nos outros sistemas Linux. Assume-se para você já que tem o <link linkend="gloss-ssh"
 >SSH</link
@@ -270,7 +270,15 @@
 </screen
 > Este arquivo é apenas uma cópia do 'ssh.service'. Edite o arquivo <filename
 >fish.service</filename
-> e substitua o "Terminal Remoto em %h" por "Fish em %h" e o "_ssh._tcp" por "_fish._tcp". Assim é como ele irá ficar depois da edição: <programlisting
+> e substitua o <quote
+>Terminal remoto em %h</quote
+>por <quote
+>Fish em %h</quote
+> e o <quote
+>_ssh._tcp</quote
+> por <quote
+>_fish._tcp</quote
+> Assim é como ele irá ficar depois da edição: <programlisting
 > 
 &lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--> 
 &lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
@@ -343,7 +351,7 @@ PasswordEntry=p
 >fish:/</filename
 > na sua LAN; a barra de localização irá apontar para <filename
 >zeroconf:/_fish._tcp</filename
->. Faça duplo-clique em cada uma destas máquinas, para que apareça a janela de pedido de senha, onde poderá inserir a sua frase-senha de SSH (se estiver definida). Insira a senha. Parabéns: você conectou-se à máquina remota através do &krusader;! </para
+>. Faça duplo-clique em cada uma destas máquinas, para que apareça a janela de pedido de senha, onde poderá inserir a sua senha de SSH (se estiver definida). Insira a senha. Parabéns: você conectou-se à máquina remota através do &krusader;! </para
 > 
 
 </sect2>

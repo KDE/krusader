@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="compare">
   <title
 >Comparar</title>
@@ -8,7 +14,7 @@
 >Comparar as Pastas</guimenuitem
 > e a função de comparação <link linkend="synchronizer"
 >Sincronização</link
-> (por padrão é desativado em tempo de compilação).</para>
+>.</para>
   <sect2 id="compare-content">
     <title
 >Comparar por conteúdo</title>
@@ -23,11 +29,11 @@
 > <guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Comparar pelo conteúdo</guimenuitem
+>Comparar pelo conteúdo...</guimenuitem
 > </menuchoice
 >. O &krusader; irá abrir uma aplicação gráfica de visualização de diferenças <link linkend="konfig-dependencies"
 >configurada</link
->. São suportados o &kompare;, o <ulink url="http://kdiff3.sourceforge.net"
+>. São suportados o &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
 ><application
 >KDiff3</application
 ></ulink
@@ -39,19 +45,19 @@
   </sect2>
   <sect2 id="compare-dir">
     <title
->Comparar as Pastas</title>
+>Comparar as pastas</title>
     <indexterm>
       <primary
 >Comparar</primary>
       <secondary
->Diretórios</secondary>
+>Pastas</secondary>
     </indexterm>
     <para
 >Compare os arquivos de cada painel com a opção <menuchoice
 > <guimenu
 >Editar</guimenu
 > <guimenuitem
->Comparar as Pastas</guimenuitem
+>Comparar as pastas</guimenuitem
 > </menuchoice
 >. Por padrão, os arquivos mais recentes e únicos ficarão selecionados em cada painel, sendo que você poderá configurar este comportamento no menu de <guimenuitem
 >Configuração da Comparação</guimenuitem
@@ -73,7 +79,7 @@
         <listitem>
           <para
 >Configura a opção para <guimenuitem
->Comparar as Pastas</guimenuitem
+>Comparar as pastas</guimenuitem
 >.</para>
           <itemizedlist>
             <listitem>

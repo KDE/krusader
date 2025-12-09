@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="krviewer">
   <title
 >KrViewer: o visualizador-editor interno do &krusader;</title>
@@ -19,7 +25,7 @@
     <para
 >Para ver um arquivo o mais rapidamente possível, de acordo com o seu tipo, basta colocá-lo sob o cursor e pressionar <keycap
 >F3</keycap
->. O visualizador interno do &krusader; faz parte de fato do &konqueror;, que consegue ver basicamente todos os tipos de arquivos legíveis pelo &konqueror; (&eg; mostrar imagens, tocar música, mostrar o conteúdo de um pacote). Este é chamado de 'Visualizador genérico', para o qual você poderá ter que configurar os tipos MIME.</para>
+>. O visualizador interno do &krusader; faz parte de fato do &konqueror;, que consegue ver basicamente todos os tipos de arquivos legíveis pelo &konqueror; (&eg; mostrar imagens, tocar música, mostrar o conteúdo de um pacote). Este é chamado de 'Visualizador genérico', para o qual você poderá ter que configurar os tipos &MIME;.</para>
     <para
 >O visualizador funciona da seguinte forma: <itemizedlist
 > <listitem
@@ -30,7 +36,7 @@
 > </listitem
 > <listitem
 > <para
->Quando o tipo do arquivo (tipo MIME) não puder ser determinado ou quando um arquivo (&eg; um executável) não tiver uma ação associada, ele irá desativar o 'visualizador genérico'. O arquivo é tratado como arquivo de texto, sendo aí usado o <emphasis
+>Quando o tipo do arquivo (tipo &MIME;) não puder ser determinado ou quando um arquivo (&eg; um executável) não tiver uma ação associada, ele irá desativar o 'visualizador genérico'. O arquivo é tratado como arquivo de texto, sendo aí usado o <emphasis
 >'Visualizador de texto'</emphasis
 >.</para
 > </listitem
@@ -82,11 +88,11 @@
         <para
 >O <userinput
 > <command
->http://</command
+>https://</command
 ><replaceable
->krusader.sourceforce.net/</replaceable
+>krusader.org</replaceable
 > </userinput
-> vê uma página Web.</para>
+> vê um site.</para>
       </listitem>
       <listitem>
         <para
@@ -152,7 +158,7 @@
 >, o visualizador poderá iniciar o editor interno do &krusader; (o qual é basicamente a mesma aplicação).</para>
     <note>
       <para
->O visualizador incorporado não é feito por nós; ele é fornecido pelo &kde; (bibliotecas) e pelos KIO Slaves. Não podemos nem queremos alterar isso, uma vez que a utilização destas bibliotecas reduz a quantidade de código escrito. Por isso, não é necessário reinventar a roda ;-)</para>
+>O visualizador incorporado não é feito por nós; ele é fornecido pelo &kde-frameworks; (bibliotecas) e pelos KIO Slaves. Não podemos nem queremos alterar isso, uma vez que a utilização destas bibliotecas reduz a quantidade de código escrito. Por isso, não é necessário reinventar a roda ;-)</para>
     </note>
   </sect2>
   <sect2 id="kredit">
@@ -278,12 +284,12 @@
 ><guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Exportar como HTML</guimenuitem
+>Exportar como &HTML;</guimenuitem
 > </menuchoice>
 </term>
 <listitem>
 <para
->Exporta o seu arquivo para o formato &HTML; para que o documento possa ser visto como uma página Web. Este item somente é exibido quando o plugin <guilabel
+>Exporta o seu arquivo para o formato &HTML; para que o documento possa ser visto como um site. Este item somente é exibido quando o plugin <guilabel
 >Exportador</guilabel
 > estiver carregado. </para>
 </listitem>
@@ -358,7 +364,7 @@
 ></term>
 <listitem>
 <para
->Este comando apaga a seleção atual e coloca-a na área de transferência. A área de transferência é uma funcionalidade do &kde; que funciona de forma invisível para oferecer uma forma de transferir os dados entre os aplicativos.</para>
+>Este comando apaga a seleção atual e coloca-a na área de transferência. A área de transferência é uma funcionalidade que funciona de forma invisível para oferecer uma forma de transferir os dados entre os aplicativos.</para>
 </listitem>
 </varlistentry>
 
@@ -379,7 +385,7 @@
 ></term>
 <listitem>
 <para
->Isto copia o texto atualmente selecionado para a área de transferência, de modo a poder ser colado em outro local. A área de transferência é uma funcionalidade do &kde; que funciona de forma invisível para oferecer uma forma de transferir os dados entre os aplicativos.</para>
+>Isto copia o texto atualmente selecionado para a área de transferência, de modo a poder ser colado em outro local. A área de transferência é uma funcionalidade que funciona de forma invisível para oferecer uma forma de transferir os dados entre os aplicativos.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -399,7 +405,7 @@
 ></term>
 <listitem>
 <para
->Isto irá inserir o conteúdo da área de transferência na posição do cursor. A área de transferência é uma funcionalidade do &kde; que funciona, de forma invisível, para oferecer uma forma de transferir os dados entre os aplicativos.</para>
+>Isto irá inserir o conteúdo da área de transferência na posição do cursor. A área de transferência é uma funcionalidade que funciona, de forma invisível, para oferecer uma forma de transferir os dados entre os aplicativos.</para>
 </listitem>
 </varlistentry>
 <varlistentry
@@ -409,7 +415,7 @@
 ><guimenu
 >Editar</guimenu
 ><guimenuitem
->Copiar como HTML</guimenuitem
+>Copiar como &HTML;</guimenuitem
 ></menuchoice
 ></term>
 <listitem>
@@ -461,11 +467,10 @@
 >Retira a seleção de texto no editor, se existir.</para>
 </listitem>
 </varlistentry>
-<varlistentry
-><!-- only in power mode -->
+<varlistentry>
 <term
 ><anchor id="katepart-menu-block-selection-mode"/><menuchoice
-> <shortcut
+><shortcut
 > <keycombo action="simul"
 >&Ctrl;&Shift;<keycap
 >B</keycap
@@ -474,9 +479,9 @@
 > <guimenu
 >Editar</guimenu
 ><guimenuitem
->Modo de Seleção em Bloco</guimenuitem
+>Modo seleção em bloco</guimenuitem
 ></menuchoice
-> (Modo de usuário experiente)</term>
+></term>
 <listitem>
 <para
 >Ativa ou desativa o Modo de Seleção. Quando o Modo de Seleção for <guilabel
@@ -488,11 +493,10 @@
 >.</para>
 </listitem>
 </varlistentry>
-<varlistentry
-><!-- only in power mode -->
+<varlistentry>
 <term
 ><anchor id="katepart-menu-vi-input-mode"/><menuchoice
-> <shortcut
+><shortcut
 > <keycombo action="simul"
 ><keysym
 >Meta</keysym
@@ -503,9 +507,9 @@
 > <guimenu
 >Editar</guimenu
 ><guimenuitem
->Modo de Entrada VI</guimenuitem
+>Modo de entrada VI</guimenuitem
 ></menuchoice
-> (Modo de usuário experiente)</term>
+></term>
 <listitem>
 <para
 >Muda para um modo, semelhante ao VI, de edição modal. Este modo suporta os comandos e sequências mais usadas nos modos normal e visual do 'vim', tendo uma barra de estado opcional do modo VI. Esta barra de estado mostra os comandos, à medida que vão sendo inseridos, o resultado dos comandos e o modo atual. O comportamento deste modo poderá ser configurado na seção <link linkend="katepart-pref-edit-vi-input-mode"
@@ -520,14 +524,12 @@
 ><anchor id="katepart-menu-overwrite-mode"/><menuchoice
 ><shortcut
 > <keycombo action="simul"
-><keycap
->Ins</keycap
-></keycombo
+>&Ins;</keycombo
 > </shortcut
 > <guimenu
 >Editar</guimenu
 ><guimenuitem
->Modo de Sobrescrita</guimenuitem
+>Modo de sobrescrita</guimenuitem
 ></menuchoice
 ></term>
 <listitem>
@@ -770,7 +772,7 @@
 ><guimenu
 >Exibir</guimenu
 > <guimenuitem
->Nova Janela</guimenuitem
+>Nova janela</guimenuitem
 > </menuchoice>
 </term>
 <listitem>
@@ -780,20 +782,21 @@
 </varlistentry>
 
 <varlistentry>
-<term
-><anchor id="katepart-menu-view-command-line"/> <menuchoice
-> <shortcut
+<term>
+<anchor id="katepart-menu-view-command-line"/>
+<menuchoice
+><shortcut
 ><keycombo action="simul"
 ><keycap
 >F7</keycap
 ></keycombo
 ></shortcut
 > <guimenu
->Ver</guimenu
+>Exibir</guimenu
 > <guimenuitem
->Alternar para a Linha de Comando</guimenuitem
-> </menuchoice
-> (Modo de usuário experiente) </term>
+>Alternar para linha de comando</guimenuitem
+> </menuchoice>
+</term>
 <listitem>
 <para
 >Exibe a Katepart de linha de comando no fundo da janela. Na linha de comando, digite <userinput
@@ -804,34 +807,33 @@
 </listitem>
 </varlistentry>
 
-<varlistentry
-><!-- only in power mode -->
+<varlistentry>
 <term
 ><menuchoice
 ><guimenu
 >Exibir</guimenu
-><guimenuitem
->Mostrar o console de JavaScript</guimenuitem
+> <guimenuitem
+>Mostrar console do Javascript</guimenuitem
 > </menuchoice
-> (Modo de usuário experiente)</term>
+></term>
 <listitem
 ><para
->Isto abre uma janela de ferramentas que permite-lhe executar código em JavaScript de forma interativa. Para mais informações, veja em <ulink url="help:/kate/advanced-editing-tools-scripting.html"
->Extender o &kate; com Programas</ulink
+>Isto abre uma janela de ferramentas que permite-lhe executar código em JavaScript de forma interativa. Para mais informações, veja em <ulink url="help:/katepart/advanced-editing-tools-scripting.html"
+>Estender o &kate; com scipts</ulink
 > </para
 ></listitem>
 </varlistentry>
 
-<varlistentry
-><!-- only in power mode -->
-<term
-><anchor id="katepart-menu-view-schema"/> <menuchoice
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-schema"/>
+<menuchoice
 ><guimenu
->Ver</guimenu
+>Exibir</guimenu
 > <guisubmenu
 >Esquema</guisubmenu
-></menuchoice
-> (Modo de usuário experiente) </term>
+> </menuchoice>
+</term>
 <listitem>
 <para
 >Seleciona um esquema de fontes.</para>
@@ -860,16 +862,16 @@
 </listitem>
 </varlistentry>
 
-<varlistentry
-><!-- only in power mode -->
-<term
-><anchor id="katepart-menu-view-dynamic-word-wrap-indicators"/> <menuchoice
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap-indicators"/>
+<menuchoice
 ><guimenu
->Ver</guimenu
+>Exibir</guimenu
 > <guisubmenu
->Indicadores de Mudança de Linha Dinâmica</guisubmenu
-></menuchoice
-> (Modo de usuário experiente) </term>
+>Indicadores de quebra de linha dinâmica</guisubmenu
+> </menuchoice>
+</term>
 <listitem>
  <para
 >Escolhe se e quando deverão ser mostrados os indicadores de mudança de linha. Isto só fica disponível se a opção <guilabel
@@ -878,16 +880,16 @@
 </listitem>
 </varlistentry>
 
-<varlistentry
-><!-- only in power mode -->
-<term
-><anchor id="katepart-menu-view-show-static-word-wrap"/> <menuchoice
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-static-word-wrap"/>
+<menuchoice
 ><guimenu
->Ver</guimenu
+>Exibir</guimenu
 > <guimenuitem
->Mostrar o Indicador de Mudança de Linha Estática</guimenuitem
-></menuchoice
-> (Modo de usuário experiente) </term>
+>Mostrar marcador de quebra de linha estática</guimenuitem
+> </menuchoice>
+</term>
 <listitem>
 <para
 >Se esta opção estiver assinalada, será desenhada uma linha vertical na coluna da quebra de linha, como está definido na opção <menuchoice
@@ -900,10 +902,10 @@
 </listitem>
 </varlistentry>
 
-<varlistentry
-><!-- only in power mode -->
-<term
-><anchor id="katepart-menu-view-show-icon-border"/> <menuchoice
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-icon-border"/>
+<menuchoice
 ><shortcut
 ><keycombo action="simul"
 ><keycap
@@ -911,11 +913,11 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Ver</guimenu
+>Exibir</guimenu
 > <guimenuitem
 >Mostrar borda do ícone</guimenuitem
-></menuchoice
-> (Modo de usuário experiente) </term>
+> </menuchoice>
+</term>
 <listitem>
 <para
 >Isto é um item de comutação. Se o ligar, irá ativar a Borda dos Ícones do lado esquerdo do editor ativo, e vice-versa. A borda dos ícones indica as posições das linhas marcadas no editor.</para>
@@ -944,16 +946,16 @@
 </listitem>
 </varlistentry>
 
-<varlistentry
-><!-- only in power mode -->
-<term
-><anchor id="katepart-menu-view-scrollbar-marks"/> <menuchoice
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-scrollbar-marks"/>
+<menuchoice
 ><guimenu
 >Exibir</guimenu
 > <guisubmenu
 >Mostrar marcas na barra de rolagem</guisubmenu
-></menuchoice
-> (Modo de usuário experiente) </term>
+> </menuchoice>
+</term>
 <listitem>
 <para
 >Se esta opção estiver assinalada, a janela irá mostrar algumas marcas na barra de rolagem vertical. As marcas são equivalentes às marcas na <link linkend="katepart-menu-view-show-icon-border"
@@ -962,10 +964,10 @@
 </listitem>
 </varlistentry>
 
-<varlistentry
-><!-- only in power mode -->
-<term
-><anchor id="katepart-menu-view-hide-folding-markers"/> <menuchoice
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-hide-folding-markers"/>
+<menuchoice
 ><shortcut
 ><keycombo action="simul"
 ><keycap
@@ -975,97 +977,93 @@
 > <guimenu
 >Exibir</guimenu
 > <guimenuitem
->Mostrar marcações de dobra</guimenuitem
-></menuchoice
-> (Modo de usuário experiente) </term>
+>Mostrar marcadores de dobra</guimenuitem
+> </menuchoice>
+</term>
 <listitem>
 <para
 >Se esta opção estiver assinalada, as marcas de desdobramento do código serão exibidas.</para>
 </listitem>
 </varlistentry>
 
-<varlistentry
-><!-- only in power mode -->
-<term
-><anchor id="katepart-menu-view-code-folding"/> <menuchoice
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-code-folding"/>
+<menuchoice
 ><guimenu
 >Exibir</guimenu
 > <guisubmenu
->Dobradura de código</guisubmenu
-></menuchoice
-> (Modo de usuário experiente) </term>
+>Dobra de código</guisubmenu
+> </menuchoice>
+</term>
 <listitem>
+<para
+>Estas opções são referentes à <ulink url="help:/katepart/advanced-editing-tools-code-folding.html"
+>dobradura de código</ulink
+>:</para>
 <variablelist>
-<varlistentry>
+
+<varlistentry id="view-show-folding-markers">
 <term
 ><menuchoice
 ><shortcut
 ><keycombo action="simul"
->&Ctrl; &Shift;<keycap
->-</keycap
-></keycombo
-></shortcut
-> <guimenuitem
->Recolher para Nível mais Alto</guimenuitem
-></menuchoice>
-</term>
-<listitem
-><para
->Recolhe todos os níveis superiores do documento.</para
-></listitem>
-</varlistentry>
-<varlistentry>
-<term
-><menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl; &Shift;<keycap
->+</keycap
-></keycombo
-></shortcut
-> <guimenuitem
->Expandir do Nível mais Alto</guimenuitem
-></menuchoice>
-</term>
-<listitem
-><para
->Expande todos os níveis superiores do documento.</para
-></listitem>
-</varlistentry>
-<varlistentry>
-<term
-><menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl; <keycap
->-</keycap
+><keycap
+>F9</keycap
 > </keycombo
-></shortcut
+> </shortcut
 > <guimenuitem
->Recolher um Nível Local</guimenuitem
-></menuchoice>
-</term>
+>Mostrar marcadores de dobra</guimenuitem
+> </menuchoice
+></term>
 <listitem
 ><para
->Recolhe a região mais próxima do cursor.</para
+>Ativa ou desativa a visualização da área de marcadores de dobragem e desdobramento do lado esquerdo da janela.</para
 ></listitem>
 </varlistentry>
-<varlistentry>
+
+<varlistentry id="view-fold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>Dobrar o nó atual</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Recolhe a região que contém o cursor.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-unfold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>Desdobrar o nó atual</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Expande a região que contém o cursor.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-toplevel-nodes">
 <term
 ><menuchoice
 ><shortcut
-><keycombo action="simul"
->&Ctrl; <keycap
->+</keycap
+> <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>-</keycap
 ></keycombo
-></shortcut
+> </shortcut
 > <guimenuitem
->Expandir um Nível Local</guimenuitem
-></menuchoice>
-</term>
+>Fechar nós de nível superior</guimenuitem
+> </menuchoice
+></term>
 <listitem
 ><para
->Expande a região mais próxima do cursor.</para
+>Recolhe todos os níveis superiores do documento. Clique no triângulo que aponta para a direita para expandir todos os níveis superiores.</para
 ></listitem>
 </varlistentry>
 </variablelist>
@@ -1147,9 +1145,7 @@
 ><menuchoice
 ><shortcut
 ><keycombo action="simul"
->&Alt; <keycap
->PgUp</keycap
-></keycombo
+>&Alt; &PgUp;</keycombo
 ></shortcut
 > <guimenu
 >Favoritos</guimenu
@@ -1335,7 +1331,7 @@ Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at
 ></term>
  <listitem>
 <para
->Se assinalar esta opção, você poderá adicionar explicitamente um marcador de ordem dos 'bytes' para os documentos codificados em Unicode. O marcador da ordem de 'bytes' é um caractere em Unicode que é usado para assinalar a ordem dos 'bytes' ('endianness') de um arquivo ou sequência de texto. Para mais informações, veja o <ulink url="http://en.wikipedia.org/wiki/Byte_Order_Mark"
+>Se assinalar esta opção, você poderá adicionar explicitamente um marcador de ordem dos 'bytes' para os documentos codificados em Unicode. O marcador da ordem de 'bytes' é um caractere em Unicode que é usado para assinalar a ordem dos 'bytes' ('endianness') de um arquivo ou sequência de texto. Para mais informações, veja o <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
 >Marcador da Ordem de 'Bytes'</ulink
 >.</para>
 </listitem>
@@ -1346,9 +1342,7 @@ Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at
 ><menuchoice
 ><shortcut
 > <keycombo action="simul"
->&Ctrl;<keycap
->Espaço</keycap
-></keycombo
+>&Ctrl;&Space;</keycombo
 > </shortcut
 > <guimenu
 >Ferramentas</guimenu
@@ -1358,7 +1352,7 @@ Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at
 > </term>
 <listitem>
 <para
->Invocar manualmente a complementação de comando, normalmente usando um atalho associado a esta ação.</para>
+>Invocar manualmente o completamento de comando, normalmente usando um atalho associado a esta ação.</para>
 </listitem>
 </varlistentry>
 
@@ -1368,25 +1362,25 @@ Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at
 ><guimenu
 >Ferramentas</guimenu
 ><guimenuitem
->Completamento de Palavras</guimenuitem
+>Completamento de palavras</guimenuitem
 > </menuchoice
 > </term>
 <listitem>
 <para
 >As opções <guimenuitem
->Reutilizar a Palavra Abaixo</guimenuitem
+>Reutilizar a palavra abaixo</guimenuitem
 > (<keycombo action="simul"
 >&Ctrl; <keycap
 >9</keycap
 ></keycombo
 >) e <guimenuitem
->Reutilizar a Palavra Acima</guimenuitem
+>Reutilizar a palavra acima</guimenuitem
 > (<keycombo action="simul"
 >&Ctrl; <keycap
 >8</keycap
 ></keycombo
 >) terminam o texto escrito no momento, procurando por palavras semelhantes antes ou depois da posição atual do cursor. O <guimenuitem
->Completamento por Linha de Comando</guimenuitem
+>Completamento por linha de comando</guimenuitem
 > mostra uma janela com os itens correspondentes.</para>
 </listitem>
 </varlistentry>
@@ -2019,7 +2013,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 <para
 >Este grupo contém todas as páginas relacionadas com o componente de edição do &kappname;. A maioria das configurações aqui são os valores pré-definidos, que podem ser substituídos ao <link linkend="katepart-pref-open-save-modes-filetypes"
 >definir um tipo de arquivo</link
->, nas <ulink url="help:/kate/config-variables.html"
+>, nas <ulink url="help:/katepart/config-variables.html"
 >Variáveis do Documento</ulink
 > ou através da sua alteração, durante uma sessão de edição do documento.</para>
 <sect3 id="katepart-appearance"
@@ -2284,7 +2278,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem
 ><para
->Este é o fundo do texto selecionado. O valor padrão é a cor global de seleção, como está definida nas preferências de cores do &kde;. </para
+>Este é o fundo do texto selecionado. O valor padrão é a cor global de seleção, como está definida nas preferências de cores do &plasma;. </para
 ></listitem>
 </varlistentry>
 
@@ -2573,11 +2567,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->Quando estiver ativada esta opção, mover o cursor de inserção com as teclas <emphasis role="bold"
->Esquerda</emphasis
-> e <emphasis role="bold"
->Direita</emphasis
->, irá para a linha anterior/seguinte no início/fim da linha, como acontece nos outros editores.</para
+>Quando estiver ativada esta opção, mover o cursor de inserção com as teclas &Left; e &Right;, irá para a linha anterior/seguinte no início/fim da linha, como acontece nos outros editores.</para
 ><para
 >Quando esta opção for selecionada, a movimentação do cursor com as teclas dos cursores além do fim da linha (à direita) faz com que o cursor mude para o início da próxima linha. Do mesmo modo, quando o cursor passar para trás do início de uma linha (à esquerda) salta para o fim da linha anterior. Quando esta linha não estiver selecionada, a movimentação do cursor para além do fim da linha simplesmente faz com que ele continue horizontalmente na mesma linha, assim como a movimentação para além do início da linha não fará nada.</para>
 </listitem>
@@ -2589,11 +2579,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->Esta opção muda o comportamento do cursor quando o usuário pressiona as teclas <keycap
->Page Up</keycap
-> e <keycap
->Page Down</keycap
->. Se não estiver selecionada, o cursor de texto manterá sua posição relativa dentro do texto visível no &kappname; conforme o novo texto se torna visível como resultada da operação. Assim, se o cursor estiver no meio do texto visível quando a operação ocorre, ele permanecerá lá (exceto quando o início ou fim são atingidos). Com esta opção selecionada, o primeiro pressionamento de tecla fará com que o cursor se mova para cima ou para baixo do texto visível conforme uma nova página de texto é exibida.</para>
+>Esta opção muda o comportamento do cursor quando o usuário pressiona as teclas &PgUp; e &PgDn;. Se não estiver selecionada, o cursor de texto manterá sua posição relativa dentro do texto visível no &kappname; conforme o novo texto se torna visível como resultada da operação. Assim, se o cursor estiver no meio do texto visível quando a operação ocorre, ele permanecerá lá (exceto quando o início ou fim são atingidos). Com esta opção selecionada, o primeiro pressionamento de tecla fará com que o cursor se mova para cima ou para baixo do texto visível conforme uma nova página de texto é exibida.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -2679,7 +2665,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->Quando estiver ativo, o editor irá inserir caracteres de tabulação quando você clicar na tecla &Tab; ou usar o <ulink url="help:/kwrite/kate-part-autoindent.html"
+>Quando estiver ativo, o editor irá inserir caracteres de tabulação quando você clicar na tecla &Tab; ou usar o <ulink url="help:/katepart/kate-part-autoindent.html"
 >recuo automático</ulink
 >.</para>
 </listitem>
@@ -2693,7 +2679,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 <para
 >Quando isto estiver ativo, o editor irá inserir um número calculado de espaços, de acordo com a posição no texto e a configuração <option
 >tab-width</option
->, quando pressionar a tecla &Tab; ou usar o <ulink url="help:/kwrite/kate-part-autoindent.html"
+>, quando pressionar a tecla &Tab; ou usar o <ulink url="help:/katepart/kate-part-autoindent.html"
 >recuo automático</ulink
 >.</para>
 </listitem>
@@ -2856,7 +2842,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 
 <sect4 id="katepart-pref-edit-autocompletion">
 <title
->Complementação automática</title>
+>Completamento automático</title>
 <variablelist>
 <varlistentry>
 <term
@@ -2868,11 +2854,11 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 <varlistentry>
 <term
 ><guilabel
->Ativar completamento automático</guilabel
+>Habilitar o completamento automático</guilabel
 ></term>
 <listitem>
 <para
->Se habilitado, aparece um campo de completação automática, mostrando uma lista com os itens de texto para completar o texto atual sob o cursor.</para>
+>Se habilitado, aparece um campo de completamento automático, mostrando uma lista com os itens de texto para completar o texto atual sob o cursor.</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -2978,8 +2964,8 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 <title
 >Verificação ortográfica</title>
 <para
->Estas opções de configuração estão descritas na documentação do módulo do &systemsettings; sobre <ulink url="help:kcontrol/spellchecking"
->Verificação Ortográfica</ulink
+>Estas opções de configuração estão descritas na documentação do módulo do &systemsettings; sobre <ulink url="help:/kcontrol/spellchecking"
+>Verificação ortográfica</ulink
 >.</para>
 </sect4>
 
@@ -3066,7 +3052,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->O marcador da ordem dos 'bytes' é uma sequência especial no início dos documentos codificados em Unicode. Ajuda os editores a abrir os documentos de texto com a codificação Unicode correta. Para mais informações, veja o <ulink url="http://en.wikipedia.org/wiki/Byte_Order_Mark"
+>O marcador da ordem dos 'bytes' é uma sequência especial no início dos documentos codificados em Unicode. Ajuda os editores a abrir os documentos de texto com a codificação Unicode correta. Para mais informações, veja o <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
 >Marcador da Ordem de 'Bytes'</ulink
 >.</para>
 </listitem>
@@ -3120,7 +3106,7 @@ Line Length Limit missing
 ></term>
 <listitem>
 <para
->O editor irá procurar pelo número de níveis de pastas indicado para cima, no arquivo de configuração do &kappname; e carregar a linha de configuração respectiva. Mais informações sobre estes arquivos de configuração ocultos da pasta podem ser encontradas na <ulink url="help:/kate/config-variables.html"
+>O editor irá procurar pelo número de níveis de pastas indicado para cima, no arquivo de configuração do &kappname; e carregar a linha de configuração respectiva. Mais informações sobre estes arquivos de configuração ocultos da pasta podem ser encontradas na <ulink url="help:/katepart/config-variables.html"
 >seção de variáveis do documento</ulink
 >. </para>
 </listitem>
@@ -3206,7 +3192,7 @@ Line Length Limit missing
 <title
 >Modos &amp; Tipos de Arquivos</title>
 <para
->Esta página permite-lhe substituir a configuração padrão dos documentos dos tipos MIME indicados. Quando o editor carregar um documento, ele verificará se o arquivo corresponde às máscaras de arquivos ou tipos MIME para cada um dos tipos definidos e, se corresponder, aplica as variáveis definidas. Se de um tipo de arquivo corresponder, será usado o que tiver maior prioridade. </para>
+>Esta página permite-lhe substituir a configuração padrão dos documentos dos tipos &MIME; indicados. Quando o editor carregar um documento, ele verificará se o arquivo corresponde às máscaras de arquivos ou tipos &MIME; para cada um dos tipos definidos e, se corresponder, aplica as variáveis definidas. Se de um tipo de arquivo corresponder, será usado o que tiver maior prioridade. </para>
 <variablelist>
 <varlistentry>
 <term
@@ -3291,13 +3277,13 @@ Line Length Limit missing
 ></term>
 <listitem
 ><para
->Este texto permite-lhe configurar as opções do &kappname; para os arquivos selecionados por este tipo MIME, usando as variáveis do &kappname;. Você poderá definir quase todas as opções de configuração, como o 'highlight', 'indent-mode', etc.</para>
+>Este texto permite-lhe configurar as opções do &kappname; para os arquivos selecionados por este tipo &MIME;, usando as variáveis do &kappname;. Você poderá definir quase todas as opções de configuração, como o 'highlight', 'indent-mode', &etc;</para>
 <para
 >Pressione <guibutton
 >Editar</guibutton
 > para ver uma lista de todas as variáveis disponíveis e suas descrições. Selecione a caixa à esquerda para ativar uma determinada variável e então defina o valor da variável à direita. Algumas variáveis fornecem uma caixa combinada para selecionar os valores possíveis enquanto outras necessitam que você insira um valor válido manualmente.</para>
 <para
->Para informações completas sobre estas variáveis, veja <ulink url="help:/kate/config-variables.html"
+>Para informações completas sobre estas variáveis, veja <ulink url="help:/katepart/config-variables.html"
 >Configurando com variáveis de documento</ulink
 >.</para>
 </listitem>
@@ -3339,11 +3325,11 @@ Line Length Limit missing
 <varlistentry>
 <term
 ><guilabel
->Tipos MIME:</guilabel
+>Tipos &MIME;:</guilabel
 ></term>
 <listitem
 ><para
->Exibe um assistente que o ajuda a escolher facilmente tipos MIME.</para
+>Exibe um assistente que o ajuda a escolher facilmente tipos &MIME;.</para
 ></listitem>
 </varlistentry>
 <varlistentry>
@@ -3366,7 +3352,7 @@ Line Length Limit missing
 ></term>
 <listitem>
 <para
->Clique neste botão para transferir descrições de realce de sintaxe novas ou atualizadas na página Web do &kappname;. </para>
+>Clique neste botão para transferir descrições de realce de sintaxe novas ou atualizadas no site do &kappname;. </para>
 </listitem>
 </varlistentry>
 
@@ -3424,7 +3410,11 @@ or descriptions using different style.</para
 ></listitem>
 </varlistentry>
 <!--http://jakob.petsovits.at/topic/kate-->
-<!--Right, it's the automatic insertion of a closing brace ("}") after you ended a line with an opening one ("{"). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
+<!--Right, it's the automatic insertion of a closing brace (<quote
+>}</quote
+>) after you ended a line with an opening one (<quote
+>{</quote
+>). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
 You, the developer, are writing a line of code, and want to open a new block delimited by braces. Looks like this:
 If you press Enter and AutoBrace is enabled, it will insert your favorite new brace where it belongs. Looks like this:
 -->
@@ -3435,7 +3425,7 @@ If you press Enter and AutoBrace is enabled, it will insert your favorite new br
 ></term>
 <listitem
 ><para
->Ativa as ferramentas de dados, como a verificação gramatical e ortográfica (se estiverem instaladas). As ferramentas de dados só ficam disponíveis quando tem texto é selecionado, ou quando o botão direito do mouse é clicado sobre uma palavra. Se não existirem ferramentas de dados disponíveis, mesmo quando selecionar algum texto, você terá que instalá-las. Se este plugin estiver ativo e se as ferramentas de dados estiverem instaladas, irão aparecer alguns itens adicionais no fim do menu de contexto.</para
+>Ativa as ferramentas de dados, como a verificação gramatical e ortográfica (se estiverem instaladas). As ferramentas de dados só ficam disponíveis quando tem texto é selecionado, ou quando o &RMB; é clicado sobre uma palavra. Se não existirem ferramentas de dados disponíveis, mesmo quando selecionar algum texto, você terá que instalá-las. Se este plugin estiver ativo e se as ferramentas de dados estiverem instaladas, irão aparecer alguns itens adicionais no fim do menu de contexto.</para
 ></listitem>
 </varlistentry>
 <varlistentry>
@@ -3445,19 +3435,19 @@ If you press Enter and AutoBrace is enabled, it will insert your favorite new br
 ></term>
 <listitem
 ><para
->Este comando permite que você exporte o documento atual com todas as informações realçadas em um documento HTML usando o<menuchoice
+>Este comando permite que você exporte o documento atual com todas as informações realçadas em um documento &HTML; usando o<menuchoice
 ><guimenu
 >Arquivo</guimenu
 ><guimenuitem
->Exportar como HTML</guimenuitem
+>Exportar como &HTML;</guimenuitem
 ></menuchoice
 >. Adicionalmente você pode usar o <menuchoice
 ><guimenu
 >Editar</guimenu
 > <guimenuitem
->Copiar como HTML</guimenuitem
+>Copiar como &HTML;</guimenuitem
 ></menuchoice
-> para copiar o texto atualmente selecionado como HTML para a área de transferência do sistema.</para
+> para copiar o texto atualmente selecionado como &HTML; para a área de transferência do sistema.</para
 ></listitem>
 </varlistentry>
 <!-- not in 4.7
@@ -3481,17 +3471,17 @@ If you press Enter and AutoBrace is enabled, it will insert your favorite new br
 ><para
 >O plugin de inserção de ícones só é usada para os programadores do &kde;: Ele adiciona um item <guimenuitem
 >Inserir código de KIcon</guimenuitem
-> no menu de contexto do editor. Se estiver ativado, o seletor de ícones do &kde; irá abrir (mostrando os ícones das aplicações, das ações, &etc;..). Se clicar em um, será inserido como texto o nome do arquivo sem a extensão. Só é útil para atribuir ícones, através da plataforma do &kde;, com a classe KIcon(). </para
+> no menu de contexto do editor. Se estiver ativado, o seletor de ícones do &plasma; irá abrir (mostrando os ícones das aplicações, das ações, &etc;..). Se clicar em um, será inserido como texto o nome do arquivo sem a extensão. Só é útil para atribuir ícones, através da plataforma do &kde-frameworks;, com a classe KIcon(). </para
 ></listitem>
 </varlistentry>
 <varlistentry>
 <term
 ><guilabel
->Codificação insana (não ZEN) de HTML (edição leve)</guilabel
+>Codificação insana (não ZEN) de &HTML; (edição leve)</guilabel
 ></term>
 <listitem
 ><para
->Um plugin que faz uma codificação Zen como um seletor de completamento. Para mais informações veja a <ulink url="http://en.wikipedia.org/wiki/Zen_Coding"
+>Um plugin que faz uma codificação Zen como um seletor de completamento. Para mais informações veja a <ulink url="https://en.wikipedia.org/wiki/Zen_Coding"
 >Codificação Zen</ulink
 >.</para
 ></listitem>

@@ -1,24 +1,10 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <chapter id="basic-functions">
-  <!-- **********************************************************************
-                            using-krusader.docbook
-                          +++++++++++++++++++++++++++
-  copyright            : (C) 2000 - 2010
-                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
-                          & the Krusader Krew
-  e-mail               : krusader@users.sourceforge.net
-  web site             : http://www.krusader.org
-  description          : a Krusader Documentation File
-
-***************************************************************************
-* Permission is granted to copy, distribute and/or modify this            *
-* document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software         *
-* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
-* no Back-Cover Texts.  A copy of the license is available on the         *
-* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
-* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
-* MA 02111-1307, USA.                                                     *
-*********************************************************************** -->
   <title
 >Funções básicas</title>
   <sect1 id="controls">
@@ -96,13 +82,9 @@
         <listitem>
           <para
 >A combinação <keycombo action="simul"
->&Ctrl; <keycap
->Baixo</keycap
-></keycombo
+>&Ctrl; &Down;</keycombo
 > irá levá-lo do Painel Ativo para a Linha de Comando ou para o Emulador de Terminal, assim como a <keycombo action="simul"
->&Ctrl; <keycap
->Cima</keycap
-></keycombo
+>&Ctrl; &Up;</keycombo
 > o levará de volta da Linha de Comando para o Painel Ativo.</para>
         </listitem>
         <listitem>
@@ -119,7 +101,9 @@
 >&Alt; <keycap
 >Letra sublinhada</keycap
 ></keycombo
-> no menu, irá abrir esse menu (a menos que esta combinação seja uma "Tecla Reservada", usada por uma das ações do &krusader;).</para>
+> no menu, irá abrir esse menu (a menos que esta combinação seja uma <quote
+>Tecla Reservada</quote
+>, usada por uma das ações do &krusader;).</para>
         </listitem>
       </itemizedlist
 ></para>
@@ -130,28 +114,20 @@
       <note>
         <para
 >O &krusader; oferece 4 <link linkend="selection_modes"
->Modos de Seleção</link
->, sendo que apenas o Modo de Seleção do &krusader; será explicado aqui.</para>
+>Modos de seleção</link
+>, sem mencionar a <link linkend="quickselect"
+>Barra de seleção rápida</link
+>, apenas o modo de seleção do &krusader; é explicado aqui.</para>
       </note>
       <para
 >A seleção é uma aptidão que necessita dominar para tirar o máximo proveito do &krusader;. Uma vez que o Painel em Árvore só lhe permite selecionar uma pasta de cada vez, este parágrafo explica principalmente como selecionar os arquivos no Painel da Lista.</para>
       <para
->Mover o cursor é simples. Clique com o botão esquerdo sobre um arquivo ou pasta (aqui referido como "elementos", incluindo os arquivos e pastas) para selecioná-lo. Aqui estão algumas referências úteis que tornarão o &krusader; ainda mais simples de usar (assumindo que está usando o Modo de Seleção com Mouse do &krusader;): <itemizedlist>
+>Mover o cursor é simples. Clique com o botão esquerdo sobre um arquivo ou pasta (aqui referido como <quote
+>elementos</quote
+>, incluindo os arquivos e pastas) para selecioná-lo. Aqui estão algumas referências úteis que tornarão o &krusader; ainda mais simples de usar (assumindo que está usando o Modo de Seleção com Mouse do &krusader;): <itemizedlist>
         <listitem>
           <para
->As teclas <keycap
->Espaço</keycap
-> e <keycap
->Insert</keycap
-> irão comutar a seleção do arquivo sob o cursor, não afetando a seleção dos outros arquivos/pastas, assim o cursor irá descer uma posição.</para>
-        </listitem>
-        <listitem>
-          <para
->Pressionar a tecla <keycap
->Espaço</keycap
-> sobre uma pasta sob o cursor, irá <link linkend="calculate"
->calcular o espaço ocupado</link
-> sem afetar a seleção dos outros arquivos/pastas.</para>
+>As teclas &Space; e &Ins; irão comutar a seleção do arquivo sob o cursor, não afetando a seleção dos outros arquivos/pastas, assim o cursor irá descer uma posição.</para>
         </listitem>
         <listitem>
           <para
@@ -193,7 +169,9 @@
         </listitem>
         <listitem>
           <para
->Não é possível selecionar o item "..".</para>
+>Não é possível selecionar o item <quote
+>..</quote
+>.</para>
         </listitem>
         <listitem>
           <para
@@ -216,16 +194,20 @@
     </sect2>
     <sect2 id="quicksearch">
       <title
->Busca Rápida</title>
+>Busca rápida</title>
       <!-- Thanks to Heiner Eichmann -->
       <para
 >Esta funcionalidade irá aplicar uma pesquisa rápida pelo nome do arquivo no painel de lista ativo.</para>
       <para
 >Digite <keycap
 >x</keycap
->(uma letra) para fazer uma pesquisa rápida no painel de lista ativo, à procura de um arquivo que comece por "x". Irá aparecer uma janela de pesquisa rápida abaixo do painel de lista ativo. Digite os primeiros caracteres do nome do arquivo desejado (é permitido mais de um caractere), para que o cursor salte para o nome desse arquivo (se existir); &eg;, escreva "ab" para procurar por um arquivo que comece por "ab". Os cursores <keycap
->Cima/Baixo</keycap
-> irão saltar para a ocorrência anterior ou seguinte. O &Esc; irá fechar a linha de pesquisa rápida. O cursor irá permanecer no último arquivo encontrado. A Pesquisa Rápida suporta as <ulink url="http://en.wikipedia.org/wiki/Regular_expression"
+>(uma letra) para fazer uma pesquisa rápida no painel de lista ativo, à procura de um arquivo que comece por <quote
+>foo</quote
+>. Irá aparecer uma janela de pesquisa rápida abaixo do painel de lista ativo. Digite os primeiros caracteres do nome do arquivo desejado (é permitido mais de um caractere), para que o cursor salte para o nome desse arquivo (se existir); &eg;, escreva <quote
+>ab</quote
+> para procurar por um arquivo que comece por <quote
+>ab</quote
+>. As teclas &Up;/&Down; irão saltar para a ocorrência anterior ou seguinte. O &Esc; irá fechar a linha de pesquisa rápida. O cursor irá permanecer no último arquivo encontrado. A Pesquisa Rápida suporta as <ulink url="https://en.wikipedia.org/wiki/Regular_expression"
 >expressões regulares</ulink
 > para procurar pelos arquivos.</para>
       <note>
@@ -251,7 +233,7 @@
     </sect2>
     <sect2 id="quickfilter">
       <title
->Filtro Rápido</title>
+>Filtro rápido</title>
       <para
 >Esta funcionalidade irá aplicar um filtro rápido na lista de arquivos no painel ativo.</para>
       <para
@@ -261,13 +243,57 @@
 ></keycombo
 > para abrir a barra de Filtro Rápido. Digite <keycap
 >foo</keycap
-> (um caractere) para filtrar no painel ativo todos os arquivos que não possuam "foo" em seus nomes. Você pode usar curingas para a filtragem. &eg; use "a*b" para filtrar os arquivos que possuam o "a" e o "b" em seus nomes. O Filtro Rápido segue a <link linkend="konfig-panel-general"
+> (um caractere) para filtrar no painel ativo todos os arquivos que não possuam <quote
+>foo</quote
+> em seus nomes. Você pode usar curingas para a filtragem. &eg; use <quote
+>a*b</quote
+> para filtrar os arquivos que possuam o <quote
+>a</quote
+> e o <quote
+>b</quote
+> em seus nomes. O Filtro Rápido segue a <link linkend="konfig-panel-general"
 >configuração de sensibilidade à caixa</link
 > da pesquisa rápida.</para>
       <para
->Pressionar &Enter; no modo de Filtro Rápido coloca o foco no painel. Quando o painel ou o Filtro Rápido estiver com o foco, o &Esc; fecha o Filtro Rápido. </para>
+>Pressionar &Enter; no modo de filtro rápido coloca o foco no painel. Quando o painel ou o filtro rápido estiver com o foco, o &Esc; fecha o filtro rápido. </para>
       <para
 >Para mudar o atalho de teclado do Filtro Rápido, use a janela <link linkend="key_bindings"
+>Configurar atalhos</link
+> (<menuchoice
+><guimenu
+>Configurações</guimenu
+> <guimenuitem
+>Configurar atalhos...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickselect">
+      <title
+>Seleção rápida</title>
+      <para
+>Esta funcionalidade irá aplicar uma seleção rápida na lista de arquivos no painel ativo.</para>
+      <para
+>Pressione <keycombo
+>&Ctrl;&Shift;<keycap
+>S</keycap
+></keycombo
+> para abrir a barra de seleção rápida. Digite <keycap
+>foo</keycap
+> (um caractere) para filtrar no painel ativo todos os arquivos que não possuam <quote
+>foo</quote
+> em seus nomes. Você pode usar curingas para a filtragem. &eg; use <quote
+>a*b</quote
+> para filtrar os arquivos que possuam o <quote
+>a</quote
+> e o <quote
+>b</quote
+> em seus nomes. A seleção rápida segue a <link linkend="konfig-panel-general"
+>configuração de sensibilidade à caixa</link
+> da pesquisa rápida.</para>
+      <para
+>Pressionar &Enter; no modo de seleção rápida coloca o foco no painel. Quando o painel ou a seleção rápida estiver com o foco, o &Esc; fecha a seleção rápida. </para>
+      <para
+>Para mudar o atalho de teclado da seleção rápida, use a janela <link linkend="key_bindings"
 >Configurar atalhos</link
 > (<menuchoice
 ><guimenu
@@ -334,7 +360,7 @@
           <para
 ><link linkend="synchronizer"
 >Sincronizar pastas</link
-> Lista de arquivos (por padrão é desativado em tempo de compilação)</para>
+> Lista de arquivos</para>
         </listitem>
         <listitem>
           <para
@@ -375,13 +401,27 @@
       <para
 >Você só poderá executar arquivos no painel de lista ativo. Para executar um arquivo, basta um clique duplo nele ou pressionar &Enter; quando estiver sob o cursor da lista. O &krusader; irá abri-lo na aplicação padrão para este tipo de arquivo (imagem, arquivo de texto...) ou então o arquivo será executado (programa, binário...). Se você quiser usar outro aplicativo para abrir o arquivo, clique com o &RMB; sobre esse arquivo e vá ao submenu <guisubmenu
 >Abrir com</guisubmenu
->, que irá lhe oferecer mais opções. O &krusader; é compatível com o gerenciador de arquivos padrão do &kde; para todos os tipos de arquivos, exceto os pacotes, que são abertos dentro do painel do &krusader; e não em um aplicativo externo. Veja a <link linkend="konfig-archives"
+>, que irá lhe oferecer mais opções. O &krusader; é compatível com o gerenciador de arquivos padrão do &plasma; para todos os tipos de arquivos, exceto os pacotes, que são abertos dentro do painel do &krusader; e não em um aplicativo externo. Veja a <link linkend="konfig-archives"
 >página de pacotes no Konfigurador</link
 > para mais detalhes.</para>
     </sect2>
     <sect2 id="copying">
       <title
 >Copiar e Mover</title>
+      <figure id="screenshot-copyjob" float="1">
+        <title
+>Janela de copiar</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="copyjob.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Janela de copiar</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
       <para
 >Para copiar ou mover arquivos/pastas, basta selecioná-los e pressionar <keycap
 >F5</keycap
@@ -407,10 +447,20 @@
 >F6</keycap
 ></keycombo
 >. O gerenciador de fila realiza ações um-a-um. Por exemplo, se tiver um pendrive (que seja lento) e quiser copiar 40 arquivos para ele, é muito melhor copiá-los um de cada vez do que copiar 40 arquivos ao mesmo tempo. É por isso que a fila é importante. Se comprimir/descomprimir 40 arquivos em ao mesmo tempo, irá sobrecarregar o seu computador, mas adicioná-los a uma fila é muito mais útil. </para>
+      <para
+>É possível alternar o <link linkend="job-queue-mode"
+>Modo do gerenciador de filas</link
+> através do item de menu <menuchoice
+><guimenu
+>Configurações</guimenu
+> <guimenuitem
+>Modo da fila de tarefas</guimenuitem
+></menuchoice
+>. </para>
     </sect2>
     <sect2 id="deleting">
       <title
->Excluir - Mover para a Lixeira do &kde;</title>
+>Excluir - Mover para a Lixeira do &plasma;</title>
       <para
 >A remoção de arquivos/pastas é feita com a seleção dos mesmos e pressionando <keycap
 >F8</keycap
@@ -418,28 +468,40 @@
 >Delete</keycap
 >. Por <link linkend="konfig-general"
 >padrão</link
->, eles serão enviados para a Lixeira do &kde;. Você poderá abrir a Lixeira do &kde; com o ícone de Lixo na <link linkend="main_toolbar"
+>, eles serão enviados para a Lixeira do &kde;. Você poderá abrir a Lixeira do &plasma; com o ícone de Lixo na <link linkend="main_toolbar"
 >Barra Principal</link
 > ou com o endereço <filename
 >trash:/</filename
->. A nível físico, a Lixeira do &kde; localiza-se em <filename
+>. A nível físico, a Lixeira do &plasma; localiza-se em <filename
 >~/.local/share/Trash/</filename
-> . A combinação <keycombo action="simul"
+> ou na subpasta <filename
+>Trash</filename
+> na pasta inicial do usuário que pode ser determinada com o comando <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. A combinação <keycombo action="simul"
 >&Shift; <keycap
 >Delete</keycap
 ></keycombo
-> irá excluir o arquivo de forma permanente. Irá aparecer uma janela pedindo a sua confirmação e a mesma irá avisá-lo quando tentar excluir pastas não vazias. Obviamente, só serão executadas as operações para as quais tiver permissões por parte do Sistema Operacional - você será notificado em caso contrário. Se não quiser ver as janelas de confirmação, poderá desativá-las na <link linkend="konfig-advanced"
->página Avançado do Konfigurador</link
->.</para>
+> irá excluir o arquivo de forma permanente. Irá aparecer uma janela pedindo a sua confirmação e a mesma irá avisá-lo quando tentar excluir pastas não vazias. Obviamente, só serão executadas as operações para as quais tiver permissões por parte do Sistema Operacional - você será notificado em caso contrário. Se você não deseja ver as caixas de diálogo de confirmação, pode desativá-las na <link linkend="konfig-advanced"
+>página avançada do Konfigurator</link
+>. Se você configurou para excluir arquivos permanentemente na <link linkend="konfig-general"
+>página geral do Konfigurator</link
+>, pressione <keycap
+>F8</keycap
+> ou <keycap
+>Delete</keycap
+> para excluí-los permanentemente, enquanto <keycombo action="simul"
+>&Ctrl;<keycap
+>Delete</keycap
+></keycombo
+> os moverá para a Lixeira do &plasma;.</para>
     </sect2>
     <sect2 id="shred">
       <title
 >Destruir os Arquivos</title>
       <para
->A destruição foi removida do &kde; (e, por consequência, do &krusader;-2 para o &kde; 4). A razão principal mais provável é que a destruição depende do sistema de arquivos e, mesmo que sobrescreva o arquivo 100 vezes, não é garantido que venha a ser excluído de fato do disco. Uma citação do <application
->Kgpg</application
-> refere: <quote
->A funcionalidade de destruição foi removida da biblioteca do KDE. O Kgpg não terá mais suporte a esta funcionalidade. Os sistemas de arquivos modernos são transacionais. Assim, a funcionalidade de destruição deverá ser implementada no sistema de arquivos, não no Kgpg.</quote
+>A destruição foi removida do &kde; (e, por consequência, do &krusader;-2 para o &kde; 4). A razão principal mais provável é que a destruição depende do sistema de arquivos e, mesmo que sobrescreva o arquivo 100 vezes, não é garantido que venha a ser excluído de fato do disco. Uma citação do &kgpg; refere: <quote
+>A funcionalidade de destruição foi removida da biblioteca do &kde;. O &kgpg; não terá mais suporte a esta funcionalidade. Os sistemas de arquivos modernos são transacionais. Assim, a funcionalidade de destruição deverá ser implementada no sistema de arquivos, não no &kgpg;.</quote
 >. Porém, você pode querer usar uma <link linkend="useractions"
 >ação de usuário</link
 > de destruição adequada para o seu sistema de arquivos. Porém, tenha em mente que, se quiser ter 100% de certeza de que é impossível que alguém consiga ler um arquivo excluído, você precisa destruir o seu disco rígido... </para>
@@ -449,7 +511,7 @@
 >Renomear Arquivos, Criar Pastas e Lidar com Ligações Simbólicas</title>
       <para
 >Renomeie o arquivo com a tecla <keycap
->F9</keycap
+>F2</keycap
 > ou com dois cliques simples do mouse. Se você só precisar mudar o nome e não a extensão, poderá configurar essa opção na <link linkend="konfig-general-atomic"
 >página Geral do Konfigurador</link
 >. <guilabel
@@ -460,7 +522,7 @@
 ><guisubmenu
 >Manipulação de ligação</guisubmenu
 > <guimenuitem
->Nova ligação simbólica</guimenuitem
+>Nova ligação simbólica...</guimenuitem
 ></menuchoice
 >. Uma janela pedirá para indicar o nome da ligação. Essa ligação irá apontar para o arquivo/pasta onde clicou com o botão direito. Se o arquivo onde clicou com o botão direito for também uma ligação simbólica, terá ainda a opção <menuchoice
 ><guisubmenu
@@ -478,5 +540,5 @@
 >KrViewer</link
 > tem um capítulo próprio para si.</para>
     </sect2>
-  </sect1>
-&archives; </chapter>
+  </sect1
+>&archives; </chapter>
