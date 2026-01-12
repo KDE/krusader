@@ -759,7 +759,7 @@ msgstr "S'estan comptant els fitxers de l'arxiu"
 #: app/Archive/krarchandler.cpp:260
 #, kde-format
 msgid "Failed to list the content of the archive (%1)."
-msgstr "No s'ha pogut obtindre la llista del contingut de l'arxiu (%1)."
+msgstr "Ha fallat mentre s'obtenia la llista del contingut de l'arxiu (%1)."
 
 #: app/Archive/krarchandler.cpp:278 app/Archive/krarchandler.cpp:419
 #, kde-format
@@ -769,12 +769,12 @@ msgstr "No s'ha pogut desempaquetar %1."
 #: app/Archive/krarchandler.cpp:345
 #, kde-format
 msgid "Failed to convert rpm (%1) to cpio."
-msgstr "No s'ha pogut convertir de RPM (%1) a CPIO."
+msgstr "Ha fallat mentre es convertia de RPM (%1) a CPIO."
 
 #: app/Archive/krarchandler.cpp:362
 #, kde-format
 msgid "Failed to convert deb (%1) to tar."
-msgstr "No s'ha pogut convertir de DEB (%1) a TAR."
+msgstr "Ha fallat mentre es convertia de DEB (%1) a TAR."
 
 #: app/Archive/krarchandler.cpp:395
 #, kde-format
@@ -932,7 +932,8 @@ msgstr "%1 no pareix un fitxer d'adreces d'interés vàlid"
 #: app/BookMan/krbookmarkhandler.cpp:326
 #, kde-format
 msgid "Error reading bookmarks file: %1"
-msgstr "S'ha produït un error en llegir el fitxer d'adreces d'interés: %1"
+msgstr ""
+"S'ha produït un error mentre es llegia el fitxer d'adreces d'interés: %1"
 
 #: app/BookMan/krbookmarkhandler.cpp:438 app/BookMan/krbookmarkhandler.cpp:773
 #: app/Dialogs/popularurls.cpp:276
@@ -1082,7 +1083,7 @@ msgstr ""
 #: app/Dialogs/checksumdlg.cpp:412
 #, kde-format
 msgid "Error saving file %1"
-msgstr "S'ha produït un error en guardar el fitxer %1"
+msgstr "S'ha produït un error mentre es guardava el fitxer %1"
 
 #: app/Dialogs/checksumdlg.cpp:434
 #, kde-format
@@ -1260,7 +1261,7 @@ msgstr "Protocol:"
 #: app/Dialogs/newftpgui.cpp:68
 #, kde-format
 msgid "Host:"
-msgstr "Servidor:"
+msgstr "Amfitrió:"
 
 #: app/Dialogs/newftpgui.cpp:69
 #, kde-format
@@ -2549,12 +2550,13 @@ msgstr "Expulsa"
 #: app/GUI/mediabutton.cpp:473
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
-msgstr "S'ha produït un error en accedir a «%1», el sistema ha contestat: %2"
+msgstr ""
+"S'ha produït un error mentre s'accedia a «%1», el sistema ha contestat: %2"
 
 #: app/GUI/mediabutton.cpp:475
 #, kde-format
 msgid "An error occurred while accessing '%1'"
-msgstr "S'ha produït un error en accedir a «%1»"
+msgstr "S'ha produït un error mentre s'accedia a «%1»"
 
 #: app/GUI/profilemanager.cpp:28 app/GUI/profilemanager.cpp:48
 #, kde-format
@@ -5958,7 +5960,7 @@ msgstr "Hexadecimal"
 #: app/KViewer/lister.cpp:1357
 #, kde-format
 msgid "Error reading file %1."
-msgstr "S'ha produït un error en llegir el fitxer %1."
+msgstr "S'ha produït un error mentre es llegia el fitxer %1."
 
 #: app/KViewer/lister.cpp:1454
 #, kde-format
@@ -6010,7 +6012,7 @@ msgstr "No s'ha seleccionat cap fitxer o no es pot visualitzar."
 #: app/Synchronizer/synchronizertask.cpp:151
 #, kde-format
 msgid "Error at opening %1."
-msgstr "S'ha produït un error en obrir %1."
+msgstr "S'ha produït un error mentre s'obria %1."
 
 #: app/KViewer/panelviewer.cpp:379
 #, kde-format
@@ -6088,7 +6090,7 @@ msgstr ""
 #: app/Locate/locate.cpp:317
 #, kde-format
 msgid "Error during the start of 'locate' process."
-msgstr "S'ha produït un error en iniciar el procés «locate»."
+msgstr "S'ha produït un error mentre s'iniciava el procés «locate»."
 
 #: app/Locate/locate.cpp:324
 #, kde-format
@@ -7646,7 +7648,7 @@ msgstr "No s'ha pogut eliminar l'enllaç antic: %1"
 #: app/Panel/panelfunc.cpp:401
 #, kde-format
 msgid "Failed to create a new link: %1"
-msgstr "No s'ha pogut crear l'enllaç nou: %1"
+msgstr "Ha fallat mentre es creava l'enllaç nou: %1"
 
 #: app/Panel/panelfunc.cpp:409
 #, kde-format
@@ -7671,12 +7673,12 @@ msgstr "Ja existix una carpeta o un fitxer amb este nom."
 #: app/Panel/panelfunc.cpp:436
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
-msgstr "No s'ha pogut crear un enllaç simbòlic nou «%1» a: «%2»"
+msgstr "Ha fallat mentre es creava un enllaç simbòlic nou «%1» a: «%2»"
 
 #: app/Panel/panelfunc.cpp:439
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
-msgstr "No s'ha pogut crear un enllaç nou «%1» a: «%2»"
+msgstr "Ha fallat mentre es creava un enllaç nou «%1» a: «%2»"
 
 #: app/Panel/panelfunc.cpp:456
 #, kde-format
@@ -8356,7 +8358,7 @@ msgstr ""
 #: app/Splitter/combiner.cpp:107
 #, kde-format
 msgid "Error at reading the CRC file (%1)."
-msgstr "S'ha produït un error en llegir el fitxer CRC (%1)."
+msgstr "S'ha produït un error mentre es llegia el fitxer CRC (%1)."
 
 #: app/Splitter/combiner.cpp:136
 #, kde-format
@@ -8414,12 +8416,12 @@ msgstr "No es pot dividir una carpeta."
 #: app/Splitter/splitter.cpp:120
 #, kde-format
 msgid "Error reading file %1: %2"
-msgstr "S'ha produït un error en llegir el fitxer %1: %2"
+msgstr "S'ha produït un error mentre es llegia el fitxer %1: %2"
 
 #: app/Splitter/splitter.cpp:233 app/Splitter/splitter.cpp:276
 #, kde-format
 msgid "Error writing file %1: %2"
-msgstr "S'ha produït un error en escriure en el fitxer %1: %2"
+msgstr "S'ha produït un error mentre s'escrivia al fitxer %1: %2"
 
 #: app/Splitter/splittergui.cpp:56
 #, kde-format
@@ -8650,12 +8652,12 @@ msgstr "Nombre de carpetes comparades: %1"
 #: app/Synchronizer/synchronizer.cpp:1393
 #, kde-format
 msgid "Error at copying file %1 to %2."
-msgstr "S'ha produït un error en copiar el fitxer %1 a %2."
+msgstr "S'ha produït un error mentre es copiava el fitxer %1 a %2."
 
 #: app/Synchronizer/synchronizer.cpp:1398
 #, kde-format
 msgid "Error at deleting file %1."
-msgstr "S'ha produït un error en suprimir el fitxer %1."
+msgstr "S'ha produït un error mentre se suprimia el fitxer %1."
 
 #: app/Synchronizer/synchronizer.cpp:1564
 #, kde-format
