@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:55+0000\n"
+"POT-Creation-Date: 2026-02-09 00:46+0000\n"
 "PO-Revision-Date: 2014-10-20 19:23+0000\n"
 "Last-Translator: Admir Becirbasic <abecirbasi1@etf.unsa.ba>\n"
 "Language-Team: <bhld@lists.linux.org.ba>\n"
@@ -866,7 +866,7 @@ msgid "Create in:"
 msgstr "Napravi u:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:679
+#: app/Panel/panelfunc.cpp:694
 #, kde-format
 msgid "New Folder"
 msgstr "Nova fascikla"
@@ -1501,7 +1501,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Želite li zaista da bacite ovu  stavku u smeće?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:825
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:840
 #, kde-format
 msgid "&Trash"
 msgstr "&Smeće"
@@ -1513,8 +1513,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Želite li zaista da obrišete ovu stavku?"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:841
-#: app/Panel/panelfunc.cpp:918
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:856
+#: app/Panel/panelfunc.cpp:933
 #, kde-format
 msgid "Warning"
 msgstr "Upozorenje"
@@ -1581,12 +1581,12 @@ msgstr "Detaljno"
 msgid "Filelight"
 msgstr "Filelight"
 
-#: app/DiskUsage/diskusage.cpp:803 app/KViewer/lister.cpp:1285
+#: app/DiskUsage/diskusage.cpp:803 app/KrViewer/lister.cpp:1285
 #, kde-format
 msgid "Next"
 msgstr "Sljedeća"
 
-#: app/DiskUsage/diskusage.cpp:807 app/KViewer/lister.cpp:1289
+#: app/DiskUsage/diskusage.cpp:807 app/KrViewer/lister.cpp:1289
 #, kde-format
 msgid "Previous"
 msgstr "Prethodna"
@@ -2360,7 +2360,7 @@ msgstr "Sadrži tekst"
 msgid "&Text:"
 msgstr "&Tekst:"
 
-#: app/Filter/generalfilter.cpp:295 app/KViewer/lister.cpp:1303
+#: app/Filter/generalfilter.cpp:295 app/KrViewer/lister.cpp:1303
 #, kde-format
 msgid "RegExp"
 msgstr "RegExp"
@@ -3510,7 +3510,7 @@ msgstr "Generički režim"
 msgid "Use the system's default viewer"
 msgstr "Koristi sistemski podrazumijevan pregledač"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
 #, kde-format
 msgid "Text mode"
 msgstr "Tekstualni režim"
@@ -3520,8 +3520,8 @@ msgstr "Tekstualni režim"
 msgid "View the file in text-only mode"
 msgstr "Pregledaj datoteku u čisto tekstualnom režimu"
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1235
-#: app/KViewer/lister.cpp:2274
+#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1235
+#: app/KrViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
 msgstr "Heks. režim"
@@ -3991,7 +3991,7 @@ msgstr "Početak linije"
 msgid "Open search bar and start searching by typing in panel."
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1299
+#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "Razlikuj mala i velika slova"
@@ -4037,7 +4037,7 @@ msgstr "Pozicija:"
 msgid "Default mode:"
 msgstr "Osnovni mod pogleda:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1215
+#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
 #, kde-format
 msgid "Search"
@@ -5785,8 +5785,8 @@ msgid "Bring Main Window to Top"
 msgstr "Prebaci glavni prozor naprijed"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1890
-#: app/KViewer/lister.cpp:1925
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1890
+#: app/KrViewer/lister.cpp:1925
 #, kde-format
 msgid "Lister"
 msgstr "Klizac"
@@ -5882,57 +5882,57 @@ msgstr ""
 msgid "Horizontal Mode"
 msgstr "Vodoravni mod"
 
-#: app/KViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&Genericki preglednik"
 
-#: app/KViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&Tekstualni preglednik"
 
-#: app/KViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Hex preglednik"
 
-#: app/KViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Lister"
 msgstr "&Klizac"
 
-#: app/KViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:104
 #, kde-format
 msgid "Text &Editor"
 msgstr "Tekst&Editor"
 
-#: app/KViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:128
 #, kde-format
 msgid "&Detach Tab"
 msgstr "&Odvoji karticu"
 
-#: app/KViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:140
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "&Zatvori trenutnu karticu"
 
-#: app/KViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:146
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Sljedeća kartica"
 
-#: app/KViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:152
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&Prethodna kartica"
 
-#: app/KViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:227
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrPrikazivač"
 
-#: app/KViewer/krviewer.cpp:360
+#: app/KrViewer/krviewer.cpp:360
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5942,179 +5942,179 @@ msgstr ""
 "Lose navođenje u komandnom uredniku.\n"
 "%1"
 
-#: app/KViewer/krviewer.cpp:367
+#: app/KrViewer/krviewer.cpp:367
 #, kde-format
 msgid "Can not open \"%1\""
 msgstr "Ne moze otvoriti \"%1\""
 
-#: app/KViewer/krviewer.cpp:679
+#: app/KrViewer/krviewer.cpp:679
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (Uređuje)"
 
-#: app/KViewer/krviewer.cpp:680
+#: app/KrViewer/krviewer.cpp:680
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (Pregledava)"
 
-#: app/KViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:686
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Uređuje: %1"
 
-#: app/KViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:686
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Pregledavanje: %1"
 
-#: app/KViewer/lister.cpp:1202 app/KViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1202 app/KrViewer/lister.cpp:1914
 #, kde-format
 msgid "Save selection..."
 msgstr "Sacuvaj oznaceno..."
 
-#: app/KViewer/lister.cpp:1206
+#: app/KrViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
 msgstr "Sačuvaj kao..."
 
-#: app/KViewer/lister.cpp:1210
+#: app/KrViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
 msgstr "Štampaj..."
 
-#: app/KViewer/lister.cpp:1220
+#: app/KrViewer/lister.cpp:1220
 #, kde-format
 msgid "Search next"
 msgstr "Pretraži sljedece"
 
-#: app/KViewer/lister.cpp:1225
+#: app/KrViewer/lister.cpp:1225
 #, kde-format
 msgid "Search previous"
 msgstr "Pretrazi prethodno"
 
-#: app/KViewer/lister.cpp:1230 app/KViewer/lister.cpp:1853
-#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
-#: app/KViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1230 app/KrViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1879
 #, kde-format
 msgid "Jump to position"
 msgstr "Odi na poziciju"
 
-#: app/KViewer/lister.cpp:1240
+#: app/KrViewer/lister.cpp:1240
 #, kde-format
 msgid "Select charset"
 msgstr "Odaberi string"
 
-#: app/KViewer/lister.cpp:1259 app/KViewer/lister.cpp:1486
+#: app/KrViewer/lister.cpp:1259 app/KrViewer/lister.cpp:1486
 #, kde-format
 msgid "Lister:"
 msgstr "Klizac:"
 
-#: app/KViewer/lister.cpp:1270
+#: app/KrViewer/lister.cpp:1270
 #, kde-format
 msgid "Stop search"
 msgstr "Zaustavi pretragu"
 
-#: app/KViewer/lister.cpp:1286
+#: app/KrViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
 msgstr "Skoči na sljedeće poklapanje"
 
-#: app/KViewer/lister.cpp:1290
+#: app/KrViewer/lister.cpp:1290
 #, kde-format
 msgid "Jump to previous match"
 msgstr "Skoči na prethodno poklapanje"
 
-#: app/KViewer/lister.cpp:1293
+#: app/KrViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
 msgstr "Mogućnosti"
 
-#: app/KViewer/lister.cpp:1294
+#: app/KrViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
 msgstr "Podesi ponašanje pretrage"
 
-#: app/KViewer/lister.cpp:1296
+#: app/KrViewer/lister.cpp:1296
 #, kde-format
 msgid "From cursor"
 msgstr "Od pokazivaca"
 
-#: app/KViewer/lister.cpp:1301
+#: app/KrViewer/lister.cpp:1301
 #, kde-format
 msgid "Match whole words only"
 msgstr "Povezuj samo cijele rijeci"
 
-#: app/KViewer/lister.cpp:1305
+#: app/KrViewer/lister.cpp:1305
 #, kde-format
 msgid "Hexadecimal"
 msgstr "Heksadekadni"
 
-#: app/KViewer/lister.cpp:1360
+#: app/KrViewer/lister.cpp:1360
 #, kde-format
 msgid "Error reading file %1."
 msgstr "Greska kod citanja datoteke %1."
 
-#: app/KViewer/lister.cpp:1457
+#: app/KrViewer/lister.cpp:1457
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "Kolona: %1, Pozicija: %2 (%3, %4%)"
 
-#: app/KViewer/lister.cpp:1472 app/KViewer/lister.cpp:1822
+#: app/KrViewer/lister.cpp:1472 app/KrViewer/lister.cpp:1822
 #, kde-format
 msgid "Search:"
 msgstr "Traži:"
 
-#: app/KViewer/lister.cpp:1838
+#: app/KrViewer/lister.cpp:1838
 #, kde-format
 msgid "Search position:"
 msgstr "Pozicija pretrage:"
 
-#: app/KViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1853
 #, kde-format
 msgid "Text position:"
 msgstr "Položaj teksta:"
 
-#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
 #, kde-format
 msgid "Invalid number."
 msgstr "Neispravan broj."
 
-#: app/KViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1879
 #, kde-format
 msgid "Number out of range."
 msgstr "Broj izvan opsega."
 
-#: app/KViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1914
 #, kde-format
 msgid "Nothing is selected."
 msgstr "Nista nije oznaceno."
 
-#: app/KViewer/lister.cpp:1993
+#: app/KrViewer/lister.cpp:1993
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr "Printanje unatrag nije podrzano. Nastaviti sa normalnim printanjem?"
 
-#: app/KViewer/panelviewer.cpp:45
+#: app/KrViewer/panelviewer.cpp:45
 #, kde-format
 msgid "No file selected or selected file cannot be displayed."
 msgstr "Nema oznacene datoteke ili oznacena datoteka ne moze biti prikazana."
 
-#: app/KViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
+#: app/KrViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
 #: app/Synchronizer/synchronizertask.cpp:151
 #, kde-format
 msgid "Error at opening %1."
 msgstr "Greska pri otvaranju %1."
 
-#: app/KViewer/panelviewer.cpp:331
+#: app/KrViewer/panelviewer.cpp:331
 #, kde-format
 msgid "Missing Plugin"
 msgstr "Nedostaje priključak"
 
-#: app/KViewer/panelviewer.cpp:337
+#: app/KrViewer/panelviewer.cpp:337
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -6124,12 +6124,12 @@ msgstr ""
 "<b>Nema dostupnog plugina za urednik teksta.</b><br/>Ugrađeni editor nece "
 "raditi bez ovoga.<br/>Ovo mozete popraviti instaliranjem Kate-a:<br/>%1"
 
-#: app/KViewer/panelviewer.cpp:356
+#: app/KrViewer/panelviewer.cpp:356
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr "%1 je vece nego %2 MB"
 
-#: app/KViewer/panelviewer.cpp:384
+#: app/KrViewer/panelviewer.cpp:384
 #, kde-format
 msgid "Cannot edit %1"
 msgstr "Nemoguce urediti %1"
@@ -7835,7 +7835,7 @@ msgstr "Novi link"
 msgid "Create a new link to: %1"
 msgstr "Kreiraj novi link za: %1"
 
-#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:760
+#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:775
 #, fuzzy, kde-format
 #| msgid "A directory or a file with this name already exists."
 msgid "A folder or a file with this name already exists."
@@ -7903,13 +7903,25 @@ msgstr[0] "Kopiraj %1 fajl u:"
 msgstr[1] "Kopiraj %1 fajla u:"
 msgstr[2] "Kopiraj %1 fajla u:"
 
-#: app/Panel/panelfunc.cpp:684
+#: app/Panel/panelfunc.cpp:667
+#, kde-format
+msgid "The proposed name (\"%1\") is the same as the previous one."
+msgstr ""
+
+#: app/Panel/panelfunc.cpp:676
+#, kde-format
+msgid ""
+"The renaming of \"%1\" has not been performed because the proposed name was "
+"empty."
+msgstr ""
+
+#: app/Panel/panelfunc.cpp:699
 #, fuzzy, kde-format
 #| msgid "Folder name:"
 msgid "Folder's name:"
 msgstr "Naziv fascikle:"
 
-#: app/Panel/panelfunc.cpp:824
+#: app/Panel/panelfunc.cpp:839
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -7917,7 +7929,7 @@ msgstr[0] "Želite li zaista da bacite ovu %1 stavku u smeće?"
 msgstr[1] "Želite li zaista da bacite ove %1 stavke u smeće?"
 msgstr[2] "Želite li zaista da bacite ovih %1 stavki u smeće?"
 
-#: app/Panel/panelfunc.cpp:828
+#: app/Panel/panelfunc.cpp:843
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7935,7 +7947,7 @@ msgstr[2] ""
 "<qt>Da li zaista zelite da obrišete ove %1 virtuelne stavke  <b>physically</"
 "b> (ne briše ih samo iz virtuelnih stavki)?</qt>"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:850
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
@@ -7943,7 +7955,7 @@ msgstr[0] "Želite li zaista da obrišete ovu %1 stavku?"
 msgstr[1] "Želite li zaista da obrišete ove %1 stavke?"
 msgstr[2] "Želite li zaista da obrišete ovih %1 stavki?"
 
-#: app/Panel/panelfunc.cpp:873
+#: app/Panel/panelfunc.cpp:888
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>Directory <b>%1</b> is not empty.</p><p>Skip this one or delete "
@@ -7953,12 +7965,12 @@ msgstr ""
 "<qt><p>Direktorij<b>%1</b> nije prazan.</p><p>Preskoci ovu ili izbrisi sve?</"
 "p></qt>"
 
-#: app/Panel/panelfunc.cpp:874
+#: app/Panel/panelfunc.cpp:889
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:874
+#: app/Panel/panelfunc.cpp:889
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>Directory <b>%1</b> is not empty.</p><p>Skip this one or delete "
@@ -7968,23 +7980,23 @@ msgstr ""
 "<qt><p>Direktorij<b>%1</b> nije prazan.</p><p>Preskoci ovu ili izbrisi sve?</"
 "p></qt>"
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:891
 #, kde-format
 msgid "&Skip"
 msgstr "&Preskoči"
 
-#: app/Panel/panelfunc.cpp:877
+#: app/Panel/panelfunc.cpp:892
 #, fuzzy, kde-format
 #| msgid "&Trash"
 msgid "&Trash All"
 msgstr "&Smeće"
 
-#: app/Panel/panelfunc.cpp:877
+#: app/Panel/panelfunc.cpp:892
 #, kde-format
 msgid "&Delete All"
 msgstr "&Obriši sve"
 
-#: app/Panel/panelfunc.cpp:914
+#: app/Panel/panelfunc.cpp:929
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -8002,17 +8014,17 @@ msgstr[2] ""
 "Da li zaista zelite da obrisete ove %1 virtuelne stavke (fizicke stavke se "
 "ne diraju)?"
 
-#: app/Panel/panelfunc.cpp:950
+#: app/Panel/panelfunc.cpp:965
 #, kde-format
 msgid "Could not start %1"
 msgstr "Ne mogu da pokrenem %1"
 
-#: app/Panel/panelfunc.cpp:962
+#: app/Panel/panelfunc.cpp:977
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 ne moze otvoriti %2"
 
-#: app/Panel/panelfunc.cpp:1039
+#: app/Panel/panelfunc.cpp:1054
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -8021,7 +8033,7 @@ msgstr ""
 "<qt><p>Arhiva <b>%1.%2</b> vec postoji. Zelite li je prebrisati?</p><p>Svi "
 "podaci iz prethodne arhive ce biti izgubljeni.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1044
+#: app/Panel/panelfunc.cpp:1059
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -8032,17 +8044,17 @@ msgstr ""
 "p><p>Zip će zamijeniti identično nazvane ulaze u zip arhivi ili će dodati "
 "ulaze za nove nazive.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1052
+#: app/Panel/panelfunc.cpp:1067
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Ne mogu se pakovati datoteke na virtuelno odrediste."
 
-#: app/Panel/panelfunc.cpp:1085
+#: app/Panel/panelfunc.cpp:1100
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Raspakuj %1 u:"
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1102
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

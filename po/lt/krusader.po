@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:55+0000\n"
+"POT-Creation-Date: 2026-02-09 00:46+0000\n"
 "PO-Revision-Date: 2019-03-17 17:31+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -861,7 +861,7 @@ msgid "Create in:"
 msgstr "Kur sukurti:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:679
+#: app/Panel/panelfunc.cpp:694
 #, kde-format
 msgid "New Folder"
 msgstr "Naujas aplankas"
@@ -1524,7 +1524,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Ar tikrai norite perkelti šį objektą į šiukšlinę?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:825
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:840
 #, kde-format
 msgid "&Trash"
 msgstr "&Šiukšlinė"
@@ -1536,8 +1536,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Ar tikrai pageidaujate pašalinti šį objektą?"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:841
-#: app/Panel/panelfunc.cpp:918
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:856
+#: app/Panel/panelfunc.cpp:933
 #, kde-format
 msgid "Warning"
 msgstr "Perspėjimas"
@@ -1604,12 +1604,12 @@ msgstr "Išsamiai"
 msgid "Filelight"
 msgstr "Skritulio vaizdas"
 
-#: app/DiskUsage/diskusage.cpp:803 app/KViewer/lister.cpp:1285
+#: app/DiskUsage/diskusage.cpp:803 app/KrViewer/lister.cpp:1285
 #, kde-format
 msgid "Next"
 msgstr "Kitas"
 
-#: app/DiskUsage/diskusage.cpp:807 app/KViewer/lister.cpp:1289
+#: app/DiskUsage/diskusage.cpp:807 app/KrViewer/lister.cpp:1289
 #, kde-format
 msgid "Previous"
 msgstr "Ankstesnis"
@@ -2387,7 +2387,7 @@ msgstr "Turinčių tekstą"
 msgid "&Text:"
 msgstr "&Tekstas:"
 
-#: app/Filter/generalfilter.cpp:295 app/KViewer/lister.cpp:1303
+#: app/Filter/generalfilter.cpp:295 app/KrViewer/lister.cpp:1303
 #, kde-format
 msgid "RegExp"
 msgstr "RegExp"
@@ -3547,7 +3547,7 @@ msgstr "Bendras režimas"
 msgid "Use the system's default viewer"
 msgstr "Naudoti sistemos numatytą žiūryklę"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
 #, kde-format
 msgid "Text mode"
 msgstr "Tekstinis režimas"
@@ -3557,8 +3557,8 @@ msgstr "Tekstinis režimas"
 msgid "View the file in text-only mode"
 msgstr "Failui peržiūrėti naudoti tekstinį režimą"
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1235
-#: app/KViewer/lister.cpp:2274
+#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1235
+#: app/KrViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
 msgstr "Šešioliktainis režimas"
@@ -4026,7 +4026,7 @@ msgstr "Eilutės pradžia"
 msgid "Open search bar and start searching by typing in panel."
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1299
+#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "Skirti raidžių dydį"
@@ -4070,7 +4070,7 @@ msgstr "Pozicija:"
 msgid "Default mode:"
 msgstr "Numatytoji peržiūros veiksena"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1215
+#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
 #, kde-format
 msgid "Search"
@@ -5882,8 +5882,8 @@ msgid "Bring Main Window to Top"
 msgstr ""
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1890
-#: app/KViewer/lister.cpp:1925
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1890
+#: app/KrViewer/lister.cpp:1925
 #, fuzzy, kde-format
 #| msgid "History"
 msgid "Lister"
@@ -5980,57 +5980,57 @@ msgstr "Funkciniai klavišai skirti darbui pagreitinti."
 msgid "Horizontal Mode"
 msgstr "Vertikali veiksena"
 
-#: app/KViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&Bendra žiūryklė"
 
-#: app/KViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&Teksto žiūryklė"
 
-#: app/KViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Šešioliktainė žiūryklė"
 
-#: app/KViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Lister"
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:104
 #, kde-format
 msgid "Text &Editor"
 msgstr "Teksto &redaktorius"
 
-#: app/KViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:128
 #, kde-format
 msgid "&Detach Tab"
 msgstr "A&tskirti kortelę"
 
-#: app/KViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:140
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "&Užverti dabartinę kortelę"
 
-#: app/KViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:146
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Kita kortelė"
 
-#: app/KViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:152
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&Ankstesnė kortelė"
 
-#: app/KViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:227
 #, kde-format
 msgid "&KrViewer"
 msgstr "&Žiūryklė"
 
-#: app/KViewer/krviewer.cpp:360
+#: app/KrViewer/krviewer.cpp:360
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -6038,196 +6038,196 @@ msgid ""
 "%1"
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:367
+#: app/KrViewer/krviewer.cpp:367
 #, fuzzy, kde-format
 #| msgid "Cannot open %1!"
 msgid "Can not open \"%1\""
 msgstr "Nepavyko atverti %1!"
 
-#: app/KViewer/krviewer.cpp:679
+#: app/KrViewer/krviewer.cpp:679
 #, fuzzy, kde-format
 #| msgid "Editing"
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "Redagavimas"
 
-#: app/KViewer/krviewer.cpp:680
+#: app/KrViewer/krviewer.cpp:680
 #, fuzzy, kde-format
 #| msgid "Viewing"
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "Žvalgosi"
 
-#: app/KViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:686
 #, fuzzy, kde-format
 #| msgid "Editing"
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Redagavimas"
 
-#: app/KViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:686
 #, fuzzy, kde-format
 #| msgid "View: "
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Žvalgosi"
 
-#: app/KViewer/lister.cpp:1202 app/KViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1202 app/KrViewer/lister.cpp:1914
 #, fuzzy, kde-format
 #| msgid "I&nvert selection"
 msgid "Save selection..."
 msgstr "Ap&versti žymėjimą"
 
-#: app/KViewer/lister.cpp:1206
+#: app/KrViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
 msgstr "Įrašyti kaip..."
 
-#: app/KViewer/lister.cpp:1210
+#: app/KrViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
 msgstr "Spausdinti..."
 
-#: app/KViewer/lister.cpp:1220
+#: app/KrViewer/lister.cpp:1220
 #, fuzzy, kde-format
 #| msgid "&Search in"
 msgid "Search next"
 msgstr "Ieškoti kito"
 
-#: app/KViewer/lister.cpp:1225
+#: app/KrViewer/lister.cpp:1225
 #, fuzzy, kde-format
 #| msgid "Search results"
 msgid "Search previous"
 msgstr "Ieškoti ankstesnio"
 
-#: app/KViewer/lister.cpp:1230 app/KViewer/lister.cpp:1853
-#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
-#: app/KViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1230 app/KrViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1879
 #, fuzzy, kde-format
 #| msgid "Jump to a Location..."
 msgid "Jump to position"
 msgstr "Šokti į poziciją"
 
-#: app/KViewer/lister.cpp:1240
+#: app/KrViewer/lister.cpp:1240
 #, fuzzy, kde-format
 #| msgid "Select Remote Charset"
 msgid "Select charset"
 msgstr "Parinkti koduotę"
 
-#: app/KViewer/lister.cpp:1259 app/KViewer/lister.cpp:1486
+#: app/KrViewer/lister.cpp:1259 app/KrViewer/lister.cpp:1486
 #, fuzzy, kde-format
 #| msgid "History"
 msgid "Lister:"
 msgstr "Žurnalas"
 
-#: app/KViewer/lister.cpp:1270
+#: app/KrViewer/lister.cpp:1270
 #, fuzzy, kde-format
 #| msgid "Search"
 msgid "Stop search"
 msgstr "Paieška"
 
-#: app/KViewer/lister.cpp:1286
+#: app/KrViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
 msgstr "Eiti prie kito sutapimo"
 
-#: app/KViewer/lister.cpp:1290
+#: app/KrViewer/lister.cpp:1290
 #, fuzzy, kde-format
 msgid "Jump to previous match"
 msgstr "Eiti prie ankstesnio sutapimo"
 
-#: app/KViewer/lister.cpp:1293
+#: app/KrViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
 msgstr "Parinktys"
 
-#: app/KViewer/lister.cpp:1294
+#: app/KrViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
 msgstr "Keisti paieškos elgseną"
 
-#: app/KViewer/lister.cpp:1296
+#: app/KrViewer/lister.cpp:1296
 #, fuzzy, kde-format
 msgid "From cursor"
 msgstr "Nuo žymeklio"
 
-#: app/KViewer/lister.cpp:1301
+#: app/KrViewer/lister.cpp:1301
 #, kde-format
 msgid "Match whole words only"
 msgstr "Sutampa tik pilni žodžiai"
 
-#: app/KViewer/lister.cpp:1305
+#: app/KrViewer/lister.cpp:1305
 #, kde-format
 msgid "Hexadecimal"
 msgstr "Šešioliktainė"
 
-#: app/KViewer/lister.cpp:1360
+#: app/KrViewer/lister.cpp:1360
 #, fuzzy, kde-format
 #| msgid "Error reading file %1!"
 msgid "Error reading file %1."
 msgstr "Klaida skaitant failą."
 
-#: app/KViewer/lister.cpp:1457
+#: app/KrViewer/lister.cpp:1457
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1472 app/KViewer/lister.cpp:1822
+#: app/KrViewer/lister.cpp:1472 app/KrViewer/lister.cpp:1822
 #, kde-format
 msgid "Search:"
 msgstr "Ieškoti:"
 
-#: app/KViewer/lister.cpp:1838
+#: app/KrViewer/lister.cpp:1838
 #, fuzzy, kde-format
 #| msgid "&Search in"
 msgid "Search position:"
 msgstr "&Ieškoti"
 
-#: app/KViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1853
 #, kde-format
 msgid "Text position:"
 msgstr "Teksto pozicija:"
 
-#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
 #, fuzzy, kde-format
 #| msgid "Invalid volume size!"
 msgid "Invalid number."
 msgstr "netaisyklingas skaičius"
 
-#: app/KViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1879
 #, fuzzy, kde-format
 #| msgid "Number of..."
 msgid "Number out of range."
 msgstr "Kiekis..."
 
-#: app/KViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1914
 #, kde-format
 msgid "Nothing is selected."
 msgstr ""
 
-#: app/KViewer/lister.cpp:1993
+#: app/KrViewer/lister.cpp:1993
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:45
+#: app/KrViewer/panelviewer.cpp:45
 #, fuzzy, kde-format
 #| msgid "No file selected or selected file can't be displayed."
 msgid "No file selected or selected file cannot be displayed."
 msgstr "Nepažymėtas joks failas arba pažymėtų failų nepavyko parodyti."
 
-#: app/KViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
+#: app/KrViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
 #: app/Synchronizer/synchronizertask.cpp:151
 #, kde-format
 msgid "Error at opening %1."
 msgstr "Atveriant %1 įvyko klaida."
 
-#: app/KViewer/panelviewer.cpp:331
+#: app/KrViewer/panelviewer.cpp:331
 #, kde-format
 msgid "Missing Plugin"
 msgstr "Trūksta papildinio"
 
-#: app/KViewer/panelviewer.cpp:337
+#: app/KrViewer/panelviewer.cpp:337
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -6235,12 +6235,12 @@ msgid ""
 "without this.<br/>You can fix this by installing Kate:<br/>%1"
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:356
+#: app/KrViewer/panelviewer.cpp:356
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:384
+#: app/KrViewer/panelviewer.cpp:384
 #, fuzzy, kde-format
 #| msgid "Cannot open %1!"
 msgid "Cannot edit %1"
@@ -7965,7 +7965,7 @@ msgstr "Nauja nuoroda"
 msgid "Create a new link to: %1"
 msgstr "Sukurti naują nuorodą į:"
 
-#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:760
+#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:775
 #, fuzzy, kde-format
 #| msgid "A directory or a file with this name already exists."
 msgid "A folder or a file with this name already exists."
@@ -8037,13 +8037,25 @@ msgstr[1] "Kopijuoti %1 failus į:"
 msgstr[2] "Kopijuoti %1 failų į:"
 msgstr[3] "Kopijuoti %1 failą į:"
 
-#: app/Panel/panelfunc.cpp:684
+#: app/Panel/panelfunc.cpp:667
+#, kde-format
+msgid "The proposed name (\"%1\") is the same as the previous one."
+msgstr ""
+
+#: app/Panel/panelfunc.cpp:676
+#, kde-format
+msgid ""
+"The renaming of \"%1\" has not been performed because the proposed name was "
+"empty."
+msgstr ""
+
+#: app/Panel/panelfunc.cpp:699
 #, fuzzy, kde-format
 #| msgid "Folder name:"
 msgid "Folder's name:"
 msgstr "Aplanko pavadinimas:"
 
-#: app/Panel/panelfunc.cpp:824
+#: app/Panel/panelfunc.cpp:839
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -8052,7 +8064,7 @@ msgstr[1] "Ar tikrai norite perkelti %1 objektus į šiukšlinę?"
 msgstr[2] "Ar tikrai norite perkelti %1 objektų į šiukšlinę?"
 msgstr[3] "Ar tikrai norite perkelti %1 objektą į šiukšlinę?"
 
-#: app/Panel/panelfunc.cpp:828
+#: app/Panel/panelfunc.cpp:843
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -8073,7 +8085,7 @@ msgstr[3] ""
 "<qt>Ar tikrai norite <b>fiziškai</b> pašalinti %1 objektus? (Ne tik "
 "pašalinti iš virtualių objektų sąrašo?)</qt>"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:850
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
@@ -8082,7 +8094,7 @@ msgstr[1] "Ar tikrai norite pašalinti %1 objektus?"
 msgstr[2] "Ar tikrai norite pašalinti %1 objektų?"
 msgstr[3] "Ar tikrai norite pašalinti %1 objektą?"
 
-#: app/Panel/panelfunc.cpp:873
+#: app/Panel/panelfunc.cpp:888
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete "
@@ -8092,12 +8104,12 @@ msgstr ""
 "<qt><p>Aplankas <b>%1</b> netuščias!</p><p>Praleisti šį aplanką ar pašalinti "
 "viską?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:874
+#: app/Panel/panelfunc.cpp:889
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:874
+#: app/Panel/panelfunc.cpp:889
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete "
@@ -8107,23 +8119,23 @@ msgstr ""
 "<qt><p>Aplankas <b>%1</b> netuščias!</p><p>Praleisti šį aplanką ar pašalinti "
 "viską?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:891
 #, kde-format
 msgid "&Skip"
 msgstr "Pralei&sti"
 
-#: app/Panel/panelfunc.cpp:877
+#: app/Panel/panelfunc.cpp:892
 #, fuzzy, kde-format
 #| msgid "&Trash"
 msgid "&Trash All"
 msgstr "&Šiukšlinė"
 
-#: app/Panel/panelfunc.cpp:877
+#: app/Panel/panelfunc.cpp:892
 #, kde-format
 msgid "&Delete All"
 msgstr "&Pašalinti viską"
 
-#: app/Panel/panelfunc.cpp:914
+#: app/Panel/panelfunc.cpp:929
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -8144,18 +8156,18 @@ msgstr[3] ""
 "Ar tikrai norite ištrinti %1 virtualų objektą (fiziškai objektai nebus "
 "keičiami)?"
 
-#: app/Panel/panelfunc.cpp:950
+#: app/Panel/panelfunc.cpp:965
 #, kde-format
 msgid "Could not start %1"
 msgstr "Nepavyko paleisti %1"
 
-#: app/Panel/panelfunc.cpp:962
+#: app/Panel/panelfunc.cpp:977
 #, fuzzy, kde-format
 #| msgid "Cannot open %1!"
 msgid "%1 cannot open %2"
 msgstr "Nepavyksta atverti %1 : %2"
 
-#: app/Panel/panelfunc.cpp:1039
+#: app/Panel/panelfunc.cpp:1054
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite "
@@ -8167,7 +8179,7 @@ msgstr ""
 "<qt><p>Archyvas <b>%1.%2</b> jau egzistuoja. Ar tikrai norite jį perrašyti?</"
 "p><p>Visi duomenys senesniame archyve bus prarasti!</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1044
+#: app/Panel/panelfunc.cpp:1059
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -8178,18 +8190,18 @@ msgstr ""
 "p><p>Programa zip pakeis vienodai pavadintus objektus egzistuojančiame zip "
 "faile arba pridės naujus pavadinimus.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1052
+#: app/Panel/panelfunc.cpp:1067
 #, fuzzy, kde-format
 #| msgid "Cannot pack files onto a virtual destination!"
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Nepavyks supakuoti failų į virtualią paskirties vietą!"
 
-#: app/Panel/panelfunc.cpp:1085
+#: app/Panel/panelfunc.cpp:1100
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Išpakuoti %1 į:"
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1102
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

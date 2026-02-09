@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:55+0000\n"
+"POT-Creation-Date: 2026-02-09 00:46+0000\n"
 "PO-Revision-Date: 2025-01-26 21:06+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -857,7 +857,7 @@ msgid "Create in:"
 msgstr "Létrehozás ebben:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:679
+#: app/Panel/panelfunc.cpp:694
 #, kde-format
 msgid "New Folder"
 msgstr "Új mappa"
@@ -1474,7 +1474,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Valóban áthelyezi ezt az elemet a kukába?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:825
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:840
 #, kde-format
 msgid "&Trash"
 msgstr "K&ukába"
@@ -1486,8 +1486,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Valóban törölni szeretné ezt az elemet?"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:841
-#: app/Panel/panelfunc.cpp:918
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:856
+#: app/Panel/panelfunc.cpp:933
 #, kde-format
 msgid "Warning"
 msgstr "Figyelmeztetés"
@@ -1552,12 +1552,12 @@ msgstr "Részletes"
 msgid "Filelight"
 msgstr "Kördiagram"
 
-#: app/DiskUsage/diskusage.cpp:803 app/KViewer/lister.cpp:1285
+#: app/DiskUsage/diskusage.cpp:803 app/KrViewer/lister.cpp:1285
 #, kde-format
 msgid "Next"
 msgstr "Következő"
 
-#: app/DiskUsage/diskusage.cpp:807 app/KViewer/lister.cpp:1289
+#: app/DiskUsage/diskusage.cpp:807 app/KrViewer/lister.cpp:1289
 #, kde-format
 msgid "Previous"
 msgstr "Előző"
@@ -2291,7 +2291,7 @@ msgstr "Tartalmazott szöveg"
 msgid "&Text:"
 msgstr "S&zöveg:"
 
-#: app/Filter/generalfilter.cpp:295 app/KViewer/lister.cpp:1303
+#: app/Filter/generalfilter.cpp:295 app/KrViewer/lister.cpp:1303
 #, kde-format
 msgid "RegExp"
 msgstr "RegKif"
@@ -3416,7 +3416,7 @@ msgstr "Általános mód"
 msgid "Use the system's default viewer"
 msgstr "A rendszer alapértelmezett megjelenítőjének használata"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
 #, kde-format
 msgid "Text mode"
 msgstr "Szöveges mód"
@@ -3426,8 +3426,8 @@ msgstr "Szöveges mód"
 msgid "View the file in text-only mode"
 msgstr "Fájl megjelenítése szöveges módban"
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1235
-#: app/KViewer/lister.cpp:2274
+#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1235
+#: app/KrViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
 msgstr "Hexadecimális mód"
@@ -3878,7 +3878,7 @@ msgid "Open search bar and start searching by typing in panel."
 msgstr ""
 "A keresősáv megnyitása és a panelen belüli keresés indítása gépeléssel."
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1299
+#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "Nagybetűérzékeny"
@@ -3924,7 +3924,7 @@ msgstr "Pozíció:"
 msgid "Default mode:"
 msgstr "Alapértelmezett mód:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1215
+#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
 #, kde-format
 msgid "Search"
@@ -5646,8 +5646,8 @@ msgid "Bring Main Window to Top"
 msgstr "A főablak felülre hozása"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1890
-#: app/KViewer/lister.cpp:1925
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1890
+#: app/KrViewer/lister.cpp:1925
 #, kde-format
 msgid "Lister"
 msgstr "Nézőke"
@@ -5740,57 +5740,57 @@ msgstr "A funkciógombok gyors műveletvégzést tesznek lehetővé a fájlokon.
 msgid "Horizontal Mode"
 msgstr "Vízszintes mód"
 
-#: app/KViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "Általános me&gjelenítő"
 
-#: app/KViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Text Viewer"
 msgstr "Szövegmegjelení&tő"
 
-#: app/KViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Hexadecimális megjelenítő"
 
-#: app/KViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Lister"
 msgstr "&Nézőke"
 
-#: app/KViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:104
 #, kde-format
 msgid "Text &Editor"
 msgstr "Szöv&egszerkesztő"
 
-#: app/KViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:128
 #, kde-format
 msgid "&Detach Tab"
 msgstr "Lap le&választása"
 
-#: app/KViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:140
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "Aktuális lap &bezárása"
 
-#: app/KViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:146
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Következő lap"
 
-#: app/KViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:152
 #, kde-format
 msgid "&Previous Tab"
 msgstr "E&lőző lap"
 
-#: app/KViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:227
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrNézegető"
 
-#: app/KViewer/krviewer.cpp:360
+#: app/KrViewer/krviewer.cpp:360
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5800,180 +5800,180 @@ msgstr ""
 "Rossz idézés a szerkesztő parancsban:\n"
 "%1"
 
-#: app/KViewer/krviewer.cpp:367
+#: app/KrViewer/krviewer.cpp:367
 #, kde-format
 msgid "Can not open \"%1\""
 msgstr "A(z) „%1” nem nyitható meg"
 
-#: app/KViewer/krviewer.cpp:679
+#: app/KrViewer/krviewer.cpp:679
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (Szerkesztés)"
 
-#: app/KViewer/krviewer.cpp:680
+#: app/KrViewer/krviewer.cpp:680
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (Megjelenítés)"
 
-#: app/KViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:686
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Szerkesztés: %1"
 
-#: app/KViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:686
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Megjelenítés: %1"
 
-#: app/KViewer/lister.cpp:1202 app/KViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1202 app/KrViewer/lister.cpp:1914
 #, kde-format
 msgid "Save selection..."
 msgstr "Kijelölés mentése…"
 
-#: app/KViewer/lister.cpp:1206
+#: app/KrViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
 msgstr "Mentés másként…"
 
-#: app/KViewer/lister.cpp:1210
+#: app/KrViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
 msgstr "Nyomtatás…"
 
-#: app/KViewer/lister.cpp:1220
+#: app/KrViewer/lister.cpp:1220
 #, kde-format
 msgid "Search next"
 msgstr "Következő keresése"
 
-#: app/KViewer/lister.cpp:1225
+#: app/KrViewer/lister.cpp:1225
 #, kde-format
 msgid "Search previous"
 msgstr "Előző keresése"
 
-#: app/KViewer/lister.cpp:1230 app/KViewer/lister.cpp:1853
-#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
-#: app/KViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1230 app/KrViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1879
 #, kde-format
 msgid "Jump to position"
 msgstr "Ugrás pozícióra"
 
-#: app/KViewer/lister.cpp:1240
+#: app/KrViewer/lister.cpp:1240
 #, kde-format
 msgid "Select charset"
 msgstr "Karakterkészlet kiválasztása"
 
-#: app/KViewer/lister.cpp:1259 app/KViewer/lister.cpp:1486
+#: app/KrViewer/lister.cpp:1259 app/KrViewer/lister.cpp:1486
 #, kde-format
 msgid "Lister:"
 msgstr "Nézőke:"
 
-#: app/KViewer/lister.cpp:1270
+#: app/KrViewer/lister.cpp:1270
 #, kde-format
 msgid "Stop search"
 msgstr "Keresés leállítása"
 
-#: app/KViewer/lister.cpp:1286
+#: app/KrViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
 msgstr "Ugrás a következő találatra"
 
-#: app/KViewer/lister.cpp:1290
+#: app/KrViewer/lister.cpp:1290
 #, kde-format
 msgid "Jump to previous match"
 msgstr "Ugrás az előző találatra"
 
-#: app/KViewer/lister.cpp:1293
+#: app/KrViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
 msgstr "Beállítások"
 
-#: app/KViewer/lister.cpp:1294
+#: app/KrViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
 msgstr "A keresési beállítások módosítása"
 
-#: app/KViewer/lister.cpp:1296
+#: app/KrViewer/lister.cpp:1296
 #, kde-format
 msgid "From cursor"
 msgstr "Kurzortól"
 
-#: app/KViewer/lister.cpp:1301
+#: app/KrViewer/lister.cpp:1301
 #, kde-format
 msgid "Match whole words only"
 msgstr "Csak egész szavak"
 
-#: app/KViewer/lister.cpp:1305
+#: app/KrViewer/lister.cpp:1305
 #, kde-format
 msgid "Hexadecimal"
 msgstr "Hexadecimális"
 
-#: app/KViewer/lister.cpp:1360
+#: app/KrViewer/lister.cpp:1360
 #, kde-format
 msgid "Error reading file %1."
 msgstr "Hiba a(z) „%1” fájl olvasásakor."
 
-#: app/KViewer/lister.cpp:1457
+#: app/KrViewer/lister.cpp:1457
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "%1. oszlop, pozíció: %2 (%3, %4%)"
 
-#: app/KViewer/lister.cpp:1472 app/KViewer/lister.cpp:1822
+#: app/KrViewer/lister.cpp:1472 app/KrViewer/lister.cpp:1822
 #, kde-format
 msgid "Search:"
 msgstr "Keresés:"
 
-#: app/KViewer/lister.cpp:1838
+#: app/KrViewer/lister.cpp:1838
 #, kde-format
 msgid "Search position:"
 msgstr "Keresési pozíció:"
 
-#: app/KViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1853
 #, kde-format
 msgid "Text position:"
 msgstr "Szövegpozíció:"
 
-#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
 #, kde-format
 msgid "Invalid number."
 msgstr "Érvénytelen szám."
 
-#: app/KViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1879
 #, kde-format
 msgid "Number out of range."
 msgstr "A szám tartományon kívüli."
 
-#: app/KViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1914
 #, kde-format
 msgid "Nothing is selected."
 msgstr "Semmi nincs kijelölve."
 
-#: app/KViewer/lister.cpp:1993
+#: app/KrViewer/lister.cpp:1993
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
 "Fordított nyomtatás nem támogatott. Szeretné folytatni normál nyomtatással?"
 
-#: app/KViewer/panelviewer.cpp:45
+#: app/KrViewer/panelviewer.cpp:45
 #, kde-format
 msgid "No file selected or selected file cannot be displayed."
 msgstr "Nincs kijelölve fájl, vagy a kijelölt fájl nem jeleníthető meg."
 
-#: app/KViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
+#: app/KrViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
 #: app/Synchronizer/synchronizertask.cpp:151
 #, kde-format
 msgid "Error at opening %1."
 msgstr "Hiba a(z) %1 megnyitásakor."
 
-#: app/KViewer/panelviewer.cpp:331
+#: app/KrViewer/panelviewer.cpp:331
 #, kde-format
 msgid "Missing Plugin"
 msgstr "Hiányzó bővítmény"
 
-#: app/KViewer/panelviewer.cpp:337
+#: app/KrViewer/panelviewer.cpp:337
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -5983,12 +5983,12 @@ msgstr ""
 "<b>Nem érhető el szövegszerkesztő bővítmény.</b><br/>A belső szerkesztő nem "
 "működik nélküle.<br/>Kijavíthatja ezt a Kate telepítésével:<br/>%1"
 
-#: app/KViewer/panelviewer.cpp:356
+#: app/KrViewer/panelviewer.cpp:356
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr "%1 nagyobb mint %2 MB"
 
-#: app/KViewer/panelviewer.cpp:384
+#: app/KrViewer/panelviewer.cpp:384
 #, kde-format
 msgid "Cannot edit %1"
 msgstr "Nem sikerült szerkeszteni: %1"
@@ -7617,7 +7617,7 @@ msgstr "Új link"
 msgid "Create a new link to: %1"
 msgstr "Új link létrehozása erre: %1"
 
-#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:760
+#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:775
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Ezen a néven már létezik fájl vagy mappa."
@@ -7681,19 +7681,31 @@ msgid_plural "Copy %1 files to:"
 msgstr[0] "%1 fájl másolása ide:"
 msgstr[1] "%1 fájl másolása ide:"
 
-#: app/Panel/panelfunc.cpp:684
+#: app/Panel/panelfunc.cpp:667
+#, kde-format
+msgid "The proposed name (\"%1\") is the same as the previous one."
+msgstr ""
+
+#: app/Panel/panelfunc.cpp:676
+#, kde-format
+msgid ""
+"The renaming of \"%1\" has not been performed because the proposed name was "
+"empty."
+msgstr ""
+
+#: app/Panel/panelfunc.cpp:699
 #, kde-format
 msgid "Folder's name:"
 msgstr "Mappa neve:"
 
-#: app/Panel/panelfunc.cpp:824
+#: app/Panel/panelfunc.cpp:839
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Biztosan áthelyezi ezt az elemet a kukába?"
 msgstr[1] "Biztosan áthelyezi ezt a(z) %1 elemet a kukába?"
 
-#: app/Panel/panelfunc.cpp:828
+#: app/Panel/panelfunc.cpp:843
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7708,44 +7720,44 @@ msgstr[1] ""
 "<qt>Biztosan <b>fizikailag</b> törölni szeretné ezt a(z) %1 fájlt (nem "
 "csupán eltávolítani a virtuális mappából)?</qt>"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:850
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Biztosan törli ezt az elemet?"
 msgstr[1] "Biztosan törli ezt a(z) %1 elemet?"
 
-#: app/Panel/panelfunc.cpp:873
+#: app/Panel/panelfunc.cpp:888
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>A(z) <b>%1</b> mappa nem üres.</p>"
 
-#: app/Panel/panelfunc.cpp:874
+#: app/Panel/panelfunc.cpp:889
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Kihagyja, vagy mindent áthelyez a kukába?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:874
+#: app/Panel/panelfunc.cpp:889
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Kihagyja, vagy mindent töröl?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:891
 #, kde-format
 msgid "&Skip"
 msgstr "&Kihagyás"
 
-#: app/Panel/panelfunc.cpp:877
+#: app/Panel/panelfunc.cpp:892
 #, kde-format
 msgid "&Trash All"
 msgstr "Összes a &Kukába"
 
-#: app/Panel/panelfunc.cpp:877
+#: app/Panel/panelfunc.cpp:892
 #, kde-format
 msgid "&Delete All"
 msgstr "Összes &törlése"
 
-#: app/Panel/panelfunc.cpp:914
+#: app/Panel/panelfunc.cpp:929
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7760,17 +7772,17 @@ msgstr[1] ""
 "Biztosan törölni szeretné ezt a(z) %1 virtuális elemet (a valós fájlok "
 "maradnak)?"
 
-#: app/Panel/panelfunc.cpp:950
+#: app/Panel/panelfunc.cpp:965
 #, kde-format
 msgid "Could not start %1"
 msgstr "Nem sikerült elindítani: %1"
 
-#: app/Panel/panelfunc.cpp:962
+#: app/Panel/panelfunc.cpp:977
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "A(z) %1 nem tudja megnyitni ezt: %2"
 
-#: app/Panel/panelfunc.cpp:1039
+#: app/Panel/panelfunc.cpp:1054
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7779,7 +7791,7 @@ msgstr ""
 "<qt><p> A(z) <b>%1.%2</b> archívum már létezik. Szeretné felülírni?</p><p>A "
 "régi archívum összes adata el fog veszni!</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1044
+#: app/Panel/panelfunc.cpp:1059
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7790,17 +7802,17 @@ msgstr ""
 "Zip felülírja a Zip-archívumban az azonos nevű bejegyzéseket illetve új "
 "bejegyzéseket vesz fel az új neveknek.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1052
+#: app/Panel/panelfunc.cpp:1067
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Virtuális célt nem lehet használni fájlcsomagoláskor."
 
-#: app/Panel/panelfunc.cpp:1085
+#: app/Panel/panelfunc.cpp:1100
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "%1 kicsomagolása ide:"
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1102
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

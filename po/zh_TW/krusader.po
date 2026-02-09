@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:55+0000\n"
+"POT-Creation-Date: 2026-02-09 00:46+0000\n"
 "PO-Revision-Date: 2025-08-19 05:08+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -825,7 +825,7 @@ msgid "Create in:"
 msgstr "建立於："
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:679
+#: app/Panel/panelfunc.cpp:694
 #, kde-format
 msgid "New Folder"
 msgstr "新資料夾"
@@ -1421,7 +1421,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr ""
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:825
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:840
 #, kde-format
 msgid "&Trash"
 msgstr "丟到垃圾桶(&T)"
@@ -1433,8 +1433,8 @@ msgid "Do you really want to delete this item?"
 msgstr ""
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:841
-#: app/Panel/panelfunc.cpp:918
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:856
+#: app/Panel/panelfunc.cpp:933
 #, kde-format
 msgid "Warning"
 msgstr "警告"
@@ -1499,12 +1499,12 @@ msgstr ""
 msgid "Filelight"
 msgstr "Filelight"
 
-#: app/DiskUsage/diskusage.cpp:803 app/KViewer/lister.cpp:1285
+#: app/DiskUsage/diskusage.cpp:803 app/KrViewer/lister.cpp:1285
 #, kde-format
 msgid "Next"
 msgstr "下一個"
 
-#: app/DiskUsage/diskusage.cpp:807 app/KViewer/lister.cpp:1289
+#: app/DiskUsage/diskusage.cpp:807 app/KrViewer/lister.cpp:1289
 #, kde-format
 msgid "Previous"
 msgstr "上一個"
@@ -2214,7 +2214,7 @@ msgstr "包含文字"
 msgid "&Text:"
 msgstr "文字(&T)："
 
-#: app/Filter/generalfilter.cpp:295 app/KViewer/lister.cpp:1303
+#: app/Filter/generalfilter.cpp:295 app/KrViewer/lister.cpp:1303
 #, kde-format
 msgid "RegExp"
 msgstr "正規表示式"
@@ -3310,7 +3310,7 @@ msgstr ""
 msgid "Use the system's default viewer"
 msgstr "使用系統的預設檢視工具"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
 #, kde-format
 msgid "Text mode"
 msgstr ""
@@ -3320,8 +3320,8 @@ msgstr ""
 msgid "View the file in text-only mode"
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1235
-#: app/KViewer/lister.cpp:2274
+#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1235
+#: app/KrViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
 msgstr ""
@@ -3740,7 +3740,7 @@ msgstr "開始打字"
 msgid "Open search bar and start searching by typing in panel."
 msgstr "在面板中打字來開啟搜尋列並開始搜尋"
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1299
+#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "區分大小寫"
@@ -3783,7 +3783,7 @@ msgstr "位置："
 msgid "Default mode:"
 msgstr "預設模式："
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1215
+#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
 #, kde-format
 msgid "Search"
@@ -5419,8 +5419,8 @@ msgid "Bring Main Window to Top"
 msgstr ""
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1890
-#: app/KViewer/lister.cpp:1925
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1890
+#: app/KrViewer/lister.cpp:1925
 #, kde-format
 msgid "Lister"
 msgstr ""
@@ -5513,57 +5513,57 @@ msgstr ""
 msgid "Horizontal Mode"
 msgstr "水平模式"
 
-#: app/KViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "通用檢視器(&G)"
 
-#: app/KViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Text Viewer"
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "十六進位碼檢視器(&H)"
 
-#: app/KViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Lister"
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:104
 #, kde-format
 msgid "Text &Editor"
 msgstr "文字編輯器(&E)"
 
-#: app/KViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:128
 #, kde-format
 msgid "&Detach Tab"
 msgstr "分離分頁(&D)"
 
-#: app/KViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:140
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "關閉目前的分頁(&C)"
 
-#: app/KViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:146
 #, kde-format
 msgid "&Next Tab"
 msgstr "下一個分頁(&N)"
 
-#: app/KViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:152
 #, kde-format
 msgid "&Previous Tab"
 msgstr "上一個分頁(&P)"
 
-#: app/KViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:227
 #, kde-format
 msgid "&KrViewer"
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:360
+#: app/KrViewer/krviewer.cpp:360
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5571,181 +5571,181 @@ msgid ""
 "%1"
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:367
+#: app/KrViewer/krviewer.cpp:367
 #, kde-format
 msgid "Can not open \"%1\""
 msgstr ""
 
-#: app/KViewer/krviewer.cpp:679
+#: app/KrViewer/krviewer.cpp:679
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (編輯中)"
 
-#: app/KViewer/krviewer.cpp:680
+#: app/KrViewer/krviewer.cpp:680
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (檢視中)"
 
-#: app/KViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:686
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "編輯中：%1"
 
-#: app/KViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:686
 #, fuzzy, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "檢視(&V)"
 
-#: app/KViewer/lister.cpp:1202 app/KViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1202 app/KrViewer/lister.cpp:1914
 #, kde-format
 msgid "Save selection..."
 msgstr ""
 
-#: app/KViewer/lister.cpp:1206
+#: app/KrViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
 msgstr "另存新檔..."
 
-#: app/KViewer/lister.cpp:1210
+#: app/KrViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
 msgstr "列印..."
 
-#: app/KViewer/lister.cpp:1220
+#: app/KrViewer/lister.cpp:1220
 #, kde-format
 msgid "Search next"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1225
+#: app/KrViewer/lister.cpp:1225
 #, kde-format
 msgid "Search previous"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1230 app/KViewer/lister.cpp:1853
-#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
-#: app/KViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1230 app/KrViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1879
 #, kde-format
 msgid "Jump to position"
 msgstr "跳到位置"
 
-#: app/KViewer/lister.cpp:1240
+#: app/KrViewer/lister.cpp:1240
 #, fuzzy, kde-format
 msgid "Select charset"
 msgstr "選擇字元集"
 
-#: app/KViewer/lister.cpp:1259 app/KViewer/lister.cpp:1486
+#: app/KrViewer/lister.cpp:1259 app/KrViewer/lister.cpp:1486
 #, kde-format
 msgid "Lister:"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1270
+#: app/KrViewer/lister.cpp:1270
 #, fuzzy, kde-format
 msgid "Stop search"
 msgstr "停止搜尋(&O)"
 
-#: app/KViewer/lister.cpp:1286
+#: app/KrViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
 msgstr "跳到下一個符合"
 
-#: app/KViewer/lister.cpp:1290
+#: app/KrViewer/lister.cpp:1290
 #, kde-format
 msgid "Jump to previous match"
 msgstr "跳到上一個符合"
 
-#: app/KViewer/lister.cpp:1293
+#: app/KrViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
 msgstr "選項"
 
-#: app/KViewer/lister.cpp:1294
+#: app/KrViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
 msgstr "變更搜尋行為"
 
-#: app/KViewer/lister.cpp:1296
+#: app/KrViewer/lister.cpp:1296
 #, fuzzy, kde-format
 msgid "From cursor"
 msgstr "從游標(&U)"
 
-#: app/KViewer/lister.cpp:1301
+#: app/KrViewer/lister.cpp:1301
 #, kde-format
 msgid "Match whole words only"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1305
+#: app/KrViewer/lister.cpp:1305
 #, fuzzy, kde-format
 msgid "Hexadecimal"
 msgstr "十六進位"
 
-#: app/KViewer/lister.cpp:1360
+#: app/KrViewer/lister.cpp:1360
 #, fuzzy, kde-format
 #| msgid "Error saving file %1"
 msgid "Error reading file %1."
 msgstr "儲存檔案 %1 時發生錯誤"
 
-#: app/KViewer/lister.cpp:1457
+#: app/KrViewer/lister.cpp:1457
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1472 app/KViewer/lister.cpp:1822
+#: app/KrViewer/lister.cpp:1472 app/KrViewer/lister.cpp:1822
 #, kde-format
 msgid "Search:"
 msgstr "搜尋："
 
-#: app/KViewer/lister.cpp:1838
+#: app/KrViewer/lister.cpp:1838
 #, kde-format
 msgid "Search position:"
 msgstr ""
 
-#: app/KViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1853
 #, kde-format
 msgid "Text position:"
 msgstr "文字定位："
 
-#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
 #, kde-format
 msgid "Invalid number."
 msgstr ""
 
-#: app/KViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1879
 #, kde-format
 msgid "Number out of range."
 msgstr "數字超出範圍。"
 
-#: app/KViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1914
 #, kde-format
 msgid "Nothing is selected."
 msgstr ""
 
-#: app/KViewer/lister.cpp:1993
+#: app/KrViewer/lister.cpp:1993
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:45
+#: app/KrViewer/panelviewer.cpp:45
 #, kde-format
 msgid "No file selected or selected file cannot be displayed."
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
+#: app/KrViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
 #: app/Synchronizer/synchronizertask.cpp:151
 #, fuzzy, kde-format
 #| msgid "Error saving file %1"
 msgid "Error at opening %1."
 msgstr "儲存檔案 %1 時發生錯誤"
 
-#: app/KViewer/panelviewer.cpp:331
+#: app/KrViewer/panelviewer.cpp:331
 #, kde-format
 msgid "Missing Plugin"
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:337
+#: app/KrViewer/panelviewer.cpp:337
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -5753,12 +5753,12 @@ msgid ""
 "without this.<br/>You can fix this by installing Kate:<br/>%1"
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:356
+#: app/KrViewer/panelviewer.cpp:356
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr ""
 
-#: app/KViewer/panelviewer.cpp:384
+#: app/KrViewer/panelviewer.cpp:384
 #, fuzzy, kde-format
 #| msgid "Cannot open %1!"
 msgid "Cannot edit %1"
@@ -7371,7 +7371,7 @@ msgstr "新連結"
 msgid "Create a new link to: %1"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:760
+#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:775
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr ""
@@ -7433,19 +7433,31 @@ msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] ""
 
-#: app/Panel/panelfunc.cpp:684
+#: app/Panel/panelfunc.cpp:667
+#, kde-format
+msgid "The proposed name (\"%1\") is the same as the previous one."
+msgstr ""
+
+#: app/Panel/panelfunc.cpp:676
+#, kde-format
+msgid ""
+"The renaming of \"%1\" has not been performed because the proposed name was "
+"empty."
+msgstr ""
+
+#: app/Panel/panelfunc.cpp:699
 #, fuzzy, kde-format
 #| msgid "Folder name:"
 msgid "Folder's name:"
 msgstr "資料夾名稱："
 
-#: app/Panel/panelfunc.cpp:824
+#: app/Panel/panelfunc.cpp:839
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "您真的要將這 %1 個項目移到垃圾桶嗎？"
 
-#: app/Panel/panelfunc.cpp:828
+#: app/Panel/panelfunc.cpp:843
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7456,43 +7468,43 @@ msgid_plural ""
 msgstr[0] ""
 "<qt>您確定要<b>物理</b>刪除這 %1 個項目嗎？（不是只有移除虛擬項目！）</qt>"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:850
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "您真的要刪除這 %1 個項目嗎？"
 
-#: app/Panel/panelfunc.cpp:873
+#: app/Panel/panelfunc.cpp:888
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:874
+#: app/Panel/panelfunc.cpp:889
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:874
+#: app/Panel/panelfunc.cpp:889
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:891
 #, kde-format
 msgid "&Skip"
 msgstr "略過(&S)"
 
-#: app/Panel/panelfunc.cpp:877
+#: app/Panel/panelfunc.cpp:892
 #, kde-format
 msgid "&Trash All"
 msgstr "全部丟到垃圾桶(&T)"
 
-#: app/Panel/panelfunc.cpp:877
+#: app/Panel/panelfunc.cpp:892
 #, kde-format
 msgid "&Delete All"
 msgstr "全部刪除(&D)"
 
-#: app/Panel/panelfunc.cpp:914
+#: app/Panel/panelfunc.cpp:929
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7502,17 +7514,17 @@ msgid_plural ""
 "untouched)?"
 msgstr[0] "您確定要刪除這 %1 個虛擬項目嗎？（不會動到物理檔案）"
 
-#: app/Panel/panelfunc.cpp:950
+#: app/Panel/panelfunc.cpp:965
 #, kde-format
 msgid "Could not start %1"
 msgstr "無法啟動 %1"
 
-#: app/Panel/panelfunc.cpp:962
+#: app/Panel/panelfunc.cpp:977
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 無法開啟 %2"
 
-#: app/Panel/panelfunc.cpp:1039
+#: app/Panel/panelfunc.cpp:1054
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</"
@@ -7522,7 +7534,7 @@ msgid ""
 "</p><p>All data in the previous archive will be lost.</p></qt>"
 msgstr "<qt>檔案 <b>%1</b> 已存在。您要覆寫它嗎？</qt>"
 
-#: app/Panel/panelfunc.cpp:1044
+#: app/Panel/panelfunc.cpp:1059
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7530,17 +7542,17 @@ msgid ""
 "entries for new names.</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:1052
+#: app/Panel/panelfunc.cpp:1067
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "無法將檔案封存到虛擬的目的地。"
 
-#: app/Panel/panelfunc.cpp:1085
+#: app/Panel/panelfunc.cpp:1100
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "解開 %1 到："
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1102
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

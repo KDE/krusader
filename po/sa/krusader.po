@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:55+0000\n"
+"POT-Creation-Date: 2026-02-09 00:46+0000\n"
 "PO-Revision-Date: 2024-12-25 19:45+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -837,7 +837,7 @@ msgid "Create in:"
 msgstr "इत्यत्र रचयन्तु :"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:679
+#: app/Panel/panelfunc.cpp:694
 #, kde-format
 msgid "New Folder"
 msgstr "नवीनं पुटम्"
@@ -1446,7 +1446,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "किं भवन्तः वास्तवमेव एतत् द्रव्यं कचरे स्थानान्तरयितुम् इच्छन्ति?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:825
+#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:840
 #, kde-format
 msgid "&Trash"
 msgstr "&तुच्छद्रव्य"
@@ -1458,8 +1458,8 @@ msgid "Do you really want to delete this item?"
 msgstr "किं भवान् वास्तवमेव एतत् द्रव्यं विलोपयितुम् इच्छति?"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:841
-#: app/Panel/panelfunc.cpp:918
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:856
+#: app/Panel/panelfunc.cpp:933
 #, kde-format
 msgid "Warning"
 msgstr "चेतवानी"
@@ -1524,12 +1524,12 @@ msgstr "विस्तृतम्"
 msgid "Filelight"
 msgstr "सञ्चिकाप्रकाशः"
 
-#: app/DiskUsage/diskusage.cpp:803 app/KViewer/lister.cpp:1285
+#: app/DiskUsage/diskusage.cpp:803 app/KrViewer/lister.cpp:1285
 #, kde-format
 msgid "Next"
 msgstr "अग्रिम"
 
-#: app/DiskUsage/diskusage.cpp:807 app/KViewer/lister.cpp:1289
+#: app/DiskUsage/diskusage.cpp:807 app/KrViewer/lister.cpp:1289
 #, kde-format
 msgid "Previous"
 msgstr "पूर्वतनम्‌"
@@ -2261,7 +2261,7 @@ msgstr "पाठः समाहितः"
 msgid "&Text:"
 msgstr "&पाठ:"
 
-#: app/Filter/generalfilter.cpp:295 app/KViewer/lister.cpp:1303
+#: app/Filter/generalfilter.cpp:295 app/KrViewer/lister.cpp:1303
 #, kde-format
 msgid "RegExp"
 msgstr "RegExp"
@@ -3376,7 +3376,7 @@ msgstr "जेनेरिक मोड"
 msgid "Use the system's default viewer"
 msgstr "प्रणाल्याः पूर्वनिर्धारितदर्शकस्य उपयोगं कुर्वन्तु"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
 #, kde-format
 msgid "Text mode"
 msgstr "पाठविधिः"
@@ -3386,8 +3386,8 @@ msgstr "पाठविधिः"
 msgid "View the file in text-only mode"
 msgstr "सञ्चिकां केवलं पाठ-विधाने पश्यन्तु"
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KViewer/lister.cpp:1235
-#: app/KViewer/lister.cpp:2274
+#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1235
+#: app/KrViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
 msgstr "हेक्स मोड"
@@ -3828,7 +3828,7 @@ msgstr "टङ्कयित्वा आरभत"
 msgid "Open search bar and start searching by typing in panel."
 msgstr "search bar उद्घाट्य panel इत्यत्र टङ्कयित्वा अन्वेषणं आरभत ।"
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KViewer/lister.cpp:1299
+#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "प्रकरणसंवेदनशीलः"
@@ -3872,7 +3872,7 @@ msgstr "स्थितिः:"
 msgid "Default mode:"
 msgstr "पूर्वनिर्धारितविधिः :"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1215
+#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
 #, kde-format
 msgid "Search"
@@ -5559,8 +5559,8 @@ msgid "Bring Main Window to Top"
 msgstr "मुख्यविण्डो उपरि आनयन्तु"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KViewer/lister.cpp:1890
-#: app/KViewer/lister.cpp:1925
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1890
+#: app/KrViewer/lister.cpp:1925
 #, kde-format
 msgid "Lister"
 msgstr "सूचीकरणम्"
@@ -5653,57 +5653,57 @@ msgstr "फंक्शन् कील्स् सञ्चिकासु द
 msgid "Horizontal Mode"
 msgstr "क्षैतिज मोड"
 
-#: app/KViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&सामान्य दर्शक"
 
-#: app/KViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&पाठदर्शक"
 
-#: app/KViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&हेक्स दर्शक"
 
-#: app/KViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Lister"
 msgstr "&लिस्टर"
 
-#: app/KViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:104
 #, kde-format
 msgid "Text &Editor"
 msgstr "पाठ & सम्पादक"
 
-#: app/KViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:128
 #, kde-format
 msgid "&Detach Tab"
 msgstr "&Detach Tab"
 
-#: app/KViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:140
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "&वर्तमान ट्याब् बन्दं कुर्वन्तु"
 
-#: app/KViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:146
 #, kde-format
 msgid "&Next Tab"
 msgstr "&अगला ट्याब्"
 
-#: app/KViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:152
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&पूर्व ट्याब्"
 
-#: app/KViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:227
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrViewer इति"
 
-#: app/KViewer/krviewer.cpp:360
+#: app/KrViewer/krviewer.cpp:360
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5713,179 +5713,179 @@ msgstr ""
 "सम्पादक-आदेशे दुष्टं उद्धरणम् : १.\n"
 "%1"
 
-#: app/KViewer/krviewer.cpp:367
+#: app/KrViewer/krviewer.cpp:367
 #, kde-format
 msgid "Can not open \"%1\""
 msgstr "\"%1\" उद्घाटयितुं न शक्यते ।"
 
-#: app/KViewer/krviewer.cpp:679
+#: app/KrViewer/krviewer.cpp:679
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (सम्पादनम्)"
 
-#: app/KViewer/krviewer.cpp:680
+#: app/KrViewer/krviewer.cpp:680
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (दर्शनम्)"
 
-#: app/KViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:686
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "सम्पादनम् : %1"
 
-#: app/KViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:686
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "दृश्यमानम् : %1"
 
-#: app/KViewer/lister.cpp:1202 app/KViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1202 app/KrViewer/lister.cpp:1914
 #, kde-format
 msgid "Save selection..."
 msgstr "चयनं रक्षतु..."
 
-#: app/KViewer/lister.cpp:1206
+#: app/KrViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
 msgstr "यथा रक्षन्तु..."
 
-#: app/KViewer/lister.cpp:1210
+#: app/KrViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
 msgstr "मुद्रणं..."
 
-#: app/KViewer/lister.cpp:1220
+#: app/KrViewer/lister.cpp:1220
 #, kde-format
 msgid "Search next"
 msgstr "अग्रे अन्वेषणं कुर्वन्तु"
 
-#: app/KViewer/lister.cpp:1225
+#: app/KrViewer/lister.cpp:1225
 #, kde-format
 msgid "Search previous"
 msgstr "पूर्वम् अन्वेष्टुम्"
 
-#: app/KViewer/lister.cpp:1230 app/KViewer/lister.cpp:1853
-#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
-#: app/KViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1230 app/KrViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1879
 #, kde-format
 msgid "Jump to position"
 msgstr "स्थितिं प्रति कूदन्तु"
 
-#: app/KViewer/lister.cpp:1240
+#: app/KrViewer/lister.cpp:1240
 #, kde-format
 msgid "Select charset"
 msgstr "charset इत्यस्य चयनं कुर्वन्तु"
 
-#: app/KViewer/lister.cpp:1259 app/KViewer/lister.cpp:1486
+#: app/KrViewer/lister.cpp:1259 app/KrViewer/lister.cpp:1486
 #, kde-format
 msgid "Lister:"
 msgstr "सूचीकरणम् :"
 
-#: app/KViewer/lister.cpp:1270
+#: app/KrViewer/lister.cpp:1270
 #, kde-format
 msgid "Stop search"
 msgstr "अन्वेषणं स्थगयतु"
 
-#: app/KViewer/lister.cpp:1286
+#: app/KrViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
 msgstr "अग्रिम-क्रीडायाः कृते कूदन्तु"
 
-#: app/KViewer/lister.cpp:1290
+#: app/KrViewer/lister.cpp:1290
 #, kde-format
 msgid "Jump to previous match"
 msgstr "पूर्वमेलनं प्रति कूदन्तु"
 
-#: app/KViewer/lister.cpp:1293
+#: app/KrViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
 msgstr "विकल्पाः"
 
-#: app/KViewer/lister.cpp:1294
+#: app/KrViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
 msgstr "अन्वेषणव्यवहारं परिवर्तयन्तु"
 
-#: app/KViewer/lister.cpp:1296
+#: app/KrViewer/lister.cpp:1296
 #, kde-format
 msgid "From cursor"
 msgstr "कर्सरतः"
 
-#: app/KViewer/lister.cpp:1301
+#: app/KrViewer/lister.cpp:1301
 #, kde-format
 msgid "Match whole words only"
 msgstr "केवलं सम्पूर्णशब्दानां मेलनं कुर्वन्तु"
 
-#: app/KViewer/lister.cpp:1305
+#: app/KrViewer/lister.cpp:1305
 #, kde-format
 msgid "Hexadecimal"
 msgstr "षट्दशमलवः"
 
-#: app/KViewer/lister.cpp:1360
+#: app/KrViewer/lister.cpp:1360
 #, kde-format
 msgid "Error reading file %1."
 msgstr "%1 सञ्चिकायाः पठने त्रुटिः ।"
 
-#: app/KViewer/lister.cpp:1457
+#: app/KrViewer/lister.cpp:1457
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "स्तम्भः %1, स्थितिः %2 (%3, %4%)"
 
-#: app/KViewer/lister.cpp:1472 app/KViewer/lister.cpp:1822
+#: app/KrViewer/lister.cpp:1472 app/KrViewer/lister.cpp:1822
 #, kde-format
 msgid "Search:"
 msgstr "अन्वेषण:"
 
-#: app/KViewer/lister.cpp:1838
+#: app/KrViewer/lister.cpp:1838
 #, kde-format
 msgid "Search position:"
 msgstr "अन्वेषणस्थानं :"
 
-#: app/KViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1853
 #, kde-format
 msgid "Text position:"
 msgstr "पाठस्थानम् :"
 
-#: app/KViewer/lister.cpp:1864 app/KViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
 #, kde-format
 msgid "Invalid number."
 msgstr "अमान्य संख्या।"
 
-#: app/KViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1879
 #, kde-format
 msgid "Number out of range."
 msgstr "परिधितः बहिः संख्या।"
 
-#: app/KViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1914
 #, kde-format
 msgid "Nothing is selected."
 msgstr "न किमपि चयनं भवति।"
 
-#: app/KViewer/lister.cpp:1993
+#: app/KrViewer/lister.cpp:1993
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr "विपरीतमुद्रणं समर्थितं नास्ति । सामान्यमुद्रणं निरन्तरं कुर्वन्तु?"
 
-#: app/KViewer/panelviewer.cpp:45
+#: app/KrViewer/panelviewer.cpp:45
 #, kde-format
 msgid "No file selected or selected file cannot be displayed."
 msgstr "कोऽपि सञ्चिका चयनिता वा चयनिता वा सञ्चिका प्रदर्शयितुं न शक्यते ।"
 
-#: app/KViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
+#: app/KrViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
 #: app/Synchronizer/synchronizertask.cpp:151
 #, kde-format
 msgid "Error at opening %1."
 msgstr "%1 उद्घाटने त्रुटिः ।"
 
-#: app/KViewer/panelviewer.cpp:331
+#: app/KrViewer/panelviewer.cpp:331
 #, kde-format
 msgid "Missing Plugin"
 msgstr "प्लगिन् लुप्तम्"
 
-#: app/KViewer/panelviewer.cpp:337
+#: app/KrViewer/panelviewer.cpp:337
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -5895,12 +5895,12 @@ msgstr ""
 "<b>पाठसम्पादकप्लगिन् उपलब्धं नास्ति ।</b><br/> एतत् विना आन्तरिकसम्पादकः कार्यं न "
 "करिष्यति।<br/> भवान् Kate संस्थाप्य एतत् समाधातुं शक्नोति:<br/> %1"
 
-#: app/KViewer/panelviewer.cpp:356
+#: app/KrViewer/panelviewer.cpp:356
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr "%1 %2 MB इत्यस्मात् बृहत्तरम् अस्ति"
 
-#: app/KViewer/panelviewer.cpp:384
+#: app/KrViewer/panelviewer.cpp:384
 #, kde-format
 msgid "Cannot edit %1"
 msgstr "%1 सम्पादयितुं न शक्यते"
@@ -7520,7 +7520,7 @@ msgstr "New Link"
 msgid "Create a new link to: %1"
 msgstr "नूतनं लिङ्कं रचयन्तु: %1"
 
-#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:760
+#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:775
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "एतत्नाम्ना पुटं वा सञ्चिका वा पूर्वमेव विद्यते ।"
@@ -7584,19 +7584,31 @@ msgid_plural "Copy %1 files to:"
 msgstr[0] "%1 सञ्चिकां प्रतिलिख्य:"
 msgstr[1] "%1 सञ्चिकाः प्रतिलिख्यताम् :"
 
-#: app/Panel/panelfunc.cpp:684
+#: app/Panel/panelfunc.cpp:667
+#, kde-format
+msgid "The proposed name (\"%1\") is the same as the previous one."
+msgstr ""
+
+#: app/Panel/panelfunc.cpp:676
+#, kde-format
+msgid ""
+"The renaming of \"%1\" has not been performed because the proposed name was "
+"empty."
+msgstr ""
+
+#: app/Panel/panelfunc.cpp:699
 #, kde-format
 msgid "Folder's name:"
 msgstr "पुटस्य नाम :"
 
-#: app/Panel/panelfunc.cpp:824
+#: app/Panel/panelfunc.cpp:839
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "किं भवन्तः वास्तवमेव एतत् द्रव्यं कचरे स्थानान्तरयितुम् इच्छन्ति?"
 msgstr[1] "किं भवान् वास्तवमेव एतानि %1 वस्तूनि कचरे स्थानान्तरयितुम् इच्छति?"
 
-#: app/Panel/panelfunc.cpp:828
+#: app/Panel/panelfunc.cpp:843
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7611,44 +7623,44 @@ msgstr[1] ""
 "<qt>किं भवान् वास्तवमेव एतानि %1 वस्तूनि <b>भौतिकरूपेण</b> विलोपयितुम् इच्छति (न केवलं "
 "आभासीवस्तूनाम् अपसारयितुं)?</qt>"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:850
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "किं भवान् वास्तवमेव एतत् द्रव्यं विलोपयितुम् इच्छति?"
 msgstr[1] "किं भवान् वास्तवमेव एतानि %1 वस्तूनि विलोपयितुम् इच्छति?"
 
-#: app/Panel/panelfunc.cpp:873
+#: app/Panel/panelfunc.cpp:888
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p><b>%1</b> पुटं रिक्तं नास्ति ।</p>"
 
-#: app/Panel/panelfunc.cpp:874
+#: app/Panel/panelfunc.cpp:889
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>एतत् एकं त्यजतु वा सर्वं कचरान् पातयतु वा?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:874
+#: app/Panel/panelfunc.cpp:889
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>एतत् एकं त्यजतु वा सर्वं विलोपयतु वा?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:891
 #, kde-format
 msgid "&Skip"
 msgstr "&क्षिपते"
 
-#: app/Panel/panelfunc.cpp:877
+#: app/Panel/panelfunc.cpp:892
 #, kde-format
 msgid "&Trash All"
 msgstr "&कचरा सर्वम्"
 
-#: app/Panel/panelfunc.cpp:877
+#: app/Panel/panelfunc.cpp:892
 #, kde-format
 msgid "&Delete All"
 msgstr "&सर्वं विलोपयतु"
 
-#: app/Panel/panelfunc.cpp:914
+#: app/Panel/panelfunc.cpp:929
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7662,17 +7674,17 @@ msgstr[1] ""
 "किं भवान् वास्तवमेव एतानि %1 आभासीवस्तूनि विलोपयितुम् इच्छति (भौतिकसञ्चिकाः अस्पृष्टाः "
 "तिष्ठन्ति)?"
 
-#: app/Panel/panelfunc.cpp:950
+#: app/Panel/panelfunc.cpp:965
 #, kde-format
 msgid "Could not start %1"
 msgstr "%1 आरभ्यतुं न शक्तवान्"
 
-#: app/Panel/panelfunc.cpp:962
+#: app/Panel/panelfunc.cpp:977
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 %2 उद्घाटयितुं न शक्नोति"
 
-#: app/Panel/panelfunc.cpp:1039
+#: app/Panel/panelfunc.cpp:1054
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7681,7 +7693,7 @@ msgstr ""
 "<qt><p><b>%1.%2</b> इति संग्रहः पूर्वमेव अस्ति । किं भवन्तः तस्य अधिलेखनं कर्तुम् इच्छन्ति ?"
 "</p><p> पूर्वसंग्रहे विद्यमानाः सर्वे दत्तांशाः नष्टाः भविष्यन्ति ।</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1044
+#: app/Panel/panelfunc.cpp:1059
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7692,17 +7704,17 @@ msgstr ""
 "</p><p> जिप् जिप् आर्काइव् मध्ये समाननामयुक्तानि प्रविष्टयः प्रतिस्थापयिष्यति अथवा "
 "नूतननामानां कृते प्रविष्टयः योजयिष्यति ।</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1052
+#: app/Panel/panelfunc.cpp:1067
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "आभासीगन्तव्यस्थाने सञ्चिकाः पैक् कर्तुं न शक्यते ।"
 
-#: app/Panel/panelfunc.cpp:1085
+#: app/Panel/panelfunc.cpp:1100
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "%1 इत्येतत् अनपैक् कुर्वन्तु:"
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1102
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
