@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-02-09 00:46+0000\n"
-"PO-Revision-Date: 2026-02-05 10:43+0000\n"
+"PO-Revision-Date: 2026-02-09 16:52+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -3216,16 +3216,14 @@ msgid "Current background:"
 msgstr "Fundalul curent:"
 
 #: app/Konfigurator/kgcolors.cpp:139
-#, fuzzy, kde-format
-#| msgid "Delete foreground:"
+#, kde-format
 msgid "Rename foreground:"
-msgstr "Șterge prim-plan:"
+msgstr "Prim-plan redenumire:"
 
 #: app/Konfigurator/kgcolors.cpp:140
-#, fuzzy, kde-format
-#| msgid "Alternate background:"
+#, kde-format
 msgid "Rename background:"
-msgstr "Fundal alternativ:"
+msgstr "Fundal redenumire:"
 
 #: app/Konfigurator/kgcolors.cpp:150
 #, kde-format
@@ -3246,12 +3244,12 @@ msgstr "La fel ca activul"
 #: app/Konfigurator/kgcolors.cpp:249
 #, kde-format
 msgid "Dim target color:"
-msgstr "Culoare țintă diminuată:"
+msgstr "Culoare-țintă pentru întunecare:"
 
 #: app/Konfigurator/kgcolors.cpp:252
 #, kde-format
 msgid "Dim factor:"
-msgstr "Factor diminuare:"
+msgstr "Factor de întunecare:"
 
 #: app/Konfigurator/kgcolors.cpp:264 app/Konfigurator/kgcolors.cpp:265
 #: app/Konfigurator/kgcolors.cpp:317 app/Konfigurator/kgcolors.cpp:318
@@ -9563,7 +9561,7 @@ msgstr "Mută fila curentă în cealaltă parte"
 #: app/tabactions.cpp:32
 #, kde-format
 msgid "Close Current Tab"
-msgstr "Închide fila curentă"
+msgstr "Închide fila actuală"
 
 #: app/tabactions.cpp:33
 #, fuzzy, kde-format
