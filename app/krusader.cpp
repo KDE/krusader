@@ -256,6 +256,8 @@ Krusader::Krusader(const QCommandLineParser &parser)
     auto *startupInfo = new KStartupInfo(0, this);
     connect(startupInfo, &KStartupInfo::gotNewStartup, this, &Krusader::slotGotNewStartup);
     connect(startupInfo, &KStartupInfo::gotRemoveStartup, this, &Krusader::slotGotRemoveStartup);
+
+    connect(MAIN_VIEW, &KrusaderView::activePathChanged, this, &Krusader::setWindowTitle);
 }
 
 Krusader::~Krusader()

@@ -106,6 +106,9 @@ public slots:
     void draggingTab(PanelManager *from, QMouseEvent *e);
     void draggingTabFinished(PanelManager *from, QMouseEvent *e);
 
+signals:
+    void activePathChanged(const QString &directoryName);
+
 private:
     int getFocusCandidates(QVector<QWidget *> &widgets);
     bool cursorIsOnOtherSide(PanelManager *of, const QPoint &globalPos);
