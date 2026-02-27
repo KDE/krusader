@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 14:43+0000\n"
-"PO-Revision-Date: 2025-10-15 20:26+0400\n"
+"PO-Revision-Date: 2026-02-26 13:09+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -1203,7 +1203,7 @@ msgstr "المتبقي: %1"
 #: app/Dialogs/krspecialwidgets.cpp:143
 #, kde-format
 msgid "Not mounted."
-msgstr "غير مضموم"
+msgstr "غير موصول"
 
 #: app/Dialogs/krspwidgets.cpp:158
 #, kde-format
@@ -2486,13 +2486,13 @@ msgstr "قرص CD/DVD قابل للتسجيل"
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
-msgstr "ضمّ"
+msgstr "صِل"
 
 #: app/GUI/mediabutton.cpp:337 app/MountMan/kmountman.cpp:391
 #: app/MountMan/kmountmangui.cpp:449 app/Panel/panelcontextmenu.cpp:246
 #, kde-format
 msgid "Unmount"
-msgstr "أزل الضم"
+msgstr "فك الوصل"
 
 #: app/GUI/mediabutton.cpp:341 app/MountMan/kmountmangui.cpp:456
 #: app/Panel/panelcontextmenu.cpp:250
@@ -2729,7 +2729,7 @@ msgstr ""
 #: app/Konfigurator/kgadvanced.cpp:45
 #, kde-format
 msgid "MountMan will not (un)mount the following mount-points:"
-msgstr "لن (يُلغي) يضم مدير الضم نقاط الضم التالية:"
+msgstr "مدير الوصل لن يوصل/يفك وصل نقاط الوصل التالية:"
 
 #: app/Konfigurator/kgadvanced.cpp:57
 #, kde-format
@@ -2914,7 +2914,7 @@ msgid ""
 "i>, you can configure the alternate colors in the <i>colors</i> box.</p>"
 msgstr ""
 "<p>يتناوب <b>لون الخلفية</b> مع <b>لون الخلفية البديل</b> سطرًا بسطر.</"
-"p><p>عندما لا تستخدم <i>ألوان كدي المبدئية</i>، يمكنك إعداد الألوان البديلة "
+"p><p>عندما لا تستخدم <i>ألوان كِيدِي المبدئية</i>، يمكنك إعداد الألوان البديلة "
 "في مربع <i>الألوان</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:74
@@ -2930,7 +2930,7 @@ msgid ""
 "p>"
 msgstr ""
 "<p>يظهر موضع المؤشر الأخير في لوحة القائمة غير النشطة.</p><p>هذا الخيار متاح "
-"فقط عندما لا تستخدم <i>ألوان كدي المبدئية</i>.</p>"
+"فقط عندما لا تستخدم <i>ألوان كِيدِي المبدئية</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:81
 #, kde-format
@@ -4667,7 +4667,7 @@ msgstr "أضف نقطة تثبيت مخفية جديدة"
 #: app/Konfigurator/kgpanel.cpp:911
 #, kde-format
 msgid "Mount point:"
-msgstr "نقطة الضم:"
+msgstr "نقطة الوصل:"
 
 #: app/Konfigurator/kgprotocols.cpp:34
 #, kde-format
@@ -6247,7 +6247,7 @@ msgstr "جيري باليتشيك"
 #: app/main.cpp:154 app/main.cpp:165
 #, kde-format
 msgid "QA, bug-hunting, patches and general help"
-msgstr "ضمان الجودة، صيد الأخطاء، الرقع، والمساعدة العامة"
+msgstr "وصلان الجودة، صيد الأخطاء، الرقع، والمساعدة العامة"
 
 #: app/main.cpp:155
 #, kde-format
@@ -6762,12 +6762,12 @@ msgstr "العنوان لفتحه"
 #: app/MountMan/kmountman.cpp:58
 #, kde-format
 msgid "&MountMan..."
-msgstr "&مدير الضم..."
+msgstr "&مدير الوصل..."
 
 #: app/MountMan/kmountman.cpp:61
 #, kde-format
 msgid "Open &MountMan"
-msgstr "افتح مدير الضم"
+msgstr "افتح مدير الوصل"
 
 #: app/MountMan/kmountman.cpp:134
 #, kde-format
@@ -6777,12 +6777,12 @@ msgstr "لا يمكن بدء 'mount'. تحقق من صفحة 'الاعتمادي
 #: app/MountMan/kmountman.cpp:358
 #, kde-format
 msgid "MountMan is not operational. Sorry"
-msgstr "مدير الضم غير فعال. آسف"
+msgstr "مدير الوصل غير فعال. آسف"
 
 #: app/MountMan/kmountmangui.cpp:60
 #, kde-format
 msgid "MountMan - Your Mount-Manager"
-msgstr "مدير الضم - مدير ضم للأجهزة"
+msgstr "مدير الوصل - مدير وصل للأجهزة"
 
 #: app/MountMan/kmountmangui.cpp:74
 #, kde-format
@@ -6792,12 +6792,12 @@ msgstr "أ&خرِج"
 #: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:419
 #, kde-format
 msgid "&Unmount"
-msgstr "أزل ال&ضمّ"
+msgstr "&فك الوصل"
 
 #: app/MountMan/kmountmangui.cpp:149
 #, kde-format
 msgid "Mnt.Point"
-msgstr "نقطة الضم"
+msgstr "نقطة الوصل"
 
 #: app/MountMan/kmountmangui.cpp:150
 #, kde-format
@@ -6817,7 +6817,7 @@ msgstr "المتبقي ٪"
 #: app/MountMan/kmountmangui.cpp:181
 #, kde-format
 msgid "MountMan.Info"
-msgstr "معلومات مدير الضم"
+msgstr "معلومات مدير الوصل"
 
 #: app/MountMan/kmountmangui.cpp:188
 #, kde-format
@@ -6827,12 +6827,12 @@ msgstr "أظهر الأجهزة القابلة للإزالة فقط"
 #: app/MountMan/kmountmangui.cpp:421
 #, kde-format
 msgid "&Mount"
-msgstr "&ضمّ"
+msgstr "&صِل"
 
 #: app/MountMan/kmountmangui.cpp:442
 #, kde-format
 msgid "MountMan"
-msgstr "مدير الضم"
+msgstr "مدير الوصل"
 
 #: app/MountMan/kmountmangui.cpp:458
 #, kde-format
