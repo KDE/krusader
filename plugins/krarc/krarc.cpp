@@ -274,7 +274,7 @@ KIO::WorkerResult kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 
     // pack the directory
     KrLinecountingProcess proc;
-    proc << putCmd << arcFilePath << localeEncodedString(tempDir);
+    proc << putCmd << arcFilePath << tempDir;
     infoMessage(i18n("Creating %1...", url.fileName()));
     QDir::setCurrent(arcTempDir);
 
@@ -382,7 +382,7 @@ KIO::WorkerResult kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::
 
     // pack the file
     KrLinecountingProcess proc;
-    proc << putCmd << getPath(arcFile->url()) << localeEncodedString(tempFile);
+    proc << putCmd << getPath(arcFile->url()) << tempFile;
     infoMessage(i18n("Packing %1...", url.fileName()));
     QDir::setCurrent(arcTempDir);
 
@@ -468,9 +468,9 @@ KIO::WorkerResult kio_krarcProtocol::get(const QUrl &url, int tries)
     QString file = getPath(url).mid(getPath(arcFile->url()).length() + 1);
     KrLinecountingProcess proc;
     if (extArcReady) {
-        proc << getCmd << arcTempDir + "contents.cpio" << '*' + localeEncodedString(file);
+        proc << getCmd << arcTempDir + "contents.cpio" << '*' + file;
     } else if (arcType == "arj" || arcType == "ace" || arcType == "7z") {
-        proc << getCmd << getPath(arcFile->url(), QUrl::StripTrailingSlash) << localeEncodedString(file);
+        proc << getCmd << getPath(arcFile->url(), QUrl::StripTrailingSlash) << file;
         if (arcType == "ace" && QFile("/dev/ptmx").exists()) // Don't remove, unace crashes if missing!!!
             proc.setStandardInputFile("/dev/ptmx");
         file = url.fileName();
@@ -489,7 +489,7 @@ KIO::WorkerResult kio_krarcProtocol::get(const QUrl &url, int tries)
             escapedFilename.replace('[', "[[]");
         proc << getCmd << getPath(arcFile->url());
         if (arcType != "gzip" && arcType != "bzip2" && arcType != "lzma" && arcType != "xz")
-            proc << localeEncodedString(escapedFilename);
+            proc << escapedFilename;
         connect(&proc, &KrLinecountingProcess::newOutputData, this, &kio_krarcProtocol::receivedData);
         proc.setMerge(false);
     }
@@ -498,7 +498,6 @@ KIO::WorkerResult kio_krarcProtocol::get(const QUrl &url, int tries)
     QDir::setCurrent(arcTempDir);
 
     SET_KRCODEC
-    proc.setTextModeEnabled(false);
     proc.start();
     RESET_KRCODEC
 
@@ -637,7 +636,7 @@ KIO::WorkerResult kio_krarcProtocol::del(QUrl const &url, bool isFile)
             file = file + DIR_SEPARATOR;
     }
     KrLinecountingProcess proc;
-    proc << delCmd << getPath(arcFile->url()) << localeEncodedString(file);
+    proc << delCmd << getPath(arcFile->url()) << file;
     infoMessage(i18n("Deleting %1...", url.fileName()));
 
     SET_KRCODEC
@@ -1889,27 +1888,6 @@ QString kio_krarcProtocol::getPassword()
 
     // KRDEBUG(password);
     return password;
-}
-
-QString kio_krarcProtocol::localeEncodedString(QString str)
-{
-    // Note: KRFUNC was not used here in order to avoid filling the log with too much information
-    if (noencoding)
-        return str;
-
-    QByteArray array = codec->fromUnicode(str);
-
-    // encoding the byte array to QString, mapping 0x0000-0x00FF to 0xE000-0xE0FF
-    // see KrArcCodec for more explanation
-    qsizetype size = array.size();
-    QString result;
-
-    const char *data = array.constData();
-    for (int i = 0; i != size; i++) {
-        unsigned int ch = (((int)data[i]) & 0xFF) + 0xE000; // user defined character
-        result.append(QChar(ch));
-    }
-    return result;
 }
 
 QByteArray kio_krarcProtocol::encodeString(const QString &str)
