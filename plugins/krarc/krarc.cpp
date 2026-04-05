@@ -1570,6 +1570,19 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
     // in certain error messages
     QString nameInErrorMsgs = "(unknown)"; // A temporary value is set
 
+    // Constructs a failure result after a command could not be executed
+    auto failureNoExec = [&]() {
+        if (cmd.isEmpty()) {
+            KRDEBUG("Failed to find the \"" << nameInErrorMsgs << "\" executable.");
+        } else {
+            KRDEBUG("Failed to find this command: \"" << cmd << "\".");
+        }
+        return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS,
+                                  i18n("\"%1\".\nMake sure that the \"%2\" binary is installed properly on your system",
+                                       cmd.isEmpty() ? nameInErrorMsgs : cmd,
+                                       nameInErrorMsgs));
+    };
+
     if (arcType == "zip") {
         noencoding = true;
         nameInErrorMsgs = "unzip";
@@ -1737,7 +1750,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
         nameInErrorMsgs = "7z";
         cmd = find7zExecutable();
         if (cmd.isEmpty()) {
-            return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, {});
+            return failureNoExec();
         }
 
         listCmd << cmd << "l"
@@ -1772,15 +1785,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
 
 #endif
     if (QStandardPaths::findExecutable(cmd).isEmpty()) {
-        if (cmd.isEmpty()) {
-            KRDEBUG("Failed to find the \"" << nameInErrorMsgs << "\" executable.");
-        } else {
-            KRDEBUG("Failed to find this command: \"" << cmd << "\".");
-        }
-        return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS,
-                                  i18n("\"%1\".\nMake sure that the \"%2\" binary is installed properly on your system",
-                                       cmd.isEmpty() ? nameInErrorMsgs : cmd,
-                                       nameInErrorMsgs));
+        return failureNoExec();
     }
     return WorkerResult::pass();
 }
