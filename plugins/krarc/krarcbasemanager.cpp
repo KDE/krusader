@@ -13,6 +13,10 @@
 
 #include <QtCore/QStandardPaths>
 
+// Having a "file signature" (also known as "magic number") there
+// allows the archive type to be identified (for example, in
+// KrArcBaseManager::detectArchive()) instead of depending on the
+// file extension that the archive has
 KrArcBaseManager::AutoDetectParams KrArcBaseManager::autoDetectParams[] = {
     {"zip", 0, "PK\x03\x04"},
     {"rar", 0, "Rar!\x1a"},
@@ -22,8 +26,8 @@ KrArcBaseManager::AutoDetectParams KrArcBaseManager::autoDetectParams[] = {
     {"bzip2", 0, "\x42\x5a\x68\x39\x31"},
     {"gzip", 0, "\x1f\x8b"},
     {"deb", 0, "!<arch>\ndebian-binary   "},
-    {"7z", 0, "7z\xbc\xaf\x27\x1c"} /*,
-  {"xz",   0, "\xfd\x37\x7a\x58\x5a\x00"}*/
+    {"7z", 0, "7z\xbc\xaf\x27\x1c"},
+    {"xz", 0, "\xfd\x37\x7a\x58\x5a\x00"}
 };
 
 int KrArcBaseManager::autoDetectElems = sizeof(autoDetectParams) / sizeof(AutoDetectParams);
@@ -120,12 +124,14 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, const QString &fileName
 
             if (j == detectionString.length()) {
                 QString type = autoDetectParams[i].type;
-                if (type == "bzip2" || type == "gzip") {
+                if (type == "bzip2" || type == "gzip" || type == "xz") {
                     if (fast) {
                         if (fileName.endsWith(QLatin1String(".tar.gz")))
                             type = "tgz";
                         else if (fileName.endsWith(QLatin1String(".tar.bz2")))
                             type = "tbz";
+                        else if (fileName.endsWith(QLatin1String(".tar.xz")) || fileName.endsWith(QLatin1String(".txz")))
+                            type = "txz";
                     } else {
                         KTar tapeArchive(fileName);
                         if (tapeArchive.open(QIODevice::ReadOnly)) {
@@ -134,6 +140,8 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, const QString &fileName
                                 type = "tgz";
                             else if (type == "bzip2")
                                 type = "tbz";
+                            else if (type == "xz")
+                                type = "txz";
                         }
                     }
                 } else if (type == "zip")
