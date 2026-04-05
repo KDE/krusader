@@ -1803,15 +1803,15 @@ void kio_krarcProtocol::check7zOutputForPassword(KProcess *proc, QByteArray &buf
 
     QStringList lines = checkable.split('\n');
     lastData = lines[lines.count() - 1];
-    for (int i = 0; i != lines.count(); i++) {
-        QString line = lines[i].trimmed().toLower();
-        qsizetype ndx = line.indexOf("listing"); // Reminder: Lower-case letters are used
-        if (ndx >= 0)
-            line.truncate(ndx);
+    for (QString &line : lines) {
+        line = line.trimmed();
         if (line.isEmpty())
             continue;
 
-        if ((line.contains("password") && line.contains("enter")) || line == QStringLiteral("encrypted = +")) {
+        // If it seems a 7z archive with an encrypted header (then, e.g. a file name can't be seen without the password) or
+        // if it seems a 7z archive without an encrypted header (although the content of its encrypted files can't be seen
+        // without the password, the file name (and other data) can be seen)
+        if ((line.startsWith("Enter password") && line.endsWith(":")) || line == QStringLiteral("Encrypted = +")) {
             KRDEBUG("Encrypted 7z archive found!");
             encrypted = true;
             proc->kill();
