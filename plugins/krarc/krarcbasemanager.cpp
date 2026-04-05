@@ -126,9 +126,9 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, const QString &fileName
                 QString type = autoDetectParams[i].type;
                 if (type == "bzip2" || type == "gzip" || type == "xz") {
                     if (fast) {
-                        if (fileName.endsWith(QLatin1String(".tar.gz")))
+                        if (fileName.endsWith(QLatin1String(".tar.gz")) || fileName.endsWith(QLatin1String(".tgz")))
                             type = "tgz";
-                        else if (fileName.endsWith(QLatin1String(".tar.bz2")))
+                        else if (fileName.endsWith(QLatin1String(".tar.bz2")) || fileName.endsWith(QLatin1String(".tbz")))
                             type = "tbz";
                         else if (fileName.endsWith(QLatin1String(".tar.xz")) || fileName.endsWith(QLatin1String(".txz")))
                             type = "txz";
