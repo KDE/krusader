@@ -124,7 +124,7 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, const QString &fileName
 
             if (j == detectionString.length()) {
                 QString type = autoDetectParams[i].type;
-                if (type == "bzip2" || type == "gzip" || type == "xz") {
+                if (type == "bzip2" || type == "gzip" || type == "xz" || type == "lzma" ) {
                     if (fast) {
                         if (fileName.endsWith(QLatin1String(".tar.gz")) || fileName.endsWith(QLatin1String(".tgz")))
                             type = "tgz";
@@ -132,16 +132,33 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, const QString &fileName
                             type = "tbz";
                         else if (fileName.endsWith(QLatin1String(".tar.xz")) || fileName.endsWith(QLatin1String(".txz")))
                             type = "txz";
+                        else if (fileName.endsWith(QLatin1String(".tar.lzma")) || fileName.endsWith(QLatin1String(".tlz")))
+                            type = "tlz";
                     } else {
                         KTar tapeArchive(fileName);
                         if (tapeArchive.open(QIODevice::ReadOnly)) {
+                            // When, for example, Krusader tries to find text in {the files that are inside an archive}:
+                            // - For some archives, the previous `tapeArchive.open` operation (and `tar`) fail if
+                            // the file is not a tar archive (which is correct, e.g. `echo {1..512} > test.txt;
+                            // xz test.txt; tar tf test.txt.xz`).
+                            // - However, for other archives, the previous `tapeArchive.open` operation (and `tar`)
+                            // succeed if the file is not a tar archive (and they should fail, e.g. `echo {1..100} >
+                            // test.txt; xz test.txt; tar tf test.txt.xz`)).
+                            // Therefore, additional tests are going to be performed
+                            const KArchiveDirectory *rootDir = tapeArchive.directory();
+                            if (rootDir) {
+                                if (rootDir->entries().size() >= 1) {
+                                    if (type == "gzip")
+                                        type = "tgz";
+                                    else if (type == "bzip2")
+                                        type = "tbz";
+                                    else if (type == "xz")
+                                        type = "txz";
+                                    else if (type == "lzma")
+                                        type = "tlz";
+                                }
+                            }
                             tapeArchive.close();
-                            if (type == "gzip")
-                                type = "tgz";
-                            else if (type == "bzip2")
-                                type = "tbz";
-                            else if (type == "xz")
-                                type = "txz";
                         }
                     }
                 } else if (type == "zip")

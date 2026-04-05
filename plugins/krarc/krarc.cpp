@@ -984,25 +984,23 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
         return false;
     }
 
-    if (arcType != "bzip2" && arcType != "lzma" && arcType != "xz") {
-        if (arcType == "rpm") {
-            proc << listCmd << arcPath;
-            proc.setStandardOutputFile(temp.fileName());
-        } else {
-            proc << listCmd << getPath(arcFile->url(), QUrl::StripTrailingSlash);
-            proc.setStandardOutputFile(temp.fileName());
-        }
-        if (arcType == "ace" && QFile("/dev/ptmx").exists()) // Don't remove, unace crashes if missing!!!
-            proc.setStandardInputFile("/dev/ptmx");
-
-        proc.setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect
-        proc.start();
-        proc.waitForFinished();
-        if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))
-            return false;
+    if (arcType == "rpm") {
+        proc << listCmd << arcPath;
+        proc.setStandardOutputFile(temp.fileName());
+    } else {
+        proc << listCmd << getPath(arcFile->url(), QUrl::StripTrailingSlash);
+        proc.setStandardOutputFile(temp.fileName());
     }
-    // clear the dir dictionary
+    if (arcType == "ace" && QFile("/dev/ptmx").exists()) // Don't remove, unace crashes if missing!!!
+        proc.setStandardInputFile("/dev/ptmx");
 
+    proc.setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect
+    proc.start();
+    proc.waitForFinished();
+    if (proc.exitStatus() != QProcess::NormalExit || !checkStatus(proc.exitCode()))
+        return false;
+
+    // clear the dir dictionary
     QHashIterator<QString, KIO::UDSEntryList *> lit(dirDict);
     while (lit.hasNext())
         delete lit.next().value();
@@ -1019,9 +1017,6 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
     entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, mode & 07777); // keep permissions only
 
     root->append(entry);
-
-    if (arcType == "bzip2" || arcType == "lzma" || arcType == "xz")
-        abort();
 
     char buf[1000];
     QString line;
@@ -1648,21 +1643,21 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
         putCmd = QStringList();
     } else if (arcType == "bzip2") {
         cmd = fullPathName("bzip2");
-        listCmd << fullPathName("bzip2");
+        listCmd << fullPathName("ls") << "--literal"; // This is better than using `bzip2 -tv`
         getCmd << fullPathName("bzip2") << "-dc";
         copyCmd = QStringList();
         delCmd = QStringList();
         putCmd = QStringList();
     } else if (arcType == "lzma") {
         cmd = fullPathName("lzma");
-        listCmd << fullPathName("lzma");
+        listCmd << fullPathName("ls") << "--literal"; // This is better than using `lzma -tv`
         getCmd << fullPathName("lzma") << "-dc";
         copyCmd = QStringList();
         delCmd = QStringList();
         putCmd = QStringList();
     } else if (arcType == "xz") {
         cmd = fullPathName("xz");
-        listCmd << fullPathName("xz");
+        listCmd << fullPathName("ls") << "--literal"; // This is better than using `xz -l`
         getCmd << fullPathName("xz") << "-dc";
         copyCmd = QStringList();
         delCmd = QStringList();

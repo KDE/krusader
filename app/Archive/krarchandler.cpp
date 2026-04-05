@@ -44,6 +44,11 @@ KrArcHandler::KrArcHandler(QObject *parent)
     // be added/removed/modified in the `krarc.protocol` file, or
     // in `KrArcBaseManager::getShortTypeFromMime(const QString &mime)`
 
+    // These kinds of files are normally ones that, for example,
+    // when the user double-clicks on one of them, Krusader is not
+    // expected to browse (although e.g. when the user right-clicks on
+    // one of them, Krusader has to show an option to browse it)
+
     // Hard-code these proven mimetypes openable by krarc protocol.
     // They cannot be listed in krarc.protocol itself
     // because it would baffle other file managers (like Dolphin).
