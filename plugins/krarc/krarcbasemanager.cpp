@@ -271,15 +271,16 @@ QString KrArcBaseManager::getShortTypeFromMime(const QString &mime)
 
     // 7zip files are a not a normal case because their mimetype does not
     // follow the norm of other types: zip, tar, lha, ace, arj, etc.
-    if (mime == "application/x-7z-compressed")
+    if (mime == QStringLiteral("application/x-7z-compressed"))
         return "7z";
 
     // If it's a rar file but its mimetype isn't "application/x-rar"
-    if (mime == "application/x-rar-compressed" || mime == "application/vnd.rar")
+    if (mime == QStringLiteral("application/x-rar-compressed") ||
+        mime == QStringLiteral("application/vnd.rar"))
         return "rar";
 
     // If it's a cbr file but its mimetype isn't "application/x-cbr"
-    if (mime == "application/vnd.comicbook-rar")
+    if (mime == QStringLiteral("application/vnd.comicbook-rar"))
         return "cbr";
 
     // If it's a deb file but its mimetype isn't "application/x-deb"
