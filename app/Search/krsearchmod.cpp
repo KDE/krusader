@@ -123,6 +123,7 @@ void KrSearchMod::scanDirectory(const QUrl &url)
             m_unScannedUrls.push(fileUrl);
         }
 
+        // The identifier of this comment is: "getMime_problem_when_searching".
         // If, for example, the user executes `lzma FILE && mv FILE.lzma FILE.lzma.backup` then
         // Krusader can not find text in the file that is compressed inside the `lzma.backup` one.
         // That happens because (for "FILE.lzma.backup") the next `fileItem->getMime()` that is used (which
@@ -133,6 +134,8 @@ void KrSearchMod::scanDirectory(const QUrl &url)
         // FILE.xz.backup` and uses Krusader to find text in the file that is compressed inside the
         // xz.backup one. That succeeds because the next `fileItem->getMime()` returns "application/x-xz"
         // even if the file has a "xz.backup" extension.
+        // Reminder: If this comment is changed, it's important to research if the comment
+        // "getMime_problem_when_browsing" also has to be changed
 
         if (m_query->searchInArchives() && fileUrl.isLocalFile() && KrArcHandler::arcSupported(fileItem->getMime())) {
             // query search in archive; NOTE: only supported for local files

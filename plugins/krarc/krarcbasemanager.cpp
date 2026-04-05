@@ -27,7 +27,8 @@ KrArcBaseManager::AutoDetectParams KrArcBaseManager::autoDetectParams[] = {
     {"gzip", 0, "\x1f\x8b"},
     {"deb", 0, "!<arch>\ndebian-binary   "},
     {"7z", 0, "7z\xbc\xaf\x27\x1c"},
-    {"xz", 0, "\xfd\x37\x7a\x58\x5a\x00"}
+    {"xz", 0, "\xfd\x37\x7a\x58\x5a\x00"},
+    {"lzma", 0, "\x5d\x00\x00"}
 };
 
 int KrArcBaseManager::autoDetectElems = sizeof(autoDetectParams) / sizeof(AutoDetectParams);
