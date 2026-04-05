@@ -51,7 +51,6 @@ KrArcHandler::KrArcHandler(QObject *parent)
         QStringLiteral("application/x-deb"),
         QStringLiteral("application/x-debian-package"),
         QStringLiteral("application/vnd.debian.binary-package"),
-        QStringLiteral("application/x-java-archive"),
         QStringLiteral("application/x-rpm"),
         QStringLiteral("application/x-source-rpm"),
         QStringLiteral("application/vnd.oasis.opendocument.chart"),
@@ -72,6 +71,10 @@ KrArcHandler::KrArcHandler(QObject *parent)
         QStringLiteral("application/x-webarchive"),
         QStringLiteral("application/x-plasma"),
         QStringLiteral("application/vnd.rar"),
+        // The mime type for java archives changed over the years. For more information:
+        // https://stackoverflow.com/questions/44468917/whats-the-right-content-type-for-a-java-jar-file
+        QStringLiteral("application/x-java-archive"),
+        QStringLiteral("application/java-archive"),
     };
 
 #ifdef KRARC_QUERY_ENABLED
