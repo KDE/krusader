@@ -783,6 +783,26 @@ QString KrArcHandler::registeredProtocol(const QString &mimetype)
             return QStringLiteral("krarc");
         }
         protocol = KProtocolManager::protocolForArchiveMimetype(mimetype);
+        if (protocol.isEmpty()) {
+            // The mimetypes of tar archives that can be decompressed using the bzip2 program
+            static const QSet<QString> tarBMimes = {"application/x-tbz", "application/x-tbz2",
+                "application/x-bzip-compressed-tar", "application/x-bzip1-compressed-tar",
+                "application/x-bzip2-compressed-tar"};
+            // Note: On <https://invent.kde.org/utilities/ark/-/blob/a751cf8c12c05e23280a8e60c51baa6c35e9d04a/README.md>,
+            // that table could be seen:
+            // Format                |  Supported Mimetype                    |  Notes
+            // [...]                 |  [...]                                 |  [...]
+            // BZip2-compressed TAR  |  `application/x-bzip2-compressed-tar`  |  (`application/x-bzip-compressed-tar`
+            // with shared-mime-info < 2.3)
+
+            // If the archive is a .tar.bz2, .tbz or similar
+            if (tarBMimes.contains(mimetype)) {
+                protocol = "tar";
+            }
+
+            // Note: At this point, the `protocol` variable is empty when,
+            // for example, the file is a text one (therefore, it's not an archive)
+        }
     }
     return protocol;
 }
