@@ -256,6 +256,13 @@ QString KrArcBaseManager::getShortTypeFromMime(const QString &mime)
     if (mime == "application/vnd.comicbook-rar")
         return "cbr";
 
+    // If it's a deb file but its mimetype isn't "application/x-deb"
+    if (mime == QStringLiteral("application/x-debian-package") ||
+        mime == QStringLiteral("application/vnd.debian.binary-package")) {
+        // In a test, this code was executed when right-clicking on a file and choosing "Open"
+        return "deb";
+    }
+
     // The short type that will be returned
     QString sType = mime;
 

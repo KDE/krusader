@@ -468,7 +468,7 @@ KIO::WorkerResult kio_krarcProtocol::get(const QUrl &url, int tries)
     QString file = getPath(url).mid(getPath(arcFile->url()).length() + 1);
     KrLinecountingProcess proc;
     if (extArcReady) {
-        proc << getCmd << arcTempDir + "contents.cpio" << '*' + file;
+        proc << getCmd << arcTempDir + "contents.cpio" << "./" + file;
     } else if (arcType == "arj" || arcType == "ace" || arcType == "7z") {
         proc << getCmd << getPath(arcFile->url(), QUrl::StripTrailingSlash) << file;
         if (arcType == "ace" && QFile("/dev/ptmx").exists()) // Don't remove, unace crashes if missing!!!
