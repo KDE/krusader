@@ -662,18 +662,13 @@ void ListPanelFunc::rename()
 // called by signal itemRenamed() from the view to complete the renaming process
 void ListPanelFunc::rename(const QString &oldname, const QString &newname)
 {
-    if (oldname == newname) {
+    if (oldname == newname || newname.isEmpty()) {
         // show a message to avoid that e.g. the user be fast-typing and think that everything went all right
-        KMessageBox::error(krMainWindow, i18n("The proposed name (\"%1\") is the same as the previous one.", newname));
-        // return the focus to the panel
-        panel->view->widget()->setFocus();
-        // do not continue the renaming process
-        return;
-    }
-
-    if (newname.isEmpty()) {
-        // show a message to avoid that e.g. the user be fast-typing and think that everything went all right
-        KMessageBox::error(krMainWindow, i18n("The renaming of \"%1\" has not been performed because the proposed name was empty.", oldname));
+        if (oldname == newname) {
+            KMessageBox::error(krMainWindow, i18n("The proposed name (\"%1\") is the same as the previous one.", newname));
+        } else {
+            KMessageBox::error(krMainWindow, i18n("The renaming of \"%1\" has not been performed because the proposed name was empty.", oldname));
+        }
         // return the focus to the panel
         panel->view->widget()->setFocus();
         // do not continue the renaming process
