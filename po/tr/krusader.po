@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-02-16 00:51+0000\n"
-"PO-Revision-Date: 2026-04-03 10:38+0300\n"
+"PO-Revision-Date: 2026-04-07 20:57+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.12.2\n"
+"X-Generator: Lokalize 25.11.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -663,7 +663,8 @@ msgstr "Seçili kullanıcı eylemlerini sil"
 #, kde-format
 msgid ""
 "The current action has been modified. Do you want to apply these changes?"
-msgstr "Geçerli eylem değiştirildi. Değişiklikleri uygulamak ister misiniz?"
+msgstr ""
+"Geçerli eylemde değişiklik yapıldı. Değişiklikleri uygulamak istiyor musunuz?"
 
 #: app/ActionMan/useractionpage.cpp:208
 #, kde-format
@@ -1563,7 +1564,7 @@ msgstr "Kendi büyüklüğü:"
 #: app/DiskUsage/diskusage.cpp:1044
 #, kde-format
 msgid "Last modified:"
-msgstr "Son değiştirilme:"
+msgstr "Son değişiklik:"
 
 #: app/DiskUsage/diskusage.cpp:1044
 #, kde-format
@@ -1953,7 +1954,7 @@ msgstr "&ve"
 #: app/Filter/advancedfilter.cpp:148
 #, kde-format
 msgid "&Not modified after"
-msgstr "sonrasında değiştiril&memiş"
+msgstr "Sonrasında değiştiril&memiş"
 
 #: app/Filter/advancedfilter.cpp:161
 #, kde-format
@@ -1983,7 +1984,7 @@ msgstr "yıl"
 #: app/Filter/advancedfilter.cpp:180
 #, kde-format
 msgid "No&t modified in the last"
-msgstr "değiştiril&mediği son zaman"
+msgstr "Değiştiril&mediği son zaman"
 
 #: app/Filter/advancedfilter.cpp:222
 #, kde-format
@@ -3785,7 +3786,7 @@ msgstr "Çift tıklayarak sekmeyi kapat."
 #: app/Konfigurator/kgpanel.cpp:147
 #, kde-format
 msgid "New tab button duplicates a tab"
-msgstr "Yeni sekme düğmesi, bir sekmeyi yineler"
+msgstr "Yeni sekme düğmesi, bir sekmeyi çoğaltır"
 
 #: app/Konfigurator/kgpanel.cpp:149
 #, kde-format
@@ -3793,8 +3794,8 @@ msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
 "home directory."
 msgstr ""
-"Seçiliyse yeni sekme düğmesi bir sekmeyi yineler, diğer türlü ana dizin için "
-"yeni bir sekme açar."
+"Seçiliyse yeni sekme düğmesi bir sekmeyi çoğaltır, diğer türlü ana klasör "
+"için yeni bir sekme açar."
 
 #: app/Konfigurator/kgpanel.cpp:156
 #, kde-format
@@ -4327,7 +4328,7 @@ msgstr "Panel klasörünü üst klasöre değiştirir."
 #: app/Konfigurator/kgpanel.cpp:626
 #, kde-format
 msgid "Home button (~)"
-msgstr "Ana dizin düğmesi (~)"
+msgstr "Ana klasör düğmesi (~)"
 
 #: app/Konfigurator/kgpanel.cpp:626
 #, kde-format
@@ -4860,12 +4861,12 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:117
 #, kde-format
 msgid "Show function keys"
-msgstr "İşlev düğmelerini göster"
+msgstr "Fonksiyon düğmelerini göster"
 
 #: app/Konfigurator/kgstartup.cpp:117
 #, kde-format
 msgid "Function keys will be visible after startup."
-msgstr "İşlev düğmeleri, açılıştan sonra görülebilir olacak."
+msgstr "Fonksiyon düğmeleri, açılıştan sonra görülebilir olur."
 
 #: app/Konfigurator/kgstartup.cpp:118
 #, kde-format
@@ -5680,7 +5681,7 @@ msgstr "Görev Araç Çubuğu"
 #: app/krusaderview.cpp:79
 #, kde-format
 msgid "Function keys allow performing fast operations on files."
-msgstr "İşlev düğmeleri, dosyalar üzerinde hızlı işlemlere izin verir."
+msgstr "Fonksiyon düğmeleri, dosyalar üzerinde hızlı işlemlere izin verir."
 
 #: app/krusaderview.cpp:477
 #, kde-format
@@ -7867,7 +7868,7 @@ msgstr "Ext"
 #, kde-format
 msgctxt "File property"
 msgid "Size"
-msgstr "Boyut"
+msgstr "Büyüklük"
 
 #: app/Panel/PanelView/listmodel.cpp:381
 #, kde-format
@@ -7920,7 +7921,7 @@ msgstr "Grup"
 #: app/Panel/PanelView/listmodel.cpp:497
 #, kde-format
 msgid "Size: %1"
-msgstr "Boyut: %1"
+msgstr "Büyüklük: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:499
 #, kde-format
@@ -8709,7 +8710,7 @@ msgstr "Her iki tarafta da var olan dosyaları göster."
 #: app/Synchronizer/synchronizergui.cpp:319
 #, kde-format
 msgid "Duplicates"
-msgstr "İkiz (aynı) olanlar"
+msgstr "Çoğaltılmışlar"
 
 #: app/Synchronizer/synchronizergui.cpp:323
 #, kde-format
@@ -8738,7 +8739,7 @@ msgstr "Ad"
 #, kde-format
 msgctxt "@title:column"
 msgid "Size"
-msgstr "Boyut"
+msgstr "Büyüklük"
 
 #: app/Synchronizer/synchronizergui.cpp:346
 #: app/Synchronizer/synchronizergui.cpp:348
@@ -9015,7 +9016,7 @@ msgstr "Yeni Sekme"
 #: app/tabactions.cpp:26
 #, kde-format
 msgid "Duplicate Current Tab"
-msgstr "Geçerli Sekmeyi İkile"
+msgstr "Geçerli Sekmeyi Çoğalt"
 
 #: app/tabactions.cpp:28
 #, kde-format
@@ -9060,7 +9061,7 @@ msgstr "Etkin Olmayan Sekmeleri Kapat"
 #: app/tabactions.cpp:38
 #, kde-format
 msgid "Close Duplicated Tabs"
-msgstr "İkizi Olan Sekmeleri Kapat"
+msgstr "Çoğaltılmış Sekmeleri Kapat"
 
 #: app/tabactions.cpp:39 app/tabactions.cpp:62
 #, kde-format
@@ -9070,7 +9071,7 @@ msgstr "Sekmeyi Kilitle"
 #: app/tabactions.cpp:40 app/tabactions.cpp:64
 #, kde-format
 msgid "Pin Tab"
-msgstr "Sekmeyi İğnele"
+msgstr "Sekmeyi Sabitle"
 
 #: app/tabactions.cpp:62
 #, kde-format
@@ -9080,7 +9081,7 @@ msgstr "Sekmenin Kilidini Aç"
 #: app/tabactions.cpp:64
 #, kde-format
 msgid "Unpin Tab"
-msgstr "Sekme İğnesini Kaldır"
+msgstr "Sekme Sabitlemesini Kaldır"
 
 #: app/UserAction/expander.cpp:63
 #, kde-format
@@ -9670,12 +9671,12 @@ msgstr "Etkin paneli uzantıya göre sıralanır"
 #: app/useraction_examples.xml:74 app/useraction_examples.xml:75
 #, kde-format
 msgid "Sort by Size"
-msgstr "Boyuta Göre Sırala"
+msgstr "Büyüklüğe Göre Sırala"
 
 #: app/useraction_examples.xml:78
 #, kde-format
 msgid "Sorts the active panel by Size"
-msgstr "Etkin panel Boyuta göre sıralanır"
+msgstr "Etkin panel, büyüklüğe göre sıralanır"
 
 #: app/useraction_examples.xml:83 app/useraction_examples.xml:84
 #, kde-format
@@ -9685,7 +9686,7 @@ msgstr "Değiştirilmeye Göre Sırala"
 #: app/useraction_examples.xml:87
 #, kde-format
 msgid "Sorts the active panel by Modified"
-msgstr "Etkin panel Değiştirilmeye göre sıralanır"
+msgstr "Etkin panel değiştirilmeye göre sıralanır"
 
 #: app/useraction_examples.xml:92
 #, kde-format
