@@ -1,0 +1,78 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="mount-man">
+  <title
+>Bağlamacı: Bağladığınız dosya sistemleri ile çalışın</title>
+  <indexterm>
+    <primary
+>Bağla</primary>
+  </indexterm>
+  <para
+>Bağlamacı, bağladığınız dosya sistemlerini yönetmenize yardımcı olan bir araçtır. Çalıştırıldığında, bağlı olan bütün dosya sistemlerinin bir listesini sunar. Her bir dosya sistemi için Bağlamacı, onun adını (gerçek aygıt adını; yani ilk <hardware
+>sabit diskteki</hardware
+> ilk bölüntü için <filename class="directory"
+>/dev/sda1</filename
+>), türünü, (ext4, ext3, ntfs, vfat, ReiserFS, …) ve sistemdeki bağlama noktasını (dosya sisteminin bağlı olduğu klasör) gösterir.</para>
+  <para
+>Kaldırılamayan/çıkarılamayan aygıtları listeden süzmek isterseniz aygıt listesinin solundaki <guilabel
+>Yalnızca kaldırılabilir aygıtları göster</guilabel
+> ögesini işaretleyin. </para>
+  <figure id="screenshot-mountman" float="1">
+    <title
+>Bağlamacı</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="mountman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Bağlamacı</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Bağlamacı ayrıca toplam boyut, boş alan ve kullanılabilir alanın yüzdesi gibi bilgileri kullanarak kullanım bilgilerini de gösterir. Bu sayılar <guilabel
+>Yok</guilabel
+> gösteriyorsa bu genellikle dosya sisteminin bağlanmadığı anlamına gelir. Bir dosya sistemine sol tıklamak, pencerenin solunda dosya sisteminin kullanım bilgilerini grafiksel olarak gösteren bir pasta grafiği görüntüler. Bağlanmamış bir dosya sistemine tıklamak, grafik yerine <guilabel
+>bağlı değil</guilabel
+> ifadesini görüntüler.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>Bir dosya sistemine <keycap
+>çift tıklamak</keycap
+>, Bağlamacı’yı kapatır ve o dosya sistemini &krusader;’ın etkin panelinde gösterir.</para>
+    </listitem>
+    <listitem>
+      <para
+>Bir dosya sistemine <keycap
+>sağ tıklamak</keycap
+>, o dosya sistemi üzerinde gerçekleştirilebilecek eylemlerin küçük bir menüsünü görüntüler. Şu anda bağlama, bağlantı kesme ve çıkarma (kaldırılabilir bir dosya sistemi ise; örneğin, bir &CD-ROM;) işlemleri yapılabilir.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>&krusader;’ın sonraki evriminde Bağlamacı’yı genişletmeyi tasarlıyoruz; bölüntüleri biçimlendirebilecek, <filename
+>/etc/fstab</filename
+>’ı düzenleyebilecek, yeni dosya sistemleri oluşturabilecek ve çok daha fazlasını yapabilecek. Bu arada, üzerinde çalışmaya başladık bile, <quote
+>Bağlamacı Tez Kipi</quote
+>’ne bakın.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Bağlamacı Tez Kipi</emphasis>
+  </para>
+  <para
+>Bağlamacı Tez Kipi’ni etkinleştirmek için <link linkend="mainwindow"
+>Ana Araç Çubuğu</link
+> üzerindeki Bağlamacı düğmesindeki oklu yan düğmeye tıklayın.</para>
+  <para
+>Genel fikir: Tüm olası bağlama noktalarının bir listesini görüntülemek. Menü her görüntülendiğinde, bir bağlama noktasının bağlı olup olmadığını belirler ve doğru eylemi (bağla veya bağlantıyı kes) ilişkilendirir. Bu, Bağlamacı için hızlı bir arayüz sunar. Çalışıyor ve şu anda KMountMan::mount ve unmount işlevlerini kullanıyor. fstab okuma için yeni &kf6-full; hizmetlerini kullanıyor ve bu, <quote
+>eski</quote
+> Bağlamacı’dan büyük miktarda kodu kaldırmamızı sağlayacak.</para>
+</sect1>

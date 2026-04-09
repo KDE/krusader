@@ -1,0 +1,1102 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="faq">
+  <title
+>Sıkça Sorulan Sorular</title>
+  <indexterm>
+    <primary
+>SSS</primary>
+  </indexterm>
+  <para
+>&krusader; ile sorunlar yaşıyorsanız önce <ulink url="https://krusader.org/get-involved/index.html"
+>kurulum prosedürlerine</ulink
+> bir göz atın; çünkü sorununuz hatalı bir kurulumdan kaynaklanıyor olabilir.</para>
+  <para
+>&FAQ; üç bölüme ayrılmıştır: <itemizedlist
+> <listitem
+> <para
+> <link linkend="faq_installation"
+>Kurulum Hakkındaki &FAQ;</link
+> (Bu sayfa)</para
+> </listitem
+> <listitem
+> <para
+> <link linkend="faq_usage"
+>Kullanım Hakkındaki &FAQ;</link
+> (&krusader; kullanımı ve çalıştırması hakkındaki konular)</para
+> </listitem
+> <listitem
+> <para
+> <link linkend="faq_general"
+>Genel &FAQ;</link
+> (Hata raporları, forum, posta listesi, …)</para
+> </listitem
+> </itemizedlist
+>Bir sorunun eksik olduğunu veya bazı şeylerin açık olmadığını düşünüyorsanız lütfen <link linkend="editors_note"
+>bize bildirin</link
+>.</para>
+  <sect1 id="faq_installation">
+    <title
+>Kurulum Hakkındaki &FAQ;</title>
+    <qandaset>
+      <qandaentry>
+        <question id="faqi_kdelibs">
+          <para
+>&Krusader; çalışmak için &plasma;’ya gereksinim duyar mı?</para>
+        </question>
+        <answer>
+          <para
+><emphasis
+>Hayır, &krusader; bilgisayarınızda çalışmak için &plasma; masaüstü ortamına</emphasis
+> gereksinim duymaz; ancak &krusader;, &kf6-full; temel kitaplıkları tarafından sağlanan hizmetlere gereksinim duyduğundan onun doğal ortamı &plasma;’dır. Yalnızca bazı paylaşılan kitaplıklar elzemdir; örneğin, &kde-frameworks; kitaplıkları, &Qt; kitaplıkları, vb. Bu, &krusader;’ın <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, <ulink url="http://www.afterstep.org/"
+><application
+>AfterStep</application
+></ulink
+>, <ulink url="https://www.xfce.org/"
+><application
+>XFce</application
+></ulink
+> ve diğer masaüstü ortamlarında gerekli kitaplıklar kurulu olduğu sürece çalışacağı anlamına gelir. Bunlar genelde bir sorun teşkil etmez, çünkü paket yöneticileri bunları kendiliğinden kurma yeteneğine genelde sahiptir.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <para
+>&krusader;’ı kullanmak için &plasma;’ya geçmek zorunda değilsiniz; <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>, <ulink url="http://www.afterstep.org/"
+><application
+>AfterStep</application
+></ulink
+>, <ulink url="https://www.xfce.org/"
+><application
+>XFce</application
+></ulink
+> veya başka bir ortamı kullanmayı sürdürebilirsiniz. Ancak, &krusader; yazıtipleri ve kimi davranışı <command
+>systemsettings</command
+> komutu ile yapılandırılır.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <para
+>Bir çok şey, &krusader; ile neler yapmak istediğinizde bağlıdır. &krusader;’ın uzak dosya sistemlerine erişmek için &kde-frameworks; KIO işçilerini kullandığını ve yalnızca sınırlı sayıda dosya sistemi türü desteğinin &kde-frameworks; kitaplıkları ile sunulduğunu aklınızda bulundurun; çoğu &kf6-full; ile sağlanır (fish, sftp ve tar içerilmek üzere).</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <para
+>Özetlemek gerekirse çalışan bir &krusader; istiyorsanız &kf6-full; kurun. İşlevsel bir &krusader; içinse &kf6-full; ve bazı ek &plasma; paketlerini kurun. Tam bir işlevsellik için &krusader; bazı &kde; uygulamalarına gereksinim duyar (&ark;, &kdiff3;, <application
+>K Adveren</application
+>); ancak &plasma; masaüstü ortamı isteğe bağlıdır.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_rpm-notfound">
+          <para
+>&Krusader; için bir paket bulamıyorum, ne yapmalıyım?</para>
+        </question>
+        <answer>
+          <para
+>Dağıtımınızın &krusader;’ı sağlayıp sağlamadığına bakın; eğer sağlamıyorsa dağıtımın topluluğuyla iletişime geçin ve &krusader;’ı paket depolarına eklemelerini isteyin!</para>
+          <para
+><ulink url="https://krusader.org/get-involved/index.html"
+>Kurulum prosedürü</ulink
+> sayfasına baktınız mı? Baktıysanız ve işinize yarayan bir şey bulamadıysanız &krusader;’ı her zaman kaynağından derleyebilirsiniz. Sorunlarla karşılaşırsanız bir <link linkend="faqi_help_request"
+>yardım isteği</link
+> göndermekten çekinmeyin.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+ 
+      <qandaentry>
+        <question id="faqi_help_request">
+          <para
+>&krusader;’ı derleyip kurma aşamasında sorunlar yaşıyorum, nasıl yardım isteği gönderebilirim?</para>
+        </question>
+        <answer>
+          <para
+>Ayrıntılı <ulink url="https://krusader.org/get-involved/index.html"
+>kurulum prosedürümüzü</ulink
+> ve <link linkend="faq"
+>SSS</link
+> bölümünü okuyun. Sorununuza bir çözüm bulamadıysanız forumumuzda bir <emphasis role="bold"
+>yardım isteği</emphasis
+> açmaktan veya &krusader;<ulink url="https://groups.google.com/group/krusader-users"
+>&krusader;-users</ulink
+> posta listesine ileti göndermekten çekinmeyin. Göndermeden önce şunları yaptığınızdan emin olun: <orderedlist>
+            <listitem>
+              <para
+><ulink url="https://forum.kde.org/viewforum.php?f=225"
+>&kde; Forum</ulink
+> üzerindeki arama işlevini kullandığınızdan emin olun, sorununuz halihazırda çözülmüş veya tartışılmış olabilir.</para>
+            </listitem>
+            <listitem>
+              <para
+>Bir çözüm bulamazsanız şu bilgileri topladığınızdan emin olun: <itemizedlist
+> <listitem
+> <para
+>Kullanılan &krusader; sürümü</para
+> </listitem
+> <listitem
+> <para
+>Kullanılan &Linux; dağıtımı ve sürümü</para
+> </listitem
+> <listitem
+> <para
+>Sorunun açıkça anlatımı</para
+> </listitem
+> </itemizedlist
+>Bu bilgiler olmadan size yardım etmemiz pek güç olacaktır. <note
+> <para
+>Eğer bize hata iletilerini (örneğin, <command
+>make</command
+> hata iletileri) verirseniz lütfen İLK hata iletisiyle başlayın, ilk hata iletisini takip eden tüm hata iletileri probleminizin nedeni değil, sonucudur.</para>
+              </note
+></para>
+            </listitem>
+            <listitem>
+              <para
+>Yardım isteğinizi gönderin.</para>
+            </listitem>
+          </orderedlist
+></para>
+          <para
+>İşbirliğiniz için teşekkürler!</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_git_version">
+          <para
+>&krusader;-git, hakkında iletişim kutusunda neden eski bir sürümü gösteriyor?</para>
+        </question>
+        <answer>
+          <para
+>Çünkü sürüm numarasını yalnızca yeni bir sürüm yayımlamadan hemen önce değiştiriyoruz. &krusader;-git daha eski bir sürüm numarası göstereceğinden, sürüm numarasını görmezden gelip indirme tarihine bakın. Bir sonraki sürüm numarasının ne olacağına henüz karar vermedik.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+ </qandaset>
+  </sect1>
+  <sect1 id="faq_usage">
+    <title
+>Kullanım Hakkındaki &FAQ;</title>
+    <qandaset>
+      <qandaentry>
+        <question id="faqu_dead_mountpoint">
+          <para
+>&krusader; neden ölü bir bağlama noktasında donuyor veya takılıyor?</para>
+        </question>
+        <answer>
+          <para
+>&krusader; örneğin bir &NFS; paylaşımına göz atarken &NFS; sunucusu çöktüğünde, &krusader; donar. Bu &krusader;’ın (ve diğer tüm açık içsel görüntüleyicilerin/düzenleyicilerin) donması onulmazdır ve yalnızca <command
+>kill -9</command
+> komutuyla düzeltilebilir. Bunun için bir çözümümüz yok. Bu, yalnızca dosya yöneticileriyle veya hatta &Linux; işletim sistemleriyle sınırlı bir sorun değil! Sorun şu ki, ölü paylaşıma ilk erişimde <quote
+>takılırsınız</quote
+>; yani bundan kaçınmanın bir yolu, bunu önlemek için bir denetim yoktur, hatta <command
+>ls</command
+> komutu bile donar. Bir şeyi —herhangi bir şeyi— okumaya çalışmak bile sizi çıkmaza sokmaya yeter. Bu mimarî sorunu aşmanın tek yolu çok iş parçacıklı bir tasarım kullanmaktır; bu şekilde takılırsak tüm uygulama olay döngüsünü askıya almayız; ancak iş parçacıkları eklemek için doğru zamanın geldiğini düşünmüyoruz, şu anda piyasada olan *tüm* &kde-frameworks; kitaplıklarının &Qt;-mt’yi (&Qt; kitaplığının çok iş parçacıklı sürümü) kullandığından emin değiliz ve halihazırda bu sorunu tartışmak için &krusader; takımının doğru kişiler olduğunu sanmıyoruz. Kısacası, bununla iyi geçinmemiz gerekiyor.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_resize">
+          <para
+>&krusader;’ı küçültmek için yeniden boyutlandırmaya çalıştığımda, belirli bir boyutun altına yeniden boyutlandıramadığımı fark ediyorum. Neden?</para>
+        </question>
+        <answer>
+          <para
+><guibutton
+>F1, F2</guibutton
+> (&etc;) düğmelerini görüyor musunuz? Bunların en küçük ayarlı bir boyutu olduğundan &krusader;’ın daha da küçültülmesine izin vermezler. Onları; <menuchoice
+> <guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>İşlev Düğmeleri Çubuğunu Göster</guimenuitem
+> </menuchoice
+> ile devre dışı bırakın ve artık &krusader;’ı istediğiniz gibi boyutlandırabilirsiniz. 1.51 sürümünden bu yana bunu bayağı iyileştirdik; pencereyi küçültürken düğmeler “F5 ‥la” gibi görünürler. Düğme yüzleri okunamayacak kadar küçük olduğunda, araç ipucu metnin tamamını gösterir. Her düğme için en küçük genişlik 45 pikseldir.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_samba_codepage">
+          <para
+>&Samba; ISO 8859-x kod sayfası / &krusader; özel uluslararası karakterlere sahip paylaşılan klasörleri okumuyorsa ne yapmalı?</para>
+        </question>
+        <answer>
+          <para
+>&krusader; henüz &Samba; ISO 8859-x kod sayfalarını işleyememektedir; 8859-1 dışında bir kod sayfası kullanıyorsanız elle bir yapılandırma oluşturmanız gerekecektir. <filename
+>~/.smb/smb.conf</filename
+> dosyasını oluşturun veya yapılandırın: <programlisting
+>[global]
+          workgroup = ÇalışmaGrubum (örneğin, WORKGROUP)
+          client code page = KodSayfam (örneğin, 852)
+          character set = KarakterKümem (örneğin, ISO8859-2)
+          </programlisting
+> Uygun &systemsettings; modülünden smb.conf dosyasını yapılandırmayı deneyebilirsiniz.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      
+<qandaentry>
+  <question id="faqu_external_tool">
+  <para
+>Dış bir araç çalışmıyor gibi görünüyorsa ne yapmalı?</para>
+  </question>
+  <answer>
+  <para
+>&krusader;, <link linkend="konfig-dependencies"
+>dış araç</link
+> olarak birkaç program kullanır ve bazen çalışmıyor gibi görünebilirler. Bir uçbirim açın ve “herhangibiraraç”ın kurulu olup olmadığına bakın: <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>herhangibiraraç</command
+></userinput
+></screen
+>. Bu aracın <link linkend="konfig-dependencies"
+>Konfigurator Bağımlılıkları</link
+> sayfasında düzgünce yapılandırılıp yapılandırılmadığına bakın. Arşivleme araçları için: <link linkend="konfig-archives"
+>Konfigurator Arşiv</link
+> sayfasındaki <guibutton
+>Kendiliğinden Yapılandır</guibutton
+> düğmesiyle kendiliğinden algılatmaya çalışın. Çalışmazsa <link linkend="konfig-protocols"
+>Konfigurator Protokol</link
+> sayfasına bakın. Yine işe yaramazsa <filename
+><envar
+>XDG_CONFIG_HOME</envar
+>/krusaderrc</filename
+> yapılandırma dosyanızı yedekleyip (öntanımlı konum: <filename
+>$<envar
+>HOME</envar
+>/.config/krusaderc</filename
+>) ve bu konumdan kaldırın. &krusader;’ı yeniden başlatın; &krusader; şimdi yapılandırma sihirbazını yeniden çalıştıracaktır; bu yönergeleri yeniden uygulayın. </para>
+  <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
+<qandaentry>
+  <question id="faqu_jar">
+  <para
+>JAR dosyaları nasıl yürütülür (jar arşivine girmeden)?</para>
+  </question>
+  <answer>
+  <para
+><link linkend="konfig-protocols"
+>Konfigurator İletişim Kuralı sayfasına</link
+> gidin ve krarc düğümünden <guilabel
+>application/x-jar</guilabel
+>'ı kaldırın, artık arşive girmiyor olmalı. Genel dosya ilişkileri &plasma; tarafından ele alınır, &krusader; değil. jar eklentisini ilişkilendirmek için: <itemizedlist>
+            <listitem>
+              <para
+>&plasma; &systemsettings; uygulamasını açın: <application
+>systemsettings</application
+> </para>
+            </listitem>
+            <listitem>
+              <para>
+               <menuchoice
+><guimenu
+>Uygulamalar</guimenu
+> <guimenuitem
+>Dosya İlişkilendirmeleri</guimenuitem
+> </menuchoice>
+              </para>
+            </listitem>
+            <listitem>
+              <para
+>Dosya adı dizgisi olarak <filename
+>jar</filename
+> girin. </para>
+            </listitem>
+            <listitem>
+              <para
+>Uygulama olarak <filename
+>java</filename
+>’yı ekleyin. </para>
+            </listitem>
+           </itemizedlist>
+   </para>
+  <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
+      <!-- Thanks to Dirk Eschler -->
+      <qandaentry>
+        <question id="faqu_ftp_firewall">
+          <para
+>&FTP; bağlantımla neden sorunlar yaşıyorum?</para>
+        </question>
+        <answer>
+          <para
+>Bu sorun genelde bir güvenlik duvarı veya vekil sunucu arkasındaysanız yaşanır. <menuchoice
+><guimenu
+>Sistem Ayarları</guimenu
+><guimenuitem
+>Ağ</guimenuitem
+><guimenuitem
+>Ayarlar</guimenuitem
+><guimenuitem
+>Bağlantı Tercihleri</guimenuitem
+></menuchoice
+>, <guilabel
+>Pasif kipi etkinleştir (PASV)</guilabel
+> seçeneğinin geçerli ayara bağlı olarak açık veya kapalı olması gerekir. Şimdi &FTP; oturumunuzu yeniden deneyin. Ek olarak, başka bir &FTP; oturumunun açık olmadığından emin olun (başka tarayıcılarda vb.), sorunlara neden olabilir. Daha fazla bilgi için: <ulink url="https://slacksite.com/other/ftp.html"
+>Active &FTP; vs. Passive &FTP;, a Definitive Explanation</ulink
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <!-- Thanks to Karai Csaba -->
+      <qandaentry>
+        <question id="faqu_ftp_http_proxy">
+          <para
+>Uzak bir &FTP; klasörünü açmaya çalışırken <errorcode
+>&FTP; protokolü &krusader; tarafından desteklenmiyor</errorcode
+> hatasını alıyorum, ne yapmalıyım?</para>
+        </question>
+        <answer>
+          <para
+>Bu hatanın nedeni, “&HTTP; vekili ile &FTP;” özelliğinin, &krusader; tarafından henüz desteklenmemesidir. Bu hata, &systemsettings; içindeki vekil ayarlarının hatalı bir şekilde yapılandırılması nedeniyle ortaya çıkabilir. Vekil ayarlarını, &HTTP; kullanmayacak şekilde ayarlayın; &FTP; düzgünce çalışacaktır.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_no_part">
+          <para
+>Dosyaları &FTP; ile kopyalarken sonlarına <literal role="extension"
+>.part</literal
+> uzantısını eklenmemesini nasıl sağlarım?</para>
+        </question>
+        <answer>
+          <para
+>Dosyaları karşıya yüklerken <literal role="extension"
+>.part</literal
+> soneki dosya adlarına eklenir ve yükleme tamamlandıktan sonra dosya adı, <literal role="extension"
+>.part</literal
+> soneki kaldırılacak biçimde yeniden adlandırılır. Bu özellik düzgünce çalışır; ancak kimi &FTP; sunucuları bir yeniden adlandırma işlemine izin vermezler. Bunu, &plasma; &systemsettings; içinde <guilabel
+>Kısmî olarak karşıya yüklenmiş dosyaları imle</guilabel
+> onay kutusunun işaretini kaldırarak çözebilirsiniz. Onay kutusu, <menuchoice
+> <guimenu
+>Ağ</guimenu
+> <guimenuitem
+>Ayarlar</guimenuitem
+> <guimenuitem
+>Bağlantı Tercihleri</guimenuitem
+> </menuchoice
+> konumunda bulunur.</para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_close_connection">
+          <para
+>Bir uzak bağlantıyı (&eg; bir &FTP; bağlantısı gibi) nasıl kapatabilirim?</para>
+        </question>
+        <answer>
+          <para
+><link linkend="remote-connections"
+>Uzak Bağlantılar</link
+> faslında açıklanmıştır.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_media_protocol">
+          <para
+>“media:/” protokolüyle sorunlar yaşıyorum, neden olabilir?</para>
+        </question>
+        <answer>
+          <para
+>“media:/” protokolü, &kde; 4 sonrasında kaldırıldı. Lütfen bunun yerine “mtp:/” protokolünü kullanın.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <!-- Thanks to thepieman at the Krusader Forum -->
+      <qandaentry>
+        <question id="faqu_sound">
+          <para
+>Örneğin, öir silme eylemi gerçekleştirdiğimde çalan öntanımlı sesleri nasıl devre dışı bırakırım?</para>
+        </question>
+        <answer>
+          <para
+>Bunlar, öntanımlı &plasma; sistem sesleridir ve &krusader; ile ilgili değildir. Bunları global olarak devre dışı bırakmak istiyorsanız &plasma; &systemsettings; ( <application
+>systemsettings</application
+>) uygulamasını açın: <menuchoice
+> <guimenu
+>Kişiselleştirme</guimenu
+> <guisubmenu
+>Bildirimler</guisubmenu
+> <guimenuitem
+>Bildirimleri Yönet</guimenuitem
+> </menuchoice
+>, <guilabel
+>Olay Kaynağı: “Plasma Çalışma Alanı”</guilabel
+> girdisini bulun ve istemediğiniz seslerin işaretlerini kaldırın.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_remoteMan">
+          <para
+>Uzak Bağlantı Yöneticisi nerededir?</para>
+        </question>
+        <answer>
+          <para
+>“Yer İmi Yöneticisi”ni kullanın. Bir <link linkend="remote-connections"
+>uzak &URL;</link
+>’yi kullanıp ona bir yer imi koyun.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_mimetypemagic_archives">
+          <para
+>&MIME; türleri sihri, neden bazen arşivler içinde çalışmaz?</para>
+        </question>
+        <answer>
+          <para
+>Bir arşivin içine girip bir bilinen bir uzantısı olmayan bir dosyayı (örneğin, <filename
+>README, INSTALL</filename
+> vb.) görüntülemek için <keycap
+>F3</keycap
+> düğmesine bastığınızda ve görüntüleyici her zamanki kip yerine onaltılık kipte açılıyorsa şunları yapılandırmanız gerekir: <menuchoice
+> <guimenu
+>&kde; Sistem Ayarları</guimenu
+> <guimenuitem
+>Dosya İlişkilendirmeleri</guimenuitem
+> <guimenuitem
+>Uygulama</guimenuitem
+> <guimenuitem
+>octet-stream</guimenuitem
+> </menuchoice
+>, <guilabel
+>İkili Görüntüleyicisi</guilabel
+> girdisinin kaldırılması gerekir.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_konfigurator">
+          <para
+>Yapılandırıcı nerededir; onu kullanmak için &plasma;’nın kurulu olması gerekir mi?</para>
+        </question>
+        <answer>
+          <para
+><link linkend="konfigurator"
+>Yapılandırıcı</link
+>, &krusader;’ın yapılandırma modülüdür; &krusader; sisteminizde kuruluysa Yapılandırıcı’ya da sahipsiniz demektir. Kimi nedenden dolayı bazı kişiler bunun başka bir &plasma; uygulaması olduğunu düşünüyorlar; hayır, Yapılandırıcı’yı kullanmak için tüm &plasma; ortamını kurmanıza gerek yoktur. &krusader; çalışırken, <menuchoice
+> <guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>&krusader; Uygulamasını Yapılandır…</guimenuitem
+> </menuchoice
+> girdisini kullanın ve bu <link linkend="konfigurator"
+>Yapılandırıcı</link
+>’yı başlatacaktır. Lütfen kılavuzu okuyun, &krusader;’ın birçok yapılandırma seçeneği vardır ve birçok şey, <link linkend="konfigurator"
+>Yapılandırıcı</link
+> ile gereksinimlerinize göre yapılandırılabilir. </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_equal_lookandfeel">
+          <para
+>İki farklı kullanıcının uygulama görünümünün ve hissinin aynı olmasını nasıl sağlarım?</para>
+        </question>
+        <answer>
+          <para
+>Geçerli ayarlarınızın iyi bir yapılandırma örneği olduğunu düşünüyorsanız bu yapılandırmayı başka bir kullanıcı için de kopyalayabilirsiniz. <screen
+><prompt
+>#</prompt
+> <userinput
+><command
+>cp ~/.config/krusaderrc /home/kullanıcı_adı/.config</command
+></userinput
+></screen
+> komutunu kullanın. Diğer kullanıcı “Kök” kullanıcı ise: <screen
+><prompt
+>#</prompt
+> <userinput
+><command
+>cp ~/.config/krusaderrc /root/.config</command
+></userinput
+></screen>
+          </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_custom_embed_term">
+          <para
+>&krusader;’ın gömülü uçbirimini nasıl özelleştirebilirim?</para>
+        </question>
+        <answer>
+          <para
+>&krusader;’ın gömülü uçbirim öykünücüsünün özelliklerini değiştirmek isterseniz üzerinde sağ tıklayıp istediğiniz seçeneği seçebilirsiniz. Aradığınız şey orada yoksa &konsole;’un <menuchoice
+> <guimenu
+>Ayarlar</guimenu
+> </menuchoice
+> menüsünü kullanın (çünkü &krusader; gömülü uçbirimi için bir &konsole; KPart’ı kullanır). Bu menüde diğer başka ögeleri de bulabilirsiniz (<menuchoice
+> <guimenuitem
+>Profilleri Yönet…</guimenuitem
+> </menuchoice
+> gibi). </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+      </answer>
+      </qandaentry>
+
+    </qandaset>
+  </sect1>
+  <sect1 id="faq_general">
+    <title
+>Genel &FAQ;</title>
+    <qandaset>
+      <qandaentry>
+        <question id="faqg_wish">
+          <para
+>Bir dilek, öneri veya yorumu nasıl iletebilirim?</para>
+        </question>
+        <answer>
+          <para
+>Açık kaynaklı bir projenin en büyük gücü, kullanıcı geri bildirimlerinden gelir. Bu yüzden sizin söyleyeceklerinizi duymayı çok seviyoruz. <quote
+>Şikayetleriniz</quote
+> bizim yönergelerimizdir. Yaklaşık 6 ay sonra, programcılar artık kendi hatalarını göremez hale gelirler. Bu doğaldır. Fikirlere, eleştirilere ve geri bildirimlere gereksinimimiz var çünkü hepimiz &krusader;’ her yerde bulunan en iyi ve en kullanışlı dosya yöneticisi yapmak istiyoruz.</para>
+          <para
+>Bize ulaşmanın en kolay yolu, krusader-users <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>posta listesini</ulink
+> kullanmaktır. Yapılması gereken şeylerle ilgili bilgi içinse <ulink url="https://groups.google.com/group/krusader-devel"
+>&krusader;-devel posta listesine</ulink
+> bakın. Biz her bir gönderiyi titizlikle değerlendiriyoruz.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_patch">
+          <para
+>Nasıl yama yollarım?</para>
+        </question>
+        <answer>
+          <para
+>Yama gönderme ile ilgili kılavuz maddeleri yazmak kolay değildir; ancak yine de birkaç tane verelim. <orderedlist numeration="arabic">
+            <listitem>
+              <para
+>Yamalar, yeni kod veya yeni özellikler her zaman çok makbule geçer!</para>
+            </listitem>
+            <listitem>
+              <para
+>Tek kerede yalnızca bir soruna odaklanın, böylece geliştiriciler sizi kolayca anlayabilir ve yamanız işe yarıyorsa onaylayabilirler.</para
+>              
+            </listitem>
+            <listitem>
+              <para
+>Tercihen, geliştiricilerle krusader-devel <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>posta listesinde</ulink
+> veya <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
+>&krusader; GitLab sayfasında</ulink
+> bir konu/tartışma başlatabilirsiniz. Söz konusu yama &krusader;’ın <quote
+>genel kod tasarımıyla</quote
+> ters düşüyorsa ne yazık ki kabul etmemiz olanaklı değildir (bununla ilgili daha fazla yönerge için bu SSS’e bakmayı sürdürün). Lütfen her e-postada yalnızca bir değişiklik talebi gönderin, böylece konuyu takip etmek daha kolay olur. Değişiklikler adım adım, her satır kontrol edilerek kaydedilmelidir. </para>
+            </listitem>
+            <listitem>
+             <para
+>Yama dosyalarınızı <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
+>GitLab</ulink
+> üzerinden gönderin; böylelikle tüm yama teklifleri organize bir şekilde kalır ve kaybolmazlar; tar.gz arşivleri veya diff’ler genellikle iyidir. Değişiklikleri bir posta iletisine kopyalamayın. Çoğu postalayıcı, boşluk düzenini değiştirir; bu da diff’lerin temizce uygulanamamasına neden olur. Geçmişte yama postaları kaybolmuş veya birçok posta içinde gaibe gitmiştir; bu yüzden <ulink url="https://community.kde.org/Infrastructure/GitLab"
+>GitLab</ulink
+> en uygunudur; sağ olun! </para
+> 
+            </listitem>
+            <listitem>
+              <para
+>Aktarılabilir çözümler kullanın; &krusader;, şu platformlarda çalışmalıdır: <itemizedlist
+> <listitem
+> <para
+>Tüm POSIX (&Linux;/BSD/&UNIX; tarzı işletim sistemleri), &Solaris;.</para
+> </listitem
+> <listitem
+> <para
+>Tüm BSD platformları (<trademark class="copyright"
+>FreeBSD</trademark
+>/<trademark class="registered"
+>NetBSD</trademark
+>/<trademark class="registered"
+>OpenBSD</trademark
+>/&MacOS;).</para
+> </listitem
+> <listitem
+> <para
+>&kde; 3.3–&kde; 3.5 ve kdelibs ile GNOME (&krusader;-2.x için).</para
+> </listitem
+> <listitem
+> <para
+>GCC 2.95–GCC 5.4</para
+> </listitem
+> </itemizedlist
+>Mimarî değişiklikleri yalnızca ekip tarafından yapılabilir.</para>
+            </listitem>
+            <listitem>
+              <para
+>Son bir not: Yamaların reddedilebileceğini her zaman aklınızda bulundurun. Ya düzeltemediğimiz yan etkileri vardır ya da yamalanan modülün ardındaki fikirle çelişir. Bu anlamda, bir yazılım projesi, diyelim ki bir vikiden farklıdır: Bir yazılım projesinde tüm nihaî kararları verecek birinin olması gerekir. Aksi takdirde yazılım çalışmaz. Ayrıca: Hepimizin özel hayatı olduğu için yamaların incelenmesinin zaman alabileceğini de unutmayın.</para>
+            </listitem>
+          </orderedlist
+></para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_bug_report">
+          <para
+>Hata raporlama nasıl yapılır?</para>
+        </question>
+        <answer>
+          <para
+>Hatalar?! Tabi bir çevrim içi hata takip sistemimiz vardır.</para>
+          <para
+>Çevrim içi hata takip sistemini kullanmak, açık olan hata sayısını, hata önceliğini ve takipleri net ve düzenli bir şekilde öğrenmemize yardımcı olur. Bu sayede, dünkü hatayı aramak için tüm &krusader; forumunu taramaktan kurtuluruz. Lütfen bu sistemi kullanın.</para>
+          <para
+>Hata bildirmeden önce lütfen aşağıdakileri okuyun: <orderedlist>
+            <listitem>
+              <para
+>Hatanın halihazırda hata takip sisteminin <ulink url="https://bugs.kde.org"
+>çevrim içi hata listesinde</ulink
+> var olup olmadığını <emphasis role="bold"
+>denetleyin</emphasis
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+>Sözü edilen hatayı bulamıyorsanız onu hata izleyicisi penceresinin <guibutton
+>Submit New</guibutton
+> düğmesiyle <emphasis role="bold"
+>işleyin</emphasis
+>. Lütfen aşağıdaki bilgileri iletin: Kullanılan &krusader; sürümü, kullanılan &Linux; dağıtımı ve sürümü, işlemci türü ve sorunu olabildiğince ayrıntılı bir şekilde açıklayın.</para>
+            </listitem>
+          </orderedlist
+></para>
+          <para
+>İşbirliğiniz için teşekkürler!</para>
+          <note>
+            <para
+>Olanaklıysa aynı işlemi &konqueror; veya diğer &kde; uygulamalarıyla da yineleyin. Aynı soruna denk geliyorsanız bu büyük olasılıkla bir KIO işçileri veya &kf5-full; hatasıdır; doğrudan &krusader; ile ilgili değildir. &krusader;, çoğu işlem için &kde-frameworks; kitaplıklarını ve KIO işçilerini kullanır. Bazı durumlarda, dağıtımınız yanlış yapılandırılmışsa sorunlarla karşılaşabilirsiniz; lütfen yukarıda açıklandığı gibi önce sınayın.</para>
+          </note>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      
+<qandaentry>
+  <question id="faqg_valgrint">
+  <para
+>Hata ayıklama veya çökme raporlarını nasıl doğru bir şekilde gönderebilirim?</para>
+  </question>
+  <answer>
+  <para
+>Genellikle dağıtımınız tarafından kullanılan ikili paketler hata ayıklama bilgisi içermez. Biz genellikle sadece &krusader;-git’i geliştirip düzelttiğimiz için &krusader;-git’i hata ayıklama kipinde derleyip kurun ve ardından hatanın hala var olup olmadığını denetleyin. <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>cmake</command
+> <option
+>-DCMAKE_BUILD_TYPE=debugfull</option
+></userinput
+></screen
+> &Linux; programlarında hata ayıklamak ve profilleme yapmak için kullanılan bir araç takımı olan <ulink url="https://valgrind.org"
+>valgrind</ulink
+>’ı kurun. Valgrind/&krusader;’ı çalıştırın. <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>valgrind</command
+> <option
+>--tool=memcheck</option
+> <replaceable
+>{uygulama_yolu}/krusader</replaceable
+></userinput
+></screen
+> Valgrind aracı, gerçekte ne olduğunu standart çıktıya yazacaktır. Çökmeden önceki bu bilgileri gönderebilirseniz sorunu düzeltebileceğimiz veya ne yapmanız gerektiğini söyleyebileceğimiz neredeyse kesindir. </para>
+  <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
+<qandaentry>
+  <question id="faqg_crashhandler">
+  <para
+>KDEcrashhandler işe yarar bir hata izleme bilgisi göndermezse ne yapılmalı?</para>
+  </question>
+  <answer>
+  <para
+>Genellikle dağıtımınız tarafından kullanılan ikili paketler hata ayıklama bilgisi içermez. Biz genellikle sadece &krusader;-git’i geliştirip düzelttiğimiz için &krusader;-git’i hata ayıklama kipinde derleyip kurun ve ardından hatanın hala var olup olmadığını denetleyin. <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>cmake</command
+> <option
+>-DCMAKE_BUILD_TYPE=debugfull</option
+></userinput
+></screen
+> Eğer KDEKrashhandler hâlâ yararlı bir hata izleme bilgisi sağlamıyorsa bazen çekirdek dökümü daha iyi bilgi verebilir. Krusader’ı, crashhandler devre dışı bırakılmış şekilde çalıştırın. <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>krusader</command
+> <option
+>--nocrashhandler</option
+></userinput
+></screen
+> Bir çökme sırasında genellikla ana klasörünüzde bir <filename
+>.core</filename
+> dosyası alırsınız. GNU Proje Hata Ayıklayıcısı olan <ulink url="https://sourceware.org/gdb/"
+>gdb</ulink
+>’yi çalıştırın. <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>gdb</command
+> <option
+>-c</option
+> <replaceable
+>corefile krusader</replaceable
+></userinput
+></screen
+> Şimdi geri izi almak için <command
+>bt</command
+> yazın ve gbd’den çıkmak için <command
+>q</command
+> düğmesine basın. Genellikle en iyi hata ayıklama sonuçları Valgrind aracı kullanıldığında elde edilir. </para>
+  <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+      
+<qandaentry>
+        <question id="faqg_mail_list">
+          <para
+>&krusader;’ın bir posta listesi var mı?</para>
+        </question>
+        <answer>
+          <para
+>Evet, şu anda birkaç tane <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>posta listemiz</ulink
+> vardır. İstenmeyen posta göndermeyiz, yalnızca &krusader; hakkında konuşuruz. Abone olmaktan veya abonelikten çıkmaktan çekinmeyin.</para>
+          <para
+>İpucu: E-posta listelerimize çevrim içi olarak göz atabilir veya bir haber okuyucu ile okuyabilirsiniz, bu nedenle e-posta listelerindeki gelişmeleri takip etmek için abone olmanıza bile gerek yoktur. <itemizedlist>
+            <listitem>
+              <para
+><ulink url="https://groups.google.com/group/krusader-devel"
+>&krusader;-devel</ulink
+>, geliştirici posta listemizdir (saltokunur). Eğer &krusader;’ın gelişimini en güncel hâliyle takip etmek istiyorsanız izlemeniz gereken liste budur.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://groups.google.com/group/krusader-users"
+>&krusader;-users</ulink
+>, &krusader; kullanıcıları posta listesidir. Burada yardım isteyebilir ve &krusader; kullanıcıları ve geliştiricileriyle sohbet edebilirsiniz.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="http://groups.google.com/group/krusader-news"
+>&krusader;-news</ulink
+> pek düşük yoğunluklu bir posta listesidir; genelde yeni sürüm duyuruları veya kritik hata düzeltmeleri ile ilgili bilgi vermek için kullanılır.</para>
+            </listitem>
+          </itemizedlist
+></para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_newsfeeds">
+          <para
+>&krusader; haber kaynağı beslemeleri sağlıyor mu?</para>
+        </question>
+        <answer>
+          <para
+>Evet, sunuyoruz. Çeşitli biçimlerde birçok haber akışı beslemesi bulunur. <ulink url="https://groups.google.com/group/krusader-devel/feeds"
+>krusader-devel feed</ulink
+>, <ulink url="https://groups.google.com/group/krusader-users/feeds"
+>krusader-users feed</ulink
+> ve <ulink url="https://groups.google.com/group/krusader-news/feeds"
+>krusader-news feed</ulink
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_kru-forum">
+          <para
+>&krusader; forumu nasıl işler?</para>
+        </question>
+        <answer>
+          <para
+>İfade özgürlüğü ruhuyla, &krusader; ile ilgili her şey forumumuzda tartışılabilir. Yeni başlayan veya deneyimli bir kullanıcı olmanız fark etmez, herkes hoş gelmiştir. Açık kaynaklı bir projenin en büyük gücü, kullanıcı geri bildirimlerinden gelir. Bu yüzden sizin söyleyeceklerinizi duymayı çok seviyoruz. Geri bildirimlerinizle &krusader;’ı daha da iyi hale getirebiliriz; aksi takdirde, sahip olabileceğiniz sorunlardan ve fikirlerden haberdar olamayız. Ancak lütfen aşağıdaki hususları unutmayın, böylece kaos içinde bir düzeni koruyabiliriz.</para>
+          <para
+><link linkend="index"
+>Belgelendirme</link
+>, <link linkend="faq"
+>SSS</link
+> ve <ulink url="https://groups.google.com/group/krusader-devel"
+>&krusader;-devel</ulink
+> listesi size yardımcı olamıyorsa (lütfen önce arama işlevini kullanın) forumumuza yazmaktan çekinmeyin. &krusader; ekibi veya topluluğu size her zaman yardımcı olmaya hazırdır.</para>
+          <para
+>Lütfen <ulink url="https://forum.kde.org/viewforum.php?f=225"
+>&kde; forumundaki</ulink
+> arama işlevini kullanın; sorununuz daha önce tartışılmış olabilir. Sorununuz daha önce tartışılmışsa probleminize anında bir çözüm bulma olasılığınız çok yüksektir. Sorun şu anda tartışılıyorsa tartışmaya katılabilirsiniz. Bazı sorular tekrar tekrar soruluyor, bu yüzden bu <link linkend="faq"
+>SSS</link
+> bölümünü oluşturduk. Bu, &krusader;’ı geliştirmeye daha fazla zaman ayırmamızı sağlıyor.</para>
+<!--          <para
+>The <ulink url="https://krusader.org/phpBB/index.php"
+>&krusader; Forum</ulink
+> is split into seven
+          sections: 
+          <itemizedlist>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=7"
+>News and Announcements Forum</ulink
+>: all the latest
+              news.</para>
+            </listitem>
+             <listitem>
+              <para
+><ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=12"
+>NewsLetter Forum</ulink
+>: all newsletters.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=3"
+>Bug Discussion Forum</ulink
+>: discussions about
+              bugs, please DO NOT use the forum for
+              <link linkend="faqg_bug_report"
+>bug reports</link
+> (except if you are
+              unsure if you have found a bug).</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=6"
+>New Features Discussion/Requests Forum</ulink
+>: discussions
+              about new features for future &krusader;
+              versions.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=10"
+>ToDo Forum</ulink
+> here you will find
+              the list of the planned features. Registered users
+              will be able to VOTE and COMMENT on the TODO items.
+              Here you get the chance to push your favourite
+              features (+3) and still prefer certain features over
+              others (+1), if you do not care about a feature just
+              simply do not vote on that feature. Unregistered users
+              may only browse the <ulink url="https://krusader.org/phpBB/viewforum.php?f=10"
+>ToDo Forum</ulink
+>. The
+              <ulink url="https://krusader.org/todo.php"
+>ToDo ranking system</ulink
+> contains the results
+              based on the votes. 
+              <link linkend="faqg_patch"
+>Adding ToDo items</link
+> or
+              removing ToDo items which have been implemented will
+              be done by the &krusader; Krew.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=11"
+>UserActions Forum</ulink
+>: discussions
+              about <link linkend="useractions"
+>UserActions</link
+>. Posting your own
+              User Actions is greatly appreciated. We plan to
+              include the best ones in the next
+              &krusader; releases.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=1"
+>General Discussion Forum</ulink
+>: everything that
+              is &krusader; related and does not belong
+              in the other forums.</para>
+            </listitem>
+              </itemizedlist
+></para
+>-->
+          <para
+>İşbirliğiniz için teşekkürler!</para>
+          <!--<para
+>We provide a <ulink url="http://krusader.sf.net/phpBB/rss.php"
+>RSS feed</ulink
+> for our forums.
+	  You do not have to check for new posts all the time, instead the news
+          will come to you!</para
+>-->
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_i18n">
+          <para
+>&krusader;’ı ana dilime nasıl çeviririm?</para>
+        </question>
+        <answer>
+          <para
+>&krusader; arayüzünü veya belgelendirmesini çevirmekle ilgileniyorsanız lütfen dilinizin <ulink url="https://l10n.kde.org/teams-list.php"
+>KDE çeviri takımına</ulink
+> ulaşın.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_support">
+          <para
+>&krusader;’i nasıl destekleyebilirim?</para>
+        </question>
+        <answer>
+          <para
+>&krusader;’ı birçok şekilde <link linkend="help_krusader"
+> destekleyebilirsiniz</link
+>. Lütfen bize <link linkend="faqg_wish"
+>geri bildirimler</link
+>, <link linkend="faqg_bug_report"
+>hata raporları</link
+>, yamalar, <link linkend="help_krusader"
+>bağışlar</link
+>, çeviriler vb. gönderin.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_mcstyle">
+          <para
+>Neden &konqueror;’ı <quote
+>Midnight Commander tarzında</quote
+> kullanmak varken bir <link linkend="gloss-ofm"
+>Ortodoks Dosya Yöneticisi</link
+> kullanmalıyım?</para>
+        </question>
+        <answer>
+          <para
+>İki panel, komut satırı ve bulunur. Diğer <link linkend="features"
+>Ortodoks Dsya Yöneticisi özellikleri</link
+> ve kullanıcıyla olan <link linkend="gloss-ofm"
+>Ortodoks Dosya Yöneticisi</link
+> etkileşimi, bu profilde sağlanmaz.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_why_ofm">
+          <para
+>Neden bir <link linkend="gloss-ofm"
+>Ortodoks Dosya Yöneticisi</link
+> kullanmalıyım?</para>
+        </question>
+        <answer>
+          <para
+>Bir <ulink url="https://www.softpanorama.org/OFM/index.shtml"
+>alışılageldik dosya yöneticisi</ulink
+>, tek panelli dosya yöneticisinden ve komut satırından çok daha hızlıdır. <ulink url="https://www.softpedia.com/reviews/linux/Krusader-18193.shtml"
+>&krusader;’ın nasıl bir his verdiğini</ulink
+> bilmek isterseniz bunun tek bir yolu vardır: Bilgisayarlarınızdan birine kurun ve biraz kullanın. Zaman ve üretkenliğinizi kaybetmek istiyorsanız tek panelli dosya yöneticilerini kullanmayı sürdürebilirsiniz; örneğin &Windows; Gezgini gibi. Matej Urban&ccaron;i&ccaron;, bir <link linkend="gloss-ofm"
+>Ortodoks Dosya Yöneticisi</link
+>’nin neden daha iyi olduğuna yönelik bir <ulink url="https://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html"
+>günce</ulink
+> yazısı yazmıştır.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </sect1>
+  <!--
+  <qandaentry>
+       
+      <answer>
+         
+          // Empty line to make it more readable
+      </answer>
+  </qandaentry>
+-->
+</chapter>

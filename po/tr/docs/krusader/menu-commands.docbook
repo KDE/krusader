@@ -1,0 +1,2275 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="menu-commands">
+  <title
+>Menü Komutları</title>
+  <indexterm>
+    <primary
+>Komutlar</primary>
+    <secondary
+>Menü</secondary>
+  </indexterm>
+  <sect1 id="file-menu">
+    <title
+>Dosya Menüsü</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F4</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Yeni Metin Dosyası…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Başka bir klasör belirtilmediği sürece, geçerli klasörde yeni bir metin dosyası oluşturur. Yeni dosya oluşturulduktan sonra düzenleme için açılır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F7</keycap
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Yeni Klasör</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geçerli klasörde yeni bir klasör oluşturur.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Yeni Sembolik Bağlantı…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Seçili dosyaya bir sembolik bağlantı oluşturur.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F3</keycap
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Dosyayı Görüntüle</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Seçili dosyayı <link linkend="kredit"
+>görüntülemek</link
+> için açar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F4</keycap
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Dosyayı Düzenle</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Seçili dosyayı <link linkend="kredit"
+>düzenlemek</link
+> için açar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F5</keycap
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Diğer Panele Kopyala</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Şu anda seçili olan dosyaları veya klasörleri diğer panele kopyalar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F6</keycap
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Taşı</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Şu anda seçili olan dosyaları veya klasörleri <link linkend="copying"
+>taşımak</link
+> için bir iletişim kutusu açar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Paketle…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki tüm seçili dosyaların veya klasörlerin yeni bir <link linkend="pack-archive"
+>arşivini</link
+> oluşturur.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Paketi Aç…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki tüm seçili dosyaları <link linkend="unpacking-archives"
+>paketten</link
+> çıkarır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Arşivi Sına</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Bozulmaya karşı <link linkend="test-archive"
+>arşivi sınar</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Dosya</guimenu
+> <guimenuitem
+>İçeriğe Göre Karşılaştır…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Dış bir grafiksel karşılaştırma aracı kullanarak, her panelden birer dosya olmak üzere, var olan iki dosyayı içeriklerine göre karşılaştırır. Öntanımlı olarak &kompare; kullanılır; ancak <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> veya <ulink url="https://apps.kde.org/kdiff3"
+><application
+>KDiff3</application
+></ulink
+> arasından da seçim yapabilirsiniz; değiştirmek isterseniz bunu <link linkend="konfig-dependencies"
+>Yapılandırıcı Bağımlılıklar</link
+> sayfasından yapabilirsiniz.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="multi_rename">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F2</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Çoklu Yeniden Adlandır…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Bu menü seçeneği, güçlü bir toplu ad değiştiricisi olarn <ulink url="hhttps://apps.kde.org/krename"
+><application
+>K Adveren</application
+></ulink
+>’i başlatır.</para>
+          <itemizedlist>
+            <title
+>K Adveren Özellikleri</title>
+            <listitem>
+              <para
+>Bir dizi ifadeye göre dosya listesini yeniden adlandırma</para>
+            </listitem>
+            <listitem>
+              <para
+>Dosya listesini başka bir klasöre kopyalama/taşıma</para>
+            </listitem>
+            <listitem>
+              <para
+>Dosya adlarını BÜYÜK/küçük harfe dönüştürme</para>
+            </listitem>
+            <listitem>
+              <para
+>Dosya adlarına numara ekleme</para>
+            </listitem>
+            <listitem>
+              <para
+>Dosya adının kısımlarını bulma ve değiştirme</para>
+            </listitem>
+            <listitem>
+              <para
+>MP3/OGG ​​Vorbis dosyalarını ID3 künyelerine göre yeniden adlandırma</para>
+            </listitem>
+            <listitem>
+              <para
+>Erişim ve değişiklik tarihlerinin ayarlanması</para>
+            </listitem>
+            <listitem>
+              <para
+>Dosya izinlerini ve sahipliğini değiştirme</para>
+            </listitem>
+            <listitem>
+              <para
+>K Adveren’in özelliklerini genişletmenizi sağlayan bir eklenti API’si</para>
+            </listitem>
+            <listitem>
+              <para
+>Klasörleri özyineli olarak yeniden adlandırma</para>
+            </listitem>
+            <listitem>
+              <para
+>KFilePlugins desteği</para>
+            </listitem>
+            <listitem>
+              <para
+>Yeniden adlandırmayı geri alma</para>
+            </listitem>
+            <listitem>
+              <para
+>Ve daha fazlası…</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Sağlama Toplamı Oluştur…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Dosyalar ve klasörler için <link linkend="checksum"
+>sağlama toplamları</link
+> oluşturur.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Sağlama Toplamını Doğrula…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para>
+            <link linkend="checksum"
+>Sağlama toplamını doğrulamak için kullanılır.</link>
+          </para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Dosyayı Böl…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="splitter"
+>Dosyayı Böl</link
+> özelliği, bir dosyayı birden çok ufak parçaya böler; böylece daha küçük ortamlarda saklanabilir (<hardware
+>disketler, zip sürücüler, …</hardware
+> gibi) veya e-posta ile gönderilebilir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Dosyaları Birleştir…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="splitter"
+>Dosyaları Birleştir</link
+> özelliği, <link linkend="splitter"
+>Dosyayı Böl</link
+> kullanıldıktan sonra ortaya çıkan parçaları birleştirmek için kullanılır.</para>
+        </listitem>
+      </varlistentry>
+      <!--vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Çık</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>&krusader;’ı kapatır ve geçici klasörü temizler; <keycap
+>F10</keycap
+> düğmesine basma ile aynı işlevi görür.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="edit-menu">
+    <title
+>Düzen Menüsü</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Kes</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Başka bir konuma taşınmak üzere, seçili dosyaları panoya <link linkend="copying"
+>keser</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Kopyala</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Başka bir konuma taşınmak üzere, seçili dosyaları panoya <link linkend="copying"
+>kopyalar</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Yapıştır</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Daha önceden panoya kesilmiş veya kopyalanmış dosyaları geçerli klasöre <link linkend="copying"
+>yapıştırır</link
+>.</para>
+        </listitem>
+      </varlistentry>
+<!--
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycap
+>F2</keycap>
+            </shortcut>
+            <guimenu
+>Edit</guimenu>
+            <guimenuitem
+>Rename</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          <link linkend="renaming"
+>Renames</link
+> the currently
+          selected file.</para>
+        </listitem>
+      </varlistentry
+>-->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F8</keycap
+> </shortcut
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Sil</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Şu anda seçili olan dosyaları <link linkend="deleting"
+>siler</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Grubu Seç…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki dosyaları seçmenize olanak tanıyan bir iletişim kutusu açar. <guilabel
+>Ara</guilabel
+> iletişim kutusunda, ana arama kriterini girin. Bir dosya adı, bir joker ( <literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> &etc;) veya boşlukla ayrılmış bir biçimde her ikisini de girin. <literal
+>“text”</literal
+> kullanırken, sonuçlar <literal
+>“*text*”</literal
+> ile aynıdır. Aramadan dosyaları “|” ile dışlayabilirsiniz (örneğin, <literal role="extension"
+>“*.cpp *.h | *.moc.cpp”</literal
+>). <link linkend="profiles"
+>Profil işleyicisi</link
+> ile, gelecek kullanımlar için seçimlerinizi yönetebilirsiniz. Bir profile çift tıklamak, seçime girmek ve <guibutton
+>Tamam</guibutton
+> düğmesine basmakla aynıdır. <guilabel
+>Grubu Seç</guilabel
+> ile ilgili ek seçenekleri <link linkend="krusearcher"
+>Arama İletişim Kutusu</link
+> faslında açıklanmıştır; özünde ikisi de aynı iletişim kutularıdır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Grubun Seçimini Kaldır…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><guimenuitem
+>Grubu Seç</guimenuitem
+> işlevinin tam tersidir. Etkin paneldeki dizgiye uyan dosyaların seçimi kaldırılacaktır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Tümünü Seç</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki tüm dosyaları seçer. Tüm klasörleri seçmek için <link linkend="konfig-panel"
+>Yapılandırıcı Panel</link
+> sayfasındaki <guilabel
+>Klasörleri kendiliğinden seç</guilabel
+> seçeneğini etkinleştirin.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Tümünün Seçimini Kaldır</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki tüm dosyaların seçimini kaldırır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Seçimi Tersine Çevir</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki tüm dosyaların seçim durumunu tersine çevirir (yani, seçili dosyalar seçili olmaktan çıkar ve seçili olmayan dosyalar seçili hale gelir).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Seçimi Geri Yükle</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Daha önce seçili olmayan ögelerin seçim durumunu geri yükler.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Klasörde Bul…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>&krusader;’ın <link linkend="quicksearch"
+>tez arama</link
+> işlevine geçiş yapar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Klasörleri Karşılaştır</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>&krusader;’ın <link linkend="compare-dir"
+>klasörleri karşılaştırma</link
+> işlevine geçiş yapar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Karşılaştırma Ayarları</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><guimenuitem
+>Klasörleri karşılaştırma</guimenuitem
+> işlevinin ayarlarını yapar.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Daha Yeni ve Tek Olanı Seç</guimenuitem
+> (Öntanımlı)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Tek Olanı Seç</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Daha Yeni Olanı Seç</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Farklı ve Tek Olanı Seç</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Farklı Olanı Seç</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Kapladığı Alanı Hesapla</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Dosyaların, klasörlerin, arşivlerin ve uzak dosya sistemlerinin <link linkend="calculate"
+>kapladığı alanı hesaplar</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keysym
+>Dönüş</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Özellikler…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Şu anda seçili olan dosyanın özellikler iletişim kutusunu açar. (KP, Düğme Takımı anlamına gelir.)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="go-menu">
+    <title
+>Git Menüsü</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Up;</keycombo
+> </shortcut
+> <guimenu
+>Git</guimenu
+> <guimenuitem
+>Yukarı</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin panelin üst klasörüne gider.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Left;</keycombo
+> </shortcut
+> <guimenu
+>Git</guimenu
+> <guimenuitem
+>Geri</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin panelde daha önce görüntülenen klasöre gider.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Right;</keycombo
+> </shortcut
+> <guimenu
+>Git</guimenu
+> <guimenuitem
+>İleri</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin panelde görüntülenen bir sonraki klasöre gider. Yalnızca önceden <menuchoice
+><guimenu
+>Git</guimenu
+> <guimenuitem
+>Geri</guimenuitem
+></menuchoice
+> kullanılmışsa kullanılabilir hale gelir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Home;</keycombo
+> </shortcut
+> <guimenu
+>Git</guimenu
+> <guimenuitem
+>Ana Klasör</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geçerli kullanıcının ana klasörüne gider.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; &Backspace;</keycombo
+> </shortcut
+> <guimenu
+>Git</guimenu
+> <guimenuitem
+>Kök</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sistemin kök klasörüne gider.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Git</guimenu
+> <guimenuitem
+>Popüler &URL;’ler…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sıkça görüntülenen klasörlerin bir listesini gösterir; bunlardan birine çift tıklayarak istediğiniz klasöre gidebilirsiniz.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Git</guimenu
+> <guimenuitem
+>Geriye Gitme Noktası Ayarla</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geçerli klasörü bir <quote
+>geri atlama</quote
+> noktası olarak ayarlar. Bu klasöre tez gitmek için <guimenu
+>Git</guimenu
+> menüsünden <guimenuitem
+>Geriye Git</guimenuitem
+> komutunu seçin.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Git</guimenu
+> <guimenuitem
+>Geriye Git</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Önceki bir <quote
+>geri atlama</quote
+> noktasına geri döner.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="view-menu">
+    <title
+>Görünüm Menüsü</title>
+    <para
+>Bu alt menüdeki işlemler, genellikle geçerli &krusader; oturumunu etkiler. Kalıcı değişiklikler yapmak istiyorsanız <link linkend="konfigurator"
+>Yapılandırıcı Başlangıç</link
+> sayfasını kullanın.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>View</guimenu
+> <guimenuitem
+>Yakınlaştır</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Görüntü ölçeğini artır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Uzaklaştır</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Görüntü ölçeğini azaltır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Öntanımlı Yakınlaştırma</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Görüntü ölçeğini sıfırlar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Ayrıntılı Görünüm</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Dosya adlarını, dosya büyüklüklerini, oluşturulma tarihini/saatini ve özelliklerini gösterir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Özet Görünüm</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Yalnızca dosya adlarını gösterir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Gizli Dosyaları Göster</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>&krusader; panellerinde gizli dosyaların görüntülenme seçeneğini açıp kapatır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F10</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Tüm Dosyalar</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Tüm süzgeçleri kapatır ve tüm dosyaları görüntüler.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F12</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Özel</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>&krusader; paneline özel bir süzgeç yüklemenizi sağlar. Yalnızca süzgeç dizgilerine ve klasörlere uyan dosyalar görüntülenecektir. Kullandıktan sonra özel süzgeci devre dışı bırakmayı unutmayın, aksi takdirde bazı dosyalar görünmeyebilir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Önizlemeleri Göster</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>İşaretlenirse etkin paneldeki tüm dosya ve klasörlerin önizlemeleri gösterilir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Uzak Karakter Kümesi Seç</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="remote-connections"
+>Uzak Bağlantılar</link
+> için kullanılacak karakter kümesini seçer.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Yeniden Yükle</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin panelin içeriğini yeniler.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Ayarları Öntanımlı Olarak Kaydet</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geçerli sekmenin görünüm ayarlarını, bu görünüm türünün yeni örnekleri için kaydetmenizi sağlar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Ayarları Diğer Sekmelere Uygula</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geçerli sekmenin görünüm ayarlarını diğer sekmelere uygulamanıza olanak tanır.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="useractions-menu">
+    <title
+>Kullanıcı Eylemleri Menüsü</title>
+    <para
+>Kendi <link linkend="useractions"
+>kullanıcı eylemlerinizi</link
+> tanımlayarak buraya kendi menü girdilerinizi ekleyebilirsiniz. </para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Kullanıcı Eylemleri</guimenu
+> <guimenuitem
+>Kullanıcı Eylemlerini Yönet…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Kullanıcı Eylemleri</link
+> yöneticisini açar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>A</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Kullanıcı Eylemleri</guimenu
+><guisubmenu
+>Çoklu Ortam</guisubmenu
+> <guimenuitem
+>Amarok’ta Kuyruğa Ekle</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Seçili ögeleri &amarok; çalma listesine iliştirir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; </keycombo
+> </shortcut
+> <guimenu
+>Kullanıcı Eylemleri</guimenu
+><guisubmenu
+>Örnekler</guisubmenu
+> <guimenuitem
+>Eşit Panel Boyutu</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>İki panel arasındaki oranı 50/50 olarak ayarlar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;<keycap
+>E</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Kullanıcı Eylemleri</guimenu
+><guisubmenu
+>Örnekler</guisubmenu
+> <guimenuitem
+>Kök Olarak Düzenle</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Bu komut, kök yetkilerini kullanarak <application
+>kwrite</application
+> komutuyla bir dosyayı düzenlemenizi sağlar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>M</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Kullanıcı Eylemleri</guimenu
+><guisubmenu
+>Örnekler</guisubmenu
+> <guimenuitem
+>Bağla</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Yeni bir dosya sistemini bağlar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>C</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Kullanıcı Eylemleri</guimenu
+><guisubmenu
+>Örnekler</guisubmenu
+> <guimenuitem
+>Geçerli Ögeyi Panoya Kopyala</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geçerli ögenin adını panoya kopyalar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta;<keycap
+>F5</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Kullanıcı Eylemleri</guimenu
+><guisubmenu
+>Sistem</guisubmenu
+> <guimenuitem
+>Geçerliyi Yedekle</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geçerli klasördeki var olan dosyanın yedeğini alır ve kullanıcıdan yeni bir dosya adı ister. Öntanımlı olarak, özgün dosya adının sonuna <literal role="extension"
+>.old</literal
+> iliştirilir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>1</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Kullanıcı Eylemleri</guimenu
+><guisubmenu
+>Kullanıcı Arayüzü</guisubmenu
+> <guimenuitem
+>Ada Göre Sırala</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Bu özellik etkinleştirildiğinde, &krusader; panelindeki ana sıralama ölçütü dosya adı olur.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>2</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Kullanıcı Eylemleri</guimenu
+><guisubmenu
+>Kullanıcı Arayüzü</guisubmenu
+> <guimenuitem
+>Uzantıya Göre Sırala</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Bu özellik etkinleştirildiğinde, &krusader; panelindeki ana sıralama ölçütü dosya uzantısı (dosya adının sonundaki “.” işaretinden sonraki kısım) olur. Bu, aynı türdeki dosyaları birbirine daha yakın gruplandırmak için kullanışlıdır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>3</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Kullanıcı Eylemleri</guimenu
+><guisubmenu
+>Kullanıcı Arayüzü</guisubmenu
+> <guimenuitem
+>Büyüklüğe Göre Sırala</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Bu özellik etkinleştirildiğinde, &krusader; panelindeki ana sıralama ölçütü dosya boyutu olur. Bu, belirli bir klasördeki en büyük dosyaları belirlemek için kullanışlıdır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>4</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Kullanıcı Eylemleri</guimenu
+><guisubmenu
+>Kullanıcı Arayüzü</guisubmenu
+> <guimenuitem
+>Değiştirilmeye Göre Sırala</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Bu özellik etkinleştirildiğinde, &krusader; panelindeki ana sıralama ölçütü her dosya için son değiştirilme tarihi olur. Bu, yakın zamanda üzerinde çalıştığınız dosyaları bulmak için kullanışlıdır.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="tools-menu">
+    <title
+>Araçlar Menüsü</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Ara…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="krusearcher"
+>KruSearcher</link
+> — &krusader; arama modülünü açar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Bul…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Hızlı dosya arama için <link linkend="locate"
+>Bul</link
+> arayüzünü açar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Klasörleri Eşzamanla</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="synchronizer"
+>Klasörleri Eşzamanla</link
+> işlevi, sağ ve sol panelleri karşılaştırır ve aralarındaki farkları gösterir. Karşılaştırma işleminden sonra eşzamanlanmaları için dosyaları/klasörleri taşıyabilirsiniz.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Bağlamacı…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="mount-man"
+>Bağlamacı</link
+>’yı açmak veya çeşitli bağlama noktalarını bağlamak/bağlantılarını kesmek için alt menüyü açar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Disk Kullanımı…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="diskusage"
+>Disk Kullanımı</link
+>’nı açar.</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Yeni Ağ Bağlantısı</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Uzak bir makineye bir &FTP;, SMB, FISH or SFTP bağlantısı yapmak için <link linkend="remote-connections"
+>Yeni Ağ Bağlantısı</link
+> iletişim kutusunu açar. Kullanıcı adı ve parola alanlarını boş bırakırsanız anonim olarak oturum açarsınız. Bu uzak oturumlara <link linkend="bookman"
+>yer imi</link
+> koyabilirsiniz.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Ağ Bağlantısını Kes</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki <link linkend="remote-connections"
+>uzak bağlantıyı</link
+> sonlandırır ve başlangıç yoluna geri döner.</para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Uçbirimi Başlat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Öntanımlı klasörde bir uçbirim penceresi açar (genellikle ana klasörünüz olur). <link linkend="konfig-general"
+>Yapılandırıcı Genel</link
+> sayfasından tercih ettiğiniz uçbirim uygulamasını ayarlayabilirsiniz.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="root-mode">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>K</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Krusader’ı Yönetici Kipinde Başlat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>&krusader;’ı aynı konumda <link linkend="root-mode"
+>kök kipinde</link
+> başlatır. Öntanımlı olarak, kök kipindeyken &krusader;, <command
+>kdesu</command
+> komutuna gereksinim duyar. <command
+>kdesu</command
+> kullanılamıyorsa veya <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+> kullanırken; örneğin, <command
+>gksu</command
+> tercih ediyorsanız bunu <link linkend="konfig-dependencies"
+>Yapılandırıcı Bağımlılıklar</link
+> sayfasından değiştirebilirsiniz.</para>
+          <caution>
+            <para
+>&krusader;’ı kök ayrıcalıklarıyla kullanırken ÇOK DİKKATLİ OLUN!</para>
+          </caution>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Çöp Kutusunu Boşalt</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="deleting"
+>Çöp kutusunu</link
+> boşaltır.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="window-menu">
+    <title
+>Pencere Menüsü</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Yeni Sekme</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin panelde yeni bir sekme açar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Sekmeyi Kilitle/Sekmenin Kilidini Aç</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki geçerli sekmeyi kilitler ve ardından kilidini açar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Geçerli Sekmeyi Çoğalt</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki etkin sekmenin aynısı olan yeni bir sekme açar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Geçerli Sekmeyi Diğer Tarafa Taşı</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Geçerli sekmeyi, &krusader; penceresinin diğer tarafına taşır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Geçerli Sekmeyi Kapat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki geçerli sekmeyi kapatır. Bu komut, yalnızca etkin panelde birden fazla sekme varsa kullanılabilir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Etkin Olmayan Sekmeleri Kapat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin sekme dışında, etkin paneldeki tüm sekmeleri kapatır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Çoğaltılmış Sekmeleri Kapat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki yinelenmiş sekmeleri kapatır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Sonraki Sekme</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki bir sonraki sekmeye geçer. Bu komut yalnızca etkin panelde birden fazla sekme varsa kullanılabilir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Önceki Sekme</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Etkin paneldeki önceki sekmeye gider. Bu komut yalnızca etkin panelde birden fazla sekme varsa kullanılabilir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="c_panel_profiles">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Profiller</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="panel_profiles"
+>Panel profillerinin</link
+> kaydedilip geri yüklenebileceği bir menü açar.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Panellerin Yerlerini Değiştir</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sol panel sağ panel, sağ panel de sol panel olur; yalnızca geçerli sekmeler yer değiştirir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Tarafların Yerlerini Değiştir</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Sol panelin tamamı sağ panel, sağ panelin tamamı da sol panel olacak ve tüm sekmeler yer değiştirecektir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Dikey Kip</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="list_panel"
+>Liste panelini</link
+>, yatay ve dikey kip arasında geçiş yaptırır.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Tam Ekran Uçbirimi Aç/Kapat</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Uçbirim öykünücüsünü tam ekran olarak gösterir. Bu seçenek yalnızca, <guilabel
+>Uçbirim Öykünücüsünü Göster</guilabel
+> etkinken kullanılabilirdir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Konumu Kaydet</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>&krusader; ana penceresinin geçerli boyutlarını ve konumunu kaydeder. Bu eylem, <link linkend="konfigurator"
+>Yapılandırıcı Başlangıç</link
+> sayfasındaki <guilabel
+>Son konumu, boyut ve panel ayarlarını sakla</guilabel
+> ayarı ile otomatikleştirilebilir.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="settings-menu">
+    <title
+>Ayarlar Menüsü</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guisubmenu
+>Araç Çubukları</guisubmenu
+> <guimenuitem
+>Ana Araç Çubuğunu Göster</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>İşaretlendiğinde, <link linkend="mainwindow"
+>Ana Araç Çubuğu</link
+>’nu gösterir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guisubmenu
+>Araç Çubukları</guisubmenu
+> <guimenuitem
+>İş Araç Çubuğunu Göster</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>İşaretlendiğinde, <link linkend="job_toolbar"
+>İş Araç Çubuğu</link
+>’nu gösterir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guisubmenu
+>Araç Çubukları</guisubmenu
+> <guimenuitem
+>Eylemler Araç Çubuğunu Göster</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>İşaretlendiğinde, <link linkend="actions_toolbar"
+>Eylemler Araç Çubuğu</link
+>’nu gösterir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Durum Çubuğunu Göster</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>İşaretlendiğinde, <link linkend="mainwindow"
+>Durum Çubuğu</link
+>’nu gösterir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Fonksiyon Düğmeleri Çubuğunu Göster</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>İşaretlendiğinde, <link linkend="fnkeys"
+>Fonksiyon Düğmeleri Çubuğu</link
+>’nu gösterir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Uçbirim Öykünücüsünü Göster</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>İşaretlendiğinde, <link linkend="cmdline"
+>Uçbirim Öykünücüsü</link
+>’nü gösterir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Komut Satırını Göster</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>İşaretlendiğinde, <link linkend="cmdline"
+>Komut Satırı</link
+>’nı gösterir.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Komut Yürütme Kipi Ayarları</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Komut yürütme kipini seçmenize olanak tanır. Aşağıdaki seçeneklerden birini seçebilirsiniz.</para>
+	  <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Başlat ve Unut</guimenuitem
+>: start execution and do not wait for the results.</para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Standart ve Hata Çıktısını Ayrı Ayrı Görüntüle</guimenuitem
+>: show the output to stdout and stderr on the separate panels. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Standart ve Hata Çıktısını Karışık Görüntüle</guimenuitem
+>: show the output to stdout and stderr on the single panel (default). </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Yeni Uçbirimde Başlat</guimenuitem
+>: execute the command in the new terminal window. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>Gömülü Uçbirim Öykünücüsüne Gönder</guimenuitem
+>: send the command to the embedded terminal emulator. </para>
+            </listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+      <varlistentry id="job-queue-mode">
+        <term>
+          <menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>İş Kuyruğu Kipi</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="queue"
+>Kuyruk Yöneticisi</link
+> kipini açar/kapatır. İşaretliyse <keycap
+>F2</keycap
+> düğmesine veya kopyala/taşı iletişim kutusundaki karşılık gelen düğmeye basmak, kuyrukta bekleyen iş olsa bile işi anında başlatır. İşaretli değilse kuyruk boş değilken kuyruğa eklenir. Kuyruk boşsa zaten hemen başlanır. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="configure-shortcuts">
+        <term>
+          <menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Kısayolları Yapılandır…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <indexterm>
+            <primary
+>Yapılandır</primary>
+            <secondary
+>Kısayollar</secondary>
+          </indexterm>
+          <para
+>&krusader; düğme bağıntılarını yapılandırabileceğiniz bir iletişim kutusu açar.</para>
+          <para
+><guibutton
+>Kısayollar İçe Aktar</guibutton
+> ve <guibutton
+>Kısayolları Dışa Aktar</guibutton
+> düğmeleriyle bir düğme bağıntısı profilini yükleyebilir ve kaydedebilirsiniz. Bu, &krusader;’ın <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+>, foo-commander bağıntılarını veya kendi özel düğme bağıntılarınızı kullanabilmenize olanak tanır. Buradaki tek sınırlama ise global &plasma; düğme bağıntılarının ve bazı &krusader; düğme bağıntılarının henüz değiştirilemez olması ve foo-commander’daki bizde olmayan veya gerek duymadığımız bazı özelliklerin kullanılabilir olmamasıdır. Düğme bağıntıları, <filename
+>/usr/share/krusader</filename
+> konumunda depolanır; <filename
+>foo.keymap.info</filename
+> dosyası  bir açıklama içerir, <filename
+>foo.keymap</filename
+> ise düğme bağıntılarını tutan bir ini dosyasıdır. &krusader;-1.70.1 sürümüne değin bu bir ikili dosyaydı; &krusader;, bu eski ikili biçimi içe aktarabilecek şekilde geriye dönük uyumludur. Bir <filename
+>*.keymap.info</filename
+> metin dosyası varsa &krusader; onu görüntüler ve yüklenmiş düğme bağıntısı dosyasına ilişkin ek bilgi görüntüler. Bu aşamada, önerilen düğme bağıntısı dosyasını içe aktarmadan çıkma şansınız vardır.</para>
+          <tip>
+            <para
+>Bir <trademark class="copyright"
+>Total Commander</trademark
+> düğme bağıntıları dosyası sağlanır. Lütfen favori <link linkend="help_krusader"
+>düğme bağıntısı şemalarınızı</link
+> yükleyin ki tüm &krusader; topluluğu bundan yararlanabilsin. Teşekkürler!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Araç Çubuklarını Yapılandır…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="mainwindow"
+>Ana Araç Çubuğu</link
+>’nu veya <link linkend="actions_toolbar"
+>Eylemler Araç Çubuğu</link
+>’nu yapılandırmanıza olanak tanıyan bir iletişim kutusu açar. İstediğiniz araç çubuğuna kendi favori <link linkend="useractions"
+>kullanıcı eylemlerinizi</link
+> ekleyebilirsiniz.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>&krusader; Uygulamasını Yapılandır…</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="konfigurator"
+>Yapılandırıcı</link
+>’yı — &krusader; yapılandırma merkezini açar.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="help-menu">
+    <title
+>Yardım Menüsü</title>
+    <para
+>Ek olarak, &krusader;’da ortak &kde; <guimenu
+>Yardım</guimenu
+> menüsü ögeleri bulunur; daha fazla bilgi için &kde; Temelleri’nin <ulin url="help:/fundamentals/menus.html#menus-help"
+>Yardım Menüsü</ulink
+> ile ilgili bölümlerini okuyun. </para>
+  </sect1>
+</chapter>
