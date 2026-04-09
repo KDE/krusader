@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-02-16 00:51+0000\n"
-"PO-Revision-Date: 2026-04-07 20:57+0300\n"
+"PO-Revision-Date: 2026-04-08 20:13+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -1000,7 +1000,7 @@ msgstr "Sağlama Toplamı Oluşturuluyor"
 #: app/Dialogs/checksumdlg.cpp:252
 #, kde-format
 msgid "Create Checksums"
-msgstr "Sağlama Toplamı Oluştur"
+msgstr "Sağlama Toplamları Oluştur"
 
 #: app/Dialogs/checksumdlg.cpp:254
 #, kde-format
@@ -1077,7 +1077,7 @@ msgstr "Sağlama Toplamları Doğrulanıyor"
 #: app/Dialogs/checksumdlg.cpp:466
 #, kde-format
 msgid "Verify Checksum File"
-msgstr "Sağlama Toplamları Dosyasını Doğrula"
+msgstr "Sağlama Toplamı Dosyasını Doğrula"
 
 #: app/Dialogs/checksumdlg.cpp:468
 #, kde-format
@@ -2610,7 +2610,7 @@ msgstr "İş İlerleme Çubuğu"
 #: app/JobMan/jobman.cpp:198
 #, kde-format
 msgid "Job Queue Mode"
-msgstr "İş Kuyruk Kipi"
+msgstr "İş Kuyruğu Kipi"
 
 #: app/JobMan/jobman.cpp:199
 #, kde-format
@@ -5196,7 +5196,7 @@ msgstr "Sekme değiştirme paneli"
 #: app/kractions.cpp:182
 #, kde-format
 msgid "Show &FN Keys Bar"
-msgstr "İş&lev Düğmeleri Çubuğunu Göster"
+msgstr "&Fonksiyon Düğmeleri Çubuğunu Göster"
 
 #: app/kractions.cpp:184
 #, kde-format
@@ -5216,7 +5216,7 @@ msgstr "Gizli Dosyaları Göster"
 #: app/kractions.cpp:202
 #, kde-format
 msgid "S&wap Panels"
-msgstr "&Pencerelerin Yerlerini Değiştir"
+msgstr "&Panellerin Yerlerini Değiştir"
 
 #: app/kractions.cpp:204 app/Panel/panelcontextmenu.cpp:261
 #, kde-format
@@ -5241,7 +5241,7 @@ msgstr "açılır komut satırı"
 #: app/kractions.cpp:214
 #, kde-format
 msgid "Start &Root Mode Krusader"
-msgstr "K&rusader’i Yönetici Kipinde Başlat"
+msgstr "K&rusader’ı Yönetici Kipinde Başlat"
 
 #: app/kractions.cpp:215
 #, kde-format
@@ -5276,7 +5276,7 @@ msgstr "&Tek Olanı Seç"
 #: app/kractions.cpp:221
 #, kde-format
 msgid "Select Different &and Single"
-msgstr "Farklı ve &Yalnız Olanı Seç"
+msgstr "&Farklı ve Tek Olanı Seç"
 
 #: app/kractions.cpp:222
 #, kde-format
@@ -5522,8 +5522,8 @@ msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
 "verify that kde-cli-tools are installed."
 msgstr ""
-"Krusader kök kipinde başlatılamadı, %1 bulunamadı veya yürütülebilir değil. "
-"Lütfen kde-cli-tools’un kurulu olduğundan emin olun."
+"Krusader yönetici kipinde başlatılamadı, %1 bulunamadı veya yürütülebilir "
+"değil. Lütfen kde-cli-tools’un kurulu olduğundan emin olun."
 
 #: app/krslots.cpp:504
 #, kde-format
@@ -5533,7 +5533,7 @@ msgstr "Hangi dosyanın ayrılacağı bilinmiyor."
 #: app/krslots.cpp:513
 #, kde-format
 msgid "You cannot split a folder."
-msgstr "Bir klasörü ayıramazsınız."
+msgstr "Bir klasörü bölemezsiniz."
 
 #: app/krslots.cpp:536
 #, kde-format
@@ -5548,12 +5548,12 @@ msgstr "Bir klasörü birleştiremezsiniz."
 #: app/krslots.cpp:570 app/krslots.cpp:621
 #, kde-format
 msgid "Not a split file: %1."
-msgstr "Bir ayırma dosyası değil: %1."
+msgstr "Bir bölme dosyası değil: %1."
 
 #: app/krslots.cpp:581
 #, kde-format
 msgid "Select only one split file."
-msgstr "Yalnızca bir ayırma dosyası seçin."
+msgstr "Yalnızca bir bölme dosyası seçin."
 
 #: app/krslots.cpp:628
 #, kde-format
@@ -5616,7 +5616,7 @@ msgstr "Dü&zenle"
 #: app/krusaderui.rc:53
 #, kde-format
 msgid "Compare Se&tup"
-msgstr "Karşılaştırma &Ayarı"
+msgstr "Karşılaştırma &Ayarları"
 
 #. i18n: ectx: Menu (myview)
 #: app/krusaderui.rc:65
@@ -6854,7 +6854,7 @@ msgstr "Bağlamacı Bilgisi"
 #: app/MountMan/kmountmangui.cpp:188
 #, kde-format
 msgid "Show only removable devices"
-msgstr "Yalnızca çıkarılabilir aygıtları göster"
+msgstr "Yalnızca kaldırılabilir aygıtları göster"
 
 #: app/MountMan/kmountmangui.cpp:421
 #, kde-format
@@ -7171,12 +7171,12 @@ msgstr "Yapıştır"
 #: app/Panel/listpanelactions.cpp:65 app/Search/krsearchdialog.cpp:199
 #, kde-format
 msgid "View File"
-msgstr "Dosya Görüntüle"
+msgstr "Dosyayı Görüntüle"
 
 #: app/Panel/listpanelactions.cpp:66 app/Search/krsearchdialog.cpp:204
 #, kde-format
 msgid "Edit File"
-msgstr "Dosya Düzenle"
+msgstr "Dosyayı Düzenle"
 
 #: app/Panel/listpanelactions.cpp:67
 #, kde-format
@@ -7211,7 +7211,7 @@ msgstr "Yeni Klasör…"
 #: app/Panel/listpanelactions.cpp:74
 #, kde-format
 msgid "Start Terminal Here"
-msgstr "Burada Uçbirim Aç"
+msgstr "Burada Uçbirim Başlat"
 
 #: app/Panel/listpanelactions.cpp:75
 #, kde-format
@@ -7251,7 +7251,7 @@ msgstr "Paketi &Aç…"
 #: app/Panel/listpanelactions.cpp:84
 #, kde-format
 msgid "Create Checksum..."
-msgstr "Sağlama Toplama Oluştur…"
+msgstr "Sağlama Toplamı Oluştur…"
 
 #: app/Panel/listpanelactions.cpp:85
 #, kde-format
@@ -8052,7 +8052,7 @@ msgstr "Ö&zel"
 #: app/Panel/viewactions.cpp:31
 #, kde-format
 msgid "Select &Group..."
-msgstr "&Grup Seç…"
+msgstr "&Grubu Seç…"
 
 #: app/Panel/viewactions.cpp:32
 #, kde-format
@@ -8062,7 +8062,7 @@ msgstr "&Tümünü Seç"
 #: app/Panel/viewactions.cpp:33
 #, kde-format
 msgid "&Unselect Group..."
-msgstr "Grup Seçi&mini Kaldır…"
+msgstr "Grubun Seçi&mini Kaldır…"
 
 #: app/Panel/viewactions.cpp:34
 #, kde-format
@@ -8117,7 +8117,7 @@ msgstr "Ayarları Öntanımlı Olarak Kaydet"
 #: app/Panel/viewactions.cpp:48
 #, kde-format
 msgid "Select group"
-msgstr "Grup seç"
+msgstr "Grubu seç"
 
 #: app/Panel/viewactions.cpp:49
 #, kde-format
@@ -8286,12 +8286,12 @@ msgstr ""
 #: app/Synchronizer/synchronizer.cpp:1345
 #, kde-format
 msgid "File Already Exists"
-msgstr "Dosya Zaten Var"
+msgstr "Dosya Halihazırda Var"
 
 #: app/Splitter/combiner.cpp:272
 #, kde-format
 msgid "Cannot open the first split file of %1."
-msgstr "%1 için ilk dosya parçası açılamadı."
+msgstr "%1 için olan ilk dosya parçası açılamadı."
 
 #: app/Splitter/combiner.cpp:282
 #, kde-format
@@ -8316,7 +8316,7 @@ msgstr "%1 dosyası bölünüyor…"
 #: app/Splitter/splitter.cpp:77
 #, kde-format
 msgid "Cannot split a folder."
-msgstr "Bir klasör ayrılamaz."
+msgstr "Bir klasör bölünemez."
 
 #: app/Splitter/splitter.cpp:121
 #, kde-format
@@ -8371,7 +8371,7 @@ msgstr "700 MB (CD-R)"
 #: app/Splitter/splittergui.cpp:84
 #, kde-format
 msgid "Split the file %1 to folder:"
-msgstr "%1 dosyasını klasöre ayır:"
+msgstr "%1 dosyasını klasöre böl:"
 
 #: app/Splitter/splittergui.cpp:101
 #, kde-format
@@ -8887,7 +8887,7 @@ msgstr "Adres sol veya sağ taban adresinin türünden olmalıdır."
 #: app/Synchronizer/synchronizergui.cpp:718
 #, kde-format
 msgid "Synchronize Folders"
-msgstr "Klasörleri Eşzamanla"
+msgstr "Klasörleri &Eşzamanla…"
 
 #: app/Synchronizer/synchronizergui.cpp:720
 #, kde-format
@@ -8957,7 +8957,7 @@ msgstr "Ögelerin seçimini &bırak"
 #: app/Synchronizer/synchronizergui.cpp:758
 #, kde-format
 msgid "I&nvert selection"
-msgstr "&Seçimi Tersine Çevir"
+msgstr "Seçimi &Tersine Çevir"
 
 #: app/Synchronizer/synchronizergui.cpp:768
 #, kde-format
@@ -9549,7 +9549,7 @@ msgstr "Yürütülen komut:"
 #: app/UserAction/useraction.cpp:160
 #, kde-format
 msgid "The file %1 does not contain valid UserActions.\n"
-msgstr "%1 dosyası geçerli Kullanıcı Eylemleri içermiyor.\n"
+msgstr "%1 dosyası geçerli kullanıcı eylemleri içermiyor.\n"
 
 #: app/UserAction/useraction.cpp:161 app/UserAction/useraction.cpp:174
 #: app/UserAction/useraction.cpp:184

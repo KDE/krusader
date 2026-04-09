@@ -17,8 +17,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.12.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 21.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -620,10 +620,6 @@ msgid "Title"
 msgstr "Titulok"
 
 #: app/ActionMan/useractionpage.cpp:38
-#, fuzzy
-#| msgid ""
-#| "*.xml|XML files\n"
-#| "*|All files"
 msgid "XML files (*.xml);;All files (*)"
 msgstr ""
 "*.xml|xml-súbory\n"
@@ -2555,12 +2551,9 @@ msgid "Empty Recently Closed Tabs"
 msgstr ":\tŽiadne nedávno zatvorené karty"
 
 #: app/GUI/terminaldock.cpp:97
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Cannot create embedded terminal.</b><br/>The reported error was: %1"
+#, kde-format
 msgid "<b>Cannot create embedded terminal.</b><br/>"
-msgstr ""
-"<b>Nemôžem vytvoriť zabudovaný terminál.</b><br/>Oznámená chyba bola: %1"
+msgstr "<b>Cannot create embedded terminal.</b><br/>"
 
 #: app/GUI/terminaldock.cpp:108
 #, kde-format
@@ -4659,8 +4652,7 @@ msgid "Hide SquashFS entries"
 msgstr "Skryť položky SquashFS"
 
 #: app/Konfigurator/kgpanel.cpp:839
-#, fuzzy, kde-format
-#| msgid "Show File System Type"
+#, kde-format
 msgid "Hide unknown File System entries"
 msgstr "Zobraziť typ súborového systému"
 
@@ -7648,7 +7640,7 @@ msgstr[2] "Kopírovať %1 súborov do:"
 #: app/Panel/panelfunc.cpp:667
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
-msgstr ""
+msgstr "Navrhovaný názov (\"%1\") je rovnaký ako predchádzajúci."
 
 #: app/Panel/panelfunc.cpp:676
 #, kde-format
@@ -7656,6 +7648,7 @@ msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr ""
+"Premenovanie \"%1\" nebolo vykonané, pretože navrhovaný názov bol prázdny."
 
 #: app/Panel/panelfunc.cpp:699
 #, kde-format
@@ -9677,8 +9670,7 @@ msgid "Copy file path of current item (escaping spaces)"
 msgstr "Kopírovať cestu k súboru aktuálnej položky (bez medzier)"
 
 #: app/useraction_examples.xml:46
-#, fuzzy, kde-format
-#| msgid "Copy file path of current item (escaping spaces)"
+#, kde-format
 msgid "Copy file path of current item"
 msgstr "Kopírovať cestu k súboru aktuálnej položky (bez medzier)"
 
@@ -9761,8 +9753,7 @@ msgstr ""
 "Môžete ju povoliť na stránke 'Archívy' v Konfigurátore."
 
 #: plugins/krarc/krarc.cpp:242
-#, fuzzy, kde-format
-#| msgid "Creating folders is not supported with %1 archives"
+#, kde-format
 msgid "Creating folders is not supported with %1 archives."
 msgstr "Vytváranie priečinkov nie je podporované v %1 archívoch"
 
@@ -9772,8 +9763,7 @@ msgid "Creating %1..."
 msgstr "Vytváram %1..."
 
 #: plugins/krarc/krarc.cpp:320
-#, fuzzy, kde-format
-#| msgid "Writing to %1 archives is not supported"
+#, kde-format
 msgid "Writing to %1 archives is not supported."
 msgstr "Zápis do %1 archívov nie je podporovaný"
 
@@ -9783,8 +9773,7 @@ msgid "Packing %1..."
 msgstr "Komprimujem %1..."
 
 #: plugins/krarc/krarc.cpp:427
-#, fuzzy, kde-format
-#| msgid "Retrieving data from %1 archives is not supported"
+#, kde-format
 msgid "Retrieving data from %1 archives is not supported."
 msgstr "Získavanie dát z %1 archívov nie je podporované"
 
@@ -9802,26 +9791,22 @@ msgstr ""
 "Došlo k chybe súvisiacej s externým programom '%1'. Chybová správa je: '%2'."
 
 #: plugins/krarc/krarc.cpp:626
-#, fuzzy, kde-format
-#| msgid "Deleting files from %1 archives is not supported"
+#, kde-format
 msgid "Deleting files from %1 archives is not supported."
 msgstr "Mazanie súborov z %1 archívov nie je podporované"
 
 #: plugins/krarc/krarc.cpp:670
-#, fuzzy, kde-format
-#| msgid "Accessing files is not supported with %1 archives"
+#, kde-format
 msgid "Accessing files is not supported with %1 archives."
 msgstr "Prístup k súborom nie je podporovaný s archívmi %1"
 
 #: plugins/krarc/krarc.cpp:783
-#, fuzzy, kde-format
-#| msgid "Writing to %1 archives is not supported"
+#, kde-format
 msgid "Copying from archive to archive is not supported."
-msgstr "Zápis do %1 archívov nie je podporovaný"
+msgstr "Copying from archive to archive is not supported."
 
 #: plugins/krarc/krarc.cpp:829
-#, fuzzy, kde-format
-#| msgid "Listing folders is not supported for %1 archives"
+#, kde-format
 msgid "Listing folders is not supported for %1 archives."
 msgstr "Zobrazenie zoznamu priečinkov nie je podporované pre %1 archívy."
 
@@ -10103,9 +10088,6 @@ msgstr "Prístup k súborom vyžaduje heslo."
 #~ "Nie je možné nájsť \"KsysCtrl\". Prosím, nainštalujte si balík KDE admin"
 
 #, fuzzy
-#~| msgid ""
-#~| "Could not create a temporary directory. Handling of Archives will not be "
-#~| "possible until this is fixed."
 #~ msgid ""
 #~ "Could not create a temporary folder. Handling of Archives will not be "
 #~ "possible until this is fixed."
@@ -10132,7 +10114,6 @@ msgstr "Prístup k súborom vyžaduje heslo."
 #~ msgstr "Kliknite, aby ste išli na <i>%1</i>"
 
 #, fuzzy
-#~| msgid "Fullscreen terminal (mc-style)"
 #~ msgid "Fullscreen embedded terminal (mc-style)"
 #~ msgstr "Celoobrazovkový terminál (štýl mc)"
 
@@ -10186,7 +10167,6 @@ msgstr "Prístup k súborom vyžaduje heslo."
 #~ msgstr "Nie je možné kopírovať súbory do tohto súborového systému"
 
 #, fuzzy
-#~| msgid "You do not have write permission to this directory"
 #~ msgid "You do not have write permission to this folder"
 #~ msgstr "Nemáte práva prístupu na zapisovanie do toho priečinka"
 
@@ -10279,7 +10259,6 @@ msgstr "Prístup k súborom vyžaduje heslo."
 #~ msgstr "Stav"
 
 #, fuzzy
-#~| msgid "Free Size"
 #~ msgctxt "Job type"
 #~ msgid "Folder Size"
 #~ msgstr "Voľná veľkosť"
@@ -10311,7 +10290,6 @@ msgstr "Prístup k súborom vyžaduje heslo."
 #~ msgstr "Zdroj"
 
 #, fuzzy
-#~| msgid "Cannot create a directory. Check your permissions."
 #~ msgid "Cannot create a folder. Check your permissions."
 #~ msgstr "Nie je možné vytvoriť adresár. Skontrolujte svoje práva."
 

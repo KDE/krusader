@@ -1,0 +1,507 @@
+<?xml version="1.0" ?>
+<!DOCTYPE refentry PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+
+<!ENTITY % Turkish "INCLUDE">
+]>
+
+<refentry lang="&language;">
+<refentryinfo>
+<title
+>KDE Kullanıcı Kılavuzu</title>
+<author
+><firstname
+>Krusader</firstname
+><surname
+>Krew</surname
+> <contrib
+>Krusader kılavuz sayfası</contrib
+> <email
+>krusader-devel@googlegroups.com</email
+></author>
+<date
+>2017‒05‒06</date>
+<productname
+>Krusader</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle
+><command
+>krusader</command
+></refentrytitle>
+<manvolnum
+>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+<refname
+>krusader</refname>
+<refpurpose
+>KDE tarafından yapılan gelişmiş çift panelli dosya yöneticisi ve &FTP; istemcisi</refpurpose>
+</refnamediv>
+<!-- body begins here -->
+
+<refsynopsisdiv>
+<cmdsynopsis
+><command
+>krusader</command
+> <arg choice="opt"
+>seçenekler</arg
+> <arg choice="plain"
+>URL</arg
+> </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+<title
+>Açıklama</title>
+<para
+>Krusader, Plasma ve *nix dünyasındaki diğer masaüstü ortamları için Midnight Commander’a veya Total Commander’a benzer gelişmiş bir çift panelli dosya yöneticisidir. İsteyebileceğiniz tüm dosya yönetimi özelliklerini sunar. Ayrıca; kapsamlı arşiv işleme, bağlanmış dosya sistemi desteği, &FTP;, gelişmiş arama modülü, görüntüleyici/düzenleyici, klasör eşzamanlaması (öntanımlı olarak devre dışı), dosya içeriği karşılaştırmaları, güçlü toplu yeniden adlandırma ve çok daha fazlasını sunar. Şu arşiv biçimlerini destekler: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip ve 7-zip ve smb:// veya fish:// gibi diğer KIO işçilerini de işleyebilir. (Neredeyse) tamamen özelleştirilebilirdir, çok kullanıcı dostudur, hızlıdır ve masaüstünüzde harika görünür! :-) Denemenizi tavsiye ederim.</para>
+</refsect1>
+
+<refsect1
+><title
+>Seçenekler</title>
+<variablelist>
+  <varlistentry>
+      <term
+><option
+>-h</option
+> <option
+>--help</option
+></term>
+  <listitem>
+<para
+>Bu, komut satırında kullanılabilen seçenekleri listeler.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-v</option
+> <option
+>--version</option
+></term>
+  <listitem>
+<para
+>&krusader; için olan sürüm bilgisini listeler.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--author</option
+></term>
+  <listitem>
+<para
+>Yazarları gösterir.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--license</option
+></term>
+  <listitem>
+<para
+>Lisansı gösterir.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--left</option
+> <parameter
+><replaceable
+>&lt;yol&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>Sol paneli <replaceable
+>&lt;yol&gt;</replaceable
+> konumunda başlatır.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--right</option
+> <parameter
+><replaceable
+>&lt;yol&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>Sağ paneli <replaceable
+>&lt;yol&gt;</replaceable
+> konumunda başlatır.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--profile </option
+><parameter
+><replaceable
+>&lt;panel-profili&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>Başlangıçta <replaceable
+>&lt;panel-profili&gt;</replaceable
+>’ni başlatır.</para
+> 
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-d</option
+> <option
+>--debug</option
+></term>
+  <listitem>
+<para
+>Hata ayıklama çıktısını etkinleştirir.</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>URL</option
+></term>
+  <listitem>
+<para
+>Eğer o URL ile halihazırda açık bir sekme varsa o sekme etkinleştirilir; aksi takdirde etkin panelde yeni bir sekme açılır.</para>
+  </listitem>
+  </varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1
+><title
+>Örnekler</title>
+
+<itemizedlist>
+  <listitem
+><para
+>$ krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --left=/home,/usr,smb://workgroup.net --right=fish://myserver.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --profile=ftp_management</para
+></listitem>
+
+</itemizedlist>
+</refsect1>
+
+<refsect1
+><title
+>Dosyalar</title>
+<para
+>Yapılandırma dosyaları:</para>
+
+<para
+><filename
+>~/.config/krusaderrc</filename
+></para>
+
+<para
+><userinput
+>qtpaths --paths GenericDataLocation</userinput
+> komutuyla algılanabilen <filename
+>~/.local/share/krusader/krbookmarks.xml</filename
+> veya <filename
+>krusader/krbookmarks.xml</filename
+> klasörlerindeki ögeler.</para>
+
+<para
+><userinput
+>qtpaths --paths GenericDataLocation</userinput
+> komutuyla algılanabilen <filename
+>~/.local/share/krusader/useractions.xml</filename
+> veya <filename
+>krusader/useractions.xml</filename
+> klasörlerindeki ögeler.</para>
+
+<para
+><filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+></para>
+
+<para
+><userinput
+>qtpaths --paths GenericDataLocation</userinput
+> komutuyla algılanabilen <filename
+>~/.local/share/kxmlgui6/krusader/krusaderui.rc</filename
+> veya <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> klasörlerindeki ögeler.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Platformlar</title>
+<para
+>Tüm POSIX: Linux, Solaris, tüm BSD platformları: *BSD, macOS</para>
+
+<para
+><emphasis
+>KDE 2.x</emphasis
+></para>
+
+<para
+>krusader v1.01 stable; ancak bu sürüm güncellenmez.</para>
+
+<para
+><emphasis
+>KDE 3.x</emphasis
+></para>
+
+<para
+>Krusader v1.01, KDElibs 2’e gereksinim duyar.</para>
+
+<para
+>Krusader v1.02–1.40, KDElibs 3’e gereksinim duyar.</para>
+
+<para
+>Krusader 1.40, &gt;= KDE 3.2 tercih eder.</para>
+
+<para
+>Krusader v1.50–v1.51: KDE 3.2–KDE 3.3</para>
+
+<para
+>Krusader v1.60.0–v1.70.0: KDE 3.3–KDE 3.4</para>
+
+<para
+>Krusader 1.70.x–1.80.x: KDE 3.4–KDE 3.5</para>
+
+<para
+><emphasis
+>KDE 4.x</emphasis
+></para>
+
+<para
+>Krusader 2.0–2.4: KDE 4</para>
+
+<para
+><emphasis
+>KDE Frameworks 5</emphasis
+></para>
+
+<para
+>Krusader 2.5 ve daha yenisi</para>
+
+<para
+>Krusader’ın güncel sürümü, <ulink url="https://krusader.org/"
+>Krusader web sitesinden</ulink
+> indirilebilir.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Özellikler</title>
+<para
+>Ortodoks Dosya Yöneticisi özellikleri içerir.</para>
+
+<para
+>Güçlü klavye eğilimini teşvik eder.</para>
+
+<para
+>Güçlü içsel görüntüleyicisi ve düzenleyicisi vardır.</para>
+
+<para
+>Arşivlerde arama yapabilen güçlü bir arama modülü vardır. ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip ve 7-zip biçimlerini destekler.</para>
+
+<para
+>Dizin karşılaştırması ve süzmesi yapabilir.</para>
+
+<para
+>SFTP/SCP desteğiyle &FTP;/Samba istemcisi ve bağlantı yöneticisi görevini yürütebilir.</para>
+
+<para
+>Eşzamanlayıcı, kullanıcı eylemleri, gömülü konsol vardır.</para>
+
+<para
+>Dosyaları içeriğe göre karşılaştırabilir. Dosya izinleri kolaylıkla düzenlenebilir.</para
+> 
+
+<para
+>Disk kullanımı çözümleyicisi özellikleri vardır. Kullanılan alanı hesaplayabilir ve sağlama toplamı temelli doğrulama yapabilir.</para>
+
+<para
+>MIME türlerine karşı hassastır.</para>
+
+<para
+>Bağlama yöneticisi, bulma, yeniden adlandırma desteği içerir.</para>
+
+<para
+>Kök kipi, sekmeli paneller, kenar çubuğu, fare ile seçim kipi özellikleri sunar.</para>
+
+<para
+>Paneller, düğme bağıntıları ve renkler için farklı profiller oluşturma desteği sunar.</para
+> 
+
+<para
+>Daha ayrıntılı bilgi için <ulink url="https://docs.kde.org/trunk_kf6/tr/krusader/krusader/index.html"
+>özellikler</ulink
+> sayfasını okuyun.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Lisans</title>
+<para
+>Krusader, GNU Genel Kamu Lisansı hükümleri altında dağıtılır.</para>
+
+<para
+>Sürüm 2 lisansı, Free Software Foundation tarafından yayımlanmıştır.</para>
+
+<para
+>Lisans ve garanti eksikliğiyle ilgili ayrıntılar için yerleşik yardım bölümüne bakın.</para>
+
+<para
+>Projenin telif hakları ve adı hâlâ Shie Erlich’e ve Rafi Yanai’ye aittir.</para>
+</refsect1>
+
+<refsect1
+><title
+>i18n</title>
+<para
+>Krusader birçok dile çevrilmiştir.</para>
+
+<para
+><ulink url="https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/"
+>https://l10n.kde.org/stats/gui/trunk-kf6/po/krusader.po/</ulink
+></para>
+
+<para
+>Krusader’ı kendil dilinize çevirme ile ilgili bilgi için <ulink url="https://l10n.kde.org/docs/translation-howto/"
+>KDE çeviri yönergelerine</ulink
+> bakın.</para>
+</refsect1>
+
+<refsect1
+><title
+>SSS</title>
+<para
+>Krusader’ın güncel Sıkça Sorulan Sorular bölümü, <ulink url="https://docs.kde.org/trunk_kf6/tr/krusader/krusader/faq.html"
+>KDE belgelendirme sitesinde</ulink
+> bulunabilir.</para>
+</refsect1>
+
+<refsect1
+><title
+>Ayrıca Bakınız</title>
+<simplelist>
+<member
+>Krusader’ın “Yardım” menüsünden ulaşılabilen “Krusader El Kitabı”na bakabilirsiniz.</member>
+
+<member
+>kf6options(7)</member>
+
+<member
+>qt6options(7)</member>
+</simplelist>
+</refsect1>
+
+<refsect1 id='authors'
+><title
+>Yazarlar</title>
+<para
+>Krusader; Krusader Krew olarak bilinen, kendini işine adamış bir ekip tarafından geliştirilmektedir.</para>
+
+<para
+>Shie Erlich, yazar [erlich {*} users {.} sourceforge {.} net] (emekli)</para>
+
+<para
+>Rafi Yanai, yazar [yanai {*} users {.} sourceforge {.} net] (emekli)</para>
+
+<para
+>Dirk Eschler, web sitesi yöneticisi [deschler {*} users {.} sourceforge {.} net] (emekli)</para>
+
+<para
+>Csaba Karai, geliştirici [ckarai {*} users {.} sourceforge {.} net] (emekli)</para>
+
+<para
+>Heiner Eichmann, geliştirici [h {.} eichmann {*} gmx.de] (emekli)</para>
+
+<para
+>Jonas Baehr, geliştirici [jonas.baehr {*} web.de] (emekli)</para>
+
+<para
+>Vaclav Juza, geliştirici [vaclavjuza {*} seznam {.} cz] (emekli)</para>
+
+<para
+>Jan Lepper, geliştirici [jan_lepper {*} gmx {.} de] (emekli)</para>
+
+<para
+>Andrey Matveyakin, geliştirici [a.matveyakin {*} gmail {.} com] (emekli)</para>
+
+<para
+>Davide Gianforte, geliştirici [davide {*} gengisdave {.} org]</para>
+
+<para
+>Aleksander Bikadorov, geliştirici [alex.bikadorov {*} kdemail {.} net]</para>
+
+<para
+>Martin Kostolny, geliştirici [clearmartin {*} zoho {.} com]</para>
+
+<para
+>Toni Asensi Esteve, geliştirici [toni.asensi {*} kdemail {.} net]</para>
+
+<para
+>Nikita Melniçenko, geliştirici [nikita+kde {*} melnichenko {.} name]</para>
+
+<para
+>Frank Schoolmeesters, belgelendirme ve pazarlama koordinatörü [frank_schoolmeesters {*} yahoo {.} com] (emekli)</para>
+
+<para
+>Richard Holt, belgelendirme ve yazım kontrolü [richard {.} holt {*} gmail {.} com] (emekli)</para>
+
+<para
+>Matej Urbancic, pazarlama ve ürün araştırması [matej {*} amis {.} net] (emekli)</para>
+
+<para
+>Yuri Çornoivan, belgelendirme <email
+>yurchor@ukr.net</email
+></para>
+
+<para
+>Proje, K Geliştir ve Qt Designer kullanılarak geliştirilir.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>Hatalar</title>
+<para
+>Dağıtımda yer alan TODO dosyasında, yapılması gerekenler hakkında bilgi bulabilirsiniz.</para>
+
+ <para
+>Hata düzeltmeleri, yamalar ve yorumlar için lütfen <email
+>krusader-devel@googlegroups.com</email
+> adresine e-posta gönderin.</para>
+
+<para
+>Krusader Krew</para>
+</refsect1>
+</refentry>
+

@@ -1,0 +1,991 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="user-interface">
+  <title
+>Kullanıcı Arayüzü</title>
+  <indexterm>
+    <primary
+>Kullanıcı Arayüzü</primary>
+  </indexterm>
+  <sect1 id="ofm-userinterface">
+    <title
+>Ortodoks Dosya Yöneticisi Kullanıcı Arayüzü</title>
+    <para
+>ODY dosya yöneticisi konsepti, günümüzün en iyi dosya yöneticileri arasında yer almasını sağlayacak kadar güçlü olan <link linkend="features"
+>birçok özelliğe</link
+> sahiptir. Arayüz basittir: sol panel, sağ panel ve altında bir komut satırı bulunur. Bu üç öge arasındaki etkileşim sayesinde dosya yönetimi daha verimli hale gelir.</para>
+    <para
+><ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+>&krusader;’ın nasıl çalıştığını</ulink
+> öğrenmek istiyorsanız onu denemeniz yeterlidir; yalnızca bilgisayarınıza kurun. &krusader; gibi bir <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Ortodoks Dosya Yöneticisi (ODY)</ulink
+> konseptini kabullenmek için kullanıcının halihazırda kullanımda olan <emphasis
+>yeni fikirlere</emphasis
+> alışması gerekir. Eğer zaman kaybetmeyi ve verimliliğinizi düşürmeyi tercih ediyorsanız &Windows; Gezgini tabanlı tek panelli dosya yöneticilerini kullanmayı sürdürebilirsiniz.</para>
+  </sect1>
+  <sect1 id="mainwindow">
+    <title
+>&krusader; Ana Penceresi</title>
+    <figure id="screenshot-mainwindow" float="1">
+      <title
+>&krusader; Ana Penceresi</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="mainwindow.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>&krusader; Ana Penceresi</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Kullanıcı arayüzü, yaklaşık 20 yıldan fazla bir süredir kullanımda olan ve kendini kanıtlamış <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Ortodoks Dosya Yöneticisi (ODY)</ulink
+> paradigması temellidir. Basit, kolay ve güçlü olarak bilinir. Aşağıdaki bölümlerde, şunlar dışındaki her bir parçanın temel işlevlerini ele alacağız:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="menu-commands"
+>Menu Çubuğu</link
+>; bunun kendi faslı vardır.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="bookman"
+>Yer İmleri</link
+>; bunun kendi faslı vardır.</para>
+      </listitem>
+      <listitem>
+        <para
+><emphasis role="bold"
+>Durum Çubuğu</emphasis
+>, odaklanılan geçerli dosyanın özelliklerini gösterir. </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  <sect1 id="toolbars">
+    <title
+>Araç Çubukları</title>
+    <para
+>&krusader; birçok araç çubuğu ile gelir.</para>
+    <sect2 id="main_toolbar">
+      <title
+>Ana Araç Çubuğu</title>
+      <indexterm>
+        <primary
+>Araç Çubuğu</primary>
+        <secondary
+>Ana Araç Çubuğu</secondary>
+      </indexterm>
+      <figure id="screenshot-maintoolbar" float="1">
+        <title
+>Ana Araç Çubuğu</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="toolbar.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Ana Araç Çubuğu</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>&krusader; ana araç çubuğu, uygulamada sürüklenebilen (öncelikle bağlam menüsünden <guimenuitem
+>Araç Çubuğu Konumlarını Kilitle</guimenuitem
+> ögesinin işaretini kaldırarak kilidini açın) veya <keycap
+>Sağ Tık</keycap
+> menüsüne basılarak yapılandırılabilen, standart bir &kde; araç çubuğudur. &krusader;’ı her başlattığınızda gösterilip gösterilmeyeceğini <link linkend="konfigurator"
+>Yapılandırıcı</link
+> başlangıç sayfasından ayarlayabilir ve geçerli oturumdayken <link linkend="settings-menu"
+>Ayarlar</link
+> menüsünden açıp kapatabilirsiniz. Ana araç çubuğu içeriği, <link linkend="settings-menu"
+>Ayarlar</link
+> menüsündeki <guimenuitem
+>Araç Çubuklarını Yapılandır…</guimenuitem
+> ögesinden özelleştirilebilir. &krusader;’daki birçok komut ve seçenek bağlama bağlı olduğundan, kimi komutlar her zaman kullanılabilir olmayabilir. Uygun olmayan veya etkin olmayan bir eylem, gri olarak görüntülenecektir; bu tür eylemleri çalıştıramazsınız. <quote
+>Sürükle–Bırak</quote
+> yaparak, <link linkend="bookman"
+>Yer İmleri</link
+> ana araç çubuğuna veya eylemler araç çubuğuna yerleştirilebilir.</para>
+    </sect2>
+    <sect2 id="job_toolbar">
+      <title
+>İş Araç Çubuğu</title>
+      <indexterm>
+        <primary
+>Araç Çubuğu</primary>
+        <secondary
+>İş Araç Çubuğu</secondary>
+      </indexterm>
+      <para
+>Öntanımlı olarak, &krusader; İş Araç Çubuğu (<link linkend="queue"
+>Kuyruk Yöneticisi</link
+> veya daha basitçe), ana araç çubuğunun sağ tarafında bulunur. Bu araç çubuğu, sürmekte olan işlerin ilerlemesini görüntülemenize, yürütülen işleri duraklatabilmenize ve daha sonra sürdürmenize ve hatta son yapılan işi geri almanıza olanak tanır.</para>
+    </sect2>
+    <sect2 id="actions_toolbar">
+      <title
+>Eylemler Araç Çubuğu</title>
+      <indexterm>
+        <primary
+>Araç Çubuğu</primary>
+        <secondary
+>Eylemler Araç Çubuğu</secondary>
+      </indexterm>
+      <para
+><guilabel
+>Eylemler Araç Çubuğuna</guilabel
+>, <link linkend="useractions"
+>Kullanıcı Eylemleri</link
+> ve <link linkend="bookman"
+>Yer İmleri</link
+> <quote
+>monte edilebilirdir</quote
+>. Bu çubuğu göstermek için <menuchoice
+> <guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Eylemler Araç Çubuğunu Göster</guimenuitem
+> </menuchoice
+> seçeneğini kullanın. Kullanıcı eylemlerini eklemek için <menuchoice
+> <guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Araç Çubuklarını Yapılandır…</guimenuitem
+> </menuchoice
+> yolunu izleyin ve “Eylemler Araç Çubuğu”nu seçin. Örneğin, fareyi kullanarak Eylemler araç çubuğunu sağ tarafa sürükleyebilirsiniz.</para>
+    </sect2>
+    <sect2 id="location_toolbar">
+      <title
+>Konum Araç Çubuğu</title>
+      <indexterm>
+        <primary
+>Araç Çubuğu</primary>
+        <secondary
+>Konum Araç Çubuğu</secondary>
+      </indexterm>
+      <para
+><guibutton
+>Ana Araç Çubuğu</guibutton
+>’nun altında, her bir panel için bir <guibutton
+>Konum Araç Çubuğu</guibutton
+> bulunur. Panelin şu anda içinde olduğu yolu gösterir. Arşivlerin içine girerken, yol şu şekilde görüntülenir: <quote
+>arşiv türü:/klasör/arşiv_dosya_adı/arşivin_içindeki_klasör</quote
+>. Bu biçim, yolları tekdüze ve kolayca okunabilir kılar. <guibutton
+>Konum Araç Çubuğu</guibutton
+> ayrıca KIO işçilerini de destekler (tümünü değil); desteklenmeyenlerin bazıları yalnızca <link linkend="krviewer"
+>Görüntüleyici</link
+> ile kullanılabilir; bazıları da hiç kullanılamaz. Kullanıcı, araç çubuğuna tıklayarak istediği bir yolu girebilir.</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <userinput>
+              <replaceable
+>/mnt/cdrom/</replaceable>
+            </userinput>
+          </para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>settings:/</command
+> </userinput
+>, &systemsettings; içine göz atar ve girdileri açar.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>trash:/</command
+> </userinput
+>, çöp kutusu klasörünü açar.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>mtp:/</command
+> </userinput
+>, <trademark
+>Android</trademark
+> tabanlı aygıtlardaki çoklu ortama erişmek ve yüklemek için kio_mtp hizmetini kullanır.</para>
+        </listitem>
+        <listitem>
+          <para
+>Son olarak, <link linkend="remote-connections"
+>Uzak Bağlantılar</link
+> bulunur.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+><guibutton
+>Konum Araç Çubuğu</guibutton
+>’na bir URL kopyalayıp yapıştırabilir veya orta tık düğmesini kullanabilirsiniz. Sağ tık menüsü ile otomatik tamamlama işlevini yapılandırabilirsiniz. İsteğe bağlı bir <guilabel
+>Konum Araç Çubuğunu Temizle</guilabel
+> düğmesi de bulunur.</para>
+      <para
+>Tez Dolaşma: <guibutton
+>Konum Araç Çubuğu</guibutton
+>’ndaki &URL;’nin üzerine fareyle gelip &Ctrl; düğmesine basın. Açılır bir pencere, sonraki &URL; konumunu gösterir. &Ctrl; + &LMB; kombinasyonu, farenin işaret ettiği konumu gösterir. Bu özellik, büyük bir klasör ağacında daha hızlı dolaşmaya olanak tanır.</para>
+    </sect2>
+    <sect2 id="panel_toolbar">
+      <title
+>Panel Araç Çubuğu</title>
+      <indexterm>
+        <primary
+>Araç Çubuğu</primary>
+        <secondary
+>Panel Araç Çubuğu</secondary>
+      </indexterm>
+      <para
+>Her bir panelde, <link linkend="konfig-panel-buttons"
+>yapılandırılabilir bir panel araç çubuğu</link
+> vardır. Panel araç çubuğunun tamamı veya belirli düğmeler görünür hale getirilebilir veya gizlenebilir.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>Dizin Aç</guibutton
+>: Klasör tarayıcısını açar.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Eşittir (=)</guibutton
+>: Panel klasörünü diğer panel klasörüne değiştirir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Yukarı (‥)</guibutton
+>: Panel klasörünü üst klasöre değiştirir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Ana Klasör (~)</guibutton
+>: Panel klasörünü ana klasöre değiştirir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Kök (/)</guibutton
+>: Panel klasörünü kök klasöre değiştirir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>Eşzamanla</guibutton
+>: Etkinleştirildiğinde, ilgili paneldeki her klasör değişikliği diğer panelde de gerçekleştirilir.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+  <sect1 id="panels">
+    <title
+>Paneller</title>
+    <para
+>&krusader; panelleri, olayların çoğunun gerçekleştiği yerlerdir. Şu anda iki tür panel bulunmaktadır:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="list_panel"
+>Liste Paneli</link
+>: Dosyaları ve klasörleri gösterir.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="sidebar"
+>Kenar Çubuğu</link
+>: Odaklanılan dosya veya klasör için Önizle, Ağaç, Tez Seçim, Görünüm ve Disk Kullanımı olmak üzere çeşitli görüntüleme kipleri bulunur. Kenar Çubuğu, isteğe bağlı olarak açık veya kapalı bırakılabilir.</para>
+      </listitem>
+    </itemizedlist>
+    <para
+>&krusader;, <quote
+>iki panelli</quote
+> bir dosya yöneticisi olduğundan iki adet bölme bulunur: <quote
+>Sol</quote
+> ve <quote
+>Sağ</quote
+> panel; daha etkili bir ayrım için Etkin veya Etkin Olmayan panel olarak da düşünebilirsiniz. Etkin panel, fare ve klavye girişlerinizi kabul edecek olan paneldir. <guilabel
+>Menü Çubuğu</guilabel
+>’ndan veya <guilabel
+>Araç Çubuğu</guilabel
+>’ndan bir komut seçerseniz komut, etkin paneldeki dosyalar üzerinde etkili olur. Paneller arasında &Tab; düğmesiyle veya <guilabel
+>Bilgi veya Toplamlar</guilabel
+> etiketinin üzerine tıklayarak veya paneldeki herhangi dosyayı fareyle seçerek geçiş yapabilirsiniz. Her zaman olduğu üzere, öntanımlı başlangıç ayarlarında <link linkend="konfigurator"
+>Yapılandırıcı</link
+> başlangıç sayfasından değişiklikler yapılabilir ve geçerli oturum içinse <link linkend="settings-menu"
+>Ayarlar</link
+> menüsünü kullanabilirsiniz.</para>
+    <figure id="screenshot-listpanel" float="1">
+      <title
+>Liste Paneli</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="listpanel.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Liste Paneli</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <sect2 id="list_panel">
+      <title
+>Liste Paneli</title>
+      <indexterm>
+        <primary
+>Panel</primary>
+        <secondary
+>Liste Paneli</secondary>
+      </indexterm>
+      <para
+>Bu, öntanımlı paneldir ve büyük olasılıkla çoğu zaman kullanacağınız paneldir. Bu panel, yerel (bağlı dosya sistemlerinizin bir parçası, yerel bir dosya veya bir arşivin içindeki dosyalar) veya uzak dosyalar (&FTP;, &NFS; veya Samba aracılığıyla erişilen) olabilen bir klasörün içeriğini gösterir. İki kip vardır: Dosya adını, büyüklüğünü, oluşturma tarihini ve özniteliklerini gösteren <link linkend="view-menu"
+>Ayrıntılı Görünüm</link
+> ve yalnızca dosya adlarını gösteren <link linkend="view-menu"
+>Özet Görünüm</link
+>. Özet görünümdeki sütunların sayısı, <guilabel
+>Ad</guilabel
+> başlığına sağ tıklanarak değiştirilebilir. &konqueror; ve &krusader; arasındaki dosya kesme/kopyalama/yapıştırma işlemleri <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> aracılığıyla veya menülerle desteklenir. <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>R</keycap
+></keycombo
+>, <guilabel
+>Liste Paneli</guilabel
+>’ni yatay ve dikey kip arasında geçiş yaptırır.</para>
+      <para
+>Aşağıdaki ögeler kullanılabilirdir:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Bilgi Etiketi</guilabel
+> </emphasis
+>: Dosya sistemi, dosya sistemi sığası ve dosya sisteminin takılı olduğu yer içerisinde fizikî olarak ne kadar boş alan kaldığını gösterir. Eğer bilgi yok ise (çoğunlukla uzak dosya sistemi olması durumunda) bilgi yerine neden bilgi olmadığına dair neden ile birlikte bir ileti görüntülenecektir.</para>
+          <para id="media_button"
+><guilabel
+>Bilgi</guilabel
+> etiketinin sol tarafındaki <guibutton
+>Ortam</guibutton
+> düğmesi, kullanılabilir tüm ortamların bir listesini görüntüler. Buradan istenen ortamı (HDD bölüntüsü, &DVD;, &USB; bellek, &etc;) seçebilirsiniz. <guibutton
+>Ortam</guibutton
+> menüsü açıkken <keycombo
+>&Ctrl;<keycap
+>Dönüş</keycap
+></keycombo
+> kısayolunu kullanmak, vurgulanmış olan ortamı bağlı değilken bağlar ve bağlıyken bağlantısını keser. Bir ortamın bağlam menüsü, <guilabel
+>Bağla</guilabel
+>, <guilabel
+>Yeni Bir Sekmede Aç</guilabel
+>, &etc; gibi eylemler sunar. <guibutton
+>Ortam</guibutton
+> menüsü <link linkend="konfig-panel-mediamenu"
+> yapılandırılabilirdir</link
+>.</para>
+        </listitem>
+          <listitem>
+          <para
+><emphasis
+> <guilabel
+>Sütun Başlıkları</guilabel
+> </emphasis
+>: Burada dosya ve klasörlerin sıralama düzenini istediğiniz gibi değiştirebilirsiniz. Öntanımlı sıralama düzeni <guilabel
+>Ad</guilabel
+> özniteliğine göredir. Sıralama düzeni, <guilabel
+>Sütun Başlıkları</guilabel
+> arasından birine tıklanarak anında değiştirilebilir. Sıralama düzenini tersine çevirmek için sütun başlığına ikinci kez tıklayın. Sütun başlığı metninin sağında, sıralama yönünü gösteren bir ok belirecektir (Yukarı ok = A–Z, Aşağı ok = Z–A). Öntanımlı <link linkend="useractions"
+>Kullanıcı Eylemleri</link
+>, sütun başlıkları için bir düğme bağıntısı ayarlar. Öntanımlı <guilabel
+>Sütun Başlıkları</guilabel
+> şunlardır: <guilabel
+>Ad</guilabel
+>, <guilabel
+>Uzantı</guilabel
+>, <guilabel
+>Büyüklük</guilabel
+>, <guilabel
+>Değiştirildi</guilabel
+>, <guilabel
+>rwx</guilabel
+>. Önceden tanımlı <literal role="extension"
+>.tar.gz</literal
+> gibi <link linkend="konfig-general"
+>atomik uzantılar</link
+>, <guilabel
+>Uzantı</guilabel
+> sütununda tek bir kısım olarak gösterilir. Daha fazla isteğe bağlı sütun başlıklarına &RMB; ile ulaşılabilir. <guilabel
+>Sütun Başlıkları</guilabel
+> genişlikleri, bölücüye fareyle tıklayıp basılı tutarak istenilen genişliğe getirilebilir. Her iki  <guilabel
+>Liste Paneli</guilabel
+>, sıralama düzenini ve sütun genişliklerini anımsar. <guilabel
+>Sütun Başlıkları</guilabel
+>, her bir panel için bireysel olarak değiştirilebilir ve kaydedilebilir.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Dosya Listesi</guilabel
+> </emphasis
+>: Göz atılan klasördeki dosyaları ve klasörleri görüntüler. <link linkend="quicksearch"
+>Arama çubuğu</link
+>, dosyaları ve klasörleri adlarını veya ilk birkaç karakterlerini girerek aramanıza olanak tanır. &Enter; düğmesine basmak veya bir dosyaya çift tıklamak, o dosyayı açar/yürütür. Dosyaları seçmek ve seçimlerini kaldırmak için fareyi, &Ins; düğmesini veya <link linkend="edit-menu"
+>Düzen</link
+> menüsünü kullanabilirsiniz.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Toplamlar Etiketi</guilabel
+> </emphasis
+>: Dosyaları seçmek veya seçimlerini kaldırmak, <emphasis
+> <guilabel
+>Toplamlar Etiketi</guilabel
+> </emphasis
+>’ni değiştirir: Dosya seçimi veya seçiminin kaldırılması, panelin altındaki <emphasis
+> <guilabel
+>Toplamlar Etiketi</guilabel
+> </emphasis
+>’ni değiştirir. Bu etiket, kaç dosya seçtiğinizi (ve toplamda ne kadar disk alanı kullandıklarını) ve geçerli klasörün toplam dosya ve disk kullanımını gösterir (tüm dosya sistemi için bilgi gösteren bilgi etiketinin aksine). Bir klasör çok sayıda alt klasör içeriyorsa &URL;’yi panele (yalnızca klasörlerin göründüğü panele) sürükleyip bırakmak olanaklı olmayabilir; ancak &URL; bunun yerine <quote
+>Bilgi Etiketi</quote
+> veya <quote
+>Toplamlar Etiketi</quote
+> üzerine sürükleyip bırakılabilir. Özel bir <link linkend="view-menu"
+>süzgeç</link
+> ayarlıysa bu ayar gösterilir; örneğin, [*.cpp].</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Öntanımlı <quote
+>&kde; <link linkend="konfig-color"
+>renkleri</link
+></quote
+> kullanılıyorsa seçili dosyalar mavi olarak ve geçerli dosya ise bir dörtgenle çevrili olarak gösterilir. Öntanımlı olarak dosya türüne göre bir simge gösterilir. Öntanımlı yapılandırmayı bireysel gereksinimlerinize göre değiştirmek için <link linkend="config-panel"
+>Yapılandırıcı Paneli</link
+>  sayfasını kullanın.</para>
+      <para
+>Kimi kullanışlı <guilabel
+>liste paneli</guilabel
+> <link linkend="key_bindings"
+>düğme bağıntıları</link
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+>, paneli yeniler.</para>
+        </listitem>
+        <listitem>
+          <para
+>Sol panelde bir dosyaya veya klasöre odaklanıp <keycombo action="simul"
+>&Ctrl; &Right;</keycombo
+> kombinasyonunu kullanın ve sağ panel değişir: <itemizedlist>
+            <listitem>
+              <para
+>Bir dosyada: Sağ panel, sol panel ile aynı dosya yolunu alır.</para>
+            </listitem>
+            <listitem>
+              <para
+>Bir klasörde: Sağ panel, sol panelde odaklanılan klasörü açar.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Sağ panelde bir dosyaya veya klasöre odaklanıp <keycombo action="simul"
+>&Ctrl; &Left;</keycombo
+> kombinasyonunu kullanın ve sol panel değişir:</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="sidebar">
+      <title
+>Kenar Çubuğu</title>
+      <indexterm>
+        <primary
+>Kenar Çubuğu</primary>
+        <secondary
+>Kenar Çubuğu (3. Panel)</secondary>
+      </indexterm>
+      <para
+>Bu, <quote
+>&krusader;’ın üçüncü elidir</quote
+> veya üçüncü panelidir; <guilabel
+>Kenar Çubuğu</guilabel
+>’nu açmak için <guilabel
+>Toplamlar</guilabel
+> etiketinin sağ tarafındaki yukarı ok düğmesine basın veya <keycombo action="simul"
+>&Alt; &Down;</keycombo
+> kısayolunu kullanın. Bu panelde, ilgili düğmeye tıklanarak etkinleştirilebilen çeşitli görüntüleme kipleri bulunmaktadır.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Önizleme Paneli</guilabel
+> </emphasis
+>: Odaklanmış olan dosyanın (şu anda seçili dosya) önizlemesini gösterir.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Ağaç Paneli</guilabel
+> </emphasis
+>: Yerel klasör ağacında hızlıca gezinmek için kullanılır. Bu panel, liste paneli gibi davranır; ancak aynı anda yalnızca bir klasör seçilebilir ve bir klasöre çift tıklamak veya &Enter; düğmesine basmak, o klasörü etkin panelde açar. Paneller, sürükle–bırak (kopyala, taşı, bağlantıla) fare işlemlerini tümüyle olarak destekler.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Tez Panel</guilabel
+> </emphasis
+>: Dosyaları tez seçmek için kullanılır; yani, <literal role="extension"
+>*.png</literal
+> yazın ve <guibutton
+>Git</guibutton
+> düğmesine tıklayın. <quote
+>Disket</quote
+> düğmesi, geçerli seçimi depolar. <quote
+>Grup seçim</quote
+> iletişim kutusu da bulunur.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Görüntüleyici Paneli</guilabel
+> </emphasis
+>: Bir metin, görsel vb. dosyalarını görüntüler. <guilabel
+>Görüntüleyici Paneli</guilabel
+>’ni her açtığınızda bir küçük görsel görünümü oluşturulur.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>Disk Kullanımı Paneli</guilabel
+> </emphasis
+>: Bir klasörün <link linkend="diskusage"
+>disk kullanımını</link
+> görüntüler.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>Kenar çubuğunun konumunu değiştirmek için &krusader; sekmesinin alt kısmında, aşağı ok düğmesinin solunda bulunan artırma/azaltma düğmesini kullanabilirsiniz. Bu düğmeye her tıklama, kenar çubuğunu <quote
+>alt–sol–üst–sağ</quote
+> döngüsünde bir pozisyonda hareket ettirir. </para>
+      <para
+>Gerekirse; örneğin, bir görseli daha iyi görüntülemek veya bir dosya içeriğini daha iyi görmek için pencerenin boyutunu değiştirebilirsiniz. <guilabel
+>Üçüncü el panelini</guilabel
+> kapatmak için aşağı ok düğmesine tıklayın.</para>
+    </sect2>
+    <sect2 id="folderhistory">
+      <title
+>Klasör Geçmişi</title>
+      <para
+>Her iki panel de yakın zamanda ziyaret edilen klasörleri anımsar. Klasör geçmişi listesini açmak için <guibutton
+>Klasör Geçmişi</guibutton
+> düğmesine (“saat” sembolü) tıklayın. Burada daha önce ziyaret edilen klasörlere hızlıca geçiş yapabilirsiniz. Şu anda odaklanılan klasör işaretlenir. &krusader;’ın her yeni başlatılışında, geçmiş listesi önceki çalıştırmadaki ögelerle doldurulur (geçmiş kaydedilir).</para>
+    </sect2>
+  </sect1>
+  <sect1 id="cmdline_termemu">
+    <title
+>Komut Satırı / Uçbirim Öykünücüsü</title>
+    <para
+><link linkend="gloss-gui"
+>Arayüzün</link
+> bu kısmında dört adet kip kullanılabilir: Komut Satırı, Uçbirim Öykünücüsü, her ikisini de göster, hiçbirini gösterme. <link linkend="konfigurator"
+>Yapılandırıcı Başlangıç</link
+> sayfasından veya geçerli oturumda <link linkend="settings-menu"
+>Ayarlar</link
+> menüsünden işlem kipi seçilebilir. </para>
+
+  <sect2 id="cmdline">
+    <title
+>Komut Satırı</title>
+
+    <figure id="screenshot-commandline" float="1">
+      <title
+>Komut Satırı</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="cmdline.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Komut satırı</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Geleneksel komut satırı kipi, komut girmek için tek bir giriş satırı sunar ve ayrıca üç düğme içerir:</para>
+     <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>komut geçmişi</guibutton
+> (aşağı ok), geçmişte kullanılmış komutları tez açmak içindir </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>kullanıcı eylemi genişleticisi</guibutton
+> (yeşil artı düğmesi), <link linkend="useractions"
+>kullanıcı eylemi yer tutucularını</link
+> kolayca eklemek içindir </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>uçbirim kipinde çalıştır</guibutton
+> (konsol simgesi) düğmesi şu seçenekler ile: <itemizedlist>
+          <listitem
+><para
+>Başla ve Unut</para>
+          </listitem>
+
+          <listitem
+><para
+>Standart ve Hata Çıktılarını Ayrı Ayrı Görüntüle</para>
+           </listitem>
+
+          <listitem
+><para
+>Standart ve Hata Çıktılarını Karışık Görüntüle</para>
+          </listitem>
+
+           <listitem
+><para
+>Yeni Uçbirimde Başlat</para>
+          </listitem>
+
+           <listitem
+><para
+>Gömülü Uçbirim Öykünücüsüne Gönder</para>
+           </listitem>
+
+         </itemizedlist>
+          </para>
+
+        </listitem>
+
+
+     </itemizedlist>
+    <para
+>Komutlarınızı yazmaya başladığınızda, komut satırının kendiliğinden tamamlama özelliği, &systemsettings; bölümünde seçtiğiniz seçeneklere göre önerilerde bulunacaktır. Geçerli &krusader; oturumunda kendiliğinden tamamlamanın davranış şeklini değiştirmek istiyorsanız komut satırına <keycap
+>sağ</keycap
+> tıklayın ve değiştirin. Giriş satırının solunda, etkin panelin şu anda işaret ettiği yerel yolu bulabilirsiniz. Komutunuz bu yolda yürütülecektir. Komut satırında <userinput
+> <command
+>cd</command
+> <replaceable
+> &lt;klasör&gt;</replaceable
+> </userinput
+> yazmak, etkin panelin de bu klasöre gitmesine neden olacaktır. Komut satırı düğme bağıntılarını görüntülemek için <link linkend="cmdline_keybindings"
+>buraya</link
+> tıklayın.</para>
+</sect2>
+
+  <sect2 id="termemu">
+    <title
+>Uçbirim Öykünücüsü</title>
+
+    <figure id="screenshot-terminalemulator" float="1">
+      <title
+>Uçbirim Öykünücüsü</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="terminalEmu.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Uçbirim öykünücüsü</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Uçbirim öykünücüsü kipi özünde küçük bir konsoldur ve tıpkı bir konsol gibi davranır. Uçbirimdeki etkin klasörü değiştirmek için <userinput
+> <command
+>cd</command
+> </userinput
+> komutunu kullanın. Uçbirim öykünücüsü etkin panelin klasörünü takip eder. <interface
+>Liste panelinden</interface
+> bir dosyayı sürükleyip bıraktığınızda, dosya adı uçbirim öykünücüsüne yapıştırılır. Birden çok dosya için de çalışır. Daha önceden <link linkend="konfig-general-general"
+>yapılandırılmışsa</link
+> veya <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>F</keycap
+></keycombo
+> düğmeleriyle tam ekran ve normal kip arasında geçiş yapabilirsiniz. Komut satırı gizlenmişse <keycombo action="simul"
+>&Ctrl; <keycap
+>Aşağı Ok</keycap
+></keycombo
+> düğmesine basarak uçbirim öykünücüsüne odaklanın. <keycombo action="simul"
+>&Ctrl; <keycap
+>Yukarı Ok</keycap
+></keycombo
+> düğmesi, sizi geri götürür. <keycombo action="simul"
+>&Ctrl;&Enter;</keycombo
+> ve <keycombo action="simul"
+>&Ctrl; &Shift; &Enter;</keycombo
+> kombinasyonları dosya adını yapıştırır. <userinput
+> <command
+>exit</command
+> </userinput
+> yazarak öykünücüden çıkabilirsiniz.</para>
+    <para
+>Uçbirim öykünücüsü düğme bağıntılarını görüntülemek için <link linkend="termemu_keybindings"
+>buraya</link
+> tıklayın.</para>
+    </sect2>
+
+  </sect1>
+  <sect1 id="fnkeys">
+    <title
+>Fonksiyon (FN) Düğmeleri Çubuğu</title>
+    <figure id="screenshot-fnkeys" float="1">
+      <title
+>Fonksiyon (FN) Düğmeleri Çubuğu</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="fnkeys.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Fonksiyon (FN) Düğmeleri Çubuğu</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Bu çubuk, temsil ettiği fonksiyon (FN) düğmelerinden adını almaktadır. Bu çubuktaki her düğme için aynı işlemi gerçekleştiren karşılık gelen bir fonksiyon düğmesi vardır. Bu çubuk, ilk çift panelli dosya yöneticilerinin tasarımından türetilmiştir ve FN düğmeleri genellikle iki değişiklikle aynı şekilde çalışır: <keycap
+>F2</keycap
+> düğmesi, dosyaları yeniden adlandırmak için kullanılır ve <keycap
+>F9</keycap
+> düğmesi ise etkin panelin işaret ettiği son yerel yolda bir uçbirim açar. <guilabel
+>Mkdir</guilabel
+> <keycap
+>F7</keycap
+> (<command
+>mkdir</command
+> komutunun çevrilmiş adı) anında tüm klasör ağaçlarını oluşturabilir; örneğin, <literal
+>foo/bar/test</literal
+>. <link linkend="konfigurator"
+>Yapılandırıcı Başlangıç</link
+> sayfası ile &krusader;’ı başlatırken <guilabel
+>FN düğmeleri çubuğunun</guilabel
+> başlatılıp <link linkend="faqu_resize"
+>başlatılmayacağını</link
+> belirleyebilir ve kullanımını geçerli oturumda <link linkend="settings-menu"
+>Ayarlar</link
+> menüsünden değiştirebilirsiniz. Fonksiyon düğmelerinin eylemleri ve <link linkend="key_bindings"
+>düğme bağıntıları</link
+>, 1.51 sürümünden bu yana yapılandırılabilirdir, <guilabel
+>FN düğmeleri çubuğu</guilabel
+> görüntülenmese bile eylemler çağrılabilir.</para>
+  </sect1>
+  <sect1 id="folder-tabs">
+    <title
+>Klasör Sekmeleri</title>
+    <figure id="screenshot-tabbedbrowsing" float="1">
+      <title
+>Klasör Sekmeleri</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="tabbed_browsing.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Klasör Sekmeleri</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+><guibutton
+>Klasör Sekmeleri</guibutton
+> ile birden çok klasör arasında tez geçi yapabilirsiniz; her birinin <guibutton
+>Klasör Sekmeleri</guibutton
+> vardır. &krusader; kapatılırken <guibutton
+>Klasör Sekmeleri</guibutton
+> konumları kaydedilir. <guibutton
+>Klasör Sekmeleri</guibutton
+> arasında geçiş yapmak için onlara fareyle tıklayın. Tıkıştırılmış <guibutton
+>Klasör Sekmeleri</guibutton
+> üzerilerine geldiğinizde, tam yolu gösteren araç ipuçları görüntülenir. Aşağıdaki <guibutton
+>Klasör Sekmeleri</guibutton
+> işlemleri kullanılabilirdir:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><action
+>Yeni bir sekme açıp</action
+> geçerli sekmeyi açık tutmak için: Bir klasörün üzerinde <keycap
+>sağ</keycap
+> tıklayın ve <guimenuitem
+>Yeni Sekmede Aç</guimenuitem
+> ögesini seçin veya sekme çubuğundaki en sağ düğmeye tıklayın.</para>
+      </listitem>
+      <listitem>
+        <para
+><action
+>Bir sekmeyi kilitlemek</action
+> için <keycap
+>sağ</keycap
+> tıklayıp ve <guimenuitem
+>Sekmeyi Kilitle</guimenuitem
+> ögesini seçin.</para>
+      </listitem>
+      <listitem>
+        <para
+><action
+>Bir sekmeyi sabitlemek için</action
+> <keycap
+>sağ</keycap
+> tıklayın ve <guimenuitem
+>Sekmeyi Sabitle</guimenuitem
+> ögesini seçin. Sabitlenmiş sekmeler kilitlidir; ancak adresleri geçici olarak değiştirilebilirler. Sekmenin yeniden etkinleştirilmesi sonrası sabitlenmiş adrese geri dönerler. Sekmeyi serbest bırakmak için üzerinde sağ tıklayın ve <guimenuitem
+>Sekme Sabitlemesini Kaldır</guimenuitem
+> ögesini seçin.</para>
+      </listitem>
+      <listitem>
+        <para
+><action
+>Bir sekmeyi çoğaltmak</action
+> için: Bir klasör sekmesinde <keycap
+>sağ</keycap
+> tıklayın ve <guimenuitem
+>Geçerli Sekmeyi Çoğalt</guimenuitem
+> ögesini seçin veya <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+> kısayolunu kullanın. </para>
+      </listitem>
+      <listitem>
+        <para
+><action
+>Bir sekmeyi kapatmak için</action
+> (son sekme dışında): Sekme üzerinde <keycap
+>sağ</keycap
+> tıklayın ve <guimenuitem
+>Geçerli Sekmeyi Kapat</guimenuitem
+> ögesini seçin veya &MMB; veya klasör sekmesindeki <guibutton
+>kırmızı çarpı işaretini</guibutton
+> veya <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo
+> kısayolunu kullanın.</para>
+      </listitem>
+      <listitem>
+        <para
+><action
+>Sekmeleri değiştirmek</action
+> için: <keycombo action="simul"
+>&Ctrl; <keycap
+>,</keycap
+></keycombo
+> or <keycombo action="simul"
+>&Ctrl; <keycap
+>.</keycap
+></keycombo
+> kısayollarını kullanın.</para>
+      </listitem>
+      <listitem>
+        <para
+><action
+>Geçerli klasörü yeni bir sekmede açmak</action
+> için: <keycombo action="simul"
+> &Ctrl;&Alt;&Enter;</keycombo
+> kısayolunu kullanın.</para>
+      </listitem>
+      <listitem>
+        <para
+><action
+>Tüm diğer sekmeleri kapatmak</action
+> için: <keycap
+>Sağ</keycap
+> tıklayın ve <guimenuitem
+>Etkin Olmayan Sekmeleri Kapat</guimenuitem
+> seçeneğini seçin.</para>
+      </listitem>
+      <listitem>
+        <para
+><action
+>Çoğaltılmış sekmeleri kapatmak</action
+>için: <keycap
+>Sağ</keycap
+> tıklayın ve <guimenuitem
+>Çoğaltılmış Sekmeleri Kapat</guimenuitem
+> ögesini seçin.</para>
+      </listitem>
+      <listitem>
+        <para
+>Sekmeyi diğer panele taşımak için diğer panelin alanına &LMB; ile sürükleyin (fare imleci sola veya sağa doğru işaret eden bir oka dönüşecektir) ve bırakın. Ayrıca <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+> kombinasyonunu da kullanabilirsiniz.</para>
+      </listitem>
+</itemizedlist>
+  </sect1>
+  <sect1 id="ui_buttons">
+    <title
+>Düğmeler</title>
+    <para
+>Hızlı işlemler için birkaç düğme bulunur: <link linkend="main_toolbar"
+>Ana Araç Çubuğu</link
+>, <link linkend="actions_toolbar"
+>Eylemler Araç Çubuğu</link
+>, <link linkend="panel_toolbar"
+>Panel Araç Çubuğu</link
+>, <link linkend="location_toolbar"
+>Konum Araç Çubuğu</link
+>, <link linkend="list_panel"
+>Ortam</link
+>, <link linkend="folderhistory"
+>Klasör Geçmişi</link
+>, <link linkend="bookman"
+>Yer İmleri</link
+>, <link linkend="folder-tabs"
+>Sekme</link
+>, <link linkend="cmdline"
+>Komut Satırı</link
+>, <link linkend="fnkeys"
+>Fonksiyon Düğmeleri</link
+>.</para>
+  </sect1>
+</chapter>
