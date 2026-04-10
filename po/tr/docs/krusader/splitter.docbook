@@ -1,0 +1,73 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="splitter">
+  <title
+>Dosya Bölücüsü</title>
+  <indexterm>
+    <primary
+>Dosya Bölücüsü</primary>
+  </indexterm>
+  <para
+>Bu özellik, bir (büyük) dosyayı birden çok ufak parçaya böler; böylece daha küçük ortamlarda saklanabilir (örneğin, disketler, ZIP sürücüler, …</hardware
+> gibi) veya e-posta ile gönderilebilir. Dosya parçaları sonrasında birleştirilerek özgün dosya elde edilebilir. &krusader; ve <trademark class="copyright"
+>Total Commander</trademark
+> böl/birleştir işlevleri birbirleriyle uyumludur. Bir dosyayı bölmek için <menuchoice
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Dosyayı Böl…</guimenuitem
+> </menuchoice
+> veya <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+> kısayollarını kullanın; bir <guilabel
+>Bölücü</guilabel
+> iletişim kutusu, işlemi onaylayacaktır.</para>
+  <para
+>Özgün dosyanın adı <filename
+>foo</filename
+> ise parçaların adı <filename
+>foo.000 foo.001 foo.002</filename
+> vb. şeklinde olur. Küçük dosya sayısının pratikte bir sınırı yoktur; ancak en çok 1023 olarak sınırlamak iyi olacaktır. &krusader; bir <filename
+>foo.crc</filename
+> dosyası oluşturur. Bu dosya, özgün dosyanın adını, büyüklüğünü ve CRC sağlama toplamı bilgisini içerir. <filename
+>foo.crc</filename
+> olmadan da dosya birleştirilebilir; ancak bu durumda &krusader;, özgün dosyanın doğru bir biçimde birleştirildiğini doğrulayamaz.</para>
+  <para
+>Bir <filename
+>foo.crc</filename
+> örneği: <programlisting
+>filename=foo size=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>Birden çok dosyayı birleştirmek için bir <filename
+>foo.xxx</filename
+> kısım dosyasını seçin ve <menuchoice
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Dosyaları Birleştir…</guimenuitem
+> </menuchoice
+> yolunu izleyin veya <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+> kısayolunu kullanın. Hedef klasör etkin olmayan paneldedir ve değiştirilebilir. Dosya adları, aşağıdaki gibi artan sırada olmalıdır: <filename
+>foo.001, foo.002, foo.003</filename
+> vb. veya artan sırada harflere iye olmalıdır: (“<userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+> mektup yöntemi”) <filename
+>dosyaaa, dosyaab, dosyaac</filename
+> gibi. Kısım dosyalarıyla aynı klasörde bir <filename
+>foo.crc</filename
+> dosyası varsa &krusader; bu dosyayı, birleştirilen dosyanın hatalarını varsa denetlemek için kullanır.</para>
+</sect1>
