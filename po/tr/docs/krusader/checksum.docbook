@@ -1,0 +1,42 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="checksum">
+  <title
+>Sağlama Toplamı Yaratma ve Doğrulama</title>
+  <indexterm>
+    <primary
+>Sağlama Toplamı</primary>
+  </indexterm>
+  <para
+><menuchoice
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Sağlama Toplamı Oluştur…</guimenuitem
+> </menuchoice
+>: &krusader; sahip olduğunuz araçları denetler ve bu araçlar özyineli işlemlere izin veriyorsa (klasör de seçmeniz durumunda) listeden bir sağlama toplama türü seçerek sağlama toplamları oluşturabilirsiniz (<guilabel
+>md5</guilabel
+>, <guilabel
+>sha</guilabel
+>, vb.). Sonrasında sağlama toplamını bir dosyaya kaydedersiniz; dosyanın adı genellikle <filename
+>checksum.md5</filename
+> veya <filename
+>checksum.sha1</filename
+> olur.</para>
+  <para
+><menuchoice
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Sağlama Toplamını Doğrula…</guimenuitem
+> </menuchoice
+>: &krusader; gereksiniminiz olan sağlama toplamı için bir aracın kurulu olup olmadığını denetler (belirtilen sağlama toplamı dosyasından) ve sağlama toplamı başarısız olan dosyaları görüntüler (varsa).</para>
+  <para
+>Sistem, farklı sağlama toplamı mekanizmaları ve izlenceleri arasında bir soyutlaştırma katmanı görevi görür. Şu anda, bu sağlama toplamları desteklenmektedir: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv ve crc. Bu işlevi kullanmadan önce lütfen <link linkend="konfig-dependencies"
+>Sağlama Toplamları İzlenceleri</link
+> ayarlarına bir bakın.</para>
+</sect1>

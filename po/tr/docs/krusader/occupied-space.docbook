@@ -1,0 +1,43 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="calculate">
+  <title
+>Kaplanan Alanı Hesapla</title>
+  <indexterm>
+    <primary
+>Kaplanan Alan</primary>
+  </indexterm>
+  <!-- Thanks to Heiner Eichmann -->
+  <para
+>Dosyaların/klasörlerin kapladığı alanı hesaplamanın iki yolu vardır.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>İmlecin bulunduğu klasörde <guilabel
+>Kaplanan Alanı Hesapla</guilabel
+> için yapılandırılabilir kısayola basmak, kullanılan boyutu anında hesaplar.</para>
+    </listitem>
+    <listitem>
+      <para
+>Etkin panelde seçili dosya ve klasörlerin ne kadar disk alanı kapladığını hesaplamak için <menuchoice
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Kaplanan Alanı Hesapla</guimenuitem
+> </menuchoice
+> seçeneğini kullanın. Kısa bir gecikmenin ardından, toplam kullanılan alan ve seçtiğiniz dosya ve klasör sayısı ile birlikte bir iletişim kutusu görüntülenecektir. Seçilen her klasörün kapladığı alan, kullanıcının bu klasörlerde yapılandırılabilir bir kısayol düğmesine basmış gibi gösterilecektir. Etkin panel bir arşivi tarıyorsa sayılar seçilen dosya ve klasörlerin sıkıştırılmış boyutlarına değil, açılmış boyutlarına uygulanacaktır. Hesaplamadan sonra seçim durumu değiştirilecek ve imleç bir adım aşağıya hareket edecektir.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Uzak dosya sistemlerinde kullanılan alanın hesaplanması desteklenmektedir. <note
+> <para
+>Bu işlemi çok büyük bir dosya sisteminde (binlerce dosya) gerçekleştirmek zaman alıcı olabilir. <guibutton
+>İptal</guibutton
+> düğmesine tıklayarak hesaplama işlemini istediğiniz zaman iptal edebilirsiniz.</para>
+  </note
+></para>
+</sect1>
