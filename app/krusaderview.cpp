@@ -189,8 +189,18 @@ PanelManager *KrusaderView::createManager(bool left)
 void KrusaderView::updateCurrentActivePath()
 {
     const QString path = activePanel()->gui->lastLocalPath();
+
     _cmdLine->setCurrent(path);
-    emit activePathChanged(QFileInfo(path).fileName());
+
+    QString folderName = QFileInfo{path}.fileName();
+    if (folderName.isEmpty()) {
+        // For example, when path is "/", `QFileInfo("/").fileName()`
+        // returns an empty string.
+        // `folderName` will have a value to be shown in the window title
+        folderName = path;
+    }
+    emit activePathChanged(folderName);
+
     KConfigGroup cfg = krConfig->group("General");
     if (_terminalDock->isInitialised() && cfg.readEntry("Send CDs", _SendCDs)) {
         _terminalDock->sendCd(path);
