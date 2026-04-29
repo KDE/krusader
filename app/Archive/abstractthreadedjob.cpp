@@ -380,7 +380,12 @@ QString AbstractJobThread::tempFileIfRemote(const QUrl &kurl, const QString &typ
     }
 
     _tempFile = new QTemporaryFile(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.") + type);
-    _tempFile->open();
+    if (!_tempFile->open()) {
+        sendError(KIO::ERR_CANNOT_OPEN_FOR_READING, i18nc("%1=temporary file name", "The temporary file \"%1\" could not be opened.",
+                kurl.toDisplayString()));
+        // The operation cannot continue
+        return QString();
+    }
     _tempFileName = _tempFile->fileName();
     _tempFile->close(); // necessary to create the filename
     QFile::remove(_tempFileName);

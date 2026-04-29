@@ -48,6 +48,10 @@ void PackThread::slotStart()
     countLocalFiles(newSource, _fileNames, totalFiles);
 
     QString arcFile = tempFileIfRemote(_destUrl, _type);
+    if (arcFile.isEmpty()) {
+        // The operation cannot continue
+        return;
+    }
     QString arcDir = newSource.adjusted(QUrl::StripTrailingSlash).path();
 
     setProgressTitle(i18n("Processed files"));
