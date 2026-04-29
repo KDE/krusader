@@ -544,7 +544,11 @@ void ListPanelFunc::slotStatEdit(KJob *job)
             // create a new file
             auto *tempFile = new QTemporaryFile;
             tempFile->setAutoRemove(false); // done below
-            tempFile->open(); // create file
+            bool result = tempFile->open(); // create file
+            if (!result) {
+                KMessageBox::error(krMainWindow, i18n("A temporary file with the template \"%1\" could not be opened.", tempFile->fileTemplate()));
+                return;
+            }
 
             KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), url);
             job->setUiDelegate(nullptr);

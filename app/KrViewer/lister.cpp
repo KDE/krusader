@@ -1342,7 +1342,10 @@ bool Lister::openUrl(const QUrl &listerUrl)
         if (_tempFile->isOpen()) {
             _tempFile->close();
         }
-        _tempFile->open();
+        if (!_tempFile->open()) {
+            KMessageBox::error(_textArea, i18n("A temporary file with the template \"%1\" could not be opened.", _tempFile->fileTemplate()));
+            return false;
+        }
 
         _filePath = _tempFile->fileName();
 
