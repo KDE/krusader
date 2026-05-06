@@ -20,12 +20,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "您的姓名"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "您的电子邮箱"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -124,6 +124,8 @@ msgid ""
 "If you do not have such a useraction the name is used by Krusader for an "
 "internal action."
 msgstr ""
+"已经有一个具有此名称的操作。\n"
+"如果您没有这样的用户动作，则此名称已被 Krusader 用于预带操作。"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, ActionProperty)
 #: app/ActionMan/actionproperty.ui:14
@@ -176,19 +178,19 @@ msgstr "用本地文件名称替换 <b>Placeholders</b> "
 #: app/ActionMan/actionproperty.ui:86
 #, kde-format
 msgid "&Local files only (no URLs)"
-msgstr ""
+msgstr "仅本地文件 (无 URL)(&L)"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioUrl)
 #: app/ActionMan/actionproperty.ui:96
 #, kde-format
 msgid "Substitute the <b>Placeholders</b> with valid URLs."
-msgstr ""
+msgstr "用有效的 URL 替换 <b>占位符</b>。"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioUrl)
 #: app/ActionMan/actionproperty.ui:99
 #, kde-format
 msgid "URLs (re&mote and local)"
-msgstr ""
+msgstr "URL (远程的和本地的) (&M)"
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leTitle)
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelTitle)
@@ -211,6 +213,9 @@ msgid ""
 "<i>Konfigurator</i> and does not appear in any other menu.<p><b>Note</b>: "
 "the <i>Title</i> shown in the <b>Usermenu</b> can be set below."
 msgstr ""
+"<b>用户动作</b>的唯一名称。它仅在 <i>Konfigurator</i> 中使用，不会出现在任何"
+"其他菜单中。<p><b>注意</b>：<b>用户菜单</b> 中显示的 <i>标题</i> 可在下面设"
+"置。"
 
 #. i18n: ectx: property (whatsThis), widget (KComboBox, cbCategory)
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelCategory)
@@ -220,6 +225,8 @@ msgid ""
 "<b>Useractions</b> can be grouped in categories for better distinction. "
 "Choose a existing <i>Category</i> or create a new one by entering a name."
 msgstr ""
+"<b>用户动作</b> 可按类别分组，以提供更好的区分。选择一个现存的 <i>类别</i> 或"
+"通过输入名称来创建一个新类别。"
 
 #. i18n: ectx: property (whatsThis), widget (KIconButton, ButtonIcon)
 #: app/ActionMan/actionproperty.ui:176
@@ -228,6 +235,8 @@ msgid ""
 "Each <b>Useraction</b> can have its own icon. It will appear in front of the "
 "title in the <b>Usermenu</b>."
 msgstr ""
+"每个 <b>用户动作</b> 有它自己的图标。它将显示在 <b>用户菜单</b> 中的标题之"
+"前。"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelDistinctName)
 #: app/ActionMan/actionproperty.ui:191
@@ -237,6 +246,9 @@ msgid ""
 "<i>Konfigurator</i> and does not appear in any other menu.</p><p><b>Note</"
 "b>: The <i>Title</i> shown in the <b>Usermenu</b> can be set below.</p>"
 msgstr ""
+"<b>用户动作</b>的唯一名称。它仅在 <i>Konfigurator</i> 中使用，不会出现在任何"
+"其他菜单中。<p><b>注意</b>：<b>用户菜单</b> 中显示的 <i>标题</i>可在下面设"
+"置。"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelDistinctName)
 #: app/ActionMan/actionproperty.ui:194
@@ -255,6 +267,11 @@ msgid ""
 "%aList(\"Selected\")%</code></li></ul>\n"
 "<p>Please consult the handbook to learn more about the syntax.</p>"
 msgstr ""
+"<p> <i>命令</i> 定义了使用 <b>用户动作</b> 时将要执行的命令。它可以是一个简单"
+"的 shell 命令，也可以是带有 <b>占位符</b> 的多个命令的复杂序列。</p><p>示例："
+"</p><ul><li><code>eject /mnt/cdrom</code></li><li><code>amarok --apping "
+"%aList(\"Selected\")%</code></li></ul>\n"
+"<p>请查阅手册以了解关于语法的更多信息。</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelCommandline)
 #: app/ActionMan/actionproperty.ui:214
@@ -269,7 +286,7 @@ msgstr "命令："
 msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
-msgstr ""
+msgstr "当鼠标光标悬停在 <b>用户动作工具栏</b> 时显示 <i>工具提示</i>"
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leStartpath)
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelStartpath)
@@ -278,7 +295,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which folder the <i>Command</i> will be "
 "executed."
-msgstr ""
+msgstr "<i>工作目录</i> 定义了执行 <i>命令</i> 的文件夹。"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelTooltip)
 #: app/ActionMan/actionproperty.ui:247
@@ -297,6 +314,11 @@ msgid ""
 "%aList(\"Selected\")%</code></li></ul>\n"
 "Please consult the handbook to learn more about the syntax."
 msgstr ""
+"<i>命令</i> 定义了当使用 <b>用户动作</b> 时将要执行的命令。它可以是一个简单"
+"的 shell 命令，也可以是带有 <b>占位符</b> 的多个命令的复杂序列。<p>\n"
+"示例：<ul><li><code>eject /mnt/cdrom</code></li><li><code>amarok --apte "
+"%aList(\"Selected\")%</code></li></ul>\n"
+"请参阅手册以了解关于语法的更多信息。"
 
 #. i18n: ectx: property (text), widget (QLabel, LabelCategory)
 #: app/ActionMan/actionproperty.ui:278
@@ -345,7 +367,7 @@ msgstr "未分组"
 #: app/ActionMan/actionproperty.ui:398
 #, kde-format
 msgid "If checked, the action is shown in the Useractions menus."
-msgstr ""
+msgstr "如果选中，该动作将显示在用户动作菜单中。"
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkEnabled)
 #: app/ActionMan/actionproperty.ui:401
@@ -506,6 +528,8 @@ msgid ""
 "Show the <b>Useraction</b> only for the file names defined here. The "
 "wildcards '<code>?</code>' and '<code>*</code>' can be used."
 msgstr ""
+"只显示此处指定的文件名的 <b>用户动作</b>。可使用通配符 “<code>?</code>”和 "
+"“<code>*</code>”。"
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonNewFile)
 #: app/ActionMan/actionproperty.ui:845
@@ -518,7 +542,7 @@ msgstr "新建(&N)..."
 #: app/ActionMan/actionproperty.ui:925
 #, kde-format
 msgid "Allows one to tweak the <i>Command</i> before it is executed."
-msgstr ""
+msgstr "允许在执行<i>命令</i>前进行调整。"
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkConfirmExecution)
 #: app/ActionMan/actionproperty.ui:928
@@ -531,7 +555,7 @@ msgstr "每次独立调用程序时进行确认"
 #: app/ActionMan/actionproperty.ui:935 app/ActionMan/actionproperty.ui:948
 #, kde-format
 msgid "Execute the <i>Command</i> under a different user ID."
-msgstr ""
+msgstr "以其它用户 ID 执行<i>命令</i> 。"
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkDifferentUser)
 #: app/ActionMan/actionproperty.ui:938
@@ -632,7 +656,7 @@ msgstr "您确定要移除所有选中的操作吗？"
 #: app/ActionMan/useractionpage.cpp:209
 #, kde-format
 msgid "Remove Selected Actions?"
-msgstr ""
+msgstr "删除选中的动作吗？"
 
 #: app/ActionMan/useractionpage.cpp:260
 #, kde-format
@@ -640,6 +664,8 @@ msgid ""
 "This file already contains some useractions.\n"
 "Do you want to overwrite it or should it be merged with the selected actions?"
 msgstr ""
+"此文件已经包含一些用户动作。\n"
+"您要覆写它还是将它与选中的动作和并？"
 
 #: app/ActionMan/useractionpage.cpp:261
 #, kde-format
@@ -678,7 +704,7 @@ msgstr "导出失败"
 #: app/Archive/abstractthreadedjob.cpp:198
 #, kde-format
 msgid "Internal error, undefined <job> in result signal"
-msgstr ""
+msgstr "内部错误，未定义的 <job> 结果信号"
 
 #: app/Archive/abstractthreadedjob.cpp:344
 #, kde-format
@@ -866,18 +892,18 @@ msgstr "无法写入 %1"
 #: app/BookMan/krbookmarkhandler.cpp:234
 #, kde-format
 msgid "%1 instead of %2"
-msgstr ""
+msgstr "%1 而不是 %2"
 
 #: app/BookMan/krbookmarkhandler.cpp:239 app/BookMan/krbookmarkhandler.cpp:246
 #: app/BookMan/krbookmarkhandler.cpp:283
 #, kde-format
 msgid "missing tag %1"
-msgstr ""
+msgstr "缺少标签 %1"
 
 #: app/BookMan/krbookmarkhandler.cpp:323
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
-msgstr ""
+msgstr "%1 似乎不是一个有效的书签文件"
 
 #: app/BookMan/krbookmarkhandler.cpp:331
 #, kde-format
@@ -922,7 +948,7 @@ msgstr "删除"
 #: app/Dialogs/checksumdlg.cpp:112
 #, kde-format
 msgid "<qt>Could not start <b>%1</b>.</qt>"
-msgstr ""
+msgstr "<qt>无法启动 <b>%1</b>。</qt>"
 
 #: app/Dialogs/checksumdlg.cpp:119
 #, kde-format
@@ -1110,6 +1136,11 @@ msgid ""
 "Notice that the line in which you edit the mask has its own history, you can "
 "scroll it, if needed."
 msgstr ""
+"预定义选择是您经常使用的文件蒙版。\n"
+"一些示例是：“*.c, *.h”、“*.c, *.o”等等。\n"
+"键入它们并点击添加按钮，您就能将这些蒙版添加到列表中。\n"
+"删除操作将移除一个预定义选择，清除操作将移除全部。\n"
+"注意您编辑蒙版的那行有其自己的历史记录，您可以在那行滚动查看。"
 
 #: app/Dialogs/krmaskchoice.cpp:80
 #, kde-format
@@ -1240,7 +1271,7 @@ msgstr "到压缩文件"
 #: app/Dialogs/packguibase.cpp:90
 #, kde-format
 msgid "In folder"
-msgstr ""
+msgstr "在文件夹中"
 
 #: app/Dialogs/packguibase.cpp:138
 #, kde-format
@@ -1285,7 +1316,7 @@ msgstr "加密文件头"
 #: app/Dialogs/packguibase.cpp:257
 #, kde-format
 msgid "Command line switches:"
-msgstr ""
+msgstr "命令行参数："
 
 #: app/Dialogs/packguibase.cpp:283 app/Dialogs/packguibase.cpp:324
 #, kde-format
@@ -1300,7 +1331,7 @@ msgstr "&高级 <<"
 #: app/Dialogs/packguibase.cpp:343
 #, kde-format
 msgid "No password specified"
-msgstr ""
+msgstr "未指定密码"
 
 #: app/Dialogs/packguibase.cpp:346
 #, kde-format
@@ -1315,7 +1346,7 @@ msgstr "密码不同"
 #: app/Dialogs/packguibase.cpp:389
 #, kde-format
 msgid "Cannot pack, the passwords are different."
-msgstr ""
+msgstr "无法打包，密码不同。"
 
 #: app/Dialogs/packguibase.cpp:417
 #, kde-format
@@ -1328,6 +1359,8 @@ msgid ""
 "Invalid command line switch.\n"
 "A switch must start with '-'."
 msgstr ""
+"命令行参数无效。\n"
+"必须以“-”开头。"
 
 #: app/Dialogs/packguibase.cpp:461
 #, kde-format
@@ -1335,6 +1368,8 @@ msgid ""
 "Invalid command line switch.\n"
 "Backslashes cannot be the last character."
 msgstr ""
+"命令行参数无效。\n"
+"反斜杠不能是最后一个字符。"
 
 #: app/Dialogs/packguibase.cpp:469
 #, kde-format
@@ -1342,11 +1377,13 @@ msgid ""
 "Invalid command line switch.\n"
 "Unclosed quotation mark."
 msgstr ""
+"命令行参数无效。\n"
+"引号不匹配。"
 
 #: app/Dialogs/popularurls.cpp:89
 #, kde-format
 msgid "The saved 'Popular URLs' are invalid. The list will be cleared."
-msgstr ""
+msgstr "已保存的“常用 URL”无效，列表将被清空。"
 
 #: app/Dialogs/popularurls.cpp:293
 #, kde-format
@@ -1366,7 +1403,7 @@ msgstr "文件："
 #: app/DiskUsage/diskusage.cpp:107
 #, kde-format
 msgid "Folders:"
-msgstr ""
+msgstr "文件夹："
 
 #: app/DiskUsage/diskusage.cpp:112
 #, kde-format
@@ -1383,7 +1420,7 @@ msgstr "正在加载磁盘使用率信息..."
 msgid ""
 "Stepping into the parent folder requires loading the content of the \"%1\" "
 "URL. Do you wish to continue?"
-msgstr ""
+msgstr "进入父文件夹需要加载“%1”URL的内容。您想要继续吗？"
 
 #: app/DiskUsage/diskusage.cpp:408
 #, kde-format
@@ -1394,7 +1431,7 @@ msgstr "Krusader::DiskUsage"
 #, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
-msgstr ""
+msgstr "您真的要将这项移到回收站吗？"
 
 #: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:840
 #, kde-format
@@ -1405,7 +1442,7 @@ msgstr "移入回收站(&T)"
 #, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to delete this item?"
-msgstr ""
+msgstr "您真的要删除这个项目吗？"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
 #: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:856
@@ -1422,7 +1459,7 @@ msgstr "正在删除 %1..."
 #: app/DiskUsage/diskusage.cpp:720
 #, kde-format
 msgid "Current folder:%1,  Total size:%2,  Own size:%3"
-msgstr ""
+msgstr "当前文件夹：%1，总大小：%2，本身大小：%3"
 
 #: app/DiskUsage/diskusage.cpp:746
 #, kde-format
@@ -1523,17 +1560,17 @@ msgstr "Krusader::Disk Usage"
 #: app/DiskUsage/diskusagegui.cpp:53
 #, kde-format
 msgid "Start new disk usage search"
-msgstr ""
+msgstr "开始新一次磁盘使用情况搜索"
 
 #: app/DiskUsage/diskusagegui.cpp:63
 #, kde-format
 msgid "Parent folder"
-msgstr ""
+msgstr "上级文件夹"
 
 #: app/DiskUsage/diskusagegui.cpp:73
 #, kde-format
 msgid "Line view"
-msgstr ""
+msgstr "行视图"
 
 #: app/DiskUsage/diskusagegui.cpp:79
 #, kde-format
@@ -1543,12 +1580,12 @@ msgstr "详情视图"
 #: app/DiskUsage/diskusagegui.cpp:85
 #, kde-format
 msgid "Filelight view"
-msgstr ""
+msgstr "Filelight 视图"
 
 #: app/DiskUsage/diskusagegui.cpp:221
 #, kde-format
 msgid "Viewing the usage of folder:"
-msgstr ""
+msgstr "查看文件夹使用情况："
 
 #: app/DiskUsage/dufilelight.cpp:80 app/Panel/viewactions.cpp:20
 #, kde-format
@@ -1618,7 +1655,7 @@ msgstr "Krusader::Filelight"
 #: app/DiskUsage/dulines.cpp:183
 #, kde-format
 msgid "Line View"
-msgstr ""
+msgstr "行视图"
 
 #: app/DiskUsage/dulines.cpp:184 app/DiskUsage/dulistview.cpp:41
 #, kde-format
@@ -1685,7 +1722,7 @@ msgstr "文件：%1"
 #: app/DiskUsage/radialMap/widgetEvents.cpp:166
 #, kde-format
 msgid "Open File Manager Here"
-msgstr ""
+msgstr "在此打开文件管理器"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:168
 #, kde-format
@@ -1722,7 +1759,7 @@ msgstr "<qt><i>“%1”</i>将被<b>永久</b>删除。</qt>"
 #: app/FileSystem/defaultfilesystem.cpp:150
 #, kde-format
 msgid "Space information disabled"
-msgstr ""
+msgstr "空间信息已禁用"
 
 #: app/FileSystem/defaultfilesystem.cpp:157
 #, kde-format
@@ -1732,7 +1769,7 @@ msgstr "没有非本地文件系统的空间使用信息"
 #: app/FileSystem/defaultfilesystem.cpp:185
 #, kde-format
 msgid "Space information unavailable"
-msgstr ""
+msgstr "空间信息不可用"
 
 #: app/FileSystem/defaultfilesystem.cpp:195
 #, kde-format
@@ -1746,13 +1783,13 @@ msgstr ""
 #: app/FileSystem/defaultfilesystem.cpp:337
 #, kde-format
 msgid "The folder %1 does not exist."
-msgstr ""
+msgstr "文件夹 %1 不存在。"
 
 #: app/FileSystem/defaultfilesystem.cpp:353
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Cannot open the folder %1."
-msgstr ""
+msgstr "无法打开文件夹 %1。"
 
 #: app/FileSystem/defaultfilesystem.cpp:360
 #, kde-format
