@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-02-16 00:51+0000\n"
-"PO-Revision-Date: 2026-05-06 23:02+0300\n"
+"PO-Revision-Date: 2026-05-08 23:08+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -298,8 +298,8 @@ msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
 msgstr ""
-"<i>İpucu</i> fare imleci <b>Kullanıcı Eylemi Araç Çubuğu</b> ögesi üzerinde "
-"iken görüntülenecektir."
+"<i>Araç ipucu</i>, fare imleci <b>Kullanıcı Eylemi Araç Çubuğu</b> ögesi "
+"üzerinde iken görüntülenecektir."
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leStartpath)
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelStartpath)
@@ -315,7 +315,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:247
 #, kde-format
 msgid "Tooltip:"
-msgstr "İpucu:"
+msgstr "Araç ipucu:"
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leCommandline)
 #: app/ActionMan/actionproperty.ui:259
@@ -932,7 +932,7 @@ msgstr "Yer imleri dosyası okunamıyor: %1"
 #: app/Dialogs/popularurls.cpp:276
 #, kde-format
 msgid "Popular URLs"
-msgstr "Sık kullanılanlar"
+msgstr "Sık Kullanılan URL’ler"
 
 #: app/BookMan/krbookmarkhandler.cpp:776
 #, kde-format
@@ -942,7 +942,7 @@ msgstr "Özel yer imlerini etkinleştir"
 #: app/BookMan/krbookmarkhandler.cpp:796
 #, kde-format
 msgid "Jump back"
-msgstr "Geri git"
+msgstr "Geri atla"
 
 #: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:103
@@ -2916,10 +2916,9 @@ msgid ""
 "alternates line by line.</p><p>When you don't use the <i>KDE default colors</"
 "i>, you can configure the alternate colors in the <i>colors</i> box.</p>"
 msgstr ""
-"<p><b>Zemin rengi</b> ve <b>zemin değiştir</b> seçenekleri ile satırı "
-"satırına renk değiştirilir.</p><p><i>KDE öntanımlı renkleri</i> "
-"kullanmadığınızda <i>renkler</i> kutusundaki değişik renkler ile "
-"yapılandırabilirsiniz.</p>"
+"<p>Arka plan rengi</b> ve alternatif arka plan rengi satır satır değişir.</"
+"p><p>KDE öntanımlı renklerini</i> kullanmadığınızda, alternatif renkleri "
+"<i>renkler</i> kutusundan yapılandırabilirsiniz.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:74
 #, kde-format
@@ -3013,7 +3012,7 @@ msgstr "Arka plan ile aynı"
 #: app/Konfigurator/kgcolors.cpp:125 app/Konfigurator/kgcolors.cpp:189
 #, kde-format
 msgid "Alternate background:"
-msgstr "Alternatif arka plan:"
+msgstr "Arka planı değiştir:"
 
 #: app/Konfigurator/kgcolors.cpp:126 app/Konfigurator/kgcolors.cpp:195
 #, kde-format
@@ -3043,7 +3042,7 @@ msgstr "Seçilen arka plan ile aynı"
 #: app/Konfigurator/kgcolors.cpp:135 app/Konfigurator/kgcolors.cpp:215
 #, kde-format
 msgid "Current foreground:"
-msgstr "Şimdiki ön plan:"
+msgstr "Geçerli ön plan:"
 
 #: app/Konfigurator/kgcolors.cpp:135 app/Konfigurator/kgcolors.cpp:137
 #: app/Konfigurator/kgcolors.cpp:138
@@ -3059,12 +3058,12 @@ msgstr "Seçilen ön plan ile aynı"
 #: app/Konfigurator/kgcolors.cpp:137 app/Konfigurator/kgcolors.cpp:220
 #, kde-format
 msgid "Selected current foreground:"
-msgstr "Seçili şimdiki ön plan:"
+msgstr "Seçili geçerli ön plan:"
 
 #: app/Konfigurator/kgcolors.cpp:138 app/Konfigurator/kgcolors.cpp:226
 #, kde-format
 msgid "Current background:"
-msgstr "Şimdiki arka plan:"
+msgstr "Geçerli arka plan:"
 
 #: app/Konfigurator/kgcolors.cpp:139
 #, kde-format
@@ -3131,7 +3130,7 @@ msgstr "Farklılık ön planı:"
 #: app/Konfigurator/kgcolors.cpp:283
 #, kde-format
 msgid "Differing background:"
-msgstr "Farkılık arka planı:"
+msgstr "Farklılık arka planı:"
 
 #: app/Konfigurator/kgcolors.cpp:284
 #, kde-format
@@ -3171,22 +3170,22 @@ msgstr "Diğer"
 #: app/Konfigurator/kgcolors.cpp:313
 #, kde-format
 msgid "Quicksearch, match foreground:"
-msgstr "Tez arama, eşleşme ön planı:"
+msgstr "Tez arama, ön planda eşleşen:"
 
 #: app/Konfigurator/kgcolors.cpp:314
 #, kde-format
 msgid "Quicksearch, match background:"
-msgstr "Tez arama, eşleşme arka planı:"
+msgstr "Tez arama, arka planda eşleşen:"
 
 #: app/Konfigurator/kgcolors.cpp:315
 #, kde-format
 msgid "Quicksearch, non-match foreground:"
-msgstr "Tez arama, eşleşme yok ön planı:"
+msgstr "Tez arama, ön planda eşleşmeyen:"
 
 #: app/Konfigurator/kgcolors.cpp:316
 #, kde-format
 msgid "Quicksearch, non-match background:"
-msgstr "Tez arama, eşleşme yok arka planı:"
+msgstr "Tez arama, arka planda eşleşmeyen:"
 
 #: app/Konfigurator/kgcolors.cpp:320
 #, kde-format
@@ -3287,7 +3286,7 @@ msgstr "Aynılar"
 #: app/Konfigurator/kgcolors.cpp:641
 #, kde-format
 msgid "Quicksearch non-match"
-msgstr "Tez arama eşleşmesi yok"
+msgstr "Tez arama ile eşleşmeyen"
 
 #: app/Konfigurator/kgcolors.cpp:642
 #, kde-format
@@ -3497,7 +3496,7 @@ msgstr "Ana pencere kapatılmak istendiğinde uyarı göster."
 #: app/Konfigurator/kggeneral.cpp:229
 #, kde-format
 msgid "Show and close to tray"
-msgstr "Tepsiyi göster ve kapat"
+msgstr "Tepside göster ve kapat"
 
 #: app/Konfigurator/kggeneral.cpp:231
 #, kde-format
@@ -3604,7 +3603,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:325
 #, kde-format
 msgid "Add new atomic extension"
-msgstr "Yeni atomik uzantı Eklentisi"
+msgstr "Yeni atomik uzantı ekle"
 
 #: app/Konfigurator/kggeneral.cpp:325
 #, kde-format
@@ -3617,7 +3616,7 @@ msgid ""
 "Atomic extensions must start with '.' and must contain at least one more '.' "
 "character."
 msgstr ""
-"Atomik eklentiler ‘.’ ile başlamalı ve en azından bir ‘.’ karakteri "
+"Atomik uzantılar “.” ile başlamalı ve en azından bir “.” karakteri "
 "içermelidirler."
 
 #: app/Konfigurator/kgpanel.cpp:72
@@ -3845,7 +3844,7 @@ msgstr "Arama Çubuğu"
 #: app/Konfigurator/kgpanel.cpp:203
 #, kde-format
 msgid "Start by typing"
-msgstr "Yazmaya başla"
+msgstr "Yazarak başla"
 
 #: app/Konfigurator/kgpanel.cpp:205
 #, kde-format
@@ -3878,7 +3877,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:216
 #, kde-format
 msgid "Folder navigation with Right Arrow"
-msgstr "Sağ Ok ile klasör dolaşımı"
+msgstr "Sağ ok ile klasörlerde dolaş"
 
 #: app/Konfigurator/kgpanel.cpp:218
 #, kde-format
@@ -3945,8 +3944,8 @@ msgid ""
 "Bookmark search is also applied to special items in bookmark menu like "
 "Trash, Popular URLs, Jump Back, etc."
 msgstr ""
-"Yer imleri arama, menüdeki özel ögelere de uygulanır; örn. Çöp Kutusu, "
-"Popüler URL’ler, Geri Atlama vb."
+"Yer imlerinde arama, menüdeki özel ögelere de uygulanır; örneğin, Çöp "
+"Kutusu, Sık Kullanılan URL’ler, Geri Atla vb."
 
 #: app/Konfigurator/kgpanel.cpp:281
 #, kde-format
@@ -3956,7 +3955,7 @@ msgstr "Durum/Toplam Çubuğu"
 #: app/Konfigurator/kgpanel.cpp:285
 #, kde-format
 msgid "Show size in bytes too"
-msgstr "Boyutu bayt olarak da göster"
+msgstr "Büyüklüğü bayt olarak da göster"
 
 #: app/Konfigurator/kgpanel.cpp:286
 #, kde-format
@@ -3987,7 +3986,7 @@ msgstr "Çerçeve rengi:"
 #, kde-format
 msgctxt "Frame color"
 msgid "Defined by Layout"
-msgstr "Yerleşim ile tanımlı"
+msgstr "Yerleşim tarafından tanımlı"
 
 #: app/Konfigurator/kgpanel.cpp:329
 #, kde-format
@@ -4010,7 +4009,7 @@ msgstr "Çerçeve şekli:"
 #, kde-format
 msgctxt "Frame shape"
 msgid "Defined by Layout"
-msgstr "Yerleşim ile tanımlı"
+msgstr "Yerleşim tarafından tanımlı"
 
 #: app/Konfigurator/kgpanel.cpp:339
 #, kde-format
@@ -4039,7 +4038,7 @@ msgstr "Çerçeve gölgesi:"
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Defined by Layout"
-msgstr "Yerleşim ile tanımlı"
+msgstr "Yerleşim tarafından tanımlı"
 
 #: app/Konfigurator/kgpanel.cpp:351
 #, kde-format
@@ -4067,7 +4066,7 @@ msgstr "Öntanımlı simge boyutu:"
 #: app/Konfigurator/kgpanel.cpp:395
 #, kde-format
 msgid "Use icons in the filenames"
-msgstr "Dosya adlarındaki simgeleri kullan"
+msgstr "Dosya adlarında simgeler kullan"
 
 #: app/Konfigurator/kgpanel.cpp:395
 #, kde-format
@@ -4077,12 +4076,12 @@ msgstr "Dosya adları ve klasörler için simgeleri göster."
 #: app/Konfigurator/kgpanel.cpp:396
 #, kde-format
 msgid "Show previews by default"
-msgstr "Öntanımlı olarak önizlemeleri göster"
+msgstr "Önizlemeleri öntanımlı olarak göster"
 
 #: app/Konfigurator/kgpanel.cpp:396
 #, kde-format
 msgid "Show previews of files and folders."
-msgstr "Dosya ve klasörlerin önizlemelerini göster."
+msgstr "Dosya ve klasörlerin önizlemelerini gösterin."
 
 #: app/Konfigurator/kgpanel.cpp:431
 #, kde-format
@@ -4095,13 +4094,13 @@ msgid ""
 "The duration after a tooltip is shown for a file item, in milliseconds. Set "
 "a negative value to disable tooltips."
 msgstr ""
-"Bir dosya ögesi için ipucu gösteriminden sonraki milisaniye olarak süre. "
-"İpuçlarını kapatmak için negatif bir değer seçin."
+"Bir dosya ögesi için araç ipucu gösteriminden sonraki milisaniye olarak "
+"süre. Araç ipuçlarını kapatmak için negatif bir değer seçin."
 
 #: app/Konfigurator/kgpanel.cpp:443
 #, kde-format
 msgid "Tooltip delay (msec):"
-msgstr "İpucu gecikmesi (mili sn):"
+msgstr "Araç ipucu gecikmesi (msan):"
 
 #: app/Konfigurator/kgpanel.cpp:461
 #, kde-format
@@ -4126,7 +4125,7 @@ msgstr "Nokta (.) ile başlayan dosyaları göster."
 #: app/Konfigurator/kgpanel.cpp:468
 #, kde-format
 msgid "Numeric Permissions"
-msgstr "Numaralandırılmış İzinler"
+msgstr "Sayısal izin bilgisi"
 
 #: app/Konfigurator/kgpanel.cpp:470
 #, kde-format
@@ -4134,13 +4133,13 @@ msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
 "the permission column."
 msgstr ""
-"İzinler kolonunda, geleneksel yetkiler (rwxr-xr-x) yerine numaralarını "
-"(0755) görüntüler."
+"İzin sütununda standart izinler (rwxr-xr-x) yerine sekizlik sayılar (0755) "
+"gösterin."
 
 #: app/Konfigurator/kgpanel.cpp:474
 #, kde-format
 msgid "Load the user defined folder icons"
-msgstr "Kullanıcı tanımlı klasör simgelerini kullan"
+msgstr "Kullanıcı tanımlı klasör simgelerini yükle"
 
 #: app/Konfigurator/kgpanel.cpp:476
 #, kde-format
@@ -4165,12 +4164,12 @@ msgstr "Sıralama yöntemi:"
 #: app/Konfigurator/kgpanel.cpp:499
 #, kde-format
 msgid "Alphabetical"
-msgstr "Alfabetik"
+msgstr "Abecesel"
 
 #: app/Konfigurator/kgpanel.cpp:500
 #, kde-format
 msgid "Alphabetical and numbers"
-msgstr "Alfabetik ve sayılar"
+msgstr "Abecesel ve sayısal"
 
 #: app/Konfigurator/kgpanel.cpp:501
 #, kde-format
@@ -4220,7 +4219,7 @@ msgstr "Sıralama sütunu ne olursa olsun, klasörler ada göre sıralanır."
 #: app/Konfigurator/kgpanel.cpp:531
 #, kde-format
 msgid "Locale aware sorting"
-msgstr "Yerel sıralama"
+msgstr "Yerel ayarlara göre sıralama"
 
 #: app/Konfigurator/kgpanel.cpp:533
 #, kde-format
@@ -4283,7 +4282,7 @@ msgstr "Geçmiş düğmesi görünür olacaktır."
 #: app/Konfigurator/kgpanel.cpp:613
 #, kde-format
 msgid "Show Bookmarks Button"
-msgstr "Yer İmleri düğmesini göster"
+msgstr "Yer imleri düğmesini göster"
 
 #: app/Konfigurator/kgpanel.cpp:613
 #, kde-format
@@ -4293,17 +4292,17 @@ msgstr "Yer imleri düğmesi görünür olacaktır."
 #: app/Konfigurator/kgpanel.cpp:614
 #, kde-format
 msgid "Show Panel Toolbar"
-msgstr "Panel Araç Çubuğunu Göster"
+msgstr "Panel araç çubuğunu göster"
 
 #: app/Konfigurator/kgpanel.cpp:614
 #, kde-format
 msgid "The panel toolbar will be visible."
-msgstr "Panel araç çubuğu görünür olacak."
+msgstr "Panel araç çubuğu görünür olacaktır."
 
 #: app/Konfigurator/kgpanel.cpp:620
 #, kde-format
 msgid "Visible Panel Toolbar buttons"
-msgstr "Görünür Panel Araç Çubuğu düğmeleri"
+msgstr "Görünür panel araç çubuğu düğmeleri"
 
 #: app/Konfigurator/kgpanel.cpp:624
 #, kde-format
@@ -4313,12 +4312,12 @@ msgstr "Eşittir düğmesi (=)"
 #: app/Konfigurator/kgpanel.cpp:624
 #, kde-format
 msgid "Changes the panel folder to the other panel folder."
-msgstr "Panel klasörünü, diğer panel klasörüne değiştirir."
+msgstr "Panel klasörünü diğer panelin klasörüne değiştirir."
 
 #: app/Konfigurator/kgpanel.cpp:625
 #, kde-format
 msgid "Up button (..)"
-msgstr "Yukarı düğmesi (..)"
+msgstr "Yukarı düğmesi (‥)"
 
 #: app/Konfigurator/kgpanel.cpp:625
 #, kde-format
@@ -4455,7 +4454,7 @@ msgstr "Dosya üzerinde tek tık ile dosyayı seçip odaklanır, çift tık ile 
 #: app/Konfigurator/kgpanel.cpp:708
 #, kde-format
 msgid "Obey global selection policy"
-msgstr "Genel seçim ilkelerine uy"
+msgstr "Global seçim ilkelerine uy"
 
 #: app/Konfigurator/kgpanel.cpp:708
 #, kde-format
@@ -4469,12 +4468,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:721
 #, kde-format
 msgid "Based on KDE's selection mode"
-msgstr "KDE’nin seçim kipi temelli"
+msgstr "KDE’nin seçim kipi tabanlıdır"
 
 #: app/Konfigurator/kgpanel.cpp:723
 #, kde-format
 msgid "If checked, use a mode based on KDE's style."
-msgstr "Seçiliyse KDE biçeminde kullanım sağlar."
+msgstr "İşaretlenmişse KDE stiline dayalı bir kip kullanılır."
 
 #: app/Konfigurator/kgpanel.cpp:727
 #, kde-format
@@ -4618,7 +4617,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:790
 #, kde-format
 msgid "A plain mouse button resets selection"
-msgstr "Düz fare düğmesi seçimi sıfırlar"
+msgstr "Tek başına fare düğmesi seçimi sıfırlar"
 
 #: app/Konfigurator/kgpanel.cpp:792
 #, kde-format
@@ -4660,7 +4659,7 @@ msgstr "Bilinmeyen dosya sistemi girdilerini gizle"
 #: app/Konfigurator/kgpanel.cpp:846
 #, kde-format
 msgid "Show Size:"
-msgstr "Boyutu göster:"
+msgstr "Büyüklüğü göster:"
 
 #: app/Konfigurator/kgpanel.cpp:849
 #, kde-format
@@ -7050,7 +7049,7 @@ msgid ""
 "current folder: total size, free space, type of filesystem, etc."
 msgstr ""
 "Durum çubuğu geçerli klasörünüzü tutan dosya sistemi hakkında bilgiler "
-"görüntüler: Toplam boyut, boş alan, dosya sistemi türü, vb."
+"görüntüler: Toplam büyüklük, boş alan, dosya sistemi türü, vb."
 
 #: app/Panel/listpanel.cpp:192
 #, kde-format
@@ -7311,12 +7310,12 @@ msgstr "Panelleri Eşzamanla"
 #: app/Panel/listpanelactions.cpp:99
 #, kde-format
 msgid "Jump Back"
-msgstr "Geriye Git"
+msgstr "Geri Atla"
 
 #: app/Panel/listpanelactions.cpp:100
 #, kde-format
 msgid "Set Jump Back Point"
-msgstr "Geriye Gitme Noktası Ayarla"
+msgstr "Geriye Atlama Noktası Ayarla"
 
 #: app/Panel/listpanelactions.cpp:102
 #, kde-format
@@ -7775,7 +7774,7 @@ msgstr "Sütunlar"
 #: app/Panel/PanelView/krinterdetailedview.cpp:303
 #, kde-format
 msgid "Automatically Resize Columns"
-msgstr "Sütunları Otomatik Yeniden Boyutlandır"
+msgstr "Sütunları Kendiliğinden Yeniden Boyutlandır"
 
 #: app/Panel/PanelView/krview.cpp:425
 #, kde-format
@@ -7862,7 +7861,7 @@ msgstr "Ad"
 #, kde-format
 msgctxt "File property"
 msgid "Ext"
-msgstr "Ext"
+msgstr "Uzantı"
 
 #: app/Panel/PanelView/listmodel.cpp:379
 #, kde-format
@@ -7880,7 +7879,7 @@ msgstr "Türü"
 #, kde-format
 msgctxt "File property"
 msgid "Modified"
-msgstr "Değiştirildi"
+msgstr "Değiştirilme"
 
 #: app/Panel/PanelView/listmodel.cpp:385
 #, kde-format
@@ -8296,7 +8295,7 @@ msgstr "%1 için olan ilk dosya parçası açılamadı."
 #: app/Splitter/combiner.cpp:282
 #, kde-format
 msgid "Incorrect filesize, the file might have been corrupted."
-msgstr "Hatalı dosya boyutu, dosya zarar görmüş olabilir."
+msgstr "Hatalı dosya büyüklüğü; dosya zarar görmüş olabilir."
 
 #: app/Splitter/combiner.cpp:284
 #, kde-format
@@ -8381,7 +8380,7 @@ msgstr "Kullanıcı Tanımlı"
 #: app/Splitter/splittergui.cpp:110
 #, kde-format
 msgid "Max file size:"
-msgstr "En büyük dosya boyu:"
+msgstr "En büyük dosya büyüklüğü:"
 
 #: app/Splitter/splittergui.cpp:121
 #, kde-format
@@ -9402,8 +9401,8 @@ msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
 "parameter has to be >0 and <100"
 msgstr ""
-"Açımlayıcı: %1 değeri %_PanelSize(percent)% aralığının dışında. İlk girdi 0–"
-"100 arasında belirlenmeli"
+"Genişletici: %1 değeri %_PanelSize(percent)% aralığının dışında. İlk girdi 0–"
+"100 arasında belirlenmelidir"
 
 #: app/UserAction/expander.cpp:881
 #, kde-format
