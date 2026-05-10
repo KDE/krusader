@@ -57,7 +57,6 @@ protected:
     /** parses a text line from the listing of an archive. */
     virtual void parseLine(int lineNo, QString line);
 
-    QString localeEncodedString(QString str);
     QByteArray encodeString(const QString &);
     QString decodeString(char *);
 
