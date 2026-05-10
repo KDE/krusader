@@ -88,11 +88,11 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow)
 
     populate(menu);
     menu->deleteLater();
-
 }
 
 KrBookmarkHandler::~KrBookmarkHandler()
 {
+    delete bookmarksMenu;
     delete manager;
     delete _privateCollection;
 }

@@ -344,7 +344,7 @@ bool KrQuery::match(FileItem *item) const
         totalBytes = item->getSize();
         receivedBytes = 0;
         if (receivedBuffer)
-            delete receivedBuffer;
+            delete[] receivedBuffer;
         receivedBuffer = nullptr;
         receivedBufferLen = 0;
         fileName = item->getName();
