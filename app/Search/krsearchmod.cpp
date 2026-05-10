@@ -33,7 +33,8 @@ static const QStringList TAR_TYPES = QStringList() << "tbz"
                                                    << "tgz"
                                                    << "tarz"
                                                    << "tar"
-                                                   << "tlz";
+                                                   << "tlz"
+                                                   << "txz";
 
 KrSearchMod::KrSearchMod(const KrQuery *query)
     : m_defaultFileSystem(nullptr)
