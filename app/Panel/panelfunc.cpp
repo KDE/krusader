@@ -265,8 +265,6 @@ void ListPanelFunc::doRefresh()
         panel->fileSystemError->hide();
     }
 
-    panel->setNavigatorUrl(url);
-
     // may get a new filesystem for this url
     FileSystem *fileSystem = FileSystemProvider::instance().getFilesystem(url, files());
     fileSystem->setParentWindow(krMainWindow);
