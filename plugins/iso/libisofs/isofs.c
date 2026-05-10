@@ -39,8 +39,21 @@ static time_t getisotime(int year, int month, int day, int hour,
                  + second;
 
         /* sign extend */
-        if (tz & 0x80)
+        if (tz & 0x80) {
+            // `tz |= (-1 << 8);` seems to be correct, in fact, it is
+            // being used in the Linux kernel since many years ago
+            // (<https://git.kernel.org/pub/scm/linux/kernel/git/
+            // torvalds/linux.git/tree/fs/isofs/util.c> can be seen).
+            // Note: On [Disable -Wshift-negative-value warnings - Java
+            // Bug System](https://bugs.openjdk.org/browse/JDK-8240259)
+            // what was done was disabling this warning in gcc and clang
+            // builds (<https://hg.openjdk.org/jdk/jdk/rev/c6c981b12f69>
+            // can be seen).
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wshift-negative-value"
             tz |= (-1 << 8);
+#pragma GCC diagnostic pop
+        }
 
         /*
          * The timezone offset is unreliable on some disks,
