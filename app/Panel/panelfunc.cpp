@@ -993,6 +993,13 @@ QUrl ListPanelFunc::browsableArchivePath(const QString &filename)
 {
     FileItem *fileitem = files()->getFileItem(filename);
     QUrl url = files()->getUrl(filename);
+
+    // The identifier of this comment is: "getMime_problem_when_browsing".
+    // If, for example, the user executes `lzma FILE && mv FILE.lzma FILE.lzma.backup` then
+    // Krusader can not browse "FILE.lzma.backup".
+    // For more information, the "getMime_problem_when_searching" comment can be read.
+    // Reminder: If this comment is changed, it's important to research if the comment
+    // "getMime_problem_when_searching" also has to be changed
     QString mime = fileitem->getMime();
 
     if (url.isLocalFile()) {
