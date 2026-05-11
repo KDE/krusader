@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-02-16 00:51+0000\n"
-"PO-Revision-Date: 2026-05-08 23:08+0300\n"
+"PO-Revision-Date: 2026-05-09 15:38+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -682,8 +682,8 @@ msgid ""
 "This file already contains some useractions.\n"
 "Do you want to overwrite it or should it be merged with the selected actions?"
 msgstr ""
-"Bu dosya zaten bazı kullanıcı eylemleri içeriyor.\n"
-"Üstüne yazmak veya seçili eylemleri iliştirmek ister misiniz?"
+"Bu dosya hâlihazırda bazı kullanıcı eylemlerini içeriyor.\n"
+"Üzerine yazmak veya seçili eylemleri iliştirmek ister misiniz?"
 
 #: app/ActionMan/useractionpage.cpp:261
 #, kde-format
@@ -698,7 +698,7 @@ msgstr "Birleştir"
 #: app/ActionMan/useractionpage.cpp:269
 #, kde-format
 msgid "This file already exists. Do you want to overwrite it?"
-msgstr "Bu dosya zaten var. Üzerine yazmak istediğinizden emin misiniz?"
+msgstr "Bu dosya hâlihazırda var. Üzerine yazmak istiyor musunuz?"
 
 #: app/ActionMan/useractionpage.cpp:270
 #, kde-format
@@ -2805,7 +2805,7 @@ msgstr "Simge önbellek büyüklüğü (KB):"
 #: app/Konfigurator/kgadvanced.cpp:96
 #, kde-format
 msgid "Arguments of updatedb:"
-msgstr "Updatedb argümanları:"
+msgstr "updatedb argümanları:"
 
 #: app/Konfigurator/kgarchives.cpp:37
 #, kde-format
@@ -2851,7 +2851,7 @@ msgstr "Krusader arşivlere klasör olarak göz atacak."
 #: app/Konfigurator/kgarchives.cpp:83
 #, kde-format
 msgid "Test archive after packing"
-msgstr "Paketledikten sonra arşivi sına"
+msgstr "Paketleme sonrasınra arşivi sına"
 
 #: app/Konfigurator/kgarchives.cpp:83
 #, kde-format
@@ -3321,7 +3321,8 @@ msgstr "Renk Şeması Dosyası Seç"
 #: app/Konfigurator/kgcolors.cpp:691
 #, kde-format
 msgid "File %1 already exists. Are you sure you want to overwrite it?"
-msgstr "%1 dosyası zaten var. Üzerine yazmak istediğinizden emin misiniz?"
+msgstr ""
+"%1 dosyası hâlihazırda var. Üzerine yazmak istediğinizden emin misiniz?"
 
 #: app/Konfigurator/kgcolors.cpp:697
 #, kde-format
@@ -3390,7 +3391,7 @@ msgstr "Öntanımlı görüntüleyici kipi:"
 #: app/Konfigurator/kggeneral.cpp:105
 #, kde-format
 msgid "Generic mode"
-msgstr "Soysal kip"
+msgstr "Genel kip"
 
 #: app/Konfigurator/kggeneral.cpp:105
 #, kde-format
@@ -3411,12 +3412,12 @@ msgstr "Dosyayı düz metin kipinde görüntüle"
 #: app/KrViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
-msgstr "Hex kipi"
+msgstr "Onaltılık kip"
 
 #: app/Konfigurator/kggeneral.cpp:107
 #, kde-format
 msgid "View the file in hex-mode (better for binary files)"
-msgstr "Dosyayı hex kipinde görüntüle (ikili dosyalar için)"
+msgstr "Dosyayı onaltılık kipte görüntüle (ikili dosyalar için)"
 
 #: app/Konfigurator/kggeneral.cpp:108
 #, kde-format
@@ -3431,12 +3432,13 @@ msgstr "Dosyayı listeleyici ile görüntüle (büyük metin dosyaları için)"
 #: app/Konfigurator/kggeneral.cpp:116
 #, kde-format
 msgid "Use Okteta as Hex viewer"
-msgstr "Hex görüntüleyici olarak Okteta kullan"
+msgstr "Onaltılık görüntüleyicisi olarak Okteta’yı kullan"
 
 #: app/Konfigurator/kggeneral.cpp:119
 #, kde-format
 msgid "If available, use Okteta as Hex viewer instead of the internal viewer"
-msgstr "Kullanılabilir ise dahili Hex görüntüleyici yerine Okteta kullan"
+msgstr ""
+"Kullanılabilir ise içsel onaltılık görüntüleyicisi yerine Okteta kullan"
 
 #: app/Konfigurator/kggeneral.cpp:125
 #, kde-format
@@ -4564,7 +4566,7 @@ msgid ""
 "Otherwise, current item is selected, but remains the current item."
 msgstr ""
 "Seçiliyse boşluk düğmesine basmak geçerli ögeyi seçer ve aşağıya geçer.\n"
-"Aksi halde geçerli öge seçilir; ancak geçerli olarak kalır."
+"Aksi hâlde geçerli öge seçilir; ancak geçerli olarak kalır."
 
 #: app/Konfigurator/kgpanel.cpp:770
 #, kde-format
@@ -4707,27 +4709,27 @@ msgstr "Tanımlanmış Bağlantılar"
 #: app/Konfigurator/kgprotocols.cpp:55
 #, kde-format
 msgid "Add protocol to the link list."
-msgstr "Bağlantı listesine iletişim kuralı ekle."
+msgstr "Bağlantı listesine iletişim kuralı ekleyin."
 
 #: app/Konfigurator/kgprotocols.cpp:60
 #, kde-format
 msgid "Remove protocol from the link list."
-msgstr "Bağlantı listesinden iletişim kuralı sil."
+msgstr "Bağlantı listesinden iletişim kuralını kaldırın."
 
 #: app/Konfigurator/kgprotocols.cpp:72
 #, kde-format
 msgid "Add MIME to the selected protocol on the link list."
-msgstr "Bağlantı listesinde seçili protokole MIME ekle."
+msgstr "Bağlantı listesinde seçili protokole MIME ekleyin."
 
 #: app/Konfigurator/kgprotocols.cpp:77
 #, kde-format
 msgid "Remove MIME from the link list."
-msgstr "Bağlantı listesinden MIME çıkar."
+msgstr "Bağlantı listesinden MIME’yi kaldırın."
 
 #: app/Konfigurator/kgprotocols.cpp:85 app/Konfigurator/konfigurator.cpp:132
 #, kde-format
 msgid "Protocols"
-msgstr "Yordamlar"
+msgstr "Protokoller"
 
 #: app/Konfigurator/kgprotocols.cpp:96
 #, kde-format
@@ -5390,7 +5392,7 @@ msgstr "Sık Kullanılan URL’ler…"
 #: app/kractions.cpp:308
 #, kde-format
 msgid "Toggle Fullscreen Embedded Terminal"
-msgstr "Tam Ekran Uçbirimi Aç/Kapat"
+msgstr "Tam ekran gömülü uçbirimi aç/kapat"
 
 #: app/kractions.cpp:315
 #, kde-format
@@ -5700,7 +5702,7 @@ msgstr "&Metin Görüntüleyicisi"
 #: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Hex Viewer"
-msgstr "&Hex Görüntüleyicisi"
+msgstr "&Onaltılık Görüntüleyicisi"
 
 #: app/KrViewer/krviewer.cpp:101
 #, kde-format
@@ -7564,7 +7566,7 @@ msgstr "Yeni bağlantı oluştur: %1"
 #: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:775
 #, kde-format
 msgid "A folder or a file with this name already exists."
-msgstr "Bu adda bir klasör veya dosya zaten var."
+msgstr "Bu adda bir klasör veya dosya hâlihazırda var."
 
 #: app/Panel/panelfunc.cpp:425
 #, kde-format
@@ -7734,7 +7736,7 @@ msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost.</p></qt>"
 msgstr ""
-"<qt><p><b>%1.%2</b> arşivi zaten var. Üzerine yazmak istiyor musunuz?</"
+"<qt><p><b>%1.%2</b> arşivi hâlihazırda var. Üzerine yazmak istiyor musunuz?</"
 "p><p>Eski arşivin tüm verisi kaybolacaktır.</p></qt>"
 
 #: app/Panel/panelfunc.cpp:1059
@@ -7744,9 +7746,9 @@ msgid ""
 "</p><p>Zip will replace identically named entries in the zip archive or add "
 "entries for new names.</p></qt>"
 msgstr ""
-"<qt><p><b>%1.%2</b> arşiv dosyası zaten var. Üzerine yazmak ister misiniz?</"
-"p><p>ZIP, ad olarak aynı olanları değiştirecek veya yeni adlıları arşive "
-"ekleyecek.</p></qt>"
+"<qt><p><b>%1.%2</b> arşiv dosyası hâlihazırda var. Üzerine yazmak istiyor "
+"musunuz?</p><p>ZIP, ad olarak aynı olanları değiştirecek veya yeni adlıları "
+"arşive ekleyecektir.</p></qt>"
 
 #: app/Panel/panelfunc.cpp:1067
 #, kde-format
@@ -8750,7 +8752,7 @@ msgstr "Tarih"
 #: app/Synchronizer/synchronizergui.cpp:347
 #, kde-format
 msgid "<=>"
-msgstr "<=>"
+msgstr "⟺"
 
 #: app/Synchronizer/synchronizergui.cpp:382
 #, kde-format
@@ -9501,8 +9503,8 @@ msgid ""
 "This file already exists.\n"
 "Do you want to overwrite it or append the output?"
 msgstr ""
-"Dosya zaten var.\n"
-"Üzerine yazmak veya çıktıyı iliştirmek istediğinizden emin misiniz?"
+"Dosya hâlihazırda var.\n"
+"Üzerine yazmak mı yoksa çıktıyı iliştirmek mi istiyorsunuz?"
 
 #: app/UserAction/kraction.cpp:172
 #, kde-format
