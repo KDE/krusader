@@ -1,0 +1,130 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="archives">
+  <title
+>Arşiv İşleme</title>
+  <indexterm>
+    <primary
+>Arşivler</primary>
+  </indexterm>
+  <sect2 id="browsing-archives">
+    <title
+>Arşivlere Göz Atmak</title>
+    <para
+><link linkend="vfs"
+>Sanal Dosya Sistemi (Virtual file systems — VFS)</link
+>, arşivlere sanki bir klasörmüşçesine göz atabilmenizi sağlar. &krusader;’ın desteklediği arşiv türleri şunlardır: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, xz, zip ve 7-zip; desteklenen parola korumalı arşiv türleri ise şunlardır: arj, ace, rar ve zip. Parolalar <application
+>K Cüzdan</application
+> içinde depolanabilirler. Lütfen arşiv desteğinin Yapılandırıcı içinde önceden <link linkend="konfig-archives"
+>yapılandırılması</link
+> gerektiğini unutmayın. Arşivi açmak için &Enter; düğmesini, fare ile çift tıklamayı veya &Right; düğmesini kullanın. &krusader; ayrıca <emphasis role="bold"
+>gizli arşivleri</emphasis
+> de destekler; bunlar, *başka* bir dosya uzantısıyle adlandırılmış arşiv dosyalarıdır; örneğin, <trademark class="registered"
+>LibreOffice</trademark
+> şu uzantılarla ZIP dosyaları kullanır: <literal role="extension"
+>.odt</literal
+>, <literal role="extension"
+>.sxw</literal
+> ve <literal role="extension"
+>.odw</literal
+>. &Enter; düğmesine basmak, ögeyi <trademark class="registered"
+>LibreOffice</trademark
+> ile açar ve &Right; ise arşive girer. Başka bir örnek ise J2EE’dir; burada <literal role="extension"
+>.jar</literal
+> uzantısı başka bir ZIP arşivi anlamına gelir. &krusader; desteklenen arşiv türlerini kendiliğinden algıladığından, başka bir &MIME; türüne sahip olsa bile &Right; ile kendiliğinden açacaktır. Arşivlerde dolaşmanın aşağıdaki kısıtlamaları vardır: <itemizedlist>
+      <listitem>
+        <para
+>Tüm işlevler tüm arşiv türleri tarafından desteklenmemektedir (örneğin, ACE veya RAR arşivlerindeki dosyaları silemezsiniz).</para>
+      </listitem>
+      <listitem>
+        <para
+>Arşiv içindeki izinleriniz, arşiv için sahip olduğunuz izinlerle aynıdır.</para>
+      </listitem>
+      <listitem>
+        <para
+>Komut satırı (görünürse) arşivin içine girdiğinizde sizi takip etmeyecek; ancak arşiv klasörüne işaret edecektir.</para>
+      </listitem>
+      <listitem>
+        <para
+>Arşiv içindeki dosya/klasörler üzerinde herhangi bir işlem yapılmadan önce, bunların çıkarılması gerekir. Arşiv, siz ayrıldığınızda veya &krusader; çıkarılan dosyaların değiştiğini algıladığında yeniden paketlenecektir.</para>
+      </listitem>
+      <listitem>
+        <para
+>Paketleme ve paket açma işlemleri, ilerleme iletişim kutusu gösteren <quote
+>engelleyici işlemlerdir</quote
+>. Ancak, daha fazla arka plan işlemi oluşturmayı planladığımız için bu durum gelecekte değişebilir.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="unpacking-archives">
+    <title
+>Dosyaların Paketini Açmak</title>
+    <para
+>Arşivlerden dosya çıkarmak için 2 yöntem vardır:</para>
+    <para
+>Tüm bir arşivin paketini açmak istiyorsanız arşiv konumuna gidin, arşivleri seçin ve <menuchoice
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Paketi Aç…</guimenuitem
+> </menuchoice
+> veya <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+> seçeneklerini kullanın. &krusader; size çıkarılan dosyaların nereye konulmasını istediğinizi soracaktır. İşlemi iptal etmezseniz &krusader;, tüm seçili dosyaları etkin olmayan panele çıkarmayı deneyecektir.</para>
+    <para
+>Arşivin yalnızca bir bölümünü çıkarmak istiyorsanız arşive <link linkend="browsing-archives"
+>gidin</link
+> ve çıkarmak istediğiniz dosyaları tıpkı <quote
+>normal</quote
+> dosyaları kopyalar gibi yeni konumlarına kopyalayın. Ancak, taranan bir arşivden dosya açmanın (dosya dosya açma) ilk yöntemle tüm arşivi açmaya kıyasla daha fazla zaman aldığını unutmayın. Açma işlemi bir <link linkend="queue"
+>kuyruğa</link
+> alınabilir.</para>
+  </sect2>
+  <sect2 id="pack-archive">
+    <title
+>Dosyaları Paketlemek</title>
+    <para
+>Yeni bir arşiv oluşturmak istiyorsanız paketlemek istediğiniz ögeleri etkin panelde seçmeye başlayın ve <menuchoice
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Paketle…</guimenuitem
+> </menuchoice
+> veya <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+> seçeneklerini kullanın. Arşiv adını ve konumunu seçmenizi isteyen bir iletişim kutusu görünecektir. <link linkend="konfig-archives"
+>Desteklenen dosya adı uzantıları</link
+> arasından bir tanesini seçin.</para>
+    <para
+>Var olan bir arşive dosyalar eklemek istiyorsanız arşivi bir panelde ve kopyalanacak dosyaları da diğer panelde açın ve istediğiniz dosyaları tıpkı <quote
+>normal</quote
+> dosyaları kopyalar gibi arşive kopyalayın. Paketleme işlemi bir <link linkend="queue"
+>kuyruğa</link
+> alınabilir.</para>
+  </sect2>
+  <sect2 id="test-archive">
+    <title
+>Arşivleri Sınamak</title>
+    <para
+>&krusader;, veri kaybına yol açabileceğinden hasar görmüş arşivlerde bir işlem yapmaz. Bir arşivi açarken bir hata iletisi alırsanız veya arşivde bir şeylerin ters gittiğinden kuşkulanıyorsanız, kullanım öncesi onu sınamalısınız. Bir arşivi sınamak için arşiv konumuna gidin ve arşivi seçin. Sonrasında, <menuchoice
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Arşivi Sına</guimenuitem
+> </menuchoice
+> veya <keycombo action="simul"
+>&Alt; <keycap
+>E</keycap
+></keycombo
+> seçeneklerini kullanın. &krusader; arşiv dosyasını sınayacaktır ve arşivin bütünlülük testini geçip geçmediği konusunda sizi bilgilendirecektir.</para>
+  </sect2>
+</sect1>

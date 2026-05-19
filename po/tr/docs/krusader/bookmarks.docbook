@@ -1,0 +1,372 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="bookman">
+  <title
+>BookMan: Yer İmlerinizi Düzenleyin</title>
+  <indexterm>
+    <primary
+>Yer İmleri</primary>
+  </indexterm>
+  <para
+>BookMan, &krusader;’ın klasörlere, yerel ve <link linkend="remote-connections"
+>uzak &URL;’lere</link
+> konan yer imlerini yöneten ve onlara daha sonra tek bir tık ile geri dönebilmenizi sağlayan yer imi aracıdır. BookMan menüsü dört bölüme ayrılmıştır. <itemizedlist>
+    <listitem>
+      <para
+>Kişisel Yer İmleriniz</para>
+    </listitem>
+    <listitem>
+      <para
+>Sık Kullanılan &URL;’ler</para>
+    </listitem>
+    <listitem>
+      <para
+>Kalıcı Yer İmleri</para>
+    </listitem>
+    <listitem>
+      <para
+>Yer İmlerini Yönet</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <note>
+    <para
+>Uzak bir dosya sistemine (&FTP; veya SAMBA) yer imi koyabilir ve daha sonra bu yer imini kullanarak uzak makineye tez bağlanabilirsiniz; ancak bir arşiv içinde yer imi oluşturamazsınız.</para>
+  </note>
+  <figure id="screenshot-bookmanadd" float="1">
+    <title
+>Yer İmi Menüsü</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="bookmanadd.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Yer İmi Menüsü</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <sect2 id="using_bookmarks">
+    <title
+>Yer İmlerini Kullanmak</title>
+    <para
+>Genelde hedef klasördeyken <guibutton
+>BookMan II</guibutton
+> düğmesine basarsınız (etkin panelin üst kısmındaki adres çubuğunun sağındaki en sağdaki düğme). Örneğin, <filename class="directory"
+>/usr/tmp</filename
+> klasörüne bir yer imi koymak için &krusader; ile oraya gidin ve <guibutton
+>BookMan II</guibutton
+> düğmesine basıp <guimenuitem
+>Geçerliye Yer İmi Koy</guimenuitem
+> seçeneğini kullanın. <guilabel
+>Yer İmi Koy</guilabel
+> iletişim kutusu geldiğinde &URL; alanı <filename class="directory"
+>/usr/tmp</filename
+> diyecektir. <guilabel
+>Ad</guilabel
+>, yer imine vermek istediğiniz ad içindir (örneğin, geçici klasör). Yer imine <literal
+>&amp;</literal
+> ekleyerek ivmelendiricileri kullanabilirsiniz; örneğin, <literal
+>&amp;Github, &amp;Ana Klasör, İn&amp;dirmeler</literal
+> &etc;; böylece yer imi adını <keycombo action="simul"
+>&Alt; <keycap
+>foo</keycap
+></keycombo
+> kullanarak tez çağırabilirsiniz. Bir ad girmeden bir yer imi koyarsanız yer imi adı, hedefin adıyla aynı olur. <guilabel
+>&URL;</guilabel
+>, yer iminin işaret ettiği konumdur. <guilabel
+>Şurada oluştur</guilabel
+>, yer imlerinizi düzenleyebilmeniz için klasörler oluşturur.</para>
+    <para
+>Yer imlerinizi kullanmak için <guibutton
+>BookMan II</guibutton
+> düğmesine basın ve bir yer imi seçin. Geçerli ögeye yer imi koymak için <link linkend="key_bindings"
+>Düğme Bağıntıları</link
+>: <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+> ögesini; sağ/sol panelde yer imlerini açmak için <keycombo action="simul"
+>&Alt; <keycap
+>sağ/sol ok düğmelerini</keycap
+></keycombo
+> ve etkin panelde yer imini açmak için <keycombo action="simul"
+>&Ctrl; <keycap
+>D</keycap
+></keycombo
+> kısayolunu kullanın. Yer iminin bağlam menüsünü kullanarak (&RMB;) onu yeni bir <link linkend="folder-tabs"
+>klasör sekmesinde</link
+> açabilirsiniz.</para>
+    <para
+><guibutton
+>BookMan II</guibutton
+> menüsünün üst kısmında bir tez arama çubuğu bulunur.</para>
+    <note>
+      <para
+><link linkend="konfig-panel-general"
+>Panel Yapılandırıcı sayfasındaki</link
+> ilgili ögeyi işaretlerseniz arama çubuğu, yer imleri menüsünde her zaman görünür olacaktır. </para>
+    </note>
+    <para
+>Yer imlerini yönetme ile ilgili kurallar şunlardır:</para>
+    <itemizedlist>
+        <listitem>
+            <para
+>Arama yapmak için harfleri yazmanız yeterlidir: Yer imleri ad önekine göre eşleştirilir.</para>
+        </listitem>
+        <listitem>
+            <para
+>Önekle eşleşen birden fazla yer imi varsa bunlar vurgulanır ve ilki seçilir — yer imini etkinleştirmek için &Enter; düğmesine basın.</para>
+        </listitem>
+        <listitem>
+            <para
+>Tek bir yer imi eşleştiğinde, işlem hemen tetiklenir. Yani <literal
+>h</literal
+> yazdığınızda ve yalnızca bir yer imi <literal
+>h</literal
+> ile başlıyorsa işlem hemen yürütülür — &Enter; düğmesine basmaya gerek yoktur.</para>
+        </listitem>
+        <listitem>
+            <para
+>İvmelendiriciler yalnızca düğme vuruşu ilk olan ise çalışır.</para>
+        </listitem>
+        <listitem>
+            <para
+>&Backspace; desteklenir.</para>
+        </listitem>
+        <listitem>
+            <para
+>Arama, BÜYÜK harf yazmadığınız sürece BÜYÜK/küçük harf duyarlılığına sahip değildir. Yani <literal
+>HamBurglar</literal
+> yazmak yalnızca <literal
+>HamBurglar</literal
+> ile eşleşir, <literal
+>hamburglar</literal
+> veya <literal
+>Hamburglar</literal
+> ile eşleşmez.</para>
+        </listitem>
+        <listitem>
+            <para
+>Arama çubuğu bilerek saltokunur bir alandır.</para>
+        </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2 id="password_handling">
+    <title
+>Parolaları İşlemek</title>
+    <para
+><link linkend="bookman"
+>Yer İmleri Yöneticisi</link
+>’nin yararlarından bir tanesi de, parolaların &plasma;’nın hizmetleri kullanılarak depolanmasıdır; burası aynı zamanda &konqueror;/&kmail; gibi uygulamalarınızın parolalarının da saklandığı yerdir. Bir cüzdanınız varsa &plasma; parolaları oraya kaydeder. Yer imlerine tıkladığınızda bir iletişim kutusu açılır ve kullanıcı adınızı ve parolanızı sorar. Onları sağlayın ve <guibutton
+>Parolayı Kaydet</guibutton
+> düğmesine basın. Parolalar ve kullanıcı adları, &plasma;’nın cüzdanı kullanılarak güvenli bir biçimde saklanır (dağıtımınızın bunu etkinleştirdiğinizden emin olun). Buradaki dezavantaj, sistem yeniden kurulursa ve şifrelerinizi cüzdandan ve &krusader;’ın yer imi dosyasından yedeklemezseniz bazı şeylerin kaybolacak olmasıdır.</para>
+  </sect2>
+  <sect2 id="popular-urls">
+    <title
+>Sık Kullanılan &URL;’ler</title>
+    <indexterm>
+      <primary
+>Sık Kullanılan &URL;’ler</primary>
+    </indexterm>
+    <para
+><guilabel
+>Sık Kullanılan &URL;’ler</guilabel
+> alt menüsü, en çok ziyaret edilen &URL;’lerin (yerel veya uzak) kalıcı bir listesini tutar. Bu alt menü, en çok ziyaret edilen son 15 &URL;’nin, derecelendirmeye göre bir listesini tutar; böylece en üstteki &URL;, en çok popüler olandır. Bu, bazı &URL;’leri sık sık ziyaret etmeniz gerekiyorsa; ancak onlar için <link linkend="bookman"
+>Yer İmleri</link
+> kullanmak istemiyorsanız geçici bir liste oluşturacağından kullanışlıdır. <guilabel
+>Sık Kullanılan &URL;’ler</guilabel
+> içindeki sık kullanılan &URL;’lere tez göz atmanın kolay bir yoludur: <itemizedlist>
+      <listitem>
+        <para
+><guilabel
+>Sık Kullanılan &URL;’ler</guilabel
+> ögesini açın veya <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+> kısayolunu kullanın.</para>
+      </listitem>
+      <listitem>
+        <para
+>Aramayı daraltmak için birkaç harf girin.</para>
+      </listitem>
+      <listitem>
+        <para
+>&Enter;’e basın (listedeki &URL;’ye gider).</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="permanent_bookmarks">
+    <title
+>Kalıcı Yer İmleri</title>
+    <para
+>Bunlar, yer imlerindeki kalıcı olarak kodlanmış yer imleridir; bunların dosyaya kaydedilmelerine gerek yoktur. <link linkend="context-menu"
+>Bağlam Menüsü</link
+> ile bunları etkinleştirebilir/devre dışı bırakabilirsiniz. Aşağıdaki kalıcı yer imleri kullanılabilirdir: <itemizedlist>
+      <listitem>
+        <para
+><guilabel
+>Çöp Kutusu</guilabel
+>, &plasma;’nın <filename
+>trash:/</filename
+> protokolünü kullanır.</para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Yerel Ağ</guilabel
+>, &plasma;’nın <filename
+>remote:/</filename
+> protokolünü kullanır.</para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Sanal Dosya Sistemi</guilabel
+> <link linkend="vfs"
+>Sanal Dosya Sistemi (Virtual file systems — VFS)</link
+> <filename
+>virt:/</filename
+>, bir sanal klasör olmayıp farklı dosya sistemlerinden olan &URL;’ler için bir kapsayıcıdır. Bu örneğin, arama modülünün ve eşzamanlayıcının <guilabel
+>Liste kutusuna besle</guilabel
+> özelliği için kullanılır. Konum çubuğu yalnızca <filename
+>virt:/Arama sonuçları 1</filename
+> veya <filename
+>virt:/Eşzamanlama sonuçları 1</filename
+> olduğunda gösterilir.</para>
+      </listitem>
+      <listitem id="jump_back">
+        <para
+><guilabel
+>Geri Atla</guilabel
+> veya <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo
+>, sizi panel penceresinde yeni bir sekme oluşturduğunuz zamandaki konuma geri getirir. Bu özellik, bir klasör içine geriye daldığınızda ve başlangıç konumunuza geri gelmek istediğinizde pek yararlıdır. <guilabel
+>Geriye Atlama Noktası Ayarla</guilabel
+> veya <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo
+> ile geçerli klasörü bir geriye atlama noktası olarak ayarlayabilirsiniz.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="manage_bookmarks">
+    <title
+>Yer İmlerini Yönet</title>
+    <para
+>Yer imlerinizi düzenlemek ve onları organize etmek için <guibutton
+>BookMan II</guibutton
+> düğmesine basın ve <guimenuitem
+>Yer İmlerini Yönet</guimenuitem
+>’i seçin; <application
+>KeditBookmarks</application
+> görüntülenir. Bu, yer imlerinizi düzenleyebileceğiniz veya kaldırabileceğiniz yerdir. <application
+>KeditBookmarks</application
+>; &konqueror;, &krusader; ve diğer uygulamalar için bir yer imi düzenleyicisidir; yer imleri için <ulink url="http://grail.sourceforge.net/info/xbel.html"
+>XBEL standard</ulink
+> biçimini kullanır. Yer imleri, <filename
+> ~/.local/share/krusader/krbookmarks.xml</filename
+> içinde depolanırlar.</para>
+    <note>
+        <para
+><filename
+>krusader/krbookmarks.xml</filename
+> yer imi dosyası için olan öntanımlı klasör <filename class="directory"
+>~/.local/share</filename
+>’dir. Uçbirimde <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> komutuyla gereken klasörü kendiniz ayarlayabilirsiniz. </para>
+        <para
+>Bu yerel dosya yalnızca &krusader; yer imlerine dokunduysanız var olur. &krusader;’dan <application
+>KeditBookmarks</application
+>’ın ilk çalıştırılmasıyla oluşturulur. </para>
+        <para
+>Öntanımlı sistem yer imleri, <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> komutuyla alınabilen <filename
+>kfileplaces/bookmarks.xml</filename
+> dosyasında depolanır. </para>
+    </note>
+    <para
+><application
+>KeditBookmarks</application
+> kullanımı kolaydır; ancak ek bilgiye gereksiniminiz varsa lütfen <ulink url="help:/keditbookmarks/index.html"
+>KeditBookmarks El Kitabı</ulink
+>’nı okuyun.</para>
+    <figure id="screenshot-bookmanedit" float="1">
+      <title
+><application
+>KeditBookmarks</application
+> Yer İmleri Yöneticisi</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="bookmanedit.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+><application
+>KeditBookmarks</application
+> Yer İmleri Yöneticisi</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+  </sect2>
+  <sect2 id="bookmark_buttons">
+    <title
+>Araç Çubuğunda Eylem Olarak Yer İmleri</title>
+    <para
+>Yer imleri, düğme olarak <link linkend="mainwindow"
+>Ana Araç Çubuğu</link
+> veya <link linkend="actions_toolbar"
+>Eylemler Araç Çubuğu</link
+> içine eklenebilirler. Hatta onlar için bir düğme bağıntısı da yapabilirsiniz: <itemizedlist>
+      <listitem>
+        <para
+><link linkend="bookman"
+>Yer imlerinizi</link
+> oluşturun.</para>
+      </listitem>
+      <listitem>
+        <para
+>Arzu ederseniz <link linkend="key_bindings"
+>Kısayolları Yapılandır</link
+> penceresinden (<menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Kısayolları Yapılandır…</guimenuitem
+></menuchoice
+>).</para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Araç Çubuklarını Yapılandır…</guilabel
+> penceresi ile (<menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Araç Çubuklarını Yapılandır…</guimenuitem
+></menuchoice
+>) yer imlerinizi <link linkend="mainwindow"
+>Ana Araç Çubuğu</link
+> veya <link linkend="actions_toolbar"
+>Eylemler Araç Çubuğu</link
+> içine eylem olarak ekleyebilirsiniz.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+</sect1>
