@@ -1,0 +1,122 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="vfs">
+  <title
+>Sanal Dosya Sistemi (VFS)</title>
+  <indexterm>
+    <primary
+>VFS</primary>
+  </indexterm>
+  <para
+><link linkend="features"
+>Ortodoks Dosya Yöneticileri</link
+>’nin temel özelliklerinden biri VFS’dir; bu, her türlü arşivlenmiş bilginin (ZIP dosyaları, &FTP; sunucuları, TAR arşivleri, &NFS; dosya sistemleri, SAMBA paylaşımları, ISO &CD;/&DVD; kalıpları, RPM katalogları vb.) üzerinde soyutlanmış bir katmandır ve kullanıcının bu farklı dosya sistemlerindeki tüm bilgilere saydam bir şekilde —tıpkı sıradan bir alt klasöre girer gibi— erişmesini sağlar. &krusader;, çeşitli sanal dosya sistemlerini destekler:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>Uzak Bağlantılar için VFS</link
+>: Yerel dosya sistemleriyle olduğu gibi uzak bağlantı oturumlarıyla (&FTP;, &NFS;, Samba, FISH, SFTP) çalışma olanağı sağlar. Karmaşık uzak işlemler için mükemmeldir ve çoğu bağımsız grafik arayüzlü uzak istemci kadar güçlüdür.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Arşivler için VFS</link
+>: VFS’deki arşiv dosyalarına (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip ve 7-zip) sanki bir klasörmüş gibi göz atmanızı sağlar.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>Arama için VFS</link
+>: <guibutton
+>Liste kutusuna ekle</guibutton
+>, arama sonuçlarını VFS’ye yerleştirir.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>Eşzamanlayıcı için VFS</link
+>: Eşzamanlayıcı sonuçlarını VFS’ye yerleştirir.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>VFS’deki dosyalar üzerinde gerçekleştirdiğiniz işlemler “gerçek” dosyalar üzerinde gerçekleştirilir. Dosyaları yalnızca VFS’den silmezsiniz, sabit diskinizden de silersiniz. Sınırlamalar: VFS içinde klasör oluşturamazsınız.</para>
+  <para
+>Sanal klasörden sanal olmayan bir klasöre kopyalama yaparken, kopyalama iletişim kutusundaki <quote
+>Sanal klasör yapısını tut</quote
+> onay kutusunu işaretleyerek klasör yapısını korumak olanaklıdır. Şu sanal klasörü düşünün: <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/ana/dizin1/dosya1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/ana/dizin1/dosya2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/ana/dizin2/dosya3</userinput
+></screen
+>; sonrasında aşağıdaki adımları uygulayın:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>sanal klasöre gidin ve dosyaları seçin</para>
+    </listitem>
+    <listitem>
+      <para
+>bir hedef klasör seçin (sanal olmayan!)</para>
+    </listitem>
+    <listitem>
+      <para
+><keycap
+>F5</keycap
+> düğmesine bastığınızda kopyalama iletişim kutusu görünür</para>
+    </listitem>
+    <listitem>
+      <para
+><quote
+>Sanal klasör yapısını tut</quote
+> kutusunu işaretleyin</para>
+    </listitem>
+    <listitem>
+      <para
+>taban &URL; için <filename
+>/home/ana/</filename
+> seçin</para>
+    </listitem>
+    <listitem>
+      <para
+>Tamam’a basarak kopyalamayı başlatın</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Sonuç şu olacaktır: <screen
+><prompt
+>$</prompt
+> <userinput
+>hedef-dizin/dizin1/dosya1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>hedef-dizin/dizin1/dosya2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>hedef-dizin/dizin2/dosya3</userinput
+></screen>
+  </para>
+</sect1>

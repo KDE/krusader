@@ -1,0 +1,70 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="profiles">
+  <title
+>Profiller</title>
+  <indexterm>
+    <primary
+>Profiller</primary>
+  </indexterm>
+  <para
+>Profiller sayesinde favori ayarlarınızı kaydedebilir ve geri yükleyebilirsiniz. Birçok özellik profilleri destekler; örneğin, farklı panel profilleri (iş, ev, uzaktan bağlantılar vb.), arama profilleri, eşzamanlama profilleri vb. oluşturabilirsiniz.</para>
+  <sect2 id="panel_profiles">
+    <title
+>Panel Profilleri</title>
+    <para
+>Bir panel profili şunları içerir: Tüm sekme yolları (sol veya sağ), geçerli sekme (sol veya sağ) ve etkin panel (sol veya sağ). Tüm bu bilgiler <link linkend="config_files"
+>krusaderrc</link
+> dosyasında saklanır. Birden fazla panel profiline sahip olabilirsiniz; örneğin, dosya yönetimi, &FTP; yönetimi, ev, iş, vb. gibi. Panel profili, <guimenu
+>Pencere</guimenu
+> menüsünden <link linkend="c_panel_profiles"
+>kaydedilebilir ve geri yüklenebilir</link
+>. &krusader; başlatılırken <link linkend="konfig-startup"
+>öntanımlı başlangıç profili</link
+> seçilir; ancak bunu bir komut satırı seçeneğiyle geçersiz kılabilirsiniz.</para>
+    <para
+>Bir panel profilinde değişiklikler yapmak istiyorsanız o profili yükleyebilir, ayarları değiştirebilir ve <menuchoice
+><guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Profiller</guimenuitem
+></menuchoice
+> seçeneğini kullanarak üzerine yazabilirsiniz.</para>
+  </sect2>
+  <sect2 id="color_profiles">
+    <title
+>Renk Profilleri</title>
+    <para
+>Renk eşlemleri, <link linkend="konfig-color"
+>Renk Profilleri</link
+> ile kaydedilip geri yüklenebilir.</para>
+  </sect2>
+  <sect2 id="key_profiles">
+    <title
+>Düğme Bağıntısı Profilleri</title>
+    <para
+>Düğme eşlemleri, <link linkend="configure-shortcuts"
+>Düğme Bağıntısı Profilleri</link
+> ile kaydedilip geri yüklenebilir.</para>
+  </sect2>
+  <sect2 id="search_profiles">
+    <title
+>Arama Profilleri</title>
+    <para
+>Aynı arama işlemini düzenli olarak yapıyorsanız bunu bir <link linkend="krusearcher"
+>Arama Profili</link
+> olarak kaydedebilirsiniz (örneğin, içerilecek/dışlanacak dosyalar vb. gibi).</para>
+  </sect2>
+  <sect2 id="synchronizer_profiles">
+    <title
+>Eşzamanlayıcı Profilleri</title>
+    <para
+>Aynı eşzamanlama işlemini düzenli olarak yapıyorsanız bu eşzamanlama ayarlarını bir <link linkend="synchronizer"
+>Eşzamanlayıcı Profili</link
+> olarak kaydedebilirsiniz.</para>
+  </sect2>
+</sect1>

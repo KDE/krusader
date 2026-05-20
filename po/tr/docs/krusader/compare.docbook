@@ -1,0 +1,120 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="compare">
+  <title
+>Karşılaştır</title>
+  <para
+>&krusader;, birkaç karşılaştırma işlevi içerir: <guimenuitem
+>İçeriğe Göre Karşılaştır</guimenuitem
+>, <guimenuitem
+>Klasörleri Karşılaştır</guimenuitem
+> ve <link linkend="synchronizer"
+>Eşzamanlayıcı</link
+> karşılaştırma işlevleri bulunur.</para>
+  <sect2 id="compare-content">
+    <title
+>İçeriğe Göre Karşılaştır</title>
+    <indexterm>
+      <primary
+>Karşılaştır</primary>
+      <secondary
+>İçerik</secondary>
+    </indexterm>
+    <para
+>Her bir panelde bir dosya seçin ve <menuchoice
+> <guimenu
+>Dosya</guimenu
+> <guimenuitem
+>İçeriğe Göre Karşılaştır…</guimenuitem
+> </menuchoice
+> seçeneğini kullanın. &krusader; daha önceden <link linkend="konfig-dependencies"
+>yapılandırılmış</link
+> bir dış grafiksel karşılaştırma aracı açacaktır. &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> ve <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> uygulamaları desteklenir.</para>
+  </sect2>
+  <sect2 id="compare-dir">
+    <title
+>Klasörleri Karşılaştır</title>
+    <indexterm>
+      <primary
+>Karşılaştır</primary>
+      <secondary
+>Klasörler</secondary>
+    </indexterm>
+    <para
+><menuchoice
+> <guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Klasörleri Karşılaştır</guimenuitem
+> </menuchoice
+> özelliğini kullanarak her bir panelin dosyalarını karşılaştırır. Öntanımlı olarak her bir panelde daha yeni ve tek olan dosyalar seçilecektir; bu davranış, <guimenuitem
+>Karşılaştırma Ayarları</guimenuitem
+> menüsünden değiştirilebilir. <note
+> <para
+>Dosyalar içeriklerine göre değil, yalnızca adlarına ve tarihlerine göre karşılaştırılır.</para>
+    </note
+></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Düzen</guimenu
+> <guimenuitem
+>Karşılaştırma Ayarları</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><guimenuitem
+>Klasörleri Karşılaştır</guimenuitem
+> işlevini yapılandırır.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Daha Yeni ve Tek Olanı Seç</guimenuitem
+> (öntanımlı)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Tek Olanı Seç</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Daha Yeni Olanı Seç</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Farklı ve Tek Olanı Seç</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Farklı Olanı Seç</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>
