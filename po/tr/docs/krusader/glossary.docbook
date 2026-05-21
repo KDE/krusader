@@ -1,0 +1,358 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<glossary id="glossary">
+  <indexterm>
+    <primary
+>Kavram Dizini</primary>
+  </indexterm>
+  <para
+>Bu bölüm, &krusader; belgelendirmesinde kullanılan çeşitli sözcükleri açıklamayı amaçlamaktadır. Eğer bazı kısaltmaların veya terimlerin eksik olduğunu düşünüyorsanız lütfen &krusader; belgelendirme ekibiyle iletişime geçmekten çekinmeyin.</para>
+  <para
+><ulink url="https://tr.wikipedia.org/"
+>Vikipedi</ulink
+>’ye, herkesin düzenleyebileceği özgür ansiklopediye teşekkürler</para>
+  <glossentry id="gloss-acl">
+    <glossterm>
+      <acronym
+>ACL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Access_control_list"
+>Erişim Denetim Listesi (Access Control List)</ulink
+>; bilgisayar güvenliğinde ayrıcalık ayrımını sağlamak için kullanılan bir kavramdır. Bu, isteği yapan sürecin belirli yönlerine bağlı olarak belirli bir nesneye uygun erişim haklarını belirleme yöntemidir.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-bsd">
+    <glossterm>
+      <acronym
+>BSD</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Bsd"
+>Berkeley Yazılım Dağıtımı (Berkeley Software Distribution)</ulink
+>; &BSD; &UNIX;’ten türetilmiş, çeşitli ücretsiz &UNIX; uyumlu işletim sistemlerinden herhangi birini ifade eder.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-cvs">
+    <glossterm>
+      <acronym
+>CVS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Concurrent_Versions_System"
+>Eşzamanlı Sürümler Sistemi (Concurrent Versions System)</ulink
+>; Kaynak Yapılandırma Yönetimi’nin (SCM) önemli bir bileşenidir. Geliştiriciler, bu sayede kaynak dosyalarının ve belgelerinin geçmişini kaydedebilirler.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-deb">
+    <glossterm>
+      <acronym
+>DEB</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>Bu, <ulink url="https://en.wikipedia.org/wiki/Debian"
+> &Debian;</ulink
+> ve &Debian; tabanlı dağıtımlar tarafından kullanılan ikili bir dosya biçimidir. Bu dağıtımlar için özel olarak oluşturulmuş bir kurulum dosyasının uzantısıdır; örneğin, <filename
+>krusader_1.70.1-1_amd64.deb</filename
+>. Basitçe açıklamak gerekirse tüm program dosyalarını ve bunların sistemdeki önerilen konumlarını içeren özel bir arşivdir.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-dbus">
+    <glossterm
+>&DBus; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://freedesktop.org/wiki/Software/dbus"
+>&DBus;</ulink
+>, hizmet arası bir iletileşme sistemidir. &RedHat; tarafından geliştirilmiş ve &kde; 3 tarafından sağlanan <link linkend="glos-dcop"
+>DCOP</link
+>’tan büyük oranda esinlenmiştir; aynı zamanda onun yerine geçer. &krusader; &DBus;’ı kullanarak diğer uygulamalarla iletişim kurabilir. Öte yandan, &DBus; kullanarak &krusader;’ı diğer uygulamalardan denetleyebilirsiniz. Olasılıkları incelemek için <application
+>qdbusviewer</application
+> uygulamasını kullanmanız yeterlidir.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-dcop">
+    <glossterm
+>DCOP </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Dcop"
+>Masaüstü İletişim Protokolü (Desktop Communication Protocol)</ulink
+>; &kde; 3 masaüstü ortamı tarafından kullanılan süreçler arası iletişim protokolü. Çeşitli &kde; 3 uygulamalarının birbirleriyle iletişim kurmasını sağlar. &kde; 4’te <link linkend="glos-dbus"
+>&DBus;</link
+> ile değiştirilmiştir.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-faq">
+    <glossterm>
+      <acronym
+>SSS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><link linkend="faq"
+>Sıkça Sorulan Sorular (Frequently Asked Questions, FAQ)</link
+>; Sıkça sorulan soruların yanıtlandığı bir belge. Eğer &krusader; geliştiricilerine bir sorunuz varsa öncelikle her zaman <link linkend="faq"
+>SSS</link
+> bölümüne bakmalısınız.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-ftp">
+    <glossterm
+>&FTP;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/File_Transfer_Protocol"
+>Dosya Transfer Protokolü (File Transfer Protocol)</ulink
+>; &FTP; sunucularından dosya almanızı sağlayan bir internet protokolüdür.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-git">
+    <glossterm
+>Git</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Git_(software)"
+>Git</ulink
+>; <link linkend="gloss-svn"
+>Subversion</link
+>’ın yerini alan dağıtık bir sürüm denetim sistemidir. &kde; ve &krusader; da içerilmek üzere birçok yazılım projesi tarafından kullanılmaktadır.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gpl">
+    <glossterm>
+      <acronym
+>GPL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Gpl"
+>GNU Genel Kamu Lisansı (GNU General Public License)</ulink
+>; <ulink url="https://www.fsf.org/"
+>Özgür Yazılım Vakfı (Free Software Foundation)</ulink
+> tarafından oluşturulmuş, özgür yazılımları yayımlamak için kullanılan koşulları tanımlayan bir yazılım lisansıdır.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gui">
+    <glossterm
+>&GUI;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Graphical_user_interface"
+>Grafik Kullanıcı Arayüzü (Graphical User Interface)</ulink
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-iso">
+    <glossterm>
+      <acronym
+>ISO</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>Bir <ulink url="https://en.wikipedia.org/wiki/ISO_image"
+>ISO kalıbı</ulink
+> (<literal role="extension"
+>.iso</literal
+>), ISO 9660 dosya sisteminin disk kalıbı için kullanılan, gayri resmî bir terimdir. Daha genel olarak, UDF kalıbı de dahil olmak üzere herhangi bir optik disk kalıbını ifade eder.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kde">
+    <glossterm
+>&kde;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Kde"
+>K Masaüstü Ortamı (K Desktop Environment)</ulink
+>; UNIX uyumlu sistemler için ücretsiz bir grafik masaüstü ortamı geliştirmeye yönelik bir projedir.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-keybinding">
+    <glossterm
+>Düğme Bağıntısı</glossterm>
+    <glossdef>
+      <para
+>&krusader;’ın tüm özelliklerine menü çubuğundan ulaşılabilir; ancak ayrıca çeşitli işlevlere ulaşmak için belirli bir düğme kombinasyonunu da kendiniz oluşturup kullanabilirsiniz. Kısa sürede, <link linkend="keyboard-commands"
+>klavyeyi</link
+> kullanmanın menü çubuğunu veya <link linkend="gloss-gui"
+>grafik arayüzü</link
+> kullanmaktan çok daha hızlı olduğunu fark edeceksiniz. <link linkend="keyboard-commands"
+>Klavye kullanımı</link
+>, <link linkend="gloss-ofm"
+>Ortodoks Dosya Yöneticileri</link
+> kullanmanın önemli bir parçasıdır. &krusader; birkaç önceden tanımlanmış <link linkend="key_bindings"
+>Düğme Bağıntıları</link
+> ile birlikte gelir.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kpart">
+    <glossterm
+>KPart</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/KPart"
+>KPart</ulink
+>; KPart’lar, &kde; masaüstü ortamının bileşen çatısının adıdır. KPart’lar <ulink url="https://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>’un kullandığı Bonobo çatısının eşdeğeridir; her ikisi de &Microsoft;’un Nesne Bağıntılama ve Gömme konsepti ile aynı prensipleri kullanır. Bir &PDF; dosyasını görüntülemek için &krusader;’ın görüntüleyicisini kullanırsanız &okular;, &krusader;’ın görüntüleyicisinde açılır.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kio">
+    <glossterm
+><acronym
+>KIO</acronym
+> veya kioslave</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Kioslave"
+>KDE Giriş/Çıkış (KDE Input/Output)</ulink
+>; KIO işçileri olarak da bilinen bu yapı, &kde; mimarîsinin bir parçasıdır. Tek ve tutarlı bir API aracılığıyla dosyalara, web sitelerine ve diğer kaynaklara erişim sağlar.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-mount">
+    <glossterm
+>mount</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Mount_%28computing%29"
+>Bağlamak (Mounting)</ulink
+>; bilgisayar biliminde, dosya sistemini işletim sistemi tarafından kullanılmaya hazır hale getirme işlemine denir; bu işlem genellikle belirli indeks veri yapılarını depolama biriminden belleğe önceden okuyarak gerçekleştirilir. Bu terim, bir operatörün manyetik bandı veya sabit diski kullanmadan önce bir mil üzerine monte etmesi gereken bilgisayar tarihinin bir dönemini anımsatır.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ofm">
+    <glossterm>
+      <acronym
+>OFM</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Ortodoks Dosya Yöneticisi (Orthodox File Manager)</ulink
+>; <quote
+>Commander’lar</quote
+> olarak da bilinirler. Bu ailenin üyeleri, <ulink url="https://en.wikipedia.org/wiki/Norton_Commander"
+>Norton Commander</ulink
+>’ın (NC) doğrudan bir türevi olan basit; ancak pek güçlü bir arayüzü kullanırlar.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-rpm">
+    <glossterm
+>RPM</glossterm>
+    <glossdef>
+      <para
+>Bu, &Linux; işletim sistemi için yaygın olarak kullanılan bir paketleme aracı olan <ulink url="http://www.rpm.org/"
+>RPM Paket Yöneticisi (RPM Package Manager)</ulink
+> tabanlı dağıtımlar için olan ikili dosya biçimidir. Eğer hala &krusader;’ı edinmeniz gerekiyorsa ve sisteminiz RPM paketlerini destekliyorsa <literal role="extension"
+>.rpm</literal
+> ile biten &krusader; paketlerini edinmelisiniz.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ssh">
+    <glossterm
+><acronym
+>SSH</acronym
+>, Güvenli Kabuk</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/SSH"
+>SSH</ulink
+>; yerel ve uzak bilgisayarlar arasında güvenli bir kanal kurulmasını sağlayan bir dizi standart ve ilgili ağ protokolüdür.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-svn">
+    <glossterm
+><acronym
+>SVN</acronym
+>, Subversion</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Subversion"
+>Subversion</ulink
+>; <link linkend="gloss-cvs"
+>CVS</link
+>’nin yerine geçebilecek güçlü bir alternatif olan bir sürüm denetim sistemi. &kde; de içerilmek üzere birçok yazılım projesi tarafından kullanılmaktadır.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-termemu">
+    <glossterm
+>Uçbirim Öykünücüsü</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Terminal_emulator"
+>Uçbirim Öykünücüsü</ulink
+>; basitçe pencereli bir kabuktur; bazı ortamlarda komut satırı penceresi olarak da bilinir. Kabuğu kullanmak ve komutları yazmak istiyorsanız işletim sisteminiz için sistem düzeyindeki komutlardan en az birkaçını bilmeniz gerekir.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-posix">
+    <glossterm>
+      <acronym
+>POSIX</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Posix"
+>&UNIX; için taşınabilir işletim sistemi arayüzü (Portable Operating System Interface for uniX)</ulink
+>; IEEE tarafından UNIX işletim sisteminin çeşitli varyantlarıyla uyumlu yazılımlar için uygulama programlama arayüzünü (API) tanımlamak üzere belirtilen, birbiriyle ilişkili standartlar ailesinin ortak adıdır.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-url">
+    <glossterm
+>&URL; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/URL"
+>Evrensel Özkaynak Bulucusu (Universal Resource Locator)</ulink
+>; genellikle web sitesi adresi olarak adlandırılan şeyin teknik terimidir. &URL; örnekleri arasında <ulink url="https://krusader.org"
+> https://krusader.org</ulink
+> ve <link linkend="remote-connections"
+>Uzak Bağlantılar</link
+> yer alır.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-vfs">
+    <glossterm>
+      <acronym
+>VFS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><link linkend="vfs"
+>Sanal Dosya Sistemleri (Virtual File Systems, VFS)</link
+>; temel bir <link linkend="features"
+>OFM özelliğidir</link
+>; bu, her türlü arşivlenmiş bilginin (ZIP dosyaları, &FTP; sunucuları, TAR arşivleri, &NFS; dosya sistemleri, SAMBA paylaşımları, ISO &CD;/&DVD; kalıpları, RPM katalogları vb.) üzerinde soyutlanmış bir katmandır ve kullanıcının bu farklı dosya sistemlerindeki tüm bilgilere saydam bir şekilde —tıpkı sıradan bir alt klasöre girer gibi— erişmesini sağlar. &krusader;, çeşitli <link linkend="vfs"
+>sanal dosya sistemlerini</link
+> destekler.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-xml">
+    <glossterm
+>&XML;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Xml"
+>Genişletilebilir İşaretleme Dili (Extensible Markup Language)</ulink
+>; SGML’den (ISO 8879) türetilmiş, oldukça esnek bir metin biçimidir. Başlangıçta büyük ölçekli elektronik yayıncılığın zorluklarını karşılamak üzere tasarlanan &XML;, aynı zamanda web’de ve başka yerlerde çok çeşitli verilerin alışverişinde giderek daha önemli bir rol oynamaktadır.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-zeroconf">
+    <glossterm
+>Zeroconf</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Zeroconf"
+>Zeroconf</ulink
+>; veya Sıfır Yapılandırmalı Ağ (Zero Configuration Networking), yapılandırma veya özel sunuculara gerek kalmadan otomatik olarak kullanılabilir bir IP ağı oluşturan bir dizi tekniktir. Bu, deneyimsiz kullanıcıların bilgisayarları, ağ yazıcılarını ve diğer ögeleri birbirine bağlamasına ve bunların otomatik olarak çalışmasını beklemesine olanak tanır.</para>
+    </glossdef>
+  </glossentry>
+</glossary>

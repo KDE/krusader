@@ -1,0 +1,748 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2024 Krusader Krew <https://krusader.org>
+-->
+<chapter id="features">
+<title
+>Özellikler</title>
+<indexterm>
+  <primary
+>Özellikler</primary>
+</indexterm>
+<note>
+  <para
+>En önemli özellikler ve iyileştirmeler burada vurgulanmıştır; <emphasis
+>tüm</emphasis
+> özellikleri ve iyileştirmeleri içerirsek bu liste çok uzun olur. Bu belgelendirmede ve <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+><filename
+>ChangeLog</filename
+></ulink
+> ve <ulink url="https://commits.kde.org/krusader?path=NEWS"
+><filename
+>NEWS</filename
+></ulink
+> dosyalarında pek çok daha yeni özelliği keşfedebilirsiniz.</para>
+</note>
+<para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+><ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Ortodoks Dosya Yöneticisi (OFM)</ulink
+> özellikleri</title>
+          <listitem>
+            <para
+>İki adet güçlü ve kullanımı kolay <link linkend="panels"
+>OFM panelleri</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="cmdline"
+>Komut satırı</link
+> ve isteğe bağlı <link linkend="termemu"
+>uçbirim öykünücüsü</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Güçlü <link linkend="keyboard-commands"
+>klavye</link
+> kullanımı ve fare kullanmadan tüm işlevleri yerine getirme yeteneği</para>
+          </listitem>
+          <listitem>
+            <para
+>Betiklerin ve programların bağlama bağlı olarak çağrılması; örneğin fare tıklaması/&Enter; (ilgili uygulamayla yürüt veya aç), <keycap
+>F3</keycap
+> (görüntüle) ve <keycap
+>F4</keycap
+> (düzenle)</para>
+          </listitem>
+          <listitem>
+            <para
+>Kendi özel menünüzü yaratabileceğiniz <link linkend="useractions"
+>Kullanıcı Menüsü</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Geçmiş; <link linkend="folderhistory"
+>Klasör Geçmişi</link
+>, <link linkend="popular-urls"
+>Sık Kullanılan &URL;’ler</link
+>, vb.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="remote-connections"
+>Uzak bağlantılar</link
+>, <link linkend="archives"
+>arşivler</link
+>, arama sonuçları, eşzamanlayıcı vb. için <link linkend="vfs"
+>sanal dosya sistemleri (VFS)</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Neredeyse her tür dosya türünü destekleyen KPart’lar ile güçlü içsel <link linkend="krviewer"
+>görüntüleyici ve düzenleyici</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>Gelişmiş arama modülü</link
+>: Arşivlerde arama yapma ve uzak dosya sistemlerinde içerik arama</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="sidebar"
+>Sidebar</link
+> ile birkaç panel görüntüleme kipi</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>&krusader; Araçları</title>
+          <listitem>
+            <para
+><link linkend="remote-connections"
+>Uzak Bağlantılar</link
+>: KIO işçileri aracılığıyla SFTP/SCP ile &FTP;/SAMBA desteği</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="locate"
+>Bul</link
+> Grafik arayüzü</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="synchronizer"
+>Klasörleri Eşzamanla</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="mount-man"
+>Bağlamacı</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="diskusage"
+>Disk Kullanımı</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="root-mode"
+>Kök Kipi</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>&krusader; Özellikleri</title>
+          <listitem>
+            <para
+>Arşiv işleme: Göz atma, paket açma, paketleme, sınama. Desteklenen <link linkend="archives"
+>arşivler</link
+>: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip ve 7-zip</para>
+          </listitem>
+          <listitem>
+            <para
+>md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv ve crc biçimlerini destekleyen <link linkend="checksum"
+>sağlama toplamı oluşturma ve doğrulama</link
+> mekanizması</para>
+          </listitem>
+          <listitem>
+            <para
+>Dosyaların, klasörlerin, arşivlerin ve uzak dosya sistemlerinin <link linkend="calculate"
+>kapladığı alanı hesaplayın</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-dir"
+>Dizin karşılaştırma</link
+> ve <link linkend="view-menu"
+>süzme</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>&kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> veya <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> gibi dış diff programları ile <link linkend="compare-content"
+>dosyaları içeriğe göre karşılaştırma</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><ulink url="https://www.kde.org/applications/utilities/krename/"
+><application
+>K Adveren</application
+></ulink
+> ile dosyaları veya klasörleri <link linkend="multi_rename"
+>yeniden adlandırma</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>&konqueror;’dan doğrudan bir <literal role="extension"
+>.tar.gz</literal
+> dosyasına doğrudan sürükle–bırak özelliğini tamamen destekler: &krusader; panellerinden çöp kutusuna, masaüstüne veya &konqueror;’a sürükleyin.</para>
+          </listitem>
+          <listitem>
+            <para
+>Kopyalama ve taşıma işlemlerinde <link linkend="konfig-advanced"
+>tarihi korur</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><keycap
+>F9</keycap
+>, geçerli klasörde bir <link linkend="tools-menu"
+>uçbirim penceresi</link
+> açar.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="file-menu"
+>Dosya izinlerinin</link
+>, sahipliğin ve <link linkend="konfig-panel-view"
+>sayısal izinlerin</link
+> kolayca düzenlenebilmesi</para>
+          </listitem>
+          <listitem>
+            <para
+>Eşzamanlayıcı ve KruSearcher içinde kullanılabilen <link linkend="krusearcher"
+>seçim süzgeçleri</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="jump_back"
+>Geri Atla</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-general"
+>&MIME; türü</link
+> algılama</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="folder-tabs"
+>Sekmeli paneller</link
+> ve <link linkend="krviewer"
+>düzenleyici/görüntüleyici</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="quicksearch"
+>Tez arama, seçme ve süzme</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="splitter"
+>Dosya Bölücüsü</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Fare Hareketleri </para>
+          </listitem>
+          <listitem>
+            <para
+>Konum araç çubuğunda <link linkend="list_panel"
+>tez dolaşma</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>İşe yarayan yerlerde araç ipuçları yerine “Bu Nedir?” yardımını yeğleme</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_toolbar"
+>Eşzamanlı Göz Atma</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>&krusader;’ı kendi gereksinimlerinize göre özelleştirin</title>
+          <listitem>
+            <para
+><link linkend="konfig-startup"
+>Yapılandırıcı</link
+>; &krusader;’ın yapılandırma merkezidir.</para>
+          </listitem>
+          <listitem>
+            <para
+>Kullanıcı eylemleri ve yer imleri için <link linkend="mainwindow"
+>Ana Araç Çubuğu</link
+> ve <link linkend="actions_toolbar"
+>Eylemler Araç Çubuğu</link
+> kullanılabilirdir.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="key_bindings"
+>Düğme Bağıntıları</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="konfig-color"
+>Renkler</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_profiles"
+>Panel Profilleri</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="bookman"
+>Yer İmi Yöneticisi</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="selection_modes"
+>Seçim Kipleri</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>Pek çok özellik daha istediğiniz biçimde <link linkend="konfig-startup"
+>yapılandırılabilir</link
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      <itemizedlist>
+        <title
+>&krusader; Genişletmeleri</title>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Kullanıcı Eylemleri</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="konfig-color"
+>Renk Profilleri</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="configure-shortcuts"
+>Düğme Bağıntısı Profilleri</link
+></para>
+        </listitem>
+      </itemizedlist
+>Favori &krusader; genişletmelerinizi <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+> adresine yükleyin/oradan indirin. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+<para>
+  <itemizedlist>
+    <title
+>&krusader;-1.80.0 <quote
+>Final 3rd Stone</quote
+> yayımındaki yeni özellikler</title>
+    <listitem>
+      <para
+>Arşiv iyileştirmeleri <itemizedlist>
+        <listitem>
+          <para
+>arj, ace, rar ve zip için <link linkend="archives"
+>parola desteği</link
+>. Parolalar, <application
+>K Cüzdan</application
+> içinde depolanabilir.</para>
+        </listitem>
+        <listitem>
+          <para
+><application
+>7z</application
+> ve <application
+>7za</application
+> dış uygulamaları ile <link linkend="archives"
+>7-zip desteği</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><quote
+>Gizli arşivleri</quote
+> (&eg; <trademark class="registered"
+>LibreOffice</trademark
+> belgeleri) açmanıza olanak tanıyan <link linkend="archives"
+>kendiliğinden algılama</link
+> desteği</para>
+        </listitem>
+        <listitem>
+          <para
+>Paketleme ve paket açma artık arka planda yapılır.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="list_panel"
+>Özet Görünüm</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="useractions"
+>Kullanıcı Eylemleri</link
+> sistemi için pek çok iyileştirme</para>
+    </listitem>
+    <listitem>
+      <para
+>Sayısız kullanım kolaylığı iyileştirmesi, özellikle Yapılandırıcı’da ve büyük ölçüde yeniden düzenlenmiş menü çubuğunda</para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="media_button"
+>Ortam düğmesi</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>Kopyala/Taşı: <link linkend="copying"
+>Tüm öznitelikler korunur</link
+> (zaman, sahip, grup).</para>
+    </listitem>
+    <listitem>
+      <para
+>Etkin olmayan panelin renkleri <link linkend="konfig-color"
+>kısılır</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Uzantı olmadan dosya adını yeniden adlandırma, tek örnek kipi, sistem tepsisine başlatma; bunları <link linkend="konfigurator"
+>Yapılandırıcı</link
+> adresinden inceleyin.</para>
+    </listitem>
+    <listitem>
+      <para
+>Yapılandırılabilir <link linkend="list_panel"
+>atomik uzantılar</link
+>; böylece <literal role="extension"
+>.tar.gz</literal
+> gibi uzantılar artık <guilabel
+>Uzantı</guilabel
+> sütununda görüntülenir. </para>
+    </listitem>
+    <listitem>
+      <para
+>Yer imleri için bağlam menüsü ve özel yer imlerini etkinleştirme/devre dışı bırakma</para>
+    </listitem>
+    <listitem>
+      <para
+>Yeniden stillendirilmiş <link linkend="menu-commands"
+>menü çubuğu</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Yeni özellikler, kullanım ve görünüm içeren <link linkend="termemu"
+>uçbirim öykünücüsü</link
+> değişiklikleri</para>
+    </listitem>
+    <listitem>
+      <para
+>Yavaş &FTP; sunucuları için <link linkend="synchronizer"
+>Eşzamanlayıcı</link
+> iyileştirmeleri</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-startup"
+>Tek örnek kipi</link
+> ve <link linkend="konfig-startup"
+>sistem tepsisinde başlatma</link
+></para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="context-menu"
+>Kalıcı yer imleri için bağlam menüsü</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="acl"
+>ACL izinleri için tam destek</link
+>; örneğin, özellikler, öznitelikleri koruma, eşzamanlayıcı vb.</para>
+    </listitem>
+    <listitem>
+      <para
+>Arama, bulma ve eşzamanlama sonuçlarından ögeleri sürükleme ve panoya kopyalama desteği (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>)</para>
+    </listitem>
+    <listitem>
+      <para
+>Pek çok hata düzeltmesi</para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>&krusader;-1.90.0 <quote
+>Power Stone</quote
+> yayımındaki yeni özellikler</title>
+    <listitem>
+      <para
+>Büyük bir kullanıcı eylemleri paketi içeren, &kde; 3.x için olan son yayım </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>&krusader;-2.0.0 <quote
+>Mars Pathfinder</quote
+> yayımındaki yeni özellikler</title>
+    <listitem>
+      <para
+>&kde; 4.x kullanıcıları için olan ilk yayım </para>
+    </listitem>
+    <listitem>
+      <para
+>&krusader; artık &Windows; üzerinde de çalışıyor! (Ancak &Linux; üzerinde olduğu kadar güçlü değil.) </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="queue"
+>Kuyruk yöneticisi!</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-panel"
+>Panelde beş adet yöntem!</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>&krusader;-2.1.0-beta1 <quote
+>Rusty Clutch</quote
+> yayımındaki yeni özellikler</title>
+    <listitem>
+      <para
+>Büyük dosyalar için hızlı metin/onaltılık görüntüleyicisi </para>
+    </listitem>
+    <listitem>
+      <para
+>Kilitli sekmeler </para>
+    </listitem>
+    <listitem>
+      <para
+>Kuyrukta sıralı paketleme/paket açma </para>
+    </listitem>
+    <listitem>
+      <para
+>Daha iyi Çöp Kutusu tümleşimi </para>
+    </listitem>
+    <listitem>
+      <para
+>Tez arama, seçme ve süzme çubuğu artık dosyalarla eşleşme için düzenli ifade kullanımını destekliyor. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>&krusader;-2.5.0 <quote
+>Clear Skies</quote
+> yayımındaki yeni özellikler</title>
+    <listitem>
+      <para
+>&kf5-full; geçişi </para>
+    </listitem>
+    <listitem>
+        <para
+>Üç yeni işlem kipini destekleyen <link linkend="quickfilter"
+>tez süzme</link
+> çubuğu: Seçme, arama ve süzme </para>
+    </listitem>
+    <listitem>
+        <para
+>Üzerinde yeniden çalışılmış kuyruk yöneticisi (JobMan) ve yeni <link linkend="job_toolbar"
+>iş araç çubuğu</link
+> </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>&krusader;-2.7.0 <quote
+>Peace of Mind</quote
+> yayımındaki yeni özellikler</title>
+    <listitem>
+      <para
+>Yer imi menüsünde tez arama </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="folder-tabs"
+>Sabitlenmiş sekmeler</link
+> </para>
+    </listitem>
+    <listitem>
+      <para
+>Dosyanın üzerine fareyle geldiğinizde dosya bilgisini gösteren araç ipucu </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="sidebar"
+>Kenar çubuğundaki</link
+> araç paneli için genişletilmiş seçenekler </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>&krusader;-2.8.0 <quote
+>A New Day</quote
+> yayımındaki yeni özellikler</title>
+    <listitem>
+      <para
+>Sekmeleri çift tık ile çoğaltma </para>
+    </listitem>
+    <listitem>
+      <para
+>Sekmeleri &Ctrl;+&LMB; veya &Alt;+&LMB; ile kapatma (yapılandırılabilir) </para>
+    </listitem>
+    <listitem>
+      <para
+>Uygulama çalışırken kapatılmış sekmeleri yeniden açma </para>
+    </listitem>
+    <listitem>
+      <para
+>Devingen boyutlu sekmeler </para>
+    </listitem>
+    <listitem>
+      <para
+>Yeni sekme konumu, sekme düğmesinin görünürlüğü ve yeni sekme düğmesinin davranışı için yapılandırma seçenekleri </para>
+    </listitem>
+    <listitem>
+      <para
+>Yeni Klasör iletişim kutusunda geçmiş ve öneriler </para>
+    </listitem>
+    <listitem>
+      <para
+>Yeniden Adlandır kısayolu ile tam ad, dosya adı ve uzantı seçenekleri arasında geçiş yapma (öntanımlı olarak <keycap
+>F2</keycap
+>) </para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo
+>&Shift;<keycap
+>Sil</keycap
+></keycombo
+>, birçok iletişim kutusunda geçmişten istenmeyen girdileri kaldırmaya olanak tanır. </para>
+    </listitem>
+    <listitem>
+      <para
+>Panel ve gömülü uçbirim arasında iyileştirilmiş eşzamanlama </para>
+    </listitem>
+    <listitem>
+      <para
+>İyileştirilmiş renk yapılandırması </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>&krusader;-2.9.0 <quote
+>Sixth Life</quote
+> yayımındaki yeni özellikler</title>
+    <listitem>
+      <para
+>&kf6-full; geçişi </para>
+      <para
+>Çökme sırasında ayarlar kaydedilir. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para
+><note
+><para
+>Geliştirme veya &git; sürümünü kullanıyorsanız en yeni özellikler büyük olasılıkla <quote
+>&krusader; El Kitabı</quote
+>’nda henüz olmayabilir. Yeni özellikler hakkında daha fazla bilgi almak için lütfen &krusader; kaynaklarındaki <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+>Changelog</ulink
+> dosyasını okuyun. Kısa bir özet için <ulink url="https://commits.kde.org/krusader?path=NEWS"
+>NEWS</ulink
+> dosyasını çevrim içi olarak veya &krusader; kaynaklarından okuyun. <link linkend="faqg_wish"
+>Kullanıcı geri bildirimleri</link
+> ve <link linkend="faqg_bug_report"
+>hata raporları</link
+> her zaman çok makbule geçer! </para
+></note
+></para>
+</chapter>

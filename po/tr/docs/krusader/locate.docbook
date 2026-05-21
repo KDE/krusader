@@ -1,0 +1,156 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="locate">
+  <title
+>Bul Arayüzü</title>
+  <indexterm>
+    <primary
+>Bul</primary>
+  </indexterm>
+  <para
+>&krusader;’ın <command
+>locate</command
+> komutu için bir grafik arayüzü bulunur. Bul, arama yapmak için klasörleri değil de bir veri tabanını kullanır. Paket, diğer dosyaların dışında <command
+>locate</command
+> ve <command
+>updatedb</command
+> komutlarını içerir. <command
+>updatedb</command
+>, yerel dosya sistemini tarar ve dosya girdilerini bir veri tabanına kaydeder. <command
+>cron</command
+>, <command
+>updatedb</command
+> komutunu her gece sık sık çağırır (<application
+>KCron</application
+> ile ayarlanır). Bu özelliği başlatmak için <menuchoice
+> <guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Bul…</guimenuitem
+> </menuchoice
+> veya <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> seçeneklerini kullanın. <link linkend="konfig-advanced"
+>Yapılandırıcı</link
+>, <command
+>updatedb</command
+> için ek argümanlar ayarlayabilir.</para>
+  <para
+>İşaret Kutusu Seçenekleri <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Yalnızca var olan dosyaları göster</guilabel
+>: Veri tabanında artık var olmayan (silinmiş, son <command
+>updatedb</command
+> işleminden bu yana taşınmış) girdiler varsa <command
+>locate</command
+>, bunları listelemez. Sonuç penceresinde listelemeden önce her dosyanın varlığını denetler (bu işlem yavaş olabilir).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>BÜYÜK/küçük harf duyarlı</guilabel
+>: Bu seçeneğin işaretini kaldırmak, BÜYÜK/küçük harfle duyarlı aramayı etkinleştirir.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Eylem Düğmeleri <itemizedlist>
+    <listitem>
+      <para
+><guibutton
+>Bul</guibutton
+>: <command
+>locate <replaceable
+>foo foo</replaceable
+></command
+> komutunu etkinleştirir ve çıktısını sonuç penceresine yerleştirir.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Durdur</guibutton
+>: Bulma sürecini durdurur.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Veri Tabanını Güncelle</guibutton
+>: Kök parolayı girdikten sonra <command
+>updatedb</command
+> komutunu çalıştırarak bulma veri tabanını günceller.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Kapat</guibutton
+>: Bul penceresini kapatır.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Sonuçlar Penceresi <itemizedlist>
+    <listitem>
+      <para
+>Bir ögeye çift tıklamak: Ögenin bulunduğu klasöre geçmenizi sağlar, ögeyi görünür hâle getirir ve bulma iletişim kutusunu kapatır.</para>
+    </listitem>
+    <listitem>
+      <para
+>Sağ tık: Menüyü düzenler/görüntüler/bulur. <itemizedlist>
+        <listitem>
+          <para
+><keycap
+>F3</keycap
+>: Geçerli ögeyi görüntüler.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>F4</keycap
+>: Geçerli ögeyi düzenler.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>: Sonuç penceresinde dosyaları bulur.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+>: Bir sonraki arama sonucunu gösterir.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: Bir önceki arama sonucunu gösterir.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+        <listitem>
+          <para
+>Sonuç penceresi, ögeleri diğer pencerelere sürüklemeyi ve panoya kopyalamayı destekler (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+        </listitem>
+  </itemizedlist
+></para>
+</sect1>
