@@ -1801,7 +1801,8 @@ Move / merge the following into kdelibs/doc/sonnet/index.docbook and replace it 
 ></term>
 <listitem
 ><para
->Belgenin tamamına durağan sözcük kaydırma uygulayın. Bu, geçerli satır, Düzenleme sekmesindeki <guimenu
+>Belgenin tamamına durağan sözcük kaydırma uygulayın. Bu, geçerli satır, Düzenleme sekmesindeki <menuchoice
+> <guimenu
 >Ayarlar</guimenu
 ><guimenuitem
 >Düzenleyiciyi Yapılandır…</guimenuitem
@@ -2774,8 +2775,8 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->Eğer &Tab; düğmesinin, Emacs’teki gibi geçerli kod bloğundaki geçerli satırı hizalamasını istiyorsanız &Tab; düğmesini <gui menuitem
->Hizala</gui menuitem
+>Eğer &Tab; düğmesinin, Emacs’teki gibi geçerli kod bloğundaki geçerli satırı hizalamasını istiyorsanız &Tab; düğmesini <guimenuitem
+>Hizala</guimenuitem
 > eylemine kısayol olarak atayın. </para>
 <variablelist>
 <varlistentry>
@@ -3119,12 +3120,9 @@ Line Length Limit missing
 ></term>
 <listitem
 ><para
->Kaydetme sırasında yedekleme, değişiklikleri kaydetmeden önce uygulamanın disk dosyasını <prefix
-><filename
-><suffix
-> konumuna kopyalamasını sağlar. Sonek öntanımlı olarak <emphasis role="bold"
+>Kaydetme sırasında yedekleme, değişiklikleri kaydetmeden önce uygulamanın disk dosyasını &lt;önek&gt;&lt;dosya-adı&gt;&lt;sonek&gt; şeklinde ayarlamasına neden olur. Sonek öntanımlı olarak <emphasis role="bold"
 >~</emphasis
-> değerine, önek ise boş değere ayarlanır. </para>
+> ve önek ise öntanımlı olarak boştur. </para>
 <variablelist>
 <varlistentry>
 <term
@@ -3173,8 +3171,7 @@ Line Length Limit missing
 ></term>
 <listitem>
 <para
->&kappname;, çökme veya güç kesintisi durumunda son kaydetmeden sonra yazılanların (çoğunu) kurtarabilir. Bir belge üzerinde ilk düzenleme işleminden sonra bir takas dosyası (.swp.<filename
->) oluşturulur. Kullanıcı değişiklikleri kaydetmez ve &kappname; çökerse, takas dosyası diskte kalır. Bir dosya açıldığında, &kappname; belge için bir takas dosyası olup olmadığına bakar ve varsa kullanıcıya kayıp verileri kurtarmak isteyip istemediğini sorar. Kullanıcı, özgün dosya ile kurtarılan dosya arasındaki farkları da görüntüleyebilir. Takas dosyası her kaydetme işleminden sonra ve normal çıkışta silinir.</para>
+>&kappname;, çökme veya güç kesintisi durumunda son kaydetmeden sonra yazılanların (çoğunu) kurtarabilir. Bir belge üzerinde ilk düzenleme işleminden sonra bir takas dosyası (.swp.&lt;filename&gt;) oluşturulur. Kullanıcı değişiklikleri kaydetmez ve &kappname; çökerse takas dosyası diskte kalır. Bir dosya açıldığında, &kappname; belge için bir takas dosyası olup olmadığına bakar ve varsa kullanıcıya kayıp verileri kurtarmak isteyip istemediğini sorar. Kullanıcı, özgün dosya ile kurtarılan dosya arasındaki farkları da görüntüleyebilir. Takas dosyası her kaydetme işleminden sonra ve normal çıkışta silinir.</para>
 <para
 >&kappname; disk üzerindeki takas dosyalarını her 15 saniyede bir eşzamanlar; ancak yalnızca son eşzamanlamadan bu yana değişmişlerse. Kullanıcı isterse <guilabel
 >Takas dosyası eşzamanlamasını devre dışı bırak</guilabel
