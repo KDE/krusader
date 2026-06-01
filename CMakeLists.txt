@@ -155,6 +155,9 @@ add_subdirectory(doc/handbook)
 add_subdirectory(plugins/iso)
 add_subdirectory(plugins/krarc)
 
+if(BUILD_TESTING)
+  add_subdirectory(autotests)
+endif()
 
 # ===== Translations =====
 

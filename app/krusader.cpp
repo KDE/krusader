@@ -82,7 +82,7 @@ Krusader *Krusader::App = nullptr;
 QString Krusader::AppName;
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
-Krusader::Krusader(const QCommandLineParser &parser)
+Krusader::Krusader(const QCommandLineParser &parser, bool runSelfTest)
     : KParts::MainWindow(nullptr, Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint)
     , _listPanelActions(nullptr)
     , isStarting(true)
@@ -97,7 +97,7 @@ Krusader::Krusader(const QCommandLineParser &parser)
 
     plzWait = new KrPleaseWaitHandler(this);
 
-    const bool runKonfig = versionControl();
+    const bool runKonfig = versionControl(runSelfTest);
 
     QString message;
     switch (krConfig->accessMode()) {
@@ -217,8 +217,10 @@ Krusader::Krusader(const QCommandLineParser &parser)
 
     KConfigGroup viewerModuleGrp(krConfig, "ViewerModule");
     if (viewerModuleGrp.readEntry("FirstRun", true)) {
-        KrViewer::configureDeps();
-        viewerModuleGrp.writeEntry("FirstRun", false);
+        if (!runSelfTest) {
+            KrViewer::configureDeps();
+            viewerModuleGrp.writeEntry("FirstRun", false);
+        }
     }
 
     if (!runKonfig) {
@@ -289,7 +291,7 @@ void Krusader::setTray(bool forceCreation)
     }
 }
 
-bool Krusader::versionControl()
+bool Krusader::versionControl(bool runSelfTest)
 {
     // create config file
     krConfig = KSharedConfig::openConfig().data();
@@ -297,20 +299,23 @@ bool Krusader::versionControl()
     const bool firstRun = nogroup.readEntry("First Time", true);
     KrGlobal::sCurrentConfigVersion = nogroup.readEntry("Config Version", -1);
 
-    // first installation of krusader
-    if (firstRun) {
-        KMessageBox::information(krApp,
-                                 i18n("<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
-                                      "will now be checked for external applications. Then the Konfigurator will "
-                                      "be launched where you can customize Krusader to your needs.</p></qt>"));
+    if (!runSelfTest) {
+        // first installation of krusader
+        if (firstRun) {
+            KMessageBox::information(krApp,
+                                    i18n("<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
+                                        "will now be checked for external applications. Then the Konfigurator will "
+                                        "be launched where you can customize Krusader to your needs.</p></qt>"));
+        }
+        nogroup.writeEntry("First Time", false);
     }
+
     nogroup.writeEntry("Version", VERSION);
-    nogroup.writeEntry("First Time", false);
     krConfig->sync();
 
     QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/krusader/"));
 
-    return firstRun;
+    return runSelfTest ? false : firstRun;
 }
 
 void Krusader::statusBarUpdate(const QString &mess)

@@ -210,13 +210,20 @@ int main(int argc, char *argv[])
     KAboutData::setApplicationData(aboutData);
     app.setWindowIcon(Icon(Krusader::appIconName()));
 
-    // Command line arguments ...
+    // Command line arguments
+
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
     parser.addOption(QCommandLineOption(QStringList() << QLatin1String("left"), i18n("Start left panel at <path>"), QLatin1String("path")));
     parser.addOption(QCommandLineOption(QStringList() << QLatin1String("right"), i18n("Start right panel at <path>"), QLatin1String("path")));
     parser.addOption(QCommandLineOption(QStringList() << QLatin1String("profile"), i18n("Load this profile on startup"), QLatin1String("panel-profile")));
     parser.addOption(QCommandLineOption(QStringList() << "d" << QLatin1String("debug"), i18n("Enable debug output")));
+
+    QCommandLineOption selfTestOpt(QStringLiteral("self-test"),
+                                   QStringLiteral("Intended for internal automated testing")); // This string should not be translated
+    selfTestOpt.setFlags(QCommandLineOption::HiddenFromHelp);
+    parser.addOption(selfTestOpt);
+
     parser.addPositionalArgument(QLatin1String("url"), i18n("URL to open"));
 
     // check for command line arguments
@@ -287,7 +294,8 @@ int main(int argc, char *argv[])
     } // don't remove bracket
 
     Krusader::AppName = appName;
-    auto *krusader = new Krusader(parser);
+    bool runSelfTest = parser.isSet(selfTestOpt);
+    auto *krusader = new Krusader(parser, runSelfTest);
 
     if (!url.isEmpty())
         krusader->openUrl(url);
@@ -318,6 +326,14 @@ int main(int argc, char *argv[])
         splash->finish(krusader);
         delete splash;
     }
+
+    // If internal automated tests have to be run
+    if (runSelfTest) {
+        // This is a ["smoke test", other tests can be added](https://web.archive.org/web/
+        // 20260523183938/https://nicolasfella.de/posts/smoke-tests-for-fun-and-profit/)
+        QTimer::singleShot(std::chrono::milliseconds(1000), &app, &QCoreApplication::quit);
+    }
+
     // let's go.
     return app.exec();
 }
