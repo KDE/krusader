@@ -8,24 +8,25 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-02-16 00:51+0000\n"
-"PO-Revision-Date: 2013-09-08 07:04+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"PO-Revision-Date: 2026-05-31 19:40-0400\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "ئابدۇقادىر ئابلىز, غەيرەت كەنجى"
+msgstr "ئابدۇقادىر ئابلىز، غەيرەت كەنجى"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "sahran.ug@gmail.com,  gheyret@gmail.com"
+msgstr "sahranbay@gmail.com, gheyret@gmail.com"
 
 #: app/ActionMan/actionman.cpp:26
 #, kde-format
@@ -300,7 +301,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:278
 #, kde-format
 msgid "Category:"
-msgstr "تۈرى:"
+msgstr "سەھىپە:"
 
 #. i18n: ectx: property (whatsThis), widget (QToolButton, ButtonAddPlaceholder)
 #: app/ActionMan/actionproperty.ui:300 app/GUI/kcmdline.cpp:183
@@ -349,7 +350,7 @@ msgstr ""
 #: app/ActionMan/actionproperty.ui:401
 #, kde-format
 msgid "Enabled"
-msgstr "ئىناۋەتلىك قىلىنغان"
+msgstr "قوزغىتىلغان"
 
 #. i18n: ectx: property (title), widget (QGroupBox, bgExecType)
 #: app/ActionMan/actionproperty.ui:414
@@ -383,10 +384,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioNormal)
 #: app/ActionMan/actionproperty.ui:443
-#, fuzzy, kde-format
-#| msgid "Normal"
+#, kde-format
 msgid "&Normal"
-msgstr "نورمال"
+msgstr "ئادەتتىكى(&N)"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioTerminal)
 #: app/ActionMan/actionproperty.ui:453
@@ -483,7 +483,7 @@ msgstr "يېڭى(&N)…"
 #: app/ActionMan/actionproperty.ui:709
 #, kde-format
 msgid "MIME Type"
-msgstr "MIME تىپى"
+msgstr "MIME تۈرى"
 
 #. i18n: ectx: property (text), widget (QToolButton, ButtonAddMime)
 #: app/ActionMan/actionproperty.ui:740
@@ -584,14 +584,8 @@ msgid "Title"
 msgstr "ماۋزۇ"
 
 #: app/ActionMan/useractionpage.cpp:38
-#, fuzzy
-#| msgid ""
-#| "*.xml|XML files\n"
-#| "*|All files"
 msgid "XML files (*.xml);;All files (*)"
 msgstr ""
-"*.xml|XML ھۆججەتلىرى\n"
-"*|بارلىق ھۆججەتلەر"
 
 #: app/ActionMan/useractionpage.cpp:55
 #, kde-format
@@ -654,7 +648,7 @@ msgstr ""
 #: app/ActionMan/useractionpage.cpp:263
 #, kde-format
 msgid "Merge"
-msgstr "بىرىكتۈر"
+msgstr "بىرلەشتۈر"
 
 #: app/ActionMan/useractionpage.cpp:269
 #, kde-format
@@ -689,10 +683,9 @@ msgid "Downloading remote files"
 msgstr ""
 
 #: app/Archive/abstractthreadedjob.cpp:490
-#, fuzzy, kde-format
-#| msgid "Copying files"
+#, kde-format
 msgid "Counting files"
-msgstr "ھۆججەتلەرنى كۆچۈرۈۋاتىدۇ"
+msgstr ""
 
 #: app/Archive/abstractthreadedjob.cpp:519
 #, kde-format
@@ -799,7 +792,7 @@ msgstr "ئاتى:"
 #: app/BookMan/kraddbookmarkdlg.cpp:42
 #, kde-format
 msgid "URL:"
-msgstr "URL:"
+msgstr "تور ئادرېسى:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:49
 #, kde-format
@@ -816,13 +809,13 @@ msgstr "يېڭى قىسقۇچ"
 #: app/Filter/generalfilter.cpp:162 app/Filter/generalfilter.cpp:539
 #, kde-format
 msgid "Folders"
-msgstr "قىسقۇچلار"
+msgstr "قىسقۇچ"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:102 app/BookMan/krbookmarkbutton.cpp:33
 #: app/BookMan/krbookmarkhandler.cpp:65 app/Panel/listpanelactions.cpp:105
 #, kde-format
 msgid "Bookmarks"
-msgstr "خەتكۈشلەر"
+msgstr "خەتكۈش"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:142
 #, kde-format
@@ -956,10 +949,9 @@ msgid "Creating Checksums"
 msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:252
-#, fuzzy, kde-format
-#| msgid "Create New"
+#, kde-format
 msgid "Create Checksums"
-msgstr "يېڭىدىن قۇر"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:254
 #, kde-format
@@ -972,10 +964,9 @@ msgid "Select the checksum method:"
 msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:286
-#, fuzzy, kde-format
-#| msgid "Results"
+#, kde-format
 msgid "Checksum Results"
-msgstr "نەتىجە"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:293 app/Dialogs/checksumdlg.cpp:493
 #: app/Konfigurator/kgcolors.cpp:562
@@ -1049,10 +1040,9 @@ msgid "Checksum file:"
 msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:503
-#, fuzzy, kde-format
-#| msgid "Results"
+#, kde-format
 msgid "Verify Result"
-msgstr "نەتىجە"
+msgstr ""
 
 #: app/Dialogs/checksumdlg.cpp:508
 #, kde-format
@@ -1092,7 +1082,7 @@ msgstr ""
 #: app/Dialogs/krmaskchoice.cpp:40
 #, kde-format
 msgid "Choose Files"
-msgstr ""
+msgstr "ھۆججەت تاللىنىدۇ"
 
 #: app/Dialogs/krmaskchoice.cpp:53
 #, kde-format
@@ -1194,7 +1184,7 @@ msgstr "كېلىشىم:"
 #: app/Dialogs/newftpgui.cpp:68
 #, kde-format
 msgid "Host:"
-msgstr "كومپيۇتېر:"
+msgstr "مۇلازىمېتىر:"
 
 #: app/Dialogs/newftpgui.cpp:69
 #, kde-format
@@ -1230,7 +1220,7 @@ msgstr[0] ""
 #: app/Dialogs/packgui.cpp:100
 #, kde-format
 msgid "Please select a folder"
-msgstr ""
+msgstr "قىسقۇچتىن بىرنى تاللاڭ"
 
 #: app/Dialogs/packguibase.cpp:61 app/Dialogs/packguibase.cpp:115
 #, kde-format
@@ -1243,10 +1233,9 @@ msgid "To archive"
 msgstr ""
 
 #: app/Dialogs/packguibase.cpp:90
-#, fuzzy, kde-format
-#| msgid "New Folder"
+#, kde-format
 msgid "In folder"
-msgstr "يېڭى قىسقۇچ"
+msgstr ""
 
 #: app/Dialogs/packguibase.cpp:138
 #, kde-format
@@ -1266,12 +1255,12 @@ msgstr ""
 #: app/Dialogs/packguibase.cpp:193
 #, kde-format
 msgid "MIN"
-msgstr "MIN"
+msgstr ""
 
 #: app/Dialogs/packguibase.cpp:194
 #, kde-format
 msgid "MAX"
-msgstr "MAX"
+msgstr ""
 
 #: app/Dialogs/packguibase.cpp:217
 #, kde-format
@@ -1367,13 +1356,12 @@ msgstr ""
 #: app/DiskUsage/diskusage.cpp:102
 #, kde-format
 msgid "Files:"
-msgstr "ھۆججەتلەر:"
+msgstr "ھۆججەت:"
 
 #: app/DiskUsage/diskusage.cpp:107
-#, fuzzy, kde-format
-#| msgid "Folders"
+#, kde-format
 msgid "Folders:"
-msgstr "قىسقۇچلار"
+msgstr "قىسقۇچ:"
 
 #: app/DiskUsage/diskusage.cpp:112
 #, kde-format
@@ -1398,12 +1386,10 @@ msgid "Krusader::DiskUsage"
 msgstr ""
 
 #: app/DiskUsage/diskusage.cpp:591
-#, fuzzy, kde-format
-#| msgctxt "singularOnly"
-#| msgid "Do you really want to move this item to the trash?"
+#, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
-msgstr "سىز راستلا %1 تۈرنى ئەخلەتخانىغا يۆتكەمسىز؟"
+msgstr "سىز راستتىنلا بۇ تۈرنى ئەخلەتخانىغا يۆتكەمسىز؟"
 
 #: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:840
 #, kde-format
@@ -1411,12 +1397,10 @@ msgid "&Trash"
 msgstr "ئەخلەت(&T)"
 
 #: app/DiskUsage/diskusage.cpp:594
-#, fuzzy, kde-format
-#| msgctxt "singularOnly"
-#| msgid "Do you really want to delete this item?"
+#, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to delete this item?"
-msgstr "بۇ %1 تۈرنى ئۆچۈرەمسىز؟"
+msgstr "بۇ تۈرنى ئۆچۈرەمسىز؟"
 
 #: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
 #: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:856
@@ -1438,7 +1422,7 @@ msgstr ""
 #: app/DiskUsage/diskusage.cpp:746
 #, kde-format
 msgid "Disk Usage"
-msgstr "دىسكىنىڭ ئىشلىتىلىشى"
+msgstr "دىسكا ئىشلىتىلىشى"
 
 #: app/DiskUsage/diskusage.cpp:754
 #, kde-format
@@ -1446,10 +1430,9 @@ msgid "Exclude"
 msgstr "سىرتىدا"
 
 #: app/DiskUsage/diskusage.cpp:760
-#, fuzzy, kde-format
-#| msgid "New Folder"
+#, kde-format
 msgid "Up one folder"
-msgstr "يېڭى قىسقۇچ"
+msgstr ""
 
 #: app/DiskUsage/diskusage.cpp:764
 #, kde-format
@@ -1484,7 +1467,7 @@ msgstr ""
 #: app/DiskUsage/diskusage.cpp:797 app/DiskUsage/dufilelight.cpp:108
 #, kde-format
 msgid "Filelight"
-msgstr "Filelight"
+msgstr "Filelight دىسكا ئىشلىتىلىشىنى كۆرسەتكۈچ"
 
 #: app/DiskUsage/diskusage.cpp:803 app/KrViewer/lister.cpp:1285
 #, kde-format
@@ -1505,7 +1488,7 @@ msgstr "كۆرۈنۈش"
 #: app/DiskUsage/diskusage.cpp:1038
 #, kde-format
 msgid "Type:"
-msgstr "تىپى:"
+msgstr "تۈرى:"
 
 #: app/DiskUsage/diskusage.cpp:1042
 #, kde-format
@@ -1538,10 +1521,9 @@ msgid "Start new disk usage search"
 msgstr ""
 
 #: app/DiskUsage/diskusagegui.cpp:63
-#, fuzzy, kde-format
-#| msgid "New Folder"
+#, kde-format
 msgid "Parent folder"
-msgstr "يېڭى قىسقۇچ"
+msgstr ""
 
 #: app/DiskUsage/diskusagegui.cpp:73
 #, kde-format
@@ -1566,12 +1548,12 @@ msgstr ""
 #: app/DiskUsage/dufilelight.cpp:80 app/Panel/viewactions.cpp:20
 #, kde-format
 msgid "Zoom In"
-msgstr "چوڭايت"
+msgstr "يېقىنلات"
 
 #: app/DiskUsage/dufilelight.cpp:81 app/Panel/viewactions.cpp:21
 #, kde-format
 msgid "Zoom Out"
-msgstr "كىچىكلىتىش"
+msgstr "يىراقلات"
 
 #: app/DiskUsage/dufilelight.cpp:84
 #, kde-format
@@ -1581,12 +1563,12 @@ msgstr "ھەسەن-ھۈسەن"
 #: app/DiskUsage/dufilelight.cpp:85
 #, kde-format
 msgid "High Contrast"
-msgstr "يۇقىرى ئاق-قارىلىقى"
+msgstr "يۇقىرى سېلىشتۇرما"
 
 #: app/DiskUsage/dufilelight.cpp:86
 #, kde-format
 msgid "KDE"
-msgstr "ك د ئې(KDE)"
+msgstr "KDE"
 
 #: app/DiskUsage/dufilelight.cpp:89
 #, kde-format
@@ -1662,7 +1644,7 @@ msgstr ""
 #: app/DiskUsage/dulistview.cpp:44 app/MountMan/kmountmangui.cpp:148
 #, kde-format
 msgid "Type"
-msgstr "تىپى"
+msgstr "تۈرى"
 
 #: app/DiskUsage/dulistview.cpp:45 app/Filter/advancedfilter.cpp:109
 #, kde-format
@@ -1672,12 +1654,12 @@ msgstr "چېسلا"
 #: app/DiskUsage/dulistview.cpp:46
 #, kde-format
 msgid "Permissions"
-msgstr "ئىمتىيازلار"
+msgstr "ئىجازەت"
 
 #: app/DiskUsage/dulistview.cpp:47
 #, kde-format
 msgid "Owner"
-msgstr "ئىگىسى"
+msgstr "ئىگىدار"
 
 #: app/DiskUsage/dulistview.cpp:48 app/Konfigurator/krresulttable.cpp:282
 #, kde-format
@@ -1701,10 +1683,9 @@ msgid "Open File Manager Here"
 msgstr ""
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:168
-#, fuzzy, kde-format
-#| msgid "Terminal"
+#, kde-format
 msgid "Open Terminal Here"
-msgstr "تېرمىنال"
+msgstr "بۇ يەردە تېرمىنالنى ئاچ"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:172
 #, kde-format
@@ -1727,11 +1708,13 @@ msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
 "b> deleted.</qt>"
 msgstr ""
+"<i>«%1»</i><qt> دىكى قىسقۇچ <b>قايتىلانما</b> ۋە <b>مەڭگۈلۈك</b> ئۆچۈرۈلىدۇ."
+"</qt>"
 
 #: app/DiskUsage/radialMap/widgetEvents.cpp:205
 #, kde-format
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
-msgstr ""
+msgstr "<i>«%1»</i><qt> <b>مەڭگۈلۈك</b> ئۆچۈرۈلىدۇ.</qt>"
 
 #: app/FileSystem/defaultfilesystem.cpp:150
 #, kde-format
@@ -1744,10 +1727,9 @@ msgid "No space information on non-local filesystems"
 msgstr ""
 
 #: app/FileSystem/defaultfilesystem.cpp:185
-#, fuzzy, kde-format
-#| msgid "Show space information"
+#, kde-format
 msgid "Space information unavailable"
-msgstr "بوشلۇق ئۇچۇرىنى كۆرسەت"
+msgstr ""
 
 #: app/FileSystem/defaultfilesystem.cpp:195
 #, kde-format
@@ -1820,12 +1802,10 @@ msgid "Searching content of '%1' (%2)"
 msgstr ""
 
 #: app/FileSystem/krquery.cpp:571
-#, fuzzy, kde-format
-#| msgctxt "filestate: filename"
-#| msgid "%1: %2"
+#, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr "%1: %2"
+msgstr "%1%"
 
 #: app/FileSystem/virtualfilesystem.cpp:56
 #, kde-format
@@ -1865,19 +1845,19 @@ msgstr "بايت"
 #: app/Filter/advancedfilter.cpp:71 app/Filter/advancedfilter.cpp:93
 #, kde-format
 msgid "KiB"
-msgstr "كىلوبايت"
+msgstr "KiB"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:73 app/Filter/advancedfilter.cpp:95
 #, kde-format
 msgid "MiB"
-msgstr "مېگابايت"
+msgstr "MiB"
 
 #. i18n: @item:inlistbox next to a text field containing the amount
 #: app/Filter/advancedfilter.cpp:75 app/Filter/advancedfilter.cpp:97
 #, kde-format
 msgid "GiB"
-msgstr "گىگابايت"
+msgstr "GiB"
 
 #: app/Filter/advancedfilter.cpp:80
 #, kde-format
@@ -1952,7 +1932,7 @@ msgstr ""
 #: app/Filter/advancedfilter.cpp:253
 #, kde-format
 msgid "P&ermissions"
-msgstr "ھوقۇق چېكى(&E):"
+msgstr "ھوقۇق چېكى(&E)"
 
 #: app/Filter/advancedfilter.cpp:258
 #, kde-format
@@ -2108,7 +2088,7 @@ msgstr "Escape"
 
 #: app/Filter/generalfilter.cpp:46
 msgid "TAB"
-msgstr "TAB"
+msgstr ""
 
 #: app/Filter/generalfilter.cpp:47
 msgid "Newline"
@@ -2165,7 +2145,7 @@ msgstr ""
 #: app/Filter/generalfilter.cpp:160 app/Filter/generalfilter.cpp:585
 #, kde-format
 msgid "All Files"
-msgstr "بارلىق ھۆججەتلەر"
+msgstr "بارلىق ھۆججەت"
 
 #: app/Filter/generalfilter.cpp:180
 #, kde-format
@@ -2178,10 +2158,9 @@ msgid "&Load"
 msgstr "يۈكلە(&L)"
 
 #: app/Filter/generalfilter.cpp:217
-#, fuzzy, kde-format
-#| msgid "Search"
+#, kde-format
 msgid "Searc&h in"
-msgstr "ئىزدە"
+msgstr ""
 
 #: app/Filter/generalfilter.cpp:232
 #, kde-format
@@ -2225,10 +2204,9 @@ msgid "Cas&e sensitive"
 msgstr ""
 
 #: app/Filter/generalfilter.cpp:354
-#, fuzzy, kde-format
-#| msgid "Search for files"
+#, kde-format
 msgid "Search in s&ub folders"
-msgstr "ھۆججەت ئىزدە"
+msgstr ""
 
 #: app/Filter/generalfilter.cpp:359
 #, kde-format
@@ -2241,10 +2219,9 @@ msgid "Follow &links"
 msgstr ""
 
 #: app/Filter/generalfilter.cpp:473
-#, fuzzy, kde-format
-#| msgid "Folder name:"
+#, kde-format
 msgid "Exclude Folder Names"
-msgstr "مۇندەرىجە ئاتى:"
+msgstr ""
 
 #: app/Filter/generalfilter.cpp:474
 #, kde-format
@@ -2304,7 +2281,7 @@ msgstr "ئات ئۆزگەرت"
 #: app/GUI/kfnkeys.cpp:26
 #, kde-format
 msgid "Edit"
-msgstr "تەھرىرلەش"
+msgstr "تەھرىر"
 
 #: app/GUI/kfnkeys.cpp:26
 #, kde-format
@@ -2329,7 +2306,7 @@ msgstr "مۇددەت"
 #: app/GUI/kfnkeys.cpp:29 app/kractions.cpp:303
 #, kde-format
 msgid "Quit"
-msgstr "ئاخىرلاشتۇر"
+msgstr "چىكىن"
 
 #: app/GUI/krremoteencodingmenu.cpp:115
 #, kde-format
@@ -2356,13 +2333,13 @@ msgstr ""
 #, kde-format
 msgctxt "Unknown label"
 msgid "Unknown"
-msgstr "نامەلۇم"
+msgstr "يوچۇن"
 
 #: app/GUI/mediabutton.cpp:166
 #, kde-format
 msgctxt "Unknown media type"
 msgid "Unknown"
-msgstr "نامەلۇم"
+msgstr "يوچۇن"
 
 #: app/GUI/mediabutton.cpp:181
 #, kde-format
@@ -2419,39 +2396,39 @@ msgstr ""
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
-msgstr "ئېگەرلەش"
+msgstr "ئېگەرلە"
 
 #: app/GUI/mediabutton.cpp:341 app/MountMan/kmountman.cpp:391
 #: app/MountMan/kmountmangui.cpp:449 app/Panel/panelcontextmenu.cpp:246
 #, kde-format
 msgid "Unmount"
-msgstr "ئېگەرسىزلەش"
+msgstr "ئېگەرسىزلە"
 
 #: app/GUI/mediabutton.cpp:345 app/MountMan/kmountmangui.cpp:456
 #: app/Panel/panelcontextmenu.cpp:250
 #, kde-format
 msgid "Eject"
-msgstr "چىقار"
+msgstr "قاڭقىت"
 
 #: app/GUI/mediabutton.cpp:477
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
-msgstr "'%1' ئېلىپ بېرىۋاتقاندا خاتالىق كۆرۈلدى، سىستېما ئىنكاسى: %2"
+msgstr "«%1» ئېلىپ بېرىۋاتقاندا خاتالىق كۆرۈلدى، سىستېما ئىنكاسى: %2"
 
 #: app/GUI/mediabutton.cpp:479
 #, kde-format
 msgid "An error occurred while accessing '%1'"
-msgstr "'%1' نى زىيارەت قىلىۋاتقاندا خاتالىق كۆرۈلدى"
+msgstr "«%1» نى زىيارەت قىلىۋاتقاندا خاتالىق كۆرۈلدى"
 
 #: app/GUI/profilemanager.cpp:28 app/GUI/profilemanager.cpp:48
 #, kde-format
 msgid "Profiles"
-msgstr "Profiles"
+msgstr "سەپلىمە ھۆججەت"
 
 #: app/GUI/profilemanager.cpp:61
 #, kde-format
 msgid "Remove entry"
-msgstr ""
+msgstr "تۈرنى چىقىرىۋەت"
 
 #: app/GUI/profilemanager.cpp:62
 #, kde-format
@@ -2476,7 +2453,7 @@ msgstr ""
 #: app/GUI/recentlyclosedtabsmenu.cpp:38
 #, kde-format
 msgid "Empty Recently Closed Tabs"
-msgstr ""
+msgstr "يېقىندا تاقالغان بەتكۈچنى بوشات"
 
 #: app/GUI/terminaldock.cpp:97
 #, kde-format
@@ -2492,28 +2469,24 @@ msgid ""
 msgstr ""
 
 #: app/JobMan/jobman.cpp:54
-#, fuzzy, kde-format
-#| msgid "Cancel"
+#, kde-format
 msgid "Cancel Job"
-msgstr "ئەمەلدىن قالدۇر"
+msgstr ""
 
 #: app/JobMan/jobman.cpp:98
-#, fuzzy, kde-format
-#| msgid "Pause"
+#, kde-format
 msgid "Pause Job"
-msgstr "ۋاقىتلىق توختا"
+msgstr ""
 
 #: app/JobMan/jobman.cpp:98
-#, fuzzy, kde-format
-#| msgid "Resume"
+#, kde-format
 msgid "Resume Job"
-msgstr "داۋاملاشتۇر"
+msgstr ""
 
 #: app/JobMan/jobman.cpp:98
-#, fuzzy, kde-format
-#| msgid "&Start"
+#, kde-format
 msgid "Start Job"
-msgstr "باشلا(&S)"
+msgstr ""
 
 #: app/JobMan/jobman.cpp:166
 #, kde-format
@@ -2583,30 +2556,26 @@ msgid "Resume Job List"
 msgstr ""
 
 #: app/JobMan/krjob.cpp:23
-#, fuzzy, kde-format
-#| msgid "Move to Trash"
+#, kde-format
 msgid "Move %1 to trash"
-msgstr "ئەخلەتخانىغا يۆتكە"
+msgstr ""
 
 #: app/JobMan/krjob.cpp:23
-#, fuzzy, kde-format
-#| msgid "Move to Trash"
+#, kde-format
 msgid "Move %1 file to trash"
 msgid_plural "Move %1 files to trash"
-msgstr[0] "ئەخلەتخانىغا يۆتكە"
+msgstr[0] ""
 
 #: app/JobMan/krjob.cpp:24
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgid "Delete %1"
-msgstr "ئۆچۈر"
+msgstr "%1 ئۆچۈر"
 
 #: app/JobMan/krjob.cpp:24
-#, fuzzy, kde-format
-#| msgid "Deleting files"
+#, kde-format
 msgid "Delete %1 file"
 msgid_plural "Delete %1 files"
-msgstr[0] "ھۆججەت ئۆچۈرۈۋاتىدۇ"
+msgstr[0] ""
 
 #: app/JobMan/krjob.cpp:48
 #, kde-format
@@ -2614,10 +2583,9 @@ msgid "Copy to %1"
 msgstr ""
 
 #: app/JobMan/krjob.cpp:52
-#, fuzzy, kde-format
-#| msgid "Move to Trash"
+#, kde-format
 msgid "Move to %1"
-msgstr "ئەخلەتخانىغا يۆتكە"
+msgstr "%1 غا يۆتكە"
 
 #: app/JobMan/krjob.cpp:56
 #, kde-format
@@ -2663,10 +2631,9 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:64
-#, fuzzy, kde-format
-#| msgid "Deleting files"
+#, kde-format
 msgid "Deleting non-empty folders"
-msgstr "ھۆججەت ئۆچۈرۈۋاتىدۇ"
+msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:65
 #, kde-format
@@ -2676,7 +2643,7 @@ msgstr "ھۆججەت ئۆچۈرۈۋاتىدۇ"
 #: app/Konfigurator/kgadvanced.cpp:66
 #, kde-format
 msgid "Copying files"
-msgstr "ھۆججەتلەرنى كۆچۈرۈۋاتىدۇ"
+msgstr "ھۆججەتنى كۆچۈرۈۋاتىدۇ"
 
 #: app/Konfigurator/kgadvanced.cpp:67
 #, kde-format
@@ -2746,16 +2713,14 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgarchives.cpp:58
-#, fuzzy, kde-format
-#| msgid "Archives"
+#, kde-format
 msgid "Archives handling"
-msgstr "ئارخىپلار"
+msgstr ""
 
 #: app/Konfigurator/kgarchives.cpp:66
-#, fuzzy, kde-format
-#| msgid "Archives"
+#, kde-format
 msgid "Browse Archives As Folders"
-msgstr "ئارخىپلار"
+msgstr ""
 
 #: app/Konfigurator/kgarchives.cpp:68
 #, kde-format
@@ -2854,7 +2819,7 @@ msgstr ""
 #: app/Konfigurator/konfigurator.cpp:120
 #, kde-format
 msgid "Colors"
-msgstr "رەڭلەر"
+msgstr "رەڭ"
 
 #: app/Konfigurator/kgcolors.cpp:108
 #, kde-format
@@ -2872,10 +2837,9 @@ msgid "Foreground:"
 msgstr "ئالدى كۆرۈنۈش:"
 
 #: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:163
-#, fuzzy, kde-format
-#| msgid "Foreground:"
+#, kde-format
 msgid "Folder foreground:"
-msgstr "ئالدى كۆرۈنۈش:"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:120
 #: app/Konfigurator/kgcolors.cpp:121 app/Konfigurator/kgcolors.cpp:122
@@ -2967,21 +2931,19 @@ msgid "Current background:"
 msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:139
-#, fuzzy, kde-format
-#| msgid "Foreground:"
+#, kde-format
 msgid "Rename foreground:"
-msgstr "ئالدى كۆرۈنۈش:"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:140
-#, fuzzy, kde-format
-#| msgid "Background:"
+#, kde-format
 msgid "Rename background:"
-msgstr "تەگلىك:"
+msgstr ""
 
 #: app/Konfigurator/kgcolors.cpp:150
 #, kde-format
 msgid "Inactive"
-msgstr "ئاكتىپسىز"
+msgstr "پاسسىپ"
 
 #: app/Konfigurator/kgcolors.cpp:160 app/Konfigurator/kgcolors.cpp:165
 #: app/Konfigurator/kgcolors.cpp:171 app/Konfigurator/kgcolors.cpp:177
@@ -3159,13 +3121,12 @@ msgstr "بەلگە ئۇلىنىشى"
 #: app/Konfigurator/kgcolors.cpp:561
 #, kde-format
 msgid "Application"
-msgstr "پروگرامما"
+msgstr "پىروگرامما"
 
 #: app/Konfigurator/kgcolors.cpp:563
-#, fuzzy, kde-format
-#| msgid "Folders"
+#, kde-format
 msgid "Folder"
-msgstr "قىسقۇچلار"
+msgstr "قىسقۇچ"
 
 #: app/Konfigurator/kgcolors.cpp:626
 #, kde-format
@@ -3185,7 +3146,7 @@ msgstr ""
 #: app/Konfigurator/kgcolors.cpp:629
 #, kde-format
 msgid "Equals"
-msgstr "تەڭلىك"
+msgstr "تەڭ"
 
 #: app/Konfigurator/kgcolors.cpp:641
 #, kde-format
@@ -3353,7 +3314,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:131
 #, kde-format
 msgid "MB"
-msgstr "مېگابايت"
+msgstr "MB"
 
 #: app/Konfigurator/kggeneral.cpp:142
 #, kde-format
@@ -3405,10 +3366,9 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:240
-#, fuzzy, kde-format
-#| msgid "New Folder"
+#, kde-format
 msgid "Temp Folder:"
-msgstr "يېڭى قىسقۇچ"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:248
 #, kde-format
@@ -3446,10 +3406,9 @@ msgid "Terminal"
 msgstr "تېرمىنال"
 
 #: app/Konfigurator/kggeneral.cpp:273
-#, fuzzy, kde-format
-#| msgid "Terminal"
+#, kde-format
 msgid "External Terminal:"
-msgstr "تېرمىنال"
+msgstr ""
 
 #: app/Konfigurator/kggeneral.cpp:277
 #, kde-format
@@ -3540,10 +3499,9 @@ msgid "Operation"
 msgstr "مەشغۇلات"
 
 #: app/Konfigurator/kgpanel.cpp:96
-#, fuzzy, kde-format
-#| msgid "Select Files"
+#, kde-format
 msgid "Autoselect folders"
-msgstr "ھۆججەت تاللاش"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:98
 #, kde-format
@@ -3591,7 +3549,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:127
 #, kde-format
 msgid "Tabs"
-msgstr "بەتكۈچلەر"
+msgstr "بەتكۈچ"
 
 #: app/Konfigurator/kgpanel.cpp:135
 #, kde-format
@@ -3683,8 +3641,7 @@ msgid "Duplicate active tab by click:"
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:159
-#, fuzzy, kde-format
-#| msgid "disabled"
+#, kde-format
 msgid "Disabled"
 msgstr "چەكلەنگەن"
 
@@ -3719,16 +3676,14 @@ msgid "Bottom"
 msgstr "ئاستى"
 
 #: app/Konfigurator/kgpanel.cpp:195
-#, fuzzy, kde-format
-#| msgid "Search for:"
+#, kde-format
 msgid "Search bar"
-msgstr "ئىزدە:"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:203
-#, fuzzy, kde-format
-#| msgid "Start of Line"
+#, kde-format
 msgid "Start by typing"
-msgstr "قۇر بېشى"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:205
 #, kde-format
@@ -3738,7 +3693,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
-msgstr "چوڭ كىچىك يېزىلىشنى پەرقلەندۈر"
+msgstr "چوڭ كىچىك ھەرپنى پەرقلەندۈر"
 
 #: app/Konfigurator/kgpanel.cpp:206
 #, kde-format
@@ -3774,11 +3729,9 @@ msgid "Position:"
 msgstr "ئورنى:"
 
 #: app/Konfigurator/kgpanel.cpp:237
-#, fuzzy, kde-format
-#| msgctxt "Default encoding"
-#| msgid "Default"
+#, kde-format
 msgid "Default mode:"
-msgstr "كۆڭۈلدىكى"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
@@ -3787,16 +3740,14 @@ msgid "Search"
 msgstr "ئىزدە"
 
 #: app/Konfigurator/kgpanel.cpp:240 app/Panel/krsearchbar.cpp:42
-#, fuzzy, kde-format
-#| msgid "&Select All"
+#, kde-format
 msgid "Select"
-msgstr "ھەممىنى تاللا(&S)"
+msgstr "تاللا"
 
 #: app/Konfigurator/kgpanel.cpp:241 app/Panel/krsearchbar.cpp:42
-#, fuzzy, kde-format
-#| msgid "Filter:"
+#, kde-format
 msgid "Filter"
-msgstr "سۈزگۈچ:"
+msgstr "سۈزگۈچ"
 
 #: app/Konfigurator/kgpanel.cpp:251
 #, kde-format
@@ -3804,10 +3755,9 @@ msgid "Set the default mode on first usage"
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:262
-#, fuzzy, kde-format
-#| msgid "Bookmarks"
+#, kde-format
 msgid "Bookmark Search"
-msgstr "خەتكۈشلەر"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:266
 #, kde-format
@@ -3820,10 +3770,9 @@ msgid "Make bookmark search bar always visible"
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:270
-#, fuzzy, kde-format
-#| msgid "Search for files"
+#, kde-format
 msgid "Search in special items"
-msgstr "ھۆججەت ئىزدە"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:272
 #, kde-format
@@ -3912,7 +3861,7 @@ msgstr "كۆزنەكچە"
 #, kde-format
 msgctxt "Frame shape"
 msgid "Panel"
-msgstr "تاختا"
+msgstr "كۆزنەكچە"
 
 #: app/Konfigurator/kgpanel.cpp:346
 #, kde-format
@@ -3946,7 +3895,7 @@ msgstr "ئويمان"
 #: app/Konfigurator/kgpanel.cpp:366
 #, kde-format
 msgid "Default icon size:"
-msgstr ""
+msgstr "كۆڭۈلدىكى سىنبەلگە چوڭلۇقى:"
 
 #: app/Konfigurator/kgpanel.cpp:395
 #, kde-format
@@ -3998,7 +3947,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:464
 #, kde-format
 msgid "Show hidden files"
-msgstr "يوشۇرۇن ھۆججەتلەرنى كۆرسەت"
+msgstr "يوشۇرۇن ھۆججەتنى كۆرسەت"
 
 #: app/Konfigurator/kgpanel.cpp:464
 #, kde-format
@@ -4066,7 +4015,7 @@ msgstr ""
 #, kde-format
 msgctxt "Krusader sort"
 msgid "Krusader"
-msgstr "Krusader"
+msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:518
 #, kde-format
@@ -4081,10 +4030,9 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:521
-#, fuzzy, kde-format
-#| msgid "Show directories first"
+#, kde-format
 msgid "Show folders first"
-msgstr "تۇنجى كۆرسىتىدىغان مۇندەرىجە"
+msgstr "قىسقۇچنى باشتا كۆرسەت"
 
 #: app/Konfigurator/kgpanel.cpp:525
 #, kde-format
@@ -4121,7 +4069,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:599
 #, kde-format
 msgid "Buttons"
-msgstr "توپچىلار"
+msgstr "توپچە"
 
 #: app/Konfigurator/kgpanel.cpp:608
 #, kde-format
@@ -4236,7 +4184,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:658
 #, kde-format
 msgid "Selection Mode"
-msgstr "تاللىغان شەكلى"
+msgstr "تاللاش ھالىتى"
 
 #: app/Konfigurator/kgpanel.cpp:671
 #, kde-format
@@ -4304,7 +4252,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:698
 #, kde-format
 msgid "Details"
-msgstr "تەپسىلاتلار"
+msgstr "تەپسىلاتى"
 
 #: app/Konfigurator/kgpanel.cpp:705
 #, kde-format
@@ -4534,12 +4482,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:912
 #, kde-format
 msgid "Mount point:"
-msgstr ""
+msgstr "ئېگەرلەش نۇقتىسى:"
 
 #: app/Konfigurator/kgprotocols.cpp:34
 #, kde-format
 msgid "Links"
-msgstr "ئۇلانمىلار"
+msgstr "ئۇلانما"
 
 #: app/Konfigurator/kgprotocols.cpp:38
 #, kde-format
@@ -4663,10 +4611,9 @@ msgid ""
 msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:103
-#, fuzzy, kde-format
-#| msgid "Start of Line"
+#, kde-format
 msgid "Start to tray"
-msgstr "قۇر بېشى"
+msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
@@ -4674,10 +4621,9 @@ msgid "Krusader starts to tray, without showing the main window"
 msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:114
-#, fuzzy, kde-format
-#| msgid "Save settings on exit"
+#, kde-format
 msgid "Save component settings on exit"
-msgstr "چېكىنگەندە تەڭشەكلەرنى ساقلا"
+msgstr ""
 
 #: app/Konfigurator/kgstartup.cpp:116
 #, kde-format
@@ -4788,7 +4734,7 @@ msgstr ""
 #: app/Konfigurator/konfigurator.cpp:118 app/paneltabbar.cpp:51
 #, kde-format
 msgid "Panel"
-msgstr "تاختا"
+msgstr "كۆزنەكچە"
 
 #: app/Konfigurator/konfigurator.cpp:122
 #, kde-format
@@ -4870,7 +4816,7 @@ msgstr "كۆك"
 #: app/Konfigurator/konfiguratoritems.cpp:598
 #, kde-format
 msgid "Cyan"
-msgstr "توق يېشىل"
+msgstr "كۆكۈچ"
 
 #: app/Konfigurator/konfiguratoritems.cpp:599
 #, kde-format
@@ -5045,7 +4991,7 @@ msgstr ""
 #: app/kractions.cpp:204 app/Panel/panelcontextmenu.cpp:261
 #, kde-format
 msgid "Empty Trash"
-msgstr "ئەخلەتخانىنى تازىلاش"
+msgstr "ئەخلەتخانىنى بوشات"
 
 #: app/kractions.cpp:206
 #, kde-format
@@ -5148,10 +5094,9 @@ msgid "&Locate..."
 msgstr ""
 
 #: app/kractions.cpp:272
-#, fuzzy, kde-format
-#| msgid "Synchronize"
+#, kde-format
 msgid "Synchronize Fol&ders..."
-msgstr "قەدەمداش"
+msgstr ""
 
 #: app/kractions.cpp:274
 #, kde-format
@@ -5201,7 +5146,7 @@ msgstr "يىراقتىكى كودلىنىشىنى تاللاش"
 #: app/kractions.cpp:300
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr ""
+msgstr "يېقىندا تاقالغان بەتكۈچ"
 
 #: app/kractions.cpp:304
 #, kde-format
@@ -5434,7 +5379,7 @@ msgstr "يۆتكەل(&G)"
 #: app/krusaderui.rc:98
 #, kde-format
 msgid "&Tools"
-msgstr "قوراللار(&T)"
+msgstr "قورال(&T)"
 
 #. i18n: ectx: Menu (settings)
 #: app/krusaderui.rc:118
@@ -5474,10 +5419,9 @@ msgstr ""
 
 #. i18n: ectx: ToolBar (jobToolBar)
 #: app/krusaderui.rc:194
-#, fuzzy, kde-format
-#| msgid "Main Toolbar"
+#, kde-format
 msgid "Job Toolbar"
-msgstr "ئاساسىي قورال بالداق"
+msgstr ""
 
 #: app/krusaderview.cpp:79
 #, kde-format
@@ -5626,12 +5570,12 @@ msgstr ""
 #: app/KrViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
-msgstr "كېيىنكى ماس كەلگەندە ئاتلا"
+msgstr "كېيىنكى ماس كەلگەنگە ئاتلا"
 
 #: app/KrViewer/lister.cpp:1290
 #, kde-format
 msgid "Jump to previous match"
-msgstr "ئالدىنقى ماس كەلگەندە ئاتلا"
+msgstr "ئالدىنقى ماس كەلگەنگە ئاتلا"
 
 #: app/KrViewer/lister.cpp:1293
 #, kde-format
@@ -5641,7 +5585,7 @@ msgstr "تاللانما"
 #: app/KrViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
-msgstr "ئىزدەش ئۇسۇلىنى ئۆزگەرت"
+msgstr "ئىزدەش قىلمىشىنى ئۆزگەرت"
 
 #: app/KrViewer/lister.cpp:1296
 #, kde-format
@@ -5760,7 +5704,7 @@ msgstr ""
 #: app/Locate/locate.cpp:159
 #, kde-format
 msgid "Case Sensitive"
-msgstr "چوڭ-كىچىك يېزىلىشى پەرقلەندۈر"
+msgstr "چوڭ كىچىك ھەرپنى پەرقلەندۈر"
 
 #: app/Locate/locate.cpp:171
 #, kde-format
@@ -5877,7 +5821,7 @@ msgstr ""
 #: app/main.cpp:119
 #, kde-format
 msgid "Krusader"
-msgstr "Krusader"
+msgstr ""
 
 #: app/main.cpp:119
 #, kde-format
@@ -5906,7 +5850,7 @@ msgstr ""
 #: app/main.cpp:130 app/main.cpp:131 app/main.cpp:132
 #, kde-format
 msgid "Developer"
-msgstr "ئىجادىيەتچى"
+msgstr "ئىجادكار"
 
 #: app/main.cpp:131
 #, kde-format
@@ -5924,10 +5868,9 @@ msgid "Yuri Chornoivan"
 msgstr ""
 
 #: app/main.cpp:133
-#, fuzzy, kde-format
-#| msgid "Destination"
+#, kde-format
 msgid "Documentation"
-msgstr "نىشان"
+msgstr "قوللانما"
 
 #: app/main.cpp:134
 #, kde-format
@@ -6039,7 +5982,7 @@ msgstr ""
 #: app/main.cpp:152
 #, kde-format
 msgid "kde.org"
-msgstr "kde.org"
+msgstr ""
 
 #: app/main.cpp:152
 #, kde-format
@@ -6099,7 +6042,7 @@ msgstr ""
 #: app/main.cpp:158
 #, kde-format
 msgid "Gábor Lehel"
-msgstr "Gábor Lehel"
+msgstr ""
 
 #: app/main.cpp:158
 #, kde-format
@@ -6139,7 +6082,7 @@ msgstr ""
 #: app/main.cpp:162
 #, kde-format
 msgid "Szombathelyi György"
-msgstr "Szombathelyi György"
+msgstr ""
 
 #: app/main.cpp:162
 #, kde-format
@@ -6174,7 +6117,7 @@ msgstr "Cristi Dumitrescu"
 #: app/main.cpp:166
 #, kde-format
 msgid "Aurelien Gateau"
-msgstr "Aurelien Gateau"
+msgstr ""
 
 #: app/main.cpp:166
 #, kde-format
@@ -6314,7 +6257,7 @@ msgstr ""
 #: app/main.cpp:181
 #, kde-format
 msgid "Christoph Thielecke"
-msgstr "Christoph Thielecke"
+msgstr ""
 
 #: app/main.cpp:181
 #, kde-format
@@ -6569,12 +6512,12 @@ msgstr ""
 #: app/main.cpp:219
 #, kde-format
 msgid "Enable debug output"
-msgstr ""
+msgstr "سازلاش نەتىجىلىرىنى چىقىرىشنى قوزغات"
 
 #: app/main.cpp:220
 #, kde-format
 msgid "URL to open"
-msgstr "ئاچىدىغان URL"
+msgstr "ئاچىدىغان تور ئادرېسى"
 
 #: app/MountMan/kmountman.cpp:58
 #, kde-format
@@ -6582,10 +6525,9 @@ msgid "&MountMan..."
 msgstr ""
 
 #: app/MountMan/kmountman.cpp:61
-#, fuzzy, kde-format
-#| msgid "&Mount"
+#, kde-format
 msgid "Open &MountMan"
-msgstr "ئېگەرلە(&M)"
+msgstr ""
 
 #: app/MountMan/kmountman.cpp:134
 #, kde-format
@@ -6605,7 +6547,7 @@ msgstr ""
 #: app/MountMan/kmountmangui.cpp:74
 #, kde-format
 msgid "&Eject"
-msgstr "چىقار(&E)"
+msgstr "قاڭقىت(&E)"
 
 #: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:419
 #, kde-format
@@ -6679,12 +6621,10 @@ msgid_plural " (%2 bytes)"
 msgstr[0] ""
 
 #: app/Panel/krcalcspacedialog.cpp:113
-#, fuzzy, kde-format
-#| msgid "%1 file"
-#| msgid_plural "%1 files"
+#, kde-format
 msgid "in %1 folder"
 msgid_plural "in %1 folders"
-msgstr[0] "%1 ھۆججەت"
+msgstr[0] ""
 
 #: app/Panel/krcalcspacedialog.cpp:115
 #, kde-format
@@ -6693,34 +6633,29 @@ msgid_plural "and %1 files"
 msgstr[0] ""
 
 #: app/Panel/krfiletreeview.cpp:182
-#, fuzzy, kde-format
-#| msgid "Details"
+#, kde-format
 msgid "Show Details"
-msgstr "تەپسىلاتلار"
+msgstr "تەپسىلاتلارنى كۆرسەت"
 
 #: app/Panel/krfiletreeview.cpp:185
-#, fuzzy, kde-format
-#| msgid "Show hidden files"
+#, kde-format
 msgid "Show columns with details"
-msgstr "يوشۇرۇن ھۆججەتلەرنى كۆرسەت"
+msgstr ""
 
 #: app/Panel/krfiletreeview.cpp:186
-#, fuzzy, kde-format
-#| msgid "Show hidden files"
+#, kde-format
 msgid "Show Hidden Folders"
-msgstr "يوشۇرۇن ھۆججەتلەرنى كۆرسەت"
+msgstr ""
 
 #: app/Panel/krfiletreeview.cpp:189
-#, fuzzy, kde-format
-#| msgid "Show directories first"
+#, kde-format
 msgid "Show folders starting with a dot"
-msgstr "تۇنجى كۆرسىتىدىغان مۇندەرىجە"
+msgstr ""
 
 #: app/Panel/krfiletreeview.cpp:194
-#, fuzzy, kde-format
-#| msgid "Start of Line"
+#, kde-format
 msgid "Start From Root"
-msgstr "قۇر بېشى"
+msgstr ""
 
 #: app/Panel/krfiletreeview.cpp:197
 #, kde-format
@@ -6738,10 +6673,9 @@ msgid "Set root of the tree to the current folder"
 msgstr ""
 
 #: app/Panel/krfiletreeview.cpp:206
-#, fuzzy, kde-format
-#| msgid "Start of Line"
+#, kde-format
 msgid "Start From Place"
-msgstr "قۇر بېشى"
+msgstr ""
 
 #: app/Panel/krfiletreeview.cpp:209
 #, kde-format
@@ -6749,39 +6683,34 @@ msgid "Set root of the tree to closest folder listed in 'Places'"
 msgstr ""
 
 #: app/Panel/krfiletreeview.cpp:238
-#, fuzzy, kde-format
-#| msgid "Custom"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Cut"
-msgstr "ئىختىيارى"
+msgstr "كەس"
 
 #: app/Panel/krfiletreeview.cpp:245
-#, fuzzy, kde-format
-#| msgid "Copy"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy"
 msgstr "كۆچۈر"
 
 #: app/Panel/krfiletreeview.cpp:268
-#, fuzzy, kde-format
-#| msgid "Move to Trash"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Move to Trash"
 msgstr "ئەخلەتخانىغا يۆتكە"
 
 #: app/Panel/krfiletreeview.cpp:278
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete"
 msgstr "ئۆچۈر"
 
 #: app/Panel/krfiletreeview.cpp:289
-#, fuzzy, kde-format
-#| msgid "&Properties..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Properties"
-msgstr "خاسلىق(&P)…"
+msgstr "خاسلىق"
 
 #: app/Panel/krlayoutfactory.cpp:43
 #, kde-format
@@ -6797,7 +6726,7 @@ msgstr "ئىخچام"
 #: app/Panel/krlayoutfactory.cpp:47
 #, kde-format
 msgid "Classic"
-msgstr "كلاسسىك"
+msgstr "ئەنئەنىۋى"
 
 #: app/Panel/krlayoutfactory.cpp:49
 #, kde-format
@@ -6812,7 +6741,7 @@ msgstr "ئالدىن كۆزىتەلمەيدۇ"
 #: app/Panel/krsearchbar.cpp:37
 #, kde-format
 msgid "Close the search bar"
-msgstr ""
+msgstr "ئىزدەش بالدىقىنى ياپىدۇ"
 
 #: app/Panel/krsearchbar.cpp:43
 #, kde-format
@@ -6830,10 +6759,9 @@ msgid "Save the current search string"
 msgstr ""
 
 #: app/Panel/krsearchbar.cpp:68
-#, fuzzy, kde-format
-#| msgid "&Select All"
+#, kde-format
 msgid "Open selection dialog"
-msgstr "ھەممىنى تاللا(&S)"
+msgstr ""
 
 #: app/Panel/krsearchbar.cpp:187
 #, kde-format
@@ -6952,7 +6880,7 @@ msgstr "چاپلاش تاختىسىغا كۆچۈر"
 #: app/Panel/listpanelactions.cpp:61
 #, kde-format
 msgid "Paste from Clipboard"
-msgstr ""
+msgstr "چاپلاش تاختىسىدىن چاپلا"
 
 #: app/Panel/listpanelactions.cpp:65 app/Search/krsearchdialog.cpp:199
 #, kde-format
@@ -6975,28 +6903,24 @@ msgid "Copy to other panel"
 msgstr ""
 
 #: app/Panel/listpanelactions.cpp:69
-#, fuzzy, kde-format
-#| msgid "Move to Trash"
+#, kde-format
 msgid "Move to other panel"
-msgstr "ئەخلەتخانىغا يۆتكە"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:70
-#, fuzzy, kde-format
-#| msgid "Copy..."
+#, kde-format
 msgid "Copy delayed..."
-msgstr "كۆچۈر…"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:71
-#, fuzzy, kde-format
-#| msgid "Move..."
+#, kde-format
 msgid "Move delayed..."
-msgstr "يۆتكە…"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:72
-#, fuzzy, kde-format
-#| msgid "New Folder"
+#, kde-format
 msgid "New Folder..."
-msgstr "يېڭى قىسقۇچ"
+msgstr "يېڭى قىسقۇچ…"
 
 #: app/Panel/listpanelactions.cpp:74
 #, kde-format
@@ -7019,10 +6943,9 @@ msgid "&Properties..."
 msgstr "خاسلىق(&P)…"
 
 #: app/Panel/listpanelactions.cpp:80
-#, fuzzy, kde-format
-#| msgid "New Folder"
+#, kde-format
 msgid "&Compare Folders"
-msgstr "يېڭى قىسقۇچ"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:81
 #, kde-format
@@ -7137,7 +7060,7 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:108
 #, kde-format
 msgid "History"
-msgstr "ئىز"
+msgstr "تارىخ"
 
 #: app/Panel/listpanelactions.cpp:109
 #, kde-format
@@ -7165,22 +7088,19 @@ msgid "Right Media"
 msgstr ""
 
 #: app/Panel/listpanelactions.cpp:116
-#, fuzzy, kde-format
-#| msgid "Folder..."
+#, kde-format
 msgid "Find in folder..."
-msgstr "قىسقۇچ…"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:117
-#, fuzzy, kde-format
-#| msgid "Selection Mode"
+#, kde-format
 msgid "Select in folder..."
-msgstr "تاللىغان شەكلى"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:118
-#, fuzzy, kde-format
-#| msgid "Folder..."
+#, kde-format
 msgid "Filter in folder..."
-msgstr "قىسقۇچ…"
+msgstr ""
 
 #: app/Panel/listpanelactions.cpp:121
 #, kde-format
@@ -7239,13 +7159,12 @@ msgstr ""
 #: app/Panel/panelcontextmenu.cpp:103
 #, kde-format
 msgid "Run"
-msgstr "ئىجرا"
+msgstr "ئىجرا قىل"
 
 #: app/Panel/panelcontextmenu.cpp:112
-#, fuzzy, kde-format
-#| msgid "Open in New Tab"
+#, kde-format
 msgid "Open in New Tabs"
-msgstr "يېڭى بەتكۈچتە ئاچ"
+msgstr "يېڭى بەتكۈچلەردە ئاچ"
 
 #: app/Panel/panelcontextmenu.cpp:112
 #, kde-format
@@ -7253,10 +7172,9 @@ msgid "Open in New Tab"
 msgstr "يېڭى بەتكۈچتە ئاچ"
 
 #: app/Panel/panelcontextmenu.cpp:125
-#, fuzzy, kde-format
-#| msgid "Archives"
+#, kde-format
 msgid "Browse Archive"
-msgstr "ئارخىپلار"
+msgstr ""
 
 #: app/Panel/panelcontextmenu.cpp:167
 #, kde-format
@@ -7266,7 +7184,7 @@ msgstr "باشقا…"
 #: app/Panel/panelcontextmenu.cpp:169
 #, kde-format
 msgid "Open With"
-msgstr "بۇنىڭدا ئېچىش"
+msgstr "ئاچقۇز"
 
 #: app/Panel/panelcontextmenu.cpp:213
 #, kde-format
@@ -7296,7 +7214,7 @@ msgstr ""
 #: app/Panel/panelcontextmenu.cpp:260
 #, kde-format
 msgid "Restore"
-msgstr "ئەسلىگە كەلتۈرۈش"
+msgstr "ئەسلىگە كەلتۈر"
 
 #: app/Panel/panelcontextmenu.cpp:267
 #, kde-format
@@ -7428,16 +7346,15 @@ msgid ""
 msgstr ""
 
 #: app/Panel/panelfunc.cpp:699
-#, fuzzy, kde-format
-#| msgid "Folder name:"
+#, kde-format
 msgid "Folder's name:"
-msgstr "مۇندەرىجە ئاتى:"
+msgstr ""
 
 #: app/Panel/panelfunc.cpp:839
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
-msgstr[0] "سىز راستلا %1 تۈرنى ئەخلەتخانىغا يۆتكەمسىز؟"
+msgstr[0] "سىز راستتىنلا %1 تۈرنى ئەخلەتخانىغا يۆتكەمسىز؟"
 
 #: app/Panel/panelfunc.cpp:843
 #, kde-format
@@ -7476,10 +7393,9 @@ msgid "&Skip"
 msgstr "ئاتلا(&S)"
 
 #: app/Panel/panelfunc.cpp:892
-#, fuzzy, kde-format
-#| msgid "&Trash"
+#, kde-format
 msgid "&Trash All"
-msgstr "ئەخلەت(&T)"
+msgstr ""
 
 #: app/Panel/panelfunc.cpp:892
 #, kde-format
@@ -7541,7 +7457,7 @@ msgstr[0] ""
 #: app/Panel/PanelView/krinterdetailedview.cpp:289
 #, kde-format
 msgid "Columns"
-msgstr "ئىستونلار"
+msgstr "رەت"
 
 #: app/Panel/PanelView/krinterdetailedview.cpp:303
 #, kde-format
@@ -7566,10 +7482,9 @@ msgid "%1 out of %2, %3 out of %4"
 msgstr ""
 
 #: app/Panel/PanelView/krview.cpp:1099
-#, fuzzy, kde-format
-#| msgid "Selection Mode"
+#, kde-format
 msgid "Apply filter to folder&s"
-msgstr "تاللىغان شەكلى"
+msgstr ""
 
 #: app/Panel/PanelView/krview.cpp:1104
 #, kde-format
@@ -7577,10 +7492,9 @@ msgid "Filter Files"
 msgstr ""
 
 #: app/Panel/PanelView/krview.cpp:1129
-#, fuzzy, kde-format
-#| msgid "Selection Mode"
+#, kde-format
 msgid "Apply &selection to folders"
-msgstr "تاللىغان شەكلى"
+msgstr ""
 
 #: app/Panel/PanelView/krview.cpp:1130
 #, kde-format
@@ -7619,13 +7533,11 @@ msgstr "%1 (ئۇلانما)"
 
 #: app/Panel/PanelView/listmodel.cpp:132
 #: app/Synchronizer/synchronizergui.cpp:1616
-#, fuzzy, kde-format
-#| msgctxt "'DIR' instead of file size in detailed view (for directories)"
-#| msgid "DIR"
+#, kde-format
 msgctxt ""
 "Show the string 'DIR' instead of file size in detailed view (for folders)"
 msgid "DIR"
-msgstr "DIR"
+msgstr ""
 
 #: app/Panel/PanelView/listmodel.cpp:375
 #, kde-format
@@ -7637,7 +7549,7 @@ msgstr "ئاتى"
 #, kde-format
 msgctxt "File property"
 msgid "Ext"
-msgstr ""
+msgstr "كېڭەيتىلمە"
 
 #: app/Panel/PanelView/listmodel.cpp:379
 #, kde-format
@@ -7649,7 +7561,7 @@ msgstr "چوڭلۇقى"
 #, kde-format
 msgctxt "File property"
 msgid "Type"
-msgstr "تىپى"
+msgstr "تۈرى"
 
 #: app/Panel/PanelView/listmodel.cpp:383
 #, kde-format
@@ -7658,17 +7570,16 @@ msgid "Modified"
 msgstr "ئۆزگەرتىلگەن ۋاقتى"
 
 #: app/Panel/PanelView/listmodel.cpp:385
-#, fuzzy, kde-format
-#| msgid "Chan&ge..."
+#, kde-format
 msgctxt "File property"
 msgid "Changed"
-msgstr "ئۆزگەرت(&G)…"
+msgstr ""
 
 #: app/Panel/PanelView/listmodel.cpp:387
 #, kde-format
 msgctxt "File property"
 msgid "Accessed"
-msgstr ""
+msgstr "ﺯﯨﻴﺎﺭﻩﺕ ﯞﺍﻗﺘﻰ"
 
 #: app/Panel/PanelView/listmodel.cpp:389
 #, kde-format
@@ -7686,7 +7597,7 @@ msgstr ""
 #, kde-format
 msgctxt "File property"
 msgid "Owner"
-msgstr "ئىگىسى"
+msgstr "ئىگىدار"
 
 #: app/Panel/PanelView/listmodel.cpp:395
 #, kde-format
@@ -7695,32 +7606,27 @@ msgid "Group"
 msgstr "گۇرۇپپا"
 
 #: app/Panel/PanelView/listmodel.cpp:497
-#, fuzzy, kde-format
-#| msgid "Size:"
+#, kde-format
 msgid "Size: %1"
-msgstr "چوڭلۇقى:"
+msgstr "چوڭلۇقى: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:499
-#, fuzzy, kde-format
-#| msgid "Type:"
+#, kde-format
 msgctxt "File property"
 msgid "Type: %1"
-msgstr "تىپى:"
+msgstr "تۈرى: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:500
-#, fuzzy, kde-format
-#| msgctxt "File property"
-#| msgid "Modified"
+#, kde-format
 msgctxt "File property"
 msgid "Modified: %1"
-msgstr "ئۆزگەرتىلگەن ۋاقتى"
+msgstr ""
 
 #: app/Panel/PanelView/listmodel.cpp:501
-#, fuzzy, kde-format
-#| msgid "Name: %1\n"
+#, kde-format
 msgctxt "File property"
 msgid "Changed: %1"
-msgstr "ئاتى: %1\n"
+msgstr ""
 
 #: app/Panel/PanelView/listmodel.cpp:502
 #, kde-format
@@ -7729,25 +7635,22 @@ msgid "Last Access: %1"
 msgstr ""
 
 #: app/Panel/PanelView/listmodel.cpp:503
-#, fuzzy, kde-format
-#| msgid "Permissions:"
+#, kde-format
 msgctxt "File property"
 msgid "Permissions: %1"
-msgstr "ھوقۇقى:"
+msgstr ""
 
 #: app/Panel/PanelView/listmodel.cpp:504
-#, fuzzy, kde-format
-#| msgid "Owner:"
+#, kde-format
 msgctxt "File property"
 msgid "Owner: %1"
-msgstr "ئىگىدار:"
+msgstr ""
 
 #: app/Panel/PanelView/listmodel.cpp:505
-#, fuzzy, kde-format
-#| msgid "Group"
+#, kde-format
 msgctxt "File property"
 msgid "Group: %1"
-msgstr "گۇرۇپپا"
+msgstr ""
 
 #: app/Panel/PanelView/listmodel.cpp:509
 #, kde-format
@@ -7891,7 +7794,7 @@ msgstr ""
 #: app/Panel/viewactions.cpp:44
 #, kde-format
 msgid "Show Previews"
-msgstr ""
+msgstr "ئالدىن كۆزىتىشىنى كۆرسەت"
 
 #: app/Panel/viewactions.cpp:45
 #, kde-format
@@ -7899,10 +7802,9 @@ msgid "Save settings as default"
 msgstr ""
 
 #: app/Panel/viewactions.cpp:48
-#, fuzzy, kde-format
-#| msgid "Selection Mode"
+#, kde-format
 msgid "Select group"
-msgstr "تاللىغان شەكلى"
+msgstr ""
 
 #: app/Panel/viewactions.cpp:49
 #, kde-format
@@ -7910,10 +7812,9 @@ msgid "Select all files in the current folder"
 msgstr ""
 
 #: app/Panel/viewactions.cpp:50
-#, fuzzy, kde-format
-#| msgid "&Select All"
+#, kde-format
 msgid "Unselect all"
-msgstr "ھەممىنى تاللا(&S)"
+msgstr "ھەممىنى تاللىما"
 
 #: app/Panel/viewactions.cpp:51
 #, kde-format
@@ -7921,10 +7822,9 @@ msgid "Save settings as default for new instances of this view type"
 msgstr ""
 
 #: app/panelmanager.cpp:51 app/panelmanager.cpp:52
-#, fuzzy, kde-format
-#| msgid "Open in New Tab"
+#, kde-format
 msgid "Open a new tab"
-msgstr "يېڭى بەتكۈچتە ئاچ"
+msgstr "يېڭى بەتكۈچتىن بىرنى ئاچىدۇ"
 
 #: app/paneltabbar.cpp:177
 #, kde-format
@@ -7932,8 +7832,7 @@ msgid "[invalid]"
 msgstr ""
 
 #: app/paneltabbar.cpp:195
-#, fuzzy, kde-format
-#| msgid "?"
+#, kde-format
 msgctxt "invalid URL path"
 msgid "?"
 msgstr "؟"
@@ -7944,10 +7843,9 @@ msgid "Krusader::Search"
 msgstr ""
 
 #: app/Search/krsearchdialog.cpp:153
-#, fuzzy, kde-format
-#| msgid "Copy to Clipboard"
+#, kde-format
 msgid "Query to clipboard"
-msgstr "چاپلاش تاختىسىغا كۆچۈر"
+msgstr ""
 
 #: app/Search/krsearchdialog.cpp:154
 #, kde-format
@@ -7972,7 +7870,7 @@ msgstr ""
 #: app/Search/krsearchdialog.cpp:266
 #, kde-format
 msgid "Idle"
-msgstr ""
+msgstr "بىكار"
 
 #: app/Search/krsearchdialog.cpp:278
 #, kde-format
@@ -8455,10 +8353,9 @@ msgid "Show files considered to be identical."
 msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:303
-#, fuzzy, kde-format
-#| msgid "Show hidden files"
+#, kde-format
 msgid "Show excluded files."
-msgstr "يوشۇرۇن ھۆججەتلەرنى كۆرسەت"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:308
 #, kde-format
@@ -8488,7 +8385,7 @@ msgstr ""
 #: app/Synchronizer/synchronizergui.cpp:324
 #, kde-format
 msgid "Singles"
-msgstr "Singles"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:333
 #, kde-format
@@ -8638,10 +8535,9 @@ msgid "Sou&rce folder:"
 msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:626
-#, fuzzy, kde-format
-#| msgid "New Folder"
+#, kde-format
 msgid "&Left folder:"
-msgstr "يېڭى قىسقۇچ"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:627
 #, kde-format
@@ -8654,10 +8550,9 @@ msgid "URL must be the descendant of either the left or the right base URL."
 msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:718
-#, fuzzy, kde-format
-#| msgid "Synchronize"
+#, kde-format
 msgid "Synchronize Folders"
-msgstr "قەدەمداش"
+msgstr ""
 
 #: app/Synchronizer/synchronizergui.cpp:720
 #, kde-format
@@ -8792,16 +8687,14 @@ msgid "Move Current Tab to Other Side"
 msgstr ""
 
 #: app/tabactions.cpp:29
-#, fuzzy, kde-format
-#| msgid "Close Current Tab"
+#, kde-format
 msgid "Move Current Tab to the Left"
-msgstr "نۆۋەتتىكى بەتكۈچنى ياپ"
+msgstr ""
 
 #: app/tabactions.cpp:31
-#, fuzzy, kde-format
-#| msgid "Close Current Tab"
+#, kde-format
 msgid "Move Current Tab to the Right"
-msgstr "نۆۋەتتىكى بەتكۈچنى ياپ"
+msgstr ""
 
 #: app/tabactions.cpp:32
 #, kde-format
@@ -8839,10 +8732,9 @@ msgid "Lock Tab"
 msgstr ""
 
 #: app/tabactions.cpp:40 app/tabactions.cpp:64
-#, fuzzy, kde-format
-#| msgid "Previous Tab"
+#, kde-format
 msgid "Pin Tab"
-msgstr "ئالدىنقى بەتكۈچ"
+msgstr ""
 
 #: app/tabactions.cpp:62
 #, kde-format
@@ -9035,10 +8927,9 @@ msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
 msgstr ""
 
 #: app/UserAction/expander.cpp:602
-#, fuzzy, kde-format
-#| msgid "Folder..."
+#, kde-format
 msgid "Copy a File/Folder..."
-msgstr "قىسقۇچ…"
+msgstr ""
 
 #: app/UserAction/expander.cpp:606
 #, kde-format
@@ -9282,7 +9173,7 @@ msgstr "قوش"
 #: app/UserAction/kraction.cpp:185
 #, kde-format
 msgid "Export failed"
-msgstr ""
+msgstr "چىقارالمىدى"
 
 #: app/UserAction/kraction.cpp:240
 #, kde-format
@@ -9355,7 +9246,7 @@ msgstr ""
 #: app/useraction_examples.xml:47 app/useraction_examples.xml:52
 #, kde-format
 msgid "Samples"
-msgstr ""
+msgstr "مىسال"
 
 #: app/useraction_examples.xml:13
 #, kde-format
@@ -9388,10 +9279,9 @@ msgid "Append selected item(s) to Amarok playlist"
 msgstr ""
 
 #: app/useraction_examples.xml:33
-#, fuzzy, kde-format
-#| msgid "Media"
+#, kde-format
 msgid "Multimedia"
-msgstr "ۋاسىتە"
+msgstr "كۆپ ۋاسىتە"
 
 #: app/useraction_examples.xml:39
 #, kde-format
@@ -9411,7 +9301,7 @@ msgstr ""
 #: app/useraction_examples.xml:56 app/useraction_examples.xml:57
 #, kde-format
 msgid "Sort by Name"
-msgstr ""
+msgstr "ئات بويىچە تەرتىپلە"
 
 #: app/useraction_examples.xml:60
 #, kde-format
@@ -9419,10 +9309,9 @@ msgid "Sorts the active panel by Name"
 msgstr ""
 
 #: app/useraction_examples.xml:65 app/useraction_examples.xml:66
-#, fuzzy, kde-format
-#| msgid "Extension:"
+#, kde-format
 msgid "Sort by Extension"
-msgstr "كېڭەيتىلمە:"
+msgstr ""
 
 #: app/useraction_examples.xml:69
 #, kde-format
@@ -9430,10 +9319,9 @@ msgid "Sorts the active panel by Extension"
 msgstr ""
 
 #: app/useraction_examples.xml:74 app/useraction_examples.xml:75
-#, fuzzy, kde-format
-#| msgid "Total Size"
+#, kde-format
 msgid "Sort by Size"
-msgstr "ئومۇمىي سىغىمى"
+msgstr "چوڭلۇقى بويىچە تەرتىپلە"
 
 #: app/useraction_examples.xml:78
 #, kde-format
@@ -9441,11 +9329,9 @@ msgid "Sorts the active panel by Size"
 msgstr ""
 
 #: app/useraction_examples.xml:83 app/useraction_examples.xml:84
-#, fuzzy, kde-format
-#| msgctxt "File property"
-#| msgid "Modified"
+#, kde-format
 msgid "Sort by Modified"
-msgstr "ئۆزگەرتىلگەن ۋاقتى"
+msgstr ""
 
 #: app/useraction_examples.xml:87
 #, kde-format
@@ -9465,7 +9351,7 @@ msgstr ""
 #: app/useraction_examples.xml:95
 #, kde-format
 msgid "System"
-msgstr ""
+msgstr "سىستېما"
 
 #: app/useraction_examples.xml:96
 #, kde-format
@@ -9555,17 +9441,14 @@ msgstr ""
 msgid "Accessing the file requires a password."
 msgstr ""
 
-#, fuzzy
 #~| msgid "Show toolbar"
 #~ msgid "Show Job Toolbar"
 #~ msgstr "قورال بالداق كۆرسەت"
 
-#, fuzzy
 #~| msgid "&Tools"
 #~ msgid "&Toolbars"
 #~ msgstr "قوراللار(&T)"
 
-#, fuzzy
 #~| msgid "Copy to Clipboard"
 #~ msgid "Copy current item to clipboard"
 #~ msgstr "چاپلاش تاختىسىغا كۆچۈر"
@@ -9573,7 +9456,6 @@ msgstr ""
 #~ msgid "JavaScript Error"
 #~ msgstr "JavaScript خاتالىقى"
 
-#, fuzzy
 #~| msgid "New Folder"
 #~ msgid "New folder"
 #~ msgstr "يېڭى قىسقۇچ"
@@ -9599,7 +9481,6 @@ msgstr ""
 #~ msgid "%1 KB"
 #~ msgstr "%1 ك​ب"
 
-#, fuzzy
 #~| msgid "Terminal"
 #~ msgid "Open search filter"
 #~ msgstr "تېرمىنال"
@@ -9619,7 +9500,6 @@ msgstr ""
 #~ msgid "Base URL:"
 #~ msgstr "ئاساسىي URL:"
 
-#, fuzzy
 #~| msgid "&Pause"
 #~ msgid "Start &Paused"
 #~ msgstr "ۋاقىتلىق توختا(&P)"
@@ -9649,7 +9529,6 @@ msgstr ""
 #~ msgid "default"
 #~ msgstr "كۆڭۈلدىكى"
 
-#, fuzzy
 #~| msgid "Create New"
 #~ msgid "Create a new queue"
 #~ msgstr "يېڭىدىن قۇر"
@@ -9661,7 +9540,6 @@ msgstr ""
 #~ msgid "Status"
 #~ msgstr "ھالىتى"
 
-#, fuzzy
 #~| msgid "Folder name:"
 #~ msgctxt "Job type"
 #~ msgid "Folder Size"
