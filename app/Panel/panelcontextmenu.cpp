@@ -96,7 +96,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     // open/run - if not only multiple dirs are selected
     if (!(multipleSelections && allFilesAreDirs)) {
         QAction *openAction = new QAction(this);
-        openAction->setData(QVariant(OPEN_ID));
+        openAction->setData(QVariant(static_cast<int>(OPEN_ID)));
         if (multipleSelections) {
             openAction->setText(i18n("Open/Run Files"));
         } else {
@@ -110,7 +110,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     // open in a new tab (if only folder(s) are selected)
     if (allFilesAreDirs) {
         QAction *openTab = addAction(multipleSelections ? i18n("Open in New Tabs") : i18n("Open in New Tab"));
-        openTab->setData(QVariant(OPEN_TAB_ID));
+        openTab->setData(QVariant(static_cast<int>(OPEN_TAB_ID)));
         openTab->setIcon(Icon("tab-new"));
     }
 
@@ -123,7 +123,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
             || !KrArcHandler::arcSupported(file->getMime()))) {
         // ...it will not be browsed as a directory by default, but add an option for it
         QAction *browseAct = addAction(i18n("Browse Archive"));
-        browseAct->setData(QVariant(BROWSE_ID));
+        browseAct->setData(QVariant(static_cast<int>(BROWSE_ID)));
         browseAct->setIcon(Icon("archive-insert-directory"));
     }
 
@@ -133,7 +133,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         KrPreviewPopup preview;
         preview.setUrls(panel->func->files()->getUrls(fileNames));
         QAction *previewAction = addMenu(&preview);
-        previewAction->setData(QVariant(PREVIEW_ID));
+        previewAction->setData(QVariant(static_cast<int>(PREVIEW_ID)));
         previewAction->setText(i18n("Preview"));
         previewAction->setIcon(Icon("document-print-preview"));
     }
@@ -162,9 +162,9 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         }
         openWithMenu->addSeparator();
         if (!multipleSelections && file->isDir()) {
-            openWithMenu->addAction(Icon("utilities-terminal"), i18n("Terminal"))->setData(QVariant(OPEN_TERM_ID));
+            openWithMenu->addAction(Icon("utilities-terminal"), i18n("Terminal"))->setData(QVariant(static_cast<int>(OPEN_TERM_ID)));
         }
-        openWithMenu->addAction(i18n("Other..."))->setData(QVariant(CHOOSE_ID));
+        openWithMenu->addAction(i18n("Other..."))->setData(QVariant(static_cast<int>(CHOOSE_ID)));
         QAction *openWithAction = addMenu(openWithMenu);
         openWithAction->setText(i18n("Open With"));
         openWithAction->setIcon(Icon("document-open"));
@@ -210,10 +210,10 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
 
     // -------- MOVE TO TRASH
     if (KConfigGroup(krConfig, "General").readEntry("Move To Trash", _MoveToTrash) && panel->func->files()->canMoveToTrash(fileNames)) {
-        addAction(Icon("user-trash"), i18n("Move to Trash"))->setData(QVariant(TRASH_ID));
+        addAction(Icon("user-trash"), i18n("Move to Trash"))->setData(QVariant(static_cast<int>(TRASH_ID)));
     }
     // -------- DELETE
-    addAction(Icon("edit-delete"), i18n("Delete"))->setData(QVariant(DELETE_ID));
+    addAction(Icon("edit-delete"), i18n("Delete"))->setData(QVariant(static_cast<int>(DELETE_ID)));
     // -------- SHRED - only one file
     /*      if ( panel->func->files() ->getType() == filesystem:fileSystemM_NORMAL &&
                 !fileitem->isDir() && !multipleSelections )
@@ -224,10 +224,10 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     if (panel->func->files()->isLocal()) {
         addSeparator();
         auto *linkMenu = new QMenu(this);
-        linkMenu->addAction(i18n("New Symlink..."))->setData(QVariant(NEW_SYMLINK_ID));
-        linkMenu->addAction(i18n("New Hardlink..."))->setData(QVariant(NEW_LINK_ID));
+        linkMenu->addAction(i18n("New Symlink..."))->setData(QVariant(static_cast<int>(NEW_SYMLINK_ID)));
+        linkMenu->addAction(i18n("New Hardlink..."))->setData(QVariant(static_cast<int>(NEW_LINK_ID)));
         if (file->isSymLink()) {
-            linkMenu->addAction(i18n("Redirect Link..."))->setData(QVariant(REDIRECT_LINK_ID));
+            linkMenu->addAction(i18n("Redirect Link..."))->setData(QVariant(static_cast<int>(REDIRECT_LINK_ID)));
         }
         QAction *linkAction = addMenu(linkMenu);
         linkAction->setText(i18n("Link Handling"));
@@ -243,28 +243,28 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     if (panel->func->files()->isLocal() && file->isDir() && !multipleSelections) {
         const QString selectedDirectoryPath = file->getUrl().path();
         if (krMtMan.getStatus(selectedDirectoryPath) == KMountMan::MOUNTED)
-            addAction(i18n("Unmount"))->setData(QVariant(UNMOUNT_ID));
+            addAction(i18n("Unmount"))->setData(QVariant(static_cast<int>(UNMOUNT_ID)));
         else if (krMtMan.getStatus(selectedDirectoryPath) == KMountMan::NOT_MOUNTED)
-            addAction(i18n("Mount"))->setData(QVariant(MOUNT_ID));
+            addAction(i18n("Mount"))->setData(QVariant(static_cast<int>(MOUNT_ID)));
         if (krMtMan.ejectable(selectedDirectoryPath))
-            addAction(i18n("Eject"))->setData(QVariant(EJECT_ID));
+            addAction(i18n("Eject"))->setData(QVariant(static_cast<int>(EJECT_ID)));
     }
 
     // --------- send by mail
     if (KrServices::supportedTools().contains("MAIL") && !file->isDir()) {
-        addAction(Icon("mail-send"), i18n("Send by Email"))->setData(QVariant(SEND_BY_EMAIL_ID));
+        addAction(Icon("mail-send"), i18n("Send by Email"))->setData(QVariant(static_cast<int>(SEND_BY_EMAIL_ID)));
     }
 
     // --------- empty trash
     if (trashOnly) {
-        addAction(i18n("Restore"))->setData(QVariant(RESTORE_TRASHED_FILE_ID));
-        addAction(i18n("Empty Trash"))->setData(QVariant(EMPTY_TRASH_ID));
+        addAction(i18n("Restore"))->setData(QVariant(static_cast<int>(RESTORE_TRASHED_FILE_ID)));
+        addAction(i18n("Empty Trash"))->setData(QVariant(static_cast<int>(EMPTY_TRASH_ID)));
     }
 
 #ifdef SYNCHRONIZER_ENABLED
     // --------- synchronize
     if (panel->view->numSelected()) {
-        addAction(i18n("Synchronize Selected Files..."))->setData(QVariant(SYNC_SELECTED_ID));
+        addAction(i18n("Synchronize Selected Files..."))->setData(QVariant(static_cast<int>(SYNC_SELECTED_ID)));
     }
 #endif
 

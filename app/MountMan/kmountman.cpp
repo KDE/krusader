@@ -392,7 +392,7 @@ void KMountMan::quickList()
 
         QAction *act = _action->popupMenu()->addAction(text);
         act->setData(QList<QVariant>(
-            {QVariant(needUmount ? KMountMan::ActionType::Unmount : KMountMan::ActionType::Mount), QVariant(possibleMountPoint->mountPoint())}));
+            {QVariant(needUmount ? static_cast<int>(KMountMan::ActionType::Unmount) : static_cast<int>(KMountMan::ActionType::Mount)), QVariant(possibleMountPoint->mountPoint())}));
     }
     connect(_action->popupMenu(), &QMenu::triggered, this, &KMountMan::delayedPerformAction);
 }

@@ -32,7 +32,7 @@ KIO::filesize_t FilterSettings::FileSize::size() const
     case GigaByte:
         return amount * 1024 * 1024 * 1024;
     default:
-        qWarning() << "invalid size unit: " << unit;
+        qWarning() << "invalid size unit: " << static_cast<int>(unit);
         return amount;
     }
 }
@@ -53,7 +53,7 @@ int FilterSettings::TimeSpan::days() const
     case Year:
         return amount * 365;
     default:
-        qWarning() << "invalid time unit: " << unit;
+        qWarning() << "invalid time unit: " << static_cast<int>(unit);
         return amount;
     }
 }

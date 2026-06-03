@@ -94,7 +94,7 @@ Sidebar::Sidebar(QWidget *parent)
 
     // create the tree part ----------
     tree = new KrFileTreeView(stack);
-    tree->setProperty("KrusaderWidgetId", QVariant(Tree));
+    tree->setProperty("KrusaderWidgetId", QVariant(static_cast<int>(Tree)));
     stack->addWidget(tree);
     // NOTE: the F2 key press event is caught before it gets to the tree
     tree->setEditTriggers(QAbstractItemView::EditKeyPressed);
@@ -103,12 +103,12 @@ Sidebar::Sidebar(QWidget *parent)
 
     // create the quickview part ------
     imageFilePreview = new KImageFilePreview(stack);
-    imageFilePreview->setProperty("KrusaderWidgetId", QVariant(Preview));
+    imageFilePreview->setProperty("KrusaderWidgetId", QVariant(static_cast<int>(Preview)));
     stack->addWidget(imageFilePreview);
 
     // create the panelview
     fileViewer = new PanelViewer(stack);
-    fileViewer->setProperty("KrusaderWidgetId", QVariant(View));
+    fileViewer->setProperty("KrusaderWidgetId", QVariant(static_cast<int>(View)));
     // kparts demand too much width
     QSizePolicy sizePolicy = fileViewer->sizePolicy();
     sizePolicy.setHorizontalPolicy(QSizePolicy::Ignored);
@@ -119,7 +119,7 @@ Sidebar::Sidebar(QWidget *parent)
     // create the disk usage view
     diskusage = new DiskUsageViewer(stack);
     diskusage->setStatusLabel(dataLine, i18n("Disk Usage:"));
-    diskusage->setProperty("KrusaderWidgetId", QVariant(DskUsage));
+    diskusage->setProperty("KrusaderWidgetId", QVariant(static_cast<int>(DskUsage)));
     stack->addWidget(diskusage);
     connect(diskusage, &DiskUsageViewer::openUrlRequest, this, &Sidebar::handleOpenUrlRequest);
 

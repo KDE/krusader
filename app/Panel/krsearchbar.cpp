@@ -106,7 +106,7 @@ void KrSearchBar::hideBarIfSearching()
 void KrSearchBar::showBar(SearchMode mode)
 {
     int index =
-        mode == MODE_DEFAULT ? KConfigGroup(krConfig, "Look&Feel").readEntry("Default Search Mode", QString::number(KrSearchBar::MODE_SEARCH)).toInt() : mode;
+        mode == MODE_DEFAULT ? KConfigGroup(krConfig, "Look&Feel").readEntry("Default Search Mode", QString::number(static_cast<int>(KrSearchBar::MODE_SEARCH))).toInt() : mode;
     _modeBox->setCurrentIndex(index);
 
     show();
@@ -164,7 +164,7 @@ void KrSearchBar::onSearchChange()
         break;
     }
     default:
-        qWarning() << "unexpected search mode: " << _currentMode;
+        qWarning() << "unexpected search mode: " << static_cast<int>(_currentMode);
     }
 
     _textBox->setFocus();

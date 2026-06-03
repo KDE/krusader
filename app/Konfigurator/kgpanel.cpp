@@ -236,12 +236,12 @@ void KgPanel::setupGeneralTab()
     hbox = new QHBoxLayout();
     QLabel *labelMode = new QLabel(i18n("Default mode:"), groupBox);
     hbox->addWidget(labelMode);
-    KONFIGURATOR_NAME_VALUE_PAIR modes[] = {{i18n("Search"), QString::number(KrSearchBar::MODE_SEARCH)},
-                                            {i18n("Select"), QString::number(KrSearchBar::MODE_SELECT)},
-                                            {i18n("Filter"), QString::number(KrSearchBar::MODE_FILTER)}};
+    KONFIGURATOR_NAME_VALUE_PAIR modes[] = {{i18n("Search"), QString::number(static_cast<int>(KrSearchBar::MODE_SEARCH))},
+                                            {i18n("Select"), QString::number(static_cast<int>(KrSearchBar::MODE_SELECT))},
+                                            {i18n("Filter"), QString::number(static_cast<int>(KrSearchBar::MODE_FILTER))}};
     cmb = createComboBox("Look&Feel",
                          "Default Search Mode",
-                         QString::number(KrSearchBar::MODE_SEARCH),
+                         QString::number(static_cast<int>(KrSearchBar::MODE_SEARCH)),
                          modes,
                          3,
                          labelMode,
@@ -496,13 +496,13 @@ void KgPanel::setupPanelTab()
     QLabel *labelSort = new QLabel(i18n("Sort method:"), panelGrp);
     hbox->addWidget(labelSort);
 
-    KONFIGURATOR_NAME_VALUE_PAIR sortMethods[] = {{i18n("Alphabetical"), QString::number(KrViewProperties::Alphabetical)},
-                                                  {i18n("Alphabetical and numbers"), QString::number(KrViewProperties::AlphabeticalNumbers)},
-                                                  {i18n("Character code"), QString::number(KrViewProperties::CharacterCode)},
-                                                  {i18n("Character code and numbers"), QString::number(KrViewProperties::CharacterCodeNumbers)},
-                                                  {i18nc("Krusader sort", "Krusader"), QString::number(KrViewProperties::Krusader)}};
+    KONFIGURATOR_NAME_VALUE_PAIR sortMethods[] = {{i18n("Alphabetical"), QString::number(static_cast<int>(KrViewProperties::Alphabetical))},
+                                                  {i18n("Alphabetical and numbers"), QString::number(static_cast<int>(KrViewProperties::AlphabeticalNumbers))},
+                                                  {i18n("Character code"), QString::number(static_cast<int>(KrViewProperties::CharacterCode))},
+                                                  {i18n("Character code and numbers"), QString::number(static_cast<int>(KrViewProperties::CharacterCodeNumbers))},
+                                                  {i18nc("Krusader sort", "Krusader"), QString::number(static_cast<int>(KrViewProperties::Krusader))}};
     KonfiguratorComboBox *cmb =
-        createComboBox("Look&Feel", "Sort method", QString::number(_DefaultSortMethod), sortMethods, 5, labelSort, panelGrp, true, false, QString(), PAGE_VIEW);
+        createComboBox("Look&Feel", "Sort method", QString::number(static_cast<int>(_DefaultSortMethod)), sortMethods, 5, labelSort, panelGrp, true, false, QString(), PAGE_VIEW);
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(panelGrp));
 

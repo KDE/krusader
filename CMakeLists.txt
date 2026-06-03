@@ -143,7 +143,7 @@ if (CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fno-common -ansi -Wpedantic -Wconversion -Wpointer-arith \
                          -Wcast-qual -Wcast-align -Wwrite-strings -Wsuggest-override -Wfloat-equal \
                          -Woverloaded-virtual -Wundef -Wlogical-op -Wuninitialized -Wredundant-decls -Wnoexcept \
-                         -Wnon-virtual-dtor -Wctor-dtor-privacy -Wzero-as-null-pointer-constant" CACHE STRING "" FORCE)
+                         -Wnon-virtual-dtor -Wctor-dtor-privacy -Wzero-as-null-pointer-constant -Wsign-promo" CACHE STRING "" FORCE)
 endif()
 
 remove_definitions(-DQT_NO_KEYWORDS  -DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII)

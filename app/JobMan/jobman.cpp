@@ -253,7 +253,7 @@ bool JobMan::waitForJobs(bool waitForUserInput)
 
 void JobMan::manageJob(KrJob *job, StartMode startMode)
 {
-    qDebug() << "new job, startMode=" << startMode;
+    qDebug() << "new job, startMode=" << static_cast<int>(startMode);
     managePrivate(job);
 
     connect(job, &KrJob::started, this, &JobMan::slotKJobStarted);
