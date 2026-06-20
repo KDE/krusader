@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-02-16 00:51+0000\n"
-"PO-Revision-Date: 2026-06-16 19:41+0300\n"
+"PO-Revision-Date: 2026-06-19 19:21+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.04.0\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -42,7 +42,7 @@ msgstr "Eylemci — Kullanıcı Eylemlerinizi Yönetin"
 #: app/ActionMan/actionproperty.cpp:328
 #, kde-format
 msgid "New protocol"
-msgstr "Yeni protokol"
+msgstr "Yeni Protokol"
 
 #: app/ActionMan/actionproperty.cpp:328
 #, kde-format
@@ -186,19 +186,19 @@ msgstr "<b>Yer Tutucuları</b> yerel dosya adları ile değiştir."
 #: app/ActionMan/actionproperty.ui:86
 #, kde-format
 msgid "&Local files only (no URLs)"
-msgstr "Ya&lnızca yerel dosyalar (Adresler hariç)"
+msgstr "Ya&lnızca yerel dosyalar (URL yok)"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, radioUrl)
 #: app/ActionMan/actionproperty.ui:96
 #, kde-format
 msgid "Substitute the <b>Placeholders</b> with valid URLs."
-msgstr "<b>Yer tutucuları</b> geçerli adreslerle değiştir."
+msgstr "<b>Yer tutucuları</b>’nı geçerli URL’lerle değiştirin."
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioUrl)
 #: app/ActionMan/actionproperty.ui:99
 #, kde-format
 msgid "URLs (re&mote and local)"
-msgstr "Adresler (u&zak ve yerel)"
+msgstr "URL’ler (u&zak ve yerel)"
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leTitle)
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelTitle)
@@ -388,7 +388,7 @@ msgstr "Seçiliyse bu eylem kullanıcı eylemleri menüsünde gösterilir."
 #: app/ActionMan/actionproperty.ui:401
 #, kde-format
 msgid "Enabled"
-msgstr "Etkinleştirildi"
+msgstr "Etkin"
 
 #. i18n: ectx: property (title), widget (QGroupBox, bgExecType)
 #: app/ActionMan/actionproperty.ui:414
@@ -406,20 +406,21 @@ msgstr "Yürütülen programın çıktılarını biriktirir."
 #: app/ActionMan/actionproperty.ui:423
 #, kde-format
 msgid "Collect output"
-msgstr "Çıktıları biriktir"
+msgstr "Çıktıyı biriktir"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, chkSeparateStdError)
 #: app/ActionMan/actionproperty.ui:433
 #, kde-format
 msgid "Separate standard out and standard error in the output collection."
 msgstr ""
-"Çıktı biriktiriken geleneksel çıktı ve geleneksel hatayı ayrı ayrı tut."
+"Çıktıyı biriktirirken “standart çıktı”yı ve “standart hata”yı ayrı ayrı "
+"biriktirin."
 
 #. i18n: ectx: property (text), widget (QCheckBox, chkSeparateStdError)
 #: app/ActionMan/actionproperty.ui:436
 #, kde-format
 msgid "Separate standard error"
-msgstr "Geleneksel hatayı ayrı tut"
+msgstr "Standart hatayı ayrı tut"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioNormal)
 #: app/ActionMan/actionproperty.ui:443
@@ -455,13 +456,13 @@ msgstr "Gömülü uçbirim öykünücüsünde çalıştır"
 #: app/ActionMan/actionproperty.ui:477
 #, kde-format
 msgid "Advanced Properties"
-msgstr "Gelişkin Özellikler"
+msgstr "Gelişmiş Özellikler"
 
 #. i18n: ectx: property (title), widget (QGroupBox, gbShowonly)
 #: app/ActionMan/actionproperty.ui:489
 #, kde-format
 msgid "The Useraction is only available for"
-msgstr "Kullanıcı eyleminin geçerliliği yalnızca"
+msgstr "Kullanıcı Eylemi Geçerliliği"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabProt)
 #: app/ActionMan/actionproperty.ui:499
@@ -637,7 +638,7 @@ msgstr "Yeni kullanıcı eylemi oluştur"
 #: app/ActionMan/useractionpage.cpp:60
 #, kde-format
 msgid "Import useractions"
-msgstr "Kullanıcı eylemlerini içe aktar"
+msgstr "Kullanıcı eylemleri içe aktar"
 
 #: app/ActionMan/useractionpage.cpp:65
 #, kde-format
@@ -1830,7 +1831,7 @@ msgid ""
 "Malformed URL:\n"
 "%1"
 msgstr ""
-"Bozuk adres:\n"
+"Hatalı oluşturulmuş URL:\n"
 "%1"
 
 #: app/FileSystem/krquery.cpp:259 app/Filter/generalfilter.cpp:161
@@ -5292,12 +5293,12 @@ msgstr "Başlat ve &Unut"
 #: app/kractions.cpp:239
 #, kde-format
 msgid "Display &Separated Standard and Error Output"
-msgstr "Standart ve Hata Çıktısını Ayrı Ayrı Görüntüle"
+msgstr "Standart Çıktıyı/Hatayı &Ayrı Ayrı Görüntüle"
 
 #: app/kractions.cpp:245
 #, kde-format
 msgid "Display &Mixed Standard and Error Output"
-msgstr "Standart ve Hata Çıktısını Karışık Görüntüle"
+msgstr "Standart Çıktıyı/Hatayı &Karışık Görüntüle"
 
 #: app/kractions.cpp:246
 #, kde-format
@@ -5499,7 +5500,7 @@ msgid ""
 "You can get KRename at %1"
 msgstr ""
 "Toplu yeniden adlandırma aracı bulunamadı.\n"
-"%1 adresinde KRename aracını bulabilirsiniz"
+"%1 adresinde KRename aracını bulabilirsiniz."
 
 #: app/krslots.cpp:459
 #, kde-format
@@ -6788,7 +6789,7 @@ msgstr "Hata ayıklama çıktısını etkinleştir"
 #: app/main.cpp:220
 #, kde-format
 msgid "URL to open"
-msgstr "Açılacak adres"
+msgstr "Açılacak URL"
 
 #: app/MountMan/kmountman.cpp:58
 #, kde-format
@@ -8573,7 +8574,7 @@ msgstr "Krusader::Eşzamanlayıcı"
 #: app/Synchronizer/synchronizer.cpp:1563
 #, kde-format
 msgid "Feeding the URLs to KGet"
-msgstr "Adresler K İndir’e aktarılıyor"
+msgstr "URL’ler K İndir’e aktarılıyor"
 
 #: app/Synchronizer/synchronizergui.cpp:141
 #: app/Synchronizer/synchronizergui.cpp:1336
@@ -8883,7 +8884,7 @@ msgstr "&Sağ klasör:"
 #: app/Synchronizer/synchronizergui.cpp:660
 #, kde-format
 msgid "URL must be the descendant of either the left or the right base URL."
-msgstr "Adres sol veya sağ taban adresinin türünden olmalıdır."
+msgstr "URL, ya sol ya da sağ taban URL’nin alt türünden olmalıdır."
 
 #: app/Synchronizer/synchronizergui.cpp:718
 #, kde-format
@@ -9287,7 +9288,7 @@ msgstr "Genişletici: %Each%, %Copy% için ikinci parametre olmamalı"
 #: app/UserAction/expander.cpp:632
 #, kde-format
 msgid "Expander: invalid URLs in %_Copy(\"src\", \"dest\")%"
-msgstr "Genişletici: %_Copy(\"kaynak\", \"hedef\")% içinde geçersiz adresler"
+msgstr "Genişletici: %_Copy(\"kaynak\", \"hedef\")% içinde geçersiz URL’ler"
 
 #: app/UserAction/expander.cpp:644
 #, kde-format
@@ -9317,7 +9318,7 @@ msgstr "%Each%, %Move% için ikinci parametre olmamalı"
 #: app/UserAction/expander.cpp:671
 #, kde-format
 msgid "Expander: invalid URLs in %_Move(\"src\", \"dest\")%"
-msgstr "Genişletici: %_Move(\"kaynak\", \"hedef\")% içinde geçersiz adresler"
+msgstr "Genişletici: %_Move(\"kaynak\", \"hedef\")% içinde geçersiz URL’ler"
 
 #: app/UserAction/expander.cpp:684
 #, kde-format
@@ -9461,12 +9462,12 @@ msgstr "Hata: Genişleticide eksik ‘)’"
 #: app/UserAction/kraction.cpp:72
 #, kde-format
 msgid "Standard Output (stdout)"
-msgstr "Geleneksel Çıktı (stdout)"
+msgstr "Standart Çıktı (stdout)"
 
 #: app/UserAction/kraction.cpp:80
 #, kde-format
 msgid "Standard Error (stderr)"
-msgstr "Geleneksel Hata (stderr)"
+msgstr "Standart Hata (stderr)"
 
 #: app/UserAction/kraction.cpp:86
 #, kde-format
@@ -9667,7 +9668,7 @@ msgstr "Uzantıya Göre Sırala"
 #: app/useraction_examples.xml:69
 #, kde-format
 msgid "Sorts the active panel by Extension"
-msgstr "Etkin paneli uzantıya göre sıralanır"
+msgstr "Etkin panel, uzantıya göre sıralanır"
 
 #: app/useraction_examples.xml:74 app/useraction_examples.xml:75
 #, kde-format
@@ -9687,7 +9688,7 @@ msgstr "Değiştirilmeye Göre Sırala"
 #: app/useraction_examples.xml:87
 #, kde-format
 msgid "Sorts the active panel by Modified"
-msgstr "Etkin panel değiştirilmeye göre sıralanır"
+msgstr "Etkin panel, değiştirilmeye göre sıralanır"
 
 #: app/useraction_examples.xml:92
 #, kde-format
