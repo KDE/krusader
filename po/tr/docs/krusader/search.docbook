@@ -1,0 +1,350 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="krusearcher">
+  <title
+>KruSearcher: Aradığınızı Bulun</title>
+  <indexterm>
+    <primary
+>Arama</primary>
+  </indexterm>
+  <para
+>&krusader;’ın KruSearcher lakaplı güçlü arama modülüne hoş geldiniz. &Linux; için (bildiğimiz kadarıyla) en yetenekli araçtır; çünkü aradığınız dosyayı tez bulmanız için pek çok farklı yola olanak tanır. Arama işlevi uzak dosya sistemlerinde de bulunur. Genel ve ileri olmak üzere iki düzeye ayrılmıştır. Genel sayfaya bir göz atalım.</para>
+  <figure id="screenshot-search-general" float="1">
+    <title
+>Genel Arama</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_general.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Genel Arama</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Sayfa dört bölüme ayrılmıştır: Üst (arama) bölümü, alt bölüm — <guilabel
+>İçerdiği Metin</guilabel
+> başlığıyla, sol bölüm — <guilabel
+>İçinde Ara</guilabel
+> başlığıyla ve sağ bölüm ise <guilabel
+>İçinde Arama</guilabel
+> olarak adlandırılmıştır. Açıkçası, her bölüm aramanın farklı yönlerini ele almaktadır. Bunları yakından inceleyelim.</para>
+  <itemizedlist>
+    <title
+>Üst kısım:</title>
+    <listitem>
+      <para
+><guilabel
+>Ara</guilabel
+>: Buraya ana arama kriterlerini girersiniz. Bir dosya adı veya joker karakter (<literal role="extension"
+>*.o.*</literal
+>, <literal role="extension"
+>*.c</literal
+> &etc;) veya boşlukla ayırarak her ikisini de girebilirsiniz. <literal
+>“text”</literal
+> girerseniz sonuçlar <literal
+>“*text*”</literal
+> ile aynı olacaktır. Arama işleminden, “|” ile dosyaları dışlayabilirsiniz (örneğin, <literal role="extension"
+>“*.cpp *.h | *.moc.cpp”</literal
+>). Boşluk içeren dosya adları için tırnak işaretleri kullanabilirsiniz. <quote
+>Program Files</quote
+> girdisi, adında <filename
+>Program Files</filename
+> olan dosyaları/klasörleri süzer. Sağdaki aşağı oka tıkladıktan sonra gösterilen açılır liste, daha önce girdiğiniz kriterlerden bazılarını seçmenize olanak tanır.</para>
+      <note>
+          <para
+><guilabel
+>Ara</guilabel
+> alanındaki öneriler listesinin düzenlenmesi olanaklıdır. Ögelerden bazılarını beğenmiyorsanız onu seçin ve yalnızca <keycombo action="simul"
+>&Shift;<keycap
+>Sil</keycap
+></keycombo
+> düğmesine basın ve bu işe yaramayan öneri silinir. Ayrıca <guilabel
+>Ara</guilabel
+> alanındaki tüm geçmişi görmek ve gereksiz girişleri silmek için de ok düğmelerini kullanabilirsiniz. </para>
+      </note>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>BÜYÜK/küçük harf duyarlı</guilabel
+>: İşaretini kaldırmak, aramalarda BÜYÜK/küçük harf hassasiyetini kaldırır (&ie;: <literal role="extension"
+>*.c</literal
+> interprets as <literal role="extension"
+>*.c</literal
+> AND <literal role="extension"
+>*.C</literal
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Türü</guilabel
+>: bu kutu, bir dosyayı yalnızca adına göre değil aynı zamanda &MIME; türüne göre de aramanıza olanak tanır. Örneğin, adı B ile başlayan tüm ses dosyalarını arayabilirsiniz. Genellikle bu seçenek öntanımlı olarak “tüm dosyalar”dır; ancak arşivleri, klasörleri, görüntüleri, metin dosyalarını, videoları ve ses dosyalarını aramayı seçebilirsiniz.</para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Sağ ve sol kısım:</title>
+    <listitem>
+      <para
+><guilabel
+>İçinde Ara</guilabel
+> ve <guilabel
+>İçinde Arama</guilabel
+>: Bu iki bölümü kullanarak aramayı tam olarak istediğiniz şekilde belirtebilirsiniz. Örneğin, tüm dosya sisteminde (<filename
+>/</filename
+> ile başlayan) bir dosyayı aramak isteyebilirsiniz; ancak <filename
+>/mnt</filename
+> içinde arama yapmak istemeyebilirsiniz. Tek yapmanız gereken <guilabel
+>İçinde Ara</guilabel
+> kutusuna <filename
+>/</filename
+> yazmanız ve <guilabel
+>İçinde Arama</guilabel
+> kutusuna <filename
+>/mnt</filename
+> yazmanızdır. Liste kutularından birine birden fazla klasör girmek istiyorsanız, adı yazıp &Enter; düğmesine basmanız yeterlidir. Klasör adı daha büyük liste kutusuna kopyalanacak ve başka bir ad girebileceksiniz. <note
+> <para
+>Giriş satırında &plasma; global ayarlarına karşılık gelen bir kendiliğinden tamamlama özelliği bulunur. Dilerseniz <guiicon
+>klasör simgesine</guiicon
+> tıklayıp eklemek istediğiniz klasöre göz atabilirsiniz.</para>
+      </note>
+      <note>
+          <para
+><guilabel
+>İçinde Arama</guilabel
+> kutusunun altındaki <guilabel
+>Klasör adlarını dışla</guilabel
+> giriş alanını kullanarak, arama sonuçlarından süzülecek dosya ve klasörleri tanımlamak olanaklıdır.</para>
+          <para
+>Süzme listesindeki ögeler boşlukla ayrılmalıdır.</para>
+          <para
+>Süzme listesi ögelerindeki boşluklar kaçırılabilir veya tırnak içine alınabilir. Örnek: <userinput
+>.git "target build" build\ krusader</userinput
+></para>
+      </note
+></para>
+    </listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title
+>Alt kısım:</title>
+    <listitem>
+      <para
+><guilabel
+>Metin</guilabel
+>: Buraya metin girmek, &krusader;’ın onu dosyaların içinde aramasına (<command
+>grep</command
+>) neden olur. Böylece örneğin, <literal
+>“test 123”</literal
+> ifadesini tüm üstbilgi dosyalarında (<literal role="extension"
+>*.h</literal
+>) kolaylıkla arayabilirsiniz.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Düzenli İfade</guilabel
+> anahtarı: Düzenli ifadeler kipini açar/kapatır. Sağdaki aşağı oka tıkladıktan sonra gösterilen açılır liste, düzenli ifadelerin özel sembollerini girmenize olanak tanır. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Kodlama</guilabel
+>: Metin kodlamasını seçmenize olanak tanır. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Yalnızca tam sözcükleri eşleştir</guilabel
+>: Tam bir eşleşmenin (harfler ve uzunluk) bulunması gerektiğini belirtmenize olanak tanır. </para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>BÜYÜK/küçük harf duyarlı</guilabel
+>: BÜYÜK ve küçük harflerle aranan metninizi veya tam olarak girdiğiniz ifadeyi ifade eder.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Alt klasörlerde ara</guilabel
+>: Özyineli bir arama gerçekleştirin ve yoldaki her klasöre dalın.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Arşivlerde ara</guilabel
+>: &krusader; Desteklenen her arşivdeki dosyalarınızı arayacaktır. Ancak bunun gerçekleştirilmesi daha uzun sürer. <note
+> <para
+>Bu onay kutusunu işaretlerseniz artık dosyaların içinde <command
+>grep</command
+> yapamayacağınızı fark edeceksiniz. Bu, arşivlenmiş dosyaların içine bakmak &krusader;’i zorladığı için yapılır. bunları çıkarmak son derece zaman alıcı bir aramayla sonuçlanır.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Bağlantıları izle</guilabel
+>: İşaretlenmişse &krusader;, aramalardaki yumuşak bağlantıları takip edecektir.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Profiller</guilabel
+>: Aynı arama işlemini düzenli olarak yapmanız gerekiyorsa arama ayarlarını kaydedebilirsiniz; dosyaları içerin, dışlayın vb. gibi. “Profil” düğmesine basarak, arama profilleri ekleyebilir/yükleyebilir/kaydedebilir/kaldırabilirsiniz.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Panoda sorgula</guilabel
+>: İşaretlenmişse &krusader;, bulunan bir dosya açıldığında arama metnini panoya koyar.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Yukarıdaki ekran görüntüsü; <literal role="extension"
+>c, cpp</literal
+> veya <literal role="extension"
+>h</literal
+> ile biten ve <literal
+>“testing 123”</literal
+> dizisini içeren bir tüm dosyalar aramasını göstermektedir. &krusader;; <filename class="directory"
+>/root, /opt, /bin</filename
+> ve <filename class="directory"
+>/usr</filename
+> konumlarında arayacak; ancak <filename class="directory"
+>/usr/lib</filename
+> ve <filename class="directory"
+>/usr/share</filename
+> konumlarında arama yapmayacaktır.</para>
+  <para
+><guibutton
+>Ara</guibutton
+> düğmesine tıklamak aramayı başlatır ve sonuçlar sayfasını görüntüler. Arama sırasında aramayı durdurmak için <guibutton
+>Durdur</guibutton
+> düğmesine basabilirsiniz. <guibutton
+>Kapat</guibutton
+> düğmesi arama sırasında çalışmaz; bu yüzden, öncelikle aramayı durdurmalı ve sonra pencerenin <guibutton
+>Kapat</guibutton
+> düğmesine tıklamalısınız. Bir sonuç bulunduğunda, üzerine çift tıklamak &krusader;’ın etkin panel noktasını bulunan dosyalara götürür; ancak arama penceresini kapatmayacaktır, dolayısıyla farklı bir sonuca tıklayabileceksiniz.</para>
+  <para
+>Bazen aramanızı daha da daraltmanız gerekir. KruSearcher çok daha ayrıntılı bir arama yapmanızı sağlar ve bunun için <guilabel
+>Gelişmiş</guilabel
+> sayfasına bakacağız.</para>
+  <figure id="screenshot-search-advanced" float="1">
+    <title
+>Gelişmiş Arama</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="search_advanced.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Gelişmiş Arama</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Bu ekran görüntüsü, boyutu 10 KiB ile 150 KiB arasında olan, 10 Ekim ile 1 Kasım arasında değiştirilen, “nobody” grubundaki herhangi bir kullanıcıya ait olan ve “nobody” grubundaki herhangi bir kişi tarafından okunabilen ve yazılabilen; ancak yalnızca dünyanın geri kalanı tarafından okunabilen dosyalar için bir aramayı göstermektedir.</para>
+  <para
+>Gelişmiş sayfası üç bölüme ayrılmıştır: Büyüklük, tarih ve sahiplik.</para>
+  <para>
+    <emphasis role="bold"
+>Büyüklük</emphasis>
+  </para>
+  <para
+>Aradığınız dosyanın boyut erimini seçmenizi sağlar. Onay kutularını işaretleyerek XXX bayttan (veya KB, MB) büyük, XXX bayttan küçük bir dosyayı arayabilirsiniz veya her ikisini de işaretleyerek boyutu XXX’ten büyük; ancak YYY’den küçük bir dosya arayabilirsiniz.</para>
+  <para>
+    <emphasis role="bold"
+>Tarih</emphasis>
+  </para>
+  <para
+>Bu bölüm, tarih kriteri tanımlamanın üç farklı yolunu sunar: <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Arasında değiştirilmiş</guilabel
+>: İki tarih girmenizi sağlar. &krusader;, ilk tarih ile ikinci tarih (içerilir) arasında değiştirilen dosyaları arayacaktır. <note
+> <para
+>Standart bir tarih penceresi açmak için tarih simgesine (giriş kutularının yanında) tıklayabilirsiniz; bu, takvime kolayca göz atmanıza ve istediğiniz tarihi aramanıza olanak tanır. Bir tarihe tıklamak pencereyi kapatacak ve giriş kutusunda tarih görünecektir.</para>
+      </note
+></para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Sonrasında değiştirilmemiş</guilabel
+>: Bu seçeneğin seçilmesi, &krusader;’ın belirli bir tarihten sonra DEĞİŞTİRİLMEMİŞ dosyaları aramasını sağlar; bu, o tarihten daha eski dosyaları aramakla aynıdır.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>Değiştirildiği/Değiştirilmediği son zaman</guilabel
+>: Bu giriş kutularına tarih değil sayı girersiniz. Bu sayı günleri/haftaları/ayları temsil eder (yakındaki bırakma kutusunda seçildiği gibi). Üst giriş kutusuna 5 rakamını girdiğinizde &krusader; son 5 gün içinde değiştirilen dosyaları arar. Alt giriş kutusuna 2 sayısını girmek &krusader;’ın son 2 gün içinde değiştirilmeyen dosyaları aramasını sağlar. Her ikisinin birleşimi, son 5 günde değiştirilen; ancak son 2 günde DEĞİŞTİRİLMEYEN dosyaların aranmasıyla sonuçlanır.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para>
+    <emphasis role="bold"
+>Sahiplik</emphasis>
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Ait olduğu kullanıcı/grup</guilabel
+>: Karşılık gelen onay kutularının her birini işaretleyerek belirli bir kullanıcıya ve/veya gruba ait dosyaları arayabilirsiniz. Açılır kutu sistemdeki tüm kullanıcı adlarını ve grup adlarını listeler; yalnızca birini seçin ve sürdürün.</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>İzinler</guilabel
+>: Sahip, Grup ve Tümü olarak üçe bölünmüştür — dosya için belirli izinleri seçmenize olanak tanır. Sahip, Grup, Tümü veya herhangi bir kombinasyon için izinleri belirlemeyi seçebilirsiniz. Soru işareti (?), bir joker karakterdir; bu, herhangi bir iznin geçerli olduğu anlamına gelir.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>Açıklığa kavuşturmak gerekirse, yukarıdaki ekran görüntüsü (sahiplik kısmı), “users” grubundaki herhangi bir kullanıcıya ait olan, gruptaki herhangi bir kullanıcı tarafından okunabilir, yazılabilir; ancak çalıştırılamaz olan, dünyanın geri kalanı tarafından okunabilir; ancak yazılamaz veya yürütülemez olan ve sahibine bilinmeyen izinlere sahip olan dosyaların aranmasını açıklar.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Sonuçlar</emphasis>
+  </para>
+  <para
+>Aramayı başlatmak ve Sonuçlar penceresini açmak için <guibutton
+>Ara</guibutton
+> düğmesine tıklayın. Burada arama eyleminin ilerlemesini ve sonuçlarını görebilirsiniz. İsterseniz geçerli arama işlemini <guibutton
+>Durdur</guibutton
+> düğmesi ile durdurabilirsiniz. Sonuç listesinde dosyayı seçin ve görüntülemek/düzenlemek veya sağ tıklama menüsünü kullanmak için <keycap
+>F3</keycap
+>/<keycap
+>F4</keycap
+> düğmelerini kullanın. Bulunan bir ögeye tıkladığınızda, seçilen öge geçerli panel klasöründe değilse etkin panelin klasörü değişecektir. Sonuçlar penceresi, ögelerin diğer pencerelere sürüklenmesini ve panoya kopyalanmasını destekler (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). KruSearcher penceresini kapattığınızda seçilen öge etkin panelde seçilir.</para>
+  <para>
+    <emphasis role="bold"
+>Liste Kutusuna Besle</emphasis>
+  </para>
+  <para
+>Sonuçlar görüntülendikten sonra <guibutton
+>Liste Kutusuna Besle</guibutton
+> düğmesine tıkladığınızda &krusader;, bir sorgu adı ister; bu ad, arama sonuçlarını barındıran liste panelindeki Sonuçlar sekmesinde kullanılacaktır. Yeni sekmedeki dosyalar üzerinde istediğinizi yapabilirsiniz. Konum araç çubuğu örneğin, <filename
+>virt:/Arama sonuçları 1</filename
+> görüntüler.</para>
+  <warning>
+    <para
+>Sonuçlar sekmesindeki dosyalar aslında özgün dosyalardır. Bir dosyayı silerseniz o dosya gerçekten silinir!</para>
+  </warning>
+</sect1>

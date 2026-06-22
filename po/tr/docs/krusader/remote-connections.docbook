@@ -1,0 +1,359 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="remote-connections">
+  <title
+>Uzak Bağlantılar</title>
+  <indexterm>
+    <primary
+>Uzak Bağlantılar</primary>
+  </indexterm>
+  <para
+>Uzak bağlantılar kurmak için &URL;’yi <link linkend="list_panel"
+>Konum Çubuğu</link
+>’na girmeniz yeterlidir; bunlar özünde KIO işçileridir. Lütfen &krusader; panellerinin tüm KIO işçilerini desteklemediğini unutmayın; örneğin, <command
+>http://</command
+> komutu panelde çalışmaz; ancak <link linkend="krviewer"
+>görüntüleyicide</link
+> çalışır. Bazı örnekler:</para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>public.ftpserver.org/klasör/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>fish://</command
+><replaceable
+>kullanıcı-adı@makine-adı/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>sftp://</command
+><replaceable
+>kullanıcı-adı:parola@sftp.foo.org/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>kullanıcı-adı@benim.sunucum.org:21/klasör/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>smb://</command
+><replaceable
+>kullanıcı-adı:parola@sunucu/paylaşım</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>kullanıcı-adı@vekil-kullanıcı-adı:parola@vekil-parolası@makine-adı/klasör</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>nfs://</command
+><replaceable
+>&lt;makine&gt;:&lt;kapı&gt;&lt;url-yolu&gt;</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>webdav://</command
+><replaceable
+>www.sunucu.com/yol/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Bu &URL;’lere yer imi koyabilirsiniz; ancak <emphasis
+>parolaları güvenli bir biçimde kaydetmek</emphasis
+> konusu ile ilgili olarak lütfen <link linkend="bookman"
+>Bookman</link
+> bölümünü okuyun. Birden çok konuma bağlanmak için bu &URL;’lere yer imleri koyun ve onları teker teker veya <link linkend="panel_profiles"
+>panel profillerini</link
+> kullanarak hepsini birlikte açın. Bir konumdan başkasına geçmek için her biri için bir <link linkend="folder-tabs"
+>klasör sekmesi</link
+> açın.</para>
+  <para
+>Bir uzak bağlantı başlatmanın üç yolu vardır:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>&URL;’yi <link linkend="list_panel"
+>konum araç çubuğuna</link
+> girin.</para>
+    </listitem>
+    <listitem>
+      <para
+><menuchoice
+> <guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Yeni Ağ Bağlantısı</guimenuitem
+> </menuchoice
+> yolunu izleyin; bu, sizden uzak site bağlantılarını isteyen bir iletişim kutusu açacaktır. Uzak &URL;’leri konum araç çubuğuna girmeye alışık değilseniz bu işinizi kolaylaştırır. Parola ve kullanıcı adı alanlarını boş bırakmak sizi anonim olarak oturum açtırır. Not: Bu iletişim kutusunu yeniden yazmayı planlıyoruz.</para>
+    </listitem>
+    <listitem>
+      <para
+>Uzak sunucudaki bir klasöre yer imi koyabilir ve tıpkı bir web tarayıcısında olduğu gibi panelinizin sağ üst köşesindeki yer imi düğmesini kullanarak bu klasöre geri dönebilirsiniz.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Uzak sunucuda oturum açtıktan sonra, aşağıdaki istisnalar dışında, yerel sabit sürücünüz gibi sunucuda gezinebilirsiniz:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Uzak sunucularda dosya yürütemezsiniz.</para>
+    </listitem>
+    <listitem>
+      <para
+>Uzak sunucularda izinler her zaman hesaplanamayabilir (sunucuya ve erişim yöntemine bağlıdır), bu nedenle bazı dosyaların izin sütunlarında <guilabel
+>?</guilabel
+> ifadesiyle karşılaşabilirsiniz.</para>
+    </listitem>
+    <listitem>
+      <para
+>Çoğu uzak dosya sistemi için disk kullanımı bilgisi yoktur.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Uzak makinenin karakter kümesini değiştirmek için <menuchoice
+> <guimenu
+>Görünüm</guimenu
+> <guimenuitem
+>Uzak Karakter Kümesini Seç</guimenuitem
+> </menuchoice
+> seçeneğini kullanın.</para>
+  <para
+>Geçerli etkin uzak bağlantıyı iki ayrı yöntemle kapatabilirsiniz:</para
+> 
+  <itemizedlist>
+    <!--
+        <listitem>
+           <para
+>Manually: <emphasis role="bold"
+><menuchoice
+><guimenu
+>Commands</guimenu>
+                 <guimenuitem
+>Disconnect From Net</guimenuitem
+></menuchoice
+></emphasis
+></para>
+        </listitem>
+        -->
+    <listitem>
+      <para
+>Elle: Bağlantıyı kesme düğmesini <link linkend="mainwindow"
+>ana araç çubuğuna</link
+> ekleyin ve ona tıklayın.</para>
+    </listitem>
+    <listitem>
+      <para
+>Kendiliğinden: <link linkend="list_panel"
+>Konum araç çubuğundaki</link
+> &URL;’yi değiştirin.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>&krusader;, KIO işçileri aracılığıyla uzak bağlantıları destekleyen bir dosya yöneticisidir; ancak daha gelişmiş uzak bağlantı özellikleri arıyorsanız; örneğin, gelişmiş bir &FTP; istemcisi gibi; <ulink url="https://lftp.yar.ru/"
+>LFTP</ulink
+> veya <ulink url="https://filezilla-project.org/"
+><application
+>FileZilla</application
+></ulink
+> gibi seçeneklere bakmanızı öneririz.</para>
+  </note>
+
+<sect2 id="remote-connections-lan-fish">
+  <title
+>fish:/ protokolü ile LAN bağlantıları (zeroconf)</title>
+  <indexterm>
+    <primary
+>Uzak LAN Bağlantıları (zeroconf)</primary>
+  </indexterm>
+
+<para
+>Bu bölüm, Andrew Svet (z-vet) tarafından hazırlanmıştır; bu bölüm hakkındaki geri bildirimleriniz çok makbule geçecektir!</para>
+
+ <note>
+   <para
+>Bu bir &Debian; sistemde çalışır; yani tüm &Debian; türevlerinde (&kubuntu;, &etc;) çalışmasının yanı sıra diğer Linux’larda da sıkıntı çıkması pek olası değildir. <link linkend="gloss-ssh"
+>SSH</link
+>’nin kurulu, yapılandırılmış ve bağlanmak istediğiniz her makinede çalışır olduğundan emin olun. İnternette <link linkend="gloss-ssh"
+>SSH</link
+> üzerine pek çok yararlı öğretici vardır; örneğin, <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying"
+>linuxhomenetworking.com</ulink
+> adresine bakın veya yalnızca internette benzer konuları arayın. Bu bölüm için öntanımlı <link linkend="gloss-ssh"
+>SSH</link
+> kapısını (22) kullanıyoruz. Farklı bir sürüm kullanıyorsanız değiştirmeyi unutmayın. Tüm değişiklikler, düzenlemeler vb. kök yetkisiyle yapılmalıdır. </para>
+ </note>
+
+<para
+>Öncelikle ihtiyacımız olan tüm paketleri kurarak başlayalım: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>apt-get install</command
+> <option
+>avahi-daemon libnss-mdns kdnssd</option
+></userinput>
+</screen
+> Her şey kuruldu, şimdi biraz yapılandırma yapalım. Öncelikle, hizmetlerimizin yerel ağda duyurulması gerekiyor. Bu yüzden avahi-daemon’u kurduk: Makinenizi yerel ağda temsil eder ve diğer uygulamaların sağladıkları hizmetleri yayınlamalarına olanak tanır. Avahi-daemon, <filename class="directory"
+>/usr/share/doc/avahi-daemon/examples</filename
+> konumunda bulunan örnek <filename
+>ssh.service</filename
+> yapılandırma dosyasıyla gelir. Hizmetin LAN üzerinde duyurulabilmesi için bu dosyayı <filename class="directory"
+>/etc/avahi/services</filename
+> klasörüne kopyalayacağız: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option
+></userinput>
+</screen
+> Şimdi fish:/ protokolünün de duyurulması gerekiyor, bu yüzden fish.service için şablon olarak bir ssh.service dosyası kullanıyoruz: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option
+></userinput>
+</screen
+> Bu dosya, yalnızca bir ssh.service kopyasıdır. <filename
+>fish.service</filename
+> dosyasını düzenleyin ve <quote
+>Remote Terminal on %h</quote
+> dizisini <quote
+>Fish to %h</quote
+> ve <quote
+>_ssh._tcp</quote
+> dizisini <quote
+>_fish._tcp</quote
+> olarak değiştirin. Değişiklik sonrasında şöyle görünür: <programlisting
+> 
+&lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--> 
+&lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
+
+&lt;!-- $Id: remote-connections.docbook,v 1.6 2007/05/02 18:07:28 codeknight Exp $ --> 
+
+&lt;!-- 
+  This file is part of avahi. 
+  
+  avahi is free software; you can redistribute it and/or modify it 
+  under the terms of the GNU Lesser General Public License as 
+  published by the Free Software Foundation; either version 2 of the 
+  License, or (at your option) any later version. 
+
+  avahi is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR 
+
+&lt;!-- See avahi.service(5) for more information about this configuration file --> 
+
+&lt;service-group
+> 
+
+  &lt;name replace-wildcards="yes"
+>FISH to %h&lt;/name
+> 
+
+  &lt;service
+> 
+    &lt;type
+>_fish._tcp&lt;/type
+> 
+    &lt;port
+>22&lt;/port
+> 
+  &lt;/service
+> 
+
+&lt;/service-group
+>  
+</programlisting
+> Save the modified file. Now we need to create a new file <filename
+>_fish._tcp</filename
+>, open a text editor and add the next lines: <programlisting>
+Name=FISH Protocol (ssh) 
+Type=_fish._tcp 
+UserEntry=u 
+PathEntry=path 
+PasswordEntry=p
+</programlisting
+> Sonrasında <filename
+>/usr/share/apps/zeroconf/_fish._tcp</filename
+> dosyasını kaydedin. Bunu, LAN’daki her aygıt için yapın ve avahi-daemon’u yeniden başlatın: <screen>
+<prompt
+># /etc/init.d/</prompt
+> <userinput
+><command
+>avahi-daemon</command
+> <option
+>restart</option
+></userinput>
+</screen
+> Sonrasında &krusader;’ı açın ve location-toolbar-lnk yazın: <filename
+>zeroconf:/</filename
+>, <link linkend="gloss-zeroconf"
+>zeroconf</link
+> bağlantısını açmak için. <guilabel
+>Fish Protocol</guilabel
+> klasörüne gidin. İçeride, yerel ağınızda <filename
+>fish:/</filename
+> duyurusu yapan her makineye ait bağlantıları bulacaksınız; location-toolbar-lnk: <filename
+>zeroconf:/_fish._tcp</filename
+> adresine işaret edecektir. Bu makinelerden herhangi birine çift tıkladığınızda, parola istemi açılacak ve sizden SSH anahtarınızın parola tümcesini (parola ayarlanmışsa) girmeniz istenecektir. Parola tümcenizi girin. Tebrikler: &krusader; kullanarak uzak makineye bağlandınız! </para
+> 
+
+</sect2>
+
+</sect1>
+
+

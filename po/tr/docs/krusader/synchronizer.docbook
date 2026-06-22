@@ -1,0 +1,840 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="synchronizer">
+  <title
+>Eşzamanlayıcı</title>
+  <indexterm>
+    <primary
+>Eşzamanlayıcı</primary>
+  </indexterm>
+  
+<sect2 id="synchronizer_introduction">
+  <title
+>Giriş</title>
+  <para
+>Bu işlev, iki klasörü tüm alt klasörlerle karşılaştırır ve aralarındaki farkları gösterir. Bazı seçenekleri ve <guilabel
+>Karşılaştır</guilabel
+> fonksiyonunu seçtikten sonra dosya ve klasörleri eşzamanlayabilirsiniz. Panellerden biri &FTP; sunucusu olabilir. Dosya boyutu eşitse <guilabel
+>İçeriğe Göre Karşılaştır</guilabel
+> seçeneğini de kullanabileceğinizi unutmayın. Bu özelliği başlatmak için <menuchoice
+> <guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Klasörleri Eşzamanla</guimenuitem
+> </menuchoice
+> veya <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> seçeneklerini kullanın. <link linkend="konfig-color"
+>Renkler</link
+> yapılandırılabilirdir. Eşzamanlayıcının kendi özel <link linkend="synchronizer_keybindings"
+>düğme bağıntıları</link
+> vardır. </para>
+  <note>
+    <para
+>Yerel dosyalar için: Eşzamanlayıcı, tarih bilgilerini özgün tarihlere değiştirir.</para>
+  </note>
+  <figure id="screenshot-syncdir" float="1">
+    <title
+>Eşzamanlayıcı</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="syncdir.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Eşzamanlayıcı</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para>
+  <orderedlist>
+    <title
+>Prosedür:</title>
+    <listitem>
+      <para
+>Karşılaştırmak isteğiniz <guilabel
+>sol</guilabel
+> ve <guilabel
+>sağ</guilabel
+> klasörleri seçin.</para>
+    </listitem>
+    <listitem>
+      <para
+>İsteği bağlı olan <guilabel
+>dosya</guilabel
+>, <guilabel
+>genel</guilabel
+> ve <guilabel
+>gelişmiş</guilabel
+> süzgeçlerini yapılandırın. <guilabel
+>Genel</guilabel
+> süzgeçler içinde, klasörleri karşılaştırmanın dışında tutmanıza olanak tanıyan bir <guilabel
+>İçinde Arama</guilabel
+> seçeneği bulunur.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synccomp_checkb_options"
+>Onay kutusu</link
+> seçeneklerini ayarlayın: <guilabel
+>Alt klasörleri özyinele</guilabel
+>, <guilabel
+>Sembolik bağlantıları izle</guilabel
+>, <guilabel
+>İçerik göre karşılaştır</guilabel
+>, <guilabel
+>Tarihi yok say</guilabel
+>, <guilabel
+>Benzeşimsiz</guilabel
+> ve <guilabel
+>BÜYÜK/küçük harfe duyarsız</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Klasörleri karşılaştırmak için <guibutton
+>Karşılaştır</guibutton
+> düğmesine tıklayın.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synccomp_show_options"
+>Seçenekleri Göster</link
+>ile, belirli dosya türlerini içerebilir/dışlayabilirsiniz. Listede olmayan dosyalara eşzamanlama sırasında dokunulmaz.</para>
+    </listitem>
+    <listitem>
+      <para
+>Gerekirse Karşılaştırıcı tarafından belirlenen <guilabel
+>Görev</guilabel
+> işlemlerini <link linkend="synccomp_right-click"
+>sağ tık menüsü</link
+> ile değiştirebilirsiniz.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Karşılaştır</guibutton
+> düğmesinin verdiği sonuçlardan memnunsanız eşzamanlama iletişim kutusunu göstermek üzere <guibutton
+>Eşzamanla</guibutton
+> düğmesine tıklayın.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>Eşzamanlayıcı</link
+> seçeneklerini ayarladıktan sonra, eşzamanlama sürecini başlatmak üzere <guibutton
+>Başlat</guibutton
+> düğmesine tıklayın.</para>
+    </listitem>
+  </orderedlist
+>Tüm işlevlerin ve düğmelerin ayrıntılı bir açıklaması aşağıdaki metinde bulunur.</para>
+
+</sect2>
+
+<sect2 id="synchronizer_comparator">
+  <title
+>Karşılaştırıcı</title
+>  
+
+  <variablelist>
+    <varlistentry>
+      <term
+>Panel ögeleri</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Sol dizin</guilabel
+>: Sol taraftaki taban klasör</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Sağ dizin</guilabel
+>: Sağ taraftaki taban klasör</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Dosya Süzgeci</guilabel
+>: Eşzamanlamadaki dosya adlarını süzer. Örneğin: <literal role="extension"
+>*.png</literal
+>, yalnızca <literal role="extension"
+>.png</literal
+> ile biten dosyaları seçer. Klasör adı <literal role="extension"
+>.png</literal
+> ile bitiyorsa veya klasörde <literal role="extension"
+>.png</literal
+> ile biten dosyalar varsa klasörler de listelenir. Birden çok içerme/dışlama örneği: <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>, <literal role="extension"
+>*.cpp *.h</literal
+> dosyalarını içerir ve <literal role="extension"
+>*.moc.cpp</literal
+> dosyalarını dışlar.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Genel süzgeçler</guilabel
+>: İçeren metinleri ara</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Gelişmiş süzgeçler</guilabel
+>: Büyüklük, tarih, sahiplik</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <variablelist>
+    <varlistentry>
+      <term
+>Dosya adı süzme ölçütleri</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Joker karakterlerden yararlanabilirsiniz. Birden fazla dizgi boşlukla (mantıksal VEYA anlamına gelir) ayrılır ve dizgiler dikey çizgi sembolü kullanılarak aramadan dışlanır. Dizgi eğik çizgiyle (*dizgi*/) bitiyorsa bu dizginin klasörlerin özyineli aramasıyla ilgili olduğu anlamına gelir.</para>
+          </listitem>
+          <listitem>
+            <para
+>dizgi — adı belirli bir dizgi olan dosya/klasörleri aramak anlamına gelir; özyineli arama, dizginin değerinden bağımsız olarak tüm alt klasörleri tarar.</para>
+          </listitem>
+          <listitem>
+            <para
+>dizgi/ — tüm dosya/klasörlerde arama yapılacağı anlamına gelir; ancak özyineli arama, adı bir dizgi olan klasörleri kapsar/dışlar.</para>
+          </listitem>
+          <listitem>
+            <para
+>Boşluk içeren adlar için tırnak imlerini kullanabilirsiniz. <quote
+>Program Files</quote
+> süzgeci, adı <filename
+>Program Files</filename
+> olan dosyaları/klasörleri arar.</para>
+          </listitem>
+          <listitem>
+            <para
+>Örnekler</para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.o</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.h *.c??</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>* | CVS/ .svn/</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Not: Arama terimi “metin”, “*text*” değerine eştir.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_checkb_options">
+      <term
+>Onay kutusu seçenekleri</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Alt klasörleri özyinele</guilabel
+>: Eşzamanlayıcı, karşılaştırma yaparken alt klasörlere de bakar.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Sembolik bağlantıları izle</guilabel
+>: Eşzamanlayıcı, klasörlere olan sembolik bağlantıları izler (dosyaları değil!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>İçerik göre karşılaştır</guilabel
+>: Büyüklükleri aynı olan dosyaları karşılaştırırken içerikleri hesaba katılır.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Tarihi yok say</guilabel
+>: Tarih bilgisini yok sayar (&FTP;, smb, arşiv, …); tarih bilgisi *yalnızca* yerel dosya sisteminde alâkadardır.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Benzeşimsiz</guilabel
+>: <guilabel
+>Sol Dizin</guilabel
+> hedef, <guilabel
+>Sağ Dizin</guilabel
+> ise kaynak klasördür. Bu işlev, sol klasörün içeriğini sağ klasörün içeriğiyle eşzamanlar. <itemizedlist
+> <listitem
+> <para
+>Yalnızca sol tarafta bulunan dosyalar silinirler.</para
+> </listitem
+> <listitem
+> <para
+>Yalnızca sağ tarafta bulunan dosyalar sol tarafa kopyalanırlar.</para
+> </listitem
+> <listitem
+> <para
+>Eşit oldukları düşünülen dosyalara dokunulmaz.</para
+> </listitem
+> <listitem
+> <para
+>Farklı oldukları düşünülen dosyalar sol tarafa kopyalanırlar. Bu özelliği dikkatli kullanın!</para
+> <itemizedlist
+> <listitem
+> <para
+>Veri kaybının önüne geçmek için bir sistem bulunur: Tarihler hesaba katılıyorlarsa (çünkü <guilabel
+>Tarihi yok say</guilabel
+> devre dışıysa) öntanımlı eylem <emphasis
+>bir dosyayı eski bir sürümüyle değiştirmemektir</emphasis
+>. Kullanıcı hâlen bunun üzerine yazabilir (sağ tıklayıp <guilabel
+>Sağdan Sola Kopyala</guilabel
+> seçeneğini kullanarak).</para
+> </listitem
+> </itemizedlist
+> </listitem
+> </itemizedlist
+>Bu işlev, tarih bilgisi kullanılamaz durumdaysa veya sol klasörü bir dosya sunucusunun içeriğine eşzamanlıyorsanız (sanki bir indirme yapıyormuş gibi). Alternatif olarak, sağ klasörden sol klasöre bir yedek yapıyorsanız yararlıdır. NOT: Bu seçeneği, bir masaüstü ve dizüstü bilgisayarı birbirlerine eşzamanlamak için kullanmayın (örneğin, yalnızca sol tarafta bulunan dosyalar silinirler!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Sonuçları sar</guilabel
+>: Bu, yavaş &FTP; sunucuları vb. içindir. Eşzamanlayıcı bir dosyası karşılaştırmayı bitirdiğinde, dosyayı bir listenin sonuna koyar ve gerekiyorsa pencereyi sarar. Eşzamanlayıcının ne yaptığını bilmek istiyorsanız önemlidir. &FTP; sunucusu yavaşsa bir klasörün karşılaştırılması bayağı bir zaman alabilir. Bu seçeneği açarak karşılaştırıcının yavaş; ancak <quote
+>canlı</quote
+> olduğunu görebilirsiniz. Hızlı dosya sistemleri için karşılaştırma hızını az da olsa düşürebilir.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>BÜYÜK/küçük harfe duyarsız</guilabel
+>: BÜYÜK/küçük harfe duyarsız dosya adlarını karşılaştırmak için kullanılır. &Windows; dosya sistemleriyle çalışırken yararlıdır.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Gizli dosyaları yok say</guilabel
+>: Nokta ile başlayan dosyaları yok sayar.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <para
+>Yukarıda belirtilen her şey yapıldığında, klasörleri karşılaştırmak için <guibutton
+>Karşılaştır</guibutton
+> düğmesine basın. Sonuçlar, <guilabel
+>dosya listesinde</guilabel
+> görüntülenir.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Dosya listesi</term>
+      <listitem>
+        <para
+><guilabel
+>Dosya Listesi</guilabel
+> bünyesinde şu sütunlar bulunur: <quote
+>Sol ad | Sol büyüklük | Sol zaman | Görev | Sağ zaman | Sağ büyüklük | Sağ ad</quote
+>. Buradan sonuçları karşılaştırabilir ve isterseniz eşzamanlama eylemlerini karşılaştırabilirsiniz. Metin rengi, karşılaştırıcı tarafından belirlenen öntanımlı kopyalama yönünü tanımlar. <itemizedlist
+> <listitem
+> <para
+>Yeşil: Soldan sağa kopyalayın.</para
+> </listitem
+> <listitem
+> <para
+>Mavi: Sağdan sola kopyalayın veya benzeşimsiz kipte sağdaki ögeyi silin.</para
+> </listitem
+> <listitem
+> <para
+>Kırmızı: Verilen kritere göre farklı olan dosyalar (kopyalama yönü yok).</para
+> </listitem
+> <listitem
+> <para
+>Siyah: Aynı olan dosyalar (kopyalama yönü yok).</para
+> </listitem
+> </itemizedlist
+> Bir dosyanın üzerine çift tıklamak, &krusader;’ın <guilabel
+>İçeriğe göre kopyala</guilabel
+> işlevini çağırır. Görevler (&lt;=&gt;) sütunu, öntanımlı kopyalama yönünü tanımlar; bu, istenirse kullanıcı tarafından değiştirilebilir. Sonuçlar penceresi, ögeleri başka pencerelere sürüklemeyi destekler ( sol [sürükle], &Shift;+sürükle [sağ] ) ve seçili ögeleri panoya kopyala (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). </para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><guilabel
+>Dosya Listesi</guilabel
+>: Görevler (&lt;=&gt;) sütunu</term>
+      <listitem>
+        <para
+>Bu sütun, Eşzamanlayıcı için tasarlanmış görevi görüntüler; bu görevde değişiklik yapmak için <link linkend="synccomp_right-click"
+>sağ tık menüsünü</link
+> kullanın.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Sol taraftan sağ tarafa kopyalayın. Klasörler için: Sağ tarafta <command
+>mkdir</command
+> yapın.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: Dosyalar aynı olduğundan bir şey yapmayın.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: Dosya dışlanmış veya Eşzamanlayıcı ne yapacağını bilemedi.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: Sağ taraftan sol tarafa kopyalayın: Sol tarafta <command
+>mkdir</command
+> yapın.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Sil</guibutton
+>: Sağ taraftan dosyalar silin.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_show_options">
+      <term
+>Seçenekleri göster</term>
+      <listitem>
+        <para
+>Burada belirli dosya türlerini içerebilir/dışlayabilirsiniz. Listede olmayan dosyalara eşzamanlama sırasında dokunulmayacaktır.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: Soldan sağa kopyalama görevini etkinleştirin/devre dışı bırakın.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: Eşit dosyaları listelemeyi etkinleştirin/devre dışı bırakın.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: Dışlanan/<quote
+>ne yapacağımı bilmiyorum</quote
+> dosyalarını listelemeyi etkinleştirin/devre dışı bırakın.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: Sağdan sola kopyalama görevini etkinleştirin/devre dışı bırakın.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Çöp Kutusu</guibutton
+>: Sol taraftaki görevden dosya silmeyi etkinleştirin/devre dışı bırakın.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Yinelenenler</guibutton
+>: Her iki tarafta da olan dosyaları etkinleştirin/devre dışı bırakın.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Eşi Olmayanlar</guibutton
+>: Yalnızca bir tarafta olan dosyaları etkinleştirin/devre dışı bırakın.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Eylem düğmeleri</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Karşılaştır</guibutton
+>: Dosyaları karşılaştırın; sonuçlar, <guilabel
+>Dosya Listesi</guilabel
+> içinde görüntülenirler.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Durdur</guibutton
+>: Karşılaştırmayı durdurun.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Eşzamanla</guibutton
+>: Eşzamanlama iletişim kutusunu gösterir.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Kapat</guibutton
+>: Eşzamanlayıcı penceresini kapatır.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Durum çubuğu şunları içerebilir</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Karşılaştırma sırasında taranan klasörlerin sayısı</para>
+          </listitem>
+          <listitem>
+            <para
+>İçeriğe göre karşılaştırırken dosya adı (büyük dosyalar için)</para>
+          </listitem>
+          <listitem>
+            <para
+>Listedeki dosyaların sayısı</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_right-click">
+      <term
+><guilabel
+>Dosya Listesi</guilabel
+> üzerinde sağ tık menüsü</term>
+      <listitem>
+        <para
+>Sağ tık menüsü, üç ayrı bölüme ayrılmıştır:</para>
+        <para
+>1. Karşılaştırıcı tarafından belirlenen <guilabel
+>Görev</guilabel
+> işlemlerini değiştirin. Bir veya birden fazla dosya seçin. Değişiklik yalnızca sağ tıklanan ögeye değil, seçilen ögeye de uygulanacaktır. Seçilen öge bir klasör ise değişiklik klasörün dosyalarına/alt klasörlerine de uygulanacaktır.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Klasörleri Eşzamanla…</guibutton
+>: Eşzamanlamayı başlatır.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Dışla</guibutton
+>: Bir dosyayı/klasörü, eşzamanlama sürecinden çıkarır (görev değişikliği ≠).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Özgün İşlemi Geri Yükle</guibutton
+>: Görev, karşılaştırmanın özgün sonucuna değiştirilir.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Yönü Ters Çevir</guibutton
+>: Görev değişikliği yapılır (→;, ← olarak ve ←, → olarak).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Sağdan Sola Kopyala</guibutton
+>: Görev, ← olarak değiştirilir.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Soldan Sağa Kopyala</guibutton
+>: Görev, → olarak değiştirilir.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Sil (Sol Tek)</guibutton
+>: Görev, SİL olarak değiştirilir.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>2. Seçimleri değiştirin.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Ögeleri Seç</guibutton
+>: Ögeler seçmenize olanak tanıyan bir iletişim kutusu açar. Bu, <link linkend="edit-menu"
+>Düzen</link
+> menüsündeki <guimenuitem
+>Grup Seç</guimenuitem
+> eylemidir.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Ögelerin Seçimini Kaldır</guibutton
+>: Ögelerin seçimini kaldırmanıza olanak tanıyan bir iletişimi kutusu açar. Bu, <link linkend="edit-menu"
+>Düzen</link
+> menüsündeki <guimenuitem
+>Grup Seçimini Kaldır</guimenuitem
+> eylemidir.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Seçimi Tersine Çevir</guibutton
+>: Tüm ögelerin seçim durumlarını tersine çevirin.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>3. Diğerler eylemlere göz atın (Aşağıdaki eylemlerin yalnızca sağ tıklanan dosyada çalıştığını ve seçimde etkisi olmadığını not edin).</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Soldaki Dosyayı Görüntüle</guibutton
+>: Soldaki dosya için görüntüleyiciyi başlatır.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Sağdaki Dosyayı Görüntüle</guibutton
+>: Sağdaki dosya için görüntüleyiciyi başlatır.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Dosyaları Karşılatır</guibutton
+>: Dosyalar üzerinde diff izlencesini başlatır (örneğin, &kompare;).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Diğer düğmeler</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Profiller</guibutton
+>: Aynı klasörleri sık sık eşzamanlamaya gereksinim duyuyorsanız ayarlarınızı kaydedebilirsiniz. Böylece; dosyalar içerebilir, dışlayabilir, … birçok işlem olanaklıdır. <guibutton
+>Profil</guibutton
+> düğmesine basarak eşzamanlayıcı profillerini eklemek/yüklemek/kaydetmek/kaldırmak işlemleri yapılabilir.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Tarafların Yerlerini Değiştir</guibutton
+>: <guilabel
+>Dosya Listesi</guilabel
+> içeriklerini birbirleriyle değiştirir.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><application
+>K İndir</application
+> ile eşzamanlayın</term>
+      <listitem>
+        <para
+>Yerel bir klasörü, kararsız bir &FTP; sunucusuyla eşzamanlamak için <application
+>K İndir</application
+> uygulaması, yalnızca dosya kopyalamaktan çok daha iyi bir çözümdür. Karşılaştırma sonrası sonuçlar listesine sağ tıklayabilir ve <guimenuitem
+>K İndir ile Eşzamanla</guimenuitem
+> seçeneğini kullanarak eşzamanlamayı tetikleyebilirsiniz. Sonrasında, listelenen dosyalar &krusader; yerine <application
+>K İndir</application
+> ile indirilirler. Elbette <application
+>K İndir</application
+> uygulamasının sisteminizde kurulu olması gerekir; yoksa menüde görünmez.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+ 
+</sect2
+>  
+<sect2 id="synchronizer_synchronization">
+  <title
+>Eşzamanlama</title
+>  
+
+  <para
+><guibutton
+>Eşzamanla</guibutton
+> düğmesine bastıktan sonra eşzamanlama iletişim kutusu görünür.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Onay kutuları</term>
+      <listitem>
+        <para
+>Burada, Eşzamanlayıcı tarafından yapılacak kopyalama ve silme işlemlerini onaylarsınız.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Sağdan Sola</guilabel
+>: X1 dosyayı (Y1 bayt) sağdan sola kopyalamayı etkinleştirin/devre dışı bırakın.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Soldan Sağa</guilabel
+>: X1 dosyayı (Y1 bayt) soldan sağa kopyalamayı etkinleştirin/devre dışı bırakın.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Sol</guilabel
+>: X3 dosyayı (Y3 bayt) soldan silmeyi etkinleştirin/devre dışı bırakın.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Üzerine yazmayı onayla</guilabel
+>: Bu seçeneği etkinleştirerek, &krusader;, dosyaların üzerine yazmadan önce <guibutton
+>yeniden adlandır, atla, üzerine yaz, tümünü atla, tümünün üzerine yaz</guibutton
+> iletişim kutusunu gösterir.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Durum etiketleri</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Hazır</guilabel
+>: A1/A2 dosya, B1/B2. Bu satır, eşzamanlama sırasında değiştirilir. Böylece, eşzamanlayıcının A1/A2 dosya (B1/B2 bayt) ile işinin bittiğini anlarsınız.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>İlerleme çubuğu</guilabel
+>: Eşzamanlamanın ilerlemesini gösterir (bayt türünden).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Eylem düğmeleri</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Başlat</guibutton
+>: Eşzamanlamayı başlatır.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Duraklat / Sürdür</guibutton
+>: Eşzamanlama sürecini duraklatır/sürdürür.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Kapat</guibutton
+>: Eşzamanlama iletişim kutusunu kapatır (ve eşzamanlamayı durdurur).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Paralel eşzamanlama</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Bu, “sözde” iş parçacıklarının sayısını verir.</para>
+          </listitem>
+          <listitem>
+            <para
+>Yavaş &FTP; sunucularıyla eşzamanlarken hızı büyük ölçüde artırabilir.</para>
+          </listitem>
+          <listitem>
+            <para
+>Yerel eşzamanlamanın hızını etkilemez.</para>
+          </listitem>
+          <listitem>
+            <para
+>Uzak <quote
+>içeriğe göre karşılaştırma</quote
+> ve <quote
+>klasör karşılaştırma</quote
+> işlemleri paralel olarak yapılır.</para>
+          </listitem>
+          <listitem>
+            <para
+>Uzak eşzamanlama işlemleri de paralel olarak yapılar; <command
+>mkdir</command
+> görevler dışında (<command
+>mkdir</command
+>, kopyalama öncesinde yapılmalıdır).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+</sect2>
+</sect1>

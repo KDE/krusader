@@ -1,0 +1,103 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="introduction">
+  <title
+>Giriş</title>
+  <indexterm
+><primary
+>Giriş</primary
+></indexterm>
+  <sect1 id="package-description">
+  <title
+>Paket Açıklaması</title>
+    <para
+>&krusader;; &plasma; ve diğer UNIX masaüstleri için <application
+>Midnight Commander</application
+> veya <trademark class="copyright"
+>Total Commander</trademark
+> tarzında basit, kolay, güçlü, ikiz panel (Commander tarzı) bir dosya yöneticisidir. Neredeyse aklınıza gelebilecek tüm dosya yönetimi özelliklerine sahiptir.</para>
+    <para
+>&krusader; ayrıca kapsamlı arşiv işleme, monte edilmiş dosya sistemi desteği, &FTP;, gelişmiş arama modülü, görüntüleyici/düzenleyici, klasör eşzamanlaması, dosya içeriği karşılaştırmaları, güçlü toplu yeniden adlandırma ve çok daha fazlasını içerir. &krusader;; ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip ve 7-zip arşiv biçimlerini destekler ve smb:// veya fish:// gibi diğer KIO işçilerini de işler.</para>
+    <para
+>&krusader; neredeyse tamamen özelleştirilebilirdir ve bu nedenle çok kullanıcı dostudur.</para>
+    <para
+>&krusader;’ı deneyin.</para>
+    <figure id="screenshot-krusader" float="1">
+      <title
+>&krusader; ekran görüntüsü</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="krusader1.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>&krusader; ekran görüntüsü</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Daha fazla <ulink url="https://krusader.org/"
+>&krusader; ekran görüntüsüne</ulink
+> web sitemizden ulaşılabilir.</para>
+  </sect1>
+
+  <sect1 id="welcome">
+    <title
+>&krusader;’a hoş geldiniz!</title>
+    <para
+>Amacımız, bilgisayarınızda her gün gerçekleştirdiğiniz en önemli görevleri kolayca halletmenizi sağlayan basit ve sezgisel bir araç sunmaktır: dosyalarınızı istediğiniz gibi yönetmek ve işlemek.</para>
+    <para
+>İster &Linux; uzmanı olun ister acemî, &krusader; rutin dosya yönetimi görevlerini hızlı ve doğru bir şekilde gerçekleştirerek komut satırı söz dizimine değil, genel resme odaklanmanızı sağlar. Bu, özellikle *NIX işletim sistemlerine yeni başlayanlar için çok faydalıdır. Bunu başarmak için &krusader;, güzel görünümlü bir grafik kullanıcı arayüzü kullanır ve sürükle bırak özelliğinin yanı sıra &MIME; türlerini de destekleyerek kullanımı kolaylaştırır.</para>
+    <para
+>&krusader; birçok kullanışlı özelliğe sahiptir. Hızlıdır ve <link linkend="archives"
+>arşivleri</link
+> saydam bir şekilde yönetir. Ayrıca, &krusader; birçok karmaşık dosya yönetimi görevini kolaylaştırarak yorgunluğu, hataları ve dikkat dağıtıcı unsurları azaltır. Temel olarak, &krusader;, <application
+>Midnight Commander</application
+> ve <trademark class="copyright"
+>Total Commander</trademark
+> gibi diğer kaliteli dosya yönetimi araçlarından beklediğiniz tüm yararlı özellikleri sunar. &krusader;; birçok programcı, ağ mühendisi ve diğer &Linux; kullanıcılarının tercih ettiği masaüstü ortamı olan &plasma; ile sorunsuz bir şekilde tümleşecek şekilde tasarlanmıştır. &krusader; ile acemi kullanıcılar bile &plasma;’nın gücüne, kolaylığına ve zengin özelliklerine hızlıca erişebilirler. &krusader; ücretsiz bir açık kaynak projesidir ve <link linkend="credits"
+>&GNU; Genel Kamu Lisansı</link
+> altında yayımlanmıştır. Geliştiriciler projenin ve adının telif haklarını ellerinde tutmayı ve projenin sürekli gelişimini yönetmeyi sürdürseler de, proje Genel Kamu Lisansı (GPL) kapsamında lisanslıdır.</para>
+    <para
+>&krusader; projesinin misyonu, ondan beklediğiniz tüm sıradan görevleri ve daha fazlasını yapabilecek bir <quote
+>her şey içinde</quote
+> dosya yöneticisi yaratmaktır. &krusader;, <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Ortodoks Dosya Yöneticisi (OFM)</ulink
+> prensibine bağlı kaldığından, iki panelli dosya yöneticilerinden beklenen (<application
+>Midnight Commander</application
+>, <trademark class="registered"
+>Norton Commander</trademark
+>, vb.) &krusader;’dan tüm standart dosya işlemlerini (Kopyala, Taşı, Sil vb.) gerçekleştirmesi beklenir.</para>
+    <para
+>Baştan itibaren sanal dosya sistemleri ana odak noktası haline geldi. <link linkend="vfs"
+>Sanal Dosya Sistemleri (Virtual File System — VFS)</link
+>, her türlü arşivlenmiş bilginin (ZIP dosyaları, &FTP; sunucuları, TAR arşivleri, &NFS; dosya sistemleri, SAMBA paylaşımları, ISO &CD;/&DVD; kalıpları, RPM katalogları vb.) üzerinde soyutlanmış bir katmandır ve kullanıcının bu farklı dosya sistemlerindeki tüm bilgilere saydam bir şekilde —tıpkı sıradan bir alt klasöre girer gibi— erişmesini sağlar. Dosyalar daha sonra bu veri kaynakları/kapsayıcıları arasında (ISO, rpm, tar.gz hariç) zahmetsizce kopyalanabilir veya taşınabilir. Şu anda tüm popüler ve bazı özel arşiv türleri (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip ve 7-zip), yapılandırma paketleri (rpm, deb) ve geleneksel uzak dosya sistemi türleri (&FTP;, &NFS;, Samba, FISH, SFTP) için VFS’leri desteklemektedir.</para>
+    <para
+>&krusader; ayrıca, her türden dosya sistemini tek bir fare tıklamasıyla bağlamanıza veya bağlantısını kesmenize olanak tanıyan yerleşik bir bağlama yöneticisi <link linkend="mount-man"
+>Bağlamacı</link
+>’yı içerir. Kullanıcı, kullanım ve diğer özellik bilgilerini saniyeler içinde tutarlı ve anlaşılabilir bir biçimde kolayca elde edebilir. Kolaylık ve tutarlılık hedefimizdir.</para>
+    <para
+>Yerel dosyalar/uzak &URL;’ler için bir <link linkend="bookman"
+>Yer İmi Yöneticisi</link
+> ve gerekli dosyaların bulunmasını hızlandırmak için bir <link linkend="krusearcher"
+>Gelişmiş Arama Modülü</link
+> de içerilir. &krusader; ayrıca kullanıcının dosya karşılaştırma (kullanıcı tarafından seçilebilen çeşitli yöntemler bulunur), çoklu dosya yeniden adlandırma ve standart uçbirim pencereleri gibi çok çeşitli ek işlevler sağlamak için araç çubuklarını yapılandırmasına olanak tanır.</para>
+    <para
+>Gelişmiş kullanıcılar, asıl işlerinden dikkatleri dağılmadan, büro işlerini zahmetsizce gerçekleştirebilmenin avantajlarından büyük ölçüde yararlanırlar. Kullanışlı kısayol düğmeleri, kullanıcının klasör ağaçlarında kolayca gezinmesini, aynı anda birden fazla sekmeli klasör görünümü oluşturmasını ve tam işlevli geçmiş listelerine erişmesini sağlar. Verimli programlama ve düşük sistem yükü sayesinde &krusader;, belki de &plasma; veya diğer standartlara uygun &X-Window; pencere yöneticilerini kullanan bir bilgisayarın tüm potansiyeline erişmek için kullanılan en hızlı yanıt veren çok yönlü sistem yönetim aracıdır. Özellikle &plasma; için tasarlanmış ve onunla sıkı bir şekilde tümleştirilmiş olmasına rağmen &krusader;, &kde-frameworks; kitaplıkları kurulu olduğu sürece GNOME, MATE, Enlightenment, &windowmaker;, IceWM, XFCE vb. ile de aynı derecede iyi çalışır.</para>
+    <para
+>Yeni bir genişletilebilirlik özelliği, kullanıcıların özel gereksinimlerine uygun sınırsız sayıda ek özel işlevsellik eklenmesine olanak tanıyan esnek <link linkend="useractions"
+>Kullanıcı Eylemleri</link
+> ile sağlanmaktadır. Yakın gelecekte daha fazla modül geliştirmeyi ve böylece &krusader;’ı daha da geliştirmeyi planlıyoruz. Önerilen, onaylanan veya henüz tamamlanmamış olanlarla ilgili bilgilere <ulink url="https://invent.kde.org/utilities/krusader"
+>&krusader; GitLab sayfasından</ulink
+> ulaşabilirsiniz.</para>
+    <para
+>Bildiğimiz kadarıyla başka hiçbir program, bu kadar çok kullanışlı ve kolay erişilebilir özelliği bu kadar sezgisel ve basit bir biçimde sunmuyor. En önemlisi, biz dinliyor ve &krusader; projesinin amacına uygun olan iyi önerileri uyguluyoruz: Amacımız, &krusader;’ı piyasadaki en iyi dosya yöneticisi yapmak.</para>
+    <para
+>Umarız kullanırken keyif alırsınız — biz alıyoruz!</para>
+ </sect1>
+</chapter>

@@ -1,0 +1,703 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="useractions">
+  <title
+>Kullanıcı Eylemleri</title>
+  <indexterm>
+    <primary
+>Kullanıcı Eylemleri</primary>
+  </indexterm>
+  <!-- Thanks to Jonas Bar -->
+  <para
+>Eylemci ile Kullanıcı Eylemleri oluşturabilir, yapılandırabilir ve onları yönetebilirsiniz. Kimi genel eylemleri yapılandırmak için <link linkend="konfig-useractions"
+>Yapılandırıcı</link
+> kullanılabilir. Kullanıcı Eylemleri ile dosyalar üzerinde eylemler gerçekleştirebilir ve &krusader;’ın içsel işlevlerine doğrudan yer tutucular kullanarak parametrelerle erişebilirsiniz. Eylemler, &plasma;’nın eylem sistemine sorunsuzca tümleşirler; bu, standart “Araç Çubuğunu Düzenle” ve “Kısayolları Düzenle” iletişim kutularının kullanıcı eylemlerini göstereceği anlamına gelir. Kullanıcı Eylemleri, <filename
+> ~/.local/share/krusader/useractions.xml</filename
+> veya <filename
+>krusader/useraction.xml</filename
+> konumlarında depolanırlar. Bu konumları öğrenmek için <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> komutu kullanılabilir. Belgelendirmede birkaç <link linkend="useraction-xml"
+>örnek</link
+> içerilmektedir. Kullanıcı eylemlerini düzenlemek, içe aktarmak, dışa aktarmak için Eylemci kullanılabilir. Öntanımlı Kullanıcı Eylemleri, <filename
+> /usr/share/krusader/useraction-examples.xml</filename
+> konumunda depolanırlar. Kullanıcı Eylemleri, <quote
+>normal</quote
+> bir KAction’un çalıştığı her yerde çalışır. Eylemleri menü çubuğuna koymak bile olanaklıdır; ancak bunun için <filename
+>krusaderui.rc</filename
+> dosyasının düzenlenmesi gerekir. Birkaç örneği aşağıda bulabilirsiniz:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="useractions-menu"
+>Kullanıcı Eylemleri Menüsü</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="useractions"
+>Kullanıcı Menüsü</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="actions_toolbar"
+>Eylemler Araç Çubuğu</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Sağ Tık Menüleri</para>
+    </listitem>
+    <listitem>
+      <para
+>vb.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Eylem kodu yazmak ile haşır neşirseniz &krusader;’ın Kullanıcı Eylemleri aracını pek güçlü ve özelleştirilebilir olarak bulacaksınız.</para>
+  <tip>
+    <para
+>Birkaç kullanıcı eylemi öntanımlı olarak sağlanır. Yazdığınız kullanıcı eylemlerini lütfen <link linkend="help_krusader"
+>topluluk için yükleyin</link
+>; böylece tüm &krusader; topluluğu bunlardan yararlanabilir. Çok teşekkürler!</para>
+  </tip>
+  <figure id="screenshot-actionman" float="1">
+    <title
+>Eylemci</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="actionman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Eylemci</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>Temel olarak Kullanıcı Eylemleri, dış programları değişken parametrelerle çalıştırmak için bir yöntemdir. Örneğin, etkin paneldeki tüm seçili ögeleri, xmms’nin geçerli örneğinde kuyruğa sokmak için <command
+>xmms <option
+>--enqueue %aList("Selected")%</option
+></command
+> komutunu kullanabilirsiniz. Ek olarak, parametreler gerektiren &krusader; içsel özelliklerine de sınırlı erişim bulunur. Örneğin, <command
+>%aPanelSize("80")%</command
+>, etkin panelin genişliğini &krusader; ana penceresinin yüzde seksenine ayarlar. Yer tutucuların parametreleri başka yer tutucular da içerebileceğinden, betik yazımı olanaklıdır. </para>
+  <para>
+    <emphasis role="bold"
+>Kullanıcı Eylemlerini Yönetmek</emphasis>
+  </para>
+  <para
+>Yapılandırıcı’yı açın ve <menuchoice
+><guimenu
+>Kullanıcı Eylemleri</guimenu
+> <guimenuitem
+>Eylemci’yi Başlat</guimenuitem
+></menuchoice
+> yolunu izleyin. Buradan; yeni kullanıcı eylemleri ekleyebilir/içe aktarabilir ve var olanları düzenleyebilir, kaldırabilir ve dışa aktarabilirsiniz.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Eylem Ekle</guimenuitem
+>: Yeni bir eylem eklerseniz istediğiniz tüm parametreleri ve özellikleri girebileceğiniz boş bir giriş maskesi açılır. <guimenuitem
+>Uygula</guimenuitem
+> düğmesine bastığınızda eylem eklenir. Sonrasında, adını soldaki listede görebilirsiniz.</para>
+    </listitem>
+    <listitem>
+      <para
+>Kullanıcı Eylemlerini Düzenlemek: Soldaki kullanıcı eylemini seçin. Daha sonra özelliklerini düzenlemek istiyorsanız onu açın. Değişiklikler yalnızca <guimenuitem
+>Uygula</guimenuitem
+> düğmesine bastığınızda etkili olacaktır.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Kullanıcı Eylemlerini Kaldırmak</guimenuitem
+>: Soldan kullanıcı eylemini seçin ve <inlinemediaobject
+> <imageobject
+> <imagedata fileref="Icon-edit-delete.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> düğmesine basın.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Kullanıcı Eylemi İçe Aktarmak</guimenuitem
+>: Bazı eylemleri içe aktarırsanız bunlar otomatik olarak listenize eklenecektir. Ad çakışmaları varsa (adların benzersiz olması gerekir; çünkü bunlar &plasma; eylem sisteminin kimliğidir), bunları çözmeniz istenir. Bunun için soldaki listede yalnızca çakışmaların olduğu eylemler gösterilecektir. Artık onlara yeni adlar verebilir veya kaldırabilirsiniz.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Eylemi Dışa Aktar</guimenuitem
+>: Bir kullanıcı eylemini dışa aktarıyorsanız onu depolamak için bir dosya adı belirtmeniz gerekir. Dosya yoksa oluşturulacaktır. Dosya hâlihazırda kullanıcı eylemleri içeriyorsa dışa aktardığınız eylem bu dosyaya eklenecektir.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Tanımladığınız tüm işlemler artık kullanıcı menüsünde ve kısayolları değiştirmek ve araç çubuğunu yönetmek için kullanılan &plasma; iletişim kutularında gösterilecektir. Ayrıca, geçerli öge için kullanılabilen tüm işlemler sağ tık menüsünde de görünecektir.</para>
+  <para>
+    <emphasis role="bold"
+>Temel Özellikler</emphasis>
+  </para>
+  <para
+><guimenuitem
+>Tanımlayıcı</guimenuitem
+>, <guimenuitem
+>Başlık</guimenuitem
+> ve <guimenuitem
+>Komut Satırı</guimenuitem
+> her zaman zorunludur; diğer özelliklerin tümü isteğe bağlıdır.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Tanımlayıcı</guimenuitem
+>: Kullanıcı eyleminin benzersiz bir adı, &plasma; eylem sistemi içinde tanımlamak için kullanılır.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Simge düğmesi</guimenuitem
+>: Kullanıcı eyleminiz için olan simgeyi belirtir.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Kategori</guimenuitem
+>: Kategoriler, daha iyi bir genel görünüm için kullanılırlar. Bunlar, <guimenuitem
+>Kullanıcı Eylemleri</guimenuitem
+> menüsünde alt menü ögeleri olarak görünürler.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Başlık</guimenuitem
+>: Menülerde veya iletişim kutularında görüntülenen adı belirtir.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Araç ipucu</guimenuitem
+>: Kullanıcı eyleminiz için bir araç ipucu; fareyle üzerine geldiğinizde görüntülenir.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Açıklama</guimenuitem
+>: Kullanıcı eyleminin ne yaptığına dair bir açıklamayı belirtir. Bu ayrıca, kullanıcı eyleminizin üzerindeyken <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo
+> yaptığınızda görünen <guimenuitem
+>Bu Nedir?</guimenuitem
+> sisteminde de görünür.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Komut</guimenuitem
+>: Yürütülecek olan komutu belirtir. <guibutton
+>Ekle</guibutton
+> düğmesini kullanarak bir yer tutucu ekleyebilirsiniz.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Çalışma dizini</guimenuitem
+>: Komutun yürütüleceği komutun içinde bulunacağı çalışma klasörünü belirtir.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Yürütme kipi</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Normal</guimenuitem
+>: Normal yürütme kipi</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Uçbirimde çalıştır</guimenuitem
+>: Komutu uçbirimde çalıştırır.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Gömülü uçbirim öykünücüsünde çalıştır</guimenuitem
+>: Komutu gömülü uçbirimde çalıştırır.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Çıktıyı biriktir</guimenuitem
+>: Yürütülen programın çıktısını bir grafik arayüz pencerede toplar.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Standart hatayı ayrı tut</guimenuitem
+>: <quote
+>Çıktıyı biriktir</quote
+> seçeneği etkinken kullanıldığında, stdout ve stderr ayrı ayrı toplanır.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Komutun kabul ettikleri</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Yalnızca yerel dosyalar (&URL; yok)</guimenuitem
+>: Yer tutucuya yalnızca yerel adresleri döndürmesi gerektiğini söyler.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>&URL;’ler (uzak ve yerel)</guimenuitem
+>: Yer tutucuya, &URL;’ler döndürmesi gerektiğini söyler.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <!--    Not yet implemented, but will be after 1.50 stable is released
+        <listitem
+><para
+><guimenuitem
+>On multiple selection</guimenuitem
+>:  </para>
+        <itemizedlist>
+   <listitem
+><para
+><guimenuitem
+>Separate call for each file</guimenuitem
+>: executes the command for each selected file.
+             </para
+></listitem>
+         </itemizedlist>
+      </listitem
+> -->
+    <listitem>
+      <para
+><guimenuitem
+>Öntanımlı kısayol</guimenuitem
+>: Kullanıcı eylemi için öntanımlı bir kısayol yapılandırır.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Etkin</guimenuitem
+>: İşaretlenirse kullanıcı eylemi, <link linkend="useractions"
+>Kullanıcı Menüsü</link
+>’nde gösterilir; aksi takdirde gizli tutulur.</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>Komut satırı sözdizimi</emphasis>
+  </para>
+  <para
+>Temel olarak, komut satırına yazdığınız her şey yürütülür (eğer <quote
+>ls -l</quote
+> yazarsanız <quote
+>ls -l</quote
+> yürütülür). &krusader;’dan bir karakter dizisi alma olanağınız vardır; panelin var olan durumunu temsil eder. Bu, yer tutucular kullanılarak yapılır. Yer tutucu, yüzde işaretiyle (“%”) başlar ve ardından bir panel göstergesi gelir (aktif için “a”, diğeri için “o”, sol panel için “l” ve sağ panel için “r”. Yer tutucunun çalışmak için bir panele gereksinimi yoksa bunu bir alt çizgiyle (“_”) belirtmeniz gerekir. Daha sonra bazı parametreleri tırnak içine alabilen yer tutucunun adı gelir (aşağıdaki listeye bakın). Son olarak yine yüzde işareti gelir.</para>
+  <para
+>Bu kulağa çok karmaşık geliyor, o yüzden bir örnek yapalım: “%aList("Selected")%”, etkin paneldeki seçili tüm ögelerin listesiyle değiştirilir. Yani “xmms --enqueue %aList("All", " ", "", "*.mp3")%” gibi bir komut, geçerli paneldeki tüm .mp3’lerin tek bir boşlukla ayrılmış bir listesiyle xmms’yi çalıştıracaktır.</para>
+  <para
+>Şu anda, bu yer tutucular gerçeklenmiştir:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><userinput
+>Path</userinput
+> — panel yoluyla değiştirilir</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Kendiliğinden kaçış boşlukları · Öntanımlı: Evet</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Count</userinput
+> — &lt;ilk parametrenin&gt; sayısıyla değiştirilir</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Hangi ögeler: Ya <quote
+>All</quote
+> ya <quote
+>Selected</quote
+> ya <quote
+>Files</quote
+> ya da <quote
+>Dirs</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Filter</userinput
+> — panelin süzgeç maskesiyle değiştirilir</para>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Current</userinput
+> — geçerli ögeyle değiştirilir</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Geçerli yolu atla · Öntanımlı: Hayır</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Kendiliğinden kaçış boşlukları · Öntanımlı: Evet</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>List</userinput
+> — &lt;tüm ilk parametrelerin listesiyle değiştirilir&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Hangi ögeler: Ya <quote
+>All</quote
+> ya <quote
+>Selected</quote
+> ya <quote
+>Files</quote
+> ya da <quote
+>Dirs</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Ögeler arasındaki ayırıcı · Öntanımlı: <quote
+>&nbsp;</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Geçerli yolu atla · Öntanımlı: Hayır</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Süzgeç maskesi (<quote
+>Selected</quote
+> dışındaki tümü için)· Öntanımlı: *</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Kendiliğinden kaçış boşlukları · Öntanımlı: Evet</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Select</userinput
+> — paneldeki seçimi manipüle eder</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Süzgeç maskesi</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Hangi şekilde manipüle edileceği; ya <quote
+>Set</quote
+> ya <quote
+>Add</quote
+> ya da <quote
+>Remove</quote
+> · Öntanımlı: <quote
+>Set</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Goto</userinput
+> — panelin yolunu &lt;ilk parametreye&gt; değiştirir</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Bir göreceli veya mutlak yol veya bir &URL;</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Konumu yeni bir sekmede aç· Öntanımlı: Hayır</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+> — kullanıcıdan az biraz metin ister ve yanıtla değiştirilir</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Soru</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Öntanımlı yanıt</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Soru kutusu için alt yazı</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Clipboard</userinput
+> — panoyu manipüle eder</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Panoya gitmesi gereken metin (burada <quote
+>%aCurrent%</quote
+> kullanmak isteyebilirsiniz)</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Bu ayırıcıyla metni, panonun geçerli içeriğine iliştirin</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Copy</userinput
+> — dosya kopyalar; yerel, tez yedekler için yararlıdır</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Neyin kopyalanması gerektiği</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre: Nereye kopyalanması gerektiği</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Sync</userinput
+> — verilen bir profille Eşzamanlayıcı bileşenini açar</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Eşzamanlayıcı için bir profil</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>NewSearch</userinput
+> — arama penceresini belirli bir profille açar</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Arama modülü için bir profil</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Profile</userinput
+> — verilen bir profili yükler</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Bir panel profili</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Each</userinput
+> — komut satırını bir listeye böler; bu komutlar bir birinin ardına yürütülür</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Bir liste ögesi (tümü, tüm dosyalar, tüm dizinler, tüm seçili)</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Move</userinput
+> — kaynaktan hedefe kopyalar</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Bir kaynak</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre: Bir hedef konum</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>PanelSize</userinput
+> — iki panel arasındaki oranı değiştirir</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): Bir tamsayı değer; yani, 80, etkin panelin &krusader;’ın genişliğinin (dikey kipteyken yükseklik) yüzde seksenini kullanmasını sağlar; parametreyi boş bırakmak yüzde ellisi anlamına gelir.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+> — yürütmeyi iptal eder</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre (isteğe bağlı): İptal sorusu için bir dizi</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ListFile</userinput
+> — bir ögeler listesi içeren bir geçici dosyanın adıyla/yoluyla değiştirilir</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Yol veya dosya adı</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ColSort</userinput
+> — belirli bir panelin sütunundaki sıralamayı ayarlar</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Sütun: <quote
+>Name</quote
+>, <quote
+>Ext</quote
+>, <quote
+>Type</quote
+>, <quote
+>Size</quote
+>, <quote
+>Modified</quote
+>, <quote
+>Perms</quote
+>, <quote
+>rwx</quote
+>, <quote
+>Owner</quote
+> veya <quote
+>Group</quote
+> arasından biri olabilir.</para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre: Sıralama sekansı: <quote
+>Toggle</quote
+>, <quote
+>Asc</quote
+> veya <quote
+>Desc</quote
+> arasından biri olabilir.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>View</userinput
+> — görünüm kipini ayarlar</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Parametre: Görünüm kipi: Ya <quote
+>generic</quote
+> ya <quote
+>text</quote
+> ya da <quote
+>hex</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Parametre: Pencere kipi: Ya <quote
+>tab</quote
+> ya da <quote
+>window</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+  </itemizedlist>
+  <para
+>Yer tutucu eklemek için grafik arayüz tabanlı bir yardımcı sağlanmıştır. Path, Current ve List bünyesindeki boşluklar öntanımlı olarak kendiliğinden kaçış karakteriyle işlenir. Bilmeniz gereken bir önemli nokta daha var: &krusader;’ın içsel işlevleriyle etkileşim kuran tüm yer tutucular genişletme zamanında (yani yer tutucular değiştirildiğinde doğrudan) çağrılır. Dış programlar ise yürütme zamanında (yani tüm yer tutucular değiştirildikten sonra) çağrılır.</para>
+  <para>
+    <emphasis role="bold"
+>Gelişmiş Özellikler</emphasis>
+  </para>
+  <para
+>Burada komutunuzun nerede görüneceğini (sağ tıklama menüsü için) yapılandırabilirsiniz. Ayrıca, yürütülecek komutu değiştirebilir ve ayrı olarak onaylayabilirsiniz. Komutun hangi kullanıcı altında yürütüleceğini de belirleyebilirsiniz.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Eylemin bir protokol, yol, &MIME; türü veya dosya adı için geçerli olup olmadığını yapılandırır.</para>
+    </listitem>
+    <listitem>
+      <para
+>Yürütmeden önce komut satırının ayarlanması sağlanır.</para>
+    </listitem>
+    <listitem>
+      <para
+>Yürütme için farklı bir kullanıcı belirleyin (bu, &krusader;’ın içsel işlevlerinde herhangi bir etkiye neden olmaz).</para>
+    </listitem>
+  </itemizedlist>
+</sect1>

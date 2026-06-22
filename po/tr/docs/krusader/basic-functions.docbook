@@ -1,0 +1,536 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="basic-functions">
+  <title
+>Temel İşlevler</title>
+  <sect1 id="controls">
+    <title
+>Denetimler</title>
+    <sect2 id="control-general">
+      <title
+>Genel</title>
+      <para
+>Bu, görece kısa; ancak &krusader;’ı denetlemenin önemli bir bölümünü anlatan bir fasıldır. Bu bölüm, iki nedenden dolayı tüm düğme kombinasyonlarını açıklamaya çalışmaz: <orderedlist numeration="arabic"
+> <listitem
+> <para
+>Onlardan çok fazla vardır</para
+> </listitem
+> <listitem
+> <para
+>&krusader; eylemlerinin çoğu hâlihazırda ilgili <link linkend="konfig-panel"
+>Yapılandırıcı paneli sayfasından</link
+> yapılandırılabilir</para
+> </listitem
+> </orderedlist
+>Biz yalnızca öntanımlı yapılandırma ile gelen en önemli klavye kısayollarını aktaracağız; ancak <link linkend="key_bindings"
+>düğme bağıntılarının</link
+> çoğunun yapılandırılabilir olduğunu aklınızda tutun. Belirli bir komutu çok kullandığınızı farkettiyseniz ve bu komut için olan kısayolu öğrenmek istiyorsanız <link linkend="key_bindings"
+>Kısayolları Yapılandır</link
+> penceresine (<menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Kısayolları Yapılandır…</guimenuitem
+></menuchoice
+>) bir bakın.</para>
+    </sect2>
+    <sect2 id="moving-around">
+      <title
+>Ortalıkta Dolaşmak</title>
+      <para
+>“Ortalıkta Dolaşmak” derken, klavye ve fare odağının &krusader; <link linkend="mainwindow"
+>ana penceresinin</link
+> farklı bölümleri arasında aktarılmasını kastediyoruz. Odak beş yerden birinde olabilir: Sol veya Sağ Panel, Menü Çubuğu, Komut Satırı veya Uçbirim Öykünücüzü. Odaklanan panele Etkin Panel denir. Etkin Panel, diğer panel odağı alana kadar etkin kalır (örneğin: Sol Panel etkinse ve komut satırına tıkladıysanız Sol Panel Etkin Panel olarak kalır). Hangi panelin etkin olduğunu bilerek değiştirmeniz gerekir.</para>
+      <para
+>Odak noktasını belirli bir panele kaydırmanın en yaygın yolu, fareyi kullanarak o panele tıklamaktır. Ancak şunların farkında olmalısınız: <itemizedlist>
+        <listitem>
+          <para
+>Araç çubuğuna, Fonksiyon düğmelerine veya durum çubuğuna tıklamak odağı <emphasis
+>değiştirmez</emphasis
+>.</para>
+        </listitem>
+        <!--
+   Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
+   <listitem>
+     <para
+>The display part of the Quick View Panel does not accept clicks so you should click on the
+           Location Toolbar of this panel if you want it to have focus.</para>
+   </listitem>
+-->
+        <listitem>
+          <para
+>Komut satırındaki <guibutton
+>Uçbirim Kipinde Çalıştır</guibutton
+> düğmesine basmak odağı aktarmaz, bu nedenle giriş satırının içine tıklamanız gerekir.</para>
+        </listitem>
+        <listitem>
+          <para
+>Bir menüyü seçtiğinizde, Menü Çubuğu odak noktasına gelir. Bir komut seçene kadar odak noktası kalır; komut seçildikten sonra odak noktası önceki sahibine geri döner.</para>
+        </listitem>
+      </itemizedlist
+></para>
+      <para
+>Elbette, klavyeyi kullanarak odak noktasını değiştirmenin yolları vardır: <itemizedlist>
+        <listitem>
+          <para
+>&Tab; düğmesi, panellerden birine odaklanıldığında paneller arasında geçiş yapar veya Menü Çubuğu etkinse menüdeki tüm komutlar arasında geçiş yapar.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; &Down;</keycombo
+> kombinasyonu sizi etkin panelden komut satırına veya uçbirim öykünücüsüne getirir ve <keycombo action="simul"
+>&Ctrl; &Up;</keycombo
+> sizi komut satırından etkin panele geri götürür.</para>
+        </listitem>
+        <listitem>
+          <para
+>&Esc; düğmesi, menü çubuğunun odağı, eğer varsa önceki etkin panele geri döndürmesini sağlar.</para>
+        </listitem>
+        <listitem>
+          <para
+>Uçbirim öykünücüsü içindeyken, etkin bir panele geçmek için &Tab; düğmesini veya fareyi kullanabilirsiniz.</para>
+        </listitem>
+        <listitem>
+          <para
+>Menü çubuğundaki <keycombo action="simul"
+>&Alt; <keycap
+>Altı Çizili Harf</keycap
+></keycombo
+> kombinasyonunu kullanmak o menüyü açar (bu, &krusader;’ın eylemleri tarafından kullanılan <quote
+>ayrılmış düğmelerden</quote
+> değilse).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="selecting-files">
+      <title
+>Seçim Yapmak</title>
+      <note>
+        <para
+>&krusader; 4 <link linkend="selection_modes"
+>Seçim Kipi</link
+> sunar; <link linkend="quickselect"
+>Tez Seçim Çubuğu</link
+> burada açıklanmaz, yalnızca &krusader;’ın seçim kipi açıklanır.</para>
+      </note>
+      <para
+>&krusader;’dan en iyi şekilde yararlanmak için seçim yapma becerisinde ustalaşmanız gerekir. Ağaç Paneli aynı anda yalnızca bir klasör seçmenize izin verdiğinden, bu paragraf esas olarak liste panelinde dosyaların nasıl seçileceğini açıklamaktadır.</para>
+      <para
+>İmleci hareket ettirmek kolaydır. Bir dosyaya veya klasöre (burada <quote
+>ögeler</quote
+> yani dosyalar ve klasörler olarak anılacaktır) sol tıklamak, onu seçecektir. İşte &krusader;’ı daha da kolay kullanmanızı sağlayacak bazı faydalı ipuçları (&krusader;’ın fare ile seçim kipini kullandığınızı varsayarsak): <itemizedlist>
+        <listitem>
+          <para
+>&Space; ve &Ins; düğmeleri, diğer dosya/klasörlerin seçimini etkilemeden imlecin altındaki dosyanın seçimini değiştirir; imleç bir konum aşağı iner.</para>
+        </listitem>
+        <listitem>
+          <para
+>Bir dosyaya <keycap
+>sol</keycap
+> tıklamak, önceden seçilmiş tüm dosyaları seçer veya seçimlerini kaldırır.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>Sol Tık</keycap
+></keycombo
+>, diğer dosyaların/klasörlerin seçimlerini etkilemeden imlecin altındaki dosyayı seçer/seçimini kaldırır.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; <keycap
+>Sol Tık</keycap
+></keycombo
+>, önceki ve şimdiki imleç konumu arasındaki tüm ögeleri seçer.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift;&Home;</keycombo
+>, imlecin üstündeki her şeyi seçer (seçililerde imlecin altındaki her şeyin seçimlerini kaldırır).</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift;&End;</keycombo
+>, imlecin altındaki her şeyi seçer (seçililerde imlecin üstündeki her şeyin seçimlerini kaldırır).</para>
+        </listitem>
+        <listitem>
+          <para
+><quote
+>..</quote
+> girdisi seçilebilir değildir.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="edit-menu"
+>Düzen</link
+> menüsü, dosyalarınızı seçmenin birden çok yolunu sunar.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="executing_commands">
+      <title
+>Komutları Yürütmek</title>
+      <para
+>Bu kısım için söylenecek pek fazla şey yoktur; tek yapmanız gereken birkaç dosya seçmek (seçmezseniz &krusader; odağa sahip olan dosyalar/klasörler ile çalışacaktır) ve menü çubuğundan bir <link linkend="menu-commands"
+>Komut</link
+> seçmek veya bir klavye kısayolu kullanmaktır (veya sağ tık menüsünü); seçili komut yürütülecektir. Ayrıca <link linkend="executing_files"
+>Dosyaları Yürütmek</link
+> bölümüne de bakın.</para>
+    </sect2>
+    <sect2 id="quicksearch">
+      <title
+>Tez Arama</title>
+      <!-- Thanks to Heiner Eichmann -->
+      <para
+>Bu özellik, Etkin Liste Paneli’nde dosya adını tez arayacaktır.</para>
+      <para
+>Type <keycap
+>foo</keycap
+>(one character) to do a quick search in the Active List Panel for a file beginning with <quote
+>foo</quote
+>. A small quick search dialog box will open below the Active List Panel. Type the first few characters of the desired file name (more than one character allowed), the cursor will jump to that filename (if it exists), &eg; type <quote
+>ab</quote
+> to search for a file which begins with <quote
+>ab</quote
+>. The &Up;/&Down; keys will jump to the next or previous match. &Esc; will close the quick search line. The cursor will stay on the last file found. The Quicksearch supports <ulink url="https://en.wikipedia.org/wiki/Regular_expression"
+>regular expressions</ulink
+> for searching files.</para>
+      <note>
+        <para
+><keycombo action="simul"
+>&Alt; <keycap
+>foo</keycap
+></keycombo
+> kısayoluna basarsanız yapılandırılmış düğme bağıntısı çağrılır. Yoksa kalan <keycap
+>foo</keycap
+> harfleri tez arama yapmak için kullanılır.</para>
+      </note>
+      <para
+><link linkend="key_bindings"
+>Kısayolları Yapılandır</link
+> penceresini kullanın (<menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Kısayolları Yapılandır…</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickfilter">
+      <title
+>Tez Süzme</title>
+      <para
+>Bu özellik, etkin paneldeki dosya listesi için tez bir süzme işlemi gerçekleştirecektir.</para>
+      <para
+>Tez Süzme çubuğunu açmak için <keycombo
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+> kısayolunu kullanın. Etkin panelde adlarında <quote
+>foo</quote
+> olmayan tüm dosyaları süzmek için <keycap
+>foo</keycap
+> (bir karakter) yazın. Süzme için joker karakterler kullanabilirsiniz; örneğin, adlarında <quote
+>a</quote
+> ve <quote
+>b</quote
+> olan tüm dosyaları süzmek için <quote
+>a*b</quote
+> yazın. Tez Süzme, Tez Arama’nın <link linkend="konfig-panel-general"
+>BÜYÜK/küçük harf duyarlılığı</link
+> ayarlarını kullanır.</para>
+      <para
+>Tez Süzme kipinde &Enter; düğmesine basmak odağı panele ayarlar; panel veya Tez Süzme odaklandığında &Esc; düğmesi Tez Süzme’yi kapatır. </para>
+      <para
+>Tez Süzme’nin öntanımlı kısayolunu değiştirmek için <link linkend="key_bindings"
+>Kısayolları Yapılandır</link
+> penceresini kullanın (<menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Kısayolları Yapılandır…</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickselect">
+      <title
+>Tez Seçme</title>
+      <para
+>Bu özellik, Etkin Panel’deki dosya listesi için tez seçim işlemi yapacaktır.</para>
+      <para
+>Tez Seçme çubuğunu açmak için <keycombo
+>&Ctrl;&Shift;<keycap
+>S</keycap
+></keycombo
+> kısayolunu kullanın. Etkin panelde adlarında <quote
+>foo</quote
+> olmayan tüm dosyaları süzmek için <keycap
+>foo</keycap
+> (bir karakter) yazın. Süzme için joker karakterler kullanabilirsiniz; örneğin, adlarında <quote
+>a</quote
+> ve <quote
+>b</quote
+> olan tüm dosyaları süzmek için <quote
+>a*b</quote
+> yazın. Tez Seçme, Tez Arama’nın <link linkend="konfig-panel-general"
+>BÜYÜK/küçük harf duyarlılığı</link
+> ayarlarını kullanır.</para>
+      <para
+>Tez Seçme kipinde &Enter; düğmesine basmak odağı panele ayarlar; panel veya Tez Seçme odaklandığında &Esc; düğmesi Tez Seçme’yi kapatır. </para>
+      <para
+>Tez Seçme’nin öntanımlı kısayolunu değiştirmek için <link linkend="key_bindings"
+>Kısayolları Yapılandır</link
+> penceresini kullanın (<menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Kısayolları Yapılandır…</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="context-menu">
+      <title
+>Bağlam Menüsü</title>
+      <para
+>&krusader; fareyle hızlı işlemler yapmanıza olanak tanıyan birçok bağlam menüsüne sahiptir; genellikle sağ tıklama bağlam menüsünü açar (<link linkend="selection_modes"
+>Seçim Kipleri</link
+> ayarlarınıza bağlı olarak). Bu liste, en önemli bağlam menülerine genel bir bakış sunmaktadır. Kullanılabilir komutları keşfetmek için bunları kullanın. <itemizedlist>
+        <listitem>
+          <para
+><link linkend="mainwindow"
+>Ana Araç Çubuğu</link
+> (yönelim, metin konumu, simge büyüklüğü)</para>
+        </listitem>
+        <listitem>
+          <para
+>Bir dosya veya klasör üzerinde <link linkend="list_panel"
+>Liste Paneli</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="cmdline"
+>Komut Satırı</link
+> (geri al, yapıştır, metin tamamlama, …)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="termemu"
+>Uçbirim Öykünücüsü</link
+> (sinyal gönder, yazıtipi, geçmiş, …)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="folder-tabs"
+>Klasör Sekmeleri</link
+> (yeni, çoğalt, kapat)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="krusearcher"
+>KruSearcher</link
+> — Arama sonuçları dosya listesi (<keycap
+>F3</keycap
+> Görüntüle, <keycap
+>F4</keycap
+> Düzenle)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="mount-man"
+>Bağlamacı</link
+> (bağlantıyı kes, biçimlendir, …)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="synchronizer"
+>Klasörleri Eşzamanla</link
+> — Dosya listesi</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="useractions"
+>Kullanıcı Eylemleri</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+>&krusader;’da &konqueror; sağ tık eylemleri gösterilir.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="list_panel"
+>Sütun Başlıkları</link
+>’nı Göster/Gizle</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="bookman"
+>Yer İmleri</link
+> — Kalıcı yer imlerini etkinleştir/devre dışı bırak</para>
+        </listitem>
+        <listitem>
+          <para
+>…</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="basic">
+    <title
+>Temel Dosya Yönetimi</title>
+    <sect2 id="executing_files">
+      <title
+>Dosyaları Yürütmek</title>
+      <para
+>Yalnızca etkin liste panelindeki dosyaları yürütebilirsiniz. Bir dosyayı yürütmek için liste imleci altındayken üzerine (çift) tıklayın veya &Enter; düğmesine basın. &krusader; dosyayı bu dosya türü için öntanımlı uygulamada (resim, metin dosyası, …) açacak veya dosyayı çalıştıracaktır (betik, ikili dosya, …). Dosyayı açmak için başka bir uygulama kullanmak istiyorsanız dosyaya &RMB; ile tıklayın ve daha fazla seçenek sunan <guisubmenu
+>Birlikte Aç</guisubmenu
+> alt menüsüne gidin. &krusader;, &krusader; paneli içinde açılan ve dış bir uygulamada açılmayan arşivler dışında, tüm dosya türleri için &plasma; öntanımlı dosya yöneticisiyle uyumludur. Ayrıntılar için Yapılandırıcı içindeki <link linkend="konfig-archives"
+>arşivler sayfasına</link
+> bakın.</para>
+    </sect2>
+    <sect2 id="copying">
+      <title
+>Kopyalamak ve Taşımak</title>
+      <figure id="screenshot-copyjob" float="1">
+        <title
+>Kopyalama İletişim Kutusu</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="copyjob.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>Kopyalama İletişim Kutusu</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>Dosyaları/klasörleri kopyalamak veya taşımak için bunları seçin ve kopyalamak için F5, taşımak içinse F6 düğmesine basın. &krusader; değişiklik zamanını korumaya çalışır. Bir klasör kopyalandığında, sahibi klasörü kopyalayan kullanıcıya, grubu ise kullanıcının öntanımlı grubuna değiştirilir. Bir dosya kopyalandığında, sahibi dosyayı kopyalayan kullanıcıya, grubu ise kullanıcının öntanımlı grubuna değiştirilir ve izinler korunur. Dosya veya klasör taşınırken sahip, grup ve izinler korunur. Dosyaları/klasörleri kopyalarken veya taşırken bir iletişim kutusu görünür ve işlemin hedef konumunu seçmenize olanak tanır. Öntanımlı hedef, diğer panelde göz atılan klasördür. Kısmî bir URL girerseniz &krusader; geçerli panel klasörünü URL tabanı olarak kullanır.</para>
+    </sect2>
+    <sect2 id="queue">
+      <title
+>Kuyruk Yöneticisi</title
+> 
+      <para
+>Kopyalama, taşıma, paketleme ve paket açma işlemleri kuyruğa alınabilir. Kopyala veya taşı seçeneğini seçtikten sonra, işlemi gerçekleştirmek için <keycap
+>F2</keycap
+> düğmesine basın. Paketleme veya paket açma seçeneğini seçtikten sonra, işlemi gerçekleştirmek için <keycap
+>F2</keycap
+> düğmesine basın. Veya doğrudan kısayollar kullanın: Kuyruğa alarak kopyalama <keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo
+>, kuyruğa alarak taşıma <keycombo action="simul"
+>&Shift;<keycap
+>F6</keycap
+></keycombo
+> gibi. Kuyruk yöneticisi, işlemleri tek tek gerçekleştirir. Örneğin, yavaş çalışan bir USB belleğiniz varsa ve üzerine 40 dosya kopyalamak istiyorsanız 40 dosyayı paralel olarak kopyalamaya başlamak yerine tek tek kopyalamak çok daha iyidir. Bu nedenle kuyruğa almak önemlidir. 40 dosyayı paralel olarak paketlerseniz/paketini açarsanız bilgisayarınızı aşırı yüklersiniz; ancak bunları bir kuyruğa eklemek çok daha kullanışlıdır. </para>
+      <para
+><menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>İş Kuyruğu Kipi</guimenuitem
+></menuchoice
+> menü ögesini kullanarak <link linkend="job-queue-mode"
+>Kuyruk Yöneticisi</link
+> kipine geçiş yapabilirsiniz. </para>
+    </sect2>
+    <sect2 id="deleting">
+      <title
+>Silmek — &plasma; Çöp Kutusu’na Taşımak</title>
+      <para
+>Dosyaları/klasörleri silmek, onları seçip <keycap
+>F8</keycap
+> veya <keycap
+>Sil</keycap
+> düğmesine basılarak yapılır. <link linkend="konfig-general"
+>Öntanımlı</link
+> olarak, &plasma;’nın çöp kutusuna taşınır. &plasma; çöp kutusunu, <link linkend="main_toolbar"
+>Ana Araç Çubuğu</link
+> üzerindeki çöp kutusu simgesine tıklayarak veya <filename
+>trash:/</filename
+> KIO işçisini kullanarak açabilirsiniz. Fiziksel olarak &plasma; Çöp Kutusu, <filename
+>~/.local/share/Trash/</filename
+> konumunda veya <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> komutu kullanılarak görülebilen kullanıcının ana klasöründeki <filename
+>Çöp Kutusu</filename
+> alt klasöründe bulunur. <keycombo action="simul"
+>&Ctrl; <keycap
+>Sil</keycap
+></keycombo
+>, dosyayı kalıcı olarak siler. Bir iletişim kutusu onayınızı ister ve boş olmayan klasörleri silerken uyarır. Elbette, yalnızca işletim sistemi tarafından izin verilen işlemleri yapabilirsiniz; aksi takdirde ikaz edilirsiniz. Onay iletişim kutularını görmek istemiyorsanız onları <link linkend="konfig-advanced"
+>Yapılandırıcı Gelişmiş sayfasından</link
+> devre dışı bırakabilirsiniz. <link linkend="konfig-general"
+>Yapılandırıcı Genel sayfasından</link
+> dosyaların kalıcı olarak silinmesi şeklinde yapılandırdıysanız <keycap
+>F8</keycap
+> veya <keycap
+>Sil</keycap
+> düğmesi dosyaları/klasörleri kalıcı olarak silecek, <keycombo action="simul"
+>&Ctrl; <keycap
+>Sil</keycap
+></keycombo
+> düğme kombinasyonu ise onları &plasma;’nın Çöp Kutusu’na taşıyacaktır.</para>
+    </sect2>
+    <sect2 id="shred">
+      <title
+>Dosyaları Doğramak</title>
+      <para
+>Doğrama özelliği &kde; 4’ten (ve dolayısıyla &kde; 4 için &krusader;-2’den) kaldırıldı. Bunun ana nedeni muhtemelen doğrama işleminin dosya sistemine bağlı olması ve dosyanın 100 kez üzerine yazsanız bile, diskten tamamen silineceğinin kesin olmamasıdır. &kgpg; gönderilerinden alıntı: <quote
+>Doğrama özelliği &kde; kitaplıklarından kaldırıldı. &kgpg; artık bu özelliği desteklemeyecek. Çağdaş dosya sistemleri günlük kaydı kullanıyor. Bu nedenle doğrama özelliği dosya sisteminde uygulanmalıdır, &kgpg;’de değil.</quote
+> Ancak dosya sisteminiz için uygun bir doğrama <link linkend="useractions"
+>Kullanıcı Eylemi</link
+> kullanabilirsiniz. Ancak silinen bir dosyayı birinin okuyamayacağından %100 emin olmak istiyorsanız, sabit disk donanımınızı yok etmeniz gerektiğini unutmayın… </para>
+    </sect2>
+    <sect2 id="renaming">
+      <title
+>Dosyaları Yeniden Adlandırmak, Dizinler Oluşturmak ve Bağlantı Kullanımı</title>
+      <para
+>İmlecin altındaki dosyayı <keycap
+>F2</keycap
+> düğmesiyle veya iki adet tek fare tıklamasıyla yeniden adlandırabilirsiniz. Yalnızca dosya adının değiştirilmesi gerekiyorsa ve uzantının aynı kalması gerekiyorsa bunu <link linkend="konfig-general-atomic"
+>Yapılandırıcı Genel sayfasından</link
+> yapılandırabilirsiniz. <guilabel
+>Yeni Bir Klasör</guilabel
+> eylemi <keycap
+>F7</keycap
+> düğmesiyle yapılabilir. Normal bir dosyanın üzerine sağ tıklamak <menuchoice
+><guisubmenu
+>Bağlantı Kullanımı</guisubmenu
+> <guimenuitem
+>Yeni Sembolik Bağlantı…</guimenuitem
+></menuchoice
+>. Bir iletişim kutusu, bir sembolik bağlantı adını girmeniz için açılır. Bu sembolik bağlantı, üzerinde sağ tıkladığınız dosyaya/klasöre işaret eder. Üzerinde sağ tıkladığınız öge bir sembolik bağlantıysa ayrıca bağlantı hedefini değiştirmenize olanak tanıyan <menuchoice
+><guisubmenu
+>Bağlantı Kullanımı</guisubmenu
+> <guimenuitem
+>Bağlantıyı Yeniden Yönlendir</guimenuitem
+></menuchoice
+> seçeneğini kullanabilirsiniz.</para>
+    </sect2>
+    <sect2 id="viewing">
+      <title
+>Dosyaları Görüntülemek ve Düzenlemek</title>
+      <para
+><link linkend="krviewer"
+>KrViewer</link
+> için ayrı bir faslımız vardır.</para>
+    </sect2>
+  </sect1
+>&archives; </chapter>

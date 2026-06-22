@@ -1,0 +1,2583 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="konfigurator">
+  <title
+>Yapılandırıcı: &krusader;’in Yapılandırma Merkezi</title>
+  <indexterm>
+    <primary
+>Yapılandır</primary>
+    <secondary
+>Krusader</secondary>
+  </indexterm>
+  <para
+>Yapılandırıcı, &krusader;’ın yapılandırma merkezidir. &krusader;’ı kullanırken <menuchoice
+> <guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>&krusader; Uygulamasını Yapılandır…</guimenuitem
+> </menuchoice
+> yolunu izleyin ve bu, Yapılandırıcı’yı başlatacaktır. Buradan, &krusader;’ın nasıl çalıştığını düzenleyebilir ve kendi gereksinimlerinize göre özelleştirebilirsiniz. Herhangi bir anda <guibutton
+>Uygula</guibutton
+> düğmesine basmak değişiklikleri uygular; <guibutton
+>Kapat</guibutton
+> düğmesi ise Yapılandırıcı’yı kapatır. <guibutton
+>Öntanımlılar</guibutton
+>, &krusader;’ı <quote
+>fabrika</quote
+> ayarlarına geri döndürür. Yapılandırıcı, her birinin o sayfa ile ilgili ayarları gösteren sayfalara ayrılmıştır. Arayüze yaptığınız değişikliklerin uygulanabilmesi için &krusader;’ı yeniden başlatmanız gerekir.</para>
+
+<note>
+ <para
+>&krusader;-1.80.0 sürümünden bu yana, <link linkend="key_bindings"
+>Düğme Bağıntıları</link
+>, <link linkend="mainwindow"
+>Ana Araç Çubuğu</link
+> ve <link linkend="actions_toolbar"
+>Eylemler Araç Çubuğu</link
+> kendi özel yapılandırma pencerelerine kavuşmuştur ve artık Yapılandırıcı’nın bir parçası değillerdir. Onları, <link linkend="settings-menu"
+><guimenu
+>Ayarlar</guimenu
+> menüsünden</link
+> özelleştirebilirsiniz.</para>
+</note>
+
+  <sect1 id="konfig-startup">
+    <title
+>Başlangıç</title>
+    <figure id="screenshot-kgstartup" float="1">
+      <title
+>Başlangıç Yapılandırması</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="kgstartup.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Başlangıç Yapılandırması</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Başlangıç ​​sayfası, &krusader;’ın başlatıldığında nasıl görüneceğini (ve çalışacağını) belirler. İki ana bölümden oluşur:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Genel</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Açılış profili</guilabel
+>: Başlangıçta, seçili <link linkend="panel_profiles"
+>panel profilini</link
+> seçer. <guilabel
+>&lt;Son oturum&gt;</guilabel
+>, özel bir panel profilidir; &krusader; kapanışında kendiliğinden kaydedilir.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Açılış ekranını göster</guilabel
+>: &krusader; başlatılırken bir açılış görseli görüntüler.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Tekil örnek kipi</guilabel
+>: Yalnızca bir &krusader; örneğinin çalışmasına olanak tanır.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Yedek simge teması</guilabel
+>: &krusader; için yedek bir simge teması yapılandırmanıza olanak tanır. Simge sistem simge temasında bulunmadığında, bu tema yedek olarak kullanılacaktır. Yedek tema simgeyi içermiyorsa Esinti veya Oksijen temalarından herhangi biri varsa bu tema kullanılacaktır.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Kullanıcı Arayüzü</guilabel>
+        </term>
+        <listitem>
+          <para
+>Uygulama başlatıldıktan sonra kullanıcı arayüzünün hangi bölümlerinin görünür olacağını belirler. <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Son konumu, boyut ve panel ayarlarını kaydet</guilabel
+>: Başlatıldığında, &krusader;,	 en son kapatıldığında sahip olduğu boyuta geri döner. &krusader; ayrıca ekranda aynı konumda görünür ve paneller eskisi gibi sıralanmış ve hizalanmıştır. Bu seçenek işaretlenmemişse, &krusader;’ın boyutunu ve konumunu başlangıçta elle ayarlamak için <menuchoice
+> <guimenu
+>Pencere</guimenu
+> <guimenuitem
+>Konumu Kaydet</guimenuitem
+> </menuchoice
+> menü seçeneğini kullanabilirsiniz.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Öntanımlı panel ayarlarını güncelle</guilabel
+>: Bu seçenek işaretlenirse öntanımlı panel ayarları başlatma işleminden sonra güncellenecektir.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Tepside başlat</guilabel
+>: İşaretlenirse &krusader;, ana pencereyi göstermeden tepsiye başlar (tepsiye küçültme ayarı yapılmışsa).</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Çıkışta bileşen ayarlarını kaydet</guilabel
+>: If checked, restores the user interface components to their condition when last shut-down.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Fonksiyon düğmelerini göster</guilabel
+>: İşaretlenmişse <link linkend="fnkeys"
+>Fonksiyon Düğmeleri Çubuğu</link
+> açılış sonrasında görünür olur.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Durum çubuğunu göster</guilabel
+>: İşaretlenmişse <link linkend="mainwindow"
+>Durum Çubuğu</link
+> açılış sonrasında görünür olur. Yalnızca <guilabel
+>Çıkışta bileşen ayarlarını kaydet</guilabel
+> seçeneğinin işareti yoksa kullanılabilirdir.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Komut satırını göster</guilabel
+>: İşaretlenmişse <link linkend="cmdline"
+>Komut Satırı</link
+> açılış sonrasında görünür olur. Yalnızca <guilabel
+>Çıkışta bileşen ayarlarını kaydet</guilabel
+> seçeneğinin işareti yoksa kullanılabilirdir.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Gömülü uçbirimi göster</guilabel
+>: İşaretlenmişse <link linkend="termemu"
+>Uçbirim Öykünücüsü</link
+> açılış sonrasında görünür olur. Yalnızca <guilabel
+>Çıkışta bileşen ayarlarını kaydet</guilabel
+> seçeneğinin işareti yoksa kullanılabilirdir.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-panel">
+    <title
+>Panel</title>
+    <para
+>Burada panelin görünümünü ve işlevselliğini belirleyebilirsiniz; bu da uygulamayı gereksinimlerinize göre ince ayar yapmanız anlamına gelir. Sayfa altı sekmeye ayrılmıştır: <guilabel
+>Genel</guilabel
+>, <guilabel
+>Görünüm</guilabel
+>, <guilabel
+>Düğmeler</guilabel
+>, <guilabel
+>Seçim Kipi</guilabel
+>, <guilabel
+>Ortam Menüsü</guilabel
+> ve <guilabel
+>Yerleşim</guilabel
+>:</para>
+
+    <sect2 id="konfig-panel-general">
+      <title
+>Genel</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Dolaşım Çubuğu</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Öntanımlı olarak düzenleme kipi</guilabel
+>: İşaretlenirse düzenlemeye açık yolu öntanımlı olarak Dolaşım çubuğunda gösterin.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Öntanımlı olarak tam yolu göster</guilabel
+>: İşaretlenirse tam yolu öntanımlı olarak Dolaşım çubuğunda gösterin.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>İşlem</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Klasörleri kendiliğinden seç</guilabel
+>: Bir dosya grubunu <link linkend="edit-menu"
+>seçtiğinizde</link
+> (ya <guilabel
+>Grubu Seç</guilabel
+> veya <guilabel
+>Tümünü Seç</guilabel
+> ile), &krusader; bu seçeneğe bakar. İşaretlenmişse seçim kriterlerine uyan klasörler de seçilir. Aksi takdirde, yalnızca dosyalar seçilir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Yeniden adlandırma, dosya uzantısını da seçer</guilabel
+>: Bir dosyayı <link linkend="renaming"
+>yeniden adlandırdığınızda</link
+>, tüm metin seçilir. <trademark class="copyright"
+>Total Commander</trademark
+> tarzı, uzantı olmadan yalnızca adı değiştirmek istiyorsanız bu seçeneğin işaretini kaldırın.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Dosyaları kopyalamadan/taşımadan önce seçimlerini kaldır</guilabel
+>: İşaretlenmişse &krusader;, dosyaları/klasörleri yeni konuma <link linkend="copying"
+>kopyalamadan veya taşımadan</link
+> önce onların üzerindeki seçim imlerini kaldırır.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Süzgeç iletişim kutusu ayarları anımsar</guilabel
+>: İşaretlenmişse süzgeç iletişim kutusu, panele daha önceden uygulanmış süzgeç ayarlarıyla birlikte açılır.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Sekmeler</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Tam yolu içeren sekme adları kullan</guilabel
+>: İşaretlenmişse <link linkend="folder-tabs"
+>klasör sekmelerinde</link
+> tam yol gösterilir; aksi takdirde yolun yalnızca son kısmı görüntülenir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Genişleyen sekmeler</guilabel
+>: İşaretlenmişse &krusader;, <link linkend="folder-tabs"
+>klasör sekmelerini</link
+> tam çubuğu kapsayacak şekilde genişletir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Çift tıklayarak sekmeyi kapat</guilabel
+>: İşaretlenmişse &krusader;, üzerilerine çift tıklayarak <link linkend="folder-tabs"
+>klasör sekmelerini</link
+> kapatmaya olanak tanır.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Sekmeleri geçerli sekmeden sonra ekle</guilabel
+>: İşaretlenmişse &krusader;, yeni sekmeleri <link linkend="folder-tabs"
+>sekme çubuğunun</link
+> sonu yerine geçerli sekmeden hemen sonra açar.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Tıklamayla etkin sekmeyi çoğalt</guilabel
+>: Etkin sekmeyi çoğaltma kipini seçmenize olanak tanır (<guimenuitem
+>Devre dışı</guimenuitem
+> (ilişkilendirme yok), <guimenuitem
+>Seçenek+Tık</guimenuitem
+> veya <guimenuitem
+>Kontrol+Tık</guimenuitem
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Sekme Çubuğu konumu:</guilabel
+>: <link linkend="folder-tabs"
+>Sekme Çubuğu</link
+> konumunu seçmenize olanak tanır (<guimenuitem
+>Alt</guimenuitem
+> veya <guimenuitem
+>Üst</guimenuitem
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Sekmeyi kapat düğmelerini göster</guilabel
+>: İşaretlenmişse &krusader;, <link linkend="folder-tabs"
+>sekmeler</link
+> üzerinde onları kapatma düğmelerini görüntüler.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Yeni sekme düğmesini göster</guilabel
+>: İşaretlenmişse &krusader;, <link linkend="folder-tabs"
+>Sekme Çubuğu</link
+> üzerinde yeni sekme düğmesini görüntüler.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Tek sekme varken sekme çubuğunu göster</guilabel
+>: İşaretlenmişse &krusader;, panelde yalnızca bir tane <link linkend="folder-tabs"
+>sekme</link
+> varken bile sekme çubuğunu gösterir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Yeni sekme düğmesi, bir sekmeyi çoğaltır</guilabel
+>: İşaretlenmişse yeni sekme düğmesi bir <link linkend="folder-tabs"
+>sekmeyi</link
+> çoğaltır; aksi takdirde ana klasörde yeni bir sekme açar.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Arama Çubuğu</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Yazarak başla</guilabel
+>: <link linkend="quicksearch"
+>Tez arama</link
+> özelliği kullanılıyorsa seçmeye izin verir. İşaretlendiğinde, arama çubuğunu açabilir ve etkin panelde klasör içeriğini görüntülerken yazarak aramaya başlayabilirsiniz.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>BÜYÜK/küçük harf duyarlı</guilabel
+>: <link linkend="quicksearch"
+>Arama</link
+> veya <link linkend="quickfilter"
+>Süzme</link
+> özelliğini kullanırken: İşaretlenmişse (&UNIX; sistemlerde öntanımlı) BÜYÜK harfle başlayan tüm dosyalar, küçük harfle başlayan dosyaların önünde görünür; aksi takdirde nasıl bir harfle başlarsa başlasın, tüm dosyalar birlikte görüntüleneceklerdir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Yukarı/Aşağı düğmeleri aramayı iptal eder</guilabel
+>: &Up; veya &Down; kullanmak, <link linkend="quicksearch"
+>arama</link
+> çubuğunu iptal eder.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Sağ ok ile klasörlerde dolaş</guilabel
+>: İşaretlenmişse &Right; kullanmak, bir metin düzenleme amacı veya işlemi yoksa klasöre girer. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Konum</guilabel
+>: <link linkend="quicksearch"
+>Arama</link
+> ve <link linkend="quickfilter"
+>süzgeç</link
+> çubukları için konum (<guimenuitem
+>Alt</guimenuitem
+> veya <guimenuitem
+>Üst</guimenuitem
+>).</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Öntanımlı kip</guilabel
+>: <link linkend="quicksearch"
+>Arama</link
+>, <guilabel
+>Seçme</guilabel
+> ve <link linkend="quickfilter"
+>Süzme</link
+> kipleri arasından öntanımlı arama çubuğu davranışını seçmenize olanak tanır. Daha sonra arama çubuğunun kendisini kullanarak kipi değiştirebilirsiniz.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Yer İmleri Arama</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Arama çubuğunu her zaman göster</guilabel
+>: İşaretlenmise <link linkend="bookman"
+>yer imi arama çubuğunu</link
+> her zaman görünür kılın.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Özel ögelerde ara</guilabel
+>: İşaretlenmişse <link linkend="bookman"
+>yer imlerinde arama</link
+> ayrıca yer imleri menüsündeki özel ögelere de uygulanır; örneğin <guimenuitem
+>Çöp Kutusu</guimenuitem
+>, <guimenuitem
+>Sık Kullanılan &URL;’ler</guimenuitem
+>, <guimenuitem
+>Geri Atla</guimenuitem
+> vb.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Durum/Toplam Çubuğu</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Büyüklüğü bayt olarak da göster</guilabel
+>: İşaretlenmişse &krusader;, durum/toplam çubuğunda büyüklüğü bayt olarak da gösterir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Alan bilgisini göster</guilabel
+>: İşaretlenmişse &krusader;, durum/toplam çubuğunda boş/toplam disk alanı bilgisini görüntüler.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-panel-view">
+      <title
+>Görünüm</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Genel</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Görüntüleme yazıtipi</guilabel
+>: Dosya listelerinde kullanılan yazıtipini değiştirmenize olanak tanır.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Araç ipucu gecikmesi (msan)</guilabel
+>: Dosya listesindeki bir ögenin üzerine fare imlecini getirdiğiniz an ile ipucu metninin gösterileceği an arasındaki milisaniye türünden olan gecikmeyi yapılandırmanıza olanak tanır.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Okunaklı dosya büyüklüğü kullan</guilabel
+>: İşaretlenmişse dosya büyüklüğü, bayt (öntanımlı) yerine kB, MB vb. türünden görünür.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Sayısal izin bilgisi</guilabel
+>: <guilabel
+>İzin</guilabel
+> sütunu, sekizlik biçimde görüntülenir; örneğin, “<literal
+>rwxr-xr-x</literal
+>” yerine “<literal
+>0755</literal
+>” gibi.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Gizli dosyaları göster</guilabel
+>: İşaretlenmişse &krusader;, normalde gizli olan <quote
+>noktalı dosyaları</quote
+> görüntüler.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Kullanıcı tanımlı klasör simgelerini yükle</guilabel
+>: İşaretlenmişse &krusader;, kullanıcılar tarafından tanımlanmış klasör simgelerini yükler.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Her zaman geçerli ögeyi göster</guilabel
+>: İşaretlenmişse &krusader;, etkin olmayan panelde geçerli ögenin kenar hatlarını gösterir.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Sıralama Yöntemi</guilabel>
+	    <itemizedlist>
+             <listitem>
+              <para
+><guilabel
+>Krusader (öntanımlı)</guilabel
+>: Şimdiye kadar kullanılan karşılaştırma. Yerel ayar kurallarını (hatta bağlam kurallarını) kullanarak karşılaştırma yapar. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Abecesel</guilabel
+>: Diziler karakter karakter karşılaştırılır (yerel ayarlardan gelen bağlam kuralları uygulanmaz). Abecesel karakterler yerel ayarlar kuralları kullanılarak, özel karakterler ise karakter kodu kullanılarak karşılaştırılır. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Abecesel ve sayısal</guilabel
+>: Yukarıdakiyle aynı, ancak adlarda sayılar varsa sayılar abecesel olarak değil, sayısal olarak karşılaştırılır. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Karakter kodu</guilabel
+>: Karakter koduna göre karşılaştırma (tez çalışır). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>Karakter kodu ve sayılar</guilabel
+>: Yukarıdakiyle aynı; ancak sayıların sayısal karşılaştırması da vardır. </para>
+             </listitem>
+           </itemizedlist>
+	    </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>BÜYÜK/küçük harf duyarlı sıralama</guilabel
+>: İşaretlenmişse (&UNIX; öntanımlısı), BÜYÜK harfle başlayan tüm dosyalar küçük harfle başlayan dosyalardan önce görünür; aksi takdirde, belirtilen harfle (BÜYÜK veya küçük) başlayan tüm dosyalar birlikte görünür.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Dizinleri her zaman ada göre sırala</guilabel
+>: Klasörleri sıralama sütunundan bağımsız olarak ada göre sıralar.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Önce klasörleri göster</guilabel
+>: İşaretlenmişse klasörler, klasör listelerinde önceliklidir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Yerel ayarlara göre sıralama</guilabel
+>: Dosyaları ve klasörleri geçerli yerel ayarlar doğrultusunda sıralar.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Görünüm Kipleri</guilabel>
+        </title>
+       <listitem>
+          <para
+><guilabel
+>Öntanımlı görüntüleme kipi</guilabel
+>: Öntanımlı görünüm kipini değiştirmenize olanak tanır. <guimenuitem
+>Ayrıntılı Görünüm</guimenuitem
+> veya <guimenuitem
+>Özet Görünüm</guimenuitem
+> seçeneklerinden birini seçebilirsiniz. Her iki görünüm kipinin sekmelerinde aşağıdaki seçenekleri tanımlayabilirsiniz.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Öntanımlı simge boyutu</guilabel
+>: Dosya listelerindeki simgelerin boyutunu değiştirmenize olanak tanır. Kullanılabilir boyutlar 12 × 12, 16 × 16, 22 × 22, 32 × 32, 48 × 48, 64 × 64, 128 × 128 ve 256 × 256 pikseldir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Dosya adlarında simgeler kullan</guilabel
+>: İşaretlenmişse dosya/klasör adlarında simgeleri de gösterir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Önizlemeleri öntanımlı olarak göster</guilabel
+>: İşaretlenirse, dosya içeriklerinin önizlemelerini gösterin.</para>
+        </listitem>
+        <listitem>
+          <para
+>Dosyaları görüntülerken paneldeki sağ tık menüsünü kullanarak sütunları yapılandırabilirsiniz. Sol ve sağ paneller kendi sütunlarını bağımsız olarak kullanır. Aşağıdaki sütunlar kullanılabilirdir: <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Ad</guilabel
+>: Dosya adını son noktadan sonraki kısım olmadan gösterir; bu son kısım <guilabel
+>Uzantı</guilabel
+> sütununda görüntülenir. <guilabel
+>Uzantı</guilabel
+> sütunu gizlendiğinde, dosya adının tamamı <guilabel
+>Ad</guilabel
+> sütununda; örneğin, &konqueror; gibi gösterilir. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Uzantı</guilabel
+>: Dosya adının son kısmını (son noktadan sonraki kısmı) <guilabel
+>Uzantı</guilabel
+> sütununda gösterir; örneğin, &konqueror; gibi tam dosya adını <guilabel
+>Ad</guilabel
+> sütununda göstermez. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Tür</guilabel
+>: &MIME; türü alanını gösterir.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Büyüklük</guilabel
+>: Büyüklük alanını gösterir.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Değiştirilme</guilabel
+>: Değiştirilme tarih ve zaman alanını gösterir.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>İzinler</guilabel
+>: Tam izinleri gösterir; örneğin, “<literal
+>rwxr-xr-x</literal
+>” veya sekizlik biçimde “<literal
+>0755</literal
+>” gibi. <guilabel
+>Panel Görünümü</guilabel
+> sekmesinde <guilabel
+>Sayısal izin bilgisi</guilabel
+> ile değiştirilebilir.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>rwx</guilabel
+>: Yalnızca geçerli kullanıcının haklarını gösterir.; örneğin, <quote
+>-rw</quote
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Sahip</guilabel
+>: Sahip alanını gösterir.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Grup</guilabel
+>: Grup alanını gösterir.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist>
+      <tip>
+        <para
+>Kullanılmayan sütunların işaretini kaldırın. Bu, kullanılan sütunlar için daha fazla alan sağlar.</para>
+      </tip>
+    </sect2>
+    <sect2 id="konfig-panel-buttons">
+      <title
+>Düğmeler</title>
+      <para
+><guilabel
+>Araç çubuğu düğmelerinin simgeleri var</guilabel
+>: İşaretlenmişse &krusader;, araç çubuğu düğmelerinde simgeleri de görüntüler.</para>
+      <para
+><guilabel
+>Ortam düğmesini göster</guilabel
+>: İşaretlenmişse &krusader;, ortam düğmesini görüntüler.</para>
+      <para
+><guilabel
+>Geri düğmesini göster</guilabel
+>: İşaretlenmişse &krusader;, geri düğmesini görüntüler.</para>
+      <para
+><guilabel
+>İleri düğmesini göster</guilabel
+>: İşaretlenmişse &krusader;, ileri düğmesini görüntüler.</para>
+      <para
+><guilabel
+>Geçmiş düğmesini göster</guilabel
+>: İşaretlenmişse &krusader;, geçmiş düğmesini görüntüler.</para>
+      <para
+><guilabel
+>Yer imleri düğmesini göster</guilabel
+>: İşaretlenmişse &krusader;, yer imleri düğmesini görüntüler.</para>
+      <para
+><guilabel
+>Panel araç çubuğunu göster</guilabel
+>: İşaretlenmişse &krusader;, panel araç çubuğunu görüntüler.</para>
+      <para
+><guilabel
+>Panel Araç Çubuğu</guilabel
+> üzerindeki düğmeleri görünür veya gizli hale getirebilirsiniz: <itemizedlist>
+        <title>
+          <guilabel
+>Görünür panel araç çubuğu düğmeleri</guilabel>
+        </title>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Clear Location Toolbar</guilabel
+> button: Clears
+          the <link linkend="list_panel"
+>Location Toolbar</link
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para>
+          <guilabel
+>Eşittir düğmesi (=)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Yukarı düğmesi (‥)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Ana klasör düğmesi (~)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Kök düğmesi (/)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Eşzamanlı tarama için aç/kapat düğmesi</guilabel
+>: İşaretlenmişse <link linkend="panel_toolbar"
+>Eşzamanlı Tarama</link
+> düğmesini gösterir.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-selection_modes">
+      <title
+>Seçim Kipi</title>
+      <para
+>Buradan seçim kiplerini yapılandırabilirsiniz. <itemizedlist id="selection_modes">
+        <title>
+          <guilabel
+>Genel</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>&krusader; kipi</guilabel
+>: &krusader;’ın en başından beri çalıştığı kip. Her iki fare düğmesi dosya seçimine olanak tanır. Birden fazla dosya seçmek için &Ctrl;+&LMB; kullanın. Bir kez &RMB; kullanımı, bağlam menüsünü açar.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>&konqueror; kipi</guilabel
+>: &LMB; kullanmak dosyaları seçer; birden çok dosyaya tıklayıp seçebilirsiniz. Bir kez &RMB; kullanımı, bağlam menüsünü açar.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Total Commander kipi</guilabel
+>: &RMB; ile birden çok dosyayı seçebilir ve <guilabel
+>basılı tutarak</guilabel
+> bağlam menüsünü açabilirsiniz. &LMB; seçim yapmaz; ancak geçerli seçimi etkilemeden geçerli dosyayı ayarlar.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Ergonomik kip</guilabel
+>: &LMB; seçim yapmaz; ancak geçerli seçimi etkilemeden geçerli dosyayı ayarlar. &RMB; bağlam menüsünü çağırır. &Ctrl;+Sol Tık ile seçim yapabilirsiniz.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Özel seçim kipi</guilabel
+>: Kendi seçim tarzınızı oluşturabilirsiniz!</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Ayrıntılar</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Çift tıklama ile seç (klasik)</guilabel
+>: Dosyaya tek tıklama dosyayı seçer ve odaklanır, çift tıklama ise dosyayı açar veya klasöre geçiş yapar.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Global seçim ilkelerine uy</guilabel
+>: &LMB; dosyaları seçer; &plasma; &systemsettings; <menuchoice
+><guimenu
+>Giriş Aygıtları</guimenu
+> <guimenuitem
+>Fare</guimenuitem
+></menuchoice
+> içindeki global ayarları kullanır.</para>
+        </listitem>
+        <listitem>
+          <para
+>Özel Seçim Kipi ögeleri: <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>&plasma;’nın seçim kipi tabanlıdır</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&LMB; seçer</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&LMB; seçimi korur</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;/&Ctrl;+Sol Tık seçer</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&RMB; seçer</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&RMB; seçimi korur</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;/&Ctrl;+Sağ Tık seçer</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Boşluk düğmesi aşağı hareket eder</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Ekle düğmesi aşağı hareket eder</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sağ tıklama anında bağlam menüsünü açar</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Tek başına fare düğmesi seçimi sıfırlar</guilabel
+> — niteleyici düğmeler (örneğin &Shift; veya &Ctrl;) olmadan fare tıklamasıyla seçimi sıfırlar. Bu ayarın çalışması için fare düğmesi için &Shift;/&Ctrl; ile seçim özelliğinin etkinleştirilmiş olması gerekir. </para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-mediamenu">
+      <title
+>Ortam Menüsü</title>
+      <para
+>Bu sekmeyi kullanarak <link linkend="media_button"
+>Ortam Düğmesi</link
+> menüsünün içeriğini seçebilirsiniz: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>Bağlama yolunu göster</guilabel
+>: İşaretlenmişse bölüntünün bağlanma yolunu gösterir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Dosya sistemi türünü göster</guilabel
+>: İşaretlenmişse bölüntünün dosya sistemi türünü gösterin.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>SquashFS girdilerini gizle</guilabel
+>: <ulink url="https://snapcraft.io/"
+>Snap</ulink
+>, birçok <ulink url="https://en.wikipedia.org/wiki/SquashFS"
+>SquashFS</ulink
+> olarak bağlanmış bölüntü girdileri oluşturur; bunların birçoğu <link linkend="list_panel"
+>Ortam Menüsü</link
+> ile bir işe yaramaz; çünkü <application
+>Snap</application
+> onları yönetir. Bu kutuyu işaretleyerek onları gizleyebilirsiniz.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Bilinmeyen dosya sistemi girdilerini gizle</guilabel
+>: <link linkend="list_panel"
+>Ortam Menüsü</link
+> içinde, neredeyse tamamen işlevsiz olan birkaç bilinmeyen dosya sistemi girdisi görünebilir. Bu kutuyu işaretleyerek bilinmeyen dosya sistemi girdilerini gizlemek olanaklıdır.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Aşağıdaki bağlama noktalarını gizle</guilabel
+>: Bu liste, <link linkend="list_panel"
+>Ortam Menüsü</link
+>’nden istenmeyen girdilerin dışlanmasına olanak tanır. Listenin üstündeki <guibutton
+>+</guibutton
+> düğmesine basarak yok saymak istediğiniz bağlama noktalarını girebilirsiniz. Kaldırmak istediğiniz girdiler için onları seçip <guibutton
+>−</guibutton
+> düğmesini kullanın. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Büyüklüğü göster:</guilabel
+> Ortam menüsünde büyüklük gösterimine olanak tanır. <guimenuitem
+>Her zaman</guimenuitem
+> (öntanımlı, bölüntü büyüklüğü her zaman gösterilir), <guimenuitem
+>Aygıtın etiketi olmadığında</guimenuitem
+> (etiketsiz bölüntülerin büyüklüğü) veya <guimenuitem
+>Asla</guimenuitem
+> (ortam menüsünde büyüklükleri hiçbir zaman gösterme) olabilir.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-layout">
+      <title
+>Yerleşim</title>
+      <para
+>Yerleşim ve çerçeve ayarlarını seçebilirsiniz: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>Yerleşim</guilabel
+>: Yerleşimi tanımlamanıza olanak tanır. Öntanımlı seçenekler: <guimenuitem
+>Öntanımlı</guimenuitem
+>, <guimenuitem
+>Sıkışık</guimenuitem
+> ve <guimenuitem
+>Klasik</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Çerçeve rengi</guilabel
+>: Çerçeve rengini tanımlar. <guimenuitem
+>Yerleşim tarafından tanımlı</guimenuitem
+>, <guimenuitem
+>Yok</guimenuitem
+> veya <guimenuitem
+>Durum çubuğu</guimenuitem
+> olabilir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Çerçeve şekli</guilabel
+>: Çerçeve rengini tanımlar. <guimenuitem
+>Yerleşim tarafından tanımlı</guimenuitem
+>, <guimenuitem
+>Yok</guimenuitem
+>, <guimenuitem
+>Kutu</guimenuitem
+> veya <guimenuitem
+>Panel</guimenuitem
+> olabilir.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Çerçeve gölgesi</guilabel
+>: Çerçeve rengini tanımlar. <guimenuitem
+>Yerleşim tarafından tanımlı</guimenuitem
+>, <guimenuitem
+>Yok</guimenuitem
+>, <guimenuitem
+>Kabarık</guimenuitem
+> veya <guimenuitem
+>Batık</guimenuitem
+> olabilir.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="konfig-color">
+    <title
+>Renkler</title>
+    <para
+>Bu sayfa, <link linkend="list_panel"
+>Liste Paneli</link
+> ve <link linkend="synchronizer"
+>Eşzamanlayıcı</link
+> renklerini yapılandırmanıza olanak tanır. Öntanımlı renk yapılandırması, <guilabel
+>&kde; öntanımlı renklerinden</guilabel
+> alınır.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Genel</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Öntanımlı &kde; renklerini kullan</guilabel
+>: Bu, öntanımlı ayardır; &systemsettings; içindeki tanımlı &plasma; renklerini kullanır.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Başka bir arka plan rengi kullan</guilabel
+>: İşaretlenmişse <guilabel
+>Arka plan</guilabel
+> ve <guilabel
+>Alternatif arka plan</guilabel
+> rengi satır satır değişir. Öntanımlı &plasma; arka plan renklerini kullanmadığınızda alternatif renkleri <guilabel
+>Renkler</guilabel
+> kutusundan yapılandırabilirsiniz.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Odaklı değilse bile geçerli ögeyi göster</guilabel
+>: İşaretlenmişse etkin olmayan liste panelinde imlecin son konumunu gösterir. Bu seçenek yalnızca öntanımlı renkleri kullanmadığınızda kullanılabilirdir.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Etkin olmayan paneldeki renkleri soldur</guilabel
+>: İşaretlenmişse etkin olmayan panelin renkleri soluklaştırılır. Bu ayarlar, <guilabel
+>Renkler</guilabel
+> kutusunun <guilabel
+>Pasif</guilabel
+> sekmesinde yapılandırılabilir. Bu seçenek yalnızca öntanımlı renkleri kullanmadığınızda kullanılabilirdir.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Renkler</guilabel>
+        </term>
+        <listitem>
+          <para
+>Renkleri istediğiniz gibi yapılandırın, sonucu <guilabel
+>Önizleme</guilabel
+> bölümünde görebilirsiniz. Etkin ve etkin olmayan panelin aşağıdaki ögeleri yapılandırılabilirdir:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Ön plan</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Klasör ön planı</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Yürütülebilir ön planı</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sembolik bağlantı ön planı</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Geçersiz sembolik bağlantı ön planı</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Arka plan</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Arka planı değiştir</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Seçili ön plan</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Seçili arka plan</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Seçili arka planı değiştir</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Geçerli ön plan</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Seçili geçerli ön plan</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Geçerli arka plan</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Ön planı yeniden adlandır</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Arka planı yeniden adlandır</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+          <para
+><link linkend="synchronizer"
+>Eşzamanlayıcı</link
+>’nın aşağıdaki ögeleri yapılandırılabilir:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Aynılık ön planı:</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Aynılık arka planı:</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Farklılık ön planı</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Farklılık arka planı</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sola kopyala ön planı</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sola kopyala arka planı</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sağa kopyala ön planı</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Sola kopyala arka planı</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Silme ön planı</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Silme arka planı</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Önizleme</guilabel>
+        </term>
+        <listitem>
+          <para
+>Burada, yapılandırılan renklerin bir önizlemesini görebilirsiniz.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Renk şemaları</guilabel>
+        </term>
+        <listitem>
+          <para
+><guibutton
+>Renk Şeması İçe Aktar</guibutton
+> ve <guibutton
+>Renk Şemasını Dışa Aktar</guibutton
+> düğmeleriyle renk şeması profilleri yükleyebilir ve kaydedebilirsiniz. Bu, &krusader;’ın <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+>, foo-commander veya kendi özel renk profilinizi kullanmanıza olanak tanır. Renk şemaları, <filename
+>/usr/share/krusader</filename
+> konumunda saklanır; <filename
+>foo.color</filename
+>, renk şemasını tutan bir ikili dosyadır.</para>
+          <tip>
+            <para
+><application
+>Midnight Commander</application
+> ve <trademark class="copyright"
+>Total Commander</trademark
+> renk şeması dosyaları sağlanır. Lütfen <link linkend="help_krusader"
+>favori renk şemalarınızı yükleyin</link
+> ki, &krusader; topluluğu bunlardan yararlanabilsin. Teşekkürler!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+<sect1 id="konfig-general">
+    <title
+>Genel</title>
+    <para
+>Burada temel işlemleri yapılandırabilirsiniz. Sayfa üç sekmeye ayrılmıştır: <guilabel
+>Genel</guilabel
+>, <guilabel
+>Görüntüleyici/Düzenleyici</guilabel
+> ve <guilabel
+>Atomik Uzantılar</guilabel
+>.</para>
+    <sect2 id="konfig-general-general">
+      <title
+>Genel</title>
+      <para
+>Aşağıdaki seçenekler işlemin temel yönlerini belirler:</para>
+      <itemizedlist>
+	<listitem>
+	  <para
+><guilabel
+>Çıkışta uyar</guilabel
+>: İşaretlenmişse &krusader;, çıkış işlemi tetiklendiğinde sizi her seferinde uyarır. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>Tepside göster ve kapat</guilabel
+>: İşaretlenmişse &krusader; simgesi sistem tepsisinde görünür. &krusader;’ı simge durumuna küçülttüğünüzde, görev çubuğunda görünmez. Ana pencereyi kapatırsanız uygulama çıkış da yapmaz. Bunun yerine &krusader;’dan çıkmak için <menuchoice
+><guimenu
+>Dosya</guimenu
+> <guimenuitem
+>Çık</guimenuitem
+></menuchoice
+> menü ögesini veya sistem tepsisi simgesinin bağlam menüsünü kullanın. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>&MIME; türü sihri kullan</guilabel
+>: &MIME; türü sihri, &krusader;’ın panellerdeki dosyaları denetlemesine ve onları tanımlayan bir uzantıları olmasaı bile dosya türlerini tahmin etmesine olanak tanıyan bir mekanizmadır. Örneğin, <filename
+>görsel1.jpg</filename
+> adındaki bir görsel dosyasını alalım ve onu <filename
+>image1</filename
+> olarak yeniden adlandıralım. &krusader; onun hâlâ bir görsel dosyası olduğunu bilir ve buna göre işlemde bulunur. Bu işlem türü biraz daha yavaştır (paneli yenilerken veya klasör değiştirirken); bu nedenle önce &krusader;’ı bu ayar açık ve kapalıyken deneyin ve hangisinin sizin için daha iyi olduğuna karar verin.</para>
+	 </listitem>
+	 <listitem>
+	   <para
+><guilabel
+>Geçici klasör</guilabel
+>: Bu seçenek, &krusader;’ın geçici dosyaları için temel klasörü seçer. Asıl dosyalar, “Geçici Klasör” altındaki ayrı klasörlerde oluşturulur, böylece &krusader;’ı çalıştıran her kullanıcının seçilen klasör altında kendi geçici alt klasörleri olacaktır. <note
+> <para
+>&krusader;’ı çalıştıran tüm kullanıcıların tam erişim yetkisine sahip olduğu geçici bir klasör seçmelisiniz!</para>
+	     </note>
+	   </para>
+	 </listitem>
+      </itemizedlist>
+      <para
+><guilabel
+>Silme Kipi</guilabel
+> (<guilabel
+>Dosyaları Sil/Çöp Kutusuna Taşı</guilabel
+>): &krusader; dosyaları silerken onları <emphasis
+>gerçekten</emphasis
+> silebilir veya onları çöp kutusuna taşıyabilir; böylece onlara &plasma;’nın çöp kutusundan erişebilirsiniz. </para>
+      <para
+><guilabel
+>Dış uçbirim</guilabel
+>: &krusader; bir konsol penceresi açtığında hangi uçbirim öykünücüsünün çalıştırılacağını seçin (<keycap
+>F9</keycap
+> veya <menuchoice
+><guimenu
+>Araçlar</guimenu
+> <guimenuitem
+>Uçbirimi Başlat</guimenuitem
+></menuchoice
+> menü seçeneği ile). </para>
+      <para
+><guilabel
+>Gömülü Uçbirim panel değişiminde Chdir gönderir</guilabel
+>: Bu seçenek işaretlenmezse panel klasörü değiştiğinde uçbirim öykünücüsüne <command
+>cd</command
+> komutu gönderilmeyecektir.</para>
+      <para
+><guilabel
+>Etkin panel, Gömülü Uçbirim çalışma dizinini izler</guilabel
+>: İşaretlenmediği takdirde, kullanıcı yerleşik uçbirimde (cd, popd vb. kullanarak) gezinirken etkin panel değişmeden kalır. </para>
+      <para
+><guilabel
+>Tam ekran gömülü uçbirimi aç/kapat</guilabel
+>: İşaretlenmişse &krusader;, tam ekran uçbirimi <application
+>Midnight Commander</application
+> tarzında gösterir (&krusader; penceresi yerine uçbirim gösterilir). </para>
+    </sect2>
+    <sect2 id="konfig-general-viewer">
+       <title
+>Görüntüleyici/Düzenleyici</title>
+      <para
+>Buradan görüntüleyici ve düzenleyici ayarlarını değiştirebilirsiniz: </para>
+      <itemizedlist>
+      <listitem>
+	<para
+><guilabel
+>İç düzenleyici ve görüntüleyici, her dosyayı ayrı bir pencerede açar</guilabel
+>: Her dosyanın ayrı bir pencerede açılmasını istiyorsanız bu ögeyi işaretleyin. İşaretlenmediğinde, her dosya aynı Görüntüleyici/Düzenleyici penceresinde bir sekmede açılır. Bu tür bir penceredeki her sekme, diğer yaygın yöntemlerin yanı sıra, sekmenin üzerine &MMB; ile tıklanarak kapatılabilir. </para>
+      </listitem>
+      <listitem>
+	<para
+><guilabel
+>Tek bir sekme açıkken sekme çubuğunu gizle</guilabel
+>: Yalnızca bir sekme açık olduğunda Görüntüleyici/Düzenleyici sekme çubuğunun gizlenmesini istiyorsanız bu ögeyi işaretleyin. </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Öntanımlı görüntüleyici kipi</guilabel
+>: <itemizedlist>
+        <listitem>
+         <para
+><guilabel
+>Genel kip</guilabel
+>: Sistemin öntanımlı görüntüleyicisini kullanın.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Metin kipi</guilabel
+>: Dosyayı salt metin kipinde görüntüleyin.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Onaltılık kip</guilabel
+>: Dosyayı salt onaltılık kipte görüntüleyin.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Listeleyici kipi</guilabel
+>: Büyük dosya boyutları için hızlı metin/onaltılık görüntüleyici. &krusader; listeleyicisi, dosyanın tamamını belleğe yüklemez, yalnızca küçük bir bölümünü yükler ve daha hızlı sarma için önbellekleme kullanır. Uzak dosyalar indirilir; ancak indirme sırasında indirilen bölümü görüntülemek olanaklıdır. Bir dosya sürekli değişiyorsa yine de görüntülenebilir; listeleyici her zaman geçerli durumunu görecektir.</para>
+        </listitem>
+	<listitem>
+         <para
+><guilabel
+>Metin dosyası şu boyuttan daha büyükse listeleyiciyi kullan (öntanımlı değer)</guilabel
+>: Metin dosyasının 10 MB’tan büyük olup olmadığını denetler (yapılandırılabilir) ve eğer büyükse &plasma;’nın öntanımlı görüntüleyicisi yerine &krusader;’ın listeleyicisi kullanılır.</para>
+	</listitem>
+	<listitem>
+         <para
+><guilabel
+>Onaltılık görüntüleyicisi olarak Okteta’yı kullan</guilabel
+>: İşaretlenmişse ham veri görüntülemek için &plasma;’nın onaltılık görüntüleyicisi olan <ulink url="https://docs.kde.org/index.php?application=okteta"
+>Okteta</ulink
+>’yı kullanın. Bu seçeneği kullanabilmek için <application
+>Okteta</application
+> paketinin kurulu olması gerekir.</para>
+	</listitem>
+	</itemizedlist>
+      </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Düzenleyici</guilabel
+>: Bir dosyayı düzenlemek için hangi düzenleyicinin kullanılacağını seçin (<keycap
+>F4</keycap
+> ile). Öntanımlı olarak içsel görüntüleyici kullanılır, bu &plasma;’nın öntanımlı görüntüleyicisidir.</para>
+      </listitem>
+    </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-general-atomic">
+      <title
+>Atomik Uzantılar</title>
+        <para
+><guilabel
+>Atomik uzantılar</guilabel
+>: <literal role="extension"
+>.tar.gz</literal
+> gibi önceden tanımlanmış atomik uzantılar, <link linkend="list_panel"
+>Liste Paneli</link
+>’nin <guilabel
+>Uzantı</guilabel
+> sütununda tek bir uzantı olarak gösterilirler.</para>
+      </sect2>
+  </sect1>
+  <sect1 id="konfig-advanced">
+    <title
+>Gelişmiş</title>
+    <para
+>Bu sayfa daha gelişmiş konuları ele almaktadır, bu nedenle burada yaptığınız işlemleri iki kez kontrol etmelisiniz: Buradaki ayarları değiştirmek, &krusader;’ı daha güçlü ve tehlikeli bir araç haline getirir.</para>
+
+    <para
+>Sayfa üç kısma bölünmüştür:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Genel</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+	    <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Preserve attributes for local copy/move
+              (slower)</guilabel
+>: If checked,
+              &krusader; will try to preserve all
+              attributes (time, owner, group) of the local files
+              according to the source file depending on your
+              <link linkend="copying"
+>permissions</link
+>.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>Dosya sistemlerini kendiliğinden bağla</guilabel
+>: Bu ayar, &krusader;’ın bir dosya sistemine girmeden önce onu bağlamayı denemesini sağlar. Örneğin, <filename class="directory"
+>/mnt/cdrom</filename
+> (ve <filename class="directory"
+> /mnt/cdrom</filename
+>, <filename class="directory"
+>/etc/fstab</filename
+> içinde bir bağlama noktası olarak görünür) üzerine tıklarsanız &krusader; onun bağlı olup olmadığını denetleyecektir. Değilse onu sizin için bağlamayı dener ve &CD-ROM;’un içeriğine bakabilmeniz için onun içine girer. &krusader;’ın <filename class="directory"
+> /mnt/cdrom</filename
+> konumundan çıkarken onun bağlantısını KESMEYECEĞİNİ dikkate alın.</para>
+            </listitem>
+            <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Do not use KDE media protocol for the
+              Media button (if it is buggy or missing)</guilabel
+>:
+              If checked, &krusader; will not use
+              &kde; media protocol for the
+              <link linkend="list_panel"
+>Media button</link
+>.
+              Choose this when the media protocol is buggy (in some
+              older &kde; versions) or if you have no
+              kdebase package installed on your system.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>Bağlamacı, aşağıdaki bağlama noktalarını bağlayacak/bağlantısını kesecek</guilabel
+>: Yanlışlıkla bağlantısını kesmek istemediğini veya bağlamak istemediğiniz dosya sistemleri varsa virgülle ayrılmış olarak bağlama noktalarının listesini girin (örneğin, <literal
+>/, /boot, /tmp</literal
+>) ve <link linkend="mount-man"
+>Bağlamacı</link
+> onlara dokunmayacaktır.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Onaylar</guilabel>
+        </term>
+        <listitem>
+          <para
+>Bu bölümdeki seçenekleri işaretlerseniz &krusader;, belirli bir işlemi gerçekleştirmeden önce onay isteyecektir; aksi takdirde, aşağıdaki işlemler uyarı yapılmadan gerçekleştirilecektir:</para>
+          <itemizedlist>
+            <listitem>
+              <para
+>Boş olmayan klasörleri silmek</para>
+            </listitem>
+            <listitem>
+              <para
+>Dosyaları silmek</para>
+            </listitem>
+            <listitem>
+              <para
+>Dosyaları kopyalamak</para>
+            </listitem>
+            <listitem>
+              <para
+>Dosyaları taşımak</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>İnce Ayarlar</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Simge önbellek büyüklüğü (KB)</guilabel
+>: &krusader; bir simge önbelleği kullanır, bu nedenle daha önce kullanılan simgeleri yeniden yüklemek zorunda kalmaz. Elbette, önbellek büyüdükçe daha fazla simge depolayabilir ve işlemleri daha da hızlandırabilir; ancak &krusader;’ın bellek kullanımı da artacaktır.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>updatedb argümanları</guilabel
+>: <command
+>updatedb</command
+> komutu için ek argümanlar belirler; daha fazla bilgi için lütfen kılavuz sayfalarını okuyun.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-archives">
+    <title
+>Arşivler</title>
+    <para
+>Bu sayfa, &krusader;’daki arşivlerin nasıl ele alındığının ayrıntılarını açıklar. </para>
+    <variablelist>
+      <varlistentry>
+	<term>
+	  <guilabel
+>krarc ioslave</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>Yazma desteğini etkinleştir</guilabel
+>: Bu seçenek, dosyaları bir arşive yazmayı etkinleştirmenizi sağlar. <warning
+> <para
+>Olumsuz yanı ise, işlem sırasında bir elektrik kesintisi meydana gelirse taşınan dosyalar zaten silinmiş olabilir; ancak henüz arşive paketlenmemiş olabilir. Arşivleri kendi içlerine taşımak, onları silecektir. </para>
+	      </warning>
+	    </para>
+	  </listitem>
+	</varlistentry>
+              <varlistentry>
+	<term>
+	  <guilabel
+>Arşiv İşleme</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>Arşivlere klasör olarak göz at</guilabel
+>: Bu seçenek işaretlenirse &krusader; arşivleri şaydam bir şekilde işleyecek ve klasör olarak açmanıza olanak tanıyacaktır; aksi takdirde, &krusader; bu tür arşivleri açan bir uygulamayı çağırmaya çalışacaktır. </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>
+	    <guilabel
+>İnce Ayarlar</guilabel>
+	  </term>
+	  <listitem>
+      <itemizedlist>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Allow moving into archives</guilabel
+>: this
+          option allows you to move files into an archive (as
+          opposed to just copying into the archive). The down side
+          is that if a power failure occurs during the process, the
+          files that were moved might already be deleted, but not
+          yet packed into the archive.
+          <note>
+            <para
+>If such a thing happens, the file(s) are NOT
+            LOST. They were actually moved into a subfolder in
+            &krusader;'s
+            <link linkend="konfig-general"
+>temp folder</link
+>.
+            You can search the folder and recover your
+            files.</para>
+          </note
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para
+><guilabel
+>Paketleme sonrasınra arşivi sına</guilabel
+>: Bu seçenek, yeni paketlenmiş arşiv üzerinde otomatik olarak bir test çalıştırır. Daha güvenlidir; ancak daha uzun sürer.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Paket açma öncesinde arşivi sına</guilabel
+>: Bu seçenek, arşiv dosyalarını açmadan önce otomatik olarak bir test çalıştırır. Bazı bozuk arşivler çökmeye neden olabilir; bu nedenle, arşiv dosyalarını açmadan önce sınamak daha iyidir.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+  </varlistentry>
+  </variablelist>
+  </sect1>
+  <sect1 id="konfig-dependencies">
+    <title
+>Bağımlılıklar Sayfası</title>
+    <para
+>Bu sayfa, dış uygulamaların tam yolunu yapılandırır. Hatta &krusader;’ın tam yolunu bile yapılandırmak olanaklıdır!</para>
+    <para>
+      <emphasis role="bold"
+>Genel Sekmesi</emphasis>
+    </para>
+    <para
+>Burada aşağıdaki dış uygulamaların tam yolunu yapılandırabilirsiniz:</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>uygulama</entry>
+            <entry
+>yapılandırılabilir tam yol</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kdesu</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kdesu</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kget</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kget</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mailer</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kmail</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>diff aracı</para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kompare</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <command
+>krename</command>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krename</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>krusader</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krusader</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>locate</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/locate</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/mount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>umount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/umount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>updatedb</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/updatedb</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <tip>
+      <para
+>Öntanımlı olarak, dış diff izlencesi olarak &kompare; kullanılır; ancak yeğlediğiniz uygulamayı da seçebilirsiniz; örneğin, <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> veya <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+>; yalnızca tam yolu girin ve keyfini çıkarın.</para>
+    </tip>
+    <para>
+      <emphasis role="bold"
+>Paketleyiciler Sekmesi</emphasis>
+    </para>
+    <para
+><guilabel
+>Paketleyiciler</guilabel
+> sekmesinde arşiv biçimlerinin bir listesini göreceksiniz. Bazıları doludur ve bazıları boştur. Kullanılabilir (dolu) olanlar &krusader; tarafından desteklenir. Onlar için &krusader; arşivleri saydam bir biçimde işler ve onları klasör olarak açmanıza olanak tanır (<link linkend="konfig-archives"
+>Arşivler</link
+> bölümündeki <guilabel
+>Arşivlere klasör olarak göz at</guilabel
+> kutusunu işaretlediyseniz); aksi takdirde &krusader; bu türdeki uygulamaları açacak bir uygulamayı çağırmaya çalışacaktır. Belirli bir arşiv türü boşsa bu, &krusader;’ın yapılandırılmış yolda ilgili yürütülebiliri bulamadığı anlamına gelir. Şu arşiv türleri desteklenir: ace, arj, bzip2, deb, gzip, iso, lha, lzma, rar, rpm, tar, xz, zip ve 7z.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>paketleyici</entry>
+            <entry
+>yapılandırılabilir tam yol</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>7z</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/7z</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>arj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/arj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>bzip2</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/bzip2</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cpio</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/cpio</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>dpkg</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/dpkg</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>gzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/gzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lha</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lha</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lzma</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lzma</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>rar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/rar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/tar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unace</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unace</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unarj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unarj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unrar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unrar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>zip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/zip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>xz</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/xz</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <note>
+      <para
+>&krusader; en iyi çabalarımıza rağmen ACE ile uyumlu olmayabilir. unace kapalı kaynak kodlu yazılım kullanır ve stdin’in başka bir yere yönlendirilmesi durumunda unace’in sonsuz döngüye girmesine neden olan ek satırlar içerir. Tıpkı “su” gibi çalışır, yani parolayı yalnızca stdin’den giremiyorsunuz. &krusader; ≥ 1–51, unace ile işbirliğini sağlamak için komut satırı ortamına öykünür; ancak unace’in çıktı biçimini sürümden sürüme sürekli değiştirdiğini ve bu durumun işbirliğini neredeyse olanaksız hâle getirdiğini fark ettik.</para>
+    </note>
+    <para>
+      <emphasis role="bold"
+>Sağlama Araçları Sekmesi</emphasis>
+    </para>
+    <para
+>Buradan dış <link linkend="checksum"
+>Sağlama Toplamı İzlenceleri</link
+> için olan tam yolu yapılandırabilirsiniz: <informaltable
+> <tgroup cols="3"
+> <tbody>
+          <row>
+            <entry
+>Sağlama Toplamı İzlenceleri</entry>
+            <entry
+>yapılandırılabilir tam yol</entry>
+            <entry
+>desteklenen sağlama toplamları</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha224sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha224sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha224</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha384sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha384sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha384</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha512sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha512sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha512</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tigerdeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/tigerdeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>tiger</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>whirlpooldeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/whirlpooldeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>whirlpool</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cfv</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/cfv</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5, sha1, sfv, crc</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable
+></para>
+  </sect1>
+  <sect1 id="konfig-useractions">
+    <title
+>Kullanıcı Eylemleri</title>
+    <para
+>Buradan uçbirimi kullanıcı eylemleri ve çıktı koleksiyonu için yazıtipini yapılandırabilirsiniz. Öntanımlı uçbirim <command
+>konsole --noclose -e</command
+> olarak ayarlıdır. To set up, configure and manage your UserActions use ActionMan (<link linkend="useractions"
+>UserActions</link
+> &URL;).</para>
+
+  </sect1>
+  <sect1 id="konfig-protocols">
+    <title
+>Protokoller</title>
+    <para
+>Bu sayfa, &MIME;’leri protokollere bağlantılar. Örneğin, <quote
+>tar</quote
+> protokolü, <quote
+>application/x-tar</quote
+> &MIME; türüne bağlantılıdır.</para>
+
+    <para
+><guilabel
+>Bağlantılar</guilabel
+> bölümünde; örneğin, şunu görürsünüz: <itemizedlist>
+      <listitem>
+        <para
+>Iso</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-iso</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>krarc</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-ace</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-arj</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-bzip2</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-cpio</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-deb</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-debian-package</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-gzip</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-jar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-lha</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rpm</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-zip</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>tar</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-tar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tarz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tbz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tgz</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect1>
+</chapter>
