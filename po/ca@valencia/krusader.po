@@ -297,8 +297,8 @@ msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
 msgstr ""
-"El <i>consell</i> apareix quan es passa el cursor per damunt d'una entrada "
-"de la <b>barra d'eines accions d'usuari</b>."
+"El <i>consell d'eina</i> apareix quan es passa el cursor per damunt d'una "
+"entrada de la <b>barra d'eines accions d'usuari</b>."
 
 #. i18n: ectx: property (whatsThis), widget (KLineEdit, leStartpath)
 #. i18n: ectx: property (whatsThis), widget (QLabel, LabelStartpath)
@@ -2903,7 +2903,7 @@ msgstr "Comprova l'arxiu abans de desempaquetar-lo"
 msgid ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
-"Alguns arxius estan corruptes a causa d'una penjada. Per açò, s'aconsella "
+"Alguns arxius estan corruptes a causa d'una fallada. Per açò, s'aconsella "
 "fer-ne una comprovació abans."
 
 #: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:314
@@ -2937,7 +2937,7 @@ msgid ""
 "Application Appearance  -> Colors</i></p>"
 msgstr ""
 "<p>Utilitza la configuració de colors global de KDE.</p><p><i>Configuració "
-"del sistema -> Aparença de l'aplicació -> Colors</i></p>"
+"del sistema → Aparença de l'aplicació → Colors</i></p>"
 
 #: app/Konfigurator/kgcolors.cpp:67
 #, kde-format
@@ -4144,8 +4144,8 @@ msgid ""
 "The duration after a tooltip is shown for a file item, in milliseconds. Set "
 "a negative value to disable tooltips."
 msgstr ""
-"La duració d'un consell que es mostrarà sobre un element de fitxer, en "
-"mil·lisegons. Establiu un valor negatiu per a desactivar-ho."
+"La duració d'un consell d'eina que es mostrarà sobre un element de fitxer, "
+"en mil·lisegons. Establiu un valor negatiu per a desactivar-ho."
 
 #: app/Konfigurator/kgpanel.cpp:443
 #, kde-format
@@ -4521,8 +4521,8 @@ msgid ""
 "<p>Use global setting:</p><p><i>Plasma System Settings -> Input Devices -> "
 "Mouse</i></p>"
 msgstr ""
-"<p>Utilitza la configuració global:</p><p><i>Configuració del sistema -> "
-"Dispositius d'entrada -> Ratolí</i></p>"
+"<p>Utilitza la configuració global:</p><p><i>Configuració del sistema → "
+"Dispositius d'entrada → Ratolí</i></p>"
 
 #: app/Konfigurator/kgpanel.cpp:721
 #, kde-format
@@ -4884,7 +4884,7 @@ msgstr ""
 "<p>En l'inici de Krusader, este recuperarà la mida que tenia quan es va "
 "parar per última vegada. Krusader ocuparà exactament la mateixa ubicació de "
 "la pantalla, i els quadros estaran ordenats com estaven.</p> <p>Si no es "
-"marca esta opció, podreu utilitzar l'opció del menú <i>Finestra -> Guarda la "
+"marca esta opció, podreu utilitzar l'opció del menú <i>Finestra → Guarda la "
 "posició</i> per a una posició i una mida determinades a l'inici.</p>"
 
 #: app/Konfigurator/kgstartup.cpp:100
@@ -8058,7 +8058,7 @@ msgstr "Grup: %1"
 #, kde-format
 msgctxt "File property; broken symbolic link"
 msgid "Link to: %1 - (broken)"
-msgstr "Enllaça a: %1 - (trencat)"
+msgstr "Enllaça a: %1 – (trencat)"
 
 #: app/Panel/PanelView/listmodel.cpp:511
 #, kde-format
@@ -8421,7 +8421,7 @@ msgstr "S'ha produït un error mentre es llegia el fitxer %1: %2"
 #: app/Splitter/splitter.cpp:233 app/Splitter/splitter.cpp:276
 #, kde-format
 msgid "Error writing file %1: %2"
-msgstr "S'ha produït un error mentre s'escrivia al fitxer %1: %2"
+msgstr "S'ha produït un error mentre s'escrivia en el fitxer %1: %2"
 
 #: app/Splitter/splittergui.cpp:56
 #, kde-format
