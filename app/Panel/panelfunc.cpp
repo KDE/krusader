@@ -41,7 +41,6 @@
 #include <KProtocolInfo>
 
 #include <KApplicationTrader>
-#include <kservice_version.h>
 
 #include <KCursor>
 #include <KMessageBox>

@@ -21,7 +21,6 @@
 #include <KLocalizedString>
 #include <KIO/JobUiDelegate>
 #include <KIO/OpenUrlJob>
-#include <kio_version.h>
 
 #include "../Archive/krarchandler.h"
 #include "../krservices.h"

@@ -19,7 +19,6 @@
 #include <KIO/StatJob>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <kio_version.h>
 #include <utility>
 
 Splitter::Splitter(QWidget *parent, QUrl fileNameIn, QUrl destinationDirIn, bool overWriteIn)
