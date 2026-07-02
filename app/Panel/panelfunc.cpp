@@ -63,7 +63,6 @@
 #include "../KrViewer/krviewer.h"
 #include "../MountMan/kmountman.h"
 #include "../abstractpanelmanager.h"
-#include "../compat.h"
 #include "../defaults.h"
 #include "../kractions.h"
 #include "../krglobal.h"
@@ -712,7 +711,7 @@ void ListPanelFunc::mkdir()
     connect(&buttonBox, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
     connect(&buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
 
-    connect(&comboBox, QOverload<const QString &>::of(&KrHistoryComboBox::QCOMBOBOX_ACTIVATED), &comboBox, &KrHistoryComboBox::addToHistory);
+    connect(&comboBox, &KrHistoryComboBox::textActivated, &comboBox, &KrHistoryComboBox::addToHistory);
 
     // ------------------------------------------------------------------------
     // load the history and completion list after creating the KrHistoryComboBox

@@ -26,7 +26,6 @@
 #include <KProtocolInfo>
 #include <KSharedConfig>
 
-#include "../compat.h"
 #include "../icon.h"
 #include "../krglobal.h"
 
@@ -137,8 +136,8 @@ newFTPGUI::newFTPGUI(QWidget *parent)
     connect(buttonBox, &QDialogButtonBox::accepted, this, &newFTPGUI::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &newFTPGUI::reject);
 
-    connect(prefix, QOverload<const QString &>::of(&KComboBox::QCOMBOBOX_ACTIVATED), this, &newFTPGUI::slotTextChanged);
-    connect(url, QOverload<const QString &>::of(&KrHistoryComboBox::QCOMBOBOX_ACTIVATED), url, &KrHistoryComboBox::addToHistory);
+    connect(prefix, &KComboBox::textActivated, this, &newFTPGUI::slotTextChanged);
+    connect(url, &KrHistoryComboBox::textActivated, url, &KrHistoryComboBox::addToHistory);
 
     if (!lastUsedProtocol.isEmpty()) {
         // update the port field
