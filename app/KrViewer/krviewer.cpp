@@ -36,7 +36,6 @@
 #include <KShortcutsDialog>
 #include <KStandardAction>
 #include <KToolBar>
-#include <kxmlgui_version.h>
 #include <utility>
 #include <KParts/NavigationExtension>
 
@@ -232,11 +231,7 @@ void KrViewer::createGUI(KParts::Part *part)
 
 void KrViewer::configureShortcuts()
 {
-#if KXMLGUI_VERSION >= QT_VERSION_CHECK(5, 84, 0)
     KShortcutsDialog::showDialog(actionCollection(), KShortcutsEditor::LetterShortcutsAllowed, this);
-#else
-    KShortcutsDialog::configure(actionCollection(), KShortcutsEditor::LetterShortcutsAllowed, this);
-#endif
 }
 
 bool KrViewer::eventFilter(QObject * /* watched */, QEvent *e)

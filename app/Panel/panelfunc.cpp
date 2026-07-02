@@ -31,7 +31,6 @@
 #include <KTar>
 #include <KUrlMimeData>
 
-#include <kio_version.h>
 #include <KIO/CommandLauncherJob>
 #include <KIO/OpenUrlJob>
 #include <KIO/JobUiDelegateFactory>
@@ -946,7 +945,6 @@ void ListPanelFunc::runCommand(const QString &cmd)
     qDebug() << "command=" << cmd;
     const QString workdir = panel->virtualPath().isLocalFile() ? panel->virtualPath().path() : QDir::homePath();
 
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
     /* A note from kjob.h (KIO::CommandLauncherJob is a KJob):
      *
      * KJob and its subclasses are meant to be used
@@ -959,10 +957,6 @@ void ListPanelFunc::runCommand(const QString &cmd)
     job->setUiDelegate(new KDialogJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, krMainWindow));
     job->setWorkingDirectory(workdir);
     job->start();
-#else
-    if (!KRun::runCommand(cmd, krMainWindow, workdir))
-        KMessageBox::error(nullptr, i18n("Could not start %1", cmd));
-#endif
 }
 
 void ListPanelFunc::runService(const KService &service, const QList<QUrl> &urls)

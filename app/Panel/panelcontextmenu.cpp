@@ -21,8 +21,6 @@
 #include <KPluginMetaData>
 #include <KPluginFactory>
 #include <KProcess>
-#include <kio_version.h>
-#include <kservice_version.h>
 
 #include "../Archive/krarchandler.h"
 #include "../FileSystem/fileitem.h"
@@ -144,13 +142,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         uniqueMimeTypes.insert(file->getMime());
     const QStringList mimeTypes = uniqueMimeTypes.values();
 
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 83, 0)
     offers = mimeTypes.count() == 1 ? KApplicationTrader::queryByMimeType(mimeTypes.first()) : KFileItemActions::associatedApplications(mimeTypes);
-#elif KSERVICE_VERSION >= QT_VERSION_CHECK(5, 68, 0)
-    offers = mimeTypes.count() == 1 ? KApplicationTrader::queryByMimeType(mimeTypes.first()) : KFileItemActions::associatedApplications(mimeTypes, QString());
-#else
-    offers = mimeTypes.count() == 1 ? KMimeTypeTrader::self()->query(mimeTypes.first()) : KFileItemActions::associatedApplications(mimeTypes, QString());
-#endif
 
     if (!offers.isEmpty()) {
         auto *openWithMenu = new QMenu(this);
@@ -186,11 +178,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         auto *fileItemActions = new KFileItemActions(this);
         fileItemActions->setItemListProperties(KFileItemListProperties(_items));
         fileItemActions->setParentWidget(MAIN_VIEW);
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 79, 0)
         fileItemActions->addActionsTo(this);
-#else
-        fileItemActions->addServiceActionsTo(this);
-#endif
     }
 
     addSeparator();
