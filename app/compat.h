@@ -8,19 +8,6 @@
 #define _COMPAT_H_
 
 #include <karchive_version.h>
-#include <kcompletion_version.h>
-
-/**
- * KLineEdit::returnPressed has been deprecated since 5.81
- * in favor of KLineEdit::returnKeyPressed.
- *
- * This can be removed when the frameworks minimum version required will be >= 5.81
- */
-#if KCOMPLETION_VERSION >= QT_VERSION_CHECK(5, 81, 0)
-#define KLINEEDIT_RETURNKEYPRESSED returnKeyPressed
-#else
-#define KLINEEDIT_RETURNKEYPRESSED returnPressed
-#endif
 
 /**
  * KFilterDev::compressionTypeForMimeType has been deprecated since 5.85
