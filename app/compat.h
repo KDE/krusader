@@ -8,20 +8,6 @@
 #define _COMPAT_H_
 
 /**
- * QResource::isCompressed() was made obsoleted in QT 5.15 in
- * favor of QResource::Compression QResource::compressionAlgorithm()
- *
- * https://doc.qt.io/qt-5.15/qresource-obsolete.html#isCompressed
- *
- * This can be removed when the qt minimum version required will be >= 5.15
- */
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-#define QRESOURCE_ISCOMPRESSED(A) ((A).compressionAlgorithm() != QResource::NoCompression)
-#else
-#define QRESOURCE_ISCOMPRESSED(A) (A).isCompressed()
-#endif
-
-/**
  * QString::split(QChar sep, QString::SplitBehavior behavior, Qt::CaseSensitivity cs = Qt::CaseSensitive)
  * was made obsoleted in QT 5.15 in favor of the namespaced Qt::endl
  *
