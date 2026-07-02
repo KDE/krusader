@@ -7,20 +7,6 @@
 #ifndef _COMPAT_H_
 #define _COMPAT_H_
 
-#include <karchive_version.h>
-
-/**
- * KFilterDev::compressionTypeForMimeType has been deprecated since 5.85
- * in favor of KLineEdit::returnKeyPressed.
- *
- * This can be removed when the frameworks minimum version required will be >= 5.85
- */
-#if KARCHIVE_VERSION >= QT_VERSION_CHECK(5, 85, 0)
-#define COMPRESSIONTYPEFORMIMETYPE KCompressionDevice::compressionTypeForMimeType
-#else
-#define COMPRESSIONTYPEFORMIMETYPE KFilterDev::compressionTypeForMimeType
-#endif
-
 /**
  * QButtonGroup::buttonClicked(int id) was made obsoleted in QT 5.15 in
  * favor of QButtonGroup::idClicked(int id)
