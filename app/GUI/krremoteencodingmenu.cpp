@@ -23,7 +23,6 @@
 
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
-#include "../compat.h"
 #include "../icon.h"
 #include "../krglobal.h"
 
@@ -170,7 +169,7 @@ void KrRemoteEncodingMenu::chooseDefault()
     // settings here since it affects what will be matched.
     KConfig config(("kio_" + currentURL.scheme() + "rc").toLatin1());
 
-    QStringList partList = currentURL.host().split('.', SKIP_EMPTY_PARTS);
+    QStringList partList = currentURL.host().split('.', Qt::SkipEmptyParts);
     if (!partList.isEmpty()) {
         partList.erase(partList.begin());
 
