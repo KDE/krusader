@@ -26,7 +26,6 @@
 #include <KProtocolManager>
 #include <KSharedConfig>
 #include <KUrlMimeData>
-#include <kio_version.h>
 
 #include "../JobMan/krjob.h"
 #include "../defaults.h"

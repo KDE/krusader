@@ -30,8 +30,6 @@
 #include <KProcess>
 #include <KTar>
 
-#include <kio_version.h>
-
 #include <errno.h>
 
 #define MAX_IPC_SIZE (1024 * 32)

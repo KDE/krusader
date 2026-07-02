@@ -17,7 +17,6 @@
 #include <KIO/JobUiDelegate>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <kio_version.h>
 #include <utility>
 
 // TODO: delete destination file on error
