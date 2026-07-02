@@ -25,18 +25,8 @@
 #include <KIO/JobUiDelegate>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <kio_version.h>
-#include <kservice_version.h>
-
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
 #include <KIO/OpenUrlJob>
-#endif
-
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 83, 0)
 #include <KTerminalLauncherJob>
-#else
-#include <KToolInvocation>
-#endif
 
 void RadialMap::Widget::resizeEvent(QResizeEvent *)
 {
@@ -186,15 +176,9 @@ void RadialMap::Widget::mousePressEvent(QMouseEvent *e)
                 auto *job = new KIO::OpenUrlJob(url, this);
                 job->start();
             } else if (result == actKonsole) {
-#if KSERVICE_VERSION >= QT_VERSION_CHECK(5, 83, 0)
                 auto *job = new KTerminalLauncherJob(QString());
                 job->setWorkingDirectory(url.url());
                 job->start();
-#elif KSERVICE_VERSION >= QT_VERSION_CHECK(5, 79, 0)
-                KToolInvocation::invokeTerminal(QString(), QStringList(), url.url());
-#else
-                KToolInvocation::invokeTerminal(QString(), url.url());
-#endif
             } else if (result == actViewMag || result == actFileOpen) {
                 goto sectionTwo;
             } else if (result == actEditDel) {

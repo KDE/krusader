@@ -20,7 +20,6 @@
 #include <KIO/FileUndoManager>
 #include <KLocalizedString>
 #include <KSharedConfig>
-#include <kio_version.h>
 
 #include "../icon.h"
 #include "../krglobal.h"
@@ -347,11 +346,7 @@ void JobMan::slotUpdateControlAction()
 
 void JobMan::slotUndoTextChange(const QString &text)
 {
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 79, 0)
     bool isUndoAvailable = KIO::FileUndoManager::self()->isUndoAvailable();
-#else
-    bool isUndoAvailable = KIO::FileUndoManager::self()->undoAvailable();
-#endif
 
     m_undoAction->setToolTip(isUndoAvailable ? text : i18n("Undo Last Job"));
 }
