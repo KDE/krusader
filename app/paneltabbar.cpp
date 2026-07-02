@@ -15,7 +15,6 @@
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
 #include "abstractpanelmanager.h"
-#include "compat.h"
 #include "defaults.h"
 #include "tabactions.h"
 

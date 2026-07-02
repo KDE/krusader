@@ -12,7 +12,6 @@
 #include "../KrViewer/krviewer.h"
 #include "../Panel/krpanel.h"
 #include "../Panel/panelfunc.h"
-#include "../compat.h"
 #include "../defaults.h"
 #include "../filelisticon.h"
 #include "../kractions.h"

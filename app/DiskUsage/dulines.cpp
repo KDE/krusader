@@ -30,8 +30,6 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
-#include "../compat.h"
-
 class DULinesItemDelegate : public QItemDelegate
 {
 public:

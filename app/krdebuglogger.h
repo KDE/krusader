@@ -14,7 +14,6 @@
 #include <QDir>
 #include <QFile>
 
-#include "compat.h"
 #include <unistd.h>
 
 //! Manages a system aimed to show debug messages

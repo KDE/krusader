@@ -18,7 +18,6 @@
 
 #include <KLocalizedString>
 
-#include "../compat.h"
 #include "fileTree.h"
 
 namespace RadialMap

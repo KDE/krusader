@@ -22,7 +22,6 @@
 #include <QMimeType>
 #include <qplatformdefs.h>
 
-#include "../../app/compat.h"
 #include "kiso.h"
 #include "kisodirectory.h"
 #include "kisofile.h"
