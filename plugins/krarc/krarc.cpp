@@ -32,7 +32,6 @@
 
 #include <kio_version.h>
 
-#include "../../app/compat.h"
 #include <errno.h>
 
 #define MAX_IPC_SIZE (1024 * 32)
@@ -126,7 +125,7 @@ public:
 int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
     if (argc != 4) {
-        qWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << QT_ENDL;
+        qWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << Qt::endl;
         exit(-1);
     }
 
