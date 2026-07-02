@@ -2001,11 +2001,7 @@ void Lister::print()
 
     const QString dateString = QLocale().toString(QDate::currentDate(), QLocale::ShortFormat);
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     const QRect pageRect = printer.pageLayout().paintRectPixels(printer.resolution());
-#else
-    const QRect pageRect = printer.pageRect();
-#endif
     const QRect drawingRect(0, 0, pageRect.width(), pageRect.height());
 
     const QFont normalFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
