@@ -7,22 +7,8 @@
 #ifndef _COMPAT_H_
 #define _COMPAT_H_
 
-#include <kio_version.h>
-
 #include <karchive_version.h>
 #include <kcompletion_version.h>
-
-/**
- * KActionMenu::setDelayed(bool) was made deprecated since 5.77 in
- * favor of KActionMenu::setPopupMode(QToolButton::ToolButtonPopupMode)
- *
- * This can be removed when the frameworks minimum version required will be >= 5.77
- */
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 77, 0)
-#define KACTIONMENU_SETDELAYED setPopupMode(QToolButton::InstantPopup)
-#else
-#define KACTIONMENU_SETDELAYED setDelayed(false)
-#endif
 
 /**
  * KLineEdit::returnPressed has been deprecated since 5.81
