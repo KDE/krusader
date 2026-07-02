@@ -51,7 +51,6 @@
 #include <KSharedConfig>
 
 #include "../GUI/krremoteencodingmenu.h"
-#include "../compat.h"
 #include "../icon.h"
 #include "../kractions.h"
 #include "../krglobal.h"
@@ -1278,7 +1277,7 @@ Lister::Lister(QWidget *parent)
     _originalBackground = _searchLineEdit->palette().color(QPalette::Base);
     _originalForeground = _searchLineEdit->palette().color(QPalette::Text);
 
-    connect(_searchLineEdit, &KLineEdit::KLINEEDIT_RETURNKEYPRESSED, this, &Lister::searchNext);
+    connect(_searchLineEdit, &KLineEdit::returnKeyPressed, this, &Lister::searchNext);
     connect(_searchLineEdit, &KLineEdit::textChanged, this, &Lister::searchTextChanged);
 
     hbox->addWidget(_searchLineEdit);
