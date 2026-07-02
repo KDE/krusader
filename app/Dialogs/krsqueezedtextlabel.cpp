@@ -18,8 +18,6 @@
 #include <KStringHandler>
 #include <KUrlMimeData>
 
-#include "../compat.h"
-
 KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent)
     : KSqueezedTextLabel(parent)
     , _index(-1)

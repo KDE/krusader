@@ -7,7 +7,6 @@
 
 #include "krlayoutfactory.h"
 
-#include "../compat.h"
 #include "../krglobal.h"
 #include "listpanel.h"
 #include "listpanelframe.h"

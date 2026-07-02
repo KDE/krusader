@@ -7,7 +7,6 @@
 
 #include "krviewitemdelegate.h"
 
-#include "../../compat.h"
 #include "../krcolorcache.h"
 #include "../krglobal.h"
 #include "../listpanel.h"

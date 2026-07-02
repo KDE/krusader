@@ -14,7 +14,6 @@
 
 #include <KStringHandler>
 
-#include "../compat.h"
 #include "Config.h"
 #include "fileTree.h"
 #include "radialMap.h"

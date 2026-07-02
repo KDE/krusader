@@ -22,7 +22,6 @@
 
 #include "../Dialogs/krdialogs.h"
 #include "../FileSystem/filesystem.h"
-#include "../compat.h"
 #include "../icon.h"
 #include "../krglobal.h"
 

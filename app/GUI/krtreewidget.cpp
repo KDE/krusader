@@ -6,7 +6,6 @@
 */
 
 #include "krtreewidget.h"
-#include "../compat.h"
 #include "krstyleproxy.h"
 
 // QtGui

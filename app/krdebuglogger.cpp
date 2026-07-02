@@ -7,7 +7,6 @@
 */
 
 #include "krdebuglogger.h"
-#include "compat.h"
 
 #include <QStringBuilder>
 

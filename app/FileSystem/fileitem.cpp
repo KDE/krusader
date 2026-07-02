@@ -15,7 +15,6 @@
 
 #include <KDesktopFile>
 
-#include "../compat.h"
 #include "filesystemprovider.h"
 #include "krpermhandler.h"
 

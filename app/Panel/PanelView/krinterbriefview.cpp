@@ -29,7 +29,6 @@
 
 #include "../FileSystem/krpermhandler.h"
 #include "../GUI/krstyleproxy.h"
-#include "../compat.h"
 #include "../defaults.h"
 #include "../krcolorcache.h"
 #include "krmousehandler.h"

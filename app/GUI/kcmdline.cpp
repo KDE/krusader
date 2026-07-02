@@ -29,7 +29,6 @@
 #include <utility>
 
 #include "../ActionMan/addplaceholderpopup.h"
-#include "../compat.h"
 #include "../defaults.h"
 #include "../icon.h"
 #include "../krglobal.h"

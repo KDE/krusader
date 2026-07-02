@@ -9,7 +9,6 @@
 #include "kmountmangui.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../FileSystem/filesystem.h"
-#include "../compat.h"
 #include "../defaults.h"
 #include "../icon.h"
 #include "../krglobal.h"

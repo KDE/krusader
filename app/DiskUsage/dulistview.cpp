@@ -23,8 +23,6 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
-#include "../compat.h"
-
 DUListView::DUListView(DiskUsage *usage)
     : KrTreeWidget(usage)
     , diskUsage(usage)

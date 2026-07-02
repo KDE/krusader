@@ -9,7 +9,6 @@
 
 #include "../FileSystem/sizecalculator.h"
 #include "../FileSystem/filesystemprovider.h"
-#include "../compat.h"
 #include "../defaults.h"
 #include "../icon.h"
 #include "../krglobal.h"

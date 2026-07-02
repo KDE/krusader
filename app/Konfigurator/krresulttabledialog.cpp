@@ -18,7 +18,6 @@
 
 #include <KHelpClient>
 
-#include "../compat.h"
 #include "../icon.h"
 #include "../krglobal.h"
 
