@@ -13,7 +13,6 @@
 #include "../FileSystem/filesystem.h"
 #include "../KrViewer/diskusageviewer.h"
 #include "../KrViewer/panelviewer.h"
-#include "../compat.h"
 #include "../defaults.h"
 #include "../icon.h"
 #include "PanelView/krview.h"
@@ -53,7 +52,7 @@ Sidebar::Sidebar(QWidget *parent)
 
     btns = new QButtonGroup(this);
     btns->setExclusive(true);
-    connect(btns, QOverload<int>::of(&QButtonGroup::QBUTTONGROUP_BUTTONCLICKED), this, &Sidebar::tabSelected);
+    connect(btns, &QButtonGroup::idClicked, this, &Sidebar::tabSelected);
 
     treeBtn = new QToolButton(this);
     treeBtn->setToolTip(i18n("Tree Panel: a tree view of the local file system"));
