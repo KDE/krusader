@@ -38,7 +38,6 @@
 #include <KStandardGuiItem>
 
 #include "../GUI/krhistorycombobox.h"
-#include "../compat.h"
 #include "../defaults.h"
 #include "../icon.h"
 #include "../krglobal.h"
@@ -77,7 +76,7 @@ PackGUIBase::PackGUIBase(QWidget *parent)
     typeData = new QComboBox(this);
     typeData->setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
     connect(typeData, &QComboBox::textActivated, this, &PackGUIBase::checkConsistency);
-    connect(typeData, QOverload<const QString &>::of(&QComboBox::QCOMBOBOX_HIGHLIGHTED), this, &PackGUIBase::checkConsistency);
+    connect(typeData, &QComboBox::textHighlighted, this, &PackGUIBase::checkConsistency);
     hbox->addWidget(typeData);
 
     grid->addLayout(hbox, 1, 0);
