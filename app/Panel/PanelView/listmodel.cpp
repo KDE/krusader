@@ -19,6 +19,9 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
+#include <QGuiApplication>
+#include <QPalette>
+
 ListModel::ListModel(KrInterView *view)
     : QAbstractListModel(nullptr)
     , _extensionEnabled(true)
@@ -180,7 +183,15 @@ QVariant ListModel::data(const QModelIndex &index, int role) const
             if (properties()->displayIcons) {
                 if (_justForSizeHint)
                     return QPixmap(_view->fileIconSize(), _view->fileIconSize());
-                return QIcon(_view->getIcon(fileitem));
+                // Tint monochrome icons to the row's effective foreground colour
+                // (normal/current/marked, as computed for Qt::ForegroundRole), so
+                // the icon stays legible on custom row colours. Skip the tint when
+                // the row colour is just the palette text colour: rendering is
+                // visually identical and the un-tinted cache entries stay shared.
+                QColor tint = data(index, Qt::ForegroundRole).value<QColor>();
+                if (tint == QGuiApplication::palette().color(QPalette::Active, QPalette::Text))
+                    tint = QColor();
+                return QIcon(_view->getIcon(fileitem, tint));
             }
             break;
         }

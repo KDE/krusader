@@ -37,8 +37,12 @@
 #include <QMimeType>
 #include <qnamespace.h>
 
+#include <KIconColors>
+#include <KIconLoader>
 #include <KLocalizedString>
 #include <KSharedConfig>
+
+#include <QGuiApplication>
 
 #define FILEITEM getFileItem()
 
@@ -307,7 +311,7 @@ QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor &dimColo
     return QPixmap::fromImage(dimmed, Qt::ColorOnly | Qt::ThresholdDither | Qt::ThresholdAlphaDither | Qt::NoOpaqueDetection);
 }
 
-QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size /*, KRListItem::cmpColor color*/)
+QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size, const QColor &iconTint /*, KRListItem::cmpColor color*/)
 {
     // KConfigGroup ag( krConfig, "Advanced");
     //////////////////////////////
@@ -321,6 +325,13 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size /*, KRListItem
     QColor dimColor;
     int dimFactor;
     bool dim = !active && KrColorCache::getColorCache().getDimSettings(dimColor, dimFactor);
+    // Inactive-panel dimming takes precedence over tinting: the dim blend in
+    // processIcon must keep applying to coloured icons and previews-fallbacks
+    // too, so the tint is dropped for dimmed (inactive) panels rather than the
+    // other way around.
+    QColor tint = iconTint;
+    if (dim)
+        tint = QColor();
 
     if (iconName.isNull())
         iconName = "";
@@ -330,13 +341,33 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size /*, KRListItem
         cacheName.append("LINK_");
     if (dim)
         cacheName.append("DIM_");
+    if (tint.isValid())
+        cacheName.append(QStringLiteral("TINT%1_").arg(tint.rgba(), 8, 16, QLatin1Char('0')));
     cacheName.append(iconName);
 
     // QPixmapCache::setCacheLimit( ag.readEntry("Icon Cache Size",_IconCacheSize) );
 
     // first try the cache
     if (!QPixmapCache::find(cacheName, &icon)) {
-        icon = processIcon(Icon(iconName, Icon("unknown")).pixmap(size), dim, dimColor, dimFactor, fileitem->isSymLink());
+        QPixmap base;
+        if (tint.isValid()) {
+            // Re-render monochrome (color-scheme stylesheet) SVG icons using the
+            // row's effective foreground colour, so the icon matches the text
+            // it sits next to (e.g. custom Marked/Current colours). Coloured
+            // SVGs and raster icons are returned unchanged by the loader.
+            base = KIconLoader::global()->loadScaledIcon(iconName.isEmpty() ? QStringLiteral("unknown") : iconName,
+                                                         KIconLoader::Desktop,
+                                                         qGuiApp->devicePixelRatio(),
+                                                         QSize(size, size),
+                                                         KIconLoader::DefaultState,
+                                                         QStringList(),
+                                                         nullptr,
+                                                         /*canReturnNull=*/true,
+                                                         KIconColors(tint));
+        }
+        if (base.isNull()) // no tint requested, or icon not found by KIconLoader
+            base = Icon(iconName, Icon("unknown")).pixmap(size);
+        icon = processIcon(base, dim, dimColor, dimFactor, fileitem->isSymLink());
         // insert it into the cache
         QPixmapCache::insert(cacheName, icon);
     }
@@ -344,14 +375,14 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size /*, KRListItem
     return icon;
 }
 
-QPixmap KrView::getIcon(FileItem *fileitem)
+QPixmap KrView::getIcon(FileItem *fileitem, const QColor &iconTint)
 {
     if (_previews) {
         QPixmap icon;
         if (_previews->getPreview(fileitem, icon, _focused))
             return icon;
     }
-    return getIcon(fileitem, _focused, _fileIconSize);
+    return getIcon(fileitem, _focused, _fileIconSize, iconTint);
 }
 
 /**

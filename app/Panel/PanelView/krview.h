@@ -420,7 +420,7 @@ public:
         return _focused;
     }
 
-    QPixmap getIcon(FileItem *fileitem);
+    QPixmap getIcon(FileItem *fileitem, const QColor &iconTint = QColor());
 
     void setMainWindow(QWidget *mainWindow)
     {
@@ -448,7 +448,7 @@ public:
     // todo: what about selection modes ???
     virtual ~KrView();
 
-    static QPixmap getIcon(FileItem *fileitem, bool active, int size = 0);
+    static QPixmap getIcon(FileItem *fileitem, bool active, int size = 0, const QColor &iconTint = QColor());
     static QPixmap processIcon(const QPixmap &icon, bool dim, const QColor &dimColor, int dimFactor, bool symlink);
 
     // Get GUI strings for file item properties
