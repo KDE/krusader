@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-16 00:51+0000\n"
+"POT-Creation-Date: 2026-07-20 00:47+0000\n"
 "PO-Revision-Date: 2026-07-05 16:37+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
@@ -336,7 +336,7 @@ msgid "Category:"
 msgstr "Kategori:"
 
 #. i18n: ectx: property (whatsThis), widget (QToolButton, ButtonAddPlaceholder)
-#: app/ActionMan/actionproperty.ui:300 app/GUI/kcmdline.cpp:183
+#: app/ActionMan/actionproperty.ui:300 app/GUI/kcmdline.cpp:182
 #, kde-format
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
 msgstr "Legg til <b>plasshaldarar</b> for filene som er merkte i panelet."
@@ -525,7 +525,7 @@ msgid "&New..."
 msgstr "&Ny …"
 
 #. i18n: ectx: attribute (title), widget (QWidget, TabFile)
-#: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:97
+#: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:96
 #, kde-format
 msgid "File Name"
 msgstr "Filnamn"
@@ -822,7 +822,7 @@ msgstr "Feil ved utpakking"
 msgid "Add Bookmark"
 msgstr "Legg til bokmerke"
 
-#: app/BookMan/kraddbookmarkdlg.cpp:35 app/DiskUsage/diskusage.cpp:1038
+#: app/BookMan/kraddbookmarkdlg.cpp:35 app/DiskUsage/diskusage.cpp:1037
 #, kde-format
 msgid "Name:"
 msgstr "Namn:"
@@ -838,18 +838,18 @@ msgid "Create in:"
 msgstr "Legg i:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:694
+#: app/Panel/panelfunc.cpp:687
 #, kde-format
 msgid "New Folder"
 msgstr "Ny mappe"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:96 app/FileSystem/krquery.cpp:261
-#: app/Filter/generalfilter.cpp:162 app/Filter/generalfilter.cpp:539
+#: app/Filter/generalfilter.cpp:161 app/Filter/generalfilter.cpp:538
 #, kde-format
 msgid "Folders"
 msgstr "Mapper"
 
-#: app/BookMan/kraddbookmarkdlg.cpp:102 app/BookMan/krbookmarkbutton.cpp:33
+#: app/BookMan/kraddbookmarkdlg.cpp:102 app/BookMan/krbookmarkbutton.cpp:32
 #: app/BookMan/krbookmarkhandler.cpp:65 app/Panel/listpanelactions.cpp:105
 #, kde-format
 msgid "Bookmarks"
@@ -875,7 +875,7 @@ msgstr "Virtuelt filsystem"
 msgid "Local Network"
 msgstr "Lokalt nettverk"
 
-#: app/BookMan/krbookmarkbutton.cpp:28 app/BookMan/krbookmarkbutton.cpp:29
+#: app/BookMan/krbookmarkbutton.cpp:27 app/BookMan/krbookmarkbutton.cpp:28
 #, kde-format
 msgid "BookMan II"
 msgstr "Bokmerke"
@@ -936,7 +936,7 @@ msgid "Jump back"
 msgstr "Hopp tilbake"
 
 #: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:331
-#: app/Panel/panelcontextmenu.cpp:103
+#: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "Opna"
@@ -946,10 +946,10 @@ msgstr "Opna"
 msgid "Open in a new tab"
 msgstr "Opna i ny fane"
 
-#: app/BookMan/krbookmarkhandler.cpp:854 app/Dialogs/krmaskchoice.cpp:85
-#: app/Dialogs/kurllistrequester.cpp:128 app/DiskUsage/diskusage.cpp:751
+#: app/BookMan/krbookmarkhandler.cpp:854 app/Dialogs/krmaskchoice.cpp:84
+#: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
-#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:216
+#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
 #, kde-format
 msgid "Delete"
 msgstr "Slett"
@@ -1120,22 +1120,22 @@ msgstr "Ikkje start jobben no."
 msgid "Enqueue the job if another job is running. Otherwise start immediately."
 msgstr "Legg jobben i kø viss ein annan jobb køyrer; elles start med ein gong."
 
-#: app/Dialogs/krmaskchoice.cpp:40
+#: app/Dialogs/krmaskchoice.cpp:39
 #, kde-format
 msgid "Choose Files"
 msgstr "Vel filer"
 
-#: app/Dialogs/krmaskchoice.cpp:53
+#: app/Dialogs/krmaskchoice.cpp:52
 #, kde-format
 msgid "Select the following files:"
 msgstr "Vel følgjande filer:"
 
-#: app/Dialogs/krmaskchoice.cpp:63
+#: app/Dialogs/krmaskchoice.cpp:62
 #, kde-format
 msgid "Predefined Selections"
 msgstr "Førehandsdefinerte merkingar"
 
-#: app/Dialogs/krmaskchoice.cpp:71
+#: app/Dialogs/krmaskchoice.cpp:70
 #, kde-format
 msgid ""
 "A predefined selection is a file-mask which you often use.\n"
@@ -1154,27 +1154,27 @@ msgstr ""
 "Merk at linja der du redigerer maska har si eiga historie, som kan rullast "
 "om nødvendig."
 
-#: app/Dialogs/krmaskchoice.cpp:80
+#: app/Dialogs/krmaskchoice.cpp:79
 #, kde-format
 msgid "Add"
 msgstr "Legg til"
 
-#: app/Dialogs/krmaskchoice.cpp:81
+#: app/Dialogs/krmaskchoice.cpp:80
 #, kde-format
 msgid "Adds the selection in the line-edit to the list"
 msgstr "Legg utvalet i tekstfeltet til lista"
 
-#: app/Dialogs/krmaskchoice.cpp:86
+#: app/Dialogs/krmaskchoice.cpp:85
 #, kde-format
 msgid "Delete the marked selection from the list"
 msgstr "Slett det merkte utvalet frå lista"
 
-#: app/Dialogs/krmaskchoice.cpp:90 app/JobMan/jobman.cpp:115
+#: app/Dialogs/krmaskchoice.cpp:89 app/JobMan/jobman.cpp:114
 #, kde-format
 msgid "Clear"
 msgstr "Tøm"
 
-#: app/Dialogs/krmaskchoice.cpp:91
+#: app/Dialogs/krmaskchoice.cpp:90
 #, kde-format
 msgid "Clears the entire list of selections"
 msgstr "Tømmer heile lista over utval"
@@ -1214,42 +1214,42 @@ msgstr "Ikkje montert."
 msgid "Enter a selection:"
 msgstr "Vel eit utval:"
 
-#: app/Dialogs/newftpgui.cpp:48
+#: app/Dialogs/newftpgui.cpp:47
 #, kde-format
 msgid "New Network Connection"
 msgstr "Ny nettverkstilkopling"
 
-#: app/Dialogs/newftpgui.cpp:62
+#: app/Dialogs/newftpgui.cpp:61
 #, kde-format
 msgid "About to connect to..."
 msgstr "Skal kopla til …"
 
-#: app/Dialogs/newftpgui.cpp:67
+#: app/Dialogs/newftpgui.cpp:66
 #, kde-format
 msgid "Protocol:"
 msgstr "Protokoll:"
 
-#: app/Dialogs/newftpgui.cpp:68
+#: app/Dialogs/newftpgui.cpp:67
 #, kde-format
 msgid "Host:"
 msgstr "Vert:"
 
-#: app/Dialogs/newftpgui.cpp:69
+#: app/Dialogs/newftpgui.cpp:68
 #, kde-format
 msgid "Port:"
 msgstr "Port:"
 
-#: app/Dialogs/newftpgui.cpp:103
+#: app/Dialogs/newftpgui.cpp:102
 #, kde-format
 msgid "Username:"
 msgstr "Brukarnamn:"
 
-#: app/Dialogs/newftpgui.cpp:105
+#: app/Dialogs/newftpgui.cpp:104
 #, kde-format
 msgid "Password:"
 msgstr "Passord:"
 
-#: app/Dialogs/newftpgui.cpp:133
+#: app/Dialogs/newftpgui.cpp:132
 #, kde-format
 msgid "&Connect"
 msgstr "&Kopla til"
@@ -1271,106 +1271,106 @@ msgstr[1] "Pakk %1 filer"
 msgid "Please select a folder"
 msgstr "Vel ei mappe"
 
-#: app/Dialogs/packguibase.cpp:61 app/Dialogs/packguibase.cpp:115
+#: app/Dialogs/packguibase.cpp:60 app/Dialogs/packguibase.cpp:114
 #, kde-format
 msgid "Pack"
 msgstr "Pakk"
 
 # Leietekst til felt der ein skriv inn namnet på arkivfila.
-#: app/Dialogs/packguibase.cpp:71
+#: app/Dialogs/packguibase.cpp:70
 #, kde-format
 msgid "To archive"
 msgstr "Arkivnamn"
 
-#: app/Dialogs/packguibase.cpp:90
+#: app/Dialogs/packguibase.cpp:89
 #, kde-format
 msgid "In folder"
 msgstr "I mappa"
 
-#: app/Dialogs/packguibase.cpp:138
+#: app/Dialogs/packguibase.cpp:137
 #, kde-format
 msgid "Multiple volume archive"
 msgstr "Fleirvolumarkiv"
 
-#: app/Dialogs/packguibase.cpp:147 app/DiskUsage/diskusage.cpp:1039
+#: app/Dialogs/packguibase.cpp:146 app/DiskUsage/diskusage.cpp:1038
 #, kde-format
 msgid "Size:"
 msgstr "Storleik:"
 
-#: app/Dialogs/packguibase.cpp:166
+#: app/Dialogs/packguibase.cpp:165
 #, kde-format
 msgid "Set compression level"
 msgstr "Vel komprimeringsnivå"
 
 # Minste moglege komprimeringsgrad. Lik omsetting som i KArc.
-#: app/Dialogs/packguibase.cpp:193
+#: app/Dialogs/packguibase.cpp:192
 #, kde-format
 msgid "MIN"
 msgstr "Minst"
 
 # Største moglege komprimeringsgrad. Lik omsetting som i KArc.
-#: app/Dialogs/packguibase.cpp:194
+#: app/Dialogs/packguibase.cpp:193
 #, kde-format
 msgid "MAX"
 msgstr "Høgst"
 
-#: app/Dialogs/packguibase.cpp:217
+#: app/Dialogs/packguibase.cpp:216
 #, kde-format
 msgid "Password"
 msgstr "Passord"
 
 # Gjenta passordet.
-#: app/Dialogs/packguibase.cpp:227
+#: app/Dialogs/packguibase.cpp:226
 #, kde-format
 msgid "Again"
 msgstr "Gjenta"
 
-#: app/Dialogs/packguibase.cpp:245
+#: app/Dialogs/packguibase.cpp:244
 #, kde-format
 msgid "Encrypt headers"
 msgstr "Krypter filhovud"
 
-#: app/Dialogs/packguibase.cpp:257
+#: app/Dialogs/packguibase.cpp:256
 #, kde-format
 msgid "Command line switches:"
 msgstr "Argument til programkommando:"
 
-#: app/Dialogs/packguibase.cpp:283 app/Dialogs/packguibase.cpp:324
+#: app/Dialogs/packguibase.cpp:282 app/Dialogs/packguibase.cpp:323
 #, kde-format
 msgid "&Advanced >>"
 msgstr "&Avansert →"
 
-#: app/Dialogs/packguibase.cpp:324
+#: app/Dialogs/packguibase.cpp:323
 #, kde-format
 msgid "&Advanced <<"
 msgstr "&Avansert ←"
 
-#: app/Dialogs/packguibase.cpp:343
+#: app/Dialogs/packguibase.cpp:342
 #, kde-format
 msgid "No password specified"
 msgstr "Inkje passord oppgjeve"
 
-#: app/Dialogs/packguibase.cpp:346
+#: app/Dialogs/packguibase.cpp:345
 #, kde-format
 msgid "The passwords are equal"
 msgstr "Passorda er like"
 
-#: app/Dialogs/packguibase.cpp:349
+#: app/Dialogs/packguibase.cpp:348
 #, kde-format
 msgid "The passwords are different"
 msgstr "Passorda er ulike"
 
-#: app/Dialogs/packguibase.cpp:389
+#: app/Dialogs/packguibase.cpp:388
 #, kde-format
 msgid "Cannot pack, the passwords are different."
 msgstr "Kan ikkje pakka, då passorda er ulike."
 
-#: app/Dialogs/packguibase.cpp:417
+#: app/Dialogs/packguibase.cpp:416
 #, kde-format
 msgid "Invalid volume size."
 msgstr "Ugyldig volumstorleik."
 
-#: app/Dialogs/packguibase.cpp:449
+#: app/Dialogs/packguibase.cpp:448
 #, kde-format
 msgid ""
 "Invalid command line switch.\n"
@@ -1379,7 +1379,7 @@ msgstr ""
 "Ugyldig kommandolinjeval.\n"
 "Vala må byrja med «-»."
 
-#: app/Dialogs/packguibase.cpp:461
+#: app/Dialogs/packguibase.cpp:460
 #, kde-format
 msgid ""
 "Invalid command line switch.\n"
@@ -1388,7 +1388,7 @@ msgstr ""
 "Ugyldig kommandolinjeval.\n"
 "Bakoverskråstrek kan ikkje vera siste teikn."
 
-#: app/Dialogs/packguibase.cpp:469
+#: app/Dialogs/packguibase.cpp:468
 #, kde-format
 msgid ""
 "Invalid command line switch.\n"
@@ -1407,32 +1407,32 @@ msgstr "Dei lagra «Populære adresser» er ugyldige. Lista vert tømd."
 msgid "&Search:"
 msgstr "&Søk:"
 
-#: app/DiskUsage/diskusage.cpp:98
+#: app/DiskUsage/diskusage.cpp:97
 #, kde-format
 msgid "Loading Usage Information"
 msgstr "Lastar bruksinformasjon"
 
-#: app/DiskUsage/diskusage.cpp:102
+#: app/DiskUsage/diskusage.cpp:101
 #, kde-format
 msgid "Files:"
 msgstr "Filer:"
 
-#: app/DiskUsage/diskusage.cpp:107
+#: app/DiskUsage/diskusage.cpp:106
 #, kde-format
 msgid "Folders:"
 msgstr "Mapper:"
 
-#: app/DiskUsage/diskusage.cpp:112
+#: app/DiskUsage/diskusage.cpp:111
 #, kde-format
 msgid "Total Size:"
 msgstr "Total storleik:"
 
-#: app/DiskUsage/diskusage.cpp:238
+#: app/DiskUsage/diskusage.cpp:237
 #, kde-format
 msgid "Loading the disk usage information..."
 msgstr "Lastar informasjon om diskbruk …"
 
-#: app/DiskUsage/diskusage.cpp:404
+#: app/DiskUsage/diskusage.cpp:403
 #, kde-format
 msgid ""
 "Stepping into the parent folder requires loading the content of the \"%1\" "
@@ -1441,168 +1441,168 @@ msgstr ""
 "Å gå inn i foreldermappa krev lasting av innhaldet til adressa «%1». Vil du "
 "halda fram?"
 
-#: app/DiskUsage/diskusage.cpp:408
+#: app/DiskUsage/diskusage.cpp:407
 #, kde-format
 msgid "Krusader::DiskUsage"
 msgstr "Krusader::Diskbruk"
 
-#: app/DiskUsage/diskusage.cpp:591
+#: app/DiskUsage/diskusage.cpp:590
 #, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Er du sikker på at du vil flytta elementet til papirkorga?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:840
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:833
 #, kde-format
 msgid "&Trash"
 msgstr "&Papirkorg"
 
-#: app/DiskUsage/diskusage.cpp:594
+#: app/DiskUsage/diskusage.cpp:593
 #, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to delete this item?"
 msgstr "Er du sikker på at du vil sletta elementet?"
 
-#: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:856
-#: app/Panel/panelfunc.cpp:933
+#: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:849
+#: app/Panel/panelfunc.cpp:926
 #, kde-format
 msgid "Warning"
 msgstr "Åtvaring"
 
-#: app/DiskUsage/diskusage.cpp:606 plugins/krarc/krarc.cpp:641
+#: app/DiskUsage/diskusage.cpp:605 plugins/krarc/krarc.cpp:638
 #, kde-format
 msgid "Deleting %1..."
 msgstr "Slettar %1 …"
 
 # %2 og %3 har leiande mellomrom, men det har ikkje %1, derfor eit mellomrom der.
-#: app/DiskUsage/diskusage.cpp:720
+#: app/DiskUsage/diskusage.cpp:719
 #, kde-format
 msgid "Current folder:%1,  Total size:%2,  Own size:%3"
 msgstr "Gjeldande mappe: %1,  totalt storleik:%2,  eigen storleik:%3"
 
-#: app/DiskUsage/diskusage.cpp:746
+#: app/DiskUsage/diskusage.cpp:745
 #, kde-format
 msgid "Disk Usage"
 msgstr "Diskbruk"
 
-#: app/DiskUsage/diskusage.cpp:754
+#: app/DiskUsage/diskusage.cpp:753
 #, kde-format
 msgid "Exclude"
 msgstr "Utelat"
 
-#: app/DiskUsage/diskusage.cpp:760
+#: app/DiskUsage/diskusage.cpp:759
 #, kde-format
 msgid "Up one folder"
 msgstr "Éi mappe opp"
 
-#: app/DiskUsage/diskusage.cpp:764
+#: app/DiskUsage/diskusage.cpp:763
 #, kde-format
 msgid "New search"
 msgstr "Nytt søk"
 
-#: app/DiskUsage/diskusage.cpp:768 app/DiskUsage/diskusagegui.cpp:58
+#: app/DiskUsage/diskusage.cpp:767 app/DiskUsage/diskusagegui.cpp:57
 #, kde-format
 msgid "Refresh"
 msgstr "Oppdater"
 
-#: app/DiskUsage/diskusage.cpp:772
+#: app/DiskUsage/diskusage.cpp:771
 #, kde-format
 msgid "Include all"
 msgstr "Ta med alt"
 
-#: app/DiskUsage/diskusage.cpp:776
+#: app/DiskUsage/diskusage.cpp:775
 #, kde-format
 msgid "Step into"
 msgstr "Gå inn i"
 
-#: app/DiskUsage/diskusage.cpp:789 app/DiskUsage/dulines.cpp:458
+#: app/DiskUsage/diskusage.cpp:788 app/DiskUsage/dulines.cpp:456
 #, kde-format
 msgid "Lines"
 msgstr "Linjer"
 
-#: app/DiskUsage/diskusage.cpp:793
+#: app/DiskUsage/diskusage.cpp:792
 #, kde-format
 msgid "Detailed"
 msgstr "Detaljert"
 
-#: app/DiskUsage/diskusage.cpp:797 app/DiskUsage/dufilelight.cpp:108
+#: app/DiskUsage/diskusage.cpp:796 app/DiskUsage/dufilelight.cpp:108
 #, kde-format
 msgid "Filelight"
 msgstr "Filelight"
 
-#: app/DiskUsage/diskusage.cpp:803 app/KrViewer/lister.cpp:1285
+#: app/DiskUsage/diskusage.cpp:802 app/KrViewer/lister.cpp:1284
 #, kde-format
 msgid "Next"
 msgstr "Neste"
 
-#: app/DiskUsage/diskusage.cpp:807 app/KrViewer/lister.cpp:1289
+#: app/DiskUsage/diskusage.cpp:806 app/KrViewer/lister.cpp:1288
 #, kde-format
 msgid "Previous"
 msgstr "Førre"
 
-#: app/DiskUsage/diskusage.cpp:812 app/GUI/kfnkeys.cpp:25
+#: app/DiskUsage/diskusage.cpp:811 app/GUI/kfnkeys.cpp:25
 #: app/Konfigurator/kgpanel.cpp:414
 #, kde-format
 msgid "View"
 msgstr "Vis"
 
-#: app/DiskUsage/diskusage.cpp:1038
+#: app/DiskUsage/diskusage.cpp:1037
 #, kde-format
 msgid "Type:"
 msgstr "Type:"
 
-#: app/DiskUsage/diskusage.cpp:1042
+#: app/DiskUsage/diskusage.cpp:1041
 #, kde-format
 msgid "Own size:"
 msgstr "Eigen storleik:"
 
-#: app/DiskUsage/diskusage.cpp:1044
+#: app/DiskUsage/diskusage.cpp:1043
 #, kde-format
 msgid "Last modified:"
 msgstr "Sist endra:"
 
-#: app/DiskUsage/diskusage.cpp:1044
+#: app/DiskUsage/diskusage.cpp:1043
 #, kde-format
 msgid "Permissions:"
 msgstr "Løyve:"
 
-#: app/DiskUsage/diskusage.cpp:1045
+#: app/DiskUsage/diskusage.cpp:1044
 #, kde-format
 msgid "Owner:"
 msgstr "Eigar:"
 
-#: app/DiskUsage/diskusagegui.cpp:33
+#: app/DiskUsage/diskusagegui.cpp:32
 #, kde-format
 msgid "Krusader::Disk Usage"
 msgstr "Krusader::Diskbruk"
 
-#: app/DiskUsage/diskusagegui.cpp:53
+#: app/DiskUsage/diskusagegui.cpp:52
 #, kde-format
 msgid "Start new disk usage search"
 msgstr "Start nytt diskbruk-søk"
 
-#: app/DiskUsage/diskusagegui.cpp:63
+#: app/DiskUsage/diskusagegui.cpp:62
 #, kde-format
 msgid "Parent folder"
 msgstr "Foreldermappe"
 
-#: app/DiskUsage/diskusagegui.cpp:73
+#: app/DiskUsage/diskusagegui.cpp:72
 #, kde-format
 msgid "Line view"
 msgstr "Stolpevising"
 
-#: app/DiskUsage/diskusagegui.cpp:79
+#: app/DiskUsage/diskusagegui.cpp:78
 #, kde-format
 msgid "Detailed view"
 msgstr "Detaljert vising"
 
-#: app/DiskUsage/diskusagegui.cpp:85
+#: app/DiskUsage/diskusagegui.cpp:84
 #, kde-format
 msgid "Filelight view"
 msgstr "Filelight-vising"
 
-#: app/DiskUsage/diskusagegui.cpp:221
+#: app/DiskUsage/diskusagegui.cpp:220
 #, kde-format
 msgid "Viewing the usage of folder:"
 msgstr "Viser diskbruk til mappe:"
@@ -1673,58 +1673,58 @@ msgid "Krusader::Filelight"
 msgstr "Krusader::Filelight"
 
 # Stolpediagram over diskbruk.
-#: app/DiskUsage/dulines.cpp:183
+#: app/DiskUsage/dulines.cpp:181
 #, kde-format
 msgid "Line View"
 msgstr "Stolpevising"
 
-#: app/DiskUsage/dulines.cpp:184 app/DiskUsage/dulistview.cpp:41
+#: app/DiskUsage/dulines.cpp:182 app/DiskUsage/dulistview.cpp:39
 #, kde-format
 msgid "Percent"
 msgstr "Prosent"
 
-#: app/DiskUsage/dulines.cpp:185 app/DiskUsage/dulistview.cpp:40
-#: app/Konfigurator/krresulttable.cpp:128 app/MountMan/kmountmangui.cpp:147
+#: app/DiskUsage/dulines.cpp:183 app/DiskUsage/dulistview.cpp:38
+#: app/Konfigurator/krresulttable.cpp:127 app/MountMan/kmountmangui.cpp:146
 #, kde-format
 msgid "Name"
 msgstr "Namn"
 
-#: app/DiskUsage/dulines.cpp:455
+#: app/DiskUsage/dulines.cpp:453
 #, kde-format
 msgid "Show file sizes"
 msgstr "Vis filstorleik"
 
-#: app/DiskUsage/dulistview.cpp:42
+#: app/DiskUsage/dulistview.cpp:40
 #, kde-format
 msgid "Total size"
 msgstr "Storleik i alt"
 
-#: app/DiskUsage/dulistview.cpp:43
+#: app/DiskUsage/dulistview.cpp:41
 #, kde-format
 msgid "Own size"
 msgstr "Eigen storleik"
 
-#: app/DiskUsage/dulistview.cpp:44 app/MountMan/kmountmangui.cpp:148
+#: app/DiskUsage/dulistview.cpp:42 app/MountMan/kmountmangui.cpp:147
 #, kde-format
 msgid "Type"
 msgstr "Type"
 
-#: app/DiskUsage/dulistview.cpp:45 app/Filter/advancedfilter.cpp:109
+#: app/DiskUsage/dulistview.cpp:43 app/Filter/advancedfilter.cpp:109
 #, kde-format
 msgid "Date"
 msgstr "Dato"
 
-#: app/DiskUsage/dulistview.cpp:46
+#: app/DiskUsage/dulistview.cpp:44
 #, kde-format
 msgid "Permissions"
 msgstr "Løyve"
 
-#: app/DiskUsage/dulistview.cpp:47
+#: app/DiskUsage/dulistview.cpp:45
 #, kde-format
 msgid "Owner"
 msgstr "Eigar"
 
-#: app/DiskUsage/dulistview.cpp:48 app/Konfigurator/krresulttable.cpp:282
+#: app/DiskUsage/dulistview.cpp:46 app/Konfigurator/krresulttable.cpp:281
 #, kde-format
 msgid "Group"
 msgstr "Gruppe"
@@ -1736,37 +1736,37 @@ msgid_plural "%1 files: ~ %2"
 msgstr[0] "%1 fil: ~ %2"
 msgstr[1] "%1 filer: ~ %2"
 
-#: app/DiskUsage/radialMap/segmentTip.cpp:121
+#: app/DiskUsage/radialMap/segmentTip.cpp:120
 #, kde-format
 msgid "Files: %1"
 msgstr "Filer: %1"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:166
+#: app/DiskUsage/radialMap/widgetEvents.cpp:156
 #, kde-format
 msgid "Open File Manager Here"
 msgstr "Opna filhandsamar her"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:168
+#: app/DiskUsage/radialMap/widgetEvents.cpp:158
 #, kde-format
 msgid "Open Terminal Here"
 msgstr "Opna terminal her"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:172
+#: app/DiskUsage/radialMap/widgetEvents.cpp:162
 #, kde-format
 msgid "&Center Map Here"
 msgstr "&Sentrer diagrammet her"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:175
+#: app/DiskUsage/radialMap/widgetEvents.cpp:165
 #, kde-format
 msgid "&Open"
 msgstr "&Opna"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:178
+#: app/DiskUsage/radialMap/widgetEvents.cpp:168
 #, kde-format
 msgid "&Delete"
 msgstr "&Slett"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:204
+#: app/DiskUsage/radialMap/widgetEvents.cpp:188
 #, kde-format
 msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
@@ -1774,27 +1774,27 @@ msgid ""
 msgstr ""
 "<qt>Mappa <i>«%1»</i> vert sletta <b>rekursivt</b> og <b>for alltid</b>.</qt>"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:205
+#: app/DiskUsage/radialMap/widgetEvents.cpp:189
 #, kde-format
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
 msgstr "<qt>Fila <i>«%1»</i> vert sletta <b>for alltid</b>.</qt>"
 
-#: app/FileSystem/defaultfilesystem.cpp:150
+#: app/FileSystem/defaultfilesystem.cpp:149
 #, kde-format
 msgid "Space information disabled"
 msgstr "Plassinformasjon slått av"
 
-#: app/FileSystem/defaultfilesystem.cpp:157
+#: app/FileSystem/defaultfilesystem.cpp:156
 #, kde-format
 msgid "No space information on non-local filesystems"
 msgstr "Ingen plassinformasjon for ikkje-lokale filsystem"
 
-#: app/FileSystem/defaultfilesystem.cpp:185
+#: app/FileSystem/defaultfilesystem.cpp:184
 #, kde-format
 msgid "Space information unavailable"
 msgstr "Plassinformasjon ikkje tilgjengeleg"
 
-#: app/FileSystem/defaultfilesystem.cpp:195
+#: app/FileSystem/defaultfilesystem.cpp:194
 #, kde-format
 msgid ""
 "Protocol not supported by Krusader:\n"
@@ -1803,18 +1803,18 @@ msgstr ""
 "Protokollen er ikkje støtta av Krusader:\n"
 "%1"
 
-#: app/FileSystem/defaultfilesystem.cpp:337
+#: app/FileSystem/defaultfilesystem.cpp:336
 #, kde-format
 msgid "The folder %1 does not exist."
 msgstr "Mappa %1 finst ikkje."
 
-#: app/FileSystem/defaultfilesystem.cpp:353
+#: app/FileSystem/defaultfilesystem.cpp:352
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Cannot open the folder %1."
 msgstr "Klarte ikkje opna mappa %1."
 
-#: app/FileSystem/defaultfilesystem.cpp:360
+#: app/FileSystem/defaultfilesystem.cpp:359
 #, kde-format
 msgctxt "%1=folder path"
 msgid "Access to %1 denied"
@@ -1829,28 +1829,28 @@ msgstr ""
 "Misforma adresse:\n"
 "%1"
 
-#: app/FileSystem/krquery.cpp:259 app/Filter/generalfilter.cpp:161
+#: app/FileSystem/krquery.cpp:259 app/Filter/generalfilter.cpp:160
 #: app/Konfigurator/konfigurator.cpp:126
 #, kde-format
 msgid "Archives"
 msgstr "Arkiv"
 
-#: app/FileSystem/krquery.cpp:263 app/Filter/generalfilter.cpp:163
+#: app/FileSystem/krquery.cpp:263 app/Filter/generalfilter.cpp:162
 #, kde-format
 msgid "Image Files"
 msgstr "Biletfiler"
 
-#: app/FileSystem/krquery.cpp:265 app/Filter/generalfilter.cpp:164
+#: app/FileSystem/krquery.cpp:265 app/Filter/generalfilter.cpp:163
 #, kde-format
 msgid "Text Files"
 msgstr "Tekstfiler"
 
-#: app/FileSystem/krquery.cpp:267 app/Filter/generalfilter.cpp:165
+#: app/FileSystem/krquery.cpp:267 app/Filter/generalfilter.cpp:164
 #, kde-format
 msgid "Video Files"
 msgstr "Videofiler"
 
-#: app/FileSystem/krquery.cpp:269 app/Filter/generalfilter.cpp:166
+#: app/FileSystem/krquery.cpp:269 app/Filter/generalfilter.cpp:165
 #, kde-format
 msgid "Audio Files"
 msgstr "Lydfiler"
@@ -2129,69 +2129,69 @@ msgstr "&Avansert"
 msgid "Could not load profile."
 msgstr "Klarte ikkje lasta profil."
 
-#: app/Filter/generalfilter.cpp:38
+#: app/Filter/generalfilter.cpp:37
 msgid "Any Character"
 msgstr "Alle teikn"
 
-#: app/Filter/generalfilter.cpp:39
+#: app/Filter/generalfilter.cpp:38
 msgid "Start of Line"
 msgstr "Starten av linja"
 
-#: app/Filter/generalfilter.cpp:40
+#: app/Filter/generalfilter.cpp:39
 msgid "End of Line"
 msgstr "Slutten på linja"
 
-#: app/Filter/generalfilter.cpp:41
+#: app/Filter/generalfilter.cpp:40
 msgid "Set of Characters"
 msgstr "Ei teiknmengd"
 
-#: app/Filter/generalfilter.cpp:42
+#: app/Filter/generalfilter.cpp:41
 msgid "Repeats, Zero or More Times"
 msgstr "Repeter, ingen eller fleire gongar"
 
-#: app/Filter/generalfilter.cpp:43
+#: app/Filter/generalfilter.cpp:42
 msgid "Repeats, One or More Times"
 msgstr "Repeter, éin eller fleire gongar"
 
-#: app/Filter/generalfilter.cpp:44
+#: app/Filter/generalfilter.cpp:43
 msgid "Optional"
 msgstr "Valfri"
 
-#: app/Filter/generalfilter.cpp:45
+#: app/Filter/generalfilter.cpp:44
 msgid "Escape"
 msgstr "Escape"
 
-#: app/Filter/generalfilter.cpp:46
+#: app/Filter/generalfilter.cpp:45
 msgid "TAB"
 msgstr "Tabulator"
 
-#: app/Filter/generalfilter.cpp:47
+#: app/Filter/generalfilter.cpp:46
 msgid "Newline"
 msgstr "Linjeskift"
 
-#: app/Filter/generalfilter.cpp:48
+#: app/Filter/generalfilter.cpp:47
 msgid "Carriage Return"
 msgstr "Vognretur"
 
-#: app/Filter/generalfilter.cpp:49
+#: app/Filter/generalfilter.cpp:48
 msgid "White Space"
 msgstr "Blankteikn"
 
-#: app/Filter/generalfilter.cpp:50
+#: app/Filter/generalfilter.cpp:49
 msgid "Digit"
 msgstr "Siffer"
 
-#: app/Filter/generalfilter.cpp:104
+#: app/Filter/generalfilter.cpp:103
 #, kde-format
 msgid "&Case sensitive"
 msgstr "&Skil mellom store og små bokstavar"
 
-#: app/Filter/generalfilter.cpp:109
+#: app/Filter/generalfilter.cpp:108
 #, kde-format
 msgid "Search &for:"
 msgstr "&Søk etter:"
 
-#: app/Filter/generalfilter.cpp:124 app/Synchronizer/synchronizergui.cpp:208
+#: app/Filter/generalfilter.cpp:123 app/Synchronizer/synchronizergui.cpp:208
 #, kde-format
 msgid ""
 "<p>The filename filtering criteria is defined here.</p><p>You can make use "
@@ -2228,103 +2228,103 @@ msgstr ""
 "Søkjeteksten «<code>tekst</code>» er ekvivalent til «<code>*tekst*</code>».</"
 "p>"
 
-#: app/Filter/generalfilter.cpp:150
+#: app/Filter/generalfilter.cpp:149
 #, kde-format
 msgid "&Of type:"
 msgstr "&Av type:"
 
-#: app/Filter/generalfilter.cpp:160 app/Filter/generalfilter.cpp:585
+#: app/Filter/generalfilter.cpp:159 app/Filter/generalfilter.cpp:584
 #, kde-format
 msgid "All Files"
 msgstr "Alle filer"
 
-#: app/Filter/generalfilter.cpp:180
+#: app/Filter/generalfilter.cpp:179
 #, kde-format
 msgid "&Profile handler"
 msgstr "&Profilhandsamar"
 
-#: app/Filter/generalfilter.cpp:193
+#: app/Filter/generalfilter.cpp:192
 #, kde-format
 msgid "&Load"
 msgstr "&Last inn"
 
-#: app/Filter/generalfilter.cpp:217
+#: app/Filter/generalfilter.cpp:216
 #, kde-format
 msgid "Searc&h in"
 msgstr "&Søk i"
 
-#: app/Filter/generalfilter.cpp:232
+#: app/Filter/generalfilter.cpp:231
 #, kde-format
 msgid "&Do not search in"
 msgstr "&Ikkje søk i"
 
-#: app/Filter/generalfilter.cpp:265
+#: app/Filter/generalfilter.cpp:264
 #, kde-format
 msgid "Containing text"
 msgstr "Inneheld tekst"
 
-#: app/Filter/generalfilter.cpp:279
+#: app/Filter/generalfilter.cpp:278
 #, kde-format
 msgid "&Text:"
 msgstr "&Tekst:"
 
-#: app/Filter/generalfilter.cpp:295 app/KrViewer/lister.cpp:1303
+#: app/Filter/generalfilter.cpp:294 app/KrViewer/lister.cpp:1302
 #, kde-format
 msgid "RegExp"
 msgstr "RegExp"
 
-#: app/Filter/generalfilter.cpp:314
+#: app/Filter/generalfilter.cpp:313
 #, kde-format
 msgid "Encoding:"
 msgstr "Teiknkoding:"
 
-#: app/Filter/generalfilter.cpp:318 app/GUI/krremoteencodingmenu.cpp:119
+#: app/Filter/generalfilter.cpp:317 app/GUI/krremoteencodingmenu.cpp:118
 #, kde-format
 msgctxt "Default encoding"
 msgid "Default"
 msgstr "Standard"
 
-#: app/Filter/generalfilter.cpp:329
+#: app/Filter/generalfilter.cpp:328
 #, kde-format
 msgid "&Match whole word only"
 msgstr "&Treff berre heile ord"
 
-#: app/Filter/generalfilter.cpp:337
+#: app/Filter/generalfilter.cpp:336
 #, kde-format
 msgid "Cas&e sensitive"
 msgstr "&Skil mellom store og små bokstavar"
 
-#: app/Filter/generalfilter.cpp:354
+#: app/Filter/generalfilter.cpp:353
 #, kde-format
 msgid "Search in s&ub folders"
 msgstr "Søk òg i &undermapper"
 
-#: app/Filter/generalfilter.cpp:359
+#: app/Filter/generalfilter.cpp:358
 #, kde-format
 msgid "Search in arch&ives"
 msgstr "Søk i &arkiv"
 
-#: app/Filter/generalfilter.cpp:363
+#: app/Filter/generalfilter.cpp:362
 #, kde-format
 msgid "Follow &links"
 msgstr "Følg &lenkjer"
 
-#: app/Filter/generalfilter.cpp:473
+#: app/Filter/generalfilter.cpp:472
 #, kde-format
 msgid "Exclude Folder Names"
 msgstr "Utelate mappenamn"
 
-#: app/Filter/generalfilter.cpp:474
+#: app/Filter/generalfilter.cpp:473
 #, kde-format
 msgid "Filters out specified folder names from the results."
 msgstr "Filtrer ut valde mappenamn frå resultata."
 
-#: app/Filter/generalfilter.cpp:489
+#: app/Filter/generalfilter.cpp:488
 #, kde-format
 msgid "Enter space-separated folder names"
 msgstr "Skriv inn mappenamn skilde med mellomrom"
 
-#: app/Filter/generalfilter.cpp:491
+#: app/Filter/generalfilter.cpp:490
 #, kde-format
 msgid ""
 "You can insert names with escaped spaces or quoted.\n"
@@ -2335,12 +2335,12 @@ msgstr ""
 "\n"
 "Eksempel: .git \"mål for bygg\" build\\ krusader"
 
-#: app/Filter/generalfilter.cpp:577
+#: app/Filter/generalfilter.cpp:576
 #, kde-format
 msgid "No search criteria entered."
 msgstr "Inkje søkjekriterim oppgjeve."
 
-#: app/Filter/generalfilter.cpp:607
+#: app/Filter/generalfilter.cpp:606
 #, kde-format
 msgid "Please specify a location to search in."
 msgstr "Vel kor du vil søkja i."
@@ -2350,12 +2350,12 @@ msgstr "Vel kor du vil søkja i."
 msgid "Open the folder history list"
 msgstr "Opna mappehistorikk"
 
-#: app/GUI/kcmdline.cpp:47
+#: app/GUI/kcmdline.cpp:46
 #, kde-format
 msgid "Name of folder where command will be processed."
 msgstr "Namnet på mappa som kommandoen skal køyrast i."
 
-#: app/GUI/kcmdline.cpp:175
+#: app/GUI/kcmdline.cpp:174
 #, kde-format
 msgid ""
 "<qt><p>Well, it is actually quite simple: you type your command here and "
@@ -2406,7 +2406,7 @@ msgstr "Term"
 msgid "Quit"
 msgstr "Avslutt"
 
-#: app/GUI/krremoteencodingmenu.cpp:115
+#: app/GUI/krremoteencodingmenu.cpp:114
 #, kde-format
 msgid "Reload"
 msgstr "Last om att"
@@ -2490,20 +2490,20 @@ msgid "Recordable CD/DVD-ROM"
 msgstr "Overskrivbar CD/DVD"
 
 #: app/GUI/mediabutton.cpp:338 app/MountMan/kmountman.cpp:391
-#: app/MountMan/kmountmangui.cpp:444 app/Panel/panelcontextmenu.cpp:248
+#: app/MountMan/kmountmangui.cpp:443 app/Panel/panelcontextmenu.cpp:236
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
 msgstr "Monter"
 
 #: app/GUI/mediabutton.cpp:341 app/MountMan/kmountman.cpp:391
-#: app/MountMan/kmountmangui.cpp:449 app/Panel/panelcontextmenu.cpp:246
+#: app/MountMan/kmountmangui.cpp:448 app/Panel/panelcontextmenu.cpp:234
 #, kde-format
 msgid "Unmount"
 msgstr "Avmonter"
 
-#: app/GUI/mediabutton.cpp:345 app/MountMan/kmountmangui.cpp:456
-#: app/Panel/panelcontextmenu.cpp:250
+#: app/GUI/mediabutton.cpp:345 app/MountMan/kmountmangui.cpp:455
+#: app/Panel/panelcontextmenu.cpp:238
 #, kde-format
 msgid "Eject"
 msgstr "Løys ut"
@@ -2568,91 +2568,91 @@ msgstr ""
 "<b>Kan ikkje oppretta innebygd terminal.</b><br> Du kan retta dette ved å "
 "installera programmet Konsole:<br/>%1"
 
-#: app/JobMan/jobman.cpp:54
+#: app/JobMan/jobman.cpp:53
 #, kde-format
 msgid "Cancel Job"
 msgstr "Avbryt jobb"
 
-#: app/JobMan/jobman.cpp:98
+#: app/JobMan/jobman.cpp:97
 #, kde-format
 msgid "Pause Job"
 msgstr "Set jobb på pause"
 
-#: app/JobMan/jobman.cpp:98
+#: app/JobMan/jobman.cpp:97
 #, kde-format
 msgid "Resume Job"
 msgstr "Hald fram jobb"
 
-#: app/JobMan/jobman.cpp:98
+#: app/JobMan/jobman.cpp:97
 #, kde-format
 msgid "Start Job"
 msgstr "Start jobb"
 
-#: app/JobMan/jobman.cpp:166
+#: app/JobMan/jobman.cpp:165
 #, kde-format
 msgid "No jobs"
 msgstr "Ingen jobbar"
 
-#: app/JobMan/jobman.cpp:173
+#: app/JobMan/jobman.cpp:172
 #, kde-format
 msgid "Play/Pause &Job"
 msgstr "Køyr/pausa &jobb"
 
-#: app/JobMan/jobman.cpp:191
+#: app/JobMan/jobman.cpp:190
 #, kde-format
 msgid "Job Progress Bar"
 msgstr "Framdrift for jobb"
 
-#: app/JobMan/jobman.cpp:198
+#: app/JobMan/jobman.cpp:197
 #, kde-format
 msgid "Job Queue Mode"
 msgstr "Kømodus for jobb"
 
-#: app/JobMan/jobman.cpp:199
+#: app/JobMan/jobman.cpp:198
 #, kde-format
 msgid "Run only one job in parallel"
 msgstr "Køyr berre éin jobb parallelt"
 
-#: app/JobMan/jobman.cpp:211 app/JobMan/jobman.cpp:356
+#: app/JobMan/jobman.cpp:210 app/JobMan/jobman.cpp:351
 #, kde-format
 msgid "Undo Last Job"
 msgstr "Angra siste jobb"
 
-#: app/JobMan/jobman.cpp:231
+#: app/JobMan/jobman.cpp:230
 #, kde-format
 msgid "Are you sure you want to quit?"
 msgstr "Er du sikker på at du vil avslutta?"
 
-#: app/JobMan/jobman.cpp:375
+#: app/JobMan/jobman.cpp:370
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
 msgstr[0] "Det finst éi jobbhandling att."
 msgstr[1] "Det finst %1 jobbhandlingar att."
 
-#: app/JobMan/jobman.cpp:423
+#: app/JobMan/jobman.cpp:418
 #, kde-format
 msgid "No Jobs"
 msgstr "Ingen jobbar"
 
-#: app/JobMan/jobman.cpp:425
+#: app/JobMan/jobman.cpp:420
 #, kde-format
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
 msgstr[0] "%1 jobb"
 msgstr[1] "%1 jobbar"
 
-#: app/JobMan/jobman.cpp:429
+#: app/JobMan/jobman.cpp:424
 #, kde-format
 msgid "Clear Job List"
 msgstr "Tøm jobbliste"
 
-#: app/JobMan/jobman.cpp:429
+#: app/JobMan/jobman.cpp:424
 #, kde-format
 msgid "Pause All Jobs"
 msgstr "Set alle jobbar på pause"
 
-#: app/JobMan/jobman.cpp:429
+#: app/JobMan/jobman.cpp:424
 #, kde-format
 msgid "Resume Job List"
 msgstr "Hald fram jobbliste"
@@ -2697,7 +2697,7 @@ msgid "Link to %1"
 msgstr "Lenkja til %1"
 
 #: app/Konfigurator/kgadvanced.cpp:29 app/Konfigurator/kgcolors.cpp:49
-#: app/Konfigurator/kgdependencies.cpp:42 app/Konfigurator/kggeneral.cpp:208
+#: app/Konfigurator/kgdependencies.cpp:41 app/Konfigurator/kggeneral.cpp:208
 #: app/Konfigurator/kggeneral.cpp:215 app/Konfigurator/kgpanel.cpp:63
 #: app/Konfigurator/kgpanel.cpp:419 app/Konfigurator/kgpanel.cpp:664
 #: app/Konfigurator/kgstartup.cpp:31 app/Konfigurator/konfigurator.cpp:122
@@ -3201,7 +3201,7 @@ msgid "Statusbar, inactive background:"
 msgstr "Statuslinje, bakgrunn for motsett panel:"
 
 #: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:808
-#: app/Panel/panelcontextmenu.cpp:137
+#: app/Panel/panelcontextmenu.cpp:135
 #, kde-format
 msgid "Preview"
 msgstr "Førehandsvising"
@@ -3321,22 +3321,22 @@ msgstr "Fila %1 finst frå før. Vil du skriva over ho?"
 msgid "Error: unable to write to file"
 msgstr "Feil: Klarte ikkje skriva til fila"
 
-#: app/Konfigurator/kgdependencies.cpp:64
+#: app/Konfigurator/kgdependencies.cpp:63
 #, kde-format
 msgid "Packers"
 msgstr "Pakkeverktøy"
 
-#: app/Konfigurator/kgdependencies.cpp:94
+#: app/Konfigurator/kgdependencies.cpp:93
 #, kde-format
 msgid "Checksum Utilities"
 msgstr "Sjekksumverktøy"
 
-#: app/Konfigurator/kgdependencies.cpp:144
+#: app/Konfigurator/kgdependencies.cpp:143
 #, kde-format
 msgid "The %1 path is incorrect, no valid path found."
 msgstr "Stien %1 er ikkje rett. Fann ingen gyldig sti."
 
-#: app/Konfigurator/kgdependencies.cpp:146
+#: app/Konfigurator/kgdependencies.cpp:145
 #, kde-format
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr "Stien %1 er ikkje rett, så %2 vart brukt i staden."
@@ -3392,7 +3392,7 @@ msgstr "Generisk visemåte"
 msgid "Use the system's default viewer"
 msgstr "Bruk standardvisaren på systemet."
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2266
 #, kde-format
 msgid "Text mode"
 msgstr "Tekstmodus"
@@ -3402,8 +3402,8 @@ msgstr "Tekstmodus"
 msgid "View the file in text-only mode"
 msgstr "Vis fila som berre tekst."
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1235
-#: app/KrViewer/lister.cpp:2274
+#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
+#: app/KrViewer/lister.cpp:2269
 #, kde-format
 msgid "Hex mode"
 msgstr "Heksmodus"
@@ -3539,7 +3539,7 @@ msgstr "Slett filer"
 msgid "Files will be permanently deleted."
 msgstr "Filer vert sletta for alltid."
 
-#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:165
+#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:157
 #, kde-format
 msgid "Terminal"
 msgstr "Terminal"
@@ -3848,7 +3848,7 @@ msgstr "Start ved skriving"
 msgid "Open search bar and start searching by typing in panel."
 msgstr "Opna søkjelinja og start søket ved å skriva i panelet."
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
+#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1298
 #, kde-format
 msgid "Case sensitive"
 msgstr "Skil mellom store og små bokstavar"
@@ -3893,7 +3893,7 @@ msgstr "Plassering:"
 msgid "Default mode:"
 msgstr "Standardmodus:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
+#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1214
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
 #, kde-format
 msgid "Search"
@@ -4974,7 +4974,7 @@ msgstr "Oppstart"
 msgid "Krusader's settings upon startup"
 msgstr "Krusader-innstillingar ved oppstart"
 
-#: app/Konfigurator/konfigurator.cpp:118 app/paneltabbar.cpp:51
+#: app/Konfigurator/konfigurator.cpp:118 app/paneltabbar.cpp:50
 #, kde-format
 msgid "Panel"
 msgstr "Panel"
@@ -5009,7 +5009,7 @@ msgstr "Avhengnadar"
 msgid "Set the full path of the external applications"
 msgstr "Vel fullstendig adresse for eksterne program"
 
-#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:177
+#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:169
 #: app/UserAction/useractionpopupmenu.cpp:20
 #, kde-format
 msgid "User Actions"
@@ -5126,78 +5126,78 @@ msgstr "Mørkegrå"
 msgid "Black"
 msgstr "Svart"
 
-#: app/Konfigurator/krresulttable.cpp:120
+#: app/Konfigurator/krresulttable.cpp:119
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
 msgstr ""
 "Fann ikkje «unarj», men fann «arj», som derfor vert brukt til utpakking"
 
-#: app/Konfigurator/krresulttable.cpp:126
+#: app/Konfigurator/krresulttable.cpp:125
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr "Fann «rpm», men ikkje «cpio», som trengst for utpakking"
 
-#: app/Konfigurator/krresulttable.cpp:129
-#: app/Konfigurator/krresulttable.cpp:284
+#: app/Konfigurator/krresulttable.cpp:128
+#: app/Konfigurator/krresulttable.cpp:283
 #, kde-format
 msgid "Found"
 msgstr "Fann"
 
-#: app/Konfigurator/krresulttable.cpp:130
+#: app/Konfigurator/krresulttable.cpp:129
 #, kde-format
 msgid "Packing"
 msgstr "Pakkar"
 
-#: app/Konfigurator/krresulttable.cpp:131
+#: app/Konfigurator/krresulttable.cpp:130
 #, kde-format
 msgid "Unpacking"
 msgstr "Pakkar ut"
 
-#: app/Konfigurator/krresulttable.cpp:132
+#: app/Konfigurator/krresulttable.cpp:131
 #, kde-format
 msgid "Note"
 msgstr "Merknad"
 
-#: app/Konfigurator/krresulttable.cpp:198
-#: app/Konfigurator/krresulttable.cpp:216
-#: app/Konfigurator/krresulttable.cpp:355
+#: app/Konfigurator/krresulttable.cpp:197
+#: app/Konfigurator/krresulttable.cpp:215
+#: app/Konfigurator/krresulttable.cpp:354
 #, kde-format
 msgid "enabled"
 msgstr "på"
 
-#: app/Konfigurator/krresulttable.cpp:203
-#: app/Konfigurator/krresulttable.cpp:221
-#: app/Konfigurator/krresulttable.cpp:360
+#: app/Konfigurator/krresulttable.cpp:202
+#: app/Konfigurator/krresulttable.cpp:220
+#: app/Konfigurator/krresulttable.cpp:359
 #, kde-format
 msgid "disabled"
 msgstr "av"
 
-#: app/Konfigurator/krresulttable.cpp:277
+#: app/Konfigurator/krresulttable.cpp:276
 #, kde-format
 msgid "diff utility"
 msgstr "Diff-verktøy"
 
-#: app/Konfigurator/krresulttable.cpp:278
+#: app/Konfigurator/krresulttable.cpp:277
 #, kde-format
 msgid "email client"
 msgstr "E-postprogram"
 
-#: app/Konfigurator/krresulttable.cpp:279
+#: app/Konfigurator/krresulttable.cpp:278
 #, kde-format
 msgid "batch renamer"
 msgstr "Verktøy for endring av namn på fleire filer"
 
-#: app/Konfigurator/krresulttable.cpp:280
+#: app/Konfigurator/krresulttable.cpp:279
 #, kde-format
 msgid "checksum utility"
 msgstr "Sjekksumverktøy"
 
-#: app/Konfigurator/krresulttable.cpp:283
+#: app/Konfigurator/krresulttable.cpp:282
 #, kde-format
 msgid "Tool"
 msgstr "Verktøy"
 
-#: app/Konfigurator/krresulttable.cpp:285
+#: app/Konfigurator/krresulttable.cpp:284
 #, kde-format
 msgid "Status"
 msgstr "Status"
@@ -5232,7 +5232,7 @@ msgstr "Vis &gøymde filer"
 msgid "S&wap Panels"
 msgstr "B&yt om panela"
 
-#: app/kractions.cpp:204 app/Panel/panelcontextmenu.cpp:261
+#: app/kractions.cpp:204 app/Panel/panelcontextmenu.cpp:249
 #, kde-format
 msgid "Empty Trash"
 msgstr "Tøm papirkorga"
@@ -5609,8 +5609,8 @@ msgid "Bring Main Window to Top"
 msgstr "Hev hovundvindauget"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1890
-#: app/KrViewer/lister.cpp:1925
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1889
+#: app/KrViewer/lister.cpp:1924
 #, kde-format
 msgid "Lister"
 msgstr "Listar"
@@ -5704,58 +5704,58 @@ msgstr "Raske handlingar på filer kan gjerast med funksjonstastar."
 msgid "Horizontal Mode"
 msgstr "Vassrett utforming"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:97
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&Generisk visar"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&Tekstvisar"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Heksvisar"
 
-#: app/KrViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Lister"
 msgstr "&Listar"
 
 # Er snakk om intern tekstredigering, ikkje eit eksternt skriveprogram.
-#: app/KrViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:103
 #, kde-format
 msgid "Text &Editor"
 msgstr "&Tekstredigering"
 
-#: app/KrViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:127
 #, kde-format
 msgid "&Detach Tab"
 msgstr "&Kopla frå fane"
 
-#: app/KrViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:139
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "&Lukk fana"
 
-#: app/KrViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:145
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Neste fane"
 
-#: app/KrViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:151
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&Førre fane"
 
-#: app/KrViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:226
 #, kde-format
 msgid "&KrViewer"
 msgstr "&Krusader-filvisar"
 
-#: app/KrViewer/krviewer.cpp:360
+#: app/KrViewer/krviewer.cpp:355
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5765,158 +5765,158 @@ msgstr ""
 "Ugyldig bruk av hermeteikn i redigeringskommando:\n"
 "%1"
 
-#: app/KrViewer/krviewer.cpp:367
+#: app/KrViewer/krviewer.cpp:362
 #, kde-format
 msgid "Can not open \"%1\""
 msgstr "Klarte ikkje opna «%1»"
 
-#: app/KrViewer/krviewer.cpp:679
+#: app/KrViewer/krviewer.cpp:674
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (redigering)"
 
-#: app/KrViewer/krviewer.cpp:680
+#: app/KrViewer/krviewer.cpp:675
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (vising)"
 
-#: app/KrViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:681
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Redigerer: %1"
 
-#: app/KrViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:681
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Viser: %1"
 
-#: app/KrViewer/lister.cpp:1202 app/KrViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1913
 #, kde-format
 msgid "Save selection..."
 msgstr "Lagra filmerking …"
 
-#: app/KrViewer/lister.cpp:1206
+#: app/KrViewer/lister.cpp:1205
 #, kde-format
 msgid "Save as..."
 msgstr "Lagra som …"
 
-#: app/KrViewer/lister.cpp:1210
+#: app/KrViewer/lister.cpp:1209
 #, kde-format
 msgid "Print..."
 msgstr "Skriv ut …"
 
-#: app/KrViewer/lister.cpp:1220
+#: app/KrViewer/lister.cpp:1219
 #, kde-format
 msgid "Search next"
 msgstr "Søk etter neste"
 
-#: app/KrViewer/lister.cpp:1225
+#: app/KrViewer/lister.cpp:1224
 #, kde-format
 msgid "Search previous"
 msgstr "Søk etter førre"
 
-#: app/KrViewer/lister.cpp:1230 app/KrViewer/lister.cpp:1853
-#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
-#: app/KrViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1852
+#: app/KrViewer/lister.cpp:1863 app/KrViewer/lister.cpp:1871
+#: app/KrViewer/lister.cpp:1878
 #, kde-format
 msgid "Jump to position"
 msgstr "Hopp til posisjon"
 
-#: app/KrViewer/lister.cpp:1240
+#: app/KrViewer/lister.cpp:1239
 #, kde-format
 msgid "Select charset"
 msgstr "Vel teiknkoding"
 
-#: app/KrViewer/lister.cpp:1259 app/KrViewer/lister.cpp:1486
+#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1485
 #, kde-format
 msgid "Lister:"
 msgstr "Listar:"
 
-#: app/KrViewer/lister.cpp:1270
+#: app/KrViewer/lister.cpp:1269
 #, kde-format
 msgid "Stop search"
 msgstr "Stopp søket"
 
-#: app/KrViewer/lister.cpp:1286
+#: app/KrViewer/lister.cpp:1285
 #, kde-format
 msgid "Jump to next match"
 msgstr "Gå til neste treff"
 
-#: app/KrViewer/lister.cpp:1290
+#: app/KrViewer/lister.cpp:1289
 #, kde-format
 msgid "Jump to previous match"
 msgstr "Gå til førre treff"
 
-#: app/KrViewer/lister.cpp:1293
+#: app/KrViewer/lister.cpp:1292
 #, kde-format
 msgid "Options"
 msgstr "Val"
 
-#: app/KrViewer/lister.cpp:1294
+#: app/KrViewer/lister.cpp:1293
 #, kde-format
 msgid "Modify search behavior"
 msgstr "Endra søkjeåtferd"
 
-#: app/KrViewer/lister.cpp:1296
+#: app/KrViewer/lister.cpp:1295
 #, kde-format
 msgid "From cursor"
 msgstr "Frå skrivemerket"
 
-#: app/KrViewer/lister.cpp:1301
+#: app/KrViewer/lister.cpp:1300
 #, kde-format
 msgid "Match whole words only"
 msgstr "Treff berre heile ord"
 
-#: app/KrViewer/lister.cpp:1305
+#: app/KrViewer/lister.cpp:1304
 #, kde-format
 msgid "Hexadecimal"
 msgstr "Heksadesimal"
 
-#: app/KrViewer/lister.cpp:1360
+#: app/KrViewer/lister.cpp:1359
 #, kde-format
 msgid "Error reading file %1."
 msgstr "Feil ved lesinga av fila %1."
 
-#: app/KrViewer/lister.cpp:1457
+#: app/KrViewer/lister.cpp:1456
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "Kolonne: %1, posisjon: %2 (%3, %4%)"
 
-#: app/KrViewer/lister.cpp:1472 app/KrViewer/lister.cpp:1822
+#: app/KrViewer/lister.cpp:1471 app/KrViewer/lister.cpp:1821
 #, kde-format
 msgid "Search:"
 msgstr "Søk:"
 
-#: app/KrViewer/lister.cpp:1838
+#: app/KrViewer/lister.cpp:1837
 #, kde-format
 msgid "Search position:"
 msgstr "Søkjeposisjon:"
 
-#: app/KrViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1852
 #, kde-format
 msgid "Text position:"
 msgstr "Tekstplassering:"
 
-#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1863 app/KrViewer/lister.cpp:1871
 #, kde-format
 msgid "Invalid number."
 msgstr "Ugyldig tal."
 
-#: app/KrViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1878
 #, kde-format
 msgid "Number out of range."
 msgstr "Talet utanfor gyldig område."
 
-#: app/KrViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1913
 #, kde-format
 msgid "Nothing is selected."
 msgstr "Ikkje noko er valt."
 
-#: app/KrViewer/lister.cpp:1993
+#: app/KrViewer/lister.cpp:1992
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
@@ -5959,57 +5959,57 @@ msgstr "%1 er større enn %2 MB"
 msgid "Cannot edit %1"
 msgstr "Kan ikkje redigera %1"
 
-#: app/Locate/locate.cpp:111
+#: app/Locate/locate.cpp:110
 #, kde-format
 msgid "Krusader::Locate"
 msgstr "Krusader::Locate"
 
-#: app/Locate/locate.cpp:125
+#: app/Locate/locate.cpp:124
 #, kde-format
 msgid "Search for:"
 msgstr "Søk etter:"
 
-#: app/Locate/locate.cpp:151
+#: app/Locate/locate.cpp:150
 #, kde-format
 msgid "Do not search in path"
 msgstr "Ikkje søk i adressa"
 
-#: app/Locate/locate.cpp:155
+#: app/Locate/locate.cpp:154
 #, kde-format
 msgid "Show only the existing files"
 msgstr "Vis berre eksisterande filer"
 
-#: app/Locate/locate.cpp:159
+#: app/Locate/locate.cpp:158
 #, kde-format
 msgid "Case Sensitive"
 msgstr "Skil mellom store og små bokstavar"
 
-#: app/Locate/locate.cpp:171
+#: app/Locate/locate.cpp:170
 #, kde-format
 msgid "Results"
 msgstr "Resultat"
 
-#: app/Locate/locate.cpp:200
+#: app/Locate/locate.cpp:199
 #, kde-format
 msgid "Locate"
 msgstr "Locate-søk"
 
-#: app/Locate/locate.cpp:205
+#: app/Locate/locate.cpp:204
 #, kde-format
 msgid "Update DB"
 msgstr "Oppdater database"
 
-#: app/Locate/locate.cpp:278
+#: app/Locate/locate.cpp:277
 #, kde-format
 msgid "Cannot start 'locate'. Check the 'Dependencies' page in konfigurator."
 msgstr "Kan ikkje starta «locate». Kontrollar «Avhengnadar» i Konfigurator."
 
-#: app/Locate/locate.cpp:317
+#: app/Locate/locate.cpp:316
 #, kde-format
 msgid "Error during the start of 'locate' process."
 msgstr "Feil under oppstart av «locate»-prosessen."
 
-#: app/Locate/locate.cpp:324
+#: app/Locate/locate.cpp:323
 #, kde-format
 msgid ""
 "Locate produced the following error message:\n"
@@ -6020,74 +6020,74 @@ msgstr ""
 "\n"
 "%1"
 
-#: app/Locate/locate.cpp:387
+#: app/Locate/locate.cpp:386
 #, kde-format
 msgctxt "@title:menu"
 msgid "Locate"
 msgstr "Locate-søk"
 
-#: app/Locate/locate.cpp:389
+#: app/Locate/locate.cpp:388
 #, kde-format
 msgid "View (F3)"
 msgstr "Vis (F3)"
 
-#: app/Locate/locate.cpp:390
+#: app/Locate/locate.cpp:389
 #, kde-format
 msgid "Edit (F4)"
 msgstr "Rediger (F4)"
 
-#: app/Locate/locate.cpp:391
+#: app/Locate/locate.cpp:390
 #, kde-format
 msgid "Compare by content (F10)"
 msgstr "Samanlikn etter innhald (F10)"
 
-#: app/Locate/locate.cpp:396
+#: app/Locate/locate.cpp:395
 #, kde-format
 msgid "Find (Ctrl+F)"
 msgstr "Finn (Ctrl+F)"
 
-#: app/Locate/locate.cpp:397
+#: app/Locate/locate.cpp:396
 #, kde-format
 msgid "Find next (Ctrl+N)"
 msgstr "Finn neste (Ctrl+N)"
 
-#: app/Locate/locate.cpp:398
+#: app/Locate/locate.cpp:397
 #, kde-format
 msgid "Find previous (Ctrl+P)"
 msgstr "Finn førre (Ctrl+P)"
 
-#: app/Locate/locate.cpp:401
+#: app/Locate/locate.cpp:400
 #, kde-format
 msgid "Copy selected to clipboard"
 msgstr "Kopierer utvalet til utklippstavla"
 
-#: app/Locate/locate.cpp:541 app/Locate/locate.cpp:560
+#: app/Locate/locate.cpp:540 app/Locate/locate.cpp:559
 #, kde-format
 msgid "Search string not found."
 msgstr "Fann ikkje søkjeteksten."
 
-#: app/Locate/locate.cpp:626
+#: app/Locate/locate.cpp:625
 #, kde-format
 msgid "Locate results"
 msgstr "Resultat frå «locate»"
 
-#: app/Locate/locate.cpp:633
+#: app/Locate/locate.cpp:632
 #, kde-format
 msgid "Query Name"
 msgstr "Namn på spørjing"
 
-#: app/Locate/locate.cpp:633
+#: app/Locate/locate.cpp:632
 #, kde-format
 msgid "Here you can name the file collection:"
 msgstr "Gje nytt namn til filsamlinga:"
 
-#: app/Locate/locate.cpp:665 app/Locate/locate.cpp:670
+#: app/Locate/locate.cpp:664 app/Locate/locate.cpp:669
 #: app/Search/krsearchdialog.cpp:173 app/Synchronizer/synchronizergui.cpp:488
 #, kde-format
 msgid "Stop"
 msgstr "Stopp"
 
-#: app/Locate/locate.cpp:674 app/Search/krsearchdialog.cpp:272
+#: app/Locate/locate.cpp:673 app/Search/krsearchdialog.cpp:272
 #: app/Synchronizer/synchronizergui.cpp:494
 #, kde-format
 msgid "Feed to listbox"
@@ -6827,62 +6827,62 @@ msgstr "Klarte ikkje starta «mount». Kontrollar «Avhengnader» i Konfigurator
 msgid "MountMan is not operational. Sorry"
 msgstr "MountMan verkar dessverre ikkje."
 
-#: app/MountMan/kmountmangui.cpp:60
+#: app/MountMan/kmountmangui.cpp:59
 #, kde-format
 msgid "MountMan - Your Mount-Manager"
 msgstr "MountMan monteringshandsamar"
 
-#: app/MountMan/kmountmangui.cpp:74
+#: app/MountMan/kmountmangui.cpp:73
 #, kde-format
 msgid "&Eject"
 msgstr "&Løys ut"
 
-#: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:419
+#: app/MountMan/kmountmangui.cpp:78 app/MountMan/kmountmangui.cpp:418
 #, kde-format
 msgid "&Unmount"
 msgstr "&Avmonter"
 
-#: app/MountMan/kmountmangui.cpp:149
+#: app/MountMan/kmountmangui.cpp:148
 #, kde-format
 msgid "Mnt.Point"
 msgstr "Mont.-punkt"
 
-#: app/MountMan/kmountmangui.cpp:150
+#: app/MountMan/kmountmangui.cpp:149
 #, kde-format
 msgid "Total Size"
 msgstr "Storleik i alt"
 
-#: app/MountMan/kmountmangui.cpp:151
+#: app/MountMan/kmountmangui.cpp:150
 #, kde-format
 msgid "Free Size"
 msgstr "Ledig storleik"
 
-#: app/MountMan/kmountmangui.cpp:152
+#: app/MountMan/kmountmangui.cpp:151
 #, kde-format
 msgid "Free %"
 msgstr "Ledig %"
 
-#: app/MountMan/kmountmangui.cpp:181
+#: app/MountMan/kmountmangui.cpp:180
 #, kde-format
 msgid "MountMan.Info"
 msgstr "MountMan-info"
 
-#: app/MountMan/kmountmangui.cpp:188
+#: app/MountMan/kmountmangui.cpp:187
 #, kde-format
 msgid "Show only removable devices"
 msgstr "Vis berre flyttbare einingar"
 
-#: app/MountMan/kmountmangui.cpp:421
+#: app/MountMan/kmountmangui.cpp:420
 #, kde-format
 msgid "&Mount"
 msgstr "&Monter"
 
-#: app/MountMan/kmountmangui.cpp:442
+#: app/MountMan/kmountmangui.cpp:441
 #, kde-format
 msgid "MountMan"
 msgstr "MountMan"
 
-#: app/MountMan/kmountmangui.cpp:458
+#: app/MountMan/kmountmangui.cpp:457
 #, kde-format
 msgid "Format"
 msgstr "Formater"
@@ -6924,103 +6924,103 @@ msgid_plural "and %1 files"
 msgstr[0] "og %1 fil"
 msgstr[1] "og %1 filer"
 
-#: app/Panel/krfiletreeview.cpp:182
+#: app/Panel/krfiletreeview.cpp:181
 #, kde-format
 msgid "Show Details"
 msgstr "Vis detaljar"
 
-#: app/Panel/krfiletreeview.cpp:185
+#: app/Panel/krfiletreeview.cpp:184
 #, kde-format
 msgid "Show columns with details"
 msgstr "Vis kolonnar med detaljar"
 
-#: app/Panel/krfiletreeview.cpp:186
+#: app/Panel/krfiletreeview.cpp:185
 #, kde-format
 msgid "Show Hidden Folders"
 msgstr "Vis gøymde mapper"
 
-#: app/Panel/krfiletreeview.cpp:189
+#: app/Panel/krfiletreeview.cpp:188
 #, kde-format
 msgid "Show folders starting with a dot"
 msgstr "Vis mapper som startar med eit punktum"
 
-#: app/Panel/krfiletreeview.cpp:194
+#: app/Panel/krfiletreeview.cpp:193
 #, kde-format
 msgid "Start From Root"
 msgstr "Start frå rota"
 
-#: app/Panel/krfiletreeview.cpp:197
+#: app/Panel/krfiletreeview.cpp:196
 #, kde-format
 msgid "Set root of the tree to root of filesystem"
 msgstr "Set trerota til rota til filsystemet"
 
-#: app/Panel/krfiletreeview.cpp:200
+#: app/Panel/krfiletreeview.cpp:199
 #, kde-format
 msgid "Start From Current"
 msgstr "Start frå gjeldande"
 
-#: app/Panel/krfiletreeview.cpp:203
+#: app/Panel/krfiletreeview.cpp:202
 #, kde-format
 msgid "Set root of the tree to the current folder"
 msgstr "Set trerota til gjeldande mappe"
 
-#: app/Panel/krfiletreeview.cpp:206
+#: app/Panel/krfiletreeview.cpp:205
 #, kde-format
 msgid "Start From Place"
 msgstr "Start frå plass"
 
-#: app/Panel/krfiletreeview.cpp:209
+#: app/Panel/krfiletreeview.cpp:208
 #, kde-format
 msgid "Set root of the tree to closest folder listed in 'Places'"
 msgstr "Set trerota til næraste mappe vist under «Stadar»"
 
-#: app/Panel/krfiletreeview.cpp:238
+#: app/Panel/krfiletreeview.cpp:237
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: app/Panel/krfiletreeview.cpp:245
+#: app/Panel/krfiletreeview.cpp:244
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy"
 msgstr "Kopier"
 
-#: app/Panel/krfiletreeview.cpp:268
+#: app/Panel/krfiletreeview.cpp:267
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Move to Trash"
 msgstr "Flytt til papirkorga"
 
-#: app/Panel/krfiletreeview.cpp:278
+#: app/Panel/krfiletreeview.cpp:277
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete"
 msgstr "Slett"
 
-#: app/Panel/krfiletreeview.cpp:289
+#: app/Panel/krfiletreeview.cpp:288
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Properties"
 msgstr "Eigenskapar"
 
-#: app/Panel/krlayoutfactory.cpp:43
+#: app/Panel/krlayoutfactory.cpp:42
 #, kde-format
 msgctxt "Default layout"
 msgid "Default"
 msgstr "Standard"
 
-#: app/Panel/krlayoutfactory.cpp:45
+#: app/Panel/krlayoutfactory.cpp:44
 #, kde-format
 msgid "Compact"
 msgstr "Kompakt"
 
-#: app/Panel/krlayoutfactory.cpp:47
+#: app/Panel/krlayoutfactory.cpp:46
 #, kde-format
 msgid "Classic"
 msgstr "Klassisk"
 
-#: app/Panel/krlayoutfactory.cpp:49
+#: app/Panel/krlayoutfactory.cpp:48
 #, kde-format
 msgid "Custom layout: \"%1\""
 msgstr "Tilpassa utforming: «%1»"
@@ -7276,7 +7276,7 @@ msgstr "Lag sjekksum …"
 msgid "Verify Checksum..."
 msgstr "Stadfest sjekksum …"
 
-#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:227
+#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:215
 #, kde-format
 msgid "New Symlink..."
 msgstr "Ny symbolsk lenkje …"
@@ -7459,216 +7459,216 @@ msgstr ""
 "<qt><p>Opna terminal i gjeldande mappe.</p><p>Terminal kan vera sett opp i "
 "Konfigurator. Standard er <b>konsole</b>.</p></qt>"
 
-#: app/Panel/panelcontextmenu.cpp:101
+#: app/Panel/panelcontextmenu.cpp:99
 #, kde-format
 msgid "Open/Run Files"
 msgstr "Opna/køyr filer"
 
-#: app/Panel/panelcontextmenu.cpp:103
+#: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Run"
 msgstr "Køyr"
 
-#: app/Panel/panelcontextmenu.cpp:112
+#: app/Panel/panelcontextmenu.cpp:110
 #, kde-format
 msgid "Open in New Tabs"
 msgstr "Opna i nye faner"
 
-#: app/Panel/panelcontextmenu.cpp:112
+#: app/Panel/panelcontextmenu.cpp:110
 #, kde-format
 msgid "Open in New Tab"
 msgstr "Opna i ny fane"
 
-#: app/Panel/panelcontextmenu.cpp:125
+#: app/Panel/panelcontextmenu.cpp:123
 #, kde-format
 msgid "Browse Archive"
 msgstr "Bla gjennom arkiv"
 
-#: app/Panel/panelcontextmenu.cpp:167
+#: app/Panel/panelcontextmenu.cpp:159
 #, kde-format
 msgid "Other..."
 msgstr "Anna …"
 
-#: app/Panel/panelcontextmenu.cpp:169
+#: app/Panel/panelcontextmenu.cpp:161
 #, kde-format
 msgid "Open With"
 msgstr "Opna med"
 
-#: app/Panel/panelcontextmenu.cpp:213
+#: app/Panel/panelcontextmenu.cpp:201
 #, kde-format
 msgid "Move to Trash"
 msgstr "Flytt til papirkorga"
 
-#: app/Panel/panelcontextmenu.cpp:228
+#: app/Panel/panelcontextmenu.cpp:216
 #, kde-format
 msgid "New Hardlink..."
 msgstr "Ny hardlenkje …"
 
-#: app/Panel/panelcontextmenu.cpp:230
+#: app/Panel/panelcontextmenu.cpp:218
 #, kde-format
 msgid "Redirect Link..."
 msgstr "Omdiriger lenkje …"
 
-#: app/Panel/panelcontextmenu.cpp:233
+#: app/Panel/panelcontextmenu.cpp:221
 #, kde-format
 msgid "Link Handling"
 msgstr "Lenkjehandsaming"
 
-#: app/Panel/panelcontextmenu.cpp:255
+#: app/Panel/panelcontextmenu.cpp:243
 #, kde-format
 msgid "Send by Email"
 msgstr "Send via e-post"
 
-#: app/Panel/panelcontextmenu.cpp:260
+#: app/Panel/panelcontextmenu.cpp:248
 #, kde-format
 msgid "Restore"
 msgstr "Gjenopprett"
 
-#: app/Panel/panelcontextmenu.cpp:267
+#: app/Panel/panelcontextmenu.cpp:255
 #, kde-format
 msgid "Synchronize Selected Files..."
 msgstr "Synkroniser valde filer …"
 
-#: app/Panel/panelcontextmenu.cpp:294
+#: app/Panel/panelcontextmenu.cpp:282
 #, kde-format
 msgid "Create New"
 msgstr "Lag ny"
 
-#: app/Panel/panelfunc.cpp:360
+#: app/Panel/panelfunc.cpp:357
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Du kan berre redigera lenkjer på lokale filsystem"
 
-#: app/Panel/panelfunc.cpp:371
+#: app/Panel/panelfunc.cpp:368
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "Gjeldande fil er ikkje ei lenkje, så ho kan ikkje omdirigerast."
 
-#: app/Panel/panelfunc.cpp:378
+#: app/Panel/panelfunc.cpp:375
 #, kde-format
 msgid "Link Redirection"
 msgstr "Lenkjeomdirigering"
 
-#: app/Panel/panelfunc.cpp:378
+#: app/Panel/panelfunc.cpp:375
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Vel nytt mål for lenkja:"
 
-#: app/Panel/panelfunc.cpp:385
+#: app/Panel/panelfunc.cpp:382
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "Kan ikkje fjerna gammal lenkje: %1"
 
-#: app/Panel/panelfunc.cpp:390
+#: app/Panel/panelfunc.cpp:387
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "Klarte ikkje laga ny lenkje: %1"
 
-#: app/Panel/panelfunc.cpp:398
+#: app/Panel/panelfunc.cpp:395
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Du kan berre oppretta lenkjer på lokale filsystem"
 
-#: app/Panel/panelfunc.cpp:406
+#: app/Panel/panelfunc.cpp:403
 #, kde-format
 msgid "New Link"
 msgstr "Ny lenkje"
 
-#: app/Panel/panelfunc.cpp:406
+#: app/Panel/panelfunc.cpp:403
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "Lag ny lenkje til: %1"
 
-#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:775
+#: app/Panel/panelfunc.cpp:411 app/Panel/panelfunc.cpp:768
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Det finst alt ei mappe eller fil med dette namnet."
 
-#: app/Panel/panelfunc.cpp:425
+#: app/Panel/panelfunc.cpp:422
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Klarte ikkje laga ny symbolsk lenkje «%1» til «%2»"
 
-#: app/Panel/panelfunc.cpp:428
+#: app/Panel/panelfunc.cpp:425
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Klarte ikkje laga ny lenkje «%1» til «%2»"
 
-#: app/Panel/panelfunc.cpp:445
+#: app/Panel/panelfunc.cpp:442
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Manglar løyve til å visa fila."
 
-#: app/Panel/panelfunc.cpp:456
+#: app/Panel/panelfunc.cpp:453
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Skriv inn nettadressa du vil visa:"
 
 # Feilmelding som vert vist i feilmeldingsvindauge og bør avsluttast med punktum.
-#: app/Panel/panelfunc.cpp:486 app/Panel/panelfunc.cpp:564
+#: app/Panel/panelfunc.cpp:483 app/Panel/panelfunc.cpp:557
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "Du kan ikkje redigera ei mappe."
 
-#: app/Panel/panelfunc.cpp:491
+#: app/Panel/panelfunc.cpp:488
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Manglar løyve til å redigera fila."
 
-#: app/Panel/panelfunc.cpp:505
+#: app/Panel/panelfunc.cpp:502
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Skriv inn filnamnet du vil redigera:"
 
-#: app/Panel/panelfunc.cpp:616
+#: app/Panel/panelfunc.cpp:609
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Flytt %1 til:"
 
-#: app/Panel/panelfunc.cpp:616
+#: app/Panel/panelfunc.cpp:609
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "Flytt %1 fil til:"
 msgstr[1] "Flytt %1 filer til:"
 
-#: app/Panel/panelfunc.cpp:618
+#: app/Panel/panelfunc.cpp:611
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Kopier %1 til:"
 
-#: app/Panel/panelfunc.cpp:618
+#: app/Panel/panelfunc.cpp:611
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "Kopier %1 fil til:"
 msgstr[1] "Kopier %1 filer til:"
 
-#: app/Panel/panelfunc.cpp:667
+#: app/Panel/panelfunc.cpp:660
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr "Det nye namnet («%1») er lik det gamle namnet."
 
-#: app/Panel/panelfunc.cpp:676
+#: app/Panel/panelfunc.cpp:669
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr "Sidan det nye namnet var tomt, har ikkje «%1» fått nytt namn."
 
-#: app/Panel/panelfunc.cpp:699
+#: app/Panel/panelfunc.cpp:692
 #, kde-format
 msgid "Folder's name:"
 msgstr "Mappenamn:"
 
-#: app/Panel/panelfunc.cpp:839
+#: app/Panel/panelfunc.cpp:832
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Er du sikker på at du vil flytta dette elementet til papirkorga?"
 msgstr[1] "Er du sikker på at du vil flytta desse %1 elementa til papirkorga?"
 
-#: app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:836
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7683,44 +7683,44 @@ msgstr[1] ""
 "<qt>Er du sikker på at du vil sletta desse %1 elementa <b>fysisk</b> (ikkje "
 "berre fjerne dei frå dei virtuelle elementa)?</qt>"
 
-#: app/Panel/panelfunc.cpp:850
+#: app/Panel/panelfunc.cpp:843
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Er du sikker på at du vil sletta dette elementet?"
 msgstr[1] "Er du sikker på at du vil sletta desse %1 elementa?"
 
-#: app/Panel/panelfunc.cpp:888
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Mappa <b>%1</b> er ikkje tom.</p>"
 
-#: app/Panel/panelfunc.cpp:889
+#: app/Panel/panelfunc.cpp:882
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Hopp over denne eller leggja alt i papirkorga?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:889
+#: app/Panel/panelfunc.cpp:882
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Hopp over denne eller slett alt?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:891
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Skip"
 msgstr "&Hopp over"
 
-#: app/Panel/panelfunc.cpp:892
+#: app/Panel/panelfunc.cpp:885
 #, kde-format
 msgid "&Trash All"
 msgstr "&Legg alle i papirkorga"
 
-#: app/Panel/panelfunc.cpp:892
+#: app/Panel/panelfunc.cpp:885
 #, kde-format
 msgid "&Delete All"
 msgstr "&Slett alle"
 
-#: app/Panel/panelfunc.cpp:929
+#: app/Panel/panelfunc.cpp:922
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7737,15 +7737,10 @@ msgstr[1] ""
 
 #: app/Panel/panelfunc.cpp:965
 #, kde-format
-msgid "Could not start %1"
-msgstr "Klarte ikkje starta %1"
-
-#: app/Panel/panelfunc.cpp:977
-#, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 kan ikkje opna %2"
 
-#: app/Panel/panelfunc.cpp:1054
+#: app/Panel/panelfunc.cpp:1042
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7754,7 +7749,7 @@ msgstr ""
 "<qt><p>Arkivet <b>%1.%2</b> finst frå før. Vil du skriva over det?</"
 "p><p>Alle data i det gamle arkivet vil då gå tapt.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1059
+#: app/Panel/panelfunc.cpp:1047
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7765,30 +7760,30 @@ msgstr ""
 "vil erstatta oppføringar i zip-arkivet med same namn, eller legg til "
 "oppføringar som har nye namn.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1067
+#: app/Panel/panelfunc.cpp:1055
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Kan ikkje pakka filer inn i eit virtuelt mål."
 
-#: app/Panel/panelfunc.cpp:1100
+#: app/Panel/panelfunc.cpp:1088
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Pakk ut %1 til:"
 
-#: app/Panel/panelfunc.cpp:1102
+#: app/Panel/panelfunc.cpp:1090
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
 msgstr[0] "Pakk ut %1 fil til:"
 msgstr[1] "Pakk ut %1 filer til:"
 
-#: app/Panel/PanelView/krinterbriefview.cpp:241
-#: app/Panel/PanelView/krinterdetailedview.cpp:289
+#: app/Panel/PanelView/krinterbriefview.cpp:240
+#: app/Panel/PanelView/krinterdetailedview.cpp:288
 #, kde-format
 msgid "Columns"
 msgstr "Kolonnar"
 
-#: app/Panel/PanelView/krinterdetailedview.cpp:303
+#: app/Panel/PanelView/krinterdetailedview.cpp:302
 #, kde-format
 msgid "Automatically Resize Columns"
 msgstr "Endra kolonnebreidd automatisk"
@@ -7996,57 +7991,57 @@ msgctxt "File property"
 msgid "Link to: %1"
 msgstr "Lenkje til: %1"
 
-#: app/Panel/sidebar.cpp:59
+#: app/Panel/sidebar.cpp:58
 #, kde-format
 msgid "Tree Panel: a tree view of the local file system"
 msgstr "Trepanel: ei trevisning av det lokale filsystemet"
 
-#: app/Panel/sidebar.cpp:66
+#: app/Panel/sidebar.cpp:65
 #, kde-format
 msgid "Preview Panel: display a preview of the current file"
 msgstr "Førehandvisingspanel: vis ei førehandvising av gjeldande fil"
 
-#: app/Panel/sidebar.cpp:73
+#: app/Panel/sidebar.cpp:72
 #, kde-format
 msgid "View Panel: view the current file"
 msgstr "Visingspanel: vis gjeldande fil"
 
-#: app/Panel/sidebar.cpp:80
+#: app/Panel/sidebar.cpp:79
 #, kde-format
 msgid "Disk Usage Panel: view the usage of a folder"
 msgstr "Disubrukpanel: vis diskbruken til ei mappe"
 
-#: app/Panel/sidebar.cpp:121 app/Panel/sidebar.cpp:231
+#: app/Panel/sidebar.cpp:120 app/Panel/sidebar.cpp:230
 #, kde-format
 msgid "Disk Usage:"
 msgstr "Diskbruk:"
 
-#: app/Panel/sidebar.cpp:211
+#: app/Panel/sidebar.cpp:210
 #, kde-format
 msgid "Tree:"
 msgstr "Tre:"
 
-#: app/Panel/sidebar.cpp:219
+#: app/Panel/sidebar.cpp:218
 #, kde-format
 msgid "Preview:"
 msgstr "Førehandsvising:"
 
-#: app/Panel/sidebar.cpp:224
+#: app/Panel/sidebar.cpp:223
 #, kde-format
 msgid "View:"
 msgstr "Vis:"
 
-#: app/Panel/sidebar.cpp:254
+#: app/Panel/sidebar.cpp:253
 #, kde-format
 msgid "Preview: %1"
 msgstr "Førehandsvising: %1"
 
-#: app/Panel/sidebar.cpp:261
+#: app/Panel/sidebar.cpp:260
 #, kde-format
 msgid "View: %1"
 msgstr "Vis: %1"
 
-#: app/Panel/sidebar.cpp:266
+#: app/Panel/sidebar.cpp:265
 #, kde-format
 msgid "Disk Usage: %1"
 msgstr "Diskbruk: %1"
@@ -8160,12 +8155,12 @@ msgstr ""
 msgid "Open a new tab"
 msgstr "Opna ei ny fane"
 
-#: app/paneltabbar.cpp:177
+#: app/paneltabbar.cpp:176
 #, kde-format
 msgid "[invalid]"
 msgstr "[ugyldig]"
 
-#: app/paneltabbar.cpp:195
+#: app/paneltabbar.cpp:194
 #, kde-format
 msgctxt "invalid URL path"
 msgid "?"
@@ -8264,17 +8259,17 @@ msgstr "Gje namn til filsamlinga"
 msgid "Query name"
 msgstr "Namn på spørjing"
 
-#: app/Splitter/combiner.cpp:60
+#: app/Splitter/combiner.cpp:59
 #, kde-format
 msgid "Krusader::Combining..."
 msgstr "Krusader::Slår saman …"
 
-#: app/Splitter/combiner.cpp:61
+#: app/Splitter/combiner.cpp:60
 #, kde-format
 msgid "Combining the file %1..."
 msgstr "Slår saman fila %1 …"
 
-#: app/Splitter/combiner.cpp:72
+#: app/Splitter/combiner.cpp:71
 #, kde-format
 msgid ""
 "The CRC information file (%1) is missing.\n"
@@ -8284,17 +8279,17 @@ msgstr ""
 "Gyldighetssjekk er ikkje mogleg utan denne fila. Vil du halda fram med å slå "
 "saman filer?"
 
-#: app/Splitter/combiner.cpp:108
+#: app/Splitter/combiner.cpp:107
 #, kde-format
 msgid "Error at reading the CRC file (%1)."
 msgstr "Feil ved lesinga av CRC-fil (%1)."
 
-#: app/Splitter/combiner.cpp:137
+#: app/Splitter/combiner.cpp:136
 #, kde-format
 msgid "Not a valid CRC file."
 msgstr "Ikkje ei gyldig CRC-fil."
 
-#: app/Splitter/combiner.cpp:144
+#: app/Splitter/combiner.cpp:143
 #, kde-format
 msgid ""
 "\n"
@@ -8304,48 +8299,48 @@ msgstr ""
 "Gyldighetssjekk er ikkje mogleg utan ei gyldig CRC-fil. Vil du halda fram "
 "med å slå saman filer?"
 
-#: app/Splitter/combiner.cpp:186 app/Splitter/splitter.cpp:174
+#: app/Splitter/combiner.cpp:185 app/Splitter/splitter.cpp:173
 #: app/Synchronizer/synchronizer.cpp:1345
 #, kde-format
 msgid "File Already Exists"
 msgstr "Fila finst frå før"
 
-#: app/Splitter/combiner.cpp:272
+#: app/Splitter/combiner.cpp:271
 #, kde-format
 msgid "Cannot open the first split file of %1."
 msgstr "Kan ikkje opna første delte fil i %1."
 
-#: app/Splitter/combiner.cpp:282
+#: app/Splitter/combiner.cpp:281
 #, kde-format
 msgid "Incorrect filesize, the file might have been corrupted."
 msgstr "Feil filstorleik. Fila kan vera øydelagd."
 
-#: app/Splitter/combiner.cpp:284
+#: app/Splitter/combiner.cpp:283
 #, kde-format
 msgid "Incorrect CRC checksum, the file might have been corrupted."
 msgstr "Feil CRC-sjekksum. Fila kan vera øydelagd."
 
-#: app/Splitter/splitter.cpp:73
+#: app/Splitter/splitter.cpp:72
 #, kde-format
 msgid "Krusader::Splitting..."
 msgstr "Krusader::Delar opp …"
 
-#: app/Splitter/splitter.cpp:74
+#: app/Splitter/splitter.cpp:73
 #, kde-format
 msgid "Splitting the file %1..."
 msgstr "Delar opp fila %1 …"
 
-#: app/Splitter/splitter.cpp:77
+#: app/Splitter/splitter.cpp:76
 #, kde-format
 msgid "Cannot split a folder."
 msgstr "Kan ikkje dela opp ei mappe."
 
-#: app/Splitter/splitter.cpp:121
+#: app/Splitter/splitter.cpp:120
 #, kde-format
 msgid "Error reading file %1: %2"
 msgstr "Feil ved lesing av fila %1: %2"
 
-#: app/Splitter/splitter.cpp:230 app/Splitter/splitter.cpp:273
+#: app/Splitter/splitter.cpp:229 app/Splitter/splitter.cpp:272
 #, kde-format
 msgid "Error writing file %1: %2"
 msgstr "Feil ved skriving til fila %1: %2"
@@ -9739,7 +9734,7 @@ msgstr ""
 "Lagar reservekopi av gjeldande mappe og spør brukaren om nytt filnamn. Som "
 "standard vert «.old» lagt til på slutten av det opphavlege filnamnet."
 
-#: plugins/krarc/krarc.cpp:202
+#: plugins/krarc/krarc.cpp:199
 #, kde-format
 msgid ""
 "krarc: write support is disabled.\n"
@@ -9748,37 +9743,37 @@ msgstr ""
 "krarc: Skrivestøtte er slått av.\n"
 "Du kan slå det på på «Arkiv»-sida i innstillingane."
 
-#: plugins/krarc/krarc.cpp:242
+#: plugins/krarc/krarc.cpp:239
 #, kde-format
 msgid "Creating folders is not supported with %1 archives."
 msgstr "Oppretting av mapper i %1-arkiv er ikkje støtta."
 
-#: plugins/krarc/krarc.cpp:278
+#: plugins/krarc/krarc.cpp:275
 #, kde-format
 msgid "Creating %1..."
 msgstr "Opprettar %1 …"
 
-#: plugins/krarc/krarc.cpp:320
+#: plugins/krarc/krarc.cpp:317
 #, kde-format
 msgid "Writing to %1 archives is not supported."
 msgstr "Skriving til %1-arkiv er ikkje støtta."
 
-#: plugins/krarc/krarc.cpp:386
+#: plugins/krarc/krarc.cpp:383
 #, kde-format
 msgid "Packing %1..."
 msgstr "Pakkar %1 …"
 
-#: plugins/krarc/krarc.cpp:427
+#: plugins/krarc/krarc.cpp:424
 #, kde-format
 msgid "Retrieving data from %1 archives is not supported."
 msgstr "Henting av data frå %1-arkiv er ikkje støtta."
 
-#: plugins/krarc/krarc.cpp:496 plugins/krarc/krarc.cpp:761
+#: plugins/krarc/krarc.cpp:493 plugins/krarc/krarc.cpp:758
 #, kde-format
 msgid "Unpacking %1..."
 msgstr "Pakkar ut %1 …"
 
-#: plugins/krarc/krarc.cpp:508
+#: plugins/krarc/krarc.cpp:505
 #, kde-format
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
@@ -9787,27 +9782,27 @@ msgstr ""
 "Det oppstod ein feil knytt til det eksterne programmet «%1». Feilmelding er: "
 "«%2»."
 
-#: plugins/krarc/krarc.cpp:626
+#: plugins/krarc/krarc.cpp:623
 #, kde-format
 msgid "Deleting files from %1 archives is not supported."
 msgstr "Sletting av filer frå %1-arkiv er ikkje støtta."
 
-#: plugins/krarc/krarc.cpp:670
+#: plugins/krarc/krarc.cpp:667
 #, kde-format
 msgid "Accessing files is not supported with %1 archives."
 msgstr "Lesing av filer frå %1-arkiv er ikkje støtta."
 
-#: plugins/krarc/krarc.cpp:783
+#: plugins/krarc/krarc.cpp:780
 #, kde-format
 msgid "Copying from archive to archive is not supported."
 msgstr "Kopiering frå arkiv til arkiv er ikkje støtta."
 
-#: plugins/krarc/krarc.cpp:829
+#: plugins/krarc/krarc.cpp:826
 #, kde-format
 msgid "Listing folders is not supported for %1 archives."
 msgstr "Mappeoversikt er ikkje støtta for %1-arkiv."
 
-#: plugins/krarc/krarc.cpp:1759
+#: plugins/krarc/krarc.cpp:1756
 #, kde-format
 msgid ""
 "\n"
@@ -9816,12 +9811,15 @@ msgstr ""
 "\n"
 "Sjå til at programfila %1 er rett installert på systemet."
 
-#: plugins/krarc/krarc.cpp:1841 plugins/krarc/krarc.cpp:1867
+#: plugins/krarc/krarc.cpp:1838 plugins/krarc/krarc.cpp:1864
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "Passordvindauge for Krarc"
 
-#: plugins/krarc/krarc.cpp:1884
+#: plugins/krarc/krarc.cpp:1881
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Du treng passord for å få tilgang til fila."
+
+#~ msgid "Could not start %1"
+#~ msgstr "Klarte ikkje starta %1"

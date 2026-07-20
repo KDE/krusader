@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-16 00:51+0000\n"
+"POT-Creation-Date: 2026-07-20 00:47+0000\n"
 "PO-Revision-Date: 2024-12-15 19:35+0530\n"
 "Last-Translator: Kali <EMAIL@ADDRESS>\n"
 "Language-Team: Hindi <fedora-trans-hi@redhat.com>\n"
@@ -333,7 +333,7 @@ msgid "Category:"
 msgstr "वर्ग:"
 
 #. i18n: ectx: property (whatsThis), widget (QToolButton, ButtonAddPlaceholder)
-#: app/ActionMan/actionproperty.ui:300 app/GUI/kcmdline.cpp:183
+#: app/ActionMan/actionproperty.ui:300 app/GUI/kcmdline.cpp:182
 #, kde-format
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
 msgstr "पैनल में चयनित फ़ाइलों के लिए <b>प्लेसहोल्डर्स</b> जोड़ें."
@@ -522,7 +522,7 @@ msgid "&New..."
 msgstr "&नया..."
 
 #. i18n: ectx: attribute (title), widget (QWidget, TabFile)
-#: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:97
+#: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:96
 #, kde-format
 msgid "File Name"
 msgstr "फ़ाइल का नाम"
@@ -820,7 +820,7 @@ msgstr "अनपैक करते समय त्रुटि"
 msgid "Add Bookmark"
 msgstr "बुकमार्क जोड़ें"
 
-#: app/BookMan/kraddbookmarkdlg.cpp:35 app/DiskUsage/diskusage.cpp:1038
+#: app/BookMan/kraddbookmarkdlg.cpp:35 app/DiskUsage/diskusage.cpp:1037
 #, kde-format
 msgid "Name:"
 msgstr "नाम:"
@@ -836,18 +836,18 @@ msgid "Create in:"
 msgstr "इसमें बनाएं:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:694
+#: app/Panel/panelfunc.cpp:687
 #, kde-format
 msgid "New Folder"
 msgstr "नया फ़ोल्डर"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:96 app/FileSystem/krquery.cpp:261
-#: app/Filter/generalfilter.cpp:162 app/Filter/generalfilter.cpp:539
+#: app/Filter/generalfilter.cpp:161 app/Filter/generalfilter.cpp:538
 #, kde-format
 msgid "Folders"
 msgstr "फ़ोल्डर"
 
-#: app/BookMan/kraddbookmarkdlg.cpp:102 app/BookMan/krbookmarkbutton.cpp:33
+#: app/BookMan/kraddbookmarkdlg.cpp:102 app/BookMan/krbookmarkbutton.cpp:32
 #: app/BookMan/krbookmarkhandler.cpp:65 app/Panel/listpanelactions.cpp:105
 #, kde-format
 msgid "Bookmarks"
@@ -873,7 +873,7 @@ msgstr "वर्चुअल फाइलसिस्टम"
 msgid "Local Network"
 msgstr "स्थानीय नेटवर्क"
 
-#: app/BookMan/krbookmarkbutton.cpp:28 app/BookMan/krbookmarkbutton.cpp:29
+#: app/BookMan/krbookmarkbutton.cpp:27 app/BookMan/krbookmarkbutton.cpp:28
 #, kde-format
 msgid "BookMan II"
 msgstr "बुकमैन II"
@@ -934,7 +934,7 @@ msgid "Jump back"
 msgstr "वापस कूदो"
 
 #: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:331
-#: app/Panel/panelcontextmenu.cpp:103
+#: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "खुला"
@@ -944,10 +944,10 @@ msgstr "खुला"
 msgid "Open in a new tab"
 msgstr "नये टैब में खोलें"
 
-#: app/BookMan/krbookmarkhandler.cpp:854 app/Dialogs/krmaskchoice.cpp:85
-#: app/Dialogs/kurllistrequester.cpp:128 app/DiskUsage/diskusage.cpp:751
+#: app/BookMan/krbookmarkhandler.cpp:854 app/Dialogs/krmaskchoice.cpp:84
+#: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
-#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:216
+#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
 #, kde-format
 msgid "Delete"
 msgstr "मिटाना"
@@ -1117,22 +1117,22 @@ msgstr "अभी काम शुरू मत करो."
 msgid "Enqueue the job if another job is running. Otherwise start immediately."
 msgstr "यदि कोई अन्य कार्य चल रहा हो तो उसे कतार में लगाएँ। अन्यथा तुरंत शुरू करें।"
 
-#: app/Dialogs/krmaskchoice.cpp:40
+#: app/Dialogs/krmaskchoice.cpp:39
 #, kde-format
 msgid "Choose Files"
 msgstr "फ़ाइलें चुनें"
 
-#: app/Dialogs/krmaskchoice.cpp:53
+#: app/Dialogs/krmaskchoice.cpp:52
 #, kde-format
 msgid "Select the following files:"
 msgstr "निम्नलिखित फ़ाइलें चुनें:"
 
-#: app/Dialogs/krmaskchoice.cpp:63
+#: app/Dialogs/krmaskchoice.cpp:62
 #, kde-format
 msgid "Predefined Selections"
 msgstr "पूर्वनिर्धारित चयन"
 
-#: app/Dialogs/krmaskchoice.cpp:71
+#: app/Dialogs/krmaskchoice.cpp:70
 #, kde-format
 msgid ""
 "A predefined selection is a file-mask which you often use.\n"
@@ -1150,27 +1150,27 @@ msgstr ""
 "ध्यान दें कि जिस लाइन में आप मास्क को संपादित करते हैं उसका अपना इतिहास होता है, यदि "
 "आवश्यक हो तो आप इसे स्क्रॉल कर सकते हैं।"
 
-#: app/Dialogs/krmaskchoice.cpp:80
+#: app/Dialogs/krmaskchoice.cpp:79
 #, kde-format
 msgid "Add"
 msgstr "जोड़ना"
 
-#: app/Dialogs/krmaskchoice.cpp:81
+#: app/Dialogs/krmaskchoice.cpp:80
 #, kde-format
 msgid "Adds the selection in the line-edit to the list"
 msgstr "लाइन-एडिट में चयन को सूची में जोड़ता है"
 
-#: app/Dialogs/krmaskchoice.cpp:86
+#: app/Dialogs/krmaskchoice.cpp:85
 #, kde-format
 msgid "Delete the marked selection from the list"
 msgstr "सूची से चिह्नित चयन को हटाएं"
 
-#: app/Dialogs/krmaskchoice.cpp:90 app/JobMan/jobman.cpp:115
+#: app/Dialogs/krmaskchoice.cpp:89 app/JobMan/jobman.cpp:114
 #, kde-format
 msgid "Clear"
 msgstr "स्पष्ट"
 
-#: app/Dialogs/krmaskchoice.cpp:91
+#: app/Dialogs/krmaskchoice.cpp:90
 #, kde-format
 msgid "Clears the entire list of selections"
 msgstr "चयनों की संपूर्ण सूची साफ़ करता है"
@@ -1210,42 +1210,42 @@ msgstr "नहीं लगाया हुआ है।"
 msgid "Enter a selection:"
 msgstr "चयन दर्ज करें:"
 
-#: app/Dialogs/newftpgui.cpp:48
+#: app/Dialogs/newftpgui.cpp:47
 #, kde-format
 msgid "New Network Connection"
 msgstr "नया नेटवर्क कनेक्शन"
 
-#: app/Dialogs/newftpgui.cpp:62
+#: app/Dialogs/newftpgui.cpp:61
 #, kde-format
 msgid "About to connect to..."
 msgstr "से जुड़ने वाला हूँ..."
 
-#: app/Dialogs/newftpgui.cpp:67
+#: app/Dialogs/newftpgui.cpp:66
 #, kde-format
 msgid "Protocol:"
 msgstr "शिष्टाचार:"
 
-#: app/Dialogs/newftpgui.cpp:68
+#: app/Dialogs/newftpgui.cpp:67
 #, kde-format
 msgid "Host:"
 msgstr "मेज़बान:"
 
-#: app/Dialogs/newftpgui.cpp:69
+#: app/Dialogs/newftpgui.cpp:68
 #, kde-format
 msgid "Port:"
 msgstr "पत्तन:"
 
-#: app/Dialogs/newftpgui.cpp:103
+#: app/Dialogs/newftpgui.cpp:102
 #, kde-format
 msgid "Username:"
 msgstr "उपयोगकर्ता नाम:"
 
-#: app/Dialogs/newftpgui.cpp:105
+#: app/Dialogs/newftpgui.cpp:104
 #, kde-format
 msgid "Password:"
 msgstr "पासवर्ड:"
 
-#: app/Dialogs/newftpgui.cpp:133
+#: app/Dialogs/newftpgui.cpp:132
 #, kde-format
 msgid "&Connect"
 msgstr "&जोड़ना"
@@ -1267,102 +1267,102 @@ msgstr[1] "%1 फ़ाइलें पैक करें"
 msgid "Please select a folder"
 msgstr "कृपया एक फ़ोल्डर चुनें"
 
-#: app/Dialogs/packguibase.cpp:61 app/Dialogs/packguibase.cpp:115
+#: app/Dialogs/packguibase.cpp:60 app/Dialogs/packguibase.cpp:114
 #, kde-format
 msgid "Pack"
 msgstr "सामान बाँधना"
 
-#: app/Dialogs/packguibase.cpp:71
+#: app/Dialogs/packguibase.cpp:70
 #, kde-format
 msgid "To archive"
 msgstr "संग्रहित करने के लिए"
 
-#: app/Dialogs/packguibase.cpp:90
+#: app/Dialogs/packguibase.cpp:89
 #, kde-format
 msgid "In folder"
 msgstr "फ़ोल्डर में"
 
-#: app/Dialogs/packguibase.cpp:138
+#: app/Dialogs/packguibase.cpp:137
 #, kde-format
 msgid "Multiple volume archive"
 msgstr "एकाधिक वॉल्यूम संग्रह"
 
-#: app/Dialogs/packguibase.cpp:147 app/DiskUsage/diskusage.cpp:1039
+#: app/Dialogs/packguibase.cpp:146 app/DiskUsage/diskusage.cpp:1038
 #, kde-format
 msgid "Size:"
 msgstr "आकार:"
 
-#: app/Dialogs/packguibase.cpp:166
+#: app/Dialogs/packguibase.cpp:165
 #, kde-format
 msgid "Set compression level"
 msgstr "संपीड़न स्तर सेट करें"
 
-#: app/Dialogs/packguibase.cpp:193
+#: app/Dialogs/packguibase.cpp:192
 #, kde-format
 msgid "MIN"
 msgstr "मिन"
 
-#: app/Dialogs/packguibase.cpp:194
+#: app/Dialogs/packguibase.cpp:193
 #, kde-format
 msgid "MAX"
 msgstr "मैक्स"
 
-#: app/Dialogs/packguibase.cpp:217
+#: app/Dialogs/packguibase.cpp:216
 #, kde-format
 msgid "Password"
 msgstr "पासवर्ड"
 
-#: app/Dialogs/packguibase.cpp:227
+#: app/Dialogs/packguibase.cpp:226
 #, kde-format
 msgid "Again"
 msgstr "दोबारा"
 
-#: app/Dialogs/packguibase.cpp:245
+#: app/Dialogs/packguibase.cpp:244
 #, kde-format
 msgid "Encrypt headers"
 msgstr "हेडर एन्क्रिप्ट करें"
 
-#: app/Dialogs/packguibase.cpp:257
+#: app/Dialogs/packguibase.cpp:256
 #, kde-format
 msgid "Command line switches:"
 msgstr "कमांड लाइन स्विच:"
 
-#: app/Dialogs/packguibase.cpp:283 app/Dialogs/packguibase.cpp:324
+#: app/Dialogs/packguibase.cpp:282 app/Dialogs/packguibase.cpp:323
 #, kde-format
 msgid "&Advanced >>"
 msgstr "&उन्नत>>"
 
-#: app/Dialogs/packguibase.cpp:324
+#: app/Dialogs/packguibase.cpp:323
 #, kde-format
 msgid "&Advanced <<"
 msgstr "&उन्नत <<"
 
-#: app/Dialogs/packguibase.cpp:343
+#: app/Dialogs/packguibase.cpp:342
 #, kde-format
 msgid "No password specified"
 msgstr "कोई पासवर्ड निर्दिष्ट नहीं"
 
-#: app/Dialogs/packguibase.cpp:346
+#: app/Dialogs/packguibase.cpp:345
 #, kde-format
 msgid "The passwords are equal"
 msgstr "पासवर्ड बराबर हैं"
 
-#: app/Dialogs/packguibase.cpp:349
+#: app/Dialogs/packguibase.cpp:348
 #, kde-format
 msgid "The passwords are different"
 msgstr "पासवर्ड अलग-अलग हैं"
 
-#: app/Dialogs/packguibase.cpp:389
+#: app/Dialogs/packguibase.cpp:388
 #, kde-format
 msgid "Cannot pack, the passwords are different."
 msgstr "पैक नहीं किया जा सकता, पासवर्ड अलग हैं।"
 
-#: app/Dialogs/packguibase.cpp:417
+#: app/Dialogs/packguibase.cpp:416
 #, kde-format
 msgid "Invalid volume size."
 msgstr "अमान्य वॉल्यूम आकार."
 
-#: app/Dialogs/packguibase.cpp:449
+#: app/Dialogs/packguibase.cpp:448
 #, kde-format
 msgid ""
 "Invalid command line switch.\n"
@@ -1371,14 +1371,14 @@ msgstr ""
 "अमान्य कमांड लाइन स्विच.\n"
 "स्विच '-' से शुरू होना चाहिए."
 
-#: app/Dialogs/packguibase.cpp:461
+#: app/Dialogs/packguibase.cpp:460
 #, kde-format
 msgid ""
 "Invalid command line switch.\n"
 "Backslashes cannot be the last character."
 msgstr "अमान्य कमांड लाइन स्विच. बैकस्लैश अंतिम वर्ण नहीं हो सकता."
 
-#: app/Dialogs/packguibase.cpp:469
+#: app/Dialogs/packguibase.cpp:468
 #, kde-format
 msgid ""
 "Invalid command line switch.\n"
@@ -1397,32 +1397,32 @@ msgstr "सहेजे गए 'लोकप्रिय URL' अमान्य
 msgid "&Search:"
 msgstr "&खोज:"
 
-#: app/DiskUsage/diskusage.cpp:98
+#: app/DiskUsage/diskusage.cpp:97
 #, kde-format
 msgid "Loading Usage Information"
 msgstr "उपयोग जानकारी लोड हो रही है"
 
-#: app/DiskUsage/diskusage.cpp:102
+#: app/DiskUsage/diskusage.cpp:101
 #, kde-format
 msgid "Files:"
 msgstr "फ़ाइलें:"
 
-#: app/DiskUsage/diskusage.cpp:107
+#: app/DiskUsage/diskusage.cpp:106
 #, kde-format
 msgid "Folders:"
 msgstr "फ़ोल्डर्स:"
 
-#: app/DiskUsage/diskusage.cpp:112
+#: app/DiskUsage/diskusage.cpp:111
 #, kde-format
 msgid "Total Size:"
 msgstr "कुल आकार:"
 
-#: app/DiskUsage/diskusage.cpp:238
+#: app/DiskUsage/diskusage.cpp:237
 #, kde-format
 msgid "Loading the disk usage information..."
 msgstr "डिस्क उपयोग जानकारी लोड हो रही है..."
 
-#: app/DiskUsage/diskusage.cpp:404
+#: app/DiskUsage/diskusage.cpp:403
 #, kde-format
 msgid ""
 "Stepping into the parent folder requires loading the content of the \"%1\" "
@@ -1431,167 +1431,167 @@ msgstr ""
 "पैरेंट फ़ोल्डर में जाने के लिए \"%1\" URL की सामग्री लोड करना आवश्यक है। क्या आप जारी "
 "रखना चाहते हैं?"
 
-#: app/DiskUsage/diskusage.cpp:408
+#: app/DiskUsage/diskusage.cpp:407
 #, kde-format
 msgid "Krusader::DiskUsage"
 msgstr "धर्मयुद्ध::डिस्कउपयोग"
 
-#: app/DiskUsage/diskusage.cpp:591
+#: app/DiskUsage/diskusage.cpp:590
 #, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "क्या आप सचमुच इस आइटम को कूड़ेदान में डालना चाहते हैं?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:840
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:833
 #, kde-format
 msgid "&Trash"
 msgstr "&कचरा"
 
-#: app/DiskUsage/diskusage.cpp:594
+#: app/DiskUsage/diskusage.cpp:593
 #, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to delete this item?"
 msgstr "क्या आप सचमुच इस आइटम को हटाना चाहते हैं?"
 
-#: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:856
-#: app/Panel/panelfunc.cpp:933
+#: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:849
+#: app/Panel/panelfunc.cpp:926
 #, kde-format
 msgid "Warning"
 msgstr "चेतावनी"
 
-#: app/DiskUsage/diskusage.cpp:606 plugins/krarc/krarc.cpp:641
+#: app/DiskUsage/diskusage.cpp:605 plugins/krarc/krarc.cpp:638
 #, kde-format
 msgid "Deleting %1..."
 msgstr "%1 हटा रहा है..."
 
-#: app/DiskUsage/diskusage.cpp:720
+#: app/DiskUsage/diskusage.cpp:719
 #, kde-format
 msgid "Current folder:%1,  Total size:%2,  Own size:%3"
 msgstr "वर्तमान फ़ोल्डर:%1, कुल आकार:%2, स्वयं का आकार:%3"
 
-#: app/DiskUsage/diskusage.cpp:746
+#: app/DiskUsage/diskusage.cpp:745
 #, kde-format
 msgid "Disk Usage"
 msgstr "डिस्क उपयोग"
 
-#: app/DiskUsage/diskusage.cpp:754
+#: app/DiskUsage/diskusage.cpp:753
 #, kde-format
 msgid "Exclude"
 msgstr "बहिष्कृत करें"
 
-#: app/DiskUsage/diskusage.cpp:760
+#: app/DiskUsage/diskusage.cpp:759
 #, kde-format
 msgid "Up one folder"
 msgstr "एक फ़ोल्डर ऊपर"
 
-#: app/DiskUsage/diskusage.cpp:764
+#: app/DiskUsage/diskusage.cpp:763
 #, kde-format
 msgid "New search"
 msgstr "नई खोज"
 
-#: app/DiskUsage/diskusage.cpp:768 app/DiskUsage/diskusagegui.cpp:58
+#: app/DiskUsage/diskusage.cpp:767 app/DiskUsage/diskusagegui.cpp:57
 #, kde-format
 msgid "Refresh"
 msgstr "ताज़ा करना"
 
-#: app/DiskUsage/diskusage.cpp:772
+#: app/DiskUsage/diskusage.cpp:771
 #, kde-format
 msgid "Include all"
 msgstr "सभी को शामिल करें"
 
-#: app/DiskUsage/diskusage.cpp:776
+#: app/DiskUsage/diskusage.cpp:775
 #, kde-format
 msgid "Step into"
 msgstr "कदम रखें"
 
-#: app/DiskUsage/diskusage.cpp:789 app/DiskUsage/dulines.cpp:458
+#: app/DiskUsage/diskusage.cpp:788 app/DiskUsage/dulines.cpp:456
 #, kde-format
 msgid "Lines"
 msgstr "पंक्तियां"
 
-#: app/DiskUsage/diskusage.cpp:793
+#: app/DiskUsage/diskusage.cpp:792
 #, kde-format
 msgid "Detailed"
 msgstr "विस्तृत"
 
-#: app/DiskUsage/diskusage.cpp:797 app/DiskUsage/dufilelight.cpp:108
+#: app/DiskUsage/diskusage.cpp:796 app/DiskUsage/dufilelight.cpp:108
 #, kde-format
 msgid "Filelight"
 msgstr "फाइललाइट"
 
-#: app/DiskUsage/diskusage.cpp:803 app/KrViewer/lister.cpp:1285
+#: app/DiskUsage/diskusage.cpp:802 app/KrViewer/lister.cpp:1284
 #, kde-format
 msgid "Next"
 msgstr "अगला"
 
-#: app/DiskUsage/diskusage.cpp:807 app/KrViewer/lister.cpp:1289
+#: app/DiskUsage/diskusage.cpp:806 app/KrViewer/lister.cpp:1288
 #, kde-format
 msgid "Previous"
 msgstr "पहले का"
 
-#: app/DiskUsage/diskusage.cpp:812 app/GUI/kfnkeys.cpp:25
+#: app/DiskUsage/diskusage.cpp:811 app/GUI/kfnkeys.cpp:25
 #: app/Konfigurator/kgpanel.cpp:414
 #, kde-format
 msgid "View"
 msgstr "देखना"
 
-#: app/DiskUsage/diskusage.cpp:1038
+#: app/DiskUsage/diskusage.cpp:1037
 #, kde-format
 msgid "Type:"
 msgstr "प्रकार:"
 
-#: app/DiskUsage/diskusage.cpp:1042
+#: app/DiskUsage/diskusage.cpp:1041
 #, kde-format
 msgid "Own size:"
 msgstr "स्वयं का आकार:"
 
-#: app/DiskUsage/diskusage.cpp:1044
+#: app/DiskUsage/diskusage.cpp:1043
 #, kde-format
 msgid "Last modified:"
 msgstr "अंतिम बार संशोधित:"
 
-#: app/DiskUsage/diskusage.cpp:1044
+#: app/DiskUsage/diskusage.cpp:1043
 #, kde-format
 msgid "Permissions:"
 msgstr "अनुमतियाँ:"
 
-#: app/DiskUsage/diskusage.cpp:1045
+#: app/DiskUsage/diskusage.cpp:1044
 #, kde-format
 msgid "Owner:"
 msgstr "मालिक:"
 
-#: app/DiskUsage/diskusagegui.cpp:33
+#: app/DiskUsage/diskusagegui.cpp:32
 #, kde-format
 msgid "Krusader::Disk Usage"
 msgstr "धर्मयुद्ध::डिस्क उपयोग"
 
-#: app/DiskUsage/diskusagegui.cpp:53
+#: app/DiskUsage/diskusagegui.cpp:52
 #, kde-format
 msgid "Start new disk usage search"
 msgstr "नई डिस्क उपयोग खोज प्रारंभ करें"
 
-#: app/DiskUsage/diskusagegui.cpp:63
+#: app/DiskUsage/diskusagegui.cpp:62
 #, kde-format
 msgid "Parent folder"
 msgstr "मूल फ़ोल्डर"
 
-#: app/DiskUsage/diskusagegui.cpp:73
+#: app/DiskUsage/diskusagegui.cpp:72
 #, kde-format
 msgid "Line view"
 msgstr "लाइन दृश्य"
 
-#: app/DiskUsage/diskusagegui.cpp:79
+#: app/DiskUsage/diskusagegui.cpp:78
 #, kde-format
 msgid "Detailed view"
 msgstr "विस्तृत विवरण"
 
-#: app/DiskUsage/diskusagegui.cpp:85
+#: app/DiskUsage/diskusagegui.cpp:84
 #, kde-format
 msgid "Filelight view"
 msgstr "फ़ाइललाइट दृश्य"
 
-#: app/DiskUsage/diskusagegui.cpp:221
+#: app/DiskUsage/diskusagegui.cpp:220
 #, kde-format
 msgid "Viewing the usage of folder:"
 msgstr "फ़ोल्डर का उपयोग देखना:"
@@ -1661,58 +1661,58 @@ msgstr "न्यूनतम फ़ॉन्ट आकार"
 msgid "Krusader::Filelight"
 msgstr "धर्मयुद्ध::फ़ाइललाइट"
 
-#: app/DiskUsage/dulines.cpp:183
+#: app/DiskUsage/dulines.cpp:181
 #, kde-format
 msgid "Line View"
 msgstr "लाइन दृश्य"
 
-#: app/DiskUsage/dulines.cpp:184 app/DiskUsage/dulistview.cpp:41
+#: app/DiskUsage/dulines.cpp:182 app/DiskUsage/dulistview.cpp:39
 #, kde-format
 msgid "Percent"
 msgstr "प्रतिशत"
 
-#: app/DiskUsage/dulines.cpp:185 app/DiskUsage/dulistview.cpp:40
-#: app/Konfigurator/krresulttable.cpp:128 app/MountMan/kmountmangui.cpp:147
+#: app/DiskUsage/dulines.cpp:183 app/DiskUsage/dulistview.cpp:38
+#: app/Konfigurator/krresulttable.cpp:127 app/MountMan/kmountmangui.cpp:146
 #, kde-format
 msgid "Name"
 msgstr "नाम"
 
-#: app/DiskUsage/dulines.cpp:455
+#: app/DiskUsage/dulines.cpp:453
 #, kde-format
 msgid "Show file sizes"
 msgstr "फ़ाइल आकार दिखाएँ"
 
-#: app/DiskUsage/dulistview.cpp:42
+#: app/DiskUsage/dulistview.cpp:40
 #, kde-format
 msgid "Total size"
 msgstr "कुल आकार"
 
-#: app/DiskUsage/dulistview.cpp:43
+#: app/DiskUsage/dulistview.cpp:41
 #, kde-format
 msgid "Own size"
 msgstr "स्वयं का आकार"
 
-#: app/DiskUsage/dulistview.cpp:44 app/MountMan/kmountmangui.cpp:148
+#: app/DiskUsage/dulistview.cpp:42 app/MountMan/kmountmangui.cpp:147
 #, kde-format
 msgid "Type"
 msgstr "प्रकार"
 
-#: app/DiskUsage/dulistview.cpp:45 app/Filter/advancedfilter.cpp:109
+#: app/DiskUsage/dulistview.cpp:43 app/Filter/advancedfilter.cpp:109
 #, kde-format
 msgid "Date"
 msgstr "तारीख"
 
-#: app/DiskUsage/dulistview.cpp:46
+#: app/DiskUsage/dulistview.cpp:44
 #, kde-format
 msgid "Permissions"
 msgstr "अनुमतियां"
 
-#: app/DiskUsage/dulistview.cpp:47
+#: app/DiskUsage/dulistview.cpp:45
 #, kde-format
 msgid "Owner"
 msgstr "मालिक"
 
-#: app/DiskUsage/dulistview.cpp:48 app/Konfigurator/krresulttable.cpp:282
+#: app/DiskUsage/dulistview.cpp:46 app/Konfigurator/krresulttable.cpp:281
 #, kde-format
 msgid "Group"
 msgstr "समूह"
@@ -1724,37 +1724,37 @@ msgid_plural "%1 files: ~ %2"
 msgstr[0] "%1 फ़ाइलें: ~ %2"
 msgstr[1] "%1 फ़ाइलें: ~ %2"
 
-#: app/DiskUsage/radialMap/segmentTip.cpp:121
+#: app/DiskUsage/radialMap/segmentTip.cpp:120
 #, kde-format
 msgid "Files: %1"
 msgstr "फ़ाइलें: %1"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:166
+#: app/DiskUsage/radialMap/widgetEvents.cpp:156
 #, kde-format
 msgid "Open File Manager Here"
 msgstr "यहां फ़ाइल प्रबंधक खोलें"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:168
+#: app/DiskUsage/radialMap/widgetEvents.cpp:158
 #, kde-format
 msgid "Open Terminal Here"
 msgstr "यहां टर्मिनल खोलें"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:172
+#: app/DiskUsage/radialMap/widgetEvents.cpp:162
 #, kde-format
 msgid "&Center Map Here"
 msgstr "&नक्शा यहाँ केन्द्रित करें"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:175
+#: app/DiskUsage/radialMap/widgetEvents.cpp:165
 #, kde-format
 msgid "&Open"
 msgstr "&खुला"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:178
+#: app/DiskUsage/radialMap/widgetEvents.cpp:168
 #, kde-format
 msgid "&Delete"
 msgstr "&मिटाना"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:204
+#: app/DiskUsage/radialMap/widgetEvents.cpp:188
 #, kde-format
 msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
@@ -1763,27 +1763,27 @@ msgstr ""
 "<qt><i>&#39;%1&#39;</i> पर स्थित फ़ोल्डर <b>पुनरावर्ती</b> और <b>स्थायी रूप से</b> "
 "हटा दिया जाएगा।</qt>"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:205
+#: app/DiskUsage/radialMap/widgetEvents.cpp:189
 #, kde-format
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
 msgstr "<qt><i>&#39;%1&#39;</i> <b>स्थायी रूप से</b> हटा दिया जाएगा.</qt>"
 
-#: app/FileSystem/defaultfilesystem.cpp:150
+#: app/FileSystem/defaultfilesystem.cpp:149
 #, kde-format
 msgid "Space information disabled"
 msgstr "स्थान जानकारी अक्षम"
 
-#: app/FileSystem/defaultfilesystem.cpp:157
+#: app/FileSystem/defaultfilesystem.cpp:156
 #, kde-format
 msgid "No space information on non-local filesystems"
 msgstr "गैर-स्थानीय फ़ाइल सिस्टम पर कोई स्थान जानकारी नहीं"
 
-#: app/FileSystem/defaultfilesystem.cpp:185
+#: app/FileSystem/defaultfilesystem.cpp:184
 #, kde-format
 msgid "Space information unavailable"
 msgstr "अंतरिक्ष जानकारी उपलब्ध नहीं है"
 
-#: app/FileSystem/defaultfilesystem.cpp:195
+#: app/FileSystem/defaultfilesystem.cpp:194
 #, kde-format
 msgid ""
 "Protocol not supported by Krusader:\n"
@@ -1792,18 +1792,18 @@ msgstr ""
 "क्रुसेडर द्वारा समर्थित प्रोटोकॉल नहीं:\n"
 "%1"
 
-#: app/FileSystem/defaultfilesystem.cpp:337
+#: app/FileSystem/defaultfilesystem.cpp:336
 #, kde-format
 msgid "The folder %1 does not exist."
 msgstr "फ़ोल्डर %1 मौजूद नहीं है."
 
-#: app/FileSystem/defaultfilesystem.cpp:353
+#: app/FileSystem/defaultfilesystem.cpp:352
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Cannot open the folder %1."
 msgstr "फ़ोल्डर %1 नहीं खोला जा सका."
 
-#: app/FileSystem/defaultfilesystem.cpp:360
+#: app/FileSystem/defaultfilesystem.cpp:359
 #, kde-format
 msgctxt "%1=folder path"
 msgid "Access to %1 denied"
@@ -1818,28 +1818,28 @@ msgstr ""
 "विकृत URL:\n"
 "%1"
 
-#: app/FileSystem/krquery.cpp:259 app/Filter/generalfilter.cpp:161
+#: app/FileSystem/krquery.cpp:259 app/Filter/generalfilter.cpp:160
 #: app/Konfigurator/konfigurator.cpp:126
 #, kde-format
 msgid "Archives"
 msgstr "अभिलेखागार"
 
-#: app/FileSystem/krquery.cpp:263 app/Filter/generalfilter.cpp:163
+#: app/FileSystem/krquery.cpp:263 app/Filter/generalfilter.cpp:162
 #, kde-format
 msgid "Image Files"
 msgstr "छवि फ़ाइलें"
 
-#: app/FileSystem/krquery.cpp:265 app/Filter/generalfilter.cpp:164
+#: app/FileSystem/krquery.cpp:265 app/Filter/generalfilter.cpp:163
 #, kde-format
 msgid "Text Files"
 msgstr "पाठ फ़ाइलें"
 
-#: app/FileSystem/krquery.cpp:267 app/Filter/generalfilter.cpp:165
+#: app/FileSystem/krquery.cpp:267 app/Filter/generalfilter.cpp:164
 #, kde-format
 msgid "Video Files"
 msgstr "वीडियो फ़ाइलें"
 
-#: app/FileSystem/krquery.cpp:269 app/Filter/generalfilter.cpp:166
+#: app/FileSystem/krquery.cpp:269 app/Filter/generalfilter.cpp:165
 #, kde-format
 msgid "Audio Files"
 msgstr "ऑडियो फ़ाइलें"
@@ -2118,69 +2118,69 @@ msgstr "&विकसित"
 msgid "Could not load profile."
 msgstr "प्रोफ़ाइल लोड नहीं किया जा सका."
 
-#: app/Filter/generalfilter.cpp:38
+#: app/Filter/generalfilter.cpp:37
 msgid "Any Character"
 msgstr "कोई भी वर्ण"
 
-#: app/Filter/generalfilter.cpp:39
+#: app/Filter/generalfilter.cpp:38
 msgid "Start of Line"
 msgstr "लाइन की शुरुआत"
 
-#: app/Filter/generalfilter.cpp:40
+#: app/Filter/generalfilter.cpp:39
 msgid "End of Line"
 msgstr "पंक्ति का अंत"
 
-#: app/Filter/generalfilter.cpp:41
+#: app/Filter/generalfilter.cpp:40
 msgid "Set of Characters"
 msgstr "वर्णों का समूह"
 
-#: app/Filter/generalfilter.cpp:42
+#: app/Filter/generalfilter.cpp:41
 msgid "Repeats, Zero or More Times"
 msgstr "दोहराव, शून्य या अधिक बार"
 
-#: app/Filter/generalfilter.cpp:43
+#: app/Filter/generalfilter.cpp:42
 msgid "Repeats, One or More Times"
 msgstr "एक या अधिक बार दोहराता है"
 
-#: app/Filter/generalfilter.cpp:44
+#: app/Filter/generalfilter.cpp:43
 msgid "Optional"
 msgstr "वैकल्पिक"
 
-#: app/Filter/generalfilter.cpp:45
+#: app/Filter/generalfilter.cpp:44
 msgid "Escape"
 msgstr "पलायन"
 
-#: app/Filter/generalfilter.cpp:46
+#: app/Filter/generalfilter.cpp:45
 msgid "TAB"
 msgstr "टैब"
 
-#: app/Filter/generalfilter.cpp:47
+#: app/Filter/generalfilter.cpp:46
 msgid "Newline"
 msgstr "नई लाइन"
 
-#: app/Filter/generalfilter.cpp:48
+#: app/Filter/generalfilter.cpp:47
 msgid "Carriage Return"
 msgstr "कैरिज रिटर्न"
 
-#: app/Filter/generalfilter.cpp:49
+#: app/Filter/generalfilter.cpp:48
 msgid "White Space"
 msgstr "सफेद स्थान"
 
-#: app/Filter/generalfilter.cpp:50
+#: app/Filter/generalfilter.cpp:49
 msgid "Digit"
 msgstr "अंक"
 
-#: app/Filter/generalfilter.cpp:104
+#: app/Filter/generalfilter.cpp:103
 #, kde-format
 msgid "&Case sensitive"
 msgstr "&अक्षर संवेदनशील"
 
-#: app/Filter/generalfilter.cpp:109
+#: app/Filter/generalfilter.cpp:108
 #, kde-format
 msgid "Search &for:"
 msgstr "निम्न को खोजें:"
 
-#: app/Filter/generalfilter.cpp:124 app/Synchronizer/synchronizergui.cpp:208
+#: app/Filter/generalfilter.cpp:123 app/Synchronizer/synchronizergui.cpp:208
 #, kde-format
 msgid ""
 "<p>The filename filtering criteria is defined here.</p><p>You can make use "
@@ -2216,103 +2216,103 @@ msgstr ""
 "li><li> <code>* | .svn/ .git/</code></li></ul><p> <b>नोट</b> : खोज शब्द &#39; "
 "<code>text</code> &#39; &#39; <code>*text*</code> &#39; के समतुल्य है।</p>"
 
-#: app/Filter/generalfilter.cpp:150
+#: app/Filter/generalfilter.cpp:149
 #, kde-format
 msgid "&Of type:"
 msgstr "&प्रकार:"
 
-#: app/Filter/generalfilter.cpp:160 app/Filter/generalfilter.cpp:585
+#: app/Filter/generalfilter.cpp:159 app/Filter/generalfilter.cpp:584
 #, kde-format
 msgid "All Files"
 msgstr "सभी फाइलें"
 
-#: app/Filter/generalfilter.cpp:180
+#: app/Filter/generalfilter.cpp:179
 #, kde-format
 msgid "&Profile handler"
 msgstr "&प्रोफ़ाइल हैंडलर"
 
-#: app/Filter/generalfilter.cpp:193
+#: app/Filter/generalfilter.cpp:192
 #, kde-format
 msgid "&Load"
 msgstr "&भार"
 
-#: app/Filter/generalfilter.cpp:217
+#: app/Filter/generalfilter.cpp:216
 #, kde-format
 msgid "Searc&h in"
 msgstr "तलाश करो और अंदर जाओ"
 
-#: app/Filter/generalfilter.cpp:232
+#: app/Filter/generalfilter.cpp:231
 #, kde-format
 msgid "&Do not search in"
 msgstr "&इसमें खोज न करें"
 
-#: app/Filter/generalfilter.cpp:265
+#: app/Filter/generalfilter.cpp:264
 #, kde-format
 msgid "Containing text"
 msgstr "पाठ युक्त"
 
-#: app/Filter/generalfilter.cpp:279
+#: app/Filter/generalfilter.cpp:278
 #, kde-format
 msgid "&Text:"
 msgstr "&मूलपाठ:"
 
-#: app/Filter/generalfilter.cpp:295 app/KrViewer/lister.cpp:1303
+#: app/Filter/generalfilter.cpp:294 app/KrViewer/lister.cpp:1302
 #, kde-format
 msgid "RegExp"
 msgstr "रेगुलर एक्सप्रेशन"
 
-#: app/Filter/generalfilter.cpp:314
+#: app/Filter/generalfilter.cpp:313
 #, kde-format
 msgid "Encoding:"
 msgstr "एनकोडिंग:"
 
-#: app/Filter/generalfilter.cpp:318 app/GUI/krremoteencodingmenu.cpp:119
+#: app/Filter/generalfilter.cpp:317 app/GUI/krremoteencodingmenu.cpp:118
 #, kde-format
 msgctxt "Default encoding"
 msgid "Default"
 msgstr "गलती करना"
 
-#: app/Filter/generalfilter.cpp:329
+#: app/Filter/generalfilter.cpp:328
 #, kde-format
 msgid "&Match whole word only"
 msgstr "&केवल पूर्ण शब्द मिलाएं"
 
-#: app/Filter/generalfilter.cpp:337
+#: app/Filter/generalfilter.cpp:336
 #, kde-format
 msgid "Cas&e sensitive"
 msgstr "अक्षर संवेदनशील"
 
-#: app/Filter/generalfilter.cpp:354
+#: app/Filter/generalfilter.cpp:353
 #, kde-format
 msgid "Search in s&ub folders"
 msgstr "s&ub फ़ोल्डरों में खोजें"
 
-#: app/Filter/generalfilter.cpp:359
+#: app/Filter/generalfilter.cpp:358
 #, kde-format
 msgid "Search in arch&ives"
 msgstr "अभिलेखों में खोजें"
 
-#: app/Filter/generalfilter.cpp:363
+#: app/Filter/generalfilter.cpp:362
 #, kde-format
 msgid "Follow &links"
 msgstr "अनुसरण करें &लिंक"
 
-#: app/Filter/generalfilter.cpp:473
+#: app/Filter/generalfilter.cpp:472
 #, kde-format
 msgid "Exclude Folder Names"
 msgstr "फ़ोल्डर नाम बहिष्कृत करें"
 
-#: app/Filter/generalfilter.cpp:474
+#: app/Filter/generalfilter.cpp:473
 #, kde-format
 msgid "Filters out specified folder names from the results."
 msgstr "परिणामों से निर्दिष्ट फ़ोल्डर नामों को फ़िल्टर करता है."
 
-#: app/Filter/generalfilter.cpp:489
+#: app/Filter/generalfilter.cpp:488
 #, kde-format
 msgid "Enter space-separated folder names"
 msgstr "रिक्त स्थान से अलग किए गए फ़ोल्डर नाम दर्ज करें"
 
-#: app/Filter/generalfilter.cpp:491
+#: app/Filter/generalfilter.cpp:490
 #, kde-format
 msgid ""
 "You can insert names with escaped spaces or quoted.\n"
@@ -2321,12 +2321,12 @@ msgstr ""
 "आप एस्केप्ड स्पेस या कोट के साथ नाम डाल सकते हैं।\n"
 "उदाहरण: .git \"target build\" build\\ krusader"
 
-#: app/Filter/generalfilter.cpp:577
+#: app/Filter/generalfilter.cpp:576
 #, kde-format
 msgid "No search criteria entered."
 msgstr "कोई खोज मापदंड दर्ज नहीं किया गया."
 
-#: app/Filter/generalfilter.cpp:607
+#: app/Filter/generalfilter.cpp:606
 #, kde-format
 msgid "Please specify a location to search in."
 msgstr "कृपया खोज करने के लिए कोई स्थान निर्दिष्ट करें."
@@ -2336,12 +2336,12 @@ msgstr "कृपया खोज करने के लिए कोई स्
 msgid "Open the folder history list"
 msgstr "फ़ोल्डर इतिहास सूची खोलें"
 
-#: app/GUI/kcmdline.cpp:47
+#: app/GUI/kcmdline.cpp:46
 #, kde-format
 msgid "Name of folder where command will be processed."
 msgstr "फ़ोल्डर का नाम जहाँ आदेश संसाधित किया जाएगा."
 
-#: app/GUI/kcmdline.cpp:175
+#: app/GUI/kcmdline.cpp:174
 #, kde-format
 msgid ""
 "<qt><p>Well, it is actually quite simple: you type your command here and "
@@ -2392,7 +2392,7 @@ msgstr "अवधि"
 msgid "Quit"
 msgstr "छोड़ना"
 
-#: app/GUI/krremoteencodingmenu.cpp:115
+#: app/GUI/krremoteencodingmenu.cpp:114
 #, kde-format
 msgid "Reload"
 msgstr "पुनः लोड करें"
@@ -2476,20 +2476,20 @@ msgid "Recordable CD/DVD-ROM"
 msgstr "रिकॉर्ड करने योग्य सीडी/डीवीडी-रोम"
 
 #: app/GUI/mediabutton.cpp:338 app/MountMan/kmountman.cpp:391
-#: app/MountMan/kmountmangui.cpp:444 app/Panel/panelcontextmenu.cpp:248
+#: app/MountMan/kmountmangui.cpp:443 app/Panel/panelcontextmenu.cpp:236
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
 msgstr "पर्वत"
 
 #: app/GUI/mediabutton.cpp:341 app/MountMan/kmountman.cpp:391
-#: app/MountMan/kmountmangui.cpp:449 app/Panel/panelcontextmenu.cpp:246
+#: app/MountMan/kmountmangui.cpp:448 app/Panel/panelcontextmenu.cpp:234
 #, kde-format
 msgid "Unmount"
 msgstr "अनमाउंट"
 
-#: app/GUI/mediabutton.cpp:345 app/MountMan/kmountmangui.cpp:456
-#: app/Panel/panelcontextmenu.cpp:250
+#: app/GUI/mediabutton.cpp:345 app/MountMan/kmountmangui.cpp:455
+#: app/Panel/panelcontextmenu.cpp:238
 #, kde-format
 msgid "Eject"
 msgstr "निकालें"
@@ -2554,91 +2554,91 @@ msgstr ""
 "<b>एम्बेडेड टर्मिनल नहीं बनाया जा सकता.</b><br> आप कोनसोल स्थापित करके इसे ठीक कर "
 "सकते हैं:<br/> %1"
 
-#: app/JobMan/jobman.cpp:54
+#: app/JobMan/jobman.cpp:53
 #, kde-format
 msgid "Cancel Job"
 msgstr "नौकरी रद्द करें"
 
-#: app/JobMan/jobman.cpp:98
+#: app/JobMan/jobman.cpp:97
 #, kde-format
 msgid "Pause Job"
 msgstr "कार्य रोकें"
 
-#: app/JobMan/jobman.cpp:98
+#: app/JobMan/jobman.cpp:97
 #, kde-format
 msgid "Resume Job"
 msgstr "नौकरी फिर से शुरू करें"
 
-#: app/JobMan/jobman.cpp:98
+#: app/JobMan/jobman.cpp:97
 #, kde-format
 msgid "Start Job"
 msgstr "नौकरी शुरू करें"
 
-#: app/JobMan/jobman.cpp:166
+#: app/JobMan/jobman.cpp:165
 #, kde-format
 msgid "No jobs"
 msgstr "कोई नौकरी नहीं"
 
-#: app/JobMan/jobman.cpp:173
+#: app/JobMan/jobman.cpp:172
 #, kde-format
 msgid "Play/Pause &Job"
 msgstr "चलाएँ/रोकें और नौकरी"
 
-#: app/JobMan/jobman.cpp:191
+#: app/JobMan/jobman.cpp:190
 #, kde-format
 msgid "Job Progress Bar"
 msgstr "कार्य प्रगति बार"
 
-#: app/JobMan/jobman.cpp:198
+#: app/JobMan/jobman.cpp:197
 #, kde-format
 msgid "Job Queue Mode"
 msgstr "नौकरी कतार मोड"
 
-#: app/JobMan/jobman.cpp:199
+#: app/JobMan/jobman.cpp:198
 #, kde-format
 msgid "Run only one job in parallel"
 msgstr "समानांतर में केवल एक ही कार्य चलाएं"
 
-#: app/JobMan/jobman.cpp:211 app/JobMan/jobman.cpp:356
+#: app/JobMan/jobman.cpp:210 app/JobMan/jobman.cpp:351
 #, kde-format
 msgid "Undo Last Job"
 msgstr "पिछला कार्य पूर्ववत करें"
 
-#: app/JobMan/jobman.cpp:231
+#: app/JobMan/jobman.cpp:230
 #, kde-format
 msgid "Are you sure you want to quit?"
 msgstr "क्या आप वाकई छोड़ना चाहते हैं?"
 
-#: app/JobMan/jobman.cpp:375
+#: app/JobMan/jobman.cpp:370
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
 msgstr[0] "%1 नौकरी संचालन बाकी है."
 msgstr[1] "%1 नौकरी संचालन बाकी है."
 
-#: app/JobMan/jobman.cpp:423
+#: app/JobMan/jobman.cpp:418
 #, kde-format
 msgid "No Jobs"
 msgstr "कोई नौकरी नहीं"
 
-#: app/JobMan/jobman.cpp:425
+#: app/JobMan/jobman.cpp:420
 #, kde-format
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
 msgstr[0] "%1 नौकरियाँ"
 msgstr[1] "%1 नौकरियाँ"
 
-#: app/JobMan/jobman.cpp:429
+#: app/JobMan/jobman.cpp:424
 #, kde-format
 msgid "Clear Job List"
 msgstr "नौकरी सूची साफ़ करें"
 
-#: app/JobMan/jobman.cpp:429
+#: app/JobMan/jobman.cpp:424
 #, kde-format
 msgid "Pause All Jobs"
 msgstr "सभी कार्य रोकें"
 
-#: app/JobMan/jobman.cpp:429
+#: app/JobMan/jobman.cpp:424
 #, kde-format
 msgid "Resume Job List"
 msgstr "नौकरी सूची फिर से शुरू करें"
@@ -2683,7 +2683,7 @@ msgid "Link to %1"
 msgstr "%1 से लिंक करें"
 
 #: app/Konfigurator/kgadvanced.cpp:29 app/Konfigurator/kgcolors.cpp:49
-#: app/Konfigurator/kgdependencies.cpp:42 app/Konfigurator/kggeneral.cpp:208
+#: app/Konfigurator/kgdependencies.cpp:41 app/Konfigurator/kggeneral.cpp:208
 #: app/Konfigurator/kggeneral.cpp:215 app/Konfigurator/kgpanel.cpp:63
 #: app/Konfigurator/kgpanel.cpp:419 app/Konfigurator/kgpanel.cpp:664
 #: app/Konfigurator/kgstartup.cpp:31 app/Konfigurator/konfigurator.cpp:122
@@ -3181,7 +3181,7 @@ msgid "Statusbar, inactive background:"
 msgstr "स्टेटस बार, निष्क्रिय पृष्ठभूमि:"
 
 #: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:808
-#: app/Panel/panelcontextmenu.cpp:137
+#: app/Panel/panelcontextmenu.cpp:135
 #, kde-format
 msgid "Preview"
 msgstr "पूर्व दर्शन"
@@ -3301,22 +3301,22 @@ msgstr "फ़ाइल %1 पहले से मौजूद है। क्�
 msgid "Error: unable to write to file"
 msgstr "त्रुटि: फ़ाइल में लिखने में असमर्थ"
 
-#: app/Konfigurator/kgdependencies.cpp:64
+#: app/Konfigurator/kgdependencies.cpp:63
 #, kde-format
 msgid "Packers"
 msgstr "PACKERS"
 
-#: app/Konfigurator/kgdependencies.cpp:94
+#: app/Konfigurator/kgdependencies.cpp:93
 #, kde-format
 msgid "Checksum Utilities"
 msgstr "चेकसम उपयोगिताएँ"
 
-#: app/Konfigurator/kgdependencies.cpp:144
+#: app/Konfigurator/kgdependencies.cpp:143
 #, kde-format
 msgid "The %1 path is incorrect, no valid path found."
 msgstr "%1 पथ ग़लत है, कोई वैध पथ नहीं मिला."
 
-#: app/Konfigurator/kgdependencies.cpp:146
+#: app/Konfigurator/kgdependencies.cpp:145
 #, kde-format
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr "%1 पथ ग़लत है, इसके स्थान पर %2 का उपयोग किया गया है।"
@@ -3370,7 +3370,7 @@ msgstr "सामान्य मोड"
 msgid "Use the system's default viewer"
 msgstr "सिस्टम के डिफ़ॉल्ट व्यूअर का उपयोग करें"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2266
 #, kde-format
 msgid "Text mode"
 msgstr "पाठ मोड"
@@ -3380,8 +3380,8 @@ msgstr "पाठ मोड"
 msgid "View the file in text-only mode"
 msgstr "फ़ाइल को केवल पाठ मोड में देखें"
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1235
-#: app/KrViewer/lister.cpp:2274
+#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
+#: app/KrViewer/lister.cpp:2269
 #, kde-format
 msgid "Hex mode"
 msgstr "हेक्स मोड"
@@ -3512,7 +3512,7 @@ msgstr "फाइलों को नष्ट"
 msgid "Files will be permanently deleted."
 msgstr "फ़ाइलें स्थायी रूप से हटा दी जाएंगी."
 
-#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:165
+#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:157
 #, kde-format
 msgid "Terminal"
 msgstr "टर्मिनल"
@@ -3815,7 +3815,7 @@ msgstr "टाइप करके शुरू करें"
 msgid "Open search bar and start searching by typing in panel."
 msgstr "खोज बार खोलें और पैनल टाइप करके खोज शुरू करें।"
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
+#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1298
 #, kde-format
 msgid "Case sensitive"
 msgstr "अक्षर संवेदनशील"
@@ -3860,7 +3860,7 @@ msgstr "पद:"
 msgid "Default mode:"
 msgstr "डिफ़ॉल्ट मोड:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
+#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1214
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
 #, kde-format
 msgid "Search"
@@ -4921,7 +4921,7 @@ msgstr "चालू होना"
 msgid "Krusader's settings upon startup"
 msgstr "स्टार्टअप पर क्रुसेडर की सेटिंग्स"
 
-#: app/Konfigurator/konfigurator.cpp:118 app/paneltabbar.cpp:51
+#: app/Konfigurator/konfigurator.cpp:118 app/paneltabbar.cpp:50
 #, kde-format
 msgid "Panel"
 msgstr "पैनल"
@@ -4956,7 +4956,7 @@ msgstr "निर्भरताएं"
 msgid "Set the full path of the external applications"
 msgstr "बाह्य अनुप्रयोगों का पूर्ण पथ सेट करें"
 
-#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:177
+#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:169
 #: app/UserAction/useractionpopupmenu.cpp:20
 #, kde-format
 msgid "User Actions"
@@ -5073,77 +5073,77 @@ msgstr "अंधेरे भूरा"
 msgid "Black"
 msgstr "काला"
 
-#: app/Konfigurator/krresulttable.cpp:120
+#: app/Konfigurator/krresulttable.cpp:119
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
 msgstr "unarj नहीं मिला, लेकिन arj मिला, जिसका उपयोग अनपैकिंग के लिए किया जाएगा"
 
-#: app/Konfigurator/krresulttable.cpp:126
+#: app/Konfigurator/krresulttable.cpp:125
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr "rpm मिला, लेकिन cpio नहीं मिला जो अनपैकिंग के लिए आवश्यक है"
 
-#: app/Konfigurator/krresulttable.cpp:129
-#: app/Konfigurator/krresulttable.cpp:284
+#: app/Konfigurator/krresulttable.cpp:128
+#: app/Konfigurator/krresulttable.cpp:283
 #, kde-format
 msgid "Found"
 msgstr "मिला"
 
-#: app/Konfigurator/krresulttable.cpp:130
+#: app/Konfigurator/krresulttable.cpp:129
 #, kde-format
 msgid "Packing"
 msgstr "पैकिंग"
 
-#: app/Konfigurator/krresulttable.cpp:131
+#: app/Konfigurator/krresulttable.cpp:130
 #, kde-format
 msgid "Unpacking"
 msgstr "खोल"
 
-#: app/Konfigurator/krresulttable.cpp:132
+#: app/Konfigurator/krresulttable.cpp:131
 #, kde-format
 msgid "Note"
 msgstr "टिप्पणी"
 
-#: app/Konfigurator/krresulttable.cpp:198
-#: app/Konfigurator/krresulttable.cpp:216
-#: app/Konfigurator/krresulttable.cpp:355
+#: app/Konfigurator/krresulttable.cpp:197
+#: app/Konfigurator/krresulttable.cpp:215
+#: app/Konfigurator/krresulttable.cpp:354
 #, kde-format
 msgid "enabled"
 msgstr "सक्रिय"
 
-#: app/Konfigurator/krresulttable.cpp:203
-#: app/Konfigurator/krresulttable.cpp:221
-#: app/Konfigurator/krresulttable.cpp:360
+#: app/Konfigurator/krresulttable.cpp:202
+#: app/Konfigurator/krresulttable.cpp:220
+#: app/Konfigurator/krresulttable.cpp:359
 #, kde-format
 msgid "disabled"
 msgstr "अक्षम"
 
-#: app/Konfigurator/krresulttable.cpp:277
+#: app/Konfigurator/krresulttable.cpp:276
 #, kde-format
 msgid "diff utility"
 msgstr "अंतर उपयोगिता"
 
-#: app/Konfigurator/krresulttable.cpp:278
+#: app/Konfigurator/krresulttable.cpp:277
 #, kde-format
 msgid "email client"
 msgstr "ईमेल क्लाइंट"
 
-#: app/Konfigurator/krresulttable.cpp:279
+#: app/Konfigurator/krresulttable.cpp:278
 #, kde-format
 msgid "batch renamer"
 msgstr "बैच नाम बदलनेवाला"
 
-#: app/Konfigurator/krresulttable.cpp:280
+#: app/Konfigurator/krresulttable.cpp:279
 #, kde-format
 msgid "checksum utility"
 msgstr "चेकसम उपयोगिता"
 
-#: app/Konfigurator/krresulttable.cpp:283
+#: app/Konfigurator/krresulttable.cpp:282
 #, kde-format
 msgid "Tool"
 msgstr "औजार"
 
-#: app/Konfigurator/krresulttable.cpp:285
+#: app/Konfigurator/krresulttable.cpp:284
 #, kde-format
 msgid "Status"
 msgstr "स्थिति"
@@ -5178,7 +5178,7 @@ msgstr "फ़ाइलें दिखाएँ और छिपाएँ"
 msgid "S&wap Panels"
 msgstr "S&Wap पैनल"
 
-#: app/kractions.cpp:204 app/Panel/panelcontextmenu.cpp:261
+#: app/kractions.cpp:204 app/Panel/panelcontextmenu.cpp:249
 #, kde-format
 msgid "Empty Trash"
 msgstr "कचरा खाली करें"
@@ -5552,8 +5552,8 @@ msgid "Bring Main Window to Top"
 msgstr "मुख्य विंडो को ऊपर लाएँ"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1890
-#: app/KrViewer/lister.cpp:1925
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1889
+#: app/KrViewer/lister.cpp:1924
 #, kde-format
 msgid "Lister"
 msgstr "भरती करनेवाला"
@@ -5646,57 +5646,57 @@ msgstr "फ़ंक्शन कुंजियाँ फ़ाइलों प
 msgid "Horizontal Mode"
 msgstr "क्षैतिज मोड"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:97
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&जेनेरिक दर्शक"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&टेक्स्ट व्यूअर"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&हेक्स व्यूअर"
 
-#: app/KrViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Lister"
 msgstr "&लिस्टर"
 
-#: app/KrViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:103
 #, kde-format
 msgid "Text &Editor"
 msgstr "पाठ एवं संपादक"
 
-#: app/KrViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:127
 #, kde-format
 msgid "&Detach Tab"
 msgstr "टैब अलग करें"
 
-#: app/KrViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:139
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "&वर्तमान टैब बंद करें"
 
-#: app/KrViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:145
 #, kde-format
 msgid "&Next Tab"
 msgstr "&अगला टैब"
 
-#: app/KrViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:151
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&पिछला टैब"
 
-#: app/KrViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:226
 #, kde-format
 msgid "&KrViewer"
 msgstr "&Krव्यूअर"
 
-#: app/KrViewer/krviewer.cpp:360
+#: app/KrViewer/krviewer.cpp:355
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5706,158 +5706,158 @@ msgstr ""
 "संपादक कमांड में गलत उद्धरण:\n"
 "%1"
 
-#: app/KrViewer/krviewer.cpp:367
+#: app/KrViewer/krviewer.cpp:362
 #, kde-format
 msgid "Can not open \"%1\""
 msgstr "\"%1\" को खोला नहीं जा सका"
 
-#: app/KrViewer/krviewer.cpp:679
+#: app/KrViewer/krviewer.cpp:674
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (संपादन)"
 
-#: app/KrViewer/krviewer.cpp:680
+#: app/KrViewer/krviewer.cpp:675
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (देख रहे हैं)"
 
-#: app/KrViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:681
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "संपादन: %1"
 
-#: app/KrViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:681
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "देख रहे हैं: %1"
 
-#: app/KrViewer/lister.cpp:1202 app/KrViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1913
 #, kde-format
 msgid "Save selection..."
 msgstr "चयन सहेजें..."
 
-#: app/KrViewer/lister.cpp:1206
+#: app/KrViewer/lister.cpp:1205
 #, kde-format
 msgid "Save as..."
 msgstr "के रूप रक्षित करें..."
 
-#: app/KrViewer/lister.cpp:1210
+#: app/KrViewer/lister.cpp:1209
 #, kde-format
 msgid "Print..."
 msgstr "प्रिंट..."
 
-#: app/KrViewer/lister.cpp:1220
+#: app/KrViewer/lister.cpp:1219
 #, kde-format
 msgid "Search next"
 msgstr "अगला खोजें"
 
-#: app/KrViewer/lister.cpp:1225
+#: app/KrViewer/lister.cpp:1224
 #, kde-format
 msgid "Search previous"
 msgstr "पिछला खोजें"
 
-#: app/KrViewer/lister.cpp:1230 app/KrViewer/lister.cpp:1853
-#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
-#: app/KrViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1852
+#: app/KrViewer/lister.cpp:1863 app/KrViewer/lister.cpp:1871
+#: app/KrViewer/lister.cpp:1878
 #, kde-format
 msgid "Jump to position"
 msgstr "स्थिति पर जाएं"
 
-#: app/KrViewer/lister.cpp:1240
+#: app/KrViewer/lister.cpp:1239
 #, kde-format
 msgid "Select charset"
 msgstr "वर्णसेट चुनें"
 
-#: app/KrViewer/lister.cpp:1259 app/KrViewer/lister.cpp:1486
+#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1485
 #, kde-format
 msgid "Lister:"
 msgstr "लिस्टर:"
 
-#: app/KrViewer/lister.cpp:1270
+#: app/KrViewer/lister.cpp:1269
 #, kde-format
 msgid "Stop search"
 msgstr "खोज बंद करें"
 
-#: app/KrViewer/lister.cpp:1286
+#: app/KrViewer/lister.cpp:1285
 #, kde-format
 msgid "Jump to next match"
 msgstr "अगले मैच पर जाएं"
 
-#: app/KrViewer/lister.cpp:1290
+#: app/KrViewer/lister.cpp:1289
 #, kde-format
 msgid "Jump to previous match"
 msgstr "पिछले मैच पर जाएं"
 
-#: app/KrViewer/lister.cpp:1293
+#: app/KrViewer/lister.cpp:1292
 #, kde-format
 msgid "Options"
 msgstr "विकल्प"
 
-#: app/KrViewer/lister.cpp:1294
+#: app/KrViewer/lister.cpp:1293
 #, kde-format
 msgid "Modify search behavior"
 msgstr "खोज व्यवहार संशोधित करें"
 
-#: app/KrViewer/lister.cpp:1296
+#: app/KrViewer/lister.cpp:1295
 #, kde-format
 msgid "From cursor"
 msgstr "कर्सर से"
 
-#: app/KrViewer/lister.cpp:1301
+#: app/KrViewer/lister.cpp:1300
 #, kde-format
 msgid "Match whole words only"
 msgstr "केवल संपूर्ण शब्दों का मिलान करें"
 
-#: app/KrViewer/lister.cpp:1305
+#: app/KrViewer/lister.cpp:1304
 #, kde-format
 msgid "Hexadecimal"
 msgstr "हेक्साडेसिमल"
 
-#: app/KrViewer/lister.cpp:1360
+#: app/KrViewer/lister.cpp:1359
 #, kde-format
 msgid "Error reading file %1."
 msgstr "फ़ाइल %1 पढ़ने में त्रुटि."
 
-#: app/KrViewer/lister.cpp:1457
+#: app/KrViewer/lister.cpp:1456
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "स्तंभ: %1, स्थिति: %2 (%3, %4%)"
 
-#: app/KrViewer/lister.cpp:1472 app/KrViewer/lister.cpp:1822
+#: app/KrViewer/lister.cpp:1471 app/KrViewer/lister.cpp:1821
 #, kde-format
 msgid "Search:"
 msgstr "खोज:"
 
-#: app/KrViewer/lister.cpp:1838
+#: app/KrViewer/lister.cpp:1837
 #, kde-format
 msgid "Search position:"
 msgstr "खोज स्थिति:"
 
-#: app/KrViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1852
 #, kde-format
 msgid "Text position:"
 msgstr "पाठ स्थिति:"
 
-#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1863 app/KrViewer/lister.cpp:1871
 #, kde-format
 msgid "Invalid number."
 msgstr "अमान्य संख्या."
 
-#: app/KrViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1878
 #, kde-format
 msgid "Number out of range."
 msgstr "संख्या सीमा से बाहर है."
 
-#: app/KrViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1913
 #, kde-format
 msgid "Nothing is selected."
 msgstr "कुछ भी चयनित नहीं है."
 
-#: app/KrViewer/lister.cpp:1993
+#: app/KrViewer/lister.cpp:1992
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr "रिवर्स प्रिंटिंग समर्थित नहीं है। सामान्य प्रिंटिंग जारी रखें?"
@@ -5898,58 +5898,58 @@ msgstr "%1, %2 MB से बड़ा है"
 msgid "Cannot edit %1"
 msgstr "%1संपादितनहींकियाजासकता"
 
-#: app/Locate/locate.cpp:111
+#: app/Locate/locate.cpp:110
 #, kde-format
 msgid "Krusader::Locate"
 msgstr "क्रूसेडर::पता लगाएं"
 
-#: app/Locate/locate.cpp:125
+#: app/Locate/locate.cpp:124
 #, kde-format
 msgid "Search for:"
 msgstr "निम्न को खोजें:"
 
-#: app/Locate/locate.cpp:151
+#: app/Locate/locate.cpp:150
 #, kde-format
 msgid "Do not search in path"
 msgstr "रास्ते में मत खोजो"
 
-#: app/Locate/locate.cpp:155
+#: app/Locate/locate.cpp:154
 #, kde-format
 msgid "Show only the existing files"
 msgstr "केवल मौजूदा फ़ाइलें दिखाएं"
 
-#: app/Locate/locate.cpp:159
+#: app/Locate/locate.cpp:158
 #, kde-format
 msgid "Case Sensitive"
 msgstr "अक्षर संवेदनशील"
 
-#: app/Locate/locate.cpp:171
+#: app/Locate/locate.cpp:170
 #, kde-format
 msgid "Results"
 msgstr "परिणाम"
 
-#: app/Locate/locate.cpp:200
+#: app/Locate/locate.cpp:199
 #, kde-format
 msgid "Locate"
 msgstr "का पता लगाने"
 
-#: app/Locate/locate.cpp:205
+#: app/Locate/locate.cpp:204
 #, kde-format
 msgid "Update DB"
 msgstr "डेटाबेस अपडेट करें"
 
-#: app/Locate/locate.cpp:278
+#: app/Locate/locate.cpp:277
 #, kde-format
 msgid "Cannot start 'locate'. Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "'locate' प्रारंभ नहीं किया जा सकता। konfigurator में 'Dependencies' पृष्ठ की जाँच करें।"
 
-#: app/Locate/locate.cpp:317
+#: app/Locate/locate.cpp:316
 #, kde-format
 msgid "Error during the start of 'locate' process."
 msgstr "'locate' प्रक्रिया के प्रारंभ के दौरान त्रुटि."
 
-#: app/Locate/locate.cpp:324
+#: app/Locate/locate.cpp:323
 #, kde-format
 msgid ""
 "Locate produced the following error message:\n"
@@ -5960,74 +5960,74 @@ msgstr ""
 "\n"
 "%1"
 
-#: app/Locate/locate.cpp:387
+#: app/Locate/locate.cpp:386
 #, kde-format
 msgctxt "@title:menu"
 msgid "Locate"
 msgstr "का पता लगाने"
 
-#: app/Locate/locate.cpp:389
+#: app/Locate/locate.cpp:388
 #, kde-format
 msgid "View (F3)"
 msgstr "देखें (F3)"
 
-#: app/Locate/locate.cpp:390
+#: app/Locate/locate.cpp:389
 #, kde-format
 msgid "Edit (F4)"
 msgstr "संपादित करें (F4)"
 
-#: app/Locate/locate.cpp:391
+#: app/Locate/locate.cpp:390
 #, kde-format
 msgid "Compare by content (F10)"
 msgstr "सामग्री के आधार पर तुलना करें (F10)"
 
-#: app/Locate/locate.cpp:396
+#: app/Locate/locate.cpp:395
 #, kde-format
 msgid "Find (Ctrl+F)"
 msgstr "खोजें (Ctrl+F)"
 
-#: app/Locate/locate.cpp:397
+#: app/Locate/locate.cpp:396
 #, kde-format
 msgid "Find next (Ctrl+N)"
 msgstr "अगला खोजें (Ctrl+N)"
 
-#: app/Locate/locate.cpp:398
+#: app/Locate/locate.cpp:397
 #, kde-format
 msgid "Find previous (Ctrl+P)"
 msgstr "पिछला खोजें (Ctrl+P)"
 
-#: app/Locate/locate.cpp:401
+#: app/Locate/locate.cpp:400
 #, kde-format
 msgid "Copy selected to clipboard"
 msgstr "चयनित को क्लिपबोर्ड पर कॉपी करें"
 
-#: app/Locate/locate.cpp:541 app/Locate/locate.cpp:560
+#: app/Locate/locate.cpp:540 app/Locate/locate.cpp:559
 #, kde-format
 msgid "Search string not found."
 msgstr "खोज स्ट्रिंग नहीं मिली."
 
-#: app/Locate/locate.cpp:626
+#: app/Locate/locate.cpp:625
 #, kde-format
 msgid "Locate results"
 msgstr "परिणाम खोजें"
 
-#: app/Locate/locate.cpp:633
+#: app/Locate/locate.cpp:632
 #, kde-format
 msgid "Query Name"
 msgstr "क्वेरी का नाम"
 
-#: app/Locate/locate.cpp:633
+#: app/Locate/locate.cpp:632
 #, kde-format
 msgid "Here you can name the file collection:"
 msgstr "यहां आप फ़ाइल संग्रह को नाम दे सकते हैं:"
 
-#: app/Locate/locate.cpp:665 app/Locate/locate.cpp:670
+#: app/Locate/locate.cpp:664 app/Locate/locate.cpp:669
 #: app/Search/krsearchdialog.cpp:173 app/Synchronizer/synchronizergui.cpp:488
 #, kde-format
 msgid "Stop"
 msgstr "रुकना"
 
-#: app/Locate/locate.cpp:674 app/Search/krsearchdialog.cpp:272
+#: app/Locate/locate.cpp:673 app/Search/krsearchdialog.cpp:272
 #: app/Synchronizer/synchronizergui.cpp:494
 #, kde-format
 msgid "Feed to listbox"
@@ -6766,62 +6766,62 @@ msgstr "'माउंट' शुरू नहीं किया जा सक�
 msgid "MountMan is not operational. Sorry"
 msgstr "माउंटमैन चालू नहीं है। क्षमा करें"
 
-#: app/MountMan/kmountmangui.cpp:60
+#: app/MountMan/kmountmangui.cpp:59
 #, kde-format
 msgid "MountMan - Your Mount-Manager"
 msgstr "माउंटमैन - आपका माउंट-मैनेजर"
 
-#: app/MountMan/kmountmangui.cpp:74
+#: app/MountMan/kmountmangui.cpp:73
 #, kde-format
 msgid "&Eject"
 msgstr "&इजेक्ट करें"
 
-#: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:419
+#: app/MountMan/kmountmangui.cpp:78 app/MountMan/kmountmangui.cpp:418
 #, kde-format
 msgid "&Unmount"
 msgstr "&अनमाउंट"
 
-#: app/MountMan/kmountmangui.cpp:149
+#: app/MountMan/kmountmangui.cpp:148
 #, kde-format
 msgid "Mnt.Point"
 msgstr "माउंट पॉइंट"
 
-#: app/MountMan/kmountmangui.cpp:150
+#: app/MountMan/kmountmangui.cpp:149
 #, kde-format
 msgid "Total Size"
 msgstr "कुल आकार"
 
-#: app/MountMan/kmountmangui.cpp:151
+#: app/MountMan/kmountmangui.cpp:150
 #, kde-format
 msgid "Free Size"
 msgstr "मुक्त आकार"
 
-#: app/MountMan/kmountmangui.cpp:152
+#: app/MountMan/kmountmangui.cpp:151
 #, kde-format
 msgid "Free %"
 msgstr "मुक्त %"
 
-#: app/MountMan/kmountmangui.cpp:181
+#: app/MountMan/kmountmangui.cpp:180
 #, kde-format
 msgid "MountMan.Info"
 msgstr "माउंटमैन.इंफो"
 
-#: app/MountMan/kmountmangui.cpp:188
+#: app/MountMan/kmountmangui.cpp:187
 #, kde-format
 msgid "Show only removable devices"
 msgstr "केवल हटाने योग्य डिवाइस दिखाएं"
 
-#: app/MountMan/kmountmangui.cpp:421
+#: app/MountMan/kmountmangui.cpp:420
 #, kde-format
 msgid "&Mount"
 msgstr "&माउंट"
 
-#: app/MountMan/kmountmangui.cpp:442
+#: app/MountMan/kmountmangui.cpp:441
 #, kde-format
 msgid "MountMan"
 msgstr "माउंटमैन"
 
-#: app/MountMan/kmountmangui.cpp:458
+#: app/MountMan/kmountmangui.cpp:457
 #, kde-format
 msgid "Format"
 msgstr "प्रारूप"
@@ -6862,103 +6862,103 @@ msgid_plural "and %1 files"
 msgstr[0] "और %1 फ़ाइलें"
 msgstr[1] "और %1 फ़ाइलें"
 
-#: app/Panel/krfiletreeview.cpp:182
+#: app/Panel/krfiletreeview.cpp:181
 #, kde-format
 msgid "Show Details"
 msgstr "प्रदर्शन का विवरण"
 
-#: app/Panel/krfiletreeview.cpp:185
+#: app/Panel/krfiletreeview.cpp:184
 #, kde-format
 msgid "Show columns with details"
 msgstr "विवरण के साथ कॉलम दिखाएं"
 
-#: app/Panel/krfiletreeview.cpp:186
+#: app/Panel/krfiletreeview.cpp:185
 #, kde-format
 msgid "Show Hidden Folders"
 msgstr "छिपे हुए फ़ोल्डर दिखाएँ"
 
-#: app/Panel/krfiletreeview.cpp:189
+#: app/Panel/krfiletreeview.cpp:188
 #, kde-format
 msgid "Show folders starting with a dot"
 msgstr "बिंदु से शुरू होने वाले फ़ोल्डर दिखाएँ"
 
-#: app/Panel/krfiletreeview.cpp:194
+#: app/Panel/krfiletreeview.cpp:193
 #, kde-format
 msgid "Start From Root"
 msgstr "मूल से प्रारंभ करें"
 
-#: app/Panel/krfiletreeview.cpp:197
+#: app/Panel/krfiletreeview.cpp:196
 #, kde-format
 msgid "Set root of the tree to root of filesystem"
 msgstr "वृक्ष की जड़ को फाइल सिस्टम की जड़ पर सेट करें"
 
-#: app/Panel/krfiletreeview.cpp:200
+#: app/Panel/krfiletreeview.cpp:199
 #, kde-format
 msgid "Start From Current"
 msgstr "वर्तमान से प्रारंभ करें"
 
-#: app/Panel/krfiletreeview.cpp:203
+#: app/Panel/krfiletreeview.cpp:202
 #, kde-format
 msgid "Set root of the tree to the current folder"
 msgstr "पेड़ की जड़ को वर्तमान फ़ोल्डर पर सेट करें"
 
-#: app/Panel/krfiletreeview.cpp:206
+#: app/Panel/krfiletreeview.cpp:205
 #, kde-format
 msgid "Start From Place"
 msgstr "जगह से शुरू करें"
 
-#: app/Panel/krfiletreeview.cpp:209
+#: app/Panel/krfiletreeview.cpp:208
 #, kde-format
 msgid "Set root of the tree to closest folder listed in 'Places'"
 msgstr "वृक्ष की जड़ को 'स्थान' में सूचीबद्ध निकटतम फ़ोल्डर में सेट करें"
 
-#: app/Panel/krfiletreeview.cpp:238
+#: app/Panel/krfiletreeview.cpp:237
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Cut"
 msgstr "काटना"
 
-#: app/Panel/krfiletreeview.cpp:245
+#: app/Panel/krfiletreeview.cpp:244
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy"
 msgstr "प्रतिलिपि"
 
-#: app/Panel/krfiletreeview.cpp:268
+#: app/Panel/krfiletreeview.cpp:267
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Move to Trash"
 msgstr "ट्रैश में ले जाएं"
 
-#: app/Panel/krfiletreeview.cpp:278
+#: app/Panel/krfiletreeview.cpp:277
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete"
 msgstr "मिटाना"
 
-#: app/Panel/krfiletreeview.cpp:289
+#: app/Panel/krfiletreeview.cpp:288
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Properties"
 msgstr "गुण"
 
-#: app/Panel/krlayoutfactory.cpp:43
+#: app/Panel/krlayoutfactory.cpp:42
 #, kde-format
 msgctxt "Default layout"
 msgid "Default"
 msgstr "गलती करना"
 
-#: app/Panel/krlayoutfactory.cpp:45
+#: app/Panel/krlayoutfactory.cpp:44
 #, kde-format
 msgid "Compact"
 msgstr "सघन"
 
-#: app/Panel/krlayoutfactory.cpp:47
+#: app/Panel/krlayoutfactory.cpp:46
 #, kde-format
 msgid "Classic"
 msgstr "क्लासिक"
 
-#: app/Panel/krlayoutfactory.cpp:49
+#: app/Panel/krlayoutfactory.cpp:48
 #, kde-format
 msgid "Custom layout: \"%1\""
 msgstr "कस्टम लेआउट: \"%1\""
@@ -7211,7 +7211,7 @@ msgstr "चेकसम बनाएं..."
 msgid "Verify Checksum..."
 msgstr "चेकसम सत्यापित करें..."
 
-#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:227
+#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:215
 #, kde-format
 msgid "New Symlink..."
 msgstr "नया सिमलिंक..."
@@ -7394,215 +7394,215 @@ msgstr ""
 "<qt><p>वर्तमान फ़ोल्डर में टर्मिनल खोलें.</p><p> टर्मिनल को Konfigurator में परिभाषित "
 "किया जा सकता है, डिफ़ॉल्ट <b>konsole</b> है।</p></qt>"
 
-#: app/Panel/panelcontextmenu.cpp:101
+#: app/Panel/panelcontextmenu.cpp:99
 #, kde-format
 msgid "Open/Run Files"
 msgstr "फ़ाइलें खोलें/चलाएँ"
 
-#: app/Panel/panelcontextmenu.cpp:103
+#: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Run"
 msgstr "दौड़ना"
 
-#: app/Panel/panelcontextmenu.cpp:112
+#: app/Panel/panelcontextmenu.cpp:110
 #, kde-format
 msgid "Open in New Tabs"
 msgstr "नए टैब में खोलें"
 
-#: app/Panel/panelcontextmenu.cpp:112
+#: app/Panel/panelcontextmenu.cpp:110
 #, kde-format
 msgid "Open in New Tab"
 msgstr "वेब टेब में खोलें"
 
-#: app/Panel/panelcontextmenu.cpp:125
+#: app/Panel/panelcontextmenu.cpp:123
 #, kde-format
 msgid "Browse Archive"
 msgstr "पुरालेख ब्राउज़ करें"
 
-#: app/Panel/panelcontextmenu.cpp:167
+#: app/Panel/panelcontextmenu.cpp:159
 #, kde-format
 msgid "Other..."
 msgstr "अन्य..."
 
-#: app/Panel/panelcontextmenu.cpp:169
+#: app/Panel/panelcontextmenu.cpp:161
 #, kde-format
 msgid "Open With"
 msgstr "के साथ खोलें"
 
-#: app/Panel/panelcontextmenu.cpp:213
+#: app/Panel/panelcontextmenu.cpp:201
 #, kde-format
 msgid "Move to Trash"
 msgstr "ट्रैश में ले जाएं"
 
-#: app/Panel/panelcontextmenu.cpp:228
+#: app/Panel/panelcontextmenu.cpp:216
 #, kde-format
 msgid "New Hardlink..."
 msgstr "नया हार्डलिंक..."
 
-#: app/Panel/panelcontextmenu.cpp:230
+#: app/Panel/panelcontextmenu.cpp:218
 #, kde-format
 msgid "Redirect Link..."
 msgstr "लिंक पुनर्निर्देशित करें..."
 
-#: app/Panel/panelcontextmenu.cpp:233
+#: app/Panel/panelcontextmenu.cpp:221
 #, kde-format
 msgid "Link Handling"
 msgstr "लिंक हैंडलिंग"
 
-#: app/Panel/panelcontextmenu.cpp:255
+#: app/Panel/panelcontextmenu.cpp:243
 #, kde-format
 msgid "Send by Email"
 msgstr "ईमेल से भेजें"
 
-#: app/Panel/panelcontextmenu.cpp:260
+#: app/Panel/panelcontextmenu.cpp:248
 #, kde-format
 msgid "Restore"
 msgstr "पुनर्स्थापित करना"
 
-#: app/Panel/panelcontextmenu.cpp:267
+#: app/Panel/panelcontextmenu.cpp:255
 #, kde-format
 msgid "Synchronize Selected Files..."
 msgstr "चयनित फ़ाइलें सिंक्रनाइज़ करें..."
 
-#: app/Panel/panelcontextmenu.cpp:294
+#: app/Panel/panelcontextmenu.cpp:282
 #, kde-format
 msgid "Create New"
 msgstr "नया निर्माण"
 
-#: app/Panel/panelfunc.cpp:360
+#: app/Panel/panelfunc.cpp:357
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "आप केवल स्थानीय फ़ाइल सिस्टम पर ही लिंक संपादित कर सकते हैं"
 
-#: app/Panel/panelfunc.cpp:371
+#: app/Panel/panelfunc.cpp:368
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "वर्तमान फ़ाइल कोई लिंक नहीं है, इसलिए इसे पुनर्निर्देशित नहीं किया जा सकता।"
 
-#: app/Panel/panelfunc.cpp:378
+#: app/Panel/panelfunc.cpp:375
 #, kde-format
 msgid "Link Redirection"
 msgstr "लिंक पुनर्निर्देशन"
 
-#: app/Panel/panelfunc.cpp:378
+#: app/Panel/panelfunc.cpp:375
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "कृपया नया लिंक गंतव्य दर्ज करें:"
 
-#: app/Panel/panelfunc.cpp:385
+#: app/Panel/panelfunc.cpp:382
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "पुराना लिंक हटाया नहीं जा सकता: %1"
 
-#: app/Panel/panelfunc.cpp:390
+#: app/Panel/panelfunc.cpp:387
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "नया लिंक बनाने में विफल: %1"
 
-#: app/Panel/panelfunc.cpp:398
+#: app/Panel/panelfunc.cpp:395
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "आप केवल स्थानीय फ़ाइल सिस्टम पर ही लिंक बना सकते हैं"
 
-#: app/Panel/panelfunc.cpp:406
+#: app/Panel/panelfunc.cpp:403
 #, kde-format
 msgid "New Link"
 msgstr "नया लिंक"
 
-#: app/Panel/panelfunc.cpp:406
+#: app/Panel/panelfunc.cpp:403
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "एक नया लिंक बनाएं: %1"
 
-#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:775
+#: app/Panel/panelfunc.cpp:411 app/Panel/panelfunc.cpp:768
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "इस नाम वाला एक फ़ोल्डर या फ़ाइल पहले से मौजूद है."
 
-#: app/Panel/panelfunc.cpp:425
+#: app/Panel/panelfunc.cpp:422
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "'%2' के लिए नया सिम्बलिंक '%1' बनाने में विफल रहा"
 
-#: app/Panel/panelfunc.cpp:428
+#: app/Panel/panelfunc.cpp:425
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "'%1' से '%2' तक नया लिंक बनाने में विफल"
 
-#: app/Panel/panelfunc.cpp:445
+#: app/Panel/panelfunc.cpp:442
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "इस फ़ाइल को देखने की कोई अनुमति नहीं है."
 
-#: app/Panel/panelfunc.cpp:456
+#: app/Panel/panelfunc.cpp:453
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "देखने के लिए URL दर्ज करें:"
 
-#: app/Panel/panelfunc.cpp:486 app/Panel/panelfunc.cpp:564
+#: app/Panel/panelfunc.cpp:483 app/Panel/panelfunc.cpp:557
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "आप किसी फ़ोल्डर को संपादित नहीं कर सकते"
 
-#: app/Panel/panelfunc.cpp:491
+#: app/Panel/panelfunc.cpp:488
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "इस फ़ाइल को संपादित करने की कोई अनुमति नहीं है."
 
-#: app/Panel/panelfunc.cpp:505
+#: app/Panel/panelfunc.cpp:502
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "संपादित करने के लिए फ़ाइल नाम दर्ज करें:"
 
-#: app/Panel/panelfunc.cpp:616
+#: app/Panel/panelfunc.cpp:609
 #, kde-format
 msgid "Move %1 to:"
 msgstr "%1 को यहां ले जाएं:"
 
-#: app/Panel/panelfunc.cpp:616
+#: app/Panel/panelfunc.cpp:609
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "%1 फ़ाइल को यहां ले जाएं:"
 msgstr[1] "%1 फ़ाइल को यहां ले जाएं:"
 
-#: app/Panel/panelfunc.cpp:618
+#: app/Panel/panelfunc.cpp:611
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "%1 को यहां कॉपी करें:"
 
-#: app/Panel/panelfunc.cpp:618
+#: app/Panel/panelfunc.cpp:611
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "%1 फ़ाइल को यहां कॉपी करें:"
 msgstr[1] "%1 फ़ाइल को यहां कॉपी करें:"
 
-#: app/Panel/panelfunc.cpp:667
+#: app/Panel/panelfunc.cpp:660
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:676
+#: app/Panel/panelfunc.cpp:669
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:699
+#: app/Panel/panelfunc.cpp:692
 #, kde-format
 msgid "Folder's name:"
 msgstr "फ़ोल्डर का नाम:"
 
-#: app/Panel/panelfunc.cpp:839
+#: app/Panel/panelfunc.cpp:832
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "क्या आप सचमुच इन %1 आइटमों को कूड़ेदान में ले जाना चाहते हैं?"
 msgstr[1] "क्या आप सचमुच इन %1 आइटमों को कूड़ेदान में ले जाना चाहते हैं?"
 
-#: app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:836
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7617,44 +7617,44 @@ msgstr[1] ""
 "<qt>क्या आप सचमुच इन %1 आइटमों को <b>भौतिक रूप से</b> हटाना चाहते हैं (न कि उन्हें केवल "
 "आभासी आइटमों से हटाना)?</qt>"
 
-#: app/Panel/panelfunc.cpp:850
+#: app/Panel/panelfunc.cpp:843
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "क्या आप सचमुच इन %1 आइटमों को हटाना चाहते हैं?"
 msgstr[1] "क्या आप सचमुच इन %1 आइटमों को हटाना चाहते हैं?"
 
-#: app/Panel/panelfunc.cpp:888
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>फ़ोल्डर <b>%1</b> रिक्त नहीं है.</p>"
 
-#: app/Panel/panelfunc.cpp:889
+#: app/Panel/panelfunc.cpp:882
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>इसे छोड़ दें या सब हटा दें?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:889
+#: app/Panel/panelfunc.cpp:882
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>इसे छोड़ें या सभी को हटा दें?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:891
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Skip"
 msgstr "&छोडना"
 
-#: app/Panel/panelfunc.cpp:892
+#: app/Panel/panelfunc.cpp:885
 #, kde-format
 msgid "&Trash All"
 msgstr "&सभी को ट्रैश करें"
 
-#: app/Panel/panelfunc.cpp:892
+#: app/Panel/panelfunc.cpp:885
 #, kde-format
 msgid "&Delete All"
 msgstr "&सभी हटा दो"
 
-#: app/Panel/panelfunc.cpp:929
+#: app/Panel/panelfunc.cpp:922
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7667,15 +7667,10 @@ msgstr[1] "क्या आप सचमुच इन %1 वर्चुअल �
 
 #: app/Panel/panelfunc.cpp:965
 #, kde-format
-msgid "Could not start %1"
-msgstr "%1 प्रारंभ नहीं हो सका"
-
-#: app/Panel/panelfunc.cpp:977
-#, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1, %2 को नहीं खोल सकता"
 
-#: app/Panel/panelfunc.cpp:1054
+#: app/Panel/panelfunc.cpp:1042
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7684,7 +7679,7 @@ msgstr ""
 "<qt><p>संग्रह <b>%1.%2</b> पहले से मौजूद है। क्या आप इसे अधिलेखित करना चाहते हैं?</p><p> "
 "पिछले संग्रह का सारा डेटा नष्ट हो जाएगा.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1059
+#: app/Panel/panelfunc.cpp:1047
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7695,30 +7690,30 @@ msgstr ""
 "ज़िप, ज़िप संग्रह में समान नाम वाली प्रविष्टियों को प्रतिस्थापित कर देगा या नए नामों के "
 "लिए प्रविष्टियाँ जोड़ देगा।</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1067
+#: app/Panel/panelfunc.cpp:1055
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "फ़ाइलों को वर्चुअल गंतव्य पर पैक नहीं किया जा सकता."
 
-#: app/Panel/panelfunc.cpp:1100
+#: app/Panel/panelfunc.cpp:1088
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "%1 को यहां से अनपैक करें:"
 
-#: app/Panel/panelfunc.cpp:1102
+#: app/Panel/panelfunc.cpp:1090
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
 msgstr[0] "%1 फ़ाइल को अनपैक करें:"
 msgstr[1] "%1 फ़ाइल को अनपैक करें:"
 
-#: app/Panel/PanelView/krinterbriefview.cpp:241
-#: app/Panel/PanelView/krinterdetailedview.cpp:289
+#: app/Panel/PanelView/krinterbriefview.cpp:240
+#: app/Panel/PanelView/krinterdetailedview.cpp:288
 #, kde-format
 msgid "Columns"
 msgstr "कॉलम"
 
-#: app/Panel/PanelView/krinterdetailedview.cpp:303
+#: app/Panel/PanelView/krinterdetailedview.cpp:302
 #, kde-format
 msgid "Automatically Resize Columns"
 msgstr "स्तंभों का आकार स्वचालित रूप से बदलें"
@@ -7923,57 +7918,57 @@ msgctxt "File property"
 msgid "Link to: %1"
 msgstr "लिंक करें: %1"
 
-#: app/Panel/sidebar.cpp:59
+#: app/Panel/sidebar.cpp:58
 #, kde-format
 msgid "Tree Panel: a tree view of the local file system"
 msgstr "ट्री पैनल: स्थानीय फ़ाइल सिस्टम का ट्री दृश्य"
 
-#: app/Panel/sidebar.cpp:66
+#: app/Panel/sidebar.cpp:65
 #, kde-format
 msgid "Preview Panel: display a preview of the current file"
 msgstr "पूर्वावलोकन पैनल: वर्तमान फ़ाइल का पूर्वावलोकन प्रदर्शित करें"
 
-#: app/Panel/sidebar.cpp:73
+#: app/Panel/sidebar.cpp:72
 #, kde-format
 msgid "View Panel: view the current file"
 msgstr "दृश्य पैनल: वर्तमान फ़ाइल देखें"
 
-#: app/Panel/sidebar.cpp:80
+#: app/Panel/sidebar.cpp:79
 #, kde-format
 msgid "Disk Usage Panel: view the usage of a folder"
 msgstr "डिस्क उपयोग पैनल: किसी फ़ोल्डर का उपयोग देखें"
 
-#: app/Panel/sidebar.cpp:121 app/Panel/sidebar.cpp:231
+#: app/Panel/sidebar.cpp:120 app/Panel/sidebar.cpp:230
 #, kde-format
 msgid "Disk Usage:"
 msgstr "डिस्क उपयोग:"
 
-#: app/Panel/sidebar.cpp:211
+#: app/Panel/sidebar.cpp:210
 #, kde-format
 msgid "Tree:"
 msgstr "पेड़:"
 
-#: app/Panel/sidebar.cpp:219
+#: app/Panel/sidebar.cpp:218
 #, kde-format
 msgid "Preview:"
 msgstr "पूर्व दर्शन:"
 
-#: app/Panel/sidebar.cpp:224
+#: app/Panel/sidebar.cpp:223
 #, kde-format
 msgid "View:"
 msgstr "देखना:"
 
-#: app/Panel/sidebar.cpp:254
+#: app/Panel/sidebar.cpp:253
 #, kde-format
 msgid "Preview: %1"
 msgstr "पूर्वावलोकन: %1"
 
-#: app/Panel/sidebar.cpp:261
+#: app/Panel/sidebar.cpp:260
 #, kde-format
 msgid "View: %1"
 msgstr "देखें: %1"
 
-#: app/Panel/sidebar.cpp:266
+#: app/Panel/sidebar.cpp:265
 #, kde-format
 msgid "Disk Usage: %1"
 msgstr "डिस्क उपयोग: %1"
@@ -8085,12 +8080,12 @@ msgstr "इस दृश्य प्रकार के नए इंस्ट�
 msgid "Open a new tab"
 msgstr "नया टैब खोलें"
 
-#: app/paneltabbar.cpp:177
+#: app/paneltabbar.cpp:176
 #, kde-format
 msgid "[invalid]"
 msgstr "[अमान्य]"
 
-#: app/paneltabbar.cpp:195
+#: app/paneltabbar.cpp:194
 #, kde-format
 msgctxt "invalid URL path"
 msgid "?"
@@ -8189,17 +8184,17 @@ msgstr "यहां आप फ़ाइल संग्रह को नाम 
 msgid "Query name"
 msgstr "क्वेरी का नाम"
 
-#: app/Splitter/combiner.cpp:60
+#: app/Splitter/combiner.cpp:59
 #, kde-format
 msgid "Krusader::Combining..."
 msgstr "क्रूसेडर::संयोजन..."
 
-#: app/Splitter/combiner.cpp:61
+#: app/Splitter/combiner.cpp:60
 #, kde-format
 msgid "Combining the file %1..."
 msgstr "फ़ाइल %1 को संयोजित किया जा रहा है..."
 
-#: app/Splitter/combiner.cpp:72
+#: app/Splitter/combiner.cpp:71
 #, kde-format
 msgid ""
 "The CRC information file (%1) is missing.\n"
@@ -8208,17 +8203,17 @@ msgstr ""
 "CRC सूचना फ़ाइल (%1) गुम है।\n"
 "इसके बिना वैधता जाँच असंभव है। संयोजन जारी रखें?"
 
-#: app/Splitter/combiner.cpp:108
+#: app/Splitter/combiner.cpp:107
 #, kde-format
 msgid "Error at reading the CRC file (%1)."
 msgstr "CRC फ़ाइल (%1) पढ़ने में त्रुटि."
 
-#: app/Splitter/combiner.cpp:137
+#: app/Splitter/combiner.cpp:136
 #, kde-format
 msgid "Not a valid CRC file."
 msgstr "वैध CRC फ़ाइल नहीं है."
 
-#: app/Splitter/combiner.cpp:144
+#: app/Splitter/combiner.cpp:143
 #, kde-format
 msgid ""
 "\n"
@@ -8227,48 +8222,48 @@ msgstr ""
 "\n"
 "एक अच्छी CRC फ़ाइल के बिना वैधता जाँच असंभव है। संयोजन जारी रखें?"
 
-#: app/Splitter/combiner.cpp:186 app/Splitter/splitter.cpp:174
+#: app/Splitter/combiner.cpp:185 app/Splitter/splitter.cpp:173
 #: app/Synchronizer/synchronizer.cpp:1345
 #, kde-format
 msgid "File Already Exists"
 msgstr "फ़ाइल पहले से ही मौजूद है"
 
-#: app/Splitter/combiner.cpp:272
+#: app/Splitter/combiner.cpp:271
 #, kde-format
 msgid "Cannot open the first split file of %1."
 msgstr "%1 की पहली विभाजित फ़ाइल नहीं खोली जा सकी."
 
-#: app/Splitter/combiner.cpp:282
+#: app/Splitter/combiner.cpp:281
 #, kde-format
 msgid "Incorrect filesize, the file might have been corrupted."
 msgstr "फ़ाइल का आकार ग़लत है, फ़ाइल संभवतः दूषित हो गई है."
 
-#: app/Splitter/combiner.cpp:284
+#: app/Splitter/combiner.cpp:283
 #, kde-format
 msgid "Incorrect CRC checksum, the file might have been corrupted."
 msgstr "CRC चेकसम गलत है, फ़ाइल संभवतः दूषित हो गई है।"
 
-#: app/Splitter/splitter.cpp:73
+#: app/Splitter/splitter.cpp:72
 #, kde-format
 msgid "Krusader::Splitting..."
 msgstr "क्रूसेडर::विभाजन..."
 
-#: app/Splitter/splitter.cpp:74
+#: app/Splitter/splitter.cpp:73
 #, kde-format
 msgid "Splitting the file %1..."
 msgstr "फ़ाइल %1 को विभाजित किया जा रहा है..."
 
-#: app/Splitter/splitter.cpp:77
+#: app/Splitter/splitter.cpp:76
 #, kde-format
 msgid "Cannot split a folder."
 msgstr "फ़ोल्डर को विभाजित नहीं किया जा सकता."
 
-#: app/Splitter/splitter.cpp:121
+#: app/Splitter/splitter.cpp:120
 #, kde-format
 msgid "Error reading file %1: %2"
 msgstr "फ़ाइल %1 पढ़ने में त्रुटि: %2"
 
-#: app/Splitter/splitter.cpp:230 app/Splitter/splitter.cpp:273
+#: app/Splitter/splitter.cpp:229 app/Splitter/splitter.cpp:272
 #, kde-format
 msgid "Error writing file %1: %2"
 msgstr "फ़ाइल %1 लिखते समय त्रुटि: %2"
@@ -9654,7 +9649,7 @@ msgstr ""
 "वर्तमान फ़ाइल का बैकअप वर्तमान फ़ोल्डर में लेता है और उपयोगकर्ता से नया फ़ाइल नाम पूछता है। "
 "डिफ़ॉल्ट रूप से \".old\" मूल फ़ाइल नाम में जोड़ा जाता है।"
 
-#: plugins/krarc/krarc.cpp:202
+#: plugins/krarc/krarc.cpp:199
 #, kde-format
 msgid ""
 "krarc: write support is disabled.\n"
@@ -9663,70 +9658,70 @@ msgstr ""
 "krarc: लेखन समर्थन अक्षम है।\n"
 "आप इसे Konfigurator में 'संग्रह' पृष्ठ पर सक्षम कर सकते हैं।"
 
-#: plugins/krarc/krarc.cpp:242
+#: plugins/krarc/krarc.cpp:239
 #, fuzzy, kde-format
 #| msgid "Creating folders is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives."
 msgstr "फ़ोल्डर बनाना %1 संग्रह के साथ समर्थित नहीं है"
 
-#: plugins/krarc/krarc.cpp:278
+#: plugins/krarc/krarc.cpp:275
 #, kde-format
 msgid "Creating %1..."
 msgstr "%1 बनाया जा रहा है..."
 
-#: plugins/krarc/krarc.cpp:320
+#: plugins/krarc/krarc.cpp:317
 #, fuzzy, kde-format
 #| msgid "Writing to %1 archives is not supported"
 msgid "Writing to %1 archives is not supported."
 msgstr "%1 संग्रह में लिखना समर्थित नहीं है"
 
-#: plugins/krarc/krarc.cpp:386
+#: plugins/krarc/krarc.cpp:383
 #, kde-format
 msgid "Packing %1..."
 msgstr "पैकिंग %1..."
 
-#: plugins/krarc/krarc.cpp:427
+#: plugins/krarc/krarc.cpp:424
 #, fuzzy, kde-format
 #| msgid "Retrieving data from %1 archives is not supported"
 msgid "Retrieving data from %1 archives is not supported."
 msgstr "%1 संग्रह से डेटा पुनर्प्राप्त करना समर्थित नहीं है"
 
-#: plugins/krarc/krarc.cpp:496 plugins/krarc/krarc.cpp:761
+#: plugins/krarc/krarc.cpp:493 plugins/krarc/krarc.cpp:758
 #, kde-format
 msgid "Unpacking %1..."
 msgstr "%1 को खोला जा रहा है..."
 
-#: plugins/krarc/krarc.cpp:508
+#: plugins/krarc/krarc.cpp:505
 #, kde-format
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr "बाहरी प्रोग्राम '%1' से संबंधित एक त्रुटि हुई है। त्रुटि संदेश है: '%2'."
 
-#: plugins/krarc/krarc.cpp:626
+#: plugins/krarc/krarc.cpp:623
 #, fuzzy, kde-format
 #| msgid "Deleting files from %1 archives is not supported"
 msgid "Deleting files from %1 archives is not supported."
 msgstr "%1 संग्रह से फ़ाइलें हटाना समर्थित नहीं है"
 
-#: plugins/krarc/krarc.cpp:670
+#: plugins/krarc/krarc.cpp:667
 #, fuzzy, kde-format
 #| msgid "Accessing files is not supported with %1 archives"
 msgid "Accessing files is not supported with %1 archives."
 msgstr "%1 संग्रह के साथ फ़ाइलों तक पहुँच समर्थित नहीं है"
 
-#: plugins/krarc/krarc.cpp:783
+#: plugins/krarc/krarc.cpp:780
 #, kde-format
 msgid "Copying from archive to archive is not supported."
 msgstr "संग्रह से संग्रह में प्रतिलिपि बनाना समर्थित नहीं है."
 
-#: plugins/krarc/krarc.cpp:829
+#: plugins/krarc/krarc.cpp:826
 #, fuzzy, kde-format
 #| msgid "Listing folders is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives."
 msgstr "%1 संग्रह के लिए फ़ोल्डर सूचीबद्ध करना समर्थित नहीं है"
 
-#: plugins/krarc/krarc.cpp:1759
+#: plugins/krarc/krarc.cpp:1756
 #, kde-format
 msgid ""
 "\n"
@@ -9735,12 +9730,15 @@ msgstr ""
 "\n"
 "सुनिश्चित करें कि %1 बाइनरी आपके सिस्टम पर ठीक से स्थापित है।"
 
-#: plugins/krarc/krarc.cpp:1841 plugins/krarc/krarc.cpp:1867
+#: plugins/krarc/krarc.cpp:1838 plugins/krarc/krarc.cpp:1864
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "क्रार्क पासवर्ड संवाद"
 
-#: plugins/krarc/krarc.cpp:1884
+#: plugins/krarc/krarc.cpp:1881
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "फ़ाइल तक पहुँचने के लिए पासवर्ड की आवश्यकता होती है।"
+
+#~ msgid "Could not start %1"
+#~ msgstr "%1 प्रारंभ नहीं हो सका"

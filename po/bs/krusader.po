@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-16 00:51+0000\n"
+"POT-Creation-Date: 2026-07-20 00:47+0000\n"
 "PO-Revision-Date: 2014-10-20 19:23+0000\n"
 "Last-Translator: Admir Becirbasic <abecirbasi1@etf.unsa.ba>\n"
 "Language-Team: <bhld@lists.linux.org.ba>\n"
@@ -353,7 +353,7 @@ msgid "Category:"
 msgstr "Kategorija:"
 
 #. i18n: ectx: property (whatsThis), widget (QToolButton, ButtonAddPlaceholder)
-#: app/ActionMan/actionproperty.ui:300 app/GUI/kcmdline.cpp:183
+#: app/ActionMan/actionproperty.ui:300 app/GUI/kcmdline.cpp:182
 #, kde-format
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
 msgstr "Dodaj <b>šablone</b> za izabrane datoteke u panelu."
@@ -543,7 +543,7 @@ msgid "&New..."
 msgstr "&Novo..."
 
 #. i18n: ectx: attribute (title), widget (QWidget, TabFile)
-#: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:97
+#: app/ActionMan/actionproperty.ui:814 app/Filter/generalfilter.cpp:96
 #, kde-format
 msgid "File Name"
 msgstr "Ime datoteke"
@@ -850,7 +850,7 @@ msgstr "Greska prilikom raspakivanja."
 msgid "Add Bookmark"
 msgstr "Dodaj marker"
 
-#: app/BookMan/kraddbookmarkdlg.cpp:35 app/DiskUsage/diskusage.cpp:1038
+#: app/BookMan/kraddbookmarkdlg.cpp:35 app/DiskUsage/diskusage.cpp:1037
 #, kde-format
 msgid "Name:"
 msgstr "Ime:"
@@ -866,18 +866,18 @@ msgid "Create in:"
 msgstr "Napravi u:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:694
+#: app/Panel/panelfunc.cpp:687
 #, kde-format
 msgid "New Folder"
 msgstr "Nova fascikla"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:96 app/FileSystem/krquery.cpp:261
-#: app/Filter/generalfilter.cpp:162 app/Filter/generalfilter.cpp:539
+#: app/Filter/generalfilter.cpp:161 app/Filter/generalfilter.cpp:538
 #, kde-format
 msgid "Folders"
 msgstr "Direktoriji"
 
-#: app/BookMan/kraddbookmarkdlg.cpp:102 app/BookMan/krbookmarkbutton.cpp:33
+#: app/BookMan/kraddbookmarkdlg.cpp:102 app/BookMan/krbookmarkbutton.cpp:32
 #: app/BookMan/krbookmarkhandler.cpp:65 app/Panel/listpanelactions.cpp:105
 #, kde-format
 msgid "Bookmarks"
@@ -903,7 +903,7 @@ msgstr "Virtuelni datotečni sistem"
 msgid "Local Network"
 msgstr "Lokalna mreža"
 
-#: app/BookMan/krbookmarkbutton.cpp:28 app/BookMan/krbookmarkbutton.cpp:29
+#: app/BookMan/krbookmarkbutton.cpp:27 app/BookMan/krbookmarkbutton.cpp:28
 #, kde-format
 msgid "BookMan II"
 msgstr "MenadžMarkera II"
@@ -965,7 +965,7 @@ msgid "Jump back"
 msgstr "Skoči unazad"
 
 #: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:331
-#: app/Panel/panelcontextmenu.cpp:103
+#: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "Otvori"
@@ -975,10 +975,10 @@ msgstr "Otvori"
 msgid "Open in a new tab"
 msgstr "Otvori u novoj kartici"
 
-#: app/BookMan/krbookmarkhandler.cpp:854 app/Dialogs/krmaskchoice.cpp:85
-#: app/Dialogs/kurllistrequester.cpp:128 app/DiskUsage/diskusage.cpp:751
+#: app/BookMan/krbookmarkhandler.cpp:854 app/Dialogs/krmaskchoice.cpp:84
+#: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
-#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:216
+#: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
 #, kde-format
 msgid "Delete"
 msgstr "Obriši"
@@ -1165,22 +1165,22 @@ msgstr "&Ne pretrazuj u"
 msgid "Enqueue the job if another job is running. Otherwise start immediately."
 msgstr ""
 
-#: app/Dialogs/krmaskchoice.cpp:40
+#: app/Dialogs/krmaskchoice.cpp:39
 #, kde-format
 msgid "Choose Files"
 msgstr "Izaberite datoteke"
 
-#: app/Dialogs/krmaskchoice.cpp:53
+#: app/Dialogs/krmaskchoice.cpp:52
 #, kde-format
 msgid "Select the following files:"
 msgstr "Izaberi sljedeće datoteke:"
 
-#: app/Dialogs/krmaskchoice.cpp:63
+#: app/Dialogs/krmaskchoice.cpp:62
 #, kde-format
 msgid "Predefined Selections"
 msgstr "Predefinisani izbori"
 
-#: app/Dialogs/krmaskchoice.cpp:71
+#: app/Dialogs/krmaskchoice.cpp:70
 #, kde-format
 msgid ""
 "A predefined selection is a file-mask which you often use.\n"
@@ -1199,27 +1199,27 @@ msgstr ""
 "Primjetite da linija u kojoj vi uređujete masku ima vlastitu historiju , "
 "koju mozete listati, po potrebi."
 
-#: app/Dialogs/krmaskchoice.cpp:80
+#: app/Dialogs/krmaskchoice.cpp:79
 #, kde-format
 msgid "Add"
 msgstr "Dodaj"
 
-#: app/Dialogs/krmaskchoice.cpp:81
+#: app/Dialogs/krmaskchoice.cpp:80
 #, kde-format
 msgid "Adds the selection in the line-edit to the list"
 msgstr "Dodaje izbor u linijskom uređivaču u listu"
 
-#: app/Dialogs/krmaskchoice.cpp:86
+#: app/Dialogs/krmaskchoice.cpp:85
 #, kde-format
 msgid "Delete the marked selection from the list"
 msgstr "Obriši označeni izbor iz liste"
 
-#: app/Dialogs/krmaskchoice.cpp:90 app/JobMan/jobman.cpp:115
+#: app/Dialogs/krmaskchoice.cpp:89 app/JobMan/jobman.cpp:114
 #, kde-format
 msgid "Clear"
 msgstr "Očisti"
 
-#: app/Dialogs/krmaskchoice.cpp:91
+#: app/Dialogs/krmaskchoice.cpp:90
 #, kde-format
 msgid "Clears the entire list of selections"
 msgstr "Briše cijelu listu izbora"
@@ -1259,42 +1259,42 @@ msgstr "Nije montirano."
 msgid "Enter a selection:"
 msgstr "Unesite izbor:"
 
-#: app/Dialogs/newftpgui.cpp:48
+#: app/Dialogs/newftpgui.cpp:47
 #, kde-format
 msgid "New Network Connection"
 msgstr "Nova mrežna veza"
 
-#: app/Dialogs/newftpgui.cpp:62
+#: app/Dialogs/newftpgui.cpp:61
 #, kde-format
 msgid "About to connect to..."
 msgstr "Poveži se na..."
 
-#: app/Dialogs/newftpgui.cpp:67
+#: app/Dialogs/newftpgui.cpp:66
 #, kde-format
 msgid "Protocol:"
 msgstr "Protokol:"
 
-#: app/Dialogs/newftpgui.cpp:68
+#: app/Dialogs/newftpgui.cpp:67
 #, kde-format
 msgid "Host:"
 msgstr "Domaćin:"
 
-#: app/Dialogs/newftpgui.cpp:69
+#: app/Dialogs/newftpgui.cpp:68
 #, kde-format
 msgid "Port:"
 msgstr "Port:"
 
-#: app/Dialogs/newftpgui.cpp:103
+#: app/Dialogs/newftpgui.cpp:102
 #, kde-format
 msgid "Username:"
 msgstr "Korisničko ime:"
 
-#: app/Dialogs/newftpgui.cpp:105
+#: app/Dialogs/newftpgui.cpp:104
 #, kde-format
 msgid "Password:"
 msgstr "Lozinka:"
 
-#: app/Dialogs/newftpgui.cpp:133
+#: app/Dialogs/newftpgui.cpp:132
 #, kde-format
 msgid "&Connect"
 msgstr "&Poveži"
@@ -1318,103 +1318,103 @@ msgstr[2] "Zapakuj %1 datoteke"
 msgid "Please select a folder"
 msgstr "Izaberite direktorijum"
 
-#: app/Dialogs/packguibase.cpp:61 app/Dialogs/packguibase.cpp:115
+#: app/Dialogs/packguibase.cpp:60 app/Dialogs/packguibase.cpp:114
 #, kde-format
 msgid "Pack"
 msgstr "Zapakuj"
 
-#: app/Dialogs/packguibase.cpp:71
+#: app/Dialogs/packguibase.cpp:70
 #, kde-format
 msgid "To archive"
 msgstr "U arhivu"
 
-#: app/Dialogs/packguibase.cpp:90
+#: app/Dialogs/packguibase.cpp:89
 #, fuzzy, kde-format
 #| msgid "New Folder"
 msgid "In folder"
 msgstr "Nova fascikla"
 
-#: app/Dialogs/packguibase.cpp:138
+#: app/Dialogs/packguibase.cpp:137
 #, kde-format
 msgid "Multiple volume archive"
 msgstr "Arhiva iz više dijelova"
 
-#: app/Dialogs/packguibase.cpp:147 app/DiskUsage/diskusage.cpp:1039
+#: app/Dialogs/packguibase.cpp:146 app/DiskUsage/diskusage.cpp:1038
 #, kde-format
 msgid "Size:"
 msgstr "Veličina:"
 
-#: app/Dialogs/packguibase.cpp:166
+#: app/Dialogs/packguibase.cpp:165
 #, kde-format
 msgid "Set compression level"
 msgstr "Postavi nivo kompresije"
 
-#: app/Dialogs/packguibase.cpp:193
+#: app/Dialogs/packguibase.cpp:192
 #, kde-format
 msgid "MIN"
 msgstr "MIN"
 
-#: app/Dialogs/packguibase.cpp:194
+#: app/Dialogs/packguibase.cpp:193
 #, kde-format
 msgid "MAX"
 msgstr "MAKS"
 
-#: app/Dialogs/packguibase.cpp:217
+#: app/Dialogs/packguibase.cpp:216
 #, kde-format
 msgid "Password"
 msgstr "Lozinka"
 
-#: app/Dialogs/packguibase.cpp:227
+#: app/Dialogs/packguibase.cpp:226
 #, kde-format
 msgid "Again"
 msgstr "Ponovo"
 
-#: app/Dialogs/packguibase.cpp:245
+#: app/Dialogs/packguibase.cpp:244
 #, kde-format
 msgid "Encrypt headers"
 msgstr "Kriptuj zaglavlja"
 
-#: app/Dialogs/packguibase.cpp:257
+#: app/Dialogs/packguibase.cpp:256
 #, kde-format
 msgid "Command line switches:"
 msgstr "Prekidači komandne linije:"
 
-#: app/Dialogs/packguibase.cpp:283 app/Dialogs/packguibase.cpp:324
+#: app/Dialogs/packguibase.cpp:282 app/Dialogs/packguibase.cpp:323
 #, kde-format
 msgid "&Advanced >>"
 msgstr "&Napredno >>"
 
-#: app/Dialogs/packguibase.cpp:324
+#: app/Dialogs/packguibase.cpp:323
 #, kde-format
 msgid "&Advanced <<"
 msgstr "&Napredno <<"
 
-#: app/Dialogs/packguibase.cpp:343
+#: app/Dialogs/packguibase.cpp:342
 #, kde-format
 msgid "No password specified"
 msgstr "Lozinka nije zadata"
 
-#: app/Dialogs/packguibase.cpp:346
+#: app/Dialogs/packguibase.cpp:345
 #, kde-format
 msgid "The passwords are equal"
 msgstr "Lozinke su iste"
 
-#: app/Dialogs/packguibase.cpp:349
+#: app/Dialogs/packguibase.cpp:348
 #, kde-format
 msgid "The passwords are different"
 msgstr "Lozinke su različite"
 
-#: app/Dialogs/packguibase.cpp:389
+#: app/Dialogs/packguibase.cpp:388
 #, kde-format
 msgid "Cannot pack, the passwords are different."
 msgstr "Ne moze se zapakovati, lozinke su razlicite."
 
-#: app/Dialogs/packguibase.cpp:417
+#: app/Dialogs/packguibase.cpp:416
 #, kde-format
 msgid "Invalid volume size."
 msgstr "Nevažeća veličina prostora."
 
-#: app/Dialogs/packguibase.cpp:449
+#: app/Dialogs/packguibase.cpp:448
 #, kde-format
 msgid ""
 "Invalid command line switch.\n"
@@ -1423,7 +1423,7 @@ msgstr ""
 "Nevažeća komandna linija.\n"
 "Komanda mora pocinjati s '-'."
 
-#: app/Dialogs/packguibase.cpp:461
+#: app/Dialogs/packguibase.cpp:460
 #, kde-format
 msgid ""
 "Invalid command line switch.\n"
@@ -1432,7 +1432,7 @@ msgstr ""
 "Nevažeća komandna linija.\n"
 "Zazor ne smije biti zadnji karakter."
 
-#: app/Dialogs/packguibase.cpp:469
+#: app/Dialogs/packguibase.cpp:468
 #, kde-format
 msgid ""
 "Invalid command line switch.\n"
@@ -1452,33 +1452,33 @@ msgstr ""
 msgid "&Search:"
 msgstr "&Traži:"
 
-#: app/DiskUsage/diskusage.cpp:98
+#: app/DiskUsage/diskusage.cpp:97
 #, kde-format
 msgid "Loading Usage Information"
 msgstr "Učitavam podatke o zauzetosti"
 
-#: app/DiskUsage/diskusage.cpp:102
+#: app/DiskUsage/diskusage.cpp:101
 #, kde-format
 msgid "Files:"
 msgstr "Datoteke:"
 
-#: app/DiskUsage/diskusage.cpp:107
+#: app/DiskUsage/diskusage.cpp:106
 #, fuzzy, kde-format
 #| msgid "Folders"
 msgid "Folders:"
 msgstr "Direktoriji"
 
-#: app/DiskUsage/diskusage.cpp:112
+#: app/DiskUsage/diskusage.cpp:111
 #, kde-format
 msgid "Total Size:"
 msgstr "Ukupna veličina:"
 
-#: app/DiskUsage/diskusage.cpp:238
+#: app/DiskUsage/diskusage.cpp:237
 #, kde-format
 msgid "Loading the disk usage information..."
 msgstr "Učitavam informaciju o zauzetosti diska..."
 
-#: app/DiskUsage/diskusage.cpp:404
+#: app/DiskUsage/diskusage.cpp:403
 #, fuzzy, kde-format
 #| msgid ""
 #| "Stepping into the parent directory requires loading the content of the "
@@ -1490,170 +1490,170 @@ msgstr ""
 "Ulazak u roditeljski direktorijum zahtjeva učitavanje sadržaja URL-a „%1“. "
 "Da li želite da nastavite?"
 
-#: app/DiskUsage/diskusage.cpp:408
+#: app/DiskUsage/diskusage.cpp:407
 #, kde-format
 msgid "Krusader::DiskUsage"
 msgstr "Krusader::Zauzetost diska"
 
-#: app/DiskUsage/diskusage.cpp:591
+#: app/DiskUsage/diskusage.cpp:590
 #, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Želite li zaista da bacite ovu  stavku u smeće?"
 
-#: app/DiskUsage/diskusage.cpp:592 app/Panel/panelfunc.cpp:840
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:833
 #, kde-format
 msgid "&Trash"
 msgstr "&Smeće"
 
-#: app/DiskUsage/diskusage.cpp:594
+#: app/DiskUsage/diskusage.cpp:593
 #, kde-format
 msgctxt "singularOnly"
 msgid "Do you really want to delete this item?"
 msgstr "Želite li zaista da obrišete ovu stavku?"
 
-#: app/DiskUsage/diskusage.cpp:602 app/JobMan/jobman.cpp:229
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:856
-#: app/Panel/panelfunc.cpp:933
+#: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:849
+#: app/Panel/panelfunc.cpp:926
 #, kde-format
 msgid "Warning"
 msgstr "Upozorenje"
 
-#: app/DiskUsage/diskusage.cpp:606 plugins/krarc/krarc.cpp:641
+#: app/DiskUsage/diskusage.cpp:605 plugins/krarc/krarc.cpp:638
 #, kde-format
 msgid "Deleting %1..."
 msgstr "Brišem %1..."
 
-#: app/DiskUsage/diskusage.cpp:720
+#: app/DiskUsage/diskusage.cpp:719
 #, fuzzy, kde-format
 #| msgid "Current directory:%1,  Total size:%2,  Own size:%3"
 msgid "Current folder:%1,  Total size:%2,  Own size:%3"
 msgstr "Trenutni direktorijum:%1,  ukupna veličina:%2,  sopstvena veličina:%3"
 
-#: app/DiskUsage/diskusage.cpp:746
+#: app/DiskUsage/diskusage.cpp:745
 #, kde-format
 msgid "Disk Usage"
 msgstr "Zauzetost diska"
 
-#: app/DiskUsage/diskusage.cpp:754
+#: app/DiskUsage/diskusage.cpp:753
 #, kde-format
 msgid "Exclude"
 msgstr "Izuzmi"
 
-#: app/DiskUsage/diskusage.cpp:760
+#: app/DiskUsage/diskusage.cpp:759
 #, fuzzy, kde-format
 #| msgid "Up one directory"
 msgid "Up one folder"
 msgstr "Gore jedan direktorijum"
 
-#: app/DiskUsage/diskusage.cpp:764
+#: app/DiskUsage/diskusage.cpp:763
 #, kde-format
 msgid "New search"
 msgstr "Nova pretraga"
 
-#: app/DiskUsage/diskusage.cpp:768 app/DiskUsage/diskusagegui.cpp:58
+#: app/DiskUsage/diskusage.cpp:767 app/DiskUsage/diskusagegui.cpp:57
 #, kde-format
 msgid "Refresh"
 msgstr "Osvježi"
 
-#: app/DiskUsage/diskusage.cpp:772
+#: app/DiskUsage/diskusage.cpp:771
 #, kde-format
 msgid "Include all"
 msgstr "Uključi sve"
 
-#: app/DiskUsage/diskusage.cpp:776
+#: app/DiskUsage/diskusage.cpp:775
 #, kde-format
 msgid "Step into"
 msgstr "Uskoči u"
 
-#: app/DiskUsage/diskusage.cpp:789 app/DiskUsage/dulines.cpp:458
+#: app/DiskUsage/diskusage.cpp:788 app/DiskUsage/dulines.cpp:456
 #, kde-format
 msgid "Lines"
 msgstr "Linije"
 
-#: app/DiskUsage/diskusage.cpp:793
+#: app/DiskUsage/diskusage.cpp:792
 #, kde-format
 msgid "Detailed"
 msgstr "Detaljno"
 
-#: app/DiskUsage/diskusage.cpp:797 app/DiskUsage/dufilelight.cpp:108
+#: app/DiskUsage/diskusage.cpp:796 app/DiskUsage/dufilelight.cpp:108
 #, kde-format
 msgid "Filelight"
 msgstr "Filelight"
 
-#: app/DiskUsage/diskusage.cpp:803 app/KrViewer/lister.cpp:1285
+#: app/DiskUsage/diskusage.cpp:802 app/KrViewer/lister.cpp:1284
 #, kde-format
 msgid "Next"
 msgstr "Sljedeća"
 
-#: app/DiskUsage/diskusage.cpp:807 app/KrViewer/lister.cpp:1289
+#: app/DiskUsage/diskusage.cpp:806 app/KrViewer/lister.cpp:1288
 #, kde-format
 msgid "Previous"
 msgstr "Prethodna"
 
-#: app/DiskUsage/diskusage.cpp:812 app/GUI/kfnkeys.cpp:25
+#: app/DiskUsage/diskusage.cpp:811 app/GUI/kfnkeys.cpp:25
 #: app/Konfigurator/kgpanel.cpp:414
 #, kde-format
 msgid "View"
 msgstr "Pogled"
 
-#: app/DiskUsage/diskusage.cpp:1038
+#: app/DiskUsage/diskusage.cpp:1037
 #, kde-format
 msgid "Type:"
 msgstr "Tip:"
 
-#: app/DiskUsage/diskusage.cpp:1042
+#: app/DiskUsage/diskusage.cpp:1041
 #, kde-format
 msgid "Own size:"
 msgstr "Sopstvena veličina:"
 
-#: app/DiskUsage/diskusage.cpp:1044
+#: app/DiskUsage/diskusage.cpp:1043
 #, kde-format
 msgid "Last modified:"
 msgstr "Posljednja izmjena:"
 
-#: app/DiskUsage/diskusage.cpp:1044
+#: app/DiskUsage/diskusage.cpp:1043
 #, kde-format
 msgid "Permissions:"
 msgstr "Dozvole:"
 
-#: app/DiskUsage/diskusage.cpp:1045
+#: app/DiskUsage/diskusage.cpp:1044
 #, kde-format
 msgid "Owner:"
 msgstr "Vlasnik:"
 
-#: app/DiskUsage/diskusagegui.cpp:33
+#: app/DiskUsage/diskusagegui.cpp:32
 #, kde-format
 msgid "Krusader::Disk Usage"
 msgstr "Krusader::Zauzetost diska"
 
-#: app/DiskUsage/diskusagegui.cpp:53
+#: app/DiskUsage/diskusagegui.cpp:52
 #, kde-format
 msgid "Start new disk usage search"
 msgstr "Pokreni novu pretragu zauzetosti diska"
 
-#: app/DiskUsage/diskusagegui.cpp:63
+#: app/DiskUsage/diskusagegui.cpp:62
 #, fuzzy, kde-format
 #| msgid "Parent directory"
 msgid "Parent folder"
 msgstr "Roditeljski direktorijum"
 
-#: app/DiskUsage/diskusagegui.cpp:73
+#: app/DiskUsage/diskusagegui.cpp:72
 #, kde-format
 msgid "Line view"
 msgstr "Linijski prikaz"
 
-#: app/DiskUsage/diskusagegui.cpp:79
+#: app/DiskUsage/diskusagegui.cpp:78
 #, kde-format
 msgid "Detailed view"
 msgstr "Detaljan prikaz"
 
-#: app/DiskUsage/diskusagegui.cpp:85
+#: app/DiskUsage/diskusagegui.cpp:84
 #, kde-format
 msgid "Filelight view"
 msgstr "Filelight prikaz"
 
-#: app/DiskUsage/diskusagegui.cpp:221
+#: app/DiskUsage/diskusagegui.cpp:220
 #, fuzzy, kde-format
 #| msgid "Viewing the usage of directory:"
 msgid "Viewing the usage of folder:"
@@ -1724,58 +1724,58 @@ msgstr "Minimalna veličina fonta"
 msgid "Krusader::Filelight"
 msgstr "Krusader::Filelight"
 
-#: app/DiskUsage/dulines.cpp:183
+#: app/DiskUsage/dulines.cpp:181
 #, kde-format
 msgid "Line View"
 msgstr "Linijski prikaz"
 
-#: app/DiskUsage/dulines.cpp:184 app/DiskUsage/dulistview.cpp:41
+#: app/DiskUsage/dulines.cpp:182 app/DiskUsage/dulistview.cpp:39
 #, kde-format
 msgid "Percent"
 msgstr "Procenata"
 
-#: app/DiskUsage/dulines.cpp:185 app/DiskUsage/dulistview.cpp:40
-#: app/Konfigurator/krresulttable.cpp:128 app/MountMan/kmountmangui.cpp:147
+#: app/DiskUsage/dulines.cpp:183 app/DiskUsage/dulistview.cpp:38
+#: app/Konfigurator/krresulttable.cpp:127 app/MountMan/kmountmangui.cpp:146
 #, kde-format
 msgid "Name"
 msgstr "Ime"
 
-#: app/DiskUsage/dulines.cpp:455
+#: app/DiskUsage/dulines.cpp:453
 #, kde-format
 msgid "Show file sizes"
 msgstr "Prikaži veličine datoteka"
 
-#: app/DiskUsage/dulistview.cpp:42
+#: app/DiskUsage/dulistview.cpp:40
 #, kde-format
 msgid "Total size"
 msgstr "Ukupna veličina"
 
-#: app/DiskUsage/dulistview.cpp:43
+#: app/DiskUsage/dulistview.cpp:41
 #, kde-format
 msgid "Own size"
 msgstr "Sopstvena veličina"
 
-#: app/DiskUsage/dulistview.cpp:44 app/MountMan/kmountmangui.cpp:148
+#: app/DiskUsage/dulistview.cpp:42 app/MountMan/kmountmangui.cpp:147
 #, kde-format
 msgid "Type"
 msgstr "Tip"
 
-#: app/DiskUsage/dulistview.cpp:45 app/Filter/advancedfilter.cpp:109
+#: app/DiskUsage/dulistview.cpp:43 app/Filter/advancedfilter.cpp:109
 #, kde-format
 msgid "Date"
 msgstr "Datum"
 
-#: app/DiskUsage/dulistview.cpp:46
+#: app/DiskUsage/dulistview.cpp:44
 #, kde-format
 msgid "Permissions"
 msgstr "Dozvole"
 
-#: app/DiskUsage/dulistview.cpp:47
+#: app/DiskUsage/dulistview.cpp:45
 #, kde-format
 msgid "Owner"
 msgstr "Vlasnik"
 
-#: app/DiskUsage/dulistview.cpp:48 app/Konfigurator/krresulttable.cpp:282
+#: app/DiskUsage/dulistview.cpp:46 app/Konfigurator/krresulttable.cpp:281
 #, kde-format
 msgid "Group"
 msgstr "Grupa"
@@ -1788,39 +1788,39 @@ msgstr[0] "%1 datoteke: ~ %2"
 msgstr[1] "%1 datoteka: ~ %2"
 msgstr[2] "%1 datoteka: ~ %2"
 
-#: app/DiskUsage/radialMap/segmentTip.cpp:121
+#: app/DiskUsage/radialMap/segmentTip.cpp:120
 #, kde-format
 msgid "Files: %1"
 msgstr "Datoteke: %1"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:166
+#: app/DiskUsage/radialMap/widgetEvents.cpp:156
 #, fuzzy, kde-format
 #| msgid "Open &Konqueror Here"
 msgid "Open File Manager Here"
 msgstr "O&tvori Konqueror ovdje"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:168
+#: app/DiskUsage/radialMap/widgetEvents.cpp:158
 #, fuzzy, kde-format
 #| msgid "Start Terminal Here"
 msgid "Open Terminal Here"
 msgstr "Pokreni terminal ovdje"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:172
+#: app/DiskUsage/radialMap/widgetEvents.cpp:162
 #, kde-format
 msgid "&Center Map Here"
 msgstr "&Centriraj mapu ovdje"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:175
+#: app/DiskUsage/radialMap/widgetEvents.cpp:165
 #, kde-format
 msgid "&Open"
 msgstr "&Otvori"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:178
+#: app/DiskUsage/radialMap/widgetEvents.cpp:168
 #, kde-format
 msgid "&Delete"
 msgstr "&Obriši"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:204
+#: app/DiskUsage/radialMap/widgetEvents.cpp:188
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and "
@@ -1832,29 +1832,29 @@ msgstr ""
 "<qt>Direktorij u <i>'%1'</i> ce biti<b>rekurzivno</b> i <b>trajno</b> "
 "obrisan.</qt>"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:205
+#: app/DiskUsage/radialMap/widgetEvents.cpp:189
 #, kde-format
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
 msgstr "<qt><i>'%1'</i> će biti<b>trajno</b> obrisan.</qt>"
 
-#: app/FileSystem/defaultfilesystem.cpp:150
+#: app/FileSystem/defaultfilesystem.cpp:149
 #, kde-format
 msgid "Space information disabled"
 msgstr "Informacije o prostoru onemogucene"
 
-#: app/FileSystem/defaultfilesystem.cpp:157
+#: app/FileSystem/defaultfilesystem.cpp:156
 #, kde-format
 msgid "No space information on non-local filesystems"
 msgstr ""
 "Nema informacija o slobodnom prostoru na ne-lokalnim datoteku sistemima"
 
-#: app/FileSystem/defaultfilesystem.cpp:185
+#: app/FileSystem/defaultfilesystem.cpp:184
 #, fuzzy, kde-format
 #| msgid "Space information disabled"
 msgid "Space information unavailable"
 msgstr "Informacije o prostoru onemogucene"
 
-#: app/FileSystem/defaultfilesystem.cpp:195
+#: app/FileSystem/defaultfilesystem.cpp:194
 #, kde-format
 msgid ""
 "Protocol not supported by Krusader:\n"
@@ -1863,20 +1863,20 @@ msgstr ""
 "Krusader ne podržava protokol:\n"
 "%1"
 
-#: app/FileSystem/defaultfilesystem.cpp:337
+#: app/FileSystem/defaultfilesystem.cpp:336
 #, fuzzy, kde-format
 #| msgid "The directory %1 does not exist."
 msgid "The folder %1 does not exist."
 msgstr "Direktorij %1 ne postoji."
 
-#: app/FileSystem/defaultfilesystem.cpp:353
+#: app/FileSystem/defaultfilesystem.cpp:352
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, fuzzy, kde-format
 #| msgid "Cannot open the directory %1."
 msgid "Cannot open the folder %1."
 msgstr "Ne mogu otvoriti direktorij %1."
 
-#: app/FileSystem/defaultfilesystem.cpp:360
+#: app/FileSystem/defaultfilesystem.cpp:359
 #, fuzzy, kde-format
 #| msgctxt "%1=directory path"
 #| msgid "Access to %1 denied"
@@ -1893,28 +1893,28 @@ msgstr ""
 "Pogrešno formiran URL:\n"
 "%1"
 
-#: app/FileSystem/krquery.cpp:259 app/Filter/generalfilter.cpp:161
+#: app/FileSystem/krquery.cpp:259 app/Filter/generalfilter.cpp:160
 #: app/Konfigurator/konfigurator.cpp:126
 #, kde-format
 msgid "Archives"
 msgstr "Arhive"
 
-#: app/FileSystem/krquery.cpp:263 app/Filter/generalfilter.cpp:163
+#: app/FileSystem/krquery.cpp:263 app/Filter/generalfilter.cpp:162
 #, kde-format
 msgid "Image Files"
 msgstr "Datoteke slika"
 
-#: app/FileSystem/krquery.cpp:265 app/Filter/generalfilter.cpp:164
+#: app/FileSystem/krquery.cpp:265 app/Filter/generalfilter.cpp:163
 #, kde-format
 msgid "Text Files"
 msgstr "Tekstualne datoteke"
 
-#: app/FileSystem/krquery.cpp:267 app/Filter/generalfilter.cpp:165
+#: app/FileSystem/krquery.cpp:267 app/Filter/generalfilter.cpp:164
 #, kde-format
 msgid "Video Files"
 msgstr "Video datoteke"
 
-#: app/FileSystem/krquery.cpp:269 app/Filter/generalfilter.cpp:166
+#: app/FileSystem/krquery.cpp:269 app/Filter/generalfilter.cpp:165
 #, kde-format
 msgid "Audio Files"
 msgstr "Audio datoteke"
@@ -2202,69 +2202,69 @@ msgstr "&Napredno"
 msgid "Could not load profile."
 msgstr "Nemoguce ucitati profil."
 
-#: app/Filter/generalfilter.cpp:38
+#: app/Filter/generalfilter.cpp:37
 msgid "Any Character"
 msgstr "Bilo koji znak"
 
-#: app/Filter/generalfilter.cpp:39
+#: app/Filter/generalfilter.cpp:38
 msgid "Start of Line"
 msgstr "Početak linije"
 
-#: app/Filter/generalfilter.cpp:40
+#: app/Filter/generalfilter.cpp:39
 msgid "End of Line"
 msgstr "Kraj reda"
 
-#: app/Filter/generalfilter.cpp:41
+#: app/Filter/generalfilter.cpp:40
 msgid "Set of Characters"
 msgstr "Skup znakova"
 
-#: app/Filter/generalfilter.cpp:42
+#: app/Filter/generalfilter.cpp:41
 msgid "Repeats, Zero or More Times"
 msgstr "Ponavljanje, nijednom ili više puta"
 
-#: app/Filter/generalfilter.cpp:43
+#: app/Filter/generalfilter.cpp:42
 msgid "Repeats, One or More Times"
 msgstr "Ponavljanje, jednom ili više puta"
 
-#: app/Filter/generalfilter.cpp:44
+#: app/Filter/generalfilter.cpp:43
 msgid "Optional"
 msgstr "Opcionalno"
 
-#: app/Filter/generalfilter.cpp:45
+#: app/Filter/generalfilter.cpp:44
 msgid "Escape"
 msgstr "Izbjegavanje"
 
-#: app/Filter/generalfilter.cpp:46
+#: app/Filter/generalfilter.cpp:45
 msgid "TAB"
 msgstr "Tabulator"
 
-#: app/Filter/generalfilter.cpp:47
+#: app/Filter/generalfilter.cpp:46
 msgid "Newline"
 msgstr "Novi red"
 
-#: app/Filter/generalfilter.cpp:48
+#: app/Filter/generalfilter.cpp:47
 msgid "Carriage Return"
 msgstr "Povratak reda"
 
-#: app/Filter/generalfilter.cpp:49
+#: app/Filter/generalfilter.cpp:48
 msgid "White Space"
 msgstr "Bijeli razmak"
 
-#: app/Filter/generalfilter.cpp:50
+#: app/Filter/generalfilter.cpp:49
 msgid "Digit"
 msgstr "Cifra"
 
-#: app/Filter/generalfilter.cpp:104
+#: app/Filter/generalfilter.cpp:103
 #, kde-format
 msgid "&Case sensitive"
 msgstr "&Razlikuj mala i velika slova"
 
-#: app/Filter/generalfilter.cpp:109
+#: app/Filter/generalfilter.cpp:108
 #, kde-format
 msgid "Search &for:"
 msgstr "Pretražuj &za:"
 
-#: app/Filter/generalfilter.cpp:124 app/Synchronizer/synchronizergui.cpp:208
+#: app/Filter/generalfilter.cpp:123 app/Synchronizer/synchronizergui.cpp:208
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>The filename filtering criteria is defined here.</p><p>You can make "
@@ -2320,117 +2320,117 @@ msgstr ""
 "pretraživanja '<code>text</code>' je ekvivalentan sa '<code>*text*</code>'.</"
 "p>"
 
-#: app/Filter/generalfilter.cpp:150
+#: app/Filter/generalfilter.cpp:149
 #, kde-format
 msgid "&Of type:"
 msgstr "&Tipa:"
 
-#: app/Filter/generalfilter.cpp:160 app/Filter/generalfilter.cpp:585
+#: app/Filter/generalfilter.cpp:159 app/Filter/generalfilter.cpp:584
 #, kde-format
 msgid "All Files"
 msgstr "Sve datoteke"
 
-#: app/Filter/generalfilter.cpp:180
+#: app/Filter/generalfilter.cpp:179
 #, kde-format
 msgid "&Profile handler"
 msgstr "&Rukovaoc profilima"
 
-#: app/Filter/generalfilter.cpp:193
+#: app/Filter/generalfilter.cpp:192
 #, kde-format
 msgid "&Load"
 msgstr "&Učitaj"
 
-#: app/Filter/generalfilter.cpp:217
+#: app/Filter/generalfilter.cpp:216
 #, kde-format
 msgid "Searc&h in"
 msgstr "Pretra&zi u"
 
-#: app/Filter/generalfilter.cpp:232
+#: app/Filter/generalfilter.cpp:231
 #, kde-format
 msgid "&Do not search in"
 msgstr "&Ne pretrazuj u"
 
-#: app/Filter/generalfilter.cpp:265
+#: app/Filter/generalfilter.cpp:264
 #, kde-format
 msgid "Containing text"
 msgstr "Sadrži tekst"
 
-#: app/Filter/generalfilter.cpp:279
+#: app/Filter/generalfilter.cpp:278
 #, kde-format
 msgid "&Text:"
 msgstr "&Tekst:"
 
-#: app/Filter/generalfilter.cpp:295 app/KrViewer/lister.cpp:1303
+#: app/Filter/generalfilter.cpp:294 app/KrViewer/lister.cpp:1302
 #, kde-format
 msgid "RegExp"
 msgstr "RegExp"
 
-#: app/Filter/generalfilter.cpp:314
+#: app/Filter/generalfilter.cpp:313
 #, kde-format
 msgid "Encoding:"
 msgstr "Kodiranje:"
 
-#: app/Filter/generalfilter.cpp:318 app/GUI/krremoteencodingmenu.cpp:119
+#: app/Filter/generalfilter.cpp:317 app/GUI/krremoteencodingmenu.cpp:118
 #, kde-format
 msgctxt "Default encoding"
 msgid "Default"
 msgstr "Zadano"
 
-#: app/Filter/generalfilter.cpp:329
+#: app/Filter/generalfilter.cpp:328
 #, kde-format
 msgid "&Match whole word only"
 msgstr "Poklopi samo &cijele riječi"
 
-#: app/Filter/generalfilter.cpp:337
+#: app/Filter/generalfilter.cpp:336
 #, kde-format
 msgid "Cas&e sensitive"
 msgstr "&Razlikuj mala i velika slova"
 
-#: app/Filter/generalfilter.cpp:354
+#: app/Filter/generalfilter.cpp:353
 #, fuzzy, kde-format
 #| msgid "Search in s&ubdirectories"
 msgid "Search in s&ub folders"
 msgstr "Pretraga u pod&direktorijumima"
 
-#: app/Filter/generalfilter.cpp:359
+#: app/Filter/generalfilter.cpp:358
 #, kde-format
 msgid "Search in arch&ives"
 msgstr "Pretraga u &arhivama"
 
-#: app/Filter/generalfilter.cpp:363
+#: app/Filter/generalfilter.cpp:362
 #, kde-format
 msgid "Follow &links"
 msgstr "Prati &veze"
 
-#: app/Filter/generalfilter.cpp:473
+#: app/Filter/generalfilter.cpp:472
 #, fuzzy, kde-format
 #| msgid "Edit File Name"
 msgid "Exclude Folder Names"
 msgstr "Uredi Ime datoteke"
 
-#: app/Filter/generalfilter.cpp:474
+#: app/Filter/generalfilter.cpp:473
 #, kde-format
 msgid "Filters out specified folder names from the results."
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:489
+#: app/Filter/generalfilter.cpp:488
 #, kde-format
 msgid "Enter space-separated folder names"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:491
+#: app/Filter/generalfilter.cpp:490
 #, kde-format
 msgid ""
 "You can insert names with escaped spaces or quoted.\n"
 "Example: .git \"target build\" build\\ krusader"
 msgstr ""
 
-#: app/Filter/generalfilter.cpp:577
+#: app/Filter/generalfilter.cpp:576
 #, kde-format
 msgid "No search criteria entered."
 msgstr "Nisu uneseni kriteriji za pretrazivanje."
 
-#: app/Filter/generalfilter.cpp:607
+#: app/Filter/generalfilter.cpp:606
 #, kde-format
 msgid "Please specify a location to search in."
 msgstr "Navedite lokaciju u kojoj treba tražiti."
@@ -2441,13 +2441,13 @@ msgstr "Navedite lokaciju u kojoj treba tražiti."
 msgid "Open the folder history list"
 msgstr "Otvori listu historije direktorijuma"
 
-#: app/GUI/kcmdline.cpp:47
+#: app/GUI/kcmdline.cpp:46
 #, fuzzy, kde-format
 #| msgid "Name of directory where command will be processed."
 msgid "Name of folder where command will be processed."
 msgstr "Naziv direktorijuma gdje će naredbe biti izvršavanje."
 
-#: app/GUI/kcmdline.cpp:175
+#: app/GUI/kcmdline.cpp:174
 #, kde-format
 msgid ""
 "<qt><p>Well, it is actually quite simple: you type your command here and "
@@ -2498,7 +2498,7 @@ msgstr "Uslov"
 msgid "Quit"
 msgstr "Odustani"
 
-#: app/GUI/krremoteencodingmenu.cpp:115
+#: app/GUI/krremoteencodingmenu.cpp:114
 #, kde-format
 msgid "Reload"
 msgstr "Ponovo učitaj"
@@ -2582,20 +2582,20 @@ msgid "Recordable CD/DVD-ROM"
 msgstr "CD/DVD-ROM sa snimanjem"
 
 #: app/GUI/mediabutton.cpp:338 app/MountMan/kmountman.cpp:391
-#: app/MountMan/kmountmangui.cpp:444 app/Panel/panelcontextmenu.cpp:248
+#: app/MountMan/kmountmangui.cpp:443 app/Panel/panelcontextmenu.cpp:236
 #: app/useraction_examples.xml:22
 #, kde-format
 msgid "Mount"
 msgstr "Montiraj"
 
 #: app/GUI/mediabutton.cpp:341 app/MountMan/kmountman.cpp:391
-#: app/MountMan/kmountmangui.cpp:449 app/Panel/panelcontextmenu.cpp:246
+#: app/MountMan/kmountmangui.cpp:448 app/Panel/panelcontextmenu.cpp:234
 #, kde-format
 msgid "Unmount"
 msgstr "Demontiraj"
 
-#: app/GUI/mediabutton.cpp:345 app/MountMan/kmountmangui.cpp:456
-#: app/Panel/panelcontextmenu.cpp:250
+#: app/GUI/mediabutton.cpp:345 app/MountMan/kmountmangui.cpp:455
+#: app/Panel/panelcontextmenu.cpp:238
 #, kde-format
 msgid "Eject"
 msgstr "Izbaci"
@@ -2663,66 +2663,66 @@ msgstr ""
 "<b>Nemoguce kreirati ugradjeni terminal.</b><br>Ovo mozete popraviti "
 "instaliranjem Konsole:<br/>%1"
 
-#: app/JobMan/jobman.cpp:54
+#: app/JobMan/jobman.cpp:53
 #, fuzzy, kde-format
 #| msgid "Cancel"
 msgid "Cancel Job"
 msgstr "Otkaži"
 
-#: app/JobMan/jobman.cpp:98
+#: app/JobMan/jobman.cpp:97
 #, fuzzy, kde-format
 #| msgid "Pause"
 msgid "Pause Job"
 msgstr "Pauziraj"
 
-#: app/JobMan/jobman.cpp:98
+#: app/JobMan/jobman.cpp:97
 #, fuzzy, kde-format
 #| msgid "Resume"
 msgid "Resume Job"
 msgstr "Nastavi"
 
-#: app/JobMan/jobman.cpp:98
+#: app/JobMan/jobman.cpp:97
 #, fuzzy, kde-format
 #| msgid "&Start"
 msgid "Start Job"
 msgstr "Po&čni"
 
-#: app/JobMan/jobman.cpp:166
+#: app/JobMan/jobman.cpp:165
 #, kde-format
 msgid "No jobs"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:173
+#: app/JobMan/jobman.cpp:172
 #, kde-format
 msgid "Play/Pause &Job"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:191
+#: app/JobMan/jobman.cpp:190
 #, kde-format
 msgid "Job Progress Bar"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:198
+#: app/JobMan/jobman.cpp:197
 #, kde-format
 msgid "Job Queue Mode"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:199
+#: app/JobMan/jobman.cpp:198
 #, kde-format
 msgid "Run only one job in parallel"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:211 app/JobMan/jobman.cpp:356
+#: app/JobMan/jobman.cpp:210 app/JobMan/jobman.cpp:351
 #, kde-format
 msgid "Undo Last Job"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:231
+#: app/JobMan/jobman.cpp:230
 #, kde-format
 msgid "Are you sure you want to quit?"
 msgstr "Da li ste sigurni da želite da završite?"
 
-#: app/JobMan/jobman.cpp:375
+#: app/JobMan/jobman.cpp:370
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
@@ -2730,12 +2730,12 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: app/JobMan/jobman.cpp:423
+#: app/JobMan/jobman.cpp:418
 #, kde-format
 msgid "No Jobs"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:425
+#: app/JobMan/jobman.cpp:420
 #, kde-format
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
@@ -2743,17 +2743,17 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: app/JobMan/jobman.cpp:429
+#: app/JobMan/jobman.cpp:424
 #, kde-format
 msgid "Clear Job List"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:429
+#: app/JobMan/jobman.cpp:424
 #, kde-format
 msgid "Pause All Jobs"
 msgstr ""
 
-#: app/JobMan/jobman.cpp:429
+#: app/JobMan/jobman.cpp:424
 #, kde-format
 msgid "Resume Job List"
 msgstr ""
@@ -2807,7 +2807,7 @@ msgid "Link to %1"
 msgstr ""
 
 #: app/Konfigurator/kgadvanced.cpp:29 app/Konfigurator/kgcolors.cpp:49
-#: app/Konfigurator/kgdependencies.cpp:42 app/Konfigurator/kggeneral.cpp:208
+#: app/Konfigurator/kgdependencies.cpp:41 app/Konfigurator/kggeneral.cpp:208
 #: app/Konfigurator/kggeneral.cpp:215 app/Konfigurator/kgpanel.cpp:63
 #: app/Konfigurator/kgpanel.cpp:419 app/Konfigurator/kgpanel.cpp:664
 #: app/Konfigurator/kgstartup.cpp:31 app/Konfigurator/konfigurator.cpp:122
@@ -3320,7 +3320,7 @@ msgid "Statusbar, inactive background:"
 msgstr "Statusna traka, neaktivni pozadinski:"
 
 #: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:808
-#: app/Panel/panelcontextmenu.cpp:137
+#: app/Panel/panelcontextmenu.cpp:135
 #, kde-format
 msgid "Preview"
 msgstr "Pregled"
@@ -3441,22 +3441,22 @@ msgstr "Datoteka %1 vec postoji. Jeste li sigurni da je zelite prebrisati?"
 msgid "Error: unable to write to file"
 msgstr "Greška: Nisam mogao da pišem u datoteku"
 
-#: app/Konfigurator/kgdependencies.cpp:64
+#: app/Konfigurator/kgdependencies.cpp:63
 #, kde-format
 msgid "Packers"
 msgstr "Arhiveri"
 
-#: app/Konfigurator/kgdependencies.cpp:94
+#: app/Konfigurator/kgdependencies.cpp:93
 #, kde-format
 msgid "Checksum Utilities"
 msgstr "Alati kontrolne sume"
 
-#: app/Konfigurator/kgdependencies.cpp:144
+#: app/Konfigurator/kgdependencies.cpp:143
 #, kde-format
 msgid "The %1 path is incorrect, no valid path found."
 msgstr "Putanja %1 je neispravna, nije pronađena ispravna putanja."
 
-#: app/Konfigurator/kgdependencies.cpp:146
+#: app/Konfigurator/kgdependencies.cpp:145
 #, kde-format
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr "Putanja %1 je neispravna, %2 se koristi umjesto nje."
@@ -3510,7 +3510,7 @@ msgstr "Generički režim"
 msgid "Use the system's default viewer"
 msgstr "Koristi sistemski podrazumijevan pregledač"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2266
 #, kde-format
 msgid "Text mode"
 msgstr "Tekstualni režim"
@@ -3520,8 +3520,8 @@ msgstr "Tekstualni režim"
 msgid "View the file in text-only mode"
 msgstr "Pregledaj datoteku u čisto tekstualnom režimu"
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1235
-#: app/KrViewer/lister.cpp:2274
+#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
+#: app/KrViewer/lister.cpp:2269
 #, kde-format
 msgid "Hex mode"
 msgstr "Heks. režim"
@@ -3657,7 +3657,7 @@ msgstr "Obriši datoteke"
 msgid "Files will be permanently deleted."
 msgstr "Datoteke će biti trajno obrisane."
 
-#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:165
+#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:157
 #, kde-format
 msgid "Terminal"
 msgstr "Terminal"
@@ -3991,7 +3991,7 @@ msgstr "Početak linije"
 msgid "Open search bar and start searching by typing in panel."
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
+#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1298
 #, kde-format
 msgid "Case sensitive"
 msgstr "Razlikuj mala i velika slova"
@@ -4037,7 +4037,7 @@ msgstr "Pozicija:"
 msgid "Default mode:"
 msgstr "Osnovni mod pogleda:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
+#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1214
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
 #, kde-format
 msgid "Search"
@@ -5141,7 +5141,7 @@ msgstr "Pokretanje"
 msgid "Krusader's settings upon startup"
 msgstr "Krusader-ova podešavanja po pokretanju"
 
-#: app/Konfigurator/konfigurator.cpp:118 app/paneltabbar.cpp:51
+#: app/Konfigurator/konfigurator.cpp:118 app/paneltabbar.cpp:50
 #, kde-format
 msgid "Panel"
 msgstr "Panel"
@@ -5176,7 +5176,7 @@ msgstr "Zavisnosti"
 msgid "Set the full path of the external applications"
 msgstr "Postavi punu putanju spoljašnjih aplikacija"
 
-#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:177
+#: app/Konfigurator/konfigurator.cpp:130 app/Panel/panelcontextmenu.cpp:169
 #: app/UserAction/useractionpopupmenu.cpp:20
 #, kde-format
 msgid "User Actions"
@@ -5293,80 +5293,80 @@ msgstr "Tamno siva"
 msgid "Black"
 msgstr "Crna"
 
-#: app/Konfigurator/krresulttable.cpp:120
+#: app/Konfigurator/krresulttable.cpp:119
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
 msgstr ""
 "unarj nije pronađen, ali je arj pronađen, i on će biti korišten za "
 "raspakivanje"
 
-#: app/Konfigurator/krresulttable.cpp:126
+#: app/Konfigurator/krresulttable.cpp:125
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr ""
 "rpm pronađen, ali cpio nije pronađen, koji je neophodan za raspakivanje"
 
-#: app/Konfigurator/krresulttable.cpp:129
-#: app/Konfigurator/krresulttable.cpp:284
+#: app/Konfigurator/krresulttable.cpp:128
+#: app/Konfigurator/krresulttable.cpp:283
 #, kde-format
 msgid "Found"
 msgstr "Pronađen"
 
-#: app/Konfigurator/krresulttable.cpp:130
+#: app/Konfigurator/krresulttable.cpp:129
 #, kde-format
 msgid "Packing"
 msgstr "Pakovanje"
 
-#: app/Konfigurator/krresulttable.cpp:131
+#: app/Konfigurator/krresulttable.cpp:130
 #, kde-format
 msgid "Unpacking"
 msgstr "Raspakivanje"
 
-#: app/Konfigurator/krresulttable.cpp:132
+#: app/Konfigurator/krresulttable.cpp:131
 #, kde-format
 msgid "Note"
 msgstr "Napomena"
 
-#: app/Konfigurator/krresulttable.cpp:198
-#: app/Konfigurator/krresulttable.cpp:216
-#: app/Konfigurator/krresulttable.cpp:355
+#: app/Konfigurator/krresulttable.cpp:197
+#: app/Konfigurator/krresulttable.cpp:215
+#: app/Konfigurator/krresulttable.cpp:354
 #, kde-format
 msgid "enabled"
 msgstr "uključeno"
 
-#: app/Konfigurator/krresulttable.cpp:203
-#: app/Konfigurator/krresulttable.cpp:221
-#: app/Konfigurator/krresulttable.cpp:360
+#: app/Konfigurator/krresulttable.cpp:202
+#: app/Konfigurator/krresulttable.cpp:220
+#: app/Konfigurator/krresulttable.cpp:359
 #, kde-format
 msgid "disabled"
 msgstr "isključeno"
 
-#: app/Konfigurator/krresulttable.cpp:277
+#: app/Konfigurator/krresulttable.cpp:276
 #, kde-format
 msgid "diff utility"
 msgstr "diff alatka"
 
-#: app/Konfigurator/krresulttable.cpp:278
+#: app/Konfigurator/krresulttable.cpp:277
 #, kde-format
 msgid "email client"
 msgstr "klijent e-pošte"
 
-#: app/Konfigurator/krresulttable.cpp:279
+#: app/Konfigurator/krresulttable.cpp:278
 #, kde-format
 msgid "batch renamer"
 msgstr "paketni preimenjivač"
 
-#: app/Konfigurator/krresulttable.cpp:280
+#: app/Konfigurator/krresulttable.cpp:279
 #, kde-format
 msgid "checksum utility"
 msgstr "alatka za kontrolne sume"
 
-#: app/Konfigurator/krresulttable.cpp:283
+#: app/Konfigurator/krresulttable.cpp:282
 #, kde-format
 msgid "Tool"
 msgstr "Alat"
 
-#: app/Konfigurator/krresulttable.cpp:285
+#: app/Konfigurator/krresulttable.cpp:284
 #, kde-format
 msgid "Status"
 msgstr "Status"
@@ -5402,7 +5402,7 @@ msgstr "Prikaži &skrivene datoteke"
 msgid "S&wap Panels"
 msgstr "&Razmijeni panele"
 
-#: app/kractions.cpp:204 app/Panel/panelcontextmenu.cpp:261
+#: app/kractions.cpp:204 app/Panel/panelcontextmenu.cpp:249
 #, kde-format
 msgid "Empty Trash"
 msgstr "Isprazni smeće"
@@ -5785,8 +5785,8 @@ msgid "Bring Main Window to Top"
 msgstr "Prebaci glavni prozor naprijed"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1890
-#: app/KrViewer/lister.cpp:1925
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1889
+#: app/KrViewer/lister.cpp:1924
 #, kde-format
 msgid "Lister"
 msgstr "Klizac"
@@ -5882,57 +5882,57 @@ msgstr ""
 msgid "Horizontal Mode"
 msgstr "Vodoravni mod"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:97
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&Genericki preglednik"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&Tekstualni preglednik"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Hex preglednik"
 
-#: app/KrViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Lister"
 msgstr "&Klizac"
 
-#: app/KrViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:103
 #, kde-format
 msgid "Text &Editor"
 msgstr "Tekst&Editor"
 
-#: app/KrViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:127
 #, kde-format
 msgid "&Detach Tab"
 msgstr "&Odvoji karticu"
 
-#: app/KrViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:139
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "&Zatvori trenutnu karticu"
 
-#: app/KrViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:145
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Sljedeća kartica"
 
-#: app/KrViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:151
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&Prethodna kartica"
 
-#: app/KrViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:226
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrPrikazivač"
 
-#: app/KrViewer/krviewer.cpp:360
+#: app/KrViewer/krviewer.cpp:355
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5942,158 +5942,158 @@ msgstr ""
 "Lose navođenje u komandnom uredniku.\n"
 "%1"
 
-#: app/KrViewer/krviewer.cpp:367
+#: app/KrViewer/krviewer.cpp:362
 #, kde-format
 msgid "Can not open \"%1\""
 msgstr "Ne moze otvoriti \"%1\""
 
-#: app/KrViewer/krviewer.cpp:679
+#: app/KrViewer/krviewer.cpp:674
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (Uređuje)"
 
-#: app/KrViewer/krviewer.cpp:680
+#: app/KrViewer/krviewer.cpp:675
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (Pregledava)"
 
-#: app/KrViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:681
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Uređuje: %1"
 
-#: app/KrViewer/krviewer.cpp:686
+#: app/KrViewer/krviewer.cpp:681
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Pregledavanje: %1"
 
-#: app/KrViewer/lister.cpp:1202 app/KrViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1913
 #, kde-format
 msgid "Save selection..."
 msgstr "Sacuvaj oznaceno..."
 
-#: app/KrViewer/lister.cpp:1206
+#: app/KrViewer/lister.cpp:1205
 #, kde-format
 msgid "Save as..."
 msgstr "Sačuvaj kao..."
 
-#: app/KrViewer/lister.cpp:1210
+#: app/KrViewer/lister.cpp:1209
 #, kde-format
 msgid "Print..."
 msgstr "Štampaj..."
 
-#: app/KrViewer/lister.cpp:1220
+#: app/KrViewer/lister.cpp:1219
 #, kde-format
 msgid "Search next"
 msgstr "Pretraži sljedece"
 
-#: app/KrViewer/lister.cpp:1225
+#: app/KrViewer/lister.cpp:1224
 #, kde-format
 msgid "Search previous"
 msgstr "Pretrazi prethodno"
 
-#: app/KrViewer/lister.cpp:1230 app/KrViewer/lister.cpp:1853
-#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
-#: app/KrViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1852
+#: app/KrViewer/lister.cpp:1863 app/KrViewer/lister.cpp:1871
+#: app/KrViewer/lister.cpp:1878
 #, kde-format
 msgid "Jump to position"
 msgstr "Odi na poziciju"
 
-#: app/KrViewer/lister.cpp:1240
+#: app/KrViewer/lister.cpp:1239
 #, kde-format
 msgid "Select charset"
 msgstr "Odaberi string"
 
-#: app/KrViewer/lister.cpp:1259 app/KrViewer/lister.cpp:1486
+#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1485
 #, kde-format
 msgid "Lister:"
 msgstr "Klizac:"
 
-#: app/KrViewer/lister.cpp:1270
+#: app/KrViewer/lister.cpp:1269
 #, kde-format
 msgid "Stop search"
 msgstr "Zaustavi pretragu"
 
-#: app/KrViewer/lister.cpp:1286
+#: app/KrViewer/lister.cpp:1285
 #, kde-format
 msgid "Jump to next match"
 msgstr "Skoči na sljedeće poklapanje"
 
-#: app/KrViewer/lister.cpp:1290
+#: app/KrViewer/lister.cpp:1289
 #, kde-format
 msgid "Jump to previous match"
 msgstr "Skoči na prethodno poklapanje"
 
-#: app/KrViewer/lister.cpp:1293
+#: app/KrViewer/lister.cpp:1292
 #, kde-format
 msgid "Options"
 msgstr "Mogućnosti"
 
-#: app/KrViewer/lister.cpp:1294
+#: app/KrViewer/lister.cpp:1293
 #, kde-format
 msgid "Modify search behavior"
 msgstr "Podesi ponašanje pretrage"
 
-#: app/KrViewer/lister.cpp:1296
+#: app/KrViewer/lister.cpp:1295
 #, kde-format
 msgid "From cursor"
 msgstr "Od pokazivaca"
 
-#: app/KrViewer/lister.cpp:1301
+#: app/KrViewer/lister.cpp:1300
 #, kde-format
 msgid "Match whole words only"
 msgstr "Povezuj samo cijele rijeci"
 
-#: app/KrViewer/lister.cpp:1305
+#: app/KrViewer/lister.cpp:1304
 #, kde-format
 msgid "Hexadecimal"
 msgstr "Heksadekadni"
 
-#: app/KrViewer/lister.cpp:1360
+#: app/KrViewer/lister.cpp:1359
 #, kde-format
 msgid "Error reading file %1."
 msgstr "Greska kod citanja datoteke %1."
 
-#: app/KrViewer/lister.cpp:1457
+#: app/KrViewer/lister.cpp:1456
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "Kolona: %1, Pozicija: %2 (%3, %4%)"
 
-#: app/KrViewer/lister.cpp:1472 app/KrViewer/lister.cpp:1822
+#: app/KrViewer/lister.cpp:1471 app/KrViewer/lister.cpp:1821
 #, kde-format
 msgid "Search:"
 msgstr "Traži:"
 
-#: app/KrViewer/lister.cpp:1838
+#: app/KrViewer/lister.cpp:1837
 #, kde-format
 msgid "Search position:"
 msgstr "Pozicija pretrage:"
 
-#: app/KrViewer/lister.cpp:1853
+#: app/KrViewer/lister.cpp:1852
 #, kde-format
 msgid "Text position:"
 msgstr "Položaj teksta:"
 
-#: app/KrViewer/lister.cpp:1864 app/KrViewer/lister.cpp:1872
+#: app/KrViewer/lister.cpp:1863 app/KrViewer/lister.cpp:1871
 #, kde-format
 msgid "Invalid number."
 msgstr "Neispravan broj."
 
-#: app/KrViewer/lister.cpp:1879
+#: app/KrViewer/lister.cpp:1878
 #, kde-format
 msgid "Number out of range."
 msgstr "Broj izvan opsega."
 
-#: app/KrViewer/lister.cpp:1914
+#: app/KrViewer/lister.cpp:1913
 #, kde-format
 msgid "Nothing is selected."
 msgstr "Nista nije oznaceno."
 
-#: app/KrViewer/lister.cpp:1993
+#: app/KrViewer/lister.cpp:1992
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr "Printanje unatrag nije podrzano. Nastaviti sa normalnim printanjem?"
@@ -6134,58 +6134,58 @@ msgstr "%1 je vece nego %2 MB"
 msgid "Cannot edit %1"
 msgstr "Nemoguce urediti %1"
 
-#: app/Locate/locate.cpp:111
+#: app/Locate/locate.cpp:110
 #, kde-format
 msgid "Krusader::Locate"
 msgstr "Krusader::Pronalaženje"
 
-#: app/Locate/locate.cpp:125
+#: app/Locate/locate.cpp:124
 #, kde-format
 msgid "Search for:"
 msgstr "Pretražuj za:"
 
-#: app/Locate/locate.cpp:151
+#: app/Locate/locate.cpp:150
 #, kde-format
 msgid "Do not search in path"
 msgstr "Ne trazi u putanji"
 
-#: app/Locate/locate.cpp:155
+#: app/Locate/locate.cpp:154
 #, kde-format
 msgid "Show only the existing files"
 msgstr "Prikaži samo postojeće datoteke"
 
-#: app/Locate/locate.cpp:159
+#: app/Locate/locate.cpp:158
 #, kde-format
 msgid "Case Sensitive"
 msgstr "Osjetljivo na mala/velika slova"
 
-#: app/Locate/locate.cpp:171
+#: app/Locate/locate.cpp:170
 #, kde-format
 msgid "Results"
 msgstr "Rezultati"
 
-#: app/Locate/locate.cpp:200
+#: app/Locate/locate.cpp:199
 #, kde-format
 msgid "Locate"
 msgstr "Pronađi"
 
-#: app/Locate/locate.cpp:205
+#: app/Locate/locate.cpp:204
 #, kde-format
 msgid "Update DB"
 msgstr "Osvježi bazu podataka"
 
-#: app/Locate/locate.cpp:278
+#: app/Locate/locate.cpp:277
 #, kde-format
 msgid "Cannot start 'locate'. Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Nemoguce poceti lociranje. Provjeri stranicu 'Ovisnosti' u konfiguratoru."
 
-#: app/Locate/locate.cpp:317
+#: app/Locate/locate.cpp:316
 #, kde-format
 msgid "Error during the start of 'locate' process."
 msgstr "Greska na startu procesa lociranja."
 
-#: app/Locate/locate.cpp:324
+#: app/Locate/locate.cpp:323
 #, kde-format
 msgid ""
 "Locate produced the following error message:\n"
@@ -6196,74 +6196,74 @@ msgstr ""
 "\n"
 "%1"
 
-#: app/Locate/locate.cpp:387
+#: app/Locate/locate.cpp:386
 #, kde-format
 msgctxt "@title:menu"
 msgid "Locate"
 msgstr "Pronađi"
 
-#: app/Locate/locate.cpp:389
+#: app/Locate/locate.cpp:388
 #, kde-format
 msgid "View (F3)"
 msgstr "Pregled (F3)"
 
-#: app/Locate/locate.cpp:390
+#: app/Locate/locate.cpp:389
 #, kde-format
 msgid "Edit (F4)"
 msgstr "Uredi (F4)"
 
-#: app/Locate/locate.cpp:391
+#: app/Locate/locate.cpp:390
 #, kde-format
 msgid "Compare by content (F10)"
 msgstr "Uporedi po sadrzaju (F10)"
 
-#: app/Locate/locate.cpp:396
+#: app/Locate/locate.cpp:395
 #, kde-format
 msgid "Find (Ctrl+F)"
 msgstr "Nađi (Ctrl+F)"
 
-#: app/Locate/locate.cpp:397
+#: app/Locate/locate.cpp:396
 #, kde-format
 msgid "Find next (Ctrl+N)"
 msgstr "Nađi sljedeći (Ctrl+N)"
 
-#: app/Locate/locate.cpp:398
+#: app/Locate/locate.cpp:397
 #, kde-format
 msgid "Find previous (Ctrl+P)"
 msgstr "Nađi prethodni (Ctrl+P)"
 
-#: app/Locate/locate.cpp:401
+#: app/Locate/locate.cpp:400
 #, kde-format
 msgid "Copy selected to clipboard"
 msgstr "Kopiraj izabrano u clipboard"
 
-#: app/Locate/locate.cpp:541 app/Locate/locate.cpp:560
+#: app/Locate/locate.cpp:540 app/Locate/locate.cpp:559
 #, kde-format
 msgid "Search string not found."
 msgstr "Nije pronađen niz za pretragu."
 
-#: app/Locate/locate.cpp:626
+#: app/Locate/locate.cpp:625
 #, kde-format
 msgid "Locate results"
 msgstr "Rezultati pronalaženja"
 
-#: app/Locate/locate.cpp:633
+#: app/Locate/locate.cpp:632
 #, kde-format
 msgid "Query Name"
 msgstr "Upitno ime"
 
-#: app/Locate/locate.cpp:633
+#: app/Locate/locate.cpp:632
 #, kde-format
 msgid "Here you can name the file collection:"
 msgstr "Ovdje mozete imenovati kolekciju datoteka:"
 
-#: app/Locate/locate.cpp:665 app/Locate/locate.cpp:670
+#: app/Locate/locate.cpp:664 app/Locate/locate.cpp:669
 #: app/Search/krsearchdialog.cpp:173 app/Synchronizer/synchronizergui.cpp:488
 #, kde-format
 msgid "Stop"
 msgstr "Zaustavi"
 
-#: app/Locate/locate.cpp:674 app/Search/krsearchdialog.cpp:272
+#: app/Locate/locate.cpp:673 app/Search/krsearchdialog.cpp:272
 #: app/Synchronizer/synchronizergui.cpp:494
 #, kde-format
 msgid "Feed to listbox"
@@ -7025,62 +7025,62 @@ msgstr ""
 msgid "MountMan is not operational. Sorry"
 msgstr "Menadžer montiranja nije upotrebljiv. Izvinite"
 
-#: app/MountMan/kmountmangui.cpp:60
+#: app/MountMan/kmountmangui.cpp:59
 #, kde-format
 msgid "MountMan - Your Mount-Manager"
 msgstr "Menadžer montiranja — vaš prijateljski menadžer montiranja"
 
-#: app/MountMan/kmountmangui.cpp:74
+#: app/MountMan/kmountmangui.cpp:73
 #, kde-format
 msgid "&Eject"
 msgstr "&Izbaci"
 
-#: app/MountMan/kmountmangui.cpp:79 app/MountMan/kmountmangui.cpp:419
+#: app/MountMan/kmountmangui.cpp:78 app/MountMan/kmountmangui.cpp:418
 #, kde-format
 msgid "&Unmount"
 msgstr "&Demontiraj"
 
-#: app/MountMan/kmountmangui.cpp:149
+#: app/MountMan/kmountmangui.cpp:148
 #, kde-format
 msgid "Mnt.Point"
 msgstr "Tačka montiranja"
 
-#: app/MountMan/kmountmangui.cpp:150
+#: app/MountMan/kmountmangui.cpp:149
 #, kde-format
 msgid "Total Size"
 msgstr "Ukupna veličina"
 
-#: app/MountMan/kmountmangui.cpp:151
+#: app/MountMan/kmountmangui.cpp:150
 #, kde-format
 msgid "Free Size"
 msgstr "Veličina slobodnog"
 
-#: app/MountMan/kmountmangui.cpp:152
+#: app/MountMan/kmountmangui.cpp:151
 #, kde-format
 msgid "Free %"
 msgstr "Slobodno %"
 
-#: app/MountMan/kmountmangui.cpp:181
+#: app/MountMan/kmountmangui.cpp:180
 #, kde-format
 msgid "MountMan.Info"
 msgstr "MountMan.Informacije"
 
-#: app/MountMan/kmountmangui.cpp:188
+#: app/MountMan/kmountmangui.cpp:187
 #, kde-format
 msgid "Show only removable devices"
 msgstr "Prikazi samo prijenosne uređaje"
 
-#: app/MountMan/kmountmangui.cpp:421
+#: app/MountMan/kmountmangui.cpp:420
 #, kde-format
 msgid "&Mount"
 msgstr "&Montiraj"
 
-#: app/MountMan/kmountmangui.cpp:442
+#: app/MountMan/kmountmangui.cpp:441
 #, kde-format
 msgid "MountMan"
 msgstr "Menadžer montiranja"
 
-#: app/MountMan/kmountmangui.cpp:458
+#: app/MountMan/kmountmangui.cpp:457
 #, kde-format
 msgid "Format"
 msgstr "Format"
@@ -7128,118 +7128,118 @@ msgstr[0] "i %1 datoteka"
 msgstr[1] "i %1 datoteke"
 msgstr[2] "i %1 datoteke"
 
-#: app/Panel/krfiletreeview.cpp:182
+#: app/Panel/krfiletreeview.cpp:181
 #, fuzzy, kde-format
 #| msgid "Details"
 msgid "Show Details"
 msgstr "Detalji"
 
-#: app/Panel/krfiletreeview.cpp:185
+#: app/Panel/krfiletreeview.cpp:184
 #, fuzzy, kde-format
 #| msgid "Show excluded files (Ctrl+D)."
 msgid "Show columns with details"
 msgstr "Prikazi izbacene fajlove (Ctrl+D)."
 
-#: app/Panel/krfiletreeview.cpp:186
+#: app/Panel/krfiletreeview.cpp:185
 #, fuzzy, kde-format
 #| msgid "Show &Hidden Files"
 msgid "Show Hidden Folders"
 msgstr "Prikaži &skrivene datoteke"
 
-#: app/Panel/krfiletreeview.cpp:189
+#: app/Panel/krfiletreeview.cpp:188
 #, fuzzy, kde-format
 #| msgid "Display files beginning with a dot."
 msgid "Show folders starting with a dot"
 msgstr "Prikaži datoteke koji počinju tačkom."
 
-#: app/Panel/krfiletreeview.cpp:194
+#: app/Panel/krfiletreeview.cpp:193
 #, fuzzy, kde-format
 #| msgid "Start to tray"
 msgid "Start From Root"
 msgstr "Pokreni u kaseti"
 
-#: app/Panel/krfiletreeview.cpp:197
+#: app/Panel/krfiletreeview.cpp:196
 #, fuzzy, kde-format
 #| msgid "Select all files in the current directory"
 msgid "Set root of the tree to root of filesystem"
 msgstr "Izaberi sve datoteke u trenutnom direktorijumu"
 
-#: app/Panel/krfiletreeview.cpp:200
+#: app/Panel/krfiletreeview.cpp:199
 #, fuzzy, kde-format
 #| msgid "Start and &Forget"
 msgid "Start From Current"
 msgstr "Počni i &zaboravi"
 
-#: app/Panel/krfiletreeview.cpp:203
+#: app/Panel/krfiletreeview.cpp:202
 #, fuzzy, kde-format
 #| msgid "Select all files in the current directory"
 msgid "Set root of the tree to the current folder"
 msgstr "Izaberi sve datoteke u trenutnom direktorijumu"
 
-#: app/Panel/krfiletreeview.cpp:206
+#: app/Panel/krfiletreeview.cpp:205
 #, fuzzy, kde-format
 #| msgid "Startup profile:"
 msgid "Start From Place"
 msgstr "Profil pri pokretanju:"
 
-#: app/Panel/krfiletreeview.cpp:209
+#: app/Panel/krfiletreeview.cpp:208
 #, fuzzy, kde-format
 #| msgid "Select all files in the current directory"
 msgid "Set root of the tree to closest folder listed in 'Places'"
 msgstr "Izaberi sve datoteke u trenutnom direktorijumu"
 
-#: app/Panel/krfiletreeview.cpp:238
+#: app/Panel/krfiletreeview.cpp:237
 #, fuzzy, kde-format
 #| msgid "Custom"
 msgctxt "@action:inmenu"
 msgid "Cut"
 msgstr "Posebno"
 
-#: app/Panel/krfiletreeview.cpp:245
+#: app/Panel/krfiletreeview.cpp:244
 #, fuzzy, kde-format
 #| msgid "Copy"
 msgctxt "@action:inmenu"
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: app/Panel/krfiletreeview.cpp:268
+#: app/Panel/krfiletreeview.cpp:267
 #, fuzzy, kde-format
 #| msgid "Move to Trash"
 msgctxt "@action:inmenu"
 msgid "Move to Trash"
 msgstr "Baci u smeće"
 
-#: app/Panel/krfiletreeview.cpp:278
+#: app/Panel/krfiletreeview.cpp:277
 #, fuzzy, kde-format
 #| msgid "Delete"
 msgctxt "@action:inmenu"
 msgid "Delete"
 msgstr "Obriši"
 
-#: app/Panel/krfiletreeview.cpp:289
+#: app/Panel/krfiletreeview.cpp:288
 #, fuzzy, kde-format
 #| msgid "&Properties..."
 msgctxt "@action:inmenu"
 msgid "Properties"
 msgstr "&Svojstva..."
 
-#: app/Panel/krlayoutfactory.cpp:43
+#: app/Panel/krlayoutfactory.cpp:42
 #, kde-format
 msgctxt "Default layout"
 msgid "Default"
 msgstr "Uobičajeno"
 
-#: app/Panel/krlayoutfactory.cpp:45
+#: app/Panel/krlayoutfactory.cpp:44
 #, kde-format
 msgid "Compact"
 msgstr "Kompaktan"
 
-#: app/Panel/krlayoutfactory.cpp:47
+#: app/Panel/krlayoutfactory.cpp:46
 #, kde-format
 msgid "Classic"
 msgstr "Klasično"
 
-#: app/Panel/krlayoutfactory.cpp:49
+#: app/Panel/krlayoutfactory.cpp:48
 #, kde-format
 msgid "Custom layout: \"%1\""
 msgstr "Poseban raspored: \"%1\""
@@ -7514,7 +7514,7 @@ msgstr "Napravi kontrolnu sumu..."
 msgid "Verify Checksum..."
 msgstr "Provjeri kontrolnu sumu..."
 
-#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:227
+#: app/Panel/listpanelactions.cpp:86 app/Panel/panelcontextmenu.cpp:215
 #, kde-format
 msgid "New Symlink..."
 msgstr "Nova simbolička veza..."
@@ -7712,177 +7712,177 @@ msgstr ""
 "<p>Otvori terminal u trenutnom direktorijumu.</p><p>Možete definisati "
 "terminal u Kontrolnom centru, podrazumjevan je<b> konsole.</b></p>"
 
-#: app/Panel/panelcontextmenu.cpp:101
+#: app/Panel/panelcontextmenu.cpp:99
 #, fuzzy, kde-format
 #| msgid "Open/Run"
 msgid "Open/Run Files"
 msgstr "Otvori/Pokreni"
 
-#: app/Panel/panelcontextmenu.cpp:103
+#: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Run"
 msgstr "Pokreni"
 
-#: app/Panel/panelcontextmenu.cpp:112
+#: app/Panel/panelcontextmenu.cpp:110
 #, fuzzy, kde-format
 #| msgid "Open in New Tab"
 msgid "Open in New Tabs"
 msgstr "Otvori u novoj kartici"
 
-#: app/Panel/panelcontextmenu.cpp:112
+#: app/Panel/panelcontextmenu.cpp:110
 #, kde-format
 msgid "Open in New Tab"
 msgstr "Otvori u novoj kartici"
 
-#: app/Panel/panelcontextmenu.cpp:125
+#: app/Panel/panelcontextmenu.cpp:123
 #, fuzzy, kde-format
 #| msgid "T&est Archive"
 msgid "Browse Archive"
 msgstr "T&estiraj arhivu"
 
-#: app/Panel/panelcontextmenu.cpp:167
+#: app/Panel/panelcontextmenu.cpp:159
 #, kde-format
 msgid "Other..."
 msgstr "Drugo..."
 
-#: app/Panel/panelcontextmenu.cpp:169
+#: app/Panel/panelcontextmenu.cpp:161
 #, kde-format
 msgid "Open With"
 msgstr "Otvori pomoću"
 
-#: app/Panel/panelcontextmenu.cpp:213
+#: app/Panel/panelcontextmenu.cpp:201
 #, kde-format
 msgid "Move to Trash"
 msgstr "Baci u smeće"
 
-#: app/Panel/panelcontextmenu.cpp:228
+#: app/Panel/panelcontextmenu.cpp:216
 #, kde-format
 msgid "New Hardlink..."
 msgstr "Nova tvrda veza (hardlink)..."
 
-#: app/Panel/panelcontextmenu.cpp:230
+#: app/Panel/panelcontextmenu.cpp:218
 #, kde-format
 msgid "Redirect Link..."
 msgstr "Preusmjeri vezu..."
 
-#: app/Panel/panelcontextmenu.cpp:233
+#: app/Panel/panelcontextmenu.cpp:221
 #, kde-format
 msgid "Link Handling"
 msgstr "Rad sa vezama"
 
-#: app/Panel/panelcontextmenu.cpp:255
+#: app/Panel/panelcontextmenu.cpp:243
 #, kde-format
 msgid "Send by Email"
 msgstr "Pošalji e-poštom"
 
-#: app/Panel/panelcontextmenu.cpp:260
+#: app/Panel/panelcontextmenu.cpp:248
 #, kde-format
 msgid "Restore"
 msgstr "Vrati"
 
-#: app/Panel/panelcontextmenu.cpp:267
+#: app/Panel/panelcontextmenu.cpp:255
 #, kde-format
 msgid "Synchronize Selected Files..."
 msgstr "Sinhronizuj izabrane datoteke..."
 
-#: app/Panel/panelcontextmenu.cpp:294
+#: app/Panel/panelcontextmenu.cpp:282
 #, kde-format
 msgid "Create New"
 msgstr "Napravi novi"
 
-#: app/Panel/panelfunc.cpp:360
+#: app/Panel/panelfunc.cpp:357
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Možete urediti veze jedino na lokalnim datotečnim sistemima"
 
-#: app/Panel/panelfunc.cpp:371
+#: app/Panel/panelfunc.cpp:368
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "Trenutna datoteka nije link, tako da ne moze biti preusmjerena."
 
-#: app/Panel/panelfunc.cpp:378
+#: app/Panel/panelfunc.cpp:375
 #, kde-format
 msgid "Link Redirection"
 msgstr "Preusmjeravanje veze"
 
-#: app/Panel/panelfunc.cpp:378
+#: app/Panel/panelfunc.cpp:375
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Molimo vas unesite novo odredište veze:"
 
-#: app/Panel/panelfunc.cpp:385
+#: app/Panel/panelfunc.cpp:382
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "Nemoguce ukloniti staru poveznicu: %1"
 
-#: app/Panel/panelfunc.cpp:390
+#: app/Panel/panelfunc.cpp:387
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "Neuspjelo kreirati novu poveznicu: %1"
 
-#: app/Panel/panelfunc.cpp:398
+#: app/Panel/panelfunc.cpp:395
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Možete kreirati veze jedino na lokalnim datotečnim sistemima"
 
-#: app/Panel/panelfunc.cpp:406
+#: app/Panel/panelfunc.cpp:403
 #, kde-format
 msgid "New Link"
 msgstr "Novi link"
 
-#: app/Panel/panelfunc.cpp:406
+#: app/Panel/panelfunc.cpp:403
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "Kreiraj novi link za: %1"
 
-#: app/Panel/panelfunc.cpp:414 app/Panel/panelfunc.cpp:775
+#: app/Panel/panelfunc.cpp:411 app/Panel/panelfunc.cpp:768
 #, fuzzy, kde-format
 #| msgid "A directory or a file with this name already exists."
 msgid "A folder or a file with this name already exists."
 msgstr "Direktorijum ili datoteka sa istim imenom već postoji."
 
-#: app/Panel/panelfunc.cpp:425
+#: app/Panel/panelfunc.cpp:422
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Neuspjelo kreiranje novog kolinka '%1' do: '%2'"
 
-#: app/Panel/panelfunc.cpp:428
+#: app/Panel/panelfunc.cpp:425
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Neuspjelo kreiranje novog linka '%1' do: '%2'"
 
-#: app/Panel/panelfunc.cpp:445
+#: app/Panel/panelfunc.cpp:442
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Nema dozvola za gledanje ove datoteke."
 
-#: app/Panel/panelfunc.cpp:456
+#: app/Panel/panelfunc.cpp:453
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Unesite URL za pregled:"
 
-#: app/Panel/panelfunc.cpp:486 app/Panel/panelfunc.cpp:564
+#: app/Panel/panelfunc.cpp:483 app/Panel/panelfunc.cpp:557
 #, fuzzy, kde-format
 #| msgid "You cannot edit a directory"
 msgid "You cannot edit a folder"
 msgstr "Ne mozete uređivati direktorij"
 
-#: app/Panel/panelfunc.cpp:491
+#: app/Panel/panelfunc.cpp:488
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Nema dozvola za uređivanje ove datoteke."
 
-#: app/Panel/panelfunc.cpp:505
+#: app/Panel/panelfunc.cpp:502
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Unesite ime datoteke za uređivanje:"
 
-#: app/Panel/panelfunc.cpp:616
+#: app/Panel/panelfunc.cpp:609
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Premjesti %1 u:"
 
-#: app/Panel/panelfunc.cpp:616
+#: app/Panel/panelfunc.cpp:609
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
@@ -7890,12 +7890,12 @@ msgstr[0] "Prebaci %1 fajl u:"
 msgstr[1] "Prebaci %1 fajla u:"
 msgstr[2] "Prebaci %1 fajla u:"
 
-#: app/Panel/panelfunc.cpp:618
+#: app/Panel/panelfunc.cpp:611
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Kopiraj %1 u:"
 
-#: app/Panel/panelfunc.cpp:618
+#: app/Panel/panelfunc.cpp:611
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
@@ -7903,25 +7903,25 @@ msgstr[0] "Kopiraj %1 fajl u:"
 msgstr[1] "Kopiraj %1 fajla u:"
 msgstr[2] "Kopiraj %1 fajla u:"
 
-#: app/Panel/panelfunc.cpp:667
+#: app/Panel/panelfunc.cpp:660
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:676
+#: app/Panel/panelfunc.cpp:669
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:699
+#: app/Panel/panelfunc.cpp:692
 #, fuzzy, kde-format
 #| msgid "Folder name:"
 msgid "Folder's name:"
 msgstr "Naziv fascikle:"
 
-#: app/Panel/panelfunc.cpp:839
+#: app/Panel/panelfunc.cpp:832
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -7929,7 +7929,7 @@ msgstr[0] "Želite li zaista da bacite ovu %1 stavku u smeće?"
 msgstr[1] "Želite li zaista da bacite ove %1 stavke u smeće?"
 msgstr[2] "Želite li zaista da bacite ovih %1 stavki u smeće?"
 
-#: app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:836
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7947,7 +7947,7 @@ msgstr[2] ""
 "<qt>Da li zaista zelite da obrišete ove %1 virtuelne stavke  <b>physically</"
 "b> (ne briše ih samo iz virtuelnih stavki)?</qt>"
 
-#: app/Panel/panelfunc.cpp:850
+#: app/Panel/panelfunc.cpp:843
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
@@ -7955,7 +7955,7 @@ msgstr[0] "Želite li zaista da obrišete ovu %1 stavku?"
 msgstr[1] "Želite li zaista da obrišete ove %1 stavke?"
 msgstr[2] "Želite li zaista da obrišete ovih %1 stavki?"
 
-#: app/Panel/panelfunc.cpp:888
+#: app/Panel/panelfunc.cpp:881
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>Directory <b>%1</b> is not empty.</p><p>Skip this one or delete "
@@ -7965,12 +7965,12 @@ msgstr ""
 "<qt><p>Direktorij<b>%1</b> nije prazan.</p><p>Preskoci ovu ili izbrisi sve?</"
 "p></qt>"
 
-#: app/Panel/panelfunc.cpp:889
+#: app/Panel/panelfunc.cpp:882
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:889
+#: app/Panel/panelfunc.cpp:882
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>Directory <b>%1</b> is not empty.</p><p>Skip this one or delete "
@@ -7980,23 +7980,23 @@ msgstr ""
 "<qt><p>Direktorij<b>%1</b> nije prazan.</p><p>Preskoci ovu ili izbrisi sve?</"
 "p></qt>"
 
-#: app/Panel/panelfunc.cpp:891
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Skip"
 msgstr "&Preskoči"
 
-#: app/Panel/panelfunc.cpp:892
+#: app/Panel/panelfunc.cpp:885
 #, fuzzy, kde-format
 #| msgid "&Trash"
 msgid "&Trash All"
 msgstr "&Smeće"
 
-#: app/Panel/panelfunc.cpp:892
+#: app/Panel/panelfunc.cpp:885
 #, kde-format
 msgid "&Delete All"
 msgstr "&Obriši sve"
 
-#: app/Panel/panelfunc.cpp:929
+#: app/Panel/panelfunc.cpp:922
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -8016,15 +8016,10 @@ msgstr[2] ""
 
 #: app/Panel/panelfunc.cpp:965
 #, kde-format
-msgid "Could not start %1"
-msgstr "Ne mogu da pokrenem %1"
-
-#: app/Panel/panelfunc.cpp:977
-#, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 ne moze otvoriti %2"
 
-#: app/Panel/panelfunc.cpp:1054
+#: app/Panel/panelfunc.cpp:1042
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -8033,7 +8028,7 @@ msgstr ""
 "<qt><p>Arhiva <b>%1.%2</b> vec postoji. Zelite li je prebrisati?</p><p>Svi "
 "podaci iz prethodne arhive ce biti izgubljeni.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1059
+#: app/Panel/panelfunc.cpp:1047
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -8044,17 +8039,17 @@ msgstr ""
 "p><p>Zip će zamijeniti identično nazvane ulaze u zip arhivi ili će dodati "
 "ulaze za nove nazive.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1067
+#: app/Panel/panelfunc.cpp:1055
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Ne mogu se pakovati datoteke na virtuelno odrediste."
 
-#: app/Panel/panelfunc.cpp:1100
+#: app/Panel/panelfunc.cpp:1088
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Raspakuj %1 u:"
 
-#: app/Panel/panelfunc.cpp:1102
+#: app/Panel/panelfunc.cpp:1090
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
@@ -8062,13 +8057,13 @@ msgstr[0] "Otpakuj %1 fajl u:"
 msgstr[1] "Otpakuj %1 fajla u:"
 msgstr[2] "Otpakuj %1 fajla u:"
 
-#: app/Panel/PanelView/krinterbriefview.cpp:241
-#: app/Panel/PanelView/krinterdetailedview.cpp:289
+#: app/Panel/PanelView/krinterbriefview.cpp:240
+#: app/Panel/PanelView/krinterdetailedview.cpp:288
 #, kde-format
 msgid "Columns"
 msgstr "Kolone"
 
-#: app/Panel/PanelView/krinterdetailedview.cpp:303
+#: app/Panel/PanelView/krinterdetailedview.cpp:302
 #, kde-format
 msgid "Automatically Resize Columns"
 msgstr "Automatski promijeni velicinu kolona"
@@ -8296,58 +8291,58 @@ msgctxt "File property"
 msgid "Link to: %1"
 msgstr ""
 
-#: app/Panel/sidebar.cpp:59
+#: app/Panel/sidebar.cpp:58
 #, kde-format
 msgid "Tree Panel: a tree view of the local file system"
 msgstr "Stabloliki panel: stabloliki prikaz lokalnog datoteka sistema"
 
-#: app/Panel/sidebar.cpp:66
+#: app/Panel/sidebar.cpp:65
 #, kde-format
 msgid "Preview Panel: display a preview of the current file"
 msgstr "Panel za pregled: prikazuje pregled trenutne datoteke"
 
-#: app/Panel/sidebar.cpp:73
+#: app/Panel/sidebar.cpp:72
 #, kde-format
 msgid "View Panel: view the current file"
 msgstr "Panel za pregled: pregledanje trenutne datoteke"
 
-#: app/Panel/sidebar.cpp:80
+#: app/Panel/sidebar.cpp:79
 #, fuzzy, kde-format
 #| msgid "Disk Usage Panel: view the usage of a directory"
 msgid "Disk Usage Panel: view the usage of a folder"
 msgstr "Panel iskorištenosti diska: Pregledaj iskorištenost direktorijuma"
 
-#: app/Panel/sidebar.cpp:121 app/Panel/sidebar.cpp:231
+#: app/Panel/sidebar.cpp:120 app/Panel/sidebar.cpp:230
 #, kde-format
 msgid "Disk Usage:"
 msgstr "Iskorištenost diska:"
 
-#: app/Panel/sidebar.cpp:211
+#: app/Panel/sidebar.cpp:210
 #, kde-format
 msgid "Tree:"
 msgstr "Stablo:"
 
-#: app/Panel/sidebar.cpp:219
+#: app/Panel/sidebar.cpp:218
 #, kde-format
 msgid "Preview:"
 msgstr "Pregled:"
 
-#: app/Panel/sidebar.cpp:224
+#: app/Panel/sidebar.cpp:223
 #, kde-format
 msgid "View:"
 msgstr "Pogled:"
 
-#: app/Panel/sidebar.cpp:254
+#: app/Panel/sidebar.cpp:253
 #, kde-format
 msgid "Preview: %1"
 msgstr "Pregled: %1"
 
-#: app/Panel/sidebar.cpp:261
+#: app/Panel/sidebar.cpp:260
 #, kde-format
 msgid "View: %1"
 msgstr "Prikaz: %1"
 
-#: app/Panel/sidebar.cpp:266
+#: app/Panel/sidebar.cpp:265
 #, kde-format
 msgid "Disk Usage: %1"
 msgstr "Zauzetost diska: %1"
@@ -8463,12 +8458,12 @@ msgstr "Sačuvaj postavke kao početne za nove slucajeve ovog tipa"
 msgid "Open a new tab"
 msgstr "Otvori u novoj kartici"
 
-#: app/paneltabbar.cpp:177
+#: app/paneltabbar.cpp:176
 #, kde-format
 msgid "[invalid]"
 msgstr ""
 
-#: app/paneltabbar.cpp:195
+#: app/paneltabbar.cpp:194
 #, fuzzy, kde-format
 #| msgid "?"
 msgctxt "invalid URL path"
@@ -8571,17 +8566,17 @@ msgstr "Ovdje možete imenovati kolekciju datoteka"
 msgid "Query name"
 msgstr "Ime upita"
 
-#: app/Splitter/combiner.cpp:60
+#: app/Splitter/combiner.cpp:59
 #, kde-format
 msgid "Krusader::Combining..."
 msgstr "Krusader::Spajanje..."
 
-#: app/Splitter/combiner.cpp:61
+#: app/Splitter/combiner.cpp:60
 #, kde-format
 msgid "Combining the file %1..."
 msgstr "Spajam datoteku %1..."
 
-#: app/Splitter/combiner.cpp:72
+#: app/Splitter/combiner.cpp:71
 #, kde-format
 msgid ""
 "The CRC information file (%1) is missing.\n"
@@ -8590,17 +8585,17 @@ msgstr ""
 "CRC informacijska datoteka (%1) nedostaje.\n"
 "Provjera ispravnosti se ne moze izvrsiti bez nje. Nastaviti kombinovanje?"
 
-#: app/Splitter/combiner.cpp:108
+#: app/Splitter/combiner.cpp:107
 #, kde-format
 msgid "Error at reading the CRC file (%1)."
 msgstr "Greska pri citanju CRC datoteke (%1)."
 
-#: app/Splitter/combiner.cpp:137
+#: app/Splitter/combiner.cpp:136
 #, kde-format
 msgid "Not a valid CRC file."
 msgstr "Nije validan CRC fajl."
 
-#: app/Splitter/combiner.cpp:144
+#: app/Splitter/combiner.cpp:143
 #, kde-format
 msgid ""
 "\n"
@@ -8609,49 +8604,49 @@ msgstr ""
 "\n"
 "Provjera ispravnosti je nemouca bez dobrog CRC fajla. Nastaviti kombinovanje?"
 
-#: app/Splitter/combiner.cpp:186 app/Splitter/splitter.cpp:174
+#: app/Splitter/combiner.cpp:185 app/Splitter/splitter.cpp:173
 #: app/Synchronizer/synchronizer.cpp:1345
 #, kde-format
 msgid "File Already Exists"
 msgstr "Datoteka već postoji"
 
-#: app/Splitter/combiner.cpp:272
+#: app/Splitter/combiner.cpp:271
 #, kde-format
 msgid "Cannot open the first split file of %1."
 msgstr "Ne mogu otvoriti prvi razdjeljeni fajl %1."
 
-#: app/Splitter/combiner.cpp:282
+#: app/Splitter/combiner.cpp:281
 #, kde-format
 msgid "Incorrect filesize, the file might have been corrupted."
 msgstr "Netacna velicina datoteke, datoteka je mozda pokvarena."
 
-#: app/Splitter/combiner.cpp:284
+#: app/Splitter/combiner.cpp:283
 #, kde-format
 msgid "Incorrect CRC checksum, the file might have been corrupted."
 msgstr "Netacna CRC kontrolna suma datoteke, datoteka je mozda pokvarena."
 
-#: app/Splitter/splitter.cpp:73
+#: app/Splitter/splitter.cpp:72
 #, kde-format
 msgid "Krusader::Splitting..."
 msgstr "Krusader::Dijeljenje..."
 
-#: app/Splitter/splitter.cpp:74
+#: app/Splitter/splitter.cpp:73
 #, kde-format
 msgid "Splitting the file %1..."
 msgstr "Dijelim datoteku %1..."
 
-#: app/Splitter/splitter.cpp:77
+#: app/Splitter/splitter.cpp:76
 #, fuzzy, kde-format
 #| msgid "Cannot split a directory."
 msgid "Cannot split a folder."
 msgstr "Ne mogu razdijeliti direktorij."
 
-#: app/Splitter/splitter.cpp:121
+#: app/Splitter/splitter.cpp:120
 #, kde-format
 msgid "Error reading file %1: %2"
 msgstr "Greska pri citanju datoteke %1: %2"
 
-#: app/Splitter/splitter.cpp:230 app/Splitter/splitter.cpp:273
+#: app/Splitter/splitter.cpp:229 app/Splitter/splitter.cpp:272
 #, kde-format
 msgid "Error writing file %1: %2"
 msgstr "Greska pri pisanju datoteke %1: %2"
@@ -10099,7 +10094,7 @@ msgid ""
 "filename. By default \".old\" is appended to the original filename."
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:202
+#: plugins/krarc/krarc.cpp:199
 #, kde-format
 msgid ""
 "krarc: write support is disabled.\n"
@@ -10108,71 +10103,71 @@ msgstr ""
 "krarc: pisanje je onemoguceno.\n"
 "Mozete ga omoguciti na stranici 'Arhive' u Konfiguratoru."
 
-#: plugins/krarc/krarc.cpp:242
+#: plugins/krarc/krarc.cpp:239
 #, fuzzy, kde-format
 #| msgid "Creating directories is not supported with %1 archives"
 msgid "Creating folders is not supported with %1 archives."
 msgstr "Kreiranje direktorija nije podrzano sa %1 arhiva"
 
-#: plugins/krarc/krarc.cpp:278
+#: plugins/krarc/krarc.cpp:275
 #, kde-format
 msgid "Creating %1..."
 msgstr "Pravim %1..."
 
-#: plugins/krarc/krarc.cpp:320
+#: plugins/krarc/krarc.cpp:317
 #, fuzzy, kde-format
 #| msgid "Writing to %1 archives is not supported"
 msgid "Writing to %1 archives is not supported."
 msgstr "Pisanje u %1 arhiva nije podrzano"
 
-#: plugins/krarc/krarc.cpp:386
+#: plugins/krarc/krarc.cpp:383
 #, kde-format
 msgid "Packing %1..."
 msgstr "Pakiranje %1..."
 
-#: plugins/krarc/krarc.cpp:427
+#: plugins/krarc/krarc.cpp:424
 #, fuzzy, kde-format
 #| msgid "Retrieving data from %1 archives is not supported"
 msgid "Retrieving data from %1 archives is not supported."
 msgstr "Prihvatanje podataka iz %1 arhiva nije podrzano"
 
-#: plugins/krarc/krarc.cpp:496 plugins/krarc/krarc.cpp:761
+#: plugins/krarc/krarc.cpp:493 plugins/krarc/krarc.cpp:758
 #, kde-format
 msgid "Unpacking %1..."
 msgstr "Otpakujem %1..."
 
-#: plugins/krarc/krarc.cpp:508
+#: plugins/krarc/krarc.cpp:505
 #, kde-format
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:626
+#: plugins/krarc/krarc.cpp:623
 #, fuzzy, kde-format
 #| msgid "Deleting files from %1 archives is not supported"
 msgid "Deleting files from %1 archives is not supported."
 msgstr "Brisanje datoteka iz %1 arhive nije podrzano"
 
-#: plugins/krarc/krarc.cpp:670
+#: plugins/krarc/krarc.cpp:667
 #, fuzzy, kde-format
 #| msgid "Accessing files is not supported with %1 archives"
 msgid "Accessing files is not supported with %1 archives."
 msgstr "Pristupanje fajlovima nije podrzano sa %1 arhiva"
 
-#: plugins/krarc/krarc.cpp:783
+#: plugins/krarc/krarc.cpp:780
 #, fuzzy, kde-format
 #| msgid "Writing to %1 archives is not supported"
 msgid "Copying from archive to archive is not supported."
 msgstr "Pisanje u %1 arhiva nije podrzano"
 
-#: plugins/krarc/krarc.cpp:829
+#: plugins/krarc/krarc.cpp:826
 #, fuzzy, kde-format
 #| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives."
 msgstr "Listanje direktorija sa %1 arhiva nije podrzano"
 
-#: plugins/krarc/krarc.cpp:1759
+#: plugins/krarc/krarc.cpp:1756
 #, kde-format
 msgid ""
 "\n"
@@ -10181,15 +10176,18 @@ msgstr ""
 "\n"
 "Uvjerite se da je %1 binarno instalirano pravilno na vasem sistemu."
 
-#: plugins/krarc/krarc.cpp:1841 plugins/krarc/krarc.cpp:1867
+#: plugins/krarc/krarc.cpp:1838 plugins/krarc/krarc.cpp:1864
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "Krarc Dijalog Lozinki"
 
-#: plugins/krarc/krarc.cpp:1884
+#: plugins/krarc/krarc.cpp:1881
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Pristupanje datoteci zahtjeva lozinku."
+
+#~ msgid "Could not start %1"
+#~ msgstr "Ne mogu da pokrenem %1"
 
 #~ msgid "Manage Bookmarks"
 #~ msgstr "Upravljanje markerima"
