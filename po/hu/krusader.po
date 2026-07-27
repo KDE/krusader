@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-20 00:47+0000\n"
+"POT-Creation-Date: 2026-07-27 00:49+0000\n"
 "PO-Revision-Date: 2026-06-18 21:51+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -7825,7 +7825,7 @@ msgstr "Oszlopok"
 msgid "Automatically Resize Columns"
 msgstr "Oszlopok automatikus átméretezése"
 
-#: app/Panel/PanelView/krview.cpp:425
+#: app/Panel/PanelView/krview.cpp:456
 #, kde-format
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
@@ -7834,7 +7834,7 @@ msgctxt ""
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 / %2, %3 (%4) / %5 (%6)"
 
-#: app/Panel/PanelView/krview.cpp:436
+#: app/Panel/PanelView/krview.cpp:467
 #, kde-format
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
@@ -7842,22 +7842,22 @@ msgctxt ""
 msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 / %2, %3 / %4"
 
-#: app/Panel/PanelView/krview.cpp:1099
+#: app/Panel/PanelView/krview.cpp:1130
 #, kde-format
 msgid "Apply filter to folder&s"
 msgstr "Szűrő alkalmazása mappá&kra"
 
-#: app/Panel/PanelView/krview.cpp:1104
+#: app/Panel/PanelView/krview.cpp:1135
 #, kde-format
 msgid "Filter Files"
 msgstr "Fájlok szűrése"
 
-#: app/Panel/PanelView/krview.cpp:1129
+#: app/Panel/PanelView/krview.cpp:1160
 #, kde-format
 msgid "Apply &selection to folders"
 msgstr "Kijelölé&s alkalmazása mappákra"
 
-#: app/Panel/PanelView/krview.cpp:1130
+#: app/Panel/PanelView/krview.cpp:1161
 #, kde-format
 msgid "Select Files"
 msgstr "Fájlok kijelölése"
@@ -7892,7 +7892,7 @@ msgstr "Szimbolikus link"
 msgid "%1 (Link)"
 msgstr "%1 (link)"
 
-#: app/Panel/PanelView/listmodel.cpp:132
+#: app/Panel/PanelView/listmodel.cpp:135
 #: app/Synchronizer/synchronizergui.cpp:1616
 #, kde-format
 msgctxt ""
@@ -7900,126 +7900,126 @@ msgctxt ""
 msgid "DIR"
 msgstr "DIR"
 
-#: app/Panel/PanelView/listmodel.cpp:375
+#: app/Panel/PanelView/listmodel.cpp:386
 #, kde-format
 msgctxt "File property"
 msgid "Name"
 msgstr "Név"
 
-#: app/Panel/PanelView/listmodel.cpp:377
+#: app/Panel/PanelView/listmodel.cpp:388
 #, kde-format
 msgctxt "File property"
 msgid "Ext"
 msgstr "Kit."
 
-#: app/Panel/PanelView/listmodel.cpp:379
+#: app/Panel/PanelView/listmodel.cpp:390
 #, kde-format
 msgctxt "File property"
 msgid "Size"
 msgstr "Méret"
 
-#: app/Panel/PanelView/listmodel.cpp:381
+#: app/Panel/PanelView/listmodel.cpp:392
 #, kde-format
 msgctxt "File property"
 msgid "Type"
 msgstr "Típus"
 
-#: app/Panel/PanelView/listmodel.cpp:383
+#: app/Panel/PanelView/listmodel.cpp:394
 #, kde-format
 msgctxt "File property"
 msgid "Modified"
 msgstr "Módosítás"
 
-#: app/Panel/PanelView/listmodel.cpp:385
+#: app/Panel/PanelView/listmodel.cpp:396
 #, kde-format
 msgctxt "File property"
 msgid "Changed"
 msgstr "Változtatás"
 
-#: app/Panel/PanelView/listmodel.cpp:387
+#: app/Panel/PanelView/listmodel.cpp:398
 #, kde-format
 msgctxt "File property"
 msgid "Accessed"
 msgstr "Hozzáférés"
 
-#: app/Panel/PanelView/listmodel.cpp:389
+#: app/Panel/PanelView/listmodel.cpp:400
 #, kde-format
 msgctxt "File property"
 msgid "Perms"
 msgstr "Jogok"
 
-#: app/Panel/PanelView/listmodel.cpp:391
+#: app/Panel/PanelView/listmodel.cpp:402
 #, kde-format
 msgctxt "File property"
 msgid "rwx"
 msgstr "rwx"
 
-#: app/Panel/PanelView/listmodel.cpp:393
+#: app/Panel/PanelView/listmodel.cpp:404
 #, kde-format
 msgctxt "File property"
 msgid "Owner"
 msgstr "Tulajdonos"
 
-#: app/Panel/PanelView/listmodel.cpp:395
+#: app/Panel/PanelView/listmodel.cpp:406
 #, kde-format
 msgctxt "File property"
 msgid "Group"
 msgstr "Csoport"
 
-#: app/Panel/PanelView/listmodel.cpp:497
+#: app/Panel/PanelView/listmodel.cpp:508
 #, kde-format
 msgid "Size: %1"
 msgstr "Méret: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:499
+#: app/Panel/PanelView/listmodel.cpp:510
 #, kde-format
 msgctxt "File property"
 msgid "Type: %1"
 msgstr "Típus: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:500
+#: app/Panel/PanelView/listmodel.cpp:511
 #, kde-format
 msgctxt "File property"
 msgid "Modified: %1"
 msgstr "Módosítás: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:501
+#: app/Panel/PanelView/listmodel.cpp:512
 #, kde-format
 msgctxt "File property"
 msgid "Changed: %1"
 msgstr "Változtatás: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:502
+#: app/Panel/PanelView/listmodel.cpp:513
 #, kde-format
 msgctxt "File property"
 msgid "Last Access: %1"
 msgstr "Utolsó hozzáférés: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:503
+#: app/Panel/PanelView/listmodel.cpp:514
 #, kde-format
 msgctxt "File property"
 msgid "Permissions: %1"
 msgstr "Jogosultságok: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:504
+#: app/Panel/PanelView/listmodel.cpp:515
 #, kde-format
 msgctxt "File property"
 msgid "Owner: %1"
 msgstr "Tulajdonos: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:505
+#: app/Panel/PanelView/listmodel.cpp:516
 #, kde-format
 msgctxt "File property"
 msgid "Group: %1"
 msgstr "Csoport: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:509
+#: app/Panel/PanelView/listmodel.cpp:520
 #, kde-format
 msgctxt "File property; broken symbolic link"
 msgid "Link to: %1 - (broken)"
 msgstr "Link erre: %1 - (törött)"
 
-#: app/Panel/PanelView/listmodel.cpp:511
+#: app/Panel/PanelView/listmodel.cpp:522
 #, kde-format
 msgctxt "File property"
 msgid "Link to: %1"

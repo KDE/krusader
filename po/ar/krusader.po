@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-20 00:47+0000\n"
+"POT-Creation-Date: 2026-07-27 00:49+0000\n"
 "PO-Revision-Date: 2026-02-26 13:09+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -7795,7 +7795,7 @@ msgstr "الأعمدة"
 msgid "Automatically Resize Columns"
 msgstr "غيّر حجم الأعمدة آلياً"
 
-#: app/Panel/PanelView/krview.cpp:425
+#: app/Panel/PanelView/krview.cpp:456
 #, kde-format
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
@@ -7804,7 +7804,7 @@ msgctxt ""
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 من %2، %3 (%4) من %5 (%6)"
 
-#: app/Panel/PanelView/krview.cpp:436
+#: app/Panel/PanelView/krview.cpp:467
 #, kde-format
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
@@ -7812,22 +7812,22 @@ msgctxt ""
 msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 من %2، %3 من %4"
 
-#: app/Panel/PanelView/krview.cpp:1099
+#: app/Panel/PanelView/krview.cpp:1130
 #, kde-format
 msgid "Apply filter to folder&s"
 msgstr "طبّق المرشح على المجلد&ات"
 
-#: app/Panel/PanelView/krview.cpp:1104
+#: app/Panel/PanelView/krview.cpp:1135
 #, kde-format
 msgid "Filter Files"
 msgstr "رشّح الملفّات"
 
-#: app/Panel/PanelView/krview.cpp:1129
+#: app/Panel/PanelView/krview.cpp:1160
 #, kde-format
 msgid "Apply &selection to folders"
 msgstr "طبّق ال&تحديد على المجلدات"
 
-#: app/Panel/PanelView/krview.cpp:1130
+#: app/Panel/PanelView/krview.cpp:1161
 #, kde-format
 msgid "Select Files"
 msgstr "حدّد الملفات"
@@ -7862,7 +7862,7 @@ msgstr "رابط رمزي"
 msgid "%1 (Link)"
 msgstr "%1 (رابط)"
 
-#: app/Panel/PanelView/listmodel.cpp:132
+#: app/Panel/PanelView/listmodel.cpp:135
 #: app/Synchronizer/synchronizergui.cpp:1616
 #, kde-format
 msgctxt ""
@@ -7870,126 +7870,126 @@ msgctxt ""
 msgid "DIR"
 msgstr "مج"
 
-#: app/Panel/PanelView/listmodel.cpp:375
+#: app/Panel/PanelView/listmodel.cpp:386
 #, kde-format
 msgctxt "File property"
 msgid "Name"
 msgstr "الاسم"
 
-#: app/Panel/PanelView/listmodel.cpp:377
+#: app/Panel/PanelView/listmodel.cpp:388
 #, kde-format
 msgctxt "File property"
 msgid "Ext"
 msgstr "الامتداد"
 
-#: app/Panel/PanelView/listmodel.cpp:379
+#: app/Panel/PanelView/listmodel.cpp:390
 #, kde-format
 msgctxt "File property"
 msgid "Size"
 msgstr "الحجم"
 
-#: app/Panel/PanelView/listmodel.cpp:381
+#: app/Panel/PanelView/listmodel.cpp:392
 #, kde-format
 msgctxt "File property"
 msgid "Type"
 msgstr "النّوع"
 
-#: app/Panel/PanelView/listmodel.cpp:383
+#: app/Panel/PanelView/listmodel.cpp:394
 #, kde-format
 msgctxt "File property"
 msgid "Modified"
 msgstr "معدّل"
 
-#: app/Panel/PanelView/listmodel.cpp:385
+#: app/Panel/PanelView/listmodel.cpp:396
 #, kde-format
 msgctxt "File property"
 msgid "Changed"
 msgstr "مُغير"
 
-#: app/Panel/PanelView/listmodel.cpp:387
+#: app/Panel/PanelView/listmodel.cpp:398
 #, kde-format
 msgctxt "File property"
 msgid "Accessed"
 msgstr "وُصِل إليه"
 
-#: app/Panel/PanelView/listmodel.cpp:389
+#: app/Panel/PanelView/listmodel.cpp:400
 #, kde-format
 msgctxt "File property"
 msgid "Perms"
 msgstr "الصلاحيات"
 
-#: app/Panel/PanelView/listmodel.cpp:391
+#: app/Panel/PanelView/listmodel.cpp:402
 #, kde-format
 msgctxt "File property"
 msgid "rwx"
 msgstr "ق.ك.ت"
 
-#: app/Panel/PanelView/listmodel.cpp:393
+#: app/Panel/PanelView/listmodel.cpp:404
 #, kde-format
 msgctxt "File property"
 msgid "Owner"
 msgstr "المالك"
 
-#: app/Panel/PanelView/listmodel.cpp:395
+#: app/Panel/PanelView/listmodel.cpp:406
 #, kde-format
 msgctxt "File property"
 msgid "Group"
 msgstr "المجموعة"
 
-#: app/Panel/PanelView/listmodel.cpp:497
+#: app/Panel/PanelView/listmodel.cpp:508
 #, kde-format
 msgid "Size: %1"
 msgstr "الحجم: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:499
+#: app/Panel/PanelView/listmodel.cpp:510
 #, kde-format
 msgctxt "File property"
 msgid "Type: %1"
 msgstr "النّوع: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:500
+#: app/Panel/PanelView/listmodel.cpp:511
 #, kde-format
 msgctxt "File property"
 msgid "Modified: %1"
 msgstr "معدل: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:501
+#: app/Panel/PanelView/listmodel.cpp:512
 #, kde-format
 msgctxt "File property"
 msgid "Changed: %1"
 msgstr "مُغير: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:502
+#: app/Panel/PanelView/listmodel.cpp:513
 #, kde-format
 msgctxt "File property"
 msgid "Last Access: %1"
 msgstr "أخر وصول: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:503
+#: app/Panel/PanelView/listmodel.cpp:514
 #, kde-format
 msgctxt "File property"
 msgid "Permissions: %1"
 msgstr "التّصاريح: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:504
+#: app/Panel/PanelView/listmodel.cpp:515
 #, kde-format
 msgctxt "File property"
 msgid "Owner: %1"
 msgstr "المالك: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:505
+#: app/Panel/PanelView/listmodel.cpp:516
 #, kde-format
 msgctxt "File property"
 msgid "Group: %1"
 msgstr "المجموعة: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:509
+#: app/Panel/PanelView/listmodel.cpp:520
 #, kde-format
 msgctxt "File property; broken symbolic link"
 msgid "Link to: %1 - (broken)"
 msgstr "رابط إلى: %1 - (معطوب)"
 
-#: app/Panel/PanelView/listmodel.cpp:511
+#: app/Panel/PanelView/listmodel.cpp:522
 #, kde-format
 msgctxt "File property"
 msgid "Link to: %1"

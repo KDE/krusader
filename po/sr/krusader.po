@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-20 00:47+0000\n"
+"POT-Creation-Date: 2026-07-27 00:49+0000\n"
 "PO-Revision-Date: 2017-09-29 16:44+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -8057,7 +8057,7 @@ msgstr "Колоне"
 msgid "Automatically Resize Columns"
 msgstr "Аутоматски мењај величину колона"
 
-#: app/Panel/PanelView/krview.cpp:425
+#: app/Panel/PanelView/krview.cpp:456
 #, kde-format
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
@@ -8066,7 +8066,7 @@ msgctxt ""
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 од %2, %3 (%4) од %5 (%6)"
 
-#: app/Panel/PanelView/krview.cpp:436
+#: app/Panel/PanelView/krview.cpp:467
 #, kde-format
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
@@ -8074,25 +8074,25 @@ msgctxt ""
 msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 од %2, %3 од %4"
 
-#: app/Panel/PanelView/krview.cpp:1099
+#: app/Panel/PanelView/krview.cpp:1130
 #, fuzzy, kde-format
 #| msgid "Apply filter to folders"
 msgid "Apply filter to folder&s"
 msgstr "Примени филтер на фасцикле"
 
-#: app/Panel/PanelView/krview.cpp:1104
+#: app/Panel/PanelView/krview.cpp:1135
 #, kde-format
 msgid "Filter Files"
 msgstr "Филтрирај фајлове"
 
-#: app/Panel/PanelView/krview.cpp:1129
+#: app/Panel/PanelView/krview.cpp:1160
 #, fuzzy, kde-format
 #| msgid "Apply selection to folders"
 msgid "Apply &selection to folders"
 msgstr "Примени избор на фасцикле"
 
 # >> @title:window
-#: app/Panel/PanelView/krview.cpp:1130
+#: app/Panel/PanelView/krview.cpp:1161
 #, kde-format
 msgid "Select Files"
 msgstr "Избор фајлова"
@@ -8128,7 +8128,7 @@ msgid "%1 (Link)"
 msgstr "%1 (веза)"
 
 # well-spelled: ФАС
-#: app/Panel/PanelView/listmodel.cpp:132
+#: app/Panel/PanelView/listmodel.cpp:135
 #: app/Synchronizer/synchronizergui.cpp:1616
 #, kde-format
 msgctxt ""
@@ -8137,136 +8137,136 @@ msgid "DIR"
 msgstr "ФАС"
 
 # >> @item
-#: app/Panel/PanelView/listmodel.cpp:375
+#: app/Panel/PanelView/listmodel.cpp:386
 #, kde-format
 msgctxt "File property"
 msgid "Name"
 msgstr "име"
 
 # >> @item
-#: app/Panel/PanelView/listmodel.cpp:377
+#: app/Panel/PanelView/listmodel.cpp:388
 #, kde-format
 msgctxt "File property"
 msgid "Ext"
 msgstr "наставак"
 
 # >> @item
-#: app/Panel/PanelView/listmodel.cpp:379
+#: app/Panel/PanelView/listmodel.cpp:390
 #, kde-format
 msgctxt "File property"
 msgid "Size"
 msgstr "величина"
 
 # >> @item
-#: app/Panel/PanelView/listmodel.cpp:381
+#: app/Panel/PanelView/listmodel.cpp:392
 #, kde-format
 msgctxt "File property"
 msgid "Type"
 msgstr "тип"
 
 # >> @item
-#: app/Panel/PanelView/listmodel.cpp:383
+#: app/Panel/PanelView/listmodel.cpp:394
 #, kde-format
 msgctxt "File property"
 msgid "Modified"
 msgstr "измена"
 
 # >> @item time of last change of file metadata (e.g. permissions)
-#: app/Panel/PanelView/listmodel.cpp:385
+#: app/Panel/PanelView/listmodel.cpp:396
 #, kde-format
 msgctxt "File property"
 msgid "Changed"
 msgstr "промена"
 
 # >> @item
-#: app/Panel/PanelView/listmodel.cpp:387
+#: app/Panel/PanelView/listmodel.cpp:398
 #, kde-format
 msgctxt "File property"
 msgid "Accessed"
 msgstr "приступ"
 
 # >> @item
-#: app/Panel/PanelView/listmodel.cpp:389
+#: app/Panel/PanelView/listmodel.cpp:400
 #, kde-format
 msgctxt "File property"
 msgid "Perms"
 msgstr "дозволе"
 
 # >> @item
-#: app/Panel/PanelView/listmodel.cpp:391
+#: app/Panel/PanelView/listmodel.cpp:402
 #, kde-format
 msgctxt "File property"
 msgid "rwx"
 msgstr "rwx"
 
 # >> @item
-#: app/Panel/PanelView/listmodel.cpp:393
+#: app/Panel/PanelView/listmodel.cpp:404
 #, kde-format
 msgctxt "File property"
 msgid "Owner"
 msgstr "власник"
 
 # >> @item
-#: app/Panel/PanelView/listmodel.cpp:395
+#: app/Panel/PanelView/listmodel.cpp:406
 #, kde-format
 msgctxt "File property"
 msgid "Group"
 msgstr "група"
 
-#: app/Panel/PanelView/listmodel.cpp:497
+#: app/Panel/PanelView/listmodel.cpp:508
 #, kde-format
 msgid "Size: %1"
 msgstr "Величина: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:499
+#: app/Panel/PanelView/listmodel.cpp:510
 #, kde-format
 msgctxt "File property"
 msgid "Type: %1"
 msgstr "Тип: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:500
+#: app/Panel/PanelView/listmodel.cpp:511
 #, kde-format
 msgctxt "File property"
 msgid "Modified: %1"
 msgstr "Измењено: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:501
+#: app/Panel/PanelView/listmodel.cpp:512
 #, kde-format
 msgctxt "File property"
 msgid "Changed: %1"
 msgstr "Промењено: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:502
+#: app/Panel/PanelView/listmodel.cpp:513
 #, kde-format
 msgctxt "File property"
 msgid "Last Access: %1"
 msgstr "Приступљено: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:503
+#: app/Panel/PanelView/listmodel.cpp:514
 #, kde-format
 msgctxt "File property"
 msgid "Permissions: %1"
 msgstr "Дозволе: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:504
+#: app/Panel/PanelView/listmodel.cpp:515
 #, kde-format
 msgctxt "File property"
 msgid "Owner: %1"
 msgstr "Власник: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:505
+#: app/Panel/PanelView/listmodel.cpp:516
 #, kde-format
 msgctxt "File property"
 msgid "Group: %1"
 msgstr "Група: %1"
 
-#: app/Panel/PanelView/listmodel.cpp:509
+#: app/Panel/PanelView/listmodel.cpp:520
 #, kde-format
 msgctxt "File property; broken symbolic link"
 msgid "Link to: %1 - (broken)"
 msgstr "Веза до: %1 — прекинута"
 
-#: app/Panel/PanelView/listmodel.cpp:511
+#: app/Panel/PanelView/listmodel.cpp:522
 #, kde-format
 msgctxt "File property"
 msgid "Link to: %1"

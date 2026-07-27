@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-20 00:47+0000\n"
+"POT-Creation-Date: 2026-07-27 00:49+0000\n"
 "PO-Revision-Date: 2010-09-24 20:16+0530\n"
 "Last-Translator: Rajesh Ranjan <rajesh672@gmail.com>\n"
 "Language-Team: Maithili <bhashaghar@googlegroups.com>\n"
@@ -7615,7 +7615,7 @@ msgstr "कालम"
 msgid "Automatically Resize Columns"
 msgstr ""
 
-#: app/Panel/PanelView/krview.cpp:425
+#: app/Panel/PanelView/krview.cpp:456
 #, kde-format
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
@@ -7624,7 +7624,7 @@ msgctxt ""
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr ""
 
-#: app/Panel/PanelView/krview.cpp:436
+#: app/Panel/PanelView/krview.cpp:467
 #, kde-format
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
@@ -7632,24 +7632,24 @@ msgctxt ""
 msgid "%1 out of %2, %3 out of %4"
 msgstr ""
 
-#: app/Panel/PanelView/krview.cpp:1099
+#: app/Panel/PanelView/krview.cpp:1130
 #, fuzzy, kde-format
 #| msgid "Please select a directory"
 msgid "Apply filter to folder&s"
 msgstr "कृप्या एकटा निर्देशिका चुनू"
 
-#: app/Panel/PanelView/krview.cpp:1104
+#: app/Panel/PanelView/krview.cpp:1135
 #, kde-format
 msgid "Filter Files"
 msgstr ""
 
-#: app/Panel/PanelView/krview.cpp:1129
+#: app/Panel/PanelView/krview.cpp:1160
 #, fuzzy, kde-format
 #| msgid "Please select a directory"
 msgid "Apply &selection to folders"
 msgstr "कृप्या एकटा निर्देशिका चुनू"
 
-#: app/Panel/PanelView/krview.cpp:1130
+#: app/Panel/PanelView/krview.cpp:1161
 #, fuzzy, kde-format
 #| msgid "Text Files"
 msgid "Select Files"
@@ -7685,7 +7685,7 @@ msgstr "सिंबॉलिक लिंक "
 msgid "%1 (Link)"
 msgstr "%1 (लिंक )"
 
-#: app/Panel/PanelView/listmodel.cpp:132
+#: app/Panel/PanelView/listmodel.cpp:135
 #: app/Synchronizer/synchronizergui.cpp:1616
 #, kde-format
 msgctxt ""
@@ -7693,141 +7693,141 @@ msgctxt ""
 msgid "DIR"
 msgstr ""
 
-#: app/Panel/PanelView/listmodel.cpp:375
+#: app/Panel/PanelView/listmodel.cpp:386
 #, fuzzy, kde-format
 #| msgid "Name"
 msgctxt "File property"
 msgid "Name"
 msgstr "नाम"
 
-#: app/Panel/PanelView/listmodel.cpp:377
+#: app/Panel/PanelView/listmodel.cpp:388
 #, kde-format
 msgctxt "File property"
 msgid "Ext"
 msgstr ""
 
-#: app/Panel/PanelView/listmodel.cpp:379
+#: app/Panel/PanelView/listmodel.cpp:390
 #, fuzzy, kde-format
 #| msgid "Size"
 msgctxt "File property"
 msgid "Size"
 msgstr "आकार"
 
-#: app/Panel/PanelView/listmodel.cpp:381
+#: app/Panel/PanelView/listmodel.cpp:392
 #, fuzzy, kde-format
 #| msgid "Type"
 msgctxt "File property"
 msgid "Type"
 msgstr "प्रकार"
 
-#: app/Panel/PanelView/listmodel.cpp:383
+#: app/Panel/PanelView/listmodel.cpp:394
 #, fuzzy, kde-format
 #| msgid "Modified"
 msgctxt "File property"
 msgid "Modified"
 msgstr "सुधार कएल"
 
-#: app/Panel/PanelView/listmodel.cpp:385
+#: app/Panel/PanelView/listmodel.cpp:396
 #, fuzzy, kde-format
 #| msgid "Chan&ge..."
 msgctxt "File property"
 msgid "Changed"
 msgstr "बदलू (&g)..."
 
-#: app/Panel/PanelView/listmodel.cpp:387
+#: app/Panel/PanelView/listmodel.cpp:398
 #, kde-format
 msgctxt "File property"
 msgid "Accessed"
 msgstr ""
 
-#: app/Panel/PanelView/listmodel.cpp:389
+#: app/Panel/PanelView/listmodel.cpp:400
 #, fuzzy, kde-format
 #| msgid "Permissions"
 msgctxt "File property"
 msgid "Perms"
 msgstr "अनुमतिसभ"
 
-#: app/Panel/PanelView/listmodel.cpp:391
+#: app/Panel/PanelView/listmodel.cpp:402
 #, kde-format
 msgctxt "File property"
 msgid "rwx"
 msgstr ""
 
-#: app/Panel/PanelView/listmodel.cpp:393
+#: app/Panel/PanelView/listmodel.cpp:404
 #, fuzzy, kde-format
 #| msgid "Owner"
 msgctxt "File property"
 msgid "Owner"
 msgstr "मालिक"
 
-#: app/Panel/PanelView/listmodel.cpp:395
+#: app/Panel/PanelView/listmodel.cpp:406
 #, fuzzy, kde-format
 #| msgid "Group"
 msgctxt "File property"
 msgid "Group"
 msgstr "समूह"
 
-#: app/Panel/PanelView/listmodel.cpp:497
+#: app/Panel/PanelView/listmodel.cpp:508
 #, fuzzy, kde-format
 #| msgid "Size:"
 msgid "Size: %1"
 msgstr "आकार:"
 
-#: app/Panel/PanelView/listmodel.cpp:499
+#: app/Panel/PanelView/listmodel.cpp:510
 #, fuzzy, kde-format
 #| msgid "Type:"
 msgctxt "File property"
 msgid "Type: %1"
 msgstr "प्रकार:"
 
-#: app/Panel/PanelView/listmodel.cpp:500
+#: app/Panel/PanelView/listmodel.cpp:511
 #, fuzzy, kde-format
 #| msgid "Modified"
 msgctxt "File property"
 msgid "Modified: %1"
 msgstr "सुधार कएल"
 
-#: app/Panel/PanelView/listmodel.cpp:501
+#: app/Panel/PanelView/listmodel.cpp:512
 #, fuzzy, kde-format
 #| msgid "Owner:"
 msgctxt "File property"
 msgid "Changed: %1"
 msgstr "मालिक:"
 
-#: app/Panel/PanelView/listmodel.cpp:502
+#: app/Panel/PanelView/listmodel.cpp:513
 #, kde-format
 msgctxt "File property"
 msgid "Last Access: %1"
 msgstr ""
 
-#: app/Panel/PanelView/listmodel.cpp:503
+#: app/Panel/PanelView/listmodel.cpp:514
 #, fuzzy, kde-format
 #| msgid "Permissions:"
 msgctxt "File property"
 msgid "Permissions: %1"
 msgstr "अनुमतिः"
 
-#: app/Panel/PanelView/listmodel.cpp:504
+#: app/Panel/PanelView/listmodel.cpp:515
 #, fuzzy, kde-format
 #| msgid "Owner:"
 msgctxt "File property"
 msgid "Owner: %1"
 msgstr "मालिक:"
 
-#: app/Panel/PanelView/listmodel.cpp:505
+#: app/Panel/PanelView/listmodel.cpp:516
 #, fuzzy, kde-format
 #| msgid "Group"
 msgctxt "File property"
 msgid "Group: %1"
 msgstr "समूह"
 
-#: app/Panel/PanelView/listmodel.cpp:509
+#: app/Panel/PanelView/listmodel.cpp:520
 #, kde-format
 msgctxt "File property; broken symbolic link"
 msgid "Link to: %1 - (broken)"
 msgstr ""
 
-#: app/Panel/PanelView/listmodel.cpp:511
+#: app/Panel/PanelView/listmodel.cpp:522
 #, kde-format
 msgctxt "File property"
 msgid "Link to: %1"
