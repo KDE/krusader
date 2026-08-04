@@ -204,10 +204,10 @@ void KgProtocols::slotRemoveProtocol()
 
 void KgProtocols::removeProtocol(const QString &name)
 {
-    QList<QTreeWidgetItem *> itemList = linkList->findItems(name, Qt::MatchExactly, 0);
+    QList<QTreeWidgetItem *> matchingItems = linkList->findItems(name, Qt::MatchExactly, 0);
 
-    if (itemList.count()) {
-        QTreeWidgetItem *item = itemList[0];
+    if (matchingItems.count()) {
+        QTreeWidgetItem *item = matchingItems[0];
 
         while (item->childCount() != 0)
             removeMime(item->child(0)->text(0));
@@ -236,11 +236,11 @@ void KgProtocols::addMime(QString name, const QString &protocol)
 {
     QList<QListWidgetItem *> list = mimeList->findItems(name, Qt::MatchExactly);
 
-    QList<QTreeWidgetItem *> itemList = linkList->findItems(protocol, Qt::MatchExactly | Qt::MatchRecursive, 0);
+    QList<QTreeWidgetItem *> matchingItems = linkList->findItems(protocol, Qt::MatchExactly | Qt::MatchRecursive, 0);
 
     QTreeWidgetItem *currentListItem = nullptr;
-    if (itemList.count() != 0)
-        currentListItem = itemList[0];
+    if (matchingItems.count() != 0)
+        currentListItem = matchingItems[0];
 
     if (list.count() > 0 && currentListItem && currentListItem->parent() == nullptr) {
         delete list[0];
@@ -263,11 +263,11 @@ void KgProtocols::slotRemoveMime()
 
 void KgProtocols::removeMime(const QString &name)
 {
-    QList<QTreeWidgetItem *> itemList = linkList->findItems(name, Qt::MatchExactly | Qt::MatchRecursive, 0);
+    QList<QTreeWidgetItem *> matchingItems = linkList->findItems(name, Qt::MatchExactly | Qt::MatchRecursive, 0);
 
     QTreeWidgetItem *currentMimeItem = nullptr;
-    if (itemList.count() != 0)
-        currentMimeItem = itemList[0];
+    if (matchingItems.count() != 0)
+        currentMimeItem = matchingItems[0];
 
     if (currentMimeItem && currentMimeItem->parent() != nullptr) {
         mimeList->addItem(currentMimeItem->text(0));
@@ -346,12 +346,12 @@ bool KgProtocols::apply()
 {
     KConfigGroup group(krConfig, "Protocols");
 
-    QStringList protocolList;
+    QStringList handledProtocols;
 
     for (int i = 0; i != linkList->topLevelItemCount(); i++) {
         QTreeWidgetItem *item = linkList->topLevelItem(i);
 
-        protocolList.append(item->text(0));
+        handledProtocols.append(item->text(0));
 
         QStringList mimes;
 
@@ -362,7 +362,7 @@ bool KgProtocols::apply()
         }
         group.writeEntry(QString("Mimes For %1").arg(item->text(0)), mimes);
     }
-    group.writeEntry("Handled Protocols", protocolList);
+    group.writeEntry("Handled Protocols", handledProtocols);
     krConfig->sync();
 
     KrArcHandler::clearProtocolCache();

@@ -14,27 +14,28 @@
 // QtWidgets
 #include <QApplication>
 
+#include <KIO/StatJob>
 #include <KLocalizedString>
 #include <KParts/NavigationExtension>
-#include <KParts/ReadWritePart>
-#include <KSharedConfig>
 #include <KParts/PartLoader>
-#include <KIO/StatJob>
+#include <KParts/ReadWritePart>
 #include <KService>
+#include <KSharedConfig>
 
 #include <KFileItem>
 #include <KMessageBox>
 
 #include "../defaults.h"
+#include "krviewer.h"
 #include "lister.h"
 
 #define DICTSIZE 211
 
-PanelViewerBase::PanelViewerBase(QWidget *parent, KrViewer::Mode mode)
+PanelViewerBase::PanelViewerBase(QWidget *parent, KrViewer::Mode panelMode)
     : QStackedWidget(parent)
     , mimes(nullptr)
     , cpart(nullptr)
-    , mode(mode)
+    , mode(panelMode)
 {
     setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Ignored));
 
@@ -110,8 +111,8 @@ void PanelViewerBase::openUrl(const QUrl &url)
 
 /* ----==={ PanelViewer }===---- */
 
-PanelViewer::PanelViewer(QWidget *parent, KrViewer::Mode mode)
-    : PanelViewerBase(parent, mode)
+PanelViewer::PanelViewer(QWidget *parent, KrViewer::Mode panelMode)
+    : PanelViewerBase(parent, panelMode)
 {
 }
 
@@ -167,20 +168,25 @@ KParts::ReadOnlyPart *PanelViewer::getDefaultPart(const KFileItem &fi)
     KConfigGroup group(krConfig, "General");
     QString modeString = group.readEntry("Default Viewer Mode", QString("generic"));
 
-    KrViewer::Mode mode = KrViewer::Generic;
+    KrViewer::Mode activeMode = KrViewer::Generic;
 
-    if (modeString == "generic")
-        mode = KrViewer::Generic;
-    else if (modeString == "text")
-        mode = KrViewer::Text;
-    else if (modeString == "hex")
-        mode = KrViewer::Hex;
-    else if (modeString == "lister")
-        mode = KrViewer::Lister;
+    static constexpr std::array<std::pair<const char *, KrViewer::Mode>, 4> mapping = {{
+        {"generic", KrViewer::Generic},
+        {"text", KrViewer::Text},
+        {"hex", KrViewer::Hex},
+        {"lister", KrViewer::Lister},
+    }};
+
+    for (const auto &[key, value] : mapping) {
+        if (key == modeString) {
+            activeMode = value;
+            break;
+        }
+    }
 
     QMimeType mimeType = fi.determineMimeType();
     bool isBinary = false;
-    if (mode == KrViewer::Generic || mode == KrViewer::Lister) {
+    if (activeMode == KrViewer::Generic || activeMode == KrViewer::Lister) {
         isBinary = !mimeType.inherits(QStringLiteral("text/plain"));
     }
 
@@ -191,7 +197,7 @@ KParts::ReadOnlyPart *PanelViewer::getDefaultPart(const KFileItem &fi)
 
     KParts::ReadOnlyPart *part = nullptr;
 
-    switch (mode) {
+    switch (activeMode) {
     case KrViewer::Generic:
         if ((mimetype.startsWith(QLatin1String("text/")) || mimetype.startsWith(QLatin1String("all/"))) && fileSize > limit) {
             part = getListerPart(isBinary);
@@ -314,8 +320,8 @@ KParts::ReadOnlyPart *PanelViewer::createPart(QString mimetype)
 
 /* ----==={ PanelEditor }===---- */
 
-PanelEditor::PanelEditor(QWidget *parent, KrViewer::Mode mode)
-    : PanelViewerBase(parent, mode)
+PanelEditor::PanelEditor(QWidget *parent, KrViewer::Mode panelMode)
+    : PanelViewerBase(parent, panelMode)
 {
 }
 

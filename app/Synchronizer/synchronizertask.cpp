@@ -68,12 +68,12 @@ void CompareTask::start()
         m_state = ST_STATE_PENDING;
         m_loadFinished = m_otherLoadFinished = false;
 
-        m_dirList = new SynchronizerDirList(parentWidget, ignoreHidden);
+        m_dirList = new SynchronizerDirList(m_parentWidget, ignoreHidden);
         connect(m_dirList, &SynchronizerDirList::finished, this, &CompareTask::slotFinished);
         m_dirList->load(m_url, false);
 
         if (m_duplicate) {
-            m_otherDirList = new SynchronizerDirList(parentWidget, ignoreHidden);
+            m_otherDirList = new SynchronizerDirList(m_parentWidget, ignoreHidden);
             connect(m_otherDirList, &SynchronizerDirList::finished, this, &CompareTask::slotOtherFinished);
             m_otherDirList->load(m_otherUrl, false);
         }
@@ -141,14 +141,14 @@ void CompareContentTask::start()
     if (leftURL.isLocalFile() && rightURL.isLocalFile()) {
         leftFile = new QFile(leftURL.path());
         if (!leftFile->open(QIODevice::ReadOnly)) {
-            KMessageBox::error(parentWidget, i18n("Error at opening %1.", leftURL.path()));
+            KMessageBox::error(m_parentWidget, i18n("Error at opening %1.", leftURL.path()));
             m_state = ST_STATE_ERROR;
             return;
         }
 
         rightFile = new QFile(rightURL.path());
         if (!rightFile->open(QIODevice::ReadOnly)) {
-            KMessageBox::error(parentWidget, i18n("Error at opening %1.", rightURL.path()));
+            KMessageBox::error(m_parentWidget, i18n("Error at opening %1.", rightURL.path()));
             m_state = ST_STATE_ERROR;
             return;
         }
@@ -184,8 +184,8 @@ void CompareContentTask::localFileCompareCycle()
     char leftBuffer[1440];
     char rightBuffer[1440];
 
-    QElapsedTimer timer;
-    timer.start();
+    QElapsedTimer localTimer;
+    localTimer.start();
 
     int cnt = 0;
 
@@ -208,7 +208,7 @@ void CompareContentTask::localFileCompareCycle()
             break;
         }
 
-        if ((++cnt % 16) == 0 && timer.elapsed() >= 250)
+        if ((++cnt % 16) == 0 && localTimer.elapsed() >= 250)
             break;
     }
 
@@ -303,7 +303,7 @@ void CompareContentTask::slotFinished(KJob *job)
 
     if (job->error() && job->error() != KIO::ERR_USER_CANCELED && !errorPrinted) {
         errorPrinted = true;
-        KMessageBox::error(parentWidget,
+        KMessageBox::error(m_parentWidget,
                            i18n("I/O error while comparing file %1 with %2.",
                                 leftURL.toDisplayString(QUrl::PreferLocalFile),
                                 rightURL.toDisplayString(QUrl::PreferLocalFile)));

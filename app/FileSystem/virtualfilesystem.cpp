@@ -158,8 +158,8 @@ void VirtualFileSystem::rename(const QString &fileName, const QString &newName)
     _virtFilesystemDict[currentDir()]->append(dest);
 
     KIO::Job *job = KIO::moveAs(item->getUrl(), dest, KIO::HideProgressInfo);
-    connect(job, &KIO::Job::result, this, [=](KJob *job) {
-        slotJobResult(job, false);
+    connect(job, &KIO::Job::result, this, [=](KJob *finishedJob) {
+        slotJobResult(finishedJob, false);
     });
     connect(job, &KIO::Job::result, this, [=]() {
         emit fileSystemChanged(currentDirectory(), false);

@@ -20,7 +20,7 @@
 
 KFnKeys::KFnKeys(QWidget *parent, KrMainWindow *mainWindow)
     : QWidget(parent)
-    , mainWindow(mainWindow)
+    , m_mainWindow(mainWindow)
 {
     buttonList << setup(mainWindow->listPanelActions()->actRenameF2, i18n("Rename")) << setup(mainWindow->listPanelActions()->actViewFileF3, i18n("View"))
                << setup(mainWindow->listPanelActions()->actEditFileF4, i18n("Edit")) << setup(mainWindow->listPanelActions()->actCopyF5, i18n("Copy"))

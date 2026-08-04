@@ -13,8 +13,8 @@
 
 #include <KFileItem>
 #include <KIO/Job>
-#include <KIO/StatJob>
 #include <KIO/JobUiDelegate>
+#include <KIO/StatJob>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <utility>
@@ -68,12 +68,12 @@ void Combiner::combine()
 
     if (!file.isReadable()) {
         int ret = KMessageBox::questionTwoActions(nullptr,
-                                             i18n("The CRC information file (%1) is missing.\n"
-                                                  "Validity checking is impossible without it. Continue combining?",
-                                                  splURL.toDisplayString(QUrl::PreferLocalFile)),
-                                             {},
-                                             KStandardGuiItem::cont(),
-                                             KStandardGuiItem::cancel());
+                                                  i18n("The CRC information file (%1) is missing.\n"
+                                                       "Validity checking is impossible without it. Continue combining?",
+                                                       splURL.toDisplayString(QUrl::PreferLocalFile)),
+                                                  {},
+                                                  KStandardGuiItem::cont(),
+                                                  KStandardGuiItem::cancel());
 
         if (ret == KMessageBox::SecondaryAction) {
             reject();
@@ -101,10 +101,10 @@ void Combiner::combineSplitFileDataReceived(KIO::Job *, const QByteArray &byteAr
 void Combiner::combineSplitFileFinished(KJob *job)
 {
     combineReadJob = nullptr;
-    QString error;
+    QString err;
 
     if (job->error())
-        error = i18n("Error at reading the CRC file (%1).", splURL.toDisplayString(QUrl::PreferLocalFile));
+        err = i18n("Error at reading the CRC file (%1).", splURL.toDisplayString(QUrl::PreferLocalFile));
     else {
         splitFile.remove('\r'); // Windows compatibility
         QStringList splitFileContent = splitFile.split('\n');
@@ -133,17 +133,17 @@ void Combiner::combineSplitFileFinished(KJob *job)
         }
 
         if (!hasFileName || !hasSize || !hasCrc)
-            error = i18n("Not a valid CRC file.");
+            err = i18n("Not a valid CRC file.");
         else
             hasValidSplitFile = true;
     }
 
-    if (!error.isEmpty()) {
+    if (!err.isEmpty()) {
         int ret = KMessageBox::questionTwoActions(nullptr,
-                                             error + i18n("\nValidity checking is impossible without a good CRC file. Continue combining?"),
-                                             {},
-                                             KStandardGuiItem::cont(),
-                                             KStandardGuiItem::cancel());
+                                                  err + i18n("\nValidity checking is impossible without a good CRC file. Continue combining?"),
+                                                  {},
+                                                  KStandardGuiItem::cont(),
+                                                  KStandardGuiItem::cancel());
         if (ret == KMessageBox::SecondaryAction) {
             reject();
             return;
@@ -181,7 +181,8 @@ void Combiner::statDestResult(KJob *job)
             reject();
         }
     } else { // destination already exists
-        KIO::RenameDialog_Options mode = dynamic_cast<KIO::StatJob *>(job)->statResult().isDir() ? KIO::RenameDialog_DestIsDirectory : KIO::RenameDialog_Overwrite;
+        KIO::RenameDialog_Options mode =
+            dynamic_cast<KIO::StatJob *>(job)->statResult().isDir() ? KIO::RenameDialog_DestIsDirectory : KIO::RenameDialog_Overwrite;
         KIO::RenameDialog dlg(this, i18n("File Already Exists"), QUrl(), writeURL, mode);
         switch (dlg.exec()) {
         case KIO::Result_Overwrite:

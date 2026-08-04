@@ -277,9 +277,9 @@ void RadialMap::Map::paint(unsigned int scaleFactor)
     fill(); // erase background
 
     for (int x = m_visibleDepth; x >= 0; --x) {
-        int width = rect.width() / 2;
+        int baseRadius = rect.width() / 2;
         // clever geometric trick to find largest angle that will give biggest arrow head
-        auto a_max = static_cast<int>(acos((double)width / double((width + 5) * scaleFactor)) * (180 * 16 / M_PI));
+        auto a_max = static_cast<int>(acos((double)baseRadius / double((baseRadius + 5) * scaleFactor)) * (180 * 16 / M_PI));
 
         for (ConstIterator<Segment> it = m_signature[x].constIterator(); it != m_signature[x].end(); ++it) {
             // draw the pie segments, most of this code is concerned with drawing the little
@@ -301,15 +301,15 @@ void RadialMap::Map::paint(unsigned int scaleFactor)
 
                 a[1] += a[0];
 
-                for (int i = 0, radius = width; i < 3; ++i) {
+                for (int i = 0, currentRadius = baseRadius; i < 3; ++i) {
                     double ra = M_PI / (180 * 16) * a[i], sinra, cosra;
 
                     if (i == 2)
-                        radius += 5 * scaleFactor;
+                        currentRadius += 5 * scaleFactor;
                     sinra = sin(ra);
                     cosra = cos(ra);
-                    pos.rx() = cpos.x() + static_cast<int>(cosra * radius);
-                    pos.ry() = cpos.y() - static_cast<int>(sinra * radius);
+                    pos.rx() = cpos.x() + static_cast<int>(cosra * currentRadius);
+                    pos.ry() = cpos.y() - static_cast<int>(sinra * currentRadius);
                     pts.setPoint(i, pos);
                 }
 
@@ -324,12 +324,12 @@ void RadialMap::Map::paint(unsigned int scaleFactor)
                 //**** code is bloated!
                 paint.save();
                 QPen pen = paint.pen();
-                int width = 2 * scaleFactor;
-                pen.setWidth(width);
+                int penWidth = 2 * scaleFactor;
+                pen.setWidth(penWidth);
                 paint.setPen(pen);
                 QRect rect2 = rect;
-                width /= 2;
-                rect2.adjust(width, width, -width, -width);
+                penWidth /= 2;
+                rect2.adjust(penWidth, penWidth, -penWidth, -penWidth);
                 paint.drawArc(rect2, (*it)->start(), (*it)->length());
                 paint.restore();
             }

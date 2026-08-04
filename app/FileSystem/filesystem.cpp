@@ -177,8 +177,8 @@ void FileSystem::connectJobToDestination(KJob *job, const QUrl &destination)
     });
     // (additional) direct refresh if on local fs because watcher is too slow
     const bool refresh = cleanUrl(destination) == _currentDirectory && isLocal();
-    connect(job, &KIO::Job::result, this, [=](KJob *job) {
-        slotJobResult(job, refresh);
+    connect(job, &KIO::Job::result, this, [=](KJob *finishedJob) {
+        slotJobResult(finishedJob, refresh);
     });
 }
 

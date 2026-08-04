@@ -58,7 +58,7 @@ public:
 
 private:
     //! The name of a function which is going to be written about
-    QString functionName;
+    QString m_functionName;
 };
 
 // ---------------------------------------------------------------------------------------
@@ -74,10 +74,8 @@ extern KrDebugLogger krDebugLogger;
     caused that when the object is destroyed (because the function is finished) the destructor shows
     other information (useful to know e.g. that the function has finished)
 */
-#define KRFUNC \
-    KrDebugFunctionLogger functionLogger(__FUNCTION__, __LINE__);
+#define KRFUNC KrDebugFunctionLogger functionLogger(__FUNCTION__, __LINE__);
 
-#define KRDEBUG(...) \
-    qDebug().nospace().noquote() << krDebugLogger.indentedCodePoint(__FUNCTION__, __LINE__) << ": " << __VA_ARGS__;
+#define KRDEBUG(...) qDebug().nospace().noquote() << krDebugLogger.indentedCodePoint(__FUNCTION__, __LINE__) << ": " << __VA_ARGS__;
 
 #endif // KRDEBUGLOGGER_H

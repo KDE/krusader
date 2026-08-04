@@ -116,8 +116,8 @@ public slots:
 
 protected slots:
     void doOpenUrl();
-    void slotGotNewStartup(const KStartupInfoId &id, const KStartupInfoData &data);
-    void slotGotRemoveStartup(const KStartupInfoId &id, const KStartupInfoData &data);
+    void slotGotNewStartup(const KStartupInfoId &id, const KStartupInfoData &infoData);
+    void slotGotRemoveStartup(const KStartupInfoId &id, const KStartupInfoData &infoData);
 
 protected:
     void closeEvent(QCloseEvent *event) override;

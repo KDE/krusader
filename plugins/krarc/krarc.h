@@ -86,25 +86,25 @@ private:
     KIO::UDSEntryList *addNewDir(const QString &path);
     Q_REQUIRED_RESULT KIO::WorkerResult checkWriteSupport();
 
-    QHash<QString, KIO::UDSEntryList *> dirDict; //< the directories data structure.
-    bool encrypted; //< tells whether the archive is encrypted
-    bool archiveChanged; //< true if the archive was changed.
-    bool archiveChanging; //< true if the archive is currently changing.
-    bool newArchiveURL; //< true if new archive was entered for the protocol
-    bool noencoding; //< 7z files use UTF-16, so encoding is unnecessary
-    KIO::filesize_t decompressedLen; //< the number of the decompressed bytes
-    KFileItem *arcFile; //< the archive file item.
-    QString arcPath; //< the archive location
-    QString arcTempDir; //< the currently used temp directory.
-    QString arcType; //< the archive type.
-    bool extArcReady; //< Used for RPM & DEB files.
-    QString password; //< Password for the archives
+    QHash<QString, KIO::UDSEntryList *> m_dirDict; //< the directories data structure.
+    bool m_encrypted; //< tells whether the archive is encrypted
+    bool m_archiveChanged; //< true if the archive was changed.
+    bool m_archiveChanging; //< true if the archive is currently changing.
+    bool m_newArchiveURL; //< true if new archive was entered for the protocol
+    bool m_noencoding; //< 7z files use UTF-16, so encoding is unnecessary
+    KIO::filesize_t m_decompressedLen; //< the number of the decompressed bytes
+    KFileItem *m_arcFile; //< the archive file item.
+    QString m_arcPath; //< the archive location
+    QString m_arcTempDir; //< the currently used temp directory.
+    QString m_arcType; //< the archive type.
+    bool m_extArcReady; //< Used for RPM & DEB files.
+    QString m_password; //< Password for the archives
 
-    QString lastData;
-    QString encryptedArchPath;
+    QString m_lastData;
+    QString m_encryptedArchPath;
 
-    QString currentCharset;
-    QTextCodec *codec;
+    QString m_currentCharset;
+    QTextCodec *m_codec;
 };
 
 #ifdef Q_OS_WIN

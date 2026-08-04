@@ -310,7 +310,7 @@ KrToolResultTable::~KrToolResultTable() = default;
 bool KrToolResultTable::addRow(SearchObject *search, QGridLayout *grid)
 {
     auto *appGroup = dynamic_cast<ApplicationGroup *>(search);
-    QList<Application *> _apps = appGroup->getAppVec();
+    QList<Application *> _appsVec = appGroup->getAppVec();
 
     // Name column
     _label = new QLabel(appGroup->getSearchName(), this);
@@ -322,7 +322,7 @@ bool KrToolResultTable::addRow(SearchObject *search, QGridLayout *grid)
     QWidget *toolBoxWidget = new QWidget(this);
     auto *toolBox = new QVBoxLayout(toolBoxWidget);
 
-    for (auto &_app : _apps) {
+    for (auto &_app : _appsVec) {
         auto *l = new KUrlLabel(_app->getWebsite(), _app->getAppName(), toolBoxWidget);
         toolBox->addWidget(l);
 
@@ -338,7 +338,7 @@ bool KrToolResultTable::addRow(SearchObject *search, QGridLayout *grid)
     QWidget *vboxWidget = new QWidget(this);
     auto *vbox = new QVBoxLayout(vboxWidget);
 
-    for (auto &_app : _apps) {
+    for (auto &_app : _appsVec) {
         _label = new QLabel(_app->getPath(), vboxWidget);
         _label->setContentsMargins(5, 5, 5, 5);
         _label->setAlignment(Qt::AlignTop);

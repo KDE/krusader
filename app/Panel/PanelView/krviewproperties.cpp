@@ -8,24 +8,24 @@
 
 #include <utility>
 
-KrViewProperties::KrViewProperties(bool displayIcons,
-                                   bool numericPermissions,
-                                   KrViewProperties::SortOptions sortOptions,
-                                   KrViewProperties::SortMethod sortMethod,
-                                   bool humanReadableSize,
-                                   bool localeAwareCompareIsCaseSensitive,
-                                   QStringList atomicExtensions)
-    : numericPermissions(numericPermissions)
-    , displayIcons(displayIcons)
+KrViewProperties::KrViewProperties(bool showIcons,
+                                   bool useNumericPermissions,
+                                   KrViewProperties::SortOptions initSortOptions,
+                                   KrViewProperties::SortMethod initSortMethod,
+                                   bool useHumanReadableSize,
+                                   bool useLocaleAwareCompareIsCaseSensitive,
+                                   QStringList initAtomicExtensions)
+    : numericPermissions(useNumericPermissions)
+    , displayIcons(showIcons)
     , sortColumn(Name)
-    , sortOptions(sortOptions)
-    , sortMethod(sortMethod)
+    , sortOptions(initSortOptions)
+    , sortMethod(initSortMethod)
     , filter(KrViewProperties::All)
     , filterMask(KrQuery("*"))
     , filterApplysToDirs(false)
-    , localeAwareCompareIsCaseSensitive(localeAwareCompareIsCaseSensitive)
-    , humanReadableSize(humanReadableSize)
-    , atomicExtensions(std::move(atomicExtensions))
+    , localeAwareCompareIsCaseSensitive(useLocaleAwareCompareIsCaseSensitive)
+    , humanReadableSize(useHumanReadableSize)
+    , atomicExtensions(std::move(initAtomicExtensions))
     , numberOfColumns(1)
 {
 }

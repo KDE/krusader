@@ -21,12 +21,10 @@ KrDebugLogger::KrDebugLogger()
 
 QString KrDebugLogger::indentedCodePoint(const QString &functionName, int line, const QString &indentationSymbol) const
 {
-    QString result = QString(indentation, ' ') %  // Applies the indentation level to make logs clearer
-                     indentationSymbol % functionName;  // Uses QStringBuilder to concatenate
+    QString result = QString(indentation, ' ') % // Applies the indentation level to make logs clearer
+        indentationSymbol % functionName; // Uses QStringBuilder to concatenate
     if (!briefMode)
-        result = QString("Pid:%1 ").arg(getpid()) %
-                result %
-                (line != 0 ? QString("(%1)").arg(line) : "");
+        result = QString("Pid:%1 ").arg(getpid()) % result % (line != 0 ? QString("(%1)").arg(line) : "");
     return result;
 }
 
@@ -44,8 +42,8 @@ void KrDebugLogger::increaseIndentation()
 // Member functions of the KrDebugFunctionLogger class
 // ---------------------------------------------------------------------------------------
 
-KrDebugFunctionLogger::KrDebugFunctionLogger(const QString &functionName, int line) :
-    functionName(functionName)
+KrDebugFunctionLogger::KrDebugFunctionLogger(const QString &functionName, int line)
+    : m_functionName(functionName)
 {
     // Shows that a function has been started
     qDebug().nospace().noquote() << krDebugLogger.indentedCodePoint(functionName, line, "┏");
@@ -57,5 +55,5 @@ KrDebugFunctionLogger::~KrDebugFunctionLogger()
 {
     krDebugLogger.decreaseIndentation();
     // Shows that a function is going to finish
-    qDebug().nospace().noquote() << krDebugLogger.indentedCodePoint(functionName, 0, "┗");
+    qDebug().nospace().noquote() << krDebugLogger.indentedCodePoint(m_functionName, 0, "┗");
 }

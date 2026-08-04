@@ -260,16 +260,14 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
         }
         return true;
     } else if (watched == _textBox) {
-        const bool handled = handleKeyPressEvent(ke);
-        if (handled) {
+        if (handleKeyPressEvent(ke)) {
             _view->widget()->setFocus();
             return true;
         }
         // allow the view to handle (most) key events from the text box
         if ((modifiers == Qt::NoModifier || modifiers == Qt::KeypadModifier) && ke->key() != Qt::Key_Space && ke->key() != Qt::Key_Backspace
             && ke->key() != Qt::Key_Left && ke->key() != Qt::Key_Right) {
-            const bool handled = _view->handleKeyEvent(ke);
-            if (handled) {
+            if (_view->handleKeyEvent(ke)) {
                 _view->widget()->setFocus();
                 return true;
             }

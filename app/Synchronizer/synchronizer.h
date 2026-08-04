@@ -204,7 +204,7 @@ protected:
     QString leftBaseDir; // the left-side base directory
     QString rightBaseDir; // the right-side base directory
     QStringList excludedPaths; // list of the excluded paths
-    KrQuery *query; // the filter used for the query
+    KrQuery *m_query; // the filter used for the query
     bool stopped; // 'Stop' button was pressed
 
     int equalsThreshold; // threshold to treat files equal
@@ -219,20 +219,20 @@ protected:
     bool markDuplicates; // show the duplicated items
     bool markSingles; // show the single items
 
-    bool leftCopyEnabled; // copy to left is enabled at synchronize
-    bool rightCopyEnabled; // copy to right is enabled at synchronize
-    bool deleteEnabled; // delete is enabled at synchronize
-    bool overWrite; // overwrite or query each modification
+    bool m_leftCopyEnabled; // copy to left is enabled at synchronize
+    bool m_rightCopyEnabled; // copy to right is enabled at synchronize
+    bool m_deleteEnabled; // delete is enabled at synchronize
+    bool m_overWrite; // overwrite or query each modification
     bool autoSkip; // automatic skipping
     bool paused; // pause flag
     bool disableNewTasks; // at mkdir the further task creation is disabled
 
-    int leftCopyNr; // the file number copied to left
-    int rightCopyNr; // the file number copied to right
-    int deleteNr; // the number of the deleted files
+    int m_leftCopyNr; // the file number copied to left
+    int m_rightCopyNr; // the file number copied to right
+    int m_deleteNr; // the number of the deleted files
     int parallelThreads; // the number of the parallel processing threads
-    KIO::filesize_t leftCopySize; // the total size copied to left
-    KIO::filesize_t rightCopySize; // the total size copied to right
+    KIO::filesize_t m_leftCopySize; // the total size copied to left
+    KIO::filesize_t m_rightCopySize; // the total size copied to right
     KIO::filesize_t deleteSize; // the size of the deleted files
 
     int comparedDirs; // the number of the compared directories

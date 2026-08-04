@@ -81,25 +81,25 @@ void KrSearchMod::scanUrl(const QUrl &url)
 
     m_unScannedUrls.push(url);
     while (!m_unScannedUrls.isEmpty()) {
-        const QUrl url = m_unScannedUrls.pop();
+        const QUrl currentUrl = m_unScannedUrls.pop();
 
         if (m_stopSearch)
             return;
 
-        if (m_query->isExcluded(url)) {
-            if (!m_query->searchInDirs().contains(url))
+        if (m_query->isExcluded(currentUrl)) {
+            if (!m_query->searchInDirs().contains(currentUrl))
                 continue;
         }
 
-        if (m_scannedUrls.contains(url))
+        if (m_scannedUrls.contains(currentUrl))
             // avoid endless loop
             continue;
 
-        m_scannedUrls.push(url);
+        m_scannedUrls.push(currentUrl);
 
-        emit searching(url.toDisplayString(QUrl::PreferLocalFile));
+        emit searching(currentUrl.toDisplayString(QUrl::PreferLocalFile));
 
-        scanDirectory(url);
+        scanDirectory(currentUrl);
     }
 }
 

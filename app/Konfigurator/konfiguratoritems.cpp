@@ -26,12 +26,12 @@
 #include <KSharedConfig>
 #include <utility>
 
-KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgGroup, QString cfgName, bool restartNeeded, int page)
+KonfiguratorExtension::KonfiguratorExtension(QObject *obj, QString cfgGroup, QString cfgName, bool isRestartNeeded, int page)
     : objectPtr(obj)
     , applyConnected(false)
     , setDefaultsConnected(false)
     , changed(false)
-    , restartNeeded(restartNeeded)
+    , restartNeeded(isRestartNeeded)
     , subpage(page)
     , configGroup(std::move(cfgGroup))
     , configName(std::move(cfgName))
@@ -83,9 +83,15 @@ bool KonfiguratorExtension::isChanged()
 // KonfiguratorCheckBox class
 ///////////////////////////////
 
-KonfiguratorCheckBox::KonfiguratorCheckBox(QString configGroup, QString name, bool defaultValue, const QString &text, QWidget *parent, bool restart, int page)
+KonfiguratorCheckBox::KonfiguratorCheckBox(QString configGroup,
+                                           QString name,
+                                           bool initialDefaultValue,
+                                           const QString &text,
+                                           QWidget *parent,
+                                           bool restart,
+                                           int page)
     : QCheckBox(text, parent)
-    , defaultValue(defaultValue)
+    , defaultValue(initialDefaultValue)
 {
     ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorCheckBox::slotApply);
@@ -148,16 +154,16 @@ void KonfiguratorCheckBox::slotSetDefaults(QObject *)
 
 KonfiguratorSpinBox::KonfiguratorSpinBox(QString configGroup,
                                          QString configName,
-                                         int defaultValue,
+                                         int initialDefaultValue,
                                          int min,
                                          int max,
                                          QWidget *parent,
-                                         bool restartNeeded,
+                                         bool isRestartNeeded,
                                          int page)
     : QSpinBox(parent)
-    , defaultValue(defaultValue)
+    , defaultValue(initialDefaultValue)
 {
-    ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(configName), restartNeeded, page);
+    ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(configName), isRestartNeeded, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorSpinBox::slotApply);
     connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorSpinBox::slotSetDefaults);
     connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorSpinBox::loadInitialValue);
@@ -224,9 +230,9 @@ KonfiguratorCheckBox *KonfiguratorCheckBoxGroup::find(const QString &name)
 // KonfiguratorRadioButtons class
 ///////////////////////////////
 
-KonfiguratorRadioButtons::KonfiguratorRadioButtons(QString configGroup, QString name, QString defaultValue, QWidget *parent, bool restart, int page)
+KonfiguratorRadioButtons::KonfiguratorRadioButtons(QString configGroup, QString name, QString initialDefaultValue, QWidget *parent, bool restart, int page)
     : QWidget(parent)
-    , defaultValue(std::move(defaultValue))
+    , defaultValue(std::move(initialDefaultValue))
 {
     ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorRadioButtons::slotApply);
@@ -327,9 +333,9 @@ void KonfiguratorRadioButtons::slotSetDefaults(QObject *)
 // KonfiguratorEditBox class
 ///////////////////////////////
 
-KonfiguratorEditBox::KonfiguratorEditBox(QString configGroup, QString name, QString defaultValue, QWidget *parent, bool restart, int page)
+KonfiguratorEditBox::KonfiguratorEditBox(QString configGroup, QString name, QString initialDefaultValue, QWidget *parent, bool restart, int page)
     : QLineEdit(parent)
-    , defaultValue(std::move(defaultValue))
+    , defaultValue(std::move(initialDefaultValue))
 {
     ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorEditBox::slotApply);
@@ -369,14 +375,14 @@ void KonfiguratorEditBox::slotSetDefaults(QObject *)
 
 KonfiguratorURLRequester::KonfiguratorURLRequester(QString configGroup,
                                                    QString name,
-                                                   QString defaultValue,
+                                                   QString initialDefaultValue,
                                                    QWidget *parent,
                                                    bool restart,
                                                    int page,
-                                                   bool expansion)
+                                                   bool isExpansion)
     : KUrlRequester(parent)
-    , defaultValue(std::move(defaultValue))
-    , expansion(expansion)
+    , defaultValue(std::move(initialDefaultValue))
+    , expansion(isExpansion)
 {
     ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorURLRequester::slotApply);
@@ -414,9 +420,9 @@ void KonfiguratorURLRequester::slotSetDefaults(QObject *)
 // KonfiguratorFontChooser class
 ///////////////////////////////
 
-KonfiguratorFontChooser::KonfiguratorFontChooser(QString configGroup, QString name, const QFont &defaultValue, QWidget *parent, bool restart, int page)
+KonfiguratorFontChooser::KonfiguratorFontChooser(QString configGroup, QString name, const QFont &initialDefaultValue, QWidget *parent, bool restart, int page)
     : QWidget(parent)
-    , defaultValue(defaultValue)
+    , defaultValue(initialDefaultValue)
 {
     auto *layout = new QHBoxLayout(this);
 
@@ -485,7 +491,7 @@ void KonfiguratorFontChooser::slotBrowseFont()
 
 KonfiguratorComboBox::KonfiguratorComboBox(QString configGroup,
                                            QString name,
-                                           QString defaultValue,
+                                           QString initialDefaultValue,
                                            KONFIGURATOR_NAME_VALUE_PAIR *listIn,
                                            int listInLen,
                                            QWidget *parent,
@@ -493,7 +499,7 @@ KonfiguratorComboBox::KonfiguratorComboBox(QString configGroup,
                                            bool editable,
                                            int page)
     : QComboBox(parent)
-    , defaultValue(std::move(defaultValue))
+    , defaultValue(std::move(initialDefaultValue))
     , listLen(listInLen)
 {
     list = new KONFIGURATOR_NAME_VALUE_PAIR[listInLen];
@@ -568,14 +574,14 @@ void KonfiguratorComboBox::slotSetDefaults(QObject *)
 
 KonfiguratorColorChooser::KonfiguratorColorChooser(QString configGroup,
                                                    QString name,
-                                                   const QColor &defaultValue,
+                                                   const QColor &initialDefaultValue,
                                                    QWidget *parent,
                                                    bool restart,
                                                    ADDITIONAL_COLOR *addColPtr,
                                                    int addColNum,
                                                    int page)
     : QComboBox(parent)
-    , defaultValue(defaultValue)
+    , defaultValue(initialDefaultValue)
     , disableColorChooser(true)
 {
     ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
@@ -777,9 +783,9 @@ QColor KonfiguratorColorChooser::getColor()
 // KonfiguratorListBox class
 ///////////////////////////////
 
-KonfiguratorListBox::KonfiguratorListBox(QString configGroup, QString name, QStringList defaultValue, QWidget *parent, bool restart, int page)
+KonfiguratorListBox::KonfiguratorListBox(QString configGroup, QString name, QStringList initialDefaultValue, QWidget *parent, bool restart, int page)
     : KrListWidget(parent)
-    , defaultValue(std::move(defaultValue))
+    , defaultValue(std::move(initialDefaultValue))
 {
     ext = new KonfiguratorExtension(this, std::move(configGroup), std::move(name), restart, page);
     connect(ext, &KonfiguratorExtension::applyAuto, this, &KonfiguratorListBox::slotApply);

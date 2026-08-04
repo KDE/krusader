@@ -103,12 +103,12 @@ void SegmentTip::updateTip(const File *const file, const Directory *const root)
     QString s2 = file->humanReadableSize();
     QLocale loc;
     const uint MARGIN = 3;
-    const FileSize pc = 100 * file->size() / root->size();
+    const FileSize sizePercent = 100 * file->size() / root->size();
     uint maxw = 0;
     uint h = fontMetrics().height() * 2 + 2 * MARGIN;
 
-    if (pc > 0)
-        s2 += QString(" (%1%)").arg(loc.toString(pc));
+    if (sizePercent > 0)
+        s2 += QString(" (%1%)").arg(loc.toString(sizePercent));
 
     m_text = s1;
     m_text += '\n';
@@ -116,11 +116,11 @@ void SegmentTip::updateTip(const File *const file, const Directory *const root)
 
     if (file->isDir()) {
         double files = dynamic_cast<const Directory *>(file)->fileCount();
-        const auto pc = uint((100 * files) / (double)root->fileCount());
+        const auto fileCountPercent = uint((100 * files) / (double)root->fileCount());
         QString s3 = i18n("Files: %1", loc.toString(files, 'f', 0));
 
-        if (pc > 0)
-            s3 += QString(" (%1%)").arg(loc.toString(pc));
+        if (fileCountPercent > 0)
+            s3 += QString(" (%1%)").arg(loc.toString(fileCountPercent));
 
         maxw = fontMetrics().horizontalAdvance(s3);
         h += fontMetrics().height();

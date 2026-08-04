@@ -182,7 +182,6 @@ void RadialMap::Widget::mousePressEvent(QMouseEvent *e)
             } else if (result == actViewMag || result == actFileOpen) {
                 goto sectionTwo;
             } else if (result == actEditDel) {
-                const QUrl url = Widget::url(m_focus->file());
                 const QString message =
                     (m_focus->file()->isDir()
                          ? i18n("<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</b> deleted.</qt>", url.toDisplayString())

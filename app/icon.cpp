@@ -91,9 +91,9 @@ struct IconSearchResult {
     QIcon icon; ///< icon returned by search; null icon if not found
     QString originalThemeName; ///< original theme name if theme is modified by search
 
-    IconSearchResult(QIcon icon, QString originalThemeName)
-        : icon(std::move(icon))
-        , originalThemeName(std::move(originalThemeName))
+    IconSearchResult(QIcon initIcon, QString initOriginalThemeName)
+        : icon(std::move(initIcon))
+        , originalThemeName(std::move(initOriginalThemeName))
     {
     }
 };
@@ -188,19 +188,25 @@ class IconCacheKey
 {
 public:
     IconCacheKey(const QString &name, const QStringList &overlays, const QSize &size, QIcon::Mode mode, QIcon::State state)
-        : name(name)
-        , overlays(overlays)
-        , size(size)
-        , mode(mode)
-        , state(state)
+        : m_name(name)
+        , m_overlays(overlays)
+        , m_size(size)
+        , m_mode(mode)
+        , m_state(state)
     {
-        auto repr = QString("%1 [%2] %3x%4 %5 %6").arg(name).arg(overlays.join(';')).arg(size.width()).arg(size.height()).arg((int)mode).arg((int)state);
+        auto repr = QString("%1 [%2] %3x%4 %5 %6")
+                        .arg(name)
+                        .arg(overlays.join(';'))
+                        .arg(size.width())
+                        .arg(size.height())
+                        .arg(static_cast<int>(mode))
+                        .arg(static_cast<int>(state));
         _hash = qHash(repr);
     }
 
     bool operator==(const IconCacheKey &x) const
     {
-        return name == x.name && overlays == x.overlays && size == x.size && mode == x.mode && state == x.state;
+        return m_name == x.m_name && m_overlays == x.m_overlays && m_size == x.m_size && m_mode == x.m_mode && m_state == x.m_state;
     }
 
     size_t hash() const
@@ -208,11 +214,11 @@ public:
         return _hash;
     }
 
-    QString name;
-    QStringList overlays;
-    QSize size;
-    QIcon::Mode mode;
-    QIcon::State state;
+    QString m_name;
+    QStringList m_overlays;
+    QSize m_size;
+    QIcon::Mode m_mode;
+    QIcon::State m_state;
 
 private:
     size_t _hash;

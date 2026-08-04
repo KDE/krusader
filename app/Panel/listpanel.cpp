@@ -86,8 +86,8 @@ class ActionButton : public QToolButton
 public:
     ActionButton(QWidget *parent, ListPanel *panel, QAction *action, const QString &text = QString())
         : QToolButton(parent)
-        , panel(panel)
-        , action(action)
+        , m_panel(panel)
+        , m_action(action)
     {
         setText(text);
         setAutoRaise(true);
@@ -99,12 +99,12 @@ public:
 protected:
     void mousePressEvent(QMouseEvent *) override
     {
-        panel->slotFocusOnMe();
-        action->trigger();
+        m_panel->slotFocusOnMe();
+        m_action->trigger();
     }
 
-    ListPanel *panel;
-    QAction *action;
+    ListPanel *m_panel;
+    QAction *m_action;
 };
 
 /////////////////////////////////////////////////////
@@ -673,7 +673,7 @@ void ListPanel::compareDirs(bool otherPanelToo)
     }
 
     KConfigGroup pg(krConfig, "Private");
-    int compareMode = pg.readEntry("Compare Mode", 0);
+    int compareStrategy = pg.readEntry("Compare Mode", 0);
     KConfigGroup group(krConfig, "Look&Feel");
     bool selectDirs = group.readEntry("Mark Dirs", false);
 
@@ -700,7 +700,7 @@ void ListPanel::compareDirs(bool otherPanelToo)
             isNewer = func->getFileItem(item)->getModificationTime() > otherPanel()->func->getFileItem(otherItem)->getModificationTime();
         }
 
-        switch (compareMode) {
+        switch (compareStrategy) {
         case 0:
             item->setSelected(isNewer || isSingle);
             break;

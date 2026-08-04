@@ -33,12 +33,12 @@ QString PackGUI::destination = nullptr;
 QString PackGUI::type = nullptr;
 QMap<QString, QString> PackGUI::extraProps;
 
-PackGUI::PackGUI(const QString &defaultName, const QString &defaultPath, qsizetype noOfFiles, const QString &filename)
+PackGUI::PackGUI(const QString &defaultName, const QString &defaultPath, qsizetype noOfFiles, const QString &fileName)
     : PackGUIBase(nullptr)
 {
     // first, fill the WhatToPack textfield with information
     if (noOfFiles == 1)
-        TextLabel1->setText(i18n("Pack %1", filename));
+        TextLabel1->setText(i18n("Pack %1", fileName));
     else
         TextLabel1->setText(i18np("Pack %1 file", "Pack %1 files", noOfFiles));
 

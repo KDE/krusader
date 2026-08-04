@@ -276,7 +276,6 @@ int main(int argc, char *argv[])
     // splash screen - if the user wants one
     QSplashScreen *splash = nullptr;
     { // don't remove bracket
-        KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("Look&Feel"));
         if (cfg.readEntry("Show splashscreen", _ShowSplashScreen)) {
             QString splashFilename = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("splash.png"));
             QPixmap pixmap(splashFilename);

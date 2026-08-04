@@ -58,7 +58,7 @@ private:
     QList<FilterBase *> filterList;
     QList<int> pageNumbers;
 
-    QTabWidget *tabWidget;
+    QTabWidget *m_tabWidget;
 };
 
 #endif /* FILTERTABS_H */

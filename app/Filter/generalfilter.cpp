@@ -21,8 +21,8 @@
 #include <QPushButton>
 
 #include <KCharsets>
-#include <KLocalizedString>
 #include <KLazyLocalizedString>
+#include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
 #include <KShell>
@@ -79,7 +79,7 @@ private:
     int mCursor;
 };
 
-GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent, QStringList extraOptions)
+GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent, QStringList extraOptionKeys)
     : QWidget(parent)
     , profileManager(nullptr)
     , fltTabs(tabs)
@@ -88,7 +88,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent, 
     filterLayout->setSpacing(6);
     filterLayout->setContentsMargins(11, 11, 11, 11);
 
-    this->properties = properties;
+    this->m_properties = properties;
 
     // Options for name filtering
 
@@ -364,11 +364,11 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent, 
     }
     filterLayout->addLayout(recurseLayout, 3, 0);
 
-    for (int i = 0; i < extraOptions.length(); i++) {
+    for (int i = 0; i < extraOptionKeys.length(); i++) {
         auto *option = new QCheckBox(this);
-        option->setText(extraOptions[i]);
+        option->setText(extraOptionKeys[i]);
         recurseLayout->addWidget(option);
-        this->extraOptions.insert(extraOptions[i], option);
+        this->extraOptions.insert(extraOptionKeys[i], option);
     }
 
     // Connection table
@@ -419,7 +419,7 @@ GeneralFilter::~GeneralFilter()
     group.writeEntry("ContainsText Completion", list);
     list = containsText->historyItems();
     group.writeEntry("ContainsText History", list);
-    if ((properties & FilterTabs::HasDontSearchIn) && (properties & FilterTabs::HasRecurseOptions)) {
+    if ((m_properties & FilterTabs::HasDontSearchIn) && (m_properties & FilterTabs::HasRecurseOptions)) {
         list = excludeFolderNames->historyItems();
         group.writeEntry("ExcludeFolderNamesHistory", list);
         group.writeEntry("ExcludeFolderNames", excludeFolderNames->currentText());
@@ -445,7 +445,7 @@ void GeneralFilter::queryAccepted()
 {
     searchFor->addToHistory(searchFor->currentText());
     containsText->addToHistory(containsText->currentText());
-    if ((properties & FilterTabs::HasDontSearchIn) && (properties & FilterTabs::HasRecurseOptions)) {
+    if ((m_properties & FilterTabs::HasDontSearchIn) && (m_properties & FilterTabs::HasRecurseOptions)) {
         excludeFolderNames->addToHistory(excludeFolderNames->currentText());
     }
 }
@@ -537,7 +537,7 @@ void GeneralFilter::slotDisable()
     bool state = containsRegExp->isChecked();
     bool global = ofType->currentText() != i18n("Folders");
     bool remoteOnly = false;
-    if (properties & FilterTabs::HasSearchIn) {
+    if (m_properties & FilterTabs::HasSearchIn) {
         const QList<QUrl> urlList = searchIn->urlList();
         remoteOnly = urlList.count() != 0;
         for (const QUrl &url : urlList)
@@ -551,7 +551,7 @@ void GeneralFilter::slotDisable()
     contentEncoding->setEnabled(global);
     containsTextCase->setEnabled(global);
     containsRegExp->setEnabled(global);
-    if (properties & FilterTabs::HasRecurseOptions)
+    if (m_properties & FilterTabs::HasRecurseOptions)
         searchInArchives->setEnabled(global && !remoteOnly);
     containsLabel->setEnabled(global);
     containsText->setEnabled(global);
@@ -594,13 +594,13 @@ bool GeneralFilter::getSettings(FilterSettings &s)
     if (contentEncoding->currentIndex() != 0)
         s.contentEncoding = KCharsets::charsets()->encodingForName(contentEncoding->currentText());
 
-    if (properties & FilterTabs::HasRecurseOptions) {
+    if (m_properties & FilterTabs::HasRecurseOptions) {
         s.recursive = searchInDirs->isChecked();
         s.searchInArchives = searchInArchives->isChecked();
         s.followLinks = followLinks->isChecked();
     }
 
-    if (properties & FilterTabs::HasSearchIn) {
+    if (m_properties & FilterTabs::HasSearchIn) {
         s.searchIn = searchIn->urlList();
         if (s.searchIn.isEmpty()) { // we need a place to search in
             KMessageBox::error(this, i18n("Please specify a location to search in."));
@@ -609,9 +609,9 @@ bool GeneralFilter::getSettings(FilterSettings &s)
         }
     }
 
-    if (properties & FilterTabs::HasDontSearchIn) {
+    if (m_properties & FilterTabs::HasDontSearchIn) {
         s.dontSearchIn = dontSearchIn->urlList();
-        if (properties & FilterTabs::HasRecurseOptions) {
+        if (m_properties & FilterTabs::HasRecurseOptions) {
             if (useExcludeFolderNames->isChecked()) {
                 s.excludeFolderNames = KShell::splitArgs(excludeFolderNames->currentText());
             } else {
@@ -636,19 +636,19 @@ void GeneralFilter::applySettings(const FilterSettings &s)
 
     setComboBoxValue(contentEncoding, KCharsets::charsets()->descriptionForEncoding(s.contentEncoding));
 
-    if (properties & FilterTabs::HasRecurseOptions) {
+    if (m_properties & FilterTabs::HasRecurseOptions) {
         searchInDirs->setChecked(s.recursive);
         searchInArchives->setChecked(s.searchInArchives);
         followLinks->setChecked(s.followLinks);
     }
 
-    if (properties & FilterTabs::HasSearchIn) {
+    if (m_properties & FilterTabs::HasSearchIn) {
         searchIn->lineEdit()->clear();
         searchIn->listBox()->clear();
         searchIn->listBox()->addItems(KrServices::toStringList(s.searchIn));
     }
 
-    if (properties & FilterTabs::HasDontSearchIn) {
+    if (m_properties & FilterTabs::HasDontSearchIn) {
         dontSearchIn->lineEdit()->clear();
         dontSearchIn->listBox()->clear();
         dontSearchIn->listBox()->addItems(KrServices::toStringList(s.dontSearchIn));

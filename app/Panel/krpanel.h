@@ -19,9 +19,9 @@ class KrView;
 class KrPanel
 {
 public:
-    KrPanel(AbstractPanelManager *manager, ListPanel *panel, ListPanelFunc *func)
+    KrPanel(AbstractPanelManager *manager, ListPanel *panel, ListPanelFunc *panelCallback)
         : gui(panel)
-        , func(func)
+        , func(panelCallback)
         , view(nullptr)
         , _manager(manager)
     {

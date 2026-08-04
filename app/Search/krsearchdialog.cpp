@@ -153,8 +153,7 @@ KrSearchDialog::KrSearchDialog(const QString &profile, QWidget *parent)
     searchTextToClipboard->setText(i18n("Query to clipboard"));
     searchTextToClipboard->setToolTip(i18n("Place search text to clipboard when a found file is opened."));
     searchTextToClipboard->setCheckState(static_cast<Qt::CheckState>(group.readEntry("QueryToClipboard", 0)));
-    connect(searchTextToClipboard, &QCheckBox::stateChanged, this, [=](int state) {
-        KConfigGroup group(krConfig, "Search");
+    connect(searchTextToClipboard, &QCheckBox::stateChanged, this, [group](int state) mutable {
         group.writeEntry("QueryToClipboard", state);
     });
     buttonsLayout->addWidget(searchTextToClipboard);

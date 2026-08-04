@@ -33,7 +33,7 @@ private:
 
     ButtonEntry setup(QAction *action, const QString &text);
 
-    KrMainWindow *mainWindow;
+    KrMainWindow *m_mainWindow;
     QList<ButtonEntry> buttonList;
 };
 

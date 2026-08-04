@@ -186,16 +186,16 @@ void UserActionListView::removeSelectedActions()
 
 // UserActionListViewItem
 
-UserActionListViewItem::UserActionListViewItem(QTreeWidget *view, KrAction *action)
-    : QTreeWidgetItem(view)
+UserActionListViewItem::UserActionListViewItem(QTreeWidget *initView, KrAction *initAction)
+    : QTreeWidgetItem(initView)
 {
-    setAction(action);
+    setAction(initAction);
 }
 
-UserActionListViewItem::UserActionListViewItem(QTreeWidgetItem *item, KrAction *action)
-    : QTreeWidgetItem(item)
+UserActionListViewItem::UserActionListViewItem(QTreeWidgetItem *initItem, KrAction *initAction)
+    : QTreeWidgetItem(initItem)
 {
-    setAction(action);
+    setAction(initAction);
 }
 
 UserActionListViewItem::~UserActionListViewItem() = default;

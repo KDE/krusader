@@ -11,9 +11,9 @@
 #include <QDate>
 #include <QFile>
 #include <QRect>
+#include <QStringConverter>
 #include <QTemporaryFile>
 #include <QTextStream>
-#include <QStringConverter>
 // QtGui
 #include <QClipboard>
 #include <QFontDatabase>
@@ -40,10 +40,10 @@
 #include <KActionCollection>
 #include <KCharsets>
 #include <KIO/CopyJob>
+#include <KIO/JobTracker>
 #include <KIO/JobUiDelegate>
 #include <KIO/JobUiDelegateFactory>
 #include <KIO/TransferJob>
-#include <KIO/JobTracker>
 #include <KJobTrackerInterface>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -1848,11 +1848,13 @@ void Lister::updateProgressBar()
 
 void Lister::jumpToPosition()
 {
-    bool ok = true;
-    QString res = QInputDialog::getText(_textArea, i18n("Jump to position"), i18n("Text position:"), QLineEdit::Normal, "0", &ok);
-    if (!ok)
-        return;
-
+    QString res;
+    {
+        bool ok = true;
+        res = QInputDialog::getText(_textArea, i18n("Jump to position"), i18n("Text position:"), QLineEdit::Normal, "0", &ok);
+        if (!ok)
+            return;
+    }
     res = res.trimmed();
     qint64 pos = -1;
     if (res.startsWith(QLatin1String("0x"))) {

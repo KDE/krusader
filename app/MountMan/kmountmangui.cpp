@@ -15,9 +15,9 @@
 
 // QtCore
 #include <QCryptographicHash>
+#include <QEventLoop>
 #include <QFileInfo>
 #include <QList>
-#include <QEventLoop>
 // QtGui
 #include <QBitmap>
 #include <QCursor>
@@ -32,11 +32,11 @@
 #include <QPushButton>
 
 #include <KGuiItem>
+#include <KIO/FileSystemFreeSpaceJob>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KMountPoint>
 #include <KSharedConfig>
-#include <KIO/FileSystemFreeSpaceJob>
 
 #include <Solid/StorageVolume>
 
@@ -217,18 +217,18 @@ void KMountManGUI::getSpaceData()
         if (mountMan->invalidFilesystem(it->mountType())) {
             continue;
         }
-        fsData data;
+        fsData mountInfo;
 
-        data.setMntPoint(it->mountPoint());
-        data.setMounted(true);
-        data.setName(it->mountedFrom());
-        data.setType(it->mountType());
+        mountInfo.setMntPoint(it->mountPoint());
+        mountInfo.setMounted(true);
+        mountInfo.setName(it->mountedFrom());
+        mountInfo.setType(it->mountType());
         KIO::FileSystemFreeSpaceJob *job = KIO::fileSystemFreeSpace(QUrl::fromLocalFile(it->mountPoint()));
         Q_ASSERT(job != nullptr);
 
         signalsToWaitFor->operator++();
-        connect(job, &KIO::FileSystemFreeSpaceJob::finished, this, [this, data, eventLoop, signalsToWaitFor](KJob *job) {
-            this->freeSpaceResult(job, data);
+        connect(job, &KIO::FileSystemFreeSpaceJob::finished, this, [this, mountInfo, eventLoop, signalsToWaitFor](KJob *finishedJob) {
+            this->freeSpaceResult(finishedJob, mountInfo);
 
             if (!signalsToWaitFor->deref()) {
                 eventLoop->quit(); // all done
@@ -248,21 +248,21 @@ void KMountManGUI::getSpaceData()
     updateList();
 }
 
-void KMountManGUI::freeSpaceResult(KJob *job, fsData data)
+void KMountManGUI::freeSpaceResult(KJob *job, fsData fsInfo)
 {
     if (!job->error()) {
         KIO::FileSystemFreeSpaceJob *freeSpaceJob = qobject_cast<KIO::FileSystemFreeSpaceJob *>(job);
         Q_ASSERT(freeSpaceJob != nullptr);
         // Set the missing information, with the assumption the caller already set the rest
-        data.setTotalBlks(freeSpaceJob->size() / 1024);
-        data.setFreeBlks(freeSpaceJob->availableSize() / 1024);
+        fsInfo.setTotalBlks(freeSpaceJob->size() / 1024);
+        fsInfo.setFreeBlks(freeSpaceJob->availableSize() / 1024);
 
-        fileSystems.append(data);
+        fileSystems.append(fsInfo);
     } else {
         // How can we signal the error
-        data.setTotalBlks(0);
-        data.setFreeBlks(0);
-        fileSystems.append(data);
+        fsInfo.setTotalBlks(0);
+        fsInfo.setFreeBlks(0);
+        fileSystems.append(fsInfo);
     }
 }
 
@@ -274,16 +274,16 @@ void KMountManGUI::addNonMounted()
         if (KMountMan::findInListByMntPoint(mounted, it->mountPoint())) {
             continue;
         } else {
-            fsData data;
-            data.setMntPoint(it->mountPoint());
-            data.setMounted(false);
-            data.setType(it->mountType());
-            data.setName(it->mountedFrom());
+            fsData mountInfo;
+            mountInfo.setMntPoint(it->mountPoint());
+            mountInfo.setMounted(false);
+            mountInfo.setType(it->mountType());
+            mountInfo.setName(it->mountedFrom());
 
-            if (mountMan->invalidFilesystem(data.type()))
+            if (mountMan->invalidFilesystem(mountInfo.type()))
                 continue;
 
-            fileSystems.append(data);
+            fileSystems.append(mountInfo);
         }
     }
 }

@@ -445,13 +445,13 @@ void AdvancedFilter::changeDate(KLineEdit *p)
 
 void AdvancedFilter::fillList(KComboBox *list, const QString &filename)
 {
-    QFile data(filename);
-    if (!data.open(QIODevice::ReadOnly)) {
+    QFile inputFile(filename);
+    if (!inputFile.open(QIODevice::ReadOnly)) {
         qWarning() << "Search: Unable to read " << filename << " !!!";
         return;
     }
     // and read it into the temporary array
-    QTextStream t(&data);
+    QTextStream t(&inputFile);
     while (!t.atEnd()) {
         QString s = t.readLine();
         QString name = s.left(s.indexOf(':'));

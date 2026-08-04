@@ -94,7 +94,7 @@ public:
 
     ProfileManager *profileManager;
 
-    int properties;
+    int m_properties;
 
     FilterTabs *fltTabs;
 

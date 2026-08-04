@@ -33,9 +33,9 @@
 #include <utility>
 
 struct SplitterGUI::PredefinedDevice {
-    PredefinedDevice(QString name, KIO::filesize_t capacity)
-        : name(std::move(name))
-        , capacity(capacity)
+    PredefinedDevice(QString initName, KIO::filesize_t initCapacity)
+        : name(std::move(initName))
+        , capacity(initCapacity)
     {
     }
     PredefinedDevice(const PredefinedDevice &other)

@@ -218,7 +218,7 @@ void KrBookmarkHandler::exportToFile()
     QFile file(filename);
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream stream(&file);
-         // By default, UTF-8 is used for reading and writing in QTextStream
+        // By default, UTF-8 is used for reading and writing in QTextStream
         stream << doc.toString();
         file.close();
     } else {
@@ -447,18 +447,17 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
             // add the top 15 urls
 #define MAX 15
             QList<QUrl> list = _mainWindow->popularUrls()->getMostPopularUrls(MAX);
-            QList<QUrl>::Iterator it;
-            for (it = list.begin(); it != list.end(); ++it) {
+            for (const QUrl &url : list) {
                 QString name;
-                if ((*it).isLocalFile())
-                    name = (*it).path();
+                if (url.isLocalFile())
+                    name = url.path();
                 else
-                    name = (*it).toDisplayString();
-                // note: these bookmark are put into the private collection
+                    name = url.toDisplayString();
+                // NOTE: these bookmark are put into the private collection
                 // as to not spam the general collection
                 KrBookmark *bm = KrBookmark::getExistingBookmark(name, _privateCollection);
                 if (!bm)
-                    bm = new KrBookmark(name, *it, _privateCollection);
+                    bm = new KrBookmark(name, url, _privateCollection);
                 newMenu->addAction(bm);
                 CONNECT_BM(bm);
             }
@@ -714,8 +713,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         switch (dynamic_cast<QMouseEvent *>(ev)->button()) {
         case Qt::RightButton:
             _middleClick = false;
-            if (obj->inherits("QMenu")) {
-                auto *menu = dynamic_cast<QMenu *>(obj);
+            if (menu != nullptr) {
                 QAction *act = menu->actionAt(dynamic_cast<QMouseEvent *>(ev)->pos());
 
                 if (obj == _mainBookmarkPopup && _specialBookmarks.contains(act)) {
@@ -728,7 +726,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
                     rightClicked(menu, bm);
                     return true;
                 } else if (act && act->data().canConvert<KrBookmark *>()) {
-                    auto *bm = act->data().value<KrBookmark *>();
+                    bm = act->data().value<KrBookmark *>();
                     rightClicked(menu, bm);
                 }
             }

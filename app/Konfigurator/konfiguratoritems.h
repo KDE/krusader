@@ -37,7 +37,7 @@ class KonfiguratorExtension : public QObject
     Q_OBJECT
 
 public:
-    KonfiguratorExtension(QObject *obj, QString cfgGroup, QString cfgName, bool restartNeeded = false, int page = FIRST_PAGE);
+    KonfiguratorExtension(QObject *obj, QString cfgGroup, QString cfgName, bool isRestartNeeded = false, int page = FIRST_PAGE);
 
     virtual void loadInitialValue();
     virtual bool apply();
@@ -109,7 +109,7 @@ class KonfiguratorCheckBox : public QCheckBox
 public:
     KonfiguratorCheckBox(QString configGroup,
                          QString name,
-                         bool defaultValue,
+                         bool initialDefaultValue,
                          const QString &text,
                          QWidget *parent = nullptr,
                          bool restart = false,
@@ -150,11 +150,11 @@ class KonfiguratorSpinBox : public QSpinBox
 public:
     KonfiguratorSpinBox(QString configGroup,
                         QString configName,
-                        int defaultValue,
+                        int initialDefaultValue,
                         int min,
                         int max,
                         QWidget *parent = nullptr,
-                        bool restartNeeded = false,
+                        bool isRestartNeeded = false,
                         int page = FIRST_PAGE);
     ~KonfiguratorSpinBox() override;
 
@@ -204,7 +204,12 @@ class KonfiguratorRadioButtons : public QWidget
     Q_OBJECT
 
 public:
-    KonfiguratorRadioButtons(QString configGroup, QString name, QString defaultValue, QWidget *parent = nullptr, bool restart = false, int page = FIRST_PAGE);
+    KonfiguratorRadioButtons(QString configGroup,
+                             QString name,
+                             QString initialDefaultValue,
+                             QWidget *parent = nullptr,
+                             bool restart = false,
+                             int page = FIRST_PAGE);
     ~KonfiguratorRadioButtons() override;
 
     inline KonfiguratorExtension *extension()
@@ -247,7 +252,7 @@ class KonfiguratorEditBox : public QLineEdit
     Q_OBJECT
 
 public:
-    KonfiguratorEditBox(QString configGroup, QString name, QString defaultValue, QWidget *parent = nullptr, bool restart = false, int page = FIRST_PAGE);
+    KonfiguratorEditBox(QString configGroup, QString name, QString initialDefaultValue, QWidget *parent = nullptr, bool restart = false, int page = FIRST_PAGE);
     ~KonfiguratorEditBox() override;
 
     inline KonfiguratorExtension *extension()
@@ -275,11 +280,11 @@ class KonfiguratorURLRequester : public KUrlRequester
 public:
     KonfiguratorURLRequester(QString configGroup,
                              QString name,
-                             QString defaultValue,
+                             QString initialDefaultValue,
                              QWidget *parent = nullptr,
                              bool restart = false,
                              int page = FIRST_PAGE,
-                             bool expansion = true);
+                             bool isExpansion = true);
     ~KonfiguratorURLRequester() override;
 
     inline KonfiguratorExtension *extension()
@@ -308,7 +313,7 @@ class KonfiguratorFontChooser : public QWidget
 public:
     KonfiguratorFontChooser(QString configGroup,
                             QString name,
-                            const QFont &defaultValue,
+                            const QFont &initialDefaultValue,
                             QWidget *parent = nullptr,
                             bool restart = false,
                             int page = FIRST_PAGE);
@@ -363,7 +368,7 @@ class KonfiguratorComboBox : public QComboBox
 public:
     KonfiguratorComboBox(QString configGroup,
                          QString name,
-                         QString defaultValue,
+                         QString initialDefaultValue,
                          KONFIGURATOR_NAME_VALUE_PAIR *listIn,
                          int listInLen,
                          QWidget *parent = nullptr,
@@ -407,7 +412,7 @@ class KonfiguratorColorChooser : public QComboBox
 public:
     KonfiguratorColorChooser(QString configGroup,
                              QString name,
-                             const QColor &defaultValue,
+                             const QColor &initialDefaultValue,
                              QWidget *parent = nullptr,
                              bool restart = false,
                              ADDITIONAL_COLOR *addColPtr = nullptr,
@@ -458,7 +463,12 @@ class KonfiguratorListBox : public KrListWidget
     Q_OBJECT
 
 public:
-    KonfiguratorListBox(QString configGroup, QString name, QStringList defaultValue, QWidget *parent = nullptr, bool restart = false, int page = FIRST_PAGE);
+    KonfiguratorListBox(QString configGroup,
+                        QString name,
+                        QStringList initialDefaultValue,
+                        QWidget *parent = nullptr,
+                        bool restart = false,
+                        int page = FIRST_PAGE);
     ~KonfiguratorListBox() override;
 
     inline KonfiguratorExtension *extension()

@@ -18,8 +18,8 @@
 #include <KFileItemListProperties>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KPluginMetaData>
 #include <KPluginFactory>
+#include <KPluginMetaData>
 #include <KProcess>
 
 #include "../Archive/krarchandler.h"
@@ -87,7 +87,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     const bool inTrash = protocols.contains("trash");
     const bool trashOnly = inTrash && protocols.count() == 1;
 
-    FileItem *file = files.first();
+    FileItem *currentFile = files.first();
 
     // ------------ the OPEN/BROWSE option - open preferred service
 
@@ -98,7 +98,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         if (multipleSelections) {
             openAction->setText(i18n("Open/Run Files"));
         } else {
-            openAction->setText(file->isExecutable() && !file->isDir() ? i18n("Run") : i18n("Open"));
+            openAction->setText(currentFile->isExecutable() && !currentFile->isDir() ? i18n("Run") : i18n("Open"));
             const KrViewItemList viewItems = panel->view->getSelectedKrViewItems();
             openAction->setIcon(viewItems.first()->icon());
         }
@@ -114,11 +114,11 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
 
     // browse archive - if one file is selected and the file can be browsed as archive...
     if (!multipleSelections
-        && !panel->func->browsableArchivePath(file->getName()).isEmpty()
+        && !panel->func->browsableArchivePath(currentFile->getName()).isEmpty()
         // ...but user disabled archive browsing...
         && (!KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories)
             // ...or the file is not a standard archive (e.g. odt, docx, etc.)...
-            || !KrArcHandler::arcSupported(file->getMime()))) {
+            || !KrArcHandler::arcSupported(currentFile->getMime()))) {
         // ...it will not be browsed as a directory by default, but add an option for it
         QAction *browseAct = addAction(i18n("Browse Archive"));
         browseAct->setData(QVariant(static_cast<int>(BROWSE_ID)));
@@ -153,7 +153,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
             }
         }
         openWithMenu->addSeparator();
-        if (!multipleSelections && file->isDir()) {
+        if (!multipleSelections && currentFile->isDir()) {
             openWithMenu->addAction(Icon("utilities-terminal"), i18n("Terminal"))->setData(QVariant(static_cast<int>(OPEN_TERM_ID)));
         }
         openWithMenu->addAction(i18n("Other..."))->setData(QVariant(static_cast<int>(CHOOSE_ID)));
@@ -165,7 +165,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     addSeparator();
 
     // --------------- user actions
-    QAction *userAction = new UserActionPopupMenu(file->getUrl(), this);
+    QAction *userAction = new UserActionPopupMenu(currentFile->getUrl(), this);
     userAction->setText(i18n("User Actions"));
     addAction(userAction);
 
@@ -214,7 +214,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
         auto *linkMenu = new QMenu(this);
         linkMenu->addAction(i18n("New Symlink..."))->setData(QVariant(static_cast<int>(NEW_SYMLINK_ID)));
         linkMenu->addAction(i18n("New Hardlink..."))->setData(QVariant(static_cast<int>(NEW_LINK_ID)));
-        if (file->isSymLink()) {
+        if (currentFile->isSymLink()) {
             linkMenu->addAction(i18n("Redirect Link..."))->setData(QVariant(static_cast<int>(REDIRECT_LINK_ID)));
         }
         QAction *linkAction = addMenu(linkMenu);
@@ -224,12 +224,12 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     addSeparator();
 
     // ---------- calculate space
-    if (panel->func->files()->isLocal() && (file->isDir() || multipleSelections))
+    if (panel->func->files()->isLocal() && (currentFile->isDir() || multipleSelections))
         addAction(panel->gui->actions()->actCalculate);
 
     // ---------- mount/umount/eject
-    if (panel->func->files()->isLocal() && file->isDir() && !multipleSelections) {
-        const QString selectedDirectoryPath = file->getUrl().path();
+    if (panel->func->files()->isLocal() && currentFile->isDir() && !multipleSelections) {
+        const QString selectedDirectoryPath = currentFile->getUrl().path();
         if (krMtMan.getStatus(selectedDirectoryPath) == KMountMan::MOUNTED)
             addAction(i18n("Unmount"))->setData(QVariant(static_cast<int>(UNMOUNT_ID)));
         else if (krMtMan.getStatus(selectedDirectoryPath) == KMountMan::NOT_MOUNTED)
@@ -239,7 +239,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     }
 
     // --------- send by mail
-    if (KrServices::supportedTools().contains("MAIL") && !file->isDir()) {
+    if (KrServices::supportedTools().contains("MAIL") && !currentFile->isDir()) {
         addAction(Icon("mail-send"), i18n("Send by Email"))->setData(QVariant(static_cast<int>(SEND_BY_EMAIL_ID)));
     }
 

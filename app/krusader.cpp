@@ -63,8 +63,8 @@
 #include "GUI/krusaderstatus.h"
 #include "GUI/terminaldock.h"
 #include "JobMan/jobman.h"
-#include "KrViewer/krviewer.h"
 #include "Konfigurator/kgprotocols.h"
+#include "KrViewer/krviewer.h"
 #include "MountMan/kmountman.h"
 #include "Panel/PanelView/krview.h"
 #include "Panel/PanelView/krviewfactory.h"
@@ -589,18 +589,18 @@ void Krusader::doOpenUrl()
         ACTIVE_MNG->slotNewTab(url);
 }
 
-void Krusader::slotGotNewStartup(const KStartupInfoId &id, const KStartupInfoData &data)
+void Krusader::slotGotNewStartup(const KStartupInfoId &id, const KStartupInfoData &infoData)
 {
     Q_UNUSED(id)
-    Q_UNUSED(data)
+    Q_UNUSED(infoData)
     // This is here to show busy mouse cursor when _other_ applications are launched, not for krusader itself.
     qApp->setOverrideCursor(Qt::BusyCursor);
 }
 
-void Krusader::slotGotRemoveStartup(const KStartupInfoId &id, const KStartupInfoData &data)
+void Krusader::slotGotRemoveStartup(const KStartupInfoId &id, const KStartupInfoData &infoData)
 {
     Q_UNUSED(id)
-    Q_UNUSED(data)
+    Q_UNUSED(infoData)
     qApp->restoreOverrideCursor();
 }
 

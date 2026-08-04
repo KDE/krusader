@@ -391,7 +391,7 @@ bool CreateWizard::savePerFile()
     return true;
 }
 
-bool CreateWizard::saveChecksumFile(const QStringList &data, const QString &filename)
+bool CreateWizard::saveChecksumFile(const QStringList &checksumLines, const QString &filename)
 {
     QString filePath = filename.isEmpty() ? m_suggestedFilePath : filename;
     if (filename.isEmpty() || QFile::exists(filePath)) {
@@ -403,7 +403,7 @@ bool CreateWizard::saveChecksumFile(const QStringList &data, const QString &file
     QFile file(filePath);
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream stream(&file);
-        for (const QString &line : data)
+        for (const QString &line : checksumLines)
             stream << line << "\n";
         file.close();
     }

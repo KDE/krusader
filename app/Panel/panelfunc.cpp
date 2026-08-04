@@ -22,8 +22,8 @@
 
 #include <KDesktopFile>
 #include <KIO/DesktopExecParser>
-#include <KIO/JobUiDelegate>
 #include <KIO/JobTracker>
+#include <KIO/JobUiDelegate>
 #include <KJobTrackerInterface>
 #include <KLocalizedString>
 #include <KProcess>
@@ -32,8 +32,8 @@
 #include <KUrlMimeData>
 
 #include <KIO/CommandLauncherJob>
-#include <KIO/OpenUrlJob>
 #include <KIO/JobUiDelegateFactory>
+#include <KIO/OpenUrlJob>
 #include <KIO/StatJob>
 
 #include <KOpenWithDialog>
@@ -75,7 +75,6 @@
 #include "listpanel.h"
 #include "listpanelactions.h"
 #include "panelfunc.h"
-
 
 QPointer<ListPanelFunc> ListPanelFunc::copyToClipboardOrigin;
 
@@ -539,13 +538,13 @@ void ListPanelFunc::slotStatEdit(KJob *job)
             tempFile->setAutoRemove(false); // done below
             tempFile->open(); // create file
 
-            KIO::CopyJob *job = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), url);
-            job->setUiDelegate(nullptr);
-            job->setDefaultPermissions(true);
-            connect(job, &KIO::CopyJob::result, this, [=](KJob *job) {
-                slotFileCreated(job, url);
+            KIO::CopyJob *copyJob = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), url);
+            copyJob->setUiDelegate(nullptr);
+            copyJob->setDefaultPermissions(true);
+            connect(copyJob, &KIO::CopyJob::result, this, [=](KJob *finishedJob) {
+                slotFileCreated(finishedJob, url);
             });
-            connect(job, &KIO::CopyJob::result, tempFile, &QTemporaryFile::deleteLater);
+            connect(copyJob, &KIO::CopyJob::result, tempFile, &QTemporaryFile::deleteLater);
             return;
         } else {
             KMessageBox::error(nullptr, job->errorString());

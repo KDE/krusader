@@ -23,9 +23,9 @@ class ListPanel;
 class KrLayoutFactory
 {
 public:
-    KrLayoutFactory(ListPanel *panel, QHash<QString, QWidget *> &widgets)
-        : panel(panel)
-        , widgets(widgets)
+    KrLayoutFactory(ListPanel *listPanel, QHash<QString, QWidget *> &widgetsMap)
+        : panel(listPanel)
+        , widgets(widgetsMap)
     {
     }
     // creates the layout and adds the widgets to it

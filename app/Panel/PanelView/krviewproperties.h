@@ -53,9 +53,26 @@ public:
         Accessed = 0xa,
         MAX_COLUMNS = 0x0b
     };
-    enum SortOptions { Descending = 0x200, DirsFirst = 0x400, IgnoreCase = 0x800, AlwaysSortDirsByName = 0x1000, LocaleAwareSort = 0x2000 };
-    enum SortMethod { Alphabetical = 0x1, AlphabeticalNumbers = 0x2, CharacterCode = 0x4, CharacterCodeNumbers = 0x8, Krusader = 0x10 };
-    enum FilterSpec { Dirs = 0x1, Files = 0x2, All = 0x3, Custom = 0x4 };
+    enum SortOptions {
+        Descending = 0x200,
+        DirsFirst = 0x400,
+        IgnoreCase = 0x800,
+        AlwaysSortDirsByName = 0x1000,
+        LocaleAwareSort = 0x2000
+    };
+    enum SortMethod {
+        Alphabetical = 0x1,
+        AlphabeticalNumbers = 0x2,
+        CharacterCode = 0x4,
+        CharacterCodeNumbers = 0x8,
+        Krusader = 0x10
+    };
+    enum FilterSpec {
+        Dirs = 0x1,
+        Files = 0x2,
+        All = 0x3,
+        Custom = 0x4
+    };
 
     KrViewProperties(bool displayIcons,
                      bool numericPermissions,

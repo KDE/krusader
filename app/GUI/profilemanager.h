@@ -57,7 +57,7 @@ signals:
     void loadFromProfile(QString profileName);
 
 private:
-    QString profileType;
+    QString m_profileType;
     QStringList profileList;
 };
 

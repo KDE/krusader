@@ -40,7 +40,7 @@ public:
 
     inline int start(QWidget *parentWidget)
     {
-        this->parentWidget = parentWidget;
+        this->m_parentWidget = parentWidget;
         start();
         return state();
     }
@@ -72,7 +72,7 @@ protected:
     }
     int m_state;
     QString m_statusMessage;
-    QWidget *parentWidget;
+    QWidget *m_parentWidget;
 };
 
 class CompareTask : public SynchronizerTask

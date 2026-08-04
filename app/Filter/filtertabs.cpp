@@ -22,7 +22,7 @@
 FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget, QObject *parent, QStringList extraOptions)
     : QObject(parent)
 {
-    this->tabWidget = tabWidget;
+    this->m_tabWidget = tabWidget;
 
     GeneralFilter *generalFilter = new GeneralFilter(this, properties, tabWidget, std::move(extraOptions));
     tabWidget->addTab(generalFilter, i18n("&General"));
@@ -58,7 +58,7 @@ FilterSettings FilterTabs::getSettings()
 
     for (int i = 0; i != filterList.count(); i++) {
         if (!filterList[i]->getSettings(s)) {
-            tabWidget->setCurrentIndex(pageNumbers[i]);
+            m_tabWidget->setCurrentIndex(pageNumbers[i]);
             return FilterSettings();
         }
     }
@@ -98,7 +98,7 @@ void FilterTabs::loadFromProfile(const QString &name)
     FilterSettings s;
     s.load(KConfigGroup(krConfig, name));
     if (!s.isValid())
-        KMessageBox::error(tabWidget, i18n("Could not load profile."));
+        KMessageBox::error(m_tabWidget, i18n("Could not load profile."));
     else
         applySettings(s);
 }

@@ -100,48 +100,46 @@ int compareNumbers(QString &aS1, int &aPos1, QString &aS2, int &aPos2)
     return res;
 }
 
-bool compareTextsAlphabetical(QString &aS1, QString &aS2, const KrViewProperties *_viewProperties, bool aNumbers)
+bool compareTextsAlphabetical(QString &leftString, QString &rightString, const KrViewProperties *_viewProperties, bool aNumbers)
 {
-    int lPositionS1 = 0;
-    int lPositionS2 = 0;
+    int leftPos = 0;
+    int rightPos = 0;
     // sometimes, localeAwareCompare is not case sensitive. in that case, we need to fallback to a simple string compare (KDE bug #40131)
     bool lUseLocaleAware = ((_viewProperties->sortOptions & KrViewProperties::IgnoreCase) || _viewProperties->localeAwareCompareIsCaseSensitive)
         && (_viewProperties->sortOptions & KrViewProperties::LocaleAwareSort);
-    int j = 0;
-    QChar lchar1;
-    QChar lchar2;
     while (true) {
-        lchar1 = aS1[lPositionS1];
-        lchar2 = aS2[lPositionS2];
+        const QChar leftChar = leftString[leftPos];
+        const QChar rightChar = rightString[rightPos];
         // detect numbers
-        if (aNumbers && lchar1.isDigit() && lchar2.isDigit()) {
-            int j = compareNumbers(aS1, lPositionS1, aS2, lPositionS2);
-            if (j != 0)
-                return j < 0;
+        if (aNumbers && leftChar.isDigit() && rightChar.isDigit()) {
+            int result = compareNumbers(leftString, leftPos, rightString, rightPos);
+            if (result != 0)
+                return result < 0;
         } else if (lUseLocaleAware
-                   && ((lchar1 >= QChar(128) && ((lchar2 >= 'A' && lchar2 <= 'Z') || (lchar2 >= 'a' && lchar2 <= 'z') || lchar2 >= QChar(128)))
-                       || (lchar2 >= QChar(128) && ((lchar1 >= 'A' && lchar1 <= 'Z') || (lchar1 >= 'a' && lchar1 <= 'z') || lchar1 >= QChar(128))))) {
+                   && ((leftChar >= QChar(128) && ((rightChar >= 'A' && rightChar <= 'Z') || (rightChar >= 'a' && rightChar <= 'z') || rightChar >= QChar(128)))
+                       || (rightChar >= QChar(128)
+                           && ((leftChar >= 'A' && leftChar <= 'Z') || (leftChar >= 'a' && leftChar <= 'z') || leftChar >= QChar(128))))) {
             // use localeAwareCompare when a unicode character is encountered
-            j = QString::localeAwareCompare(lchar1, lchar2);
-            if (j != 0)
-                return j < 0;
-            lPositionS1++;
-            lPositionS2++;
+            int result = QString::localeAwareCompare(leftChar, rightChar);
+            if (result != 0)
+                return result < 0;
+            leftPos++;
+            rightPos++;
         } else {
             // if characters are latin or localeAwareCompare is not case sensitive then use simple characters compare is enough
-            if (lchar1 < lchar2)
+            if (leftChar < rightChar)
                 return true;
-            if (lchar1 > lchar2)
+            if (leftChar > rightChar)
                 return false;
-            lPositionS1++;
-            lPositionS2++;
+            leftPos++;
+            rightPos++;
         }
         // at this point strings are equal, check if ends of strings are reached
-        if (lPositionS1 == aS1.length() && lPositionS2 == aS2.length())
+        if (leftPos == leftString.length() && rightPos == rightString.length())
             return false;
-        if (lPositionS1 == aS1.length() && lPositionS2 < aS2.length())
+        if (leftPos == leftString.length() && rightPos < rightString.length())
             return true;
-        if (lPositionS1 < aS1.length() && lPositionS2 == aS2.length())
+        if (leftPos < leftString.length() && rightPos == rightString.length())
             return false;
     }
 }
@@ -176,49 +174,49 @@ bool compareTextsCharacterCode(QString &aS1, QString &aS2, const KrViewPropertie
     }
 }
 
-bool compareTextsKrusader(const QString &aS1, const QString &aS2, const KrViewProperties *_viewProperties)
+bool compareTextsKrusader(const QString &leftString, const QString &rightString, const KrViewProperties *_viewProperties)
 {
     // sometimes, localeAwareCompare is not case sensitive. in that case, we need to fallback to a simple string compare (KDE bug #40131)
     if (((_viewProperties->sortOptions & KrViewProperties::IgnoreCase) || _viewProperties->localeAwareCompareIsCaseSensitive)
         && (_viewProperties->sortOptions & KrViewProperties::LocaleAwareSort))
-        return QString::localeAwareCompare(aS1, aS2) < 0;
+        return QString::localeAwareCompare(leftString, rightString) < 0;
     else
         // if localeAwareCompare is not case sensitive then use simple compare is enough
-        return QString::compare(aS1, aS2) < 0;
+        return QString::compare(leftString, rightString) < 0;
 }
 
-bool compareTexts(QString aS1, QString aS2, const KrViewProperties *_viewProperties, bool asc, bool isName)
+bool compareTexts(QString leftString, QString rightString, const KrViewProperties *_viewProperties, bool asc, bool isName)
 {
     // check empty strings
-    if (aS1.length() == 0 && aS2.length() == 0) {
+    if (leftString.isEmpty() && rightString.isEmpty()) {
         return false;
-    } else if (aS1.length() == 0) {
+    } else if (leftString.isEmpty()) {
         return true;
-    } else if (aS2.length() == 0) {
+    } else if (rightString.isEmpty()) {
         return false;
     }
 
     if (isName) {
-        if (aS1 == "..") {
+        if (leftString == "..") {
             return !asc;
         } else {
-            if (aS2 == "..")
+            if (rightString == "..")
                 return asc;
         }
     }
 
     switch (_viewProperties->sortMethod) {
     case KrViewProperties::Alphabetical:
-        return compareTextsAlphabetical(aS1, aS2, _viewProperties, false);
+        return compareTextsAlphabetical(leftString, rightString, _viewProperties, false);
     case KrViewProperties::AlphabeticalNumbers:
-        return compareTextsAlphabetical(aS1, aS2, _viewProperties, true);
+        return compareTextsAlphabetical(leftString, rightString, _viewProperties, true);
     case KrViewProperties::CharacterCode:
-        return compareTextsCharacterCode(aS1, aS2, _viewProperties, false);
+        return compareTextsCharacterCode(leftString, rightString, _viewProperties, false);
     case KrViewProperties::CharacterCodeNumbers:
-        return compareTextsCharacterCode(aS1, aS2, _viewProperties, true);
+        return compareTextsCharacterCode(leftString, rightString, _viewProperties, true);
     case KrViewProperties::Krusader:
     default:
-        return compareTextsKrusader(aS1, aS2, _viewProperties);
+        return compareTextsKrusader(leftString, rightString, _viewProperties);
     }
 }
 

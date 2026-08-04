@@ -19,11 +19,11 @@
 #include <KSharedConfig>
 #include <KUrlMimeData>
 
-ListPanelFrame::ListPanelFrame(QWidget *parent, const QString &color)
+ListPanelFrame::ListPanelFrame(QWidget *parent, const QString &colorName)
     : QFrame(parent)
-    , color(color)
+    , color(colorName)
 {
-    if (!color.isEmpty()) {
+    if (!colorName.isEmpty()) {
         colorsChanged();
         refreshColors(false);
         setAutoFillBackground(true);
