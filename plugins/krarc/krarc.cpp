@@ -948,8 +948,6 @@ KIO::WorkerResult kio_krarcProtocol::setArcFile(const QUrl &url)
     if (m_arcType.isEmpty()) {
         m_arcType = m_arcFile->mimetype();
         m_arcType = getShortTypeFromMime(m_arcType);
-        if (m_arcType == "jar")
-            m_arcType = "zip";
     }
 
     return initArcParameters();
