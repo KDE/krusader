@@ -1563,8 +1563,26 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
     putCmd = QStringList();
     renCmd = QStringList();
 
+    // The name of the file archiver that will be displayed
+    // in certain error messages
+    QString nameInErrorMsgs = QStringLiteral("(unknown)"); // A temporary value is set
+
+    // Constructs a failure result after a command could not be executed
+    auto failureNoExec = [&]() {
+        if (cmd.isEmpty()) {
+            KRDEBUG("Failed to find the \"" << nameInErrorMsgs << "\" executable.");
+        } else {
+            KRDEBUG("Failed to find this command: \"" << cmd << "\".");
+        }
+        return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS,
+                                  i18n("\"%1\".\nMake sure that the \"%2\" binary is installed properly on your system",
+                                       cmd.isEmpty() ? nameInErrorMsgs : cmd,
+                                       nameInErrorMsgs));
+    };
+
     if (m_arcType == "zip") {
         m_noencoding = true;
+        nameInErrorMsgs = QStringLiteral("unzip");
         cmd = fullPathName("unzip");
         listCmd << fullPathName("unzip") << "-ZTs-z-t-h";
         getCmd << fullPathName("unzip") << "-p";
@@ -1591,6 +1609,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
     } else if (m_arcType == "rar") {
         m_noencoding = true;
         if (QStandardPaths::findExecutable(QStringLiteral("rar")).isEmpty()) {
+            nameInErrorMsgs = QStringLiteral("unrar");
             cmd = fullPathName("unrar");
             listCmd << fullPathName("unrar") << "-c-"
                     << "-v"
@@ -1605,6 +1624,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
             delCmd = QStringList();
             putCmd = QStringList();
         } else {
+            nameInErrorMsgs = QStringLiteral("rar");
             cmd = fullPathName("rar");
             listCmd << fullPathName("rar") << "-c-"
                     << "-v"
@@ -1630,6 +1650,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
             }
         }
     } else if (m_arcType == "rpm") {
+        nameInErrorMsgs = QStringLiteral("rpm");
         cmd = fullPathName("rpm");
         listCmd << fullPathName("rpm") << "--dump"
                 << "-lpq";
@@ -1640,6 +1661,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
         putCmd = QStringList();
         copyCmd = QStringList();
     } else if (m_arcType == "gzip") {
+        nameInErrorMsgs = QStringLiteral("gzip");
         cmd = fullPathName("gzip");
         listCmd << fullPathName("gzip") << "-l";
         getCmd << fullPathName("gzip") << "-dc";
@@ -1647,6 +1669,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
         delCmd = QStringList();
         putCmd = QStringList();
     } else if (m_arcType == "bzip2") {
+        nameInErrorMsgs = QStringLiteral("bzip2");
         cmd = fullPathName("bzip2");
         listCmd << fullPathName("bzip2");
         getCmd << fullPathName("bzip2") << "-dc";
@@ -1654,6 +1677,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
         delCmd = QStringList();
         putCmd = QStringList();
     } else if (m_arcType == "lzma") {
+        nameInErrorMsgs = QStringLiteral("lzma");
         cmd = fullPathName("lzma");
         listCmd << fullPathName("lzma");
         getCmd << fullPathName("lzma") << "-dc";
@@ -1661,6 +1685,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
         delCmd = QStringList();
         putCmd = QStringList();
     } else if (m_arcType == "xz") {
+        nameInErrorMsgs = QStringLiteral("xz");
         cmd = fullPathName("xz");
         listCmd << fullPathName("xz");
         getCmd << fullPathName("xz") << "-dc";
@@ -1668,6 +1693,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
         delCmd = QStringList();
         putCmd = QStringList();
     } else if (m_arcType == "arj") {
+        nameInErrorMsgs = QStringLiteral("arj");
         cmd = fullPathName("arj");
         listCmd << fullPathName("arj") << "v"
                 << "-y"
@@ -1687,6 +1713,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
             putCmd << QString("-g%1").arg(m_password);
         }
     } else if (m_arcType == "lha") {
+        nameInErrorMsgs = QStringLiteral("lha");
         cmd = fullPathName("lha");
         listCmd << fullPathName("lha") << "l";
         getCmd << fullPathName("lha") << "pq";
@@ -1694,6 +1721,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
         delCmd << fullPathName("lha") << "d";
         putCmd << fullPathName("lha") << "a";
     } else if (m_arcType == "ace") {
+        nameInErrorMsgs = QStringLiteral("unace");
         cmd = fullPathName("unace");
         listCmd << fullPathName("unace") << "v";
         getCmd << fullPathName("unace") << "e"
@@ -1707,6 +1735,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
             copyCmd << QString("-p%1").arg(m_password);
         }
     } else if (m_arcType == "deb") {
+        nameInErrorMsgs = QStringLiteral("dpkg");
         cmd = fullPathName("dpkg");
         listCmd << fullPathName("dpkg") << "-c";
         getCmd << fullPathName("tar") << "xvf";
@@ -1715,6 +1744,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
         putCmd = QStringList();
     } else if (m_arcType == "7z") {
         m_noencoding = true;
+        nameInErrorMsgs = QStringLiteral("7z");
         cmd = find7zExecutable();
         if (cmd.isEmpty()) {
             return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, {});
@@ -1752,8 +1782,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
 
 #endif
     if (QStandardPaths::findExecutable(cmd).isEmpty()) {
-        KRDEBUG("Failed to find cmd: " << cmd);
-        return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, cmd + i18n("\nMake sure that the %1 binary is installed properly on your system.", cmd));
+        return failureNoExec();
     }
     return WorkerResult::pass();
 }
