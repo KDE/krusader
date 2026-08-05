@@ -510,7 +510,10 @@ void ListPanelFunc::askEditFile()
         } else {
             // simply create a local file
             // also because KIO::CopyJob::setDefaultPermissions does not work
-            file.open(QIODevice::NewOnly);
+            if (!file.open(QIODevice::NewOnly)) {
+                KMessageBox::error(krMainWindow, i18n("The file \"%1\" could not be created.", file.fileName()));
+                return;
+            }
             file.close();
             slotFileCreated(nullptr, filePath);
             return;
