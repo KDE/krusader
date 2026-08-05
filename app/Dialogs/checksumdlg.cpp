@@ -89,8 +89,17 @@ ChecksumProcess::ChecksumProcess(QObject *parent, const QString &path)
     , m_tmpOutFile(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.stdout"))
     , m_tmpErrFile(QDir::tempPath() + QLatin1String("/krusader_XXXXXX.stderr"))
 {
-    m_tmpOutFile.open(); // necessary to create the filename
-    m_tmpErrFile.open(); // necessary to create the filename
+    bool result = m_tmpOutFile.open(); // necessary to create the filename
+    if (!result) {
+        KMessageBox::error(nullptr, i18n("A temporary file with the template \"%1\" could not be opened.", m_tmpOutFile.fileTemplate()));
+        return;
+    }
+
+    result = m_tmpErrFile.open(); // necessary to create the filename
+    if (!result) {
+        KMessageBox::error(nullptr, i18n("A temporary file with the template \"%1\" could not be opened.", m_tmpErrFile.fileTemplate()));
+        return;
+    }
 
     setOutputChannelMode(KProcess::SeparateChannels); // without this the next 2 lines have no effect!
     setStandardOutputFile(m_tmpOutFile.fileName());
