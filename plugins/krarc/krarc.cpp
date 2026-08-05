@@ -1747,7 +1747,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
         nameInErrorMsgs = QStringLiteral("7z");
         cmd = find7zExecutable();
         if (cmd.isEmpty()) {
-            return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, {});
+            return failureNoExec();
         }
 
         listCmd << cmd << "l"
