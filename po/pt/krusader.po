@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-27 00:49+0000\n"
+"POT-Creation-Date: 2026-08-05 00:50+0000\n"
 "PO-Revision-Date: 2022-11-28 15:16+0000\n"
 "Last-Translator: Bruno Queiros <brunomiguelqueiros@sapo.pt>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
@@ -910,7 +910,7 @@ msgid "Create in:"
 msgstr "Criar em:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:687
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "New Folder"
 msgstr "Nova Pasta"
@@ -932,17 +932,17 @@ msgstr "Favoritos"
 msgid "Folder name:"
 msgstr "Nome da pasta:"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:784
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:782
 #, kde-format
 msgid "Trash bin"
 msgstr "Caixote do lixo"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:792
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:790
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "Sistema de Ficheiros Virtual"
 
-#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:788
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:786
 #, kde-format
 msgid "Local Network"
 msgstr "Rede Local"
@@ -991,34 +991,34 @@ msgstr "%1 não parece ser um ficheiro de favoritos válido"
 msgid "Error reading bookmarks file: %1"
 msgstr "Ocorreu um erro ao ler o ficheiro de favoritos: %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:780
+#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:778
 #: app/Dialogs/popularurls.cpp:276
 #, kde-format
 msgid "Popular URLs"
 msgstr "URLs Populares"
 
-#: app/BookMan/krbookmarkhandler.cpp:776
+#: app/BookMan/krbookmarkhandler.cpp:774
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "Activar os Favoritos especiais"
 
-#: app/BookMan/krbookmarkhandler.cpp:796
+#: app/BookMan/krbookmarkhandler.cpp:794
 #, kde-format
 msgid "Jump back"
 msgstr "Recuar"
 
-#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:846 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "Abrir"
 
-#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:333
+#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Abrir numa página nova"
 
-#: app/BookMan/krbookmarkhandler.cpp:854 app/Dialogs/krmaskchoice.cpp:84
+#: app/BookMan/krbookmarkhandler.cpp:852 app/Dialogs/krmaskchoice.cpp:84
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
 #: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
@@ -1525,7 +1525,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Tem a certeza que quer enviar este item para o lixo?"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:833
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
 #, kde-format
 msgid "&Trash"
 msgstr "&Lixo"
@@ -1537,8 +1537,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Tem a certeza que quer apagar este item?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:849
-#: app/Panel/panelfunc.cpp:926
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
+#: app/Panel/panelfunc.cpp:925
 #, kde-format
 msgid "Warning"
 msgstr "Aviso"
@@ -1837,7 +1837,7 @@ msgstr "&Abrir"
 msgid "&Delete"
 msgstr "&Apagar"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:188
+#: app/DiskUsage/radialMap/widgetEvents.cpp:187
 #, kde-format
 msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
@@ -1846,7 +1846,7 @@ msgstr ""
 "<qt>A pasta <i>'%1'</i> será apagada de forma <b>recursiva</b> e "
 "<b>permanente</b>.</qt>"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:189
+#: app/DiskUsage/radialMap/widgetEvents.cpp:188
 #, kde-format
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
 msgstr "<qt>O <i>'%1'</i> será pagado de forma <b>permanente</b>.</qt>"
@@ -2945,7 +2945,7 @@ msgstr ""
 "isso, sugere-se que faça um teste."
 
 #: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:314
-#: app/Search/krsearchdialog.cpp:618
+#: app/Search/krsearchdialog.cpp:617
 #, kde-format
 msgid "Search results"
 msgstr "Resultados da procura"
@@ -3473,7 +3473,7 @@ msgstr "Modo genérico"
 msgid "Use the system's default viewer"
 msgstr "Usar o visualizador por omissão do sistema"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2266
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2268
 #, kde-format
 msgid "Text mode"
 msgstr "Modo de texto"
@@ -3484,7 +3484,7 @@ msgid "View the file in text-only mode"
 msgstr "Ver o ficheiro no modo de texto"
 
 #: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
-#: app/KrViewer/lister.cpp:2269
+#: app/KrViewer/lister.cpp:2271
 #, kde-format
 msgid "Hex mode"
 msgstr "Modo hexadecimal"
@@ -3980,7 +3980,7 @@ msgid "Default mode:"
 msgstr "Modo por omissão:"
 
 #: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1214
-#: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
+#: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:165
 #, kde-format
 msgid "Search"
 msgstr "Procurar"
@@ -5124,98 +5124,98 @@ msgstr "Associar os tipos MIME aos protocolos"
 msgid "The current page has been changed. Do you want to apply changes?"
 msgstr "A página actual foi alterada. Deseja aplicar as alterações?"
 
-#: app/Konfigurator/konfiguratoritems.cpp:587
+#: app/Konfigurator/konfiguratoritems.cpp:593
 #, kde-format
 msgid "Custom color"
 msgstr "Cor personalizada"
 
-#: app/Konfigurator/konfiguratoritems.cpp:588
+#: app/Konfigurator/konfiguratoritems.cpp:594
 #, kde-format
 msgctxt "Default color"
 msgid "Default"
 msgstr "Predefinição"
 
-#: app/Konfigurator/konfiguratoritems.cpp:595
+#: app/Konfigurator/konfiguratoritems.cpp:601
 #, kde-format
 msgid "Red"
 msgstr "Vermelho"
 
-#: app/Konfigurator/konfiguratoritems.cpp:596
+#: app/Konfigurator/konfiguratoritems.cpp:602
 #, kde-format
 msgid "Green"
 msgstr "Verde"
 
-#: app/Konfigurator/konfiguratoritems.cpp:597
+#: app/Konfigurator/konfiguratoritems.cpp:603
 #, kde-format
 msgid "Blue"
 msgstr "Azul"
 
-#: app/Konfigurator/konfiguratoritems.cpp:598
+#: app/Konfigurator/konfiguratoritems.cpp:604
 #, kde-format
 msgid "Cyan"
 msgstr "Cíano"
 
-#: app/Konfigurator/konfiguratoritems.cpp:599
+#: app/Konfigurator/konfiguratoritems.cpp:605
 #, kde-format
 msgid "Magenta"
 msgstr "Magenta"
 
-#: app/Konfigurator/konfiguratoritems.cpp:600
+#: app/Konfigurator/konfiguratoritems.cpp:606
 #, kde-format
 msgid "Yellow"
 msgstr "Amarelo"
 
-#: app/Konfigurator/konfiguratoritems.cpp:601
+#: app/Konfigurator/konfiguratoritems.cpp:607
 #, kde-format
 msgid "Dark Red"
 msgstr "Vermelho-Escuro"
 
-#: app/Konfigurator/konfiguratoritems.cpp:602
+#: app/Konfigurator/konfiguratoritems.cpp:608
 #, kde-format
 msgid "Dark Green"
 msgstr "Verde Escuro"
 
-#: app/Konfigurator/konfiguratoritems.cpp:603
+#: app/Konfigurator/konfiguratoritems.cpp:609
 #, kde-format
 msgid "Dark Blue"
 msgstr "Azul Escuro"
 
-#: app/Konfigurator/konfiguratoritems.cpp:604
+#: app/Konfigurator/konfiguratoritems.cpp:610
 #, kde-format
 msgid "Dark Cyan"
 msgstr "Cíano Escuro"
 
-#: app/Konfigurator/konfiguratoritems.cpp:605
+#: app/Konfigurator/konfiguratoritems.cpp:611
 #, kde-format
 msgid "Dark Magenta"
 msgstr "Magenta Escuro"
 
-#: app/Konfigurator/konfiguratoritems.cpp:606
+#: app/Konfigurator/konfiguratoritems.cpp:612
 #, kde-format
 msgid "Dark Yellow"
 msgstr "Amarelo Escuro"
 
-#: app/Konfigurator/konfiguratoritems.cpp:607
+#: app/Konfigurator/konfiguratoritems.cpp:613
 #, kde-format
 msgid "White"
 msgstr "Branco"
 
-#: app/Konfigurator/konfiguratoritems.cpp:608
+#: app/Konfigurator/konfiguratoritems.cpp:614
 #, kde-format
 msgid "Light Gray"
 msgstr "Cinzento Claro"
 
-#: app/Konfigurator/konfiguratoritems.cpp:609
+#: app/Konfigurator/konfiguratoritems.cpp:615
 #, kde-format
 msgid "Gray"
 msgstr "Cinzento"
 
-#: app/Konfigurator/konfiguratoritems.cpp:610
+#: app/Konfigurator/konfiguratoritems.cpp:616
 #, kde-format
 msgid "Dark Gray"
 msgstr "Cinzento Escuro"
 
-#: app/Konfigurator/konfiguratoritems.cpp:611
+#: app/Konfigurator/konfiguratoritems.cpp:617
 #, kde-format
 msgid "Black"
 msgstr "Preto"
@@ -5708,8 +5708,8 @@ msgid "Bring Main Window to Top"
 msgstr "Mostrar a Janela Principal no Topo"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1889
-#: app/KrViewer/lister.cpp:1924
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1891
+#: app/KrViewer/lister.cpp:1926
 #, kde-format
 msgid "Lister"
 msgstr "Lista"
@@ -5891,7 +5891,7 @@ msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Visualização: %1"
 
-#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1913
+#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1915
 #, kde-format
 msgid "Save selection..."
 msgstr "Gravar a selecção..."
@@ -5916,9 +5916,9 @@ msgstr "Procurar o seguinte"
 msgid "Search previous"
 msgstr "Procurar o anterior"
 
-#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1852
-#: app/KrViewer/lister.cpp:1863 app/KrViewer/lister.cpp:1871
-#: app/KrViewer/lister.cpp:1878
+#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1854
+#: app/KrViewer/lister.cpp:1865 app/KrViewer/lister.cpp:1873
+#: app/KrViewer/lister.cpp:1880
 #, kde-format
 msgid "Jump to position"
 msgstr "Saltar para a posição"
@@ -5993,50 +5993,50 @@ msgstr "Procurar:"
 msgid "Search position:"
 msgstr "Posição da procura:"
 
-#: app/KrViewer/lister.cpp:1852
+#: app/KrViewer/lister.cpp:1854
 #, kde-format
 msgid "Text position:"
 msgstr "Posição do texto:"
 
-#: app/KrViewer/lister.cpp:1863 app/KrViewer/lister.cpp:1871
+#: app/KrViewer/lister.cpp:1865 app/KrViewer/lister.cpp:1873
 #, kde-format
 msgid "Invalid number."
 msgstr "O número é inválido."
 
-#: app/KrViewer/lister.cpp:1878
+#: app/KrViewer/lister.cpp:1880
 #, kde-format
 msgid "Number out of range."
 msgstr "O número está fora dos limites."
 
-#: app/KrViewer/lister.cpp:1913
+#: app/KrViewer/lister.cpp:1915
 #, kde-format
 msgid "Nothing is selected."
 msgstr "Não está nada seleccionado."
 
-#: app/KrViewer/lister.cpp:1992
+#: app/KrViewer/lister.cpp:1994
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
 "A impressão inversa não é suportada. Deseja continuar com a impressão normal?"
 
-#: app/KrViewer/panelviewer.cpp:45
+#: app/KrViewer/panelviewer.cpp:46
 #, kde-format
 msgid "No file selected or selected file cannot be displayed."
 msgstr ""
 "Ou não está nenhum ficheiro seleccionado ou este não pode ser mostrado."
 
-#: app/KrViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
+#: app/KrViewer/panelviewer.cpp:101 app/Synchronizer/synchronizertask.cpp:144
 #: app/Synchronizer/synchronizertask.cpp:151
 #, kde-format
 msgid "Error at opening %1."
 msgstr "Erro ao abrir o %1."
 
-#: app/KrViewer/panelviewer.cpp:331
+#: app/KrViewer/panelviewer.cpp:337
 #, kde-format
 msgid "Missing Plugin"
 msgstr "'Plugin' em Falta"
 
-#: app/KrViewer/panelviewer.cpp:337
+#: app/KrViewer/panelviewer.cpp:343
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -6047,12 +6047,12 @@ msgstr ""
 "interno não irá funcionar sem o mesmo.<br/>Poderá corrigir isto se instalar "
 "o Kate:<br/>%1"
 
-#: app/KrViewer/panelviewer.cpp:356
+#: app/KrViewer/panelviewer.cpp:362
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr "O %1 é maior que %2 MB"
 
-#: app/KrViewer/panelviewer.cpp:384
+#: app/KrViewer/panelviewer.cpp:390
 #, kde-format
 msgid "Cannot edit %1"
 msgstr "Não é possível editar o %1"
@@ -6182,12 +6182,12 @@ msgid "Here you can name the file collection:"
 msgstr "Aqui você pode dar um nome à colecção de ficheiros:"
 
 #: app/Locate/locate.cpp:664 app/Locate/locate.cpp:669
-#: app/Search/krsearchdialog.cpp:173 app/Synchronizer/synchronizergui.cpp:488
+#: app/Search/krsearchdialog.cpp:172 app/Synchronizer/synchronizergui.cpp:488
 #, kde-format
 msgid "Stop"
 msgstr "Parar"
 
-#: app/Locate/locate.cpp:673 app/Search/krsearchdialog.cpp:272
+#: app/Locate/locate.cpp:673 app/Search/krsearchdialog.cpp:271
 #: app/Synchronizer/synchronizergui.cpp:494
 #, kde-format
 msgid "Feed to listbox"
@@ -7279,7 +7279,7 @@ msgstr "Erro: %1"
 msgid "Cut to Clipboard"
 msgstr "Cortar para a Área de Transferência"
 
-#: app/Panel/listpanelactions.cpp:59 app/Search/krsearchdialog.cpp:215
+#: app/Panel/listpanelactions.cpp:59 app/Search/krsearchdialog.cpp:214
 #, kde-format
 msgid "Copy to Clipboard"
 msgstr "Copiar para a Área de Transferência"
@@ -7289,12 +7289,12 @@ msgstr "Copiar para a Área de Transferência"
 msgid "Paste from Clipboard"
 msgstr "Colar da Área de Transferência"
 
-#: app/Panel/listpanelactions.cpp:65 app/Search/krsearchdialog.cpp:199
+#: app/Panel/listpanelactions.cpp:65 app/Search/krsearchdialog.cpp:198
 #, kde-format
 msgid "View File"
 msgstr "Ver o Ficheiro"
 
-#: app/Panel/listpanelactions.cpp:66 app/Search/krsearchdialog.cpp:204
+#: app/Panel/listpanelactions.cpp:66 app/Search/krsearchdialog.cpp:203
 #, kde-format
 msgid "Edit File"
 msgstr "Editar o Ficheiro"
@@ -7637,142 +7637,142 @@ msgstr "Sincronizar os Ficheiros Seleccionados..."
 msgid "Create New"
 msgstr "Criar um Novo"
 
-#: app/Panel/panelfunc.cpp:357
+#: app/Panel/panelfunc.cpp:356
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Só pode editar ligações em sistemas de ficheiros locais"
 
-#: app/Panel/panelfunc.cpp:368
+#: app/Panel/panelfunc.cpp:367
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr ""
 "O ficheiro actual não é uma ligação; por isso, não é possível modificar o "
 "local para onde aponta."
 
-#: app/Panel/panelfunc.cpp:375
+#: app/Panel/panelfunc.cpp:374
 #, kde-format
 msgid "Link Redirection"
 msgstr "Modificação da Ligação"
 
-#: app/Panel/panelfunc.cpp:375
+#: app/Panel/panelfunc.cpp:374
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Por favor, introduza o novo destino da ligação:"
 
-#: app/Panel/panelfunc.cpp:382
+#: app/Panel/panelfunc.cpp:381
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "Não é possível remover a ligação antiga: %1"
 
-#: app/Panel/panelfunc.cpp:387
+#: app/Panel/panelfunc.cpp:386
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "A criação de uma nova ligação foi mal-sucedida: %1"
 
-#: app/Panel/panelfunc.cpp:395
+#: app/Panel/panelfunc.cpp:394
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Só pode criar ligações em sistemas de ficheiros locais"
 
-#: app/Panel/panelfunc.cpp:403
+#: app/Panel/panelfunc.cpp:402
 #, kde-format
 msgid "New Link"
 msgstr "Nova Ligação"
 
-#: app/Panel/panelfunc.cpp:403
+#: app/Panel/panelfunc.cpp:402
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "Criar uma nova ligação para: %1"
 
-#: app/Panel/panelfunc.cpp:411 app/Panel/panelfunc.cpp:768
+#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:767
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Já existe uma pasta ou um ficheiro com este nome."
 
-#: app/Panel/panelfunc.cpp:422
+#: app/Panel/panelfunc.cpp:421
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Não foi possível criar uma ligação simbólica nova de '%1' para: '%2'"
 
-#: app/Panel/panelfunc.cpp:425
+#: app/Panel/panelfunc.cpp:424
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Não foi possível criar uma ligação nova de '%1' para: '%2'"
 
-#: app/Panel/panelfunc.cpp:442
+#: app/Panel/panelfunc.cpp:441
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Não tem permissões para ver este ficheiro."
 
-#: app/Panel/panelfunc.cpp:453
+#: app/Panel/panelfunc.cpp:452
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Introduza um URL a ver:"
 
-#: app/Panel/panelfunc.cpp:483 app/Panel/panelfunc.cpp:557
+#: app/Panel/panelfunc.cpp:482 app/Panel/panelfunc.cpp:556
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "Não pode editar uma pasta"
 
-#: app/Panel/panelfunc.cpp:488
+#: app/Panel/panelfunc.cpp:487
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Não tem permissões para editar este ficheiro."
 
-#: app/Panel/panelfunc.cpp:502
+#: app/Panel/panelfunc.cpp:501
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Introduza o nome do ficheiro a editar:"
 
-#: app/Panel/panelfunc.cpp:609
+#: app/Panel/panelfunc.cpp:608
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Mover o %1 para:"
 
-#: app/Panel/panelfunc.cpp:609
+#: app/Panel/panelfunc.cpp:608
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "Mover %1 ficheiro para:"
 msgstr[1] "Mover %1 ficheiros para:"
 
-#: app/Panel/panelfunc.cpp:611
+#: app/Panel/panelfunc.cpp:610
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Copiar o %1 para:"
 
-#: app/Panel/panelfunc.cpp:611
+#: app/Panel/panelfunc.cpp:610
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "Copiar %1 ficheiro para:"
 msgstr[1] "Copiar %1 ficheiros para:"
 
-#: app/Panel/panelfunc.cpp:660
+#: app/Panel/panelfunc.cpp:659
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:669
+#: app/Panel/panelfunc.cpp:668
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:692
+#: app/Panel/panelfunc.cpp:691
 #, kde-format
 msgid "Folder's name:"
 msgstr "Nome da pasta:"
 
-#: app/Panel/panelfunc.cpp:832
+#: app/Panel/panelfunc.cpp:831
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Deseja mesmo enviar este item para o lixo?"
 msgstr[1] "Deseja mesmo enviar estes %1 itens para o lixo?"
 
-#: app/Panel/panelfunc.cpp:836
+#: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7787,44 +7787,44 @@ msgstr[1] ""
 "<qt>Deseja mesmo apagar estes %1 itens <b>a nível físico</b> (não apenas "
 "removê-los dos itens virtuais)?</qt>"
 
-#: app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:842
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Deseja realmente remover este item?"
 msgstr[1] "Deseja realmente remover estes %1 itens?"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:880
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>A pasta <b>%1</b> não está vazia.</p>"
 
-#: app/Panel/panelfunc.cpp:882
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Deseja ignorá-la ou enviar todas para o lixo?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:882
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Deseja ignorá-la ou apagar tudo?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:883
 #, kde-format
 msgid "&Skip"
 msgstr "&Ignorar"
 
-#: app/Panel/panelfunc.cpp:885
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Trash All"
 msgstr "Enviar &Tudo para o Lixo"
 
-#: app/Panel/panelfunc.cpp:885
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Delete All"
 msgstr "&Apagar Tudo"
 
-#: app/Panel/panelfunc.cpp:922
+#: app/Panel/panelfunc.cpp:921
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7839,12 +7839,12 @@ msgstr[1] ""
 "Deseja mesmo apagar estes %1 itens virtuais (os ficheiros físicos ficam "
 "intocáveis)?"
 
-#: app/Panel/panelfunc.cpp:965
+#: app/Panel/panelfunc.cpp:964
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "O %1 não consegue abrir o %2"
 
-#: app/Panel/panelfunc.cpp:1042
+#: app/Panel/panelfunc.cpp:1041
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7853,7 +7853,7 @@ msgstr ""
 "<qt><p>O pacote <b>%1.%2</b> já existe. Seja sobrepo-lo?</p><p>Toda a "
 "informação no pacote antigo será perdida.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1047
+#: app/Panel/panelfunc.cpp:1046
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7864,17 +7864,17 @@ msgstr ""
 "substituir os itens com nomes idênticos no pacote ZIP ou adicionar itens "
 "para os novos nomes.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1055
+#: app/Panel/panelfunc.cpp:1054
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Não é possível comprimir os ficheiros para um destino virtual."
 
-#: app/Panel/panelfunc.cpp:1088
+#: app/Panel/panelfunc.cpp:1087
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Extrair o %1 para:"
 
-#: app/Panel/panelfunc.cpp:1090
+#: app/Panel/panelfunc.cpp:1089
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
@@ -8284,39 +8284,39 @@ msgstr ""
 "Colocar o texto da pesquisa na área de transferência quando se abrir um "
 "ficheiro encontrado."
 
-#: app/Search/krsearchdialog.cpp:178 app/Synchronizer/synchronizergui.cpp:507
+#: app/Search/krsearchdialog.cpp:177 app/Synchronizer/synchronizergui.cpp:507
 #, kde-format
 msgid "Close"
 msgstr "Fechar"
 
-#: app/Search/krsearchdialog.cpp:209 app/Synchronizer/synchronizergui.cpp:256
+#: app/Search/krsearchdialog.cpp:208 app/Synchronizer/synchronizergui.cpp:256
 #, kde-format
 msgid "Compare by content"
 msgstr "Comparar pelo conteúdo"
 
-#: app/Search/krsearchdialog.cpp:251
+#: app/Search/krsearchdialog.cpp:250
 #, kde-format
 msgid "Text found:"
 msgstr "Texto encontrado:"
 
-#: app/Search/krsearchdialog.cpp:266
+#: app/Search/krsearchdialog.cpp:265
 #, kde-format
 msgid "Idle"
 msgstr "Inactivo"
 
-#: app/Search/krsearchdialog.cpp:278
+#: app/Search/krsearchdialog.cpp:277
 #, kde-format
 msgid "&Results"
 msgstr "&Resultados"
 
-#: app/Search/krsearchdialog.cpp:403
+#: app/Search/krsearchdialog.cpp:402
 #, kde-format
 msgid "Found %1 match."
 msgid_plural "Found %1 matches."
 msgstr[0] "Foi encontrada %1 ocorrência."
 msgstr[1] "Foram encontradas %1 ocorrências."
 
-#: app/Search/krsearchdialog.cpp:431
+#: app/Search/krsearchdialog.cpp:430
 #, kde-format
 msgid ""
 "Since you chose to also search in archives, note the following limitations:\n"
@@ -8328,38 +8328,38 @@ msgstr ""
 "Não pode procurar por texto (grep) enquanto faz uma procura que inclui "
 "pacotes."
 
-#: app/Search/krsearchdialog.cpp:447
+#: app/Search/krsearchdialog.cpp:446
 #, kde-format
 msgid "Found 0 matches."
 msgstr "Foram encontradas 0 ocorrências."
 
-#: app/Search/krsearchdialog.cpp:481
+#: app/Search/krsearchdialog.cpp:480
 #, kde-format
 msgid "Finished searching."
 msgstr "A pesquisa terminou."
 
-#: app/Search/krsearchdialog.cpp:591
+#: app/Search/krsearchdialog.cpp:590
 #, kde-format
 msgid "Krusader Search"
 msgstr "Pesquisa do Krusader"
 
-#: app/Search/krsearchdialog.cpp:613
+#: app/Search/krsearchdialog.cpp:612
 #, kde-format
 msgid "Search results for \"%1\" in %2"
 msgstr "Resultados da procura por \"%1\" em %2"
 
-#: app/Search/krsearchdialog.cpp:614
+#: app/Search/krsearchdialog.cpp:613
 #, kde-format
 msgid "Search results for \"%1\" containing \"%2\" in %3"
 msgstr "Resultados da procura por \"%1 \" que contêm \"%2\" em %3"
 
-#: app/Search/krsearchdialog.cpp:625
+#: app/Search/krsearchdialog.cpp:624
 #: app/Synchronizer/feedtolistboxdialog.cpp:95
 #, kde-format
 msgid "Here you can name the file collection"
 msgstr "Aqui você pode dar um nome à colecção de ficheiros"
 
-#: app/Search/krsearchdialog.cpp:625
+#: app/Search/krsearchdialog.cpp:624
 #, kde-format
 msgid "Query name"
 msgstr "Nome da consulta"
@@ -8403,24 +8403,24 @@ msgstr ""
 "A verificação da validade é impossível sem um ficheiro de CRC válido. Deseja "
 "continuar a reunião?"
 
-#: app/Splitter/combiner.cpp:185 app/Splitter/splitter.cpp:173
+#: app/Splitter/combiner.cpp:186 app/Splitter/splitter.cpp:173
 #: app/Synchronizer/synchronizer.cpp:1345
 #, kde-format
 msgid "File Already Exists"
 msgstr "O Ficheiro Já Existe"
 
-#: app/Splitter/combiner.cpp:271
+#: app/Splitter/combiner.cpp:272
 #, kde-format
 msgid "Cannot open the first split file of %1."
 msgstr "Não é possível abrir o primeiro ficheiro dividido de %1."
 
-#: app/Splitter/combiner.cpp:281
+#: app/Splitter/combiner.cpp:282
 #, kde-format
 msgid "Incorrect filesize, the file might have been corrupted."
 msgstr ""
 "O tamanho do ficheiro é incorrecto. O ficheiro pode ter sido corrompido."
 
-#: app/Splitter/combiner.cpp:283
+#: app/Splitter/combiner.cpp:284
 #, kde-format
 msgid "Incorrect CRC checksum, the file might have been corrupted."
 msgstr "O código de CRC é incorrecto. O ficheiro pode estar corrompido."

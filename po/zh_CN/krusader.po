@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-27 00:49+0000\n"
+"POT-Creation-Date: 2026-08-05 00:50+0000\n"
 "PO-Revision-Date: 2024-04-22 16:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -829,7 +829,7 @@ msgid "Create in:"
 msgstr "创建于："
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:687
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "New Folder"
 msgstr "新建文件夹"
@@ -851,17 +851,17 @@ msgstr "书签"
 msgid "Folder name:"
 msgstr "文件夹名称："
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:784
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:782
 #, kde-format
 msgid "Trash bin"
 msgstr "回收站"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:792
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:790
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "虚拟文件系统"
 
-#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:788
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:786
 #, kde-format
 msgid "Local Network"
 msgstr "本地网络"
@@ -910,34 +910,34 @@ msgstr "%1 似乎不是一个有效的书签文件"
 msgid "Error reading bookmarks file: %1"
 msgstr "读取书签文件出错：%1"
 
-#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:780
+#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:778
 #: app/Dialogs/popularurls.cpp:276
 #, kde-format
 msgid "Popular URLs"
 msgstr "最常用的 URLs"
 
-#: app/BookMan/krbookmarkhandler.cpp:776
+#: app/BookMan/krbookmarkhandler.cpp:774
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "启用特殊书签"
 
-#: app/BookMan/krbookmarkhandler.cpp:796
+#: app/BookMan/krbookmarkhandler.cpp:794
 #, kde-format
 msgid "Jump back"
 msgstr "跳回"
 
-#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:846 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "打开"
 
-#: app/BookMan/krbookmarkhandler.cpp:850 app/GUI/mediabutton.cpp:333
+#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "在新标签页中打开"
 
-#: app/BookMan/krbookmarkhandler.cpp:854 app/Dialogs/krmaskchoice.cpp:84
+#: app/BookMan/krbookmarkhandler.cpp:852 app/Dialogs/krmaskchoice.cpp:84
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
 #: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
@@ -1433,7 +1433,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "您真的要将这项移到回收站吗？"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:833
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
 #, kde-format
 msgid "&Trash"
 msgstr "移入回收站(&T)"
@@ -1445,8 +1445,8 @@ msgid "Do you really want to delete this item?"
 msgstr "您真的要删除这个项目吗？"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:849
-#: app/Panel/panelfunc.cpp:926
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
+#: app/Panel/panelfunc.cpp:925
 #, kde-format
 msgid "Warning"
 msgstr "警告"
@@ -1744,14 +1744,14 @@ msgstr "打开(&O)"
 msgid "&Delete"
 msgstr "删除(&D)"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:188
+#: app/DiskUsage/radialMap/widgetEvents.cpp:187
 #, kde-format
 msgid ""
 "<qt>The folder at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</"
 "b> deleted.</qt>"
 msgstr "<qt>位于<i>“%1”</i>的文件夹将以<b>递归</b>方式被<b>永久</b>删除。</qt>"
 
-#: app/DiskUsage/radialMap/widgetEvents.cpp:189
+#: app/DiskUsage/radialMap/widgetEvents.cpp:188
 #, kde-format
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted.</qt>"
 msgstr "<qt><i>“%1”</i>将被<b>永久</b>删除。</qt>"
@@ -2802,7 +2802,7 @@ msgstr ""
 "压前进行测试。"
 
 #: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:314
-#: app/Search/krsearchdialog.cpp:618
+#: app/Search/krsearchdialog.cpp:617
 #, kde-format
 msgid "Search results"
 msgstr "搜索结果"
@@ -3315,7 +3315,7 @@ msgstr "通用模式"
 msgid "Use the system's default viewer"
 msgstr "使用系统的默认查看器"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2266
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2268
 #, kde-format
 msgid "Text mode"
 msgstr "文本模式"
@@ -3326,7 +3326,7 @@ msgid "View the file in text-only mode"
 msgstr "以文本模式查看文件"
 
 #: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
-#: app/KrViewer/lister.cpp:2269
+#: app/KrViewer/lister.cpp:2271
 #, kde-format
 msgid "Hex mode"
 msgstr "十六进制模式"
@@ -3789,7 +3789,7 @@ msgid "Default mode:"
 msgstr ""
 
 #: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1214
-#: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
+#: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:165
 #, kde-format
 msgid "Search"
 msgstr "搜索"
@@ -4856,98 +4856,98 @@ msgstr ""
 msgid "The current page has been changed. Do you want to apply changes?"
 msgstr "当前页已经改变。您要应用这些修改吗?"
 
-#: app/Konfigurator/konfiguratoritems.cpp:587
+#: app/Konfigurator/konfiguratoritems.cpp:593
 #, kde-format
 msgid "Custom color"
 msgstr "自定义颜色"
 
-#: app/Konfigurator/konfiguratoritems.cpp:588
+#: app/Konfigurator/konfiguratoritems.cpp:594
 #, kde-format
 msgctxt "Default color"
 msgid "Default"
 msgstr "默认"
 
-#: app/Konfigurator/konfiguratoritems.cpp:595
+#: app/Konfigurator/konfiguratoritems.cpp:601
 #, kde-format
 msgid "Red"
 msgstr "红色"
 
-#: app/Konfigurator/konfiguratoritems.cpp:596
+#: app/Konfigurator/konfiguratoritems.cpp:602
 #, kde-format
 msgid "Green"
 msgstr "绿色"
 
-#: app/Konfigurator/konfiguratoritems.cpp:597
+#: app/Konfigurator/konfiguratoritems.cpp:603
 #, kde-format
 msgid "Blue"
 msgstr "蓝色"
 
-#: app/Konfigurator/konfiguratoritems.cpp:598
+#: app/Konfigurator/konfiguratoritems.cpp:604
 #, kde-format
 msgid "Cyan"
 msgstr "青色"
 
-#: app/Konfigurator/konfiguratoritems.cpp:599
+#: app/Konfigurator/konfiguratoritems.cpp:605
 #, kde-format
 msgid "Magenta"
 msgstr "洋红"
 
-#: app/Konfigurator/konfiguratoritems.cpp:600
+#: app/Konfigurator/konfiguratoritems.cpp:606
 #, kde-format
 msgid "Yellow"
 msgstr "黄色"
 
-#: app/Konfigurator/konfiguratoritems.cpp:601
+#: app/Konfigurator/konfiguratoritems.cpp:607
 #, kde-format
 msgid "Dark Red"
 msgstr "暗红"
 
-#: app/Konfigurator/konfiguratoritems.cpp:602
+#: app/Konfigurator/konfiguratoritems.cpp:608
 #, kde-format
 msgid "Dark Green"
 msgstr "暗绿"
 
-#: app/Konfigurator/konfiguratoritems.cpp:603
+#: app/Konfigurator/konfiguratoritems.cpp:609
 #, kde-format
 msgid "Dark Blue"
 msgstr "暗蓝"
 
-#: app/Konfigurator/konfiguratoritems.cpp:604
+#: app/Konfigurator/konfiguratoritems.cpp:610
 #, kde-format
 msgid "Dark Cyan"
 msgstr "暗青"
 
-#: app/Konfigurator/konfiguratoritems.cpp:605
+#: app/Konfigurator/konfiguratoritems.cpp:611
 #, kde-format
 msgid "Dark Magenta"
 msgstr "深洋红"
 
-#: app/Konfigurator/konfiguratoritems.cpp:606
+#: app/Konfigurator/konfiguratoritems.cpp:612
 #, kde-format
 msgid "Dark Yellow"
 msgstr "暗黄"
 
-#: app/Konfigurator/konfiguratoritems.cpp:607
+#: app/Konfigurator/konfiguratoritems.cpp:613
 #, kde-format
 msgid "White"
 msgstr "白色"
 
-#: app/Konfigurator/konfiguratoritems.cpp:608
+#: app/Konfigurator/konfiguratoritems.cpp:614
 #, kde-format
 msgid "Light Gray"
 msgstr "淡红"
 
-#: app/Konfigurator/konfiguratoritems.cpp:609
+#: app/Konfigurator/konfiguratoritems.cpp:615
 #, kde-format
 msgid "Gray"
 msgstr "灰色"
 
-#: app/Konfigurator/konfiguratoritems.cpp:610
+#: app/Konfigurator/konfiguratoritems.cpp:616
 #, kde-format
 msgid "Dark Gray"
 msgstr "暗灰"
 
-#: app/Konfigurator/konfiguratoritems.cpp:611
+#: app/Konfigurator/konfiguratoritems.cpp:617
 #, kde-format
 msgid "Black"
 msgstr "黑色"
@@ -5421,8 +5421,8 @@ msgid "Bring Main Window to Top"
 msgstr ""
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1889
-#: app/KrViewer/lister.cpp:1924
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1891
+#: app/KrViewer/lister.cpp:1926
 #, kde-format
 msgid "Lister"
 msgstr ""
@@ -5602,7 +5602,7 @@ msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr ""
 
-#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1913
+#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1915
 #, kde-format
 msgid "Save selection..."
 msgstr "保存选择..."
@@ -5627,9 +5627,9 @@ msgstr "搜索下一个"
 msgid "Search previous"
 msgstr "搜索上一个"
 
-#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1852
-#: app/KrViewer/lister.cpp:1863 app/KrViewer/lister.cpp:1871
-#: app/KrViewer/lister.cpp:1878
+#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1854
+#: app/KrViewer/lister.cpp:1865 app/KrViewer/lister.cpp:1873
+#: app/KrViewer/lister.cpp:1880
 #, kde-format
 msgid "Jump to position"
 msgstr "转到位置"
@@ -5704,48 +5704,48 @@ msgstr "搜索："
 msgid "Search position:"
 msgstr "搜索位置："
 
-#: app/KrViewer/lister.cpp:1852
+#: app/KrViewer/lister.cpp:1854
 #, kde-format
 msgid "Text position:"
 msgstr "文本位置："
 
-#: app/KrViewer/lister.cpp:1863 app/KrViewer/lister.cpp:1871
+#: app/KrViewer/lister.cpp:1865 app/KrViewer/lister.cpp:1873
 #, kde-format
 msgid "Invalid number."
 msgstr ""
 
-#: app/KrViewer/lister.cpp:1878
+#: app/KrViewer/lister.cpp:1880
 #, kde-format
 msgid "Number out of range."
 msgstr ""
 
-#: app/KrViewer/lister.cpp:1913
+#: app/KrViewer/lister.cpp:1915
 #, kde-format
 msgid "Nothing is selected."
 msgstr ""
 
-#: app/KrViewer/lister.cpp:1992
+#: app/KrViewer/lister.cpp:1994
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
 
-#: app/KrViewer/panelviewer.cpp:45
+#: app/KrViewer/panelviewer.cpp:46
 #, kde-format
 msgid "No file selected or selected file cannot be displayed."
 msgstr ""
 
-#: app/KrViewer/panelviewer.cpp:100 app/Synchronizer/synchronizertask.cpp:144
+#: app/KrViewer/panelviewer.cpp:101 app/Synchronizer/synchronizertask.cpp:144
 #: app/Synchronizer/synchronizertask.cpp:151
 #, kde-format
 msgid "Error at opening %1."
 msgstr ""
 
-#: app/KrViewer/panelviewer.cpp:331
+#: app/KrViewer/panelviewer.cpp:337
 #, kde-format
 msgid "Missing Plugin"
 msgstr "缺少插件"
 
-#: app/KrViewer/panelviewer.cpp:337
+#: app/KrViewer/panelviewer.cpp:343
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -5753,12 +5753,12 @@ msgid ""
 "without this.<br/>You can fix this by installing Kate:<br/>%1"
 msgstr ""
 
-#: app/KrViewer/panelviewer.cpp:356
+#: app/KrViewer/panelviewer.cpp:362
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr ""
 
-#: app/KrViewer/panelviewer.cpp:384
+#: app/KrViewer/panelviewer.cpp:390
 #, kde-format
 msgid "Cannot edit %1"
 msgstr ""
@@ -5886,12 +5886,12 @@ msgid "Here you can name the file collection:"
 msgstr "这里您可以给文件集命名:"
 
 #: app/Locate/locate.cpp:664 app/Locate/locate.cpp:669
-#: app/Search/krsearchdialog.cpp:173 app/Synchronizer/synchronizergui.cpp:488
+#: app/Search/krsearchdialog.cpp:172 app/Synchronizer/synchronizergui.cpp:488
 #, kde-format
 msgid "Stop"
 msgstr "停止"
 
-#: app/Locate/locate.cpp:673 app/Search/krsearchdialog.cpp:272
+#: app/Locate/locate.cpp:673 app/Search/krsearchdialog.cpp:271
 #: app/Synchronizer/synchronizergui.cpp:494
 #, kde-format
 msgid "Feed to listbox"
@@ -6965,7 +6965,7 @@ msgstr "错误：%1"
 msgid "Cut to Clipboard"
 msgstr "剪切到剪贴板"
 
-#: app/Panel/listpanelactions.cpp:59 app/Search/krsearchdialog.cpp:215
+#: app/Panel/listpanelactions.cpp:59 app/Search/krsearchdialog.cpp:214
 #, kde-format
 msgid "Copy to Clipboard"
 msgstr "复制到剪贴板"
@@ -6975,12 +6975,12 @@ msgstr "复制到剪贴板"
 msgid "Paste from Clipboard"
 msgstr "从剪贴板中粘贴"
 
-#: app/Panel/listpanelactions.cpp:65 app/Search/krsearchdialog.cpp:199
+#: app/Panel/listpanelactions.cpp:65 app/Search/krsearchdialog.cpp:198
 #, kde-format
 msgid "View File"
 msgstr "查看文件"
 
-#: app/Panel/listpanelactions.cpp:66 app/Search/krsearchdialog.cpp:204
+#: app/Panel/listpanelactions.cpp:66 app/Search/krsearchdialog.cpp:203
 #, kde-format
 msgid "Edit File"
 msgstr "编辑文件"
@@ -7319,137 +7319,137 @@ msgstr "同步选中的文件..."
 msgid "Create New"
 msgstr "创建新"
 
-#: app/Panel/panelfunc.cpp:357
+#: app/Panel/panelfunc.cpp:356
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "您只能编辑本地文件系统的链接"
 
-#: app/Panel/panelfunc.cpp:368
+#: app/Panel/panelfunc.cpp:367
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:375
+#: app/Panel/panelfunc.cpp:374
 #, kde-format
 msgid "Link Redirection"
 msgstr "链接重定向"
 
-#: app/Panel/panelfunc.cpp:375
+#: app/Panel/panelfunc.cpp:374
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "请输入新的链接目标："
 
-#: app/Panel/panelfunc.cpp:382
+#: app/Panel/panelfunc.cpp:381
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:387
+#: app/Panel/panelfunc.cpp:386
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:395
+#: app/Panel/panelfunc.cpp:394
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "您只能在本地文件系统中创建链接"
 
-#: app/Panel/panelfunc.cpp:403
+#: app/Panel/panelfunc.cpp:402
 #, kde-format
 msgid "New Link"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:403
+#: app/Panel/panelfunc.cpp:402
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:411 app/Panel/panelfunc.cpp:768
+#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:767
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:422
+#: app/Panel/panelfunc.cpp:421
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:425
+#: app/Panel/panelfunc.cpp:424
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:442
+#: app/Panel/panelfunc.cpp:441
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "没有查看此文件的权限。"
 
-#: app/Panel/panelfunc.cpp:453
+#: app/Panel/panelfunc.cpp:452
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "输入要查看的 URL："
 
-#: app/Panel/panelfunc.cpp:483 app/Panel/panelfunc.cpp:557
+#: app/Panel/panelfunc.cpp:482 app/Panel/panelfunc.cpp:556
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:488
+#: app/Panel/panelfunc.cpp:487
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "没有修改此文件的权限。"
 
-#: app/Panel/panelfunc.cpp:502
+#: app/Panel/panelfunc.cpp:501
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "输入要编辑的文件名："
 
-#: app/Panel/panelfunc.cpp:609
+#: app/Panel/panelfunc.cpp:608
 #, kde-format
 msgid "Move %1 to:"
 msgstr "移动 %1 到："
 
-#: app/Panel/panelfunc.cpp:609
+#: app/Panel/panelfunc.cpp:608
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "移动 %1 个文件到："
 
-#: app/Panel/panelfunc.cpp:611
+#: app/Panel/panelfunc.cpp:610
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "复制 %1 到："
 
-#: app/Panel/panelfunc.cpp:611
+#: app/Panel/panelfunc.cpp:610
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "复制 %1 个文件到："
 
-#: app/Panel/panelfunc.cpp:660
+#: app/Panel/panelfunc.cpp:659
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:669
+#: app/Panel/panelfunc.cpp:668
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:692
+#: app/Panel/panelfunc.cpp:691
 #, kde-format
 msgid "Folder's name:"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:832
+#: app/Panel/panelfunc.cpp:831
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "您真的要将这 %1 项移动至回收站吗？"
 
-#: app/Panel/panelfunc.cpp:836
+#: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7459,43 +7459,43 @@ msgid_plural ""
 "removing them from the virtual items)?</qt>"
 msgstr[0] ""
 
-#: app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:842
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "您确实想要删除这 %1 项吗？"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:880
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:882
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:882
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:883
 #, kde-format
 msgid "&Skip"
 msgstr "跳过(&S)"
 
-#: app/Panel/panelfunc.cpp:885
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Trash All"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:885
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Delete All"
 msgstr "全部删除(&D)"
 
-#: app/Panel/panelfunc.cpp:922
+#: app/Panel/panelfunc.cpp:921
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7505,12 +7505,12 @@ msgid_plural ""
 "untouched)?"
 msgstr[0] ""
 
-#: app/Panel/panelfunc.cpp:965
+#: app/Panel/panelfunc.cpp:964
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:1042
+#: app/Panel/panelfunc.cpp:1041
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7519,7 +7519,7 @@ msgstr ""
 "<qt><p>压缩文件 <b>%1.%2</b> 已存在。您想要覆盖它吗？</p><p>已有压缩文件中的"
 "所有数据将会丢失。</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1047
+#: app/Panel/panelfunc.cpp:1046
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7529,17 +7529,17 @@ msgstr ""
 "<qt><p>压缩文件 <b>%1.%2</b> 已存在。您想要覆盖它吗？</p><p>Zip 程序将替换该 "
 "Zip 压缩文件中的同名项目，或者添加新名称的项目。</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1055
+#: app/Panel/panelfunc.cpp:1054
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:1088
+#: app/Panel/panelfunc.cpp:1087
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "解包 %1 到："
 
-#: app/Panel/panelfunc.cpp:1090
+#: app/Panel/panelfunc.cpp:1089
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
@@ -7944,38 +7944,38 @@ msgstr ""
 msgid "Place search text to clipboard when a found file is opened."
 msgstr ""
 
-#: app/Search/krsearchdialog.cpp:178 app/Synchronizer/synchronizergui.cpp:507
+#: app/Search/krsearchdialog.cpp:177 app/Synchronizer/synchronizergui.cpp:507
 #, kde-format
 msgid "Close"
 msgstr "关闭"
 
-#: app/Search/krsearchdialog.cpp:209 app/Synchronizer/synchronizergui.cpp:256
+#: app/Search/krsearchdialog.cpp:208 app/Synchronizer/synchronizergui.cpp:256
 #, kde-format
 msgid "Compare by content"
 msgstr "比较内容"
 
-#: app/Search/krsearchdialog.cpp:251
+#: app/Search/krsearchdialog.cpp:250
 #, kde-format
 msgid "Text found:"
 msgstr "找到的文本："
 
-#: app/Search/krsearchdialog.cpp:266
+#: app/Search/krsearchdialog.cpp:265
 #, kde-format
 msgid "Idle"
 msgstr "空闲"
 
-#: app/Search/krsearchdialog.cpp:278
+#: app/Search/krsearchdialog.cpp:277
 #, kde-format
 msgid "&Results"
 msgstr "结果(&R)"
 
-#: app/Search/krsearchdialog.cpp:403
+#: app/Search/krsearchdialog.cpp:402
 #, kde-format
 msgid "Found %1 match."
 msgid_plural "Found %1 matches."
 msgstr[0] "找到 %1 个匹配."
 
-#: app/Search/krsearchdialog.cpp:431
+#: app/Search/krsearchdialog.cpp:430
 #, kde-format
 msgid ""
 "Since you chose to also search in archives, note the following limitations:\n"
@@ -7985,38 +7985,38 @@ msgstr ""
 "您选择了搜索压缩文件中的内容，\n"
 "请注意：您无法在包含压缩文件的搜索操作中搜索文件中包含的文本 (grep)。"
 
-#: app/Search/krsearchdialog.cpp:447
+#: app/Search/krsearchdialog.cpp:446
 #, kde-format
 msgid "Found 0 matches."
 msgstr "没有可匹配的。"
 
-#: app/Search/krsearchdialog.cpp:481
+#: app/Search/krsearchdialog.cpp:480
 #, kde-format
 msgid "Finished searching."
 msgstr "搜索已完成。"
 
-#: app/Search/krsearchdialog.cpp:591
+#: app/Search/krsearchdialog.cpp:590
 #, kde-format
 msgid "Krusader Search"
 msgstr "Krusader 搜索"
 
-#: app/Search/krsearchdialog.cpp:613
+#: app/Search/krsearchdialog.cpp:612
 #, kde-format
 msgid "Search results for \"%1\" in %2"
 msgstr ""
 
-#: app/Search/krsearchdialog.cpp:614
+#: app/Search/krsearchdialog.cpp:613
 #, kde-format
 msgid "Search results for \"%1\" containing \"%2\" in %3"
 msgstr ""
 
-#: app/Search/krsearchdialog.cpp:625
+#: app/Search/krsearchdialog.cpp:624
 #: app/Synchronizer/feedtolistboxdialog.cpp:95
 #, kde-format
 msgid "Here you can name the file collection"
 msgstr "这里您可以给文件集命名"
 
-#: app/Search/krsearchdialog.cpp:625
+#: app/Search/krsearchdialog.cpp:624
 #, kde-format
 msgid "Query name"
 msgstr "查询名称"
@@ -8059,23 +8059,23 @@ msgstr ""
 "\n"
 "没有 CRC 文件无法检验文件. 要继续合并文件吗?"
 
-#: app/Splitter/combiner.cpp:185 app/Splitter/splitter.cpp:173
+#: app/Splitter/combiner.cpp:186 app/Splitter/splitter.cpp:173
 #: app/Synchronizer/synchronizer.cpp:1345
 #, kde-format
 msgid "File Already Exists"
 msgstr "文件己存在"
 
-#: app/Splitter/combiner.cpp:271
+#: app/Splitter/combiner.cpp:272
 #, kde-format
 msgid "Cannot open the first split file of %1."
 msgstr ""
 
-#: app/Splitter/combiner.cpp:281
+#: app/Splitter/combiner.cpp:282
 #, kde-format
 msgid "Incorrect filesize, the file might have been corrupted."
 msgstr ""
 
-#: app/Splitter/combiner.cpp:283
+#: app/Splitter/combiner.cpp:284
 #, kde-format
 msgid "Incorrect CRC checksum, the file might have been corrupted."
 msgstr ""
