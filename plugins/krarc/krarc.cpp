@@ -1344,17 +1344,16 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
 #endif
     }
     if (m_arcType == "gzip") {
-        if (!lineNo)
+        if (!lineNo) // if (lineNo == 0)
             return; // ignore the first line
         // first field is uncompressed size - ignore it
         nextWord(line);
         // size
         size = nextWord(line).toULong();
-        // ignore the next field
+        // ignore the next field (the ratio)
         nextWord(line);
         // full name
-        fullName = nextWord(line);
-        fullName = fullName.mid(fullName.lastIndexOf(DIR_SEPARATOR) + 1);
+        fullName = line.mid(line.lastIndexOf(DIR_SEPARATOR) + 1);
     }
     if (m_arcType == "lzma") {
         fullName = m_arcFile->name();
