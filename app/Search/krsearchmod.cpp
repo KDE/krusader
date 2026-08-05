@@ -123,6 +123,17 @@ void KrSearchMod::scanDirectory(const QUrl &url)
             m_unScannedUrls.push(fileUrl);
         }
 
+        // If, for example, the user executes `lzma FILE && mv FILE.lzma FILE.lzma.backup` then
+        // Krusader can not find text in the file that is compressed inside the `lzma.backup` one.
+        // That happens because (for "FILE.lzma.backup") the next `fileItem->getMime()` that is used (which
+        // in turn uses `QMimeDatabase`) returns "application/octet-stream" instead of "application/x-lzma"
+        // (which is the result if the file is named `FILE.lzma` (or if `file -i FILE.lzma.backup` is
+        // executed)).
+        // That problem does not happen if, for example, the user executes `xz FILE && mv FILE.xz
+        // FILE.xz.backup` and uses Krusader to find text in the file that is compressed inside the
+        // xz.backup one. That succeeds because the next `fileItem->getMime()` returns "application/x-xz"
+        // even if the file has a "xz.backup" extension.
+
         if (m_query->searchInArchives() && fileUrl.isLocalFile() && KrArcHandler::arcSupported(fileItem->getMime())) {
             // query search in archive; NOTE: only supported for local files
             QUrl archiveURL = fileUrl;
