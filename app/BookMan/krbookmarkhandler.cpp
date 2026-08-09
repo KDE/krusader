@@ -619,6 +619,12 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root, bool removeBookmarks)
 void KrBookmarkHandler::bookmarksChanged(const QString &)
 {
     importFromFile();
+
+    // Refresh the active menu if it is currently visible to the user
+    // to prevent dangling pointers in the UI
+    if (_mainBookmarkPopup && !_mainBookmarkPopup->isHidden()) {
+        populate(_mainBookmarkPopup);
+    }
 }
 
 bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
