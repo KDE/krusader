@@ -784,13 +784,13 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
 
                 auto *bm = qobject_cast<KrBookmark *>(act);
                 if (bm != nullptr) {
-                    rightClicked(menu, bm);
+                    rightClicked(bm);
                     return true;
                 } else if (act && act->data().canConvert<QPointer<KrBookmark>>()) {
                     QPointer<KrBookmark> bmPtr = act->data().value<QPointer<KrBookmark>>();
                     // Safely check if the object still exists
                     if (bmPtr) {
-                        rightClicked(menu, bmPtr.data());
+                        rightClicked(bmPtr.data());
                     }
                     // If bmPtr is null, the object was deleted in the background; therefore, ignore the click
                 }
@@ -862,9 +862,6 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark()
     act->setCheckable(true);
     act->setChecked(hasJumpback);
 
-    connect(_mainBookmarkPopup, SIGNAL(highlighted(int)), &menu, SLOT(close()));
-    connect(_mainBookmarkPopup, SIGNAL(activated(int)), &menu, SLOT(close()));
-
     int result = -1;
     QAction *res = menu.exec(QCursor::pos());
     if (res && res->data().canConvert<int>())
@@ -903,7 +900,7 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark()
 #define OPEN_NEW_TAB_ID 100201
 #define DELETE_ID 100202
 
-void KrBookmarkHandler::rightClicked(QMenu *menu, KrBookmark *bm)
+void KrBookmarkHandler::rightClicked(KrBookmark *bm)
 {
     QMenu popup(_mainBookmarkPopup);
     QAction *act;
@@ -917,9 +914,6 @@ void KrBookmarkHandler::rightClicked(QMenu *menu, KrBookmark *bm)
     }
     act = popup.addAction(Icon("edit-delete"), i18n("Delete"));
     act->setData(QVariant(DELETE_ID));
-
-    connect(menu, SIGNAL(highlighted(int)), &popup, SLOT(close()));
-    connect(menu, SIGNAL(activated(int)), &popup, SLOT(close()));
 
     // A QPointer aimed to safely track the lifetime of the bookmark
     QPointer<KrBookmark> safeBm(bm);

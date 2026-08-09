@@ -54,7 +54,7 @@ protected:
     void buildMenu(KrBookmark *parent, QMenu *menu, int depth = 0);
 
     bool eventFilter(QObject *obj, QEvent *ev) override;
-    void rightClicked(QMenu *menu, KrBookmark *bm);
+    void rightClicked(KrBookmark *bm);
     void rightClickOnSpecialBookmark();
 
     void removeReferences(KrBookmark *root, KrBookmark *bmToRemove);
