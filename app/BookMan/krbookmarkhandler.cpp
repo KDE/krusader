@@ -274,20 +274,38 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
     if (e.hasAttribute("icon")) {
         iconName = e.attribute("icon");
     }
-    // ok: got name and url, let's add a bookmark
-    KrBookmark *bm = KrBookmark::getExistingBookmark(path + name, _collection);
-    if (!bm) {
-        bm = new KrBookmark(name, QUrl(url), _collection, iconName, path + name);
-    } else {
-        bm->setURL(QUrl(url));
-        bm->setIconName(iconName);
+    // ok: got name and url, let's add a bookmark safely allowing duplicates
+    KrBookmark *bm = nullptr;
+    QString baseActionName = path + name;
+    QString actionName = baseActionName;
+    int suffix = 1;
+
+    // Loop to find an unused internal action name. This allows having
+    // multiple bookmarks with the exact same display name
+    // to exist as distinct pointers
+    while (true) {
+        bm = KrBookmark::getExistingBookmark(actionName, _collection);
+        if (!bm) {
+            // No bookmark exists with this internal actionName.
+            // Create a new bookmark safely
+            bm = new KrBookmark(name, QUrl(url), _collection, iconName, actionName);
+            break;
+        } else if (!seenBookmarks.contains(bm)) {
+            // We have found an existing one that hasn't been added to
+            // the tree yet in this pass. Reuse it
+            bm->setURL(QUrl(url));
+            bm->setIconName(iconName);
+            break;
+        }
+        // This pointer was already used (it's a duplicate name in the XML).
+        // Increment the suffix and check for (or create) a unique internal action name
+        suffix++;
+        actionName = baseActionName + "_" + QString::number(suffix);
     }
 
-    // Prevent duplicated pointers in the tree (in order to stop double-frees)
-    if (!seenBookmarks.contains(bm)) {
-        parent->children().append(bm);
-        seenBookmarks.insert(bm);
-    }
+    // Append it to the tree and record it in the guard set
+    parent->children().append(bm);
+    seenBookmarks.insert(bm);
 
     return true;
 }
