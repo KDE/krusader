@@ -92,6 +92,10 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow)
 
 KrBookmarkHandler::~KrBookmarkHandler()
 {
+    // Manually delete the tree of folders and separators. Leave the
+    // regular bookmarks to be destroyed by their KActionCollection
+    clearBookmarks(_root, false);
+
     delete bookmarksMenu;
     delete manager;
     delete _privateCollection;
@@ -570,7 +574,9 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root, bool removeBookmarks)
         } else if (removeBookmarks) {
             const auto widgets = bm->associatedObjects();
             for (QObject *w : widgets) {
-                qobject_cast<QWidget *>(w)->removeAction(bm);
+                if (QWidget *widget = qobject_cast<QWidget *>(w)) {
+                    widget->removeAction(bm);
+                }
             }
             delete bm;
         }
