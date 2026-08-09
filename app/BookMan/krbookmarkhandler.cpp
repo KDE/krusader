@@ -99,12 +99,26 @@ KrBookmarkHandler::~KrBookmarkHandler()
 
 void KrBookmarkHandler::bookmarkCurrent(QUrl url)
 {
+    // Disconnect the `KBookmarkManager::changed` signal before
+    // the modal dialog is opened. That way, `importFromFile()`
+    // is not automatically executed while the modal dialog is open,
+    // e.g. if the user presses the "New Folder" button (which causes
+    // an `exportToFile()` execution) that does not cause problems
+    disconnect(manager, &KBookmarkManager::changed,
+               this, &KrBookmarkHandler::bookmarksChanged);
+
     QPointer<KrAddBookmarkDlg> dlg = new KrAddBookmarkDlg(_mainWindow->widget(), std::move(url));
     if (dlg->exec() == QDialog::Accepted) {
         KrBookmark *bm = new KrBookmark(dlg->name(), dlg->url(), _collection);
         addBookmark(bm, dlg->folder());
     }
     delete dlg;
+
+    // Reconnect the `KBookmarkManager::changed` signal, now that the
+    // modal dialog is closed and the KrBookmark pointers from the dialog
+    // are no longer used
+    connect(manager, &KBookmarkManager::changed,
+            this, &KrBookmarkHandler::bookmarksChanged);
 }
 
 void KrBookmarkHandler::addBookmark(KrBookmark *bm, KrBookmark *folder)
