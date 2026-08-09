@@ -249,7 +249,7 @@ void KrBookmarkHandler::exportToFile()
     }
 }
 
-bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, const QString &path, QString *errorMsg)
+bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, const QString &path, QString *errorMsg, QSet<KrBookmark*> &seenBookmarks)
 {
     QString url, name, iconName;
     // verify tag
@@ -282,19 +282,24 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
         bm->setURL(QUrl(url));
         bm->setIconName(iconName);
     }
-    parent->children().append(bm);
+
+    // Prevent duplicated pointers in the tree (in order to stop double-frees)
+    if (!seenBookmarks.contains(bm)) {
+        parent->children().append(bm);
+        seenBookmarks.insert(bm);
+    }
 
     return true;
 }
 
-bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent, const QString &path, QString *errorMsg)
+bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent, const QString &path, QString *errorMsg, QSet<KrBookmark*> &seenBookmarks)
 {
     QString name;
     QDomNode n = first;
     while (!n.isNull()) {
         QDomElement e = n.toElement();
         if (e.tagName() == "bookmark") {
-            if (!importFromFileBookmark(e, parent, path, errorMsg))
+            if (!importFromFileBookmark(e, parent, path, errorMsg, seenBookmarks))
                 return false;
         } else if (e.tagName() == "folder") {
             QString iconName = "";
@@ -311,7 +316,7 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
             parent->children().append(folder);
 
             QDomNode nextOne = tmp.nextSibling();
-            if (!importFromFileFolder(nextOne, folder, path + name + '/', errorMsg))
+            if (!importFromFileFolder(nextOne, folder, path + name + '/', errorMsg, seenBookmarks))
                 return false;
         } else if (e.tagName() == "separator") {
             parent->children().append(KrBookmark::separator());
@@ -333,6 +338,16 @@ void KrBookmarkHandler::importFromFile()
     QString errorMsg;
     QDomNode n;
     QDomElement e;
+
+    // A set of bookmarks that have been seen.
+    // Note: There are two legitimate but conflicting design requirements:
+    // - The XML format intentionally allows *duplicate* display names. Users should be able to have e.g.
+    // two bookmarks both named "Documents".
+    // - A KActionCollection *uniquely* maps string names to pointers. This is necessary in order to preserve
+    // user-assigned toolbar buttons and keyboard shortcuts across reloads.
+    // This `QSet` makes the two conflicting design requirements coexist safely
+    QSet<KrBookmark*> seenBookmarks;
+
     QDomDocument doc("xbel");
     if (!doc.setContent(&file, &errorMsg)) {
         goto BM_ERROR;
@@ -347,7 +362,8 @@ void KrBookmarkHandler::importFromFile()
         goto BM_ERROR;
     } else
         n = n.firstChild(); // skip the xbel part
-    importFromFileFolder(n, _root, "", &errorMsg);
+
+    importFromFileFolder(n, _root, "", &errorMsg, seenBookmarks);
     goto BM_SUCCESS;
 
 BM_ERROR:

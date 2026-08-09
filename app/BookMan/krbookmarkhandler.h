@@ -45,8 +45,8 @@ public:
 protected:
     void deleteBookmark(KrBookmark *bm);
     void importFromFile();
-    bool importFromFileBookmark(QDomElement &e, KrBookmark *parent, const QString &path, QString *errorMsg);
-    bool importFromFileFolder(QDomNode &first, KrBookmark *parent, const QString &path, QString *errorMsg);
+    bool importFromFileBookmark(QDomElement &e, KrBookmark *parent, const QString &path, QString *errorMsg, QSet<KrBookmark*> &seenBookmarks);
+    bool importFromFileFolder(QDomNode &first, KrBookmark *parent, const QString &path, QString *errorMsg, QSet<KrBookmark*> &seenBookmarks);
     void exportToFile();
     void exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder);
     void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
