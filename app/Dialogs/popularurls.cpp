@@ -99,7 +99,7 @@ void PopularUrls::load()
         node->url = QUrl(*uit);
         node->rank = *rit;
         appendNode(node);
-        ranks.insert(*uit, node);
+        ranks.insert(node->url.url(), node);
     }
 }
 
