@@ -449,8 +449,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, QMenu *menu, int depth)
         newMenu->setIcon(Icon(bm->iconName()));
         newMenu->setTitle(bm->text());
         QAction *menuAction = menu->addMenu(newMenu);
-        QVariant v;
-        v.setValue(bm);
+        QVariant v = QVariant::fromValue(QPointer<KrBookmark>(bm));
         menuAction->setData(v);
 
         buildMenu(bm, newMenu, depth + 1);
@@ -779,9 +778,13 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
                 if (bm != nullptr) {
                     rightClicked(menu, bm);
                     return true;
-                } else if (act && act->data().canConvert<KrBookmark *>()) {
-                    bm = act->data().value<KrBookmark *>();
-                    rightClicked(menu, bm);
+                } else if (act && act->data().canConvert<QPointer<KrBookmark>>()) {
+                    QPointer<KrBookmark> bmPtr = act->data().value<QPointer<KrBookmark>>();
+                    // Safely check if the object still exists
+                    if (bmPtr) {
+                        rightClicked(menu, bmPtr.data());
+                    }
+                    // If bmPtr is null, the object was deleted in the background; therefore, ignore the click
                 }
             }
             break;

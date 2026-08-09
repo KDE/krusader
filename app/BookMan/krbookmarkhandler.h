@@ -88,6 +88,4 @@ private:
     QMenu *_dummyMenu; ///< A dummy menu to properly init actions
 };
 
-Q_DECLARE_METATYPE(KrBookmark *)
-
 #endif // KRBOOKMARK_HANDLER_H
