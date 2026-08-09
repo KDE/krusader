@@ -77,8 +77,8 @@ private:
 
     QWidgetAction *_quickSearchAction; ///< Search bar container action
     QLineEdit *_quickSearchBar; ///< Search bar containing current query
-    QMenu *_quickSearchMenu; ///< The menu where the search is performed
-    QHash<QAction *, QString> _quickSearchOriginalActionTitles; ///< Saved original action text values to restore after search
+    QPointer<QMenu> _quickSearchMenu; ///< The menu where the search is performed
+    QList<std::pair<QPointer<QAction>, QString>> _quickSearchOriginalActionTitles; ///< Saved original action text values to restore after search
 
     void _setQuickSearchText(const QString &text);
     QString _quickSearchText() const;

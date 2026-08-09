@@ -719,7 +719,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
 
                 // strip accelerator keys from actions so they don't interfere with the search key press events
                 auto text = act->text();
-                _quickSearchOriginalActionTitles.insert(act, text);
+                _quickSearchOriginalActionTitles.append({act, text});
                 act->setText(KLocalizedString::removeAcceleratorMarker(text));
             }
 
@@ -805,10 +805,11 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
 
 void KrBookmarkHandler::_resetActionTextAndHighlighting()
 {
-    for (QHash<QAction *, QString>::const_iterator i = _quickSearchOriginalActionTitles.constBegin(); i != _quickSearchOriginalActionTitles.constEnd(); ++i) {
-        QAction *action = i.key();
-        action->setText(i.value());
-        _highlightAction(action, false);
+    for (const auto &item : _quickSearchOriginalActionTitles) {
+        if (QAction *action = item.first) {
+            action->setText(item.second);
+            _highlightAction(action, false);
+        }
     }
 
     _quickSearchOriginalActionTitles.clear();
