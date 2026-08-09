@@ -239,7 +239,6 @@ class KrActionProc : public QObject
     Q_OBJECT
 public:
     explicit KrActionProc(KrActionBase *action);
-    ~KrActionProc() override;
     void start(const QString &cmdLine);
     void start(QStringList cmdLineList);
 
