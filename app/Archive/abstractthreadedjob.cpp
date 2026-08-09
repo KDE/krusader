@@ -297,6 +297,10 @@ AbstractJobThread::~AbstractJobThread()
         delete _tempFile;
         _tempFile = nullptr;
     }
+    if (_tempDir) {
+        delete _tempDir;
+        _tempDir = nullptr;
+    }
 }
 
 void AbstractJobThread::run()
