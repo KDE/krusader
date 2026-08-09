@@ -412,6 +412,19 @@ void KrBookmarkHandler::populate(QMenu *menu)
         _mainBookmarkPopup->removeAction(_quickSearchAction);
     }
     _mainBookmarkPopup = menu;
+
+    // In order to prevent memory leaks:
+    // QMenu::clear() deletes actions, but it does *not* delete
+    // the dynamically-allocated child QMenus. We must explicitly
+    // delete them in order to prevent a fast proliferation of
+    // top-level widgets that are not properly cleaned up
+    const auto actions = menu->actions();
+    for (QAction *act : actions) {
+        if (QMenu *subMenu = act->menu()) {
+            delete subMenu;
+        }
+    }
+
     menu->clear();
     _specialBookmarks.clear();
     buildMenu(_root, menu);
