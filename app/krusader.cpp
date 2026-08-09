@@ -264,8 +264,10 @@ Krusader::~Krusader()
 {
     KrTrashHandler::stopWatcher();
 
-    delete MAIN_VIEW;
+    // Via setCentralWidget(), MAIN_VIEW is set as the central widget, therefore
+    // QMainWindow owns it and deletes it during the base class destruction
     MAIN_VIEW = nullptr;
+
     App = nullptr;
 }
 
