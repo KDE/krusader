@@ -142,9 +142,15 @@ void KrBookmarkHandler::deleteBookmark(KrBookmark *bm)
     removeReferences(_root, bm);
 
     const auto widgets = bm->associatedObjects();
-    for (QObject *w : widgets)
-        qobject_cast<QWidget *>(w)->removeAction(bm);
-    delete bm;
+    for (QObject *w : widgets) {
+        if (QWidget *widget = qobject_cast<QWidget *>(w)) {
+            widget->removeAction(bm);
+        }
+    }
+
+    // Perform a safe asynchronous deletion (it prevents deleting the action
+    // while Qt's context menu event loop is still actively evaluating it)
+    bm->deleteLater();
 
     exportToFile();
 }
@@ -567,9 +573,9 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root, bool removeBookmarks)
 
         if (bm->isFolder()) {
             clearBookmarks(bm, removeBookmarks);
-            delete bm;
+            bm->deleteLater();
         } else if (bm->isSeparator()) {
-            delete bm;
+            bm->deleteLater();
         } else if (removeBookmarks) {
             const auto widgets = bm->associatedObjects();
             for (QObject *w : widgets) {
@@ -577,7 +583,7 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root, bool removeBookmarks)
                     widget->removeAction(bm);
                 }
             }
-            delete bm;
+            bm->deleteLater();
         }
     }
 }
