@@ -128,9 +128,9 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     // ------------- Preview - local filesystem only ?
     if (panel->func->files()->isLocal()) {
         // create the preview popup
-        KrPreviewPopup preview;
-        preview.setUrls(panel->func->files()->getUrls(fileNames));
-        QAction *previewAction = addMenu(&preview);
+        KrPreviewPopup *preview = new KrPreviewPopup(this);
+        preview->setUrls(panel->func->files()->getUrls(fileNames));
+        QAction *previewAction = addMenu(preview);
         previewAction->setData(QVariant(static_cast<int>(PREVIEW_ID)));
         previewAction->setText(i18n("Preview"));
         previewAction->setIcon(Icon("document-print-preview"));

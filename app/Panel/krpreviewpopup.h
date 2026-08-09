@@ -23,7 +23,7 @@ class KrPreviewPopup : public QMenu
     Q_OBJECT
 
 public:
-    KrPreviewPopup();
+    explicit KrPreviewPopup(QWidget *parent);
 
     void setUrls(const QList<QUrl> &urls);
 public slots:

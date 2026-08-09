@@ -80,8 +80,9 @@ public:
     }
 };
 
-KrPreviewPopup::KrPreviewPopup()
-    : jobStarted(false)
+KrPreviewPopup::KrPreviewPopup(QWidget *parent)
+    : QMenu(parent)
+    , jobStarted(false)
 {
     prevNotAvailAction = addAction(i18n("Preview not available"));
 
