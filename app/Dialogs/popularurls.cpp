@@ -155,10 +155,21 @@ void PopularUrls::addUrl(const QUrl &url)
     relocateIfNeeded(pnode);
 
     // too many urls?
-    if (count > maxUrls)
-        removeNode(tail);
+    if (count > maxUrls) {
+        deleteNode(tail);
+    }
 
     // dumpList();
+}
+
+void PopularUrls::deleteNode(UrlNodeP node)
+{
+    // Remove the url from the `ranks` QHash
+    ranks.remove(node->url.url());
+    // Unlink the node from the list
+    removeNode(node);
+    // Free memory
+    delete node;
 }
 
 // checks if 'node' needs to be bumped-up the ranking list and does it if needed

@@ -51,6 +51,9 @@ public slots:
     void showDialog();
 
 protected:
+    // Remove a node from the list and delete it from memory
+    void deleteNode(UrlNodeP node);
+
     // NOTE: the following methods append/insert/remove a node to the list
     // but NEVER free memory or allocate memory!
     void appendNode(UrlNodeP node);
