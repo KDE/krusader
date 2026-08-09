@@ -643,13 +643,15 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
             qDebug() << "Bookmark search: active action =" << _quickSearchMenu->activeAction();
 
             // fix automatic deactivation of current action due to spurious close event from submenu
-            auto quickSearchMenu = _quickSearchMenu;
-            auto activeAction = _quickSearchMenu->activeAction();
-            QTimer::singleShot(0, this, [=]() {
-                qDebug() << "Bookmark search: active action =" << quickSearchMenu->activeAction();
-                if (!quickSearchMenu->activeAction() && activeAction) {
-                    quickSearchMenu->setActiveAction(activeAction);
-                    qDebug() << "Bookmark search: restored active action =" << quickSearchMenu->activeAction();
+            QPointer<QMenu> quickSearchMenu = _quickSearchMenu;
+            QPointer<QAction> activeAction = _quickSearchMenu->activeAction();
+            QTimer::singleShot(0, this, [quickSearchMenu, activeAction]() {
+                if (quickSearchMenu && activeAction) {
+                    qDebug() << "Bookmark search: active action =" << quickSearchMenu->activeAction();
+                    if (!quickSearchMenu->activeAction()) {
+                        quickSearchMenu->setActiveAction(activeAction);
+                        qDebug() << "Bookmark search: restored active action =" << quickSearchMenu->activeAction();
+                    }
                 }
             });
         }
