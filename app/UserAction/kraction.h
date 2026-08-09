@@ -12,6 +12,7 @@
 
 // QtCore
 #include <QByteArray>
+#include <QPointer>
 #include <QUrl>
 // QtGui
 #include <QFont>
@@ -256,7 +257,9 @@ private:
     KProcess *_proc;
     QString _stdout;
     QString _stderr;
-    KrActionProcDlg *_output;
+    // It's non-owning. It resets to nullptr when
+    // the dialog is destroyed (e.g. on close)
+    QPointer<KrActionProcDlg> _output;
 };
 
 #endif // KRACTION_H

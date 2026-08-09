@@ -69,5 +69,8 @@ void KrActionBase::handleError(const Error &err)
 
 KrActionProc *KrActionBase::actionProcFactoryMethod()
 {
+    // Create a KrActionProc object on the heap for this action. The caller
+    // must not delete the returned pointer because the KrActionProc object is
+    // responsible for destroying itself later
     return new KrActionProc(this);
 }
