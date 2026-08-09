@@ -915,6 +915,9 @@ void KrBookmarkHandler::rightClicked(QMenu *menu, KrBookmark *bm)
     connect(menu, SIGNAL(highlighted(int)), &popup, SLOT(close()));
     connect(menu, SIGNAL(activated(int)), &popup, SLOT(close()));
 
+    // A QPointer aimed to safely track the lifetime of the bookmark
+    QPointer<KrBookmark> safeBm(bm);
+
     int result = -1;
     QAction *res = popup.exec(QCursor::pos());
     if (res && res->data().canConvert<int>())
@@ -925,15 +928,20 @@ void KrBookmarkHandler::rightClicked(QMenu *menu, KrBookmark *bm)
         _mainBookmarkPopup->close();
     }
 
+    // Only proceed if the bookmark wasn't destroyed in the background
+    if (!safeBm) {
+        return;
+    }
+
     switch (result) {
     case OPEN_ID:
-        SLOTS->refresh(bm->url());
+        SLOTS->refresh(safeBm->url());
         break;
     case OPEN_NEW_TAB_ID:
-        _mainWindow->activeManager()->newTab(bm->url());
+        _mainWindow->activeManager()->newTab(safeBm->url());
         break;
     case DELETE_ID:
-        deleteBookmark(bm);
+        deleteBookmark(safeBm.data());
         break;
     }
 }
