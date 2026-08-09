@@ -84,6 +84,8 @@ private:
     QString _quickSearchText() const;
     static void _highlightAction(QAction *action, bool isMatched = true);
     void _resetActionTextAndHighlighting();
+
+    QMenu *_dummyMenu; ///< A dummy menu to properly init actions
 };
 
 Q_DECLARE_METATYPE(KrBookmark *)

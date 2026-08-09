@@ -83,11 +83,9 @@ KrBookmarkHandler::KrBookmarkHandler(KrMainWindow *mainWindow)
     _setQuickSearchText("");
 
     // fill a dummy menu to properly init actions (allows toolbar bookmark buttons to work properly)
-    auto menu = new QMenu(mainWindow->widget());
-    bookmarksMenu = new KBookmarkMenu(manager, nullptr, menu);
-
-    populate(menu);
-    menu->deleteLater();
+    _dummyMenu = new QMenu(); // it has no parent, we explicitly control its lifetime
+    bookmarksMenu = new KBookmarkMenu(manager, nullptr, _dummyMenu);
+    populate(_dummyMenu);
 }
 
 KrBookmarkHandler::~KrBookmarkHandler()
@@ -97,6 +95,7 @@ KrBookmarkHandler::~KrBookmarkHandler()
     clearBookmarks(_root, false);
 
     delete bookmarksMenu;
+    delete _dummyMenu; // It can be safely deleted after bookmarksMenu is deleted
     delete manager;
     delete _privateCollection;
 }
