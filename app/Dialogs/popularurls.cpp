@@ -132,23 +132,19 @@ void PopularUrls::addUrl(const QUrl &url)
     UrlNodeP pnode;
 
     decreaseRanks();
-    if (!head) { // if the list is empty ... (assumes dict to be empty as well)
+    if (!head // if the list is empty (it assumes that the dict is empty as well)
+        ||
+        ranks.find(tmpurl.url()) == ranks.end() // is the added url new? if so, append it
+        )
+    {
         pnode = new UrlNode;
         pnode->rank = STARTING_RANK;
         pnode->url = tmpurl;
         appendNode(pnode);
-        ranks.insert(tmpurl.url(), head);
+        ranks.insert(tmpurl.url(), pnode);
     } else {
-        if (ranks.find(tmpurl.url()) == ranks.end()) { // is the added url new? if so, append it
-            pnode = new UrlNode;
-            pnode->rank = STARTING_RANK;
-            pnode->url = tmpurl;
-            appendNode(pnode);
-            ranks.insert(tmpurl.url(), pnode);
-        } else {
-            pnode = ranks[tmpurl.url()];
-            pnode->rank += INCREASE;
-        }
+        pnode = ranks[tmpurl.url()];
+        pnode->rank += INCREASE;
     }
 
     // do we need to change location for this one?
