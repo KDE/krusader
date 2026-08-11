@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-05 00:50+0000\n"
-"PO-Revision-Date: 2026-02-26 13:09+0400\n"
+"PO-Revision-Date: 2026-08-10 18:03+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1559,7 +1559,7 @@ msgstr "آخر تغيير:"
 #: app/DiskUsage/diskusage.cpp:1043
 #, kde-format
 msgid "Permissions:"
-msgstr "التّصاريح:"
+msgstr "الأذون:"
 
 #: app/DiskUsage/diskusage.cpp:1044
 #, kde-format
@@ -1649,7 +1649,7 @@ msgstr "استخدم إزالة التسنّن"
 #: app/DiskUsage/dufilelight.cpp:98
 #, kde-format
 msgid "Show small files"
-msgstr "أعرض الملفات الصغيرة"
+msgstr "اعرض الملفات الصغيرة"
 
 #: app/DiskUsage/dufilelight.cpp:102
 #, kde-format
@@ -1710,7 +1710,7 @@ msgstr "التاريخ"
 #: app/DiskUsage/dulistview.cpp:44
 #, kde-format
 msgid "Permissions"
-msgstr "التّصاريح"
+msgstr "الأذون"
 
 #: app/DiskUsage/dulistview.cpp:45
 #, kde-format
@@ -3506,7 +3506,7 @@ msgstr "المجلد المؤقت:"
 #: app/Konfigurator/kggeneral.cpp:248
 #, kde-format
 msgid "Note: you must have full permissions for the temporary folder."
-msgstr "ملاحظة: يجب أن تكون لديك صلاحيات كاملة للمجلد المؤقت."
+msgstr "ملاحظة: يجب أن تكون لديك أذون كاملة للمجلد المؤقت."
 
 #: app/Konfigurator/kggeneral.cpp:255
 #, kde-format
@@ -4105,7 +4105,7 @@ msgstr "اعرض الملفات التي تبدأ بنقطة."
 #: app/Konfigurator/kgpanel.cpp:468
 #, kde-format
 msgid "Numeric Permissions"
-msgstr "صلاحيات رقمية"
+msgstr "أذون رقمية"
 
 #: app/Konfigurator/kgpanel.cpp:470
 #, kde-format
@@ -4113,7 +4113,7 @@ msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
 "the permission column."
 msgstr ""
-"أظهر أرقامًا ثمانية (0755) بدلًا من الصلاحيات القياسية (rwxr-xr-x) في عمود "
+"أظهر أرقامًا ثمانية (0755) بدلًا من الأذون القياسية (rwxr-xr-x) في عمود "
 "الصلاحيات."
 
 #: app/Konfigurator/kgpanel.cpp:474
@@ -5493,7 +5493,7 @@ msgid ""
 msgstr ""
 "العمليات غير الصحيحة في وضع الجذر يمكنها أن تتلف نظام تشغيلك. <p>علاوة على "
 "ذلك، تشغيل تطبيقات واجهة المستخدم كجذر غير آمن ويمكن أن يسمح للمهاجمين "
-"بالحصول على صلاحيات الجذر."
+"بالحصول على أذون الجذر."
 
 #: app/krslots.cpp:478
 #, kde-format
@@ -6067,7 +6067,7 @@ msgstr "كروسادر"
 #: app/main.cpp:119
 #, kde-format
 msgid "Krusader - ROOT PRIVILEGES"
-msgstr "كروسادر - صلاحيات الجذر"
+msgstr "كروسادر - امتيازات الجذر"
 
 #: app/main.cpp:123
 #, kde-format
@@ -7564,7 +7564,7 @@ msgstr "فشل إنشاء رابط جديد '%1' إلى '%2'"
 #: app/Panel/panelfunc.cpp:441
 #, kde-format
 msgid "No permissions to view this file."
-msgstr "لا صلاحيات لعرض هذا الملف."
+msgstr "لا أذون لعرض هذا الملف."
 
 #: app/Panel/panelfunc.cpp:452
 #, kde-format
@@ -7579,7 +7579,7 @@ msgstr "لا يمكنك تعديل مجلد"
 #: app/Panel/panelfunc.cpp:487
 #, kde-format
 msgid "No permissions to edit this file."
-msgstr "لا صلاحيات لتعديل هذا الملف."
+msgstr "لا أذون لتعديل هذا الملف."
 
 #: app/Panel/panelfunc.cpp:501
 #, kde-format
@@ -7916,7 +7916,7 @@ msgstr "وُصِل إليه"
 #, kde-format
 msgctxt "File property"
 msgid "Perms"
-msgstr "الصلاحيات"
+msgstr "الأذون"
 
 #: app/Panel/PanelView/listmodel.cpp:402
 #, kde-format
@@ -7969,7 +7969,7 @@ msgstr "أخر وصول: %1"
 #, kde-format
 msgctxt "File property"
 msgid "Permissions: %1"
-msgstr "التّصاريح: %1"
+msgstr "الأذون: %1"
 
 #: app/Panel/PanelView/listmodel.cpp:515
 #, kde-format
@@ -9649,7 +9649,7 @@ msgstr "حرر ملف كجذر"
 #: app/useraction_examples.xml:17
 #, kde-format
 msgid "Edit a file with root permissions"
-msgstr "حرِّر ملفًا بصلاحيات الجذر"
+msgstr "حرِّر ملفًا بأذون الجذر"
 
 #: app/useraction_examples.xml:23
 #, kde-format
