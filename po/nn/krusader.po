@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-05 00:50+0000\n"
+"POT-Creation-Date: 2026-08-12 00:51+0000\n"
 "PO-Revision-Date: 2026-07-05 16:37+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
@@ -839,7 +839,7 @@ msgid "Create in:"
 msgstr "Legg i:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:686
+#: app/Panel/panelfunc.cpp:681
 #, kde-format
 msgid "New Folder"
 msgstr "Ny mappe"
@@ -1453,7 +1453,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Er du sikker på at du vil flytta elementet til papirkorga?"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:827
 #, kde-format
 msgid "&Trash"
 msgstr "&Papirkorg"
@@ -1465,8 +1465,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Er du sikker på at du vil sletta elementet?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
-#: app/Panel/panelfunc.cpp:925
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:920
 #, kde-format
 msgid "Warning"
 msgstr "Åtvaring"
@@ -5369,7 +5369,7 @@ msgstr "Samanlikn e&tter innhald …"
 msgid "Multi &Rename..."
 msgstr "&Endra namn på fleire …"
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:473
+#: app/kractions.cpp:288 app/krusaderview.cpp:483
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Loddrett utforming"
@@ -5700,7 +5700,7 @@ msgstr "Jobbverktøylinje"
 msgid "Function keys allow performing fast operations on files."
 msgstr "Raske handlingar på filer kan gjerast med funksjonstastar."
 
-#: app/krusaderview.cpp:477
+#: app/krusaderview.cpp:487
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "Vassrett utforming"
@@ -7580,7 +7580,7 @@ msgstr "Ny lenkje"
 msgid "Create a new link to: %1"
 msgstr "Lag ny lenkje til: %1"
 
-#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:767
+#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:762
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Det finst alt ei mappe eller fil med dette namnet."
@@ -7645,31 +7645,31 @@ msgid_plural "Copy %1 files to:"
 msgstr[0] "Kopier %1 fil til:"
 msgstr[1] "Kopier %1 filer til:"
 
-#: app/Panel/panelfunc.cpp:659
+#: app/Panel/panelfunc.cpp:660
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr "Det nye namnet («%1») er lik det gamle namnet."
 
-#: app/Panel/panelfunc.cpp:668
+#: app/Panel/panelfunc.cpp:662
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr "Sidan det nye namnet var tomt, har ikkje «%1» fått nytt namn."
 
-#: app/Panel/panelfunc.cpp:691
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "Folder's name:"
 msgstr "Mappenamn:"
 
-#: app/Panel/panelfunc.cpp:831
+#: app/Panel/panelfunc.cpp:826
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Er du sikker på at du vil flytta dette elementet til papirkorga?"
 msgstr[1] "Er du sikker på at du vil flytta desse %1 elementa til papirkorga?"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:830
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7684,44 +7684,44 @@ msgstr[1] ""
 "<qt>Er du sikker på at du vil sletta desse %1 elementa <b>fysisk</b> (ikkje "
 "berre fjerne dei frå dei virtuelle elementa)?</qt>"
 
-#: app/Panel/panelfunc.cpp:842
+#: app/Panel/panelfunc.cpp:837
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Er du sikker på at du vil sletta dette elementet?"
 msgstr[1] "Er du sikker på at du vil sletta desse %1 elementa?"
 
-#: app/Panel/panelfunc.cpp:880
+#: app/Panel/panelfunc.cpp:875
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Mappa <b>%1</b> er ikkje tom.</p>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Hopp over denne eller leggja alt i papirkorga?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Hopp over denne eller slett alt?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:883
+#: app/Panel/panelfunc.cpp:878
 #, kde-format
 msgid "&Skip"
 msgstr "&Hopp over"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Trash All"
 msgstr "&Legg alle i papirkorga"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Delete All"
 msgstr "&Slett alle"
 
-#: app/Panel/panelfunc.cpp:921
+#: app/Panel/panelfunc.cpp:916
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7736,12 +7736,12 @@ msgstr[1] ""
 "Er du sikker på at du vil sletta desse %1 virtuelle elementa (fysiske filer "
 "vert ikkje endra)?"
 
-#: app/Panel/panelfunc.cpp:964
+#: app/Panel/panelfunc.cpp:959
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 kan ikkje opna %2"
 
-#: app/Panel/panelfunc.cpp:1041
+#: app/Panel/panelfunc.cpp:1036
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7750,7 +7750,7 @@ msgstr ""
 "<qt><p>Arkivet <b>%1.%2</b> finst frå før. Vil du skriva over det?</"
 "p><p>Alle data i det gamle arkivet vil då gå tapt.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1041
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7761,17 +7761,17 @@ msgstr ""
 "vil erstatta oppføringar i zip-arkivet med same namn, eller legg til "
 "oppføringar som har nye namn.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1054
+#: app/Panel/panelfunc.cpp:1049
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Kan ikkje pakka filer inn i eit virtuelt mål."
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1082
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Pakk ut %1 til:"
 
-#: app/Panel/panelfunc.cpp:1089
+#: app/Panel/panelfunc.cpp:1084
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

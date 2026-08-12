@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-05 00:50+0000\n"
+"POT-Creation-Date: 2026-08-12 00:51+0000\n"
 "PO-Revision-Date: 2025-05-25 17:38+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -848,7 +848,7 @@ msgid "Create in:"
 msgstr "Luo kansioon:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:686
+#: app/Panel/panelfunc.cpp:681
 #, kde-format
 msgid "New Folder"
 msgstr "Uusi kansio"
@@ -1460,7 +1460,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Haluatko varmasti siirtää tämän kohteen roskakoriin?"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:827
 #, kde-format
 msgid "&Trash"
 msgstr "&Siirrä roskakoriin"
@@ -1472,8 +1472,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Haluatko varmasti poistaa tämän kohteen?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
-#: app/Panel/panelfunc.cpp:925
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:920
 #, kde-format
 msgid "Warning"
 msgstr "Varoitus"
@@ -5387,7 +5387,7 @@ msgstr "&Vertaa sisältöä…"
 msgid "Multi &Rename..."
 msgstr "Muuta useiden tie&dostojen nimiä…"
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:473
+#: app/kractions.cpp:288 app/krusaderview.cpp:483
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Pystytila"
@@ -5721,7 +5721,7 @@ msgstr "Työtyökalurivi"
 msgid "Function keys allow performing fast operations on files."
 msgstr "Funktionäppäimet mahdollistavat nopeammat tiedostotoiminnot."
 
-#: app/krusaderview.cpp:477
+#: app/krusaderview.cpp:487
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "Vaakatila"
@@ -7606,7 +7606,7 @@ msgstr "Uusi linkki"
 msgid "Create a new link to: %1"
 msgstr "Luo uusi linkki kohteeseen: %1"
 
-#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:767
+#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:762
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Tämän niminen kansio tai tiedosto on jo olemassa."
@@ -7670,31 +7670,31 @@ msgid_plural "Copy %1 files to:"
 msgstr[0] "Kopioi %1 tiedosto kohteeseen:"
 msgstr[1] "Kopioi %1 tiedostoa kohteeseen:"
 
-#: app/Panel/panelfunc.cpp:659
+#: app/Panel/panelfunc.cpp:660
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:668
+#: app/Panel/panelfunc.cpp:662
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:691
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "Folder's name:"
 msgstr "Kansion nimi:"
 
-#: app/Panel/panelfunc.cpp:831
+#: app/Panel/panelfunc.cpp:826
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Haluatko varmasti siirtää tämän kohteen roskakoriin?"
 msgstr[1] "Haluatko varmasti siirtää seuraavat %1 kohdetta roskakoriin?"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:830
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7709,44 +7709,44 @@ msgstr[1] ""
 "<qt>Haluatko varmasti poistaa nämä %1 tietuetta <b>fyysisesti</b> (etkä vain "
 "poistaa niitä virtuaalitietueista)?</qt>"
 
-#: app/Panel/panelfunc.cpp:842
+#: app/Panel/panelfunc.cpp:837
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Haluatko varmasti poistaa tämän kohteen?"
 msgstr[1] "Haluatko varmasti poistaa nämä %1 kohdetta?"
 
-#: app/Panel/panelfunc.cpp:880
+#: app/Panel/panelfunc.cpp:875
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Kansio <b>%1</b> ei ole tyhjä.</p>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Ohitetaanko tämä vai viedäänkö kaikki roskakoriin?</p> </qt>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Ohitetaanko tämä vai poistetaanko kaikki?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:883
+#: app/Panel/panelfunc.cpp:878
 #, kde-format
 msgid "&Skip"
 msgstr "&Ohita"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Trash All"
 msgstr "Siirrä kaikki r&oskakoriin"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Delete All"
 msgstr "Poista k&aikki"
 
-#: app/Panel/panelfunc.cpp:921
+#: app/Panel/panelfunc.cpp:916
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7762,12 +7762,12 @@ msgstr[1] ""
 "säilyvät ennallaan)?"
 
 # %2 näyttäisi on pilkulla eroteltu URL-luettelo
-#: app/Panel/panelfunc.cpp:964
+#: app/Panel/panelfunc.cpp:959
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 ei voi avata kohdetta %2"
 
-#: app/Panel/panelfunc.cpp:1041
+#: app/Panel/panelfunc.cpp:1036
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7776,7 +7776,7 @@ msgstr ""
 "<qt><p>Arkisto <b>%1.%2</b> on jo olemassa. Haluatko varmasti korvata sen?</"
 "p><p>Kaikki arkiston aiemmat tiedot menetetään.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1041
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7787,17 +7787,17 @@ msgstr ""
 "korvaa Zip-arkiston saman nimiset tietueet tai lisää ne uusilla nimillä.</"
 "p></qt>"
 
-#: app/Panel/panelfunc.cpp:1054
+#: app/Panel/panelfunc.cpp:1049
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Tiedostoja ei voi pakata virtuaalikohteeseen."
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1082
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Pura %1 kohteeseen:"
 
-#: app/Panel/panelfunc.cpp:1089
+#: app/Panel/panelfunc.cpp:1084
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

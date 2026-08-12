@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-05 00:50+0000\n"
+"POT-Creation-Date: 2026-08-12 00:51+0000\n"
 "PO-Revision-Date: 2026-02-09 11:04+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -848,7 +848,7 @@ msgid "Create in:"
 msgstr "Crea dins:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:686
+#: app/Panel/panelfunc.cpp:681
 #, kde-format
 msgid "New Folder"
 msgstr "Carpeta nova"
@@ -1466,7 +1466,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Realment voleu moure aquest element a la paperera?"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:827
 #, kde-format
 msgid "&Trash"
 msgstr "&Paperera"
@@ -1478,8 +1478,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Esteu segur que voleu suprimir aquest element?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
-#: app/Panel/panelfunc.cpp:925
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:920
 #, kde-format
 msgid "Warning"
 msgstr "Avís"
@@ -5409,7 +5409,7 @@ msgstr "Compara per &contingut..."
 msgid "Multi &Rename..."
 msgstr "&Reanomena de forma massiva..."
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:473
+#: app/kractions.cpp:288 app/krusaderview.cpp:483
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Mode vertical"
@@ -5744,7 +5744,7 @@ msgstr ""
 "Les tecles de funció permeten anar més de pressa en les operacions amb "
 "fitxers."
 
-#: app/krusaderview.cpp:477
+#: app/krusaderview.cpp:487
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "Mode horitzontal"
@@ -7627,7 +7627,7 @@ msgstr "Enllaç nou"
 msgid "Create a new link to: %1"
 msgstr "Crea un enllaç nou a: %1"
 
-#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:767
+#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:762
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Ja existeix una carpeta o un fitxer amb aquest nom."
@@ -7691,12 +7691,12 @@ msgid_plural "Copy %1 files to:"
 msgstr[0] "Copia %1 fitxer a:"
 msgstr[1] "Copia %1 fitxers a:"
 
-#: app/Panel/panelfunc.cpp:659
+#: app/Panel/panelfunc.cpp:660
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr "El nom proposat («%1») és el mateix que l'anterior."
 
-#: app/Panel/panelfunc.cpp:668
+#: app/Panel/panelfunc.cpp:662
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
@@ -7704,19 +7704,19 @@ msgid ""
 msgstr ""
 "No s'ha efectuat el canvi de nom de «%1» perquè el nom proposat estava buit."
 
-#: app/Panel/panelfunc.cpp:691
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "Folder's name:"
 msgstr "Nom de la carpeta:"
 
-#: app/Panel/panelfunc.cpp:831
+#: app/Panel/panelfunc.cpp:826
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Realment voleu moure aquest element a la paperera?"
 msgstr[1] "Realment voleu moure aquests %1 elements a la paperera?"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:830
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7731,44 +7731,44 @@ msgstr[1] ""
 "<qt>Realment voleu suprimir aquests %1 elements <b>físicament</b> (també "
 "s'eliminaran els elements virtuals)?</qt>"
 
-#: app/Panel/panelfunc.cpp:842
+#: app/Panel/panelfunc.cpp:837
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Realment voleu suprimir aquest element?"
 msgstr[1] "Realment voleu suprimir aquests %1 elements?"
 
-#: app/Panel/panelfunc.cpp:880
+#: app/Panel/panelfunc.cpp:875
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>La carpeta <b>%1</b> no està buida.</p>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Ho voleu ometre o moure-ho tot a la paperera?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Ho voleu ometre o voleu suprimir-ho del tot?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:883
+#: app/Panel/panelfunc.cpp:878
 #, kde-format
 msgid "&Skip"
 msgstr "&Omet"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Trash All"
 msgstr "Mou &tot a la paperera"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Delete All"
 msgstr "Suprimeix-ho &tot"
 
-#: app/Panel/panelfunc.cpp:921
+#: app/Panel/panelfunc.cpp:916
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7783,12 +7783,12 @@ msgstr[1] ""
 "Realment voleu suprimir aquests %1 elements virtuals (els fitxers físics no "
 "es tocaran)?"
 
-#: app/Panel/panelfunc.cpp:964
+#: app/Panel/panelfunc.cpp:959
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 no ha pogut obrir %2"
 
-#: app/Panel/panelfunc.cpp:1041
+#: app/Panel/panelfunc.cpp:1036
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7797,7 +7797,7 @@ msgstr ""
 "<qt><p>L'arxiu <b>%1.%2</b> ja existeix. Voleu sobreescriure'l?</p><p>Es "
 "perdran les dades de l'arxiu anterior.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1041
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7808,17 +7808,17 @@ msgstr ""
 "substituirà els fitxers amb el mateix nom dins de l'arxiu ZIP o bé afegirà "
 "els fitxers amb un nom nou.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1054
+#: app/Panel/panelfunc.cpp:1049
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "No es poden empaquetar els fitxers en una destinació virtual."
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1082
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Desempaqueta %1 a:"
 
-#: app/Panel/panelfunc.cpp:1089
+#: app/Panel/panelfunc.cpp:1084
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

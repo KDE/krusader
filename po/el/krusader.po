@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-05 00:50+0000\n"
+"POT-Creation-Date: 2026-08-12 00:51+0000\n"
 "PO-Revision-Date: 2021-10-19 08:32+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -863,7 +863,7 @@ msgid "Create in:"
 msgstr "Δημιουργία στο:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:686
+#: app/Panel/panelfunc.cpp:681
 #, kde-format
 msgid "New Folder"
 msgstr "Νέος φάκελος"
@@ -1484,7 +1484,7 @@ msgid "Do you really want to move this item to the trash?"
 msgstr ""
 "Θέλετε πραγματικά να μετακινήσετε αυτό το αντικείμενο στον κάδο απορριμμάτων;"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:827
 #, kde-format
 msgid "&Trash"
 msgstr "Μετακίνηση στον &κάδο"
@@ -1496,8 +1496,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το αντικείμενο;"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
-#: app/Panel/panelfunc.cpp:925
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:920
 #, kde-format
 msgid "Warning"
 msgstr "Προειδοποίηση"
@@ -5447,7 +5447,7 @@ msgstr "Σύγκριση &περιεχομένων..."
 msgid "Multi &Rename..."
 msgstr "Μετονομασία πολλαπλών α&ρχείων..."
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:473
+#: app/kractions.cpp:288 app/krusaderview.cpp:483
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Κατακόρυφη παράθεση"
@@ -5783,7 +5783,7 @@ msgid "Function keys allow performing fast operations on files."
 msgstr ""
 "Τα πλήκτρα λειτουργιών σας επιτρέπουν τη γρήγορη εκτέλεση εντολών στα αρχεία."
 
-#: app/krusaderview.cpp:477
+#: app/krusaderview.cpp:487
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "Οριζόντια λειτουργία"
@@ -7677,7 +7677,7 @@ msgstr "Νέος δεσμός"
 msgid "Create a new link to: %1"
 msgstr "Δημιουργία νέου δεσμού στο: %1"
 
-#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:767
+#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:762
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Ένας φάκελος ή ένα αρχείο με αυτό το όνομα υπάρχει ήδη."
@@ -7741,24 +7741,24 @@ msgid_plural "Copy %1 files to:"
 msgstr[0] "Αντιγραφή %1 αρχείου στο:"
 msgstr[1] "Αντιγραφή %1 αρχείων στο:"
 
-#: app/Panel/panelfunc.cpp:659
+#: app/Panel/panelfunc.cpp:660
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:668
+#: app/Panel/panelfunc.cpp:662
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:691
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "Folder's name:"
 msgstr "Όνομα φακέλου:"
 
-#: app/Panel/panelfunc.cpp:831
+#: app/Panel/panelfunc.cpp:826
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -7768,7 +7768,7 @@ msgstr[1] ""
 "Θέλετε πραγματικά να μετακινήσετε αυτά τα %1 αντικείμενα στον κάδο "
 "απορριμμάτων;"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:830
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7783,44 +7783,44 @@ msgstr[1] ""
 "<qt>Θέλετε πραγματικά να διαγράψετε αυτά τα %1 αντικείμενα (και όχι μόνο να "
 "τα αφαιρέσετε από τα εικονικά αντικείμενα);</qt>"
 
-#: app/Panel/panelfunc.cpp:842
+#: app/Panel/panelfunc.cpp:837
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Θέλετε πραγματικά να διαγράψετε αυτό το αντικείμενο;"
 msgstr[1] "Θέλετε πραγματικά να διαγράψετε αυτά τα %1 αντικείμενα;"
 
-#: app/Panel/panelfunc.cpp:880
+#: app/Panel/panelfunc.cpp:875
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Ο κατάλογος <b>%1</b> δεν είναι κενός.</p>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Παράβλεψη αυτού ή όλα στα απορρίμματα;</p></qt>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Παράβλεψη αυτού ή διαγραφή όλων;</p></qt>"
 
-#: app/Panel/panelfunc.cpp:883
+#: app/Panel/panelfunc.cpp:878
 #, kde-format
 msgid "&Skip"
 msgstr "Παράβλε&ψη"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Trash All"
 msgstr "Μετακίνηση όλων στα απορρίμμα&τα"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Delete All"
 msgstr "&Διαγραφή όλων"
 
-#: app/Panel/panelfunc.cpp:921
+#: app/Panel/panelfunc.cpp:916
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7835,12 +7835,12 @@ msgstr[1] ""
 "Θέλετε πραγματικά να διαγράψετε αυτά τα %1 εικονικά αντικείμενα (τα φυσικά "
 "αρχεία δεν επηρεάζονται);"
 
-#: app/Panel/panelfunc.cpp:964
+#: app/Panel/panelfunc.cpp:959
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 δεν μπορεί να ανοίξει %2"
 
-#: app/Panel/panelfunc.cpp:1041
+#: app/Panel/panelfunc.cpp:1036
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7849,7 +7849,7 @@ msgstr ""
 "<qt><p>Η αρχειοθήκη <b>%1.%2</b> υπάρχει ήδη. Θέλετε να την αντικαταστήσετε;"
 "</p><p>Όλα τα δεδομένα της προηγούμενης αρχειοθήκης θα χαθούν.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1041
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7860,17 +7860,17 @@ msgstr ""
 "</p><p>Το ZIP θα αντικαταστήσει καταχωρήσεις με ταυτόσημα ονόματα στην "
 "αρχειοθήκη zip ή θα προσθέσει νέες καταχωρήσεις για νέα ονόματα.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1054
+#: app/Panel/panelfunc.cpp:1049
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Αδυναμία συμπίεσης αρχείων σε εικονικούς προορισμούς."
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1082
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Αποσυμπίεση του %1 στο:"
 
-#: app/Panel/panelfunc.cpp:1089
+#: app/Panel/panelfunc.cpp:1084
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

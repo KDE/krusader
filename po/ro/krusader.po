@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-05 00:50+0000\n"
+"POT-Creation-Date: 2026-08-12 00:51+0000\n"
 "PO-Revision-Date: 2026-06-15 13:28+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -889,7 +889,7 @@ msgid "Create in:"
 msgstr "Creează în:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:686
+#: app/Panel/panelfunc.cpp:681
 #, kde-format
 msgid "New Folder"
 msgstr "Dosar nou"
@@ -1530,7 +1530,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Sigur doriți să mutați acest element la gunoi?"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:827
 #, kde-format
 msgid "&Trash"
 msgstr "&Gunoi"
@@ -1542,8 +1542,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Sigur doriți să ștergeți acest element?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
-#: app/Panel/panelfunc.cpp:925
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:920
 #, kde-format
 msgid "Warning"
 msgstr "Avertizare"
@@ -5628,7 +5628,7 @@ msgstr "C&ompară după conținut..."
 msgid "Multi &Rename..."
 msgstr "&Redenumire multiplă..."
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:473
+#: app/kractions.cpp:288 app/krusaderview.cpp:483
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Mod vertical"
@@ -5984,7 +5984,7 @@ msgstr "Bara de unelte principală"
 msgid "Function keys allow performing fast operations on files."
 msgstr "Tastele funcționale permit efectuarea de operații rapizi pe fișiere."
 
-#: app/krusaderview.cpp:477
+#: app/krusaderview.cpp:487
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "Modul orizontal."
@@ -7926,7 +7926,7 @@ msgstr "Legătură nouă"
 msgid "Create a new link to: %1"
 msgstr "Creează o legătură nouă către: %1"
 
-#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:767
+#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:762
 #, fuzzy, kde-format
 #| msgid "A directory or a file with this name already exists."
 msgid "A folder or a file with this name already exists."
@@ -7994,25 +7994,25 @@ msgstr[0] "Copie %1 fișier în:"
 msgstr[1] "Copie %1 fișiere în:"
 msgstr[2] "Copie %1 de fișiere în:"
 
-#: app/Panel/panelfunc.cpp:659
+#: app/Panel/panelfunc.cpp:660
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:668
+#: app/Panel/panelfunc.cpp:662
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:691
+#: app/Panel/panelfunc.cpp:686
 #, fuzzy, kde-format
 #| msgid "Folder name:"
 msgid "Folder's name:"
 msgstr "Denumire dosar:"
 
-#: app/Panel/panelfunc.cpp:831
+#: app/Panel/panelfunc.cpp:826
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -8020,7 +8020,7 @@ msgstr[0] "Sigur doriți să mutați acest element la gunoi?"
 msgstr[1] "Sigur doriți să mutați aceste %1 elemente la gunoi?"
 msgstr[2] "Sigur doriți să mutați aceste %1 de elemente la gunoi?"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:830
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -8038,7 +8038,7 @@ msgstr[2] ""
 "<qt>Sigur doriți ștergerea <b>fizică</b> a acestor %1 de elemente (nu doar "
 "eliminarea lor din elementele virtuale)?</qt>"
 
-#: app/Panel/panelfunc.cpp:842
+#: app/Panel/panelfunc.cpp:837
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
@@ -8046,7 +8046,7 @@ msgstr[0] "Sigur doriți să ștergeți acest element?"
 msgstr[1] "Sigur doriți să ștergeți aceste %1 elemente?"
 msgstr[2] "Sigur doriți să ștergeți aceste %1 de elemente?"
 
-#: app/Panel/panelfunc.cpp:880
+#: app/Panel/panelfunc.cpp:875
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete "
@@ -8056,12 +8056,12 @@ msgstr ""
 "<qt><p>Dosarul <b>%1</b> nu este gol!</p><p>Sar peste acesta sau Șterg tot?</"
 "p></qt>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete "
@@ -8071,23 +8071,23 @@ msgstr ""
 "<qt><p>Dosarul <b>%1</b> nu este gol!</p><p>Sar peste acesta sau Șterg tot?</"
 "p></qt>"
 
-#: app/Panel/panelfunc.cpp:883
+#: app/Panel/panelfunc.cpp:878
 #, kde-format
 msgid "&Skip"
 msgstr "&Sari"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, fuzzy, kde-format
 #| msgid "&Trash"
 msgid "&Trash All"
 msgstr "&Gunoi"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Delete All"
 msgstr "Ș&terge tot"
 
-#: app/Panel/panelfunc.cpp:921
+#: app/Panel/panelfunc.cpp:916
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -8105,13 +8105,13 @@ msgstr[2] ""
 "Sigur doriți să ștergeți aceste %1 de elemente virtuale (fișierele fizice nu "
 "vor fi atinse)?"
 
-#: app/Panel/panelfunc.cpp:964
+#: app/Panel/panelfunc.cpp:959
 #, fuzzy, kde-format
 #| msgid "%1 can't open %2"
 msgid "%1 cannot open %2"
 msgstr "%1 nu poate deschide %2"
 
-#: app/Panel/panelfunc.cpp:1041
+#: app/Panel/panelfunc.cpp:1036
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite "
@@ -8123,7 +8123,7 @@ msgstr ""
 "<qt><p>Arhiva <b>%1.%2</b> există deja. Doriți să o suprascrieți?</"
 "p><p>Toate datele din arhiva anterioară vor fi pierdute!</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1041
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -8134,18 +8134,18 @@ msgstr ""
 "va înlocui intrările denumite la fel din arhiva zip sau va adăuga intrări "
 "pentru numele noi.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1054
+#: app/Panel/panelfunc.cpp:1049
 #, fuzzy, kde-format
 #| msgid "Cannot pack files onto a virtual destination!"
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Nu se pot împacheta fișiere pe o destinație virtuală!"
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1082
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Despachetează %1 în:"
 
-#: app/Panel/panelfunc.cpp:1089
+#: app/Panel/panelfunc.cpp:1084
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

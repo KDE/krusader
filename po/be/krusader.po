@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-05 00:50+0000\n"
+"POT-Creation-Date: 2026-08-12 00:51+0000\n"
 "PO-Revision-Date: 2025-08-12 18:21+0300\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian <kde-i18n-doc@kde.org>\n"
@@ -843,7 +843,7 @@ msgid "Create in:"
 msgstr "Стварыць у:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:686
+#: app/Panel/panelfunc.cpp:681
 #, kde-format
 msgid "New Folder"
 msgstr "Новая папка"
@@ -1455,7 +1455,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Вы сапраўды хочаце перамясціць гэты элемент у сметніцу?"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:827
 #, kde-format
 msgid "&Trash"
 msgstr "&Сметніца"
@@ -1467,8 +1467,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Вы сапраўды жадаеце выдаліць гэты элемент?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
-#: app/Panel/panelfunc.cpp:925
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:920
 #, kde-format
 msgid "Warning"
 msgstr "Увага"
@@ -5356,7 +5356,7 @@ msgstr "Параўнаць &па змесце..."
 msgid "Multi &Rename..."
 msgstr "Масавае &перайменаванне..."
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:473
+#: app/kractions.cpp:288 app/krusaderview.cpp:483
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Вертыкальны рэжым"
@@ -5690,7 +5690,7 @@ msgid "Function keys allow performing fast operations on files."
 msgstr ""
 "Функцыянальныя клавішы дазваляюць хутка выконваць аперацыі над файламі."
 
-#: app/krusaderview.cpp:477
+#: app/krusaderview.cpp:487
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "Гарызантальны рэжым"
@@ -7573,7 +7573,7 @@ msgstr "Новая спасылкака"
 msgid "Create a new link to: %1"
 msgstr "Стварыць новую спасылкаку на: %1"
 
-#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:767
+#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:762
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Папка або файл з такой назвай ужо існуе."
@@ -7641,24 +7641,24 @@ msgstr[1] "Капіяваць %1 файлы ў:"
 msgstr[2] "Капіяваць %1 файлаў у:"
 msgstr[3] "Капіяваць %1 файл у:"
 
-#: app/Panel/panelfunc.cpp:659
+#: app/Panel/panelfunc.cpp:660
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:668
+#: app/Panel/panelfunc.cpp:662
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:691
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "Folder's name:"
 msgstr "Назва папкі:"
 
-#: app/Panel/panelfunc.cpp:831
+#: app/Panel/panelfunc.cpp:826
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -7667,7 +7667,7 @@ msgstr[1] "Вы сапраўды хочаце перамясціць гэтыя 
 msgstr[2] "Вы сапраўды хочаце перамясціць гэтыя %1 элементаў ў сметніцу?"
 msgstr[3] "Вы сапраўды хочаце перамясціць гэтыя %1 элемент ў сметніцу?"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:830
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7688,7 +7688,7 @@ msgstr[3] ""
 "<qt>Вы сапраўды хочаце выдаліць гэты %1 элемент <b>фізічна</b> (а не проста "
 "выдаліць з віртуальных элементаў)?</qt>"
 
-#: app/Panel/panelfunc.cpp:842
+#: app/Panel/panelfunc.cpp:837
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
@@ -7697,37 +7697,37 @@ msgstr[1] "Вы сапраўды хочаце выдаліць гэтыя %1 э�
 msgstr[2] "Вы сапраўды хочаце выдаліць гэтыя %1 элементаў?"
 msgstr[3] "Вы сапраўды хочаце выдаліць гэты %1 элемент?"
 
-#: app/Panel/panelfunc.cpp:880
+#: app/Panel/panelfunc.cpp:875
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Папка <b>%1</b> не пустая.</p>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Прапусціць гэтую або перамясціць усё ў сметніцу?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Прапусціць гэтую або выдаліць усё?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:883
+#: app/Panel/panelfunc.cpp:878
 #, kde-format
 msgid "&Skip"
 msgstr "&Прапусціць"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Trash All"
 msgstr "&У сметніцу ўсё"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Delete All"
 msgstr "&Выдаліць усё"
 
-#: app/Panel/panelfunc.cpp:921
+#: app/Panel/panelfunc.cpp:916
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7748,12 +7748,12 @@ msgstr[3] ""
 "Вы сапраўды хочаце выдаліць гэты %1 віртуальны элемент (фізічныя файлы "
 "застануцца некранутымі)?"
 
-#: app/Panel/panelfunc.cpp:964
+#: app/Panel/panelfunc.cpp:959
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 не можа адкрыць %2"
 
-#: app/Panel/panelfunc.cpp:1041
+#: app/Panel/panelfunc.cpp:1036
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7762,7 +7762,7 @@ msgstr ""
 "<qt><p>Архіў <b>%1.%2</b> ужо існуе. Хочаце перазапісаць яго?</p><p>Усе "
 "дадзеныя ў папярэднім архіве будуць страчаныя.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1041
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7773,17 +7773,17 @@ msgstr ""
 "заменіць запісы з аднолькавымі назвамі або дадасць новыя запісы ў архіў.</"
 "p></qt>"
 
-#: app/Panel/panelfunc.cpp:1054
+#: app/Panel/panelfunc.cpp:1049
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Немагчыма ўпакоўваць файлы ў віртуальнае месцазнаходжанне."
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1082
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Распакуйце %1 у:"
 
-#: app/Panel/panelfunc.cpp:1089
+#: app/Panel/panelfunc.cpp:1084
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

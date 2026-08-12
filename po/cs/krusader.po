@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-05 00:50+0000\n"
+"POT-Creation-Date: 2026-08-12 00:51+0000\n"
 "PO-Revision-Date: 2026-08-02 00:24+0200\n"
 "Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -840,7 +840,7 @@ msgid "Create in:"
 msgstr "Vytvořit v:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:686
+#: app/Panel/panelfunc.cpp:681
 #, kde-format
 msgid "New Folder"
 msgstr "Nová složka"
@@ -1450,7 +1450,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Opravdu si přejete tuto položku vyhodit do koše?"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:827
 #, kde-format
 msgid "&Trash"
 msgstr "Vyhodit do &koše"
@@ -1462,8 +1462,8 @@ msgid "Do you really want to delete this item?"
 msgstr "Opravdu si přejete smazat tuto položku?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
-#: app/Panel/panelfunc.cpp:925
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:920
 #, kde-format
 msgid "Warning"
 msgstr "Varování"
@@ -5372,7 +5372,7 @@ msgstr "Porovnat obsah&y..."
 msgid "Multi &Rename..."
 msgstr "Přejmenovat více &položek..."
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:473
+#: app/kractions.cpp:288 app/krusaderview.cpp:483
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Svislé uspořádání"
@@ -5704,7 +5704,7 @@ msgstr "Panel nástrojů úloh"
 msgid "Function keys allow performing fast operations on files."
 msgstr "Funkční klávesy umožňují rychlé operace se soubory."
 
-#: app/krusaderview.cpp:477
+#: app/krusaderview.cpp:487
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "Vodorovné uspořádání"
@@ -7582,7 +7582,7 @@ msgstr "Nový odkaz"
 msgid "Create a new link to: %1"
 msgstr "Vytvořit nový odkaz na: %1"
 
-#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:767
+#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:762
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Složka či soubor tohoto jména již existuje."
@@ -7648,12 +7648,12 @@ msgstr[0] "Kopírovat %1 soubor do:"
 msgstr[1] "Kopírovat %1 soubory do:"
 msgstr[2] "Kopírovat %1 souborů do:"
 
-#: app/Panel/panelfunc.cpp:659
+#: app/Panel/panelfunc.cpp:660
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr "Navrhovaný název (\"%1\") je stejný jako ten předchozí."
 
-#: app/Panel/panelfunc.cpp:668
+#: app/Panel/panelfunc.cpp:662
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
@@ -7661,12 +7661,12 @@ msgid ""
 msgstr ""
 "Přejmenování \"%1\" nebylo provedeno, protože navrhovaný název byl prázdný."
 
-#: app/Panel/panelfunc.cpp:691
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "Folder's name:"
 msgstr "Název složky:"
 
-#: app/Panel/panelfunc.cpp:831
+#: app/Panel/panelfunc.cpp:826
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -7674,7 +7674,7 @@ msgstr[0] "Opravdu si přejete tuto položku vyhodit do koše?"
 msgstr[1] "Opravdu si přejete tyto %1 položky vyhodit do koše?"
 msgstr[2] "Opravdu si přejete těchto %1 položek vyhodit do koše?"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:830
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7692,7 +7692,7 @@ msgstr[2] ""
 "<qt>Opravdu si přejete smazat těchto %1 položek (<b>fyzicky</b>, nejen "
 "odstranění ze seznamu)?</qt>"
 
-#: app/Panel/panelfunc.cpp:842
+#: app/Panel/panelfunc.cpp:837
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
@@ -7700,37 +7700,37 @@ msgstr[0] "Opravdu si přejete smazat tuto položku?"
 msgstr[1] "Opravdu si přejete smazat tyto %1 položky?"
 msgstr[2] "Opravdu si přejete smazat těchto %1 položek?"
 
-#: app/Panel/panelfunc.cpp:880
+#: app/Panel/panelfunc.cpp:875
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Složka <b>%1</b> není prázdná.</p>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Tohle přeskočit, nebo smazat všechno?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<qt>Přeskočit ji, nebo smazat i s obsahem?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:883
+#: app/Panel/panelfunc.cpp:878
 #, kde-format
 msgid "&Skip"
 msgstr "&Přeskočit"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Trash All"
 msgstr "Vyhodi&t vše do koše"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Delete All"
 msgstr "&Smazat vše"
 
-#: app/Panel/panelfunc.cpp:921
+#: app/Panel/panelfunc.cpp:916
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7748,12 +7748,12 @@ msgstr[2] ""
 "Opravdu si přejete smazat těchto %1 virtuálních položek (fyzické soubory "
 "zůstanou nedotčeny)?"
 
-#: app/Panel/panelfunc.cpp:964
+#: app/Panel/panelfunc.cpp:959
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 nelze otevřít %2"
 
-#: app/Panel/panelfunc.cpp:1041
+#: app/Panel/panelfunc.cpp:1036
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7762,7 +7762,7 @@ msgstr ""
 "<qt><p>Archiv  <b>%1.%2</b> již existuje. Přejete si jej přepsat?</"
 "p><p>Všechna data v původním archivu budou ztracena.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1041
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7773,17 +7773,17 @@ msgstr ""
 "nahradí stejně nazvané položky v archivu a přidá položky pro nové názvy.</"
 "p></qt>"
 
-#: app/Panel/panelfunc.cpp:1054
+#: app/Panel/panelfunc.cpp:1049
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Nelze zabalit soubory na virtuální umístění."
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1082
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Rozbalit %1 do:"
 
-#: app/Panel/panelfunc.cpp:1089
+#: app/Panel/panelfunc.cpp:1084
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"

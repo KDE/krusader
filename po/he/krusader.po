@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-05 00:50+0000\n"
+"POT-Creation-Date: 2026-08-12 00:51+0000\n"
 "PO-Revision-Date: 2026-05-14 20:48+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -833,7 +833,7 @@ msgid "Create in:"
 msgstr "יצירה בתוך:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:686
+#: app/Panel/panelfunc.cpp:681
 #, kde-format
 msgid "New Folder"
 msgstr "תיקייה חדשה"
@@ -1440,7 +1440,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "להעביר את הפריט הזה לאשפה?"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:827
 #, kde-format
 msgid "&Trash"
 msgstr "&אשפה"
@@ -1452,8 +1452,8 @@ msgid "Do you really want to delete this item?"
 msgstr "למחוק את הפריט הזה?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
-#: app/Panel/panelfunc.cpp:925
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:843
+#: app/Panel/panelfunc.cpp:920
 #, kde-format
 msgid "Warning"
 msgstr "אזהרה"
@@ -5308,7 +5308,7 @@ msgstr "השוואה לפי &תוכן…"
 msgid "Multi &Rename..."
 msgstr "שינוי שם במרו&כז…"
 
-#: app/kractions.cpp:288 app/krusaderview.cpp:473
+#: app/kractions.cpp:288 app/krusaderview.cpp:483
 #, kde-format
 msgid "Vertical Mode"
 msgstr "מצב אנכי"
@@ -5637,7 +5637,7 @@ msgstr "סרגל משימות"
 msgid "Function keys allow performing fast operations on files."
 msgstr "מקשי פונקציות מאפשרים לבצע פעולות מהירות על קבצים."
 
-#: app/krusaderview.cpp:477
+#: app/krusaderview.cpp:487
 #, kde-format
 msgid "Horizontal Mode"
 msgstr "מצב אופקי"
@@ -7515,7 +7515,7 @@ msgstr "קישור חדש"
 msgid "Create a new link to: %1"
 msgstr "יצירת קישור חדש אל: %1"
 
-#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:767
+#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:762
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "כבר קיימת תיקייה בשם הזה."
@@ -7583,24 +7583,24 @@ msgstr[1] "העתקת שני קבצים אל:"
 msgstr[2] "העתקת %1 קבצים אל:"
 msgstr[3] "העתקת %1 קבצים אל:"
 
-#: app/Panel/panelfunc.cpp:659
+#: app/Panel/panelfunc.cpp:660
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr "השם המוצע („%1”) זהה לקודם."
 
-#: app/Panel/panelfunc.cpp:668
+#: app/Panel/panelfunc.cpp:662
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr "שינוי השם של „%1” לא בוצע כי השם המוצע היה ריק."
 
-#: app/Panel/panelfunc.cpp:691
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "Folder's name:"
 msgstr "שם התיקייה:"
 
-#: app/Panel/panelfunc.cpp:831
+#: app/Panel/panelfunc.cpp:826
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -7609,7 +7609,7 @@ msgstr[1] "להעביר את שני הקבצים האלה לאשפה?"
 msgstr[2] "להעביר את %1 הקבצים האלה לאשפה?"
 msgstr[3] "להעביר את %1 הקבצים האלה לאשפה?"
 
-#: app/Panel/panelfunc.cpp:835
+#: app/Panel/panelfunc.cpp:830
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7630,7 +7630,7 @@ msgstr[3] ""
 "<qt>למחוק את %1 הפריטים האלה <b>פיזית</b> (לא להסתפק בהסרתם מהפריטים "
 "הווירטואליים)?</qt>"
 
-#: app/Panel/panelfunc.cpp:842
+#: app/Panel/panelfunc.cpp:837
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
@@ -7639,37 +7639,37 @@ msgstr[1] "למחוק את שני הפריטים האלה?"
 msgstr[2] "למחוק את %1 הפריטים האלה?"
 msgstr[3] "למחוק את %1 הפריטים האלה?"
 
-#: app/Panel/panelfunc.cpp:880
+#: app/Panel/panelfunc.cpp:875
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>התיקייה <b>%1</b> אינה ריקה.</p>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>לדלג על זה או להעביר את כולם לאשפה?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:881
+#: app/Panel/panelfunc.cpp:876
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>לדלג על זה או למחוק את כולם?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:883
+#: app/Panel/panelfunc.cpp:878
 #, kde-format
 msgid "&Skip"
 msgstr "&דילוג"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Trash All"
 msgstr "הכול ל&אשפה"
 
-#: app/Panel/panelfunc.cpp:884
+#: app/Panel/panelfunc.cpp:879
 #, kde-format
 msgid "&Delete All"
 msgstr "למ&חוק הכול"
 
-#: app/Panel/panelfunc.cpp:921
+#: app/Panel/panelfunc.cpp:916
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7685,12 +7685,12 @@ msgstr[2] ""
 msgstr[3] ""
 "למחוק את %1 הפריטים הווירטואליים האלה (הקבצים הפיזיים יישארו כמו שהם)?"
 
-#: app/Panel/panelfunc.cpp:964
+#: app/Panel/panelfunc.cpp:959
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 לא יכול לפתוח את %2"
 
-#: app/Panel/panelfunc.cpp:1041
+#: app/Panel/panelfunc.cpp:1036
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7699,7 +7699,7 @@ msgstr ""
 "<qt><p>הארכיון <b>%1.%2</b> כבר קיים. לשכתב אותו?</p><p>כל הנתונים בארכיון "
 "הקודם יאבדו.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1046
+#: app/Panel/panelfunc.cpp:1041
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7709,17 +7709,17 @@ msgstr ""
 "<qt><p>הארכיון <b>%1.%2</b> כבר קיים. לשכתב אותו?</p><p>Zip יחליף רשומות "
 "בשמות זהים בארכיון ה־zip או יוסיף רשומות לשמות חדשים.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1054
+#: app/Panel/panelfunc.cpp:1049
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "לא ניתן לארוז קבצים ליעד וירטואלי."
 
-#: app/Panel/panelfunc.cpp:1087
+#: app/Panel/panelfunc.cpp:1082
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "חילוץ %1 אל:"
 
-#: app/Panel/panelfunc.cpp:1089
+#: app/Panel/panelfunc.cpp:1084
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
