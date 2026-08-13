@@ -18,6 +18,7 @@
 #include <qplatformdefs.h>
 
 #include <KIO/JobUiDelegate>
+#include <KIO/WidgetsAskUserActionHandler>
 #include <KLocalizedString>
 #include <KSharedConfig>
 
@@ -143,17 +144,62 @@ void FileSystem::deleteFiles(const QList<QUrl> &urls, bool moveToTrash)
     KrJob *krJob = KrJob::createDeleteJob(urls, moveToTrash);
     connect(krJob, &KrJob::started, this, [=](KIO::Job *job) {
         connectJobToSources(job, urls);
-    });
+        // Connect the KIO::Job's result signal to slotJobResult in order to handle errors
+        connect(job, &KIO::Job::result, this, [=](KJob *finishedJob) {
+            // If a trash is not available for this location (<https://invent.kde.org/
+            // frameworks/kio/-/blob/master/src/core/global.h> could be seen)
+            if (finishedJob->error() == KIO::ERR_TRASH_NOT_AVAILABLE) {
+                // Create an object aimed to handle user-facing dialogs during file
+                // operations (instead of creating dialogs manually).
+                // Note: A similar approach could be seen in the `void DeleteOrTrashJob::start()` function
+                // at <https://invent.kde.org/frameworks/kio/-/blob/master/src/widgets/deleteortrashjob.cpp>
+                auto *widgetAskHandler = new KIO::WidgetsAskUserActionHandler(this);
+                // Connect to the result signal in order to handle the choice of the user
+                connect(widgetAskHandler, &KIO::WidgetsAskUserActionHandler::askUserDeleteResult,
+                        this, [this, widgetAskHandler](bool allowDelete,
+                                            const QList<QUrl> &urlsToDelete,
+                                            KIO::AskUserActionInterface::DeletionType /*deletionType*/,
+                                            QWidget * /*parentWidget*/) {
+                    // If the user clicked the "Delete Permanently" button
+                    if (allowDelete) {
+                        // Perform the operation again, this time setting `moveToTrash` to `false`
+                        this->deleteFiles(urlsToDelete, false);
+                    }
+                    // Schedule the handler for deletion
+                    widgetAskHandler->deleteLater();
+                });
+                // Show the dialog for DeleteNoTrashAvailable.
+                // Note: Using ForceConfirmation causes that the "The trash is not available for this
+                // item’s location. Permanently delete it instead?" is always shown before permanently
+                // deleting. This is also the behavior of Dolphin and Gwenview.
+                // Additional information: If the user enabled e.g. "Do not ask again" on a standard
+                // delete prompt, DefaultConfirmation would cause KIO to skip the dialog entirely
+                // and emit `askUserDeleteResult(true, ...)`. Because the user originally asked to
+                // Move to Trash (not Delete Permanently), bypassing this prompt would cause files
+                // to be permanently destroyed without explicit consent when a trash bin is not
+                // supported. In other words, a "move to trash" request should not silently escalate
+                // into an unconfirmed permanent deletion.
+                // Note: Passing nullptr for the parent QWidget allows the widgetAskHandler to
+                // automatically fall back to qApp->activeWindow()
+                widgetAskHandler->askUserDelete(
+                    urls,
+                    KIO::AskUserActionInterface::DeleteNoTrashAvailable,
+                    KIO::AskUserActionInterface::ForceConfirmation,
+                    nullptr
+                );
+            } else {
+                // Use `false` to avoid a redundant refresh,
+                // as connectJobToSources already emits fileSystemChanged
+                slotJobResult(finishedJob, false);
 
-    if (moveToTrash) {
-        // update destination: the trash bin (in case a panel/tab is showing it)
-        connect(krJob, &KrJob::started, this, [=](KIO::Job *job) {
-            // Note: the "trash" protocol should always have only one "/" after the "scheme:" part
-            connect(job, &KIO::Job::result, this, [=]() {
-                emit fileSystemChanged(QUrl("trash:/"), false);
-            });
+                if (moveToTrash && !finishedJob->error()) {
+                    // Update the destination, which is the trash bin (in case a panel/tab is showing it).
+                    // Note: The "trash" protocol should always have only one "/" after the "scheme:" part
+                    emit fileSystemChanged(QUrl("trash:/"), false);
+                }
+            }
         });
-    }
+    });
 
     krJobMan->manageJob(krJob);
 }
