@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-12 00:51+0000\n"
+"POT-Creation-Date: 2026-08-13 00:55+0000\n"
 "PO-Revision-Date: 2026-02-10 10:51+0100\n"
 "Last-Translator: Valter Mura <valtermura@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -727,99 +727,106 @@ msgstr "Errore interno, <job> non definito nel segnale result"
 msgid "Downloading remote files"
 msgstr "Scaricamento file remoti in corso"
 
-#: app/Archive/abstractthreadedjob.cpp:490
+#: app/Archive/abstractthreadedjob.cpp:384
+#, fuzzy, kde-format
+#| msgid "Expander: temporary file could not be opened (%1)"
+msgctxt "%1=temporary file name"
+msgid "The temporary file \"%1\" could not be opened."
+msgstr "Estensore - Il file temporaneo non può essere aperto (%1)"
+
+#: app/Archive/abstractthreadedjob.cpp:495
 #, kde-format
 msgid "Counting files"
 msgstr "Conteggio file"
 
-#: app/Archive/abstractthreadedjob.cpp:519
+#: app/Archive/abstractthreadedjob.cpp:524
 #, kde-format
 msgid "Uploading to remote destination"
 msgstr "Caricamento nella destinazione remota"
 
-#: app/Archive/abstractthreadedjob.cpp:640
+#: app/Archive/abstractthreadedjob.cpp:645
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
 msgstr "%1, tipo di archivio non supportato."
 
-#: app/Archive/krarchandler.cpp:238
+#: app/Archive/krarchandler.cpp:246
 #, kde-format
 msgid "Counting files in archive"
 msgstr "Conteggio file nell'archivio"
 
-#: app/Archive/krarchandler.cpp:260
+#: app/Archive/krarchandler.cpp:268
 #, kde-format
 msgid "Failed to list the content of the archive (%1)."
 msgstr "Errore nell'elencare il contenuto dell'archivio (%1)."
 
-#: app/Archive/krarchandler.cpp:278 app/Archive/krarchandler.cpp:419
+#: app/Archive/krarchandler.cpp:286 app/Archive/krarchandler.cpp:427
 #, kde-format
 msgid "Failed to unpack %1."
 msgstr "Estrazione di %1 non riuscita."
 
-#: app/Archive/krarchandler.cpp:345
+#: app/Archive/krarchandler.cpp:353
 #, kde-format
 msgid "Failed to convert rpm (%1) to cpio."
 msgstr "Conversione da rpm (%1) a cpio non riuscita."
 
-#: app/Archive/krarchandler.cpp:362
+#: app/Archive/krarchandler.cpp:370
 #, kde-format
 msgid "Failed to convert deb (%1) to tar."
 msgstr "Conversione da deb (%1) a tar non riuscita."
 
-#: app/Archive/krarchandler.cpp:395
+#: app/Archive/krarchandler.cpp:403
 #, kde-format
 msgid "Unpacking File(s)"
 msgstr "Estrazione del/i file in corso"
 
-#: app/Archive/krarchandler.cpp:419 app/Archive/krarchandler.cpp:641
+#: app/Archive/krarchandler.cpp:427 app/Archive/krarchandler.cpp:649
 #, kde-format
 msgid "User cancelled."
 msgstr "Annullato dall'utente."
 
-#: app/Archive/krarchandler.cpp:489
+#: app/Archive/krarchandler.cpp:497
 #, kde-format
 msgid "Testing Archive"
 msgstr "Prova dell'archivio"
 
-#: app/Archive/krarchandler.cpp:623
+#: app/Archive/krarchandler.cpp:631
 #, kde-format
 msgid "Packing File(s)"
 msgstr "Compressione file in corso"
 
-#: app/Archive/krarchandler.cpp:641 app/Archive/krarchandler.cpp:647
+#: app/Archive/krarchandler.cpp:649 app/Archive/krarchandler.cpp:655
 #, kde-format
 msgid "Failed to pack %1."
 msgstr "Compressione di %1 non riuscita."
 
-#: app/Archive/krarchandler.cpp:692
+#: app/Archive/krarchandler.cpp:700
 #, kde-format
 msgid "This archive is encrypted, please supply the password:"
 msgstr "Questo archivio è cifrato, inserisci la password:"
 
-#: app/Archive/packjob.cpp:53 app/Archive/packjob.cpp:143
+#: app/Archive/packjob.cpp:57 app/Archive/packjob.cpp:147
 #, kde-format
 msgid "Processed files"
 msgstr "File elaborati"
 
-#: app/Archive/packjob.cpp:63
+#: app/Archive/packjob.cpp:67
 #, kde-format
 msgid "Error while packing"
 msgstr "Errore durante la compressione"
 
-#: app/Archive/packjob.cpp:103
+#: app/Archive/packjob.cpp:107
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, test failed."
 msgstr "%1, test non riuscito."
 
-#: app/Archive/packjob.cpp:108
+#: app/Archive/packjob.cpp:112
 #, kde-format
 msgid "Archive tests passed."
 msgstr "Test dell'archivio riuscito."
 
-#: app/Archive/packjob.cpp:150
+#: app/Archive/packjob.cpp:154
 #, kde-format
 msgid "Error while unpacking"
 msgstr "Errore durante l'estrazione"
@@ -845,7 +852,7 @@ msgid "Create in:"
 msgstr "Crea in:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:681
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "New Folder"
 msgstr "Nuova cartella"
@@ -961,27 +968,34 @@ msgstr "Apri in una nuova scheda"
 msgid "Delete"
 msgstr "Elimina"
 
-#: app/Dialogs/checksumdlg.cpp:112
+#: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
+#: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
+#, fuzzy, kde-format
+#| msgid "Expander: temporary file could not be opened (%1)"
+msgid "A temporary file with the template \"%1\" could not be opened."
+msgstr "Estensore - Il file temporaneo non può essere aperto (%1)"
+
+#: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
 msgid "<qt>Could not start <b>%1</b>.</qt>"
 msgstr "<qt>Impossibile avviare <b>%1</b>.</qt>"
 
-#: app/Dialogs/checksumdlg.cpp:119
+#: app/Dialogs/checksumdlg.cpp:128
 #, kde-format
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
 msgstr "<qt>Si è verificato un errore durante l'esecuzione di <b>%1</b>.</qt>"
 
-#: app/Dialogs/checksumdlg.cpp:125
+#: app/Dialogs/checksumdlg.cpp:134
 #, kde-format
 msgid "Error reading stdout or stderr"
 msgstr "Errore durante la lettura dello standard output o standard error"
 
-#: app/Dialogs/checksumdlg.cpp:184
+#: app/Dialogs/checksumdlg.cpp:193
 #, kde-format
 msgid "Please wait..."
 msgstr "Attendere..."
 
-#: app/Dialogs/checksumdlg.cpp:202
+#: app/Dialogs/checksumdlg.cpp:211
 #, kde-format
 msgid ""
 "<qt>Krusader cannot find a checksum tool that handles %1 on your system. "
@@ -991,122 +1005,122 @@ msgstr ""
 "che gestisca %1. Controlla la pagina <b>Dipendenze</b> nelle impostazioni di "
 "Krusader.</qt>"
 
-#: app/Dialogs/checksumdlg.cpp:240
+#: app/Dialogs/checksumdlg.cpp:249
 #, kde-format
 msgid "Creating Checksums"
 msgstr "Creazione del codice di controllo"
 
-#: app/Dialogs/checksumdlg.cpp:252
+#: app/Dialogs/checksumdlg.cpp:261
 #, kde-format
 msgid "Create Checksums"
 msgstr "Crea codice di controllo"
 
-#: app/Dialogs/checksumdlg.cpp:254
+#: app/Dialogs/checksumdlg.cpp:263
 #, kde-format
 msgid "About to calculate checksum for the following files or folders:"
 msgstr ""
 "Stai per calcolare il codice di controllo dei seguenti file o cartelle:"
 
-#: app/Dialogs/checksumdlg.cpp:267
+#: app/Dialogs/checksumdlg.cpp:276
 #, kde-format
 msgid "Select the checksum method:"
 msgstr "Seleziona il metodo per il codice di controllo:"
 
-#: app/Dialogs/checksumdlg.cpp:286
+#: app/Dialogs/checksumdlg.cpp:295
 #, kde-format
 msgid "Checksum Results"
 msgstr "Risultati dei codici di controllo"
 
-#: app/Dialogs/checksumdlg.cpp:293 app/Dialogs/checksumdlg.cpp:493
+#: app/Dialogs/checksumdlg.cpp:302 app/Dialogs/checksumdlg.cpp:502
 #: app/Konfigurator/kgcolors.cpp:562
 #, kde-format
 msgid "File"
 msgstr "File"
 
-#: app/Dialogs/checksumdlg.cpp:293 app/Dialogs/checksumdlg.cpp:493
+#: app/Dialogs/checksumdlg.cpp:302 app/Dialogs/checksumdlg.cpp:502
 #, kde-format
 msgid "Hash"
 msgstr "Hash"
 
-#: app/Dialogs/checksumdlg.cpp:296
+#: app/Dialogs/checksumdlg.cpp:305
 #, kde-format
 msgid "Errors received:"
 msgstr "Errori rilevati:"
 
-#: app/Dialogs/checksumdlg.cpp:302
+#: app/Dialogs/checksumdlg.cpp:311
 #, kde-format
 msgid "Save one checksum file for each source file"
 msgstr "Salva un file di codice di controllo per ogni file sorgente"
 
-#: app/Dialogs/checksumdlg.cpp:335
+#: app/Dialogs/checksumdlg.cpp:344
 #, kde-format
 msgid "No files found"
 msgstr "Nessun file trovato"
 
-#: app/Dialogs/checksumdlg.cpp:356
+#: app/Dialogs/checksumdlg.cpp:365
 #, kde-format
 msgid "Errors were detected while creating the checksums"
 msgstr ""
 "Sono stati rilevati errori durante la creazione dei codici di controllo"
 
-#: app/Dialogs/checksumdlg.cpp:356
+#: app/Dialogs/checksumdlg.cpp:365
 #, kde-format
 msgid "Checksums were created successfully"
 msgstr "I codici di controllo sono stati creati correttamente"
 
-#: app/Dialogs/checksumdlg.cpp:380
+#: app/Dialogs/checksumdlg.cpp:389
 #, kde-format
 msgid "Saving checksum files..."
 msgstr "Salvataggio dei file del codice di controllo..."
 
-#: app/Dialogs/checksumdlg.cpp:384
+#: app/Dialogs/checksumdlg.cpp:393
 #, kde-format
 msgid "Errors occurred while saving multiple checksums. Stopping"
 msgstr ""
 "Sono stati rilevati degli errori durante il salvataggio di più codici di "
 "controllo. Arresto in corso dell'operazione"
 
-#: app/Dialogs/checksumdlg.cpp:412
+#: app/Dialogs/checksumdlg.cpp:421
 #, kde-format
 msgid "Error saving file %1"
 msgstr "Errore durante il salvataggio del file %1"
 
-#: app/Dialogs/checksumdlg.cpp:434
+#: app/Dialogs/checksumdlg.cpp:443
 #, kde-format
 msgid "Verifying Checksums"
 msgstr "Verifica dei codici di controllo"
 
-#: app/Dialogs/checksumdlg.cpp:466
+#: app/Dialogs/checksumdlg.cpp:475
 #, kde-format
 msgid "Verify Checksum File"
 msgstr "Verifica file del codice di controllo"
 
-#: app/Dialogs/checksumdlg.cpp:468
+#: app/Dialogs/checksumdlg.cpp:477
 #, kde-format
 msgid "About to verify the following checksum file"
 msgstr "Stai per verificare il file del codice di controllo seguente"
 
-#: app/Dialogs/checksumdlg.cpp:475
+#: app/Dialogs/checksumdlg.cpp:484
 #, kde-format
 msgid "Checksum file:"
 msgstr "File del codice di controllo:"
 
-#: app/Dialogs/checksumdlg.cpp:503
+#: app/Dialogs/checksumdlg.cpp:512
 #, kde-format
 msgid "Verify Result"
 msgstr "Verifica risultato"
 
-#: app/Dialogs/checksumdlg.cpp:508
+#: app/Dialogs/checksumdlg.cpp:517
 #, kde-format
 msgid "Result output:"
 msgstr "Output del risultato:"
 
-#: app/Dialogs/checksumdlg.cpp:544
+#: app/Dialogs/checksumdlg.cpp:553
 #, kde-format
 msgid "Errors were detected while verifying the checksums"
 msgstr "Sono stati rilevati errori durante la verifica dei codici di controllo"
 
-#: app/Dialogs/checksumdlg.cpp:544
+#: app/Dialogs/checksumdlg.cpp:553
 #, kde-format
 msgid "Checksums were verified successfully"
 msgstr "I codici di controllo sono stati verificati correttamente"
@@ -1462,7 +1476,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Vuoi davvero cestinare questo elemento?"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:827
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
 #, kde-format
 msgid "&Trash"
 msgstr "&Cestino"
@@ -1474,13 +1488,13 @@ msgid "Do you really want to delete this item?"
 msgstr "Vuoi davvero eliminare questo elemento?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:843
-#: app/Panel/panelfunc.cpp:920
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
+#: app/Panel/panelfunc.cpp:925
 #, kde-format
 msgid "Warning"
 msgstr "Attenzione"
 
-#: app/DiskUsage/diskusage.cpp:605 plugins/krarc/krarc.cpp:638
+#: app/DiskUsage/diskusage.cpp:605 plugins/krarc/krarc.cpp:637
 #, kde-format
 msgid "Deleting %1..."
 msgstr "Eliminazione di %1 in corso..."
@@ -3407,7 +3421,7 @@ msgstr "Modalità generica"
 msgid "Use the system's default viewer"
 msgstr "Usa il visualizzatore predefinito del sistema"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2268
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
 #, kde-format
 msgid "Text mode"
 msgstr "Modalità testo"
@@ -3418,7 +3432,7 @@ msgid "View the file in text-only mode"
 msgstr "Visualizza il file in modalità solo testo"
 
 #: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
-#: app/KrViewer/lister.cpp:2271
+#: app/KrViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
 msgstr "Modalità esadecimale"
@@ -5643,8 +5657,8 @@ msgid "Bring Main Window to Top"
 msgstr "Porta la finestra principale in alto"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1891
-#: app/KrViewer/lister.cpp:1926
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1894
+#: app/KrViewer/lister.cpp:1929
 #, kde-format
 msgid "Lister"
 msgstr "Lister"
@@ -5826,7 +5840,7 @@ msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Visualizzazione: %1"
 
-#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1915
+#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1918
 #, kde-format
 msgid "Save selection..."
 msgstr "Salva la selezione..."
@@ -5851,9 +5865,9 @@ msgstr "Cerca successivo"
 msgid "Search previous"
 msgstr "Cerca precedente"
 
-#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1854
-#: app/KrViewer/lister.cpp:1865 app/KrViewer/lister.cpp:1873
-#: app/KrViewer/lister.cpp:1880
+#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1857
+#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
+#: app/KrViewer/lister.cpp:1883
 #, kde-format
 msgid "Jump to position"
 msgstr "Salta alla posizione"
@@ -5863,7 +5877,7 @@ msgstr "Salta alla posizione"
 msgid "Select charset"
 msgstr "Seleziona insieme di caratteri"
 
-#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1485
+#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1488
 #, kde-format
 msgid "Lister:"
 msgstr "Lister:"
@@ -5908,47 +5922,47 @@ msgstr "Solo parole intere"
 msgid "Hexadecimal"
 msgstr "Esadecimale"
 
-#: app/KrViewer/lister.cpp:1359
+#: app/KrViewer/lister.cpp:1362
 #, kde-format
 msgid "Error reading file %1."
 msgstr "Errore durante la lettura del file %1."
 
-#: app/KrViewer/lister.cpp:1456
+#: app/KrViewer/lister.cpp:1459
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "Colonna: %1, Posizione: %2 (%3, %4%)"
 
-#: app/KrViewer/lister.cpp:1471 app/KrViewer/lister.cpp:1821
+#: app/KrViewer/lister.cpp:1474 app/KrViewer/lister.cpp:1824
 #, kde-format
 msgid "Search:"
 msgstr "Ricerca:"
 
-#: app/KrViewer/lister.cpp:1837
+#: app/KrViewer/lister.cpp:1840
 #, kde-format
 msgid "Search position:"
 msgstr "Posizione della ricerca:"
 
-#: app/KrViewer/lister.cpp:1854
+#: app/KrViewer/lister.cpp:1857
 #, kde-format
 msgid "Text position:"
 msgstr "Posizione del testo:"
 
-#: app/KrViewer/lister.cpp:1865 app/KrViewer/lister.cpp:1873
+#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
 #, kde-format
 msgid "Invalid number."
 msgstr "Numero non valido."
 
-#: app/KrViewer/lister.cpp:1880
+#: app/KrViewer/lister.cpp:1883
 #, kde-format
 msgid "Number out of range."
 msgstr "Numero fuori dall'intervallo."
 
-#: app/KrViewer/lister.cpp:1915
+#: app/KrViewer/lister.cpp:1918
 #, kde-format
 msgid "Nothing is selected."
 msgstr "Non hai selezionato niente."
 
-#: app/KrViewer/lister.cpp:1994
+#: app/KrViewer/lister.cpp:1997
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
@@ -7570,122 +7584,128 @@ msgstr "Sincronizza i file selezionati..."
 msgid "Create New"
 msgstr "Crea nuovo"
 
-#: app/Panel/panelfunc.cpp:356
+#: app/Panel/panelfunc.cpp:354
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Puoi modificare i collegamenti solo nei file system locali"
 
-#: app/Panel/panelfunc.cpp:367
+#: app/Panel/panelfunc.cpp:365
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr ""
 "Il file attuale non è un collegamento quindi non è possibile redirigerlo."
 
-#: app/Panel/panelfunc.cpp:374
+#: app/Panel/panelfunc.cpp:372
 #, kde-format
 msgid "Link Redirection"
 msgstr "Ridirezione collegamento"
 
-#: app/Panel/panelfunc.cpp:374
+#: app/Panel/panelfunc.cpp:372
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Inserisci la destinazione del nuovo collegamento:"
 
-#: app/Panel/panelfunc.cpp:381
+#: app/Panel/panelfunc.cpp:379
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "Impossibile rimuovere il vecchio collegamento: %1"
 
-#: app/Panel/panelfunc.cpp:386
+#: app/Panel/panelfunc.cpp:384
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "Errore nella creazione del nuovo collegamento: %1"
 
-#: app/Panel/panelfunc.cpp:394
+#: app/Panel/panelfunc.cpp:392
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Puoi creare dei collegamenti solo nei file system locali"
 
-#: app/Panel/panelfunc.cpp:402
+#: app/Panel/panelfunc.cpp:400
 #, kde-format
 msgid "New Link"
 msgstr "Nuovo collegamento"
 
-#: app/Panel/panelfunc.cpp:402
+#: app/Panel/panelfunc.cpp:400
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "Crea un nuovo collegamento a: %1"
 
-#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:762
+#: app/Panel/panelfunc.cpp:408 app/Panel/panelfunc.cpp:767
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Una cartella o un file con questo nome esiste già."
 
-#: app/Panel/panelfunc.cpp:421
+#: app/Panel/panelfunc.cpp:419
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Errore nella creazione del nuovo collegamento simbolico «%1» a: «%2»"
 
-#: app/Panel/panelfunc.cpp:424
+#: app/Panel/panelfunc.cpp:422
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Errore nella creazione del nuovo collegamento «%1» to «%2»"
 
-#: app/Panel/panelfunc.cpp:441
+#: app/Panel/panelfunc.cpp:439
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Non hai i permessi per visualizzare questo file."
 
-#: app/Panel/panelfunc.cpp:452
+#: app/Panel/panelfunc.cpp:450
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Inserisci un URL da visualizzare:"
 
-#: app/Panel/panelfunc.cpp:482 app/Panel/panelfunc.cpp:556
+#: app/Panel/panelfunc.cpp:480 app/Panel/panelfunc.cpp:561
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "Non puoi modificare una cartella"
 
-#: app/Panel/panelfunc.cpp:487
+#: app/Panel/panelfunc.cpp:485
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Non hai i permessi per modificare questo file."
 
-#: app/Panel/panelfunc.cpp:501
+#: app/Panel/panelfunc.cpp:499
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Inserisci il nome del file da modificare:"
 
-#: app/Panel/panelfunc.cpp:608
+#: app/Panel/panelfunc.cpp:514
+#, fuzzy, kde-format
+#| msgid "The folder %1 does not exist."
+msgid "The file \"%1\" could not be created."
+msgstr "La cartella %1 non esiste."
+
+#: app/Panel/panelfunc.cpp:613
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Spostamento di %1 verso:"
 
-#: app/Panel/panelfunc.cpp:608
+#: app/Panel/panelfunc.cpp:613
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "Spostamento di %1 file verso:"
 msgstr[1] "Spostamento di %1 file verso:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:615
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Copia %1 in:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:615
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "Copia %1 file in:"
 msgstr[1] "Copia %1 file in:"
 
-#: app/Panel/panelfunc.cpp:660
+#: app/Panel/panelfunc.cpp:665
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr "Il nome proposto («%1») è uguale a quello precedente."
 
-#: app/Panel/panelfunc.cpp:662
+#: app/Panel/panelfunc.cpp:667
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
@@ -7693,19 +7713,19 @@ msgid ""
 msgstr ""
 "La rinomina di «%1» non è stata eseguita perché il nome proposto era vuoto."
 
-#: app/Panel/panelfunc.cpp:686
+#: app/Panel/panelfunc.cpp:691
 #, kde-format
 msgid "Folder's name:"
 msgstr "Nome della cartella:"
 
-#: app/Panel/panelfunc.cpp:826
+#: app/Panel/panelfunc.cpp:831
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Vuoi davvero cestinare questo elemento?"
 msgstr[1] "Vuoi davvero cestinare questi %1 elementi?"
 
-#: app/Panel/panelfunc.cpp:830
+#: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7720,44 +7740,44 @@ msgstr[1] ""
 "<qt>Vuoi davvero eliminare questi %1 elementi <b>fisicamente</b> (non solo "
 "rimuoverli dagli elementi virtuali)?</qt>"
 
-#: app/Panel/panelfunc.cpp:837
+#: app/Panel/panelfunc.cpp:842
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Vuoi davvero eliminare questo elemento?"
 msgstr[1] "Vuoi davvero eliminare questi %1 elementi?"
 
-#: app/Panel/panelfunc.cpp:875
+#: app/Panel/panelfunc.cpp:880
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>La cartella <b>%1</b> non è vuota.</p>"
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Saltarlo o cestinare tutto?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Saltarla o eliminare tutto?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:878
+#: app/Panel/panelfunc.cpp:883
 #, kde-format
 msgid "&Skip"
 msgstr "&Salta"
 
-#: app/Panel/panelfunc.cpp:879
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Trash All"
 msgstr "&Cestina tutto"
 
-#: app/Panel/panelfunc.cpp:879
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Delete All"
 msgstr "&Elimina tutto"
 
-#: app/Panel/panelfunc.cpp:916
+#: app/Panel/panelfunc.cpp:921
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7772,12 +7792,12 @@ msgstr[1] ""
 "Vuoi davvero eliminare questi %1 elementi virtuali (i file fisici resteranno "
 "inalterati)?"
 
-#: app/Panel/panelfunc.cpp:959
+#: app/Panel/panelfunc.cpp:964
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 non può aprire %2 "
 
-#: app/Panel/panelfunc.cpp:1036
+#: app/Panel/panelfunc.cpp:1048
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7786,7 +7806,7 @@ msgstr ""
 "<qt><p>L'archivio <b>%1.%2</b> esiste già. Vuoi sovrascriverlo?</p><p>Tutti "
 "i dati del precedente archivio saranno perduti.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1041
+#: app/Panel/panelfunc.cpp:1053
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7797,17 +7817,17 @@ msgstr ""
 "sostituirà gli elementi con lo stesso nome nell'archivio o aggiungerà gli "
 "elementi con i nuovi nomi.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1049
+#: app/Panel/panelfunc.cpp:1061
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Impossibile comprimere i file in una destinazione virtuale."
 
-#: app/Panel/panelfunc.cpp:1082
+#: app/Panel/panelfunc.cpp:1094
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Estrazione di %1 in:"
 
-#: app/Panel/panelfunc.cpp:1084
+#: app/Panel/panelfunc.cpp:1096
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
@@ -9812,12 +9832,12 @@ msgstr "Compressione di %1..."
 msgid "Retrieving data from %1 archives is not supported."
 msgstr "Il recupero dei dati dagli archivi %1 non è supportato."
 
-#: plugins/krarc/krarc.cpp:493 plugins/krarc/krarc.cpp:758
+#: plugins/krarc/krarc.cpp:493 plugins/krarc/krarc.cpp:757
 #, kde-format
 msgid "Unpacking %1..."
 msgstr "Estrazione di %1..."
 
-#: plugins/krarc/krarc.cpp:505
+#: plugins/krarc/krarc.cpp:504
 #, kde-format
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
@@ -9826,41 +9846,44 @@ msgstr ""
 "Si è verificato un errore collegato al programma esterno «%1». Messaggio di "
 "errore: «%2»."
 
-#: plugins/krarc/krarc.cpp:623
+#: plugins/krarc/krarc.cpp:622
 #, kde-format
 msgid "Deleting files from %1 archives is not supported."
 msgstr "L'eliminazione dei file dagli archivi %1 non è supportata."
 
-#: plugins/krarc/krarc.cpp:667
+#: plugins/krarc/krarc.cpp:666
 #, kde-format
 msgid "Accessing files is not supported with %1 archives."
 msgstr "L'accesso ai file negli archivi %1 non è supportato."
 
-#: plugins/krarc/krarc.cpp:780
+#: plugins/krarc/krarc.cpp:779
 #, kde-format
 msgid "Copying from archive to archive is not supported."
 msgstr "La copia da archivio ad archivio non è supportata"
 
-#: plugins/krarc/krarc.cpp:826
+#: plugins/krarc/krarc.cpp:825
 #, kde-format
 msgid "Listing folders is not supported for %1 archives."
 msgstr "L'elencazione delle cartelle negli archivi %1 non è supportata."
 
-#: plugins/krarc/krarc.cpp:1756
-#, kde-format
+#: plugins/krarc/krarc.cpp:1569
+#, fuzzy, kde-format
+#| msgid ""
+#| "\n"
+#| "Make sure that the %1 binary is installed properly on your system."
 msgid ""
-"\n"
-"Make sure that the %1 binary is installed properly on your system."
+"\"%1\".\n"
+"Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
 "\n"
 "Assicurati che l'eseguibile %1 sia installato correttamente nel sistema."
 
-#: plugins/krarc/krarc.cpp:1838 plugins/krarc/krarc.cpp:1864
+#: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "Finestra di dialogo per la password Krarc"
 
-#: plugins/krarc/krarc.cpp:1881
+#: plugins/krarc/krarc.cpp:1902
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "L'accesso al file richiede una password."

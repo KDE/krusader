@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-12 00:51+0000\n"
+"POT-Creation-Date: 2026-08-13 00:55+0000\n"
 "PO-Revision-Date: 2026-05-14 20:48+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -715,99 +715,106 @@ msgstr "שגיאה פנימית <משימה> לא מוגדרת באות התוצ
 msgid "Downloading remote files"
 msgstr "קבצים מרוחקים יורדים"
 
-#: app/Archive/abstractthreadedjob.cpp:490
+#: app/Archive/abstractthreadedjob.cpp:384
+#, fuzzy, kde-format
+#| msgid "Expander: temporary file could not be opened (%1)"
+msgctxt "%1=temporary file name"
+msgid "The temporary file \"%1\" could not be opened."
+msgstr "מרחיב: לא ניתן לפתוח את הקובץ הזמני (%1)"
+
+#: app/Archive/abstractthreadedjob.cpp:495
 #, kde-format
 msgid "Counting files"
 msgstr "הקבצים נספרים"
 
-#: app/Archive/abstractthreadedjob.cpp:519
+#: app/Archive/abstractthreadedjob.cpp:524
 #, kde-format
 msgid "Uploading to remote destination"
 msgstr "נשלח ליעד מרוחק"
 
-#: app/Archive/abstractthreadedjob.cpp:640
+#: app/Archive/abstractthreadedjob.cpp:645
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
 msgstr "%1, סוג הארכיון לא נתמך."
 
-#: app/Archive/krarchandler.cpp:238
+#: app/Archive/krarchandler.cpp:246
 #, kde-format
 msgid "Counting files in archive"
 msgstr "הקבצים בארכיון נספרים"
 
-#: app/Archive/krarchandler.cpp:260
+#: app/Archive/krarchandler.cpp:268
 #, kde-format
 msgid "Failed to list the content of the archive (%1)."
 msgstr "הצגת תוכן הארכיון נכשלה (%1)."
 
-#: app/Archive/krarchandler.cpp:278 app/Archive/krarchandler.cpp:419
+#: app/Archive/krarchandler.cpp:286 app/Archive/krarchandler.cpp:427
 #, kde-format
 msgid "Failed to unpack %1."
 msgstr "הפריסה של %1 נכשלה."
 
-#: app/Archive/krarchandler.cpp:345
+#: app/Archive/krarchandler.cpp:353
 #, kde-format
 msgid "Failed to convert rpm (%1) to cpio."
 msgstr "המרת rpm ‏(%1) ל־cpio נכשלה."
 
-#: app/Archive/krarchandler.cpp:362
+#: app/Archive/krarchandler.cpp:370
 #, kde-format
 msgid "Failed to convert deb (%1) to tar."
 msgstr "המרת deb‏ (%1) ל־tar נכשלה."
 
-#: app/Archive/krarchandler.cpp:395
+#: app/Archive/krarchandler.cpp:403
 #, kde-format
 msgid "Unpacking File(s)"
 msgstr "הקבצים נפרסים"
 
-#: app/Archive/krarchandler.cpp:419 app/Archive/krarchandler.cpp:641
+#: app/Archive/krarchandler.cpp:427 app/Archive/krarchandler.cpp:649
 #, kde-format
 msgid "User cancelled."
 msgstr "ביטול מצד המשתמש."
 
-#: app/Archive/krarchandler.cpp:489
+#: app/Archive/krarchandler.cpp:497
 #, kde-format
 msgid "Testing Archive"
 msgstr "הארכיון נבדק"
 
-#: app/Archive/krarchandler.cpp:623
+#: app/Archive/krarchandler.cpp:631
 #, kde-format
 msgid "Packing File(s)"
 msgstr "הקבצים נארזים"
 
-#: app/Archive/krarchandler.cpp:641 app/Archive/krarchandler.cpp:647
+#: app/Archive/krarchandler.cpp:649 app/Archive/krarchandler.cpp:655
 #, kde-format
 msgid "Failed to pack %1."
 msgstr "האריזה של %1 נכשלה."
 
-#: app/Archive/krarchandler.cpp:692
+#: app/Archive/krarchandler.cpp:700
 #, kde-format
 msgid "This archive is encrypted, please supply the password:"
 msgstr "הארכיון הזה מוצפן, נא לספק את הסיסמה:"
 
-#: app/Archive/packjob.cpp:53 app/Archive/packjob.cpp:143
+#: app/Archive/packjob.cpp:57 app/Archive/packjob.cpp:147
 #, kde-format
 msgid "Processed files"
 msgstr "קבצים שעובדו"
 
-#: app/Archive/packjob.cpp:63
+#: app/Archive/packjob.cpp:67
 #, kde-format
 msgid "Error while packing"
 msgstr "שגיאה באריזה"
 
-#: app/Archive/packjob.cpp:103
+#: app/Archive/packjob.cpp:107
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, test failed."
 msgstr "%1, הבדיקה נכשלה."
 
-#: app/Archive/packjob.cpp:108
+#: app/Archive/packjob.cpp:112
 #, kde-format
 msgid "Archive tests passed."
 msgstr "בדיקות הארכיון הושלמו."
 
-#: app/Archive/packjob.cpp:150
+#: app/Archive/packjob.cpp:154
 #, kde-format
 msgid "Error while unpacking"
 msgstr "שגיאה בפריסה"
@@ -833,7 +840,7 @@ msgid "Create in:"
 msgstr "יצירה בתוך:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:681
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "New Folder"
 msgstr "תיקייה חדשה"
@@ -949,27 +956,34 @@ msgstr "פתיחה בלשונית חדשה"
 msgid "Delete"
 msgstr "מחיקה"
 
-#: app/Dialogs/checksumdlg.cpp:112
+#: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
+#: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
+#, fuzzy, kde-format
+#| msgid "Expander: temporary file could not be opened (%1)"
+msgid "A temporary file with the template \"%1\" could not be opened."
+msgstr "מרחיב: לא ניתן לפתוח את הקובץ הזמני (%1)"
+
+#: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
 msgid "<qt>Could not start <b>%1</b>.</qt>"
 msgstr "<qt>לא ניתן להפעיל את<b>%1</b>.</qt>"
 
-#: app/Dialogs/checksumdlg.cpp:119
+#: app/Dialogs/checksumdlg.cpp:128
 #, kde-format
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
 msgstr "<qt>אירעה שגיאה בהרצת <b>%1</b>.</qt>"
 
-#: app/Dialogs/checksumdlg.cpp:125
+#: app/Dialogs/checksumdlg.cpp:134
 #, kde-format
 msgid "Error reading stdout or stderr"
 msgstr "שגיאה בקריאת stdout או stderr"
 
-#: app/Dialogs/checksumdlg.cpp:184
+#: app/Dialogs/checksumdlg.cpp:193
 #, kde-format
 msgid "Please wait..."
 msgstr "נא להמתין…"
 
-#: app/Dialogs/checksumdlg.cpp:202
+#: app/Dialogs/checksumdlg.cpp:211
 #, kde-format
 msgid ""
 "<qt>Krusader cannot find a checksum tool that handles %1 on your system. "
@@ -978,118 +992,118 @@ msgstr ""
 "<qt>Krusader לא מצליח למצוא את כלי סיכום הביקורת %1 במערכת שלך. נא לבדוק את "
 "עמוד ה<b>תלויות</b> בהגדרות של Krusader.</qt>"
 
-#: app/Dialogs/checksumdlg.cpp:240
+#: app/Dialogs/checksumdlg.cpp:249
 #, kde-format
 msgid "Creating Checksums"
 msgstr "נוצרים סיכומי ביקורת"
 
-#: app/Dialogs/checksumdlg.cpp:252
+#: app/Dialogs/checksumdlg.cpp:261
 #, kde-format
 msgid "Create Checksums"
 msgstr "יצירת סיכומי ביקורת"
 
-#: app/Dialogs/checksumdlg.cpp:254
+#: app/Dialogs/checksumdlg.cpp:263
 #, kde-format
 msgid "About to calculate checksum for the following files or folders:"
 msgstr "יתבצע חישוב סיכומי ביקורת לקבצים או לתיקיות הבאים:"
 
-#: app/Dialogs/checksumdlg.cpp:267
+#: app/Dialogs/checksumdlg.cpp:276
 #, kde-format
 msgid "Select the checksum method:"
 msgstr "בחירת שיטת סיכום הביקורת:"
 
-#: app/Dialogs/checksumdlg.cpp:286
+#: app/Dialogs/checksumdlg.cpp:295
 #, kde-format
 msgid "Checksum Results"
 msgstr "תוצאות סיכום ביקורת"
 
-#: app/Dialogs/checksumdlg.cpp:293 app/Dialogs/checksumdlg.cpp:493
+#: app/Dialogs/checksumdlg.cpp:302 app/Dialogs/checksumdlg.cpp:502
 #: app/Konfigurator/kgcolors.cpp:562
 #, kde-format
 msgid "File"
 msgstr "קובץ"
 
-#: app/Dialogs/checksumdlg.cpp:293 app/Dialogs/checksumdlg.cpp:493
+#: app/Dialogs/checksumdlg.cpp:302 app/Dialogs/checksumdlg.cpp:502
 #, kde-format
 msgid "Hash"
 msgstr "גיבוב"
 
-#: app/Dialogs/checksumdlg.cpp:296
+#: app/Dialogs/checksumdlg.cpp:305
 #, kde-format
 msgid "Errors received:"
 msgstr "שגיאות שהתקבלו:"
 
-#: app/Dialogs/checksumdlg.cpp:302
+#: app/Dialogs/checksumdlg.cpp:311
 #, kde-format
 msgid "Save one checksum file for each source file"
 msgstr "שמירת קובץ סיכום ביקורת אחד לכל קובץ מקור"
 
-#: app/Dialogs/checksumdlg.cpp:335
+#: app/Dialogs/checksumdlg.cpp:344
 #, kde-format
 msgid "No files found"
 msgstr "לא נמצאו קבצים"
 
-#: app/Dialogs/checksumdlg.cpp:356
+#: app/Dialogs/checksumdlg.cpp:365
 #, kde-format
 msgid "Errors were detected while creating the checksums"
 msgstr "התגלו שגיאות בעת יצירת סיכומי הביקורת"
 
-#: app/Dialogs/checksumdlg.cpp:356
+#: app/Dialogs/checksumdlg.cpp:365
 #, kde-format
 msgid "Checksums were created successfully"
 msgstr "סיכומי ביקורת נוצרו בהצלחה"
 
-#: app/Dialogs/checksumdlg.cpp:380
+#: app/Dialogs/checksumdlg.cpp:389
 #, kde-format
 msgid "Saving checksum files..."
 msgstr "קובצי סיכומי הביקורת נשמרים…"
 
-#: app/Dialogs/checksumdlg.cpp:384
+#: app/Dialogs/checksumdlg.cpp:393
 #, kde-format
 msgid "Errors occurred while saving multiple checksums. Stopping"
 msgstr "אירעו שגיאות בזמן שמירת כמה מסיכומי הביקורת. הפעולה נעצרת"
 
-#: app/Dialogs/checksumdlg.cpp:412
+#: app/Dialogs/checksumdlg.cpp:421
 #, kde-format
 msgid "Error saving file %1"
 msgstr "שגיאה בשמירת הקובץ %1"
 
-#: app/Dialogs/checksumdlg.cpp:434
+#: app/Dialogs/checksumdlg.cpp:443
 #, kde-format
 msgid "Verifying Checksums"
 msgstr "סיכומי הביקורת מאומתים"
 
-#: app/Dialogs/checksumdlg.cpp:466
+#: app/Dialogs/checksumdlg.cpp:475
 #, kde-format
 msgid "Verify Checksum File"
 msgstr "אימות קובץ סיכום ביקורת"
 
-#: app/Dialogs/checksumdlg.cpp:468
+#: app/Dialogs/checksumdlg.cpp:477
 #, kde-format
 msgid "About to verify the following checksum file"
 msgstr "יתבצע אימות של קובץ סיכום הביקורת הבא"
 
-#: app/Dialogs/checksumdlg.cpp:475
+#: app/Dialogs/checksumdlg.cpp:484
 #, kde-format
 msgid "Checksum file:"
 msgstr "קובץ סיכום ביקורת:"
 
-#: app/Dialogs/checksumdlg.cpp:503
+#: app/Dialogs/checksumdlg.cpp:512
 #, kde-format
 msgid "Verify Result"
 msgstr "אימות התוצאה"
 
-#: app/Dialogs/checksumdlg.cpp:508
+#: app/Dialogs/checksumdlg.cpp:517
 #, kde-format
 msgid "Result output:"
 msgstr "פלט תוצאה:"
 
-#: app/Dialogs/checksumdlg.cpp:544
+#: app/Dialogs/checksumdlg.cpp:553
 #, kde-format
 msgid "Errors were detected while verifying the checksums"
 msgstr "התגלו שגיאות בזמן אימות סיכומי הביקורת"
 
-#: app/Dialogs/checksumdlg.cpp:544
+#: app/Dialogs/checksumdlg.cpp:553
 #, kde-format
 msgid "Checksums were verified successfully"
 msgstr "סיכומי הביקורת אומתו בהצלחה"
@@ -1440,7 +1454,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "להעביר את הפריט הזה לאשפה?"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:827
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
 #, kde-format
 msgid "&Trash"
 msgstr "&אשפה"
@@ -1452,13 +1466,13 @@ msgid "Do you really want to delete this item?"
 msgstr "למחוק את הפריט הזה?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:843
-#: app/Panel/panelfunc.cpp:920
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
+#: app/Panel/panelfunc.cpp:925
 #, kde-format
 msgid "Warning"
 msgstr "אזהרה"
 
-#: app/DiskUsage/diskusage.cpp:605 plugins/krarc/krarc.cpp:638
+#: app/DiskUsage/diskusage.cpp:605 plugins/krarc/krarc.cpp:637
 #, kde-format
 msgid "Deleting %1..."
 msgstr "%1 נמחק…"
@@ -3375,7 +3389,7 @@ msgstr "מצב כללי"
 msgid "Use the system's default viewer"
 msgstr "להשתמש במציג ברירת המחדל של המערכת"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2268
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
 #, kde-format
 msgid "Text mode"
 msgstr "מצב טקסט"
@@ -3386,7 +3400,7 @@ msgid "View the file in text-only mode"
 msgstr "להציג את הקובץ במצב טקסט בלבד"
 
 #: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
-#: app/KrViewer/lister.cpp:2271
+#: app/KrViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
 msgstr "מצב הקסדצימלי"
@@ -5548,8 +5562,8 @@ msgid "Bring Main Window to Top"
 msgstr "קידום החלון הראשי לחזית"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1891
-#: app/KrViewer/lister.cpp:1926
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1894
+#: app/KrViewer/lister.cpp:1929
 #, kde-format
 msgid "Lister"
 msgstr "מציגון"
@@ -5731,7 +5745,7 @@ msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "מוצג: %1"
 
-#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1915
+#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1918
 #, kde-format
 msgid "Save selection..."
 msgstr "שמירת הבחירה…"
@@ -5756,9 +5770,9 @@ msgstr "חיפוש הבא"
 msgid "Search previous"
 msgstr "חיפוש הקודם"
 
-#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1854
-#: app/KrViewer/lister.cpp:1865 app/KrViewer/lister.cpp:1873
-#: app/KrViewer/lister.cpp:1880
+#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1857
+#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
+#: app/KrViewer/lister.cpp:1883
 #, kde-format
 msgid "Jump to position"
 msgstr "דילוג לנקודה"
@@ -5768,7 +5782,7 @@ msgstr "דילוג לנקודה"
 msgid "Select charset"
 msgstr "בחירת ערכת תווים"
 
-#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1485
+#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1488
 #, kde-format
 msgid "Lister:"
 msgstr "מציגון:"
@@ -5813,47 +5827,47 @@ msgstr "לכידת מילים שלמות בלבד"
 msgid "Hexadecimal"
 msgstr "הקסדצימלי"
 
-#: app/KrViewer/lister.cpp:1359
+#: app/KrViewer/lister.cpp:1362
 #, kde-format
 msgid "Error reading file %1."
 msgstr "שגיאה בקריאת הקובץ %1."
 
-#: app/KrViewer/lister.cpp:1456
+#: app/KrViewer/lister.cpp:1459
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "עמודה: %1, מקום: %2 (%3, %4%)"
 
-#: app/KrViewer/lister.cpp:1471 app/KrViewer/lister.cpp:1821
+#: app/KrViewer/lister.cpp:1474 app/KrViewer/lister.cpp:1824
 #, kde-format
 msgid "Search:"
 msgstr "חיפוש:"
 
-#: app/KrViewer/lister.cpp:1837
+#: app/KrViewer/lister.cpp:1840
 #, kde-format
 msgid "Search position:"
 msgstr "מקום חיפוש:"
 
-#: app/KrViewer/lister.cpp:1854
+#: app/KrViewer/lister.cpp:1857
 #, kde-format
 msgid "Text position:"
 msgstr "מקום טקסט:"
 
-#: app/KrViewer/lister.cpp:1865 app/KrViewer/lister.cpp:1873
+#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
 #, kde-format
 msgid "Invalid number."
 msgstr "מספר שגוי."
 
-#: app/KrViewer/lister.cpp:1880
+#: app/KrViewer/lister.cpp:1883
 #, kde-format
 msgid "Number out of range."
 msgstr "המספר מחוץ לתחום."
 
-#: app/KrViewer/lister.cpp:1915
+#: app/KrViewer/lister.cpp:1918
 #, kde-format
 msgid "Nothing is selected."
 msgstr "לא נבחר כלום."
 
-#: app/KrViewer/lister.cpp:1994
+#: app/KrViewer/lister.cpp:1997
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr "אין תמיכה בהדפסה הפוכה. להמשיך בהדפסה רגילה?"
@@ -7470,97 +7484,103 @@ msgstr "סנכרון הקבצים הנבחרים…"
 msgid "Create New"
 msgstr "יצירת חדש"
 
-#: app/Panel/panelfunc.cpp:356
+#: app/Panel/panelfunc.cpp:354
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "אפשר לערוך קישורים רק במערכות קבצים מקומיות"
 
-#: app/Panel/panelfunc.cpp:367
+#: app/Panel/panelfunc.cpp:365
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "הקובץ הנוכחי אינו קישור, לכן לא ניתן להפנות אותו."
 
-#: app/Panel/panelfunc.cpp:374
+#: app/Panel/panelfunc.cpp:372
 #, kde-format
 msgid "Link Redirection"
 msgstr "הפניית קישור"
 
-#: app/Panel/panelfunc.cpp:374
+#: app/Panel/panelfunc.cpp:372
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "נא למלא יעד חדש לקישור:"
 
-#: app/Panel/panelfunc.cpp:381
+#: app/Panel/panelfunc.cpp:379
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "לא ניתן להסיר את הקישור הישן: %1"
 
-#: app/Panel/panelfunc.cpp:386
+#: app/Panel/panelfunc.cpp:384
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "יצירת הקישור החדש נכשלה: %1"
 
-#: app/Panel/panelfunc.cpp:394
+#: app/Panel/panelfunc.cpp:392
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "אפשר ליצור קישורים רק במערכות קבצים מקומיות"
 
-#: app/Panel/panelfunc.cpp:402
+#: app/Panel/panelfunc.cpp:400
 #, kde-format
 msgid "New Link"
 msgstr "קישור חדש"
 
-#: app/Panel/panelfunc.cpp:402
+#: app/Panel/panelfunc.cpp:400
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "יצירת קישור חדש אל: %1"
 
-#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:762
+#: app/Panel/panelfunc.cpp:408 app/Panel/panelfunc.cpp:767
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "כבר קיימת תיקייה בשם הזה."
 
-#: app/Panel/panelfunc.cpp:421
+#: app/Panel/panelfunc.cpp:419
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "יצירת קישור סמלי חדש מ־‚%1’ אל ‚%2’ נכשלה"
 
-#: app/Panel/panelfunc.cpp:424
+#: app/Panel/panelfunc.cpp:422
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "יצירת קישור חדש מ־‚%1’ אל ‚%2’ נכשלה"
 
-#: app/Panel/panelfunc.cpp:441
+#: app/Panel/panelfunc.cpp:439
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "אין הרשאות לצפות בקובץ הזה."
 
-#: app/Panel/panelfunc.cpp:452
+#: app/Panel/panelfunc.cpp:450
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "נא למלא כתובת לתצוגה:"
 
-#: app/Panel/panelfunc.cpp:482 app/Panel/panelfunc.cpp:556
+#: app/Panel/panelfunc.cpp:480 app/Panel/panelfunc.cpp:561
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "לא ניתן לערוך תיקייה"
 
-#: app/Panel/panelfunc.cpp:487
+#: app/Panel/panelfunc.cpp:485
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "אין הרשאות לערוך את הקובץ הזה."
 
-#: app/Panel/panelfunc.cpp:501
+#: app/Panel/panelfunc.cpp:499
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "נא למלא שם קובץ לעריכה:"
 
-#: app/Panel/panelfunc.cpp:608
+#: app/Panel/panelfunc.cpp:514
+#, fuzzy, kde-format
+#| msgid "The folder %1 does not exist."
+msgid "The file \"%1\" could not be created."
+msgstr "התיקייה %1 לא קיימת."
+
+#: app/Panel/panelfunc.cpp:613
 #, kde-format
 msgid "Move %1 to:"
 msgstr "העברת %1 אל:"
 
-#: app/Panel/panelfunc.cpp:608
+#: app/Panel/panelfunc.cpp:613
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
@@ -7569,12 +7589,12 @@ msgstr[1] "העברת שני קבצים אל:"
 msgstr[2] "העברת %1 קבצים אל:"
 msgstr[3] "העברת %1 קבצים אל:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:615
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "העתקת %1 אל:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:615
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
@@ -7583,24 +7603,24 @@ msgstr[1] "העתקת שני קבצים אל:"
 msgstr[2] "העתקת %1 קבצים אל:"
 msgstr[3] "העתקת %1 קבצים אל:"
 
-#: app/Panel/panelfunc.cpp:660
+#: app/Panel/panelfunc.cpp:665
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr "השם המוצע („%1”) זהה לקודם."
 
-#: app/Panel/panelfunc.cpp:662
+#: app/Panel/panelfunc.cpp:667
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr "שינוי השם של „%1” לא בוצע כי השם המוצע היה ריק."
 
-#: app/Panel/panelfunc.cpp:686
+#: app/Panel/panelfunc.cpp:691
 #, kde-format
 msgid "Folder's name:"
 msgstr "שם התיקייה:"
 
-#: app/Panel/panelfunc.cpp:826
+#: app/Panel/panelfunc.cpp:831
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -7609,7 +7629,7 @@ msgstr[1] "להעביר את שני הקבצים האלה לאשפה?"
 msgstr[2] "להעביר את %1 הקבצים האלה לאשפה?"
 msgstr[3] "להעביר את %1 הקבצים האלה לאשפה?"
 
-#: app/Panel/panelfunc.cpp:830
+#: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7630,7 +7650,7 @@ msgstr[3] ""
 "<qt>למחוק את %1 הפריטים האלה <b>פיזית</b> (לא להסתפק בהסרתם מהפריטים "
 "הווירטואליים)?</qt>"
 
-#: app/Panel/panelfunc.cpp:837
+#: app/Panel/panelfunc.cpp:842
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
@@ -7639,37 +7659,37 @@ msgstr[1] "למחוק את שני הפריטים האלה?"
 msgstr[2] "למחוק את %1 הפריטים האלה?"
 msgstr[3] "למחוק את %1 הפריטים האלה?"
 
-#: app/Panel/panelfunc.cpp:875
+#: app/Panel/panelfunc.cpp:880
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>התיקייה <b>%1</b> אינה ריקה.</p>"
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>לדלג על זה או להעביר את כולם לאשפה?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>לדלג על זה או למחוק את כולם?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:878
+#: app/Panel/panelfunc.cpp:883
 #, kde-format
 msgid "&Skip"
 msgstr "&דילוג"
 
-#: app/Panel/panelfunc.cpp:879
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Trash All"
 msgstr "הכול ל&אשפה"
 
-#: app/Panel/panelfunc.cpp:879
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Delete All"
 msgstr "למ&חוק הכול"
 
-#: app/Panel/panelfunc.cpp:916
+#: app/Panel/panelfunc.cpp:921
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7685,12 +7705,12 @@ msgstr[2] ""
 msgstr[3] ""
 "למחוק את %1 הפריטים הווירטואליים האלה (הקבצים הפיזיים יישארו כמו שהם)?"
 
-#: app/Panel/panelfunc.cpp:959
+#: app/Panel/panelfunc.cpp:964
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 לא יכול לפתוח את %2"
 
-#: app/Panel/panelfunc.cpp:1036
+#: app/Panel/panelfunc.cpp:1048
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7699,7 +7719,7 @@ msgstr ""
 "<qt><p>הארכיון <b>%1.%2</b> כבר קיים. לשכתב אותו?</p><p>כל הנתונים בארכיון "
 "הקודם יאבדו.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1041
+#: app/Panel/panelfunc.cpp:1053
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7709,17 +7729,17 @@ msgstr ""
 "<qt><p>הארכיון <b>%1.%2</b> כבר קיים. לשכתב אותו?</p><p>Zip יחליף רשומות "
 "בשמות זהים בארכיון ה־zip או יוסיף רשומות לשמות חדשים.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1049
+#: app/Panel/panelfunc.cpp:1061
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "לא ניתן לארוז קבצים ליעד וירטואלי."
 
-#: app/Panel/panelfunc.cpp:1082
+#: app/Panel/panelfunc.cpp:1094
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "חילוץ %1 אל:"
 
-#: app/Panel/panelfunc.cpp:1084
+#: app/Panel/panelfunc.cpp:1096
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
@@ -9714,53 +9734,56 @@ msgstr "%1 נארז…"
 msgid "Retrieving data from %1 archives is not supported."
 msgstr "אין תמיכה בקבלת נתונים מארכיוני %1."
 
-#: plugins/krarc/krarc.cpp:493 plugins/krarc/krarc.cpp:758
+#: plugins/krarc/krarc.cpp:493 plugins/krarc/krarc.cpp:757
 #, kde-format
 msgid "Unpacking %1..."
 msgstr "%1 נפרס…"
 
-#: plugins/krarc/krarc.cpp:505
+#: plugins/krarc/krarc.cpp:504
 #, kde-format
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr "אירעה שגיאה, היא קשורה לתוכנית החיצונית ‚%1’. הודעת השגיאה היא: ‚%2’."
 
-#: plugins/krarc/krarc.cpp:623
+#: plugins/krarc/krarc.cpp:622
 #, kde-format
 msgid "Deleting files from %1 archives is not supported."
 msgstr "אין תמיכה במחיקת קבצים מארכיוני %1."
 
-#: plugins/krarc/krarc.cpp:667
+#: plugins/krarc/krarc.cpp:666
 #, kde-format
 msgid "Accessing files is not supported with %1 archives."
 msgstr "אין תמיכה בגישה לקבצים בארכיוני %1."
 
-#: plugins/krarc/krarc.cpp:780
+#: plugins/krarc/krarc.cpp:779
 #, kde-format
 msgid "Copying from archive to archive is not supported."
 msgstr "אין תמיכה בהעתקה מארכיון לארכיון."
 
-#: plugins/krarc/krarc.cpp:826
+#: plugins/krarc/krarc.cpp:825
 #, kde-format
 msgid "Listing folders is not supported for %1 archives."
 msgstr "אין תמיכה בהצגת תוכן תיקיות בארכיוני %1."
 
-#: plugins/krarc/krarc.cpp:1756
-#, kde-format
+#: plugins/krarc/krarc.cpp:1569
+#, fuzzy, kde-format
+#| msgid ""
+#| "\n"
+#| "Make sure that the %1 binary is installed properly on your system."
 msgid ""
-"\n"
-"Make sure that the %1 binary is installed properly on your system."
+"\"%1\".\n"
+"Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
 "\n"
 "נא לוודא שהבינרי %1 מותקן במערכת הזאת כראוי."
 
-#: plugins/krarc/krarc.cpp:1838 plugins/krarc/krarc.cpp:1864
+#: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "חלונית סיסמה של Karc"
 
-#: plugins/krarc/krarc.cpp:1881
+#: plugins/krarc/krarc.cpp:1902
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "הגישה לקובץ דורשת סיסמה."

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-12 00:51+0000\n"
+"POT-Creation-Date: 2026-08-13 00:55+0000\n"
 "PO-Revision-Date: 2019-03-17 17:31+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -731,110 +731,117 @@ msgstr ""
 msgid "Downloading remote files"
 msgstr "Pašalinti failus"
 
-#: app/Archive/abstractthreadedjob.cpp:490
+#: app/Archive/abstractthreadedjob.cpp:384
+#, fuzzy, kde-format
+#| msgid "Expander: tempfile couldn't be opened (%1)"
+msgctxt "%1=temporary file name"
+msgid "The temporary file \"%1\" could not be opened."
+msgstr "Išplėtiklis: nepavyko atverti laikino failo (%1)"
+
+#: app/Archive/abstractthreadedjob.cpp:495
 #, fuzzy, kde-format
 #| msgid "Copying files"
 msgid "Counting files"
 msgstr "Kopijuojamo failai"
 
-#: app/Archive/abstractthreadedjob.cpp:519
+#: app/Archive/abstractthreadedjob.cpp:524
 #, kde-format
 msgid "Uploading to remote destination"
 msgstr ""
 
-#: app/Archive/abstractthreadedjob.cpp:640
+#: app/Archive/abstractthreadedjob.cpp:645
 #, fuzzy, kde-format
 #| msgid "%1, unsupported archive type."
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
 msgstr "%1, nepalaikomo tipo archyvas."
 
-#: app/Archive/krarchandler.cpp:238
+#: app/Archive/krarchandler.cpp:246
 #, kde-format
 msgid "Counting files in archive"
 msgstr "Skaičiuojami failai archyve"
 
-#: app/Archive/krarchandler.cpp:260
+#: app/Archive/krarchandler.cpp:268
 #, fuzzy, kde-format
 #| msgid "Failed to list the content of the archive (%1)!"
 msgid "Failed to list the content of the archive (%1)."
 msgstr "Nepavyko pateikti archyvo %1 turinio!"
 
-#: app/Archive/krarchandler.cpp:278 app/Archive/krarchandler.cpp:419
+#: app/Archive/krarchandler.cpp:286 app/Archive/krarchandler.cpp:427
 #, fuzzy, kde-format
 #| msgid "Failed to unpack %1!"
 msgid "Failed to unpack %1."
 msgstr "Nepavyko išpakuoti %1!"
 
-#: app/Archive/krarchandler.cpp:345
+#: app/Archive/krarchandler.cpp:353
 #, fuzzy, kde-format
 #| msgid "Failed to convert rpm (%1) to cpio!"
 msgid "Failed to convert rpm (%1) to cpio."
 msgstr "Nepavyko pakeisti rpm (%1) į cpio!"
 
-#: app/Archive/krarchandler.cpp:362
+#: app/Archive/krarchandler.cpp:370
 #, fuzzy, kde-format
 #| msgid "Failed to convert deb (%1) to tar!"
 msgid "Failed to convert deb (%1) to tar."
 msgstr "Nepavyko pakeisti deb (%1) į tar!"
 
-#: app/Archive/krarchandler.cpp:395
+#: app/Archive/krarchandler.cpp:403
 #, kde-format
 msgid "Unpacking File(s)"
 msgstr "Išpakuojami failai"
 
-#: app/Archive/krarchandler.cpp:419 app/Archive/krarchandler.cpp:641
+#: app/Archive/krarchandler.cpp:427 app/Archive/krarchandler.cpp:649
 #, kde-format
 msgid "User cancelled."
 msgstr "Atšaukta naudotojo."
 
-#: app/Archive/krarchandler.cpp:489
+#: app/Archive/krarchandler.cpp:497
 #, kde-format
 msgid "Testing Archive"
 msgstr "Testuojamas archyvas"
 
-#: app/Archive/krarchandler.cpp:623
+#: app/Archive/krarchandler.cpp:631
 #, kde-format
 msgid "Packing File(s)"
 msgstr "Failai supakuojami"
 
-#: app/Archive/krarchandler.cpp:641 app/Archive/krarchandler.cpp:647
+#: app/Archive/krarchandler.cpp:649 app/Archive/krarchandler.cpp:655
 #, fuzzy, kde-format
 #| msgid "Failed to pack %1!"
 msgid "Failed to pack %1."
 msgstr "Nepavyko supakuoti %1!"
 
-#: app/Archive/krarchandler.cpp:692
+#: app/Archive/krarchandler.cpp:700
 #, kde-format
 msgid "This archive is encrypted, please supply the password:"
 msgstr "Archyvas užšifruotas, prašome pateikti slaptažodį:"
 
-#: app/Archive/packjob.cpp:53 app/Archive/packjob.cpp:143
+#: app/Archive/packjob.cpp:57 app/Archive/packjob.cpp:147
 #, fuzzy, kde-format
 #| msgid "Profiles"
 msgid "Processed files"
 msgstr "Profilis"
 
-#: app/Archive/packjob.cpp:63
+#: app/Archive/packjob.cpp:67
 #, fuzzy, kde-format
 #| msgid "Error at opening %1!"
 msgid "Error while packing"
 msgstr "Atveriant %1 įvyko klaida!"
 
-#: app/Archive/packjob.cpp:103
+#: app/Archive/packjob.cpp:107
 #, fuzzy, kde-format
 #| msgid "%1, test failed!"
 msgctxt "%1=archive filename"
 msgid "%1, test failed."
 msgstr "<b style=\"color: red;\">Bandymas nepavyko</b>"
 
-#: app/Archive/packjob.cpp:108
+#: app/Archive/packjob.cpp:112
 #, fuzzy, kde-format
 #| msgid "%1, test passed."
 msgid "Archive tests passed."
 msgstr "%1, patikrinimas atliktas sėmingai."
 
-#: app/Archive/packjob.cpp:150
+#: app/Archive/packjob.cpp:154
 #, fuzzy, kde-format
 #| msgid "Error at opening %1!"
 msgid "Error while unpacking"
@@ -861,7 +868,7 @@ msgid "Create in:"
 msgstr "Kur sukurti:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:681
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "New Folder"
 msgstr "Naujas aplankas"
@@ -981,30 +988,37 @@ msgstr "Atverti naujoje kortelėje"
 msgid "Delete"
 msgstr "Pašalinti"
 
-#: app/Dialogs/checksumdlg.cpp:112
+#: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
+#: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
+#, fuzzy, kde-format
+#| msgid "Expander: tempfile couldn't be opened (%1)"
+msgid "A temporary file with the template \"%1\" could not be opened."
+msgstr "Išplėtiklis: nepavyko atverti laikino failo (%1)"
+
+#: app/Dialogs/checksumdlg.cpp:121
 #, fuzzy, kde-format
 #| msgid "Could not start %1"
 msgid "<qt>Could not start <b>%1</b>.</qt>"
 msgstr "Nepavyko paleisti %1"
 
-#: app/Dialogs/checksumdlg.cpp:119
+#: app/Dialogs/checksumdlg.cpp:128
 #, kde-format
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
 msgstr "<qt>Vykdant <b>%1</b> įvyko klaida.</qt>"
 
-#: app/Dialogs/checksumdlg.cpp:125
+#: app/Dialogs/checksumdlg.cpp:134
 #, kde-format
 msgid "Error reading stdout or stderr"
 msgstr ""
 "Nepavyko perskaityti arba standartinės išvesties arba standartinės klaidų "
 "išvesties"
 
-#: app/Dialogs/checksumdlg.cpp:184
+#: app/Dialogs/checksumdlg.cpp:193
 #, kde-format
 msgid "Please wait..."
 msgstr ""
 
-#: app/Dialogs/checksumdlg.cpp:202
+#: app/Dialogs/checksumdlg.cpp:211
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>Krusader can't find a checksum tool that handles %1 on your system. "
@@ -1016,130 +1030,130 @@ msgstr ""
 "<qt>Jūsų sistemoje nepavyko rasti įrankio, skirto darbui su %1. Patikrinkite "
 "<b>Priklausomybių</b> puslapį Krusader nuostatose.</qt>"
 
-#: app/Dialogs/checksumdlg.cpp:240
+#: app/Dialogs/checksumdlg.cpp:249
 #, fuzzy, kde-format
 #| msgid "Create Checksum"
 msgid "Creating Checksums"
 msgstr "Kurti kontrolinę sumą"
 
-#: app/Dialogs/checksumdlg.cpp:252
+#: app/Dialogs/checksumdlg.cpp:261
 #, fuzzy, kde-format
 #| msgid "Create Checksum"
 msgid "Create Checksums"
 msgstr "Kurti kontrolinę sumą"
 
-#: app/Dialogs/checksumdlg.cpp:254
+#: app/Dialogs/checksumdlg.cpp:263
 #, fuzzy, kde-format
 #| msgid "About to calculate checksum for the following files"
 msgid "About to calculate checksum for the following files or folders:"
 msgstr "Ruošiamasi skaičiuoti šių failų kontrolines sumas"
 
-#: app/Dialogs/checksumdlg.cpp:267
+#: app/Dialogs/checksumdlg.cpp:276
 #, kde-format
 msgid "Select the checksum method:"
 msgstr "Nurodykite kontrolinės sumos skaičiavimo būdą:"
 
-#: app/Dialogs/checksumdlg.cpp:286
+#: app/Dialogs/checksumdlg.cpp:295
 #, fuzzy, kde-format
 #| msgid "Checksum Utilities"
 msgid "Checksum Results"
 msgstr "Kontrolinių sumų įrankiai"
 
-#: app/Dialogs/checksumdlg.cpp:293 app/Dialogs/checksumdlg.cpp:493
+#: app/Dialogs/checksumdlg.cpp:302 app/Dialogs/checksumdlg.cpp:502
 #: app/Konfigurator/kgcolors.cpp:562
 #, kde-format
 msgid "File"
 msgstr "Failas"
 
-#: app/Dialogs/checksumdlg.cpp:293 app/Dialogs/checksumdlg.cpp:493
+#: app/Dialogs/checksumdlg.cpp:302 app/Dialogs/checksumdlg.cpp:502
 #, kde-format
 msgid "Hash"
 msgstr "Maiša (hash)"
 
-#: app/Dialogs/checksumdlg.cpp:296
+#: app/Dialogs/checksumdlg.cpp:305
 #, fuzzy, kde-format
 #| msgid "Here are the errors received:"
 msgid "Errors received:"
 msgstr "Gautos klaidos:"
 
-#: app/Dialogs/checksumdlg.cpp:302
+#: app/Dialogs/checksumdlg.cpp:311
 #, fuzzy, kde-format
 #| msgid "Checksum file for each source file"
 msgid "Save one checksum file for each source file"
 msgstr "Kontrolinis failas kiekvienam pradiniam failui"
 
-#: app/Dialogs/checksumdlg.cpp:335
+#: app/Dialogs/checksumdlg.cpp:344
 #, fuzzy, kde-format
 msgid "No files found"
 msgstr "Tik pažymėtus failus"
 
-#: app/Dialogs/checksumdlg.cpp:356
+#: app/Dialogs/checksumdlg.cpp:365
 #, kde-format
 msgid "Errors were detected while creating the checksums"
 msgstr "Kuriant kontrolines sumas įvyko klaidų"
 
-#: app/Dialogs/checksumdlg.cpp:356
+#: app/Dialogs/checksumdlg.cpp:365
 #, kde-format
 msgid "Checksums were created successfully"
 msgstr "Kontrolinės sumos sukurtos sėkmingai"
 
-#: app/Dialogs/checksumdlg.cpp:380
+#: app/Dialogs/checksumdlg.cpp:389
 #, kde-format
 msgid "Saving checksum files..."
 msgstr "Įrašomi kontrolinių sumų failai..."
 
-#: app/Dialogs/checksumdlg.cpp:384
+#: app/Dialogs/checksumdlg.cpp:393
 #, fuzzy, kde-format
 #| msgid "Errors occured while saving multiple checksums. Stopping"
 msgid "Errors occurred while saving multiple checksums. Stopping"
 msgstr "Įrašant kelias kontrolines sumas įvyko klaidos. Darbas nutraukiamas"
 
-#: app/Dialogs/checksumdlg.cpp:412
+#: app/Dialogs/checksumdlg.cpp:421
 #, kde-format
 msgid "Error saving file %1"
 msgstr "Įrašant failą %1 įvyko klaida"
 
-#: app/Dialogs/checksumdlg.cpp:434
+#: app/Dialogs/checksumdlg.cpp:443
 #, fuzzy, kde-format
 #| msgid "Verify Checksum"
 msgid "Verifying Checksums"
 msgstr "Tikrinti kontrolinę sumą"
 
-#: app/Dialogs/checksumdlg.cpp:466
+#: app/Dialogs/checksumdlg.cpp:475
 #, fuzzy, kde-format
 #| msgid "Verify Checksum"
 msgid "Verify Checksum File"
 msgstr "Tikrinti kontrolinę sumą"
 
-#: app/Dialogs/checksumdlg.cpp:468
+#: app/Dialogs/checksumdlg.cpp:477
 #, fuzzy, kde-format
 #| msgid "About to verify checksum for the following files"
 msgid "About to verify the following checksum file"
 msgstr "Ruošiamasi patikrinti šių failų kontrolines sumas"
 
-#: app/Dialogs/checksumdlg.cpp:475
+#: app/Dialogs/checksumdlg.cpp:484
 #, kde-format
 msgid "Checksum file:"
 msgstr "Kontrolinės sumos failas:"
 
-#: app/Dialogs/checksumdlg.cpp:503
+#: app/Dialogs/checksumdlg.cpp:512
 #, fuzzy, kde-format
 #| msgid "Verify Checksum"
 msgid "Verify Result"
 msgstr "Tikrinti kontrolinę sumą"
 
-#: app/Dialogs/checksumdlg.cpp:508
+#: app/Dialogs/checksumdlg.cpp:517
 #, fuzzy, kde-format
 #| msgid "Defaults"
 msgid "Result output:"
 msgstr "Numatyta"
 
-#: app/Dialogs/checksumdlg.cpp:544
+#: app/Dialogs/checksumdlg.cpp:553
 #, kde-format
 msgid "Errors were detected while verifying the checksums"
 msgstr "Tikrinant kontrolines sumas rasta klaidų"
 
-#: app/Dialogs/checksumdlg.cpp:544
+#: app/Dialogs/checksumdlg.cpp:553
 #, kde-format
 msgid "Checksums were verified successfully"
 msgstr "Kontrolinės sumos patikrintos sėkmingai"
@@ -1524,7 +1538,7 @@ msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
 msgstr "Ar tikrai norite perkelti šį objektą į šiukšlinę?"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:827
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
 #, kde-format
 msgid "&Trash"
 msgstr "&Šiukšlinė"
@@ -1536,13 +1550,13 @@ msgid "Do you really want to delete this item?"
 msgstr "Ar tikrai pageidaujate pašalinti šį objektą?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:843
-#: app/Panel/panelfunc.cpp:920
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
+#: app/Panel/panelfunc.cpp:925
 #, kde-format
 msgid "Warning"
 msgstr "Perspėjimas"
 
-#: app/DiskUsage/diskusage.cpp:605 plugins/krarc/krarc.cpp:638
+#: app/DiskUsage/diskusage.cpp:605 plugins/krarc/krarc.cpp:637
 #, kde-format
 msgid "Deleting %1..."
 msgstr "Šalinama %1..."
@@ -3547,7 +3561,7 @@ msgstr "Bendras režimas"
 msgid "Use the system's default viewer"
 msgstr "Naudoti sistemos numatytą žiūryklę"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2268
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
 #, kde-format
 msgid "Text mode"
 msgstr "Tekstinis režimas"
@@ -3558,7 +3572,7 @@ msgid "View the file in text-only mode"
 msgstr "Failui peržiūrėti naudoti tekstinį režimą"
 
 #: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
-#: app/KrViewer/lister.cpp:2271
+#: app/KrViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
 msgstr "Šešioliktainis režimas"
@@ -5882,8 +5896,8 @@ msgid "Bring Main Window to Top"
 msgstr ""
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1891
-#: app/KrViewer/lister.cpp:1926
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1894
+#: app/KrViewer/lister.cpp:1929
 #, fuzzy, kde-format
 #| msgid "History"
 msgid "Lister"
@@ -6072,7 +6086,7 @@ msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Žvalgosi"
 
-#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1915
+#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1918
 #, fuzzy, kde-format
 #| msgid "I&nvert selection"
 msgid "Save selection..."
@@ -6100,9 +6114,9 @@ msgstr "Ieškoti kito"
 msgid "Search previous"
 msgstr "Ieškoti ankstesnio"
 
-#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1854
-#: app/KrViewer/lister.cpp:1865 app/KrViewer/lister.cpp:1873
-#: app/KrViewer/lister.cpp:1880
+#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1857
+#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
+#: app/KrViewer/lister.cpp:1883
 #, fuzzy, kde-format
 #| msgid "Jump to a Location..."
 msgid "Jump to position"
@@ -6114,7 +6128,7 @@ msgstr "Šokti į poziciją"
 msgid "Select charset"
 msgstr "Parinkti koduotę"
 
-#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1485
+#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1488
 #, fuzzy, kde-format
 #| msgid "History"
 msgid "Lister:"
@@ -6161,51 +6175,51 @@ msgstr "Sutampa tik pilni žodžiai"
 msgid "Hexadecimal"
 msgstr "Šešioliktainė"
 
-#: app/KrViewer/lister.cpp:1359
+#: app/KrViewer/lister.cpp:1362
 #, fuzzy, kde-format
 #| msgid "Error reading file %1!"
 msgid "Error reading file %1."
 msgstr "Klaida skaitant failą."
 
-#: app/KrViewer/lister.cpp:1456
+#: app/KrViewer/lister.cpp:1459
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr ""
 
-#: app/KrViewer/lister.cpp:1471 app/KrViewer/lister.cpp:1821
+#: app/KrViewer/lister.cpp:1474 app/KrViewer/lister.cpp:1824
 #, kde-format
 msgid "Search:"
 msgstr "Ieškoti:"
 
-#: app/KrViewer/lister.cpp:1837
+#: app/KrViewer/lister.cpp:1840
 #, fuzzy, kde-format
 #| msgid "&Search in"
 msgid "Search position:"
 msgstr "&Ieškoti"
 
-#: app/KrViewer/lister.cpp:1854
+#: app/KrViewer/lister.cpp:1857
 #, kde-format
 msgid "Text position:"
 msgstr "Teksto pozicija:"
 
-#: app/KrViewer/lister.cpp:1865 app/KrViewer/lister.cpp:1873
+#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
 #, fuzzy, kde-format
 #| msgid "Invalid volume size!"
 msgid "Invalid number."
 msgstr "netaisyklingas skaičius"
 
-#: app/KrViewer/lister.cpp:1880
+#: app/KrViewer/lister.cpp:1883
 #, fuzzy, kde-format
 #| msgid "Number of..."
 msgid "Number out of range."
 msgstr "Kiekis..."
 
-#: app/KrViewer/lister.cpp:1915
+#: app/KrViewer/lister.cpp:1918
 #, kde-format
 msgid "Nothing is selected."
 msgstr ""
 
-#: app/KrViewer/lister.cpp:1994
+#: app/KrViewer/lister.cpp:1997
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
@@ -7916,105 +7930,111 @@ msgstr "Sinchronizuoti pažymėtus failus..."
 msgid "Create New"
 msgstr "Sukurti naują"
 
-#: app/Panel/panelfunc.cpp:356
+#: app/Panel/panelfunc.cpp:354
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Keisti nuorodas galima tik vietinėse failų sistemose"
 
-#: app/Panel/panelfunc.cpp:367
+#: app/Panel/panelfunc.cpp:365
 #, fuzzy, kde-format
 #| msgid "The current file is not a link, so I can't redirect it."
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "Dabartinis failas nėra nuoroda, todėl jo pakeisti nepavyko!"
 
-#: app/Panel/panelfunc.cpp:374
+#: app/Panel/panelfunc.cpp:372
 #, kde-format
 msgid "Link Redirection"
 msgstr "Nuorodų keitimas"
 
-#: app/Panel/panelfunc.cpp:374
+#: app/Panel/panelfunc.cpp:372
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Įveskite naują nuorodos paskirties vietą:"
 
-#: app/Panel/panelfunc.cpp:381
+#: app/Panel/panelfunc.cpp:379
 #, fuzzy, kde-format
 #| msgid "Can't remove old link: "
 msgid "Cannot remove old link: %1"
 msgstr "Nepavyko pašalinti senos nuorodos:"
 
-#: app/Panel/panelfunc.cpp:386
+#: app/Panel/panelfunc.cpp:384
 #, fuzzy, kde-format
 #| msgid "Failed to create a new link: "
 msgid "Failed to create a new link: %1"
 msgstr "Nepavyko sukurti naujos nuorodos:"
 
-#: app/Panel/panelfunc.cpp:394
+#: app/Panel/panelfunc.cpp:392
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Kurti nuorodas galima tik vietinėse failų sistemose"
 
-#: app/Panel/panelfunc.cpp:402
+#: app/Panel/panelfunc.cpp:400
 #, kde-format
 msgid "New Link"
 msgstr "Nauja nuoroda"
 
-#: app/Panel/panelfunc.cpp:402
+#: app/Panel/panelfunc.cpp:400
 #, fuzzy, kde-format
 #| msgid "Create a new link to: "
 msgid "Create a new link to: %1"
 msgstr "Sukurti naują nuorodą į:"
 
-#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:762
+#: app/Panel/panelfunc.cpp:408 app/Panel/panelfunc.cpp:767
 #, fuzzy, kde-format
 #| msgid "A directory or a file with this name already exists."
 msgid "A folder or a file with this name already exists."
 msgstr "Aplankas arba failas tokiu vardu jau egzistuoja."
 
-#: app/Panel/panelfunc.cpp:421
+#: app/Panel/panelfunc.cpp:419
 #, fuzzy, kde-format
 #| msgid "Failed to create a new symlink: "
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Nepavyko sukurti naujos nuorodos:"
 
-#: app/Panel/panelfunc.cpp:424
+#: app/Panel/panelfunc.cpp:422
 #, fuzzy, kde-format
 #| msgid "Failed to create a new link: "
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Nepavyko sukurti naujos nuorodos:"
 
-#: app/Panel/panelfunc.cpp:441
+#: app/Panel/panelfunc.cpp:439
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Nepakanka teisių peržiūrėti šį failą."
 
-#: app/Panel/panelfunc.cpp:452
+#: app/Panel/panelfunc.cpp:450
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Įrašykite peržiūrimą URL:"
 
-#: app/Panel/panelfunc.cpp:482 app/Panel/panelfunc.cpp:556
+#: app/Panel/panelfunc.cpp:480 app/Panel/panelfunc.cpp:561
 #, fuzzy, kde-format
 #| msgid "You can't edit a directory"
 msgid "You cannot edit a folder"
 msgstr "Keisti aplanko negalima!"
 
-#: app/Panel/panelfunc.cpp:487
+#: app/Panel/panelfunc.cpp:485
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Nepakanka teisių keisti šį failą."
 
-#: app/Panel/panelfunc.cpp:501
+#: app/Panel/panelfunc.cpp:499
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Įrašykite redaguojamo failo pavadinimą:"
 
-#: app/Panel/panelfunc.cpp:608
+#: app/Panel/panelfunc.cpp:514
+#, fuzzy, kde-format
+#| msgid "The folder %1 does not exist."
+msgid "The file \"%1\" could not be created."
+msgstr "Aplankas %1 neegzistuoja."
+
+#: app/Panel/panelfunc.cpp:613
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Perkelti %1 į:"
 
-#: app/Panel/panelfunc.cpp:608
+#: app/Panel/panelfunc.cpp:613
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
@@ -8023,12 +8043,12 @@ msgstr[1] "Perkelti %1 failus į:"
 msgstr[2] "Perkelti %1 failų į:"
 msgstr[3] "Perkelti %1 failą į:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:615
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Kopijuoti %1 į:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:615
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
@@ -8037,25 +8057,25 @@ msgstr[1] "Kopijuoti %1 failus į:"
 msgstr[2] "Kopijuoti %1 failų į:"
 msgstr[3] "Kopijuoti %1 failą į:"
 
-#: app/Panel/panelfunc.cpp:660
+#: app/Panel/panelfunc.cpp:665
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:662
+#: app/Panel/panelfunc.cpp:667
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:686
+#: app/Panel/panelfunc.cpp:691
 #, fuzzy, kde-format
 #| msgid "Folder name:"
 msgid "Folder's name:"
 msgstr "Aplanko pavadinimas:"
 
-#: app/Panel/panelfunc.cpp:826
+#: app/Panel/panelfunc.cpp:831
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -8064,7 +8084,7 @@ msgstr[1] "Ar tikrai norite perkelti %1 objektus į šiukšlinę?"
 msgstr[2] "Ar tikrai norite perkelti %1 objektų į šiukšlinę?"
 msgstr[3] "Ar tikrai norite perkelti %1 objektą į šiukšlinę?"
 
-#: app/Panel/panelfunc.cpp:830
+#: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -8085,7 +8105,7 @@ msgstr[3] ""
 "<qt>Ar tikrai norite <b>fiziškai</b> pašalinti %1 objektus? (Ne tik "
 "pašalinti iš virtualių objektų sąrašo?)</qt>"
 
-#: app/Panel/panelfunc.cpp:837
+#: app/Panel/panelfunc.cpp:842
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
@@ -8094,7 +8114,7 @@ msgstr[1] "Ar tikrai norite pašalinti %1 objektus?"
 msgstr[2] "Ar tikrai norite pašalinti %1 objektų?"
 msgstr[3] "Ar tikrai norite pašalinti %1 objektą?"
 
-#: app/Panel/panelfunc.cpp:875
+#: app/Panel/panelfunc.cpp:880
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete "
@@ -8104,12 +8124,12 @@ msgstr ""
 "<qt><p>Aplankas <b>%1</b> netuščias!</p><p>Praleisti šį aplanką ar pašalinti "
 "viską?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:881
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete "
@@ -8119,23 +8139,23 @@ msgstr ""
 "<qt><p>Aplankas <b>%1</b> netuščias!</p><p>Praleisti šį aplanką ar pašalinti "
 "viską?</p></qt>"
 
-#: app/Panel/panelfunc.cpp:878
+#: app/Panel/panelfunc.cpp:883
 #, kde-format
 msgid "&Skip"
 msgstr "Pralei&sti"
 
-#: app/Panel/panelfunc.cpp:879
+#: app/Panel/panelfunc.cpp:884
 #, fuzzy, kde-format
 #| msgid "&Trash"
 msgid "&Trash All"
 msgstr "&Šiukšlinė"
 
-#: app/Panel/panelfunc.cpp:879
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Delete All"
 msgstr "&Pašalinti viską"
 
-#: app/Panel/panelfunc.cpp:916
+#: app/Panel/panelfunc.cpp:921
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -8156,13 +8176,13 @@ msgstr[3] ""
 "Ar tikrai norite ištrinti %1 virtualų objektą (fiziškai objektai nebus "
 "keičiami)?"
 
-#: app/Panel/panelfunc.cpp:959
+#: app/Panel/panelfunc.cpp:964
 #, fuzzy, kde-format
 #| msgid "Cannot open %1!"
 msgid "%1 cannot open %2"
 msgstr "Nepavyksta atverti %1 : %2"
 
-#: app/Panel/panelfunc.cpp:1036
+#: app/Panel/panelfunc.cpp:1048
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite "
@@ -8174,7 +8194,7 @@ msgstr ""
 "<qt><p>Archyvas <b>%1.%2</b> jau egzistuoja. Ar tikrai norite jį perrašyti?</"
 "p><p>Visi duomenys senesniame archyve bus prarasti!</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1041
+#: app/Panel/panelfunc.cpp:1053
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -8185,18 +8205,18 @@ msgstr ""
 "p><p>Programa zip pakeis vienodai pavadintus objektus egzistuojančiame zip "
 "faile arba pridės naujus pavadinimus.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1049
+#: app/Panel/panelfunc.cpp:1061
 #, fuzzy, kde-format
 #| msgid "Cannot pack files onto a virtual destination!"
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Nepavyks supakuoti failų į virtualią paskirties vietą!"
 
-#: app/Panel/panelfunc.cpp:1082
+#: app/Panel/panelfunc.cpp:1094
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Išpakuoti %1 į:"
 
-#: app/Panel/panelfunc.cpp:1084
+#: app/Panel/panelfunc.cpp:1096
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
@@ -10328,60 +10348,60 @@ msgstr "Pakuojama %1..."
 msgid "Retrieving data from %1 archives is not supported."
 msgstr "Rašymas į %1 archyvus nepalaikomas"
 
-#: plugins/krarc/krarc.cpp:493 plugins/krarc/krarc.cpp:758
+#: plugins/krarc/krarc.cpp:493 plugins/krarc/krarc.cpp:757
 #, kde-format
 msgid "Unpacking %1..."
 msgstr "Išpakuojama %1..."
 
-#: plugins/krarc/krarc.cpp:505
+#: plugins/krarc/krarc.cpp:504
 #, kde-format
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
 "message is: '%2'."
 msgstr ""
 
-#: plugins/krarc/krarc.cpp:623
+#: plugins/krarc/krarc.cpp:622
 #, fuzzy, kde-format
 #| msgid "Deleting files from %1 archives is not supported"
 msgid "Deleting files from %1 archives is not supported."
 msgstr "Failų trynimas iš %1 archyvų nepalaikomas"
 
-#: plugins/krarc/krarc.cpp:667
+#: plugins/krarc/krarc.cpp:666
 #, fuzzy, kde-format
 #| msgid "Accessing files is not supported with the %1 archives"
 msgid "Accessing files is not supported with %1 archives."
 msgstr "Prieiga prie failų nepalaikoma %1 archyvuose"
 
-#: plugins/krarc/krarc.cpp:780
+#: plugins/krarc/krarc.cpp:779
 #, fuzzy, kde-format
 #| msgid "Writing to %1 archives is not supported"
 msgid "Copying from archive to archive is not supported."
 msgstr "Rašymas į %1 archyvus nepalaikomas"
 
-#: plugins/krarc/krarc.cpp:826
+#: plugins/krarc/krarc.cpp:825
 #, fuzzy, kde-format
 #| msgid "Listing directories is not supported for %1 archives"
 msgid "Listing folders is not supported for %1 archives."
 msgstr "Aplankų išvardinimas nepalaikomas %1 archyvuose"
 
-#: plugins/krarc/krarc.cpp:1756
+#: plugins/krarc/krarc.cpp:1569
 #, fuzzy, kde-format
 #| msgid ""
 #| "\n"
 #| "Make sure that the %1 binary are installed properly on your system."
 msgid ""
-"\n"
-"Make sure that the %1 binary is installed properly on your system."
+"\"%1\".\n"
+"Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
 "\n"
 "Įsitikinkite, kad vykdomasis failas %1 tinkamai įdiegtas jūsų sistemoje."
 
-#: plugins/krarc/krarc.cpp:1838 plugins/krarc/krarc.cpp:1864
+#: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "Krarc slaptažodžio dialogas"
 
-#: plugins/krarc/krarc.cpp:1881
+#: plugins/krarc/krarc.cpp:1902
 #, fuzzy, kde-format
 #| msgid "Accessing the file requires password."
 msgid "Accessing the file requires a password."

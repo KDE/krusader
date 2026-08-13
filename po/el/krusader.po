@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-12 00:51+0000\n"
+"POT-Creation-Date: 2026-08-13 00:55+0000\n"
 "PO-Revision-Date: 2021-10-19 08:32+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -744,100 +744,107 @@ msgstr "Εσωτερικό σφάλμα, απροσδιόριστη <εργασ�
 msgid "Downloading remote files"
 msgstr "Λήψη απομακρυσμένων αρχείων"
 
-#: app/Archive/abstractthreadedjob.cpp:490
+#: app/Archive/abstractthreadedjob.cpp:384
+#, fuzzy, kde-format
+#| msgid "Expander: temporary file could not be opened (%1)"
+msgctxt "%1=temporary file name"
+msgid "The temporary file \"%1\" could not be opened."
+msgstr "Επεκτάτης: αδυναμία ανοίγματος του προσωρινού αρχείου (%1)"
+
+#: app/Archive/abstractthreadedjob.cpp:495
 #, kde-format
 msgid "Counting files"
 msgstr "Απαρίθμηση αρχείων"
 
-#: app/Archive/abstractthreadedjob.cpp:519
+#: app/Archive/abstractthreadedjob.cpp:524
 #, kde-format
 msgid "Uploading to remote destination"
 msgstr "αποστολή σε απομακρυσμένο προορισμό"
 
-#: app/Archive/abstractthreadedjob.cpp:640
+#: app/Archive/abstractthreadedjob.cpp:645
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
 msgstr "%1, τύπος αρχειοθήκης που δεν υποστηρίζεται."
 
-#: app/Archive/krarchandler.cpp:238
+#: app/Archive/krarchandler.cpp:246
 #, kde-format
 msgid "Counting files in archive"
 msgstr "Μέτρηση των αρχείων της αρχειοθήκης"
 
-#: app/Archive/krarchandler.cpp:260
+#: app/Archive/krarchandler.cpp:268
 #, kde-format
 msgid "Failed to list the content of the archive (%1)."
 msgstr "Η εμφάνιση των περιεχομένων της αρχειοθήκης (%1) απέτυχε."
 
-#: app/Archive/krarchandler.cpp:278 app/Archive/krarchandler.cpp:419
+#: app/Archive/krarchandler.cpp:286 app/Archive/krarchandler.cpp:427
 #, kde-format
 msgid "Failed to unpack %1."
 msgstr "Η αποσυμπίεση του %1 απέτυχε."
 
-#: app/Archive/krarchandler.cpp:345
+#: app/Archive/krarchandler.cpp:353
 #, kde-format
 msgid "Failed to convert rpm (%1) to cpio."
 msgstr "Η μετατροπή του rpm (%1) σε cpio απέτυχε."
 
-#: app/Archive/krarchandler.cpp:362
+#: app/Archive/krarchandler.cpp:370
 #, kde-format
 msgid "Failed to convert deb (%1) to tar."
 msgstr "Η μετατροπή του deb (%1) σε tar απέτυχε."
 
-#: app/Archive/krarchandler.cpp:395
+#: app/Archive/krarchandler.cpp:403
 #, kde-format
 msgid "Unpacking File(s)"
 msgstr "Αποσυμπίεση αρχείου(ων)"
 
-#: app/Archive/krarchandler.cpp:419 app/Archive/krarchandler.cpp:641
+#: app/Archive/krarchandler.cpp:427 app/Archive/krarchandler.cpp:649
 #, kde-format
 msgid "User cancelled."
 msgstr "Ακυρώθηκε από το χρήστη."
 
-#: app/Archive/krarchandler.cpp:489
+#: app/Archive/krarchandler.cpp:497
 #, kde-format
 msgid "Testing Archive"
 msgstr "Έλεγχος αρχειοθήκης"
 
-#: app/Archive/krarchandler.cpp:623
+#: app/Archive/krarchandler.cpp:631
 #, kde-format
 msgid "Packing File(s)"
 msgstr "Συμπίεση αρχείου(ων)"
 
-#: app/Archive/krarchandler.cpp:641 app/Archive/krarchandler.cpp:647
+#: app/Archive/krarchandler.cpp:649 app/Archive/krarchandler.cpp:655
 #, kde-format
 msgid "Failed to pack %1."
 msgstr "Η συμπίεση του %1 απέτυχε."
 
-#: app/Archive/krarchandler.cpp:692
+#: app/Archive/krarchandler.cpp:700
 #, kde-format
 msgid "This archive is encrypted, please supply the password:"
 msgstr ""
 "Η αρχειοθήκη είναι κρυπτογραφημένη, παρακαλώ δώστε τον κωδικό πρόσβασης:"
 
-#: app/Archive/packjob.cpp:53 app/Archive/packjob.cpp:143
+#: app/Archive/packjob.cpp:57 app/Archive/packjob.cpp:147
 #, kde-format
 msgid "Processed files"
 msgstr "επεξεργασμένα αρχεία"
 
-#: app/Archive/packjob.cpp:63
+#: app/Archive/packjob.cpp:67
 #, kde-format
 msgid "Error while packing"
 msgstr "Σφάλμα κατά τη συμπίεση"
 
-#: app/Archive/packjob.cpp:103
+#: app/Archive/packjob.cpp:107
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, test failed."
 msgstr "%1, ο έλεγχος απέτυχε."
 
-#: app/Archive/packjob.cpp:108
+#: app/Archive/packjob.cpp:112
 #, kde-format
 msgid "Archive tests passed."
 msgstr "Η αρχειοθήκη πέρασε τον έλεγχο."
 
-#: app/Archive/packjob.cpp:150
+#: app/Archive/packjob.cpp:154
 #, kde-format
 msgid "Error while unpacking"
 msgstr "Σφάλμα κατά την αποσυμπίεση"
@@ -863,7 +870,7 @@ msgid "Create in:"
 msgstr "Δημιουργία στο:"
 
 #: app/BookMan/kraddbookmarkdlg.cpp:73 app/BookMan/kraddbookmarkdlg.cpp:142
-#: app/Panel/panelfunc.cpp:681
+#: app/Panel/panelfunc.cpp:686
 #, kde-format
 msgid "New Folder"
 msgstr "Νέος φάκελος"
@@ -979,27 +986,34 @@ msgstr "Άνοιγμα σε νέα καρτέλα"
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: app/Dialogs/checksumdlg.cpp:112
+#: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
+#: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
+#, fuzzy, kde-format
+#| msgid "Expander: temporary file could not be opened (%1)"
+msgid "A temporary file with the template \"%1\" could not be opened."
+msgstr "Επεκτάτης: αδυναμία ανοίγματος του προσωρινού αρχείου (%1)"
+
+#: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
 msgid "<qt>Could not start <b>%1</b>.</qt>"
 msgstr "<qt>Αδυναμία έναρξης <b>%1</b>.</qt>"
 
-#: app/Dialogs/checksumdlg.cpp:119
+#: app/Dialogs/checksumdlg.cpp:128
 #, kde-format
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
 msgstr "<qt>Παρουσιάστηκε σφάλμα κατά την εκτέλεση του <b>%1</b>.</qt>"
 
-#: app/Dialogs/checksumdlg.cpp:125
+#: app/Dialogs/checksumdlg.cpp:134
 #, kde-format
 msgid "Error reading stdout or stderr"
 msgstr "Σφάλμα ανάγνωσης του stdout ή του stderr"
 
-#: app/Dialogs/checksumdlg.cpp:184
+#: app/Dialogs/checksumdlg.cpp:193
 #, kde-format
 msgid "Please wait..."
 msgstr "Παρακαλώ περιμένετε..."
 
-#: app/Dialogs/checksumdlg.cpp:202
+#: app/Dialogs/checksumdlg.cpp:211
 #, kde-format
 msgid ""
 "<qt>Krusader cannot find a checksum tool that handles %1 on your system. "
@@ -1009,123 +1023,123 @@ msgstr ""
 "αθροίσματος ελέγχου που να μπορεί να διαχειριστεί το %1. Παρακαλώ ελέγξτε τη "
 "σελίδα <b>Εξαρτήσεις</b> στις ρυθμίσεις του Krusader.</qt>"
 
-#: app/Dialogs/checksumdlg.cpp:240
+#: app/Dialogs/checksumdlg.cpp:249
 #, kde-format
 msgid "Creating Checksums"
 msgstr "Δημιουργία αθροισμάτων ελέγχου"
 
-#: app/Dialogs/checksumdlg.cpp:252
+#: app/Dialogs/checksumdlg.cpp:261
 #, kde-format
 msgid "Create Checksums"
 msgstr "Δημιουργία αθροισμάτων ελέγχου"
 
-#: app/Dialogs/checksumdlg.cpp:254
+#: app/Dialogs/checksumdlg.cpp:263
 #, kde-format
 msgid "About to calculate checksum for the following files or folders:"
 msgstr ""
 "Πρόκειται να υπολογιστεί το άθροισμα ελέγχου για τα ακόλουθα αρχεία ή "
 "φακέλους:"
 
-#: app/Dialogs/checksumdlg.cpp:267
+#: app/Dialogs/checksumdlg.cpp:276
 #, kde-format
 msgid "Select the checksum method:"
 msgstr "Επιλέξτε τη μέθοδο υπολογισμού:"
 
-#: app/Dialogs/checksumdlg.cpp:286
+#: app/Dialogs/checksumdlg.cpp:295
 #, kde-format
 msgid "Checksum Results"
 msgstr "Αποτελέσματα αθροίσματος ελέγχου"
 
-#: app/Dialogs/checksumdlg.cpp:293 app/Dialogs/checksumdlg.cpp:493
+#: app/Dialogs/checksumdlg.cpp:302 app/Dialogs/checksumdlg.cpp:502
 #: app/Konfigurator/kgcolors.cpp:562
 #, kde-format
 msgid "File"
 msgstr "Αρχείο"
 
-#: app/Dialogs/checksumdlg.cpp:293 app/Dialogs/checksumdlg.cpp:493
+#: app/Dialogs/checksumdlg.cpp:302 app/Dialogs/checksumdlg.cpp:502
 #, kde-format
 msgid "Hash"
 msgstr "Αποτύπωμα"
 
-#: app/Dialogs/checksumdlg.cpp:296
+#: app/Dialogs/checksumdlg.cpp:305
 #, kde-format
 msgid "Errors received:"
 msgstr "Σφάλματα που παρουσιάστηκαν:"
 
-#: app/Dialogs/checksumdlg.cpp:302
+#: app/Dialogs/checksumdlg.cpp:311
 #, kde-format
 msgid "Save one checksum file for each source file"
 msgstr "Αποθηκεύστε ένα αρχείο αθροίσματος ελέγχου για κάθε πηγαίο αρχείο"
 
-#: app/Dialogs/checksumdlg.cpp:335
+#: app/Dialogs/checksumdlg.cpp:344
 #, kde-format
 msgid "No files found"
 msgstr "Δε βρέθηκαν αρχεία"
 
-#: app/Dialogs/checksumdlg.cpp:356
+#: app/Dialogs/checksumdlg.cpp:365
 #, kde-format
 msgid "Errors were detected while creating the checksums"
 msgstr "Παρουσιάστηκε σφάλμα κατά τη δημιουργία των αθροισμάτων ελέγχου"
 
-#: app/Dialogs/checksumdlg.cpp:356
+#: app/Dialogs/checksumdlg.cpp:365
 #, kde-format
 msgid "Checksums were created successfully"
 msgstr "Τα αθροίσματα ελέγχου δημιουργήθηκαν επιτυχώς"
 
-#: app/Dialogs/checksumdlg.cpp:380
+#: app/Dialogs/checksumdlg.cpp:389
 #, kde-format
 msgid "Saving checksum files..."
 msgstr "Αποθήκευση αρχείων αθροισμάτων ελέγχου"
 
-#: app/Dialogs/checksumdlg.cpp:384
+#: app/Dialogs/checksumdlg.cpp:393
 #, kde-format
 msgid "Errors occurred while saving multiple checksums. Stopping"
 msgstr ""
 "Παρουσιάστηκαν σφάλματα κατά την αποθήκευση πολλαπλών αθροισμάτων ελέγχου. "
 "Διακοπή"
 
-#: app/Dialogs/checksumdlg.cpp:412
+#: app/Dialogs/checksumdlg.cpp:421
 #, kde-format
 msgid "Error saving file %1"
 msgstr "Σφάλμα αποθήκευσης του αρχείου %1"
 
-#: app/Dialogs/checksumdlg.cpp:434
+#: app/Dialogs/checksumdlg.cpp:443
 #, kde-format
 msgid "Verifying Checksums"
 msgstr "Επαλήθευση αθροισμάτων ελέγχου"
 
-#: app/Dialogs/checksumdlg.cpp:466
+#: app/Dialogs/checksumdlg.cpp:475
 #, kde-format
 msgid "Verify Checksum File"
 msgstr "Επαλήθευση αρχείων αθροισμάτων ελέγχου"
 
-#: app/Dialogs/checksumdlg.cpp:468
+#: app/Dialogs/checksumdlg.cpp:477
 #, kde-format
 msgid "About to verify the following checksum file"
 msgstr ""
 "Πρόκειται να γίνει επαλήθευση του ακόλουθου αρχείου αθροίσματος ελέγχου:"
 
-#: app/Dialogs/checksumdlg.cpp:475
+#: app/Dialogs/checksumdlg.cpp:484
 #, kde-format
 msgid "Checksum file:"
 msgstr "Αρχείο αθροίσματος ελέγχου:"
 
-#: app/Dialogs/checksumdlg.cpp:503
+#: app/Dialogs/checksumdlg.cpp:512
 #, kde-format
 msgid "Verify Result"
 msgstr "Επαλήθευση αποτελέσματος"
 
-#: app/Dialogs/checksumdlg.cpp:508
+#: app/Dialogs/checksumdlg.cpp:517
 #, kde-format
 msgid "Result output:"
 msgstr "Εμφάνιση αποτελέσματος:"
 
-#: app/Dialogs/checksumdlg.cpp:544
+#: app/Dialogs/checksumdlg.cpp:553
 #, kde-format
 msgid "Errors were detected while verifying the checksums"
 msgstr "Παρουσιάστηκε σφάλμα κατά την επαλήθευση των αθροισμάτων ελέγχου"
 
-#: app/Dialogs/checksumdlg.cpp:544
+#: app/Dialogs/checksumdlg.cpp:553
 #, kde-format
 msgid "Checksums were verified successfully"
 msgstr "Τα αθροίσματα ελέγχου επαληθεύτηκαν με επιτυχία"
@@ -1484,7 +1498,7 @@ msgid "Do you really want to move this item to the trash?"
 msgstr ""
 "Θέλετε πραγματικά να μετακινήσετε αυτό το αντικείμενο στον κάδο απορριμμάτων;"
 
-#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:827
+#: app/DiskUsage/diskusage.cpp:591 app/Panel/panelfunc.cpp:832
 #, kde-format
 msgid "&Trash"
 msgstr "Μετακίνηση στον &κάδο"
@@ -1496,13 +1510,13 @@ msgid "Do you really want to delete this item?"
 msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το αντικείμενο;"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:843
-#: app/Panel/panelfunc.cpp:920
+#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
+#: app/Panel/panelfunc.cpp:925
 #, kde-format
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
-#: app/DiskUsage/diskusage.cpp:605 plugins/krarc/krarc.cpp:638
+#: app/DiskUsage/diskusage.cpp:605 plugins/krarc/krarc.cpp:637
 #, kde-format
 msgid "Deleting %1..."
 msgstr "Διαγραφή του %1..."
@@ -3443,7 +3457,7 @@ msgstr "Γενική προβολή"
 msgid "Use the system's default viewer"
 msgstr "Χρήση του προκαθορισμένου προβολέα του συστήματος"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2268
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
 #, kde-format
 msgid "Text mode"
 msgstr "Προβολή κειμένου"
@@ -3454,7 +3468,7 @@ msgid "View the file in text-only mode"
 msgstr "Εμφάνιση του αρχείου ως κείμενο"
 
 #: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
-#: app/KrViewer/lister.cpp:2271
+#: app/KrViewer/lister.cpp:2274
 #, kde-format
 msgid "Hex mode"
 msgstr "Δεκαεξαδική προβολή"
@@ -5693,8 +5707,8 @@ msgid "Bring Main Window to Top"
 msgstr "Μεταφορά του κύριου παραθύρου στην κορυφή"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1891
-#: app/KrViewer/lister.cpp:1926
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1894
+#: app/KrViewer/lister.cpp:1929
 #, kde-format
 msgid "Lister"
 msgstr "Lister"
@@ -5877,7 +5891,7 @@ msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Προβολή: %1"
 
-#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1915
+#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1918
 #, kde-format
 msgid "Save selection..."
 msgstr "Αποθήκευση επιλογής..."
@@ -5902,9 +5916,9 @@ msgstr "Αναζήτηση επόμενου"
 msgid "Search previous"
 msgstr "Αναζήτηση προηγούμενου"
 
-#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1854
-#: app/KrViewer/lister.cpp:1865 app/KrViewer/lister.cpp:1873
-#: app/KrViewer/lister.cpp:1880
+#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1857
+#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
+#: app/KrViewer/lister.cpp:1883
 #, kde-format
 msgid "Jump to position"
 msgstr "Μετάβαση στην τοποθεσία"
@@ -5914,7 +5928,7 @@ msgstr "Μετάβαση στην τοποθεσία"
 msgid "Select charset"
 msgstr "Επιλογή συνόλου χαρακτήρων"
 
-#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1485
+#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1488
 #, kde-format
 msgid "Lister:"
 msgstr "Lister:"
@@ -5959,47 +5973,47 @@ msgstr "Ταίριασμα ολόκληρων λέξεων μόνο"
 msgid "Hexadecimal"
 msgstr "Δεκαεξαδικό"
 
-#: app/KrViewer/lister.cpp:1359
+#: app/KrViewer/lister.cpp:1362
 #, kde-format
 msgid "Error reading file %1."
 msgstr "Σφάλμα ανάγνωσης του αρχείου %1."
 
-#: app/KrViewer/lister.cpp:1456
+#: app/KrViewer/lister.cpp:1459
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "Στήλη: %1, Θέση: %2 (%3, %4%)"
 
-#: app/KrViewer/lister.cpp:1471 app/KrViewer/lister.cpp:1821
+#: app/KrViewer/lister.cpp:1474 app/KrViewer/lister.cpp:1824
 #, kde-format
 msgid "Search:"
 msgstr "Αναζήτηση:"
 
-#: app/KrViewer/lister.cpp:1837
+#: app/KrViewer/lister.cpp:1840
 #, kde-format
 msgid "Search position:"
 msgstr "Θέση αναζήτησης:"
 
-#: app/KrViewer/lister.cpp:1854
+#: app/KrViewer/lister.cpp:1857
 #, kde-format
 msgid "Text position:"
 msgstr "Θέση κειμένου:"
 
-#: app/KrViewer/lister.cpp:1865 app/KrViewer/lister.cpp:1873
+#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
 #, kde-format
 msgid "Invalid number."
 msgstr "Μη έγκυρος αριθμός."
 
-#: app/KrViewer/lister.cpp:1880
+#: app/KrViewer/lister.cpp:1883
 #, kde-format
 msgid "Number out of range."
 msgstr "Αριθμός εκτός εύρους."
 
-#: app/KrViewer/lister.cpp:1915
+#: app/KrViewer/lister.cpp:1918
 #, kde-format
 msgid "Nothing is selected."
 msgstr "Δεν έχει επιλεγεί τίποτα."
 
-#: app/KrViewer/lister.cpp:1994
+#: app/KrViewer/lister.cpp:1997
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
@@ -7632,133 +7646,139 @@ msgstr "Συγχρονισμός επιλεγμένων αρχείων..."
 msgid "Create New"
 msgstr "Δημιουργία νέου"
 
-#: app/Panel/panelfunc.cpp:356
+#: app/Panel/panelfunc.cpp:354
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Μπορείτε να επεξεργαστείτε δεσμούς μόνο σε τοπικά συστήματα αρχείων"
 
-#: app/Panel/panelfunc.cpp:367
+#: app/Panel/panelfunc.cpp:365
 #, kde-format
 msgid "The current file is not a link, so it cannot be redirected."
 msgstr "Το τρέχον αρχείο δεν είναι δεσμός, οπότε δεν μπορεί να ανακατευθυνθεί."
 
-#: app/Panel/panelfunc.cpp:374
+#: app/Panel/panelfunc.cpp:372
 #, kde-format
 msgid "Link Redirection"
 msgstr "Ανακατεύθυνση δεσμού"
 
-#: app/Panel/panelfunc.cpp:374
+#: app/Panel/panelfunc.cpp:372
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Παρακαλώ δώστε το νέο προορισμό του δεσμού:"
 
-#: app/Panel/panelfunc.cpp:381
+#: app/Panel/panelfunc.cpp:379
 #, kde-format
 msgid "Cannot remove old link: %1"
 msgstr "Αδυναμία αφαίρεσης του παλαιού δεσμού: %1"
 
-#: app/Panel/panelfunc.cpp:386
+#: app/Panel/panelfunc.cpp:384
 #, kde-format
 msgid "Failed to create a new link: %1"
 msgstr "Η δημιουργία του νέου δεσμού απέτυχε: %1"
 
-#: app/Panel/panelfunc.cpp:394
+#: app/Panel/panelfunc.cpp:392
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Μπορείτε να δημιουργήσετε δεσμούς μόνο σε τοπικά συστήματα αρχείων"
 
-#: app/Panel/panelfunc.cpp:402
+#: app/Panel/panelfunc.cpp:400
 #, kde-format
 msgid "New Link"
 msgstr "Νέος δεσμός"
 
-#: app/Panel/panelfunc.cpp:402
+#: app/Panel/panelfunc.cpp:400
 #, kde-format
 msgid "Create a new link to: %1"
 msgstr "Δημιουργία νέου δεσμού στο: %1"
 
-#: app/Panel/panelfunc.cpp:410 app/Panel/panelfunc.cpp:762
+#: app/Panel/panelfunc.cpp:408 app/Panel/panelfunc.cpp:767
 #, kde-format
 msgid "A folder or a file with this name already exists."
 msgstr "Ένας φάκελος ή ένα αρχείο με αυτό το όνομα υπάρχει ήδη."
 
-#: app/Panel/panelfunc.cpp:421
+#: app/Panel/panelfunc.cpp:419
 #, kde-format
 msgid "Failed to create a new symlink '%1' to: '%2'"
 msgstr "Απέτυχε η δημιουργία του νέου συμβολικού δεσμού '%1' στο: '%2'"
 
-#: app/Panel/panelfunc.cpp:424
+#: app/Panel/panelfunc.cpp:422
 #, kde-format
 msgid "Failed to create a new link '%1' to '%2'"
 msgstr "Απέτυχε η δημιουργία του νέου δεσμού '%1' στο: '%2'"
 
-#: app/Panel/panelfunc.cpp:441
+#: app/Panel/panelfunc.cpp:439
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Δεν έχετε δικαίωμα προβολής αυτού του αρχείου."
 
-#: app/Panel/panelfunc.cpp:452
+#: app/Panel/panelfunc.cpp:450
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Δώστε ένα URL για προβολή:"
 
-#: app/Panel/panelfunc.cpp:482 app/Panel/panelfunc.cpp:556
+#: app/Panel/panelfunc.cpp:480 app/Panel/panelfunc.cpp:561
 #, kde-format
 msgid "You cannot edit a folder"
 msgstr "Δεν μπορείτε να επεξεργαστείτε ένα φάκελο"
 
-#: app/Panel/panelfunc.cpp:487
+#: app/Panel/panelfunc.cpp:485
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Δεν έχετε δικαίωμα επεξεργασίας αυτού του αρχείου."
 
-#: app/Panel/panelfunc.cpp:501
+#: app/Panel/panelfunc.cpp:499
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Δώστε το όνομα αρχείου που θέλετε να επεξεργαστείτε:"
 
-#: app/Panel/panelfunc.cpp:608
+#: app/Panel/panelfunc.cpp:514
+#, fuzzy, kde-format
+#| msgid "The folder %1 does not exist."
+msgid "The file \"%1\" could not be created."
+msgstr "Ο φάκελος %1 δεν υπάρχει."
+
+#: app/Panel/panelfunc.cpp:613
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Μετακίνηση του %1 στο:"
 
-#: app/Panel/panelfunc.cpp:608
+#: app/Panel/panelfunc.cpp:613
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "Μετακίνηση %1 αρχείου στο:"
 msgstr[1] "Μετακίνηση %1 αρχείων στο:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:615
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Αντιγραφή του %1 στο:"
 
-#: app/Panel/panelfunc.cpp:610
+#: app/Panel/panelfunc.cpp:615
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "Αντιγραφή %1 αρχείου στο:"
 msgstr[1] "Αντιγραφή %1 αρχείων στο:"
 
-#: app/Panel/panelfunc.cpp:660
+#: app/Panel/panelfunc.cpp:665
 #, kde-format
 msgid "The proposed name (\"%1\") is the same as the previous one."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:662
+#: app/Panel/panelfunc.cpp:667
 #, kde-format
 msgid ""
 "The renaming of \"%1\" has not been performed because the proposed name was "
 "empty."
 msgstr ""
 
-#: app/Panel/panelfunc.cpp:686
+#: app/Panel/panelfunc.cpp:691
 #, kde-format
 msgid "Folder's name:"
 msgstr "Όνομα φακέλου:"
 
-#: app/Panel/panelfunc.cpp:826
+#: app/Panel/panelfunc.cpp:831
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -7768,7 +7788,7 @@ msgstr[1] ""
 "Θέλετε πραγματικά να μετακινήσετε αυτά τα %1 αντικείμενα στον κάδο "
 "απορριμμάτων;"
 
-#: app/Panel/panelfunc.cpp:830
+#: app/Panel/panelfunc.cpp:835
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -7783,44 +7803,44 @@ msgstr[1] ""
 "<qt>Θέλετε πραγματικά να διαγράψετε αυτά τα %1 αντικείμενα (και όχι μόνο να "
 "τα αφαιρέσετε από τα εικονικά αντικείμενα);</qt>"
 
-#: app/Panel/panelfunc.cpp:837
+#: app/Panel/panelfunc.cpp:842
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Θέλετε πραγματικά να διαγράψετε αυτό το αντικείμενο;"
 msgstr[1] "Θέλετε πραγματικά να διαγράψετε αυτά τα %1 αντικείμενα;"
 
-#: app/Panel/panelfunc.cpp:875
+#: app/Panel/panelfunc.cpp:880
 #, kde-format
 msgid "<qt><p>Folder <b>%1</b> is not empty.</p>"
 msgstr "<qt><p>Ο κατάλογος <b>%1</b> δεν είναι κενός.</p>"
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<p>Skip this one or trash all?</p></qt>"
 msgstr "<p>Παράβλεψη αυτού ή όλα στα απορρίμματα;</p></qt>"
 
-#: app/Panel/panelfunc.cpp:876
+#: app/Panel/panelfunc.cpp:881
 #, kde-format
 msgid "<p>Skip this one or delete all?</p></qt>"
 msgstr "<p>Παράβλεψη αυτού ή διαγραφή όλων;</p></qt>"
 
-#: app/Panel/panelfunc.cpp:878
+#: app/Panel/panelfunc.cpp:883
 #, kde-format
 msgid "&Skip"
 msgstr "Παράβλε&ψη"
 
-#: app/Panel/panelfunc.cpp:879
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Trash All"
 msgstr "Μετακίνηση όλων στα απορρίμμα&τα"
 
-#: app/Panel/panelfunc.cpp:879
+#: app/Panel/panelfunc.cpp:884
 #, kde-format
 msgid "&Delete All"
 msgstr "&Διαγραφή όλων"
 
-#: app/Panel/panelfunc.cpp:916
+#: app/Panel/panelfunc.cpp:921
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -7835,12 +7855,12 @@ msgstr[1] ""
 "Θέλετε πραγματικά να διαγράψετε αυτά τα %1 εικονικά αντικείμενα (τα φυσικά "
 "αρχεία δεν επηρεάζονται);"
 
-#: app/Panel/panelfunc.cpp:959
+#: app/Panel/panelfunc.cpp:964
 #, kde-format
 msgid "%1 cannot open %2"
 msgstr "%1 δεν μπορεί να ανοίξει %2"
 
-#: app/Panel/panelfunc.cpp:1036
+#: app/Panel/panelfunc.cpp:1048
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7849,7 +7869,7 @@ msgstr ""
 "<qt><p>Η αρχειοθήκη <b>%1.%2</b> υπάρχει ήδη. Θέλετε να την αντικαταστήσετε;"
 "</p><p>Όλα τα δεδομένα της προηγούμενης αρχειοθήκης θα χαθούν.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1041
+#: app/Panel/panelfunc.cpp:1053
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -7860,17 +7880,17 @@ msgstr ""
 "</p><p>Το ZIP θα αντικαταστήσει καταχωρήσεις με ταυτόσημα ονόματα στην "
 "αρχειοθήκη zip ή θα προσθέσει νέες καταχωρήσεις για νέα ονόματα.</p></qt>"
 
-#: app/Panel/panelfunc.cpp:1049
+#: app/Panel/panelfunc.cpp:1061
 #, kde-format
 msgid "Cannot pack files onto a virtual destination."
 msgstr "Αδυναμία συμπίεσης αρχείων σε εικονικούς προορισμούς."
 
-#: app/Panel/panelfunc.cpp:1082
+#: app/Panel/panelfunc.cpp:1094
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Αποσυμπίεση του %1 στο:"
 
-#: app/Panel/panelfunc.cpp:1084
+#: app/Panel/panelfunc.cpp:1096
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
@@ -9878,12 +9898,12 @@ msgstr "Συμπίεση %1..."
 msgid "Retrieving data from %1 archives is not supported."
 msgstr "Η ανάκτηση δεδομένων από %1 αρχειοθήκες δεν υποστηρίζεται."
 
-#: plugins/krarc/krarc.cpp:493 plugins/krarc/krarc.cpp:758
+#: plugins/krarc/krarc.cpp:493 plugins/krarc/krarc.cpp:757
 #, kde-format
 msgid "Unpacking %1..."
 msgstr "Αποσυμπίεση %1..."
 
-#: plugins/krarc/krarc.cpp:505
+#: plugins/krarc/krarc.cpp:504
 #, kde-format
 msgid ""
 "An error has happened, related to the external program '%1'. The error "
@@ -9892,42 +9912,45 @@ msgstr ""
 "Παρουσιάστηκε σφάλμα σχετικό με το εξωτερικό πρόγραμμα '%1'. Το μήνυμα "
 "σφάλματος είναι: '%2'."
 
-#: plugins/krarc/krarc.cpp:623
+#: plugins/krarc/krarc.cpp:622
 #, kde-format
 msgid "Deleting files from %1 archives is not supported."
 msgstr "Η διαγραφή αρχείων από %1 αρχειοθήκες δεν υποστηρίζεται."
 
-#: plugins/krarc/krarc.cpp:667
+#: plugins/krarc/krarc.cpp:666
 #, kde-format
 msgid "Accessing files is not supported with %1 archives."
 msgstr "Η πρόσβαση σε αρχεία δεν υποστηρίζεται με %1 αρχειοθήκες."
 
-#: plugins/krarc/krarc.cpp:780
+#: plugins/krarc/krarc.cpp:779
 #, fuzzy, kde-format
 #| msgid "Writing to %1 archives is not supported"
 msgid "Copying from archive to archive is not supported."
 msgstr "Η εγγραφή στις %1 αρχειοθήκες δεν υποστηρίζεται"
 
-#: plugins/krarc/krarc.cpp:826
+#: plugins/krarc/krarc.cpp:825
 #, kde-format
 msgid "Listing folders is not supported for %1 archives."
 msgstr "Η ανάρτηση λίστας φακέλων δεν υποστηρίζεται για %1 αρχειοθήκες."
 
-#: plugins/krarc/krarc.cpp:1756
-#, kde-format
+#: plugins/krarc/krarc.cpp:1569
+#, fuzzy, kde-format
+#| msgid ""
+#| "\n"
+#| "Make sure that the %1 binary is installed properly on your system."
 msgid ""
-"\n"
-"Make sure that the %1 binary is installed properly on your system."
+"\"%1\".\n"
+"Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
 "\n"
 "Βεβαιωθείτε ότι το %1 δυαδικό έχει εγκατασταθεί σωστά στο σύστημά σας."
 
-#: plugins/krarc/krarc.cpp:1838 plugins/krarc/krarc.cpp:1864
+#: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "Διάλογος κωδικού πρόσβασης Krarc"
 
-#: plugins/krarc/krarc.cpp:1881
+#: plugins/krarc/krarc.cpp:1902
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Η πρόσβαση στο αρχείο απαιτεί κωδικό."
