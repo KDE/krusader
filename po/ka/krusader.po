@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-13 00:55+0000\n"
-"PO-Revision-Date: 2026-02-09 04:03+0100\n"
+"PO-Revision-Date: 2026-08-13 07:05+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -721,11 +721,10 @@ msgid "Downloading remote files"
 msgstr "დაშორებული ფაილების გადმოწერა"
 
 #: app/Archive/abstractthreadedjob.cpp:384
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
-msgstr "ექსპანდერი: დროებითი ფაილის გახსნა შეუძლებელია (%1)"
+msgstr "დროებითი ფაილის \"%1\" გახსნა შეუძლებელია."
 
 #: app/Archive/abstractthreadedjob.cpp:495
 #, kde-format
@@ -963,10 +962,9 @@ msgstr "წაშლა"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
 #: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgid "A temporary file with the template \"%1\" could not be opened."
-msgstr "ექსპანდერი: დროებითი ფაილის გახსნა შეუძლებელია (%1)"
+msgstr "დროებითი ფაილის ნიმუშით \"%1\"გახსნა შეუძლებელია."
 
 #: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
@@ -7631,10 +7629,9 @@ msgid "Enter the filename to edit:"
 msgstr "შეიყვანეთ ფაილის სახელი ჩასასწორებლად:"
 
 #: app/Panel/panelfunc.cpp:514
-#, fuzzy, kde-format
-#| msgid "The folder %1 does not exist."
+#, kde-format
 msgid "The file \"%1\" could not be created."
-msgstr "საქაღალდე %1 არ არსებობს."
+msgstr "ფაილის \"%1\" შექმნა შეუძლებელია."
 
 #: app/Panel/panelfunc.cpp:613
 #, kde-format
@@ -9820,16 +9817,13 @@ msgid "Listing folders is not supported for %1 archives."
 msgstr "%1 არქივებისთვის საქაღალდეების ჩამონათვალის მიღება მხარდაჭერილი არაა."
 
 #: plugins/krarc/krarc.cpp:1569
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary is installed properly on your system."
+#, kde-format
 msgid ""
 "\"%1\".\n"
 "Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
-"\n"
-"დარწმუნდით, რომ გამშვები ფაილი %1 სწორად აყენია თქვენს სისტემაზე."
+"\"%1\".\n"
+"დარწმუნდით, რომ გამშვები ფაილი %2 სწორად აყენია თქვენს სისტემაში"
 
 #: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
 #, kde-format

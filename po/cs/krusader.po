@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-13 00:55+0000\n"
-"PO-Revision-Date: 2026-08-02 00:24+0200\n"
+"PO-Revision-Date: 2026-08-13 10:54+0200\n"
 "Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -723,11 +723,10 @@ msgid "Downloading remote files"
 msgstr "Stahování vzdálených souborů"
 
 #: app/Archive/abstractthreadedjob.cpp:384
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
-msgstr "Expander: dočasný soubor nelze otevřít (%1)"
+msgstr "Dočasný soubor \"%1\" se nepodařilo otevřít."
 
 #: app/Archive/abstractthreadedjob.cpp:495
 #, kde-format
@@ -965,10 +964,9 @@ msgstr "Smazat"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
 #: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgid "A temporary file with the template \"%1\" could not be opened."
-msgstr "Expander: dočasný soubor nelze otevřít (%1)"
+msgstr "Nelze otevřít dočasný soubor se šablonou \"%1\"."
 
 #: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
@@ -7637,10 +7635,9 @@ msgid "Enter the filename to edit:"
 msgstr "Zadejte název souboru k úpravě:"
 
 #: app/Panel/panelfunc.cpp:514
-#, fuzzy, kde-format
-#| msgid "The folder %1 does not exist."
+#, kde-format
 msgid "The file \"%1\" could not be created."
-msgstr "Složka %1 neexistuje."
+msgstr "Soubor \"%1\" se nepodařilo vytvořit."
 
 #: app/Panel/panelfunc.cpp:613
 #, kde-format
@@ -9839,16 +9836,13 @@ msgid "Listing folders is not supported for %1 archives."
 msgstr "Výpis složek v %1 archivech není podporován."
 
 #: plugins/krarc/krarc.cpp:1569
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary is installed properly on your system."
+#, kde-format
 msgid ""
 "\"%1\".\n"
 "Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
-"\n"
-"Ujistěte se, že máte řádně nainstalován program %1."
+"\"%1\".\n"
+"Ujistěte se, že je program \"%2\" ve vašem systému správně nainstalován"
 
 #: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
 #, kde-format

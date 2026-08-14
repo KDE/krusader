@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: krusader-2.4.0-beta1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-13 00:55+0000\n"
-"PO-Revision-Date: 2026-02-09 07:22+0100\n"
+"PO-Revision-Date: 2026-08-13 07:16+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -723,11 +723,10 @@ msgid "Downloading remote files"
 msgstr "Prejemanje oddaljenih datotek"
 
 #: app/Archive/abstractthreadedjob.cpp:384
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
-msgstr "Razširjevalnik: začasne datoteke ni bilo mogoče odpreti (%1)"
+msgstr "Začasne datoteke \"%1\" ni bilo mogoče odpreti."
 
 #: app/Archive/abstractthreadedjob.cpp:495
 #, kde-format
@@ -965,10 +964,9 @@ msgstr "Izbriši"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
 #: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgid "A temporary file with the template \"%1\" could not be opened."
-msgstr "Razširjevalnik: začasne datoteke ni bilo mogoče odpreti (%1)"
+msgstr "Začasne datoteke s predlogo \"%1\" ni bilo mogoče odpreti."
 
 #: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
@@ -7639,10 +7637,9 @@ msgid "Enter the filename to edit:"
 msgstr "Ime datoteke za urejanje:"
 
 #: app/Panel/panelfunc.cpp:514
-#, fuzzy, kde-format
-#| msgid "The folder %1 does not exist."
+#, kde-format
 msgid "The file \"%1\" could not be created."
-msgstr "Mapa %1 ne obstaja."
+msgstr "Datoteke \"%1\" ni bilo mogoče ustvariti."
 
 #: app/Panel/panelfunc.cpp:613
 #, kde-format
@@ -9857,16 +9854,14 @@ msgid "Listing folders is not supported for %1 archives."
 msgstr "Prikaz seznama map ni podprto v arhivih %1."
 
 #: plugins/krarc/krarc.cpp:1569
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary is installed properly on your system."
+#, kde-format
 msgid ""
 "\"%1\".\n"
 "Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
-"\n"
-"Prepričajte se, da je binarna datoteka %1 pravilno nameščena v sistemu."
+"\"%1\".\n"
+"Prepričajte se, da je binarna datoteka \"%2\" pravilno nameščena v vašem "
+"sistemu."
 
 #: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
 #, kde-format

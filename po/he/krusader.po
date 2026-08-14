@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-13 00:55+0000\n"
-"PO-Revision-Date: 2026-05-14 20:48+0300\n"
+"PO-Revision-Date: 2026-08-13 08:59+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 26.04.0\n"
+"X-Generator: Lokalize 26.04.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -716,11 +716,10 @@ msgid "Downloading remote files"
 msgstr "קבצים מרוחקים יורדים"
 
 #: app/Archive/abstractthreadedjob.cpp:384
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
-msgstr "מרחיב: לא ניתן לפתוח את הקובץ הזמני (%1)"
+msgstr "מרחיב: לא ניתן לפתוח את הקובץ הזמני „%1”"
 
 #: app/Archive/abstractthreadedjob.cpp:495
 #, kde-format
@@ -958,10 +957,9 @@ msgstr "מחיקה"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
 #: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgid "A temporary file with the template \"%1\" could not be opened."
-msgstr "מרחיב: לא ניתן לפתוח את הקובץ הזמני (%1)"
+msgstr "לא ניתן לפתוח את הקובץ הזמני עם התבנית „%1”."
 
 #: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
@@ -7570,10 +7568,9 @@ msgid "Enter the filename to edit:"
 msgstr "נא למלא שם קובץ לעריכה:"
 
 #: app/Panel/panelfunc.cpp:514
-#, fuzzy, kde-format
-#| msgid "The folder %1 does not exist."
+#, kde-format
 msgid "The file \"%1\" could not be created."
-msgstr "התיקייה %1 לא קיימת."
+msgstr "לא ניתן ליצור את הקובץ „%1”."
 
 #: app/Panel/panelfunc.cpp:613
 #, kde-format
@@ -9767,16 +9764,13 @@ msgid "Listing folders is not supported for %1 archives."
 msgstr "אין תמיכה בהצגת תוכן תיקיות בארכיוני %1."
 
 #: plugins/krarc/krarc.cpp:1569
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary is installed properly on your system."
+#, kde-format
 msgid ""
 "\"%1\".\n"
 "Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
-"\n"
-"נא לוודא שהבינרי %1 מותקן במערכת הזאת כראוי."
+"„%1”.\n"
+"נא לוודא שהבינרי „%2” מותקן במערכת שלך כראוי"
 
 #: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
 #, kde-format
