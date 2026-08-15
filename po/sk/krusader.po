@@ -725,11 +725,10 @@ msgid "Downloading remote files"
 msgstr "Sťahovanie vzdialených súborov"
 
 #: app/Archive/abstractthreadedjob.cpp:384
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
-msgstr "Expander: nie je možné otvoriť dočasný súbor (%1)"
+msgstr "Dočasný súbor \"%1\" sa nepodarilo otvoriť."
 
 #: app/Archive/abstractthreadedjob.cpp:495
 #, kde-format
@@ -967,10 +966,9 @@ msgstr "Odstrániť"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
 #: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgid "A temporary file with the template \"%1\" could not be opened."
-msgstr "Expander: nie je možné otvoriť dočasný súbor (%1)"
+msgstr "Dočasný súbor so šablónou \"%1\" sa nepodarilo otvoriť."
 
 #: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
@@ -7627,10 +7625,9 @@ msgid "Enter the filename to edit:"
 msgstr "Vložte názov súboru pre úpravy:"
 
 #: app/Panel/panelfunc.cpp:514
-#, fuzzy, kde-format
-#| msgid "The folder %1 does not exist."
+#, kde-format
 msgid "The file \"%1\" could not be created."
-msgstr "Priečinok %1 neexistuje."
+msgstr "Súbor \"%1\" sa nepodarilo vytvoriť."
 
 #: app/Panel/panelfunc.cpp:613
 #, kde-format
@@ -9827,16 +9824,13 @@ msgid "Listing folders is not supported for %1 archives."
 msgstr "Zobrazenie zoznamu priečinkov nie je podporované pre %1 archívy."
 
 #: plugins/krarc/krarc.cpp:1569
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary is installed properly on your system."
+#, kde-format
 msgid ""
 "\"%1\".\n"
 "Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
-"\n"
-"Uistite sa, že máte správne nainštalovaný program %1 vo svojom systéme."
+"\"%1\".\n"
+"Uistite sa, že program \"%2\" je vo vašom systéme správne nainštalovaný"
 
 #: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
 #, kde-format
