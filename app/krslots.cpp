@@ -203,6 +203,15 @@ void KrSlots::compareContent(const QUrl &url1, const QUrl &url2)
         return;
     }
 
+    // Reminder: Several diff utilities do not perform that check,
+    // so it's better if Krusader does it
+    if (FileSystem::inquireAreTheSame(url1, url2)) {
+        if (KMessageBox::warningContinueCancel(nullptr, i18n("Warning: A file is going to be compared with itself!"))
+            != KMessageBox::Continue) {
+            return;
+        }
+    }
+
     QString tmp1;
     QString tmp2;
     if (kKioSupportCompareApps.contains(QUrl::fromLocalFile(diffProg).fileName())) {

@@ -7,6 +7,7 @@
 
 #include "synchronizergui.h"
 #include "../Dialogs/krspwidgets.h"
+#include "../FileSystem/filesystem.h"
 #include "../FileSystem/krpermhandler.h"
 #include "../FileSystem/krquery.h"
 #include "../KrViewer/krviewer.h"
@@ -14,7 +15,6 @@
 #include "../Panel/panelfunc.h"
 #include "../defaults.h"
 #include "../filelisticon.h"
-#include "../krglobal.h"
 #include "../krservices.h"
 #include "../krslots.h"
 #include "../krusaderview.h"
@@ -973,9 +973,31 @@ void SynchronizerGUI::compare()
         return;
     }
 
-    if (leftLocationTrimmed == rightLocationTrimmed) {
-        if (KMessageBox::warningContinueCancel(this, i18n("Warning: The left and the right side are showing the same folder.")) != KMessageBox::Continue) {
-            return;
+    {
+        // Inquire if both locations point to the same folder
+
+        // Its value is `true` when it has been detected that
+        // both locations are really the same one
+        bool detectedTheSame = false;
+
+        // Before converting the location strings to QUrls, check if
+        // they have the same text. That way the user is warned
+        // properly when the strings are the same but they are not
+        // valid QUrls
+        if (leftLocationTrimmed == rightLocationTrimmed) {
+            detectedTheSame = true;
+        } else {
+            QUrl leftURL = QUrl::fromUserInput(leftLocationTrimmed);
+            QUrl rightURL = QUrl::fromUserInput(rightLocationTrimmed);
+            if (FileSystem::inquireAreTheSame(leftURL, rightURL)) {
+                detectedTheSame = true;
+            }
+        }
+        if (detectedTheSame) {
+            if (KMessageBox::warningContinueCancel(this, ListPanel::warnCompFolderItself())
+                != KMessageBox::Continue) {
+                return;
+            }
         }
     }
 

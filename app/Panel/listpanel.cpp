@@ -664,9 +664,11 @@ void ListPanel::compareDirs(bool otherPanelToo)
 {
     // Performs a check in order to avoid that the next code is executed twice
     if (otherPanelToo == true) {
-        // If both panels are showing the same directory
-        if (_manager->currentPanel()->virtualPath() == otherPanel()->virtualPath()) {
-            if (KMessageBox::warningContinueCancel(this, i18n("Warning: The left and the right side are showing the same folder.")) != KMessageBox::Continue) {
+        // If it's detected that both panels are showing the same directory
+        if (FileSystem::inquireAreTheSame(_manager->currentPanel()->virtualPath(),
+                                          otherPanel()->virtualPath())) {
+            if (KMessageBox::warningContinueCancel(this, warnCompFolderItself())
+                != KMessageBox::Continue) {
                 return;
             }
         }
@@ -1296,6 +1298,12 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
         sidebar->setCurrentPage(cfg.readEntry("PopupPage", 0));
     }
 }
+
+QString ListPanel::warnCompFolderItself()
+{
+    return i18n("Warning: A folder is going to be compared with itself!");
+}
+
 
 void ListPanel::slotCurrentChanged(KrViewItem *item)
 {

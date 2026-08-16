@@ -171,6 +171,11 @@ public:
     {
         return url.adjusted(QUrl::StripTrailingSlash);
     }
+
+    /// Inquire if two QUrls point to the same element, in that case return
+    /// `true`. Return `false` if no indication has been found
+    static bool inquireAreTheSame(const QUrl &url1, const QUrl &url2);
+
     /// Add 'file' scheme to non-empty URL without scheme
     static QUrl preferLocalUrl(const QUrl &url);
 

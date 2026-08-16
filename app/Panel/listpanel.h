@@ -117,6 +117,10 @@ public:
     void saveSettings(KConfigGroup cfg, bool saveHistory);
     void restoreSettings(KConfigGroup cfg);
 
+    //! The message that is utilized when warning the user when
+    //! a folder is being compared with itself
+    static QString warnCompFolderItself();
+    
     void setPinnedUrl(QUrl &pinnedUrl)
     {
         _pinnedUrl = pinnedUrl;
@@ -125,6 +129,7 @@ public:
     {
         return _pinnedUrl;
     };
+
 
 public slots:
     void handleDrop(QDropEvent *event, QWidget *targetFrame = nullptr); // handle drops on frame or view

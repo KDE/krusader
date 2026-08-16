@@ -78,6 +78,35 @@ QUrl FileSystem::ensureTrailingSlash(const QUrl &url)
     return adjustedUrl;
 }
 
+bool FileSystem::inquireAreTheSame(const QUrl &url1, const QUrl &url2)
+{
+    if (!url1.isValid() || !url2.isValid()) {
+        return false;
+    }
+
+    // If the QUrls are the same
+    if (url1 == url2) {
+        return true;
+    }
+
+    if (url1.isLocalFile() && url2.isLocalFile()) {
+        // Use QFileInfo to get the absolute path after resolving symlinks, `..`, `.`, etc.
+        QString canonicalFilePath1 = QFileInfo(url1.toLocalFile()).canonicalFilePath();
+        QString canonicalFilePath2 = QFileInfo(url2.toLocalFile()).canonicalFilePath();
+        // For example, if url1 or url2 refer to a folder that does not exist
+        if (canonicalFilePath1.isEmpty() || canonicalFilePath2.isEmpty()) {
+            return false;
+        }
+
+        if (canonicalFilePath1 == canonicalFilePath2) {
+            return true;
+        }
+    }
+
+    // It has not been found that the QUrls are the same
+    return false;
+}
+
 QUrl FileSystem::preferLocalUrl(const QUrl &url)
 {
     if (url.isEmpty() || !url.scheme().isEmpty())
