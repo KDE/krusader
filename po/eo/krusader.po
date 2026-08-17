@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-13 00:55+0000\n"
+"POT-Creation-Date: 2026-08-17 00:50+0000\n"
 "PO-Revision-Date: 2024-12-20 16:53+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -696,7 +696,7 @@ msgstr "Ĉi tiu dosiero jam ekzistas. Ĉu vi volas anstataŭigi ĝin?"
 msgid "Overwrite Existing File?"
 msgstr "Ĉu anstataŭigi Ekzistantan Dosieron?"
 
-#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:185
+#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:191
 #, kde-format
 msgid ""
 "Cannot open %1 for writing.\n"
@@ -715,29 +715,29 @@ msgstr "Eksporto Malsukcesis"
 msgid "Internal error, undefined <job> in result signal"
 msgstr "Interna eraro, nedifinita <laboro> en rezultsignalo"
 
-#: app/Archive/abstractthreadedjob.cpp:344
+#: app/Archive/abstractthreadedjob.cpp:348
 #, kde-format
 msgid "Downloading remote files"
 msgstr "Elŝutante forajn dosierojn"
 
-#: app/Archive/abstractthreadedjob.cpp:384
+#: app/Archive/abstractthreadedjob.cpp:388
 #, fuzzy, kde-format
 #| msgid "Expander: temporary file could not be opened (%1)"
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
 msgstr "Ekspandilo: provizora dosiero ne povus esti malfermita (%1)"
 
-#: app/Archive/abstractthreadedjob.cpp:495
+#: app/Archive/abstractthreadedjob.cpp:499
 #, kde-format
 msgid "Counting files"
 msgstr "Nombrado de dosieroj"
 
-#: app/Archive/abstractthreadedjob.cpp:524
+#: app/Archive/abstractthreadedjob.cpp:528
 #, kde-format
 msgid "Uploading to remote destination"
 msgstr "Alŝuto al fora celloko"
 
-#: app/Archive/abstractthreadedjob.cpp:645
+#: app/Archive/abstractthreadedjob.cpp:649
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
@@ -867,17 +867,17 @@ msgstr "Legosignoj"
 msgid "Folder name:"
 msgstr "Dosieruja nomo:"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:782
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:866
 #, kde-format
 msgid "Trash bin"
 msgstr "Rubujo"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:790
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:874
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "Virtuala Dosiersistemo"
 
-#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:786
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:870
 #, kde-format
 msgid "Local Network"
 msgstr "Loka reto"
@@ -892,7 +892,7 @@ msgstr "BookMan II"
 msgid "Type to search..."
 msgstr "Tajpu por serĉi..."
 
-#: app/BookMan/krbookmarkhandler.cpp:225 app/BookMan/krbookmarkhandler.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
 #: app/Konfigurator/kggeneral.cpp:329
 #: app/Synchronizer/synchronizerdirlist.cpp:117
@@ -900,60 +900,60 @@ msgstr "Tajpu por serĉi..."
 msgid "Error"
 msgstr "Eraro"
 
-#: app/BookMan/krbookmarkhandler.cpp:225
+#: app/BookMan/krbookmarkhandler.cpp:248
 #, kde-format
 msgid "Unable to write to %1"
 msgstr "Ne eblas skribi al %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:234
+#: app/BookMan/krbookmarkhandler.cpp:257
 #, kde-format
 msgid "%1 instead of %2"
 msgstr "%1 anstataŭ %2"
 
-#: app/BookMan/krbookmarkhandler.cpp:239 app/BookMan/krbookmarkhandler.cpp:246
-#: app/BookMan/krbookmarkhandler.cpp:283
+#: app/BookMan/krbookmarkhandler.cpp:262 app/BookMan/krbookmarkhandler.cpp:269
+#: app/BookMan/krbookmarkhandler.cpp:329
 #, kde-format
 msgid "missing tag %1"
 msgstr "mankas etikedo %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:323
+#: app/BookMan/krbookmarkhandler.cpp:379
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "%1 ŝajnas ne esti valida dosiero de legosignoj"
 
-#: app/BookMan/krbookmarkhandler.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:388
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr "Eraro legante legosigndosieron: %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:778
-#: app/Dialogs/popularurls.cpp:276
+#: app/BookMan/krbookmarkhandler.cpp:512 app/BookMan/krbookmarkhandler.cpp:862
+#: app/Dialogs/popularurls.cpp:283
 #, kde-format
 msgid "Popular URLs"
 msgstr "Popularaj URL-oj"
 
-#: app/BookMan/krbookmarkhandler.cpp:774
+#: app/BookMan/krbookmarkhandler.cpp:858
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "Ebligi specialajn legosignojn"
 
-#: app/BookMan/krbookmarkhandler.cpp:794
+#: app/BookMan/krbookmarkhandler.cpp:878
 #, kde-format
 msgid "Jump back"
 msgstr "Salti reen"
 
-#: app/BookMan/krbookmarkhandler.cpp:846 app/GUI/mediabutton.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:927 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "Malfermi"
 
-#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:333
+#: app/BookMan/krbookmarkhandler.cpp:929 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Malfermi en nova langeto"
 
-#: app/BookMan/krbookmarkhandler.cpp:852 app/Dialogs/krmaskchoice.cpp:84
+#: app/BookMan/krbookmarkhandler.cpp:933 app/Dialogs/krmaskchoice.cpp:84
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
 #: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
@@ -1413,7 +1413,7 @@ msgid "The saved 'Popular URLs' are invalid. The list will be cleared."
 msgstr ""
 "La konservitaj 'Popularaj URL-oj' estas nevalidaj. La listo estos forigita."
 
-#: app/Dialogs/popularurls.cpp:293
+#: app/Dialogs/popularurls.cpp:300
 #, kde-format
 msgid "&Search:"
 msgstr "&Serĉi:"
@@ -5498,7 +5498,7 @@ msgstr ""
 "Ne povas trovi la komandon 'locate'. Bonvolu instali la findutils-locate "
 "pakaĵon de GNU, aŭ agordi ĝiajn dependecojn en Konfigurator"
 
-#: app/krslots.cpp:407 app/UserAction/kraction.cpp:282
+#: app/krslots.cpp:407 app/UserAction/kraction.cpp:287
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5592,7 +5592,7 @@ msgstr "Malplena rubujo"
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "Statusbreto montros bazajn informojn pri dosiero sub musmontrilo."
 
-#: app/krusader.cpp:301
+#: app/krusader.cpp:303
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5603,7 +5603,7 @@ msgstr ""
 "maŝino nun estos kontrolita por eksteraj aplikaĵoj. Tiam la Konfiguratoro "
 "estos lanĉita kie vi povas agordi Krusader laŭ viaj bezonoj.</p></qt>"
 
-#: app/krusader.cpp:332
+#: app/krusader.cpp:334
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr "Alporti Ĉefan Fenestron al la Supro"
@@ -7021,7 +7021,7 @@ msgstr "Klasika"
 msgid "Custom layout: \"%1\""
 msgstr "Propra aranĝo: \"%1\""
 
-#: app/Panel/krpreviewpopup.cpp:86
+#: app/Panel/krpreviewpopup.cpp:87
 #, kde-format
 msgid "Preview not available"
 msgstr "Antaŭrigardo ne havebla"
@@ -9466,37 +9466,37 @@ msgstr "Eraro: nerekonita %%%1%2%% en Ekspandilo"
 msgid "Error: missing ')' in Expander"
 msgstr "Eraro: mankas ')' en Ekspandilo"
 
-#: app/UserAction/kraction.cpp:72
+#: app/UserAction/kraction.cpp:78
 #, kde-format
 msgid "Standard Output (stdout)"
 msgstr "Norma Eligo (stdout)"
 
-#: app/UserAction/kraction.cpp:80
+#: app/UserAction/kraction.cpp:86
 #, kde-format
 msgid "Standard Error (stderr)"
 msgstr "Norma Eraro (stderr)"
 
-#: app/UserAction/kraction.cpp:86
+#: app/UserAction/kraction.cpp:92
 #, kde-format
 msgid "Output"
 msgstr "Eligo"
 
-#: app/UserAction/kraction.cpp:104
+#: app/UserAction/kraction.cpp:110
 #, kde-format
 msgid "Use font with fixed width"
 msgstr "Uzi tiparon kun fiksa larĝo"
 
-#: app/UserAction/kraction.cpp:120
+#: app/UserAction/kraction.cpp:126
 #, kde-format
 msgid "Kill"
 msgstr "Mortigi"
 
-#: app/UserAction/kraction.cpp:121
+#: app/UserAction/kraction.cpp:127
 #, kde-format
 msgid "Kill the running process"
 msgstr "Mortigi la rulantan procezon"
 
-#: app/UserAction/kraction.cpp:164
+#: app/UserAction/kraction.cpp:170
 #, kde-format
 msgid ""
 "*.txt|Text files\n"
@@ -9505,7 +9505,7 @@ msgstr ""
 "*.txt|Tekstaj dosieroj\n"
 "*|Ĉiuj dosieroj"
 
-#: app/UserAction/kraction.cpp:171
+#: app/UserAction/kraction.cpp:177
 #, kde-format
 msgid ""
 "This file already exists.\n"
@@ -9514,22 +9514,22 @@ msgstr ""
 "Ĉi tiu dosiero jam ekzistas.\n"
 "Ĉu vi volas anstataŭigi ĝin aŭ aldoni la eligon?"
 
-#: app/UserAction/kraction.cpp:172
+#: app/UserAction/kraction.cpp:178
 #, kde-format
 msgid "Overwrite or append?"
 msgstr "Anstataŭigi aŭ aldoni?"
 
-#: app/UserAction/kraction.cpp:174
+#: app/UserAction/kraction.cpp:180
 #, kde-format
 msgid "Append"
 msgstr "Aldoni"
 
-#: app/UserAction/kraction.cpp:185
+#: app/UserAction/kraction.cpp:191
 #, kde-format
 msgid "Export failed"
 msgstr "Eksporto malsukcesis"
 
-#: app/UserAction/kraction.cpp:240
+#: app/UserAction/kraction.cpp:241
 #, kde-format
 msgid ""
 "Cannot run user action, %1 not found or not executable. Please verify that "
@@ -9538,7 +9538,7 @@ msgstr ""
 "Ne povas ruli uzantan agon, %1 ne trovita aŭ ne efektivigebla. Bonvolu "
 "kontroli, ke kde-cli-tools estas instalita."
 
-#: app/UserAction/kraction.cpp:248
+#: app/UserAction/kraction.cpp:249
 #, kde-format
 msgid ""
 "Embedded terminal emulator does not work, using output collection instead."

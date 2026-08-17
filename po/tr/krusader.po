@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-13 00:55+0000\n"
+"POT-Creation-Date: 2026-08-17 00:50+0000\n"
 "PO-Revision-Date: 2026-08-13 19:19+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -706,7 +706,7 @@ msgstr "Bu dosya hâlihazırda var. Üzerine yazmak istiyor musunuz?"
 msgid "Overwrite Existing File?"
 msgstr "Var Olan Dosyanın Üzerine Yazılsın mı?"
 
-#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:185
+#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:191
 #, kde-format
 msgid ""
 "Cannot open %1 for writing.\n"
@@ -725,28 +725,28 @@ msgstr "Dışa Aktarım Başarısız"
 msgid "Internal error, undefined <job> in result signal"
 msgstr "İçsel hata, sonuç sinyalinde tanımlanmamış <iş>"
 
-#: app/Archive/abstractthreadedjob.cpp:344
+#: app/Archive/abstractthreadedjob.cpp:348
 #, kde-format
 msgid "Downloading remote files"
 msgstr "Uzak dosyalar indiriliyor"
 
-#: app/Archive/abstractthreadedjob.cpp:384
+#: app/Archive/abstractthreadedjob.cpp:388
 #, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
 msgstr "Geçici dosya “%1” açılamadı."
 
-#: app/Archive/abstractthreadedjob.cpp:495
+#: app/Archive/abstractthreadedjob.cpp:499
 #, kde-format
 msgid "Counting files"
 msgstr "Dosyalar sayılıyor"
 
-#: app/Archive/abstractthreadedjob.cpp:524
+#: app/Archive/abstractthreadedjob.cpp:528
 #, kde-format
 msgid "Uploading to remote destination"
 msgstr "Uzak hedefe gönderiliyor"
 
-#: app/Archive/abstractthreadedjob.cpp:645
+#: app/Archive/abstractthreadedjob.cpp:649
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
@@ -876,17 +876,17 @@ msgstr "Yer İmleri"
 msgid "Folder name:"
 msgstr "Klasör adı:"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:782
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:866
 #, kde-format
 msgid "Trash bin"
 msgstr "Çöp Kutusu"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:790
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:874
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "Sanal Dosya Sistemi"
 
-#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:786
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:870
 #, kde-format
 msgid "Local Network"
 msgstr "Yerel Ağ"
@@ -901,7 +901,7 @@ msgstr "BookMan II"
 msgid "Type to search..."
 msgstr "Aramak için yaz…"
 
-#: app/BookMan/krbookmarkhandler.cpp:225 app/BookMan/krbookmarkhandler.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
 #: app/Konfigurator/kggeneral.cpp:329
 #: app/Synchronizer/synchronizerdirlist.cpp:117
@@ -909,60 +909,60 @@ msgstr "Aramak için yaz…"
 msgid "Error"
 msgstr "Hata"
 
-#: app/BookMan/krbookmarkhandler.cpp:225
+#: app/BookMan/krbookmarkhandler.cpp:248
 #, kde-format
 msgid "Unable to write to %1"
 msgstr "%1 konumuna yazılamıyor"
 
-#: app/BookMan/krbookmarkhandler.cpp:234
+#: app/BookMan/krbookmarkhandler.cpp:257
 #, kde-format
 msgid "%1 instead of %2"
 msgstr "%2 yerine %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:239 app/BookMan/krbookmarkhandler.cpp:246
-#: app/BookMan/krbookmarkhandler.cpp:283
+#: app/BookMan/krbookmarkhandler.cpp:262 app/BookMan/krbookmarkhandler.cpp:269
+#: app/BookMan/krbookmarkhandler.cpp:329
 #, kde-format
 msgid "missing tag %1"
 msgstr "%1 etiketi eksik"
 
-#: app/BookMan/krbookmarkhandler.cpp:323
+#: app/BookMan/krbookmarkhandler.cpp:379
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "%1 geçerli bir yer imleri dosyası gibi görünmüyor"
 
-#: app/BookMan/krbookmarkhandler.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:388
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr "Yer imleri dosyası okunamıyor: %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:778
-#: app/Dialogs/popularurls.cpp:276
+#: app/BookMan/krbookmarkhandler.cpp:512 app/BookMan/krbookmarkhandler.cpp:862
+#: app/Dialogs/popularurls.cpp:283
 #, kde-format
 msgid "Popular URLs"
 msgstr "Sık Kullanılan URL’ler"
 
-#: app/BookMan/krbookmarkhandler.cpp:774
+#: app/BookMan/krbookmarkhandler.cpp:858
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "Özel yer imlerini etkinleştir"
 
-#: app/BookMan/krbookmarkhandler.cpp:794
+#: app/BookMan/krbookmarkhandler.cpp:878
 #, kde-format
 msgid "Jump back"
 msgstr "Geri atla"
 
-#: app/BookMan/krbookmarkhandler.cpp:846 app/GUI/mediabutton.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:927 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "Aç"
 
-#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:333
+#: app/BookMan/krbookmarkhandler.cpp:929 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Yeni Bir Sekmede Aç"
 
-#: app/BookMan/krbookmarkhandler.cpp:852 app/Dialogs/krmaskchoice.cpp:84
+#: app/BookMan/krbookmarkhandler.cpp:933 app/Dialogs/krmaskchoice.cpp:84
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
 #: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
@@ -1420,7 +1420,7 @@ msgstr ""
 msgid "The saved 'Popular URLs' are invalid. The list will be cleared."
 msgstr "Kaydedilen “Popüler URL’ler” geçersiz. Liste temizlenecek."
 
-#: app/Dialogs/popularurls.cpp:293
+#: app/Dialogs/popularurls.cpp:300
 #, kde-format
 msgid "&Search:"
 msgstr "A&ra:"
@@ -5495,7 +5495,7 @@ msgstr ""
 "“locate” komutu bulunamadı. Lütfen GNU findutils-locate paketini kurun veya "
 "bağımlılıklarını Yapılandırıcı içinden ayarlayın."
 
-#: app/krslots.cpp:407 app/UserAction/kraction.cpp:282
+#: app/krslots.cpp:407 app/UserAction/kraction.cpp:287
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5591,7 +5591,7 @@ msgstr ""
 "Durum çubuğu, fare imleci altındaki dosya hakkında temel bilgileri "
 "gösterecek."
 
-#: app/krusader.cpp:301
+#: app/krusader.cpp:303
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5602,7 +5602,7 @@ msgstr ""
 "uygulamalar denetlenecek. Ardından, Krusader’i gereksinimleriniz için "
 "özelleştirilebilmeniz için Yapılandırıcı başlatılacak.</p></qt>"
 
-#: app/krusader.cpp:332
+#: app/krusader.cpp:334
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr "Ana Pencereyi En Üste Getir"
@@ -7022,7 +7022,7 @@ msgstr "Klasik"
 msgid "Custom layout: \"%1\""
 msgstr "Özel yerleşim: “%1”"
 
-#: app/Panel/krpreviewpopup.cpp:86
+#: app/Panel/krpreviewpopup.cpp:87
 #, kde-format
 msgid "Preview not available"
 msgstr "Önizleme kullanılamıyor"
@@ -9471,37 +9471,37 @@ msgstr "Hata: Genişletici içinde tanınmayan %%%1%2%%"
 msgid "Error: missing ')' in Expander"
 msgstr "Hata: Genişleticide eksik ‘)’"
 
-#: app/UserAction/kraction.cpp:72
+#: app/UserAction/kraction.cpp:78
 #, kde-format
 msgid "Standard Output (stdout)"
 msgstr "Standart Çıktı (stdout)"
 
-#: app/UserAction/kraction.cpp:80
+#: app/UserAction/kraction.cpp:86
 #, kde-format
 msgid "Standard Error (stderr)"
 msgstr "Standart Hata (stderr)"
 
-#: app/UserAction/kraction.cpp:86
+#: app/UserAction/kraction.cpp:92
 #, kde-format
 msgid "Output"
 msgstr "Çıktı"
 
-#: app/UserAction/kraction.cpp:104
+#: app/UserAction/kraction.cpp:110
 #, kde-format
 msgid "Use font with fixed width"
 msgstr "Eş aralıklı yazıtipi kullan"
 
-#: app/UserAction/kraction.cpp:120
+#: app/UserAction/kraction.cpp:126
 #, kde-format
 msgid "Kill"
 msgstr "Öldür"
 
-#: app/UserAction/kraction.cpp:121
+#: app/UserAction/kraction.cpp:127
 #, kde-format
 msgid "Kill the running process"
 msgstr "Çalışan süreci öldür"
 
-#: app/UserAction/kraction.cpp:164
+#: app/UserAction/kraction.cpp:170
 #, kde-format
 msgid ""
 "*.txt|Text files\n"
@@ -9510,7 +9510,7 @@ msgstr ""
 "*.txt|Metin dosyaları\n"
 "*|Tüm dosyalar"
 
-#: app/UserAction/kraction.cpp:171
+#: app/UserAction/kraction.cpp:177
 #, kde-format
 msgid ""
 "This file already exists.\n"
@@ -9519,22 +9519,22 @@ msgstr ""
 "Dosya hâlihazırda var.\n"
 "Üzerine yazmak mı yoksa çıktıyı iliştirmek mi istiyorsunuz?"
 
-#: app/UserAction/kraction.cpp:172
+#: app/UserAction/kraction.cpp:178
 #, kde-format
 msgid "Overwrite or append?"
 msgstr "Üzerine yaz veya iliştir"
 
-#: app/UserAction/kraction.cpp:174
+#: app/UserAction/kraction.cpp:180
 #, kde-format
 msgid "Append"
 msgstr "İliştir"
 
-#: app/UserAction/kraction.cpp:185
+#: app/UserAction/kraction.cpp:191
 #, kde-format
 msgid "Export failed"
 msgstr "Dışa aktarım başarısız oldu"
 
-#: app/UserAction/kraction.cpp:240
+#: app/UserAction/kraction.cpp:241
 #, kde-format
 msgid ""
 "Cannot run user action, %1 not found or not executable. Please verify that "
@@ -9543,7 +9543,7 @@ msgstr ""
 "Kullanıcı eylemi çalıştırılamıyor, %1 bulunamadı veya yürütülebilir değil. "
 "Lütfen kde-cli-tools’un kurulu olduğundan emin olun."
 
-#: app/UserAction/kraction.cpp:248
+#: app/UserAction/kraction.cpp:249
 #, kde-format
 msgid ""
 "Embedded terminal emulator does not work, using output collection instead."

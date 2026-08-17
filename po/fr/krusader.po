@@ -11,7 +11,7 @@
 # Joëlle Cornavin <jcorn@free.fr>, 2009, 2010, 2011, 2012, 2013.
 # Vincent PINON <vpinon@kde.org>, 2014.
 # Simon Depiets <sdepiets@gmail.com>, 2019.
-# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025, 2026 Xavier Besnard <xavier.besnard@kde.org>
+# SPDX-FileCopyrightText: 2020-2026 Xavier Besnard <xavier.besnard@kde.org>
 # Copyright (C) 2004-2009, Krusader Krew
 #
 #
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-13 00:55+0000\n"
-"PO-Revision-Date: 2026-04-04 13:23+0200\n"
+"POT-Creation-Date: 2026-08-17 00:50+0000\n"
+"PO-Revision-Date: 2026-08-14 11:52+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Accelerator-Marker: &\n"
 "X-Environment: kde\n"
-"X-Generator: Lokalize 25.12.3\n"
+"X-Generator: Lokalize 26.07.90\n"
 "X-Text-Markup: kde4\n"
 
 #, kde-format
@@ -732,7 +732,7 @@ msgstr "Ce fichier existe déjà. Voulez-vous l'écraser ?"
 msgid "Overwrite Existing File?"
 msgstr "Écraser le fichier existant ?"
 
-#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:185
+#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:191
 #, kde-format
 msgid ""
 "Cannot open %1 for writing.\n"
@@ -751,29 +751,28 @@ msgstr "L'exportation a échoué"
 msgid "Internal error, undefined <job> in result signal"
 msgstr "Erreur interne, <tâche> non définie dans le signal résultant"
 
-#: app/Archive/abstractthreadedjob.cpp:344
+#: app/Archive/abstractthreadedjob.cpp:348
 #, kde-format
 msgid "Downloading remote files"
 msgstr "Téléchargement de fichiers distants"
 
-#: app/Archive/abstractthreadedjob.cpp:384
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#: app/Archive/abstractthreadedjob.cpp:388
+#, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
-msgstr "Extenseur : impossible d'ouvrir le fichier temporaire (%1)"
+msgstr "Il a été impossible d'ouvrir le  fichier temporaire « %1 »."
 
-#: app/Archive/abstractthreadedjob.cpp:495
+#: app/Archive/abstractthreadedjob.cpp:499
 #, kde-format
 msgid "Counting files"
 msgstr "&Comptage des fichiers"
 
-#: app/Archive/abstractthreadedjob.cpp:524
+#: app/Archive/abstractthreadedjob.cpp:528
 #, kde-format
 msgid "Uploading to remote destination"
 msgstr "Envoi vers une destination distante"
 
-#: app/Archive/abstractthreadedjob.cpp:645
+#: app/Archive/abstractthreadedjob.cpp:649
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
@@ -903,17 +902,17 @@ msgstr "Signets"
 msgid "Folder name:"
 msgstr "Nom du dossier :"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:782
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:866
 #, kde-format
 msgid "Trash bin"
 msgstr "Corbeille"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:790
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:874
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "Système de fichiers virtuel"
 
-#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:786
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:870
 #, kde-format
 msgid "Local Network"
 msgstr "Réseau local"
@@ -928,7 +927,7 @@ msgstr "BookMan II"
 msgid "Type to search..."
 msgstr "Tapez pour rechercher…"
 
-#: app/BookMan/krbookmarkhandler.cpp:225 app/BookMan/krbookmarkhandler.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
 #: app/Konfigurator/kggeneral.cpp:329
 #: app/Synchronizer/synchronizerdirlist.cpp:117
@@ -936,60 +935,60 @@ msgstr "Tapez pour rechercher…"
 msgid "Error"
 msgstr "Erreur"
 
-#: app/BookMan/krbookmarkhandler.cpp:225
+#: app/BookMan/krbookmarkhandler.cpp:248
 #, kde-format
 msgid "Unable to write to %1"
 msgstr "Impossible d'écrire dans %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:234
+#: app/BookMan/krbookmarkhandler.cpp:257
 #, kde-format
 msgid "%1 instead of %2"
 msgstr "%1 au lieu de %2"
 
-#: app/BookMan/krbookmarkhandler.cpp:239 app/BookMan/krbookmarkhandler.cpp:246
-#: app/BookMan/krbookmarkhandler.cpp:283
+#: app/BookMan/krbookmarkhandler.cpp:262 app/BookMan/krbookmarkhandler.cpp:269
+#: app/BookMan/krbookmarkhandler.cpp:329
 #, kde-format
 msgid "missing tag %1"
 msgstr "onglet %1 manquant "
 
-#: app/BookMan/krbookmarkhandler.cpp:323
+#: app/BookMan/krbookmarkhandler.cpp:379
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "Il semble que %1 n'est pas un fichier de signets valable"
 
-#: app/BookMan/krbookmarkhandler.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:388
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr "Erreur lors de la lecture du fichier de signets : %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:778
-#: app/Dialogs/popularurls.cpp:276
+#: app/BookMan/krbookmarkhandler.cpp:512 app/BookMan/krbookmarkhandler.cpp:862
+#: app/Dialogs/popularurls.cpp:283
 #, kde-format
 msgid "Popular URLs"
 msgstr "URL les plus utilisées"
 
-#: app/BookMan/krbookmarkhandler.cpp:774
+#: app/BookMan/krbookmarkhandler.cpp:858
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "Activer les signets spéciaux"
 
-#: app/BookMan/krbookmarkhandler.cpp:794
+#: app/BookMan/krbookmarkhandler.cpp:878
 #, kde-format
 msgid "Jump back"
 msgstr "Revenir directement en arrière"
 
-#: app/BookMan/krbookmarkhandler.cpp:846 app/GUI/mediabutton.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:927 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "Ouvrir"
 
-#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:333
+#: app/BookMan/krbookmarkhandler.cpp:929 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Ouvrir dans un nouvel onglet"
 
-#: app/BookMan/krbookmarkhandler.cpp:852 app/Dialogs/krmaskchoice.cpp:84
+#: app/BookMan/krbookmarkhandler.cpp:933 app/Dialogs/krmaskchoice.cpp:84
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
 #: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
@@ -999,10 +998,10 @@ msgstr "Supprimer"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
 #: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgid "A temporary file with the template \"%1\" could not be opened."
-msgstr "Extenseur : impossible d'ouvrir le fichier temporaire (%1)"
+msgstr ""
+"Il a été impossible d'ouvrir le  fichier temporaire avec le modèle « %1 »."
 
 #: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
@@ -1459,7 +1458,7 @@ msgstr ""
 "Les « URL les plus utilisées » enregistrées ne sont pas valables. La liste "
 "va être effacée."
 
-#: app/Dialogs/popularurls.cpp:293
+#: app/Dialogs/popularurls.cpp:300
 #, kde-format
 msgid "&Search:"
 msgstr "&Chercher :"
@@ -5611,7 +5610,7 @@ msgstr ""
 "Impossible de trouver la commande « locate ». Veuillez installer le paquet "
 "« findutils-locate » de GNU ou définissez ses dépendances dans Konfigurator"
 
-#: app/krslots.cpp:407 app/UserAction/kraction.cpp:282
+#: app/krslots.cpp:407 app/UserAction/kraction.cpp:287
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5709,7 +5708,7 @@ msgstr ""
 "La barre d'état affiche des informations de base sur le fichier situé sous "
 "le pointeur de la souris."
 
-#: app/krusader.cpp:301
+#: app/krusader.cpp:303
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5721,7 +5720,7 @@ msgstr ""
 "applications externes. Puis Konfigurator sera lancé, où vous pourrez "
 "personnaliser Krusader selon vos besoins.</p></qt>"
 
-#: app/krusader.cpp:332
+#: app/krusader.cpp:334
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr "Placer la fenêtre principale au premier plan"
@@ -7150,7 +7149,7 @@ msgstr "Classique"
 msgid "Custom layout: \"%1\""
 msgstr "Disposition personnalisée : « %1 »"
 
-#: app/Panel/krpreviewpopup.cpp:86
+#: app/Panel/krpreviewpopup.cpp:87
 #, kde-format
 msgid "Preview not available"
 msgstr "Aperçu non disponible"
@@ -7754,10 +7753,9 @@ msgid "Enter the filename to edit:"
 msgstr "Saisissez le nom de fichier à modifier :"
 
 #: app/Panel/panelfunc.cpp:514
-#, fuzzy, kde-format
-#| msgid "The folder %1 does not exist."
+#, kde-format
 msgid "The file \"%1\" could not be created."
-msgstr "Le dossier %1 n'existe pas."
+msgstr "Il a été impossible de créer le  fichier « %1 »."
 
 #: app/Panel/panelfunc.cpp:613
 #, kde-format
@@ -9638,37 +9636,37 @@ msgstr "Erreur : %%%1%2%% non reconnu dans l'extenseur"
 msgid "Error: missing ')' in Expander"
 msgstr "Erreur : « ) » manquante dans l'extenseur"
 
-#: app/UserAction/kraction.cpp:72
+#: app/UserAction/kraction.cpp:78
 #, kde-format
 msgid "Standard Output (stdout)"
 msgstr "Sortie standard (stdout)"
 
-#: app/UserAction/kraction.cpp:80
+#: app/UserAction/kraction.cpp:86
 #, kde-format
 msgid "Standard Error (stderr)"
 msgstr "Sortie erreur standard (stderr)"
 
-#: app/UserAction/kraction.cpp:86
+#: app/UserAction/kraction.cpp:92
 #, kde-format
 msgid "Output"
 msgstr "Sortie"
 
-#: app/UserAction/kraction.cpp:104
+#: app/UserAction/kraction.cpp:110
 #, kde-format
 msgid "Use font with fixed width"
 msgstr "Utiliser une police à largeur fixe"
 
-#: app/UserAction/kraction.cpp:120
+#: app/UserAction/kraction.cpp:126
 #, kde-format
 msgid "Kill"
 msgstr "Tuer"
 
-#: app/UserAction/kraction.cpp:121
+#: app/UserAction/kraction.cpp:127
 #, kde-format
 msgid "Kill the running process"
 msgstr "Tue le processus en cours de fonctionnement"
 
-#: app/UserAction/kraction.cpp:164
+#: app/UserAction/kraction.cpp:170
 #, kde-format
 msgid ""
 "*.txt|Text files\n"
@@ -9677,7 +9675,7 @@ msgstr ""
 "*.txt|Fichiers texte\n"
 " *|Tous les fichiers"
 
-#: app/UserAction/kraction.cpp:171
+#: app/UserAction/kraction.cpp:177
 #, kde-format
 msgid ""
 "This file already exists.\n"
@@ -9686,22 +9684,22 @@ msgstr ""
 "Ce fichier existe déjà.\n"
 "Voulez-vous l'écraser ou l'ajouter à la fin de la sortie ?"
 
-#: app/UserAction/kraction.cpp:172
+#: app/UserAction/kraction.cpp:178
 #, kde-format
 msgid "Overwrite or append?"
 msgstr "Écraser ou ajouter à la fin ?"
 
-#: app/UserAction/kraction.cpp:174
+#: app/UserAction/kraction.cpp:180
 #, kde-format
 msgid "Append"
 msgstr "Ajouter à la fin"
 
-#: app/UserAction/kraction.cpp:185
+#: app/UserAction/kraction.cpp:191
 #, kde-format
 msgid "Export failed"
 msgstr "L'exportation a échoué"
 
-#: app/UserAction/kraction.cpp:240
+#: app/UserAction/kraction.cpp:241
 #, kde-format
 msgid ""
 "Cannot run user action, %1 not found or not executable. Please verify that "
@@ -9711,7 +9709,7 @@ msgstr ""
 "executable. Veuillez vérifier que les outils « kde-cli-tools » sont bien "
 "installés."
 
-#: app/UserAction/kraction.cpp:248
+#: app/UserAction/kraction.cpp:249
 #, kde-format
 msgid ""
 "Embedded terminal emulator does not work, using output collection instead."
@@ -9973,16 +9971,14 @@ msgid "Listing folders is not supported for %1 archives."
 msgstr "Le listage des dossiers n'est pas pris en charge pour %1 archives."
 
 #: plugins/krarc/krarc.cpp:1569
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary is installed properly on your system."
+#, kde-format
 msgid ""
 "\"%1\".\n"
 "Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
-"\n"
-"Assurez-vous que le binaire %1 est installé correctement sur votre système."
+"« %1 »\n"
+"Veuillez-vous assurer que l'exécutable « %2 » est installé correctement sur "
+"votre système."
 
 #: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
 #, kde-format

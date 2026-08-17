@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-13 00:55+0000\n"
+"POT-Creation-Date: 2026-08-17 00:50+0000\n"
 "PO-Revision-Date: 2012-10-09 23:46-0700\n"
 "Last-Translator: Fumiaki Okushi <okushi@kde.gr.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -704,7 +704,7 @@ msgstr "このファイルは既に存在します。上書きしますか？"
 msgid "Overwrite Existing File?"
 msgstr "既存のファイルを上書きしますか？"
 
-#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:185
+#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:191
 #, fuzzy, kde-format
 #| msgid ""
 #| "Cannot open %1 for writing!\n"
@@ -727,28 +727,28 @@ msgstr "エクスポートに失敗！"
 msgid "Internal error, undefined <job> in result signal"
 msgstr ""
 
-#: app/Archive/abstractthreadedjob.cpp:344
+#: app/Archive/abstractthreadedjob.cpp:348
 #, fuzzy, kde-format
 msgid "Downloading remote files"
 msgstr "削除"
 
-#: app/Archive/abstractthreadedjob.cpp:384
+#: app/Archive/abstractthreadedjob.cpp:388
 #, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
 msgstr ""
 
-#: app/Archive/abstractthreadedjob.cpp:495
+#: app/Archive/abstractthreadedjob.cpp:499
 #, fuzzy, kde-format
 msgid "Counting files"
 msgstr "コピー"
 
-#: app/Archive/abstractthreadedjob.cpp:524
+#: app/Archive/abstractthreadedjob.cpp:528
 #, kde-format
 msgid "Uploading to remote destination"
 msgstr ""
 
-#: app/Archive/abstractthreadedjob.cpp:645
+#: app/Archive/abstractthreadedjob.cpp:649
 #, fuzzy, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
@@ -885,17 +885,17 @@ msgstr "ブックマーク"
 msgid "Folder name:"
 msgstr "フォルダ名:"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:782
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:866
 #, kde-format
 msgid "Trash bin"
 msgstr "ごみ箱"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:790
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:874
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "仮想ファイルシステム"
 
-#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:786
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:870
 #, kde-format
 msgid "Local Network"
 msgstr "ローカルネットワーク"
@@ -911,7 +911,7 @@ msgstr "BookMan II"
 msgid "Type to search..."
 msgstr "検索を停止"
 
-#: app/BookMan/krbookmarkhandler.cpp:225 app/BookMan/krbookmarkhandler.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
 #: app/Konfigurator/kggeneral.cpp:329
 #: app/Synchronizer/synchronizerdirlist.cpp:117
@@ -919,61 +919,61 @@ msgstr "検索を停止"
 msgid "Error"
 msgstr "エラー"
 
-#: app/BookMan/krbookmarkhandler.cpp:225
+#: app/BookMan/krbookmarkhandler.cpp:248
 #, kde-format
 msgid "Unable to write to %1"
 msgstr "%1 へ書き出せませんでした。"
 
-#: app/BookMan/krbookmarkhandler.cpp:234
+#: app/BookMan/krbookmarkhandler.cpp:257
 #, kde-format
 msgid "%1 instead of %2"
 msgstr ""
 
-#: app/BookMan/krbookmarkhandler.cpp:239 app/BookMan/krbookmarkhandler.cpp:246
-#: app/BookMan/krbookmarkhandler.cpp:283
+#: app/BookMan/krbookmarkhandler.cpp:262 app/BookMan/krbookmarkhandler.cpp:269
+#: app/BookMan/krbookmarkhandler.cpp:329
 #, kde-format
 msgid "missing tag %1"
 msgstr ""
 
-#: app/BookMan/krbookmarkhandler.cpp:323
+#: app/BookMan/krbookmarkhandler.cpp:379
 #, fuzzy, kde-format
 #| msgid "%1 doesn't seem to be a valid Bookmarks file"
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "%1 は有効なブックマークファイルではありません"
 
-#: app/BookMan/krbookmarkhandler.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:388
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr "ブックマークファイルの読み込み中にエラー: %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:778
-#: app/Dialogs/popularurls.cpp:276
+#: app/BookMan/krbookmarkhandler.cpp:512 app/BookMan/krbookmarkhandler.cpp:862
+#: app/Dialogs/popularurls.cpp:283
 #, kde-format
 msgid "Popular URLs"
 msgstr "人気のある URL"
 
-#: app/BookMan/krbookmarkhandler.cpp:774
+#: app/BookMan/krbookmarkhandler.cpp:858
 #, fuzzy, kde-format
 msgid "Enable special bookmarks"
 msgstr "有効"
 
-#: app/BookMan/krbookmarkhandler.cpp:794
+#: app/BookMan/krbookmarkhandler.cpp:878
 #, fuzzy, kde-format
 msgid "Jump back"
 msgstr "背面"
 
-#: app/BookMan/krbookmarkhandler.cpp:846 app/GUI/mediabutton.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:927 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "開く"
 
-#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:333
+#: app/BookMan/krbookmarkhandler.cpp:929 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "新しいタブで開く"
 
-#: app/BookMan/krbookmarkhandler.cpp:852 app/Dialogs/krmaskchoice.cpp:84
+#: app/BookMan/krbookmarkhandler.cpp:933 app/Dialogs/krmaskchoice.cpp:84
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
 #: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
@@ -1443,7 +1443,7 @@ msgstr ""
 msgid "The saved 'Popular URLs' are invalid. The list will be cleared."
 msgstr "保存しました リスト"
 
-#: app/Dialogs/popularurls.cpp:293
+#: app/Dialogs/popularurls.cpp:300
 #, fuzzy, kde-format
 #| msgid "Search:"
 msgid "&Search:"
@@ -5460,7 +5460,7 @@ msgstr ""
 "Can't find the 'locate' command. Please install the findutils-locate package "
 "of GNU, or set its dependencies in Konfigurator"
 
-#: app/krslots.cpp:407 app/UserAction/kraction.cpp:282
+#: app/krslots.cpp:407 app/UserAction/kraction.cpp:287
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5557,7 +5557,7 @@ msgstr "ごみ箱を空にする"
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "マウス."
 
-#: app/krusader.cpp:301
+#: app/krusader.cpp:303
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine "
@@ -5572,7 +5572,7 @@ msgstr ""
 "を調べます。それから Konfigurator を起動して、Krusader をカスタマイズしてくだ"
 "さい。</p></qt>"
 
-#: app/krusader.cpp:332
+#: app/krusader.cpp:334
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr ""
@@ -7021,7 +7021,7 @@ msgstr ""
 msgid "Custom layout: \"%1\""
 msgstr ""
 
-#: app/Panel/krpreviewpopup.cpp:86
+#: app/Panel/krpreviewpopup.cpp:87
 #, fuzzy, kde-format
 msgid "Preview not available"
 msgstr "プレビュー"
@@ -9487,74 +9487,74 @@ msgstr ""
 msgid "Error: missing ')' in Expander"
 msgstr ""
 
-#: app/UserAction/kraction.cpp:72
+#: app/UserAction/kraction.cpp:78
 #, fuzzy, kde-format
 msgid "Standard Output (stdout)"
 msgstr "標準 出力"
 
-#: app/UserAction/kraction.cpp:80
+#: app/UserAction/kraction.cpp:86
 #, fuzzy, kde-format
 msgid "Standard Error (stderr)"
 msgstr "標準 エラー"
 
-#: app/UserAction/kraction.cpp:86
+#: app/UserAction/kraction.cpp:92
 #, fuzzy, kde-format
 msgid "Output"
 msgstr "出力"
 
-#: app/UserAction/kraction.cpp:104
+#: app/UserAction/kraction.cpp:110
 #, fuzzy, kde-format
 msgid "Use font with fixed width"
 msgstr "使用 置換後 固定 幅"
 
-#: app/UserAction/kraction.cpp:120
+#: app/UserAction/kraction.cpp:126
 #, kde-format
 msgid "Kill"
 msgstr ""
 
-#: app/UserAction/kraction.cpp:121
+#: app/UserAction/kraction.cpp:127
 #, fuzzy, kde-format
 msgid "Kill the running process"
 msgstr "実行中"
 
-#: app/UserAction/kraction.cpp:164
+#: app/UserAction/kraction.cpp:170
 #, fuzzy, kde-format
 msgid ""
 "*.txt|Text files\n"
 "*|All files"
 msgstr "テキスト n 全て"
 
-#: app/UserAction/kraction.cpp:171
+#: app/UserAction/kraction.cpp:177
 #, fuzzy, kde-format
 msgid ""
 "This file already exists.\n"
 "Do you want to overwrite it or append the output?"
 msgstr "to もしくは 出力?"
 
-#: app/UserAction/kraction.cpp:172
+#: app/UserAction/kraction.cpp:178
 #, fuzzy, kde-format
 msgid "Overwrite or append?"
 msgstr "上書き もしくは?"
 
-#: app/UserAction/kraction.cpp:174
+#: app/UserAction/kraction.cpp:180
 #, fuzzy, kde-format
 msgid "Append"
 msgstr "追加"
 
-#: app/UserAction/kraction.cpp:185
+#: app/UserAction/kraction.cpp:191
 #, fuzzy, kde-format
 #| msgid "Export failed!"
 msgid "Export failed"
 msgstr "エクスポートに失敗！"
 
-#: app/UserAction/kraction.cpp:240
+#: app/UserAction/kraction.cpp:241
 #, kde-format
 msgid ""
 "Cannot run user action, %1 not found or not executable. Please verify that "
 "kde-cli-tools are installed."
 msgstr ""
 
-#: app/UserAction/kraction.cpp:248
+#: app/UserAction/kraction.cpp:249
 #, kde-format
 msgid ""
 "Embedded terminal emulator does not work, using output collection instead."

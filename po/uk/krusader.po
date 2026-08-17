@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-13 00:55+0000\n"
+"POT-Creation-Date: 2026-08-17 00:50+0000\n"
 "PO-Revision-Date: 2026-08-13 11:52+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -701,7 +701,7 @@ msgstr "Цей файл вже існує. Ви дійсно хочете пер
 msgid "Overwrite Existing File?"
 msgstr "Перезаписати поточний файл?"
 
-#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:185
+#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:191
 #, kde-format
 msgid ""
 "Cannot open %1 for writing.\n"
@@ -720,28 +720,28 @@ msgstr "Не вдалося експортувати"
 msgid "Internal error, undefined <job> in result signal"
 msgstr "Внутрішня помилка, невідоме значення поля <job> у сигналі результату."
 
-#: app/Archive/abstractthreadedjob.cpp:344
+#: app/Archive/abstractthreadedjob.cpp:348
 #, kde-format
 msgid "Downloading remote files"
 msgstr "Отримання файлів з віддаленого сховища"
 
-#: app/Archive/abstractthreadedjob.cpp:384
+#: app/Archive/abstractthreadedjob.cpp:388
 #, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
 msgstr "Не вдалося відкрити тимчасовий файл «%1»."
 
-#: app/Archive/abstractthreadedjob.cpp:495
+#: app/Archive/abstractthreadedjob.cpp:499
 #, kde-format
 msgid "Counting files"
 msgstr "Обчислення кількості файлів"
 
-#: app/Archive/abstractthreadedjob.cpp:524
+#: app/Archive/abstractthreadedjob.cpp:528
 #, kde-format
 msgid "Uploading to remote destination"
 msgstr "Вивантаження до віддаленого сховища"
 
-#: app/Archive/abstractthreadedjob.cpp:645
+#: app/Archive/abstractthreadedjob.cpp:649
 #, kde-format
 msgctxt "%1=archive filename"
 msgid "%1, unsupported archive type."
@@ -871,17 +871,17 @@ msgstr "Закладки"
 msgid "Folder name:"
 msgstr "Назва теки:"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:782
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:866
 #, kde-format
 msgid "Trash bin"
 msgstr "Смітник"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:790
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:874
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "Віртуальна файлова система"
 
-#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:786
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:870
 #, kde-format
 msgid "Local Network"
 msgstr "Локальна мережа"
@@ -896,7 +896,7 @@ msgstr "Керування закладками II"
 msgid "Type to search..."
 msgstr "Введіть текст для пошуку…"
 
-#: app/BookMan/krbookmarkhandler.cpp:225 app/BookMan/krbookmarkhandler.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
 #: app/Konfigurator/kggeneral.cpp:329
 #: app/Synchronizer/synchronizerdirlist.cpp:117
@@ -904,60 +904,60 @@ msgstr "Введіть текст для пошуку…"
 msgid "Error"
 msgstr "Помилка"
 
-#: app/BookMan/krbookmarkhandler.cpp:225
+#: app/BookMan/krbookmarkhandler.cpp:248
 #, kde-format
 msgid "Unable to write to %1"
 msgstr "Не вдається записати до %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:234
+#: app/BookMan/krbookmarkhandler.cpp:257
 #, kde-format
 msgid "%1 instead of %2"
 msgstr "%1 замість %2"
 
-#: app/BookMan/krbookmarkhandler.cpp:239 app/BookMan/krbookmarkhandler.cpp:246
-#: app/BookMan/krbookmarkhandler.cpp:283
+#: app/BookMan/krbookmarkhandler.cpp:262 app/BookMan/krbookmarkhandler.cpp:269
+#: app/BookMan/krbookmarkhandler.cpp:329
 #, kde-format
 msgid "missing tag %1"
 msgstr "немає мітки %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:323
+#: app/BookMan/krbookmarkhandler.cpp:379
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "%1, здається, не є коректним файлом закладок"
 
-#: app/BookMan/krbookmarkhandler.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:388
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr "Помилка читання файла закладок: %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:778
-#: app/Dialogs/popularurls.cpp:276
+#: app/BookMan/krbookmarkhandler.cpp:512 app/BookMan/krbookmarkhandler.cpp:862
+#: app/Dialogs/popularurls.cpp:283
 #, kde-format
 msgid "Popular URLs"
 msgstr "Популярні URL"
 
-#: app/BookMan/krbookmarkhandler.cpp:774
+#: app/BookMan/krbookmarkhandler.cpp:858
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "Дозволити особливі закладки"
 
-#: app/BookMan/krbookmarkhandler.cpp:794
+#: app/BookMan/krbookmarkhandler.cpp:878
 #, kde-format
 msgid "Jump back"
 msgstr "Повернутися назад"
 
-#: app/BookMan/krbookmarkhandler.cpp:846 app/GUI/mediabutton.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:927 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "Відкрити"
 
-#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:333
+#: app/BookMan/krbookmarkhandler.cpp:929 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Відкрити у новій вкладці"
 
-#: app/BookMan/krbookmarkhandler.cpp:852 app/Dialogs/krmaskchoice.cpp:84
+#: app/BookMan/krbookmarkhandler.cpp:933 app/Dialogs/krmaskchoice.cpp:84
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
 #: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
@@ -1417,7 +1417,7 @@ msgstr ""
 msgid "The saved 'Popular URLs' are invalid. The list will be cleared."
 msgstr "Збережені «Популярні URL» втратили чинність. Список буде спорожнено."
 
-#: app/Dialogs/popularurls.cpp:293
+#: app/Dialogs/popularurls.cpp:300
 #, kde-format
 msgid "&Search:"
 msgstr "По&шук:"
@@ -5533,7 +5533,7 @@ msgstr ""
 "Не вдається знайти команду «locate». Будь ласка, встановіть пакунок "
 "findutils-locate від GNU або вкажіть параметри команди у Конфігураторі"
 
-#: app/krslots.cpp:407 app/UserAction/kraction.cpp:282
+#: app/krslots.cpp:407 app/UserAction/kraction.cpp:287
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5629,7 +5629,7 @@ msgstr "Спорожнити смітник"
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "Смужка стану показуватиме основну інформацію про файл під курсором."
 
-#: app/krusader.cpp:301
+#: app/krusader.cpp:303
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5641,7 +5641,7 @@ msgstr ""
 "запущено Конфігуратор, за допомогою якого ви можете налаштувати Krusader "
 "відповідно до ваших потреб.</p></qt>"
 
-#: app/krusader.cpp:332
+#: app/krusader.cpp:334
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr "Зробити головне вікно верхнім"
@@ -7070,7 +7070,7 @@ msgstr "Класичне"
 msgid "Custom layout: \"%1\""
 msgstr "Нетипове компонування: «%1»"
 
-#: app/Panel/krpreviewpopup.cpp:86
+#: app/Panel/krpreviewpopup.cpp:87
 #, kde-format
 msgid "Preview not available"
 msgstr "Перегляд недоступний"
@@ -9562,37 +9562,37 @@ msgstr "Помилка: невизначений %%%1%2%% у розширюва�
 msgid "Error: missing ')' in Expander"
 msgstr "Помилка: не вистачає «)» у розширювачі"
 
-#: app/UserAction/kraction.cpp:72
+#: app/UserAction/kraction.cpp:78
 #, kde-format
 msgid "Standard Output (stdout)"
 msgstr "стандартне виведення (stdout)"
 
-#: app/UserAction/kraction.cpp:80
+#: app/UserAction/kraction.cpp:86
 #, kde-format
 msgid "Standard Error (stderr)"
 msgstr "Стандартна помилка (stderr)"
 
-#: app/UserAction/kraction.cpp:86
+#: app/UserAction/kraction.cpp:92
 #, kde-format
 msgid "Output"
 msgstr "Виведення"
 
-#: app/UserAction/kraction.cpp:104
+#: app/UserAction/kraction.cpp:110
 #, kde-format
 msgid "Use font with fixed width"
 msgstr "Використовувати шрифт зі сталою шириною"
 
-#: app/UserAction/kraction.cpp:120
+#: app/UserAction/kraction.cpp:126
 #, kde-format
 msgid "Kill"
 msgstr "Знищити"
 
-#: app/UserAction/kraction.cpp:121
+#: app/UserAction/kraction.cpp:127
 #, kde-format
 msgid "Kill the running process"
 msgstr "Знищити робочий процес"
 
-#: app/UserAction/kraction.cpp:164
+#: app/UserAction/kraction.cpp:170
 #, kde-format
 msgid ""
 "*.txt|Text files\n"
@@ -9601,7 +9601,7 @@ msgstr ""
 "*.txt|текстові файли\n"
 "*|всі файли"
 
-#: app/UserAction/kraction.cpp:171
+#: app/UserAction/kraction.cpp:177
 #, kde-format
 msgid ""
 "This file already exists.\n"
@@ -9610,22 +9610,22 @@ msgstr ""
 "Цей файл вже існує.\n"
 "Бажаєте перезаписати його чи дописати до нього виведене?"
 
-#: app/UserAction/kraction.cpp:172
+#: app/UserAction/kraction.cpp:178
 #, kde-format
 msgid "Overwrite or append?"
 msgstr "Перезаписати чи дописати?"
 
-#: app/UserAction/kraction.cpp:174
+#: app/UserAction/kraction.cpp:180
 #, kde-format
 msgid "Append"
 msgstr "Дописати"
 
-#: app/UserAction/kraction.cpp:185
+#: app/UserAction/kraction.cpp:191
 #, kde-format
 msgid "Export failed"
 msgstr "Не вдалося експортувати"
 
-#: app/UserAction/kraction.cpp:240
+#: app/UserAction/kraction.cpp:241
 #, kde-format
 msgid ""
 "Cannot run user action, %1 not found or not executable. Please verify that "
@@ -9634,7 +9634,7 @@ msgstr ""
 "Не вдалося виконати дію від імені користувача: не знайдено %1 або цей файл "
 "не є виконуваним. Будь ласка, перевірте, чи встановлено kde-cli-tools."
 
-#: app/UserAction/kraction.cpp:248
+#: app/UserAction/kraction.cpp:249
 #, kde-format
 msgid ""
 "Embedded terminal emulator does not work, using output collection instead."

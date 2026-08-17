@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-13 00:55+0000\n"
+"POT-Creation-Date: 2026-08-17 00:50+0000\n"
 "PO-Revision-Date: 2019-03-17 17:31+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -703,7 +703,7 @@ msgstr "Failas jau egzistuoja. Ar tikrai norite jį perrašyti?"
 msgid "Overwrite Existing File?"
 msgstr "Perrašyti egzistuojantį failą?"
 
-#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:185
+#: app/ActionMan/useractionpage.cpp:284 app/UserAction/kraction.cpp:191
 #, fuzzy, kde-format
 #| msgid ""
 #| "Can't open %1 for writing!\n"
@@ -725,31 +725,31 @@ msgstr "Eksportavimas nepavyko"
 msgid "Internal error, undefined <job> in result signal"
 msgstr ""
 
-#: app/Archive/abstractthreadedjob.cpp:344
+#: app/Archive/abstractthreadedjob.cpp:348
 #, fuzzy, kde-format
 #| msgid "Delete files"
 msgid "Downloading remote files"
 msgstr "Pašalinti failus"
 
-#: app/Archive/abstractthreadedjob.cpp:384
+#: app/Archive/abstractthreadedjob.cpp:388
 #, fuzzy, kde-format
 #| msgid "Expander: tempfile couldn't be opened (%1)"
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
 msgstr "Išplėtiklis: nepavyko atverti laikino failo (%1)"
 
-#: app/Archive/abstractthreadedjob.cpp:495
+#: app/Archive/abstractthreadedjob.cpp:499
 #, fuzzy, kde-format
 #| msgid "Copying files"
 msgid "Counting files"
 msgstr "Kopijuojamo failai"
 
-#: app/Archive/abstractthreadedjob.cpp:524
+#: app/Archive/abstractthreadedjob.cpp:528
 #, kde-format
 msgid "Uploading to remote destination"
 msgstr ""
 
-#: app/Archive/abstractthreadedjob.cpp:645
+#: app/Archive/abstractthreadedjob.cpp:649
 #, fuzzy, kde-format
 #| msgid "%1, unsupported archive type."
 msgctxt "%1=archive filename"
@@ -890,17 +890,17 @@ msgstr "Žymelės"
 msgid "Folder name:"
 msgstr "Aplanko pavadinimas:"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:782
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:866
 #, kde-format
 msgid "Trash bin"
 msgstr "Šiukšlinė"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:790
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:874
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "Virtuali failų sistema"
 
-#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:786
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:870
 #, kde-format
 msgid "Local Network"
 msgstr "Vietinis tinklas"
@@ -916,7 +916,7 @@ msgstr "Žymelės II"
 msgid "Type to search..."
 msgstr "Paieška"
 
-#: app/BookMan/krbookmarkhandler.cpp:225 app/BookMan/krbookmarkhandler.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
 #: app/Konfigurator/kggeneral.cpp:329
 #: app/Synchronizer/synchronizerdirlist.cpp:117
@@ -924,63 +924,63 @@ msgstr "Paieška"
 msgid "Error"
 msgstr "Klaida"
 
-#: app/BookMan/krbookmarkhandler.cpp:225
+#: app/BookMan/krbookmarkhandler.cpp:248
 #, kde-format
 msgid "Unable to write to %1"
 msgstr "Nepavyko įrašyti į %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:234
+#: app/BookMan/krbookmarkhandler.cpp:257
 #, fuzzy, kde-format
 #| msgid " instead of "
 msgid "%1 instead of %2"
 msgstr "vietoje"
 
-#: app/BookMan/krbookmarkhandler.cpp:239 app/BookMan/krbookmarkhandler.cpp:246
-#: app/BookMan/krbookmarkhandler.cpp:283
+#: app/BookMan/krbookmarkhandler.cpp:262 app/BookMan/krbookmarkhandler.cpp:269
+#: app/BookMan/krbookmarkhandler.cpp:329
 #, fuzzy, kde-format
 #| msgid "missing tag "
 msgid "missing tag %1"
 msgstr "TRŪKSTA ŽYMĖS"
 
-#: app/BookMan/krbookmarkhandler.cpp:323
+#: app/BookMan/krbookmarkhandler.cpp:379
 #, fuzzy, kde-format
 #| msgid "%1 doesn't seem to be a valid Bookmarks file"
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "%1 nėra tinkamas žymelių failas"
 
-#: app/BookMan/krbookmarkhandler.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:388
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr "Nepavyko perskaityti žymelių failo: %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:443 app/BookMan/krbookmarkhandler.cpp:778
-#: app/Dialogs/popularurls.cpp:276
+#: app/BookMan/krbookmarkhandler.cpp:512 app/BookMan/krbookmarkhandler.cpp:862
+#: app/Dialogs/popularurls.cpp:283
 #, kde-format
 msgid "Popular URLs"
 msgstr "Dažniausi URL"
 
-#: app/BookMan/krbookmarkhandler.cpp:774
+#: app/BookMan/krbookmarkhandler.cpp:858
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "Įjungti specialias žymeles"
 
-#: app/BookMan/krbookmarkhandler.cpp:794
+#: app/BookMan/krbookmarkhandler.cpp:878
 #, kde-format
 msgid "Jump back"
 msgstr "Grįžti"
 
-#: app/BookMan/krbookmarkhandler.cpp:846 app/GUI/mediabutton.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:927 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "Atverti"
 
-#: app/BookMan/krbookmarkhandler.cpp:848 app/GUI/mediabutton.cpp:333
+#: app/BookMan/krbookmarkhandler.cpp:929 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Atverti naujoje kortelėje"
 
-#: app/BookMan/krbookmarkhandler.cpp:852 app/Dialogs/krmaskchoice.cpp:84
+#: app/BookMan/krbookmarkhandler.cpp:933 app/Dialogs/krmaskchoice.cpp:84
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
 #: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
 #: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
@@ -1484,7 +1484,7 @@ msgstr ""
 msgid "The saved 'Popular URLs' are invalid. The list will be cleared."
 msgstr "Įrašyti Dažniausi URL yra klaidingi. Sąrašas bus išvalytas"
 
-#: app/Dialogs/popularurls.cpp:293
+#: app/Dialogs/popularurls.cpp:300
 #, kde-format
 msgid "&Search:"
 msgstr "&Ieškoti:"
@@ -5775,7 +5775,7 @@ msgstr ""
 "Nepavyko rasti locate programos. Prašome įdiegti GNU findutils-locate "
 "paketą  arba nurodykite kelią iki šios programos Konfigūratoriuje."
 
-#: app/krslots.cpp:407 app/UserAction/kraction.cpp:282
+#: app/krslots.cpp:407 app/UserAction/kraction.cpp:287
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5875,7 +5875,7 @@ msgstr ""
 "Būsenos juostoje pateikiama informacija apie failą, virš kurio yra pelės "
 "žymeklis."
 
-#: app/krusader.cpp:301
+#: app/krusader.cpp:303
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine "
@@ -5890,7 +5890,7 @@ msgstr ""
 "dabar tikrinama kokios pagalbinės programos įdiegtos. Vėliau bus atvertas "
 "Konfigūratorius ir galėsite suderinti Krusader pagal savo poreikius.</p></qt>"
 
-#: app/krusader.cpp:332
+#: app/krusader.cpp:334
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr ""
@@ -7377,7 +7377,7 @@ msgstr "Klasikinis"
 msgid "Custom layout: \"%1\""
 msgstr "Savitas išdėstymas"
 
-#: app/Panel/krpreviewpopup.cpp:86
+#: app/Panel/krpreviewpopup.cpp:87
 #, kde-format
 msgid "Preview not available"
 msgstr "Peržiūra negalima"
@@ -10039,37 +10039,37 @@ msgstr "Klaida: neatpažintas %%%1%2%% Expander::expand"
 msgid "Error: missing ')' in Expander"
 msgstr "Klaida: trūksta ')' Expander::separateParameter"
 
-#: app/UserAction/kraction.cpp:72
+#: app/UserAction/kraction.cpp:78
 #, kde-format
 msgid "Standard Output (stdout)"
 msgstr "Standartinė išvestis (stdout)"
 
-#: app/UserAction/kraction.cpp:80
+#: app/UserAction/kraction.cpp:86
 #, kde-format
 msgid "Standard Error (stderr)"
 msgstr "Standartinė klaidų išvestis (stderr)"
 
-#: app/UserAction/kraction.cpp:86
+#: app/UserAction/kraction.cpp:92
 #, kde-format
 msgid "Output"
 msgstr "Išvestis"
 
-#: app/UserAction/kraction.cpp:104
+#: app/UserAction/kraction.cpp:110
 #, kde-format
 msgid "Use font with fixed width"
 msgstr "Naudoti fiksuoto pločio šriftą"
 
-#: app/UserAction/kraction.cpp:120
+#: app/UserAction/kraction.cpp:126
 #, kde-format
 msgid "Kill"
 msgstr "Nutraukti darbą"
 
-#: app/UserAction/kraction.cpp:121
+#: app/UserAction/kraction.cpp:127
 #, kde-format
 msgid "Kill the running process"
 msgstr "Nutraukti dabartinio proceso darbą"
 
-#: app/UserAction/kraction.cpp:164
+#: app/UserAction/kraction.cpp:170
 #, fuzzy, kde-format
 #| msgid ""
 #| "*.txt|Text files\n"
@@ -10081,7 +10081,7 @@ msgstr ""
 "*.txt|tekstiniai failai\n"
 "*|visi failai"
 
-#: app/UserAction/kraction.cpp:171
+#: app/UserAction/kraction.cpp:177
 #, kde-format
 msgid ""
 "This file already exists.\n"
@@ -10090,29 +10090,29 @@ msgstr ""
 "Failas jau egzistuoja.\n"
 "Ar norite jį perrašyti ar jį papildyti?"
 
-#: app/UserAction/kraction.cpp:172
+#: app/UserAction/kraction.cpp:178
 #, kde-format
 msgid "Overwrite or append?"
 msgstr "Perrašyti ar papildyti?"
 
-#: app/UserAction/kraction.cpp:174
+#: app/UserAction/kraction.cpp:180
 #, kde-format
 msgid "Append"
 msgstr "Papildyti"
 
-#: app/UserAction/kraction.cpp:185
+#: app/UserAction/kraction.cpp:191
 #, kde-format
 msgid "Export failed"
 msgstr "Eksportavimas nepavyko"
 
-#: app/UserAction/kraction.cpp:240
+#: app/UserAction/kraction.cpp:241
 #, kde-format
 msgid ""
 "Cannot run user action, %1 not found or not executable. Please verify that "
 "kde-cli-tools are installed."
 msgstr ""
 
-#: app/UserAction/kraction.cpp:248
+#: app/UserAction/kraction.cpp:249
 #, kde-format
 msgid ""
 "Embedded terminal emulator does not work, using output collection instead."
