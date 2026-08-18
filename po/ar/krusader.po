@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-17 00:50+0000\n"
-"PO-Revision-Date: 2026-08-10 18:03+0400\n"
+"PO-Revision-Date: 2026-08-17 22:16+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -717,11 +717,10 @@ msgid "Downloading remote files"
 msgstr "تنزيل الملفات البعيدة"
 
 #: app/Archive/abstractthreadedjob.cpp:388
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
-msgstr "موسِّع: تعذر فتح الملف المؤقت (%1)"
+msgstr "تعذر فتح الملف المؤقت \"%1\""
 
 #: app/Archive/abstractthreadedjob.cpp:499
 #, kde-format
@@ -959,10 +958,9 @@ msgstr "احذف"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
 #: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgid "A temporary file with the template \"%1\" could not be opened."
-msgstr "موسِّع: تعذر فتح الملف المؤقت (%1)"
+msgstr "تعذر فتح الملف المؤقت مع القالب \"%1\""
 
 #: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
@@ -7601,10 +7599,9 @@ msgid "Enter the filename to edit:"
 msgstr "أدخل اسم الملف المراد تعديله:"
 
 #: app/Panel/panelfunc.cpp:514
-#, fuzzy, kde-format
-#| msgid "The folder %1 does not exist."
+#, kde-format
 msgid "The file \"%1\" could not be created."
-msgstr "المجلد ”%1“ ليس موجودًا!"
+msgstr "تعذّر إنشاء الملف \"%1\"."
 
 #: app/Panel/panelfunc.cpp:613
 #, kde-format
@@ -9837,16 +9834,13 @@ msgid "Listing folders is not supported for %1 archives."
 msgstr "سرد المجلدات غير متاح لأرشيفات %1."
 
 #: plugins/krarc/krarc.cpp:1569
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary is installed properly on your system."
+#, kde-format
 msgid ""
 "\"%1\".\n"
 "Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
-"\n"
-"تأكد من تثبيت الملف التنفيذي %1 بشكل صحيح على نظامك."
+"\"%1\".\n"
+"تأكد من تثبيت الملف التنفيذي \"%2\" بشكل صحيح على نظامك."
 
 #: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
 #, kde-format
