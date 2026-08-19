@@ -1486,7 +1486,7 @@ msgstr "排除"
 #: app/DiskUsage/diskusage.cpp:759
 #, kde-format
 msgid "Up one folder"
-msgstr ""
+msgstr "上一级文件夹"
 
 #: app/DiskUsage/diskusage.cpp:763
 #, kde-format
@@ -1724,7 +1724,7 @@ msgstr "组"
 #, kde-format
 msgid "%1 file: ~ %2"
 msgid_plural "%1 files: ~ %2"
-msgstr[0] ""
+msgstr[0] "%1 文件: ~ %2"
 
 #: app/DiskUsage/radialMap/segmentTip.cpp:120
 #, kde-format
@@ -1807,7 +1807,7 @@ msgstr "无法打开文件夹 %1。"
 #, kde-format
 msgctxt "%1=folder path"
 msgid "Access to %1 denied"
-msgstr ""
+msgstr "拒绝访问%1"
 
 #: app/FileSystem/filesystem.cpp:109
 #, kde-format
@@ -1853,13 +1853,13 @@ msgstr "自定义"
 #, kde-format
 msgctxt "%1=filename, %2=percentage"
 msgid "Searching content of '%1' (%2)"
-msgstr ""
+msgstr "正在搜索%1的内容(%2)"
 
 #: app/FileSystem/krquery.cpp:571
 #, kde-format
 msgctxt "%1=percentage"
 msgid "%1%"
-msgstr ""
+msgstr "%1%"
 
 #: app/FileSystem/virtualfilesystem.cpp:56
 #, kde-format
@@ -1873,7 +1873,7 @@ msgstr ""
 #: app/FileSystem/virtualfilesystem.cpp:127
 #, kde-format
 msgid "Creating new folders is allowed only in the 'virt:/' folder."
-msgstr ""
+msgstr "仅允许在 'virt:/' 文件夹中创建新文件夹。"
 
 #: app/FileSystem/virtualfilesystem.cpp:214
 #, kde-format
@@ -2057,11 +2057,13 @@ msgid ""
 "The date %1 is not valid according to your locale. Please re-enter a valid "
 "date (use the date button for easy access)."
 msgstr ""
+"根据您的本地化设置，您输入的日期“%1”无效。请输入有效的日期。您可以点击日历按"
+"钮点选日期。"
 
 #: app/Filter/advancedfilter.cpp:485
 #, kde-format
 msgid "Specified sizes are inconsistent."
-msgstr ""
+msgstr "指定的大小不一致。"
 
 #: app/Filter/advancedfilter.cpp:486
 #, kde-format
@@ -2073,7 +2075,7 @@ msgstr "请重新输入, 左边的值必须小于或等于右边的值。"
 #: app/Filter/advancedfilter.cpp:506 app/Filter/advancedfilter.cpp:532
 #, kde-format
 msgid "Dates are inconsistent."
-msgstr ""
+msgstr "日期不一致。"
 
 #: app/Filter/advancedfilter.cpp:507
 #, kde-format
@@ -2111,7 +2113,7 @@ msgstr "高级(&A)"
 #: app/Filter/filtertabs.cpp:101
 #, kde-format
 msgid "Could not load profile."
-msgstr ""
+msgstr "无法加载配置文件。"
 
 #: app/Filter/generalfilter.cpp:37
 msgid "Any Character"
@@ -2265,7 +2267,7 @@ msgstr "区分大小写(&E)"
 #: app/Filter/generalfilter.cpp:353
 #, kde-format
 msgid "Search in s&ub folders"
-msgstr ""
+msgstr "搜索子文件夹"
 
 #: app/Filter/generalfilter.cpp:358
 #, kde-format
@@ -6927,7 +6929,7 @@ msgstr ""
 #: app/Panel/listpanel.cpp:610
 #, kde-format
 msgid "Close the Sidebar"
-msgstr ""
+msgstr "关闭侧边栏"
 
 #: app/Panel/listpanel.cpp:669 app/Synchronizer/synchronizergui.cpp:977
 #, kde-format
@@ -7417,10 +7419,9 @@ msgid "Enter the filename to edit:"
 msgstr "输入要编辑的文件名："
 
 #: app/Panel/panelfunc.cpp:514
-#, fuzzy, kde-format
-#| msgid "The folder %1 does not exist."
+#, kde-format
 msgid "The file \"%1\" could not be created."
-msgstr "文件夹 %1 不存在。"
+msgstr ""
 
 #: app/Panel/panelfunc.cpp:613
 #, kde-format
@@ -9549,16 +9550,11 @@ msgid "Listing folders is not supported for %1 archives."
 msgstr "不支持在压缩文件 %1 中列出文件夹。"
 
 #: plugins/krarc/krarc.cpp:1569
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary is installed properly on your system."
+#, kde-format
 msgid ""
 "\"%1\".\n"
 "Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
-"\n"
-"请确认 %1 二进制文件在您的系统上已经正确安装。"
 
 #: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
 #, kde-format
