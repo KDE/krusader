@@ -180,7 +180,7 @@ void KMountMan::mount(const QString &mntPoint, bool blocking)
     } else {
         KMountPoint::List possible = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions);
         QExplicitlySharedDataPointer<KMountPoint> m = findInListByMntPoint(possible, mntPoint);
-        if (!((bool)m))
+        if (!static_cast<bool>(m))
             return;
         if (blocking)
             waiting = true; // prepare to block
@@ -261,13 +261,13 @@ KMountMan::mntStatus KMountMan::getStatus(const QString &mntPoint)
     // 1: is it already mounted
     KMountPoint::List current = KMountPoint::currentMountPoints();
     mountPoint = findInListByMntPoint(current, mntPoint);
-    if ((bool)mountPoint)
+    if (static_cast<bool>(mountPoint))
         return MOUNTED;
 
     // 2: is it a mount point but not mounted?
     KMountPoint::List possible = KMountPoint::possibleMountPoints();
     mountPoint = findInListByMntPoint(possible, mntPoint);
-    if ((bool)mountPoint)
+    if (static_cast<bool>(mountPoint))
         return NOT_MOUNTED;
 
     // 3: unknown

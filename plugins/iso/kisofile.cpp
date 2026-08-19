@@ -51,7 +51,7 @@ QByteArray KIsoFile::dataAt(long long pos, long long count) const
             rlen = archive()->device()->read(r.data(), r.size());
             if (rlen == -1)
                 r.resize(0);
-            else if (rlen != (int)r.size())
+            else if (rlen != static_cast<int>(r.size()))
                 r.resize(static_cast<int>(rlen));
         }
     }

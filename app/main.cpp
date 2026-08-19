@@ -258,7 +258,7 @@ int main(int argc, char *argv[])
         if (!reply.isValid() && reply.error().type() != QDBusError::ServiceUnknown && reply.error().type() != QDBusError::UnknownObject)
             fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
 
-        if (reply.isValid() && (bool)reply) {
+        if (reply.isValid() && static_cast<bool>(reply)) {
             KStartupInfo::appStarted();
             if (parser.isSet("left"))
                 openTabsRemote(parser.value("left").split(','), true, appName);

@@ -118,12 +118,12 @@ ListPanel *PanelTabBar::getPanel(int tabIdx)
     QVariant v = tabData(tabIdx);
     if (v.isNull())
         return nullptr;
-    return (ListPanel *)v.toLongLong();
+    return reinterpret_cast<ListPanel *>(v.toLongLong());
 }
 
 void PanelTabBar::changePanel(int tabIdx, ListPanel *panel)
 {
-    setTabData(tabIdx, QVariant((long long)panel));
+    setTabData(tabIdx, QVariant(reinterpret_cast<long long>(panel)));
 }
 
 ListPanel *PanelTabBar::removePanel(int index, ListPanel *&panelToDelete)
@@ -146,7 +146,7 @@ void PanelTabBar::updateTab(ListPanel *panel)
 {
     // find which is the correct tab
     for (int i = 0; i < count(); i++) {
-        if ((ListPanel *)tabData(i).toLongLong() == panel) {
+        if (reinterpret_cast<ListPanel *>(tabData(i).toLongLong()) == panel) {
             setPanelTextToTab(i, panel);
             setIcon(i, panel);
             break;
@@ -157,7 +157,7 @@ void PanelTabBar::updateTab(ListPanel *panel)
 void PanelTabBar::duplicateTab()
 {
     int id = currentIndex();
-    emit newTab(((ListPanel *)tabData(id).toLongLong())->virtualPath());
+    emit newTab((reinterpret_cast<ListPanel *>(tabData(id).toLongLong()))->virtualPath());
 }
 
 void PanelTabBar::setIcon(int index, ListPanel *panel)
@@ -391,7 +391,7 @@ void PanelTabBar::handleDragEvent(int tabIndex)
 void PanelTabBar::layoutTabs()
 {
     for (int i = 0; i < count(); i++) {
-        setPanelTextToTab(i, (ListPanel *)tabData(i).toLongLong());
+        setPanelTextToTab(i, reinterpret_cast<ListPanel *>(tabData(i).toLongLong()));
     }
 }
 

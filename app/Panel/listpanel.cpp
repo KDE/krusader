@@ -818,7 +818,7 @@ void ListPanel::updateFilesystemStats(const QString &metaInfo, const QString &fs
         statusText = metaInfo;
         mountPoint = freeSpaceText = "";
     } else {
-        const int perc = total == 0 ? 0 : (int)(((float)free / (float)total) * 100.0);
+        const int perc = total == 0 ? 0 : static_cast<int>((static_cast<float>(free) / static_cast<float>(total)) * 100.0);
         mountPoint = func->files()->mountPoint();
         statusText = i18nc(
             "%1=free space,%2=total space,%3=percentage of usage, "

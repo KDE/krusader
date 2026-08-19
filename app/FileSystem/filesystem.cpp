@@ -353,7 +353,7 @@ FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QU
     const time_t atime = kfi.time(KFileItem::AccessTime).toSecsSinceEpoch();
     const mode_t mode = kfi.mode() | kfi.permissions();
     const QDateTime creationTime = kfi.time(KFileItem::CreationTime);
-    const time_t btime = creationTime.isValid() ? creationTime.toSecsSinceEpoch() : (time_t)-1;
+    const time_t btime = creationTime.isValid() ? creationTime.toSecsSinceEpoch() : static_cast<time_t>(-1);
 
     // NOTE: we could get the mimetype (and file icon) from the kfileitem here but this is very
     // slow. Instead, the file item class has it's own (faster) way to determine the file type.
@@ -369,8 +369,8 @@ FileItem *FileSystem::createFileItemFromKIO(const KIO::UDSEntry &entry, const QU
                         -1,
                         atime,
                         btime,
-                        (uid_t)-1,
-                        (gid_t)-1,
+                        static_cast<uid_t>(-1),
+                        static_cast<gid_t>(-1),
                         kfi.user(),
                         kfi.group(),
                         kfi.isLink(),

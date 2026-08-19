@@ -37,7 +37,7 @@ void Filelight::Config::read()
     contrast = group.readEntry("contrast", 50);
     antiAliasFactor = group.readEntry("antiAliasFactor", 2);
     minFontPitch = group.readEntry("minFontPitch", QFont().pointSize() - 3);
-    scheme = (MapScheme)group.readEntry("scheme", 0);
+    scheme = static_cast<MapScheme>(group.readEntry("scheme", 0));
 
     defaultRingDepth = 4;
 }
@@ -51,5 +51,5 @@ void Filelight::Config::write()
     group.writeEntry("contrast", contrast);
     group.writeEntry("antiAliasFactor", antiAliasFactor);
     group.writeEntry("minFontPitch", minFontPitch);
-    group.writeEntry("scheme", (int)scheme);
+    group.writeEntry("scheme", static_cast<int>(scheme));
 }

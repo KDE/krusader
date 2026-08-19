@@ -247,9 +247,9 @@ void RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
 
             spacer = preSpacer + m_map.m_ringBreadth * (*it)->lvl;
 
-            x1 = cx + (int)(cosra * spacer);
-            y1 = cy - (int)(sinra * spacer);
-            y2 = y1 - (int)(sinra * (fullStrutLength - spacer));
+            x1 = cx + static_cast<int>(cosra * spacer);
+            y1 = cy - static_cast<int>(sinra * spacer);
+            y2 = y1 - static_cast<int>(sinra * (fullStrutLength - spacer));
 
             if (rightSide) { // righthand side, going upwards
 
@@ -262,7 +262,7 @@ void RadialMap::Widget::paintExplodedLabels(QPainter &paint) const
                     y2 = prevLeftY /*+ fmh*/;
             }
 
-            x2 = x1 - static_cast<int>(double(y2 - y1) / tan(ra));
+            x2 = x1 - static_cast<int>(static_cast<double>(y2 - y1) / tan(ra));
             ty = y2 + fmhD4;
 
             QString qs;

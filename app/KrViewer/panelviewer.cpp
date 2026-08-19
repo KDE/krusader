@@ -129,8 +129,7 @@ KParts::ReadOnlyPart *PanelViewer::getListerPart(bool hexMode)
         part = (*mimes)[QLatin1String("krusader_lister")];
 
     if (part) {
-        auto *lister = qobject_cast<Lister *>((KParts::ReadOnlyPart *)part);
-        if (lister)
+        if (auto *lister = qobject_cast<Lister *>(part))
             lister->setHexMode(hexMode);
     }
     return part;
@@ -191,7 +190,7 @@ KParts::ReadOnlyPart *PanelViewer::getDefaultPart(const KFileItem &fi)
     }
 
     KIO::filesize_t fileSize = fi.size();
-    KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit) * 0x100000;
+    KIO::filesize_t limit = static_cast<KIO::filesize_t>(group.readEntry("Lister Limit", _ListerLimit) * 0x100000);
 
     QString mimetype = fi.mimetype();
 
@@ -350,7 +349,7 @@ void PanelEditor::openFile(const KFileItem fi)
 {
     KIO::filesize_t fileSize = fi.size();
     KConfigGroup group(krConfig, "General");
-    KIO::filesize_t limitMB = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
+    KIO::filesize_t limitMB = static_cast<KIO::filesize_t>(group.readEntry("Lister Limit", _ListerLimit));
     QString mimetype = fi.mimetype();
 
     if (mode == KrViewer::Generic)
@@ -398,7 +397,7 @@ bool PanelEditor::queryClose()
 {
     if (!cpart)
         return true;
-    return dynamic_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->queryClose();
+    return dynamic_cast<KParts::ReadWritePart *>(static_cast<KParts::ReadOnlyPart *>(cpart))->queryClose();
 }
 
 bool PanelEditor::closeUrl()
@@ -406,7 +405,7 @@ bool PanelEditor::closeUrl()
     if (!cpart)
         return false;
 
-    dynamic_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->closeUrl(false);
+    dynamic_cast<KParts::ReadWritePart *>(static_cast<KParts::ReadOnlyPart *>(cpart))->closeUrl(false);
 
     setCurrentWidget(fallback);
     cpart = nullptr;
@@ -431,7 +430,7 @@ KParts::ReadOnlyPart *PanelEditor::createPart(QString mimetype)
 bool PanelEditor::isModified()
 {
     if (cpart)
-        return dynamic_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->isModified();
+        return dynamic_cast<KParts::ReadWritePart *>(static_cast<KParts::ReadOnlyPart *>(cpart))->isModified();
     else
         return false;
 }

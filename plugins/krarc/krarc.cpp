@@ -716,7 +716,7 @@ KIO::WorkerResult kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int
 
             // the file exists and we don't want to overwrite
             if ((!overwrite) && (QFile(getPath(dest)).exists())) {
-                return WorkerResult::fail((int)ERR_FILE_ALREADY_EXIST, QString(QFile::encodeName(getPath(dest))));
+                return WorkerResult::fail(static_cast<int>(ERR_FILE_ALREADY_EXIST), QString(QFile::encodeName(getPath(dest))));
             };
 
             const auto setArcFileResult = setArcFile(url);
@@ -928,9 +928,10 @@ KIO::WorkerResult kio_krarcProtocol::setArcFile(const QUrl &url)
        if the modification time equals with the current time. While this condition is true,
        we can say, that the archive is changing, so content reread is always necessary
        during that period. */
+
     if (m_archiveChanging)
         m_archiveChanged = true;
-    m_archiveChanging = (currTime == (time_t)m_arcFile->time(KFileItem::ModificationTime).toSecsSinceEpoch());
+    m_archiveChanging = (currTime == static_cast<time_t>(m_arcFile->time(KFileItem::ModificationTime).toSecsSinceEpoch()));
 
     m_arcPath = getPath(m_arcFile->url(), QUrl::StripTrailingSlash);
     m_arcType = detectArchive(m_encrypted, m_arcPath);

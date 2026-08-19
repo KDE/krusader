@@ -72,7 +72,7 @@ public:
             setTextAlignment(1, Qt::AlignRight);
             setTextAlignment(3, Qt::AlignHCenter);
             setTextAlignment(5, Qt::AlignRight);
-            item->setUserData((void *)this);
+            item->setUserData(static_cast<void *>(this));
 
             setColors(std::move(txt), std::move(base));
         }
@@ -106,7 +106,7 @@ public:
             setTextAlignment(1, Qt::AlignRight);
             setTextAlignment(3, Qt::AlignHCenter);
             setTextAlignment(5, Qt::AlignRight);
-            item->setUserData((void *)this);
+            item->setUserData(static_cast<void *>(this));
 
             setColors(std::move(txt), std::move(base));
         }

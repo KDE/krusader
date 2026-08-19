@@ -91,7 +91,7 @@ public:
     /** Return the file size. Returns 0 for directories with unknown size. */
     inline KIO::filesize_t getSize() const
     {
-        return m_size == (KIO::filesize_t)-1 ? 0 : m_size;
+        return m_size == static_cast<KIO::filesize_t>(-1) ? 0 : m_size;
     }
     /** Return the file size. Returns (KIO::filesize_t)-1 for directories with unknown size. */
     inline KIO::filesize_t getUISize() const

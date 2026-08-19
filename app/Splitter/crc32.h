@@ -18,7 +18,7 @@ private:
     static bool crc_initialized;
 
 public:
-    explicit CRC32(unsigned long initialValue = (unsigned long)-1);
+    explicit CRC32(unsigned long initialValue = static_cast<unsigned long>(-1));
 
     void update(unsigned char *buffer, qsizetype bufferLen);
     unsigned long result();

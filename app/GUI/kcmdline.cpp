@@ -261,7 +261,7 @@ QString KCMDLine::command() const
 KrActionBase::ExecType KCMDLine::execType() const
 {
     KConfigGroup grp(krConfig, "Private");
-    int i = grp.readEntry("Command Execution Mode", (int)0);
+    int i = grp.readEntry("Command Execution Mode", 0);
     return execModesMenu[i];
 }
 

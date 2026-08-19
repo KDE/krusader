@@ -128,7 +128,7 @@ FileItem *FileItem::createCopy(const FileItem &file, const QString &newName)
 
 char FileItem::isReadable() const
 {
-    if (m_uid != (uid_t)-1 && m_gid != (gid_t)-1)
+    if (m_uid != static_cast<uid_t>(-1) && m_gid != static_cast<gid_t>(-1))
         return KrPermHandler::readable(m_permissions, m_gid, m_uid);
     else
         return KrPermHandler::ftpReadable(m_owner, m_url.userName(), m_permissions);
@@ -136,7 +136,7 @@ char FileItem::isReadable() const
 
 char FileItem::isWriteable() const
 {
-    if (m_uid != (uid_t)-1 && m_gid != (gid_t)-1)
+    if (m_uid != static_cast<uid_t>(-1) && m_gid != static_cast<gid_t>(-1))
         return KrPermHandler::writeable(m_permissions, m_gid, m_uid);
     else
         return KrPermHandler::ftpWriteable(m_owner, m_url.userName(), m_permissions);
@@ -144,7 +144,7 @@ char FileItem::isWriteable() const
 
 char FileItem::isExecutable() const
 {
-    if (m_uid != (uid_t)-1 && m_gid != (gid_t)-1)
+    if (m_uid != static_cast<uid_t>(-1) && m_gid != static_cast<gid_t>(-1))
         return KrPermHandler::executable(m_permissions, m_gid, m_uid);
     else
         return KrPermHandler::ftpExecutable(m_owner, m_url.userName(), m_permissions);

@@ -92,7 +92,7 @@ bool RadialMap::Builder::build(const Directory *const dir, const unsigned int de
 
     for (ConstIterator<File> it = dir->constIterator(); it != dir->end(); ++it) {
         if ((*it)->size() > m_limits[depth]) {
-            auto a_len = (unsigned int)(5760 * ((double)(*it)->size() / (double)m_root->size()));
+            auto a_len = static_cast<unsigned int>(5760 * (static_cast<double>((*it)->size()) / static_cast<double>(m_root->size())));
 
             auto *s = new Segment(*it, a_start, a_len);
 

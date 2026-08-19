@@ -6,6 +6,7 @@
 */
 
 #include "lister.h"
+#include <qtypes.h>
 
 // QtCore
 #include <QDate>
@@ -129,7 +130,7 @@ void ListerTextArea::calculateText(const bool forcedUpdate)
     const int sizeY = contentRect.height() / fontHeight;
     _pageSize = sizeY;
 
-    const int textViewportWidth = std::max(contentRect.width() - (int)fontWidth, 0);
+    const int textViewportWidth = std::max(contentRect.width() - static_cast<int>(fontWidth), 0);
 
     setTabStopDistance(fontWidth * _tabWidth);
 
@@ -225,7 +226,7 @@ void ListerTextArea::fileToTextPositionOnScreen(const qint64 p, const bool isfir
 
     const qint64 rowStart = _rowStarts[y];
     if (_hexMode) {
-        x = _lister->hexIndexToPosition(_sizeX, (int)(p - rowStart));
+        x = _lister->hexIndexToPosition(_sizeX, static_cast<int>(p - rowStart));
         return;
     }
 
@@ -436,7 +437,7 @@ QString ListerTextArea::readSection(const qint64 p1, const qint64 p2)
     QScopedPointer<QTextDecoder> decoder(_lister->codec()->makeDecoder());
 
     do {
-        const qint64 maxBytes = std::min(qint64(_sizeX) * _sizeY * MAX_CHAR_LENGTH, sel2 - pos);
+        const qint64 maxBytes = std::min(static_cast<qint64>(_sizeX) * _sizeY * MAX_CHAR_LENGTH, sel2 - pos);
         const QByteArray chunk = _lister->cacheChunk(pos, maxBytes);
         if (chunk.isEmpty())
             break;
@@ -677,7 +678,7 @@ void ListerTextArea::keyPressEvent(QKeyEvent *ke)
             _cursorAnchorPos = -1;
             ke->accept();
             slotActionTriggered(QAbstractSlider::SliderToMinimum);
-            setCursorPositionInDocument((qint64)0, true);
+            setCursorPositionInDocument(0, true);
             return;
         case Qt::Key_A:
         case Qt::Key_End: {
@@ -819,7 +820,7 @@ void ListerTextArea::slotActionTriggered(int action)
                 from = 0;
                 break;
             }
-            const qsizetype backRef = std::max(from - 20, qsizetype(0));
+            const qsizetype backRef = std::max(from - 20, static_cast<qsizetype>(0));
             const qsizetype size = from - backRef + encodedEnter.size();
             const QString decoded = _lister->codec()->toUnicode(chunk.mid(backRef, size));
             if (decoded.endsWith(QLatin1String("\n"))) {
@@ -1454,7 +1455,7 @@ void Lister::slotUpdate()
     bool isfirst = false;
     const qint64 cursor = _textArea->getCursorPosition(isfirst);
 
-    const int percent = (_fileSize == 0) ? 0 : (int)((201 * cursor) / _fileSize / 2);
+    const int percent = (_fileSize == 0) ? 0 : static_cast<int>((201 * cursor) / _fileSize / 2);
 
     const QString status = i18n("Column: %1, Position: %2 (%3, %4%)", cursorX, cursor, _fileSize, percent);
     _statusLabel->setText(status);
@@ -1550,7 +1551,7 @@ void Lister::search(const bool forward, const bool restart)
                 setColor(false, false);
                 return;
             }
-            _searchHexQuery.push_back((char)c);
+            _searchHexQuery.push_back(static_cast<char>(c));
         }
     } else {
         _searchQuery.setContent(_searchLineEdit->text(), caseSensitive, matchWholeWord, codec()->name(), regExp);
@@ -1844,7 +1845,7 @@ void Lister::updateProgressBar()
     }
 
     const qint64 pcnt = (_fileSize == 0) ? 1000 : (2001 * _searchPosition) / _fileSize / 2;
-    const auto pctInt = (int)pcnt;
+    const auto pctInt = static_cast<int>(pcnt);
     if (_searchProgressBar->value() != pctInt)
         _searchProgressBar->setValue(pctInt);
 }
@@ -1868,7 +1869,7 @@ void Lister::jumpToPosition()
             KMessageBox::error(_textArea, i18n("Invalid number."), i18n("Jump to position"));
             return;
         }
-        pos = (qint64)upos;
+        pos = static_cast<qint64>(upos);
     } else {
         bool ok;
         const qulonglong upos = res.toULongLong(&ok);
@@ -1876,7 +1877,7 @@ void Lister::jumpToPosition()
             KMessageBox::error(_textArea, i18n("Invalid number."), i18n("Jump to position"));
             return;
         }
-        pos = (qint64)upos;
+        pos = static_cast<qint64>(upos);
     }
 
     if (pos < 0 || pos > _fileSize) {
@@ -1950,7 +1951,7 @@ void Lister::slotDataSend(KIO::Job *, QByteArray &array)
     qint64 max = _saveEnd - _savePosition;
     if (max > 1000)
         max = 1000;
-    array = cacheChunk(_savePosition, (int)max);
+    array = cacheChunk(_savePosition, static_cast<int>(max));
     _savePosition += array.size();
 }
 
@@ -2077,7 +2078,7 @@ QStringList Lister::readLines(qint64 &filePos, const qint64 endPos, const int co
         return readHexLines(filePos, endPos, columns, lines);
     }
     QStringList list;
-    const int maxBytes = std::min(columns * lines * MAX_CHAR_LENGTH, (int)(endPos - filePos));
+    const auto maxBytes = std::min(columns * lines * MAX_CHAR_LENGTH, static_cast<int>(endPos - filePos));
     if (maxBytes <= 0) {
         return list;
     }
@@ -2177,7 +2178,7 @@ QStringList Lister::readHexLines(qint64 &filePos, const qint64 endPos, const int
     QStringList list;
 
     const qint64 choppedPos = (filePos / bytesPerRow) * bytesPerRow;
-    const int maxBytes = std::min(bytesPerRow * lines, (int)(endPos - choppedPos));
+    const auto maxBytes = std::min(bytesPerRow * lines, static_cast<int>(endPos - choppedPos));
     if (maxBytes <= 0)
         return list;
 
@@ -2208,7 +2209,7 @@ QStringList Lister::readHexLines(qint64 &filePos, const qint64 endPos, const int
                 charData += QString(" ");
             } else {
                 char c = chunk.at(cnt);
-                auto charCode = (int)c;
+                auto charCode = static_cast<int>(c);
                 if (charCode < 0)
                     charCode += 256;
                 QString hex;

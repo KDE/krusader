@@ -11,6 +11,7 @@ set(kio_iso_PART_SRCS
     ../../app/krdebuglogger.cpp
 )
 
+set_source_files_properties(iso.cpp kiso.cpp PROPERTIES COMPILE_FLAGS "-Wno-old-style-cast")
 kcoreaddons_add_plugin(kio_iso SOURCES ${kio_iso_PART_SRCS} ${libisofs_SRCS} INSTALL_NAMESPACE "kf6/kio")
 
 #this is a library so it needs to enforce it's translation domain, not use the application's domain.

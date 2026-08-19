@@ -81,7 +81,7 @@ public:
         SynchronizerFileItem *currentItem;
 
         while ((currentItem = synchronizer->getItemAt(ndx++)) != nullptr) {
-            auto *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
+            auto *viewItem = static_cast<SynchronizerGUI::SyncViewItem *>(currentItem->userData());
 
             if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
                 continue;
@@ -799,7 +799,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         SynchronizerFileItem *currentItem;
 
         while ((currentItem = synchronizer.getItemAt(ndx++)) != nullptr) {
-            auto *viewItem = (SyncViewItem *)currentItem->userData();
+            auto *viewItem = static_cast<SyncViewItem *>(currentItem->userData());
 
             if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
                 continue;
@@ -847,7 +847,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         SynchronizerFileItem *currentItem;
 
         while ((currentItem = synchronizer.getItemAt(ndx++)) != nullptr) {
-            auto *viewItem = (SyncViewItem *)currentItem->userData();
+            auto *viewItem = static_cast<SyncViewItem *>(currentItem->userData());
 
             if (!viewItem || viewItem->isHidden())
                 continue;
@@ -861,7 +861,7 @@ void SynchronizerGUI::executeOperation(SynchronizerFileItem *item, int op)
         SynchronizerFileItem *currentItem;
 
         while ((currentItem = synchronizer.getItemAt(ndx++)) != nullptr) {
-            auto *viewItem = (SyncViewItem *)currentItem->userData();
+            auto *viewItem = static_cast<SyncViewItem *>(currentItem->userData());
 
             if (!viewItem || viewItem->isHidden())
                 continue;
@@ -1093,7 +1093,7 @@ void SynchronizerGUI::addFile(SynchronizerFileItem *item)
                                     rightName);
         lastItem = listItem;
     } else {
-        dirItem = (SyncViewItem *)item->parent()->userData();
+        dirItem = static_cast<SyncViewItem *>(item->parent()->userData());
         if (dirItem) {
             dirItem->setExpanded(true);
             listItem = new SyncViewItem(item,
@@ -1124,7 +1124,7 @@ void SynchronizerGUI::addFile(SynchronizerFileItem *item)
 
 void SynchronizerGUI::markChanged(SynchronizerFileItem *item, bool ensureVisible)
 {
-    auto *listItem = (SyncViewItem *)item->userData();
+    auto *listItem = static_cast<SyncViewItem *>(item->userData());
     if (listItem) {
         if (!item->isMarked()) {
             listItem->setHidden(true);
@@ -1190,7 +1190,7 @@ void SynchronizerGUI::enableMarkButtons()
 QString SynchronizerGUI::convertTime(time_t time) const
 {
     // convert the time_t to struct tm
-    struct tm *t = localtime((time_t *)&time);
+    struct tm *t = localtime(&time);
 
     QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
     return QLocale().toString(tmp, QLocale::ShortFormat);
@@ -1581,7 +1581,7 @@ void SynchronizerGUI::copyToClipboard(bool isLeft)
     SynchronizerFileItem *currentItem;
 
     while ((currentItem = synchronizer.getItemAt(ndx++)) != nullptr) {
-        auto *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
+        auto *viewItem = static_cast<SynchronizerGUI::SyncViewItem *>(currentItem->userData());
 
         if (!viewItem || !viewItem->isSelected() || viewItem->isHidden())
             continue;

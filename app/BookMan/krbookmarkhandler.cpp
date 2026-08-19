@@ -769,7 +769,7 @@ bool KrBookmarkHandler::eventFilter(QObject *obj, QEvent *ev)
         // trigger the matched menu item or set an active item accordingly
         if (nMatches == 1) {
             _setQuickSearchText("");
-            if ((bool)matchedAction->menu()) {
+            if (matchedAction->menu() != nullptr) {
                 menu->setActiveAction(matchedAction);
             } else {
                 matchedAction->activate(QAction::Trigger);

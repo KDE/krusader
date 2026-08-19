@@ -53,7 +53,7 @@ public:
     bool nonmountFilesystem(const QString &type, const QString &mntPoint);
     QAction *action()
     {
-        return (QAction *)_action;
+        return reinterpret_cast<QAction *>(_action);
     }
 
     explicit KMountMan(QWidget *parent);

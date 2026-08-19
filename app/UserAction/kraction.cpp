@@ -358,7 +358,7 @@ void KrActionProc::addStdout()
 
 // KrAction
 KrAction::KrAction(KActionCollection *parent, const QString &name)
-    : QAction((QObject *)parent)
+    : QAction(static_cast<QObject *>(parent))
 {
     _actionCollection = parent;
     setObjectName(name);

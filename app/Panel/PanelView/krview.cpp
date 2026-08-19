@@ -236,7 +236,9 @@ void KrView::initProperties()
         sortOps |= KrViewProperties::LocaleAwareSort;
     auto sortOptions = static_cast<KrViewProperties::SortOptions>(sortOps);
 
-    KrViewProperties::SortMethod sortMethod = static_cast<KrViewProperties::SortMethod>(grpSvr.readEntry("Sort method", (int)_DefaultSortMethod));
+    KrViewProperties::SortMethod sortMethod = static_cast<KrViewProperties::SortMethod>(
+        grpSvr.readEntry("Sort method", static_cast<int>(_DefaultSortMethod))
+    );
     const bool humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
 
     // see KDE bug #40131
@@ -305,7 +307,7 @@ QPixmap KrView::processIcon(const QPixmap &icon, bool dim, const QColor &dimColo
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);
     p.fillRect(0, 0, icon.width(), icon.height(), dimColor);
     p.setCompositionMode(QPainter::CompositionMode_SourceOver);
-    p.setOpacity((qreal)dimFactor / (qreal)100);
+    p.setOpacity(static_cast<qreal>(dimFactor) / 100.0);
     p.drawPixmap(0, 0, pixmap);
 
     return QPixmap::fromImage(dimmed, Qt::ColorOnly | Qt::ThresholdDither | Qt::ThresholdAlphaDither | Qt::NoOpaqueDetection);
@@ -974,7 +976,8 @@ void KrView::applySettingsToOthers()
 
 void KrView::sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending)
 {
-    if (sortColumn == _properties->sortColumn && descending == (bool)(_properties->sortOptions & KrViewProperties::Descending))
+    if (sortColumn == _properties->sortColumn && 
+        descending == static_cast<bool>(_properties->sortOptions & KrViewProperties::Descending))
         return;
 
     int options = _properties->sortOptions;

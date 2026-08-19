@@ -294,7 +294,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent, 
     containsRegExp->setText(i18n("RegExp"));
     // Populate the popup menu.
     auto *patterns = new QMenu(containsRegExp);
-    for (int i = 0; (unsigned)i < sizeof(items) / sizeof(items[0]); i++) {
+    for (int i = 0; static_cast<unsigned>(i) < sizeof(items) / sizeof(items[0]); i++) {
         patterns->addAction(new RegExpAction(patterns, KLocalizedString(items[i].description).toString(), items[i].regExp, items[i].cursorAdjustment));
     }
     connect(containsRegExp, &QToolButton::toggled, this, &GeneralFilter::slotDisable);

@@ -23,9 +23,9 @@
 
 #include <KIO/DeleteJob>
 #include <KIO/JobUiDelegate>
+#include <KIO/OpenUrlJob>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KIO/OpenUrlJob>
 #include <KTerminalLauncherJob>
 
 void RadialMap::Widget::resizeEvent(QResizeEvent *)
@@ -80,7 +80,7 @@ const RadialMap::Segment *RadialMap::Widget::segmentAt(QPoint &e) const
         double length = std::hypot(e.x(), e.y());
 
         if (length >= m_map.m_innerRadius) { // not hovering over inner circle
-            uint depth = ((int)length - m_map.m_innerRadius) / m_map.m_ringBreadth;
+            auto depth = (static_cast<uint>(length) - m_map.m_innerRadius) / m_map.m_ringBreadth;
 
             if (depth <= m_map.m_visibleDepth) { //**** do earlier since you can //** check not outside of range
                 // vector calculation, reduces to simple trigonometry
@@ -88,7 +88,7 @@ const RadialMap::Segment *RadialMap::Widget::segmentAt(QPoint &e) const
                 // ai = x, bi=1, aj=y, bj=0
                 // cos angle = x / (length)
 
-                auto a = (uint)(acos((double)e.x() / length) * 916.736); // 916.7324722 = #radians in circle * 16
+                auto a = static_cast<uint>(acos(static_cast<double>(e.x()) / length) * 916.736); // 916.7324722 = #radians in circle * 16
 
                 // acos only understands 0-180 degrees
                 if (e.y() < 0)
@@ -169,7 +169,7 @@ void RadialMap::Widget::mousePressEvent(QMouseEvent *e)
 
             QAction *result = popup.exec(e->globalPosition().toPoint());
             if (result == nullptr)
-                result = (QAction *)-1; // sanity
+                result = reinterpret_cast<QAction*>(-1); // sanity
 
             if (result == actKonq) {
                 // KJob jobs will delete themselves when they finish (see kjob.h for more info)

@@ -131,7 +131,7 @@ KIso::KIso(const QString &filename, const QString &_mimetype)
                 file.getChar(&firstByte);
                 file.getChar(&secondByte);
                 file.getChar(&thirdByte);
-                if (firstByte == 0037 && secondByte == (char)0213)
+                if (firstByte == 0037 && secondByte == static_cast<char>(0213))
                     mimetype = "application/x-gzip";
                 else if (firstByte == 'B' && secondByte == 'Z' && thirdByte == 'h')
                     mimetype = "application/x-bzip2";
@@ -201,7 +201,7 @@ static int readf(char *buf, unsigned int start, unsigned int len, void *udata)
     // see bug #372023 for details
     dev->seek(0);
 
-    if (dev->seek((qint64)start << (qint64)11)) {
+    if (dev->seek(static_cast<qint64>(start) << static_cast<qint64>(11))) {
         if ((dev->read(buf, len << 11u)) != -1)
             return (len);
     }
@@ -269,7 +269,7 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
                 if (iso->joliet) {
                     for (i = 0; i < (isonum_711(idr->name_len) - 1); i += 2) {
                         void *p = &(idr->name[i]);
-                        QChar ch(be2me_16(*(ushort *)p));
+                        QChar ch(be2me_16(*static_cast<ushort *>(p)));
                         if (ch == ';')
                             break;
                         path += ch;
@@ -300,7 +300,7 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
                                  user,
                                  group,
                                  symlink,
-                                 (long long)(isonum_733(idr->extent)) << (long long)11,
+                                 static_cast<long long>(isonum_733(idr->extent)) << static_cast<long long>(11),
                                  isonum_733(idr->size));
             if (z_size)
                 (dynamic_cast<KIsoFile *>(entry))->setZF(z_algo, z_params, z_size);
@@ -342,8 +342,8 @@ void KIso::addBoot(struct el_torito_boot_descriptor *bootdesc)
                          dirent->user(),
                          dirent->group(),
                          QString(),
-                         (long long)isonum_731(bootdesc->boot_catalog) << (long long)11,
-                         (long long)2048);
+                         static_cast<long long>(isonum_731(bootdesc->boot_catalog)) << static_cast<long long>(11),
+                         static_cast<long long>(2048));
     dirent->addEntry(entry);
     if (!ReadBootTable(&readf, isonum_731(bootdesc->boot_catalog), &boot, this)) {
         i = 1;
@@ -362,8 +362,8 @@ void KIso::addBoot(struct el_torito_boot_descriptor *bootdesc)
                                  dirent->user(),
                                  dirent->group(),
                                  QString(),
-                                 (long long)isonum_731(be->data.d_e.start) << (long long)11,
-                                 size << (long long)9);
+                                 static_cast<long long>(isonum_731(be->data.d_e.start)) << static_cast<long long>(11),
+                                 size << static_cast<long long>(9));
             dirent->addEntry(entry);
             be = be->next;
             i++;
@@ -417,7 +417,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
     } else {
         /* If it's a block device, try to query the track layout (for multisession) */
         if (m_startsec == -1 && S_ISBLK(buf.st_mode))
-            trackno = getTracks(m_filename.toLatin1().data(), (int *)&tracks);
+            trackno = getTracks(m_filename.toLatin1().data(), reinterpret_cast<int *>(&tracks));
     }
     uid.setNum(buf.st_uid);
     gid.setNum(buf.st_gid);
@@ -452,7 +452,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
             switch (isonum_711(desc->data.type)) {
             case ISO_VD_BOOT:
 
-                bootdesc = (struct el_torito_boot_descriptor *)&(desc->data);
+                bootdesc = reinterpret_cast<struct el_torito_boot_descriptor *>(&(desc->data));
                 if (!memcmp(EL_TORITO_ID, bootdesc->system_id, ISODCL(8, 39))) {
                     path = "El Torito Boot";
                     if (c_b > 1)
@@ -468,7 +468,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
 
             case ISO_VD_PRIMARY:
             case ISO_VD_SUPPLEMENTARY:
-                idr = (struct iso_directory_record *)&(((struct iso_primary_descriptor *)&desc->data)->root_directory_record);
+                idr = reinterpret_cast<struct iso_directory_record *>(&((reinterpret_cast<struct iso_primary_descriptor *>(&desc->data))->root_directory_record));
                 joliet = JolietLevel(&desc->data);
                 if (joliet) {
                     QTextStream(&path) << "Joliet level " << joliet;

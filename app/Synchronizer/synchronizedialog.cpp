@@ -196,7 +196,7 @@ void SynchronizeDialog::processedSizes(int leftNr, KIO::filesize_t leftSize, int
     if (totalSum == 0)
         totalSum++;
 
-    progress->setValue((int)(((double)processedSum / (double)totalSum) * 1000));
+    progress->setValue(static_cast<int>((static_cast<long double>(processedSum) / static_cast<long double>(totalSum)) * 1000));
 }
 
 void SynchronizeDialog::pauseOrResume()

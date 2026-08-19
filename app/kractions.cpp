@@ -232,7 +232,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     selectGroup->addAction(actSelectSingle);
     selectGroup->addAction(actSelectDifferentAndSingle);
     selectGroup->addAction(actSelectDifferent);
-    if (compareMode < (int)(sizeof(compareArray) / sizeof(QAction **)) - 1)
+    if (compareMode < static_cast<int>(sizeof(compareArray) / sizeof(QAction **)) - 1)
         (*compareArray[compareMode])->setChecked(true);
     NEW_KACTION(actExecStartAndForget, i18n("Start and &Forget"), nullptr, 0, SLOTS, SLOT(execTypeSetup()), "exec_start_and_forget");
     NEW_KACTION(actExecCollectSeparate,
@@ -257,7 +257,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     actionGroup->addAction(actExecCollectTogether);
     actionGroup->addAction(actExecTerminalExternal);
     actionGroup->addAction(actExecTerminalEmbedded);
-    if (cmdExecMode < (int)(sizeof(execTypeArray) / sizeof(QAction **)) - 1)
+    if (cmdExecMode < static_cast<int>(sizeof(execTypeArray) / sizeof(QAction **)) - 1)
         (*execTypeArray[cmdExecMode])->setChecked(true);
 
     NEW_KACTION(actHomeTerminal, i18n("Start &Terminal"), "utilities-terminal", 0, SLOTS, SLOT(homeTerminal()), "terminal@home");

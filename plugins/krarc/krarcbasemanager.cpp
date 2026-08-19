@@ -167,25 +167,25 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, const QString &fileName
                     encrypted = (buffer[6] & 1);
                 else if (type == "arj") {
                     if (sizeMax > 4) {
-                        long headerSize = ((unsigned char *)buffer)[2] + 256 * ((unsigned char *)buffer)[3];
+                        long headerSize = (reinterpret_cast<unsigned char *>(buffer))[2] + 256 * (reinterpret_cast<unsigned char *>(buffer))[3];
                         long fileHeader = headerSize + 10;
-                        if (fileHeader + 9 < sizeMax && buffer[fileHeader] == (char)0x60 && buffer[fileHeader + 1] == (char)0xea)
+                        if (fileHeader + 9 < sizeMax && buffer[fileHeader] == static_cast<char>(0x60) && buffer[fileHeader + 1] == static_cast<char>(0xea))
                             encrypted = (buffer[fileHeader + 8] & 1);
                     }
                 } else if (type == "rar") {
-                    if (sizeMax > 13 && buffer[9] == (char)0x73) {
+                    if (sizeMax > 13 && buffer[9] == static_cast<char>(0x73)) {
                         if (buffer[10] & 0x80) { // the header is encrypted?
                             encrypted = true;
                         } else {
                             long offset = 7;
-                            long mainHeaderSize = ((unsigned char *)buffer)[offset + 5] + 256 * ((unsigned char *)buffer)[offset + 6];
+                            long mainHeaderSize = (reinterpret_cast<unsigned char *>(buffer))[offset + 5] + 256 * (reinterpret_cast<unsigned char *>(buffer))[offset + 6];
                             offset += mainHeaderSize;
                             while (offset + 10 < sizeMax) {
-                                long headerSize = ((unsigned char *)buffer)[offset + 5] + 256 * ((unsigned char *)buffer)[offset + 6];
+                                long headerSize = (reinterpret_cast<unsigned char *>(buffer))[offset + 5] + 256 * (reinterpret_cast<unsigned char *>(buffer))[offset + 6];
                                 bool isDir = (buffer[offset + 7] == '\0') && (buffer[offset + 8] == '\0') && (buffer[offset + 9] == '\0')
                                     && (buffer[offset + 10] == '\0');
 
-                                if (buffer[offset + 2] != (char)0x74)
+                                if (buffer[offset + 2] != static_cast<char>(0x74))
                                     break;
                                 if (!isDir) {
                                     encrypted = (buffer[offset + 3] & 4) != 0;
@@ -197,14 +197,14 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, const QString &fileName
                     }
                 } else if (type == "ace") {
                     long offset = 0;
-                    long mainHeaderSize = ((unsigned char *)buffer)[offset + 2] + 256 * ((unsigned char *)buffer)[offset + 3] + 4;
+                    long mainHeaderSize = (reinterpret_cast<unsigned char *>(buffer))[offset + 2] + 256 * (reinterpret_cast<unsigned char *>(buffer))[offset + 3] + 4;
                     offset += mainHeaderSize;
                     while (offset + 10 < sizeMax) {
-                        long headerSize = ((unsigned char *)buffer)[offset + 2] + 256 * ((unsigned char *)buffer)[offset + 3] + 4;
+                        long headerSize = (reinterpret_cast<unsigned char *>(buffer))[offset + 2] + 256 * (reinterpret_cast<unsigned char *>(buffer))[offset + 3] + 4;
                         bool isDir =
                             (buffer[offset + 11] == '\0') && (buffer[offset + 12] == '\0') && (buffer[offset + 13] == '\0') && (buffer[offset + 14] == '\0');
 
-                        if (buffer[offset + 4] != (char)0x01)
+                        if (buffer[offset + 4] != static_cast<char>(0x01))
                             break;
                         if (!isDir) {
                             encrypted = (buffer[offset + 6] & 64) != 0;
@@ -226,9 +226,9 @@ QString KrArcBaseManager::detectArchive(bool &encrypted, const QString &fileName
             unsigned checksum = 32 * 8;
             char chksum[9];
             for (int i = 0; i != 512; i++)
-                checksum += ((unsigned char *)buffer)[i];
+                checksum += (reinterpret_cast<unsigned char *>(buffer))[i];
             for (int i = 148; i != 156; i++)
-                checksum -= ((unsigned char *)buffer)[i];
+                checksum -= (reinterpret_cast<unsigned char *>(buffer))[i];
             sprintf(chksum, "0%o", checksum);
             if (!memcmp(buffer + 148, chksum, strlen(chksum))) {
                 auto k = strlen(chksum);

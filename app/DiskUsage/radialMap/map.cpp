@@ -86,7 +86,7 @@ void RadialMap::Map::make(const Directory *tree, bool refresh)
             if (tree->size() > File::DENOMINATOR[i])
                 break;
 
-        m_centerText = tree->humanReadableSize((File::UnitPrefix)i);
+        m_centerText = tree->humanReadableSize(static_cast<File::UnitPrefix>(i));
     }
 
     // paint the pixmap
@@ -156,15 +156,15 @@ void RadialMap::Map::colorise()
 {
     QColor cp, cb;
     double darkness = 1;
-    double contrast = (double)Config::contrast / (double)100;
+    auto contrast = static_cast<double>(Config::contrast) / 100.0;
     int h, s1, s2, v1, v2;
 
     QColor kdeColour[2] = {KColorScheme(QPalette::Inactive, KColorScheme::Window).background().color(),
                            KColorScheme(QPalette::Active, KColorScheme::Window).background(KColorScheme::ActiveBackground).color()};
 
-    double deltaRed = (double)(kdeColour[0].red() - kdeColour[1].red()) / 2880; // 2880 for semicircle
-    double deltaGreen = (double)(kdeColour[0].green() - kdeColour[1].green()) / 2880;
-    double deltaBlue = (double)(kdeColour[0].blue() - kdeColour[1].blue()) / 2880;
+    auto deltaRed =   static_cast<double>(kdeColour[0].red() - kdeColour[1].red()) / 2880.0; // 2880 for semicircle
+    auto deltaGreen = static_cast<double>(kdeColour[0].green() - kdeColour[1].green()) / 2880.0;
+    auto deltaBlue =  static_cast<double>(kdeColour[0].blue() - kdeColour[1].blue()) / 2880.0;
 
     for (uint i = 0; i <= m_visibleDepth; ++i, darkness += 0.04) {
         for (Iterator<Segment> it = m_signature[i].iterator(); it != m_signature[i].end(); ++it) {
@@ -178,9 +178,9 @@ void RadialMap::Map::colorise()
                 if (a > 2880)
                     a = 2880 - (a - 2880);
 
-                h = (int)(deltaRed * a) + kdeColour[1].red();
-                s1 = (int)(deltaGreen * a) + kdeColour[1].green();
-                v1 = (int)(deltaBlue * a) + kdeColour[1].blue();
+                h = static_cast<int>(deltaRed * a) + kdeColour[1].red();
+                s1 = static_cast<int>(deltaGreen * a) + kdeColour[1].green();
+                v1 = static_cast<int>(deltaBlue * a) + kdeColour[1].blue();
 
                 cb.setRgb(h, s1, v1);
                 cb.getHsv(&h, &s1, &v1);
@@ -198,7 +198,7 @@ void RadialMap::Map::colorise()
             default:
                 h = static_cast<int>((*it)->start() / 16);
                 s1 = 160;
-                v1 = (int)(255.0 / darkness); //****doing this more often than once seems daft!
+                v1 = static_cast<int>(255.0 / darkness); //****doing this more often than once seems daft!
             }
 
             v2 = v1 - static_cast<int>(contrast * v1);
@@ -263,7 +263,7 @@ void RadialMap::Map::paint(unsigned int scaleFactor)
         rect.setCoords(x1, y1, x2, y2);
 
         step *= scaleFactor;
-        QPixmap::operator=(QPixmap(this->size() * (int)scaleFactor));
+        QPixmap::operator=(QPixmap(this->size() * static_cast<int>(scaleFactor)));
     } else if (m_ringBreadth != MAX_RING_BREADTH && m_ringBreadth != MIN_RING_BREADTH) {
         excess = rect.width() % m_ringBreadth;
         ++step;
@@ -279,7 +279,7 @@ void RadialMap::Map::paint(unsigned int scaleFactor)
     for (int x = m_visibleDepth; x >= 0; --x) {
         int baseRadius = rect.width() / 2;
         // clever geometric trick to find largest angle that will give biggest arrow head
-        auto a_max = static_cast<int>(acos((double)baseRadius / double((baseRadius + 5) * scaleFactor)) * (180 * 16 / M_PI));
+        auto a_max = static_cast<int>(acos(baseRadius / static_cast<double>((baseRadius + 5) * scaleFactor)) * (180 * 16 / M_PI));
 
         for (ConstIterator<Segment> it = m_signature[x].constIterator(); it != m_signature[x].end(); ++it) {
             // draw the pie segments, most of this code is concerned with drawing the little
@@ -363,7 +363,7 @@ void RadialMap::Map::paint(unsigned int scaleFactor)
         rect.setCoords(x1, y1, x2, y2);
 
         QImage img = this->toImage();
-        img = img.scaled(this->size() / (int)scaleFactor, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+        img = img.scaled(this->size() / static_cast<int>(scaleFactor), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
         this->QPixmap::operator=(fromImage(img, Qt::AutoColor));
 
         paint.begin(this);

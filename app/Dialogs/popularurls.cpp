@@ -310,7 +310,7 @@ PopularUrlsDlg::PopularUrlsDlg()
     mainLayout->addWidget(buttonBox);
 
     setTabOrder(search, urls);
-    setTabOrder((QWidget *)urls, buttonBox->button(QDialogButtonBox::Close));
+    setTabOrder(static_cast<QWidget *>(urls), buttonBox->button(QDialogButtonBox::Close));
 
     connect(buttonBox, &QDialogButtonBox::rejected, this, &PopularUrlsDlg::reject);
     connect(urls, &KrTreeWidget::activated, this, &PopularUrlsDlg::slotItemSelected);

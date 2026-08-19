@@ -317,7 +317,7 @@ bool KgProtocols::isChanged()
     KConfigGroup group(krConfig, "Protocols");
     QStringList protList = group.readEntry("Handled Protocols", QStringList());
 
-    if ((int)protList.count() != linkList->topLevelItemCount())
+    if (static_cast<int>(protList.count()) != linkList->topLevelItemCount())
         return true;
 
     for (int i = 0; i != linkList->topLevelItemCount(); i++) {
@@ -328,7 +328,7 @@ bool KgProtocols::isChanged()
 
         QStringList mimes = group.readEntry(QString("Mimes For %1").arg(item->text(0)), QStringList());
 
-        if ((int)mimes.count() != item->childCount())
+        if (static_cast<int>(mimes.count()) != item->childCount())
             return true;
 
         for (int j = 0; j != item->childCount(); j++) {

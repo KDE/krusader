@@ -178,7 +178,7 @@ int Synchronizer::compare(QString leftURL,
 void Synchronizer::compareLoop()
 {
     while (!stopped && !stack.isEmpty()) {
-        for (int thread = 0; thread < (int)stack.count() && thread < parallelThreads; thread++) {
+        for (int thread = 0; thread < static_cast<int>(stack.count()) && thread < parallelThreads; thread++) {
             SynchronizerTask *entry = stack.at(thread);
 
             if (entry->state() == ST_STATE_NEW)
@@ -553,7 +553,7 @@ SynchronizerFileItem *Synchronizer::addLeftOnlyItem(SynchronizerFileItem *parent
                    group,
                    QString(),
                    mode,
-                   (mode_t)-1,
+                   static_cast<mode_t>(-1),
                    acl,
                    QString(),
                    asymmetric ? TT_DELETE : TT_COPY_TO_RIGHT,
@@ -591,7 +591,7 @@ SynchronizerFileItem *Synchronizer::addRightOnlyItem(SynchronizerFileItem *paren
                    owner,
                    QString(),
                    group,
-                   (mode_t)-1,
+                   static_cast<mode_t>(-1),
                    mode,
                    QString(),
                    acl,
@@ -691,13 +691,13 @@ SynchronizerFileItem *Synchronizer::addDuplicateItem(SynchronizerFileItem *paren
                                          rightMode,
                                          leftACL,
                                          rightACL,
-                                         (TaskType)(task + uncertain),
+                                         static_cast<TaskType>(task + uncertain),
                                          isDir,
                                          isTemp);
 
     if (uncertain == TT_UNKNOWN) {
-        QUrl leftURL = Synchronizer::fsUrl(leftDir.isEmpty() ? (QString)(leftBaseDir + leftName) : leftBaseDir + leftDir + QString('/') + leftName);
-        QUrl rightURL = Synchronizer::fsUrl(rightDir.isEmpty() ? (QString)(rightBaseDir + rightName) : rightBaseDir + rightDir + '/' + rightName);
+        QUrl leftURL = Synchronizer::fsUrl(leftDir.isEmpty() ? static_cast<QString> (leftBaseDir + leftName): leftBaseDir + leftDir + QString('/') + leftName);
+        QUrl rightURL = Synchronizer::fsUrl(rightDir.isEmpty() ? static_cast<QString>(rightBaseDir + rightName) : rightBaseDir + rightDir + '/' + rightName);
         stack.append(new CompareContentTask(this, item, leftURL, rightURL, leftSize));
     }
 
@@ -1096,7 +1096,7 @@ void Synchronizer::synchronizeLoop()
         return;
     }
 
-    while ((int)jobMap.count() < parallelThreads) {
+    while (static_cast<int>(jobMap.count()) < parallelThreads) {
         SynchronizerFileItem *task = getNextTask();
         if (task == nullptr) {
             if (jobMap.count() == 0)
@@ -1240,27 +1240,27 @@ void Synchronizer::slotTaskFinished(KJob *job)
                     timestamp.actime = time(nullptr);
                     timestamp.modtime = item->rightDate() - timeOffset;
 
-                    utime((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), &timestamp);
+                    utime(static_cast<const char *>(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), &timestamp);
 
-                    auto newOwnerID = (uid_t)-1; // chown(2) : -1 means no change
+                    auto newOwnerID = static_cast<uid_t>(-1); // chown(2) : -1 means no change
                     if (!item->rightOwner().isEmpty()) {
                         struct passwd *pw = getpwnam(QFile::encodeName(item->rightOwner()).data());
                         if (pw != nullptr)
                             newOwnerID = pw->pw_uid;
                     }
-                    auto newGroupID = (gid_t)-1; // chown(2) : -1 means no change
+                    auto newGroupID = static_cast<gid_t>(-1); // chown(2) : -1 means no change
                     if (!item->rightGroup().isEmpty()) {
                         struct group *g = getgrnam(QFile::encodeName(item->rightGroup()).data());
                         if (g != nullptr)
                             newGroupID = g->gr_gid;
                     }
-                    int status1 = chown((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), newOwnerID, (gid_t)-1);
-                    int status2 = chown((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), (uid_t)-1, newGroupID);
+                    int status1 = chown(static_cast<const char *>(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), newOwnerID, static_cast<gid_t>(-1));
+                    int status2 = chown(static_cast<const char *>(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), static_cast<uid_t>(-1), newGroupID);
                     if (status1 < 0 || status2 < 0) {
                         // synchronizer currently ignores chown errors
                     }
 
-                    chmod((const char *)(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), item->rightMode() & 07777);
+                    chmod(static_cast<const char *>(leftURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), item->rightMode() & 07777);
 
 #ifdef HAVE_POSIX_ACL
                     if (!item->rightACL().isNull()) {
@@ -1280,27 +1280,27 @@ void Synchronizer::slotTaskFinished(KJob *job)
                     timestamp.actime = time(nullptr);
                     timestamp.modtime = item->leftDate() + timeOffset;
 
-                    utime((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), &timestamp);
+                    utime(static_cast<const char *>(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), &timestamp);
 
-                    auto newOwnerID = (uid_t)-1; // chown(2) : -1 means no change
+                    auto newOwnerID = static_cast<uid_t>(-1); // chown(2) : -1 means no change
                     if (!item->leftOwner().isEmpty()) {
                         struct passwd *pw = getpwnam(QFile::encodeName(item->leftOwner()).data());
                         if (pw != nullptr)
                             newOwnerID = pw->pw_uid;
                     }
-                    auto newGroupID = (gid_t)-1; // chown(2) : -1 means no change
+                    auto newGroupID = static_cast<gid_t>(-1); // chown(2) : -1 means no change
                     if (!item->leftGroup().isEmpty()) {
                         struct group *g = getgrnam(QFile::encodeName(item->leftGroup()).data());
                         if (g != nullptr)
                             newGroupID = g->gr_gid;
                     }
-                    int status1 = chown((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), newOwnerID, (uid_t)-1);
-                    int status2 = chown((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), (uid_t)-1, newGroupID);
+                    int status1 = chown(static_cast<const char *>(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), newOwnerID, static_cast<uid_t>(-1));
+                    int status2 = chown(static_cast<const char *>(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), static_cast<uid_t>(-1), newGroupID);
                     if (status1 < 0 || status2 < 0) {
                         // synchronizer currently ignores chown errors
                     }
 
-                    chmod((const char *)(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), item->leftMode() & 07777);
+                    chmod(static_cast<const char *>(rightURL.adjusted(QUrl::StripTrailingSlash).path().toLocal8Bit().data()), item->leftMode() & 07777);
 
 #ifdef HAVE_POSIX_ACL
                     if (!item->leftACL().isNull()) {
@@ -1655,7 +1655,7 @@ QString Synchronizer::readLink(const FileItem *file)
 
 SynchronizerFileItem *Synchronizer::getItemAt(unsigned ndx)
 {
-    if (ndx < (unsigned)resultList.count())
+    if (ndx < static_cast<unsigned>(resultList.count()))
         return resultList.at(ndx);
     else
         return nullptr;

@@ -130,7 +130,7 @@ QVariant ListModel::data(const QModelIndex &index, int role) const
             return fileitemName.mid(nameOnly.length() + 1);
         }
         case KrViewProperties::Size: {
-            if (fileitem->getUISize() == (KIO::filesize_t)-1) {
+            if (fileitem->getUISize() == static_cast<KIO::filesize_t>(-1)) {
                 // HACK add <> brackets AFTER translating - otherwise KUIT thinks it's a tag
                 static QString label = QString("<") + i18nc("Show the string 'DIR' instead of file size in detailed view (for folders)", "DIR") + '>';
                 return label;
@@ -503,7 +503,7 @@ QString ListModel::toolTipText(FileItem *fileItem) const
 {
     //"<p style='white-space:pre'>"; // disable automatic word-wrap
     QString text = "<b>" + fileItem->getName() + "</b><hr>";
-    if (fileItem->getUISize() != (KIO::filesize_t)-1) {
+    if (fileItem->getUISize() != static_cast<KIO::filesize_t>(-1)) {
         const QString size = KrView::sizeText(properties(), fileItem->getUISize());
         text += i18n("Size: %1", size) + "<br>";
     }
@@ -531,7 +531,7 @@ QString ListModel::dateText(time_t time)
         // unknown time
         return QString();
     }
-    struct tm *t = localtime((time_t *)&time);
+    struct tm *t = localtime(&time);
 
     const QDateTime dateTime(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
     return QLocale().toString(dateTime, QLocale::ShortFormat);

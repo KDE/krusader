@@ -202,7 +202,7 @@ QString FileSystemProvider::getACL(const QString &path, int type)
 
     char *aclString = acl_to_text(acl, nullptr);
     QString ret = QString::fromLatin1(aclString);
-    acl_free((void *)aclString);
+    acl_free(static_cast<void *>(aclString));
     acl_free(acl);
 
     return ret;

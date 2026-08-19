@@ -105,7 +105,7 @@ void DUListView::addDirectory(Directory *dirEntry, QTreeWidgetItem *parent)
             mime = mt.comment();
 
         time_t tma = item->time();
-        struct tm *t = localtime((time_t *)&tma);
+        struct tm *t = localtime(&tma);
         QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
         QString date = QLocale().toString(tmp, QLocale::ShortFormat);
 
@@ -184,7 +184,7 @@ void DUListView::slotChanged(File *item)
     if (itemPtr == nullptr)
         return;
 
-    auto *duItem = (DUListViewItem *)itemPtr;
+    auto *duItem = static_cast<DUListViewItem *>(itemPtr);
     duItem->setHidden(item->isExcluded());
     duItem->setText(1, item->percent());
     duItem->setText(2, KrPermHandler::parseSize(item->size()) + ' ');
@@ -197,7 +197,7 @@ void DUListView::slotDeleted(File *item)
     if (itemPtr == nullptr)
         return;
 
-    auto *duItem = (DUListViewItem *)itemPtr;
+    auto *duItem = static_cast<DUListViewItem *>(itemPtr);
     delete duItem;
 }
 

@@ -36,7 +36,7 @@
 #include "kguseractions.h"
 
 Konfigurator::Konfigurator(bool f, int startPage)
-    : KPageDialog((QWidget *)nullptr)
+    : KPageDialog(static_cast<QWidget *>(nullptr))
     , firstTime(f)
     , internalCall(false)
     , sizeX(-1)

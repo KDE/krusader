@@ -131,11 +131,11 @@ void KrFSDisplay::paintEvent(QPaintEvent *)
             // the "used space" slice
             long double i = (static_cast<long double>(totalSpace - freeSpace) / totalSpace) * 360.0;
             paint.setBrush(Qt::gray);
-            paint.drawPie(margins.left() + LEFT, margins.top() + BOTTOM - Z_HEIGHT, WIDTH, HEIGHT, STARTANGLE, (int)DEG(i));
+            paint.drawPie(margins.left() + LEFT, margins.top() + BOTTOM - Z_HEIGHT, WIDTH, HEIGHT, STARTANGLE, static_cast<int>(DEG(i)));
             // if we need to draw a 3d stripe ...
             if (i > 180.0) {
                 for (int j = 1; j < Z_HEIGHT; ++j)
-                    paint.drawArc(margins.left() + LEFT, margins.top() + BOTTOM - j, WIDTH, HEIGHT, STARTANGLE - 16 * 180, (int)(DEG(i - 180.0)));
+                    paint.drawArc(margins.left() + LEFT, margins.top() + BOTTOM - j, WIDTH, HEIGHT, STARTANGLE - 16 * 180, static_cast<int>(DEG(i - 180.0)));
             }
         } else { // if the filesystem is unmounted...
             font.setWeight(QFont::Bold);
@@ -167,7 +167,7 @@ void KrPie::paintEvent(QPaintEvent *)
         // angles are negative to create a clock-wise drawing of slices
         long double angle = -(slices[ndx].getPerct() / 100 * 360) * 16;
         for (int i = 1; i < Z_HEIGHT; ++i)
-            paint.drawPie(LEFT, BOTTOM + i, WIDTH, HEIGHT, (int)sAngle, (int)angle);
+            paint.drawPie(LEFT, BOTTOM + i, WIDTH, HEIGHT, static_cast<int>(sAngle), static_cast<int>(angle));
         sAngle += angle;
     }
     paint.setPen(Qt::yellow); // pen
@@ -180,7 +180,7 @@ void KrPie::paintEvent(QPaintEvent *)
         paint.setPen(slices[ndx].getColor());
         // angles are negative to create a clock-wise drawing of slices
         long double angle = -(slices[ndx].getPerct() / 100 * 360) * 16;
-        paint.drawPie(LEFT, BOTTOM, WIDTH, HEIGHT, (int)sAngle, (int)angle);
+        paint.drawPie(LEFT, BOTTOM, WIDTH, HEIGHT, static_cast<int>(sAngle), static_cast<int>(angle));
         sAngle += angle;
     }
 

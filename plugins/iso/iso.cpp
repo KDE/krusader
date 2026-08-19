@@ -190,7 +190,7 @@ void kio_isoProtocol::createUDSEntry(const KArchiveEntry *isoEntry, UDSEntry &en
 
     entry.fastInsert(UDSEntry::UDS_USER, isoEntry->user());
     entry.fastInsert(UDSEntry::UDS_GROUP, isoEntry->group());
-    entry.fastInsert((uint)UDSEntry::UDS_MODIFICATION_TIME, isoEntry->date().toSecsSinceEpoch());
+    entry.fastInsert(static_cast<uint>(UDSEntry::UDS_MODIFICATION_TIME), isoEntry->date().toSecsSinceEpoch());
     entry.fastInsert(UDSEntry::UDS_ACCESS_TIME,
                      isoEntry->isFile() ? (dynamic_cast<const KIsoFile *>(isoEntry))->adate() : (dynamic_cast<const KIsoDirectory *>(isoEntry))->adate());
 
@@ -353,7 +353,7 @@ WorkerResult kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QStrin
     if (zlib) {
         fileData = isoFileEntry->dataAt(0, sizeof(compressed_file_header));
         if (fileData.size() == sizeof(compressed_file_header) && !memcmp(fileData.data(), zisofs_magic, sizeof(zisofs_magic))) {
-            hdr = (compressed_file_header *)fileData.data();
+            hdr = reinterpret_cast<compressed_file_header *>(fileData.data());
             block_shift = hdr->block_size;
             block_size = 1UL << block_shift;
             block_size2 = block_size << 1;
@@ -361,7 +361,7 @@ WorkerResult kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QStrin
             nblocks = (fullsize + block_size - 1) >> block_shift;
             ptrblock_bytes = (nblocks + 1) * 4;
             pointer_block = isoFileEntry->dataAt(hdr->header_size << 2, ptrblock_bytes);
-            if ((unsigned long)pointer_block.size() == ptrblock_bytes) {
+            if (static_cast<unsigned long>(pointer_block.size()) == ptrblock_bytes) {
                 inbuf.resize(static_cast<int>(block_size2));
                 if (inbuf.size()) {
                     outbuf.resize(static_cast<int>(block_size));
@@ -399,12 +399,12 @@ WorkerResult kio_isoProtocol::getFile(const KIsoFile *isoFileEntry, const QStrin
                 }
 
                 inbuf = isoFileEntry->dataAt(cstart, csize);
-                if ((unsigned long)inbuf.size() != csize) {
+                if (static_cast<unsigned long>(inbuf.size()) != csize) {
                     break;
                 }
 
                 bytes = block_size; // Max output buffer size
-                if ((uncompress((Bytef *)outbuf.data(), &bytes, (Bytef *)inbuf.data(), csize)) != Z_OK) {
+                if ((uncompress(reinterpret_cast<Bytef *>(outbuf.data()), &bytes, reinterpret_cast<Bytef *>(inbuf.data()), csize)) != Z_OK) {
                     break;
                 }
             }

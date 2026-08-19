@@ -238,7 +238,7 @@ public:
         if (res == true)
             m_task = m_originalTask = TT_EQUALS;
         else if (m_originalTask >= TT_UNKNOWN)
-            m_task = m_originalTask = (TaskType)(m_originalTask - TT_UNKNOWN);
+            m_task = m_originalTask = static_cast<TaskType>(m_originalTask - TT_UNKNOWN);
     }
     inline bool isDir()
     {

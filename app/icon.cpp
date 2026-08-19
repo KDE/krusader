@@ -201,6 +201,7 @@ public:
                         .arg(size.height())
                         .arg(static_cast<int>(mode))
                         .arg(static_cast<int>(state));
+
         _hash = qHash(repr);
     }
 

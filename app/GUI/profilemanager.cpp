@@ -50,9 +50,9 @@ void ProfileManager::profilePopup()
     for (int i = 0; i != profileList.count(); i++) {
         KConfigGroup group(krConfig, m_profileType + " - " + profileList[i]);
         QString name = group.readEntry("Name");
-        popup.addAction(name)->setData(QVariant((int)(LOAD_ENTRY_ID + i)));
-        removePopup.addAction(name)->setData(QVariant((int)(REMOVE_ENTRY_ID + i)));
-        overwritePopup.addAction(name)->setData(QVariant((int)(OVERWRITE_ENTRY_ID + i)));
+        popup.addAction(name)->setData(QVariant(LOAD_ENTRY_ID + i));
+        removePopup.addAction(name)->setData(QVariant(REMOVE_ENTRY_ID + i));
+        overwritePopup.addAction(name)->setData(QVariant(OVERWRITE_ENTRY_ID + i));
     }
 
     popup.addSeparator();
@@ -62,7 +62,7 @@ void ProfileManager::profilePopup()
         popup.addMenu(&overwritePopup)->setText(i18n("Overwrite entry"));
     }
 
-    popup.addAction(i18n("Add new entry"))->setData(QVariant((int)(ADD_NEW_ENTRY_ID)));
+    popup.addAction(i18n("Add new entry"))->setData(QVariant(ADD_NEW_ENTRY_ID));
 
     int result = 0;
     QAction *res = popup.exec(QCursor::pos());

@@ -1001,7 +1001,7 @@ int DiskUsage::calculatePercents(bool emitSig, Directory *dirEntry, int depth)
             else if (dirEntry->size() == 0)
                 newPerc = -1;
             else
-                newPerc = (int)((double)item->size() / (double)currentSize * 10000. + 0.5);
+                newPerc = static_cast<int>(static_cast<double>(item->size()) / static_cast<double>(currentSize) * 10000. + 0.5);
 
             int oldPerc = item->intPercent();
             item->setPercent(newPerc);
@@ -1030,7 +1030,7 @@ QString DiskUsage::getToolTip(File *item)
         mime = mt.comment();
 
     time_t tma = item->time();
-    struct tm *t = localtime((time_t *)&tma);
+    struct tm *t = localtime(&tma);
     QDateTime tmp(QDate(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
     QString date = QLocale().toString(tmp, QLocale::ShortFormat);
 

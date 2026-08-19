@@ -51,7 +51,7 @@ QString File::humanReadableSize(UnitPrefix key /*= mega*/) const // FIXME inline
 QString File::humanReadableSize(FileSize size, UnitPrefix key /*= mega*/) // static
 {
     QString s;
-    double prettySize = (double)size / (double)DENOMINATOR[key];
+    auto prettySize = static_cast<double>(size) / static_cast<double>(DENOMINATOR[key]);
     const QLocale locale;
 
     if (prettySize >= 0.01) {

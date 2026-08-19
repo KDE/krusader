@@ -507,7 +507,7 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
     } break;
     case FIND_ID: {
         KConfigGroup group(krConfig, "Locate");
-        long options = group.readEntry("Find Options", (long long)0);
+        auto options = static_cast<long>(group.readEntry("Find Options", 0LL));
         QStringList list = group.readEntry("Find Patterns", QStringList());
 
         QPointer<KFindDialog> dlg = new KFindDialog(this, options, list);
@@ -524,7 +524,7 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
             list.push_front(dlg->pattern());
         }
 
-        group.writeEntry("Find Options", (long long)(findOptions = dlg->options()));
+        group.writeEntry("Find Options", static_cast<long long>(findOptions = dlg->options()));
         group.writeEntry("Find Patterns", list);
 
         if (!(findOptions & KFind::FromCursor) && resultList->topLevelItemCount())

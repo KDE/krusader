@@ -35,9 +35,9 @@ QAction *ActionsBase::createAction(const QString &text, const QString &icon, boo
 {
     if (isToggleAction) {
         if (icon == nullptr)
-            return (QAction *)(new KToggleAction(text, this));
+            return static_cast<QAction *>(new KToggleAction(text, this));
         else
-            return (QAction *)(new KToggleAction(Icon(icon), text, this));
+            return static_cast<QAction *>(new KToggleAction(Icon(icon), text, this));
     } else {
         if (icon == nullptr)
             return new QAction(text, this);
